@@ -4,11 +4,11 @@ Last updated: 2026-05-20
 
 ## Current Best
 
-- Best internal OOF candidate: `outputs/conditional_latent_routing_v54_joint_state_space_on_v53/submission_conditional_latent_routing.csv`
-- Best internal OOF: `0.500162`
+- Best internal OOF candidate: `outputs/conditional_latent_routing_v55_local_decoder_on_v54/submission_conditional_latent_routing.csv`
+- Best internal OOF: `0.499526`
 - Main report: `outputs/breakthrough_signal_report.md`
 - Public LB feedback: `experiments/public_lb_feedback.md`
-- Candidate report: `outputs/conditional_latent_routing_v54_joint_state_space_on_v53/report.md`
+- Candidate report: `outputs/conditional_latent_routing_v55_local_decoder_on_v54/report.md`
 - Important caveat: this is an internal OOF proxy, not Public LB. Recent Public LB feedback for older submissions was weaker than OOF suggested.
 
 ## What We Are Testing
@@ -47,6 +47,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 | v52 novelty-recovery latent | 0.502679 | entering/leaving novelty regimes | `outputs/breakthrough_signal_report.md` |
 | v53 integrated state-space latent | 0.500979 | transition + recurrence + novelty + recovery jointly | `outputs/breakthrough_signal_report.md` |
 | v54 common PCA/PLS state-space residual | 0.500162 | shared label-aligned latent works only as local residual | `outputs/breakthrough_signal_report.md` |
+| v55 local decoder residual | 0.499526 | similar-day/prototype decoder over common latent | `outputs/breakthrough_signal_report.md` |
 
 ## What Worked
 
@@ -56,6 +57,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - The most consistent current signal is personal state-space dynamics: transition, recurrence, novelty burden, and novelty recovery.
 - Target/bin routing is useful because not every latent source helps every label or every panel position.
 - The first explicit common `PCA+PLS` latent is too blunt as a direct multi-head predictor, but still contains residual signal when decoded with local/retrieval-style corrections.
+- The first local decoder over the common latent pushes internal OOF below 0.50, mainly through S4/S1 and smaller broad residuals.
 
 ## What Failed Or Was Weaker
 
@@ -68,12 +70,12 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 
 - Current implementation: common label-free features plus target-specific source models for `Q1`, `Q2`, `Q3`, `S1`, `S2`, `S3`, `S4`, composed by a conditional target/bin router.
 - Not yet final: one unified neural encoder with seven heads.
-- Strong next direction: keep the common personal state-space encoder, but replace the blunt global decoder with a local/retrieval-aware or target/bin-aware decoder.
+- Strong next direction: keep the common personal state-space encoder and make the decoder explicitly local/retrieval-aware, possibly with learned neighbor attention or prototype mixtures.
 
 ## Next 3
 
-1. Improve the common encoder decoder: local residual head, mixture-of-prototypes head, or attention over similar historical days.
-   - Success criterion: beat v54 while using the common latent more directly than conditional source stacking.
+1. Replace fixed KNN residuals with learned neighbor attention over the common latent.
+   - Success criterion: beat v55 and keep the constrained signal below 0.50.
 
 2. Add a contrastive/retrieval objective to the common latent so that similar personal state transitions are close.
    - Success criterion: improve S4/S1/S2 residuals without making direct multi-head predictions collapse toward poor global calibration.

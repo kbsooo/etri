@@ -206,6 +206,99 @@ def weighted_knn_residual(
     return np.clip(pred, EPS, 1.0 - EPS)
 
 
+def local_decoder_features(
+    ref_z: np.ndarray,
+    query_z: np.ndarray,
+    ref_y: np.ndarray,
+    ref_base: np.ndarray,
+    query_base: np.ndarray,
+    k: int,
+    temp: float,
+    exclude_self: bool = False,
+) -> np.ndarray:
+    ref_z = np.clip(np.nan_to_num(ref_z, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    query_z = np.clip(np.nan_to_num(query_z, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    d2 = ((query_z[:, None, :] - ref_z[None, :, :]) ** 2).mean(axis=2)
+    if exclude_self and len(query_z) == len(ref_z):
+        np.fill_diagonal(d2, np.inf)
+    kk = min(k, max(1, ref_z.shape[0] - (1 if exclude_self else 0)))
+    idx = np.argpartition(d2, kk - 1, axis=1)[:, :kk]
+    chosen = np.take_along_axis(d2, idx, axis=1)
+    scale = np.maximum(np.nanmedian(chosen, axis=1, keepdims=True), 1e-6) * temp
+    weights = np.exp(-chosen / scale)
+    weights = weights / np.maximum(weights.sum(axis=1, keepdims=True), 1e-12)
+
+    knn_label = (weights * ref_y[idx]).sum(axis=1)
+    residual = ref_y - ref_base
+    knn_resid = np.clip(query_base + (weights * residual[idx]).sum(axis=1), EPS, 1.0 - EPS)
+    y_smooth = ref_y * 0.98 + 0.01
+    logit_residual = safe_logit(y_smooth) - safe_logit(ref_base)
+    knn_logit = sigmoid(safe_logit(query_base) + (weights * logit_residual[idx]).sum(axis=1))
+
+    prior = np.clip(ref_y.mean(), EPS, 1.0 - EPS)
+    if len(np.unique(ref_y)) >= 2:
+        pos = ref_z[ref_y == 1].mean(axis=0)
+        neg = ref_z[ref_y == 0].mean(axis=0)
+        d_pos = ((query_z - pos) ** 2).mean(axis=1)
+        d_neg = ((query_z - neg) ** 2).mean(axis=1)
+        proto_raw = d_neg - d_pos
+        proto_scale = np.std(proto_raw) if np.std(proto_raw) > 1e-6 else 1.0
+        proto = sigmoid(safe_logit(np.full(len(query_z), prior)) + proto_raw / proto_scale)
+    else:
+        d_pos = np.full(len(query_z), np.nan)
+        d_neg = np.full(len(query_z), np.nan)
+        proto_raw = np.zeros(len(query_z))
+        proto = np.full(len(query_z), prior)
+
+    d_min = np.nanmin(chosen, axis=1)
+    d_mean = np.nanmean(chosen, axis=1)
+    d_std = np.nanstd(chosen, axis=1)
+    features = np.column_stack(
+        [
+            safe_logit(query_base),
+            knn_label,
+            knn_resid,
+            knn_logit,
+            safe_logit(knn_logit) - safe_logit(query_base),
+            knn_resid - query_base,
+            proto,
+            proto - prior,
+            proto_raw,
+            d_pos,
+            d_neg,
+            d_min,
+            d_mean,
+            d_std,
+            1.0 / np.sqrt(np.maximum(d_mean, 1e-6)),
+        ]
+    )
+    return np.clip(np.nan_to_num(features, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0).astype(np.float32)
+
+
+def fit_local_decoder(
+    method: str,
+    fit_features: np.ndarray,
+    y_fit: np.ndarray,
+    apply_features: np.ndarray,
+    sample_features: np.ndarray,
+) -> tuple[np.ndarray, np.ndarray]:
+    if method == "local_logreg":
+        model = LogisticRegression(C=0.08, class_weight="balanced", max_iter=2000, solver="liblinear", random_state=SEED)
+    elif method == "local_hgb":
+        model = HistGradientBoostingClassifier(
+            learning_rate=0.025,
+            max_iter=60,
+            max_leaf_nodes=5,
+            l2_regularization=0.8,
+            min_samples_leaf=18,
+            random_state=SEED,
+        )
+    else:
+        raise ValueError(method)
+    model.fit(fit_features, y_fit)
+    return model.predict_proba(apply_features)[:, 1], model.predict_proba(sample_features)[:, 1]
+
+
 def write_source(output_dir: Path, train: pd.DataFrame, sample: pd.DataFrame, source: SourcePack) -> tuple[Path, Path]:
     oof = train[KEY_COLUMNS + TARGET_COLUMNS].copy()
     submission = sample[KEY_COLUMNS].copy()
@@ -233,7 +326,16 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
     folds = make_subject_time_folds(train, args.n_folds)
     y_df = train[TARGET_COLUMNS].astype(int)
 
-    source_names = ["joint_pls_logreg", "joint_pls_hgb", "joint_pls_ridge", "joint_pls_knn_resid", "joint_pls_knn_logitresid"]
+    source_names = [
+        "joint_pls_logreg",
+        "joint_pls_hgb",
+        "joint_pls_ridge",
+        "joint_pls_knn_resid",
+        "joint_pls_knn_logitresid",
+        "joint_local_logreg",
+        "joint_local_hgb",
+        "joint_proto_mix",
+    ]
     oof_by_source = {name: np.full_like(base_train, np.nan, dtype=float) for name in source_names}
     sample_folds_by_source = {name: [] for name in source_names}
     latent_oof = np.full((len(train), args.pca_dim + min(args.pls_dim, len(TARGET_COLUMNS))), np.nan, dtype=float)
@@ -287,6 +389,26 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             sample_folds_by_source["joint_pls_knn_logitresid"].append(
                 (target_i, weighted_knn_residual(z_fit, z_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
             )
+            fit_local = local_decoder_features(z_fit, z_fit, y_fit, base_fit, base_fit, args.knn_k, args.knn_temp, exclude_self=True)
+            val_local = local_decoder_features(z_fit, z_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp)
+            sample_local = local_decoder_features(z_fit, z_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp)
+            for method in ("local_logreg", "local_hgb"):
+                val_pred, sample_pred = fit_local_decoder(method, fit_local, y_fit, val_local, sample_local)
+                source_name = f"joint_{method}"
+                oof_by_source[source_name][fold.val_idx, target_i] = val_pred
+                sample_folds_by_source[source_name].append((target_i, sample_pred))
+            proto_mix_val = np.clip(
+                0.80 * base_val + 0.10 * val_local[:, 2] + 0.05 * val_local[:, 3] + 0.05 * val_local[:, 6],
+                EPS,
+                1.0 - EPS,
+            )
+            proto_mix_sample = np.clip(
+                0.80 * base_test + 0.10 * sample_local[:, 2] + 0.05 * sample_local[:, 3] + 0.05 * sample_local[:, 6],
+                EPS,
+                1.0 - EPS,
+            )
+            oof_by_source["joint_proto_mix"][fold.val_idx, target_i] = proto_mix_val
+            sample_folds_by_source["joint_proto_mix"].append((target_i, proto_mix_sample))
 
     base_avg, base_targets = average_log_loss(y_df, base_train)
     source_rows: list[dict[str, object]] = []

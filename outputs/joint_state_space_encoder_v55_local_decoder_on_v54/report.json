@@ -1,0 +1,179 @@
+{
+  "base_avg_log_loss": 0.500161904732988,
+  "best_avg_log_loss": 0.500161904732988,
+  "best_source": "base",
+  "sources": [
+    {
+      "name": "joint_pls_logreg",
+      "oof": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54/oof_joint_pls_logreg.csv",
+      "submission": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54/submission_joint_pls_logreg.csv",
+      "avg_log_loss": 0.7870143847531851,
+      "Q1": 0.785173137624517,
+      "Q2": 0.7794920997714379,
+      "Q3": 0.7820479812702107,
+      "S1": 0.7862527395978055,
+      "S2": 0.7876957127004827,
+      "S3": 0.7979289051995172,
+      "S4": 0.7905101171083249
+    },
+    {
+      "name": "joint_pls_hgb",
+      "oof": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54/oof_joint_pls_hgb.csv",
+      "submission": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54/submission_joint_pls_hgb.csv",
+      "avg_log_loss": 0.7132610697284674,
+      "Q1": 0.7640748494882171,
+      "Q2": 0.7525658756761108,
+      "Q3": 0.7419684095167712,
+      "S1": 0.6754997585820888,
+      "S2": 0.6821624068674904,
+      "S3": 0.6527663022612211,
+      "S4": 0.7237898857073725
+    },
+    {
+      "name": "joint_pls_ridge",
+      "oof": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54/oof_joint_pls_ridge.csv",
+      "submission": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54/submission_joint_pls_ridge.csv",
+      "avg_log_loss": 0.7083166104590614,
+      "Q1": 0.7145295093696542,
+      "Q2": 0.6990450443815686,
+      "Q3": 0.716040469709699,
+      "S1": 0.7135950846098049,
+      "S2": 0.7072885110022211,
+      "S3": 0.707844171122377,
+      "S4": 0.699873483018105
+    },
+    {
+      "name": "joint_pls_knn_resid",
+      "oof": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54/oof_joint_pls_knn_resid.csv",
+      "submission": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54/submission_joint_pls_knn_resid.csv",
+      "avg_log_loss": 0.565720833761704,
+      "Q1": 0.604755754830442,
+      "Q2": 0.6272825155513593,
+      "Q3": 0.6200925019620569,
+      "S1": 0.5382716576962384,
+      "S2": 0.5744654195659104,
+      "S3": 0.473054988871558,
+      "S4": 0.5221229978543636
+    },
+    {
+      "name": "joint_pls_knn_logitresid",
+      "oof": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54/oof_joint_pls_knn_logitresid.csv",
+      "submission": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54/submission_joint_pls_knn_logitresid.csv",
+      "avg_log_loss": 0.6331507092432542,
+      "Q1": 0.674496976040138,
+      "Q2": 0.751764162213985,
+      "Q3": 0.6935059824444441,
+      "S1": 0.6080478192947185,
+      "S2": 0.5951961483644544,
+      "S3": 0.5091105863499829,
+      "S4": 0.5999332899950568
+    },
+    {
+      "name": "joint_local_logreg",
+      "oof": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54/oof_joint_local_logreg.csv",
+      "submission": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54/submission_joint_local_logreg.csv",
+      "avg_log_loss": 0.5320127996470486,
+      "Q1": 0.5589817069200105,
+      "Q2": 0.5761443027117408,
+      "Q3": 0.5485318432980425,
+      "S1": 0.5421523653984253,
+      "S2": 0.5233185761252179,
+      "S3": 0.46449308330479394,
+      "S4": 0.5104677197711094
+    },
+    {
+      "name": "joint_local_hgb",
+      "oof": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54/oof_joint_local_hgb.csv",
+      "submission": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54/submission_joint_local_hgb.csv",
+      "avg_log_loss": 0.5593636289710789,
+      "Q1": 0.601290300106545,
+      "Q2": 0.6147144680468677,
+      "Q3": 0.5732108957473314,
+      "S1": 0.5583035337755755,
+      "S2": 0.5283829869271616,
+      "S3": 0.4842874100211828,
+      "S4": 0.5553558081728884
+    },
+    {
+      "name": "joint_proto_mix",
+      "oof": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54/oof_joint_proto_mix.csv",
+      "submission": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54/submission_joint_proto_mix.csv",
+      "avg_log_loss": 0.5087078614316688,
+      "Q1": 0.5524565371674793,
+      "Q2": 0.5619753407545591,
+      "Q3": 0.5296637811377275,
+      "S1": 0.49618249260553604,
+      "S2": 0.4843756631164081,
+      "S3": 0.43891320076743545,
+      "S4": 0.4973880144725361
+    }
+  ],
+  "fold_meta": [
+    {
+      "fold": 0,
+      "train_rows": 355,
+      "valid_rows": 95,
+      "selected_features": 420,
+      "pca_dim": 32,
+      "pls_dim": 7,
+      "latent_dim": 39
+    },
+    {
+      "fold": 1,
+      "train_rows": 358,
+      "valid_rows": 92,
+      "selected_features": 420,
+      "pca_dim": 32,
+      "pls_dim": 7,
+      "latent_dim": 39
+    },
+    {
+      "fold": 2,
+      "train_rows": 359,
+      "valid_rows": 91,
+      "selected_features": 420,
+      "pca_dim": 32,
+      "pls_dim": 7,
+      "latent_dim": 39
+    },
+    {
+      "fold": 3,
+      "train_rows": 363,
+      "valid_rows": 87,
+      "selected_features": 420,
+      "pca_dim": 32,
+      "pls_dim": 7,
+      "latent_dim": 39
+    },
+    {
+      "fold": 4,
+      "train_rows": 365,
+      "valid_rows": 85,
+      "selected_features": 420,
+      "pca_dim": 32,
+      "pls_dim": 7,
+      "latent_dim": 39
+    }
+  ],
+  "feature_groups": [
+    "temporal_state_transition",
+    "temporal_state_recurrence",
+    "temporal_state_novelty",
+    "temporal_state_novelty_recovery"
+  ],
+  "selected_columns": 594,
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v54_joint_state_space_on_v53/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v54_joint_state_space_on_v53/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/joint_state_space_encoder_v55_local_decoder_on_v54",
+    "groups": "temporal_state_transition,temporal_state_recurrence,temporal_state_novelty,temporal_state_novelty_recovery",
+    "n_folds": 5,
+    "max_features": 420,
+    "pca_dim": 32,
+    "pls_dim": 7,
+    "knn_k": 19,
+    "knn_temp": 1.2
+  }
+}

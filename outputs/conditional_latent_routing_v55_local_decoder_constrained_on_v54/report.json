@@ -1,0 +1,145 @@
+{
+  "base_score": {
+    "avg_log_loss": 0.500161904732988,
+    "per_target": {
+      "Q1": 0.5432814881264583,
+      "Q2": 0.5503831271447486,
+      "Q3": 0.5191565772089896,
+      "S1": 0.49134356048738376,
+      "S2": 0.47651709621071925,
+      "S3": 0.4294145559134652,
+      "S4": 0.4910369280391521
+    }
+  },
+  "routed_score": {
+    "avg_log_loss": 0.49986011510425526,
+    "per_target": {
+      "Q1": 0.5432814881264583,
+      "Q2": 0.5503831271447486,
+      "Q3": 0.5191565772089896,
+      "S1": 0.4906739754695215,
+      "S2": 0.47651709621071925,
+      "S3": 0.4294145559134652,
+      "S4": 0.4895939856558841
+    }
+  },
+  "selected_moves": [
+    {
+      "target": "Q1",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "Q2",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "Q3",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "S1",
+      "source": "joint_pls_knn_resid",
+      "bin": "second_half",
+      "weight": 0.1,
+      "improvement": 0.0006695850178622398,
+      "lo": 0.5,
+      "hi": 1.000001,
+      "train_rows": 159.0,
+      "sample_rows": 193.0,
+      "base_log_loss": 0.49134356048738376,
+      "log_loss": 0.4906739754695215
+    },
+    {
+      "target": "S2",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "S3",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "S4",
+      "source": "joint_pls_knn_logitresid",
+      "bin": "mid",
+      "weight": 0.1,
+      "improvement": 0.001442942383268031,
+      "lo": 0.333,
+      "hi": 0.666,
+      "train_rows": 100.0,
+      "sample_rows": 130.0,
+      "base_log_loss": 0.4910369280391521,
+      "log_loss": 0.4895939856558841
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v54_joint_state_space_on_v53/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v54_joint_state_space_on_v53/submission_conditional_latent_routing.csv",
+    "source": [
+      "joint_local_hgb=outputs/joint_state_space_encoder_v55_local_decoder_on_v54/oof_joint_local_hgb.csv,outputs/joint_state_space_encoder_v55_local_decoder_on_v54/submission_joint_local_hgb.csv",
+      "joint_local_logreg=outputs/joint_state_space_encoder_v55_local_decoder_on_v54/oof_joint_local_logreg.csv,outputs/joint_state_space_encoder_v55_local_decoder_on_v54/submission_joint_local_logreg.csv",
+      "joint_pls_hgb=outputs/joint_state_space_encoder_v55_local_decoder_on_v54/oof_joint_pls_hgb.csv,outputs/joint_state_space_encoder_v55_local_decoder_on_v54/submission_joint_pls_hgb.csv",
+      "joint_pls_knn_logitresid=outputs/joint_state_space_encoder_v55_local_decoder_on_v54/oof_joint_pls_knn_logitresid.csv,outputs/joint_state_space_encoder_v55_local_decoder_on_v54/submission_joint_pls_knn_logitresid.csv",
+      "joint_pls_knn_resid=outputs/joint_state_space_encoder_v55_local_decoder_on_v54/oof_joint_pls_knn_resid.csv,outputs/joint_state_space_encoder_v55_local_decoder_on_v54/submission_joint_pls_knn_resid.csv",
+      "joint_pls_logreg=outputs/joint_state_space_encoder_v55_local_decoder_on_v54/oof_joint_pls_logreg.csv,outputs/joint_state_space_encoder_v55_local_decoder_on_v54/submission_joint_pls_logreg.csv",
+      "joint_pls_ridge=outputs/joint_state_space_encoder_v55_local_decoder_on_v54/oof_joint_pls_ridge.csv,outputs/joint_state_space_encoder_v55_local_decoder_on_v54/submission_joint_pls_ridge.csv",
+      "joint_proto_mix=outputs/joint_state_space_encoder_v55_local_decoder_on_v54/oof_joint_proto_mix.csv,outputs/joint_state_space_encoder_v55_local_decoder_on_v54/submission_joint_proto_mix.csv"
+    ],
+    "output_dir": "outputs/conditional_latent_routing_v55_local_decoder_constrained_on_v54",
+    "weights": "0.025,0.05,0.075,0.1",
+    "bins": "first_half:0:0.5,second_half:0.5:1.000001,mid:0.333:0.666,late:0.666:1.000001,all:0:1.000001",
+    "min_train_rows": 50,
+    "min_sample_rows": 40,
+    "min_improvement": 0.0005,
+    "max_moves_per_target": 1,
+    "allow_overlap": false,
+    "targets": "Q1,Q2,Q3,S1,S2,S3,S4",
+    "match_source_prefix": false
+  }
+}
