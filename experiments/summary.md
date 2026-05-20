@@ -4,11 +4,11 @@ Last updated: 2026-05-20
 
 ## Current Best
 
-- Best internal OOF candidate: `outputs/conditional_latent_routing_v61_family_residual_pls_on_v60/submission_conditional_latent_routing.csv`
-- Best internal OOF: `0.496127`
+- Best internal OOF candidate: `outputs/conditional_latent_routing_v62_cross_family_residual_pls_on_v61/submission_conditional_latent_routing.csv`
+- Best internal OOF: `0.495010`
 - Main report: `outputs/breakthrough_signal_report.md`
 - Public LB feedback: `experiments/public_lb_feedback.md`
-- Candidate report: `outputs/conditional_latent_routing_v61_family_residual_pls_on_v60/report.md`
+- Candidate report: `outputs/conditional_latent_routing_v62_cross_family_residual_pls_on_v61/report.md`
 - Important caveat: this is an internal OOF proxy, not Public LB. Recent Public LB feedback for older submissions was weaker than OOF suggested.
 
 ## What We Are Testing
@@ -54,6 +54,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 | v59 residual-contrastive metric residual | 0.497895 | metric weighted by current base residual direction; residual-only route reaches 0.498031 | `outputs/breakthrough_signal_report.md` |
 | v60 residual PLS latent objective | 0.497145 | fold-safe latent trained to predict current-base residuals; residual-PLS-only route reaches 0.497271 | `outputs/breakthrough_signal_report.md` |
 | v61 family/target residual PLS objective | 0.496127 | Q/S-family and per-target residual latent objectives; residual-PLS-only route reaches 0.496175 and constrained reaches 0.496312 | `outputs/breakthrough_signal_report.md` |
+| v62 cross-family residual PLS objective | 0.495010 | opposite-family and Q+S combined residual latent objectives; new-source-only route reaches 0.495174 and constrained reaches 0.495269 | `outputs/breakthrough_signal_report.md` |
 
 ## What Worked
 
@@ -70,6 +71,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Residual-contrastive metric weighting creates a broad mid-panel residual signal across Q1/Q2/S1/S2/S3/S4, especially S2 and S3, although the strictest constrained route still keeps only the strongest S4 KNN move.
 - Training a fold-safe PLS latent directly on current-base residuals creates the strongest recent jump, especially Q2 all rows, Q1 mid, and Q3 late; the constrained route keeps Q1/Q2/Q3 residual PLS moves.
 - Splitting the residual latent objective into Q-family, S-family, and per-target residual PLS creates another large routed jump. The strongest new signal is cross-family: Q residual latent improves S2/S3, S residual latent improves Q3, and target residual latent improves S4.
+- Explicit cross-family and Q+S combined residual PLS objectives reproduce the signal after v61. The new-source-only route nearly matches the full route, which supports modeling residual subspaces as shared and cross-predictive rather than label-family-local.
 
 ## What Failed Or Was Weaker
 
@@ -86,8 +88,8 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 
 ## Next 3
 
-1. Turn the family/target residual PLS discovery into a cleaner encoder objective with explicit cross-family reconstruction heads.
-   - Success criterion: reproduce the S2/S3 gains from Q residual latent and S4 gains from target residual latent without relying only on post-hoc routing.
+1. Replace the linear PLS residual objective with a small fold-safe neural residual-subspace encoder that has shared, Q, S, cross-family, and target heads.
+   - Success criterion: keep the v62 Q1/Q2/Q3/S4 cross-family gains while reducing dependence on target/bin routing.
 
 2. Turn the neighbor scorer from a post-hoc feature decoder into the latent objective itself: pull together days that have similar target residual behavior while preserving subject/time context.
    - Success criterion: improve S3/S4/S1 residuals with fewer routed moves and avoid standalone decoder collapse.

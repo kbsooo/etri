@@ -213,6 +213,23 @@ def fit_residual_pls_latent(
     return z_fit.astype(np.float32), z_apply.astype(np.float32), z_sample.astype(np.float32), meta
 
 
+def stack_and_scale_latents(
+    fit_parts: list[np.ndarray],
+    apply_parts: list[np.ndarray],
+    sample_parts: list[np.ndarray],
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    z_fit = np.hstack(fit_parts)
+    z_apply = np.hstack(apply_parts)
+    z_sample = np.hstack(sample_parts)
+    scaler = StandardScaler()
+    z_fit = scaler.fit_transform(z_fit)
+    z_apply = scaler.transform(z_apply)
+    z_sample = scaler.transform(z_sample)
+    for arr in (z_fit, z_apply, z_sample):
+        arr[:] = np.clip(np.nan_to_num(arr, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    return z_fit.astype(np.float32), z_apply.astype(np.float32), z_sample.astype(np.float32)
+
+
 def fit_head_probability(
     method: str,
     z_fit: np.ndarray,
@@ -679,6 +696,12 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_family_residual_pls_knn_logitresid",
         "joint_target_residual_pls_knn_resid",
         "joint_target_residual_pls_knn_logitresid",
+        "joint_cross_family_residual_pls_knn_resid",
+        "joint_cross_family_residual_pls_knn_logitresid",
+        "joint_qs_residual_pls_knn_resid",
+        "joint_qs_residual_pls_knn_logitresid",
+        "joint_target_qs_residual_pls_knn_resid",
+        "joint_target_qs_residual_pls_knn_logitresid",
         "joint_attention_knn_resid",
         "joint_attention_knn_logitresid",
         "joint_metric_attention_knn_resid",
@@ -740,6 +763,11 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             sample_x,
             args.max_features,
             min(args.residual_pls_dim, 4),
+        )
+        qsrz_fit, qsrz_val, qsrz_sample = stack_and_scale_latents(
+            [qrz_fit, srz_fit],
+            [qrz_val, srz_val],
+            [qrz_sample, srz_sample],
         )
         if latent_oof.shape[1] != z_val.shape[1]:
             latent_oof = np.full((len(train), z_val.shape[1]), np.nan, dtype=float)
@@ -833,6 +861,8 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                 ("joint_q_residual_pls", qrz_fit, qrz_val, qrz_sample),
                 ("joint_s_residual_pls", srz_fit, srz_val, srz_sample),
                 ("joint_family_residual_pls", (qrz_fit if target_i < 3 else srz_fit), (qrz_val if target_i < 3 else srz_val), (qrz_sample if target_i < 3 else srz_sample)),
+                ("joint_cross_family_residual_pls", (srz_fit if target_i < 3 else qrz_fit), (srz_val if target_i < 3 else qrz_val), (srz_sample if target_i < 3 else qrz_sample)),
+                ("joint_qs_residual_pls", qsrz_fit, qsrz_val, qsrz_sample),
             ):
                 source_name = f"{source_prefix}_knn_resid"
                 oof_by_source[source_name][fold.val_idx, target_i] = weighted_knn_residual(
@@ -856,6 +886,11 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                 args.max_features,
                 1,
             )
+            t_qs_fit, t_qs_val, t_qs_sample = stack_and_scale_latents(
+                [trz_fit, qrz_fit, srz_fit],
+                [trz_val, qrz_val, srz_val],
+                [trz_sample, qrz_sample, srz_sample],
+            )
             oof_by_source["joint_target_residual_pls_knn_resid"][fold.val_idx, target_i] = weighted_knn_residual(
                 trz_fit, trz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
             )
@@ -867,6 +902,18 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             )
             sample_folds_by_source["joint_target_residual_pls_knn_logitresid"].append(
                 (target_i, weighted_knn_residual(trz_fit, trz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
+            )
+            oof_by_source["joint_target_qs_residual_pls_knn_resid"][fold.val_idx, target_i] = weighted_knn_residual(
+                t_qs_fit, t_qs_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_target_qs_residual_pls_knn_resid"].append(
+                (target_i, weighted_knn_residual(t_qs_fit, t_qs_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, False))
+            )
+            oof_by_source["joint_target_qs_residual_pls_knn_logitresid"][fold.val_idx, target_i] = weighted_knn_residual(
+                t_qs_fit, t_qs_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_target_qs_residual_pls_knn_logitresid"].append(
+                (target_i, weighted_knn_residual(t_qs_fit, t_qs_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
             )
             fit_keys = train.iloc[fold.train_idx][KEY_COLUMNS]
             val_keys = train.iloc[fold.val_idx][KEY_COLUMNS]

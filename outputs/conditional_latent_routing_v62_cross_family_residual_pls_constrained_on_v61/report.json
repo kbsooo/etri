@@ -1,0 +1,157 @@
+{
+  "base_score": {
+    "avg_log_loss": 0.4961269978020549,
+    "per_target": {
+      "Q1": 0.540771199223597,
+      "Q2": 0.5473260962716608,
+      "Q3": 0.515708747237429,
+      "S1": 0.48725032354043035,
+      "S2": 0.47294751618745307,
+      "S3": 0.4249034420527168,
+      "S4": 0.48398166010109706
+    }
+  },
+  "routed_score": {
+    "avg_log_loss": 0.49526882550278,
+    "per_target": {
+      "Q1": 0.5387660803999718,
+      "Q2": 0.5463305163329373,
+      "Q3": 0.5143527890738561,
+      "S1": 0.4864697999336214,
+      "S2": 0.47294751618745307,
+      "S3": 0.4249034420527168,
+      "S4": 0.48311163453890354
+    }
+  },
+  "selected_moves": [
+    {
+      "target": "Q1",
+      "source": "joint_qs_residual_pls_knn_resid",
+      "bin": "first_half",
+      "lo": 0.0,
+      "hi": 0.5,
+      "weight": 0.1,
+      "train_rows": 291.0,
+      "sample_rows": 57.0,
+      "base_log_loss": 0.540771199223597,
+      "log_loss": 0.5387660803999718,
+      "improvement": 0.002005118823625196
+    },
+    {
+      "target": "Q2",
+      "source": "joint_cross_family_residual_pls_knn_resid",
+      "bin": "first_half",
+      "lo": 0.0,
+      "hi": 0.5,
+      "weight": 0.1,
+      "train_rows": 291.0,
+      "sample_rows": 57.0,
+      "base_log_loss": 0.5473260962716608,
+      "log_loss": 0.5463305163329373,
+      "improvement": 0.0009955799387235675
+    },
+    {
+      "target": "Q3",
+      "source": "joint_cross_family_residual_pls_knn_resid",
+      "bin": "all",
+      "lo": 0.0,
+      "hi": 1.000001,
+      "weight": 0.1,
+      "train_rows": 450.0,
+      "sample_rows": 250.0,
+      "base_log_loss": 0.515708747237429,
+      "log_loss": 0.5143527890738561,
+      "improvement": 0.0013559581635729234
+    },
+    {
+      "target": "S1",
+      "source": "joint_qs_residual_pls_knn_resid",
+      "bin": "first_half",
+      "lo": 0.0,
+      "hi": 0.5,
+      "weight": 0.075,
+      "train_rows": 291.0,
+      "sample_rows": 57.0,
+      "base_log_loss": 0.48725032354043035,
+      "log_loss": 0.4864697999336214,
+      "improvement": 0.0007805236068089694
+    },
+    {
+      "target": "S2",
+      "source": "base",
+      "bin": "all",
+      "lo": NaN,
+      "hi": NaN,
+      "weight": 0.0,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN,
+      "improvement": 0.0
+    },
+    {
+      "target": "S3",
+      "source": "base",
+      "bin": "all",
+      "lo": NaN,
+      "hi": NaN,
+      "weight": 0.0,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN,
+      "improvement": 0.0
+    },
+    {
+      "target": "S4",
+      "source": "joint_cross_family_residual_pls_knn_resid",
+      "bin": "late",
+      "lo": 0.666,
+      "hi": 1.000001,
+      "weight": 0.1,
+      "train_rows": 116.0,
+      "sample_rows": 120.0,
+      "base_log_loss": 0.48398166010109706,
+      "log_loss": 0.48311163453890354,
+      "improvement": 0.0008700255621935105
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v61_family_residual_pls_on_v60/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v61_family_residual_pls_on_v60/submission_conditional_latent_routing.csv",
+    "source": [
+      "joint_cross_family_residual_pls_knn_logitresid=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_cross_family_residual_pls_knn_logitresid.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_cross_family_residual_pls_knn_logitresid.csv",
+      "joint_cross_family_residual_pls_knn_resid=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_cross_family_residual_pls_knn_resid.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_cross_family_residual_pls_knn_resid.csv",
+      "joint_family_residual_pls_knn_logitresid=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_family_residual_pls_knn_logitresid.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_family_residual_pls_knn_logitresid.csv",
+      "joint_family_residual_pls_knn_resid=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_family_residual_pls_knn_resid.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_family_residual_pls_knn_resid.csv",
+      "joint_q_residual_pls_knn_logitresid=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_q_residual_pls_knn_logitresid.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_q_residual_pls_knn_logitresid.csv",
+      "joint_q_residual_pls_knn_resid=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_q_residual_pls_knn_resid.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_q_residual_pls_knn_resid.csv",
+      "joint_qs_residual_pls_knn_logitresid=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_qs_residual_pls_knn_logitresid.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_qs_residual_pls_knn_logitresid.csv",
+      "joint_qs_residual_pls_knn_resid=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_qs_residual_pls_knn_resid.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_qs_residual_pls_knn_resid.csv",
+      "joint_residual_pls_knn_logitresid=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_residual_pls_knn_logitresid.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_residual_pls_knn_logitresid.csv",
+      "joint_residual_pls_knn_resid=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_residual_pls_knn_resid.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_residual_pls_knn_resid.csv",
+      "joint_residual_pls_local_hgb=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_residual_pls_local_hgb.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_residual_pls_local_hgb.csv",
+      "joint_residual_pls_local_logreg=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_residual_pls_local_logreg.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_residual_pls_local_logreg.csv",
+      "joint_residual_pls_neighbor_hgb=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_residual_pls_neighbor_hgb.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_residual_pls_neighbor_hgb.csv",
+      "joint_residual_pls_neighbor_logreg=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_residual_pls_neighbor_logreg.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_residual_pls_neighbor_logreg.csv",
+      "joint_s_residual_pls_knn_logitresid=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_s_residual_pls_knn_logitresid.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_s_residual_pls_knn_logitresid.csv",
+      "joint_s_residual_pls_knn_resid=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_s_residual_pls_knn_resid.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_s_residual_pls_knn_resid.csv",
+      "joint_target_qs_residual_pls_knn_logitresid=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_target_qs_residual_pls_knn_logitresid.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_target_qs_residual_pls_knn_logitresid.csv",
+      "joint_target_qs_residual_pls_knn_resid=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_target_qs_residual_pls_knn_resid.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_target_qs_residual_pls_knn_resid.csv",
+      "joint_target_residual_pls_knn_logitresid=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_target_residual_pls_knn_logitresid.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_target_residual_pls_knn_logitresid.csv",
+      "joint_target_residual_pls_knn_resid=outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/oof_joint_target_residual_pls_knn_resid.csv,outputs/joint_state_space_encoder_v62_cross_family_residual_pls_on_v61/submission_joint_target_residual_pls_knn_resid.csv"
+    ],
+    "output_dir": "outputs/conditional_latent_routing_v62_cross_family_residual_pls_constrained_on_v61",
+    "weights": "0.025,0.05,0.075,0.1",
+    "bins": "first_half:0:0.5,second_half:0.5:1.000001,mid:0.333:0.666,late:0.666:1.000001,all:0:1.000001",
+    "min_train_rows": 50,
+    "min_sample_rows": 40,
+    "min_improvement": 0.0005,
+    "max_moves_per_target": 1,
+    "allow_overlap": false,
+    "targets": "Q1,Q2,Q3,S1,S2,S3,S4",
+    "match_source_prefix": false
+  }
+}
