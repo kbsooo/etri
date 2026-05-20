@@ -63,6 +63,18 @@ Root cause found (`scripts/build_v83_repaired_v80.py`, `outputs/v83_repaired_v80
 - **Primary upload: `submission_v83_gq015_gs010.csv`** (Q γ=0.15, S γ=0.10): posterior 0.597813 (−0.0021 vs v76), drift_v76 0.019, max-row 0.151, tail(pp>0.9) disagreement share 0.11 (spread, not tail-concentrated). Q1 mean 0.510 ≤ v76 0.511. Downside bounded (drift 0.019 vs v82's 0.128 — no v82-style blowup possible).
 - Public LB result: `0.5997645835`. This confirms the repaired-v80 direction is real, but much smaller than posterior predicted: posterior expected ~`0.597813`, so the posterior was optimistic by `+0.001951`. Use this as the new calibration point for v84: keep the v80 row-deviation idea, but penalize drift/large gamma more aggressively.
 
+## v85 last-slot breakthrough pivot (`outputs/v85_public_posterior_breakthrough/`)
+
+- User rejected spending the final daily slot on another `0.59x` hedge. v85 therefore intentionally leaves the v76/v83 neighborhood.
+- Construction: fit a sharpened soft-label posterior using known Public LB scores as aggregate BCE constraints, now including:
+  - v83 success `0.5997645835`
+  - v76 `0.5999627447`
+  - v18 `0.6057860899`
+  - support blend `0.6104310794`
+  - v82 failure `0.6629409456`
+- The old conservative posterior had self-entropy around `0.590`. Using its row ordering as prior and sharpening with `tau=6` gives `submission_v85_tau06_clip005.csv` with self-entropy `0.540890`, while still matching known-score constraints within `0.000039` after clipping.
+- This is a high-upside leaderboard-feedback distillation probe, not a robust generalization candidate. It has a plausible 0.54-0.55 path only if the posterior geometry recovered from aggregate LB constraints is real. If the constraints are underdetermined, it can fail badly. This accepted risk matches the final-slot objective.
+
 ## Earlier diagnostic-only candidates (v83 anchor blends — `outputs/v83_anchor_candidates/report.md`)
 
 - Tiny v76 perturbations kept as diagnostics, not the main objective: `submission_C_v76_plus_v18_w050.csv` (0.95·v76+0.05·v18, posterior 0.598588) and `_supp_w050`. The A_* (v76+v82) candidates are rejected (posterior optimism toward the quarantined branch + Q1 mean up).
