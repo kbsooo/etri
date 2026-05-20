@@ -795,6 +795,16 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_neural_qs_residual_knn_logitresid",
         "joint_neural_cross_family_residual_knn_resid",
         "joint_neural_cross_family_residual_knn_logitresid",
+        "joint_neural_multiview_residual_knn_resid",
+        "joint_neural_multiview_residual_knn_logitresid",
+        "joint_neural_multiview_q_residual_knn_resid",
+        "joint_neural_multiview_q_residual_knn_logitresid",
+        "joint_neural_multiview_s_residual_knn_resid",
+        "joint_neural_multiview_s_residual_knn_logitresid",
+        "joint_neural_multiview_qs_residual_knn_resid",
+        "joint_neural_multiview_qs_residual_knn_logitresid",
+        "joint_neural_multiview_cross_family_residual_knn_resid",
+        "joint_neural_multiview_cross_family_residual_knn_logitresid",
         "joint_attention_knn_resid",
         "joint_attention_knn_logitresid",
         "joint_metric_attention_knn_resid",
@@ -894,6 +904,41 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             [nqrz_val, nsrz_val],
             [nqrz_sample, nsrz_sample],
         )
+        mv_targets = np.hstack([residual_fit_targets, rz_fit, qrz_fit, srz_fit, qsrz_fit])
+        mnrz_fit, mnrz_val, mnrz_sample, multiview_neural_meta = fit_neural_residual_latent(
+            fit_x,
+            mv_targets,
+            val_x,
+            sample_x,
+            args.max_features,
+            args.neural_latent_dim,
+            args.neural_epochs,
+        )
+        q_mv_targets = np.hstack([residual_fit_targets[:, :3], qrz_fit, qsrz_fit])
+        mnqrz_fit, mnqrz_val, mnqrz_sample, q_multiview_neural_meta = fit_neural_residual_latent(
+            fit_x,
+            q_mv_targets,
+            val_x,
+            sample_x,
+            args.max_features,
+            max(3, min(args.neural_latent_dim, 8)),
+            args.neural_epochs,
+        )
+        s_mv_targets = np.hstack([residual_fit_targets[:, 3:], srz_fit, qsrz_fit])
+        mnsrz_fit, mnsrz_val, mnsrz_sample, s_multiview_neural_meta = fit_neural_residual_latent(
+            fit_x,
+            s_mv_targets,
+            val_x,
+            sample_x,
+            args.max_features,
+            max(4, min(args.neural_latent_dim, 8)),
+            args.neural_epochs,
+        )
+        mnqsrz_fit, mnqsrz_val, mnqsrz_sample = stack_and_scale_latents(
+            [mnqrz_fit, mnsrz_fit],
+            [mnqrz_val, mnsrz_val],
+            [mnqrz_sample, mnsrz_sample],
+        )
         if latent_oof.shape[1] != z_val.shape[1]:
             latent_oof = np.full((len(train), z_val.shape[1]), np.nan, dtype=float)
         latent_oof[fold.val_idx] = z_val
@@ -912,6 +957,10 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             "neural_best_loss": neural_meta["neural_best_loss"],
             "q_neural_latent_dim": q_neural_meta["neural_latent_dim"],
             "s_neural_latent_dim": s_neural_meta["neural_latent_dim"],
+            "multiview_neural_latent_dim": multiview_neural_meta["neural_latent_dim"],
+            "multiview_neural_best_loss": multiview_neural_meta["neural_best_loss"],
+            "q_multiview_neural_latent_dim": q_multiview_neural_meta["neural_latent_dim"],
+            "s_multiview_neural_latent_dim": s_multiview_neural_meta["neural_latent_dim"],
         }
         fold_meta.append(meta)
 
@@ -1001,6 +1050,16 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                     (nsrz_fit if target_i < 3 else nqrz_fit),
                     (nsrz_val if target_i < 3 else nqrz_val),
                     (nsrz_sample if target_i < 3 else nqrz_sample),
+                ),
+                ("joint_neural_multiview_residual", mnrz_fit, mnrz_val, mnrz_sample),
+                ("joint_neural_multiview_q_residual", mnqrz_fit, mnqrz_val, mnqrz_sample),
+                ("joint_neural_multiview_s_residual", mnsrz_fit, mnsrz_val, mnsrz_sample),
+                ("joint_neural_multiview_qs_residual", mnqsrz_fit, mnqsrz_val, mnqsrz_sample),
+                (
+                    "joint_neural_multiview_cross_family_residual",
+                    (mnsrz_fit if target_i < 3 else mnqrz_fit),
+                    (mnsrz_val if target_i < 3 else mnqrz_val),
+                    (mnsrz_sample if target_i < 3 else mnqrz_sample),
                 ),
             ):
                 source_name = f"{source_prefix}_knn_resid"

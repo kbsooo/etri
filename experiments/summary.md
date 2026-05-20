@@ -4,11 +4,11 @@ Last updated: 2026-05-20
 
 ## Current Best
 
-- Best internal OOF candidate: `outputs/conditional_latent_routing_v63_neural_residual_heads_on_v62/submission_conditional_latent_routing.csv`
-- Best internal OOF: `0.493630`
+- Best internal OOF candidate: `outputs/conditional_latent_routing_v64_neural_multiview_residual_on_v63/submission_conditional_latent_routing.csv`
+- Best internal OOF: `0.492249`
 - Main report: `outputs/breakthrough_signal_report.md`
 - Public LB feedback: `experiments/public_lb_feedback.md`
-- Candidate report: `outputs/conditional_latent_routing_v63_neural_residual_heads_on_v62/report.md`
+- Candidate report: `outputs/conditional_latent_routing_v64_neural_multiview_residual_on_v63/report.md`
 - Important caveat: this is an internal OOF proxy, not Public LB. Recent Public LB feedback for older submissions was weaker than OOF suggested.
 
 ## What We Are Testing
@@ -56,6 +56,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 | v61 family/target residual PLS objective | 0.496127 | Q/S-family and per-target residual latent objectives; residual-PLS-only route reaches 0.496175 and constrained reaches 0.496312 | `outputs/breakthrough_signal_report.md` |
 | v62 cross-family residual PLS objective | 0.495010 | opposite-family and Q+S combined residual latent objectives; new-source-only route reaches 0.495174 and constrained reaches 0.495269 | `outputs/breakthrough_signal_report.md` |
 | v63 neural residual bottleneck objective | 0.493630 | fold-safe MLP bottleneck residual latent; neural-only route reaches 0.493996 and constrained reaches 0.494207 | `outputs/breakthrough_signal_report.md` |
+| v64 neural multi-view residual bottleneck | 0.492249 | MLP bottleneck trained on residual labels plus PLS residual subspaces; neural-only reaches 0.492401 and constrained reaches 0.492763 | `outputs/breakthrough_signal_report.md` |
 
 ## What Worked
 
@@ -74,6 +75,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Splitting the residual latent objective into Q-family, S-family, and per-target residual PLS creates another large routed jump. The strongest new signal is cross-family: Q residual latent improves S2/S3, S residual latent improves Q3, and target residual latent improves S4.
 - Explicit cross-family and Q+S combined residual PLS objectives reproduce the signal after v61. The new-source-only route nearly matches the full route, which supports modeling residual subspaces as shared and cross-predictive rather than label-family-local.
 - A fold-safe MLP bottleneck residual encoder beats the linear residual subspace route when decoded by retrieval. The neural-only route is strong, especially for S1 all rows, Q3 all rows, and S2 late, so the next breakthrough direction is a real residual-subspace encoder rather than only linear PLS.
+- Multi-view neural bottlenecks trained on both residual labels and PLS residual subspaces keep improving the same route. The strongest current residual is now S-family, especially S4 late, S2 second-half, and S3 first/second-half.
 
 ## What Failed Or Was Weaker
 
@@ -90,8 +92,8 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 
 ## Next 3
 
-1. Strengthen the neural residual bottleneck into a multi-view encoder with explicit reconstruction of PLS subspaces plus residual labels.
-   - Success criterion: preserve the v63 S1/Q3 neural gains while improving Q2/S4 without needing older PLS sources.
+1. Add target-wise neural residual bottlenecks for the remaining S-family residuals, especially S4 late and S3 first/second-half.
+   - Success criterion: improve S3/S4 without erasing the v64 S2/Q3 gains.
 
 2. Turn the neighbor scorer from a post-hoc feature decoder into the latent objective itself: pull together days that have similar target residual behavior while preserving subject/time context.
    - Success criterion: improve S3/S4/S1 residuals with fewer routed moves and avoid standalone decoder collapse.
