@@ -475,6 +475,25 @@ def residual_metric_weights(z_fit: np.ndarray, residual_fit: np.ndarray) -> np.n
     return weights.astype(np.float32)
 
 
+def residual_view_alignment_score(z_fit: np.ndarray, residual_fit: np.ndarray) -> float:
+    z_fit = np.clip(np.nan_to_num(z_fit, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    residual_fit = np.nan_to_num(residual_fit, nan=0.0, posinf=0.0, neginf=0.0)
+    if len(residual_fit) < 20 or np.nanstd(residual_fit) <= 1e-6:
+        return 0.0
+    lo, hi = np.quantile(residual_fit, [0.35, 0.65])
+    low_mask = residual_fit <= lo
+    high_mask = residual_fit >= hi
+    if low_mask.sum() < 8 or high_mask.sum() < 8:
+        return 0.0
+    gap = np.abs(z_fit[high_mask].mean(axis=0) - z_fit[low_mask].mean(axis=0))
+    spread = z_fit.std(axis=0) + 1e-6
+    score = np.nan_to_num(gap / spread, nan=0.0, posinf=0.0, neginf=0.0)
+    if len(score) == 0:
+        return 0.0
+    top_k = min(4, len(score))
+    return float(np.mean(np.sort(score)[-top_k:]))
+
+
 def residual_contrast_features(
     ref_z: np.ndarray,
     query_z: np.ndarray,
@@ -873,6 +892,10 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_neural_mixture_knn_logitresid",
         "joint_neural_mixture_metric_knn_resid",
         "joint_neural_mixture_metric_knn_logitresid",
+        "joint_neural_gated_mixture_knn_resid",
+        "joint_neural_gated_mixture_knn_logitresid",
+        "joint_neural_gated_mixture_metric_knn_resid",
+        "joint_neural_gated_mixture_metric_knn_logitresid",
         "joint_neural_residual_knn_resid",
         "joint_neural_residual_knn_logitresid",
         "joint_neural_q_residual_knn_resid",
@@ -1486,6 +1509,62 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                 (
                     target_i,
                     metric_weighted_knn_residual(mixture_fit, mixture_sample, y_fit, base_fit, base_test, mixture_weights, args.knn_k, args.knn_temp, True),
+                )
+            )
+            neural_views = [
+                ("shared", nrz_fit, nrz_val, nrz_sample),
+                ("family", family_neural_fit, family_neural_val, family_neural_sample),
+                ("cross_family", cross_family_neural_fit, cross_family_neural_val, cross_family_neural_sample),
+                ("shared_multiview", mnrz_fit, mnrz_val, mnrz_sample),
+                ("family_multiview", family_mv_neural_fit, family_mv_neural_val, family_mv_neural_sample),
+                ("cross_family_multiview", cross_family_mv_neural_fit, cross_family_mv_neural_val, cross_family_mv_neural_sample),
+                ("target", tnrz_fit, tnrz_val, tnrz_sample),
+                ("target_multiview", tmnrz_fit, tmnrz_val, tmnrz_sample),
+                ("panel", pnrz_fit, pnrz_val, pnrz_sample),
+                ("panel_multiview", pmnrz_fit, pmnrz_val, pmnrz_sample),
+                ("prototype", prnrz_fit, prnrz_val, prnrz_sample),
+                ("prototype_multiview", pmvnrz_fit, pmvnrz_val, pmvnrz_sample),
+            ]
+            scored_views = [
+                (residual_view_alignment_score(view_fit, y_fit - base_fit), view_name, view_fit, view_val, view_sample)
+                for view_name, view_fit, view_val, view_sample in neural_views
+            ]
+            scored_views.sort(key=lambda item: item[0], reverse=True)
+            selected_views = scored_views[: min(4, len(scored_views))]
+            gated_fit, gated_val, gated_sample = stack_and_scale_latents(
+                [item[2] for item in selected_views],
+                [item[3] for item in selected_views],
+                [item[4] for item in selected_views],
+            )
+            gated_weights = residual_metric_weights(gated_fit, y_fit - base_fit)
+            oof_by_source["joint_neural_gated_mixture_knn_resid"][fold.val_idx, target_i] = weighted_knn_residual(
+                gated_fit, gated_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_neural_gated_mixture_knn_resid"].append(
+                (target_i, weighted_knn_residual(gated_fit, gated_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, False))
+            )
+            oof_by_source["joint_neural_gated_mixture_knn_logitresid"][fold.val_idx, target_i] = weighted_knn_residual(
+                gated_fit, gated_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_neural_gated_mixture_knn_logitresid"].append(
+                (target_i, weighted_knn_residual(gated_fit, gated_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
+            )
+            oof_by_source["joint_neural_gated_mixture_metric_knn_resid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
+                gated_fit, gated_val, y_fit, base_fit, base_val, gated_weights, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_neural_gated_mixture_metric_knn_resid"].append(
+                (
+                    target_i,
+                    metric_weighted_knn_residual(gated_fit, gated_sample, y_fit, base_fit, base_test, gated_weights, args.knn_k, args.knn_temp, False),
+                )
+            )
+            oof_by_source["joint_neural_gated_mixture_metric_knn_logitresid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
+                gated_fit, gated_val, y_fit, base_fit, base_val, gated_weights, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_neural_gated_mixture_metric_knn_logitresid"].append(
+                (
+                    target_i,
+                    metric_weighted_knn_residual(gated_fit, gated_sample, y_fit, base_fit, base_test, gated_weights, args.knn_k, args.knn_temp, True),
                 )
             )
             fit_keys = train.iloc[fold.train_idx][KEY_COLUMNS]

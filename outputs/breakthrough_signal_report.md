@@ -11,7 +11,7 @@ The strongest signal so far is not a safer blend. It is a subject-relative tempo
 5. Use the encoder only where it creates target/bin residual improvement.
 6. Repeat only while the residual layer still produces fresh signal.
 
-This keeps producing new OOF signal after earlier layers are already strong, and the latest lead-lag layer suggests the useful latent is closer to a small "life-system transition state" than to a generic daily embedding.
+This keeps producing new OOF signal after earlier layers are already strong. The latest neural residual-view experiments suggest the useful latent is not one flat vector yet; it is a small set of specialized target/panel/prototype views that need learned gating or attention.
 
 ## OOF Progression
 
@@ -80,6 +80,7 @@ This keeps producing new OOF signal after earlier layers are already strong, and
 | conditional routing v67 residual prototype objective | 0.488680 |
 | conditional routing v68 prototype-metric retrieval | 0.486989 |
 | conditional routing v69 neural mixture concat probe | 0.486152 |
+| conditional routing v70 gated residual-view mixture | 0.485258 |
 
 ## Why This Looks Like A Real Direction
 
@@ -142,14 +143,15 @@ This keeps producing new OOF signal after earlier layers are already strong, and
 - A residual prototype objective improves the v66 base from 0.489729 to 0.488680 after routing. Prototype-only routing reaches 0.489493, with the clearest independent signal in S2 first-half/mid from `joint_proto_neural_*`, while neural-only reaches 0.489030. The all-source route adds a large S2 first-half move from target residual PLS, plus prototype candidates immediately below it, and smaller Q2/Q3/S1/S4 improvements. This says residual regimes are useful, but currently as an auxiliary view that sharpens the residual mixture rather than as a full replacement.
 - Prototype-metric retrieval improves the v67 base from 0.488680 to 0.486989 after routing. The proto-metric-only route is narrow at 0.488537, but neural-only reaches 0.487081 and improves every target. The strongest moves are S2 first-half from target neural residual, Q3 late from panel neural residual, S1 mid from panel neural residual, S4 first-half/late from neural multi-view plus target neural residual, Q1 second-half from target neural multi-view residual, and Q2 mid from target neural residual. This confirms that target/panel neural residual views are now the main breakthrough axis.
 - A neural mixture concat probe improves the v68 base from 0.486989 to 0.486152 in the all-source route, but the new mixture-only route does not improve at all. Its best candidates are negative even at tiny weights. The all-source improvements still come from individual neural/prototype/PLS sources: Q1 first-half from cross-family neural residual, Q3 second-half from proto neural multiview metric, S4 late from shared neural residual logit, and smaller S2/S3/S1 moves. This is a useful negative result: the views should be gated or attended, not flattened by unweighted concatenation.
+- A gated residual-view mixture improves the v69 base from 0.486152 to 0.485258 in the all-source route, and neural-only routing reaches 0.485308. However, gated-only routing barely improves the base to 0.486144, with only a tiny S3 mid move from `joint_neural_gated_mixture_knn_resid`. The key signal is therefore not "hard top-k gate solves the encoder"; it is "target/panel/prototype neural residual views still contain useful residual signal, and the final encoder needs a learned soft gate/attention mechanism that preserves their specialization."
 
 ## Best Current Breakthrough Candidate
 
-- Bold/best OOF submission: `outputs/conditional_latent_routing_v69_neural_mixture_on_v68/submission_conditional_latent_routing.csv`
-- Bold/best OOF: `0.486152`
-- Bold/best report: `outputs/conditional_latent_routing_v69_neural_mixture_on_v68/report.md`
-- Cleaner/neural-only OOF candidate: `outputs/conditional_latent_routing_v69_neural_only_on_v68/submission_conditional_latent_routing.csv`
-- Cleaner/neural-only OOF: `0.486228`
+- Bold/best OOF submission: `outputs/conditional_latent_routing_v70_gated_mixture_on_v69/submission_conditional_latent_routing.csv`
+- Bold/best OOF: `0.485258`
+- Bold/best report: `outputs/conditional_latent_routing_v70_gated_mixture_on_v69/report.md`
+- Cleaner/neural-only OOF candidate: `outputs/conditional_latent_routing_v70_neural_only_on_v69/submission_conditional_latent_routing.csv`
+- Cleaner/neural-only OOF: `0.485308`
 - Best single-layer lead-lag breakthrough report: `outputs/conditional_latent_routing_v42_leadlag_on_v40/report.md`
 
 Important caveat: v42/v44 are useful as breakthrough-signal probes, but some selected OOF bins have no sample rows. For an upload-style candidate, v43/v45/v46 are cleaner because they require meaningful sample coverage.
@@ -194,6 +196,7 @@ It is closer to residual boosting in latent space:
 - cross-family residual PLS objective: fold-safe opposite-family and Q+S combined residual latents; the repeated signal is that residual axes are shared across questionnaire and sleep labels
 - neural residual bottleneck objective: fold-safe MLP bottleneck latents trained on residual labels; the strongest current nonlinear signal is S1 all rows and Q3 all rows
 - neural multi-view residual bottleneck: fold-safe MLP bottlenecks trained on residual labels plus PLS residual views; the strongest current signal is S-family residual correction
+- static gated residual-view mixture: all-source routing improves, but gated-only is almost neutral; the breakthrough path is likely a learned soft gate, not a hard top-k latent stack
 
 This is the first run where the encoder route creates a large enough target-level jump to look like a possible main solution path rather than just a marginal add-on.
 
@@ -256,3 +259,4 @@ The pattern repeats across target families:
 - Residual prototype update: the newest best score is 0.488680. Fold-safe KMeans prototypes over residual plus panel-weighted residual targets give an independent S2 residual-regime signal: prototype-only routing reaches 0.489493. The current best thesis is now: the encoder should learn both continuous residual direction and coarse residual regime membership, then decode with target/bin-aware similar-day retrieval.
 - Prototype-metric update: the newest best score is 0.486989. Target residual metric weighting on prototype latents only adds a small independent S2 correction, but the neural-only route reaches 0.487081. The current best thesis is now: consolidate the target, panel, family, and prototype neural residual views into a unified residual-view mixture encoder, because neural residual sources now explain almost all of the routed gain.
 - Neural-mixture update: the newest best score is 0.486152, but the attempted flat mixture latent is a negative result: mixture-only remains at the base 0.486989 and all candidate moves are harmful. The current best thesis is now sharper: the residual-view encoder needs target/panel gating or attention over views. A single unweighted concatenated latent destroys useful specialization.
+- Gated-mixture update: the newest best score is 0.485258. Static fold-safe view gating improves the full route and neural-only route, but gated-only is almost neutral at 0.486144. This is a partial positive result: gating is the right direction, but hard residual-alignment top-k is not the final encoder. The next high-potential experiment is a learned soft-attention gate trained to predict residual improvement while preserving fold boundaries.
