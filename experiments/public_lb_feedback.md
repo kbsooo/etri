@@ -1,12 +1,13 @@
 # Public LB Feedback
 
-Last updated: 2026-05-20
+Last updated: 2026-05-21
 
 ## Submitted Scores Provided By User
 
 | rank by score | file | note | submitted_at | public_lb |
 | ---: | --- | --- | --- | ---: |
 | 1 | `submission_01_v76_balanced_hedge_best.csv` | memo | 2026-05-18 13:15:24 | 0.5999627447 |
+| (new) | `submission_v82_q1_s3_decoder_probe.csv` | v82 Q1/S3 decoder probe | 2026-05-20 | 0.6629409456 |
 | 2 | `submission_15_v18_old15_prob_blend.csv` | memo | 2026-05-20 00:32:17 | 0.6057860899 |
 | 3 | `submission_01_public_anchor_blend_best_known_0p612659.csv` | 0517-1 edit | 2026-05-17 14:46:12 | 0.6061690193 |
 | 4 | `v_perfect_shrink15.csv` | 0518-1 edit | 2026-05-18 13:11:25 | 0.6097358003 |
@@ -36,6 +37,20 @@ Lower is better.
 - These are worse than v76, despite being plausible internally. This means internal OOF improvements from the sample-support/old-prob blend family did not transfer cleanly to Public LB.
 - Very aggressive calibrated stacks can be catastrophically wrong on Public LB (`0.70` to `0.91`). This strongly suggests the public/test distribution punishes over-calibration, pseudo-label anchoring, or cross-project blending that is not grounded in this dataset.
 - Simple/global mean style baselines are around `0.662`, so scores near `0.60` are real signal, not just mean prediction.
+
+## v82 failure (2026-05-21): v80/v81 decoder branch is QUARANTINED
+
+- `submission_v82_q1_s3_decoder_probe.csv` scored **0.6629409456** — worse than the global-mean baseline (0.6619). v82 = v80 routed base with Q1/S3 replaced by the v81 decoder.
+- Diagnosis (`outputs/v82_failure_diagnosis_report.md`): the whole v80 base is public-misaligned, not just the Q1/S3 edit. v80 sits **row-wise mean-abs 0.1275 away from v76** (all targets 0.11-0.16), with S1 -0.045 and S3 -0.049 below the good family; v82 then pushed Q1 up by +0.047 (good family is Q1≈0.50). Ranked harm: (1) Q1 upshift, (2) v80 S1/S3 under-prediction, (3) OOF router selection — all HIGH.
+- Offline check: the max-entropy public posterior (`outputs/public_lb_pseudolabel_calibration/`) is exact at v76/v18 but **+0.018 optimistic on far candidates** — it predicted v82 at 0.6444 vs the real 0.6629. It predicts v80_base and v81_routed at ~0.644 too, i.e. ~global-mean once the optimism is added. **Do not upload any v80/v81/v82-based file.**
+- **Q1 OOF↔Public LB contradiction (important for future me)**: the v81 stress test honestly showed OOF Q1 +0.019 was real source-recombination (not selection bias). v82's larger Q1 +0.047 still wrecked Public LB. This is NOT a contradiction in the stress test — it is direct evidence that **OOF labels and Public/test labels disagree on Q1 direction**. Stop trusting any OOF-derived Q1 upward signal; treat Q1 moves as Public-LB-unverified by default.
+
+## Next upload candidates (v83, anchored on v76 — `outputs/v83_anchor_candidates/report.md`)
+
+- Built only as tiny controlled perturbations of the v76 best anchor; scored offline by the posterior (trustworthy near v76).
+- **Primary: `submission_C_v76_plus_v18_w050.csv`** = 0.95·v76 + 0.05·v18 (the 2nd-best public anchor). Posterior 0.598588 vs v76 0.599963, drift 0.0044, max-row 0.029. Because BCE is convex in p, a small blend of two good anchors can beat both — a low-risk ensemble bet, not OOF chasing.
+- Secondary: `submission_C_v76_plus_supp_w050.csv` (0.95·v76 + 0.05·sample_support).
+- Rejected: the A_* (v76+tiny-v82) candidates show offline improvement but that is the posterior's optimism toward the quarantined branch, and they raise Q1 (HIGH harm).
 
 ## Practical Calibration Rules
 
