@@ -1,0 +1,147 @@
+{
+  "base_score": {
+    "avg_log_loss": 0.4995259841281837,
+    "per_target": {
+      "Q1": 0.5432279113625651,
+      "Q2": 0.550050750715499,
+      "Q3": 0.5189190890340373,
+      "S1": 0.49060264961870464,
+      "S2": 0.4759888285730792,
+      "S3": 0.4288992212257085,
+      "S4": 0.48899343836769277
+    }
+  },
+  "routed_score": {
+    "avg_log_loss": 0.4991834367501201,
+    "per_target": {
+      "Q1": 0.5432279113625651,
+      "Q2": 0.550050750715499,
+      "Q3": 0.5180274676044705,
+      "S1": 0.4900457059313406,
+      "S2": 0.4759888285730792,
+      "S3": 0.4288992212257085,
+      "S4": 0.4880441718381781
+    }
+  },
+  "selected_moves": [
+    {
+      "target": "Q1",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "Q2",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "Q3",
+      "source": "joint_metric_knn_resid",
+      "bin": "mid",
+      "weight": 0.1,
+      "improvement": 0.0008916214295667801,
+      "lo": 0.333,
+      "hi": 0.666,
+      "train_rows": 100.0,
+      "sample_rows": 130.0,
+      "base_log_loss": 0.5189190890340373,
+      "log_loss": 0.5180274676044705
+    },
+    {
+      "target": "S1",
+      "source": "joint_metric_knn_resid",
+      "bin": "mid",
+      "weight": 0.1,
+      "improvement": 0.000556943687364031,
+      "lo": 0.333,
+      "hi": 0.666,
+      "train_rows": 100.0,
+      "sample_rows": 130.0,
+      "base_log_loss": 0.49060264961870464,
+      "log_loss": 0.4900457059313406
+    },
+    {
+      "target": "S2",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "S3",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "S4",
+      "source": "joint_pls_knn_logitresid",
+      "bin": "mid",
+      "weight": 0.1,
+      "improvement": 0.0009492665295146585,
+      "lo": 0.333,
+      "hi": 0.666,
+      "train_rows": 100.0,
+      "sample_rows": 130.0,
+      "base_log_loss": 0.48899343836769277,
+      "log_loss": 0.4880441718381781
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v55_local_decoder_on_v54/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v55_local_decoder_on_v54/submission_conditional_latent_routing.csv",
+    "source": [
+      "joint_local_hgb=outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_local_hgb.csv,outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_local_hgb.csv",
+      "joint_local_logreg=outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_local_logreg.csv,outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_local_logreg.csv",
+      "joint_metric_knn_logitresid=outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_metric_knn_logitresid.csv,outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_metric_knn_logitresid.csv",
+      "joint_metric_knn_resid=outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_metric_knn_resid.csv,outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_metric_knn_resid.csv",
+      "joint_pls_hgb=outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_pls_hgb.csv,outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_pls_hgb.csv",
+      "joint_pls_knn_logitresid=outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_pls_knn_logitresid.csv,outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_pls_knn_logitresid.csv",
+      "joint_pls_knn_resid=outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_pls_knn_resid.csv,outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_pls_knn_resid.csv",
+      "joint_pls_logreg=outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_pls_logreg.csv,outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_pls_logreg.csv",
+      "joint_pls_ridge=outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_pls_ridge.csv,outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_pls_ridge.csv",
+      "joint_proto_mix=outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_proto_mix.csv,outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_proto_mix.csv"
+    ],
+    "output_dir": "outputs/conditional_latent_routing_v56_metric_attention_constrained_on_v55",
+    "weights": "0.025,0.05,0.075,0.1",
+    "bins": "first_half:0:0.5,second_half:0.5:1.000001,mid:0.333:0.666,late:0.666:1.000001,all:0:1.000001",
+    "min_train_rows": 50,
+    "min_sample_rows": 40,
+    "min_improvement": 0.0005,
+    "max_moves_per_target": 1,
+    "allow_overlap": false,
+    "targets": "Q1,Q2,Q3,S1,S2,S3,S4",
+    "match_source_prefix": false
+  }
+}

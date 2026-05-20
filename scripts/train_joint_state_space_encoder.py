@@ -206,6 +206,46 @@ def weighted_knn_residual(
     return np.clip(pred, EPS, 1.0 - EPS)
 
 
+def label_metric_weights(z_fit: np.ndarray, y_fit: np.ndarray) -> np.ndarray:
+    z_fit = np.clip(np.nan_to_num(z_fit, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    if len(np.unique(y_fit)) < 2:
+        return np.ones(z_fit.shape[1], dtype=np.float32)
+    pos = z_fit[y_fit == 1]
+    neg = z_fit[y_fit == 0]
+    gap = np.abs(pos.mean(axis=0) - neg.mean(axis=0))
+    spread = z_fit.std(axis=0) + 1e-6
+    score = gap / spread
+    score = np.nan_to_num(score, nan=0.0, posinf=0.0, neginf=0.0)
+    if np.max(score) <= 1e-6:
+        return np.ones(z_fit.shape[1], dtype=np.float32)
+    weights = 0.35 + 3.65 * (score / np.max(score))
+    return weights.astype(np.float32)
+
+
+def metric_weighted_knn_residual(
+    z_fit: np.ndarray,
+    z_apply: np.ndarray,
+    y_fit: np.ndarray,
+    base_fit: np.ndarray,
+    base_apply: np.ndarray,
+    metric_weights: np.ndarray,
+    k: int,
+    temp: float,
+    logit_mode: bool,
+) -> np.ndarray:
+    weights = np.sqrt(np.maximum(metric_weights, 1e-6)).reshape(1, -1)
+    return weighted_knn_residual(
+        z_fit * weights,
+        z_apply * weights,
+        y_fit,
+        base_fit,
+        base_apply,
+        k,
+        temp,
+        logit_mode,
+    )
+
+
 def local_decoder_features(
     ref_z: np.ndarray,
     query_z: np.ndarray,
@@ -332,6 +372,8 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_pls_ridge",
         "joint_pls_knn_resid",
         "joint_pls_knn_logitresid",
+        "joint_metric_knn_resid",
+        "joint_metric_knn_logitresid",
         "joint_local_logreg",
         "joint_local_hgb",
         "joint_proto_mix",
@@ -388,6 +430,25 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             )
             sample_folds_by_source["joint_pls_knn_logitresid"].append(
                 (target_i, weighted_knn_residual(z_fit, z_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
+            )
+            metric_weights = label_metric_weights(z_fit, y_fit)
+            oof_by_source["joint_metric_knn_resid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
+                z_fit, z_val, y_fit, base_fit, base_val, metric_weights, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_metric_knn_resid"].append(
+                (
+                    target_i,
+                    metric_weighted_knn_residual(z_fit, z_sample, y_fit, base_fit, base_test, metric_weights, args.knn_k, args.knn_temp, False),
+                )
+            )
+            oof_by_source["joint_metric_knn_logitresid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
+                z_fit, z_val, y_fit, base_fit, base_val, metric_weights, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_metric_knn_logitresid"].append(
+                (
+                    target_i,
+                    metric_weighted_knn_residual(z_fit, z_sample, y_fit, base_fit, base_test, metric_weights, args.knn_k, args.knn_temp, True),
+                )
             )
             fit_local = local_decoder_features(z_fit, z_fit, y_fit, base_fit, base_fit, args.knn_k, args.knn_temp, exclude_self=True)
             val_local = local_decoder_features(z_fit, z_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp)

@@ -4,11 +4,11 @@ Last updated: 2026-05-20
 
 ## Current Best
 
-- Best internal OOF candidate: `outputs/conditional_latent_routing_v55_local_decoder_on_v54/submission_conditional_latent_routing.csv`
-- Best internal OOF: `0.499526`
+- Best internal OOF candidate: `outputs/conditional_latent_routing_v56_metric_attention_on_v55/submission_conditional_latent_routing.csv`
+- Best internal OOF: `0.498945`
 - Main report: `outputs/breakthrough_signal_report.md`
 - Public LB feedback: `experiments/public_lb_feedback.md`
-- Candidate report: `outputs/conditional_latent_routing_v55_local_decoder_on_v54/report.md`
+- Candidate report: `outputs/conditional_latent_routing_v56_metric_attention_on_v55/report.md`
 - Important caveat: this is an internal OOF proxy, not Public LB. Recent Public LB feedback for older submissions was weaker than OOF suggested.
 
 ## What We Are Testing
@@ -48,6 +48,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 | v53 integrated state-space latent | 0.500979 | transition + recurrence + novelty + recovery jointly | `outputs/breakthrough_signal_report.md` |
 | v54 common PCA/PLS state-space residual | 0.500162 | shared label-aligned latent works only as local residual | `outputs/breakthrough_signal_report.md` |
 | v55 local decoder residual | 0.499526 | similar-day/prototype decoder over common latent | `outputs/breakthrough_signal_report.md` |
+| v56 metric-attention retrieval residual | 0.498945 | target-specific learned similarity metric | `outputs/breakthrough_signal_report.md` |
 
 ## What Worked
 
@@ -58,6 +59,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Target/bin routing is useful because not every latent source helps every label or every panel position.
 - The first explicit common `PCA+PLS` latent is too blunt as a direct multi-head predictor, but still contains residual signal when decoded with local/retrieval-style corrections.
 - The first local decoder over the common latent pushes internal OOF below 0.50, mainly through S4/S1 and smaller broad residuals.
+- Target-specific metric weighting improves retrieval residuals again, so each label appears to need its own notion of "similar day" in the shared state-space.
 
 ## What Failed Or Was Weaker
 
@@ -70,12 +72,12 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 
 - Current implementation: common label-free features plus target-specific source models for `Q1`, `Q2`, `Q3`, `S1`, `S2`, `S3`, `S4`, composed by a conditional target/bin router.
 - Not yet final: one unified neural encoder with seven heads.
-- Strong next direction: keep the common personal state-space encoder and make the decoder explicitly local/retrieval-aware, possibly with learned neighbor attention or prototype mixtures.
+- Strong next direction: keep the common personal state-space encoder and make the decoder explicitly local/retrieval-aware with target-specific learned similarity.
 
 ## Next 3
 
-1. Replace fixed KNN residuals with learned neighbor attention over the common latent.
-   - Success criterion: beat v55 and keep the constrained signal below 0.50.
+1. Replace diagonal metric weighting with learned neighbor attention or a small metric network over the common latent.
+   - Success criterion: beat v56 and keep the constrained signal below 0.50.
 
 2. Add a contrastive/retrieval objective to the common latent so that similar personal state transitions are close.
    - Success criterion: improve S4/S1/S2 residuals without making direct multi-head predictions collapse toward poor global calibration.

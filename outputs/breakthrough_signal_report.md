@@ -66,6 +66,7 @@ This keeps producing new OOF signal after earlier layers are already strong, and
 | conditional routing v53 integrated state-space latent | 0.500979 |
 | conditional routing v54 common PCA/PLS state-space residual | 0.500162 |
 | conditional routing v55 local decoder residual | 0.499526 |
+| conditional routing v56 metric-attention retrieval residual | 0.498945 |
 
 ## Why This Looks Like A Real Direction
 
@@ -114,14 +115,15 @@ This keeps producing new OOF signal after earlier layers are already strong, and
 - Integrated state-space features still add signal after novelty recovery: 0.502679 to 0.500979. This run trains transition, recurrence, novelty, and novelty-recovery sources together on the v52 residual. Every target improves again, with the strongest residuals in Q3, S4, Q2, and Q1. The key signal is that the useful latent should not treat transition, recurrence, novelty load, and recovery as separate side features; it should learn them as one personal state-space representation.
 - A first explicit common PCA/PLS state-space encoder does not work as a direct full replacement: its standalone sources are much worse than the v53 base. However, when used only as low-weight residual corrections, it still improves v53 from 0.500979 to 0.500162, with a stricter one-move-per-target confirmation at 0.500259. The strongest common-latent residual is S4 all rows, followed by S1 second-half, S2 mid, and Q2 late. This says the common latent is real but the decoder is still too blunt; the next breakthrough is likely a better decoder/objective, not more raw state features.
 - Adding local/retrieval-aware decoder features on top of the common latent pushes the internal OOF below 0.50 for the first time: 0.500162 to 0.499526, with a constrained confirmation at 0.499860. The new local decoder is still weak as a full direct predictor, but it exposes another residual layer in S4, S1, S2, S3, Q2, and Q3. The important signal is not the standalone decoder score; it is that local neighbor structure in the common latent keeps explaining residual after v54.
+- A target-aware metric retrieval decoder adds another layer after v55: 0.499526 to 0.498945, with constrained confirmation at 0.499183. The metric decoder upweights latent dimensions that separate each target inside the fold, then uses that target-specific distance for KNN residuals. It is selected directly for Q3, S1, S2, and S4 in the bold route, and for Q3/S1 in the constrained route. This strengthens the decoder hypothesis: different labels need different notions of "similar day" in the same common state space.
 
 ## Best Current Breakthrough Candidate
 
-- Bold/best OOF submission: `outputs/conditional_latent_routing_v55_local_decoder_on_v54/submission_conditional_latent_routing.csv`
-- Bold/best OOF: `0.499526`
-- Bold/best report: `outputs/conditional_latent_routing_v55_local_decoder_on_v54/report.md`
-- Cleaner/constrained OOF candidate: `outputs/conditional_latent_routing_v55_local_decoder_constrained_on_v54/submission_conditional_latent_routing.csv`
-- Cleaner/constrained OOF: `0.499860`
+- Bold/best OOF submission: `outputs/conditional_latent_routing_v56_metric_attention_on_v55/submission_conditional_latent_routing.csv`
+- Bold/best OOF: `0.498945`
+- Bold/best report: `outputs/conditional_latent_routing_v56_metric_attention_on_v55/report.md`
+- Cleaner/constrained OOF candidate: `outputs/conditional_latent_routing_v56_metric_attention_constrained_on_v55/submission_conditional_latent_routing.csv`
+- Cleaner/constrained OOF: `0.499183`
 - Best single-layer lead-lag breakthrough report: `outputs/conditional_latent_routing_v42_leadlag_on_v40/report.md`
 
 Important caveat: v42/v44 are useful as breakthrough-signal probes, but some selected OOF bins have no sample rows. For an upload-style candidate, v43/v45/v46 are cleaner because they require meaningful sample coverage.
@@ -157,6 +159,7 @@ It is closer to residual boosting in latent space:
 - integrated state-space latent: transition, recurrence, novelty burden, and novelty recovery trained as one residual source family
 - common PCA/PLS state-space latent: one fold-safe label-aligned latent shared by all seven targets; direct decoder is weak, residual retrieval from the common latent is useful
 - local decoder residual: nearest-neighbor labels/residuals, prototype distance, and local density decoded from the common latent; not good as a replacement, useful as target/bin residual
+- metric-attention retrieval residual: target-specific diagonal distance metric over the shared latent, making "similar day" label-dependent
 
 This is the first run where the encoder route creates a large enough target-level jump to look like a possible main solution path rather than just a marginal add-on.
 
@@ -205,3 +208,4 @@ The pattern repeats across target families:
 - Integrated state-space update: the newest best score is 0.500979. It improves every target versus v52: Q1 (-0.001326), Q2 (-0.002229), Q3 (-0.003335), S1 (-0.001207), S2 (-0.000469), S3 (-0.000642), and S4 (-0.002690). This is the strongest evidence so far that the final encoder should learn one joint personal state-space latent rather than sequentially bolting on separate transition, recurrence, novelty, and recovery features.
 - Common encoder update: the newest best score is 0.500162. The first explicit common `PCA+PLS` state-space latent is not good as a direct multi-head predictor, but it improves v53 when routed as residual correction: Q1 (-0.000110), Q2 (-0.000656), Q3 (-0.000234), S1 (-0.001060), S2 (-0.000753), S3 (-0.000378), and S4 (-0.002531). A stricter confirmation keeps Q2/S1/S2/S4 and reaches 0.500259. The emerging lesson is precise: the shared latent exists, but the decoder must be local/retrieval-aware or target/bin-aware.
 - Local decoder update: the newest best score is 0.499526. It improves every target versus v54: Q1 (-0.000054), Q2 (-0.000332), Q3 (-0.000237), S1 (-0.000741), S2 (-0.000528), S3 (-0.000515), and S4 (-0.002043). The constrained confirmation reaches 0.499860 using only S1 second-half and S4 mid moves. The current breakthrough thesis is now sharper: learn a common personal state-space, then decode with local similar-day retrieval/prototype structure rather than a global head.
+- Metric-attention update: the newest best score is 0.498945. It improves all non-Q1 targets versus v55: Q2 (-0.000320), Q3 (-0.000892), S1 (-0.000980), S2 (-0.000363), S3 (-0.000256), and S4 (-0.001259). The constrained confirmation reaches 0.499183 using only Q3/S1/S4 moves. The current best thesis is now: common personal state-space encoder plus target-specific learned similarity metric plus local residual decoder.

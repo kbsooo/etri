@@ -1,0 +1,205 @@
+{
+  "base_avg_log_loss": 0.4995259841281837,
+  "best_avg_log_loss": 0.4995259841281837,
+  "best_source": "base",
+  "sources": [
+    {
+      "name": "joint_pls_logreg",
+      "oof": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_pls_logreg.csv",
+      "submission": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_pls_logreg.csv",
+      "avg_log_loss": 0.7870143847531851,
+      "Q1": 0.785173137624517,
+      "Q2": 0.7794920997714379,
+      "Q3": 0.7820479812702107,
+      "S1": 0.7862527395978055,
+      "S2": 0.7876957127004827,
+      "S3": 0.7979289051995172,
+      "S4": 0.7905101171083249
+    },
+    {
+      "name": "joint_pls_hgb",
+      "oof": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_pls_hgb.csv",
+      "submission": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_pls_hgb.csv",
+      "avg_log_loss": 0.7132610697284674,
+      "Q1": 0.7640748494882171,
+      "Q2": 0.7525658756761108,
+      "Q3": 0.7419684095167712,
+      "S1": 0.6754997585820888,
+      "S2": 0.6821624068674904,
+      "S3": 0.6527663022612211,
+      "S4": 0.7237898857073725
+    },
+    {
+      "name": "joint_pls_ridge",
+      "oof": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_pls_ridge.csv",
+      "submission": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_pls_ridge.csv",
+      "avg_log_loss": 0.7083166104590614,
+      "Q1": 0.7145295093696542,
+      "Q2": 0.6990450443815686,
+      "Q3": 0.716040469709699,
+      "S1": 0.7135950846098049,
+      "S2": 0.7072885110022211,
+      "S3": 0.707844171122377,
+      "S4": 0.699873483018105
+    },
+    {
+      "name": "joint_pls_knn_resid",
+      "oof": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_pls_knn_resid.csv",
+      "submission": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_pls_knn_resid.csv",
+      "avg_log_loss": 0.5712066649492128,
+      "Q1": 0.6054956367565703,
+      "Q2": 0.6326749010911124,
+      "Q3": 0.6222009203340565,
+      "S1": 0.5646003620394987,
+      "S2": 0.5748086641506842,
+      "S3": 0.4745359428485704,
+      "S4": 0.5241302274239967
+    },
+    {
+      "name": "joint_pls_knn_logitresid",
+      "oof": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_pls_knn_logitresid.csv",
+      "submission": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_pls_knn_logitresid.csv",
+      "avg_log_loss": 0.6344981183387418,
+      "Q1": 0.6750990314435931,
+      "Q2": 0.754066838514892,
+      "Q3": 0.6959685754040101,
+      "S1": 0.6077341434974697,
+      "S2": 0.5947071685199302,
+      "S3": 0.5121223862807515,
+      "S4": 0.6017886847105456
+    },
+    {
+      "name": "joint_metric_knn_resid",
+      "oof": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_metric_knn_resid.csv",
+      "submission": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_metric_knn_resid.csv",
+      "avg_log_loss": 0.5798378281661106,
+      "Q1": 0.611741824157894,
+      "Q2": 0.6814812282299719,
+      "Q3": 0.612754049218268,
+      "S1": 0.5620183594048344,
+      "S2": 0.5574291464317028,
+      "S3": 0.48235391587442067,
+      "S4": 0.5510862738456829
+    },
+    {
+      "name": "joint_metric_knn_logitresid",
+      "oof": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_metric_knn_logitresid.csv",
+      "submission": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_metric_knn_logitresid.csv",
+      "avg_log_loss": 0.6425064581181742,
+      "Q1": 0.6934662537884434,
+      "Q2": 0.744924474551724,
+      "Q3": 0.686987647508037,
+      "S1": 0.6336705013395004,
+      "S2": 0.593686374196152,
+      "S3": 0.5259468483242072,
+      "S4": 0.6188631071191555
+    },
+    {
+      "name": "joint_local_logreg",
+      "oof": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_local_logreg.csv",
+      "submission": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_local_logreg.csv",
+      "avg_log_loss": 0.5316536256122548,
+      "Q1": 0.5590496342733948,
+      "Q2": 0.576875610518592,
+      "Q3": 0.5491047396511828,
+      "S1": 0.54121787599885,
+      "S2": 0.5227830264755251,
+      "S3": 0.46399012459962813,
+      "S4": 0.5085543677686106
+    },
+    {
+      "name": "joint_local_hgb",
+      "oof": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_local_hgb.csv",
+      "submission": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_local_hgb.csv",
+      "avg_log_loss": 0.5589461628298482,
+      "Q1": 0.6065510989390125,
+      "Q2": 0.6221343028944658,
+      "Q3": 0.5715129805923862,
+      "S1": 0.5571132875927282,
+      "S2": 0.5254545329836401,
+      "S3": 0.47920923565330453,
+      "S4": 0.5506477011533998
+    },
+    {
+      "name": "joint_proto_mix",
+      "oof": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/oof_joint_proto_mix.csv",
+      "submission": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55/submission_joint_proto_mix.csv",
+      "avg_log_loss": 0.5085842054986597,
+      "Q1": 0.5525156362323073,
+      "Q2": 0.562125172115235,
+      "Q3": 0.5301092159868842,
+      "S1": 0.4960210200102955,
+      "S2": 0.48417293616857776,
+      "S3": 0.43877464959708123,
+      "S4": 0.4963708083802366
+    }
+  ],
+  "fold_meta": [
+    {
+      "fold": 0,
+      "train_rows": 355,
+      "valid_rows": 95,
+      "selected_features": 420,
+      "pca_dim": 32,
+      "pls_dim": 7,
+      "latent_dim": 39
+    },
+    {
+      "fold": 1,
+      "train_rows": 358,
+      "valid_rows": 92,
+      "selected_features": 420,
+      "pca_dim": 32,
+      "pls_dim": 7,
+      "latent_dim": 39
+    },
+    {
+      "fold": 2,
+      "train_rows": 359,
+      "valid_rows": 91,
+      "selected_features": 420,
+      "pca_dim": 32,
+      "pls_dim": 7,
+      "latent_dim": 39
+    },
+    {
+      "fold": 3,
+      "train_rows": 363,
+      "valid_rows": 87,
+      "selected_features": 420,
+      "pca_dim": 32,
+      "pls_dim": 7,
+      "latent_dim": 39
+    },
+    {
+      "fold": 4,
+      "train_rows": 365,
+      "valid_rows": 85,
+      "selected_features": 420,
+      "pca_dim": 32,
+      "pls_dim": 7,
+      "latent_dim": 39
+    }
+  ],
+  "feature_groups": [
+    "temporal_state_transition",
+    "temporal_state_recurrence",
+    "temporal_state_novelty",
+    "temporal_state_novelty_recovery"
+  ],
+  "selected_columns": 594,
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v55_local_decoder_on_v54/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v55_local_decoder_on_v54/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/joint_state_space_encoder_v56_metric_attention_on_v55",
+    "groups": "temporal_state_transition,temporal_state_recurrence,temporal_state_novelty,temporal_state_novelty_recovery",
+    "n_folds": 5,
+    "max_features": 420,
+    "pca_dim": 32,
+    "pls_dim": 7,
+    "knn_k": 19,
+    "knn_temp": 1.2
+  }
+}
