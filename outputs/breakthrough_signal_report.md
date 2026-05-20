@@ -73,6 +73,7 @@ This keeps producing new OOF signal after earlier layers are already strong, and
 | conditional routing v60 residual PLS latent objective | 0.497145 |
 | conditional routing v61 family/target residual PLS objective | 0.496127 |
 | conditional routing v62 cross-family residual PLS objective | 0.495010 |
+| conditional routing v63 neural residual bottleneck objective | 0.493630 |
 
 ## Why This Looks Like A Real Direction
 
@@ -128,14 +129,15 @@ This keeps producing new OOF signal after earlier layers are already strong, and
 - A fold-safe residual PLS latent creates the strongest recent jump after v59: 0.497895 to 0.497145. The residual-PLS-only route reaches 0.497271, so the signal is mostly from the new latent family itself. The strict constrained route reaches 0.497379 and keeps Q1 mid, Q2 all rows, and Q3 late from `joint_residual_pls_knn_resid`. This is the first strong evidence that the residual relation should be a training objective for the latent, not only a post-hoc metric.
 - Splitting the residual PLS objective into Q-family, S-family, and per-target latent objectives creates another large internal jump after v60: 0.497145 to 0.496127. A residual-PLS-only route reaches 0.496175 and a stricter one-move constrained route reaches 0.496312, so the new signal is not mainly from older non-PLS sources. The strongest selected moves are S3 all rows from `joint_q_residual_pls_knn_resid`, S4 all rows from `joint_target_residual_pls_knn_resid`, S2 second-half from `joint_q_residual_pls_knn_logitresid`, and Q3 first-half from `joint_s_residual_pls_knn_resid`. This is an important cross-family signal: the latent that explains Q residuals is also useful for S2/S3, and the S-family latent is useful for Q3.
 - Explicit cross-family and Q+S combined residual PLS objectives create another large internal jump after v61: 0.496127 to 0.495010. The residual-PLS-only route reaches 0.495018, a new-source-only route reaches 0.495174, and the stricter constrained route reaches 0.495269. The strongest new moves are Q1 first-half from `joint_qs_residual_pls_knn_resid`, Q3 all rows from `joint_cross_family_residual_pls_knn_resid`, Q2 first-half from the same cross-family source, and S4 second-half/late from cross-family residual PLS. This repeats the v61 lesson with a sharper objective: the useful residual latent should mix family-specific subspaces, not isolate them.
+- A fold-safe MLP bottleneck residual encoder creates the largest recent routed jump after v62: 0.495010 to 0.493630. The neural-only route reaches 0.493996 and the stricter constrained route reaches 0.494207, so this is not just piggybacking on the older PLS sources. The strongest new move is S1 all rows from `joint_neural_residual_knn_resid` with 0.002735 improvement, followed by Q3 all rows from `joint_neural_cross_family_residual_knn_resid` and S2 late from `joint_neural_s_residual_knn_resid`. This is the first strong evidence that a nonlinear residual bottleneck can improve the discovered residual subspace, especially for S1/Q3.
 
 ## Best Current Breakthrough Candidate
 
-- Bold/best OOF submission: `outputs/conditional_latent_routing_v62_cross_family_residual_pls_on_v61/submission_conditional_latent_routing.csv`
-- Bold/best OOF: `0.495010`
-- Bold/best report: `outputs/conditional_latent_routing_v62_cross_family_residual_pls_on_v61/report.md`
-- Cleaner/constrained OOF candidate: `outputs/conditional_latent_routing_v62_cross_family_residual_pls_constrained_on_v61/submission_conditional_latent_routing.csv`
-- Cleaner/constrained OOF: `0.495269`
+- Bold/best OOF submission: `outputs/conditional_latent_routing_v63_neural_residual_heads_on_v62/submission_conditional_latent_routing.csv`
+- Bold/best OOF: `0.493630`
+- Bold/best report: `outputs/conditional_latent_routing_v63_neural_residual_heads_on_v62/report.md`
+- Cleaner/constrained OOF candidate: `outputs/conditional_latent_routing_v63_neural_constrained_on_v62/submission_conditional_latent_routing.csv`
+- Cleaner/constrained OOF: `0.494207`
 - Best single-layer lead-lag breakthrough report: `outputs/conditional_latent_routing_v42_leadlag_on_v40/report.md`
 
 Important caveat: v42/v44 are useful as breakthrough-signal probes, but some selected OOF bins have no sample rows. For an upload-style candidate, v43/v45/v46 are cleaner because they require meaningful sample coverage.
@@ -178,6 +180,7 @@ It is closer to residual boosting in latent space:
 - residual PLS latent objective: a fold-safe latent trained directly to predict current-base residual vectors before retrieval decoding
 - family/target residual PLS objective: fold-safe Q-family, S-family, and per-target residual latents; the surprising signal is cross-family, with Q residual latent helping S2/S3 and S residual latent helping Q3
 - cross-family residual PLS objective: fold-safe opposite-family and Q+S combined residual latents; the repeated signal is that residual axes are shared across questionnaire and sleep labels
+- neural residual bottleneck objective: fold-safe MLP bottleneck latents trained on residual labels; the strongest current nonlinear signal is S1 all rows and Q3 all rows
 
 This is the first run where the encoder route creates a large enough target-level jump to look like a possible main solution path rather than just a marginal add-on.
 
@@ -233,3 +236,4 @@ The pattern repeats across target families:
 - Residual-PLS update: the newest best score is 0.497145. A fold-safe residual PLS latent trained on the current-base residual vector improves the v59 base by 0.000750 after routing, and the residual-PLS-only route still reaches 0.497271. Q2 all-row residual PLS is the largest single move, followed by Q1 mid and Q3 late. The current best thesis is now: the encoder should explicitly learn the structure of the current model's residual errors, then decode by retrieval in that residual-aware latent space.
 - Family/target residual-PLS update: the newest best score is 0.496127. Splitting the residual objective into Q-family, S-family, and per-target PLS latents improves the v60 base by 0.001018 after routing; the residual-PLS-only route still reaches 0.496175 and the constrained route reaches 0.496312. The strongest signal is not cleanly family-local: Q residual latent improves S2 and S3, S residual latent improves Q3, and target residual latent improves S4. The current best thesis is now: the encoder should learn several residual subspaces and let the decoder mix them, because the latent axes behind questionnaire and sleep targets overlap.
 - Cross-family residual-PLS update: the newest best score is 0.495010. Opposite-family and Q+S combined residual latent sources improve the v61 base by 0.001117 after routing; new v62 sources alone reach 0.495174 and the constrained route reaches 0.495269. Q1 is best explained by the combined Q+S residual latent, while Q2/Q3/S4 are best explained by the opposite-family residual latent. The current best thesis is now: train a residual-subspace encoder with shared, family, cross-family, and target heads, then use retrieval in that learned space.
+- Neural residual-bottleneck update: the newest best score is 0.493630. A fold-safe MLP bottleneck encoder trained on current-base residuals improves the v62 base by 0.001380 after routing; neural-only routing reaches 0.493996 and constrained neural routing reaches 0.494207. The most important target is S1, where `joint_neural_residual_knn_resid` improves all rows by 0.002735; Q3 also responds strongly to the neural cross-family latent. The current best thesis is now: the residual-subspace encoder should be nonlinear, but still decoded by local/retrieval residual correction rather than by a direct global head.

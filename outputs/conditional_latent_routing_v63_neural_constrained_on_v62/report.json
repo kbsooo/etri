@@ -1,0 +1,147 @@
+{
+  "base_score": {
+    "avg_log_loss": 0.49500994503669793,
+    "per_target": {
+      "Q1": 0.5387660803999718,
+      "Q2": 0.5458488731896518,
+      "Q3": 0.5143527890738561,
+      "S1": 0.4861171492794577,
+      "S2": 0.4726044479027298,
+      "S3": 0.42462253067349365,
+      "S4": 0.48275774473772465
+    }
+  },
+  "routed_score": {
+    "avg_log_loss": 0.4942066488785427,
+    "per_target": {
+      "Q1": 0.5380215285477504,
+      "Q2": 0.5458488731896518,
+      "Q3": 0.5128517526614209,
+      "S1": 0.4833818293097357,
+      "S2": 0.47196228303002186,
+      "S3": 0.42462253067349365,
+      "S4": 0.48275774473772465
+    }
+  },
+  "selected_moves": [
+    {
+      "target": "Q1",
+      "source": "joint_neural_residual_knn_resid",
+      "bin": "late",
+      "lo": 0.666,
+      "hi": 1.000001,
+      "weight": 0.1,
+      "train_rows": 116.0,
+      "sample_rows": 120.0,
+      "base_log_loss": 0.5387660803999718,
+      "log_loss": 0.5380215285477504,
+      "improvement": 0.0007445518522213312
+    },
+    {
+      "target": "Q2",
+      "source": "base",
+      "bin": "all",
+      "lo": NaN,
+      "hi": NaN,
+      "weight": 0.0,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN,
+      "improvement": 0.0
+    },
+    {
+      "target": "Q3",
+      "source": "joint_neural_s_residual_knn_resid",
+      "bin": "all",
+      "lo": 0.0,
+      "hi": 1.000001,
+      "weight": 0.1,
+      "train_rows": 450.0,
+      "sample_rows": 250.0,
+      "base_log_loss": 0.5143527890738561,
+      "log_loss": 0.5128517526614209,
+      "improvement": 0.0015010364124351527
+    },
+    {
+      "target": "S1",
+      "source": "joint_neural_residual_knn_resid",
+      "bin": "all",
+      "lo": 0.0,
+      "hi": 1.000001,
+      "weight": 0.1,
+      "train_rows": 450.0,
+      "sample_rows": 250.0,
+      "base_log_loss": 0.4861171492794577,
+      "log_loss": 0.4833818293097357,
+      "improvement": 0.002735319969721983
+    },
+    {
+      "target": "S2",
+      "source": "joint_neural_s_residual_knn_resid",
+      "bin": "late",
+      "lo": 0.666,
+      "hi": 1.000001,
+      "weight": 0.1,
+      "train_rows": 116.0,
+      "sample_rows": 120.0,
+      "base_log_loss": 0.4726044479027298,
+      "log_loss": 0.47196228303002186,
+      "improvement": 0.0006421648727079621
+    },
+    {
+      "target": "S3",
+      "source": "base",
+      "bin": "all",
+      "lo": NaN,
+      "hi": NaN,
+      "weight": 0.0,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN,
+      "improvement": 0.0
+    },
+    {
+      "target": "S4",
+      "source": "base",
+      "bin": "all",
+      "lo": NaN,
+      "hi": NaN,
+      "weight": 0.0,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN,
+      "improvement": 0.0
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v62_cross_family_residual_pls_on_v61/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v62_cross_family_residual_pls_on_v61/submission_conditional_latent_routing.csv",
+    "source": [
+      "joint_neural_cross_family_residual_knn_logitresid=outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/oof_joint_neural_cross_family_residual_knn_logitresid.csv,outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/submission_joint_neural_cross_family_residual_knn_logitresid.csv",
+      "joint_neural_cross_family_residual_knn_resid=outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/oof_joint_neural_cross_family_residual_knn_resid.csv,outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/submission_joint_neural_cross_family_residual_knn_resid.csv",
+      "joint_neural_q_residual_knn_logitresid=outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/oof_joint_neural_q_residual_knn_logitresid.csv,outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/submission_joint_neural_q_residual_knn_logitresid.csv",
+      "joint_neural_q_residual_knn_resid=outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/oof_joint_neural_q_residual_knn_resid.csv,outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/submission_joint_neural_q_residual_knn_resid.csv",
+      "joint_neural_qs_residual_knn_logitresid=outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/oof_joint_neural_qs_residual_knn_logitresid.csv,outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/submission_joint_neural_qs_residual_knn_logitresid.csv",
+      "joint_neural_qs_residual_knn_resid=outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/oof_joint_neural_qs_residual_knn_resid.csv,outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/submission_joint_neural_qs_residual_knn_resid.csv",
+      "joint_neural_residual_knn_logitresid=outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/oof_joint_neural_residual_knn_logitresid.csv,outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/submission_joint_neural_residual_knn_logitresid.csv",
+      "joint_neural_residual_knn_resid=outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/oof_joint_neural_residual_knn_resid.csv,outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/submission_joint_neural_residual_knn_resid.csv",
+      "joint_neural_s_residual_knn_logitresid=outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/oof_joint_neural_s_residual_knn_logitresid.csv,outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/submission_joint_neural_s_residual_knn_logitresid.csv",
+      "joint_neural_s_residual_knn_resid=outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/oof_joint_neural_s_residual_knn_resid.csv,outputs/joint_state_space_encoder_v63_neural_residual_heads_on_v62/submission_joint_neural_s_residual_knn_resid.csv"
+    ],
+    "output_dir": "outputs/conditional_latent_routing_v63_neural_constrained_on_v62",
+    "weights": "0.025,0.05,0.075,0.1",
+    "bins": "first_half:0:0.5,second_half:0.5:1.000001,mid:0.333:0.666,late:0.666:1.000001,all:0:1.000001",
+    "min_train_rows": 50,
+    "min_sample_rows": 40,
+    "min_improvement": 0.0005,
+    "max_moves_per_target": 1,
+    "allow_overlap": false,
+    "targets": "Q1,Q2,Q3,S1,S2,S3,S4",
+    "match_source_prefix": false
+  }
+}

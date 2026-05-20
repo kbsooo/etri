@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import warnings
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -13,6 +14,8 @@ from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression, RidgeClassifier
 from sklearn.metrics import log_loss
+from sklearn.exceptions import ConvergenceWarning
+from sklearn.neural_network import MLPRegressor
 from sklearn.preprocessing import StandardScaler
 
 from train_s2_sleep_retrieval_encoder import (
@@ -228,6 +231,86 @@ def stack_and_scale_latents(
     for arr in (z_fit, z_apply, z_sample):
         arr[:] = np.clip(np.nan_to_num(arr, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
     return z_fit.astype(np.float32), z_apply.astype(np.float32), z_sample.astype(np.float32)
+
+
+def fit_neural_residual_latent(
+    x_fit: pd.DataFrame,
+    residual_fit: np.ndarray,
+    x_apply: pd.DataFrame,
+    x_sample: pd.DataFrame,
+    max_features: int,
+    latent_dim: int,
+    epochs: int,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, dict[str, int | float]]:
+    keep = top_residual_aligned_columns(x_fit, residual_fit, max_features)
+    imputer = SimpleImputer(strategy="median", keep_empty_features=True)
+    scaler = StandardScaler()
+    fit_x = scaler.fit_transform(imputer.fit_transform(x_fit[keep])).astype(np.float32)
+    apply_x = scaler.transform(imputer.transform(x_apply[keep])).astype(np.float32)
+    sample_x = scaler.transform(imputer.transform(x_sample[keep])).astype(np.float32)
+    fit_x = np.clip(np.nan_to_num(fit_x, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    apply_x = np.clip(np.nan_to_num(apply_x, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    sample_x = np.clip(np.nan_to_num(sample_x, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+
+    residual = np.asarray(residual_fit, dtype=np.float32)
+    if residual.ndim == 1:
+        residual = residual.reshape(-1, 1)
+    residual = np.nan_to_num(residual, nan=0.0, posinf=0.0, neginf=0.0)
+    y_scaler = StandardScaler()
+    residual_z = y_scaler.fit_transform(residual).astype(np.float32)
+    if residual_z.shape[1] == 1:
+        residual_z = np.clip(residual_z, -8.0, 8.0)
+
+    hidden = max(24, min(96, fit_x.shape[1] // 2))
+    bottleneck = max(2, min(latent_dim, hidden))
+    model = MLPRegressor(
+        hidden_layer_sizes=(hidden, bottleneck),
+        activation="tanh",
+        solver="adam",
+        alpha=0.01,
+        learning_rate_init=0.003,
+        max_iter=max(20, epochs),
+        early_stopping=True,
+        validation_fraction=0.18,
+        n_iter_no_change=12,
+        random_state=SEED,
+    )
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", ConvergenceWarning)
+        model.fit(fit_x, residual_z)
+
+    def encode(values: np.ndarray) -> np.ndarray:
+        hidden_values = values
+        for layer_i, (coef, intercept) in enumerate(zip(model.coefs_[:-1], model.intercepts_[:-1])):
+            hidden_values = hidden_values @ coef + intercept
+            if model.activation == "tanh":
+                hidden_values = np.tanh(hidden_values)
+            elif model.activation == "relu":
+                hidden_values = np.maximum(hidden_values, 0.0)
+            if layer_i == len(model.coefs_) - 2:
+                break
+        return hidden_values
+
+    z_fit = encode(fit_x)
+    z_apply = encode(apply_x)
+    z_sample = encode(sample_x)
+    z_scaler = StandardScaler()
+    z_fit = z_scaler.fit_transform(z_fit)
+    z_apply = z_scaler.transform(z_apply)
+    z_sample = z_scaler.transform(z_sample)
+    for arr in (z_fit, z_apply, z_sample):
+        arr[:] = np.clip(np.nan_to_num(arr, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    best_loss = getattr(model, "best_loss_", None)
+    if best_loss is None:
+        best_loss = getattr(model, "loss_", np.nan)
+    meta = {
+        "neural_selected_features": len(keep),
+        "neural_latent_dim": int(z_fit.shape[1]),
+        "neural_epochs": int(epochs),
+        "neural_best_loss": float(best_loss),
+        "neural_device": 0,
+    }
+    return z_fit.astype(np.float32), z_apply.astype(np.float32), z_sample.astype(np.float32), meta
 
 
 def fit_head_probability(
@@ -702,6 +785,16 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_qs_residual_pls_knn_logitresid",
         "joint_target_qs_residual_pls_knn_resid",
         "joint_target_qs_residual_pls_knn_logitresid",
+        "joint_neural_residual_knn_resid",
+        "joint_neural_residual_knn_logitresid",
+        "joint_neural_q_residual_knn_resid",
+        "joint_neural_q_residual_knn_logitresid",
+        "joint_neural_s_residual_knn_resid",
+        "joint_neural_s_residual_knn_logitresid",
+        "joint_neural_qs_residual_knn_resid",
+        "joint_neural_qs_residual_knn_logitresid",
+        "joint_neural_cross_family_residual_knn_resid",
+        "joint_neural_cross_family_residual_knn_logitresid",
         "joint_attention_knn_resid",
         "joint_attention_knn_logitresid",
         "joint_metric_attention_knn_resid",
@@ -769,6 +862,38 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             [qrz_val, srz_val],
             [qrz_sample, srz_sample],
         )
+        nrz_fit, nrz_val, nrz_sample, neural_meta = fit_neural_residual_latent(
+            fit_x,
+            residual_fit_targets,
+            val_x,
+            sample_x,
+            args.max_features,
+            args.neural_latent_dim,
+            args.neural_epochs,
+        )
+        nqrz_fit, nqrz_val, nqrz_sample, q_neural_meta = fit_neural_residual_latent(
+            fit_x,
+            residual_fit_targets[:, :3],
+            val_x,
+            sample_x,
+            args.max_features,
+            max(3, min(args.neural_latent_dim, 8)),
+            args.neural_epochs,
+        )
+        nsrz_fit, nsrz_val, nsrz_sample, s_neural_meta = fit_neural_residual_latent(
+            fit_x,
+            residual_fit_targets[:, 3:],
+            val_x,
+            sample_x,
+            args.max_features,
+            max(4, min(args.neural_latent_dim, 8)),
+            args.neural_epochs,
+        )
+        nqsrz_fit, nqsrz_val, nqsrz_sample = stack_and_scale_latents(
+            [nqrz_fit, nsrz_fit],
+            [nqrz_val, nsrz_val],
+            [nqrz_sample, nsrz_sample],
+        )
         if latent_oof.shape[1] != z_val.shape[1]:
             latent_oof = np.full((len(train), z_val.shape[1]), np.nan, dtype=float)
         latent_oof[fold.val_idx] = z_val
@@ -783,6 +908,10 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             "q_residual_latent_dim": q_residual_meta["residual_latent_dim"],
             "s_residual_pls_dim": s_residual_meta["residual_pls_dim"],
             "s_residual_latent_dim": s_residual_meta["residual_latent_dim"],
+            "neural_latent_dim": neural_meta["neural_latent_dim"],
+            "neural_best_loss": neural_meta["neural_best_loss"],
+            "q_neural_latent_dim": q_neural_meta["neural_latent_dim"],
+            "s_neural_latent_dim": s_neural_meta["neural_latent_dim"],
         }
         fold_meta.append(meta)
 
@@ -863,6 +992,16 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                 ("joint_family_residual_pls", (qrz_fit if target_i < 3 else srz_fit), (qrz_val if target_i < 3 else srz_val), (qrz_sample if target_i < 3 else srz_sample)),
                 ("joint_cross_family_residual_pls", (srz_fit if target_i < 3 else qrz_fit), (srz_val if target_i < 3 else qrz_val), (srz_sample if target_i < 3 else qrz_sample)),
                 ("joint_qs_residual_pls", qsrz_fit, qsrz_val, qsrz_sample),
+                ("joint_neural_residual", nrz_fit, nrz_val, nrz_sample),
+                ("joint_neural_q_residual", nqrz_fit, nqrz_val, nqrz_sample),
+                ("joint_neural_s_residual", nsrz_fit, nsrz_val, nsrz_sample),
+                ("joint_neural_qs_residual", nqsrz_fit, nqsrz_val, nqsrz_sample),
+                (
+                    "joint_neural_cross_family_residual",
+                    (nsrz_fit if target_i < 3 else nqrz_fit),
+                    (nsrz_val if target_i < 3 else nqrz_val),
+                    (nsrz_sample if target_i < 3 else nqrz_sample),
+                ),
             ):
                 source_name = f"{source_prefix}_knn_resid"
                 oof_by_source[source_name][fold.val_idx, target_i] = weighted_knn_residual(
@@ -1170,6 +1309,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--pca-dim", type=int, default=32)
     parser.add_argument("--pls-dim", type=int, default=7)
     parser.add_argument("--residual-pls-dim", type=int, default=7)
+    parser.add_argument("--neural-latent-dim", type=int, default=10)
+    parser.add_argument("--neural-epochs", type=int, default=45)
     parser.add_argument("--knn-k", type=int, default=19)
     parser.add_argument("--knn-temp", type=float, default=1.2)
     return parser.parse_args()
