@@ -485,6 +485,68 @@ def learned_view_blend_prediction(
     return fit_pred, apply_pred, sample_pred
 
 
+def learned_view_bin_blend_prediction(
+    fit_view_preds: list[np.ndarray],
+    apply_view_preds: list[np.ndarray],
+    sample_view_preds: list[np.ndarray],
+    y_fit: np.ndarray,
+    base_fit: np.ndarray,
+    base_apply: np.ndarray,
+    base_sample: np.ndarray,
+    fit_pos: np.ndarray,
+    apply_pos: np.ndarray,
+    sample_pos: np.ndarray,
+    logit_mode: bool,
+    min_bin_rows: int = 60,
+) -> tuple[np.ndarray, np.ndarray]:
+    if logit_mode:
+        fit_x = np.column_stack([safe_logit(pred) - safe_logit(base_fit) for pred in fit_view_preds])
+        apply_x = np.column_stack([safe_logit(pred) - safe_logit(base_apply) for pred in apply_view_preds])
+        sample_x = np.column_stack([safe_logit(pred) - safe_logit(base_sample) for pred in sample_view_preds])
+        target = safe_logit(y_fit * 0.98 + 0.01) - safe_logit(base_fit)
+    else:
+        fit_x = np.column_stack([pred - base_fit for pred in fit_view_preds])
+        apply_x = np.column_stack([pred - base_apply for pred in apply_view_preds])
+        sample_x = np.column_stack([pred - base_sample for pred in sample_view_preds])
+        target = y_fit - base_fit
+
+    fit_x = np.nan_to_num(fit_x, nan=0.0, posinf=0.0, neginf=0.0)
+    apply_x = np.nan_to_num(apply_x, nan=0.0, posinf=0.0, neginf=0.0)
+    sample_x = np.nan_to_num(sample_x, nan=0.0, posinf=0.0, neginf=0.0)
+    target = np.nan_to_num(target, nan=0.0, posinf=0.0, neginf=0.0)
+
+    def fit_coef(mask: np.ndarray) -> np.ndarray:
+        model = Ridge(alpha=8.0, fit_intercept=False)
+        model.fit(fit_x[mask], target[mask])
+        coef = np.maximum(np.asarray(model.coef_, dtype=float).reshape(-1), 0.0)
+        if coef.sum() <= 1e-8:
+            coef = np.ones(fit_x.shape[1], dtype=float)
+        return coef / coef.sum()
+
+    global_coef = fit_coef(np.ones(len(fit_x), dtype=bool))
+    bins = [
+        (fit_pos < 0.333, apply_pos < 0.333, sample_pos < 0.333),
+        ((fit_pos >= 0.333) & (fit_pos < 0.666), (apply_pos >= 0.333) & (apply_pos < 0.666), (sample_pos >= 0.333) & (sample_pos < 0.666)),
+        (fit_pos >= 0.666, apply_pos >= 0.666, sample_pos >= 0.666),
+    ]
+    apply_residual = apply_x @ global_coef
+    sample_residual = sample_x @ global_coef
+    for fit_mask, apply_mask, sample_mask in bins:
+        if int(fit_mask.sum()) < min_bin_rows:
+            continue
+        coef = fit_coef(fit_mask)
+        apply_residual[apply_mask] = apply_x[apply_mask] @ coef
+        sample_residual[sample_mask] = sample_x[sample_mask] @ coef
+
+    if logit_mode:
+        apply_pred = sigmoid(safe_logit(base_apply) + apply_residual)
+        sample_pred = sigmoid(safe_logit(base_sample) + sample_residual)
+    else:
+        apply_pred = base_apply + apply_residual
+        sample_pred = base_sample + sample_residual
+    return np.clip(apply_pred, EPS, 1.0 - EPS), np.clip(sample_pred, EPS, 1.0 - EPS)
+
+
 def label_metric_weights(z_fit: np.ndarray, y_fit: np.ndarray) -> np.ndarray:
     z_fit = np.clip(np.nan_to_num(z_fit, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
     if len(np.unique(y_fit)) < 2:
@@ -943,6 +1005,8 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_neural_gated_mixture_metric_knn_logitresid",
         "joint_neural_learned_gate_knn_resid",
         "joint_neural_learned_gate_knn_logitresid",
+        "joint_neural_bin_gate_knn_resid",
+        "joint_neural_bin_gate_knn_logitresid",
         "joint_neural_residual_knn_resid",
         "joint_neural_residual_knn_logitresid",
         "joint_neural_q_residual_knn_resid",
@@ -1657,6 +1721,37 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             )
             oof_by_source["joint_neural_learned_gate_knn_logitresid"][fold.val_idx, target_i] = learned_val_logit
             sample_folds_by_source["joint_neural_learned_gate_knn_logitresid"].append((target_i, learned_sample_logit))
+            bin_val_resid, bin_sample_resid = learned_view_bin_blend_prediction(
+                view_fit_preds_resid,
+                view_val_preds_resid,
+                view_sample_preds_resid,
+                y_fit,
+                base_fit,
+                base_val,
+                base_test,
+                fit_pos,
+                val_pos,
+                sample_panel_pos,
+                False,
+            )
+            oof_by_source["joint_neural_bin_gate_knn_resid"][fold.val_idx, target_i] = bin_val_resid
+            sample_folds_by_source["joint_neural_bin_gate_knn_resid"].append((target_i, bin_sample_resid))
+
+            bin_val_logit, bin_sample_logit = learned_view_bin_blend_prediction(
+                view_fit_preds_logit,
+                view_val_preds_logit,
+                view_sample_preds_logit,
+                y_fit,
+                base_fit,
+                base_val,
+                base_test,
+                fit_pos,
+                val_pos,
+                sample_panel_pos,
+                True,
+            )
+            oof_by_source["joint_neural_bin_gate_knn_logitresid"][fold.val_idx, target_i] = bin_val_logit
+            sample_folds_by_source["joint_neural_bin_gate_knn_logitresid"].append((target_i, bin_sample_logit))
             fit_keys = train.iloc[fold.train_idx][KEY_COLUMNS]
             val_keys = train.iloc[fold.val_idx][KEY_COLUMNS]
             sample_keys = sample[KEY_COLUMNS]

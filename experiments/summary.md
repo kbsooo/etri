@@ -4,11 +4,11 @@ Last updated: 2026-05-20
 
 ## Current Best
 
-- Best internal OOF candidate: `outputs/conditional_latent_routing_v71_learned_gate_on_v70/submission_conditional_latent_routing.csv`
-- Best internal OOF: `0.484026`
+- Best internal OOF candidate: `outputs/conditional_latent_routing_v72_bin_gate_on_v71/submission_conditional_latent_routing.csv`
+- Best internal OOF: `0.483657`
 - Main report: `outputs/breakthrough_signal_report.md`
 - Public LB feedback: `experiments/public_lb_feedback.md`
-- Candidate report: `outputs/conditional_latent_routing_v71_learned_gate_on_v70/report.md`
+- Candidate report: `outputs/conditional_latent_routing_v72_bin_gate_on_v71/report.md`
 - Important caveat: this is an internal OOF proxy, not Public LB. Recent Public LB feedback for older submissions was weaker than OOF suggested.
 
 ## What We Are Testing
@@ -64,6 +64,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 | v69 neural mixture concat probe | 0.486152 | all-source improves slightly, but mixture-only does not improve at all; naive concat loses target/panel specialization | `outputs/breakthrough_signal_report.md` |
 | v70 gated residual-view mixture | 0.485258 | fold-safe target residual gate over neural views improves the all-source route; gated-only is nearly neutral at 0.486144, so selection helps but a learned gate is still needed | `outputs/breakthrough_signal_report.md` |
 | v71 learned view-gate probe | 0.484026 | learned-gate source is neutral, but retrained neural residual views still create a large new residual layer after v70; neural-only reaches 0.484048 | `outputs/breakthrough_signal_report.md` |
+| v72 bin-aware view-gate probe | 0.483657 | bin-gate-only is still neutral, but v71 residual still responds to cross-family neural views plus neighbor/PLS decoders | `outputs/breakthrough_signal_report.md` |
 
 ## What Worked
 
@@ -90,6 +91,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - A naive concat mixture of all neural residual views is a useful negative result: mixture-only produces no selected improvements. The all-source route still improves through individual neural/prototype/PLS sources, so the views should be selected by target/panel gates rather than collapsed by unweighted concatenation.
 - Fold-safe residual-view gating gives a new best all-source route at 0.485258 and neural-only reaches 0.485308. The direct gated-only source is only marginally positive, which means the useful signal is still distributed across individual target/panel/prototype neural views; the next encoder needs a learned attention/gate rather than a hard top-k stacked latent.
 - Re-fitting the neural residual-view family after v70 creates another large OOF layer to 0.484026. The strongest moves are Q1 first-half/second-half, S1 late/mid, S2 first-half, S3 late/mid, and smaller Q2/Q3/S4 corrections, which says the residual-view family is not saturated yet.
+- A v72 bin-aware gate attempt still creates a new all-source best at 0.483657, but the selected improvements come from source-wise routing: Q2 late cross-family neural, S3 mid neighbor, S4 mid/late neighbor+PLS, and smaller Q1/Q3/S2 moves. This confirms repeated residual signal, not a successful unified gate.
 
 ## What Failed Or Was Weaker
 
@@ -104,17 +106,18 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Unweighted neural-view concatenation washes out the useful specialization. This argues against a single flat latent unless it has learned gates or attention over residual views.
 - The first hand-built gated mixture is too weak as a standalone source. It improves only S3 mid by a tiny amount in gated-only routing, so static residual-alignment top-k is not expressive enough to replace source-wise routing.
 - The first learned positive ridge gate is also too weak as a standalone source. It selects no routed moves after v70, so a useful unified gate probably needs sample-specific context or an explicit target/bin objective rather than one fold-level coefficient vector.
+- Splitting the learned gate by panel bin is also not enough. The bin-gate-only route selects no moves after v71, so the next consolidation attempt should learn a local/sample-conditioned neighbor relation rather than fixed bin coefficients.
 
 ## Current Architecture Status
 
 - Current implementation: common label-free features plus target-specific source models for `Q1`, `Q2`, `Q3`, `S1`, `S2`, `S3`, `S4`, composed by a conditional target/bin router.
 - Not yet final: one unified neural encoder with seven heads.
-- Strong next direction: train the view selector as a target/bin-aware or sample-conditioned attention decoder, while preserving individual neural view routing as the reliable discovery path.
+- Strong next direction: train the view selector as a sample-conditioned local attention decoder, while preserving individual neural view routing as the reliable discovery path.
 
 ## Next 3
 
-1. Train a target/bin-aware or sample-conditioned gate over residual views, not one global coefficient vector per fold.
-   - Success criterion: gate-only should beat the v71 base or at least reproduce the Q1/S1/S2/S3 neural-only gains without falling back to source-wise routing.
+1. Train a sample-conditioned local attention gate over residual views using neighbor/context features, not global or bin-level coefficients.
+   - Success criterion: gate-only should beat the v72 base or reproduce the Q2/S3/S4 late/mid residual gains without falling back to source-wise routing.
 
 2. Turn the neighbor scorer from a post-hoc feature decoder into the latent objective itself: pull together days that have similar target residual behavior while preserving subject/time context.
    - Success criterion: improve S3/S4/S1 residuals with fewer routed moves and avoid standalone decoder collapse.
