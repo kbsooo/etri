@@ -865,6 +865,10 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_proto_neural_residual_knn_logitresid",
         "joint_proto_neural_multiview_residual_knn_resid",
         "joint_proto_neural_multiview_residual_knn_logitresid",
+        "joint_proto_neural_metric_knn_resid",
+        "joint_proto_neural_metric_knn_logitresid",
+        "joint_proto_neural_multiview_metric_knn_resid",
+        "joint_proto_neural_multiview_metric_knn_logitresid",
         "joint_neural_residual_knn_resid",
         "joint_neural_residual_knn_logitresid",
         "joint_neural_q_residual_knn_resid",
@@ -1344,6 +1348,48 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             )
             sample_folds_by_source["joint_proto_neural_multiview_residual_knn_logitresid"].append(
                 (target_i, weighted_knn_residual(pmvnrz_fit, pmvnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
+            )
+            proto_weights = residual_metric_weights(prnrz_fit, y_fit - base_fit)
+            proto_mv_weights = residual_metric_weights(pmvnrz_fit, y_fit - base_fit)
+            oof_by_source["joint_proto_neural_metric_knn_resid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
+                prnrz_fit, prnrz_val, y_fit, base_fit, base_val, proto_weights, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_proto_neural_metric_knn_resid"].append(
+                (
+                    target_i,
+                    metric_weighted_knn_residual(prnrz_fit, prnrz_sample, y_fit, base_fit, base_test, proto_weights, args.knn_k, args.knn_temp, False),
+                )
+            )
+            oof_by_source["joint_proto_neural_metric_knn_logitresid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
+                prnrz_fit, prnrz_val, y_fit, base_fit, base_val, proto_weights, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_proto_neural_metric_knn_logitresid"].append(
+                (
+                    target_i,
+                    metric_weighted_knn_residual(prnrz_fit, prnrz_sample, y_fit, base_fit, base_test, proto_weights, args.knn_k, args.knn_temp, True),
+                )
+            )
+            oof_by_source["joint_proto_neural_multiview_metric_knn_resid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
+                pmvnrz_fit, pmvnrz_val, y_fit, base_fit, base_val, proto_mv_weights, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_proto_neural_multiview_metric_knn_resid"].append(
+                (
+                    target_i,
+                    metric_weighted_knn_residual(
+                        pmvnrz_fit, pmvnrz_sample, y_fit, base_fit, base_test, proto_mv_weights, args.knn_k, args.knn_temp, False
+                    ),
+                )
+            )
+            oof_by_source["joint_proto_neural_multiview_metric_knn_logitresid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
+                pmvnrz_fit, pmvnrz_val, y_fit, base_fit, base_val, proto_mv_weights, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_proto_neural_multiview_metric_knn_logitresid"].append(
+                (
+                    target_i,
+                    metric_weighted_knn_residual(
+                        pmvnrz_fit, pmvnrz_sample, y_fit, base_fit, base_test, proto_mv_weights, args.knn_k, args.knn_temp, True
+                    ),
+                )
             )
             fit_keys = train.iloc[fold.train_idx][KEY_COLUMNS]
             val_keys = train.iloc[fold.val_idx][KEY_COLUMNS]

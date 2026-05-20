@@ -78,6 +78,7 @@ This keeps producing new OOF signal after earlier layers are already strong, and
 | conditional routing v65 target-wise neural residual bottleneck | 0.490915 |
 | conditional routing v66 panel-aware residual encoder | 0.489729 |
 | conditional routing v67 residual prototype objective | 0.488680 |
+| conditional routing v68 prototype-metric retrieval | 0.486989 |
 
 ## Why This Looks Like A Real Direction
 
@@ -138,14 +139,15 @@ This keeps producing new OOF signal after earlier layers are already strong, and
 - Target-wise neural residual bottlenecks improve the v64 base from 0.492249 to 0.490915 after routing. The target-neural-only route reaches 0.491846, so per-target neural spaces are not enough alone, but the all-source and neural-only routes show a new residual layer. The strongest moves are Q1 first-half from neural multi-view cross-family residual, S2 late and S3 first-half from target neural multi-view residual, S4 late from S-family neural residual, and Q2 late from Q-family neural multi-view logit residual. This says the encoder should mix shared, family, cross-family, and small target-local residual views rather than commit to a single per-label latent.
 - A panel-aware residual encoder improves the v65 base from 0.490915 to 0.489729 after routing. The panel-only route barely moves the base to 0.490907, but neural-only routing reaches 0.489882, which means panel position/basis helps the broader neural residual encoder rather than acting as a standalone shortcut. The strongest new signals are S3 all rows from `joint_target_neural_residual_knn_resid`, Q3 late/mid from Q/QS and cross-family neural residuals, S2 late from shared neural residual, S1 first-half from multi-view cross-family neural residual, and S4 late/first-half from cross-family residual views.
 - A residual prototype objective improves the v66 base from 0.489729 to 0.488680 after routing. Prototype-only routing reaches 0.489493, with the clearest independent signal in S2 first-half/mid from `joint_proto_neural_*`, while neural-only reaches 0.489030. The all-source route adds a large S2 first-half move from target residual PLS, plus prototype candidates immediately below it, and smaller Q2/Q3/S1/S4 improvements. This says residual regimes are useful, but currently as an auxiliary view that sharpens the residual mixture rather than as a full replacement.
+- Prototype-metric retrieval improves the v67 base from 0.488680 to 0.486989 after routing. The proto-metric-only route is narrow at 0.488537, but neural-only reaches 0.487081 and improves every target. The strongest moves are S2 first-half from target neural residual, Q3 late from panel neural residual, S1 mid from panel neural residual, S4 first-half/late from neural multi-view plus target neural residual, Q1 second-half from target neural multi-view residual, and Q2 mid from target neural residual. This confirms that target/panel neural residual views are now the main breakthrough axis.
 
 ## Best Current Breakthrough Candidate
 
-- Bold/best OOF submission: `outputs/conditional_latent_routing_v67_residual_prototype_on_v66/submission_conditional_latent_routing.csv`
-- Bold/best OOF: `0.488680`
-- Bold/best report: `outputs/conditional_latent_routing_v67_residual_prototype_on_v66/report.md`
-- Cleaner/neural-only OOF candidate: `outputs/conditional_latent_routing_v67_neural_only_on_v66/submission_conditional_latent_routing.csv`
-- Cleaner/neural-only OOF: `0.489030`
+- Bold/best OOF submission: `outputs/conditional_latent_routing_v68_proto_metric_on_v67/submission_conditional_latent_routing.csv`
+- Bold/best OOF: `0.486989`
+- Bold/best report: `outputs/conditional_latent_routing_v68_proto_metric_on_v67/report.md`
+- Cleaner/neural-only OOF candidate: `outputs/conditional_latent_routing_v68_neural_only_on_v67/submission_conditional_latent_routing.csv`
+- Cleaner/neural-only OOF: `0.487081`
 - Best single-layer lead-lag breakthrough report: `outputs/conditional_latent_routing_v42_leadlag_on_v40/report.md`
 
 Important caveat: v42/v44 are useful as breakthrough-signal probes, but some selected OOF bins have no sample rows. For an upload-style candidate, v43/v45/v46 are cleaner because they require meaningful sample coverage.
@@ -250,3 +252,4 @@ The pattern repeats across target families:
 - Target-wise neural update: the newest best score is 0.490915. Target-specific neural residual sources are weak as raw predictors and target-neural-only routing is only 0.491846, but mixing them with shared/family neural residual views improves all seven labels. The neural-only route reaches 0.491035 and the stricter neural constrained route reaches 0.491466. The current best thesis is now: the encoder should be a residual-view mixture model, where shared, family, cross-family, and target-local bottlenecks each explain different panel regions.
 - Panel-aware residual update: the newest best score is 0.489729. Adding fold-safe panel position/basis features and panel-weighted residual reconstruction targets does not create a strong panel-only source, but it makes the neural residual family stronger: neural-only routing reaches 0.489882. The current best thesis is now: the encoder should not only know "what kind of day" this is, but also where that day sits in the observed subject panel, because the same residual latent has different label meaning in early, mid, and late regions.
 - Residual prototype update: the newest best score is 0.488680. Fold-safe KMeans prototypes over residual plus panel-weighted residual targets give an independent S2 residual-regime signal: prototype-only routing reaches 0.489493. The current best thesis is now: the encoder should learn both continuous residual direction and coarse residual regime membership, then decode with target/bin-aware similar-day retrieval.
+- Prototype-metric update: the newest best score is 0.486989. Target residual metric weighting on prototype latents only adds a small independent S2 correction, but the neural-only route reaches 0.487081. The current best thesis is now: consolidate the target, panel, family, and prototype neural residual views into a unified residual-view mixture encoder, because neural residual sources now explain almost all of the routed gain.
