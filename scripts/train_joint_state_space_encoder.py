@@ -222,6 +222,76 @@ def label_metric_weights(z_fit: np.ndarray, y_fit: np.ndarray) -> np.ndarray:
     return weights.astype(np.float32)
 
 
+def residual_metric_weights(z_fit: np.ndarray, residual_fit: np.ndarray) -> np.ndarray:
+    z_fit = np.clip(np.nan_to_num(z_fit, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    residual_fit = np.nan_to_num(residual_fit, nan=0.0, posinf=0.0, neginf=0.0)
+    if len(residual_fit) < 20 or np.nanstd(residual_fit) <= 1e-6:
+        return np.ones(z_fit.shape[1], dtype=np.float32)
+    lo, hi = np.quantile(residual_fit, [0.35, 0.65])
+    low_mask = residual_fit <= lo
+    high_mask = residual_fit >= hi
+    if low_mask.sum() < 8 or high_mask.sum() < 8:
+        return np.ones(z_fit.shape[1], dtype=np.float32)
+    gap = np.abs(z_fit[high_mask].mean(axis=0) - z_fit[low_mask].mean(axis=0))
+    spread = z_fit.std(axis=0) + 1e-6
+    score = np.nan_to_num(gap / spread, nan=0.0, posinf=0.0, neginf=0.0)
+    if np.max(score) <= 1e-6:
+        return np.ones(z_fit.shape[1], dtype=np.float32)
+    weights = 0.30 + 4.20 * (score / np.max(score))
+    return weights.astype(np.float32)
+
+
+def residual_contrast_features(
+    ref_z: np.ndarray,
+    query_z: np.ndarray,
+    ref_y: np.ndarray,
+    ref_base: np.ndarray,
+    query_base: np.ndarray,
+    metric_weights: np.ndarray,
+) -> np.ndarray:
+    weights = np.sqrt(np.maximum(metric_weights, 1e-6)).reshape(1, -1)
+    ref_z = np.clip(np.nan_to_num(ref_z * weights, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    query_z = np.clip(np.nan_to_num(query_z * weights, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    residual = np.nan_to_num(ref_y - ref_base, nan=0.0, posinf=0.0, neginf=0.0)
+    lo, hi = np.quantile(residual, [0.35, 0.65]) if len(residual) else (0.0, 0.0)
+    low_mask = residual <= lo
+    high_mask = residual >= hi
+    if low_mask.sum() < 8 or high_mask.sum() < 8:
+        center_high = ref_z.mean(axis=0)
+        center_low = ref_z.mean(axis=0)
+    else:
+        center_high = ref_z[high_mask].mean(axis=0)
+        center_low = ref_z[low_mask].mean(axis=0)
+    direction = center_high - center_low
+    norm = float(np.linalg.norm(direction))
+    if norm <= 1e-6:
+        direction = np.zeros_like(direction)
+        norm = 1.0
+    unit = direction / norm
+    d_high = ((query_z - center_high) ** 2).mean(axis=1)
+    d_low = ((query_z - center_low) ** 2).mean(axis=1)
+    contrast_raw = (query_z - (center_high + center_low) / 2.0) @ unit
+    raw_scale = np.std(contrast_raw) if np.std(contrast_raw) > 1e-6 else 1.0
+    contrast_prob = sigmoid(safe_logit(query_base) + contrast_raw / raw_scale)
+    features = np.column_stack(
+        [
+            query_base,
+            safe_logit(query_base),
+            d_high,
+            d_low,
+            d_low - d_high,
+            contrast_raw,
+            contrast_raw / raw_scale,
+            contrast_prob,
+            contrast_prob - query_base,
+            np.full(len(query_z), float(np.mean(residual))),
+            np.full(len(query_z), float(np.std(residual))),
+            np.full(len(query_z), float(hi - lo)),
+        ]
+    )
+    return np.clip(np.nan_to_num(features, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0).astype(np.float32)
+
+
 def metric_weighted_knn_residual(
     z_fit: np.ndarray,
     z_apply: np.ndarray,
@@ -522,6 +592,12 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_pls_knn_logitresid",
         "joint_metric_knn_resid",
         "joint_metric_knn_logitresid",
+        "joint_residual_metric_knn_resid",
+        "joint_residual_metric_knn_logitresid",
+        "joint_residual_contrast_logreg",
+        "joint_residual_contrast_hgb",
+        "joint_residual_metric_neighbor_logreg",
+        "joint_residual_metric_neighbor_hgb",
         "joint_attention_knn_resid",
         "joint_attention_knn_logitresid",
         "joint_metric_attention_knn_resid",
@@ -588,6 +664,7 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                 (target_i, weighted_knn_residual(z_fit, z_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
             )
             metric_weights = label_metric_weights(z_fit, y_fit)
+            residual_weights = residual_metric_weights(z_fit, y_fit - base_fit)
             oof_by_source["joint_metric_knn_resid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
                 z_fit, z_val, y_fit, base_fit, base_val, metric_weights, args.knn_k, args.knn_temp, False
             )
@@ -604,6 +681,24 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                 (
                     target_i,
                     metric_weighted_knn_residual(z_fit, z_sample, y_fit, base_fit, base_test, metric_weights, args.knn_k, args.knn_temp, True),
+                )
+            )
+            oof_by_source["joint_residual_metric_knn_resid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
+                z_fit, z_val, y_fit, base_fit, base_val, residual_weights, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_residual_metric_knn_resid"].append(
+                (
+                    target_i,
+                    metric_weighted_knn_residual(z_fit, z_sample, y_fit, base_fit, base_test, residual_weights, args.knn_k, args.knn_temp, False),
+                )
+            )
+            oof_by_source["joint_residual_metric_knn_logitresid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
+                z_fit, z_val, y_fit, base_fit, base_val, residual_weights, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_residual_metric_knn_logitresid"].append(
+                (
+                    target_i,
+                    metric_weighted_knn_residual(z_fit, z_sample, y_fit, base_fit, base_test, residual_weights, args.knn_k, args.knn_temp, True),
                 )
             )
             fit_keys = train.iloc[fold.train_idx][KEY_COLUMNS]
@@ -667,6 +762,28 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             sample_metric_neighbor = neighbor_context_features(
                 z_fit, z_sample, y_fit, base_fit, base_test, fit_keys, sample_keys, metric_weights, args.knn_k, args.knn_temp
             )
+            fit_residual_metric_neighbor = neighbor_context_features(
+                z_fit,
+                z_fit,
+                y_fit,
+                base_fit,
+                base_fit,
+                fit_keys,
+                fit_keys,
+                residual_weights,
+                args.knn_k,
+                args.knn_temp,
+                exclude_self=True,
+            )
+            val_residual_metric_neighbor = neighbor_context_features(
+                z_fit, z_val, y_fit, base_fit, base_val, fit_keys, val_keys, residual_weights, args.knn_k, args.knn_temp
+            )
+            sample_residual_metric_neighbor = neighbor_context_features(
+                z_fit, z_sample, y_fit, base_fit, base_test, fit_keys, sample_keys, residual_weights, args.knn_k, args.knn_temp
+            )
+            fit_residual_contrast = residual_contrast_features(z_fit, z_fit, y_fit, base_fit, base_fit, residual_weights)
+            val_residual_contrast = residual_contrast_features(z_fit, z_val, y_fit, base_fit, base_val, residual_weights)
+            sample_residual_contrast = residual_contrast_features(z_fit, z_sample, y_fit, base_fit, base_test, residual_weights)
             for method in ("local_logreg", "local_hgb"):
                 suffix = "logreg" if method == "local_logreg" else "hgb"
                 val_pred, sample_pred = fit_local_decoder(method, fit_neighbor, y_fit, val_neighbor, sample_neighbor)
@@ -682,6 +799,28 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                     sample_metric_neighbor,
                 )
                 source_name = f"joint_metric_neighbor_{suffix}"
+                oof_by_source[source_name][fold.val_idx, target_i] = val_pred
+                sample_folds_by_source[source_name].append((target_i, sample_pred))
+
+                val_pred, sample_pred = fit_local_decoder(
+                    method,
+                    fit_residual_metric_neighbor,
+                    y_fit,
+                    val_residual_metric_neighbor,
+                    sample_residual_metric_neighbor,
+                )
+                source_name = f"joint_residual_metric_neighbor_{suffix}"
+                oof_by_source[source_name][fold.val_idx, target_i] = val_pred
+                sample_folds_by_source[source_name].append((target_i, sample_pred))
+
+                val_pred, sample_pred = fit_local_decoder(
+                    method,
+                    fit_residual_contrast,
+                    y_fit,
+                    val_residual_contrast,
+                    sample_residual_contrast,
+                )
+                source_name = f"joint_residual_contrast_{suffix}"
                 oof_by_source[source_name][fold.val_idx, target_i] = val_pred
                 sample_folds_by_source[source_name].append((target_i, sample_pred))
 
