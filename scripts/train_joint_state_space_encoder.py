@@ -869,6 +869,10 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_proto_neural_metric_knn_logitresid",
         "joint_proto_neural_multiview_metric_knn_resid",
         "joint_proto_neural_multiview_metric_knn_logitresid",
+        "joint_neural_mixture_knn_resid",
+        "joint_neural_mixture_knn_logitresid",
+        "joint_neural_mixture_metric_knn_resid",
+        "joint_neural_mixture_metric_knn_logitresid",
         "joint_neural_residual_knn_resid",
         "joint_neural_residual_knn_logitresid",
         "joint_neural_q_residual_knn_resid",
@@ -1389,6 +1393,99 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                     metric_weighted_knn_residual(
                         pmvnrz_fit, pmvnrz_sample, y_fit, base_fit, base_test, proto_mv_weights, args.knn_k, args.knn_temp, True
                     ),
+                )
+            )
+            family_neural_fit = nqrz_fit if target_i < 3 else nsrz_fit
+            family_neural_val = nqrz_val if target_i < 3 else nsrz_val
+            family_neural_sample = nqrz_sample if target_i < 3 else nsrz_sample
+            family_mv_neural_fit = mnqrz_fit if target_i < 3 else mnsrz_fit
+            family_mv_neural_val = mnqrz_val if target_i < 3 else mnsrz_val
+            family_mv_neural_sample = mnqrz_sample if target_i < 3 else mnsrz_sample
+            cross_family_neural_fit = nsrz_fit if target_i < 3 else nqrz_fit
+            cross_family_neural_val = nsrz_val if target_i < 3 else nqrz_val
+            cross_family_neural_sample = nsrz_sample if target_i < 3 else nqrz_sample
+            cross_family_mv_neural_fit = mnsrz_fit if target_i < 3 else mnqrz_fit
+            cross_family_mv_neural_val = mnsrz_val if target_i < 3 else mnqrz_val
+            cross_family_mv_neural_sample = mnsrz_sample if target_i < 3 else mnqrz_sample
+            mixture_fit, mixture_val, mixture_sample = stack_and_scale_latents(
+                [
+                    nrz_fit,
+                    nqsrz_fit,
+                    mnrz_fit,
+                    mnqsrz_fit,
+                    family_neural_fit,
+                    family_mv_neural_fit,
+                    cross_family_neural_fit,
+                    cross_family_mv_neural_fit,
+                    tnrz_fit,
+                    tmnrz_fit,
+                    pnrz_fit,
+                    pmnrz_fit,
+                    prnrz_fit,
+                    pmvnrz_fit,
+                ],
+                [
+                    nrz_val,
+                    nqsrz_val,
+                    mnrz_val,
+                    mnqsrz_val,
+                    family_neural_val,
+                    family_mv_neural_val,
+                    cross_family_neural_val,
+                    cross_family_mv_neural_val,
+                    tnrz_val,
+                    tmnrz_val,
+                    pnrz_val,
+                    pmnrz_val,
+                    prnrz_val,
+                    pmvnrz_val,
+                ],
+                [
+                    nrz_sample,
+                    nqsrz_sample,
+                    mnrz_sample,
+                    mnqsrz_sample,
+                    family_neural_sample,
+                    family_mv_neural_sample,
+                    cross_family_neural_sample,
+                    cross_family_mv_neural_sample,
+                    tnrz_sample,
+                    tmnrz_sample,
+                    pnrz_sample,
+                    pmnrz_sample,
+                    prnrz_sample,
+                    pmvnrz_sample,
+                ],
+            )
+            mixture_weights = residual_metric_weights(mixture_fit, y_fit - base_fit)
+            oof_by_source["joint_neural_mixture_knn_resid"][fold.val_idx, target_i] = weighted_knn_residual(
+                mixture_fit, mixture_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_neural_mixture_knn_resid"].append(
+                (target_i, weighted_knn_residual(mixture_fit, mixture_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, False))
+            )
+            oof_by_source["joint_neural_mixture_knn_logitresid"][fold.val_idx, target_i] = weighted_knn_residual(
+                mixture_fit, mixture_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_neural_mixture_knn_logitresid"].append(
+                (target_i, weighted_knn_residual(mixture_fit, mixture_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
+            )
+            oof_by_source["joint_neural_mixture_metric_knn_resid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
+                mixture_fit, mixture_val, y_fit, base_fit, base_val, mixture_weights, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_neural_mixture_metric_knn_resid"].append(
+                (
+                    target_i,
+                    metric_weighted_knn_residual(mixture_fit, mixture_sample, y_fit, base_fit, base_test, mixture_weights, args.knn_k, args.knn_temp, False),
+                )
+            )
+            oof_by_source["joint_neural_mixture_metric_knn_logitresid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
+                mixture_fit, mixture_val, y_fit, base_fit, base_val, mixture_weights, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_neural_mixture_metric_knn_logitresid"].append(
+                (
+                    target_i,
+                    metric_weighted_knn_residual(mixture_fit, mixture_sample, y_fit, base_fit, base_test, mixture_weights, args.knn_k, args.knn_temp, True),
                 )
             )
             fit_keys = train.iloc[fold.train_idx][KEY_COLUMNS]

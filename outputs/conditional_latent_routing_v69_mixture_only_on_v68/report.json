@@ -1,0 +1,106 @@
+{
+  "base_score": {
+    "avg_log_loss": 0.4869887209242663,
+    "per_target": {
+      "Q1": 0.5320669670843342,
+      "Q2": 0.5415435625289573,
+      "Q3": 0.5075062209001026,
+      "S1": 0.47622738192548475,
+      "S2": 0.45918935578352665,
+      "S3": 0.41844645333712555,
+      "S4": 0.47394110491033364
+    }
+  },
+  "routed_score": {
+    "avg_log_loss": 0.4869887209242663,
+    "per_target": {
+      "Q1": 0.5320669670843342,
+      "Q2": 0.5415435625289573,
+      "Q3": 0.5075062209001026,
+      "S1": 0.47622738192548475,
+      "S2": 0.45918935578352665,
+      "S3": 0.41844645333712555,
+      "S4": 0.47394110491033364
+    }
+  },
+  "selected_moves": [
+    {
+      "target": "Q1",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "Q2",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "Q3",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "S1",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "S2",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "S3",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "S4",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v68_proto_metric_on_v67/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v68_proto_metric_on_v67/submission_conditional_latent_routing.csv",
+    "source": [
+      "joint_neural_mixture_knn_logitresid=outputs/joint_state_space_encoder_v69_neural_mixture_on_v68/oof_joint_neural_mixture_knn_logitresid.csv,outputs/joint_state_space_encoder_v69_neural_mixture_on_v68/submission_joint_neural_mixture_knn_logitresid.csv",
+      "joint_neural_mixture_knn_resid=outputs/joint_state_space_encoder_v69_neural_mixture_on_v68/oof_joint_neural_mixture_knn_resid.csv,outputs/joint_state_space_encoder_v69_neural_mixture_on_v68/submission_joint_neural_mixture_knn_resid.csv",
+      "joint_neural_mixture_metric_knn_logitresid=outputs/joint_state_space_encoder_v69_neural_mixture_on_v68/oof_joint_neural_mixture_metric_knn_logitresid.csv,outputs/joint_state_space_encoder_v69_neural_mixture_on_v68/submission_joint_neural_mixture_metric_knn_logitresid.csv",
+      "joint_neural_mixture_metric_knn_resid=outputs/joint_state_space_encoder_v69_neural_mixture_on_v68/oof_joint_neural_mixture_metric_knn_resid.csv,outputs/joint_state_space_encoder_v69_neural_mixture_on_v68/submission_joint_neural_mixture_metric_knn_resid.csv"
+    ],
+    "output_dir": "outputs/conditional_latent_routing_v69_mixture_only_on_v68",
+    "weights": "0.005,0.01,0.015,0.025,0.05,0.075,0.1",
+    "bins": "first_half:0:0.5,second_half:0.5:1.000001,mid:0.333:0.666,late:0.666:1.000001,all:0:1.000001",
+    "min_train_rows": 50,
+    "min_sample_rows": 40,
+    "min_improvement": 5e-05,
+    "max_moves_per_target": 2,
+    "allow_overlap": false,
+    "targets": "Q1,Q2,Q3,S1,S2,S3,S4",
+    "match_source_prefix": false
+  }
+}

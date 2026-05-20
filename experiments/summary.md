@@ -4,11 +4,11 @@ Last updated: 2026-05-20
 
 ## Current Best
 
-- Best internal OOF candidate: `outputs/conditional_latent_routing_v68_proto_metric_on_v67/submission_conditional_latent_routing.csv`
-- Best internal OOF: `0.486989`
+- Best internal OOF candidate: `outputs/conditional_latent_routing_v69_neural_mixture_on_v68/submission_conditional_latent_routing.csv`
+- Best internal OOF: `0.486152`
 - Main report: `outputs/breakthrough_signal_report.md`
 - Public LB feedback: `experiments/public_lb_feedback.md`
-- Candidate report: `outputs/conditional_latent_routing_v68_proto_metric_on_v67/report.md`
+- Candidate report: `outputs/conditional_latent_routing_v69_neural_mixture_on_v68/report.md`
 - Important caveat: this is an internal OOF proxy, not Public LB. Recent Public LB feedback for older submissions was weaker than OOF suggested.
 
 ## What We Are Testing
@@ -61,6 +61,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 | v66 panel-aware residual encoder | 0.489729 | panel position/basis features and panel-weighted residual targets make neural residual views more readable; neural-only reaches 0.489882 while panel-only is weak at 0.490907 | `outputs/breakthrough_signal_report.md` |
 | v67 residual prototype objective | 0.488680 | fold-safe residual+panel residual prototypes add an independent S2 regime signal; prototype-only reaches 0.489493 and neural-only reaches 0.489030 | `outputs/breakthrough_signal_report.md` |
 | v68 prototype-metric retrieval | 0.486989 | target residual metric weighting on prototype latents is weak alone, but the neural residual family reaches 0.487081 and improves every target | `outputs/breakthrough_signal_report.md` |
+| v69 neural mixture concat probe | 0.486152 | all-source improves slightly, but mixture-only does not improve at all; naive concat loses target/panel specialization | `outputs/breakthrough_signal_report.md` |
 
 ## What Worked
 
@@ -84,6 +85,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Panel position is not just a post-hoc routing variable. Adding panel position/basis to the encoder input makes the neural residual sources stronger, especially S3 all rows, Q3 late/mid, S2 late, S1 first-half, and S4 late/first-half. The panel-only latent is weak, so the useful signal is panel-conditioned residual representation, not a standalone time-index shortcut.
 - Residual prototype targets add a small but independent regime signal, mostly for S2. The stronger all-source gain comes from combining prototype residual regimes with the existing panel-aware neural family, which supports training the encoder on residual behavior clusters instead of only exact residual values.
 - The neural residual family is now the dominant repeated signal. v68 improves every target after v67, with large S2 first-half, Q3 late, S1 mid, S4 first-half/late, and Q1 second-half moves. Prototype metric weighting alone is weak, but adding it confirms the next breakthrough should strengthen target/panel neural residual views rather than return to pure linear PLS.
+- A naive concat mixture of all neural residual views is a useful negative result: mixture-only produces no selected improvements. The all-source route still improves through individual neural/prototype/PLS sources, so the views should be selected by target/panel gates rather than collapsed by unweighted concatenation.
 
 ## What Failed Or Was Weaker
 
@@ -95,17 +97,18 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - A pure panel-only residual target barely improves the v65 base. Panel context needs to be fused into the broader shared/family/target neural residual views.
 - Residual prototype objectives are not broad enough alone. They are useful as one view in the residual mixture, not as a replacement for shared/family/target neural residual targets.
 - Prototype metric weighting is too narrow by itself. It gives a small S2 second-half correction, but most of the gain still comes from target, panel, and family neural residual sources.
+- Unweighted neural-view concatenation washes out the useful specialization. This argues against a single flat latent unless it has learned gates or attention over residual views.
 
 ## Current Architecture Status
 
 - Current implementation: common label-free features plus target-specific source models for `Q1`, `Q2`, `Q3`, `S1`, `S2`, `S3`, `S4`, composed by a conditional target/bin router.
 - Not yet final: one unified neural encoder with seven heads.
-- Strong next direction: consolidate target, panel, family, and prototype neural residual views into a cleaner residual-view mixture encoder, because the neural-only route is now nearly as strong as the all-source route.
+- Strong next direction: replace naive concat with a gated residual-view encoder that lets each target/panel region choose among target, panel, family, cross-family, and prototype neural views.
 
 ## Next 3
 
-1. Collapse the many neural residual views into a shared mixture objective with target/panel gates, then route only from that consolidated latent family.
-   - Success criterion: reproduce most of v68 neural-only performance with fewer source families and keep all seven target improvements.
+1. Add a gate/attention layer over residual views instead of unweighted concat.
+   - Success criterion: mixture-only should beat the base and recover at least Q1/Q3/S1/S4 gains without relying on the old individual source list.
 
 2. Turn the neighbor scorer from a post-hoc feature decoder into the latent objective itself: pull together days that have similar target residual behavior while preserving subject/time context.
    - Success criterion: improve S3/S4/S1 residuals with fewer routed moves and avoid standalone decoder collapse.
