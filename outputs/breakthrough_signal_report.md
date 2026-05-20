@@ -87,6 +87,7 @@ This keeps producing new OOF signal after earlier layers are already strong. The
 | conditional routing v74 panel-bin context gate | 0.482206 |
 | conditional routing v75 second-half context gate | 0.481505 |
 | conditional routing v76 context-attention residual probe | 0.480978 |
+| conditional routing v77 residual-behavior neighborhood objective | 0.480038 |
 
 ## Why This Looks Like A Real Direction
 
@@ -156,14 +157,17 @@ This keeps producing new OOF signal after earlier layers are already strong. The
 - A panel-bin context gate improves the v73 base from 0.483097 to 0.482206 in the all-source route. Gate-only reaches 0.483017 and now selects multiple targets: Q1/Q2 second-half, S3 second-half, and S4 second-half. Neural-only is almost identical to all-source at 0.482220, so source-wise neural residual routing remains the main signal, but local context gating is now a real auxiliary.
 - A second-half-only context gate improves the v74 base from 0.482206 to 0.481505 in all-source routing and neural-only reaches 0.481614. However secondhalf-gate-only is only 0.482181 and selects only tiny Q1/S3 late moves, so manual second-half narrowing is weaker than v74's panel-bin gate. The useful new all-source residuals are S4 late prototype-neural metric, Q1/S2/S3 first-half cross-family neural, Q3 late neural residual, and smaller S1 neighbor/metric residuals.
 - A context-attention residual probe improves the v75 base from 0.481505 to 0.480978 in all-source routing and neural-only reaches 0.481166. However context-attention-only selects no move and its top candidates are all negative, so local attention over view-disagreement features is not itself the breakthrough. The useful residual refit remains source-wise: S4 late cross-family/Q-neural residual, S3 mid neighbor HGB, Q1 late neighbor HGB, Q2 first-half neural multiview QS residual, and smaller Q3/S1/S2 corrections.
+- A residual-behavior neighborhood objective improves the v76 base from 0.480978 to 0.480038 in all-source routing and neural-only reaches 0.480134. More importantly, residual-behavior-only improves to 0.480863 with standalone Q2 first-half, S2 mid, and S3 mid moves. This is the first clear evidence that the encoder should learn neighborhoods from residual behavior directly rather than only applying attention or gates over existing prediction views.
 
 ## Best Current Breakthrough Candidate
 
-- Bold/best OOF submission: `outputs/conditional_latent_routing_v76_context_attention_on_v75/submission_conditional_latent_routing.csv`
-- Bold/best OOF: `0.480978`
-- Bold/best report: `outputs/conditional_latent_routing_v76_context_attention_on_v75/report.md`
-- Cleaner/neural-only OOF candidate: `outputs/conditional_latent_routing_v76_neural_only_on_v75/submission_conditional_latent_routing.csv`
-- Cleaner/neural-only OOF: `0.481166`
+- Bold/best OOF submission: `outputs/conditional_latent_routing_v77_residual_behavior_on_v76/submission_conditional_latent_routing.csv`
+- Bold/best OOF: `0.480038`
+- Bold/best report: `outputs/conditional_latent_routing_v77_residual_behavior_on_v76/report.md`
+- Cleaner/neural-only OOF candidate: `outputs/conditional_latent_routing_v77_neural_only_on_v76/submission_conditional_latent_routing.csv`
+- Cleaner/neural-only OOF: `0.480134`
+- Residual-behavior-only evidence candidate: `outputs/conditional_latent_routing_v77_residual_behavior_only_on_v76/submission_conditional_latent_routing.csv`
+- Residual-behavior-only OOF: `0.480863`
 - Best single-layer lead-lag breakthrough report: `outputs/conditional_latent_routing_v42_leadlag_on_v40/report.md`
 
 Important caveat: v42/v44 are useful as breakthrough-signal probes, but some selected OOF bins have no sample rows. For an upload-style candidate, v43/v45/v46 are cleaner because they require meaningful sample coverage.
@@ -215,12 +219,15 @@ It is closer to residual boosting in latent space:
 - panel-bin context gate: first multi-target standalone gate signal, concentrated in second-half Q1/Q2/S3/S4, but still secondary to neural residual routing
 - second-half context gate: weaker than panel-bin context as standalone, but confirms source-wise residual refits still create new layers
 - context-attention residual probe: negative as a standalone source, but confirms the repeated S4/S3/Q residual refit signal is still not saturated
+- residual-behavior neighborhood objective: first direct neighborhood objective with standalone Q2/S2/S3 improvement, so this is now a stronger breakthrough direction than prediction-context attention
 
 This is the first run where the encoder route creates a large enough target-level jump to look like a possible main solution path rather than just a marginal add-on.
 
 Second-half gate update: newest best score is 0.481505. Targeting only second-half context is too narrow; the secondhalf gate-only route barely moves base, while all-source/neural-only still improve through neural/prototype/neighbor residual sources. Next direction is to stop hand-narrowing gates and add a new residual-view objective or local attention feature.
 
 Context-attention update: newest best score is 0.480978. The first nonparametric attention decoder over view-context features fails as an isolated source, but the residual source family still creates another layer: S4 late is the largest remaining signal, S3 mid neighbor decoding remains strong, and smaller Q1/Q2/Q3/S1/S2 corrections persist. The next experiment should train the neighborhood itself from residual behavior rather than only applying attention over existing view-disagreement features.
+
+Residual-neighborhood update: newest best score is 0.480038. This is a better breakthrough signal than v76 because the new objective is not only riding old sources: residual-behavior-only improves the base through Q2, S2, and S3. The next experiment should split this target into Q-family, S-family, cross-family, and target-local residual neighborhoods so the latent can learn which residual manifold applies before routing.
 
 ## Updated S2 Signal
 

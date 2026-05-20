@@ -298,6 +298,54 @@ def residual_prototype_targets(
     return targets.astype(np.float32), meta
 
 
+def residual_neighborhood_targets(
+    residual_targets: np.ndarray,
+    panel_targets: np.ndarray,
+    k: int = 31,
+) -> tuple[np.ndarray, dict[str, int | float]]:
+    residual = np.nan_to_num(np.asarray(residual_targets, dtype=np.float32), nan=0.0, posinf=0.0, neginf=0.0)
+    panel = np.nan_to_num(np.asarray(panel_targets, dtype=np.float32), nan=0.0, posinf=0.0, neginf=0.0)
+    raw = np.hstack([residual, panel])
+    scaler = StandardScaler()
+    scaled = scaler.fit_transform(raw).astype(np.float32)
+    d2 = ((scaled[:, None, :] - scaled[None, :, :]) ** 2).mean(axis=2)
+    np.fill_diagonal(d2, np.inf)
+    kk = max(2, min(k, len(scaled) - 1))
+    idx = np.argpartition(d2, kk - 1, axis=1)[:, :kk]
+    chosen = np.take_along_axis(d2, idx, axis=1)
+    order = np.argsort(chosen, axis=1)
+    idx = np.take_along_axis(idx, order, axis=1)
+    chosen = np.take_along_axis(chosen, order, axis=1)
+    scale = np.maximum(np.median(chosen, axis=1, keepdims=True), 1e-6)
+    weights = np.exp(-chosen / scale)
+    weights = weights / np.maximum(weights.sum(axis=1, keepdims=True), 1e-12)
+    neighbor_residual = residual[idx]
+    neighbor_panel = panel[idx]
+    mean_residual = (weights[:, :, None] * neighbor_residual).sum(axis=1)
+    mean_panel = (weights[:, :, None] * neighbor_panel).sum(axis=1)
+    std_residual = np.sqrt(np.maximum((weights[:, :, None] * (neighbor_residual - mean_residual[:, None, :]) ** 2).sum(axis=1), 0.0))
+    std_panel = np.sqrt(np.maximum((weights[:, :, None] * (neighbor_panel - mean_panel[:, None, :]) ** 2).sum(axis=1), 0.0))
+    density = np.column_stack(
+        [
+            np.min(chosen, axis=1),
+            np.mean(chosen, axis=1),
+            np.median(chosen, axis=1),
+            np.max(chosen, axis=1),
+            chosen[:, min(4, kk - 1)],
+            chosen[:, -1] - chosen[:, 0],
+        ]
+    )
+    self_delta = np.hstack([residual - mean_residual, panel - mean_panel])
+    targets = np.hstack([mean_residual, mean_panel, std_residual, std_panel, self_delta, density])
+    targets = np.clip(np.nan_to_num(targets, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    meta = {
+        "residual_neighborhood_k": int(kk),
+        "residual_neighborhood_target_dim": int(targets.shape[1]),
+        "residual_neighborhood_mean_distance": float(np.mean(chosen)),
+    }
+    return targets.astype(np.float32), meta
+
+
 def fit_neural_residual_latent(
     x_fit: pd.DataFrame,
     residual_fit: np.ndarray,
@@ -1235,6 +1283,14 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_proto_neural_metric_knn_logitresid",
         "joint_proto_neural_multiview_metric_knn_resid",
         "joint_proto_neural_multiview_metric_knn_logitresid",
+        "joint_residual_behavior_neural_knn_resid",
+        "joint_residual_behavior_neural_knn_logitresid",
+        "joint_residual_behavior_neural_metric_knn_resid",
+        "joint_residual_behavior_neural_metric_knn_logitresid",
+        "joint_residual_behavior_neural_multiview_knn_resid",
+        "joint_residual_behavior_neural_multiview_knn_logitresid",
+        "joint_residual_behavior_neural_multiview_metric_knn_resid",
+        "joint_residual_behavior_neural_multiview_metric_knn_logitresid",
         "joint_neural_mixture_knn_resid",
         "joint_neural_mixture_knn_logitresid",
         "joint_neural_mixture_metric_knn_resid",
@@ -1465,6 +1521,30 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             args.neural_latent_dim,
             args.neural_epochs,
         )
+        residual_neighbor_targets, residual_neighbor_meta = residual_neighborhood_targets(
+            residual_fit_targets,
+            panel_residual_targets,
+            k=max(17, args.knn_k + 12),
+        )
+        rbnrz_fit, rbnrz_val, rbnrz_sample, residual_behavior_neural_meta = fit_neural_residual_latent(
+            fit_x,
+            residual_neighbor_targets,
+            val_x,
+            sample_x,
+            args.max_features,
+            args.neural_latent_dim,
+            args.neural_epochs,
+        )
+        residual_neighbor_mv_targets = np.hstack([residual_neighbor_targets, residual_proto_targets, rz_fit, qrz_fit, srz_fit, qsrz_fit])
+        rbmnrz_fit, rbmnrz_val, rbmnrz_sample, residual_behavior_multiview_neural_meta = fit_neural_residual_latent(
+            fit_x,
+            residual_neighbor_mv_targets,
+            val_x,
+            sample_x,
+            args.max_features,
+            args.neural_latent_dim,
+            args.neural_epochs,
+        )
         if latent_oof.shape[1] != z_val.shape[1]:
             latent_oof = np.full((len(train), z_val.shape[1]), np.nan, dtype=float)
         latent_oof[fold.val_idx] = z_val
@@ -1496,6 +1576,11 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             "proto_neural_best_loss": proto_neural_meta["neural_best_loss"],
             "proto_multiview_neural_latent_dim": proto_multiview_neural_meta["neural_latent_dim"],
             "proto_multiview_neural_best_loss": proto_multiview_neural_meta["neural_best_loss"],
+            **residual_neighbor_meta,
+            "residual_behavior_neural_latent_dim": residual_behavior_neural_meta["neural_latent_dim"],
+            "residual_behavior_neural_best_loss": residual_behavior_neural_meta["neural_best_loss"],
+            "residual_behavior_multiview_neural_latent_dim": residual_behavior_multiview_neural_meta["neural_latent_dim"],
+            "residual_behavior_multiview_neural_best_loss": residual_behavior_multiview_neural_meta["neural_best_loss"],
         }
         fold_meta.append(meta)
 
@@ -1785,6 +1870,76 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                     ),
                 )
             )
+            oof_by_source["joint_residual_behavior_neural_knn_resid"][fold.val_idx, target_i] = weighted_knn_residual(
+                rbnrz_fit, rbnrz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_residual_behavior_neural_knn_resid"].append(
+                (target_i, weighted_knn_residual(rbnrz_fit, rbnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, False))
+            )
+            oof_by_source["joint_residual_behavior_neural_knn_logitresid"][fold.val_idx, target_i] = weighted_knn_residual(
+                rbnrz_fit, rbnrz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_residual_behavior_neural_knn_logitresid"].append(
+                (target_i, weighted_knn_residual(rbnrz_fit, rbnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
+            )
+            oof_by_source["joint_residual_behavior_neural_multiview_knn_resid"][fold.val_idx, target_i] = weighted_knn_residual(
+                rbmnrz_fit, rbmnrz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_residual_behavior_neural_multiview_knn_resid"].append(
+                (target_i, weighted_knn_residual(rbmnrz_fit, rbmnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, False))
+            )
+            oof_by_source["joint_residual_behavior_neural_multiview_knn_logitresid"][fold.val_idx, target_i] = weighted_knn_residual(
+                rbmnrz_fit, rbmnrz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_residual_behavior_neural_multiview_knn_logitresid"].append(
+                (target_i, weighted_knn_residual(rbmnrz_fit, rbmnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
+            )
+            residual_behavior_weights = residual_metric_weights(rbnrz_fit, y_fit - base_fit)
+            residual_behavior_mv_weights = residual_metric_weights(rbmnrz_fit, y_fit - base_fit)
+            oof_by_source["joint_residual_behavior_neural_metric_knn_resid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
+                rbnrz_fit, rbnrz_val, y_fit, base_fit, base_val, residual_behavior_weights, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_residual_behavior_neural_metric_knn_resid"].append(
+                (
+                    target_i,
+                    metric_weighted_knn_residual(
+                        rbnrz_fit, rbnrz_sample, y_fit, base_fit, base_test, residual_behavior_weights, args.knn_k, args.knn_temp, False
+                    ),
+                )
+            )
+            oof_by_source["joint_residual_behavior_neural_metric_knn_logitresid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
+                rbnrz_fit, rbnrz_val, y_fit, base_fit, base_val, residual_behavior_weights, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_residual_behavior_neural_metric_knn_logitresid"].append(
+                (
+                    target_i,
+                    metric_weighted_knn_residual(
+                        rbnrz_fit, rbnrz_sample, y_fit, base_fit, base_test, residual_behavior_weights, args.knn_k, args.knn_temp, True
+                    ),
+                )
+            )
+            oof_by_source["joint_residual_behavior_neural_multiview_metric_knn_resid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
+                rbmnrz_fit, rbmnrz_val, y_fit, base_fit, base_val, residual_behavior_mv_weights, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_residual_behavior_neural_multiview_metric_knn_resid"].append(
+                (
+                    target_i,
+                    metric_weighted_knn_residual(
+                        rbmnrz_fit, rbmnrz_sample, y_fit, base_fit, base_test, residual_behavior_mv_weights, args.knn_k, args.knn_temp, False
+                    ),
+                )
+            )
+            oof_by_source["joint_residual_behavior_neural_multiview_metric_knn_logitresid"][fold.val_idx, target_i] = metric_weighted_knn_residual(
+                rbmnrz_fit, rbmnrz_val, y_fit, base_fit, base_val, residual_behavior_mv_weights, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_residual_behavior_neural_multiview_metric_knn_logitresid"].append(
+                (
+                    target_i,
+                    metric_weighted_knn_residual(
+                        rbmnrz_fit, rbmnrz_sample, y_fit, base_fit, base_test, residual_behavior_mv_weights, args.knn_k, args.knn_temp, True
+                    ),
+                )
+            )
             family_neural_fit = nqrz_fit if target_i < 3 else nsrz_fit
             family_neural_val = nqrz_val if target_i < 3 else nsrz_val
             family_neural_sample = nqrz_sample if target_i < 3 else nsrz_sample
@@ -1813,6 +1968,8 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                     pmnrz_fit,
                     prnrz_fit,
                     pmvnrz_fit,
+                    rbnrz_fit,
+                    rbmnrz_fit,
                 ],
                 [
                     nrz_val,
@@ -1829,6 +1986,8 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                     pmnrz_val,
                     prnrz_val,
                     pmvnrz_val,
+                    rbnrz_val,
+                    rbmnrz_val,
                 ],
                 [
                     nrz_sample,
@@ -1845,6 +2004,8 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                     pmnrz_sample,
                     prnrz_sample,
                     pmvnrz_sample,
+                    rbnrz_sample,
+                    rbmnrz_sample,
                 ],
             )
             mixture_weights = residual_metric_weights(mixture_fit, y_fit - base_fit)
@@ -1891,6 +2052,8 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                 ("panel_multiview", pmnrz_fit, pmnrz_val, pmnrz_sample),
                 ("prototype", prnrz_fit, prnrz_val, prnrz_sample),
                 ("prototype_multiview", pmvnrz_fit, pmvnrz_val, pmvnrz_sample),
+                ("residual_behavior", rbnrz_fit, rbnrz_val, rbnrz_sample),
+                ("residual_behavior_multiview", rbmnrz_fit, rbmnrz_val, rbmnrz_sample),
             ]
             scored_views = [
                 (residual_view_alignment_score(view_fit, y_fit - base_fit), view_name, view_fit, view_val, view_sample)
