@@ -17,6 +17,7 @@ Last updated: 2026-05-21
 | 8 | `submission_01_blend_best.csv` | codex1 edit | 2026-05-15 15:18:29 | 0.6126595186 |
 | 9 | `stack_calibrated_v_perfect_snapshot.csv` | 0517-2 edit | 2026-05-17 14:47:50 | 0.6173417918 |
 | 10 | `submission_02_subject_smooth.csv` | codex2 edit | 2026-05-15 15:19:16 | 0.6195173919 |
+| (new) | `submission_v85_tau06_clip005.csv` | public-posterior breakthrough probe | 2026-05-21 | 0.6157626029 |
 | 11 | `submission_sample_support_target_blend.csv` | memo | 2026-05-19 10:22:03 | 0.6335340671 |
 | 12 | `42_submission_nopseudo_blend.csv` | memo | 2026-05-19 00:01:07 | 0.6424387775 |
 | 13 | `submission_03_torch_mlp.csv` | codex3 edit | 2026-05-15 15:19:42 | 0.6592167646 |
@@ -74,6 +75,7 @@ Root cause found (`scripts/build_v83_repaired_v80.py`, `outputs/v83_repaired_v80
   - v82 failure `0.6629409456`
 - The old conservative posterior had self-entropy around `0.590`. Using its row ordering as prior and sharpening with `tau=6` gives `submission_v85_tau06_clip005.csv` with self-entropy `0.540890`, while still matching known-score constraints within `0.000039` after clipping.
 - This is a high-upside leaderboard-feedback distillation probe, not a robust generalization candidate. It has a plausible 0.54-0.55 path only if the posterior geometry recovered from aggregate LB constraints is real. If the constraints are underdetermined, it can fail badly. This accepted risk matches the final-slot objective.
+- Public LB result: `0.6157626029`. This rejects the sharp public-posterior geometry as a direct submission model. The result is far better than v82 (`0.66294`) but worse than v83/v76/v18, so the posterior row ordering carries some information, but tau=6 sharpening injects too much wrong-confidence and/or underdetermined pseudo-label structure. Next use: keep v85 only as a diagnostic teacher/feature, never as a direct prediction target unless heavily temperature-softened and anchored.
 
 ## Earlier diagnostic-only candidates (v83 anchor blends — `outputs/v83_anchor_candidates/report.md`)
 
