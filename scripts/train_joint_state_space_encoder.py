@@ -14,7 +14,7 @@ from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression, RidgeClassifier
 from sklearn.metrics import log_loss
-from sklearn.exceptions import ConvergenceWarning
+from sklearn.exceptions import ConvergenceWarning, DataConversionWarning
 from sklearn.neural_network import MLPRegressor
 from sklearn.preprocessing import StandardScaler
 
@@ -275,9 +275,11 @@ def fit_neural_residual_latent(
         n_iter_no_change=12,
         random_state=SEED,
     )
+    fit_target = residual_z.ravel() if residual_z.shape[1] == 1 else residual_z
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", ConvergenceWarning)
-        model.fit(fit_x, residual_z)
+        warnings.simplefilter("ignore", DataConversionWarning)
+        model.fit(fit_x, fit_target)
 
     def encode(values: np.ndarray) -> np.ndarray:
         hidden_values = values
@@ -785,6 +787,10 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_qs_residual_pls_knn_logitresid",
         "joint_target_qs_residual_pls_knn_resid",
         "joint_target_qs_residual_pls_knn_logitresid",
+        "joint_target_neural_residual_knn_resid",
+        "joint_target_neural_residual_knn_logitresid",
+        "joint_target_neural_multiview_residual_knn_resid",
+        "joint_target_neural_multiview_residual_knn_logitresid",
         "joint_neural_residual_knn_resid",
         "joint_neural_residual_knn_logitresid",
         "joint_neural_q_residual_knn_resid",
@@ -1076,9 +1082,10 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                 sample_folds_by_source[source_name].append(
                     (target_i, weighted_knn_residual(family_fit, family_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
                 )
+            target_residual = (y_fit.astype(float) - base_fit).reshape(-1, 1)
             trz_fit, trz_val, trz_sample, _ = fit_residual_pls_latent(
                 fit_x,
-                (y_fit.astype(float) - base_fit).reshape(-1, 1),
+                target_residual,
                 val_x,
                 sample_x,
                 args.max_features,
@@ -1088,6 +1095,28 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                 [trz_fit, qrz_fit, srz_fit],
                 [trz_val, qrz_val, srz_val],
                 [trz_sample, qrz_sample, srz_sample],
+            )
+            tnrz_fit, tnrz_val, tnrz_sample, _ = fit_neural_residual_latent(
+                fit_x,
+                target_residual,
+                val_x,
+                sample_x,
+                args.max_features,
+                max(2, min(args.neural_latent_dim, 5)),
+                args.neural_epochs,
+            )
+            family_pls_fit = qrz_fit if target_i < 3 else srz_fit
+            family_pls_val = qrz_val if target_i < 3 else srz_val
+            family_pls_sample = qrz_sample if target_i < 3 else srz_sample
+            target_mv_targets = np.hstack([target_residual, trz_fit, family_pls_fit, qsrz_fit])
+            tmnrz_fit, tmnrz_val, tmnrz_sample, _ = fit_neural_residual_latent(
+                fit_x,
+                target_mv_targets,
+                val_x,
+                sample_x,
+                args.max_features,
+                max(2, min(args.neural_latent_dim, 6)),
+                args.neural_epochs,
             )
             oof_by_source["joint_target_residual_pls_knn_resid"][fold.val_idx, target_i] = weighted_knn_residual(
                 trz_fit, trz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
@@ -1112,6 +1141,30 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             )
             sample_folds_by_source["joint_target_qs_residual_pls_knn_logitresid"].append(
                 (target_i, weighted_knn_residual(t_qs_fit, t_qs_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
+            )
+            oof_by_source["joint_target_neural_residual_knn_resid"][fold.val_idx, target_i] = weighted_knn_residual(
+                tnrz_fit, tnrz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_target_neural_residual_knn_resid"].append(
+                (target_i, weighted_knn_residual(tnrz_fit, tnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, False))
+            )
+            oof_by_source["joint_target_neural_residual_knn_logitresid"][fold.val_idx, target_i] = weighted_knn_residual(
+                tnrz_fit, tnrz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_target_neural_residual_knn_logitresid"].append(
+                (target_i, weighted_knn_residual(tnrz_fit, tnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
+            )
+            oof_by_source["joint_target_neural_multiview_residual_knn_resid"][fold.val_idx, target_i] = weighted_knn_residual(
+                tmnrz_fit, tmnrz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_target_neural_multiview_residual_knn_resid"].append(
+                (target_i, weighted_knn_residual(tmnrz_fit, tmnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, False))
+            )
+            oof_by_source["joint_target_neural_multiview_residual_knn_logitresid"][fold.val_idx, target_i] = weighted_knn_residual(
+                tmnrz_fit, tmnrz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_target_neural_multiview_residual_knn_logitresid"].append(
+                (target_i, weighted_knn_residual(tmnrz_fit, tmnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
             )
             fit_keys = train.iloc[fold.train_idx][KEY_COLUMNS]
             val_keys = train.iloc[fold.val_idx][KEY_COLUMNS]

@@ -1,0 +1,162 @@
+{
+  "base_score": {
+    "avg_log_loss": 0.4922494887950834,
+    "per_target": {
+      "Q1": 0.5368807700960088,
+      "Q2": 0.5440934467790475,
+      "Q3": 0.511662486977626,
+      "S1": 0.4817727475722049,
+      "S2": 0.4699280082597221,
+      "S3": 0.42224862168642724,
+      "S4": 0.4791603401945476
+    }
+  },
+  "routed_score": {
+    "avg_log_loss": 0.49184616943814463,
+    "per_target": {
+      "Q1": 0.5364378083696801,
+      "Q2": 0.5440934467790475,
+      "Q3": 0.511662486977626,
+      "S1": 0.4817727475722049,
+      "S2": 0.4686423692802609,
+      "S3": 0.42154836636497073,
+      "S4": 0.47876596072322186
+    }
+  },
+  "selected_moves": [
+    {
+      "target": "Q1",
+      "source": "joint_target_neural_residual_knn_resid",
+      "bin": "late",
+      "lo": 0.666,
+      "hi": 1.000001,
+      "weight": 0.025,
+      "train_rows": 116.0,
+      "sample_rows": 120.0,
+      "base_log_loss": 0.5368807700960088,
+      "log_loss": 0.5364378083696801,
+      "improvement": 0.00044296172632862785,
+      "move_index": 1
+    },
+    {
+      "target": "Q2",
+      "source": "base",
+      "bin": "all",
+      "lo": NaN,
+      "hi": NaN,
+      "weight": 0.0,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "Q3",
+      "source": "base",
+      "bin": "all",
+      "lo": NaN,
+      "hi": NaN,
+      "weight": 0.0,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "S1",
+      "source": "base",
+      "bin": "all",
+      "lo": NaN,
+      "hi": NaN,
+      "weight": 0.0,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "S2",
+      "source": "joint_target_neural_multiview_residual_knn_resid",
+      "bin": "late",
+      "lo": 0.666,
+      "hi": 1.000001,
+      "weight": 0.1,
+      "train_rows": 116.0,
+      "sample_rows": 120.0,
+      "base_log_loss": 0.4699280082597221,
+      "log_loss": 0.4686423692802609,
+      "improvement": 0.0012856389794612122,
+      "move_index": 1
+    },
+    {
+      "target": "S3",
+      "source": "joint_target_neural_multiview_residual_knn_resid",
+      "bin": "all",
+      "lo": 0.0,
+      "hi": 1.000001,
+      "weight": 0.075,
+      "train_rows": 450.0,
+      "sample_rows": 250.0,
+      "base_log_loss": 0.42224862168642724,
+      "log_loss": 0.42154836636497073,
+      "improvement": 0.000700255321456511,
+      "move_index": 1
+    },
+    {
+      "target": "S4",
+      "source": "joint_target_neural_residual_knn_resid",
+      "bin": "late",
+      "lo": 0.666,
+      "hi": 1.000001,
+      "weight": 0.05,
+      "train_rows": 116.0,
+      "sample_rows": 120.0,
+      "base_log_loss": 0.4791603401945476,
+      "log_loss": 0.47890098421101435,
+      "improvement": 0.0002593559835332715,
+      "move_index": 1
+    },
+    {
+      "target": "S4",
+      "source": "joint_target_neural_multiview_residual_knn_resid",
+      "bin": "mid",
+      "lo": 0.333,
+      "hi": 0.666,
+      "weight": 0.075,
+      "train_rows": 100.0,
+      "sample_rows": 130.0,
+      "base_log_loss": 0.47890098421101435,
+      "log_loss": 0.47876596072322186,
+      "improvement": 0.00013502348779248496,
+      "move_index": 2
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v64_neural_multiview_residual_on_v63/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v64_neural_multiview_residual_on_v63/submission_conditional_latent_routing.csv",
+    "source": [
+      "joint_target_neural_multiview_residual_knn_logitresid=outputs/joint_state_space_encoder_v65_target_neural_residual_on_v64/oof_joint_target_neural_multiview_residual_knn_logitresid.csv,outputs/joint_state_space_encoder_v65_target_neural_residual_on_v64/submission_joint_target_neural_multiview_residual_knn_logitresid.csv",
+      "joint_target_neural_multiview_residual_knn_resid=outputs/joint_state_space_encoder_v65_target_neural_residual_on_v64/oof_joint_target_neural_multiview_residual_knn_resid.csv,outputs/joint_state_space_encoder_v65_target_neural_residual_on_v64/submission_joint_target_neural_multiview_residual_knn_resid.csv",
+      "joint_target_neural_residual_knn_logitresid=outputs/joint_state_space_encoder_v65_target_neural_residual_on_v64/oof_joint_target_neural_residual_knn_logitresid.csv,outputs/joint_state_space_encoder_v65_target_neural_residual_on_v64/submission_joint_target_neural_residual_knn_logitresid.csv",
+      "joint_target_neural_residual_knn_resid=outputs/joint_state_space_encoder_v65_target_neural_residual_on_v64/oof_joint_target_neural_residual_knn_resid.csv,outputs/joint_state_space_encoder_v65_target_neural_residual_on_v64/submission_joint_target_neural_residual_knn_resid.csv"
+    ],
+    "output_dir": "outputs/conditional_latent_routing_v65_target_neural_only_on_v64",
+    "weights": "0.005,0.01,0.015,0.025,0.05,0.075,0.1",
+    "bins": "first_half:0:0.5,second_half:0.5:1.000001,mid:0.333:0.666,late:0.666:1.000001,all:0:1.000001",
+    "min_train_rows": 50,
+    "min_sample_rows": 40,
+    "min_improvement": 5e-05,
+    "max_moves_per_target": 2,
+    "allow_overlap": false,
+    "targets": "Q1,Q2,Q3,S1,S2,S3,S4",
+    "match_source_prefix": false
+  }
+}

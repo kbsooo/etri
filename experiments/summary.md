@@ -4,11 +4,11 @@ Last updated: 2026-05-20
 
 ## Current Best
 
-- Best internal OOF candidate: `outputs/conditional_latent_routing_v64_neural_multiview_residual_on_v63/submission_conditional_latent_routing.csv`
-- Best internal OOF: `0.492249`
+- Best internal OOF candidate: `outputs/conditional_latent_routing_v65_target_neural_residual_on_v64/submission_conditional_latent_routing.csv`
+- Best internal OOF: `0.490915`
 - Main report: `outputs/breakthrough_signal_report.md`
 - Public LB feedback: `experiments/public_lb_feedback.md`
-- Candidate report: `outputs/conditional_latent_routing_v64_neural_multiview_residual_on_v63/report.md`
+- Candidate report: `outputs/conditional_latent_routing_v65_target_neural_residual_on_v64/report.md`
 - Important caveat: this is an internal OOF proxy, not Public LB. Recent Public LB feedback for older submissions was weaker than OOF suggested.
 
 ## What We Are Testing
@@ -57,6 +57,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 | v62 cross-family residual PLS objective | 0.495010 | opposite-family and Q+S combined residual latent objectives; new-source-only route reaches 0.495174 and constrained reaches 0.495269 | `outputs/breakthrough_signal_report.md` |
 | v63 neural residual bottleneck objective | 0.493630 | fold-safe MLP bottleneck residual latent; neural-only route reaches 0.493996 and constrained reaches 0.494207 | `outputs/breakthrough_signal_report.md` |
 | v64 neural multi-view residual bottleneck | 0.492249 | MLP bottleneck trained on residual labels plus PLS residual subspaces; neural-only reaches 0.492401 and constrained reaches 0.492763 | `outputs/breakthrough_signal_report.md` |
+| v65 target-wise neural residual bottleneck | 0.490915 | target-wise neural residual probes are weak alone, but add useful routed S2/S3 residuals; neural-only reaches 0.491035 and target-neural-only reaches 0.491846 | `outputs/breakthrough_signal_report.md` |
 
 ## What Worked
 
@@ -76,6 +77,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Explicit cross-family and Q+S combined residual PLS objectives reproduce the signal after v61. The new-source-only route nearly matches the full route, which supports modeling residual subspaces as shared and cross-predictive rather than label-family-local.
 - A fold-safe MLP bottleneck residual encoder beats the linear residual subspace route when decoded by retrieval. The neural-only route is strong, especially for S1 all rows, Q3 all rows, and S2 late, so the next breakthrough direction is a real residual-subspace encoder rather than only linear PLS.
 - Multi-view neural bottlenecks trained on both residual labels and PLS residual subspaces keep improving the same route. The strongest current residual is now S-family, especially S4 late, S2 second-half, and S3 first/second-half.
+- Target-wise neural residual probes are not good as standalone predictors, but they expose useful late-panel S2 and S3 corrections when combined with the shared/family neural residual sources. This supports a mixture-of-residual-subspaces encoder rather than one target-only encoder per label.
 
 ## What Failed Or Was Weaker
 
@@ -83,20 +85,21 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Generic sequence residual layers saturated quickly.
 - S2 did not respond well to generic S2-only GRU/Transformer style sequence residuals, but did respond to sleep/missingness retrieval and later temporal-state features.
 - Public LB feedback on older candidates was worse than internal OOF, so OOF gains must be treated as signal discovery rather than guaranteed leaderboard gain.
+- Per-target neural residual encoders are too unstable as direct source models. The useful part is the multi-view target residual bottleneck as a small routed correction, not a full replacement for shared/family latent spaces.
 
 ## Current Architecture Status
 
 - Current implementation: common label-free features plus target-specific source models for `Q1`, `Q2`, `Q3`, `S1`, `S2`, `S3`, `S4`, composed by a conditional target/bin router.
 - Not yet final: one unified neural encoder with seven heads.
-- Strong next direction: keep the common personal state-space encoder, but train an explicit residual-aware latent objective instead of relying only on post-hoc residual metrics.
+- Strong next direction: keep the common personal state-space encoder, train explicit residual-aware latent objectives, and make the decoder mix shared/family/target residual subspaces by panel region.
 
 ## Next 3
 
-1. Add target-wise neural residual bottlenecks for the remaining S-family residuals, especially S4 late and S3 first/second-half.
-   - Success criterion: improve S3/S4 without erasing the v64 S2/Q3 gains.
+1. Convert the current routed residual-subspace mixture into an encoder objective: train the latent so shared/family/target residual views agree where routing repeatedly selects them.
+   - Success criterion: reproduce the v65 Q1/S2/S3/S4 gains with fewer fragile source choices.
 
 2. Turn the neighbor scorer from a post-hoc feature decoder into the latent objective itself: pull together days that have similar target residual behavior while preserving subject/time context.
    - Success criterion: improve S3/S4/S1 residuals with fewer routed moves and avoid standalone decoder collapse.
 
-3. Prototype the actual common encoder + seven-head decoder using the discovered latent axes as inputs and/or reconstruction targets.
-   - Success criterion: not necessarily immediate best OOF, but should reproduce the same target-level signals with less hand-routed composition.
+3. Add a regime-aware decoder that treats early/late panel positions as different latent manifolds instead of only routing after prediction.
+   - Success criterion: preserve v65 first-half Q1/S1 and late S2/S4 gains while reducing reliance on two-move target routing.

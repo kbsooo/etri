@@ -75,6 +75,7 @@ This keeps producing new OOF signal after earlier layers are already strong, and
 | conditional routing v62 cross-family residual PLS objective | 0.495010 |
 | conditional routing v63 neural residual bottleneck objective | 0.493630 |
 | conditional routing v64 neural multi-view residual bottleneck | 0.492249 |
+| conditional routing v65 target-wise neural residual bottleneck | 0.490915 |
 
 ## Why This Looks Like A Real Direction
 
@@ -132,14 +133,15 @@ This keeps producing new OOF signal after earlier layers are already strong, and
 - Explicit cross-family and Q+S combined residual PLS objectives create another large internal jump after v61: 0.496127 to 0.495010. The residual-PLS-only route reaches 0.495018, a new-source-only route reaches 0.495174, and the stricter constrained route reaches 0.495269. The strongest new moves are Q1 first-half from `joint_qs_residual_pls_knn_resid`, Q3 all rows from `joint_cross_family_residual_pls_knn_resid`, Q2 first-half from the same cross-family source, and S4 second-half/late from cross-family residual PLS. This repeats the v61 lesson with a sharper objective: the useful residual latent should mix family-specific subspaces, not isolate them.
 - A fold-safe MLP bottleneck residual encoder creates the largest recent routed jump after v62: 0.495010 to 0.493630. The neural-only route reaches 0.493996 and the stricter constrained route reaches 0.494207, so this is not just piggybacking on the older PLS sources. The strongest new move is S1 all rows from `joint_neural_residual_knn_resid` with 0.002735 improvement, followed by Q3 all rows from `joint_neural_cross_family_residual_knn_resid` and S2 late from `joint_neural_s_residual_knn_resid`. This is the first strong evidence that a nonlinear residual bottleneck can improve the discovered residual subspace, especially for S1/Q3.
 - A neural multi-view residual bottleneck, trained on residual labels plus PLS residual subspaces, improves the v63 base from 0.493630 to 0.492249. Neural-only routing reaches 0.492401 and constrained routing reaches 0.492763. The strongest residuals are now S-family: S4 late from `joint_neural_s_residual_knn_resid`, S2 second-half from the same source, S3 first-half from target residual PLS plus second-half from neural residual, and Q3 second-half from neural residual. This says the nonlinear encoder should reconstruct both labels and residual subspace views.
+- Target-wise neural residual bottlenecks improve the v64 base from 0.492249 to 0.490915 after routing. The target-neural-only route reaches 0.491846, so per-target neural spaces are not enough alone, but the all-source and neural-only routes show a new residual layer. The strongest moves are Q1 first-half from neural multi-view cross-family residual, S2 late and S3 first-half from target neural multi-view residual, S4 late from S-family neural residual, and Q2 late from Q-family neural multi-view logit residual. This says the encoder should mix shared, family, cross-family, and small target-local residual views rather than commit to a single per-label latent.
 
 ## Best Current Breakthrough Candidate
 
-- Bold/best OOF submission: `outputs/conditional_latent_routing_v64_neural_multiview_residual_on_v63/submission_conditional_latent_routing.csv`
-- Bold/best OOF: `0.492249`
-- Bold/best report: `outputs/conditional_latent_routing_v64_neural_multiview_residual_on_v63/report.md`
-- Cleaner/constrained OOF candidate: `outputs/conditional_latent_routing_v64_neural_constrained_on_v63/submission_conditional_latent_routing.csv`
-- Cleaner/constrained OOF: `0.492763`
+- Bold/best OOF submission: `outputs/conditional_latent_routing_v65_target_neural_residual_on_v64/submission_conditional_latent_routing.csv`
+- Bold/best OOF: `0.490915`
+- Bold/best report: `outputs/conditional_latent_routing_v65_target_neural_residual_on_v64/report.md`
+- Cleaner/constrained OOF candidate: `outputs/conditional_latent_routing_v65_neural_constrained_on_v64/submission_conditional_latent_routing.csv`
+- Cleaner/constrained OOF: `0.491466`
 - Best single-layer lead-lag breakthrough report: `outputs/conditional_latent_routing_v42_leadlag_on_v40/report.md`
 
 Important caveat: v42/v44 are useful as breakthrough-signal probes, but some selected OOF bins have no sample rows. For an upload-style candidate, v43/v45/v46 are cleaner because they require meaningful sample coverage.
@@ -241,3 +243,4 @@ The pattern repeats across target families:
 - Cross-family residual-PLS update: the newest best score is 0.495010. Opposite-family and Q+S combined residual latent sources improve the v61 base by 0.001117 after routing; new v62 sources alone reach 0.495174 and the constrained route reaches 0.495269. Q1 is best explained by the combined Q+S residual latent, while Q2/Q3/S4 are best explained by the opposite-family residual latent. The current best thesis is now: train a residual-subspace encoder with shared, family, cross-family, and target heads, then use retrieval in that learned space.
 - Neural residual-bottleneck update: the newest best score is 0.493630. A fold-safe MLP bottleneck encoder trained on current-base residuals improves the v62 base by 0.001380 after routing; neural-only routing reaches 0.493996 and constrained neural routing reaches 0.494207. The most important target is S1, where `joint_neural_residual_knn_resid` improves all rows by 0.002735; Q3 also responds strongly to the neural cross-family latent. The current best thesis is now: the residual-subspace encoder should be nonlinear, but still decoded by local/retrieval residual correction rather than by a direct global head.
 - Neural multi-view update: the newest best score is 0.492249. A fold-safe MLP bottleneck trained on both residual labels and fold-safe PLS residual views improves the v63 base by 0.001381 after routing; neural-only routing reaches 0.492401 and constrained routing reaches 0.492763. The clearest residuals are S4 late, S2 second-half, Q3 second-half, and S3 split across target residual PLS plus neural residual. The current best thesis is now: the encoder should learn a nonlinear multi-view residual state, then decode it with target/bin-aware similar-day retrieval.
+- Target-wise neural update: the newest best score is 0.490915. Target-specific neural residual sources are weak as raw predictors and target-neural-only routing is only 0.491846, but mixing them with shared/family neural residual views improves all seven labels. The neural-only route reaches 0.491035 and the stricter neural constrained route reaches 0.491466. The current best thesis is now: the encoder should be a residual-view mixture model, where shared, family, cross-family, and target-local bottlenecks each explain different panel regions.
