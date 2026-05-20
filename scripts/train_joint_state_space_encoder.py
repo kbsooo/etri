@@ -703,6 +703,90 @@ def fit_view_context_window_decoder(
     return np.clip(apply_pred, EPS, 1.0 - EPS), np.clip(sample_pred, EPS, 1.0 - EPS)
 
 
+def context_attention_residual_prediction(
+    fit_features: np.ndarray,
+    apply_features: np.ndarray,
+    y_fit: np.ndarray,
+    base_fit: np.ndarray,
+    base_apply: np.ndarray,
+    k: int,
+    temp: float,
+    logit_mode: bool,
+    feature_weights: np.ndarray | None = None,
+) -> np.ndarray:
+    scaler = StandardScaler()
+    ref = scaler.fit_transform(fit_features)
+    query = scaler.transform(apply_features)
+    ref = np.clip(np.nan_to_num(ref, nan=0.0, posinf=6.0, neginf=-6.0), -6.0, 6.0)
+    query = np.clip(np.nan_to_num(query, nan=0.0, posinf=6.0, neginf=-6.0), -6.0, 6.0)
+    if feature_weights is not None:
+        weights = np.asarray(feature_weights, dtype=float).reshape(1, -1)
+        ref = ref * weights
+        query = query * weights
+    d2 = ((query[:, None, :] - ref[None, :, :]) ** 2).mean(axis=2)
+    kk = min(k, ref.shape[0])
+    idx = np.argpartition(d2, kk - 1, axis=1)[:, :kk]
+    chosen = np.take_along_axis(d2, idx, axis=1)
+    scale = np.maximum(np.median(chosen, axis=1, keepdims=True), 1e-6) * temp
+    attn = np.exp(-chosen / scale)
+    attn = attn / np.maximum(attn.sum(axis=1, keepdims=True), 1e-12)
+    if logit_mode:
+        residual = safe_logit(y_fit * 0.98 + 0.01) - safe_logit(base_fit)
+        pred = sigmoid(safe_logit(base_apply) + (attn * residual[idx]).sum(axis=1))
+    else:
+        residual = y_fit - base_fit
+        pred = base_apply + (attn * residual[idx]).sum(axis=1)
+    return np.clip(pred, EPS, 1.0 - EPS)
+
+
+def fit_view_context_attention_decoder(
+    fit_view_preds: list[np.ndarray],
+    y_fit: np.ndarray,
+    base_fit: np.ndarray,
+    fit_pos: np.ndarray,
+    apply_view_preds: list[np.ndarray],
+    base_apply: np.ndarray,
+    apply_pos: np.ndarray,
+    sample_view_preds: list[np.ndarray],
+    base_sample: np.ndarray,
+    sample_pos: np.ndarray,
+    logit_mode: bool,
+    metric_mode: bool,
+    k: int = 35,
+    temp: float = 1.4,
+) -> tuple[np.ndarray, np.ndarray]:
+    fit_features = view_context_features(fit_view_preds, base_fit, fit_pos)
+    apply_features = view_context_features(apply_view_preds, base_apply, apply_pos)
+    sample_features = view_context_features(sample_view_preds, base_sample, sample_pos)
+    feature_weights = None
+    if metric_mode:
+        feature_weights = label_metric_weights(fit_features, y_fit)
+        feature_weights = 0.5 + 1.5 * feature_weights / np.maximum(np.mean(feature_weights), 1e-6)
+    apply_pred = context_attention_residual_prediction(
+        fit_features,
+        apply_features,
+        y_fit,
+        base_fit,
+        base_apply,
+        k,
+        temp,
+        logit_mode,
+        feature_weights,
+    )
+    sample_pred = context_attention_residual_prediction(
+        fit_features,
+        sample_features,
+        y_fit,
+        base_fit,
+        base_sample,
+        k,
+        temp,
+        logit_mode,
+        feature_weights,
+    )
+    return apply_pred, sample_pred
+
+
 def label_metric_weights(z_fit: np.ndarray, y_fit: np.ndarray) -> np.ndarray:
     z_fit = np.clip(np.nan_to_num(z_fit, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
     if len(np.unique(y_fit)) < 2:
@@ -1175,6 +1259,10 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_neural_context_secondhalf_gate_hgb_resid",
         "joint_neural_context_secondhalf_gate_logreg_logitresid",
         "joint_neural_context_secondhalf_gate_hgb_logitresid",
+        "joint_neural_context_attention_knn_resid",
+        "joint_neural_context_attention_knn_logitresid",
+        "joint_neural_context_metric_attention_knn_resid",
+        "joint_neural_context_metric_attention_knn_logitresid",
         "joint_neural_residual_knn_resid",
         "joint_neural_residual_knn_logitresid",
         "joint_neural_q_residual_knn_resid",
@@ -2024,6 +2112,47 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                     1.000001,
                 )
                 source_name = f"joint_neural_context_secondhalf_gate_{method}_logitresid"
+                oof_by_source[source_name][fold.val_idx, target_i] = val_pred
+                sample_folds_by_source[source_name].append((target_i, sample_pred))
+
+            for metric_mode, metric_name in ((False, "attention"), (True, "metric_attention")):
+                val_pred, sample_pred = fit_view_context_attention_decoder(
+                    view_fit_preds_resid,
+                    y_fit,
+                    base_fit,
+                    fit_pos,
+                    view_val_preds_resid,
+                    base_val,
+                    val_pos,
+                    view_sample_preds_resid,
+                    base_test,
+                    sample_panel_pos,
+                    False,
+                    metric_mode,
+                    k=max(25, args.knn_k * 2 - 3),
+                    temp=args.knn_temp * 1.15,
+                )
+                source_name = f"joint_neural_context_{metric_name}_knn_resid"
+                oof_by_source[source_name][fold.val_idx, target_i] = val_pred
+                sample_folds_by_source[source_name].append((target_i, sample_pred))
+
+                val_pred, sample_pred = fit_view_context_attention_decoder(
+                    view_fit_preds_logit,
+                    y_fit,
+                    base_fit,
+                    fit_pos,
+                    view_val_preds_logit,
+                    base_val,
+                    val_pos,
+                    view_sample_preds_logit,
+                    base_test,
+                    sample_panel_pos,
+                    True,
+                    metric_mode,
+                    k=max(25, args.knn_k * 2 - 3),
+                    temp=args.knn_temp * 1.15,
+                )
+                source_name = f"joint_neural_context_{metric_name}_knn_logitresid"
                 oof_by_source[source_name][fold.val_idx, target_i] = val_pred
                 sample_folds_by_source[source_name].append((target_i, sample_pred))
             fit_keys = train.iloc[fold.train_idx][KEY_COLUMNS]

@@ -4,11 +4,11 @@ Last updated: 2026-05-20
 
 ## Current Best
 
-- Best internal OOF candidate: `outputs/conditional_latent_routing_v75_secondhalf_gate_on_v74/submission_conditional_latent_routing.csv`
-- Best internal OOF: `0.481505`
+- Best internal OOF candidate: `outputs/conditional_latent_routing_v76_context_attention_on_v75/submission_conditional_latent_routing.csv`
+- Best internal OOF: `0.480978`
 - Main report: `outputs/breakthrough_signal_report.md`
 - Public LB feedback: `experiments/public_lb_feedback.md`
-- Candidate report: `outputs/conditional_latent_routing_v75_secondhalf_gate_on_v74/report.md`
+- Candidate report: `outputs/conditional_latent_routing_v76_context_attention_on_v75/report.md`
 - Important caveat: this is an internal OOF proxy, not Public LB. Recent Public LB feedback for older submissions was weaker than OOF suggested.
 
 ## What We Are Testing
@@ -68,6 +68,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 | v73 sample-conditioned context gate | 0.483097 | context-gate-only finally gives a tiny S3 mid signal, while all-source gain still comes mostly from cross-family/panel neural and PLS/neighbor views | `outputs/breakthrough_signal_report.md` |
 | v74 panel-bin context gate | 0.482206 | bin-local context gate gives the first multi-target gate-only signal, while neural residual views still drive the largest S1/S2/S3 gains | `outputs/breakthrough_signal_report.md` |
 | v75 second-half context gate | 0.481505 | second-half-only gate is weaker than v74's panel-bin gate, but another neural residual refit layer produces a new best | `outputs/breakthrough_signal_report.md` |
+| v76 context-attention residual probe | 0.480978 | local attention over view-context features fails alone, but residual refit keeps finding S4/S3 and broad small target/bin gains | `outputs/breakthrough_signal_report.md` |
 
 ## What Worked
 
@@ -98,6 +99,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - A sample-conditioned context gate gives the first nonzero gate-only routed move after the failed global/bin gates: S3 mid from `joint_neural_context_gate_hgb_resid`. It is tiny, but it points to local/contextual gating as the right consolidation direction.
 - Training context gates separately inside panel bins gives the first useful multi-target gate-only signal: Q1/Q2 second-half, S3 second-half, and S4 second-half. This supports local context gating as a real auxiliary, not only a failed consolidation attempt.
 - A narrower second-half-only context gate is weaker than the v74 panel-bin gate: gate-only reaches only 0.482181 and keeps Q1/S3 late moves. The new best still comes from source-wise neural/prototype/neighbor residuals, especially S4 late, Q1/S2/S3 first-half, and Q3 late.
+- A local attention decoder over residual-view context features creates a new all-source best at 0.480978 and neural-only reaches 0.481166. The important positive signal is still source-wise residual refitting: S4 late cross-family/Q-neural residual is strong, S3 mid neighbor is strong, and Q2/Q3/S1/S2 add smaller target/bin corrections.
 
 ## What Failed Or Was Weaker
 
@@ -116,17 +118,18 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - The first context gate is still much weaker than source-wise routing. Gate-only reaches only 0.483645 versus all-source 0.483097 and neural-only 0.483267, so it is a direction signal, not a replacement.
 - Even the stronger panel-bin context gate remains secondary. Neural-only reaches 0.482220, almost identical to all-source 0.482206, so the main discovery scaffold is still source-wise neural residual routing.
 - Over-focusing the context gate on one broad second-half window loses the multi-target Q1/Q2/S3/S4 signal from v74. Panel-bin local context is better than second-half-only context.
+- The first nonparametric context-attention decoder is a negative result as a standalone source: context-attention-only makes no selected move from the v75 base, and its best candidates are still worse than base. Local attention over view-disagreement features is not enough without a stronger residual objective.
 
 ## Current Architecture Status
 
 - Current implementation: common label-free features plus target-specific source models for `Q1`, `Q2`, `Q3`, `S1`, `S2`, `S3`, `S4`, composed by a conditional target/bin router.
 - Not yet final: one unified neural encoder with seven heads.
-- Strong next direction: stop narrowing the gate by hand; instead add a new residual-view objective or local attention feature that can preserve v74's panel-bin signal while continuing neural residual refits.
+- Strong next direction: turn the repeated S4/S3 residual refit signal into a training objective. Local attention over existing view-context features was not enough; the encoder should learn neighborhoods from residual behavior directly.
 
 ## Next 3
 
-1. Add a new residual-view objective rather than another fixed context gate.
-   - Success criterion: neural-only should beat v75's 0.481614 or gate-only should recover v74's multi-target panel-bin behavior without manual window narrowing.
+1. Train a residual-neighborhood objective directly.
+   - Success criterion: context/neighbor-only source should move at least one target from the v76 base, not only help through old neural source refits.
 
 2. Turn the neighbor scorer from a post-hoc feature decoder into the latent objective itself: pull together days that have similar target residual behavior while preserving subject/time context.
    - Success criterion: improve S3/S4/S1 residuals with fewer routed moves and avoid standalone decoder collapse.
