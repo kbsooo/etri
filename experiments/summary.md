@@ -4,12 +4,14 @@ Last updated: 2026-05-20
 
 ## Current Best
 
-- Best internal OOF candidate: `outputs/conditional_latent_routing_v80_late_behavior_on_v79/submission_conditional_latent_routing.csv`
-- Best internal OOF: `0.477600`
+- Best internal OOF candidate: `outputs/conditional_latent_routing_v81_decoder_only_on_v80/submission_conditional_latent_routing.csv`
+- Best internal OOF: `0.471378`
 - Main report: `outputs/breakthrough_signal_report.md`
 - Public LB feedback: `experiments/public_lb_feedback.md`
-- Candidate report: `outputs/conditional_latent_routing_v80_late_behavior_on_v79/report.md`
+- Candidate report: `outputs/conditional_latent_routing_v81_decoder_only_on_v80/report.md`
+- Decoder run: `outputs/decoder_v81_late_retrieval_on_v80/report.md`
 - Important caveat: this is an internal OOF proxy, not Public LB. Recent Public LB feedback for older submissions was weaker than OOF suggested.
+- Size caveat: the v81 jump (0.477600 -> 0.471378, -0.006222) is ~4x any prior single-version jump. It survives every leakage check (fold-safe OOF decoder, key self-exclusion, encoder-aligned fold partition, fold-safe OOF latents), and the per-target deltas sum to the observed gain, so it is real OOF signal — but it is unverified on Public LB and the gain comes almost entirely from one nonlinear decoder source (`v81_hgb`), so it must be packaged conservatively before any upload.
 
 ## What We Are Testing
 
@@ -73,6 +75,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 | v78 family/target residual-neighborhood objective | 0.479449 | splitting residual-behavior neighborhoods by family and target gives stronger standalone behavior-only signal, led by target-local S3 late | `outputs/breakthrough_signal_report.md` |
 | v79 S23/late residual-neighborhood objective | 0.478230 | late-panel target residual-neighborhood latent creates a larger direct breakthrough signal; new S23-only route reaches 0.478445 | `outputs/breakthrough_signal_report.md` |
 | v80 family/cross-family late residual-neighborhood objective | 0.477600 | late-behavior manifold generalizes beyond target-local, with new-late-only route reaching 0.477997 via Q1/S2/S3 moves | `outputs/breakthrough_signal_report.md` |
+| v81 late-behavior retrieval decoder | 0.471378 | first *real* decoder layer: target-wise residual decoders (Ridge/HGB/ExtraTrees/logreg) over fold-safe latent retrieval summaries (global + late pool) + panel basis + curated v80 source preds; decoder-only route improves v80 by 0.006222, driven almost entirely by the nonlinear `v81_hgb` source across all 7 targets; all-source route equals decoder-only (decoder absorbs the v80 pool) | `outputs/conditional_latent_routing_v81_decoder_only_on_v80/report.md` |
 
 ## What Worked
 
@@ -128,19 +131,27 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Over-focusing the context gate on one broad second-half window loses the multi-target Q1/Q2/S3/S4 signal from v74. Panel-bin local context is better than second-half-only context.
 - The first nonparametric context-attention decoder is a negative result as a standalone source: context-attention-only makes no selected move from the v75 base, and its best candidates are still worse than base. Local attention over view-disagreement features is not enough without a stronger residual objective.
 
+## v81 — First Real Decoder Layer
+
+- v81 replaces the "manual router + raw KNN" scaffold with target-wise residual decoders trained on fold-safe latent retrieval summaries. Inputs per row: KNN retrieval summaries over the fold-safe OOF latent (a global pool and a late-panel pool, since v80's signal lives in the late residual-behavior manifold), early/mid/late panel basis, the v80 base, and a curated set of v80 source predictions (the v80 routing winners + late residual-behavior family). Each target decoder predicts the residual against the v80 base, not the raw label.
+- Decoder-only routing improves the v80 base from 0.477600 to **0.471378** (-0.006222) and improves all seven targets (Q1 -0.0191, S3 -0.0061, Q2 -0.0048, S4 -0.0038, S2 -0.0036, Q3 -0.0036, S1 -0.0026).
+- The gain is almost entirely from `v81_hgb`, the HistGradientBoosting residual decoder. Ridge/logreg/extratrees are weak or neutral, exactly as expected: the router already approximates linear target/bin blending, so the only new signal is the nonlinear interaction of retrieval summaries x panel x base that a tree can represent and the router cannot.
+- All-source routing (v81 decoders + the v80 source pool) equals decoder-only at 0.471378 and selects only `v81_hgb`/`v81_logreg`. The decoder absorbs the entire v80 source pool — strong evidence that a learned nonlinear residual decoder, not a hand router over many raw KNN sources, is the right consolidation.
+- Leakage status: verified clean. Fold partition matches the v80 encoder (same `make_subject_time_folds`, n_folds=5); retrieval excludes self by key; the decoder OOF is fold-safe (fit on fit_idx, predict val_idx); the v80 source-pred features are fold-safe under the matched partition; and the latent itself is a fold-safe OOF latent (`latent_oof[fold.val_idx] = z_val`, PCA/PLS fit on fit pool only). The per-target deltas sum to the observed jump, so it is not a move-chaining artifact.
+
 ## Current Architecture Status
 
-- Current implementation: common label-free features plus target-specific source models for `Q1`, `Q2`, `Q3`, `S1`, `S2`, `S3`, `S4`, composed by a conditional target/bin router.
-- Not yet final: one unified neural encoder with seven heads.
-- Strong next direction: late residual-behavior manifold is now the clearest encoder signal. The next step should stress-test it with stricter block/sample-position diagnostics and then train a local objective that separates Q-late and S-late manifolds while preserving cross-family transfer into S2/S3.
+- Current implementation: common label-free features plus target-specific source models for `Q1`, `Q2`, `Q3`, `S1`, `S2`, `S3`, `S4`. As of v81 the composer is no longer only a manual target/bin router — a learned nonlinear residual decoder (`v81_hgb`) now carries the routed gain and subsumes the raw KNN source pool.
+- Not yet final: one unified neural encoder with seven heads, and a single decoder that needs no post-hoc router at all (v81 still applies its residual through the conditional router's fractional target/bin weights).
+- Strong next direction: promote the v81 HGB residual decoder from "a source the router picks" into the primary decoder, learning its own panel/target gating so it no longer needs the fractional-weight router; and stress-test the 0.006 jump on Public LB before trusting it as more than OOF signal.
 
 ## Next 3
 
-1. Stress-test the late residual-behavior objective with stricter block/sample-position gates and a Q-late/S-late split.
-   - Success criterion: new-late-only should preserve Q1 and S3 gains and keep S2 positive under stricter diagnostics.
+1. Make the HGB residual decoder self-gating: have it (or a small companion gate) predict the per-target/panel weight directly, removing the dependence on the conditional router's manual weight sweep.
+   - Success criterion: match or beat 0.471378 decoder-only with the decoder applying its own weights, no external router.
 
-2. Turn the neighbor scorer from a post-hoc feature decoder into the latent objective itself: pull together days that have similar target residual behavior while preserving subject/time context.
-   - Success criterion: improve S3/S4/S1 residuals with fewer routed moves and avoid standalone decoder collapse.
+2. Public-LB-aware packaging of v81 before any other OOF chasing: conservatively blend the v81 decoder-only prediction toward the v76/public-anchor family and check prediction distance / per-target / panel / subject drift, since the 0.006 OOF jump is unverified and concentrated in one source.
+   - Success criterion: a packaged candidate that is defensible vs the v76 anchor under the public_lb_feedback robustness checks.
 
-3. Add a regime-aware decoder that treats early/late panel positions as different latent manifolds instead of only routing after prediction.
-   - Success criterion: preserve v65 first-half Q1/S1 and late S2/S4 gains while reducing reliance on two-move target routing.
+3. Ablate the v81 decoder feature groups (latent retrieval summaries vs late-pool summaries vs v80 source preds vs panel basis) to confirm which group carries the HGB gain and whether the late-pool retrieval is doing real work.
+   - Success criterion: identify the minimal feature set that preserves most of the -0.006 gain, to harden the decoder against overfitting.
