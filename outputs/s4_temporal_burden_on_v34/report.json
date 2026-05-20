@@ -1,0 +1,119 @@
+{
+  "target": "S4",
+  "base_log_loss": 0.5365529743523697,
+  "best_source_log_loss": 0.5473374635491214,
+  "sources": [
+    {
+      "name": "s4_sleep_retrieval_meta",
+      "oof": "outputs/s4_temporal_burden_on_v34/oof_s4_sleep_retrieval_meta.csv",
+      "submission": "outputs/s4_temporal_burden_on_v34/submission_s4_sleep_retrieval_meta.csv",
+      "S4_log_loss": 0.5473374635491214
+    },
+    {
+      "name": "s4_temporal_burden_extra",
+      "oof": "outputs/s4_temporal_burden_on_v34/oof_s4_temporal_burden_extra.csv",
+      "submission": "outputs/s4_temporal_burden_on_v34/submission_s4_temporal_burden_extra.csv",
+      "S4_log_loss": 0.6928765420903819,
+      "fold_log_loss": [
+        0.6859818289771146,
+        0.718323558479621,
+        0.7124244559277971,
+        0.6819915061594902,
+        0.6632531327343014
+      ]
+    },
+    {
+      "name": "s4_temporal_burden_hgb",
+      "oof": "outputs/s4_temporal_burden_on_v34/oof_s4_temporal_burden_hgb.csv",
+      "submission": "outputs/s4_temporal_burden_on_v34/submission_s4_temporal_burden_hgb.csv",
+      "S4_log_loss": 0.6963443312986629,
+      "fold_log_loss": [
+        0.722508707053594,
+        0.7197234677991318,
+        0.7422835543963047,
+        0.6963510733274157,
+        0.5926084240851519
+      ]
+    },
+    {
+      "name": "s4_temporal_burden_knn_label",
+      "oof": "outputs/s4_temporal_burden_on_v34/oof_s4_temporal_burden_knn_label.csv",
+      "submission": "outputs/s4_temporal_burden_on_v34/submission_s4_temporal_burden_knn_label.csv",
+      "S4_log_loss": 0.7261560280040774,
+      "fold_log_loss": [
+        0.6674732036519044,
+        0.8039353808064366,
+        0.7325513607730334,
+        0.7522640815911393,
+        0.6739888740227833
+      ]
+    },
+    {
+      "name": "s4_temporal_burden_proto",
+      "oof": "outputs/s4_temporal_burden_on_v34/oof_s4_temporal_burden_proto.csv",
+      "submission": "outputs/s4_temporal_burden_on_v34/submission_s4_temporal_burden_proto.csv",
+      "S4_log_loss": 0.7334953334313865,
+      "fold_log_loss": [
+        0.6749436600577198,
+        0.8393349199859059,
+        0.7221320471077978,
+        0.7880414157082918,
+        0.6407155323118374
+      ]
+    },
+    {
+      "name": "s4_temporal_burden_knn_resid",
+      "oof": "outputs/s4_temporal_burden_on_v34/oof_s4_temporal_burden_knn_resid.csv",
+      "submission": "outputs/s4_temporal_burden_on_v34/submission_s4_temporal_burden_knn_resid.csv",
+      "S4_log_loss": 0.7668153085951381,
+      "fold_log_loss": [
+        0.6521009988014158,
+        0.7559978822972333,
+        0.9286661590777258,
+        0.8712566921690807,
+        0.6265592484182256
+      ]
+    },
+    {
+      "name": "s4_temporal_burden_logreg",
+      "oof": "outputs/s4_temporal_burden_on_v34/oof_s4_temporal_burden_logreg.csv",
+      "submission": "outputs/s4_temporal_burden_on_v34/submission_s4_temporal_burden_logreg.csv",
+      "S4_log_loss": 0.8195277709660935,
+      "fold_log_loss": [
+        0.7746645755118158,
+        0.7964088901238806,
+        0.8503400957928515,
+        0.9590138688302569,
+        0.7189363419334205
+      ]
+    },
+    {
+      "name": "s4_temporal_burden_knn_logitresid",
+      "oof": "outputs/s4_temporal_burden_on_v34/oof_s4_temporal_burden_knn_logitresid.csv",
+      "submission": "outputs/s4_temporal_burden_on_v34/submission_s4_temporal_burden_knn_logitresid.csv",
+      "S4_log_loss": 0.8607355361879184,
+      "fold_log_loss": [
+        0.7165497859650377,
+        0.9264363118807717,
+        1.0069400449898456,
+        0.8663858968741585,
+        0.788464750620306
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v34_persist_regime_on_v32/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v34_persist_regime_on_v32/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s4_temporal_burden_on_v34",
+    "target": "S4",
+    "groups": "temporal_burden",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_burden": 1232
+  }
+}

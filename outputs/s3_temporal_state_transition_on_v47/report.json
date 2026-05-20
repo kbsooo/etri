@@ -1,0 +1,119 @@
+{
+  "target": "S3",
+  "base_log_loss": 0.4371810967818341,
+  "best_source_log_loss": 0.4506150274540718,
+  "sources": [
+    {
+      "name": "s3_temporal_state_transition_knn_resid",
+      "oof": "outputs/s3_temporal_state_transition_on_v47/oof_s3_temporal_state_transition_knn_resid.csv",
+      "submission": "outputs/s3_temporal_state_transition_on_v47/submission_s3_temporal_state_transition_knn_resid.csv",
+      "S3_log_loss": 0.4506150274540718,
+      "fold_log_loss": [
+        0.4030443758846819,
+        0.48334210848181314,
+        0.540068165780986,
+        0.35163303869003176,
+        0.4739034730924497
+      ]
+    },
+    {
+      "name": "s3_temporal_state_transition_knn_logitresid",
+      "oof": "outputs/s3_temporal_state_transition_on_v47/oof_s3_temporal_state_transition_knn_logitresid.csv",
+      "submission": "outputs/s3_temporal_state_transition_on_v47/submission_s3_temporal_state_transition_knn_logitresid.csv",
+      "S3_log_loss": 0.48721062568167983,
+      "fold_log_loss": [
+        0.3893778557834195,
+        0.49588906120504167,
+        0.6525200470237583,
+        0.38723135885463195,
+        0.512513401493556
+      ]
+    },
+    {
+      "name": "s3_sleep_retrieval_meta",
+      "oof": "outputs/s3_temporal_state_transition_on_v47/oof_s3_sleep_retrieval_meta.csv",
+      "submission": "outputs/s3_temporal_state_transition_on_v47/submission_s3_sleep_retrieval_meta.csv",
+      "S3_log_loss": 0.48871480041403137
+    },
+    {
+      "name": "s3_temporal_state_transition_hgb",
+      "oof": "outputs/s3_temporal_state_transition_on_v47/oof_s3_temporal_state_transition_hgb.csv",
+      "submission": "outputs/s3_temporal_state_transition_on_v47/submission_s3_temporal_state_transition_hgb.csv",
+      "S3_log_loss": 0.5993990972400275,
+      "fold_log_loss": [
+        0.5637025191046572,
+        0.6004376137036788,
+        0.6547931293310573,
+        0.5216344933912904,
+        0.6584613916254471
+      ]
+    },
+    {
+      "name": "s3_temporal_state_transition_knn_label",
+      "oof": "outputs/s3_temporal_state_transition_on_v47/oof_s3_temporal_state_transition_knn_label.csv",
+      "submission": "outputs/s3_temporal_state_transition_on_v47/submission_s3_temporal_state_transition_knn_label.csv",
+      "S3_log_loss": 0.6742034768707559,
+      "fold_log_loss": [
+        0.6414939334963004,
+        0.6782308330920069,
+        0.7572340706621241,
+        0.6486896900103111,
+        0.6436247153420778
+      ]
+    },
+    {
+      "name": "s3_temporal_state_transition_extra",
+      "oof": "outputs/s3_temporal_state_transition_on_v47/oof_s3_temporal_state_transition_extra.csv",
+      "submission": "outputs/s3_temporal_state_transition_on_v47/submission_s3_temporal_state_transition_extra.csv",
+      "S3_log_loss": 0.6843932143340489,
+      "fold_log_loss": [
+        0.6821552886367465,
+        0.6793173541590043,
+        0.6941700989365726,
+        0.6865037072913943,
+        0.6797611283485092
+      ]
+    },
+    {
+      "name": "s3_temporal_state_transition_proto",
+      "oof": "outputs/s3_temporal_state_transition_on_v47/oof_s3_temporal_state_transition_proto.csv",
+      "submission": "outputs/s3_temporal_state_transition_on_v47/submission_s3_temporal_state_transition_proto.csv",
+      "S3_log_loss": 0.7501533557005778,
+      "fold_log_loss": [
+        0.6969750303075003,
+        0.7313911225053636,
+        0.809891079850752,
+        0.7309184702111453,
+        0.7856282793031287
+      ]
+    },
+    {
+      "name": "s3_temporal_state_transition_logreg",
+      "oof": "outputs/s3_temporal_state_transition_on_v47/oof_s3_temporal_state_transition_logreg.csv",
+      "submission": "outputs/s3_temporal_state_transition_on_v47/submission_s3_temporal_state_transition_logreg.csv",
+      "S3_log_loss": 0.9048944573660161,
+      "fold_log_loss": [
+        1.068921637509124,
+        0.6341978497533167,
+        0.8790387671461326,
+        0.9621900740749225,
+        0.9835962802261061
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v47_dynamics_on_v46/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v47_dynamics_on_v46/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s3_temporal_state_transition_on_v47",
+    "target": "S3",
+    "groups": "temporal_state_transition",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_state_transition": 35
+  }
+}

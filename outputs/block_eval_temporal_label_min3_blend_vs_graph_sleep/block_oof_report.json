@@ -1,0 +1,72 @@
+{
+  "baseline": "graph_sleep_blend",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "temporal_label_min3_blend",
+      "avg_log_loss": 0.5844632314577459,
+      "overall_p025": 0.00017244740902571195,
+      "overall_improvement": 0.001633249031331639,
+      "early_delta": 0.0008760260232726358,
+      "mid_delta": 0.0029241021930292987,
+      "late_delta": 0.0011370994224327857,
+      "tail20_delta": 0.0019590072235118328,
+      "late_p025": -0.002214135210029325,
+      "tail20_p025": -0.0024754892926610837,
+      "worst_subject_delta": -0.0017065625506677007,
+      "worst_late_target_delta": -0.0015305640267615495,
+      "promote": true
+    },
+    {
+      "name": "temporal_s2_blend",
+      "avg_log_loss": 0.5847685261412771,
+      "overall_p025": 0.0001424649715512697,
+      "overall_improvement": 0.0013279543478005,
+      "early_delta": 0.0007629290903333752,
+      "mid_delta": 0.00228145735038332,
+      "late_delta": 0.000967124561602084,
+      "tail20_delta": 0.0010680528711596304,
+      "late_p025": -0.0019521559420715194,
+      "tail20_p025": -0.0028215062813351844,
+      "worst_subject_delta": -0.0009470587227538019,
+      "worst_late_target_delta": 0.0,
+      "promote": true
+    },
+    {
+      "name": "temporal_label_min3",
+      "avg_log_loss": 0.5842893102308057,
+      "overall_p025": -2.0984995421395753e-05,
+      "overall_improvement": 0.0018071702582718354,
+      "early_delta": 0.000925050453459697,
+      "mid_delta": 0.003522276794470258,
+      "late_delta": 0.001024798085281553,
+      "tail20_delta": 0.001946115803157844,
+      "late_p025": -0.0031457548517117187,
+      "tail20_p025": -0.0036457069398587397,
+      "worst_subject_delta": -0.0023739776562172743,
+      "worst_late_target_delta": -0.0019834096894755238,
+      "promote": false
+    },
+    {
+      "name": "graph_sleep_blend",
+      "avg_log_loss": 0.5860964804890776,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

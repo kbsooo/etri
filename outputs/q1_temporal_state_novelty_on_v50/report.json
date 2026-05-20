@@ -1,0 +1,119 @@
+{
+  "target": "Q1",
+  "base_log_loss": 0.5500231776026508,
+  "best_source_log_loss": 0.5619377873496103,
+  "sources": [
+    {
+      "name": "q1_sleep_retrieval_meta",
+      "oof": "outputs/q1_temporal_state_novelty_on_v50/oof_q1_sleep_retrieval_meta.csv",
+      "submission": "outputs/q1_temporal_state_novelty_on_v50/submission_q1_sleep_retrieval_meta.csv",
+      "Q1_log_loss": 0.5619377873496103
+    },
+    {
+      "name": "q1_temporal_state_novelty_knn_resid",
+      "oof": "outputs/q1_temporal_state_novelty_on_v50/oof_q1_temporal_state_novelty_knn_resid.csv",
+      "submission": "outputs/q1_temporal_state_novelty_on_v50/submission_q1_temporal_state_novelty_knn_resid.csv",
+      "Q1_log_loss": 0.5784577763468027,
+      "fold_log_loss": [
+        0.5805239680224679,
+        0.6689035739029009,
+        0.5622270386047286,
+        0.505122222543976,
+        0.5706917614176908
+      ]
+    },
+    {
+      "name": "q1_temporal_state_novelty_knn_logitresid",
+      "oof": "outputs/q1_temporal_state_novelty_on_v50/oof_q1_temporal_state_novelty_knn_logitresid.csv",
+      "submission": "outputs/q1_temporal_state_novelty_on_v50/submission_q1_temporal_state_novelty_knn_logitresid.csv",
+      "Q1_log_loss": 0.6587306239179644,
+      "fold_log_loss": [
+        0.7380839453151616,
+        0.7920480392871236,
+        0.5949112364318496,
+        0.579412954681048,
+        0.5752533737785734
+      ]
+    },
+    {
+      "name": "q1_temporal_state_novelty_extra",
+      "oof": "outputs/q1_temporal_state_novelty_on_v50/oof_q1_temporal_state_novelty_extra.csv",
+      "submission": "outputs/q1_temporal_state_novelty_on_v50/submission_q1_temporal_state_novelty_extra.csv",
+      "Q1_log_loss": 0.7087691144969845,
+      "fold_log_loss": [
+        0.6867306468869847,
+        0.6883109972906309,
+        0.6911936030124454,
+        0.725501269040421,
+        0.757233529858733
+      ]
+    },
+    {
+      "name": "q1_temporal_state_novelty_knn_label",
+      "oof": "outputs/q1_temporal_state_novelty_on_v50/oof_q1_temporal_state_novelty_knn_label.csv",
+      "submission": "outputs/q1_temporal_state_novelty_on_v50/submission_q1_temporal_state_novelty_knn_label.csv",
+      "Q1_log_loss": 0.7388001208512998,
+      "fold_log_loss": [
+        0.715516204860904,
+        0.7523409008093143,
+        0.7047313008805136,
+        0.7570657226571103,
+        0.7679457152417267
+      ]
+    },
+    {
+      "name": "q1_temporal_state_novelty_hgb",
+      "oof": "outputs/q1_temporal_state_novelty_on_v50/oof_q1_temporal_state_novelty_hgb.csv",
+      "submission": "outputs/q1_temporal_state_novelty_on_v50/submission_q1_temporal_state_novelty_hgb.csv",
+      "Q1_log_loss": 0.7492149085835963,
+      "fold_log_loss": [
+        0.7204728619225211,
+        0.7483181358011478,
+        0.6509185075372016,
+        0.7989292419379328,
+        0.836659885315149
+      ]
+    },
+    {
+      "name": "q1_temporal_state_novelty_proto",
+      "oof": "outputs/q1_temporal_state_novelty_on_v50/oof_q1_temporal_state_novelty_proto.csv",
+      "submission": "outputs/q1_temporal_state_novelty_on_v50/submission_q1_temporal_state_novelty_proto.csv",
+      "Q1_log_loss": 0.8208174052147837,
+      "fold_log_loss": [
+        0.7984847822791721,
+        0.8077847000745514,
+        0.7541427446033215,
+        0.9095045978653207,
+        0.8404905394127931
+      ]
+    },
+    {
+      "name": "q1_temporal_state_novelty_logreg",
+      "oof": "outputs/q1_temporal_state_novelty_on_v50/oof_q1_temporal_state_novelty_logreg.csv",
+      "submission": "outputs/q1_temporal_state_novelty_on_v50/submission_q1_temporal_state_novelty_logreg.csv",
+      "Q1_log_loss": 1.0359450599218156,
+      "fold_log_loss": [
+        1.194205519710348,
+        1.0151241471275525,
+        1.1862268434335104,
+        1.0208174255133877,
+        0.7361949680527643
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v50_state_manifold_on_v49/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v50_state_manifold_on_v49/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/q1_temporal_state_novelty_on_v50",
+    "target": "Q1",
+    "groups": "temporal_state_novelty",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_state_novelty": 148
+  }
+}

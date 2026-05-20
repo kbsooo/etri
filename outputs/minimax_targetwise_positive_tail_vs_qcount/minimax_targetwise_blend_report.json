@@ -1,0 +1,133 @@
+{
+  "baseline": "qcount",
+  "base_avg_log_loss": 0.5818511527290618,
+  "selected": {
+    "name": "Q1=master_logreg_min3:logit:0.01|Q2=q2_broadgrid:logit:0.01|Q3=q23_broadgrid:logit:0.02|S1=multi_signal:logit:0.05|S2=multi_signal:logit:0.05|S3=prior_qcount:logit:0.05|S4=multi_signal:prob:0.03",
+    "avg_log_loss": 0.5818295426756857,
+    "improvement": 2.1610053376183283e-05,
+    "improved_folds": 5,
+    "worst_target_delta": 5.321312986081187e-06,
+    "early_delta": 3.711436035453315e-05,
+    "mid_delta": 2.5561444915575398e-05,
+    "late_delta": 2.3863368628841254e-06,
+    "tail20_delta": 3.967202461750531e-06,
+    "worst_subject_delta": -2.1965145710403037e-05,
+    "worst_late_target_delta": -2.2629746869358964e-05,
+    "deterministic_penalty": 0.0,
+    "Q1_source": "master_logreg_min3",
+    "Q1_weight": 0.01,
+    "Q1_mode": "logit",
+    "Q1_delta": 4.170072914213723e-05,
+    "Q2_source": "q2_broadgrid",
+    "Q2_weight": 0.01,
+    "Q2_mode": "logit",
+    "Q2_delta": 4.0042113974257204e-05,
+    "Q3_source": "q23_broadgrid",
+    "Q3_weight": 0.02,
+    "Q3_mode": "logit",
+    "Q3_delta": 1.477376180382486e-05,
+    "S1_source": "multi_signal",
+    "S1_weight": 0.05,
+    "S1_mode": "logit",
+    "S1_delta": 2.1656197209450858e-05,
+    "S2_source": "multi_signal",
+    "S2_weight": 0.05,
+    "S2_mode": "logit",
+    "S2_delta": 1.1065055166899701e-05,
+    "S3_source": "prior_qcount",
+    "S3_weight": 0.05,
+    "S3_mode": "logit",
+    "S3_delta": 5.321312986081187e-06,
+    "S4_source": "multi_signal",
+    "S4_weight": 0.03,
+    "S4_mode": "prob",
+    "S4_delta": 1.6711203350631943e-05,
+    "improvement_p025": 4.894310945415449e-06,
+    "improvement_p500": 2.176707895045111e-05,
+    "improvement_p975": 3.8618973617609205e-05,
+    "promote": true
+  },
+  "selected_options": {
+    "Q1": {
+      "source": "master_logreg_min3",
+      "weight": 0.01,
+      "mode": "logit",
+      "target_delta": 4.170072914213723e-05
+    },
+    "Q2": {
+      "source": "q2_broadgrid",
+      "weight": 0.01,
+      "mode": "logit",
+      "target_delta": 4.0042113974257204e-05
+    },
+    "Q3": {
+      "source": "q23_broadgrid",
+      "weight": 0.02,
+      "mode": "logit",
+      "target_delta": 1.477376180382486e-05
+    },
+    "S1": {
+      "source": "multi_signal",
+      "weight": 0.05,
+      "mode": "logit",
+      "target_delta": 2.1656197209450858e-05
+    },
+    "S2": {
+      "source": "multi_signal",
+      "weight": 0.05,
+      "mode": "logit",
+      "target_delta": 1.1065055166899701e-05
+    },
+    "S3": {
+      "source": "prior_qcount",
+      "weight": 0.05,
+      "mode": "logit",
+      "target_delta": 5.321312986081187e-06
+    },
+    "S4": {
+      "source": "multi_signal",
+      "weight": 0.03,
+      "mode": "prob",
+      "target_delta": 1.6711203350631943e-05
+    }
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/minimax_targetwise_positive_tail_vs_qcount",
+    "baseline": "qcount",
+    "candidate": [
+      "qcount:outputs/block_aware_targetwise_transductive_q_count_vs_w03/oof_block_aware_targetwise_blend.csv:outputs/block_aware_targetwise_transductive_q_count_vs_w03/submission_block_aware_targetwise_blend.csv",
+      "multi_signal:outputs/multi_signal_qcount_blend_w015_020_015_015/oof_multi_signal_qcount_blend.csv:outputs/multi_signal_qcount_blend_w015_020_015_015/submission_multi_signal_qcount_blend.csv",
+      "master_logreg_min3:outputs/master_residual_logreg_on_multi_signal_min3/oof_master_residual_decoder.csv:outputs/master_residual_logreg_on_multi_signal_min3/submission_master_residual_decoder.csv",
+      "q2_broadgrid:outputs/block_aware_q2_broadgrid_on_multi_signal/oof_block_aware_targetwise_blend.csv:outputs/block_aware_q2_broadgrid_on_multi_signal/submission_block_aware_targetwise_blend.csv",
+      "sleep_s4:outputs/block_aware_sleep_s4_on_multi_signal/oof_block_aware_targetwise_blend.csv:outputs/block_aware_sleep_s4_on_multi_signal/submission_block_aware_targetwise_blend.csv",
+      "broad_q1s1:outputs/block_aware_broad_residual_q1s1_on_multi_signal/oof_block_aware_targetwise_blend.csv:outputs/block_aware_broad_residual_q1s1_on_multi_signal/submission_block_aware_targetwise_blend.csv",
+      "q23_broadgrid:outputs/block_aware_q23_broadgrid_on_multi_signal/oof_block_aware_targetwise_blend.csv:outputs/block_aware_q23_broadgrid_on_multi_signal/submission_block_aware_targetwise_blend.csv",
+      "markov_q123:outputs/block_aware_markov_q123_on_multi_signal/oof_block_aware_targetwise_blend.csv:outputs/block_aware_markov_q123_on_multi_signal/submission_block_aware_targetwise_blend.csv",
+      "prior_qcount:outputs/label_prior_projection_on_qcount/oof_label_prior_projection.csv:outputs/label_prior_projection_on_qcount/submission_label_prior_projection.csv",
+      "markov_qcount:outputs/markov_label_prior_on_qcount_probe/oof_markov_label_prior.csv:outputs/markov_label_prior_on_qcount_probe/submission_markov_label_prior.csv",
+      "temporal_after_min3:outputs/targetwise_after_temporal_min3/oof_fold_guarded_targetwise_ensemble.csv:outputs/targetwise_after_temporal_min3/submission_fold_guarded_targetwise_ensemble.csv"
+    ],
+    "weights": "0.01,0.02,0.03,0.05,0.08,0.1,0.15,0.2,0.3,0.4,0.5,0.65,0.8,1.0",
+    "modes": "prob,logit",
+    "folds": 5,
+    "beam_size": 600,
+    "max_options_per_target": 24,
+    "top_bootstrap": 250,
+    "bootstrap": 10000,
+    "seed": 2026,
+    "min_option_delta": 5e-06,
+    "min_option_folds": 2,
+    "option_stress_weight": 1.0,
+    "min_folds_improved": 4,
+    "max_target_regression": 0.001,
+    "max_block_regression": 0.0,
+    "max_tail_regression": 0.0,
+    "max_subject_regression": 0.006,
+    "max_late_target_regression": 0.01,
+    "min_p025": 0.0,
+    "fold_penalty": 0.002,
+    "constraint_penalty": 8.0
+  }
+}

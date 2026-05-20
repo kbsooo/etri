@@ -1,0 +1,119 @@
+{
+  "target": "S3",
+  "base_log_loss": 0.4325068050898199,
+  "best_source_log_loss": 0.5175225365407403,
+  "sources": [
+    {
+      "name": "s3_sleep_retrieval_meta",
+      "oof": "outputs/s3_temporal_state_novelty_on_v50/oof_s3_sleep_retrieval_meta.csv",
+      "submission": "outputs/s3_temporal_state_novelty_on_v50/submission_s3_sleep_retrieval_meta.csv",
+      "S3_log_loss": 0.5175225365407403
+    },
+    {
+      "name": "s3_temporal_state_novelty_knn_resid",
+      "oof": "outputs/s3_temporal_state_novelty_on_v50/oof_s3_temporal_state_novelty_knn_resid.csv",
+      "submission": "outputs/s3_temporal_state_novelty_on_v50/submission_s3_temporal_state_novelty_knn_resid.csv",
+      "S3_log_loss": 0.5208903033077834,
+      "fold_log_loss": [
+        0.40141845931371695,
+        0.5333271069645581,
+        0.6855609617596642,
+        0.47232091408865734,
+        0.5143743760837343
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_knn_logitresid",
+      "oof": "outputs/s3_temporal_state_novelty_on_v50/oof_s3_temporal_state_novelty_knn_logitresid.csv",
+      "submission": "outputs/s3_temporal_state_novelty_on_v50/submission_s3_temporal_state_novelty_knn_logitresid.csv",
+      "S3_log_loss": 0.5525713688024111,
+      "fold_log_loss": [
+        0.4167551566829108,
+        0.6064865568092039,
+        0.7417475573674401,
+        0.4296813525717225,
+        0.5692624406539385
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_hgb",
+      "oof": "outputs/s3_temporal_state_novelty_on_v50/oof_s3_temporal_state_novelty_hgb.csv",
+      "submission": "outputs/s3_temporal_state_novelty_on_v50/submission_s3_temporal_state_novelty_hgb.csv",
+      "S3_log_loss": 0.6128199580127975,
+      "fold_log_loss": [
+        0.6010075233307933,
+        0.6066640044410622,
+        0.7436914850377685,
+        0.49727516128639543,
+        0.6108389860047341
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_extra",
+      "oof": "outputs/s3_temporal_state_novelty_on_v50/oof_s3_temporal_state_novelty_extra.csv",
+      "submission": "outputs/s3_temporal_state_novelty_on_v50/submission_s3_temporal_state_novelty_extra.csv",
+      "S3_log_loss": 0.6287240809978532,
+      "fold_log_loss": [
+        0.632810875502092,
+        0.606556011736313,
+        0.6389553125385228,
+        0.6237200348066323,
+        0.6423185144401383
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_knn_label",
+      "oof": "outputs/s3_temporal_state_novelty_on_v50/oof_s3_temporal_state_novelty_knn_label.csv",
+      "submission": "outputs/s3_temporal_state_novelty_on_v50/submission_s3_temporal_state_novelty_knn_label.csv",
+      "S3_log_loss": 0.7278391193908259,
+      "fold_log_loss": [
+        0.6304460938361783,
+        0.6717649597607721,
+        0.9666146111540402,
+        0.6998557047031945,
+        0.6703937951676239
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_proto",
+      "oof": "outputs/s3_temporal_state_novelty_on_v50/oof_s3_temporal_state_novelty_proto.csv",
+      "submission": "outputs/s3_temporal_state_novelty_on_v50/submission_s3_temporal_state_novelty_proto.csv",
+      "S3_log_loss": 0.7453582864381618,
+      "fold_log_loss": [
+        0.7981020723423293,
+        0.6798547754706078,
+        0.8096742341406666,
+        0.699213483428705,
+        0.7356819331324421
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_logreg",
+      "oof": "outputs/s3_temporal_state_novelty_on_v50/oof_s3_temporal_state_novelty_logreg.csv",
+      "submission": "outputs/s3_temporal_state_novelty_on_v50/submission_s3_temporal_state_novelty_logreg.csv",
+      "S3_log_loss": 1.0770887508495133,
+      "fold_log_loss": [
+        0.838108927443001,
+        0.7675863889248578,
+        1.7002086122540585,
+        0.7608819666035598,
+        1.3357167904056464
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v50_state_manifold_on_v49/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v50_state_manifold_on_v49/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s3_temporal_state_novelty_on_v50",
+    "target": "S3",
+    "groups": "temporal_state_novelty",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_state_novelty": 148
+  }
+}

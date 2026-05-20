@@ -1,0 +1,49 @@
+{
+  "base_avg_log_loss": 0.583797792989271,
+  "base_targets": {
+    "Q1": 0.6373676761965493,
+    "Q2": 0.6503050342800608,
+    "Q3": 0.6229202717319089,
+    "S1": 0.5542725406575977,
+    "S2": 0.5292196070733155,
+    "S3": 0.49841585304667624,
+    "S4": 0.5940835679387884
+  },
+  "best": {
+    "name": "transductive_q_count_w0.2",
+    "weight": 0.2,
+    "avg_log_loss": 0.5830315079367722,
+    "delta_vs_base": 0.0007662850524988718,
+    "fold_std": 0.011193038448547637,
+    "worst_fold": 0.6051384248904832,
+    "improved_folds": 4,
+    "worst_target_delta": -1.1102230246251565e-16,
+    "promote": true,
+    "Q1": 0.6367569246000157,
+    "Q2": 0.6460458241719166,
+    "Q3": 0.622426238069095,
+    "S1": 0.5542725406575977,
+    "S2": 0.5292196070733155,
+    "S3": 0.49841585304667624,
+    "S4": 0.5940835679387885,
+    "improvement": 0.0007662850524988161,
+    "improvement_p025": 0.0003167131301551728,
+    "improvement_p500": 0.0007686375667077339,
+    "improvement_p975": 0.0012179480582411586
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/blend_temporal_label_master_residual_min3_w03/oof_candidate_probability_blend.csv",
+    "base_submission": "outputs/blend_temporal_label_master_residual_min3_w03/submission_candidate_probability_blend.csv",
+    "candidate_oof": "outputs/transductive_q_count_on_w03/oof_transductive_q_count.csv",
+    "candidate_submission": "outputs/transductive_q_count_on_w03/submission_transductive_q_count.csv",
+    "output_dir": "outputs/blend_w03_transductive_q_count_w02",
+    "name": "transductive_q_count",
+    "weights": "0.2",
+    "folds": 5,
+    "bootstrap": 3000,
+    "seed": 2026,
+    "max_target_regression": 0.001
+  }
+}

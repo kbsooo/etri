@@ -1,0 +1,76 @@
+{
+  "summary": {
+    "base_avg": 0.5799248472808578,
+    "final_avg": 0.5794302818674059,
+    "improvement": 0.0004945654134520468,
+    "p025": -0.00021964133763084127,
+    "p500": 0.0004863157229253623,
+    "p975": 0.0012231228894193946,
+    "support_delta": 0.010116110729700957,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "Q2",
+      "supported_train_rows": 22,
+      "supported_sample_rows": 120,
+      "range_train_rows": 22,
+      "range_sample_rows": 120,
+      "min_position": 0.8,
+      "max_position": 1.000001,
+      "weight": 0.65,
+      "mode": "logit"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "position_range": {
+    "min_position": 0.8,
+    "max_position": 1.000001,
+    "train_rows": 22,
+    "sample_rows": 120,
+    "applied_train_rows": 22,
+    "applied_sample_rows": 120
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_newq3tail_q1fastmid_s4_newq2tail065_vs_multi_signal",
+    "base_oof": "outputs/sample_newq3tail_w100_q1fastmid_s4_vs_multi_signal/oof_sample_support_target_blend.csv",
+    "base_submission": "outputs/sample_newq3tail_w100_q1fastmid_s4_vs_multi_signal/submission_sample_support_target_blend.csv",
+    "source_oof": "outputs/position_weighted_tail_decoder_v1/sources/oof_logreg_latent_core_sample_C0.01.csv",
+    "source_submission": "outputs/position_weighted_tail_decoder_v1/sources/submission_logreg_latent_core_sample_C0.01.csv",
+    "targets": "Q2",
+    "weight": 0.65,
+    "mode": "logit",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "min_position": 0.8,
+    "max_position": 1.000001,
+    "bootstrap": 10000,
+    "seed": 2026
+  }
+}

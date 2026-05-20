@@ -1,0 +1,76 @@
+{
+  "baseline": "v36a",
+  "bin_table": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_frac": 0.52,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_frac": 0.22666666666666666,
+      "sample_frac": 0.52,
+      "weight_ratio": 2.294117647058824
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_frac": 0.20444444444444446,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_frac": 0.04888888888888889,
+      "sample_frac": 0.48,
+      "weight_ratio": 9.818181818181817
+    }
+  ],
+  "summary": [
+    {
+      "name": "v38a",
+      "uniform_avg_log_loss": 0.5497906202624886,
+      "weighted_avg_log_loss": 0.5116767733635833,
+      "weighted_delta_vs_baseline": 0.00886766507319491,
+      "weighted_p025": 0.004850774449680326,
+      "weighted_p500": 0.008873311427437788,
+      "weighted_p975": 0.012988694195919663,
+      "promote_weighted": true
+    },
+    {
+      "name": "v37e",
+      "uniform_avg_log_loss": 0.550513202062635,
+      "weighted_avg_log_loss": 0.514361936488011,
+      "weighted_delta_vs_baseline": 0.0061825019487672115,
+      "weighted_p025": 0.0019048245004165494,
+      "weighted_p500": 0.00617728573229066,
+      "weighted_p975": 0.010556419225206339,
+      "promote_weighted": true
+    },
+    {
+      "name": "v36a",
+      "uniform_avg_log_loss": 0.5636512002069283,
+      "weighted_avg_log_loss": 0.5205444384367783,
+      "weighted_delta_vs_baseline": 0.0,
+      "weighted_p025": 0.0,
+      "weighted_p500": 0.0,
+      "weighted_p975": 0.0,
+      "promote_weighted": false
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_weighted_eval_v38a_vs_v36a",
+    "baseline": "v36a",
+    "candidates": [
+      "v36a:outputs/sample_portfolio_v36a_v35e_oracle_block_tail_mix/oof_sample_support_target_blend.csv",
+      "v37e:outputs/windowed_prediction_stack_v37e_full_local_xaggressive_on_v36a/oof_windowed_prediction_stack_decoder.csv",
+      "v38a:outputs/sample_portfolio_v38a_v37e_mid_tail_push/oof_sample_support_target_blend.csv"
+    ],
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "bootstrap": 20000,
+    "seed": 2026,
+    "min_weighted_p025": 0.0
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "target": "S3",
+  "base_log_loss": 0.4352586688003885,
+  "best_source_log_loss": 0.49405121621281595,
+  "sources": [
+    {
+      "name": "s3_temporal_state_recurrence_knn_logitresid",
+      "oof": "outputs/s3_temporal_state_recurrence_on_v48/oof_s3_temporal_state_recurrence_knn_logitresid.csv",
+      "submission": "outputs/s3_temporal_state_recurrence_on_v48/submission_s3_temporal_state_recurrence_knn_logitresid.csv",
+      "S3_log_loss": 0.49405121621281595,
+      "fold_log_loss": [
+        0.3752286568499876,
+        0.5602713070009377,
+        0.6731940978889464,
+        0.33415382994977816,
+        0.527050806322438
+      ]
+    },
+    {
+      "name": "s3_temporal_state_recurrence_knn_resid",
+      "oof": "outputs/s3_temporal_state_recurrence_on_v48/oof_s3_temporal_state_recurrence_knn_resid.csv",
+      "submission": "outputs/s3_temporal_state_recurrence_on_v48/submission_s3_temporal_state_recurrence_knn_resid.csv",
+      "S3_log_loss": 0.4986358533013107,
+      "fold_log_loss": [
+        0.4011849575894396,
+        0.49005954411682834,
+        0.671384254662874,
+        0.3490766298822366,
+        0.5849700115502202
+      ]
+    },
+    {
+      "name": "s3_sleep_retrieval_meta",
+      "oof": "outputs/s3_temporal_state_recurrence_on_v48/oof_s3_sleep_retrieval_meta.csv",
+      "submission": "outputs/s3_temporal_state_recurrence_on_v48/submission_s3_sleep_retrieval_meta.csv",
+      "S3_log_loss": 0.5013691274762286
+    },
+    {
+      "name": "s3_temporal_state_recurrence_knn_label",
+      "oof": "outputs/s3_temporal_state_recurrence_on_v48/oof_s3_temporal_state_recurrence_knn_label.csv",
+      "submission": "outputs/s3_temporal_state_recurrence_on_v48/submission_s3_temporal_state_recurrence_knn_label.csv",
+      "S3_log_loss": 0.602382122101132,
+      "fold_log_loss": [
+        0.5730273500945362,
+        0.5587965637994695,
+        0.6796757121935048,
+        0.5485470739666074,
+        0.6547175008502765
+      ]
+    },
+    {
+      "name": "s3_temporal_state_recurrence_hgb",
+      "oof": "outputs/s3_temporal_state_recurrence_on_v48/oof_s3_temporal_state_recurrence_hgb.csv",
+      "submission": "outputs/s3_temporal_state_recurrence_on_v48/submission_s3_temporal_state_recurrence_hgb.csv",
+      "S3_log_loss": 0.6166521336590397,
+      "fold_log_loss": [
+        0.5528538300463348,
+        0.6135624997194925,
+        0.6837211830030027,
+        0.5991103606757748,
+        0.6374513798342014
+      ]
+    },
+    {
+      "name": "s3_temporal_state_recurrence_proto",
+      "oof": "outputs/s3_temporal_state_recurrence_on_v48/oof_s3_temporal_state_recurrence_proto.csv",
+      "submission": "outputs/s3_temporal_state_recurrence_on_v48/submission_s3_temporal_state_recurrence_proto.csv",
+      "S3_log_loss": 0.6677802114582859,
+      "fold_log_loss": [
+        0.6612163999923533,
+        0.6126961145946783,
+        0.7027891096503346,
+        0.5836261362764958,
+        0.7833907268236363
+      ]
+    },
+    {
+      "name": "s3_temporal_state_recurrence_extra",
+      "oof": "outputs/s3_temporal_state_recurrence_on_v48/oof_s3_temporal_state_recurrence_extra.csv",
+      "submission": "outputs/s3_temporal_state_recurrence_on_v48/submission_s3_temporal_state_recurrence_extra.csv",
+      "S3_log_loss": 0.6719685668860358,
+      "fold_log_loss": [
+        0.6797885104941881,
+        0.6688150662920321,
+        0.663996543793169,
+        0.6769174474343967,
+        0.6701112598932987
+      ]
+    },
+    {
+      "name": "s3_temporal_state_recurrence_logreg",
+      "oof": "outputs/s3_temporal_state_recurrence_on_v48/oof_s3_temporal_state_recurrence_logreg.csv",
+      "submission": "outputs/s3_temporal_state_recurrence_on_v48/submission_s3_temporal_state_recurrence_logreg.csv",
+      "S3_log_loss": 0.8069709845606656,
+      "fold_log_loss": [
+        0.663064309211853,
+        0.6712155883163627,
+        0.8097120449688522,
+        0.7282014843559561,
+        1.192431462599228
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v48_state_transition_on_v47/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v48_state_transition_on_v47/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s3_temporal_state_recurrence_on_v48",
+    "target": "S3",
+    "groups": "temporal_state_recurrence",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_state_recurrence": 26
+  }
+}

@@ -1,0 +1,218 @@
+[
+  {
+    "name": "weather_base_c0p003",
+    "avg_log_loss": 0.6423177884064583,
+    "target_scores": {
+      "Q1": 0.7048131468012208,
+      "Q2": 0.7137766284467225,
+      "Q3": 0.6607650929889252,
+      "S1": 0.5997476181702238,
+      "S2": 0.6011387875969402,
+      "S3": 0.5780153860787705,
+      "S4": 0.6379678587624041
+    },
+    "n_features": 921,
+    "c_value": 0.003,
+    "class_weight": NaN,
+    "oof_path": "outputs/external_weather_decoder/oof_weather_base_c0p003.csv",
+    "submission_path": "outputs/external_weather_decoder/submission_weather_base_c0p003.csv"
+  },
+  {
+    "name": "weather_base_c0p01",
+    "avg_log_loss": 0.6561675336585066,
+    "target_scores": {
+      "Q1": 0.7485544509587441,
+      "Q2": 0.7317017007354503,
+      "Q3": 0.6746343432993335,
+      "S1": 0.6138950937669942,
+      "S2": 0.6077412739501589,
+      "S3": 0.5867776199229587,
+      "S4": 0.6298682529759053
+    },
+    "n_features": 921,
+    "c_value": 0.01,
+    "class_weight": NaN,
+    "oof_path": "outputs/external_weather_decoder/oof_weather_base_c0p01.csv",
+    "submission_path": "outputs/external_weather_decoder/submission_weather_base_c0p01.csv"
+  },
+  {
+    "name": "weather_base_bal_c0p003",
+    "avg_log_loss": 0.660830189289168,
+    "target_scores": {
+      "Q1": 0.7029746795414215,
+      "Q2": 0.7090455621596841,
+      "Q3": 0.6739401773161623,
+      "S1": 0.6502844084691899,
+      "S2": 0.6289902683362849,
+      "S3": 0.6169215409099513,
+      "S4": 0.6436546882914828
+    },
+    "n_features": 921,
+    "c_value": 0.003,
+    "class_weight": "balanced",
+    "oof_path": "outputs/external_weather_decoder/oof_weather_base_bal_c0p003.csv",
+    "submission_path": "outputs/external_weather_decoder/submission_weather_base_bal_c0p003.csv"
+  },
+  {
+    "name": "weather_base_bal_c0p01",
+    "avg_log_loss": 0.6733161902193512,
+    "target_scores": {
+      "Q1": 0.7459613083896869,
+      "Q2": 0.7262479637875776,
+      "Q3": 0.685887293735521,
+      "S1": 0.6638766728541616,
+      "S2": 0.6307511475614672,
+      "S3": 0.6253914193043728,
+      "S4": 0.6350975259026712
+    },
+    "n_features": 921,
+    "c_value": 0.01,
+    "class_weight": "balanced",
+    "oof_path": "outputs/external_weather_decoder/oof_weather_base_bal_c0p01.csv",
+    "submission_path": "outputs/external_weather_decoder/submission_weather_base_bal_c0p01.csv"
+  },
+  {
+    "name": "weather_only_c0p003",
+    "avg_log_loss": 0.685097958836363,
+    "target_scores": {
+      "Q1": 0.7260602088110717,
+      "Q2": 0.7446361834607832,
+      "Q3": 0.6876743022438773,
+      "S1": 0.6451808468277164,
+      "S2": 0.6692490275795413,
+      "S3": 0.6341552523229191,
+      "S4": 0.6887298906086327
+    },
+    "n_features": 907,
+    "c_value": 0.003,
+    "class_weight": NaN,
+    "oof_path": "outputs/external_weather_decoder/oof_weather_only_c0p003.csv",
+    "submission_path": "outputs/external_weather_decoder/submission_weather_only_c0p003.csv"
+  },
+  {
+    "name": "weather_base_c0p03",
+    "avg_log_loss": 0.7026009639837303,
+    "target_scores": {
+      "Q1": 0.8188241639718401,
+      "Q2": 0.7817754085820149,
+      "Q3": 0.719806823091982,
+      "S1": 0.6612332248384005,
+      "S2": 0.6475419827520484,
+      "S3": 0.6395868803483838,
+      "S4": 0.6494382643014422
+    },
+    "n_features": 921,
+    "c_value": 0.03,
+    "class_weight": NaN,
+    "oof_path": "outputs/external_weather_decoder/oof_weather_base_c0p03.csv",
+    "submission_path": "outputs/external_weather_decoder/submission_weather_base_c0p03.csv"
+  },
+  {
+    "name": "weather_only_c0p01",
+    "avg_log_loss": 0.715916332962564,
+    "target_scores": {
+      "Q1": 0.7726774625977553,
+      "Q2": 0.7772592542088698,
+      "Q3": 0.7170698984766457,
+      "S1": 0.6836310280454998,
+      "S2": 0.7044303056454231,
+      "S3": 0.6552500273071694,
+      "S4": 0.7010963544565851
+    },
+    "n_features": 907,
+    "c_value": 0.01,
+    "class_weight": NaN,
+    "oof_path": "outputs/external_weather_decoder/oof_weather_only_c0p01.csv",
+    "submission_path": "outputs/external_weather_decoder/submission_weather_only_c0p01.csv"
+  },
+  {
+    "name": "weather_base_bal_c0p03",
+    "avg_log_loss": 0.719879332901933,
+    "target_scores": {
+      "Q1": 0.8157980945632237,
+      "Q2": 0.7756728314414781,
+      "Q3": 0.7301198555943308,
+      "S1": 0.7130934227913629,
+      "S2": 0.6697349556146844,
+      "S3": 0.6806372506965039,
+      "S4": 0.6540989196119468
+    },
+    "n_features": 921,
+    "c_value": 0.03,
+    "class_weight": "balanced",
+    "oof_path": "outputs/external_weather_decoder/oof_weather_base_bal_c0p03.csv",
+    "submission_path": "outputs/external_weather_decoder/submission_weather_base_bal_c0p03.csv"
+  },
+  {
+    "name": "weather_only_c0p03",
+    "avg_log_loss": 0.769037436824757,
+    "target_scores": {
+      "Q1": 0.838998641224001,
+      "Q2": 0.8294781759837024,
+      "Q3": 0.7663470970695772,
+      "S1": 0.7489469255842394,
+      "S2": 0.7645714330147646,
+      "S3": 0.7034516535041586,
+      "S4": 0.7314681313928557
+    },
+    "n_features": 907,
+    "c_value": 0.03,
+    "class_weight": NaN,
+    "oof_path": "outputs/external_weather_decoder/oof_weather_only_c0p03.csv",
+    "submission_path": "outputs/external_weather_decoder/submission_weather_only_c0p03.csv"
+  },
+  {
+    "name": "weather_base_c0p1",
+    "avg_log_loss": 0.8041976408587276,
+    "target_scores": {
+      "Q1": 0.9372834656924071,
+      "Q2": 0.8833169481884476,
+      "Q3": 0.8152421989753015,
+      "S1": 0.770666648076629,
+      "S2": 0.7449241403342094,
+      "S3": 0.7545657527011294,
+      "S4": 0.7233843320429696
+    },
+    "n_features": 921,
+    "c_value": 0.1,
+    "class_weight": NaN,
+    "oof_path": "outputs/external_weather_decoder/oof_weather_base_c0p1.csv",
+    "submission_path": "outputs/external_weather_decoder/submission_weather_base_c0p1.csv"
+  },
+  {
+    "name": "weather_base_bal_c0p1",
+    "avg_log_loss": 0.822575625647695,
+    "target_scores": {
+      "Q1": 0.9341560493210013,
+      "Q2": 0.8759585372457882,
+      "Q3": 0.8263573233448819,
+      "S1": 0.825148600149093,
+      "S2": 0.7686956443661913,
+      "S3": 0.8003829796648929,
+      "S4": 0.7273302454420163
+    },
+    "n_features": 921,
+    "c_value": 0.1,
+    "class_weight": "balanced",
+    "oof_path": "outputs/external_weather_decoder/oof_weather_base_bal_c0p1.csv",
+    "submission_path": "outputs/external_weather_decoder/submission_weather_base_bal_c0p1.csv"
+  },
+  {
+    "name": "weather_only_c0p1",
+    "avg_log_loss": 0.8687465431737733,
+    "target_scores": {
+      "Q1": 0.9468925208257044,
+      "Q2": 0.9258171695951106,
+      "Q3": 0.8545230212921856,
+      "S1": 0.8685795294909531,
+      "S2": 0.8758740750682644,
+      "S3": 0.8043457919927649,
+      "S4": 0.8051936939514298
+    },
+    "n_features": 907,
+    "c_value": 0.1,
+    "class_weight": NaN,
+    "oof_path": "outputs/external_weather_decoder/oof_weather_only_c0p1.csv",
+    "submission_path": "outputs/external_weather_decoder/submission_weather_only_c0p1.csv"
+  }
+]

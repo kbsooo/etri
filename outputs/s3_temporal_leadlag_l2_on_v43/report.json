@@ -1,0 +1,119 @@
+{
+  "target": "S3",
+  "base_log_loss": 0.4408840983678546,
+  "best_source_log_loss": 0.4704018725191741,
+  "sources": [
+    {
+      "name": "s3_temporal_leadlag_knn_resid",
+      "oof": "outputs/s3_temporal_leadlag_l2_on_v43/oof_s3_temporal_leadlag_knn_resid.csv",
+      "submission": "outputs/s3_temporal_leadlag_l2_on_v43/submission_s3_temporal_leadlag_knn_resid.csv",
+      "S3_log_loss": 0.4704018725191741,
+      "fold_log_loss": [
+        0.409262332776117,
+        0.4808027672478382,
+        0.5551282881814649,
+        0.3949245725734082,
+        0.5140229928787805
+      ]
+    },
+    {
+      "name": "s3_sleep_retrieval_meta",
+      "oof": "outputs/s3_temporal_leadlag_l2_on_v43/oof_s3_sleep_retrieval_meta.csv",
+      "submission": "outputs/s3_temporal_leadlag_l2_on_v43/submission_s3_sleep_retrieval_meta.csv",
+      "S3_log_loss": 0.511242164662373
+    },
+    {
+      "name": "s3_temporal_leadlag_knn_logitresid",
+      "oof": "outputs/s3_temporal_leadlag_l2_on_v43/oof_s3_temporal_leadlag_knn_logitresid.csv",
+      "submission": "outputs/s3_temporal_leadlag_l2_on_v43/submission_s3_temporal_leadlag_knn_logitresid.csv",
+      "S3_log_loss": 0.5153729176482215,
+      "fold_log_loss": [
+        0.4307081236166156,
+        0.5108669837816453,
+        0.6196999430456251,
+        0.42836983225507314,
+        0.5922342172572536
+      ]
+    },
+    {
+      "name": "s3_temporal_leadlag_hgb",
+      "oof": "outputs/s3_temporal_leadlag_l2_on_v43/oof_s3_temporal_leadlag_hgb.csv",
+      "submission": "outputs/s3_temporal_leadlag_l2_on_v43/submission_s3_temporal_leadlag_hgb.csv",
+      "S3_log_loss": 0.6030636186714274,
+      "fold_log_loss": [
+        0.5581951163408648,
+        0.5920505562043055,
+        0.6924719386156891,
+        0.5466388423497706,
+        0.6271637115353685
+      ]
+    },
+    {
+      "name": "s3_temporal_leadlag_knn_label",
+      "oof": "outputs/s3_temporal_leadlag_l2_on_v43/oof_s3_temporal_leadlag_knn_label.csv",
+      "submission": "outputs/s3_temporal_leadlag_l2_on_v43/submission_s3_temporal_leadlag_knn_label.csv",
+      "S3_log_loss": 0.6607045756778457,
+      "fold_log_loss": [
+        0.6023606461635844,
+        0.6550686805229239,
+        0.7084350549409549,
+        0.6533533450532019,
+        0.6884370357897119
+      ]
+    },
+    {
+      "name": "s3_temporal_leadlag_extra",
+      "oof": "outputs/s3_temporal_leadlag_l2_on_v43/oof_s3_temporal_leadlag_extra.csv",
+      "submission": "outputs/s3_temporal_leadlag_l2_on_v43/submission_s3_temporal_leadlag_extra.csv",
+      "S3_log_loss": 0.6672381684580774,
+      "fold_log_loss": [
+        0.6582572672145128,
+        0.6741673378608378,
+        0.6729287959663988,
+        0.6609731586619323,
+        0.6700959423650427
+      ]
+    },
+    {
+      "name": "s3_temporal_leadlag_proto",
+      "oof": "outputs/s3_temporal_leadlag_l2_on_v43/oof_s3_temporal_leadlag_proto.csv",
+      "submission": "outputs/s3_temporal_leadlag_l2_on_v43/submission_s3_temporal_leadlag_proto.csv",
+      "S3_log_loss": 0.7042344752374998,
+      "fold_log_loss": [
+        0.6465638876751318,
+        0.6347291465947404,
+        0.8329616950474863,
+        0.6789972868451918,
+        0.7319362921902157
+      ]
+    },
+    {
+      "name": "s3_temporal_leadlag_logreg",
+      "oof": "outputs/s3_temporal_leadlag_l2_on_v43/oof_s3_temporal_leadlag_logreg.csv",
+      "submission": "outputs/s3_temporal_leadlag_l2_on_v43/submission_s3_temporal_leadlag_logreg.csv",
+      "S3_log_loss": 0.8420472057010809,
+      "fold_log_loss": [
+        0.7455798566226239,
+        0.6932360164954097,
+        1.044022307203475,
+        0.8626144244808818,
+        0.8736465621577231
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v43_leadlag_constrained_on_v40/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v43_leadlag_constrained_on_v40/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s3_temporal_leadlag_l2_on_v43",
+    "target": "S3",
+    "groups": "temporal_leadlag",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_leadlag": 144
+  }
+}

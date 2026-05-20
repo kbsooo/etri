@@ -1,0 +1,145 @@
+{
+  "base_score": {
+    "avg_log_loss": 0.5728416999728788,
+    "per_target": {
+      "Q1": 0.6254818222427004,
+      "Q2": 0.6297410871970225,
+      "Q3": 0.6053800118400904,
+      "S1": 0.5497176089668788,
+      "S2": 0.5201877381098341,
+      "S3": 0.4940860950949899,
+      "S4": 0.5852975363586352
+    }
+  },
+  "routed_score": {
+    "avg_log_loss": 0.5727494524669633,
+    "per_target": {
+      "Q1": 0.6254818222427004,
+      "Q2": 0.6297410871970225,
+      "Q3": 0.6052934702887066,
+      "S1": 0.5497176089668788,
+      "S2": 0.5201877381098341,
+      "S3": 0.4940860950949899,
+      "S4": 0.58473834536861
+    }
+  },
+  "selected_moves": [
+    {
+      "target": "Q1",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "Q2",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "Q3",
+      "source": "v8",
+      "bin": "late",
+      "weight": 0.5,
+      "improvement": 8.654155138376751e-05,
+      "move_index": 1,
+      "lo": 0.666,
+      "hi": 1.000001,
+      "train_rows": 116.0,
+      "sample_rows": 120.0,
+      "base_log_loss": 0.6053800118400904,
+      "log_loss": 0.6052934702887066
+    },
+    {
+      "target": "S1",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "S2",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "S3",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "S4",
+      "source": "v8",
+      "bin": "late",
+      "weight": 1.0,
+      "improvement": 0.0005591909900252157,
+      "move_index": 1,
+      "lo": 0.666,
+      "hi": 1.000001,
+      "train_rows": 116.0,
+      "sample_rows": 120.0,
+      "base_log_loss": 0.5852975363586352,
+      "log_loss": 0.58473834536861
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v7_overlap_q1/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v7_overlap_q1/submission_conditional_latent_routing.csv",
+    "source": [
+      "v8=outputs/conditional_latent_routing_v8_nonq_focus_sources/oof_conditional_latent_routing.csv,outputs/conditional_latent_routing_v8_nonq_focus_sources/submission_conditional_latent_routing.csv",
+      "gru_q2s2s4=outputs/sequence_encoder_residual_target_only_on_v7/oof_gru28_q2only.csv,outputs/sequence_encoder_residual_target_only_on_v7/submission_gru28_q2only.csv",
+      "tf_q2s2s4=outputs/sequence_encoder_residual_target_only_on_v7/oof_tf28_q2s2s4.csv,outputs/sequence_encoder_residual_target_only_on_v7/submission_tf28_q2s2s4.csv"
+    ],
+    "output_dir": "outputs/conditional_latent_routing_v9_target_only_mix",
+    "weights": "0.25,0.5,0.75,1.0",
+    "bins": "early:0:0.333,mid:0.333:0.666,late_mid:0.666:0.8,tail:0.8:1.000001,late:0.666:1.000001,all:0:1.000001",
+    "min_train_rows": 20,
+    "min_sample_rows": 1,
+    "min_improvement": 8e-05,
+    "max_moves_per_target": 3,
+    "allow_overlap": true
+  }
+}

@@ -1,0 +1,395 @@
+{
+  "target": "Q1",
+  "base_log_loss": 0.6042810991866554,
+  "best_source_log_loss": 0.634564774934395,
+  "sources": [
+    {
+      "name": "q1_sleep_retrieval_meta",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_sleep_retrieval_meta.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_sleep_retrieval_meta.csv",
+      "Q1_log_loss": 0.634564774934395
+    },
+    {
+      "name": "q1_social_environment_proto",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_social_environment_proto.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_social_environment_proto.csv",
+      "Q1_log_loss": 0.6533516723528876,
+      "fold_log_loss": [
+        0.6010079199249125,
+        0.7155999876247398,
+        0.6504109396021659,
+        0.5818466479972384,
+        0.7208146755870567
+      ]
+    },
+    {
+      "name": "q1_circadian_disruption_knn_resid",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_circadian_disruption_knn_resid.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_circadian_disruption_knn_resid.csv",
+      "Q1_log_loss": 0.6579593212332014,
+      "fold_log_loss": [
+        0.5642083584393989,
+        0.6942169254963573,
+        0.6129643828904013,
+        0.7080148436911907,
+        0.7204340366279156
+      ]
+    },
+    {
+      "name": "q1_q1_s2_residual_extra",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_q1_s2_residual_extra.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_q1_s2_residual_extra.csv",
+      "Q1_log_loss": 0.6696233422867024,
+      "fold_log_loss": [
+        0.6532665549158355,
+        0.6928653027618094,
+        0.6656034810176309,
+        0.661941226594699,
+        0.6749149408421413
+      ]
+    },
+    {
+      "name": "q1_circadian_disruption_extra",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_circadian_disruption_extra.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_circadian_disruption_extra.csv",
+      "Q1_log_loss": 0.6709247492456644,
+      "fold_log_loss": [
+        0.6437824316115885,
+        0.6972294324244025,
+        0.6658675701393129,
+        0.6686433232831905,
+        0.6805385925422115
+      ]
+    },
+    {
+      "name": "q1_social_environment_extra",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_social_environment_extra.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_social_environment_extra.csv",
+      "Q1_log_loss": 0.6712570948224348,
+      "fold_log_loss": [
+        0.656789446656218,
+        0.6946782791951543,
+        0.6727437391578749,
+        0.6568730902399129,
+        0.6752076992654317
+      ]
+    },
+    {
+      "name": "q1_volatility_shift_extra",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_volatility_shift_extra.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_volatility_shift_extra.csv",
+      "Q1_log_loss": 0.6790408399102982,
+      "fold_log_loss": [
+        0.6738859759350672,
+        0.6859909174614153,
+        0.6732675654856375,
+        0.6797047164079271,
+        0.6827810241490581
+      ]
+    },
+    {
+      "name": "q1_q1_s2_residual_knn_label",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_q1_s2_residual_knn_label.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_q1_s2_residual_knn_label.csv",
+      "Q1_log_loss": 0.679982760129894,
+      "fold_log_loss": [
+        0.6510809001132015,
+        0.7258307845517713,
+        0.6595993400110177,
+        0.6550376750214807,
+        0.7100153729536919
+      ]
+    },
+    {
+      "name": "q1_social_environment_knn_label",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_social_environment_knn_label.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_social_environment_knn_label.csv",
+      "Q1_log_loss": 0.6828656676707271,
+      "fold_log_loss": [
+        0.6946794067285866,
+        0.7021168418227401,
+        0.6840594751284088,
+        0.6444412632362158,
+        0.6868759438433336
+      ]
+    },
+    {
+      "name": "q1_social_environment_hgb",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_social_environment_hgb.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_social_environment_hgb.csv",
+      "Q1_log_loss": 0.6879253668106906,
+      "fold_log_loss": [
+        0.6459785865416812,
+        0.7332866557913577,
+        0.6898986250920277,
+        0.6344213259477908,
+        0.738360550231927
+      ]
+    },
+    {
+      "name": "q1_social_environment_logreg",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_social_environment_logreg.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_social_environment_logreg.csv",
+      "Q1_log_loss": 0.6881887532805068,
+      "fold_log_loss": [
+        0.6275319701597649,
+        0.7483665939669057,
+        0.6587536521965051,
+        0.6613210732465712,
+        0.7498606993383694
+      ]
+    },
+    {
+      "name": "q1_social_environment_knn_resid",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_social_environment_knn_resid.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_social_environment_knn_resid.csv",
+      "Q1_log_loss": 0.6891415748730464,
+      "fold_log_loss": [
+        0.7267780362375584,
+        0.6722669887868288,
+        0.6372208912995191,
+        0.6606304081884247,
+        0.7501092430737106
+      ]
+    },
+    {
+      "name": "q1_q1_s2_residual_hgb",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_q1_s2_residual_hgb.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_q1_s2_residual_hgb.csv",
+      "Q1_log_loss": 0.6897034227986653,
+      "fold_log_loss": [
+        0.6255082931965659,
+        0.698689113808941,
+        0.6998766249718616,
+        0.6718510939434579,
+        0.7591063045856801
+      ]
+    },
+    {
+      "name": "q1_q1_s2_residual_proto",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_q1_s2_residual_proto.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_q1_s2_residual_proto.csv",
+      "Q1_log_loss": 0.6960105212877192,
+      "fold_log_loss": [
+        0.59519607763551,
+        0.7186869624965488,
+        0.7396976429486918,
+        0.652100513904881,
+        0.7823138404277896
+      ]
+    },
+    {
+      "name": "q1_q1_s2_residual_knn_resid",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_q1_s2_residual_knn_resid.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_q1_s2_residual_knn_resid.csv",
+      "Q1_log_loss": 0.6981253369204256,
+      "fold_log_loss": [
+        0.741678495388225,
+        0.7092970637256226,
+        0.6369632907197942,
+        0.6420651043959239,
+        0.7602151900188975
+      ]
+    },
+    {
+      "name": "q1_volatility_shift_hgb",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_volatility_shift_hgb.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_volatility_shift_hgb.csv",
+      "Q1_log_loss": 0.7031371104186769,
+      "fold_log_loss": [
+        0.6531809400510077,
+        0.7114876706619989,
+        0.6845652952800256,
+        0.6879600786247336,
+        0.7853491290802449
+      ]
+    },
+    {
+      "name": "q1_circadian_disruption_knn_label",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_circadian_disruption_knn_label.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_circadian_disruption_knn_label.csv",
+      "Q1_log_loss": 0.7071073522927794,
+      "fold_log_loss": [
+        0.6584295518379581,
+        0.7191899674517215,
+        0.6852238376907193,
+        0.7638188716667059,
+        0.7138166239614996
+      ]
+    },
+    {
+      "name": "q1_volatility_shift_knn_resid",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_volatility_shift_knn_resid.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_volatility_shift_knn_resid.csv",
+      "Q1_log_loss": 0.7087068698204808,
+      "fold_log_loss": [
+        0.7542705873680909,
+        0.6909873921003736,
+        0.5886477461704691,
+        0.6610084811587857,
+        0.85431603274925
+      ]
+    },
+    {
+      "name": "q1_volatility_shift_proto",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_volatility_shift_proto.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_volatility_shift_proto.csv",
+      "Q1_log_loss": 0.7125606653820884,
+      "fold_log_loss": [
+        0.7499189067282949,
+        0.7153244828281263,
+        0.6649068788587036,
+        0.7114042705002358,
+        0.7200170982694305
+      ]
+    },
+    {
+      "name": "q1_q1_s2_residual_logreg",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_q1_s2_residual_logreg.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_q1_s2_residual_logreg.csv",
+      "Q1_log_loss": 0.7216459014629197,
+      "fold_log_loss": [
+        0.6059450718923336,
+        0.7384207999301837,
+        0.8373064512308274,
+        0.6407100597287361,
+        0.7918176232536466
+      ]
+    },
+    {
+      "name": "q1_volatility_shift_knn_label",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_volatility_shift_knn_label.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_volatility_shift_knn_label.csv",
+      "Q1_log_loss": 0.7242058160328473,
+      "fold_log_loss": [
+        0.8415550639096802,
+        0.7250991501189017,
+        0.6631612692216061,
+        0.6862092154727122,
+        0.6963280833780077
+      ]
+    },
+    {
+      "name": "q1_circadian_disruption_hgb",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_circadian_disruption_hgb.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_circadian_disruption_hgb.csv",
+      "Q1_log_loss": 0.7296906152742427,
+      "fold_log_loss": [
+        0.68278281860996,
+        0.7745317836118255,
+        0.7297952864039623,
+        0.729058424891167,
+        0.7341180115868581
+      ]
+    },
+    {
+      "name": "q1_circadian_disruption_knn_logitresid",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_circadian_disruption_knn_logitresid.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_circadian_disruption_knn_logitresid.csv",
+      "Q1_log_loss": 0.7465374526080905,
+      "fold_log_loss": [
+        0.6131251240103333,
+        0.8633978926134204,
+        0.6553071772536551,
+        0.7658452776171454,
+        0.8470690410523541
+      ]
+    },
+    {
+      "name": "q1_circadian_disruption_proto",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_circadian_disruption_proto.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_circadian_disruption_proto.csv",
+      "Q1_log_loss": 0.7563855805740017,
+      "fold_log_loss": [
+        0.6877638104014482,
+        0.7734757689276216,
+        0.7697673994629647,
+        0.7848389441074984,
+        0.7711336122392918
+      ]
+    },
+    {
+      "name": "q1_volatility_shift_logreg",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_volatility_shift_logreg.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_volatility_shift_logreg.csv",
+      "Q1_log_loss": 0.757492635980704,
+      "fold_log_loss": [
+        0.8481286354134288,
+        0.7504917585115863,
+        0.6603091555290843,
+        0.7660310127036046,
+        0.7590752092425281
+      ]
+    },
+    {
+      "name": "q1_social_environment_knn_logitresid",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_social_environment_knn_logitresid.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_social_environment_knn_logitresid.csv",
+      "Q1_log_loss": 0.7673945386611614,
+      "fold_log_loss": [
+        0.8029941045716901,
+        0.7535394454055616,
+        0.7131416915306173,
+        0.710931546474489,
+        0.8584768825098076
+      ]
+    },
+    {
+      "name": "q1_volatility_shift_knn_logitresid",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_volatility_shift_knn_logitresid.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_volatility_shift_knn_logitresid.csv",
+      "Q1_log_loss": 0.7760574075485479,
+      "fold_log_loss": [
+        0.8376321685676209,
+        0.7923420508281555,
+        0.6207631206001045,
+        0.7677342251986221,
+        0.8643880839981487
+      ]
+    },
+    {
+      "name": "q1_q1_s2_residual_knn_logitresid",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_q1_s2_residual_knn_logitresid.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_q1_s2_residual_knn_logitresid.csv",
+      "Q1_log_loss": 0.7805955101073807,
+      "fold_log_loss": [
+        0.8037763014043093,
+        0.8123058983616689,
+        0.7432182906817822,
+        0.7053120643059052,
+        0.837436167282147
+      ]
+    },
+    {
+      "name": "q1_circadian_disruption_logreg",
+      "oof": "outputs/q1_special_retrieval_on_v20/oof_q1_circadian_disruption_logreg.csv",
+      "submission": "outputs/q1_special_retrieval_on_v20/submission_q1_circadian_disruption_logreg.csv",
+      "Q1_log_loss": 0.9084306087253816,
+      "fold_log_loss": [
+        0.7141352595093515,
+        0.9042273074789139,
+        0.9115152242466239,
+        1.0686562638774968,
+        0.9628356661316269
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v20_l3_prefix_matched/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v20_l3_prefix_matched/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/q1_special_retrieval_on_v20",
+    "target": "Q1",
+    "groups": "volatility_shift,circadian_disruption,social_environment,q1_s2_residual",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "volatility_shift": 906,
+    "circadian_disruption": 652,
+    "social_environment": 867,
+    "q1_s2_residual": 1596
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "target": "Q2",
+  "base_log_loss": 0.5708489403268833,
+  "best_source_log_loss": 0.5833274448458012,
+  "sources": [
+    {
+      "name": "q2_temporal_motif_knn_resid",
+      "oof": "outputs/q2_temporal_motif_on_v45/oof_q2_temporal_motif_knn_resid.csv",
+      "submission": "outputs/q2_temporal_motif_on_v45/submission_q2_temporal_motif_knn_resid.csv",
+      "Q2_log_loss": 0.5833274448458012,
+      "fold_log_loss": [
+        0.6058602915475805,
+        0.6243320971890305,
+        0.5628971428220996,
+        0.5898228716247952,
+        0.5289863495768399
+      ]
+    },
+    {
+      "name": "q2_sleep_retrieval_meta",
+      "oof": "outputs/q2_temporal_motif_on_v45/oof_q2_sleep_retrieval_meta.csv",
+      "submission": "outputs/q2_temporal_motif_on_v45/submission_q2_sleep_retrieval_meta.csv",
+      "Q2_log_loss": 0.5909640419209452
+    },
+    {
+      "name": "q2_temporal_motif_knn_logitresid",
+      "oof": "outputs/q2_temporal_motif_on_v45/oof_q2_temporal_motif_knn_logitresid.csv",
+      "submission": "outputs/q2_temporal_motif_on_v45/submission_q2_temporal_motif_knn_logitresid.csv",
+      "Q2_log_loss": 0.6472701653723908,
+      "fold_log_loss": [
+        0.6651472790309413,
+        0.6826394196310253,
+        0.6049300513367325,
+        0.702481233998364,
+        0.5778265208715496
+      ]
+    },
+    {
+      "name": "q2_temporal_motif_extra",
+      "oof": "outputs/q2_temporal_motif_on_v45/oof_q2_temporal_motif_extra.csv",
+      "submission": "outputs/q2_temporal_motif_on_v45/submission_q2_temporal_motif_extra.csv",
+      "Q2_log_loss": 0.6866142621423257,
+      "fold_log_loss": [
+        0.7001641060752818,
+        0.6844270049977708,
+        0.673010177550159,
+        0.7006376026245092,
+        0.6740487746082723
+      ]
+    },
+    {
+      "name": "q2_temporal_motif_knn_label",
+      "oof": "outputs/q2_temporal_motif_on_v45/oof_q2_temporal_motif_knn_label.csv",
+      "submission": "outputs/q2_temporal_motif_on_v45/submission_q2_temporal_motif_knn_label.csv",
+      "Q2_log_loss": 0.7161593909339048,
+      "fold_log_loss": [
+        0.7045586312457751,
+        0.7005735315524153,
+        0.6572293027588645,
+        0.7677128554252333,
+        0.7563177185415807
+      ]
+    },
+    {
+      "name": "q2_temporal_motif_hgb",
+      "oof": "outputs/q2_temporal_motif_on_v45/oof_q2_temporal_motif_hgb.csv",
+      "submission": "outputs/q2_temporal_motif_on_v45/submission_q2_temporal_motif_hgb.csv",
+      "Q2_log_loss": 0.7170317867527283,
+      "fold_log_loss": [
+        0.7370673965755311,
+        0.6594482206649213,
+        0.7135822890498039,
+        0.8123835648966192,
+        0.6630624307451936
+      ]
+    },
+    {
+      "name": "q2_temporal_motif_proto",
+      "oof": "outputs/q2_temporal_motif_on_v45/oof_q2_temporal_motif_proto.csv",
+      "submission": "outputs/q2_temporal_motif_on_v45/submission_q2_temporal_motif_proto.csv",
+      "Q2_log_loss": 0.7538400085297912,
+      "fold_log_loss": [
+        0.7857878675939393,
+        0.6729133293128701,
+        0.7442605627329896,
+        0.7934530349830969,
+        0.7754353513878384
+      ]
+    },
+    {
+      "name": "q2_temporal_motif_logreg",
+      "oof": "outputs/q2_temporal_motif_on_v45/oof_q2_temporal_motif_logreg.csv",
+      "submission": "outputs/q2_temporal_motif_on_v45/submission_q2_temporal_motif_logreg.csv",
+      "Q2_log_loss": 0.909723106865191,
+      "fold_log_loss": [
+        0.9368158912182746,
+        0.7892933315858073,
+        0.9024635416819726,
+        0.9859723324884982,
+        0.9395191376252553
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v45_leadlag_l2_on_v43/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v45_leadlag_l2_on_v43/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/q2_temporal_motif_on_v45",
+    "target": "Q2",
+    "groups": "temporal_motif",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_motif": 315
+  }
+}

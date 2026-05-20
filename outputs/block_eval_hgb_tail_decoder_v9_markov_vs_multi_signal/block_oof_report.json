@@ -1,0 +1,42 @@
+{
+  "baseline": "multi_signal",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "hgb_tail_decoder_v9_markov_q1",
+      "avg_log_loss": 0.5779378616469673,
+      "overall_p025": 0.0015731048157083013,
+      "overall_improvement": 0.0036544408564747046,
+      "early_delta": 0.00072390574437875,
+      "mid_delta": 0.0019260346886638136,
+      "late_delta": 0.008237246834071121,
+      "tail20_delta": 0.011812725552324155,
+      "late_p025": 0.0023662043653053647,
+      "tail20_p025": 0.0022404345325020914,
+      "worst_subject_delta": -0.006438018371068721,
+      "worst_late_target_delta": -0.0019896974623576646,
+      "promote": false
+    },
+    {
+      "name": "multi_signal",
+      "avg_log_loss": 0.5815923025034421,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

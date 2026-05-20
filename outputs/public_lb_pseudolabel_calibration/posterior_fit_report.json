@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "message": "The solution converged.",
+  "lambda": [
+    0.3896433177418944,
+    -0.1423034260035136,
+    -0.07069399533732747,
+    -0.18243839458522987
+  ],
+  "max_abs_constraint_error": 4.171551992726563e-12,
+  "constraints": [
+    {
+      "name": "v76",
+      "public_score": 0.5999627447,
+      "posterior_bce": 0.5999627446990595,
+      "abs_error": 9.404699241599701e-13
+    },
+    {
+      "name": "recovery15",
+      "public_score": 0.6057860899,
+      "posterior_bce": 0.6057860898979709,
+      "abs_error": 2.0291546221073986e-12
+    },
+    {
+      "name": "dae",
+      "public_score": 0.6104310794,
+      "posterior_bce": 0.6104310793982267,
+      "abs_error": 1.7732482149313e-12
+    },
+    {
+      "name": "v38a",
+      "public_score": 0.6335340671,
+      "posterior_bce": 0.6335340670958285,
+      "abs_error": 4.171551992726563e-12
+    }
+  ]
+}

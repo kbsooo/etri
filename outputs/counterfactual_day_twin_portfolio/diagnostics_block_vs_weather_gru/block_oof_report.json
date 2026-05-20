@@ -1,0 +1,57 @@
+{
+  "baseline": "weather_gru_base",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "dae_q1tail_w050",
+      "avg_log_loss": 0.5737315365789895,
+      "overall_p025": -0.00021689309040365373,
+      "overall_improvement": 0.0001425222052156581,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0004219407391252705,
+      "tail20_delta": 0.0006751051826004995,
+      "late_p025": -0.0006468372138668343,
+      "tail20_p025": -0.001046120354632991,
+      "worst_subject_delta": -0.0006830504443349761,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    },
+    {
+      "name": "dae_q1tail_w030",
+      "avg_log_loss": 0.5737725521413525,
+      "overall_p025": -0.00011748179361790725,
+      "overall_improvement": 0.00010150664285266335,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.00030051308739287297,
+      "tail20_delta": 0.0004808209398283747,
+      "late_p025": -0.0003515508056653152,
+      "tail20_p025": -0.0005582984711061498,
+      "worst_subject_delta": -0.00038692832625342177,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    },
+    {
+      "name": "weather_gru_base",
+      "avg_log_loss": 0.5738740587842052,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

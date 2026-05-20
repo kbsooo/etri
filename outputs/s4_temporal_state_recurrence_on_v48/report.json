@@ -1,0 +1,119 @@
+{
+  "target": "S4",
+  "base_log_loss": 0.5076339334726936,
+  "best_source_log_loss": 0.5343041827295917,
+  "sources": [
+    {
+      "name": "s4_temporal_state_recurrence_knn_resid",
+      "oof": "outputs/s4_temporal_state_recurrence_on_v48/oof_s4_temporal_state_recurrence_knn_resid.csv",
+      "submission": "outputs/s4_temporal_state_recurrence_on_v48/submission_s4_temporal_state_recurrence_knn_resid.csv",
+      "S4_log_loss": 0.5343041827295917,
+      "fold_log_loss": [
+        0.5653686676484149,
+        0.4950209154173341,
+        0.5610656566411139,
+        0.5760359160695049,
+        0.4707392368345151
+      ]
+    },
+    {
+      "name": "s4_sleep_retrieval_meta",
+      "oof": "outputs/s4_temporal_state_recurrence_on_v48/oof_s4_sleep_retrieval_meta.csv",
+      "submission": "outputs/s4_temporal_state_recurrence_on_v48/submission_s4_sleep_retrieval_meta.csv",
+      "S4_log_loss": 0.5425870455013374
+    },
+    {
+      "name": "s4_temporal_state_recurrence_knn_logitresid",
+      "oof": "outputs/s4_temporal_state_recurrence_on_v48/oof_s4_temporal_state_recurrence_knn_logitresid.csv",
+      "submission": "outputs/s4_temporal_state_recurrence_on_v48/submission_s4_temporal_state_recurrence_knn_logitresid.csv",
+      "S4_log_loss": 0.6174617151181994,
+      "fold_log_loss": [
+        0.5870949940330491,
+        0.5887766347379858,
+        0.6727054837355134,
+        0.7038652184662677,
+        0.5348685170312752
+      ]
+    },
+    {
+      "name": "s4_temporal_state_recurrence_extra",
+      "oof": "outputs/s4_temporal_state_recurrence_on_v48/oof_s4_temporal_state_recurrence_extra.csv",
+      "submission": "outputs/s4_temporal_state_recurrence_on_v48/submission_s4_temporal_state_recurrence_extra.csv",
+      "S4_log_loss": 0.6901020306648735,
+      "fold_log_loss": [
+        0.7199748124926699,
+        0.6804430698990105,
+        0.6894780286254802,
+        0.6772159176538809,
+        0.6810265734220493
+      ]
+    },
+    {
+      "name": "s4_temporal_state_recurrence_knn_label",
+      "oof": "outputs/s4_temporal_state_recurrence_on_v48/oof_s4_temporal_state_recurrence_knn_label.csv",
+      "submission": "outputs/s4_temporal_state_recurrence_on_v48/submission_s4_temporal_state_recurrence_knn_label.csv",
+      "S4_log_loss": 0.7080515798846321,
+      "fold_log_loss": [
+        0.6472133425011994,
+        0.6926203889162101,
+        0.6967844006024639,
+        0.6964954286901397,
+        0.8166398221095619
+      ]
+    },
+    {
+      "name": "s4_temporal_state_recurrence_hgb",
+      "oof": "outputs/s4_temporal_state_recurrence_on_v48/oof_s4_temporal_state_recurrence_hgb.csv",
+      "submission": "outputs/s4_temporal_state_recurrence_on_v48/submission_s4_temporal_state_recurrence_hgb.csv",
+      "S4_log_loss": 0.7296298800588534,
+      "fold_log_loss": [
+        0.7831646278894965,
+        0.6776522666700623,
+        0.7047101861786084,
+        0.7842927564272995,
+        0.6967847187283264
+      ]
+    },
+    {
+      "name": "s4_temporal_state_recurrence_proto",
+      "oof": "outputs/s4_temporal_state_recurrence_on_v48/oof_s4_temporal_state_recurrence_proto.csv",
+      "submission": "outputs/s4_temporal_state_recurrence_on_v48/submission_s4_temporal_state_recurrence_proto.csv",
+      "S4_log_loss": 0.7545322044061676,
+      "fold_log_loss": [
+        0.7974388567101579,
+        0.7995353458836477,
+        0.7301269340250528,
+        0.7149234138597023,
+        0.7245371855522467
+      ]
+    },
+    {
+      "name": "s4_temporal_state_recurrence_logreg",
+      "oof": "outputs/s4_temporal_state_recurrence_on_v48/oof_s4_temporal_state_recurrence_logreg.csv",
+      "submission": "outputs/s4_temporal_state_recurrence_on_v48/submission_s4_temporal_state_recurrence_logreg.csv",
+      "S4_log_loss": 0.869933384637499,
+      "fold_log_loss": [
+        0.8872924761964902,
+        0.8062158250908662,
+        0.7822220312641083,
+        0.8542950354853275,
+        1.0294059883246
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v48_state_transition_on_v47/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v48_state_transition_on_v47/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s4_temporal_state_recurrence_on_v48",
+    "target": "S4",
+    "groups": "temporal_state_recurrence",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_state_recurrence": 26
+  }
+}

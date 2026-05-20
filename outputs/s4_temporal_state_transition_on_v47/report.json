@@ -1,0 +1,119 @@
+{
+  "target": "S4",
+  "base_log_loss": 0.5092002021128974,
+  "best_source_log_loss": 0.5407936401581809,
+  "sources": [
+    {
+      "name": "s4_sleep_retrieval_meta",
+      "oof": "outputs/s4_temporal_state_transition_on_v47/oof_s4_sleep_retrieval_meta.csv",
+      "submission": "outputs/s4_temporal_state_transition_on_v47/submission_s4_sleep_retrieval_meta.csv",
+      "S4_log_loss": 0.5407936401581809
+    },
+    {
+      "name": "s4_temporal_state_transition_knn_resid",
+      "oof": "outputs/s4_temporal_state_transition_on_v47/oof_s4_temporal_state_transition_knn_resid.csv",
+      "submission": "outputs/s4_temporal_state_transition_on_v47/submission_s4_temporal_state_transition_knn_resid.csv",
+      "S4_log_loss": 0.5729913627922009,
+      "fold_log_loss": [
+        0.777185683041552,
+        0.4749603498934319,
+        0.5763142398829805,
+        0.5559299808960723,
+        0.464783729529855
+      ]
+    },
+    {
+      "name": "s4_temporal_state_transition_knn_logitresid",
+      "oof": "outputs/s4_temporal_state_transition_on_v47/oof_s4_temporal_state_transition_knn_logitresid.csv",
+      "submission": "outputs/s4_temporal_state_transition_on_v47/submission_s4_temporal_state_transition_knn_logitresid.csv",
+      "S4_log_loss": 0.6182915608000078,
+      "fold_log_loss": [
+        0.6786901464748535,
+        0.5299674293814689,
+        0.6595355547658135,
+        0.7009355515807486,
+        0.5176412525950961
+      ]
+    },
+    {
+      "name": "s4_temporal_state_transition_extra",
+      "oof": "outputs/s4_temporal_state_transition_on_v47/oof_s4_temporal_state_transition_extra.csv",
+      "submission": "outputs/s4_temporal_state_transition_on_v47/submission_s4_temporal_state_transition_extra.csv",
+      "S4_log_loss": 0.6898191925575367,
+      "fold_log_loss": [
+        0.6869904608851178,
+        0.6841928102638896,
+        0.7049160138203996,
+        0.6956564494521431,
+        0.6769333642651126
+      ]
+    },
+    {
+      "name": "s4_temporal_state_transition_hgb",
+      "oof": "outputs/s4_temporal_state_transition_on_v47/oof_s4_temporal_state_transition_hgb.csv",
+      "submission": "outputs/s4_temporal_state_transition_on_v47/submission_s4_temporal_state_transition_hgb.csv",
+      "S4_log_loss": 0.6922772464925288,
+      "fold_log_loss": [
+        0.6863753281786616,
+        0.6752135625048322,
+        0.6785351264439753,
+        0.7326657761510916,
+        0.6907157407373383
+      ]
+    },
+    {
+      "name": "s4_temporal_state_transition_knn_label",
+      "oof": "outputs/s4_temporal_state_transition_on_v47/oof_s4_temporal_state_transition_knn_label.csv",
+      "submission": "outputs/s4_temporal_state_transition_on_v47/submission_s4_temporal_state_transition_knn_label.csv",
+      "S4_log_loss": 0.7082327990268161,
+      "fold_log_loss": [
+        0.7178919484312002,
+        0.7043467418642877,
+        0.7080779354775671,
+        0.6852090849992861,
+        0.7253746080728504
+      ]
+    },
+    {
+      "name": "s4_temporal_state_transition_proto",
+      "oof": "outputs/s4_temporal_state_transition_on_v47/oof_s4_temporal_state_transition_proto.csv",
+      "submission": "outputs/s4_temporal_state_transition_on_v47/submission_s4_temporal_state_transition_proto.csv",
+      "S4_log_loss": 0.7711602488431094,
+      "fold_log_loss": [
+        0.7880844797291322,
+        0.7706896077190813,
+        0.765683322023533,
+        0.7743031789658731,
+        0.7554009837741614
+      ]
+    },
+    {
+      "name": "s4_temporal_state_transition_logreg",
+      "oof": "outputs/s4_temporal_state_transition_on_v47/oof_s4_temporal_state_transition_logreg.csv",
+      "submission": "outputs/s4_temporal_state_transition_on_v47/submission_s4_temporal_state_transition_logreg.csv",
+      "S4_log_loss": 0.883235457058314,
+      "fold_log_loss": [
+        0.9637879709576483,
+        0.928225747843455,
+        0.9705213578163826,
+        0.6949073785612424,
+        0.8438228722064465
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v47_dynamics_on_v46/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v47_dynamics_on_v46/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s4_temporal_state_transition_on_v47",
+    "target": "S4",
+    "groups": "temporal_state_transition",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_state_transition": 35
+  }
+}

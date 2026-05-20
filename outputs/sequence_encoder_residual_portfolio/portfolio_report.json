@@ -1,0 +1,83 @@
+[
+  {
+    "name": "trp_plus_gru28_s3tail_w100",
+    "uniform_oof_cv": 0.5741376509308571,
+    "sample_weighted_oof_cv": 0.5362583398416737,
+    "train_apply_rows": 22,
+    "sample_apply_rows": 120,
+    "oof_path": "outputs/sequence_encoder_residual_portfolio/oof_trp_plus_gru28_s3tail_w100.csv",
+    "submission_path": "outputs/sequence_encoder_residual_portfolio/submission_trp_plus_gru28_s3tail_w100.csv",
+    "moves": [
+      {
+        "target": "S3",
+        "lo": 0.8,
+        "hi": 1.000001,
+        "weight": 1.0,
+        "source_name": "gru28_sequence_residual"
+      }
+    ],
+    "min": 0.0878948450951207,
+    "p01": 0.15073844961174354,
+    "p05": 0.25255431763943614,
+    "mean": 0.6191357561325315,
+    "p95": 0.9305488727523175,
+    "p99": 0.9798319754999999,
+    "max": 0.994744571783766,
+    "abs_logit_mean": 0.9837410174861069,
+    "extreme_005_995": 0.0
+  },
+  {
+    "name": "trp_plus_gru28_s3tail_w080",
+    "uniform_oof_cv": 0.5741540988735713,
+    "sample_weighted_oof_cv": 0.5364198287337765,
+    "train_apply_rows": 22,
+    "sample_apply_rows": 120,
+    "oof_path": "outputs/sequence_encoder_residual_portfolio/oof_trp_plus_gru28_s3tail_w080.csv",
+    "submission_path": "outputs/sequence_encoder_residual_portfolio/submission_trp_plus_gru28_s3tail_w080.csv",
+    "moves": [
+      {
+        "target": "S3",
+        "lo": 0.8,
+        "hi": 1.000001,
+        "weight": 0.8,
+        "source_name": "gru28_sequence_residual"
+      }
+    ],
+    "min": 0.0878948450951207,
+    "p01": 0.15073844961174354,
+    "p05": 0.25255431763943614,
+    "mean": 0.6193022754752917,
+    "p95": 0.9305914219293696,
+    "p99": 0.979319789576435,
+    "max": 0.994744571783766,
+    "abs_logit_mean": 0.9839661463331533,
+    "extreme_005_995": 0.0
+  },
+  {
+    "name": "trp_plus_gru28_s3tail_w050",
+    "uniform_oof_cv": 0.5741802422935679,
+    "sample_weighted_oof_cv": 0.5366765095846526,
+    "train_apply_rows": 22,
+    "sample_apply_rows": 120,
+    "oof_path": "outputs/sequence_encoder_residual_portfolio/oof_trp_plus_gru28_s3tail_w050.csv",
+    "submission_path": "outputs/sequence_encoder_residual_portfolio/submission_trp_plus_gru28_s3tail_w050.csv",
+    "moves": [
+      {
+        "target": "S3",
+        "lo": 0.8,
+        "hi": 1.000001,
+        "weight": 0.5,
+        "source_name": "gru28_sequence_residual"
+      }
+    ],
+    "min": 0.0878948450951207,
+    "p01": 0.15073844961174354,
+    "p05": 0.25255431763943614,
+    "mean": 0.619548767303465,
+    "p95": 0.9311931030598101,
+    "p99": 0.9785220368987155,
+    "max": 0.994744571783766,
+    "abs_logit_mean": 0.9843366213224766,
+    "extreme_005_995": 0.0
+  }
+]

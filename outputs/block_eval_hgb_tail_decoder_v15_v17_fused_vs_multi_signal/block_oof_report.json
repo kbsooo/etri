@@ -1,0 +1,87 @@
+{
+  "baseline": "multi_signal",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "v17_s4s3q2",
+      "avg_log_loss": 0.574969357028576,
+      "overall_p025": 0.003445033911671177,
+      "overall_improvement": 0.006622945474865909,
+      "early_delta": 0.0,
+      "mid_delta": 0.0026539545928219166,
+      "late_delta": 0.017040750911479274,
+      "tail20_delta": 0.023504879541960455,
+      "late_p025": 0.008135204513447038,
+      "tail20_p025": 0.00972836091419931,
+      "worst_subject_delta": -0.00555664172971404,
+      "worst_late_target_delta": 0.001331386574054183,
+      "promote": true
+    },
+    {
+      "name": "v16b_s4q2",
+      "avg_log_loss": 0.5752787576984832,
+      "overall_p025": 0.0031823994178110087,
+      "overall_improvement": 0.006313544804958734,
+      "early_delta": 0.0,
+      "mid_delta": 0.0026539545928219166,
+      "late_delta": 0.016124762086096256,
+      "tail20_delta": 0.02203929742134747,
+      "late_p025": 0.007478869734842986,
+      "tail20_p025": 0.008386900622129462,
+      "worst_subject_delta": -0.005720669083507213,
+      "worst_late_target_delta": 0.001331386574054183,
+      "promote": true
+    },
+    {
+      "name": "v15_s4",
+      "avg_log_loss": 0.5755285879109089,
+      "overall_p025": 0.0031109922153309214,
+      "overall_improvement": 0.006063714592533059,
+      "early_delta": 0.0,
+      "mid_delta": 0.0026539545928219166,
+      "late_delta": 0.015385133167730713,
+      "tail20_delta": 0.020855891151962624,
+      "late_p025": 0.007278866110821734,
+      "tail20_p025": 0.00812242004068006,
+      "worst_subject_delta": -0.004302004717915309,
+      "worst_late_target_delta": 0.001331386574054183,
+      "promote": true
+    },
+    {
+      "name": "v14",
+      "avg_log_loss": 0.5762244965840736,
+      "overall_p025": 0.002560999597487288,
+      "overall_improvement": 0.005367805919368358,
+      "early_delta": 0.0,
+      "mid_delta": 0.0026539545928219166,
+      "late_delta": 0.013324877227440357,
+      "tail20_delta": 0.01755948164749843,
+      "late_p025": 0.005809410552963686,
+      "tail20_p025": 0.005607403119669969,
+      "worst_subject_delta": -0.004253591063002604,
+      "worst_late_target_delta": 0.001331386574054183,
+      "promote": true
+    },
+    {
+      "name": "multi_signal",
+      "avg_log_loss": 0.5815923025034421,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "name": "trp_s2tail_w100_q3midtail_w050",
+    "uniform_oof_cv": 0.5744315350738928,
+    "sample_weighted_oof_cv": 0.5361336323972411,
+    "oof_path": "outputs/temporal_retrieval_prototype_portfolio/oof_trp_s2tail_w100_q3midtail_w050.csv",
+    "submission_path": "outputs/temporal_retrieval_prototype_portfolio/submission_trp_s2tail_w100_q3midtail_w050.csv",
+    "moves": [
+      {
+        "target": "S2",
+        "lo": 0.8,
+        "hi": 1.000001,
+        "weight": 1.0,
+        "source_name": "lgbm_trp_meta"
+      },
+      {
+        "target": "Q3",
+        "lo": 0.3333333333333333,
+        "hi": 1.000001,
+        "weight": 0.5,
+        "source_name": "lgbm_trp_meta"
+      }
+    ],
+    "min": 0.059267494999999996,
+    "p01": 0.14377100637702572,
+    "p05": 0.24708388915860105,
+    "mean": 0.6218460485614196,
+    "p95": 0.9390696414512202,
+    "p99": 0.981594902,
+    "max": 0.99666965,
+    "abs_logit_mean": 1.020479526573522,
+    "extreme_005_995": 0.0017142857142857142
+  },
+  {
+    "name": "trp_s2tail_w100_q3midtail_w035",
+    "uniform_oof_cv": 0.5741688837458827,
+    "sample_weighted_oof_cv": 0.5365649892982884,
+    "oof_path": "outputs/temporal_retrieval_prototype_portfolio/oof_trp_s2tail_w100_q3midtail_w035.csv",
+    "submission_path": "outputs/temporal_retrieval_prototype_portfolio/submission_trp_s2tail_w100_q3midtail_w035.csv",
+    "moves": [
+      {
+        "target": "S2",
+        "lo": 0.8,
+        "hi": 1.000001,
+        "weight": 1.0,
+        "source_name": "lgbm_trp_meta"
+      },
+      {
+        "target": "Q3",
+        "lo": 0.3333333333333333,
+        "hi": 1.000001,
+        "weight": 0.35,
+        "source_name": "lgbm_trp_meta"
+      }
+    ],
+    "min": 0.059267494999999996,
+    "p01": 0.14404798997830126,
+    "p05": 0.24949118302852896,
+    "mean": 0.6202276172307003,
+    "p95": 0.9352435853166297,
+    "p99": 0.981594902,
+    "max": 0.99666965,
+    "abs_logit_mean": 0.9968209405794618,
+    "extreme_005_995": 0.0017142857142857142
+  },
+  {
+    "name": "trp_s2tail_w080_q3midtail_w035",
+    "uniform_oof_cv": 0.5742276894127538,
+    "sample_weighted_oof_cv": 0.5371423540275682,
+    "oof_path": "outputs/temporal_retrieval_prototype_portfolio/oof_trp_s2tail_w080_q3midtail_w035.csv",
+    "submission_path": "outputs/temporal_retrieval_prototype_portfolio/submission_trp_s2tail_w080_q3midtail_w035.csv",
+    "moves": [
+      {
+        "target": "S2",
+        "lo": 0.8,
+        "hi": 1.000001,
+        "weight": 0.8,
+        "source_name": "lgbm_trp_meta"
+      },
+      {
+        "target": "Q3",
+        "lo": 0.3333333333333333,
+        "hi": 1.000001,
+        "weight": 0.35,
+        "source_name": "lgbm_trp_meta"
+      }
+    ],
+    "min": 0.0878948450951207,
+    "p01": 0.1518673414344374,
+    "p05": 0.25255431763943614,
+    "mean": 0.6199502722476569,
+    "p95": 0.9321870442039571,
+    "p99": 0.9772965056820194,
+    "max": 0.9947445717837659,
+    "abs_logit_mean": 0.9851534129366475,
+    "extreme_005_995": 0.0
+  }
+]

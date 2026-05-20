@@ -1,0 +1,72 @@
+{
+  "baseline": "multi_signal",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "s4w080",
+      "avg_log_loss": 0.5815185461058299,
+      "overall_p025": -0.00028451652631208605,
+      "overall_improvement": 7.375639761224116e-05,
+      "early_delta": 0.0002980294582427545,
+      "mid_delta": -5.720662714314706e-05,
+      "late_delta": -2.2386151836251145e-05,
+      "tail20_delta": -9.147746540594248e-05,
+      "late_p025": -0.0006726733124747181,
+      "tail20_p025": -0.0009029369252250574,
+      "worst_subject_delta": -0.0016358572158371443,
+      "worst_late_target_delta": -0.00015670306285386904,
+      "promote": false
+    },
+    {
+      "name": "s4w100",
+      "avg_log_loss": 0.5815192747353398,
+      "overall_p025": -0.0003749536267947617,
+      "overall_improvement": 7.302776810210384e-05,
+      "early_delta": 0.00035112614953580756,
+      "mid_delta": -8.799090173539081e-05,
+      "late_delta": -4.7519015650698826e-05,
+      "tail20_delta": -0.0001340934605926769,
+      "late_p025": -0.0008600335084214165,
+      "tail20_p025": -0.0011522780802858763,
+      "worst_subject_delta": -0.0020700596118078396,
+      "worst_late_target_delta": -0.0003326331095541146,
+      "promote": false
+    },
+    {
+      "name": "s4w065",
+      "avg_log_loss": 0.581523025650665,
+      "overall_p025": -0.00022163536679235582,
+      "overall_improvement": 6.927685277701015e-05,
+      "early_delta": 0.0002525907111519121,
+      "mid_delta": -3.842685499666487e-05,
+      "late_delta": -8.670170722480108e-06,
+      "tail20_delta": -6.470484109655228e-05,
+      "late_p025": -0.0005367874872026629,
+      "tail20_p025": -0.0007230880790984772,
+      "worst_subject_delta": -0.0013168481958595324,
+      "worst_late_target_delta": -6.069119505680565e-05,
+      "promote": false
+    },
+    {
+      "name": "multi_signal",
+      "avg_log_loss": 0.5815923025034421,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

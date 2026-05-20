@@ -1,0 +1,87 @@
+{
+  "baseline": "q3w100",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "master_fast",
+      "avg_log_loss": 0.5725347495025886,
+      "overall_p025": 0.0014331171464452123,
+      "overall_improvement": 0.0031469838884005037,
+      "early_delta": 0.0008994929343073554,
+      "mid_delta": 0.004508736647323763,
+      "late_delta": 0.0040627304575211465,
+      "tail20_delta": 0.0035258076236101,
+      "late_p025": 0.0002859341934647838,
+      "tail20_p025": -0.0016297347925995304,
+      "worst_subject_delta": -0.0011753012743204172,
+      "worst_late_target_delta": -0.002889362396801487,
+      "promote": true
+    },
+    {
+      "name": "v28",
+      "avg_log_loss": 0.5727576636820453,
+      "overall_p025": 0.0012076582434351968,
+      "overall_improvement": 0.0029240697089439878,
+      "early_delta": 0.0,
+      "mid_delta": 0.003979345102708365,
+      "late_delta": 0.004808339729780564,
+      "tail20_delta": 0.004668875813834905,
+      "late_p025": 0.0009384779189165559,
+      "tail20_p025": -0.0004887788307554356,
+      "worst_subject_delta": -0.0008493044345411205,
+      "worst_late_target_delta": 0.0,
+      "promote": true
+    },
+    {
+      "name": "graph_tc",
+      "avg_log_loss": 0.5728807873282878,
+      "overall_p025": 0.0012816560350497378,
+      "overall_improvement": 0.0028009460627012764,
+      "early_delta": 0.000509380928458758,
+      "mid_delta": 0.004491633160663033,
+      "late_delta": 0.003442362719742298,
+      "tail20_delta": 0.003413801348650658,
+      "late_p025": -2.926833924651402e-05,
+      "tail20_p025": -0.0013292442508647212,
+      "worst_subject_delta": -0.0012151324179775491,
+      "worst_late_target_delta": -0.0034110720888015367,
+      "promote": true
+    },
+    {
+      "name": "v27",
+      "avg_log_loss": 0.5730150628364322,
+      "overall_p025": 0.0011979214275465743,
+      "overall_improvement": 0.002666670554556864,
+      "early_delta": 0.0,
+      "mid_delta": 0.0036686965237540115,
+      "late_delta": 0.0043467326352548685,
+      "tail20_delta": 0.004438182238576838,
+      "late_p025": 0.000901819676439331,
+      "tail20_p025": -0.00030519219823753503,
+      "worst_subject_delta": -0.0006044102880883306,
+      "worst_late_target_delta": 0.0,
+      "promote": true
+    },
+    {
+      "name": "q3w100",
+      "avg_log_loss": 0.575681733390989,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

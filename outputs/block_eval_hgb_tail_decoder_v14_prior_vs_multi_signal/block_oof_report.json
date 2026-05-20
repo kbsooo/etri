@@ -1,0 +1,42 @@
+{
+  "baseline": "multi_signal",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "v14",
+      "avg_log_loss": 0.5762244965840736,
+      "overall_p025": 0.002560999597487288,
+      "overall_improvement": 0.005367805919368358,
+      "early_delta": 0.0,
+      "mid_delta": 0.0026539545928219166,
+      "late_delta": 0.013324877227440357,
+      "tail20_delta": 0.01755948164749843,
+      "late_p025": 0.005809410552963686,
+      "tail20_p025": 0.005607403119669969,
+      "worst_subject_delta": -0.004253591063002604,
+      "worst_late_target_delta": 0.001331386574054183,
+      "promote": true
+    },
+    {
+      "name": "multi_signal",
+      "avg_log_loss": 0.5815923025034421,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

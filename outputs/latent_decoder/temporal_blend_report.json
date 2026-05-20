@@ -1,0 +1,135 @@
+{
+  "metric": "Average Log-Loss",
+  "base_targetwise_log_loss": 0.6168351408897573,
+  "base_per_target": {
+    "Q1": 0.6479750764631668,
+    "Q2": 0.6920510935553446,
+    "Q3": 0.6647577618349885,
+    "S1": 0.5694792693892748,
+    "S2": 0.5714907062101767,
+    "S3": 0.5317996378478317,
+    "S4": 0.6402924409275177
+  },
+  "temporal_blend_log_loss": 0.6126131224000219,
+  "temporal_blend_per_target": {
+    "Q1": 0.6474236197273426,
+    "Q2": 0.6871348971675303,
+    "Q3": 0.6628023606981251,
+    "S1": 0.5694792693892748,
+    "S2": 0.557581403187159,
+    "S3": 0.5316249837622976,
+    "S4": 0.6322453228684227
+  },
+  "improvement": 0.0042220184897354684,
+  "bootstrap_improvement_ci": [
+    0.0008017230865991095,
+    0.004170492440759833,
+    0.007603198130617707
+  ],
+  "selection": [
+    {
+      "target": "Q1",
+      "log_loss": 0.6474236197273426,
+      "bandwidth": 7.0,
+      "alpha": 2.0,
+      "decoder_weight": 0.9,
+      "temporal_weight": 0.09999999999999998
+    },
+    {
+      "target": "Q2",
+      "log_loss": 0.6871348971675303,
+      "bandwidth": 7.0,
+      "alpha": 5.0,
+      "decoder_weight": 0.35,
+      "temporal_weight": 0.65
+    },
+    {
+      "target": "Q3",
+      "log_loss": 0.6628023606981251,
+      "bandwidth": 14.0,
+      "alpha": 5.0,
+      "decoder_weight": 0.6,
+      "temporal_weight": 0.4
+    },
+    {
+      "target": "S1",
+      "log_loss": 0.5694792693892748,
+      "bandwidth": 7.0,
+      "alpha": 2.0,
+      "decoder_weight": 1.0,
+      "temporal_weight": 0.0
+    },
+    {
+      "target": "S2",
+      "log_loss": 0.557581403187159,
+      "bandwidth": 10.0,
+      "alpha": 2.0,
+      "decoder_weight": 0.35,
+      "temporal_weight": 0.65
+    },
+    {
+      "target": "S3",
+      "log_loss": 0.5316249837622976,
+      "bandwidth": 7.0,
+      "alpha": 2.0,
+      "decoder_weight": 0.95,
+      "temporal_weight": 0.050000000000000044
+    },
+    {
+      "target": "S4",
+      "log_loss": 0.6322453228684227,
+      "bandwidth": 10.0,
+      "alpha": 2.0,
+      "decoder_weight": 0.35,
+      "temporal_weight": 0.65
+    }
+  ],
+  "prediction_summary": {
+    "Q1": {
+      "min": 0.18597088841955756,
+      "mean": 0.5009589359973367,
+      "max": 0.7991902791576184
+    },
+    "Q2": {
+      "min": 0.40226715436363764,
+      "mean": 0.5671673918726633,
+      "max": 0.7245998631516392
+    },
+    "Q3": {
+      "min": 0.43844050088534214,
+      "mean": 0.6087683985248105,
+      "max": 0.7423739654547022
+    },
+    "S1": {
+      "min": 0.3232692896181358,
+      "mean": 0.68434756785704,
+      "max": 0.9259199203930432
+    },
+    "S2": {
+      "min": 0.27813877805995474,
+      "mean": 0.6427797704874658,
+      "max": 0.9195191063354393
+    },
+    "S3": {
+      "min": 0.15269339851546454,
+      "mean": 0.671715740619432,
+      "max": 0.9446924077157491
+    },
+    "S4": {
+      "min": 0.21431536967135337,
+      "mean": 0.5449897162540458,
+      "max": 0.8451753299495067
+    }
+  },
+  "args": {
+    "latent_path": "outputs/diffusion_encoder/day_latents.parquet",
+    "base_oof": "outputs/latent_decoder/oof_targetwise.csv",
+    "base_submission": "outputs/latent_decoder/submission_latent_decoder_targetwise.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/latent_decoder",
+    "folds": 5,
+    "bandwidths": "7,10,14,21,28,42",
+    "alphas": "2,5,10,20",
+    "weights": "0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1"
+  }
+}

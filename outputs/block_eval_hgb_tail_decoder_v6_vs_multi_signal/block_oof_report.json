@@ -1,0 +1,42 @@
+{
+  "baseline": "multi_signal",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "hgb_tail_decoder_v6",
+      "avg_log_loss": 0.5785284087124988,
+      "overall_p025": 0.0011518992892363374,
+      "overall_improvement": 0.003063893790943262,
+      "early_delta": 0.0,
+      "mid_delta": 0.0010693896517239843,
+      "late_delta": 0.008036525836322639,
+      "tail20_delta": 0.011130977230679462,
+      "late_p025": 0.002652529606972337,
+      "tail20_p025": 0.0024194428168903847,
+      "worst_subject_delta": -0.0017463577882569359,
+      "worst_late_target_delta": 0.0007738382731113935,
+      "promote": true
+    },
+    {
+      "name": "multi_signal",
+      "avg_log_loss": 0.5815923025034421,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "baseline": "hgb_tail_decoder_v8",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "v12_final",
+      "avg_log_loss": 0.5766723338888327,
+      "overall_p025": 0.0002541199945547732,
+      "overall_improvement": 0.001434140024072514,
+      "early_delta": 0.0,
+      "mid_delta": 0.0010822501406498874,
+      "late_delta": 0.0031991594747178276,
+      "tail20_delta": 0.00371251624703961,
+      "late_p025": 0.00011420410386153961,
+      "tail20_p025": -0.0007536019162312558,
+      "worst_subject_delta": -0.0023338527000767995,
+      "worst_late_target_delta": 0.0,
+      "promote": true
+    },
+    {
+      "name": "v12_step3_s2q2q3",
+      "avg_log_loss": 0.5767630875895012,
+      "overall_p025": 0.00020319718616819304,
+      "overall_improvement": 0.0013433863234039688,
+      "early_delta": 0.0,
+      "mid_delta": 0.0010822501406498874,
+      "late_delta": 0.0029304807556332912,
+      "tail20_delta": 0.0032826302965043297,
+      "late_p025": -9.728801077491414e-05,
+      "tail20_p025": -0.0011505120932923801,
+      "worst_subject_delta": -0.0025005754742741804,
+      "worst_late_target_delta": 0.0,
+      "promote": true
+    },
+    {
+      "name": "v12_step2_s2q2",
+      "avg_log_loss": 0.5774134741836432,
+      "overall_p025": -0.00024370988933942328,
+      "overall_improvement": 0.0006929997292620224,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.002051643935315206,
+      "tail20_delta": 0.0032826302965043297,
+      "late_p025": -0.0008038343932224869,
+      "tail20_p025": -0.0011505120932923801,
+      "worst_subject_delta": -0.0019192641197233185,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    },
+    {
+      "name": "v12_step1_s2",
+      "avg_log_loss": 0.577690289620288,
+      "overall_p025": -0.00020007836975809184,
+      "overall_improvement": 0.00041618429261716867,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0012321245505113598,
+      "tail20_delta": 0.0019713992808182423,
+      "late_p025": -0.0006559339374321932,
+      "tail20_p025": -0.0009595776113868401,
+      "worst_subject_delta": -0.0013027358419682722,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    },
+    {
+      "name": "hgb_tail_decoder_v8",
+      "avg_log_loss": 0.5781064739129051,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

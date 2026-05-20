@@ -1,0 +1,76 @@
+{
+  "summary": {
+    "base_avg": 0.5709126820221233,
+    "final_avg": 0.5706631036772586,
+    "improvement": 0.00024957834486465336,
+    "p025": 2.0621347990528276e-06,
+    "p500": 0.0002492905811124866,
+    "p975": 0.0005024898712860906,
+    "support_delta": 0.0011010809332264119,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "S1",
+      "supported_train_rows": 102,
+      "supported_sample_rows": 130,
+      "range_train_rows": 102,
+      "range_sample_rows": 130,
+      "min_position": 0.3333333333,
+      "max_position": 0.6666666667,
+      "weight": 1.0,
+      "mode": "prob"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "position_range": {
+    "min_position": 0.3333333333,
+    "max_position": 0.6666666667,
+    "train_rows": 102,
+    "sample_rows": 130,
+    "applied_train_rows": 102,
+    "applied_sample_rows": 130
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_portfolio_v35a_v34a_plus_stack_s1mid_w100_prob",
+    "base_oof": "outputs/sample_portfolio_v34a_v33a_plus_tc_q3allsupport_coremidtailC003_w005_logit/oof_sample_support_target_blend.csv",
+    "base_submission": "outputs/sample_portfolio_v34a_v33a_plus_tc_q3allsupport_coremidtailC003_w005_logit/submission_sample_support_target_blend.csv",
+    "source_oof": "outputs/prediction_stack_decoder_v34a_diverse_robust_smallc/oof_prediction_stack_decoder.csv",
+    "source_submission": "outputs/prediction_stack_decoder_v34a_diverse_robust_smallc/submission_prediction_stack_decoder.csv",
+    "targets": "S1",
+    "weight": 1.0,
+    "mode": "prob",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "min_position": 0.3333333333,
+    "max_position": 0.6666666667,
+    "bootstrap": 30000,
+    "seed": 2026
+  }
+}

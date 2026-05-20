@@ -1,0 +1,42 @@
+{
+  "baseline": "v34a",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "stack",
+      "avg_log_loss": 0.5676024851572185,
+      "overall_p025": 0.001788101066182059,
+      "overall_improvement": 0.0033101968649049103,
+      "early_delta": 0.003914091646751494,
+      "mid_delta": 0.0034471112713626573,
+      "late_delta": 0.0025778644319567334,
+      "tail20_delta": -0.00023172313816710588,
+      "late_p025": -0.00011041633603103,
+      "tail20_p025": -0.0035907250995610616,
+      "worst_subject_delta": -0.002713470352004421,
+      "worst_late_target_delta": -0.00021073064071397418,
+      "promote": true
+    },
+    {
+      "name": "v34a",
+      "avg_log_loss": 0.5709126820221233,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

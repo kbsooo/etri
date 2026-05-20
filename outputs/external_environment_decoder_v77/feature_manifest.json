@@ -1,0 +1,67 @@
+{
+  "external_sources": {
+    "weather": "https://archive-api.open-meteo.com/v1/archive",
+    "air_quality": "https://air-quality-api.open-meteo.com/v1/air-quality",
+    "korea_public_holidays": "https://date.nager.at/api/v3/PublicHolidays/{year}/KR"
+  },
+  "cities": {
+    "seoul": {
+      "latitude": 37.5665,
+      "longitude": 126.978
+    },
+    "daejeon": {
+      "latitude": 36.3504,
+      "longitude": 127.3845
+    },
+    "busan": {
+      "latitude": 35.1796,
+      "longitude": 129.0756
+    },
+    "daegu": {
+      "latitude": 35.8714,
+      "longitude": 128.6014
+    },
+    "gwangju": {
+      "latitude": 35.1595,
+      "longitude": 126.8526
+    },
+    "jeju": {
+      "latitude": 33.4996,
+      "longitude": 126.5312
+    }
+  },
+  "date_range": {
+    "start": "2024-05-13",
+    "end": "2024-11-21"
+  },
+  "weather_daily_variables": [
+    "temperature_2m_mean",
+    "temperature_2m_max",
+    "temperature_2m_min",
+    "precipitation_sum",
+    "rain_sum",
+    "snowfall_sum",
+    "daylight_duration",
+    "sunshine_duration",
+    "wind_speed_10m_max",
+    "shortwave_radiation_sum"
+  ],
+  "air_hourly_variables": [
+    "pm10",
+    "pm2_5",
+    "carbon_monoxide",
+    "nitrogen_dioxide",
+    "sulphur_dioxide",
+    "ozone",
+    "aerosol_optical_depth",
+    "dust",
+    "uv_index",
+    "uv_index_clear_sky"
+  ],
+  "n_environment_features": 3646,
+  "n_base_features": 14,
+  "n_total_features": 3660,
+  "base_oof": "outputs/master_aggressive_decoder_fast/oof_temporal_master_oof_blend.csv",
+  "base_submission": "outputs/master_aggressive_decoder_fast/submission_temporal_master_oof_blend.csv",
+  "design_note": "External data are used only as label-free environmental/calendar covariates; no external ETRI label files are consumed."
+}

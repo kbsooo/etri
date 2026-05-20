@@ -1,0 +1,119 @@
+{
+  "target": "Q1",
+  "base_log_loss": 0.5512776902027633,
+  "best_source_log_loss": 0.5662686839348403,
+  "sources": [
+    {
+      "name": "q1_sleep_retrieval_meta",
+      "oof": "outputs/q1_temporal_state_recurrence_on_v48/oof_q1_sleep_retrieval_meta.csv",
+      "submission": "outputs/q1_temporal_state_recurrence_on_v48/submission_q1_sleep_retrieval_meta.csv",
+      "Q1_log_loss": 0.5662686839348403
+    },
+    {
+      "name": "q1_temporal_state_recurrence_knn_resid",
+      "oof": "outputs/q1_temporal_state_recurrence_on_v48/oof_q1_temporal_state_recurrence_knn_resid.csv",
+      "submission": "outputs/q1_temporal_state_recurrence_on_v48/submission_q1_temporal_state_recurrence_knn_resid.csv",
+      "Q1_log_loss": 0.5838721013396966,
+      "fold_log_loss": [
+        0.5853009891388394,
+        0.6371834996647942,
+        0.5778911589657395,
+        0.5207291973131835,
+        0.5956051062750989
+      ]
+    },
+    {
+      "name": "q1_temporal_state_recurrence_knn_logitresid",
+      "oof": "outputs/q1_temporal_state_recurrence_on_v48/oof_q1_temporal_state_recurrence_knn_logitresid.csv",
+      "submission": "outputs/q1_temporal_state_recurrence_on_v48/submission_q1_temporal_state_recurrence_knn_logitresid.csv",
+      "Q1_log_loss": 0.667332145636491,
+      "fold_log_loss": [
+        0.671776648004297,
+        0.7511432124199425,
+        0.6329225041182397,
+        0.6223442676771388,
+        0.6545365796553774
+      ]
+    },
+    {
+      "name": "q1_temporal_state_recurrence_extra",
+      "oof": "outputs/q1_temporal_state_recurrence_on_v48/oof_q1_temporal_state_recurrence_extra.csv",
+      "submission": "outputs/q1_temporal_state_recurrence_on_v48/submission_q1_temporal_state_recurrence_extra.csv",
+      "Q1_log_loss": 0.6957289314991844,
+      "fold_log_loss": [
+        0.695800947001038,
+        0.6962413857906536,
+        0.6866042062244836,
+        0.6986404782563382,
+        0.701882556965468
+      ]
+    },
+    {
+      "name": "q1_temporal_state_recurrence_knn_label",
+      "oof": "outputs/q1_temporal_state_recurrence_on_v48/oof_q1_temporal_state_recurrence_knn_label.csv",
+      "submission": "outputs/q1_temporal_state_recurrence_on_v48/submission_q1_temporal_state_recurrence_knn_label.csv",
+      "Q1_log_loss": 0.7067012590544928,
+      "fold_log_loss": [
+        0.7300357153089958,
+        0.7264154881575063,
+        0.666493347284911,
+        0.7138084515243602,
+        0.695055515578004
+      ]
+    },
+    {
+      "name": "q1_temporal_state_recurrence_hgb",
+      "oof": "outputs/q1_temporal_state_recurrence_on_v48/oof_q1_temporal_state_recurrence_hgb.csv",
+      "submission": "outputs/q1_temporal_state_recurrence_on_v48/submission_q1_temporal_state_recurrence_hgb.csv",
+      "Q1_log_loss": 0.7278791810407278,
+      "fold_log_loss": [
+        0.693008768755023,
+        0.7553339904150213,
+        0.6929253022702938,
+        0.7420072545873235,
+        0.7600969136791114
+      ]
+    },
+    {
+      "name": "q1_temporal_state_recurrence_proto",
+      "oof": "outputs/q1_temporal_state_recurrence_on_v48/oof_q1_temporal_state_recurrence_proto.csv",
+      "submission": "outputs/q1_temporal_state_recurrence_on_v48/submission_q1_temporal_state_recurrence_proto.csv",
+      "Q1_log_loss": 0.7863197121892924,
+      "fold_log_loss": [
+        0.8300763030891138,
+        0.733925022103974,
+        0.711356500059989,
+        0.8634174231949593,
+        0.7954677921732894
+      ]
+    },
+    {
+      "name": "q1_temporal_state_recurrence_logreg",
+      "oof": "outputs/q1_temporal_state_recurrence_on_v48/oof_q1_temporal_state_recurrence_logreg.csv",
+      "submission": "outputs/q1_temporal_state_recurrence_on_v48/submission_q1_temporal_state_recurrence_logreg.csv",
+      "Q1_log_loss": 0.9152507019492551,
+      "fold_log_loss": [
+        0.9647679236363242,
+        0.7909886057148907,
+        0.6921144811846309,
+        1.0194733743954045,
+        1.1266154123028524
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v48_state_transition_on_v47/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v48_state_transition_on_v47/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/q1_temporal_state_recurrence_on_v48",
+    "target": "Q1",
+    "groups": "temporal_state_recurrence",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_state_recurrence": 26
+  }
+}

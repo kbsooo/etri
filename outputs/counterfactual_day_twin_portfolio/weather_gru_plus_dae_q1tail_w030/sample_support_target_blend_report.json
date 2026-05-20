@@ -1,0 +1,77 @@
+{
+  "summary": {
+    "base_avg": 0.5738740587842052,
+    "final_avg": 0.5737725521413525,
+    "improvement": 0.0001015066428526636,
+    "p025": -0.0001174817936179075,
+    "p500": 9.876109219280227e-05,
+    "p975": 0.000332609325987914,
+    "support_delta": 0.002076272240168119,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "Q1",
+      "supported_train_rows": 22,
+      "supported_sample_rows": 120,
+      "range_train_rows": 22,
+      "range_sample_rows": 120,
+      "min_position": 0.8,
+      "max_position": 1.000001,
+      "weight": 0.3,
+      "mode": "logit"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "position_range": {
+    "min_position": 0.8,
+    "max_position": 1.000001,
+    "train_rows": 22,
+    "sample_rows": 120,
+    "applied_train_rows": 22,
+    "applied_sample_rows": 120
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/counterfactual_day_twin_portfolio/weather_gru_plus_dae_q1tail_w030",
+    "base_oof": "outputs/external_weather_portfolio/trp_weather_s4tail_w050_plus_gru28_s3tail_w100/oof_sample_support_target_blend.csv",
+    "base_submission": "outputs/external_weather_portfolio/trp_weather_s4tail_w050_plus_gru28_s3tail_w100/submission_sample_support_target_blend.csv",
+    "source_oof": "outputs/counterfactual_day_twin_sources/oof_twin_dae_c0p03.csv",
+    "source_submission": "outputs/counterfactual_day_twin_sources/submission_twin_dae_c0p03.csv",
+    "targets": "Q1",
+    "weight": 0.3,
+    "mode": "logit",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "min_position": 0.8,
+    "max_position": 1.000001,
+    "respect_sample_support": true,
+    "bootstrap": 5000,
+    "seed": 2026
+  }
+}

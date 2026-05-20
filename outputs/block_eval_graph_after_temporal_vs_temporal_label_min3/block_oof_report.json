@@ -1,0 +1,72 @@
+{
+  "baseline": "temporal_label_min3_blend",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "graph_min3",
+      "avg_log_loss": 0.58410043522543,
+      "overall_p025": -0.0006803623303076932,
+      "overall_improvement": 0.0003627962323158925,
+      "early_delta": -0.0004560695699574735,
+      "mid_delta": 0.0005808967438777346,
+      "late_delta": 0.0009653486069453043,
+      "tail20_delta": 0.0023351702630474147,
+      "late_p025": -0.0007816114650221988,
+      "tail20_p025": 4.143347489146641e-05,
+      "worst_subject_delta": -0.004479592112032527,
+      "worst_late_target_delta": -0.003554155831688832,
+      "promote": false
+    },
+    {
+      "name": "graph_min3_blend",
+      "avg_log_loss": 0.58410043522543,
+      "overall_p025": -0.0006803623303076932,
+      "overall_improvement": 0.0003627962323158925,
+      "early_delta": -0.0004560695699574735,
+      "mid_delta": 0.0005808967438777346,
+      "late_delta": 0.0009653486069453043,
+      "tail20_delta": 0.0023351702630474147,
+      "late_p025": -0.0007816114650221988,
+      "tail20_p025": 4.143347489146641e-05,
+      "worst_subject_delta": -0.004479592112032527,
+      "worst_late_target_delta": -0.003554155831688832,
+      "promote": false
+    },
+    {
+      "name": "graph_min4",
+      "avg_log_loss": 0.5844250424836934,
+      "overall_p025": -0.00016508834469901792,
+      "overall_improvement": 3.818897405238781e-05,
+      "early_delta": 4.619328591115579e-05,
+      "mid_delta": 3.123753418432518e-05,
+      "late_delta": 3.696009622289331e-05,
+      "tail20_delta": 0.00030198603279829594,
+      "late_p025": -0.0003890179191450471,
+      "tail20_p025": -0.00029207034418203553,
+      "worst_subject_delta": -0.0002703983619772865,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    },
+    {
+      "name": "temporal_label_min3_blend",
+      "avg_log_loss": 0.5844632314577459,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

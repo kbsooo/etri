@@ -1,0 +1,395 @@
+{
+  "target": "S4",
+  "base_log_loss": 0.5649591933768616,
+  "best_source_log_loss": 0.5826605705509301,
+  "sources": [
+    {
+      "name": "s4_sleep_retrieval_meta",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_sleep_retrieval_meta.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_sleep_retrieval_meta.csv",
+      "S4_log_loss": 0.5826605705509301
+    },
+    {
+      "name": "s4_phone_recovery_knn_resid",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_phone_recovery_knn_resid.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_phone_recovery_knn_resid.csv",
+      "S4_log_loss": 0.6222102744207907,
+      "fold_log_loss": [
+        0.6862817273688093,
+        0.5711726208829289,
+        0.6454631056249096,
+        0.6567346942530032,
+        0.545610791249546
+      ]
+    },
+    {
+      "name": "s4_modality_desync_knn_resid",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_modality_desync_knn_resid.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_modality_desync_knn_resid.csv",
+      "S4_log_loss": 0.6337891363987891,
+      "fold_log_loss": [
+        0.9041432341003708,
+        0.5210605217324479,
+        0.6113497928329985,
+        0.5986263390919088,
+        0.5136542763733619
+      ]
+    },
+    {
+      "name": "s4_modality_desync_hgb",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_modality_desync_hgb.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_modality_desync_hgb.csv",
+      "S4_log_loss": 0.6438261641741684,
+      "fold_log_loss": [
+        0.6782022033770675,
+        0.6053224151662531,
+        0.66028531025735,
+        0.6812933213614346,
+        0.591110825534063
+      ]
+    },
+    {
+      "name": "s4_body_recovery_knn_resid",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_body_recovery_knn_resid.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_body_recovery_knn_resid.csv",
+      "S4_log_loss": 0.643909403860427,
+      "fold_log_loss": [
+        0.6996754542511828,
+        0.5856535522187276,
+        0.6665377706956197,
+        0.7234496523687897,
+        0.5389985869390675
+      ]
+    },
+    {
+      "name": "s4_social_rhythm_knn_resid",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_social_rhythm_knn_resid.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_social_rhythm_knn_resid.csv",
+      "S4_log_loss": 0.6533389812915684,
+      "fold_log_loss": [
+        0.8541917929051283,
+        0.5393030102718717,
+        0.6330533118349403,
+        0.6454028853198234,
+        0.5821240224753204
+      ]
+    },
+    {
+      "name": "s4_modality_desync_extra",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_modality_desync_extra.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_modality_desync_extra.csv",
+      "S4_log_loss": 0.6598809007192292,
+      "fold_log_loss": [
+        0.6787834836018078,
+        0.6240073252573134,
+        0.6769112378421249,
+        0.6642457124239263,
+        0.6548823627446312
+      ]
+    },
+    {
+      "name": "s4_social_rhythm_extra",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_social_rhythm_extra.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_social_rhythm_extra.csv",
+      "S4_log_loss": 0.6608173368605557,
+      "fold_log_loss": [
+        0.688617227176466,
+        0.6455103764081602,
+        0.6618452220300657,
+        0.6530033474235314,
+        0.6532118111217855
+      ]
+    },
+    {
+      "name": "s4_modality_desync_knn_label",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_modality_desync_knn_label.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_modality_desync_knn_label.csv",
+      "S4_log_loss": 0.6623976130677092,
+      "fold_log_loss": [
+        0.7076465587896675,
+        0.6254513145858455,
+        0.697491274363108,
+        0.657134416333812,
+        0.6196303725349229
+      ]
+    },
+    {
+      "name": "s4_body_recovery_hgb",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_body_recovery_hgb.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_body_recovery_hgb.csv",
+      "S4_log_loss": 0.6634486816763401,
+      "fold_log_loss": [
+        0.7426292180458214,
+        0.6321588836671139,
+        0.6357249660307959,
+        0.6738354181843351,
+        0.6278689464915997
+      ]
+    },
+    {
+      "name": "s4_modality_desync_proto",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_modality_desync_proto.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_modality_desync_proto.csv",
+      "S4_log_loss": 0.6649429673320845,
+      "fold_log_loss": [
+        0.7228508808799801,
+        0.6152521681132078,
+        0.6790346834716298,
+        0.6512020178219884,
+        0.6529831812116884
+      ]
+    },
+    {
+      "name": "s4_social_rhythm_knn_label",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_social_rhythm_knn_label.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_social_rhythm_knn_label.csv",
+      "S4_log_loss": 0.6668003336433468,
+      "fold_log_loss": [
+        0.733106916536031,
+        0.592950737223749,
+        0.684320401536563,
+        0.6849895275303662,
+        0.6352503506944599
+      ]
+    },
+    {
+      "name": "s4_social_rhythm_hgb",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_social_rhythm_hgb.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_social_rhythm_hgb.csv",
+      "S4_log_loss": 0.6683287872395745,
+      "fold_log_loss": [
+        0.7052582352027448,
+        0.6278108980678996,
+        0.6415477792553511,
+        0.7168632313845711,
+        0.6499043558659575
+      ]
+    },
+    {
+      "name": "s4_modality_desync_knn_logitresid",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_modality_desync_knn_logitresid.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_modality_desync_knn_logitresid.csv",
+      "S4_log_loss": 0.6730163799976661,
+      "fold_log_loss": [
+        0.8724745287623372,
+        0.5470447949056904,
+        0.6890413209752465,
+        0.6803605911825319,
+        0.5617651528656054
+      ]
+    },
+    {
+      "name": "s4_body_recovery_extra",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_body_recovery_extra.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_body_recovery_extra.csv",
+      "S4_log_loss": 0.6733689966126094,
+      "fold_log_loss": [
+        0.6960195201727971,
+        0.6401658832427869,
+        0.7041189094389096,
+        0.6725947236046356,
+        0.6518631892750361
+      ]
+    },
+    {
+      "name": "s4_phone_recovery_hgb",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_phone_recovery_hgb.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_phone_recovery_hgb.csv",
+      "S4_log_loss": 0.6748034452554603,
+      "fold_log_loss": [
+        0.7410659649223966,
+        0.6378298622989491,
+        0.6168232268862167,
+        0.7153884700637915,
+        0.6612967743956534
+      ]
+    },
+    {
+      "name": "s4_phone_recovery_extra",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_phone_recovery_extra.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_phone_recovery_extra.csv",
+      "S4_log_loss": 0.6788351711849648,
+      "fold_log_loss": [
+        0.6956904122253755,
+        0.6465078594258635,
+        0.6720054366223558,
+        0.6860079865977503,
+        0.6949567675059457
+      ]
+    },
+    {
+      "name": "s4_body_recovery_knn_label",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_body_recovery_knn_label.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_body_recovery_knn_label.csv",
+      "S4_log_loss": 0.6914865488327356,
+      "fold_log_loss": [
+        0.7257472598867506,
+        0.6753666293012291,
+        0.7529574495519427,
+        0.673727302614756,
+        0.6230096959184247
+      ]
+    },
+    {
+      "name": "s4_phone_recovery_proto",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_phone_recovery_proto.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_phone_recovery_proto.csv",
+      "S4_log_loss": 0.6942925317553807,
+      "fold_log_loss": [
+        0.7712888697496905,
+        0.6609071083965441,
+        0.6618102968199979,
+        0.7344192372456948,
+        0.6380768475320401
+      ]
+    },
+    {
+      "name": "s4_body_recovery_proto",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_body_recovery_proto.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_body_recovery_proto.csv",
+      "S4_log_loss": 0.6947578643104216,
+      "fold_log_loss": [
+        0.7579764833867626,
+        0.6303787685272392,
+        0.6550174345073945,
+        0.7597060920837786,
+        0.6698518795527016
+      ]
+    },
+    {
+      "name": "s4_phone_recovery_knn_label",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_phone_recovery_knn_label.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_phone_recovery_knn_label.csv",
+      "S4_log_loss": 0.696069171754777,
+      "fold_log_loss": [
+        0.700402874008397,
+        0.6558909462521563,
+        0.755483854217515,
+        0.7102997119006997,
+        0.6565386062882214
+      ]
+    },
+    {
+      "name": "s4_phone_recovery_knn_logitresid",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_phone_recovery_knn_logitresid.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_phone_recovery_knn_logitresid.csv",
+      "S4_log_loss": 0.698796139001035,
+      "fold_log_loss": [
+        0.745764718502149,
+        0.6434921747523569,
+        0.782082874836147,
+        0.7425189170318063,
+        0.5722429038080965
+      ]
+    },
+    {
+      "name": "s4_social_rhythm_proto",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_social_rhythm_proto.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_social_rhythm_proto.csv",
+      "S4_log_loss": 0.7006719473357141,
+      "fold_log_loss": [
+        0.7798834238696473,
+        0.6273095291971335,
+        0.6976791590085715,
+        0.7185234480819643,
+        0.676478010522444
+      ]
+    },
+    {
+      "name": "s4_social_rhythm_knn_logitresid",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_social_rhythm_knn_logitresid.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_social_rhythm_knn_logitresid.csv",
+      "S4_log_loss": 0.712138929268934,
+      "fold_log_loss": [
+        0.9114408782371914,
+        0.5993871576106703,
+        0.6877217397095867,
+        0.7430713134656185,
+        0.6059074547438149
+      ]
+    },
+    {
+      "name": "s4_body_recovery_knn_logitresid",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_body_recovery_knn_logitresid.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_body_recovery_knn_logitresid.csv",
+      "S4_log_loss": 0.716031146108938,
+      "fold_log_loss": [
+        0.816342020308784,
+        0.6689244459883256,
+        0.8041531340401372,
+        0.6772359014175969,
+        0.6002707784444499
+      ]
+    },
+    {
+      "name": "s4_social_rhythm_logreg",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_social_rhythm_logreg.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_social_rhythm_logreg.csv",
+      "S4_log_loss": 0.7711595588244468,
+      "fold_log_loss": [
+        0.8723466439248065,
+        0.6393037279527107,
+        0.7036571124193243,
+        0.9317189534561443,
+        0.708712719360612
+      ]
+    },
+    {
+      "name": "s4_modality_desync_logreg",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_modality_desync_logreg.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_modality_desync_logreg.csv",
+      "S4_log_loss": 0.7867395723798059,
+      "fold_log_loss": [
+        1.2306043921748357,
+        0.6098622058122032,
+        0.6758710555113424,
+        0.6958956989491706,
+        0.693775006111418
+      ]
+    },
+    {
+      "name": "s4_body_recovery_logreg",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_body_recovery_logreg.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_body_recovery_logreg.csv",
+      "S4_log_loss": 0.8066855933823,
+      "fold_log_loss": [
+        1.0656620183845757,
+        0.6495837686304012,
+        0.7161378981146875,
+        0.8586683233719867,
+        0.7310144199965177
+      ]
+    },
+    {
+      "name": "s4_phone_recovery_logreg",
+      "oof": "outputs/s4_digest_retrieval_on_v23/oof_s4_phone_recovery_logreg.csv",
+      "submission": "outputs/s4_digest_retrieval_on_v23/submission_s4_phone_recovery_logreg.csv",
+      "S4_log_loss": 0.842682739620552,
+      "fold_log_loss": [
+        0.9862680024542704,
+        0.7027002081177708,
+        0.7405455733277163,
+        1.0492685876794703,
+        0.7316157546861376
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v23_joint_q1s2_digest/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v23_joint_q1s2_digest/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s4_digest_retrieval_on_v23",
+    "target": "S4",
+    "groups": "phone_recovery,social_rhythm,body_recovery,modality_desync",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "phone_recovery": 473,
+    "social_rhythm": 638,
+    "body_recovery": 840,
+    "modality_desync": 1011
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "summary": {
+    "base_avg": 0.5739640972661019,
+    "final_avg": 0.5738740587842052,
+    "improvement": 9.003848189665844e-05,
+    "p025": -4.1899526950930895e-05,
+    "p500": 8.019888031063547e-05,
+    "p975": 0.00026373959387350287,
+    "support_delta": 0.0018416962206134681,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "S3",
+      "supported_train_rows": 22,
+      "supported_sample_rows": 120,
+      "range_train_rows": 22,
+      "range_sample_rows": 120,
+      "min_position": 0.8,
+      "max_position": 1.000001,
+      "weight": 1.0,
+      "mode": "logit"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "position_range": {
+    "min_position": 0.8,
+    "max_position": 1.000001,
+    "train_rows": 22,
+    "sample_rows": 120,
+    "applied_train_rows": 22,
+    "applied_sample_rows": 120
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/external_weather_portfolio/trp_weather_s4tail_w050_plus_gru28_s3tail_w100",
+    "base_oof": "outputs/external_weather_portfolio/trp_plus_weather_s4tail_w050/oof_sample_support_target_blend.csv",
+    "base_submission": "outputs/external_weather_portfolio/trp_plus_weather_s4tail_w050/submission_sample_support_target_blend.csv",
+    "source_oof": "outputs/sequence_encoder_residual/oof_gru28.csv",
+    "source_submission": "outputs/sequence_encoder_residual/submission_gru28.csv",
+    "targets": "S3",
+    "weight": 1.0,
+    "mode": "logit",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "min_position": 0.8,
+    "max_position": 1.000001,
+    "respect_sample_support": true,
+    "bootstrap": 5000,
+    "seed": 2026
+  }
+}

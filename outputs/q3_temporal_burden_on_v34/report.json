@@ -1,0 +1,119 @@
+{
+  "target": "Q3",
+  "base_log_loss": 0.5577560730852998,
+  "best_source_log_loss": 0.5826969324653424,
+  "sources": [
+    {
+      "name": "q3_temporal_burden_knn_resid",
+      "oof": "outputs/q3_temporal_burden_on_v34/oof_q3_temporal_burden_knn_resid.csv",
+      "submission": "outputs/q3_temporal_burden_on_v34/submission_q3_temporal_burden_knn_resid.csv",
+      "Q3_log_loss": 0.5826969324653424,
+      "fold_log_loss": [
+        0.579609861456405,
+        0.6438487376863608,
+        0.5296691193187679,
+        0.5912297477862186,
+        0.5679967175116653
+      ]
+    },
+    {
+      "name": "q3_temporal_burden_knn_logitresid",
+      "oof": "outputs/q3_temporal_burden_on_v34/oof_q3_temporal_burden_knn_logitresid.csv",
+      "submission": "outputs/q3_temporal_burden_on_v34/submission_q3_temporal_burden_knn_logitresid.csv",
+      "Q3_log_loss": 0.6146820769390761,
+      "fold_log_loss": [
+        0.6118732183627561,
+        0.6756952895037979,
+        0.6104978529650691,
+        0.5401563764422583,
+        0.6325423867467672
+      ]
+    },
+    {
+      "name": "q3_sleep_retrieval_meta",
+      "oof": "outputs/q3_temporal_burden_on_v34/oof_q3_sleep_retrieval_meta.csv",
+      "submission": "outputs/q3_temporal_burden_on_v34/submission_q3_sleep_retrieval_meta.csv",
+      "Q3_log_loss": 0.6160842775042422
+    },
+    {
+      "name": "q3_temporal_burden_extra",
+      "oof": "outputs/q3_temporal_burden_on_v34/oof_q3_temporal_burden_extra.csv",
+      "submission": "outputs/q3_temporal_burden_on_v34/submission_q3_temporal_burden_extra.csv",
+      "Q3_log_loss": 0.674137386092449,
+      "fold_log_loss": [
+        0.6982056141687354,
+        0.6705656760224613,
+        0.6973646025760509,
+        0.624116571265702,
+        0.6774344431408126
+      ]
+    },
+    {
+      "name": "q3_temporal_burden_knn_label",
+      "oof": "outputs/q3_temporal_burden_on_v34/oof_q3_temporal_burden_knn_label.csv",
+      "submission": "outputs/q3_temporal_burden_on_v34/submission_q3_temporal_burden_knn_label.csv",
+      "Q3_log_loss": 0.7055271689444436,
+      "fold_log_loss": [
+        0.6853715502629021,
+        0.6887488546403318,
+        0.7278431521822736,
+        0.6884959924602404,
+        0.7397547756527716
+      ]
+    },
+    {
+      "name": "q3_temporal_burden_hgb",
+      "oof": "outputs/q3_temporal_burden_on_v34/oof_q3_temporal_burden_hgb.csv",
+      "submission": "outputs/q3_temporal_burden_on_v34/submission_q3_temporal_burden_hgb.csv",
+      "Q3_log_loss": 0.7298476133622515,
+      "fold_log_loss": [
+        0.7665277701337885,
+        0.8623154201492069,
+        0.7051690601438159,
+        0.6070210705592222,
+        0.6976123715863138
+      ]
+    },
+    {
+      "name": "q3_temporal_burden_proto",
+      "oof": "outputs/q3_temporal_burden_on_v34/oof_q3_temporal_burden_proto.csv",
+      "submission": "outputs/q3_temporal_burden_on_v34/submission_q3_temporal_burden_proto.csv",
+      "Q3_log_loss": 0.7593515569853222,
+      "fold_log_loss": [
+        0.7788011858820817,
+        0.7887178186643985,
+        0.7581257024209557,
+        0.6827427699416203,
+        0.7855528089675846
+      ]
+    },
+    {
+      "name": "q3_temporal_burden_logreg",
+      "oof": "outputs/q3_temporal_burden_on_v34/oof_q3_temporal_burden_logreg.csv",
+      "submission": "outputs/q3_temporal_burden_on_v34/submission_q3_temporal_burden_logreg.csv",
+      "Q3_log_loss": 0.9223209736679754,
+      "fold_log_loss": [
+        0.9196946793033691,
+        0.9239296251101392,
+        0.8722048516761135,
+        0.8772392921709207,
+        1.0233112727675244
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v34_persist_regime_on_v32/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v34_persist_regime_on_v32/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/q3_temporal_burden_on_v34",
+    "target": "Q3",
+    "groups": "temporal_burden",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_burden": 1232
+  }
+}

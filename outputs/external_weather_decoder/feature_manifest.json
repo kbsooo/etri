@@ -1,0 +1,50 @@
+{
+  "weather_source": "Open-Meteo Historical Weather API",
+  "cities": {
+    "seoul": {
+      "latitude": 37.5665,
+      "longitude": 126.978
+    },
+    "daejeon": {
+      "latitude": 36.3504,
+      "longitude": 127.3845
+    },
+    "busan": {
+      "latitude": 35.1796,
+      "longitude": 129.0756
+    },
+    "daegu": {
+      "latitude": 35.8714,
+      "longitude": 128.6014
+    },
+    "gwangju": {
+      "latitude": 35.1595,
+      "longitude": 126.8526
+    },
+    "jeju": {
+      "latitude": 33.4996,
+      "longitude": 126.5312
+    }
+  },
+  "date_range": {
+    "start": "2024-05-20",
+    "end": "2024-11-21"
+  },
+  "daily_variables": [
+    "temperature_2m_mean",
+    "temperature_2m_max",
+    "temperature_2m_min",
+    "precipitation_sum",
+    "rain_sum",
+    "snowfall_sum",
+    "daylight_duration",
+    "sunshine_duration",
+    "wind_speed_10m_max",
+    "shortwave_radiation_sum"
+  ],
+  "n_weather_features": 907,
+  "n_base_features": 14,
+  "n_total_features": 921,
+  "base_oof": "outputs/temporal_retrieval_prototype_portfolio/oof_trp_s2tail_w080_q3midtail_w035.csv",
+  "base_submission": "outputs/temporal_retrieval_prototype_portfolio/submission_trp_s2tail_w080_q3midtail_w035.csv"
+}

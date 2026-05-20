@@ -1,0 +1,72 @@
+{
+  "baseline": "recovery15",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "trp_w100_q3w035",
+      "avg_log_loss": 0.5741688837458827,
+      "overall_p025": 5.869892120999625e-05,
+      "overall_improvement": 0.0020477018528221773,
+      "early_delta": 0.0,
+      "mid_delta": 0.0027909793013483064,
+      "late_delta": 0.0033631044504722762,
+      "tail20_delta": 0.0032895297922446165,
+      "late_p025": -0.001613682140936461,
+      "tail20_p025": -0.0035072044215173157,
+      "worst_subject_delta": -0.0018897856387289913,
+      "worst_late_target_delta": 0.0,
+      "promote": true
+    },
+    {
+      "name": "trp_w080_q3w035",
+      "avg_log_loss": 0.5742276894127538,
+      "overall_p025": 5.677953060666991e-05,
+      "overall_improvement": 0.001988896185951094,
+      "early_delta": 0.0,
+      "mid_delta": 0.0027909793013483064,
+      "late_delta": 0.0031890087261828848,
+      "tail20_delta": 0.003010976633381568,
+      "late_p025": -0.0014706328041364314,
+      "tail20_p025": -0.0032837234030025993,
+      "worst_subject_delta": -0.0018897856387289913,
+      "worst_late_target_delta": 0.0,
+      "promote": true
+    },
+    {
+      "name": "trp_w100_q3w050",
+      "avg_log_loss": 0.5744315350738928,
+      "overall_p025": -0.0008732910121526762,
+      "overall_improvement": 0.0017850505248120474,
+      "early_delta": 0.0,
+      "mid_delta": 0.0030958573897664765,
+      "late_delta": 0.0022906690780903904,
+      "tail20_delta": 0.0016538457134727125,
+      "late_p025": -0.004066996755863896,
+      "tail20_p025": -0.006816096330496613,
+      "worst_subject_delta": -0.0033343273293398035,
+      "worst_late_target_delta": -0.00203508310082956,
+      "promote": false
+    },
+    {
+      "name": "recovery15",
+      "avg_log_loss": 0.5762165855987049,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

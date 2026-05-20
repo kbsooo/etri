@@ -1,0 +1,272 @@
+[
+  {
+    "name": "textembed_base_c0p003",
+    "avg_log_loss": 0.6401572878777131,
+    "target_scores": {
+      "Q1": 0.6614784996016345,
+      "Q2": 0.7151135179013037,
+      "Q3": 0.6783481522383451,
+      "S1": 0.594741265361787,
+      "S2": 0.6049051889043375,
+      "S3": 0.5628137738185288,
+      "S4": 0.6637006173180547
+    },
+    "n_features": 79,
+    "c_value": 0.003,
+    "class_weight": NaN,
+    "oof_path": "outputs/text_embedding_decoder_v77/oof_textembed_base_c0p003.csv",
+    "submission_path": "outputs/text_embedding_decoder_v77/submission_textembed_base_c0p003.csv"
+  },
+  {
+    "name": "textembed_base_c0p001",
+    "avg_log_loss": 0.6456645671466958,
+    "target_scores": {
+      "Q1": 0.668867563551854,
+      "Q2": 0.7052034806060823,
+      "Q3": 0.6725619646856349,
+      "S1": 0.604674946724097,
+      "S2": 0.6134868539183772,
+      "S3": 0.588758335546067,
+      "S4": 0.6660988249947583
+    },
+    "n_features": 79,
+    "c_value": 0.001,
+    "class_weight": NaN,
+    "oof_path": "outputs/text_embedding_decoder_v77/oof_textembed_base_c0p001.csv",
+    "submission_path": "outputs/text_embedding_decoder_v77/submission_textembed_base_c0p001.csv"
+  },
+  {
+    "name": "textembed_base_c0p0003",
+    "avg_log_loss": 0.6569845045829873,
+    "target_scores": {
+      "Q1": 0.6826460320712194,
+      "Q2": 0.6999876664775073,
+      "Q3": 0.6729860152015905,
+      "S1": 0.6177761907063728,
+      "S2": 0.6316350529973984,
+      "S3": 0.6175725582841698,
+      "S4": 0.676288016342652
+    },
+    "n_features": 79,
+    "c_value": 0.0003,
+    "class_weight": NaN,
+    "oof_path": "outputs/text_embedding_decoder_v77/oof_textembed_base_c0p0003.csv",
+    "submission_path": "outputs/text_embedding_decoder_v77/submission_textembed_base_c0p0003.csv"
+  },
+  {
+    "name": "textembed_base_bal_c0p003",
+    "avg_log_loss": 0.6609072073304514,
+    "target_scores": {
+      "Q1": 0.658815706497611,
+      "Q2": 0.707367976513675,
+      "Q3": 0.6924514049318024,
+      "S1": 0.6526041238773882,
+      "S2": 0.639533805684776,
+      "S3": 0.605507337366322,
+      "S4": 0.6700700964415858
+    },
+    "n_features": 79,
+    "c_value": 0.003,
+    "class_weight": "balanced",
+    "oof_path": "outputs/text_embedding_decoder_v77/oof_textembed_base_bal_c0p003.csv",
+    "submission_path": "outputs/text_embedding_decoder_v77/submission_textembed_base_bal_c0p003.csv"
+  },
+  {
+    "name": "textembed_base_c0p0001",
+    "avg_log_loss": 0.6634117775354712,
+    "target_scores": {
+      "Q1": 0.6905014640290739,
+      "Q2": 0.698439478408921,
+      "Q3": 0.6737594403632917,
+      "S1": 0.6242729626874804,
+      "S2": 0.6420380172072269,
+      "S3": 0.6321999063303416,
+      "S4": 0.6826711737219633
+    },
+    "n_features": 79,
+    "c_value": 0.0001,
+    "class_weight": NaN,
+    "oof_path": "outputs/text_embedding_decoder_v77/oof_textembed_base_c0p0001.csv",
+    "submission_path": "outputs/text_embedding_decoder_v77/submission_textembed_base_c0p0001.csv"
+  },
+  {
+    "name": "textembed_only_c0p001",
+    "avg_log_loss": 0.665170983552056,
+    "target_scores": {
+      "Q1": 0.685341472174384,
+      "Q2": 0.701166015829549,
+      "Q3": 0.6722177124943364,
+      "S1": 0.6256050505279493,
+      "S2": 0.6503656879008815,
+      "S3": 0.6314212467122551,
+      "S4": 0.6900796992250371
+    },
+    "n_features": 65,
+    "c_value": 0.001,
+    "class_weight": NaN,
+    "oof_path": "outputs/text_embedding_decoder_v77/oof_textembed_only_c0p001.csv",
+    "submission_path": "outputs/text_embedding_decoder_v77/submission_textembed_only_c0p001.csv"
+  },
+  {
+    "name": "textembed_only_c0p003",
+    "avg_log_loss": 0.6652307453932698,
+    "target_scores": {
+      "Q1": 0.6788191600861615,
+      "Q2": 0.7068190139836764,
+      "Q3": 0.6749763085822265,
+      "S1": 0.6241981364244779,
+      "S2": 0.6548370668048099,
+      "S3": 0.6198012794056886,
+      "S4": 0.6971642524658472
+    },
+    "n_features": 65,
+    "c_value": 0.003,
+    "class_weight": NaN,
+    "oof_path": "outputs/text_embedding_decoder_v77/oof_textembed_only_c0p003.csv",
+    "submission_path": "outputs/text_embedding_decoder_v77/submission_textembed_only_c0p003.csv"
+  },
+  {
+    "name": "textembed_base_c3e-05",
+    "avg_log_loss": 0.6662938717712026,
+    "target_scores": {
+      "Q1": 0.6940375643421547,
+      "Q2": 0.6979376249505262,
+      "Q3": 0.6741400549282206,
+      "S1": 0.6270504941688915,
+      "S2": 0.6467052686671976,
+      "S3": 0.6385604627408892,
+      "S4": 0.6856256326005379
+    },
+    "n_features": 79,
+    "c_value": 3e-05,
+    "class_weight": NaN,
+    "oof_path": "outputs/text_embedding_decoder_v77/oof_textembed_base_c3e-05.csv",
+    "submission_path": "outputs/text_embedding_decoder_v77/submission_textembed_base_c3e-05.csv"
+  },
+  {
+    "name": "textembed_only_c0p0003",
+    "avg_log_loss": 0.6664204852994752,
+    "target_scores": {
+      "Q1": 0.6915488324971348,
+      "Q2": 0.6985945528459363,
+      "Q3": 0.6732124533085738,
+      "S1": 0.6272124076060251,
+      "S2": 0.648993177987732,
+      "S3": 0.6378339412876649,
+      "S4": 0.6875480315632593
+    },
+    "n_features": 65,
+    "c_value": 0.0003,
+    "class_weight": NaN,
+    "oof_path": "outputs/text_embedding_decoder_v77/oof_textembed_only_c0p0003.csv",
+    "submission_path": "outputs/text_embedding_decoder_v77/submission_textembed_only_c0p0003.csv"
+  },
+  {
+    "name": "textembed_only_c0p0001",
+    "avg_log_loss": 0.667162150557789,
+    "target_scores": {
+      "Q1": 0.6941858209587344,
+      "Q2": 0.6979630250141905,
+      "Q3": 0.6738934461374416,
+      "S1": 0.6279176145961065,
+      "S2": 0.6488669728644182,
+      "S3": 0.6401988966760028,
+      "S4": 0.6871092776576296
+    },
+    "n_features": 65,
+    "c_value": 0.0001,
+    "class_weight": NaN,
+    "oof_path": "outputs/text_embedding_decoder_v77/oof_textembed_only_c0p0001.csv",
+    "submission_path": "outputs/text_embedding_decoder_v77/submission_textembed_only_c0p0001.csv"
+  },
+  {
+    "name": "textembed_base_bal_c0p001",
+    "avg_log_loss": 0.6673621892873027,
+    "target_scores": {
+      "Q1": 0.6663174187095355,
+      "Q2": 0.698876516522891,
+      "Q3": 0.6886644489136587,
+      "S1": 0.6630051758523191,
+      "S2": 0.6500488034933988,
+      "S3": 0.6327757425916283,
+      "S4": 0.6718472189276875
+    },
+    "n_features": 79,
+    "c_value": 0.001,
+    "class_weight": "balanced",
+    "oof_path": "outputs/text_embedding_decoder_v77/oof_textembed_base_bal_c0p001.csv",
+    "submission_path": "outputs/text_embedding_decoder_v77/submission_textembed_base_bal_c0p001.csv"
+  },
+  {
+    "name": "textembed_only_c3e-05",
+    "avg_log_loss": 0.6674984838629621,
+    "target_scores": {
+      "Q1": 0.6952382759206742,
+      "Q2": 0.6977957939366828,
+      "Q3": 0.6741876162185273,
+      "S1": 0.6282076387890854,
+      "S2": 0.6488878847731177,
+      "S3": 0.6411246484982744,
+      "S4": 0.6870475289043725
+    },
+    "n_features": 65,
+    "c_value": 3e-05,
+    "class_weight": NaN,
+    "oof_path": "outputs/text_embedding_decoder_v77/oof_textembed_only_c3e-05.csv",
+    "submission_path": "outputs/text_embedding_decoder_v77/submission_textembed_only_c3e-05.csv"
+  },
+  {
+    "name": "textembed_base_bal_c0p0003",
+    "avg_log_loss": 0.6804872074811718,
+    "target_scores": {
+      "Q1": 0.6800905727136781,
+      "Q2": 0.6946752239055876,
+      "Q3": 0.6906800528425258,
+      "S1": 0.6792948289995737,
+      "S2": 0.6717489640753428,
+      "S3": 0.6648288811577376,
+      "S4": 0.6820919286737567
+    },
+    "n_features": 79,
+    "c_value": 0.0003,
+    "class_weight": "balanced",
+    "oof_path": "outputs/text_embedding_decoder_v77/oof_textembed_base_bal_c0p0003.csv",
+    "submission_path": "outputs/text_embedding_decoder_v77/submission_textembed_base_bal_c0p0003.csv"
+  },
+  {
+    "name": "textembed_base_bal_c0p0001",
+    "avg_log_loss": 0.6880806304581573,
+    "target_scores": {
+      "Q1": 0.6879399874737282,
+      "Q2": 0.6935787913217817,
+      "Q3": 0.6921587037913423,
+      "S1": 0.6877573592500124,
+      "S2": 0.6845564727487305,
+      "S3": 0.6819286959312743,
+      "S4": 0.6886444026902312
+    },
+    "n_features": 79,
+    "c_value": 0.0001,
+    "class_weight": "balanced",
+    "oof_path": "outputs/text_embedding_decoder_v77/oof_textembed_base_bal_c0p0001.csv",
+    "submission_path": "outputs/text_embedding_decoder_v77/submission_textembed_base_bal_c0p0001.csv"
+  },
+  {
+    "name": "textembed_base_bal_c3e-05",
+    "avg_log_loss": 0.6915164254821491,
+    "target_scores": {
+      "Q1": 0.691469324377929,
+      "Q2": 0.6932781783337214,
+      "Q3": 0.6928268845546748,
+      "S1": 0.6914267918484058,
+      "S2": 0.6903792152073315,
+      "S3": 0.6895445612670377,
+      "S4": 0.6916900227859436
+    },
+    "n_features": 79,
+    "c_value": 3e-05,
+    "class_weight": "balanced",
+    "oof_path": "outputs/text_embedding_decoder_v77/oof_textembed_base_bal_c3e-05.csv",
+    "submission_path": "outputs/text_embedding_decoder_v77/submission_textembed_base_bal_c3e-05.csv"
+  }
+]

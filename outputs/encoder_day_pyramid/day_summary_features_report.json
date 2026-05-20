@@ -1,0 +1,13 @@
+{
+  "rows": 700,
+  "features": 1662,
+  "input_dir": "outputs/encoder_day_pyramid",
+  "output_path": "outputs/encoder_day_pyramid/day_summary_features.parquet",
+  "feature_blocks": {
+    "channel": 1320,
+    "modality_daypart": 180,
+    "event": 50,
+    "prototype": 105,
+    "context": 7
+  }
+}

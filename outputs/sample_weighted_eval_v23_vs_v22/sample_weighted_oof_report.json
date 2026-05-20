@@ -1,0 +1,65 @@
+{
+  "baseline": "v22",
+  "bin_table": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_frac": 0.52,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_frac": 0.22666666666666666,
+      "sample_frac": 0.52,
+      "weight_ratio": 2.294117647058824
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_frac": 0.20444444444444446,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_frac": 0.04888888888888889,
+      "sample_frac": 0.48,
+      "weight_ratio": 9.818181818181817
+    }
+  ],
+  "summary": [
+    {
+      "name": "v23",
+      "uniform_avg_log_loss": 0.5741091671618236,
+      "weighted_avg_log_loss": 0.5335602636681732,
+      "weighted_delta_vs_baseline": 0.0012323719143173197,
+      "weighted_p025": 1.620603212434567e-06,
+      "weighted_p500": 0.0012176340503277953,
+      "weighted_p975": 0.0024642854359580133,
+      "promote_weighted": true
+    },
+    {
+      "name": "v22",
+      "uniform_avg_log_loss": 0.574234686523467,
+      "weighted_avg_log_loss": 0.5347926355824905,
+      "weighted_delta_vs_baseline": 0.0,
+      "weighted_p025": 0.0,
+      "weighted_p500": 0.0,
+      "weighted_p975": 0.0,
+      "promote_weighted": false
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_weighted_eval_v23_vs_v22",
+    "baseline": "v22",
+    "candidates": [
+      "v22:outputs/sample_portfolio_v22_temporal_contrastive_q3tail_w050/oof_sample_support_target_blend.csv",
+      "v23:outputs/sample_portfolio_v23_temporal_contrastive_q3q2tail/oof_sample_support_target_blend.csv"
+    ],
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "bootstrap": 7000,
+    "seed": 2026,
+    "min_weighted_p025": 0.0
+  }
+}

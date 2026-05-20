@@ -1,0 +1,72 @@
+{
+  "baseline": "temporal_label_min3_blend",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "targetwise_p025guard",
+      "avg_log_loss": 0.5834555787665053,
+      "overall_p025": 2.3650011574896436e-05,
+      "overall_improvement": 0.0010076526912405827,
+      "early_delta": 0.0011277639953085616,
+      "mid_delta": 0.001245284386623302,
+      "late_delta": 0.0006585167298225336,
+      "tail20_delta": 0.0018742263117340618,
+      "late_p025": -0.0011486533336293337,
+      "tail20_p025": -0.0004642574939527648,
+      "worst_subject_delta": -0.003330576283628428,
+      "worst_late_target_delta": -0.0034573944457528816,
+      "promote": true
+    },
+    {
+      "name": "master_resid_min3_w05",
+      "avg_log_loss": 0.5834964362232398,
+      "overall_p025": 2.5378065694905682e-05,
+      "overall_improvement": 0.000966795234506228,
+      "early_delta": 0.0010953489769499614,
+      "mid_delta": 0.0011748800982219754,
+      "late_delta": 0.0006378472734848151,
+      "tail20_delta": 0.0017997823874768004,
+      "late_p025": -0.0010865292005415542,
+      "tail20_p025": -0.00046585490694099174,
+      "worst_subject_delta": -0.0031481959777870383,
+      "worst_late_target_delta": -0.0034573944457528816,
+      "promote": true
+    },
+    {
+      "name": "master_resid_min3_w03",
+      "avg_log_loss": 0.583797792989271,
+      "overall_p025": 9.870226781185848e-05,
+      "overall_improvement": 0.0006654384684749106,
+      "early_delta": 0.0007388762545070815,
+      "mid_delta": 0.0007921725953795589,
+      "late_delta": 0.00046991858462053226,
+      "tail20_delta": 0.0011795120801014747,
+      "late_p025": -0.0005697730249303641,
+      "tail20_p025": -0.0001899622941403502,
+      "worst_subject_delta": -0.001820007671760271,
+      "worst_late_target_delta": -0.001970768962943792,
+      "promote": true
+    },
+    {
+      "name": "temporal_label_min3_blend",
+      "avg_log_loss": 0.5844632314577459,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

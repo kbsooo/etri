@@ -1,0 +1,49 @@
+{
+  "base_avg_log_loss": 0.5844632314577459,
+  "base_targets": {
+    "Q1": 0.6383487136931539,
+    "Q2": 0.6503050342800608,
+    "Q3": 0.6254905558195907,
+    "S1": 0.5551679095830784,
+    "S2": 0.5292196070733155,
+    "S3": 0.49841585304667624,
+    "S4": 0.5942949467083457
+  },
+  "best": {
+    "name": "calendar_w1",
+    "weight": 1.0,
+    "avg_log_loss": 0.5840480600064423,
+    "delta_vs_base": 0.00041517145130365307,
+    "fold_std": 0.012277304682274103,
+    "worst_fold": 0.6085496574409369,
+    "improved_folds": 3,
+    "worst_target_delta": 0.0,
+    "promote": false,
+    "Q1": 0.6383487136931539,
+    "Q2": 0.6503050342800608,
+    "Q3": 0.6254905558195907,
+    "S1": 0.5539962511098767,
+    "S2": 0.5286355464369445,
+    "S3": 0.49841585304667624,
+    "S4": 0.5931444656587928,
+    "improvement": 0.0004151714513036371,
+    "improvement_p025": -0.0007582777891563177,
+    "improvement_p500": 0.0004149890661202235,
+    "improvement_p975": 0.0015805577696589332
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/blend_graph_sleep_temporal_label_min3/oof_candidate_probability_blend.csv",
+    "base_submission": "outputs/blend_graph_sleep_temporal_label_min3/submission_candidate_probability_blend.csv",
+    "candidate_oof": "outputs/calendar_label_decoder_on_temporal_label_min3/oof_calendar_label_decoder.csv",
+    "candidate_submission": "outputs/calendar_label_decoder_on_temporal_label_min3/submission_calendar_label_decoder.csv",
+    "output_dir": "outputs/blend_temporal_label_calendar_min3",
+    "name": "calendar",
+    "weights": "0.05,0.1,0.15,0.2,0.25,0.3,0.4,0.5,0.65,0.8,1.0",
+    "folds": 5,
+    "bootstrap": 10000,
+    "seed": 2026,
+    "max_target_regression": 0.001
+  }
+}

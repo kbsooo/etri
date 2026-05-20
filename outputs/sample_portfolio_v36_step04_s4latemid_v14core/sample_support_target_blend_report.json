@@ -1,0 +1,77 @@
+{
+  "summary": {
+    "base_avg": 0.5657281091702288,
+    "final_avg": 0.5652817880295647,
+    "improvement": 0.0004463211406639889,
+    "p025": -0.0021205091616856415,
+    "p500": 0.00045503582137982875,
+    "p975": 0.0029094534172854373,
+    "support_delta": 0.0021830925358564675,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "S4",
+      "supported_train_rows": 92,
+      "supported_sample_rows": 0,
+      "range_train_rows": 92,
+      "range_sample_rows": 0,
+      "min_position": 0.6666666667,
+      "max_position": 0.8,
+      "weight": 1.0,
+      "mode": "prob"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "position_range": {
+    "min_position": 0.6666666667,
+    "max_position": 0.8,
+    "train_rows": 92,
+    "sample_rows": 0,
+    "applied_train_rows": 92,
+    "applied_sample_rows": 0
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_portfolio_v36_step04_s4latemid_v14core",
+    "base_oof": "outputs/sample_portfolio_v36_step03_q1latemid_subadapt_complement/oof_sample_support_target_blend.csv",
+    "base_submission": "outputs/sample_portfolio_v36_step03_q1latemid_subadapt_complement/submission_sample_support_target_blend.csv",
+    "source_oof": "outputs/position_weighted_tail_decoder_on_v14/sources/oof_logreg_core_midtail_C0.03.csv",
+    "source_submission": "outputs/position_weighted_tail_decoder_on_v14/sources/submission_logreg_core_midtail_C0.03.csv",
+    "targets": "S4",
+    "weight": 1.0,
+    "mode": "prob",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "min_position": 0.6666666667,
+    "max_position": 0.8,
+    "respect_sample_support": false,
+    "bootstrap": 10000,
+    "seed": 2026
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "target": "Q3",
+  "base_log_loss": 0.5240327921554884,
+  "best_source_log_loss": 0.5587716577499166,
+  "sources": [
+    {
+      "name": "q3_temporal_state_novelty_recovery_knn_resid",
+      "oof": "outputs/q3_temporal_state_novelty_recovery_on_v51/oof_q3_temporal_state_novelty_recovery_knn_resid.csv",
+      "submission": "outputs/q3_temporal_state_novelty_recovery_on_v51/submission_q3_temporal_state_novelty_recovery_knn_resid.csv",
+      "Q3_log_loss": 0.5587716577499166,
+      "fold_log_loss": [
+        0.6076471214544232,
+        0.7120902051003581,
+        0.49908844980186073,
+        0.4360415744347566,
+        0.5277153490854837
+      ]
+    },
+    {
+      "name": "q3_sleep_retrieval_meta",
+      "oof": "outputs/q3_temporal_state_novelty_recovery_on_v51/oof_q3_sleep_retrieval_meta.csv",
+      "submission": "outputs/q3_temporal_state_novelty_recovery_on_v51/submission_q3_sleep_retrieval_meta.csv",
+      "Q3_log_loss": 0.5640636613104566
+    },
+    {
+      "name": "q3_temporal_state_novelty_recovery_knn_logitresid",
+      "oof": "outputs/q3_temporal_state_novelty_recovery_on_v51/oof_q3_temporal_state_novelty_recovery_knn_logitresid.csv",
+      "submission": "outputs/q3_temporal_state_novelty_recovery_on_v51/submission_q3_temporal_state_novelty_recovery_knn_logitresid.csv",
+      "Q3_log_loss": 0.6292686672671404,
+      "fold_log_loss": [
+        0.6661424879889556,
+        0.8014993903767034,
+        0.5682824432104125,
+        0.48639293586423077,
+        0.6131709675796481
+      ]
+    },
+    {
+      "name": "q3_temporal_state_novelty_recovery_knn_label",
+      "oof": "outputs/q3_temporal_state_novelty_recovery_on_v51/oof_q3_temporal_state_novelty_recovery_knn_label.csv",
+      "submission": "outputs/q3_temporal_state_novelty_recovery_on_v51/submission_q3_temporal_state_novelty_recovery_knn_label.csv",
+      "Q3_log_loss": 0.6925971425870552,
+      "fold_log_loss": [
+        0.7151423333586401,
+        0.7028181262532975,
+        0.6281100028516837,
+        0.7109014412564758,
+        0.7066410497762832
+      ]
+    },
+    {
+      "name": "q3_temporal_state_novelty_recovery_extra",
+      "oof": "outputs/q3_temporal_state_novelty_recovery_on_v51/oof_q3_temporal_state_novelty_recovery_extra.csv",
+      "submission": "outputs/q3_temporal_state_novelty_recovery_on_v51/submission_q3_temporal_state_novelty_recovery_extra.csv",
+      "Q3_log_loss": 0.7109025638864884,
+      "fold_log_loss": [
+        0.683546500777184,
+        0.7225085581907258,
+        0.6690936352704293,
+        0.7607004437912893,
+        0.7227057576716386
+      ]
+    },
+    {
+      "name": "q3_temporal_state_novelty_recovery_hgb",
+      "oof": "outputs/q3_temporal_state_novelty_recovery_on_v51/oof_q3_temporal_state_novelty_recovery_hgb.csv",
+      "submission": "outputs/q3_temporal_state_novelty_recovery_on_v51/submission_q3_temporal_state_novelty_recovery_hgb.csv",
+      "Q3_log_loss": 0.7416313340356078,
+      "fold_log_loss": [
+        0.7214665845500718,
+        0.768032487694074,
+        0.646631566855615,
+        0.7566346652092266,
+        0.8219423230452733
+      ]
+    },
+    {
+      "name": "q3_temporal_state_novelty_recovery_proto",
+      "oof": "outputs/q3_temporal_state_novelty_recovery_on_v51/oof_q3_temporal_state_novelty_recovery_proto.csv",
+      "submission": "outputs/q3_temporal_state_novelty_recovery_on_v51/submission_q3_temporal_state_novelty_recovery_proto.csv",
+      "Q3_log_loss": 0.7451860597788553,
+      "fold_log_loss": [
+        0.7073045259024258,
+        0.7489722377800863,
+        0.7309888651629733,
+        0.8612241602649974,
+        0.6798572046011904
+      ]
+    },
+    {
+      "name": "q3_temporal_state_novelty_recovery_logreg",
+      "oof": "outputs/q3_temporal_state_novelty_recovery_on_v51/oof_q3_temporal_state_novelty_recovery_logreg.csv",
+      "submission": "outputs/q3_temporal_state_novelty_recovery_on_v51/submission_q3_temporal_state_novelty_recovery_logreg.csv",
+      "Q3_log_loss": 1.0024974160726168,
+      "fold_log_loss": [
+        0.7016436605597984,
+        0.9427331890315401,
+        1.291357944215783,
+        1.2787808187942271,
+        0.8113968462336593
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v51_state_novelty_on_v50/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v51_state_novelty_on_v50/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/q3_temporal_state_novelty_recovery_on_v51",
+    "target": "Q3",
+    "groups": "temporal_state_novelty_recovery",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_state_novelty_recovery": 385
+  }
+}

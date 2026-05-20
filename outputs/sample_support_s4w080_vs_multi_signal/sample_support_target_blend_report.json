@@ -1,0 +1,62 @@
+{
+  "summary": {
+    "base_avg": 0.5815923025034421,
+    "final_avg": 0.5814708252526645,
+    "improvement": 0.00012147725077767871,
+    "p025": -5.6294443041155066e-05,
+    "p500": 0.00012202631328840302,
+    "p975": 0.00030297236910620576,
+    "support_delta": 0.00044084486169318883,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "S4",
+      "supported_train_rows": 124,
+      "supported_sample_rows": 250,
+      "weight": 0.8,
+      "mode": "logit"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_support_s4w080_vs_multi_signal",
+    "base_oof": "outputs/multi_signal_qcount_blend_w015_020_015_015/oof_multi_signal_qcount_blend.csv",
+    "base_submission": "outputs/multi_signal_qcount_blend_w015_020_015_015/submission_multi_signal_qcount_blend.csv",
+    "source_oof": "outputs/diffusion_loss_residual_q2s4_on_multi_signal_min3/oof_diffusion_loss_residual_decoder.csv",
+    "source_submission": "outputs/diffusion_loss_residual_q2s4_on_multi_signal_min3/submission_diffusion_loss_residual_decoder.csv",
+    "targets": "S4",
+    "weight": 0.8,
+    "mode": "logit",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "bootstrap": 10000,
+    "seed": 2026
+  }
+}

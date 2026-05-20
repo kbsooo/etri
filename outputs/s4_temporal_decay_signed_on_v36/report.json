@@ -1,0 +1,211 @@
+{
+  "target": "S4",
+  "base_log_loss": 0.5318114870887004,
+  "best_source_log_loss": 0.5649396495690078,
+  "sources": [
+    {
+      "name": "s4_sleep_retrieval_meta",
+      "oof": "outputs/s4_temporal_decay_signed_on_v36/oof_s4_sleep_retrieval_meta.csv",
+      "submission": "outputs/s4_temporal_decay_signed_on_v36/submission_s4_sleep_retrieval_meta.csv",
+      "S4_log_loss": 0.5649396495690078
+    },
+    {
+      "name": "s4_temporal_decay_hgb",
+      "oof": "outputs/s4_temporal_decay_signed_on_v36/oof_s4_temporal_decay_hgb.csv",
+      "submission": "outputs/s4_temporal_decay_signed_on_v36/submission_s4_temporal_decay_hgb.csv",
+      "S4_log_loss": 0.6688677156045167,
+      "fold_log_loss": [
+        0.6858379390633021,
+        0.6289698678109563,
+        0.6753539358840864,
+        0.6824267920742502,
+        0.6722623634882258
+      ]
+    },
+    {
+      "name": "s4_temporal_decay_extra",
+      "oof": "outputs/s4_temporal_decay_signed_on_v36/oof_s4_temporal_decay_extra.csv",
+      "submission": "outputs/s4_temporal_decay_signed_on_v36/submission_s4_temporal_decay_extra.csv",
+      "S4_log_loss": 0.6701338844015241,
+      "fold_log_loss": [
+        0.6712252422568729,
+        0.6701705379776205,
+        0.678483199178434,
+        0.6524971955241159,
+        0.6779874510177214
+      ]
+    },
+    {
+      "name": "s4_temporal_signed_burden_extra",
+      "oof": "outputs/s4_temporal_decay_signed_on_v36/oof_s4_temporal_signed_burden_extra.csv",
+      "submission": "outputs/s4_temporal_decay_signed_on_v36/submission_s4_temporal_signed_burden_extra.csv",
+      "S4_log_loss": 0.6875344278959772,
+      "fold_log_loss": [
+        0.7009620478377687,
+        0.6882124892779573,
+        0.6943440518551685,
+        0.6819070267833893,
+        0.6702626934829935
+      ]
+    },
+    {
+      "name": "s4_temporal_signed_burden_hgb",
+      "oof": "outputs/s4_temporal_decay_signed_on_v36/oof_s4_temporal_signed_burden_hgb.csv",
+      "submission": "outputs/s4_temporal_decay_signed_on_v36/submission_s4_temporal_signed_burden_hgb.csv",
+      "S4_log_loss": 0.7159804269388848,
+      "fold_log_loss": [
+        0.8044200612163204,
+        0.6708997713512196,
+        0.6929529192537678,
+        0.7345338158075492,
+        0.6715923495915982
+      ]
+    },
+    {
+      "name": "s4_temporal_decay_knn_resid",
+      "oof": "outputs/s4_temporal_decay_signed_on_v36/oof_s4_temporal_decay_knn_resid.csv",
+      "submission": "outputs/s4_temporal_decay_signed_on_v36/submission_s4_temporal_decay_knn_resid.csv",
+      "S4_log_loss": 0.7183027249873082,
+      "fold_log_loss": [
+        0.6176303209486713,
+        0.6202189513507187,
+        0.9166541164534656,
+        0.7432494709188396,
+        0.6990938077964038
+      ]
+    },
+    {
+      "name": "s4_temporal_decay_knn_label",
+      "oof": "outputs/s4_temporal_decay_signed_on_v36/oof_s4_temporal_decay_knn_label.csv",
+      "submission": "outputs/s4_temporal_decay_signed_on_v36/submission_s4_temporal_decay_knn_label.csv",
+      "S4_log_loss": 0.7388075021637868,
+      "fold_log_loss": [
+        0.6585417796967616,
+        0.7832786418698582,
+        0.7690049799913226,
+        0.7417878938959547,
+        0.7450031988508979
+      ]
+    },
+    {
+      "name": "s4_temporal_decay_proto",
+      "oof": "outputs/s4_temporal_decay_signed_on_v36/oof_s4_temporal_decay_proto.csv",
+      "submission": "outputs/s4_temporal_decay_signed_on_v36/submission_s4_temporal_decay_proto.csv",
+      "S4_log_loss": 0.7407078985095845,
+      "fold_log_loss": [
+        0.7043307298085861,
+        0.6964928561898617,
+        0.7359204660196966,
+        0.7932795854299047,
+        0.780537716327482
+      ]
+    },
+    {
+      "name": "s4_temporal_signed_burden_knn_label",
+      "oof": "outputs/s4_temporal_decay_signed_on_v36/oof_s4_temporal_signed_burden_knn_label.csv",
+      "submission": "outputs/s4_temporal_decay_signed_on_v36/submission_s4_temporal_signed_burden_knn_label.csv",
+      "S4_log_loss": 0.7627282168586368,
+      "fold_log_loss": [
+        0.7589388660441334,
+        0.7443859359920115,
+        0.7791045836809177,
+        0.8213192318437222,
+        0.7093142225360176
+      ]
+    },
+    {
+      "name": "s4_temporal_signed_burden_proto",
+      "oof": "outputs/s4_temporal_decay_signed_on_v36/oof_s4_temporal_signed_burden_proto.csv",
+      "submission": "outputs/s4_temporal_decay_signed_on_v36/submission_s4_temporal_signed_burden_proto.csv",
+      "S4_log_loss": 0.7679715990426217,
+      "fold_log_loss": [
+        0.8352916546251632,
+        0.7702952338001686,
+        0.779075544488347,
+        0.7703349606321915,
+        0.6759098205498054
+      ]
+    },
+    {
+      "name": "s4_temporal_signed_burden_knn_resid",
+      "oof": "outputs/s4_temporal_decay_signed_on_v36/oof_s4_temporal_signed_burden_knn_resid.csv",
+      "submission": "outputs/s4_temporal_decay_signed_on_v36/submission_s4_temporal_signed_burden_knn_resid.csv",
+      "S4_log_loss": 0.7841019502494418,
+      "fold_log_loss": [
+        0.7448878253489463,
+        0.6099157158293476,
+        1.0177148711977133,
+        0.780548214236729,
+        0.7699945932966076
+      ]
+    },
+    {
+      "name": "s4_temporal_decay_knn_logitresid",
+      "oof": "outputs/s4_temporal_decay_signed_on_v36/oof_s4_temporal_decay_knn_logitresid.csv",
+      "submission": "outputs/s4_temporal_decay_signed_on_v36/submission_s4_temporal_decay_knn_logitresid.csv",
+      "S4_log_loss": 0.8280777787937542,
+      "fold_log_loss": [
+        0.6648150716028244,
+        0.8575982446621313,
+        0.9616561094151806,
+        0.782196908827329,
+        0.8825493308381878
+      ]
+    },
+    {
+      "name": "s4_temporal_signed_burden_knn_logitresid",
+      "oof": "outputs/s4_temporal_decay_signed_on_v36/oof_s4_temporal_signed_burden_knn_logitresid.csv",
+      "submission": "outputs/s4_temporal_decay_signed_on_v36/submission_s4_temporal_signed_burden_knn_logitresid.csv",
+      "S4_log_loss": 0.8685752698496719,
+      "fold_log_loss": [
+        0.7702646673363109,
+        0.8278857779537417,
+        0.9749650616060448,
+        0.8709408958325795,
+        0.9061712696479313
+      ]
+    },
+    {
+      "name": "s4_temporal_signed_burden_logreg",
+      "oof": "outputs/s4_temporal_decay_signed_on_v36/oof_s4_temporal_signed_burden_logreg.csv",
+      "submission": "outputs/s4_temporal_decay_signed_on_v36/submission_s4_temporal_signed_burden_logreg.csv",
+      "S4_log_loss": 0.9741912345142815,
+      "fold_log_loss": [
+        0.9527988936677572,
+        1.1969743612923516,
+        1.0349575157667945,
+        1.065362217243269,
+        0.5985985006958907
+      ]
+    },
+    {
+      "name": "s4_temporal_decay_logreg",
+      "oof": "outputs/s4_temporal_decay_signed_on_v36/oof_s4_temporal_decay_logreg.csv",
+      "submission": "outputs/s4_temporal_decay_signed_on_v36/submission_s4_temporal_decay_logreg.csv",
+      "S4_log_loss": 0.9994072323015958,
+      "fold_log_loss": [
+        1.185954007610988,
+        0.8943459721854876,
+        0.9092316102050418,
+        0.9931897345182242,
+        1.0075318934101773
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v36_burden_on_v34/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v36_burden_on_v34/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s4_temporal_decay_signed_on_v36",
+    "target": "S4",
+    "groups": "temporal_signed_burden,temporal_decay",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_signed_burden": 924,
+    "temporal_decay": 1232
+  }
+}

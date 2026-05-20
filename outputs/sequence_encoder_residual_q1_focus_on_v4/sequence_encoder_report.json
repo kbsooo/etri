@@ -1,0 +1,89 @@
+{
+  "device": "mps",
+  "pca_components": 128,
+  "base_oof": "outputs/conditional_latent_routing_v4_greedy/oof_conditional_latent_routing.csv",
+  "base_submission": "outputs/conditional_latent_routing_v4_greedy/submission_conditional_latent_routing.csv",
+  "results": [
+    {
+      "name": "gru28_q1",
+      "encoder": "gru",
+      "context_days": 28,
+      "d_model": 48,
+      "dropout": 0.25,
+      "max_delta": 0.35,
+      "full_train_epochs": 1,
+      "uniform_oof_cv": 0.578566328838381,
+      "base_uniform_oof_cv": 0.5741591768019222,
+      "oof_path": "outputs/sequence_encoder_residual_q1_focus_on_v4/oof_gru28_q1.csv",
+      "submission_path": "outputs/sequence_encoder_residual_q1_focus_on_v4/submission_gru28_q1.csv",
+      "test_delta_abs_mean": 0.014678794890642166,
+      "test_min": 0.0833897814154625,
+      "test_max": 0.9892091155052185,
+      "target_weights": {
+        "Q1": 3.7333333492279053,
+        "Q2": 0.46666666865348816,
+        "Q3": 0.46666666865348816,
+        "S1": 0.9333333373069763,
+        "S2": 0.46666666865348816,
+        "S3": 0.46666666865348816,
+        "S4": 0.46666666865348816
+      }
+    },
+    {
+      "name": "gru14_q1",
+      "encoder": "gru",
+      "context_days": 14,
+      "d_model": 40,
+      "dropout": 0.3,
+      "max_delta": 0.3,
+      "full_train_epochs": 1,
+      "uniform_oof_cv": 0.5765208104954531,
+      "base_uniform_oof_cv": 0.5741591768019222,
+      "oof_path": "outputs/sequence_encoder_residual_q1_focus_on_v4/oof_gru14_q1.csv",
+      "submission_path": "outputs/sequence_encoder_residual_q1_focus_on_v4/submission_gru14_q1.csv",
+      "test_delta_abs_mean": 0.01497608982026577,
+      "test_min": 0.0848759114742279,
+      "test_max": 0.9893306493759155,
+      "target_weights": {
+        "Q1": 3.7333333492279053,
+        "Q2": 0.46666666865348816,
+        "Q3": 0.46666666865348816,
+        "S1": 0.9333333373069763,
+        "S2": 0.46666666865348816,
+        "S3": 0.46666666865348816,
+        "S4": 0.46666666865348816
+      }
+    },
+    {
+      "name": "tf28_q1",
+      "encoder": "transformer",
+      "context_days": 28,
+      "d_model": 48,
+      "dropout": 0.3,
+      "max_delta": 0.3,
+      "full_train_epochs": 1,
+      "uniform_oof_cv": 0.5756939629347158,
+      "base_uniform_oof_cv": 0.5741591768019222,
+      "oof_path": "outputs/sequence_encoder_residual_q1_focus_on_v4/oof_tf28_q1.csv",
+      "submission_path": "outputs/sequence_encoder_residual_q1_focus_on_v4/submission_tf28_q1.csv",
+      "test_delta_abs_mean": 0.014446164481341839,
+      "test_min": 0.08306147158145905,
+      "test_max": 0.9890305399894714,
+      "target_weights": {
+        "Q1": 3.7333333492279053,
+        "Q2": 0.46666666865348816,
+        "Q3": 0.46666666865348816,
+        "S1": 0.9333333373069763,
+        "S2": 0.46666666865348816,
+        "S3": 0.46666666865348816,
+        "S4": 0.46666666865348816
+      }
+    }
+  ],
+  "anti_overfit_controls": [
+    "Residual logit head initialized at zero, so training starts from the base predictions.",
+    "Outer validation labels are not used for early stopping; epoch is selected on an inner split of the outer-training fold.",
+    "Tiny encoders, dropout, AdamW weight decay, gradient clipping, tanh-clamped residual logits, and residual L2 penalty.",
+    "OOF predictions are produced by retraining on the full outer-train fold for the inner-selected epoch."
+  ]
+}

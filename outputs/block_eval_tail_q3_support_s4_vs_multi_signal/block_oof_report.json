@@ -1,0 +1,72 @@
+{
+  "baseline": "multi_signal",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "tail_q3_support_s4",
+      "avg_log_loss": 0.5812959111196158,
+      "overall_p025": 2.4061483222574322e-05,
+      "overall_improvement": 0.00029639138382627763,
+      "early_delta": 0.0,
+      "mid_delta": 4.730873407032821e-05,
+      "late_delta": 0.0008317219658782182,
+      "tail20_delta": 0.0008594647144078982,
+      "late_p025": 0.00015595249422479268,
+      "tail20_p025": 2.3923485166160608e-05,
+      "worst_subject_delta": -0.0006132271879879525,
+      "worst_late_target_delta": 0.0,
+      "promote": true
+    },
+    {
+      "name": "tail_q3",
+      "avg_log_loss": 0.5814435739538143,
+      "overall_p025": -1.28320689788274e-05,
+      "overall_improvement": 0.00014872854962770738,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0004403147850819966,
+      "tail20_delta": 0.0007045036561311724,
+      "late_p025": -2.225795232910442e-05,
+      "tail20_p025": -4.933604535978361e-05,
+      "worst_subject_delta": -5.656652139962581e-05,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    },
+    {
+      "name": "support_s4w100",
+      "avg_log_loss": 0.5814446396692434,
+      "overall_p025": -6.921681440623849e-05,
+      "overall_improvement": 0.00014766283419857104,
+      "early_delta": 0.0,
+      "mid_delta": 4.730873407032821e-05,
+      "late_delta": 0.0003914071807962216,
+      "tail20_delta": 0.0001549610582767258,
+      "late_p025": -0.00012384336694553098,
+      "tail20_p025": -0.0002886135726975271,
+      "worst_subject_delta": -0.0008452222964833167,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    },
+    {
+      "name": "multi_signal",
+      "avg_log_loss": 0.5815923025034421,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

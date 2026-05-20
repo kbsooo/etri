@@ -1,0 +1,211 @@
+{
+  "target": "S4",
+  "base_log_loss": 0.4962578973374477,
+  "best_source_log_loss": 0.5195471077767854,
+  "sources": [
+    {
+      "name": "s4_temporal_state_novelty_knn_resid",
+      "oof": "outputs/s4_temporal_state_novelty_phase_on_v52/oof_s4_temporal_state_novelty_knn_resid.csv",
+      "submission": "outputs/s4_temporal_state_novelty_phase_on_v52/submission_s4_temporal_state_novelty_knn_resid.csv",
+      "S4_log_loss": 0.5195471077767854,
+      "fold_log_loss": [
+        0.6007217097117462,
+        0.5227591255551477,
+        0.5199731707913907,
+        0.5175281834695773,
+        0.4269563061411076
+      ]
+    },
+    {
+      "name": "s4_sleep_retrieval_meta",
+      "oof": "outputs/s4_temporal_state_novelty_phase_on_v52/oof_s4_sleep_retrieval_meta.csv",
+      "submission": "outputs/s4_temporal_state_novelty_phase_on_v52/submission_s4_sleep_retrieval_meta.csv",
+      "S4_log_loss": 0.5300926901708488
+    },
+    {
+      "name": "s4_temporal_state_novelty_recovery_knn_resid",
+      "oof": "outputs/s4_temporal_state_novelty_phase_on_v52/oof_s4_temporal_state_novelty_recovery_knn_resid.csv",
+      "submission": "outputs/s4_temporal_state_novelty_phase_on_v52/submission_s4_temporal_state_novelty_recovery_knn_resid.csv",
+      "S4_log_loss": 0.5448670898155868,
+      "fold_log_loss": [
+        0.6614759709748634,
+        0.5336497438828343,
+        0.5746793909843965,
+        0.5403665064089168,
+        0.3993704247061819
+      ]
+    },
+    {
+      "name": "s4_temporal_state_novelty_knn_logitresid",
+      "oof": "outputs/s4_temporal_state_novelty_phase_on_v52/oof_s4_temporal_state_novelty_knn_logitresid.csv",
+      "submission": "outputs/s4_temporal_state_novelty_phase_on_v52/submission_s4_temporal_state_novelty_knn_logitresid.csv",
+      "S4_log_loss": 0.6044120838127724,
+      "fold_log_loss": [
+        0.7453785061398943,
+        0.6429630010510633,
+        0.5549227159993191,
+        0.5907976809849964,
+        0.47205315451914254
+      ]
+    },
+    {
+      "name": "s4_temporal_state_novelty_recovery_knn_logitresid",
+      "oof": "outputs/s4_temporal_state_novelty_phase_on_v52/oof_s4_temporal_state_novelty_recovery_knn_logitresid.csv",
+      "submission": "outputs/s4_temporal_state_novelty_phase_on_v52/submission_s4_temporal_state_novelty_recovery_knn_logitresid.csv",
+      "S4_log_loss": 0.609606039407604,
+      "fold_log_loss": [
+        0.7136176693164487,
+        0.6437727438226171,
+        0.6171388983445731,
+        0.6480548859365042,
+        0.4089591987158401
+      ]
+    },
+    {
+      "name": "s4_temporal_state_novelty_hgb",
+      "oof": "outputs/s4_temporal_state_novelty_phase_on_v52/oof_s4_temporal_state_novelty_hgb.csv",
+      "submission": "outputs/s4_temporal_state_novelty_phase_on_v52/submission_s4_temporal_state_novelty_hgb.csv",
+      "S4_log_loss": 0.6648267511702335,
+      "fold_log_loss": [
+        0.6978473423072937,
+        0.6803161109381034,
+        0.7016404354457676,
+        0.6611119189261777,
+        0.5755463732819336
+      ]
+    },
+    {
+      "name": "s4_temporal_state_novelty_recovery_hgb",
+      "oof": "outputs/s4_temporal_state_novelty_phase_on_v52/oof_s4_temporal_state_novelty_recovery_hgb.csv",
+      "submission": "outputs/s4_temporal_state_novelty_phase_on_v52/submission_s4_temporal_state_novelty_recovery_hgb.csv",
+      "S4_log_loss": 0.6737581852934704,
+      "fold_log_loss": [
+        0.6781812190327764,
+        0.6521781177233885,
+        0.7195297810319516,
+        0.7007474423524972,
+        0.6155452139390737
+      ]
+    },
+    {
+      "name": "s4_temporal_state_novelty_recovery_extra",
+      "oof": "outputs/s4_temporal_state_novelty_phase_on_v52/oof_s4_temporal_state_novelty_recovery_extra.csv",
+      "submission": "outputs/s4_temporal_state_novelty_phase_on_v52/submission_s4_temporal_state_novelty_recovery_extra.csv",
+      "S4_log_loss": 0.6777345249836003,
+      "fold_log_loss": [
+        0.6848293207286031,
+        0.6911563998836692,
+        0.7023298510591113,
+        0.6754516524467418,
+        0.6312829620571714
+      ]
+    },
+    {
+      "name": "s4_temporal_state_novelty_extra",
+      "oof": "outputs/s4_temporal_state_novelty_phase_on_v52/oof_s4_temporal_state_novelty_extra.csv",
+      "submission": "outputs/s4_temporal_state_novelty_phase_on_v52/submission_s4_temporal_state_novelty_extra.csv",
+      "S4_log_loss": 0.681227120933349,
+      "fold_log_loss": [
+        0.7012388645387477,
+        0.6899138980146866,
+        0.7122436409154863,
+        0.6707453163405094,
+        0.6269814097240153
+      ]
+    },
+    {
+      "name": "s4_temporal_state_novelty_recovery_knn_label",
+      "oof": "outputs/s4_temporal_state_novelty_phase_on_v52/oof_s4_temporal_state_novelty_recovery_knn_label.csv",
+      "submission": "outputs/s4_temporal_state_novelty_phase_on_v52/submission_s4_temporal_state_novelty_recovery_knn_label.csv",
+      "S4_log_loss": 0.7344019835938821,
+      "fold_log_loss": [
+        0.6610351225094521,
+        0.775007580636811,
+        0.7450703568107347,
+        0.7634932476028319,
+        0.7312534535181074
+      ]
+    },
+    {
+      "name": "s4_temporal_state_novelty_knn_label",
+      "oof": "outputs/s4_temporal_state_novelty_phase_on_v52/oof_s4_temporal_state_novelty_knn_label.csv",
+      "submission": "outputs/s4_temporal_state_novelty_phase_on_v52/submission_s4_temporal_state_novelty_knn_label.csv",
+      "S4_log_loss": 0.7457127957903228,
+      "fold_log_loss": [
+        0.7772998876347798,
+        0.7732553576571854,
+        0.7129468085747024,
+        0.7803832422842658,
+        0.6801914613747188
+      ]
+    },
+    {
+      "name": "s4_temporal_state_novelty_recovery_proto",
+      "oof": "outputs/s4_temporal_state_novelty_phase_on_v52/oof_s4_temporal_state_novelty_recovery_proto.csv",
+      "submission": "outputs/s4_temporal_state_novelty_phase_on_v52/submission_s4_temporal_state_novelty_recovery_proto.csv",
+      "S4_log_loss": 0.7510922171899967,
+      "fold_log_loss": [
+        0.6770075268319377,
+        0.7745355652842789,
+        0.8147614221187203,
+        0.7955984520861005,
+        0.6948018345413706
+      ]
+    },
+    {
+      "name": "s4_temporal_state_novelty_proto",
+      "oof": "outputs/s4_temporal_state_novelty_phase_on_v52/oof_s4_temporal_state_novelty_proto.csv",
+      "submission": "outputs/s4_temporal_state_novelty_phase_on_v52/submission_s4_temporal_state_novelty_proto.csv",
+      "S4_log_loss": 0.7538398702939831,
+      "fold_log_loss": [
+        0.7948877085251961,
+        0.770094017938851,
+        0.780308754129923,
+        0.7358641946024722,
+        0.6804315072445465
+      ]
+    },
+    {
+      "name": "s4_temporal_state_novelty_logreg",
+      "oof": "outputs/s4_temporal_state_novelty_phase_on_v52/oof_s4_temporal_state_novelty_logreg.csv",
+      "submission": "outputs/s4_temporal_state_novelty_phase_on_v52/submission_s4_temporal_state_novelty_logreg.csv",
+      "S4_log_loss": 0.8515131018386417,
+      "fold_log_loss": [
+        0.7348149035859713,
+        0.7666471409394467,
+        1.0678244395816183,
+        0.8220079008685007,
+        0.8724144899153597
+      ]
+    },
+    {
+      "name": "s4_temporal_state_novelty_recovery_logreg",
+      "oof": "outputs/s4_temporal_state_novelty_phase_on_v52/oof_s4_temporal_state_novelty_recovery_logreg.csv",
+      "submission": "outputs/s4_temporal_state_novelty_phase_on_v52/submission_s4_temporal_state_novelty_recovery_logreg.csv",
+      "S4_log_loss": 0.9491158733607603,
+      "fold_log_loss": [
+        0.6550073171268586,
+        1.223035621198079,
+        1.07281239231859,
+        0.9514201682848179,
+        0.8465610399211344
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v52_state_novelty_recovery_on_v51/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v52_state_novelty_recovery_on_v51/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s4_temporal_state_novelty_phase_on_v52",
+    "target": "S4",
+    "groups": "temporal_state_novelty,temporal_state_novelty_recovery",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_state_novelty": 533,
+    "temporal_state_novelty_recovery": 385
+  }
+}

@@ -1,0 +1,395 @@
+{
+  "target": "S3",
+  "base_log_loss": 0.48027494821893923,
+  "best_source_log_loss": 0.5171029177403365,
+  "sources": [
+    {
+      "name": "s3_modality_desync_knn_resid",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_modality_desync_knn_resid.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_modality_desync_knn_resid.csv",
+      "S3_log_loss": 0.5171029177403365,
+      "fold_log_loss": [
+        0.45926612880962625,
+        0.5237838870224921,
+        0.5549562810426084,
+        0.4808086091415282,
+        0.5711357949409094
+      ]
+    },
+    {
+      "name": "s3_social_rhythm_knn_resid",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_social_rhythm_knn_resid.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_social_rhythm_knn_resid.csv",
+      "S3_log_loss": 0.541669165543146,
+      "fold_log_loss": [
+        0.5104393764406461,
+        0.5248440319208862,
+        0.6575452569233463,
+        0.4489095991778512,
+        0.5656703445568849
+      ]
+    },
+    {
+      "name": "s3_sleep_retrieval_meta",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_sleep_retrieval_meta.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_sleep_retrieval_meta.csv",
+      "S3_log_loss": 0.5604647546356432
+    },
+    {
+      "name": "s3_body_recovery_knn_resid",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_body_recovery_knn_resid.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_body_recovery_knn_resid.csv",
+      "S3_log_loss": 0.5681638305196403,
+      "fold_log_loss": [
+        0.5578086792576752,
+        0.5663353988523457,
+        0.6027582232308374,
+        0.441394777820254,
+        0.6744317473597045
+      ]
+    },
+    {
+      "name": "s3_modality_desync_hgb",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_modality_desync_hgb.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_modality_desync_hgb.csv",
+      "S3_log_loss": 0.5700944546844827,
+      "fold_log_loss": [
+        0.5115541037472509,
+        0.5818333440574864,
+        0.5691606795643877,
+        0.5325285122938854,
+        0.6622658198683805
+      ]
+    },
+    {
+      "name": "s3_phone_recovery_knn_resid",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_phone_recovery_knn_resid.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_phone_recovery_knn_resid.csv",
+      "S3_log_loss": 0.5732013531989515,
+      "fold_log_loss": [
+        0.5597869391594023,
+        0.5584767444643254,
+        0.6433604456168813,
+        0.42791907409150626,
+        0.6777203439008205
+      ]
+    },
+    {
+      "name": "s3_modality_desync_extra",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_modality_desync_extra.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_modality_desync_extra.csv",
+      "S3_log_loss": 0.5788040051345632,
+      "fold_log_loss": [
+        0.5515888981611466,
+        0.5866075404958119,
+        0.5485155542751611,
+        0.584357185214048,
+        0.627517325964329
+      ]
+    },
+    {
+      "name": "s3_body_recovery_hgb",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_body_recovery_hgb.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_body_recovery_hgb.csv",
+      "S3_log_loss": 0.5805918785219297,
+      "fold_log_loss": [
+        0.5437561912953738,
+        0.5690440956241698,
+        0.5781799003584278,
+        0.5093121123987193,
+        0.7097991253303383
+      ]
+    },
+    {
+      "name": "s3_social_rhythm_hgb",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_social_rhythm_hgb.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_social_rhythm_hgb.csv",
+      "S3_log_loss": 0.5821840279951506,
+      "fold_log_loss": [
+        0.5524667276601113,
+        0.5645264959297892,
+        0.6210076959617588,
+        0.5304665698150348,
+        0.6458793404486882
+      ]
+    },
+    {
+      "name": "s3_social_rhythm_extra",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_social_rhythm_extra.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_social_rhythm_extra.csv",
+      "S3_log_loss": 0.5843658121704753,
+      "fold_log_loss": [
+        0.5685843370717947,
+        0.6114552323537161,
+        0.5655450649599997,
+        0.5765420562272264,
+        0.6008407326496803
+      ]
+    },
+    {
+      "name": "s3_modality_desync_knn_label",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_modality_desync_knn_label.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_modality_desync_knn_label.csv",
+      "S3_log_loss": 0.5860557040067379,
+      "fold_log_loss": [
+        0.5297419943680259,
+        0.5813197463271009,
+        0.5907049756547882,
+        0.5472547843022244,
+        0.6888569606717302
+      ]
+    },
+    {
+      "name": "s3_modality_desync_proto",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_modality_desync_proto.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_modality_desync_proto.csv",
+      "S3_log_loss": 0.5860604741036682,
+      "fold_log_loss": [
+        0.5134804965336575,
+        0.5924134941231053,
+        0.5914942334629341,
+        0.528632900750404,
+        0.7132645541907695
+      ]
+    },
+    {
+      "name": "s3_phone_recovery_hgb",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_phone_recovery_hgb.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_phone_recovery_hgb.csv",
+      "S3_log_loss": 0.5912829807495951,
+      "fold_log_loss": [
+        0.5381121509510962,
+        0.6269371195008009,
+        0.5863203662675012,
+        0.5399727382498446,
+        0.6699492993507163
+      ]
+    },
+    {
+      "name": "s3_body_recovery_knn_logitresid",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_body_recovery_knn_logitresid.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_body_recovery_knn_logitresid.csv",
+      "S3_log_loss": 0.5988990806669146,
+      "fold_log_loss": [
+        0.5331734497452013,
+        0.5857773444084131,
+        0.693781772317907,
+        0.49092838086400137,
+        0.6954903820311262
+      ]
+    },
+    {
+      "name": "s3_social_rhythm_knn_logitresid",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_social_rhythm_knn_logitresid.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_social_rhythm_knn_logitresid.csv",
+      "S3_log_loss": 0.6008454585804788,
+      "fold_log_loss": [
+        0.585981139418032,
+        0.5450432925156118,
+        0.6956145019542822,
+        0.47850086958265164,
+        0.7016208220415967
+      ]
+    },
+    {
+      "name": "s3_phone_recovery_extra",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_phone_recovery_extra.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_phone_recovery_extra.csv",
+      "S3_log_loss": 0.6040676579261218,
+      "fold_log_loss": [
+        0.5821906395369606,
+        0.6573066191536079,
+        0.5566434393059961,
+        0.5755341277867383,
+        0.650871814756703
+      ]
+    },
+    {
+      "name": "s3_phone_recovery_knn_label",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_phone_recovery_knn_label.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_phone_recovery_knn_label.csv",
+      "S3_log_loss": 0.6046867494978183,
+      "fold_log_loss": [
+        0.6020142250408921,
+        0.6204165286898605,
+        0.616194264460063,
+        0.5038568002047047,
+        0.6815311243763683
+      ]
+    },
+    {
+      "name": "s3_phone_recovery_knn_logitresid",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_phone_recovery_knn_logitresid.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_phone_recovery_knn_logitresid.csv",
+      "S3_log_loss": 0.6064600377121847,
+      "fold_log_loss": [
+        0.5336175099636077,
+        0.642753989503467,
+        0.710719678714402,
+        0.44817727414160535,
+        0.6989773279563671
+      ]
+    },
+    {
+      "name": "s3_social_rhythm_proto",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_social_rhythm_proto.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_social_rhythm_proto.csv",
+      "S3_log_loss": 0.6067009910005022,
+      "fold_log_loss": [
+        0.6141651488663916,
+        0.5960603695433324,
+        0.6786600872165577,
+        0.5361988292809136,
+        0.6049980791268945
+      ]
+    },
+    {
+      "name": "s3_modality_desync_knn_logitresid",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_modality_desync_knn_logitresid.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_modality_desync_knn_logitresid.csv",
+      "S3_log_loss": 0.6092389211444537,
+      "fold_log_loss": [
+        0.5111729008380842,
+        0.5773231807235149,
+        0.6733512557062238,
+        0.5546021626105393,
+        0.7406706340286996
+      ]
+    },
+    {
+      "name": "s3_phone_recovery_proto",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_phone_recovery_proto.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_phone_recovery_proto.csv",
+      "S3_log_loss": 0.6183834267773025,
+      "fold_log_loss": [
+        0.6234804209676553,
+        0.6520821262015434,
+        0.6169023089309292,
+        0.5274758873402245,
+        0.6708451074823858
+      ]
+    },
+    {
+      "name": "s3_body_recovery_knn_label",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_body_recovery_knn_label.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_body_recovery_knn_label.csv",
+      "S3_log_loss": 0.6204007129052076,
+      "fold_log_loss": [
+        0.5535643291844877,
+        0.6058413454981538,
+        0.6607225609323407,
+        0.5714376530209295,
+        0.7178056104861542
+      ]
+    },
+    {
+      "name": "s3_social_rhythm_knn_label",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_social_rhythm_knn_label.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_social_rhythm_knn_label.csv",
+      "S3_log_loss": 0.635123815948575,
+      "fold_log_loss": [
+        0.6096604648756917,
+        0.5674634831866404,
+        0.6806394841198931,
+        0.5510900189832652,
+        0.7740977394593269
+      ]
+    },
+    {
+      "name": "s3_body_recovery_extra",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_body_recovery_extra.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_body_recovery_extra.csv",
+      "S3_log_loss": 0.6353458590451293,
+      "fold_log_loss": [
+        0.6077865509732514,
+        0.6156021476115479,
+        0.6289971630044265,
+        0.5996571064541022,
+        0.7308424300314958
+      ]
+    },
+    {
+      "name": "s3_body_recovery_proto",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_body_recovery_proto.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_body_recovery_proto.csv",
+      "S3_log_loss": 0.6535956423454822,
+      "fold_log_loss": [
+        0.628380751667769,
+        0.6327249396302094,
+        0.69325290386137,
+        0.5836208359486696,
+        0.7335311320250671
+      ]
+    },
+    {
+      "name": "s3_modality_desync_logreg",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_modality_desync_logreg.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_modality_desync_logreg.csv",
+      "S3_log_loss": 0.6957627731401721,
+      "fold_log_loss": [
+        0.6826889887880006,
+        0.7279493954746306,
+        0.6056361313053904,
+        0.6148077812689152,
+        0.854885702063121
+      ]
+    },
+    {
+      "name": "s3_social_rhythm_logreg",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_social_rhythm_logreg.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_social_rhythm_logreg.csv",
+      "S3_log_loss": 0.6992601411160131,
+      "fold_log_loss": [
+        0.7938937916878669,
+        0.7007636309563157,
+        0.6962119627675286,
+        0.6113668870399556,
+        0.6850904877594851
+      ]
+    },
+    {
+      "name": "s3_phone_recovery_logreg",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_phone_recovery_logreg.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_phone_recovery_logreg.csv",
+      "S3_log_loss": 0.7725457584192685,
+      "fold_log_loss": [
+        0.7923224970746201,
+        0.8564472065760893,
+        0.7351059426434231,
+        0.6397249723588795,
+        0.8356599727742077
+      ]
+    },
+    {
+      "name": "s3_body_recovery_logreg",
+      "oof": "outputs/s3_digest_retrieval_on_v23/oof_s3_body_recovery_logreg.csv",
+      "submission": "outputs/s3_digest_retrieval_on_v23/submission_s3_body_recovery_logreg.csv",
+      "S3_log_loss": 0.8091334237162121,
+      "fold_log_loss": [
+        1.0423191559346436,
+        0.7582475309561423,
+        0.7582976428958276,
+        0.6769592940164129,
+        0.7932988697363641
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v23_joint_q1s2_digest/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v23_joint_q1s2_digest/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s3_digest_retrieval_on_v23",
+    "target": "S3",
+    "groups": "phone_recovery,social_rhythm,body_recovery,modality_desync",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "phone_recovery": 473,
+    "social_rhythm": 638,
+    "body_recovery": 840,
+    "modality_desync": 1011
+  }
+}

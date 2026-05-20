@@ -1,0 +1,129 @@
+{
+  "final_avg_log_loss": 0.5959532192276508,
+  "final_targets": {
+    "Q1": 0.6387339722449896,
+    "Q2": 0.6643137049851372,
+    "Q3": 0.6347013175817564,
+    "S1": 0.5608047323234786,
+    "S2": 0.5504724854372729,
+    "S3": 0.5186753457865604,
+    "S4": 0.6039709762343604
+  },
+  "source_scores": [
+    {
+      "name": "stack_qcal",
+      "avg_log_loss": 0.5963918510392281,
+      "Q1": 0.6387339722449896,
+      "Q2": 0.6643137049851372,
+      "Q3": 0.636140267043621,
+      "S1": 0.5608047323234786,
+      "S2": 0.5504724854372729,
+      "S3": 0.5198921194384164,
+      "S4": 0.6043856758016808
+    },
+    {
+      "name": "stack_full_bank",
+      "avg_log_loss": 0.5964133975471411,
+      "Q1": 0.6387339722449896,
+      "Q2": 0.6655123978538103,
+      "Q3": 0.6347013175817564,
+      "S1": 0.5608047323234786,
+      "S2": 0.5504724854372729,
+      "S3": 0.5204246582730275,
+      "S4": 0.6042442191156523
+    },
+    {
+      "name": "stack",
+      "avg_log_loss": 0.5981725590546719,
+      "Q1": 0.6387339722449896,
+      "Q2": 0.6722555890781461,
+      "Q3": 0.6422948122778959,
+      "S1": 0.5608047323234786,
+      "S2": 0.5504724854372729,
+      "S3": 0.5186753457865604,
+      "S4": 0.6039709762343604
+    },
+    {
+      "name": "graph_variant",
+      "avg_log_loss": 0.6024848004719721,
+      "Q1": 0.6387339722449896,
+      "Q2": 0.6804972104377597,
+      "Q3": 0.6544847320640693,
+      "S1": 0.5608047323234786,
+      "S2": 0.5504724854372729,
+      "S3": 0.5268483567128323,
+      "S4": 0.6055521140834023
+    }
+  ],
+  "selection": [
+    {
+      "target": "Q1",
+      "source": "graph_variant",
+      "selected_loss": 0.6387339722449896,
+      "loss_graph_variant": 0.6387339722449896,
+      "loss_stack": 0.6387339722449896,
+      "loss_stack_qcal": 0.6387339722449896,
+      "loss_stack_full_bank": 0.6387339722449896
+    },
+    {
+      "target": "Q2",
+      "source": "stack_qcal",
+      "selected_loss": 0.6643137049851372,
+      "loss_graph_variant": 0.6804972104377597,
+      "loss_stack": 0.6722555890781461,
+      "loss_stack_qcal": 0.6643137049851372,
+      "loss_stack_full_bank": 0.6655123978538103
+    },
+    {
+      "target": "Q3",
+      "source": "stack_full_bank",
+      "selected_loss": 0.6347013175817564,
+      "loss_graph_variant": 0.6544847320640693,
+      "loss_stack": 0.6422948122778959,
+      "loss_stack_qcal": 0.636140267043621,
+      "loss_stack_full_bank": 0.6347013175817564
+    },
+    {
+      "target": "S1",
+      "source": "graph_variant",
+      "selected_loss": 0.5608047323234786,
+      "loss_graph_variant": 0.5608047323234786,
+      "loss_stack": 0.5608047323234786,
+      "loss_stack_qcal": 0.5608047323234786,
+      "loss_stack_full_bank": 0.5608047323234786
+    },
+    {
+      "target": "S2",
+      "source": "graph_variant",
+      "selected_loss": 0.5504724854372729,
+      "loss_graph_variant": 0.5504724854372729,
+      "loss_stack": 0.5504724854372729,
+      "loss_stack_qcal": 0.5504724854372729,
+      "loss_stack_full_bank": 0.5504724854372729
+    },
+    {
+      "target": "S3",
+      "source": "stack",
+      "selected_loss": 0.5186753457865604,
+      "loss_graph_variant": 0.5268483567128323,
+      "loss_stack": 0.5186753457865604,
+      "loss_stack_qcal": 0.5198921194384164,
+      "loss_stack_full_bank": 0.5204246582730275
+    },
+    {
+      "target": "S4",
+      "source": "stack",
+      "selected_loss": 0.6039709762343604,
+      "loss_graph_variant": 0.6055521140834023,
+      "loss_stack": 0.6039709762343604,
+      "loss_stack_qcal": 0.6043856758016808,
+      "loss_stack_full_bank": 0.6042442191156523
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/targetwise_prediction_ensemble",
+    "candidates": null
+  }
+}

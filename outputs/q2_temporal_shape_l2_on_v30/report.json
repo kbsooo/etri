@@ -1,0 +1,303 @@
+{
+  "target": "Q2",
+  "base_log_loss": 0.5881086744487908,
+  "best_source_log_loss": 0.6279085869358049,
+  "sources": [
+    {
+      "name": "q2_temporal_extreme_knn_resid",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_extreme_knn_resid.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_extreme_knn_resid.csv",
+      "Q2_log_loss": 0.6279085869358049,
+      "fold_log_loss": [
+        0.6099613203784321,
+        0.6477839559375311,
+        0.6072244285859159,
+        0.6536967324390798,
+        0.6222044237104709
+      ]
+    },
+    {
+      "name": "q2_sleep_retrieval_meta",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_sleep_retrieval_meta.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_sleep_retrieval_meta.csv",
+      "Q2_log_loss": 0.6347857955907771
+    },
+    {
+      "name": "q2_temporal_momentum_knn_resid",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_momentum_knn_resid.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_momentum_knn_resid.csv",
+      "Q2_log_loss": 0.6436078237412224,
+      "fold_log_loss": [
+        0.60651448832794,
+        0.6273676877027424,
+        0.6419555712450936,
+        0.7719470342849118,
+        0.5730525653841483
+      ]
+    },
+    {
+      "name": "q2_temporal_acceleration_knn_resid",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_acceleration_knn_resid.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_acceleration_knn_resid.csv",
+      "Q2_log_loss": 0.6458816319900681,
+      "fold_log_loss": [
+        0.6726697775688213,
+        0.7688494883215375,
+        0.6309852393623459,
+        0.5830123932927078,
+        0.5631437364996723
+      ]
+    },
+    {
+      "name": "q2_temporal_extreme_knn_logitresid",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_extreme_knn_logitresid.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_extreme_knn_logitresid.csv",
+      "Q2_log_loss": 0.6833876677861943,
+      "fold_log_loss": [
+        0.739290982634341,
+        0.6745161423190212,
+        0.647305458045272,
+        0.8099793656363038,
+        0.5395684772670224
+      ]
+    },
+    {
+      "name": "q2_temporal_momentum_knn_logitresid",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_momentum_knn_logitresid.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_momentum_knn_logitresid.csv",
+      "Q2_log_loss": 0.6988179404203645,
+      "fold_log_loss": [
+        0.6815431387566572,
+        0.676636195292474,
+        0.726550932675577,
+        0.7906297043445257,
+        0.6184708928108562
+      ]
+    },
+    {
+      "name": "q2_temporal_momentum_extra",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_momentum_extra.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_momentum_extra.csv",
+      "Q2_log_loss": 0.6992021651686253,
+      "fold_log_loss": [
+        0.7100945966291982,
+        0.6852841022366064,
+        0.7118136520706743,
+        0.7010174181650612,
+        0.6867328531946832
+      ]
+    },
+    {
+      "name": "q2_temporal_extreme_knn_label",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_extreme_knn_label.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_extreme_knn_label.csv",
+      "Q2_log_loss": 0.7062471773946184,
+      "fold_log_loss": [
+        0.7334323569151546,
+        0.7012402249599833,
+        0.6835071803270666,
+        0.769430327841031,
+        0.6409583916751457
+      ]
+    },
+    {
+      "name": "q2_temporal_acceleration_extra",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_acceleration_extra.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_acceleration_extra.csv",
+      "Q2_log_loss": 0.7072792414532997,
+      "fold_log_loss": [
+        0.7068352776573064,
+        0.6825828016326151,
+        0.723816094461103,
+        0.7082878661120787,
+        0.7157691832779878
+      ]
+    },
+    {
+      "name": "q2_temporal_extreme_extra",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_extreme_extra.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_extreme_extra.csv",
+      "Q2_log_loss": 0.7232444982873508,
+      "fold_log_loss": [
+        0.7076826088856843,
+        0.6992472176151275,
+        0.7107598572358397,
+        0.7708010601120534,
+        0.7313010956043061
+      ]
+    },
+    {
+      "name": "q2_temporal_momentum_hgb",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_momentum_hgb.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_momentum_hgb.csv",
+      "Q2_log_loss": 0.7388956829705214,
+      "fold_log_loss": [
+        0.7516401154056702,
+        0.7396391746295916,
+        0.6841600351636765,
+        0.8097684299209931,
+        0.7099061847559127
+      ]
+    },
+    {
+      "name": "q2_temporal_momentum_knn_label",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_momentum_knn_label.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_momentum_knn_label.csv",
+      "Q2_log_loss": 0.7396394766246619,
+      "fold_log_loss": [
+        0.7759633411902783,
+        0.7227737389111076,
+        0.6995830409678649,
+        0.8167505223111803,
+        0.6812554225770721
+      ]
+    },
+    {
+      "name": "q2_temporal_acceleration_knn_logitresid",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_acceleration_knn_logitresid.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_acceleration_knn_logitresid.csv",
+      "Q2_log_loss": 0.7465665051832865,
+      "fold_log_loss": [
+        0.9744789532200188,
+        0.7543896092582775,
+        0.6889705759178576,
+        0.6569507931690426,
+        0.6367593095362808
+      ]
+    },
+    {
+      "name": "q2_temporal_acceleration_hgb",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_acceleration_hgb.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_acceleration_hgb.csv",
+      "Q2_log_loss": 0.7536050755989727,
+      "fold_log_loss": [
+        0.7991835749410247,
+        0.6593086182828138,
+        0.765639694031726,
+        0.7744810263981065,
+        0.7704751772305788
+      ]
+    },
+    {
+      "name": "q2_temporal_acceleration_knn_label",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_acceleration_knn_label.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_acceleration_knn_label.csv",
+      "Q2_log_loss": 0.7660413453736421,
+      "fold_log_loss": [
+        0.9282522080183382,
+        0.7296206053594464,
+        0.6959533202973736,
+        0.7862658360942325,
+        0.678502000894924
+      ]
+    },
+    {
+      "name": "q2_temporal_extreme_hgb",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_extreme_hgb.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_extreme_hgb.csv",
+      "Q2_log_loss": 0.7726637072425815,
+      "fold_log_loss": [
+        0.7690306530614306,
+        0.7302584871118522,
+        0.7482034517625548,
+        0.8807475098531388,
+        0.7381815051343497
+      ]
+    },
+    {
+      "name": "q2_temporal_extreme_proto",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_extreme_proto.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_extreme_proto.csv",
+      "Q2_log_loss": 0.7946086858252949,
+      "fold_log_loss": [
+        0.7761073494454972,
+        0.7538432878053414,
+        0.6764966815201062,
+        0.9904625923078051,
+        0.7853962870218868
+      ]
+    },
+    {
+      "name": "q2_temporal_momentum_proto",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_momentum_proto.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_momentum_proto.csv",
+      "Q2_log_loss": 0.8149337215268386,
+      "fold_log_loss": [
+        0.8800932105813929,
+        0.8208496552598268,
+        0.786006140396014,
+        0.8195959629485837,
+        0.7619028687691402
+      ]
+    },
+    {
+      "name": "q2_temporal_extreme_logreg",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_extreme_logreg.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_extreme_logreg.csv",
+      "Q2_log_loss": 0.8293039358865356,
+      "fold_log_loss": [
+        0.7528519886343121,
+        0.9232039512039725,
+        0.7649097140847079,
+        0.8722280130240957,
+        0.8381229129777792
+      ]
+    },
+    {
+      "name": "q2_temporal_acceleration_proto",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_acceleration_proto.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_acceleration_proto.csv",
+      "Q2_log_loss": 0.8852882322043001,
+      "fold_log_loss": [
+        0.8756265234864885,
+        0.8244205057656461,
+        0.847423752353414,
+        0.9473556263770015,
+        0.938976438486111
+      ]
+    },
+    {
+      "name": "q2_temporal_momentum_logreg",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_momentum_logreg.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_momentum_logreg.csv",
+      "Q2_log_loss": 0.96242836010803,
+      "fold_log_loss": [
+        1.0209903096618966,
+        0.9330415152885257,
+        0.9664807088604705,
+        1.055551540038008,
+        0.8291309968774044
+      ]
+    },
+    {
+      "name": "q2_temporal_acceleration_logreg",
+      "oof": "outputs/q2_temporal_shape_l2_on_v30/oof_q2_temporal_acceleration_logreg.csv",
+      "submission": "outputs/q2_temporal_shape_l2_on_v30/submission_q2_temporal_acceleration_logreg.csv",
+      "Q2_log_loss": 1.087619534593984,
+      "fold_log_loss": [
+        1.143327792815142,
+        0.8112328905245692,
+        0.9093176209415242,
+        1.2735411638553797,
+        1.32509693600585
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v30_temporal_shape_on_v29/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v30_temporal_shape_on_v29/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/q2_temporal_shape_l2_on_v30",
+    "target": "Q2",
+    "groups": "temporal_momentum,temporal_extreme,temporal_acceleration",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_momentum": 308,
+    "temporal_extreme": 616,
+    "temporal_acceleration": 616
+  }
+}

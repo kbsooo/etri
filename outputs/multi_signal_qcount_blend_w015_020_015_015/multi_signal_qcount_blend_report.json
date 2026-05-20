@@ -1,0 +1,57 @@
+{
+  "base_avg_log_loss": 0.5818511527290617,
+  "final_avg_log_loss": 0.5815923025034421,
+  "improvement": 0.00025885022561966675,
+  "base_targets": {
+    "Q1": 0.6358317172110295,
+    "Q2": 0.6397670248932207,
+    "Q3": 0.6213677582828048,
+    "S1": 0.5542725406575977,
+    "S2": 0.5292196070733155,
+    "S3": 0.49841585304667624,
+    "S4": 0.5940835679387884
+  },
+  "final_targets": {
+    "Q1": 0.6354563850631679,
+    "Q2": 0.6395425673258385,
+    "Q3": 0.621282204164659,
+    "S1": 0.5538676197845784,
+    "S2": 0.529019169896579,
+    "S3": 0.49839604486948186,
+    "S4": 0.5935821264197895
+  },
+  "target_deltas": {
+    "Q1": 0.0003753321478615623,
+    "Q2": 0.000224457567382208,
+    "Q3": 8.555411814581415e-05,
+    "S1": 0.0004049208730192433,
+    "S2": 0.00020043717673645656,
+    "S3": 1.9808177194380328e-05,
+    "S4": 0.0005014415189988908
+  },
+  "weights": {
+    "markov": 0.15,
+    "prior": 0.2,
+    "sleep": 0.15,
+    "broad_s4_only": 0.15
+  },
+  "inputs": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/block_aware_targetwise_transductive_q_count_vs_w03/oof_block_aware_targetwise_blend.csv",
+    "base_submission": "outputs/block_aware_targetwise_transductive_q_count_vs_w03/submission_block_aware_targetwise_blend.csv",
+    "markov_oof": "outputs/markov_label_prior_on_qcount_probe/oof_markov_label_prior.csv",
+    "markov_submission": "outputs/markov_label_prior_on_qcount_probe/submission_markov_label_prior.csv",
+    "prior_oof": "outputs/label_prior_projection_on_qcount/oof_label_prior_projection.csv",
+    "prior_submission": "outputs/label_prior_projection_on_qcount/submission_label_prior_projection.csv",
+    "sleep_oof": "outputs/sleep_metric_decoder_on_qcount_min3/oof_sleep_metric_decoder.csv",
+    "sleep_submission": "outputs/sleep_metric_decoder_on_qcount_min3/submission_sleep_metric_decoder.csv",
+    "broad_oof": "outputs/master_residual_broad_on_w03_min3/oof_master_residual_decoder.csv",
+    "broad_submission": "outputs/master_residual_broad_on_w03_min3/submission_master_residual_decoder.csv",
+    "output_dir": "outputs/multi_signal_qcount_blend_w015_020_015_015",
+    "markov_weight": 0.15,
+    "prior_weight": 0.2,
+    "sleep_weight": 0.15,
+    "broad_s4_weight": 0.15
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model_repo": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "onnx_file": "onnx/model_qint8_arm64.onnx",
+  "license": "apache-2.0",
+  "runtime": "onnxruntime CPUExecutionProvider",
+  "n_unique_usage_texts": 585,
+  "n_unique_ambience_texts": 517,
+  "n_unique_encoded_texts": 1101,
+  "embedding_dim": 384,
+  "pca_components_per_channel": 16,
+  "channels": [
+    "app",
+    "amb",
+    "amb_night"
+  ],
+  "n_text_features": 65,
+  "n_base_features": 14,
+  "n_total_features": 79,
+  "base_oof": "outputs/master_aggressive_decoder_fast/oof_temporal_master_oof_blend.csv",
+  "base_submission": "outputs/master_aggressive_decoder_fast/submission_temporal_master_oof_blend.csv",
+  "design_note": "The public pretrained model is used only to embed app names and ambience labels; no external labels are consumed."
+}

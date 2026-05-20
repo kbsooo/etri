@@ -1,0 +1,76 @@
+{
+  "baseline": "v27",
+  "bin_table": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_frac": 0.52,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_frac": 0.22666666666666666,
+      "sample_frac": 0.52,
+      "weight_ratio": 2.294117647058824
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_frac": 0.20444444444444446,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_frac": 0.04888888888888889,
+      "sample_frac": 0.48,
+      "weight_ratio": 9.818181818181817
+    }
+  ],
+  "summary": [
+    {
+      "name": "v35a",
+      "uniform_avg_log_loss": 0.5706631036772586,
+      "weighted_avg_log_loss": 0.5249302996732952,
+      "weighted_delta_vs_baseline": 0.006637094953773946,
+      "weighted_p025": 0.00496639229914805,
+      "weighted_p500": 0.00663032018286743,
+      "weighted_p975": 0.008301150817037398,
+      "promote_weighted": true
+    },
+    {
+      "name": "v34a",
+      "uniform_avg_log_loss": 0.5709126820221233,
+      "weighted_avg_log_loss": 0.5255028617585729,
+      "weighted_delta_vs_baseline": 0.006064532868496213,
+      "weighted_p025": 0.00447580813324194,
+      "weighted_p500": 0.0060661871060000636,
+      "weighted_p975": 0.0076359515437035225,
+      "promote_weighted": true
+    },
+    {
+      "name": "v27",
+      "uniform_avg_log_loss": 0.5730150628364322,
+      "weighted_avg_log_loss": 0.531567394627069,
+      "weighted_delta_vs_baseline": 0.0,
+      "weighted_p025": 0.0,
+      "weighted_p500": 0.0,
+      "weighted_p975": 0.0,
+      "promote_weighted": false
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_weighted_eval_v35a_vs_v27",
+    "baseline": "v27",
+    "candidates": [
+      "v27:outputs/sample_portfolio_v27_v25_plus_v17fused_q3mid_w065/oof_sample_support_target_blend.csv",
+      "v34a:outputs/sample_portfolio_v34a_v33a_plus_tc_q3allsupport_coremidtailC003_w005_logit/oof_sample_support_target_blend.csv",
+      "v35a:outputs/sample_portfolio_v35a_v34a_plus_stack_s1mid_w100_prob/oof_sample_support_target_blend.csv"
+    ],
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "bootstrap": 30000,
+    "seed": 2026,
+    "min_weighted_p025": 0.0
+  }
+}

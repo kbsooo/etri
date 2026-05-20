@@ -1,0 +1,62 @@
+{
+  "device": "mps",
+  "pca_components": 64,
+  "base_oof": "outputs/targetwise_residual_latent_portfolio_v1/oof_targetwise_latent_portfolio_v1.csv",
+  "base_submission": "outputs/targetwise_residual_latent_portfolio_v1/submission_targetwise_latent_portfolio_v1.csv",
+  "results": [
+    {
+      "name": "gru28_lp",
+      "encoder": "gru",
+      "context_days": 28,
+      "d_model": 32,
+      "dropout": 0.3,
+      "max_delta": 0.45,
+      "full_train_epochs": 1,
+      "uniform_oof_cv": 0.5779308699332874,
+      "base_uniform_oof_cv": 0.5755542553654472,
+      "oof_path": "outputs/sequence_encoder_residual_on_latent_portfolio_v1/oof_gru28_lp.csv",
+      "submission_path": "outputs/sequence_encoder_residual_on_latent_portfolio_v1/submission_gru28_lp.csv",
+      "test_delta_abs_mean": 0.021741211414337158,
+      "test_min": 0.06385993957519531,
+      "test_max": 0.9931051135063171
+    },
+    {
+      "name": "gru14_lp",
+      "encoder": "gru",
+      "context_days": 14,
+      "d_model": 24,
+      "dropout": 0.35,
+      "max_delta": 0.35,
+      "full_train_epochs": 1,
+      "uniform_oof_cv": 0.5779938965490193,
+      "base_uniform_oof_cv": 0.5755542553654472,
+      "oof_path": "outputs/sequence_encoder_residual_on_latent_portfolio_v1/oof_gru14_lp.csv",
+      "submission_path": "outputs/sequence_encoder_residual_on_latent_portfolio_v1/submission_gru14_lp.csv",
+      "test_delta_abs_mean": 0.013665496371686459,
+      "test_min": 0.06378699839115143,
+      "test_max": 0.9930866360664368
+    },
+    {
+      "name": "tf28_lp",
+      "encoder": "transformer",
+      "context_days": 28,
+      "d_model": 32,
+      "dropout": 0.35,
+      "max_delta": 0.35,
+      "full_train_epochs": 3,
+      "uniform_oof_cv": 0.578560037879835,
+      "base_uniform_oof_cv": 0.5755542553654472,
+      "oof_path": "outputs/sequence_encoder_residual_on_latent_portfolio_v1/oof_tf28_lp.csv",
+      "submission_path": "outputs/sequence_encoder_residual_on_latent_portfolio_v1/submission_tf28_lp.csv",
+      "test_delta_abs_mean": 0.03786058723926544,
+      "test_min": 0.060151100158691406,
+      "test_max": 0.9929056167602539
+    }
+  ],
+  "anti_overfit_controls": [
+    "Residual logit head initialized at zero, so training starts from the base predictions.",
+    "Outer validation labels are not used for early stopping; epoch is selected on an inner split of the outer-training fold.",
+    "Tiny encoders, dropout, AdamW weight decay, gradient clipping, tanh-clamped residual logits, and residual L2 penalty.",
+    "OOF predictions are produced by retraining on the full outer-train fold for the inner-selected epoch."
+  ]
+}

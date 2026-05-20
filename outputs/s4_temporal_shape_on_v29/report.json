@@ -1,0 +1,303 @@
+{
+  "target": "S4",
+  "base_log_loss": 0.5533475655885244,
+  "best_source_log_loss": 0.5571712027423142,
+  "sources": [
+    {
+      "name": "s4_sleep_retrieval_meta",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_sleep_retrieval_meta.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_sleep_retrieval_meta.csv",
+      "S4_log_loss": 0.5571712027423142
+    },
+    {
+      "name": "s4_temporal_extreme_knn_resid",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_extreme_knn_resid.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_extreme_knn_resid.csv",
+      "S4_log_loss": 0.6190620994804128,
+      "fold_log_loss": [
+        0.6300859269685923,
+        0.647824172324797,
+        0.6024801289078444,
+        0.6040909411134675,
+        0.6086865205035599
+      ]
+    },
+    {
+      "name": "s4_temporal_momentum_knn_resid",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_momentum_knn_resid.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_momentum_knn_resid.csv",
+      "S4_log_loss": 0.6315196213213193,
+      "fold_log_loss": [
+        0.817628760815396,
+        0.5527092437037543,
+        0.5885807879722301,
+        0.5781301662220808,
+        0.609431420348137
+      ]
+    },
+    {
+      "name": "s4_temporal_extreme_knn_logitresid",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_extreme_knn_logitresid.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_extreme_knn_logitresid.csv",
+      "S4_log_loss": 0.6665015214661344,
+      "fold_log_loss": [
+        0.7233122262005778,
+        0.6160461652455015,
+        0.6667490766894807,
+        0.6405097627063677,
+        0.6839560074579144
+      ]
+    },
+    {
+      "name": "s4_temporal_extreme_hgb",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_extreme_hgb.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_extreme_hgb.csv",
+      "S4_log_loss": 0.6702713876258374,
+      "fold_log_loss": [
+        0.6908758580734827,
+        0.6546829144933215,
+        0.674421789067266,
+        0.675152642891893,
+        0.6546756122887586
+      ]
+    },
+    {
+      "name": "s4_temporal_momentum_extra",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_momentum_extra.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_momentum_extra.csv",
+      "S4_log_loss": 0.6843830174915934,
+      "fold_log_loss": [
+        0.699427096130542,
+        0.6632535822483823,
+        0.6836425057348512,
+        0.6632756417213409,
+        0.7128353567098378
+      ]
+    },
+    {
+      "name": "s4_temporal_extreme_extra",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_extreme_extra.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_extreme_extra.csv",
+      "S4_log_loss": 0.6865499545827325,
+      "fold_log_loss": [
+        0.7046240559650965,
+        0.6761791679564563,
+        0.6689628826886782,
+        0.683299362174102,
+        0.6997299289380571
+      ]
+    },
+    {
+      "name": "s4_temporal_momentum_knn_logitresid",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_momentum_knn_logitresid.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_momentum_knn_logitresid.csv",
+      "S4_log_loss": 0.6912084697964213,
+      "fold_log_loss": [
+        0.8233189286870078,
+        0.6159035667150607,
+        0.6763620627287374,
+        0.627638057112142,
+        0.7060226631560796
+      ]
+    },
+    {
+      "name": "s4_temporal_extreme_knn_label",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_extreme_knn_label.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_extreme_knn_label.csv",
+      "S4_log_loss": 0.6929895665813781,
+      "fold_log_loss": [
+        0.6882649021681531,
+        0.6595321066950414,
+        0.6971243561441137,
+        0.7314172951169678,
+        0.6907242865342504
+      ]
+    },
+    {
+      "name": "s4_temporal_acceleration_extra",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_acceleration_extra.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_acceleration_extra.csv",
+      "S4_log_loss": 0.6945137643383517,
+      "fold_log_loss": [
+        0.6838487933168907,
+        0.6940971053600363,
+        0.6849508002750588,
+        0.7047310667419742,
+        0.706664697205273
+      ]
+    },
+    {
+      "name": "s4_temporal_acceleration_hgb",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_acceleration_hgb.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_acceleration_hgb.csv",
+      "S4_log_loss": 0.6973970512252904,
+      "fold_log_loss": [
+        0.718260430024075,
+        0.7035432764000918,
+        0.6783501626660078,
+        0.680240477750987,
+        0.7053784047452063
+      ]
+    },
+    {
+      "name": "s4_temporal_extreme_proto",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_extreme_proto.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_extreme_proto.csv",
+      "S4_log_loss": 0.7065213162354631,
+      "fold_log_loss": [
+        0.7177017601678691,
+        0.6530690506836457,
+        0.7356259551913689,
+        0.7253663613927074,
+        0.7014322007474739
+      ]
+    },
+    {
+      "name": "s4_temporal_momentum_hgb",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_momentum_hgb.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_momentum_hgb.csv",
+      "S4_log_loss": 0.7108401646542272,
+      "fold_log_loss": [
+        0.721387336124668,
+        0.6911624862390616,
+        0.676616910656594,
+        0.6652210036846817,
+        0.8036819086852681
+      ]
+    },
+    {
+      "name": "s4_temporal_acceleration_knn_resid",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_acceleration_knn_resid.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_acceleration_knn_resid.csv",
+      "S4_log_loss": 0.7127786038116058,
+      "fold_log_loss": [
+        0.6356269602166201,
+        0.619073430967982,
+        0.7597995261138615,
+        0.8140260563825527,
+        0.7464591889875989
+      ]
+    },
+    {
+      "name": "s4_temporal_momentum_knn_label",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_momentum_knn_label.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_momentum_knn_label.csv",
+      "S4_log_loss": 0.7274170496078657,
+      "fold_log_loss": [
+        0.742557849647186,
+        0.692417042019835,
+        0.7256447120659791,
+        0.7104248503890054,
+        0.7676667995221705
+      ]
+    },
+    {
+      "name": "s4_temporal_acceleration_knn_label",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_acceleration_knn_label.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_acceleration_knn_label.csv",
+      "S4_log_loss": 0.7531243774831634,
+      "fold_log_loss": [
+        0.6826823914399502,
+        0.7548016569099197,
+        0.7844518009961284,
+        0.7804996307490137,
+        0.7684800997541622
+      ]
+    },
+    {
+      "name": "s4_temporal_acceleration_proto",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_acceleration_proto.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_acceleration_proto.csv",
+      "S4_log_loss": 0.7794673564308178,
+      "fold_log_loss": [
+        0.762183947156322,
+        0.7484505155056924,
+        0.805940885157495,
+        0.7473775273732249,
+        0.8368579124316606
+      ]
+    },
+    {
+      "name": "s4_temporal_extreme_logreg",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_extreme_logreg.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_extreme_logreg.csv",
+      "S4_log_loss": 0.7800617454496467,
+      "fold_log_loss": [
+        0.8364358886199592,
+        0.7043275294223289,
+        0.8516118396825308,
+        0.8015826090503417,
+        0.7003985756247127
+      ]
+    },
+    {
+      "name": "s4_temporal_momentum_proto",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_momentum_proto.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_momentum_proto.csv",
+      "S4_log_loss": 0.7832094680137859,
+      "fold_log_loss": [
+        0.9279235337449043,
+        0.6884617138730436,
+        0.7482848771422926,
+        0.7244193534537766,
+        0.8215839959257715
+      ]
+    },
+    {
+      "name": "s4_temporal_acceleration_knn_logitresid",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_acceleration_knn_logitresid.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_acceleration_knn_logitresid.csv",
+      "S4_log_loss": 0.8476288554509658,
+      "fold_log_loss": [
+        0.628647980742408,
+        0.8654251562004873,
+        1.0223412778923873,
+        0.8832764119136867,
+        0.8495789210266238
+      ]
+    },
+    {
+      "name": "s4_temporal_momentum_logreg",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_momentum_logreg.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_momentum_logreg.csv",
+      "S4_log_loss": 0.9188047609374923,
+      "fold_log_loss": [
+        1.0975157751060414,
+        0.7711573190638465,
+        0.8416318698866994,
+        0.769848785371339,
+        1.1139567758344426
+      ]
+    },
+    {
+      "name": "s4_temporal_acceleration_logreg",
+      "oof": "outputs/s4_temporal_shape_on_v29/oof_s4_temporal_acceleration_logreg.csv",
+      "submission": "outputs/s4_temporal_shape_on_v29/submission_s4_temporal_acceleration_logreg.csv",
+      "S4_log_loss": 0.9265319020957524,
+      "fold_log_loss": [
+        1.0965977514322212,
+        0.7984813607069402,
+        0.7991159378118332,
+        0.9100034311251914,
+        1.02838159439083
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v29_temporal_digest_deeper/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v29_temporal_digest_deeper/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s4_temporal_shape_on_v29",
+    "target": "S4",
+    "groups": "temporal_acceleration,temporal_momentum,temporal_extreme",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_acceleration": 616,
+    "temporal_momentum": 308,
+    "temporal_extreme": 616
+  }
+}

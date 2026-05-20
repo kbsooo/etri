@@ -1,0 +1,303 @@
+{
+  "target": "S1",
+  "base_log_loss": 0.4995284102761394,
+  "best_source_log_loss": 0.564903039290583,
+  "sources": [
+    {
+      "name": "s1_temporal_synchrony_knn_resid",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_synchrony_knn_resid.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_synchrony_knn_resid.csv",
+      "S1_log_loss": 0.564903039290583,
+      "fold_log_loss": [
+        0.47993062650545054,
+        0.6803859381363654,
+        0.6085733843983177,
+        0.5684624554234182,
+        0.48448282649546653
+      ]
+    },
+    {
+      "name": "s1_sleep_retrieval_meta",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_sleep_retrieval_meta.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_sleep_retrieval_meta.csv",
+      "S1_log_loss": 0.571017299208641
+    },
+    {
+      "name": "s1_temporal_leadlag_knn_resid",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_leadlag_knn_resid.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_leadlag_knn_resid.csv",
+      "S1_log_loss": 0.5775295018493671,
+      "fold_log_loss": [
+        0.5934428463555151,
+        0.6177352109349761,
+        0.5256440932571558,
+        0.5980143987418003,
+        0.5508082452410079
+      ]
+    },
+    {
+      "name": "s1_temporal_motif_knn_resid",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_motif_knn_resid.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_motif_knn_resid.csv",
+      "S1_log_loss": 0.5786005101117808,
+      "fold_log_loss": [
+        0.5802844451694401,
+        0.6137968656045355,
+        0.4885178675094469,
+        0.6442507627493528,
+        0.5678700390709873
+      ]
+    },
+    {
+      "name": "s1_temporal_synchrony_knn_logitresid",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_synchrony_knn_logitresid.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_synchrony_knn_logitresid.csv",
+      "S1_log_loss": 0.5877058102819904,
+      "fold_log_loss": [
+        0.5285630909232227,
+        0.646142585097615,
+        0.6184274454142165,
+        0.6274577622958876,
+        0.5169797683267411
+      ]
+    },
+    {
+      "name": "s1_temporal_leadlag_knn_logitresid",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_leadlag_knn_logitresid.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_leadlag_knn_logitresid.csv",
+      "S1_log_loss": 0.6205189108281846,
+      "fold_log_loss": [
+        0.5529941824636272,
+        0.7000541561325161,
+        0.6426840402645199,
+        0.7392132472063265,
+        0.4646856470991205
+      ]
+    },
+    {
+      "name": "s1_temporal_motif_knn_logitresid",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_motif_knn_logitresid.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_motif_knn_logitresid.csv",
+      "S1_log_loss": 0.6245862857405414,
+      "fold_log_loss": [
+        0.562602869700963,
+        0.6953868107676444,
+        0.6204033614489007,
+        0.6379001076316613,
+        0.6080818131202872
+      ]
+    },
+    {
+      "name": "s1_temporal_leadlag_hgb",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_leadlag_hgb.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_leadlag_hgb.csv",
+      "S1_log_loss": 0.6273437857155693,
+      "fold_log_loss": [
+        0.5989614328118245,
+        0.6125159511044697,
+        0.6850401671929428,
+        0.665793023644456,
+        0.5739911962546609
+      ]
+    },
+    {
+      "name": "s1_temporal_motif_hgb",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_motif_hgb.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_motif_hgb.csv",
+      "S1_log_loss": 0.6312431756944408,
+      "fold_log_loss": [
+        0.5988664496588795,
+        0.6247709636104682,
+        0.6225571890339238,
+        0.7049571789225453,
+        0.6082848108752146
+      ]
+    },
+    {
+      "name": "s1_temporal_synchrony_hgb",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_synchrony_hgb.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_synchrony_hgb.csv",
+      "S1_log_loss": 0.6404589830781618,
+      "fold_log_loss": [
+        0.6052689789738329,
+        0.607265364816914,
+        0.6794873569762098,
+        0.6948385572882363,
+        0.6182737864775408
+      ]
+    },
+    {
+      "name": "s1_temporal_leadlag_knn_label",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_leadlag_knn_label.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_leadlag_knn_label.csv",
+      "S1_log_loss": 0.6526949752930452,
+      "fold_log_loss": [
+        0.6146072760316383,
+        0.6690339471227649,
+        0.7197843855830326,
+        0.7244036315098589,
+        0.5323579940489009
+      ]
+    },
+    {
+      "name": "s1_temporal_synchrony_knn_label",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_synchrony_knn_label.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_synchrony_knn_label.csv",
+      "S1_log_loss": 0.659686017689753,
+      "fold_log_loss": [
+        0.6183811168696719,
+        0.6404227885415601,
+        0.7102178567168577,
+        0.7267771831356228,
+        0.6039313578578035
+      ]
+    },
+    {
+      "name": "s1_temporal_motif_extra",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_motif_extra.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_motif_extra.csv",
+      "S1_log_loss": 0.6714314046002663,
+      "fold_log_loss": [
+        0.6721414036000971,
+        0.6545497312389142,
+        0.6674178978304559,
+        0.6792245686523861,
+        0.6852300856329581
+      ]
+    },
+    {
+      "name": "s1_temporal_leadlag_extra",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_leadlag_extra.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_leadlag_extra.csv",
+      "S1_log_loss": 0.6726120240006319,
+      "fold_log_loss": [
+        0.6789576536247964,
+        0.6905336927587481,
+        0.671045938818794,
+        0.6714100389908423,
+        0.6490291782048275
+      ]
+    },
+    {
+      "name": "s1_temporal_motif_proto",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_motif_proto.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_motif_proto.csv",
+      "S1_log_loss": 0.6771119515111834,
+      "fold_log_loss": [
+        0.6533702605593574,
+        0.6929048851324731,
+        0.6777405882028472,
+        0.7091757076993774,
+        0.6530620458635423
+      ]
+    },
+    {
+      "name": "s1_temporal_motif_knn_label",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_motif_knn_label.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_motif_knn_label.csv",
+      "S1_log_loss": 0.6778821756509289,
+      "fold_log_loss": [
+        0.6086067491713244,
+        0.7521717783902335,
+        0.6632327878607471,
+        0.7198089345665459,
+        0.6476702736132139
+      ]
+    },
+    {
+      "name": "s1_temporal_synchrony_extra",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_synchrony_extra.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_synchrony_extra.csv",
+      "S1_log_loss": 0.6828482103814096,
+      "fold_log_loss": [
+        0.6793497291079595,
+        0.6929648171329297,
+        0.6722033541770772,
+        0.6966101152450273,
+        0.6731190820437324
+      ]
+    },
+    {
+      "name": "s1_temporal_leadlag_proto",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_leadlag_proto.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_leadlag_proto.csv",
+      "S1_log_loss": 0.7139967403887683,
+      "fold_log_loss": [
+        0.6199808730239152,
+        0.7169259642553846,
+        0.797676742025174,
+        0.7663847055889026,
+        0.6726953954782706
+      ]
+    },
+    {
+      "name": "s1_temporal_synchrony_proto",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_synchrony_proto.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_synchrony_proto.csv",
+      "S1_log_loss": 0.7203090077546755,
+      "fold_log_loss": [
+        0.6763460064598463,
+        0.7827549780776902,
+        0.7423144396226897,
+        0.70018510384394,
+        0.6988941982668647
+      ]
+    },
+    {
+      "name": "s1_temporal_synchrony_logreg",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_synchrony_logreg.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_synchrony_logreg.csv",
+      "S1_log_loss": 0.8402806957397916,
+      "fold_log_loss": [
+        0.7704641147867761,
+        0.9968144851239616,
+        0.7911450079599982,
+        0.8057193011264168,
+        0.8368648779341166
+      ]
+    },
+    {
+      "name": "s1_temporal_leadlag_logreg",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_leadlag_logreg.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_leadlag_logreg.csv",
+      "S1_log_loss": 0.989525087693632,
+      "fold_log_loss": [
+        0.7371424525662836,
+        0.976185694576887,
+        1.2270701025385282,
+        1.0514195956798498,
+        0.9683739813189509
+      ]
+    },
+    {
+      "name": "s1_temporal_motif_logreg",
+      "oof": "outputs/s1_temporal_dynamics_on_v46/oof_s1_temporal_motif_logreg.csv",
+      "submission": "outputs/s1_temporal_dynamics_on_v46/submission_s1_temporal_motif_logreg.csv",
+      "S1_log_loss": 1.056278566982803,
+      "fold_log_loss": [
+        1.1365483441443132,
+        1.1637399154305992,
+        0.7882426199073481,
+        1.011177662013723,
+        1.1833724143785163
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v46_motif_on_v45/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v46_motif_on_v45/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s1_temporal_dynamics_on_v46",
+    "target": "S1",
+    "groups": "temporal_synchrony,temporal_leadlag,temporal_motif",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_synchrony": 43,
+    "temporal_leadlag": 144,
+    "temporal_motif": 315
+  }
+}

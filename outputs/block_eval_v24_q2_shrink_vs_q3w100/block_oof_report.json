@@ -1,0 +1,72 @@
+{
+  "baseline": "q3w100",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "q2w015",
+      "avg_log_loss": 0.5741554901447072,
+      "overall_p025": 0.00023280468580353796,
+      "overall_improvement": 0.001526243246281889,
+      "early_delta": 0.0,
+      "mid_delta": 0.0013521933842590705,
+      "late_delta": 0.0032107699561892966,
+      "tail20_delta": 0.004544324561511659,
+      "late_p025": -0.00014299827097083594,
+      "tail20_p025": -0.00035607203748212193,
+      "worst_subject_delta": -0.002261735411014043,
+      "worst_late_target_delta": 0.0,
+      "promote": true
+    },
+    {
+      "name": "q2w010",
+      "avg_log_loss": 0.574177897968438,
+      "overall_p025": 0.00024052394803462812,
+      "overall_improvement": 0.001503835422551231,
+      "early_delta": 0.0,
+      "mid_delta": 0.0013521933842590705,
+      "late_delta": 0.0031444310043550194,
+      "tail20_delta": 0.004438182238576838,
+      "late_p025": -9.672667764214003e-05,
+      "tail20_p025": -0.0002995523483862006,
+      "worst_subject_delta": -0.002179067179768346,
+      "worst_late_target_delta": 0.0,
+      "promote": true
+    },
+    {
+      "name": "v22",
+      "avg_log_loss": 0.574234686523467,
+      "overall_p025": 0.00024221081258764715,
+      "overall_improvement": 0.0014470468675221498,
+      "early_delta": 0.0,
+      "mid_delta": 0.0013521933842590705,
+      "late_delta": 0.0029763069927558616,
+      "tail20_delta": 0.004169183820018074,
+      "late_p025": -6.656406100335045e-05,
+      "tail20_p025": -0.00024883022790836364,
+      "worst_subject_delta": -0.0020238457777629337,
+      "worst_late_target_delta": 0.0,
+      "promote": true
+    },
+    {
+      "name": "q3w100",
+      "avg_log_loss": 0.575681733390989,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

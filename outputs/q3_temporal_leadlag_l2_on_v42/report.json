@@ -1,0 +1,119 @@
+{
+  "target": "Q3",
+  "base_log_loss": 0.5407432670393687,
+  "best_source_log_loss": 0.5667624450355482,
+  "sources": [
+    {
+      "name": "q3_sleep_retrieval_meta",
+      "oof": "outputs/q3_temporal_leadlag_l2_on_v42/oof_q3_sleep_retrieval_meta.csv",
+      "submission": "outputs/q3_temporal_leadlag_l2_on_v42/submission_q3_sleep_retrieval_meta.csv",
+      "Q3_log_loss": 0.5667624450355482
+    },
+    {
+      "name": "q3_temporal_leadlag_knn_resid",
+      "oof": "outputs/q3_temporal_leadlag_l2_on_v42/oof_q3_temporal_leadlag_knn_resid.csv",
+      "submission": "outputs/q3_temporal_leadlag_l2_on_v42/submission_q3_temporal_leadlag_knn_resid.csv",
+      "Q3_log_loss": 0.5986518068908839,
+      "fold_log_loss": [
+        0.6627048935782844,
+        0.6763026695176074,
+        0.5296606237532568,
+        0.44518710690736274,
+        0.6739542065041635
+      ]
+    },
+    {
+      "name": "q3_temporal_leadlag_knn_logitresid",
+      "oof": "outputs/q3_temporal_leadlag_l2_on_v42/oof_q3_temporal_leadlag_knn_logitresid.csv",
+      "submission": "outputs/q3_temporal_leadlag_l2_on_v42/submission_q3_temporal_leadlag_knn_logitresid.csv",
+      "Q3_log_loss": 0.6496278508216867,
+      "fold_log_loss": [
+        0.7753659777454375,
+        0.763432824632234,
+        0.5841666544009092,
+        0.4819080820670627,
+        0.6276679579701141
+      ]
+    },
+    {
+      "name": "q3_temporal_leadlag_extra",
+      "oof": "outputs/q3_temporal_leadlag_l2_on_v42/oof_q3_temporal_leadlag_extra.csv",
+      "submission": "outputs/q3_temporal_leadlag_l2_on_v42/submission_q3_temporal_leadlag_extra.csv",
+      "Q3_log_loss": 0.6889909559463534,
+      "fold_log_loss": [
+        0.6927723193745198,
+        0.7175790480366527,
+        0.6850316860144832,
+        0.6636309881279742,
+        0.6840177414288924
+      ]
+    },
+    {
+      "name": "q3_temporal_leadlag_hgb",
+      "oof": "outputs/q3_temporal_leadlag_l2_on_v42/oof_q3_temporal_leadlag_hgb.csv",
+      "submission": "outputs/q3_temporal_leadlag_l2_on_v42/submission_q3_temporal_leadlag_hgb.csv",
+      "Q3_log_loss": 0.6987507816278229,
+      "fold_log_loss": [
+        0.6866002779397204,
+        0.7850317967875466,
+        0.6663663557812799,
+        0.6689220401018835,
+        0.684145225398026
+      ]
+    },
+    {
+      "name": "q3_temporal_leadlag_knn_label",
+      "oof": "outputs/q3_temporal_leadlag_l2_on_v42/oof_q3_temporal_leadlag_knn_label.csv",
+      "submission": "outputs/q3_temporal_leadlag_l2_on_v42/submission_q3_temporal_leadlag_knn_label.csv",
+      "Q3_log_loss": 0.7015004529819534,
+      "fold_log_loss": [
+        0.7624956352903676,
+        0.6966949349218808,
+        0.7050115175627124,
+        0.6315626010548561,
+        0.7063551774882553
+      ]
+    },
+    {
+      "name": "q3_temporal_leadlag_proto",
+      "oof": "outputs/q3_temporal_leadlag_l2_on_v42/oof_q3_temporal_leadlag_proto.csv",
+      "submission": "outputs/q3_temporal_leadlag_l2_on_v42/submission_q3_temporal_leadlag_proto.csv",
+      "Q3_log_loss": 0.7497561097226081,
+      "fold_log_loss": [
+        0.7439023088711504,
+        0.7192258153361695,
+        0.7568733661179048,
+        0.6804232245339167,
+        0.8526877431800786
+      ]
+    },
+    {
+      "name": "q3_temporal_leadlag_logreg",
+      "oof": "outputs/q3_temporal_leadlag_l2_on_v42/oof_q3_temporal_leadlag_logreg.csv",
+      "submission": "outputs/q3_temporal_leadlag_l2_on_v42/submission_q3_temporal_leadlag_logreg.csv",
+      "Q3_log_loss": 0.9017178066450459,
+      "fold_log_loss": [
+        0.8071935459128069,
+        0.7805813345268461,
+        0.9728819858939511,
+        0.7663488374090219,
+        1.2008415738958789
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v42_leadlag_on_v40/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v42_leadlag_on_v40/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/q3_temporal_leadlag_l2_on_v42",
+    "target": "Q3",
+    "groups": "temporal_leadlag",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_leadlag": 144
+  }
+}

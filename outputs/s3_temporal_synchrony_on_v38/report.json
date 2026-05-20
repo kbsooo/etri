@@ -1,0 +1,119 @@
+{
+  "target": "S3",
+  "base_log_loss": 0.4471475017623421,
+  "best_source_log_loss": 0.4809380415738136,
+  "sources": [
+    {
+      "name": "s3_temporal_synchrony_knn_resid",
+      "oof": "outputs/s3_temporal_synchrony_on_v38/oof_s3_temporal_synchrony_knn_resid.csv",
+      "submission": "outputs/s3_temporal_synchrony_on_v38/submission_s3_temporal_synchrony_knn_resid.csv",
+      "S3_log_loss": 0.4809380415738136,
+      "fold_log_loss": [
+        0.3934395574950922,
+        0.6152718428338636,
+        0.5324862630946076,
+        0.3420488338397697,
+        0.5203041496446782
+      ]
+    },
+    {
+      "name": "s3_sleep_retrieval_meta",
+      "oof": "outputs/s3_temporal_synchrony_on_v38/oof_s3_sleep_retrieval_meta.csv",
+      "submission": "outputs/s3_temporal_synchrony_on_v38/submission_s3_sleep_retrieval_meta.csv",
+      "S3_log_loss": 0.5059784851821593
+    },
+    {
+      "name": "s3_temporal_synchrony_knn_logitresid",
+      "oof": "outputs/s3_temporal_synchrony_on_v38/oof_s3_temporal_synchrony_knn_logitresid.csv",
+      "submission": "outputs/s3_temporal_synchrony_on_v38/submission_s3_temporal_synchrony_knn_logitresid.csv",
+      "S3_log_loss": 0.5106012718927917,
+      "fold_log_loss": [
+        0.4233989383557588,
+        0.5550318259977977,
+        0.6488002413516939,
+        0.34576656157298147,
+        0.5807321458389204
+      ]
+    },
+    {
+      "name": "s3_temporal_synchrony_hgb",
+      "oof": "outputs/s3_temporal_synchrony_on_v38/oof_s3_temporal_synchrony_hgb.csv",
+      "submission": "outputs/s3_temporal_synchrony_on_v38/submission_s3_temporal_synchrony_hgb.csv",
+      "S3_log_loss": 0.60989601081003,
+      "fold_log_loss": [
+        0.5500420187582027,
+        0.5946771124068342,
+        0.6673427124582477,
+        0.5752491693884477,
+        0.6672241667124708
+      ]
+    },
+    {
+      "name": "s3_temporal_synchrony_knn_label",
+      "oof": "outputs/s3_temporal_synchrony_on_v38/oof_s3_temporal_synchrony_knn_label.csv",
+      "submission": "outputs/s3_temporal_synchrony_on_v38/submission_s3_temporal_synchrony_knn_label.csv",
+      "S3_log_loss": 0.6319413360422111,
+      "fold_log_loss": [
+        0.5733324735887313,
+        0.6348139362226956,
+        0.6793597910325145,
+        0.5887948299510213,
+        0.6877322694809399
+      ]
+    },
+    {
+      "name": "s3_temporal_synchrony_extra",
+      "oof": "outputs/s3_temporal_synchrony_on_v38/oof_s3_temporal_synchrony_extra.csv",
+      "submission": "outputs/s3_temporal_synchrony_on_v38/submission_s3_temporal_synchrony_extra.csv",
+      "S3_log_loss": 0.6736823320419382,
+      "fold_log_loss": [
+        0.6563214550041897,
+        0.6832002439915691,
+        0.6838218472186369,
+        0.6602869597255426,
+        0.6856392370968424
+      ]
+    },
+    {
+      "name": "s3_temporal_synchrony_proto",
+      "oof": "outputs/s3_temporal_synchrony_on_v38/oof_s3_temporal_synchrony_proto.csv",
+      "submission": "outputs/s3_temporal_synchrony_on_v38/submission_s3_temporal_synchrony_proto.csv",
+      "S3_log_loss": 0.705180380488882,
+      "fold_log_loss": [
+        0.6534385670267162,
+        0.7257653604120462,
+        0.6906648571006518,
+        0.693996933156228,
+        0.7677159883976413
+      ]
+    },
+    {
+      "name": "s3_temporal_synchrony_logreg",
+      "oof": "outputs/s3_temporal_synchrony_on_v38/oof_s3_temporal_synchrony_logreg.csv",
+      "submission": "outputs/s3_temporal_synchrony_on_v38/submission_s3_temporal_synchrony_logreg.csv",
+      "S3_log_loss": 0.7780327571085789,
+      "fold_log_loss": [
+        0.9238310819739939,
+        0.8084127626002146,
+        0.7025326830769895,
+        0.7228535363518712,
+        0.7195068462293237
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v38_decay_signed_on_v36/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v38_decay_signed_on_v36/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s3_temporal_synchrony_on_v38",
+    "target": "S3",
+    "groups": "temporal_synchrony",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_synchrony": 43
+  }
+}

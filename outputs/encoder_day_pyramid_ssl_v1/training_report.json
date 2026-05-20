@@ -1,0 +1,16 @@
+{
+  "input_dir": "outputs/encoder_day_pyramid",
+  "output_dir": "outputs/encoder_day_pyramid_ssl_v1",
+  "device": "mps",
+  "n_pairs": 2740,
+  "best_loss": 0.8232841797173023,
+  "final_loss": 0.8256239235401154,
+  "latent_path": "outputs/encoder_day_pyramid_ssl_v1/day_latents.parquet",
+  "checkpoint": "outputs/encoder_day_pyramid_ssl_v1/checkpoints/last_pyramid_encoder.pt",
+  "objectives": [
+    "masked reconstruction of actual 5-minute sensor channels",
+    "masked reconstruction of actual-minus-normal-twin delta channels",
+    "same-subject neighboring-day contrastive learning",
+    "event/prototype/context conditioning with modality dropout corruption"
+  ]
+}

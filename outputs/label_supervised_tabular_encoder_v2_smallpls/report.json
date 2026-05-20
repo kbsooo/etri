@@ -1,0 +1,58 @@
+{
+  "rows": {
+    "train": 450,
+    "sample": 250
+  },
+  "raw_features": 2014,
+  "latent_dim": 14,
+  "folds": [
+    {
+      "fold": 1,
+      "valid_rows": 95.0,
+      "latent_dim": 14.0,
+      "kept_features": 1877.0
+    },
+    {
+      "fold": 2,
+      "valid_rows": 92.0,
+      "latent_dim": 14.0,
+      "kept_features": 1879.0
+    },
+    {
+      "fold": 3,
+      "valid_rows": 91.0,
+      "latent_dim": 14.0,
+      "kept_features": 1878.0
+    },
+    {
+      "fold": 4,
+      "valid_rows": 87.0,
+      "latent_dim": 14.0,
+      "kept_features": 1879.0
+    },
+    {
+      "fold": 5,
+      "valid_rows": 85.0,
+      "latent_dim": 14.0,
+      "kept_features": 1879.0
+    }
+  ],
+  "latent_path": "outputs/label_supervised_tabular_encoder_v2_smallpls/day_latents_oof_train_full_test.parquet",
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "summary_path": "outputs/encoder_day_pyramid/day_summary_features.parquet",
+    "master_path": "artifacts/10_master_daily.parquet",
+    "ssl_latent_path": "outputs/encoder_day_pyramid_ssl_v1/day_latents.parquet",
+    "teacher_oof": "outputs/lb_feedback_recovery_uploads/oof_15_v18_old15_prob_blend.csv",
+    "teacher_submission": "outputs/lb_feedback_recovery_uploads/submission_15_v18_old15_prob_blend.csv",
+    "output_dir": "outputs/label_supervised_tabular_encoder_v2_smallpls",
+    "folds": 5,
+    "prior_alpha": 10.0,
+    "pls_components": 7,
+    "pca_components": 0,
+    "min_feature_std": 1e-06,
+    "target_modes": "label_prob_residual,teacher_logit_residual",
+    "seed": 2026
+  }
+}

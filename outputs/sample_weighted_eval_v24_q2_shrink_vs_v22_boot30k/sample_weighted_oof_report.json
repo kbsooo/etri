@@ -1,0 +1,120 @@
+{
+  "baseline": "v22",
+  "bin_table": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_frac": 0.52,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_frac": 0.22666666666666666,
+      "sample_frac": 0.52,
+      "weight_ratio": 2.294117647058824
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_frac": 0.20444444444444446,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_frac": 0.04888888888888889,
+      "sample_frac": 0.48,
+      "weight_ratio": 9.818181818181817
+    }
+  ],
+  "summary": [
+    {
+      "name": "v23",
+      "uniform_avg_log_loss": 0.5741091671618236,
+      "weighted_avg_log_loss": 0.5335602636681732,
+      "weighted_delta_vs_baseline": 0.0012323719143173197,
+      "weighted_p025": 1.420702474110396e-05,
+      "weighted_p500": 0.0012211679988023741,
+      "weighted_p975": 0.002504738000920882,
+      "promote_weighted": true
+    },
+    {
+      "name": "q2w025",
+      "uniform_avg_log_loss": 0.5741212998792599,
+      "weighted_avg_log_loss": 0.5336793848939114,
+      "weighted_delta_vs_baseline": 0.0011132506885790136,
+      "weighted_p025": 8.829297963079042e-05,
+      "weighted_p500": 0.0011034326745841458,
+      "weighted_p975": 0.002190143460320124,
+      "promote_weighted": true
+    },
+    {
+      "name": "q2w020",
+      "uniform_avg_log_loss": 0.5741366911482267,
+      "weighted_avg_log_loss": 0.5338304991710406,
+      "weighted_delta_vs_baseline": 0.0009621364114499273,
+      "weighted_p025": 0.00012846052480350293,
+      "weighted_p500": 0.0009532223841946751,
+      "weighted_p975": 0.0018377095638890454,
+      "promote_weighted": true
+    },
+    {
+      "name": "q2w015",
+      "uniform_avg_log_loss": 0.5741554901447072,
+      "weighted_avg_log_loss": 0.5340150711364857,
+      "weighted_delta_vs_baseline": 0.000777564446004709,
+      "weighted_p025": 0.00014085338021851293,
+      "weighted_p500": 0.0007705605381130528,
+      "weighted_p975": 0.0014484851706526927,
+      "promote_weighted": true
+    },
+    {
+      "name": "q2w010",
+      "uniform_avg_log_loss": 0.574177897968438,
+      "weighted_avg_log_loss": 0.5342350752240231,
+      "weighted_delta_vs_baseline": 0.0005575603584673424,
+      "weighted_p025": 0.00012478655433030734,
+      "weighted_p500": 0.0005528299769338746,
+      "weighted_p975": 0.0010147587971139503,
+      "promote_weighted": true
+    },
+    {
+      "name": "q2w005",
+      "uniform_avg_log_loss": 0.5742041803529789,
+      "weighted_avg_log_loss": 0.534493120454062,
+      "weighted_delta_vs_baseline": 0.0002995151284284063,
+      "weighted_p025": 7.893126609775488e-05,
+      "weighted_p500": 0.0002971942835337789,
+      "weighted_p975": 0.0005341616202065742,
+      "promote_weighted": true
+    },
+    {
+      "name": "v22",
+      "uniform_avg_log_loss": 0.574234686523467,
+      "weighted_avg_log_loss": 0.5347926355824905,
+      "weighted_delta_vs_baseline": 0.0,
+      "weighted_p025": 0.0,
+      "weighted_p500": 0.0,
+      "weighted_p975": 0.0,
+      "promote_weighted": false
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_weighted_eval_v24_q2_shrink_vs_v22_boot30k",
+    "baseline": "v22",
+    "candidates": [
+      "v22:outputs/sample_portfolio_v22_temporal_contrastive_q3tail_w050/oof_sample_support_target_blend.csv",
+      "q2w005:outputs/sample_portfolio_v24_q2tail_shrink_w005/oof_sample_support_target_blend.csv",
+      "q2w010:outputs/sample_portfolio_v24_q2tail_shrink_w010/oof_sample_support_target_blend.csv",
+      "q2w015:outputs/sample_portfolio_v24_q2tail_shrink_w015/oof_sample_support_target_blend.csv",
+      "q2w020:outputs/sample_portfolio_v24_q2tail_shrink_w020/oof_sample_support_target_blend.csv",
+      "q2w025:outputs/sample_portfolio_v24_q2tail_shrink_w025/oof_sample_support_target_blend.csv",
+      "v23:outputs/sample_portfolio_v23_temporal_contrastive_q3q2tail/oof_sample_support_target_blend.csv"
+    ],
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "bootstrap": 30000,
+    "seed": 2026,
+    "min_weighted_p025": 0.0
+  }
+}

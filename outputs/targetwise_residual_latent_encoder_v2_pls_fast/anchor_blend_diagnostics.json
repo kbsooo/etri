@@ -1,0 +1,140 @@
+{
+  "best_by_oof": {
+    "name": "pls_targetwise_full",
+    "oof_name": "outputs/targetwise_residual_latent_encoder_v2_pls_fast/oof_targetwise_residual_latent_encoder.csv",
+    "weight_targetwise": 1.0,
+    "avg_log_loss": 0.5757046247370515,
+    "Q1": 0.6328235914875543,
+    "Q2": 0.6315811504767077,
+    "Q3": 0.6091067110148821,
+    "S1": 0.5519939148973718,
+    "S2": 0.5227316854858751,
+    "S3": 0.4950876591772736,
+    "S4": 0.5866076606196963
+  },
+  "all_scores": [
+    {
+      "name": "pls_targetwise_full",
+      "oof_name": "outputs/targetwise_residual_latent_encoder_v2_pls_fast/oof_targetwise_residual_latent_encoder.csv",
+      "weight_targetwise": 1.0,
+      "avg_log_loss": 0.5757046247370515,
+      "Q1": 0.6328235914875543,
+      "Q2": 0.6315811504767077,
+      "Q3": 0.6091067110148821,
+      "S1": 0.5519939148973718,
+      "S2": 0.5227316854858751,
+      "S3": 0.4950876591772736,
+      "S4": 0.5866076606196963
+    },
+    {
+      "name": "submission_pls_targetwise_w075_anchor_blend.csv",
+      "oof_name": "oof_pls_targetwise_w075_anchor_blend.csv",
+      "weight_targetwise": 0.75,
+      "avg_log_loss": 0.5757881815634011,
+      "Q1": 0.6328235914875543,
+      "Q2": 0.6316635142226137,
+      "Q3": 0.6091072609707606,
+      "S1": 0.5521031709990128,
+      "S2": 0.5231215596571042,
+      "S3": 0.4950878276715438,
+      "S4": 0.5866103459352187
+    },
+    {
+      "name": "submission_pls_targetwise_w050_anchor_blend.csv",
+      "oof_name": "oof_pls_targetwise_w050_anchor_blend.csv",
+      "weight_targetwise": 0.5,
+      "avg_log_loss": 0.5759016247170116,
+      "Q1": 0.6328235914875543,
+      "Q2": 0.6318430867865863,
+      "Q3": 0.6091088636417433,
+      "S1": 0.5522191774615707,
+      "S2": 0.5236086688891247,
+      "S3": 0.4950880488973784,
+      "S4": 0.5866199358551231
+    },
+    {
+      "name": "submission_pls_targetwise_w025_anchor_blend.csv",
+      "oof_name": "oof_pls_targetwise_w025_anchor_blend.csv",
+      "weight_targetwise": 0.25,
+      "avg_log_loss": 0.5760445259940246,
+      "Q1": 0.6328235914875543,
+      "Q2": 0.6321195209480144,
+      "Q3": 0.60911151846908,
+      "S1": 0.5523419384143482,
+      "S2": 0.5241903603593456,
+      "S3": 0.4950883228614306,
+      "S4": 0.586636429418399
+    },
+    {
+      "name": "anchor_public_feedback",
+      "oof_name": "outputs/lb_feedback_recovery_uploads/oof_15_v18_old15_prob_blend.csv",
+      "weight_targetwise": 0.0,
+      "avg_log_loss": 0.5762165855987049,
+      "Q1": 0.6328235914875543,
+      "Q2": 0.6324925625932951,
+      "Q3": 0.6091152249083994,
+      "S1": 0.5524714585483753,
+      "S2": 0.5248647856042763,
+      "S3": 0.49508864957039955,
+      "S4": 0.586659826478634
+    }
+  ],
+  "submission_shift_vs_anchor": [
+    {
+      "target": "Q1",
+      "mean_delta": 0.0,
+      "mean_abs_delta": 0.0,
+      "p95_abs_delta": 0.0,
+      "max_abs_delta": 0.0,
+      "corr_with_anchor": 1.0
+    },
+    {
+      "target": "Q2",
+      "mean_delta": -0.001525131663016518,
+      "mean_abs_delta": 0.016932035752397503,
+      "p95_abs_delta": 0.025000000372529085,
+      "max_abs_delta": 0.025000000372529113,
+      "corr_with_anchor": 0.9921183029773802
+    },
+    {
+      "target": "Q3",
+      "mean_delta": -4.962309132316434e-05,
+      "mean_abs_delta": 0.0016972174292204751,
+      "p95_abs_delta": 0.002499999944120701,
+      "max_abs_delta": 0.002499999944120701,
+      "corr_with_anchor": 0.9999498707109712
+    },
+    {
+      "target": "S1",
+      "mean_delta": -0.0005587780738434636,
+      "mean_abs_delta": 0.004229404250056866,
+      "p95_abs_delta": 0.006241029962750541,
+      "max_abs_delta": 0.006249910578384255,
+      "corr_with_anchor": 0.9995462497799387
+    },
+    {
+      "target": "S2",
+      "mean_delta": -2.358940980776314e-05,
+      "mean_abs_delta": 0.014754361706822245,
+      "p95_abs_delta": 0.02500000037252906,
+      "max_abs_delta": 0.02500000037252914,
+      "corr_with_anchor": 0.9974342638444837
+    },
+    {
+      "target": "S3",
+      "mean_delta": -0.00012566870422154485,
+      "mean_abs_delta": 0.00035653387696534086,
+      "p95_abs_delta": 0.0006242528357335936,
+      "max_abs_delta": 0.0006249985632115207,
+      "corr_with_anchor": 0.9999985555671879
+    },
+    {
+      "target": "S4",
+      "mean_delta": 0.00047525395775709555,
+      "mean_abs_delta": 0.0038306224261500546,
+      "p95_abs_delta": 0.007480307016521692,
+      "max_abs_delta": 0.007480307016521748,
+      "corr_with_anchor": 0.9997306014149054
+    }
+  ]
+}

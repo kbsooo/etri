@@ -1,0 +1,125 @@
+{
+  "score": {
+    "name": "supervised_diffusion_finetune",
+    "avg_log_loss": 0.7030867488753266,
+    "Q1": 0.7302405102404136,
+    "Q2": 0.7171295935140082,
+    "Q3": 0.7517294005934094,
+    "S1": 0.6670223790408969,
+    "S2": 0.6687268527775801,
+    "S3": 0.6703056963862579,
+    "S4": 0.7164528095747194
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "train_rows": 222,
+      "valid_rows": 228,
+      "auxiliary_days": 472,
+      "best_epoch": 1,
+      "best_val_avg_log_loss": 0.6964532768070159,
+      "final_val_avg_log_loss": 0.6964532768070159,
+      "per_target": {
+        "Q1": 0.7491821310634361,
+        "Q2": 0.7197641348743037,
+        "Q3": 0.7456644788443354,
+        "S1": 0.6269764286470277,
+        "S2": 0.6644091594944821,
+        "S3": 0.6705728882902003,
+        "S4": 0.6986037164353264
+      },
+      "checkpoint_load": {
+        "checkpoint_path": "outputs/diffusion_encoder/checkpoints/day_diffusion_encoder.pt",
+        "loaded_keys": 57,
+        "skipped_keys": []
+      }
+    },
+    {
+      "fold": 2,
+      "train_rows": 228,
+      "valid_rows": 222,
+      "auxiliary_days": 478,
+      "best_epoch": 1,
+      "best_val_avg_log_loss": 0.709899504015499,
+      "final_val_avg_log_loss": 0.709899504015499,
+      "per_target": {
+        "Q1": 0.7107869524158663,
+        "Q2": 0.7144238480691757,
+        "Q3": 0.757958237925038,
+        "S1": 0.7081506525907431,
+        "S2": 0.6731612420276095,
+        "S3": 0.6700312838826361,
+        "S4": 0.7347843111974249
+      },
+      "checkpoint_load": {
+        "checkpoint_path": "outputs/diffusion_encoder/checkpoints/day_diffusion_encoder.pt",
+        "loaded_keys": 57,
+        "skipped_keys": []
+      }
+    }
+  ],
+  "full_model": {
+    "epochs": 1,
+    "auxiliary_days": 700,
+    "training_log": [
+      {
+        "epoch": 1,
+        "train_bce": 0.7450267374515533,
+        "denoise_loss": 0.9703067243099213
+      }
+    ],
+    "checkpoint_load": {
+      "checkpoint_path": "outputs/diffusion_encoder/checkpoints/day_diffusion_encoder.pt",
+      "loaded_keys": 57,
+      "skipped_keys": []
+    },
+    "subject_map": {
+      "id01": 0,
+      "id02": 1,
+      "id03": 2,
+      "id04": 3,
+      "id05": 4,
+      "id06": 5,
+      "id07": 6,
+      "id08": 7,
+      "id09": 8,
+      "id10": 9
+    }
+  },
+  "args": {
+    "input_dir": "outputs/diffusion_encoder",
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/supervised_diffusion_finetune_smoke",
+    "init_checkpoint": "outputs/diffusion_encoder/checkpoints/day_diffusion_encoder.pt",
+    "device": "auto",
+    "folds": 2,
+    "max_folds": 0,
+    "epochs": 1,
+    "full_epochs": 1,
+    "patience": 1,
+    "min_delta": 0.0001,
+    "batch_size": 256,
+    "d_model": 128,
+    "latent_dim": 64,
+    "layers": 3,
+    "heads": 4,
+    "dropout": 0.1,
+    "head_dropout": 0.2,
+    "head_hidden": 0,
+    "lr": 0.0001,
+    "weight_decay": 0.0001,
+    "grad_clip": 1.0,
+    "diffusion_steps": 100,
+    "entry_dropout": 0.08,
+    "hour_dropout_prob": 0.35,
+    "modality_dropout_prob": 0.3,
+    "supervised_weight": 1.0,
+    "denoise_weight": 0.01,
+    "auxiliary_days": "train_sample",
+    "pos_weight_mode": "none",
+    "subject_mode": "id",
+    "seed": 2026,
+    "progress": false
+  }
+}

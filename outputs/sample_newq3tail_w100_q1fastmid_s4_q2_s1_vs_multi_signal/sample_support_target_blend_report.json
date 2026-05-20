@@ -1,0 +1,76 @@
+{
+  "summary": {
+    "base_avg": 0.5798857363435174,
+    "final_avg": 0.5797092816019046,
+    "improvement": 0.00017645474161274576,
+    "p025": -9.416825475118512e-05,
+    "p500": 0.0001738043305792684,
+    "p975": 0.0004480190312670905,
+    "support_delta": 0.0007784768012327018,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "S1",
+      "supported_train_rows": 102,
+      "supported_sample_rows": 130,
+      "range_train_rows": 102,
+      "range_sample_rows": 130,
+      "min_position": 0.3333333333,
+      "max_position": 0.6666666667,
+      "weight": 1.0,
+      "mode": "logit"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "position_range": {
+    "min_position": 0.3333333333,
+    "max_position": 0.6666666667,
+    "train_rows": 102,
+    "sample_rows": 130,
+    "applied_train_rows": 102,
+    "applied_sample_rows": 130
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_newq3tail_w100_q1fastmid_s4_q2_s1_vs_multi_signal",
+    "base_oof": "outputs/sample_newq3tail_w100_q1fastmid_s4_q2_vs_multi_signal/oof_sample_support_target_blend.csv",
+    "base_submission": "outputs/sample_newq3tail_w100_q1fastmid_s4_q2_vs_multi_signal/submission_sample_support_target_blend.csv",
+    "source_oof": "outputs/master_residual_logreg_on_multi_signal_min3/oof_master_residual_decoder.csv",
+    "source_submission": "outputs/master_residual_logreg_on_multi_signal_min3/submission_master_residual_decoder.csv",
+    "targets": "S1",
+    "weight": 1.0,
+    "mode": "logit",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "min_position": 0.3333333333,
+    "max_position": 0.6666666667,
+    "bootstrap": 10000,
+    "seed": 2026
+  }
+}

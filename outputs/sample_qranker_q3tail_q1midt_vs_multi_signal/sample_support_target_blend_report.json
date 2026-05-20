@@ -1,0 +1,76 @@
+{
+  "summary": {
+    "base_avg": 0.5811922552998464,
+    "final_avg": 0.5809062336327855,
+    "improvement": 0.0002860216670609766,
+    "p025": -0.00040119748507892164,
+    "p500": 0.0002857281357430473,
+    "p975": 0.0009547701413548644,
+    "support_delta": 0.0010379818562696733,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "Q1",
+      "supported_train_rows": 124,
+      "supported_sample_rows": 250,
+      "range_train_rows": 216,
+      "range_sample_rows": 250,
+      "min_position": 0.3333333333,
+      "max_position": 1.000001,
+      "weight": 1.0,
+      "mode": "logit"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "position_range": {
+    "min_position": 0.3333333333,
+    "max_position": 1.000001,
+    "train_rows": 216,
+    "sample_rows": 250,
+    "applied_train_rows": 124,
+    "applied_sample_rows": 250
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_qranker_q3tail_q1midt_vs_multi_signal",
+    "base_oof": "outputs/sample_tail_qranker_q3_vs_multi_signal/oof_sample_support_target_blend.csv",
+    "base_submission": "outputs/sample_tail_qranker_q3_vs_multi_signal/submission_sample_support_target_blend.csv",
+    "source_oof": "outputs/q_ranker_decoder_tuned/oof_q_ranker_with_baseline_s.csv",
+    "source_submission": "outputs/q_ranker_decoder_tuned/submission_q_ranker_with_baseline_s.csv",
+    "targets": "Q1",
+    "weight": 1.0,
+    "mode": "logit",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "min_position": 0.3333333333,
+    "max_position": 1.000001,
+    "bootstrap": 10000,
+    "seed": 2026
+  }
+}

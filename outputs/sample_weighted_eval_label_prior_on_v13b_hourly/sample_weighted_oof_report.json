@@ -1,0 +1,76 @@
+{
+  "baseline": "v13b",
+  "bin_table": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_frac": 0.52,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_frac": 0.22666666666666666,
+      "sample_frac": 0.52,
+      "weight_ratio": 2.294117647058824
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_frac": 0.20444444444444446,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_frac": 0.04888888888888889,
+      "sample_frac": 0.48,
+      "weight_ratio": 9.818181818181817
+    }
+  ],
+  "summary": [
+    {
+      "name": "prior_min3",
+      "uniform_avg_log_loss": 0.576223107030123,
+      "weighted_avg_log_loss": 0.5572199626615888,
+      "weighted_delta_vs_baseline": 0.0007179494601330595,
+      "weighted_p025": 0.00025632903722739534,
+      "weighted_p500": 0.000722168609428022,
+      "weighted_p975": 0.0011625514985817403,
+      "promote_weighted": true
+    },
+    {
+      "name": "prior_min4",
+      "uniform_avg_log_loss": 0.5763414081574494,
+      "weighted_avg_log_loss": 0.5576371428457401,
+      "weighted_delta_vs_baseline": 0.000300769275981803,
+      "weighted_p025": 0.00012213332075715157,
+      "weighted_p500": 0.00030111691927662914,
+      "weighted_p975": 0.00047556088981684627,
+      "promote_weighted": true
+    },
+    {
+      "name": "v13b",
+      "uniform_avg_log_loss": 0.576375786335438,
+      "weighted_avg_log_loss": 0.5579379121217218,
+      "weighted_delta_vs_baseline": 0.0,
+      "weighted_p025": 0.0,
+      "weighted_p500": 0.0,
+      "weighted_p975": 0.0,
+      "promote_weighted": false
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_weighted_eval_label_prior_on_v13b_hourly",
+    "baseline": "v13b",
+    "candidates": [
+      "v13b:outputs/sample_hgbtail_v13b_hourly_s2q2_q3mid050_s4tail100_vs_multi_signal/oof_sample_support_target_blend.csv:outputs/sample_hgbtail_v13b_hourly_s2q2_q3mid050_s4tail100_vs_multi_signal/submission_sample_support_target_blend.csv",
+      "prior_min4:outputs/label_prior_projection_on_hgbtail_v13b_hourly/oof_label_prior_projection.csv:outputs/label_prior_projection_on_hgbtail_v13b_hourly/submission_label_prior_projection.csv",
+      "prior_min3:outputs/label_prior_projection_on_hgbtail_v13b_hourly_min3/oof_label_prior_projection.csv:outputs/label_prior_projection_on_hgbtail_v13b_hourly_min3/submission_label_prior_projection.csv"
+    ],
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "bootstrap": 5000,
+    "seed": 2026,
+    "min_weighted_p025": 0.0
+  }
+}

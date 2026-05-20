@@ -1,0 +1,148 @@
+{
+  "base_score": {
+    "avg_log_loss": 0.5741591768019222,
+    "per_target": {
+      "Q1": 0.6321060527098807,
+      "Q2": 0.6297410871970225,
+      "Q3": 0.6057976566966969,
+      "S1": 0.5515792453846624,
+      "S2": 0.5201877381098341,
+      "S3": 0.49426815881315594,
+      "S4": 0.5854342987022031
+    }
+  },
+  "routed_score": {
+    "avg_log_loss": 0.573233931069249,
+    "per_target": {
+      "Q1": 0.6278817645399516,
+      "Q2": 0.6297410871970225,
+      "Q3": 0.6053800118400904,
+      "S1": 0.5500632843442194,
+      "S2": 0.5201877381098341,
+      "S3": 0.4940860950949899,
+      "S4": 0.5852975363586352
+    }
+  },
+  "selected_moves": [
+    {
+      "target": "Q1",
+      "source": "gru28_l3",
+      "bin": "all",
+      "lo": 0.0,
+      "hi": 1.000001,
+      "weight": 1.0,
+      "train_rows": 450.0,
+      "sample_rows": 250.0,
+      "base_log_loss": 0.6321060527098807,
+      "log_loss": 0.6278817645399516,
+      "improvement": 0.004224288169929147,
+      "move_index": 1
+    },
+    {
+      "target": "Q2",
+      "source": "base",
+      "bin": "all",
+      "lo": NaN,
+      "hi": NaN,
+      "weight": 0.0,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "Q3",
+      "source": "gru14_q1",
+      "bin": "mid",
+      "lo": 0.333,
+      "hi": 0.666,
+      "weight": 1.0,
+      "train_rows": 100.0,
+      "sample_rows": 130.0,
+      "base_log_loss": 0.6057976566966969,
+      "log_loss": 0.6053800118400904,
+      "improvement": 0.00041764485660655826,
+      "move_index": 1
+    },
+    {
+      "target": "S1",
+      "source": "gru28_l3",
+      "bin": "all",
+      "lo": 0.0,
+      "hi": 1.000001,
+      "weight": 1.0,
+      "train_rows": 450.0,
+      "sample_rows": 250.0,
+      "base_log_loss": 0.5515792453846624,
+      "log_loss": 0.5500632843442194,
+      "improvement": 0.001515961040443048,
+      "move_index": 1
+    },
+    {
+      "target": "S2",
+      "source": "base",
+      "bin": "all",
+      "lo": NaN,
+      "hi": NaN,
+      "weight": 0.0,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "S3",
+      "source": "tf28_l3",
+      "bin": "mid",
+      "lo": 0.333,
+      "hi": 0.666,
+      "weight": 0.5,
+      "train_rows": 100.0,
+      "sample_rows": 130.0,
+      "base_log_loss": 0.49426815881315594,
+      "log_loss": 0.4940860950949899,
+      "improvement": 0.00018206371816603673,
+      "move_index": 1
+    },
+    {
+      "target": "S4",
+      "source": "v3",
+      "bin": "late",
+      "lo": 0.666,
+      "hi": 1.000001,
+      "weight": 1.0,
+      "train_rows": 116.0,
+      "sample_rows": 120.0,
+      "base_log_loss": 0.5854342987022031,
+      "log_loss": 0.5852975363586352,
+      "improvement": 0.00013676234356785333,
+      "move_index": 1
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v4_greedy/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v4_greedy/submission_conditional_latent_routing.csv",
+    "source": [
+      "v3=outputs/conditional_latent_routing_v3_second_layer/oof_conditional_latent_routing.csv,outputs/conditional_latent_routing_v3_second_layer/submission_conditional_latent_routing.csv",
+      "gru28_l3=outputs/sequence_encoder_residual_on_v4_greedy/oof_gru28_l3.csv,outputs/sequence_encoder_residual_on_v4_greedy/submission_gru28_l3.csv",
+      "tf28_l3=outputs/sequence_encoder_residual_on_v4_greedy/oof_tf28_l3.csv,outputs/sequence_encoder_residual_on_v4_greedy/submission_tf28_l3.csv",
+      "gru28_q1=outputs/sequence_encoder_residual_q1_focus_on_v4/oof_gru28_q1.csv,outputs/sequence_encoder_residual_q1_focus_on_v4/submission_gru28_q1.csv",
+      "gru14_q1=outputs/sequence_encoder_residual_q1_focus_on_v4/oof_gru14_q1.csv,outputs/sequence_encoder_residual_q1_focus_on_v4/submission_gru14_q1.csv",
+      "tf28_q1=outputs/sequence_encoder_residual_q1_focus_on_v4/oof_tf28_q1.csv,outputs/sequence_encoder_residual_q1_focus_on_v4/submission_tf28_q1.csv"
+    ],
+    "output_dir": "outputs/conditional_latent_routing_v6_q1_focus_sources",
+    "weights": "0.25,0.5,0.75,1.0",
+    "bins": "early:0:0.333,mid:0.333:0.666,late_mid:0.666:0.8,tail:0.8:1.000001,late:0.666:1.000001,all:0:1.000001",
+    "min_train_rows": 20,
+    "min_sample_rows": 1,
+    "min_improvement": 0.00012,
+    "max_moves_per_target": 3,
+    "allow_overlap": false
+  }
+}

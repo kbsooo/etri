@@ -1,0 +1,64 @@
+{
+  "device": "mps",
+  "pca_components": 128,
+  "base_oof": "outputs/conditional_latent_routing_v7_overlap_q1/oof_conditional_latent_routing.csv",
+  "base_submission": "outputs/conditional_latent_routing_v7_overlap_q1/submission_conditional_latent_routing.csv",
+  "results": [
+    {
+      "name": "gru28_s4only",
+      "encoder": "gru",
+      "context_days": 28,
+      "d_model": 56,
+      "dropout": 0.25,
+      "max_delta": 0.45,
+      "full_train_epochs": 1,
+      "uniform_oof_cv": 0.5730395295985903,
+      "base_uniform_oof_cv": 0.5728416999728788,
+      "oof_path": "outputs/sequence_encoder_residual_s4_only_on_v7/oof_gru28_s4only.csv",
+      "submission_path": "outputs/sequence_encoder_residual_s4_only_on_v7/submission_gru28_s4only.csv",
+      "test_delta_abs_mean": 0.003350861370563507,
+      "test_min": 0.08308754861354828,
+      "test_max": 0.9890642762184143,
+      "target_weights": {
+        "Q1": 0.0,
+        "Q2": 0.0,
+        "Q3": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": 6.999999523162842
+      }
+    },
+    {
+      "name": "tf28_s4only",
+      "encoder": "transformer",
+      "context_days": 28,
+      "d_model": 56,
+      "dropout": 0.3,
+      "max_delta": 0.4,
+      "full_train_epochs": 1,
+      "uniform_oof_cv": 0.5729300569205786,
+      "base_uniform_oof_cv": 0.5728416999728788,
+      "oof_path": "outputs/sequence_encoder_residual_s4_only_on_v7/oof_tf28_s4only.csv",
+      "submission_path": "outputs/sequence_encoder_residual_s4_only_on_v7/submission_tf28_s4only.csv",
+      "test_delta_abs_mean": 0.002802101196721196,
+      "test_min": 0.08308754861354828,
+      "test_max": 0.9890642762184143,
+      "target_weights": {
+        "Q1": 0.0,
+        "Q2": 0.0,
+        "Q3": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": 6.999999523162842
+      }
+    }
+  ],
+  "anti_overfit_controls": [
+    "Residual logit head initialized at zero, so training starts from the base predictions.",
+    "Outer validation labels are not used for early stopping; epoch is selected on an inner split of the outer-training fold.",
+    "Tiny encoders, dropout, AdamW weight decay, gradient clipping, tanh-clamped residual logits, and residual L2 penalty.",
+    "OOF predictions are produced by retraining on the full outer-train fold for the inner-selected epoch."
+  ]
+}

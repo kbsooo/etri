@@ -1,0 +1,42 @@
+{
+  "baseline": "v35a",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "v35e",
+      "avg_log_loss": 0.5703145993850471,
+      "overall_p025": 1.1702808413852567e-05,
+      "overall_improvement": 0.00034850429221157457,
+      "early_delta": 0.0,
+      "mid_delta": 0.0001864443512710201,
+      "late_delta": 0.0008514448148576603,
+      "tail20_delta": 0.0,
+      "late_p025": 0.00020794789381772512,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": -0.0003465982980845883,
+      "worst_late_target_delta": 0.0,
+      "promote": true
+    },
+    {
+      "name": "v35a",
+      "avg_log_loss": 0.5706631036772586,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

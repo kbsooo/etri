@@ -1,0 +1,69 @@
+{
+  "summary": {
+    "base_avg": 0.5815923025034421,
+    "final_avg": 0.5815685932214852,
+    "improvement": 2.3709281956735767e-05,
+    "p025": -0.0003967908126161213,
+    "p500": 2.6627627407148202e-05,
+    "p975": 0.0004464532890824958,
+    "support_delta": 8.604174903654108e-05,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "Q3",
+      "supported_train_rows": 124,
+      "supported_sample_rows": 250,
+      "weight": 1.0,
+      "mode": "logit"
+    },
+    {
+      "target": "S4",
+      "supported_train_rows": 124,
+      "supported_sample_rows": 250,
+      "weight": 1.0,
+      "mode": "logit"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_support_master_residual_q3s4_vs_multi_signal",
+    "base_oof": "outputs/multi_signal_qcount_blend_w015_020_015_015/oof_multi_signal_qcount_blend.csv",
+    "base_submission": "outputs/multi_signal_qcount_blend_w015_020_015_015/submission_multi_signal_qcount_blend.csv",
+    "source_oof": "outputs/master_residual_logreg_on_multi_signal_min3/oof_master_residual_decoder.csv",
+    "source_submission": "outputs/master_residual_logreg_on_multi_signal_min3/submission_master_residual_decoder.csv",
+    "targets": "Q3,S4",
+    "weight": 1.0,
+    "mode": "logit",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "bootstrap": 10000,
+    "seed": 2026
+  }
+}

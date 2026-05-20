@@ -1,0 +1,119 @@
+{
+  "target": "Q1",
+  "base_log_loss": 0.5586694380750928,
+  "best_source_log_loss": 0.5659491618845961,
+  "sources": [
+    {
+      "name": "q1_sleep_retrieval_meta",
+      "oof": "outputs/q1_temporal_synchrony_on_v38/oof_q1_sleep_retrieval_meta.csv",
+      "submission": "outputs/q1_temporal_synchrony_on_v38/submission_q1_sleep_retrieval_meta.csv",
+      "Q1_log_loss": 0.5659491618845961
+    },
+    {
+      "name": "q1_temporal_synchrony_knn_resid",
+      "oof": "outputs/q1_temporal_synchrony_on_v38/oof_q1_temporal_synchrony_knn_resid.csv",
+      "submission": "outputs/q1_temporal_synchrony_on_v38/submission_q1_temporal_synchrony_knn_resid.csv",
+      "Q1_log_loss": 0.5981803501548266,
+      "fold_log_loss": [
+        0.5309575056093108,
+        0.6251585745041665,
+        0.6836560060050254,
+        0.5145972739403707,
+        0.6381523094486423
+      ]
+    },
+    {
+      "name": "q1_temporal_synchrony_knn_logitresid",
+      "oof": "outputs/q1_temporal_synchrony_on_v38/oof_q1_temporal_synchrony_knn_logitresid.csv",
+      "submission": "outputs/q1_temporal_synchrony_on_v38/submission_q1_temporal_synchrony_knn_logitresid.csv",
+      "Q1_log_loss": 0.649338474468774,
+      "fold_log_loss": [
+        0.5770875983767666,
+        0.6968672173778263,
+        0.6797347726786973,
+        0.5779260804166265,
+        0.7191973453692655
+      ]
+    },
+    {
+      "name": "q1_temporal_synchrony_extra",
+      "oof": "outputs/q1_temporal_synchrony_on_v38/oof_q1_temporal_synchrony_extra.csv",
+      "submission": "outputs/q1_temporal_synchrony_on_v38/submission_q1_temporal_synchrony_extra.csv",
+      "Q1_log_loss": 0.7006216313375622,
+      "fold_log_loss": [
+        0.6897323615426147,
+        0.7328741545158642,
+        0.6966325050556101,
+        0.6884835929625853,
+        0.6945777293187017
+      ]
+    },
+    {
+      "name": "q1_temporal_synchrony_hgb",
+      "oof": "outputs/q1_temporal_synchrony_on_v38/oof_q1_temporal_synchrony_hgb.csv",
+      "submission": "outputs/q1_temporal_synchrony_on_v38/submission_q1_temporal_synchrony_hgb.csv",
+      "Q1_log_loss": 0.7196105747678746,
+      "fold_log_loss": [
+        0.7641646529249179,
+        0.7503959430430515,
+        0.6898313261797369,
+        0.6634557819610257,
+        0.7258516017029448
+      ]
+    },
+    {
+      "name": "q1_temporal_synchrony_knn_label",
+      "oof": "outputs/q1_temporal_synchrony_on_v38/oof_q1_temporal_synchrony_knn_label.csv",
+      "submission": "outputs/q1_temporal_synchrony_on_v38/submission_q1_temporal_synchrony_knn_label.csv",
+      "Q1_log_loss": 0.7405021541931834,
+      "fold_log_loss": [
+        0.7092924145783169,
+        0.7839597930729165,
+        0.7398728465348718,
+        0.7218879440697759,
+        0.7480730455357683
+      ]
+    },
+    {
+      "name": "q1_temporal_synchrony_proto",
+      "oof": "outputs/q1_temporal_synchrony_on_v38/oof_q1_temporal_synchrony_proto.csv",
+      "submission": "outputs/q1_temporal_synchrony_on_v38/submission_q1_temporal_synchrony_proto.csv",
+      "Q1_log_loss": 0.7947638809461294,
+      "fold_log_loss": [
+        0.7765592889878854,
+        0.8719713288940788,
+        0.7969642476803089,
+        0.683619968684466,
+        0.8429478576376142
+      ]
+    },
+    {
+      "name": "q1_temporal_synchrony_logreg",
+      "oof": "outputs/q1_temporal_synchrony_on_v38/oof_q1_temporal_synchrony_logreg.csv",
+      "submission": "outputs/q1_temporal_synchrony_on_v38/submission_q1_temporal_synchrony_logreg.csv",
+      "Q1_log_loss": 0.8549428037323926,
+      "fold_log_loss": [
+        0.7883346599746204,
+        0.8872511503703714,
+        0.9389491873574223,
+        0.7510106012587767,
+        0.9108595857514652
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v38_decay_signed_on_v36/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v38_decay_signed_on_v36/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/q1_temporal_synchrony_on_v38",
+    "target": "Q1",
+    "groups": "temporal_synchrony",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_synchrony": 43
+  }
+}

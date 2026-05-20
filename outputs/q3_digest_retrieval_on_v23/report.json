@@ -1,0 +1,395 @@
+{
+  "target": "Q3",
+  "base_log_loss": 0.5972432967163349,
+  "best_source_log_loss": 0.6330283965968703,
+  "sources": [
+    {
+      "name": "q3_social_rhythm_knn_resid",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_social_rhythm_knn_resid.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_social_rhythm_knn_resid.csv",
+      "Q3_log_loss": 0.6330283965968703,
+      "fold_log_loss": [
+        0.6624769510800586,
+        0.7139881608834848,
+        0.6172912487988782,
+        0.5498495359360454,
+        0.6144722829126065
+      ]
+    },
+    {
+      "name": "q3_modality_desync_knn_resid",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_modality_desync_knn_resid.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_modality_desync_knn_resid.csv",
+      "Q3_log_loss": 0.6332397871381166,
+      "fold_log_loss": [
+        0.6582119895549707,
+        0.7135124763704148,
+        0.6346344844420074,
+        0.5415555270869349,
+        0.6107946875007776
+      ]
+    },
+    {
+      "name": "q3_sleep_retrieval_meta",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_sleep_retrieval_meta.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_sleep_retrieval_meta.csv",
+      "Q3_log_loss": 0.6342797377138812
+    },
+    {
+      "name": "q3_body_recovery_knn_resid",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_body_recovery_knn_resid.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_body_recovery_knn_resid.csv",
+      "Q3_log_loss": 0.6610196293467504,
+      "fold_log_loss": [
+        0.6966368682797635,
+        0.6772836399403258,
+        0.7247986290354099,
+        0.6156059519458743,
+        0.5818099150992572
+      ]
+    },
+    {
+      "name": "q3_phone_recovery_knn_resid",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_phone_recovery_knn_resid.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_phone_recovery_knn_resid.csv",
+      "Q3_log_loss": 0.6661763721407521,
+      "fold_log_loss": [
+        0.7168087542917123,
+        0.6897643085364973,
+        0.7265876285881435,
+        0.5596766503390357,
+        0.6283867839911863
+      ]
+    },
+    {
+      "name": "q3_body_recovery_knn_label",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_body_recovery_knn_label.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_body_recovery_knn_label.csv",
+      "Q3_log_loss": 0.6715157733260664,
+      "fold_log_loss": [
+        0.733297565028894,
+        0.6982547744365004,
+        0.6531368390064657,
+        0.6587301800111482,
+        0.606287200709043
+      ]
+    },
+    {
+      "name": "q3_modality_desync_extra",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_modality_desync_extra.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_modality_desync_extra.csv",
+      "Q3_log_loss": 0.6731418884748777,
+      "fold_log_loss": [
+        0.681491379496562,
+        0.6985121831493973,
+        0.6524036728618916,
+        0.6511864575847365,
+        0.6810246102526214
+      ]
+    },
+    {
+      "name": "q3_social_rhythm_knn_label",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_social_rhythm_knn_label.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_social_rhythm_knn_label.csv",
+      "Q3_log_loss": 0.6734042201791427,
+      "fold_log_loss": [
+        0.7073952588752227,
+        0.7294551414733043,
+        0.6354339573407471,
+        0.6174042240823837,
+        0.6727155159852785
+      ]
+    },
+    {
+      "name": "q3_social_rhythm_extra",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_social_rhythm_extra.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_social_rhythm_extra.csv",
+      "Q3_log_loss": 0.6751872504322365,
+      "fold_log_loss": [
+        0.6923487112781234,
+        0.6830371199914665,
+        0.6685854579214318,
+        0.6472560158487797,
+        0.6831667062844194
+      ]
+    },
+    {
+      "name": "q3_body_recovery_extra",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_body_recovery_extra.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_body_recovery_extra.csv",
+      "Q3_log_loss": 0.676686696191568,
+      "fold_log_loss": [
+        0.6806756517994696,
+        0.6940360885121594,
+        0.6482203269285567,
+        0.6893024692488978,
+        0.6710134311409933
+      ]
+    },
+    {
+      "name": "q3_phone_recovery_extra",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_phone_recovery_extra.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_phone_recovery_extra.csv",
+      "Q3_log_loss": 0.6787075731220059,
+      "fold_log_loss": [
+        0.6832037444240212,
+        0.7076933161653443,
+        0.6559172055519978,
+        0.6615445412501346,
+        0.684275603569593
+      ]
+    },
+    {
+      "name": "q3_modality_desync_knn_label",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_modality_desync_knn_label.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_modality_desync_knn_label.csv",
+      "Q3_log_loss": 0.67887724051798,
+      "fold_log_loss": [
+        0.7004131159847364,
+        0.7383744657153514,
+        0.6257492654203844,
+        0.6554663637602639,
+        0.671250641980362
+      ]
+    },
+    {
+      "name": "q3_modality_desync_hgb",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_modality_desync_hgb.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_modality_desync_hgb.csv",
+      "Q3_log_loss": 0.682210496557832,
+      "fold_log_loss": [
+        0.7019969221267374,
+        0.7319581010037324,
+        0.6304018727460525,
+        0.66571524130469,
+        0.678600872273437
+      ]
+    },
+    {
+      "name": "q3_body_recovery_hgb",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_body_recovery_hgb.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_body_recovery_hgb.csv",
+      "Q3_log_loss": 0.682662442282504,
+      "fold_log_loss": [
+        0.7473583519334586,
+        0.7341802749202287,
+        0.6211465294977515,
+        0.6759145994326303,
+        0.6273595995982695
+      ]
+    },
+    {
+      "name": "q3_phone_recovery_knn_label",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_phone_recovery_knn_label.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_phone_recovery_knn_label.csv",
+      "Q3_log_loss": 0.6828702022413015,
+      "fold_log_loss": [
+        0.7504498167727433,
+        0.7243961456149214,
+        0.6873197284913385,
+        0.6219630401866968,
+        0.6199709791723279
+      ]
+    },
+    {
+      "name": "q3_phone_recovery_hgb",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_phone_recovery_hgb.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_phone_recovery_hgb.csv",
+      "Q3_log_loss": 0.6837341809776849,
+      "fold_log_loss": [
+        0.7486295403284958,
+        0.7338552942999857,
+        0.6198651338376414,
+        0.6438532256066682,
+        0.6661521203076098
+      ]
+    },
+    {
+      "name": "q3_body_recovery_proto",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_body_recovery_proto.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_body_recovery_proto.csv",
+      "Q3_log_loss": 0.6884457125479374,
+      "fold_log_loss": [
+        0.7301518154617985,
+        0.7390121421345439,
+        0.6562277437987496,
+        0.656422397362238,
+        0.654371268766142
+      ]
+    },
+    {
+      "name": "q3_phone_recovery_proto",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_phone_recovery_proto.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_phone_recovery_proto.csv",
+      "Q3_log_loss": 0.6889770097328402,
+      "fold_log_loss": [
+        0.8230960701599218,
+        0.7093284730918836,
+        0.6306321989877074,
+        0.6444771457847882,
+        0.6250619576349912
+      ]
+    },
+    {
+      "name": "q3_modality_desync_proto",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_modality_desync_proto.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_modality_desync_proto.csv",
+      "Q3_log_loss": 0.695675308708015,
+      "fold_log_loss": [
+        0.7633794360522146,
+        0.7675859480080827,
+        0.5930563174640457,
+        0.6582202509501783,
+        0.6903723359412824
+      ]
+    },
+    {
+      "name": "q3_social_rhythm_hgb",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_social_rhythm_hgb.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_social_rhythm_hgb.csv",
+      "Q3_log_loss": 0.6971926568590758,
+      "fold_log_loss": [
+        0.7576601388462668,
+        0.7338541111959671,
+        0.6720707126945625,
+        0.6475870842403626,
+        0.6675987409652122
+      ]
+    },
+    {
+      "name": "q3_social_rhythm_proto",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_social_rhythm_proto.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_social_rhythm_proto.csv",
+      "Q3_log_loss": 0.7286062985535756,
+      "fold_log_loss": [
+        0.8296319821421189,
+        0.7569664958562577,
+        0.6566101124828883,
+        0.6883183024638444,
+        0.7033137161945265
+      ]
+    },
+    {
+      "name": "q3_modality_desync_knn_logitresid",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_modality_desync_knn_logitresid.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_modality_desync_knn_logitresid.csv",
+      "Q3_log_loss": 0.7445014724443986,
+      "fold_log_loss": [
+        0.7656311350261688,
+        0.8686488243460687,
+        0.7305767390616926,
+        0.6468127222727277,
+        0.701409680474279
+      ]
+    },
+    {
+      "name": "q3_social_rhythm_knn_logitresid",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_social_rhythm_knn_logitresid.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_social_rhythm_knn_logitresid.csv",
+      "Q3_log_loss": 0.7508582844553924,
+      "fold_log_loss": [
+        0.7767798484925182,
+        0.8743746879395973,
+        0.7299566126023969,
+        0.6405673286285132,
+        0.7234619031787721
+      ]
+    },
+    {
+      "name": "q3_body_recovery_knn_logitresid",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_body_recovery_knn_logitresid.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_body_recovery_knn_logitresid.csv",
+      "Q3_log_loss": 0.7585772578857704,
+      "fold_log_loss": [
+        0.8461965821326703,
+        0.8009563240278318,
+        0.7262476374172702,
+        0.7696469090224716,
+        0.6380622687706566
+      ]
+    },
+    {
+      "name": "q3_modality_desync_logreg",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_modality_desync_logreg.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_modality_desync_logreg.csv",
+      "Q3_log_loss": 0.7753530513995915,
+      "fold_log_loss": [
+        0.968757605158565,
+        0.8101549917913696,
+        0.6606802968137916,
+        0.6518090465496951,
+        0.7707452627655053
+      ]
+    },
+    {
+      "name": "q3_phone_recovery_knn_logitresid",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_phone_recovery_knn_logitresid.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_phone_recovery_knn_logitresid.csv",
+      "Q3_log_loss": 0.792136016435939,
+      "fold_log_loss": [
+        0.8969526186802542,
+        0.8989869446553975,
+        0.7291508232597833,
+        0.6707261810468886,
+        0.751035377006262
+      ]
+    },
+    {
+      "name": "q3_social_rhythm_logreg",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_social_rhythm_logreg.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_social_rhythm_logreg.csv",
+      "Q3_log_loss": 0.7985857710368712,
+      "fold_log_loss": [
+        0.9278119585720384,
+        0.7624024894837583,
+        0.7774033782437041,
+        0.7098988720977699,
+        0.8067708538477604
+      ]
+    },
+    {
+      "name": "q3_phone_recovery_logreg",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_phone_recovery_logreg.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_phone_recovery_logreg.csv",
+      "Q3_log_loss": 0.8068792656377337,
+      "fold_log_loss": [
+        1.016852081164486,
+        0.8761598215731997,
+        0.6908560912103275,
+        0.7144050885429507,
+        0.7160808380969775
+      ]
+    },
+    {
+      "name": "q3_body_recovery_logreg",
+      "oof": "outputs/q3_digest_retrieval_on_v23/oof_q3_body_recovery_logreg.csv",
+      "submission": "outputs/q3_digest_retrieval_on_v23/submission_q3_body_recovery_logreg.csv",
+      "Q3_log_loss": 0.8434322054933308,
+      "fold_log_loss": [
+        1.07608509335466,
+        0.8353509700515683,
+        0.7704766316995005,
+        0.7279769516642863,
+        0.7884323656366403
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v23_joint_q1s2_digest/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v23_joint_q1s2_digest/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/q3_digest_retrieval_on_v23",
+    "target": "Q3",
+    "groups": "phone_recovery,social_rhythm,body_recovery,modality_desync",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "phone_recovery": 473,
+    "social_rhythm": 638,
+    "body_recovery": 840,
+    "modality_desync": 1011
+  }
+}

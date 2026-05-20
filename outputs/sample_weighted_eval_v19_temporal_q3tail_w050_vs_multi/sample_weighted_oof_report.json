@@ -1,0 +1,76 @@
+{
+  "baseline": "multi_signal",
+  "bin_table": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_frac": 0.52,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_frac": 0.22666666666666666,
+      "sample_frac": 0.52,
+      "weight_ratio": 2.294117647058824
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_frac": 0.20444444444444446,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_frac": 0.04888888888888889,
+      "sample_frac": 0.48,
+      "weight_ratio": 9.818181818181817
+    }
+  ],
+  "summary": [
+    {
+      "name": "v19_temporal_q3tail_w050",
+      "uniform_avg_log_loss": 0.5753165932511889,
+      "weighted_avg_log_loss": 0.5411497071163592,
+      "weighted_delta_vs_baseline": 0.05587631377175002,
+      "weighted_p025": 0.04736454606168724,
+      "weighted_p500": 0.055897041904317636,
+      "weighted_p975": 0.0646905677241796,
+      "promote_weighted": true
+    },
+    {
+      "name": "q3w100",
+      "uniform_avg_log_loss": 0.575681733390989,
+      "weighted_avg_log_loss": 0.5447347193980326,
+      "weighted_delta_vs_baseline": 0.052291301490076554,
+      "weighted_p025": 0.04436823847773431,
+      "weighted_p500": 0.05230051608069229,
+      "weighted_p975": 0.06063968714522945,
+      "promote_weighted": true
+    },
+    {
+      "name": "multi_signal",
+      "uniform_avg_log_loss": 0.5815923025034421,
+      "weighted_avg_log_loss": 0.5970260208881092,
+      "weighted_delta_vs_baseline": 0.0,
+      "weighted_p025": 0.0,
+      "weighted_p500": 0.0,
+      "weighted_p975": 0.0,
+      "promote_weighted": false
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_weighted_eval_v19_temporal_q3tail_w050_vs_multi",
+    "baseline": "multi_signal",
+    "candidates": [
+      "multi_signal:outputs/multi_signal_qcount_blend_w015_020_015_015/oof_multi_signal_qcount_blend.csv",
+      "q3w100:outputs/sample_portfolio_v18_q3tail_w100/oof_sample_support_target_blend.csv",
+      "v19_temporal_q3tail_w050:outputs/sample_portfolio_v19_temporal_q3tail_w050/oof_sample_support_target_blend.csv"
+    ],
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "bootstrap": 7000,
+    "seed": 2026,
+    "min_weighted_p025": 0.0
+  }
+}

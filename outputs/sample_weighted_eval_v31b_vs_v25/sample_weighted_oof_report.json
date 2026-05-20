@@ -1,0 +1,76 @@
+{
+  "baseline": "v25",
+  "bin_table": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_frac": 0.52,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_frac": 0.22666666666666666,
+      "sample_frac": 0.52,
+      "weight_ratio": 2.294117647058824
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_frac": 0.20444444444444446,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_frac": 0.04888888888888889,
+      "sample_frac": 0.48,
+      "weight_ratio": 9.818181818181817
+    }
+  ],
+  "summary": [
+    {
+      "name": "v31b",
+      "uniform_avg_log_loss": 0.571903297501075,
+      "weighted_avg_log_loss": 0.5279988307179023,
+      "weighted_delta_vs_baseline": 0.005149798149252596,
+      "weighted_p025": 0.0035220620852501406,
+      "weighted_p500": 0.005158938817524579,
+      "weighted_p975": 0.0067322786337326804,
+      "promote_weighted": true
+    },
+    {
+      "name": "v29",
+      "uniform_avg_log_loss": 0.572520006367691,
+      "weighted_avg_log_loss": 0.5294136334119035,
+      "weighted_delta_vs_baseline": 0.0037349954552513115,
+      "weighted_p025": 0.0025505218791637752,
+      "weighted_p500": 0.0037422536970346783,
+      "weighted_p975": 0.0048760211189810675,
+      "promote_weighted": true
+    },
+    {
+      "name": "v25",
+      "uniform_avg_log_loss": 0.5737043187872389,
+      "weighted_avg_log_loss": 0.5331486288671549,
+      "weighted_delta_vs_baseline": 0.0,
+      "weighted_p025": 0.0,
+      "weighted_p500": 0.0,
+      "weighted_p975": 0.0,
+      "promote_weighted": false
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_weighted_eval_v31b_vs_v25",
+    "baseline": "v25",
+    "candidates": [
+      "v25:outputs/sample_portfolio_v25_temporal_label_s1s2_mid_on_v24/oof_sample_support_target_blend.csv:outputs/sample_portfolio_v25_temporal_label_s1s2_mid_on_v24/submission_sample_support_target_blend.csv",
+      "v29:outputs/sample_portfolio_v29_prior_proj_s1mid_restore/oof_sample_support_target_blend.csv:outputs/sample_portfolio_v29_prior_proj_s1mid_restore/submission_sample_support_target_blend.csv",
+      "v31b:outputs/sample_portfolio_v31b_v29_plus_hourly_fused_q3mid_w020/oof_sample_support_target_blend.csv:outputs/sample_portfolio_v31b_v29_plus_hourly_fused_q3mid_w020/submission_sample_support_target_blend.csv"
+    ],
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "bootstrap": 30000,
+    "seed": 2026,
+    "min_weighted_p025": 0.0
+  }
+}

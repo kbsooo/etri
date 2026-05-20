@@ -1,0 +1,189 @@
+{
+  "baseline": "v35a",
+  "folds": 5,
+  "bootstrap": 30000,
+  "summary": [
+    {
+      "name": "v35e",
+      "avg_log_loss": 0.5703145993850471,
+      "robust_score": 0.5718063073916761,
+      "fold_std": 0.004262022876082771,
+      "worst_fold": 0.5774824444472859,
+      "improved_folds_vs_baseline": 2,
+      "worst_target_delta_vs_baseline": 0.0,
+      "promote": false,
+      "improvement": 0.00034850429221157457,
+      "improvement_p025": 1.1702808413852567e-05,
+      "improvement_p500": 0.00034513221145564564,
+      "improvement_p975": 0.0006836876751568059
+    },
+    {
+      "name": "v35a",
+      "avg_log_loss": 0.5706631036772586,
+      "robust_score": 0.5720339846432494,
+      "fold_std": 0.003916802759973643,
+      "worst_fold": 0.5774824444472859,
+      "improved_folds_vs_baseline": 0,
+      "worst_target_delta_vs_baseline": 0.0,
+      "promote": false,
+      "improvement": 0.0,
+      "improvement_p025": 0.0,
+      "improvement_p500": 0.0,
+      "improvement_p975": 0.0
+    }
+  ],
+  "fold_scores": [
+    {
+      "name": "v35a",
+      "fold": 1,
+      "avg_log_loss": 0.5774824444472859,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35a",
+      "fold": 2,
+      "avg_log_loss": 0.572027722261798,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35a",
+      "fold": 3,
+      "avg_log_loss": 0.5671548813047179,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35a",
+      "fold": 4,
+      "avg_log_loss": 0.56696533622275,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35a",
+      "fold": 5,
+      "avg_log_loss": 0.5691051239303558,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35e",
+      "fold": 1,
+      "avg_log_loss": 0.5774824444472859,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35e",
+      "fold": 2,
+      "avg_log_loss": 0.572027722261798,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35e",
+      "fold": 3,
+      "avg_log_loss": 0.5667721359524752,
+      "delta_vs_baseline": 0.0003827453522426971
+    },
+    {
+      "name": "v35e",
+      "fold": 4,
+      "avg_log_loss": 0.5655630706544613,
+      "delta_vs_baseline": 0.0014022655682887075
+    },
+    {
+      "name": "v35e",
+      "fold": 5,
+      "avg_log_loss": 0.5691051239303558,
+      "delta_vs_baseline": 0.0
+    }
+  ],
+  "target_scores": [
+    {
+      "name": "v35a",
+      "target": "Q1",
+      "log_loss": 0.6292858610875013,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35a",
+      "target": "Q2",
+      "log_loss": 0.6299280989858965,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35a",
+      "target": "Q3",
+      "log_loss": 0.5913632053857252,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35a",
+      "target": "S1",
+      "log_loss": 0.5435298606791574,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35a",
+      "target": "S2",
+      "log_loss": 0.5216020735854402,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35a",
+      "target": "S3",
+      "log_loss": 0.49350229428993797,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35a",
+      "target": "S4",
+      "log_loss": 0.5854303317271519,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35e",
+      "target": "Q1",
+      "log_loss": 0.6292858610875013,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35e",
+      "target": "Q2",
+      "log_loss": 0.6287943180434119,
+      "delta_vs_baseline": 0.001133780942484619
+    },
+    {
+      "name": "v35e",
+      "target": "Q3",
+      "log_loss": 0.5900574562827288,
+      "delta_vs_baseline": 0.001305749102996412
+    },
+    {
+      "name": "v35e",
+      "target": "S1",
+      "log_loss": 0.5435298606791574,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35e",
+      "target": "S2",
+      "log_loss": 0.5216020735854402,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35e",
+      "target": "S3",
+      "log_loss": 0.49350229428993797,
+      "delta_vs_baseline": 0.0
+    },
+    {
+      "name": "v35e",
+      "target": "S4",
+      "log_loss": 0.5854303317271519,
+      "delta_vs_baseline": 0.0
+    }
+  ],
+  "prediction_shift": [],
+  "promotion_rule": {
+    "bootstrap_improvement_p025": "> 0",
+    "improved_folds_vs_baseline": ">= 4",
+    "worst_target_regression": ">= -0.003"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "summary": {
+    "base_avg": 0.574177897968438,
+    "final_avg": 0.5740333895331611,
+    "improvement": 0.00014450843527688033,
+    "p025": -1.1326818993552953e-05,
+    "p500": 0.00014340964594620407,
+    "p975": 0.00030534745808266254,
+    "support_delta": 0.000637537214456825,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "S1",
+      "supported_train_rows": 102,
+      "supported_sample_rows": 130,
+      "range_train_rows": 102,
+      "range_sample_rows": 130,
+      "min_position": 0.3333333333,
+      "max_position": 0.6666666667,
+      "weight": 1.0,
+      "mode": "prob"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "position_range": {
+    "min_position": 0.3333333333,
+    "max_position": 0.6666666667,
+    "train_rows": 102,
+    "sample_rows": 130,
+    "applied_train_rows": 102,
+    "applied_sample_rows": 130
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_portfolio_v25_temporal_label_s1_mid_on_v24",
+    "base_oof": "outputs/sample_portfolio_v24_q2tail_shrink_w010/oof_sample_support_target_blend.csv",
+    "base_submission": "outputs/sample_portfolio_v24_q2tail_shrink_w010/submission_sample_support_target_blend.csv",
+    "source_oof": "outputs/temporal_label_decoder_on_v24_q2w010/oof_temporal_label_decoder.csv",
+    "source_submission": "outputs/temporal_label_decoder_on_v24_q2w010/submission_temporal_label_decoder.csv",
+    "targets": "S1",
+    "weight": 1.0,
+    "mode": "prob",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "min_position": 0.3333333333,
+    "max_position": 0.6666666667,
+    "bootstrap": 10000,
+    "seed": 2026
+  }
+}

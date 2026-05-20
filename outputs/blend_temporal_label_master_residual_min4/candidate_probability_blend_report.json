@@ -1,0 +1,49 @@
+{
+  "base_avg_log_loss": 0.5844632314577459,
+  "base_targets": {
+    "Q1": 0.6383487136931539,
+    "Q2": 0.6503050342800608,
+    "Q3": 0.6254905558195907,
+    "S1": 0.5551679095830784,
+    "S2": 0.5292196070733155,
+    "S3": 0.49841585304667624,
+    "S4": 0.5942949467083457
+  },
+  "best": {
+    "name": "master_resid_min4_w1",
+    "weight": 1.0,
+    "avg_log_loss": 0.58410737039897,
+    "delta_vs_base": 0.00035586105877594143,
+    "fold_std": 0.011672070479459852,
+    "worst_fold": 0.6071168808868768,
+    "improved_folds": 4,
+    "worst_target_delta": 0.0,
+    "promote": false,
+    "Q1": 0.6361910006809577,
+    "Q2": 0.6503050342800608,
+    "Q3": 0.6254905558195907,
+    "S1": 0.5551679095830784,
+    "S2": 0.5292196070733155,
+    "S3": 0.49841585304667624,
+    "S4": 0.5939616323091114,
+    "improvement": 0.00035586105877579094,
+    "improvement_p025": -0.00045993160558365404,
+    "improvement_p500": 0.00035259036515800313,
+    "improvement_p975": 0.0011896178622567393
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/blend_graph_sleep_temporal_label_min3/oof_candidate_probability_blend.csv",
+    "base_submission": "outputs/blend_graph_sleep_temporal_label_min3/submission_candidate_probability_blend.csv",
+    "candidate_oof": "outputs/master_residual_on_temporal_label_min4/oof_master_residual_decoder.csv",
+    "candidate_submission": "outputs/master_residual_on_temporal_label_min4/submission_master_residual_decoder.csv",
+    "output_dir": "outputs/blend_temporal_label_master_residual_min4",
+    "name": "master_resid_min4",
+    "weights": "0.05,0.1,0.15,0.2,0.25,0.3,0.4,0.5,0.65,0.8,1.0",
+    "folds": 5,
+    "bootstrap": 10000,
+    "seed": 2026,
+    "max_target_regression": 0.001
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "baseline": "hgb_tail_decoder_v8",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "hgb_tail_decoder_v12_hourly",
+      "avg_log_loss": 0.5766723338888327,
+      "overall_p025": 0.0002541199945547732,
+      "overall_improvement": 0.001434140024072514,
+      "early_delta": 0.0,
+      "mid_delta": 0.0010822501406498874,
+      "late_delta": 0.0031991594747178276,
+      "tail20_delta": 0.00371251624703961,
+      "late_p025": 0.00011420410386153961,
+      "tail20_p025": -0.0007536019162312558,
+      "worst_subject_delta": -0.0023338527000767995,
+      "worst_late_target_delta": 0.0,
+      "promote": true
+    },
+    {
+      "name": "hgb_tail_decoder_v8",
+      "avg_log_loss": 0.5781064739129051,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

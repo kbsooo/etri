@@ -1,0 +1,42 @@
+{
+  "baseline": "trp_base",
+  "promotion_rule": {
+    "overall_p025": "> 0",
+    "late_delta": ">= -0.0015",
+    "tail20_delta": ">= -0.0025",
+    "worst_subject_delta": ">= -0.006",
+    "worst_late_target_delta": ">= -0.01"
+  },
+  "summary": [
+    {
+      "name": "weather_s4tail_plus_gru_s3tail",
+      "avg_log_loss": 0.5738740587842052,
+      "overall_p025": -0.0001387193753810137,
+      "overall_improvement": 0.0003536306285486402,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0010469327818872776,
+      "tail20_delta": 0.0016750924510199328,
+      "late_p025": -0.00040805430215638274,
+      "tail20_p025": -0.0006317520804263806,
+      "worst_subject_delta": -0.0007086664120662389,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    },
+    {
+      "name": "trp_base",
+      "avg_log_loss": 0.5742276894127538,
+      "overall_p025": 0.0,
+      "overall_improvement": 0.0,
+      "early_delta": 0.0,
+      "mid_delta": 0.0,
+      "late_delta": 0.0,
+      "tail20_delta": 0.0,
+      "late_p025": 0.0,
+      "tail20_p025": 0.0,
+      "worst_subject_delta": 0.0,
+      "worst_late_target_delta": 0.0,
+      "promote": false
+    }
+  ]
+}

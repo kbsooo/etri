@@ -1,0 +1,211 @@
+{
+  "target": "Q2",
+  "base_log_loss": 0.5859961912193183,
+  "best_source_log_loss": 0.6017641399762056,
+  "sources": [
+    {
+      "name": "q2_sleep_retrieval_meta",
+      "oof": "outputs/q2_temporal_persist_regime_on_v32/oof_q2_sleep_retrieval_meta.csv",
+      "submission": "outputs/q2_temporal_persist_regime_on_v32/submission_q2_sleep_retrieval_meta.csv",
+      "Q2_log_loss": 0.6017641399762056
+    },
+    {
+      "name": "q2_temporal_regime_knn_resid",
+      "oof": "outputs/q2_temporal_persist_regime_on_v32/oof_q2_temporal_regime_knn_resid.csv",
+      "submission": "outputs/q2_temporal_persist_regime_on_v32/submission_q2_temporal_regime_knn_resid.csv",
+      "Q2_log_loss": 0.6152114782126021,
+      "fold_log_loss": [
+        0.656708717764169,
+        0.6680287532984375,
+        0.6071754476578758,
+        0.5880877534221686,
+        0.5480304872943921
+      ]
+    },
+    {
+      "name": "q2_temporal_regime_knn_logitresid",
+      "oof": "outputs/q2_temporal_persist_regime_on_v32/oof_q2_temporal_regime_knn_logitresid.csv",
+      "submission": "outputs/q2_temporal_persist_regime_on_v32/submission_q2_temporal_regime_knn_logitresid.csv",
+      "Q2_log_loss": 0.6690171063090987,
+      "fold_log_loss": [
+        0.8587824915942485,
+        0.6753112062110961,
+        0.6354308224666592,
+        0.6211106934237168,
+        0.5351046469869485
+      ]
+    },
+    {
+      "name": "q2_temporal_persistence_knn_resid",
+      "oof": "outputs/q2_temporal_persist_regime_on_v32/oof_q2_temporal_persistence_knn_resid.csv",
+      "submission": "outputs/q2_temporal_persist_regime_on_v32/submission_q2_temporal_persistence_knn_resid.csv",
+      "Q2_log_loss": 0.6785562743101656,
+      "fold_log_loss": [
+        0.6867154716864737,
+        0.6450319345315243,
+        0.6808166932693004,
+        0.8224466579973834,
+        0.5560263214021244
+      ]
+    },
+    {
+      "name": "q2_temporal_regime_extra",
+      "oof": "outputs/q2_temporal_persist_regime_on_v32/oof_q2_temporal_regime_extra.csv",
+      "submission": "outputs/q2_temporal_persist_regime_on_v32/submission_q2_temporal_regime_extra.csv",
+      "Q2_log_loss": 0.6959063277466412,
+      "fold_log_loss": [
+        0.6799872165899947,
+        0.6973426273019371,
+        0.7131105997673001,
+        0.6905888178037045,
+        0.6991676290636961
+      ]
+    },
+    {
+      "name": "q2_temporal_regime_knn_label",
+      "oof": "outputs/q2_temporal_persist_regime_on_v32/oof_q2_temporal_regime_knn_label.csv",
+      "submission": "outputs/q2_temporal_persist_regime_on_v32/submission_q2_temporal_regime_knn_label.csv",
+      "Q2_log_loss": 0.7099981888486863,
+      "fold_log_loss": [
+        0.7276117161365028,
+        0.6872874195489527,
+        0.7011077615387183,
+        0.7313018225012754,
+        0.7026066410918003
+      ]
+    },
+    {
+      "name": "q2_temporal_persistence_extra",
+      "oof": "outputs/q2_temporal_persist_regime_on_v32/oof_q2_temporal_persistence_extra.csv",
+      "submission": "outputs/q2_temporal_persist_regime_on_v32/submission_q2_temporal_persistence_extra.csv",
+      "Q2_log_loss": 0.7108513195825992,
+      "fold_log_loss": [
+        0.7089925319096351,
+        0.7108907833129747,
+        0.7228360671299847,
+        0.7136663766627049,
+        0.6971740510291381
+      ]
+    },
+    {
+      "name": "q2_temporal_regime_hgb",
+      "oof": "outputs/q2_temporal_persist_regime_on_v32/oof_q2_temporal_regime_hgb.csv",
+      "submission": "outputs/q2_temporal_persist_regime_on_v32/submission_q2_temporal_regime_hgb.csv",
+      "Q2_log_loss": 0.7468743787650992,
+      "fold_log_loss": [
+        0.7444074134425728,
+        0.7171454688693586,
+        0.7640083384347206,
+        0.7674369874622979,
+        0.7424188979351739
+      ]
+    },
+    {
+      "name": "q2_temporal_persistence_hgb",
+      "oof": "outputs/q2_temporal_persist_regime_on_v32/oof_q2_temporal_persistence_hgb.csv",
+      "submission": "outputs/q2_temporal_persist_regime_on_v32/submission_q2_temporal_persistence_hgb.csv",
+      "Q2_log_loss": 0.7561279143253746,
+      "fold_log_loss": [
+        0.8031404280261975,
+        0.7050128353601757,
+        0.8070572247697336,
+        0.75396873158228,
+        0.7065947391657595
+      ]
+    },
+    {
+      "name": "q2_temporal_regime_logreg",
+      "oof": "outputs/q2_temporal_persist_regime_on_v32/oof_q2_temporal_regime_logreg.csv",
+      "submission": "outputs/q2_temporal_persist_regime_on_v32/submission_q2_temporal_regime_logreg.csv",
+      "Q2_log_loss": 0.7683875356116662,
+      "fold_log_loss": [
+        0.7588176555506978,
+        0.7322927967475515,
+        0.8240483995616852,
+        0.7149574803905077,
+        0.8132478975655433
+      ]
+    },
+    {
+      "name": "q2_temporal_persistence_knn_label",
+      "oof": "outputs/q2_temporal_persist_regime_on_v32/oof_q2_temporal_persistence_knn_label.csv",
+      "submission": "outputs/q2_temporal_persist_regime_on_v32/submission_q2_temporal_persistence_knn_label.csv",
+      "Q2_log_loss": 0.7780923889659521,
+      "fold_log_loss": [
+        0.8342722724529062,
+        0.7568064194745979,
+        0.730173405530759,
+        0.8867155942723622,
+        0.6784644935881742
+      ]
+    },
+    {
+      "name": "q2_temporal_persistence_knn_logitresid",
+      "oof": "outputs/q2_temporal_persist_regime_on_v32/oof_q2_temporal_persistence_knn_logitresid.csv",
+      "submission": "outputs/q2_temporal_persist_regime_on_v32/submission_q2_temporal_persistence_knn_logitresid.csv",
+      "Q2_log_loss": 0.7943152395230082,
+      "fold_log_loss": [
+        0.8853199360335527,
+        0.7251647322039846,
+        0.8186885800763759,
+        0.9296468502142389,
+        0.6028396675742433
+      ]
+    },
+    {
+      "name": "q2_temporal_persistence_proto",
+      "oof": "outputs/q2_temporal_persist_regime_on_v32/oof_q2_temporal_persistence_proto.csv",
+      "submission": "outputs/q2_temporal_persist_regime_on_v32/submission_q2_temporal_persistence_proto.csv",
+      "Q2_log_loss": 0.8052463744585949,
+      "fold_log_loss": [
+        0.8420250066049277,
+        0.7616404036286173,
+        0.7759696015910489,
+        0.9257865618978649,
+        0.7193048366490243
+      ]
+    },
+    {
+      "name": "q2_temporal_regime_proto",
+      "oof": "outputs/q2_temporal_persist_regime_on_v32/oof_q2_temporal_regime_proto.csv",
+      "submission": "outputs/q2_temporal_persist_regime_on_v32/submission_q2_temporal_regime_proto.csv",
+      "Q2_log_loss": 0.8167904504554255,
+      "fold_log_loss": [
+        0.9147490064422504,
+        0.743845119782484,
+        0.8377871073527978,
+        0.7995850742049266,
+        0.7813913864471289
+      ]
+    },
+    {
+      "name": "q2_temporal_persistence_logreg",
+      "oof": "outputs/q2_temporal_persist_regime_on_v32/oof_q2_temporal_persistence_logreg.csv",
+      "submission": "outputs/q2_temporal_persist_regime_on_v32/submission_q2_temporal_persistence_logreg.csv",
+      "Q2_log_loss": 1.037368464935336,
+      "fold_log_loss": [
+        1.063575779252545,
+        0.8824572832615233,
+        1.1438604933069068,
+        1.2529796936995552,
+        0.8410529634007008
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v32_temporal_shape_l2_on_v30/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v32_temporal_shape_l2_on_v30/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/q2_temporal_persist_regime_on_v32",
+    "target": "Q2",
+    "groups": "temporal_persistence,temporal_regime",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_persistence": 616,
+    "temporal_regime": 308
+  }
+}

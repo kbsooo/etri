@@ -1,0 +1,76 @@
+{
+  "summary": {
+    "base_avg": 0.574234686523467,
+    "final_avg": 0.5741091671618236,
+    "improvement": 0.00012551936164343174,
+    "p025": -0.00023609519154818315,
+    "p500": 0.0001148783831571193,
+    "p975": 0.0005645148915154661,
+    "support_delta": 0.0025674414881611037,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "Q2",
+      "supported_train_rows": 22,
+      "supported_sample_rows": 120,
+      "range_train_rows": 22,
+      "range_sample_rows": 120,
+      "min_position": 0.8,
+      "max_position": 1.000001,
+      "weight": 0.3,
+      "mode": "prob"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "position_range": {
+    "min_position": 0.8,
+    "max_position": 1.000001,
+    "train_rows": 22,
+    "sample_rows": 120,
+    "applied_train_rows": 22,
+    "applied_sample_rows": 120
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_portfolio_v23_temporal_contrastive_q3q2tail",
+    "base_oof": "outputs/sample_portfolio_v22_temporal_contrastive_q3tail_w050/oof_sample_support_target_blend.csv",
+    "base_submission": "outputs/sample_portfolio_v22_temporal_contrastive_q3tail_w050/submission_sample_support_target_blend.csv",
+    "source_oof": "outputs/position_weighted_temporal_contrastive_hgb_core_on_v21/sources/oof_hgb_latent_temporal_core_sample_l23.csv",
+    "source_submission": "outputs/position_weighted_temporal_contrastive_hgb_core_on_v21/sources/submission_hgb_latent_temporal_core_sample_l23.csv",
+    "targets": "Q2",
+    "weight": 0.3,
+    "mode": "prob",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "min_position": 0.8,
+    "max_position": 1.000001,
+    "bootstrap": 5000,
+    "seed": 2026
+  }
+}

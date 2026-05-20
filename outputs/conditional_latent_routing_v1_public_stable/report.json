@@ -1,0 +1,137 @@
+{
+  "base_score": {
+    "avg_log_loss": 0.5755542553654472,
+    "per_target": {
+      "Q1": 0.6325986433447643,
+      "Q2": 0.6311555222254859,
+      "Q3": 0.608870054518594,
+      "S1": 0.5519939148973718,
+      "S2": 0.5227316854858751,
+      "S3": 0.4950876591772736,
+      "S4": 0.586442307908766
+    }
+  },
+  "routed_score": {
+    "avg_log_loss": 0.5749579231472405,
+    "per_target": {
+      "Q1": 0.6321060527098807,
+      "Q2": 0.629928204190092,
+      "Q3": 0.6083406247575853,
+      "S1": 0.5517482888262064,
+      "S2": 0.5210523244608787,
+      "S3": 0.4950876591772736,
+      "S4": 0.586442307908766
+    }
+  },
+  "selected_moves": [
+    {
+      "target": "Q1",
+      "source": "anchor",
+      "bin": "late",
+      "lo": 0.666,
+      "hi": 1.000001,
+      "weight": 1.0,
+      "train_rows": 116.0,
+      "sample_rows": 120.0,
+      "base_log_loss": 0.6325986433447643,
+      "log_loss": 0.6321060527098807,
+      "improvement": 0.0004925906348836051
+    },
+    {
+      "target": "Q2",
+      "source": "anchor",
+      "bin": "late",
+      "lo": 0.666,
+      "hi": 1.000001,
+      "weight": 1.0,
+      "train_rows": 116.0,
+      "sample_rows": 120.0,
+      "base_log_loss": 0.6311555222254859,
+      "log_loss": 0.629928204190092,
+      "improvement": 0.0012273180353938873
+    },
+    {
+      "target": "Q3",
+      "source": "gru28",
+      "bin": "mid",
+      "lo": 0.333,
+      "hi": 0.666,
+      "weight": 0.5,
+      "train_rows": 100.0,
+      "sample_rows": 130.0,
+      "base_log_loss": 0.608870054518594,
+      "log_loss": 0.6083406247575853,
+      "improvement": 0.0005294297610086707
+    },
+    {
+      "target": "S1",
+      "source": "anchor",
+      "bin": "late",
+      "lo": 0.666,
+      "hi": 1.000001,
+      "weight": 1.0,
+      "train_rows": 116.0,
+      "sample_rows": 120.0,
+      "base_log_loss": 0.5519939148973718,
+      "log_loss": 0.5517482888262064,
+      "improvement": 0.0002456260711654057
+    },
+    {
+      "target": "S2",
+      "source": "gru28",
+      "bin": "mid",
+      "lo": 0.333,
+      "hi": 0.666,
+      "weight": 1.0,
+      "train_rows": 100.0,
+      "sample_rows": 130.0,
+      "base_log_loss": 0.5227316854858751,
+      "log_loss": 0.5210523244608787,
+      "improvement": 0.0016793610249964397
+    },
+    {
+      "target": "S3",
+      "source": "base",
+      "bin": "all",
+      "lo": NaN,
+      "hi": NaN,
+      "weight": 0.0,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN,
+      "improvement": 0.0
+    },
+    {
+      "target": "S4",
+      "source": "base",
+      "bin": "all",
+      "lo": NaN,
+      "hi": NaN,
+      "weight": 0.0,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN,
+      "improvement": 0.0
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/targetwise_residual_latent_portfolio_v1/oof_targetwise_latent_portfolio_v1.csv",
+    "base_submission": "outputs/targetwise_residual_latent_portfolio_v1/submission_targetwise_latent_portfolio_v1.csv",
+    "source": [
+      "anchor=outputs/lb_feedback_recovery_uploads/oof_15_v18_old15_prob_blend.csv,outputs/lb_feedback_recovery_uploads/submission_15_v18_old15_prob_blend.csv",
+      "gru28=outputs/sequence_encoder_residual/oof_gru28.csv,outputs/sequence_encoder_residual/submission_gru28.csv",
+      "gru14=outputs/sequence_encoder_residual/oof_gru14.csv,outputs/sequence_encoder_residual/submission_gru14.csv",
+      "tf28=outputs/sequence_encoder_residual/oof_tf28.csv,outputs/sequence_encoder_residual/submission_tf28.csv"
+    ],
+    "output_dir": "outputs/conditional_latent_routing_v1_public_stable",
+    "weights": "0.25,0.5,0.75,1.0",
+    "bins": "early:0:0.333,mid:0.333:0.666,late_mid:0.666:0.8,tail:0.8:1.000001,late:0.666:1.000001,all:0:1.000001",
+    "min_train_rows": 50,
+    "min_sample_rows": 1,
+    "min_improvement": 0.0002
+  }
+}

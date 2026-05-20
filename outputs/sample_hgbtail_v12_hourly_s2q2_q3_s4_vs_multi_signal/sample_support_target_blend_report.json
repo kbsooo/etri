@@ -1,0 +1,76 @@
+{
+  "summary": {
+    "base_avg": 0.5767630875895012,
+    "final_avg": 0.5766723338888327,
+    "improvement": 9.075370066854536e-05,
+    "p025": -0.00011338171620976243,
+    "p500": 8.561584051953083e-05,
+    "p975": 0.0003248147201095823,
+    "support_delta": 0.0018563256954929734,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "S4",
+      "supported_train_rows": 22,
+      "supported_sample_rows": 120,
+      "range_train_rows": 22,
+      "range_sample_rows": 120,
+      "min_position": 0.8,
+      "max_position": 1.000001,
+      "weight": 0.5,
+      "mode": "logit"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "position_range": {
+    "min_position": 0.8,
+    "max_position": 1.000001,
+    "train_rows": 22,
+    "sample_rows": 120,
+    "applied_train_rows": 22,
+    "applied_sample_rows": 120
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_hgbtail_v12_hourly_s2q2_q3_s4_vs_multi_signal",
+    "base_oof": "outputs/sample_hgbtail_v12_hourly_s2q2tail_q3mid_step3/oof_sample_support_target_blend.csv",
+    "base_submission": "outputs/sample_hgbtail_v12_hourly_s2q2tail_q3mid_step3/submission_sample_support_target_blend.csv",
+    "source_oof": "outputs/hourly_sequence_decoder_v1/oof_hourly_et_leaf8_k160_midtail.csv",
+    "source_submission": "outputs/hourly_sequence_decoder_v1/submission_hourly_et_leaf8_k160_midtail.csv",
+    "targets": "S4",
+    "weight": 0.5,
+    "mode": "logit",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "min_position": 0.8,
+    "max_position": 1.000001,
+    "bootstrap": 10000,
+    "seed": 2026
+  }
+}

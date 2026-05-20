@@ -1,0 +1,119 @@
+{
+  "target": "S4",
+  "base_log_loss": 0.5097677859942478,
+  "best_source_log_loss": 0.5393172252122026,
+  "sources": [
+    {
+      "name": "s4_sleep_retrieval_meta",
+      "oof": "outputs/s4_temporal_leadlag_l2_on_v43/oof_s4_sleep_retrieval_meta.csv",
+      "submission": "outputs/s4_temporal_leadlag_l2_on_v43/submission_s4_sleep_retrieval_meta.csv",
+      "S4_log_loss": 0.5393172252122026
+    },
+    {
+      "name": "s4_temporal_leadlag_knn_resid",
+      "oof": "outputs/s4_temporal_leadlag_l2_on_v43/oof_s4_temporal_leadlag_knn_resid.csv",
+      "submission": "outputs/s4_temporal_leadlag_l2_on_v43/submission_s4_temporal_leadlag_knn_resid.csv",
+      "S4_log_loss": 0.5901664038548726,
+      "fold_log_loss": [
+        0.603446620353292,
+        0.5195400131571659,
+        0.7083969162137193,
+        0.640458422090111,
+        0.47371493521626523
+      ]
+    },
+    {
+      "name": "s4_temporal_leadlag_knn_logitresid",
+      "oof": "outputs/s4_temporal_leadlag_l2_on_v43/oof_s4_temporal_leadlag_knn_logitresid.csv",
+      "submission": "outputs/s4_temporal_leadlag_l2_on_v43/submission_s4_temporal_leadlag_knn_logitresid.csv",
+      "S4_log_loss": 0.6332295682026208,
+      "fold_log_loss": [
+        0.6597275281488675,
+        0.6424648422973717,
+        0.6846175738143371,
+        0.6257433359442115,
+        0.5462653597815021
+      ]
+    },
+    {
+      "name": "s4_temporal_leadlag_extra",
+      "oof": "outputs/s4_temporal_leadlag_l2_on_v43/oof_s4_temporal_leadlag_extra.csv",
+      "submission": "outputs/s4_temporal_leadlag_l2_on_v43/submission_s4_temporal_leadlag_extra.csv",
+      "S4_log_loss": 0.6850035535677483,
+      "fold_log_loss": [
+        0.6894124775322132,
+        0.7016058255586541,
+        0.6881592101567705,
+        0.6799554967707693,
+        0.6638948405318502
+      ]
+    },
+    {
+      "name": "s4_temporal_leadlag_hgb",
+      "oof": "outputs/s4_temporal_leadlag_l2_on_v43/oof_s4_temporal_leadlag_hgb.csv",
+      "submission": "outputs/s4_temporal_leadlag_l2_on_v43/submission_s4_temporal_leadlag_hgb.csv",
+      "S4_log_loss": 0.6887279048182915,
+      "fold_log_loss": [
+        0.6709222698492431,
+        0.6589211438700655,
+        0.7364110878514744,
+        0.7090333549145701,
+        0.6690574755818263
+      ]
+    },
+    {
+      "name": "s4_temporal_leadlag_knn_label",
+      "oof": "outputs/s4_temporal_leadlag_l2_on_v43/oof_s4_temporal_leadlag_knn_label.csv",
+      "submission": "outputs/s4_temporal_leadlag_l2_on_v43/submission_s4_temporal_leadlag_knn_label.csv",
+      "S4_log_loss": 0.7266385422424466,
+      "fold_log_loss": [
+        0.7053907764720396,
+        0.7869024009522704,
+        0.7478063314300725,
+        0.7029257218002966,
+        0.6867680635280697
+      ]
+    },
+    {
+      "name": "s4_temporal_leadlag_proto",
+      "oof": "outputs/s4_temporal_leadlag_l2_on_v43/oof_s4_temporal_leadlag_proto.csv",
+      "submission": "outputs/s4_temporal_leadlag_l2_on_v43/submission_s4_temporal_leadlag_proto.csv",
+      "S4_log_loss": 0.7561433454456707,
+      "fold_log_loss": [
+        0.7746900792334205,
+        0.8009600440680371,
+        0.8054762675952559,
+        0.7059322449200749,
+        0.6854844495282673
+      ]
+    },
+    {
+      "name": "s4_temporal_leadlag_logreg",
+      "oof": "outputs/s4_temporal_leadlag_l2_on_v43/oof_s4_temporal_leadlag_logreg.csv",
+      "submission": "outputs/s4_temporal_leadlag_l2_on_v43/submission_s4_temporal_leadlag_logreg.csv",
+      "S4_log_loss": 0.8996031784992518,
+      "fold_log_loss": [
+        0.7800831856865953,
+        0.973796061943289,
+        1.1322604910573075,
+        0.8317693485198085,
+        0.7732311997437155
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v43_leadlag_constrained_on_v40/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v43_leadlag_constrained_on_v40/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s4_temporal_leadlag_l2_on_v43",
+    "target": "S4",
+    "groups": "temporal_leadlag",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_leadlag": 144
+  }
+}

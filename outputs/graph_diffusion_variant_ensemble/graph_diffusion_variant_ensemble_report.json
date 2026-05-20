@@ -1,0 +1,116 @@
+{
+  "final_avg_log_loss": 0.6024848004719721,
+  "final_targets": {
+    "Q1": 0.6387339722449896,
+    "Q2": 0.6804972104377597,
+    "Q3": 0.6544847320640693,
+    "S1": 0.5608047323234786,
+    "S2": 0.5504724854372729,
+    "S3": 0.5268483567128323,
+    "S4": 0.6055521140834023
+  },
+  "selection": [
+    {
+      "target": "Q1",
+      "source": "subjless",
+      "loss_base": 0.6415592120485005,
+      "loss_orig": 0.6392408052979313,
+      "loss_subjless": 0.6387339722449896,
+      "selected_loss": 0.6387339722449896
+    },
+    {
+      "target": "Q2",
+      "source": "orig",
+      "loss_base": 0.6839979065349224,
+      "loss_orig": 0.6804972104377597,
+      "loss_subjless": 0.681433047646996,
+      "selected_loss": 0.6804972104377597
+    },
+    {
+      "target": "Q3",
+      "source": "subjless",
+      "loss_base": 0.6598947804406364,
+      "loss_orig": 0.6567192589695802,
+      "loss_subjless": 0.6544847320640693,
+      "selected_loss": 0.6544847320640693
+    },
+    {
+      "target": "S1",
+      "source": "orig",
+      "loss_base": 0.563547056179646,
+      "loss_orig": 0.5608047323234786,
+      "loss_subjless": 0.5624250985095384,
+      "selected_loss": 0.5608047323234786
+    },
+    {
+      "target": "S2",
+      "source": "orig",
+      "loss_base": 0.557581403187159,
+      "loss_orig": 0.5504724854372729,
+      "loss_subjless": 0.5508044975624617,
+      "selected_loss": 0.5504724854372729
+    },
+    {
+      "target": "S3",
+      "source": "orig",
+      "loss_base": 0.5316249837622976,
+      "loss_orig": 0.5268483567128323,
+      "loss_subjless": 0.5282623984998934,
+      "selected_loss": 0.5268483567128323
+    },
+    {
+      "target": "S4",
+      "source": "orig",
+      "loss_base": 0.6310780298238747,
+      "loss_orig": 0.6055521140834023,
+      "loss_subjless": 0.6194240366225224,
+      "selected_loss": 0.6055521140834023
+    }
+  ],
+  "source_scores": [
+    {
+      "source": "orig",
+      "avg_log_loss": 0.6028764233231796,
+      "Q1": 0.6392408052979313,
+      "Q2": 0.6804972104377597,
+      "Q3": 0.6567192589695802,
+      "S1": 0.5608047323234786,
+      "S2": 0.5504724854372729,
+      "S3": 0.5268483567128323,
+      "S4": 0.6055521140834023
+    },
+    {
+      "source": "subjless",
+      "avg_log_loss": 0.6050811118786388,
+      "Q1": 0.6387339722449896,
+      "Q2": 0.681433047646996,
+      "Q3": 0.6544847320640693,
+      "S1": 0.5624250985095384,
+      "S2": 0.5508044975624617,
+      "S3": 0.5282623984998934,
+      "S4": 0.6194240366225224
+    },
+    {
+      "source": "base",
+      "avg_log_loss": 0.6098976245681482,
+      "Q1": 0.6415592120485005,
+      "Q2": 0.6839979065349224,
+      "Q3": 0.6598947804406364,
+      "S1": 0.563547056179646,
+      "S2": 0.557581403187159,
+      "S3": 0.5316249837622976,
+      "S4": 0.6310780298238747
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/robust_safe_ensemble/oof_robust_safe_ensemble.csv",
+    "base_submission": "outputs/robust_safe_ensemble/submission_robust_safe_ensemble.csv",
+    "original_oof": "outputs/graph_diffusion_decoder/oof_graph_diffusion_decoder.csv",
+    "original_submission": "outputs/graph_diffusion_decoder/submission_graph_diffusion_decoder.csv",
+    "subjectless_oof": "outputs/graph_diffusion_decoder_subjectless_long/oof_graph_diffusion_decoder.csv",
+    "subjectless_submission": "outputs/graph_diffusion_decoder_subjectless_long/submission_graph_diffusion_decoder.csv",
+    "output_dir": "outputs/graph_diffusion_variant_ensemble"
+  }
+}

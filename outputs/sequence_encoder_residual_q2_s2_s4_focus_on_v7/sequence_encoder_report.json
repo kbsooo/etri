@@ -1,0 +1,114 @@
+{
+  "device": "mps",
+  "pca_components": 128,
+  "base_oof": "outputs/conditional_latent_routing_v7_overlap_q1/oof_conditional_latent_routing.csv",
+  "base_submission": "outputs/conditional_latent_routing_v7_overlap_q1/submission_conditional_latent_routing.csv",
+  "results": [
+    {
+      "name": "gru28_q2",
+      "encoder": "gru",
+      "context_days": 28,
+      "d_model": 48,
+      "dropout": 0.25,
+      "max_delta": 0.35,
+      "full_train_epochs": 1,
+      "uniform_oof_cv": 0.5751130599945209,
+      "base_uniform_oof_cv": 0.5728416999728788,
+      "oof_path": "outputs/sequence_encoder_residual_q2_s2_s4_focus_on_v7/oof_gru28_q2.csv",
+      "submission_path": "outputs/sequence_encoder_residual_q2_s2_s4_focus_on_v7/submission_gru28_q2.csv",
+      "test_delta_abs_mean": 0.01579863578081131,
+      "test_min": 0.08254556357860565,
+      "test_max": 0.9891948699951172,
+      "target_weights": {
+        "Q1": 0.3499999940395355,
+        "Q2": 1.75,
+        "Q3": 0.699999988079071,
+        "S1": 0.3499999940395355,
+        "S2": 1.75,
+        "S3": 0.3499999940395355,
+        "S4": 1.75
+      }
+    },
+    {
+      "name": "gru28_s2",
+      "encoder": "gru",
+      "context_days": 28,
+      "d_model": 48,
+      "dropout": 0.25,
+      "max_delta": 0.35,
+      "full_train_epochs": 1,
+      "uniform_oof_cv": 0.5751130599945209,
+      "base_uniform_oof_cv": 0.5728416999728788,
+      "oof_path": "outputs/sequence_encoder_residual_q2_s2_s4_focus_on_v7/oof_gru28_s2.csv",
+      "submission_path": "outputs/sequence_encoder_residual_q2_s2_s4_focus_on_v7/submission_gru28_s2.csv",
+      "test_delta_abs_mean": 0.01579863578081131,
+      "test_min": 0.08254556357860565,
+      "test_max": 0.9891948699951172,
+      "target_weights": {
+        "Q1": 0.3499999940395355,
+        "Q2": 1.75,
+        "Q3": 0.699999988079071,
+        "S1": 0.3499999940395355,
+        "S2": 1.75,
+        "S3": 0.3499999940395355,
+        "S4": 1.75
+      }
+    },
+    {
+      "name": "gru28_s4",
+      "encoder": "gru",
+      "context_days": 28,
+      "d_model": 48,
+      "dropout": 0.25,
+      "max_delta": 0.35,
+      "full_train_epochs": 1,
+      "uniform_oof_cv": 0.5751130599945209,
+      "base_uniform_oof_cv": 0.5728416999728788,
+      "oof_path": "outputs/sequence_encoder_residual_q2_s2_s4_focus_on_v7/oof_gru28_s4.csv",
+      "submission_path": "outputs/sequence_encoder_residual_q2_s2_s4_focus_on_v7/submission_gru28_s4.csv",
+      "test_delta_abs_mean": 0.01579863578081131,
+      "test_min": 0.08254556357860565,
+      "test_max": 0.9891948699951172,
+      "target_weights": {
+        "Q1": 0.3499999940395355,
+        "Q2": 1.75,
+        "Q3": 0.699999988079071,
+        "S1": 0.3499999940395355,
+        "S2": 1.75,
+        "S3": 0.3499999940395355,
+        "S4": 1.75
+      }
+    },
+    {
+      "name": "tf28_mix",
+      "encoder": "transformer",
+      "context_days": 28,
+      "d_model": 48,
+      "dropout": 0.3,
+      "max_delta": 0.3,
+      "full_train_epochs": 1,
+      "uniform_oof_cv": 0.5733361396113548,
+      "base_uniform_oof_cv": 0.5728416999728788,
+      "oof_path": "outputs/sequence_encoder_residual_q2_s2_s4_focus_on_v7/oof_tf28_mix.csv",
+      "submission_path": "outputs/sequence_encoder_residual_q2_s2_s4_focus_on_v7/submission_tf28_mix.csv",
+      "test_delta_abs_mean": 0.014199656434357166,
+      "test_min": 0.08323266357183456,
+      "test_max": 0.989051878452301,
+      "target_weights": {
+        "Q1": 0.3499999940395355,
+        "Q2": 1.75,
+        "Q3": 0.699999988079071,
+        "S1": 0.3499999940395355,
+        "S2": 1.75,
+        "S3": 0.3499999940395355,
+        "S4": 1.75
+      }
+    }
+  ],
+  "anti_overfit_controls": [
+    "Residual logit head initialized at zero, so training starts from the base predictions.",
+    "Outer validation labels are not used for early stopping; epoch is selected on an inner split of the outer-training fold.",
+    "Tiny encoders, dropout, AdamW weight decay, gradient clipping, tanh-clamped residual logits, and residual L2 penalty.",
+    "OOF predictions are produced by retraining on the full outer-train fold for the inner-selected epoch."
+  ]
+}

@@ -1,0 +1,211 @@
+{
+  "target": "S3",
+  "base_log_loss": 0.43043421405435084,
+  "best_source_log_loss": 0.46270944962836275,
+  "sources": [
+    {
+      "name": "s3_temporal_state_novelty_knn_resid",
+      "oof": "outputs/s3_temporal_state_novelty_phase_on_v52/oof_s3_temporal_state_novelty_knn_resid.csv",
+      "submission": "outputs/s3_temporal_state_novelty_phase_on_v52/submission_s3_temporal_state_novelty_knn_resid.csv",
+      "S3_log_loss": 0.46270944962836275,
+      "fold_log_loss": [
+        0.39603385723873114,
+        0.48347921049285764,
+        0.573582479324032,
+        0.3755103756650428,
+        0.4853004732752377
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_recovery_knn_resid",
+      "oof": "outputs/s3_temporal_state_novelty_phase_on_v52/oof_s3_temporal_state_novelty_recovery_knn_resid.csv",
+      "submission": "outputs/s3_temporal_state_novelty_phase_on_v52/submission_s3_temporal_state_novelty_recovery_knn_resid.csv",
+      "S3_log_loss": 0.47904703963656287,
+      "fold_log_loss": [
+        0.5009529346935097,
+        0.4910806524974397,
+        0.5500014074540411,
+        0.36897501822873385,
+        0.478238404077504
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_knn_logitresid",
+      "oof": "outputs/s3_temporal_state_novelty_phase_on_v52/oof_s3_temporal_state_novelty_knn_logitresid.csv",
+      "submission": "outputs/s3_temporal_state_novelty_phase_on_v52/submission_s3_temporal_state_novelty_knn_logitresid.csv",
+      "S3_log_loss": 0.5141245707393249,
+      "fold_log_loss": [
+        0.4216904177786703,
+        0.5081171918471715,
+        0.7089023125422917,
+        0.40454431120432455,
+        0.5275672938547997
+      ]
+    },
+    {
+      "name": "s3_sleep_retrieval_meta",
+      "oof": "outputs/s3_temporal_state_novelty_phase_on_v52/oof_s3_sleep_retrieval_meta.csv",
+      "submission": "outputs/s3_temporal_state_novelty_phase_on_v52/submission_s3_sleep_retrieval_meta.csv",
+      "S3_log_loss": 0.5286061713949931
+    },
+    {
+      "name": "s3_temporal_state_novelty_recovery_knn_logitresid",
+      "oof": "outputs/s3_temporal_state_novelty_phase_on_v52/oof_s3_temporal_state_novelty_recovery_knn_logitresid.csv",
+      "submission": "outputs/s3_temporal_state_novelty_phase_on_v52/submission_s3_temporal_state_novelty_recovery_knn_logitresid.csv",
+      "S3_log_loss": 0.5434313697769627,
+      "fold_log_loss": [
+        0.5955529357934395,
+        0.5324492526900988,
+        0.6181129924167847,
+        0.4052951275819626,
+        0.5584976216730497
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_recovery_hgb",
+      "oof": "outputs/s3_temporal_state_novelty_phase_on_v52/oof_s3_temporal_state_novelty_recovery_hgb.csv",
+      "submission": "outputs/s3_temporal_state_novelty_phase_on_v52/submission_s3_temporal_state_novelty_recovery_hgb.csv",
+      "S3_log_loss": 0.6067327307694834,
+      "fold_log_loss": [
+        0.5956449601847669,
+        0.6192149401382616,
+        0.6501246349124984,
+        0.5329786613072316,
+        0.6346493861791539
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_hgb",
+      "oof": "outputs/s3_temporal_state_novelty_phase_on_v52/oof_s3_temporal_state_novelty_hgb.csv",
+      "submission": "outputs/s3_temporal_state_novelty_phase_on_v52/submission_s3_temporal_state_novelty_hgb.csv",
+      "S3_log_loss": 0.6297753203816683,
+      "fold_log_loss": [
+        0.5757386287265643,
+        0.6417815285870969,
+        0.725741680822467,
+        0.5215402666212545,
+        0.6852156195508302
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_recovery_extra",
+      "oof": "outputs/s3_temporal_state_novelty_phase_on_v52/oof_s3_temporal_state_novelty_recovery_extra.csv",
+      "submission": "outputs/s3_temporal_state_novelty_phase_on_v52/submission_s3_temporal_state_novelty_recovery_extra.csv",
+      "S3_log_loss": 0.6340844883993519,
+      "fold_log_loss": [
+        0.6346327556895874,
+        0.6328717877634107,
+        0.6227457574949022,
+        0.6464435889997551,
+        0.6342734981170471
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_extra",
+      "oof": "outputs/s3_temporal_state_novelty_phase_on_v52/oof_s3_temporal_state_novelty_extra.csv",
+      "submission": "outputs/s3_temporal_state_novelty_phase_on_v52/submission_s3_temporal_state_novelty_extra.csv",
+      "S3_log_loss": 0.6533269115240556,
+      "fold_log_loss": [
+        0.6384615091491296,
+        0.6671030452129676,
+        0.6591752523425027,
+        0.6576686542667503,
+        0.6443254796787018
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_knn_label",
+      "oof": "outputs/s3_temporal_state_novelty_phase_on_v52/oof_s3_temporal_state_novelty_knn_label.csv",
+      "submission": "outputs/s3_temporal_state_novelty_phase_on_v52/submission_s3_temporal_state_novelty_knn_label.csv",
+      "S3_log_loss": 0.6724921237417368,
+      "fold_log_loss": [
+        0.6384001190099855,
+        0.6332098494216687,
+        0.7608419366064457,
+        0.6694237891921972,
+        0.6616664981191966
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_recovery_knn_label",
+      "oof": "outputs/s3_temporal_state_novelty_phase_on_v52/oof_s3_temporal_state_novelty_recovery_knn_label.csv",
+      "submission": "outputs/s3_temporal_state_novelty_phase_on_v52/submission_s3_temporal_state_novelty_recovery_knn_label.csv",
+      "S3_log_loss": 0.6891491594812774,
+      "fold_log_loss": [
+        0.5853018747834666,
+        0.8419107097626058,
+        0.70881315709182,
+        0.6656423133642019,
+        0.6428797624228775
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_recovery_proto",
+      "oof": "outputs/s3_temporal_state_novelty_phase_on_v52/oof_s3_temporal_state_novelty_recovery_proto.csv",
+      "submission": "outputs/s3_temporal_state_novelty_phase_on_v52/submission_s3_temporal_state_novelty_recovery_proto.csv",
+      "S3_log_loss": 0.714535452309687,
+      "fold_log_loss": [
+        0.6452835260389227,
+        0.7432576676750804,
+        0.7675619892579872,
+        0.6614642924719011,
+        0.7583973961414335
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_proto",
+      "oof": "outputs/s3_temporal_state_novelty_phase_on_v52/oof_s3_temporal_state_novelty_proto.csv",
+      "submission": "outputs/s3_temporal_state_novelty_phase_on_v52/submission_s3_temporal_state_novelty_proto.csv",
+      "S3_log_loss": 0.7364320026477159,
+      "fold_log_loss": [
+        0.7640355263454329,
+        0.720081782112523,
+        0.764123616600979,
+        0.7036973959296172,
+        0.7271362315028014
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_recovery_logreg",
+      "oof": "outputs/s3_temporal_state_novelty_phase_on_v52/oof_s3_temporal_state_novelty_recovery_logreg.csv",
+      "submission": "outputs/s3_temporal_state_novelty_phase_on_v52/submission_s3_temporal_state_novelty_recovery_logreg.csv",
+      "S3_log_loss": 0.945765484269693,
+      "fold_log_loss": [
+        0.6732068889443834,
+        1.1483276058111547,
+        1.1030626312645864,
+        0.9774446700167311,
+        0.8303210352998379
+      ]
+    },
+    {
+      "name": "s3_temporal_state_novelty_logreg",
+      "oof": "outputs/s3_temporal_state_novelty_phase_on_v52/oof_s3_temporal_state_novelty_logreg.csv",
+      "submission": "outputs/s3_temporal_state_novelty_phase_on_v52/submission_s3_temporal_state_novelty_logreg.csv",
+      "S3_log_loss": 0.9880667872925922,
+      "fold_log_loss": [
+        0.7414929071819161,
+        1.169088831002574,
+        1.1362643084074957,
+        0.8923057674163809,
+        1.0070753154922405
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v52_state_novelty_recovery_on_v51/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v52_state_novelty_recovery_on_v51/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s3_temporal_state_novelty_phase_on_v52",
+    "target": "S3",
+    "groups": "temporal_state_novelty,temporal_state_novelty_recovery",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_state_novelty": 533,
+    "temporal_state_novelty_recovery": 385
+  }
+}

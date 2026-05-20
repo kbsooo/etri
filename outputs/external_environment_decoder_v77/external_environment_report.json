@@ -1,0 +1,218 @@
+[
+  {
+    "name": "environment_base_c3e-05",
+    "avg_log_loss": 0.6620612746816292,
+    "target_scores": {
+      "Q1": 0.6912700315802971,
+      "Q2": 0.7044422729307181,
+      "Q3": 0.6670848239875833,
+      "S1": 0.6269493498461435,
+      "S2": 0.643829288736535,
+      "S3": 0.6203371971376951,
+      "S4": 0.6805159585524334
+    },
+    "n_features": 3660,
+    "c_value": 3e-05,
+    "class_weight": NaN,
+    "oof_path": "outputs/external_environment_decoder_v77/oof_environment_base_c3e-05.csv",
+    "submission_path": "outputs/external_environment_decoder_v77/submission_environment_base_c3e-05.csv"
+  },
+  {
+    "name": "environment_only_c3e-05",
+    "avg_log_loss": 0.6630286466301186,
+    "target_scores": {
+      "Q1": 0.6922151939025083,
+      "Q2": 0.7042994006753427,
+      "Q3": 0.6670670803109291,
+      "S1": 0.6280535899878923,
+      "S2": 0.6456527793680212,
+      "S3": 0.6221957240293662,
+      "S4": 0.6817167581367701
+    },
+    "n_features": 3646,
+    "c_value": 3e-05,
+    "class_weight": NaN,
+    "oof_path": "outputs/external_environment_decoder_v77/oof_environment_only_c3e-05.csv",
+    "submission_path": "outputs/external_environment_decoder_v77/submission_environment_only_c3e-05.csv"
+  },
+  {
+    "name": "environment_base_c1e-05",
+    "avg_log_loss": 0.6642340608974452,
+    "target_scores": {
+      "Q1": 0.6929708305986919,
+      "Q2": 0.7003481600665432,
+      "Q3": 0.6701999677876318,
+      "S1": 0.6266041452077861,
+      "S2": 0.6458456464396306,
+      "S3": 0.6300007595706311,
+      "S4": 0.6836689166112021
+    },
+    "n_features": 3660,
+    "c_value": 1e-05,
+    "class_weight": NaN,
+    "oof_path": "outputs/external_environment_decoder_v77/oof_environment_base_c1e-05.csv",
+    "submission_path": "outputs/external_environment_decoder_v77/submission_environment_base_c1e-05.csv"
+  },
+  {
+    "name": "environment_base_c0p0001",
+    "avg_log_loss": 0.6643400469399116,
+    "target_scores": {
+      "Q1": 0.6937470269779819,
+      "Q2": 0.7140292920819914,
+      "Q3": 0.6694188751506376,
+      "S1": 0.6319370595224011,
+      "S2": 0.6460207563587042,
+      "S3": 0.6168088414923768,
+      "S4": 0.6784184769952877
+    },
+    "n_features": 3660,
+    "c_value": 0.0001,
+    "class_weight": NaN,
+    "oof_path": "outputs/external_environment_decoder_v77/oof_environment_base_c0p0001.csv",
+    "submission_path": "outputs/external_environment_decoder_v77/submission_environment_base_c0p0001.csv"
+  },
+  {
+    "name": "environment_only_c1e-05",
+    "avg_log_loss": 0.6646028023315657,
+    "target_scores": {
+      "Q1": 0.6933377002726917,
+      "Q2": 0.7003010563754475,
+      "Q3": 0.6702044296572846,
+      "S1": 0.6269885150084761,
+      "S2": 0.6465259571108929,
+      "S3": 0.6307452157655806,
+      "S4": 0.684116742130586
+    },
+    "n_features": 3646,
+    "c_value": 1e-05,
+    "class_weight": NaN,
+    "oof_path": "outputs/external_environment_decoder_v77/oof_environment_only_c1e-05.csv",
+    "submission_path": "outputs/external_environment_decoder_v77/submission_environment_only_c1e-05.csv"
+  },
+  {
+    "name": "environment_only_c0p0001",
+    "avg_log_loss": 0.6670603301592692,
+    "target_scores": {
+      "Q1": 0.6962663555809243,
+      "Q2": 0.7135580222587908,
+      "Q3": 0.6692882866486943,
+      "S1": 0.6353931331140352,
+      "S2": 0.6512985702687728,
+      "S3": 0.621768524482434,
+      "S4": 0.6818494187612334
+    },
+    "n_features": 3646,
+    "c_value": 0.0001,
+    "class_weight": NaN,
+    "oof_path": "outputs/external_environment_decoder_v77/oof_environment_only_c0p0001.csv",
+    "submission_path": "outputs/external_environment_decoder_v77/submission_environment_only_c0p0001.csv"
+  },
+  {
+    "name": "environment_base_c0p0003",
+    "avg_log_loss": 0.6757347219865768,
+    "target_scores": {
+      "Q1": 0.7076932073907478,
+      "Q2": 0.7314046111533211,
+      "Q3": 0.6857500478568855,
+      "S1": 0.6430971234318362,
+      "S2": 0.6548710090562413,
+      "S3": 0.6256126641168918,
+      "S4": 0.6817143909001147
+    },
+    "n_features": 3660,
+    "c_value": 0.0003,
+    "class_weight": NaN,
+    "oof_path": "outputs/external_environment_decoder_v77/oof_environment_base_c0p0003.csv",
+    "submission_path": "outputs/external_environment_decoder_v77/submission_environment_base_c0p0003.csv"
+  },
+  {
+    "name": "environment_only_c0p0003",
+    "avg_log_loss": 0.6826653521441014,
+    "target_scores": {
+      "Q1": 0.7136120440902027,
+      "Q2": 0.7299749936550817,
+      "Q3": 0.6853836491475294,
+      "S1": 0.6524925318031342,
+      "S2": 0.6686802235333814,
+      "S3": 0.637983049845658,
+      "S4": 0.6905309729337229
+    },
+    "n_features": 3646,
+    "c_value": 0.0003,
+    "class_weight": NaN,
+    "oof_path": "outputs/external_environment_decoder_v77/oof_environment_only_c0p0003.csv",
+    "submission_path": "outputs/external_environment_decoder_v77/submission_environment_only_c0p0003.csv"
+  },
+  {
+    "name": "environment_base_bal_c3e-05",
+    "avg_log_loss": 0.6862578573277612,
+    "target_scores": {
+      "Q1": 0.6894515075828573,
+      "Q2": 0.7000507538529537,
+      "Q3": 0.6836679487322737,
+      "S1": 0.6892177531534531,
+      "S2": 0.6867498785182905,
+      "S3": 0.6678236127201712,
+      "S4": 0.6868435467343295
+    },
+    "n_features": 3660,
+    "c_value": 3e-05,
+    "class_weight": "balanced",
+    "oof_path": "outputs/external_environment_decoder_v77/oof_environment_base_bal_c3e-05.csv",
+    "submission_path": "outputs/external_environment_decoder_v77/submission_environment_base_bal_c3e-05.csv"
+  },
+  {
+    "name": "environment_base_bal_c0p0001",
+    "avg_log_loss": 0.6875741654383825,
+    "target_scores": {
+      "Q1": 0.6924159907853467,
+      "Q2": 0.7097203843368516,
+      "Q3": 0.6848401670215225,
+      "S1": 0.6911513173345943,
+      "S2": 0.6874593940216679,
+      "S3": 0.6625981579919734,
+      "S4": 0.6848337465767206
+    },
+    "n_features": 3660,
+    "c_value": 0.0001,
+    "class_weight": "balanced",
+    "oof_path": "outputs/external_environment_decoder_v77/oof_environment_base_bal_c0p0001.csv",
+    "submission_path": "outputs/external_environment_decoder_v77/submission_environment_base_bal_c0p0001.csv"
+  },
+  {
+    "name": "environment_base_bal_c1e-05",
+    "avg_log_loss": 0.6889496217793478,
+    "target_scores": {
+      "Q1": 0.6907520542454042,
+      "Q2": 0.6958583545025211,
+      "Q3": 0.6878674781905416,
+      "S1": 0.6900808209169825,
+      "S2": 0.6893527890561467,
+      "S3": 0.6788770669771471,
+      "S4": 0.6898587885666911
+    },
+    "n_features": 3660,
+    "c_value": 1e-05,
+    "class_weight": "balanced",
+    "oof_path": "outputs/external_environment_decoder_v77/oof_environment_base_bal_c1e-05.csv",
+    "submission_path": "outputs/external_environment_decoder_v77/submission_environment_base_bal_c1e-05.csv"
+  },
+  {
+    "name": "environment_base_bal_c0p0003",
+    "avg_log_loss": 0.6971317083732304,
+    "target_scores": {
+      "Q1": 0.7065173048632364,
+      "Q2": 0.7270163938241359,
+      "Q3": 0.6998615573860076,
+      "S1": 0.6971052350962408,
+      "S2": 0.6924960938524903,
+      "S3": 0.6690582248100174,
+      "S4": 0.6878671487804849
+    },
+    "n_features": 3660,
+    "c_value": 0.0003,
+    "class_weight": "balanced",
+    "oof_path": "outputs/external_environment_decoder_v77/oof_environment_base_bal_c0p0003.csv",
+    "submission_path": "outputs/external_environment_decoder_v77/submission_environment_base_bal_c0p0003.csv"
+  }
+]

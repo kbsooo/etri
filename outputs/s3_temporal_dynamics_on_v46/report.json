@@ -1,0 +1,303 @@
+{
+  "target": "S3",
+  "base_log_loss": 0.4385153765135376,
+  "best_source_log_loss": 0.4817010854080473,
+  "sources": [
+    {
+      "name": "s3_temporal_leadlag_knn_resid",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_leadlag_knn_resid.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_leadlag_knn_resid.csv",
+      "S3_log_loss": 0.4817010854080473,
+      "fold_log_loss": [
+        0.40795911542199725,
+        0.4759529311114454,
+        0.6229180895761255,
+        0.3858869839375372,
+        0.5172234006151227
+      ]
+    },
+    {
+      "name": "s3_sleep_retrieval_meta",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_sleep_retrieval_meta.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_sleep_retrieval_meta.csv",
+      "S3_log_loss": 0.49416880901811056
+    },
+    {
+      "name": "s3_temporal_synchrony_knn_resid",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_synchrony_knn_resid.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_synchrony_knn_resid.csv",
+      "S3_log_loss": 0.49631495670135994,
+      "fold_log_loss": [
+        0.39287907946102896,
+        0.5345545806486559,
+        0.606001545326691,
+        0.33449824319424193,
+        0.6187259854648227
+      ]
+    },
+    {
+      "name": "s3_temporal_motif_knn_resid",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_motif_knn_resid.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_motif_knn_resid.csv",
+      "S3_log_loss": 0.498946743812657,
+      "fold_log_loss": [
+        0.3927948786002164,
+        0.5391961778519964,
+        0.6152024091796816,
+        0.3594917800219417,
+        0.5922972798709589
+      ]
+    },
+    {
+      "name": "s3_temporal_motif_knn_logitresid",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_motif_knn_logitresid.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_motif_knn_logitresid.csv",
+      "S3_log_loss": 0.5065313629040347,
+      "fold_log_loss": [
+        0.3980437370409304,
+        0.5725068457455573,
+        0.5928825362512329,
+        0.3791224947252996,
+        0.5943336545808551
+      ]
+    },
+    {
+      "name": "s3_temporal_synchrony_knn_logitresid",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_synchrony_knn_logitresid.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_synchrony_knn_logitresid.csv",
+      "S3_log_loss": 0.507058242291253,
+      "fold_log_loss": [
+        0.4138573322983088,
+        0.5562585103737149,
+        0.6261733015579656,
+        0.3404457481651387,
+        0.6009815173670687
+      ]
+    },
+    {
+      "name": "s3_temporal_leadlag_knn_logitresid",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_leadlag_knn_logitresid.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_leadlag_knn_logitresid.csv",
+      "S3_log_loss": 0.5159980336106041,
+      "fold_log_loss": [
+        0.42561833356601914,
+        0.5037299972216104,
+        0.6218724318358883,
+        0.43170483614956284,
+        0.6032176664651074
+      ]
+    },
+    {
+      "name": "s3_temporal_leadlag_hgb",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_leadlag_hgb.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_leadlag_hgb.csv",
+      "S3_log_loss": 0.6030636186714274,
+      "fold_log_loss": [
+        0.5581951163408648,
+        0.5920505562043055,
+        0.6924719386156891,
+        0.5466388423497706,
+        0.6271637115353685
+      ]
+    },
+    {
+      "name": "s3_temporal_synchrony_hgb",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_synchrony_hgb.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_synchrony_hgb.csv",
+      "S3_log_loss": 0.60989601081003,
+      "fold_log_loss": [
+        0.5500420187582027,
+        0.5946771124068342,
+        0.6673427124582477,
+        0.5752491693884477,
+        0.6672241667124708
+      ]
+    },
+    {
+      "name": "s3_temporal_motif_hgb",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_motif_hgb.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_motif_hgb.csv",
+      "S3_log_loss": 0.6204007299796382,
+      "fold_log_loss": [
+        0.5813627863997447,
+        0.6407454889908417,
+        0.6231229361717019,
+        0.5866401500146843,
+        0.6736517476800192
+      ]
+    },
+    {
+      "name": "s3_temporal_synchrony_knn_label",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_synchrony_knn_label.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_synchrony_knn_label.csv",
+      "S3_log_loss": 0.6319413360422111,
+      "fold_log_loss": [
+        0.5733324735887313,
+        0.6348139362226956,
+        0.6793597910325145,
+        0.5887948299510213,
+        0.6877322694809399
+      ]
+    },
+    {
+      "name": "s3_temporal_leadlag_knn_label",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_leadlag_knn_label.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_leadlag_knn_label.csv",
+      "S3_log_loss": 0.6607045756778457,
+      "fold_log_loss": [
+        0.6023606461635844,
+        0.6550686805229239,
+        0.7084350549409549,
+        0.6533533450532019,
+        0.6884370357897119
+      ]
+    },
+    {
+      "name": "s3_temporal_leadlag_extra",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_leadlag_extra.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_leadlag_extra.csv",
+      "S3_log_loss": 0.6672381684580774,
+      "fold_log_loss": [
+        0.6582572672145126,
+        0.6741673378608378,
+        0.6729287959663988,
+        0.6609731586619323,
+        0.6700959423650427
+      ]
+    },
+    {
+      "name": "s3_temporal_synchrony_extra",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_synchrony_extra.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_synchrony_extra.csv",
+      "S3_log_loss": 0.6736823320419382,
+      "fold_log_loss": [
+        0.6563214550041897,
+        0.6832002439915691,
+        0.6838218472186369,
+        0.6602869597255426,
+        0.6856392370968424
+      ]
+    },
+    {
+      "name": "s3_temporal_motif_extra",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_motif_extra.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_motif_extra.csv",
+      "S3_log_loss": 0.6797340430805923,
+      "fold_log_loss": [
+        0.6704793426423795,
+        0.6822470011331877,
+        0.6797952752882714,
+        0.6824787257637984,
+        0.6844828063329894
+      ]
+    },
+    {
+      "name": "s3_temporal_motif_knn_label",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_motif_knn_label.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_motif_knn_label.csv",
+      "S3_log_loss": 0.6815425709356244,
+      "fold_log_loss": [
+        0.5886953298573778,
+        0.6517305068580369,
+        0.7006717425027594,
+        0.6348601673958474,
+        0.8448815390876571
+      ]
+    },
+    {
+      "name": "s3_temporal_motif_proto",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_motif_proto.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_motif_proto.csv",
+      "S3_log_loss": 0.6909908522706569,
+      "fold_log_loss": [
+        0.6024226010057493,
+        0.6554954176750787,
+        0.7942067253297016,
+        0.6651826838456674,
+        0.7443112058890151
+      ]
+    },
+    {
+      "name": "s3_temporal_leadlag_proto",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_leadlag_proto.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_leadlag_proto.csv",
+      "S3_log_loss": 0.7042344752374998,
+      "fold_log_loss": [
+        0.6465638876751318,
+        0.6347291465947404,
+        0.8329616950474863,
+        0.6789972868451918,
+        0.7319362921902157
+      ]
+    },
+    {
+      "name": "s3_temporal_synchrony_proto",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_synchrony_proto.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_synchrony_proto.csv",
+      "S3_log_loss": 0.705180380488882,
+      "fold_log_loss": [
+        0.6534385670267162,
+        0.7257653604120462,
+        0.6906648571006518,
+        0.693996933156228,
+        0.7677159883976413
+      ]
+    },
+    {
+      "name": "s3_temporal_synchrony_logreg",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_synchrony_logreg.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_synchrony_logreg.csv",
+      "S3_log_loss": 0.7780327571085789,
+      "fold_log_loss": [
+        0.9238310819739939,
+        0.8084127626002146,
+        0.7025326830769895,
+        0.7228535363518712,
+        0.7195068462293237
+      ]
+    },
+    {
+      "name": "s3_temporal_leadlag_logreg",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_leadlag_logreg.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_leadlag_logreg.csv",
+      "S3_log_loss": 0.8420472057010809,
+      "fold_log_loss": [
+        0.7455798566226239,
+        0.6932360164954097,
+        1.044022307203475,
+        0.8626144244808818,
+        0.8736465621577231
+      ]
+    },
+    {
+      "name": "s3_temporal_motif_logreg",
+      "oof": "outputs/s3_temporal_dynamics_on_v46/oof_s3_temporal_motif_logreg.csv",
+      "submission": "outputs/s3_temporal_dynamics_on_v46/submission_s3_temporal_motif_logreg.csv",
+      "S3_log_loss": 0.8881164876489872,
+      "fold_log_loss": [
+        0.672549132833159,
+        0.7517330207439856,
+        1.0718256370538546,
+        0.9199176830136889,
+        1.04743344141595
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v46_motif_on_v45/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v46_motif_on_v45/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s3_temporal_dynamics_on_v46",
+    "target": "S3",
+    "groups": "temporal_synchrony,temporal_leadlag,temporal_motif",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_synchrony": 43,
+    "temporal_leadlag": 144,
+    "temporal_motif": 315
+  }
+}

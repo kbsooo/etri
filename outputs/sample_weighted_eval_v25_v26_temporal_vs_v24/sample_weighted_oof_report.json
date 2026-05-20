@@ -1,0 +1,76 @@
+{
+  "baseline": "v24",
+  "bin_table": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_frac": 0.52,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_frac": 0.22666666666666666,
+      "sample_frac": 0.52,
+      "weight_ratio": 2.294117647058824
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_frac": 0.20444444444444446,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_frac": 0.04888888888888889,
+      "sample_frac": 0.48,
+      "weight_ratio": 9.818181818181817
+    }
+  ],
+  "summary": [
+    {
+      "name": "v26_targetwise",
+      "uniform_avg_log_loss": 0.5738293119474356,
+      "weighted_avg_log_loss": 0.5330484727460676,
+      "weighted_delta_vs_baseline": 0.0011866024779555201,
+      "weighted_p025": 0.0005602888187694935,
+      "weighted_p500": 0.001182925073046163,
+      "weighted_p975": 0.0018101394527497206,
+      "promote_weighted": true
+    },
+    {
+      "name": "v25_s1s2_mid",
+      "uniform_avg_log_loss": 0.5737043187872389,
+      "weighted_avg_log_loss": 0.5331486288671549,
+      "weighted_delta_vs_baseline": 0.0010864463568682995,
+      "weighted_p025": 0.0004993885240333456,
+      "weighted_p500": 0.0010784267702168432,
+      "weighted_p975": 0.00167571007103606,
+      "promote_weighted": true
+    },
+    {
+      "name": "v24",
+      "uniform_avg_log_loss": 0.574177897968438,
+      "weighted_avg_log_loss": 0.5342350752240231,
+      "weighted_delta_vs_baseline": 0.0,
+      "weighted_p025": 0.0,
+      "weighted_p500": 0.0,
+      "weighted_p975": 0.0,
+      "promote_weighted": false
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_weighted_eval_v25_v26_temporal_vs_v24",
+    "baseline": "v24",
+    "candidates": [
+      "v24:outputs/sample_portfolio_v24_q2tail_shrink_w010/oof_sample_support_target_blend.csv",
+      "v25_s1s2_mid:outputs/sample_portfolio_v25_temporal_label_s1s2_mid_on_v24/oof_sample_support_target_blend.csv",
+      "v26_targetwise:outputs/sample_weighted_targetwise_v26_markov_temporal_mid_on_v24/oof_sample_weighted_targetwise_blend.csv"
+    ],
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "bootstrap": 30000,
+    "seed": 2026,
+    "min_weighted_p025": 0.0
+  }
+}

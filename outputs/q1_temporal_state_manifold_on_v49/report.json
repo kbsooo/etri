@@ -1,0 +1,211 @@
+{
+  "target": "Q1",
+  "base_log_loss": 0.5504681030832107,
+  "best_source_log_loss": 0.5716010254413044,
+  "sources": [
+    {
+      "name": "q1_sleep_retrieval_meta",
+      "oof": "outputs/q1_temporal_state_manifold_on_v49/oof_q1_sleep_retrieval_meta.csv",
+      "submission": "outputs/q1_temporal_state_manifold_on_v49/submission_q1_sleep_retrieval_meta.csv",
+      "Q1_log_loss": 0.5716010254413044
+    },
+    {
+      "name": "q1_temporal_state_transition_knn_resid",
+      "oof": "outputs/q1_temporal_state_manifold_on_v49/oof_q1_temporal_state_transition_knn_resid.csv",
+      "submission": "outputs/q1_temporal_state_manifold_on_v49/submission_q1_temporal_state_transition_knn_resid.csv",
+      "Q1_log_loss": 0.5823701005232615,
+      "fold_log_loss": [
+        0.585426047855299,
+        0.5880849363362931,
+        0.558455081558159,
+        0.5259402261137258,
+        0.6561299347363378
+      ]
+    },
+    {
+      "name": "q1_temporal_state_recurrence_knn_resid",
+      "oof": "outputs/q1_temporal_state_manifold_on_v49/oof_q1_temporal_state_recurrence_knn_resid.csv",
+      "submission": "outputs/q1_temporal_state_manifold_on_v49/submission_q1_temporal_state_recurrence_knn_resid.csv",
+      "Q1_log_loss": 0.5840523610733401,
+      "fold_log_loss": [
+        0.5865529354071164,
+        0.638532817613514,
+        0.5807493872001213,
+        0.5217552679249787,
+        0.5895895512258763
+      ]
+    },
+    {
+      "name": "q1_temporal_state_transition_knn_logitresid",
+      "oof": "outputs/q1_temporal_state_manifold_on_v49/oof_q1_temporal_state_transition_knn_logitresid.csv",
+      "submission": "outputs/q1_temporal_state_manifold_on_v49/submission_q1_temporal_state_transition_knn_logitresid.csv",
+      "Q1_log_loss": 0.6613563768919004,
+      "fold_log_loss": [
+        0.6620158446823248,
+        0.6392293525863263,
+        0.6140316808072963,
+        0.5765947705783254,
+        0.8219898344095768
+      ]
+    },
+    {
+      "name": "q1_temporal_state_recurrence_knn_logitresid",
+      "oof": "outputs/q1_temporal_state_manifold_on_v49/oof_q1_temporal_state_recurrence_knn_logitresid.csv",
+      "submission": "outputs/q1_temporal_state_manifold_on_v49/submission_q1_temporal_state_recurrence_knn_logitresid.csv",
+      "Q1_log_loss": 0.6680543014771777,
+      "fold_log_loss": [
+        0.67331400941514,
+        0.7531433186803846,
+        0.6359136258420783,
+        0.6225780545532381,
+        0.6510351618110047
+      ]
+    },
+    {
+      "name": "q1_temporal_state_transition_extra",
+      "oof": "outputs/q1_temporal_state_manifold_on_v49/oof_q1_temporal_state_transition_extra.csv",
+      "submission": "outputs/q1_temporal_state_manifold_on_v49/submission_q1_temporal_state_transition_extra.csv",
+      "Q1_log_loss": 0.693417468110963,
+      "fold_log_loss": [
+        0.692494454221214,
+        0.6877420786117252,
+        0.6939872122303063,
+        0.6977011041322057,
+        0.695597457578583
+      ]
+    },
+    {
+      "name": "q1_temporal_state_recurrence_extra",
+      "oof": "outputs/q1_temporal_state_manifold_on_v49/oof_q1_temporal_state_recurrence_extra.csv",
+      "submission": "outputs/q1_temporal_state_manifold_on_v49/submission_q1_temporal_state_recurrence_extra.csv",
+      "Q1_log_loss": 0.6957289314991844,
+      "fold_log_loss": [
+        0.6958009470010383,
+        0.6962413857906538,
+        0.6866042062244836,
+        0.6986404782563382,
+        0.701882556965468
+      ]
+    },
+    {
+      "name": "q1_temporal_state_transition_knn_label",
+      "oof": "outputs/q1_temporal_state_manifold_on_v49/oof_q1_temporal_state_transition_knn_label.csv",
+      "submission": "outputs/q1_temporal_state_manifold_on_v49/submission_q1_temporal_state_transition_knn_label.csv",
+      "Q1_log_loss": 0.6971685035000537,
+      "fold_log_loss": [
+        0.6833109535949348,
+        0.671179033316956,
+        0.6914236039352137,
+        0.7130874409440545,
+        0.730643054095391
+      ]
+    },
+    {
+      "name": "q1_temporal_state_recurrence_knn_label",
+      "oof": "outputs/q1_temporal_state_manifold_on_v49/oof_q1_temporal_state_recurrence_knn_label.csv",
+      "submission": "outputs/q1_temporal_state_manifold_on_v49/submission_q1_temporal_state_recurrence_knn_label.csv",
+      "Q1_log_loss": 0.7067012590544928,
+      "fold_log_loss": [
+        0.7300357153089958,
+        0.7264154881575063,
+        0.666493347284911,
+        0.7138084515243602,
+        0.695055515578004
+      ]
+    },
+    {
+      "name": "q1_temporal_state_transition_hgb",
+      "oof": "outputs/q1_temporal_state_manifold_on_v49/oof_q1_temporal_state_transition_hgb.csv",
+      "submission": "outputs/q1_temporal_state_manifold_on_v49/submission_q1_temporal_state_transition_hgb.csv",
+      "Q1_log_loss": 0.7119770308576805,
+      "fold_log_loss": [
+        0.7010895097102047,
+        0.7425490035896827,
+        0.7227326689629002,
+        0.6957482996278079,
+        0.6961514963528558
+      ]
+    },
+    {
+      "name": "q1_temporal_state_recurrence_hgb",
+      "oof": "outputs/q1_temporal_state_manifold_on_v49/oof_q1_temporal_state_recurrence_hgb.csv",
+      "submission": "outputs/q1_temporal_state_manifold_on_v49/submission_q1_temporal_state_recurrence_hgb.csv",
+      "Q1_log_loss": 0.7278791810407278,
+      "fold_log_loss": [
+        0.693008768755023,
+        0.7553339904150213,
+        0.6929253022702938,
+        0.7420072545873235,
+        0.7600969136791114
+      ]
+    },
+    {
+      "name": "q1_temporal_state_transition_proto",
+      "oof": "outputs/q1_temporal_state_manifold_on_v49/oof_q1_temporal_state_transition_proto.csv",
+      "submission": "outputs/q1_temporal_state_manifold_on_v49/submission_q1_temporal_state_transition_proto.csv",
+      "Q1_log_loss": 0.7699032445767037,
+      "fold_log_loss": [
+        0.7560092218881231,
+        0.8029010797870804,
+        0.7685597409120545,
+        0.8194627320470046,
+        0.700429300337026
+      ]
+    },
+    {
+      "name": "q1_temporal_state_recurrence_proto",
+      "oof": "outputs/q1_temporal_state_manifold_on_v49/oof_q1_temporal_state_recurrence_proto.csv",
+      "submission": "outputs/q1_temporal_state_manifold_on_v49/submission_q1_temporal_state_recurrence_proto.csv",
+      "Q1_log_loss": 0.7863197121892924,
+      "fold_log_loss": [
+        0.8300763030891138,
+        0.733925022103974,
+        0.711356500059989,
+        0.8634174231949593,
+        0.7954677921732894
+      ]
+    },
+    {
+      "name": "q1_temporal_state_recurrence_logreg",
+      "oof": "outputs/q1_temporal_state_manifold_on_v49/oof_q1_temporal_state_recurrence_logreg.csv",
+      "submission": "outputs/q1_temporal_state_manifold_on_v49/submission_q1_temporal_state_recurrence_logreg.csv",
+      "Q1_log_loss": 0.9152507019492551,
+      "fold_log_loss": [
+        0.9647679236363242,
+        0.7909886057148907,
+        0.6921144811846309,
+        1.0194733743954045,
+        1.1266154123028524
+      ]
+    },
+    {
+      "name": "q1_temporal_state_transition_logreg",
+      "oof": "outputs/q1_temporal_state_manifold_on_v49/oof_q1_temporal_state_transition_logreg.csv",
+      "submission": "outputs/q1_temporal_state_manifold_on_v49/submission_q1_temporal_state_transition_logreg.csv",
+      "Q1_log_loss": 0.9448865663132971,
+      "fold_log_loss": [
+        1.1204278228676645,
+        0.9168052716633202,
+        0.9410921696921664,
+        0.8268671765899348,
+        0.9039458220025726
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v49_state_recurrence_on_v48/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v49_state_recurrence_on_v48/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/q1_temporal_state_manifold_on_v49",
+    "target": "Q1",
+    "groups": "temporal_state_transition,temporal_state_recurrence",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_state_transition": 35,
+    "temporal_state_recurrence": 26
+  }
+}

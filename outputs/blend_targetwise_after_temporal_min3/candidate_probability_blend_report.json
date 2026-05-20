@@ -1,0 +1,49 @@
+{
+  "base_avg_log_loss": 0.5844632314577459,
+  "base_targets": {
+    "Q1": 0.6383487136931539,
+    "Q2": 0.6503050342800608,
+    "Q3": 0.6254905558195907,
+    "S1": 0.5551679095830784,
+    "S2": 0.5292196070733155,
+    "S3": 0.49841585304667624,
+    "S4": 0.5942949467083457
+  },
+  "best": {
+    "name": "targetwise_after_temporal_min3_w0.05",
+    "weight": 0.05,
+    "avg_log_loss": 0.5844098998135523,
+    "delta_vs_base": 5.333164419363268e-05,
+    "fold_std": 0.011558498797506013,
+    "worst_fold": 0.6072686396859789,
+    "improved_folds": 4,
+    "worst_target_delta": -1.1102230246251565e-16,
+    "promote": true,
+    "Q1": 0.638348713693154,
+    "Q2": 0.6503050342800608,
+    "Q3": 0.6254905558195907,
+    "S1": 0.5549653005531392,
+    "S2": 0.5291535561896523,
+    "S3": 0.49841585304667624,
+    "S4": 0.5941902851125921,
+    "improvement": 5.333164419368541e-05,
+    "improvement_p025": 8.586145228498714e-07,
+    "improvement_p500": 5.3020834491728815e-05,
+    "improvement_p975": 0.00010605136578454712
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/blend_graph_sleep_temporal_label_min3/oof_candidate_probability_blend.csv",
+    "base_submission": "outputs/blend_graph_sleep_temporal_label_min3/submission_candidate_probability_blend.csv",
+    "candidate_oof": "outputs/targetwise_after_temporal_min3/oof_fold_guarded_targetwise_ensemble.csv",
+    "candidate_submission": "outputs/targetwise_after_temporal_min3/submission_fold_guarded_targetwise_ensemble.csv",
+    "output_dir": "outputs/blend_targetwise_after_temporal_min3",
+    "name": "targetwise_after_temporal_min3",
+    "weights": "0.05,0.1,0.15,0.2,0.25,0.3,0.4,0.5,0.65,0.8,1.0",
+    "folds": 5,
+    "bootstrap": 5000,
+    "seed": 2026,
+    "max_target_regression": 0.001
+  }
+}

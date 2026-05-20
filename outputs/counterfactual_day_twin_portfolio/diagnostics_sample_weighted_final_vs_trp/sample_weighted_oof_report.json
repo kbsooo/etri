@@ -1,0 +1,87 @@
+{
+  "baseline": "trp_base",
+  "bin_table": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_frac": 0.52,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_frac": 0.22666666666666666,
+      "sample_frac": 0.52,
+      "weight_ratio": 2.294117647058824
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_frac": 0.20444444444444446,
+      "sample_frac": 0.0,
+      "weight_ratio": 0.0
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_frac": 0.04888888888888889,
+      "sample_frac": 0.48,
+      "weight_ratio": 9.818181818181817
+    }
+  ],
+  "summary": [
+    {
+      "name": "weather_gru_dae_w050",
+      "uniform_avg_log_loss": 0.5737315365789895,
+      "weighted_avg_log_loss": 0.5322614862498315,
+      "weighted_delta_vs_baseline": 0.004871318731504019,
+      "weighted_p025": 0.003033001620279418,
+      "weighted_p500": 0.004894528072015243,
+      "weighted_p975": 0.006798857548170293,
+      "promote_weighted": true
+    },
+    {
+      "name": "weather_gru_dae_w030",
+      "uniform_avg_log_loss": 0.5737725521413525,
+      "weighted_avg_log_loss": 0.5326641844984864,
+      "weighted_delta_vs_baseline": 0.004468620482849161,
+      "weighted_p025": 0.0028431970479085573,
+      "weighted_p500": 0.004483992507150264,
+      "weighted_p975": 0.006172331365683526,
+      "promote_weighted": true
+    },
+    {
+      "name": "weather_gru_base",
+      "uniform_avg_log_loss": 0.5738740587842052,
+      "weighted_avg_log_loss": 0.5336607951737671,
+      "weighted_delta_vs_baseline": 0.0034720098075684664,
+      "weighted_p025": 0.0019566765988269686,
+      "weighted_p500": 0.003478031794976297,
+      "weighted_p975": 0.005042326564835586,
+      "promote_weighted": true
+    },
+    {
+      "name": "trp_base",
+      "uniform_avg_log_loss": 0.5742276894127538,
+      "weighted_avg_log_loss": 0.5371328049813355,
+      "weighted_delta_vs_baseline": 0.0,
+      "weighted_p025": 0.0,
+      "weighted_p500": 0.0,
+      "weighted_p975": 0.0,
+      "promote_weighted": false
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/counterfactual_day_twin_portfolio/diagnostics_sample_weighted_final_vs_trp",
+    "baseline": "trp_base",
+    "candidates": [
+      "trp_base:outputs/temporal_retrieval_prototype_portfolio/oof_trp_s2tail_w080_q3midtail_w035.csv",
+      "weather_gru_base:outputs/external_weather_portfolio/trp_weather_s4tail_w050_plus_gru28_s3tail_w100/oof_sample_support_target_blend.csv",
+      "weather_gru_dae_w030:outputs/counterfactual_day_twin_portfolio/weather_gru_plus_dae_q1tail_w030/oof_sample_support_target_blend.csv",
+      "weather_gru_dae_w050:outputs/counterfactual_day_twin_portfolio/weather_gru_plus_dae_q1tail_w050/oof_sample_support_target_blend.csv"
+    ],
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "bootstrap": 5000,
+    "seed": 2026,
+    "min_weighted_p025": 0.0
+  }
+}

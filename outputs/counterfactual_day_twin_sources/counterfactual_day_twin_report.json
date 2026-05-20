@@ -1,0 +1,248 @@
+[
+  {
+    "name": "twin_knn_c0p01",
+    "avg_log_loss": 0.6040148290062487,
+    "target_scores": {
+      "Q1": 0.6549931711174203,
+      "Q2": 0.6576608130936326,
+      "Q3": 0.6354706768648325,
+      "S1": 0.57090818935544,
+      "S2": 0.5514276656588597,
+      "S3": 0.5377402859503619,
+      "S4": 0.6199030010031938
+    },
+    "n_features": 73,
+    "c_value": 0.01,
+    "feature_prefixes": [
+      "knn_"
+    ],
+    "oof_path": "outputs/counterfactual_day_twin_sources/oof_twin_knn_c0p01.csv",
+    "submission_path": "outputs/counterfactual_day_twin_sources/submission_twin_knn_c0p01.csv"
+  },
+  {
+    "name": "twin_dae_c0p01",
+    "avg_log_loss": 0.6040599015991209,
+    "target_scores": {
+      "Q1": 0.6524424535576524,
+      "Q2": 0.6660969459118631,
+      "Q3": 0.6379824144740841,
+      "S1": 0.5780864181496354,
+      "S2": 0.5515787115746602,
+      "S3": 0.5264459995180392,
+      "S4": 0.615786368007912
+    },
+    "n_features": 73,
+    "c_value": 0.01,
+    "feature_prefixes": [
+      "dae_"
+    ],
+    "oof_path": "outputs/counterfactual_day_twin_sources/oof_twin_dae_c0p01.csv",
+    "submission_path": "outputs/counterfactual_day_twin_sources/submission_twin_dae_c0p01.csv"
+  },
+  {
+    "name": "twin_dae_c0p03",
+    "avg_log_loss": 0.6087118846370231,
+    "target_scores": {
+      "Q1": 0.6649327672288157,
+      "Q2": 0.6752237370678889,
+      "Q3": 0.6415961781197063,
+      "S1": 0.5845671532306354,
+      "S2": 0.5509231969571082,
+      "S3": 0.5280150841798893,
+      "S4": 0.6157250756751182
+    },
+    "n_features": 73,
+    "c_value": 0.03,
+    "feature_prefixes": [
+      "dae_"
+    ],
+    "oof_path": "outputs/counterfactual_day_twin_sources/oof_twin_dae_c0p03.csv",
+    "submission_path": "outputs/counterfactual_day_twin_sources/submission_twin_dae_c0p03.csv"
+  },
+  {
+    "name": "twin_knn_c0p03",
+    "avg_log_loss": 0.6101529296489506,
+    "target_scores": {
+      "Q1": 0.6657364960430311,
+      "Q2": 0.6666025938187774,
+      "Q3": 0.6413571071135715,
+      "S1": 0.5780452724179839,
+      "S2": 0.5519260801701529,
+      "S3": 0.5414233043320449,
+      "S4": 0.6259796536470923
+    },
+    "n_features": 73,
+    "c_value": 0.03,
+    "feature_prefixes": [
+      "knn_"
+    ],
+    "oof_path": "outputs/counterfactual_day_twin_sources/oof_twin_knn_c0p03.csv",
+    "submission_path": "outputs/counterfactual_day_twin_sources/submission_twin_knn_c0p03.csv"
+  },
+  {
+    "name": "twin_knn_c0p003",
+    "avg_log_loss": 0.6136637711766342,
+    "target_scores": {
+      "Q1": 0.6569444643240547,
+      "Q2": 0.6648501941297152,
+      "Q3": 0.643203867134011,
+      "S1": 0.5800411016636028,
+      "S2": 0.5671227189119208,
+      "S3": 0.5542527423090771,
+      "S4": 0.6292313097640565
+    },
+    "n_features": 73,
+    "c_value": 0.003,
+    "feature_prefixes": [
+      "knn_"
+    ],
+    "oof_path": "outputs/counterfactual_day_twin_sources/oof_twin_knn_c0p003.csv",
+    "submission_path": "outputs/counterfactual_day_twin_sources/submission_twin_knn_c0p003.csv"
+  },
+  {
+    "name": "twin_dae_c0p003",
+    "avg_log_loss": 0.6139527375253143,
+    "target_scores": {
+      "Q1": 0.6543489441026592,
+      "Q2": 0.66861265732103,
+      "Q3": 0.6455827469961029,
+      "S1": 0.5858132846372306,
+      "S2": 0.5687236882642489,
+      "S3": 0.5458617262718681,
+      "S4": 0.6287261150840606
+    },
+    "n_features": 73,
+    "c_value": 0.003,
+    "feature_prefixes": [
+      "dae_"
+    ],
+    "oof_path": "outputs/counterfactual_day_twin_sources/oof_twin_dae_c0p003.csv",
+    "submission_path": "outputs/counterfactual_day_twin_sources/submission_twin_dae_c0p003.csv"
+  },
+  {
+    "name": "twin_proto_c0p003",
+    "avg_log_loss": 0.6227754818915506,
+    "target_scores": {
+      "Q1": 0.6666865760045233,
+      "Q2": 0.680710132907446,
+      "Q3": 0.66295169694137,
+      "S1": 0.5864963723520068,
+      "S2": 0.5695814662207525,
+      "S3": 0.5634381642473343,
+      "S4": 0.6295639645674214
+    },
+    "n_features": 182,
+    "c_value": 0.003,
+    "feature_prefixes": [
+      "proto_"
+    ],
+    "oof_path": "outputs/counterfactual_day_twin_sources/oof_twin_proto_c0p003.csv",
+    "submission_path": "outputs/counterfactual_day_twin_sources/submission_twin_proto_c0p003.csv"
+  },
+  {
+    "name": "twin_all_c0p003",
+    "avg_log_loss": 0.6290750574660472,
+    "target_scores": {
+      "Q1": 0.6682736639530658,
+      "Q2": 0.6935867866911454,
+      "Q3": 0.6699895419446285,
+      "S1": 0.596541794829471,
+      "S2": 0.5729081417482964,
+      "S3": 0.5656128326223565,
+      "S4": 0.636612640473366
+    },
+    "n_features": 300,
+    "c_value": 0.003,
+    "feature_prefixes": [
+      "knn_",
+      "proto_",
+      "dae_"
+    ],
+    "oof_path": "outputs/counterfactual_day_twin_sources/oof_twin_all_c0p003.csv",
+    "submission_path": "outputs/counterfactual_day_twin_sources/submission_twin_all_c0p003.csv"
+  },
+  {
+    "name": "twin_proto_c0p01",
+    "avg_log_loss": 0.6302387493080527,
+    "target_scores": {
+      "Q1": 0.6825501667969315,
+      "Q2": 0.706972070682225,
+      "Q3": 0.6803031756602111,
+      "S1": 0.5937366357570295,
+      "S2": 0.5590554516172187,
+      "S3": 0.5632437197909659,
+      "S4": 0.625810024851787
+    },
+    "n_features": 182,
+    "c_value": 0.01,
+    "feature_prefixes": [
+      "proto_"
+    ],
+    "oof_path": "outputs/counterfactual_day_twin_sources/oof_twin_proto_c0p01.csv",
+    "submission_path": "outputs/counterfactual_day_twin_sources/submission_twin_proto_c0p01.csv"
+  },
+  {
+    "name": "twin_all_c0p01",
+    "avg_log_loss": 0.6466998326512657,
+    "target_scores": {
+      "Q1": 0.6919216099833498,
+      "Q2": 0.7379985429898072,
+      "Q3": 0.7015545659867264,
+      "S1": 0.6162159456445792,
+      "S2": 0.5642209487375887,
+      "S3": 0.5781671335353322,
+      "S4": 0.636820081681476
+    },
+    "n_features": 300,
+    "c_value": 0.01,
+    "feature_prefixes": [
+      "knn_",
+      "proto_",
+      "dae_"
+    ],
+    "oof_path": "outputs/counterfactual_day_twin_sources/oof_twin_all_c0p01.csv",
+    "submission_path": "outputs/counterfactual_day_twin_sources/submission_twin_all_c0p01.csv"
+  },
+  {
+    "name": "twin_proto_c0p03",
+    "avg_log_loss": 0.6663443203522902,
+    "target_scores": {
+      "Q1": 0.7246756021250504,
+      "Q2": 0.7623766339008853,
+      "Q3": 0.7233223962617995,
+      "S1": 0.634539617893693,
+      "S2": 0.5787284616628047,
+      "S3": 0.5970070877877104,
+      "S4": 0.6437604428340877
+    },
+    "n_features": 182,
+    "c_value": 0.03,
+    "feature_prefixes": [
+      "proto_"
+    ],
+    "oof_path": "outputs/counterfactual_day_twin_sources/oof_twin_proto_c0p03.csv",
+    "submission_path": "outputs/counterfactual_day_twin_sources/submission_twin_proto_c0p03.csv"
+  },
+  {
+    "name": "twin_all_c0p03",
+    "avg_log_loss": 0.70072987816828,
+    "target_scores": {
+      "Q1": 0.7511266260742001,
+      "Q2": 0.8196403406778483,
+      "Q3": 0.770759072164561,
+      "S1": 0.6774564933613837,
+      "S2": 0.5904800919347131,
+      "S3": 0.6333817113938403,
+      "S4": 0.6622648115714127
+    },
+    "n_features": 300,
+    "c_value": 0.03,
+    "feature_prefixes": [
+      "knn_",
+      "proto_",
+      "dae_"
+    ],
+    "oof_path": "outputs/counterfactual_day_twin_sources/oof_twin_all_c0p03.csv",
+    "submission_path": "outputs/counterfactual_day_twin_sources/submission_twin_all_c0p03.csv"
+  }
+]

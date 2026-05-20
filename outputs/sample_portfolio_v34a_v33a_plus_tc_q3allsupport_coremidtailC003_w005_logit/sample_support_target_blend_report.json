@@ -1,0 +1,76 @@
+{
+  "summary": {
+    "base_avg": 0.5710185265493024,
+    "final_avg": 0.5709126820221233,
+    "improvement": 0.00010584452717910703,
+    "p025": -0.00014868729630000961,
+    "p500": 0.00010579956236993321,
+    "p975": 0.0003569054672166867,
+    "support_delta": 0.00038411320347256584,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "Q3",
+      "supported_train_rows": 124,
+      "supported_sample_rows": 250,
+      "range_train_rows": 450,
+      "range_sample_rows": 250,
+      "min_position": 0.0,
+      "max_position": 1.000001,
+      "weight": 0.05,
+      "mode": "logit"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "position_range": {
+    "min_position": 0.0,
+    "max_position": 1.000001,
+    "train_rows": 450,
+    "sample_rows": 250,
+    "applied_train_rows": 124,
+    "applied_sample_rows": 250
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_portfolio_v34a_v33a_plus_tc_q3allsupport_coremidtailC003_w005_logit",
+    "base_oof": "outputs/sample_portfolio_v33a_v32_plus_tcdenoise64_q1mid_sampleC01_w010_logit/oof_sample_support_target_blend.csv",
+    "base_submission": "outputs/sample_portfolio_v33a_v32_plus_tcdenoise64_q1mid_sampleC01_w010_logit/submission_sample_support_target_blend.csv",
+    "source_oof": "outputs/position_weighted_temporal_contrastive_decoder_on_v21/sources/oof_logreg_latent_temporal_core_midtail_C0.03.csv",
+    "source_submission": "outputs/position_weighted_temporal_contrastive_decoder_on_v21/sources/submission_logreg_latent_temporal_core_midtail_C0.03.csv",
+    "targets": "Q3",
+    "weight": 0.05,
+    "mode": "logit",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "min_position": 0.0,
+    "max_position": 1.000001,
+    "bootstrap": 30000,
+    "seed": 2026
+  }
+}

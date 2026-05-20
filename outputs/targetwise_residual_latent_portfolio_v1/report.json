@@ -1,0 +1,151 @@
+{
+  "portfolio_score": {
+    "avg_log_loss": 0.5755542553654472,
+    "Q1": 0.6325986433447643,
+    "Q2": 0.6311555222254859,
+    "Q3": 0.608870054518594,
+    "S1": 0.5519939148973718,
+    "S2": 0.5227316854858751,
+    "S3": 0.4950876591772736,
+    "S4": 0.586442307908766
+  },
+  "selected": [
+    {
+      "target": "Q1",
+      "source": "dense_residual_v1",
+      "target_log_loss": 0.6325986433447643
+    },
+    {
+      "target": "Q2",
+      "source": "dense_residual_v1",
+      "target_log_loss": 0.6311555222254859
+    },
+    {
+      "target": "Q3",
+      "source": "dense_residual_v1",
+      "target_log_loss": 0.608870054518594
+    },
+    {
+      "target": "S1",
+      "source": "pls_residual_v2",
+      "target_log_loss": 0.5519939148973718
+    },
+    {
+      "target": "S2",
+      "source": "pls_residual_v2",
+      "target_log_loss": 0.5227316854858751
+    },
+    {
+      "target": "S3",
+      "source": "pls_residual_v2",
+      "target_log_loss": 0.4950876591772736
+    },
+    {
+      "target": "S4",
+      "source": "dense_residual_v1",
+      "target_log_loss": 0.586442307908766
+    }
+  ],
+  "source_scores": [
+    {
+      "source": "pls_residual_v2",
+      "Q1": 0.6328235914875543,
+      "Q2": 0.6315811504767077,
+      "Q3": 0.6091067110148821,
+      "S1": 0.5519939148973718,
+      "S2": 0.5227316854858751,
+      "S3": 0.4950876591772736,
+      "S4": 0.5866076606196963,
+      "avg_log_loss": 0.5757046247370515
+    },
+    {
+      "source": "dense_residual_v1",
+      "Q1": 0.6325986433447643,
+      "Q2": 0.6311555222254859,
+      "Q3": 0.608870054518594,
+      "S1": 0.5523573303673037,
+      "S2": 0.5237254885268902,
+      "S3": 0.49508864957039955,
+      "S4": 0.586442307908766,
+      "avg_log_loss": 0.5757482852088863
+    },
+    {
+      "source": "anchor",
+      "Q1": 0.6328235914875543,
+      "Q2": 0.6324925625932951,
+      "Q3": 0.6091152249083994,
+      "S1": 0.5524714585483753,
+      "S2": 0.5248647856042763,
+      "S3": 0.49508864957039955,
+      "S4": 0.586659826478634,
+      "avg_log_loss": 0.5762165855987049
+    }
+  ],
+  "blend_scores": [
+    {
+      "name": "targetwise_latent_portfolio_v1",
+      "oof_name": "oof_targetwise_latent_portfolio_v1.csv",
+      "weight_portfolio": 1.0,
+      "avg_log_loss": 0.5755542553654472,
+      "Q1": 0.6325986433447643,
+      "Q2": 0.6311555222254859,
+      "Q3": 0.608870054518594,
+      "S1": 0.5519939148973718,
+      "S2": 0.5227316854858751,
+      "S3": 0.4950876591772736,
+      "S4": 0.586442307908766
+    },
+    {
+      "name": "submission_targetwise_latent_portfolio_w075_anchor_blend.csv",
+      "oof_name": "oof_targetwise_latent_portfolio_w075_anchor_blend.csv",
+      "weight_portfolio": 0.75,
+      "avg_log_loss": 0.5756639676696622,
+      "Q1": 0.632614808001997,
+      "Q2": 0.6313467789550931,
+      "Q3": 0.6088916701928662,
+      "S1": 0.5521031709990128,
+      "S2": 0.5231215596571042,
+      "S3": 0.4950878276715438,
+      "S4": 0.5864819582100194
+    },
+    {
+      "name": "submission_targetwise_latent_portfolio_w050_anchor_blend.csv",
+      "oof_name": "oof_targetwise_latent_portfolio_w050_anchor_blend.csv",
+      "weight_portfolio": 0.5,
+      "avg_log_loss": 0.5758112040959721,
+      "Q1": 0.6326577404788543,
+      "Q2": 0.6316335813568016,
+      "Q3": 0.608939773503291,
+      "S1": 0.5522191774615707,
+      "S2": 0.5236086688891247,
+      "S3": 0.4950880488973784,
+      "S4": 0.5865314380847836
+    },
+    {
+      "name": "submission_targetwise_latent_portfolio_w025_anchor_blend.csv",
+      "oof_name": "oof_targetwise_latent_portfolio_w025_anchor_blend.csv",
+      "weight_portfolio": 0.25,
+      "avg_log_loss": 0.5759955159874061,
+      "Q1": 0.6327273591718466,
+      "Q2": 0.6320155913077727,
+      "Q3": 0.609014307835433,
+      "S1": 0.5523419384143482,
+      "S2": 0.5241903603593456,
+      "S3": 0.4950883228614306,
+      "S4": 0.5865907319616651
+    },
+    {
+      "name": "anchor_public_feedback",
+      "oof_name": "outputs/lb_feedback_recovery_uploads/oof_15_v18_old15_prob_blend.csv",
+      "weight_portfolio": 0.0,
+      "avg_log_loss": 0.5762165855987049,
+      "Q1": 0.6328235914875543,
+      "Q2": 0.6324925625932951,
+      "Q3": 0.6091152249083994,
+      "S1": 0.5524714585483753,
+      "S2": 0.5248647856042763,
+      "S3": 0.49508864957039955,
+      "S4": 0.586659826478634
+    }
+  ]
+}

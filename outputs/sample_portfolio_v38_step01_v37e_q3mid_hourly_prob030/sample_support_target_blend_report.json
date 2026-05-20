@@ -1,0 +1,77 @@
+{
+  "summary": {
+    "base_avg": 0.550513202062635,
+    "final_avg": 0.5501757425775271,
+    "improvement": 0.00033745948510785853,
+    "p025": -0.0005115006815935767,
+    "p500": 0.00033499817221343837,
+    "p975": 0.0012136302302125398,
+    "support_delta": 0.0014887918460640818,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "Q3",
+      "supported_train_rows": 102,
+      "supported_sample_rows": 130,
+      "range_train_rows": 102,
+      "range_sample_rows": 130,
+      "min_position": 0.333333,
+      "max_position": 0.666667,
+      "weight": 0.3,
+      "mode": "prob"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "position_range": {
+    "min_position": 0.333333,
+    "max_position": 0.666667,
+    "train_rows": 102,
+    "sample_rows": 130,
+    "applied_train_rows": 102,
+    "applied_sample_rows": 130
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_portfolio_v38_step01_v37e_q3mid_hourly_prob030",
+    "base_oof": "outputs/windowed_prediction_stack_v37e_full_local_xaggressive_on_v36a/oof_windowed_prediction_stack_decoder.csv",
+    "base_submission": "outputs/windowed_prediction_stack_v37e_full_local_xaggressive_on_v36a/submission_windowed_prediction_stack_decoder.csv",
+    "source_oof": "outputs/hourly_sequence_decoder_v1/oof_hourly_logreg_k80_c003_sample.csv",
+    "source_submission": "outputs/hourly_sequence_decoder_v1/submission_hourly_logreg_k80_c003_sample.csv",
+    "targets": "Q3",
+    "weight": 0.3,
+    "mode": "prob",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "min_position": 0.333333,
+    "max_position": 0.666667,
+    "respect_sample_support": true,
+    "bootstrap": 10000,
+    "seed": 2026
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "status": "blocked",
+  "reason": "TabPFN local pretrained weights require one-time license acceptance/API token.",
+  "error_type": "TabPFNLicenseError",
+  "error": "TabPFN requires a one-time license acceptance to download\nmodel weights for local inference, but no interactive terminal\nis available.\n\nTo authenticate in a non-interactive environment:\n  1. Open https://ux.priorlabs.ai in a browser and log in (or register)\n  2. Accept the license on the Licenses tab\n  3. Copy your API Key from https://ux.priorlabs.ai/account\n  4. Set the environment variable: export TABPFN_TOKEN=\"<your-api-key>\"\n     or in Python (before calling .fit()): import os; os.environ[\"TABPFN_TOKEN\"] = \"<your-api-key>\"",
+  "next_step": "Accept the TabPFN license and set TABPFN_TOKEN before rerunning this script."
+}

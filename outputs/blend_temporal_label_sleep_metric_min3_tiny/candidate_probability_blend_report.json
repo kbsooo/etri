@@ -1,0 +1,49 @@
+{
+  "base_avg_log_loss": 0.5844632314577459,
+  "base_targets": {
+    "Q1": 0.6383487136931539,
+    "Q2": 0.6503050342800608,
+    "Q3": 0.6254905558195907,
+    "S1": 0.5551679095830784,
+    "S2": 0.5292196070733155,
+    "S3": 0.49841585304667624,
+    "S4": 0.5942949467083457
+  },
+  "best": {
+    "name": "temporal_label_sleep_metric_min3_tiny_w0.1",
+    "weight": 0.1,
+    "avg_log_loss": 0.5843775750212697,
+    "delta_vs_base": 8.565643647617804e-05,
+    "fold_std": 0.011602631837275517,
+    "worst_fold": 0.6073126334745508,
+    "improved_folds": 4,
+    "worst_target_delta": -1.1102230246251565e-16,
+    "promote": false,
+    "Q1": 0.638348713693154,
+    "Q2": 0.6503050342800606,
+    "Q3": 0.6254905558195907,
+    "S1": 0.5547723803770975,
+    "S2": 0.5292196070733155,
+    "S3": 0.49841585304667624,
+    "S4": 0.5940908808589939,
+    "improvement": 8.565643647610292e-05,
+    "improvement_p025": -1.5067664660098649e-05,
+    "improvement_p500": 8.533855703194223e-05,
+    "improvement_p975": 0.00018635266447276217
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/blend_graph_sleep_temporal_label_min3/oof_candidate_probability_blend.csv",
+    "base_submission": "outputs/blend_graph_sleep_temporal_label_min3/submission_candidate_probability_blend.csv",
+    "candidate_oof": "outputs/sleep_metric_decoder_on_temporal_label_min3_blend_min3/oof_sleep_metric_decoder.csv",
+    "candidate_submission": "outputs/sleep_metric_decoder_on_temporal_label_min3_blend_min3/submission_sleep_metric_decoder.csv",
+    "output_dir": "outputs/blend_temporal_label_sleep_metric_min3_tiny",
+    "name": "temporal_label_sleep_metric_min3_tiny",
+    "weights": "0.005,0.01,0.015,0.02,0.025,0.03,0.04,0.05,0.075,0.1",
+    "folds": 5,
+    "bootstrap": 10000,
+    "seed": 2026,
+    "max_target_regression": 0.001
+  }
+}

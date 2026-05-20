@@ -1,0 +1,211 @@
+{
+  "target": "S3",
+  "base_log_loss": 0.4545945740167792,
+  "best_source_log_loss": 0.4636618193720678,
+  "sources": [
+    {
+      "name": "s3_temporal_decay_knn_resid",
+      "oof": "outputs/s3_temporal_decay_signed_on_v36/oof_s3_temporal_decay_knn_resid.csv",
+      "submission": "outputs/s3_temporal_decay_signed_on_v36/submission_s3_temporal_decay_knn_resid.csv",
+      "S3_log_loss": 0.4636618193720678,
+      "fold_log_loss": [
+        0.38923614330685075,
+        0.5179364505567389,
+        0.4925359227711276,
+        0.385857862954149,
+        0.5368215129750133
+      ]
+    },
+    {
+      "name": "s3_temporal_signed_burden_knn_resid",
+      "oof": "outputs/s3_temporal_decay_signed_on_v36/oof_s3_temporal_signed_burden_knn_resid.csv",
+      "submission": "outputs/s3_temporal_decay_signed_on_v36/submission_s3_temporal_signed_burden_knn_resid.csv",
+      "S3_log_loss": 0.47675354430638917,
+      "fold_log_loss": [
+        0.40979979644729736,
+        0.5316801066229118,
+        0.5088443042182106,
+        0.37763678658534694,
+        0.5592272041093135
+      ]
+    },
+    {
+      "name": "s3_temporal_decay_knn_logitresid",
+      "oof": "outputs/s3_temporal_decay_signed_on_v36/oof_s3_temporal_decay_knn_logitresid.csv",
+      "submission": "outputs/s3_temporal_decay_signed_on_v36/submission_s3_temporal_decay_knn_logitresid.csv",
+      "S3_log_loss": 0.4877491844101735,
+      "fold_log_loss": [
+        0.3889949172114021,
+        0.532825357844709,
+        0.5482735624944638,
+        0.3911971062775381,
+        0.5833604764075252
+      ]
+    },
+    {
+      "name": "s3_temporal_signed_burden_knn_logitresid",
+      "oof": "outputs/s3_temporal_decay_signed_on_v36/oof_s3_temporal_signed_burden_knn_logitresid.csv",
+      "submission": "outputs/s3_temporal_decay_signed_on_v36/submission_s3_temporal_signed_burden_knn_logitresid.csv",
+      "S3_log_loss": 0.49824463842322164,
+      "fold_log_loss": [
+        0.43393012112041923,
+        0.4984998108337231,
+        0.5652986299011201,
+        0.3984269058929484,
+        0.6002285535719876
+      ]
+    },
+    {
+      "name": "s3_sleep_retrieval_meta",
+      "oof": "outputs/s3_temporal_decay_signed_on_v36/oof_s3_sleep_retrieval_meta.csv",
+      "submission": "outputs/s3_temporal_decay_signed_on_v36/submission_s3_sleep_retrieval_meta.csv",
+      "S3_log_loss": 0.518544663265396
+    },
+    {
+      "name": "s3_temporal_decay_hgb",
+      "oof": "outputs/s3_temporal_decay_signed_on_v36/oof_s3_temporal_decay_hgb.csv",
+      "submission": "outputs/s3_temporal_decay_signed_on_v36/submission_s3_temporal_decay_hgb.csv",
+      "S3_log_loss": 0.6168509735832008,
+      "fold_log_loss": [
+        0.5543502428121062,
+        0.6431923871518249,
+        0.6545033997049142,
+        0.5803135354747931,
+        0.6552809231513909
+      ]
+    },
+    {
+      "name": "s3_temporal_decay_knn_label",
+      "oof": "outputs/s3_temporal_decay_signed_on_v36/oof_s3_temporal_decay_knn_label.csv",
+      "submission": "outputs/s3_temporal_decay_signed_on_v36/submission_s3_temporal_decay_knn_label.csv",
+      "S3_log_loss": 0.6417370728932995,
+      "fold_log_loss": [
+        0.5404597491434776,
+        0.6210157734347903,
+        0.7013852032096918,
+        0.6278207412919727,
+        0.7277423234455305
+      ]
+    },
+    {
+      "name": "s3_temporal_decay_proto",
+      "oof": "outputs/s3_temporal_decay_signed_on_v36/oof_s3_temporal_decay_proto.csv",
+      "submission": "outputs/s3_temporal_decay_signed_on_v36/submission_s3_temporal_decay_proto.csv",
+      "S3_log_loss": 0.65851871861323,
+      "fold_log_loss": [
+        0.5060464508037756,
+        0.6368648408766306,
+        0.7207888546426323,
+        0.6719228098394492,
+        0.7719808818874491
+      ]
+    },
+    {
+      "name": "s3_temporal_signed_burden_hgb",
+      "oof": "outputs/s3_temporal_decay_signed_on_v36/oof_s3_temporal_signed_burden_hgb.csv",
+      "submission": "outputs/s3_temporal_decay_signed_on_v36/submission_s3_temporal_signed_burden_hgb.csv",
+      "S3_log_loss": 0.6595856552456697,
+      "fold_log_loss": [
+        0.5900152649423127,
+        0.637133937693051,
+        0.6906788433505244,
+        0.6414844631034096,
+        0.7468805810397252
+      ]
+    },
+    {
+      "name": "s3_temporal_signed_burden_knn_label",
+      "oof": "outputs/s3_temporal_decay_signed_on_v36/oof_s3_temporal_signed_burden_knn_label.csv",
+      "submission": "outputs/s3_temporal_decay_signed_on_v36/submission_s3_temporal_signed_burden_knn_label.csv",
+      "S3_log_loss": 0.6609406668804556,
+      "fold_log_loss": [
+        0.610874039893897,
+        0.6133751418987928,
+        0.6945778077530769,
+        0.6746903250766939,
+        0.7182954642869824
+      ]
+    },
+    {
+      "name": "s3_temporal_decay_extra",
+      "oof": "outputs/s3_temporal_decay_signed_on_v36/oof_s3_temporal_decay_extra.csv",
+      "submission": "outputs/s3_temporal_decay_signed_on_v36/submission_s3_temporal_decay_extra.csv",
+      "S3_log_loss": 0.6829900448569308,
+      "fold_log_loss": [
+        0.7174094927039988,
+        0.68970730504431,
+        0.6724485196960713,
+        0.6706350070290373,
+        0.6611821813034549
+      ]
+    },
+    {
+      "name": "s3_temporal_signed_burden_extra",
+      "oof": "outputs/s3_temporal_decay_signed_on_v36/oof_s3_temporal_signed_burden_extra.csv",
+      "submission": "outputs/s3_temporal_decay_signed_on_v36/submission_s3_temporal_signed_burden_extra.csv",
+      "S3_log_loss": 0.686273668207512,
+      "fold_log_loss": [
+        0.6934342465691969,
+        0.6943890056304374,
+        0.6777926738394796,
+        0.6663048759932366,
+        0.6990053084764963
+      ]
+    },
+    {
+      "name": "s3_temporal_signed_burden_proto",
+      "oof": "outputs/s3_temporal_decay_signed_on_v36/oof_s3_temporal_signed_burden_proto.csv",
+      "submission": "outputs/s3_temporal_decay_signed_on_v36/submission_s3_temporal_signed_burden_proto.csv",
+      "S3_log_loss": 0.6945006150766833,
+      "fold_log_loss": [
+        0.5868904111007194,
+        0.6572380056012854,
+        0.7560861550093658,
+        0.7044333498815021,
+        0.7790029372832699
+      ]
+    },
+    {
+      "name": "s3_temporal_signed_burden_logreg",
+      "oof": "outputs/s3_temporal_decay_signed_on_v36/oof_s3_temporal_signed_burden_logreg.csv",
+      "submission": "outputs/s3_temporal_decay_signed_on_v36/submission_s3_temporal_signed_burden_logreg.csv",
+      "S3_log_loss": 0.8365848648503654,
+      "fold_log_loss": [
+        0.7212912669490374,
+        0.9620012351179625,
+        0.8571303332490686,
+        0.8094120374545695,
+        0.8355140894993007
+      ]
+    },
+    {
+      "name": "s3_temporal_decay_logreg",
+      "oof": "outputs/s3_temporal_decay_signed_on_v36/oof_s3_temporal_decay_logreg.csv",
+      "submission": "outputs/s3_temporal_decay_signed_on_v36/submission_s3_temporal_decay_logreg.csv",
+      "S3_log_loss": 0.8434948861093327,
+      "fold_log_loss": [
+        0.5650543235758899,
+        0.9509287829427302,
+        0.8048925997889781,
+        0.7812834336043133,
+        1.1434141726398432
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v36_burden_on_v34/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v36_burden_on_v34/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s3_temporal_decay_signed_on_v36",
+    "target": "S3",
+    "groups": "temporal_signed_burden,temporal_decay",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_signed_burden": 924,
+    "temporal_decay": 1232
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "base_score": {
+    "avg_log_loss": 0.6126131224000219,
+    "Q1": 0.6474236197273426,
+    "Q2": 0.6871348971675303,
+    "Q3": 0.6628023606981251,
+    "S1": 0.5694792693892748,
+    "S2": 0.557581403187159,
+    "S3": 0.5316249837622976,
+    "S4": 0.6322453228684228
+  },
+  "best": {
+    "name": "robust_safe_w0.5",
+    "hybrid_weight": 0.5,
+    "avg_log_loss": 0.6098976245681482,
+    "improvement_vs_base": 0.0027154978318736367,
+    "bootstrap_p025": 0.0011718475083296515,
+    "bootstrap_p500": 0.0027080719081307757,
+    "bootstrap_p975": 0.004252206360997774,
+    "fold_std": 0.010579517319002538,
+    "improved_folds": 5,
+    "worst_target_delta": 0.0,
+    "Q1": 0.6415592120485005,
+    "Q2": 0.6839979065349224,
+    "Q3": 0.6598947804406364,
+    "S1": 0.563547056179646,
+    "S2": 0.557581403187159,
+    "S3": 0.5316249837622976,
+    "S4": 0.6310780298238747
+  },
+  "target_sources": {
+    "Q1": "q_ranker_tuned",
+    "Q2": "q_ranker_tuned",
+    "Q3": "master_temporal",
+    "S1": "master_temporal",
+    "S4": "master_temporal",
+    "S2": "latent_temporal",
+    "S3": "latent_temporal"
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/latent_decoder/oof_targetwise_temporal_blend.csv",
+    "base_submission": "outputs/latent_decoder/submission_latent_decoder_targetwise_temporal.csv",
+    "master_oof": "outputs/master_aggressive_decoder_fast/oof_temporal_master_oof_blend.csv",
+    "master_submission": "outputs/master_aggressive_decoder_fast/submission_temporal_master_oof_blend.csv",
+    "q_oof": "outputs/q_ranker_decoder_tuned/oof_q_ranker_with_baseline_s.csv",
+    "q_submission": "outputs/q_ranker_decoder_tuned/submission_q_ranker_with_baseline_s.csv",
+    "output_dir": "outputs/robust_safe_ensemble",
+    "weights": "0.25,0.35,0.5,0.65,0.8,1.0",
+    "folds": 5,
+    "bootstrap": 5000,
+    "seed": 2026,
+    "max_target_regression": 0.003
+  }
+}

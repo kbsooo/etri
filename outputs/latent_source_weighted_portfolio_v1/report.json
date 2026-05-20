@@ -1,0 +1,88 @@
+{
+  "sources": [
+    "anchor",
+    "dense",
+    "pls"
+  ],
+  "step": 0.05,
+  "global": {
+    "avg_log_loss": 0.5755542553654472,
+    "per_target": {
+      "Q1": 0.6325986433447643,
+      "Q2": 0.6311555222254859,
+      "Q3": 0.608870054518594,
+      "S1": 0.5519939148973718,
+      "S2": 0.5227316854858751,
+      "S3": 0.4950876591772736,
+      "S4": 0.586442307908766
+    },
+    "weights": [
+      {
+        "target": "Q1",
+        "log_loss": 0.6325986433447643,
+        "w_anchor": 0.0,
+        "w_dense": 1.0,
+        "w_pls": 0.0
+      },
+      {
+        "target": "Q2",
+        "log_loss": 0.6311555222254859,
+        "w_anchor": 0.0,
+        "w_dense": 1.0,
+        "w_pls": 0.0
+      },
+      {
+        "target": "Q3",
+        "log_loss": 0.608870054518594,
+        "w_anchor": 0.0,
+        "w_dense": 1.0,
+        "w_pls": 0.0
+      },
+      {
+        "target": "S1",
+        "log_loss": 0.5519939148973718,
+        "w_anchor": 0.0,
+        "w_dense": 0.0,
+        "w_pls": 1.0
+      },
+      {
+        "target": "S2",
+        "log_loss": 0.5227316854858751,
+        "w_anchor": 0.0,
+        "w_dense": 0.0,
+        "w_pls": 1.0
+      },
+      {
+        "target": "S3",
+        "log_loss": 0.4950876591772736,
+        "w_anchor": 0.0,
+        "w_dense": 0.0,
+        "w_pls": 1.0
+      },
+      {
+        "target": "S4",
+        "log_loss": 0.586442307908766,
+        "w_anchor": 0.0,
+        "w_dense": 1.0,
+        "w_pls": 0.0
+      }
+    ]
+  },
+  "subject_guarded": {
+    "avg_log_loss": 0.5767739949605216,
+    "per_target": {
+      "Q1": 0.6328911464635043,
+      "Q2": 0.6348961296198578,
+      "Q3": 0.6103309618347482,
+      "S1": 0.5524870424329282,
+      "S2": 0.5242057964791484,
+      "S3": 0.49512075627597696,
+      "S4": 0.5874861316174876
+    }
+  },
+  "paths": {
+    "submission": "outputs/latent_source_weighted_portfolio_v1/submission_latent_source_weighted_portfolio.csv",
+    "global_oof": "outputs/latent_source_weighted_portfolio_v1/oof_latent_source_weighted_portfolio.csv",
+    "subject_guarded_oof": "outputs/latent_source_weighted_portfolio_v1/oof_subject_guarded_latent_source_weighted_portfolio.csv"
+  }
+}

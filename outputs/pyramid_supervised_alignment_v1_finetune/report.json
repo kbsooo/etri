@@ -1,0 +1,191 @@
+{
+  "score": {
+    "name": "pyramid_supervised_alignment",
+    "avg_log_loss": 0.6247307492968986,
+    "Q1": 0.6762828484099589,
+    "Q2": 0.6971007730331975,
+    "Q3": 0.6713842303387585,
+    "S1": 0.5757331346231775,
+    "S2": 0.5757488441954016,
+    "S3": 0.5336107500261944,
+    "S4": 0.6432546644516021
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "train_rows": 355,
+      "valid_rows": 95,
+      "auxiliary_days": 605,
+      "best_epoch": 26,
+      "best_val_avg_log_loss": 0.6257136184577033,
+      "final_val_avg_log_loss": 0.6257136184577033,
+      "per_target": {
+        "Q1": 0.683413468507398,
+        "Q2": 0.7093069821777909,
+        "Q3": 0.6748545838206097,
+        "S1": 0.566641687494694,
+        "S2": 0.5939997861744065,
+        "S3": 0.48816616948587677,
+        "S4": 0.6636126515431483
+      },
+      "checkpoint_load": {
+        "checkpoint_path": "outputs/encoder_day_pyramid_ssl_v1/checkpoints/best_pyramid_encoder.pt",
+        "loaded_keys": 58,
+        "skipped_keys": []
+      }
+    },
+    {
+      "fold": 2,
+      "train_rows": 358,
+      "valid_rows": 92,
+      "auxiliary_days": 608,
+      "best_epoch": 16,
+      "best_val_avg_log_loss": 0.6053391516910106,
+      "final_val_avg_log_loss": 0.6053391516910106,
+      "per_target": {
+        "Q1": 0.6764309480801419,
+        "Q2": 0.6452749314245534,
+        "Q3": 0.692126328548721,
+        "S1": 0.57327263378428,
+        "S2": 0.5264178811095566,
+        "S3": 0.5234995504932903,
+        "S4": 0.6003517883965307
+      },
+      "checkpoint_load": {
+        "checkpoint_path": "outputs/encoder_day_pyramid_ssl_v1/checkpoints/best_pyramid_encoder.pt",
+        "loaded_keys": 58,
+        "skipped_keys": []
+      }
+    },
+    {
+      "fold": 3,
+      "train_rows": 359,
+      "valid_rows": 91,
+      "auxiliary_days": 609,
+      "best_epoch": 1,
+      "best_val_avg_log_loss": 0.6327324938223385,
+      "final_val_avg_log_loss": 0.6327324938223385,
+      "per_target": {
+        "Q1": 0.6793125588877872,
+        "Q2": 0.7620157982892685,
+        "Q3": 0.6640585757011935,
+        "S1": 0.591699255346808,
+        "S2": 0.5379814444284554,
+        "S3": 0.5597051863344401,
+        "S4": 0.6343546377684173
+      },
+      "checkpoint_load": {
+        "checkpoint_path": "outputs/encoder_day_pyramid_ssl_v1/checkpoints/best_pyramid_encoder.pt",
+        "loaded_keys": 58,
+        "skipped_keys": []
+      }
+    },
+    {
+      "fold": 4,
+      "train_rows": 363,
+      "valid_rows": 87,
+      "auxiliary_days": 613,
+      "best_epoch": 2,
+      "best_val_avg_log_loss": 0.6183826178185754,
+      "final_val_avg_log_loss": 0.6183826178185754,
+      "per_target": {
+        "Q1": 0.6671337153736642,
+        "Q2": 0.672360860122679,
+        "Q3": 0.6195100975624174,
+        "S1": 0.6125102815172905,
+        "S2": 0.5836259613828211,
+        "S3": 0.49834580209071994,
+        "S4": 0.675191606680436
+      },
+      "checkpoint_load": {
+        "checkpoint_path": "outputs/encoder_day_pyramid_ssl_v1/checkpoints/best_pyramid_encoder.pt",
+        "loaded_keys": 58,
+        "skipped_keys": []
+      }
+    },
+    {
+      "fold": 5,
+      "train_rows": 365,
+      "valid_rows": 85,
+      "auxiliary_days": 615,
+      "best_epoch": 1,
+      "best_val_avg_log_loss": 0.6425517271904402,
+      "final_val_avg_log_loss": 0.6425517271904402,
+      "per_target": {
+        "Q1": 0.6742738749812943,
+        "Q2": 0.6953771549493695,
+        "Q3": 0.7059927873244847,
+        "S1": 0.5338216622382723,
+        "S2": 0.641115120205977,
+        "S3": 0.6035039490592824,
+        "S4": 0.6437775415744008
+      },
+      "checkpoint_load": {
+        "checkpoint_path": "outputs/encoder_day_pyramid_ssl_v1/checkpoints/best_pyramid_encoder.pt",
+        "loaded_keys": 58,
+        "skipped_keys": []
+      }
+    }
+  ],
+  "full_model": {
+    "epochs": 2,
+    "training_log": [
+      {
+        "supervised_loss": 0.5970934844017028,
+        "aux_loss": 0.7977642798423767,
+        "delta_penalty": 0.00010928374922514195
+      },
+      {
+        "supervised_loss": 0.5965976524353027,
+        "aux_loss": 0.803527581691742,
+        "delta_penalty": 0.00033434146840590986
+      }
+    ],
+    "checkpoint_load": {
+      "checkpoint_path": "outputs/encoder_day_pyramid_ssl_v1/checkpoints/best_pyramid_encoder.pt",
+      "loaded_keys": 58,
+      "skipped_keys": []
+    }
+  },
+  "args": {
+    "input_dir": "outputs/encoder_day_pyramid",
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/pyramid_supervised_alignment_v1_finetune",
+    "init_checkpoint": "outputs/encoder_day_pyramid_ssl_v1/checkpoints/best_pyramid_encoder.pt",
+    "device": "auto",
+    "folds": 5,
+    "max_folds": 0,
+    "epochs": 40,
+    "full_epochs": 0,
+    "patience": 8,
+    "min_delta": 0.0001,
+    "batch_size": 18,
+    "d_model": 96,
+    "latent_dim": 128,
+    "layers": 2,
+    "heads": 4,
+    "encoder_dropout": 0.15,
+    "head_dropout": 0.25,
+    "head_hidden": 64,
+    "max_delta": 0.9,
+    "prior_alpha": 10.0,
+    "lr": 0.00035,
+    "encoder_lr_scale": 0.015,
+    "weight_decay": 0.0002,
+    "grad_clip": 1.0,
+    "residual_l2": 0.06,
+    "denoise_weight": 0.015,
+    "delta_recon_weight": 0.75,
+    "entry_dropout": 0.08,
+    "slot_dropout_prob": 0.35,
+    "channel_dropout_prob": 0.2,
+    "event_dropout": 0.15,
+    "prototype_noise": 0.03,
+    "noise_std": 0.03,
+    "supervised_corruption": true,
+    "auxiliary_days": "train_sample",
+    "seed": 2026,
+    "progress": false
+  }
+}

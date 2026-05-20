@@ -1,0 +1,30 @@
+{
+  "device": "cpu",
+  "pca_components": 12,
+  "base_oof": "outputs/lb_feedback_recovery_uploads/oof_15_v18_old15_prob_blend.csv",
+  "base_submission": "outputs/lb_feedback_recovery_uploads/submission_15_v18_old15_prob_blend.csv",
+  "results": [
+    {
+      "name": "smokegru",
+      "encoder": "gru",
+      "context_days": 7,
+      "d_model": 16,
+      "dropout": 0.2,
+      "max_delta": 0.3,
+      "full_train_epochs": 1,
+      "uniform_oof_cv": 0.5766846156530914,
+      "base_uniform_oof_cv": 0.5762165855987048,
+      "oof_path": "outputs/sequence_encoder_residual_smoke/oof_smokegru.csv",
+      "submission_path": "outputs/sequence_encoder_residual_smoke/submission_smokegru.csv",
+      "test_delta_abs_mean": 0.008391381241381168,
+      "test_min": 0.09076781570911407,
+      "test_max": 0.9877822995185852
+    }
+  ],
+  "anti_overfit_controls": [
+    "Residual logit head initialized at zero, so training starts from the base predictions.",
+    "Outer validation labels are not used for early stopping; epoch is selected on an inner split of the outer-training fold.",
+    "Tiny encoders, dropout, AdamW weight decay, gradient clipping, tanh-clamped residual logits, and residual L2 penalty.",
+    "OOF predictions are produced by retraining on the full outer-train fold for the inner-selected epoch."
+  ]
+}

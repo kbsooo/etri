@@ -1,0 +1,76 @@
+{
+  "summary": {
+    "base_avg": 0.5762514005020875,
+    "final_avg": 0.5762244965840736,
+    "improvement": 2.690391801374709e-05,
+    "p025": -2.2207669206624868e-05,
+    "p500": 2.664226611037607e-05,
+    "p975": 7.512059193082224e-05,
+    "support_delta": 0.0005503074139175542,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "S1",
+      "supported_train_rows": 22,
+      "supported_sample_rows": 120,
+      "range_train_rows": 22,
+      "range_sample_rows": 120,
+      "min_position": 0.8,
+      "max_position": 1.000001,
+      "weight": 1.0,
+      "mode": "logit"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "position_range": {
+    "min_position": 0.8,
+    "max_position": 1.000001,
+    "train_rows": 22,
+    "sample_rows": 120,
+    "applied_train_rows": 22,
+    "applied_sample_rows": 120
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_hgbtail_v14_hourly_prior_stail_vs_multi_signal",
+    "base_oof": "outputs/sample_hgbtail_v14_prior_s4_s3_s2_step3/oof_sample_support_target_blend.csv",
+    "base_submission": "outputs/sample_hgbtail_v14_prior_s4_s3_s2_step3/submission_sample_support_target_blend.csv",
+    "source_oof": "outputs/label_prior_projection_on_hgbtail_v13b_hourly_min3/oof_label_prior_projection.csv",
+    "source_submission": "outputs/label_prior_projection_on_hgbtail_v13b_hourly_min3/submission_label_prior_projection.csv",
+    "targets": "S1",
+    "weight": 1.0,
+    "mode": "logit",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "min_position": 0.8,
+    "max_position": 1.000001,
+    "bootstrap": 10000,
+    "seed": 2026
+  }
+}

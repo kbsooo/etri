@@ -1,0 +1,21 @@
+{
+  "input_dir": "outputs/diffusion_encoder",
+  "output_dir": "outputs/diffusion_encoder_subjectless_long",
+  "device": "auto",
+  "epochs": 140,
+  "batch_size": 256,
+  "d_model": 128,
+  "latent_dim": 96,
+  "layers": 3,
+  "heads": 4,
+  "dropout": 0.12,
+  "lr": 0.00025,
+  "weight_decay": 0.0001,
+  "grad_clip": 1.0,
+  "diffusion_steps": 100,
+  "entry_dropout": 0.08,
+  "hour_dropout_prob": 0.4,
+  "modality_dropout_prob": 0.3,
+  "seed": 2027,
+  "subject_mode": "zero"
+}

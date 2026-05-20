@@ -1,0 +1,76 @@
+{
+  "summary": {
+    "base_avg": 0.5758285812058938,
+    "final_avg": 0.575681733390989,
+    "improvement": 0.0001468478149048079,
+    "p025": -0.00010267384133364163,
+    "p500": 0.00014721695840843067,
+    "p975": 0.00039501135654309606,
+    "support_delta": 0.003003705304871071,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "Q3",
+      "supported_train_rows": 22,
+      "supported_sample_rows": 120,
+      "range_train_rows": 22,
+      "range_sample_rows": 120,
+      "min_position": 0.8,
+      "max_position": 1.000001,
+      "weight": 1.0,
+      "mode": "logit"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "position_range": {
+    "min_position": 0.8,
+    "max_position": 1.000001,
+    "train_rows": 22,
+    "sample_rows": 120,
+    "applied_train_rows": 22,
+    "applied_sample_rows": 120
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_portfolio_v18_q3tail_w100",
+    "base_oof": "outputs/sample_weighted_targetwise_portfolio_v17_robust/oof_sample_weighted_targetwise_blend.csv",
+    "base_submission": "outputs/sample_weighted_targetwise_portfolio_v17_robust/submission_sample_weighted_targetwise_blend.csv",
+    "source_oof": "outputs/sample_v18_v17_plus_q3tail_residual/oof_sample_support_target_blend.csv",
+    "source_submission": "outputs/sample_v18_v17_plus_q3tail_residual/submission_sample_support_target_blend.csv",
+    "targets": "Q3",
+    "weight": 1.0,
+    "mode": "logit",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "min_position": 0.8,
+    "max_position": 1.000001,
+    "bootstrap": 10000,
+    "seed": 2026
+  }
+}

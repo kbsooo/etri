@@ -1,0 +1,76 @@
+{
+  "summary": {
+    "base_avg": 0.572520006367691,
+    "final_avg": 0.571903297501075,
+    "improvement": 0.0006167088666159445,
+    "p025": 5.481639023526208e-05,
+    "p500": 0.0006158474332677226,
+    "p975": 0.0011795564266599407,
+    "support_delta": 0.0027207744115409316,
+    "non_support_delta": 0.0
+  },
+  "target_selection": [
+    {
+      "target": "Q3",
+      "supported_train_rows": 102,
+      "supported_sample_rows": 130,
+      "range_train_rows": 102,
+      "range_sample_rows": 130,
+      "min_position": 0.3333333333,
+      "max_position": 0.6666666667,
+      "weight": 0.2,
+      "mode": "logit"
+    }
+  ],
+  "support_bins": [
+    {
+      "bin": "[0.000,0.333)",
+      "train_count": 234,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.333,0.667)",
+      "train_count": 102,
+      "sample_count": 130,
+      "sample_supported": true
+    },
+    {
+      "bin": "[0.667,0.800)",
+      "train_count": 92,
+      "sample_count": 0,
+      "sample_supported": false
+    },
+    {
+      "bin": "[0.800,1.000)",
+      "train_count": 22,
+      "sample_count": 120,
+      "sample_supported": true
+    }
+  ],
+  "position_range": {
+    "min_position": 0.3333333333,
+    "max_position": 0.6666666667,
+    "train_rows": 102,
+    "sample_rows": 130,
+    "applied_train_rows": 102,
+    "applied_sample_rows": 130
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/sample_portfolio_v31b_v29_plus_hourly_fused_q3mid_w020",
+    "base_oof": "outputs/sample_portfolio_v29_prior_proj_s1mid_restore/oof_sample_support_target_blend.csv",
+    "base_submission": "outputs/sample_portfolio_v29_prior_proj_s1mid_restore/submission_sample_support_target_blend.csv",
+    "source_oof": "outputs/hourly_fused_sequence_decoder_on_v14/oof_fused_hgb_k260_l2_15_sample.csv",
+    "source_submission": "outputs/hourly_fused_sequence_decoder_on_v14/submission_fused_hgb_k260_l2_15_sample.csv",
+    "targets": "Q3",
+    "weight": 0.2,
+    "mode": "logit",
+    "position_bins": "0,0.3333333333,0.6666666667,0.8,1.0",
+    "min_position": 0.3333333333,
+    "max_position": 0.6666666667,
+    "bootstrap": 30000,
+    "seed": 2026
+  }
+}

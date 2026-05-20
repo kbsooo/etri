@@ -1,0 +1,1689 @@
+{
+  "mACStatus": {
+    "numeric_stats": [
+      {
+        "feature": "m_charging",
+        "count": 939896,
+        "missing_rate": 0.0,
+        "mean": 0.2913779822448441,
+        "std": 0.45439748391527607,
+        "min": 0.0,
+        "p01": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 1.0,
+        "p99": 1.0,
+        "max": 1.0,
+        "zero_rate": 0.7086220177551559
+      }
+    ],
+    "value_counts": [
+      {
+        "modality": "mACStatus",
+        "feature": "m_charging",
+        "value": "0",
+        "count": 666031,
+        "rate": 0.7086220177551559
+      },
+      {
+        "modality": "mACStatus",
+        "feature": "m_charging",
+        "value": "1",
+        "count": 273865,
+        "rate": 0.2913779822448441
+      }
+    ]
+  },
+  "mActivity": {
+    "category_counts": [
+      {
+        "value": 3,
+        "count": 785792,
+        "rate": 0.8176288314385545
+      },
+      {
+        "value": 4,
+        "count": 71502,
+        "rate": 0.07439894616580407
+      },
+      {
+        "value": 0,
+        "count": 70506,
+        "rate": 0.07336259263190097
+      },
+      {
+        "value": 7,
+        "count": 31404,
+        "rate": 0.032676351785836916
+      },
+      {
+        "value": 1,
+        "count": 1056,
+        "rate": 0.001098784469680416
+      },
+      {
+        "value": 8,
+        "count": 802,
+        "rate": 0.0008344935082231947
+      }
+    ]
+  },
+  "mAmbience": {
+    "ambience_stats": [
+      {
+        "feature": "labels_per_row",
+        "count": 476577.0,
+        "mean": 10.0,
+        "std": 0.0,
+        "min": 10.0,
+        "1%": 10.0,
+        "5%": 10.0,
+        "50%": 10.0,
+        "95%": 10.0,
+        "99%": 10.0,
+        "max": 10.0
+      },
+      {
+        "feature": "top_probability",
+        "count": 476577.0,
+        "mean": 0.8097894257191849,
+        "std": 0.3109414882225523,
+        "min": 0.0,
+        "1%": 0.1105405266,
+        "5%": 0.16965504400000003,
+        "50%": 0.9999998,
+        "95%": 0.9999998,
+        "99%": 0.9999998,
+        "max": 0.9999998
+      },
+      {
+        "feature": "probability_sum",
+        "count": 476577.0,
+        "mean": 1.000384995512752,
+        "std": 0.23687099859263777,
+        "min": 0.0,
+        "1%": 0.458577203188,
+        "5%": 0.6502801702000001,
+        "50%": 0.999999886348587,
+        "95%": 1.3443835283999976,
+        "99%": 2.0082344672800003,
+        "max": 4.889815722
+      }
+    ],
+    "top_ambience_labels": [
+      {
+        "label": "Silence",
+        "top_count": 334119,
+        "top_rate": 0.7010808326881071,
+        "any_count": 354232
+      },
+      {
+        "label": "Speech",
+        "top_count": 50551,
+        "top_rate": 0.1060710021675406,
+        "any_count": 396387
+      },
+      {
+        "label": "Inside, small room",
+        "top_count": 13845,
+        "top_rate": 0.029050919368748387,
+        "any_count": 419651
+      },
+      {
+        "label": "Music",
+        "top_count": 10931,
+        "top_rate": 0.0229364824571895,
+        "any_count": 352983
+      },
+      {
+        "label": "Vehicle",
+        "top_count": 10338,
+        "top_rate": 0.021692192447390454,
+        "any_count": 48099
+      },
+      {
+        "label": "Animal",
+        "top_count": 7369,
+        "top_rate": 0.015462349211145313,
+        "any_count": 69431
+      },
+      {
+        "label": "Breathing",
+        "top_count": 6237,
+        "top_rate": 0.013087077219420996,
+        "any_count": 19629
+      },
+      {
+        "label": "Outside, rural or natural",
+        "top_count": 3551,
+        "top_rate": 0.0074510519811069355,
+        "any_count": 58371
+      },
+      {
+        "label": "Mechanical fan",
+        "top_count": 3449,
+        "top_rate": 0.007237025706234249,
+        "any_count": 21134
+      },
+      {
+        "label": "Snake",
+        "top_count": 2673,
+        "top_rate": 0.005608747379751856,
+        "any_count": 41834
+      },
+      {
+        "label": "Wind",
+        "top_count": 2388,
+        "top_rate": 0.0050107327881958215,
+        "any_count": 25540
+      },
+      {
+        "label": "Typing",
+        "top_count": 2316,
+        "top_rate": 0.004859655417697455,
+        "any_count": 6023
+      },
+      {
+        "label": "Insect",
+        "top_count": 2306,
+        "top_rate": 0.004838672449572682,
+        "any_count": 15569
+      },
+      {
+        "label": "White noise",
+        "top_count": 2150,
+        "top_rate": 0.0045113381468262215,
+        "any_count": 25761
+      },
+      {
+        "label": "Explosion",
+        "top_count": 1671,
+        "top_rate": 0.0035062539736495884,
+        "any_count": 7835
+      },
+      {
+        "label": "Snoring",
+        "top_count": 1273,
+        "top_rate": 0.0026711318422836185,
+        "any_count": 13109
+      },
+      {
+        "label": "Keys jangling",
+        "top_count": 1252,
+        "top_rate": 0.002627067609221595,
+        "any_count": 9679
+      },
+      {
+        "label": "Rustle",
+        "top_count": 1048,
+        "top_rate": 0.0021990150594762233,
+        "any_count": 22220
+      },
+      {
+        "label": "Rodents, rats, mice",
+        "top_count": 1006,
+        "top_rate": 0.002110886593352176,
+        "any_count": 11323
+      },
+      {
+        "label": "Fireworks",
+        "top_count": 953,
+        "top_rate": 0.0019996768622908786,
+        "any_count": 4813
+      },
+      {
+        "label": "Hum",
+        "top_count": 856,
+        "top_rate": 0.0017961420714805792,
+        "any_count": 6977
+      },
+      {
+        "label": "Cricket",
+        "top_count": 593,
+        "top_rate": 0.001244290009799046,
+        "any_count": 7153
+      },
+      {
+        "label": "Bicycle",
+        "top_count": 479,
+        "top_rate": 0.0010050841731766326,
+        "any_count": 14256
+      },
+      {
+        "label": "Dishes, pots, and pans",
+        "top_count": 439,
+        "top_rate": 0.00092115230067754,
+        "any_count": 11344
+      },
+      {
+        "label": "Liquid",
+        "top_count": 420,
+        "top_rate": 0.0008812846612404711,
+        "any_count": 12085
+      },
+      {
+        "label": "Rattle",
+        "top_count": 416,
+        "top_rate": 0.0008728914739905618,
+        "any_count": 9311
+      },
+      {
+        "label": "Glass",
+        "top_count": 390,
+        "top_rate": 0.0008183357568661518,
+        "any_count": 10923
+      },
+      {
+        "label": "Clip-clop",
+        "top_count": 384,
+        "top_rate": 0.0008057459759912879,
+        "any_count": 7552
+      },
+      {
+        "label": "Fire",
+        "top_count": 382,
+        "top_rate": 0.0008015493823663333,
+        "any_count": 9774
+      },
+      {
+        "label": "Sliding door",
+        "top_count": 374,
+        "top_rate": 0.0007847630078665148,
+        "any_count": 5273
+      }
+    ]
+  },
+  "mBle": {
+    "device_stats": [
+      {
+        "stat": "count",
+        "scan_count": 21830.0,
+        "unique_count": 21830.0,
+        "class_unique_count": 21830.0,
+        "rssi_mean": 21828.0,
+        "rssi_max": 21828.0,
+        "rssi_min": 21828.0
+      },
+      {
+        "stat": "mean",
+        "scan_count": 20.020797068254694,
+        "unique_count": 20.020797068254694,
+        "class_unique_count": 1.9132386623912048,
+        "rssi_mean": -77.1737913745599,
+        "rssi_max": -56.074491478834524,
+        "rssi_min": -90.76136155396738
+      },
+      {
+        "stat": "std",
+        "scan_count": 25.127356725023386,
+        "unique_count": 25.127356725023386,
+        "class_unique_count": 0.6260516929745348,
+        "rssi_mean": 7.778454387933684,
+        "rssi_max": 15.188485867237345,
+        "rssi_min": 7.220086760604118
+      },
+      {
+        "stat": "min",
+        "scan_count": 0.0,
+        "unique_count": 0.0,
+        "class_unique_count": 0.0,
+        "rssi_mean": -100.0,
+        "rssi_max": -100.0,
+        "rssi_min": -106.0
+      },
+      {
+        "stat": "1%",
+        "scan_count": 1.0,
+        "unique_count": 1.0,
+        "class_unique_count": 1.0,
+        "rssi_mean": -90.39584615384616,
+        "rssi_max": -87.0,
+        "rssi_min": -100.0
+      },
+      {
+        "stat": "5%",
+        "scan_count": 2.0,
+        "unique_count": 2.0,
+        "class_unique_count": 1.0,
+        "rssi_mean": -87.16666666666667,
+        "rssi_max": -80.0,
+        "rssi_min": -98.0
+      },
+      {
+        "stat": "50%",
+        "scan_count": 8.0,
+        "unique_count": 8.0,
+        "class_unique_count": 2.0,
+        "rssi_mean": -78.6,
+        "rssi_max": -57.0,
+        "rssi_min": -92.0
+      },
+      {
+        "stat": "95%",
+        "scan_count": 79.0,
+        "unique_count": 79.0,
+        "class_unique_count": 3.0,
+        "rssi_mean": -63.29265719207581,
+        "rssi_max": -31.0,
+        "rssi_min": -78.0
+      },
+      {
+        "stat": "99%",
+        "scan_count": 96.0,
+        "unique_count": 96.0,
+        "class_unique_count": 3.0,
+        "rssi_mean": -51.351333333333365,
+        "rssi_max": -22.0,
+        "rssi_min": -62.0
+      },
+      {
+        "stat": "max",
+        "scan_count": 196.0,
+        "unique_count": 196.0,
+        "class_unique_count": 5.0,
+        "rssi_mean": -15.0,
+        "rssi_max": -1.0,
+        "rssi_min": -15.0
+      },
+      {
+        "stat": "total_unique_ids",
+        "scan_count": 350456.0,
+        "unique_count": NaN,
+        "class_unique_count": NaN,
+        "rssi_mean": NaN,
+        "rssi_max": NaN,
+        "rssi_min": NaN
+      }
+    ],
+    "top_device_ids": [
+      {
+        "id": "E8:CA:C8:C8:E4:1A",
+        "count": 1889
+      },
+      {
+        "id": "40:CA:63:DB:F2:FB",
+        "count": 1851
+      },
+      {
+        "id": "50:FD:D5:01:6D:43",
+        "count": 1808
+      },
+      {
+        "id": "64:12:36:25:0A:75",
+        "count": 1789
+      },
+      {
+        "id": "F8:4E:58:7E:E9:D9",
+        "count": 1766
+      },
+      {
+        "id": "F8:3B:1D:A0:33:67",
+        "count": 1674
+      },
+      {
+        "id": "80:47:86:65:36:0D",
+        "count": 1569
+      },
+      {
+        "id": "50:FD:D5:84:D1:FF",
+        "count": 1109
+      },
+      {
+        "id": "C8:12:0B:F1:98:2B",
+        "count": 1083
+      },
+      {
+        "id": "F8:F0:05:DB:D3:21",
+        "count": 976
+      },
+      {
+        "id": "F8:F0:05:78:90:CB",
+        "count": 971
+      },
+      {
+        "id": "24:11:53:BB:68:B9",
+        "count": 930
+      },
+      {
+        "id": "F4:5D:8A:0C:D1:AF",
+        "count": 821
+      },
+      {
+        "id": "B8:BC:5B:DF:27:17",
+        "count": 815
+      },
+      {
+        "id": "EB:38:55:D5:F0:99",
+        "count": 812
+      },
+      {
+        "id": "D2:EE:3C:C1:9D:C6",
+        "count": 803
+      },
+      {
+        "id": "EF:26:A5:FE:C9:4F",
+        "count": 796
+      },
+      {
+        "id": "B8:BC:5B:4A:F6:45",
+        "count": 734
+      },
+      {
+        "id": "D6:E4:D0:01:49:76",
+        "count": 691
+      },
+      {
+        "id": "6A:E6:B6:D2:7B:77",
+        "count": 662
+      }
+    ],
+    "device_aux": [
+      {
+        "class": "0",
+        "count": 385700.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "7936",
+        "count": 45002.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "1796",
+        "count": 2524.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "",
+        "count": 1144.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "1084",
+        "count": 967.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "524",
+        "count": 662.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "1060",
+        "count": 443.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "1280",
+        "count": 382.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "284",
+        "count": 146.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "1024",
+        "count": 30.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "1408",
+        "count": 15.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "1344",
+        "count": 15.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "1064",
+        "count": 9.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "1028",
+        "count": 5.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "1044",
+        "count": 5.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "2324",
+        "count": 3.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "1048",
+        "count": 1.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": "256",
+        "count": 1.0,
+        "type": "class",
+        "stat": NaN,
+        "rssi": NaN
+      },
+      {
+        "class": NaN,
+        "count": NaN,
+        "type": "rssi",
+        "stat": "count",
+        "rssi": 437054.0
+      },
+      {
+        "class": NaN,
+        "count": NaN,
+        "type": "rssi",
+        "stat": "mean",
+        "rssi": -77.26736741912899
+      },
+      {
+        "class": NaN,
+        "count": NaN,
+        "type": "rssi",
+        "stat": "std",
+        "rssi": 12.61979269882666
+      },
+      {
+        "class": NaN,
+        "count": NaN,
+        "type": "rssi",
+        "stat": "min",
+        "rssi": -106.0
+      },
+      {
+        "class": NaN,
+        "count": NaN,
+        "type": "rssi",
+        "stat": "1%",
+        "rssi": -96.0
+      },
+      {
+        "class": NaN,
+        "count": NaN,
+        "type": "rssi",
+        "stat": "5%",
+        "rssi": -93.0
+      },
+      {
+        "class": NaN,
+        "count": NaN,
+        "type": "rssi",
+        "stat": "50%",
+        "rssi": -79.0
+      },
+      {
+        "class": NaN,
+        "count": NaN,
+        "type": "rssi",
+        "stat": "95%",
+        "rssi": -52.0
+      },
+      {
+        "class": NaN,
+        "count": NaN,
+        "type": "rssi",
+        "stat": "99%",
+        "rssi": -37.0
+      },
+      {
+        "class": NaN,
+        "count": NaN,
+        "type": "rssi",
+        "stat": "max",
+        "rssi": -1.0
+      }
+    ]
+  },
+  "mGps": {
+    "gps_stats": [
+      {
+        "feature": "points_per_row",
+        "count": 800611.0,
+        "mean": 10.675511578032278,
+        "std": 3.111491369992983,
+        "min": 1.0,
+        "1%": 5.0,
+        "5%": 6.0,
+        "50%": 11.0,
+        "95%": 18.0,
+        "99%": 19.0,
+        "max": 20.0
+      },
+      {
+        "feature": "latitude",
+        "count": 8546932.0,
+        "mean": 0.5876136183428275,
+        "std": 0.5427821109951849,
+        "min": 0.0,
+        "1%": 0.0249063,
+        "5%": 0.0255694,
+        "50%": 0.4759817,
+        "95%": 1.4179063799999998,
+        "99%": 2.4169327,
+        "max": 2.7488898
+      },
+      {
+        "feature": "longitude",
+        "count": 8546932.0,
+        "mean": 0.4701408726219069,
+        "std": 0.31663746029759066,
+        "min": 0.0,
+        "1%": 0.0116695,
+        "5%": 0.0684026,
+        "50%": 0.4931432,
+        "95%": 1.032018,
+        "99%": 1.1186133379999998,
+        "max": 2.4701488
+      },
+      {
+        "feature": "altitude",
+        "count": 8546932.0,
+        "mean": 99.34381045736644,
+        "std": 36.26116880298406,
+        "min": -627.2,
+        "1%": 33.1,
+        "5%": 58.8,
+        "50%": 99.8,
+        "95%": 149.9,
+        "99%": 177.7,
+        "max": 1249.0
+      },
+      {
+        "feature": "speed",
+        "count": 8546932.0,
+        "mean": 0.8492559930861742,
+        "std": 3.9379664695937833,
+        "min": 0.0,
+        "1%": 0.0,
+        "5%": 0.0,
+        "50%": 0.064,
+        "95%": 2.9599,
+        "99%": 19.683682999999636,
+        "max": 246.7145
+      }
+    ],
+    "gps_speed_outliers": [
+      {
+        "threshold": 0.5,
+        "rate": 0.1530377216058347
+      },
+      {
+        "threshold": 1.0,
+        "rate": 0.10108516131870476
+      },
+      {
+        "threshold": 2.0,
+        "rate": 0.060300585052039724
+      },
+      {
+        "threshold": 5.0,
+        "rate": 0.038514053931867014
+      },
+      {
+        "threshold": 10.0,
+        "rate": 0.024151941304786324
+      },
+      {
+        "threshold": 20.0,
+        "rate": 0.009718107035366609
+      },
+      {
+        "threshold": 50.0,
+        "rate": 0.00128607551809234
+      },
+      {
+        "threshold": 100.0,
+        "rate": 3.510031435841539e-07
+      }
+    ]
+  },
+  "mLight": {
+    "numeric_stats": [
+      {
+        "feature": "m_light",
+        "count": 96258,
+        "missing_rate": 0.0,
+        "mean": 185.1767507919375,
+        "std": 1939.9705719885167,
+        "min": 0.0,
+        "p01": 0.0,
+        "p05": 0.0,
+        "p50": 9.0,
+        "p95": 628.0,
+        "p99": 1420.4343041992117,
+        "max": 334306.0,
+        "zero_rate": 0.42121174343950635
+      }
+    ],
+    "value_counts": []
+  },
+  "mScreenStatus": {
+    "numeric_stats": [
+      {
+        "feature": "m_screen_use",
+        "count": 939653,
+        "missing_rate": 0.0,
+        "mean": 0.22838856471484686,
+        "std": 0.4197944923025377,
+        "min": 0.0,
+        "p01": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 1.0,
+        "p99": 1.0,
+        "max": 1.0,
+        "zero_rate": 0.7716114352851532
+      }
+    ],
+    "value_counts": [
+      {
+        "modality": "mScreenStatus",
+        "feature": "m_screen_use",
+        "value": "0",
+        "count": 725047,
+        "rate": 0.7716114352851532
+      },
+      {
+        "modality": "mScreenStatus",
+        "feature": "m_screen_use",
+        "value": "1",
+        "count": 214606,
+        "rate": 0.22838856471484686
+      }
+    ]
+  },
+  "mUsageStats": {
+    "usage_stats": [
+      {
+        "stat": "count",
+        "apps_per_row": 45197.0,
+        "unique_apps_per_row": 45197.0,
+        "total_time_sum": 45197.0,
+        "total_time_max": 45197.0
+      },
+      {
+        "stat": "mean",
+        "apps_per_row": 3.505232648184614,
+        "unique_apps_per_row": 3.505210522822311,
+        "total_time_sum": 462295.5312299489,
+        "total_time_max": 251015.53660641194
+      },
+      {
+        "stat": "std",
+        "apps_per_row": 2.1223006234388375,
+        "unique_apps_per_row": 2.1222485501925736,
+        "total_time_sum": 437131.3307225172,
+        "total_time_max": 187073.9954887495
+      },
+      {
+        "stat": "min",
+        "apps_per_row": 1.0,
+        "unique_apps_per_row": 1.0,
+        "total_time_sum": 3.0,
+        "total_time_max": 3.0
+      },
+      {
+        "stat": "1%",
+        "apps_per_row": 1.0,
+        "unique_apps_per_row": 1.0,
+        "total_time_sum": 188.96000000000004,
+        "total_time_max": 186.92000000000007
+      },
+      {
+        "stat": "5%",
+        "apps_per_row": 1.0,
+        "unique_apps_per_row": 1.0,
+        "total_time_sum": 2927.0,
+        "total_time_max": 2911.0
+      },
+      {
+        "stat": "50%",
+        "apps_per_row": 3.0,
+        "unique_apps_per_row": 3.0,
+        "total_time_sum": 373285.0,
+        "total_time_max": 251274.0
+      },
+      {
+        "stat": "95%",
+        "apps_per_row": 7.0,
+        "unique_apps_per_row": 7.0,
+        "total_time_sum": 1337842.5999999994,
+        "total_time_max": 553437.0
+      },
+      {
+        "stat": "99%",
+        "apps_per_row": 10.0,
+        "unique_apps_per_row": 10.0,
+        "total_time_sum": 1835859.5600000005,
+        "total_time_max": 588861.28
+      },
+      {
+        "stat": "max",
+        "apps_per_row": 21.0,
+        "unique_apps_per_row": 21.0,
+        "total_time_sum": 3221860.0,
+        "total_time_max": 600266.0
+      },
+      {
+        "stat": "app_total_time_count",
+        "apps_per_row": NaN,
+        "unique_apps_per_row": NaN,
+        "total_time_sum": 158426.0,
+        "total_time_max": NaN
+      },
+      {
+        "stat": "app_total_time_mean",
+        "apps_per_row": NaN,
+        "unique_apps_per_row": NaN,
+        "total_time_sum": 131887.26045598576,
+        "total_time_max": NaN
+      },
+      {
+        "stat": "app_total_time_std",
+        "apps_per_row": NaN,
+        "unique_apps_per_row": NaN,
+        "total_time_sum": 162676.68310144733,
+        "total_time_max": NaN
+      },
+      {
+        "stat": "app_total_time_min",
+        "apps_per_row": NaN,
+        "unique_apps_per_row": NaN,
+        "total_time_sum": 1.0,
+        "total_time_max": NaN
+      },
+      {
+        "stat": "app_total_time_1%",
+        "apps_per_row": NaN,
+        "unique_apps_per_row": NaN,
+        "total_time_sum": 78.0,
+        "total_time_max": NaN
+      },
+      {
+        "stat": "app_total_time_5%",
+        "apps_per_row": NaN,
+        "unique_apps_per_row": NaN,
+        "total_time_sum": 398.0,
+        "total_time_max": NaN
+      },
+      {
+        "stat": "app_total_time_50%",
+        "apps_per_row": NaN,
+        "unique_apps_per_row": NaN,
+        "total_time_sum": 49069.5,
+        "total_time_max": NaN
+      },
+      {
+        "stat": "app_total_time_95%",
+        "apps_per_row": NaN,
+        "unique_apps_per_row": NaN,
+        "total_time_sum": 488596.5,
+        "total_time_max": NaN
+      },
+      {
+        "stat": "app_total_time_99%",
+        "apps_per_row": NaN,
+        "unique_apps_per_row": NaN,
+        "total_time_sum": 569492.75,
+        "total_time_max": NaN
+      },
+      {
+        "stat": "app_total_time_max",
+        "apps_per_row": NaN,
+        "unique_apps_per_row": NaN,
+        "total_time_sum": 600266.0,
+        "total_time_max": NaN
+      }
+    ],
+    "top_apps": [
+      {
+        "app": "One UI 홈",
+        "count": 29114
+      },
+      {
+        "app": "카카오톡",
+        "count": 17548
+      },
+      {
+        "app": "시스템 UI",
+        "count": 16388
+      },
+      {
+        "app": "NAVER",
+        "count": 7361
+      },
+      {
+        "app": "캐시워크",
+        "count": 5042
+      },
+      {
+        "app": "✝️성경일독Q",
+        "count": 4615
+      },
+      {
+        "app": "YouTube",
+        "count": 4566
+      },
+      {
+        "app": "통화",
+        "count": 4364
+      },
+      {
+        "app": "메시지",
+        "count": 3845
+      },
+      {
+        "app": "타임스프레드",
+        "count": 3504
+      },
+      {
+        "app": "Instagram",
+        "count": 3440
+      },
+      {
+        "app": "전화",
+        "count": 2997
+      },
+      {
+        "app": "Microsoft Launcher",
+        "count": 2990
+      },
+      {
+        "app": "당근",
+        "count": 2277
+      },
+      {
+        "app": "토스",
+        "count": 2086
+      },
+      {
+        "app": "Chrome",
+        "count": 1958
+      },
+      {
+        "app": "카메라",
+        "count": 1931
+      },
+      {
+        "app": "권한 관리자",
+        "count": 1860
+      },
+      {
+        "app": "갤러리",
+        "count": 1750
+      },
+      {
+        "app": "쿠팡",
+        "count": 1736
+      },
+      {
+        "app": "시계",
+        "count": 1489
+      },
+      {
+        "app": "재난문자",
+        "count": 1403
+      },
+      {
+        "app": "네이버 웹툰",
+        "count": 1274
+      },
+      {
+        "app": "help-CNUH24",
+        "count": 1235
+      },
+      {
+        "app": "Google Play 스토어",
+        "count": 1228
+      },
+      {
+        "app": "Threads",
+        "count": 998
+      },
+      {
+        "app": "네이트",
+        "count": 981
+      },
+      {
+        "app": "Withings",
+        "count": 967
+      },
+      {
+        "app": "삼성 인터넷",
+        "count": 933
+      },
+      {
+        "app": "Samsung Wallet",
+        "count": 913
+      },
+      {
+        "app": "클래시 로얄",
+        "count": 872
+      },
+      {
+        "app": "캘린더",
+        "count": 745
+      },
+      {
+        "app": "YouTube Music",
+        "count": 739
+      },
+      {
+        "app": "TikTok",
+        "count": 648
+      },
+      {
+        "app": "Google",
+        "count": 622
+      },
+      {
+        "app": "X",
+        "count": 620
+      },
+      {
+        "app": "모바일뷰어",
+        "count": 605
+      },
+      {
+        "app": "네이버 지도",
+        "count": 586
+      },
+      {
+        "app": "IntentResolver",
+        "count": 560
+      },
+      {
+        "app": "설정",
+        "count": 502
+      }
+    ]
+  },
+  "mWifi": {
+    "device_stats": [
+      {
+        "stat": "count",
+        "scan_count": 76336.0,
+        "unique_count": 76336.0,
+        "class_unique_count": 76336.0,
+        "rssi_mean": 76336.0,
+        "rssi_max": 76336.0,
+        "rssi_min": 76336.0
+      },
+      {
+        "stat": "mean",
+        "scan_count": 16.63705198071683,
+        "unique_count": 16.63705198071683,
+        "class_unique_count": 0.0,
+        "rssi_mean": -71.37677961855998,
+        "rssi_max": -48.104721232446025,
+        "rssi_min": -87.46827185076503
+      },
+      {
+        "stat": "std",
+        "scan_count": 12.937535112702053,
+        "unique_count": 12.937535112702053,
+        "class_unique_count": 0.0,
+        "rssi_mean": 8.014033804394607,
+        "rssi_max": 13.804766235579397,
+        "rssi_min": 5.927373327293709
+      },
+      {
+        "stat": "min",
+        "scan_count": 1.0,
+        "unique_count": 1.0,
+        "class_unique_count": 0.0,
+        "rssi_mean": -96.0,
+        "rssi_max": -96.0,
+        "rssi_min": -101.0
+      },
+      {
+        "stat": "1%",
+        "scan_count": 2.0,
+        "unique_count": 2.0,
+        "class_unique_count": 0.0,
+        "rssi_mean": -87.66666666666667,
+        "rssi_max": -84.0,
+        "rssi_min": -96.0
+      },
+      {
+        "stat": "5%",
+        "scan_count": 4.0,
+        "unique_count": 4.0,
+        "class_unique_count": 0.0,
+        "rssi_mean": -84.44444444444444,
+        "rssi_max": -76.0,
+        "rssi_min": -95.0
+      },
+      {
+        "stat": "50%",
+        "scan_count": 13.0,
+        "unique_count": 13.0,
+        "class_unique_count": 0.0,
+        "rssi_mean": -71.14285714285714,
+        "rssi_max": -46.0,
+        "rssi_min": -88.0
+      },
+      {
+        "stat": "95%",
+        "scan_count": 40.0,
+        "unique_count": 40.0,
+        "class_unique_count": 0.0,
+        "rssi_mean": -58.90909090909091,
+        "rssi_max": -30.0,
+        "rssi_min": -78.0
+      },
+      {
+        "stat": "99%",
+        "scan_count": 64.0,
+        "unique_count": 64.0,
+        "class_unique_count": 0.0,
+        "rssi_mean": -53.25,
+        "rssi_max": -18.0,
+        "rssi_min": -67.0
+      },
+      {
+        "stat": "max",
+        "scan_count": 199.0,
+        "unique_count": 199.0,
+        "class_unique_count": 0.0,
+        "rssi_mean": -25.0,
+        "rssi_max": 0.0,
+        "rssi_min": -29.0
+      },
+      {
+        "stat": "total_unique_ids",
+        "scan_count": 125239.0,
+        "unique_count": NaN,
+        "class_unique_count": NaN,
+        "rssi_mean": NaN,
+        "rssi_max": NaN,
+        "rssi_min": NaN
+      }
+    ],
+    "top_device_ids": [
+      {
+        "id": "00:23:aa:58:95:e4",
+        "count": 7315
+      },
+      {
+        "id": "88:3c:1c:a7:a2:17",
+        "count": 7283
+      },
+      {
+        "id": "42:23:aa:58:95:e4",
+        "count": 7282
+      },
+      {
+        "id": "80:ca:4b:0d:3b:66",
+        "count": 7254
+      },
+      {
+        "id": "00:23:aa:58:95:e5",
+        "count": 7224
+      },
+      {
+        "id": "42:23:aa:58:95:e5",
+        "count": 7215
+      },
+      {
+        "id": "88:3c:1c:a7:a2:18",
+        "count": 7183
+      },
+      {
+        "id": "80:ca:4b:0d:3b:67",
+        "count": 6922
+      },
+      {
+        "id": "1c:ec:72:51:1a:97",
+        "count": 6831
+      },
+      {
+        "id": "50:46:ae:3b:2b:c7",
+        "count": 6459
+      },
+      {
+        "id": "08:5d:dd:d8:9e:53",
+        "count": 6221
+      },
+      {
+        "id": "3a:5d:dd:d8:9e:53",
+        "count": 6219
+      },
+      {
+        "id": "08:5d:dd:d8:9e:52",
+        "count": 6158
+      },
+      {
+        "id": "42:23:aa:e3:b6:42",
+        "count": 6136
+      },
+      {
+        "id": "12:23:aa:58:95:e5",
+        "count": 6129
+      },
+      {
+        "id": "00:23:aa:e3:b6:42",
+        "count": 6114
+      },
+      {
+        "id": "3a:5d:dd:d8:9e:52",
+        "count": 6107
+      },
+      {
+        "id": "08:5d:dd:d1:35:67",
+        "count": 5958
+      },
+      {
+        "id": "3a:5d:dd:d1:35:67",
+        "count": 5955
+      },
+      {
+        "id": "60:a4:b7:3d:19:aa",
+        "count": 5922
+      }
+    ],
+    "device_aux": [
+      {
+        "type": "rssi",
+        "stat": "count",
+        "rssi": 1270006.0
+      },
+      {
+        "type": "rssi",
+        "stat": "mean",
+        "rssi": -72.40309573340599
+      },
+      {
+        "type": "rssi",
+        "stat": "std",
+        "rssi": 15.549360233840146
+      },
+      {
+        "type": "rssi",
+        "stat": "min",
+        "rssi": -101.0
+      },
+      {
+        "type": "rssi",
+        "stat": "1%",
+        "rssi": -94.0
+      },
+      {
+        "type": "rssi",
+        "stat": "5%",
+        "rssi": -92.0
+      },
+      {
+        "type": "rssi",
+        "stat": "50%",
+        "rssi": -77.0
+      },
+      {
+        "type": "rssi",
+        "stat": "95%",
+        "rssi": -42.0
+      },
+      {
+        "type": "rssi",
+        "stat": "99%",
+        "rssi": -33.0
+      },
+      {
+        "type": "rssi",
+        "stat": "max",
+        "rssi": 0.0
+      }
+    ]
+  },
+  "wHr": {
+    "hr_stats": [
+      {
+        "stat": "count",
+        "hr_points_per_row": 382918.0,
+        "hr_mean": 382918.0,
+        "hr_std": 382918.0,
+        "hr_min": 382918.0,
+        "hr_max": 382918.0
+      },
+      {
+        "stat": "mean",
+        "hr_points_per_row": 52.211162703241946,
+        "hr_mean": 88.09131252871714,
+        "hr_std": 3.595662552805382,
+        "hr_min": 81.78736961960524,
+        "hr_max": 94.68584918964373
+      },
+      {
+        "stat": "std",
+        "hr_points_per_row": 17.225452299504234,
+        "hr_mean": 15.48086330806736,
+        "hr_std": 2.4232341024718154,
+        "hr_min": 15.389943667737082,
+        "hr_max": 16.082892511237862
+      },
+      {
+        "stat": "min",
+        "hr_points_per_row": 1.0,
+        "hr_mean": 1.0,
+        "hr_std": 0.0,
+        "hr_min": 1.0,
+        "hr_max": 1.0
+      },
+      {
+        "stat": "1%",
+        "hr_points_per_row": 1.0,
+        "hr_mean": 58.6,
+        "hr_std": 0.0,
+        "hr_min": 52.0,
+        "hr_max": 60.0
+      },
+      {
+        "stat": "5%",
+        "hr_points_per_row": 4.0,
+        "hr_mean": 64.81217672413794,
+        "hr_std": 0.8634555897992412,
+        "hr_min": 60.0,
+        "hr_max": 70.0
+      },
+      {
+        "stat": "50%",
+        "hr_points_per_row": 59.0,
+        "hr_mean": 87.1,
+        "hr_std": 3.0624816010268905,
+        "hr_min": 81.0,
+        "hr_max": 94.0
+      },
+      {
+        "stat": "95%",
+        "hr_points_per_row": 60.0,
+        "hr_mean": 115.41666666666667,
+        "hr_std": 8.078460682032214,
+        "hr_min": 109.0,
+        "hr_max": 122.0
+      },
+      {
+        "stat": "99%",
+        "hr_points_per_row": 61.0,
+        "hr_mean": 130.18487037037042,
+        "hr_std": 12.0,
+        "hr_min": 124.0,
+        "hr_max": 138.0
+      },
+      {
+        "stat": "max",
+        "hr_points_per_row": 61.0,
+        "hr_mean": 254.0,
+        "hr_std": 56.5,
+        "hr_min": 254.0,
+        "hr_max": 254.0
+      },
+      {
+        "stat": "raw_hr_count",
+        "hr_points_per_row": NaN,
+        "hr_mean": 19992594.0,
+        "hr_std": NaN,
+        "hr_min": NaN,
+        "hr_max": NaN
+      },
+      {
+        "stat": "raw_hr_mean",
+        "hr_points_per_row": NaN,
+        "hr_mean": 87.79058640414546,
+        "hr_std": NaN,
+        "hr_min": NaN,
+        "hr_max": NaN
+      },
+      {
+        "stat": "raw_hr_std",
+        "hr_points_per_row": NaN,
+        "hr_mean": 15.666242985111847,
+        "hr_std": NaN,
+        "hr_min": NaN,
+        "hr_max": NaN
+      },
+      {
+        "stat": "raw_hr_min",
+        "hr_points_per_row": NaN,
+        "hr_mean": 1.0,
+        "hr_std": NaN,
+        "hr_min": NaN,
+        "hr_max": NaN
+      },
+      {
+        "stat": "raw_hr_1%",
+        "hr_points_per_row": NaN,
+        "hr_mean": 57.0,
+        "hr_std": NaN,
+        "hr_min": NaN,
+        "hr_max": NaN
+      },
+      {
+        "stat": "raw_hr_5%",
+        "hr_points_per_row": NaN,
+        "hr_mean": 64.0,
+        "hr_std": NaN,
+        "hr_min": NaN,
+        "hr_max": NaN
+      },
+      {
+        "stat": "raw_hr_50%",
+        "hr_points_per_row": NaN,
+        "hr_mean": 87.0,
+        "hr_std": NaN,
+        "hr_min": NaN,
+        "hr_max": NaN
+      },
+      {
+        "stat": "raw_hr_95%",
+        "hr_points_per_row": NaN,
+        "hr_mean": 115.0,
+        "hr_std": NaN,
+        "hr_min": NaN,
+        "hr_max": NaN
+      },
+      {
+        "stat": "raw_hr_99%",
+        "hr_points_per_row": NaN,
+        "hr_mean": 130.0,
+        "hr_std": NaN,
+        "hr_min": NaN,
+        "hr_max": NaN
+      },
+      {
+        "stat": "raw_hr_max",
+        "hr_points_per_row": NaN,
+        "hr_mean": 254.0,
+        "hr_std": NaN,
+        "hr_min": NaN,
+        "hr_max": NaN
+      }
+    ]
+  },
+  "wLight": {
+    "numeric_stats": [
+      {
+        "feature": "w_light",
+        "count": 633741,
+        "missing_rate": 0.0,
+        "mean": 198.18480893614267,
+        "std": 1343.8545661809073,
+        "min": 0.0,
+        "p01": 0.0,
+        "p05": 0.0,
+        "p50": 23.0,
+        "p95": 593.0,
+        "p99": 2773.5999999998603,
+        "max": 126950.0,
+        "zero_rate": 0.35813526345936275
+      }
+    ],
+    "value_counts": []
+  },
+  "wPedo": {
+    "numeric_stats": [
+      {
+        "feature": "step",
+        "count": 748100,
+        "missing_rate": 0.0,
+        "mean": 3.4515719823553,
+        "std": 14.888674719634253,
+        "min": 0.0,
+        "p01": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 22.0,
+        "p99": 94.0,
+        "max": 317.0,
+        "zero_rate": 0.9100441117497661
+      },
+      {
+        "feature": "step_frequency",
+        "count": 748100,
+        "missing_rate": 0.0,
+        "mean": 0.05752619970592167,
+        "std": 0.24814457866057088,
+        "min": 0.0,
+        "p01": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.36666666666666664,
+        "p99": 1.5666666666666667,
+        "max": 5.283333333333333,
+        "zero_rate": 0.9100441117497661
+      },
+      {
+        "feature": "running_step",
+        "count": 748100,
+        "missing_rate": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "p01": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0,
+        "zero_rate": 1.0
+      },
+      {
+        "feature": "walking_step",
+        "count": 748100,
+        "missing_rate": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "p01": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0,
+        "max": 0.0,
+        "zero_rate": 1.0
+      },
+      {
+        "feature": "distance",
+        "count": 748100,
+        "missing_rate": 0.0,
+        "mean": 2.5789535023059904,
+        "std": 11.249755488450537,
+        "min": 0.0,
+        "p01": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 15.950717163085294,
+        "p99": 69.69996093750001,
+        "max": 302.240234375,
+        "zero_rate": 0.9100441117497661
+      },
+      {
+        "feature": "speed",
+        "count": 748100,
+        "missing_rate": 0.0,
+        "mean": 0.0429825583717665,
+        "std": 0.18749592480750898,
+        "min": 0.0,
+        "p01": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.2658452860514216,
+        "p99": 1.1616660156250003,
+        "max": 5.037337239583334,
+        "zero_rate": 0.9100441117497661
+      },
+      {
+        "feature": "burned_calories",
+        "count": 748100,
+        "missing_rate": 0.0,
+        "mean": 0.15238365816874405,
+        "std": 2.1391602916275025,
+        "min": 0.0,
+        "p01": 0.0,
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.7599945068359375,
+        "p99": 3.3897248840332033,
+        "max": 310.6953430175781,
+        "zero_rate": 0.9152987568506884
+      }
+    ],
+    "value_counts": [
+      {
+        "modality": "wPedo",
+        "feature": "running_step",
+        "value": "0",
+        "count": 748100,
+        "rate": 1.0
+      },
+      {
+        "modality": "wPedo",
+        "feature": "walking_step",
+        "value": "0",
+        "count": 748100,
+        "rate": 1.0
+      }
+    ]
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "final_avg_log_loss": 0.5885979914467426,
+  "final_targets": {
+    "Q1": 0.6387339722449896,
+    "Q2": 0.6536636961410351,
+    "Q3": 0.625697158777872,
+    "S1": 0.5608047323234786,
+    "S2": 0.5395500479588548,
+    "S3": 0.49996489067105887,
+    "S4": 0.6017714420099094
+  },
+  "source_scores": [
+    {
+      "name": "smooth_wide",
+      "avg_log_loss": 0.5887829947773333,
+      "Q1": 0.6387339722449896,
+      "Q2": 0.6537421296392032,
+      "Q3": 0.6267872917291807,
+      "S1": 0.5608047323234786,
+      "S2": 0.5395500479588548,
+      "S3": 0.49996489067105887,
+      "S4": 0.6018978988745668
+    },
+    {
+      "name": "smooth_xwide",
+      "avg_log_loss": 0.5889321606272685,
+      "Q1": 0.6387339722449896,
+      "Q2": 0.6536636961410351,
+      "Q3": 0.625697158777872,
+      "S1": 0.5608047323234786,
+      "S2": 0.5395500479588548,
+      "S3": 0.5023040749347395,
+      "S4": 0.6017714420099094
+    },
+    {
+      "name": "stack_xwide",
+      "avg_log_loss": 0.5924156897008636,
+      "Q1": 0.6387339722449896,
+      "Q2": 0.6596189084881527,
+      "Q3": 0.625697158777872,
+      "S1": 0.5608047323234786,
+      "S2": 0.5504724854372729,
+      "S3": 0.5079003422825507,
+      "S4": 0.603682228351729
+    },
+    {
+      "name": "stack_wide",
+      "avg_log_loss": 0.5929230949262584,
+      "Q1": 0.6387339722449896,
+      "Q2": 0.6600366045775713,
+      "Q3": 0.6267872917291807,
+      "S1": 0.5608047323234786,
+      "S2": 0.5504724854372729,
+      "S3": 0.5098757709318199,
+      "S4": 0.6037508072394954
+    }
+  ],
+  "selection": [
+    {
+      "target": "Q1",
+      "source": "stack_wide",
+      "selected_loss": 0.6387339722449896,
+      "loss_stack_wide": 0.6387339722449896,
+      "loss_stack_xwide": 0.6387339722449896,
+      "loss_smooth_wide": 0.6387339722449896,
+      "loss_smooth_xwide": 0.6387339722449896
+    },
+    {
+      "target": "Q2",
+      "source": "smooth_xwide",
+      "selected_loss": 0.6536636961410351,
+      "loss_stack_wide": 0.6600366045775713,
+      "loss_stack_xwide": 0.6596189084881527,
+      "loss_smooth_wide": 0.6537421296392032,
+      "loss_smooth_xwide": 0.6536636961410351
+    },
+    {
+      "target": "Q3",
+      "source": "stack_xwide",
+      "selected_loss": 0.625697158777872,
+      "loss_stack_wide": 0.6267872917291807,
+      "loss_stack_xwide": 0.625697158777872,
+      "loss_smooth_wide": 0.6267872917291807,
+      "loss_smooth_xwide": 0.625697158777872
+    },
+    {
+      "target": "S1",
+      "source": "stack_wide",
+      "selected_loss": 0.5608047323234786,
+      "loss_stack_wide": 0.5608047323234786,
+      "loss_stack_xwide": 0.5608047323234786,
+      "loss_smooth_wide": 0.5608047323234786,
+      "loss_smooth_xwide": 0.5608047323234786
+    },
+    {
+      "target": "S2",
+      "source": "smooth_wide",
+      "selected_loss": 0.5395500479588548,
+      "loss_stack_wide": 0.5504724854372729,
+      "loss_stack_xwide": 0.5504724854372729,
+      "loss_smooth_wide": 0.5395500479588548,
+      "loss_smooth_xwide": 0.5395500479588548
+    },
+    {
+      "target": "S3",
+      "source": "smooth_wide",
+      "selected_loss": 0.49996489067105887,
+      "loss_stack_wide": 0.5098757709318199,
+      "loss_stack_xwide": 0.5079003422825507,
+      "loss_smooth_wide": 0.49996489067105887,
+      "loss_smooth_xwide": 0.5023040749347395
+    },
+    {
+      "target": "S4",
+      "source": "smooth_xwide",
+      "selected_loss": 0.6017714420099094,
+      "loss_stack_wide": 0.6037508072394954,
+      "loss_stack_xwide": 0.603682228351729,
+      "loss_smooth_wide": 0.6018978988745668,
+      "loss_smooth_xwide": 0.6017714420099094
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/targetwise_prediction_ensemble_smoothed",
+    "candidates": [
+      "stack_wide:outputs/prediction_stack_decoder_qcal_wide/oof_prediction_stack_decoder.csv:outputs/prediction_stack_decoder_qcal_wide/submission_prediction_stack_decoder.csv",
+      "stack_xwide:outputs/prediction_stack_decoder_qcal_xwide/oof_prediction_stack_decoder.csv:outputs/prediction_stack_decoder_qcal_xwide/submission_prediction_stack_decoder.csv",
+      "smooth_wide:outputs/temporal_prediction_smoothing_stack_wide/oof_temporal_prediction_smoothing.csv:outputs/temporal_prediction_smoothing_stack_wide/submission_temporal_prediction_smoothing.csv",
+      "smooth_xwide:outputs/temporal_prediction_smoothing_stack_xwide/oof_temporal_prediction_smoothing.csv:outputs/temporal_prediction_smoothing_stack_xwide/submission_temporal_prediction_smoothing.csv"
+    ]
+  }
+}

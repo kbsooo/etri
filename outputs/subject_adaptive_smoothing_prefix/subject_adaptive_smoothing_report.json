@@ -1,0 +1,837 @@
+{
+  "base_avg_log_loss": 0.5929230949262584,
+  "base_targets": {
+    "Q1": 0.6387339722449896,
+    "Q2": 0.6600366045775713,
+    "Q3": 0.6267872917291807,
+    "S1": 0.5608047323234786,
+    "S2": 0.5504724854372729,
+    "S3": 0.5098757709318199,
+    "S4": 0.6037508072394954
+  },
+  "final_avg_log_loss": 0.5909761011994732,
+  "final_targets": {
+    "Q1": 0.637787508432162,
+    "Q2": 0.650946701335821,
+    "Q3": 0.641339749126866,
+    "S1": 0.5577800240494796,
+    "S2": 0.5420764584580482,
+    "S3": 0.5085645963201192,
+    "S4": 0.5983376706738162
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/prediction_stack_decoder_qcal_wide/oof_prediction_stack_decoder.csv",
+    "base_submission": "outputs/prediction_stack_decoder_qcal_wide/submission_prediction_stack_decoder.csv",
+    "output_dir": "outputs/subject_adaptive_smoothing_prefix",
+    "folds": 5,
+    "bandwidths": "2,5,10,14,21,30,45,60",
+    "weights": "0.1,0.2,0.3,0.4,0.5,0.7,0.85,1.0",
+    "smoothing_spaces": "prob,logit",
+    "selection_mode": "prefix",
+    "min_subject_rows": 8,
+    "min_global_rows": 40,
+    "min_delta": 0.001
+  },
+  "selected_counts": [
+    {
+      "target": "Q1",
+      "selected": "base",
+      "scope": "global",
+      "n": 17,
+      "mean_selection_delta": 0.0
+    },
+    {
+      "target": "Q1",
+      "selected": "logit_bw60_w1",
+      "scope": "subject",
+      "n": 8,
+      "mean_selection_delta": 0.033393989071557016
+    },
+    {
+      "target": "Q1",
+      "selected": "logit_bw60_w0.2",
+      "scope": "global",
+      "n": 4,
+      "mean_selection_delta": 0.0010829392695611562
+    },
+    {
+      "target": "Q1",
+      "selected": "prob_bw60_w1",
+      "scope": "subject",
+      "n": 4,
+      "mean_selection_delta": 0.04505486925273289
+    },
+    {
+      "target": "Q1",
+      "selected": "logit_bw60_w0.5",
+      "scope": "global",
+      "n": 3,
+      "mean_selection_delta": 0.0063526232545134675
+    },
+    {
+      "target": "Q1",
+      "selected": "logit_bw2_w1",
+      "scope": "subject",
+      "n": 2,
+      "mean_selection_delta": 0.023026934804058097
+    },
+    {
+      "target": "Q1",
+      "selected": "logit_bw14_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.004315032979024136
+    },
+    {
+      "target": "Q1",
+      "selected": "logit_bw21_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.026515491145528314
+    },
+    {
+      "target": "Q1",
+      "selected": "logit_bw2_w0.4",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0015131680691214955
+    },
+    {
+      "target": "Q1",
+      "selected": "logit_bw2_w0.5",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0030375120971799507
+    },
+    {
+      "target": "Q1",
+      "selected": "logit_bw45_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.05195106788605253
+    },
+    {
+      "target": "Q1",
+      "selected": "logit_bw5_w0.5",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.004426768457843733
+    },
+    {
+      "target": "Q1",
+      "selected": "logit_bw60_w0.3",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0019502295825609695
+    },
+    {
+      "target": "Q1",
+      "selected": "logit_bw60_w0.85",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.021041613845308116
+    },
+    {
+      "target": "Q1",
+      "selected": "prob_bw5_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.02399833149287567
+    },
+    {
+      "target": "Q1",
+      "selected": "prob_bw60_w0.5",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.005355113601259065
+    },
+    {
+      "target": "Q1",
+      "selected": "prob_bw60_w0.7",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.009157206101230164
+    },
+    {
+      "target": "Q1",
+      "selected": "prob_bw60_w0.85",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.015169141175223944
+    },
+    {
+      "target": "Q2",
+      "selected": "logit_bw60_w1",
+      "scope": "subject",
+      "n": 12,
+      "mean_selection_delta": 0.05421985675340374
+    },
+    {
+      "target": "Q2",
+      "selected": "prob_bw60_w1",
+      "scope": "subject",
+      "n": 6,
+      "mean_selection_delta": 0.05152965765191767
+    },
+    {
+      "target": "Q2",
+      "selected": "logit_bw30_w0.7",
+      "scope": "global",
+      "n": 5,
+      "mean_selection_delta": 0.0040560191259148
+    },
+    {
+      "target": "Q2",
+      "selected": "logit_bw21_w0.85",
+      "scope": "global",
+      "n": 4,
+      "mean_selection_delta": 0.007642909724702829
+    },
+    {
+      "target": "Q2",
+      "selected": "logit_bw2_w1",
+      "scope": "subject",
+      "n": 4,
+      "mean_selection_delta": 0.01013484700568551
+    },
+    {
+      "target": "Q2",
+      "selected": "logit_bw45_w0.85",
+      "scope": "global",
+      "n": 4,
+      "mean_selection_delta": 0.00900924404276593
+    },
+    {
+      "target": "Q2",
+      "selected": "logit_bw14_w0.85",
+      "scope": "global",
+      "n": 3,
+      "mean_selection_delta": 0.008499855043914595
+    },
+    {
+      "target": "Q2",
+      "selected": "logit_bw60_w1",
+      "scope": "global",
+      "n": 3,
+      "mean_selection_delta": 0.01253192413561044
+    },
+    {
+      "target": "Q2",
+      "selected": "prob_bw2_w1",
+      "scope": "subject",
+      "n": 2,
+      "mean_selection_delta": 0.023469590847561783
+    },
+    {
+      "target": "Q2",
+      "selected": "logit_bw10_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.046815281246307294
+    },
+    {
+      "target": "Q2",
+      "selected": "logit_bw14_w0.5",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.002790221218997413
+    },
+    {
+      "target": "Q2",
+      "selected": "logit_bw21_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.011139337617221634
+    },
+    {
+      "target": "Q2",
+      "selected": "logit_bw2_w0.4",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.001261994132724098
+    },
+    {
+      "target": "Q2",
+      "selected": "logit_bw5_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.011209788430915468
+    },
+    {
+      "target": "Q2",
+      "selected": "logit_bw60_w0.5",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0014789767816024146
+    },
+    {
+      "target": "Q2",
+      "selected": "prob_bw60_w0.4",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0013152351414676966
+    },
+    {
+      "target": "Q3",
+      "selected": "base",
+      "scope": "global",
+      "n": 16,
+      "mean_selection_delta": 0.0
+    },
+    {
+      "target": "Q3",
+      "selected": "logit_bw60_w0.4",
+      "scope": "global",
+      "n": 5,
+      "mean_selection_delta": 0.003690540880065152
+    },
+    {
+      "target": "Q3",
+      "selected": "logit_bw60_w0.7",
+      "scope": "global",
+      "n": 5,
+      "mean_selection_delta": 0.010477530178344185
+    },
+    {
+      "target": "Q3",
+      "selected": "prob_bw60_w1",
+      "scope": "subject",
+      "n": 5,
+      "mean_selection_delta": 0.0718848040259961
+    },
+    {
+      "target": "Q3",
+      "selected": "logit_bw2_w0.7",
+      "scope": "subject",
+      "n": 2,
+      "mean_selection_delta": 0.0038243157270356765
+    },
+    {
+      "target": "Q3",
+      "selected": "logit_bw2_w1",
+      "scope": "subject",
+      "n": 2,
+      "mean_selection_delta": 0.014756433601008312
+    },
+    {
+      "target": "Q3",
+      "selected": "prob_bw60_w0.7",
+      "scope": "subject",
+      "n": 2,
+      "mean_selection_delta": 0.008668999195775684
+    },
+    {
+      "target": "Q3",
+      "selected": "logit_bw21_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.03258479402293013
+    },
+    {
+      "target": "Q3",
+      "selected": "logit_bw2_w0.4",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0015295521683376112
+    },
+    {
+      "target": "Q3",
+      "selected": "logit_bw2_w0.85",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.005786349128699464
+    },
+    {
+      "target": "Q3",
+      "selected": "logit_bw60_w0.2",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.001857642345160393
+    },
+    {
+      "target": "Q3",
+      "selected": "logit_bw60_w0.3",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0016317848258268208
+    },
+    {
+      "target": "Q3",
+      "selected": "logit_bw60_w0.4",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0017793632711052831
+    },
+    {
+      "target": "Q3",
+      "selected": "logit_bw60_w0.85",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.02635957458026783
+    },
+    {
+      "target": "Q3",
+      "selected": "logit_bw60_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.1088227284286305
+    },
+    {
+      "target": "Q3",
+      "selected": "prob_bw2_w0.5",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0037087107721584522
+    },
+    {
+      "target": "Q3",
+      "selected": "prob_bw2_w0.7",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.002372584187545712
+    },
+    {
+      "target": "Q3",
+      "selected": "prob_bw2_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.024636224294697917
+    },
+    {
+      "target": "Q3",
+      "selected": "prob_bw5_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.09983086330423896
+    },
+    {
+      "target": "Q3",
+      "selected": "prob_bw60_w0.5",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.00553945127285882
+    },
+    {
+      "target": "S1",
+      "selected": "logit_bw60_w1",
+      "scope": "subject",
+      "n": 16,
+      "mean_selection_delta": 0.02205570969032282
+    },
+    {
+      "target": "S1",
+      "selected": "logit_bw60_w0.7",
+      "scope": "global",
+      "n": 8,
+      "mean_selection_delta": 0.0040284935690293455
+    },
+    {
+      "target": "S1",
+      "selected": "prob_bw60_w1",
+      "scope": "subject",
+      "n": 8,
+      "mean_selection_delta": 0.02946937077870586
+    },
+    {
+      "target": "S1",
+      "selected": "logit_bw60_w0.85",
+      "scope": "global",
+      "n": 5,
+      "mean_selection_delta": 0.005430255014515661
+    },
+    {
+      "target": "S1",
+      "selected": "logit_bw60_w0.5",
+      "scope": "global",
+      "n": 4,
+      "mean_selection_delta": 0.002493663842177418
+    },
+    {
+      "target": "S1",
+      "selected": "logit_bw60_w1",
+      "scope": "global",
+      "n": 4,
+      "mean_selection_delta": 0.0168262624190062
+    },
+    {
+      "target": "S1",
+      "selected": "prob_bw2_w1",
+      "scope": "subject",
+      "n": 2,
+      "mean_selection_delta": 0.033708203066796394
+    },
+    {
+      "target": "S1",
+      "selected": "logit_bw45_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0944609676983641
+    },
+    {
+      "target": "S1",
+      "selected": "prob_bw14_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.012739283750694663
+    },
+    {
+      "target": "S1",
+      "selected": "prob_bw60_w0.85",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.011599086086102273
+    },
+    {
+      "target": "S2",
+      "selected": "prob_bw60_w1",
+      "scope": "subject",
+      "n": 10,
+      "mean_selection_delta": 0.030371758906181805
+    },
+    {
+      "target": "S2",
+      "selected": "logit_bw5_w1",
+      "scope": "subject",
+      "n": 7,
+      "mean_selection_delta": 0.014652336399495711
+    },
+    {
+      "target": "S2",
+      "selected": "prob_bw10_w1",
+      "scope": "global",
+      "n": 7,
+      "mean_selection_delta": 0.006975597278247576
+    },
+    {
+      "target": "S2",
+      "selected": "logit_bw10_w1",
+      "scope": "subject",
+      "n": 5,
+      "mean_selection_delta": 0.021161179501854355
+    },
+    {
+      "target": "S2",
+      "selected": "logit_bw10_w1",
+      "scope": "global",
+      "n": 4,
+      "mean_selection_delta": 0.008379520124882078
+    },
+    {
+      "target": "S2",
+      "selected": "logit_bw60_w1",
+      "scope": "subject",
+      "n": 3,
+      "mean_selection_delta": 0.033853821834254415
+    },
+    {
+      "target": "S2",
+      "selected": "prob_bw14_w1",
+      "scope": "subject",
+      "n": 3,
+      "mean_selection_delta": 0.01818822919156149
+    },
+    {
+      "target": "S2",
+      "selected": "logit_bw14_w1",
+      "scope": "subject",
+      "n": 2,
+      "mean_selection_delta": 0.03705097643416666
+    },
+    {
+      "target": "S2",
+      "selected": "logit_bw21_w1",
+      "scope": "subject",
+      "n": 2,
+      "mean_selection_delta": 0.012998934707798837
+    },
+    {
+      "target": "S2",
+      "selected": "logit_bw2_w1",
+      "scope": "subject",
+      "n": 2,
+      "mean_selection_delta": 0.005968668067160732
+    },
+    {
+      "target": "S2",
+      "selected": "logit_bw60_w0.85",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0022999412847801715
+    },
+    {
+      "target": "S2",
+      "selected": "prob_bw10_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.028833773746708036
+    },
+    {
+      "target": "S2",
+      "selected": "prob_bw2_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.002300104256128477
+    },
+    {
+      "target": "S2",
+      "selected": "prob_bw5_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.038028810865088136
+    },
+    {
+      "target": "S2",
+      "selected": "prob_bw60_w0.85",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0029491147023286146
+    },
+    {
+      "target": "S3",
+      "selected": "logit_bw2_w1",
+      "scope": "global",
+      "n": 12,
+      "mean_selection_delta": 0.009220586068991643
+    },
+    {
+      "target": "S3",
+      "selected": "logit_bw5_w1",
+      "scope": "subject",
+      "n": 7,
+      "mean_selection_delta": 0.037566337104567235
+    },
+    {
+      "target": "S3",
+      "selected": "base",
+      "scope": "global",
+      "n": 6,
+      "mean_selection_delta": 0.0
+    },
+    {
+      "target": "S3",
+      "selected": "logit_bw2_w1",
+      "scope": "subject",
+      "n": 5,
+      "mean_selection_delta": 0.009285082835167834
+    },
+    {
+      "target": "S3",
+      "selected": "prob_bw2_w1",
+      "scope": "subject",
+      "n": 4,
+      "mean_selection_delta": 0.008819424593264055
+    },
+    {
+      "target": "S3",
+      "selected": "prob_bw60_w1",
+      "scope": "subject",
+      "n": 4,
+      "mean_selection_delta": 0.06017733270160978
+    },
+    {
+      "target": "S3",
+      "selected": "logit_bw2_w0.85",
+      "scope": "global",
+      "n": 3,
+      "mean_selection_delta": 0.00611501081368665
+    },
+    {
+      "target": "S3",
+      "selected": "logit_bw2_w0.7",
+      "scope": "subject",
+      "n": 2,
+      "mean_selection_delta": 0.0022643426797916977
+    },
+    {
+      "target": "S3",
+      "selected": "logit_bw10_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.026664453355511486
+    },
+    {
+      "target": "S3",
+      "selected": "logit_bw14_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.08927176832778594
+    },
+    {
+      "target": "S3",
+      "selected": "logit_bw5_w0.85",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.005096985128512643
+    },
+    {
+      "target": "S3",
+      "selected": "logit_bw60_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0044340542294160346
+    },
+    {
+      "target": "S3",
+      "selected": "prob_bw10_w0.2",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0013744674722997452
+    },
+    {
+      "target": "S3",
+      "selected": "prob_bw2_w0.3",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.001035941732625334
+    },
+    {
+      "target": "S3",
+      "selected": "prob_bw5_w0.2",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.00119956352764361
+    },
+    {
+      "target": "S4",
+      "selected": "logit_bw10_w0.2",
+      "scope": "global",
+      "n": 8,
+      "mean_selection_delta": 0.002152148612946325
+    },
+    {
+      "target": "S4",
+      "selected": "logit_bw5_w1",
+      "scope": "subject",
+      "n": 6,
+      "mean_selection_delta": 0.07018835188662455
+    },
+    {
+      "target": "S4",
+      "selected": "logit_bw14_w0.3",
+      "scope": "global",
+      "n": 5,
+      "mean_selection_delta": 0.00225649389536553
+    },
+    {
+      "target": "S4",
+      "selected": "logit_bw5_w0.3",
+      "scope": "global",
+      "n": 5,
+      "mean_selection_delta": 0.0022825182014021284
+    },
+    {
+      "target": "S4",
+      "selected": "logit_bw10_w1",
+      "scope": "subject",
+      "n": 4,
+      "mean_selection_delta": 0.053149098057347105
+    },
+    {
+      "target": "S4",
+      "selected": "logit_bw10_w0.3",
+      "scope": "global",
+      "n": 3,
+      "mean_selection_delta": 0.0029646489102070905
+    },
+    {
+      "target": "S4",
+      "selected": "logit_bw2_w1",
+      "scope": "subject",
+      "n": 3,
+      "mean_selection_delta": 0.019834029764939715
+    },
+    {
+      "target": "S4",
+      "selected": "logit_bw5_w0.5",
+      "scope": "subject",
+      "n": 3,
+      "mean_selection_delta": 0.012394529949655952
+    },
+    {
+      "target": "S4",
+      "selected": "logit_bw14_w1",
+      "scope": "subject",
+      "n": 2,
+      "mean_selection_delta": 0.00907820527179326
+    },
+    {
+      "target": "S4",
+      "selected": "logit_bw21_w0.4",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.008910227195347287
+    },
+    {
+      "target": "S4",
+      "selected": "logit_bw21_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0024364785194421756
+    },
+    {
+      "target": "S4",
+      "selected": "logit_bw5_w0.3",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0038683005371135115
+    },
+    {
+      "target": "S4",
+      "selected": "logit_bw5_w0.4",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.009422560239980893
+    },
+    {
+      "target": "S4",
+      "selected": "logit_bw60_w0.4",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.007468787440597313
+    },
+    {
+      "target": "S4",
+      "selected": "prob_bw2_w1",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.04399419102511659
+    },
+    {
+      "target": "S4",
+      "selected": "prob_bw60_w0.2",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.0019210184570083166
+    },
+    {
+      "target": "S4",
+      "selected": "prob_bw60_w0.3",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.005000715539943301
+    },
+    {
+      "target": "S4",
+      "selected": "prob_bw60_w0.4",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.007267366083949733
+    },
+    {
+      "target": "S4",
+      "selected": "prob_bw60_w0.5",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.01072173258956921
+    },
+    {
+      "target": "S4",
+      "selected": "prob_bw60_w0.7",
+      "scope": "subject",
+      "n": 1,
+      "mean_selection_delta": 0.018091924871881493
+    }
+  ]
+}

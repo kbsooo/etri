@@ -1,0 +1,119 @@
+{
+  "target": "S3",
+  "base_log_loss": 0.44310801486290025,
+  "best_source_log_loss": 0.45547703740006734,
+  "sources": [
+    {
+      "name": "s3_temporal_leadlag_knn_resid",
+      "oof": "outputs/s3_temporal_leadlag_on_v40/oof_s3_temporal_leadlag_knn_resid.csv",
+      "submission": "outputs/s3_temporal_leadlag_on_v40/submission_s3_temporal_leadlag_knn_resid.csv",
+      "S3_log_loss": 0.45547703740006734,
+      "fold_log_loss": [
+        0.4036987160190216,
+        0.47807684048408283,
+        0.5163099333399144,
+        0.370289654394054,
+        0.5109507719702672
+      ]
+    },
+    {
+      "name": "s3_temporal_leadlag_knn_logitresid",
+      "oof": "outputs/s3_temporal_leadlag_on_v40/oof_s3_temporal_leadlag_knn_logitresid.csv",
+      "submission": "outputs/s3_temporal_leadlag_on_v40/submission_s3_temporal_leadlag_knn_logitresid.csv",
+      "S3_log_loss": 0.5055272141539687,
+      "fold_log_loss": [
+        0.4226324696980743,
+        0.49061166643425713,
+        0.6242174687145944,
+        0.4158331590447522,
+        0.5790542817187725
+      ]
+    },
+    {
+      "name": "s3_sleep_retrieval_meta",
+      "oof": "outputs/s3_temporal_leadlag_on_v40/oof_s3_sleep_retrieval_meta.csv",
+      "submission": "outputs/s3_temporal_leadlag_on_v40/submission_s3_sleep_retrieval_meta.csv",
+      "S3_log_loss": 0.5106575951433074
+    },
+    {
+      "name": "s3_temporal_leadlag_hgb",
+      "oof": "outputs/s3_temporal_leadlag_on_v40/oof_s3_temporal_leadlag_hgb.csv",
+      "submission": "outputs/s3_temporal_leadlag_on_v40/submission_s3_temporal_leadlag_hgb.csv",
+      "S3_log_loss": 0.6030636186714274,
+      "fold_log_loss": [
+        0.5581951163408648,
+        0.5920505562043055,
+        0.6924719386156891,
+        0.5466388423497706,
+        0.6271637115353685
+      ]
+    },
+    {
+      "name": "s3_temporal_leadlag_knn_label",
+      "oof": "outputs/s3_temporal_leadlag_on_v40/oof_s3_temporal_leadlag_knn_label.csv",
+      "submission": "outputs/s3_temporal_leadlag_on_v40/submission_s3_temporal_leadlag_knn_label.csv",
+      "S3_log_loss": 0.6607045756778457,
+      "fold_log_loss": [
+        0.6023606461635844,
+        0.6550686805229239,
+        0.7084350549409549,
+        0.6533533450532019,
+        0.6884370357897119
+      ]
+    },
+    {
+      "name": "s3_temporal_leadlag_extra",
+      "oof": "outputs/s3_temporal_leadlag_on_v40/oof_s3_temporal_leadlag_extra.csv",
+      "submission": "outputs/s3_temporal_leadlag_on_v40/submission_s3_temporal_leadlag_extra.csv",
+      "S3_log_loss": 0.6672381684580774,
+      "fold_log_loss": [
+        0.6582572672145128,
+        0.6741673378608377,
+        0.6729287959663987,
+        0.6609731586619323,
+        0.6700959423650427
+      ]
+    },
+    {
+      "name": "s3_temporal_leadlag_proto",
+      "oof": "outputs/s3_temporal_leadlag_on_v40/oof_s3_temporal_leadlag_proto.csv",
+      "submission": "outputs/s3_temporal_leadlag_on_v40/submission_s3_temporal_leadlag_proto.csv",
+      "S3_log_loss": 0.7042344752374998,
+      "fold_log_loss": [
+        0.6465638876751318,
+        0.6347291465947404,
+        0.8329616950474863,
+        0.6789972868451918,
+        0.7319362921902157
+      ]
+    },
+    {
+      "name": "s3_temporal_leadlag_logreg",
+      "oof": "outputs/s3_temporal_leadlag_on_v40/oof_s3_temporal_leadlag_logreg.csv",
+      "submission": "outputs/s3_temporal_leadlag_on_v40/submission_s3_temporal_leadlag_logreg.csv",
+      "S3_log_loss": 0.8420472057010809,
+      "fold_log_loss": [
+        0.7455798566226239,
+        0.6932360164954097,
+        1.044022307203475,
+        0.8626144244808818,
+        0.8736465621577231
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v40_synchrony_on_v38/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v40_synchrony_on_v38/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s3_temporal_leadlag_on_v40",
+    "target": "S3",
+    "groups": "temporal_leadlag",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_leadlag": 144
+  }
+}
