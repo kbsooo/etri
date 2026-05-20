@@ -63,6 +63,7 @@ This keeps producing new OOF signal after earlier layers are already strong, and
 | conditional routing v50 state-manifold latent | 0.506657 |
 | conditional routing v51 novelty-burden latent | 0.504393 |
 | conditional routing v52 novelty-recovery latent | 0.502679 |
+| conditional routing v53 integrated state-space latent | 0.500979 |
 
 ## Why This Looks Like A Real Direction
 
@@ -108,14 +109,15 @@ This keeps producing new OOF signal after earlier layers are already strong, and
 - A combined state-manifold source, trained with both transition and recurrence features after v49, still improves to 0.506657. The main residual is Q3, but every target improves. This suggests the transition and recurrence axes should be learned together in the final encoder rather than kept as completely separate feature blocks.
 - Novelty-burden/streak features create another large jump after the state manifold: 0.506657 to 0.504393. The feature asks whether novelty is a one-day event or accumulating over rolling 3/7-day windows. Q2, S4, S1, Q1, and Q3 all respond strongly, which suggests the label-predictive state is not just current novelty but sustained novelty load.
 - Novelty-recovery/regime features add signal after novelty burden: 0.504393 to 0.502679. These features distinguish novelty that is worsening, recovering, or changing regime. S4 and Q1 respond most strongly, with every target still improving. This suggests the final encoder should not only measure novelty load, but also whether the subject is entering or leaving that unusual state.
+- Integrated state-space features still add signal after novelty recovery: 0.502679 to 0.500979. This run trains transition, recurrence, novelty, and novelty-recovery sources together on the v52 residual. Every target improves again, with the strongest residuals in Q3, S4, Q2, and Q1. The key signal is that the useful latent should not treat transition, recurrence, novelty load, and recovery as separate side features; it should learn them as one personal state-space representation.
 
 ## Best Current Breakthrough Candidate
 
-- Bold/best OOF submission: `outputs/conditional_latent_routing_v52_state_novelty_recovery_on_v51/submission_conditional_latent_routing.csv`
-- Bold/best OOF: `0.502679`
-- Bold/best report: `outputs/conditional_latent_routing_v52_state_novelty_recovery_on_v51/report.md`
-- Cleaner/constrained candidate: `outputs/conditional_latent_routing_v52_state_novelty_recovery_on_v51/submission_conditional_latent_routing.csv`
-- Cleaner OOF: `0.502679`
+- Bold/best OOF submission: `outputs/conditional_latent_routing_v53_integrated_state_space_on_v52/submission_conditional_latent_routing.csv`
+- Bold/best OOF: `0.500979`
+- Bold/best report: `outputs/conditional_latent_routing_v53_integrated_state_space_on_v52/report.md`
+- Previous cleaner candidate: `outputs/conditional_latent_routing_v52_state_novelty_recovery_on_v51/submission_conditional_latent_routing.csv`
+- Previous cleaner OOF: `0.502679`
 - Best single-layer lead-lag breakthrough report: `outputs/conditional_latent_routing_v42_leadlag_on_v40/report.md`
 
 Important caveat: v42/v44 are useful as breakthrough-signal probes, but some selected OOF bins have no sample rows. For an upload-style candidate, v43/v45/v46 are cleaner because they require meaningful sample coverage.
@@ -148,6 +150,7 @@ It is closer to residual boosting in latent space:
 - state-manifold latent: transition and recurrence jointly trained as one target-specific source family
 - novelty-burden latent: whether rare states are isolated or accumulating over short rolling windows
 - novelty-recovery latent: whether novelty load is worsening, recovering, or changing short-vs-long regime
+- integrated state-space latent: transition, recurrence, novelty burden, and novelty recovery trained as one residual source family
 
 This is the first run where the encoder route creates a large enough target-level jump to look like a possible main solution path rather than just a marginal add-on.
 
@@ -193,3 +196,4 @@ The pattern repeats across target families:
 - State-manifold update: the newest best score is 0.506657. It improves every target versus v49, especially Q3 (-0.003466), Q2 (-0.001294), S3 (-0.001260), and S1 (-0.001197). This supports building the final Encoder around a joint personal state-space manifold, not a sequence of unrelated handcrafted corrections.
 - Novelty-burden update: the newest best score is 0.504393. It improves every target versus v50, especially Q2 (-0.004463), S4 (-0.003069), S1 (-0.002526), Q1 (-0.002453), and Q3 (-0.002239). The best current Encoder hypothesis is now a personal state-space model with transition, recurrence, and accumulated novelty load.
 - Novelty-recovery update: the newest best score is 0.502679. It improves every target versus v51, especially S4 (-0.003796), Q1 (-0.002853), Q2 (-0.001419), Q3 (-0.001307), and S3 (-0.001291). The strongest current hypothesis is a personal state-space encoder that models transition, recurrence, novelty burden, and novelty recovery/regime.
+- Integrated state-space update: the newest best score is 0.500979. It improves every target versus v52: Q1 (-0.001326), Q2 (-0.002229), Q3 (-0.003335), S1 (-0.001207), S2 (-0.000469), S3 (-0.000642), and S4 (-0.002690). This is the strongest evidence so far that the final encoder should learn one joint personal state-space latent rather than sequentially bolting on separate transition, recurrence, novelty, and recovery features.

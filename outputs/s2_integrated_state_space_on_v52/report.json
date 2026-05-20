@@ -1,0 +1,395 @@
+{
+  "target": "S2",
+  "base_log_loss": 0.47773830206643536,
+  "best_source_log_loss": 0.5295045853715525,
+  "sources": [
+    {
+      "name": "s2_temporal_state_recurrence_knn_resid",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_recurrence_knn_resid.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_recurrence_knn_resid.csv",
+      "S2_log_loss": 0.5295045853715525,
+      "fold_log_loss": [
+        0.5404183505522484,
+        0.6056861009340382,
+        0.46601855837053713,
+        0.46734305639409757,
+        0.5664431071858604
+      ]
+    },
+    {
+      "name": "s2_temporal_state_transition_knn_resid",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_transition_knn_resid.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_transition_knn_resid.csv",
+      "S2_log_loss": 0.5345889507918079,
+      "fold_log_loss": [
+        0.6798003169744686,
+        0.5255969409999007,
+        0.4473127525947272,
+        0.4547013317866565,
+        0.5572306214139875
+      ]
+    },
+    {
+      "name": "s2_sleep_retrieval_meta",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_sleep_retrieval_meta.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_sleep_retrieval_meta.csv",
+      "S2_log_loss": 0.5479473917269793
+    },
+    {
+      "name": "s2_temporal_state_novelty_knn_resid",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_novelty_knn_resid.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_novelty_knn_resid.csv",
+      "S2_log_loss": 0.5711750853769059,
+      "fold_log_loss": [
+        0.7791944005622774,
+        0.5566929100402254,
+        0.4430292181709714,
+        0.5282775340649997,
+        0.5354560979444372
+      ]
+    },
+    {
+      "name": "s2_temporal_state_transition_knn_logitresid",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_transition_knn_logitresid.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_transition_knn_logitresid.csv",
+      "S2_log_loss": 0.5813861572089574,
+      "fold_log_loss": [
+        0.64821112523768,
+        0.5772607917890084,
+        0.5128927415084983,
+        0.4934326876101988,
+        0.6745157376764918
+      ]
+    },
+    {
+      "name": "s2_temporal_state_novelty_knn_logitresid",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_novelty_knn_logitresid.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_novelty_knn_logitresid.csv",
+      "S2_log_loss": 0.6033213615057392,
+      "fold_log_loss": [
+        0.7128087549643154,
+        0.5973697027042134,
+        0.4988526409309955,
+        0.6173061957601267,
+        0.584923987662746
+      ]
+    },
+    {
+      "name": "s2_temporal_state_recurrence_knn_logitresid",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_recurrence_knn_logitresid.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_recurrence_knn_logitresid.csv",
+      "S2_log_loss": 0.6194252753456593,
+      "fold_log_loss": [
+        0.634005508230206,
+        0.6587784516660176,
+        0.5792785169239917,
+        0.5136594425973126,
+        0.7117707826394586
+      ]
+    },
+    {
+      "name": "s2_temporal_state_transition_hgb",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_transition_hgb.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_transition_hgb.csv",
+      "S2_log_loss": 0.6232002730228207,
+      "fold_log_loss": [
+        0.6607263133949861,
+        0.5327480453943336,
+        0.5877549581272642,
+        0.6864362494076177,
+        0.6523840943932131
+      ]
+    },
+    {
+      "name": "s2_temporal_state_novelty_recovery_knn_resid",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_novelty_recovery_knn_resid.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_novelty_recovery_knn_resid.csv",
+      "S2_log_loss": 0.6353714256313149,
+      "fold_log_loss": [
+        0.8910784611782152,
+        0.718682999637891,
+        0.4063584780762368,
+        0.4933949920983665,
+        0.6499043051527045
+      ]
+    },
+    {
+      "name": "s2_temporal_state_novelty_recovery_hgb",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_novelty_recovery_hgb.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_novelty_recovery_hgb.csv",
+      "S2_log_loss": 0.6402757586227419,
+      "fold_log_loss": [
+        0.6990937809477337,
+        0.6694939661622221,
+        0.5571226403797496,
+        0.6185384946366005,
+        0.6541850352392147
+      ]
+    },
+    {
+      "name": "s2_temporal_state_recurrence_hgb",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_recurrence_hgb.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_recurrence_hgb.csv",
+      "S2_log_loss": 0.6421943723257203,
+      "fold_log_loss": [
+        0.6696875399536477,
+        0.5985576484625487,
+        0.5693705057095358,
+        0.6574583547461619,
+        0.7210382907051677
+      ]
+    },
+    {
+      "name": "s2_temporal_state_novelty_hgb",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_novelty_hgb.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_novelty_hgb.csv",
+      "S2_log_loss": 0.65151284333833,
+      "fold_log_loss": [
+        0.7942239870521862,
+        0.5893262009747575,
+        0.5740002612106104,
+        0.6228469510387034,
+        0.6716444909656516
+      ]
+    },
+    {
+      "name": "s2_temporal_state_novelty_recovery_knn_logitresid",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_novelty_recovery_knn_logitresid.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_novelty_recovery_knn_logitresid.csv",
+      "S2_log_loss": 0.6539696319297885,
+      "fold_log_loss": [
+        0.8662596209458904,
+        0.6037150864150099,
+        0.4930080421313378,
+        0.5831311423032024,
+        0.7159263672239292
+      ]
+    },
+    {
+      "name": "s2_temporal_state_novelty_extra",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_novelty_extra.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_novelty_extra.csv",
+      "S2_log_loss": 0.6546128310489376,
+      "fold_log_loss": [
+        0.6647716438691484,
+        0.6591458091275878,
+        0.6443719890271535,
+        0.6838781460664404,
+        0.6193623959466285
+      ]
+    },
+    {
+      "name": "s2_temporal_state_recurrence_knn_label",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_recurrence_knn_label.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_recurrence_knn_label.csv",
+      "S2_log_loss": 0.6600067684443899,
+      "fold_log_loss": [
+        0.6117786112084618,
+        0.5531739365496944,
+        0.6545150592648891,
+        0.6170927898528272,
+        0.8793427348505747
+      ]
+    },
+    {
+      "name": "s2_temporal_state_novelty_recovery_extra",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_novelty_recovery_extra.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_novelty_recovery_extra.csv",
+      "S2_log_loss": 0.6628069465962818,
+      "fold_log_loss": [
+        0.669227927495953,
+        0.6978177652008969,
+        0.628307003478679,
+        0.6861613660907185,
+        0.6307677916620756
+      ]
+    },
+    {
+      "name": "s2_temporal_state_recurrence_extra",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_recurrence_extra.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_recurrence_extra.csv",
+      "S2_log_loss": 0.6751072915060288,
+      "fold_log_loss": [
+        0.6770384291879148,
+        0.6558802243246621,
+        0.6699776437271342,
+        0.6995935520262908,
+        0.6741887666063014
+      ]
+    },
+    {
+      "name": "s2_temporal_state_transition_extra",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_transition_extra.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_transition_extra.csv",
+      "S2_log_loss": 0.6855433276608638,
+      "fold_log_loss": [
+        0.6990989997664857,
+        0.6753129310940826,
+        0.6874082273412584,
+        0.688887610288702,
+        0.6760462591264162
+      ]
+    },
+    {
+      "name": "s2_temporal_state_transition_knn_label",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_transition_knn_label.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_transition_knn_label.csv",
+      "S2_log_loss": 0.6878270407226673,
+      "fold_log_loss": [
+        0.7140834382334512,
+        0.6377632553397161,
+        0.6592546581648303,
+        0.6568338582851344,
+        0.7749800310348502
+      ]
+    },
+    {
+      "name": "s2_temporal_state_recurrence_proto",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_recurrence_proto.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_recurrence_proto.csv",
+      "S2_log_loss": 0.7083683067172916,
+      "fold_log_loss": [
+        0.7261143204030479,
+        0.5537599587263287,
+        0.7530146974176635,
+        0.7128289073422399,
+        0.8035118703280847
+      ]
+    },
+    {
+      "name": "s2_temporal_state_novelty_knn_label",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_novelty_knn_label.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_novelty_knn_label.csv",
+      "S2_log_loss": 0.7257634115390543,
+      "fold_log_loss": [
+        0.7200279407318387,
+        0.9009604562898568,
+        0.6154754678333552,
+        0.6592718352307931,
+        0.7286776659584537
+      ]
+    },
+    {
+      "name": "s2_temporal_state_novelty_proto",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_novelty_proto.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_novelty_proto.csv",
+      "S2_log_loss": 0.7266000265303284,
+      "fold_log_loss": [
+        0.7516270876012452,
+        0.6958481145628509,
+        0.7119293041563575,
+        0.7341278596318946,
+        0.7399143718887499
+      ]
+    },
+    {
+      "name": "s2_temporal_state_transition_proto",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_transition_proto.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_transition_proto.csv",
+      "S2_log_loss": 0.7305129661145523,
+      "fold_log_loss": [
+        0.760125887302445,
+        0.6295086197938907,
+        0.7489852849353155,
+        0.7165747069000021,
+        0.8012284942042873
+      ]
+    },
+    {
+      "name": "s2_temporal_state_novelty_recovery_proto",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_novelty_recovery_proto.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_novelty_recovery_proto.csv",
+      "S2_log_loss": 0.7372862897361597,
+      "fold_log_loss": [
+        0.769970041533241,
+        0.631477744411584,
+        0.7303189236782102,
+        0.7549445583656316,
+        0.8046650037320143
+      ]
+    },
+    {
+      "name": "s2_temporal_state_novelty_recovery_knn_label",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_novelty_recovery_knn_label.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_novelty_recovery_knn_label.csv",
+      "S2_log_loss": 0.7494795943893761,
+      "fold_log_loss": [
+        0.8863092341279377,
+        0.651896425333394,
+        0.6111531418218691,
+        0.7790285250160314,
+        0.8200182531789186
+      ]
+    },
+    {
+      "name": "s2_temporal_state_recurrence_logreg",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_recurrence_logreg.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_recurrence_logreg.csv",
+      "S2_log_loss": 0.8351353526753648,
+      "fold_log_loss": [
+        0.8207713604099798,
+        0.5591885750395464,
+        0.9346403534925897,
+        0.8165426121995746,
+        1.0623623662604604
+      ]
+    },
+    {
+      "name": "s2_temporal_state_transition_logreg",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_transition_logreg.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_transition_logreg.csv",
+      "S2_log_loss": 0.8411652520112181,
+      "fold_log_loss": [
+        0.7062183070354154,
+        0.6808519148419478,
+        1.0174080623572068,
+        0.9524443671952936,
+        0.8629229935379781
+      ]
+    },
+    {
+      "name": "s2_temporal_state_novelty_recovery_logreg",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_novelty_recovery_logreg.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_novelty_recovery_logreg.csv",
+      "S2_log_loss": 0.9005532708796168,
+      "fold_log_loss": [
+        0.639183340986967,
+        0.8869962853383726,
+        0.9878571705681434,
+        1.1462470815228494,
+        0.8624046780793699
+      ]
+    },
+    {
+      "name": "s2_temporal_state_novelty_logreg",
+      "oof": "outputs/s2_integrated_state_space_on_v52/oof_s2_temporal_state_novelty_logreg.csv",
+      "submission": "outputs/s2_integrated_state_space_on_v52/submission_s2_temporal_state_novelty_logreg.csv",
+      "S2_log_loss": 1.0633961889269252,
+      "fold_log_loss": [
+        0.7580031690670866,
+        0.9784607416983648,
+        1.0534716219934657,
+        1.2956782717095974,
+        1.2695255115218023
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v52_state_novelty_recovery_on_v51/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v52_state_novelty_recovery_on_v51/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s2_integrated_state_space_on_v52",
+    "target": "S2",
+    "groups": "temporal_state_transition,temporal_state_recurrence,temporal_state_novelty,temporal_state_novelty_recovery",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_state_transition": 35,
+    "temporal_state_recurrence": 26,
+    "temporal_state_novelty": 533,
+    "temporal_state_novelty_recovery": 385
+  }
+}

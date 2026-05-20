@@ -1,0 +1,395 @@
+{
+  "target": "S1",
+  "base_log_loss": 0.49361110280608883,
+  "best_source_log_loss": 0.5596347110133979,
+  "sources": [
+    {
+      "name": "s1_sleep_retrieval_meta",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_sleep_retrieval_meta.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_sleep_retrieval_meta.csv",
+      "S1_log_loss": 0.5596347110133979
+    },
+    {
+      "name": "s1_temporal_state_transition_knn_resid",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_transition_knn_resid.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_transition_knn_resid.csv",
+      "S1_log_loss": 0.5736104723854778,
+      "fold_log_loss": [
+        0.5183872752338853,
+        0.6604929865706396,
+        0.4851794808855812,
+        0.5929989138176834,
+        0.6161215105767135
+      ]
+    },
+    {
+      "name": "s1_temporal_state_recurrence_knn_resid",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_recurrence_knn_resid.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_recurrence_knn_resid.csv",
+      "S1_log_loss": 0.578904242635614,
+      "fold_log_loss": [
+        0.5822967102918806,
+        0.6726301021554267,
+        0.5145831060054485,
+        0.5398881184868813,
+        0.5824638041781637
+      ]
+    },
+    {
+      "name": "s1_temporal_state_novelty_knn_resid",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_novelty_knn_resid.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_novelty_knn_resid.csv",
+      "S1_log_loss": 0.5805462771071808,
+      "fold_log_loss": [
+        0.5210107011281983,
+        0.6463053187707067,
+        0.5926836183479494,
+        0.5682773310836635,
+        0.5754750787082986
+      ]
+    },
+    {
+      "name": "s1_temporal_state_novelty_recovery_knn_resid",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_novelty_recovery_knn_resid.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_novelty_recovery_knn_resid.csv",
+      "S1_log_loss": 0.5819760823745115,
+      "fold_log_loss": [
+        0.5180055224883824,
+        0.6546227702000599,
+        0.6114291187265134,
+        0.6594949670809307,
+        0.4639683015714665
+      ]
+    },
+    {
+      "name": "s1_temporal_state_recurrence_hgb",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_recurrence_hgb.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_recurrence_hgb.csv",
+      "S1_log_loss": 0.6020903083016805,
+      "fold_log_loss": [
+        0.6017214935193962,
+        0.5652512454670157,
+        0.622162753698703,
+        0.6302215194377342,
+        0.5920929351856864
+      ]
+    },
+    {
+      "name": "s1_temporal_state_recurrence_knn_logitresid",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_recurrence_knn_logitresid.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_recurrence_knn_logitresid.csv",
+      "S1_log_loss": 0.6087986636493538,
+      "fold_log_loss": [
+        0.5937358222840952,
+        0.6462302934680576,
+        0.6320963335185069,
+        0.6040790248414373,
+        0.5650078472325851
+      ]
+    },
+    {
+      "name": "s1_temporal_state_novelty_hgb",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_novelty_hgb.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_novelty_hgb.csv",
+      "S1_log_loss": 0.6093932208300129,
+      "fold_log_loss": [
+        0.610367818030077,
+        0.5812974740717685,
+        0.6238316920046252,
+        0.6962327097815146,
+        0.5343730508545075
+      ]
+    },
+    {
+      "name": "s1_temporal_state_novelty_recovery_hgb",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_novelty_recovery_hgb.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_novelty_recovery_hgb.csv",
+      "S1_log_loss": 0.6200830179111516,
+      "fold_log_loss": [
+        0.6144054511077959,
+        0.5799173370460042,
+        0.6298258146349694,
+        0.7484814577206924,
+        0.5280518734477965
+      ]
+    },
+    {
+      "name": "s1_temporal_state_transition_knn_logitresid",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_transition_knn_logitresid.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_transition_knn_logitresid.csv",
+      "S1_log_loss": 0.6212719521803062,
+      "fold_log_loss": [
+        0.6119669554391414,
+        0.5926367982025393,
+        0.5779135564106701,
+        0.7052943794057444,
+        0.6230845604484121
+      ]
+    },
+    {
+      "name": "s1_temporal_state_transition_hgb",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_transition_hgb.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_transition_hgb.csv",
+      "S1_log_loss": 0.6311814401408267,
+      "fold_log_loss": [
+        0.5873063600012238,
+        0.619377405520039,
+        0.6997810516137509,
+        0.7083981829394764,
+        0.5405188816803104
+      ]
+    },
+    {
+      "name": "s1_temporal_state_novelty_recovery_knn_logitresid",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_novelty_recovery_knn_logitresid.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_novelty_recovery_knn_logitresid.csv",
+      "S1_log_loss": 0.636210310551103,
+      "fold_log_loss": [
+        0.7501091366899963,
+        0.6027863665965804,
+        0.6645483302287206,
+        0.6160949154546308,
+        0.5353384745905274
+      ]
+    },
+    {
+      "name": "s1_temporal_state_novelty_knn_logitresid",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_novelty_knn_logitresid.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_novelty_knn_logitresid.csv",
+      "S1_log_loss": 0.6414604323861974,
+      "fold_log_loss": [
+        0.7539044650418337,
+        0.6236200257600967,
+        0.6210346215032659,
+        0.6523694007680503,
+        0.5457992894266842
+      ]
+    },
+    {
+      "name": "s1_temporal_state_recurrence_knn_label",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_recurrence_knn_label.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_recurrence_knn_label.csv",
+      "S1_log_loss": 0.6416962957511968,
+      "fold_log_loss": [
+        0.5879752892733108,
+        0.6475896239059051,
+        0.6534309184809916,
+        0.7116504292362312,
+        0.6111956974400984
+      ]
+    },
+    {
+      "name": "s1_temporal_state_novelty_recovery_knn_label",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_novelty_recovery_knn_label.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_novelty_recovery_knn_label.csv",
+      "S1_log_loss": 0.6649789939992011,
+      "fold_log_loss": [
+        0.6310443899676327,
+        0.5799261769885904,
+        0.7703000266504456,
+        0.7373956861649041,
+        0.6080869982144463
+      ]
+    },
+    {
+      "name": "s1_temporal_state_novelty_knn_label",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_novelty_knn_label.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_novelty_knn_label.csv",
+      "S1_log_loss": 0.676488935920819,
+      "fold_log_loss": [
+        0.6844646080141904,
+        0.5995920618612427,
+        0.6951519732502329,
+        0.7857381759883472,
+        0.619004268647397
+      ]
+    },
+    {
+      "name": "s1_temporal_state_transition_extra",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_transition_extra.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_transition_extra.csv",
+      "S1_log_loss": 0.6792943753990103,
+      "fold_log_loss": [
+        0.6775020083140112,
+        0.6811845342972225,
+        0.6803910823548867,
+        0.6780635060040336,
+        0.6793374996203932
+      ]
+    },
+    {
+      "name": "s1_temporal_state_recurrence_extra",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_recurrence_extra.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_recurrence_extra.csv",
+      "S1_log_loss": 0.6795286050178663,
+      "fold_log_loss": [
+        0.6640953388092218,
+        0.6819676118466081,
+        0.6770477116349412,
+        0.6733163348320471,
+        0.7031521399071538
+      ]
+    },
+    {
+      "name": "s1_temporal_state_novelty_recovery_extra",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_novelty_recovery_extra.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_novelty_recovery_extra.csv",
+      "S1_log_loss": 0.6823959336967275,
+      "fold_log_loss": [
+        0.66346776025158,
+        0.6694832996037094,
+        0.6536874263768145,
+        0.7708847480798813,
+        0.6576910646217196
+      ]
+    },
+    {
+      "name": "s1_temporal_state_transition_knn_label",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_transition_knn_label.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_transition_knn_label.csv",
+      "S1_log_loss": 0.6831374103101145,
+      "fold_log_loss": [
+        0.6028580426073901,
+        0.6264385107472819,
+        0.6621721066514021,
+        0.9160309770481783,
+        0.6183014222897705
+      ]
+    },
+    {
+      "name": "s1_temporal_state_novelty_extra",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_novelty_extra.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_novelty_extra.csv",
+      "S1_log_loss": 0.68824635888132,
+      "fold_log_loss": [
+        0.6618375221064572,
+        0.6690889569448616,
+        0.6603906895440107,
+        0.7853718531093725,
+        0.6689083398650933
+      ]
+    },
+    {
+      "name": "s1_temporal_state_recurrence_proto",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_recurrence_proto.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_recurrence_proto.csv",
+      "S1_log_loss": 0.6893603450391854,
+      "fold_log_loss": [
+        0.6761544196261344,
+        0.7124705157806714,
+        0.7181645805816258,
+        0.738229552578837,
+        0.5982500005181426
+      ]
+    },
+    {
+      "name": "s1_temporal_state_transition_proto",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_transition_proto.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_transition_proto.csv",
+      "S1_log_loss": 0.7158659010980778,
+      "fold_log_loss": [
+        0.5699145119890158,
+        0.697457593201145,
+        0.7728909723067895,
+        0.8772560023279001,
+        0.6726744423320945
+      ]
+    },
+    {
+      "name": "s1_temporal_state_novelty_recovery_proto",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_novelty_recovery_proto.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_novelty_recovery_proto.csv",
+      "S1_log_loss": 0.7266431150186737,
+      "fold_log_loss": [
+        0.7928224103274676,
+        0.6139537863456379,
+        0.797597818755618,
+        0.7823370051317338,
+        0.6416800409443878
+      ]
+    },
+    {
+      "name": "s1_temporal_state_novelty_proto",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_novelty_proto.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_novelty_proto.csv",
+      "S1_log_loss": 0.7869837404186617,
+      "fold_log_loss": [
+        1.037753889608801,
+        0.6050582182120958,
+        0.788388657420237,
+        0.7834958038846043,
+        0.7056847627864326
+      ]
+    },
+    {
+      "name": "s1_temporal_state_recurrence_logreg",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_recurrence_logreg.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_recurrence_logreg.csv",
+      "S1_log_loss": 0.8073441115711965,
+      "fold_log_loss": [
+        0.7255342294358118,
+        0.7145131679819329,
+        0.7055820604537937,
+        0.9405778458468401,
+        0.9718311396038601
+      ]
+    },
+    {
+      "name": "s1_temporal_state_transition_logreg",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_transition_logreg.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_transition_logreg.csv",
+      "S1_log_loss": 0.8728765883210103,
+      "fold_log_loss": [
+        0.6478707118003431,
+        0.8892587915035395,
+        0.8720805810215315,
+        0.9883451522832728,
+        0.9892891433352043
+      ]
+    },
+    {
+      "name": "s1_temporal_state_novelty_recovery_logreg",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_novelty_recovery_logreg.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_novelty_recovery_logreg.csv",
+      "S1_log_loss": 0.9332436133454535,
+      "fold_log_loss": [
+        0.6395990305804243,
+        0.94066812024367,
+        1.1745799311953724,
+        1.1124560666237273,
+        0.8115976412100343
+      ]
+    },
+    {
+      "name": "s1_temporal_state_novelty_logreg",
+      "oof": "outputs/s1_integrated_state_space_on_v52/oof_s1_temporal_state_novelty_logreg.csv",
+      "submission": "outputs/s1_integrated_state_space_on_v52/submission_s1_temporal_state_novelty_logreg.csv",
+      "S1_log_loss": 1.0807381722853422,
+      "fold_log_loss": [
+        0.6810984320823985,
+        1.1392097786113589,
+        1.1418463743238694,
+        1.0134454969517244,
+        1.4675617476477534
+      ]
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v52_state_novelty_recovery_on_v51/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v52_state_novelty_recovery_on_v51/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/s1_integrated_state_space_on_v52",
+    "target": "S1",
+    "groups": "temporal_state_transition,temporal_state_recurrence,temporal_state_novelty,temporal_state_novelty_recovery",
+    "n_folds": 5,
+    "knn_k": 17,
+    "knn_temp": 1.2
+  },
+  "feature_groups": {
+    "temporal_state_transition": 35,
+    "temporal_state_recurrence": 26,
+    "temporal_state_novelty": 533,
+    "temporal_state_novelty_recovery": 385
+  }
+}

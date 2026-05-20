@@ -4,10 +4,11 @@ Last updated: 2026-05-20
 
 ## Current Best
 
-- Best internal OOF candidate: `outputs/conditional_latent_routing_v52_state_novelty_recovery_on_v51/submission_conditional_latent_routing.csv`
-- Best internal OOF: `0.502679`
+- Best internal OOF candidate: `outputs/conditional_latent_routing_v53_integrated_state_space_on_v52/submission_conditional_latent_routing.csv`
+- Best internal OOF: `0.500979`
 - Main report: `outputs/breakthrough_signal_report.md`
-- Candidate report: `outputs/conditional_latent_routing_v52_state_novelty_recovery_on_v51/report.md`
+- Public LB feedback: `experiments/public_lb_feedback.md`
+- Candidate report: `outputs/conditional_latent_routing_v53_integrated_state_space_on_v52/report.md`
 - Important caveat: this is an internal OOF proxy, not Public LB. Recent Public LB feedback for older submissions was weaker than OOF suggested.
 
 ## What We Are Testing
@@ -44,6 +45,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 | v50 state-manifold latent | 0.506657 | transition + recurrence jointly | `outputs/breakthrough_signal_report.md` |
 | v51 novelty-burden latent | 0.504393 | sustained novelty load | `outputs/breakthrough_signal_report.md` |
 | v52 novelty-recovery latent | 0.502679 | entering/leaving novelty regimes | `outputs/breakthrough_signal_report.md` |
+| v53 integrated state-space latent | 0.500979 | transition + recurrence + novelty + recovery jointly | `outputs/breakthrough_signal_report.md` |
 
 ## What Worked
 
@@ -64,15 +66,15 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 
 - Current implementation: common label-free features plus target-specific source models for `Q1`, `Q2`, `Q3`, `S1`, `S2`, `S3`, `S4`, composed by a conditional target/bin router.
 - Not yet final: one unified neural encoder with seven heads.
-- Strong next direction: build a common personal state-space encoder around transition, recurrence, novelty burden, and recovery, then attach seven label heads or residual heads.
+- Strong next direction: build a common personal state-space encoder around transition, recurrence, novelty burden, and recovery as one joint latent, then attach seven label heads or residual heads.
 
 ## Next 3
 
-1. Re-run the interrupted novelty phase experiment cleanly on top of v52.
-   - Success criterion: any target-level OOF improvement without relying on empty sample bins.
+1. Turn the v53 integrated state-space source into an explicit common encoder artifact.
+   - Success criterion: preserve most of v53's OOF signal while reducing hand-routed source count.
 
-2. Train a consolidated state-space latent source using transition + recurrence + novelty burden + novelty recovery together.
-   - Success criterion: beat v52 or produce a cleaner source that keeps most of v52's gain with fewer routed moves.
+2. Train a consolidated state-space latent source using transition + recurrence + novelty burden + novelty recovery as reconstruction/contrastive objectives, not only tabular source features.
+   - Success criterion: produce a label-predictive latent whose target heads beat or match v53 without relying on many conditional moves.
 
 3. Prototype the actual common encoder + seven-head decoder using the discovered latent axes as inputs and/or reconstruction targets.
    - Success criterion: not necessarily immediate best OOF, but should reproduce the same target-level signals with less hand-routed composition.
