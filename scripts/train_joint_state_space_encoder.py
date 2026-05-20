@@ -295,6 +295,105 @@ def attention_knn_residual(
     return np.clip(pred, EPS, 1.0 - EPS)
 
 
+def neighbor_context_features(
+    ref_z: np.ndarray,
+    query_z: np.ndarray,
+    ref_y: np.ndarray,
+    ref_base: np.ndarray,
+    query_base: np.ndarray,
+    ref_keys: pd.DataFrame,
+    query_keys: pd.DataFrame,
+    metric_weights: np.ndarray | None,
+    k: int,
+    temp: float,
+    exclude_self: bool = False,
+) -> np.ndarray:
+    ref_z = np.clip(np.nan_to_num(ref_z, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    query_z = np.clip(np.nan_to_num(query_z, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    if metric_weights is not None:
+        weights = np.sqrt(np.maximum(metric_weights, 1e-6)).reshape(1, -1)
+        ref_z = ref_z * weights
+        query_z = query_z * weights
+
+    d2 = ((query_z[:, None, :] - ref_z[None, :, :]) ** 2).mean(axis=2)
+    if exclude_self and len(query_z) == len(ref_z):
+        np.fill_diagonal(d2, np.inf)
+    kk = min(k, max(1, ref_z.shape[0] - (1 if exclude_self else 0)))
+    idx = np.argpartition(d2, kk - 1, axis=1)[:, :kk]
+    chosen = np.take_along_axis(d2, idx, axis=1)
+
+    ref_subjects = ref_keys["subject_id"].astype(str).to_numpy()
+    query_subjects = query_keys["subject_id"].astype(str).to_numpy()
+    same_subject = (query_subjects[:, None] == ref_subjects[idx]).astype(float)
+
+    ref_dates = pd.to_datetime(ref_keys["lifelog_date"]).to_numpy(dtype="datetime64[D]")
+    query_dates = pd.to_datetime(query_keys["lifelog_date"]).to_numpy(dtype="datetime64[D]")
+    day_delta = np.abs((query_dates[:, None] - ref_dates[idx]).astype("timedelta64[D]").astype(float))
+    recency = np.exp(-np.clip(day_delta, 0.0, 365.0) / 21.0)
+
+    scale = np.maximum(np.nanmedian(chosen, axis=1, keepdims=True), 1e-6) * temp
+    distance_weight = np.exp(-chosen / scale)
+    distance_weight = distance_weight / np.maximum(distance_weight.sum(axis=1, keepdims=True), 1e-12)
+
+    context_score = -chosen / scale + 0.65 * same_subject + 0.35 * recency
+    context_score = context_score - np.max(context_score, axis=1, keepdims=True)
+    context_weight = np.exp(np.clip(context_score, -50.0, 50.0))
+    context_weight = context_weight / np.maximum(context_weight.sum(axis=1, keepdims=True), 1e-12)
+
+    residual = ref_y - ref_base
+    y_smooth = ref_y * 0.98 + 0.01
+    logit_residual = safe_logit(y_smooth) - safe_logit(ref_base)
+
+    def weighted(values: np.ndarray, weights: np.ndarray) -> np.ndarray:
+        return (weights * values[idx]).sum(axis=1)
+
+    same_mass = (context_weight * same_subject).sum(axis=1)
+    recent_mass = (context_weight * recency).sum(axis=1)
+    close_same_mass = (context_weight * same_subject * (day_delta <= 14.0)).sum(axis=1)
+    far_cross_mass = (context_weight * (1.0 - same_subject) * (day_delta > 28.0)).sum(axis=1)
+
+    dist_min = np.nanmin(chosen, axis=1)
+    dist_mean = np.nanmean(chosen, axis=1)
+    dist_std = np.nanstd(chosen, axis=1)
+    day_mean = (context_weight * np.clip(day_delta, 0.0, 365.0)).sum(axis=1)
+    label_dist = weighted(ref_y, distance_weight)
+    label_ctx = weighted(ref_y, context_weight)
+    resid_dist = weighted(residual, distance_weight)
+    resid_ctx = weighted(residual, context_weight)
+    logit_dist = weighted(logit_residual, distance_weight)
+    logit_ctx = weighted(logit_residual, context_weight)
+    base_ctx = weighted(ref_base, context_weight)
+
+    features = np.column_stack(
+        [
+            query_base,
+            safe_logit(query_base),
+            label_dist,
+            label_ctx,
+            np.clip(query_base + resid_dist, EPS, 1.0 - EPS),
+            np.clip(query_base + resid_ctx, EPS, 1.0 - EPS),
+            sigmoid(safe_logit(query_base) + logit_dist),
+            sigmoid(safe_logit(query_base) + logit_ctx),
+            resid_dist,
+            resid_ctx,
+            logit_dist,
+            logit_ctx,
+            base_ctx,
+            label_ctx - label_dist,
+            same_mass,
+            recent_mass,
+            close_same_mass,
+            far_cross_mass,
+            dist_min,
+            dist_mean,
+            dist_std,
+            1.0 / np.sqrt(np.maximum(dist_mean, 1e-6)),
+            day_mean / 30.0,
+        ]
+    )
+    return np.clip(np.nan_to_num(features, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0).astype(np.float32)
+
+
 def local_decoder_features(
     ref_z: np.ndarray,
     query_z: np.ndarray,
@@ -427,6 +526,10 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_attention_knn_logitresid",
         "joint_metric_attention_knn_resid",
         "joint_metric_attention_knn_logitresid",
+        "joint_neighbor_logreg",
+        "joint_neighbor_hgb",
+        "joint_metric_neighbor_logreg",
+        "joint_metric_neighbor_hgb",
         "joint_local_logreg",
         "joint_local_hgb",
         "joint_proto_mix",
@@ -546,6 +649,42 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                     ),
                 )
             )
+            fit_neighbor = neighbor_context_features(
+                z_fit, z_fit, y_fit, base_fit, base_fit, fit_keys, fit_keys, None, args.knn_k, args.knn_temp, exclude_self=True
+            )
+            val_neighbor = neighbor_context_features(
+                z_fit, z_val, y_fit, base_fit, base_val, fit_keys, val_keys, None, args.knn_k, args.knn_temp
+            )
+            sample_neighbor = neighbor_context_features(
+                z_fit, z_sample, y_fit, base_fit, base_test, fit_keys, sample_keys, None, args.knn_k, args.knn_temp
+            )
+            fit_metric_neighbor = neighbor_context_features(
+                z_fit, z_fit, y_fit, base_fit, base_fit, fit_keys, fit_keys, metric_weights, args.knn_k, args.knn_temp, exclude_self=True
+            )
+            val_metric_neighbor = neighbor_context_features(
+                z_fit, z_val, y_fit, base_fit, base_val, fit_keys, val_keys, metric_weights, args.knn_k, args.knn_temp
+            )
+            sample_metric_neighbor = neighbor_context_features(
+                z_fit, z_sample, y_fit, base_fit, base_test, fit_keys, sample_keys, metric_weights, args.knn_k, args.knn_temp
+            )
+            for method in ("local_logreg", "local_hgb"):
+                suffix = "logreg" if method == "local_logreg" else "hgb"
+                val_pred, sample_pred = fit_local_decoder(method, fit_neighbor, y_fit, val_neighbor, sample_neighbor)
+                source_name = f"joint_neighbor_{suffix}"
+                oof_by_source[source_name][fold.val_idx, target_i] = val_pred
+                sample_folds_by_source[source_name].append((target_i, sample_pred))
+
+                val_pred, sample_pred = fit_local_decoder(
+                    method,
+                    fit_metric_neighbor,
+                    y_fit,
+                    val_metric_neighbor,
+                    sample_metric_neighbor,
+                )
+                source_name = f"joint_metric_neighbor_{suffix}"
+                oof_by_source[source_name][fold.val_idx, target_i] = val_pred
+                sample_folds_by_source[source_name].append((target_i, sample_pred))
+
             fit_local = local_decoder_features(z_fit, z_fit, y_fit, base_fit, base_fit, args.knn_k, args.knn_temp, exclude_self=True)
             val_local = local_decoder_features(z_fit, z_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp)
             sample_local = local_decoder_features(z_fit, z_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp)

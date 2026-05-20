@@ -4,11 +4,11 @@ Last updated: 2026-05-20
 
 ## Current Best
 
-- Best internal OOF candidate: `outputs/conditional_latent_routing_v57_subject_time_attention_on_v56/submission_conditional_latent_routing.csv`
-- Best internal OOF: `0.498600`
+- Best internal OOF candidate: `outputs/conditional_latent_routing_v58_learned_neighbor_scorer_on_v57/submission_conditional_latent_routing.csv`
+- Best internal OOF: `0.498265`
 - Main report: `outputs/breakthrough_signal_report.md`
 - Public LB feedback: `experiments/public_lb_feedback.md`
-- Candidate report: `outputs/conditional_latent_routing_v57_subject_time_attention_on_v56/report.md`
+- Candidate report: `outputs/conditional_latent_routing_v58_learned_neighbor_scorer_on_v57/report.md`
 - Important caveat: this is an internal OOF proxy, not Public LB. Recent Public LB feedback for older submissions was weaker than OOF suggested.
 
 ## What We Are Testing
@@ -50,6 +50,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 | v55 local decoder residual | 0.499526 | similar-day/prototype decoder over common latent | `outputs/breakthrough_signal_report.md` |
 | v56 metric-attention retrieval residual | 0.498945 | target-specific learned similarity metric | `outputs/breakthrough_signal_report.md` |
 | v57 subject/time-aware attention residual | 0.498600 | neighbor attention with same-subject and recency bias | `outputs/breakthrough_signal_report.md` |
+| v58 learned neighbor scorer residual | 0.498265 | learned decoder over distance, subject, recency, and residual-neighbor summaries | `outputs/breakthrough_signal_report.md` |
 
 ## What Worked
 
@@ -62,6 +63,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - The first local decoder over the common latent pushes internal OOF below 0.50, mainly through S4/S1 and smaller broad residuals.
 - Target-specific metric weighting improves retrieval residuals again, so each label appears to need its own notion of "similar day" in the shared state-space.
 - Adding same-subject and temporal recency bias to neighbor attention improves the routed residual again, mainly around S4 mid and smaller Q3/S1 residuals.
+- Learning a small neighbor scorer over latent-distance, same-subject mass, temporal recency, and residual-neighbor summaries adds a new constrained S3 second-half signal.
 
 ## What Failed Or Was Weaker
 
@@ -74,15 +76,15 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 
 - Current implementation: common label-free features plus target-specific source models for `Q1`, `Q2`, `Q3`, `S1`, `S2`, `S3`, `S4`, composed by a conditional target/bin router.
 - Not yet final: one unified neural encoder with seven heads.
-- Strong next direction: keep the common personal state-space encoder and make the decoder explicitly local/retrieval-aware with target-specific learned similarity plus subject/time-aware neighbor weighting.
+- Strong next direction: keep the common personal state-space encoder and make the decoder explicitly local/retrieval-aware with target-specific learned similarity plus subject/time-aware learned neighbor scoring.
 
 ## Next 3
 
 1. Add a contrastive/retrieval objective to the common latent so that similar personal state transitions are close before the decoder applies local neighbor correction.
    - Success criterion: improve S4/S1/S2 residuals without making direct multi-head predictions collapse toward poor global calibration.
 
-2. Replace hand-tuned same-subject/recency attention bonuses with a learned fold-safe neighbor scorer over latent distance, subject relation, and day gap.
-   - Success criterion: beat v57 and keep a constrained confirmation below 0.499.
+2. Turn the neighbor scorer from a post-hoc feature decoder into the latent objective itself: pull together days that have similar target residual behavior while preserving subject/time context.
+   - Success criterion: improve S3/S4/S1 residuals with fewer routed moves and avoid standalone decoder collapse.
 
 3. Prototype the actual common encoder + seven-head decoder using the discovered latent axes as inputs and/or reconstruction targets.
    - Success criterion: not necessarily immediate best OOF, but should reproduce the same target-level signals with less hand-routed composition.
