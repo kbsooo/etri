@@ -184,17 +184,20 @@ def fit_residual_pls_latent(
     apply_x = np.clip(np.nan_to_num(apply_x, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
     sample_x = np.clip(np.nan_to_num(sample_x, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
 
-    residual = np.nan_to_num(residual_fit, nan=0.0, posinf=0.0, neginf=0.0)
+    residual = np.asarray(residual_fit, dtype=float)
+    if residual.ndim == 1:
+        residual = residual.reshape(-1, 1)
+    residual = np.nan_to_num(residual, nan=0.0, posinf=0.0, neginf=0.0)
     residual = residual - np.mean(residual, axis=0, keepdims=True)
     used_pls_dim = min(pls_dim, fit_x.shape[0] - 2, fit_x.shape[1], residual.shape[1])
-    if used_pls_dim >= 2 and np.std(residual) > 1e-8:
+    if used_pls_dim >= 1 and np.std(residual) > 1e-8:
         pls = PLSRegression(n_components=used_pls_dim, scale=False)
         pls.fit(fit_x, residual)
         z_fit = pls.transform(fit_x)
         z_apply = pls.transform(apply_x)
         z_sample = pls.transform(sample_x)
     else:
-        used_pls_dim = min(max(2, pls_dim), fit_x.shape[0] - 1, fit_x.shape[1])
+        used_pls_dim = min(max(1, pls_dim), fit_x.shape[0] - 1, fit_x.shape[1])
         pca = PCA(n_components=used_pls_dim, random_state=SEED)
         z_fit = pca.fit_transform(fit_x)
         z_apply = pca.transform(apply_x)
@@ -668,6 +671,14 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_residual_pls_local_hgb",
         "joint_residual_pls_neighbor_logreg",
         "joint_residual_pls_neighbor_hgb",
+        "joint_q_residual_pls_knn_resid",
+        "joint_q_residual_pls_knn_logitresid",
+        "joint_s_residual_pls_knn_resid",
+        "joint_s_residual_pls_knn_logitresid",
+        "joint_family_residual_pls_knn_resid",
+        "joint_family_residual_pls_knn_logitresid",
+        "joint_target_residual_pls_knn_resid",
+        "joint_target_residual_pls_knn_logitresid",
         "joint_attention_knn_resid",
         "joint_attention_knn_logitresid",
         "joint_metric_attention_knn_resid",
@@ -714,11 +725,37 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             args.max_features,
             args.residual_pls_dim,
         )
+        qrz_fit, qrz_val, qrz_sample, q_residual_meta = fit_residual_pls_latent(
+            fit_x,
+            residual_fit_targets[:, :3],
+            val_x,
+            sample_x,
+            args.max_features,
+            min(args.residual_pls_dim, 3),
+        )
+        srz_fit, srz_val, srz_sample, s_residual_meta = fit_residual_pls_latent(
+            fit_x,
+            residual_fit_targets[:, 3:],
+            val_x,
+            sample_x,
+            args.max_features,
+            min(args.residual_pls_dim, 4),
+        )
         if latent_oof.shape[1] != z_val.shape[1]:
             latent_oof = np.full((len(train), z_val.shape[1]), np.nan, dtype=float)
         latent_oof[fold.val_idx] = z_val
         latent_sample_folds.append(z_sample)
-        meta = {"fold": fold_id, "train_rows": int(len(fold.train_idx)), "valid_rows": int(len(fold.val_idx)), **meta, **residual_meta}
+        meta = {
+            "fold": fold_id,
+            "train_rows": int(len(fold.train_idx)),
+            "valid_rows": int(len(fold.val_idx)),
+            **meta,
+            **residual_meta,
+            "q_residual_pls_dim": q_residual_meta["residual_pls_dim"],
+            "q_residual_latent_dim": q_residual_meta["residual_latent_dim"],
+            "s_residual_pls_dim": s_residual_meta["residual_pls_dim"],
+            "s_residual_latent_dim": s_residual_meta["residual_latent_dim"],
+        }
         fold_meta.append(meta)
 
         for target_i, target in enumerate(TARGET_COLUMNS):
@@ -791,6 +828,45 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             )
             sample_folds_by_source["joint_residual_pls_knn_logitresid"].append(
                 (target_i, weighted_knn_residual(rz_fit, rz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
+            )
+            for source_prefix, family_fit, family_val, family_sample in (
+                ("joint_q_residual_pls", qrz_fit, qrz_val, qrz_sample),
+                ("joint_s_residual_pls", srz_fit, srz_val, srz_sample),
+                ("joint_family_residual_pls", (qrz_fit if target_i < 3 else srz_fit), (qrz_val if target_i < 3 else srz_val), (qrz_sample if target_i < 3 else srz_sample)),
+            ):
+                source_name = f"{source_prefix}_knn_resid"
+                oof_by_source[source_name][fold.val_idx, target_i] = weighted_knn_residual(
+                    family_fit, family_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
+                )
+                sample_folds_by_source[source_name].append(
+                    (target_i, weighted_knn_residual(family_fit, family_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, False))
+                )
+                source_name = f"{source_prefix}_knn_logitresid"
+                oof_by_source[source_name][fold.val_idx, target_i] = weighted_knn_residual(
+                    family_fit, family_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, True
+                )
+                sample_folds_by_source[source_name].append(
+                    (target_i, weighted_knn_residual(family_fit, family_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
+                )
+            trz_fit, trz_val, trz_sample, _ = fit_residual_pls_latent(
+                fit_x,
+                (y_fit.astype(float) - base_fit).reshape(-1, 1),
+                val_x,
+                sample_x,
+                args.max_features,
+                1,
+            )
+            oof_by_source["joint_target_residual_pls_knn_resid"][fold.val_idx, target_i] = weighted_knn_residual(
+                trz_fit, trz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_target_residual_pls_knn_resid"].append(
+                (target_i, weighted_knn_residual(trz_fit, trz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, False))
+            )
+            oof_by_source["joint_target_residual_pls_knn_logitresid"][fold.val_idx, target_i] = weighted_knn_residual(
+                trz_fit, trz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_target_residual_pls_knn_logitresid"].append(
+                (target_i, weighted_knn_residual(trz_fit, trz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
             )
             fit_keys = train.iloc[fold.train_idx][KEY_COLUMNS]
             val_keys = train.iloc[fold.val_idx][KEY_COLUMNS]
