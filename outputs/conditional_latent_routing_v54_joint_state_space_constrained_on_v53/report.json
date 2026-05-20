@@ -1,0 +1,142 @@
+{
+  "base_score": {
+    "avg_log_loss": 0.5009792431397515,
+    "per_target": {
+      "Q1": 0.5433910381012337,
+      "Q2": 0.5510390476041351,
+      "Q3": 0.5193908385842442,
+      "S1": 0.49240361097100427,
+      "S2": 0.4772697839703965,
+      "S3": 0.4297922416895195,
+      "S4": 0.49356814105772756
+    }
+  },
+  "routed_score": {
+    "avg_log_loss": 0.5002588081400984,
+    "per_target": {
+      "Q1": 0.5433910381012337,
+      "Q2": 0.5503399538684368,
+      "Q3": 0.5193908385842442,
+      "S1": 0.49134356048738376,
+      "S2": 0.47651709621071925,
+      "S3": 0.4297922416895195,
+      "S4": 0.4910369280391521
+    }
+  },
+  "selected_moves": [
+    {
+      "target": "Q1",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "Q2",
+      "source": "joint_pls_logreg",
+      "bin": "late",
+      "weight": 0.1,
+      "improvement": 0.0006990937356983196,
+      "lo": 0.666,
+      "hi": 1.000001,
+      "train_rows": 116.0,
+      "sample_rows": 120.0,
+      "base_log_loss": 0.5510390476041351,
+      "log_loss": 0.5503399538684368
+    },
+    {
+      "target": "Q3",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "S1",
+      "source": "joint_pls_knn_resid",
+      "bin": "second_half",
+      "weight": 0.1,
+      "improvement": 0.0010600504836205116,
+      "lo": 0.5,
+      "hi": 1.000001,
+      "train_rows": 159.0,
+      "sample_rows": 193.0,
+      "base_log_loss": 0.49240361097100427,
+      "log_loss": 0.49134356048738376
+    },
+    {
+      "target": "S2",
+      "source": "joint_pls_knn_resid",
+      "bin": "mid",
+      "weight": 0.1,
+      "improvement": 0.0007526877596772397,
+      "lo": 0.333,
+      "hi": 0.666,
+      "train_rows": 100.0,
+      "sample_rows": 130.0,
+      "base_log_loss": 0.4772697839703965,
+      "log_loss": 0.47651709621071925
+    },
+    {
+      "target": "S3",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "S4",
+      "source": "joint_pls_knn_resid",
+      "bin": "all",
+      "weight": 0.1,
+      "improvement": 0.002531213018575451,
+      "lo": 0.0,
+      "hi": 1.000001,
+      "train_rows": 450.0,
+      "sample_rows": 250.0,
+      "base_log_loss": 0.49356814105772756,
+      "log_loss": 0.4910369280391521
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v53_integrated_state_space_on_v52/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v53_integrated_state_space_on_v52/submission_conditional_latent_routing.csv",
+    "source": [
+      "joint_pls_hgb=outputs/joint_state_space_encoder_v54_on_v53/oof_joint_pls_hgb.csv,outputs/joint_state_space_encoder_v54_on_v53/submission_joint_pls_hgb.csv",
+      "joint_pls_knn_logitresid=outputs/joint_state_space_encoder_v54_on_v53/oof_joint_pls_knn_logitresid.csv,outputs/joint_state_space_encoder_v54_on_v53/submission_joint_pls_knn_logitresid.csv",
+      "joint_pls_knn_resid=outputs/joint_state_space_encoder_v54_on_v53/oof_joint_pls_knn_resid.csv,outputs/joint_state_space_encoder_v54_on_v53/submission_joint_pls_knn_resid.csv",
+      "joint_pls_logreg=outputs/joint_state_space_encoder_v54_on_v53/oof_joint_pls_logreg.csv,outputs/joint_state_space_encoder_v54_on_v53/submission_joint_pls_logreg.csv",
+      "joint_pls_ridge=outputs/joint_state_space_encoder_v54_on_v53/oof_joint_pls_ridge.csv,outputs/joint_state_space_encoder_v54_on_v53/submission_joint_pls_ridge.csv"
+    ],
+    "output_dir": "outputs/conditional_latent_routing_v54_joint_state_space_constrained_on_v53",
+    "weights": "0.025,0.05,0.075,0.1",
+    "bins": "first_half:0:0.5,second_half:0.5:1.000001,mid:0.333:0.666,late:0.666:1.000001,all:0:1.000001",
+    "min_train_rows": 50,
+    "min_sample_rows": 40,
+    "min_improvement": 0.0005,
+    "max_moves_per_target": 1,
+    "allow_overlap": false,
+    "targets": "Q1,Q2,Q3,S1,S2,S3,S4",
+    "match_source_prefix": false
+  }
+}

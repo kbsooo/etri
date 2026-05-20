@@ -1,0 +1,140 @@
+{
+  "base_avg_log_loss": 0.5009792431397515,
+  "best_avg_log_loss": 0.5009792431397515,
+  "best_source": "base",
+  "sources": [
+    {
+      "name": "joint_pls_logreg",
+      "oof": "outputs/joint_state_space_encoder_v54_on_v53/oof_joint_pls_logreg.csv",
+      "submission": "outputs/joint_state_space_encoder_v54_on_v53/submission_joint_pls_logreg.csv",
+      "avg_log_loss": 0.7870143847531851,
+      "Q1": 0.785173137624517,
+      "Q2": 0.7794920997714379,
+      "Q3": 0.7820479812702107,
+      "S1": 0.7862527395978055,
+      "S2": 0.7876957127004827,
+      "S3": 0.7979289051995172,
+      "S4": 0.7905101171083249
+    },
+    {
+      "name": "joint_pls_hgb",
+      "oof": "outputs/joint_state_space_encoder_v54_on_v53/oof_joint_pls_hgb.csv",
+      "submission": "outputs/joint_state_space_encoder_v54_on_v53/submission_joint_pls_hgb.csv",
+      "avg_log_loss": 0.7132610697284674,
+      "Q1": 0.7640748494882171,
+      "Q2": 0.7525658756761108,
+      "Q3": 0.7419684095167712,
+      "S1": 0.6754997585820888,
+      "S2": 0.6821624068674904,
+      "S3": 0.6527663022612211,
+      "S4": 0.7237898857073725
+    },
+    {
+      "name": "joint_pls_ridge",
+      "oof": "outputs/joint_state_space_encoder_v54_on_v53/oof_joint_pls_ridge.csv",
+      "submission": "outputs/joint_state_space_encoder_v54_on_v53/submission_joint_pls_ridge.csv",
+      "avg_log_loss": 0.7083166104590614,
+      "Q1": 0.7145295093696542,
+      "Q2": 0.6990450443815686,
+      "Q3": 0.716040469709699,
+      "S1": 0.7135950846098049,
+      "S2": 0.7072885110022211,
+      "S3": 0.707844171122377,
+      "S4": 0.699873483018105
+    },
+    {
+      "name": "joint_pls_knn_resid",
+      "oof": "outputs/joint_state_space_encoder_v54_on_v53/oof_joint_pls_knn_resid.csv",
+      "submission": "outputs/joint_state_space_encoder_v54_on_v53/submission_joint_pls_knn_resid.csv",
+      "avg_log_loss": 0.5662468539516623,
+      "Q1": 0.6031379721066987,
+      "Q2": 0.6301682430645322,
+      "Q3": 0.6168343753003334,
+      "S1": 0.5499047700989856,
+      "S2": 0.5737947168841206,
+      "S3": 0.47233465124777985,
+      "S4": 0.5175532489591861
+    },
+    {
+      "name": "joint_pls_knn_logitresid",
+      "oof": "outputs/joint_state_space_encoder_v54_on_v53/oof_joint_pls_knn_logitresid.csv",
+      "submission": "outputs/joint_state_space_encoder_v54_on_v53/submission_joint_pls_knn_logitresid.csv",
+      "avg_log_loss": 0.6317106900611736,
+      "Q1": 0.6717025545100417,
+      "Q2": 0.7505733677402517,
+      "Q3": 0.6901527052547782,
+      "S1": 0.6086942096373692,
+      "S2": 0.5960448016961942,
+      "S3": 0.5070193142667284,
+      "S4": 0.5977878773228525
+    }
+  ],
+  "fold_meta": [
+    {
+      "fold": 0,
+      "train_rows": 355,
+      "valid_rows": 95,
+      "selected_features": 420,
+      "pca_dim": 32,
+      "pls_dim": 7,
+      "latent_dim": 39
+    },
+    {
+      "fold": 1,
+      "train_rows": 358,
+      "valid_rows": 92,
+      "selected_features": 420,
+      "pca_dim": 32,
+      "pls_dim": 7,
+      "latent_dim": 39
+    },
+    {
+      "fold": 2,
+      "train_rows": 359,
+      "valid_rows": 91,
+      "selected_features": 420,
+      "pca_dim": 32,
+      "pls_dim": 7,
+      "latent_dim": 39
+    },
+    {
+      "fold": 3,
+      "train_rows": 363,
+      "valid_rows": 87,
+      "selected_features": 420,
+      "pca_dim": 32,
+      "pls_dim": 7,
+      "latent_dim": 39
+    },
+    {
+      "fold": 4,
+      "train_rows": 365,
+      "valid_rows": 85,
+      "selected_features": 420,
+      "pca_dim": 32,
+      "pls_dim": 7,
+      "latent_dim": 39
+    }
+  ],
+  "feature_groups": [
+    "temporal_state_transition",
+    "temporal_state_recurrence",
+    "temporal_state_novelty",
+    "temporal_state_novelty_recovery"
+  ],
+  "selected_columns": 594,
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v53_integrated_state_space_on_v52/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v53_integrated_state_space_on_v52/submission_conditional_latent_routing.csv",
+    "output_dir": "outputs/joint_state_space_encoder_v54_on_v53",
+    "groups": "temporal_state_transition,temporal_state_recurrence,temporal_state_novelty,temporal_state_novelty_recovery",
+    "n_folds": 5,
+    "max_features": 420,
+    "pca_dim": 32,
+    "pls_dim": 7,
+    "knn_k": 19,
+    "knn_temp": 1.2
+  }
+}
