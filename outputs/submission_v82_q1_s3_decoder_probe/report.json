@@ -1,0 +1,65 @@
+{
+  "candidate": "outputs/submission_v82_q1_s3_decoder_probe/submission_v82_q1_s3_decoder_probe.csv",
+  "base": "outputs/conditional_latent_routing_v80_late_behavior_on_v79/submission_conditional_latent_routing.csv",
+  "decoder_source": "outputs/conditional_latent_routing_v81_decoder_only_on_v80/submission_conditional_latent_routing.csv",
+  "changed_targets": [
+    "Q1",
+    "S3"
+  ],
+  "shape": [
+    250,
+    10
+  ],
+  "columns": [
+    "subject_id",
+    "sleep_date",
+    "lifelog_date",
+    "Q1",
+    "Q2",
+    "Q3",
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+  ],
+  "nan_count": 0,
+  "min_prob": 0.0117384707623905,
+  "max_prob": 0.9976468370510624,
+  "means": {
+    "Q1": 0.5576330823445781,
+    "Q2": 0.5722912652358054,
+    "Q3": 0.6141982904169457,
+    "S1": 0.6417616831435821,
+    "S2": 0.6299858612843454,
+    "S3": 0.6222068486219364,
+    "S4": 0.5581995484282978
+  },
+  "vs_v80": {
+    "mean_abs_all": 0.008361783149330278,
+    "max_abs": 0.11366248012807556,
+    "per_target_mean_abs": {
+      "Q1": 0.04431745763510785,
+      "Q2": 0.0,
+      "Q3": 0.0,
+      "S1": 0.0,
+      "S2": 0.0,
+      "S3": 0.014215024410204093,
+      "S4": 0.0
+    },
+    "per_target_mean_shift": {
+      "Q1": 0.04025563837753453,
+      "Q2": 0.0,
+      "Q3": 0.0,
+      "S1": 0.0,
+      "S2": 0.0,
+      "S3": 0.008420111887157567,
+      "S4": 0.0
+    }
+  },
+  "oof_report_based": {
+    "v80_avg": 0.4776,
+    "v81_full_router_avg": 0.471378,
+    "q1_s3_only_avg_estimate": 0.47400628571428566,
+    "note": "Q1 and S3 from v81 decoder-only report; other targets from v80 report."
+  }
+}
