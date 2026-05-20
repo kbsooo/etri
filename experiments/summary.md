@@ -4,11 +4,11 @@ Last updated: 2026-05-20
 
 ## Current Best
 
-- Best internal OOF candidate: `outputs/conditional_latent_routing_v79_s23_behavior_on_v78/submission_conditional_latent_routing.csv`
-- Best internal OOF: `0.478230`
+- Best internal OOF candidate: `outputs/conditional_latent_routing_v80_late_behavior_on_v79/submission_conditional_latent_routing.csv`
+- Best internal OOF: `0.477600`
 - Main report: `outputs/breakthrough_signal_report.md`
 - Public LB feedback: `experiments/public_lb_feedback.md`
-- Candidate report: `outputs/conditional_latent_routing_v79_s23_behavior_on_v78/report.md`
+- Candidate report: `outputs/conditional_latent_routing_v80_late_behavior_on_v79/report.md`
 - Important caveat: this is an internal OOF proxy, not Public LB. Recent Public LB feedback for older submissions was weaker than OOF suggested.
 
 ## What We Are Testing
@@ -72,6 +72,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 | v77 residual-behavior neighborhood objective | 0.480038 | residual-neighborhood latent gives standalone Q2/S2/S3 signal and all-source reaches a new best | `outputs/breakthrough_signal_report.md` |
 | v78 family/target residual-neighborhood objective | 0.479449 | splitting residual-behavior neighborhoods by family and target gives stronger standalone behavior-only signal, led by target-local S3 late | `outputs/breakthrough_signal_report.md` |
 | v79 S23/late residual-neighborhood objective | 0.478230 | late-panel target residual-neighborhood latent creates a larger direct breakthrough signal; new S23-only route reaches 0.478445 | `outputs/breakthrough_signal_report.md` |
+| v80 family/cross-family late residual-neighborhood objective | 0.477600 | late-behavior manifold generalizes beyond target-local, with new-late-only route reaching 0.477997 via Q1/S2/S3 moves | `outputs/breakthrough_signal_report.md` |
 
 ## What Worked
 
@@ -106,6 +107,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Training the encoder to predict residual-neighborhood behavior gives the first useful standalone neighborhood-objective signal after v76. Residual-behavior-only improves to 0.480863 using Q2 first-half, S2 mid, and S3 mid moves, while all-source reaches 0.480038 and neural-only reaches 0.480134.
 - Splitting residual-neighborhood behavior by family, cross-family, and target sharpens v77. New-behavior-only reaches 0.479863 and behavior-only reaches 0.479835, led by target-local S3 late plus cross-family S2/S3/S4 moves; all-source reaches 0.479449.
 - Late-panel target residual-neighborhood is a stronger objective than the generic S23 focus alone. The new v79-only route reaches 0.478445 from the v78 base, with large Q1 late and Q3 mid gains plus S1 second-half, S2 first-half, and S3 late moves. This suggests the useful encoder axis is "late residual behavior state" rather than only "S2/S3 residual behavior."
+- Family/cross-family late residual-neighborhood confirms that v79 was not only a target-local artifact. New-late-only reaches 0.477997 from the v79 base, selecting Q1 mid from Q-family late behavior and S2 mid/S3 second-half from cross-family late behavior; all-source reaches 0.477600.
 
 ## What Failed Or Was Weaker
 
@@ -130,12 +132,12 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 
 - Current implementation: common label-free features plus target-specific source models for `Q1`, `Q2`, `Q3`, `S1`, `S2`, `S3`, `S4`, composed by a conditional target/bin router.
 - Not yet final: one unified neural encoder with seven heads.
-- Strong next direction: target-local late residual-neighborhood latent is now the clearest encoder signal. The next step should make a dedicated late-behavior objective that is target-aware but not S23-only, then test whether the Q1/Q3/S1 jumps survive stricter block/sample diagnostics.
+- Strong next direction: late residual-behavior manifold is now the clearest encoder signal. The next step should stress-test it with stricter block/sample-position diagnostics and then train a local objective that separates Q-late and S-late manifolds while preserving cross-family transfer into S2/S3.
 
 ## Next 3
 
-1. Build a dedicated target-late residual-neighborhood objective with Q/S/S23 variants and stricter block/sample weighting.
-   - Success criterion: new-source-only should preserve v79's Q1 late and Q3 mid gains while keeping S2/S3 positive.
+1. Stress-test the late residual-behavior objective with stricter block/sample-position gates and a Q-late/S-late split.
+   - Success criterion: new-late-only should preserve Q1 and S3 gains and keep S2 positive under stricter diagnostics.
 
 2. Turn the neighbor scorer from a post-hoc feature decoder into the latent objective itself: pull together days that have similar target residual behavior while preserving subject/time context.
    - Success criterion: improve S3/S4/S1 residuals with fewer routed moves and avoid standalone decoder collapse.

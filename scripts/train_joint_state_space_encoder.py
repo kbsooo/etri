@@ -1315,6 +1315,18 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_target_late_residual_behavior_neural_knn_logitresid",
         "joint_target_late_residual_behavior_neural_metric_knn_resid",
         "joint_target_late_residual_behavior_neural_metric_knn_logitresid",
+        "joint_late_residual_behavior_neural_knn_resid",
+        "joint_late_residual_behavior_neural_knn_logitresid",
+        "joint_late_residual_behavior_neural_metric_knn_resid",
+        "joint_late_residual_behavior_neural_metric_knn_logitresid",
+        "joint_family_late_residual_behavior_neural_knn_resid",
+        "joint_family_late_residual_behavior_neural_knn_logitresid",
+        "joint_family_late_residual_behavior_neural_metric_knn_resid",
+        "joint_family_late_residual_behavior_neural_metric_knn_logitresid",
+        "joint_cross_family_late_residual_behavior_neural_knn_resid",
+        "joint_cross_family_late_residual_behavior_neural_knn_logitresid",
+        "joint_cross_family_late_residual_behavior_neural_metric_knn_resid",
+        "joint_cross_family_late_residual_behavior_neural_metric_knn_logitresid",
         "joint_neural_mixture_knn_resid",
         "joint_neural_mixture_knn_logitresid",
         "joint_neural_mixture_metric_knn_resid",
@@ -1610,6 +1622,30 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         )
         late_basis = fit_panel_basis[:, [2]]
         mid_basis = fit_panel_basis[:, [1]]
+        late_residual_targets = residual_fit_targets * (1.0 + 2.0 * late_basis)
+        late_panel_residual_targets = np.hstack(
+            [
+                residual_fit_targets * late_basis,
+                residual_fit_targets * np.square(late_basis),
+                residual_fit_targets * mid_basis,
+            ]
+        )
+        q_late_residual_targets = residual_fit_targets[:, :3] * (1.0 + 2.0 * late_basis)
+        s_late_residual_targets = residual_fit_targets[:, 3:] * (1.0 + 2.0 * late_basis)
+        q_late_panel_residual_targets = np.hstack(
+            [
+                residual_fit_targets[:, :3] * late_basis,
+                residual_fit_targets[:, :3] * np.square(late_basis),
+                residual_fit_targets[:, :3] * mid_basis,
+            ]
+        )
+        s_late_panel_residual_targets = np.hstack(
+            [
+                residual_fit_targets[:, 3:] * late_basis,
+                residual_fit_targets[:, 3:] * np.square(late_basis),
+                residual_fit_targets[:, 3:] * mid_basis,
+            ]
+        )
         s23_late_panel_targets = np.hstack(
             [
                 s23_residual_targets * late_basis,
@@ -1627,6 +1663,21 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             s23_late_panel_targets,
             k=max(17, args.knn_k + 12),
         )
+        late_residual_neighbor_targets, late_residual_neighbor_meta = residual_neighborhood_targets(
+            late_residual_targets,
+            late_panel_residual_targets,
+            k=max(23, args.knn_k + 18),
+        )
+        q_late_residual_neighbor_targets, q_late_residual_neighbor_meta = residual_neighborhood_targets(
+            q_late_residual_targets,
+            q_late_panel_residual_targets,
+            k=max(19, args.knn_k + 14),
+        )
+        s_late_residual_neighbor_targets, s_late_residual_neighbor_meta = residual_neighborhood_targets(
+            s_late_residual_targets,
+            s_late_panel_residual_targets,
+            k=max(19, args.knn_k + 14),
+        )
         s23rbnrz_fit, s23rbnrz_val, s23rbnrz_sample, s23_residual_behavior_neural_meta = fit_neural_residual_latent(
             fit_x,
             np.hstack([s23_residual_neighbor_targets, s_residual_neighbor_targets, srz_fit, qsrz_fit]),
@@ -1643,6 +1694,33 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             sample_x,
             args.max_features,
             max(3, min(args.neural_latent_dim, 6)),
+            args.neural_epochs,
+        )
+        lbrnrz_fit, lbrnrz_val, lbrnrz_sample, late_residual_behavior_neural_meta = fit_neural_residual_latent(
+            fit_x,
+            np.hstack([late_residual_neighbor_targets, residual_neighbor_targets, rz_fit, qrz_fit, srz_fit, qsrz_fit]),
+            val_x,
+            sample_x,
+            args.max_features,
+            max(5, min(args.neural_latent_dim, 9)),
+            args.neural_epochs,
+        )
+        qlbrnrz_fit, qlbrnrz_val, qlbrnrz_sample, q_late_residual_behavior_neural_meta = fit_neural_residual_latent(
+            fit_x,
+            np.hstack([q_late_residual_neighbor_targets, q_residual_neighbor_targets, qrz_fit, qsrz_fit]),
+            val_x,
+            sample_x,
+            args.max_features,
+            max(3, min(args.neural_latent_dim, 7)),
+            args.neural_epochs,
+        )
+        slbrnrz_fit, slbrnrz_val, slbrnrz_sample, s_late_residual_behavior_neural_meta = fit_neural_residual_latent(
+            fit_x,
+            np.hstack([s_late_residual_neighbor_targets, s_residual_neighbor_targets, srz_fit, qsrz_fit]),
+            val_x,
+            sample_x,
+            args.max_features,
+            max(4, min(args.neural_latent_dim, 7)),
             args.neural_epochs,
         )
         if latent_oof.shape[1] != z_val.shape[1]:
@@ -1697,6 +1775,18 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             "s23_residual_behavior_neural_best_loss": s23_residual_behavior_neural_meta["neural_best_loss"],
             "s23_late_residual_behavior_neural_latent_dim": s23_late_residual_behavior_neural_meta["neural_latent_dim"],
             "s23_late_residual_behavior_neural_best_loss": s23_late_residual_behavior_neural_meta["neural_best_loss"],
+            "late_residual_neighborhood_target_dim": late_residual_neighbor_meta["residual_neighborhood_target_dim"],
+            "late_residual_neighborhood_mean_distance": late_residual_neighbor_meta["residual_neighborhood_mean_distance"],
+            "q_late_residual_neighborhood_target_dim": q_late_residual_neighbor_meta["residual_neighborhood_target_dim"],
+            "q_late_residual_neighborhood_mean_distance": q_late_residual_neighbor_meta["residual_neighborhood_mean_distance"],
+            "s_late_residual_neighborhood_target_dim": s_late_residual_neighbor_meta["residual_neighborhood_target_dim"],
+            "s_late_residual_neighborhood_mean_distance": s_late_residual_neighbor_meta["residual_neighborhood_mean_distance"],
+            "late_residual_behavior_neural_latent_dim": late_residual_behavior_neural_meta["neural_latent_dim"],
+            "late_residual_behavior_neural_best_loss": late_residual_behavior_neural_meta["neural_best_loss"],
+            "q_late_residual_behavior_neural_latent_dim": q_late_residual_behavior_neural_meta["neural_latent_dim"],
+            "q_late_residual_behavior_neural_best_loss": q_late_residual_behavior_neural_meta["neural_best_loss"],
+            "s_late_residual_behavior_neural_latent_dim": s_late_residual_behavior_neural_meta["neural_latent_dim"],
+            "s_late_residual_behavior_neural_best_loss": s_late_residual_behavior_neural_meta["neural_best_loss"],
         }
         fold_meta.append(meta)
 
@@ -2098,6 +2188,12 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             cross_family_behavior_fit = srbnrz_fit if target_i < 3 else qrbnrz_fit
             cross_family_behavior_val = srbnrz_val if target_i < 3 else qrbnrz_val
             cross_family_behavior_sample = srbnrz_sample if target_i < 3 else qrbnrz_sample
+            family_late_behavior_fit = qlbrnrz_fit if target_i < 3 else slbrnrz_fit
+            family_late_behavior_val = qlbrnrz_val if target_i < 3 else slbrnrz_val
+            family_late_behavior_sample = qlbrnrz_sample if target_i < 3 else slbrnrz_sample
+            cross_family_late_behavior_fit = slbrnrz_fit if target_i < 3 else qlbrnrz_fit
+            cross_family_late_behavior_val = slbrnrz_val if target_i < 3 else qlbrnrz_val
+            cross_family_late_behavior_sample = slbrnrz_sample if target_i < 3 else qlbrnrz_sample
             for source_prefix, behavior_fit, behavior_val, behavior_sample in (
                 ("joint_family_residual_behavior_neural", family_behavior_fit, family_behavior_val, family_behavior_sample),
                 ("joint_cross_family_residual_behavior_neural", cross_family_behavior_fit, cross_family_behavior_val, cross_family_behavior_sample),
@@ -2105,6 +2201,9 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                 ("joint_s23_residual_behavior_neural", s23rbnrz_fit, s23rbnrz_val, s23rbnrz_sample),
                 ("joint_s23_late_residual_behavior_neural", s23lbnrz_fit, s23lbnrz_val, s23lbnrz_sample),
                 ("joint_target_late_residual_behavior_neural", tlbrnrz_fit, tlbrnrz_val, tlbrnrz_sample),
+                ("joint_late_residual_behavior_neural", lbrnrz_fit, lbrnrz_val, lbrnrz_sample),
+                ("joint_family_late_residual_behavior_neural", family_late_behavior_fit, family_late_behavior_val, family_late_behavior_sample),
+                ("joint_cross_family_late_residual_behavior_neural", cross_family_late_behavior_fit, cross_family_late_behavior_val, cross_family_late_behavior_sample),
             ):
                 oof_by_source[f"{source_prefix}_knn_resid"][fold.val_idx, target_i] = weighted_knn_residual(
                     behavior_fit, behavior_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
@@ -2270,6 +2369,9 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                 ("s23_residual_behavior", s23rbnrz_fit, s23rbnrz_val, s23rbnrz_sample),
                 ("s23_late_residual_behavior", s23lbnrz_fit, s23lbnrz_val, s23lbnrz_sample),
                 ("target_late_residual_behavior", tlbrnrz_fit, tlbrnrz_val, tlbrnrz_sample),
+                ("late_residual_behavior", lbrnrz_fit, lbrnrz_val, lbrnrz_sample),
+                ("family_late_residual_behavior", family_late_behavior_fit, family_late_behavior_val, family_late_behavior_sample),
+                ("cross_family_late_residual_behavior", cross_family_late_behavior_fit, cross_family_late_behavior_val, cross_family_late_behavior_sample),
             ]
             scored_views = [
                 (residual_view_alignment_score(view_fit, y_fit - base_fit), view_name, view_fit, view_val, view_sample)

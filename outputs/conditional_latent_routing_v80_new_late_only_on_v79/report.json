@@ -1,0 +1,156 @@
+{
+  "base_score": {
+    "avg_log_loss": 0.47822957626396706,
+    "per_target": {
+      "Q1": 0.5217889094792105,
+      "Q2": 0.5347030792062073,
+      "Q3": 0.49818324689500765,
+      "S1": 0.4679502917981364,
+      "S2": 0.4511645232353582,
+      "S3": 0.40803824797267074,
+      "S4": 0.4657787352611789
+    }
+  },
+  "routed_score": {
+    "avg_log_loss": 0.4779967617028646,
+    "per_target": {
+      "Q1": 0.5211878209599692,
+      "Q2": 0.5346677144453412,
+      "Q3": 0.49818324689500765,
+      "S1": 0.4679502917981364,
+      "S2": 0.45085455936212526,
+      "S3": 0.40735496319829356,
+      "S4": 0.4657787352611789
+    }
+  },
+  "selected_moves": [
+    {
+      "target": "Q1",
+      "source": "joint_family_late_residual_behavior_neural_metric_knn_logitresid",
+      "bin": "mid",
+      "lo": 0.333,
+      "hi": 0.666,
+      "weight": 0.1,
+      "train_rows": 100.0,
+      "sample_rows": 130.0,
+      "base_log_loss": 0.5217889094792105,
+      "log_loss": 0.5211878209599692,
+      "improvement": 0.000601088519241344,
+      "move_index": 1
+    },
+    {
+      "target": "Q2",
+      "source": "joint_family_late_residual_behavior_neural_metric_knn_resid",
+      "bin": "second_half",
+      "lo": 0.5,
+      "hi": 1.000001,
+      "weight": 0.025,
+      "train_rows": 159.0,
+      "sample_rows": 193.0,
+      "base_log_loss": 0.5347030792062073,
+      "log_loss": 0.5346677144453412,
+      "improvement": 3.536476086607454e-05,
+      "move_index": 1
+    },
+    {
+      "target": "Q3",
+      "source": "base",
+      "bin": "all",
+      "lo": NaN,
+      "hi": NaN,
+      "weight": 0.0,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "S1",
+      "source": "base",
+      "bin": "all",
+      "lo": NaN,
+      "hi": NaN,
+      "weight": 0.0,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "S2",
+      "source": "joint_cross_family_late_residual_behavior_neural_metric_knn_resid",
+      "bin": "mid",
+      "lo": 0.333,
+      "hi": 0.666,
+      "weight": 0.15,
+      "train_rows": 100.0,
+      "sample_rows": 130.0,
+      "base_log_loss": 0.4511645232353582,
+      "log_loss": 0.45085455936212526,
+      "improvement": 0.0003099638732329546,
+      "move_index": 1
+    },
+    {
+      "target": "S3",
+      "source": "joint_cross_family_late_residual_behavior_neural_metric_knn_resid",
+      "bin": "second_half",
+      "lo": 0.5,
+      "hi": 1.000001,
+      "weight": 0.2,
+      "train_rows": 159.0,
+      "sample_rows": 193.0,
+      "base_log_loss": 0.40803824797267074,
+      "log_loss": 0.40735496319829356,
+      "improvement": 0.0006832847743771797,
+      "move_index": 1
+    },
+    {
+      "target": "S4",
+      "source": "base",
+      "bin": "all",
+      "lo": NaN,
+      "hi": NaN,
+      "weight": 0.0,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN,
+      "improvement": 0.0,
+      "move_index": 0
+    }
+  ],
+  "args": {
+    "output_dir": "outputs/conditional_latent_routing_v80_new_late_only_on_v79",
+    "source": [
+      "joint_cross_family_late_residual_behavior_neural_knn_logitresid=outputs/joint_state_space_encoder_v80_late_behavior_on_v79/oof_joint_cross_family_late_residual_behavior_neural_knn_logitresid.csv,outputs/joint_state_space_encoder_v80_late_behavior_on_v79/submission_joint_cross_family_late_residual_behavior_neural_knn_logitresid.csv",
+      "joint_cross_family_late_residual_behavior_neural_knn_resid=outputs/joint_state_space_encoder_v80_late_behavior_on_v79/oof_joint_cross_family_late_residual_behavior_neural_knn_resid.csv,outputs/joint_state_space_encoder_v80_late_behavior_on_v79/submission_joint_cross_family_late_residual_behavior_neural_knn_resid.csv",
+      "joint_cross_family_late_residual_behavior_neural_metric_knn_logitresid=outputs/joint_state_space_encoder_v80_late_behavior_on_v79/oof_joint_cross_family_late_residual_behavior_neural_metric_knn_logitresid.csv,outputs/joint_state_space_encoder_v80_late_behavior_on_v79/submission_joint_cross_family_late_residual_behavior_neural_metric_knn_logitresid.csv",
+      "joint_cross_family_late_residual_behavior_neural_metric_knn_resid=outputs/joint_state_space_encoder_v80_late_behavior_on_v79/oof_joint_cross_family_late_residual_behavior_neural_metric_knn_resid.csv,outputs/joint_state_space_encoder_v80_late_behavior_on_v79/submission_joint_cross_family_late_residual_behavior_neural_metric_knn_resid.csv",
+      "joint_family_late_residual_behavior_neural_knn_logitresid=outputs/joint_state_space_encoder_v80_late_behavior_on_v79/oof_joint_family_late_residual_behavior_neural_knn_logitresid.csv,outputs/joint_state_space_encoder_v80_late_behavior_on_v79/submission_joint_family_late_residual_behavior_neural_knn_logitresid.csv",
+      "joint_family_late_residual_behavior_neural_knn_resid=outputs/joint_state_space_encoder_v80_late_behavior_on_v79/oof_joint_family_late_residual_behavior_neural_knn_resid.csv,outputs/joint_state_space_encoder_v80_late_behavior_on_v79/submission_joint_family_late_residual_behavior_neural_knn_resid.csv",
+      "joint_family_late_residual_behavior_neural_metric_knn_logitresid=outputs/joint_state_space_encoder_v80_late_behavior_on_v79/oof_joint_family_late_residual_behavior_neural_metric_knn_logitresid.csv,outputs/joint_state_space_encoder_v80_late_behavior_on_v79/submission_joint_family_late_residual_behavior_neural_metric_knn_logitresid.csv",
+      "joint_family_late_residual_behavior_neural_metric_knn_resid=outputs/joint_state_space_encoder_v80_late_behavior_on_v79/oof_joint_family_late_residual_behavior_neural_metric_knn_resid.csv,outputs/joint_state_space_encoder_v80_late_behavior_on_v79/submission_joint_family_late_residual_behavior_neural_metric_knn_resid.csv",
+      "joint_late_residual_behavior_neural_knn_logitresid=outputs/joint_state_space_encoder_v80_late_behavior_on_v79/oof_joint_late_residual_behavior_neural_knn_logitresid.csv,outputs/joint_state_space_encoder_v80_late_behavior_on_v79/submission_joint_late_residual_behavior_neural_knn_logitresid.csv",
+      "joint_late_residual_behavior_neural_knn_resid=outputs/joint_state_space_encoder_v80_late_behavior_on_v79/oof_joint_late_residual_behavior_neural_knn_resid.csv,outputs/joint_state_space_encoder_v80_late_behavior_on_v79/submission_joint_late_residual_behavior_neural_knn_resid.csv",
+      "joint_late_residual_behavior_neural_metric_knn_logitresid=outputs/joint_state_space_encoder_v80_late_behavior_on_v79/oof_joint_late_residual_behavior_neural_metric_knn_logitresid.csv,outputs/joint_state_space_encoder_v80_late_behavior_on_v79/submission_joint_late_residual_behavior_neural_metric_knn_logitresid.csv",
+      "joint_late_residual_behavior_neural_metric_knn_resid=outputs/joint_state_space_encoder_v80_late_behavior_on_v79/oof_joint_late_residual_behavior_neural_metric_knn_resid.csv,outputs/joint_state_space_encoder_v80_late_behavior_on_v79/submission_joint_late_residual_behavior_neural_metric_knn_resid.csv"
+    ],
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v79_s23_behavior_on_v78/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v79_s23_behavior_on_v78/submission_conditional_latent_routing.csv",
+    "weights": "0.025,0.05,0.075,0.1,0.15,0.2",
+    "bins": "early:0:0.333,mid:0.333:0.666,late_mid:0.666:0.8,tail:0.8:1.000001,late:0.666:1.000001,first_half:0:0.5,second_half:0.5:1.000001,all:0:1.000001",
+    "min_train_rows": 40,
+    "min_sample_rows": 1,
+    "min_improvement": 2e-05,
+    "max_moves_per_target": 2,
+    "allow_overlap": false,
+    "targets": "Q1,Q2,Q3,S1,S2,S3,S4",
+    "match_source_prefix": false
+  }
+}
