@@ -45,12 +45,25 @@ Lower is better.
 - Offline check: the max-entropy public posterior (`outputs/public_lb_pseudolabel_calibration/`) is exact at v76/v18 but **+0.018 optimistic on far candidates** — it predicted v82 at 0.6444 vs the real 0.6629. It predicts v80_base and v81_routed at ~0.644 too, i.e. ~global-mean once the optimism is added. **Do not upload any v80/v81/v82-based file.**
 - **Q1 OOF↔Public LB contradiction (important for future me)**: the v81 stress test honestly showed OOF Q1 +0.019 was real source-recombination (not selection bias). v82's larger Q1 +0.047 still wrecked Public LB. This is NOT a contradiction in the stress test — it is direct evidence that **OOF labels and Public/test labels disagree on Q1 direction**. Stop trusting any OOF-derived Q1 upward signal; treat Q1 moves as Public-LB-unverified by default.
 
-## Next upload candidates (v83, anchored on v76 — `outputs/v83_anchor_candidates/report.md`)
+## Why v80/v82 fail on Public LB: panel-conditional coordinate drift (2026-05-21)
 
-- Built only as tiny controlled perturbations of the v76 best anchor; scored offline by the posterior (trustworthy near v76).
-- **Primary: `submission_C_v76_plus_v18_w050.csv`** = 0.95·v76 + 0.05·v18 (the 2nd-best public anchor). Posterior 0.598588 vs v76 0.599963, drift 0.0044, max-row 0.029. Because BCE is convex in p, a small blend of two good anchors can beat both — a low-risk ensemble bet, not OOF chasing.
-- Secondary: `submission_C_v76_plus_supp_w050.csv` (0.95·v76 + 0.05·sample_support).
-- Rejected: the A_* (v76+tiny-v82) candidates show offline improvement but that is the posterior's optimism toward the quarantined branch, and they raise Q1 (HIGH harm).
+Root cause found (`scripts/build_v83_repaired_v80.py`, `outputs/v83_repaired_v80/`):
+
+- v80 OOF (train) mean ≈ train-label mean — v80 is well-calibrated to TRAIN.
+- But **train labels are panel-conditional**: from early→late panel, Q1 rises 0.49→0.58 and S2/S3 fall. The TEST set is entirely late panel (panel_position mean 0.70 vs train 0.39, min 0.41). So v80's test predictions inherit a systematic late-panel drift: Q up, S1/S3/S2 down.
+- The public-good submissions (v76 0.5999, v18 0.6058) are **flat / not panel-conditional** (Q1≈0.51, S1≈0.69, S3≈0.66). v82 followed v80's panel drift (Q1→0.56, S1/S3 low) and lost. So **train-late label structure does NOT hold on the public test set** — late-panel OOF is therefore a *negative* control, not a scoring oracle.
+- Refined Q1 lesson: it was the Q1 **mean shift** (+0.04) that v82 paid for, NOT the Q1 row-level ordering. With the mean held at v76, adding v80's Q1 row deviation actually helps slightly.
+
+## Repaired-v80 candidates (v83 main objective — `outputs/v83_repaired_v80/report.md`)
+
+- Construction: `repaired_t = sigmoid( logit(v76_row_t) + γ_t · (logit(v80_row_t) − logit_mean(v80_t)) )`. v76 row is the public ruler; add only fraction γ of v80's row-level deviation (the breakthrough), with v80's panel-conditional mean drift removed.
+- γ-sweep result: posterior optimum near γ≈0.10–0.15, ~**−0.002 vs v76** (0.5978 vs 0.5999). The mean-only form (v76 mean + v80 deviation) was rejected by the posterior (0.64, drift 0.10) — v76's row info must be kept.
+- **Honest reading: only ~15% of v80's row deviation is public-aligned; the other ~85% is the panel/coordinate distortion that killed v82. The repaired v80 is a small, real win, NOT a large jump.** A larger jump needs a different hypothesis (a v80-style model trained with public-coordinate priors from the start, or ensembling repaired-v80 with the orthogonal public-good v18), not more squeezing of v80 row signal.
+- **Primary upload: `submission_v83_gq015_gs010.csv`** (Q γ=0.15, S γ=0.10): posterior 0.597813 (−0.0021 vs v76), drift_v76 0.019, max-row 0.151, tail(pp>0.9) disagreement share 0.11 (spread, not tail-concentrated). Q1 mean 0.510 ≤ v76 0.511. Downside bounded (drift 0.019 vs v82's 0.128 — no v82-style blowup possible).
+
+## Earlier diagnostic-only candidates (v83 anchor blends — `outputs/v83_anchor_candidates/report.md`)
+
+- Tiny v76 perturbations kept as diagnostics, not the main objective: `submission_C_v76_plus_v18_w050.csv` (0.95·v76+0.05·v18, posterior 0.598588) and `_supp_w050`. The A_* (v76+v82) candidates are rejected (posterior optimism toward the quarantined branch + Q1 mean up).
 
 ## Practical Calibration Rules
 
