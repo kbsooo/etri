@@ -1,0 +1,76 @@
+{
+  "base_score": {
+    "avg_log_loss": 0.477599712584228,
+    "per_target": {
+      "Q1": 0.5209223509220744,
+      "Q2": 0.534345272567922,
+      "Q3": 0.49769655985185585,
+      "S1": 0.4675256663657894,
+      "S2": 0.44997946498722097,
+      "S3": 0.4070263266456987,
+      "S4": 0.46570234674903455
+    }
+  },
+  "models": {
+    "v81_late_retrieval_hgb": {
+      "avg_log_loss": 0.5396391513850026,
+      "per_target": {
+        "Q1": 0.5415425074094556,
+        "Q2": 0.6359968222075104,
+        "Q3": 0.5828334859775772,
+        "S1": 0.5687890288185223,
+        "S2": 0.5027053114402434,
+        "S3": 0.43349512665230816,
+        "S4": 0.512111777189401
+      }
+    }
+  },
+  "source_features_used": [
+    "joint_cross_family_late_residual_behavior_neural_metric_knn_resid",
+    "joint_family_late_residual_behavior_neural_metric_knn_logitresid",
+    "joint_late_residual_behavior_neural_knn_resid",
+    "joint_neural_multiview_q_residual_knn_resid",
+    "joint_panel_neural_residual_knn_resid",
+    "joint_residual_behavior_neural_knn_resid",
+    "joint_s23_late_residual_behavior_neural_knn_resid",
+    "joint_target_late_residual_behavior_neural_metric_knn_logitresid"
+  ],
+  "ablation": "source_only",
+  "feature_flags": {
+    "panel": false,
+    "base": false,
+    "source": true,
+    "rg_geo": false,
+    "rg_label": false,
+    "rl_geo": false,
+    "rl_label": false
+  },
+  "fold_safety": "Decoder OOF is fold-safe: make_subject_time_folds reused from train_s2_sleep_retrieval_encoder (n_folds=5), identical partition to the v80 encoder; retrieval excludes self by key; the v80 latent is itself a fold-safe OOF latent. NOTE: this only makes the decoder source fold-safe. The downstream conditional router still selects (source, bin, weight) moves on the full train OOF, so prior OOF router selection bias remains and routed scores are optimistic; see outputs/v81_selection_bias_stress_report.md for the selection-free fixed-shrinkage and nested-selection magnitudes.",
+  "outputs": [
+    {
+      "model": "hgb",
+      "source": "v81_late_retrieval_hgb",
+      "oof": "oof_v81_late_retrieval_hgb.csv",
+      "submission": "submission_v81_late_retrieval_hgb.csv"
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "source_dir": "outputs/joint_state_space_encoder_v80_late_behavior_on_v79",
+    "latents_train": "outputs/joint_state_space_encoder_v80_late_behavior_on_v79/joint_state_space_latents_train.parquet",
+    "latents_sample": "outputs/joint_state_space_encoder_v80_late_behavior_on_v79/joint_state_space_latents_sample.parquet",
+    "base_oof": "outputs/conditional_latent_routing_v80_late_behavior_on_v79/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v80_late_behavior_on_v79/submission_conditional_latent_routing.csv",
+    "source_features": "joint_panel_neural_residual_knn_resid,joint_cross_family_late_residual_behavior_neural_metric_knn_resid,joint_family_late_residual_behavior_neural_metric_knn_logitresid,joint_target_late_residual_behavior_neural_metric_knn_logitresid,joint_s23_late_residual_behavior_neural_knn_resid,joint_late_residual_behavior_neural_knn_resid,joint_neural_multiview_q_residual_knn_resid,joint_residual_behavior_neural_knn_resid",
+    "output_dir": "outputs/decoder_v81_ablation_source_only",
+    "folds": 5,
+    "knn_k": 19,
+    "knn_temp": 1.2,
+    "late_threshold": 0.5,
+    "max_delta": 2.5,
+    "seed": 17,
+    "ablation": "source_only",
+    "models": "hgb"
+  }
+}

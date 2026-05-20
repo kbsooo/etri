@@ -214,6 +214,22 @@ def per_target_slice(per_target: np.ndarray, t: int) -> np.ndarray:
     return per_target[:, t * width : (t + 1) * width]
 
 
+# Feature-group flags for ablation. Each ablation toggles which blocks enter the
+# decoder input. `rg`/`rl` = retrieval global/late; `_geo` = target-agnostic
+# geometry, `_label` = per-target neighbor label/residual summaries (incl ctx_pred).
+ABLATIONS: dict[str, dict[str, bool]] = {
+    "full": dict(panel=True, base=True, source=True, rg_geo=True, rg_label=True, rl_geo=True, rl_label=True),
+    "retrieval_only": dict(panel=False, base=False, source=False, rg_geo=True, rg_label=True, rl_geo=True, rl_label=True),
+    "source_only": dict(panel=False, base=False, source=True, rg_geo=False, rg_label=False, rl_geo=False, rl_label=False),
+    "panel_only": dict(panel=True, base=False, source=False, rg_geo=False, rg_label=False, rl_geo=False, rl_label=False),
+    "base_only": dict(panel=False, base=True, source=False, rg_geo=False, rg_label=False, rl_geo=False, rl_label=False),
+    "no_late": dict(panel=True, base=True, source=True, rg_geo=True, rg_label=True, rl_geo=False, rl_label=False),
+    # advisor: discriminate Q1 source. geo_only keeps geometry, drops neighbor labels.
+    "retrieval_geo_only": dict(panel=True, base=True, source=True, rg_geo=True, rg_label=False, rl_geo=True, rl_label=False),
+    "no_retrieval": dict(panel=True, base=True, source=True, rg_geo=False, rg_label=False, rl_geo=False, rl_label=False),
+}
+
+
 def build_target_features(
     t: int,
     panel: np.ndarray,
@@ -223,19 +239,28 @@ def build_target_features(
     per_global: np.ndarray,
     geo_late: np.ndarray,
     per_late: np.ndarray,
+    flags: dict[str, bool],
 ) -> np.ndarray:
-    """Assemble the decoder input matrix for one target."""
+    """Assemble the decoder input matrix for one target, honoring ablation flags."""
     base_t = base[:, t]
-    block = [
-        panel,
-        source_feats,  # already per-target logit residuals (see prepare_source_features)
-        base_t[:, None],
-        safe_logit(np.clip(base_t, EPS, 1.0 - EPS))[:, None],
-        geo_global,
-        per_target_slice(per_global, t),
-        geo_late,
-        per_target_slice(per_late, t),
-    ]
+    block: list[np.ndarray] = []
+    if flags["panel"]:
+        block.append(panel)
+    if flags["source"] and source_feats.shape[1] > 0:
+        block.append(source_feats)  # already per-target logit residuals vs base
+    if flags["base"]:
+        block.append(base_t[:, None])
+        block.append(safe_logit(np.clip(base_t, EPS, 1.0 - EPS))[:, None])
+    if flags["rg_geo"]:
+        block.append(geo_global)
+    if flags["rg_label"]:
+        block.append(per_target_slice(per_global, t))
+    if flags["rl_geo"]:
+        block.append(geo_late)
+    if flags["rl_label"]:
+        block.append(per_target_slice(per_late, t))
+    if not block:  # safety: never hand an empty matrix to the estimator
+        block = [np.zeros((len(base_t), 1), dtype=float)]
     return np.nan_to_num(np.column_stack(block), nan=0.0, posinf=0.0, neginf=0.0).astype(np.float64)
 
 
@@ -355,10 +380,19 @@ def build(args: argparse.Namespace) -> None:
     n_sample = len(sample)
     folds = make_subject_time_folds(train, args.folds)
 
-    all_models = list(REGRESSOR_MODELS) + list(LABEL_MODELS)
+    if args.ablation not in ABLATIONS:
+        raise ValueError(f"Unknown --ablation {args.ablation}; choices: {sorted(ABLATIONS)}")
+    flags = ABLATIONS[args.ablation]
+    requested_models = [m.strip() for m in args.models.split(",") if m.strip()]
+    active_regressors = [m for m in REGRESSOR_MODELS if m in requested_models]
+    active_labels = [m for m in LABEL_MODELS if m in requested_models]
+    all_models = active_regressors + active_labels
+    if not all_models:
+        raise ValueError(f"No valid --models among {requested_models}")
+    print(f"ablation={args.ablation} flags={flags} models={all_models}")
     oof_pred = {m: base_train.copy() for m in all_models}
-    sample_delta_accum = {m: np.zeros((n_sample, len(TARGET_COLUMNS))) for m in REGRESSOR_MODELS}
-    sample_proba_accum = {m: np.zeros((n_sample, len(TARGET_COLUMNS))) for m in LABEL_MODELS}
+    sample_delta_accum = {m: np.zeros((n_sample, len(TARGET_COLUMNS))) for m in active_regressors}
+    sample_proba_accum = {m: np.zeros((n_sample, len(TARGET_COLUMNS))) for m in active_labels}
 
     late_thr = args.late_threshold
 
@@ -396,9 +430,9 @@ def build(args: argparse.Namespace) -> None:
             sf_val = stack_source_features(source_feats, available_sources, "train", t, base_logit_train[val_idx, t], rows=val_idx)
             sf_smp = stack_source_features(source_feats, available_sources, "sample", t, base_logit_sample[:, t], rows=None)
 
-            x_fit = build_target_features(t, panel_train[fit_idx], base_train[fit_idx], sf_fit, geo_g_fit, per_g_fit, geo_l_fit, per_l_fit)
-            x_val = build_target_features(t, panel_train[val_idx], base_train[val_idx], sf_val, geo_g_val, per_g_val, geo_l_val, per_l_val)
-            x_smp = build_target_features(t, panel_sample, base_sample, sf_smp, geo_g_smp, per_g_smp, geo_l_smp, per_l_smp)
+            x_fit = build_target_features(t, panel_train[fit_idx], base_train[fit_idx], sf_fit, geo_g_fit, per_g_fit, geo_l_fit, per_l_fit, flags)
+            x_val = build_target_features(t, panel_train[val_idx], base_train[val_idx], sf_val, geo_g_val, per_g_val, geo_l_val, per_l_val, flags)
+            x_smp = build_target_features(t, panel_sample, base_sample, sf_smp, geo_g_smp, per_g_smp, geo_l_smp, per_l_smp, flags)
 
             resid_fit = residual_target(y_train[fit_idx, t], base_train[fit_idx, t])
 
@@ -409,7 +443,7 @@ def build(args: argparse.Namespace) -> None:
             x_val_s = scaler.transform(imputer.transform(x_val))
             x_smp_s = scaler.transform(imputer.transform(x_smp))
 
-            for model in REGRESSOR_MODELS:
+            for model in active_regressors:
                 est = make_regressor(model, args.seed + t)
                 if model == "ridge":
                     est.fit(x_fit_s, resid_fit)
@@ -424,25 +458,27 @@ def build(args: argparse.Namespace) -> None:
                 oof_pred[model][val_idx, t] = sigmoid(base_logit_train[val_idx, t] + d_val)
                 sample_delta_accum[model][:, t] += d_smp
 
-            # contrast: a label-classifier decoder over the same features
-            est = LogisticRegression(C=0.5, max_iter=4000)
-            if len(np.unique(y_train[fit_idx, t])) < 2:
-                p_val = np.full(len(val_idx), float(y_train[fit_idx, t].mean()))
-                p_smp = np.full(n_sample, float(y_train[fit_idx, t].mean()))
-            else:
-                est.fit(x_fit_s, y_train[fit_idx, t])
-                p_val = est.predict_proba(x_val_s)[:, 1]
-                p_smp = est.predict_proba(x_smp_s)[:, 1]
-            oof_pred["logreg"][val_idx, t] = np.clip(p_val, EPS, 1 - EPS)
-            sample_proba_accum["logreg"][:, t] += p_smp
+            if "logreg" in active_labels:
+                # contrast: a label-classifier decoder over the same features
+                est = LogisticRegression(C=0.5, max_iter=4000)
+                if len(np.unique(y_train[fit_idx, t])) < 2:
+                    p_val = np.full(len(val_idx), float(y_train[fit_idx, t].mean()))
+                    p_smp = np.full(n_sample, float(y_train[fit_idx, t].mean()))
+                else:
+                    est.fit(x_fit_s, y_train[fit_idx, t])
+                    p_val = est.predict_proba(x_val_s)[:, 1]
+                    p_smp = est.predict_proba(x_smp_s)[:, 1]
+                oof_pred["logreg"][val_idx, t] = np.clip(p_val, EPS, 1 - EPS)
+                sample_proba_accum["logreg"][:, t] += p_smp
         print(f"fold {fold_i}/{len(folds)} done")
 
     # assemble sample predictions
     sample_pred = {}
-    for model in REGRESSOR_MODELS:
+    for model in active_regressors:
         mean_delta = sample_delta_accum[model] / len(folds)
         sample_pred[model] = np.clip(sigmoid(base_logit_sample + mean_delta), EPS, 1 - EPS)
-    sample_pred["logreg"] = np.clip(sample_proba_accum["logreg"] / len(folds), EPS, 1 - EPS)
+    for model in active_labels:
+        sample_pred[model] = np.clip(sample_proba_accum[model] / len(folds), EPS, 1 - EPS)
 
     # score + write source outputs
     output_dir = Path(args.output_dir)
@@ -475,7 +511,18 @@ def build(args: argparse.Namespace) -> None:
             if r["name"] != "v80_base"
         },
         "source_features_used": available_sources,
-        "fold_safety": "make_subject_time_folds reused from train_s2_sleep_retrieval_encoder (n_folds=5) — identical partition to the v80 encoder; self excluded by key in retrieval.",
+        "ablation": args.ablation,
+        "feature_flags": flags,
+        "fold_safety": (
+            "Decoder OOF is fold-safe: make_subject_time_folds reused from "
+            "train_s2_sleep_retrieval_encoder (n_folds=5), identical partition to the v80 "
+            "encoder; retrieval excludes self by key; the v80 latent is itself a fold-safe OOF "
+            "latent. NOTE: this only makes the decoder source fold-safe. The downstream "
+            "conditional router still selects (source, bin, weight) moves on the full train OOF, "
+            "so prior OOF router selection bias remains and routed scores are optimistic; see "
+            "outputs/v81_selection_bias_stress_report.md for the selection-free fixed-shrinkage "
+            "and nested-selection magnitudes."
+        ),
         "outputs": written,
         "args": vars(args),
     }
@@ -526,6 +573,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--late-threshold", type=float, default=0.5)
     parser.add_argument("--max-delta", type=float, default=2.5)
     parser.add_argument("--seed", type=int, default=17)
+    parser.add_argument("--ablation", default="full", choices=sorted(ABLATIONS), help="Feature-group ablation preset.")
+    parser.add_argument("--models", default="ridge,hgb,extratrees,logreg", help="Comma list of decoder models to train.")
     return parser.parse_args()
 
 

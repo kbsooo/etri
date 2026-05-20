@@ -11,7 +11,7 @@ Last updated: 2026-05-20
 - Candidate report: `outputs/conditional_latent_routing_v81_decoder_only_on_v80/report.md`
 - Decoder run: `outputs/decoder_v81_late_retrieval_on_v80/report.md`
 - Important caveat: this is an internal OOF proxy, not Public LB. Recent Public LB feedback for older submissions was weaker than OOF suggested.
-- Size caveat: the v81 jump (0.477600 -> 0.471378, -0.006222) is ~4x any prior single-version jump. It survives every leakage check (fold-safe OOF decoder, key self-exclusion, encoder-aligned fold partition, fold-safe OOF latents), and the per-target deltas sum to the observed gain, so it is real OOF signal — but it is unverified on Public LB and the gain comes almost entirely from one nonlinear decoder source (`v81_hgb`), so it must be packaged conservatively before any upload.
+- Size/bias caveat: the v81 routed jump (0.477600 -> 0.471378) is **fold-safe in the decoder but optimistic in the router**. Stress test (`outputs/v81_selection_bias_stress_report.md`): the conditional router selects (source, bin, weight) on full-train OOF, contributing **+0.0034 of selection bias**; nested-router selection (scored out-of-fold) reaches only `0.474428` (-0.0032 vs base). Selection-free uniform fixed shrinkage reaches `0.472080` (full, s=0.25). The honest, nested-validated per-target gains are Q1 (-0.019) and S3 (-0.006) with a tiny S2; Q3/S1/S4 routed gains were selection bias. Unverified on Public LB.
 
 ## What We Are Testing
 
@@ -137,7 +137,15 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Decoder-only routing improves the v80 base from 0.477600 to **0.471378** (-0.006222) and improves all seven targets (Q1 -0.0191, S3 -0.0061, Q2 -0.0048, S4 -0.0038, S2 -0.0036, Q3 -0.0036, S1 -0.0026).
 - The gain is almost entirely from `v81_hgb`, the HistGradientBoosting residual decoder. Ridge/logreg/extratrees are weak or neutral, exactly as expected: the router already approximates linear target/bin blending, so the only new signal is the nonlinear interaction of retrieval summaries x panel x base that a tree can represent and the router cannot.
 - All-source routing (v81 decoders + the v80 source pool) equals decoder-only at 0.471378 and selects only `v81_hgb`/`v81_logreg`. The decoder absorbs the entire v80 source pool — strong evidence that a learned nonlinear residual decoder, not a hand router over many raw KNN sources, is the right consolidation.
-- Leakage status: verified clean. Fold partition matches the v80 encoder (same `make_subject_time_folds`, n_folds=5); retrieval excludes self by key; the decoder OOF is fold-safe (fit on fit_idx, predict val_idx); the v80 source-pred features are fold-safe under the matched partition; and the latent itself is a fold-safe OOF latent (`latent_oof[fold.val_idx] = z_val`, PCA/PLS fit on fit pool only). The per-target deltas sum to the observed jump, so it is not a move-chaining artifact.
+- Leakage status: **fold-safe decoder, but prior OOF router selection bias remains.** The decoder OOF is genuinely fold-safe (matched `make_subject_time_folds` n_folds=5, key-based self-exclusion, fold-safe OOF latent with PCA/PLS fit on fit pool only). But the routed 0.471378 is produced by the conditional router selecting (source, bin, weight) on full-train OOF, which sees train labels. That selection is optimistic and was NOT held out.
+
+### v81 stress test (`outputs/v81_selection_bias_stress_report.md`, `analysis/v81_selection_bias_stress.py`)
+
+- Router selection bias = **+0.0034**: train-selected (in-sample) router 0.471070 vs nested router (select on outer-train, score on outer-val) 0.474428. The nested-validated gain vs base is only -0.0032.
+- Selection-free uniform fixed shrinkage (one global weight, all rows/targets) reaches 0.472080 (full, s=0.25), so ~0.0055 of the gain is real and selection-free; the rest is router selection.
+- Nested per-target honest gains: Q1 -0.0191, S3 -0.0058, S2 -0.0007. Q3 (+0.0029 worse), S1 (+0.0022 worse), S4 (+0.0005 worse) — those routed gains were selection bias and do NOT survive out-of-fold selection.
+- Q1 0.019 attribution: it is **v80 source-prediction recombination, not neighbor-label smoothing**. retrieval_only (geometry + neighbor labels, no source/panel/base) gives Q1 +0.0003 (~no signal); no_retrieval (source-preds + panel + base, no retrieval) gives Q1 +0.0316, exceeding the full decoder. The HGB simply recombines the v80 source predictions nonlinearly in a way the linear router cannot.
+- **The retrieval features are net harmful**: fixed-shrinkage avg gain is full -0.0055 < no_retrieval -0.0079 < no_late -0.0099. The late-pool retrieval especially overfits the HGB. The next decoder should drop retrieval (or keep only geometry) and lean on source-pred recombination.
 
 ## Current Architecture Status
 
@@ -147,11 +155,11 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 
 ## Next 3
 
-1. Make the HGB residual decoder self-gating: have it (or a small companion gate) predict the per-target/panel weight directly, removing the dependence on the conditional router's manual weight sweep.
-   - Success criterion: match or beat 0.471378 decoder-only with the decoder applying its own weights, no external router.
+1. Build the v82 decoder around source-prediction recombination, not retrieval. The stress test shows no_retrieval (source-preds + panel + base) and no_late beat the full retrieval decoder under selection-free fixed shrinkage; retrieval (esp. late-pool) overfits the HGB. Use the broader v80 source pool as HGB inputs and drop the neighbor-label retrieval summaries (keep at most geometry).
+   - Success criterion: beat the full v81 nested-router score (0.474428) and the selection-free fixed-shrinkage floor (0.472080) using a retrieval-free decoder, validated with nested selection.
 
-2. Public-LB-aware packaging of v81 before any other OOF chasing: conservatively blend the v81 decoder-only prediction toward the v76/public-anchor family and check prediction distance / per-target / panel / subject drift, since the 0.006 OOF jump is unverified and concentrated in one source.
-   - Success criterion: a packaged candidate that is defensible vs the v76 anchor under the public_lb_feedback robustness checks.
+2. Make nested selection (or fixed uniform shrinkage) the standard evaluation, not full-train router selection. Report the nested score alongside the train-selected score for every future candidate so the router selection bias (~0.0034 here) is always visible.
+   - Success criterion: a routing/eval script that emits the out-of-fold-selected score by default.
 
-3. Ablate the v81 decoder feature groups (latent retrieval summaries vs late-pool summaries vs v80 source preds vs panel basis) to confirm which group carries the HGB gain and whether the late-pool retrieval is doing real work.
-   - Success criterion: identify the minimal feature set that preserves most of the -0.006 gain, to harden the decoder against overfitting.
+3. Public-LB-aware packaging of the honest v81 signal (Q1 + S3 only): conservatively blend the nested-validated Q1/S3 corrections toward the v76/public-anchor family; do not ship the Q3/S1/S4 routed moves, which were selection bias.
+   - Success criterion: a packaged candidate defensible vs the v76 anchor under the public_lb_feedback robustness checks, changing predictions only where the nested test confirmed signal.
