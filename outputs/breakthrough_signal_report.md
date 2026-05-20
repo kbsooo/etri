@@ -84,6 +84,7 @@ This keeps producing new OOF signal after earlier layers are already strong. The
 | conditional routing v71 learned view-gate probe | 0.484026 |
 | conditional routing v72 bin-aware view-gate probe | 0.483657 |
 | conditional routing v73 sample-conditioned context gate | 0.483097 |
+| conditional routing v74 panel-bin context gate | 0.482206 |
 
 ## Why This Looks Like A Real Direction
 
@@ -150,14 +151,15 @@ This keeps producing new OOF signal after earlier layers are already strong. The
 - A learned view-gate probe improves the v70 base from 0.485258 to 0.484026 in the all-source route, and neural-only routing reaches 0.484048. The learned-gate-only route selects no moves, so the breakthrough signal is not the first positive ridge gate itself. The signal is that re-training the neural residual-view family on the v70 residual still finds broad new Q1/S1/S2/S3 corrections, especially Q1 first-half, S1 late/mid, S2 first-half, and S3 late/mid.
 - A bin-aware view-gate probe improves the v71 base from 0.484026 to 0.483657 in the all-source route, while neural-only reaches 0.483815 and bin-gate-only is neutral. The repeated signal is again source-wise rather than unified-gate: Q2 late cross-family neural, S3 mid neighbor, S4 mid neighbor plus late cross-family PLS, and smaller Q1/Q3/S2 corrections.
 - A sample-conditioned context gate improves the v72 base from 0.483657 to 0.483097 in the all-source route. Context-gate-only is only 0.483645, but it is the first gate variant to select a nonzero standalone move: S3 mid from `joint_neural_context_gate_hgb_resid`. The useful all-source moves remain mostly source-wise: Q3 mid/late neural, Q2 late cross-family neural, S3 mid neighbor plus late prototype neural, and Q1/S4 PLS residuals.
+- A panel-bin context gate improves the v73 base from 0.483097 to 0.482206 in the all-source route. Gate-only reaches 0.483017 and now selects multiple targets: Q1/Q2 second-half, S3 second-half, and S4 second-half. Neural-only is almost identical to all-source at 0.482220, so source-wise neural residual routing remains the main signal, but local context gating is now a real auxiliary.
 
 ## Best Current Breakthrough Candidate
 
-- Bold/best OOF submission: `outputs/conditional_latent_routing_v73_context_gate_on_v72/submission_conditional_latent_routing.csv`
-- Bold/best OOF: `0.483097`
-- Bold/best report: `outputs/conditional_latent_routing_v73_context_gate_on_v72/report.md`
-- Cleaner/neural-only OOF candidate: `outputs/conditional_latent_routing_v73_neural_only_on_v72/submission_conditional_latent_routing.csv`
-- Cleaner/neural-only OOF: `0.483267`
+- Bold/best OOF submission: `outputs/conditional_latent_routing_v74_context_bin_gate_on_v73/submission_conditional_latent_routing.csv`
+- Bold/best OOF: `0.482206`
+- Bold/best report: `outputs/conditional_latent_routing_v74_context_bin_gate_on_v73/report.md`
+- Cleaner/neural-only OOF candidate: `outputs/conditional_latent_routing_v74_neural_only_on_v73/submission_conditional_latent_routing.csv`
+- Cleaner/neural-only OOF: `0.482220`
 - Best single-layer lead-lag breakthrough report: `outputs/conditional_latent_routing_v42_leadlag_on_v40/report.md`
 
 Important caveat: v42/v44 are useful as breakthrough-signal probes, but some selected OOF bins have no sample rows. For an upload-style candidate, v43/v45/v46 are cleaner because they require meaningful sample coverage.
@@ -206,6 +208,7 @@ It is closer to residual boosting in latent space:
 - learned positive ridge view gate: neutral as a standalone source; useful next direction is sample-conditioned or target/bin-aware attention, not one global gate vector
 - bin-aware ridge view gate: neutral as a standalone source; fixed panel bins are still too crude, but residual signal remains in source-wise neural/neighbor/PLS views
 - sample-conditioned context gate: first tiny standalone gate signal in S3 mid, but still much weaker than source-wise neural routing
+- panel-bin context gate: first multi-target standalone gate signal, concentrated in second-half Q1/Q2/S3/S4, but still secondary to neural residual routing
 
 This is the first run where the encoder route creates a large enough target-level jump to look like a possible main solution path rather than just a marginal add-on.
 
@@ -272,3 +275,4 @@ The pattern repeats across target families:
 - Learned-gate update: the newest best score is 0.484026. The first learned positive ridge gate is neutral by itself, but re-fitting the neural residual-view family after v70 still creates a large new layer. This changes the next hypothesis: do not collapse the views yet; train a sample-conditioned or target/bin-aware attention decoder that can choose views differently across panel positions.
 - Bin-gate update: the newest best score is 0.483657. A panel-bin gate is still neutral as a standalone source, so fixed early/mid/late coefficients are not enough. The current best hypothesis is now narrower: the decoder must make local, sample-conditioned choices among residual views, and source-wise routing should remain the discovery scaffold until that attention mechanism works.
 - Context-gate update: the newest best score is 0.483097. A sample-conditioned HGB/logreg decoder over view residuals, base prediction, and panel context produces the first gate-only signal, but only a tiny S3 mid correction. The current best hypothesis is now: local attention is plausible, but it should be targeted at the regions that responded first, especially S3 mid and Q3/Q2 cross-family residual contexts.
+- Panel-bin context update: the newest best score is 0.482206. Training the context decoder separately inside panel bins gives the first multi-target gate-only signal, especially second-half Q1/Q2/S3/S4. However, the largest remaining gains still come from S1/S2/S3 neural residual views, so the next breakthrough path is a hybrid: targeted second-half context gate plus continued neural residual refits.
