@@ -86,6 +86,26 @@ def top_label_aligned_columns(x_fit: pd.DataFrame, y_fit: pd.DataFrame, max_feat
     return sorted(keep)
 
 
+def top_residual_aligned_columns(x_fit: pd.DataFrame, residual_fit: np.ndarray, max_features: int) -> list[str]:
+    missing = x_fit.isna().mean(axis=0)
+    unique = x_fit.nunique(dropna=True)
+    candidates = x_fit.columns[(missing <= 0.75) & (unique > 1)].tolist()
+    if len(candidates) <= max_features:
+        return candidates
+
+    imputer = SimpleImputer(strategy="median", keep_empty_features=True)
+    values = imputer.fit_transform(x_fit[candidates])
+    values = np.nan_to_num(values, nan=0.0, posinf=0.0, neginf=0.0)
+    values = (values - np.mean(values, axis=0, keepdims=True)) / (np.std(values, axis=0, keepdims=True) + 1e-6)
+    residual = np.nan_to_num(residual_fit, nan=0.0, posinf=0.0, neginf=0.0)
+    residual = residual - np.mean(residual, axis=0, keepdims=True)
+    residual = residual / (np.std(residual, axis=0, keepdims=True) + 1e-6)
+    scores = np.max(np.abs(values.T @ residual) / max(1, values.shape[0]), axis=1)
+    order = np.argsort(scores)[::-1]
+    keep = [candidates[i] for i in order[:max_features]]
+    return sorted(keep)
+
+
 def fit_joint_latent(
     x_fit: pd.DataFrame,
     y_fit: pd.DataFrame,
@@ -143,6 +163,50 @@ def fit_joint_latent(
     for arr in (z_fit, z_apply, z_sample):
         arr[:] = np.clip(np.nan_to_num(arr, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
     meta = {"selected_features": len(keep), "pca_dim": max(0, used_pca_dim), "pls_dim": max(0, used_pls_dim), "latent_dim": z_fit.shape[1]}
+    return z_fit.astype(np.float32), z_apply.astype(np.float32), z_sample.astype(np.float32), meta
+
+
+def fit_residual_pls_latent(
+    x_fit: pd.DataFrame,
+    residual_fit: np.ndarray,
+    x_apply: pd.DataFrame,
+    x_sample: pd.DataFrame,
+    max_features: int,
+    pls_dim: int,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, dict[str, int]]:
+    keep = top_residual_aligned_columns(x_fit, residual_fit, max_features)
+    imputer = SimpleImputer(strategy="median", keep_empty_features=True)
+    scaler = StandardScaler()
+    fit_x = scaler.fit_transform(imputer.fit_transform(x_fit[keep]))
+    apply_x = scaler.transform(imputer.transform(x_apply[keep]))
+    sample_x = scaler.transform(imputer.transform(x_sample[keep]))
+    fit_x = np.clip(np.nan_to_num(fit_x, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    apply_x = np.clip(np.nan_to_num(apply_x, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    sample_x = np.clip(np.nan_to_num(sample_x, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+
+    residual = np.nan_to_num(residual_fit, nan=0.0, posinf=0.0, neginf=0.0)
+    residual = residual - np.mean(residual, axis=0, keepdims=True)
+    used_pls_dim = min(pls_dim, fit_x.shape[0] - 2, fit_x.shape[1], residual.shape[1])
+    if used_pls_dim >= 2 and np.std(residual) > 1e-8:
+        pls = PLSRegression(n_components=used_pls_dim, scale=False)
+        pls.fit(fit_x, residual)
+        z_fit = pls.transform(fit_x)
+        z_apply = pls.transform(apply_x)
+        z_sample = pls.transform(sample_x)
+    else:
+        used_pls_dim = min(max(2, pls_dim), fit_x.shape[0] - 1, fit_x.shape[1])
+        pca = PCA(n_components=used_pls_dim, random_state=SEED)
+        z_fit = pca.fit_transform(fit_x)
+        z_apply = pca.transform(apply_x)
+        z_sample = pca.transform(sample_x)
+
+    z_scaler = StandardScaler()
+    z_fit = z_scaler.fit_transform(z_fit)
+    z_apply = z_scaler.transform(z_apply)
+    z_sample = z_scaler.transform(z_sample)
+    for arr in (z_fit, z_apply, z_sample):
+        arr[:] = np.clip(np.nan_to_num(arr, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    meta = {"residual_selected_features": len(keep), "residual_pls_dim": max(0, used_pls_dim), "residual_latent_dim": z_fit.shape[1]}
     return z_fit.astype(np.float32), z_apply.astype(np.float32), z_sample.astype(np.float32), meta
 
 
@@ -598,6 +662,12 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_residual_contrast_hgb",
         "joint_residual_metric_neighbor_logreg",
         "joint_residual_metric_neighbor_hgb",
+        "joint_residual_pls_knn_resid",
+        "joint_residual_pls_knn_logitresid",
+        "joint_residual_pls_local_logreg",
+        "joint_residual_pls_local_hgb",
+        "joint_residual_pls_neighbor_logreg",
+        "joint_residual_pls_neighbor_hgb",
         "joint_attention_knn_resid",
         "joint_attention_knn_logitresid",
         "joint_metric_attention_knn_resid",
@@ -635,11 +705,20 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             args.pca_dim,
             args.pls_dim,
         )
+        residual_fit_targets = y_df.iloc[fold.train_idx][TARGET_COLUMNS].to_numpy(float) - base_train[fold.train_idx, :]
+        rz_fit, rz_val, rz_sample, residual_meta = fit_residual_pls_latent(
+            fit_x,
+            residual_fit_targets,
+            val_x,
+            sample_x,
+            args.max_features,
+            args.residual_pls_dim,
+        )
         if latent_oof.shape[1] != z_val.shape[1]:
             latent_oof = np.full((len(train), z_val.shape[1]), np.nan, dtype=float)
         latent_oof[fold.val_idx] = z_val
         latent_sample_folds.append(z_sample)
-        meta = {"fold": fold_id, "train_rows": int(len(fold.train_idx)), "valid_rows": int(len(fold.val_idx)), **meta}
+        meta = {"fold": fold_id, "train_rows": int(len(fold.train_idx)), "valid_rows": int(len(fold.val_idx)), **meta, **residual_meta}
         fold_meta.append(meta)
 
         for target_i, target in enumerate(TARGET_COLUMNS):
@@ -700,6 +779,18 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                     target_i,
                     metric_weighted_knn_residual(z_fit, z_sample, y_fit, base_fit, base_test, residual_weights, args.knn_k, args.knn_temp, True),
                 )
+            )
+            oof_by_source["joint_residual_pls_knn_resid"][fold.val_idx, target_i] = weighted_knn_residual(
+                rz_fit, rz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_residual_pls_knn_resid"].append(
+                (target_i, weighted_knn_residual(rz_fit, rz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, False))
+            )
+            oof_by_source["joint_residual_pls_knn_logitresid"][fold.val_idx, target_i] = weighted_knn_residual(
+                rz_fit, rz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_residual_pls_knn_logitresid"].append(
+                (target_i, weighted_knn_residual(rz_fit, rz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
             )
             fit_keys = train.iloc[fold.train_idx][KEY_COLUMNS]
             val_keys = train.iloc[fold.val_idx][KEY_COLUMNS]
@@ -784,6 +875,20 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             fit_residual_contrast = residual_contrast_features(z_fit, z_fit, y_fit, base_fit, base_fit, residual_weights)
             val_residual_contrast = residual_contrast_features(z_fit, z_val, y_fit, base_fit, base_val, residual_weights)
             sample_residual_contrast = residual_contrast_features(z_fit, z_sample, y_fit, base_fit, base_test, residual_weights)
+            fit_residual_pls_local = local_decoder_features(
+                rz_fit, rz_fit, y_fit, base_fit, base_fit, args.knn_k, args.knn_temp, exclude_self=True
+            )
+            val_residual_pls_local = local_decoder_features(rz_fit, rz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp)
+            sample_residual_pls_local = local_decoder_features(rz_fit, rz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp)
+            fit_residual_pls_neighbor = neighbor_context_features(
+                rz_fit, rz_fit, y_fit, base_fit, base_fit, fit_keys, fit_keys, None, args.knn_k, args.knn_temp, exclude_self=True
+            )
+            val_residual_pls_neighbor = neighbor_context_features(
+                rz_fit, rz_val, y_fit, base_fit, base_val, fit_keys, val_keys, None, args.knn_k, args.knn_temp
+            )
+            sample_residual_pls_neighbor = neighbor_context_features(
+                rz_fit, rz_sample, y_fit, base_fit, base_test, fit_keys, sample_keys, None, args.knn_k, args.knn_temp
+            )
             for method in ("local_logreg", "local_hgb"):
                 suffix = "logreg" if method == "local_logreg" else "hgb"
                 val_pred, sample_pred = fit_local_decoder(method, fit_neighbor, y_fit, val_neighbor, sample_neighbor)
@@ -821,6 +926,28 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                     sample_residual_contrast,
                 )
                 source_name = f"joint_residual_contrast_{suffix}"
+                oof_by_source[source_name][fold.val_idx, target_i] = val_pred
+                sample_folds_by_source[source_name].append((target_i, sample_pred))
+
+                val_pred, sample_pred = fit_local_decoder(
+                    method,
+                    fit_residual_pls_local,
+                    y_fit,
+                    val_residual_pls_local,
+                    sample_residual_pls_local,
+                )
+                source_name = f"joint_residual_pls_local_{suffix}"
+                oof_by_source[source_name][fold.val_idx, target_i] = val_pred
+                sample_folds_by_source[source_name].append((target_i, sample_pred))
+
+                val_pred, sample_pred = fit_local_decoder(
+                    method,
+                    fit_residual_pls_neighbor,
+                    y_fit,
+                    val_residual_pls_neighbor,
+                    sample_residual_pls_neighbor,
+                )
+                source_name = f"joint_residual_pls_neighbor_{suffix}"
                 oof_by_source[source_name][fold.val_idx, target_i] = val_pred
                 sample_folds_by_source[source_name].append((target_i, sample_pred))
 
@@ -919,6 +1046,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-features", type=int, default=420)
     parser.add_argument("--pca-dim", type=int, default=32)
     parser.add_argument("--pls-dim", type=int, default=7)
+    parser.add_argument("--residual-pls-dim", type=int, default=7)
     parser.add_argument("--knn-k", type=int, default=19)
     parser.add_argument("--knn-temp", type=float, default=1.2)
     return parser.parse_args()

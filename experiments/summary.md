@@ -4,11 +4,11 @@ Last updated: 2026-05-20
 
 ## Current Best
 
-- Best internal OOF candidate: `outputs/conditional_latent_routing_v59_residual_contrastive_on_v58/submission_conditional_latent_routing.csv`
-- Best internal OOF: `0.497895`
+- Best internal OOF candidate: `outputs/conditional_latent_routing_v60_residual_pls_latent_on_v59/submission_conditional_latent_routing.csv`
+- Best internal OOF: `0.497145`
 - Main report: `outputs/breakthrough_signal_report.md`
 - Public LB feedback: `experiments/public_lb_feedback.md`
-- Candidate report: `outputs/conditional_latent_routing_v59_residual_contrastive_on_v58/report.md`
+- Candidate report: `outputs/conditional_latent_routing_v60_residual_pls_latent_on_v59/report.md`
 - Important caveat: this is an internal OOF proxy, not Public LB. Recent Public LB feedback for older submissions was weaker than OOF suggested.
 
 ## What We Are Testing
@@ -52,6 +52,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 | v57 subject/time-aware attention residual | 0.498600 | neighbor attention with same-subject and recency bias | `outputs/breakthrough_signal_report.md` |
 | v58 learned neighbor scorer residual | 0.498265 | learned decoder over distance, subject, recency, and residual-neighbor summaries | `outputs/breakthrough_signal_report.md` |
 | v59 residual-contrastive metric residual | 0.497895 | metric weighted by current base residual direction; residual-only route reaches 0.498031 | `outputs/breakthrough_signal_report.md` |
+| v60 residual PLS latent objective | 0.497145 | fold-safe latent trained to predict current-base residuals; residual-PLS-only route reaches 0.497271 | `outputs/breakthrough_signal_report.md` |
 
 ## What Worked
 
@@ -66,6 +67,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Adding same-subject and temporal recency bias to neighbor attention improves the routed residual again, mainly around S4 mid and smaller Q3/S1 residuals.
 - Learning a small neighbor scorer over latent-distance, same-subject mass, temporal recency, and residual-neighbor summaries adds a new constrained S3 second-half signal.
 - Residual-contrastive metric weighting creates a broad mid-panel residual signal across Q1/Q2/S1/S2/S3/S4, especially S2 and S3, although the strictest constrained route still keeps only the strongest S4 KNN move.
+- Training a fold-safe PLS latent directly on current-base residuals creates the strongest recent jump, especially Q2 all rows, Q1 mid, and Q3 late; the constrained route keeps Q1/Q2/Q3 residual PLS moves.
 
 ## What Failed Or Was Weaker
 
@@ -78,12 +80,12 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 
 - Current implementation: common label-free features plus target-specific source models for `Q1`, `Q2`, `Q3`, `S1`, `S2`, `S3`, `S4`, composed by a conditional target/bin router.
 - Not yet final: one unified neural encoder with seven heads.
-- Strong next direction: keep the common personal state-space encoder and make the decoder explicitly local/retrieval-aware with target-specific learned similarity, subject/time-aware learned neighbor scoring, and residual-aware metric learning.
+- Strong next direction: keep the common personal state-space encoder, but train an explicit residual-aware latent objective instead of relying only on post-hoc residual metrics.
 
 ## Next 3
 
-1. Turn the residual metric into the latent objective itself: pull together days whose current-base residuals have similar sign/magnitude, while preserving subject/time context.
-   - Success criterion: improve S2/S3/S4 residuals with fewer routed moves and avoid standalone decoder collapse.
+1. Expand the residual PLS latent into a richer residual objective with subject/time context and target-family weighting.
+   - Success criterion: preserve the strong Q1/Q2/Q3 residual PLS gains while recovering S2/S3/S4 residual signal under constrained routing.
 
 2. Turn the neighbor scorer from a post-hoc feature decoder into the latent objective itself: pull together days that have similar target residual behavior while preserving subject/time context.
    - Success criterion: improve S3/S4/S1 residuals with fewer routed moves and avoid standalone decoder collapse.

@@ -1,0 +1,164 @@
+{
+  "base_score": {
+    "avg_log_loss": 0.49789501206245373,
+    "per_target": {
+      "Q1": 0.5429963631221045,
+      "Q2": 0.549511460890843,
+      "Q3": 0.5172395894493336,
+      "S1": 0.48800256583253104,
+      "S2": 0.474612076294753,
+      "S3": 0.4272085978767367,
+      "S4": 0.4856944309708741
+    }
+  },
+  "routed_score": {
+    "avg_log_loss": 0.49727089455976675,
+    "per_target": {
+      "Q1": 0.5418757954534758,
+      "Q2": 0.5478462015513593,
+      "Q3": 0.516415123654217,
+      "S1": 0.4876331265951725,
+      "S2": 0.474612076294753,
+      "S3": 0.4270864976230959,
+      "S4": 0.48542744074629396
+    }
+  },
+  "selected_moves": [
+    {
+      "target": "Q1",
+      "source": "joint_residual_pls_knn_resid",
+      "bin": "mid",
+      "lo": 0.333,
+      "hi": 0.666,
+      "weight": 0.1,
+      "train_rows": 100.0,
+      "sample_rows": 130.0,
+      "base_log_loss": 0.5429963631221045,
+      "log_loss": 0.5418757954534758,
+      "improvement": 0.0011205676686287802,
+      "move_index": 1
+    },
+    {
+      "target": "Q2",
+      "source": "joint_residual_pls_knn_resid",
+      "bin": "all",
+      "lo": 0.0,
+      "hi": 1.000001,
+      "weight": 0.1,
+      "train_rows": 450.0,
+      "sample_rows": 250.0,
+      "base_log_loss": 0.549511460890843,
+      "log_loss": 0.5478462015513593,
+      "improvement": 0.0016652593394836934,
+      "move_index": 1
+    },
+    {
+      "target": "Q3",
+      "source": "joint_residual_pls_knn_resid",
+      "bin": "late",
+      "lo": 0.666,
+      "hi": 1.000001,
+      "weight": 0.1,
+      "train_rows": 116.0,
+      "sample_rows": 120.0,
+      "base_log_loss": 0.5172395894493336,
+      "log_loss": 0.516415123654217,
+      "improvement": 0.0008244657951165246,
+      "move_index": 1
+    },
+    {
+      "target": "S1",
+      "source": "joint_residual_pls_knn_resid",
+      "bin": "late",
+      "lo": 0.666,
+      "hi": 1.000001,
+      "weight": 0.05,
+      "train_rows": 116.0,
+      "sample_rows": 120.0,
+      "base_log_loss": 0.48800256583253104,
+      "log_loss": 0.4877818022602213,
+      "improvement": 0.00022076357230976784,
+      "move_index": 1
+    },
+    {
+      "target": "S1",
+      "source": "joint_residual_pls_knn_resid",
+      "bin": "first_half",
+      "lo": 0.0,
+      "hi": 0.5,
+      "weight": 0.025,
+      "train_rows": 291.0,
+      "sample_rows": 57.0,
+      "base_log_loss": 0.4877818022602213,
+      "log_loss": 0.4876331265951725,
+      "improvement": 0.00014867566504878083,
+      "move_index": 2
+    },
+    {
+      "target": "S2",
+      "source": "base",
+      "bin": "all",
+      "lo": NaN,
+      "hi": NaN,
+      "weight": 0.0,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "S3",
+      "source": "joint_residual_pls_knn_resid",
+      "bin": "second_half",
+      "lo": 0.5,
+      "hi": 1.000001,
+      "weight": 0.05,
+      "train_rows": 159.0,
+      "sample_rows": 193.0,
+      "base_log_loss": 0.4272085978767367,
+      "log_loss": 0.4270864976230959,
+      "improvement": 0.00012210025364078891,
+      "move_index": 1
+    },
+    {
+      "target": "S4",
+      "source": "joint_residual_pls_knn_resid",
+      "bin": "all",
+      "lo": 0.0,
+      "hi": 1.000001,
+      "weight": 0.05,
+      "train_rows": 450.0,
+      "sample_rows": 250.0,
+      "base_log_loss": 0.4856944309708741,
+      "log_loss": 0.48542744074629396,
+      "improvement": 0.00026699022458015476,
+      "move_index": 1
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v59_residual_contrastive_on_v58/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v59_residual_contrastive_on_v58/submission_conditional_latent_routing.csv",
+    "source": [
+      "joint_residual_pls_knn_logitresid=outputs/joint_state_space_encoder_v60_residual_pls_latent_on_v59/oof_joint_residual_pls_knn_logitresid.csv,outputs/joint_state_space_encoder_v60_residual_pls_latent_on_v59/submission_joint_residual_pls_knn_logitresid.csv",
+      "joint_residual_pls_knn_resid=outputs/joint_state_space_encoder_v60_residual_pls_latent_on_v59/oof_joint_residual_pls_knn_resid.csv,outputs/joint_state_space_encoder_v60_residual_pls_latent_on_v59/submission_joint_residual_pls_knn_resid.csv",
+      "joint_residual_pls_local_hgb=outputs/joint_state_space_encoder_v60_residual_pls_latent_on_v59/oof_joint_residual_pls_local_hgb.csv,outputs/joint_state_space_encoder_v60_residual_pls_latent_on_v59/submission_joint_residual_pls_local_hgb.csv",
+      "joint_residual_pls_local_logreg=outputs/joint_state_space_encoder_v60_residual_pls_latent_on_v59/oof_joint_residual_pls_local_logreg.csv,outputs/joint_state_space_encoder_v60_residual_pls_latent_on_v59/submission_joint_residual_pls_local_logreg.csv",
+      "joint_residual_pls_neighbor_hgb=outputs/joint_state_space_encoder_v60_residual_pls_latent_on_v59/oof_joint_residual_pls_neighbor_hgb.csv,outputs/joint_state_space_encoder_v60_residual_pls_latent_on_v59/submission_joint_residual_pls_neighbor_hgb.csv",
+      "joint_residual_pls_neighbor_logreg=outputs/joint_state_space_encoder_v60_residual_pls_latent_on_v59/oof_joint_residual_pls_neighbor_logreg.csv,outputs/joint_state_space_encoder_v60_residual_pls_latent_on_v59/submission_joint_residual_pls_neighbor_logreg.csv"
+    ],
+    "output_dir": "outputs/conditional_latent_routing_v60_residual_pls_only_on_v59",
+    "weights": "0.005,0.01,0.015,0.025,0.05,0.075,0.1",
+    "bins": "first_half:0:0.5,second_half:0.5:1.000001,mid:0.333:0.666,late:0.666:1.000001,all:0:1.000001",
+    "min_train_rows": 50,
+    "min_sample_rows": 40,
+    "min_improvement": 5e-05,
+    "max_moves_per_target": 2,
+    "allow_overlap": false,
+    "targets": "Q1,Q2,Q3,S1,S2,S3,S4",
+    "match_source_prefix": false
+  }
+}

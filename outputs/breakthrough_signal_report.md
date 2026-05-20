@@ -70,6 +70,7 @@ This keeps producing new OOF signal after earlier layers are already strong, and
 | conditional routing v57 subject/time-aware attention residual | 0.498600 |
 | conditional routing v58 learned neighbor scorer residual | 0.498265 |
 | conditional routing v59 residual-contrastive metric residual | 0.497895 |
+| conditional routing v60 residual PLS latent objective | 0.497145 |
 
 ## Why This Looks Like A Real Direction
 
@@ -122,6 +123,7 @@ This keeps producing new OOF signal after earlier layers are already strong, and
 - A subject/time-aware attention decoder adds another routed residual after v56: 0.498945 to 0.498600, with constrained confirmation at 0.498805. The standalone attention sources are still weak as full replacements, but the router selects same-subject/recency-aware neighbor corrections for Q3 first-half and S1 mid/late, while the strict route keeps the S4 mid residual. This says the neighbor relation should include "same person and nearby day" context, not only geometric distance in the common latent.
 - A learned neighbor scorer adds another routed residual after v57: 0.498600 to 0.498265, with constrained confirmation at 0.498450. It builds fold-safe decoder features from latent distance, target-specific metric distance, same-subject mass, temporal recency, and neighbor residual summaries. The important new signal is S3 second-half: `joint_metric_neighbor_hgb` is selected in both bold and constrained routes. This is the first evidence that a learned neighbor relation, not only hand-weighted KNN, can expose new residual structure in the common latent.
 - A residual-contrastive metric layer adds another routed residual after v58: 0.498265 to 0.497895. A residual-only route reaches 0.498031, so the new source family is not just piggybacking on older sources. The selected residual metric KNN corrections are broad: Q1/Q2/S1/S2/S3/S4 all use mid-panel residual-aware distance, with the clearest gains in S2 and S3. The strictest constrained route is weaker and keeps only S4 KNN, so this is a breakthrough-signal result rather than an upload-stability result.
+- A fold-safe residual PLS latent creates the strongest recent jump after v59: 0.497895 to 0.497145. The residual-PLS-only route reaches 0.497271, so the signal is mostly from the new latent family itself. The strict constrained route reaches 0.497379 and keeps Q1 mid, Q2 all rows, and Q3 late from `joint_residual_pls_knn_resid`. This is the first strong evidence that the residual relation should be a training objective for the latent, not only a post-hoc metric.
 
 ## Best Current Breakthrough Candidate
 
@@ -169,6 +171,7 @@ It is closer to residual boosting in latent space:
 - subject/time-aware attention residual: neighbor weights over the shared latent biased toward same-subject and temporally nearby days
 - learned neighbor scorer residual: a small fold-safe decoder over neighbor distance, same-subject/time context, and residual summaries
 - residual-contrastive metric residual: target-specific latent dimensions weighted by where the current base over- or under-predicts, then used for residual KNN
+- residual PLS latent objective: a fold-safe latent trained directly to predict current-base residual vectors before retrieval decoding
 
 This is the first run where the encoder route creates a large enough target-level jump to look like a possible main solution path rather than just a marginal add-on.
 
@@ -221,3 +224,4 @@ The pattern repeats across target families:
 - Subject/time-attention update: the newest best score is 0.498600. The raw attention sources do not beat the base directly, but routed residuals still improve Q2, Q3, S1, S2, S3, and S4. The constrained confirmation reaches 0.498805 using only S4 mid. The current best thesis is now: common personal state-space encoder plus target-specific metric/local decoder, with neighbor attention that knows whether a candidate day is from the same subject and temporally nearby.
 - Learned-neighbor update: the newest best score is 0.498265. The raw learned-neighbor sources still do not beat the base directly, but routed residuals improve Q2, Q3, S1, S2, S3, and S4 again. The constrained confirmation reaches 0.498450 using S3 second-half from `joint_metric_neighbor_hgb` plus S4 mid from KNN. The current best thesis is now: common personal state-space encoder plus a decoder that learns which neighbor evidence matters for each target and panel region, rather than using only fixed KNN weights.
 - Residual-contrastive update: the newest best score is 0.497895. The residual-only route reaches 0.498031 and selects `joint_residual_metric_knn_resid` for Q1, Q2, Q3, S1, S2, S3, and S4, concentrated in the mid panel. The current best thesis is now: common personal state-space encoder plus target-specific residual metric learning, where "similar day" means similar latent state and similar current-model error direction.
+- Residual-PLS update: the newest best score is 0.497145. A fold-safe residual PLS latent trained on the current-base residual vector improves the v59 base by 0.000750 after routing, and the residual-PLS-only route still reaches 0.497271. Q2 all-row residual PLS is the largest single move, followed by Q1 mid and Q3 late. The current best thesis is now: the encoder should explicitly learn the structure of the current model's residual errors, then decode by retrieval in that residual-aware latent space.
