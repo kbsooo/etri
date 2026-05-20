@@ -547,6 +547,76 @@ def learned_view_bin_blend_prediction(
     return np.clip(apply_pred, EPS, 1.0 - EPS), np.clip(sample_pred, EPS, 1.0 - EPS)
 
 
+def view_context_features(view_preds: list[np.ndarray], base: np.ndarray, position: np.ndarray) -> np.ndarray:
+    pred = np.column_stack(view_preds)
+    residual = pred - base.reshape(-1, 1)
+    logit_residual = safe_logit(pred) - safe_logit(base).reshape(-1, 1)
+    basis = panel_basis(position)
+    mean_resid = residual.mean(axis=1)
+    std_resid = residual.std(axis=1)
+    max_abs_resid = np.max(np.abs(residual), axis=1)
+    spread = residual.max(axis=1) - residual.min(axis=1)
+    order = np.argsort(np.abs(residual), axis=1)
+    top1 = np.take_along_axis(residual, order[:, -1:].reshape(-1, 1), axis=1).reshape(-1)
+    top2 = np.take_along_axis(residual, order[:, -2:-1].reshape(-1, 1), axis=1).reshape(-1)
+    features = np.column_stack(
+        [
+            base,
+            safe_logit(base),
+            np.asarray(position, dtype=float),
+            basis,
+            residual,
+            logit_residual,
+            mean_resid,
+            std_resid,
+            max_abs_resid,
+            spread,
+            top1,
+            top2,
+            mean_resid * basis[:, 0],
+            mean_resid * basis[:, 1],
+            mean_resid * basis[:, 2],
+            spread * basis[:, 0],
+            spread * basis[:, 1],
+            spread * basis[:, 2],
+        ]
+    )
+    return np.clip(np.nan_to_num(features, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0).astype(np.float32)
+
+
+def fit_view_context_decoder(
+    method: str,
+    fit_view_preds: list[np.ndarray],
+    y_fit: np.ndarray,
+    base_fit: np.ndarray,
+    fit_pos: np.ndarray,
+    apply_view_preds: list[np.ndarray],
+    base_apply: np.ndarray,
+    apply_pos: np.ndarray,
+    sample_view_preds: list[np.ndarray],
+    base_sample: np.ndarray,
+    sample_pos: np.ndarray,
+) -> tuple[np.ndarray, np.ndarray]:
+    fit_features = view_context_features(fit_view_preds, base_fit, fit_pos)
+    apply_features = view_context_features(apply_view_preds, base_apply, apply_pos)
+    sample_features = view_context_features(sample_view_preds, base_sample, sample_pos)
+    if method == "logreg":
+        model = LogisticRegression(C=0.05, class_weight="balanced", max_iter=2000, solver="liblinear", random_state=SEED)
+    elif method == "hgb":
+        model = HistGradientBoostingClassifier(
+            learning_rate=0.02,
+            max_iter=55,
+            max_leaf_nodes=5,
+            l2_regularization=1.0,
+            min_samples_leaf=20,
+            random_state=SEED,
+        )
+    else:
+        raise ValueError(method)
+    model.fit(fit_features, y_fit)
+    return model.predict_proba(apply_features)[:, 1], model.predict_proba(sample_features)[:, 1]
+
+
 def label_metric_weights(z_fit: np.ndarray, y_fit: np.ndarray) -> np.ndarray:
     z_fit = np.clip(np.nan_to_num(z_fit, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
     if len(np.unique(y_fit)) < 2:
@@ -1007,6 +1077,10 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_neural_learned_gate_knn_logitresid",
         "joint_neural_bin_gate_knn_resid",
         "joint_neural_bin_gate_knn_logitresid",
+        "joint_neural_context_gate_logreg_resid",
+        "joint_neural_context_gate_hgb_resid",
+        "joint_neural_context_gate_logreg_logitresid",
+        "joint_neural_context_gate_hgb_logitresid",
         "joint_neural_residual_knn_resid",
         "joint_neural_residual_knn_logitresid",
         "joint_neural_q_residual_knn_resid",
@@ -1752,6 +1826,40 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             )
             oof_by_source["joint_neural_bin_gate_knn_logitresid"][fold.val_idx, target_i] = bin_val_logit
             sample_folds_by_source["joint_neural_bin_gate_knn_logitresid"].append((target_i, bin_sample_logit))
+            for method in ("logreg", "hgb"):
+                val_pred, sample_pred = fit_view_context_decoder(
+                    method,
+                    view_fit_preds_resid,
+                    y_fit,
+                    base_fit,
+                    fit_pos,
+                    view_val_preds_resid,
+                    base_val,
+                    val_pos,
+                    view_sample_preds_resid,
+                    base_test,
+                    sample_panel_pos,
+                )
+                source_name = f"joint_neural_context_gate_{method}_resid"
+                oof_by_source[source_name][fold.val_idx, target_i] = val_pred
+                sample_folds_by_source[source_name].append((target_i, sample_pred))
+
+                val_pred, sample_pred = fit_view_context_decoder(
+                    method,
+                    view_fit_preds_logit,
+                    y_fit,
+                    base_fit,
+                    fit_pos,
+                    view_val_preds_logit,
+                    base_val,
+                    val_pos,
+                    view_sample_preds_logit,
+                    base_test,
+                    sample_panel_pos,
+                )
+                source_name = f"joint_neural_context_gate_{method}_logitresid"
+                oof_by_source[source_name][fold.val_idx, target_i] = val_pred
+                sample_folds_by_source[source_name].append((target_i, sample_pred))
             fit_keys = train.iloc[fold.train_idx][KEY_COLUMNS]
             val_keys = train.iloc[fold.val_idx][KEY_COLUMNS]
             sample_keys = sample[KEY_COLUMNS]
