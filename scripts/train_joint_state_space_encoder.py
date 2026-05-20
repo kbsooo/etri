@@ -233,6 +233,41 @@ def stack_and_scale_latents(
     return z_fit.astype(np.float32), z_apply.astype(np.float32), z_sample.astype(np.float32)
 
 
+def panel_position(train_keys: pd.DataFrame, sample_keys: pd.DataFrame) -> tuple[np.ndarray, np.ndarray]:
+    all_rows = pd.concat(
+        [
+            train_keys[KEY_COLUMNS].assign(_split="train", _row=np.arange(len(train_keys))),
+            sample_keys[KEY_COLUMNS].assign(_split="sample", _row=np.arange(len(sample_keys))),
+        ],
+        ignore_index=True,
+    )
+    ordered = all_rows.sort_values(["subject_id", "lifelog_date", "sleep_date"]).copy()
+    ordered["panel_index"] = ordered.groupby("subject_id").cumcount().astype(float)
+    denom = ordered.groupby("subject_id")["panel_index"].transform("max").replace(0, 1)
+    ordered["panel_position"] = ordered["panel_index"] / denom
+    train_pos = ordered[ordered["_split"].eq("train")].sort_values("_row")["panel_position"].to_numpy(float)
+    sample_pos = ordered[ordered["_split"].eq("sample")].sort_values("_row")["panel_position"].to_numpy(float)
+    return train_pos, sample_pos
+
+
+def panel_basis(position: np.ndarray) -> np.ndarray:
+    pos = np.asarray(position, dtype=float).reshape(-1)
+    first = np.clip(1.0 - 2.0 * pos, 0.0, 1.0)
+    late = np.clip(2.0 * pos - 1.0, 0.0, 1.0)
+    mid = np.clip(1.0 - np.abs(2.0 * pos - 1.0), 0.0, 1.0)
+    return np.column_stack([first, mid, late]).astype(np.float32)
+
+
+def append_panel_features(frame: pd.DataFrame, position: np.ndarray) -> pd.DataFrame:
+    out = frame.copy()
+    basis = panel_basis(position)
+    out["_panel_position"] = np.asarray(position, dtype=float)
+    out["_panel_first_basis"] = basis[:, 0]
+    out["_panel_mid_basis"] = basis[:, 1]
+    out["_panel_late_basis"] = basis[:, 2]
+    return out
+
+
 def fit_neural_residual_latent(
     x_fit: pd.DataFrame,
     residual_fit: np.ndarray,
@@ -750,6 +785,7 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
     columns = select_joint_columns(raw_train_x, groups)
     group_train_x = raw_train_x[columns]
     group_sample_x = raw_sample_x[columns]
+    train_panel_pos, sample_panel_pos = panel_position(train[KEY_COLUMNS], sample[KEY_COLUMNS])
     folds = make_subject_time_folds(train, args.n_folds)
     y_df = train[TARGET_COLUMNS].astype(int)
 
@@ -791,6 +827,10 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_target_neural_residual_knn_logitresid",
         "joint_target_neural_multiview_residual_knn_resid",
         "joint_target_neural_multiview_residual_knn_logitresid",
+        "joint_panel_neural_residual_knn_resid",
+        "joint_panel_neural_residual_knn_logitresid",
+        "joint_panel_neural_multiview_residual_knn_resid",
+        "joint_panel_neural_multiview_residual_knn_logitresid",
         "joint_neural_residual_knn_resid",
         "joint_neural_residual_knn_logitresid",
         "joint_neural_q_residual_knn_resid",
@@ -839,6 +879,12 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             fold.val_idx,
         )
         assert val_x is not None
+        fit_pos = train_panel_pos[fold.train_idx]
+        val_pos = train_panel_pos[fold.val_idx]
+        fit_x = append_panel_features(fit_x, fit_pos)
+        val_x = append_panel_features(val_x, val_pos)
+        sample_x = append_panel_features(sample_x, sample_panel_pos)
+        fit_panel_basis = panel_basis(fit_pos)
         z_fit, z_val, z_sample, meta = fit_joint_latent(
             fit_x,
             y_df.iloc[fold.train_idx],
@@ -945,6 +991,28 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             [mnqrz_val, mnsrz_val],
             [mnqrz_sample, mnsrz_sample],
         )
+        panel_residual_targets = np.hstack(
+            [residual_fit_targets * fit_panel_basis[:, [basis_i]] for basis_i in range(fit_panel_basis.shape[1])]
+        )
+        pnrz_fit, pnrz_val, pnrz_sample, panel_neural_meta = fit_neural_residual_latent(
+            fit_x,
+            panel_residual_targets,
+            val_x,
+            sample_x,
+            args.max_features,
+            args.neural_latent_dim,
+            args.neural_epochs,
+        )
+        panel_mv_targets = np.hstack([residual_fit_targets, panel_residual_targets, rz_fit, qrz_fit, srz_fit, qsrz_fit])
+        pmnrz_fit, pmnrz_val, pmnrz_sample, panel_multiview_neural_meta = fit_neural_residual_latent(
+            fit_x,
+            panel_mv_targets,
+            val_x,
+            sample_x,
+            args.max_features,
+            args.neural_latent_dim,
+            args.neural_epochs,
+        )
         if latent_oof.shape[1] != z_val.shape[1]:
             latent_oof = np.full((len(train), z_val.shape[1]), np.nan, dtype=float)
         latent_oof[fold.val_idx] = z_val
@@ -967,6 +1035,10 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             "multiview_neural_best_loss": multiview_neural_meta["neural_best_loss"],
             "q_multiview_neural_latent_dim": q_multiview_neural_meta["neural_latent_dim"],
             "s_multiview_neural_latent_dim": s_multiview_neural_meta["neural_latent_dim"],
+            "panel_neural_latent_dim": panel_neural_meta["neural_latent_dim"],
+            "panel_neural_best_loss": panel_neural_meta["neural_best_loss"],
+            "panel_multiview_neural_latent_dim": panel_multiview_neural_meta["neural_latent_dim"],
+            "panel_multiview_neural_best_loss": panel_multiview_neural_meta["neural_best_loss"],
         }
         fold_meta.append(meta)
 
@@ -1165,6 +1237,30 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             )
             sample_folds_by_source["joint_target_neural_multiview_residual_knn_logitresid"].append(
                 (target_i, weighted_knn_residual(tmnrz_fit, tmnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
+            )
+            oof_by_source["joint_panel_neural_residual_knn_resid"][fold.val_idx, target_i] = weighted_knn_residual(
+                pnrz_fit, pnrz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_panel_neural_residual_knn_resid"].append(
+                (target_i, weighted_knn_residual(pnrz_fit, pnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, False))
+            )
+            oof_by_source["joint_panel_neural_residual_knn_logitresid"][fold.val_idx, target_i] = weighted_knn_residual(
+                pnrz_fit, pnrz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_panel_neural_residual_knn_logitresid"].append(
+                (target_i, weighted_knn_residual(pnrz_fit, pnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
+            )
+            oof_by_source["joint_panel_neural_multiview_residual_knn_resid"][fold.val_idx, target_i] = weighted_knn_residual(
+                pmnrz_fit, pmnrz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_panel_neural_multiview_residual_knn_resid"].append(
+                (target_i, weighted_knn_residual(pmnrz_fit, pmnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, False))
+            )
+            oof_by_source["joint_panel_neural_multiview_residual_knn_logitresid"][fold.val_idx, target_i] = weighted_knn_residual(
+                pmnrz_fit, pmnrz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_panel_neural_multiview_residual_knn_logitresid"].append(
+                (target_i, weighted_knn_residual(pmnrz_fit, pmnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
             )
             fit_keys = train.iloc[fold.train_idx][KEY_COLUMNS]
             val_keys = train.iloc[fold.val_idx][KEY_COLUMNS]
