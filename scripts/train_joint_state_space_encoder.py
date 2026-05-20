@@ -12,7 +12,7 @@ from sklearn.cross_decomposition import PLSRegression
 from sklearn.decomposition import PCA
 from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.impute import SimpleImputer
-from sklearn.linear_model import LogisticRegression, RidgeClassifier
+from sklearn.linear_model import LogisticRegression, Ridge, RidgeClassifier
 from sklearn.metrics import log_loss
 from sklearn.exceptions import ConvergenceWarning, DataConversionWarning
 from sklearn.neural_network import MLPRegressor
@@ -420,10 +420,13 @@ def weighted_knn_residual(
     k: int,
     temp: float,
     logit_mode: bool,
+    exclude_self: bool = False,
 ) -> np.ndarray:
     z_fit = np.clip(np.nan_to_num(z_fit, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
     z_apply = np.clip(np.nan_to_num(z_apply, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
     d2 = ((z_apply[:, None, :] - z_fit[None, :, :]) ** 2).mean(axis=2)
+    if exclude_self and z_apply.shape[0] == z_fit.shape[0]:
+        np.fill_diagonal(d2, np.inf)
     kk = min(k, z_fit.shape[0])
     idx = np.argpartition(d2, kk - 1, axis=1)[:, :kk]
     chosen = np.take_along_axis(d2, idx, axis=1)
@@ -438,6 +441,48 @@ def weighted_knn_residual(
         residual = y_fit - base_fit
         pred = base_apply + (weights * residual[idx]).sum(axis=1)
     return np.clip(pred, EPS, 1.0 - EPS)
+
+
+def learned_view_blend_prediction(
+    fit_view_preds: list[np.ndarray],
+    apply_view_preds: list[np.ndarray],
+    sample_view_preds: list[np.ndarray],
+    y_fit: np.ndarray,
+    base_fit: np.ndarray,
+    base_apply: np.ndarray,
+    base_sample: np.ndarray,
+    logit_mode: bool,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    if logit_mode:
+        fit_x = np.column_stack([safe_logit(pred) - safe_logit(base_fit) for pred in fit_view_preds])
+        y_smooth = y_fit * 0.98 + 0.01
+        target = safe_logit(y_smooth) - safe_logit(base_fit)
+    else:
+        fit_x = np.column_stack([pred - base_fit for pred in fit_view_preds])
+        target = y_fit - base_fit
+
+    fit_x = np.nan_to_num(fit_x, nan=0.0, posinf=0.0, neginf=0.0)
+    model = Ridge(alpha=8.0, fit_intercept=False)
+    model.fit(fit_x, np.nan_to_num(target, nan=0.0, posinf=0.0, neginf=0.0))
+    coef = np.maximum(np.asarray(model.coef_, dtype=float).reshape(-1), 0.0)
+    if coef.sum() <= 1e-8:
+        view_scores = [max(0.0, residual_view_alignment_score(pred.reshape(-1, 1), target)) for pred in fit_view_preds]
+        coef = np.asarray(view_scores, dtype=float)
+    if coef.sum() <= 1e-8:
+        coef = np.ones(len(fit_view_preds), dtype=float)
+    coef = coef / coef.sum()
+
+    def blend(preds: list[np.ndarray], base: np.ndarray) -> np.ndarray:
+        if logit_mode:
+            residuals = np.column_stack([safe_logit(pred) - safe_logit(base) for pred in preds])
+            return sigmoid(safe_logit(base) + residuals @ coef)
+        residuals = np.column_stack([pred - base for pred in preds])
+        return base + residuals @ coef
+
+    fit_pred = np.clip(blend(fit_view_preds, base_fit), EPS, 1.0 - EPS)
+    apply_pred = np.clip(blend(apply_view_preds, base_apply), EPS, 1.0 - EPS)
+    sample_pred = np.clip(blend(sample_view_preds, base_sample), EPS, 1.0 - EPS)
+    return fit_pred, apply_pred, sample_pred
 
 
 def label_metric_weights(z_fit: np.ndarray, y_fit: np.ndarray) -> np.ndarray:
@@ -896,6 +941,8 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_neural_gated_mixture_knn_logitresid",
         "joint_neural_gated_mixture_metric_knn_resid",
         "joint_neural_gated_mixture_metric_knn_logitresid",
+        "joint_neural_learned_gate_knn_resid",
+        "joint_neural_learned_gate_knn_logitresid",
         "joint_neural_residual_knn_resid",
         "joint_neural_residual_knn_logitresid",
         "joint_neural_q_residual_knn_resid",
@@ -1567,6 +1614,49 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                     metric_weighted_knn_residual(gated_fit, gated_sample, y_fit, base_fit, base_test, gated_weights, args.knn_k, args.knn_temp, True),
                 )
             )
+            view_fit_preds_resid: list[np.ndarray] = []
+            view_val_preds_resid: list[np.ndarray] = []
+            view_sample_preds_resid: list[np.ndarray] = []
+            view_fit_preds_logit: list[np.ndarray] = []
+            view_val_preds_logit: list[np.ndarray] = []
+            view_sample_preds_logit: list[np.ndarray] = []
+            for _, view_fit, view_val, view_sample in neural_views:
+                view_fit_preds_resid.append(
+                    weighted_knn_residual(view_fit, view_fit, y_fit, base_fit, base_fit, args.knn_k, args.knn_temp, False, exclude_self=True)
+                )
+                view_val_preds_resid.append(weighted_knn_residual(view_fit, view_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False))
+                view_sample_preds_resid.append(weighted_knn_residual(view_fit, view_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, False))
+                view_fit_preds_logit.append(
+                    weighted_knn_residual(view_fit, view_fit, y_fit, base_fit, base_fit, args.knn_k, args.knn_temp, True, exclude_self=True)
+                )
+                view_val_preds_logit.append(weighted_knn_residual(view_fit, view_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, True))
+                view_sample_preds_logit.append(weighted_knn_residual(view_fit, view_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
+
+            _, learned_val_resid, learned_sample_resid = learned_view_blend_prediction(
+                view_fit_preds_resid,
+                view_val_preds_resid,
+                view_sample_preds_resid,
+                y_fit,
+                base_fit,
+                base_val,
+                base_test,
+                False,
+            )
+            oof_by_source["joint_neural_learned_gate_knn_resid"][fold.val_idx, target_i] = learned_val_resid
+            sample_folds_by_source["joint_neural_learned_gate_knn_resid"].append((target_i, learned_sample_resid))
+
+            _, learned_val_logit, learned_sample_logit = learned_view_blend_prediction(
+                view_fit_preds_logit,
+                view_val_preds_logit,
+                view_sample_preds_logit,
+                y_fit,
+                base_fit,
+                base_val,
+                base_test,
+                True,
+            )
+            oof_by_source["joint_neural_learned_gate_knn_logitresid"][fold.val_idx, target_i] = learned_val_logit
+            sample_folds_by_source["joint_neural_learned_gate_knn_logitresid"].append((target_i, learned_sample_logit))
             fit_keys = train.iloc[fold.train_idx][KEY_COLUMNS]
             val_keys = train.iloc[fold.val_idx][KEY_COLUMNS]
             sample_keys = sample[KEY_COLUMNS]

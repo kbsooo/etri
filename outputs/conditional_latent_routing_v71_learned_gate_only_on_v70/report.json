@@ -1,0 +1,104 @@
+{
+  "base_score": {
+    "avg_log_loss": 0.48525801502620564,
+    "per_target": {
+      "Q1": 0.5302565888584718,
+      "Q2": 0.5410648593911741,
+      "Q3": 0.50454492850206,
+      "S1": 0.47517912461741035,
+      "S2": 0.457024699142198,
+      "S3": 0.4166643945505905,
+      "S4": 0.47207151012153475
+    }
+  },
+  "routed_score": {
+    "avg_log_loss": 0.48525801502620564,
+    "per_target": {
+      "Q1": 0.5302565888584718,
+      "Q2": 0.5410648593911741,
+      "Q3": 0.50454492850206,
+      "S1": 0.47517912461741035,
+      "S2": 0.457024699142198,
+      "S3": 0.4166643945505905,
+      "S4": 0.47207151012153475
+    }
+  },
+  "selected_moves": [
+    {
+      "target": "Q1",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "Q2",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "Q3",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "S1",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "S2",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "S3",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0
+    },
+    {
+      "target": "S4",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "move_index": 0
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v70_gated_mixture_on_v69/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v70_gated_mixture_on_v69/submission_conditional_latent_routing.csv",
+    "source": [
+      "joint_neural_learned_gate_knn_logitresid=outputs/joint_state_space_encoder_v71_learned_gate_on_v70/oof_joint_neural_learned_gate_knn_logitresid.csv,outputs/joint_state_space_encoder_v71_learned_gate_on_v70/submission_joint_neural_learned_gate_knn_logitresid.csv",
+      "joint_neural_learned_gate_knn_resid=outputs/joint_state_space_encoder_v71_learned_gate_on_v70/oof_joint_neural_learned_gate_knn_resid.csv,outputs/joint_state_space_encoder_v71_learned_gate_on_v70/submission_joint_neural_learned_gate_knn_resid.csv"
+    ],
+    "output_dir": "outputs/conditional_latent_routing_v71_learned_gate_only_on_v70",
+    "weights": "0.005,0.01,0.015,0.025,0.05,0.075,0.1",
+    "bins": "first_half:0:0.5,second_half:0.5:1.000001,mid:0.333:0.666,late:0.666:1.000001,all:0:1.000001",
+    "min_train_rows": 50,
+    "min_sample_rows": 40,
+    "min_improvement": 5e-05,
+    "max_moves_per_target": 2,
+    "allow_overlap": false,
+    "targets": "Q1,Q2,Q3,S1,S2,S3,S4",
+    "match_source_prefix": false
+  }
+}
