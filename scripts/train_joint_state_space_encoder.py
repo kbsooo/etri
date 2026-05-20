@@ -17,6 +17,7 @@ from sklearn.metrics import log_loss
 from sklearn.exceptions import ConvergenceWarning, DataConversionWarning
 from sklearn.neural_network import MLPRegressor
 from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
 
 from train_s2_sleep_retrieval_encoder import (
     EPS,
@@ -266,6 +267,35 @@ def append_panel_features(frame: pd.DataFrame, position: np.ndarray) -> pd.DataF
     out["_panel_mid_basis"] = basis[:, 1]
     out["_panel_late_basis"] = basis[:, 2]
     return out
+
+
+def residual_prototype_targets(
+    residual_targets: np.ndarray,
+    panel_targets: np.ndarray,
+    max_prototypes: int = 9,
+) -> tuple[np.ndarray, dict[str, int | float]]:
+    residual = np.nan_to_num(np.asarray(residual_targets, dtype=np.float32), nan=0.0, posinf=0.0, neginf=0.0)
+    panel = np.nan_to_num(np.asarray(panel_targets, dtype=np.float32), nan=0.0, posinf=0.0, neginf=0.0)
+    raw = np.hstack([residual, panel])
+    scaler = StandardScaler()
+    scaled = scaler.fit_transform(raw).astype(np.float32)
+    n_clusters = max(2, min(max_prototypes, len(scaled) // 35))
+    kmeans = KMeans(n_clusters=n_clusters, n_init=20, random_state=SEED)
+    labels = kmeans.fit_predict(scaled)
+    d2 = ((scaled[:, None, :] - kmeans.cluster_centers_[None, :, :]) ** 2).mean(axis=2)
+    temperature = max(float(np.median(d2)), 1e-6)
+    membership = np.exp(-d2 / temperature)
+    membership = membership / np.maximum(membership.sum(axis=1, keepdims=True), 1e-12)
+    center_scaled = kmeans.cluster_centers_[labels]
+    center_raw = scaler.inverse_transform(center_scaled).astype(np.float32)
+    proto_margin = np.sort(d2, axis=1)[:, 1] - np.min(d2, axis=1)
+    targets = np.hstack([residual, panel, membership.astype(np.float32), center_raw, proto_margin.reshape(-1, 1)])
+    meta = {
+        "residual_prototype_clusters": int(n_clusters),
+        "residual_prototype_inertia": float(kmeans.inertia_),
+        "residual_prototype_target_dim": int(targets.shape[1]),
+    }
+    return targets.astype(np.float32), meta
 
 
 def fit_neural_residual_latent(
@@ -831,6 +861,10 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_panel_neural_residual_knn_logitresid",
         "joint_panel_neural_multiview_residual_knn_resid",
         "joint_panel_neural_multiview_residual_knn_logitresid",
+        "joint_proto_neural_residual_knn_resid",
+        "joint_proto_neural_residual_knn_logitresid",
+        "joint_proto_neural_multiview_residual_knn_resid",
+        "joint_proto_neural_multiview_residual_knn_logitresid",
         "joint_neural_residual_knn_resid",
         "joint_neural_residual_knn_logitresid",
         "joint_neural_q_residual_knn_resid",
@@ -1013,6 +1047,26 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             args.neural_latent_dim,
             args.neural_epochs,
         )
+        residual_proto_targets, residual_proto_meta = residual_prototype_targets(residual_fit_targets, panel_residual_targets)
+        prnrz_fit, prnrz_val, prnrz_sample, proto_neural_meta = fit_neural_residual_latent(
+            fit_x,
+            residual_proto_targets,
+            val_x,
+            sample_x,
+            args.max_features,
+            args.neural_latent_dim,
+            args.neural_epochs,
+        )
+        proto_mv_targets = np.hstack([residual_proto_targets, rz_fit, qrz_fit, srz_fit, qsrz_fit])
+        pmvnrz_fit, pmvnrz_val, pmvnrz_sample, proto_multiview_neural_meta = fit_neural_residual_latent(
+            fit_x,
+            proto_mv_targets,
+            val_x,
+            sample_x,
+            args.max_features,
+            args.neural_latent_dim,
+            args.neural_epochs,
+        )
         if latent_oof.shape[1] != z_val.shape[1]:
             latent_oof = np.full((len(train), z_val.shape[1]), np.nan, dtype=float)
         latent_oof[fold.val_idx] = z_val
@@ -1039,6 +1093,11 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             "panel_neural_best_loss": panel_neural_meta["neural_best_loss"],
             "panel_multiview_neural_latent_dim": panel_multiview_neural_meta["neural_latent_dim"],
             "panel_multiview_neural_best_loss": panel_multiview_neural_meta["neural_best_loss"],
+            **residual_proto_meta,
+            "proto_neural_latent_dim": proto_neural_meta["neural_latent_dim"],
+            "proto_neural_best_loss": proto_neural_meta["neural_best_loss"],
+            "proto_multiview_neural_latent_dim": proto_multiview_neural_meta["neural_latent_dim"],
+            "proto_multiview_neural_best_loss": proto_multiview_neural_meta["neural_best_loss"],
         }
         fold_meta.append(meta)
 
@@ -1261,6 +1320,30 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
             )
             sample_folds_by_source["joint_panel_neural_multiview_residual_knn_logitresid"].append(
                 (target_i, weighted_knn_residual(pmnrz_fit, pmnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
+            )
+            oof_by_source["joint_proto_neural_residual_knn_resid"][fold.val_idx, target_i] = weighted_knn_residual(
+                prnrz_fit, prnrz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_proto_neural_residual_knn_resid"].append(
+                (target_i, weighted_knn_residual(prnrz_fit, prnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, False))
+            )
+            oof_by_source["joint_proto_neural_residual_knn_logitresid"][fold.val_idx, target_i] = weighted_knn_residual(
+                prnrz_fit, prnrz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_proto_neural_residual_knn_logitresid"].append(
+                (target_i, weighted_knn_residual(prnrz_fit, prnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
+            )
+            oof_by_source["joint_proto_neural_multiview_residual_knn_resid"][fold.val_idx, target_i] = weighted_knn_residual(
+                pmvnrz_fit, pmvnrz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_proto_neural_multiview_residual_knn_resid"].append(
+                (target_i, weighted_knn_residual(pmvnrz_fit, pmvnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, False))
+            )
+            oof_by_source["joint_proto_neural_multiview_residual_knn_logitresid"][fold.val_idx, target_i] = weighted_knn_residual(
+                pmvnrz_fit, pmvnrz_val, y_fit, base_fit, base_val, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_proto_neural_multiview_residual_knn_logitresid"].append(
+                (target_i, weighted_knn_residual(pmvnrz_fit, pmvnrz_sample, y_fit, base_fit, base_test, args.knn_k, args.knn_temp, True))
             )
             fit_keys = train.iloc[fold.train_idx][KEY_COLUMNS]
             val_keys = train.iloc[fold.val_idx][KEY_COLUMNS]
