@@ -6,31 +6,32 @@ Last updated: 2026-05-21
 
 | rank by score | file | note | submitted_at | public_lb |
 | ---: | --- | --- | --- | ---: |
-| 1 | `submission_01_v76_balanced_hedge_best.csv` | memo | 2026-05-18 13:15:24 | 0.5999627447 |
+| 1 | `submission_v83_gq015_gs010.csv` | repaired-v80 public-coordinate gamma probe | 2026-05-21 | 0.5997645835 |
+| 2 | `submission_01_v76_balanced_hedge_best.csv` | memo | 2026-05-18 13:15:24 | 0.5999627447 |
 | (new) | `submission_v82_q1_s3_decoder_probe.csv` | v82 Q1/S3 decoder probe | 2026-05-20 | 0.6629409456 |
-| 2 | `submission_15_v18_old15_prob_blend.csv` | memo | 2026-05-20 00:32:17 | 0.6057860899 |
-| 3 | `submission_01_public_anchor_blend_best_known_0p612659.csv` | 0517-1 edit | 2026-05-17 14:46:12 | 0.6061690193 |
-| 4 | `v_perfect_shrink15.csv` | 0518-1 edit | 2026-05-18 13:11:25 | 0.6097358003 |
-| 5 | `submission_sample_support_target_blend.csv` | memo | 2026-05-20 00:29:17 | 0.6104310794 |
-| 6 | `v_perfect_shrink30.csv` | memo | 2026-05-18 13:12:13 | 0.6104977999 |
-| 7 | `submission_01_blend_best.csv` | codex1 edit | 2026-05-15 15:18:29 | 0.6126595186 |
-| 8 | `stack_calibrated_v_perfect_snapshot.csv` | 0517-2 edit | 2026-05-17 14:47:50 | 0.6173417918 |
-| 9 | `submission_02_subject_smooth.csv` | codex2 edit | 2026-05-15 15:19:16 | 0.6195173919 |
-| 10 | `submission_sample_support_target_blend.csv` | memo | 2026-05-19 10:22:03 | 0.6335340671 |
-| 11 | `42_submission_nopseudo_blend.csv` | memo | 2026-05-19 00:01:07 | 0.6424387775 |
-| 12 | `submission_03_torch_mlp.csv` | codex3 edit | 2026-05-15 15:19:42 | 0.6592167646 |
-| 13 | `v11_meanonly_submission.csv` | memo | 2026-05-17 14:48:40 | 0.6619461447 |
-| 14 | `48_submission_global_mean_pure.csv` | memo | 2026-05-19 00:04:54 | 0.6619461447 |
-| 15 | `stack_calibrated_submission.csv` | claude1 edit | 2026-05-16 00:00:05 | 0.7060157004 |
-| 16 | `submission_01_cross_workspace_convex_calibrated.csv` | codex4 edit | 2026-05-16 10:22:51 | 0.8196748034 |
-| 17 | `stack_calibrated_submission.csv` | cluade2 edit | 2026-05-16 10:25:56 | 0.8825491515 |
-| 18 | `stack_calibrated_submission.csv` | memo | 2026-05-20 00:34:36 | 0.9128560882 |
+| 3 | `submission_15_v18_old15_prob_blend.csv` | memo | 2026-05-20 00:32:17 | 0.6057860899 |
+| 4 | `submission_01_public_anchor_blend_best_known_0p612659.csv` | 0517-1 edit | 2026-05-17 14:46:12 | 0.6061690193 |
+| 5 | `v_perfect_shrink15.csv` | 0518-1 edit | 2026-05-18 13:11:25 | 0.6097358003 |
+| 6 | `submission_sample_support_target_blend.csv` | memo | 2026-05-20 00:29:17 | 0.6104310794 |
+| 7 | `v_perfect_shrink30.csv` | memo | 2026-05-18 13:12:13 | 0.6104977999 |
+| 8 | `submission_01_blend_best.csv` | codex1 edit | 2026-05-15 15:18:29 | 0.6126595186 |
+| 9 | `stack_calibrated_v_perfect_snapshot.csv` | 0517-2 edit | 2026-05-17 14:47:50 | 0.6173417918 |
+| 10 | `submission_02_subject_smooth.csv` | codex2 edit | 2026-05-15 15:19:16 | 0.6195173919 |
+| 11 | `submission_sample_support_target_blend.csv` | memo | 2026-05-19 10:22:03 | 0.6335340671 |
+| 12 | `42_submission_nopseudo_blend.csv` | memo | 2026-05-19 00:01:07 | 0.6424387775 |
+| 13 | `submission_03_torch_mlp.csv` | codex3 edit | 2026-05-15 15:19:42 | 0.6592167646 |
+| 14 | `v11_meanonly_submission.csv` | memo | 2026-05-17 14:48:40 | 0.6619461447 |
+| 15 | `48_submission_global_mean_pure.csv` | memo | 2026-05-19 00:04:54 | 0.6619461447 |
+| 16 | `stack_calibrated_submission.csv` | claude1 edit | 2026-05-16 00:00:05 | 0.7060157004 |
+| 17 | `submission_01_cross_workspace_convex_calibrated.csv` | codex4 edit | 2026-05-16 10:22:51 | 0.8196748034 |
+| 18 | `stack_calibrated_submission.csv` | cluade2 edit | 2026-05-16 10:25:56 | 0.8825491515 |
+| 19 | `stack_calibrated_submission.csv` | memo | 2026-05-20 00:34:36 | 0.9128560882 |
 
 Lower is better.
 
 ## Current Reading
 
-- The best known Public LB remains `submission_01_v76_balanced_hedge_best.csv` at `0.5999627447`.
+- The best known Public LB is now `submission_v83_gq015_gs010.csv` at `0.5997645835`, narrowly beating v76 (`0.5999627447`).
 - The two latest direct feedback points are:
   - `submission_sample_support_target_blend.csv`: `0.6104310794`
   - `submission_15_v18_old15_prob_blend.csv`: `0.6057860899`
@@ -60,6 +61,7 @@ Root cause found (`scripts/build_v83_repaired_v80.py`, `outputs/v83_repaired_v80
 - γ-sweep result: posterior optimum near γ≈0.10–0.15, ~**−0.002 vs v76** (0.5978 vs 0.5999). The mean-only form (v76 mean + v80 deviation) was rejected by the posterior (0.64, drift 0.10) — v76's row info must be kept.
 - **Honest reading: only ~15% of v80's row deviation is public-aligned; the other ~85% is the panel/coordinate distortion that killed v82. The repaired v80 is a small, real win, NOT a large jump.** A larger jump needs a different hypothesis (a v80-style model trained with public-coordinate priors from the start, or ensembling repaired-v80 with the orthogonal public-good v18), not more squeezing of v80 row signal.
 - **Primary upload: `submission_v83_gq015_gs010.csv`** (Q γ=0.15, S γ=0.10): posterior 0.597813 (−0.0021 vs v76), drift_v76 0.019, max-row 0.151, tail(pp>0.9) disagreement share 0.11 (spread, not tail-concentrated). Q1 mean 0.510 ≤ v76 0.511. Downside bounded (drift 0.019 vs v82's 0.128 — no v82-style blowup possible).
+- Public LB result: `0.5997645835`. This confirms the repaired-v80 direction is real, but much smaller than posterior predicted: posterior expected ~`0.597813`, so the posterior was optimistic by `+0.001951`. Use this as the new calibration point for v84: keep the v80 row-deviation idea, but penalize drift/large gamma more aggressively.
 
 ## Earlier diagnostic-only candidates (v83 anchor blends — `outputs/v83_anchor_candidates/report.md`)
 
