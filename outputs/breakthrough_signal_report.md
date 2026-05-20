@@ -89,6 +89,7 @@ This keeps producing new OOF signal after earlier layers are already strong. The
 | conditional routing v76 context-attention residual probe | 0.480978 |
 | conditional routing v77 residual-behavior neighborhood objective | 0.480038 |
 | conditional routing v78 family/target residual-neighborhood objective | 0.479449 |
+| conditional routing v79 S23/late residual-neighborhood objective | 0.478230 |
 
 ## Why This Looks Like A Real Direction
 
@@ -160,18 +161,19 @@ This keeps producing new OOF signal after earlier layers are already strong. The
 - A context-attention residual probe improves the v75 base from 0.481505 to 0.480978 in all-source routing and neural-only reaches 0.481166. However context-attention-only selects no move and its top candidates are all negative, so local attention over view-disagreement features is not itself the breakthrough. The useful residual refit remains source-wise: S4 late cross-family/Q-neural residual, S3 mid neighbor HGB, Q1 late neighbor HGB, Q2 first-half neural multiview QS residual, and smaller Q3/S1/S2 corrections.
 - A residual-behavior neighborhood objective improves the v76 base from 0.480978 to 0.480038 in all-source routing and neural-only reaches 0.480134. More importantly, residual-behavior-only improves to 0.480863 with standalone Q2 first-half, S2 mid, and S3 mid moves. This is the first clear evidence that the encoder should learn neighborhoods from residual behavior directly rather than only applying attention or gates over existing prediction views.
 - A family/target residual-neighborhood objective improves the v77 base from 0.480038 to 0.479449 in all-source routing. Neural-only reaches 0.479526, behavior-only reaches 0.479835, and new-behavior-only reaches 0.479863. The standalone new-behavior signal is target-local S3 late plus cross-family S2/S3/S4, confirming that the residual-neighborhood objective sharpens when split by residual manifold.
+- An S23/late residual-neighborhood objective improves the v78 base from 0.479449 to 0.478230 in all-source routing. Neural-only reaches 0.478299, behavior-only reaches 0.478327, and new-S23/target-late-only reaches 0.478445. The biggest standalone gains come from target-late residual behavior: Q1 late, Q3 mid, S1 second-half, plus smaller S2 first-half and S3 late moves. This is a stronger breakthrough signal than the generic S23 focus because it reveals a broader late-behavior state axis.
 
 ## Best Current Breakthrough Candidate
 
-- Bold/best OOF submission: `outputs/conditional_latent_routing_v78_family_behavior_on_v77/submission_conditional_latent_routing.csv`
-- Bold/best OOF: `0.479449`
-- Bold/best report: `outputs/conditional_latent_routing_v78_family_behavior_on_v77/report.md`
-- Cleaner/neural-only OOF candidate: `outputs/conditional_latent_routing_v78_neural_only_on_v77/submission_conditional_latent_routing.csv`
-- Cleaner/neural-only OOF: `0.479526`
-- Residual-behavior-only evidence candidate: `outputs/conditional_latent_routing_v78_behavior_only_on_v77/submission_conditional_latent_routing.csv`
-- Residual-behavior-only OOF: `0.479835`
-- New-behavior-only evidence candidate: `outputs/conditional_latent_routing_v78_new_behavior_only_on_v77/submission_conditional_latent_routing.csv`
-- New-behavior-only OOF: `0.479863`
+- Bold/best OOF submission: `outputs/conditional_latent_routing_v79_s23_behavior_on_v78/submission_conditional_latent_routing.csv`
+- Bold/best OOF: `0.478230`
+- Bold/best report: `outputs/conditional_latent_routing_v79_s23_behavior_on_v78/report.md`
+- Cleaner/neural-only OOF candidate: `outputs/conditional_latent_routing_v79_neural_only_on_v78/submission_conditional_latent_routing.csv`
+- Cleaner/neural-only OOF: `0.478299`
+- Residual-behavior-only evidence candidate: `outputs/conditional_latent_routing_v79_behavior_only_on_v78/submission_conditional_latent_routing.csv`
+- Residual-behavior-only OOF: `0.478327`
+- New-S23/target-late-only evidence candidate: `outputs/conditional_latent_routing_v79_new_s23_only_on_v78/submission_conditional_latent_routing.csv`
+- New-S23/target-late-only OOF: `0.478445`
 - Best single-layer lead-lag breakthrough report: `outputs/conditional_latent_routing_v42_leadlag_on_v40/report.md`
 
 Important caveat: v42/v44 are useful as breakthrough-signal probes, but some selected OOF bins have no sample rows. For an upload-style candidate, v43/v45/v46 are cleaner because they require meaningful sample coverage.
@@ -225,6 +227,7 @@ It is closer to residual boosting in latent space:
 - context-attention residual probe: negative as a standalone source, but confirms the repeated S4/S3/Q residual refit signal is still not saturated
 - residual-behavior neighborhood objective: first direct neighborhood objective with standalone Q2/S2/S3 improvement, so this is now a stronger breakthrough direction than prediction-context attention
 - family/target residual-neighborhood objective: stronger than v77 because target-local S3 late and cross-family S2/S3/S4 move without old sources
+- S23/late residual-neighborhood objective: target-late residual behavior creates large Q1 late and Q3 mid gains, so the useful latent is probably a late-behavior manifold shared across labels rather than a narrow S3-only axis
 
 This is the first run where the encoder route creates a large enough target-level jump to look like a possible main solution path rather than just a marginal add-on.
 
@@ -235,6 +238,8 @@ Context-attention update: newest best score is 0.480978. The first nonparametric
 Residual-neighborhood update: newest best score is 0.480038. This is a better breakthrough signal than v76 because the new objective is not only riding old sources: residual-behavior-only improves the base through Q2, S2, and S3. The next experiment should split this target into Q-family, S-family, cross-family, and target-local residual neighborhoods so the latent can learn which residual manifold applies before routing.
 
 Family/target residual-neighborhood update: newest best score is 0.479449. New-behavior-only directly improves to 0.479863, so the breakthrough hypothesis is now concrete: train target-local and cross-family residual-neighborhood latents, especially for S3 late and S2/S4 cross-family regions.
+
+S23/late residual-neighborhood update: newest best score is 0.478230. The new-source-only route reaches 0.478445, with target-late residual behavior producing Q1 late, Q3 mid, S1 second-half, S2 first-half, and S3 late gains. The next breakthrough test should generalize this into a dedicated target-late behavior objective and verify whether those large Q1/Q3 gains survive stricter block and sample-position diagnostics.
 
 ## Updated S2 Signal
 
