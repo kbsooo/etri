@@ -1,0 +1,151 @@
+{
+  "base_score": {
+    "avg_log_loss": 0.4989448590040153,
+    "per_target": {
+      "Q1": 0.5432279113625651,
+      "Q2": 0.5497312441456912,
+      "Q3": 0.5180274676044705,
+      "S1": 0.48962291917964845,
+      "S2": 0.4756262036767915,
+      "S3": 0.42864346336650566,
+      "S4": 0.48773480369243455
+    }
+  },
+  "routed_score": {
+    "avg_log_loss": 0.49880548855483614,
+    "per_target": {
+      "Q1": 0.5432279113625651,
+      "Q2": 0.5497312441456912,
+      "Q3": 0.5180274676044705,
+      "S1": 0.48962291917964845,
+      "S2": 0.4756262036767915,
+      "S3": 0.42864346336650566,
+      "S4": 0.48675921054818055
+    }
+  },
+  "selected_moves": [
+    {
+      "target": "Q1",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "Q2",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "Q3",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "S1",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "S2",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "S3",
+      "source": "base",
+      "bin": "all",
+      "weight": 0.0,
+      "improvement": 0.0,
+      "lo": NaN,
+      "hi": NaN,
+      "train_rows": NaN,
+      "sample_rows": NaN,
+      "base_log_loss": NaN,
+      "log_loss": NaN
+    },
+    {
+      "target": "S4",
+      "source": "joint_metric_knn_resid",
+      "bin": "mid",
+      "weight": 0.1,
+      "improvement": 0.0009755931442539945,
+      "lo": 0.333,
+      "hi": 0.666,
+      "train_rows": 100.0,
+      "sample_rows": 130.0,
+      "base_log_loss": 0.48773480369243455,
+      "log_loss": 0.48675921054818055
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "base_oof": "outputs/conditional_latent_routing_v56_metric_attention_on_v55/oof_conditional_latent_routing.csv",
+    "base_submission": "outputs/conditional_latent_routing_v56_metric_attention_on_v55/submission_conditional_latent_routing.csv",
+    "source": [
+      "joint_attention_knn_logitresid=outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/oof_joint_attention_knn_logitresid.csv,outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/submission_joint_attention_knn_logitresid.csv",
+      "joint_attention_knn_resid=outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/oof_joint_attention_knn_resid.csv,outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/submission_joint_attention_knn_resid.csv",
+      "joint_local_hgb=outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/oof_joint_local_hgb.csv,outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/submission_joint_local_hgb.csv",
+      "joint_local_logreg=outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/oof_joint_local_logreg.csv,outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/submission_joint_local_logreg.csv",
+      "joint_metric_attention_knn_logitresid=outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/oof_joint_metric_attention_knn_logitresid.csv,outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/submission_joint_metric_attention_knn_logitresid.csv",
+      "joint_metric_attention_knn_resid=outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/oof_joint_metric_attention_knn_resid.csv,outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/submission_joint_metric_attention_knn_resid.csv",
+      "joint_metric_knn_logitresid=outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/oof_joint_metric_knn_logitresid.csv,outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/submission_joint_metric_knn_logitresid.csv",
+      "joint_metric_knn_resid=outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/oof_joint_metric_knn_resid.csv,outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/submission_joint_metric_knn_resid.csv",
+      "joint_pls_hgb=outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/oof_joint_pls_hgb.csv,outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/submission_joint_pls_hgb.csv",
+      "joint_pls_knn_logitresid=outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/oof_joint_pls_knn_logitresid.csv,outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/submission_joint_pls_knn_logitresid.csv",
+      "joint_pls_knn_resid=outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/oof_joint_pls_knn_resid.csv,outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/submission_joint_pls_knn_resid.csv",
+      "joint_pls_logreg=outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/oof_joint_pls_logreg.csv,outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/submission_joint_pls_logreg.csv",
+      "joint_pls_ridge=outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/oof_joint_pls_ridge.csv,outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/submission_joint_pls_ridge.csv",
+      "joint_proto_mix=outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/oof_joint_proto_mix.csv,outputs/joint_state_space_encoder_v57_subject_time_attention_on_v56/submission_joint_proto_mix.csv"
+    ],
+    "output_dir": "outputs/conditional_latent_routing_v57_subject_time_attention_constrained_on_v56",
+    "weights": "0.025,0.05,0.075,0.1",
+    "bins": "first_half:0:0.5,second_half:0.5:1.000001,mid:0.333:0.666,late:0.666:1.000001,all:0:1.000001",
+    "min_train_rows": 50,
+    "min_sample_rows": 40,
+    "min_improvement": 0.0005,
+    "max_moves_per_target": 1,
+    "allow_overlap": false,
+    "targets": "Q1,Q2,Q3,S1,S2,S3,S4",
+    "match_source_prefix": false
+  }
+}

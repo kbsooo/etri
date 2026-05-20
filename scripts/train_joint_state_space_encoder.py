@@ -246,6 +246,55 @@ def metric_weighted_knn_residual(
     )
 
 
+def attention_knn_residual(
+    z_fit: np.ndarray,
+    z_apply: np.ndarray,
+    y_fit: np.ndarray,
+    base_fit: np.ndarray,
+    base_apply: np.ndarray,
+    fit_keys: pd.DataFrame,
+    apply_keys: pd.DataFrame,
+    metric_weights: np.ndarray | None,
+    k: int,
+    temp: float,
+    logit_mode: bool,
+) -> np.ndarray:
+    z_fit = np.clip(np.nan_to_num(z_fit, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    z_apply = np.clip(np.nan_to_num(z_apply, nan=0.0, posinf=8.0, neginf=-8.0), -8.0, 8.0)
+    if metric_weights is not None:
+        weights = np.sqrt(np.maximum(metric_weights, 1e-6)).reshape(1, -1)
+        z_fit = z_fit * weights
+        z_apply = z_apply * weights
+    d2 = ((z_apply[:, None, :] - z_fit[None, :, :]) ** 2).mean(axis=2)
+    kk = min(k, z_fit.shape[0])
+    idx = np.argpartition(d2, kk - 1, axis=1)[:, :kk]
+    chosen = np.take_along_axis(d2, idx, axis=1)
+
+    fit_subjects = fit_keys["subject_id"].astype(str).to_numpy()
+    apply_subjects = apply_keys["subject_id"].astype(str).to_numpy()
+    same_subject = (apply_subjects[:, None] == fit_subjects[idx]).astype(float)
+
+    fit_dates = pd.to_datetime(fit_keys["lifelog_date"]).to_numpy(dtype="datetime64[D]")
+    apply_dates = pd.to_datetime(apply_keys["lifelog_date"]).to_numpy(dtype="datetime64[D]")
+    day_delta = np.abs((apply_dates[:, None] - fit_dates[idx]).astype("timedelta64[D]").astype(float))
+    recency = np.exp(-np.clip(day_delta, 0.0, 365.0) / 21.0)
+
+    scale = np.maximum(np.nanmedian(chosen, axis=1, keepdims=True), 1e-6) * temp
+    score = -chosen / scale + 0.65 * same_subject + 0.35 * recency
+    score = score - np.max(score, axis=1, keepdims=True)
+    attn = np.exp(np.clip(score, -50.0, 50.0))
+    attn = attn / np.maximum(attn.sum(axis=1, keepdims=True), 1e-12)
+
+    if logit_mode:
+        y_smooth = y_fit * 0.98 + 0.01
+        residual = safe_logit(y_smooth) - safe_logit(base_fit)
+        pred = sigmoid(safe_logit(base_apply) + (attn * residual[idx]).sum(axis=1))
+    else:
+        residual = y_fit - base_fit
+        pred = base_apply + (attn * residual[idx]).sum(axis=1)
+    return np.clip(pred, EPS, 1.0 - EPS)
+
+
 def local_decoder_features(
     ref_z: np.ndarray,
     query_z: np.ndarray,
@@ -374,6 +423,10 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
         "joint_pls_knn_logitresid",
         "joint_metric_knn_resid",
         "joint_metric_knn_logitresid",
+        "joint_attention_knn_resid",
+        "joint_attention_knn_logitresid",
+        "joint_metric_attention_knn_resid",
+        "joint_metric_attention_knn_logitresid",
         "joint_local_logreg",
         "joint_local_hgb",
         "joint_proto_mix",
@@ -448,6 +501,49 @@ def train_joint_encoder(args: argparse.Namespace) -> None:
                 (
                     target_i,
                     metric_weighted_knn_residual(z_fit, z_sample, y_fit, base_fit, base_test, metric_weights, args.knn_k, args.knn_temp, True),
+                )
+            )
+            fit_keys = train.iloc[fold.train_idx][KEY_COLUMNS]
+            val_keys = train.iloc[fold.val_idx][KEY_COLUMNS]
+            sample_keys = sample[KEY_COLUMNS]
+            oof_by_source["joint_attention_knn_resid"][fold.val_idx, target_i] = attention_knn_residual(
+                z_fit, z_val, y_fit, base_fit, base_val, fit_keys, val_keys, None, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_attention_knn_resid"].append(
+                (
+                    target_i,
+                    attention_knn_residual(z_fit, z_sample, y_fit, base_fit, base_test, fit_keys, sample_keys, None, args.knn_k, args.knn_temp, False),
+                )
+            )
+            oof_by_source["joint_attention_knn_logitresid"][fold.val_idx, target_i] = attention_knn_residual(
+                z_fit, z_val, y_fit, base_fit, base_val, fit_keys, val_keys, None, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_attention_knn_logitresid"].append(
+                (
+                    target_i,
+                    attention_knn_residual(z_fit, z_sample, y_fit, base_fit, base_test, fit_keys, sample_keys, None, args.knn_k, args.knn_temp, True),
+                )
+            )
+            oof_by_source["joint_metric_attention_knn_resid"][fold.val_idx, target_i] = attention_knn_residual(
+                z_fit, z_val, y_fit, base_fit, base_val, fit_keys, val_keys, metric_weights, args.knn_k, args.knn_temp, False
+            )
+            sample_folds_by_source["joint_metric_attention_knn_resid"].append(
+                (
+                    target_i,
+                    attention_knn_residual(
+                        z_fit, z_sample, y_fit, base_fit, base_test, fit_keys, sample_keys, metric_weights, args.knn_k, args.knn_temp, False
+                    ),
+                )
+            )
+            oof_by_source["joint_metric_attention_knn_logitresid"][fold.val_idx, target_i] = attention_knn_residual(
+                z_fit, z_val, y_fit, base_fit, base_val, fit_keys, val_keys, metric_weights, args.knn_k, args.knn_temp, True
+            )
+            sample_folds_by_source["joint_metric_attention_knn_logitresid"].append(
+                (
+                    target_i,
+                    attention_knn_residual(
+                        z_fit, z_sample, y_fit, base_fit, base_test, fit_keys, sample_keys, metric_weights, args.knn_k, args.knn_temp, True
+                    ),
                 )
             )
             fit_local = local_decoder_features(z_fit, z_fit, y_fit, base_fit, base_fit, args.knn_k, args.knn_temp, exclude_self=True)
