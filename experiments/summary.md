@@ -4,11 +4,11 @@ Last updated: 2026-05-20
 
 ## Current Best
 
-- Best internal OOF candidate: `outputs/conditional_latent_routing_v77_residual_behavior_on_v76/submission_conditional_latent_routing.csv`
-- Best internal OOF: `0.480038`
+- Best internal OOF candidate: `outputs/conditional_latent_routing_v78_family_behavior_on_v77/submission_conditional_latent_routing.csv`
+- Best internal OOF: `0.479449`
 - Main report: `outputs/breakthrough_signal_report.md`
 - Public LB feedback: `experiments/public_lb_feedback.md`
-- Candidate report: `outputs/conditional_latent_routing_v77_residual_behavior_on_v76/report.md`
+- Candidate report: `outputs/conditional_latent_routing_v78_family_behavior_on_v77/report.md`
 - Important caveat: this is an internal OOF proxy, not Public LB. Recent Public LB feedback for older submissions was weaker than OOF suggested.
 
 ## What We Are Testing
@@ -70,6 +70,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 | v75 second-half context gate | 0.481505 | second-half-only gate is weaker than v74's panel-bin gate, but another neural residual refit layer produces a new best | `outputs/breakthrough_signal_report.md` |
 | v76 context-attention residual probe | 0.480978 | local attention over view-context features fails alone, but residual refit keeps finding S4/S3 and broad small target/bin gains | `outputs/breakthrough_signal_report.md` |
 | v77 residual-behavior neighborhood objective | 0.480038 | residual-neighborhood latent gives standalone Q2/S2/S3 signal and all-source reaches a new best | `outputs/breakthrough_signal_report.md` |
+| v78 family/target residual-neighborhood objective | 0.479449 | splitting residual-behavior neighborhoods by family and target gives stronger standalone behavior-only signal, led by target-local S3 late | `outputs/breakthrough_signal_report.md` |
 
 ## What Worked
 
@@ -102,6 +103,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - A narrower second-half-only context gate is weaker than the v74 panel-bin gate: gate-only reaches only 0.482181 and keeps Q1/S3 late moves. The new best still comes from source-wise neural/prototype/neighbor residuals, especially S4 late, Q1/S2/S3 first-half, and Q3 late.
 - A local attention decoder over residual-view context features creates a new all-source best at 0.480978 and neural-only reaches 0.481166. The important positive signal is still source-wise residual refitting: S4 late cross-family/Q-neural residual is strong, S3 mid neighbor is strong, and Q2/Q3/S1/S2 add smaller target/bin corrections.
 - Training the encoder to predict residual-neighborhood behavior gives the first useful standalone neighborhood-objective signal after v76. Residual-behavior-only improves to 0.480863 using Q2 first-half, S2 mid, and S3 mid moves, while all-source reaches 0.480038 and neural-only reaches 0.480134.
+- Splitting residual-neighborhood behavior by family, cross-family, and target sharpens v77. New-behavior-only reaches 0.479863 and behavior-only reaches 0.479835, led by target-local S3 late plus cross-family S2/S3/S4 moves; all-source reaches 0.479449.
 
 ## What Failed Or Was Weaker
 
@@ -126,12 +128,12 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 
 - Current implementation: common label-free features plus target-specific source models for `Q1`, `Q2`, `Q3`, `S1`, `S2`, `S3`, `S4`, composed by a conditional target/bin router.
 - Not yet final: one unified neural encoder with seven heads.
-- Strong next direction: residual-behavior neighborhoods are now a real objective signal. The next step is to make that objective family/target-aware so it can hit Q2/S2/S3 without relying on broad all-source routing.
+- Strong next direction: target-local residual-neighborhood latent is strongest for S3 late. The next step should make a dedicated S3/S2 behavior objective with stricter fold/block diagnostics, not more generic attention.
 
 ## Next 3
 
-1. Split the residual-neighborhood objective by Q/S family and target.
-   - Success criterion: residual-behavior-only should improve more than v77's 0.000115 absolute OOF gain and add at least one Q/S cross-family move.
+1. Build a dedicated S3/S2 residual-neighborhood objective with target-local plus cross-family behavior and verify under stricter block/sample weighting.
+   - Success criterion: behavior-only should preserve v78 S3/S2 moves and improve Q/S coverage without needing old sources.
 
 2. Turn the neighbor scorer from a post-hoc feature decoder into the latent objective itself: pull together days that have similar target residual behavior while preserving subject/time context.
    - Success criterion: improve S3/S4/S1 residuals with fewer routed moves and avoid standalone decoder collapse.
