@@ -1401,3 +1401,40 @@ The updated scout target map is:
 - S2: subject-relative sleep-consensus purity scout.
 - S3: subject-relative sleep-onset settling.
 - S4: subject-relative sleep-consensus purity scout.
+
+## 2026-05-22 - Sleep Consensus Stability PCA
+
+### Scope
+
+Tested whether the unstable high-dimensional S2/S4 sleep-consensus scout could be stabilized by label-free compression. The source pool concatenates SCP subject-relative purity, compact subject-relative consensus, and compact rolling consensus into a 1,188-dimensional unlabeled sleep-consensus table, then compresses it with PCA to 16/32/64 dimensions before probing.
+
+### Artifacts
+
+- PCA compressor: `scripts/compress_latent_pca.py`
+- Stability pool: `artifacts/domain_sleep_consensus_stability_pool_v1.parquet`
+- PCA artifacts:
+  - `artifacts/domain_sleep_consensus_stability_pca16_v1.parquet`
+  - `artifacts/domain_sleep_consensus_stability_pca32_v1.parquet`
+  - `artifacts/domain_sleep_consensus_stability_pca64_v1.parquet`
+  - matching `domain_best_plus_sleep_consensus_stability_pca*_v1.parquet` additive variants
+- Probe report: `outputs/domain_sleep_consensus_stability_pca_probe_v1/report.md`
+- Nested report: `outputs/domain_all_specialists_plus_sleep_consensus_stability_pca_nested_selection_v1/report.md`
+
+### Result
+
+| experiment | S2 OOF logloss | S4 OOF logloss | avg OOF logloss | read |
+| --- | ---: | ---: | ---: | --- |
+| current fixed scout hybrid | 0.566343 | 0.633149 | 0.610257 | Protected target map after Q1 boundary swap. |
+| best PCA global probe | 0.569041 | 0.643920 | 0.622164 | PCA32 additive improves over `best` globally, but loses most S4 signal. |
+| best PCA S2 source | 0.567009 | n/a | 0.623724 | PCA64 deviation is close to raw SCP S2, but not better. |
+| best PCA S4 source | n/a | 0.634510 | 0.623389 | PCA64 additive is close to raw SCP S4, but still worse than current scout S4. |
+| nested all-specialist + PCA | 0.574130 | 0.645007 | 0.617892 | PCA is selected for S4 in only 1/5 folds and harms held-fold S4. |
+
+### Working Interpretation
+
+Label-free PCA compression reduces dimensionality but does not solve the S2/S4 stability problem. The S2 signal is not just "low-rank sleep consensus"; nested selection still prefers raw micro-awakening and subject-relative purity slices. S4 remains the harder target: raw SCP is strong in full OOF, PCA is close, but neither survives protected/nested selection cleanly.
+
+Carry forward:
+
+- S2: split sleep consensus into micro-awakening vs subject-relative purity objectives rather than compressing them together.
+- S4: look beyond sleep-consensus PCA; the target likely needs routine/circadian phase break or night-fragmentation episode structure, not a generic low-rank sleep-purity coordinate.
