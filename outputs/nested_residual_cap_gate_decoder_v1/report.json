@@ -1,0 +1,208 @@
+{
+  "scores": [
+    {
+      "source": "extended_full_oof_winners",
+      "avg_log_loss": 0.6167661041339494,
+      "Q1": 0.6649798172761262,
+      "Q2": 0.689098079758578,
+      "Q3": 0.6656058617371794,
+      "S1": 0.5654997685508564,
+      "S2": 0.57220522054193,
+      "S3": 0.5345126137783529,
+      "S4": 0.6254613672946232,
+      "drift_vs_reference": 0.0698923810004648,
+      "corr_vs_reference": 0.8607136370004795
+    },
+    {
+      "source": "nested_global_capgate",
+      "avg_log_loss": 0.6185782652467763,
+      "Q1": 0.6653950999785828,
+      "Q2": 0.6905699697235408,
+      "Q3": 0.6656058617371794,
+      "S1": 0.5682188244123064,
+      "S2": 0.5761447143304287,
+      "S3": 0.5353457898343595,
+      "S4": 0.6287675967110363,
+      "drift_vs_reference": 0.07051239435559714,
+      "corr_vs_reference": 0.8613703560299507
+    },
+    {
+      "source": "nested_target_capgate",
+      "avg_log_loss": 0.618978913088771,
+      "Q1": 0.6649635728548666,
+      "Q2": 0.6896413429160416,
+      "Q3": 0.6656058617371794,
+      "S1": 0.5721431648207125,
+      "S2": 0.57220522054193,
+      "S3": 0.5324871891661991,
+      "S4": 0.6358060395844675,
+      "drift_vs_reference": 0.07027750684365384,
+      "corr_vs_reference": 0.8598926507646517
+    },
+    {
+      "source": "stable_signal_s4_temporal",
+      "avg_log_loss": 0.6202810153588628,
+      "Q1": 0.6706519643141007,
+      "Q2": 0.6857431732642107,
+      "Q3": 0.6656058617371794,
+      "S1": 0.5725106975940621,
+      "S2": 0.5771946372740457,
+      "S3": 0.5294191263064593,
+      "S4": 0.6408416470219814,
+      "drift_vs_reference": 0.06872622593890586,
+      "corr_vs_reference": 0.8711132541889631
+    }
+  ],
+  "selection_counts": [
+    {
+      "selection": "global",
+      "target": "ALL",
+      "selected": "capgate_signed_margin_s100_c050",
+      "outer_count": 2
+    },
+    {
+      "selection": "global",
+      "target": "ALL",
+      "selected": "extended_full_oof_winners",
+      "outer_count": 2
+    },
+    {
+      "selection": "global",
+      "target": "ALL",
+      "selected": "capgate_signed_margin_s075_c050",
+      "outer_count": 1
+    },
+    {
+      "selection": "targetwise",
+      "target": "Q1",
+      "selected": "capgate_signed_margin_s125_c030",
+      "outer_count": 3
+    },
+    {
+      "selection": "targetwise",
+      "target": "Q1",
+      "selected": "capgate_signed_margin_s125_c015",
+      "outer_count": 1
+    },
+    {
+      "selection": "targetwise",
+      "target": "Q1",
+      "selected": "capgate_signed_margin_s125_c020",
+      "outer_count": 1
+    },
+    {
+      "selection": "targetwise",
+      "target": "Q2",
+      "selected": "capgate_signed_margin_s125_c010",
+      "outer_count": 2
+    },
+    {
+      "selection": "targetwise",
+      "target": "Q2",
+      "selected": "capgate_all_s125_c010",
+      "outer_count": 1
+    },
+    {
+      "selection": "targetwise",
+      "target": "Q2",
+      "selected": "capgate_all_s125_c020",
+      "outer_count": 1
+    },
+    {
+      "selection": "targetwise",
+      "target": "Q2",
+      "selected": "capgate_signed_margin_s125_c015",
+      "outer_count": 1
+    },
+    {
+      "selection": "targetwise",
+      "target": "Q3",
+      "selected": "stable_signal_s4_temporal",
+      "outer_count": 4
+    },
+    {
+      "selection": "targetwise",
+      "target": "Q3",
+      "selected": "capgate_all_s025_c003",
+      "outer_count": 1
+    },
+    {
+      "selection": "targetwise",
+      "target": "S1",
+      "selected": "extended_full_oof_winners",
+      "outer_count": 3
+    },
+    {
+      "selection": "targetwise",
+      "target": "S1",
+      "selected": "capgate_signed_margin_s075_c050",
+      "outer_count": 1
+    },
+    {
+      "selection": "targetwise",
+      "target": "S1",
+      "selected": "capgate_top_abs_50_s075_c050",
+      "outer_count": 1
+    },
+    {
+      "selection": "targetwise",
+      "target": "S2",
+      "selected": "extended_full_oof_winners",
+      "outer_count": 5
+    },
+    {
+      "selection": "targetwise",
+      "target": "S3",
+      "selected": "capgate_signed_margin_s125_c030",
+      "outer_count": 3
+    },
+    {
+      "selection": "targetwise",
+      "target": "S3",
+      "selected": "capgate_signed_margin_s125_c010",
+      "outer_count": 1
+    },
+    {
+      "selection": "targetwise",
+      "target": "S3",
+      "selected": "stable_signal_s4_temporal",
+      "outer_count": 1
+    },
+    {
+      "selection": "targetwise",
+      "target": "S4",
+      "selected": "extended_full_oof_winners",
+      "outer_count": 2
+    },
+    {
+      "selection": "targetwise",
+      "target": "S4",
+      "selected": "capgate_agreement_with_prior_s125_c050",
+      "outer_count": 1
+    },
+    {
+      "selection": "targetwise",
+      "target": "S4",
+      "selected": "capgate_all_s125_c050",
+      "outer_count": 1
+    },
+    {
+      "selection": "targetwise",
+      "target": "S4",
+      "selected": "capgate_top_abs_35_s100_c050",
+      "outer_count": 1
+    }
+  ],
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/nested_residual_cap_gate_decoder_v1",
+    "stable_oof": "outputs/stable_extended_consensus_decoder_v1/oof_stable_signal_s4_temporal.csv",
+    "stable_submission": "outputs/stable_extended_consensus_decoder_v1/submission_stable_signal_s4_temporal.csv",
+    "extended_oof": "outputs/stable_extended_consensus_decoder_v1/oof_extended_full_oof_winners.csv",
+    "extended_submission": "outputs/stable_extended_consensus_decoder_v1/submission_extended_full_oof_winners.csv",
+    "reference_submission": "outputs/v83_repaired_v80/submission_v83_gq015_gs010.csv",
+    "folds": 5,
+    "subject_alpha": 10.0
+  }
+}

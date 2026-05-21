@@ -324,6 +324,38 @@ Interpretation:
 - Q1/Q2/S3 improve from cap-gating, while Q3 should stay on the stable scaffold. S1/S2/S4 still prefer the bolder extended map under full-OOF scoring.
 - Public robustness is not proven. Drift vs v83 rises from the stable scaffold's roughly `0.069` to `0.072`, and the best variants come from a grid over full OOF. This should be nested/stress-tested before treating it as a submission-quality model.
 
+## Nested residual cap-gate stress test
+
+Script: `scripts/train_nested_residual_cap_gate_decoder.py`
+
+Output: `outputs/nested_residual_cap_gate_decoder_v1/`
+
+This stress test selects cap/gate parameters only on each outer fold's train rows and scores the selected source on held-out outer rows. It also records a target-wise nested selection variant.
+
+Results:
+
+- `extended_full_oof_winners`: `0.616766`
+- `nested_global_capgate`: `0.618578`
+- `nested_target_capgate`: `0.618979`
+- `stable_signal_s4_temporal`: `0.620281`
+
+Selection counts:
+
+- Global selection picked `capgate_signed_margin_s100_c050` in 2/5 folds, `extended_full_oof_winners` in 2/5 folds, and `capgate_signed_margin_s075_c050` in 1/5 fold.
+- Q1 mostly selected `capgate_signed_margin_s125_c030` (3/5).
+- Q2 selected several high-scale cap-gates, with no single stable source.
+- Q3 selected `stable_signal_s4_temporal` in 4/5 folds.
+- S2 selected `extended_full_oof_winners` in 5/5 folds.
+- S3 mostly selected `capgate_signed_margin_s125_c030` (3/5).
+- S4 is unstable across extended and cap-gate variants.
+
+Interpretation:
+
+- The full-OOF cap-gate result was optimistic: full-OOF best global `0.616528` becomes nested global `0.618578`, and full-OOF target-wise `0.614731` becomes nested target-wise `0.618979`.
+- The signal is still real enough to beat the stable scaffold under nested validation (`0.618578` vs `0.620281`).
+- The cleanest carry-forward rule is global `signed_margin` cap-gating, not full target-wise selection. Target-wise selection adds optimism and instability, especially Q2/S4.
+- The next step should turn `signed_margin` into a fixed decoder rule or learn a small fold-safe permission model, while keeping Q3 on the stable scaffold and treating S2's aggressive extended residual as a separate risk.
+
 ## Meta-gated consensus follow-up
 
 Script: `scripts/train_meta_gated_consensus_decoder.py`
