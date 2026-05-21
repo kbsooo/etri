@@ -113,3 +113,54 @@ Train a target-aware pruned residual encoder:
 - same fold-safe subject prior,
 - residual decoder with nested target-wise selection to reduce selection bias,
 - compare against v2 target-wise `0.617441` and subject-prior `0.627413`.
+
+## Nested target-aware follow-up
+
+Script: `scripts/train_nested_pruned_state_decoder.py`
+
+Output: `outputs/nested_pruned_state_decoder_v1/`
+
+This follow-up uses v2's target-aware candidate families but performs nested selection:
+
+```text
+outer fold:
+  inner folds select the best source for each target
+  selected source is trained on outer-train
+  score is measured on outer-val
+```
+
+Results:
+
+- Nested target-wise OOF avg: `0.624729`
+- Subject-prior baseline from v2: `0.627413`
+- Gain vs subject prior: `-0.002684`
+- v2 full-OOF target-wise selection: `0.617441`
+- Estimated selection optimism in v2 target-wise selection: about `+0.007288`
+- Drift vs v83 diagnostic reference: `0.066660`
+
+Per-target nested OOF:
+
+- Q1: `0.670340`
+- Q2: `0.685659`
+- Q3: `0.672727`
+- S1: `0.576165`
+- S2: `0.585703`
+- S3: `0.537058`
+- S4: `0.645454`
+
+Selection stability:
+
+- Q2 is the most stable target: `no_ratio__prior_logit_blend_state_mean_w35` selected in 4/5 outer folds.
+- Q1 and S1 often select `only_rhythm__prior_logit_blend_hgb_w20`.
+- S2 and S3 frequently fall back to `subject_prior`, so their apparent v2 target-wise gains were partly selection noise.
+- S4 has split support between `no_temporal_delta` and `only_cross_modal`.
+
+Decision:
+
+- Keep the target-aware residual decoder direction. It survives nested selection and beats subject prior.
+- Do not trust the raw v2 target-wise `0.617441` as a true score; it is a search/selection artifact.
+- Next useful experiment is a consensus/frequency-stabilized target decoder:
+  - Q2 fixed to `no_ratio + state_mean`.
+  - Q1/S1 fixed to `only_rhythm + HGB`.
+  - S2/S3 should use a conservative subject-prior gate unless their residual source wins consistently.
+  - S4 should compare `no_temporal_delta` vs `only_cross_modal` under fixed selection.

@@ -11,6 +11,7 @@ Last updated: 2026-05-20
 - Adding a fold-safe subject prior as an intermediate state makes the decoder useful: `outputs/pruned_state_decoder_v2_prior_residual/` best global `0.625801`, target-wise `0.617441`, improving the subject-prior baseline `0.627413` by `-0.001612`.
 - Stronger pruning to 160 features was worse: `outputs/pruned_state_decoder_v3_cap160/` best global `0.626764`, target-wise `0.619789`.
 - Current signal: decoder should be a bounded residual over subject-normalized state, not a direct label predictor. `only_rhythm`, `only_cross_modal`, and missingness-related feature families are the most useful follow-up targets.
+- Nested target-aware follow-up (`outputs/nested_pruned_state_decoder_v1/`) reduces target-wise selection bias: full-OOF targetwise `0.617441` becomes nested `0.624729`, still beating the subject-prior baseline `0.627413` by `-0.002684`. This keeps the independent Decoder signal alive but shows S2/S3 were partly selection artifacts.
 
 ## Current Best
 

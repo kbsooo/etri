@@ -1,0 +1,69 @@
+{
+  "avg_log_loss": 0.6247293973383057,
+  "per_target": {
+    "Q1": 0.6703396553613309,
+    "Q2": 0.6856585476419703,
+    "Q3": 0.6727269325157085,
+    "S1": 0.5761650491302822,
+    "S2": 0.585702879545766,
+    "S3": 0.5370582698387385,
+    "S4": 0.6454544473343434
+  },
+  "drift_vs_reference": {
+    "reference": "outputs/v83_repaired_v80/submission_v83_gq015_gs010.csv",
+    "mean_abs_drift": 0.06665955782689902,
+    "max_abs_drift": 0.2965573463152633,
+    "corr": 0.8781365601994902,
+    "target_mean": {
+      "Q1": 0.5001364549464451,
+      "Q2": 0.5663133262143808,
+      "Q3": 0.6087824527508899,
+      "S1": 0.6973705492446461,
+      "S2": 0.6623416080920519,
+      "S3": 0.6798303865679056,
+      "S4": 0.553218565779433
+    },
+    "target_mean_shift": {
+      "Q1": -0.010231741955510966,
+      "Q2": -0.0030049888420793955,
+      "Q3": -0.0032043089103085103,
+      "S1": 0.014758162033546768,
+      "S2": 0.018416359438051953,
+      "S3": 0.021189565670949987,
+      "S4": 0.00020464375674559808
+    },
+    "panel_mean_abs_drift": {
+      "early": 0.05678778639148487,
+      "mid": 0.0705808650252055,
+      "late": 0.07235387265330517
+    }
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/nested_pruned_state_decoder_v1",
+    "reference_submission": "outputs/v83_repaired_v80/submission_v83_gq015_gs010.csv",
+    "outer_folds": 5,
+    "inner_folds": 4,
+    "max_features": 520,
+    "pca_dim": 28,
+    "n_proto": 10,
+    "n_label_proto": 12,
+    "logreg_c": 0.03,
+    "subject_alpha": 10.0,
+    "max_pairs": 10000
+  },
+  "preset_feature_counts": {
+    "no_derivative": 520,
+    "no_missingness": 520,
+    "no_rank": 520,
+    "no_ratio": 520,
+    "no_raw": 520,
+    "no_sleep": 520,
+    "no_temporal_delta": 520,
+    "only_cross_modal": 520,
+    "only_deviation": 520,
+    "only_missingness": 520,
+    "only_rhythm": 520
+  }
+}
