@@ -678,3 +678,72 @@ The current best diagnostic target map is now:
 - S2: sleep intrusion/coverage episodes.
 - S4: routine regularity/circadian phase break.
 - S1/S3: still no strong stable domain path.
+
+## 2026-05-22 - Sleep Fragment / Recovery And Digital Sleep Probe
+
+### Scope
+
+Tested the hypothesis that digital usage can dominate traditional biosignals for sleep-related labels. Instead of trusting the broad statement directly, this cycle split the sleep family into probeable subfamilies:
+
+- Awakening/fragmentation and sleep-block structure.
+- Sleep-window sensor arousal: phone-active, screen, usage, light, HR, movement, no-wear/coverage.
+- Post-wake recovery and sluggishness windows.
+- Digital-only slices from sleep-window and post-wake phone/screen/usage.
+- Compact core fragmentation markers.
+
+### Artifacts
+
+- Builder: `scripts/build_sleep_fragment_recovery_latents.py`
+- Pruned variant builder: `scripts/build_sleep_fragment_recovery_pruned_variants.py`
+- Full artifact: `artifacts/domain_sleep_fragment_recovery_v1.parquet`
+- Pruned artifacts:
+  - `artifacts/domain_sleep_fragment_recovery_awakening_v1.parquet`
+  - `artifacts/domain_sleep_fragment_recovery_sleep_sensor_v1.parquet`
+  - `artifacts/domain_sleep_fragment_recovery_postwake_recovery_v1.parquet`
+  - `artifacts/domain_sleep_fragment_recovery_sleep_digital_v1.parquet`
+  - `artifacts/domain_sleep_fragment_recovery_postwake_digital_v1.parquet`
+  - `artifacts/domain_sleep_fragment_recovery_sleep_wake_digital_v1.parquet`
+  - `artifacts/domain_sleep_fragment_recovery_fragment_core_v1.parquet`
+- Probe reports:
+  - `outputs/domain_sleep_fragment_recovery_probe_v1/report.md`
+  - `outputs/domain_sleep_fragment_recovery_pruned_probe_v1/report.md`
+  - `outputs/domain_sleep_fragment_recovery_pruned_digital_probe_v1/report.md`
+- Nested selection report: `outputs/domain_all_specialists_plus_sfr_pruned_digital_nested_selection_v1/report.md`
+- Hybrid check: `outputs/domain_hybrid_q1_sfr_sensor_q2_proto_q3_mobility_s2_sleep_s4_routine_decoder_v1/report.md`
+
+### Result
+
+| experiment | avg OOF logloss | read |
+| --- | ---: | --- |
+| previous best domain hybrid: Q1 prebed + Q2 proto + Q3 mobility + S2 sleep + S4 routine | 0.619106 | Current best diagnostic decoder. |
+| broad sleep fragment/recovery family | 0.633305 best SFR raw avg | Too broad; useful S1 hints are drowned by noisy recovery features. |
+| pruned `sfr_sleep_sensor` standalone probe | 0.622631 | Beats the frozen base diagnostic (`0.622961`) narrowly and improves Q1/S1/S2/S4 raw. |
+| digital-only sleep/postwake variants | about 0.627 best avg | Digital-only slices are weak alone; the useful sleep signal is mixed sensor/digital context, not only phone totals. |
+| nested all-specialist selection with pruned SFR/digital variants | 0.625410 | Global nested selector over-switches and is worse than base. |
+| fixed hybrid replacing Q1 prebed with `sfr_sleep_sensor` | 0.619428 | Worse than the previous best hybrid; keep Q1 prebed digital boundary. |
+
+Nested target reads:
+
+| family | useful nested target | read |
+| --- | --- | --- |
+| sleep_fragment_recovery_sleep_sensor | Q1 only | Selected in 4/5 folds and improves Q1 by -0.0034 vs base under nested selection, but it is weaker than the already discovered `db_prebed` Q1 path. |
+| sleep_fragment_recovery_sleep_sensor | S1 raw only | Raw S1 probe reaches about 0.5657, but nested held-fold selection worsens S1 by +0.0045, so it is not stable. |
+| sleep_fragment_recovery_core | weak Q3 raw/nested hint | Appears in 2/5 Q3 folds, but the established mobility-constriction Q3 path remains better. |
+| digital-only sleep/postwake | none | Does not survive as a standalone sleep decoder family. |
+
+### Working Interpretation
+
+The imported claim is directionally useful but too broad. In this data, digital behavior matters most when placed at a specific behavioral boundary:
+
+- Pre-bed phone/stimulation remains the stable Q1 path.
+- Sleep-window phone/screen/usage by itself is not enough for S labels.
+- S1 and S3 still need a different hypothesis; current sleep fragmentation, recovery, and digital-only variants do not survive fold-safe selection.
+
+The target map stays:
+
+- Q1: pre-bed digital boundary behavior.
+- Q2: trajectory prototype/state membership.
+- Q3: mobility constriction/location entropy state.
+- S2: sleep intrusion/coverage episodes.
+- S4: routine regularity/circadian phase break.
+- S1/S3: still open.

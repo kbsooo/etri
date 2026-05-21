@@ -1,0 +1,6 @@
+{
+  "output": "artifacts/domain_sleep_fragment_recovery_v1.parquet",
+  "rows": 700,
+  "feature_count": 980,
+  "hypothesis": "S-family labels may respond to sleep fragmentation and post-wake recovery rather than total sleep amount"
+}

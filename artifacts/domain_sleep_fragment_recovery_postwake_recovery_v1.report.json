@@ -1,0 +1,12 @@
+{
+  "variant": "postwake_recovery",
+  "output": "artifacts/domain_sleep_fragment_recovery_postwake_recovery_v1.parquet",
+  "rows": 700,
+  "feature_count": 548,
+  "patterns": [
+    "postwake",
+    "day_recovery",
+    "wake_activity",
+    "wake_phone"
+  ]
+}

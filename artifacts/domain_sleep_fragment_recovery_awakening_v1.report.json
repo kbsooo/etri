@@ -1,0 +1,12 @@
+{
+  "variant": "awakening",
+  "output": "artifacts/domain_sleep_fragment_recovery_awakening_v1.parquet",
+  "rows": 700,
+  "feature_count": 122,
+  "patterns": [
+    "awaken",
+    "longest_block",
+    "sleep_eff",
+    "sol_"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "variant": "postwake_digital",
+  "output": "artifacts/domain_sleep_fragment_recovery_postwake_digital_v1.parquet",
+  "rows": 700,
+  "feature_count": 132,
+  "patterns": [
+    "postwake1h_ev_phone_active",
+    "postwake1h_phone_still",
+    "postwake1h_screen",
+    "postwake1h_usage",
+    "postwake3h_ev_phone_active",
+    "postwake3h_phone_still",
+    "postwake3h_screen",
+    "postwake3h_usage",
+    "day_recovery_ev_phone_active",
+    "day_recovery_phone_still",
+    "day_recovery_screen",
+    "day_recovery_usage"
+  ]
+}

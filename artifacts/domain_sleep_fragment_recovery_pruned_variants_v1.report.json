@@ -1,0 +1,116 @@
+{
+  "input": "artifacts/domain_sleep_fragment_recovery_v1.parquet",
+  "variants": [
+    {
+      "variant": "awakening",
+      "output": "artifacts/domain_sleep_fragment_recovery_awakening_v1.parquet",
+      "rows": 700,
+      "feature_count": 122,
+      "patterns": [
+        "awaken",
+        "longest_block",
+        "sleep_eff",
+        "sol_"
+      ]
+    },
+    {
+      "variant": "sleep_sensor",
+      "output": "artifacts/domain_sleep_fragment_recovery_sleep_sensor_v1.parquet",
+      "rows": 700,
+      "feature_count": 75,
+      "patterns": [
+        "sleep_ev_",
+        "sleep_hr_",
+        "sleep_screen",
+        "sleep_usage",
+        "sleep_mlight",
+        "sleep_wlight",
+        "sleep_sensor",
+        "sleep_late_minus"
+      ]
+    },
+    {
+      "variant": "postwake_recovery",
+      "output": "artifacts/domain_sleep_fragment_recovery_postwake_recovery_v1.parquet",
+      "rows": 700,
+      "feature_count": 548,
+      "patterns": [
+        "postwake",
+        "day_recovery",
+        "wake_activity",
+        "wake_phone"
+      ]
+    },
+    {
+      "variant": "sleep_digital",
+      "output": "artifacts/domain_sleep_fragment_recovery_sleep_digital_v1.parquet",
+      "rows": 700,
+      "feature_count": 27,
+      "patterns": [
+        "sleep_screen",
+        "sleep_usage",
+        "sleep_ev_phone_active",
+        "wake_phone"
+      ]
+    },
+    {
+      "variant": "postwake_digital",
+      "output": "artifacts/domain_sleep_fragment_recovery_postwake_digital_v1.parquet",
+      "rows": 700,
+      "feature_count": 132,
+      "patterns": [
+        "postwake1h_ev_phone_active",
+        "postwake1h_phone_still",
+        "postwake1h_screen",
+        "postwake1h_usage",
+        "postwake3h_ev_phone_active",
+        "postwake3h_phone_still",
+        "postwake3h_screen",
+        "postwake3h_usage",
+        "day_recovery_ev_phone_active",
+        "day_recovery_phone_still",
+        "day_recovery_screen",
+        "day_recovery_usage"
+      ]
+    },
+    {
+      "variant": "sleep_wake_digital",
+      "output": "artifacts/domain_sleep_fragment_recovery_sleep_wake_digital_v1.parquet",
+      "rows": 700,
+      "feature_count": 159,
+      "patterns": [
+        "sleep_screen",
+        "sleep_usage",
+        "sleep_ev_phone_active",
+        "wake_phone",
+        "postwake1h_ev_phone_active",
+        "postwake1h_phone_still",
+        "postwake1h_screen",
+        "postwake1h_usage",
+        "postwake3h_ev_phone_active",
+        "postwake3h_phone_still",
+        "postwake3h_screen",
+        "postwake3h_usage",
+        "day_recovery_ev_phone_active",
+        "day_recovery_phone_still",
+        "day_recovery_screen",
+        "day_recovery_usage"
+      ]
+    },
+    {
+      "variant": "fragment_core",
+      "output": "artifacts/domain_sleep_fragment_recovery_fragment_core_v1.parquet",
+      "rows": 700,
+      "feature_count": 68,
+      "patterns": [
+        "awaken_density",
+        "awaken_late_load",
+        "awaken_cluster",
+        "sleep_sensor_fragment_score",
+        "sleep_arousal_transition",
+        "sleep_late_minus",
+        "longest_block_share"
+      ]
+    }
+  ]
+}

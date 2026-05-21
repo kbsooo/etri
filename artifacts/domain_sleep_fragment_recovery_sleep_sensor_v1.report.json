@@ -1,0 +1,16 @@
+{
+  "variant": "sleep_sensor",
+  "output": "artifacts/domain_sleep_fragment_recovery_sleep_sensor_v1.parquet",
+  "rows": 700,
+  "feature_count": 75,
+  "patterns": [
+    "sleep_ev_",
+    "sleep_hr_",
+    "sleep_screen",
+    "sleep_usage",
+    "sleep_mlight",
+    "sleep_wlight",
+    "sleep_sensor",
+    "sleep_late_minus"
+  ]
+}

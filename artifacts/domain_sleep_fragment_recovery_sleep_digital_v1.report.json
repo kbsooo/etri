@@ -1,0 +1,12 @@
+{
+  "variant": "sleep_digital",
+  "output": "artifacts/domain_sleep_fragment_recovery_sleep_digital_v1.parquet",
+  "rows": 700,
+  "feature_count": 27,
+  "patterns": [
+    "sleep_screen",
+    "sleep_usage",
+    "sleep_ev_phone_active",
+    "wake_phone"
+  ]
+}

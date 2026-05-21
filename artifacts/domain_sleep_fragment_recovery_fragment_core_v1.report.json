@@ -1,0 +1,15 @@
+{
+  "variant": "fragment_core",
+  "output": "artifacts/domain_sleep_fragment_recovery_fragment_core_v1.parquet",
+  "rows": 700,
+  "feature_count": 68,
+  "patterns": [
+    "awaken_density",
+    "awaken_late_load",
+    "awaken_cluster",
+    "sleep_sensor_fragment_score",
+    "sleep_arousal_transition",
+    "sleep_late_minus",
+    "longest_block_share"
+  ]
+}

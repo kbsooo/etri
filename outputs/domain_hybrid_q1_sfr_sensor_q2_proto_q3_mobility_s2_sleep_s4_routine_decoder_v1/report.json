@@ -1,0 +1,76 @@
+{
+  "avg_log_loss": 0.6194276437835999,
+  "per_target_log_loss": {
+    "Q1": 0.6653492915064009,
+    "Q2": 0.6952301291907407,
+    "Q3": 0.6670250748553599,
+    "S1": 0.5709585946396454,
+    "S2": 0.5767402429859413,
+    "S3": 0.5239268911855993,
+    "S4": 0.6367632821215125
+  },
+  "base_source": "best__absolute_plus_deviation__c0.3_b0.2",
+  "min_train_delta": 0.003,
+  "needed_sources": [
+    "best__absolute_plus_deviation__c0.3_b0.2",
+    "best_plus_mobility_constriction__absolute__c0.1_b0.2",
+    "best_plus_mobility_constriction__deviation__c0.03_b0.2",
+    "best_plus_mobility_constriction__deviation__c0.1_b0.2",
+    "best_plus_sleep_intrusion__absolute__c0.3_b0.2",
+    "best_plus_trajectory_proto__absolute__c0.03_b0.2",
+    "best_plus_trajectory_proto__absolute__c0.3_b0.2",
+    "best_plus_trajectory_proto__deviation__c0.03_b0.2",
+    "db_prebed__deviation__c0.3_b0.2",
+    "routine_regularity__absolute_plus_deviation__c0.1_b0.2",
+    "routine_regularity__absolute_plus_deviation__c0.3_b0.2",
+    "routine_regularity__deviation__c0.1_b0.2",
+    "sfr_sleep_sensor__deviation__c0.03_b0.2",
+    "sfr_sleep_sensor__deviation__c0.1_b0.2",
+    "sfr_sleep_sensor__deviation__c0.3_b0.2",
+    "sleep_intrusion__absolute_plus_deviation__c0.3_b0.2"
+  ],
+  "test_source_selection": [
+    {
+      "target": "Q1",
+      "selected_source": "sfr_sleep_sensor__deviation__c0.1_b0.2",
+      "source_family": "sleep_fragment_recovery_sleep_sensor",
+      "selection_action": "switch"
+    },
+    {
+      "target": "Q2",
+      "selected_source": "best_plus_trajectory_proto__deviation__c0.03_b0.2",
+      "source_family": "trajectory_proto",
+      "selection_action": "switch"
+    },
+    {
+      "target": "Q3",
+      "selected_source": "best_plus_mobility_constriction__absolute__c0.1_b0.2",
+      "source_family": "mobility_constriction",
+      "selection_action": "switch"
+    },
+    {
+      "target": "S1",
+      "selected_source": "best__absolute_plus_deviation__c0.3_b0.2",
+      "source_family": "best_late_fusion",
+      "selection_action": "base"
+    },
+    {
+      "target": "S2",
+      "selected_source": "best_plus_sleep_intrusion__absolute__c0.3_b0.2",
+      "source_family": "sleep_intrusion",
+      "selection_action": "switch"
+    },
+    {
+      "target": "S3",
+      "selected_source": "best__absolute_plus_deviation__c0.3_b0.2",
+      "source_family": "best_late_fusion",
+      "selection_action": "base"
+    },
+    {
+      "target": "S4",
+      "selected_source": "routine_regularity__absolute_plus_deviation__c0.1_b0.2",
+      "source_family": "routine_regularity",
+      "selection_action": "switch"
+    }
+  ]
+}

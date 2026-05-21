@@ -12,6 +12,22 @@ TARGET_COLUMNS = ["Q1", "Q2", "Q3", "S1", "S2", "S3", "S4"]
 
 
 def source_family(source: str) -> str:
+    if source.startswith("sfr_sleep_wake_digital"):
+        return "sleep_fragment_recovery_sleep_wake_digital"
+    if source.startswith("sfr_postwake_digital"):
+        return "sleep_fragment_recovery_postwake_digital"
+    if source.startswith("sfr_sleep_digital"):
+        return "sleep_fragment_recovery_sleep_digital"
+    if source.startswith("sfr_sleep_sensor"):
+        return "sleep_fragment_recovery_sleep_sensor"
+    if source.startswith("sfr_awakening"):
+        return "sleep_fragment_recovery_awakening"
+    if source.startswith("sfr_postwake_recovery"):
+        return "sleep_fragment_recovery_postwake"
+    if source.startswith("sfr_fragment_core"):
+        return "sleep_fragment_recovery_core"
+    if source.startswith("best_plus_sleep_fragment_recovery") or source.startswith("sleep_fragment_recovery"):
+        return "sleep_fragment_recovery"
     if source.startswith("db_prebed"):
         return "digital_boundary_prebed"
     if source.startswith("db_sleep_phone"):
