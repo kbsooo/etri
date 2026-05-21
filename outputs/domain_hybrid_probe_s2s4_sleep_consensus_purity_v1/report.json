@@ -1,0 +1,68 @@
+{
+  "avg_log_loss": 0.6109399427646095,
+  "per_target_log_loss": {
+    "Q1": 0.6548353734818901,
+    "Q2": 0.687526579425083,
+    "Q3": 0.6652381097467681,
+    "S1": 0.5571108902056192,
+    "S2": 0.5663433466332096,
+    "S3": 0.5123764374866376,
+    "S4": 0.6331488623730586
+  },
+  "base_source": "best__absolute_plus_deviation__c0.3_b0.2",
+  "min_train_delta": 0.003,
+  "needed_sources": [
+    "best_plus_cc_opportunity__absolute_plus_deviation__c0.3_b0.2",
+    "best_plus_cc_recovery__deviation__c0.3_b0.2",
+    "best_plus_sot_micro_subject_relative_only__absolute_plus_deviation__c0.3_b0.2",
+    "best_plus_wai_sleep_recovery_interaction__absolute_plus_deviation__c0.3_b0.2",
+    "ef_recovery_slope__absolute_plus_deviation__c0.3_b0.2",
+    "ef_recovery_slope__deviation__c0.3_b0.2",
+    "scp_subject_relative_only__absolute__c0.1_b0.2",
+    "scp_subject_relative_only__absolute_plus_deviation__c0.03_b0.2"
+  ],
+  "test_source_selection": [
+    {
+      "target": "Q1",
+      "selected_source": "best_plus_cc_opportunity__absolute_plus_deviation__c0.3_b0.2",
+      "source_family": "fixed_causal_chain",
+      "selection_action": "fixed_replace"
+    },
+    {
+      "target": "Q2",
+      "selected_source": "ef_recovery_slope__deviation__c0.3_b0.2",
+      "source_family": "energy_recovery_slope",
+      "selection_action": "switch"
+    },
+    {
+      "target": "Q3",
+      "selected_source": "best_plus_cc_recovery__deviation__c0.3_b0.2",
+      "source_family": "fixed_causal_chain",
+      "selection_action": "fixed_replace"
+    },
+    {
+      "target": "S1",
+      "selected_source": "best_plus_wai_sleep_recovery_interaction__absolute_plus_deviation__c0.3_b0.2",
+      "source_family": "fixed_wake_sleep_recovery_interaction",
+      "selection_action": "fixed_replace"
+    },
+    {
+      "target": "S2",
+      "selected_source": "scp_subject_relative_only__absolute_plus_deviation__c0.03_b0.2",
+      "source_family": "fixed_sleep_consensus_subject_relative_probe",
+      "selection_action": "fixed_probe_replace"
+    },
+    {
+      "target": "S3",
+      "selected_source": "best_plus_sot_micro_subject_relative_only__absolute_plus_deviation__c0.3_b0.2",
+      "source_family": "fixed_sleep_onset_subject_relative",
+      "selection_action": "fixed_replace"
+    },
+    {
+      "target": "S4",
+      "selected_source": "scp_subject_relative_only__absolute__c0.1_b0.2",
+      "source_family": "fixed_sleep_consensus_subject_relative_probe",
+      "selection_action": "fixed_probe_replace"
+    }
+  ]
+}

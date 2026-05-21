@@ -12,6 +12,44 @@ TARGET_COLUMNS = ["Q1", "Q2", "Q3", "S1", "S2", "S3", "S4"]
 
 
 def source_family(source: str) -> str:
+    if source.startswith("best_plus_scp_consensus_purity"):
+        return "best_plus_sleep_consensus_purity"
+    if source.startswith("best_plus_scp_micro_awakenings"):
+        return "best_plus_sleep_consensus_micro_awakenings"
+    if source.startswith("best_plus_scp_missingness_semantics"):
+        return "best_plus_sleep_consensus_missingness"
+    if source.startswith("best_plus_scp_final_sleep_quality"):
+        return "best_plus_sleep_consensus_final_quality"
+    if source.startswith("best_plus_scp_prebed_conflict"):
+        return "best_plus_sleep_consensus_prebed_conflict"
+    if source.startswith("best_plus_scp_sleep_metric_interaction"):
+        return "best_plus_sleep_consensus_metric_interaction"
+    if source.startswith("best_plus_scp_subject_relative_only"):
+        return "best_plus_sleep_consensus_subject_relative"
+    if source.startswith("best_plus_scp_rolling_context_only"):
+        return "best_plus_sleep_consensus_rolling_context"
+    if source.startswith("best_plus_scp_base_values_only"):
+        return "best_plus_sleep_consensus_base_values"
+    if source.startswith("scp_consensus_purity"):
+        return "sleep_consensus_purity"
+    if source.startswith("scp_micro_awakenings"):
+        return "sleep_consensus_micro_awakenings"
+    if source.startswith("scp_missingness_semantics"):
+        return "sleep_consensus_missingness"
+    if source.startswith("scp_final_sleep_quality"):
+        return "sleep_consensus_final_quality"
+    if source.startswith("scp_prebed_conflict"):
+        return "sleep_consensus_prebed_conflict"
+    if source.startswith("scp_sleep_metric_interaction"):
+        return "sleep_consensus_metric_interaction"
+    if source.startswith("scp_subject_relative_only"):
+        return "sleep_consensus_subject_relative"
+    if source.startswith("scp_rolling_context_only"):
+        return "sleep_consensus_rolling_context"
+    if source.startswith("scp_base_values_only"):
+        return "sleep_consensus_base_values"
+    if source.startswith("sleep_consensus_purity"):
+        return "sleep_consensus_purity"
     if source.startswith("best_plus_wai_activation_latency"):
         return "best_plus_wake_activation_latency"
     if source.startswith("best_plus_wai_activation_slope"):

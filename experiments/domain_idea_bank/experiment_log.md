@@ -1270,3 +1270,47 @@ The current target map is updated:
 - S2: causal-chain sleep opportunity.
 - S3: subject-relative final transition into sleep.
 - S4: causal-chain interactions.
+
+## 2026-05-22 - S2/S4 Sleep Consensus Purity Scout
+
+### Scope
+
+Ambient/coverage features were too broad and produced unstable S2/S4 moves. This cycle narrowed the hypothesis to sleep-window internal structure: cross-modal quiet-sleep consensus, micro-awakening conflicts, and whether missingness looks like real sleep quietness or device-off conflict.
+
+### Artifacts
+
+- Feature builder: `scripts/build_sleep_consensus_purity_latents.py`
+- Variant builder: `scripts/build_sleep_consensus_purity_variants.py`
+- Main latent:
+  - `artifacts/domain_sleep_consensus_purity_v1.parquet`
+- Pruned latent variants:
+  - `artifacts/domain_sleep_consensus_purity_consensus_purity_v1.parquet`
+  - `artifacts/domain_sleep_consensus_purity_micro_awakenings_v1.parquet`
+  - `artifacts/domain_sleep_consensus_purity_missingness_semantics_v1.parquet`
+  - `artifacts/domain_sleep_consensus_purity_final_sleep_quality_v1.parquet`
+  - `artifacts/domain_sleep_consensus_purity_prebed_conflict_v1.parquet`
+  - `artifacts/domain_sleep_consensus_purity_sleep_metric_interaction_v1.parquet`
+  - `artifacts/domain_sleep_consensus_purity_subject_relative_only_v1.parquet`
+  - `artifacts/domain_sleep_consensus_purity_rolling_context_only_v1.parquet`
+  - `artifacts/domain_sleep_consensus_purity_base_values_only_v1.parquet`
+- Probe reports:
+  - `outputs/domain_sleep_consensus_purity_probe_v1/report.md`
+  - `outputs/domain_all_specialists_plus_sleep_consensus_purity_probe_v1/report.md`
+  - `outputs/domain_all_specialists_plus_sleep_consensus_purity_nested_selection_v1/report.md`
+- Fixed scout decoder:
+  - `outputs/domain_hybrid_probe_s2s4_sleep_consensus_purity_v1/report.md`
+
+### Result
+
+| experiment | S2 OOF logloss | S4 OOF logloss | avg OOF logloss | read |
+| --- | ---: | ---: | ---: | --- |
+| previous protected hybrid | 0.568897 | 0.635204 | 0.611598 | S2/S4 still used causal-chain sources. |
+| raw SCP target-wise best | 0.567195 | 0.633287 | n/a | Subject-relative sleep-consensus variants beat the protected S2/S4 sources on full OOF. |
+| nested all-specialist selection | 0.574130 | 0.640534 | 0.617662 | Beats late-fusion base, but not the current protected hybrid reliably. |
+| fixed scout replacing S2/S4 with SCP subject-relative sources | 0.566343 | 0.633149 | 0.610940 | New best diagnostic OOF, but marked as scout because S2/S4 source selection is less nested-stable than S1/S3. |
+
+### Working Interpretation
+
+S2/S4 do contain sleep-window consensus signal, but the stable unit is not yet as clean as S1 wake activation or S3 onset settling. The promising coordinate is subject-relative sleep purity/micro-conflict: whether the sleep interval has unusual quiet consensus, short phone/motion/bright interruptions, and missingness that behaves like real sleep rather than device-off conflict.
+
+This should not be treated as a submission-stable replacement yet. It is a strong encoder-objective clue: train a sleep-window encoder to reconstruct/contrast `quiet consensus -> micro-conflict -> final purity` rather than appending thousands of raw SCP columns to a logistic probe.

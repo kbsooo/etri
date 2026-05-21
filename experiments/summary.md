@@ -266,14 +266,15 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Current interpretation: S3 is not explained by total sleep duration, generic prebed phone time, or broad sleep-debt ledgers. The strongest S3 clue is the *subject-relative final transition into sleep*: whether dark/still/not-phone/charging consensus and conflict/readiness near sleep onset are unusual for that person.
 - Wake activation/inertia features opened the first stable S1 path. The winning slice is not broad postwake total activity; it is `sleep_recovery_interaction`, combining sleep amount/efficiency/fragmentation with first phone/move/screen/light/HR activation, activation slopes, and subject-relative morning inertia. Nested selection keeps this S1 family in 4/5 folds with held-fold S1 `0.564710` vs base `0.570895`. A fixed hybrid replacing only S1 improves the best domain diagnostic decoder from `0.612563` to `0.611598` in `outputs/domain_hybrid_plus_s1_wake_activation_s3_onset_subject_relative_v1/`.
 - Current interpretation: S1 responds to the mismatch between sleep recovery state and the next waking activation pattern. This is the same coordinate-system lesson as S3: the useful feature is not the raw sensor total, but the subject-relative transition around a biologically meaningful boundary.
+- Sleep consensus purity gives the first S2/S4 scout improvement after S1/S3 were protected. The useful raw source is subject-relative sleep-window purity/micro-conflict, not broad ambient coverage. A fixed scout replacing S2/S4 reaches OOF `0.610940` in `outputs/domain_hybrid_probe_s2s4_sleep_consensus_purity_v1/`, with S2 `0.566343` and S4 `0.633149`. However, nested selection beats only the late-fusion base, not the current protected S2/S4 expert reliably, so this is an encoder-objective clue rather than a stable submission rule.
 
 ## Next 3
 
-1. Convert the causal-chain plus sleep-onset-transition target map into encoder objectives.
-   - Success criterion: retain Q1/S2 sleep-opportunity, Q2 energy-recovery, Q3 recovery/mobility, S1 wake recovery-activation mismatch, S3 subject-relative sleep-onset settling, and S4 chain-interaction gains while improving global frozen-probe OOF beyond the current hybrid-equivalent `0.611598`.
+1. Convert the current target map into encoder objectives.
+   - Success criterion: retain Q1 sleep-opportunity, Q2 energy-recovery, Q3 recovery/mobility, S1 wake recovery-activation mismatch, S3 subject-relative sleep-onset settling, and the S2/S4 sleep-consensus scout signal while improving global frozen-probe OOF beyond the current scout hybrid `0.610940`.
 
 2. Split the Q-family path explicitly: Q2 should read trajectory prototype/state membership, while Q3 should read mobility/location-constriction state.
    - Success criterion: find a shared encoder objective that supports both readouts without post-hoc target-specific feature dumping.
 
-3. Continue the 300-idea manifest sweep with remaining S2/S4 and cross-target boundary hypotheses, while treating S1 wake recovery-activation and S3 subject-relative sleep-onset settling as protected experts.
-   - Success criterion: improve S1 beyond `0.557111` or S3 beyond `0.512376` without reintroducing broad drift. Keep digital/phone/app signals as boundary-specific experts rather than mixing them globally.
+3. Stabilize the S2/S4 sleep-consensus scout.
+   - Success criterion: make S2/S4 sleep-consensus improvements survive nested selection against the current protected hybrid, not only against late-fusion base. Prefer compact subject-relative objective targets over raw high-dimensional column append.
