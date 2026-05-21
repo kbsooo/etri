@@ -1518,3 +1518,35 @@ Carry forward:
 - S4: build a cleaner coverage/no-wear routine objective around missingness rhythm, sleep boundary coverage, and wearable-off episodes.
 - S2: do not reuse the S4 coverage branch as a proxy. Continue with a separate micro-awakening / sleep-fragment objective.
 - S1/S3: long rolling volatility and night/evening balance show raw hints, but existing wake-recovery and sleep-onset transition branches remain stronger.
+
+## 2026-05-22 - Sleep Boundary Coverage / No-Wear Objective
+
+### Scope
+
+Followed the routine-pruning clue that S4 might be about coverage/no-wear rhythm. Instead of using the broad daily routine slice, built an explicit sleep-boundary coverage objective around onset/wake windows, no-wear and low-coverage episodes, body-sensor missingness, re-coverage after wake, and subject-relative rolling deltas.
+
+### Artifacts
+
+- Builder: `scripts/build_sleep_boundary_coverage_latents.py`
+- Pruned variant builder: `scripts/build_sleep_boundary_coverage_pruned_variants.py`
+- Full artifact: `artifacts/domain_sleep_boundary_coverage_v1.parquet`
+- Focused probe report: `outputs/domain_sleep_boundary_coverage_focused_probe_v1/report.md`
+- Nested report: `outputs/domain_all_specialists_plus_sleep_boundary_coverage_nested_selection_v1/report.md`
+
+### Result
+
+| experiment | S2 | S4 | avg | read |
+| --- | ---: | ---: | ---: | --- |
+| best focused global probe | 0.577751 | 0.645541 | 0.623313 | No-wear episode append helps global probe slightly, mostly outside S4. |
+| best focused S2 source | 0.575801 | n/a | n/a | Boundary re-coverage has a weak S2 hint, still worse than current S2 scout. |
+| best focused S4 source | n/a | 0.642681 | n/a | Boundary re-coverage is far worse than routine-pruned coverage rhythm S4 `0.632894`. |
+| nested all-specialist + SBC | 0.584091 | 0.642292 | 0.620072 | No SBC source is selected; result is unchanged from the routine-pruned nested run. |
+
+### Working Interpretation
+
+This is a negative but informative follow-up. The S4 coverage clue does not become stronger when expressed as detailed sleep-boundary no-wear/re-coverage episodes. The stronger signal was the coarser daily coverage rhythm residual from routine regularity pruning. This suggests S4 is more about the person's whole-day sensing/coverage rhythm or adherence pattern than about a specific missingness event around sleep onset or wake.
+
+Carry forward:
+
+- S4: keep `rr_coverage_rhythm` as the current narrow clue; next attempt should compress daily coverage rhythm or build weekday/chronotype-normalized coverage prototypes, not add more boundary episode products.
+- S2: boundary re-coverage is too weak; continue with micro-awakening / quiet-sleep consensus rather than coverage-only features.
