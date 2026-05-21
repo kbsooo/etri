@@ -1583,3 +1583,49 @@ Carry forward:
 
 - S4: stop expanding coverage/no-wear for now; use `rr_coverage_rhythm` only as a small candidate or objective seed.
 - S2: prototype-deviation coverage may be a supporting coordinate, but the main path should remain micro-awakening / sleep-consensus purity.
+
+## 2026-05-22 - Compact S2 Micro-Awakening Slices
+
+### Scope
+
+The previous sleep-consensus micro-awakening variant had 608 columns and mixed sleep, prebed, and postwake contexts. This experiment split it into smaller sleep-window-only objectives to test whether S2 can be stabilized through a cleaner intermediate state.
+
+### Variants
+
+| variant | feature count | hypothesis |
+| --- | ---: | --- |
+| `sleep_micro_core` | 180 | Sleep-window micro-awake score, quiet-break, and intrusion ratios/starts/transitions. |
+| `sleep_micro_runs` | 68 | Longest continuous quiet-break/intrusion/conflict runs. |
+| `phone_motion_conflict` | 192 | Phone-dark, motion-dark, and bright-still conflicts inside sleep. |
+| `phase_delta` | 204 | First-vs-final sleep phase micro-awakening change. |
+| `awakenings_interaction` | 4 | Reported awakenings crossed with micro-awake score. |
+| `subject_relative_sleep_micro` | 258 | Subject-relative micro-awakening coordinates only. |
+| `rolling_sleep_micro` | 64 | Past 3/7/14/28-day micro-awakening deltas. |
+
+### Artifacts
+
+- Builder: `scripts/build_s2_micro_awake_variants.py`
+- Variant report: `artifacts/domain_s2_micro_awake_variants_v1.report.md`
+- Focused probe report: `outputs/domain_s2_micro_awake_focused_probe_v1/report.md`
+- Nested report: `outputs/domain_all_specialists_plus_s2_micro_awake_nested_selection_v1/report.md`
+- Fixed map scout: `outputs/domain_s2_micro_awake_fixed_map_scout_v1/report.md`
+
+### Result
+
+| experiment | S1 | S2 | S3 | S4 | avg | read |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| best focused global probe | 0.568504 | 0.574470 | 0.527509 | 0.641456 | 0.619103 | `sleep_micro_core` is a strong broad branch versus late-fusion base. |
+| best focused S2 source | n/a | 0.572312 | n/a | n/a | n/a | Rolling sleep micro is the best S2 slice, but still weaker than the protected S2 scout. |
+| current protected scout | 0.557172 | 0.567195 | 0.513590 | 0.632894 | 0.610244 | Current target map with boundary Q1, compact Q2, recovery Q3, wake S1, SOT S3, and RR coverage S4. |
+| fixed S2 rolling micro | 0.557172 | 0.572312 | 0.513590 | 0.632894 | 0.610975 | S2 replacement worsens. |
+| fixed all S-family micro | 0.565366 | 0.572312 | 0.521985 | 0.639373 | 0.614271 | Broad S-family replacement is harmful. |
+| nested all-specialist + S2MA | 0.569862 | 0.584091 | 0.514926 | 0.642292 | 0.620072 | No S2MA source selected; nested result unchanged. |
+
+### Working Interpretation
+
+This is a useful but bounded result. Compact sleep micro-awakening improves the general frozen probe versus the late-fusion base, which means the representation is label-readable. However, it does not beat the already protected target-specific experts, especially S2 subject-relative sleep-consensus and S3 sleep-onset transition. The S2 bottleneck is therefore not simply "make micro-awakening smaller"; it needs a different coordinate or a decoder that can combine micro-awakening with the protected subject-relative sleep-consensus without replacing it.
+
+Carry forward:
+
+- S2: try interaction/gating between subject-relative sleep-consensus purity and rolling micro-awakening rather than a direct replacement.
+- S1/S3/S4: do not replace existing specialists with S2MA despite the broad global probe gain.

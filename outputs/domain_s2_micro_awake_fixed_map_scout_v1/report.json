@@ -1,0 +1,86 @@
+{
+  "purpose": "Diagnostic fixed target-map substitutions for compact S2 micro-awakening variants. Full-fold mean losses are selection-biased for candidate choice; use as direction finding only.",
+  "current_target_map": {
+    "Q1": "boundary_target_map__absolute__c0.03_b0.2",
+    "Q2": "best_plus_scc_rolling__absolute__c0.3_b0.2",
+    "Q3": "best_plus_cc_recovery__deviation__c0.3_b0.2",
+    "S1": "best_plus_wai_sleep_recovery_interaction__absolute_plus_deviation__c0.3_b0.2",
+    "S2": "scp_subject_relative_only__absolute_plus_deviation__c0.03_b0.2",
+    "S3": "best_plus_sot_micro_subject_relative_only__absolute_plus_deviation__c0.3_b0.2",
+    "S4": "best_plus_rr_coverage_rhythm__absolute_plus_deviation__c0.3_b0.2"
+  },
+  "rows": [
+    {
+      "variant": "current",
+      "avg_log_loss": 0.6102443998798287,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6820623117382185,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5571717499466909,
+      "S2": 0.5671953101757881,
+      "S3": 0.5135895773926074,
+      "S4": 0.6328938836151108,
+      "overrides": "{}"
+    },
+    {
+      "variant": "s1_sleep_micro_core_dev",
+      "avg_log_loss": 0.6114149683932474,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6820623117382185,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5653657295406221,
+      "S2": 0.5671953101757881,
+      "S3": 0.5135895773926074,
+      "S4": 0.6328938836151108,
+      "overrides": "{\"S1\": \"best_plus_s2ma_sleep_micro_core__deviation__c0.3_b0.2\"}"
+    },
+    {
+      "variant": "s2_rolling_micro",
+      "avg_log_loss": 0.6109753239526681,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6820623117382185,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5571717499466909,
+      "S2": 0.572311778685664,
+      "S3": 0.5135895773926074,
+      "S4": 0.6328938836151108,
+      "overrides": "{\"S2\": \"best_plus_s2ma_rolling_sleep_micro__absolute_plus_deviation__c0.1_b0.2\"}"
+    },
+    {
+      "variant": "s3_subject_micro",
+      "avg_log_loss": 0.6114437380445537,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6820623117382185,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5571717499466909,
+      "S2": 0.5671953101757881,
+      "S3": 0.5219849445456823,
+      "S4": 0.6328938836151108,
+      "overrides": "{\"S3\": \"best_plus_s2ma_subject_relative_sleep_micro__absolute_plus_deviation__c0.3_b0.2\"}"
+    },
+    {
+      "variant": "s4_micro_runs",
+      "avg_log_loss": 0.6111700123888874,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6820623117382185,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5571717499466909,
+      "S2": 0.5671953101757881,
+      "S3": 0.5135895773926074,
+      "S4": 0.6393731711785209,
+      "overrides": "{\"S4\": \"best_plus_s2ma_sleep_micro_runs__absolute_plus_deviation__c0.3_b0.2\"}"
+    },
+    {
+      "variant": "all_s_micro",
+      "avg_log_loss": 0.6142708431398703,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6820623117382185,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5653657295406221,
+      "S2": 0.572311778685664,
+      "S3": 0.5219849445456823,
+      "S4": 0.6393731711785209,
+      "overrides": "{\"S1\": \"best_plus_s2ma_sleep_micro_core__deviation__c0.3_b0.2\", \"S2\": \"best_plus_s2ma_rolling_sleep_micro__absolute_plus_deviation__c0.1_b0.2\", \"S3\": \"best_plus_s2ma_subject_relative_sleep_micro__absolute_plus_deviation__c0.3_b0.2\", \"S4\": \"best_plus_s2ma_sleep_micro_runs__absolute_plus_deviation__c0.3_b0.2\"}"
+    }
+  ]
+}
