@@ -418,6 +418,38 @@ stable subject-normalized residual scaffold
 
 - This still does not prove Public LB quality, and drift vs v83 remains around `0.070` with lower correlation than the stable scaffold. But compared with the previous `0.620281` independent scaffold, this is a meaningful decoder-level improvement.
 
+## Learned row-level permission gate
+
+Script: `scripts/train_learned_permission_gate_decoder.py`
+
+Output: `outputs/learned_permission_gate_decoder_v1/`
+
+This experiment replaces fixed target rules with nested row-level meta decoders. The models use only independent branch predictions (`stable`, `extended`, `fixed_permission_policy`), the fold-safe subject prior, signed-margin features, residual magnitudes, and panel position. v83 is still used only as a drift diagnostic.
+
+Tested variants:
+
+- direct stackers: `stack_logreg`, `stack_hgb`
+- residual regressors: `residual_ridge_c030`, `residual_hgb_c030`, `residual_hgb_c050`
+- learned permission gates: `gate_hgb_ext`, `gate_logreg_ext`, `gate_hgb_fixed`
+
+Results:
+
+- `fixed_permission_policy`: `0.615095`, drift `0.070382`
+- `learned_gate_hgb_fixed`: `0.615610`, drift `0.068406`
+- `learned_gate_hgb_ext`: `0.616086`, drift `0.068034`
+- `learned_gate_logreg_ext`: `0.616187`, drift `0.068401`
+- `extended_full_oof_winners`: `0.616766`
+- `stable_signal_s4_temporal`: `0.620281`
+
+Interpretation:
+
+- Learned gates do not beat the fixed permission policy on OOF. The hand-derived target policy remains the strongest independent pruned-state branch.
+- The best learned gate is still useful: `learned_gate_hgb_fixed` gives up about `0.0005` OOF but reduces drift below the stable scaffold (`0.068406` vs `0.068726`) while keeping most of the fixed-policy gain.
+- Direct stackers and unconstrained residual regressors overfit or distort the coordinate system. `learned_stack_hgb`, `learned_stack_logreg`, and residual regressors are rejected for now.
+- Carry forward two branches:
+  - score-seeking branch: `fixed_permission_policy`
+  - robustness-seeking branch: `learned_gate_hgb_fixed`
+
 ## Meta-gated consensus follow-up
 
 Script: `scripts/train_meta_gated_consensus_decoder.py`
