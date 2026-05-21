@@ -219,6 +219,60 @@ feature-family-pruned Encoder
   - Q-family calibration, because Q1/Q2/Q3 remain high-loss targets.
   - public-coordinate calibration, because v82/v85 showed that local OOF gains can be destroyed by panel/test distribution mismatch.
 
+## Joint label-state bottleneck tests
+
+Script: `scripts/train_joint_label_state_decoder.py`
+
+Output: `outputs/joint_label_state_decoder_v1/`
+
+This branch tests the decoder-bottleneck idea directly: instead of predicting seven labels independently, first predict a coarse label-state from the pruned latent and then map that state back to seven label probabilities.
+
+Results:
+
+- Best global: `no_temporal_delta__joint_label_cluster8_w10`
+- OOF avg: `0.625946`
+- Target-wise OOF avg: `0.621371`
+- Best global drift vs v83 diagnostic reference: `0.063679`
+- Target-wise drift vs v83 diagnostic reference: `0.073087`
+
+Interpretation:
+
+- Coarse label clusters work better than exact 7-label patterns or KNN state lookup.
+- Exact 7-label patterns are too sparse: fold train splits still contain around `87` to `91` distinct full patterns.
+- The branch does not beat the stable fixed scaffold (`stable_signal_s4_temporal`, `0.620281`), so a single full-label-state bottleneck is not enough.
+
+## Q/S-family label-state follow-up
+
+Script: `scripts/train_family_label_state_decoder.py`
+
+Output: `outputs/family_label_state_decoder_v1/`
+
+This follow-up splits the sparse 7-label state into Q-family (`Q1,Q2,Q3`) and S-family (`S1,S2,S3,S4`) intermediate states. Each family is decoded separately from the same pruned state latent, recombined into seven probabilities, then blended with the fold-safe subject prior.
+
+Results:
+
+- Best global: `drop_ratio_temporal_delta__family_q_pattern_s_pattern_w10`
+- OOF avg: `0.626385`
+- Target-wise OOF avg: `0.621171`
+- Best global drift vs v83 diagnostic reference: `0.065777`
+- Target-wise drift vs v83 diagnostic reference: `0.070116`
+
+Target-wise selected sources:
+
+- Q1: `only_missingness__family_q_cluster4_s_cluster6_w20`
+- Q2: `no_ratio__family_q_state_mean_s_state_mean_w35`
+- Q3: `only_rhythm__family_q_cluster4_s_cluster6_w35`
+- S1: `no_temporal_delta__family_q_cluster4_s_cluster6_w10`
+- S2: `no_ratio__family_q_knn25_s_knn25_w10`
+- S3: `only_missingness__family_q_cluster4_s_cluster8_w05`
+- S4: `no_sleep__family_q_state_mean_s_state_mean_w20`
+
+Interpretation:
+
+- Splitting the label-state does reduce sparsity: Q patterns are stable at `8`, S patterns are around `14` to `15`, while full 7-label patterns remain around `87` to `91`.
+- That sparsity reduction is not sufficient. Best global is weaker than the full joint label-cluster run (`0.626385` vs `0.625946`), and target-wise improves only marginally (`0.621171` vs `0.621371`).
+- The useful part is not the discrete Q/S pattern itself; it is still the bounded target-specific residual over a subject-normalized prior. Carry forward the selected feature-family clues, but do not promote family label-state as the primary decoder.
+
 ## Meta-gated consensus follow-up
 
 Script: `scripts/train_meta_gated_consensus_decoder.py`
