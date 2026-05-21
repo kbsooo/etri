@@ -1,0 +1,74 @@
+{
+  "purpose": "Compare the current protected target map with S4-only substitutions from pruned routine variants using full-fold mean losses. This is diagnostic and still selection-biased for S4 variants.",
+  "current_target_map": {
+    "Q1": "boundary_target_map__absolute__c0.03_b0.2",
+    "Q2": "best_plus_scc_rolling__absolute__c0.3_b0.2",
+    "Q3": "best_plus_cc_recovery__deviation__c0.3_b0.2",
+    "S1": "best_plus_wai_sleep_recovery_interaction__absolute_plus_deviation__c0.3_b0.2",
+    "S2": "scp_subject_relative_only__absolute_plus_deviation__c0.03_b0.2",
+    "S3": "best_plus_sot_micro_subject_relative_only__absolute_plus_deviation__c0.3_b0.2",
+    "S4": "scp_subject_relative_only__absolute__c0.1_b0.2"
+  },
+  "rows": [
+    {
+      "variant": "current_scp_s4",
+      "avg_log_loss": 0.6103005846720831,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6820623117382185,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5571717499466909,
+      "S2": 0.5671953101757881,
+      "S3": 0.5135895773926074,
+      "S4": 0.633287177160892,
+      "S4_source": "scp_subject_relative_only__absolute__c0.1_b0.2"
+    },
+    {
+      "variant": "rr_coverage_best_plus",
+      "avg_log_loss": 0.6102443998798287,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6820623117382185,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5571717499466909,
+      "S2": 0.5671953101757881,
+      "S3": 0.5135895773926074,
+      "S4": 0.6328938836151108,
+      "S4_source": "best_plus_rr_coverage_rhythm__absolute_plus_deviation__c0.3_b0.2"
+    },
+    {
+      "variant": "rr_sleep_break_best_plus",
+      "avg_log_loss": 0.6103047655561583,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6820623117382185,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5571717499466909,
+      "S2": 0.5671953101757881,
+      "S3": 0.5135895773926074,
+      "S4": 0.6333164433494186,
+      "S4_source": "best_plus_rr_sleep_regular_break__absolute_plus_deviation__c0.3_b0.2"
+    },
+    {
+      "variant": "rr_profile_best_plus",
+      "avg_log_loss": 0.6105115087335214,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6820623117382185,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5571717499466909,
+      "S2": 0.5671953101757881,
+      "S3": 0.5135895773926074,
+      "S4": 0.63476364559096,
+      "S4_source": "best_plus_rr_profile_distance__absolute_plus_deviation__c0.3_b0.2"
+    },
+    {
+      "variant": "rr_coverage_raw",
+      "avg_log_loss": 0.6104720339272889,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6820623117382185,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5571717499466909,
+      "S2": 0.5671953101757881,
+      "S3": 0.5135895773926074,
+      "S4": 0.6344873219473323,
+      "S4_source": "rr_coverage_rhythm__absolute_plus_deviation__c0.3_b0.2"
+    }
+  ]
+}

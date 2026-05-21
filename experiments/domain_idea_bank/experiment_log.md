@@ -1468,3 +1468,53 @@ After PCA failed to stabilize S4, tested a more explicit S4 hypothesis: routine/
 This is a negative S4 result. The interaction hypothesis is plausible but not enough: routine break multiplied by night fragmentation does not beat the simpler routine-regularity S4 signal and does not stabilize the current SCP S4 scout. The surprising raw S2 improvement is also not trustworthy because nested held-fold S2 becomes worse than base.
 
 Carry forward only a narrow side clue: the interaction latent is selected for Q3 in 3/5 nested folds with a small held-fold gain, but it is still weaker than the existing mobility/recovery Q3 path. Do not promote this source into the protected target map.
+
+## 2026-05-22 - Routine Regularity Pruned Variant Scout
+
+### Scope
+
+After the broad routine-fragment interaction failed for S4, split the older 252-column routine-regularity latent into compact, domain-readable subfamilies. This tests the user's feature-pruning hypothesis directly: S4 may need a smaller routine/phase coordinate, not more features.
+
+### Variants
+
+| variant | feature count | hypothesis |
+| --- | ---: | --- |
+| `profile_distance` | 8 | Whole-day profile distance from subject and weekday routine. |
+| `phase_shift` | 38 | Circadian and sleep/wake phase displacement. |
+| `sleep_regular_break` | 76 | Sleep timing, duration, efficiency, awakening, and rolling sleep-regularity breaks. |
+| `routine_state` | 28 | Daily state entropy and transition-count instability. |
+| `short_rolling_volatility` | 66 | 3/7-day local routine volatility. |
+| `long_rolling_volatility` | 66 | 14/28-day longer routine volatility. |
+| `phone_rhythm` | 34 | Phone routine residuals. |
+| `mobility_body_rhythm` | 68 | Mobility/body routine residuals. |
+| `coverage_rhythm` | 34 | Coverage/no-wear/missingness rhythm residuals. |
+| `night_evening_balance` | 16 | Night/evening allocation imbalance. |
+
+### Artifacts
+
+- Builder: `scripts/build_routine_regularity_pruned_variants.py`
+- Variant report: `artifacts/domain_routine_regularity_pruned_variants_v1.report.md`
+- Probe report: `outputs/domain_routine_regularity_pruned_probe_v1/report.md`
+- Merged all-specialist fold losses: `outputs/domain_all_specialists_plus_routine_pruned_probe_v1/fold_target_losses.csv`
+- Nested report: `outputs/domain_all_specialists_plus_routine_pruned_nested_selection_v1/report.md`
+- Fixed S4-only scout: `outputs/domain_routine_pruned_fixed_map_scout_v1/report.md`
+
+### Result
+
+| experiment | S1 | S2 | S3 | S4 | avg | read |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| best pruned global probe | 0.568087 | 0.574366 | 0.526621 | 0.643253 | 0.620696 | `best_plus_rr_routine_state` is globally best, but S4 is not its strength. |
+| best pruned S4 source | n/a | n/a | n/a | 0.632894 | n/a | `best_plus_rr_coverage_rhythm` is the best S4 slice. |
+| fixed scout current S4 | 0.557172 | 0.567195 | 0.513590 | 0.633287 | 0.610301 | Current protected scout with SCP S4. |
+| fixed scout coverage S4 | 0.557172 | 0.567195 | 0.513590 | 0.632894 | 0.610244 | Replacing only S4 with coverage rhythm gives a tiny full-fold gain. |
+| nested all-specialist + pruned routine | 0.569862 | 0.584091 | 0.514926 | 0.642292 | 0.620072 | S4 nested gain is tiny; S2 remains harmful. |
+
+### Working Interpretation
+
+This is not a large breakthrough, but it is a useful pruning result. Broad routine regularity was not one thing: the best S4 clue is specifically coverage/no-wear rhythm, not phone rhythm, mobility/body rhythm, profile distance, or broad interaction products. Sleep-regularity breaks are close for S4 and raw S2, but S2 fails nested validation.
+
+Carry forward:
+
+- S4: build a cleaner coverage/no-wear routine objective around missingness rhythm, sleep boundary coverage, and wearable-off episodes.
+- S2: do not reuse the S4 coverage branch as a proxy. Continue with a separate micro-awakening / sleep-fragment objective.
+- S1/S3: long rolling volatility and night/evening balance show raw hints, but existing wake-recovery and sleep-onset transition branches remain stronger.

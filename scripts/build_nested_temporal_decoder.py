@@ -50,6 +50,10 @@ def parse_source(source: str) -> tuple[str, str, float, float]:
 def source_family(source: str) -> str:
     if source.startswith("boundary_target_map"):
         return "boundary_target_map"
+    if source.startswith("best_plus_rr_"):
+        return source.split("__", maxsplit=1)[0]
+    if source.startswith("rr_"):
+        return source.split("__", maxsplit=1)[0]
     if source.startswith("best_plus_scs_pca"):
         return "best_plus_sleep_consensus_stability_pca"
     if source.startswith("scs_pca"):
