@@ -254,7 +254,69 @@ def add_cross_modal_features(frame: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-def build_grid(data_dir: Path, minutes: int) -> pd.DataFrame:
+def run_length(values: np.ndarray) -> np.ndarray:
+    out = np.zeros(len(values), dtype=float)
+    current = 0.0
+    for i, value in enumerate(values):
+        current = current + 1.0 if bool(value) else 0.0
+        out[i] = current
+    return out
+
+
+def reverse_run_length(values: np.ndarray) -> np.ndarray:
+    return run_length(values[::-1])[::-1]
+
+
+def add_event_gap_features(frame: pd.DataFrame, minutes: int) -> pd.DataFrame:
+    tokens_per_day = 24 * 60 // minutes
+    key_days = frame[["subject_id", "date"]].drop_duplicates()
+    skeleton = key_days.loc[key_days.index.repeat(tokens_per_day)].reset_index(drop=True)
+    skeleton["tok"] = np.tile(np.arange(tokens_per_day), len(key_days)).astype(int)
+    out = skeleton.merge(frame, on=["subject_id", "date", "tok"], how="left", validate="one_to_one")
+
+    out["ev_present_hr"] = out["hr_rows"].notna().astype(float)
+    out["ev_present_pedo"] = out["pedo_n"].notna().astype(float)
+    out["ev_present_gps"] = out["gps_rows"].notna().astype(float)
+    out["ev_present_phone"] = (out["screen_n"].notna() | out["usage_app_n"].notna()).astype(float)
+    out["ev_present_light"] = (out["mlight_n"].notna() | out["wlight_n"].notna()).astype(float)
+    out["ev_present_radio"] = (out["wifi_scan_n"].notna() | out["ble_scan_n"].notna()).astype(float)
+    out["ev_present_ambience"] = out["amb_n"].notna().astype(float)
+
+    out["ev_no_wear"] = ((out["ev_present_hr"] == 0) & (out["ev_present_pedo"] == 0) & (out["ev_present_light"] == 0)).astype(float)
+    out["ev_phone_active"] = ((out["screen_mean"].fillna(0) > 0.25) | (out["usage_total"].fillna(0) > 0)).astype(float)
+    out["ev_charging_on"] = (out["charging_mean"].fillna(0) > 0.5).astype(float)
+    out["ev_moving"] = (
+        (out["step_sum"].fillna(0) > 10)
+        | (out["gps_speed_mean"].fillna(0) > 0.5)
+        | ((out["act_walk_ratio"].fillna(0) + out["act_run_ratio"].fillna(0) + out["act_vehicle_ratio"].fillna(0)) > 0.3)
+    ).astype(float)
+    out["ev_social_audio"] = ((out["amb_speech"].fillna(0) + out["amb_music"].fillna(0)) > 0.1).astype(float)
+    out["ev_low_coverage"] = (out["sensor_coverage_n"].fillna(0) <= 2).astype(float)
+
+    event_cols = ["ev_no_wear", "ev_phone_active", "ev_charging_on", "ev_moving", "ev_social_audio", "ev_low_coverage"]
+    run_cols = ["ev_present_hr", "ev_present_pedo", "ev_present_gps", "ev_present_phone", "ev_no_wear", "ev_low_coverage"]
+    parts = []
+    for _, group in out.groupby(["subject_id", "date"], sort=False):
+        g = group.sort_values("tok").copy()
+        for col in event_cols:
+            prev = g[col].shift(1).fillna(0)
+            nxt = g[col].shift(-1).fillna(0)
+            g[f"{col}_start"] = ((g[col] == 1) & (prev == 0)).astype(float)
+            g[f"{col}_end"] = ((g[col] == 1) & (nxt == 0)).astype(float)
+        for col in run_cols:
+            missing = (g[col] == 0).to_numpy(bool)
+            present = (g[col] == 1).to_numpy(bool)
+            g[f"{col}_missing_run"] = run_length(missing)
+            g[f"{col}_missing_until_next"] = reverse_run_length(missing)
+            g[f"{col}_present_run"] = run_length(present)
+        g["ev_event_density"] = g[event_cols].sum(axis=1)
+        g["ev_transition_density"] = g[[f"{col}_start" for col in event_cols] + [f"{col}_end" for col in event_cols]].sum(axis=1)
+        parts.append(g)
+    out = pd.concat(parts, axis=0, ignore_index=True)
+    return out.sort_values(["subject_id", "date", "tok"]).reset_index(drop=True)
+
+
+def build_grid(data_dir: Path, minutes: int, event_hybrid: bool = False) -> pd.DataFrame:
     parts = [
         activity_agg(data_dir / "ch2025_mActivity.parquet", minutes),
         scalar_agg(data_dir / "ch2025_mScreenStatus.parquet", "m_screen_use", "screen", minutes),
@@ -269,17 +331,20 @@ def build_grid(data_dir: Path, minutes: int) -> pd.DataFrame:
         radio_agg(data_dir / "ch2025_mBle.parquet", "m_ble", "ble", "address", minutes),
         usage_agg(data_dir / "ch2025_mUsageStats.parquet", minutes),
     ]
-    return add_cross_modal_features(merge_parts(parts))
+    grid = add_cross_modal_features(merge_parts(parts))
+    return add_event_gap_features(grid, minutes) if event_hybrid else grid
 
 
 def run(args: argparse.Namespace) -> None:
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
-    grid = build_grid(Path(args.data_dir), args.minutes)
-    output_path = output_dir / f"multires_{args.minutes}min_grid.parquet"
+    grid = build_grid(Path(args.data_dir), args.minutes, event_hybrid=args.event_hybrid)
+    stem = f"multires_{args.minutes}min{'_event_hybrid' if args.event_hybrid else ''}_grid"
+    output_path = output_dir / f"{stem}.parquet"
     grid.to_parquet(output_path, index=False)
     report = {
         "minutes": args.minutes,
+        "event_hybrid": bool(args.event_hybrid),
         "path": str(output_path),
         "shape": list(grid.shape),
         "subjects": sorted(grid["subject_id"].unique().tolist()),
@@ -288,9 +353,9 @@ def run(args: argparse.Namespace) -> None:
         "columns": grid.columns.tolist(),
         "non_null_rate": {col: float(grid[col].notna().mean()) for col in grid.columns if col not in ["subject_id", "date", "tok"]},
     }
-    (output_dir / f"multires_{args.minutes}min_grid_report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    (output_dir / f"{stem}_report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     md = [
-        f"# Multires {args.minutes}min Token Grid",
+        f"# Multires {args.minutes}min{' Event Hybrid' if args.event_hybrid else ''} Token Grid",
         "",
         f"- Output: `{output_path}`",
         f"- Shape: `{grid.shape[0]} x {grid.shape[1]}`",
@@ -299,7 +364,9 @@ def run(args: argparse.Namespace) -> None:
         "",
         "This grid keeps raw stream coverage as signal instead of hiding missingness. Object-list streams are first summarized row-wise, then aggregated into fixed within-day tokens.",
     ]
-    (output_dir / f"multires_{args.minutes}min_grid_report.md").write_text("\n".join(md), encoding="utf-8")
+    if args.event_hybrid:
+        md.append("Event-hybrid mode adds explicit missing/present run-length, event start/end, and low-coverage episode features per fixed token.")
+    (output_dir / f"{stem}_report.md").write_text("\n".join(md), encoding="utf-8")
 
 
 def build_arg_parser() -> argparse.ArgumentParser:
@@ -307,6 +374,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--data-dir", default="data/ch2025_data_items")
     parser.add_argument("--output-dir", default="artifacts")
     parser.add_argument("--minutes", type=int, default=10)
+    parser.add_argument("--event-hybrid", action="store_true")
     return parser
 
 

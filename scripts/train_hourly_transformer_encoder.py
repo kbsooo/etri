@@ -108,6 +108,8 @@ def view_specs() -> dict[str, ViewSpec]:
         ),
         "only_rhythm": ViewSpec("only_rhythm", "only", ("still", "screen", "charging", "hr", "light", "step")),
         "only_cross_modal": ViewSpec("only_cross_modal", "only", ("agree", "only_act", "only_ped", "amb_", "gps", "screen")),
+        "only_event": ViewSpec("only_event", "only", ("ev_",)),
+        "no_event": ViewSpec("no_event", "drop", ("ev_",)),
     }
 
 

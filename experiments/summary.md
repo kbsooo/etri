@@ -181,6 +181,15 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Not yet final: one unified neural encoder with seven heads, and a single decoder that needs no post-hoc router at all (v81 still applies its residual through the conditional router's fractional target/bin weights).
 - Strong next direction: promote the v81 HGB residual decoder from "a source the router picks" into the primary decoder, learning its own panel/target gating so it no longer needs the fractional-weight router; and stress-test the 0.006 jump on Public LB before trusting it as more than OOF signal.
 
+## Channel Patch Transformer Reset
+
+- The previous Transformer branch mostly used time-wise stacked tokens (`[B,T,F]`). That structure mixes heterogeneous lifelog channels too early: HR, GPS, app usage, sensor coverage, and event/missingness live in one feature vector per time bin.
+- A new channel-independent patch encoder now exists in `scripts/train_channel_patch_transformer_encoder.py`. It builds value/mask tensor pairs (`values [B,C,T]`, `masks [B,C,T]`), encodes each channel's patches with a shared temporal Transformer, then fuses channel summaries with a channel Transformer and a static-context CLS token.
+- Static context includes subject id, weekday, month, panel index, and panel position. The self-supervised objective masks patches and sometimes whole modalities, then reconstructs only observed values.
+- First full run: `outputs/channel_patch_transformer_encoder_v1/`. Best view is `no_sleep`, OOF `0.618767`, drift vs v83 `0.100180`. This is roughly tied with the best stacked 30-minute Transformer branch, not a breakthrough yet.
+- Patch sweep: patch length 4 (2-hour patches) beats patch length 2 (`0.619763`) and patch length 8 (`0.619152`). The current default is therefore 30-minute grid + 2-hour channel patches.
+- Interpretation: the data structure is viable, but its latent is not more label-readable yet. The biggest immediate clue is that `no_sleep` still wins, so naive inclusion of body/sleep-like channels blurs the supervised latent. The next step should expose modality-specific latents to the decoder instead of collapsing all channels into one CLS vector.
+
 ## Next 3
 
 1. Build the v82 decoder around source-prediction recombination, not retrieval. The stress test shows no_retrieval (source-preds + panel + base) and no_late beat the full retrieval decoder under selection-free fixed shrinkage; retrieval (esp. late-pool) overfits the HGB. Use the broader v80 source pool as HGB inputs and drop the neighbor-label retrieval summaries (keep at most geometry).

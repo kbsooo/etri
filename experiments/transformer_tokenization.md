@@ -11,6 +11,8 @@ The comparison now covers:
 - 24 hourly tokens from prebuilt hourly artifacts.
 - 144 raw-derived 10-minute tokens.
 - 48 raw-derived 30-minute tokens.
+- 48 raw-derived 30-minute event-hybrid tokens.
+- Channel-independent value/mask patch tokens over the 30-minute event-hybrid grid.
 - Feature-family views: `full`, `no_sleep`, `only_rhythm`, `only_cross_modal`, plus earlier hourly ablations.
 - Subject-token deviation features: value, missingness, and per-subject same-token z/deviation.
 - A small MoE head over Transformer experts.
@@ -165,3 +167,98 @@ Next high-value experiments:
 2. Stress-test prediction-level MoE drift/public-coordinate sensitivity.
 3. Add explicit missing-gap episode tokens for sensor off/charging/wear-time states.
 4. Revisit embedding-level heads only after the SSL objective is more label-aligned.
+
+## Event-Hybrid 30-Minute Grid
+
+Script: `scripts/build_multires_token_grid.py --event-hybrid`
+
+Output:
+
+- `artifacts/multires_30min_event_hybrid_grid.parquet`
+- `outputs/event_hybrid30_transformer_encoder_v1/`
+
+This branch added explicit episode-style features on top of the raw-derived 30-minute grid:
+
+- sensor-present flags by modality,
+- no-wear / phone-active / charging / moving / social-audio / low-coverage states,
+- state start/end indicators,
+- missing and present run lengths,
+- event and transition density.
+
+Result:
+
+| representation | best view | targetwise OOF | interpretation |
+| --- | ---: | ---: | --- |
+| 30-minute event-hybrid stacked `[B,T,F]` | `no_sleep` | `0.622582` | episode features alone did not improve the stacked Transformer branch |
+
+Decision:
+
+- The event features are useful as a cleaner missingness/state vocabulary, but concatenating them into `[B,T,F]` did not create a stronger latent.
+- This failure supports moving from time-wise stacking to value/mask channel-patch tokenization.
+
+## Channel-Independent Patch Transformer
+
+Script: `scripts/train_channel_patch_transformer_encoder.py`
+
+Outputs:
+
+- `outputs/channel_patch_transformer_encoder_v1/`
+- `outputs/channel_patch_transformer_patch_sweep_v1/patch2/`
+- `outputs/channel_patch_transformer_patch_sweep_v1/patch8/`
+
+Architecture:
+
+```text
+30-minute event-hybrid grid
+-> values [B, C, T] and masks [B, C, T]
+-> channel-independent patches [B, C, P, patch_len]
+-> shared temporal Transformer per channel
+-> channel Transformer over modality/channel summaries
+-> static context injected into CLS: subject, weekday, month, panel index/position
+-> masked patch reconstruction SSL
+-> fold-safe subject-prior residual/logistic probe
+```
+
+This is the first branch that implements the SOTA-style data structure discussed during planning: channel-independent patching, value/mask tensor pairs, and static context joint embedding.
+
+### Main Patch Length 4 Result
+
+Patch length 4 means 4 x 30-minute tokens = 2-hour patches.
+
+| view | targetwise OOF | drift vs v83 | channels |
+| --- | ---: | ---: | ---: |
+| `no_sleep` | `0.618767` | `0.100180` | 87 |
+| `only_event` | `0.619042` | `0.096649` | 45 |
+| `full` | `0.619794` | `0.085971` | 110 |
+| `no_sparse_position` | `0.620093` | `0.094730` | 103 |
+| `no_event` | `0.620150` | `0.093270` | 65 |
+| `only_rhythm` | `0.620471` | `0.098322` | 37 |
+| `only_cross_modal` | `0.620719` | `0.095392` | 69 |
+
+Best target losses for `no_sleep`:
+
+| target | loss |
+| --- | ---: |
+| Q1 | `0.672177` |
+| Q2 | `0.677586` |
+| Q3 | `0.664566` |
+| S1 | `0.569332` |
+| S2 | `0.569299` |
+| S3 | `0.532886` |
+| S4 | `0.645522` |
+
+### Patch Sweep
+
+| patch length | best view | targetwise OOF | drift vs v83 | interpretation |
+| ---: | --- | ---: | ---: | --- |
+| 2 | `no_sleep` | `0.619763` | `0.095294` | too fine; more temporal detail did not help |
+| 4 | `no_sleep` | `0.618767` | `0.100180` | best current channel-patch setting |
+| 8 | `full` | `0.619152` | `0.086491` | more stable but too coarse |
+
+Decision:
+
+- The new data structure is valid: its first serious run is essentially tied with the best stacked 30-minute branch.
+- The best view remains `no_sleep`, suggesting sleep/body channels can blur the current label-readable latent when naively included.
+- Patch length 4 is the current default. Patch 2 overfits/noises the latent; patch 8 loses useful transitions.
+- The branch is not yet a public submission candidate because drift remains high, especially for the `no_sleep` best view.
+- Next high-value work is not a bigger encoder; it is a decoder/fusion layer that uses modality/channel latents with drift-aware regularization.
