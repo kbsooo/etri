@@ -1,0 +1,8 @@
+target,feature,model_family
+Q1,full__cls_plus_physio__abs_plus_subrel_train,ridge
+Q2,only_cross_modal__cls_plus_all_groups__subrel_train,logreg
+Q3,full__cls_plus_all_groups__subrel_train,ridge
+S1,full__cls_plus_physio__abs_plus_subrel_train,ridge
+S2,full__cls_plus_body,logreg
+S3,full__cls_plus_all_groups__abs_plus_subrel_train,logreg
+S4,only_event__cls__abs_plus_subrel_train,ridge

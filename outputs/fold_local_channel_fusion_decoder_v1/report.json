@@ -1,0 +1,377 @@
+{
+  "best_source": "fold_local_all_logreg",
+  "best_avg_log_loss": 0.6250161804886696,
+  "best_per_target": {
+    "Q1": 0.6722609131452082,
+    "Q2": 0.6919668111527699,
+    "Q3": 0.675156630133448,
+    "S1": 0.5745306642141456,
+    "S2": 0.5770102142385177,
+    "S3": 0.5350074475382222,
+    "S4": 0.6491805829983756
+  },
+  "drift_vs_reference_best": {
+    "reference": "outputs/v83_repaired_v80/submission_v83_gq015_gs010.csv",
+    "mean_abs_drift": 0.06657621118911103,
+    "max_abs_drift": 0.3095251465320531,
+    "corr": 0.8788133877489296,
+    "target_mean": {
+      "Q1": 0.4991474609746282,
+      "Q2": 0.5562462062201722,
+      "Q3": 0.5991509769484337,
+      "S1": 0.6944330857079314,
+      "S2": 0.659598249895362,
+      "S3": 0.6592842035596281,
+      "S4": 0.5609175040046758
+    },
+    "target_mean_shift": {
+      "Q1": -0.011220735927327825,
+      "Q2": -0.013072108836287946,
+      "Q3": -0.012835784712764777,
+      "S1": 0.011820698496831945,
+      "S2": 0.015673001241361985,
+      "S3": 0.0006433826626725061,
+      "S4": 0.007903581981988355
+    },
+    "panel_mean_abs_drift": {
+      "early": 0.0547235151499758,
+      "mid": 0.06908147302019213,
+      "late": 0.075564262285927
+    }
+  },
+  "scores": [
+    {
+      "source": "fold_local_all_logreg",
+      "avg_log_loss": 0.6250161804886696,
+      "drift_vs_reference": 0.06657621118911103,
+      "Q1": 0.6722609131452082,
+      "Q2": 0.6919668111527699,
+      "Q3": 0.675156630133448,
+      "S1": 0.5745306642141456,
+      "S2": 0.5770102142385177,
+      "S3": 0.5350074475382222,
+      "S4": 0.6491805829983756
+    },
+    {
+      "source": "fold_local_selected",
+      "avg_log_loss": 0.6253433435961097,
+      "drift_vs_reference": 0.06547754190940316,
+      "Q1": 0.6728682353099295,
+      "Q2": 0.6919668111527699,
+      "Q3": 0.6776792240564272,
+      "S1": 0.5751950411147042,
+      "S2": 0.5770102142385177,
+      "S3": 0.5350074475382222,
+      "S4": 0.6476764317621976
+    },
+    {
+      "source": "fold_local_all_ridge",
+      "avg_log_loss": 0.6257611575333932,
+      "drift_vs_reference": 0.06262928431106639,
+      "Q1": 0.6728682353099295,
+      "Q2": 0.6951176523345557,
+      "Q3": 0.6776792240564272,
+      "S1": 0.5751950411147042,
+      "S2": 0.5776052881340714,
+      "S3": 0.5341862300218668,
+      "S4": 0.6476764317621976
+    },
+    {
+      "source": "fold_local_all_hgb",
+      "avg_log_loss": 0.6271198371336232,
+      "drift_vs_reference": 0.06195663474642546,
+      "Q1": 0.6734026385409425,
+      "Q2": 0.70358925462038,
+      "Q3": 0.6780316350872528,
+      "S1": 0.5747509789158082,
+      "S2": 0.5786628126422441,
+      "S3": 0.5350217425685938,
+      "S4": 0.6463797975601406
+    }
+  ],
+  "expert_specs": [
+    {
+      "target": "Q1",
+      "feature": "full__cls_plus_physio__abs_plus_subrel_train",
+      "model_family": "ridge"
+    },
+    {
+      "target": "Q2",
+      "feature": "only_cross_modal__cls_plus_all_groups__subrel_train",
+      "model_family": "logreg"
+    },
+    {
+      "target": "Q3",
+      "feature": "full__cls_plus_all_groups__subrel_train",
+      "model_family": "ridge"
+    },
+    {
+      "target": "S1",
+      "feature": "full__cls_plus_physio__abs_plus_subrel_train",
+      "model_family": "ridge"
+    },
+    {
+      "target": "S2",
+      "feature": "full__cls_plus_body",
+      "model_family": "logreg"
+    },
+    {
+      "target": "S3",
+      "feature": "full__cls_plus_all_groups__abs_plus_subrel_train",
+      "model_family": "logreg"
+    },
+    {
+      "target": "S4",
+      "feature": "only_event__cls__abs_plus_subrel_train",
+      "model_family": "ridge"
+    }
+  ],
+  "fold_target_losses": [
+    {
+      "fold": 1,
+      "target": "Q1",
+      "feature": "full__cls_plus_physio__abs_plus_subrel_train",
+      "family": "ridge",
+      "loss": 0.6635470771115891
+    },
+    {
+      "fold": 1,
+      "target": "Q2",
+      "feature": "only_cross_modal__cls_plus_all_groups__subrel_train",
+      "family": "logreg",
+      "loss": 0.7222653180477093
+    },
+    {
+      "fold": 1,
+      "target": "Q3",
+      "feature": "full__cls_plus_all_groups__subrel_train",
+      "family": "ridge",
+      "loss": 0.6907493321055692
+    },
+    {
+      "fold": 1,
+      "target": "S1",
+      "feature": "full__cls_plus_physio__abs_plus_subrel_train",
+      "family": "ridge",
+      "loss": 0.5684813635006374
+    },
+    {
+      "fold": 1,
+      "target": "S2",
+      "feature": "full__cls_plus_body",
+      "family": "logreg",
+      "loss": 0.5947317266916404
+    },
+    {
+      "fold": 1,
+      "target": "S3",
+      "feature": "full__cls_plus_all_groups__abs_plus_subrel_train",
+      "family": "logreg",
+      "loss": 0.493489202401492
+    },
+    {
+      "fold": 1,
+      "target": "S4",
+      "feature": "only_event__cls__abs_plus_subrel_train",
+      "family": "ridge",
+      "loss": 0.6818066878353162
+    },
+    {
+      "fold": 2,
+      "target": "Q1",
+      "feature": "full__cls_plus_physio__abs_plus_subrel_train",
+      "family": "ridge",
+      "loss": 0.6792605715080056
+    },
+    {
+      "fold": 2,
+      "target": "Q2",
+      "feature": "only_cross_modal__cls_plus_all_groups__subrel_train",
+      "family": "logreg",
+      "loss": 0.6498273195189108
+    },
+    {
+      "fold": 2,
+      "target": "Q3",
+      "feature": "full__cls_plus_all_groups__subrel_train",
+      "family": "ridge",
+      "loss": 0.7033604158969178
+    },
+    {
+      "fold": 2,
+      "target": "S1",
+      "feature": "full__cls_plus_physio__abs_plus_subrel_train",
+      "family": "ridge",
+      "loss": 0.57195493379703
+    },
+    {
+      "fold": 2,
+      "target": "S2",
+      "feature": "full__cls_plus_body",
+      "family": "logreg",
+      "loss": 0.5367939478951509
+    },
+    {
+      "fold": 2,
+      "target": "S3",
+      "feature": "full__cls_plus_all_groups__abs_plus_subrel_train",
+      "family": "logreg",
+      "loss": 0.5345732447330453
+    },
+    {
+      "fold": 2,
+      "target": "S4",
+      "feature": "only_event__cls__abs_plus_subrel_train",
+      "family": "ridge",
+      "loss": 0.600968163098156
+    },
+    {
+      "fold": 3,
+      "target": "Q1",
+      "feature": "full__cls_plus_physio__abs_plus_subrel_train",
+      "family": "ridge",
+      "loss": 0.6781642391243579
+    },
+    {
+      "fold": 3,
+      "target": "Q2",
+      "feature": "only_cross_modal__cls_plus_all_groups__subrel_train",
+      "family": "logreg",
+      "loss": 0.7392068830839827
+    },
+    {
+      "fold": 3,
+      "target": "Q3",
+      "feature": "full__cls_plus_all_groups__subrel_train",
+      "family": "ridge",
+      "loss": 0.664805729225252
+    },
+    {
+      "fold": 3,
+      "target": "S1",
+      "feature": "full__cls_plus_physio__abs_plus_subrel_train",
+      "family": "ridge",
+      "loss": 0.5898852943298877
+    },
+    {
+      "fold": 3,
+      "target": "S2",
+      "feature": "full__cls_plus_body",
+      "family": "logreg",
+      "loss": 0.5415556118578734
+    },
+    {
+      "fold": 3,
+      "target": "S3",
+      "feature": "full__cls_plus_all_groups__abs_plus_subrel_train",
+      "family": "logreg",
+      "loss": 0.5589680545302925
+    },
+    {
+      "fold": 3,
+      "target": "S4",
+      "feature": "only_event__cls__abs_plus_subrel_train",
+      "family": "ridge",
+      "loss": 0.6317078465541787
+    },
+    {
+      "fold": 4,
+      "target": "Q1",
+      "feature": "full__cls_plus_physio__abs_plus_subrel_train",
+      "family": "ridge",
+      "loss": 0.6670225770131462
+    },
+    {
+      "fold": 4,
+      "target": "Q2",
+      "feature": "only_cross_modal__cls_plus_all_groups__subrel_train",
+      "family": "logreg",
+      "loss": 0.6652613667107472
+    },
+    {
+      "fold": 4,
+      "target": "Q3",
+      "feature": "full__cls_plus_all_groups__subrel_train",
+      "family": "ridge",
+      "loss": 0.6174547880395769
+    },
+    {
+      "fold": 4,
+      "target": "S1",
+      "feature": "full__cls_plus_physio__abs_plus_subrel_train",
+      "family": "ridge",
+      "loss": 0.6126051026995395
+    },
+    {
+      "fold": 4,
+      "target": "S2",
+      "feature": "full__cls_plus_body",
+      "family": "logreg",
+      "loss": 0.5807487217477248
+    },
+    {
+      "fold": 4,
+      "target": "S3",
+      "feature": "full__cls_plus_all_groups__abs_plus_subrel_train",
+      "family": "logreg",
+      "loss": 0.4959522030134053
+    },
+    {
+      "fold": 4,
+      "target": "S4",
+      "feature": "only_event__cls__abs_plus_subrel_train",
+      "family": "ridge",
+      "loss": 0.6788845286346415
+    },
+    {
+      "fold": 5,
+      "target": "Q1",
+      "feature": "full__cls_plus_physio__abs_plus_subrel_train",
+      "family": "ridge",
+      "loss": 0.6766806002902412
+    },
+    {
+      "fold": 5,
+      "target": "Q2",
+      "feature": "only_cross_modal__cls_plus_all_groups__subrel_train",
+      "family": "logreg",
+      "loss": 0.6804727193411393
+    },
+    {
+      "fold": 5,
+      "target": "Q3",
+      "feature": "full__cls_plus_all_groups__subrel_train",
+      "family": "ridge",
+      "loss": 0.7106990363988894
+    },
+    {
+      "fold": 5,
+      "target": "S1",
+      "feature": "full__cls_plus_physio__abs_plus_subrel_train",
+      "family": "ridge",
+      "loss": 0.5321879922452926
+    },
+    {
+      "fold": 5,
+      "target": "S2",
+      "feature": "full__cls_plus_body",
+      "family": "logreg",
+      "loss": 0.6348628199312318
+    },
+    {
+      "fold": 5,
+      "target": "S3",
+      "feature": "full__cls_plus_all_groups__abs_plus_subrel_train",
+      "family": "logreg",
+      "loss": 0.5962024002846492
+    },
+    {
+      "fold": 5,
+      "target": "S4",
+      "feature": "only_event__cls__abs_plus_subrel_train",
+      "family": "ridge",
+      "loss": 0.6452390578348174
+    }
+  ],
+  "pca_components": 16
+}

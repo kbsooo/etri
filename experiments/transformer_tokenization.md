@@ -275,6 +275,8 @@ Outputs:
 - `outputs/channel_patch_transformer_encoder_v2/`
 - `outputs/channel_latent_fusion_decoder_relative_v1/`
 - `outputs/channel_latent_fusion_decoder_curated_v1/`
+- `outputs/fold_local_channel_fusion_decoder_v1/`
+- `outputs/fold_local_channel_fusion_decoder_no_pca_v1/`
 
 Motivation:
 
@@ -316,6 +318,8 @@ This directly removes the subject baseline before the supervised probe sees the 
 | channel-patch CLS baseline | collapsed CLS | `0.618767` | `0.100180` | best prior channel-patch encoder |
 | channel latent fusion | relative-only | `0.618158` | `0.075584` | subject-relative latent reduces drift strongly |
 | channel latent fusion | curated absolute + relative | `0.616980` | `0.077224` | best current channel-patch decoder |
+| fold-local channel fusion | curated selected + PCA16 | `0.625343` | `0.065478` | PCA removes weak label directions |
+| fold-local channel fusion | curated selected, no PCA | `0.617748` | `0.076986` | subject-relative signal survives fold-local centering |
 
 Best curated target-wise sources:
 
@@ -334,4 +338,6 @@ Decision:
 - This is the first positive result from the new data structure beyond parity with the stacked Transformer branch.
 - The user's subject-relative deviation hypothesis is supported: relative-only fusion improves OOF and cuts drift by about 25% versus the best channel-patch CLS baseline.
 - The best curated model uses a mix of absolute and relative latents, meaning absolute state is not useless, but subject-relative coordinates are the main drift-control mechanism.
-- Next step: make subject-relative centering fold-safe inside the decoder rather than precomputing one train-subject mean for all OOF rows, then test a compact nonlinear fusion head over the selected modality experts.
+- Fold-local centering confirms the improvement is not only a train-wide subject mean artifact. The no-PCA fold-local result (`0.617748`) is close to train-centered curated fusion (`0.616980`), so the useful part is real deviation geometry.
+- PCA compression is harmful here: PCA16 worsens to `0.625343`, while no-PCA keeps the signal. The decoder needs many weak latent axes rather than a compressed global variance basis.
+- Next step: train a compact MoE/gated decoder over the selected modality experts without PCA, using fold-local subject baselines and nested target-wise selection so the gate cannot exploit full-train OOF selection.
