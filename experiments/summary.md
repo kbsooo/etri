@@ -16,6 +16,7 @@ Last updated: 2026-05-20
 - Meta-gated consensus follow-up (`outputs/meta_gated_consensus_decoder_v1/`) is a negative result: the fixed source remains best at `0.620577`, while learned gates degrade to `0.632022` / `0.687088`. With 450 labels, second-stage supervised gates over source deltas overfit.
 - Extended feature-family pruning (`outputs/extended_family_pruning_decoder_v1/`) finds target-specific new signal: full-OOF targetwise improves to `0.616766`, led by `drop_ratio_temporal_delta`, `drop_raw_ratio`, `drop_sleep_late`, and `only_missingness_cross_modal` recipes.
 - Nested validation of the extended-family candidates (`outputs/nested_extended_family_decoder_v1/`) does not confirm a broad breakthrough: nested OOF is `0.625206`, slightly worse than the previous nested `0.624729`. Stable takeaways are narrower: Q1 repeatedly selects `only_rhythm + HGB`, S4 repeatedly selects `no_temporal_delta + HGB`, and S1/S3 often fall back to subject prior.
+- Stable extended consensus maps (`outputs/stable_extended_consensus_decoder_v1/`) convert those lessons into fixed models. `stable_signal_s4_temporal` reaches `0.620281`, slightly improving `consensus_signal` (`0.620577`) by switching only S4 from `only_cross_modal + HGB` to nested-supported `no_temporal_delta + HGB`. The full-OOF winner map still shows `0.616766`, but remains an optimism upper bound because nested validation rejected it.
 
 ## Current Best
 

@@ -310,3 +310,32 @@ Decision:
   - Q1 should stay close to `only_rhythm + HGB`.
   - S4 prefers `no_temporal_delta + HGB` more reliably than the `only_cross_modal` branch.
 - Treat S1/S3 residual decoders as suspect unless a new state objective makes them beat subject prior under nested validation.
+
+## Stable extended consensus maps
+
+Script: `scripts/train_stable_extended_consensus_decoder.py`
+
+Output: `outputs/stable_extended_consensus_decoder_v1/`
+
+This experiment converts the nested extended-family lessons into fixed maps. No source search is performed inside this run. It compares:
+
+- `extended_full_oof_winners`: the optimistic full-OOF target-wise winners from the extended-family run.
+- `stable_signal_s4_temporal`: previous `consensus_signal`, but with S4 switched to nested-stable `no_temporal_delta + HGB`.
+- `stable_prior_guarded`: Q1/Q2/Q3/S4 state sources with S1/S2/S3 guarded by subject prior.
+- `stable_nested_vote`: majority nested votes per target.
+- `q1_s4_only`: only the two most stable repeated signals, Q1 and S4.
+
+Results:
+
+- `extended_full_oof_winners`: `0.616766`, drift `0.069892`.
+- `stable_signal_s4_temporal`: `0.620281`, drift `0.068726`.
+- `stable_prior_guarded`: `0.622146`, drift `0.066633`.
+- `stable_nested_vote`: `0.622837`, drift `0.066150`.
+- `q1_s4_only`: `0.626191`, drift `0.064413`.
+
+Decision:
+
+- The best trustworthy fixed scaffold is now `stable_signal_s4_temporal` (`0.620281`), slightly improving `consensus_signal` (`0.620577`) through one nested-supported structural edit: S4 uses `no_temporal_delta + HGB` instead of `only_cross_modal + HGB`.
+- `extended_full_oof_winners` remains an optimism upper bound, not a trusted model. It reproduces the full-OOF `0.616766`, but nested validation already showed that this family falls back to `0.625206`.
+- Guarding S1/S2/S3 with subject prior improves drift but loses too much OOF signal, so the current useful decoder is not a pure conservative prior guard.
+- The next improvement should preserve the `stable_signal_s4_temporal` map and attack the remaining weak targets through better state objectives, not through meta gates or full-OOF source selection.
