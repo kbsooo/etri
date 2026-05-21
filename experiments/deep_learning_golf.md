@@ -340,3 +340,45 @@ Decision:
 - Keep tiny GRU as a checked negative/secondary branch.
 - Continue sequence work from the stronger tiny Transformer d8 branch, but use the GRU d4 result as evidence that `d_model=4` is often enough.
 - Next improvement should not simply increase hidden size. It should change tokenization or make target rules fixed from nested selection counts.
+
+## v1 Hourly vs 30-Minute Tiny Transformer Tokenization
+
+Encoder script: `scripts/train_hourly_transformer_encoder.py --encoder-type transformer`
+
+Golf decoder script: `scripts/train_latent_deep_learning_golf.py`
+
+Nested stress script: `scripts/nested_deep_learning_golf_selection.py`
+
+Outputs:
+
+- 30-minute reference:
+  - `outputs/tiny_transformer_golf_encoder_d8_v1/`
+  - `outputs/tiny_transformer_d8_latent_golf_v1/`
+  - `outputs/nested_tiny_transformer_d8_latent_golf_v1/`
+- 1-hour test:
+  - `outputs/tiny_transformer_hourly_d8_v1/`
+  - `outputs/tiny_transformer_hourly_d8_latent_golf_v1/`
+  - `outputs/nested_tiny_transformer_hourly_d8_latent_golf_v1/`
+
+Comparison:
+
+| tokenization | token table | views | encoder probe best | encoder best view | golf fixed global | full-OOF targetwise | nested targetwise | nested gain vs subject prior | selection optimism |
+| --- | --- | --- | ---: | --- | ---: | ---: | ---: | ---: | ---: |
+| 30-minute event-hybrid | `artifacts/multires_30min_event_hybrid_grid.parquet` | `only_event`, `only_rhythm`, `only_cross_modal`, `no_sleep` | 0.622084 | `only_cross_modal` | 0.626371 | 0.623600 | 0.625441 | 0.002213 | 0.001841 |
+| 1-hour aggregate | `artifacts/03_hourly_grid.parquet` | `full`, `no_sleep`, `only_rhythm`, `only_cross_modal` | 0.623310 | `only_rhythm` | 0.626613 | 0.623951 | 0.626537 | 0.001117 | 0.002392 |
+
+Interpretation:
+
+- 30-minute event-hybrid tokenization beats 1-hour tokenization on every robust criterion:
+  - better encoder probe,
+  - better full-OOF targetwise,
+  - better nested targetwise,
+  - lower selection optimism.
+- The hourly grid lacks event tokens, and the best view shifts from 30-minute `only_cross_modal` to hourly `only_rhythm`. That suggests the useful signal is not just coarse daily rhythm; fine-grained event/cross-modal transitions matter.
+- This supports keeping 30-minute tokens as the default tiny sequence input. The next tokenization test should be 2-hour patching over 30-minute tokens, not coarser 1-hour aggregation.
+
+Decision:
+
+- Reject 1-hour aggregate as the main tiny sequence path.
+- Keep 30-minute event-hybrid tokens for Transformer/GRU work.
+- Next useful data-structure test is not more hidden size; it is 30-minute tokens with explicit 2-hour patch/state pooling or fixed target rules derived from nested counts.
