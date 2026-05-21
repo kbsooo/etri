@@ -1,0 +1,8 @@
+target,source,loss
+Q1,baseline,0.6627851441975227
+Q2,selected_single__logreg_c0.03_b0.35,0.6632436246339598
+Q3,selected_single__ridge_a20_b0.2,0.6612694752161558
+S1,selected_single__ridge_a5_b0.2,0.5617402233346357
+S2,selected_single__logreg_c0.03_b0.2,0.5743917416336362
+S3,selected_single__logreg_c0.1_b0.2,0.5217057561708389
+S4,selected_single__ridge_a5_b0.2,0.6420025979803325

@@ -278,6 +278,7 @@ Outputs:
 - `outputs/fold_local_channel_fusion_decoder_v1/`
 - `outputs/fold_local_channel_fusion_decoder_no_pca_v1/`
 - `outputs/fold_local_channel_moe_decoder_v1/`
+- `outputs/fold_local_latent_moe_decoder_v1/`
 
 Motivation:
 
@@ -323,6 +324,9 @@ This directly removes the subject baseline before the supervised probe sees the 
 | fold-local channel fusion | curated selected, no PCA | `0.617748` | `0.076986` | subject-relative signal survives fold-local centering |
 | fold-local channel MoE | MoE-only stack | `0.618702` | `0.069869` | global gate is weaker than best single expert |
 | fold-local channel MoE | no-PCA baseline + target hybrid | `0.616459` | `0.077083` | MoE helps Q2/S4 only |
+| fold-local latent MoE | target-wise latent gate | `0.612530` | `0.095479` | raw latent heads improve OOF but drift high |
+| fold-local latent MoE | no-PCA baseline + target hybrid | `0.612448` | `0.095652` | strongest OOF, public-risky |
+| fold-local latent MoE | 35% shrink to hybrid | `0.615209` | `0.082733` | better OOF/drift tradeoff |
 
 Best curated target-wise sources:
 
@@ -344,4 +348,6 @@ Decision:
 - Fold-local centering confirms the improvement is not only a train-wide subject mean artifact. The no-PCA fold-local result (`0.617748`) is close to train-centered curated fusion (`0.616980`), so the useful part is real deviation geometry.
 - PCA compression is harmful here: PCA16 worsens to `0.625343`, while no-PCA keeps the signal. The decoder needs many weak latent axes rather than a compressed global variance basis.
 - First MoE result is mixed. A global stacking gate over fold-local expert predictions is weaker than the no-PCA selected decoder, but it improves Q2 (`0.687463 -> 0.679228`) and S4 (`0.643854 -> 0.643068`). The hybrid reaches `0.616459`, so the expert disagreement is useful for some targets.
-- Next step: move MoE from prediction-level stacking into latent-level gating. The current gate only recombines already-shrunk probabilities; a better version should gate event/body/phone/mobility/physio latents before the residual decoder, with target-specific regularization.
+- Latent-level MoE is the strongest channel-patch decoder so far. It does not simply benefit from more features: target-specific raw latent heads beat the previous prediction-stacking hybrid, especially Q2 (`0.687463 -> 0.663244`), S1 (`0.564505 -> 0.561740`), and S3 (`0.525808 -> 0.521706`).
+- The risk is public alignment. Full latent hybrid reaches OOF `0.612448`, but drift rises to `0.095652`. Shrinking the latent hybrid toward the no-PCA fold-local baseline gives a smoother ladder: 25% weight `0.615858` / drift `0.080976`, 35% weight `0.615209` / drift `0.082733`, 50% weight `0.614350` / drift `0.085501`.
+- Next step: stress-test the target-wise latent selections with nested selection or a fixed shrink schedule. The signal is large enough to keep pursuing, but full-strength latent MoE should not be treated as a public-safe submission without drift validation.
