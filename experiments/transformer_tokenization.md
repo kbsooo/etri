@@ -262,3 +262,76 @@ Decision:
 - Patch length 4 is the current default. Patch 2 overfits/noises the latent; patch 8 loses useful transitions.
 - The branch is not yet a public submission candidate because drift remains high, especially for the `no_sleep` best view.
 - Next high-value work is not a bigger encoder; it is a decoder/fusion layer that uses modality/channel latents with drift-aware regularization.
+
+## Channel Latent Fusion Decoder
+
+Scripts:
+
+- `scripts/train_channel_patch_transformer_encoder.py`
+- `scripts/train_channel_latent_fusion_decoder.py`
+
+Outputs:
+
+- `outputs/channel_patch_transformer_encoder_v2/`
+- `outputs/channel_latent_fusion_decoder_relative_v1/`
+- `outputs/channel_latent_fusion_decoder_curated_v1/`
+
+Motivation:
+
+The first channel-patch encoder still decoded only a collapsed day CLS vector. That loses the reason we moved to channel-independent tokens in the first place. The v2 encoder now saves both:
+
+```text
+day CLS:        [B, D]
+channel latent: [B, C, D]
+```
+
+The fusion decoder groups channel latents into modality experts:
+
+- `event`
+- `body`
+- `phone`
+- `mobility`
+- `ambience`
+- `radio`
+- `light`
+- `cross`
+- combined groups such as `behavior`, `physio`, and `all_groups`
+
+It then evaluates fold-safe probes over each expert and target-wise fuses the useful ones.
+
+### Subject-Relative Deviation Decoder
+
+The target definition is subject-relative: each label is 1 when the self-report is above that subject's own experimental-period average. Therefore absolute latent coordinates are a poor decoder input. The fusion decoder now tests subject-centered latent variants:
+
+```text
+z_rel(subject, day) = z(subject, day) - mean_train_subject(z)
+```
+
+This directly removes the subject baseline before the supervised probe sees the latent.
+
+### Results
+
+| decoder | candidate mode | targetwise OOF | drift vs v83 | interpretation |
+| --- | --- | ---: | ---: | --- |
+| channel-patch CLS baseline | collapsed CLS | `0.618767` | `0.100180` | best prior channel-patch encoder |
+| channel latent fusion | relative-only | `0.618158` | `0.075584` | subject-relative latent reduces drift strongly |
+| channel latent fusion | curated absolute + relative | `0.616980` | `0.077224` | best current channel-patch decoder |
+
+Best curated target-wise sources:
+
+| target | selected source | loss |
+| --- | --- | ---: |
+| Q1 | `full__cls_plus_physio__abs_plus_subrel_train` | `0.662714` |
+| Q2 | `only_cross_modal__cls_plus_all_groups__subrel_train` | `0.686355` |
+| Q3 | `full__cls_plus_all_groups__subrel_train` | `0.659397` |
+| S1 | `full__cls_plus_physio__abs_plus_subrel_train` | `0.564499` |
+| S2 | `full__cls_plus_body` | `0.575857` |
+| S3 | `full__cls_plus_all_groups__abs_plus_subrel_train` | `0.526221` |
+| S4 | `only_event__cls__abs_plus_subrel_train` | `0.643818` |
+
+Decision:
+
+- This is the first positive result from the new data structure beyond parity with the stacked Transformer branch.
+- The user's subject-relative deviation hypothesis is supported: relative-only fusion improves OOF and cuts drift by about 25% versus the best channel-patch CLS baseline.
+- The best curated model uses a mix of absolute and relative latents, meaning absolute state is not useless, but subject-relative coordinates are the main drift-control mechanism.
+- Next step: make subject-relative centering fold-safe inside the decoder rather than precomputing one train-subject mean for all OOF rows, then test a compact nonlinear fusion head over the selected modality experts.

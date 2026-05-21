@@ -189,6 +189,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - First full run: `outputs/channel_patch_transformer_encoder_v1/`. Best view is `no_sleep`, OOF `0.618767`, drift vs v83 `0.100180`. This is roughly tied with the best stacked 30-minute Transformer branch, not a breakthrough yet.
 - Patch sweep: patch length 4 (2-hour patches) beats patch length 2 (`0.619763`) and patch length 8 (`0.619152`). The current default is therefore 30-minute grid + 2-hour channel patches.
 - Interpretation: the data structure is viable, but its latent is not more label-readable yet. The biggest immediate clue is that `no_sleep` still wins, so naive inclusion of body/sleep-like channels blurs the supervised latent. The next step should expose modality-specific latents to the decoder instead of collapsing all channels into one CLS vector.
+- The channel latent fusion decoder is the first improvement from that next step. `scripts/train_channel_latent_fusion_decoder.py` reads saved channel latents, groups them into modality experts, and applies subject-relative centering before fold-safe probes. Relative-only fusion reaches OOF `0.618158` with drift `0.075584`; curated absolute+relative fusion reaches OOF `0.616980` with drift `0.077224`. This supports the label-definition hypothesis: the decoder should predict from a subject's deviation from their own latent baseline, not only from absolute day state.
 
 ## Next 3
 

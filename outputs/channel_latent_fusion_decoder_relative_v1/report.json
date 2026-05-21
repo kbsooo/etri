@@ -1,0 +1,268 @@
+{
+  "best_source": "targetwise",
+  "best_avg_log_loss": 0.6181578460048611,
+  "best_per_target": {
+    "Q1": 0.6645058349783899,
+    "Q2": 0.6861902925531302,
+    "Q3": 0.6593967451692085,
+    "S1": 0.5675385834837964,
+    "S2": 0.5786110276756327,
+    "S3": 0.5266606447604649,
+    "S4": 0.6442017934134048
+  },
+  "best_global_source": "full__cls_plus_all_groups__subrel_train__transformer_ridge_resid_a5_w0p1",
+  "best_global_avg_log_loss": 0.6237352773138334,
+  "best_global_per_target": {
+    "Q1": 0.6664708309732328,
+    "Q2": 0.6968302959030684,
+    "Q3": 0.6593967451692085,
+    "S1": 0.5682050469469591,
+    "S2": 0.5879020175665798,
+    "S3": 0.5271916600866681,
+    "S4": 0.6601503445511167
+  },
+  "targetwise_avg_log_loss": 0.6181578460048611,
+  "targetwise_per_target": {
+    "Q1": 0.6645058349783899,
+    "Q2": 0.6861902925531302,
+    "Q3": 0.6593967451692085,
+    "S1": 0.5675385834837964,
+    "S2": 0.5786110276756327,
+    "S3": 0.5266606447604649,
+    "S4": 0.6442017934134048
+  },
+  "targetwise_sources": {
+    "Q1": "full__cls_plus_physio__subrel_train__transformer_ridge_resid_a5_w0p1",
+    "Q2": "full__cls_plus_event__subrel_train__transformer_logreg_c0p1_w0p1",
+    "Q3": "full__cls_plus_all_groups__subrel_train__transformer_ridge_resid_a5_w0p1",
+    "S1": "full__cls_plus_physio__subrel_train__transformer_ridge_resid_a5_w0p1",
+    "S2": "full__mobility__subrel_train__transformer_logreg_c0p1_w0p1",
+    "S3": "full__all_groups__subrel_train__transformer_ridge_resid_a5_w0p1",
+    "S4": "only_event__cls__subrel_train__transformer_ridge_resid_a5_w0p1"
+  },
+  "targetwise_source_losses": {
+    "Q1": 0.6645058349783899,
+    "Q2": 0.6861902925531302,
+    "Q3": 0.6593967451692085,
+    "S1": 0.5675385834837964,
+    "S2": 0.5786110276756327,
+    "S3": 0.5266606447604649,
+    "S4": 0.6442017934134048
+  },
+  "drift_vs_reference_best": {
+    "reference": "outputs/v83_repaired_v80/submission_v83_gq015_gs010.csv",
+    "mean_abs_drift": 0.07558378541100379,
+    "max_abs_drift": 0.44612231177478867,
+    "corr": 0.8314502451063337,
+    "target_mean": {
+      "Q1": 0.5153253941673674,
+      "Q2": 0.5588923009656565,
+      "Q3": 0.5824345429994355,
+      "S1": 0.7160677437214285,
+      "S2": 0.6615943361344386,
+      "S3": 0.6715461151598269,
+      "S4": 0.5658104925287082
+    },
+    "target_mean_shift": {
+      "Q1": 0.004957197265411393,
+      "Q2": -0.010426014090803818,
+      "Q3": -0.02955221866176281,
+      "S1": 0.03345535651032907,
+      "S2": 0.017669087480438665,
+      "S3": 0.012905294262871238,
+      "S4": 0.012796570506020807
+    },
+    "panel_mean_abs_drift": {
+      "early": 0.06018284111600306,
+      "mid": 0.07548378891031234,
+      "late": 0.09053881060803262
+    }
+  },
+  "drift_vs_reference_global": {
+    "reference": "outputs/v83_repaired_v80/submission_v83_gq015_gs010.csv",
+    "mean_abs_drift": 0.07893141817352844,
+    "max_abs_drift": 0.44612231177478867,
+    "corr": 0.8218601107595375,
+    "target_mean": {
+      "Q1": 0.5098690360465751,
+      "Q2": 0.5451742978735444,
+      "Q3": 0.5824345429994355,
+      "S1": 0.6956892484884786,
+      "S2": 0.6718904473775994,
+      "S3": 0.6799762027433667,
+      "S4": 0.5679189251219482
+    },
+    "target_mean_shift": {
+      "Q1": -0.0004991608553809374,
+      "Q2": -0.024144017182915752,
+      "Q3": -0.02955221866176281,
+      "S1": 0.013076861277379207,
+      "S2": 0.02796519872359937,
+      "S3": 0.02133538184641111,
+      "S4": 0.014905003099260718
+    },
+    "panel_mean_abs_drift": {
+      "early": 0.06376164136240979,
+      "mid": 0.07840781239921658,
+      "late": 0.09407707673564157
+    }
+  },
+  "drift_vs_reference_targetwise": {
+    "reference": "outputs/v83_repaired_v80/submission_v83_gq015_gs010.csv",
+    "mean_abs_drift": 0.07558378541100379,
+    "max_abs_drift": 0.44612231177478867,
+    "corr": 0.8314502451063337,
+    "target_mean": {
+      "Q1": 0.5153253941673674,
+      "Q2": 0.5588923009656565,
+      "Q3": 0.5824345429994355,
+      "S1": 0.7160677437214285,
+      "S2": 0.6615943361344386,
+      "S3": 0.6715461151598269,
+      "S4": 0.5658104925287082
+    },
+    "target_mean_shift": {
+      "Q1": 0.004957197265411393,
+      "Q2": -0.010426014090803818,
+      "Q3": -0.02955221866176281,
+      "S1": 0.03345535651032907,
+      "S2": 0.017669087480438665,
+      "S3": 0.012905294262871238,
+      "S4": 0.012796570506020807
+    },
+    "panel_mean_abs_drift": {
+      "early": 0.06018284111600306,
+      "mid": 0.07548378891031234,
+      "late": 0.09053881060803262
+    }
+  },
+  "n_feature_candidates": 52,
+  "candidate_mode": "relative_only",
+  "view_group_counts": [
+    {
+      "view": "no_sleep",
+      "group": "ambience",
+      "channels": 7
+    },
+    {
+      "view": "no_sleep",
+      "group": "body",
+      "channels": 5
+    },
+    {
+      "view": "no_sleep",
+      "group": "cross",
+      "channels": 2
+    },
+    {
+      "view": "no_sleep",
+      "group": "event",
+      "channels": 37
+    },
+    {
+      "view": "no_sleep",
+      "group": "light",
+      "channels": 3
+    },
+    {
+      "view": "no_sleep",
+      "group": "mobility",
+      "channels": 11
+    },
+    {
+      "view": "no_sleep",
+      "group": "other",
+      "channels": 2
+    },
+    {
+      "view": "no_sleep",
+      "group": "phone",
+      "channels": 12
+    },
+    {
+      "view": "no_sleep",
+      "group": "radio",
+      "channels": 8
+    },
+    {
+      "view": "full",
+      "group": "ambience",
+      "channels": 7
+    },
+    {
+      "view": "full",
+      "group": "body",
+      "channels": 17
+    },
+    {
+      "view": "full",
+      "group": "cross",
+      "channels": 2
+    },
+    {
+      "view": "full",
+      "group": "event",
+      "channels": 45
+    },
+    {
+      "view": "full",
+      "group": "light",
+      "channels": 6
+    },
+    {
+      "view": "full",
+      "group": "mobility",
+      "channels": 11
+    },
+    {
+      "view": "full",
+      "group": "other",
+      "channels": 2
+    },
+    {
+      "view": "full",
+      "group": "phone",
+      "channels": 12
+    },
+    {
+      "view": "full",
+      "group": "radio",
+      "channels": 8
+    },
+    {
+      "view": "only_event",
+      "group": "event",
+      "channels": 45
+    },
+    {
+      "view": "only_cross_modal",
+      "group": "ambience",
+      "channels": 7
+    },
+    {
+      "view": "only_cross_modal",
+      "group": "body",
+      "channels": 1
+    },
+    {
+      "view": "only_cross_modal",
+      "group": "cross",
+      "channels": 2
+    },
+    {
+      "view": "only_cross_modal",
+      "group": "event",
+      "channels": 45
+    },
+    {
+      "view": "only_cross_modal",
+      "group": "mobility",
+      "channels": 8
+    },
+    {
+      "view": "only_cross_modal",
+      "group": "phone",
+      "channels": 6
+    }
+  ]
+}

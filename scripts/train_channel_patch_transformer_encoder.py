@@ -197,7 +197,7 @@ class ChannelPatchTransformer(nn.Module):
         subject_idx: torch.Tensor,
         static: torch.Tensor,
         patch_drop: torch.Tensor | None = None,
-    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         patches, patch_masks = self.patchify(values, masks)
         inputs = patches
         if patch_drop is not None:
@@ -215,7 +215,7 @@ class ChannelPatchTransformer(nn.Module):
         cls = self.cls.expand(bsz, -1, -1) + context[:, None, :]
         encoded = self.channel_encoder(torch.cat([cls, channel_summary], dim=1))
         encoded = self.norm(encoded)
-        return encoded[:, 0], recon, patches
+        return encoded[:, 0], encoded[:, 1:], recon, patches
 
 
 def device_for_training() -> torch.device:
@@ -234,7 +234,7 @@ def train_ssl(
     n_subjects: int,
     args: argparse.Namespace,
     device: torch.device,
-) -> tuple[np.ndarray, list[float]]:
+) -> tuple[np.ndarray, np.ndarray, list[float]]:
     seed_everything(args.seed)
     dataset = TensorDataset(
         torch.tensor(values, dtype=torch.float32),
@@ -276,7 +276,7 @@ def train_ssl(
                 patch_drop = patch_drop | channel_drop
             if not patch_drop.any():
                 patch_drop[:, random.randrange(batch_values.shape[1]), random.randrange(n_patches)] = True
-            _, recon, target = model(noisy, batch_masks, batch_subject, batch_static, patch_drop=patch_drop)
+            _, _, recon, target = model(noisy, batch_masks, batch_subject, batch_static, patch_drop=patch_drop)
             obs_patch = batch_masks.reshape(batch_masks.shape[0], batch_masks.shape[1], n_patches, args.patch_len)
             loss_weight = obs_patch.clamp_min(0.0)
             masked_weight = loss_weight * patch_drop[..., None].float()
@@ -295,16 +295,21 @@ def train_ssl(
 
     model.eval()
     embeddings = []
+    channel_embeddings = []
     with torch.no_grad():
         for start in range(0, len(values), args.batch_size):
             batch_values = torch.tensor(values[start : start + args.batch_size], dtype=torch.float32, device=device)
             batch_masks = torch.tensor(masks[start : start + args.batch_size], dtype=torch.float32, device=device)
             batch_subject = torch.tensor(subject_idx[start : start + args.batch_size], dtype=torch.long, device=device)
             batch_static = torch.tensor(static[start : start + args.batch_size], dtype=torch.float32, device=device)
-            cls, _, _ = model(batch_values, batch_masks, batch_subject, batch_static)
+            cls, channels, _, _ = model(batch_values, batch_masks, batch_subject, batch_static)
             embeddings.append(cls.detach().cpu().numpy())
+            channel_embeddings.append(channels.detach().cpu().numpy())
     z = np.vstack(embeddings).astype(np.float32)
-    return np.nan_to_num(z, nan=0.0, posinf=0.0, neginf=0.0), history
+    channel_z = np.concatenate(channel_embeddings, axis=0).astype(np.float32)
+    z = np.nan_to_num(z, nan=0.0, posinf=0.0, neginf=0.0)
+    channel_z = np.nan_to_num(channel_z, nan=0.0, posinf=0.0, neginf=0.0)
+    return z, channel_z, history
 
 
 def run(args: argparse.Namespace) -> None:
@@ -332,14 +337,19 @@ def run(args: argparse.Namespace) -> None:
         view_dir = output_dir / view_name
         view_dir.mkdir(parents=True, exist_ok=True)
         values, masks, channels, diag = build_channel_tensor(grid, keys, specs[view_name], args.tokens_per_day)
-        z_all, history = train_ssl(values, masks, subject_idx, static, len(subjects), args, device)
+        z_all, channel_z_all, history = train_ssl(values, masks, subject_idx, static, len(subjects), args, device)
         z_train = z_all[: len(train)]
         z_sample = z_all[len(train) :]
+        channel_z_train = channel_z_all[: len(train)]
+        channel_z_sample = channel_z_all[len(train) :]
         np.savez_compressed(
             view_dir / "embeddings.npz",
             train=z_train,
             sample=z_sample,
             all=z_all,
+            channel_train=channel_z_train,
+            channel_sample=channel_z_sample,
+            channel_all=channel_z_all,
             channels=np.array(channels, dtype=object),
             ssl_loss=np.array(history, dtype=float),
         )
