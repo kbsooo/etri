@@ -223,12 +223,15 @@ Results:
 - 10-minute raw-derived grid + subject-token deviation: best view `only_cross_modal`, OOF `0.621938`.
 - 30-minute raw-derived grid + subject-token deviation: best view `no_sleep`, OOF `0.618590`.
 - Nested Transformer expert MoE head: best `nested_moe_logreg_c0p3`, OOF `0.611527`, drift vs v83 `0.086812`.
+- Embedding-level MoE head: negative, best OOF `0.636678`.
+- Nested targetwise expert selection: full-OOF `0.614175` becomes nested `0.617817`, implying about `0.003642` selection optimism.
 
 Interpretation:
 
 - Finer is not automatically better. The 10-minute grid appears too sparse/noisy as a global day representation.
 - 30-minute tokens are currently the best fixed-bin raw-derived tokenization.
 - The strongest signal comes from MoE over tokenization/view experts, not from one global Transformer view.
+- Directly reading SSL embeddings with a supervised head does not work yet; the useful signal appears after each Transformer view is decoded into target probabilities.
 - This is now the best independent Transformer branch, but drift is larger than previous pruned-state branches, so it should be treated as breakthrough evidence before submission packaging.
 
 ## Fixed consensus target-map follow-up

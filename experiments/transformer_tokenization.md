@@ -90,6 +90,62 @@ Target-source pattern:
 - S1/S2/S4: 30-minute `only_cross_modal`
 - S3: 24-hour `only_cross_modal`
 
+## Head Diagnostics
+
+### Embedding-level MoE
+
+Script: `scripts/train_transformer_embedding_moe.py`
+
+Output: `outputs/transformer_embedding_moe_head_v1/`
+
+This head reads view embeddings directly. Each Transformer view embedding is reduced inside the outer fold with PCA, then a small target-specific logistic head sees:
+
+- reduced embeddings,
+- optional expert logits,
+- panel position,
+- fold-safe subject prior.
+
+Result:
+
+- Best: `logit_plus_embedding_pca2_c0p01`
+- OOF avg logloss: `0.636678`
+
+Decision:
+
+- Negative result. Directly reading SSL embeddings with 450 labels is much worse than prediction-level MoE (`0.611527`).
+- This says the current SSL embeddings are not linearly label-readable enough. The useful signal appears after each view has already been decoded into target probabilities.
+- Do not spend the next step on larger embedding heads unless the SSL objective itself becomes more label-aligned.
+
+### Nested expert-selection optimism
+
+Script: `scripts/nested_transformer_expert_selection.py`
+
+Output: `outputs/nested_transformer_expert_selection_v1/`
+
+This diagnostic estimates how much of the full-OOF targetwise expert selection is selection bias:
+
+- Full-OOF targetwise expert selection: `0.614175`
+- Nested targetwise expert selection: `0.617817`
+- Estimated selection optimism: `0.003642`
+- Full-selection submission drift vs v83: `0.089719`
+
+Stable nested selections:
+
+- Q1: 10-minute `only_rhythm`, selected `5/5`.
+- Q2: 30-minute `no_sleep`, selected `5/5`.
+- Q3: 24-hour `only_rhythm`, selected `4/5` plus one nearby 24-hour rhythm global source.
+- S4: 30-minute `only_cross_modal`, selected `4/5`.
+
+Less stable:
+
+- S1/S2/S3 move among 30-minute cross-modal, 24-hour cross-modal, and 30-minute no-sleep.
+
+Decision:
+
+- The targetwise view pattern is not just noise. Q1/Q2/Q3/S4 have stable source preferences.
+- The full-OOF `0.614175` should be discounted to roughly `0.6178` for honest source-selection expectation.
+- The prediction-level nested MoE (`0.611527`) remains the strongest Transformer breakthrough signal, but it needs drift and public-coordinate stress testing.
+
 ## Current Decision
 
 Adopt the Transformer/MoE branch as a real breakthrough direction.
@@ -106,6 +162,6 @@ MoE over resolutions/views is better than choosing one global tokenization.
 Next high-value experiments:
 
 1. Build a 30-minute + event-token hybrid instead of only fixed bins.
-2. Add nested expert-selection diagnostics to estimate how much of `0.614175` is selection optimism.
-3. Replace prediction-level MoE with embedding-level MoE: target heads attend over view embeddings before label probing.
-4. Add explicit missing-gap episode tokens for sensor off/charging/wear-time states.
+2. Stress-test prediction-level MoE drift/public-coordinate sensitivity.
+3. Add explicit missing-gap episode tokens for sensor off/charging/wear-time states.
+4. Revisit embedding-level heads only after the SSL objective is more label-aligned.
