@@ -277,6 +277,7 @@ Outputs:
 - `outputs/channel_latent_fusion_decoder_curated_v1/`
 - `outputs/fold_local_channel_fusion_decoder_v1/`
 - `outputs/fold_local_channel_fusion_decoder_no_pca_v1/`
+- `outputs/fold_local_channel_moe_decoder_v1/`
 
 Motivation:
 
@@ -320,6 +321,8 @@ This directly removes the subject baseline before the supervised probe sees the 
 | channel latent fusion | curated absolute + relative | `0.616980` | `0.077224` | best current channel-patch decoder |
 | fold-local channel fusion | curated selected + PCA16 | `0.625343` | `0.065478` | PCA removes weak label directions |
 | fold-local channel fusion | curated selected, no PCA | `0.617748` | `0.076986` | subject-relative signal survives fold-local centering |
+| fold-local channel MoE | MoE-only stack | `0.618702` | `0.069869` | global gate is weaker than best single expert |
+| fold-local channel MoE | no-PCA baseline + target hybrid | `0.616459` | `0.077083` | MoE helps Q2/S4 only |
 
 Best curated target-wise sources:
 
@@ -340,4 +343,5 @@ Decision:
 - The best curated model uses a mix of absolute and relative latents, meaning absolute state is not useless, but subject-relative coordinates are the main drift-control mechanism.
 - Fold-local centering confirms the improvement is not only a train-wide subject mean artifact. The no-PCA fold-local result (`0.617748`) is close to train-centered curated fusion (`0.616980`), so the useful part is real deviation geometry.
 - PCA compression is harmful here: PCA16 worsens to `0.625343`, while no-PCA keeps the signal. The decoder needs many weak latent axes rather than a compressed global variance basis.
-- Next step: train a compact MoE/gated decoder over the selected modality experts without PCA, using fold-local subject baselines and nested target-wise selection so the gate cannot exploit full-train OOF selection.
+- First MoE result is mixed. A global stacking gate over fold-local expert predictions is weaker than the no-PCA selected decoder, but it improves Q2 (`0.687463 -> 0.679228`) and S4 (`0.643854 -> 0.643068`). The hybrid reaches `0.616459`, so the expert disagreement is useful for some targets.
+- Next step: move MoE from prediction-level stacking into latent-level gating. The current gate only recombines already-shrunk probabilities; a better version should gate event/body/phone/mobility/physio latents before the residual decoder, with target-specific regularization.

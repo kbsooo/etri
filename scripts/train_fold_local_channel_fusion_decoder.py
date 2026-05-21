@@ -273,6 +273,9 @@ def run(args: argparse.Namespace) -> None:
     score_df.to_csv(output_dir / "fold_local_scores.csv", index=False)
     pd.DataFrame(fold_rows).to_csv(output_dir / "fold_target_losses.csv", index=False)
     pd.DataFrame([spec.__dict__ for spec in specs]).to_csv(output_dir / "expert_specs.csv", index=False)
+    for name in sorted(predictions):
+        write_prediction(output_dir / f"oof_{name}.csv", train, predictions[name], oof=True)
+        write_prediction(output_dir / f"submission_{name}.csv", sample, sample_predictions[name], oof=False)
     write_prediction(output_dir / "oof_fold_local_channel_fusion_best.csv", train, best_oof, oof=True)
     write_prediction(output_dir / "submission_fold_local_channel_fusion_best.csv", sample, best_sample, oof=False)
 
