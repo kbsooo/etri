@@ -1,0 +1,16 @@
+{
+  "variant": "phase_social_jetlag",
+  "output": "artifacts/domain_chronotype_sleep_debt_phase_social_jetlag_v1.parquet",
+  "rows": 700,
+  "feature_count": 30,
+  "patterns": [
+    "onset_hour",
+    "wake_hour",
+    "midpoint",
+    "social_jetlag",
+    "late_bed_streak",
+    "early_wake_streak",
+    "circ_std",
+    "weekend"
+  ]
+}

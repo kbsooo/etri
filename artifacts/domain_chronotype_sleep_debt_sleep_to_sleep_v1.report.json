@@ -1,0 +1,10 @@
+{
+  "variant": "sleep_to_sleep",
+  "output": "artifacts/domain_chronotype_sleep_debt_sleep_to_sleep_v1.parquet",
+  "rows": 700,
+  "feature_count": 3,
+  "patterns": [
+    "sleep_window",
+    "sleep_to_sleep"
+  ]
+}

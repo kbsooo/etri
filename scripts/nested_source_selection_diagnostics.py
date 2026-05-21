@@ -12,6 +12,20 @@ TARGET_COLUMNS = ["Q1", "Q2", "Q3", "S1", "S2", "S3", "S4"]
 
 
 def source_family(source: str) -> str:
+    if source.startswith("cs_sleep_to_sleep"):
+        return "chronotype_sleep_to_sleep"
+    if source.startswith("cs_phase_social_jetlag"):
+        return "chronotype_phase_social_jetlag"
+    if source.startswith("cs_debt_ledger"):
+        return "chronotype_debt_ledger"
+    if source.startswith("cs_postwake_energy"):
+        return "chronotype_postwake_energy"
+    if source.startswith("cs_postwake_digital"):
+        return "chronotype_postwake_digital"
+    if source.startswith("cs_prebed_arousal"):
+        return "chronotype_prebed_arousal"
+    if source.startswith("chronotype_sleep_debt"):
+        return "chronotype_sleep_debt"
     if source.startswith("sfr_sleep_wake_digital"):
         return "sleep_fragment_recovery_sleep_wake_digital"
     if source.startswith("sfr_postwake_digital"):

@@ -1,0 +1,17 @@
+{
+  "variant": "prebed_arousal",
+  "output": "artifacts/domain_chronotype_sleep_debt_prebed_arousal_v1.parquet",
+  "rows": 700,
+  "feature_count": 28,
+  "patterns": [
+    "prebed6h_phone",
+    "prebed6h_screen",
+    "prebed6h_usage",
+    "prebed6h_ev_phone",
+    "prebed6h_ev_moving",
+    "prebed6h_mobility",
+    "prebed6h_body",
+    "prebed6h_step",
+    "prebed6h_cal"
+  ]
+}

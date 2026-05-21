@@ -255,6 +255,7 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Pre-bed digital boundary features created the first stable Q1 path. Adding Q1 prebed phone/stimulation to Q2 trajectory prototype, Q3 mobility constriction, S2 sleep intrusion, and S4 routine regularity improves the best domain hybrid to OOF `0.619106`.
 - The broader sleep-fragment/recovery experiment refined the digital-sleep hypothesis rather than improving the best hybrid. Pruned `sfr_sleep_sensor` is the best standalone probe at `0.622631` and shows raw S1 gain, but nested selection rejects S1 and replacing the Q1 prebed expert with `sfr_sleep_sensor` worsens the hybrid to `0.619428`. Digital-only sleep/postwake slices are weak alone, around subject-prior level.
 - Current interpretation of the external "digital use dominates sleep metrics" clue: digital behavior is useful only when localized to the right boundary. Pre-bed digital deviation is stable; sleep-window/postwake digital totals do not yet solve S1/S3.
+- Chronotype, social-jetlag, sleep-to-sleep, and rolling sleep-debt features were tested for S1/S3. They do not solve S1/S3. The strongest raw signals are Q2 from `cs_debt_ledger` (`0.690408`) and S4 from `cs_phase_social_jetlag` (`0.642169`), but nested selection rejects them as replacements for trajectory prototype and routine regularity.
 
 ## Next 3
 
@@ -264,5 +265,5 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 2. Split the Q-family path explicitly: Q2 should read trajectory prototype/state membership, while Q3 should read mobility/location-constriction state.
    - Success criterion: find a shared encoder objective that supports both readouts without post-hoc target-specific feature dumping.
 
-3. Continue the 300-idea manifest sweep with Q1/S1/S3-specific feature families, because Q2/Q3/S2/S4 now each have a narrow target path.
+3. Continue the 300-idea manifest sweep with non-sleep-timing S1/S3 hypotheses: physical fatigue recovery slope, energy phase shift, commute stress, and daytime fragmentation.
    - Success criterion: find at least one S1 or S3 path that survives nested selection and complements the current `0.619106` hybrid without reintroducing broad drift. Keep digital phone/app signals as protected boundary-specific experts rather than mixing them globally.

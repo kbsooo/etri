@@ -1,0 +1,13 @@
+{
+  "variant": "debt_ledger",
+  "output": "artifacts/domain_chronotype_sleep_debt_debt_ledger_v1.parquet",
+  "rows": 700,
+  "feature_count": 37,
+  "patterns": [
+    "sleep_deficit",
+    "sleep_surplus",
+    "eff_deficit",
+    "sol_excess",
+    "awakening_excess"
+  ]
+}

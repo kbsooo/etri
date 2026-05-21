@@ -1,0 +1,16 @@
+{
+  "variant": "postwake_digital",
+  "output": "artifacts/domain_chronotype_sleep_debt_postwake_digital_v1.parquet",
+  "rows": 700,
+  "feature_count": 26,
+  "patterns": [
+    "postwake3h_phone",
+    "postwake3h_screen",
+    "postwake3h_usage",
+    "postwake3h_ev_phone",
+    "postwake6h_phone",
+    "postwake6h_screen",
+    "postwake6h_usage",
+    "postwake6h_ev_phone"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "input": "artifacts/domain_chronotype_sleep_debt_v1.parquet",
+  "variants": [
+    {
+      "variant": "sleep_to_sleep",
+      "output": "artifacts/domain_chronotype_sleep_debt_sleep_to_sleep_v1.parquet",
+      "rows": 700,
+      "feature_count": 3,
+      "patterns": [
+        "sleep_window",
+        "sleep_to_sleep"
+      ]
+    },
+    {
+      "variant": "phase_social_jetlag",
+      "output": "artifacts/domain_chronotype_sleep_debt_phase_social_jetlag_v1.parquet",
+      "rows": 700,
+      "feature_count": 30,
+      "patterns": [
+        "onset_hour",
+        "wake_hour",
+        "midpoint",
+        "social_jetlag",
+        "late_bed_streak",
+        "early_wake_streak",
+        "circ_std",
+        "weekend"
+      ]
+    },
+    {
+      "variant": "debt_ledger",
+      "output": "artifacts/domain_chronotype_sleep_debt_debt_ledger_v1.parquet",
+      "rows": 700,
+      "feature_count": 37,
+      "patterns": [
+        "sleep_deficit",
+        "sleep_surplus",
+        "eff_deficit",
+        "sol_excess",
+        "awakening_excess"
+      ]
+    },
+    {
+      "variant": "postwake_energy",
+      "output": "artifacts/domain_chronotype_sleep_debt_postwake_energy_v1.parquet",
+      "rows": 700,
+      "feature_count": 30,
+      "patterns": [
+        "postwake3h_step",
+        "postwake3h_cal",
+        "postwake3h_body",
+        "postwake3h_mobility",
+        "postwake6h_step",
+        "postwake6h_cal",
+        "postwake6h_body",
+        "postwake6h_mobility",
+        "postwake3h_ev_moving",
+        "postwake6h_ev_moving"
+      ]
+    },
+    {
+      "variant": "postwake_digital",
+      "output": "artifacts/domain_chronotype_sleep_debt_postwake_digital_v1.parquet",
+      "rows": 700,
+      "feature_count": 26,
+      "patterns": [
+        "postwake3h_phone",
+        "postwake3h_screen",
+        "postwake3h_usage",
+        "postwake3h_ev_phone",
+        "postwake6h_phone",
+        "postwake6h_screen",
+        "postwake6h_usage",
+        "postwake6h_ev_phone"
+      ]
+    },
+    {
+      "variant": "prebed_arousal",
+      "output": "artifacts/domain_chronotype_sleep_debt_prebed_arousal_v1.parquet",
+      "rows": 700,
+      "feature_count": 28,
+      "patterns": [
+        "prebed6h_phone",
+        "prebed6h_screen",
+        "prebed6h_usage",
+        "prebed6h_ev_phone",
+        "prebed6h_ev_moving",
+        "prebed6h_mobility",
+        "prebed6h_body",
+        "prebed6h_step",
+        "prebed6h_cal"
+      ]
+    }
+  ]
+}

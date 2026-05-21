@@ -1,0 +1,11 @@
+{
+  "output": "artifacts/domain_chronotype_sleep_debt_v1.parquet",
+  "rows": 700,
+  "feature_count": 183,
+  "hypotheses": [
+    "S1/S3 may depend on sleep-to-sleep alignment rather than calendar-day aggregates.",
+    "Social jetlag and chronotype drift may explain sleep latency/quality failures.",
+    "Rolling sleep debt and irregularity debt may carry more label signal than single-day sleep metrics.",
+    "Post-wake energy recovery may reveal whether a sleep episode restored daytime activity."
+  ]
+}

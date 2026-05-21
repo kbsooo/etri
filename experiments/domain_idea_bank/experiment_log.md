@@ -747,3 +747,69 @@ The target map stays:
 - S2: sleep intrusion/coverage episodes.
 - S4: routine regularity/circadian phase break.
 - S1/S3: still open.
+
+## 2026-05-22 - Chronotype / Sleep Debt / Social Jetlag Probe
+
+### Scope
+
+Tested the next S1/S3-oriented sleep-domain hypothesis set from the 300-idea manifest:
+
+- Sleep-to-sleep interval instead of calendar-day alignment.
+- Social jetlag and chronotype drift.
+- Rolling sleep debt and irregularity debt.
+- Post-wake energy recovery after the sleep episode.
+- Pre-bed arousal and post-wake digital behavior as separated controls.
+
+### Artifacts
+
+- Builder: `scripts/build_chronotype_sleep_debt_latents.py`
+- Pruned variant builder: `scripts/build_chronotype_sleep_debt_pruned_variants.py`
+- Full artifact: `artifacts/domain_chronotype_sleep_debt_v1.parquet`
+- Pruned artifacts:
+  - `artifacts/domain_chronotype_sleep_debt_sleep_to_sleep_v1.parquet`
+  - `artifacts/domain_chronotype_sleep_debt_phase_social_jetlag_v1.parquet`
+  - `artifacts/domain_chronotype_sleep_debt_debt_ledger_v1.parquet`
+  - `artifacts/domain_chronotype_sleep_debt_postwake_energy_v1.parquet`
+  - `artifacts/domain_chronotype_sleep_debt_postwake_digital_v1.parquet`
+  - `artifacts/domain_chronotype_sleep_debt_prebed_arousal_v1.parquet`
+- Probe reports:
+  - `outputs/domain_chronotype_sleep_debt_probe_v1/report.md`
+  - `outputs/domain_chronotype_sleep_debt_pruned_probe_v1/report.md`
+- Nested selection reports:
+  - `outputs/domain_all_specialists_plus_chronotype_sleep_debt_nested_selection_v1/report.md`
+  - `outputs/domain_all_specialists_plus_chronotype_pruned_nested_selection_v1/report.md`
+
+### Result
+
+| experiment | avg OOF logloss | read |
+| --- | ---: | --- |
+| broad chronotype/sleep-debt family | 0.625974 best family avg | Raw S2/S4 hints, but global block is weaker than the current best latent. |
+| pruned `cs_debt_ledger` Q2 raw | Q2 0.690408 | Strong raw Q2 signal, but not stable enough to beat trajectory prototype under nested selection. |
+| pruned `cs_phase_social_jetlag` S4 raw | S4 0.642169 | Weak raw S4 signal, but routine regularity remains the more stable S4 expert. |
+| nested all-specialist selection with broad chronotype | 0.624955 | Worse than base; S2 over-switching is harmful. |
+| nested all-specialist selection with pruned chronotype | 0.623746 | Better than broad, but still worse than the established fixed target map. |
+
+Nested target reads:
+
+| family | useful nested target | read |
+| --- | --- | --- |
+| chronotype_debt_ledger | Q2 raw only | Selected in 3/5 folds but held-fold Q2 worsens by +0.0027; do not replace trajectory prototype. |
+| chronotype_phase_social_jetlag | S4 raw only | Raw S4 is close to base, but nested selector keeps routine regularity. |
+| sleep_to_sleep / postwake_energy / postwake_digital / prebed_arousal | none | No stable S1/S3 breakthrough. |
+
+### Working Interpretation
+
+This experiment falsifies a tempting assumption: sleep-to-sleep alignment and debt ledgers are domain-plausible, but in this dataset they do not solve S1/S3. The useful part is narrower:
+
+- Rolling sleep debt may be useful as an auxiliary Q2 context, but current Q2 is still better represented by trajectory prototype/state membership.
+- Social jetlag/phase drift overlaps with routine regularity and does not replace it.
+- S1/S3 likely need a different kind of signal than sleep timing, sleep debt, or post-wake recovery.
+
+The target map stays unchanged:
+
+- Q1: pre-bed digital boundary behavior.
+- Q2: trajectory prototype/state membership.
+- Q3: mobility constriction/location entropy state.
+- S2: sleep intrusion/coverage episodes.
+- S4: routine regularity/circadian phase break.
+- S1/S3: still open.
