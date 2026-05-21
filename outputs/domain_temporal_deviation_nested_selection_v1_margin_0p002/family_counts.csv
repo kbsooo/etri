@@ -1,0 +1,11 @@
+target,source_family,size
+Q1,best_late_fusion,3
+Q1,future,2
+Q2,trajectory,4
+Q2,recovery,1
+Q3,trajectory,5
+S1,best_late_fusion,5
+S2,future,4
+S2,past,1
+S3,best_late_fusion,5
+S4,best_late_fusion,5

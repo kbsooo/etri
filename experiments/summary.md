@@ -241,14 +241,16 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Multi-day temporal-deviation features over the best late-fusion latent are negative as one global block: adding all 3/7/14/28-day novelty/recovery/trajectory features worsens the best diagnostic average to about `0.624923`.
 - The same temporal-deviation family is positive target-wise. Q2 improves by about `-0.0098` and Q3 by about `-0.0070` from trajectory features; Q1 improves by about `-0.0020` and S2 by about `-0.0035` from future/recovery-side features. S3 stays best on the original late-fusion latent.
 - Current decoder implication: do not globally append every temporal feature. Treat trajectory/future/recovery as target-specific state families and select them only through nested/fold-safe decoder logic to avoid repeating v82-style source-selection bias.
+- Nested source-selection confirms the clean part of that signal. With only `best` and `td_trajectory` candidates and a 0.003 train-fold improvement margin, held-fold selection improves avg fold loss from `0.623192` to `0.621507`; Q2 and Q3 select trajectory in all five folds, while all other targets stay on the current best latent.
+- Current strongest breakthrough candidate: a Q2/Q3-specific trajectory encoder/decoder path. Future/recovery is interesting but unstable; trajectory is the first temporal-deviation family that survives nested selection cleanly.
 
 ## Next 3
 
-1. Build a nested/fold-safe target-specific decoder over current late-fusion, trajectory, future, and recovery families.
-   - Success criterion: beat the current `0.622961` frozen-probe OOF while keeping source selection out-of-fold.
+1. Convert the Q2/Q3 trajectory signal into an encoder objective: train the channel-patch encoder to preserve/predict recent-to-future latent path movement.
+   - Success criterion: retain the nested Q2/Q3 gain while improving global frozen-probe OOF beyond `0.621507` equivalent.
 
-2. Convert the temporal-deviation signal into encoder objectives: masked channel patch encoder predicts relation to recent/future centroids rather than receiving only post-hoc deviation features.
-   - Success criterion: retain Q2/Q3 trajectory gain without the global average degradation.
+2. Build an actual fold-safe decoder output for the trajectory-only nested selector, not just a fold-loss diagnostic.
+   - Success criterion: produce OOF/test predictions where only Q2/Q3 can route to trajectory and all other targets remain on the current best latent.
 
 3. Search prototype/state distances over the best late-fusion latent plus temporal-deviation latent, prioritizing Q2/Q3 state-path clusters.
    - Success criterion: find a target-free prototype axis that improves average OOF, not only target-wise cherry-picks.

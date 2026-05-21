@@ -317,3 +317,36 @@ The strongest clue is Q2/Q3 trajectory. This suggests that some labels are not o
 1. Build a nested/fold-safe target-specific decoder that can choose between current late-fusion, trajectory, future, and recovery families without full-train source selection bias.
 2. Convert trajectory/future features into encoder objectives, not only post-hoc features: predict today's relation to recent/future centroids from masked channel patches.
 3. Test prototype/state distances over the late-fusion latent and temporal-deviation latent together, especially for Q2/Q3.
+
+## 2026-05-21 - Nested Temporal-Deviation Source Selection
+
+### Scope
+
+Stress-tested the target-specific temporal-deviation signal with nested fold-safe source selection. For each held fold and target, source selection sees only the other folds' losses, then the selected source is scored on the hidden fold.
+
+### Artifacts
+
+- Script: `scripts/nested_source_selection_diagnostics.py`
+- Broad-family nested report: `outputs/domain_temporal_deviation_nested_selection_v1_margin_0p003/report.md`
+- Trajectory-only nested report: `outputs/domain_temporal_deviation_nested_selection_trajectory_only_margin_0p003/report.md`
+
+### Result
+
+| selector | base avg fold loss | nested selected avg fold loss | delta | read |
+| --- | ---: | ---: | ---: | --- |
+| broad temporal families, margin 0.003 | 0.623192 | 0.622182 | -0.001010 | Q2/Q3 survive, but S2 still unstable. |
+| trajectory-only, margin 0.003 | 0.623192 | 0.621507 | -0.001685 | Q2/Q3 select trajectory in all folds; other targets stay on base. |
+
+For the trajectory-only selector, target-level held-fold deltas are:
+
+| target | selected family | delta vs base |
+| --- | --- | ---: |
+| Q2 | trajectory | -0.005938 |
+| Q3 | trajectory | -0.005854 |
+| all other targets | current best latent | 0.000000 |
+
+### Working Interpretation
+
+This is the cleanest signal in the 300-idea data-engineering track so far. The temporal-deviation features should not be treated as a global feature block. But `trajectory` is a credible Q2/Q3-specific state path: it survives fold-held source selection and is selected consistently across all folds once noisy future/recovery candidates are removed.
+
+The next high-value experiment is to stop computing trajectory as a post-hoc feature and train an encoder objective that makes the latent itself predict or preserve recent/future centroid movement. That is closer to the user's encoder-decoder hypothesis: the encoder should summarize "where this day sits inside the subject's state path," and the decoder should use that path coordinate mostly for Q2/Q3.
