@@ -2,6 +2,16 @@
 
 Last updated: 2026-05-20
 
+## 2026-05-21 Pruned State Decoder Direction
+
+- New independent experiment log: `experiments/pruned_state_decoder.md`.
+- Script: `scripts/train_pruned_state_decoder.py`.
+- Purpose: stop using v76/v83/v85 as teachers and test whether feature-family-pruned encoder latents plus intermediate state decoders can create a new Encoder-Decoder path.
+- Direct state decoding is weak: `outputs/pruned_state_decoder_v1/` best global `0.667821`, target-wise `0.649217`.
+- Adding a fold-safe subject prior as an intermediate state makes the decoder useful: `outputs/pruned_state_decoder_v2_prior_residual/` best global `0.625801`, target-wise `0.617441`, improving the subject-prior baseline `0.627413` by `-0.001612`.
+- Stronger pruning to 160 features was worse: `outputs/pruned_state_decoder_v3_cap160/` best global `0.626764`, target-wise `0.619789`.
+- Current signal: decoder should be a bounded residual over subject-normalized state, not a direct label predictor. `only_rhythm`, `only_cross_modal`, and missingness-related feature families are the most useful follow-up targets.
+
 ## Current Best
 
 - Best internal OOF candidate: `outputs/conditional_latent_routing_v81_decoder_only_on_v80/submission_conditional_latent_routing.csv`
