@@ -164,3 +164,57 @@ Decision:
   - Q1/S1 fixed to `only_rhythm + HGB`.
   - S2/S3 should use a conservative subject-prior gate unless their residual source wins consistently.
   - S4 should compare `no_temporal_delta` vs `only_cross_modal` under fixed selection.
+
+## Fixed consensus target-map follow-up
+
+Script: `scripts/train_consensus_pruned_state_decoder.py`
+
+Output: `outputs/fixed_consensus_pruned_state_decoder_v1/`
+
+This follow-up freezes target-specific decoder maps from nested selection frequencies. Unlike the nested run, it does not search for the best source inside each fold. The goal is to test whether the pruned state decoder can become a stable model definition rather than a fold-dependent selector.
+
+Results:
+
+- Best fixed map: `consensus_signal`
+- OOF avg: `0.620577`
+- Subject-prior baseline from v2: `0.627413`
+- Gain vs subject prior: `-0.006836`
+- Gain vs nested target-aware selection: `-0.004152`
+- Drift vs v83 diagnostic reference: `0.068282`
+- Corr vs v83 diagnostic reference: `0.871897`
+
+Fixed `consensus_signal` map:
+
+- Q1: `only_rhythm__prior_logit_blend_hgb_w20`
+- Q2: `no_ratio__prior_logit_blend_state_mean_w35`
+- Q3: `no_sleep__prior_logit_blend_hgb_w35`
+- S1: `only_rhythm__prior_logit_blend_hgb_w20`
+- S2: `no_missingness__prior_logit_blend_residual_ridge_w05`
+- S3: `only_missingness__prior_logit_blend_rank_pairwise_w05`
+- S4: `only_cross_modal__prior_logit_blend_hgb_w10`
+
+Comparison:
+
+- `consensus_signal`: `0.620577`
+- `consensus_s4_temporal`: `0.621674`
+- `consensus_conservative`: `0.622785`
+- nested target-aware: `0.624729`
+- subject prior: `0.627413`
+- optimistic v2 target-wise full OOF: `0.617441`
+
+Interpretation:
+
+- The independent Encoder-Decoder route now has a stable scaffold:
+
+```text
+feature-family-pruned Encoder
+→ subject-normalized state latent
+→ fixed target-specific prior-residual Decoder
+```
+
+- This is a meaningful breakthrough-search signal because the fixed map beats both the subject prior and nested fold-selection result without using v76/v83/v85 as teachers.
+- It is not a strong Public LB submission candidate yet. The OOF level is still far from the public-best v83 family, and row-wise drift vs v83 is about `0.068`.
+- The next decoder work should not add more feature families blindly. It should improve the weak links inside this scaffold:
+  - S2/S3 gating, because nested selection often fell back to subject prior but the fixed signal map still gains there.
+  - Q-family calibration, because Q1/Q2/Q3 remain high-loss targets.
+  - public-coordinate calibration, because v82/v85 showed that local OOF gains can be destroyed by panel/test distribution mismatch.

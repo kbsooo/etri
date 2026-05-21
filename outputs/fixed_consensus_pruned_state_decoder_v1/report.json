@@ -1,0 +1,86 @@
+{
+  "scores": [
+    {
+      "variant": "consensus_signal",
+      "avg_log_loss": 0.6205766926994214,
+      "Q1": 0.6706519643141007,
+      "Q2": 0.6857431732642109,
+      "Q3": 0.6656058617371794,
+      "S1": 0.5725106975940621,
+      "S2": 0.5771946372740457,
+      "S3": 0.5294191263064593,
+      "S4": 0.6429113884058922,
+      "drift_vs_reference": 0.068282188816886,
+      "corr_vs_reference": 0.8718966462299053
+    },
+    {
+      "variant": "consensus_s4_temporal",
+      "avg_log_loss": 0.6216735632885441,
+      "Q1": 0.6706519643141007,
+      "Q2": 0.6857431732642109,
+      "Q3": 0.6656058617371794,
+      "S1": 0.5725106975940621,
+      "S2": 0.5800769959049744,
+      "S3": 0.5362846031832995,
+      "S4": 0.6408416470219814,
+      "drift_vs_reference": 0.06810765593345365,
+      "corr_vs_reference": 0.8753260721760123
+    },
+    {
+      "variant": "consensus_conservative",
+      "avg_log_loss": 0.6227847204483764,
+      "Q1": 0.6706519643141007,
+      "Q2": 0.6857431732642109,
+      "Q3": 0.6733839618560058,
+      "S1": 0.5725106975940621,
+      "S2": 0.5800769959049744,
+      "S3": 0.5362846031832995,
+      "S4": 0.6408416470219814,
+      "drift_vs_reference": 0.06728998692704136,
+      "corr_vs_reference": 0.8772020414511446
+    }
+  ],
+  "fixed_maps": {
+    "consensus_conservative": {
+      "Q1": "only_rhythm__prior_logit_blend_hgb_w20",
+      "Q2": "no_ratio__prior_logit_blend_state_mean_w35",
+      "Q3": "only_rhythm__prior_logit_blend_state_mean_w10",
+      "S1": "only_rhythm__prior_logit_blend_hgb_w20",
+      "S2": "subject_prior__subject_prior",
+      "S3": "subject_prior__subject_prior",
+      "S4": "no_temporal_delta__prior_logit_blend_hgb_w20"
+    },
+    "consensus_signal": {
+      "Q1": "only_rhythm__prior_logit_blend_hgb_w20",
+      "Q2": "no_ratio__prior_logit_blend_state_mean_w35",
+      "Q3": "no_sleep__prior_logit_blend_hgb_w35",
+      "S1": "only_rhythm__prior_logit_blend_hgb_w20",
+      "S2": "no_missingness__prior_logit_blend_residual_ridge_w05",
+      "S3": "only_missingness__prior_logit_blend_rank_pairwise_w05",
+      "S4": "only_cross_modal__prior_logit_blend_hgb_w10"
+    },
+    "consensus_s4_temporal": {
+      "Q1": "only_rhythm__prior_logit_blend_hgb_w20",
+      "Q2": "no_ratio__prior_logit_blend_state_mean_w35",
+      "Q3": "no_sleep__prior_logit_blend_hgb_w35",
+      "S1": "only_rhythm__prior_logit_blend_hgb_w20",
+      "S2": "subject_prior__subject_prior",
+      "S3": "subject_prior__subject_prior",
+      "S4": "no_temporal_delta__prior_logit_blend_hgb_w20"
+    }
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/fixed_consensus_pruned_state_decoder_v1",
+    "reference_submission": "outputs/v83_repaired_v80/submission_v83_gq015_gs010.csv",
+    "folds": 5,
+    "max_features": 520,
+    "pca_dim": 28,
+    "n_proto": 10,
+    "n_label_proto": 12,
+    "logreg_c": 0.03,
+    "subject_alpha": 10.0,
+    "max_pairs": 10000
+  }
+}
