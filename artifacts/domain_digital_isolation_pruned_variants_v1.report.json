@@ -1,0 +1,66 @@
+{
+  "input": "artifacts/domain_digital_isolation_v1.parquet",
+  "variants": [
+    {
+      "variant": "social_isolation",
+      "output": "artifacts/domain_digital_isolation_social_isolation_v1.parquet",
+      "rows": 700,
+      "feature_count": 96,
+      "patterns": [
+        "social",
+        "passive_over_social",
+        "isolation",
+        "passive_share",
+        "social_share"
+      ]
+    },
+    {
+      "variant": "app_diversity_shift",
+      "output": "artifacts/domain_digital_isolation_app_diversity_shift_v1.parquet",
+      "rows": 700,
+      "feature_count": 42,
+      "patterns": [
+        "entropy",
+        "hhi",
+        "top1",
+        "profile_jsd"
+      ]
+    },
+    {
+      "variant": "phone_fragmentation",
+      "output": "artifacts/domain_digital_isolation_phone_fragmentation_v1.parquet",
+      "rows": 700,
+      "feature_count": 37,
+      "patterns": [
+        "phone_start",
+        "phone_burst",
+        "short_check",
+        "screen_without_usage",
+        "phone_still",
+        "phone_move"
+      ]
+    },
+    {
+      "variant": "prebed_consumption",
+      "output": "artifacts/domain_digital_isolation_prebed_consumption_v1.parquet",
+      "rows": 700,
+      "feature_count": 60,
+      "patterns": [
+        "prebed"
+      ]
+    },
+    {
+      "variant": "digital_rhythm",
+      "output": "artifacts/domain_digital_isolation_digital_rhythm_v1.parquet",
+      "rows": 700,
+      "feature_count": 88,
+      "patterns": [
+        "night",
+        "evening",
+        "past7",
+        "past14",
+        "burstiness"
+      ]
+    }
+  ]
+}

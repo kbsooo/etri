@@ -1,0 +1,15 @@
+target,source_family,size
+Q1,digital_boundary_prebed,4
+Q1,best_plus_digital_isolation_social,1
+Q2,energy_recovery_slope,4
+Q2,best_plus_digital_isolation_prebed,1
+Q3,mobility_constriction,4
+Q3,energy_recovery_slope,1
+S1,routine_regularity,4
+S1,best_plus_digital_isolation_rhythm,1
+S2,sleep_intrusion,4
+S2,routine_regularity,1
+S3,best_late_fusion,4
+S3,mobility_constriction,1
+S4,routine_regularity,4
+S4,sleep_intrusion,1

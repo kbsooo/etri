@@ -1,0 +1,23 @@
+{
+  "output": "outputs/domain_all_specialists_plus_digital_isolation_additive_probe_v1/fold_target_losses.csv",
+  "input_files": [
+    "outputs/domain_digital_boundary_pruned_probe_v1/fold_target_losses.csv",
+    "outputs/domain_energy_fragmentation_pruned_probe_v1/fold_target_losses.csv",
+    "outputs/domain_mobility_constriction_probe_v1/fold_target_losses.csv",
+    "outputs/domain_sleep_intrusion_probe_v1/fold_target_losses.csv",
+    "outputs/domain_routine_regularity_probe_v1/fold_target_losses.csv",
+    "outputs/domain_digital_isolation_pruned_probe_v1/fold_target_losses.csv",
+    "outputs/domain_digital_isolation_plus_best_probe_v1/fold_target_losses.csv"
+  ],
+  "rows": 25515,
+  "sources": 729,
+  "targets": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+  ]
+}

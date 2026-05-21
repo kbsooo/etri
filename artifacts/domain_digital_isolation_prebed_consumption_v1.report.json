@@ -1,0 +1,9 @@
+{
+  "variant": "prebed_consumption",
+  "output": "artifacts/domain_digital_isolation_prebed_consumption_v1.parquet",
+  "rows": 700,
+  "feature_count": 60,
+  "patterns": [
+    "prebed"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "variant": "social_isolation",
+  "output": "artifacts/domain_digital_isolation_social_isolation_v1.parquet",
+  "rows": 700,
+  "feature_count": 96,
+  "patterns": [
+    "social",
+    "passive_over_social",
+    "isolation",
+    "passive_share",
+    "social_share"
+  ]
+}

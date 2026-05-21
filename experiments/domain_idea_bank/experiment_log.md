@@ -748,6 +748,70 @@ The target map stays:
 - S4: routine regularity/circadian phase break.
 - S1/S3: still open.
 
+## 2026-05-22 - Digital Isolation / App Profile Shift Probe
+
+### Scope
+
+Tested the digital-mental-state hypothesis suggested by the idea bank and the "phone/app signals dominate sleep metrics" observation:
+
+- Social communication density deviation: call, messenger, SNS.
+- Passive consumption imbalance: video, music, news, game, reading versus social communication.
+- App diversity/profile shift: entropy, HHI, top-1 concentration, Jensen-Shannon distance from subject's usual app mix.
+- Phone-check fragmentation: frequent starts, short checks, phone while still, night/evening usage share.
+- Pre-bed passive/social consumption as a sleep-adjacent digital arousal view.
+
+### Artifacts
+
+- Builder: `scripts/build_digital_isolation_latents.py`
+- Pruned variant builder: `scripts/build_digital_isolation_pruned_variants.py`
+- Full artifact: `artifacts/domain_digital_isolation_v1.parquet`
+- Pruned artifacts:
+  - `artifacts/domain_digital_isolation_social_isolation_v1.parquet`
+  - `artifacts/domain_digital_isolation_app_diversity_shift_v1.parquet`
+  - `artifacts/domain_digital_isolation_phone_fragmentation_v1.parquet`
+  - `artifacts/domain_digital_isolation_prebed_consumption_v1.parquet`
+  - `artifacts/domain_digital_isolation_digital_rhythm_v1.parquet`
+- Probe reports:
+  - `outputs/domain_digital_isolation_probe_v1/report.md`
+  - `outputs/domain_digital_isolation_pruned_probe_v1/report.md`
+  - `outputs/domain_digital_isolation_plus_best_probe_v1/report.md`
+- Nested selection reports:
+  - `outputs/domain_all_specialists_plus_digital_isolation_pruned_nested_selection_v1/report.md`
+  - `outputs/domain_all_specialists_plus_digital_isolation_additive_nested_selection_v1/report.md`
+- Fixed hybrid decoder: `outputs/domain_hybrid_q1_prebed_q2_energy_q3_mobility_s2_di_phone_s4_routine_decoder_v1/report.md`
+
+### Result
+
+| experiment | avg OOF logloss | read |
+| --- | ---: | --- |
+| broad digital-isolation family | 0.623192 best remained base | Full family has local S2 signal but no global win. |
+| pruned DI families | 0.623192 best remained base | `di_social_isolation` has raw Q1/Q2/Q3 signal; `di_digital_rhythm` has tiny S1 signal. |
+| `best + DI` additive probe | 0.622760 | `best_plus_di_prebed_consumption` becomes a stronger global raw candidate than base. |
+| all-specialist nested selector with DI additive candidates | 0.624597 | Fully automatic selector over-switches and is worse than base. |
+| fixed target-map hybrid replacing only S2 with `best_plus_di_phone_fragmentation` | 0.617333 | New best diagnostic hybrid in this 300-idea track, improving prior `0.618005`. |
+
+Target-specific reads:
+
+| family | useful target | read |
+| --- | --- | --- |
+| `di_social_isolation` | Q1/Q2/Q3 raw | Social/passive imbalance is a real mental-state proxy, but energy recovery and mobility still beat it in the fixed target map. |
+| `best_plus_di_phone_fragmentation` | S2 | Strongest new stable use: S2 improves from `0.576741` in the prior hybrid to `0.572031`. |
+| `best_plus_di_prebed_consumption` | S4 raw | Raw S4 is strong around `0.6402`, but routine regularity remains better in the fixed hybrid (`0.636763`). |
+| app diversity/profile shift | none yet | App entropy/JSD alone is not enough. |
+
+### Working Interpretation
+
+This is the first digital-app experiment after `db_prebed` that improves the fixed target map. The important nuance is that digital isolation is not a replacement for the Q-family experts; it is an additive sleep-context correction. S2 appears to benefit from phone-check fragmentation added on top of the best latent, suggesting that sleep duration/efficiency-related labels need "how fragmented the phone interaction pattern was" more than pure sleep-intrusion or coverage counts.
+
+The target map is updated:
+
+- Q1: pre-bed digital boundary behavior.
+- Q2: energy recovery slope / daytime restoration.
+- Q3: mobility constriction/location entropy state.
+- S2: best latent plus digital phone fragmentation.
+- S4: routine regularity/circadian phase break.
+- S1/S3: still open.
+
 ## 2026-05-22 - Ambient / Coverage / Day-State Motif Probe
 
 ### Scope

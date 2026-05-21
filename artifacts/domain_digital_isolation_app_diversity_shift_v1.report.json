@@ -1,0 +1,12 @@
+{
+  "variant": "app_diversity_shift",
+  "output": "artifacts/domain_digital_isolation_app_diversity_shift_v1.parquet",
+  "rows": 700,
+  "feature_count": 42,
+  "patterns": [
+    "entropy",
+    "hhi",
+    "top1",
+    "profile_jsd"
+  ]
+}

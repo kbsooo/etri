@@ -1,0 +1,14 @@
+{
+  "variant": "phone_fragmentation",
+  "output": "artifacts/domain_digital_isolation_phone_fragmentation_v1.parquet",
+  "rows": 700,
+  "feature_count": 37,
+  "patterns": [
+    "phone_start",
+    "phone_burst",
+    "short_check",
+    "screen_without_usage",
+    "phone_still",
+    "phone_move"
+  ]
+}

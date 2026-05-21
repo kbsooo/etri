@@ -12,6 +12,28 @@ TARGET_COLUMNS = ["Q1", "Q2", "Q3", "S1", "S2", "S3", "S4"]
 
 
 def source_family(source: str) -> str:
+    if source.startswith("best_plus_di_social_isolation"):
+        return "best_plus_digital_isolation_social"
+    if source.startswith("best_plus_di_app_diversity_shift"):
+        return "best_plus_digital_isolation_app_diversity"
+    if source.startswith("best_plus_di_phone_fragmentation"):
+        return "best_plus_digital_isolation_phone_fragmentation"
+    if source.startswith("best_plus_di_prebed_consumption"):
+        return "best_plus_digital_isolation_prebed"
+    if source.startswith("best_plus_di_digital_rhythm"):
+        return "best_plus_digital_isolation_rhythm"
+    if source.startswith("di_social_isolation"):
+        return "digital_isolation_social"
+    if source.startswith("di_app_diversity_shift"):
+        return "digital_isolation_app_diversity"
+    if source.startswith("di_phone_fragmentation"):
+        return "digital_isolation_phone_fragmentation"
+    if source.startswith("di_prebed_consumption"):
+        return "digital_isolation_prebed"
+    if source.startswith("di_digital_rhythm"):
+        return "digital_isolation_rhythm"
+    if source.startswith("digital_isolation"):
+        return "digital_isolation"
     if source.startswith("acm_ambient_light"):
         return "ambient_light"
     if source.startswith("acm_coverage_no_wear"):

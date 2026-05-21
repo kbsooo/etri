@@ -1,0 +1,13 @@
+{
+  "variant": "digital_rhythm",
+  "output": "artifacts/domain_digital_isolation_digital_rhythm_v1.parquet",
+  "rows": 700,
+  "feature_count": 88,
+  "patterns": [
+    "night",
+    "evening",
+    "past7",
+    "past14",
+    "burstiness"
+  ]
+}

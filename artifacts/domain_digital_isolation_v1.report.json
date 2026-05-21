@@ -1,0 +1,10 @@
+{
+  "output": "artifacts/domain_digital_isolation_v1.parquet",
+  "rows": 700,
+  "feature_count": 245,
+  "hypotheses": [
+    "Q2/Q3 may reflect digital isolation: social communication drops while passive media rises.",
+    "Sleep targets may respond to pre-bed passive consumption and short phone-check fragmentation.",
+    "App profile divergence from a subject's usual category mix may capture unusual mental state without labels."
+  ]
+}

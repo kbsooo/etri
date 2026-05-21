@@ -1,0 +1,32 @@
+[
+  {
+    "name": "best_plus_di_social_isolation",
+    "path": "outputs/domain_digital_isolation_plus_best_latents_v1/best_plus_di_social_isolation.parquet",
+    "rows": 700,
+    "feature_count": 144
+  },
+  {
+    "name": "best_plus_di_app_diversity_shift",
+    "path": "outputs/domain_digital_isolation_plus_best_latents_v1/best_plus_di_app_diversity_shift.parquet",
+    "rows": 700,
+    "feature_count": 90
+  },
+  {
+    "name": "best_plus_di_phone_fragmentation",
+    "path": "outputs/domain_digital_isolation_plus_best_latents_v1/best_plus_di_phone_fragmentation.parquet",
+    "rows": 700,
+    "feature_count": 85
+  },
+  {
+    "name": "best_plus_di_prebed_consumption",
+    "path": "outputs/domain_digital_isolation_plus_best_latents_v1/best_plus_di_prebed_consumption.parquet",
+    "rows": 700,
+    "feature_count": 108
+  },
+  {
+    "name": "best_plus_di_digital_rhythm",
+    "path": "outputs/domain_digital_isolation_plus_best_latents_v1/best_plus_di_digital_rhythm.parquet",
+    "rows": 700,
+    "feature_count": 136
+  }
+]
