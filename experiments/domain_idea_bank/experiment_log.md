@@ -1629,3 +1629,70 @@ Carry forward:
 
 - S2: try interaction/gating between subject-relative sleep-consensus purity and rolling micro-awakening rather than a direct replacement.
 - S1/S3/S4: do not replace existing specialists with S2MA despite the broad global probe gain.
+
+## 2026-05-22 - S2 Consensus x Micro-Awakening Interaction
+
+### Scope
+
+Followed the compact S2MA result by testing whether the protected S2 sleep-consensus scout and rolling micro-awakening should be fused as an interaction state rather than swapped directly. The new latent selects subject-relative sleep-consensus purity/quiet-break features and rolling past 3/7/14/28-day micro-awakening deltas, then adds block summaries and product interactions.
+
+### Artifacts
+
+- Builder: `scripts/build_s2_consensus_micro_interaction_latents.py`
+- Interaction artifact: `artifacts/domain_s2_consensus_micro_interaction_v1.parquet`
+- Additive artifact: `artifacts/domain_best_plus_s2_consensus_micro_interaction_v1.parquet`
+- Focused probe report: `outputs/domain_s2_consensus_micro_interaction_probe_v1/report.md`
+- Nested report: `outputs/domain_all_specialists_plus_s2_consensus_micro_interaction_nested_selection_v1/report.md`
+
+### Result
+
+| experiment | Q1 | Q2 | S2 | S3 | avg | read |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| best S2CMI global probe | 0.663404 | 0.692400 | 0.581358 | 0.521190 | 0.620955 | Additive interaction is readable, mostly outside S2. |
+| protected S2 scout | n/a | n/a | 0.567195 | n/a | n/a | Still the best S2 source. |
+| best S2CMI S2 source | n/a | n/a | 0.577527 | n/a | n/a | Too weak for S2 replacement. |
+| nested all-specialist + S2CMI | 0.658421 | 0.700396 | 0.584091 | 0.514926 | 0.620581 | No stable S2CMI promotion; one Q1 fold selection is not enough. |
+
+### Working Interpretation
+
+This closes the direct interaction follow-up. The S2 problem is not solved by concatenating sleep-consensus purity with rolling micro-awakening. The useful S2 coordinate remains subject-relative sleep-consensus, while micro-awakening is a supporting representation signal. The next S2 attempt should be a decoder-level gate or alternative intermediate target, not more interaction products.
+
+## 2026-05-22 - Digital Sleep-Pressure Fusion
+
+### Scope
+
+Tested the stronger version of the user's digital hypothesis: phone/app/screen behavior may dominate sleep-related targets, but it should be represented as a sleep-pressure timeline rather than broad digital totals. The fusion combines 14 existing digital/sleep blocks:
+
+- pre-bed digital boundary and pre-bed consumption/arousal
+- sleep-window phone/screen/usage intrusion
+- phone-check fragmentation and phone/motion conflict
+- phone rhythm irregularity
+- post-wake digital inertia
+- settled-no-phone and charging/pre-bed conflict signals
+
+### Artifacts
+
+- Builder: `scripts/build_digital_sleep_pressure_fusion_latents.py`
+- Fusion artifact: `artifacts/domain_digital_sleep_pressure_fusion_v1.parquet`
+- Additive artifact: `artifacts/domain_best_plus_digital_sleep_pressure_fusion_v1.parquet`
+- Probe report: `outputs/domain_digital_sleep_pressure_fusion_probe_v1/report.md`
+- Nested report: `outputs/domain_all_specialists_plus_digital_sleep_pressure_fusion_nested_selection_v1/report.md`
+
+### Result
+
+| experiment | Q1 | Q2 | S2 | S4 | avg | read |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| best focused global probe | 0.668986 | 0.702098 | 0.577501 | 0.643102 | 0.622961 | Late-fusion base remains best. |
+| best DSPF Q1 | 0.664319 | n/a | n/a | n/a | n/a | Weaker than the protected boundary Q1 source (`0.653762`). |
+| best DSPF S2 | n/a | n/a | 0.581224 | n/a | n/a | Weaker than protected S2 (`0.567195`). |
+| best DSPF S4 | n/a | n/a | n/a | 0.637224 | n/a | Raw signal exists, but weaker than `rr_coverage_rhythm` (`0.632894`). |
+| nested all-specialist + DSPF | 0.658421 | 0.700396 | 0.584091 | 0.642292 | 0.620581 | DSPF is not selected. |
+
+### Working Interpretation
+
+The digital-behavior hypothesis remains valid only in narrow forms. Broad fusion reintroduces noise and loses to the already discovered small digital slices. Carry forward:
+
+- Q1: pre-bed digital boundary behavior, not all digital pressure.
+- S2: phone-check fragmentation can support sleep context, but the protected subject-relative sleep-consensus scout remains stronger.
+- S4: daily coverage/phone rhythm is useful only through the simpler routine/coverage slice.
+- Next: use digital features as gated target-specific experts, not as one fused encoder input dump.

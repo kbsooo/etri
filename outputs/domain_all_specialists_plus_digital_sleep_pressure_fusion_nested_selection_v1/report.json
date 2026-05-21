@@ -1,0 +1,164 @@
+{
+  "fold_losses": "outputs/domain_all_specialists_plus_digital_sleep_pressure_fusion_probe_v1/fold_target_losses.csv",
+  "overall": {
+    "base_avg": 0.623191621386494,
+    "nested_selected_avg": 0.6205812930720128,
+    "delta_vs_base": -0.0026103283144812564,
+    "n_folds": 5,
+    "base_source": "best__absolute_plus_deviation__c0.3_b0.2",
+    "min_train_delta": 0.003
+  },
+  "target_summary": [
+    {
+      "target": "Q1",
+      "selected_loss": 0.6584209377912493,
+      "base_loss": 0.6691817177735858,
+      "delta_vs_base": -0.010760779982336576,
+      "most_common_family": "boundary_target_map"
+    },
+    {
+      "target": "Q2",
+      "selected_loss": 0.7003964413892774,
+      "base_loss": 0.7016929759704349,
+      "delta_vs_base": -0.0012965345811575268,
+      "most_common_family": "best_plus_sleep_consensus_compact_rolling"
+    },
+    {
+      "target": "Q3",
+      "selected_loss": 0.6740807336875848,
+      "base_loss": 0.6738888587098408,
+      "delta_vs_base": 0.00019187497774399986,
+      "most_common_family": "mobility_constriction"
+    },
+    {
+      "target": "S1",
+      "selected_loss": 0.5698620576436497,
+      "base_loss": 0.5708954587854569,
+      "delta_vs_base": -0.0010334011418072775,
+      "most_common_family": "best_plus_wake_sleep_recovery_interaction"
+    },
+    {
+      "target": "S2",
+      "selected_loss": 0.5840909468195744,
+      "base_loss": 0.5783156553303062,
+      "delta_vs_base": 0.00577529148926823,
+      "most_common_family": "s4_routine_fragment"
+    },
+    {
+      "target": "S3",
+      "selected_loss": 0.5149259562228492,
+      "base_loss": 0.5251202551583003,
+      "delta_vs_base": -0.010194298935451008,
+      "most_common_family": "best_plus_sleep_onset_micro_subject_relative"
+    },
+    {
+      "target": "S4",
+      "selected_loss": 0.6422919779499056,
+      "base_loss": 0.6432464279775342,
+      "delta_vs_base": -0.0009544500276286394,
+      "most_common_family": "best_plus_rr_coverage_rhythm"
+    }
+  ],
+  "family_counts": [
+    {
+      "target": "Q1",
+      "source_family": "boundary_target_map",
+      "size": 4
+    },
+    {
+      "target": "Q1",
+      "source_family": "best_plus_s2cmi",
+      "size": 1
+    },
+    {
+      "target": "Q2",
+      "source_family": "best_plus_sleep_consensus_compact_rolling",
+      "size": 2
+    },
+    {
+      "target": "Q2",
+      "source_family": "boundary_target_map",
+      "size": 2
+    },
+    {
+      "target": "Q2",
+      "source_family": "best_plus_digital_isolation_social",
+      "size": 1
+    },
+    {
+      "target": "Q3",
+      "source_family": "best_plus_s4_routine_fragment",
+      "size": 2
+    },
+    {
+      "target": "Q3",
+      "source_family": "mobility_constriction",
+      "size": 2
+    },
+    {
+      "target": "Q3",
+      "source_family": "rr_mobility_body_rhythm",
+      "size": 1
+    },
+    {
+      "target": "S1",
+      "source_family": "best_plus_wake_sleep_recovery_interaction",
+      "size": 3
+    },
+    {
+      "target": "S1",
+      "source_family": "best_plus_rr_long_rolling_volatility",
+      "size": 1
+    },
+    {
+      "target": "S1",
+      "source_family": "best_plus_wake_base_values",
+      "size": 1
+    },
+    {
+      "target": "S2",
+      "source_family": "s4_routine_fragment",
+      "size": 3
+    },
+    {
+      "target": "S2",
+      "source_family": "best_plus_rr_sleep_regular_break",
+      "size": 1
+    },
+    {
+      "target": "S2",
+      "source_family": "sleep_consensus_subject_relative",
+      "size": 1
+    },
+    {
+      "target": "S3",
+      "source_family": "best_plus_sleep_onset_micro_subject_relative",
+      "size": 4
+    },
+    {
+      "target": "S3",
+      "source_family": "best_plus_sleep_onset_micro_base_values",
+      "size": 1
+    },
+    {
+      "target": "S4",
+      "source_family": "best_plus_rr_coverage_rhythm",
+      "size": 2
+    },
+    {
+      "target": "S4",
+      "source_family": "best_plus_rr_sleep_regular_break",
+      "size": 1
+    },
+    {
+      "target": "S4",
+      "source_family": "best_plus_sleep_consensus_stability_pca",
+      "size": 1
+    },
+    {
+      "target": "S4",
+      "source_family": "rr_coverage_rhythm",
+      "size": 1
+    }
+  ]
+}
