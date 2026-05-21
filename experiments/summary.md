@@ -238,14 +238,17 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Temporal-order direction prediction on adjacent same-subject day pairs is a negative result: validation accuracy stays near random, and late-fusing its latent does not beat `0.622961`. Adjacent similarity helps; chronological direction does not emerge from the current token tensor.
 - Current stable representation artifact: `artifacts/domain_best_late_fusion_v1.parquet`, 700 rows x 48 latent dimensions plus keys. It reproduces the best diagnostic probe at `0.622961`.
 - Current diagnosis: the data-engineering direction is valid, and the strongest pattern is branch specialization. Missingness belongs in the reconstruction branch; contrastive learning should use event/cross-modal behavior without missingness-heavy shortcuts. Direction/recovery likely needs multi-day centroid/prototype objectives rather than pair-order classification.
+- Multi-day temporal-deviation features over the best late-fusion latent are negative as one global block: adding all 3/7/14/28-day novelty/recovery/trajectory features worsens the best diagnostic average to about `0.624923`.
+- The same temporal-deviation family is positive target-wise. Q2 improves by about `-0.0098` and Q3 by about `-0.0070` from trajectory features; Q1 improves by about `-0.0020` and S2 by about `-0.0035` from future/recovery-side features. S3 stays best on the original late-fusion latent.
+- Current decoder implication: do not globally append every temporal feature. Treat trajectory/future/recovery as target-specific state families and select them only through nested/fold-safe decoder logic to avoid repeating v82-style source-selection bias.
 
 ## Next 3
 
-1. Use `artifacts/domain_best_late_fusion_v1.parquet` as the canonical encoder artifact and test nonlinear decoders/prototype distances against it.
-   - Success criterion: beat the current `0.622961` frozen-probe OOF without target-wise cherry-picking.
+1. Build a nested/fold-safe target-specific decoder over current late-fusion, trajectory, future, and recovery families.
+   - Success criterion: beat the current `0.622961` frozen-probe OOF while keeping source selection out-of-fold.
 
-2. Try multi-day deviation objectives: today vs previous 3/7-day subject centroid, today vs future 3/7-day centroid, and novelty/recovery distances over the best latent artifact.
-   - Success criterion: find a target-free state axis that improves the frozen probe or creates strong target-specific gains.
+2. Convert the temporal-deviation signal into encoder objectives: masked channel patch encoder predicts relation to recent/future centroids rather than receiving only post-hoc deviation features.
+   - Success criterion: retain Q2/Q3 trajectory gain without the global average degradation.
 
-3. Sweep the winning contrastive branch (`event+cross_modal`) over epochs, temperature, token-drop, and channel-drop. Do not expand to broad all-feature views unless they beat this branch.
-   - Success criterion: improve or stabilize the `0.622961` combined probe across seeds.
+3. Search prototype/state distances over the best late-fusion latent plus temporal-deviation latent, prioritizing Q2/Q3 state-path clusters.
+   - Success criterion: find a target-free prototype axis that improves average OOF, not only target-wise cherry-picks.

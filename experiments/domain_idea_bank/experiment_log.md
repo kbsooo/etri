@@ -271,3 +271,49 @@ The stable late-fusion artifact now gives downstream decoders one path with 48 l
 1. Use `artifacts/domain_best_late_fusion_v1.parquet` as the canonical encoder representation for nonlinear decoder probes.
 2. Try multi-day window objectives such as "today vs previous 3/7-day centroid" instead of pair order.
 3. Search for target-agnostic prototypes over the best latent artifact and test whether prototype distances improve the frozen probe.
+
+## 2026-05-21 - Multi-Day Temporal Deviation Diagnostics
+
+### Scope
+
+Built target-free temporal deviation features from the current best late-fusion latent. For each subject/day, the feature builder compares today's latent to subject center plus 3/7/14/28-day past and future centroids, then derives novelty, recovery, and trajectory statistics.
+
+### Artifacts
+
+- Builder: `scripts/build_temporal_deviation_latents.py`
+- Column selector: `scripts/select_latent_columns.py`
+- Temporal deviation artifact: `artifacts/domain_temporal_deviation_v1.parquet`
+- Artifact report: `artifacts/domain_temporal_deviation_v1.report.md`
+- Full probe: `outputs/domain_temporal_deviation_probe_v1/report.md`
+- Subset probe: `outputs/domain_temporal_deviation_subset_probe_v1/report.md`
+- Target diagnostics: `outputs/domain_temporal_deviation_target_diagnostics/report.md`
+
+### Result
+
+| experiment | best avg logloss | read |
+| --- | ---: | --- |
+| current best late-fusion latent | 0.622961 | Still the best global diagnostic representation. |
+| best + all temporal-deviation features | 0.624923 | Worse as a global replacement/addition. |
+| temporal-deviation subsets | 0.622961 | No global average improvement, but useful target-specific axes. |
+
+Target-level diagnostics show that the global failure hides specific useful structure:
+
+| target | best new family | delta vs current best target loss | read |
+| --- | --- | ---: | --- |
+| Q1 | future | -0.002033 | After-effect/recovery context helps. |
+| Q2 | trajectory | -0.009833 | Multi-day latent movement is a strong axis. |
+| Q3 | trajectory | -0.006959 | Same trajectory signal, slightly weaker than Q2. |
+| S2 | future | -0.003536 | Future/recovery context helps more than absolute day state. |
+| S3 | current best latent | 0.000000 | Temporal-deviation features do not help. |
+
+### Working Interpretation
+
+This is not a submission-ready decoder and should not be target-wise cherry-picked. But it is a useful data-engineering signal: temporal deviation is harmful when flattened into one global feature block, yet it exposes target-specific latent axes that the current encoder does not present cleanly to a decoder.
+
+The strongest clue is Q2/Q3 trajectory. This suggests that some labels are not only "what was today like?" but "where is today inside the subject's recent state path?" Q1/S2 responding to future context is also interesting; it may be picking up recovery or delayed effects around the label day.
+
+### Next Experiments
+
+1. Build a nested/fold-safe target-specific decoder that can choose between current late-fusion, trajectory, future, and recovery families without full-train source selection bias.
+2. Convert trajectory/future features into encoder objectives, not only post-hoc features: predict today's relation to recent/future centroids from masked channel patches.
+3. Test prototype/state distances over the late-fusion latent and temporal-deviation latent together, especially for Q2/Q3.

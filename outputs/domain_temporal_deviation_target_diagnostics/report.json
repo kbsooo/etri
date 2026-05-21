@@ -1,0 +1,70 @@
+{
+  "score_source": "outputs/domain_temporal_deviation_subset_probe_v1/probe_scores.csv",
+  "base_source": "best__absolute_plus_deviation__c0.3_b0.2",
+  "base_avg_logloss": 0.6229613176952576,
+  "best_avg_source": "best__absolute_plus_deviation__c0.3_b0.2",
+  "best_avg_logloss": 0.6229613176952576,
+  "target_best_sources": [
+    {
+      "target": "Q1",
+      "best_source": "td_future__absolute__c0.3_b0.2",
+      "best_loss": 0.6669533032091237,
+      "base_loss": 0.6689861051722832,
+      "delta_vs_base": -0.0020328019631594696,
+      "source_family": "future"
+    },
+    {
+      "target": "Q2",
+      "best_source": "td_trajectory__deviation__c0.3_b0.2",
+      "best_loss": 0.6922650046552091,
+      "base_loss": 0.7020978592408005,
+      "delta_vs_base": -0.009832854585591355,
+      "source_family": "trajectory"
+    },
+    {
+      "target": "Q3",
+      "best_source": "td_trajectory__deviation__c0.03_b0.2",
+      "best_loss": 0.6671983653252536,
+      "base_loss": 0.6741574430886071,
+      "delta_vs_base": -0.006959077763353583,
+      "source_family": "trajectory"
+    },
+    {
+      "target": "S1",
+      "best_source": "best__absolute_plus_deviation__c0.1_b0.2",
+      "best_loss": 0.570926638022677,
+      "base_loss": 0.5709585946396454,
+      "delta_vs_base": -3.195661696842045e-05,
+      "source_family": "best_late_fusion"
+    },
+    {
+      "target": "S2",
+      "best_source": "td_future__absolute__c0.3_b0.2",
+      "best_loss": 0.5739648475136943,
+      "base_loss": 0.5775006583045229,
+      "delta_vs_base": -0.003535810790828653,
+      "source_family": "future"
+    },
+    {
+      "target": "S3",
+      "best_source": "best__absolute_plus_deviation__c0.3_b0.2",
+      "best_loss": 0.5239268911855993,
+      "base_loss": 0.5239268911855993,
+      "delta_vs_base": 0.0,
+      "source_family": "best_late_fusion"
+    },
+    {
+      "target": "S4",
+      "best_source": "best__absolute_plus_deviation__c0.1_b0.2",
+      "best_loss": 0.6430383080501377,
+      "base_loss": 0.6431016722353451,
+      "delta_vs_base": -6.336418520735965e-05,
+      "source_family": "best_late_fusion"
+    }
+  ],
+  "interpretation": [
+    "Temporal deviation is not a global replacement for the current late-fusion latent.",
+    "It creates target-specific signal, strongest for Q2/Q3 through trajectory features and S2/Q1 through future features.",
+    "Any decoder use should be nested/fold-safe because target-wise source selection can overfit."
+  ]
+}
