@@ -1,0 +1,14 @@
+{
+  "variant": "recovery_slope",
+  "output": "artifacts/domain_energy_fragmentation_recovery_slope_v1.parquet",
+  "rows": 700,
+  "feature_count": 104,
+  "patterns": [
+    "morning",
+    "prev_load",
+    "low_morning",
+    "workday",
+    "energy_sum_past",
+    "energy_mean_past"
+  ]
+}

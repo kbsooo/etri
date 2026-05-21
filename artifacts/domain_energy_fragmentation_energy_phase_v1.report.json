@@ -1,0 +1,13 @@
+{
+  "variant": "energy_phase",
+  "output": "artifacts/domain_energy_fragmentation_energy_phase_v1.parquet",
+  "rows": 700,
+  "feature_count": 24,
+  "patterns": [
+    "energy_peak",
+    "energy_phase",
+    "energy_entropy",
+    "energy_digital_phase_gap",
+    "digital_phase"
+  ]
+}

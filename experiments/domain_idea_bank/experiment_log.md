@@ -813,3 +813,64 @@ The target map stays unchanged:
 - S2: sleep intrusion/coverage episodes.
 - S4: routine regularity/circadian phase break.
 - S1/S3: still open.
+
+## 2026-05-22 - Energy Fragmentation / Recovery Slope Probe
+
+### Scope
+
+Moved away from sleep timing after chronotype/debt failed to solve S1/S3. This cycle tested non-sleep-timing daytime hypotheses:
+
+- Physical energy phase and peak timing.
+- Daytime activity fragmentation and micro-bouts.
+- Commute stress and stop-go passive movement.
+- Previous-day load followed by low morning recovery.
+- Digital-energy coupling: phone/screen phase versus physical energy phase.
+
+### Artifacts
+
+- Builder: `scripts/build_energy_fragmentation_latents.py`
+- Pruned variant builder: `scripts/build_energy_fragmentation_pruned_variants.py`
+- Full artifact: `artifacts/domain_energy_fragmentation_v1.parquet`
+- Pruned artifacts:
+  - `artifacts/domain_energy_fragmentation_energy_phase_v1.parquet`
+  - `artifacts/domain_energy_fragmentation_daytime_fragmentation_v1.parquet`
+  - `artifacts/domain_energy_fragmentation_commute_stress_v1.parquet`
+  - `artifacts/domain_energy_fragmentation_recovery_slope_v1.parquet`
+  - `artifacts/domain_energy_fragmentation_digital_energy_coupling_v1.parquet`
+- Probe reports:
+  - `outputs/domain_energy_fragmentation_probe_v1/report.md`
+  - `outputs/domain_energy_fragmentation_pruned_probe_v1/report.md`
+- Nested selection report: `outputs/domain_all_specialists_plus_energy_fragmentation_pruned_nested_selection_v1/report.md`
+- Hybrid decoder: `outputs/domain_hybrid_q1_prebed_q2_energy_recovery_q3_mobility_s2_sleep_s4_routine_decoder_v1/report.md`
+
+### Result
+
+| experiment | avg OOF logloss | read |
+| --- | ---: | --- |
+| previous best domain hybrid: Q1 prebed + Q2 proto + Q3 mobility + S2 sleep + S4 routine | 0.619106 | Previous best diagnostic decoder. |
+| broad energy-fragmentation family | 0.622961 best remained base | Broad block has target-specific signal but is not globally better. |
+| pruned `ef_recovery_slope` standalone | 0.624117 | Strong target-specific Q2/Q3/S2 raw signal but global average is hurt by S1/S3. |
+| nested all-specialist selection with pruned energy family | 0.622029 | Positive nested result driven by Q2 recovery slope. |
+| new fixed hybrid: Q1 prebed + Q2 energy recovery + Q3 mobility + S2 sleep + S4 routine | 0.618005 | New best diagnostic decoder in this 300-idea track. |
+
+Nested target reads:
+
+| family | useful nested target | read |
+| --- | --- | --- |
+| energy_recovery_slope | Q2 | Selected in all five folds; Q2 improves by -0.0145 vs base and beats trajectory prototype in the fixed hybrid. |
+| energy_recovery_slope | Q3/S2 raw only | Raw Q3/S2 probes are strong, but established mobility and sleep-intrusion paths remain better under fixed target mapping. |
+| digital_energy_coupling | S4 raw only | Raw S4 improves to about 0.6400, but nested selection keeps routine regularity. |
+| energy_phase/daytime_fragmentation/commute_stress | none yet | No stable S1/S3 breakthrough. |
+
+### Working Interpretation
+
+This is the strongest new signal since the Q1 pre-bed digital boundary result. Q2 is not only a trajectory/prototype state; it is even better explained by the day-after/daytime recovery axis: previous load, morning recovery, workday energy, and physical/digital energy slope. The breakthrough is target-specific, not global.
+
+The target map is updated:
+
+- Q1: pre-bed digital boundary behavior.
+- Q2: energy recovery slope / daytime restoration.
+- Q3: mobility constriction/location entropy state.
+- S2: sleep intrusion/coverage episodes.
+- S4: routine regularity/circadian phase break.
+- S1/S3: still open.

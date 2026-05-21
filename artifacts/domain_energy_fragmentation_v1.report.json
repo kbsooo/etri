@@ -1,0 +1,11 @@
+{
+  "output": "artifacts/domain_energy_fragmentation_v1.parquet",
+  "rows": 700,
+  "feature_count": 352,
+  "hypotheses": [
+    "S1/S3 may reflect daytime energy restoration and fragmentation rather than sleep timing.",
+    "Physical fatigue recovery slope may appear as previous-day load followed by low morning energy.",
+    "Commute stop-go and passive movement may proxy stress/fatigue load.",
+    "Energy phase shift and micro-bouts may reveal disrupted daily rhythm."
+  ]
+}

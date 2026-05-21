@@ -1,0 +1,69 @@
+{
+  "input": "artifacts/domain_energy_fragmentation_v1.parquet",
+  "variants": [
+    {
+      "variant": "energy_phase",
+      "output": "artifacts/domain_energy_fragmentation_energy_phase_v1.parquet",
+      "rows": 700,
+      "feature_count": 24,
+      "patterns": [
+        "energy_peak",
+        "energy_phase",
+        "energy_entropy",
+        "energy_digital_phase_gap",
+        "digital_phase"
+      ]
+    },
+    {
+      "variant": "daytime_fragmentation",
+      "output": "artifacts/domain_energy_fragmentation_daytime_fragmentation_v1.parquet",
+      "rows": 700,
+      "feature_count": 57,
+      "patterns": [
+        "energy_active_run",
+        "energy_longest_active",
+        "energy_micro_active",
+        "energy_transition",
+        "energy_std",
+        "phone_still",
+        "move_phone_silent"
+      ]
+    },
+    {
+      "variant": "commute_stress",
+      "output": "artifacts/domain_energy_fragmentation_commute_stress_v1.parquet",
+      "rows": 700,
+      "feature_count": 94,
+      "patterns": [
+        "commute",
+        "stop_go"
+      ]
+    },
+    {
+      "variant": "recovery_slope",
+      "output": "artifacts/domain_energy_fragmentation_recovery_slope_v1.parquet",
+      "rows": 700,
+      "feature_count": 104,
+      "patterns": [
+        "morning",
+        "prev_load",
+        "low_morning",
+        "workday",
+        "energy_sum_past",
+        "energy_mean_past"
+      ]
+    },
+    {
+      "variant": "digital_energy_coupling",
+      "output": "artifacts/domain_energy_fragmentation_digital_energy_coupling_v1.parquet",
+      "rows": 700,
+      "feature_count": 90,
+      "patterns": [
+        "digital",
+        "phone_still",
+        "energy_digital_phase_gap",
+        "move_phone_silent"
+      ]
+    }
+  ]
+}

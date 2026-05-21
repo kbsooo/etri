@@ -12,6 +12,18 @@ TARGET_COLUMNS = ["Q1", "Q2", "Q3", "S1", "S2", "S3", "S4"]
 
 
 def source_family(source: str) -> str:
+    if source.startswith("ef_energy_phase"):
+        return "energy_phase"
+    if source.startswith("ef_daytime_fragmentation"):
+        return "daytime_fragmentation"
+    if source.startswith("ef_commute_stress"):
+        return "commute_stress"
+    if source.startswith("ef_recovery_slope"):
+        return "energy_recovery_slope"
+    if source.startswith("ef_digital_energy_coupling"):
+        return "digital_energy_coupling"
+    if source.startswith("energy_fragmentation"):
+        return "energy_fragmentation"
     if source.startswith("cs_sleep_to_sleep"):
         return "chronotype_sleep_to_sleep"
     if source.startswith("cs_phase_social_jetlag"):

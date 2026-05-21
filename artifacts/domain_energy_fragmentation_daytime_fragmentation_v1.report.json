@@ -1,0 +1,15 @@
+{
+  "variant": "daytime_fragmentation",
+  "output": "artifacts/domain_energy_fragmentation_daytime_fragmentation_v1.parquet",
+  "rows": 700,
+  "feature_count": 57,
+  "patterns": [
+    "energy_active_run",
+    "energy_longest_active",
+    "energy_micro_active",
+    "energy_transition",
+    "energy_std",
+    "phone_still",
+    "move_phone_silent"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "variant": "commute_stress",
+  "output": "artifacts/domain_energy_fragmentation_commute_stress_v1.parquet",
+  "rows": 700,
+  "feature_count": 94,
+  "patterns": [
+    "commute",
+    "stop_go"
+  ]
+}

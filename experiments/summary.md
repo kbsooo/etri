@@ -256,14 +256,15 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - The broader sleep-fragment/recovery experiment refined the digital-sleep hypothesis rather than improving the best hybrid. Pruned `sfr_sleep_sensor` is the best standalone probe at `0.622631` and shows raw S1 gain, but nested selection rejects S1 and replacing the Q1 prebed expert with `sfr_sleep_sensor` worsens the hybrid to `0.619428`. Digital-only sleep/postwake slices are weak alone, around subject-prior level.
 - Current interpretation of the external "digital use dominates sleep metrics" clue: digital behavior is useful only when localized to the right boundary. Pre-bed digital deviation is stable; sleep-window/postwake digital totals do not yet solve S1/S3.
 - Chronotype, social-jetlag, sleep-to-sleep, and rolling sleep-debt features were tested for S1/S3. They do not solve S1/S3. The strongest raw signals are Q2 from `cs_debt_ledger` (`0.690408`) and S4 from `cs_phase_social_jetlag` (`0.642169`), but nested selection rejects them as replacements for trajectory prototype and routine regularity.
+- Energy fragmentation/recovery features create a new best Q2 path. `ef_recovery_slope` is selected for Q2 in all five nested folds and improves Q2 by `-0.0145` vs base. Replacing Q2 trajectory prototype with Q2 energy recovery in the fixed hybrid improves the best diagnostic decoder from `0.619106` to `0.618005`.
 
 ## Next 3
 
-1. Convert the Q1 prebed, Q2 trajectory, and Q3 mobility-constriction signals into encoder objectives.
-   - Success criterion: retain the Q1/Q2/Q3 specialist gains while improving global frozen-probe OOF beyond the current hybrid-equivalent `0.619106`.
+1. Convert the Q1 prebed, Q2 energy-recovery, and Q3 mobility-constriction signals into encoder objectives.
+   - Success criterion: retain the Q1/Q2/Q3 specialist gains while improving global frozen-probe OOF beyond the current hybrid-equivalent `0.618005`.
 
 2. Split the Q-family path explicitly: Q2 should read trajectory prototype/state membership, while Q3 should read mobility/location-constriction state.
    - Success criterion: find a shared encoder objective that supports both readouts without post-hoc target-specific feature dumping.
 
-3. Continue the 300-idea manifest sweep with non-sleep-timing S1/S3 hypotheses: physical fatigue recovery slope, energy phase shift, commute stress, and daytime fragmentation.
-   - Success criterion: find at least one S1 or S3 path that survives nested selection and complements the current `0.619106` hybrid without reintroducing broad drift. Keep digital phone/app signals as protected boundary-specific experts rather than mixing them globally.
+3. Continue the 300-idea manifest sweep with remaining S1/S3 hypotheses: ambient/light stability, sensor coverage/no-wear episode semantics, and day-state motif retrieval.
+   - Success criterion: find at least one S1 or S3 path that survives nested selection and complements the current `0.618005` hybrid without reintroducing broad drift. Keep digital phone/app signals as protected boundary-specific experts rather than mixing them globally.

@@ -1,0 +1,12 @@
+{
+  "variant": "digital_energy_coupling",
+  "output": "artifacts/domain_energy_fragmentation_digital_energy_coupling_v1.parquet",
+  "rows": 700,
+  "feature_count": 90,
+  "patterns": [
+    "digital",
+    "phone_still",
+    "energy_digital_phase_gap",
+    "move_phone_silent"
+  ]
+}
