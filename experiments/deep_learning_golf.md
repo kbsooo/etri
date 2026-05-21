@@ -431,3 +431,68 @@ Decision:
 - Keep raw 30-minute event-hybrid tokens as the current tiny sequence default.
 - Treat 2-hour pooling as a useful compression diagnostic, not the best encoder input.
 - Do not move to coarser time grids. If patching is revisited, use nested-fixed target rules instead of full targetwise selection.
+
+## v1 Fixed Target Rules from Nested Tiny Transformer Counts
+
+Script updates:
+
+- `scripts/train_latent_deep_learning_golf.py` now supports `--save-candidates` to save every source's OOF/sample prediction tensor.
+- New script: `scripts/compose_fixed_golf_policy.py`.
+
+Outputs:
+
+- Candidate regeneration:
+  - `outputs/tiny_transformer_d8_latent_golf_saved_v1/`
+- Fixed policy composition:
+  - `outputs/fixed_tiny_transformer_d8_policy_v1/`
+
+Input:
+
+- Raw 30-minute event-hybrid tiny Transformer d8 embeddings.
+- Existing nested counts from `outputs/nested_tiny_transformer_d8_latent_golf_v1/`.
+- Policies:
+  - `best_global`: use the best fixed global source for all targets.
+  - `nested_ge5_on_prior/global`: override only targets whose nested source appears in all 5 outer folds.
+  - `nested_ge4_on_prior/global`: override nested count >= 4.
+  - `nested_ge3_on_prior/global`: override nested count >= 3.
+  - `full_targetwise_upper_bound`: full-OOF targetwise selection, diagnostic only.
+
+Result:
+
+| policy | OOF logloss | drift vs v83 | overridden targets | note |
+| --- | ---: | ---: | ---: | --- |
+| `full_targetwise_upper_bound` | 0.623600 | 0.068172 | 7 | upper bound, not trusted |
+| `nested_ge3_on_global` | 0.624338 | 0.066763 | 4 | best fixed nested-count policy |
+| `nested_ge3_on_prior` | 0.624656 | 0.064550 | 4 | lower drift, slightly weaker |
+| `nested_ge4_on_global` | 0.624790 | 0.066469 | 3 | stricter but loses Q3 |
+| `nested_ge5_on_global` | 0.625230 | 0.067377 | 1 | Q2-only robust move |
+| `best_global` | 0.626371 | 0.067286 | 0 | baseline fixed global tiny decoder |
+
+Nested count maps:
+
+- ge5:
+  - Q2: `only_cross_modal__deviation__linear_k4_b0.2`
+- ge4:
+  - Q2: `only_cross_modal__deviation__linear_k4_b0.2`
+  - S1: `only_event__absolute_plus_deviation__lowrank_r2_k4_wd0.1_b0.1`
+  - S3: `only_cross_modal__absolute_plus_deviation__mlp_h1_k4_wd0.1_b0.1`
+- ge3:
+  - Q2: `only_cross_modal__deviation__linear_k4_b0.2`
+  - Q3: `only_rhythm__absolute_plus_deviation__mlp_h1_k1_wd0.1_b0.2`
+  - S1: `only_event__absolute_plus_deviation__lowrank_r2_k4_wd0.1_b0.1`
+  - S3: `only_cross_modal__absolute_plus_deviation__mlp_h1_k4_wd0.1_b0.1`
+
+Interpretation:
+
+- This is the first clean Decoder improvement after the tiny sequence sweep: using nested-count rules beats the fixed global tiny decoder by about `0.002033` OOF without using v76/v83 as teachers.
+- `nested_ge3_on_global` also beats the earlier expanded latent fixed floor (`0.624475`) by a small margin while staying on our tiny sequence Encoder-Decoder branch.
+- The stable target moves are not broad. They are concentrated in Q2, Q3, S1, and S3.
+- Q1, S2, and S4 remain unstable under nested counts, so forcing targetwise moves there is likely selection bias.
+- Public-LB risk is moderate: this still uses OOF-derived nested count maps, but it avoids direct full-OOF per-target source picking and keeps drift lower than the full targetwise upper bound.
+
+Decision:
+
+- Carry forward `nested_ge3_on_global` as the best current tiny sequence Decoder policy.
+- Keep `nested_ge3_on_prior` as the lower-drift robustness sibling.
+- Do not use `full_targetwise_upper_bound` as a trusted candidate; it is the diagnostic ceiling.
+- Next improvement should either stress-test the ge3 policy across outer folds or add one more independent tiny encoder family before MoE/head branching.

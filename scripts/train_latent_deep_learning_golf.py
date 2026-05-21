@@ -215,6 +215,13 @@ def run(args: argparse.Namespace) -> None:
     pd.DataFrame(fold_rows).to_csv(output_dir / "latent_golf_fold_losses.csv", index=False)
     pd.DataFrame(selected_rows).to_csv(output_dir / "latent_golf_selected_features.csv", index=False)
     pd.DataFrame([{"target": target, "source": source, "loss": target_losses[target]} for target, source in target_sources.items()]).to_csv(output_dir / "targetwise_selection.csv", index=False)
+    if args.save_candidates:
+        np.savez_compressed(
+            output_dir / "latent_golf_candidate_predictions.npz",
+            sources=np.array(list(model_predictions.keys()), dtype=object),
+            oof=np.stack([model_predictions[name] for name in model_predictions], axis=0).astype(np.float32),
+            sample=np.stack([model_sample_predictions[name] for name in model_predictions], axis=0).astype(np.float32),
+        )
     write_prediction(output_dir / "oof_latent_deep_learning_golf_best.csv", train, best_oof, oof=True)
     write_prediction(output_dir / "submission_latent_deep_learning_golf_best.csv", sample, best_sample, oof=False)
 
@@ -236,6 +243,7 @@ def run(args: argparse.Namespace) -> None:
         "n_candidates": len(specs) + len(baselines),
         "views": sorted(view_data),
         "device": str(device),
+        "saved_candidates": bool(args.save_candidates),
     }
     (output_dir / "report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     md = [
@@ -307,6 +315,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--epochs", type=int, default=220)
     parser.add_argument("--patience", type=int, default=30)
     parser.add_argument("--device", choices=["cpu", "mps", "cuda"], default="mps")
+    parser.add_argument("--save-candidates", action="store_true")
     return parser
 
 
