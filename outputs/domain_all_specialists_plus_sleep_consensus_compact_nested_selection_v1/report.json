@@ -1,0 +1,139 @@
+{
+  "fold_losses": "outputs/domain_all_specialists_plus_sleep_consensus_compact_probe_v1/fold_target_losses.csv",
+  "overall": {
+    "base_avg": 0.623191621386494,
+    "nested_selected_avg": 0.6177844678501104,
+    "delta_vs_base": -0.0054071535363837365,
+    "n_folds": 5,
+    "base_source": "best__absolute_plus_deviation__c0.3_b0.2",
+    "min_train_delta": 0.0
+  },
+  "target_summary": [
+    {
+      "target": "Q1",
+      "selected_loss": 0.6563270328194603,
+      "base_loss": 0.6691817177735858,
+      "delta_vs_base": -0.012854684954125584,
+      "most_common_family": "best_plus_causal_chain_opportunity"
+    },
+    {
+      "target": "Q2",
+      "selected_loss": 0.6996256529663049,
+      "base_loss": 0.7016929759704349,
+      "delta_vs_base": -0.0020673230041300837,
+      "most_common_family": "best_plus_sleep_consensus_compact_rolling"
+    },
+    {
+      "target": "Q3",
+      "selected_loss": 0.6742387167028868,
+      "base_loss": 0.6738888587098408,
+      "delta_vs_base": 0.0003498579930458767,
+      "most_common_family": "mobility_constriction"
+    },
+    {
+      "target": "S1",
+      "selected_loss": 0.5647098445975037,
+      "base_loss": 0.5708954587854569,
+      "delta_vs_base": -0.006185614187953203,
+      "most_common_family": "best_plus_wake_sleep_recovery_interaction"
+    },
+    {
+      "target": "S2",
+      "selected_loss": 0.5741304184134972,
+      "base_loss": 0.5783156553303062,
+      "delta_vs_base": -0.004185236916809032,
+      "most_common_family": "sleep_consensus_micro_awakenings"
+    },
+    {
+      "target": "S3",
+      "selected_loss": 0.5149259562228492,
+      "base_loss": 0.5251202551583003,
+      "delta_vs_base": -0.010194298935451008,
+      "most_common_family": "best_plus_sleep_onset_micro_subject_relative"
+    },
+    {
+      "target": "S4",
+      "selected_loss": 0.640533653228271,
+      "base_loss": 0.6432464279775342,
+      "delta_vs_base": -0.002712774749263125,
+      "most_common_family": "sleep_consensus_subject_relative"
+    }
+  ],
+  "family_counts": [
+    {
+      "target": "Q1",
+      "source_family": "best_plus_causal_chain_opportunity",
+      "size": 5
+    },
+    {
+      "target": "Q2",
+      "source_family": "best_plus_sleep_consensus_compact_rolling",
+      "size": 3
+    },
+    {
+      "target": "Q2",
+      "source_family": "energy_recovery_slope",
+      "size": 2
+    },
+    {
+      "target": "Q3",
+      "source_family": "mobility_constriction",
+      "size": 3
+    },
+    {
+      "target": "Q3",
+      "source_family": "best_plus_causal_chain_recovery",
+      "size": 1
+    },
+    {
+      "target": "Q3",
+      "source_family": "energy_recovery_slope",
+      "size": 1
+    },
+    {
+      "target": "S1",
+      "source_family": "best_plus_wake_sleep_recovery_interaction",
+      "size": 4
+    },
+    {
+      "target": "S1",
+      "source_family": "best_plus_wake_base_values",
+      "size": 1
+    },
+    {
+      "target": "S2",
+      "source_family": "sleep_consensus_micro_awakenings",
+      "size": 3
+    },
+    {
+      "target": "S2",
+      "source_family": "sleep_consensus_subject_relative",
+      "size": 2
+    },
+    {
+      "target": "S3",
+      "source_family": "best_plus_sleep_onset_micro_subject_relative",
+      "size": 4
+    },
+    {
+      "target": "S3",
+      "source_family": "best_plus_sleep_onset_micro_base_values",
+      "size": 1
+    },
+    {
+      "target": "S4",
+      "source_family": "sleep_consensus_subject_relative",
+      "size": 3
+    },
+    {
+      "target": "S4",
+      "source_family": "best_plus_causal_chain_interactions",
+      "size": 1
+    },
+    {
+      "target": "S4",
+      "source_family": "best_plus_sleep_onset_consensus",
+      "size": 1
+    }
+  ]
+}

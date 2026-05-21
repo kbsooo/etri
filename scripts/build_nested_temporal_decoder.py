@@ -48,6 +48,22 @@ def parse_source(source: str) -> tuple[str, str, float, float]:
 
 
 def source_family(source: str) -> str:
+    if source.startswith("best_plus_scc_core"):
+        return "best_plus_sleep_consensus_compact_core"
+    if source.startswith("best_plus_scc_subject_relative"):
+        return "best_plus_sleep_consensus_compact_subject_relative"
+    if source.startswith("best_plus_scc_rolling"):
+        return "best_plus_sleep_consensus_compact_rolling"
+    if source.startswith("best_plus_scc_all"):
+        return "best_plus_sleep_consensus_compact_all"
+    if source.startswith("scc_core"):
+        return "sleep_consensus_compact_core"
+    if source.startswith("scc_subject_relative"):
+        return "sleep_consensus_compact_subject_relative"
+    if source.startswith("scc_rolling"):
+        return "sleep_consensus_compact_rolling"
+    if source.startswith("scc_all"):
+        return "sleep_consensus_compact_all"
     if source.startswith("best_plus_scp_consensus_purity"):
         return "best_plus_sleep_consensus_purity"
     if source.startswith("best_plus_scp_micro_awakenings"):

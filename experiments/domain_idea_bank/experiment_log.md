@@ -1314,3 +1314,51 @@ Ambient/coverage features were too broad and produced unstable S2/S4 moves. This
 S2/S4 do contain sleep-window consensus signal, but the stable unit is not yet as clean as S1 wake activation or S3 onset settling. The promising coordinate is subject-relative sleep purity/micro-conflict: whether the sleep interval has unusual quiet consensus, short phone/motion/bright interruptions, and missingness that behaves like real sleep rather than device-off conflict.
 
 This should not be treated as a submission-stable replacement yet. It is a strong encoder-objective clue: train a sleep-window encoder to reconstruct/contrast `quiet consensus -> micro-conflict -> final purity` rather than appending thousands of raw SCP columns to a logistic probe.
+
+## 2026-05-22 - Compact Sleep Consensus Objective Scout
+
+### Scope
+
+The first SCP scout used 1,588 raw/derived columns and improved S2/S4 full-OOF, but nested selection showed instability. This cycle compressed SCP into a compact objective view: only consensus purity, micro-awakening, missingness semantics, device-off conflict, final-vs-first sleep phase shifts, subject-relative coordinates, and 7/14-day rolling deltas.
+
+### Artifacts
+
+- Compact builder: `scripts/build_sleep_consensus_compact_latents.py`
+- Compact artifacts:
+  - `artifacts/domain_sleep_consensus_compact_core_v1.parquet`
+  - `artifacts/domain_sleep_consensus_compact_subject_relative_v1.parquet`
+  - `artifacts/domain_sleep_consensus_compact_rolling_v1.parquet`
+  - `artifacts/domain_sleep_consensus_compact_all_v1.parquet`
+  - matching `domain_best_plus_sleep_consensus_compact_*_v1.parquet` additive variants
+- Probe reports:
+  - `outputs/domain_sleep_consensus_compact_probe_v1/report.md`
+  - `outputs/domain_sleep_consensus_compact_plus_best_probe_v1/report.md`
+  - `outputs/domain_all_specialists_plus_sleep_consensus_compact_probe_v1/report.md`
+  - `outputs/domain_all_specialists_plus_sleep_consensus_compact_nested_selection_v1/report.md`
+- Fixed scout decoder:
+  - `outputs/domain_hybrid_probe_q2_compact_s2s4_sleep_consensus_v1/report.md`
+
+### Result
+
+| experiment | Q2 OOF logloss | S2 OOF logloss | S4 OOF logloss | avg OOF logloss | read |
+| --- | ---: | ---: | ---: | ---: | --- |
+| previous SCP scout hybrid | 0.687527 | 0.566343 | 0.633149 | 0.610940 | S2/S4 from high-dimensional SCP subject-relative sources. |
+| compact additive probe best | 0.682062 | 0.571382 | 0.639865 | 0.620983 | Compact rolling is globally stronger than late-fusion and exposes a Q2 path. |
+| nested all-specialist selection | 0.699626 | 0.574130 | 0.640534 | 0.617784 | Q2 selects compact rolling in 3/5 folds; still not stable enough as a final rule. |
+| fixed scout replacing Q2 with compact rolling | 0.682902 | 0.566343 | 0.633149 | 0.610279 | New best diagnostic OOF, but marked as scout due Q2 nested instability. |
+
+### Working Interpretation
+
+Compressing SCP did not stabilize S2/S4, but it revealed a different signal: Q2 responds to rolling sleep-consensus change. This is behaviorally plausible because Q2 is close to fatigue/restoration before sleep; the compact rolling view captures whether recent sleep-window purity and micro-conflict are improving or worsening.
+
+The current scout target map is:
+
+- Q1: causal-chain opportunity.
+- Q2: compact rolling sleep-consensus.
+- Q3: causal-chain recovery.
+- S1: wake activation relative to sleep recovery.
+- S2: subject-relative sleep-consensus purity scout.
+- S3: subject-relative sleep-onset settling.
+- S4: subject-relative sleep-consensus purity scout.
+
+The stable lesson is now sharper: the encoder should learn boundary-specific state transitions, but each target wants a different boundary coordinate. S1 wants wake-start recovery mismatch, S3 wants final sleep-onset settling, and Q2 may want rolling sleep-consensus trajectory.

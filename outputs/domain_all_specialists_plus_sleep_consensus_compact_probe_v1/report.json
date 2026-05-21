@@ -1,0 +1,168 @@
+{
+  "input_files": [
+    "outputs/domain_all_specialists_plus_sleep_consensus_purity_probe_v1/fold_target_losses.csv",
+    "outputs/domain_sleep_consensus_compact_probe_v1/fold_target_losses.csv",
+    "outputs/domain_sleep_consensus_compact_plus_best_probe_v1/fold_target_losses.csv"
+  ],
+  "rows_before_dedup": 72765,
+  "rows_after_dedup": 70875,
+  "top_sources": [
+    {
+      "source": "best_plus_wai_sleep_recovery_interaction__absolute_plus_deviation__c0.3_b0.2",
+      "loss": 0.6192243563407193
+    },
+    {
+      "source": "best_plus_cc_opportunity__absolute_plus_deviation__c0.3_b0.2",
+      "loss": 0.6196524920268757
+    },
+    {
+      "source": "best_plus_wai_sleep_recovery_interaction__absolute__c0.3_b0.2",
+      "loss": 0.6200413452793608
+    },
+    {
+      "source": "best_plus_wai_sleep_recovery_interaction__absolute_plus_deviation__c0.1_b0.2",
+      "loss": 0.6204201838993523
+    },
+    {
+      "source": "best_plus_cc_opportunity__absolute_plus_deviation__c0.1_b0.2",
+      "loss": 0.6205926793988296
+    },
+    {
+      "source": "best_plus_wai_sleep_recovery_interaction__deviation__c0.3_b0.2",
+      "loss": 0.6207814107386385
+    },
+    {
+      "source": "best_plus_cc_opportunity__deviation__c0.3_b0.2",
+      "loss": 0.620864502876804
+    },
+    {
+      "source": "best_plus_scc_rolling__absolute_plus_deviation__c0.3_b0.2",
+      "loss": 0.6211385286103315
+    },
+    {
+      "source": "best_plus_scc_rolling__deviation__c0.3_b0.2",
+      "loss": 0.6213207038130739
+    },
+    {
+      "source": "best_plus_scc_subject_relative__absolute__c0.3_b0.2",
+      "loss": 0.6213890662954392
+    },
+    {
+      "source": "best_plus_scc_all__deviation__c0.3_b0.2",
+      "loss": 0.6215188179209467
+    },
+    {
+      "source": "best_plus_sot_prebed_fragmentation__absolute__c0.3_b0.2",
+      "loss": 0.6215261582444995
+    },
+    {
+      "source": "best_plus_scc_rolling__absolute_plus_deviation__c0.1_b0.2",
+      "loss": 0.621530827462608
+    },
+    {
+      "source": "best_plus_sot_prebed_fragmentation__absolute_plus_deviation__c0.3_b0.2",
+      "loss": 0.6215452800658915
+    },
+    {
+      "source": "best_plus_wai_sleep_recovery_interaction__absolute__c0.1_b0.2",
+      "loss": 0.621577944572612
+    },
+    {
+      "source": "best_plus_scc_all__absolute_plus_deviation__c0.3_b0.2",
+      "loss": 0.6216104497536298
+    },
+    {
+      "source": "best_plus_sot_shutdown_slope__absolute_plus_deviation__c0.3_b0.2",
+      "loss": 0.6216447361284904
+    },
+    {
+      "source": "best_plus_scc_all__absolute__c0.3_b0.2",
+      "loss": 0.6216585606081235
+    },
+    {
+      "source": "best_plus_cc_opportunity__absolute__c0.3_b0.2",
+      "loss": 0.6216908846532193
+    },
+    {
+      "source": "best_plus_sot_prebed_fragmentation__absolute_plus_deviation__c0.1_b0.2",
+      "loss": 0.621698597065903
+    },
+    {
+      "source": "best_plus_scc_subject_relative__deviation__c0.3_b0.2",
+      "loss": 0.621774815683913
+    },
+    {
+      "source": "best_plus_cc_opportunity__deviation__c0.1_b0.2",
+      "loss": 0.6217835108076634
+    },
+    {
+      "source": "best_plus_scc_all__absolute_plus_deviation__c0.1_b0.2",
+      "loss": 0.6219309311939542
+    },
+    {
+      "source": "best_plus_scc_subject_relative__absolute_plus_deviation__c0.3_b0.2",
+      "loss": 0.6219554654712061
+    },
+    {
+      "source": "best_plus_sot_shutdown_slope__absolute__c0.3_b0.2",
+      "loss": 0.6219622804556134
+    },
+    {
+      "source": "best_plus_wai_sleep_recovery_interaction__deviation__c0.1_b0.2",
+      "loss": 0.6219639746938885
+    },
+    {
+      "source": "best_plus_cc_load__absolute_plus_deviation__c0.3_b0.2",
+      "loss": 0.6219952321287805
+    },
+    {
+      "source": "best_plus_sot_prebed_fragmentation__absolute__c0.1_b0.2",
+      "loss": 0.6221759118861395
+    },
+    {
+      "source": "best_plus_sot_micro_rolling_context_only__absolute_plus_deviation__c0.3_b0.2",
+      "loss": 0.6222509203033612
+    },
+    {
+      "source": "best_plus_scc_rolling__deviation__c0.1_b0.2",
+      "loss": 0.6222719410867016
+    }
+  ],
+  "best_by_target": [
+    {
+      "target": "Q1",
+      "source": "db_app_stim__absolute__c0.3_b0.2",
+      "loss": 0.6325187249649226
+    },
+    {
+      "target": "Q2",
+      "source": "best_plus_di_prebed_consumption__absolute_plus_deviation__c0.3_b0.2",
+      "loss": 0.6172557203682387
+    },
+    {
+      "target": "Q3",
+      "source": "best_plus_mobility_constriction__absolute_plus_deviation__c0.03_b0.2",
+      "loss": 0.5977970542840675
+    },
+    {
+      "target": "S1",
+      "source": "scp_micro_awakenings__absolute_plus_deviation__c0.3_b0.2",
+      "loss": 0.520378250209641
+    },
+    {
+      "target": "S2",
+      "source": "best_plus_di_social_isolation__absolute_plus_deviation__c0.3_b0.2",
+      "loss": 0.5198545742751819
+    },
+    {
+      "target": "S3",
+      "source": "best_plus_sot_micro_s3_core_timing_settle_conflict__absolute_plus_deviation__c0.3_b0.2",
+      "loss": 0.4629810202382753
+    },
+    {
+      "target": "S4",
+      "source": "scp_micro_awakenings__absolute__c0.3_b0.2",
+      "loss": 0.5739331208782068
+    }
+  ]
+}
