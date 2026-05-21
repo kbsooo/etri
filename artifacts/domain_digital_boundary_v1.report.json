@@ -1,0 +1,6 @@
+{
+  "output": "artifacts/domain_digital_boundary_v1.parquet",
+  "rows": 700,
+  "feature_count": 405,
+  "hypothesis": "sleep labels respond to smartphone timing around sleep and wake boundaries, not only total phone usage"
+}

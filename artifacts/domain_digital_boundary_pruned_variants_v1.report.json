@@ -1,0 +1,81 @@
+{
+  "input": "artifacts/domain_digital_boundary_v1.parquet",
+  "variants": [
+    {
+      "variant": "core",
+      "output": "artifacts/domain_digital_boundary_core_v1.parquet",
+      "rows": 700,
+      "feature_count": 65,
+      "patterns": [
+        "boundary_disruption_score",
+        "morning_sluggish_score",
+        "last_phone_before_onset_min",
+        "first_phone_after_wake_min",
+        "first_move_after_wake_min",
+        "wake_phone_before_move_min",
+        "phone_before_sleep_recency"
+      ]
+    },
+    {
+      "variant": "prebed",
+      "output": "artifacts/domain_digital_boundary_prebed_v1.parquet",
+      "rows": 700,
+      "feature_count": 100,
+      "patterns": [
+        "prebed1h_phone",
+        "prebed2h_phone",
+        "prebed4h_phone",
+        "prebed_total",
+        "prebed_stim",
+        "prebed_social",
+        "prebed_share"
+      ]
+    },
+    {
+      "variant": "sleep_phone",
+      "output": "artifacts/domain_digital_boundary_sleep_phone_v1.parquet",
+      "rows": 700,
+      "feature_count": 44,
+      "patterns": [
+        "sleep_phone",
+        "sleep_usage",
+        "sleep_screen",
+        "sleep_charging",
+        "sleep_lowcov",
+        "sleep_without_charging"
+      ]
+    },
+    {
+      "variant": "postwake",
+      "output": "artifacts/domain_digital_boundary_postwake_v1.parquet",
+      "rows": 700,
+      "feature_count": 92,
+      "patterns": [
+        "postwake1h_phone",
+        "postwake2h_phone",
+        "postwake1h_step",
+        "postwake2h_step",
+        "first_phone_after_wake",
+        "first_move_after_wake",
+        "wake_phone",
+        "morning_sluggish"
+      ]
+    },
+    {
+      "variant": "app_stim",
+      "output": "artifacts/domain_digital_boundary_app_stim_v1.parquet",
+      "rows": 700,
+      "feature_count": 56,
+      "patterns": [
+        "app_total",
+        "app_stim",
+        "app_social",
+        "app_entropy",
+        "prebed_total",
+        "prebed_stim",
+        "prebed_social",
+        "prebed_entropy"
+      ]
+    }
+  ]
+}

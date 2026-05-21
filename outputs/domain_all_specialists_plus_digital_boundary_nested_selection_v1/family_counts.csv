@@ -1,0 +1,15 @@
+target,source_family,size
+Q1,best_late_fusion,2
+Q1,other,1
+Q1,routine_regularity,1
+Q1,sleep_intrusion,1
+Q2,trajectory_proto,5
+Q3,mobility_constriction,5
+S1,routine_regularity,4
+S1,best_late_fusion,1
+S2,sleep_intrusion,4
+S2,routine_regularity,1
+S3,best_late_fusion,4
+S3,mobility_constriction,1
+S4,routine_regularity,4
+S4,sleep_intrusion,1

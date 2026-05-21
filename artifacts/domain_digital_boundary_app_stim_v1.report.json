@@ -1,0 +1,16 @@
+{
+  "variant": "app_stim",
+  "output": "artifacts/domain_digital_boundary_app_stim_v1.parquet",
+  "rows": 700,
+  "feature_count": 56,
+  "patterns": [
+    "app_total",
+    "app_stim",
+    "app_social",
+    "app_entropy",
+    "prebed_total",
+    "prebed_stim",
+    "prebed_social",
+    "prebed_entropy"
+  ]
+}

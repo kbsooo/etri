@@ -12,6 +12,18 @@ TARGET_COLUMNS = ["Q1", "Q2", "Q3", "S1", "S2", "S3", "S4"]
 
 
 def source_family(source: str) -> str:
+    if source.startswith("db_prebed"):
+        return "digital_boundary_prebed"
+    if source.startswith("db_sleep_phone"):
+        return "digital_boundary_sleep_phone"
+    if source.startswith("db_postwake"):
+        return "digital_boundary_postwake"
+    if source.startswith("db_app_stim"):
+        return "digital_boundary_app_stim"
+    if source.startswith("db_core"):
+        return "digital_boundary_core"
+    if source.startswith("best_plus_digital_boundary") or source.startswith("digital_boundary"):
+        return "digital_boundary"
     if source.startswith("best_plus_mobility_constriction") or source.startswith("mobility_constriction"):
         return "mobility_constriction"
     if source.startswith("best_plus_fatigue_carryover") or source.startswith("fatigue_carryover"):

@@ -1,0 +1,14 @@
+{
+  "variant": "sleep_phone",
+  "output": "artifacts/domain_digital_boundary_sleep_phone_v1.parquet",
+  "rows": 700,
+  "feature_count": 44,
+  "patterns": [
+    "sleep_phone",
+    "sleep_usage",
+    "sleep_screen",
+    "sleep_charging",
+    "sleep_lowcov",
+    "sleep_without_charging"
+  ]
+}

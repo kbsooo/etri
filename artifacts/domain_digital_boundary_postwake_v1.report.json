@@ -1,0 +1,16 @@
+{
+  "variant": "postwake",
+  "output": "artifacts/domain_digital_boundary_postwake_v1.parquet",
+  "rows": 700,
+  "feature_count": 92,
+  "patterns": [
+    "postwake1h_phone",
+    "postwake2h_phone",
+    "postwake1h_step",
+    "postwake2h_step",
+    "first_phone_after_wake",
+    "first_move_after_wake",
+    "wake_phone",
+    "morning_sluggish"
+  ]
+}

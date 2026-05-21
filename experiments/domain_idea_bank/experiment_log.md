@@ -616,3 +616,65 @@ The current best diagnostic target map is now:
 - S2: sleep intrusion/coverage episodes.
 - S4: routine regularity/circadian phase break.
 - Q1/S1/S3: still no strong stable domain path.
+
+## 2026-05-22 - Digital Boundary Pruning
+
+### Scope
+
+Followed up on the domain observation that smartphone/app usage can dominate traditional biosignals for sleep-related targets. Instead of adding broad phone totals, this cycle built sleep-boundary digital features:
+
+- Last phone activity before sleep onset.
+- Phone/screen bouts during the sleep window.
+- First phone and first movement after wake.
+- Pre-bed stimulation/social app pressure.
+- Phone-while-still and morning sluggishness proxies.
+
+The full feature family was then pruned into compact variants because the 405-feature broad family was too noisy.
+
+### Artifacts
+
+- Full digital-boundary builder: `scripts/build_digital_boundary_latents.py`
+- Full artifact: `artifacts/domain_digital_boundary_v1.parquet`
+- Pruned variant builder: `scripts/build_digital_boundary_pruned_variants.py`
+- Pruned artifacts:
+  - `artifacts/domain_digital_boundary_core_v1.parquet`
+  - `artifacts/domain_digital_boundary_prebed_v1.parquet`
+  - `artifacts/domain_digital_boundary_sleep_phone_v1.parquet`
+  - `artifacts/domain_digital_boundary_postwake_v1.parquet`
+  - `artifacts/domain_digital_boundary_app_stim_v1.parquet`
+- Probe reports:
+  - `outputs/domain_best_plus_digital_boundary_probe_v1/report.md`
+  - `outputs/domain_digital_boundary_pruned_probe_v1/report.md`
+- Nested selection report: `outputs/domain_all_specialists_plus_digital_boundary_pruned_nested_selection_v1/report.md`
+- Hybrid decoder: `outputs/domain_hybrid_q1_prebed_q2_proto_q3_mobility_s2_sleep_s4_routine_decoder_v1/report.md`
+
+### Result
+
+| experiment | avg OOF logloss | read |
+| --- | ---: | --- |
+| previous hybrid: Q2 proto + Q3 mobility + S2 sleep + S4 routine | 0.619947 | Previous best diagnostic decoder. |
+| full digital-boundary global append | 0.622961 best remained base | Broad phone-boundary feature dump did not help globally. |
+| pruned `db_prebed` Q1 probe | Q1 0.662702 | Strongest Q1 feature-family signal so far. |
+| nested all-specialist selection with pruned digital boundary | 0.623532 | Global nested selection still over-switches weak targets. |
+| new fixed hybrid: Q1 prebed + Q2 proto + Q3 mobility + S2 sleep + S4 routine | 0.619106 | New best diagnostic decoder in this 300-idea track. |
+
+Nested target reads:
+
+| family | useful nested target | read |
+| --- | --- | --- |
+| digital_boundary_prebed | Q1 | Selected in all five folds; Q1 improves by -0.0058 vs base under held-fold source selection. |
+| digital_boundary_full | none | Too broad; the phone-boundary family needs pruning before decoding. |
+| digital_boundary_sleep_phone/postwake/app_stim | none yet | Some raw target hints, but weaker than `db_prebed` and not selected in the fixed hybrid. |
+
+### Working Interpretation
+
+The digital hypothesis is now more precise: the useful Q1 signal is not total app usage, and not generic screen pressure. It is a narrow pre-sleep digital behavior axis, especially subject-relative pre-bed phone/stimulation deviation. This is the first stable new Q1 path in the domain idea-bank track.
+
+The current best diagnostic target map is now:
+
+- Q1: pre-bed digital boundary behavior.
+- Q2: trajectory prototype/state membership.
+- Q3: mobility constriction/location entropy state.
+- S2: sleep intrusion/coverage episodes.
+- S4: routine regularity/circadian phase break.
+- S1/S3: still no strong stable domain path.
