@@ -264,14 +264,16 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Causal-chain compression produced a stronger target map by representing each day as load -> arousal -> sleep opportunity -> continuity -> recovery. The best fixed causal-chain hybrid reached OOF `0.614213`, mainly from Q1/S1/S2 sleep opportunity, Q2 energy recovery, Q3 recovery, and S4 chain interactions. This became the new diagnostic baseline for the domain-engineering track.
 - Sleep-onset transition features finally opened an S3 path. Broad SOT features were not useful, but the pruned `charging_settle` slice attached to the best late-fusion latent improved S3 from `0.523927` to `0.514231` inside the fixed hybrid. Micro-ablation improved this again: the `subject_relative_only` slice reaches S3 `0.512376` and fixed hybrid OOF `0.612563` in `outputs/domain_hybrid_causal_chain_plus_s3_onset_subject_relative_v1/`, the current best diagnostic decoder in this track.
 - Current interpretation: S3 is not explained by total sleep duration, generic prebed phone time, or broad sleep-debt ledgers. The strongest S3 clue is the *subject-relative final transition into sleep*: whether dark/still/not-phone/charging consensus and conflict/readiness near sleep onset are unusual for that person.
+- Wake activation/inertia features opened the first stable S1 path. The winning slice is not broad postwake total activity; it is `sleep_recovery_interaction`, combining sleep amount/efficiency/fragmentation with first phone/move/screen/light/HR activation, activation slopes, and subject-relative morning inertia. Nested selection keeps this S1 family in 4/5 folds with held-fold S1 `0.564710` vs base `0.570895`. A fixed hybrid replacing only S1 improves the best domain diagnostic decoder from `0.612563` to `0.611598` in `outputs/domain_hybrid_plus_s1_wake_activation_s3_onset_subject_relative_v1/`.
+- Current interpretation: S1 responds to the mismatch between sleep recovery state and the next waking activation pattern. This is the same coordinate-system lesson as S3: the useful feature is not the raw sensor total, but the subject-relative transition around a biologically meaningful boundary.
 
 ## Next 3
 
 1. Convert the causal-chain plus sleep-onset-transition target map into encoder objectives.
-   - Success criterion: retain Q1/S1/S2 sleep-opportunity, Q2 energy-recovery, Q3 recovery/mobility, S3 subject-relative sleep-onset settling, and S4 chain-interaction gains while improving global frozen-probe OOF beyond the current hybrid-equivalent `0.612563`.
+   - Success criterion: retain Q1/S2 sleep-opportunity, Q2 energy-recovery, Q3 recovery/mobility, S1 wake recovery-activation mismatch, S3 subject-relative sleep-onset settling, and S4 chain-interaction gains while improving global frozen-probe OOF beyond the current hybrid-equivalent `0.611598`.
 
 2. Split the Q-family path explicitly: Q2 should read trajectory prototype/state membership, while Q3 should read mobility/location-constriction state.
    - Success criterion: find a shared encoder objective that supports both readouts without post-hoc target-specific feature dumping.
 
-3. Continue the 300-idea manifest sweep with remaining S1 hypotheses, while treating S3 subject-relative sleep-onset settling as the protected expert.
-   - Success criterion: find an S1 path that survives nested selection, or improve S3 beyond `0.512376` without reintroducing broad drift. Keep digital/phone/app signals as boundary-specific experts rather than mixing them globally.
+3. Continue the 300-idea manifest sweep with remaining S2/S4 and cross-target boundary hypotheses, while treating S1 wake recovery-activation and S3 subject-relative sleep-onset settling as protected experts.
+   - Success criterion: improve S1 beyond `0.557111` or S3 beyond `0.512376` without reintroducing broad drift. Keep digital/phone/app signals as boundary-specific experts rather than mixing them globally.

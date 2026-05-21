@@ -12,6 +12,40 @@ TARGET_COLUMNS = ["Q1", "Q2", "Q3", "S1", "S2", "S3", "S4"]
 
 
 def source_family(source: str) -> str:
+    if source.startswith("best_plus_wai_activation_latency"):
+        return "best_plus_wake_activation_latency"
+    if source.startswith("best_plus_wai_activation_slope"):
+        return "best_plus_wake_activation_slope"
+    if source.startswith("best_plus_wai_phone_inertia"):
+        return "best_plus_wake_phone_inertia"
+    if source.startswith("best_plus_wai_light_hr_entrainment"):
+        return "best_plus_wake_light_hr_entrainment"
+    if source.startswith("best_plus_wai_sleep_recovery_interaction"):
+        return "best_plus_wake_sleep_recovery_interaction"
+    if source.startswith("best_plus_wai_subject_relative_only"):
+        return "best_plus_wake_subject_relative"
+    if source.startswith("best_plus_wai_rolling_context_only"):
+        return "best_plus_wake_rolling_context"
+    if source.startswith("best_plus_wai_base_values_only"):
+        return "best_plus_wake_base_values"
+    if source.startswith("wai_activation_latency"):
+        return "wake_activation_latency"
+    if source.startswith("wai_activation_slope"):
+        return "wake_activation_slope"
+    if source.startswith("wai_phone_inertia"):
+        return "wake_phone_inertia"
+    if source.startswith("wai_light_hr_entrainment"):
+        return "wake_light_hr_entrainment"
+    if source.startswith("wai_sleep_recovery_interaction"):
+        return "wake_sleep_recovery_interaction"
+    if source.startswith("wai_subject_relative_only"):
+        return "wake_subject_relative"
+    if source.startswith("wai_rolling_context_only"):
+        return "wake_rolling_context"
+    if source.startswith("wai_base_values_only"):
+        return "wake_base_values"
+    if source.startswith("wake_activation_inertia"):
+        return "wake_activation_inertia"
     if source.startswith("best_plus_sot_micro_charging_timing"):
         return "best_plus_sleep_onset_micro_charging_timing"
     if source.startswith("best_plus_sot_micro_charging_windows"):

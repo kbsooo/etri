@@ -1205,3 +1205,68 @@ The current best diagnostic decoder is now:
 - S2: causal-chain opportunity.
 - S3: subject-relative sleep-onset settling.
 - S4: causal-chain interactions.
+
+## 2026-05-22 - S1 Wake Activation/Inertia Ablation
+
+### Scope
+
+The next unresolved sleep target was S1. Earlier postwake totals, broad sleep-debt ledgers, and fatigue carry-over features produced raw hints but did not survive nested selection. This cycle tested a narrower wake-anchored hypothesis: S1 may respond to whether a person's sleep amount/efficiency/fragmentation is followed by unusually fast or slow morning activation.
+
+### Artifacts
+
+- Feature builder: `scripts/build_wake_activation_inertia_latents.py`
+- Variant builder: `scripts/build_wake_activation_inertia_variants.py`
+- Main latent:
+  - `artifacts/domain_wake_activation_inertia_v1.parquet`
+- Additive/pruned latents:
+  - `artifacts/domain_best_plus_wake_activation_inertia_activation_latency_v1.parquet`
+  - `artifacts/domain_best_plus_wake_activation_inertia_activation_slope_v1.parquet`
+  - `artifacts/domain_best_plus_wake_activation_inertia_phone_inertia_v1.parquet`
+  - `artifacts/domain_best_plus_wake_activation_inertia_light_hr_entrainment_v1.parquet`
+  - `artifacts/domain_best_plus_wake_activation_inertia_sleep_recovery_interaction_v1.parquet`
+  - `artifacts/domain_best_plus_wake_activation_inertia_subject_relative_only_v1.parquet`
+  - `artifacts/domain_best_plus_wake_activation_inertia_rolling_context_only_v1.parquet`
+  - `artifacts/domain_best_plus_wake_activation_inertia_base_values_only_v1.parquet`
+- Probe reports:
+  - `outputs/domain_wake_activation_inertia_probe_v1/report.md`
+  - `outputs/domain_wake_activation_inertia_plus_best_probe_v1/report.md`
+- Nested/all-specialist diagnostics:
+  - `outputs/domain_all_specialists_plus_wake_activation_inertia_probe_v1/report.md`
+  - `outputs/domain_all_specialists_plus_wake_activation_inertia_nested_selection_v1/report.md`
+- Fixed hybrid decoder:
+  - `outputs/domain_hybrid_plus_s1_wake_activation_s3_onset_subject_relative_v1/report.md`
+
+### Result
+
+| experiment | S1 OOF logloss | avg OOF logloss | read |
+| --- | ---: | ---: | --- |
+| previous fixed hybrid S1 | 0.563862 | 0.612563 | S1 still used causal-chain opportunity. |
+| additive `sleep_recovery_interaction` probe | 0.557111 | 0.618903 | Best WAI probe; global avg still weak, but S1 is clean. |
+| nested all-specialist selection | 0.564710 | 0.617810 | S1 selects wake sleep-recovery interaction in 4/5 folds and improves base by `-0.006186`. |
+| fixed hybrid with S1 replaced by WAI sleep-recovery interaction | 0.557111 | 0.611598 | New best diagnostic decoder in this track. |
+
+Per-target fixed hybrid read:
+
+| target | OOF logloss | source |
+| --- | ---: | --- |
+| Q1 | 0.654835 | causal-chain opportunity |
+| Q2 | 0.687527 | energy recovery slope |
+| Q3 | 0.665238 | causal-chain recovery |
+| S1 | 0.557111 | wake activation sleep-recovery interaction |
+| S2 | 0.568897 | causal-chain opportunity |
+| S3 | 0.512376 | subject-relative sleep-onset settling |
+| S4 | 0.635204 | causal-chain interactions |
+
+### Working Interpretation
+
+This is different from the failed postwake-total features. The positive S1 slice is an interaction family: short/long sleep, efficiency, and fragmentation are multiplied by wake latency, early phone/move/light/HR activation, and subject-relative morning inertia. The model is not rewarded for "more morning activity"; it is rewarded for the mismatch between recovery quality and the next waking activation pattern.
+
+The current target map is updated:
+
+- Q1: causal-chain sleep opportunity / pre-bed boundary state.
+- Q2: energy recovery slope / daytime restoration.
+- Q3: causal-chain recovery or mobility constriction state.
+- S1: wake activation relative to sleep recovery state.
+- S2: causal-chain sleep opportunity.
+- S3: subject-relative final transition into sleep.
+- S4: causal-chain interactions.
