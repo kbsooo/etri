@@ -48,6 +48,18 @@ def parse_source(source: str) -> tuple[str, str, float, float]:
 
 
 def source_family(source: str) -> str:
+    if source.startswith("acm_ambient_light"):
+        return "ambient_light"
+    if source.startswith("acm_coverage_no_wear"):
+        return "coverage_no_wear"
+    if source.startswith("acm_motif_distance"):
+        return "day_state_motif"
+    if source.startswith("acm_night_environment"):
+        return "night_environment"
+    if source.startswith("acm_coverage_rhythm"):
+        return "coverage_rhythm"
+    if source.startswith("ambient_coverage_motif"):
+        return "ambient_coverage_motif"
     if source.startswith("ef_energy_phase"):
         return "energy_phase"
     if source.startswith("ef_daytime_fragmentation"):

@@ -1,0 +1,15 @@
+{
+  "variant": "coverage_rhythm",
+  "output": "artifacts/domain_ambient_coverage_motif_coverage_rhythm_v1.parquet",
+  "rows": 700,
+  "feature_count": 111,
+  "patterns": [
+    "coverage_transition",
+    "coverage_mean",
+    "coverage_std",
+    "low_coverage_longest",
+    "no_wear_longest",
+    "past7",
+    "past14"
+  ]
+}

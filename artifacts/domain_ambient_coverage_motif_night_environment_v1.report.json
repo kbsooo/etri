@@ -1,0 +1,12 @@
+{
+  "variant": "night_environment",
+  "output": "artifacts/domain_ambient_coverage_motif_night_environment_v1.parquet",
+  "rows": 700,
+  "feature_count": 303,
+  "patterns": [
+    "night",
+    "lateNight",
+    "z_night",
+    "night_"
+  ]
+}

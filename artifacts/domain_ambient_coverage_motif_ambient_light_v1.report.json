@@ -1,0 +1,18 @@
+{
+  "variant": "ambient_light",
+  "output": "artifacts/domain_ambient_coverage_motif_ambient_light_v1.parquet",
+  "rows": 700,
+  "feature_count": 927,
+  "patterns": [
+    "light",
+    "mlight",
+    "wlight",
+    "bright",
+    "dark",
+    "amb_",
+    "ambient",
+    "silence",
+    "speech",
+    "music"
+  ]
+}

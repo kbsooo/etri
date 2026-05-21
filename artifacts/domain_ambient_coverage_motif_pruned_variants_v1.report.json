@@ -1,0 +1,75 @@
+{
+  "input": "artifacts/domain_ambient_coverage_motif_v1.parquet",
+  "variants": [
+    {
+      "variant": "ambient_light",
+      "output": "artifacts/domain_ambient_coverage_motif_ambient_light_v1.parquet",
+      "rows": 700,
+      "feature_count": 927,
+      "patterns": [
+        "light",
+        "mlight",
+        "wlight",
+        "bright",
+        "dark",
+        "amb_",
+        "ambient",
+        "silence",
+        "speech",
+        "music"
+      ]
+    },
+    {
+      "variant": "coverage_no_wear",
+      "output": "artifacts/domain_ambient_coverage_motif_coverage_no_wear_v1.parquet",
+      "rows": 700,
+      "feature_count": 720,
+      "patterns": [
+        "coverage",
+        "no_wear",
+        "low_coverage",
+        "present_",
+        "missing_run",
+        "missing_until_next",
+        "phone_nowear",
+        "phone_lowcov"
+      ]
+    },
+    {
+      "variant": "motif_distance",
+      "output": "artifacts/domain_ambient_coverage_motif_motif_distance_v1.parquet",
+      "rows": 700,
+      "feature_count": 78,
+      "patterns": [
+        "motif"
+      ]
+    },
+    {
+      "variant": "night_environment",
+      "output": "artifacts/domain_ambient_coverage_motif_night_environment_v1.parquet",
+      "rows": 700,
+      "feature_count": 303,
+      "patterns": [
+        "night",
+        "lateNight",
+        "z_night",
+        "night_"
+      ]
+    },
+    {
+      "variant": "coverage_rhythm",
+      "output": "artifacts/domain_ambient_coverage_motif_coverage_rhythm_v1.parquet",
+      "rows": 700,
+      "feature_count": 111,
+      "patterns": [
+        "coverage_transition",
+        "coverage_mean",
+        "coverage_std",
+        "low_coverage_longest",
+        "no_wear_longest",
+        "past7",
+        "past14"
+      ]
+    }
+  ]
+}

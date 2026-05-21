@@ -1,0 +1,10 @@
+{
+  "output": "artifacts/domain_ambient_coverage_motif_v1.parquet",
+  "rows": 700,
+  "feature_count": 1707,
+  "hypotheses": [
+    "S1/S3 may depend on non-random no-wear and low-coverage episodes.",
+    "Ambient/light stability may capture sleep environment and daytime regularity missed by timing features.",
+    "Day-state motif distance may reveal unusual multimodal days without using labels."
+  ]
+}

@@ -748,6 +748,66 @@ The target map stays:
 - S4: routine regularity/circadian phase break.
 - S1/S3: still open.
 
+## 2026-05-22 - Ambient / Coverage / Day-State Motif Probe
+
+### Scope
+
+Tested the next S1/S3-oriented data-engineering hypothesis after sleep timing and recovery features were not enough:
+
+- Ambient and light stability as sleep-environment/context signals.
+- Sensor coverage, no-wear, low-coverage, and missing-run semantics as intentional behavior rather than simple NaN noise.
+- Unsupervised day-state motifs built from 30-minute light, ambience, coverage, phone, and movement states.
+- Subject-relative motif distance and rolling changes over 3/7/14/28-day windows.
+
+### Artifacts
+
+- Builder: `scripts/build_ambient_coverage_motif_latents.py`
+- Pruned variant builder: `scripts/build_ambient_coverage_motif_pruned_variants.py`
+- Full artifact: `artifacts/domain_ambient_coverage_motif_v1.parquet`
+- Pruned artifacts:
+  - `artifacts/domain_ambient_coverage_motif_ambient_light_v1.parquet`
+  - `artifacts/domain_ambient_coverage_motif_coverage_no_wear_v1.parquet`
+  - `artifacts/domain_ambient_coverage_motif_motif_distance_v1.parquet`
+  - `artifacts/domain_ambient_coverage_motif_night_environment_v1.parquet`
+  - `artifacts/domain_ambient_coverage_motif_coverage_rhythm_v1.parquet`
+- Probe reports:
+  - `outputs/domain_ambient_coverage_motif_probe_v1/report.md`
+  - `outputs/domain_ambient_coverage_motif_pruned_probe_v1/report.md`
+- Nested selection report: `outputs/domain_all_specialists_plus_ambient_coverage_motif_pruned_nested_selection_v1/report.md`
+- Materialized decoder stress: `outputs/domain_hybrid_plus_ambient_coverage_motif_decoder_v1/report.md`
+
+### Result
+
+| experiment | avg OOF logloss | read |
+| --- | ---: | --- |
+| broad ambient/coverage/motif family | 0.623192 best remained base | Broad 1,707-feature block is too noisy as a global latent. |
+| pruned ACM family probe | 0.623192 best remained base | Mean probe finds local target signal but no global win. |
+| nested all-specialist selection with pruned ACM | 0.623246 | No stable overall gain; ACM mostly rejected by fold-safe selection. |
+| materialized decoder with ACM candidates included | 0.623065 | Worse than the prior fixed hybrid `0.618005`; do not promote. |
+
+Target-specific reads:
+
+| family | raw/local signal | nested read |
+| --- | --- | --- |
+| `acm_coverage_no_wear` | Q1 improves to about `0.6660`; S4 improves to about `0.6392` in mean probe. | Not selected consistently once stronger digital-boundary/routine candidates are present. |
+| `acm_night_environment` | Q3 improves to about `0.6655` in mean probe. | Mobility constriction remains the stable Q3 family. |
+| `acm_ambient_light` | Tiny S2 raw signal around `0.5781`. | Too small and unstable versus sleep-intrusion/routine branches. |
+| motif distance | Some Q1 local signal. | Not stable enough to enter the decoder. |
+| S1/S3 | No material improvement. | Still open; current best remains base/best-late-fusion for S3 and weak routine/base behavior for S1. |
+
+### Working Interpretation
+
+This closes one tempting branch: missingness/coverage is useful context, but in the current formulation it behaves more like an auxiliary regularity signal than the missing S1/S3 key. The broad ACM block also reinforces the feature-pruning lesson: adding all context features makes the latent noisier, while only a few narrow feature families carry target-specific information.
+
+The target map stays unchanged:
+
+- Q1: pre-bed digital boundary behavior.
+- Q2: energy recovery slope / daytime restoration.
+- Q3: mobility constriction/location entropy state.
+- S2: sleep intrusion/coverage episodes.
+- S4: routine regularity/circadian phase break.
+- S1/S3: still open.
+
 ## 2026-05-22 - Chronotype / Sleep Debt / Social Jetlag Probe
 
 ### Scope

@@ -1,0 +1,16 @@
+{
+  "variant": "coverage_no_wear",
+  "output": "artifacts/domain_ambient_coverage_motif_coverage_no_wear_v1.parquet",
+  "rows": 700,
+  "feature_count": 720,
+  "patterns": [
+    "coverage",
+    "no_wear",
+    "low_coverage",
+    "present_",
+    "missing_run",
+    "missing_until_next",
+    "phone_nowear",
+    "phone_lowcov"
+  ]
+}

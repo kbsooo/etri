@@ -1,0 +1,9 @@
+{
+  "variant": "motif_distance",
+  "output": "artifacts/domain_ambient_coverage_motif_motif_distance_v1.parquet",
+  "rows": 700,
+  "feature_count": 78,
+  "patterns": [
+    "motif"
+  ]
+}
