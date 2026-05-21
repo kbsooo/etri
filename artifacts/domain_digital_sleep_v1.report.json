@@ -1,0 +1,6 @@
+{
+  "output": "artifacts/domain_digital_sleep_v1.parquet",
+  "rows": 700,
+  "feature_count": 809,
+  "hypothesis": "digital phone/screen/app usage is a primary sleep-label predictor"
+}

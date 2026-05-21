@@ -1,0 +1,12 @@
+target,source_family,size
+Q1,routine_digital,4
+Q1,best_late_fusion,1
+Q2,best_late_fusion,5
+Q3,routine_digital,4
+Q3,best_late_fusion,1
+S1,routine_digital,3
+S1,best_late_fusion,2
+S2,routine_digital,5
+S3,best_late_fusion,5
+S4,routine_digital,4
+S4,best_late_fusion,1

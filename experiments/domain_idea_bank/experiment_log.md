@@ -506,3 +506,61 @@ The current target map is now:
 - S2: sleep intrusion/coverage episodes.
 - S4: event rhythm/circadian/burstiness.
 - Q1/S1/S3: still no new domain path that survives nested selection.
+
+## 2026-05-21 - Digital Sleep and Routine Regularity
+
+### Scope
+
+Built two new feature families from the 300-idea manifest:
+
+- `routine_regularity`: personal routine residuals, weekday-specific routine distance, circadian phase shift, sleep regularity breaks, and multi-scale volatility.
+- `digital_sleep`: phone/screen/app/prebed usage isolated as a first-class sleep feature family, motivated by the observation that digital behavior can dominate classic biosignals for sleep targets.
+
+### Artifacts
+
+- Routine builder: `scripts/build_routine_regularity_latents.py`
+- Routine artifact: `artifacts/domain_routine_regularity_v1.parquet`
+- Routine probe/nested reports:
+  - `outputs/domain_routine_regularity_probe_v1/report.md`
+  - `outputs/domain_routine_regularity_nested_selection_v1/report.md`
+- Digital builder: `scripts/build_digital_sleep_latents.py`
+- Digital artifact: `artifacts/domain_digital_sleep_v1.parquet`
+- Digital probe/nested reports:
+  - `outputs/domain_digital_sleep_probe_v1/report.md`
+  - `outputs/domain_digital_sleep_nested_selection_v1/report.md`
+- Combined probe/nested reports:
+  - `outputs/domain_routine_digital_combined_probe_v1/report.md`
+  - `outputs/domain_routine_digital_combined_nested_selection_v1/report.md`
+- Hybrid decoder: `outputs/domain_hybrid_q2_proto_q3_trajectory_s2_sleep_s4_routine_decoder_v1/report.md`
+
+### Result
+
+| experiment | avg OOF logloss | read |
+| --- | ---: | --- |
+| current late-fusion best | 0.622961 | Baseline diagnostic artifact. |
+| digital_sleep global probe | 0.621977 | Strong raw digital signal, but S3 harm prevents global append. |
+| routine+digital global probe | 0.622618 | Some Q1/S1/S2/S4 raw signal, but not stable enough globally. |
+| previous hybrid: Q2 proto + Q3 trajectory + S2 sleep + S4 rhythm | 0.620668 | Previous best diagnostic decoder in this track. |
+| new hybrid: Q2 proto + Q3 trajectory + S2 sleep + S4 routine | 0.620093 | New best diagnostic decoder in this track. |
+
+Nested target reads:
+
+| family | useful nested target | read |
+| --- | --- | --- |
+| digital_sleep | Q2, Q3 | Real signal, but weaker than existing trajectory/prototype paths for the current hybrid. |
+| digital_sleep | S2 | Raw probe is very strong, but nested selection is weaker than sleep intrusion. |
+| routine_regularity | S4 | Strongest clean gain in this cycle, replacing event rhythm for S4. |
+| routine_regularity | S1/S2/Q3 | Probe gains are mostly unstable or harmful under nested selection. |
+| routine+digital | Q1/S2 small | Interesting but not enough to beat the target-specific current paths. |
+
+### Working Interpretation
+
+The user's digital-behavior hypothesis is supported: phone/screen/app features are among the strongest raw probe signals in this cycle. The important nuance is decoder placement. Digital features should not be broadly appended because they damage S3 and are partially redundant with trajectory/sleep-intrusion paths. Their value is as a target-specific expert or as an encoder input family to preserve, not as an undifferentiated feature dump.
+
+The current best diagnostic target map is now:
+
+- Q2: trajectory prototype/state membership.
+- Q3: continuous trajectory deviation.
+- S2: sleep intrusion/coverage episodes.
+- S4: routine regularity/circadian phase break.
+- Q1/S1/S3: still no strong stable domain path.

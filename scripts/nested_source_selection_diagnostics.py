@@ -12,6 +12,12 @@ TARGET_COLUMNS = ["Q1", "Q2", "Q3", "S1", "S2", "S3", "S4"]
 
 
 def source_family(source: str) -> str:
+    if source.startswith("best_plus_routine_digital"):
+        return "routine_digital"
+    if source.startswith("best_plus_digital_sleep") or source.startswith("digital_sleep"):
+        return "digital_sleep"
+    if source.startswith("best_plus_routine_regularity") or source.startswith("routine_regularity"):
+        return "routine_regularity"
     if source.startswith("best_plus_sleep_intrusion") or source.startswith("sleep_intrusion"):
         return "sleep_intrusion"
     if source.startswith("best_plus_trajectory_proto") or source.startswith("trajectory_proto"):

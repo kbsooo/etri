@@ -1,0 +1,13 @@
+target,source_family,size
+Q1,digital_sleep,4
+Q1,best_late_fusion,1
+Q2,digital_sleep,4
+Q2,best_late_fusion,1
+Q3,digital_sleep,5
+S1,best_late_fusion,3
+S1,digital_sleep,2
+S2,digital_sleep,4
+S2,best_late_fusion,1
+S3,best_late_fusion,5
+S4,best_late_fusion,4
+S4,digital_sleep,1

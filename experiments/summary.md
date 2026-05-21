@@ -246,7 +246,9 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Materialized the trajectory-only nested selector as actual OOF/test predictions in `outputs/domain_nested_temporal_decoder_v1/`. OOF improves from `0.622961` to `0.621238`; the entire gain comes from Q2 (`-0.005956`) and Q3 (`-0.006109`), with all other targets unchanged.
 - Prototype/state distances over the trajectory latent are useful only narrowly. Q2 improves with trajectory prototype state, while Q3 is better with continuous trajectory deviation. The hybrid decoder `Q2=trajectory_proto, Q3=trajectory, others=base` reaches OOF `0.621107`, the best diagnostic decoder in the 300-idea track so far.
 - Event rhythm features from the 30-minute grid add a separate S4 path. Broad rhythm features are unstable for Q3, but nested selection chooses event rhythm for S4 in all five folds. The hybrid `Q2=trajectory_proto, Q3=trajectory, S4=event_rhythm, others=base` reaches OOF `0.620777`.
-- Sleep-window intrusion features around sleep onset/wake time add only a narrow S2 path. Q1/S4 apparent probe gains fail nested selection, but S2 survives weakly. The hybrid `Q2=trajectory_proto, Q3=trajectory, S2=sleep_intrusion, S4=event_rhythm, others=base` reaches OOF `0.620668`, the current best diagnostic decoder in this track.
+- Sleep-window intrusion features around sleep onset/wake time add only a narrow S2 path. Q1/S4 apparent probe gains fail nested selection, but S2 survives weakly. The hybrid `Q2=trajectory_proto, Q3=trajectory, S2=sleep_intrusion, S4=event_rhythm, others=base` reaches OOF `0.620668`.
+- Digital phone/screen/app usage is a strong raw signal: `best_plus_digital_sleep` reaches probe OOF `0.621977`, and S2 target-only improves by about `-0.0104` vs the late-fusion base. But nested target selection shows it is redundant or weaker than current Q2/Q3/S2 specialist paths and harms S3 if appended globally.
+- Routine regularity gives the cleanest new target path in this cycle. Replacing S4 event rhythm with routine/circadian regularity improves the hybrid to OOF `0.620093`, the current best diagnostic decoder in the 300-idea track.
 
 ## Next 3
 
@@ -257,4 +259,4 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
    - Success criterion: find a shared encoder objective that supports both readouts without post-hoc target-specific feature dumping.
 
 3. Continue the 300-idea manifest sweep with Q1/S1/S3-specific feature families, because Q2/Q3/S2/S4 now each have a narrow target path.
-   - Success criterion: find at least one Q1, S1, or S3 path that survives nested selection and complements the current `0.620668` hybrid without reintroducing broad drift.
+   - Success criterion: find at least one Q1, S1, or S3 path that survives nested selection and complements the current `0.620093` hybrid without reintroducing broad drift. Keep digital phone/app signals as a protected expert family rather than mixing them globally.
