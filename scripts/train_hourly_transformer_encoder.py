@@ -36,11 +36,11 @@ class ViewSpec:
 
 
 class DayTransformerEncoder(nn.Module):
-    def __init__(self, n_features: int, d_model: int, n_heads: int, n_layers: int, dropout: float) -> None:
+    def __init__(self, n_features: int, n_tokens: int, d_model: int, n_heads: int, n_layers: int, dropout: float) -> None:
         super().__init__()
         self.input_proj = nn.Linear(n_features, d_model)
         self.cls = nn.Parameter(torch.zeros(1, 1, d_model))
-        self.pos = nn.Parameter(torch.zeros(1, 25, d_model))
+        self.pos = nn.Parameter(torch.zeros(1, n_tokens + 1, d_model))
         layer = nn.TransformerEncoderLayer(
             d_model=d_model,
             nhead=n_heads,
@@ -138,11 +138,14 @@ def select_columns(columns: list[str], spec: ViewSpec) -> list[str]:
 
 
 def load_hourly_table(args: argparse.Namespace) -> pd.DataFrame:
-    base = pd.read_parquet(args.hourly_path).copy()
+    base_path = args.token_table_path or args.hourly_path
+    base = pd.read_parquet(base_path).copy()
     base["date"] = pd.to_datetime(base["date"]).dt.strftime("%Y-%m-%d")
+    if args.token_col != "hod":
+        base = base.rename(columns={args.token_col: "hod"})
     table = base
 
-    optional_paths = [
+    optional_paths = [] if args.token_table_path else [
         (args.coherence_path, "coh__"),
         (args.hrv_path, "hrv__"),
         (args.ambience_path, "amb__"),
@@ -193,13 +196,15 @@ def build_sequence_tensor(
     hourly: pd.DataFrame,
     keys: pd.DataFrame,
     spec: ViewSpec,
+    tokens_per_day: int,
+    add_deviation_features: bool,
 ) -> tuple[np.ndarray, list[str], dict[str, float]]:
     base_cols = numeric_feature_columns(hourly)
     selected_base = select_columns(base_cols, spec)
 
     numeric = hourly[["subject_id", "date", "hod"] + selected_base].copy()
-    skeleton = keys[["subject_id", "date"]].loc[keys.index.repeat(24)].reset_index(drop=True)
-    skeleton["hod"] = np.tile(np.arange(24), len(keys)).astype(int)
+    skeleton = keys[["subject_id", "date"]].loc[keys.index.repeat(tokens_per_day)].reset_index(drop=True)
+    skeleton["hod"] = np.tile(np.arange(tokens_per_day), len(keys)).astype(int)
     indexed = skeleton.merge(numeric, on=["subject_id", "date", "hod"], how="left", validate="one_to_one")
 
     values = indexed[selected_base].replace([np.inf, -np.inf], np.nan)
@@ -211,15 +216,27 @@ def build_sequence_tensor(
     filled = values.fillna(medians).astype(float)
     scaler = StandardScaler()
     scaled = pd.DataFrame(scaler.fit_transform(filled), columns=selected_base)
+    scaled = scaled.replace([np.inf, -np.inf], np.nan).fillna(0.0)
+
+    dev_parts = []
+    if add_deviation_features:
+        baseline_keys = indexed[["subject_id", "hod"]].reset_index(drop=True)
+        keyed = pd.concat([baseline_keys, scaled], axis=1)
+        mean = keyed.groupby(["subject_id", "hod"], sort=False)[selected_base].transform("mean")
+        std = keyed.groupby(["subject_id", "hod"], sort=False)[selected_base].transform("std").replace(0.0, np.nan)
+        z = ((scaled - mean) / std).replace([np.inf, -np.inf], np.nan).fillna(0.0)
+        z = z.clip(-6.0, 6.0)
+        dev_parts.append(z.add_prefix("devz__"))
+        dev_parts.append(z.abs().add_prefix("devabs__"))
 
     hod = indexed["hod"].to_numpy(float)
     aux = pd.DataFrame(
         {
-            "time__hod_sin": np.sin(2.0 * np.pi * hod / 24.0),
-            "time__hod_cos": np.cos(2.0 * np.pi * hod / 24.0),
+            "time__hod_sin": np.sin(2.0 * np.pi * hod / float(tokens_per_day)),
+            "time__hod_cos": np.cos(2.0 * np.pi * hod / float(tokens_per_day)),
         }
     )
-    day_repeats = np.repeat(keys[["_date", "panel_index", "panel_position"]].to_numpy(object), 24, axis=0)
+    day_repeats = np.repeat(keys[["_date", "panel_index", "panel_position"]].to_numpy(object), tokens_per_day, axis=0)
     weekday = pd.to_datetime(day_repeats[:, 0]).weekday.to_numpy(float)
     aux["time__weekday_sin"] = np.sin(2.0 * np.pi * weekday / 7.0)
     aux["time__weekday_cos"] = np.cos(2.0 * np.pi * weekday / 7.0)
@@ -227,23 +244,24 @@ def build_sequence_tensor(
     aux["time__panel_position"] = np.asarray(day_repeats[:, 2], dtype=float)
     aux["missing__token_frac"] = observed.mean(axis=1).to_numpy(float)
 
-    feature_frame = pd.concat([scaled, observed.reset_index(drop=True), aux], axis=1)
+    feature_frame = pd.concat([scaled, *dev_parts, observed.reset_index(drop=True), aux], axis=1)
     feature_frame = feature_frame.replace([np.inf, -np.inf], np.nan).fillna(0.0)
     if spec.mode == "drop_missing":
         cols = [col for col in feature_frame.columns if "__isna" not in col and not col.startswith("missing__")]
         feature_frame = feature_frame[cols]
 
-    expected_rows = len(keys) * 24
+    expected_rows = len(keys) * tokens_per_day
     if len(feature_frame) != expected_rows:
         raise ValueError(f"Sequence row mismatch: {len(feature_frame)} != {expected_rows}")
     arr = feature_frame.to_numpy(np.float32)
     arr = np.nan_to_num(arr, nan=0.0, posinf=0.0, neginf=0.0)
-    arr = np.clip(arr, -8.0, 8.0).reshape(len(keys), 24, feature_frame.shape[1])
+    arr = np.clip(arr, -8.0, 8.0).reshape(len(keys), tokens_per_day, feature_frame.shape[1])
     diagnostics = {
         "n_days": float(len(keys)),
         "n_base_features": float(len(selected_base)),
         "n_token_features": float(feature_frame.shape[1]),
         "mean_missing_fraction": float(aux["missing__token_frac"].mean()),
+        "add_deviation_features": float(add_deviation_features),
     }
     return arr, feature_frame.columns.tolist(), diagnostics
 
@@ -259,6 +277,7 @@ def train_ssl_encoder(
     loader = DataLoader(dataset, batch_size=args.batch_size, shuffle=True, drop_last=False)
     model = DayTransformerEncoder(
         n_features=x.shape[2],
+        n_tokens=x.shape[1],
         d_model=args.d_model,
         n_heads=args.n_heads,
         n_layers=args.n_layers,
@@ -483,7 +502,13 @@ def run(args: argparse.Namespace) -> None:
     for view_name in requested_views:
         view_dir = output_dir / view_name
         view_dir.mkdir(parents=True, exist_ok=True)
-        x, feature_names, seq_diag = build_sequence_tensor(hourly, keys, specs[view_name])
+        x, feature_names, seq_diag = build_sequence_tensor(
+            hourly,
+            keys,
+            specs[view_name],
+            tokens_per_day=args.tokens_per_day,
+            add_deviation_features=args.add_deviation_features,
+        )
         z_all, loss_history = train_ssl_encoder(x, args, device)
         z_train = z_all[: len(train)]
         z_sample = z_all[len(train) :]
@@ -545,7 +570,7 @@ def run(args: argparse.Namespace) -> None:
             "## Representation",
             "",
             f"- Days: `{int(seq_diag['n_days'])}`",
-            f"- Token shape: `24 x {len(feature_names)}`",
+            f"- Token shape: `{args.tokens_per_day} x {len(feature_names)}`",
             f"- Base hourly features selected: `{int(seq_diag['n_base_features'])}`",
             f"- Mean token missing fraction: `{seq_diag['mean_missing_fraction']:.6f}`",
             f"- Device: `{device}`",
@@ -646,12 +671,16 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--train-path", default="data/ch2026_metrics_train.csv")
     parser.add_argument("--sample-path", default="data/ch2026_submission_sample.csv")
     parser.add_argument("--hourly-path", default="artifacts/03_hourly_grid.parquet")
+    parser.add_argument("--token-table-path", default="")
+    parser.add_argument("--token-col", default="hod")
+    parser.add_argument("--tokens-per-day", type=int, default=24)
     parser.add_argument("--coherence-path", default="artifacts/09_coherence_hourly.parquet")
     parser.add_argument("--hrv-path", default="artifacts/07_hrv_hourly.parquet")
     parser.add_argument("--ambience-path", default="artifacts/08_ambience_hourly_buckets.parquet")
     parser.add_argument("--reference-submission", default="outputs/v83_repaired_v80/submission_v83_gq015_gs010.csv")
     parser.add_argument("--output-dir", default="outputs/hourly_transformer_encoder_v1")
     parser.add_argument("--views", default="full,no_gps,no_phone,no_sleep,only_core")
+    parser.add_argument("--add-deviation-features", action="store_true")
     parser.add_argument("--epochs", type=int, default=80)
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--d-model", type=int, default=64)

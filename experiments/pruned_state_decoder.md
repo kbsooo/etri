@@ -203,6 +203,34 @@ Decision:
 - Keep the Transformer encoder branch alive. It independently reaches the same range as the pruned-state decoder scaffold and exposes clearer modality/target specialization than the flat tabular encoder.
 - Next step should be nested view selection or a multi-view Transformer decoder that learns target-specific attention over rhythm/cross-modal/no-sleep/full views without using v76/v83/v85 as teachers.
 
+## Multires Transformer tokenization and MoE follow-up
+
+Detailed log: `experiments/transformer_tokenization.md`
+
+New scripts:
+
+- `scripts/build_multires_token_grid.py`
+- `scripts/train_transformer_moe_head.py`
+
+Outputs:
+
+- `outputs/multires10_transformer_encoder_v1/`
+- `outputs/multires30_transformer_encoder_v1/`
+- `outputs/transformer_moe_head_v1/`
+
+Results:
+
+- 10-minute raw-derived grid + subject-token deviation: best view `only_cross_modal`, OOF `0.621938`.
+- 30-minute raw-derived grid + subject-token deviation: best view `no_sleep`, OOF `0.618590`.
+- Nested Transformer expert MoE head: best `nested_moe_logreg_c0p3`, OOF `0.611527`, drift vs v83 `0.086812`.
+
+Interpretation:
+
+- Finer is not automatically better. The 10-minute grid appears too sparse/noisy as a global day representation.
+- 30-minute tokens are currently the best fixed-bin raw-derived tokenization.
+- The strongest signal comes from MoE over tokenization/view experts, not from one global Transformer view.
+- This is now the best independent Transformer branch, but drift is larger than previous pruned-state branches, so it should be treated as breakthrough evidence before submission packaging.
+
 ## Fixed consensus target-map follow-up
 
 Script: `scripts/train_consensus_pruned_state_decoder.py`
