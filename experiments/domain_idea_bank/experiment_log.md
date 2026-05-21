@@ -1069,3 +1069,73 @@ The target map is updated:
 - S2: sleep intrusion/coverage episodes.
 - S4: routine regularity/circadian phase break.
 - S1/S3: still open.
+
+## 2026-05-22 - Sleep-Onset Transition / Charging-Settle Probe
+
+### Scope
+
+Targeted the remaining S3 gap by moving from coarse sleep totals to the behavioral transition immediately before sleep onset. The hypothesis was that S3 is sensitive to whether the day cleanly settles into sleep: last phone/movement/bright-light timing, shutdown slope, prebed fragmentation, and charging/dark/still consensus.
+
+### Artifacts
+
+- Builder: `scripts/build_sleep_onset_transition_latents.py`
+- Pruned variant builder: `scripts/build_sleep_onset_transition_pruned_variants.py`
+- Best-additive builder: `scripts/build_sleep_onset_transition_plus_best_latents.py`
+- Full artifact: `artifacts/domain_sleep_onset_transition_v1.parquet`
+- Pruned artifacts:
+  - `artifacts/domain_sleep_onset_transition_last_event_latency_v1.parquet`
+  - `artifacts/domain_sleep_onset_transition_shutdown_slope_v1.parquet`
+  - `artifacts/domain_sleep_onset_transition_prebed_fragmentation_v1.parquet`
+  - `artifacts/domain_sleep_onset_transition_light_environment_transition_v1.parquet`
+  - `artifacts/domain_sleep_onset_transition_charging_settle_v1.parquet`
+  - `artifacts/domain_sleep_onset_transition_onset_consensus_v1.parquet`
+- Additive artifacts:
+  - `artifacts/domain_best_plus_sleep_onset_transition_charging_settle_v1.parquet`
+  - `artifacts/domain_best_plus_sleep_onset_transition_onset_consensus_v1.parquet`
+  - other `domain_best_plus_sleep_onset_transition_*_v1.parquet` slices
+- Probe reports:
+  - `outputs/domain_sleep_onset_transition_probe_v1/report.md`
+  - `outputs/domain_sleep_onset_transition_pruned_probe_v1/report.md`
+  - `outputs/domain_sleep_onset_transition_plus_best_probe_v1/report.md`
+- Nested/all-specialist diagnostics:
+  - `outputs/domain_all_specialists_plus_sleep_onset_transition_additive_probe_v1/report.json`
+  - `outputs/domain_all_specialists_plus_sleep_onset_transition_additive_nested_selection_v1/report.md`
+- Fixed hybrid decoder:
+  - `outputs/domain_hybrid_causal_chain_plus_s3_onset_transition_v1/report.md`
+
+### Result
+
+| experiment | avg OOF logloss | read |
+| --- | ---: | --- |
+| previous causal-chain fixed hybrid, with S3 on base | 0.614213 | Previous best broad diagnostic decoder. |
+| full sleep-onset-transition family | 0.623192 best remained base | Too broad; full block blurs the useful S3/S4 axes. |
+| pruned `sot_charging_settle` standalone | 0.624+ avg, S3 0.524789 | Narrow S3 hint beats base S3 0.525120. |
+| additive `best_plus_sot_charging_settle` | 0.621+ avg, S3 0.515386 | Strong S3 complement once attached to the best late-fusion latent. |
+| all-specialist nested selection | 0.619637 vs base 0.623192 | S3 selects sleep-onset charging in 4/5 folds; S4 onset-consensus is less stable. |
+| fixed hybrid with S3 replaced by charging-settle | 0.612828 | New best diagnostic decoder in this 300-idea/domain track. |
+
+Per-target change in the fixed hybrid:
+
+| target | previous | new | read |
+| --- | ---: | ---: | --- |
+| Q1 | 0.654835 | 0.654835 | unchanged causal-chain opportunity |
+| Q2 | 0.687527 | 0.687527 | unchanged energy recovery slope |
+| Q3 | 0.665238 | 0.665238 | unchanged causal-chain recovery |
+| S1 | 0.563862 | 0.563862 | unchanged causal-chain opportunity |
+| S2 | 0.568897 | 0.568897 | unchanged causal-chain opportunity |
+| S3 | 0.523927 | 0.514231 | new charging-settle transition signal |
+| S4 | 0.635204 | 0.635204 | unchanged causal-chain interactions |
+
+### Working Interpretation
+
+This is the first S3 signal that survives the "add to best latent, then fixed target map" test. The useful feature is not total prebed phone usage. It is narrower: whether the final pre-sleep state becomes dark/still/not-phone/charging, and whether that transition is fragmented.
+
+The target map is updated:
+
+- Q1: causal-chain sleep opportunity / pre-bed boundary state.
+- Q2: energy recovery slope / daytime restoration.
+- Q3: causal-chain recovery or mobility constriction state.
+- S1: causal-chain sleep opportunity.
+- S2: causal-chain sleep opportunity.
+- S3: sleep-onset charging/settling transition.
+- S4: causal-chain interactions, with onset-consensus as a secondary raw candidate.

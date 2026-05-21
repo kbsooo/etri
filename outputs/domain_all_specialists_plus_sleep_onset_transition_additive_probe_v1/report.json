@@ -1,0 +1,14 @@
+{
+  "inputs": [
+    "outputs/domain_digital_boundary_pruned_probe_v1/fold_target_losses.csv",
+    "outputs/domain_energy_fragmentation_pruned_probe_v1/fold_target_losses.csv",
+    "outputs/domain_mobility_constriction_probe_v1/fold_target_losses.csv",
+    "outputs/domain_digital_isolation_plus_best_probe_v1/fold_target_losses.csv",
+    "outputs/domain_causal_chain_plus_best_probe_v1/fold_target_losses.csv",
+    "outputs/domain_sleep_onset_transition_pruned_probe_v1/fold_target_losses.csv",
+    "outputs/domain_sleep_onset_transition_plus_best_probe_v1/fold_target_losses.csv"
+  ],
+  "missing": [],
+  "rows": 34965,
+  "sources": 999
+}

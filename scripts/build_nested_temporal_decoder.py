@@ -48,6 +48,34 @@ def parse_source(source: str) -> tuple[str, str, float, float]:
 
 
 def source_family(source: str) -> str:
+    if source.startswith("best_plus_sot_last_event_latency"):
+        return "best_plus_sleep_onset_latency"
+    if source.startswith("best_plus_sot_shutdown_slope"):
+        return "best_plus_sleep_onset_shutdown"
+    if source.startswith("best_plus_sot_prebed_fragmentation"):
+        return "best_plus_sleep_onset_fragmentation"
+    if source.startswith("best_plus_sot_light_environment_transition"):
+        return "best_plus_sleep_onset_environment"
+    if source.startswith("best_plus_sot_charging_settle"):
+        return "best_plus_sleep_onset_charging"
+    if source.startswith("best_plus_sot_onset_consensus"):
+        return "best_plus_sleep_onset_consensus"
+    if source.startswith("best_plus_sot_full"):
+        return "best_plus_sleep_onset_transition"
+    if source.startswith("sot_last_event_latency"):
+        return "sleep_onset_latency"
+    if source.startswith("sot_shutdown_slope"):
+        return "sleep_onset_shutdown"
+    if source.startswith("sot_prebed_fragmentation"):
+        return "sleep_onset_fragmentation"
+    if source.startswith("sot_light_environment_transition"):
+        return "sleep_onset_environment"
+    if source.startswith("sot_charging_settle"):
+        return "sleep_onset_charging"
+    if source.startswith("sot_onset_consensus"):
+        return "sleep_onset_consensus"
+    if source.startswith("sleep_onset_transition"):
+        return "sleep_onset_transition"
     if source.startswith("best_plus_cc_load"):
         return "best_plus_causal_chain_load"
     if source.startswith("best_plus_cc_arousal"):
