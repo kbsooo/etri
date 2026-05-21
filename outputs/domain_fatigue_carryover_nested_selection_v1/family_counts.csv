@@ -1,0 +1,12 @@
+target,source_family,size
+Q1,fatigue_carryover,3
+Q1,best_late_fusion,2
+Q2,best_late_fusion,5
+Q3,best_late_fusion,4
+Q3,fatigue_carryover,1
+S1,best_late_fusion,3
+S1,fatigue_carryover,2
+S2,best_late_fusion,5
+S3,best_late_fusion,5
+S4,best_late_fusion,3
+S4,fatigue_carryover,2

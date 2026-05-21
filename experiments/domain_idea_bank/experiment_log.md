@@ -564,3 +564,55 @@ The current best diagnostic target map is now:
 - S2: sleep intrusion/coverage episodes.
 - S4: routine regularity/circadian phase break.
 - Q1/S1/S3: still no strong stable domain path.
+
+## 2026-05-21 - Fatigue Carryover and Mobility Constriction
+
+### Scope
+
+Built two additional 300-idea feature families:
+
+- `fatigue_carryover`: wake-anchored recovery, wake+12h fatigue accumulation, sleep debt ledger, screen fatigue trend, and weekend transition carry-over.
+- `mobility_constriction`: home-stay deviation, location entropy, novelty, passive/active mobility balance, stationary-home load, and constrained-day markers.
+
+### Artifacts
+
+- Fatigue builder: `scripts/build_fatigue_carryover_latents.py`
+- Fatigue artifact: `artifacts/domain_fatigue_carryover_v1.parquet`
+- Fatigue probe/nested reports:
+  - `outputs/domain_fatigue_carryover_probe_v1/report.md`
+  - `outputs/domain_fatigue_carryover_nested_selection_v1/report.md`
+- Mobility builder: `scripts/build_mobility_constriction_latents.py`
+- Mobility artifact: `artifacts/domain_mobility_constriction_v1.parquet`
+- Mobility probe/nested reports:
+  - `outputs/domain_mobility_constriction_probe_v1/report.md`
+  - `outputs/domain_mobility_constriction_nested_selection_v1/report.md`
+- Hybrid decoder: `outputs/domain_hybrid_q2_proto_q3_mobility_s2_sleep_s4_routine_decoder_v1/report.md`
+
+### Result
+
+| experiment | avg OOF logloss | read |
+| --- | ---: | --- |
+| previous hybrid: Q2 proto + Q3 trajectory + S2 sleep + S4 routine | 0.620093 | Previous best diagnostic decoder. |
+| fatigue_carryover global probe | 0.622961 best remained base | Raw Q1/S1/S4 hints did not survive nested selection. |
+| mobility_constriction global probe | 0.622961 best remained base | Global append hurts, but Q3 is strong target-wise. |
+| new hybrid: Q2 proto + Q3 mobility + S2 sleep + S4 routine | 0.619947 | New best diagnostic decoder in this track. |
+
+Nested target reads:
+
+| family | useful nested target | read |
+| --- | --- | --- |
+| fatigue_carryover | none | Q1 raw gain was selection noise; held-fold Q1 worsened by +0.0063. |
+| mobility_constriction | Q3 | Selected in all five folds; nested Q3 improves by -0.0075 vs base and beats trajectory Q3 in the hybrid. |
+| mobility_constriction | Q1/S2/S3/S4 | Apparent switches are unstable or harmful; keep base/current specialists. |
+
+### Working Interpretation
+
+The mobility result changes the target map. Q3 is no longer best represented as generic latent trajectory; it is better read as a location/mobility constriction state: home-stay, place entropy, novelty, passive/active movement, and constrained-day markers. This fits the domain interpretation of Q3-like stress/subjective state better than pure temporal trajectory.
+
+The current best diagnostic target map is now:
+
+- Q2: trajectory prototype/state membership.
+- Q3: mobility constriction/location entropy state.
+- S2: sleep intrusion/coverage episodes.
+- S4: routine regularity/circadian phase break.
+- Q1/S1/S3: still no strong stable domain path.

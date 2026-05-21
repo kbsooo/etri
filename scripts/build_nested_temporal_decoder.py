@@ -48,6 +48,10 @@ def parse_source(source: str) -> tuple[str, str, float, float]:
 
 
 def source_family(source: str) -> str:
+    if source.startswith("best_plus_mobility_constriction") or source.startswith("mobility_constriction"):
+        return "mobility_constriction"
+    if source.startswith("best_plus_fatigue_carryover") or source.startswith("fatigue_carryover"):
+        return "fatigue_carryover"
     if source.startswith("best_plus_routine_digital"):
         return "routine_digital"
     if source.startswith("best_plus_digital_sleep") or source.startswith("digital_sleep"):

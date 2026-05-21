@@ -1,0 +1,124 @@
+{
+  "fold_losses": "outputs/domain_mobility_constriction_probe_v1/fold_target_losses.csv",
+  "overall": {
+    "base_avg": 0.623191621386494,
+    "nested_selected_avg": 0.6254330809205098,
+    "delta_vs_base": 0.002241459534015625,
+    "n_folds": 5,
+    "base_source": "best__absolute_plus_deviation__c0.3_b0.2",
+    "min_train_delta": 0.003
+  },
+  "target_summary": [
+    {
+      "target": "Q1",
+      "selected_loss": 0.6736374195840646,
+      "base_loss": 0.6691817177735858,
+      "delta_vs_base": 0.004455701810478852,
+      "most_common_family": "best_late_fusion"
+    },
+    {
+      "target": "Q2",
+      "selected_loss": 0.7032071861061896,
+      "base_loss": 0.7016929759704349,
+      "delta_vs_base": 0.0015142101357547232,
+      "most_common_family": "best_late_fusion"
+    },
+    {
+      "target": "Q3",
+      "selected_loss": 0.666367797135553,
+      "base_loss": 0.6738888587098408,
+      "delta_vs_base": -0.007521061574287824,
+      "most_common_family": "mobility_constriction"
+    },
+    {
+      "target": "S1",
+      "selected_loss": 0.5708954587854569,
+      "base_loss": 0.5708954587854569,
+      "delta_vs_base": 0.0,
+      "most_common_family": "best_late_fusion"
+    },
+    {
+      "target": "S2",
+      "selected_loss": 0.5883234719158263,
+      "base_loss": 0.5783156553303062,
+      "delta_vs_base": 0.010007816585520168,
+      "most_common_family": "best_late_fusion"
+    },
+    {
+      "target": "S3",
+      "selected_loss": 0.5308000450166735,
+      "base_loss": 0.5251202551583003,
+      "delta_vs_base": 0.005679789858373296,
+      "most_common_family": "best_late_fusion"
+    },
+    {
+      "target": "S4",
+      "selected_loss": 0.6448001878998044,
+      "base_loss": 0.6432464279775342,
+      "delta_vs_base": 0.0015537599222701592,
+      "most_common_family": "best_late_fusion"
+    }
+  ],
+  "family_counts": [
+    {
+      "target": "Q1",
+      "source_family": "best_late_fusion",
+      "size": 3
+    },
+    {
+      "target": "Q1",
+      "source_family": "mobility_constriction",
+      "size": 2
+    },
+    {
+      "target": "Q2",
+      "source_family": "best_late_fusion",
+      "size": 4
+    },
+    {
+      "target": "Q2",
+      "source_family": "mobility_constriction",
+      "size": 1
+    },
+    {
+      "target": "Q3",
+      "source_family": "mobility_constriction",
+      "size": 5
+    },
+    {
+      "target": "S1",
+      "source_family": "best_late_fusion",
+      "size": 5
+    },
+    {
+      "target": "S2",
+      "source_family": "best_late_fusion",
+      "size": 3
+    },
+    {
+      "target": "S2",
+      "source_family": "mobility_constriction",
+      "size": 2
+    },
+    {
+      "target": "S3",
+      "source_family": "best_late_fusion",
+      "size": 4
+    },
+    {
+      "target": "S3",
+      "source_family": "mobility_constriction",
+      "size": 1
+    },
+    {
+      "target": "S4",
+      "source_family": "best_late_fusion",
+      "size": 4
+    },
+    {
+      "target": "S4",
+      "source_family": "mobility_constriction",
+      "size": 1
+    }
+  ]
+}

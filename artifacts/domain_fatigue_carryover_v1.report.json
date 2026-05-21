@@ -1,0 +1,33 @@
+{
+  "output": "artifacts/domain_fatigue_carryover_v1.parquet",
+  "rows": 700,
+  "feature_count": 380,
+  "windows": {
+    "recovery4h": [
+      "wake",
+      0,
+      240
+    ],
+    "postwake10h": [
+      "wake",
+      0,
+      600
+    ],
+    "fatigue_late": [
+      "wake",
+      720,
+      null
+    ],
+    "prebed4h": [
+      "onset",
+      -240,
+      0
+    ]
+  },
+  "roll_windows": [
+    3,
+    7,
+    14,
+    28
+  ]
+}

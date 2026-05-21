@@ -249,14 +249,16 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Sleep-window intrusion features around sleep onset/wake time add only a narrow S2 path. Q1/S4 apparent probe gains fail nested selection, but S2 survives weakly. The hybrid `Q2=trajectory_proto, Q3=trajectory, S2=sleep_intrusion, S4=event_rhythm, others=base` reaches OOF `0.620668`.
 - Digital phone/screen/app usage is a strong raw signal: `best_plus_digital_sleep` reaches probe OOF `0.621977`, and S2 target-only improves by about `-0.0104` vs the late-fusion base. But nested target selection shows it is redundant or weaker than current Q2/Q3/S2 specialist paths and harms S3 if appended globally.
 - Routine regularity gives the cleanest new target path in this cycle. Replacing S4 event rhythm with routine/circadian regularity improves the hybrid to OOF `0.620093`, the current best diagnostic decoder in the 300-idea track.
+- Fatigue carry-over features were a useful negative result. Wake-anchored recovery, sleep debt, and screen fatigue produced raw Q1/S1/S4 hints, but nested selection showed the Q1 gain was selection noise and harmed held folds.
+- Mobility constriction/location features created a cleaner Q3 path. Replacing Q3 trajectory with mobility constriction improves the hybrid to OOF `0.619947`, the current best diagnostic decoder in the 300-idea track.
 
 ## Next 3
 
-1. Convert the Q2/Q3 trajectory signal into an encoder objective: train the channel-patch encoder to preserve/predict recent-to-future latent path movement.
-   - Success criterion: retain the nested Q2/Q3 gain while improving global frozen-probe OOF beyond `0.621507` equivalent.
+1. Convert the Q2 trajectory and Q3 mobility-constriction signals into encoder objectives.
+   - Success criterion: retain Q2 prototype and Q3 mobility gains while improving global frozen-probe OOF beyond the current hybrid-equivalent `0.619947`.
 
-2. Split the Q-family path explicitly: Q2 should read prototype/state membership, while Q3 should read continuous trajectory deviation.
+2. Split the Q-family path explicitly: Q2 should read trajectory prototype/state membership, while Q3 should read mobility/location-constriction state.
    - Success criterion: find a shared encoder objective that supports both readouts without post-hoc target-specific feature dumping.
 
 3. Continue the 300-idea manifest sweep with Q1/S1/S3-specific feature families, because Q2/Q3/S2/S4 now each have a narrow target path.
-   - Success criterion: find at least one Q1, S1, or S3 path that survives nested selection and complements the current `0.620093` hybrid without reintroducing broad drift. Keep digital phone/app signals as a protected expert family rather than mixing them globally.
+   - Success criterion: find at least one Q1, S1, or S3 path that survives nested selection and complements the current `0.619947` hybrid without reintroducing broad drift. Keep digital phone/app signals as a protected expert family rather than mixing them globally.

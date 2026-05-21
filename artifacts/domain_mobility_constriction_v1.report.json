@@ -1,0 +1,5 @@
+{
+  "output": "artifacts/domain_mobility_constriction_v1.parquet",
+  "rows": 700,
+  "feature_count": 213
+}
