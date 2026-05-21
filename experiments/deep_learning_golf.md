@@ -141,3 +141,76 @@ Next:
 1. Expand latent golf to include `only_event`, `only_rhythm`, and v2 channel-patch views.
 2. Keep the global/nested discipline: do not trust full-OOF targetwise selection.
 3. Build tiny sequence encoders only if they can beat this fixed latent floor (`0.625415` global, `0.625650` nested targetwise).
+
+## v2 Expanded Latent Golf Views
+
+Script: `scripts/train_latent_deep_learning_golf.py`
+
+Output: `outputs/latent_deep_learning_golf_v2_expanded_views/`
+
+Nested stress: `outputs/nested_latent_deep_learning_golf_v2_expanded_views/`
+
+Input:
+
+- v1 channel-patch views:
+  - `full`
+  - `no_sleep`
+  - `only_cross_modal`
+  - `only_event`
+  - `only_rhythm`
+- v2 channel-patch views:
+  - `full`
+  - `no_sleep`
+  - `only_cross_modal`
+  - `only_event`
+- Fold-local subject-relative variants:
+  - `deviation`
+  - `absolute_plus_deviation`
+- Tiny decoders:
+  - linear
+  - low-rank rank 1-2
+  - tiny MLP hidden 1-2
+
+Result:
+
+| candidate | OOF logloss | gain vs subject prior | drift vs v83 | note |
+| --- | ---: | ---: | ---: | --- |
+| subject_prior | 0.627654 | 0.000000 | 0.061947 | baseline |
+| best global expanded latent decoder | 0.624475 | 0.003179 | 0.076352 | `only_event__absolute_plus_deviation__lowrank_r2_k4_wd0.1_b0.2` |
+| full-OOF targetwise | 0.621446 | 0.006208 | 0.073280 | optimistic |
+| nested targetwise | 0.626385 | 0.001269 | n/a | targetwise selection mostly discounts away |
+
+Targetwise full-OOF gain vs subject prior:
+
+| target | gain |
+| --- | ---: |
+| Q1 | 0.004454 |
+| Q2 | 0.018569 |
+| Q3 | 0.013833 |
+| S1 | 0.002644 |
+| S2 | 0.001544 |
+| S3 | 0.001498 |
+| S4 | 0.000913 |
+
+Top fixed global sources:
+
+| source | OOF logloss | drift vs v83 | note |
+| --- | ---: | ---: | --- |
+| `only_event__absolute_plus_deviation__lowrank_r2_k4_wd0.1_b0.2` | 0.624475 | 0.076352 | best fixed global |
+| `only_event__absolute_plus_deviation__linear_k4_b0.2` | 0.624517 | 0.075763 | nearly tied, no bottleneck nonlinearity needed |
+| `only_rhythm__deviation__lowrank_r2_k4_wd0.1_b0.2` | 0.624903 | 0.077759 | rhythm-only remains useful |
+| `only_cross_modal__deviation__linear_k4_b0.2` | 0.625415 | 0.075137 | previous v1 winner |
+
+Nested interpretation:
+
+- Expanded views improve the fixed global latent floor from `0.625415` to `0.624475`.
+- The full-OOF targetwise score (`0.621446`) is mostly selection optimism; nested targetwise falls to `0.626385`.
+- Therefore the useful carry-forward signal is not target-specific source picking. It is the fixed `only_event + absolute_plus_deviation + low-rank rank 2 / k=4` decoder.
+- `only_event` becoming the best global source is important. It says small event/rhythm/state changes are more label-readable than the full fused latent when the decoder is forced to stay tiny.
+- The decoder remains extremely small: mean params are 29 for the best global candidate, which fits the "hidden dim may still be too big" hypothesis.
+
+Decision:
+
+- Treat `0.624475` as the new fixed latent golf floor.
+- Do not chase the full targetwise `0.621446` without nested or pre-fixed target rules.
+- Next branch should train tiny sequence encoders from token grids with the same small-decoder discipline. A new tiny GRU/Transformer only matters if its fixed global or nested score beats `0.624475` without creating uncontrolled drift.

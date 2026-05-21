@@ -1,0 +1,167 @@
+{
+  "input_dir": "outputs/latent_deep_learning_golf_v2_expanded_views",
+  "subject_prior_avg_log_loss": 0.6276539587598199,
+  "global_best_source": "only_event__absolute_plus_deviation__lowrank_r2_k4_wd0.1_b0.2",
+  "global_best_avg_log_loss": 0.6244750835249407,
+  "full_targetwise_avg_log_loss": 0.6214461753565298,
+  "full_targetwise_per_target": {
+    "Q1": 0.6687252322091134,
+    "Q2": 0.6864414362088276,
+    "Q3": 0.6639373434940025,
+    "S1": 0.573058139600748,
+    "S2": 0.5783124400846231,
+    "S3": 0.5332898215165592,
+    "S4": 0.646358814381835
+  },
+  "nested_targetwise_avg_log_loss": 0.6263852675032705,
+  "nested_targetwise_per_target": {
+    "Q1": 0.6734423894167737,
+    "Q2": 0.6951829805693494,
+    "Q3": 0.6675415725328894,
+    "S1": 0.5765728295919688,
+    "S2": 0.5834346001204096,
+    "S3": 0.538139235464986,
+    "S4": 0.650383264826517
+  },
+  "selection_optimism": 0.004939092146740709,
+  "nested_gain_vs_subject_prior": 0.0012686912565493813,
+  "full_gain_vs_subject_prior": 0.00620778340329009,
+  "global_gain_vs_subject_prior": 0.0031788752348791416,
+  "selection_counts": [
+    {
+      "target": "Q1",
+      "source": "only_cross_modal__absolute_plus_deviation__mlp_h2_k4_wd0.1_b0.2",
+      "count": 2
+    },
+    {
+      "target": "Q1",
+      "source": "full__absolute_plus_deviation__lowrank_r2_k4_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "Q1",
+      "source": "full__absolute_plus_deviation__mlp_h1_k4_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "Q1",
+      "source": "only_rhythm__deviation__mlp_h2_k2_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "Q2",
+      "source": "no_sleep__deviation__linear_k4_b0.2",
+      "count": 3
+    },
+    {
+      "target": "Q2",
+      "source": "full__deviation__linear_k4_b0.2",
+      "count": 1
+    },
+    {
+      "target": "Q2",
+      "source": "no_sleep__deviation__mlp_h1_k2_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "Q3",
+      "source": "only_cross_modal__deviation__linear_k4_b0.2",
+      "count": 2
+    },
+    {
+      "target": "Q3",
+      "source": "only_event__deviation__linear_k2_b0.2",
+      "count": 2
+    },
+    {
+      "target": "Q3",
+      "source": "only_rhythm__deviation__lowrank_r2_k4_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S1",
+      "source": "only_event__absolute_plus_deviation__lowrank_r2_k4_wd0.1_b0.2",
+      "count": 2
+    },
+    {
+      "target": "S1",
+      "source": "only_cross_modal__deviation__linear_k4_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S1",
+      "source": "only_cross_modal__deviation__linear_k4_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S1",
+      "source": "only_event__absolute_plus_deviation__lowrank_r2_k1_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "full__absolute_plus_deviation__lowrank_r2_k1_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "only_event__absolute_plus_deviation__lowrank_r2_k4_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "only_event__absolute_plus_deviation__mlp_h1_k2_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "only_event__absolute_plus_deviation__mlp_h2_k4_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "only_rhythm__deviation__lowrank_r2_k4_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S3",
+      "source": "only_event__absolute_plus_deviation__lowrank_r1_k2_wd0.1_b0.1",
+      "count": 2
+    },
+    {
+      "target": "S3",
+      "source": "only_event__absolute_plus_deviation__mlp_h1_k2_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S3",
+      "source": "only_event__absolute_plus_deviation__mlp_h1_k4_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S3",
+      "source": "only_event__absolute_plus_deviation__mlp_h2_k4_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "source": "full__deviation__linear_k4_b0.2",
+      "count": 2
+    },
+    {
+      "target": "S4",
+      "source": "full__absolute_plus_deviation__linear_k4_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "source": "full__deviation__linear_k4_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "source": "full__deviation__mlp_h2_k2_wd0.1_b0.1",
+      "count": 1
+    }
+  ]
+}
