@@ -1,0 +1,80 @@
+{
+  "avg_log_loss": 0.617372320176727,
+  "per_target": {
+    "Q1": 0.6680642803638787,
+    "Q2": 0.6696028925518992,
+    "Q3": 0.6662349528347282,
+    "S1": 0.5721809719824846,
+    "S2": 0.5785322470692182,
+    "S3": 0.5210820768379555,
+    "S4": 0.6459088195969246
+  },
+  "selected": [
+    {
+      "target": "Q1",
+      "source": "full__targetwise",
+      "target_log_loss": 0.6680642803638787
+    },
+    {
+      "target": "Q2",
+      "source": "no_sleep__targetwise",
+      "target_log_loss": 0.6696028925518992
+    },
+    {
+      "target": "Q3",
+      "source": "only_rhythm__targetwise",
+      "target_log_loss": 0.6662349528347282
+    },
+    {
+      "target": "S1",
+      "source": "full__targetwise",
+      "target_log_loss": 0.5721809719824846
+    },
+    {
+      "target": "S2",
+      "source": "only_rhythm__targetwise",
+      "target_log_loss": 0.5785322470692182
+    },
+    {
+      "target": "S3",
+      "source": "only_cross_modal__targetwise",
+      "target_log_loss": 0.5210820768379555
+    },
+    {
+      "target": "S4",
+      "source": "no_gps__targetwise",
+      "target_log_loss": 0.6459088195969246
+    }
+  ],
+  "drift_vs_reference": {
+    "reference": "outputs/v83_repaired_v80/submission_v83_gq015_gs010.csv",
+    "mean_abs_drift": 0.07556072842747044,
+    "max_abs_drift": 0.44011398730897355,
+    "corr": 0.827871763366201,
+    "target_mean": {
+      "Q1": 0.5028031236104963,
+      "Q2": 0.5579185708322147,
+      "Q3": 0.5925354422609925,
+      "S1": 0.6855832350894289,
+      "S2": 0.6542336110685856,
+      "S3": 0.6636523293019009,
+      "S4": 0.5617942765081976
+    },
+    "target_mean_shift": {
+      "Q1": -0.00756507329145976,
+      "Q2": -0.011399744224245478,
+      "Q3": -0.01945131940020586,
+      "S1": 0.00297084787832946,
+      "S2": 0.01030836241458559,
+      "S3": 0.005011508404945239,
+      "S4": 0.008780354485510131
+    },
+    "panel_mean_abs_drift": {
+      "early": 0.06092888148162134,
+      "mid": 0.07765626985123178,
+      "late": 0.08762992267908731
+    }
+  },
+  "n_sources": 16,
+  "note": "Full-OOF target-wise view selection. Use as signal discovery; nested selection is required before treating it as honest validation."
+}

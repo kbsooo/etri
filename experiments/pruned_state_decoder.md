@@ -165,6 +165,44 @@ Decision:
   - S2/S3 should use a conservative subject-prior gate unless their residual source wins consistently.
   - S4 should compare `no_temporal_delta` vs `only_cross_modal` under fixed selection.
 
+## Hourly Transformer Encoder reset
+
+Script: `scripts/train_hourly_transformer_encoder.py`
+
+Outputs:
+
+- `outputs/hourly_transformer_encoder_v1/`
+- `outputs/hourly_transformer_encoder_v1_extra/`
+- `outputs/hourly_transformer_cross_view_diagnostic_v1/`
+
+This branch resets the encoder representation around a true sequence shape:
+
+```text
+subject-day -> 24 hourly tokens -> masked-token Transformer SSL -> day embedding -> fold-safe label probe
+```
+
+The Transformer uses all 700 provided train/sample days without labels for masked reconstruction, then evaluates the resulting day embedding on the 450 labeled rows. MPS is used when available.
+
+Results:
+
+- Best initial single view: `no_sleep`, OOF `0.620859`.
+- Best extra single view: `only_rhythm`, OOF `0.619825`.
+- Full-OOF cross-view target diagnostic: `0.617372`, with drift vs v83 `0.075561`.
+
+Feature-family signal:
+
+- `only_rhythm` is the best single Transformer latent, suggesting the sequence model reads daily rhythm better than the full mixed feature space.
+- `only_cross_modal` is clearly target-specific: it gives the best S3 loss (`0.521082`) even though its global score is weaker.
+- `no_sleep` is useful for Q2 (`0.669603`) and beats the full view globally.
+- `full` still wins Q1/S1 inside the optimistic cross-view selector, so not all raw breadth is harmful.
+- `no_gps` gives the best S4 in the cross-view diagnostic.
+
+Decision:
+
+- Do not treat `0.617372` as honest validation because the cross-view target selector is full-OOF and therefore optimistic.
+- Keep the Transformer encoder branch alive. It independently reaches the same range as the pruned-state decoder scaffold and exposes clearer modality/target specialization than the flat tabular encoder.
+- Next step should be nested view selection or a multi-view Transformer decoder that learns target-specific attention over rhythm/cross-modal/no-sleep/full views without using v76/v83/v85 as teachers.
+
 ## Fixed consensus target-map follow-up
 
 Script: `scripts/train_consensus_pruned_state_decoder.py`
