@@ -228,6 +228,8 @@ def build_sequence_tensor(
     spec: ViewSpec,
     tokens_per_day: int,
     add_deviation_features: bool,
+    pool_len: int,
+    pool_stats: str,
 ) -> tuple[np.ndarray, list[str], dict[str, float]]:
     base_cols = numeric_feature_columns(hourly)
     selected_base = select_columns(base_cols, spec)
@@ -286,14 +288,35 @@ def build_sequence_tensor(
     arr = feature_frame.to_numpy(np.float32)
     arr = np.nan_to_num(arr, nan=0.0, posinf=0.0, neginf=0.0)
     arr = np.clip(arr, -8.0, 8.0).reshape(len(keys), tokens_per_day, feature_frame.shape[1])
+    feature_names = feature_frame.columns.tolist()
+    effective_tokens = tokens_per_day
+    if pool_len > 1:
+        if tokens_per_day % pool_len != 0:
+            raise ValueError(f"tokens_per_day must be divisible by pool_len: {tokens_per_day} % {pool_len}")
+        pooled = arr.reshape(len(keys), tokens_per_day // pool_len, pool_len, arr.shape[2])
+        mean = pooled.mean(axis=2)
+        if pool_stats == "mean":
+            arr = mean
+            feature_names = [f"poolmean__{name}" for name in feature_names]
+        elif pool_stats == "mean_std":
+            std = pooled.std(axis=2)
+            arr = np.concatenate([mean, std], axis=2)
+            feature_names = [f"poolmean__{name}" for name in feature_names] + [f"poolstd__{name}" for name in feature_names]
+        else:
+            raise ValueError(f"Unknown pool_stats: {pool_stats}")
+        effective_tokens = tokens_per_day // pool_len
     diagnostics = {
         "n_days": float(len(keys)),
         "n_base_features": float(len(selected_base)),
-        "n_token_features": float(feature_frame.shape[1]),
+        "n_token_features": float(arr.shape[2]),
+        "raw_tokens_per_day": float(tokens_per_day),
+        "effective_tokens_per_day": float(effective_tokens),
+        "pool_len": float(pool_len),
+        "pool_stats": pool_stats,
         "mean_missing_fraction": float(aux["missing__token_frac"].mean()),
         "add_deviation_features": float(add_deviation_features),
     }
-    return arr, feature_frame.columns.tolist(), diagnostics
+    return arr, feature_names, diagnostics
 
 
 def train_ssl_encoder(
@@ -548,6 +571,8 @@ def run(args: argparse.Namespace) -> None:
             specs[view_name],
             tokens_per_day=args.tokens_per_day,
             add_deviation_features=args.add_deviation_features,
+            pool_len=args.pool_len,
+            pool_stats=args.pool_stats,
         )
         z_all, loss_history, encoder_params = train_ssl_encoder(x, args, device)
         z_train = z_all[: len(train)]
@@ -614,7 +639,9 @@ def run(args: argparse.Namespace) -> None:
             f"- Encoder type: `{args.encoder_type}`",
             f"- Encoder params: `{encoder_params}`",
             f"- Days: `{int(seq_diag['n_days'])}`",
-            f"- Token shape: `{args.tokens_per_day} x {len(feature_names)}`",
+            f"- Token shape: `{int(seq_diag['effective_tokens_per_day'])} x {len(feature_names)}`",
+            f"- Raw tokens per day: `{int(seq_diag['raw_tokens_per_day'])}`",
+            f"- Pooling: `len={int(seq_diag['pool_len'])}`, stats=`{seq_diag['pool_stats']}`",
             f"- Base hourly features selected: `{int(seq_diag['n_base_features'])}`",
             f"- Mean token missing fraction: `{seq_diag['mean_missing_fraction']:.6f}`",
             f"- Device: `{device}`",
@@ -720,6 +747,8 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--token-table-path", default="")
     parser.add_argument("--token-col", default="hod")
     parser.add_argument("--tokens-per-day", type=int, default=24)
+    parser.add_argument("--pool-len", type=int, default=1)
+    parser.add_argument("--pool-stats", choices=["mean", "mean_std"], default="mean")
     parser.add_argument("--coherence-path", default="artifacts/09_coherence_hourly.parquet")
     parser.add_argument("--hrv-path", default="artifacts/07_hrv_hourly.parquet")
     parser.add_argument("--ambience-path", default="artifacts/08_ambience_hourly_buckets.parquet")

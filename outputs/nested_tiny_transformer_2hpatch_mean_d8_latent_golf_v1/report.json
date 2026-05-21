@@ -1,0 +1,142 @@
+{
+  "input_dir": "outputs/tiny_transformer_2hpatch_mean_d8_latent_golf_v1",
+  "subject_prior_avg_log_loss": 0.6276539587598199,
+  "global_best_source": "only_cross_modal__absolute__lowrank_r2_k4_wd0.1_b0.1",
+  "global_best_avg_log_loss": 0.6265073705194303,
+  "full_targetwise_avg_log_loss": 0.6235965614186616,
+  "full_targetwise_per_target": {
+    "Q1": 0.6704601557472011,
+    "Q2": 0.6891476885539826,
+    "Q3": 0.6717835679837898,
+    "S1": 0.5752969931152113,
+    "S2": 0.5794734724172438,
+    "S3": 0.535110083953454,
+    "S4": 0.6439039681597486
+  },
+  "nested_targetwise_avg_log_loss": 0.6259216013869278,
+  "nested_targetwise_per_target": {
+    "Q1": 0.6733707289544688,
+    "Q2": 0.6891476885539826,
+    "Q3": 0.6731404065729542,
+    "S1": 0.5779547363902166,
+    "S2": 0.5836108992883237,
+    "S3": 0.5383094628638624,
+    "S4": 0.6459172870846861
+  },
+  "selection_optimism": 0.0023250399682661627,
+  "nested_gain_vs_subject_prior": 0.0017323573728921238,
+  "full_gain_vs_subject_prior": 0.004057397341158286,
+  "global_gain_vs_subject_prior": 0.001146588240389601,
+  "selection_counts": [
+    {
+      "target": "Q1",
+      "source": "only_event__absolute_plus_deviation__mlp_h1_k4_wd0.1_b0.2",
+      "count": 3
+    },
+    {
+      "target": "Q1",
+      "source": "no_sleep__absolute__lowrank_r2_k4_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "Q1",
+      "source": "only_cross_modal__absolute_plus_deviation__mlp_h1_k1_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "Q2",
+      "source": "only_cross_modal__deviation__linear_k4_b0.2",
+      "count": 5
+    },
+    {
+      "target": "Q3",
+      "source": "only_rhythm__absolute__linear_k2_b0.2",
+      "count": 3
+    },
+    {
+      "target": "Q3",
+      "source": "no_sleep__absolute__lowrank_r2_k2_wd0.1_b0.2",
+      "count": 2
+    },
+    {
+      "target": "S1",
+      "source": "only_event__deviation__mlp_h1_k4_wd0.1_b0.1",
+      "count": 2
+    },
+    {
+      "target": "S1",
+      "source": "only_rhythm__absolute__linear_k2_b0.1",
+      "count": 2
+    },
+    {
+      "target": "S1",
+      "source": "only_rhythm__deviation__linear_k2_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "only_cross_modal__absolute__linear_k4_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "only_cross_modal__absolute__lowrank_r2_k4_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "only_rhythm__absolute__lowrank_r2_k1_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "only_rhythm__absolute_plus_deviation__mlp_h2_k4_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "only_rhythm__deviation__lowrank_r2_k1_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S3",
+      "source": "only_cross_modal__absolute__lowrank_r1_k4_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S3",
+      "source": "only_cross_modal__absolute_plus_deviation__lowrank_r1_k4_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S3",
+      "source": "only_cross_modal__absolute_plus_deviation__mlp_h1_k4_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S3",
+      "source": "only_cross_modal__absolute_plus_deviation__mlp_h2_k4_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S3",
+      "source": "only_event__absolute_plus_deviation__mlp_h2_k4_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "source": "no_sleep__deviation__lowrank_r2_k1_wd0.1_b0.2",
+      "count": 3
+    },
+    {
+      "target": "S4",
+      "source": "no_sleep__deviation__lowrank_r2_k1_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "source": "only_cross_modal__absolute_plus_deviation__lowrank_r2_k4_wd0.1_b0.2",
+      "count": 1
+    }
+  ]
+}

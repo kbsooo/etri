@@ -382,3 +382,52 @@ Decision:
 - Reject 1-hour aggregate as the main tiny sequence path.
 - Keep 30-minute event-hybrid tokens for Transformer/GRU work.
 - Next useful data-structure test is not more hidden size; it is 30-minute tokens with explicit 2-hour patch/state pooling or fixed target rules derived from nested counts.
+
+## v1 Two-Hour Patch Pooling over 30-Minute Tokens
+
+Script update:
+
+- `scripts/train_hourly_transformer_encoder.py` now supports:
+  - `--pool-len`
+  - `--pool-stats mean|mean_std`
+  - `--encoder-type transformer|gru`
+
+Outputs:
+
+- Mean patch:
+  - `outputs/tiny_transformer_2hpatch_mean_d8_v1/`
+  - `outputs/tiny_transformer_2hpatch_mean_d8_latent_golf_v1/`
+  - `outputs/nested_tiny_transformer_2hpatch_mean_d8_latent_golf_v1/`
+- Mean+std patch:
+  - `outputs/tiny_transformer_2hpatch_meanstd_d8_v1/`
+  - `outputs/tiny_transformer_2hpatch_meanstd_d8_latent_golf_v1/`
+  - `outputs/nested_tiny_transformer_2hpatch_meanstd_d8_latent_golf_v1/`
+
+Input:
+
+- Start from the 30-minute event-hybrid token grid.
+- Pool every 4 consecutive 30-minute tokens into one 2-hour patch.
+- Keep four views: `only_event`, `only_rhythm`, `only_cross_modal`, `no_sleep`.
+- Use tiny Transformer d8, 1 layer, 1 head.
+
+Comparison:
+
+| tokenization | effective tokens | patch stats | encoder probe best | encoder best view | golf fixed global | full-OOF targetwise | nested targetwise | nested gain vs subject prior | selection optimism |
+| --- | ---: | --- | ---: | --- | ---: | ---: | ---: | ---: | ---: |
+| 30-minute original | 48 | none | 0.622084 | `only_cross_modal` | 0.626371 | 0.623600 | 0.625441 | 0.002213 | 0.001841 |
+| 2-hour patch | 12 | mean | 0.622174 | `only_cross_modal` | 0.626507 | 0.623550 | 0.625922 | 0.001732 | 0.002325 |
+| 2-hour patch | 12 | mean+std | 0.622773 | `only_cross_modal` | 0.626070 | 0.623365 | 0.626027 | 0.001627 | 0.002580 |
+| 1-hour aggregate | 24 | prebuilt hourly | 0.623310 | `only_rhythm` | 0.626613 | 0.623951 | 0.626537 | 0.001117 | 0.002392 |
+
+Interpretation:
+
+- 2-hour patching is better than the 1-hour aggregate, so preserving the 30-minute event-hybrid source before pooling matters.
+- But 2-hour patching still does not beat the raw 30-minute tiny Transformer d8 nested score.
+- Mean+std patching improves fixed global (`0.626070`) versus mean-only (`0.626507`), but nested validation is slightly worse. The extra within-patch variation is useful for full-OOF fitting, not robust enough yet.
+- The best view remains `only_cross_modal` across 30-minute and 2-hour patch variants. This is a stable data-structure clue: cross-modal transition state is more important than full feature fusion.
+
+Decision:
+
+- Keep raw 30-minute event-hybrid tokens as the current tiny sequence default.
+- Treat 2-hour pooling as a useful compression diagnostic, not the best encoder input.
+- Do not move to coarser time grids. If patching is revisited, use nested-fixed target rules instead of full targetwise selection.
