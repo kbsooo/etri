@@ -218,3 +218,95 @@ feature-family-pruned Encoder
   - S2/S3 gating, because nested selection often fell back to subject prior but the fixed signal map still gains there.
   - Q-family calibration, because Q1/Q2/Q3 remain high-loss targets.
   - public-coordinate calibration, because v82/v85 showed that local OOF gains can be destroyed by panel/test distribution mismatch.
+
+## Meta-gated consensus follow-up
+
+Script: `scripts/train_meta_gated_consensus_decoder.py`
+
+Output: `outputs/meta_gated_consensus_decoder_v1/`
+
+This experiment kept the fixed `consensus_signal` sources but tested whether a small fold-safe meta gate could learn how much to trust the state source over the subject prior. The meta models were trained only from inner-OOF source predictions inside each outer fold.
+
+Results:
+
+- `shrink_w100`: `0.620577`
+- `shrink_w75`: `0.621354`
+- `shrink_w50`: `0.622751`
+- `shrink_w25`: `0.624771`
+- `meta_logreg`: `0.632022`
+- `meta_residual_ridge`: `0.687088`
+
+Interpretation:
+
+- The learned gate is a negative result. With only about 450 labels, a second-stage meta decoder over source/base deltas overfits badly.
+- Simple shrinkage is also not helpful; the original fixed consensus source (`w100`) remains best.
+- This argues against spending more effort on tiny supervised gates at this stage. The stronger path is better encoder family pruning and better intermediate state definitions, not a learned meta gate on top of weak source predictions.
+
+## Extended feature-family combination pruning
+
+Script: `scripts/train_extended_family_pruning_decoder.py`
+
+Output: `outputs/extended_family_pruning_decoder_v1/`
+
+This experiment tested family combinations beyond one-family-only/drop ablations, including `rhythm+deviation`, `rhythm+missingness`, `drop_ratio+drop_rank`, `drop_ratio+drop_temporal_delta`, and related recipes.
+
+Results:
+
+- Best global: `drop_ratio_temporal_delta__prior_logit_blend_hgb_w20`
+- Best global OOF avg: `0.624650`
+- Target-wise full-OOF avg: `0.616766`
+- Target-wise drift vs v83 diagnostic reference: `0.068461`
+
+Target-wise full-OOF winners:
+
+- Q1: `drop_ratio_temporal_delta__prior_logit_blend_hgb_w35`
+- Q2: `drop_raw_ratio__prior_logit_blend_hgb_w35`
+- Q3: `drop_sleep_late__prior_logit_blend_hgb_w35`
+- S1: `drop_raw_rank__prior_logit_blend_residual_ridge_w10`
+- S2: `only_rhythm_deviation_cross_modal__prior_logit_blend_residual_ridge_w05`
+- S3: `drop_ratio_temporal_delta__prior_logit_blend_hgb_w20`
+- S4: `only_missingness_cross_modal__prior_logit_blend_rank_pairwise_w10`
+
+Interpretation:
+
+- The full-OOF target-wise score improves over v2 target-wise (`0.617441` to `0.616766`), so feature-family combination pruning does expose new label-aligned latent signal.
+- The global score is not better than `consensus_signal`, meaning the new signal is target-specific and selection-sensitive rather than a broad replacement.
+- This needs nested validation before adoption.
+
+## Nested extended-family validation
+
+Script: `scripts/train_nested_extended_family_decoder.py`
+
+Output: `outputs/nested_extended_family_decoder_v1/`
+
+This nested run uses the extended-family winners as a compact candidate pool:
+
+```text
+outer fold:
+  inner folds select one source per target
+  selected source is trained on outer-train
+  outer-val receives the score
+```
+
+Results:
+
+- Nested extended-family OOF avg: `0.625206`
+- Previous nested target-aware OOF avg: `0.624729`
+- Fixed `consensus_signal` OOF avg: `0.620577`
+- Drift vs v83 diagnostic reference: `0.065883`
+
+Selection stability:
+
+- Q1: `only_rhythm__prior_logit_blend_hgb_w20` selected 4/5.
+- S4: `no_temporal_delta__prior_logit_blend_hgb_w20` selected 3/5.
+- S1: `subject_prior` selected 3/5.
+- S3: `subject_prior` selected 3/5.
+- Q2/Q3/S2 remain unstable.
+
+Decision:
+
+- Do not adopt the full target-wise extended-family map as a submission-shaped model; most of its gain is selection-sensitive.
+- Keep two stable insights:
+  - Q1 should stay close to `only_rhythm + HGB`.
+  - S4 prefers `no_temporal_delta + HGB` more reliably than the `only_cross_modal` branch.
+- Treat S1/S3 residual decoders as suspect unless a new state objective makes them beat subject prior under nested validation.

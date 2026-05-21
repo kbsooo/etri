@@ -1,0 +1,174 @@
+{
+  "avg_log_loss": 0.6252055213112103,
+  "per_target": {
+    "Q1": 0.6707038800654416,
+    "Q2": 0.7000481016200375,
+    "Q3": 0.6719701533398608,
+    "S1": 0.5749370214845906,
+    "S2": 0.5776587348933213,
+    "S3": 0.5383504459470753,
+    "S4": 0.6427703118281457
+  },
+  "drift_vs_reference": {
+    "reference": "outputs/v83_repaired_v80/submission_v83_gq015_gs010.csv",
+    "mean_abs_drift": 0.06588260829985729,
+    "max_abs_drift": 0.28091580379042924,
+    "corr": 0.8825666526377591,
+    "target_mean": {
+      "Q1": 0.5002798857703282,
+      "Q2": 0.5655459960045314,
+      "Q3": 0.6085355801365832,
+      "S1": 0.6963341895852445,
+      "S2": 0.6602601930671388,
+      "S3": 0.6805288536144515,
+      "S4": 0.5568609097674799
+    },
+    "target_mean_shift": {
+      "Q1": -0.01008831113162785,
+      "Q2": -0.0037723190519287717,
+      "Q3": -0.0034511815246153414,
+      "S1": 0.013721802374145095,
+      "S2": 0.016334944413138618,
+      "S3": 0.021888032717495884,
+      "S4": 0.003846987744792539
+    },
+    "panel_mean_abs_drift": {
+      "early": 0.055692975770741546,
+      "mid": 0.06900365599732289,
+      "late": 0.07266499545865551
+    }
+  },
+  "selection_counts": [
+    {
+      "target": "Q1",
+      "selected": "only_rhythm__prior_logit_blend_hgb_w20",
+      "count": 4
+    },
+    {
+      "target": "Q1",
+      "selected": "drop_ratio_temporal_delta__prior_logit_blend_hgb_w20",
+      "count": 1
+    },
+    {
+      "target": "Q2",
+      "selected": "only_rhythm__prior_logit_blend_hgb_w20",
+      "count": 2
+    },
+    {
+      "target": "Q2",
+      "selected": "drop_raw_ratio__prior_logit_blend_hgb_w35",
+      "count": 1
+    },
+    {
+      "target": "Q2",
+      "selected": "no_ratio__prior_logit_blend_state_mean_w35",
+      "count": 1
+    },
+    {
+      "target": "Q2",
+      "selected": "subject_prior__subject_prior",
+      "count": 1
+    },
+    {
+      "target": "Q3",
+      "selected": "drop_sleep_late__prior_logit_blend_hgb_w35",
+      "count": 2
+    },
+    {
+      "target": "Q3",
+      "selected": "only_rhythm__prior_logit_blend_state_mean_w10",
+      "count": 2
+    },
+    {
+      "target": "Q3",
+      "selected": "subject_prior__subject_prior",
+      "count": 1
+    },
+    {
+      "target": "S1",
+      "selected": "subject_prior__subject_prior",
+      "count": 3
+    },
+    {
+      "target": "S1",
+      "selected": "only_rhythm__prior_logit_blend_hgb_w20",
+      "count": 2
+    },
+    {
+      "target": "S2",
+      "selected": "no_missingness__prior_logit_blend_residual_ridge_w05",
+      "count": 2
+    },
+    {
+      "target": "S2",
+      "selected": "subject_prior__subject_prior",
+      "count": 2
+    },
+    {
+      "target": "S2",
+      "selected": "only_rhythm__prior_logit_blend_hgb_w20",
+      "count": 1
+    },
+    {
+      "target": "S3",
+      "selected": "subject_prior__subject_prior",
+      "count": 3
+    },
+    {
+      "target": "S3",
+      "selected": "drop_ratio_temporal_delta__prior_logit_blend_hgb_w20",
+      "count": 1
+    },
+    {
+      "target": "S3",
+      "selected": "only_missingness__prior_logit_blend_rank_pairwise_w05",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "selected": "no_temporal_delta__prior_logit_blend_hgb_w20",
+      "count": 3
+    },
+    {
+      "target": "S4",
+      "selected": "only_cross_modal__prior_logit_blend_hgb_w10",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "selected": "subject_prior__subject_prior",
+      "count": 1
+    }
+  ],
+  "preset_feature_counts": {
+    "drop_ratio_temporal_delta": 520,
+    "drop_raw_rank": 520,
+    "drop_raw_ratio": 520,
+    "drop_sleep_late": 520,
+    "no_missingness": 520,
+    "no_ratio": 520,
+    "no_sleep": 520,
+    "no_temporal_delta": 520,
+    "only_cross_modal": 520,
+    "only_deviation_cross_modal": 520,
+    "only_missingness": 520,
+    "only_missingness_cross_modal": 520,
+    "only_rhythm": 520,
+    "only_rhythm_deviation_cross_modal": 520
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/nested_extended_family_decoder_v1",
+    "reference_submission": "outputs/v83_repaired_v80/submission_v83_gq015_gs010.csv",
+    "folds": 5,
+    "inner_folds": 3,
+    "max_features": 520,
+    "pca_dim": 28,
+    "n_proto": 10,
+    "n_label_proto": 12,
+    "logreg_c": 0.03,
+    "subject_alpha": 10.0,
+    "max_pairs": 10000
+  }
+}
