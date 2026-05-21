@@ -48,6 +48,8 @@ def parse_source(source: str) -> tuple[str, str, float, float]:
 
 
 def source_family(source: str) -> str:
+    if source.startswith("boundary_target_map"):
+        return "boundary_target_map"
     if source.startswith("best_plus_scc_core"):
         return "best_plus_sleep_consensus_compact_core"
     if source.startswith("best_plus_scc_subject_relative"):

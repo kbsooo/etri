@@ -1362,3 +1362,42 @@ The current scout target map is:
 - S4: subject-relative sleep-consensus purity scout.
 
 The stable lesson is now sharper: the encoder should learn boundary-specific state transitions, but each target wants a different boundary coordinate. S1 wants wake-start recovery mismatch, S3 wants final sleep-onset settling, and Q2 may want rolling sleep-consensus trajectory.
+
+## 2026-05-22 - Boundary Objective Target-Map Scout
+
+### Scope
+
+Combined the current specialist target map into one encoder-ready latent objective. The goal was not to append more raw columns, but to test whether the encoder should preserve a shared set of biologically meaningful boundary coordinates: Q1 sleep opportunity, Q2 rolling sleep-consensus, Q3 recovery/mobility, S1 wake activation after sleep recovery, S3 sleep-onset settling, and compact sleep-consensus coordinates.
+
+### Artifacts
+
+- Combined latent: `artifacts/domain_boundary_objective_target_map_v1.parquet`
+- Frozen probe: `outputs/domain_boundary_objective_probe_v1/report.md`
+- All-specialist merge: `outputs/domain_all_specialists_plus_boundary_objective_probe_v1/fold_target_losses.csv`
+- Nested diagnostic: `outputs/domain_all_specialists_plus_boundary_objective_nested_selection_v1/report.md`
+- Full nested materialization: `outputs/domain_hybrid_boundary_objective_nested_decoder_v1/report.md`
+- Protected Q1-only swap: `outputs/domain_hybrid_q1_boundary_swap_decoder_v1/report.md`
+
+### Result
+
+| experiment | Q1 OOF logloss | avg OOF logloss | read |
+| --- | ---: | ---: | --- |
+| previous fixed scout hybrid | 0.654835 | 0.610279 | Q1 still used causal-chain opportunity. |
+| boundary target-map frozen probe | 0.655171 | 0.617752 | Better than `best` inside the same probe, but worse than the target-specialist hybrid. |
+| nested all-specialist + boundary selector | 0.654854 | 0.618892 | Boundary is selected for Q1 in 5/5 held folds, but unrestricted selection destabilizes Q2/S2/S4. |
+| materialized unrestricted nested decoder | 0.654680 | 0.618663 | Confirms broad re-selection is too noisy. |
+| protected Q1 boundary swap | 0.654680 | 0.610257 | Small new best diagnostic OOF by replacing only Q1 while keeping the protected scout map. |
+
+### Working Interpretation
+
+This is a narrow but useful encoder-objective signal. The unified boundary latent is not a better global feature block; it washes out target specialization. However, its Q1 coordinate is cleaner than the prior causal-chain opportunity readout and survives 5/5 nested folds. Carry it forward as a Q1 objective, not as a monolithic replacement for the specialist map.
+
+The updated scout target map is:
+
+- Q1: boundary target-map absolute coordinate.
+- Q2: compact rolling sleep-consensus.
+- Q3: causal-chain recovery.
+- S1: wake activation relative to sleep recovery.
+- S2: subject-relative sleep-consensus purity scout.
+- S3: subject-relative sleep-onset settling.
+- S4: subject-relative sleep-consensus purity scout.

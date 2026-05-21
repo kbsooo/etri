@@ -1,0 +1,110 @@
+{
+  "avg_log_loss": 0.6186631964909207,
+  "per_target_log_loss": {
+    "Q1": 0.6546797256945723,
+    "Q2": 0.7009036715699047,
+    "Q3": 0.6716572435778926,
+    "S1": 0.5648164980708945,
+    "S2": 0.5793881232844026,
+    "S3": 0.5137276649705488,
+    "S4": 0.6454694482682288
+  },
+  "base_source": "best__absolute_plus_deviation__c0.3_b0.2",
+  "min_train_delta": 0.003,
+  "needed_sources": [
+    "best_plus_cc_chain_interactions__absolute_plus_deviation__c0.3_b0.2",
+    "best_plus_cc_load__absolute_plus_deviation__c0.3_b0.2",
+    "best_plus_cc_opportunity__absolute_plus_deviation__c0.3_b0.2",
+    "best_plus_cc_recovery__deviation__c0.3_b0.2",
+    "best_plus_di_social_isolation__deviation__c0.1_b0.2",
+    "best_plus_mobility_constriction__absolute__c0.1_b0.2",
+    "best_plus_mobility_constriction__deviation__c0.03_b0.2",
+    "best_plus_mobility_constriction__deviation__c0.1_b0.2",
+    "best_plus_scc_all__absolute__c0.3_b0.2",
+    "best_plus_scc_rolling__absolute__c0.3_b0.2",
+    "best_plus_scc_rolling__deviation__c0.3_b0.2",
+    "best_plus_scc_subject_relative__absolute__c0.1_b0.2",
+    "best_plus_sot_micro_base_values_only__absolute_plus_deviation__c0.3_b0.2",
+    "best_plus_sot_micro_subject_relative_only__absolute_plus_deviation__c0.3_b0.2",
+    "best_plus_sot_onset_consensus__absolute__c0.03_b0.2",
+    "best_plus_wai_base_values_only__absolute_plus_deviation__c0.3_b0.2",
+    "best_plus_wai_sleep_recovery_interaction__absolute_plus_deviation__c0.3_b0.2",
+    "boundary_target_map__absolute__c0.03_b0.2",
+    "boundary_target_map__absolute__c0.1_b0.2",
+    "boundary_target_map__absolute_plus_deviation__c0.03_b0.2",
+    "boundary_target_map__deviation__c0.1_b0.2",
+    "boundary_target_map__deviation__c0.3_b0.2"
+  ],
+  "test_source_selection": [
+    {
+      "target": "Q1",
+      "selected_source": "boundary_target_map__absolute__c0.03_b0.2",
+      "source_family": "boundary_target_map",
+      "raw_best_source": "boundary_target_map__absolute__c0.03_b0.2",
+      "raw_best_selector_loss": 0.6537622035798989,
+      "base_selector_loss": 0.6691817177735858,
+      "selector_loss": 0.6537622035798989,
+      "selection_action": "switch"
+    },
+    {
+      "target": "Q2",
+      "selected_source": "best_plus_scc_rolling__absolute__c0.3_b0.2",
+      "source_family": "best_plus_sleep_consensus_compact_rolling",
+      "raw_best_source": "best_plus_scc_rolling__absolute__c0.3_b0.2",
+      "raw_best_selector_loss": 0.6820623117382185,
+      "base_selector_loss": 0.7016929759704349,
+      "selector_loss": 0.6820623117382185,
+      "selection_action": "switch"
+    },
+    {
+      "target": "Q3",
+      "selected_source": "best_plus_mobility_constriction__absolute__c0.1_b0.2",
+      "source_family": "mobility_constriction",
+      "raw_best_source": "best_plus_mobility_constriction__absolute__c0.1_b0.2",
+      "raw_best_selector_loss": 0.6641575246559603,
+      "base_selector_loss": 0.6738888587098408,
+      "selector_loss": 0.6641575246559603,
+      "selection_action": "switch"
+    },
+    {
+      "target": "S1",
+      "selected_source": "best_plus_wai_sleep_recovery_interaction__absolute_plus_deviation__c0.3_b0.2",
+      "source_family": "best_plus_wake_sleep_recovery_interaction",
+      "raw_best_source": "best_plus_wai_sleep_recovery_interaction__absolute_plus_deviation__c0.3_b0.2",
+      "raw_best_selector_loss": 0.5571717499466909,
+      "base_selector_loss": 0.5708954587854569,
+      "selector_loss": 0.5571717499466909,
+      "selection_action": "switch"
+    },
+    {
+      "target": "S2",
+      "selected_source": "boundary_target_map__absolute__c0.03_b0.2",
+      "source_family": "boundary_target_map",
+      "raw_best_source": "boundary_target_map__absolute__c0.03_b0.2",
+      "raw_best_selector_loss": 0.5697206083367415,
+      "base_selector_loss": 0.5783156553303062,
+      "selector_loss": 0.5697206083367415,
+      "selection_action": "switch"
+    },
+    {
+      "target": "S3",
+      "selected_source": "best_plus_sot_micro_subject_relative_only__absolute_plus_deviation__c0.3_b0.2",
+      "source_family": "best_plus_sleep_onset_micro_subject_relative",
+      "raw_best_source": "best_plus_sot_micro_subject_relative_only__absolute_plus_deviation__c0.3_b0.2",
+      "raw_best_selector_loss": 0.5135895773926074,
+      "base_selector_loss": 0.5251202551583003,
+      "selector_loss": 0.5135895773926074,
+      "selection_action": "switch"
+    },
+    {
+      "target": "S4",
+      "selected_source": "best_plus_sot_onset_consensus__absolute__c0.03_b0.2",
+      "source_family": "best_plus_sleep_onset_consensus",
+      "raw_best_source": "best_plus_sot_onset_consensus__absolute__c0.03_b0.2",
+      "raw_best_selector_loss": 0.6355548817115088,
+      "base_selector_loss": 0.6432464279775342,
+      "selector_loss": 0.6355548817115088,
+      "selection_action": "switch"
+    }
+  ]
+}
