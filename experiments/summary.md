@@ -19,6 +19,7 @@ Last updated: 2026-05-20
 - Stable extended consensus maps (`outputs/stable_extended_consensus_decoder_v1/`) convert those lessons into fixed models. `stable_signal_s4_temporal` reaches `0.620281`, slightly improving `consensus_signal` (`0.620577`) by switching only S4 from `only_cross_modal + HGB` to nested-supported `no_temporal_delta + HGB`. The full-OOF winner map still shows `0.616766`, but remains an optimism upper bound because nested validation rejected it.
 - Residual state objective decoder (`outputs/residual_state_objective_decoder_v1/`) is mostly a negative result: residual ridge is still best (`0.626331` global), while residual prototype/neighbor objectives are weaker. Target-wise full-OOF reaches `0.620437`, but does not beat `stable_signal_s4_temporal`.
 - Nested residual hybrid validation (`outputs/nested_residual_hybrid_decoder_v1/`) improves the nested-search score to `0.624176` vs prior nested `0.624729`, but still falls well behind the fixed `stable_signal_s4_temporal` scaffold. Carry forward only the narrow signals: Q1 has a weak residual-missingness alternative, and S4 remains stable on `no_temporal_delta + HGB`.
+- Multiscale subject-state decoder (`outputs/multiscale_subject_state_decoder_v1/`) adds past-only subject baselines, recent 7/14-day deviation/rank, and novelty distances to the encoder state. It lowers drift (`0.063039` best global) but does not improve OOF: best global `0.626267`, targetwise `0.620484`. Bigger subject-history geometry alone is not the breakthrough.
 
 ## Current Best
 

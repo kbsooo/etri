@@ -398,3 +398,41 @@ Decision:
 - Residual-state candidates add a small nested-search signal (`0.624176` beats `0.624729`), so the idea is not dead.
 - They do not yet improve the best fixed scaffold. Most target-wise residual gains are still selection-sensitive.
 - Keep the current fixed scaffold as `stable_signal_s4_temporal`; carry forward only the evidence that Q1 has a weak residual-missingness alternative worth revisiting with a stronger state objective.
+
+## Multiscale subject-state decoder
+
+Script: `scripts/train_multiscale_subject_state_decoder.py`
+
+Output: `outputs/multiscale_subject_state_decoder_v1/`
+
+This experiment changes the encoder state definition rather than adding a larger decoder. The state representation includes:
+
+- PCA position from a pruned feature family.
+- Global z-score.
+- Subject-relative deviation/rank using all same-subject fit days.
+- Past-only subject deviation/rank using dates earlier than the query day.
+- Recent 7/14 same-subject deviation/rank.
+- Distance/novelty summaries to each of those pools.
+- Soft prototype membership over the expanded state.
+
+The first full grid was too slow because it recomputed the same state per source. The script was revised to cache state per `(preset, fold)` and then evaluate all decoder/weight variants on that shared state.
+
+Results:
+
+- Best global: `only_rhythm__multiscale_state_mean_w10`
+- Best global OOF avg: `0.626267`
+- Target-wise full-OOF avg: `0.620484`
+- Best global drift vs v83 diagnostic reference: `0.063039`
+- Target-wise drift vs v83 diagnostic reference: `0.064398`
+
+Decoder/preset summary:
+
+- Best decoder family: `state_mean` at `0.626267`, followed closely by `hgb` at `0.626288`.
+- `residual_ridge` is weaker in this multiscale state (`0.628123` best).
+- Best presets: `only_rhythm` (`0.626267`) and `drop_ratio_temporal_delta` (`0.626288`).
+
+Decision:
+
+- This is a useful negative result. Adding past-only/recent subject-history geometry lowers drift but does not improve the independent fixed scaffold.
+- The gain is not in making the state vector larger. The current bottleneck is likely the objective or target-specific calibration, not missing simple subject-history geometry.
+- Keep `stable_signal_s4_temporal` as the current scaffold. Do not promote multiscale state candidates unless nested validation later shows target-specific stability.
