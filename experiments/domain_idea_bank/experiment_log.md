@@ -1550,3 +1550,36 @@ Carry forward:
 
 - S4: keep `rr_coverage_rhythm` as the current narrow clue; next attempt should compress daily coverage rhythm or build weekday/chronotype-normalized coverage prototypes, not add more boundary episode products.
 - S2: boundary re-coverage is too weak; continue with micro-awakening / quiet-sleep consensus rather than coverage-only features.
+
+## 2026-05-22 - Coverage Rhythm Prototype Compression
+
+### Scope
+
+Tested the next S4 hypothesis after sleep-boundary coverage failed: perhaps the useful signal is a coarse daily coverage/no-wear rhythm profile, but the routine-pruned slice is too hand-shaped. Built 48-token daily profiles over sensor coverage, no-wear, low coverage, HR/pedo/phone/GPS presence, and charging, then compressed them into subject distance, subject-weekday distance, and global KMeans prototype distances.
+
+### Artifacts
+
+- Builder: `scripts/build_coverage_rhythm_prototype_latents.py`
+- Prototype artifact: `artifacts/domain_coverage_rhythm_prototype_v1.parquet`
+- Additive artifact: `artifacts/domain_best_plus_coverage_rhythm_prototype_v1.parquet`
+- Probe report: `outputs/domain_coverage_rhythm_prototype_probe_v1/report.md`
+- Nested report: `outputs/domain_all_specialists_plus_coverage_rhythm_prototype_nested_selection_v1/report.md`
+
+### Result
+
+| experiment | S2 | S4 | avg | read |
+| --- | ---: | ---: | ---: | --- |
+| best CRP global source | 0.573722 | 0.640241 | 0.625277 | Weaker than late-fusion base globally. |
+| best CRP S2 source | 0.572295 | n/a | n/a | Raw S2 hint from subject-relative prototype deviation. |
+| best CRP S4 source | n/a | 0.636466 | n/a | Better than sleep-boundary coverage, but worse than routine-pruned coverage rhythm. |
+| routine-pruned coverage rhythm S4 | n/a | 0.632894 | n/a | Still the strongest S4 coverage/no-wear representation. |
+| nested all-specialist + CRP | 0.584091 | 0.642292 | 0.620072 | No CRP source selected; nested result unchanged. |
+
+### Working Interpretation
+
+This closes the obvious "coverage prototype" follow-up. Prototype compression does not make the S4 signal cleaner. The raw S2 hint is interesting but not strong enough against existing sleep-consensus and specialist branches. The simplest `rr_coverage_rhythm` slice remains the best coverage/no-wear S4 clue.
+
+Carry forward:
+
+- S4: stop expanding coverage/no-wear for now; use `rr_coverage_rhythm` only as a small candidate or objective seed.
+- S2: prototype-deviation coverage may be a supporting coordinate, but the main path should remain micro-awakening / sleep-consensus purity.
