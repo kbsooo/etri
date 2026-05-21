@@ -236,3 +236,38 @@ The current best diagnostic is now `0.622961`, which improves the subject prior 
 1. Add a third branch for temporal-order prediction on `event+cross_modal` and test whether it complements the current contrastive branch.
 2. Train the contrastive `event+cross_modal` branch for a small sweep of epochs/temperature/reconstruction-free augment strength to see whether `0.622961` is stable.
 3. Build a fixed late-fusion representation artifact from the current best branches so downstream decoders can consume it without reassembling parquet paths manually.
+
+## 2026-05-21 - Temporal Order Branch and Best Late Fusion Artifact
+
+### Scope
+
+Tested a target-free temporal direction branch. The encoder sees two adjacent same-subject days and predicts whether the pair is chronological or reversed. This was intended to expose recovery/decline direction rather than only adjacent-day similarity.
+
+### Artifacts
+
+- Script: `scripts/train_domain_temporal_order_encoder.py`
+- Temporal order report: `outputs/domain_temporal_order_encoder_v1/report.md`
+- Temporal order probe: `outputs/domain_temporal_order_probe_v1/report.md`
+- Stable best latent artifact: `artifacts/domain_best_late_fusion_v1.parquet`
+- Best latent probe: `outputs/domain_best_late_fusion_v1_probe/report.md`
+
+### Result
+
+| branch | result | read |
+| --- | ---: | --- |
+| temporal order `event+cross_modal` val accuracy | ~0.50-0.52 | Direction task is near-random. |
+| temporal order `event+missingness` val accuracy | ~0.41-0.50 | Worse; missingness does not encode chronological direction. |
+| current best late fusion probe | 0.622961 | Still best. |
+| best late fusion artifact reprobe | 0.622961 | Artifact faithfully reproduces best diagnostic. |
+
+### Working Interpretation
+
+Temporal direction is not a strong unsupervised axis in the current 30-minute token tensor. Adjacent-day similarity helps, but chronological order does not. This is a useful negative result: recovery/decline direction probably needs explicit label/residual/prototype supervision or richer multi-day windows, not only pair-order classification.
+
+The stable late-fusion artifact now gives downstream decoders one path with 48 latent dimensions: reconstruction `event_cross_missing` plus contrastive `event+cross_modal`. This is the strongest data-engineering representation found so far.
+
+### Next Experiments
+
+1. Use `artifacts/domain_best_late_fusion_v1.parquet` as the canonical encoder representation for nonlinear decoder probes.
+2. Try multi-day window objectives such as "today vs previous 3/7-day centroid" instead of pair order.
+3. Search for target-agnostic prototypes over the best latent artifact and test whether prototype distances improve the frozen probe.
