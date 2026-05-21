@@ -436,3 +436,39 @@ Decision:
 - This is a useful negative result. Adding past-only/recent subject-history geometry lowers drift but does not improve the independent fixed scaffold.
 - The gain is not in making the state vector larger. The current bottleneck is likely the objective or target-specific calibration, not missing simple subject-history geometry.
 - Keep `stable_signal_s4_temporal` as the current scaffold. Do not promote multiscale state candidates unless nested validation later shows target-specific stability.
+
+## Joint label-state decoder
+
+Script: `scripts/train_joint_label_state_decoder.py`
+
+Output: `outputs/joint_label_state_decoder_v1/`
+
+This experiment attacks the 450-label bottleneck from the decoder side. Instead of predicting the seven labels independently, it first predicts a joint label state and then maps that state back into the seven target probabilities. The tested intermediate states are:
+
+- label clusters over the 7-dimensional label vector,
+- exact observed label patterns,
+- nearest-neighbor label-state retrieval in encoder state space,
+- a mean of the joint label-state decoders.
+
+All predictions are fold-safe: label states and label-pattern classifiers are fit only on the fold train split, then blended with the fold-safe subject prior.
+
+Results:
+
+- Best global: `no_temporal_delta__joint_label_cluster8_w10`
+- Best global OOF avg: `0.625946`
+- Target-wise full-OOF avg: `0.621371`
+- Best global drift vs v83 diagnostic reference: `0.066050`
+- Target-wise drift vs v83 diagnostic reference: `0.073087`
+
+Decoder/preset summary:
+
+- Best joint decoder: `label_cluster8` at `0.625946`.
+- `label_knn25` and `label_state_mean` are close but weaker.
+- Exact `label_pattern` is weaker, likely because 95 observed patterns are too many for 450 rows.
+- Best preset is `no_temporal_delta`, matching prior evidence that this family is useful for S4-like temporal stability.
+
+Decision:
+
+- Joint label-state decoding is a useful idea, but this implementation does not beat the fixed scaffold.
+- The high target-wise drift means the label-state decoder changes the row distribution too aggressively for the amount of label data.
+- Do not promote this branch. Keep only the insight that coarse label clusters are better than exact label-pattern prediction under the 450-label constraint.

@@ -20,6 +20,7 @@ Last updated: 2026-05-20
 - Residual state objective decoder (`outputs/residual_state_objective_decoder_v1/`) is mostly a negative result: residual ridge is still best (`0.626331` global), while residual prototype/neighbor objectives are weaker. Target-wise full-OOF reaches `0.620437`, but does not beat `stable_signal_s4_temporal`.
 - Nested residual hybrid validation (`outputs/nested_residual_hybrid_decoder_v1/`) improves the nested-search score to `0.624176` vs prior nested `0.624729`, but still falls well behind the fixed `stable_signal_s4_temporal` scaffold. Carry forward only the narrow signals: Q1 has a weak residual-missingness alternative, and S4 remains stable on `no_temporal_delta + HGB`.
 - Multiscale subject-state decoder (`outputs/multiscale_subject_state_decoder_v1/`) adds past-only subject baselines, recent 7/14-day deviation/rank, and novelty distances to the encoder state. It lowers drift (`0.063039` best global) but does not improve OOF: best global `0.626267`, targetwise `0.620484`. Bigger subject-history geometry alone is not the breakthrough.
+- Joint label-state decoder (`outputs/joint_label_state_decoder_v1/`) tests a decoder bottleneck workaround: predict coarse 7-label state/cluster/pattern first, then map to target probabilities. Best global is `0.625946` from `no_temporal_delta + label_cluster8`, while exact label-pattern and KNN state decoders are weaker. Coarse label clusters beat exact patterns, but the branch does not beat `stable_signal_s4_temporal` and targetwise drift rises to `0.073087`.
 
 ## Current Best
 
