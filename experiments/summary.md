@@ -40,7 +40,8 @@ Last updated: 2026-05-20
 - Target gains vs subject prior are strongest for Q1/Q2/Q3 (`0.007254`/`0.012439`/`0.011960`) and weak for S-family, so the first small-model signal is a simple subject-relative day-state axis rather than a rich latent yet.
 - Drift vs v83 is `0.067578` targetwise and `0.068649` best-global; subject drift is highest for id08. This is a credible minimum-parameter floor, not a submission-ready breakthrough.
 - Nested selection stress (`outputs/nested_deep_learning_golf_selection_v1/`) rejects the full-OOF targetwise gain: targetwise `0.622155` becomes nested `0.627983`, slightly worse than subject prior. The credible signal is the fixed global low-rank tiny decoder (`0.625725`, +0.001929 vs subject prior), not targetwise model cherry-picking.
-- Next step: apply the same bottleneck-1..4 discipline to channel-patch Transformer latents and tiny GRU/Transformer sequence encoders, using fixed/global or nested-selected heads only.
+- Applying the same golf discipline to channel-patch Transformer CLS latents (`outputs/latent_deep_learning_golf_v1/`) improves the fixed global floor: best global `0.625415` from `only_cross_modal__deviation__linear_k4_b0.2`, a plain linear decoder over four selected subject-relative latent axes. Nested targetwise stress (`outputs/nested_latent_deep_learning_golf_selection_v1/`) gives `0.625650`, still beating subject prior by `0.002004`; unlike daily aggregate targetwise, this latent signal survives selection stress.
+- Next step: expand latent golf to `only_event`, `only_rhythm`, and v2 channel-patch views, then test tiny GRU/Transformer sequence encoders against the fixed latent floor.
 
 ## Current Best
 

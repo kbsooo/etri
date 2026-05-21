@@ -96,3 +96,48 @@ Conclusion:
 - The robust signal is not target-specific source selection. It is the fixed global low-rank model: `raw_plus_deviation__lowrank_r3_k2_wd0.1_b0.2`.
 - This is useful because it clarifies the next decoder rule: do not targetwise-pick tiny models from a wide grid unless the selection is nested or fixed in advance.
 - For the next branch, use the tiny global low-rank result as the minimum credible decoder floor, then test whether sequence encoders create a better fixed representation.
+
+## v1 Latent Golf on Channel-Patch Transformer CLS
+
+Script: `scripts/train_latent_deep_learning_golf.py`
+
+Output: `outputs/latent_deep_learning_golf_v1/`
+
+Nested stress: `outputs/nested_latent_deep_learning_golf_selection_v1/`
+
+Input:
+
+- Existing channel-patch Transformer CLS embeddings from:
+  - `full`
+  - `no_sleep`
+  - `only_cross_modal`
+- Fold-local subject-relative variants:
+  - `deviation`
+  - `absolute_plus_deviation`
+- Tiny decoders:
+  - linear
+  - low-rank rank 1-2
+  - tiny MLP hidden 1-2
+
+Result:
+
+| candidate | OOF logloss | gain vs subject prior | drift vs v83 | note |
+| --- | ---: | ---: | ---: | --- |
+| subject_prior | 0.627654 | 0.000000 | 0.061947 | baseline |
+| best global latent tiny decoder | 0.625415 | 0.002239 | 0.075137 | `only_cross_modal__deviation__linear_k4_b0.2` |
+| full-OOF targetwise | 0.621691 | 0.005963 | 0.071488 | optimistic |
+| nested targetwise | 0.625650 | 0.002004 | n/a | survives selection stress |
+
+Interpretation:
+
+- Unlike daily aggregate golf, latent golf keeps a positive nested gain (`0.002004`) after targetwise selection stress.
+- The best global model is not nonlinear or large: it is a plain linear decoder over 4 selected subject-relative axes from the `only_cross_modal` channel-patch Transformer view.
+- This is the clearest evidence so far that the Transformer encoder is not useless; it creates a small but more robust label-readable latent than daily aggregate golf.
+- The robust source is specifically `only_cross_modal::deviation`, so the useful latent is a personal deviation in cross-modal state, not absolute day identity.
+- Drift is higher than subject prior and daily golf, so this is a breakthrough signal branch, not a direct public-safe submission.
+
+Next:
+
+1. Expand latent golf to include `only_event`, `only_rhythm`, and v2 channel-patch views.
+2. Keep the global/nested discipline: do not trust full-OOF targetwise selection.
+3. Build tiny sequence encoders only if they can beat this fixed latent floor (`0.625415` global, `0.625650` nested targetwise).

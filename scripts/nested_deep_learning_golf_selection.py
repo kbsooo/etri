@@ -95,14 +95,14 @@ def run(args: argparse.Namespace) -> None:
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     train = normalize_keys(pd.read_csv(args.train_path))
-    fold_losses = pd.read_csv(input_dir / "golf_fold_losses.csv")
+    fold_losses = pd.read_csv(input_dir / args.fold_losses_name)
     fold_losses = add_fold_weights(train, fold_losses, args.n_folds)
     scores = source_score_table(fold_losses)
     full_selection, full_per, full_avg = full_targetwise_from_fold_losses(fold_losses)
     nested_selection, nested_per_df, nested_per, nested_avg = nested_targetwise_from_fold_losses(fold_losses)
     counts = nested_selection.groupby(["target", "source"]).size().reset_index(name="count").sort_values(["target", "count"], ascending=[True, False])
 
-    prior_row = pd.read_csv(input_dir / "golf_scores.csv")
+    prior_row = pd.read_csv(input_dir / args.scores_name)
     prior = prior_row.loc[prior_row["source"] == "subject_prior", "avg_log_loss"]
     subject_prior_avg = float(prior.iloc[0]) if len(prior) else float("nan")
     global_best_avg = float(scores.iloc[0]["avg_log_loss"])
@@ -167,6 +167,8 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--train-path", default="data/ch2026_metrics_train.csv")
     parser.add_argument("--input-dir", default="outputs/deep_learning_golf_v1")
     parser.add_argument("--output-dir", default="outputs/nested_deep_learning_golf_selection_v1")
+    parser.add_argument("--fold-losses-name", default="golf_fold_losses.csv")
+    parser.add_argument("--scores-name", default="golf_scores.csv")
     parser.add_argument("--n-folds", type=int, default=5)
     return parser
 
