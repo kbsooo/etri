@@ -39,7 +39,8 @@ Last updated: 2026-05-20
 - Subject-prior baseline is `0.627654`. Best global tiny decoder reaches `0.625725` with only 34 params (`raw_plus_deviation__lowrank_r3_k2_wd0.1_b0.2`). Full-OOF targetwise reaches `0.622155`, gaining `0.005499` over subject prior.
 - Target gains vs subject prior are strongest for Q1/Q2/Q3 (`0.007254`/`0.012439`/`0.011960`) and weak for S-family, so the first small-model signal is a simple subject-relative day-state axis rather than a rich latent yet.
 - Drift vs v83 is `0.067578` targetwise and `0.068649` best-global; subject drift is highest for id08. This is a credible minimum-parameter floor, not a submission-ready breakthrough.
-- Next step: nested targetwise selection for the golf grid, then apply the same bottleneck-1..4 discipline to channel-patch Transformer latents and tiny GRU/Transformer sequence encoders.
+- Nested selection stress (`outputs/nested_deep_learning_golf_selection_v1/`) rejects the full-OOF targetwise gain: targetwise `0.622155` becomes nested `0.627983`, slightly worse than subject prior. The credible signal is the fixed global low-rank tiny decoder (`0.625725`, +0.001929 vs subject prior), not targetwise model cherry-picking.
+- Next step: apply the same bottleneck-1..4 discipline to channel-patch Transformer latents and tiny GRU/Transformer sequence encoders, using fixed/global or nested-selected heads only.
 
 ## Current Best
 

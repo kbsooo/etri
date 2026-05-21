@@ -72,3 +72,27 @@ Next:
 1. Nested targetwise selection for this golf grid.
 2. Same golf decoder over channel-patch Transformer latents, but with bottleneck 1-4 and no large embedding head.
 3. Tiny GRU/Transformer sequence encoders with `d_model`/hidden 1, 2, 4, 8 and the same subject-relative decoder discipline.
+
+## v1 Nested Selection Stress
+
+Script: `scripts/nested_deep_learning_golf_selection.py`
+
+Output: `outputs/nested_deep_learning_golf_selection_v1/`
+
+This diagnostic reuses `outputs/deep_learning_golf_v1/golf_fold_losses.csv`. It selects the best source for each target on four folds and scores that chosen source on the held-out fold.
+
+Result:
+
+| candidate | OOF logloss | gain vs subject prior | note |
+| --- | ---: | ---: | --- |
+| subject_prior | 0.627654 | 0.000000 | baseline |
+| best global tiny decoder | 0.625725 | 0.001929 | still credible |
+| full-OOF targetwise | 0.622155 | 0.005499 | optimistic |
+| nested targetwise | 0.627983 | -0.000329 | targetwise selection does not survive |
+
+Conclusion:
+
+- The apparent `0.005499` full-OOF targetwise gain was almost exactly selection optimism (`0.005829`).
+- The robust signal is not target-specific source selection. It is the fixed global low-rank model: `raw_plus_deviation__lowrank_r3_k2_wd0.1_b0.2`.
+- This is useful because it clarifies the next decoder rule: do not targetwise-pick tiny models from a wide grid unless the selection is nested or fixed in advance.
+- For the next branch, use the tiny global low-rank result as the minimum credible decoder floor, then test whether sequence encoders create a better fixed representation.

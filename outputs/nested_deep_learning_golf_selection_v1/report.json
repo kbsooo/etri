@@ -1,0 +1,172 @@
+{
+  "input_dir": "outputs/deep_learning_golf_v1",
+  "subject_prior_avg_log_loss": 0.6276539587598199,
+  "global_best_source": "raw_plus_deviation__lowrank_r3_k2_wd0.1_b0.2",
+  "global_best_avg_log_loss": 0.6257248686083996,
+  "full_targetwise_avg_log_loss": 0.6221548439580695,
+  "full_targetwise_per_target": {
+    "Q1": 0.6659251284341434,
+    "Q2": 0.6925711160009065,
+    "Q3": 0.6658103337102338,
+    "S1": 0.5752916001413524,
+    "S2": 0.5790404591885154,
+    "S3": 0.5322404199766746,
+    "S4": 0.6442048502546601
+  },
+  "nested_targetwise_avg_log_loss": 0.6279833866858204,
+  "nested_targetwise_per_target": {
+    "Q1": 0.6763081916179365,
+    "Q2": 0.702213894120399,
+    "Q3": 0.669374352729684,
+    "S1": 0.5780601176551076,
+    "S2": 0.5842280637637445,
+    "S3": 0.5381271281587029,
+    "S4": 0.6475719587551678
+  },
+  "selection_optimism": 0.005828542727750907,
+  "nested_gain_vs_subject_prior": -0.00032942792600054727,
+  "full_gain_vs_subject_prior": 0.00549911480175036,
+  "global_gain_vs_subject_prior": 0.0019290901514202874,
+  "selection_counts": [
+    {
+      "target": "Q1",
+      "source": "raw_plus_deviation__lowrank_r3_k4_wd0.03_b0.35",
+      "count": 2
+    },
+    {
+      "target": "Q1",
+      "source": "deviation__mlp_h3_k8_wd0.03_b0.35",
+      "count": 1
+    },
+    {
+      "target": "Q1",
+      "source": "deviation__mlp_h4_k8_wd0.03_b0.35",
+      "count": 1
+    },
+    {
+      "target": "Q1",
+      "source": "raw_plus_deviation__lowrank_r2_k1_wd0.03_b0.35",
+      "count": 1
+    },
+    {
+      "target": "Q2",
+      "source": "deviation__mlp_h1_k2_wd0.1_b0.35",
+      "count": 2
+    },
+    {
+      "target": "Q2",
+      "source": "raw_plus_deviation__lowrank_r4_k4_wd0.03_b0.35",
+      "count": 2
+    },
+    {
+      "target": "Q2",
+      "source": "deviation__linear_k8_b0.35",
+      "count": 1
+    },
+    {
+      "target": "Q3",
+      "source": "raw_plus_deviation__lowrank_r2_k1_wd0.03_b0.35",
+      "count": 2
+    },
+    {
+      "target": "Q3",
+      "source": "raw_plus_deviation__lowrank_r2_k1_wd0.1_b0.35",
+      "count": 1
+    },
+    {
+      "target": "Q3",
+      "source": "raw_plus_deviation__mlp_h3_k1_wd0.03_b0.35",
+      "count": 1
+    },
+    {
+      "target": "Q3",
+      "source": "raw_plus_deviation__mlp_h4_k1_wd0.03_b0.35",
+      "count": 1
+    },
+    {
+      "target": "S1",
+      "source": "deviation__mlp_h2_k8_wd0.03_b0.1",
+      "count": 2
+    },
+    {
+      "target": "S1",
+      "source": "deviation__lowrank_r2_k4_wd0.03_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S1",
+      "source": "raw_plus_deviation__lowrank_r2_k4_wd0.03_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S1",
+      "source": "raw_plus_deviation__mlp_h2_k8_wd0.03_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "deviation__mlp_h1_k8_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "raw_plus_deviation__lowrank_r2_k1_wd0.03_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "raw_plus_deviation__mlp_h4_k4_wd0.03_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "raw_plus_deviation__mlp_h4_k4_wd0.03_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "raw_plus_deviation__mlp_h4_k8_wd0.03_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S3",
+      "source": "raw_plus_deviation__lowrank_r3_k2_wd0.03_b0.2",
+      "count": 2
+    },
+    {
+      "target": "S3",
+      "source": "raw_plus_deviation__lowrank_r4_k8_wd0.1_b0.2",
+      "count": 2
+    },
+    {
+      "target": "S3",
+      "source": "raw_plus_deviation__lowrank_r3_k8_wd0.03_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "source": "raw_plus_deviation__linear_k8_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "source": "raw_plus_deviation__lowrank_r3_k8_wd0.03_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "source": "raw_plus_deviation__lowrank_r3_k8_wd0.1_b0.35",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "source": "raw_plus_deviation__lowrank_r4_k4_wd0.03_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "source": "raw_plus_deviation__lowrank_r4_k4_wd0.1_b0.35",
+      "count": 1
+    }
+  ]
+}
