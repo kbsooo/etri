@@ -214,3 +214,75 @@ Decision:
 - Treat `0.624475` as the new fixed latent golf floor.
 - Do not chase the full targetwise `0.621446` without nested or pre-fixed target rules.
 - Next branch should train tiny sequence encoders from token grids with the same small-decoder discipline. A new tiny GRU/Transformer only matters if its fixed global or nested score beats `0.624475` without creating uncontrolled drift.
+
+## v1 Tiny Transformer Dimension Golf
+
+Encoder script: `scripts/train_hourly_transformer_encoder.py`
+
+Golf decoder script: `scripts/train_latent_deep_learning_golf.py`
+
+Nested stress script: `scripts/nested_deep_learning_golf_selection.py`
+
+Outputs:
+
+- `outputs/tiny_transformer_golf_encoder_d2_v1/`
+- `outputs/tiny_transformer_golf_encoder_d4_v1/`
+- `outputs/tiny_transformer_golf_encoder_d8_v1/`
+- `outputs/tiny_transformer_d2_latent_golf_v1/`
+- `outputs/tiny_transformer_d4_latent_golf_v1/`
+- `outputs/tiny_transformer_d8_latent_golf_v1/`
+- `outputs/nested_tiny_transformer_d2_latent_golf_v1/`
+- `outputs/nested_tiny_transformer_d4_latent_golf_v1/`
+- `outputs/nested_tiny_transformer_d8_latent_golf_v1/`
+
+Input:
+
+- 30-minute event-hybrid token grid: `artifacts/multires_30min_event_hybrid_grid.parquet`
+- 48 tokens per day.
+- Views:
+  - `only_event`
+  - `only_rhythm`
+  - `only_cross_modal`
+  - `no_sleep`
+- Token features include value, missingness, time/panel context, and subject/time deviation features from the existing sequence builder.
+- Encoder is a 1-layer, 1-head Transformer with `d_model` in `2`, `4`, `8`.
+- Decoder uses the same golf grid: linear, low-rank rank 1-2, tiny MLP hidden 1-2; top-k 1/2/4; subject-prior blends 0.1/0.2.
+
+Result:
+
+| d_model | encoder probe best | encoder best view | golf fixed global | full-OOF targetwise | nested targetwise | nested gain vs subject prior | selection optimism | note |
+| ---: | ---: | --- | ---: | ---: | ---: | ---: | ---: | --- |
+| 2 | 0.624469 | `only_event` | 0.626826 | 0.624200 | 0.627956 | -0.000302 | 0.003317 | too compressed; targetwise signal is selection noise |
+| 4 | 0.623719 | `only_cross_modal` | 0.625489 | 0.623174 | 0.626112 | 0.001542 | 0.002860 | first dimension where nested signal survives |
+| 8 | 0.622084 | `only_cross_modal` | 0.626371 | 0.623600 | 0.625441 | 0.002213 | 0.001841 | strongest nested tiny Transformer signal |
+
+Best fixed global sources:
+
+| d_model | source | OOF logloss | note |
+| ---: | --- | ---: | --- |
+| 2 | `only_event__absolute_plus_deviation__mlp_h2_k4_wd0.1_b0.1` | 0.626826 | not enough latent capacity |
+| 4 | `only_event__absolute_plus_deviation__mlp_h2_k4_wd0.1_b0.2` | 0.625489 | better but still below expanded latent floor |
+| 8 | `only_cross_modal__absolute__lowrank_r2_k4_wd0.1_b0.1` | 0.626371 | nested targetwise good, fixed global weak |
+
+Nested target clues:
+
+- `d_model=4`: Q1/Q3 repeatedly select `only_event__deviation__mlp_h2_k4_wd0.1_b0.2`; S2 repeatedly selects `only_event__deviation__mlp_h2_k2`.
+- `d_model=8`: Q2 selects `only_cross_modal__deviation__linear_k4_b0.2` in all five nested folds; S1 selects `only_event__absolute_plus_deviation__lowrank_r2_k4_wd0.1_b0.1` in four folds; S3 selects `only_cross_modal__absolute_plus_deviation__mlp_h1_k4_wd0.1_b0.1` in four folds.
+
+Interpretation:
+
+- `d_model=2` is too small: it produces attractive full-OOF targetwise results, but nested validation drops below subject prior.
+- `d_model=4` is the first viable tiny Transformer latent size.
+- `d_model=8` gives the best nested targetwise result (`0.625441`) and the lowest selection optimism (`0.001841`), so sequence capacity helps.
+- However, no tiny Transformer fixed global decoder beats the expanded existing-latent fixed floor (`0.624475`). The current robust lesson is not "use the tiny Transformer directly"; it is that specific low-dimensional target rules are stable:
+  - Q2: cross-modal deviation linear axis.
+  - S1: event absolute+deviation low-rank axis.
+  - S3: cross-modal absolute+deviation tiny one-hidden-axis.
+- This supports the user's concern: tiny heads can expose signal, but fully automatic targetwise picking still needs nested/fixed rules.
+
+Decision:
+
+- Carry forward `d_model=8` as the best tiny Transformer representation for target-rule mining.
+- Keep `d_model=4` as the minimum viable size.
+- Reject `d_model=2` for now.
+- Next sequence branch should test tiny GRU with the same 30-minute token views to see whether recurrent compression gives a stronger fixed global decoder than Transformer CLS.

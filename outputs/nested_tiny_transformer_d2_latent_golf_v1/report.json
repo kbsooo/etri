@@ -1,0 +1,172 @@
+{
+  "input_dir": "outputs/tiny_transformer_d2_latent_golf_v1",
+  "subject_prior_avg_log_loss": 0.6276539587598199,
+  "global_best_source": "only_event__absolute_plus_deviation__mlp_h2_k4_wd0.1_b0.1",
+  "global_best_avg_log_loss": 0.6268260189342927,
+  "full_targetwise_avg_log_loss": 0.6246389883567812,
+  "full_targetwise_per_target": {
+    "Q1": 0.6701853393209944,
+    "Q2": 0.6924944454204998,
+    "Q3": 0.6716004557053351,
+    "S1": 0.5751679457050272,
+    "S2": 0.5786937161950529,
+    "S3": 0.5378591828255528,
+    "S4": 0.6464718333250061
+  },
+  "nested_targetwise_avg_log_loss": 0.6279562283375888,
+  "nested_targetwise_per_target": {
+    "Q1": 0.672378374914165,
+    "Q2": 0.6975294222815867,
+    "Q3": 0.6748165482195043,
+    "S1": 0.5783538127595532,
+    "S2": 0.5829466903306115,
+    "S3": 0.5401213306260428,
+    "S4": 0.6495474192316578
+  },
+  "selection_optimism": 0.0033172399808075737,
+  "nested_gain_vs_subject_prior": -0.00030226957776890995,
+  "full_gain_vs_subject_prior": 0.0030149704030386637,
+  "global_gain_vs_subject_prior": 0.0008279398255272019,
+  "selection_counts": [
+    {
+      "target": "Q1",
+      "source": "only_event__absolute__lowrank_r2_k1_wd0.1_b0.2",
+      "count": 3
+    },
+    {
+      "target": "Q1",
+      "source": "only_event__absolute_plus_deviation__lowrank_r2_k1_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "Q1",
+      "source": "only_rhythm__absolute_plus_deviation__mlp_h1_k1_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "Q2",
+      "source": "only_cross_modal__absolute_plus_deviation__linear_k4_b0.2",
+      "count": 3
+    },
+    {
+      "target": "Q2",
+      "source": "only_cross_modal__absolute__lowrank_r1_k1_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "Q2",
+      "source": "only_event__deviation__mlp_h2_k4_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "Q3",
+      "source": "no_sleep__deviation__mlp_h2_k1_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "Q3",
+      "source": "only_rhythm__absolute__lowrank_r1_k4_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "Q3",
+      "source": "only_rhythm__absolute_plus_deviation__linear_k2_b0.2",
+      "count": 1
+    },
+    {
+      "target": "Q3",
+      "source": "only_rhythm__absolute_plus_deviation__lowrank_r2_k4_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "Q3",
+      "source": "only_rhythm__deviation__linear_k2_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S1",
+      "source": "only_event__absolute_plus_deviation__lowrank_r2_k4_wd0.1_b0.1",
+      "count": 2
+    },
+    {
+      "target": "S1",
+      "source": "no_sleep__absolute_plus_deviation__linear_k4_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S1",
+      "source": "only_event__absolute_plus_deviation__mlp_h2_k4_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S1",
+      "source": "only_rhythm__absolute__linear_k1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "only_cross_modal__absolute_plus_deviation__lowrank_r1_k4_wd0.1_b0.1",
+      "count": 2
+    },
+    {
+      "target": "S2",
+      "source": "only_cross_modal__absolute_plus_deviation__lowrank_r1_k4_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "only_event__absolute_plus_deviation__lowrank_r2_k4_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S2",
+      "source": "only_event__absolute_plus_deviation__lowrank_r2_k4_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S3",
+      "source": "no_sleep__deviation__mlp_h2_k4_wd0.1_b0.1",
+      "count": 2
+    },
+    {
+      "target": "S3",
+      "source": "no_sleep__absolute_plus_deviation__mlp_h2_k4_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S3",
+      "source": "only_rhythm__absolute__mlp_h2_k4_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S3",
+      "source": "only_rhythm__deviation__lowrank_r1_k4_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "source": "only_cross_modal__absolute__lowrank_r1_k2_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "source": "only_cross_modal__absolute_plus_deviation__lowrank_r1_k2_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "source": "only_event__absolute_plus_deviation__lowrank_r2_k4_wd0.1_b0.1",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "source": "only_event__absolute_plus_deviation__lowrank_r2_k4_wd0.1_b0.2",
+      "count": 1
+    },
+    {
+      "target": "S4",
+      "source": "only_event__absolute_plus_deviation__mlp_h2_k4_wd0.1_b0.2",
+      "count": 1
+    }
+  ]
+}
