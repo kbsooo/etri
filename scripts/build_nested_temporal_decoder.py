@@ -22,6 +22,22 @@ from probe_domain_ssl_latents import (
 )
 
 
+DEFAULT_LATENTS = {
+    "best": "artifacts/domain_best_late_fusion_v1.parquet",
+    "td_trajectory": "outputs/domain_temporal_deviation_probe_v1/subsets/trajectory.parquet",
+}
+
+
+def parse_latent_specs(items: list[str]) -> dict[str, Path]:
+    specs = {name: Path(path) for name, path in DEFAULT_LATENTS.items()}
+    for item in items:
+        if "=" not in item:
+            raise ValueError(f"Latent spec must be name=path, got {item}")
+        name, path = item.split("=", 1)
+        specs[name] = Path(path)
+    return specs
+
+
 def parse_source(source: str) -> tuple[str, str, float, float]:
     parts = source.split("__")
     if len(parts) != 3:
@@ -92,16 +108,16 @@ def run(args: argparse.Namespace) -> None:
     train = normalize_keys(pd.read_csv(args.train_path))
     sample = normalize_keys(pd.read_csv(args.sample_path))
     folds = make_subject_time_folds(train, args.n_folds)
-    latent_specs = {
-        "best": Path(args.best_latent),
-        "td_trajectory": Path(args.trajectory_latent),
-    }
+    latent_specs = parse_latent_specs(args.latent)
     latent_tables = {name: load_latent_table(path, train, sample) for name, path in latent_specs.items()}
     nested_selection = pd.read_csv(args.nested_selected)
-    fold_losses = pd.read_csv(args.fold_losses)
-    source_prefixes = tuple(args.source_prefix)
-    fold_losses = fold_losses[fold_losses["source"].astype(str).str.startswith(source_prefixes)].copy()
-    test_selection = select_test_sources(fold_losses, args.base_source, args.min_train_delta)
+    if args.test_selected:
+        test_selection = pd.read_csv(args.test_selected)
+    else:
+        fold_losses = pd.read_csv(args.fold_losses)
+        source_prefixes = tuple(args.source_prefix)
+        fold_losses = fold_losses[fold_losses["source"].astype(str).str.startswith(source_prefixes)].copy()
+        test_selection = select_test_sources(fold_losses, args.base_source, args.min_train_delta)
 
     needed_sources = set(nested_selection["selected_source"].astype(str)) | set(test_selection["selected_source"].astype(str))
     source_specs = {source: parse_source(source) for source in needed_sources}
@@ -184,7 +200,7 @@ def run(args: argparse.Namespace) -> None:
         "",
         "## Purpose",
         "",
-        "Materialize the nested trajectory-only source-selection diagnostic as OOF and test prediction files.",
+        "Materialize nested source-selection diagnostics as OOF and test prediction files.",
         "",
         "## OOF Score",
         "",
@@ -200,7 +216,7 @@ def run(args: argparse.Namespace) -> None:
         "",
         "## Read",
         "",
-        "Only Q2/Q3 are allowed to move to the trajectory path when the full train-fold selector clears the margin. Other targets stay on the current best late-fusion source.",
+        "Only targets listed in the source-selection table move away from the current best late-fusion source.",
     ]
     (output_dir / "report.md").write_text("\n".join(md), encoding="utf-8")
 
@@ -209,9 +225,9 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Build OOF/test predictions from nested temporal source selection.")
     parser.add_argument("--train-path", default="data/ch2026_metrics_train.csv")
     parser.add_argument("--sample-path", default="data/ch2026_submission_sample.csv")
-    parser.add_argument("--best-latent", default="artifacts/domain_best_late_fusion_v1.parquet")
-    parser.add_argument("--trajectory-latent", default="outputs/domain_temporal_deviation_probe_v1/subsets/trajectory.parquet")
+    parser.add_argument("--latent", action="append", default=[], help="Extra or overriding latent spec as name=path.")
     parser.add_argument("--nested-selected", default="outputs/domain_temporal_deviation_nested_selection_trajectory_only_margin_0p003/nested_selected_fold_losses.csv")
+    parser.add_argument("--test-selected", default="")
     parser.add_argument("--fold-losses", default="outputs/domain_temporal_deviation_subset_probe_v1/fold_target_losses.csv")
     parser.add_argument("--output-dir", default="outputs/domain_nested_temporal_decoder_v1")
     parser.add_argument("--base-source", default="best__absolute_plus_deviation__c0.3_b0.2")

@@ -385,3 +385,41 @@ Per-target movement:
 This is the first concrete decoder artifact from the 300-idea track that improves the current best diagnostic representation without broad feature dumping. It is still not a public-LB claim, but it proves the Q2/Q3 trajectory path can be represented as a reproducible OOF/test decoder.
 
 The gain is too small for the final 0.55 target by itself. The value is directional: Q2/Q3 need a state-path representation. The next encoder experiment should train trajectory preservation directly from the 30-minute token tensor rather than deriving it after the latent is already frozen.
+
+## 2026-05-21 - Trajectory Prototype State Probe
+
+### Scope
+
+Built unsupervised prototype/state distances over the trajectory latent. The feature builder fits global and subject-centered KMeans states on all 700 unlabeled subject-days, then emits distances, soft cluster probabilities, margins, and entropy features.
+
+### Artifacts
+
+- Builder: `scripts/build_prototype_state_latents.py`
+- Prototype artifact: `artifacts/domain_trajectory_prototypes_v1.parquet`
+- Prototype probe: `outputs/domain_trajectory_prototype_probe_v1/report.md`
+- Prototype nested reports:
+  - `outputs/domain_trajectory_prototype_nested_selection_v1/report.md`
+  - `outputs/domain_trajectory_prototype_nested_selection_q2_proto_v1/report.md`
+- Hybrid decoder: `outputs/domain_hybrid_q2_proto_q3_trajectory_decoder_v1/report.md`
+
+### Result
+
+| experiment | avg OOF logloss | read |
+| --- | ---: | --- |
+| current late-fusion best | 0.622961 | Baseline diagnostic artifact. |
+| Q2/Q3 trajectory decoder | 0.621238 | Q2/Q3 use trajectory; other targets unchanged. |
+| Q2 prototype + Q3 trajectory hybrid | 0.621107 | New best diagnostic decoder in this track. |
+
+Prototype target diagnostics:
+
+| target | prototype effect | read |
+| --- | ---: | --- |
+| Q2 | about -0.011 target-only, -0.0064 nested | Prototype state is useful. |
+| Q3 | negative under nested selection | Raw trajectory is better than prototype state. |
+| S4 | unstable/harmful if allowed | Keep S targets on base. |
+
+### Working Interpretation
+
+Q2 and Q3 are not identical even though both respond to the temporal trajectory family. Q2 benefits from coarser prototype/state membership over trajectory space, while Q3 needs the continuous trajectory deviation coordinates. This is useful because it suggests the decoder should not merely share one trajectory head across all Q targets; it likely needs target-specific state readouts.
+
+The improvement is still incremental, not a 0.55 breakthrough. But the pattern is now sharper: target-specific path/state decomposition is a real signal, while broad prototype features are not safe globally.

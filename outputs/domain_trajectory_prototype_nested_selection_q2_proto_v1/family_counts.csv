@@ -1,0 +1,10 @@
+target,source_family,size
+Q1,best_late_fusion,5
+Q2,trajectory_proto,5
+Q3,trajectory_proto,4
+Q3,best_late_fusion,1
+S1,best_late_fusion,5
+S2,best_late_fusion,5
+S3,best_late_fusion,5
+S4,best_late_fusion,4
+S4,trajectory_proto,1

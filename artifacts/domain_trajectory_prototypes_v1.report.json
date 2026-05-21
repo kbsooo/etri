@@ -1,0 +1,12 @@
+{
+  "input": "outputs/domain_temporal_deviation_probe_v1/subsets/trajectory.parquet",
+  "output": "artifacts/domain_trajectory_prototypes_v1.parquet",
+  "rows": 700,
+  "feature_count": 94,
+  "k": [
+    3,
+    5,
+    8
+  ],
+  "source_column_count": 10
+}

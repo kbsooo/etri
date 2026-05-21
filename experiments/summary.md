@@ -244,14 +244,15 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Nested source-selection confirms the clean part of that signal. With only `best` and `td_trajectory` candidates and a 0.003 train-fold improvement margin, held-fold selection improves avg fold loss from `0.623192` to `0.621507`; Q2 and Q3 select trajectory in all five folds, while all other targets stay on the current best latent.
 - Current strongest breakthrough candidate: a Q2/Q3-specific trajectory encoder/decoder path. Future/recovery is interesting but unstable; trajectory is the first temporal-deviation family that survives nested selection cleanly.
 - Materialized the trajectory-only nested selector as actual OOF/test predictions in `outputs/domain_nested_temporal_decoder_v1/`. OOF improves from `0.622961` to `0.621238`; the entire gain comes from Q2 (`-0.005956`) and Q3 (`-0.006109`), with all other targets unchanged.
+- Prototype/state distances over the trajectory latent are useful only narrowly. Q2 improves with trajectory prototype state, while Q3 is better with continuous trajectory deviation. The hybrid decoder `Q2=trajectory_proto, Q3=trajectory, others=base` reaches OOF `0.621107`, the best diagnostic decoder in the 300-idea track so far.
 
 ## Next 3
 
 1. Convert the Q2/Q3 trajectory signal into an encoder objective: train the channel-patch encoder to preserve/predict recent-to-future latent path movement.
    - Success criterion: retain the nested Q2/Q3 gain while improving global frozen-probe OOF beyond `0.621507` equivalent.
 
-2. Add prototype/state distances specifically inside the Q2/Q3 trajectory path, not as a global feature block.
-   - Success criterion: improve Q2/Q3 without moving Q1/S targets or increasing row-wise drift broadly.
+2. Split the Q-family path explicitly: Q2 should read prototype/state membership, while Q3 should read continuous trajectory deviation.
+   - Success criterion: find a shared encoder objective that supports both readouts without post-hoc target-specific feature dumping.
 
-3. Search prototype/state distances over the best late-fusion latent plus temporal-deviation latent, prioritizing Q2/Q3 state-path clusters.
-   - Success criterion: find a target-free prototype axis that improves average OOF, not only target-wise cherry-picks.
+3. Continue the 300-idea manifest sweep with sensor-level data engineering that can feed this trajectory objective: event burstiness, circadian phase shifts, and modality dropout/coverage rhythms.
+   - Success criterion: produce new target-free artifacts that beat or complement the `0.621107` hybrid diagnostic decoder.

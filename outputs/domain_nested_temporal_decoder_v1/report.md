@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Materialize the nested trajectory-only source-selection diagnostic as OOF and test prediction files.
+Materialize nested source-selection diagnostics as OOF and test prediction files.
 
 ## OOF Score
 
@@ -28,4 +28,4 @@ Materialize the nested trajectory-only source-selection diagnostic as OOF and te
 
 ## Read
 
-Only Q2/Q3 are allowed to move to the trajectory path when the full train-fold selector clears the margin. Other targets stay on the current best late-fusion source.
+Only targets listed in the source-selection table move away from the current best late-fusion source.
