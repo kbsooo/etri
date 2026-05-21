@@ -1,0 +1,20 @@
+{
+  "view": "only_gps_radio",
+  "channels_selected": 18,
+  "channel_groups_selected": [
+    "gps_radio"
+  ],
+  "include_mask": true,
+  "latent_dim": 24,
+  "input_dim": 1728,
+  "pca_reconstruction_mse": 0.3766011893749237,
+  "pca_explained_variance": 0.5763238072395325,
+  "subject_leakage_acc": 0.9228571428571428,
+  "train_sample_mean_l2": 2.2150986194610596,
+  "train_sample_std_l2": 1.8285133838653564,
+  "adjacent_cosine_mean": 0.5408575692578502,
+  "random_cosine_mean": 0.031599191443967646,
+  "temporal_locality_gap": 0.5092583778138826,
+  "same_subject_nn_rate": 0.8985714285714286,
+  "mean_neighbor_day_gap": 23.787142857142857
+}

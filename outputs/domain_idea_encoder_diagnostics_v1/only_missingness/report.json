@@ -1,0 +1,20 @@
+{
+  "view": "only_missingness",
+  "channels_selected": 21,
+  "channel_groups_selected": [
+    "missingness"
+  ],
+  "include_mask": true,
+  "latent_dim": 24,
+  "input_dim": 2016,
+  "pca_reconstruction_mse": 0.11595609784126282,
+  "pca_explained_variance": 0.770815908908844,
+  "subject_leakage_acc": 0.4614285714285714,
+  "train_sample_mean_l2": 2.9917209148406982,
+  "train_sample_std_l2": 10.003801345825195,
+  "adjacent_cosine_mean": 0.4617061942572827,
+  "random_cosine_mean": 0.241867575014307,
+  "temporal_locality_gap": 0.2198386192429757,
+  "same_subject_nn_rate": 0.47,
+  "mean_neighbor_day_gap": 35.68142857142857
+}

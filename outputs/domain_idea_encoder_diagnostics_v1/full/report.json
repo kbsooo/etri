@@ -1,0 +1,27 @@
+{
+  "view": "full",
+  "channels_selected": 110,
+  "channel_groups_selected": [
+    "ambience",
+    "body",
+    "cross_modal",
+    "event",
+    "gps_radio",
+    "light",
+    "missingness",
+    "phone"
+  ],
+  "include_mask": true,
+  "latent_dim": 24,
+  "input_dim": 10560,
+  "pca_reconstruction_mse": 0.35066476464271545,
+  "pca_explained_variance": 0.5185882449150085,
+  "subject_leakage_acc": 0.8828571428571429,
+  "train_sample_mean_l2": 9.164953231811523,
+  "train_sample_std_l2": 11.726661682128906,
+  "adjacent_cosine_mean": 0.42011694070896594,
+  "random_cosine_mean": 0.039929153837695505,
+  "temporal_locality_gap": 0.3801877868712704,
+  "same_subject_nn_rate": 0.8085714285714286,
+  "mean_neighbor_day_gap": 28.597142857142856
+}

@@ -1,0 +1,35 @@
+{
+  "manifest_ideas": 340,
+  "feature_path": "artifacts/domain_state_features_v1.parquet",
+  "shape": [
+    700,
+    2006
+  ],
+  "n_numeric_features": 2002,
+  "families": [
+    "cross_modal",
+    "day_slicing",
+    "episode",
+    "misc_domain",
+    "missingness",
+    "motif_retrieval",
+    "rolling_memory",
+    "subject_deviation",
+    "target_view",
+    "token_ssl"
+  ],
+  "date_min": "2024-06-03",
+  "date_max": "2024-11-19",
+  "subjects": [
+    "id01",
+    "id02",
+    "id03",
+    "id04",
+    "id05",
+    "id06",
+    "id07",
+    "id08",
+    "id09",
+    "id10"
+  ]
+}

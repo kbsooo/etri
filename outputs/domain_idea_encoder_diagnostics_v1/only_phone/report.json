@@ -1,0 +1,20 @@
+{
+  "view": "only_phone",
+  "channels_selected": 13,
+  "channel_groups_selected": [
+    "phone"
+  ],
+  "include_mask": true,
+  "latent_dim": 24,
+  "input_dim": 1248,
+  "pca_reconstruction_mse": 0.4658876359462738,
+  "pca_explained_variance": 0.4733443856239319,
+  "subject_leakage_acc": 0.8185714285714286,
+  "train_sample_mean_l2": 1.5272315740585327,
+  "train_sample_std_l2": 2.799867630004883,
+  "adjacent_cosine_mean": 0.3834071427097787,
+  "random_cosine_mean": 0.017938820545332156,
+  "temporal_locality_gap": 0.3654683221644466,
+  "same_subject_nn_rate": 0.7442857142857143,
+  "mean_neighbor_day_gap": 30.367142857142856
+}

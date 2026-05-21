@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import warnings
 from pathlib import Path
 from typing import Iterable
 
@@ -204,7 +205,10 @@ def aggregate_file(path: Path) -> pd.DataFrame:
 
 def build_daily_features(keys: pd.DataFrame, data_dir: Path, cache_path: Path, force: bool) -> pd.DataFrame:
     if cache_path.exists() and not force:
-        cached = normalize_keys(pd.read_parquet(cache_path))
+        cached = pd.read_parquet(cache_path).copy()
+        for col in ("subject_id", "lifelog_date"):
+            cached[col] = cached[col].astype(str)
+        cached = cached.drop(columns=[col for col in ("sleep_date",) if col in cached.columns])
         return keys.merge(cached, on=["subject_id", "lifelog_date"], how="left")
     merged = keys[["subject_id", "lifelog_date"]].drop_duplicates().copy()
     for path in sorted(data_dir.glob("*.parquet")):
@@ -320,7 +324,15 @@ def run(args: argparse.Namespace) -> None:
     all_features = add_calendar_features(all_features)
     train_features = all_features.iloc[: len(train)].reset_index(drop=True)
     sample_features = all_features.iloc[len(train) :].reset_index(drop=True)
-    feature_cols = [c for c in train_features.columns if c not in KEY_COLUMNS]
+    numeric_candidates = [c for c in train_features.select_dtypes(include=[np.number]).columns if c not in KEY_COLUMNS + TARGET_COLUMNS]
+    feature_cols = []
+    for col in numeric_candidates:
+        values = train_features[col].to_numpy(float)
+        if np.isfinite(values).sum() == 0:
+            continue
+        if np.nanstd(values) <= 1e-12:
+            continue
+        feature_cols.append(col)
     x_all = train_features[feature_cols].to_numpy(float)
     x_sample = sample_features[feature_cols].to_numpy(float)
     train_subjects = train["subject_id"].astype(str).to_numpy(object)
@@ -342,48 +354,51 @@ def run(args: argparse.Namespace) -> None:
     predictions = {name: np.zeros((len(train), len(TARGET_COLUMNS))) for *_, name in specs}
     sample_folds = {name: [] for *_, name in specs}
     fold_rows = []
-    for fold_i, fold in enumerate(folds, 1):
-        prior_fit_all = subject_prior(train.iloc[fold.train_idx], train.iloc[fold.train_idx], args.prior_alpha)
-        prior_eval_all = subject_prior(train.iloc[fold.train_idx], train.iloc[fold.val_idx], args.prior_alpha)
-        prior_sample_all = subject_prior(train.iloc[fold.train_idx], sample, args.prior_alpha)
-        rel_fit, rel_eval, rel_sample = subject_relative(x_all, x_sample, train_subjects, sample_subjects, fold.train_idx, fold.val_idx)
-        raw_fit, raw_eval, raw_sample = x_all[fold.train_idx], x_all[fold.val_idx], x_sample
-        mode_cache = {
-            "raw": (raw_fit, raw_eval, raw_sample),
-            "deviation": (rel_fit, rel_eval, rel_sample),
-            "raw_plus_deviation": (
-                np.concatenate([raw_fit, rel_fit], axis=1),
-                np.concatenate([raw_eval, rel_eval], axis=1),
-                np.concatenate([raw_sample, rel_sample], axis=1),
-            ),
-        }
-        fold_sample = {name: np.zeros((len(sample), len(TARGET_COLUMNS))) for *_, name in specs}
-        for target_i, target in enumerate(TARGET_COLUMNS):
-            y_fit = train.iloc[fold.train_idx][target].to_numpy(int)
-            y_eval = train.iloc[fold.val_idx][target].to_numpy(int)
-            for mode, family, k, blend, c, alpha, name in specs:
-                x_fit, x_eval, x_s = mode_cache[mode]
-                pred_eval, pred_sample = model_predict(
-                    family,
-                    x_fit,
-                    y_fit,
-                    x_eval,
-                    x_s,
-                    prior_fit_all[:, target_i],
-                    prior_eval_all[:, target_i],
-                    prior_sample_all[:, target_i],
-                    k,
-                    blend,
-                    c,
-                    alpha,
-                )
-                pred_eval = np.clip(pred_eval, EPS, 1.0 - EPS)
-                pred_sample = np.clip(pred_sample, EPS, 1.0 - EPS)
-                predictions[name][fold.val_idx, target_i] = pred_eval
-                fold_sample[name][:, target_i] = pred_sample
-                fold_rows.append({"fold": fold_i, "target": target, "source": name, "loss": float(log_loss(y_eval, pred_eval, labels=[0, 1]))})
-        for name, pred in fold_sample.items():
-            sample_folds[name].append(pred)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)
+        warnings.simplefilter("ignore", UserWarning)
+        for fold_i, fold in enumerate(folds, 1):
+            prior_fit_all = subject_prior(train.iloc[fold.train_idx], train.iloc[fold.train_idx], args.prior_alpha)
+            prior_eval_all = subject_prior(train.iloc[fold.train_idx], train.iloc[fold.val_idx], args.prior_alpha)
+            prior_sample_all = subject_prior(train.iloc[fold.train_idx], sample, args.prior_alpha)
+            rel_fit, rel_eval, rel_sample = subject_relative(x_all, x_sample, train_subjects, sample_subjects, fold.train_idx, fold.val_idx)
+            raw_fit, raw_eval, raw_sample = x_all[fold.train_idx], x_all[fold.val_idx], x_sample
+            mode_cache = {
+                "raw": (raw_fit, raw_eval, raw_sample),
+                "deviation": (rel_fit, rel_eval, rel_sample),
+                "raw_plus_deviation": (
+                    np.concatenate([raw_fit, rel_fit], axis=1),
+                    np.concatenate([raw_eval, rel_eval], axis=1),
+                    np.concatenate([raw_sample, rel_sample], axis=1),
+                ),
+            }
+            fold_sample = {name: np.zeros((len(sample), len(TARGET_COLUMNS))) for *_, name in specs}
+            for target_i, target in enumerate(TARGET_COLUMNS):
+                y_fit = train.iloc[fold.train_idx][target].to_numpy(int)
+                y_eval = train.iloc[fold.val_idx][target].to_numpy(int)
+                for mode, family, k, blend, c, alpha, name in specs:
+                    x_fit, x_eval, x_s = mode_cache[mode]
+                    pred_eval, pred_sample = model_predict(
+                        family,
+                        x_fit,
+                        y_fit,
+                        x_eval,
+                        x_s,
+                        prior_fit_all[:, target_i],
+                        prior_eval_all[:, target_i],
+                        prior_sample_all[:, target_i],
+                        k,
+                        blend,
+                        c,
+                        alpha,
+                    )
+                    pred_eval = np.clip(pred_eval, EPS, 1.0 - EPS)
+                    pred_sample = np.clip(pred_sample, EPS, 1.0 - EPS)
+                    predictions[name][fold.val_idx, target_i] = pred_eval
+                    fold_sample[name][:, target_i] = pred_sample
+                    fold_rows.append({"fold": fold_i, "target": target, "source": name, "loss": float(log_loss(y_eval, pred_eval, labels=[0, 1]))})
+            for name, pred in fold_sample.items():
+                sample_folds[name].append(pred)
 
     sample_predictions = {name: np.clip(np.mean(parts, axis=0), EPS, 1.0 - EPS) for name, parts in sample_folds.items()}
     score_rows = []

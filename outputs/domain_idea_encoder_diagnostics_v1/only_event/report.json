@@ -1,0 +1,20 @@
+{
+  "view": "only_event",
+  "channels_selected": 11,
+  "channel_groups_selected": [
+    "event"
+  ],
+  "include_mask": true,
+  "latent_dim": 24,
+  "input_dim": 1056,
+  "pca_reconstruction_mse": 0.22481361031532288,
+  "pca_explained_variance": 0.38176262378692627,
+  "subject_leakage_acc": 0.6114285714285714,
+  "train_sample_mean_l2": 0.8176819682121277,
+  "train_sample_std_l2": 0.7124119997024536,
+  "adjacent_cosine_mean": 0.19109646460392338,
+  "random_cosine_mean": -0.006687416288785744,
+  "temporal_locality_gap": 0.19778388089270912,
+  "same_subject_nn_rate": 0.5285714285714286,
+  "mean_neighbor_day_gap": 33.387142857142855
+}

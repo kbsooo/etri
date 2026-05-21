@@ -1,6 +1,17 @@
 # ETRI Latent Encoder Experiments
 
-Last updated: 2026-05-20
+Last updated: 2026-05-21
+
+## 2026-05-21 Domain Idea Bank / Encoder-First Data Pipeline
+
+- New experiment log: `experiments/domain_idea_bank/experiment_log.md`.
+- Scripts: `scripts/build_domain_state_features.py`, `scripts/build_domain_encoder_tokens.py`, `scripts/run_domain_idea_encoder_diagnostics.py`.
+- Scope: imported `idea_gpt.md`, `idea_claude.md`, and `idea_gemini.md` into a traceable registry. The parser found `340` numbered items because the source files include extra numbered sections beyond the requested 300 ideas.
+- Manifest schema now tracks `experiment_family`, `experiment_stage`, `status`, `expected_artifact`, and `validation_gate`.
+- Registry status: `280` ready domain-state ideas, `43` queued encoder-SSL ideas, `17` gated target-adjacent ideas.
+- Encoder-first token artifact: `artifacts/domain_encoder_tokens_v1.npz`, shape `[700 days, 110 channels, 48 tokens]`, observed fraction `0.886050`.
+- Label-free diagnostics: `outputs/domain_idea_encoder_diagnostics_v1/report.md`, covering all `340/340` manifest ideas through family views.
+- First data insight: full multimodal tokens are identity-heavy and shifted (`subject_leakage_acc=0.882857`, `train_sample_mean_l2=9.164953`). Low-drift candidates are `only_event` (`0.817682` shift), `only_cross_modal` (`1.326479`), and `only_missingness` (low identity leakage `0.461429`). This supports pruning/noisy-family control before any decoder work.
 
 ## 2026-05-21 Pruned State Decoder Direction
 
