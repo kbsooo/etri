@@ -155,3 +155,46 @@ The effect size is not yet a breakthrough. A frozen logistic probe improves the 
 1. Train SSL with event/cross/missing tokens but a label-relevant pretext: temporal order, subject-relative future/past deviation, or same-subject contrastive day discrimination.
 2. Run a token-family dropout sweep inside SSL so the encoder cannot solve reconstruction from missingness coverage alone.
 3. Add target-agnostic behavioral state prototypes from the 300 idea families, then probe whether prototype coordinates improve over the current frozen latent.
+
+## 2026-05-21 - v1 Temporal Contrastive Encoder
+
+### Scope
+
+Replaced pure reconstruction SSL with a target-free temporal contrastive pretext. The model uses the same 30-minute domain token tensor but trains day embeddings with same-day or adjacent-day positives, token/channel augmentation, and subject-centered projection loss. This directly tests whether the 300-idea token families can produce behavioral-state latents rather than value-reconstruction latents.
+
+### Artifacts
+
+- Script: `scripts/train_domain_temporal_contrastive_encoder.py`
+- Latent combiner: `scripts/combine_latent_tables.py`
+- Contrastive report: `outputs/domain_temporal_contrastive_encoder_v1/report.md`
+- Standalone frozen probe: `outputs/domain_temporal_contrastive_probe_v1/report.md`
+- Combined frozen probe: `outputs/domain_temporal_contrastive_combined_probe_v1/report.md`
+
+### Encoder Result
+
+| positive mode | normalization | view | read |
+| --- | --- | --- | --- |
+| same_day | subject_channel_token | only_event | Best contrastive loss and low leakage, but train/sample shift is high. |
+| adjacent_day | subject_channel_token | event_cross_missing | Worse contrastive loss but lower shift; best standalone label probe. |
+| adjacent_day | global | only_event | Very low shift but weak temporal/local label signal. |
+
+### Frozen Probe Result
+
+| latent source | avg logloss | delta vs subject prior | read |
+| --- | ---: | ---: | --- |
+| reconstruction SSL best | 0.626064 | -0.001590 | Previous best frozen probe. |
+| contrastive standalone best | 0.626525 | -0.001129 | Standalone contrastive is weaker than reconstruction. |
+| reconstruction + adjacent contrastive only_event | 0.624798 | -0.002856 | New best diagnostic probe; contrastive adds orthogonal signal. |
+| reconstruction + adjacent contrastive event_cross_missing | 0.625735 | -0.001919 | Positive but weaker than adding contrastive only_event. |
+
+### Working Interpretation
+
+Temporal contrastive learning is not strong enough as a replacement encoder yet. The useful signal appears when the reconstruction latent (`subject_channel_token + event_cross_missing`) is concatenated with an adjacent-day contrastive `only_event` latent. This is important: the contrastive branch does not win by itself, but it contributes a different axis that improves frozen label readability beyond reconstruction SSL.
+
+The current best diagnostic probe is now `0.624798`, improving the prior by `0.002856` and improving the previous frozen-probe best by `0.001266`. This still misses the `0.005` breakthrough threshold, but it validates the next direction: multi-objective encoders or late-fusion latent families are more promising than single-pretext encoders.
+
+### Next Experiments
+
+1. Train a joint reconstruction + adjacent-event contrastive encoder instead of concatenating two separately trained latents after the fact.
+2. Add a future/past ordering head on top of adjacent-day positives to force temporal direction, not only temporal closeness.
+3. Run family dropout on the contrastive branch: `only_event`, `event+missingness`, `event+cross`, and `missingness-blocked`, then promote only branches that improve the combined frozen probe.

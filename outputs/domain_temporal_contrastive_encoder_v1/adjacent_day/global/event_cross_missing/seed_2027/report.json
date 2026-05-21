@@ -1,0 +1,71 @@
+{
+  "seed": 2027,
+  "train_days": 574,
+  "val_days": 126,
+  "final_train_loss": 7.598890542984009,
+  "final_val_loss": 9.90153980255127,
+  "best_val_loss": 9.90153980255127,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 8.369326710700989,
+      "val_loss": 10.06063461303711
+    },
+    {
+      "epoch": 2,
+      "train_loss": 7.850662350654602,
+      "val_loss": 10.193399429321289
+    },
+    {
+      "epoch": 3,
+      "train_loss": 7.770175576210022,
+      "val_loss": 10.205079078674316
+    },
+    {
+      "epoch": 4,
+      "train_loss": 7.6290565729141235,
+      "val_loss": 10.126514434814453
+    },
+    {
+      "epoch": 5,
+      "train_loss": 7.627654314041138,
+      "val_loss": 10.08531379699707
+    },
+    {
+      "epoch": 6,
+      "train_loss": 7.380791068077087,
+      "val_loss": 9.957552909851074
+    },
+    {
+      "epoch": 7,
+      "train_loss": 7.279083251953125,
+      "val_loss": 9.910797119140625
+    },
+    {
+      "epoch": 8,
+      "train_loss": 7.598890542984009,
+      "val_loss": 9.90153980255127
+    }
+  ],
+  "positive_mode": "adjacent_day",
+  "normalization": "global",
+  "view": "event_cross_missing",
+  "device": "mps",
+  "channels_selected": 34,
+  "channel_groups_selected": [
+    "cross_modal",
+    "event",
+    "missingness"
+  ],
+  "embedding_dim": 24,
+  "embedding_norm_mean": 4.902547359466553,
+  "embedding_axis_std_mean": 0.044652000069618225,
+  "embedding_axis_std_min": 0.013449018821120262,
+  "embedding_effective_rank": 2.6193821976137897,
+  "subject_centroid_leakage": 0.24714285714285714,
+  "adjacent_cosine_mean": 0.9984712071176888,
+  "random_cosine_mean": 0.9974107202412426,
+  "temporal_locality_gap": 0.0010604868764462205,
+  "train_sample_mean_l2": 0.027070732787251472,
+  "train_sample_std_l2": 0.07062314450740814
+}
