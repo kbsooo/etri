@@ -1,0 +1,10 @@
+{
+  "output": "artifacts/domain_causal_chain_v1.parquet",
+  "rows": 700,
+  "feature_count": 168,
+  "hypotheses": [
+    "A day should be represented as load -> arousal -> sleep opportunity -> continuity -> recovery.",
+    "S1/S3 may depend on chain bottlenecks rather than any single sensor family.",
+    "Subject-relative chain gaps can expose fatigue/stress states without label-derived targets."
+  ]
+}

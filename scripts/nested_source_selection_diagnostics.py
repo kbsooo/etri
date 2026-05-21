@@ -12,6 +12,32 @@ TARGET_COLUMNS = ["Q1", "Q2", "Q3", "S1", "S2", "S3", "S4"]
 
 
 def source_family(source: str) -> str:
+    if source.startswith("best_plus_cc_load"):
+        return "best_plus_causal_chain_load"
+    if source.startswith("best_plus_cc_arousal"):
+        return "best_plus_causal_chain_arousal"
+    if source.startswith("best_plus_cc_opportunity"):
+        return "best_plus_causal_chain_opportunity"
+    if source.startswith("best_plus_cc_continuity"):
+        return "best_plus_causal_chain_continuity"
+    if source.startswith("best_plus_cc_recovery"):
+        return "best_plus_causal_chain_recovery"
+    if source.startswith("best_plus_cc_chain_interactions"):
+        return "best_plus_causal_chain_interactions"
+    if source.startswith("cc_load"):
+        return "causal_chain_load"
+    if source.startswith("cc_arousal"):
+        return "causal_chain_arousal"
+    if source.startswith("cc_opportunity"):
+        return "causal_chain_opportunity"
+    if source.startswith("cc_continuity"):
+        return "causal_chain_continuity"
+    if source.startswith("cc_recovery"):
+        return "causal_chain_recovery"
+    if source.startswith("cc_chain_interactions"):
+        return "causal_chain_interactions"
+    if source.startswith("causal_chain"):
+        return "causal_chain"
     if source.startswith("best_plus_di_social_isolation"):
         return "best_plus_digital_isolation_social"
     if source.startswith("best_plus_di_app_diversity_shift"):

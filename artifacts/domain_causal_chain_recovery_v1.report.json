@@ -1,0 +1,11 @@
+{
+  "variant": "recovery",
+  "output": "artifacts/domain_causal_chain_recovery_v1.parquet",
+  "rows": 700,
+  "feature_count": 40,
+  "patterns": [
+    "morning_recovery",
+    "recovery",
+    "fatigue"
+  ]
+}

@@ -812,6 +812,77 @@ The target map is updated:
 - S4: routine regularity/circadian phase break.
 - S1/S3: still open.
 
+## 2026-05-22 - Causal Chain / Sleep Opportunity Bottleneck Probe
+
+### Scope
+
+Tested the idea-bank "day causal sketch" hypothesis: a subject-day should be encoded as a chain rather than independent feature totals.
+
+The chain representation is:
+
+1. physical/mobility load
+2. evening arousal
+3. sleep opportunity
+4. continuity loss
+5. morning recovery
+
+Then it adds bottleneck interactions such as high-load/low-opportunity, arousal/opportunity gap, fragmented-recovery gap, stress-chain score, sleep-quality-chain score, and fatigue-chain score.
+
+### Artifacts
+
+- Builder: `scripts/build_causal_chain_latents.py`
+- Pruned variant builder: `scripts/build_causal_chain_pruned_variants.py`
+- Full artifact: `artifacts/domain_causal_chain_v1.parquet`
+- Pruned artifacts:
+  - `artifacts/domain_causal_chain_load_v1.parquet`
+  - `artifacts/domain_causal_chain_arousal_v1.parquet`
+  - `artifacts/domain_causal_chain_opportunity_v1.parquet`
+  - `artifacts/domain_causal_chain_continuity_v1.parquet`
+  - `artifacts/domain_causal_chain_recovery_v1.parquet`
+  - `artifacts/domain_causal_chain_chain_interactions_v1.parquet`
+- Probe reports:
+  - `outputs/domain_causal_chain_probe_v1/report.md`
+  - `outputs/domain_causal_chain_pruned_probe_v1/report.md`
+  - `outputs/domain_causal_chain_plus_best_probe_v1/report.md`
+- Nested all-specialist stress: `outputs/domain_all_specialists_plus_causal_chain_additive_nested_selection_v1/report.md`
+- Fixed-map decoders:
+  - conservative: `outputs/domain_hybrid_causal_chain_fixed_maps_v1/conservative/report.md`
+  - bold Q3 recovery: `outputs/domain_hybrid_causal_chain_fixed_maps_v1/bold_q3_recovery/report.md`
+
+### Result
+
+| experiment | avg OOF logloss | read |
+| --- | ---: | --- |
+| full causal-chain family | 0.623192 best remained base | Full chain is target-specific, not a global replacement. |
+| pruned chain families | 0.623192 best remained base | `cc_opportunity` is the strongest pruned family. |
+| `best + cc_opportunity` additive probe | 0.619652 | Strong global raw candidate; improves Q1/S1/S2 together. |
+| all-specialist nested selector with chain candidates | 0.623695 | Automatic selector over-switches; not a global adoption rule. |
+| fixed conservative map: Q1/S1/S2 opportunity + S4 chain interactions | 0.614468 | Large diagnostic improvement over prior `0.617333`. |
+| fixed bold map: conservative + Q3 recovery | 0.614213 | Best diagnostic decoder in this 300-idea track so far. |
+
+Target-specific reads:
+
+| family | useful target | read |
+| --- | --- | --- |
+| `best_plus_cc_opportunity` | Q1/S1/S2 | The same sleep-opportunity bottleneck improves sleep quality, S1, and S2 together. This is stronger than treating each sleep target as unrelated. |
+| `best_plus_cc_recovery` | Q3 raw | Q3 recovery replacement improves raw OOF, but nested selector did not fully confirm it. Treat bold Q3 as a breakthrough candidate, not a stable conclusion. |
+| `best_plus_cc_chain_interactions` | S4 | Chain interactions slightly beat routine regularity for S4 in the fixed map. |
+| S3 | none | S3 still resists every chain variant; keep it on the base late-fusion source. |
+
+### Working Interpretation
+
+This is the clearest support so far for the user's Encoder-Decoder framing. The useful latent is not "more features"; it is a structured daily state vector. A compact causal chain over load, arousal, sleep opportunity, continuity, and recovery gives the decoder a better intermediate state than flat sensor totals.
+
+The target map is updated:
+
+- Q1: best latent plus sleep-opportunity causal chain.
+- Q2: energy recovery slope / daytime restoration.
+- Q3: bold candidate uses causal-chain recovery; conservative map keeps mobility constriction.
+- S1: best latent plus sleep-opportunity causal chain.
+- S2: best latent plus sleep-opportunity causal chain, replacing digital phone fragmentation.
+- S3: base late-fusion source.
+- S4: best latent plus causal-chain interactions.
+
 ## 2026-05-22 - Ambient / Coverage / Day-State Motif Probe
 
 ### Scope

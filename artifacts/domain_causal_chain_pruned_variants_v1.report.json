@@ -1,0 +1,79 @@
+{
+  "input": "artifacts/domain_causal_chain_v1.parquet",
+  "variants": [
+    {
+      "variant": "load",
+      "output": "artifacts/domain_causal_chain_load_v1.parquet",
+      "rows": 700,
+      "feature_count": 32,
+      "patterns": [
+        "physical_load",
+        "mobility_context",
+        "high_load",
+        "load_after"
+      ]
+    },
+    {
+      "variant": "arousal",
+      "output": "artifacts/domain_causal_chain_arousal_v1.parquet",
+      "rows": 700,
+      "feature_count": 28,
+      "patterns": [
+        "evening_arousal",
+        "arousal",
+        "late_arousal",
+        "onset_late"
+      ]
+    },
+    {
+      "variant": "opportunity",
+      "output": "artifacts/domain_causal_chain_opportunity_v1.parquet",
+      "rows": 700,
+      "feature_count": 32,
+      "patterns": [
+        "sleep_opportunity",
+        "opportunity",
+        "phase_compression",
+        "wake_late",
+        "onset_late"
+      ]
+    },
+    {
+      "variant": "continuity",
+      "output": "artifacts/domain_causal_chain_continuity_v1.parquet",
+      "rows": 700,
+      "feature_count": 40,
+      "patterns": [
+        "sleep_friction",
+        "continuity",
+        "fragmented",
+        "sleep_quality"
+      ]
+    },
+    {
+      "variant": "recovery",
+      "output": "artifacts/domain_causal_chain_recovery_v1.parquet",
+      "rows": 700,
+      "feature_count": 40,
+      "patterns": [
+        "morning_recovery",
+        "recovery",
+        "fatigue"
+      ]
+    },
+    {
+      "variant": "chain_interactions",
+      "output": "artifacts/domain_causal_chain_chain_interactions_v1.parquet",
+      "rows": 700,
+      "feature_count": 92,
+      "patterns": [
+        "chain_score",
+        "gap",
+        "deficit",
+        "high_load_low",
+        "load_after_bad",
+        "arousal_to"
+      ]
+    }
+  ]
+}

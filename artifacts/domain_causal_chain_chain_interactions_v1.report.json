@@ -1,0 +1,14 @@
+{
+  "variant": "chain_interactions",
+  "output": "artifacts/domain_causal_chain_chain_interactions_v1.parquet",
+  "rows": 700,
+  "feature_count": 92,
+  "patterns": [
+    "chain_score",
+    "gap",
+    "deficit",
+    "high_load_low",
+    "load_after_bad",
+    "arousal_to"
+  ]
+}

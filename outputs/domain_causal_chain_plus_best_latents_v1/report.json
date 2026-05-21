@@ -1,0 +1,38 @@
+[
+  {
+    "name": "best_plus_cc_load",
+    "path": "outputs/domain_causal_chain_plus_best_latents_v1/best_plus_cc_load.parquet",
+    "rows": 700,
+    "feature_count": 80
+  },
+  {
+    "name": "best_plus_cc_arousal",
+    "path": "outputs/domain_causal_chain_plus_best_latents_v1/best_plus_cc_arousal.parquet",
+    "rows": 700,
+    "feature_count": 76
+  },
+  {
+    "name": "best_plus_cc_opportunity",
+    "path": "outputs/domain_causal_chain_plus_best_latents_v1/best_plus_cc_opportunity.parquet",
+    "rows": 700,
+    "feature_count": 80
+  },
+  {
+    "name": "best_plus_cc_continuity",
+    "path": "outputs/domain_causal_chain_plus_best_latents_v1/best_plus_cc_continuity.parquet",
+    "rows": 700,
+    "feature_count": 88
+  },
+  {
+    "name": "best_plus_cc_recovery",
+    "path": "outputs/domain_causal_chain_plus_best_latents_v1/best_plus_cc_recovery.parquet",
+    "rows": 700,
+    "feature_count": 88
+  },
+  {
+    "name": "best_plus_cc_chain_interactions",
+    "path": "outputs/domain_causal_chain_plus_best_latents_v1/best_plus_cc_chain_interactions.parquet",
+    "rows": 700,
+    "feature_count": 140
+  }
+]

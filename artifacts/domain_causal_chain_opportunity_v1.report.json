@@ -1,0 +1,13 @@
+{
+  "variant": "opportunity",
+  "output": "artifacts/domain_causal_chain_opportunity_v1.parquet",
+  "rows": 700,
+  "feature_count": 32,
+  "patterns": [
+    "sleep_opportunity",
+    "opportunity",
+    "phase_compression",
+    "wake_late",
+    "onset_late"
+  ]
+}
