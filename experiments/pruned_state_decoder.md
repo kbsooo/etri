@@ -339,3 +339,62 @@ Decision:
 - `extended_full_oof_winners` remains an optimism upper bound, not a trusted model. It reproduces the full-OOF `0.616766`, but nested validation already showed that this family falls back to `0.625206`.
 - Guarding S1/S2/S3 with subject prior improves drift but loses too much OOF signal, so the current useful decoder is not a pure conservative prior guard.
 - The next improvement should preserve the `stable_signal_s4_temporal` map and attack the remaining weak targets through better state objectives, not through meta gates or full-OOF source selection.
+
+## Residual state objective decoder
+
+Script: `scripts/train_residual_state_objective_decoder.py`
+
+Output: `outputs/residual_state_objective_decoder_v1/`
+
+This experiment reframes the decoder target from direct label probability to logit residual over the fold-safe subject prior. It tests residual prototypes, residual nearest-neighbor, residual ridge, and their mean over subject-normalized state latents.
+
+Results:
+
+- Best global: `no_ratio__residual_ridge_w03`
+- Best global OOF avg: `0.626331`
+- Target-wise full-OOF avg: `0.620437`
+- Best global drift vs v83 diagnostic reference: `0.063475`
+- Target-wise drift vs v83 diagnostic reference: `0.066478`
+
+Best decoder family by global OOF:
+
+- `residual_ridge`: `0.626331`
+- `residual_mean`: `0.626461`
+- `residual_knn`: `0.626783`
+- `residual_proto`: `0.627603`
+
+Interpretation:
+
+- Residual prototypes and residual nearest-neighbor are not stronger than the existing prior-residual ridge route.
+- The experiment lowers drift but does not beat the fixed `stable_signal_s4_temporal` scaffold (`0.620281`).
+- Target-wise full-OOF shows possible Q1/S1/S2/S4 improvements, but this needs nested validation before any adoption.
+
+## Nested residual hybrid validation
+
+Script: `scripts/train_nested_residual_hybrid_decoder.py`
+
+Output: `outputs/nested_residual_hybrid_decoder_v1/`
+
+This nested run combines stable consensus sources with residual-state and extended-family candidates in a compact target-specific candidate pool.
+
+Results:
+
+- Nested residual hybrid OOF avg: `0.624176`
+- Previous nested target-aware OOF avg: `0.624729`
+- Nested extended-family OOF avg: `0.625206`
+- Fixed `stable_signal_s4_temporal` OOF avg: `0.620281`
+- Drift vs v83 diagnostic reference: `0.065379`
+
+Selection stability:
+
+- Q1: `only_rhythm + HGB` selected 4/5, residual missingness selected 1/5.
+- Q2 remains unstable: `drop_raw_ratio`, `no_ratio residual`, `no_ratio state_mean`, and subject prior all appear.
+- Q3 splits between `no_sleep + HGB`, `only_rhythm + state_mean`, and subject prior.
+- S1 and S3 mostly fall back to subject prior.
+- S4 again favors `no_temporal_delta + HGB` in 3/5 folds.
+
+Decision:
+
+- Residual-state candidates add a small nested-search signal (`0.624176` beats `0.624729`), so the idea is not dead.
+- They do not yet improve the best fixed scaffold. Most target-wise residual gains are still selection-sensitive.
+- Keep the current fixed scaffold as `stable_signal_s4_temporal`; carry forward only the evidence that Q1 has a weak residual-missingness alternative worth revisiting with a stronger state objective.
