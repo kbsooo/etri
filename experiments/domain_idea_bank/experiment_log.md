@@ -83,3 +83,40 @@ This confirms the earlier PCA diagnostic with an actual SSL encoder: event token
 1. Train `only_event` and `event_cross_missing` longer with smaller mask-prob sweeps.
 2. Add subject-relative token normalization for event/missingness before SSL.
 3. Only after those label-free gates, run a frozen linear probe to test whether the new latent is label-readable.
+
+## 2026-05-21 - v2 Subject-Normalized Token SSL
+
+### Scope
+
+Tested whether subject-relative normalization should happen inside the encoder token tensor rather than only in day-level aggregate features. The run compares `global`, `subject_channel`, and `subject_channel_token` normalization on the three strongest v1 views.
+
+### Artifacts
+
+- Script: `scripts/train_domain_masked_patch_encoder.py`
+- Report: `outputs/domain_masked_patch_encoder_v2_subject_norm/report.md`
+- Summary table: `outputs/domain_masked_patch_encoder_v2_subject_norm/ssl_summary.csv`
+
+### Metric Note
+
+Raw reconstruction loss is not comparable across normalization modes because MAD scaling changes target magnitude. v2 therefore adds `target_observed_mse` and `best_val_loss_relative = best_val_loss / target_observed_mse`.
+
+### Result
+
+| normalization | view | relative loss | subject leakage | train/sample shift | effective rank | read |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| subject_channel | only_event | 0.781888 | 0.321429 | 0.103562 | 3.476967 | Reconstructs relative deviations best, but leaks subject/shift. |
+| subject_channel | event_cross_missing | 0.814315 | 0.386429 | 0.091605 | 2.914474 | Good pretext fit but too identity-heavy. |
+| subject_channel_token | only_missingness | 0.869389 | 0.185714 | 0.161883 | 2.352296 | Lowest leakage, but split shift is large. |
+| subject_channel_token | event_cross_missing | 0.911686 | 0.195000 | 0.049841 | 3.636794 | Best low-leakage combined normalized candidate. |
+| global | only_missingness | 0.924400 | 0.265000 | 0.077510 | 2.200197 | Solid but seed-sensitive. |
+| global | only_event | 0.994513 | 0.208571 | 0.026047 | 3.606030 | Still the most stable low-shift coordinate. |
+
+### Working Interpretation
+
+Subject-relative normalization is not a free win. It makes the SSL task easier in relative-loss terms, but `subject_channel` increases subject leakage and train/sample shift. The most useful lesson is narrower: keep global `only_event` as the stable coordinate, and test `subject_channel_token + event_cross_missing` as a low-leakage auxiliary branch.
+
+### Next Experiments
+
+1. Add a frozen label probe only for `global only_event`, `global event_cross_missing`, and `subject_channel_token event_cross_missing`.
+2. Test lighter normalization such as subject mean subtraction without MAD division.
+3. Test mask-prob sweep on `global only_event` because it remains the cleanest encoder input.

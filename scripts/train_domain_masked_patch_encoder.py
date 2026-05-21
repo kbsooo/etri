@@ -32,6 +32,8 @@ VIEW_ALIASES = {
     "event_cross_phone_missing": ("event", "cross_modal", "phone", "missingness"),
 }
 
+NORMALIZATION_CHOICES = ("global", "subject_channel", "subject_channel_token")
+
 
 def seed_everything(seed: int) -> None:
     random.seed(seed)
@@ -81,6 +83,34 @@ def make_day_index(tokens: dict[str, np.ndarray]) -> pd.DataFrame:
             "lifelog_date": tokens["lifelog_date"].astype(str),
         }
     )
+
+
+def normalize_values(values: np.ndarray, masks: np.ndarray, keys: pd.DataFrame, mode: str) -> np.ndarray:
+    if mode == "global":
+        return values
+    if mode not in NORMALIZATION_CHOICES:
+        raise ValueError(f"Unknown normalization: {mode}")
+    out = values.copy()
+    subjects = keys["subject_id"].astype(str).to_numpy()
+    for subject in sorted(set(subjects)):
+        day_idx = np.flatnonzero(subjects == subject)
+        if not len(day_idx):
+            continue
+        subject_values = out[day_idx]
+        subject_masks = masks[day_idx].astype(bool)
+        if mode == "subject_channel":
+            observed = np.where(subject_masks, subject_values, np.nan)
+            center = np.nanmedian(observed, axis=(0, 2), keepdims=True)
+            scale = np.nanmedian(np.abs(observed - center), axis=(0, 2), keepdims=True)
+        else:
+            observed = np.where(subject_masks, subject_values, np.nan)
+            center = np.nanmedian(observed, axis=0, keepdims=True)
+            scale = np.nanmedian(np.abs(observed - center), axis=0, keepdims=True)
+        center = np.nan_to_num(center, nan=0.0, posinf=0.0, neginf=0.0)
+        scale = np.nan_to_num(scale, nan=1.0, posinf=1.0, neginf=1.0)
+        scale = np.maximum(scale, 1e-3)
+        out[day_idx] = np.clip((subject_values - center) / scale, -8.0, 8.0) * masks[day_idx]
+    return out.astype(np.float32)
 
 
 class MaskedPatchEncoder(nn.Module):
@@ -163,6 +193,13 @@ def masked_loss(recon: torch.Tensor, target: torch.Tensor, masks: torch.Tensor, 
     return ((recon - target).pow(2) * weight).sum() / denom
 
 
+def observed_value_mse(values: np.ndarray, masks: np.ndarray) -> float:
+    denom = float(masks.sum())
+    if denom <= 0:
+        return float("nan")
+    return float(((values**2) * masks).sum() / denom)
+
+
 def train_one(values: np.ndarray, masks: np.ndarray, args: argparse.Namespace, seed: int, device: torch.device) -> tuple[np.ndarray, dict]:
     seed_everything(seed)
     train_idx, val_idx = split_indices(len(values), seed, args.val_fraction)
@@ -209,11 +246,15 @@ def train_one(values: np.ndarray, masks: np.ndarray, args: argparse.Namespace, s
     embeddings = encode_all(model, values, masks, args.batch_size, device)
     report = {
         "seed": int(seed),
+        "normalization": args.current_normalization,
         "train_days": int(len(train_idx)),
         "val_days": int(len(val_idx)),
         "final_train_loss": float(history[-1]["train_loss"]),
         "final_val_loss": float(history[-1]["val_loss"]),
         "best_val_loss": float(min(row["val_loss"] for row in history)),
+        "target_observed_mse": float(args.current_target_observed_mse),
+        "final_val_loss_relative": float(history[-1]["val_loss"] / max(args.current_target_observed_mse, 1e-12)),
+        "best_val_loss_relative": float(min(row["val_loss"] for row in history) / max(args.current_target_observed_mse, 1e-12)),
         "history": history,
     }
     return embeddings, report
@@ -360,63 +401,75 @@ def run(args: argparse.Namespace) -> None:
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     views = [view.strip() for view in args.views.split(",") if view.strip()]
+    normalizations = [name.strip() for name in args.normalizations.split(",") if name.strip()]
+    unknown_norms = sorted(set(normalizations) - set(NORMALIZATION_CHOICES))
+    if unknown_norms:
+        raise ValueError(f"Unknown normalizations: {unknown_norms}. Available: {NORMALIZATION_CHOICES}")
     seeds = [int(seed) for seed in args.seeds]
     device = choose_device(args.device)
     summary_rows = []
-    for view in views:
-        idx = select_channel_indices(groups, view)
-        values = base_values[:, idx, :]
-        masks = base_masks[:, idx, :]
-        view_reports = []
-        seed_embeddings = []
-        view_dir = output_dir / view
-        view_dir.mkdir(parents=True, exist_ok=True)
-        for seed in seeds:
-            z, report = train_one(values, masks, args, seed, device)
-            seed_dir = view_dir / f"seed_{seed}"
-            seed_dir.mkdir(parents=True, exist_ok=True)
-            np.save(seed_dir / "embeddings.npy", z)
-            write_latents(seed_dir / "embeddings.parquet", keys, z)
-            report.update(
-                {
-                    "view": view,
-                    "device": str(device),
-                    "channels_selected": int(len(idx)),
-                    "channel_groups_selected": sorted(pd.Series(groups[idx]).unique().tolist()),
-                    "embedding_dim": int(z.shape[1]),
-                    **embedding_geometry(z),
-                    "subject_centroid_leakage": subject_centroid_leakage(z, keys),
-                    **temporal_locality(z, keys),
-                    **train_sample_shift(z, keys, Path(args.train_path), Path(args.sample_path)),
-                }
-            )
-            (seed_dir / "report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
-            view_reports.append(report)
-            seed_embeddings.append(z)
-            summary_rows.append({k: v for k, v in report.items() if k != "history"})
-        z_mean = np.mean(seed_embeddings, axis=0).astype(np.float32)
-        np.save(view_dir / "embeddings_mean.npy", z_mean)
-        write_latents(view_dir / "embeddings_mean.parquet", keys, z_mean)
-        view_report = {
-            "view": view,
-            "seeds": seeds,
-            "channels_selected": int(len(idx)),
-            "channel_groups_selected": sorted(pd.Series(groups[idx]).unique().tolist()),
-            "mean_embedding_metrics": {
-                "subject_centroid_leakage": subject_centroid_leakage(z_mean, keys),
-                **embedding_geometry(z_mean),
-                **temporal_locality(z_mean, keys),
-                **train_sample_shift(z_mean, keys, Path(args.train_path), Path(args.sample_path)),
-            },
-            "seed_reports": view_reports,
-        }
-        (view_dir / "report.json").write_text(json.dumps(view_report, indent=2, ensure_ascii=False), encoding="utf-8")
+    for normalization in normalizations:
+        norm_dir = output_dir / normalization
+        norm_dir.mkdir(parents=True, exist_ok=True)
+        args.current_normalization = normalization
+        for view in views:
+            idx = select_channel_indices(groups, view)
+            masks = base_masks[:, idx, :]
+            values = normalize_values(base_values[:, idx, :], masks, keys, normalization)
+            args.current_target_observed_mse = observed_value_mse(values, masks)
+            view_reports = []
+            seed_embeddings = []
+            view_dir = norm_dir / view
+            view_dir.mkdir(parents=True, exist_ok=True)
+            for seed in seeds:
+                z, report = train_one(values, masks, args, seed, device)
+                seed_dir = view_dir / f"seed_{seed}"
+                seed_dir.mkdir(parents=True, exist_ok=True)
+                np.save(seed_dir / "embeddings.npy", z)
+                write_latents(seed_dir / "embeddings.parquet", keys, z)
+                report.update(
+                    {
+                        "view": view,
+                        "normalization": normalization,
+                        "device": str(device),
+                        "channels_selected": int(len(idx)),
+                        "channel_groups_selected": sorted(pd.Series(groups[idx]).unique().tolist()),
+                        "embedding_dim": int(z.shape[1]),
+                        **embedding_geometry(z),
+                        "subject_centroid_leakage": subject_centroid_leakage(z, keys),
+                        **temporal_locality(z, keys),
+                        **train_sample_shift(z, keys, Path(args.train_path), Path(args.sample_path)),
+                    }
+                )
+                (seed_dir / "report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
+                view_reports.append(report)
+                seed_embeddings.append(z)
+                summary_rows.append({k: v for k, v in report.items() if k != "history"})
+            z_mean = np.mean(seed_embeddings, axis=0).astype(np.float32)
+            np.save(view_dir / "embeddings_mean.npy", z_mean)
+            write_latents(view_dir / "embeddings_mean.parquet", keys, z_mean)
+            view_report = {
+                "view": view,
+                "normalization": normalization,
+                "seeds": seeds,
+                "channels_selected": int(len(idx)),
+                "channel_groups_selected": sorted(pd.Series(groups[idx]).unique().tolist()),
+                "mean_embedding_metrics": {
+                    "subject_centroid_leakage": subject_centroid_leakage(z_mean, keys),
+                    **embedding_geometry(z_mean),
+                    **temporal_locality(z_mean, keys),
+                    **train_sample_shift(z_mean, keys, Path(args.train_path), Path(args.sample_path)),
+                },
+                "seed_reports": view_reports,
+            }
+            (view_dir / "report.json").write_text(json.dumps(view_report, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    summary = pd.DataFrame(summary_rows).sort_values(["best_val_loss", "train_sample_mean_l2"])
+    summary = pd.DataFrame(summary_rows).sort_values(["best_val_loss_relative", "train_sample_mean_l2"])
     summary.to_csv(output_dir / "ssl_summary.csv", index=False)
     final = {
         "token_path": args.token_path,
         "views": views,
+        "normalizations": normalizations,
         "seeds": seeds,
         "device": str(device),
         "config": {
@@ -435,9 +488,11 @@ def run(args: argparse.Namespace) -> None:
     display = summary[
         [
             "view",
+            "normalization",
             "seed",
             "channels_selected",
             "best_val_loss",
+            "best_val_loss_relative",
             "final_val_loss",
             "subject_centroid_leakage",
             "train_sample_mean_l2",
@@ -447,7 +502,7 @@ def run(args: argparse.Namespace) -> None:
         ]
     ].copy()
     md = [
-        "# Domain Masked Patch Encoder v1",
+        "# Domain Masked Patch Encoder",
         "",
         "## Purpose",
         "",
@@ -457,6 +512,7 @@ def run(args: argparse.Namespace) -> None:
         "",
         f"- Device: `{device}`",
         f"- Views: `{', '.join(views)}`",
+        f"- Normalizations: `{', '.join(normalizations)}`",
         f"- Seeds: `{', '.join(str(s) for s in seeds)}`",
         f"- Patch length: `{args.patch_len}` 30-minute tokens = `{args.patch_len * 30}` minutes",
         f"- d_model: `{args.d_model}`",
@@ -480,6 +536,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--sample-path", default="data/ch2026_submission_sample.csv")
     parser.add_argument("--output-dir", default="outputs/domain_masked_patch_encoder_v1")
     parser.add_argument("--views", default=",".join(DEFAULT_VIEWS))
+    parser.add_argument("--normalizations", default="global")
     parser.add_argument("--seeds", type=int, nargs="+", default=[2026, 2027])
     parser.add_argument("--device", default="auto")
     parser.add_argument("--epochs", type=int, default=16)
