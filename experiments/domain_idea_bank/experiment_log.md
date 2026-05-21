@@ -1438,3 +1438,33 @@ Carry forward:
 
 - S2: split sleep consensus into micro-awakening vs subject-relative purity objectives rather than compressing them together.
 - S4: look beyond sleep-consensus PCA; the target likely needs routine/circadian phase break or night-fragmentation episode structure, not a generic low-rank sleep-purity coordinate.
+
+## 2026-05-22 - S4 Routine Fragment Interaction Scout
+
+### Scope
+
+After PCA failed to stabilize S4, tested a more explicit S4 hypothesis: routine/circadian disruption should matter most when the night also contains sleep-window fragmentation or pre-bed conflict. The builder combines routine regularity, event rhythm, sleep fragmentation/recovery, and pre-bed fragmentation sources, then emits block summaries plus label-free interaction products.
+
+### Artifacts
+
+- Builder: `scripts/build_s4_routine_fragment_latents.py`
+- Interaction latent: `artifacts/domain_s4_routine_fragment_v1.parquet`
+- Additive latent: `artifacts/domain_best_plus_s4_routine_fragment_v1.parquet`
+- Probe report: `outputs/domain_s4_routine_fragment_probe_v1/report.md`
+- Nested report: `outputs/domain_all_specialists_plus_s4_routine_fragment_nested_selection_v1/report.md`
+
+### Result
+
+| experiment | S2 OOF logloss | S4 OOF logloss | avg OOF logloss | read |
+| --- | ---: | ---: | ---: | --- |
+| routine regularity standalone best S4 | n/a | 0.634259 | n/a | Prior strongest clean S4 family. |
+| event rhythm best S4 | n/a | 0.638321 | n/a | Stable but weaker S4 path. |
+| S4 routine-fragment raw best S4 | n/a | 0.636226 | 0.630103 | Does not beat routine regularity or current SCP S4 scout. |
+| S4 routine-fragment raw best S2 | 0.565782 | n/a | 0.632337 | Raw S2 looks better than the current scout, but global fit is poor. |
+| nested all-specialist + S4RF | 0.579170 | 0.645007 | 0.618675 | S2 flips harmful out-of-fold; S4 remains unstable. |
+
+### Working Interpretation
+
+This is a negative S4 result. The interaction hypothesis is plausible but not enough: routine break multiplied by night fragmentation does not beat the simpler routine-regularity S4 signal and does not stabilize the current SCP S4 scout. The surprising raw S2 improvement is also not trustworthy because nested held-fold S2 becomes worse than base.
+
+Carry forward only a narrow side clue: the interaction latent is selected for Q3 in 3/5 nested folds with a small held-fold gain, but it is still weaker than the existing mobility/recovery Q3 path. Do not promote this source into the protected target map.

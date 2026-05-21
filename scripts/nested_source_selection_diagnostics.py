@@ -18,6 +18,10 @@ def source_family(source: str) -> str:
         return "best_plus_sleep_consensus_stability_pca"
     if source.startswith("scs_pca"):
         return "sleep_consensus_stability_pca"
+    if source.startswith("best_plus_s4_routine_fragment"):
+        return "best_plus_s4_routine_fragment"
+    if source.startswith("s4_routine_fragment"):
+        return "s4_routine_fragment"
     if source.startswith("best_plus_scc_core"):
         return "best_plus_sleep_consensus_compact_core"
     if source.startswith("best_plus_scc_subject_relative"):
