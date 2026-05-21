@@ -1,0 +1,163 @@
+{
+  "positive_mode": "adjacent_day",
+  "normalization": "subject_channel_token",
+  "view": "no_phone",
+  "seeds": [
+    2026,
+    2027
+  ],
+  "channels_selected": 97,
+  "channel_groups_selected": [
+    "ambience",
+    "body",
+    "cross_modal",
+    "event",
+    "gps_radio",
+    "light",
+    "missingness"
+  ],
+  "mean_embedding_metrics": {
+    "subject_centroid_leakage": 0.22857142857142856,
+    "embedding_norm_mean": 3.4650676250457764,
+    "embedding_axis_std_mean": 0.12198881059885025,
+    "embedding_axis_std_min": 0.0596727579832077,
+    "embedding_effective_rank": 3.0995145234511177,
+    "adjacent_cosine_mean": 0.9754531526047251,
+    "random_cosine_mean": 0.9627686576566834,
+    "temporal_locality_gap": 0.012684494948041691,
+    "train_sample_mean_l2": 0.06594438850879669,
+    "train_sample_std_l2": 0.0449482686817646
+  },
+  "seed_reports": [
+    {
+      "seed": 2026,
+      "train_days": 574,
+      "val_days": 126,
+      "final_train_loss": 7.474809408187866,
+      "final_val_loss": 8.94993782043457,
+      "best_val_loss": 8.94993782043457,
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 7.948405385017395,
+          "val_loss": 9.269669532775879
+        },
+        {
+          "epoch": 2,
+          "train_loss": 7.719415664672852,
+          "val_loss": 9.134990692138672
+        },
+        {
+          "epoch": 3,
+          "train_loss": 7.661273956298828,
+          "val_loss": 9.127848625183105
+        },
+        {
+          "epoch": 4,
+          "train_loss": 7.689456105232239,
+          "val_loss": 9.043703079223633
+        },
+        {
+          "epoch": 5,
+          "train_loss": 7.517946124076843,
+          "val_loss": 9.040401458740234
+        },
+        {
+          "epoch": 6,
+          "train_loss": 7.474809408187866,
+          "val_loss": 8.94993782043457
+        }
+      ],
+      "positive_mode": "adjacent_day",
+      "normalization": "subject_channel_token",
+      "view": "no_phone",
+      "device": "mps",
+      "channels_selected": 97,
+      "channel_groups_selected": [
+        "ambience",
+        "body",
+        "cross_modal",
+        "event",
+        "gps_radio",
+        "light",
+        "missingness"
+      ],
+      "embedding_dim": 24,
+      "embedding_norm_mean": 4.883122444152832,
+      "embedding_axis_std_mean": 0.17058861255645752,
+      "embedding_axis_std_min": 0.07040669769048691,
+      "embedding_effective_rank": 2.7398014549713214,
+      "subject_centroid_leakage": 0.22285714285714286,
+      "adjacent_cosine_mean": 0.9760614926400392,
+      "random_cosine_mean": 0.9617756183596625,
+      "temporal_locality_gap": 0.014285874280376643,
+      "train_sample_mean_l2": 0.09590740501880646,
+      "train_sample_std_l2": 0.06759914755821228
+    },
+    {
+      "seed": 2027,
+      "train_days": 574,
+      "val_days": 126,
+      "final_train_loss": 7.574257850646973,
+      "final_val_loss": 9.533868789672852,
+      "best_val_loss": 9.508199691772461,
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 8.124687314033508,
+          "val_loss": 9.681848526000977
+        },
+        {
+          "epoch": 2,
+          "train_loss": 8.141388416290283,
+          "val_loss": 9.780534744262695
+        },
+        {
+          "epoch": 3,
+          "train_loss": 7.818428039550781,
+          "val_loss": 9.729345321655273
+        },
+        {
+          "epoch": 4,
+          "train_loss": 7.579066276550293,
+          "val_loss": 9.54227066040039
+        },
+        {
+          "epoch": 5,
+          "train_loss": 7.568474531173706,
+          "val_loss": 9.508199691772461
+        },
+        {
+          "epoch": 6,
+          "train_loss": 7.574257850646973,
+          "val_loss": 9.533868789672852
+        }
+      ],
+      "positive_mode": "adjacent_day",
+      "normalization": "subject_channel_token",
+      "view": "no_phone",
+      "device": "mps",
+      "channels_selected": 97,
+      "channel_groups_selected": [
+        "ambience",
+        "body",
+        "cross_modal",
+        "event",
+        "gps_radio",
+        "light",
+        "missingness"
+      ],
+      "embedding_dim": 24,
+      "embedding_norm_mean": 4.913341522216797,
+      "embedding_axis_std_mean": 0.14699997007846832,
+      "embedding_axis_std_min": 0.04259181395173073,
+      "embedding_effective_rank": 3.1306886443986213,
+      "subject_centroid_leakage": 0.20857142857142857,
+      "adjacent_cosine_mean": 0.9802198445451432,
+      "random_cosine_mean": 0.970768655123918,
+      "temporal_locality_gap": 0.009451189421225248,
+      "train_sample_mean_l2": 0.1306227594614029,
+      "train_sample_std_l2": 0.09689927101135254
+    }
+  ]
+}

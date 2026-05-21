@@ -1,0 +1,59 @@
+{
+  "seed": 2026,
+  "train_days": 574,
+  "val_days": 126,
+  "final_train_loss": 7.447633504867554,
+  "final_val_loss": 8.992828369140625,
+  "best_val_loss": 8.610535621643066,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 8.189222574234009,
+      "val_loss": 9.142396926879883
+    },
+    {
+      "epoch": 2,
+      "train_loss": 7.794390082359314,
+      "val_loss": 8.727630615234375
+    },
+    {
+      "epoch": 3,
+      "train_loss": 7.502079248428345,
+      "val_loss": 8.610535621643066
+    },
+    {
+      "epoch": 4,
+      "train_loss": 7.4930161237716675,
+      "val_loss": 8.875015258789062
+    },
+    {
+      "epoch": 5,
+      "train_loss": 7.487897753715515,
+      "val_loss": 9.097370147705078
+    },
+    {
+      "epoch": 6,
+      "train_loss": 7.447633504867554,
+      "val_loss": 8.992828369140625
+    }
+  ],
+  "positive_mode": "adjacent_day",
+  "normalization": "subject_channel_token",
+  "view": "only_event",
+  "device": "mps",
+  "channels_selected": 11,
+  "channel_groups_selected": [
+    "event"
+  ],
+  "embedding_dim": 24,
+  "embedding_norm_mean": 4.891712665557861,
+  "embedding_axis_std_mean": 0.27872779965400696,
+  "embedding_axis_std_min": 0.12903502583503723,
+  "embedding_effective_rank": 3.7304097057734067,
+  "subject_centroid_leakage": 0.20714285714285716,
+  "adjacent_cosine_mean": 0.9280702089053997,
+  "random_cosine_mean": 0.9118763320687888,
+  "temporal_locality_gap": 0.016193876836610888,
+  "train_sample_mean_l2": 0.053302112966775894,
+  "train_sample_std_l2": 0.07714127004146576
+}

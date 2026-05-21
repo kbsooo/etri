@@ -1,0 +1,65 @@
+{
+  "seed": 2027,
+  "train_days": 574,
+  "val_days": 126,
+  "final_train_loss": 7.385365605354309,
+  "final_val_loss": 9.469278335571289,
+  "best_val_loss": 9.388177871704102,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 8.14901351928711,
+      "val_loss": 9.607722282409668
+    },
+    {
+      "epoch": 2,
+      "train_loss": 7.795822501182556,
+      "val_loss": 9.548881530761719
+    },
+    {
+      "epoch": 3,
+      "train_loss": 7.632883787155151,
+      "val_loss": 9.50540542602539
+    },
+    {
+      "epoch": 4,
+      "train_loss": 7.505750894546509,
+      "val_loss": 9.388177871704102
+    },
+    {
+      "epoch": 5,
+      "train_loss": 7.3495354652404785,
+      "val_loss": 9.391382217407227
+    },
+    {
+      "epoch": 6,
+      "train_loss": 7.385365605354309,
+      "val_loss": 9.469278335571289
+    }
+  ],
+  "positive_mode": "adjacent_day",
+  "normalization": "subject_channel_token",
+  "view": "no_gps_radio",
+  "device": "mps",
+  "channels_selected": 92,
+  "channel_groups_selected": [
+    "ambience",
+    "body",
+    "cross_modal",
+    "event",
+    "light",
+    "missingness",
+    "phone"
+  ],
+  "embedding_dim": 24,
+  "embedding_norm_mean": 4.890254974365234,
+  "embedding_axis_std_mean": 0.08889202028512955,
+  "embedding_axis_std_min": 0.032555367797613144,
+  "embedding_effective_rank": 3.9734471699453113,
+  "subject_centroid_leakage": 0.26857142857142857,
+  "adjacent_cosine_mean": 0.9933646060418392,
+  "random_cosine_mean": 0.9905451943045077,
+  "temporal_locality_gap": 0.0028194117373314675,
+  "train_sample_mean_l2": 0.049215659499168396,
+  "train_sample_std_l2": 0.04921700060367584
+}

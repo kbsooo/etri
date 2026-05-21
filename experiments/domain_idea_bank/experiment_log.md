@@ -198,3 +198,41 @@ The current best diagnostic probe is now `0.624798`, improving the prior by `0.0
 1. Train a joint reconstruction + adjacent-event contrastive encoder instead of concatenating two separately trained latents after the fact.
 2. Add a future/past ordering head on top of adjacent-day positives to force temporal direction, not only temporal closeness.
 3. Run family dropout on the contrastive branch: `only_event`, `event+missingness`, `event+cross`, and `missingness-blocked`, then promote only branches that improve the combined frozen probe.
+
+## 2026-05-21 - Joint Encoder and Contrastive Family Dropout
+
+### Scope
+
+Tested whether the separate reconstruction and adjacent-day contrastive branches should be merged into one shared multi-objective encoder, then ran contrastive token-family dropout to identify which family should be paired with the reconstruction latent.
+
+### Artifacts
+
+- Joint runner: `scripts/train_domain_joint_encoder.py`
+- Joint report: `outputs/domain_joint_encoder_v1/report.md`
+- Joint probe: `outputs/domain_joint_encoder_probe_v1/report.md`
+- Family dropout report: `outputs/domain_temporal_contrastive_family_dropout_v1/report.md`
+- Family dropout standalone probe: `outputs/domain_temporal_contrastive_family_dropout_probe_v1/report.md`
+- Family dropout combined probe: `outputs/domain_temporal_contrastive_family_dropout_combined_probe_v1/report.md`
+
+### Result
+
+| experiment | best avg logloss | read |
+| --- | ---: | --- |
+| reconstruction SSL best | 0.626064 | Baseline frozen probe before temporal contrast. |
+| previous reconstruction + adjacent only_event contrastive | 0.624798 | Previous best diagnostic. |
+| shared joint reconstruction+contrastive encoder | 0.627167 | Failed as standalone; objective sharing weakened the latent. |
+| reconstruction + adjacent event+cross_modal contrastive | 0.622961 | New best diagnostic. |
+
+### Working Interpretation
+
+The shared joint encoder is a negative result. For this dataset, reconstruction and temporal contrast should not be forced through one small CLS bottleneck. Late fusion of specialized branches is better.
+
+The family-dropout result is more useful. `event+cross_modal` contrastive is better than `only_event`, `event+missingness`, `event+cross+missingness`, and broad no-family views once fused with the reconstruction latent. This says the contrastive branch should avoid missingness-heavy shortcuts; missingness is useful in the reconstruction branch, but it blurs the temporal contrastive branch.
+
+The current best diagnostic is now `0.622961`, which improves the subject prior by `0.004693` and is close to the `0.005` breakthrough threshold. The next practical direction is a two-branch encoder family: reconstruction over `event+cross+missingness`, contrastive over `event+cross_modal`, with late-fusion/frozen-probe selection.
+
+### Next Experiments
+
+1. Add a third branch for temporal-order prediction on `event+cross_modal` and test whether it complements the current contrastive branch.
+2. Train the contrastive `event+cross_modal` branch for a small sweep of epochs/temperature/reconstruction-free augment strength to see whether `0.622961` is stable.
+3. Build a fixed late-fusion representation artifact from the current best branches so downstream decoders can consume it without reassembling parquet paths manually.

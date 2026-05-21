@@ -233,15 +233,17 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Subject-relative normalization was useful only in a narrow form. `subject_channel` improves reconstruction but increases subject leakage and train/sample shift; `subject_channel_token + event_cross_missing` is the best low-leakage auxiliary branch.
 - Frozen label probe over selected SSL latents gives a small but real supervised signal: best source `subject_token_event_cross_missing__absolute_plus_deviation__c0.3_b0.2`, OOF logloss `0.626064` vs subject-prior `0.627654` (`-0.001590`). This is not a leaderboard candidate, but it confirms that event/cross-modal/missingness latent coordinates are label-readable.
 - Temporal contrastive SSL was tested with same-day and adjacent-day positives. Standalone contrastive is weaker than reconstruction SSL (`0.626525` vs `0.626064`), but combining reconstruction `subject_channel_token + event_cross_missing` with adjacent-day contrastive `only_event` reaches frozen-probe OOF `0.624798` (`-0.002856` vs subject-prior). This is the strongest 300-idea diagnostic so far and shows the contrastive branch adds orthogonal signal.
-- Current diagnosis: the data-engineering direction is valid, but one pretext is not enough. The next breakthrough attempt should train multi-objective encoders or late-fusion latent families over pruned token groups, not simply enlarge a supervised decoder.
+- A shared joint reconstruction+contrastive encoder was tested and failed to beat late fusion; its best joint-only probe is around `0.627167`. Objective sharing through one small CLS bottleneck appears harmful.
+- Contrastive token-family dropout found the best current branch: `event+cross_modal` contrastive fused with reconstruction `event_cross_missing` reaches frozen-probe OOF `0.622961` (`-0.004693` vs subject-prior). This beats the previous `only_event` contrastive fusion (`0.624798`) and is close to the `0.005` breakthrough threshold.
+- Current diagnosis: the data-engineering direction is valid, and the strongest pattern is branch specialization. Missingness belongs in the reconstruction branch; contrastive learning should use event/cross-modal behavior without missingness-heavy shortcuts.
 
 ## Next 3
 
-1. Train a joint reconstruction + adjacent-event contrastive encoder over the current winning families. The separate-latent combination already improves frozen-probe OOF to `0.624798`, so the next question is whether sharing the encoder strengthens that orthogonal signal.
-   - Success criterion: beat `0.624798` frozen-probe OOF without target-wise cherry-picking and without larger train/sample shift than the combined probe.
+1. Add a temporal-order/future-past branch on top of `event+cross_modal`, then late-fuse with the current reconstruction `event_cross_missing` branch.
+   - Success criterion: beat the current `0.622961` frozen-probe OOF without target-wise cherry-picking.
 
-2. Add temporal-order and future/past heads to the adjacent-day contrastive branch. Same-subject closeness alone is not enough; the encoder needs to distinguish "recovery after yesterday" from "drift from tomorrow".
-   - Success criterion: contrastive standalone gets closer to reconstruction SSL, or combined probe improves beyond the current `0.624798`.
+2. Sweep the winning contrastive branch (`event+cross_modal`) over epochs, temperature, token-drop, and channel-drop. Do not expand to broad all-feature views unless they beat this branch.
+   - Success criterion: improve or stabilize the `0.622961` combined probe across seeds.
 
-3. Run token-family dropout inside the contrastive branch: `only_event`, `event+missingness`, `event+cross`, `missingness-blocked`, phone-blocked, sleep/body-blocked, and GPS-blocked.
-   - Success criterion: identify at least one family removal or addition that improves the combined frozen-probe signal or reduces shift at comparable signal.
+3. Materialize the current best late-fusion representation as a named artifact and use it as the next decoder input.
+   - Success criterion: downstream decoders can consume one stable parquet path instead of manually combining reconstruction and contrastive latent paths.
