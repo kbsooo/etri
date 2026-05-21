@@ -350,3 +350,38 @@ For the trajectory-only selector, target-level held-fold deltas are:
 This is the cleanest signal in the 300-idea data-engineering track so far. The temporal-deviation features should not be treated as a global feature block. But `trajectory` is a credible Q2/Q3-specific state path: it survives fold-held source selection and is selected consistently across all folds once noisy future/recovery candidates are removed.
 
 The next high-value experiment is to stop computing trajectory as a post-hoc feature and train an encoder objective that makes the latent itself predict or preserve recent/future centroid movement. That is closer to the user's encoder-decoder hypothesis: the encoder should summarize "where this day sits inside the subject's state path," and the decoder should use that path coordinate mostly for Q2/Q3.
+
+## 2026-05-21 - Nested Temporal Decoder Materialization
+
+### Scope
+
+Converted the trajectory-only nested selection diagnostic into actual OOF and test prediction files. The decoder retrains the same fold-safe logistic probes used in the latent diagnostics, then applies the nested held-fold source choices for OOF and an all-train fold-loss selector for test-time source choice.
+
+### Artifacts
+
+- Script: `scripts/build_nested_temporal_decoder.py`
+- Report: `outputs/domain_nested_temporal_decoder_v1/report.md`
+- OOF predictions: `outputs/domain_nested_temporal_decoder_v1/oof_nested_temporal_decoder.csv`
+- Test predictions: `outputs/domain_nested_temporal_decoder_v1/submission_nested_temporal_decoder.csv`
+- Test source selection: `outputs/domain_nested_temporal_decoder_v1/test_source_selection.csv`
+
+### Result
+
+| decoder | avg OOF logloss | delta vs current late-fusion best | read |
+| --- | ---: | ---: | --- |
+| current late-fusion best | 0.622961 | 0.000000 | Baseline diagnostic artifact. |
+| nested temporal decoder v1 | 0.621238 | -0.001723 | Q2/Q3 trajectory path materialized as predictions. |
+
+Per-target movement:
+
+| target | current best | nested temporal decoder | delta |
+| --- | ---: | ---: | ---: |
+| Q2 | 0.702098 | 0.696142 | -0.005956 |
+| Q3 | 0.674157 | 0.668048 | -0.006109 |
+| Q1/S1/S2/S3/S4 | unchanged | unchanged | 0.000000 |
+
+### Working Interpretation
+
+This is the first concrete decoder artifact from the 300-idea track that improves the current best diagnostic representation without broad feature dumping. It is still not a public-LB claim, but it proves the Q2/Q3 trajectory path can be represented as a reproducible OOF/test decoder.
+
+The gain is too small for the final 0.55 target by itself. The value is directional: Q2/Q3 need a state-path representation. The next encoder experiment should train trajectory preservation directly from the 30-minute token tensor rather than deriving it after the latent is already frozen.

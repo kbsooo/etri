@@ -1,0 +1,8 @@
+target,selected_source,source_family,raw_best_source,raw_best_selector_loss,base_selector_loss,selector_loss,selection_action
+Q1,best__absolute_plus_deviation__c0.3_b0.2,best_late_fusion,best__deviation__c0.3_b0.2,0.6686908106262118,0.6691817177735858,0.6691817177735858,base
+Q2,td_trajectory__deviation__c0.3_b0.2,trajectory,td_trajectory__deviation__c0.3_b0.2,0.6919129870622625,0.7016929759704349,0.6919129870622625,switch
+Q3,td_trajectory__deviation__c0.03_b0.2,trajectory,td_trajectory__deviation__c0.03_b0.2,0.6671352308049874,0.6738888587098408,0.6671352308049874,switch
+S1,best__absolute_plus_deviation__c0.3_b0.2,best_late_fusion,best__absolute_plus_deviation__c0.3_b0.2,0.5708954587854569,0.5708954587854569,0.5708954587854569,base
+S2,best__absolute_plus_deviation__c0.3_b0.2,best_late_fusion,best__absolute__c0.3_b0.2,0.5781132921576395,0.5783156553303062,0.5783156553303062,base
+S3,best__absolute_plus_deviation__c0.3_b0.2,best_late_fusion,best__absolute_plus_deviation__c0.3_b0.2,0.5251202551583003,0.5251202551583003,0.5251202551583003,base
+S4,best__absolute_plus_deviation__c0.3_b0.2,best_late_fusion,best__absolute_plus_deviation__c0.1_b0.2,0.6432046841779632,0.6432464279775342,0.6432464279775342,base

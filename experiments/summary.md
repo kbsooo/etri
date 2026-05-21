@@ -243,14 +243,15 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Current decoder implication: do not globally append every temporal feature. Treat trajectory/future/recovery as target-specific state families and select them only through nested/fold-safe decoder logic to avoid repeating v82-style source-selection bias.
 - Nested source-selection confirms the clean part of that signal. With only `best` and `td_trajectory` candidates and a 0.003 train-fold improvement margin, held-fold selection improves avg fold loss from `0.623192` to `0.621507`; Q2 and Q3 select trajectory in all five folds, while all other targets stay on the current best latent.
 - Current strongest breakthrough candidate: a Q2/Q3-specific trajectory encoder/decoder path. Future/recovery is interesting but unstable; trajectory is the first temporal-deviation family that survives nested selection cleanly.
+- Materialized the trajectory-only nested selector as actual OOF/test predictions in `outputs/domain_nested_temporal_decoder_v1/`. OOF improves from `0.622961` to `0.621238`; the entire gain comes from Q2 (`-0.005956`) and Q3 (`-0.006109`), with all other targets unchanged.
 
 ## Next 3
 
 1. Convert the Q2/Q3 trajectory signal into an encoder objective: train the channel-patch encoder to preserve/predict recent-to-future latent path movement.
    - Success criterion: retain the nested Q2/Q3 gain while improving global frozen-probe OOF beyond `0.621507` equivalent.
 
-2. Build an actual fold-safe decoder output for the trajectory-only nested selector, not just a fold-loss diagnostic.
-   - Success criterion: produce OOF/test predictions where only Q2/Q3 can route to trajectory and all other targets remain on the current best latent.
+2. Add prototype/state distances specifically inside the Q2/Q3 trajectory path, not as a global feature block.
+   - Success criterion: improve Q2/Q3 without moving Q1/S targets or increasing row-wise drift broadly.
 
 3. Search prototype/state distances over the best late-fusion latent plus temporal-deviation latent, prioritizing Q2/Q3 state-path clusters.
    - Success criterion: find a target-free prototype axis that improves average OOF, not only target-wise cherry-picks.
