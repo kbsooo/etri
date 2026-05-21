@@ -12,6 +12,58 @@ TARGET_COLUMNS = ["Q1", "Q2", "Q3", "S1", "S2", "S3", "S4"]
 
 
 def source_family(source: str) -> str:
+    if source.startswith("best_plus_sot_micro_charging_timing"):
+        return "best_plus_sleep_onset_micro_charging_timing"
+    if source.startswith("best_plus_sot_micro_charging_windows"):
+        return "best_plus_sleep_onset_micro_charging_windows"
+    if source.startswith("best_plus_sot_micro_settled_no_phone"):
+        return "best_plus_sleep_onset_micro_settled_no_phone"
+    if source.startswith("best_plus_sot_micro_settled_charging"):
+        return "best_plus_sleep_onset_micro_settled_charging"
+    if source.startswith("best_plus_sot_micro_phone_charging_conflict"):
+        return "best_plus_sleep_onset_micro_phone_charging_conflict"
+    if source.startswith("best_plus_sot_micro_readiness_rolling"):
+        return "best_plus_sleep_onset_micro_readiness_rolling"
+    if source.startswith("best_plus_sot_micro_pre30m_settle"):
+        return "best_plus_sleep_onset_micro_pre30m_settle"
+    if source.startswith("best_plus_sot_micro_pre1h_settle"):
+        return "best_plus_sleep_onset_micro_pre1h_settle"
+    if source.startswith("best_plus_sot_micro_base_values_only"):
+        return "best_plus_sleep_onset_micro_base_values"
+    if source.startswith("best_plus_sot_micro_subject_relative_only"):
+        return "best_plus_sleep_onset_micro_subject_relative"
+    if source.startswith("best_plus_sot_micro_rolling_context_only"):
+        return "best_plus_sleep_onset_micro_rolling_context"
+    if source.startswith("best_plus_sot_micro_s3_core_timing_settle_conflict"):
+        return "best_plus_sleep_onset_micro_s3_core"
+    if source.startswith("best_plus_sot_micro_s3_final_hour_core"):
+        return "best_plus_sleep_onset_micro_s3_final_hour"
+    if source.startswith("sot_micro_charging_timing"):
+        return "sleep_onset_micro_charging_timing"
+    if source.startswith("sot_micro_charging_windows"):
+        return "sleep_onset_micro_charging_windows"
+    if source.startswith("sot_micro_settled_no_phone"):
+        return "sleep_onset_micro_settled_no_phone"
+    if source.startswith("sot_micro_settled_charging"):
+        return "sleep_onset_micro_settled_charging"
+    if source.startswith("sot_micro_phone_charging_conflict"):
+        return "sleep_onset_micro_phone_charging_conflict"
+    if source.startswith("sot_micro_readiness_rolling"):
+        return "sleep_onset_micro_readiness_rolling"
+    if source.startswith("sot_micro_pre30m_settle"):
+        return "sleep_onset_micro_pre30m_settle"
+    if source.startswith("sot_micro_pre1h_settle"):
+        return "sleep_onset_micro_pre1h_settle"
+    if source.startswith("sot_micro_base_values_only"):
+        return "sleep_onset_micro_base_values"
+    if source.startswith("sot_micro_subject_relative_only"):
+        return "sleep_onset_micro_subject_relative"
+    if source.startswith("sot_micro_rolling_context_only"):
+        return "sleep_onset_micro_rolling_context"
+    if source.startswith("sot_micro_s3_core_timing_settle_conflict"):
+        return "sleep_onset_micro_s3_core"
+    if source.startswith("sot_micro_s3_final_hour_core"):
+        return "sleep_onset_micro_s3_final_hour"
     if source.startswith("best_plus_sot_last_event_latency"):
         return "best_plus_sleep_onset_latency"
     if source.startswith("best_plus_sot_shutdown_slope"):

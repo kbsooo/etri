@@ -1,0 +1,8 @@
+{
+  "inputs": [
+    "outputs/domain_all_specialists_plus_sleep_onset_transition_additive_probe_v1/fold_target_losses.csv",
+    "outputs/domain_sleep_onset_transition_micro_plus_best_probe_v2/fold_target_losses.csv"
+  ],
+  "rows": 47250,
+  "sources": 1350
+}

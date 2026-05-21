@@ -262,16 +262,16 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Chronotype, social-jetlag, sleep-to-sleep, and rolling sleep-debt features were tested for S1/S3. They do not solve S1/S3. The strongest raw signals are Q2 from `cs_debt_ledger` (`0.690408`) and S4 from `cs_phase_social_jetlag` (`0.642169`), but nested selection rejects them as replacements for trajectory prototype and routine regularity.
 - Energy fragmentation/recovery features create a new best Q2 path. `ef_recovery_slope` is selected for Q2 in all five nested folds and improves Q2 by `-0.0145` vs base. Replacing Q2 trajectory prototype with Q2 energy recovery in the fixed hybrid improves the best diagnostic decoder from `0.619106` to `0.618005`.
 - Causal-chain compression produced a stronger target map by representing each day as load -> arousal -> sleep opportunity -> continuity -> recovery. The best fixed causal-chain hybrid reached OOF `0.614213`, mainly from Q1/S1/S2 sleep opportunity, Q2 energy recovery, Q3 recovery, and S4 chain interactions. This became the new diagnostic baseline for the domain-engineering track.
-- Sleep-onset transition features finally opened an S3 path. Broad SOT features were not useful, but the pruned `charging_settle` slice attached to the best late-fusion latent improved S3 from `0.523927` to `0.514231` inside the fixed hybrid. The resulting hybrid `outputs/domain_hybrid_causal_chain_plus_s3_onset_transition_v1/` reaches OOF `0.612828`, the current best diagnostic decoder in this track.
-- Current interpretation: S3 is not explained by total sleep duration, generic prebed phone time, or broad sleep-debt ledgers. The strongest S3 clue is the *final transition into sleep*: dark/still/not-phone/charging consensus and low fragmentation near sleep onset.
+- Sleep-onset transition features finally opened an S3 path. Broad SOT features were not useful, but the pruned `charging_settle` slice attached to the best late-fusion latent improved S3 from `0.523927` to `0.514231` inside the fixed hybrid. Micro-ablation improved this again: the `subject_relative_only` slice reaches S3 `0.512376` and fixed hybrid OOF `0.612563` in `outputs/domain_hybrid_causal_chain_plus_s3_onset_subject_relative_v1/`, the current best diagnostic decoder in this track.
+- Current interpretation: S3 is not explained by total sleep duration, generic prebed phone time, or broad sleep-debt ledgers. The strongest S3 clue is the *subject-relative final transition into sleep*: whether dark/still/not-phone/charging consensus and conflict/readiness near sleep onset are unusual for that person.
 
 ## Next 3
 
 1. Convert the causal-chain plus sleep-onset-transition target map into encoder objectives.
-   - Success criterion: retain Q1/S1/S2 sleep-opportunity, Q2 energy-recovery, Q3 recovery/mobility, S3 charging-settle, and S4 chain-interaction gains while improving global frozen-probe OOF beyond the current hybrid-equivalent `0.612828`.
+   - Success criterion: retain Q1/S1/S2 sleep-opportunity, Q2 energy-recovery, Q3 recovery/mobility, S3 subject-relative sleep-onset settling, and S4 chain-interaction gains while improving global frozen-probe OOF beyond the current hybrid-equivalent `0.612563`.
 
 2. Split the Q-family path explicitly: Q2 should read trajectory prototype/state membership, while Q3 should read mobility/location-constriction state.
    - Success criterion: find a shared encoder objective that supports both readouts without post-hoc target-specific feature dumping.
 
-3. Continue the 300-idea manifest sweep with remaining S1/S3 hypotheses, but treat S3 charging-settle as the new protected expert.
-   - Success criterion: find an S1 path that survives nested selection, or improve S3 beyond `0.514231` without reintroducing broad drift. Keep digital/phone/app signals as boundary-specific experts rather than mixing them globally.
+3. Continue the 300-idea manifest sweep with remaining S1 hypotheses, while treating S3 subject-relative sleep-onset settling as the protected expert.
+   - Success criterion: find an S1 path that survives nested selection, or improve S3 beyond `0.512376` without reintroducing broad drift. Keep digital/phone/app signals as boundary-specific experts rather than mixing them globally.

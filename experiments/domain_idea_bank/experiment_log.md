@@ -1139,3 +1139,69 @@ The target map is updated:
 - S2: causal-chain sleep opportunity.
 - S3: sleep-onset charging/settling transition.
 - S4: causal-chain interactions, with onset-consensus as a secondary raw candidate.
+
+## 2026-05-22 - S3 Sleep-Onset Micro Ablation
+
+### Scope
+
+The previous cycle showed that `charging_settle` is the first S3-positive sleep-onset family. This cycle split that 126-feature family into smaller units to identify whether the signal is absolute charging, final-hour settling, phone/charging conflict, rolling readiness, or subject-relative deviation.
+
+### Artifacts
+
+- Micro variant builder: `scripts/build_sleep_onset_transition_micro_variants.py`
+- Micro artifacts:
+  - `artifacts/domain_sleep_onset_transition_micro_charging_timing_v1.parquet`
+  - `artifacts/domain_sleep_onset_transition_micro_charging_windows_v1.parquet`
+  - `artifacts/domain_sleep_onset_transition_micro_settled_no_phone_v1.parquet`
+  - `artifacts/domain_sleep_onset_transition_micro_settled_charging_v1.parquet`
+  - `artifacts/domain_sleep_onset_transition_micro_phone_charging_conflict_v1.parquet`
+  - `artifacts/domain_sleep_onset_transition_micro_readiness_rolling_v1.parquet`
+  - `artifacts/domain_sleep_onset_transition_micro_base_values_only_v1.parquet`
+  - `artifacts/domain_sleep_onset_transition_micro_subject_relative_only_v1.parquet`
+  - `artifacts/domain_sleep_onset_transition_micro_rolling_context_only_v1.parquet`
+  - `artifacts/domain_sleep_onset_transition_micro_s3_core_timing_settle_conflict_v1.parquet`
+  - `artifacts/domain_sleep_onset_transition_micro_s3_final_hour_core_v1.parquet`
+- Probe reports:
+  - `outputs/domain_sleep_onset_transition_micro_probe_v1/report.md`
+  - `outputs/domain_sleep_onset_transition_micro_plus_best_probe_v2/report.md`
+- Nested/all-specialist report:
+  - `outputs/domain_all_specialists_plus_sleep_onset_micro_nested_selection_v1/report.md`
+- Fixed hybrid decoder:
+  - `outputs/domain_hybrid_causal_chain_plus_s3_onset_subject_relative_v1/report.md`
+
+### Result
+
+| experiment | S3 OOF logloss | avg OOF logloss | read |
+| --- | ---: | ---: | --- |
+| previous base S3 inside fixed hybrid | 0.523927 | 0.614213 | Causal-chain fixed hybrid before SOT replacement. |
+| coarse `charging_settle` replacement | 0.514231 | 0.612828 | Strong first S3 path. |
+| micro `subject_relative_only` replacement | 0.512376 | 0.612563 | New best; S3 signal is mostly subject-relative settling deviation. |
+
+Micro probe reads:
+
+| family | S3 read |
+| --- | --- |
+| `subject_relative_only` | Best S3 probe, `0.513590`; selected in 4/5 nested folds. |
+| `base_values_only` | Also strong, `0.514613`, but slightly weaker than subject-relative. |
+| `s3_core_timing_settle_conflict` | Recovers most of the signal at `0.515094`. |
+| `charging_timing` | Useful but incomplete, `0.518959`. |
+| `phone_charging_conflict` | Useful but incomplete, `0.519923`. |
+| `settled_no_phone` | Useful but incomplete, `0.520589`. |
+
+### Working Interpretation
+
+S3 is not just "phone was charging" or "phone stopped." The sharper statement is:
+
+> S3 responds to whether the sleep-onset settling pattern is unusual for that subject.
+
+The best micro slice is made from subject-relative versions of charging/settling/readiness/conflict features, which aligns with the label definition: labels are relative to the person's own average state. This makes S3 a clean example of the broader lesson from the 300-idea track: the right data engineering is often not more sensors, but the right coordinate system.
+
+The current best diagnostic decoder is now:
+
+- Q1: causal-chain opportunity.
+- Q2: energy recovery slope.
+- Q3: causal-chain recovery.
+- S1: causal-chain opportunity.
+- S2: causal-chain opportunity.
+- S3: subject-relative sleep-onset settling.
+- S4: causal-chain interactions.
