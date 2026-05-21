@@ -273,6 +273,57 @@ Interpretation:
 - That sparsity reduction is not sufficient. Best global is weaker than the full joint label-cluster run (`0.626385` vs `0.625946`), and target-wise improves only marginally (`0.621171` vs `0.621371`).
 - The useful part is not the discrete Q/S pattern itself; it is still the bounded target-specific residual over a subject-normalized prior. Carry forward the selected feature-family clues, but do not promote family label-state as the primary decoder.
 
+## Residual cap-gate decoder
+
+Script: `scripts/train_residual_cap_gate_decoder.py`
+
+Output: `outputs/residual_cap_gate_decoder_v1/`
+
+This experiment keeps the stable fixed scaffold as the coordinate system and injects only a capped/gated logit residual from the optimistic extended full-OOF winner map:
+
+```text
+stable_logit + gate(sample, target) * clip(extended_logit - stable_logit, -cap, cap) * scale
+```
+
+The tested gates are:
+
+- `all`: always use the capped residual.
+- `agreement_with_prior`: use the residual only when stable and extended are on the same side of the fold-safe subject prior.
+- `top_abs_50` / `top_abs_35`: use residuals only on large-disagreement rows.
+- `signed_margin`: use the residual only when extended is farther from the subject prior than stable.
+
+Results:
+
+- Best global: `capgate_signed_margin_s100_c050`
+- OOF avg: `0.616528`
+- Target-wise OOF avg: `0.614731`
+- Best global drift vs v83 diagnostic reference: `0.071953`
+- Target-wise drift vs v83 diagnostic reference: `0.071092`
+
+Comparison:
+
+- `stable_signal_s4_temporal`: `0.620281`
+- `extended_full_oof_winners`: `0.616766`
+- residual cap-gate best global: `0.616528`
+- residual cap-gate target-wise: `0.614731`
+
+Target-wise selected sources:
+
+- Q1: `capgate_signed_margin_s125_c030`
+- Q2: `capgate_signed_margin_s125_c015`
+- Q3: `stable_signal_s4_temporal`
+- S1: `extended_full_oof_winners`
+- S2: `extended_full_oof_winners`
+- S3: `capgate_signed_margin_s100_c030`
+- S4: `extended_full_oof_winners`
+
+Interpretation:
+
+- This is the strongest independent Encoder-Decoder OOF branch in the pruned-state family so far.
+- The useful breakthrough signal is not a new discrete state label. It is a **sample-conditional residual permission rule**: use the bolder extended residual only when it has enough margin away from the subject prior, and cap its logit amplitude.
+- Q1/Q2/S3 improve from cap-gating, while Q3 should stay on the stable scaffold. S1/S2/S4 still prefer the bolder extended map under full-OOF scoring.
+- Public robustness is not proven. Drift vs v83 rises from the stable scaffold's roughly `0.069` to `0.072`, and the best variants come from a grid over full OOF. This should be nested/stress-tested before treating it as a submission-quality model.
+
 ## Meta-gated consensus follow-up
 
 Script: `scripts/train_meta_gated_consensus_decoder.py`
