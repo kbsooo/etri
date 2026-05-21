@@ -245,7 +245,8 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - Current strongest breakthrough candidate: a Q2/Q3-specific trajectory encoder/decoder path. Future/recovery is interesting but unstable; trajectory is the first temporal-deviation family that survives nested selection cleanly.
 - Materialized the trajectory-only nested selector as actual OOF/test predictions in `outputs/domain_nested_temporal_decoder_v1/`. OOF improves from `0.622961` to `0.621238`; the entire gain comes from Q2 (`-0.005956`) and Q3 (`-0.006109`), with all other targets unchanged.
 - Prototype/state distances over the trajectory latent are useful only narrowly. Q2 improves with trajectory prototype state, while Q3 is better with continuous trajectory deviation. The hybrid decoder `Q2=trajectory_proto, Q3=trajectory, others=base` reaches OOF `0.621107`, the best diagnostic decoder in the 300-idea track so far.
-- Event rhythm features from the 30-minute grid add a separate S4 path. Broad rhythm features are unstable for Q3, but nested selection chooses event rhythm for S4 in all five folds. The hybrid `Q2=trajectory_proto, Q3=trajectory, S4=event_rhythm, others=base` reaches OOF `0.620777`, the current best diagnostic decoder in this track.
+- Event rhythm features from the 30-minute grid add a separate S4 path. Broad rhythm features are unstable for Q3, but nested selection chooses event rhythm for S4 in all five folds. The hybrid `Q2=trajectory_proto, Q3=trajectory, S4=event_rhythm, others=base` reaches OOF `0.620777`.
+- Sleep-window intrusion features around sleep onset/wake time add only a narrow S2 path. Q1/S4 apparent probe gains fail nested selection, but S2 survives weakly. The hybrid `Q2=trajectory_proto, Q3=trajectory, S2=sleep_intrusion, S4=event_rhythm, others=base` reaches OOF `0.620668`, the current best diagnostic decoder in this track.
 
 ## Next 3
 
@@ -255,5 +256,5 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 2. Split the Q-family path explicitly: Q2 should read prototype/state membership, while Q3 should read continuous trajectory deviation.
    - Success criterion: find a shared encoder objective that supports both readouts without post-hoc target-specific feature dumping.
 
-3. Continue the 300-idea manifest sweep with S-target-specific sensor-level features: sleep-window intrusion, night phone bursts, and coverage/no-wear episode structure.
-   - Success criterion: find S1/S2/S3/S4 paths that complement the current `0.620777` hybrid without degrading Q targets.
+3. Continue the 300-idea manifest sweep with Q1/S1/S3-specific feature families, because Q2/Q3/S2/S4 now each have a narrow target path.
+   - Success criterion: find at least one Q1, S1, or S3 path that survives nested selection and complements the current `0.620668` hybrid without reintroducing broad drift.

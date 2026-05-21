@@ -463,3 +463,46 @@ The useful signal is becoming target-factorized:
 - S4 wants daily event rhythm/circadian/burstiness structure.
 
 This still is not a 0.55 breakthrough. But it is no longer just one vague "trajectory" clue. The decoder now has three distinct target-specific data-engineering paths, each grounded in a nested diagnostic.
+
+## 2026-05-21 - Sleep Intrusion and S2 Decoder Path
+
+### Scope
+
+Built sleep-window intrusion features around each subject-day's observed sleep onset and wake time. This implements the manifest ideas around pre-bed phone usage, sleep-time sensor interruptions, no-wear/low-coverage episodes, charging/screen bursts, and subject-relative sleep metric drift.
+
+### Artifacts
+
+- Builder: `scripts/build_sleep_intrusion_latents.py`
+- Sleep intrusion artifact: `artifacts/domain_sleep_intrusion_v1.parquet`
+- Probe: `outputs/domain_sleep_intrusion_probe_v1/report.md`
+- Nested sleep report: `outputs/domain_sleep_intrusion_nested_selection_v1/report.md`
+- Hybrid decoder: `outputs/domain_hybrid_q2_proto_q3_trajectory_s2_sleep_s4_rhythm_decoder_v1/report.md`
+
+### Result
+
+| experiment | avg OOF logloss | read |
+| --- | ---: | --- |
+| current late-fusion best | 0.622961 | Baseline diagnostic artifact. |
+| Q2 prototype + Q3 trajectory + S4 event rhythm | 0.620777 | Previous best diagnostic decoder. |
+| Q2 prototype + Q3 trajectory + S2 sleep intrusion + S4 event rhythm | 0.620668 | New best diagnostic decoder in this track. |
+
+Nested sleep selection:
+
+| target | sleep effect | read |
+| --- | ---: | --- |
+| S2 | -0.000976 nested vs base | Weak but fold-surviving signal. |
+| Q1 | +0.001753 nested vs base | Apparent probe gain is unstable/harmful. |
+| S4 | +0.000959 nested vs base | Event rhythm remains the better S4 path. |
+| S1/S3 | no stable gain | Keep on base. |
+
+### Working Interpretation
+
+Sleep intrusion is not a broad sleep decoder. Its only useful role in this run is a narrow S2 correction, mostly from pre-bed/sleep-window coverage and interruption structure. This is useful as evidence for target-factorization, but it is not a 0.55 breakthrough.
+
+The current target map is now:
+
+- Q2: trajectory prototype/state membership.
+- Q3: continuous trajectory deviation.
+- S2: sleep intrusion/coverage episodes.
+- S4: event rhythm/circadian/burstiness.
+- Q1/S1/S3: still no new domain path that survives nested selection.

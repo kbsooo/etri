@@ -1,0 +1,23 @@
+{
+  "output": "artifacts/domain_sleep_intrusion_v1.parquet",
+  "rows": 700,
+  "feature_count": 251,
+  "windows": {
+    "prebed2h": [
+      -120,
+      0
+    ],
+    "prebed6h": [
+      -360,
+      0
+    ],
+    "sleep": [
+      0,
+      null
+    ],
+    "postwake2h": [
+      null,
+      120
+    ]
+  }
+}

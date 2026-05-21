@@ -1,0 +1,8 @@
+target,selected_source,source_family,selection_action
+Q1,best__absolute_plus_deviation__c0.3_b0.2,best_late_fusion,base
+Q2,best_plus_trajectory_proto__deviation__c0.03_b0.2,trajectory_proto,switch
+Q3,td_trajectory__deviation__c0.03_b0.2,trajectory,switch
+S1,best__absolute_plus_deviation__c0.3_b0.2,best_late_fusion,base
+S2,best_plus_sleep_intrusion__absolute__c0.3_b0.2,sleep_intrusion,switch
+S3,best__absolute_plus_deviation__c0.3_b0.2,best_late_fusion,base
+S4,best_plus_event_rhythm__deviation__c0.3_b0.2,event_rhythm,switch

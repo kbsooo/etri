@@ -1,0 +1,11 @@
+target,source_family,size
+Q1,sleep_intrusion,4
+Q1,best_late_fusion,1
+Q2,best_late_fusion,3
+Q2,sleep_intrusion,2
+Q3,best_late_fusion,5
+S1,best_late_fusion,5
+S2,sleep_intrusion,5
+S3,best_late_fusion,5
+S4,sleep_intrusion,3
+S4,best_late_fusion,2

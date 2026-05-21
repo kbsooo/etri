@@ -48,6 +48,12 @@ def parse_source(source: str) -> tuple[str, str, float, float]:
 
 
 def source_family(source: str) -> str:
+    if source.startswith("best_plus_sleep_intrusion") or source.startswith("sleep_intrusion"):
+        return "sleep_intrusion"
+    if source.startswith("best_plus_trajectory_proto") or source.startswith("trajectory_proto"):
+        return "trajectory_proto"
+    if source.startswith("best_plus_event_rhythm") or source.startswith("event_rhythm"):
+        return "event_rhythm"
     if source.startswith("td_trajectory"):
         return "trajectory"
     if source.startswith("best"):
