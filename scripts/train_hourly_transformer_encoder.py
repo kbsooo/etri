@@ -70,6 +70,34 @@ class DayTransformerEncoder(nn.Module):
         return encoded[:, 0], self.reconstruct(encoded[:, 1:])
 
 
+class DayGRUEncoder(nn.Module):
+    def __init__(self, n_features: int, d_model: int, dropout: float) -> None:
+        super().__init__()
+        self.input_proj = nn.Linear(n_features, d_model)
+        self.gru = nn.GRU(
+            input_size=d_model,
+            hidden_size=d_model,
+            num_layers=1,
+            batch_first=True,
+            dropout=0.0,
+        )
+        self.norm = nn.LayerNorm(d_model)
+        self.reconstruct = nn.Sequential(
+            nn.LayerNorm(d_model),
+            nn.Linear(d_model, d_model),
+            nn.GELU(),
+            nn.Dropout(dropout),
+            nn.Linear(d_model, n_features),
+        )
+
+    def forward(self, x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        token = self.input_proj(x)
+        encoded, hidden = self.gru(token)
+        encoded = self.norm(encoded)
+        cls = self.norm(hidden[-1])
+        return cls, self.reconstruct(encoded)
+
+
 def seed_everything(seed: int) -> None:
     random.seed(seed)
     np.random.seed(seed)
@@ -277,14 +305,24 @@ def train_ssl_encoder(
     tensor = torch.tensor(x, dtype=torch.float32)
     dataset = TensorDataset(tensor)
     loader = DataLoader(dataset, batch_size=args.batch_size, shuffle=True, drop_last=False)
-    model = DayTransformerEncoder(
-        n_features=x.shape[2],
-        n_tokens=x.shape[1],
-        d_model=args.d_model,
-        n_heads=args.n_heads,
-        n_layers=args.n_layers,
-        dropout=args.dropout,
-    ).to(device)
+    if args.encoder_type == "transformer":
+        model = DayTransformerEncoder(
+            n_features=x.shape[2],
+            n_tokens=x.shape[1],
+            d_model=args.d_model,
+            n_heads=args.n_heads,
+            n_layers=args.n_layers,
+            dropout=args.dropout,
+        ).to(device)
+    elif args.encoder_type == "gru":
+        model = DayGRUEncoder(
+            n_features=x.shape[2],
+            d_model=args.d_model,
+            dropout=args.dropout,
+        ).to(device)
+    else:
+        raise ValueError(f"Unknown encoder_type: {args.encoder_type}")
+    encoder_params = sum(parameter.numel() for parameter in model.parameters())
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     history: list[float] = []
     for epoch in range(args.epochs):
@@ -322,7 +360,7 @@ def train_ssl_encoder(
     embedding = np.vstack(embeddings).astype(np.float32)
     embedding = np.nan_to_num(embedding, nan=0.0, posinf=0.0, neginf=0.0)
     embedding = np.clip(embedding, -20.0, 20.0)
-    return embedding, history
+    return embedding, history, encoder_params
 
 
 def sanitize_probe_matrix(values: np.ndarray) -> np.ndarray:
@@ -511,7 +549,7 @@ def run(args: argparse.Namespace) -> None:
             tokens_per_day=args.tokens_per_day,
             add_deviation_features=args.add_deviation_features,
         )
-        z_all, loss_history = train_ssl_encoder(x, args, device)
+        z_all, loss_history, encoder_params = train_ssl_encoder(x, args, device)
         z_train = z_all[: len(train)]
         z_sample = z_all[len(train) :]
         np.savez_compressed(
@@ -548,6 +586,8 @@ def run(args: argparse.Namespace) -> None:
 
         report = {
             "view": view_name,
+            "encoder_type": args.encoder_type,
+            "encoder_params": int(encoder_params),
             "device": str(device),
             "sequence": seq_diag,
             "n_features": len(feature_names),
@@ -571,6 +611,8 @@ def run(args: argparse.Namespace) -> None:
             "",
             "## Representation",
             "",
+            f"- Encoder type: `{args.encoder_type}`",
+            f"- Encoder params: `{encoder_params}`",
             f"- Days: `{int(seq_diag['n_days'])}`",
             f"- Token shape: `{args.tokens_per_day} x {len(feature_names)}`",
             f"- Base hourly features selected: `{int(seq_diag['n_base_features'])}`",
@@ -591,7 +633,7 @@ def run(args: argparse.Namespace) -> None:
             "",
             "## Interpretation",
             "",
-            "This is a self-supervised Transformer representation probe. It uses all 700 provided train/sample days without labels for masked-token reconstruction, then evaluates whether the resulting day embedding helps a fold-safe label probe over the 450 labeled rows.",
+            "This is a self-supervised sequence representation probe. It uses all 700 provided train/sample days without labels for masked-token reconstruction, then evaluates whether the resulting day embedding helps a fold-safe label probe over the 450 labeled rows.",
         ]
         (view_dir / "report.md").write_text("\n".join(md), encoding="utf-8")
         all_reports.append(report)
@@ -617,6 +659,8 @@ def run(args: argparse.Namespace) -> None:
         summary_rows.append(
             {
                 "view": report["view"],
+                "encoder_type": report["encoder_type"],
+                "encoder_params": report["encoder_params"],
                 "ssl_loss": report["final_ssl_loss"],
                 "best_global": report["best_global_avg_log_loss"],
                 "targetwise": report["targetwise_avg_log_loss"],
@@ -641,11 +685,11 @@ def run(args: argparse.Namespace) -> None:
     (output_dir / "report.json").write_text(json.dumps(diagnostics, indent=2), encoding="utf-8")
 
     md = [
-        "# Hourly Transformer Encoder v1",
+        "# Hourly Sequence Encoder v1",
         "",
         "## Goal",
         "",
-        "Replace the tabular-pruned encoder branch with a sequence-first representation: one subject-day becomes 24 hourly tokens, and a Transformer learns a day embedding from masked-token reconstruction before any label decoder sees the 450 labels.",
+        "Replace the tabular-pruned encoder branch with a sequence-first representation: one subject-day becomes token sequence, and a tiny sequence encoder learns a day embedding from masked-token reconstruction before any label decoder sees the 450 labels.",
         "",
         "## View Comparison",
         "",
@@ -663,13 +707,13 @@ def run(args: argparse.Namespace) -> None:
         "",
         "## Decision",
         "",
-        "This run is an encoder validity test, not a final submission strategy. Adoption requires the Transformer latent to beat the subject-prior residual scaffold or reveal a view-specific target signal that can be reused in the decoder.",
+        "This run is an encoder validity test, not a final submission strategy. Adoption requires the sequence latent to beat the subject-prior residual scaffold or reveal a view-specific target signal that can be reused in the decoder.",
     ]
     (output_dir / "report.md").write_text("\n".join(md), encoding="utf-8")
 
 
 def build_arg_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Train a self-supervised hourly Transformer day encoder.")
+    parser = argparse.ArgumentParser(description="Train a self-supervised hourly sequence day encoder.")
     parser.add_argument("--train-path", default="data/ch2026_metrics_train.csv")
     parser.add_argument("--sample-path", default="data/ch2026_submission_sample.csv")
     parser.add_argument("--hourly-path", default="artifacts/03_hourly_grid.parquet")
@@ -685,6 +729,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--add-deviation-features", action="store_true")
     parser.add_argument("--epochs", type=int, default=80)
     parser.add_argument("--batch-size", type=int, default=64)
+    parser.add_argument("--encoder-type", choices=["transformer", "gru"], default="transformer")
     parser.add_argument("--d-model", type=int, default=64)
     parser.add_argument("--n-heads", type=int, default=4)
     parser.add_argument("--n-layers", type=int, default=2)

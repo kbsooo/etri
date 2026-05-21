@@ -286,3 +286,57 @@ Decision:
 - Keep `d_model=4` as the minimum viable size.
 - Reject `d_model=2` for now.
 - Next sequence branch should test tiny GRU with the same 30-minute token views to see whether recurrent compression gives a stronger fixed global decoder than Transformer CLS.
+
+## v1 Tiny GRU Dimension Golf
+
+Encoder script: `scripts/train_hourly_transformer_encoder.py --encoder-type gru`
+
+Golf decoder script: `scripts/train_latent_deep_learning_golf.py`
+
+Nested stress script: `scripts/nested_deep_learning_golf_selection.py`
+
+Outputs:
+
+- `outputs/tiny_gru_golf_encoder_d2_v1/`
+- `outputs/tiny_gru_golf_encoder_d4_v1/`
+- `outputs/tiny_gru_golf_encoder_d8_v1/`
+- `outputs/tiny_gru_d2_latent_golf_v1/`
+- `outputs/tiny_gru_d4_latent_golf_v1/`
+- `outputs/tiny_gru_d8_latent_golf_v1/`
+- `outputs/nested_tiny_gru_d2_latent_golf_v1/`
+- `outputs/nested_tiny_gru_d4_latent_golf_v1/`
+- `outputs/nested_tiny_gru_d8_latent_golf_v1/`
+
+Input:
+
+- Same 30-minute event-hybrid token grid and views as the tiny Transformer sweep.
+- Encoder is a 1-layer GRU with hidden size `2`, `4`, or `8`.
+- Decoder grid is identical to the Transformer sweep.
+
+Result:
+
+| d_model | encoder probe best | encoder best view | encoder params | golf fixed global | full-OOF targetwise | nested targetwise | nested gain vs subject prior | selection optimism | note |
+| ---: | ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| 2 | 0.624398 | `no_sleep` | 1,727 | 0.626739 | 0.624249 | 0.627061 | 0.000593 | 0.002423 | better than Transformer d2 nested, but weak |
+| 4 | 0.622912 | `only_cross_modal` | 1,015 | 0.626403 | 0.623314 | 0.625675 | 0.001979 | 0.002347 | best GRU setting |
+| 8 | 0.623662 | `no_sleep` | 6,239 | 0.626520 | 0.624135 | 0.627370 | 0.000284 | 0.002978 | larger GRU does not help |
+
+Comparison to tiny Transformer:
+
+- Best GRU nested targetwise: `0.625675` at `d_model=4`.
+- Best Transformer nested targetwise: `0.625441` at `d_model=8`.
+- Best GRU fixed global: `0.626403`, still weaker than the expanded latent fixed floor (`0.624475`).
+- GRU has a smoother encoder probe than d2 Transformer, but its golf-decoded fixed signal remains weak.
+
+Interpretation:
+
+- Recurrent compression is not the missing breakthrough by itself.
+- The sweet spot for GRU is `d_model=4`, not `8`; increasing hidden size introduces more selection-looking signal without improving nested validation.
+- Transformer d8 remains the better tiny sequence representation for mining stable target rules, especially Q2 cross-modal deviation and S1/S3 event/cross-modal axes.
+- The most useful conclusion is architectural: sequence encoders should stay tiny, but decoder rules must be fixed or nested. Larger sequence capacity alone does not solve the 450-label bottleneck.
+
+Decision:
+
+- Keep tiny GRU as a checked negative/secondary branch.
+- Continue sequence work from the stronger tiny Transformer d8 branch, but use the GRU d4 result as evidence that `d_model=4` is often enough.
+- Next improvement should not simply increase hidden size. It should change tokenization or make target rules fixed from nested selection counts.
