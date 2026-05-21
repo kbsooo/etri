@@ -12,6 +12,7 @@ Last updated: 2026-05-21
 - Encoder-first token artifact: `artifacts/domain_encoder_tokens_v1.npz`, shape `[700 days, 110 channels, 48 tokens]`, observed fraction `0.886050`.
 - Label-free diagnostics: `outputs/domain_idea_encoder_diagnostics_v1/report.md`, covering all `340/340` manifest ideas through family views.
 - First data insight: full multimodal tokens are identity-heavy and shifted (`subject_leakage_acc=0.882857`, `train_sample_mean_l2=9.164953`). Low-drift candidates are `only_event` (`0.817682` shift), `only_cross_modal` (`1.326479`), and `only_missingness` (low identity leakage `0.461429`). This supports pruning/noisy-family control before any decoder work.
+- Masked patch SSL follow-up: `outputs/domain_masked_patch_encoder_v1/report.md`, script `scripts/train_domain_masked_patch_encoder.py`. This uses MPS and labels are not used. The best balanced view is `only_event` (mean best val loss `0.723282`, subject leakage `0.208571`, train/sample shift `0.026047`, effective rank `3.606030`). `event_cross_missing` is the best combined candidate (`0.755342` loss, `0.025125` shift). `full` remains worse (`0.847681` loss, `0.046185` shift), confirming that more feature families can degrade the encoder.
 
 ## 2026-05-21 Pruned State Decoder Direction
 

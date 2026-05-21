@@ -44,3 +44,42 @@ The current evidence supports feature-family pruning before decoder work. Full m
 1. Train a masked patch Transformer on `only_event + only_cross_modal + only_missingness` with subject embedding disabled or adversarially reduced.
 2. Add subject-relative normalization inside the token tensor, not only in day-level aggregates.
 3. Run family ablation with label probes only after the encoder passes low-drift/low-leakage diagnostics.
+
+## 2026-05-21 - v1 Masked Patch SSL Encoder
+
+### Scope
+
+Trained a repeatable label-free masked patch Transformer over the domain encoder tokens. This is still encoder-first: no label decoder, no teacher submission, and no target columns are used.
+
+### Artifacts
+
+- Script: `scripts/train_domain_masked_patch_encoder.py`
+- Report: `outputs/domain_masked_patch_encoder_v1/report.md`
+- Machine-readable report: `outputs/domain_masked_patch_encoder_v1/report.json`
+- Summary table: `outputs/domain_masked_patch_encoder_v1/ssl_summary.csv`
+
+### Environment Note
+
+The first smoke test exposed a local OpenMP conflict when importing `numpy` before `torch`. The runner now imports `torch` first and does not use the unsafe `KMP_DUPLICATE_LIB_OK` workaround.
+
+### Result
+
+| view | mean best val loss | subject leakage | train/sample shift | effective rank | read |
+| --- | ---: | ---: | ---: | ---: | --- |
+| only_event | 0.723282 | 0.208571 | 0.026047 | 3.606030 | Best balanced SSL view. |
+| only_missingness | 0.723475 | 0.265000 | 0.077510 | 2.200197 | Reconstructs well but shifts more. |
+| event_cross_missing | 0.755342 | 0.252143 | 0.025125 | 3.123873 | Best combined candidate. |
+| no_body | 0.794839 | 0.366429 | 0.026659 | 2.626916 | Body removal helps less than expected; identity still present. |
+| event_cross_phone_missing | 0.845202 | 0.292857 | 0.033608 | 1.841944 | Adding phone hurts reconstruction and rank. |
+| full | 0.847681 | 0.327857 | 0.046185 | 2.731493 | Full feature mix remains inferior. |
+| only_cross_modal | 0.984546 | 0.207857 | 0.046570 | 2.127491 | Too narrow alone; useful as a supplement. |
+
+### Working Interpretation
+
+This confirms the earlier PCA diagnostic with an actual SSL encoder: event tokens are the cleanest primary representation. Missingness is strong but unstable across seeds and split shift. Cross-modal signals are not enough alone, but combining them with event/missingness is plausible. Full multimodal input is not the best encoder input despite having more data.
+
+### Next Experiments
+
+1. Train `only_event` and `event_cross_missing` longer with smaller mask-prob sweeps.
+2. Add subject-relative token normalization for event/missingness before SSL.
+3. Only after those label-free gates, run a frozen linear probe to test whether the new latent is label-readable.

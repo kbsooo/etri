@@ -1,0 +1,168 @@
+{
+  "view": "event_cross_phone_missing",
+  "seeds": [
+    2026,
+    2027
+  ],
+  "channels_selected": 47,
+  "channel_groups_selected": [
+    "cross_modal",
+    "event",
+    "missingness",
+    "phone"
+  ],
+  "mean_embedding_metrics": {
+    "subject_centroid_leakage": 0.3,
+    "embedding_norm_mean": 3.380239963531494,
+    "embedding_axis_std_mean": 0.05277186632156372,
+    "embedding_axis_std_min": 0.016795240342617035,
+    "embedding_effective_rank": 2.0256374813742433,
+    "adjacent_cosine_mean": 0.9958826599777608,
+    "random_cosine_mean": 0.9926132960595946,
+    "temporal_locality_gap": 0.003269363918166235,
+    "train_sample_mean_l2": 0.02414867840707302,
+    "train_sample_std_l2": 0.029772816225886345
+  },
+  "seed_reports": [
+    {
+      "seed": 2026,
+      "train_days": 574,
+      "val_days": 126,
+      "final_train_loss": 0.8589827563704514,
+      "final_val_loss": 0.8322248756885529,
+      "best_val_loss": 0.8322248756885529,
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.8847908815855764,
+          "val_loss": 0.8831160366535187
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.8696757447013457,
+          "val_loss": 0.8602232336997986
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.8494039942163208,
+          "val_loss": 0.8531231582164764
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.8564870461354273,
+          "val_loss": 0.8359678685665131
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.8470038275270096,
+          "val_loss": 0.8713968098163605
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.8557794017243469,
+          "val_loss": 0.8404417634010315
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.8506443120461308,
+          "val_loss": 0.8405368030071259
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.8589827563704514,
+          "val_loss": 0.8322248756885529
+        }
+      ],
+      "view": "event_cross_phone_missing",
+      "device": "mps",
+      "channels_selected": 47,
+      "channel_groups_selected": [
+        "cross_modal",
+        "event",
+        "missingness",
+        "phone"
+      ],
+      "embedding_dim": 24,
+      "embedding_norm_mean": 4.898558616638184,
+      "embedding_axis_std_mean": 0.08939511328935623,
+      "embedding_axis_std_min": 0.02883586287498474,
+      "embedding_effective_rank": 1.5988858852942132,
+      "subject_centroid_leakage": 0.29714285714285715,
+      "adjacent_cosine_mean": 0.993377003894336,
+      "random_cosine_mean": 0.9883371703002763,
+      "temporal_locality_gap": 0.005039833594059684,
+      "train_sample_mean_l2": 0.04092145338654518,
+      "train_sample_std_l2": 0.05825125053524971
+    },
+    {
+      "seed": 2027,
+      "train_days": 574,
+      "val_days": 126,
+      "final_train_loss": 0.8415754846579522,
+      "final_val_loss": 0.8817019462585449,
+      "best_val_loss": 0.8581783771514893,
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.8927739987389967,
+          "val_loss": 0.919580340385437
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.8769652126973514,
+          "val_loss": 0.9289345145225525
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.8618469242434884,
+          "val_loss": 0.9251135885715485
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.8605417110778729,
+          "val_loss": 0.8581783771514893
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.863027108255579,
+          "val_loss": 0.8961836695671082
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.8551626195060251,
+          "val_loss": 0.8959322273731232
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.8602138442029521,
+          "val_loss": 0.9112403094768524
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.8415754846579522,
+          "val_loss": 0.8817019462585449
+        }
+      ],
+      "view": "event_cross_phone_missing",
+      "device": "mps",
+      "channels_selected": 47,
+      "channel_groups_selected": [
+        "cross_modal",
+        "event",
+        "missingness",
+        "phone"
+      ],
+      "embedding_dim": 24,
+      "embedding_norm_mean": 4.898758888244629,
+      "embedding_axis_std_mean": 0.051410168409347534,
+      "embedding_axis_std_min": 0.020615020766854286,
+      "embedding_effective_rank": 2.085002013936307,
+      "subject_centroid_leakage": 0.2885714285714286,
+      "adjacent_cosine_mean": 0.998180277451225,
+      "random_cosine_mean": 0.9967326499413753,
+      "temporal_locality_gap": 0.0014476275098496139,
+      "train_sample_mean_l2": 0.026293711736798286,
+      "train_sample_std_l2": 0.026512112468481064
+    }
+  ]
+}
