@@ -356,6 +356,68 @@ Interpretation:
 - The cleanest carry-forward rule is global `signed_margin` cap-gating, not full target-wise selection. Target-wise selection adds optimism and instability, especially Q2/S4.
 - The next step should turn `signed_margin` into a fixed decoder rule or learn a small fold-safe permission model, while keeping Q3 on the stable scaffold and treating S2's aggressive extended residual as a separate risk.
 
+## Fixed permission policy decoder
+
+Scripts:
+
+- `scripts/train_fixed_permission_policy_decoder.py`
+- `scripts/train_nested_fixed_permission_policy_decoder.py`
+
+Outputs:
+
+- `outputs/fixed_permission_policy_decoder_v1/`
+- `outputs/nested_fixed_permission_policy_decoder_v1/`
+
+This experiment converts the nested cap-gate lessons into fixed target policies instead of allowing target-wise grid search:
+
+- Q1: signed-margin cap-gate (`s=1.25`, `cap=0.30`)
+- Q2: stable scaffold
+- Q3: stable scaffold
+- S1: aggressive extended residual
+- S2: aggressive extended residual
+- S3: signed-margin cap-gate (`s=1.00`, `cap=0.30`)
+- S4: aggressive extended residual
+
+Results:
+
+- `q1s3_signed_s1s2s4_extended_q3_stable`: `0.615095`
+- `nested_majority_policy`: `0.615110`
+- `global_signed_s100_c050`: `0.616528`
+- `extended_full_oof_winners`: `0.616766`
+- `stable_signal_s4_temporal`: `0.620281`
+
+Nested policy stress test:
+
+- `fixed_policy_best`: `0.615095`
+- `nested_global_policy`: `0.615224`
+- `extended_full_oof_winners`: `0.616766`
+- `nested_target_policy`: `0.617663`
+- `stable_signal_s4_temporal`: `0.620281`
+
+Selection counts:
+
+- Global nested policy selection picked `nested_majority_policy` in 3/5 folds and `q1s3_signed_s1s2s4_extended_q3_stable` in 2/5 folds.
+- Q3 stayed stable in 4/5 folds.
+- S2 picked extended in 5/5 folds.
+- S4 picked extended in 4/5 folds.
+- Q1 mostly picked the Q1/S3 signed policy family.
+- S3 mostly picked `nested_majority_policy`.
+
+Interpretation:
+
+- This is the strongest independent pruned-state Encoder-Decoder branch so far.
+- More importantly, policy-search optimism is small: `0.615095` becomes `0.615224` under nested global policy selection.
+- The breakthrough shape is now clearer:
+
+```text
+stable subject-normalized residual scaffold
++ Q1/S3 signed-margin permission gate
++ S1/S2/S4 aggressive extended residual
++ Q2/Q3 stable guard
+```
+
+- This still does not prove Public LB quality, and drift vs v83 remains around `0.070` with lower correlation than the stable scaffold. But compared with the previous `0.620281` independent scaffold, this is a meaningful decoder-level improvement.
+
 ## Meta-gated consensus follow-up
 
 Script: `scripts/train_meta_gated_consensus_decoder.py`
