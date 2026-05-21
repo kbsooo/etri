@@ -30,6 +30,17 @@ Last updated: 2026-05-20
 - Multires Transformer tokenization (`experiments/transformer_tokenization.md`) builds raw-derived 10-minute and 30-minute token grids. 10-minute is too sparse globally (`0.621938` best), while 30-minute + subject-token deviation improves the single-view branch to `0.618590` via `no_sleep`. A small nested MoE head over all Transformer experts reaches `0.611527` (`outputs/transformer_moe_head_v1/`), beating the prior independent fixed-permission policy OOF (`0.615095`). This is the strongest independent Transformer signal so far, but drift vs v83 rises to `0.086812`, so it is a breakthrough branch rather than a submission-safe candidate.
 - Transformer head diagnostics: embedding-level MoE is a clear negative (`outputs/transformer_embedding_moe_head_v1/`, best `0.636678`), so current SSL embeddings are not directly label-readable enough. Nested expert selection (`outputs/nested_transformer_expert_selection_v1/`) discounts the full-OOF targetwise expert score `0.614175` to nested `0.617817`, with stable Q1/Q2/Q3/S4 source preferences. Carry forward prediction-level MoE and tokenization work, not larger embedding heads.
 
+## 2026-05-21 Deep Learning Golf Reset
+
+- New experiment log: `experiments/deep_learning_golf.md`.
+- Script: `scripts/train_deep_learning_golf.py`.
+- Purpose: answer the user's concern that even hidden dim 8/16/32 is too large by restarting the neural decoder at bias-only, linear, low-rank rank 1-4, and tiny MLP hidden 1-4.
+- First run: `outputs/deep_learning_golf_v1/`.
+- Subject-prior baseline is `0.627654`. Best global tiny decoder reaches `0.625725` with only 34 params (`raw_plus_deviation__lowrank_r3_k2_wd0.1_b0.2`). Full-OOF targetwise reaches `0.622155`, gaining `0.005499` over subject prior.
+- Target gains vs subject prior are strongest for Q1/Q2/Q3 (`0.007254`/`0.012439`/`0.011960`) and weak for S-family, so the first small-model signal is a simple subject-relative day-state axis rather than a rich latent yet.
+- Drift vs v83 is `0.067578` targetwise and `0.068649` best-global; subject drift is highest for id08. This is a credible minimum-parameter floor, not a submission-ready breakthrough.
+- Next step: nested targetwise selection for the golf grid, then apply the same bottleneck-1..4 discipline to channel-patch Transformer latents and tiny GRU/Transformer sequence encoders.
+
 ## Current Best
 
 - Best internal OOF candidate: `outputs/conditional_latent_routing_v81_decoder_only_on_v80/submission_conditional_latent_routing.csv`
