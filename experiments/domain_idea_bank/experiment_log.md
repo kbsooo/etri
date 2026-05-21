@@ -120,3 +120,38 @@ Subject-relative normalization is not a free win. It makes the SSL task easier i
 1. Add a frozen label probe only for `global only_event`, `global event_cross_missing`, and `subject_channel_token event_cross_missing`.
 2. Test lighter normalization such as subject mean subtraction without MAD division.
 3. Test mask-prob sweep on `global only_event` because it remains the cleanest encoder input.
+
+## 2026-05-21 - Frozen Label Probe for Domain SSL Latents
+
+### Scope
+
+Tested whether the label-free domain SSL encoder latents are readable by a small supervised decoder. The encoder remains frozen. The probe uses fold-safe subject-time folds, subject-prior shrinkage, and no target-wise source cherry-picking.
+
+### Artifacts
+
+- Script: `scripts/probe_domain_ssl_latents.py`
+- Report: `outputs/domain_ssl_latent_frozen_probe_v1/report.md`
+- Machine-readable report: `outputs/domain_ssl_latent_frozen_probe_v1/report.json`
+- Score table: `outputs/domain_ssl_latent_frozen_probe_v1/probe_scores.csv`
+
+### Result
+
+| source | avg logloss | delta vs subject prior | read |
+| --- | ---: | ---: | --- |
+| subject_token_event_cross_missing + absolute_plus_deviation | 0.626064 | -0.001590 | Best frozen probe; weak but real label-readability. |
+| subject_token_event_cross_missing + absolute | 0.626183 | -0.001471 | Almost tied; absolute latent still carries useful state. |
+| global_event_cross_missing + absolute | 0.626550 | -0.001104 | Stable global coordinate also has small signal. |
+| subject prior | 0.627654 | 0.000000 | Baseline. |
+| global_only_event family | ~0.6281-0.6282 | positive | Stable for SSL, but too narrow for label probing alone. |
+
+### Working Interpretation
+
+The 300-idea pipeline is producing measurable but still small supervised signal. The strongest current representation is not "all data" or pure event tokens; it is the normalized `event + cross-modal + missingness` branch, especially when the decoder sees both absolute state and subject-relative deviation. This supports the user's hypothesis that feature family pruning matters: adding more raw/modal channels can make the latent easier to reconstruct but less useful for labels.
+
+The effect size is not yet a breakthrough. A frozen logistic probe improves the subject prior by only `0.00159`, so the next encoder iteration should change the pretext task and tokenization rather than simply adding decoder capacity.
+
+### Next Experiments
+
+1. Train SSL with event/cross/missing tokens but a label-relevant pretext: temporal order, subject-relative future/past deviation, or same-subject contrastive day discrimination.
+2. Run a token-family dropout sweep inside SSL so the encoder cannot solve reconstruction from missingness coverage alone.
+3. Add target-agnostic behavioral state prototypes from the 300 idea families, then probe whether prototype coordinates improve over the current frozen latent.

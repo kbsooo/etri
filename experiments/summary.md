@@ -225,13 +225,22 @@ This is not yet one final monolithic deep encoder. The current work is feature/r
 - `scripts/train_fold_local_channel_moe_decoder.py` tests a small prediction-level MoE over the fold-local channel experts. MoE-only is weaker (`0.618702`) than the best no-PCA single expert, but it improves Q2 and S4. Keeping the no-PCA selected decoder as baseline and swapping only Q2/S4 to MoE reaches OOF `0.616459` with drift `0.077083`. This is a narrow but real sign that expert disagreement is useful; the next version should gate latents before decoding rather than only stack final probabilities.
 - `scripts/train_fold_local_latent_moe_decoder.py` moves the gate before final probability formation by concatenating target-specific subject-relative latent blocks inside each fold. This is the strongest channel-patch decoder so far: target-wise latent gate reaches OOF `0.612530`, and the no-PCA baseline hybrid reaches `0.612448`. The gain is broad (Q2, Q3, S1, S2, S3, S4), but drift rises to `0.095652`; shrinkage exposes a usable tradeoff such as 35% latent weight at OOF `0.615209` with drift `0.082733`.
 
+## 300-Idea Domain Engineering Track
+
+- Parsed the imported GPT/Claude/Gemini idea files into an executable manifest: 340 numbered items, grouped into 280 ready experiments, 43 encoder-SSL queued ideas, and 17 gated/high-risk ideas. This is more than the requested 300 because the source files included extra numbered sections.
+- Built domain state features and a 30-minute token tensor covering the idea families. Current token artifact: `artifacts/domain_encoder_tokens_v1.npz`, shape `[700, 110, 48]`, observed-mask fraction `0.88605`.
+- Label-free PCA diagnostics said `only_event`, `only_cross_modal`, and `only_missingness` were cleaner than full feature mixing. This was confirmed by masked-patch SSL: `only_event` was the best balanced SSL view, while `full` was worse despite using more data.
+- Subject-relative normalization was useful only in a narrow form. `subject_channel` improves reconstruction but increases subject leakage and train/sample shift; `subject_channel_token + event_cross_missing` is the best low-leakage auxiliary branch.
+- Frozen label probe over selected SSL latents gives a small but real supervised signal: best source `subject_token_event_cross_missing__absolute_plus_deviation__c0.3_b0.2`, OOF logloss `0.626064` vs subject-prior `0.627654` (`-0.001590`). This is not a leaderboard candidate, but it confirms that event/cross-modal/missingness latent coordinates are label-readable.
+- Current diagnosis: the data-engineering direction is valid, but the SSL objective is still too reconstruction-oriented. The next breakthrough attempt should train the encoder on subject-relative temporal/contrastive behavioral state objectives, not simply enlarge the decoder.
+
 ## Next 3
 
-1. Stress-test the latent-level MoE target selection with nested selection or fixed shrinkage. Full-strength latent MoE is the first large channel-patch OOF gain (`0.612448`), but its drift is high (`0.095652`), so the next decision is how much of the signal survives public-alignment constraints.
-   - Success criterion: keep most of the 0.0053 OOF gain over no-PCA fold-local baseline while holding drift near the 25-35% shrink band (`0.080976`-`0.082733`) or proving the full-strength drift is acceptable.
+1. Replace pure reconstruction SSL with label-relevant, target-free pretexts: same-subject temporal contrast, subject-relative day deviation, masked future/past state, and behavioral prototype assignment over the event/cross/missing token families.
+   - Success criterion: frozen probe improves subject-prior by at least `0.005` without target-wise cherry-picking and without large train/sample shift.
 
-2. Make nested selection (or fixed uniform shrinkage) the standard evaluation, not full-train router selection. Report the nested score alongside the train-selected score for every future candidate so the router selection bias (~0.0034 here) is always visible.
-   - Success criterion: a routing/eval script that emits the out-of-fold-selected score by default.
+2. Run token-family dropout and pruning inside the encoder, not only after feature construction: event-only, event+missingness, event+cross, missingness-blocked, phone-blocked, sleep/body-blocked, GPS-blocked, and cross-modal-only auxiliary objectives.
+   - Success criterion: identify at least one family removal that improves frozen-probe signal or reduces shift at comparable signal.
 
-3. Public-LB-aware packaging of the honest v81 signal (Q1 + S3 only): conservatively blend the nested-validated Q1/S3 corrections toward the v76/public-anchor family; do not ship the Q3/S1/S4 routed moves, which were selection bias.
-   - Success criterion: a packaged candidate defensible vs the v76 anchor under the public_lb_feedback robustness checks, changing predictions only where the nested test confirmed signal.
+3. Keep the previous channel-patch latent MoE as a separate decoder reference, but do not spend the next round on shrinkage or public-anchor tuning. The current bottleneck is representation quality, not submission stabilization.
+   - Success criterion: new encoder latent beats the current `0.626064` frozen-probe diagnostic before being promoted to a larger decoder.
