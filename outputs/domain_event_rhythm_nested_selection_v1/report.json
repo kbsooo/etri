@@ -1,0 +1,104 @@
+{
+  "fold_losses": "outputs/domain_event_rhythm_probe_v1/fold_target_losses.csv",
+  "overall": {
+    "base_avg": 0.623191621386494,
+    "nested_selected_avg": 0.6229030348598091,
+    "delta_vs_base": -0.0002885865266849403,
+    "n_folds": 5,
+    "base_source": "best__absolute_plus_deviation__c0.3_b0.2",
+    "min_train_delta": 0.003
+  },
+  "target_summary": [
+    {
+      "target": "Q1",
+      "selected_loss": 0.6691817177735858,
+      "base_loss": 0.6691817177735858,
+      "delta_vs_base": 0.0,
+      "most_common_family": "best_late_fusion"
+    },
+    {
+      "target": "Q2",
+      "selected_loss": 0.6992132912296122,
+      "base_loss": 0.7016929759704349,
+      "delta_vs_base": -0.0024796847408226743,
+      "most_common_family": "best_late_fusion"
+    },
+    {
+      "target": "Q3",
+      "selected_loss": 0.6767406096500848,
+      "base_loss": 0.6738888587098408,
+      "delta_vs_base": 0.0028517509402438803,
+      "most_common_family": "event_rhythm"
+    },
+    {
+      "target": "S1",
+      "selected_loss": 0.5708954587854569,
+      "base_loss": 0.5708954587854569,
+      "delta_vs_base": 0.0,
+      "most_common_family": "best_late_fusion"
+    },
+    {
+      "target": "S2",
+      "selected_loss": 0.5783156553303062,
+      "base_loss": 0.5783156553303062,
+      "delta_vs_base": 0.0,
+      "most_common_family": "best_late_fusion"
+    },
+    {
+      "target": "S3",
+      "selected_loss": 0.5251202551583003,
+      "base_loss": 0.5251202551583003,
+      "delta_vs_base": 0.0,
+      "most_common_family": "best_late_fusion"
+    },
+    {
+      "target": "S4",
+      "selected_loss": 0.6408542560913184,
+      "base_loss": 0.6432464279775342,
+      "delta_vs_base": -0.002392171886215788,
+      "most_common_family": "event_rhythm"
+    }
+  ],
+  "family_counts": [
+    {
+      "target": "Q1",
+      "source_family": "best_late_fusion",
+      "size": 5
+    },
+    {
+      "target": "Q2",
+      "source_family": "best_late_fusion",
+      "size": 5
+    },
+    {
+      "target": "Q3",
+      "source_family": "event_rhythm",
+      "size": 3
+    },
+    {
+      "target": "Q3",
+      "source_family": "best_late_fusion",
+      "size": 2
+    },
+    {
+      "target": "S1",
+      "source_family": "best_late_fusion",
+      "size": 5
+    },
+    {
+      "target": "S2",
+      "source_family": "best_late_fusion",
+      "size": 5
+    },
+    {
+      "target": "S3",
+      "source_family": "best_late_fusion",
+      "size": 5
+    },
+    {
+      "target": "S4",
+      "source_family": "event_rhythm",
+      "size": 5
+    }
+  ]
+}

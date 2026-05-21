@@ -423,3 +423,43 @@ Prototype target diagnostics:
 Q2 and Q3 are not identical even though both respond to the temporal trajectory family. Q2 benefits from coarser prototype/state membership over trajectory space, while Q3 needs the continuous trajectory deviation coordinates. This is useful because it suggests the decoder should not merely share one trajectory head across all Q targets; it likely needs target-specific state readouts.
 
 The improvement is still incremental, not a 0.55 breakthrough. But the pattern is now sharper: target-specific path/state decomposition is a real signal, while broad prototype features are not safe globally.
+
+## 2026-05-21 - Event Rhythm and S4 Decoder Path
+
+### Scope
+
+Built sensor-level event rhythm features from the 30-minute event-hybrid grid. This implements a cluster of manifest ideas around activity burstiness, circadian phase, modality coverage rhythm, and cross-modal rhythm gaps.
+
+### Artifacts
+
+- Builder: `scripts/build_event_rhythm_latents.py`
+- Event rhythm artifact: `artifacts/domain_event_rhythm_v1.parquet`
+- Probe: `outputs/domain_event_rhythm_probe_v1/report.md`
+- Nested rhythm report: `outputs/domain_event_rhythm_nested_selection_v1/report.md`
+- Hybrid decoder: `outputs/domain_hybrid_q2_proto_q3_trajectory_s4_rhythm_decoder_v1/report.md`
+
+### Result
+
+| experiment | avg OOF logloss | read |
+| --- | ---: | --- |
+| current late-fusion best | 0.622961 | Baseline diagnostic artifact. |
+| Q2 prototype + Q3 trajectory hybrid | 0.621107 | Previous best diagnostic decoder. |
+| Q2 prototype + Q3 trajectory + S4 event rhythm | 0.620777 | New best diagnostic decoder in this track. |
+
+Nested rhythm selection:
+
+| target | rhythm effect | read |
+| --- | ---: | --- |
+| S4 | -0.002392 nested | Event rhythm survives all five folds for S4. |
+| Q3 | harmful/unstable | Keep Q3 on continuous trajectory instead. |
+| other targets | no stable gain | Keep on base. |
+
+### Working Interpretation
+
+The useful signal is becoming target-factorized:
+
+- Q2 wants coarse trajectory prototype/state membership.
+- Q3 wants continuous trajectory deviation.
+- S4 wants daily event rhythm/circadian/burstiness structure.
+
+This still is not a 0.55 breakthrough. But it is no longer just one vague "trajectory" clue. The decoder now has three distinct target-specific data-engineering paths, each grounded in a nested diagnostic.

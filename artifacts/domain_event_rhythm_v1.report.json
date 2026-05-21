@@ -1,0 +1,33 @@
+{
+  "input": "artifacts/multires_30min_event_hybrid_grid.parquet",
+  "output": "artifacts/domain_event_rhythm_v1.parquet",
+  "rows": 700,
+  "feature_count": 96,
+  "signals": {
+    "phone": [
+      "phone_activity",
+      "screen_mean",
+      "usage_total",
+      "ev_phone_active"
+    ],
+    "mobility": [
+      "mobility_activity",
+      "gps_speed_mean",
+      "step_sum",
+      "ev_moving"
+    ],
+    "body": [
+      "body_activity",
+      "hr_mean",
+      "pedo_n",
+      "act_walk_ratio"
+    ],
+    "coverage": [
+      "sensor_coverage_n",
+      "ev_present_phone",
+      "ev_present_gps",
+      "ev_present_hr",
+      "ev_no_wear"
+    ]
+  }
+}
