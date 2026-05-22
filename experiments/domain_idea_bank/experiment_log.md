@@ -1848,3 +1848,80 @@ Carry forward:
 - Treat `psg_qrel absolute logreg` and `psg_opp rank-pairwise` as the leading S2 decoder ideas.
 - The next step is drift-controlled S2 readout: shrink or calibrate the relative Q-state signal without falling back to v76/v83 teacher logic.
 - Do not spend more time on KMeans state bins for S2.
+
+## 2026-05-22 - S2 Opportunity Drift Calibration
+
+### Scope
+
+Converted the strongest fixed pairwise/logistic S2 readout into a calibration stress test. The rules are train-derived only:
+
+- logit shrinkage toward fold-safe subject prior,
+- global S2 intercept anchoring,
+- posterior subject-rate anchoring,
+- subject-rate caps.
+
+The v83 submission is used only as a drift diagnostic, not as a teacher or selection target.
+
+### Artifacts
+
+- Script: `scripts/calibrate_s2_opportunity_readout.py`
+- Report: `outputs/domain_s2_opportunity_drift_calibration_v1/report.md`
+- Candidate table: `outputs/domain_s2_opportunity_drift_calibration_v1/candidate_scores.csv`
+- Train-safe frontier: `outputs/domain_s2_opportunity_drift_calibration_v1/train_safe_frontier.csv`
+- Selected OOF/submission: `outputs/domain_s2_opportunity_drift_calibration_v1/oof_selected_s2_opportunity_drift_calibration.csv`, `outputs/domain_s2_opportunity_drift_calibration_v1/submission_selected_s2_opportunity_drift_calibration.csv`
+
+### Result
+
+| experiment | S2 | projected fixed-map avg | sample S2 mean | posterior subject gap | v83 diagnostic drift | read |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| protected fixed-map S2 | 0.567195 | 0.610244 | n/a | n/a | n/a | Previous protected scout. |
+| raw fixed pairwise/logistic | 0.558302 | 0.608974 | 0.678904 | 0.025971 | 0.084029 | Strong but rate-shifted. |
+| global intercept s1 | 0.555725 | 0.608606 | 0.651111 | 0.020416 | 0.082620 | Lowest OOF, but only 2/5 folds beat raw. |
+| selected posterior anchor s0.75 | 0.555910 | 0.608632 | 0.663356 | 0.006493 | 0.079255 | Best fold/rate-stress tradeoff. |
+| posterior anchor s1 | 0.556087 | 0.608658 | 0.658174 | 0.000000 | 0.079256 | Strong robustness branch. |
+
+### Working Interpretation
+
+This is a positive calibration result, not merely a drift cleanup. Posterior subject anchoring improves OOF over the raw fixed S2 readout while reducing sample-rate stress. The likely reason is that the pairwise/Q-state readout captures within-subject day ordering well, but its absolute probability level is over-shifted on sample; fold-safe posterior anchors repair that level without erasing the useful ordering.
+
+Carry forward:
+
+- Use `subject_anchor_posterior_s0.75` as the score branch for calibrated S2.
+- Keep `subject_anchor_posterior_s1` as a robustness branch when sample-rate control matters more than the last `0.00018` S2 loss.
+- Do not select global intercept s1 automatically despite its lower aggregate OOF; it improves only 2/5 folds versus raw.
+- The next high-value work is no longer generic S2 feature discovery. It is integration plus a Q-family pivot: test whether Q1/Q2/Q3 have analogous posterior/state-anchor opportunities over boundary, energy recovery, and mobility-constriction readouts.
+
+## 2026-05-22 - Q-Family Rate Calibration on Causal Chain
+
+### Scope
+
+Responded to the high Q-loss concern by testing whether the current causal-chain Q readouts are miscalibrated in absolute probability space. This reused the existing fold-safe subject/global calibration script on Q1/Q2/Q3 only, using the causal-chain fixed-map OOF/submission as the base.
+
+### Artifacts
+
+- Base OOF/submission: `outputs/domain_hybrid_causal_chain_fixed_maps_v1/bold_q3_recovery/oof_nested_temporal_decoder.csv`, `outputs/domain_hybrid_causal_chain_fixed_maps_v1/bold_q3_recovery/submission_nested_temporal_decoder.csv`
+- Script: `scripts/postprocess_subject_rate_calibration.py`
+- Report: `outputs/domain_q_family_rate_calibration_on_causal_chain_v1/subject_rate_calibration_report.md`
+- Candidate table: `outputs/domain_q_family_rate_calibration_on_causal_chain_v1/candidate_scores.csv`
+- Selection table: `outputs/domain_q_family_rate_calibration_on_causal_chain_v1/targetwise_selection.csv`
+
+### Result
+
+| target | base | best calibrated | delta | gate | read |
+| --- | ---: | ---: | ---: | --- | --- |
+| Q1 | 0.654835 | 0.643882 | -0.010954 | accepted | `global_count_s0.2_b0.75_w0.5`, 4/5 folds improved, worst fold `-0.001834`. |
+| Q2 | 0.687527 | 0.682057 | -0.005470 | rejected | Raw improvement exists, but only 2/5 folds improved and worst fold is `-0.016369`. |
+| Q3 | 0.665238 | 0.660182 | -0.005056 | rejected | 3/5 folds improved, but worst fold is `-0.007358`, beyond the stress threshold. |
+| final avg | 0.614213 | 0.612648 | -0.001565 | Q1 only | Fold-safe final accepts only Q1. |
+
+### Working Interpretation
+
+Q1 has a real probability-level calibration problem tied to subject composition and held-out count structure. The global-count rule likely corrects how many positive Q1 days each subject/time block should contribute, while preserving the causal-chain ordering enough to pass the fold gate.
+
+Q2 and Q3 are different. Mean/rate anchoring can improve aggregate OOF, but the fold regressions are too large. That points back to representation: Q2 still needs a cleaner energy-recovery/state-membership objective, and Q3 still needs a mobility-constriction/recovery state objective. Do not promote broad Q-family calibration for Q2/Q3 without a tighter state split.
+
+Carry forward:
+
+- Promote the accepted Q1 calibration as a domain-track branch.
+- Treat Q2/Q3 calibration wins as hypothesis generators only.
+- Next Q experiment should split Q2 and Q3 features/readouts, not share a single Q-family mean anchor.
