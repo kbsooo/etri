@@ -1749,3 +1749,54 @@ Carry forward:
 - Promote pruned PSG core as a serious S4 encoder-objective candidate.
 - For S2, investigate why Q-state gate helps: likely the sleep label is coupled to broader day opportunity/recovery/mobility state rather than sleep-window purity alone.
 - Next experiment should split `psg_q` into smaller Q-state subblocks and stress-test S2 only.
+
+## 2026-05-22 - PSG Q-State S2 Split
+
+### Scope
+
+Followed the positive PSG lead by decomposing the broad `psg_q` gate into smaller S2 candidates. The goal was to check whether S2 really needs the full Q-state gate, or whether a smaller daily-state coordinate is carrying the signal.
+
+The split families were:
+
+- Q1 boundary only
+- Q2 rolling sleep only
+- Q3 mobility only
+- Q3 recovery only
+- opportunity only
+- energy recovery only
+- sleep/opportunity/energy, mobility/recovery/energy, and opportunity/mobility combinations
+- compact Q-block core
+- Q-state pair slices
+- subject-relative Q-state
+
+### Artifacts
+
+- Builder: `scripts/build_psg_q_state_s2_variants.py`
+- Variant report: `artifacts/domain_psg_q_state_s2_variants_v1.report.md`
+- Focused probe: `outputs/domain_psg_q_state_s2_variants_probe_v1/report.md`
+- Fixed-map scout: `outputs/domain_psg_q_state_s2_fixed_map_scout_v1/report.md`
+- Nested report: `outputs/domain_all_specialists_plus_psg_q_state_s2_variants_nested_selection_v1/report.md`
+
+### Result
+
+| experiment | S2 | S4 | avg | read |
+| --- | ---: | ---: | ---: | --- |
+| previous protected S2 | 0.567195 | n/a | n/a | Baseline protected scout source. |
+| previous broad PSG Q-state S2 | 0.564809 | n/a | n/a | Positive, but nested-unstable. |
+| split opportunity-only S2 | 0.562387 | n/a | n/a | Best direct S2 split source. |
+| split opportunity+mobility S2 | 0.562629 | n/a | n/a | Similar S2 signal with more day-state context. |
+| split relative Q-state S2 | 0.562888 | n/a | n/a | Strong additive subject-relative version. |
+| fixed map: old PSG S2/S4 | 0.564809 | 0.631342 | 0.609682 | Previous best fixed scout. |
+| fixed map: opportunity S2 + old PSG core S4 | 0.562387 | 0.631342 | 0.609336 | New best fixed scout. |
+| nested all-specialist + split PSG | 0.573308 | 0.637691 | 0.618384 | S2 now improves held-fold vs base (`0.578316`). |
+
+### Working Interpretation
+
+This is the first S2 PSG result that survives nested selection directionally. The important clue is that S2 does not look like a pure sleep-window problem here. It behaves more like a daily opportunity/state problem:
+
+- enough sleep opportunity,
+- constrained or unconstrained mobility,
+- subject-relative Q-state displacement,
+- and the mismatch between daily state and sleep-pressure context.
+
+The compact Q-core split helps many targets globally (`0.618037` focused probe), but it is not the best S4 replacement; S4 still prefers the older PSG core load summary. Carry forward `S2=opportunity/Q-state gate` and `S4=PSG core`, but do not turn this into a broad feature append. The next decoder should train an explicit opportunity-state intermediate target for S2.
