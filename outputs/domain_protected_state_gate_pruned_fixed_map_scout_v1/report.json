@@ -1,0 +1,86 @@
+{
+  "purpose": "Compare protected target map with fixed S2/S4 substitutions from pruned protected-state gate variants. Full-fold means are diagnostic and still source-selection biased.",
+  "current_map": {
+    "Q1": "boundary_target_map__absolute__c0.03_b0.2",
+    "Q2": "best_plus_scc_rolling__absolute__c0.3_b0.2",
+    "Q3": "best_plus_cc_recovery__deviation__c0.3_b0.2",
+    "S1": "best_plus_wai_sleep_recovery_interaction__absolute_plus_deviation__c0.3_b0.2",
+    "S2": "scp_subject_relative_only__absolute_plus_deviation__c0.03_b0.2",
+    "S3": "best_plus_sot_micro_subject_relative_only__absolute_plus_deviation__c0.3_b0.2",
+    "S4": "best_plus_rr_coverage_rhythm__absolute_plus_deviation__c0.3_b0.2"
+  },
+  "scores": [
+    {
+      "variant": "psg_s2_s4",
+      "avg_log_loss": 0.6096817698383472,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6820623117382185,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5571717499466909,
+      "S2": 0.564808646622391,
+      "S3": 0.5135895773926074,
+      "S4": 0.6313421368781376,
+      "replacements": "{\"S2\": \"psg_q__deviation__c0.1_b0.2\", \"S4\": \"psg_core__absolute_plus_deviation__c0.1_b0.2\"}"
+    },
+    {
+      "variant": "psg_s2_only",
+      "avg_log_loss": 0.609903447943629,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6820623117382185,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5571717499466909,
+      "S2": 0.564808646622391,
+      "S3": 0.5135895773926074,
+      "S4": 0.6328938836151108,
+      "replacements": "{\"S2\": \"psg_q__deviation__c0.1_b0.2\"}"
+    },
+    {
+      "variant": "psg_s4_only",
+      "avg_log_loss": 0.6100227217745468,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6820623117382185,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5571717499466909,
+      "S2": 0.5671953101757881,
+      "S3": 0.5135895773926074,
+      "S4": 0.6313421368781376,
+      "replacements": "{\"S4\": \"psg_core__absolute_plus_deviation__c0.1_b0.2\"}"
+    },
+    {
+      "variant": "psg_sleep_s2",
+      "avg_log_loss": 0.6102227092706667,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6820623117382185,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5571717499466909,
+      "S2": 0.5670434759116547,
+      "S3": 0.5135895773926074,
+      "S4": 0.6328938836151108,
+      "replacements": "{\"S2\": \"best_plus_psg_sleep__absolute_plus_deviation__c0.1_b0.2\"}"
+    },
+    {
+      "variant": "current",
+      "avg_log_loss": 0.6102443998798287,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6820623117382185,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5571717499466909,
+      "S2": 0.5671953101757881,
+      "S3": 0.5135895773926074,
+      "S4": 0.6328938836151108,
+      "replacements": "{}"
+    },
+    {
+      "variant": "psg_proto_q2_s4",
+      "avg_log_loss": 0.6112407227999597,
+      "Q1": 0.6537622035798989,
+      "Q2": 0.6905883189161085,
+      "Q3": 0.6650357627104861,
+      "S1": 0.5571717499466909,
+      "S2": 0.5671953101757881,
+      "S3": 0.5135895773926074,
+      "S4": 0.6313421368781376,
+      "replacements": "{\"Q2\": \"best_plus_psg_proto__deviation__c0.01_b0.2\", \"S4\": \"psg_core__absolute_plus_deviation__c0.1_b0.2\"}"
+    }
+  ]
+}

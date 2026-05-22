@@ -1696,3 +1696,56 @@ The digital-behavior hypothesis remains valid only in narrow forms. Broad fusion
 - S2: phone-check fragmentation can support sleep context, but the protected subject-relative sleep-consensus scout remains stronger.
 - S4: daily coverage/phone rhythm is useful only through the simpler routine/coverage slice.
 - Next: use digital features as gated target-specific experts, not as one fused encoder input dump.
+
+## 2026-05-22 - Protected-State Gate Compression
+
+### Scope
+
+Tested the next step after several broad-fusion failures: instead of concatenating more raw feature families, compress the current protected target experts into low-dimensional gate/state coordinates. The state blocks were:
+
+- Q1 boundary target-map coordinates
+- Q2 rolling sleep-consensus
+- Q3 mobility constriction and causal recovery
+- S1 wake activation after sleep recovery
+- S2 subject-relative sleep consensus
+- S3 subject-relative sleep-onset settling
+- S4 coverage/no-wear rhythm
+- causal opportunity and energy recovery support blocks
+
+The first PSG latent summarized each block with load, signed direction, PCA axes, pairwise conflict/load products, and unsupervised prototype distances. Then a pruned variant pass split this broad gate into core load, prototype, pair conflict, sleep-boundary gate, Q-state gate, S2-focus gate, and relative-only views.
+
+### Artifacts
+
+- Builder: `scripts/build_protected_state_gate_latents.py`
+- Pruned variant builder: `scripts/build_protected_state_gate_pruned_variants.py`
+- Full gate artifact: `artifacts/domain_protected_state_gate_v1.parquet`
+- Pruned variant report: `artifacts/domain_protected_state_gate_pruned_variants_v1.report.md`
+- Full probe: `outputs/domain_protected_state_gate_probe_v1/report.md`
+- Pruned probe: `outputs/domain_protected_state_gate_pruned_probe_v1/report.md`
+- Fixed-map scout: `outputs/domain_protected_state_gate_pruned_fixed_map_scout_v1/report.md`
+- Nested report: `outputs/domain_all_specialists_plus_protected_state_gate_pruned_nested_selection_v1/report.md`
+
+### Result
+
+| experiment | S2 | S4 | avg | read |
+| --- | ---: | ---: | ---: | --- |
+| full PSG global probe | 0.572092 | 0.645841 | 0.625252 | Broad gate is still too noisy. |
+| pruned prototype best global | 0.576344 | 0.639461 | 0.622307 | Prototype distances are globally useful but not target-map quality. |
+| pruned Q-state gate S2 | 0.564809 | n/a | n/a | First full-fold source beating protected S2 (`0.567195`). |
+| pruned core gate S4 | n/a | 0.631342 | n/a | Beats protected S4 coverage rhythm (`0.632894`). |
+| fixed protected scout + PSG S2/S4 | 0.564809 | 0.631342 | 0.609682 | New best fixed-scout diagnostic, down from `0.610244`. |
+| nested all-specialist + PSG pruned | 0.581975 | 0.637691 | 0.619622 | S4 PSG survives nested; S2 PSG is selected in 2/5 folds but held-fold harmful. |
+
+### Working Interpretation
+
+This is the first positive result from the "gate rather than concatenate" idea. The important finding is not the broad PSG latent; it is the pruned structure:
+
+- S4 wants the simple core load summary of protected states, not more raw coverage columns.
+- S2 may be helped by Q-state gate geometry, which is interesting because S2 has repeatedly failed under pure sleep/micro-awakening feature expansions.
+- The S2 signal is not held-fold stable yet. The fixed scout improves because full-fold S2 source choice is favorable, but nested selection still says it can fail by fold.
+
+Carry forward:
+
+- Promote pruned PSG core as a serious S4 encoder-objective candidate.
+- For S2, investigate why Q-state gate helps: likely the sleep label is coupled to broader day opportunity/recovery/mobility state rather than sleep-window purity alone.
+- Next experiment should split `psg_q` into smaller Q-state subblocks and stress-test S2 only.
