@@ -1,0 +1,37 @@
+{
+  "nested_s2_log_loss": 0.582495593510938,
+  "subject_prior_s2_log_loss": 0.5798564530783497,
+  "fixed_map_current_s2_log_loss": 0.567195,
+  "projected_fixed_map_avg": 0.6124302276444197,
+  "current_fixed_map_avg": 0.6102444285714286,
+  "best_full_oof_candidate": {
+    "candidate": "psg_qrel__absolute__k4__state_rate__b25",
+    "full_oof_s2_log_loss": 0.5821510316700614
+  },
+  "selection_counts": [
+    {
+      "selected": "psg_qrel__absolute__k5__state_rate__b25",
+      "outer_count": 3
+    },
+    {
+      "selected": "psg_qrel__absolute__k4__state_rate__b25",
+      "outer_count": 2
+    }
+  ],
+  "s2_reference_drift": {
+    "mean_abs_s2_drift": 0.07441611439242789,
+    "max_abs_s2_drift": 0.2865723328461899,
+    "pred_s2_mean": 0.6601133841497082,
+    "ref_s2_mean": 0.6439252486539999
+  },
+  "args": {
+    "train_path": "data/ch2026_metrics_train.csv",
+    "sample_path": "data/ch2026_submission_sample.csv",
+    "output_dir": "outputs/domain_s2_opportunity_state_decoder_v1",
+    "reference_submission": "outputs/v83_repaired_v80/submission_v83_gq015_gs010.csv",
+    "outer_folds": 5,
+    "inner_folds": 4,
+    "prior_alpha": 8.0,
+    "state_alpha": 8.0
+  }
+}

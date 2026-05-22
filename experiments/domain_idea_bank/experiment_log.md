@@ -1800,3 +1800,51 @@ This is the first S2 PSG result that survives nested selection directionally. Th
 - and the mismatch between daily state and sleep-pressure context.
 
 The compact Q-core split helps many targets globally (`0.618037` focused probe), but it is not the best S4 replacement; S4 still prefers the older PSG core load summary. Carry forward `S2=opportunity/Q-state gate` and `S4=PSG core`, but do not turn this into a broad feature append. The next decoder should train an explicit opportunity-state intermediate target for S2.
+
+## 2026-05-22 - S2 Opportunity-State and Pairwise Decoders
+
+### Scope
+
+Promoted the S2 opportunity/Q-state clue from source selection into two explicit decoder experiments:
+
+1. `train_s2_opportunity_state_decoder.py`
+   - First clusters opportunity/Q-state latent rows without labels.
+   - Then maps cluster/state rates to S2 with fold-safe state-rate or state-logistic decoders.
+
+2. `train_s2_opportunity_pairwise_decoder.py`
+   - Avoids coarse clusters.
+   - Tests narrow opportunity/Q-state families with pairwise ranking, prototype, and small logistic decoders.
+   - The pairwise route expands the 450 labels into positive/negative day comparisons.
+
+### Artifacts
+
+- State decoder: `scripts/train_s2_opportunity_state_decoder.py`
+- State report: `outputs/domain_s2_opportunity_state_decoder_v1/report.md`
+- Pairwise decoder: `scripts/train_s2_opportunity_pairwise_decoder.py`
+- Pairwise report: `outputs/domain_s2_opportunity_pairwise_decoder_v1/report.md`
+- Fixed candidate stress table: `outputs/domain_s2_opportunity_pairwise_decoder_v1/fixed_candidate_stress.csv`
+
+### Result
+
+| experiment | S2 | projected fixed-map avg | drift/read |
+| --- | ---: | ---: | --- |
+| protected fixed-map S2 | 0.567195 | 0.610244 | Current protected scout reference. |
+| KMeans opportunity-state nested decoder | 0.582496 | 0.612430 | Negative; coarse state bins destroy the signal. |
+| pairwise/logistic nested selection | 0.567981 | 0.610357 | Nearly protected, but inner-fold candidate choice is unstable. |
+| fixed `psg_qrel absolute logreg c0.1 b0.2` | 0.558302 | 0.608974 | Strongest S2 readout, but high S2 drift vs v83. |
+| fixed `psg_opp deviation rank-pairwise b0.2` | 0.560485 | 0.609286 | Pairwise confirms relative-day comparison signal. |
+| fixed `psg_opp_mob deviation logreg c0.1 b0.2` | 0.560638 | 0.609308 | Slightly weaker, lower drift than qrel. |
+
+### Working Interpretation
+
+This is a useful failure/success split:
+
+- Failure: S2 should not be discretized into a few unsupervised KMeans states. The label boundary is too fine.
+- Success: relative Q-state and opportunity readouts contain strong S2 signal. Fixed fold-safe OOF beats the protected S2 scout by almost `0.009`.
+- Risk: the strongest fixed candidate shifts sample S2 upward (`0.679` mean vs v83 reference `0.644`) and has mean absolute S2 drift `0.084`. This is not ready as a safe submission rule.
+
+Carry forward:
+
+- Treat `psg_qrel absolute logreg` and `psg_opp rank-pairwise` as the leading S2 decoder ideas.
+- The next step is drift-controlled S2 readout: shrink or calibrate the relative Q-state signal without falling back to v76/v83 teacher logic.
+- Do not spend more time on KMeans state bins for S2.
