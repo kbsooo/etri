@@ -1,0 +1,44 @@
+{
+  "Q1": {
+    "subset": "semantic_only",
+    "k": 50,
+    "C": 0.03,
+    "ncols": 260
+  },
+  "Q2": {
+    "subset": "day_flat",
+    "k": 20,
+    "C": 0.01,
+    "ncols": 576
+  },
+  "Q3": {
+    "subset": "dino_k4_cluster",
+    "k": 10,
+    "C": 0.3,
+    "ncols": 11
+  },
+  "S1": {
+    "subset": "no_flat_hourly",
+    "k": 20,
+    "C": 0.1,
+    "ncols": 604
+  },
+  "S2": {
+    "subset": "no_flat_hourly",
+    "k": 20,
+    "C": 0.001,
+    "ncols": 604
+  },
+  "S3": {
+    "subset": "semantic_only",
+    "k": 20,
+    "C": 0.01,
+    "ncols": 260
+  },
+  "S4": {
+    "subset": "s4evt+sleep+cnproto",
+    "k": 200,
+    "C": 0.003,
+    "ncols": 851
+  }
+}

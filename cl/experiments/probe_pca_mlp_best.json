@@ -1,0 +1,14 @@
+{
+  "model": "pca16_logistic",
+  "fold_id": "chrono_last_25",
+  "mean_logloss": 0.667529389517308,
+  "logloss_Q1": 0.6805300736263988,
+  "logloss_Q2": 0.7381167911919188,
+  "logloss_Q3": 0.7336686840987463,
+  "logloss_S1": 0.5664215191130387,
+  "logloss_S2": 0.6114463558393314,
+  "logloss_S3": 0.6921028347758804,
+  "logloss_S4": 0.6504194679758413,
+  "n_components": 16.0,
+  "hidden": NaN
+}

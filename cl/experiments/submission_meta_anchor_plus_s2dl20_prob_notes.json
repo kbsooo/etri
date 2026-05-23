@@ -1,0 +1,4 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_meta_anchor_plus_s2dl20_prob.csv",
+  "notes": "Anchor + small S2 tiny-DL residual. S2 was the cleanest DL signal locally; delta capped to ~20% neural equivalent to avoid pure-DL shift."
+}

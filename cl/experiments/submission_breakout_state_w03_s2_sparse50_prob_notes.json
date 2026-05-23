@@ -1,0 +1,7 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_breakout_state_w03_s2_sparse50_prob.csv",
+  "description": "State w03 candidate with S2 averaged 50/50 with sparse raw32 replacement.",
+  "rationale": "S2 had independent sparse-head evidence; this gives S2 a bigger non-anchor correction while preserving broad state smoothing.",
+  "risk": "S2 shift is materially larger than anchor polish",
+  "submission_status": "high-upside diagnostic; not automatic recommendation"
+}

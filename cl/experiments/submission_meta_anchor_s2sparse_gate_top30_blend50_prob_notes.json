@@ -1,0 +1,6 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_meta_anchor_s2sparse_gate_top30_blend50_prob.csv",
+  "description": "Only rows in top 30% sparse-vs-anchor S2 disagreement move 50% toward sparse head.",
+  "submission_status": "diagnostic artifact; not automatic submission recommendation",
+  "gate_changed_s2_rows": 75
+}

@@ -1,0 +1,7 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_meta_anchor_plus_s2sparse_resid50_prob.csv",
+  "description": "Anchor plus 50% of sparse raw32 minus base residual on S2.",
+  "mode": "S2=anchor + 0.5*(sparse_raw32-base_v4)",
+  "local_evidence": "S2 existing_no_flat raw SelectK32 C=0.003: robust mean delta about -0.01 vs base; latent compression failed.",
+  "submission_status": "diagnostic artifact; not recommended automatically"
+}

@@ -1,0 +1,6 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_meta_anchor_s2sparse_agreeDL_blend30_prob.csv",
+  "description": "Rows where sparse S2 and previous S2-DL residual move in same direction; move 30% toward sparse.",
+  "submission_status": "diagnostic artifact; not automatic submission recommendation",
+  "gate_changed_s2_rows": 173
+}

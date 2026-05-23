@@ -1,0 +1,586 @@
+app_name,app_sem_proto,app_sem_proto_dist,app_sem_k8,app_sem_k16,app_sem_k32
+(구)티머니onda,phone_system,0.8314066572003664,1,10,26
+(캐시아워),video_music_entertainment,0.9108380712937739,3,7,13
+11번가,study_work_productivity,0.8997053682290035,2,8,27
+1945 air force,browser_search_news,0.6558912656930143,1,1,10
+8 seconds,transport_map,0.624953776289008,1,4,1
+abc-mart,finance_shopping,0.8384289620960083,1,1,30
+adidas,study_work_productivity,0.7477023616711118,1,4,1
+adobe acrobat,health_fitness,0.7028641109260405,1,1,10
+ahnlab v3 mobile plus,study_work_productivity,0.8811403569283213,6,5,0
+ai retouch - 객체 제거,browser_search_news,0.7068700373352866,1,1,28
+aia생명,study_work_productivity,0.7880884011316655,1,1,27
+airvisual,health_fitness,0.6174101060441012,1,1,28
+aliexpress,study_work_productivity,0.7362352800462936,1,2,16
+alwaysondisplay,finance_shopping,0.6094626987442902,1,13,24
+amway,finance_shopping,0.511108912837926,1,13,24
+android auto,browser_search_news,0.8838218153212427,1,1,28
+android 시스템,browser_search_news,0.9344216882606998,2,1,28
+anyauth,finance_shopping,0.807859226951474,1,1,28
+ar 이모지,study_work_productivity,0.9298428359314634,1,1,26
+ar 이모지 스티커,study_work_productivity,0.9309147598574036,1,1,26
+ar 이모지 에디터,study_work_productivity,0.9086170563590941,2,6,26
+ar 존,browser_search_news,0.8700093250046131,1,1,26
+arkcraft_v1,social_chat,0.8227166827912219,1,1,10
+art puzzle,finance_shopping,0.8552711333803503,1,5,10
+authentication framework,health_fitness,0.5445895733558386,6,4,28
+authenticator,health_fitness,0.70232486597776,6,1,28
+auto clicker,browser_search_news,0.7188401647683988,1,2,28
+auto redial,browser_search_news,0.8239808590720173,1,1,28
+avenza maps,transport_map,0.10131566476492382,6,4,1
+avis corporate,transport_map,0.5845813928950403,1,4,1
+b.stage,social_chat,0.2763401996311181,6,5,3
+b612,finance_shopping,0.6737574217248137,6,5,25
+band,finance_shopping,0.5135638958037072,6,1,16
+battle.net,finance_shopping,0.5553928091401972,6,5,3
+bhc,finance_shopping,0.6337680469847181,6,5,3
+blind,finance_shopping,0.5664105284896116,6,5,31
+block journey,study_work_productivity,0.6533997203263875,6,5,25
+block puzzle,study_work_productivity,0.7881461662626613,6,5,25
+bnkr몰,transport_map,0.6351078972172048,6,4,25
+booking.com,finance_shopping,0.7141766740975899,6,4,27
+cake sort,phone_system,0.6965441830039918,1,1,30
+camscanner,phone_system,0.6284758470616236,1,2,4
+carrot,phone_system,0.6572028503580087,1,1,10
+cgv,phone_system,0.710465434076067,2,8,3
+chargev,social_chat,0.534277556796621,1,1,3
+chrome,browser_search_news,0.4586821051662945,6,5,14
+cj one,phone_system,0.5306364798504533,6,5,3
+cj온스타일,phone_system,0.7572489215914783,2,5,3
+cncity에너지,phone_system,0.7835009952768285,2,1,14
+com.dreamsecurity.mobilerelay.samplecrypto,study_work_productivity,0.6425480453254662,1,4,0
+crossy road,finance_shopping,0.6847578671881611,1,1,10
+cytus ii,transport_map,0.5873900266426437,6,4,1
+darkness and flame 1,finance_shopping,0.8254717860687558,6,2,16
+darkness and flame 2,finance_shopping,0.8250526789652086,6,2,16
+darkness and flame 3,finance_shopping,0.8246420970929567,6,2,16
+darkness and flame 4,finance_shopping,0.8240059493030665,6,2,16
+datuner,browser_search_news,0.4991260429713327,1,2,4
+discord,social_chat,0.2499970451199477,1,1,10
+domino dreams,study_work_productivity,0.42145434119262015,1,4,1
+drawely,social_chat,0.5844113107824314,2,1,14
+drive,browser_search_news,0.6586695822717545,6,5,14
+duit,health_fitness,0.8195676097381326,2,10,14
+duit+,social_chat,0.8261987630438967,7,10,14
+edge,social_chat,0.4042002386593633,6,5,3
+expert raw,health_fitness,0.7248814692970608,1,1,30
+expressvpn,study_work_productivity,0.7494950299675103,1,2,21
+facebook,social_chat,0.33777441050868184,6,4,25
+fantastic bricks,transport_map,0.6282042045701164,6,4,1
+fc online m,phone_system,0.6203671106675414,6,5,3
+files by google,browser_search_news,0.39196979740272064,6,5,12
+find differences,finance_shopping,0.5475928178231835,6,1,31
+find out,finance_shopping,0.5228377555236704,6,1,31
+flightradar24,transport_map,0.7402973191816165,6,2,16
+flo,health_fitness,0.7692167994500837,1,2,16
+friends rush,transport_map,0.569331995424988,6,4,1
+galaxy buds live manager,transport_map,0.7711216854585925,6,5,21
+galaxy buds2 pro manager,transport_map,0.7694381501995411,6,5,21
+galaxy store,phone_system,0.8109726624972204,6,5,21
+galaxy themes,phone_system,0.819930634068305,6,5,21
+galaxy watch5 manager,transport_map,0.8222999379356443,6,5,21
+galaxy wearable,phone_system,0.85293188809046,6,5,21
+gaming hub,video_music_entertainment,0.4879941451504226,6,5,31
+gateman,transport_map,0.41110741678642504,6,4,21
+gayo,video_music_entertainment,0.624514255472334,1,13,21
+gmail,study_work_productivity,0.13556176669227338,6,4,25
+goblins wood,browser_search_news,0.7003083356414448,6,5,31
+gofasting,finance_shopping,0.4985572826420763,6,4,31
+good lock,study_work_productivity,0.6348154196256881,6,5,25
+google,browser_search_news,0.39015870418041776,6,5,12
+google play 게임즈,browser_search_news,0.43656538410548995,6,5,12
+google play 서비스,browser_search_news,0.46258376711624116,6,5,12
+google play 스토어,browser_search_news,0.4702257175148681,6,5,12
+google 음성 인식 및 합성,browser_search_news,0.39777242080783737,6,5,12
+grab,social_chat,0.46886967053393636,2,5,21
+gs shop,finance_shopping,0.5440874632747059,6,4,31
+g마켓,browser_search_news,0.6790436237204034,0,7,2
+h.point,finance_shopping,0.6536466748141148,1,1,31
+headphones,study_work_productivity,0.5798838374898758,6,4,1
+help-cnuh24,health_fitness,0.5401123200067715,1,10,16
+hexa sort,health_fitness,0.7401529372774853,1,1,30
+home,browser_search_news,0.725342501145676,6,5,14
+hotels.com,study_work_productivity,0.7682428876902758,6,4,27
+i-one 알림,phone_system,0.5535009372759482,6,5,3
+ibk 기업은행,study_work_productivity,0.7317068556501757,3,0,26
+idf mobilités,study_work_productivity,0.8560806799950808,6,10,0
+iherb,browser_search_news,0.5362980557470718,6,2,4
+im뱅크 (아이엠),study_work_productivity,0.8712450880275783,3,7,9
+inbody,social_chat,0.42816731576292055,6,5,31
+inframe,social_chat,0.4601599695049228,6,5,31
+instagram,social_chat,0.13157293223056443,6,5,31
+intentresolver,browser_search_news,0.3678319230352002,6,2,4
+k-패스,finance_shopping,0.7855012328076505,0,9,8
+kaist idcard,finance_shopping,0.4700707613054321,1,1,10
+kb pay,finance_shopping,0.3144506066390811,1,13,24
+kb부동산,finance_shopping,0.6790869855557884,1,13,1
+kb손해보험+ 다이렉트,health_fitness,0.9566731046840298,5,11,20
+kb스타뱅킹,finance_shopping,0.7872014540466259,3,7,9
+kia,phone_system,0.8447951412323167,1,1,1
+kia connect,phone_system,0.7275299171019811,1,1,1
+kia digital key,phone_system,0.8113782182492746,1,1,1
+killer sudoku,phone_system,0.6141588943318517,1,2,4
+kream,study_work_productivity,0.4802075925988939,1,4,1
+ks fit,finance_shopping,0.6238909110153693,6,1,1
+kt 멤버십,video_music_entertainment,0.9320629782287473,2,1,10
+kt알파 쇼핑,phone_system,0.953368356621799,3,0,6
+lavu,browser_search_news,0.6615561451137444,6,5,0
+letter fonts,browser_search_news,0.3716979087518214,6,2,4
+lg thinq,finance_shopping,0.5936593128681371,6,1,31
+lh청약센터,browser_search_news,0.8762211879376551,2,6,0
+line,social_chat,0.5829490110353563,6,5,3
+live스코어,phone_system,0.816724823520547,6,5,3
+m-stock,study_work_productivity,0.6169405540301098,6,5,25
+magic tiles 3,transport_map,0.5382961357797257,6,4,1
+maps & navigation,transport_map,0.05765113778897424,6,4,1
+master for minecraft,social_chat,0.5437340596821592,6,2,4
+match factory,social_chat,0.7959973012572331,6,4,3
+mcdonald's,transport_map,0.25611053899779856,6,4,21
+meet,health_fitness,0.579698228813492,6,10,14
+meitu,video_music_entertainment,0.5545170737722969,6,10,14
+melon,video_music_entertainment,0.5402749569865093,6,10,14
+melon drop: fruit merge master,transport_map,0.6285436662473112,6,2,14
+merge designer-decor & story,social_chat,0.5108657287016756,6,2,4
+messenger,social_chat,0.27859753877048465,6,2,4
+mg더뱅킹,transport_map,0.863227232954002,3,7,9
+mg손해보험 다이렉트,health_fitness,0.9439613612232417,5,11,20
+mi home,browser_search_news,0.7254729896266138,6,5,14
+microsoft 365 (office),study_work_productivity,0.8070176022420065,1,1,10
+microsoft launcher,phone_system,0.7167075527001598,1,1,10
+microsoft word,health_fitness,0.795594613089087,1,1,10
+mobile hr,browser_search_news,0.8412991349614216,6,5,0
+monimo,transport_map,0.7557392235397649,1,2,0
+mtp 애플리케이션,transport_map,0.5045045990848501,6,10,14
+my fans,finance_shopping,0.6527316709251825,6,4,1
+my s-oil,study_work_productivity,0.5969738032764329,6,10,14
+mykia,phone_system,0.8424826093270374,1,1,1
+my네컷,health_fitness,0.843856511214433,6,10,14
+naver,transport_map,0.34006573676059104,6,2,4
+new york mysteries 1,browser_search_news,0.8252637976324205,6,2,4
+new york mysteries 2,browser_search_news,0.8252283547680976,6,2,4
+new york mysteries 3,browser_search_news,0.825724151907872,6,2,4
+nfc,browser_search_news,0.6870996289115453,6,5,3
+nh pay,finance_shopping,0.3452744346486597,1,13,24
+nh기업뱅킹,transport_map,0.8639646315443041,3,7,9
+nh뱅킹,transport_map,0.8559655189468692,3,7,9
+nh앱캐시,transport_map,0.8362612742522886,3,7,9
+nh콕뱅크,transport_map,0.8543628258591071,3,7,9
+nike,video_music_entertainment,0.6419693089446841,6,5,3
+nonogram elf,social_chat,0.42150476677309745,2,4,21
+nonogram-number games,social_chat,0.49447722152108675,2,4,21
+notion,transport_map,0.38029118105387394,6,4,21
+ns홈쇼핑,browser_search_news,0.9092159897068703,3,0,6
+number match,browser_search_news,0.7131816627100442,6,4,3
+nummatch,browser_search_news,0.8176420804049135,6,4,3
+nuts & bolts jam,study_work_productivity,0.43047426208786144,6,4,1
+ok cashbag,study_work_productivity,0.5603014268993074,6,5,25
+okok international,transport_map,0.4426930446192595,6,4,25
+omio,study_work_productivity,0.451121656661705,6,4,1
+one ui 홈,phone_system,0.541531905471474,6,5,3
+opentable,browser_search_news,0.6594331556166335,6,5,31
+outlook,video_music_entertainment,0.49717128720011106,6,5,25
+papago,finance_shopping,0.43690689054431653,1,13,24
+pass,finance_shopping,0.4625657137317991,1,13,24
+payco,finance_shopping,0.3248847996543063,1,13,24
+pdf 리더기,study_work_productivity,0.49719124511339163,1,13,0
+pi,finance_shopping,0.6274475489538164,1,13,24
+plague inc.,browser_search_news,0.5585876502931104,6,5,3
+pokerogue offline,social_chat,0.6221167618677237,6,5,3
+pokémon go,transport_map,0.8343823010250941,1,2,21
+pokémon unite,video_music_entertainment,0.8419494311840658,1,2,21
+powerpoint,browser_search_news,0.6602954897743968,1,2,31
+prime ruler,browser_search_news,0.3436331842961533,6,2,4
+pro guitar tuner,browser_search_news,0.5256153107723643,1,2,4
+quick share,study_work_productivity,0.5381582142879042,1,5,25
+roomestimateapp,study_work_productivity,0.4345214480053676,6,4,1
+royal match,browser_search_news,0.8152698242663107,6,4,3
+samsung checkout,health_fitness,0.271422748281131,1,4,18
+samsung flow,health_fitness,0.3219696347857024,1,4,18
+samsung free,health_fitness,0.30139450673520674,1,4,18
+samsung global goals,health_fitness,0.29888179736049636,1,4,18
+samsung members,health_fitness,0.2776150118164521,1,4,18
+samsung notes,health_fitness,0.28592921235807633,1,4,18
+samsung pass,health_fitness,0.44345296074758855,1,13,18
+samsung pass 자동 완성,health_fitness,0.4648581113322139,1,13,18
+samsung wallet,health_fitness,0.27252886826806033,1,4,18
+screw pin,finance_shopping,0.793055701379605,1,2,27
+screw puzzle,finance_shopping,0.8984876844065637,1,5,27
+secsoundpicker,browser_search_news,0.6554325688916891,1,2,4
+secure signin,video_music_entertainment,0.5002627199354777,1,2,4
+shein,health_fitness,0.49118098974350766,1,1,31
+sim 카드 툴킷,video_music_entertainment,0.787656641921846,3,0,15
+simcity,video_music_entertainment,0.6021315923506027,1,0,15
+skyscanner,browser_search_news,0.6612998307357926,1,2,4
+slack,study_work_productivity,0.2984883138315074,1,5,25
+smart home,browser_search_news,0.7562908524226674,1,1,30
+smart switch,finance_shopping,0.812136839435506,1,1,30
+smart view,finance_shopping,0.8295971215061837,1,1,30
+smart​things,finance_shopping,0.679794850174495,1,1,30
+snow,health_fitness,0.6031785036421524,1,1,21
+srt,health_fitness,0.82021648303099,1,1,30
+ssg.com,finance_shopping,0.7995528661138526,6,4,27
+starmaker,social_chat,0.630878429217531,1,2,4
+start,social_chat,0.8109449140150571,1,1,30
+steam,study_work_productivity,0.4232928782386308,1,4,1
+studiomate,study_work_productivity,0.34537865439506565,6,4,1
+super slime - black hole game,browser_search_news,0.5630804482119719,6,5,25
+syrup,health_fitness,0.5508082076088907,1,4,30
+t world,health_fitness,0.6180009598638088,1,1,31
+t 멤버십,transport_map,0.9037811643272914,2,1,10
+talking tom gold run,finance_shopping,0.4968084814955187,6,4,31
+tapo,transport_map,0.4516093040480562,6,4,1
+tasks,transport_map,0.568697534208134,6,4,1
+tastebuds,transport_map,0.5943924646754225,6,4,1
+td infinite,social_chat,0.6101863939676614,6,5,31
+teams,study_work_productivity,0.36332467446511385,1,4,1
+temu,video_music_entertainment,0.5942525477004973,6,4,1
+tft,finance_shopping,0.6934391935146258,6,1,10
+the건강보험,health_fitness,0.8221655225487023,5,11,20
+threads,study_work_productivity,0.6666181569942997,6,4,1
+tiktok,video_music_entertainment,0.4424106536476372,6,5,25
+tiktok-lite,video_music_entertainment,0.4469468444078437,6,5,25
+timetree,video_music_entertainment,0.3932137844821345,6,5,25
+tmap,transport_map,0.11446839957096233,6,4,1
+trip.com,finance_shopping,0.7949205636454333,6,4,27
+tving,finance_shopping,0.45949133511198637,6,4,31
+t전화,phone_system,0.5167850931827529,6,6,22
+u+스마트홈,phone_system,0.8530345409030767,7,14,13
+ulike,video_music_entertainment,0.730600798662999,6,5,3
+v-guard for web,browser_search_news,0.5711273649612918,1,1,10
+vflat scan,phone_system,0.7462353095061514,1,2,4
+virtualpro,transport_map,0.7231836195165908,1,2,21
+vpndialogs,study_work_productivity,0.7306377973413323,1,1,1
+waze,health_fitness,0.5850027709521975,1,5,21
+weawow,health_fitness,0.647833775506311,1,1,21
+wechat,health_fitness,0.6050005264369606,1,1,10
+whale,browser_search_news,0.5871369944492761,1,5,21
+whiteout survival,health_fitness,0.44700701111008145,1,1,31
+wi-fi 연결 팁,finance_shopping,0.7460600832763695,2,1,31
+windows와 연결,finance_shopping,0.6676177893675586,2,1,31
+withings,finance_shopping,0.6068437006272043,6,1,31
+woodber,browser_search_news,0.5753771327588013,1,2,4
+works,health_fitness,0.5783571423946808,1,1,31
+wow 컴패니언,health_fitness,0.6422468423571018,1,1,21
+wps office,study_work_productivity,0.39982325347062153,6,4,10
+x,video_music_entertainment,0.672026728809781,1,15,29
+yodha pro,browser_search_news,0.7460989385333328,1,2,21
+youtube,video_music_entertainment,0.19921796934396363,1,2,21
+youtube music,video_music_entertainment,0.17654558313136137,1,2,21
+yt kids,finance_shopping,0.790928973939383,1,1,1
+zoom,study_work_productivity,0.381613763101077,6,4,25
+✝️성경일독q,study_work_productivity,0.7840045767950773,0,10,2
+淘宝,health_fitness,0.8650812840469491,2,10,14
+百度,transport_map,0.7879685029681338,2,8,27
+가나스윔,finance_shopping,0.8790733313806991,0,14,2
+가족돌봄,finance_shopping,0.8778800310042427,0,14,2
+갓피플성경,social_chat,0.9703013928197618,0,10,2
+개역개정 큰글성경,social_chat,0.9390766837226949,0,10,2
+갤러리,browser_search_news,0.8534605828639368,2,8,27
+갤러리아,browser_search_news,0.8368391451064414,2,8,27
+경찰공제회 모바일창구,finance_shopping,0.9765903837802586,2,12,11
+계산기,browser_search_news,0.9075576908067703,1,10,26
+고속버스 티머니,social_chat,0.8741078937284026,0,10,26
+고용24,health_fitness,0.7979473636862207,1,10,16
+교보문고,browser_search_news,0.7993342690751358,2,8,27
+교보생명,browser_search_news,0.7942150340683282,2,8,27
+교육원 전자출결,phone_system,0.6034834938878508,2,8,27
+국세청 손택스,finance_shopping,0.8652984612539905,0,9,8
+굿웨어몰,study_work_productivity,0.830183100575154,5,11,20
+궁수의 전설,phone_system,0.534229922854937,7,6,22
+권한 관리자,social_chat,0.9441959181008258,1,10,26
+긴급 sos,study_work_productivity,0.6010595666987293,1,1,10
+꾸다pay,finance_shopping,0.33569059046134475,1,13,24
+나무증권,phone_system,0.9504237342533409,7,15,0
+나비엔 스마트,phone_system,0.9729470934074148,0,11,5
+날씨,phone_system,0.9002984656042691,7,14,19
+내 기기 찾기,study_work_productivity,0.9570627420942169,1,10,26
+내 디바이스 찾기,study_work_productivity,0.9708390419088401,0,10,26
+내 캘린더,finance_shopping,0.9761656389629517,1,6,17
+내 파일,transport_map,0.947158137099423,1,2,25
+네이버 mybox,phone_system,0.9517478876371045,2,15,29
+네이버 웹툰,phone_system,0.9861656814985692,2,15,29
+네이버 지도,study_work_productivity,0.9626917077880626,2,15,29
+네이버 카페,social_chat,0.9816597945376813,2,15,29
+네이버 캘린더,finance_shopping,0.9876005808437006,2,15,29
+네이버증권 바로가기,browser_search_news,0.9710921992810307,2,15,29
+네이버페이,phone_system,0.9817367276025752,2,15,29
+네이트,transport_map,0.960933013859222,2,15,29
+네이트메일,browser_search_news,0.9434062450469807,2,15,29
+넥슨플레이,study_work_productivity,0.8649309831426353,7,14,19
+넷﻿플﻿릭﻿스,finance_shopping,0.9029419581659976,0,9,8
+눈을 떠요 야생소년,study_work_productivity,0.8566356050123415,2,10,0
+다나와 가격비교,social_chat,0.849023043191675,0,8,2
+다방,study_work_productivity,0.8952822602954487,5,11,20
+다음,social_chat,0.9343120418724618,5,11,20
+다음메일,browser_search_news,0.9390819749903254,5,11,20
+다이소몰,study_work_productivity,0.9600206845616509,5,11,20
+당근,social_chat,0.8720760209431201,0,7,13
+당근마켓,social_chat,0.8694754284840399,0,7,13
+당신의 u+,social_chat,0.9018330592720318,7,14,13
+당신의 u+ (고객센터),social_chat,0.905570769990293,7,14,13
+대전버스,video_music_entertainment,0.8511253967272947,0,9,8
+대전사랑카드,video_music_entertainment,0.8979502100268995,3,0,15
+대전시 타슈(qr단말기전용),video_music_entertainment,0.8351187944755206,0,14,2
+데이터 복원 도구,study_work_productivity,0.9168032760631735,2,8,0
+디바이스 케어,finance_shopping,0.9601092837883778,0,10,26
+디지털 웰빙,study_work_productivity,0.9379465270345456,3,7,9
+땡큐캠핑,social_chat,0.9406405012319871,3,0,6
+똑닥,browser_search_news,0.8399121090778116,1,2,26
+똑똑계산기,browser_search_news,0.895470247579083,1,10,26
+라이엇 모바일,browser_search_news,0.9867642522510894,2,12,11
+레알팜,study_work_productivity,0.7559303415507953,0,2,25
+로또 당첨확인,video_music_entertainment,0.848459243556482,0,6,13
+롯데on,transport_map,0.5873420572030656,1,10,21
+롯데잇츠,health_fitness,0.7785215227695227,7,0,6
+롯데홈쇼핑,health_fitness,0.9476160664583748,3,0,6
+리멤버,video_music_entertainment,0.9763768970419766,2,15,29
+리얼월드,study_work_productivity,0.9438531680367442,3,0,15
+마이 케이티,video_music_entertainment,0.9093108224167116,0,9,8
+마이리얼트립,finance_shopping,0.8842372965243838,0,9,8
+마이홈플러스,finance_shopping,0.9077185683369337,0,9,8
+매직 디펜스,finance_shopping,0.9010791454695708,0,9,8
+멀티 컨트롤,browser_search_news,0.8336001645443945,2,8,27
+멍멍삼국,browser_search_news,0.9317303611510352,0,2,21
+메가mgc커피,social_chat,0.7755573794856385,0,9,2
+메가박스,finance_shopping,0.8129274394932233,0,9,8
+메리츠화재,social_chat,0.9096227779690653,5,11,20
+메세지 몰래보기,study_work_productivity,0.8591353483810277,1,10,26
+메시지,finance_shopping,0.8922952547333003,0,10,26
+모드 및 루틴,video_music_entertainment,0.9687601284404331,0,0,15
+모바일 건강보험증,browser_search_news,0.9836347885371508,2,12,11
+모바일 신분증,browser_search_news,0.9848224511088868,2,12,11
+모바일 티머니,social_chat,0.962382620607192,2,12,11
+모바일 팩스,finance_shopping,0.9780873683417108,2,12,11
+모바일뷰어,study_work_productivity,0.9686578073642398,2,12,11
+모바일지로,study_work_productivity,0.9789104796964788,2,12,11
+무료음악 벨소리,phone_system,0.885644897853429,2,8,27
+무신사,finance_shopping,0.7845716203365499,7,6,17
+무한의 계단,social_chat,0.8413211099748235,7,14,13
+뭐라고 답했을까?,browser_search_news,0.8339221812958628,7,8,27
+뭐야이번호,health_fitness,0.7133459532221433,7,14,26
+미니스탁,finance_shopping,0.8716950248431063,0,9,2
+미디어 선택 도구,finance_shopping,0.9002646450396966,2,8,0
+바로청구,health_fitness,0.9293771241835592,2,15,0
+배경화면 및 스타일,browser_search_news,0.914416256757474,0,2,15
+배달의민족,social_chat,0.8063351275329085,0,9,21
+버거킹,browser_search_news,0.8835985509449342,3,7,9
+번개장터,study_work_productivity,0.9056868609953389,2,6,17
+벽돌깨기 퀘스트,health_fitness,0.8993267331756949,5,11,26
+보리보리,social_chat,0.9178540007201312,2,8,27
+보안 폴더,finance_shopping,0.786238220134782,0,6,17
+부속 기기 관리자,social_chat,0.9580697018297524,1,10,26
+비디오 플레이어,study_work_productivity,0.8337417193663308,7,14,19
+빅스비 루틴,video_music_entertainment,0.9823821927890782,0,14,2
+빅스비 보이스,video_music_entertainment,0.9776335211217355,0,14,2
+빅스비 비전,video_music_entertainment,0.9858492799401601,0,14,2
+빽다방,study_work_productivity,0.8273353785186023,5,11,20
+사람인,finance_shopping,0.7286491121899255,7,6,17
+사이다페이+,health_fitness,0.8651005555408162,7,14,0
+사전,finance_shopping,0.9285991131225196,7,14,0
+삼성 계정,browser_search_news,0.969997152013207,7,14,7
+삼성 인터넷,browser_search_news,0.9438147697708945,7,14,7
+삼성 캡처,browser_search_news,0.964710470004954,7,14,7
+삼성 클라우드,transport_map,0.9827712520209447,7,14,7
+삼성 키보드,transport_map,0.9759343972912601,7,14,7
+삼성 헬스,transport_map,0.9639992657801357,7,14,7
+삼성닷컴,study_work_productivity,0.9723057348347847,7,14,7
+삼성카드,video_music_entertainment,0.9541651579662259,3,0,15
+삼성통근버스,social_chat,0.9361152508476056,0,9,7
+삼성화재 다이렉트 착,health_fitness,0.9666217349254362,5,11,20
+샐러디,study_work_productivity,0.8374920871542485,2,8,21
+생체 인식,browser_search_news,0.5853982332350249,3,7,12
+서민금융 잇다,browser_search_news,0.9208452411344119,1,2,0
+설정,social_chat,0.9465907579032524,1,2,26
+성경,social_chat,0.9490140917492799,0,10,2
+세븐나이츠,video_music_entertainment,0.8420843173994501,7,14,19
+세븐일레븐,health_fitness,0.828297730309575,0,10,31
+세종버스 스마트,finance_shopping,0.9703172312204867,0,11,5
+소프트웨어 업데이트,study_work_productivity,0.8394539622621024,5,11,20
+솔닥,transport_map,0.9430659854135198,1,10,16
+수퍼빈,transport_map,0.6583382962488149,1,2,16
+수확의 정석,transport_map,0.8539124239328797,7,14,13
+순천향대학교병원,study_work_productivity,0.8142889822234349,1,2,21
+숨고,finance_shopping,0.8016654430328412,7,8,27
+숲나들e,video_music_entertainment,0.6983892557293858,6,5,3
+스마트 벨링,phone_system,0.9732136943329919,0,11,5
+스마트 위택스,phone_system,0.9713256219402401,0,11,5
+스마트 추천,browser_search_news,0.9884340855466824,0,11,5
+스카이라이프,finance_shopping,0.9349057804921385,0,11,5
+스타벅스,finance_shopping,0.8707508184613235,0,9,8
+스튜디오,study_work_productivity,0.8825925060519362,0,11,5
+스프레드시트,study_work_productivity,0.9606981805891237,0,11,5
+시계,transport_map,0.8693140682634226,7,14,28
+시스템 ui,phone_system,0.792932233429157,7,14,28
+시프티,study_work_productivity,0.8754815953719566,2,8,28
+신세계몰,browser_search_news,0.9291398019026076,3,0,6
+신세계쇼핑,browser_search_news,0.9456131122787425,3,0,6
+신한 슈퍼sol,phone_system,0.8571695652083683,3,0,15
+신한은행,video_music_entertainment,0.8614126729204913,3,0,15
+신한카드,video_music_entertainment,0.9074064200376852,3,0,15
+신협on뱅크,study_work_productivity,0.8315809460607577,3,7,9
+아고다,study_work_productivity,0.9403578353185624,2,5,0
+아이디어스,finance_shopping,0.9044904752056385,0,9,8
+아이쉐어링,browser_search_news,0.9398838738166373,7,11,0
+아임일리터,browser_search_news,0.9343695777432675,2,6,0
+아파트아이,phone_system,0.9199368346651466,7,14,19
+안전신문고,finance_shopping,0.8168136621333053,2,8,27
+알바몬,phone_system,0.8196785188964042,0,10,8
+알송,transport_map,0.7584179698020239,0,9,8
+앱 소리 분리 재생,browser_search_news,0.9326914589721889,2,8,27
+야놀자,social_chat,0.9366213541872647,1,10,26
+어시스턴트,study_work_productivity,0.9370704522092439,5,11,20
+에누리 가격비교,social_chat,0.8580647641083277,0,8,2
+에어비앤비,finance_shopping,0.972092099100966,2,8,17
+에이닷,transport_map,0.8498598281310772,2,8,17
+에이블리,study_work_productivity,0.9084773361480131,2,8,27
+엘포인트,health_fitness,0.9161989599923145,5,11,20
+여기어때,phone_system,0.814732015591146,7,14,27
+연락처,social_chat,0.8343090902501141,2,10,7
+엽기떡볶이,study_work_productivity,0.9126770546347124,7,14,19
+영상통화 효과,phone_system,0.5375692399083762,0,6,22
+영웅문s#,transport_map,0.7943641167849901,0,9,8
+오늘의집,finance_shopping,0.7575220374039713,7,14,14
+오롤완,finance_shopping,0.7411841645956752,7,14,14
+오피넷,finance_shopping,0.7454626338979754,7,14,19
+옥션,social_chat,0.7027979749221953,0,2,2
+올리브영,study_work_productivity,0.826796677153102,3,7,9
+올원뱅크,study_work_productivity,0.8532691301627483,3,7,9
+와디즈,transport_map,0.8331044527377975,7,14,19
+요기요,social_chat,0.8774534321494726,7,14,13
+우리won뱅킹,study_work_productivity,0.8406788210720014,3,7,9
+우리동네gs,finance_shopping,0.8228521208213964,3,0,15
+우리카드,video_music_entertainment,0.939340744162581,3,0,15
+우체국보험,health_fitness,0.9258820566574366,5,11,20
+워크넷,phone_system,0.8855614255787239,7,14,19
+워크온,phone_system,0.8897059294745906,7,14,19
+원격 데스크톱,transport_map,0.8699693652883462,7,14,16
+원스토어,transport_map,0.9375834918878394,1,14,16
+원스토어 서비스,transport_map,0.9439501443136822,1,14,16
+웰컴디지털뱅크,study_work_productivity,0.8467329175195326,3,7,9
+위디스크,study_work_productivity,0.8934102976974293,3,7,9
+음성 녹음,browser_search_news,0.6776787777991994,7,14,7
+이마트24,health_fitness,0.8381548752685433,1,10,16
+이멤버,video_music_entertainment,0.9740531410453608,2,15,29
+이응패스,finance_shopping,0.8595934417691099,0,9,8
+이지웰,health_fitness,0.9353154232121048,1,10,26
+인생네컷,browser_search_news,0.7975696705854018,3,10,14
+인증서 관리자,social_chat,0.9378506449680168,1,10,26
+인터파크 티켓,browser_search_news,0.8731494120116305,3,7,9
+임대분양정보,video_music_entertainment,0.749623295756638,6,10,26
+잡코리아,browser_search_news,0.8342114401166981,2,8,27
+잡플래닛,transport_map,0.8235619444733183,2,8,27
+재난문자,transport_map,0.9501139541643471,1,10,26
+전화,phone_system,0.4772656681443992,0,6,22
+전화 통화,phone_system,0.4909465915397646,0,6,22
+접근성,browser_search_news,0.8640498548863148,7,14,7
+정부24,transport_map,0.8004308412135501,1,10,16
+제주항공,finance_shopping,0.8203991487909978,2,10,14
+젤캔들샵,video_music_entertainment,0.8781589305015325,3,7,9
+조용한 카메라,transport_map,0.8872584936793123,2,8,2
+종속 포털 로그인,finance_shopping,0.8326436016321207,2,6,17
+주변 디바이스 찾기,finance_shopping,0.9694382265358522,0,10,26
+지그재그,study_work_productivity,0.8717136739813357,2,15,29
+지니뮤직,study_work_productivity,0.8564785614314386,0,15,29
+지도,study_work_productivity,0.8542606158753021,2,15,29
+직방,social_chat,0.8574089180523181,5,11,20
+청약home,browser_search_news,0.7263335651774054,6,5,14
+추천 설정,video_music_entertainment,0.9663619429863399,1,2,5
+추천 앱,browser_search_news,0.9642374949712258,2,8,5
+출입예약시스템,phone_system,0.9255720985592216,2,14,28
+카메라,transport_map,0.8888270869349968,2,8,2
+카카오 t,social_chat,0.7717701169077799,4,3,23
+카카오골프예약,social_chat,0.7662645790622478,4,3,23
+카카오내비,social_chat,0.7641424607275462,4,3,23
+카카오맵,social_chat,0.762611035769165,4,3,23
+카카오뱅크,social_chat,0.8185150568554034,4,3,23
+카카오버스,social_chat,0.7454620623242327,4,3,23
+카카오스토리,social_chat,0.7504578140922542,4,3,23
+카카오웹툰,social_chat,0.7589922334063867,4,3,23
+카카오톡,social_chat,0.6457556669405684,4,3,23
+카카오페이,social_chat,0.8048778167972149,4,3,23
+카카오페이지,social_chat,0.8018502657141593,4,3,23
+카카오헤어샵,social_chat,0.7589263263422859,4,3,23
+카트라이더 러쉬플러스,finance_shopping,0.8949509855367841,0,9,8
+캐시워크,study_work_productivity,0.8458112852385118,3,7,9
+캐치테이블,study_work_productivity,0.7767661436469806,3,7,9
+캘린더,finance_shopping,0.9736851164323264,1,6,17
+캠핏,video_music_entertainment,0.8484348180081753,7,14,19
+컬리,phone_system,0.8938413639778063,2,8,27
+컬쳐랜드,phone_system,0.9432079687957046,3,0,15
+컴포즈커피,social_chat,0.7082031613657258,0,9,2
+케이뱅크,study_work_productivity,0.880561040075498,3,7,9
+코레일톡,social_chat,0.41446290009812303,2,10,14
+쿠우쿠우,study_work_productivity,0.8650055066344954,7,14,19
+쿠쿠통합몰,study_work_productivity,0.848969140188125,7,14,19
+쿠팡,video_music_entertainment,0.8200806606818225,7,14,19
+쿠팡이츠,video_music_entertainment,0.8074726525626894,7,14,19
+쿠팡플레이,study_work_productivity,0.8625830779878595,7,14,19
+퀘이사존,video_music_entertainment,0.9859406836783685,1,2,26
+퀸잇,finance_shopping,0.8951746767746985,2,10,2
+크몽,transport_map,0.768482012817931,1,8,16
+클래시 로얄,video_music_entertainment,0.8621539070383726,0,6,2
+클래시오브클랜,video_music_entertainment,0.8876819004801592,0,6,2
+키 체인,finance_shopping,0.8362609858860109,0,6,17
+키즈노트,study_work_productivity,0.8844879906934123,5,11,20
+타임스프레드,video_music_entertainment,0.9514648093993644,0,0,15
+텔레그램,social_chat,0.7891456785451385,0,4,1
+토스,finance_shopping,0.6473131690424625,0,9,8
+토이저러스몰,finance_shopping,0.8712338667300261,0,9,8
+통역,phone_system,0.5963791922457929,0,6,22
+통화,phone_system,0.5216472911299952,0,6,22
+통화 설정,phone_system,0.7092431658395644,0,2,22
+투썸하트,health_fitness,0.9245120603744434,5,11,20
+트라이브,finance_shopping,0.8916304211761181,0,9,8
+티머니go,social_chat,0.8927915647049723,0,10,26
+티몬,social_chat,0.9198984393408153,0,10,26
+티웨이항공,health_fitness,0.8993522407691685,3,10,26
+팁,finance_shopping,0.8346644855776,2,10,31
+파인더,transport_map,0.9401241267564862,1,2,25
+파일,transport_map,0.9419599142244001,1,2,25
+파킹벨,transport_map,0.9289538472913847,1,2,25
+패키지 설치 프로그램,social_chat,0.8609810617996067,0,10,26
+퍼그샵,study_work_productivity,0.8023783241535999,3,7,9
+페이북/isp,health_fitness,0.6948229992164539,1,10,16
+펫봄,social_chat,0.8428896037030381,0,6,2
+펫프렌즈,finance_shopping,0.9310361402589951,0,6,2
+펫피,social_chat,0.8191494152932188,0,6,2
+편한가계부,browser_search_news,0.9455461518619445,1,2,0
+포스티,study_work_productivity,0.8942046142987614,2,6,17
+포인핸드,video_music_entertainment,0.9024582179211278,2,6,17
+포켓cu,video_music_entertainment,0.8418823947624,2,6,17
+포토,study_work_productivity,0.91619766732646,2,6,17
+포토 에디터,study_work_productivity,0.9026720045785717,2,6,17
+폴pay,finance_shopping,0.3301976316137063,1,13,24
+퓨처파이트,health_fitness,0.9154015790564587,5,11,20
+프레젠테이션,social_chat,0.742395122222977,0,7,2
+프렌즈팝콘,social_chat,0.9115991302174046,0,6,2
+플라잉 홈,phone_system,0.6858689693812215,7,9,8
+플러스팟,finance_shopping,0.937066704707068,0,9,8
+피카플레이,study_work_productivity,0.8633801721822557,7,14,19
+픽셀 포켓 모험,browser_search_news,0.8961036690644628,2,6,17
+핀크,study_work_productivity,0.836914571857081,3,7,9
+필웨이,phone_system,0.9154302630081191,7,14,19
+하나머니,video_music_entertainment,0.8524111523316891,3,0,15
+하나은행,video_music_entertainment,0.8353752768666722,3,0,15
+하나카드,video_music_entertainment,0.9000190609937477,3,0,15
+하이버,video_music_entertainment,0.9505015795340913,2,15,29
+하프클럽,video_music_entertainment,0.841799768193739,3,0,15
+한국투자,health_fitness,0.9100906838000279,1,10,26
+한전on,transport_map,0.532091891073193,1,10,21
+한컴오피스 viewer,browser_search_news,0.5841783176847468,1,2,4
+한화손해보험,health_fitness,0.9223864210912023,5,11,20
+합격 요양보호사,finance_shopping,0.8290850141378208,7,14,13
+핫핑,social_chat,0.9510532605955099,3,0,6
+헤이홈,phone_system,0.7772723745264445,7,9,8
+헬로모바일 고객센터,social_chat,0.9884574580809388,2,12,11
+현대카드,video_music_entertainment,0.9402343862167917,3,0,15
+현대홈쇼핑,phone_system,0.9600749468310937,3,0,6
+홈&쇼핑,phone_system,0.9209843995327905,3,0,6
+홈노크타운,phone_system,0.7832077989996605,7,9,8
+홈플러스,finance_shopping,0.9107988375307832,0,9,8
+회사 포털,finance_shopping,0.85167197430131,2,6,17
+후스콜,video_music_entertainment,0.7825765433253823,3,0,13
+후후,video_music_entertainment,0.8280869268414008,3,0,13
+휴대폰분실보호,health_fitness,0.8181049108181491,7,14,13
+흥국화재,health_fitness,0.923385806873675,5,11,20
+히어로즈,transport_map,0.9537365659982732,7,14,1

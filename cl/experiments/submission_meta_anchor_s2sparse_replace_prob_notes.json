@@ -1,0 +1,7 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_meta_anchor_s2sparse_replace_prob.csv",
+  "description": "Full S2 replacement with sparse raw32 head. Diagnostic/highest shift; not first submission choice.",
+  "mode": "S2=sparse_raw32",
+  "local_evidence": "S2 existing_no_flat raw SelectK32 C=0.003: robust mean delta about -0.01 vs base; latent compression failed.",
+  "submission_status": "diagnostic artifact; not recommended automatically"
+}

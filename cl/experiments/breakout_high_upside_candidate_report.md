@@ -1,0 +1,15 @@
+# High-upside / non-anchor meta diagnostics
+
+These candidates are designed for bigger movement than anchor-polish S2-only files. They are higher risk and not automatic submission recommendations.
+
+## Candidate summary
+                                                file                                                                                                   description   changed_targets  mean_abs_vs_anchor_avg_changed  max_vs_anchor_max_changed  mean_abs_vs_base_avg_changed                                                                     risk
+    submission_breakout_s_targets_plus_q1dl_prob.csv                                        S-target breakout: S1/S2/S3/S4 w03 temporal, Q1 tiny-DL30, Q2/Q3 base. Q1,Q2,S1,S2,S3,S4                        0.015235                   0.138204                      0.024620                                   ignores Q2; S4/Q1 may still be overfit
+    submission_breakout_state_w03_noq2_noq3_prob.csv                        Aggressive state-completion excluding risky Q2/Q3: Q1/S1/S2/S3/S4 use w03; Q2/Q3 base. Q1,Q2,S1,S2,S3,S4                        0.013789                   0.138204                      0.028432            still large shift; loses upside if Q2 smoothing was necessary
+  submission_breakout_state_w03_s2_sparse50_prob.csv                                     State w03 candidate with S2 averaged 50/50 with sparse raw32 replacement. Q1,Q2,S1,S2,S3,S4                        0.010446                   0.053360                      0.033759                         S2 shift is materially larger than anchor polish
+   submission_breakout_state_w03_noq3_q2w02_prob.csv High-upside state-completion candidate: w03 temporal smoothing for Q1/S1/S2/S3/S4, Q2 capped at w02, Q3 base. Q1,Q2,S1,S2,S3,S4                        0.009303                   0.053360                      0.032918 large distribution shift; may over-smooth if public/private is tail-like
+         submission_breakout_focused_q1s2s4_prob.csv    Focused hard-target breakout: anchor plus larger Q1/S4 calibrator and S2 sparse replacement interpolation. Q1,Q2,S1,S2,S3,S4                        0.008160                   0.096807                      0.027511                        less broad upside; Q1/S4 still may not generalize
+submission_breakout_state_plus_q1s4_calib15_prob.csv                              State w03 plus Q1/S4 learned-calibrator influence; Q2 capped at w02 and Q3 base. Q1,Q2,S1,S2,S3,S4                        0.007941                   0.060795                      0.029366                  hard-target calibrator may overfit despite excluding Q2
+
+## Suggested interpretation
+If the goal is a real jump rather than a small anchor improvement, only C1/C2/C3-style candidates have enough target coverage to plausibly move the total score. S2-only sparse blends are exploitation. The cleanest high-upside diagnostic is C2 if Q2 risk is feared, or C1 if we trust temporal smoothing broadly.

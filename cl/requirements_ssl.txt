@@ -1,0 +1,8 @@
+# Optional environment for scripts/29_train_ssl_hourly_representations.py
+# The default project .venv was created with Python 3.13, but torch wheels were not
+# available there during this experiment. Use Python 3.12:
+#   python3.12 -m venv .venv312
+#   .venv312/bin/python -m pip install -r requirements.txt -r requirements_ssl.txt
+numpy<2
+pyarrow
+torch

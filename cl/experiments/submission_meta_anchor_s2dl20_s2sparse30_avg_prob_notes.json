@@ -1,0 +1,7 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_meta_anchor_s2dl20_s2sparse30_avg_prob.csv",
+  "description": "Average previous S2-DL20 residual with a mild 30% sparse-S2 interpolation residual.",
+  "mode": "S2=anchor + 0.5*((prev_s2dl20-anchor)+0.30*(sparse_raw32-anchor))",
+  "local_evidence": "S2 existing_no_flat raw SelectK32 C=0.003: robust mean delta about -0.01 vs base; latent compression failed.",
+  "submission_status": "diagnostic artifact; not recommended automatically"
+}

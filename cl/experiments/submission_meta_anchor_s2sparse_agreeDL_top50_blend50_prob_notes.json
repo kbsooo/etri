@@ -1,0 +1,6 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_meta_anchor_s2sparse_agreeDL_top50_blend50_prob.csv",
+  "description": "Only same-direction sparse/DL rows among top 50% sparse disagreement move 50% toward sparse.",
+  "submission_status": "diagnostic artifact; not automatic submission recommendation",
+  "gate_changed_s2_rows": 94
+}

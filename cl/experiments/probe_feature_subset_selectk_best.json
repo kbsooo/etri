@@ -1,0 +1,16 @@
+{
+  "model": "feature_subset_selectk_logistic",
+  "subset": "daily_windows_only",
+  "n_features": 1204,
+  "k": 10,
+  "C": 0.03,
+  "fold_id": "chrono_last_20",
+  "mean_logloss": 0.639833561207597,
+  "logloss_Q1": 0.6768818703371108,
+  "logloss_Q2": 0.6920355268690588,
+  "logloss_Q3": 0.7005592399181905,
+  "logloss_S1": 0.5433098584827635,
+  "logloss_S2": 0.6369743966724811,
+  "logloss_S3": 0.5898025385675945,
+  "logloss_S4": 0.63927149760598
+}

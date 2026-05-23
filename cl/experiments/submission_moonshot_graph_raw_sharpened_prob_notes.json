@@ -1,0 +1,5 @@
+{
+  "family": "0.5_or_bust",
+  "description": "Raw graph no-Q3 plus prevalence-centered sharpening. Only sensible if graph ranking and prevalence are both right.",
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_moonshot_graph_raw_sharpened_prob.csv"
+}

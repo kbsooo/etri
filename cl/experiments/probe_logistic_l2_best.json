@@ -1,0 +1,13 @@
+{
+  "model": "logistic_l2_features_v0",
+  "C": 0.01,
+  "fold_id": "chrono_last_25",
+  "mean_logloss": 0.685268608171857,
+  "logloss_Q1": 0.6658403735835325,
+  "logloss_Q2": 0.8014155300138802,
+  "logloss_Q3": 0.7426183557000776,
+  "logloss_S1": 0.6119791631234699,
+  "logloss_S2": 0.672593796088432,
+  "logloss_S3": 0.6601508618214027,
+  "logloss_S4": 0.6422821768722039
+}

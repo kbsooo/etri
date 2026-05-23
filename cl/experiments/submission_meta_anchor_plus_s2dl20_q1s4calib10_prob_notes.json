@@ -1,0 +1,4 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_meta_anchor_plus_s2dl20_q1s4calib10_prob.csv",
+  "notes": "Combined safer meta: S2 DL residual + very small Q1/S4 learned-calibrator residual; skips Q2 because calibrator public-shift risk is largest there."
+}

@@ -1,0 +1,4 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_meta_anchor_plus_calib15_q1q2s4_prob.csv",
+  "notes": "Anchor + learned temporal calibrator residual at ~15% blend for Q1/Q2/S4. This is the aggressive hard-target diagnostic; use after safer anchor/S2 tests."
+}

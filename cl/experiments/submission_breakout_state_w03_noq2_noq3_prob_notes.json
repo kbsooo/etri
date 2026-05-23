@@ -1,0 +1,7 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_breakout_state_w03_noq2_noq3_prob.csv",
+  "description": "Aggressive state-completion excluding risky Q2/Q3: Q1/S1/S2/S3/S4 use w03; Q2/Q3 base.",
+  "rationale": "Q2 repeatedly shows tail risk; this tests whether the big gain can come from broad non-Q2 state targets.",
+  "risk": "still large shift; loses upside if Q2 smoothing was necessary",
+  "submission_status": "high-upside diagnostic; not automatic recommendation"
+}

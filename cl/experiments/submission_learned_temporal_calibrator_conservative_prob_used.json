@@ -1,0 +1,86 @@
+{
+  "Q1": {
+    "target": "Q1",
+    "apply": false,
+    "method": "learned_calibrator",
+    "C": 0.01,
+    "tp_delta": -0.05638398969830072,
+    "tail_delta": 0.1815206024836038,
+    "changed_rows": 0,
+    "mean_abs_delta": 0.0,
+    "max_abs_delta": 0.0,
+    "corr_vs_base": 1.0
+  },
+  "Q2": {
+    "target": "Q2",
+    "apply": false,
+    "method": "learned_calibrator",
+    "C": 0.01,
+    "tp_delta": -0.06383208500918314,
+    "tail_delta": 0.3396386255152851,
+    "changed_rows": 0,
+    "mean_abs_delta": 0.0,
+    "max_abs_delta": 0.0,
+    "corr_vs_base": 1.0
+  },
+  "Q3": {
+    "target": "Q3",
+    "apply": false,
+    "method": "learned_calibrator",
+    "C": 0.01,
+    "tp_delta": -0.017077296034926803,
+    "tail_delta": 0.23601559788679638,
+    "changed_rows": 0,
+    "mean_abs_delta": 0.0,
+    "max_abs_delta": 0.0,
+    "corr_vs_base": 1.0
+  },
+  "S1": {
+    "target": "S1",
+    "apply": false,
+    "method": "base_plus_calib_w0.5",
+    "C": 0.03,
+    "tp_delta": -0.010147849846955381,
+    "tail_delta": 0.01650929919572841,
+    "changed_rows": 0,
+    "mean_abs_delta": 0.0,
+    "max_abs_delta": 0.0,
+    "corr_vs_base": 1.0
+  },
+  "S2": {
+    "target": "S2",
+    "apply": false,
+    "method": "learned_calibrator",
+    "C": 0.03,
+    "tp_delta": -0.026280443468626236,
+    "tail_delta": 0.04555157448204339,
+    "changed_rows": 0,
+    "mean_abs_delta": 0.0,
+    "max_abs_delta": 0.0,
+    "corr_vs_base": 1.0
+  },
+  "S3": {
+    "target": "S3",
+    "apply": false,
+    "method": "base_plus_calib_w0.25",
+    "C": 0.03,
+    "tp_delta": -0.0034404053625779474,
+    "tail_delta": 0.001958668567935695,
+    "changed_rows": 0,
+    "mean_abs_delta": 0.0,
+    "max_abs_delta": 0.0,
+    "corr_vs_base": 1.0
+  },
+  "S4": {
+    "target": "S4",
+    "apply": false,
+    "method": "learned_calibrator",
+    "C": 0.01,
+    "tp_delta": -0.03592368395995971,
+    "tail_delta": 0.02477856981252191,
+    "changed_rows": 0,
+    "mean_abs_delta": 0.0,
+    "max_abs_delta": 0.0,
+    "corr_vs_base": 1.0
+  }
+}

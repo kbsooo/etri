@@ -1,0 +1,7 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_breakout_s_targets_plus_q1dl_prob.csv",
+  "description": "S-target breakout: S1/S2/S3/S4 w03 temporal, Q1 tiny-DL30, Q2/Q3 base.",
+  "rationale": "If S labels are routine/state and Q2 is the dangerous subjective tail label, concentrate risk on S-family.",
+  "risk": "ignores Q2; S4/Q1 may still be overfit",
+  "submission_status": "high-upside diagnostic; not automatic recommendation"
+}

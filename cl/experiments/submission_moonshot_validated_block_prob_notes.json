@@ -1,0 +1,6 @@
+{
+  "family": "improved_0.5_or_bust_graph",
+  "description": "Only validation-positive block Q2/S1/S2/S3 uses raw/sharpened graph; Q1/S4/Q3 conservative.",
+  "rationale": "Best risk-adjusted form, but less likely to reach 0.5 than broader moonshot.",
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_moonshot_validated_block_prob.csv"
+}

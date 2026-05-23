@@ -1,0 +1,37 @@
+{
+  "Q1": [
+    "semantic_only",
+    50,
+    0.03
+  ],
+  "Q2": [
+    "day_flat",
+    20,
+    0.01
+  ],
+  "Q3": [
+    "sleep_only",
+    20,
+    0.03
+  ],
+  "S1": [
+    "no_flat_hourly",
+    20,
+    0.1
+  ],
+  "S2": [
+    "no_flat_hourly",
+    20,
+    0.001
+  ],
+  "S3": [
+    "semantic_only",
+    20,
+    0.01
+  ],
+  "S4": [
+    "sleep_plus_s4x",
+    200,
+    0.003
+  ]
+}

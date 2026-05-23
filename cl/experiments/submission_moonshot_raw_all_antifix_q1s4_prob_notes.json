@@ -1,0 +1,6 @@
+{
+  "family": "improved_0.5_or_bust_graph",
+  "description": "Raw all-noQ3, but Q1/S4 halfway back to w03 and S2/S3 sharpened.",
+  "rationale": "Keeps most moonshot movement while addressing the two validation-negative targets.",
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_moonshot_raw_all_antifix_q1s4_prob.csv"
+}

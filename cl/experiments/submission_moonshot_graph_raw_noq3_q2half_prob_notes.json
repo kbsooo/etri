@@ -1,0 +1,5 @@
+{
+  "family": "0.5_or_bust",
+  "description": "Raw graph replacement on Q1/S targets, Q2 half graph, Q3 base. Much more aggressive than big_graph_state.",
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_moonshot_graph_raw_noq3_q2half_prob.csv"
+}

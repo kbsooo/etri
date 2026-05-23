@@ -1,0 +1,6 @@
+{
+  "family": "improved_0.5_or_bust_graph",
+  "description": "Validated Q2/S1/S2/S3 block with extra sharpening; Q1/S4 w03, Q3 base.",
+  "rationale": "Closest to validation-best sharpening pattern but restricted to targets where graph helped.",
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_moonshot_validated_block_sharp_prob.csv"
+}

@@ -1,0 +1,7 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_breakout_state_w03_noq3_q2w02_prob.csv",
+  "description": "High-upside state-completion candidate: w03 temporal smoothing for Q1/S1/S2/S3/S4, Q2 capped at w02, Q3 base.",
+  "rationale": "If public split is interleaved same-subject state completion, broad temporal smoothing must move multiple targets, not only S2.",
+  "risk": "large distribution shift; may over-smooth if public/private is tail-like",
+  "submission_status": "high-upside diagnostic; not automatic recommendation"
+}

@@ -1,0 +1,6 @@
+{
+  "family": "improved_0.5_or_bust_graph",
+  "description": "Targetwise masked-validation winner: Q1/S4 w03, Q2/S1 raw graph, S2/S3 sharpened graph, Q3 base.",
+  "rationale": "Removes raw graph from validation-negative Q1/S4 while keeping high-upside graph on Q2/S targets.",
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_moonshot_optimized_targetwise_prob.csv"
+}

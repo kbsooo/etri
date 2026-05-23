@@ -1,0 +1,15 @@
+{
+  "model": "selectk_logistic_feature_only",
+  "k": 50,
+  "C": 0.003,
+  "scaler": "robust",
+  "fold_id": "chrono_last_25",
+  "mean_logloss": 0.6396021948976226,
+  "logloss_Q1": 0.6944878862757762,
+  "logloss_Q2": 0.6693328437667903,
+  "logloss_Q3": 0.7579618480622987,
+  "logloss_S1": 0.5687692588401777,
+  "logloss_S2": 0.5637434161211724,
+  "logloss_S3": 0.5930196557699343,
+  "logloss_S4": 0.6299004554472091
+}

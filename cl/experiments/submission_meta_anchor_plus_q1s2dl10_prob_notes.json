@@ -1,0 +1,4 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_meta_anchor_plus_q1s2dl10_prob.csv",
+  "notes": "Anchor + very small Q1/S2 tiny-DL residual. Q1 DL was mixed on tail, so only half of the existing 20% blend delta is applied."
+}

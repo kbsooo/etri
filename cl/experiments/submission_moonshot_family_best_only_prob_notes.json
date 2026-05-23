@@ -1,0 +1,5 @@
+{
+  "family": "0.5_or_bust",
+  "description": "Family-specific best: raw graph for Q1/S1/S4, graph+episode+SSL on S2/S3, Q2/Q3 frozen.",
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_moonshot_family_best_only_prob.csv"
+}

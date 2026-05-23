@@ -1,0 +1,67 @@
+{
+  "family": "subject_regime_routing",
+  "regime": {
+    "id01": {
+      "flip_rate": 0.45,
+      "regularity": 0.49005351983093604,
+      "state_score": 0.6970160559492808,
+      "high_state": false
+    },
+    "id02": {
+      "flip_rate": 0.2826747720364741,
+      "regularity": 0.45764375155117304,
+      "state_score": 0.8546183534288777,
+      "high_state": true
+    },
+    "id03": {
+      "flip_rate": 0.36607142857142855,
+      "regularity": 0.45169648943034185,
+      "state_score": 0.7694375182576739,
+      "high_state": false
+    },
+    "id04": {
+      "flip_rate": 0.3647959183673469,
+      "regularity": 0.48436091899908434,
+      "state_score": 0.7805123573323783,
+      "high_state": false
+    },
+    "id05": {
+      "flip_rate": 0.38870431893687707,
+      "regularity": 0.4247718433680194,
+      "state_score": 0.7387272340735287,
+      "high_state": false
+    },
+    "id06": {
+      "flip_rate": 0.1702127659574468,
+      "regularity": 0.47522021841541756,
+      "state_score": 0.9723532995671784,
+      "high_state": true
+    },
+    "id07": {
+      "flip_rate": 0.39583333333333337,
+      "regularity": 0.4658468315001741,
+      "state_score": 0.7439207161167188,
+      "high_state": false
+    },
+    "id08": {
+      "flip_rate": 0.3974025974025975,
+      "regularity": 0.45249535135674923,
+      "state_score": 0.7383460080044273,
+      "high_state": false
+    },
+    "id09": {
+      "flip_rate": 0.38571428571428573,
+      "regularity": 0.4586932470586875,
+      "state_score": 0.7518936884033206,
+      "high_state": false
+    },
+    "id10": {
+      "flip_rate": 0.49107142857142855,
+      "regularity": 0.4907114811876144,
+      "state_score": 0.6561420157848556,
+      "high_state": false
+    }
+  },
+  "rationale": "subjects with low label flip/high routine regularity get aggressive graph/state; others stay close to anchor",
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_big_subject_regime_graph_prob.csv"
+}

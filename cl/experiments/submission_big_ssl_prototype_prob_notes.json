@@ -1,0 +1,7 @@
+{
+  "family": "temporal_ssl_prototypes",
+  "ssl_cols": 277,
+  "fresh_proto_cols": 27,
+  "rationale": "SSL/prototype-only head blended into Q3/S2/S4/Q1; Q2 frozen",
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_big_ssl_prototype_prob.csv"
+}

@@ -1,0 +1,12 @@
+{
+  "n_cols": 1400,
+  "family_counts": {
+    "activity_steps": 105,
+    "location_context": 678,
+    "screen_phone": 421,
+    "routine_axes": 92,
+    "sleep_episode": 2,
+    "ssl": 68,
+    "heart_light": 34
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_breakout_state_plus_q1s4_calib15_prob.csv",
+  "description": "State w03 plus Q1/S4 learned-calibrator influence; Q2 capped at w02 and Q3 base.",
+  "rationale": "Q1/S4 calibrator had plausible local gains; Q2 learned calibration was tail-risky, so exclude it.",
+  "risk": "hard-target calibrator may overfit despite excluding Q2",
+  "submission_status": "high-upside diagnostic; not automatic recommendation"
+}

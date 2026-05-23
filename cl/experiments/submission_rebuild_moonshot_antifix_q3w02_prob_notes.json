@@ -1,0 +1,6 @@
+{
+  "family": "rebuild_dissection_router",
+  "description": "Previous best moonshot anti-fix with Q3 changed from base freeze to w02, because public-like masks prefer Q3 w02.",
+  "rationale": "Adds Q3 temporal smoothing only if public-like validation is trusted; higher risk than Q3 freeze.",
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_rebuild_moonshot_antifix_q3w02_prob.csv"
+}

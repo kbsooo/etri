@@ -1,0 +1,6 @@
+{
+  "family": "improved_0.5_or_bust_graph",
+  "description": "Targetwise winner but keeps S4 raw graph for larger moonshot movement.",
+  "rationale": "S4 validation harm was small; preserving raw S4 gives more upside if public S4 follows graph state.",
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_moonshot_optimized_keep_s4raw_prob.csv"
+}

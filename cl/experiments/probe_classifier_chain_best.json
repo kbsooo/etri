@@ -1,0 +1,17 @@
+{
+  "model": "classifier_chain_logistic",
+  "subset": "no_flat_no_routine",
+  "n_features": 520,
+  "k": 100,
+  "C": 0.01,
+  "order": "corr_blocks",
+  "fold_id": "chrono_last_25",
+  "mean_logloss": 0.6662526229028364,
+  "logloss_Q1": 0.7045691079756328,
+  "logloss_Q2": 0.6754764407486439,
+  "logloss_Q3": 0.6548712750676475,
+  "logloss_S1": 0.5983472568519804,
+  "logloss_S2": 0.6874492032178212,
+  "logloss_S3": 0.6490033066832801,
+  "logloss_S4": 0.6940517697748491
+}

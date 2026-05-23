@@ -1,0 +1,36 @@
+{
+  "family": "graph_label_propagation",
+  "graph_cols": 500,
+  "used": {
+    "Q1": {
+      "mean": 0.46515796929455316,
+      "std": 0.0735038965844377
+    },
+    "Q2": {
+      "mean": 0.5763081955407718,
+      "std": 0.06894661782236573
+    },
+    "Q3": {
+      "mean": 0.6323851426605288,
+      "std": 0.07786380601310525
+    },
+    "S1": {
+      "mean": 0.7030860863376216,
+      "std": 0.0878260350429572
+    },
+    "S2": {
+      "mean": 0.6860619152520396,
+      "std": 0.09410140062704044
+    },
+    "S3": {
+      "mean": 0.6889895785127528,
+      "std": 0.09289502994585955
+    },
+    "S4": {
+      "mean": 0.5867526295527671,
+      "std": 0.08969541814776881
+    }
+  },
+  "rationale": "same-subject temporal-feature KNN + global feature KNN label diffusion; Q3 frozen, Q2 capped",
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_big_graph_state_noq3_prob.csv"
+}

@@ -1,0 +1,6 @@
+{
+  "family": "rebuild_dissection_router",
+  "description": "Public-like validation target router: Q1/S4 w03, Q2/S1 raw graph, S2/S3 sharpened graph, Q3 w02 smoothing.",
+  "rationale": "Interleaved-rank/public-like masks favor graph for Q2/S1/S2/S3, w03 for Q1/S4, and w02 for Q3.",
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_rebuild_publiclike_router_prob.csv"
+}

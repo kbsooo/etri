@@ -1,0 +1,10 @@
+[
+  {
+    "method": "masked_ae",
+    "ssl_loss": 0.04004548552135626
+  },
+  {
+    "method": "dino_temporal",
+    "ssl_loss": 0.07849702487389247
+  }
+]

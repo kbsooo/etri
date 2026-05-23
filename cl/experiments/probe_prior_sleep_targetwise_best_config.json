@@ -1,0 +1,37 @@
+{
+  "Q1": [
+    "semantic_only+psw_all",
+    100,
+    0.009
+  ],
+  "Q2": [
+    "day_flat+psw_sleep",
+    40,
+    0.003
+  ],
+  "Q3": [
+    "dino_k4_cluster",
+    10,
+    0.3
+  ],
+  "S1": [
+    "no_flat_hourly",
+    20,
+    0.1
+  ],
+  "S2": [
+    "no_flat_hourly",
+    20,
+    0.001
+  ],
+  "S3": [
+    "semantic_only+psw_sleep",
+    20,
+    0.01
+  ],
+  "S4": [
+    "sleep_plus_s4x+psw_all",
+    200,
+    0.009000000000000001
+  ]
+}

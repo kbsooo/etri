@@ -1,0 +1,4 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_meta_anchor_w02_noq3_prob.csv",
+  "notes": "Anchor: public-supported w=0.2 temporal smoothing, but Q3 reverted to base. Tests whether Q3 was hurting the known 0.6311869686 file."
+}

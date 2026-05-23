@@ -1,0 +1,7 @@
+{
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_meta_anchor_s2sparse_blend30_prob.csv",
+  "description": "Anchor S2 interpolated 30% toward sparse raw32 head.",
+  "mode": "S2=(1-0.3)*anchor + 0.3*sparse_raw32",
+  "local_evidence": "S2 existing_no_flat raw SelectK32 C=0.003: robust mean delta about -0.01 vs base; latent compression failed.",
+  "submission_status": "diagnostic artifact; not recommended automatically"
+}
