@@ -1,0 +1,24 @@
+{
+  "family": "advanced76_context_temporal_ds",
+  "description": "Publiclike router plus small subject-controlled temporal grammar/context-token calibration from advanced76 diagnostics.",
+  "rationale": "Q2/Q3 get temporal-grammar blend; S4 gets subject-debiased WiFi/BLE/app context blend; S2/S3 are nearly frozen because diagnostics show subject/static artifact risk.",
+  "weights": {
+    "Q1": 0.1,
+    "Q2": 0.18,
+    "Q3": 0.3,
+    "S1": 0.05,
+    "S2": 0.04,
+    "S3": 0.04,
+    "S4": 0.24
+  },
+  "caps": {
+    "S4": 0.12,
+    "Q3": 0.1,
+    "Q2": 0.08,
+    "Q1": 0.06,
+    "S2": 0.04,
+    "S3": 0.04,
+    "S1": 0.04
+  },
+  "file": "/Users/kbsoo/Downloads/cl/outputs/submission_advanced76_context_temporal_prob.csv"
+}
