@@ -1,0 +1,8 @@
+file,target,changed_rows,mean_abs_delta_vs_anchor,max_abs_delta_vs_anchor,mean_signed_delta_vs_anchor,corr_vs_anchor,notes
+submission_goal6_publiclike_top40_block15_prob.csv,Q1,0,0.0,0.0,0.0,1.0,Anchor + 15% validated-block residual on publiclike top 40% rows; Q2/S1/S2/S3 only.
+submission_goal6_publiclike_top40_block15_prob.csv,Q2,100,0.003927465358495459,0.04000000000000001,0.002297379386754917,0.9973246538774165,Anchor + 15% validated-block residual on publiclike top 40% rows; Q2/S1/S2/S3 only.
+submission_goal6_publiclike_top40_block15_prob.csv,Q3,0,0.0,0.0,0.0,1.0,Anchor + 15% validated-block residual on publiclike top 40% rows; Q2/S1/S2/S3 only.
+submission_goal6_publiclike_top40_block15_prob.csv,S1,100,0.004705583562814703,0.03999999999999998,0.0024089943089967212,0.998552862720133,Anchor + 15% validated-block residual on publiclike top 40% rows; Q2/S1/S2/S3 only.
+submission_goal6_publiclike_top40_block15_prob.csv,S2,100,0.008447471517983359,0.040000000000000036,0.0065170000679591784,0.9973117430858136,Anchor + 15% validated-block residual on publiclike top 40% rows; Q2/S1/S2/S3 only.
+submission_goal6_publiclike_top40_block15_prob.csv,S3,100,0.00685510512675865,0.040000000000000036,0.0036220615650082648,0.998468950765853,Anchor + 15% validated-block residual on publiclike top 40% rows; Q2/S1/S2/S3 only.
+submission_goal6_publiclike_top40_block15_prob.csv,S4,0,0.0,0.0,0.0,1.0,Anchor + 15% validated-block residual on publiclike top 40% rows; Q2/S1/S2/S3 only.

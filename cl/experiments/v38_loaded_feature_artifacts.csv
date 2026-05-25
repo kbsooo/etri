@@ -1,0 +1,11 @@
+artifact,kept_cols,rows
+model_features_v0.parquet,220,700
+semantic_topk_features_v2.parquet,140,700
+observation_identity_token_features.parquet,90,700
+external_context_features_v1.parquet,73,700
+deep_raw_modality_daily_features.parquet,90,700
+ssl_hourly_dino_temporal_embeddings.parquet,48,700
+ssl_hourly_masked_ae_embeddings.parquet,48,700
+cola_denoising_latent_v1.parquet,20,700
+goal4_hour_transition_features_v1.parquet,190,700
+goal4_sleep_boundary_rest_features_v1.parquet,90,700

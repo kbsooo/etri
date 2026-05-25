@@ -1,0 +1,5 @@
+file,keys_ok,no_na,mean_abs_vs_anchor,max_abs_vs_anchor,mean_std,min_prob,max_prob
+submission_cl_catboost_state_proto_confirmed_safe_prob.csv,True,True,0.02465037216803634,0.15128759979610773,0.15146259038386742,0.057277010570104446,0.97
+submission_cl_catboost_state_proto_sleep_state_prob.csv,True,True,0.03734955793853972,0.31824530259419603,0.15303129414622837,0.06885147128110274,0.9673206322781913
+submission_cl_catboost_state_proto_target_focus_eventpatch_prob.csv,True,True,0.028820057527772884,0.26710919634532776,0.1554779484182909,0.05898713774043665,0.97
+submission_cl_catboost_state_proto_target_focus_prob.csv,True,True,0.02692021206305309,0.23050651917130305,0.15418819229727662,0.05898713774043665,0.97

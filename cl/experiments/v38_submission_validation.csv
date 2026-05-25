@@ -1,0 +1,4 @@
+file,rows,keys_ok,no_na,min_prob,max_prob
+submission_v38_targetwise_catboost_proto_safe_prob.csv,250,True,True,0.0572770105701044,0.97
+submission_v38_targetwise_catboost_proto_publiclike_routed_prob.csv,250,True,True,0.0606323742844407,0.97
+submission_v38_targetwise_catboost_proto_raw_model_prob.csv,250,True,True,0.0776259547149114,0.9676005981308252
