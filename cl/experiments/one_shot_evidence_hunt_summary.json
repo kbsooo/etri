@@ -1,0 +1,11 @@
+{
+  "v83_old_posterior": 0.5978132846155986,
+  "v83_refit_posterior": 0.5997645834997279,
+  "v83_robust": 0.5997645834997279,
+  "v76_old_posterior": 0.5999627446990595,
+  "v76_refit_posterior": 0.599962744699745,
+  "v76_robust": 0.599962744699745,
+  "source_pool_size": 169.0,
+  "single_moves_scored": 82810.0,
+  "beam_count": 160.0
+}
