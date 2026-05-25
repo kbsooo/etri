@@ -1,0 +1,68 @@
+{
+  "success": true,
+  "message": "The solution converged.",
+  "max_abs_error": 1.6220358389773537e-12,
+  "constraints": [
+    {
+      "name": "v76_anchor",
+      "public_lb": 0.5999627447,
+      "posterior_bce": 0.599962744699745,
+      "abs_error": 2.5501822875639846e-13
+    },
+    {
+      "name": "v83_repaired",
+      "public_lb": 0.5997645835,
+      "posterior_bce": 0.5997645834997279,
+      "abs_error": 2.7200464103316335e-13
+    },
+    {
+      "name": "v18_old15",
+      "public_lb": 0.6057860899,
+      "posterior_bce": 0.6057860898998884,
+      "abs_error": 1.1168843627729075e-13
+    },
+    {
+      "name": "sample_support",
+      "public_lb": 0.6104310794,
+      "posterior_bce": 0.6104310793997647,
+      "abs_error": 2.3525625891807067e-13
+    },
+    {
+      "name": "v82_failed",
+      "public_lb": 0.6629409456,
+      "posterior_bce": 0.6629409455996402,
+      "abs_error": 3.5982328228101323e-13
+    },
+    {
+      "name": "v85_failed",
+      "public_lb": 0.6157626029,
+      "posterior_bce": 0.6157626028983779,
+      "abs_error": 1.6220358389773537e-12
+    },
+    {
+      "name": "cl_catboost_safe",
+      "public_lb": 0.6218639574,
+      "posterior_bce": 0.6218639573997333,
+      "abs_error": 2.666755705149626e-13
+    },
+    {
+      "name": "cl_sleep_state",
+      "public_lb": 0.6146217599,
+      "posterior_bce": 0.6146217598996908,
+      "abs_error": 3.091971123581061e-13
+    },
+    {
+      "name": "cl_imported_failed",
+      "public_lb": 0.6610032443,
+      "posterior_bce": 0.6610032442997368,
+      "abs_error": 2.632338791386246e-13
+    },
+    {
+      "name": "cl_wcap02",
+      "public_lb": 0.6311869686,
+      "posterior_bce": 0.631186968599753,
+      "abs_error": 2.4702462297909733e-13
+    }
+  ],
+  "entropy": 0.5735082962572967
+}
