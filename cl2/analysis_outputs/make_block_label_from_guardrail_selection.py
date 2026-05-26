@@ -1,0 +1,125 @@
+from __future__ import annotations
+
+import argparse
+import sys
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+
+sys.path.append(str(Path(__file__).resolve().parent))
+import block_rate_smoother_experiments as brs  # noqa: E402
+import current_0p591_block_label_postprocess as blp  # noqa: E402
+import deep_dive_analysis as d  # noqa: E402
+
+
+OUT = Path(__file__).resolve().parent
+DATA = OUT.parents[0] / "data"
+KEY = d.KEY
+TARGETS = d.TARGETS
+
+
+def selected_rows(selection: pd.DataFrame, mode: str) -> pd.DataFrame:
+    if mode == "strict":
+        keep = selection[selection["passes_strict"]].copy()
+    elif mode == "loose":
+        keep = selection[selection["passes_loose"]].copy()
+    elif mode == "all":
+        keep = selection.copy()
+    else:
+        raise ValueError(mode)
+    return keep.sort_values(["target", "delta_vs_base"]).groupby("target").head(1).reset_index(drop=True)
+
+
+def estimate_candidate(train: pd.DataFrame, base_oof: Path, selected: pd.DataFrame, est_out: Path, oof_out: Path) -> pd.DataFrame:
+    y = train[TARGETS].to_numpy(dtype=int)
+    current = np.load(base_oof)
+    candidate = current.copy()
+    for row in selected.itertuples(index=False):
+        target = str(row.target)
+        config = str(row.config)
+        weight = float(row.weight)
+        j = TARGETS.index(target)
+        cached = OUT / f"current_0p591_block_label_oof_{config}.npy"
+        block = np.load(cached)[:, j] if cached.exists() else brs.oof(train, {cfg.name: cfg for cfg in brs.configs()}[config])[:, j]
+        candidate[:, j] = (1.0 - weight) * candidate[:, j] + weight * block
+    np.save(oof_out, candidate)
+
+    rows = []
+    for j, target in enumerate(TARGETS):
+        current_loss = blp.loss_col(y[:, j], current[:, j])
+        candidate_loss = blp.loss_col(y[:, j], candidate[:, j])
+        match = selected[selected["target"] == target]
+        if match.empty:
+            source = "unchanged"
+        else:
+            row = match.iloc[0]
+            source = f"block_label_{row['config']}_w{row['weight']}"
+        rows.append(
+            {
+                "target": target,
+                "current_loss": current_loss,
+                "candidate_loss": candidate_loss,
+                "delta_vs_current": candidate_loss - current_loss,
+                "source": source,
+            }
+        )
+    estimate = pd.DataFrame(rows)
+    estimate.loc[len(estimate)] = {
+        "target": "mean",
+        "current_loss": float(estimate["current_loss"].mean()),
+        "candidate_loss": float(estimate["candidate_loss"].mean()),
+        "delta_vs_current": float(estimate["candidate_loss"].mean() - estimate["current_loss"].mean()),
+        "source": "target_mean",
+    }
+    estimate.to_csv(est_out, index=False)
+    return estimate
+
+
+def make_submission(base_sub: Path, sub: pd.DataFrame, selected: pd.DataFrame, sub_out: Path) -> pd.DataFrame:
+    out = pd.read_csv(base_sub, parse_dates=["sleep_date", "lifelog_date"])
+    out = out.sort_values(KEY).reset_index(drop=True)
+    sub = sub.sort_values(KEY).reset_index(drop=True)
+    assert out[KEY].equals(sub[KEY])
+    cfg_map = {cfg.name: cfg for cfg in brs.configs()}
+    train = blp.train_frame()
+    for row in selected.itertuples(index=False):
+        target = str(row.target)
+        config = str(row.config)
+        weight = float(row.weight)
+        cfg = cfg_map[config]
+        block = brs.block_smoother(train, sub, cfg)[:, TARGETS.index(target)]
+        out[target] = (1.0 - weight) * out[target].to_numpy(dtype=float) + weight * block
+    sample = pd.read_csv(DATA / "ch2026_submission_sample.csv", parse_dates=["sleep_date", "lifelog_date"])
+    assert list(out.columns) == list(sample.columns)
+    assert out[KEY].equals(sample[KEY])
+    assert out[TARGETS].isna().sum().sum() == 0
+    assert out.duplicated(KEY).sum() == 0
+    assert ((out[TARGETS] >= 0).all().all() and (out[TARGETS] <= 1).all().all())
+    out.to_csv(sub_out, index=False)
+    return out
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--base-sub", required=True)
+    parser.add_argument("--base-oof", required=True)
+    parser.add_argument("--selection", required=True)
+    parser.add_argument("--mode", choices=["strict", "loose", "all"], default="strict")
+    parser.add_argument("--sub-out", required=True)
+    parser.add_argument("--est-out", required=True)
+    parser.add_argument("--oof-out", required=True)
+    args = parser.parse_args()
+    selected = selected_rows(pd.read_csv(args.selection), args.mode)
+    train = blp.train_frame()
+    sub = blp.sub_frame()
+    estimate = estimate_candidate(train, Path(args.base_oof), selected, Path(args.est_out), Path(args.oof_out))
+    out = make_submission(Path(args.base_sub), sub, selected, Path(args.sub_out))
+    print(selected[["target", "config", "weight"]].to_string(index=False))
+    print(estimate.round(9).to_string(index=False))
+    print("wrote", args.sub_out)
+    print("range", float(out[TARGETS].min().min()), float(out[TARGETS].max().max()))
+
+
+if __name__ == "__main__":
+    main()
