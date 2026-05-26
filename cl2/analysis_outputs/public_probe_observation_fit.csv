@@ -1,0 +1,3 @@
+file,probe,targets_changed,public_lb,delta_vs_anchor,fitted_delta_vs_anchor,residual
+submission_hybrid_0p567_foldsafe_stage2_q1_q3_s1_s2_s3_s4.csv,full_stage2,"Q1,Q2,Q3,S1,S2,S3,S4",0.5779449757,-0.00048237709999998657,-0.0010011532169171005,0.0005187761169171139
+submission_ordinal_q_constraints_ambnext_Q2Q3_nearest_w0.75.csv,ordinal_count_ambnext_q2q3_nearest_w075,"Q1,Q2,Q3,S1,S2,S3,S4",0.5783033652,-0.0001239875999999862,-0.0010011532169171005,0.0008771656169171142

@@ -1,0 +1,13 @@
+file,rows,key_match,duplicate_keys,null_predictions,min_prob,max_prob
+submission_public_consfront_t35_r01_9df5211a.csv,250,True,0,0,0.0749299002536108,0.9778510136145568
+submission_public_consfront_t35_r02_685b9221.csv,250,True,0,0,0.0735981861729783,0.9779062732926962
+submission_public_consfront_t35_r03_58360e62.csv,250,True,0,0,0.0732303074619782,0.977943467462598
+submission_public_consfront_t50_r04_b26d90bf.csv,250,True,0,0,0.0746839936100402,0.9778850141683876
+submission_public_consfront_t50_r05_2ecf14de.csv,250,True,0,0,0.0739576246002965,0.9779553785808596
+submission_public_consfront_t50_r06_783c0eda.csv,250,True,0,0,0.0749299002536108,0.9778510136145568
+submission_public_consfront_t65_r07_f8156dce.csv,250,True,0,0,0.0727386021810672,0.9777457976733684
+submission_public_consfront_t65_r08_c67c491d.csv,250,True,0,0,0.0736253519274239,0.9779955387116654
+submission_public_consfront_t65_r09_6ab53561.csv,250,True,0,0,0.0734276022947147,0.9779674828869436
+submission_public_consfront_t80_r10_b06ca82f.csv,250,True,0,0,0.073390725870589,0.977970499945272
+submission_public_consfront_t80_r11_cbf95500.csv,250,True,0,0,0.0720580092237472,0.9778188531497802
+submission_public_consfront_t80_r12_9e52dcea.csv,250,True,0,0,0.0718064023246245,0.977784479448066

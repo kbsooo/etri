@@ -1,0 +1,4 @@
+file,offline_estimate,public_lb,public_minus_offline,note
+submission_hybrid_0p578_logit_after_subject_final9_strict.csv,0.578304,0.5784273528,0.0001233528,Public anchor validated late fold-safe scale.
+submission_hybrid_0p567_foldsafe_stage2_q1_q3_s1_s2_s3_s4.csv,0.567531,0.5779449757,0.0104139757,Stage2 broad residual OOF gain mostly did not transfer to public; still slightly better than 0.578 anchor.
+submission_ordinal_q_constraints_ambnext_Q2Q3_nearest_w0.75.csv,0.5619038172,0.5783033652,0.0163995480,Ordinal Q2/Q3 nearest feasible-count correction improved OOF but underperformed the submitted stage2 public best.
