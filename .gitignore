@@ -78,6 +78,7 @@ analysis_outputs/*
 !analysis_outputs/q2_s3_tail_gate_independence_probe_summary.csv
 !analysis_outputs/q2_s3_tail_gate_independence_probe_pair.csv
 !analysis_outputs/q2_s3_strict_cell_amplitude_probe_scan.csv
+!analysis_outputs/q2_s3_strict_cell_consensus_probe_scan.csv
 !analysis_outputs/structural_block_target_probe_target_detail.csv
 !analysis_outputs/structural_block_target_probe_pattern_detail.csv
 !analysis_outputs/structural_block_target_probe_hidden_alignment.csv

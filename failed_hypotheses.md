@@ -555,3 +555,12 @@
 - Implementation issue possible: low to medium. E69 uses heldout-specific E68 gates rather than a unified submission rule, so it is a stress test rather than a candidate. But this makes the negative result stronger for simple alpha: even with heldout-specific strict cells, no margin gate opens.
 - Bottleneck implication: the bottleneck is rowwise/cellwise amplitude selection or structural target design, not validated-cell direction or scalar scale.
 - Do not repeat: global alpha sweeps over E68 strict cells. Future amplitude work must condition on row/block/tail energy and prove margin plus tail safety together.
+
+## FH62. E70 strict-cell consensus is immediately submit-safe
+
+- Failed hypothesis: because multiple E68 strict Q2/S3 cells can be aggregated, the resulting consensus movement should be safe enough to submit directly once it clears the local full-combo margin.
+- Observed result: E70 built `2688` candidate rows / `2576` unique predictions and found `6` strict consensus gates, with best all-combo delta `-1.027751e-5`. However, every strict row used `gate=none`; sign-agreement gates did not produce strict rows. The construction also pools heldout-specific E68 strict cells and therefore is a stress result, not a unified test-time rule.
+- Why discard: the local signal is real enough to keep H67 alive, but direct submission would confuse a heldout-specific diagnostic with a deployable probability rule. The margin is tiny and depends on consensus averaging before conservative agreement geometry is proven.
+- Implementation issue possible: medium. E70 intentionally scored combo first and hidden/world/block stress only for the top `700` rows to keep the probe tractable. A unified-rule implementation could still rescue the idea, but E70 itself is not that rule.
+- Bottleneck implication: consensus structure may be the missing accumulation mechanism, but it still needs rowwise/cellwise amplitude or unified structural gating. The bottleneck is now "how to make consensus reproducible and conservative", not "whether any strict-cell consensus can move the proxy".
+- Do not repeat: submitting heldout-specific consensus rows or treating `gate=none` consensus as safe. Future work must test a unified non-heldout rule, agreement/energy diagnostics, and tail/block stability before producing a file.
