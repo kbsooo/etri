@@ -27,6 +27,10 @@ analysis_outputs/*
 !analysis_outputs/submission_inverse7blend_1040423d.csv
 !analysis_outputs/submission_label_flow_locsensor_contrast_6b_q3_s4_block_id02_b02_s1p00_ea4fdc0b.csv
 !analysis_outputs/post_mixmin_row_delta_top80.csv
+!analysis_outputs/post_mixmin_calendar_selector_views.csv
+!analysis_outputs/post_mixmin_calendar_selector_loocv.csv
+!analysis_outputs/post_mixmin_calendar_selector_candidates.csv
+!analysis_outputs/post_mixmin_calendar_selector_anchor_features.csv
 
 !analysis_outputs/bridge_scan_candidates/
 analysis_outputs/bridge_scan_candidates/*

@@ -1,0 +1,6 @@
+view,n_features,loocv_mae,loocv_max_abs_error,mixmin_abs_error,pairwise_rank_accuracy,spearman,mixmin_predicted_best,a2c8_raw05_order_correct,stage2_ordinal_order_correct,bad_tail_correct,edge_scale_gate,mixmin_error_below_edge,null_rank_p_ge_actual,strict_selector_gate,loose_selector_gate
+subject_calendar,966,0.0008841064267135698,0.0025024071803925675,0.0013516204396183142,0.8333333333333334,0.8333333333333333,False,True,True,True,True,False,0.0,False,False
+target_prior,92,0.0009457055990001144,0.0025134682858853922,0.001336202065009402,0.75,0.6166666666666666,False,True,True,False,True,False,0.01,False,False
+calendar,506,0.0009721966209805895,0.002510125074983896,0.0013456704312732614,0.75,0.7333333333333334,False,True,True,False,True,False,0.01,False,False
+subject,552,0.0010092045698016443,0.002507437072973127,0.0013464279050374242,0.6944444444444444,0.5333333333333333,False,True,True,False,True,False,0.023333333333333334,False,False
+calendar_no_prior,460,0.0010129658690629052,0.0025140544102653923,0.0013776080769331007,0.7222222222222222,0.7166666666666667,False,False,True,False,True,False,0.016666666666666666,False,False

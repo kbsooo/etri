@@ -1,0 +1,91 @@
+name,file,role,view,predicted_delta_vs_mixmin,predicted_public_lb,neighbor_indices,view_strict_gate,view_loose_gate
+mixmin,analysis_outputs/submission_mixmin_0c916bb4.csv,active_frontier,calendar,1.460467268090824e-17,0.5763066405,"0,3,2",False,False
+blend_m0p50_s0p50,analysis_outputs/bridge_scan_candidates/submission_bridge_blend_m0p50_s0p50.csv,raw-structure bridge,calendar,0.0009485700515554727,0.5772552105515555,"2,1,0",False,False
+a2c8,analysis_outputs/submission_frontier_cvjepa_refine_a2c8d2c8.csv,previous_frontier,calendar,0.0011326804999999304,0.577439321,"1,2,3",False,False
+raw05,jepa/submission_raw_timeline_jepa_rescue_strict_scale0p5.csv,raw05_positive_anchor,calendar,0.0012196666999999565,0.5775263072,"2,1,3",False,False
+inv7_s0p25,analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p25.csv,raw-structure bridge,calendar,0.0012410510955752157,0.5775476915955753,"2,1,3",False,False
+inv7_s0p50,analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p50.csv,raw-structure bridge,calendar,0.0012482774095586824,0.5775549179095587,"2,1,3",False,False
+blend_m0p25_s0p50,analysis_outputs/bridge_scan_candidates/submission_bridge_blend_m0p25_s0p50.csv,raw-structure bridge,calendar,0.0012589912801065763,0.5775656317801066,"2,1,3",False,False
+inverse7blend_1040,analysis_outputs/submission_inverse7blend_1040423d.csv,raw-structure bridge,calendar,0.0012701535900286923,0.5775767940900287,"2,1,3",False,False
+inv7_s1p00,analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s1p00.csv,raw-structure bridge,calendar,0.0012701535900286926,0.5775767940900287,"2,1,3",False,False
+pair_sensor_1bb_s0p65,analysis_outputs/submission_label_flow_sensorcurve_conservative_1bb_full_s0p65_0ee928c4.csv,S4/Q3 selector disambiguation,calendar,0.0013175648691319069,0.577624205369132,"1,2,3",False,False
+pair_sensor_1bb,analysis_outputs/submission_label_flow_focused_1bbfb735.csv,S4/Q3 selector disambiguation,calendar,0.0013196241954472477,0.5776262646954473,"1,2,3",False,False
+pair_sensor_6b,analysis_outputs/submission_label_flow_focused_6b9335b1.csv,S4/Q3 selector disambiguation,calendar,0.0013208452645686161,0.5776274857645687,"1,2,3",False,False
+stage2,analysis_outputs/submission_hybrid_0p567_foldsafe_stage2_q1_q3_s1_s2_s3_s4.csv,stage2_local_cv_anchor,calendar,0.0016383351999999952,0.5779449757,"3,2,0",False,False
+ordinal,analysis_outputs/submission_ordinal_q_constraints_ambnext_Q2Q3_nearest_w0.75.csv,ordinal_constraint_anchor,calendar,0.0019967247000000046,0.5783033652,"4,3,0",False,False
+final9,analysis_outputs/submission_hybrid_0p578_logit_after_subject_final9_strict.csv,subject_logit_anchor,calendar,0.002120712299999992,0.5784273528,"5,4,0",False,False
+q2_jepa_bad,jepa/submission_jepa_latent_q2_w0p45.csv,bad_q2_jepa_anchor,calendar,0.0034946457000000087,0.5798012862,"6,3,0",False,False
+lejepa_bad,jepa/submission_lejepa_targetwise_strict_best_scale0p5.csv,bad_lejepa_anchor,calendar,0.00394017869999996,0.5802468192,"7,4,3",False,False
+jepa_residual_bad,jepa/submission_jepa_latent_residual_probe.csv,bad_all_target_jepa_anchor,calendar,0.004920687299999943,0.5812273278,"8,6,3",False,False
+mixmin,analysis_outputs/submission_mixmin_0c916bb4.csv,active_frontier,calendar_no_prior,2.418016219214627e-17,0.5763066405,"0,3,2",False,False
+blend_m0p50_s0p50,analysis_outputs/bridge_scan_candidates/submission_bridge_blend_m0p50_s0p50.csv,raw-structure bridge,calendar_no_prior,0.001097041144436792,0.5774036816444368,"2,1,0",False,False
+a2c8,analysis_outputs/submission_frontier_cvjepa_refine_a2c8d2c8.csv,previous_frontier,calendar_no_prior,0.001132680499999941,0.577439321,"1,2,3",False,False
+inv7_s0p25,analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p25.csv,raw-structure bridge,calendar_no_prior,0.0011417726048158436,0.5774484131048159,"1,2,3",False,False
+inv7_s0p50,analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p50.csv,raw-structure bridge,calendar_no_prior,0.0011616671122326922,0.5774683076122327,"1,2,3",False,False
+blend_m0p25_s0p50,analysis_outputs/bridge_scan_candidates/submission_bridge_blend_m0p25_s0p50.csv,raw-structure bridge,calendar_no_prior,0.0011808412319641998,0.5774874817319642,"1,2,3",False,False
+inverse7blend_1040,analysis_outputs/submission_inverse7blend_1040423d.csv,raw-structure bridge,calendar_no_prior,0.001198512389243882,0.5775051528892439,"1,2,3",False,False
+inv7_s1p00,analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s1p00.csv,raw-structure bridge,calendar_no_prior,0.001198512389243882,0.5775051528892439,"1,2,3",False,False
+pair_sensor_1bb_s0p65,analysis_outputs/submission_label_flow_sensorcurve_conservative_1bb_full_s0p65_0ee928c4.csv,S4/Q3 selector disambiguation,calendar_no_prior,0.0012129211625351397,0.5775195616625352,"1,2,3",False,False
+raw05,jepa/submission_raw_timeline_jepa_rescue_strict_scale0p5.csv,raw05_positive_anchor,calendar_no_prior,0.0012196666999999479,0.5775263072,"2,1,3",False,False
+pair_sensor_1bb,analysis_outputs/submission_label_flow_focused_1bbfb735.csv,S4/Q3 selector disambiguation,calendar_no_prior,0.0012541129077294978,0.5775607534077295,"1,2,3",False,False
+pair_sensor_6b,analysis_outputs/submission_label_flow_focused_6b9335b1.csv,S4/Q3 selector disambiguation,calendar_no_prior,0.001274642555365247,0.5775812830553653,"1,2,3",False,False
+stage2,analysis_outputs/submission_hybrid_0p567_foldsafe_stage2_q1_q3_s1_s2_s3_s4.csv,stage2_local_cv_anchor,calendar_no_prior,0.0016383351999999878,0.5779449757,"3,0,2",False,False
+ordinal,analysis_outputs/submission_ordinal_q_constraints_ambnext_Q2Q3_nearest_w0.75.csv,ordinal_constraint_anchor,calendar_no_prior,0.001996724700000004,0.5783033652,"4,0,3",False,False
+final9,analysis_outputs/submission_hybrid_0p578_logit_after_subject_final9_strict.csv,subject_logit_anchor,calendar_no_prior,0.002120712299999992,0.5784273528,"5,4,0",False,False
+q2_jepa_bad,jepa/submission_jepa_latent_q2_w0p45.csv,bad_q2_jepa_anchor,calendar_no_prior,0.003494645700000007,0.5798012862,"6,3,0",False,False
+lejepa_bad,jepa/submission_lejepa_targetwise_strict_best_scale0p5.csv,bad_lejepa_anchor,calendar_no_prior,0.00394017869999996,0.5802468192,"7,4,3",False,False
+jepa_residual_bad,jepa/submission_jepa_latent_residual_probe.csv,bad_all_target_jepa_anchor,calendar_no_prior,0.004920687299999943,0.5812273278,"8,6,3",False,False
+mixmin,analysis_outputs/submission_mixmin_0c916bb4.csv,active_frontier,subject,1.2092950287039081e-17,0.5763066405,"0,3,2",False,False
+blend_m0p50_s0p50,analysis_outputs/bridge_scan_candidates/submission_bridge_blend_m0p50_s0p50.csv,raw-structure bridge,subject,0.0009691185763688395,0.5772757590763689,"2,1,0",False,False
+a2c8,analysis_outputs/submission_frontier_cvjepa_refine_a2c8d2c8.csv,previous_frontier,subject,0.0011326804999999302,0.577439321,"1,2,3",False,False
+raw05,jepa/submission_raw_timeline_jepa_rescue_strict_scale0p5.csv,raw05_positive_anchor,subject,0.0012196666999999563,0.5775263072,"2,1,3",False,False
+inv7_s0p25,analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p25.csv,raw-structure bridge,subject,0.0012348085337940593,0.5775414490337941,"1,2,3",False,False
+inv7_s0p50,analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p50.csv,raw-structure bridge,subject,0.0012422377176624613,0.5775488782176624,"2,1,3",False,False
+blend_m0p25_s0p50,analysis_outputs/bridge_scan_candidates/submission_bridge_blend_m0p25_s0p50.csv,raw-structure bridge,subject,0.001252982894933639,0.5775596233949336,"2,1,3",False,False
+inverse7blend_1040,analysis_outputs/submission_inverse7blend_1040423d.csv,raw-structure bridge,subject,0.00126515011109342,0.5775717906110934,"2,1,3",False,False
+inv7_s1p00,analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s1p00.csv,raw-structure bridge,subject,0.00126515011109342,0.5775717906110934,"2,1,3",False,False
+pair_sensor_1bb_s0p65,analysis_outputs/submission_label_flow_sensorcurve_conservative_1bb_full_s0p65_0ee928c4.csv,S4/Q3 selector disambiguation,subject,0.0013158669758621191,0.5776225074758622,"1,2,3",False,False
+pair_sensor_1bb,analysis_outputs/submission_label_flow_focused_1bbfb735.csv,S4/Q3 selector disambiguation,subject,0.0013180292691101657,0.5776246697691102,"1,2,3",False,False
+pair_sensor_6b,analysis_outputs/submission_label_flow_focused_6b9335b1.csv,S4/Q3 selector disambiguation,subject,0.0013193503729938224,0.5776259908729938,"1,2,3",False,False
+stage2,analysis_outputs/submission_hybrid_0p567_foldsafe_stage2_q1_q3_s1_s2_s3_s4.csv,stage2_local_cv_anchor,subject,0.0016383351999999971,0.5779449757,"3,2,0",False,False
+ordinal,analysis_outputs/submission_ordinal_q_constraints_ambnext_Q2Q3_nearest_w0.75.csv,ordinal_constraint_anchor,subject,0.0019967247000000046,0.5783033652,"4,0,3",False,False
+final9,analysis_outputs/submission_hybrid_0p578_logit_after_subject_final9_strict.csv,subject_logit_anchor,subject,0.0021207122999999926,0.5784273528,"5,4,0",False,False
+q2_jepa_bad,jepa/submission_jepa_latent_q2_w0p45.csv,bad_q2_jepa_anchor,subject,0.003494645700000009,0.5798012862,"6,3,0",False,False
+lejepa_bad,jepa/submission_lejepa_targetwise_strict_best_scale0p5.csv,bad_lejepa_anchor,subject,0.003940178699999961,0.5802468192,"7,3,4",False,False
+jepa_residual_bad,jepa/submission_jepa_latent_residual_probe.csv,bad_all_target_jepa_anchor,subject,0.004920687299999943,0.5812273278,"8,6,3",False,False
+mixmin,analysis_outputs/submission_mixmin_0c916bb4.csv,active_frontier,subject_calendar,8.26383257754299e-18,0.5763066405,"0,3,2",False,False
+blend_m0p50_s0p50,analysis_outputs/bridge_scan_candidates/submission_bridge_blend_m0p50_s0p50.csv,raw-structure bridge,subject_calendar,0.0010100440962294186,0.5773166845962294,"2,1,0",False,False
+a2c8,analysis_outputs/submission_frontier_cvjepa_refine_a2c8d2c8.csv,previous_frontier,subject_calendar,0.0011326804999999293,0.577439321,"1,2,3",False,False
+inv7_s0p25,analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p25.csv,raw-structure bridge,subject_calendar,0.0012133126300962957,0.5775199531300963,"1,2,3",False,False
+raw05,jepa/submission_raw_timeline_jepa_rescue_strict_scale0p5.csv,raw05_positive_anchor,subject_calendar,0.0012196666999999555,0.5775263072,"2,1,3",False,False
+inv7_s0p50,analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p50.csv,raw-structure bridge,subject_calendar,0.0012202031880702924,0.5775268436880703,"1,2,3",False,False
+blend_m0p25_s0p50,analysis_outputs/bridge_scan_candidates/submission_bridge_blend_m0p25_s0p50.csv,raw-structure bridge,subject_calendar,0.0012307122320405614,0.5775373527320405,"2,1,3",False,False
+inv7_s1p00,analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s1p00.csv,raw-structure bridge,subject_calendar,0.0012433523419381875,0.5775499928419382,"1,2,3",False,False
+inverse7blend_1040,analysis_outputs/submission_inverse7blend_1040423d.csv,raw-structure bridge,subject_calendar,0.0012433523419381877,0.5775499928419382,"1,2,3",False,False
+pair_sensor_1bb_s0p65,analysis_outputs/submission_label_flow_sensorcurve_conservative_1bb_full_s0p65_0ee928c4.csv,S4/Q3 selector disambiguation,subject_calendar,0.0013097090308256825,0.5776163495308257,"1,2,3",False,False
+pair_sensor_1bb,analysis_outputs/submission_label_flow_focused_1bbfb735.csv,S4/Q3 selector disambiguation,subject_calendar,0.00131371718006211,0.5776203576800621,"1,2,3",False,False
+pair_sensor_6b,analysis_outputs/submission_label_flow_focused_6b9335b1.csv,S4/Q3 selector disambiguation,subject_calendar,0.0013160988088010267,0.577622739308801,"1,2,3",False,False
+stage2,analysis_outputs/submission_hybrid_0p567_foldsafe_stage2_q1_q3_s1_s2_s3_s4.csv,stage2_local_cv_anchor,subject_calendar,0.0016383352000000006,0.5779449757,"3,2,0",False,False
+ordinal,analysis_outputs/submission_ordinal_q_constraints_ambnext_Q2Q3_nearest_w0.75.csv,ordinal_constraint_anchor,subject_calendar,0.0019967247000000064,0.5783033652,"4,0,3",False,False
+final9,analysis_outputs/submission_hybrid_0p578_logit_after_subject_final9_strict.csv,subject_logit_anchor,subject_calendar,0.002120712299999993,0.5784273528,"5,4,0",False,False
+q2_jepa_bad,jepa/submission_jepa_latent_q2_w0p45.csv,bad_q2_jepa_anchor,subject_calendar,0.0034946457000000143,0.5798012862,"6,3,0",False,False
+lejepa_bad,jepa/submission_lejepa_targetwise_strict_best_scale0p5.csv,bad_lejepa_anchor,subject_calendar,0.0039401786999999616,0.5802468192,"7,4,3",False,False
+jepa_residual_bad,jepa/submission_jepa_latent_residual_probe.csv,bad_all_target_jepa_anchor,subject_calendar,0.004920687299999945,0.5812273278,"8,6,3",False,False
+mixmin,analysis_outputs/submission_mixmin_0c916bb4.csv,active_frontier,target_prior,3.345296144825211e-17,0.5763066405,"0,3,2",False,False
+blend_m0p50_s0p50,analysis_outputs/bridge_scan_candidates/submission_bridge_blend_m0p50_s0p50.csv,raw-structure bridge,target_prior,0.0009890203319010125,0.577295660831901,"2,3,0",False,False
+blend_m0p25_s0p50,analysis_outputs/bridge_scan_candidates/submission_bridge_blend_m0p25_s0p50.csv,raw-structure bridge,target_prior,0.0010397374126445995,0.5773463779126446,"3,2,0",False,False
+a2c8,analysis_outputs/submission_frontier_cvjepa_refine_a2c8d2c8.csv,previous_frontier,target_prior,0.0011326804999999337,0.577439321,"1,2,3",False,False
+raw05,jepa/submission_raw_timeline_jepa_rescue_strict_scale0p5.csv,raw05_positive_anchor,target_prior,0.0012196666999999706,0.5775263072,"2,3,1",False,False
+inv7_s0p25,analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p25.csv,raw-structure bridge,target_prior,0.0013535827066499392,0.57766022320665,"3,2,1",False,False
+inv7_s0p50,analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p50.csv,raw-structure bridge,target_prior,0.0013575812262387116,0.5776642217262388,"3,2,1",False,False
+inv7_s1p00,analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s1p00.csv,raw-structure bridge,target_prior,0.0013659692018998314,0.5776726097018998,"3,2,1",False,False
+inverse7blend_1040,analysis_outputs/submission_inverse7blend_1040423d.csv,raw-structure bridge,target_prior,0.0013659692018998322,0.5776726097018998,"3,2,1",False,False
+stage2,analysis_outputs/submission_hybrid_0p567_foldsafe_stage2_q1_q3_s1_s2_s3_s4.csv,stage2_local_cv_anchor,target_prior,0.0016383352000000203,0.5779449757,"3,2,6",False,False
+ordinal,analysis_outputs/submission_ordinal_q_constraints_ambnext_Q2Q3_nearest_w0.75.csv,ordinal_constraint_anchor,target_prior,0.0019967246999999908,0.5783033652,"4,3,0",False,False
+pair_sensor_1bb_s0p65,analysis_outputs/submission_label_flow_sensorcurve_conservative_1bb_full_s0p65_0ee928c4.csv,S4/Q3 selector disambiguation,target_prior,0.002094732625193213,0.5784013731251932,"1,7,2",False,False
+pair_sensor_1bb,analysis_outputs/submission_label_flow_focused_1bbfb735.csv,S4/Q3 selector disambiguation,target_prior,0.0020950001455904105,0.5784016406455904,"1,7,2",False,False
+pair_sensor_6b,analysis_outputs/submission_label_flow_focused_6b9335b1.csv,S4/Q3 selector disambiguation,target_prior,0.0020952801017960795,0.5784019206017961,"1,7,2",False,False
+final9,analysis_outputs/submission_hybrid_0p578_logit_after_subject_final9_strict.csv,subject_logit_anchor,target_prior,0.0021207122999999913,0.5784273528,"5,4,3",False,False
+q2_jepa_bad,jepa/submission_jepa_latent_q2_w0p45.csv,bad_q2_jepa_anchor,target_prior,0.0034946456999999666,0.5798012862,"6,3,2",False,False
+lejepa_bad,jepa/submission_lejepa_targetwise_strict_best_scale0p5.csv,bad_lejepa_anchor,target_prior,0.0039401786999999425,0.5802468192,"7,3,4",False,False
+jepa_residual_bad,jepa/submission_jepa_latent_residual_probe.csv,bad_all_target_jepa_anchor,target_prior,0.004920687299999921,0.5812273278,"8,6,3",False,False
