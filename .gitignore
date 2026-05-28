@@ -58,6 +58,8 @@ analysis_outputs/*
 !analysis_outputs/mixmin_hard_raw_world_probe_posterior_cv.csv
 !analysis_outputs/mixmin_hard_raw_world_probe_posterior_summary.csv
 !analysis_outputs/mixmin_hard_raw_posterior_safety_stress_scores.csv
+!analysis_outputs/mixmin_hard_posterior_distillation_probe_scan.csv
+!analysis_outputs/mixmin_hard_posterior_distillation_probe_summary.csv
 
 !analysis_outputs/bridge_scan_candidates/
 analysis_outputs/bridge_scan_candidates/*

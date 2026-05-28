@@ -447,3 +447,12 @@
 - Implementation issue possible: medium. The generated worlds and posterior may still be valuable as a teacher or energy, and the actual-anchor proxy is not the true public LB. The discarded claim is specifically direct posterior submission without anchor-constrained distillation.
 - Bottleneck implication: the bottleneck is probability translation and public-anchor geometry, not hidden-world generation alone. A world model can be coherent yet unsafe when converted to row probabilities.
 - Do not repeat: submitting E56 posterior variants or any mixmin-hard world average unless it first beats mixmin under independent anchor stress and stays within a small movement guard.
+
+## FH50. Simple anchor-constrained E56 posterior distillation is submit-safe
+
+- Failed hypothesis: E56 posterior is too large as a full average, but a simple distillation over confident cells, target masks, row gates, caps, and small weights should produce a mixmin-relative submission candidate.
+- Observed result: E58 generated `104727` latent-gated candidates and actual-anchor scored `1200`. Toward-teacher candidates had `631/900` sign-level anchor improvements and all `900` passed world/movement guards, but eligible submission gates were `0` after requiring anchor margin `< -1e-5`. Best toward-teacher delta was only `-0.000003555`. Reverse controls had no world guards and best anchor delta `-0.000000531`.
+- Why discard: the apparent safe direction is below selector/public-sensor resolution. It is not large enough to distinguish signal from anchor-proxy noise or justify a public slot.
+- Implementation issue possible: medium. The candidate grid is simple and may miss nonlinear structural target representations. The discarded claim is only that simple gated distillation is enough.
+- Bottleneck implication: E56 energy can be made non-adverse near mixmin, but not useful at frontier scale. The next path needs a structural block target or an independent non-anchor validation signal, not finer slicing of the same teacher grid.
+- Do not repeat: using sub-`1e-5` actual-anchor improvements as submission evidence, or treating sign-level anchor improvements as sufficient without a margin.

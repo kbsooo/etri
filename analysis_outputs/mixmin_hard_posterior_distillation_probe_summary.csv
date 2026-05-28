@@ -1,0 +1,3 @@
+direction,candidates_scored,anchor_beats_mixmin,movement_guard,world_guard,eligible_submission_gate,diagnostic_reverse_gate,best_anchor_delta_vs_mixmin,best_anchor_candidate
+reverse_control,300,232,300,0,0,0,-5.310767441368824e-07,reverse_control|raw_energy_quarter|s2_s3|high_abs75|teacher_row_top70|w0.010|c0.010
+toward_teacher,900,631,900,900,0,0,-3.5551031977165692e-06,toward_teacher|raw_energy_quarter|no_q2|low_entropy40|teacher_row_top50|w0.095|c0.080
