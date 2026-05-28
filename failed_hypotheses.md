@@ -438,3 +438,12 @@
 - Implementation issue possible: medium. The projection uses true donor block-rate contexts and raw predicted query contexts, so a richer learned representation could still work. But the rejected claim is specifically the simple Q/S rate-manifold translator.
 - Bottleneck implication: raw representation and public alignment are separated at a deeper level than pairwise target dependencies. The next branch needs mixmin-hard hidden-world constraints or a structural block target, not another post-hoc target smoothing pass.
 - Do not repeat: S3-only subject/calendar replacement, kNN target-rate projection, or Ridge target-rate projection as a submission source unless a new stress shows simultaneous pseudo-hidden validity and hidden mixmin sign.
+
+## FH49. Mixmin-hard raw posterior is directly submit-safe
+
+- Failed hypothesis: because E56 regenerated binary worlds with mixmin as a hard observed constraint and produced posterior world-LOO strict gates, the resulting posterior can be submitted directly as the next frontier candidate.
+- Observed result: E57 scored `15` posterior/reference variants and found joint safety gates `0`. Mixmin actual-anchor score was `0.577734`. The safest posterior, `posterior_all_w0.05`, still scored worse than mixmin by `+0.000123`. The E56 selected diagnostic `posterior_raw_energy_quarter_w0.28` / `submission_mixhard_rawposterior_af1502f9.csv` scored worse by `+0.020381` and moved mean abs logit `0.381359` away from mixmin.
+- Why discard: E56 world coherence is not the same as independent public-anchor calibration. The internally best posterior appears to overfit the generated world family or move along a public-anchor-adverse direction.
+- Implementation issue possible: medium. The generated worlds and posterior may still be valuable as a teacher or energy, and the actual-anchor proxy is not the true public LB. The discarded claim is specifically direct posterior submission without anchor-constrained distillation.
+- Bottleneck implication: the bottleneck is probability translation and public-anchor geometry, not hidden-world generation alone. A world model can be coherent yet unsafe when converted to row probabilities.
+- Do not repeat: submitting E56 posterior variants or any mixmin-hard world average unless it first beats mixmin under independent anchor stress and stays within a small movement guard.

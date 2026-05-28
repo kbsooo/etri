@@ -587,6 +587,30 @@ target co-occurrence
 - public LB 기대 반응: direct target-dependency projection submissions would be low information or high risk. If an S3-subject replacement improved public, it would imply public sign is insensitive to the hidden mixmin-rate stress; if Ridge sign-flip improved, E55's pseudo-hidden stress would be invalid for public. Neither is locally justified.
 - 제출 전략: no submission. Move to fresh mixmin-hard binary world generation with raw context as a feasibility prior, or design a more structural block target beyond simple rate-manifold projection.
 
+### H53. Mixmin-hard raw binary worlds generate a coherent hidden posterior
+
+- 상태: 부분 지지됨 as a hidden-world generator; not yet a submission-safe translator.
+- 왜 그럴듯한가: E52 showed existing candidates do not beat mixmin after conditioning old worlds on mixmin, and E54 showed raw overnight context contains strict block-state signal. A fresh world generator that treats mixmin as a hard observation and raw state as feasibility may reveal a posterior not present in the existing candidate pool.
+- 맞다면: regenerated worlds should be numerous/non-duplicate, existing candidates may still fail, but posterior variants should pass internal world-LOO sign gates. The posterior should be interpretable as a latent energy even if direct movement needs separate public-anchor stress.
+- 틀리다면: world generation should collapse to few duplicates, posterior variants should not beat mixmin in held-world stress, or the result should be indistinguishable from existing candidate rescoring.
+- 최소 실험: `analysis_outputs/mixmin_hard_raw_world_probe.py`, with `9` known public anchors including mixmin as an observed constraint, raw E54 hidden block rates as CE/count feasibility energy, and posterior held-world validation.
+- 관측: E56 generated `45` worlds and `44` unique binary worlds. Existing candidate strict gates stayed `0`, but posterior world-LOO strict gates were `12`. Best internal posterior `posterior_raw_energy_quarter_w0.28` had held worlds `11`, better_rate `1.0`, median delta `-0.154291`, p90 `-0.069887`, and max delta `-0.069103`. The generated diagnostic submission moved far from mixmin: mean abs logit `0.381359`.
+- 성공/폐기 기준: hidden-world generator branch is kept because it creates internally coherent posterior structure. The direct submission branch remains unaccepted unless independent anchor/public-shape stress beats mixmin with small movement.
+- public LB 기대 반응: if direct posterior movement improved public despite E57-style stress, it would imply actual-anchor proxy is missing a new hidden subset. If it worsens, E56 should be retained only as teacher/energy.
+- 제출 전략: no direct submission from E56 alone. Use E56 posterior as `mixmin_hard_raw_posterior_energy` or a teacher for anchor-constrained distillation.
+
+### H54. E56 mixmin-hard raw posterior is directly public-safe
+
+- 상태: 반증됨 for tested posterior variants.
+- 왜 그럴듯한가: E56 posterior variants passed internal held-world stress, and the world generator included mixmin as an observed public constraint rather than treating it as an unobserved candidate.
+- 맞다면: at least one posterior should pass world-LOO strict, beat mixmin under independent actual-anchor scoring, and stay close enough to mixmin that it is not a high-variance public overfit move.
+- 틀리다면: posterior variants should either lose to mixmin under actual-anchor stress, or only win after too-large logit movement.
+- 최소 실험: `analysis_outputs/mixmin_hard_raw_posterior_safety_stress.py`, requiring world-LOO strict pass, actual-anchor score below mixmin, and mean abs logit movement versus mixmin `<= 0.08`.
+- 관측: E57 scored `15` variants and found joint safety gates `0`. Mixmin actual-anchor score was `0.577734`. Best posterior `posterior_all_w0.05` scored `0.577857`, delta `+0.000123` versus mixmin. The E56 selected diagnostic `posterior_raw_energy_quarter_w0.28` scored `0.598116`, delta `+0.020381`, with mean abs logit movement `0.381359`.
+- 성공/폐기 기준: discarded as direct submission because independent public-anchor geometry rejects every posterior variant.
+- public LB 기대 반응: submitting the E56 diagnostic would be a high-downside public test, not a justified frontier candidate. Improvement would falsify the actual-anchor safety proxy; worsening would only confirm E57.
+- 제출 전략: do not submit E56 posterior files. Next strategy is anchor-constrained distillation of E56 energy, or a structural block target that can explain the posterior without large public-anchor-adverse movement.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
@@ -617,4 +641,6 @@ E53은 calendar-flank block-rate/count branch의 가장 단순한 count-state po
 
 E54는 raw overnight context가 strict block-state representation을 실제로 회복한다는 강한 단서를 줬다. `night_phone_rawctx_strict_k8_a24`는 pseudo-hidden weighted LogLoss를 subject mean 대비 `-0.007733` 개선했고, geometry도 collapse로 보이지 않았다. 그러나 그 latent는 mixmin-public latent가 아니었다: actual hidden block rate world에서 같은 method의 mixmin delta는 `+0.000311`로 adverse였고 S3 pseudo-hidden target도 악화됐다. 따라서 live branch는 "raw overnight context 자체가 후보"가 아니라, raw strict latent와 mixmin latent 사이의 target-sign conflict를 설명하는 Q/S count manifold 또는 mixmin-hard world generation이었다.
 
-E55는 그 Q/S count manifold translation의 단순 버전을 반증했다. Strict donor target-rate projection 225개 중 joint gate는 `0`이었다. S3를 subject mean으로 교체하면 raw pseudo-hidden보다 `-0.001115` 좋아지고 S3는 고쳐졌지만 hidden mixmin sign은 `+0.000319`로 여전히 adverse였다. 반대로 hidden mixmin sign을 음수로 만드는 Ridge projections는 pseudo-hidden LogLoss를 `0.727319` 수준으로 망가뜨렸다. 따라서 남은 live branch는 post-hoc target projection이 아니라 mixmin-hard world generation 또는 단순 rate vector보다 더 구조적인 block target representation이다.
+E55는 그 Q/S count manifold translation의 단순 버전을 반증했다. Strict donor target-rate projection 225개 중 joint gate는 `0`이었다. S3를 subject mean으로 교체하면 raw pseudo-hidden보다 `-0.001115` 좋아지고 S3는 고쳐졌지만 hidden mixmin sign은 `+0.000319`로 여전히 adverse였다. 반대로 hidden mixmin sign을 음수로 만드는 Ridge projections는 pseudo-hidden LogLoss를 `0.727319` 수준으로 망가뜨렸다. 따라서 남은 live branch는 post-hoc target projection이 아니라 mixmin-hard world generation 또는 단순 rate vector보다 더 구조적인 block target representation이었다.
+
+E56은 그 mixmin-hard world generation을 실제로 실행했고, H53을 부분 지지했다. Mixmin을 hard observation으로 넣고 raw overnight hidden block-rate를 feasibility prior로 쓴 world family는 `45` worlds / `44` unique worlds를 만들었고, 기존 후보 strict gate는 여전히 `0`이었지만 posterior world-LOO strict gate는 `12`개 열렸다. 그러나 E57은 H54를 반증했다. E56 posterior variants `15`개 중 independent actual-anchor plus movement safety joint gate는 `0`이었고, E56 selected diagnostic은 mixmin보다 actual-anchor `+0.020381` 나빴다. 따라서 현재 live branch는 direct posterior submission이 아니라 E56 posterior의 anchor-constrained distillation 또는 structural block target representation이다.
