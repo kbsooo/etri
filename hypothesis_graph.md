@@ -671,6 +671,18 @@ target co-occurrence
 - public LB 기대 반응: no public submission. A public test would be lower-information than E58 because the local margin is smaller and the gate did not add independent selector-scale support.
 - 제출 전략: no E62 submission. Future E56 use needs a different independent validation target, not transition residual as a simple gate.
 
+### H60. Gradient-consensus hidden-rate views can make E56 submit-safe
+
+- 상태: 부분 지지 for direction, 반증됨 for submission safety.
+- 왜 그럴듯한가: E58/E62 tested hand-built gates and found only sub-margin actual-anchor gains. A sharper LeJEPA-style test is not "does a gate look plausible?" but "does the E56 teacher move down the BCE gradient implied by independent hidden-rate views?" If calendar count, raw phone context, transition residual, and subject priors independently agree with the teacher direction, E56 may contain a real hidden-world direction that previous gates underused.
+- 맞다면: toward-teacher cells should pass gradient-consensus hidden guards across multiple non-anchor views, reverse controls should fail those guards, and at least one toward candidate should clear actual-anchor selector margin `< -1e-5` while preserving E56 world/movement guards.
+- 틀리다면: hidden-rate gradient guards should either not distinguish toward vs reverse, or should distinguish direction but still fail public-anchor margin, implying the missing piece is amplitude/public-anchor translation rather than directional validation.
+- 최소 실험: `analysis_outputs/gradient_consensus_posterior_probe.py`, building hidden-rate views from subject mean, strict calendar counts, raw phone base, row-safe/balanced/aggressive transition signs, and a core median view. It uses BCE-gradient agreement at mixmin as a cell/row gate, then makes capped logit moves from mixmin toward E56 teacher and actual-anchor scores the prefiltered candidates.
+- 관측: E63 generated `404671` candidates and actual-anchor scored `1300`. Toward-teacher candidates passed hidden guard `1000/1000`, E56 world guard `1000/1000`, movement guard `1000/1000`, and sign-level anchor beats `932/1000`, while reverse controls had hidden guard `0/300` and world guard `0/300`. The best anchor candidate was `toward_teacher|all|no_q2_s3|raw_agree|grad_core_top50|all|w0.070|c0.080` with anchor delta `-0.000003650`; the strongest hidden-core mean delta among scored toward candidates was `-0.000368596`; eligible submission gates remained `0`.
+- 성공/폐기 기준: directional validation survives; submit-safe claim fails. Gradient-consensus is stronger evidence than transition-only gating because it separates toward from reverse cleanly and agrees across independent hidden-rate views, but its public-anchor improvement is still below E58's corrected `-0.000004081` and far below `1e-5`.
+- public LB 기대 반응: no submission. A public test from E63 would mostly measure public-anchor noise, not a selector-scale new hypothesis. If a future amplitude translator clears margin while preserving these hidden guards, improvement would strengthen the view that E56 has real direction but needs better calibration.
+- 제출 전략: no E63 submission. Use gradient-consensus as a direction validator and cell-risk energy only; next work must translate the validated direction into a larger, calibration-preserving movement.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
@@ -712,3 +724,5 @@ E59는 H56을 direct candidate source로 반증했다. 128-state joint block lab
 E60은 H57을 direct translator/independent validator로 반증했다. Transition residual은 hidden mixmin sign을 강하게 만들 수 있었다: best hidden-sign method는 weighted mixmin delta `-0.001569`였고 S3/S2/Q3 축이 주로 기여했다. 그러나 그 방법은 pseudo-hidden row LogLoss를 raw 대비 `+1.519232` 망가뜨렸고 S3도 subject 대비 `+1.331880` 악화됐다. 반대로 row-valid한 transition methods는 raw에 매우 가깝게 머물렀고 hidden mixmin sign은 여전히 adverse였다. 따라서 transition residual은 "숨은 방향 센서"로는 흥미롭지만, row calibration을 보존하는 non-anchor validator는 아니다.
 
 E62는 H59를 반증했다. Transition residual을 probability target으로 쓰지 않고 E56 teacher cell gate로만 쓰면 살 수 있다는 보수적 가설을 찔렀지만, `363258` 후보 중 eligible gate는 `0`이었다. Best toward-teacher anchor delta는 `-2.716e-6`으로 E58 corrected best `-4.081e-6`보다 약했고, reverse control도 거의 움직이지 않았다. 따라서 transition residual은 현재 형태에서는 E56 energy의 missing validator가 아니라, 더 복잡한 structural target에 들어갈 수 있는 위험 진단 축일 뿐이다.
+
+E63은 H60을 양쪽으로 갈랐다. Subject/calendar/raw/transition hidden-rate view들의 BCE gradient consensus는 E56 teacher 방향을 강하게 지지했다. Toward 후보는 hidden guard와 world guard가 각각 `1000/1000` 열렸고 reverse control은 `0/300`이었다. 하지만 best actual-anchor delta는 `-3.650e-6`으로 E58 corrected best보다도 작았고 eligible gate는 `0`이었다. 따라서 "E56 방향 자체가 환상"은 약화됐지만, "그 방향이 곧 제출 가능한 확률 이동"은 반증됐다. 병목은 방향 발견이 아니라 amplitude/public-anchor translation이다.
