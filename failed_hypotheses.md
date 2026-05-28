@@ -618,3 +618,12 @@
 - Implementation issue possible: low to medium. E77 uses E76's local stress universe and robust aggregators, not a learned posterior. A learned localizer could still work. The discarded claim is only generic source-subset posterior averaging as a direct candidate generator.
 - Bottleneck implication: the missing object is localization, not averaging. Target-asymmetric direction is real-looking, but safe amplitude depends on combo-set, tail, row-block, or public-like energy.
 - Do not repeat: materializing E77 posterior aggregate submissions or treating full-scope posterior margin as safe without tail/set support. Future amplitude work must condition movement before aggregation or learn a row/cell-local gate.
+
+## FH69. Source-subset reliability masks repair E75 exact-amplitude risk
+
+- Failed hypothesis: E76 deployable/non-deployable distributions can localize E75 movement into a better deployable row.
+- Observed result: E78 scored `4452` localized rows from `36` reliability masks, with strict/deployable `1806`, loose `3934`, deployable rows beating E75 `0`, and best all equal to E75 `-1.23676e-5`.
+- Why discard: masks either collapse to identity over E75 active cells or shrink the edge below E75. Strong sign masks can remain deployable but weaker; excess/veto masks are too sparse.
+- Implementation issue possible: low to medium. E78 uses E76 source-subset distributions and the same local stress universe, not a learned public-like localizer. A richer row/block/tail-conditioned localizer could still work. The discarded claim is only source-subset reliability masks as direct amplitude repair.
+- Bottleneck implication: exact amplitude risk is not solved by row/target reliability from the same E76 source-subset universe.
+- Do not repeat: sign-stability, consensus, excess, or veto masks over E76 source variants as direct candidates. Future amplitude localization needs public-like row/block/tail state or public feedback from E73/E75/E74.
