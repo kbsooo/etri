@@ -707,6 +707,18 @@ target co-occurrence
 - public LB 기대 반응: no submission. A public test would be another sub-margin probe; a better next experiment should explain why Q2/S3 exclusion helps and whether public-safe amplitude is controlled by target conflict rather than scale.
 - 제출 전략: no E65 submission. Use `no_q2_s3 + grad_all_abs50` as the current local response diagnostic, not a candidate file.
 
+### H63. Q2/S3 conflict is hidden-direction failure
+
+- 상태: 반증됨 as stated; refined to "Q2/S3 are public-anchor tail-risk targets, not simply wrong hidden targets."
+- 왜 그럴듯한가: E65's best local pocket excluded Q2 and S3. Earlier raw-context, target-projection, and transition probes also repeatedly made S3 or Q2/S-stage axes unstable. The obvious explanation was that E56 teacher movement is directionally wrong on those targets.
+- 맞다면: adding Q2/S3 back to matched `no_q2_s3` configurations should worsen hidden-core BCE and mean-anchor contribution, not only the robust actual-anchor score.
+- 틀리다면: Q2/S3 add-back should often improve hidden-core or mean-anchor terms while still worsening the robust score, implying a tail/calibration conflict rather than a target-sign conflict.
+- 최소 실험: `analysis_outputs/q2_s3_conflict_translator_probe.py`, holding the E65/E63 gradient-consensus cell set fixed and scoring matched target masks (`all`, `no_q2`, `no_s3`, `no_q2_s3`, `q2`, `s3`, `q2_s3`) with actual-anchor score, mean-anchor target contribution, hidden core/all deltas, and paired add-back decompositions.
+- 관측: E66 generated and scored `3000` focused candidates. `no_q2_s3` remained the best robust actual-anchor mask (`-5.994944e-6`, `328/432` anchor beats), but `all` add-back was robust-anchor adverse in `432/432` matched configurations while improving mean-anchor in `288/432`, worsening max-set tail in `432/432`, improving min-set in `432/432`, and improving hidden core in `432/432`. Q2/S3-only masks had strong hidden-core gains (`q2_s3` best `-3.702e-5`) but `0` anchor beats for `q2` and `q2_s3`.
+- 성공/폐기 기준: the hidden-direction-failure hypothesis is discarded. The surviving hypothesis is that Q2/S3 movement increases public-compatible worst-tail risk even when its average or hidden-world direction can be favorable.
+- public LB 기대 반응: no public submission. A Q2/S3 add-back file would mostly test anchor-tail noise with high downside. The next public-relevant candidate must neutralize max-set/tail risk, not simply include or exclude Q2/S3.
+- 제출 전략: no E66 submission. Use `q2_s3_tail_risk_energy` to design a tail-neutral, variance-aware Q2/S3 translator for E56-energy moves.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
@@ -753,4 +765,6 @@ E63은 H60을 양쪽으로 갈랐다. Subject/calendar/raw/transition hidden-rat
 
 E64는 H61을 반증했다. E63 방향이 단순히 under-scaled일 뿐인지 보기 위해 scale/cap을 키웠지만, actual-anchor sign이 오히려 전부 adverse로 돌아섰다. Toward 후보는 hidden/world/movement guard가 모두 `1346/1346`인데 anchor beats는 `0/1346`이었고 best toward delta도 `+3.024e-6`이었다. 따라서 E56 gradient 방향은 local hidden-rate BCE 기준으로는 맞지만, public-anchor LogLoss에서는 작은 neighborhood를 벗어나면 바로 나빠진다. 다음 질문은 더 큰 scale이 아니라 target별/row별 amplitude를 어떻게 거의 0 주변에서 선택하느냐다.
 
-E65는 H62를 절반만 살렸다. Near-zero targetwise pocket은 실제로 있었다. `no_q2_s3 + raw_agree + grad_all_abs50 + scale 0.13 + cap 0.12`가 `-5.995e-6`으로 E63보다 개선됐고, toward 후보 `1753/2290`이 mixmin을 sign-level로 이겼다. 그러나 anchor-margin gate는 여전히 `0`이고, single-target 움직임은 Q1/S4 정도만 약하게 살아났으며 S2는 adverse였다. 따라서 다음 분기는 scale 탐색이 아니라 Q2/S3 conflict와 broad-mask amplitude의 원인을 설명하는 target-conflict translator다.
+E65는 H62를 절반만 살렸다. Near-zero targetwise pocket은 실제로 있었다. `no_q2_s3 + raw_agree + grad_all_abs50 + scale 0.13 + cap 0.12`가 `-5.995e-6`으로 E63보다 개선됐고, toward 후보 `1753/2290`이 mixmin을 sign-level로 이겼다. 그러나 anchor-margin gate는 여전히 `0`이고, single-target 움직임은 Q1/S4 정도만 약하게 살아났으며 S2는 adverse였다. 따라서 다음 분기는 scale 탐색이 아니라 Q2/S3 conflict와 broad-mask amplitude의 원인을 설명하는 target-conflict translator였다.
+
+E66은 H63을 정밀하게 반증했다. Q2/S3는 hidden 방향이 단순히 틀린 target이 아니었다. Matched add-back에서 `all`은 robust actual-anchor를 `432/432` 악화시켰지만 mean-anchor는 `288/432` 개선했고 hidden core는 `432/432` 개선했다. 동시에 max-set tail은 `432/432` 악화됐다. 그러므로 병목은 "Q2/S3를 빼야 한다"가 아니라 "Q2/S3가 평균/hidden 이득을 줄 수 있어도 public-compatible worst-tail risk를 키우는 것을 어떻게 중화할 것인가"다. 다음 분기는 Q2/S3 target mask가 아니라 tail-neutral/variance-aware translator다.

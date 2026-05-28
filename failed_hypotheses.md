@@ -519,3 +519,12 @@
 - Implementation issue possible: medium. The grid is focused, not exhaustive, and actual-anchor remains a proxy. But it specifically tested the most plausible next branch after E63/E64: small scales, target masks, row gates, caps, and flat/core-gain shapes. The margin gate stayed closed.
 - Bottleneck implication: the bottleneck is not line-search resolution. The missing object is a Q2/S3-aware calibration translator or a structural representation that explains why broad target movement saturates before becoming public-anchor safe.
 - Do not repeat: more near-zero scalar/target-mask sweeps on the same E63 cells unless a new target-conflict model changes the cell set or amplitude rule.
+
+## FH58. Q2/S3 conflict means hidden direction is wrong
+
+- Failed hypothesis: E65's `no_q2_s3` pocket works because Q2 and S3 teacher movement is simply wrong under hidden-rate structure; excluding them is therefore the semantic solution.
+- Observed result: E66 generated and scored `3000` focused matched-mask candidates. `no_q2_s3` remained the best robust actual-anchor mask at `-0.000005995`, but Q2/S3 add-back was not hidden-direction adverse. `all` add-back worsened robust actual-anchor in `432/432` matched configurations while improving mean-anchor in `288/432`, min-set tail in `432/432`, and hidden core in `432/432`; max-set tail worsened in `432/432`. Q2/S3-only masks had hidden-core gains but `q2` and `q2_s3` had `0` anchor beats.
+- Why discard: hidden/mean evidence and robust public-anchor evidence split. Q2/S3 can point in a plausible hidden direction while increasing the worst public-compatible tail enough to dominate LogLoss. Masking them is a diagnostic, not a semantic explanation.
+- Implementation issue possible: medium. E66 uses focused E65/E63 cell families and actual-anchor proxy rather than true public labels. But the matched decomposition is internally strong: the same configurations show hidden and tail effects moving in opposite directions.
+- Bottleneck implication: the next bottleneck is tail-risk calibration, not target-direction discovery. A valid translator must allow or shrink Q2/S3 based on scenario stability and max-set risk, not by broad inclusion/exclusion.
+- Do not repeat: Q2/S3 add-back or exclusion sweeps that do not measure mean-versus-tail decomposition. Future Q2/S3 work needs tail-neutral gating or variance-aware amplitude.
