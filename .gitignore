@@ -36,6 +36,10 @@ analysis_outputs/*
 !analysis_outputs/post_mixmin_anchor_calendar_selector_candidates.csv
 !analysis_outputs/post_mixmin_anchor_calendar_selector_anchor_features.csv
 !analysis_outputs/post_mixmin_anchor_calendar_selector_world_energy.csv
+!analysis_outputs/post_mixmin_binary_world_sign_stress_worlds.csv
+!analysis_outputs/post_mixmin_binary_world_sign_stress_bands.csv
+!analysis_outputs/post_mixmin_binary_world_sign_stress_scores.csv
+!analysis_outputs/post_mixmin_binary_world_sign_stress_summary.csv
 
 !analysis_outputs/bridge_scan_candidates/
 analysis_outputs/bridge_scan_candidates/*

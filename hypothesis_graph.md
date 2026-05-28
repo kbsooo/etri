@@ -539,6 +539,18 @@ target co-occurrence
 - public LB 기대 반응: a future public-improving candidate should not be a global prior tweak or a direct calendar-position tweak. It should preserve mixmin's anchor-loss direction while changing probabilities mostly on specific subject-calendar hidden blocks whose block-rate state is independently inferred.
 - 제출 전략: no immediate submission. Do not use E50/E51 predicted candidate scores as forecasts. Build a mixmin-relative candidate only after calendar context predicts block-rate/count state or a revised binary-world stress uses mixmin as a constraint and leaves the candidate sign stable.
 
+### H49. Mixmin-conditioned binary worlds certify an existing replacement candidate
+
+- 상태: 반증됨 for current curated candidate pool; supports mixmin as local frontier inside the current binary-world family.
+- 왜 그럴듯한가: E32/E33 low-anchor-energy worlds supported mixmin and inverse7 before mixmin was known. E48 then validated mixmin publicly. If the same hidden-world family contains the next improvement, conditioning worlds on the actual mixmin public delta should reveal which existing bridge/inverse/raw candidate is consistently better than mixmin.
+- 맞다면: at least one candidate should have negative max LogLoss delta versus mixmin in the 1-gap or 2-gap mixmin-compatible world bands and in the postmix low-energy band. A weaker but useful result would be high better_rate, negative median, and no adverse delta larger than the raw05-a2c8 resolution unit.
+- 틀리다면: candidate signs should collapse around mixmin, with no strict or loose better-than-mixmin gates. Near-ties may exist, but their max delta should remain positive and their better_rate should be far from one-sided.
+- 최소 실험: `analysis_outputs/post_mixmin_binary_world_sign_stress.py`, reusing E30/E32 binary worlds, filtering/reweighting by actual mixmin delta `-0.0011326805`, and scoring E51/E37/E38/selected bridge candidates by world LogLoss delta versus mixmin.
+- 관측: E52 scored `158` candidates. Mixmin-compatible 1-gap worlds were `5`; postmix-energy-quarter worlds were `7`. Strict better-than-mixmin gates were `0`, loose gates were `0`, and near-tie gates were `1`. The near-tie `analysis_outputs/bridge_scan_candidates/submission_bridge_blend_m0p75_s1p25.csv` had mixmin-fit-gap better_rate `0.2`, median delta `+0.000034`, max delta `+0.000048`, and postmix-energy-quarter better_rate `0.285714`, median delta `+0.000009`.
+- 성공/폐기 기준: the existing-candidate replacement version is discarded because no candidate is one-sided better than mixmin. The broader constrained-world route remains live only if a newly generated binary/MILP family includes mixmin as a hard anchor and produces a new movement with stable sign, or if a block-rate/count representation supplies a new candidate not already in E52.
+- public LB 기대 반응: submitting the near-tie would be low information because E52 says it is not better than mixmin, only almost equivalent under a small feasible band. A public improvement from it would imply the E30/E32 world family misses a private/public split or target-axis component; a worsening would add little beyond confirming E52.
+- 제출 전략: no submission from E52. Keep mixmin as active frontier. Next useful action is calendar-flank block-rate/count target modeling or a fresh mixmin-constrained world-generation experiment, not another rescore of existing bridge candidates.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
@@ -561,4 +573,6 @@ E49는 H48을 추가했다. Mixmin의 target movement는 `Q3/Q1/S3`에 크고, `
 
 E50은 H48의 가장 단순한 selector 변환을 반증했다. Target/prior/calendar/subject/subject-calendar movement views는 known-anchor order 일부를 보존했지만, 어느 view도 held-out mixmin을 public-best로 예측하지 못했다. 따라서 calendar mask는 여전히 JEPA context 후보지만, standalone public selector나 submission forecast는 아니다. 다음 실험은 calendar flanks를 anchor-loss/binary-world geometry 또는 held-out block-rate/count target과 결합해야 한다.
 
-E51은 그 다음 결합 selector도 반증했다. LOO-safe anchor-loss world aggregates는 E32/E38의 sensor 성공을 kNN selector로 옮기지 못했다. Best anchor-residual view는 coarse order와 bad-tail을 일부 맞혔지만 held-out mixmin을 `0.00241739` worse로 예측했다. 따라서 "anchor-loss + calendar feature ranker"가 아니라, block-rate/count context target 또는 mixmin-constrained binary-world stress가 다음 분기다.
+E51은 그 다음 결합 selector도 반증했다. LOO-safe anchor-loss world aggregates는 E32/E38의 sensor 성공을 kNN selector로 옮기지 못했다. Best anchor-residual view는 coarse order와 bad-tail을 일부 맞혔지만 held-out mixmin을 `0.00241739` worse로 예측했다. 따라서 "anchor-loss + calendar feature ranker"가 아니라, block-rate/count context target 또는 mixmin-constrained binary-world stress가 다음 분기였다.
+
+E52는 그 mixmin-constrained stress의 첫 번째, 저비용 버전을 실행했다. 기존 E30/E32 worlds를 mixmin actual delta에 맞는 band로 조건화하고 158개 후보를 mixmin 대비 재점수화했지만 strict/loose better-than-mixmin은 `0`이었다. 유일한 near-tie `bridge_blend_m0p75_s1p25`도 median이 양수이고 max delta가 양수라 제출 후보가 아니다. 이 결과는 현재 후보 풀 안에서는 mixmin이 local frontier라는 쪽을 강화한다. 남은 live branch는 기존 후보 rescore가 아니라 calendar-flank block-rate/count target 또는 mixmin을 hard constraint로 넣은 새 world-generation이다.
