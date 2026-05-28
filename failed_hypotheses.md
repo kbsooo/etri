@@ -573,3 +573,12 @@
 - Implementation issue possible: low to medium. E71 intentionally uses E68 strict rows as evidence for cell selection, so it is still a diagnostic, but it removes the strongest heldout-specific reconstruction objection. The lack of non-`none` gates is therefore a meaningful negative.
 - Bottleneck implication: the bottleneck is not only heldout-specific construction. It is the absence of a stable agreement/energy geometry that can choose when Q2/S3 consensus is safe.
 - Do not repeat: treating unified `gate=none` consensus as submit-safe. Future work must either make non-`none` gates survive margin, learn rowwise/cellwise amplitude, or change the target to a structural block representation.
+
+## FH64. E71 means no non-none Q2/S3 gate can be deployable
+
+- Failed hypothesis: because E71 found `0` deployable non-`none` unified gates, the Q2/S3 consensus branch cannot produce a conservative test-time rule and should be abandoned unless a structural block target is rebuilt from scratch.
+- Observed result: E72 swept sparse magnitude, soft agreement, sign agreement, target-only, and target-agreement gates over the same unified-cell source. It generated `4752` rows and found `21` strict rows, `10` deployable non-`none` rows, and `655` loose rows. The deployable rows came from `top_abs50` (`7`) and `s3_only` (`3`), not from Q2-only or soft/sign agreement. E73 materialized the best deployable row as `analysis_outputs/submission_e72_topabs50_q2s3_gate_4e48cba2.csv`.
+- Why discard: E71 falsified sign/agreement gating, not all non-`none` gating. Sparse magnitude is a different geometry: it accepts that only the largest Q2/S3 consensus cells are reliable and treats sign disagreement as noise/risk rather than a hard veto.
+- Implementation issue possible: medium. E72 is still a local combo/hidden/world stress, and public LB is unobserved. But the narrow claim "no deployable non-`none` gate exists" is directly false under the same margin/stress machinery.
+- Bottleneck implication: the bottleneck is now public sign, not mere deployability. We have a materialized sparse-gate sensor; if public rejects it, the failure is local stress overfit or public-subset mismatch, not absence of gate geometry.
+- Do not repeat: abandoning Q2/S3 consensus solely because sign/agreement gates fail. Also do not submit untested soft/agreement/Q2-only variants; the only live E72 file is the selected sparse-magnitude diagnostic.
