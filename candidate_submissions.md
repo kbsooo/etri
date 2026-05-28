@@ -174,15 +174,17 @@ Update after E51: anchor-loss plus calendar selector recalibration also does not
 
 Update after E52: the first mixmin-constrained binary-world sign stress also does not add a submission file. `analysis_outputs/post_mixmin_binary_world_sign_stress.py` conditioned E30/E32 worlds on the actual mixmin public delta and scored `158` candidates versus mixmin. Strict better-than-mixmin gates were `0`, loose gates were `0`, and near-tie gates were `1`. The only non-duplicate near-tie was `analysis_outputs/bridge_scan_candidates/submission_bridge_blend_m0p75_s1p25.csv`, but it had mixmin-fit-gap better_rate `0.2`, median delta `+0.000034`, max delta `+0.000048`, and postmix-energy-quarter better_rate `0.285714`. This is not a replacement for mixmin. It supports keeping `submission_mixmin_0c916bb4.csv` as the active frontier.
 
+Update after E53: the simple calendar-flank count-state probe also does not add a submission file. `analysis_outputs/calendar_flank_block_count_state_probe.py` found a local same-subject pseudo-hidden gain (`-0.005266`) but strict subject-excluded pseudo-hidden loss (`+0.001434`). Real hidden strict rates weakly favor mixmin overall (`-0.000179`) but only through S3/S2/Q2, while S1/Q1/Q3/S4 are adverse. This is not a direct probability-movement source. It supports keeping calendar-flank count state as an energy/gating diagnostic only.
+
 ## Submission Order
 
 Current recommendation after E48: use `analysis_outputs/submission_mixmin_0c916bb4.csv` as the active public frontier. Do not continue a2c8-centered micro-edge submission logic until selectors are recalibrated with the new mixmin anchor.
 
 1. Keep `analysis_outputs/submission_mixmin_0c916bb4.csv` as the active best.
-2. Do not submit a new file yet from E49/E50/E51/E52 alone. Calendar-block observation is real, anchor-loss was public-relevant, and E52 makes mixmin look like a local binary-world frontier, but none of these experiments produced a one-sided replacement.
+2. Do not submit a new file yet from E49/E50/E51/E52/E53 alone. Calendar-block observation is real, anchor-loss was public-relevant, E52 makes mixmin look like a local binary-world frontier, and E53 finds useful count-state energy, but none of these experiments produced a one-sided replacement.
 3. Treat `analysis_outputs/submission_frontier_cvjepa_refine_a2c8d2c8.csv` as the previous-frontier contrast anchor, not the baseline to optimize around blindly.
 4. Stop treating known-anchor kNN as the next default selector. E50/E51 show it cannot explain mixmin-best even with calendar and anchor-loss features.
-5. Next candidate source should be either block-rate/count target prediction from calendar flanks or a regenerated binary-world MILP that includes mixmin as a hard known constraint and searches for new movement, not just rescoring current candidates.
+5. Next candidate source should be either richer block-rate/count target prediction from calendar flanks plus raw/target-dependency context, or a regenerated binary-world MILP that includes mixmin as a hard known constraint and searches for new movement, not just rescoring current candidates or simple flank-count posteriors.
 6. Do not submit `analysis_outputs/bridge_scan_candidates/submission_bridge_blend_m0p75_s1p25.csv`. E52 says it is a near-tie only, not better than mixmin.
 7. Hold pair-only S4/Q3 sensors until post-mixmin recalibration. Their old purpose, pair-vs-old selector disambiguation around a2c8, is now lower value.
 8. If lower movement risk is more important than maximum diagnostic contrast, use `analysis_outputs/submission_label_flow_sensorcurve_conservative_1bb_full_s0p65_0ee928c4.csv`; expect weaker LB readability.
@@ -222,6 +224,7 @@ Current recommendation after E48: use `analysis_outputs/submission_mixmin_0c916b
 42. Do not submit or rank from E50 calendar-selector predicted scores. The best subject-calendar selector fails to predict mixmin as best, so its candidate table is diagnostic only.
 43. Do not submit or rank from E51 anchor-calendar predicted scores. The best anchor-residual selector also fails held-out mixmin and a2c8/raw05 order.
 44. Do not submit E52 near-tie candidates as mixmin replacements. `bridge_blend_m0p75_s1p25` is not one-sided better under mixmin-compatible binary worlds.
+45. Do not submit E53 calendar-flank count posteriors or use them as direct row probability tweaks. Local gains are same-subject-driven and strict recovery is target-mismatched.
 
 ## Current 0.54 Assessment
 
