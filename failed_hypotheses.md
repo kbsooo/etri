@@ -600,3 +600,12 @@
 - Implementation issue possible: medium. E75 still depends on combo proxies and the true public sign is unknown. But the discarded claim is only local symmetric-amplitude optimality, not public alignment.
 - Bottleneck implication: the remaining blocker is now public sign and target-specific amplitude calibration. If E73 public sign is positive, the next information-rich question is whether public prefers conservative symmetric movement or S3-heavy target-asymmetric movement.
 - Do not repeat: treating E74 alpha20 as the only second sparse-gate sensor. Keep it as symmetric control, and use E75 when the experiment is specifically target-asymmetric amplitude.
+
+## FH67. Exact E75 `q2=8/s3=28` amplitude is as subset-stable as E73 sparse sign
+
+- Failed hypothesis: after E75, the exact target-specific amplitude pair `alpha_q2=8`, `alpha_s3=28` can be promoted as broadly stable in the same sense as E73's alpha16 sparse-gate sign.
+- Observed result: E76 replayed `21` Q2/S3 alpha pairs over `94` reference/jackknife/group/rank/bootstrap source-subset variants. Exact `asym8_28_e75` beat `sym16_e73` and `sym20_e74` in `94/94` variants, so the direction survived. But exact `asym8_28_e75` was deployable in only `49/94` variants: jackknife `8/13`, group_keep `7/10`, rank_keep `5/10`, bootstrap8 `28/60`. E74's earlier E73 alpha16 stress was broader: jackknife `13/13`, bootstrap8 `48/60`.
+- Why discard: E76 separates direction from exact amplitude. S3-heavy/Q2-low is a stable local law, but universal `8/28` is not stable enough to outrank E73 as the first public sparse-gate sensor on robustness grounds.
+- Implementation issue possible: low to medium. E76 uses the same local combo/hidden/world/block stress as E74/E75, so public sign is still unknown. The discarded claim is only exact-amplitude subset stability, not target asymmetry itself.
+- Bottleneck implication: the next amplitude problem is row/cell-conditioned calibration, not another universal target-alpha pair. Public could still reward E75, but that would mean public subset matches the sharp asymmetric ridge despite partial subset stability.
+- Do not repeat: calling E75 safer than E73 because it has better local all-combo delta. Use E75 for target-asymmetry information value, not for robustness; keep E74 as the symmetric control.
