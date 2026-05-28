@@ -546,3 +546,12 @@
 - Implementation issue possible: medium. E68 still starts from selected E67 configs and uses proxy combo families, not true public labels. But the heldout reconstruction plus non-anchor diagnostics directly remove the simplest same-anchor arithmetic explanation.
 - Bottleneck implication: the bottleneck is no longer Q2/S3 cell validity. It is amplitude and translation: the validated cells are real-looking but their held-out gains are `1e-6` scale.
 - Do not repeat: dismissing E67 as pure anchor-tail artifact without heldout/non-anchor stress. Also do not submit E68 cells directly; the effect is below selector-scale margin.
+
+## FH61. E68 strict Q2/S3 cells only need global alpha amplification
+
+- Failed hypothesis: independently validated Q2/S3 cells are useful but under-scaled; a single alpha over their Q2/S3 logit delta should convert the E68 micro-edge into selector-scale movement.
+- Observed result: E69 used `155` E68 strict pairs, scaled only the Q2/S3 logit delta over alpha `0` to `24`, and scored `2170` rows / `2061` unique predictions. Strict amplitude gates were `0`, and full-combo margin gates were `0`. Best full-combo delta vs mixmin was `-9.1779e-6`, below the `-1e-5` margin. Heldout tail-neutral counts fell from `155/155` at alpha `1` to `69/155` at alpha `8`, `49/155` at alpha `12`, and `22/155` at alpha `24`; median heldout response turned adverse after alpha `10`.
+- Why discard: the full-combo proxy gets closer to the margin, but not enough, and the stability curve worsens as alpha increases. The missing object is not one global multiplier.
+- Implementation issue possible: low to medium. E69 uses heldout-specific E68 gates rather than a unified submission rule, so it is a stress test rather than a candidate. But this makes the negative result stronger for simple alpha: even with heldout-specific strict cells, no margin gate opens.
+- Bottleneck implication: the bottleneck is rowwise/cellwise amplitude selection or structural target design, not validated-cell direction or scalar scale.
+- Do not repeat: global alpha sweeps over E68 strict cells. Future amplitude work must condition on row/block/tail energy and prove margin plus tail safety together.
