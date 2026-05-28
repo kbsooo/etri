@@ -1,0 +1,2 @@
+submission,mixmin_public_lb,e73_public_lb,public_delta_vs_mixmin,local_all_combo_delta_vs_mixmin,public_to_local_edge_ratio,test_rows,targets,total_cells_if_full_public,active_moved_cells,active_rows,active_targets,observed_loss_sum_if_full_250x7_public
+submission_e72_topabs50_q2s3_gate_4e48cba2.csv,0.5763066405,0.5764077772,0.00010113670000000408,-1.05458e-05,9.590234975061549,250,7,1750,893,249,"Q1,Q2,Q3,S1,S2,S3,S4",0.17698922500000713

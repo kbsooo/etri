@@ -781,51 +781,51 @@ target co-occurrence
 
 ### H69. Sparse-magnitude Q2/S3 consensus is the deployable gate geometry
 
-- 상태: 부분 지지; public sensor pending.
+- 상태: local gate 부분 지지; submitted combined-file public alignment rejected; isolated Q2/S3 remains sub-margin.
 - 왜 그럴듯한가: E71 failed only the tested agreement gates. The surviving `gate=none` rows may contain a sparse high-magnitude subset where consensus amplitude is meaningful even if sign agreement is not globally high.
 - 맞다면: `top_abs50` should produce non-`none` strict rows with selector-scale all-combo margin, all combo sets beating base/tail-neutral, hidden/world/raw/block support, and a materializable submission file. Q2-only should remain weak if S3 is the actual public-sensitive carrier.
 - 틀리다면: all non-`none` gate families should remain sub-margin or fail hidden/world/block/tail diagnostics.
 - 최소 실험: `analysis_outputs/q2_s3_unified_gate_geometry_probe.py`, sweeping `top_abs50`, `top_abs30`, `agree55`, soft signed/agreement gates, `q2_only`, `s3_only`, and target-agreement gates over E71 unified cells.
-- 관측: E72 built `4752` rows / `4752` unique predictions. Strict rows `21`, deployable non-`none` rows `10`, loose rows `655`. `top_abs50` produced `7` deployable rows with best deployable all-combo delta `-1.05458e-5`; `s3_only` produced `3` deployable rows; `q2_only` and `q2_agree55` produced `0` loose rows. E73 materialized the best row as `analysis_outputs/submission_e72_topabs50_q2s3_gate_4e48cba2.csv`.
-- 성공/폐기 기준: local deployable gate claim is supported. Public-alignment claim remains unproven because the margin is tiny and worst-set delta vs mixmin is still positive.
-- public LB 기대 반응: if the E73 file improves, H69 becomes the first post-mixmin sparse Q2/S3 consensus translator. If it worsens, H69 is downgraded to local combo/hidden/world overfit and future candidates need stronger public-subset or structural block-state evidence.
-- 제출 전략: `submission_e72_topabs50_q2s3_gate_4e48cba2.csv` is the current priority-1 diagnostic submission after mixmin, not yet a confirmed replacement.
+- 관측: E72 built `4752` rows / `4752` unique predictions. Strict rows `21`, deployable non-`none` rows `10`, loose rows `655`. `top_abs50` produced `7` deployable rows with best deployable all-combo delta `-1.05458e-5`; `s3_only` produced `3` deployable rows; `q2_only` and `q2_agree55` produced `0` loose rows. E73 materialized the best row as `analysis_outputs/submission_e72_topabs50_q2s3_gate_4e48cba2.csv`. Public LB for this file was `0.5764077772`, worse than mixmin by `+0.0001011367`. E80 then found the file moved `893` cells across all `7` targets, while isolated Q2/S3 movement was only `79` cells. E81 found pure Q2/S3 graft loose/sub-margin at `-5.95383e-6`, and inverse Q2/S3 locally adverse at `+1.47473e-5`.
+- 성공/폐기 기준: local sparse-gate geometry remains supported, but the submitted combined-file public-alignment claim is rejected. Isolated Q2/S3 is not dead; it is below submission margin and needs a stronger structural/combo-tail gate.
+- public LB 기대 반응: E73 worsening means E74/E75 should not be used as simple follow-up amplitude tests. A later public improvement must come from a pure, calibrated structural gate rather than broad all-target movement or direct sign inversion.
+- 제출 전략: no direct E73/E74/E75 follow-up. Keep `submission_mixmin_0c916bb4.csv` as frontier and require a new gate before spending a public slot.
 
 ### H70. E73 sparse-magnitude Q2/S3 gate is stable under cell-subset stress
 
-- 상태: 지지됨 locally; public sign still pending.
+- 상태: 지지됨 locally; direct public follow-up paused after E80/E81.
 - 왜 그럴듯한가: E73's selected pool has only `13` source cells, so a few influential cells could explain the local strict/deployable result. If the sparse gate is a real latent consensus, deleting cells or sampling subsets should preserve many deployable alpha16/alpha20 rows.
 - 맞다면: leave-one-cell-out variants should remain deployable at alpha16, bootstrap subsets should frequently pass the same strict/deployable gate, and the full-pool alpha20 row should improve local support without immediately breaking hidden/world/block stress.
 - 틀리다면: jackknife variants should fail deployability, bootstrap support should be rare, and the E73 full-pool result should collapse or become adverse when one or two cells are removed.
 - 최소 실험: `analysis_outputs/q2_s3_sparse_gate_stability_probe.py`, using E73's full `translator_tail_soft_p90_m0.50` top_abs50 pool with reference, jackknife, group-keep, rank-keep, and deterministic bootstrap8 variants across alpha `[8, 12, 16, 20, 24]`.
 - 관측: E74 scored `470` rows over `94` variants. Strict/deployable rows were `141`; loose rows were `470`. Jackknife alpha16 deployable was `13/13`, bootstrap8 alpha16 deployable was `48/60`, and reference alpha20 remained strict/deployable with all delta `-1.07261e-5`, hidden Q2/S3 `-0.000484506`, world support `-0.000351115`, and block win rate `0.722222`. Reference alpha24 failed strict, so the amplitude ridge has a visible upper boundary.
 - 성공/폐기 기준: single-cell fragility is discarded. E73 is upgraded from a fragile local sensor to a stable sparse-cell-consensus sensor. The public-alignment and amplitude claims remain open.
-- public LB 기대 반응: if E73 improves but E74 alpha20 worsens, sparse-gate structure is real but alpha20 is over-amplified. If E74 alpha20 improves more, E73 was conservative and amplitude ridge is public-aligned. If both worsen, E74 stability is local-only and H69/H70 are demoted.
-- 제출 전략: keep `submission_e72_topabs50_q2s3_gate_4e48cba2.csv` as the first sensor; materialized secondary amplitude sensor is `analysis_outputs/submission_e74_fullpool_a20_q2s3_gate_55455b60.csv`.
+- public LB 기대 반응: E80/E81 now make simple E74 alpha20 follow-up unjustified. If a future pure sparse-gate structural file improves public, H70 can re-enter as amplitude-boundary evidence; otherwise it remains local stability only.
+- 제출 전략: hold `analysis_outputs/submission_e74_fullpool_a20_q2s3_gate_55455b60.csv`.
 
 ### H71. Sparse Q2/S3 public amplitude is target-asymmetric
 
-- 상태: locally supported; public sign pending.
+- 상태: locally supported as direction; direct public follow-up paused.
 - 왜 그럴듯한가: E72 already showed `s3_only` can produce deployable rows while Q2-only produces none. E74 then showed alpha20 is locally better than alpha16 but alpha24 breaks strict consensus. That pattern suggests the amplitude boundary may differ by target rather than being one scalar over Q2 and S3.
 - 맞다면: crossing `alpha_q2` and `alpha_s3` should find a stable deployable ridge where S3 can be larger than Q2. `q2_only` should remain dead, `s3_higher` should dominate strict/deployable rows, and the best deployable row should beat both E73 alpha16/16 and E74 alpha20/20 on the public-combo proxy.
 - 틀리다면: the best deployable rows should stay near the symmetric alpha ridge, or target-asymmetric rows should fail strict/tail/hidden/world/block stress.
 - 최소 실험: `analysis_outputs/q2_s3_target_amplitude_ridge_probe.py`, fixing the E74 pool/gate and crossing target-specific alpha values for Q2 and S3. `analysis_outputs/q2_s3_target_amplitude_ridge_candidate.py` materializes the best deployable row.
 - 관측: E75 built `120` rows, with strict/deployable `37` and loose `109`. `s3_higher` contributed `23` strict/deployable rows; `s3_only` contributed `6`; `q2_higher` contributed `5`; `equal` contributed `3`; `q2_only` contributed `0`. The best deployable row was `e75_q2a8.0_s3a28.0_f07219b4`, all delta `-1.23676e-5`, all-minus-base `-7.60210e-6`, hidden Q2/S3 `-0.000372692`, hidden S3 `-0.000498235`, world `-0.000200351`, and block win `0.722222`. It was materialized as `analysis_outputs/submission_e75_q2a8_s3a28_sparse_amp_f07219b4.csv`.
 - 성공/폐기 기준: the symmetric-alpha-optimal claim is discarded locally. H71 is supported as a target-amplitude hypothesis, but public alignment is still unobserved and private risk is higher than E73 because the best row is more aggressive and S3-heavy.
-- public LB 기대 반응: if E75 improves over E73/E74, public-readable sparse Q2/S3 consensus is target-asymmetric and S3 is the main amplitude carrier. If E73 improves but E75 worsens, sparse-gate sign is real but the S3-high/Q2-low amplitude is local combo overfit. If E75 improves while E73/E74 do not, the missing public object was target-specific amplitude rather than conservative sparse-gate sign.
-- 제출 전략: keep E73 as the first public sparse-gate sign sensor. Use `submission_e75_q2a8_s3a28_sparse_amp_f07219b4.csv` as the sharper second sensor if testing target asymmetry. Keep E74 as the symmetric-amplitude control.
+- public LB 기대 반응: E80/E81 show the submitted E73 combined file is public-adverse and pure Q2/S3 is sub-margin, so E75 should not be the next direct public test. If a future pure structural gate validates sparse Q2/S3 sign, H71 should be revisited as target-amplitude evidence.
+- 제출 전략: hold `submission_e75_q2a8_s3a28_sparse_amp_f07219b4.csv`.
 
 ### H72. Target-asymmetric Q2/S3 amplitude is direction-stable but exact E75 amplitude is only partially stable
 
-- 상태: direction supported locally; exact amplitude risk flagged; public sign pending.
+- 상태: direction supported locally; exact amplitude risk flagged; direct public follow-up paused.
 - 왜 그럴듯한가: E75's full-pool best row could be explained either by a robust S3-heavy target asymmetry or by one exact full-pool amplitude overfitting the local combo proxy. E74 already showed the sparse source cells survive subset stress, so the next falsification should separate target-asymmetric direction from exact `q2=8/s3=28` deployability.
 - 맞다면: `asym8_28_e75` should beat symmetric controls across jackknife/bootstrap/group/rank variants, and the best deployable row should usually remain S3-heavy. Exact `8/28` may fail deployability in some subsets if the correct public object is row/cell-conditioned amplitude rather than one universal pair.
 - 틀리다면: asymmetric rows should lose to `sym16_e73` or `sym20_e74` under subset stress, or the best deployable axis should often become equal/Q2-heavy/unstable.
 - 최소 실험: `analysis_outputs/q2_s3_target_amplitude_stability_probe.py`, crossing `21` target-alpha pairs over the same `94` reference/jackknife/group/rank/bootstrap source-pool variants used by E74, with combo scoring plus hidden/world/block stress.
 - 관측: E76 scored `1974` rows over `94` variants, with strict/deployable `1138` and loose `1894`. Exact `asym8_28_e75` beat both `sym16_e73` and `sym20_e74` in `94/94` variants, and the best deployable axis was S3-heavy in `94/94` variants. However, exact `asym8_28_e75` deployability was only `49/94`: jackknife `8/13`, group_keep `7/10`, rank_keep `5/10`, bootstrap8 `28/60`, reference `1/1`. E74's earlier E73 alpha16 stability was broader (`13/13` jackknife, `48/60` bootstrap8).
 - 성공/폐기 기준: the claim "target asymmetry is a local full-pool accident" is rejected. The stronger claim "E75 exact `8/28` is as stable as E73's sparse-gate sign" is rejected.
-- public LB 기대 반응: if E75 improves over E73/E74, public reads the S3-heavy target-asymmetric amplitude despite partial subset stability. If E75 worsens while E73 improves, public reads sparse-gate sign but exact `8/28` is too sharp. If E74 improves while E75 worsens, the symmetric control is safer than target-asymmetric amplitude for public/private transfer.
-- 제출 전략: keep `submission_e72_topabs50_q2s3_gate_4e48cba2.csv` as the first sign sensor. Use `submission_e75_q2a8_s3a28_sparse_amp_f07219b4.csv` only when the public slot is meant to test target asymmetry; use `submission_e74_fullpool_a20_q2s3_gate_55455b60.csv` as the safer symmetric amplitude control.
+- public LB 기대 반응: no direct E75/E74 public test after E80/E81. If a future pure sparse-gate sign is validated, this hypothesis decides whether S3-heavy amplitude is worth re-testing.
+- 제출 전략: no current submission.
 
 ### H73. E76 source-subset posterior averaging can repair exact-amplitude instability
 
@@ -862,6 +862,18 @@ target co-occurrence
 - 성공/폐기 기준: the direct claim "public-like topology/flanks repair exact E75 amplitude" is rejected. The softer claim "row/block context is useful representation context" remains live for structural block targets, because E79 tests only handcrafted masks over E75 movement.
 - public LB 기대 반응: no E79 submission. If E75 improves public, E79 says public likely accepted the full active sparse amplitude rather than a simple topology/flank subset. If E75 worsens, E79 says simple row/block/flank localization would not have fixed it.
 - 제출 전략: none. Public order remains E73 first, E75 second for target asymmetry, E74 symmetric control.
+
+### H76. E73 public failure is broad-base contamination, while isolated Q2/S3 is sub-margin
+
+- 상태: broad-base contamination supported; pure Q2/S3 submission-scale claim rejected; inverse-sign reaction rejected.
+- 왜 그럴듯한가: the submitted E73 filename implies a Q2/S3 sparse gate, but the materialized prediction may include a changed base from the unified reconstruction. If so, public failure cannot be attributed to Q2/S3 without separating target scopes.
+- 맞다면: E73 should move non-Q2/S3 targets versus mixmin. A pure mixmin-anchored Q2/S3 graft should have smaller movement and may keep local hidden/world support but fall below margin. Inverse-sign variants should fail local stress if public failure was not a clean sign oracle.
+- 틀리다면: E73 should move only Q2/S3, or pure Q2/S3 should be strict/deployable and inverse-sign variants should look locally plausible after the public miss.
+- 최소 실험: `analysis_outputs/e73_public_observation_assimilation.py` and `analysis_outputs/e73_pure_q2s3_graft_probe.py`.
+- 관측: E80 measured `893` moved cells / `249` active rows / all `7` targets in submitted E73. Q2/S3 cells were only `79`; non-Q2/S3 cells were `814`. E81 scored `8` split variants: strict/deployable `0`, loose `3`; pure Q2/S3 graft all delta `-0.000005954` with `3/3` combo-set wins and hidden Q2/S3 `-0.000391043`, but margin false; pure S3-only `-0.000005665`; pure Q2-only `-0.000000439`; inverse Q2/S3 `+0.000014747` with all guards failing.
+- 성공/폐기 기준: direct E74/E75 amplitude follow-up is rejected after public feedback. The isolated Q2/S3 latent survives as energy, not as a current submission.
+- public LB 기대 반응: no immediate public file. If a future structural gate improves, E80/E81 imply it succeeded by removing broad-base contamination and lifting sub-margin Q2/S3 safely; if it worsens, Q2/S3 consensus should be demoted further behind block-state representation work.
+- 제출 전략: none from E81. Next submission must be a new mixmin-anchored structural/combo-tail gate, not E73 amplification or public-sign inversion.
 
 ## 우선 실험 5개
 

@@ -636,3 +636,21 @@
 - Implementation issue possible: low to medium. E79 uses handcrafted masks and local stress, not a learned structural target or public labels. A learned combo-set/tail/structural localizer could still work. The discarded claim is only direct row/block/flank mask repair over E75.
 - Bottleneck implication: exact amplitude risk is not solved by simple row topology or nearest train-label context. The remaining amplitude problem is combo-set/tail calibration or a learned structural representation, not another handcrafted row-mask sweep.
 - Do not repeat: subject id, block position, train-gap, flank-label, subject-prior, or energy-quantile masks over the same E75 unit delta as direct candidates. Use these variables only as features/energies inside a stronger structural target or public-tested sparse-gate interpretation.
+
+## FH71. Submitted E73 combined sparse-gate file is public-aligned
+
+- Failed hypothesis: `submission_e72_topabs50_q2s3_gate_4e48cba2.csv` would improve public LB if the E72 sparse-magnitude Q2/S3 consensus was public-real.
+- Observed result: public LB was `0.5764077772`, worse than mixmin `0.5763066405` by `+0.0001011367`. E80 measured a sign reversal versus local expected delta `-0.0000105458`, a `9.590x` public/local edge ratio, and `893` moved cells across all `7` targets.
+- Why discard: the submitted file is not a clean Q2/S3 sign test. It combines Q2/S3 sparse movement with `814` non-Q2/S3 moved cells. Therefore the broad submitted-file public-alignment claim is dead, while isolated Q2/S3 remains separately tested by E81.
+- Implementation issue possible: low for the public observation and movement audit; medium for attributing the public miss to any target group because public labels are not known.
+- Bottleneck implication: public LB is punishing either broad all-target base movement, Q2/S3 movement, or their interaction. Direct E74/E75 amplification is not a justified next step.
+- Do not repeat: treating E73 as a validated public sign sensor or submitting E74/E75 as direct amplitude follow-ups.
+
+## FH72. Public E73 failure justifies direct Q2/S3 sign inversion
+
+- Failed hypothesis: because E73 worsened public LB, the opposite Q2/S3 movement should be a useful next public sensor.
+- Observed result: E81 inverse Q2/S3 had local all delta `+0.000014747`, `0/3` combo sets beating base, `0/3` tail-neutral, hidden Q2/S3 `+0.000418366`, world `+0.000311296`, and block win rate `0.083333`. Inverse Q2-only and inverse S3-only also failed local guards.
+- Why discard: one public miss was underidentified by broad-base contamination, and the inverse direction is locally adverse across combo, hidden, world, and block diagnostics.
+- Implementation issue possible: low. The inverse controls are direct algebraic sign reversals around the mixmin anchor and use the same stress machinery.
+- Bottleneck implication: the useful object is not public-LB reaction sign flipping. It is calibration-safe translation of a sub-margin Q2/S3 latent.
+- Do not repeat: building inverse sparse-gate submissions from E73 public failure without an independent structural gate.
