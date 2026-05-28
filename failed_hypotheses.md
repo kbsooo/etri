@@ -627,3 +627,12 @@
 - Implementation issue possible: low to medium. E78 uses E76 source-subset distributions and the same local stress universe, not a learned public-like localizer. A richer row/block/tail-conditioned localizer could still work. The discarded claim is only source-subset reliability masks as direct amplitude repair.
 - Bottleneck implication: exact amplitude risk is not solved by row/target reliability from the same E76 source-subset universe.
 - Do not repeat: sign-stability, consensus, excess, or veto masks over E76 source variants as direct candidates. Future amplitude localization needs public-like row/block/tail state or public feedback from E73/E75/E74.
+
+## FH70. Handcrafted row/block/flank masks repair E75 exact-amplitude risk
+
+- Failed hypothesis: E75's sparse Q2/S3 amplitude is correct only on a public-like subset identifiable by subject-calendar topology, flanking train labels, subject priors, or positive sparse-unit energy.
+- Observed result: E79 scored `6516` localized rows from `61` masks. Strict/deployable rows were `1318`, loose rows were `3403`, deployable rows beating E75 were `0`, and best all stayed E75-equivalent at `-1.23676e-5`. Positive sparse-unit energy masks cut the active E75 rows from `72/250` to `22` or `36`, but did not improve edge. Best non-identity masks such as flank `s3_high`, topology `block_inner`, `block_first_half`, `subject_late_half`, and subject-prior/flank target masks stayed deployable but weaker than E75.
+- Why discard: the masks are real context descriptors, but as direct multiplicative gates over E75 movement they only shrink or reshape an already sparse active set. They do not reveal a better row subset.
+- Implementation issue possible: low to medium. E79 uses handcrafted masks and local stress, not a learned structural target or public labels. A learned combo-set/tail/structural localizer could still work. The discarded claim is only direct row/block/flank mask repair over E75.
+- Bottleneck implication: exact amplitude risk is not solved by simple row topology or nearest train-label context. The remaining amplitude problem is combo-set/tail calibration or a learned structural representation, not another handcrafted row-mask sweep.
+- Do not repeat: subject id, block position, train-gap, flank-label, subject-prior, or energy-quantile masks over the same E75 unit delta as direct candidates. Use these variables only as features/energies inside a stronger structural target or public-tested sparse-gate interpretation.
