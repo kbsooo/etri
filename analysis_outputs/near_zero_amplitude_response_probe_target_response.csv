@@ -1,0 +1,9 @@
+target_mask,n,anchor_beats,anchor_margin,best_delta,median_delta,best_move,best_candidate
+no_q2_s3,237,233,0,-5.9949435344819335e-06,-3.174228754398989e-06,0.0041897142857143365,toward_teacher|all|no_q2_s3|raw_agree|grad_all_abs50|all|flat|s0.130|c0.120
+no_q2,312,301,0,-5.090377878991248e-06,-2.0338046362033957e-06,0.0033418285714286273,toward_teacher|all|no_q2|raw_agree|grad_all_abs50|all|flat|s0.095|c0.120
+no_s3,496,478,0,-4.726392550225e-06,-1.941020888573952e-06,0.0037261714285714825,toward_teacher|all|no_s3|raw_agree|grad_all_abs50|all|flat|s0.095|c0.120
+all,527,490,0,-4.193235407901064e-06,-1.487643271569361e-06,0.003654857142857195,toward_teacher|all|all|raw_agree|grad_all_abs50|all|flat|s0.130|c0.080
+q1,201,101,0,-1.417735452147184e-06,-6.084447390364289e-10,0.0010162285714286534,toward_teacher|all|q1|all|grad_all_abs50|all|flat|s0.130|c0.120
+s4,195,95,0,-1.3087350591023394e-06,4.823826893485261e-10,0.0009713641514896406,toward_teacher|all|s4|raw_agree|grad_core_top50|all|flat|s0.130|c0.120
+q3,161,55,0,-3.334085794115538e-07,7.316707129056965e-09,0.0005946649283526327,toward_teacher|all|q3|all|grad_all_4of6|all|flat|s0.095|c0.080
+s2,161,0,0,1.4092171873869574e-10,1.9941382101151817e-08,6.132268497230179e-06,toward_teacher|low_slack_half|s2|support60|grad_all_abs50|all|core_gain|s0.016|c0.030

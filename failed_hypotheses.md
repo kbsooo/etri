@@ -510,3 +510,12 @@
 - Implementation issue possible: medium. The tested grid is focused rather than exhaustive, and actual-anchor is still a proxy. But the result is broad within the focused family: every scored toward candidate loses to mixmin, despite all hidden/world guards passing.
 - Bottleneck implication: the next bottleneck is not direction or scalar scale. It is targetwise/rowwise calibration: which validated cells should move almost zero, which can move, and how Q2/S3/Q3 interact with LogLoss.
 - Do not repeat: larger global scale/cap sweeps on E63/E56 gradient cells. Future amplitude work must be conditional by target, row risk, or structural block state, not a single scalar.
+
+## FH57. Near-zero targetwise E56 amplitude clears submission margin
+
+- Failed hypothesis: E64 failed only because the moves were too large; a very small targetwise line search around E63 gradient-consensus cells should find a submission-margin pocket.
+- Observed result: E65 generated `27384` candidates and actual-anchor scored `2400`. Toward-teacher candidates passed hidden/world/movement guards `2290/2290`, and `1753/2290` beat mixmin sign-level. But anchor-margin gates were `0`. The best toward-teacher delta was only `-0.000005995`, from `toward_teacher|all|no_q2_s3|raw_agree|grad_all_abs50|all|flat|s0.130|c0.120`. Reverse controls had no diagnostic gate.
+- Why discard: the near-zero pocket is real but not submission-scale. The best response depends on excluding Q2/S3, single-target moves are weak, and S2 is adverse. This is a target-conflict clue, not a candidate.
+- Implementation issue possible: medium. The grid is focused, not exhaustive, and actual-anchor remains a proxy. But it specifically tested the most plausible next branch after E63/E64: small scales, target masks, row gates, caps, and flat/core-gain shapes. The margin gate stayed closed.
+- Bottleneck implication: the bottleneck is not line-search resolution. The missing object is a Q2/S3-aware calibration translator or a structural representation that explains why broad target movement saturates before becoming public-anchor safe.
+- Do not repeat: more near-zero scalar/target-mask sweeps on the same E63 cells unless a new target-conflict model changes the cell set or amplitude rule.
