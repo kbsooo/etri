@@ -528,3 +528,12 @@
 - Implementation issue possible: medium. E66 uses focused E65/E63 cell families and actual-anchor proxy rather than true public labels. But the matched decomposition is internally strong: the same configurations show hidden and tail effects moving in opposite directions.
 - Bottleneck implication: the next bottleneck is tail-risk calibration, not target-direction discovery. A valid translator must allow or shrink Q2/S3 based on scenario stability and max-set risk, not by broad inclusion/exclusion.
 - Do not repeat: Q2/S3 add-back or exclusion sweeps that do not measure mean-versus-tail decomposition. Future Q2/S3 work needs tail-neutral gating or variance-aware amplitude.
+
+## FH59. First-order Q2/S3 tail-neutral translator clears submission margin
+
+- Failed hypothesis: E66's Q2/S3 tail-risk can be solved directly by first-order scenario-tail gates, making a Q2/S3-inclusive E56 translator submission-ready.
+- Observed result: E67 generated and scored `7632` tail-neutral translator candidates. The best translator, `tail_meanneg_m1.00`, improved the actual-anchor proxy to `-0.000006933` versus mixmin and beat matched `no_q2_s3` in `387/432` anchor scenarios. The strict `tail_p90_nonpos_m1.00` variant beat matched base in `432/432` and stayed max-set-tail-neutral in `360/432`. Across pair comparisons, `4207/7200` beat matched base and `2241/7200` also stayed max-set-tail-neutral. However, all anchor-margin gates remained `0`.
+- Why discard: the tail gate is directionally useful but still sub-margin and derived from known-anchor scenario derivatives. It does not yet prove the gated Q2/S3 cells are real hidden structure rather than local anchor-tail arithmetic.
+- Implementation issue possible: medium. First-order BCE derivatives are approximate and use the current anchor scenario/mask family. A scenario-holdout or hidden/block/row-calibration validation could still rescue the idea, but E67 alone is not enough.
+- Bottleneck implication: the bottleneck moved from "which targets?" to "which Q2/S3 cells have independent support?" The next translator must validate tail-gated cells outside the anchor-tail objective.
+- Do not repeat: first-order anchor-tail gate sweeps as submission candidates without independent validation or selector-scale margin.
