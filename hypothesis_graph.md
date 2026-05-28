@@ -683,6 +683,18 @@ target co-occurrence
 - public LB 기대 반응: no submission. A public test from E63 would mostly measure public-anchor noise, not a selector-scale new hypothesis. If a future amplitude translator clears margin while preserving these hidden guards, improvement would strengthen the view that E56 has real direction but needs better calibration.
 - 제출 전략: no E63 submission. Use gradient-consensus as a direction validator and cell-risk energy only; next work must translate the validated direction into a larger, calibration-preserving movement.
 
+### H61. E63 gradient-consensus direction only needs scalar amplitude
+
+- 상태: 반증됨 for the tested amplitude family.
+- 왜 그럴듯한가: E63 showed toward-teacher direction passes hidden and world guards, but the movement was extremely small. If the only issue is under-scaling, larger capped logit movement on the same validated cells should make actual-anchor delta more negative while preserving hidden/world guards.
+- 맞다면: increasing scale/cap on E63 gradient cells should create at least one toward candidate with `anchor_delta_vs_mixmin < -1e-5`, `world_guard=True`, `hidden_guard=True`, and no comparable reverse-control improvement.
+- 틀리다면: larger amplitude should saturate or reverse under actual-anchor stress even while hidden/world guards remain true, proving direction validation is not enough to set probability size.
+- 최소 실험: `analysis_outputs/gradient_amplitude_translation_probe.py`, focused on E63 top gradient gates with larger scales/caps and flat/core-gain amplitude shapes. It generated toward and reverse controls, prefiltered by world/hidden/movement stress, then actual-anchor scored the selected candidates.
+- 관측: E64 generated `12096` candidates and actual-anchor scored `1796`. Toward candidates passed hidden guard `1346/1346`, world guard `1346/1346`, and movement guard `1346/1346`, but anchor beats were `0/1346`; best toward anchor delta was `+0.000003024`. Reverse controls also had anchor beats `0/450` and best delta `+0.000000154`.
+- 성공/폐기 기준: scalar amplitude explanation discarded. Increasing validated E56 movement makes actual-anchor worse, not better. Hidden-rate BCE gradient and generated-world support are insufficient to choose public-safe amplitude.
+- public LB 기대 반응: no submission. A public test from E64 would be high downside because local actual-anchor sign is uniformly adverse after amplitude expansion.
+- 제출 전략: no E64 submission. Next work should not be "larger E56 gradient movement"; it needs targetwise calibration/amplitude modeling or a different structural target.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
@@ -726,3 +738,5 @@ E60은 H57을 direct translator/independent validator로 반증했다. Transitio
 E62는 H59를 반증했다. Transition residual을 probability target으로 쓰지 않고 E56 teacher cell gate로만 쓰면 살 수 있다는 보수적 가설을 찔렀지만, `363258` 후보 중 eligible gate는 `0`이었다. Best toward-teacher anchor delta는 `-2.716e-6`으로 E58 corrected best `-4.081e-6`보다 약했고, reverse control도 거의 움직이지 않았다. 따라서 transition residual은 현재 형태에서는 E56 energy의 missing validator가 아니라, 더 복잡한 structural target에 들어갈 수 있는 위험 진단 축일 뿐이다.
 
 E63은 H60을 양쪽으로 갈랐다. Subject/calendar/raw/transition hidden-rate view들의 BCE gradient consensus는 E56 teacher 방향을 강하게 지지했다. Toward 후보는 hidden guard와 world guard가 각각 `1000/1000` 열렸고 reverse control은 `0/300`이었다. 하지만 best actual-anchor delta는 `-3.650e-6`으로 E58 corrected best보다도 작았고 eligible gate는 `0`이었다. 따라서 "E56 방향 자체가 환상"은 약화됐지만, "그 방향이 곧 제출 가능한 확률 이동"은 반증됐다. 병목은 방향 발견이 아니라 amplitude/public-anchor translation이다.
+
+E64는 H61을 반증했다. E63 방향이 단순히 under-scaled일 뿐인지 보기 위해 scale/cap을 키웠지만, actual-anchor sign이 오히려 전부 adverse로 돌아섰다. Toward 후보는 hidden/world/movement guard가 모두 `1346/1346`인데 anchor beats는 `0/1346`이었고 best toward delta도 `+3.024e-6`이었다. 따라서 E56 gradient 방향은 local hidden-rate BCE 기준으로는 맞지만, public-anchor LogLoss에서는 작은 neighborhood를 벗어나면 바로 나빠진다. 다음 질문은 더 큰 scale이 아니라 target별/row별 amplitude를 어떻게 거의 0 주변에서 선택하느냐다.

@@ -501,3 +501,12 @@
 - Implementation issue possible: medium. The gradient views are hand-built and amplitude is still a capped grid, so a learned or analytic amplitude translator may improve. The discarded claim is only direction-consensus-as-submit-gate, not gradient consensus as energy.
 - Bottleneck implication: the bottleneck has moved from "is there a hidden direction?" to "how do we translate a validated hidden direction into selector-scale calibrated probability movement?" This strengthens E56 as a teacher but weakens any plan that keeps adding direction gates without amplitude modeling.
 - Do not repeat: submitting gradient-gated E56 files or treating hidden-rate agreement alone as public evidence. Future work should target amplitude, calibration risk, and targetwise S3/Q2/Q3 movement size for cells already validated by gradient consensus.
+
+## FH56. E63 gradient-consensus direction is just under-amplified
+
+- Failed hypothesis: E63's hidden-rate consensus direction is correct and only too small; increasing scale/cap on the same validated cells should create a selector-scale public-anchor improvement.
+- Observed result: E64 generated `12096` amplitude-expanded candidates and actual-anchor scored `1796`. Toward-teacher candidates passed hidden guard `1346/1346`, E56 world guard `1346/1346`, and movement guard `1346/1346`, but anchor beats were `0/1346`. Best toward-teacher anchor delta was `+0.000003024`; median toward delta was `+0.000757074`. Reverse controls also had no improvement, with best delta `+0.000000154`.
+- Why discard: scalar amplitude separates hidden-world validity from public-anchor LogLoss. The direction remains hidden-valid, but larger moves make actual-anchor worse. This is exactly the failure mode LeJEPA-style diagnostics were meant to catch: a representation can be geometrically coherent while its probability translation is wrong.
+- Implementation issue possible: medium. The tested grid is focused rather than exhaustive, and actual-anchor is still a proxy. But the result is broad within the focused family: every scored toward candidate loses to mixmin, despite all hidden/world guards passing.
+- Bottleneck implication: the next bottleneck is not direction or scalar scale. It is targetwise/rowwise calibration: which validated cells should move almost zero, which can move, and how Q2/S3/Q3 interact with LogLoss.
+- Do not repeat: larger global scale/cap sweeps on E63/E56 gradient cells. Future amplitude work must be conditional by target, row risk, or structural block state, not a single scalar.

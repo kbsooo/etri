@@ -1,0 +1,3 @@
+direction,candidates_scored,anchor_beats_mixmin,anchor_margin_gate,movement_guard,world_guard,hidden_guard,eligible_submission_gate,diagnostic_reverse_gate,best_anchor_delta_vs_mixmin,best_anchor_candidate,best_move
+reverse_control,450,0,0,450,0,0,0,0,1.535249740669542e-07,reverse_control|low_slack_half|all|support60|grad_core_top50|teacher_row_top50|flat|s0.10|c0.080,0.0007634285714286579
+toward_teacher,1346,0,0,1346,1346,1346,0,0,3.0238652090064377e-06,toward_teacher|all|no_s3|raw_agree|grad_core_top50|all|core_gain|s0.50|c0.080,0.009400862747769845
