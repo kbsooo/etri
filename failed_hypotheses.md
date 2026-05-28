@@ -564,3 +564,12 @@
 - Implementation issue possible: medium. E70 intentionally scored combo first and hidden/world/block stress only for the top `700` rows to keep the probe tractable. A unified-rule implementation could still rescue the idea, but E70 itself is not that rule.
 - Bottleneck implication: consensus structure may be the missing accumulation mechanism, but it still needs rowwise/cellwise amplitude or unified structural gating. The bottleneck is now "how to make consensus reproducible and conservative", not "whether any strict-cell consensus can move the proxy".
 - Do not repeat: submitting heldout-specific consensus rows or treating `gate=none` consensus as safe. Future work must test a unified non-heldout rule, agreement/energy diagnostics, and tail/block stability before producing a file.
+
+## FH63. E71 unified strict-cell consensus is deployable
+
+- Failed hypothesis: if E70's heldout-specific reconstruction was the main blocker, rebuilding each unique E68 strict cell once with the full combo family should produce a deployable consensus row under a conservative non-`none` gate.
+- Observed result: E71 used `155` strict rows to derive `104` unique cells and built `3136` candidate rows / `2842` unique predictions. It found `1` strict unified gate and best all-combo delta `-1.082166e-5`, but deployable unified gates were `0`. The only strict row used `top75_heldout_mean`, mean base, `signed_p75` delta, `gate=none`, and alpha `8`.
+- Why discard: unified reconstruction preserves the diagnostic signal but still fails the conservative submission condition. The branch remains disagreement-permissive; a public file would be betting on unregularized consensus rather than a stable representation.
+- Implementation issue possible: low to medium. E71 intentionally uses E68 strict rows as evidence for cell selection, so it is still a diagnostic, but it removes the strongest heldout-specific reconstruction objection. The lack of non-`none` gates is therefore a meaningful negative.
+- Bottleneck implication: the bottleneck is not only heldout-specific construction. It is the absence of a stable agreement/energy geometry that can choose when Q2/S3 consensus is safe.
+- Do not repeat: treating unified `gate=none` consensus as submit-safe. Future work must either make non-`none` gates survive margin, learn rowwise/cellwise amplitude, or change the target to a structural block representation.
