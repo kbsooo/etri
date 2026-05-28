@@ -659,6 +659,18 @@ target co-occurrence
 - public LB 기대 반응: unchanged. An E58 file would still be sub-margin and low information.
 - 제출 전략: no submission. The fix improves evidence integrity, not candidate priority.
 
+### H59. Transition residual can validate E56 teacher if used only as a gate
+
+- 상태: 반증됨 for the tested gate family. Transition residuals remain risk diagnostics, not the missing calibration-preserving E56 validator.
+- 왜 그럴듯한가: E56 generated coherent mixmin-hard worlds, E58 found a tiny non-adverse teacher direction, and E60 found a stronger hidden mixmin sign in transition residual space. Since direct transition rates collapse calibration, the more conservative idea is to use transition residual only to open/close E56 teacher cells.
+- 맞다면: transition-gated E56 candidates should improve over E58's corrected best anchor delta, preserve E56 world/movement guards, and open at least one toward-teacher candidate with `anchor_delta_vs_mixmin < -1e-5`.
+- 틀리다면: transition gates should reduce or fail to expand the E58 margin, keep eligible gates at `0`, or make reverse controls comparable.
+- 최소 실험: `analysis_outputs/transition_gated_posterior_distillation_probe.py`, combining E56 posterior bands with E60 row-safe, balanced hidden-sign, and aggressive hidden-sign residual views as gates only. Candidate probabilities remain small capped logit moves from mixmin toward E56 teacher; transition residuals are never used as direct targets.
+- 관측: E62 generated `363258` candidates and actual-anchor scored `1300`. Eligible gates were `0`; diagnostic reverse gates were `0`. Best toward-teacher delta was `-0.000002716` from `toward_teacher|low_slack_half|no_s3|all|trans_bal_raw_consensus|all|w0.070|c0.080`, weaker than corrected E58's `-0.000004081`. Reverse best was only `-0.00000000547`.
+- 성공/폐기 기준: discarded as the missing validator. The best transition gate is interpretable (`balanced hidden-sign + raw agreement`, no S3), but its effect is below selector margin and smaller than E58.
+- public LB 기대 반응: no public submission. A public test would be lower-information than E58 because the local margin is smaller and the gate did not add independent selector-scale support.
+- 제출 전략: no E62 submission. Future E56 use needs a different independent validation target, not transition residual as a simple gate.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
@@ -698,3 +710,5 @@ E58은 H55를 submission source로 반증했다. E61에서 E58 actual-anchor sco
 E59는 H56을 direct candidate source로 반증했다. 128-state joint block label-pattern target은 확실히 예측 가능했다: raw independent pattern baseline보다 좋은 방법이 `139/216`개였고, own-margin 대비 joint gain이 있는 방법도 `198/216`개였다. 하지만 이 구조는 현재 public frontier latent로 번역되지 않았다. Best pattern method는 pattern NLL을 `-0.062594` 낮췄지만 row LogLoss는 raw보다 `+0.003678` 나빠졌고 hidden mixmin sign도 `+0.000304`로 adverse였다. 반대로 hidden mixmin sign을 음수로 만드는 방법들은 pseudo-hidden row validity와 S3를 크게 망가뜨렸다. 따라서 단순 marginal rate보다 구조적인 target이 필요하다는 직감은 절반만 맞았다. Joint co-occurrence 구조는 존재하지만, within-block joint labels alone으로는 mixmin-relative next candidate가 나오지 않는다.
 
 E60은 H57을 direct translator/independent validator로 반증했다. Transition residual은 hidden mixmin sign을 강하게 만들 수 있었다: best hidden-sign method는 weighted mixmin delta `-0.001569`였고 S3/S2/Q3 축이 주로 기여했다. 그러나 그 방법은 pseudo-hidden row LogLoss를 raw 대비 `+1.519232` 망가뜨렸고 S3도 subject 대비 `+1.331880` 악화됐다. 반대로 row-valid한 transition methods는 raw에 매우 가깝게 머물렀고 hidden mixmin sign은 여전히 adverse였다. 따라서 transition residual은 "숨은 방향 센서"로는 흥미롭지만, row calibration을 보존하는 non-anchor validator는 아니다.
+
+E62는 H59를 반증했다. Transition residual을 probability target으로 쓰지 않고 E56 teacher cell gate로만 쓰면 살 수 있다는 보수적 가설을 찔렀지만, `363258` 후보 중 eligible gate는 `0`이었다. Best toward-teacher anchor delta는 `-2.716e-6`으로 E58 corrected best `-4.081e-6`보다 약했고, reverse control도 거의 움직이지 않았다. 따라서 transition residual은 현재 형태에서는 E56 energy의 missing validator가 아니라, 더 복잡한 structural target에 들어갈 수 있는 위험 진단 축일 뿐이다.

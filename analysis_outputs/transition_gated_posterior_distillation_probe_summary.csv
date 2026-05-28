@@ -1,0 +1,3 @@
+direction,candidates_scored,anchor_beats_mixmin,movement_guard,world_guard,eligible_submission_gate,diagnostic_reverse_gate,best_anchor_delta_vs_mixmin,best_anchor_candidate
+reverse_control,300,257,300,0,0,0,-5.4720199482716225e-09,reverse_control|low_slack_half|s2_s3|confident_abs_support|trans_good_bal_agree|teacher_row_top70|w0.006|c0.010
+toward_teacher,1000,394,1000,1000,0,0,-2.716433554761366e-06,toward_teacher|low_slack_half|no_s3|all|trans_bal_raw_consensus|all|w0.070|c0.080

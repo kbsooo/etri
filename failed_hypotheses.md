@@ -483,3 +483,12 @@
 - Implementation issue possible: low for this specific claim. The remaining limitation is the E58 candidate family itself, not the scoring identity wiring.
 - Bottleneck implication: E58 failed because simple E56 teacher slicing is too weak, not because the scorer mislabeled the best candidates.
 - Do not repeat: any scored candidate table that is sorted, reset, or prefiltered without carrying a stable prediction id. Future grid scorers must preserve candidate-to-probability identity explicitly.
+
+## FH54. Transition residual is the missing gate for E56 teacher cells
+
+- Failed hypothesis: E60 transition residuals fail as direct probability targets, but they can still validate E56 teacher movement if used only as sign/block/target gates.
+- Observed result: E62 generated `363258` transition-gated E56 candidates and actual-anchor scored `1300`. Eligible toward-teacher gates were `0`; diagnostic reverse gates were `0`. Best toward-teacher anchor delta was `-0.000002716`, from `toward_teacher|low_slack_half|no_s3|all|trans_bal_raw_consensus|all|w0.070|c0.080`, which is weaker than corrected E58's `-0.000004081`. Best reverse delta was only `-0.00000000547`.
+- Why discard: the gate makes the candidate more interpretable but not more useful. Balanced transition sign plus raw agreement isolates a plausible subset, yet the movement remains below selector/public-sensor margin and does not improve on the simpler E58 gate.
+- Implementation issue possible: medium. The gate family is still hand-built and does not learn a joint representation. The discarded claim is only the simple use of transition residuals as E56 cell gates.
+- Bottleneck implication: transition residual information is not the missing independent non-anchor validator by itself. The bottleneck remains calibration-preserving probability translation from hidden-world energy.
+- Do not repeat: using E60 transition sign as a simple post-hoc mask for E56 teacher movement. Future use must embed transition residual inside a richer target with row calibration, S3, and public-disagreement constraints.
