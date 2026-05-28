@@ -1,0 +1,4 @@
+split,n_blocks,n_rows,n_min,n_q25,n_median,n_q75,n_max,both_boundaries_frac,prev_gap_median,next_gap_median
+train,36.0,450.0,1.0,1.0,12.0,22.0,34.0,0.4444444444444444,6.5,6.5
+submission,36.0,250.0,1.0,2.0,5.5,11.0,16.0,0.7222222222222222,1.0,1.0
+subjectblock_cv_val,50.0,450.0,6.0,8.0,9.0,10.0,12.0,,,

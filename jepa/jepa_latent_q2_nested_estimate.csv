@@ -1,0 +1,2 @@
+candidate,weight,folds,base_loss,nested_candidate_loss_estimate,nested_mean_delta,nested_median_delta,nested_win_rate,q2_target_delta_mean,q2_target_win_rate
+submission_jepa_latent_q2_w0p45.csv,0.45,4,0.5635881842201541,0.5629012970515709,-0.0006868871685832643,-0.0007602653116589715,0.75,-0.00480821018008285,0.75

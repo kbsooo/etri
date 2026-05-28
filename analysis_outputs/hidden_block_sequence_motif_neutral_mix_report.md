@@ -1,0 +1,64 @@
+# Hidden Block Sequence Motif Neutral Mix
+
+Mixes sequence-motif block-rate probes with raw-axis-safe hidden-block candidates. The gate is raw-axis delta <= 0 versus raw05.
+
+## Probe sources
+
+- `submission_hiddenblock_rateprobe_raw05_motif_same_r2_k16_tau1p0_s8p0_q2q3s1s2s4_w0p03_b174dd54.csv`
+- `submission_hiddenblock_rateprobe_raw05_motif_same_r1_k16_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_0057e8c3.csv`
+- `submission_hiddenblock_rateprobe_raw05_motif_same_r2_k8_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_736e6173.csv`
+- `submission_hiddenblock_rateprobe_pareto03_motif_same_r2_k16_tau1p0_s8p0_q2q3s1s2s4_w0p03_fc64b079.csv`
+- `submission_hiddenblock_rateprobe_raw05_motif_local_r2_k16_tau1p0_s16p0_q1q2q3s1s2_w0p03_68aa17c6.csv`
+- `submission_hiddenblock_rateprobe_pareto03_motif_same_r1_k16_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_96e43a8c.csv`
+- `submission_hiddenblock_rateprobe_pareto03_motif_same_r2_k8_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_13833dae.csv`
+- `submission_hiddenblock_rateprobe_raw05_motif_same_r1_k8_tau1p0_s8p0_q1q2q3s1s2s3s4_w0p03_06d60c4d.csv`
+- `submission_hiddenblock_rateprobe_pareto03_motif_same_r1_k8_tau1p0_s8p0_q1q2q3s1s2s3s4_w0p1_d799a4d7.csv`
+- `submission_hiddenblock_rateprobe_pareto03_motif_local_r2_k16_tau1p0_s16p0_q1q2q3s1s2_w0p1_7043fdcb.csv`
+- `submission_hiddenblock_rateprobe_pareto03_motif_local_r1_k16_tau1p0_s16p0_q1q2q3s1s2s3s4_w0p1_124e44ee.csv`
+- `submission_hiddenblock_rateprobe_raw05_motif_same_r1_k8_tau1p0_s8p0_q1q2q3s1s2s3s4_w0p1_800f4d83.csv`
+
+## Safe Candidates
+
+```csv
+file,posterior_expected_public_vs_anchor,raw_axis_expected_public_vs_stage2,delta_vs_raw05_rawaxis,bad_residual_axis_ratio,ordinal_axis_ratio,mean_abs_move_vs_raw05,min_prob,max_prob,safe_source,seqmotif_source,w_probe
+submission_hiddenblock_seqmotif_neutral_746faa39.csv,0.5768061521,0.5775262355,-7.17e-08,0.0025070681,0.0243979127,0.0010997297,0.0627759429,0.9797630279,paretomix_w0.3_b7621063,pareto03_motif_same_r1_k16_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_96e43a8c,0.03
+submission_hiddenblock_seqmotif_neutral_ae84717a.csv,0.5768067628,0.5775262305,-7.67e-08,0.0024927232,0.0243937064,0.0010998783,0.0627759429,0.9797516358,paretomix_w0.3_b7621063,pareto03_motif_same_r2_k8_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_13833dae,0.03
+submission_hiddenblock_seqmotif_neutral_5efe3ee8.csv,0.5768070188,0.5775261981,-1.091e-07,0.002609452,0.0243171657,0.0010976651,0.0627759429,0.9797546356,paretomix_w0.3_b7621063,pareto03_motif_same_r2_k16_tau1p0_s8p0_q2q3s1s2s4_w0p03_fc64b079,0.03
+submission_hiddenblock_seqmotif_neutral_d0ca7647.csv,0.5768078356,0.5775263039,-3.3e-09,0.0043539135,0.0251129888,0.0011876443,0.0634129672,0.9797721265,rateprobe_neutral_605de284,pareto03_motif_same_r1_k16_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_96e43a8c,0.05
+submission_hiddenblock_seqmotif_neutral_1aa93658.csv,0.5768088597,0.5775263017,-5.5e-09,0.0043299857,0.025105967,0.0011887106,0.0634129672,0.9797531445,rateprobe_neutral_605de284,pareto03_motif_same_r2_k8_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_13833dae,0.05
+submission_hiddenblock_seqmotif_neutral_68ee9716.csv,0.5768092789,0.5775262402,-6.7e-08,0.0045245774,0.0249783868,0.0011840123,0.0634129672,0.9797581436,rateprobe_neutral_605de284,pareto03_motif_same_r2_k16_tau1p0_s8p0_q2q3s1s2s4_w0p03_fc64b079,0.05
+submission_hiddenblock_seqmotif_neutral_b648fac9.csv,0.5768099877,0.5775262669,-4.03e-08,0.0026493674,0.0252620694,0.0011696596,0.0627229293,0.979719812,paretomix_w0.4_507296eb,pareto03_motif_same_r1_k16_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_96e43a8c,0.15
+submission_hiddenblock_seqmotif_neutral_49817589.csv,0.5768114741,0.5775259144,-3.928e-07,0.0025555257,0.0252978499,0.0011421458,0.0631501783,0.9797412512,paretomix_w0.4_507296eb,pareto03_motif_same_r1_k8_tau1p0_s8p0_q1q2q3s1s2s3s4_w0p1_d799a4d7,0.03
+submission_hiddenblock_seqmotif_neutral_b9f9b0f0.csv,0.576812428,0.5775261146,-1.926e-07,0.0024747474,0.024346524,0.0010887863,0.0627759429,0.979768243,paretomix_w0.3_b7621063,pareto03_motif_same_r1_k16_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_96e43a8c,0.02
+submission_hiddenblock_seqmotif_neutral_776f7877.csv,0.5768128351,0.5775261111,-1.961e-07,0.0024651838,0.0243437198,0.0010888129,0.0627759429,0.9797606509,paretomix_w0.3_b7621063,pareto03_motif_same_r2_k8_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_13833dae,0.02
+submission_hiddenblock_seqmotif_neutral_45fb84ad.csv,0.5768130061,0.5775260899,-2.173e-07,0.0025430039,0.0242926923,0.0010874017,0.0627759429,0.9797626499,paretomix_w0.3_b7621063,pareto03_motif_same_r2_k16_tau1p0_s8p0_q2q3s1s2s4_w0p03_fc64b079,0.02
+submission_hiddenblock_seqmotif_neutral_daf0ef79.csv,0.5768130523,0.5775262527,-5.45e-08,0.0025776723,0.0252410251,0.0011739657,0.0627229293,0.9796626693,paretomix_w0.4_507296eb,pareto03_motif_same_r2_k8_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_13833dae,0.15
+submission_hiddenblock_seqmotif_neutral_b4b0521b.csv,0.5768141232,0.5775262666,-4.06e-08,0.002608639,0.024447677,0.0010816231,0.0628816271,0.9797689056,paretomix_w0.3_b7621063,raw05_motif_same_r1_k8_tau1p0_s8p0_q1q2q3s1s2s3s4_w0p03_06d60c4d,0.03
+submission_hiddenblock_seqmotif_neutral_60b36a82.csv,0.5768142949,0.5775260533,-2.539e-07,0.003161318,0.0248582936,0.0011582186,0.0627229293,0.9796777284,paretomix_w0.4_507296eb,pareto03_motif_same_r2_k16_tau1p0_s8p0_q2q3s1s2s4_w0p03_fc64b079,0.15
+submission_hiddenblock_seqmotif_neutral_c58dbf62.csv,0.5768177416,0.5775261348,-1.724e-07,0.0025424577,0.0243796987,0.0010765684,0.0628463806,0.9797721606,paretomix_w0.3_b7621063,raw05_motif_same_r1_k8_tau1p0_s8p0_q1q2q3s1s2s3s4_w0p03_06d60c4d,0.02
+submission_hiddenblock_seqmotif_neutral_d8d3b59f.csv,0.5768192534,0.5775261824,-1.248e-07,0.002595734,0.0242766122,0.0010708767,0.0628766171,0.979761686,paretomix_w0.3_b7621063,raw05_motif_local_r2_k16_tau1p0_s16p0_q1q2q3s1s2_w0p03_68aa17c6,0.03
+submission_hiddenblock_seqmotif_neutral_54649054.csv,0.576820666,0.5775260371,-2.701e-07,0.0043265968,0.0250231272,0.0011659026,0.0634264428,0.9797829615,rateprobe_neutral_605de284,pareto03_motif_same_r1_k16_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_96e43a8c,0.03
+submission_hiddenblock_seqmotif_neutral_86c15da8.csv,0.5768211621,0.5775260791,-2.281e-07,0.0025338593,0.0242656585,0.0010695371,0.0628430423,0.9797673486,paretomix_w0.3_b7621063,raw05_motif_local_r2_k16_tau1p0_s16p0_q1q2q3s1s2_w0p03_68aa17c6,0.02
+submission_hiddenblock_seqmotif_neutral_3ef7a09d.csv,0.5768212804,0.5775260358,-2.714e-07,0.0043122388,0.025018914,0.00116648,0.0634264428,0.9797715804,rateprobe_neutral_605de284,pareto03_motif_same_r2_k8_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_13833dae,0.03
+submission_hiddenblock_seqmotif_neutral_ab0dbb74.csv,0.5768215328,0.5775259998,-3.074e-07,0.0044289973,0.0249423644,0.001163716,0.0634264428,0.9797745773,rateprobe_neutral_605de284,pareto03_motif_same_r2_k16_tau1p0_s8p0_q2q3s1s2s4_w0p03_fc64b079,0.03
+submission_hiddenblock_seqmotif_neutral_cdb8609e.csv,0.5768260598,0.5775260137,-2.935e-07,0.0025228203,0.024328129,0.0010679233,0.0627590963,0.9797736428,paretomix_w0.3_b7621063,raw05_motif_same_r1_k16_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_0057e8c3,0.02
+submission_hiddenblock_seqmotif_neutral_b33bcd37.csv,0.5768264669,0.5775260102,-2.97e-07,0.0025132563,0.0243253249,0.0010679524,0.0627590963,0.9797660526,paretomix_w0.3_b7621063,raw05_motif_same_r2_k8_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_736e6173,0.02
+submission_hiddenblock_seqmotif_neutral_e3762137.csv,0.5768265994,0.5775260838,-2.234e-07,0.0025791779,0.0243703193,0.001068446,0.0627506746,0.9797711291,paretomix_w0.3_b7621063,raw05_motif_same_r1_k16_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_0057e8c3,0.03
+submission_hiddenblock_seqmotif_neutral_b88e28ec.csv,0.5768266644,0.5775259893,-3.179e-07,0.0025911661,0.0242739797,0.0010664734,0.0627590963,0.9797680511,paretomix_w0.3_b7621063,raw05_motif_same_r2_k16_tau1p0_s8p0_q2q3s1s2s4_w0p03_b174dd54,0.02
+submission_hiddenblock_seqmotif_neutral_f5be1ed4.csv,0.5768270868,0.5775259094,-3.978e-07,0.0043129442,0.0249781978,0.0011552687,0.0634331816,0.9797883769,rateprobe_neutral_605de284,pareto03_motif_same_r1_k16_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_96e43a8c,0.02
+submission_hiddenblock_seqmotif_neutral_e08b01dd.csv,0.5768272101,0.5775260787,-2.285e-07,0.0025648321,0.0243661133,0.0010686052,0.0627506746,0.9797597415,paretomix_w0.3_b7621063,raw05_motif_same_r2_k8_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_736e6173,0.03
+submission_hiddenblock_seqmotif_neutral_28feb13f.csv,0.5768274963,0.5775259085,-3.987e-07,0.0043033717,0.024975389,0.0011556519,0.0634331816,0.9797807922,rateprobe_neutral_605de284,pareto03_motif_same_r2_k8_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_13833dae,0.02
+submission_hiddenblock_seqmotif_neutral_8b8d8bfe.csv,0.5768275059,0.5775260469,-2.603e-07,0.0026816963,0.0242890946,0.0010662851,0.0627506746,0.9797627401,paretomix_w0.3_b7621063,raw05_motif_same_r2_k16_tau1p0_s8p0_q2q3s1s2s4_w0p03_b174dd54,0.03
+submission_hiddenblock_seqmotif_neutral_00ae77cb.csv,0.576827665,0.5775258848,-4.224e-07,0.0043812118,0.0249243555,0.0011538188,0.0634331816,0.9797827893,rateprobe_neutral_605de284,pareto03_motif_same_r2_k16_tau1p0_s8p0_q2q3s1s2s4_w0p03_fc64b079,0.02
+submission_hiddenblock_seqmotif_neutral_a38963fe.csv,0.5768276891,0.5775262345,-7.27e-08,0.0026919106,0.0244547005,0.0010702015,0.0627338343,0.9797661009,paretomix_w0.3_b7621063,raw05_motif_same_r1_k16_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_0057e8c3,0.05
+submission_hiddenblock_seqmotif_neutral_b0429b11.csv,0.5768281554,0.5775258365,-4.707e-07,0.0022975428,0.0251472893,0.0011250898,0.0631574175,0.9797380012,paretomix_w0.4_507296eb,pareto03_motif_local_r1_k16_tau1p0_s16p0_q1q2q3s1s2s3s4_w0p1_124e44ee,0.03
+submission_hiddenblock_seqmotif_neutral_6cdadb87.csv,0.5768281786,0.5775256125,-6.947e-07,0.0025130934,0.0247325028,0.0011055655,0.0631334133,0.979717144,paretomix_w0.4_507296eb,pareto03_motif_local_r2_k16_tau1p0_s16p0_q1q2q3s1s2_w0p1_7043fdcb,0.03
+submission_hiddenblock_seqmotif_neutral_3c941dc7.csv,0.5768287001,0.5775261312,-1.76e-07,0.00442835,0.0250729934,0.0011501891,0.0635331479,0.9797888335,rateprobe_neutral_605de284,raw05_motif_same_r1_k8_tau1p0_s8p0_q1q2q3s1s2s3s4_w0p03_06d60c4d,0.03
+submission_hiddenblock_seqmotif_neutral_27c2e326.csv,0.5768287072,0.5775262263,-8.09e-08,0.0026680019,0.0244476905,0.0010707121,0.0627338343,0.9797471134,paretomix_w0.3_b7621063,raw05_motif_same_r2_k8_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_736e6173,0.05
+submission_hiddenblock_seqmotif_neutral_e6ee2516.csv,0.576829199,0.5775261722,-1.35e-07,0.0028627738,0.0243193231,0.0010665231,0.0627338343,0.9797521139,paretomix_w0.3_b7621063,raw05_motif_same_r2_k16_tau1p0_s8p0_q2q3s1s2s4_w0p03_b174dd54,0.05
+submission_hiddenblock_seqmotif_neutral_7c68ec43.csv,0.5768302593,0.5775257755,-5.317e-07,0.0026211479,0.0252722708,0.0011138742,0.06312731,0.9797487758,paretomix_w0.4_507296eb,raw05_motif_same_r1_k8_tau1p0_s8p0_q1q2q3s1s2s3s4_w0p1_800f4d83,0.03
+submission_hiddenblock_seqmotif_neutral_cc53430b.csv,0.5768324428,0.5775259721,-3.351e-07,0.0043807773,0.0250114411,0.0011447628,0.0635043068,0.9797922907,rateprobe_neutral_605de284,raw05_motif_same_r1_k8_tau1p0_s8p0_q1q2q3s1s2s3s4_w0p03_06d60c4d,0.02
+submission_hiddenblock_seqmotif_neutral_7a582f38.csv,0.5768338316,0.5775260482,-2.59e-07,0.0044153018,0.0249019167,0.0011399123,0.0635280895,0.9797816209,rateprobe_neutral_605de284,raw05_motif_local_r2_k16_tau1p0_s16p0_q1q2q3s1s2_w0p03_68aa17c6,0.03
+submission_hiddenblock_seqmotif_neutral_ef093468.csv,0.5768358642,0.5775259172,-3.9e-07,0.0043720824,0.0248973929,0.0011379107,0.0635009359,0.9797874834,rateprobe_neutral_605de284,raw05_motif_local_r2_k16_tau1p0_s16p0_q1q2q3s1s2_w0p03_68aa17c6,0.02
+submission_hiddenblock_seqmotif_neutral_7ff21873.csv,0.5768407186,0.5775258085,-4.987e-07,0.0043609777,0.024959774,0.0011348865,0.0634161706,0.9797937715,rateprobe_neutral_605de284,raw05_motif_same_r1_k16_tau1p0_s8p0_q2q3s1s2s3s4_w0p03_0057e8c3,0.02
+```

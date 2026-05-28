@@ -1,0 +1,3 @@
+candidate,oof_loss,oof_delta_vs_stage2,bad_axis_projection_ratio,good_axis_projection_ratio,ops,risk_class
+submission_jepa_latent_residual_probe.csv,0.5607565805814428,-0.006774344108374297,-0.0021896087911546084,0.03553698257477301,7,safe_selected
+submission_jepa_latent_residual_probe_risky_top.csv,0.5607565805814428,-0.006774344108374297,-0.0021896087911546084,0.03553698257477301,7,oof_top_guardrail_failed

@@ -1,0 +1,8 @@
+candidate,target,base_loss,candidate_loss,delta
+submission_lejepa_targetwise_strict_best_scale0p5.csv,Q1,0.5746308240745168,0.5724501356555041,-0.002180688419012755
+submission_lejepa_targetwise_strict_best_scale0p5.csv,Q2,0.6429986926145494,0.6395885290116897,-0.003410163602859728
+submission_lejepa_targetwise_strict_best_scale0p5.csv,Q3,0.6303484889503163,0.6237266077882258,-0.006621881162090504
+submission_lejepa_targetwise_strict_best_scale0p5.csv,S1,0.47894327588040597,0.4754851407044683,-0.003458135175937682
+submission_lejepa_targetwise_strict_best_scale0p5.csv,S2,0.5389534496173579,0.5357825234869811,-0.003170926130376839
+submission_lejepa_targetwise_strict_best_scale0p5.csv,S3,0.5034376794790675,0.5034376794790675,0.0
+submission_lejepa_targetwise_strict_best_scale0p5.csv,S4,0.6034040622125061,0.60046975753874,-0.002934304673766097

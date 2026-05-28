@@ -1,0 +1,36 @@
+.DS_Store
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.omx/
+
+# Keep the analysis code, reports, summaries, and key submissions in git.
+# Large generated scan tables stay local because this workspace is ~7GB.
+analysis_outputs/*
+!analysis_outputs/*.py
+!analysis_outputs/*.md
+!analysis_outputs/*.json
+!analysis_outputs/*.txt
+!analysis_outputs/*.png
+!analysis_outputs/*summary*.csv
+!analysis_outputs/*report*.csv
+!analysis_outputs/*audit*.csv
+!analysis_outputs/submission_mixmin_0c916bb4.csv
+!analysis_outputs/submission_frontier_cvjepa_refine_a2c8d2c8.csv
+!analysis_outputs/submission_label_flow_focused_1bbfb735.csv
+!analysis_outputs/submission_label_flow_sensorcurve_conservative_1bb_full_s0p65_0ee928c4.csv
+!analysis_outputs/submission_label_flow_focused_6b9335b1.csv
+!analysis_outputs/submission_label_flow_combo_3d536109.csv
+!analysis_outputs/submission_label_flow_gated_f1046674.csv
+!analysis_outputs/submission_label_flow_gated_ff8df011.csv
+!analysis_outputs/submission_hiddenloc_bridge_8ff484be.csv
+!analysis_outputs/submission_inverse7blend_1040423d.csv
+!analysis_outputs/submission_label_flow_locsensor_contrast_6b_q3_s4_block_id02_b02_s1p00_ea4fdc0b.csv
+
+!analysis_outputs/bridge_scan_candidates/
+analysis_outputs/bridge_scan_candidates/*
+!analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p25.csv
+
+!analysis_outputs/paper_notes/
+analysis_outputs/paper_notes/*
+!analysis_outputs/paper_notes/*.md

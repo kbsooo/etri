@@ -1,0 +1,6 @@
+target,feature,mode,c_value,weight
+S1,neural_jepa_mask__sensor__presleep_activity__resid_mean,subject_center,0.2,0.45
+S4,neural_jepa__full_z11,subject_z,0.2,0.45
+S2,neural_jepa_mask__sensor__deep__cos,subject_rank,0.2,0.45
+S3,neural_jepa_mask__sensor__wifi__pred_norm,subject_z,0.2,0.45
+Q3,neural_jepa_mask__time__afternoon__pred_norm,subject_rank,0.2,0.45

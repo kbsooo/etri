@@ -1,0 +1,4 @@
+candidate,oof_loss,oof_delta_vs_stage2,bad_axis_projection_ratio,good_axis_projection_ratio
+submission_blockrate_jepa_minimal.csv,0.5675309246898171,0.0,0.0,0.0
+submission_qrank_count_jepa.csv,0.5675309246898171,0.0,0.0,0.0
+submission_rawijepa_selected.csv,0.5675309246898171,0.0,0.0,0.0

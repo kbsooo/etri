@@ -1,0 +1,14 @@
+claim,value,reference,interpretation
+block_rate_oracle_reaches_0p5_range,0.5178775562938622,breakthrough_oracle_bounds.csv,0.54 is structurally possible if hidden block rates are identified
+temporal_to_block_oracle_gap,0.10688760764926786,breakthrough_oracle_bounds.csv,"main missing signal is block-rate/state, not row smoothing"
+subject_identity_explains_fraction_of_oracle_gap,0.29128640888764745,breakthrough_oracle_bounds.csv,subject prior helps but leaves most block-local state unexplained
+remaining_gap_after_full_subject_oracle,0.07575270026252079,breakthrough_oracle_bounds.csv,static user identity is not enough
+markov_best_delta_vs_temporal,0.0029977716128717358,breakthrough_markov_results.csv,label-state transition dynamics do not recover hidden block rates
+nested_threshold_delta_vs_temporal,0.0442753265959388,breakthrough_threshold_results.csv,single-feature sensor thresholds do not transfer under nested selection
+cheating_threshold_gain_vs_temporal,0.05636392987445371,breakthrough_threshold_results.csv,"feature matrix contains fold-specific slices, but selection does not generalize"
+endpoint_reconstruction_gain_vs_subject_mean,0.00325244171945982,hidden_block_rate_reconstruction_summary.csv,known block flanks recover only a small part of the needed block-state gap
+endpoint_gain_fraction_of_oracle_gap,0.03042861367177487,hidden_block_rate_reconstruction_summary.csv,current endpoint pseudo-hidden method captures only a small fraction of oracle headroom
+leave_one_in_block_delta_vs_temporal,0.00661183202579918,breakthrough_oracle_bounds.csv,block-rate latent is useful as a target representation; rowwise neighbor labels are noisy
+two_train_flank_submission_block_fraction,0.7222222222222222,breakthrough_split_blocks.csv,"context exists for most hidden blocks, so failure is context interpretation rather than no context"
+best_structured_public_mask_loocv_mae,0.0004295279053926,structured_public_subset_feasibility_summary.csv,simple public-subset mask recovery is too noisy to choose candidates
+mean_lag1_target_corr,0.22641989488856148,data_dissection_label_lag_autocorr.csv,short-lag autocorrelation exists but is far weaker than block-rate oracle headroom

@@ -1,0 +1,4 @@
+candidate,ops,oof_loss,oof_delta_vs_stage2
+submission_raw_timeline_jepa_rescue_strict.csv,6,0.5646719644369889,-0.00285896025282828
+submission_raw_timeline_jepa_rescue_loose.csv,6,0.5646719644369889,-0.00285896025282828
+submission_raw_timeline_jepa_rescue_top_probe.csv,7,0.5646649411830654,-0.0028659835067517125

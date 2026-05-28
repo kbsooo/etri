@@ -1,0 +1,2 @@
+folds,base_loss,candidate_loss,mean_delta,median_delta,win_rate,mean_train_feature_coverage,mean_val_feature_coverage
+4,0.5635881842201541,0.5638738948426878,0.0002857106225336026,0.0006786192683926329,0.5,0.7939816202053982,1.0

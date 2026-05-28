@@ -1,0 +1,11 @@
+candidate,status,oof_loss,oof_delta_vs_stage2,nested_or_geometry_delta,note,bad_axis_projection_ratio,good_axis_projection_ratio
+submission_blockrate_jepa_minimal.csv,reject_direct_blend,0.5675309246898171,0.0,0.0008198676373253888,best nonzero direct blockrate worsened geometry,,
+submission_qrank_count_jepa.csv,reject_direct_blend,0.5675309246898171,0.0,0.00039025250793278676,best nonzero qrank worsened mean7,,
+submission_rawijepa_selected.csv,reject_no_guardrail_pass,0.5675309246898171,0.0,0.0,raw I-JEPA learned but no feature passed subject guardrail,,
+submission_jepa_latent_residual_probe.csv,hold_nested_failed,0.5607565805814428,-0.0067743441083742,0.0002857106225336026,7-target latent residual full OOF strong but nested all-target failed,-0.0021896087911546,0.035536982574773
+submission_jepa_latent_residual_probe_risky_top.csv,hold,0.5607565805814428,-0.0067743441083742,0.0002857106225336026,7-target latent residual full OOF strong but nested all-target failed,-0.0021896087911546,0.035536982574773
+submission_jepa_latent_q2_w0p1.csv,q2_sweep,0.56704928656285,-0.0004816381269671,,Q2-only latent residual; Q2 slice survived nested guardrail,-0.0009891758934557,0.0010326779857325
+submission_jepa_latent_q2_w0p15.csv,q2_sweep,0.5668579647475089,-0.0006729599423082,,Q2-only latent residual; Q2 slice survived nested guardrail,-0.0014730345120013,0.0015509823506402
+submission_jepa_latent_q2_w0p2.csv,q2_sweep,0.5666974279975826,-0.0008334966922345,,Q2-only latent residual; Q2 slice survived nested guardrail,-0.0019543871234986,0.0020743050927664
+submission_jepa_latent_q2_w0p3.csv,conservative_candidate,0.5664650074665176,-0.0010659172232995,,Q2-only latent residual; Q2 slice survived nested guardrail,-0.002922270661951,0.0031469121636265
+submission_jepa_latent_q2_w0p45.csv,primary_candidate,0.5663342539030795,-0.0011966707867376,-0.0006868871685832,Q2-only latent residual; Q2 slice survived nested guardrail,-0.0044350934945356,0.004865404173432

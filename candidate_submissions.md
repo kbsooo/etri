@@ -1,0 +1,221 @@
+# Candidate Submissions
+
+작성일: 2026-05-28
+
+Submission 후보는 CV 점수순이 아니라 survival score로 판단한다.
+
+```text
+submission_survival_score =
+  public-observation consistency
+  + anchor-LOO/L2O consistency
+  + blockwise stress survival
+  + targetwise calibration improvement
+  + raw05 compatibility or justified deviation
+  + prediction diversity without instability
+  + latent energy sanity
+  + seed/model-family stability
+  + known public LB observation consistency
+  + expected upside/downside ratio
+```
+
+## Current Public Frontier
+
+Current public frontier: `analysis_outputs/submission_mixmin_0c916bb4.csv` with public LB `0.5763066405`.
+
+Previous frontier: `analysis_outputs/submission_frontier_cvjepa_refine_a2c8d2c8.csv` with public LB `0.5774393210`.
+
+The improvement is `-0.0011326805`, about `13.02x` the previous raw05-a2c8 gap. This converts mixmin from a high-risk public sensor into the active public anchor.
+
+## Pre-E48 Strict Gate
+
+Before the new public observation, strict local submit candidate count was `0`. That conclusion was useful as a risk warning, but E48 shows it was too conservative as a hard gate because it vetoed the now-best mixmin candidate.
+
+이 pre-E48 결론은 다음 audits에 의해 지지됐다.
+
+- public anchor bottleneck: a2c8 edge is smaller than proxy error.
+- hidden subset selector stress: passing selector families 0/7.
+- universe audit: strict resolved-better 0.
+- badaxis low-energy JEPA: resolved better 0.
+- hidden public localization/bridge: submit_gate 0.
+- pairwise order selector: strict submit-gate 0.
+- label-flow gated scan: submit_gate 0, control gate 50, probe gate 3263.
+- focused S4+Q3 label-flow scan: submit_gate 61/180, conflict 0.
+- focused S4+Q3 independent survival review: independent survival 0/163, including 0/61 pair-submit candidates.
+- S4/Q3 anchor gap audit: no existing candidate has both Q3/S4-shaped movement and old hidden-subset support.
+- S4/Q3 OOF anchor audit: top 399 local Q3/S4 OOF candidates produced pair/old support 0 and submit/control/probe 0.
+- Block/measurement selector rescore: 3800 non-anchor candidates produced pair p90 negative 0, two-selector majority 0, and submit/control 0/0.
+- Selector support topology: merged scored universe produced pair-only 465, old-only 97, pair-probe-not-majority 56, two-selector majority 0.
+- Selector disambiguation: old hidden-subset selector fails the known raw05/A2C8 direction; pairwise selector is better as a diagnostic sensor but still too noisy for improvement claims.
+- Sensor scale curve: 108 scaled pair-only S4/Q3 variants produced two-selector majority 0; lower amplitude can reduce old p90 but does not make an improvement candidate.
+- Localized sensor audit: 960 subject/date/block/phase/energy/sign variants produced pair p90 negative 807, old-majority 0, two-selector majority 0; the only loose sensors were tiny `id02_b02` moves with pair p90 around `-2e-7`.
+- Direction-probe selector reconciliation: 22 mixmin/direns/sparseladder/targetabl/inverse7 probes produced pair p90 negative 0, pair majority 0, old-majority 0, two-selector majority 0.
+- Public LB inverse feasibility: 8 known public LBs can be fit exactly by relaxed hidden worlds; all 8 unobserved candidate delta ranges cross zero even with train target prevalence bands.
+- Public LB structural-prior stress: adding global target and subject-target prior bands fits known LBs exactly but leaves unobserved candidate signs crossing zero in `56/56` cells.
+- Binary hidden-label inverse stress: tight subject-prior MILP incumbent fits known LBs within the raw05/a2c8 gap, but no representative candidate gets one-sided improvement evidence.
+- Binary world-pool sign audit: 15 tight-prior binary incumbents include only 1 frontier-scale world, so mixmin/inverse7 support is diagnostic metadata rather than a submission gate.
+- Binary frontier-box pool: 29 residual-box-constrained binary worlds strongly favor mixmin/inverse7 in random objectives, but candidate-max worlds still find adverse signs.
+- Binary world plausibility audit: train-label geometry ranks the mixmin-adverse worlds as the most plausible worlds, so they cannot be safely discarded.
+- Binary anchor loss geometry audit: low-anchor-energy worlds support mixmin/inverse7 one-sided, and the adverse mixmin worlds are high-energy under known-anchor loss decomposition; this strengthens the high-risk probe lane but still does not open the strict gate.
+- Binary anchor loss LOO stability: omitting any one known anchor keeps mixmin one-sided in low-energy half/quarter bands and keeps adverse worlds out of the low-energy half; the high-risk probe is not one-anchor fragile.
+- Binary anchor loss family/null audit: medium non-JEPA anchors alone sustain mixmin support, bad-JEPA-only fails, and target-axis permutation does not break support; evidence is broad anchor-loss/cancellation geometry rather than target-axis semantics.
+- Public probe independent evidence audit: existing artifacts do not provide certification-grade out-of-anchor evidence for mixmin; normal submit gates remain `0`, but mixmin becomes the highest-information public sensor for the binary/actual-anchor/anchor-loss worldview.
+- Raw-structure pseudo-label stress: 10 train-derived subject/date/raw-feature pseudo-label sources do not support mixmin as independent validation (`5/10`, mean delta `+0.000065107`), while inverse7 is supported by all sources (`10/10`, mean delta `-0.000705727`); this creates a bridge-probe branch but does not open the strict gate because selector hard veto remains.
+- Inverse7 raw-anchor bridge scale scan: 22 inverse7/mixmin scale-blend variants produced raw support gates `14` and anchor gates `22`, but two-selector majority `0` and strict bridge gates `0`; scaled inverse7 remains a diagnostic bridge sensor, not a safe submission.
+- Worldview sensor discriminability audit: 10 current sensors produced normal-submit candidates `0` and public-sensor candidates `10`; `mixmin_0c916` is the maximum-information anchor-loss worldview sensor, inverse7/inv7 variants are raw+anchor bridge sensors, and S4/Q3 pair files are selector-disambiguation sensors.
+- OOF selector calibration audit: 4172 OOF rows produced many local gates (`1311` strict, `1115` conservative) and known-public sign match `1.0`, but known-public rank agreement was `0.0` because OOF ranks ordinal above stage2 while public LB ranks stage2 above ordinal.
+- Test-movement fingerprint selector: target/subject/order/raw-domain movement fingerprints produced strict selector views `0`, loose views `4`; combined view recovers stage2/ordinal order and predicts `inv7_s0p25` closest to A2C8 (`0.577450`) but underpredicts bad JEPA severity.
+- Movement + bad-axis geometry selector: adding LOO-safe bad/good axis cosine/projection features produced strict views `0` and loose views `0`; best `axis_group` repaired bad severity partly but failed A2C8-best and missed the loose MAE threshold.
+- Fixed-zero anchor selector calibration: keeping A2C8 fixed at zero improves `axis_group` nonbaseline rank to `0.857143`, but fixed gates and usable gates remain `0`; predicted near-A2C8 candidate advantages are far below selector MAE.
+- Selector resolution boundary audit: across current selector families, frontier-resolution gates `0`, certified better-than-A2C8 rows `0`, and certified better-than-raw05 rows `0`; best selector error is `0.000218288`, still above the raw05-A2C8 gap.
+
+## Candidate Table
+
+| priority | file | role | why it matters | expected LB reaction | risk | decision |
+|---:|---|---|---|---|---|---|
+| 0 | `analysis_outputs/submission_mixmin_0c916bb4.csv` | current best anchor | public `0.5763066405`, beats previous a2c8 by `0.0011326805`; validates the anchor-loss/binary actual-anchor worldview despite pair/old selector veto | baseline for all future candidates | private safety still unknown; large movement means target/row attribution is mandatory | keep as frontier; next candidates must be mixmin-relative |
+| 1 | `analysis_outputs/submission_frontier_cvjepa_refine_a2c8d2c8.csv` | previous best anchor | previous best known public `0.577439321` | now `+0.0011326805` worse than mixmin | still useful as raw05-compatible reference | keep as contrast anchor, no longer frontier |
+| 2 | `analysis_outputs/submission_label_flow_focused_1bbfb735.csv` | lower-risk selector-disambiguation sensor | pairwise p90 `-0.000054316`, old-selector p90 `+0.000638679`; E48 lowers priority because mixmin already proved the pair/old veto can be wrong | diagnostic only; now should be rescored relative to mixmin, not a2c8 | independent survival false; beat-rate `0.277992`; not a 0.54 path by itself | hold until post-mixmin selector recalibration |
+| 3 | `analysis_outputs/submission_label_flow_sensorcurve_conservative_1bb_full_s0p65_0ee928c4.csv` | lower-risk selector-disambiguation sensor | pairwise p90 `-0.000034496`, old p90 `+0.000571958`, movement `0.003931`; E23 balanced scale | weaker but lower-movement diagnostic | still no old majority; not a normal improvement candidate | optional diagnostic only after mixmin-relative rescore |
+| 4 | `analysis_outputs/submission_label_flow_focused_6b9335b1.csv` | high-upside selector-conflict sensor | best pairwise p90 `-0.000065217`, but old-selector p90 `+0.000675515` | diagnostic only after `1bbfb735` improves | focused selector overfit; S4 max move not tiny | hold |
+| 5 | `analysis_outputs/submission_label_flow_combo_3d536109.csv` | pre-threshold sensor | broad combo best before focused push, pair p90 `-0.000035162`, old-selector p90 `+0.000581412` | information-only | below pair-submit and independent survival false | hold |
+| 6 | `analysis_outputs/submission_label_flow_gated_f1046674.csv` | conservative semantic-gate sensor | best E11 control/probe by rank; tiny movement | likely noise-scale | expected edge below selector error | hold |
+| 7 | `analysis_outputs/submission_label_flow_gated_ff8df011.csv` | higher-upside E11 sensor | best E11 p90 delta vs a2c8 among gated controls | possible tiny movement sensor only | no strict gate, independent survival false | hold |
+| 8 | `analysis_outputs/submission_hiddenloc_bridge_8ff484be.csv` | information-only probe | top baseline-relative hiddenloc bridge in pairwise selector | possible tiny improvement or noise around previous frontier | selector conflict, edge `1e-5` scale | lower priority |
+| 9 | `jepa/submission_raw_timeline_jepa_rescue_strict_scale0p5.csv` | raw05 anchor | validates raw timeline public-positive direction | known `0.5775263072`, now `+0.0012196667` worse than mixmin | still useful as raw-timeline contrast | no need to resubmit |
+| 10 | `analysis_outputs/submission_label_flow_locsensor_contrast_6b_q3_s4_block_id02_b02_s1p00_ea4fdc0b.csv` | weak localization sanity sensor | E24 loose localized candidate on an 8-row id02 block; pair p90 `-0.000000203`, old p90 `+0.000580036` | likely unreadable on public LB | movement `0.0000127`; no old majority; no two-selector support | do not submit |
+| risk lane | `analysis_outputs/submission_inverse7blend_1040423d.csv` | raw-structure bridge probe | E25 nearest direction-probe by pairwise p90 (`+0.000122038`) but still old beat-rate `0.003861`; E32 low-anchor-energy worlds support inverse7 with mixmin; E33 inverse7 anchor-LOO is slightly weaker than mixmin (low-half min better_rate `0.928571`); E36 raw-structure pseudo-label stress supports inverse7 `10/10`, mean delta `-0.000705727`, worst delta `-0.000507826` | tests whether the candidate that aligns with raw observed structure generalizes better than mixmin's anchor-loss priority | selector hard veto remains; not pair/old strict; anchor-LOO weaker than mixmin; direct public readability unknown | do not submit before scale/blend reconciliation unless the explicit public question is raw-structure bridge vs selector veto |
+| risk lane | `analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p25.csv` | conservative raw-structure bridge probe | E37 best-ranked scale-bridge diagnostic: raw support `10/10`, raw mean delta `-0.000181991`, low-anchor-half better_rate `1.0`, low-anchor-quarter better_rate `1.0`, pair p90 `+0.000035423`, old p90 `+0.000587512`; E38 sensor information score `2.787093`; E40 combined movement-fingerprint predicted public LB `0.577450`, closest non-baseline candidate and below raw timeline | tests whether a very small inverse7 bridge direction can beat selector veto through raw+anchor/movement-anatomy agreement | selector hard veto remains; old beat-rate only `0.007722`; E40 is loose not strict; public readability may be weak due small movement | hold; best lower-risk diagnostic if explicit question is raw+anchor/movement anatomy vs selector veto |
+
+## E38 Selected Sensor Options
+
+This is a selected public-sensor menu, not expected safety. Full score ordering is in `analysis_outputs/worldview_sensor_discriminability_audit.csv`.
+
+| option | file | lane | information score | public question |
+|---|---|---|---:|---|
+| maximum information | `analysis_outputs/submission_mixmin_0c916bb4.csv` | anchor-loss worldview | `3.355110` | Does anchor-loss/honest-CV support beat raw/pair/old veto? |
+| strongest raw bridge | `analysis_outputs/submission_inverse7blend_1040423d.csv` | raw-structure bridge | `3.235599` | Does raw observed structure plus anchor-loss support beat selector veto? |
+| conservative raw bridge | `analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p25.csv` | raw-structure bridge | `2.787093` | Does a small raw+anchor bridge movement survive despite weak readability? |
+| high-amplitude pair sensor | `analysis_outputs/submission_label_flow_focused_6b9335b1.csv` | S4/Q3 selector disambiguation | `3.084287` | Does higher-amplitude pairwise S4/Q3 movement beat old/anchor veto? |
+| lower-risk pair sensor | `analysis_outputs/submission_label_flow_focused_1bbfb735.csv` | S4/Q3 selector disambiguation | `2.943869` | Does lower-risk pairwise S4/Q3 movement beat old/anchor veto? |
+
+Update after E10: existing label-flow/transductive/MP-count branch candidates were scored directly. 556 files produced `pair_submit_gate=0`, `pair_probe_gate=0`, `pair_control_better_than_a2c8_gate=0`; best p90 delta vs a2c8 was `+0.000125668`. Therefore priority 3 is not "submit existing label-flow candidate"; it is now "build a gated label-flow candidate and stress it."
+
+Update after E11: gated label-flow candidates were built. 7240 files produced `pair_submit_gate=0`, `pair_control_better_than_a2c8_gate=50`, `pair_probe_gate=3263`, and `pair_selector_conflict=0`. This is not enough for a strong submit, but it is better than hiddenloc because the sensor has no selector conflict and directly tests H15.
+
+Update after E12-E14: targetwise/combo/focused scans changed the submission state. S4 is the dominant safe target movement and Q3 is additive. The focused S4+Q3 scan produced 61 strict pairwise submit-gate candidates. At that point this looked like a frontier-challenge branch, but it required independent survival before actual submission priority.
+
+Update after E15-E16: independent survival review reversed the E14 submission recommendation. Among 163 reviewed label-flow candidates, including all 61 pair-submit files, independent survival was 0 and strict independent survival was 0. Pairwise-improving movement is anti-aligned with the older hidden-subset selector: corr(pairwise p90 delta, old-selector p90 delta) `-0.881`. Decomposition then showed pairwise support is mixed, not unanimous: focused files have pairwise full-fit better_rate `0.500000` and old hidden-subset better_rate `0.285714`. Therefore the current best action is to hold submissions and use these files only as diagnostic sensors if a public slot is intentionally spent for information.
+
+Update after E17: the missing validation object was audited directly. The pairwise-scored universe has 21 Q3/S4-shaped candidates and 46 pairwise-p90-negative candidates, but `0` with Q3/S4 shape plus old-majority support. The focused family has 163 pairwise-positive Q3/S4 candidates and old-majority `0`. The old-positive rescore has 97 old-majority candidates, but Q3/S4-shaped `0`. Therefore more S4/Q3 weight rescan is not a rational next submit path.
+
+Update after E18-E19: the OOF archive is also not the missing validation source. E18 found 1578 local-Q3/S4-strong OOF candidates, but no anchor-like overlap. E19 directly rescored the top 399 local OOF candidates; pairwise p90 negative, pair majority, old majority, pair probe/control/submit, and strict S4/Q3 OOF anchor-like counts were all `0`. These candidates are mostly Q3-dominant broad/public-mask-aware moves, not clean S4/Q3 public-positive anchors.
+
+Update after E20: existing block/measurement submissions are not the missing large safe movement. E20 rescored 3800 non-anchor block-scale, hidden-block, public-block, raw05-blockcount, and pre-sleep measurement candidates. Results were pair p90 negative `0`, pair majority `52`, old-majority `3`, two-selector majority `0`, pair submit/control/probe `0/0/63`. There were 2505 large low-bad movement candidates but 0 with two-selector support. The nearest raw05-blockcount refine files are diagnostic probes only; they still have best pair p90 `+0.000010793` and old beat rate around `0.36`.
+
+Update after E21: merging the scored universes did not uncover a hidden intersection. `analysis_outputs/selector_support_topology_audit.py` found pair-only `465`, old-only `97`, pair-probe-not-majority `56`, two-selector majority `0`, strict candidate shape `0`. Pair-only candidates are S4/Q3-heavy and include the focused label-flow pair-submit files; old-only candidates are Q3/raw05-public-drift-like and are pairwise-vetoed. This confirms that current candidates are sensors for selector disagreement, not improvement submissions.
+
+Update after E22: selector disambiguation changed the sensor priority but not the strict gate. Pairwise public-order selector preserves the raw05/A2C8 public direction in `33/36` models with raw05 direction correct rate `0.916667`; old hidden-subset selector has pass `0/7` and raw05 direction correct rate `0.0`. Therefore an old-only Q3/raw05-drift candidate is not the next public sensor. If one public diagnostic is used, `analysis_outputs/submission_label_flow_focused_1bbfb735.csv` has the best information-to-risk tradeoff; `6b9335b1` is only a follow-up if `1bbfb735` improves.
+
+Update after E23: scaling the S4/Q3 sensor does not resolve the selector conflict. The best balanced lower-risk file is `analysis_outputs/submission_label_flow_sensorcurve_conservative_1bb_full_s0p65_0ee928c4.csv` with pair p90 `-0.000034496`, old p90 `+0.000571958`, and movement `0.003931`, but two-selector majority remains `0`. This is a lower-risk diagnostic alternative, not a new submit-safe candidate.
+
+Update after E24: simple row localization also does not resolve the selector conflict. `analysis_outputs/label_flow_localized_sensor_audit.py` scored 960 localized variants and found old-majority `0` and two-selector majority `0`. The eight loose localized candidates all target the tiny `id02_b02` date block and have pairwise deltas around `1e-7`, too small to be public-readable. They are not submission candidates.
+
+Update after E25: the newer large-movement score-probe branch also fails the strict survival gate. `analysis_outputs/direction_probe_selector_reconciliation.py` scored 22 mixmin/direns/sparseladder/targetabl/inverse7 probes: pair p90 negative `0`, pair majority `0`, old-majority `0`, two-selector majority `0`. `submission_mixmin_0c916bb4.csv` remains the best high-risk score-oriented probe under actual-anchor/combo/honest-CV metadata, but not under the pairwise/old selector gate.
+
+Update after E26: public-LB inverse fitting cannot rescue candidate ranking. `analysis_outputs/public_lb_inverse_feasibility.py` matched all 8 known public LBs exactly with all-test soft labels and with arbitrary cell-mixture weights. The delta ranges for `1bbfb735`, `6b9335b1`, 0.65 sensor, `mixmin_0c916`, `direns_c4af`, target-ablation probes, and inverse7 all cross zero; this remains true with train target prevalence constrained to `±0.05`, `±0.10`, and `±0.20`. Therefore current submissions must be chosen as worldview tests, not as inverse-LB-validated improvements.
+
+Update after E27: train global prevalence and subject-target prior constraints also cannot rescue candidate ranking. `analysis_outputs/public_lb_structural_prior_stress.py` tested 7 all-test inverse scenarios; all fit the 8 known public LBs with slack `0`, but all unobserved candidate-scenario cells crossed zero (`56/56`) and one-sided improvement cells were `0`. Therefore subject-prior inverse ranking is not a valid submission gate for the current files.
+
+Update after E28: binary hidden-label constraints are not a current submission gate either. `analysis_outputs/public_lb_binary_inverse_stress.py` found a tight subject-prior binary incumbent with max residual `0.000061242`, below the raw05/a2c8 public gap `0.000086986`, so binary exactness remains a plausible hidden-world constraint. But candidate range MILPs produced no one-sided improvement evidence, and `6b9335b1` crossed zero under no-prior incumbents. Do not submit from a single binary inverse world.
+
+Update after E29: a small binary world pool weakly changes probe priority but not the strict gate. `analysis_outputs/public_lb_binary_world_pool.py` found 15 unique tight-prior binary incumbents, but only one frontier-scale world. In all worlds, mixmin and inverse7 had higher better_rate than pair-only S4/Q3 sensors; in the only frontier-scale world, mixmin and inverse7 improved while the pair sensors worsened. This slightly strengthens `analysis_outputs/submission_mixmin_0c916bb4.csv` as a high-risk worldview probe, but the evidence is too thin to call it an improvement candidate.
+
+Update after E30: frontier-box binary sampling makes the high-risk probe ranking sharper. `analysis_outputs/public_lb_binary_frontier_box_pool.py` bounded every known-public residual by the raw05/a2c8 gap and found 29 frontier-scale incumbents, 28 unique. Excluding candidate min/max objectives, mixmin was better in `19/19` worlds and inverse7 in `18/19`, while pair-only S4/Q3 sensors were below half support. But candidate-max objectives still made mixmin and inverse7 worse, so this is not one-sided proof. If a public slot is used to test the binary/actual-anchor worldview, mixmin is now the clearest probe.
+
+Update after E31: generic train-label plausibility cannot upgrade mixmin from probe to improvement candidate. `analysis_outputs/public_lb_binary_world_plausibility_audit.py` found low-energy random+fit worlds support mixmin/inverse7 `6/6`, but the two mixmin-adverse worlds are the two most plausible worlds by the same train-geometry score. Therefore E31 strengthens the diagnosis but blocks certification: mixmin is informative because it directly tests whether public resembles random/fit binary worlds or candidate-adverse plausible worlds.
+
+Update after E32: known-anchor loss geometry reopens the mixmin probe lane, but still not the strict gate. `analysis_outputs/public_lb_binary_anchor_loss_geometry.py` found low-anchor-energy half supports mixmin and inverse7 `15/15`, low quarter supports both `7/7`, and low-anchor-energy random+fit supports both `12/12`. The two mixmin-adverse worlds are high-anchor-energy ranks `26` and `28`. This makes `submission_mixmin_0c916bb4.csv` the clearest high-risk binary/actual-anchor public sensor if a public slot is deliberately spent, but it is still not a normal improvement candidate.
+
+Update after E33: anchor-loss support is not one-anchor fragile. `analysis_outputs/public_lb_binary_anchor_loss_loo_stability.py` omitted each known public anchor and recomputed the gate. Mixmin stayed negative in every low-energy-half and low-energy-quarter LOO band, with worst low-half max delta `-0.000315338`; no mixmin-adverse world entered any LOO low-energy half. Inverse7 is close but less stable, with low-half min better_rate `0.928571`. This moves mixmin above inverse7 as the cleaner high-risk sensor.
+
+Update after E34: anchor-loss support is real but less semantic than hoped. `analysis_outputs/public_lb_binary_anchor_loss_family_null_audit.py` showed mixmin survives `no_raw05`, `no_medium_non_jepa`, `no_bad_jepa`, and `only_medium_non_jepa`, but fails under `only_bad_jepa`. Target-axis permutation leaves mixmin one-sided in `500/500` low-half and low-quarter permutations. Therefore mixmin remains the top high-risk sensor, but the reason is medium-anchor loss/cancellation geometry, not JEPA target-axis semantic alignment.
+
+Update after E35: existing evidence does not certify mixmin as a normal submission. `analysis_outputs/public_probe_independent_evidence_audit.py` audited 5 sensors and found normal submit gates `0`. Mixmin has local honest-CV support and strong anchor-derived support, but pair p90 `+0.000879200`, old p90 `+0.001041933`, and selector hard veto remain. This closes the "mixmin is safe" interpretation while making the next diagnostic choice clearer: if spending a high-risk public sensor, mixmin is now more information-rich than another S4/Q3 pair-only variant.
+
+Update after E36: raw observed structure does not independently certify mixmin. `analysis_outputs/raw_structure_pseudolabel_candidate_stress.py` built 10 train-derived subject/date/raw-feature pseudo-label sources. Mixmin support was only `5/10` with mean delta `+0.000065107`; inverse7 support was `10/10` with mean delta `-0.000705727` and negative worst-source delta. The strict gate remains closed because inverse7 still carries selector hard veto and weaker anchor-LOO stability than mixmin. The next local action should test inverse7 scale/blend variants against raw-structure support, anchor-loss/LOO support, and selector veto before spending a public slot.
+
+Update after E37: inverse7 scale/blend reconciliation failed as a strict gate. `analysis_outputs/inverse7_raw_anchor_bridge_scale_scan.py` generated 22 logit-space variants. Raw support gates were `14`, anchor low-half+quarter gates were `22`, but two-selector majority and strict bridge gates were both `0`. The best diagnostic was `analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p25.csv`; it preserves raw and anchor support but still has positive pair/old p90 and selector hard veto. Do not submit inverse7 or scaled inverse7 as an improvement claim.
+
+Update after E38: worldview/sensor discriminability was audited directly. `analysis_outputs/worldview_sensor_discriminability_audit.py` found normal submit candidates `0` and public sensor candidates `10`. The highest-information sensor is `analysis_outputs/submission_mixmin_0c916bb4.csv` with score `3.355110`; the raw+anchor bridge lane is led by `analysis_outputs/submission_inverse7blend_1040423d.csv` / full inverse7 and the lower-amplitude bridge option is `analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p25.csv`; the S4/Q3 selector lane remains `1bbfb735`/`6b9335b1`. This changes submission framing, not the strict gate.
+
+Update after E39: OOF selector calibration failed as a public ranker. `analysis_outputs/oof_selector_calibration_audit.py` found many OOF-stable candidates, but it reverses the known-public stage2/ordinal order. Therefore OOF gates can demote unstable or overfit files, but they cannot promote a candidate to normal submission or choose between the current public-sensor lanes.
+
+Update after E40: test-movement fingerprint calibration is a loose prior, not a submission gate. `analysis_outputs/test_movement_fingerprint_selector.py` found strict selector views `0` and loose views `4`. Unlike OOF, it recovers the stage2/ordinal public order, but it underpredicts bad JEPA anchors and fails the A2C8-best leave-one-out gate. It shifts the lower-risk diagnostic preference toward `analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p25.csv`, but it does not override the “no improvement claim” rule.
+
+Update after E41: adding bad-axis geometry did not repair the selector. `analysis_outputs/movement_badaxis_geometry_selector.py` found strict selector views `0` and loose views `0`. `axis_group` reduced bad-anchor underprediction to `0.000898399` and kept stage2/ordinal order, but A2C8 LOO was predicted `+0.001475508` worse and MAE `0.000854918` missed the loose gate. Therefore E41 is a failure-to-certify, not a new candidate ranking.
+
+Update after E42: fixed-zero A2C8 anchoring also does not create a usable ranker. `analysis_outputs/zero_anchor_selector_calibration.py` found fixed-zero gates `0` and usable zero-anchor gates `0`. The best `axis_group` view has nonbaseline MAE `0.000766262`, rank `0.857143`, and raw05 predicted best nonbaseline, but raw05 gap/MAE is only `0.113520`, best unobserved advantage/MAE is only `0.065408`, and trajectory monotonicity is `0.428571`. Its top unobserved pair sensors are only `0.000037-0.000050` better than raw05 by forecast, far below selector error. Do not submit those files as improvement claims.
+
+Update after E43: selector resolution is now quantified as the immediate normal-submission blocker. `analysis_outputs/selector_resolution_boundary_audit.py` found selector frontier-resolution gates `0`, candidates certified better than A2C8 `0`, and candidates certified better than raw05 `0`. The best current selector error is pairwise public-order LOO `0.000218288`, which is still 2.5x larger than the raw05-A2C8 gap `0.0000869862`; best L2O error is `0.000415499`. Therefore no current micro-edge candidate should be submitted as an improvement claim.
+
+Update after E44: the existing scored universe does not contain a hidden larger safe candidate. `analysis_outputs/large_edge_lowrisk_census.py` normalized 29 score tables, 69,869 rows, and 48,088 unique files. Pair-negative files were `12,309`, but pair edge greater than the raw05-A2C8 gap was `0`, pair edge greater than the best selector error was `0`, and normal large-safe files were `0`. The best pair edge was `0.000073768`, below both raw05 gap and selector error. Large favorable raw/anchor signals still exist for inverse7/mixmin, but they remain selector-conflict sensors, not improvement candidates.
+
+Update after E45: simple structured public-subset recovery is also not a usable selector. `analysis_outputs/structured_public_subset_feasibility.py` tested 145 subject/order/date/raw-domain/random masks with train-prior soft-label LOO. Selector-scale gates were `0`, strict sub-gap gates were `0`, and the best LOO MAE was `0.000429528`, which is `4.937886x` the raw05-A2C8 gap and `1.967712x` the best current selector error. Feasible ranges on representative masks have mean width around `0.04`, so they are not candidate-ranking instruments.
+
+Update after E46: block-state bottleneck audit does not add a submission file, but it changes what a useful next candidate must prove. `analysis_outputs/block_state_bottleneck_audit.py` shows validation block-rate oracle `0.517878`, temporal-to-oracle gap `0.106888`, subject identity explaining only `0.291286` of that gap, and current context heuristics failing: Markov `+0.002998`, nested threshold `+0.044275`, endpoint gain only `0.003252`. A normal submission candidate now needs either a block-rate context representation that recovers material oracle headroom or a public sensor that tests a worldview; another row-level micro-blend is not aligned with the bottleneck.
+
+Update after E47: the first direct block-context target audit also does not add a submission file. `analysis_outputs/block_context_jepa_target_audit.py` shows best non-base 25% row blend `label_context_ridge = 0.623260` (`-0.001505`), but it recovers only `0.014083` of the oracle gap and has worse block-rate loss than temporal (`0.635888` vs `0.623448`). This is weak calibration signal, not hidden block-state recovery. Do not create a submission from these Ridge block-summary predictions.
+
+## Submission Order
+
+Current recommendation after E48: use `analysis_outputs/submission_mixmin_0c916bb4.csv` as the active public frontier. Do not continue a2c8-centered micro-edge submission logic until selectors are recalibrated with the new mixmin anchor.
+
+1. Keep `analysis_outputs/submission_mixmin_0c916bb4.csv` as the active best.
+2. Treat `analysis_outputs/submission_frontier_cvjepa_refine_a2c8d2c8.csv` as the previous-frontier contrast anchor, not the baseline to optimize around blindly.
+3. Re-run selector calibration with mixmin included as a known public anchor; identify which pre-E48 gates failed because they modeled the wrong public worldview.
+4. Hold `analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p25.csv` until it is rescored relative to mixmin. It remains the cleanest raw-structure bridge question, but the target is now "can it improve or preserve mixmin?", not "can it beat a2c8?".
+5. Hold pair-only S4/Q3 sensors until post-mixmin recalibration. Their old purpose, pair-vs-old selector disambiguation around a2c8, is now lower value.
+6. If lower movement risk is more important than maximum diagnostic contrast, use `analysis_outputs/submission_label_flow_sensorcurve_conservative_1bb_full_s0p65_0ee928c4.csv`; expect weaker LB readability.
+7. If `1bbfb735` or the 0.65 scaled sensor improves public LB despite independent survival failure, then the old hidden-subset selector is miscalibrated for S4+Q3 movement and H17 becomes live again.
+8. If it worsens, do not submit `6b9335b1`; treat E14 as pairwise-selector overfit and move to selector reconciliation.
+9. Do not spend a public slot on another S4/Q3 weight variant unless a new anchor or external validation source supports the direction.
+10. Do not promote local OOF Q3/S4 winners as public candidates without selector support; E19 directly falsified that path for the current top OOF set.
+11. Do not promote existing block/measurement/raw05-blockcount/presleep candidates as public candidates; E20 directly falsified that archive as a submit source. If a diagnostic slot is used, raw05-blockcount refine is lower-risk than presleep, but it is not expected to beat a2c8.
+12. Do not rank current candidates by merging pairwise and old selector shortlists. E21 shows the intersection is empty; any public submission now should be explicitly framed as a selector-disambiguation sensor.
+13. Do not spend the next public sensor on an old-only Q3/raw05-drift file unless the specific question is to retest a selector that already failed the raw05/A2C8 known direction.
+14. Do not spend a public slot on the E24 localized `id02_b02` files. They are too small and still old-selector-negative.
+15. Do not present mixmin/direns as strict-survival candidates. If the next public submission is `analysis_outputs/submission_mixmin_0c916bb4.csv`, state that it is a high-risk test of actual-anchor/combo/binary-world/anchor-loss stress against the pairwise/old selector veto.
+16. Do not present inverse7 or inverse7 scale-blends as strict-survival either. E36 makes inverse7 a raw-structure bridge probe, and E37 shows scale/blend variants still do not resolve selector veto.
+17. Do not claim any current unobserved candidate is supported by public-LB inverse fitting; E26 proves the known LBs leave both improvement and degradation feasible.
+18. Do not claim subject-prior inverse fitting supports a candidate; E27 proves global/subject-target priors still leave every checked unobserved candidate sign ambiguous.
+19. Do not claim binary hidden-label inverse fitting supports a candidate; E28 did not produce stable one-sided improvement evidence.
+20. Do not claim binary world-pool support certifies a candidate; E29 has only one frontier-scale world. It can only reprioritize high-risk probe questions.
+21. Do not claim frontier-box binary support certifies mixmin either. E30 makes mixmin the leading high-risk worldview probe, not a strict submission.
+22. Do not claim plausibility-gated binary support certifies mixmin. E31 shows adverse mixmin worlds are not train-geometry outliers.
+23. Do not claim anchor-loss-gated binary support certifies mixmin. E32 makes mixmin the best high-risk public sensor under the binary/actual-anchor worldview, but the gate is derived from known public-anchor decomposition and must be validated by a new observation.
+24. Do not claim anchor-LOO stability certifies mixmin. E33 only says the E32 gate is not one-anchor fragile. It makes the next information-rich probe clearer; it does not make an improvement submission safe.
+25. Do not claim anchor-loss support is JEPA target-axis semantic evidence. E34 says target-axis permutation does not break the signal; the probe is anchored in loss/cancellation geometry.
+26. Do not claim existing independent evidence certifies mixmin. E35 says the normal-submit gate is still closed; mixmin is a public sensor, not a validated improvement candidate.
+27. Do not claim raw-structure pseudo-label support certifies inverse7. E36 says inverse7 is the best bridge candidate under raw observed structure, but selector veto and anchor-LOO weakness remain.
+28. Do not repeat amplitude-only inverse7/mixmin bridge sweeps as if more scales will solve it. E37 already found raw support and anchor support can coexist across many scales while two-selector majority stays `0`.
+29. Do not treat E38 information score as an improvement score. It ranks which public sensor would be most informative; it explicitly found normal-submit candidates `0`.
+30. Do not treat E39 OOF gates as a public selector. OOF sign agrees with known-public direction versus final9, but it gets the stage2/ordinal ordering wrong; use OOF only as a negative screen.
+31. Do not treat E40 predicted public LB as a score forecast. Movement fingerprints are loose: they recover stage2/ordinal but miss bad JEPA severity. Use them only to choose lower-risk diagnostic framing.
+32. Do not treat E41 axis-geometry predicted LB as a score forecast. The best axis view is severity-informative but not selector-certified.
+33. Do not treat E42 fixed-zero axis predictions as a score forecast. A2C8 anchoring improves coarse nonbaseline rank but collapses frontier-scale resolution; the predicted pair-sensor edge is much smaller than selector error.
+34. Do not submit any current micro-edge candidate as an improvement claim unless a new selector gets below `0.0000869862` known-anchor error or the candidate edge exceeds the current best selector error `0.000218288`.
+35. Do not submit any existing scored-universe candidate as an improvement claim solely because a raw/anchor view shows a large edge. E44 found zero files with selector-resolvable pairwise edge and zero normal large-safe files.
+36. Do not submit or rank from simple structured public-subset inverse masks. E45 found zero selector-scale masks and wide feasible ranges; any apparent exact fit is underidentified, not predictive.
+37. Do not submit a candidate merely because it uses block/order/endpoint context. E46 shows those contexts are common (`26/36` hidden blocks have two train flanks) but current Markov, endpoint, and threshold translations do not recover the block-rate oracle. A block-context candidate must demonstrate held-out block-rate vector prediction first.
+38. Do not submit E47 block-summary Ridge predictions. They improve a 25% row blend by `-0.001505` but fail the actual block-rate target stress; any candidate based on them would be another selector-noise-scale micro-blend.
+
+## Current 0.54 Assessment
+
+0.54 is not blocked by a single missing model family. To approach it, one of two things must happen:
+
+- selector resolution improves enough to trust small public-sensitive deltas; or
+- a new representation creates a larger low-bad-axis movement that survives blockwise and anchor stress.
+
+E48 changes the plateau diagnosis. Mixmin's public `0.5763066405` proves that at least one larger anchor-loss/binary-world movement was real despite pre-E48 selector vetoes. The remaining 0.54 gap is still large, but the immediate bottleneck is no longer "no candidate can beat a2c8"; it is "we need a selector and representation story that explains why mixmin worked and can generate a mixmin-relative next step without overfitting public anchors." E46/E47 still matter because block-rate oracle headroom remains the only observed route to 0.54-scale improvement.
+
+E10 says representation exists but translation fails. E11 says gated correction repairs one selector's sign but not the magnitude. E12-E14 say the translation is S4+Q3 targetwise. E15-E17 say that focused amplification overfits a favorable pairwise scenario tail and lacks an independent anchor. E18-E19 say OOF-local S4/Q3 winners are also not the anchor. E20 says existing block/measurement candidates are also not the hidden large-safe branch. E21 says the two-selector intersection is empty. E22 says the next useful public observation, if any, is a selector-disambiguation sensor rather than another improvement candidate. E23 says lowering the S4/Q3 amplitude does not fix selector disagreement. E24 says simple subject/date/block localization also does not fix it. E25 says large score-probe mixtures do not pass the strict selectors either. E26 says public LB inverse fitting cannot choose among them. E27 says adding subject prior also cannot choose among them. E28 says binary exactness also cannot choose among them yet. E29 says a small binary world pool can reprioritize probes but cannot certify them. E30 says a stronger frontier-box binary pool makes mixmin the clearest high-risk probe but still cannot certify improvement. E31 says generic plausibility gating also cannot certify it. E32 says known-anchor loss geometry is more useful than generic plausibility and now favors mixmin/inverse7. E33 says that conclusion survives anchor LOO and favors mixmin over inverse7. E34 says the support is broad anchor-loss/cancellation geometry rather than target-axis semantics. E35 says existing independent evidence is still insufficient for normal submission. E36 says raw observed structure does not certify mixmin but strongly supports inverse7. E37 says inverse7 raw support and anchor support can coexist, but not with selector agreement. E38 says the current rational action is either no submission or an explicitly labeled public sensor; it does not create a safe improvement candidate. E39 says the OOF archive is not the missing selector calibration target. E40 says movement anatomy gives a useful but loose inverse7-friendly prior, not a strict selector. E41 says simply adding bad-axis geometry repairs one symptom but still does not create selector certification. E42 says even a principled current-best zero-anchor calibration leaves the selector error far above the public edge. E43 makes that a hard boundary: current selectors cannot certify micro-edge candidates at all. E44 closes the broader "maybe an existing large safe file is hidden in the tables" escape route. E45 closes the simple structured public-subset selector route. The next useful work is either a truly independent selector target, a selector with sub-raw05-gap error, a newly generated larger sign-consistent movement, or spending a predeclared public sensor; not another micro-blend, scale, axis-feature, fixed-zero kNN sweep, existing-universe rescore, or simple public-mask inverse fit.

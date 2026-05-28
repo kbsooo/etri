@@ -1,0 +1,6 @@
+candidate,family,oof_loss,oof_delta_vs_stage2,nested_delta_mean,bad_axis_projection_ratio,decision
+submission_jepa_selected.csv,linear_latent_grid_jepa,0.562487995048007,-0.0050429296418101,0.007755557950034251,0.1469914474410745,hold: high OOF gain but nested geometry reverses
+submission_neural_jepa_selected.csv,neural_masked_grid_jepa,0.5641608006245646,-0.0033701240652525,0.007559596272869325,0.0395966155082316,hold: lower bad-axis movement but nested geometry reverses
+submission_jepa_axiscap_cap0p1_scale1p0.csv,axis_capped_linear_jepa,0.5628435984189196,-0.0046873262708975,,0.0999999999999998,"probe: best axis-capped OOF, bad-axis capped to 0.10"
+submission_jepa_axiscap_cap0p0_scale1p0.csv,axis_capped_linear_jepa,0.5637652535780107,-0.0037656711118064,,-5.173470159800103e-17,probe: most conservative zero-bad-axis full-scale variant
+submission_jepa_nested_q2_probe.csv,q2_only_nested_probe,0.5670335087203112,-0.0004974159695059,,0.0001879339536231,weak probe: Q2 improves full OOF but subject guardrail is mixed

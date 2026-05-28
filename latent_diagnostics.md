@@ -1,0 +1,138 @@
+# Latent Diagnostics
+
+작성일: 2026-05-28
+
+이 문서는 I-JEPA/LeJEPA 아이디어를 그대로 복제하지 않고, 이 대회 데이터의 hidden-DGP 탐색에 맞춰 변형한 latent diagnostic 기록이다.
+
+## JEPA Translation For This Competition
+
+### I-JEPA-style target
+
+Raw input reconstruction은 목표가 아니다. 의미 있는 target representation은 다음이다.
+
+- hidden subject/session/block membership
+- block-level target rate/count representation
+- target dependency manifold position
+- samplewise calibration risk
+- raw05-compatible residual direction
+- public-like or private-like energy
+
+Context는 raw sensor subset, feature family, row neighborhood, subject/date block, label-flow flanks, train/test domain view로 나눈다. Mask는 random column mask가 아니라 feature-family, row-window, subject-block, target-group, raw05-residual mask를 사용한다.
+
+### LeJEPA-style diagnostic
+
+Latent는 prediction loss만으로 채택하지 않는다. 다음을 확인한다.
+
+- anisotropy and effective rank
+- random projection mean/std/skew/kurtosis
+- nearest-neighbor label consistency
+- train/test embedding distribution distance
+- seed/fold stability
+- high-energy sample logloss contribution
+- bad public anchor axis load
+- raw05/a2c8 manifold distance
+
+## Existing Latent Evidence
+
+| latent or branch | local evidence | public/stress evidence | diagnosis | action |
+|---|---|---|---|---|
+| raw timeline I-JEPA rescue | training loss improved, raw timeline signal exists | public `0.5775263072`, close to best | public-positive but small | keep as anchor/manifold |
+| all-target JEPA latent residual | OOF around `0.560757`, strong local gain | public `0.5812273278`, nested guardrail failed | local shortcut or bad-axis load | direct submit banned |
+| Q2 JEPA latent | target-specific local idea | public `0.5798012862` | Q2 direct movement is bad-axis anchor | use as negative anchor |
+| LeJEPA targetwise strict | geometry-aware idea | public `0.5802468192` | regularization insufficient or wrong geometry objective | use as bad anchor |
+| cross-view JEPA surprise | targetwise local deltas up to S2 `-0.00566` | public safety unproven | real signal, transfer risk | run geometry/energy gate |
+| label-flow block rate latent | oracle/predictive semantics better than time_meta | not yet direct safe | promising semantic target | prioritize |
+| bad-axis low-energy ensemble | many low-bad-axis candidates | resolved better 0 | bad-axis removal not sufficient | combine with selector/energy |
+| pairwise target-move latent | learns known order in 33 scenarios | strict submit-gate 0 | selector signal exists but underpowered | use for diagnosis |
+| label-flow block-rate stress | 1 semantic config passes; oracle_rate_r2 `0.347118`; strict pass pred_rate_r2 `0.026047`; downstream geometry delta `-0.003334` | 556 related submissions scored; pair_submit_gate 0, pair_probe_gate 0, best p90 vs a2c8 `+0.000125668` | semantic latent real, direct translation unsafe | use as energy/gate only |
+| gated label-flow dependency energy | 7240 gated candidates; movement only where target-dependency energy improves and raw05 drift is bounded | pair_submit_gate 0, control gate 50, probe gate 3263, selector conflict 0; best p90 vs a2c8 `-0.000000687` | gate repairs direction but not enough magnitude | information probe only |
+| targetwise S4+Q3 label-flow gate | E12 found S4 as strongest atom; E13 showed S4+Q3 additive; E14 focused scan crossed pairwise threshold | E15 independent review: 163 candidates, pair-submit 61, independent survival 0, strict survival 0; corr(pair p90, old-selector p90) `-0.881`; E17 found 0 existing candidates with Q3/S4 shape plus old-majority support | semantic direction exists, but focused probability translation overfits pairwise selector and lacks an independent positive anchor | keep as diagnostic energy, not submission |
+| OOF-local Q3/S4 latent/view | E18 scanned 5167 OOF arrays and found 1578 local-Q3/S4-strong candidates | E19 rescored top 399 through selectors: pair p90 negative 0, old-majority 0, submit/control/probe 0 | local validation strength is not public-anchor geometry | use as negative validation-mismatch evidence |
+| block/measurement latent archive | E20 found 2505 large low-bad movement candidates among existing block/hidden-block/presleep/raw05-block outputs | E20 selector rescore: pair p90 negative 0, old-majority 3, two-selector majority 0, submit/control/probe 0/0/63 | latent movement exists but does not align with public-positive sign; pre-sleep direct movement is especially risky | do not submit existing files; use only to design better validation/gate |
+| selector support topology latent view | E21 merged scored candidates by support zone | pair-only 465, old-only 97, two-selector majority 0; S4 dominates pairwise support while Q3 dominates old support | current latent/candidate universe splits into two incompatible public hypotheses | use to design selector reconciliation, not another blend |
+| selector disambiguation sensor view | E22 compared known-anchor reliability and candidate sensors | pairwise public-order selector raw05 direction correct 0.916667; old hidden-subset selector raw05 direction correct 0.0 | old-only Q3/raw05-drift world is weakened by known raw05/A2C8 public order; pair-only S4/Q3 is the sharper diagnostic | if public sensor is used, test `1bbfb735`; otherwise keep as latent-world assignment evidence |
+| S4/Q3 scale-curve latent view | E23 generated A2C8-to-sensor logit blends by target mask and scale | pair p90 negative across scales, but two-selector majority 0; best balanced 0.65 sensor has pair p90 `-0.000034496`, old p90 `+0.000571958` | pairwise S4/Q3 latent direction is stable under scaling, but old selector disagreement is directional | use scale only to choose public-sensor risk, not to claim safety |
+| S4/Q3 localized row-mask latent view | E24 generated 960 subject/date/block/phase/energy/sign localized S4/Q3 variants | pair p90 negative 807, old-majority 0, two-selector majority 0; only tiny `id02_b02` loose sensors with pair p90 around `-2e-7` | simple hidden-row localization does not reconcile the pairwise-public and old hidden-subset latent worlds | do not use handcrafted row masks as submit gates for this direction |
+| sparse/minimax direction latent view | E25 reconciled 22 mixmin/direns/sparseladder/targetabl/inverse7 probes | pair p90 negative 0, pair majority 0, old-majority 0, two-selector majority 0 despite honest-CV/combo evidence | larger movement alone lands on a latent direction the strict selectors price as public-risk negative | keep as high-risk public-probe lane only |
+| public-LB inverse latent worlds | E26 solved all-test soft-label and cell-mixture inverse LPs for 8 known LBs | exact fit with broad target prior ranges; all unobserved candidate deltas cross zero even with train-prior bands | many hidden public worlds remain compatible with the same LB observations | use only to expose underidentification |
+| subject-prior inverse latent worlds | E27 added train global and subject-target prior bands to all-test inverse LPs | all 7 scenarios fit known LBs exactly; unobserved candidate cells crossed zero 56/56 | subject identity is real but not sufficient to choose the public latent world | diagnostic constraint only |
+| binary hidden-label inverse worlds | E28 forced all-test hidden labels to binary in MILP incumbents | tight subject-prior world fits known anchors within raw05/a2c8 gap, but candidate signs remain unresolved/time-limited | binary exactness is a plausible latent-world constraint, not a current gate | save for future incumbent-pool/gate design |
+| binary world-pool latent worlds | E29 sampled 15 tight-prior binary incumbents with slack, candidate, and random objectives | only 1 frontier-scale world; mixmin/inverse7 better in that world, pair S4/Q3 sensors worse | binary-world support is a weak worldview-energy, not a stable latent selector | expand frontier pool or keep as high-risk probe metadata |
+| binary frontier-box latent worlds | E30 bounded every known-public residual by the raw05/a2c8 gap and sampled 29 objectives | 29 frontier worlds, 28 unique; random-plus-fit supports mixmin `19/19`, inverse7 `18/19`, pair sensors `7-8/19`; candidate-max objectives still find adverse worlds | exact-label frontier worlds are abundant and score-probe-like, but not one-sided | use as worldview energy, not certification |
+| binary world plausibility geometry | E31 scored E30 worlds with train-only target/subject/co-occurrence/temporal geometry | mixmin-adverse worlds are plausibility ranks 1 and 2; low-energy random+fit worlds still support mixmin/inverse7 `6/6` | generic LeJEPA-style geometry gate cannot remove adverse worlds | use as negative evidence for certification |
+| binary anchor loss geometry | E32 scored E30 worlds by known-anchor per-target loss deltas, cancellation, and moved-target/loss alignment | low-anchor-energy half supports mixmin/inverse7 `15/15`; low quarter `7/7`; low-anchor-energy random+fit `12/12`; adverse worlds are ranks `26` and `28` by anchor energy | anchor-specific geometry downweights adverse worlds that generic train geometry could not reject | use as high-risk worldview gate, not public-LB optimizer |
+| binary anchor loss LOO stability | E33 recomputed anchor-loss geometry while omitting each known public anchor | mixmin low-energy half/quarter better_rate min `1.0`; no adverse mixmin world enters any LOO low-energy half; inverse7 low-half min `0.928571` | anchor-specific geometry is not one-anchor fragile and favors mixmin over inverse7 | use for probe priority only |
+| binary anchor loss family/null audit | E34 held out anchor families, ablated energy components, and permuted target movement weights | mixmin survives main family holdouts and only-medium anchors; only-bad-JEPA fails; target-axis permutation keeps mixmin one-sided in `500/500` permutations | gate is broad anchor loss/cancellation geometry, not exact target-axis semantics | lower JEPA-axis claim; keep as high-risk probe gate |
+| public probe independent evidence audit | E35 tagged current candidate evidence by independence tier | normal submit gates `0`; mixmin has honest CV support but selector hard veto remains; strongest support is anchor-derived | no current latent/gate gives certification-grade out-of-anchor evidence | mixmin is top public sensor only, not a validated submission |
+| raw-structure pseudo-label latent stress | E36 used train-derived subject temporal, raw KNN, coverage, behavior, cross-subject, and cluster pseudo-labels | inverse7 improves `10/10` sources, mean delta `-0.000705727`; mixmin improves only `5/10`, mean delta `+0.000065107` | raw observed structure favors inverse7 over mixmin | use inverse7 as bridge-probe branch; still reconcile selectors |
+| inverse7 raw-anchor bridge scale latent | E37 generated 22 inverse7/mixmin scale-blend variants and scored raw, anchor, old-selector, and pairwise-selector energies | raw gates `14`, anchor gates `22`, two-selector majority `0`, bridge gates `0`; best `inv7_s0p25` still selector-vetoed | raw and anchor energies can agree while selector energy remains high | bridge branch is diagnostic only; amplitude/mix scaling is not enough |
+| worldview sensor discriminability energy | E38 joined anchor-loss, raw-structure, selector, and independent-evidence verdicts for 10 current sensors | normal-submit candidates `0`, public-sensor candidates `10`; top information score `3.355110` for mixmin | latent/gate evidence is now strong enough to rank diagnostic questions, not strong enough to certify improvement | choose public sensor only by predeclared worldview question |
+| mixmin public frontier anchor | E48 public submission of the E38 top sensor | `submission_mixmin_0c916bb4.csv` public `0.5763066405`; improves over previous a2c8 by `0.0011326805` | anchor-loss/binary-world latent energy was public-relevant; pair/old selector energy was over-conservative as a hard gate | make mixmin the frontier anchor and recalibrate latent/gate diagnostics around it |
+| OOF selector calibration energy | E39 scored 4172 OOF rows across label-free future/domain/density/missingness/subject/date/random stresses | strict OOF gates `1311`, conservative gates `1115`, known-public sign match `1.0`, but stage2/ordinal public rank agreement `0.0` | OOF latent stability is not public-worldview identity; it can reject local overfit but reverses known public ordering | use only as negative screen, not as candidate ranker |
+| test-movement fingerprint energy | E40 encoded target/subject/order/raw-domain movement versus A2C8 and ran known-anchor LOO kNN | strict views `0`, loose views `4`; combined rank accuracy `0.821429`, null p `0.004`, but A2C8-best and bad-JEPA severity fail | test movement anatomy contains public-order signal but not enough loss/label geometry | loose prior only; it favors `inv7_s0p25` as low-risk bridge |
+| movement bad-axis geometry energy | E41 added LOO-safe logit cosine/projection features against raw/medium/bad public-anchor axes | strict views `0`, loose views `0`; `axis_group` rank `0.785714`, null p `0.014`, bad underprediction `0.000898399`, but A2C8-best fails | bad-axis geometry helps severity but does not identify the hidden public selector | diagnostic only; no axis-prior submission forecast |
+| fixed-zero anchor selector energy | E42 kept A2C8 fixed at zero while holding out nonbaseline anchors | fixed gates `0`, usable gates `0`; `axis_group` nonbaseline rank `0.857143`, null p `0.006`, but MAE `0.000766262` and best unobserved advantage/MAE `0.065408` | current-best anchoring improves coarse rank but collapses frontier-scale resolution | diagnostic only; do not rank pair sensors from this view |
+| selector resolution boundary energy | E43 compared selector errors and candidate edges to the raw05-A2C8 gap | frontier-resolution gates `0`; certified better-than-A2C8 rows `0`; certified better-than-raw05 rows `0`; best selector error `0.000218288` | current selectors cannot read micro-edges at the frontier scale | require sub-gap selector or larger sign-consistent movement |
+| large-edge low-risk census energy | E44 normalized 29 current score tables across 69,869 rows and 48,088 unique files | pair edge > raw05-A2C8 gap `0`; pair edge > selector error `0`; normal large-safe files `0`; best pair edge `0.000073768`; any-edge conflict files `21` | existing candidate universe contains raw/anchor large signals but no pairwise selector-resolvable low-risk movement | use as a hard census gate against rescoring current files as submissions |
+| structured public-subset feasibility energy | E45 tested 145 subject/order/date/raw-domain/random masks with train-prior soft-label LOO | selector-scale gates `0`; strict sub-gap gates `0`; best LOO MAE `0.000429528`; feasible ranges mean width around `0.04` | simple row/subject/date/raw-domain public subset recovery is not a sub-gap selector | negative mask gate; do not use simple mask inverse fits as forecasts |
+| block-state bottleneck energy | E46 joined oracle/Markov/threshold/hidden-block/topology/lag/mask evidence | block-rate oracle `0.517878`; temporal-to-oracle gap `0.106888`; subject identity explains `0.291286` of gap; Markov `+0.002998`, nested threshold `+0.044275`, endpoint gain `0.003252`; two-flank blocks `26/36` | the right JEPA target is held-out block-rate/count representation, not raw reconstruction or row logits | build block-context JEPA target; no direct submission |
+| block-context target representation energy | E47 trained fold-safe Ridge heads from label-context, sensor-value, missingness, and combined block summaries to held-out block-rate vectors | best row blend `label_context_ridge` `0.623260`, delta `-0.001505`, oracle-gap recovery `0.014083`; but block-rate loss `0.635888` vs temporal `0.623448`; sensor values row blend `+0.000660`; label-context anisotropy `0.466748`, effective rank `3.547232` | current block summaries have weak calibration signal but do not reconstruct the hidden block-rate latent | negative target-representation gate; change context/target construction before any submission |
+
+## Current Energy Definitions
+
+- `raw05_distance_energy`: distance from raw05 rescue predictions.
+- `a2c8_distance_energy`: movement away from the previous raw05-compatible frontier; keep for contrast, not as the current anchor.
+- `mixmin_distance_energy`: movement away from the active public frontier after E48.
+- `bad_axis_energy`: projection onto known bad JEPA/public anchors.
+- `selector_conflict_energy`: disagreement between pairwise selector and old stress selector.
+- `hiddenloc_energy`: inverse-local public subset improvement score.
+- `latent_density_energy`: low density in train latent space.
+- `dependency_violation_energy`: violation of Q/S co-occurrence manifold.
+- `label_flow_gate_energy`: target-dependency energy improvement required before applying label-flow donor movement.
+- `calibration_risk_energy`: targetwise overconfidence, temperature sensitivity, ensemble disagreement.
+- `domain_energy`: train/test distribution distance in latent view.
+- `selector_reliability_energy`: whether a selector preserves known public-anchor directions before it is trusted for a new candidate zone.
+- `structural_prior_ambiguity_energy`: whether candidate sign remains unresolved after global/subject-target prior constraints.
+- `structured_public_subset_energy`: whether a predeclared test-row mask can recover known public anchors under LOO with selector-scale error and narrow feasible ranges.
+- `binary_world_instability_energy`: whether candidate sign depends on which binary hidden-label world is selected.
+- `binary_world_pool_support_energy`: whether a candidate family is supported across multiple frontier-scale binary worlds, penalizing sparse frontier counts and time-limited candidate-objective artifacts.
+- `binary_world_plausibility_energy`: train-only target/subject/dependency/temporal geometry distance for binary hidden-label worlds.
+- `binary_anchor_loss_geometry_energy`: known-public-anchor per-target loss cancellation and moved-axis/loss-delta alignment for binary hidden-label worlds.
+- `binary_anchor_loss_loo_stability_energy`: robustness of `binary_anchor_loss_geometry_energy` after omitting each known public anchor.
+- `binary_anchor_loss_family_null_energy`: family holdout and target-axis permutation stability for anchor-loss geometry.
+- `public_probe_independent_evidence_energy`: penalty for a candidate whose strongest support is known-public/anchor-derived while independent local/representation and selector sources do not agree.
+- `raw_structure_pseudolabel_energy`: train-derived subject/date/raw-feature pseudo-label support; lower when a candidate improves across multiple non-public raw-structure views.
+- `raw_anchor_bridge_reconciliation_energy`: joint penalty for raw-structure support, binary anchor-loss support, and pair/old selector agreement not all being satisfied by the same candidate.
+- `worldview_sensor_discriminability_energy`: sign entropy and conflict-span score across raw, anchor, pairwise selector, old selector, and honest-CV verdicts; useful for ranking public sensors, not for claiming safety.
+- `oof_selector_calibration_energy`: label-free OOF subset stability plus known-public sign/rank sanity; high when local OOF rank disagrees with public LB order.
+- `test_movement_fingerprint_energy`: label-free test movement anatomy over targets, subjects, row-order, and raw-domain masks; useful only if known-anchor LOO recovers public order and bad-anchor severity.
+- `movement_badaxis_geometry_energy`: LOO-safe logit-space cosine/projection against raw/medium/bad anchor movement axes; useful only if it improves bad-anchor severity without losing A2C8-best and known-public rank.
+- `fixed_zero_anchor_selector_energy`: nonbaseline selector calibration with A2C8 held as a known zero anchor; useful only if nonbaseline ordering, synthetic trajectory monotonicity, and predicted candidate advantages exceed selector error.
+- `selector_resolution_boundary_energy`: ratio between known-anchor selector error and the raw05-A2C8 public gap; high risk when candidate edge is smaller than selector error even if the direction looks favorable.
+- `large_edge_lowrisk_census_energy`: file-level census over current scored candidates; high risk when favorable pairwise edge is below raw05 gap or selector error, even if raw/anchor/honest-CV views show larger favorable movement.
+- `block_state_bottleneck_energy`: gap between fold-safe temporal prediction and validation block-rate oracle, penalized when subject identity, Markov transitions, endpoint flanks, one-feature thresholds, and public masks cannot recover a meaningful fraction of that gap.
+- `block_context_target_energy`: held-out block-rate prediction loss and geometry for fold-safe context views; high risk when row-blend gains appear while block-rate target loss worsens versus temporal block context.
+
+## Health Rules
+
+Adopt a latent for submission only if at least two of the following survive:
+
+- blockwise stress improves or remains neutral;
+- anchor LOO/L2O order is preserved;
+- bad-axis energy stays below current a2c8-compatible band;
+- train/test distribution distance does not spike;
+- nearest-neighbor label consistency improves in repeated-subject folds;
+- high-energy samples explain loss risk rather than random noise;
+- raw05/a2c8 distance is justified by a larger selector-resolvable gain.
+
+## Current Conclusion
+
+The main JEPA lesson is negative but useful: local latent prediction can be too easy and still non-semantic. The next JEPA branch should predict hidden block/label-flow representations and use LeJEPA-style geometry as a gate, not push direct row probabilities from a latent residual head.
+
+E10 refines this: label-flow/block-rate is the first branch that looks semantic enough to keep, but the candidate translation layer is still the failure point. E11 confirms the repair direction: semantic confidence plus target-dependency energy plus raw05 distance can create clean probes, but the improvement magnitude is still below selector resolution. E47 adds a sharper negative result for the block-rate path: current block-summary views produce only weak row calibration and fail the target-representation loss itself. The next representation step must either change the block-rate context/target construction, enlarge the gated movement without increasing bad-axis/raw05 risk, or improve the selector enough that micro-movements become decisionable.
+
+E12-E14 showed the apparent enlargement path: not all-target amplification, but S4-dominant movement with Q3 support. E15-E19 narrowed that conclusion. The resulting latent translation has low bad-axis load and strong raw05-relative pairwise score, but the independent hidden-subset selector moves against it, pairwise support is mixed rather than unanimous, and neither the current artifact universe nor the OOF archive has an independent S4/Q3 positive anchor. The latent remains useful as a diagnostic energy and target-local sensor; it is not currently a submit-safe probability translation.
+
+E20 closes another escape route: existing block/measurement latent outputs already contain thousands of low-bad or large movements, but none become two-selector-supported improvement candidates. E44 generalizes that census across the current scored universe: 48,088 unique files contain many pair-negative rows, but none have pairwise edge above the raw05-A2C8 gap or selector error, and none pass the normal large-safe gate. That means the next JEPA work should not be another rescore of old block/presleep/current CSVs. It must either create a new representation with a larger sign-consistent movement, or improve the selector/anchor geometry enough to make small movements decisionable.
+
+E21 makes the representation problem sharper: there are two latent hypotheses, not one weak signal. Pairwise-public support is S4/Q3-heavy; old hidden-subset support is Q3/raw05-drift-heavy. E22 then shows the old world is not equally credible as the next sensor because it fails the known raw05/A2C8 public direction. E23 shows S4/Q3 scale reduction does not reconcile the worlds. E24 shows simple row localization does not reconcile them either. E25 adds a third stress: larger sparse/minimax movement has honest-CV/combo support but is vetoed by the strict public-order/old selectors. E26 shows direct public-LB inverse fitting leaves many latent public worlds feasible, E27 shows train global/subject-target priors do not collapse those worlds, E28 shows binary hidden-label exactness is not enough to rank current candidates, E29 shows a small binary world pool is too sparse, E30 shows frontier-box exact-label worlds strongly prefer mixmin/inverse7 in random worlds but still allow adverse candidate worlds, and E31 shows generic train-label geometry cannot reject those adverse worlds. E32 is the first geometry gate that meaningfully pushes back against the adverse worlds: their known-anchor loss decomposition is high energy while low-anchor-energy bands are one-sided for mixmin/inverse7. E33 shows this is stable under leave-one-anchor-out, which makes mixmin the sharper high-risk public sensor than inverse7. E34 narrows the claim: the gate is not exact target-axis semantics, because target-axis permutation preserves support; it is broader anchor loss/cancellation geometry carried mainly by medium non-JEPA anchors. E35 adds the missing independence audit and keeps the normal submission gate closed: mixmin has local honest-CV support and strong anchor-derived support, but no certification-grade out-of-anchor evidence and a remaining pair/old selector hard veto. E36 adds a non-public raw-structure view and finds the bridge is not mixmin but inverse7: inverse7 aligns with all train-derived raw pseudo-label sources while mixmin does not. E37 tests that bridge in logit scale/blend space and fails to reconcile selectors: raw and anchor energies can be satisfied together, but selector energy stays high. E38 converts those unresolved energies into a sensor ranking rather than a submit ranking: no candidate is safe, but mixmin, inverse7, and S4/Q3 pair sensors now have distinct predeclared public questions. E48 then validates the top E38 sensor: mixmin public `0.5763066405` beats the previous frontier by `0.0011326805`, so anchor-loss/binary-world latent energy is now public-relevant, while pair/old selector energy is demoted from hard veto to risk diagnostic. E39-E47 negative selector and block-state results still matter, but they should now be interpreted against the mixmin frontier rather than the older a2c8 micro-edge.

@@ -1,0 +1,2 @@
+base_loss,nested_loss,nested_delta_mean,nested_win_rate,best_fixed_config,best_fixed_outer_delta_mean,best_fixed_outer_win_rate
+0.5602391929039285,0.5609262237229715,0.0006870308190430052,0.0,subject_joint_a0.15_w0.25_sh16,-0.00015224410534941946,0.625

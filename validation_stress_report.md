@@ -1,0 +1,120 @@
+# Validation Stress Report
+
+작성일: 2026-05-28
+
+현재 목표는 CV 평균이 아니라 hidden-public transfer 가능성을 stress로 판정하는 것이다.
+
+## Stress Families
+
+| stress | current evidence | interpretation | status |
+|---|---|---|---|
+| random / foldsafe CV | stage2 and JEPA variants can look strong locally | local signal exists but ranking is insufficient | necessary, not sufficient |
+| repeated-subject / strict-subject | some MP and cross-view features pass guarded scans | subject identity is not the whole story | useful |
+| blockwise / pseudo-hidden block | motif and endpoint methods beat subject mean | hidden block rate latent exists | supported |
+| row-order boundary copy | prev/next/both label copy bad | direct label leakage/copy is false | falsified |
+| anchor LOO/L2O public proxy | MAE around `0.0005`, oracle lower but selector unstable | public subset underidentified | bottleneck |
+| hard selector falsification | `0/36` pairwise models satisfy LOO/L2O MAE `<= 0.00040` plus rank/order constraints | current selector cannot support tiny a2c8-scale deltas | failed |
+| hidden subset selector stress | passing selector families `0/7` | selector not reliable enough | failed |
+| universe audit | strict resolved-better `0` over broad candidate universe | generation not enough | failed for submit |
+| raw05 compatibility | raw05 is strong public anchor, a2c8 tiny better | stay near manifold unless strong evidence | supported |
+| bad-axis stress | JEPA direct bad anchors repeated | aggressive latent moves unsafe | supported |
+| targetwise calibration stress | Q/S correlations exist, hard constraints can hurt | use soft energy, not hard rules | partially supported |
+| label-flow block-rate JEPA stress | semantic pass 1/60, geometry delta `-0.003334`, subject_chunk delta `-0.000537`, but 556 submissions have pair_submit/probe gate 0 | semantic latent exists but direct public-risk translation fails | mixed: keep as gate |
+| gated label-flow candidate stress | 7240 dependency/raw05-gated candidates: submit 0, control 50, probe 3263, conflict 0 | gating can create clean information sensors but not a strong submit edge | mixed: probe only |
+| targetwise/combo label-flow stress | E12 submit 0; E13 submit 0; E14 focused pair-submit 61/180, conflict 0 | S4+Q3 targetwise gate creates first strict pairwise candidate | supported locally, superseded by E15 for submission |
+| focused label-flow independent survival | E15 selected 163 candidates; pair-submit 61; independent survival 0; strict independent survival 0; corr(pair p90, old-selector p90) `-0.881` | S4+Q3 pairwise direction conflicts with independent hidden-subset geometry | failed for submit, useful as sensor |
+| selector conflict decomposition | E16 pinned candidates: focused files old hidden-subset better_rate `0.285714`, pairwise full-fit better_rate `0.500000`; tiny E11 sensors pairwise `0.666667` but too small | E14 relied on favorable pairwise tail, not unanimous selector evidence | underidentified |
+| S4/Q3 anchor gap audit | E17 pairwise universe has 21 Q3/S4-shaped candidates but none with old-majority support; focused family has 163 pairwise-positive Q3/S4 candidates with old-majority 0; old-positive rescore has 97 old-majority candidates but Q3/S4-shaped 0 | current artifacts lack an independent S4/Q3 positive anchor | failed for submit; redirects next stress |
+| S4/Q3 OOF anchor audit | E18 scanned 5167 OOF files; 1578 were local-Q3/S4 strong but OOF anchor-like 0; E19 directly rescored top 399 local OOF candidates and found pair p90 negative 0, pair majority 0, old majority 0, submit/control/probe 0 | local OOF strength is not the missing public anchor | failed as validation source |
+| block/measurement selector rescore | E20 scored 3800 non-anchor block/hidden-block/presleep/raw05-block candidates: pair p90 negative 0, pair majority 52, old-majority 3, two-selector majority 0, submit/control/probe 0/0/63, large-lowbad 2505 but large-lowbad two-selector 0 | existing block/measurement universe is not the missing large safe movement | failed for submit; useful as negative evidence |
+| selector support topology | E21 merged scored universes: pair-only 465, old-only 97, pair-probe-not-majority 56, two-selector majority 0, strict candidate shape 0 | pairwise and old selectors favor structurally different manifolds; intersection is empty | primary current bottleneck |
+| selector disambiguation sensor design | E22: pairwise public-order selector pass 33/36 and raw05 direction correct 0.916667; old hidden-subset selector pass 0/7 and raw05 direction correct 0.0 | old-only support is weakened by the known raw05/A2C8 public order; next public sensor should be pair-only S4/Q3 if any | diagnostic priority only, not improvement evidence |
+| label-flow sensor scale curve | E23 scored 108 A2C8-to-S4/Q3 scale/mask variants; pair p90 negative in all mask families, two-selector majority 0 everywhere | scaling reduces old p90 but does not fix old majority; conflict is directional | failed for submit, useful for sensor risk level |
+| label-flow localized sensor audit | E24 scored 960 subject/date/block/phase/energy/sign localized variants; pair p90 negative 807, old-majority 0, two-selector majority 0; only 8 loose tiny `id02_b02` sensors with pair p90 around `-2e-7` | simple row localization does not reconcile selectors; the conflict is not just amplitude or coverage | failed for submit; weak diagnostic only |
+| direction probe selector reconciliation | E25 scored 22 mixmin/direns/sparseladder/targetabl/inverse7 probes; pair p90 negative 0, pair majority 0, old-majority 0, two-selector majority 0 | newer large-movement score probes do not pass the same hidden-public selector gate | failed for strict submit; high-risk public-probe lane only |
+| public LB inverse feasibility | E26 matched 8 known public LBs exactly with all-test soft labels and cell-mixture weights; all 8 unobserved candidate ranges crossed zero even with train-prior bands `±0.05/0.10/0.20` | public LB observations alone do not identify target prior, row subset, or candidate sign | underidentified; selector worldview required |
+| public LB structural-prior stress | E27 added global target and subject-target prior bands to all-test inverse LPs; all 7 scenarios fit known LBs with slack 0, but unobserved candidate cells crossed zero `56/56` and one-sided improvement cells were 0 | plausible train/subject priors do not resolve candidate signs | underidentified; subject prior is diagnostic only |
+| binary hidden-label inverse stress | E28 binary MILP incumbents: tight subject-prior max residual `0.000061242` below raw05-a2c8 gap, but range MILPs found no one-sided improvement; `6b9335b1` crossed zero under no-prior incumbents | binary exactness can improve anchor realism but does not rank current candidates | incomplete/inconclusive as exact reconstruction; failed as submit gate |
+| binary world-pool sign audit | E29 found 15 unique tight-prior binary incumbents but only 1 frontier-scale world; all-world better_rate favored mixmin `0.8667` and inverse7 `0.7333`, while pair sensors were `0.2667-0.3333`; the only frontier-scale world favored mixmin/inverse7 and rejected S4/Q3 pair sensors | binary worlds may prefer the high-risk score-probe lane, but frontier-scale evidence is too sparse | weak diagnostic; failed as submit gate |
+| binary frontier-box pool | E30 forced each known-public residual slack <= raw05-a2c8 gap and found 29 frontier-scale incumbents, 28 unique worlds. Non-candidate objectives favored mixmin `19/19` and inverse7 `18/19`, but candidate-max objectives still made both worse | frontier-scale exact-label worlds exist and mostly support score-probe over pair S4/Q3, but signs are not one-sided | stronger diagnostic; still failed as submit gate |
+| binary world plausibility geometry | E31 scored E30 worlds by train-only target prior, subject prior, co-occurrence, correlation, cardinality, temporal flip, run-length, and edge-continuity geometry. Mixmin adverse worlds were plausibility ranks 1 and 2 | generic train-label geometry cannot reject adverse score-probe worlds | failed as certification gate; useful for diagnosis |
+| binary anchor loss geometry | E32 scored E30 worlds by known-anchor per-target loss decomposition, cancellation, and moved-target/loss alignment. Low-anchor-energy half supported mixmin `15/15` and inverse7 `15/15`; low quarter supported both `7/7`; adverse mixmin worlds were high-energy ranks `26` and `28` | known public anchors prefer the random/fit binary worldview over candidate-adverse worlds, unlike generic train geometry | strongest probe-family diagnostic so far; still not strict certification |
+| binary anchor loss LOO stability | E33 recomputed anchor geometry after omitting each known public anchor. Mixmin low-energy half and quarter support stayed `7/7` LOO runs with better_rate `1.0`; no mixmin-adverse world entered any LOO low-energy half | E32 is not driven by one anomalous known anchor | strengthens high-risk mixmin probe; still anchor-derived |
+| binary anchor loss family/null audit | E34 family holdout: mixmin survives no-raw05/no-medium/no-bad and only-medium scenarios, but fails under only-bad-JEPA anchors. Target-axis permutation null keeps mixmin one-sided in `500/500` permutations | anchor-loss gate is broad medium-anchor loss/cancellation geometry, not exact target-axis semantics | strengthens probe priority but weakens JEPA-axis semantic interpretation |
+| public probe independent evidence audit | E35 joined local direction, label-flow, selector, combo, actual-anchor, anchor-loss, LOO, and family/null evidence for 5 candidate sensors. normal submit gates passing `0`; mixmin has honest CV support and strong anchor-derived support but pair/old selector hard veto remains | no current candidate has certification-grade out-of-anchor evidence; mixmin is the highest-information public sensor, not a validated improvement | strict gate closed; updates diagnostic submission priority |
+| raw-structure pseudo-label stress | E36 built 10 train-derived pseudo-label sources from raw features and subject/date structure. inverse7 support `10/10`, mean delta `-0.000705727`; mixmin support `5/10`, mean delta `+0.000065107`; raw sensor train/test AUC `0.607876` | observed raw structure does not independently certify mixmin; inverse7 is a new bridge between raw structure and anchor-loss worlds | strict gate closed; creates inverse7/blend follow-up |
+| inverse7 raw-anchor bridge scale scan | E37 generated 22 inverse7/mixmin logit scale/blend variants. raw support gates `14`, anchor low-half+quarter gates `22`, two-selector majority `0`, strict bridge gates `0`; best `inv7_s0p25` still had pair p90 `+0.000035423` and old p90 `+0.000587512` | raw+anchor support can coexist, but selector veto is not amplitude-only and not fixed by simple mixmin blending | strict gate closed; bridge branch remains diagnostic only |
+| worldview sensor discriminability audit | E38 joined E32/E33 anchor bands, E35 independent evidence, E36 raw-structure stress, and E37 bridge scan for 10 candidates. normal-submit candidates `0`, public-sensor candidates `10`; top information sensor `mixmin_0c916` score `3.355110` | current decision surface is sensor/worldview ranking, not improvement ranking | strict gate closed; if spending public slot, predeclare sensor question |
+| mixmin public sensor observation | E48 public LB for `analysis_outputs/submission_mixmin_0c916bb4.csv` was `0.5763066405`, improving over previous best a2c8 by `0.0011326805` and over raw05 by `0.0012196667` | E38 sensor ranking was public-relevant; pairwise/old selector veto is not a valid hard gate | new frontier; recalibrate selectors with mixmin as known anchor |
+| OOF selector calibration audit | E39 scored `4172` OOF rows over label-free future-tail/domain/density/missingness/subject/date/random stresses. strict OOF gates `1311`, conservative gates `1115`; known-public sign match `1.0`, but stage2/ordinal pairwise rank agreement `0.0` | OOF stress is a local stability/overfit screen, not a public worldview selector | strict gate closed; do not rank submissions by OOF gate |
+| test-movement fingerprint selector | E40 used target/subject/order/raw-domain/combined movement fingerprints versus A2C8. strict selector views `0`, loose views `4`; combined MAE `0.000781461`, rank accuracy `0.821429`, permutation-null p `0.004`, stage2/ordinal order correct | movement anatomy is informative but underpredicts bad JEPA severity and cannot prove A2C8 best in LOO | strict gate closed; loose prior favors conservative inverse7 bridge over mixmin |
+| movement + bad-axis geometry selector | E41 added LOO-safe logit-space axis-group/named cosine and projection features against raw/medium/bad public-anchor movements. strict views `0`, loose views `0`; best `axis_group` MAE `0.000854918`, rank `0.785714`, null p `0.014`, bad-anchor mean underprediction `0.000898399` | bad-axis geometry repairs severity partly, but still fails A2C8-best and cannot become a selector | strict gate closed; do not use axis priors as forecasts |
+| fixed-zero anchor selector calibration | E42 kept A2C8 fixed at zero and held out each nonbaseline public anchor. fixed gates `0`, usable gates `0`; best `axis_group` nonbaseline MAE `0.000766262`, rank `0.857143`, null p `0.006`, raw05 gap/MAE `0.113520`, best unobserved advantage/MAE `0.065408` | fixed current-best anchoring improves coarse nonbaseline rank but still cannot resolve frontier-scale candidate edges | strict gate closed; do not submit fixed-zero ranked pair sensors |
+| selector resolution boundary audit | E43 compared selector errors and candidate edges against raw05-A2C8 gap `0.0000869862` | frontier-resolution gates `0`; certified better-than-A2C8 `0`; certified better-than-raw05 `0`; best selector error `0.000218288` | current selectors cannot certify micro-edge near-frontier candidates | strict gate closed; require sub-gap selector or larger movement |
+| block-state bottleneck audit | E46 joined oracle, Markov, threshold, hidden-block, split-topology, lag, and structured-mask evidence | block-rate oracle `0.517878`; temporal-to-oracle gap `0.106888`; subject identity explains fraction `0.291286`; best Markov `+0.002998`, nested threshold `+0.044275`, endpoint gain only `0.003252`; two-flank hidden blocks `26/36` | 0.54 is structurally possible, but current observed context does not identify hidden block-rate states | supports block-rate JEPA target; no direct submission |
+
+## Bottleneck Categories
+
+### A. 데이터 신호 부족
+
+- 상태: 증거 약함.
+- 이유: hidden block motif, measurement-process residuals, cross-view JEPA surprise all show real signal. E46 makes this sharper: validation block-rate oracle reaches `0.517878`, so the label table contains a 0.5x path if hidden block rates are inferred.
+- 제한: row-level direct signal is weak; much of the signal is block/calibration/measurement-process, not direct deterministic labels.
+- 결론: signal is not absent, but signal-to-public-transfer is low.
+
+### B. Validation mismatch
+
+- 상태: 강한 증거 있음.
+- 이유: local OOF/CV improvements repeatedly fail public LB, especially JEPA latent residuals and ordinal/subject corrections. E39 makes this sharper: many OOF-stable candidates pass strict local gates, but OOF reverses the known public ordering between stage2 and ordinal. E40 shows test-movement fingerprints improve that specific ordering but still miss bad-JEPA severity. E41 adds bad-axis geometry and improves severity, but still fails A2C8-best and all gates. E42 then fixes A2C8 as a known zero anchor and still cannot reach frontier resolution. E43 confirms that even the best selector error is larger than the raw05-A2C8 edge, so no local selector was reliable at previous-frontier scale. E48 sharpens the mismatch: the local strict gate vetoed mixmin, but mixmin improved public by `0.0011326805`.
+- 결론: primary plateau component.
+
+### C. Public subset mismatch
+
+- 상태: 강한 증거 있음.
+- 이유: inverse public masks can fit anchors, but LOO/L2O-selected masks fail to produce submit-gate candidates. E26 shows known public LBs can be fit exactly by many hidden worlds, and important candidate deltas still cross zero even with train-prior bands. E27 shows this remains true after adding global target and subject-target prior bands. E28 shows binary hidden labels can fit anchors more realistically under tight priors, but still do not provide stable candidate signs. E29 shows a small binary world pool gives only one frontier-scale world; E30 fixes that by forcing a frontier residual box and still finds adverse candidate worlds. E31 shows those adverse worlds are plausible under train-label dynamics. E32 then shows known-anchor loss decomposition, unlike generic train geometry, assigns those adverse worlds high energy. E33 shows this is stable under leave-one-anchor-out. E34 shows the signal is medium-anchor/broad-cancellation driven rather than target-axis semantic. E35 says this was not enough for normal certification, but E48 validates it as public-relevant: mixmin became the best public anchor. E45 directly tests simple subject/order/date/raw-domain public subset recovery and finds zero selector-scale masks, with feasible ranges far too wide.
+- 결론: primary plateau component.
+
+### D. Target prior mismatch
+
+- 상태: 증거 있음, direct action unsafe.
+- 이유: subject target prior differences are large; target correlations exist. But ordinal/count/prior corrections hurt public, and E27 shows subject-target prior constraints do not identify current candidate signs.
+- 결론: use target prior as energy/gate, not hard correction.
+
+### E. Representation/capacity problem
+
+- 상태: 증거 있음, 그러나 0.54급 돌파는 미확인.
+- 이유: JEPA/cross-view latents show local gains. Label-flow/block-rate has one semantic stress pass and downstream OOF gains, but direct probability translations fail public pairwise gates. Gated translation first produced clean probes, then S4+Q3 focused gate produced strict pairwise candidates, but E15 failed independent survival. E20 shows many block/measurement movements exist, including 2505 large low-bad moves, but none get two-selector support. E25 shows even newer large sparse/minimax probes with strong honest-CV/combo metadata do not pass pairwise/old strict stress. E44 extends this from individual archives to 29 scored tables and finds zero normal large-safe candidates. E45 says even if public subset is masked, simple mask recovery does not rescue those representations. E46 reframes the useful representation target: not raw reconstruction or row logits, but held-out block-rate vectors, because subject identity, Markov transitions, endpoints, and one-feature thresholds recover only a small part of the oracle gap. E47 shows the current block-summary views do not solve that target either: best row-blend delta `-0.001505`, but block-rate loss is worse than temporal and oracle-gap recovery is only `0.014083`.
+- 결론: not simply capacity. The useful representation is target-specific and must be translated through a raw05/dependency gate. Current improvement scale is still small.
+
+### F. Candidate selection problem
+
+- 상태: 강한 증거 있음.
+- 이유: many candidates exist, and pre-E48 strict submit-gate was 0. E20 adds 3800 block/measurement candidates and still finds pair p90 negative 0 and two-selector majority 0. E21 shows the merged support topology has pair-only 465 and old-only 97 but two-selector majority 0. E22 shows the old-only branch is not the next best sensor because it fails the known raw05/A2C8 public direction. E25 shows the larger score-oriented probe branch also lacks pairwise/old support. E29-E30 favor mixmin/inverse7 more than pair-only S4/Q3 inside binary-world diagnostics, E31 shows generic geometry cannot remove adverse worlds, E32 shows known-anchor geometry can downweight those adverse worlds, E33 shows the downweighting is LOO-stable, E34 shows it is not target-axis-semantic enough to be certification, E35 shows the missing independent evidence still has not been found for mixmin, E38 ranks mixmin as the maximum-information sensor, and E48 validates that ranking on public LB.
+- 결론: candidate selection was both the bottleneck and the breakthrough. The old strict gate was too conservative; the next selector must explain mixmin rather than merely veto it.
+
+## Current Submission Gate
+
+Strict gate requires:
+
+- public-observation consistency;
+- anchor LOO and L2O order preservation;
+- blockwise stress survival;
+- targetwise calibration neutrality or improvement;
+- raw05 compatibility or justified deviation;
+- low bad-axis energy;
+- seed/model-family stability;
+- prediction diversity without instability.
+
+Current result after E48: `analysis_outputs/submission_mixmin_0c916bb4.csv` is the active public frontier with LB `0.5763066405`. The pre-E48 strict gate rejected it, so the old gate is now evidence of selector mismatch, not a hard submission blocker. The revised gate should keep the same stress families, but it must be recalibrated with mixmin included as a known public anchor and must distinguish "private risk warning" from "public sign veto."
+
+E46 adds that the next normal-submission path is unlikely to be another row-level candidate at all. The block-rate oracle is `0.517878`, but currently tested context translations do not recover it: full subject identity leaves `0.075753` mean logloss gap to the oracle, Markov is worse than temporal, nested thresholds are worse, and endpoint reconstruction only gains `0.003252` over subject mean. E47 then tests the direct fold-safe block-summary target head and also fails the representation gate: best 25% row blend is `-0.001505`, but block-rate loss is worse than temporal by `0.012440` and oracle-gap recovery is only `0.014083`. The submission gate remains closed; block-rate work must change target/context construction before probability translation.
+
+## Next Stress Design
+
+1. Post-mixmin attribution: decompose `mixmin - a2c8` by target, row-order band, subject-like block, raw-domain, and probability-confidence bucket.
+2. Selector recalibration: add mixmin as a known public anchor and re-score pairwise, old, movement, axis, fixed-zero, and anchor-loss selectors. The success criterion is explaining mixmin without losing raw05/a2c8/stage2/ordinal order.
+3. Gate separation: split the old strict gate into public-sign evidence, private-risk warning, and information-sensor value. E48 proves these cannot be one boolean.
+4. Mixmin-relative generation: create candidates that preserve anchor-loss/binary-world direction while reducing high-energy raw/pair/old conflicts; do not generate another a2c8-centered micro-edge sweep.
+5. Target sensitivity probe: test whether the gain is carried by Q3/S targets, S4-heavy movement, or broad calibration shrinkage before designing the next public sensor.
+6. Raw-structure bridge retest: revisit inverse7 only as a mixmin-relative bridge, not as a replacement chosen by pre-E48 selector veto.
+7. Block-state JEPA work remains the only visible 0.54 path. Future block-context targets must beat temporal block weighted LogLoss directly, not just produce a row-level blend gain.

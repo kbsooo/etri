@@ -1,0 +1,7 @@
+target,feature,mode,c_value,weight
+Q3,jepa_grid__prectx_other__pre3h__pred,subject_rank,0.2,0.45
+S4,jepa_grid__prectx_mlight__pre3h__pred,subject_rank,0.2,0.45
+S2,jepa_modality__presleep_mlight__pred_pc1,subject_rank,0.2,0.45
+Q1,jepa_modality__ambience__resid_norm,subject_rank,0.2,0.45
+S1,jepa_grid__presleep_activity__pre1h__resid,subject_z,0.2,0.45
+S3,jepa_sensor_time__prectx_usage__pre3h__resid_abs_mean,subject_z,0.2,0.45

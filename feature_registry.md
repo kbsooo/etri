@@ -1,0 +1,341 @@
+# Feature Registry
+
+작성일: 2026-05-28
+
+Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature family는 어떤 숨은 구조를 겨냥하는지, label signal인지 split signal인지, 폐기 조건이 무엇인지 함께 관리한다.
+
+## Registry
+
+### F01. Subject-like fingerprint
+
+- Hidden structure: subject/session prior and repeated behavior.
+- Candidates: subject_id encoding, subject/date phase, within-subject rank, feature distribution rank, missingness fingerprint.
+- Label vs split test: repeated-subject CV, strict-subject stress, train/test adversarial score.
+- Adopt if: subject-controlled residual signal survives.
+- Drop if: only train/test mask prediction improves or public bad-axis load increases.
+
+### F02. Hidden block and sequence motif
+
+- Hidden structure: contiguous hidden session blocks and block-level target rates.
+- Candidates: block length, endpoint labels, flank motifs, weekday/date phase, row neighborhood density.
+- Label vs split test: pseudo-hidden block split, endpoint non-overlap, anchor LOO.
+- Adopt if: block-rate logloss beats subject mean and direct row movement remains low-energy.
+- Drop if: boundary copy or leakage-like behavior dominates.
+
+### F03. Measurement-process missingness
+
+- Hidden structure: behavior expressed by sensor logging process.
+- Candidates: observation fraction, longest gap, row count, active sensor count, pre/post sleep windows, subject/weekend deviations.
+- Label vs split test: residual correlation after subject/weekend controls, train/test distribution distance.
+- Adopt if: improves calibration risk or blockwise stress.
+- Drop if: single threshold direct rule or train/test domain shortcut.
+
+### F04. Cross-view JEPA surprise
+
+- Hidden structure: inconsistency between expected sensor views and observed views.
+- Candidates: view-to-view residual PCs, target_pred_cos, residual norm, surprise rank.
+- Label vs split test: latent geometry, NN label consistency, high-energy loss contribution.
+- Adopt if: geometry is stable and anchor stress does not load bad JEPA axes.
+- Drop if: local CV gain comes with public bad anchor similarity.
+
+### F05. Label-flow semantic JEPA
+
+- Hidden structure: hidden block target rate/count latent.
+- Candidates: past/future label-rate context, masked block-rate prediction, target-group masked prediction.
+- Label vs split test: pseudo-hidden block logloss, oracle_rate_r2 vs pred_rate_r2, strict-subject stress.
+- Adopt if: semantic target representation improves without overconfident row moves.
+- Drop if: predictable time_meta dominates semantic latent.
+- Current evidence: E10 found one strict semantic pass (`oracle_rate_r2=0.347118`, `pred_rate_r2=0.026047`) and downstream OOF gains, but 556 related direct submissions failed pairwise public-risk gates. E11 dependency/raw05 gating produced 50 control candidates and 3263 probe candidates, but no strict submit candidate. E12-E14 showed S4+Q3 gated movement is constructive and can cross strict pairwise submit gate. E15 showed those focused candidates fail independent hidden-subset survival: 0/163 candidates survived, including 0/61 pair-submit candidates. E17 showed the existing artifact universe has no Q3/S4-shaped candidate with old-majority support. E18-E19 showed OOF-local Q3/S4 strength is not an independent anchor.
+- Policy: do not use as direct blockwise probability replacement. Allow targetwise S4+Q3 movement only as a diagnostic energy until raw05 distance, bad-axis load, pairwise stress, independent hidden-subset stress, and an independent S4/Q3 anchor agree.
+
+### F06. raw05-compatible gate
+
+- Hidden structure: public-positive raw timeline manifold.
+- Candidates: raw05 distance, raw05 residual similarity, raw05-a2c8 tangent projection.
+- Label vs split test: known public anchor order and raw05 distance stress.
+- Adopt if: candidate movement is small or larger movement has clear low-energy support.
+- Drop if: deviation from raw05 is not selector-resolvable.
+- Current evidence: E11 best conservative candidate `submission_label_flow_gated_f1046674.csv` has mean_abs_move_vs_a2c8 `0.000063` and raw_dist_delta_vs_base `-0.000000121`; best p90 candidate `submission_label_flow_gated_ff8df011.csv` has larger movement `0.000370` but raw05 p90 delta only `+0.000002`.
+
+### F07. Public-sensitive pairwise selector features
+
+- Hidden structure: hidden public subset sign/order.
+- Candidates: candidate delta features, target-move norms, bad-anchor distances, localization scores.
+- Label vs split test: anchor LOO/L2O pair order.
+- Adopt if: MAE `<= 0.00040`, rank accuracy `> 0.90`, and order is stable.
+- Drop if: selected improvement is smaller than selector uncertainty.
+
+### F08. Target dependency manifold
+
+- Hidden structure: Q/S latent state and co-occurrence constraints.
+- Candidates: pairwise dependency energy, Q latent factor, S latent factor, residual correlation violation, conditional target predictions.
+- Label vs split test: targetwise calibration stress, bad-anchor discrimination.
+- Adopt if: energy flags known bad submissions and improves calibration without hard clipping.
+- Drop if: hard constraints worsen public anchors.
+- Current evidence: soft dependency energy works better as a row gate than as a hard target constraint. E11 produced conflict-free probes; ordinal hard constraints remain a failed branch.
+- Update: E12-E14 show the dependency gate should be targetwise. S4 is the dominant safe movement, Q3 is the secondary support. Q/S hard constraints remain banned.
+
+### F09. Calibration risk features
+
+- Hidden structure: LogLoss sensitivity from overconfidence and prior shift.
+- Candidates: ensemble disagreement, temperature sensitivity, local density, domain score, high-energy flags.
+- Label vs split test: targetwise ECE/logloss contribution, high-risk sample ablation.
+- Adopt if: clipping/blending improves stress without reducing useful diversity.
+- Drop if: uniform clipping just regresses to prior and hurts public-positive anchors.
+
+### F10. Hidden-localization bridge features
+
+- Hidden structure: inverse-public local target/sample direction.
+- Candidates: hiddenloc score, bridge delta, per-target inverse energy.
+- Label vs split test: old selector conflict, pairwise order stress, bad-axis load.
+- Adopt if: local score and selector score agree.
+- Drop if: conflict remains or expected edge is `1e-5` scale.
+
+### F11. Block / measurement archive candidates
+
+- Hidden structure: pseudo-subject block, hidden block rate/count, row-order motifs, raw05-compatible blockcount corrections, and pre-sleep measurement-process shifts.
+- Candidates: existing block-scale JEPA, hidden-block sequence/rateprobe, public-block entropy, raw05-blockcount refine, public/presleep measurement submissions.
+- Label vs split test: two-selector stress over pairwise public order and old hidden-subset scenarios, plus bad-axis and movement-scale diagnostics.
+- Adopt if: candidate has pairwise p90 below a2c8, pairwise majority, old hidden-subset majority, and low bad-axis energy.
+- Drop if: large-lowbad movement exists but selector sign stays positive, or pre-sleep movement is broad and public-risk negative.
+- Current evidence: E20 scored 3800 non-anchor candidates. pair p90 negative `0`, pair majority `52`, old-majority `3`, two-selector majority `0`, pair submit/control/probe `0/0/63`, large-lowbad `2505`, large-lowbad two-selector `0`. raw05-blockcount refine is the nearest probe, but still has best pair p90 `+0.000010793` and old beat rate around `0.36`.
+- Policy: do not submit existing block/measurement CSVs as improvement candidates. Use the archive as negative evidence for selector design and as a source of latent diagnostics only.
+
+### F12. Selector support topology features
+
+- Hidden structure: candidate-level latent world assignment, where pairwise-public and old hidden-subset selectors imply different public subsets.
+- Candidates: support zone (`pair_only`, `old_only`, `pair_probe_not_majority`, `neither`), dominant target, Q3/S4 move share, pair/old support rates, raw05/bad-axis energies.
+- Label vs split test: whether a new anchor, public sensor, or held-out public-observation split can explain which zone predicts public LB better.
+- Adopt if: topology features predict known public anchor order under LOO/L2O or identify a new two-selector-supported region.
+- Drop if: zone assignment only restates selector disagreement without resolving it.
+- Current evidence: E21 found pair-only `465`, old-only `97`, pair-probe-not-majority `56`, two-selector majority `0`. Pair-only is S4/Q3-heavy; old-only is Q3/raw05-drift-like.
+- Policy: use topology as diagnostic metadata and for sensor design. Do not blend pair-only and old-only candidates as if they were independent improvements.
+
+### F13. Selector reliability and disambiguation features
+
+- Hidden structure: which public-sensor world is compatible with known public-anchor order before spending another submission.
+- Candidates: raw05/A2C8 direction preservation, selector pass rate, LOO/L2O MAE, support zone, dominant target, q3s4_move_share, old-vs-pair scenario beat rates.
+- Label vs split test: selector must preserve known public anchor order before its favored candidate zone can define the next sensor.
+- Adopt if: reliability features separate pair-only/old-only zones in a way that predicts known LB anchors and yields a single information-rich public sensor.
+- Drop if: they merely restate historical LB outcomes or are used for direct leaderboard prior tweaking.
+- Current evidence: E22 found pairwise selector pass `33/36` and raw05 direction correct `0.916667`; old hidden-subset selector pass `0/7` and raw05 direction correct `0.0`. This does not make pair-only S4/Q3 a submit-safe improvement, but it makes `analysis_outputs/submission_label_flow_focused_1bbfb735.csv` the most informative diagnostic sensor if a public slot is used.
+- Policy: use as submission triage metadata only. Do not build a public-LB overfit prior from it.
+
+### F14. Sensor amplitude curve
+
+- Hidden structure: whether selector disagreement is caused by movement amplitude or by latent direction.
+- Candidates: logit-space interpolation from A2C8 to pair-only S4/Q3 sensors, target masks, scale, old p90 response, pair p90 response, two-selector majority.
+- Label vs split test: a valid amplitude feature must create old/pair agreement as scale changes, not only reduce movement magnitude.
+- Adopt if: a scale/mask variant preserves pairwise edge and flips old hidden-subset majority or creates two-selector support.
+- Drop if: scaling changes p90 smoothly but old majority remains below 0.5.
+- Current evidence: E23 scored 108 variants. Pair p90 was negative throughout, but two-selector majority was `0`. Balanced lower-risk sensor `analysis_outputs/submission_label_flow_sensorcurve_conservative_1bb_full_s0p65_0ee928c4.csv` is diagnostic only.
+- Policy: use scale as a risk knob for public sensors. Do not use scale as evidence that the S4/Q3 movement is submit-safe.
+
+### F15. Localized S4/Q3 row-mask gates
+
+- Hidden structure: whether pairwise-public S4/Q3 movement belongs only to a hidden subject/date/block/phase/energy subset.
+- Candidates: subject masks, subject complements, global date tertiles/quintiles, within-subject phase bins, contiguous date blocks and complements, delta-energy quantiles, S4 delta sign, weekday/weekend, subject-energy groups.
+- Label vs split test: row localization must improve selector agreement, not merely lower movement magnitude. A useful gate should create old hidden-subset majority or two-selector majority while preserving pairwise p90 below a2c8.
+- Adopt if: a row mask yields pairwise p90 below 0, old scenario beat rate above 0.5, low bad-axis load, and movement large enough to be public-readable.
+- Drop if: row masks only create pairwise-positive/old-negative files or micro-movement files with p90 deltas below selector noise.
+- Current evidence: E24 scored 960 variants. Pair p90 negative was `807`, but old-majority and two-selector majority were both `0`. The only loose candidates were eight `id02_b02` files affecting `8/250` rows with pair p90 around `-2e-7`, old p90 around `+0.000580`, and movement around `1e-5`.
+- Policy: do not use simple row-mask localization as a submit gate for the current S4/Q3 sensors. Future localization must be learned from a new anchor/representation rather than swept manually around the same pair-only direction.
+
+### F16. Sparse / direction-mixture large-movement probes
+
+- Hidden structure: larger JEPA/direct-label sparse direction may encode a public-transfer axis that micro S4/Q3 sensors cannot expose.
+- Candidates: sparse-ladder, target-ablation Q3/stage, blockwise bad-axis repair, direction ensembles, minimax mixtures, inverse7 blends, inverse7 row gates.
+- Label vs split test: large movement must survive honest CV, actual-anchor/combo stress, pairwise public-order stress, old hidden-subset stress, and bad-axis load checks. If selectors disagree, the candidate is a public-probe experiment rather than a strict submission.
+- Adopt if: at least one file has nontrivial movement, pair p90 below a2c8, pair majority, old majority, low bad-axis load, and no worse combo tail than the current direction-ensemble reference.
+- Drop if: honest-CV/combo gains are accompanied by pairwise p90 positive and old-majority 0.
+- Current evidence: E25 scored 22 current priority files. Pair p90 negative `0`, pair majority `0`, old-majority `0`, two-selector majority `0`. `submission_mixmin_0c916bb4.csv` remains high-risk public-probe material under actual-anchor/combo metadata, but strict selector support is absent.
+- Policy: keep as a separate high-risk score-probe lane. Do not mix it with strict-survival or selector-disambiguation candidates.
+
+### F17. Public-LB inverse feasibility constraints
+
+- Hidden structure: whether public LB observations imply a pseudo-public subset, target prior, or hidden label distribution that can rank new submissions.
+- Candidates: all-test soft-label inverse LP, arbitrary cell/label mixture LP, train target prevalence bands, candidate delta intervals.
+- Label vs split test: inverse constraints are useful only if they produce one-sided candidate deltas under plausible structural assumptions.
+- Adopt if: known public LBs force candidate delta sign while preserving known anchor scores and train-prior plausibility.
+- Drop if: candidate ranges cross zero or target/subject masses remain unconstrained.
+- Current evidence: E26 matched all 8 known public LBs exactly; all unobserved candidate delta intervals crossed zero even under train-prior bands `±0.05`, `±0.10`, `±0.20`.
+- Policy: use only as an ambiguity diagnostic. Do not use inverse-LB fitting as a direct feature, gate, or ranker.
+
+### F18. Structural-prior inverse constraints
+
+- Hidden structure: whether hidden subject/user identity and train-derived target prevalence are the missing constraints that make public-LB feasible worlds realistic.
+- Candidates: global target prevalence bands, subject-target prior bands, scenario fit slack, candidate delta interval width, one-sided sign indicators.
+- Label vs split test: priors are useful only if they both fit known public LB anchors and make candidate deltas one-sided under plausible bands.
+- Adopt if: a candidate is one-sided negative across weak/moderate global and subject-target prior scenarios, with known-LB slack near zero.
+- Drop if: known LBs fit but candidate intervals continue to cross zero.
+- Current evidence: E27 tested seven scenarios. All known public LBs fit with slack `0`, but all unobserved candidate-scenario cells crossed zero (`56/56`) and one-sided improvement cells were `0`.
+- Policy: subject-target prior is a diagnostic constraint only. Do not rank current candidates by this inverse worldview.
+
+### F19. Binary hidden-label inverse constraints
+
+- Hidden structure: whether the real public world is closer to an exact binary all-test label vector than to relaxed soft-label feasible worlds.
+- Candidates: binary-label MILP fit residual, binary incumbent pools, candidate delta ranges under residual budgets, exact-label/public-subset cardinality constraints.
+- Label vs split test: a binary inverse feature is useful only if it fits known public anchors at frontier resolution and produces stable one-sided candidate signs across multiple binary incumbents or optimized ranges.
+- Adopt if: representative candidates become one-sided negative under binary worlds that preserve known public anchor order and have residual below the raw05-a2c8 gap.
+- Drop if: range searches remain time-limited, candidate signs cross zero, or fit residual is larger than the public edge being optimized.
+- Current evidence: E28 found a tight subject-prior binary incumbent with max residual `0.000061242`, below the raw05-a2c8 gap, but candidate range searches produced no one-sided improvement evidence. `6b9335b1` crossed zero under no-prior binary incumbent ranges.
+- Policy: keep as a future exact-public-world diagnostic. Do not use current binary inverse outputs as a submission gate.
+
+### F20. Binary world-pool sign features
+
+- Hidden structure: multiple exact-label hidden public worlds may form a candidate-family sensor even when relaxed inverse LPs are underidentified.
+- Candidates: frontier-scale world indicator, world hash/dedup count, max residual over raw05-a2c8 gap, candidate better_rate across worlds, frontier-only delta sign, positive-cell count, target-prior dispersion.
+- Label vs split test: a useful pool feature must be stable after filtering to frontier-scale worlds and should not depend on candidate-objective worlds alone.
+- Adopt if: several diverse frontier-scale worlds agree on the same candidate family and preserve known public-anchor residuals below the raw05-a2c8 gap.
+- Drop if: frontier-scale count is too small, signs differ by sampled world, or all support comes from time-limited incumbents with residuals larger than the public edge.
+- Current evidence: E29 produced 15 unique binary incumbents but only 1 frontier-scale world. E30 then forced all known-public residuals inside the raw05-a2c8 gap and found 29 frontier worlds, 28 unique. Random-plus-fit worlds favored mixmin `19/19` and inverse7 `18/19`, but candidate-max objectives still found adverse frontier worlds.
+- Policy: use `binary_world_pool_support_energy` as diagnostic metadata only. It raises `submission_mixmin_0c916bb4.csv` above pair-only S4/Q3 as a high-risk worldview probe, but it still cannot certify a submission.
+
+### F21. Binary world plausibility geometry
+
+- Hidden structure: adverse exact-label worlds may be artifacts if their target/subject/dependency/sequence geometry is unlike train.
+- Candidates: target-prior MAE, subject-target MAE, pairwise joint MAE, target-correlation MAE, row-cardinality L1, subject/global temporal flip MAE, run-length MAE, train/test edge flip rate, robust aggregated plausibility energy.
+- Label vs split test: a plausibility gate is useful only if it rejects adverse candidate worlds without merely selecting candidate-objective artifacts.
+- Adopt if: adverse worlds for a candidate are high-energy outliers and low-energy random/fit worlds are one-sided.
+- Drop if: adverse worlds are low-energy or more plausible than supporting worlds.
+- Current evidence: E31 found mixmin adverse worlds are plausibility ranks `1` and `2`, despite random+fit worlds supporting mixmin `19/19`.
+- Policy: do not use generic train-label plausibility to certify mixmin. Keep it as a negative gate and diagnostic feature.
+
+### F22. Known-anchor loss decomposition geometry
+
+- Hidden structure: a hidden binary/public world should explain known public-worse anchors through coherent per-target loss movement, not through large cancellation among target axes.
+- Candidates: per-anchor per-target loss delta versus A2C8, moved-target/loss-delta alignment, anchor cancellation mean, positive-share mean, movement/loss correlation, robust `anchor_energy` rank.
+- Label vs split test: this feature is useful only if low-energy bands support candidates consistently and adverse candidate worlds are high energy; it must not be used to directly tune to public LB scores.
+- Adopt if: low-anchor-energy random/fit worlds agree on a candidate family, known public anchor order remains preserved, and candidate-max adverse worlds are high-energy rather than merely inconvenient.
+- Drop if: adverse worlds are low-anchor-energy, or the feature only recovers known LB ranking while failing out-of-anchor stress.
+- Current evidence: E32 scored 29 E30 worlds. Low-anchor-energy half supported mixmin `15/15` and inverse7 `15/15`; low quarter supported both `7/7`; low-anchor-energy random+fit supported both `12/12`. The two mixmin-adverse worlds were high-energy ranks `26` and `28`.
+- Stability evidence: E33 leave-one-anchor-out stress kept mixmin low-energy-half and low-energy-quarter better_rate at `1.0` in all 7 LOO runs, and no mixmin-adverse world entered any LOO low-energy half. Inverse7 was slightly less stable with low-half min better_rate `0.928571`.
+- Null evidence: E34 family/null stress kept mixmin low-half support at `1.0` under `no_raw05`, `no_medium_non_jepa`, `no_bad_jepa`, and `only_medium_non_jepa`; `only_bad_jepa` failed with adverse worlds entering the low-energy half. Target-axis permutation kept mixmin one-sided in `500/500` permutations, so the signal is not exact target-axis semantics.
+- Policy: promoted after E48. This is now a validated public-relevant gate for the mixmin family because `analysis_outputs/submission_mixmin_0c916bb4.csv` scored `0.5763066405`. It still should not be described as target-axis JEPA semantics or private-safe certification; use it to build mixmin-relative candidates and to recalibrate selector energy.
+
+### F23. Evidence-source independence tier
+
+- Hidden structure: whether a candidate is supported by independent latent/data evidence or only by known-public/anchor-derived geometry.
+- Candidates: evidence tier labels, local-independent-ish support flags, selector hard veto flags, anchor-derived support flags, normal-submit gate, diagnostic sensor priority.
+- Label vs split test: a candidate can be a normal submission only if support is not primarily known-public-derived and if independent local/representation evidence does not conflict with selector stress.
+- Adopt if: local/representation evidence, pair/old selector evidence, and anchor-derived evidence all point in the same direction.
+- Drop if: the strongest support is anchor-derived while selector hard veto remains, even if anchor-LOO/family/null robustness is strong.
+- Current evidence: E35 audited 5 sensors. normal submit gates passing `0`. Mixmin has honest CV mean/worst `-0.000951963` / `-0.000695966` and strong anchor-loss/LOO support, but pair p90 `+0.000879200`, old p90 `+0.001041933`, and selector hard veto remain. Pair-only S4/Q3 sensors have local dependency/pairwise support but fail old/independent survival and binary/anchor-loss support.
+- Policy: update after E48. The independence-tier feature was too conservative as a public hard gate because mixmin became the public frontier, but it remains useful for private-risk labeling. Use it to separate "public-validated but anchor-derived" from "independently safe".
+
+### F24. Raw-structure pseudo-label support energy
+
+- Hidden structure: whether observed subject/date/raw-feature neighborhoods carry the same target direction implied by anchor-loss/binary public worlds.
+- Candidates: subject mean pseudo-labels, same-subject temporal KNN priors, raw-feature KNN priors, cross-subject KNN priors, sensor coverage/stat KNN priors, raw-feature cluster priors, movement-toward-pseudo-label rate, raw-structure support rate.
+- Label vs split test: support must come from train-derived pseudo-label views that do not use known public LB anchors; it must be checked against train/test adversarial AUC, selector hard-veto status, and anchor-loss/LOO stability.
+- Adopt if: a candidate improves soft LogLoss across most raw-structure sources, has negative worst-source delta, and does not keep a selector hard veto after scale/blend reconciliation.
+- Drop if: raw support is sparse, mean soft delta is positive, support only appears in train/test domain-like views, or the candidate remains pair/old selector-vetoed.
+- Current evidence: E36 built 10 raw-structure pseudo-label sources from train-derived subject/date/raw features. Mixmin support was `5/10`, mean delta `+0.000065107`, worst delta `+0.000498574`; therefore raw observed structure does not independently certify mixmin. Inverse7 support was `10/10`, mean delta `-0.000705727`, worst delta `-0.000507826`, with mean toward-rate `0.606601`. Pair-only S4/Q3 sensors had `7/10` support but positive worst-source deltas.
+- Scale/blend evidence: E37 generated 22 inverse7/mixmin logit scale-blend variants. Raw support gates were `14` and anchor low-half+quarter gates were `22`, but two-selector majority and strict bridge gates were both `0`. Best-ranked `analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p25.csv` kept raw and anchor support but still had pair p90 `+0.000035423`, old p90 `+0.000587512`, and selector hard veto.
+- Policy: use `raw_structure_pseudolabel_energy` as an independent-ish bridge diagnostic, not as a direct submission gate. It promotes inverse7 to a new bridge-probe branch, but any public candidate must first reconcile E35 selector hard veto and E33's weaker inverse7 anchor-LOO stability.
+
+### F25. Worldview sensor discriminability energy
+
+- Hidden structure: whether current candidate families are best understood as separate hidden-public worldviews rather than a single submission ranking.
+- Candidates: raw verdict, anchor verdict, pairwise-selector verdict, old-selector verdict, honest-CV verdict, conflict span versus raw05/A2C8 gap, sign entropy, lane identity.
+- Label vs split test: this feature is useful only if it separates diagnostic questions without claiming label signal. It must not promote a candidate unless at least two independent non-public stresses agree and selector veto is resolved.
+- Adopt if: public sensor selection needs a predeclared question and the candidate has high conflict-span plus clear interpretation under both improvement and degradation.
+- Drop if: it is used as an improvement score, if all evidence comes from one anchor family, or if it hides the normal-submit gate result.
+- Current evidence: E38 audited 10 current sensors. normal-submit candidates were `0`; public-sensor candidates were `10`. `mixmin_0c916` was the top information sensor with score `3.355110`; `inverse7blend_1040` / `inv7_s1p00` were raw+anchor-vs-selector bridge sensors; `6b9335b1` and `1bbfb735` were S4/Q3 pair-vs-anchor selector sensors.
+- Policy: validated for public-sensor selection after E48. It correctly elevated mixmin as the most informative public observation, and that file became the frontier. It is still not a private safety score; future use should rank which mixmin-relative public question is most informative.
+
+### F26. OOF selector calibration energy
+
+- Hidden structure: whether the train OOF archive contains a local selector target that generalizes to public candidate ordering.
+- Candidates: full OOF delta versus final9, label-free future-tail/domain/density/missingness stress deltas, subject/date/random block deltas, known-public sign/rank agreement, OOF family stability.
+- Label vs split test: OOF stability is useful only if known-public analogues preserve both direction and ordering. Sign-only agreement is insufficient because submission choice depends on ranking among public-positive candidates.
+- Adopt if: known-public pairwise rank agreement is high, OOF top families are not dominated by obvious local/publicblend shortcuts, and OOF-stable candidates also survive non-OOF selector/anchor stresses.
+- Drop if: OOF rank reverses known public order, or many candidates pass OOF gates while failing public/anchor-derived stress.
+- Current evidence: E39 scored `4172` OOF rows (`4171` unique hashes). strict OOF gates were `1311`, conservative gates `1115`, and known-public sign match was `1.0`. But known-public pairwise rank agreement was `0.0`: OOF ranks ordinal stronger than stage2 even though public LB ranks stage2 better than ordinal.
+- Policy: use as a negative overfit/local-stability screen only. Do not use OOF selector calibration as a submission ranker or a 0.54 path.
+
+### F27. Test-movement fingerprint selector energy
+
+- Hidden structure: whether public transfer is encoded in the anatomy of test-set probability/logit/entropy movement relative to A2C8.
+- Candidates: target-level movement, per-subject movement, row-order movement, raw-domain/density/missingness/cluster movement, nearest known-anchor fingerprint, permutation-null rank evidence.
+- Label vs split test: movement fingerprints are useful only if they recover known public anchor ordering under leave-one-anchor-out, including stage2 < ordinal, A2C8 as best, and bad JEPA severity. Passing stage2/ordinal alone is not enough.
+- Adopt if: at least one view has LOOCV MAE below the frontier-scale public edge, rank accuracy above `0.75`, A2C8 predicted best, bad-anchor severity not collapsed, and permutation-null p-value below `0.10`.
+- Drop if: the selector compresses bad JEPA anchors, predicts A2C8 as non-best in leave-one-out, or only works as an in-sample nearest-anchor lookup.
+- Current evidence: E40 found strict selector views `0` and loose selector views `4`. Combined view had LOOCV MAE `0.000781461`, pairwise rank accuracy `0.821429`, permutation-null rank p `0.004`, and correct stage2/ordinal order. It failed strict gate because A2C8 was not predicted best under leave-one-out and bad JEPA severity was underpredicted. The loose prior ranked `inv7_s0p25` closest to best (`0.577450` predicted public LB), `1bb_s0p65` near raw05 (`0.577522`), and mixmin worse (`0.577664`).
+- Policy: use as a loose sensor-prior only. It can help choose a lower-risk diagnostic public sensor, but it cannot certify improvement or override anchor-loss/worldview evidence.
+
+### F28. Movement bad-axis geometry energy
+
+- Hidden structure: whether E40's missing component is the logit-space direction of movement toward known bad JEPA anchors, not broader public subset identity.
+- Candidates: cosine/projection to raw_timeline, stage2, ordinal, final9, q2_jepa_bad, lejepa_bad, jepa_residual_bad axes; bad/good group projection ratios; compact movement plus axis views.
+- Label vs split test: axis features are useful only if leave-one-anchor-out removes the held-out anchor's own axis and the selector still recovers stage2/ordinal, bad-anchor severity, and A2C8-best. In-sample candidate nearest-anchor predictions are not evidence.
+- Adopt if: a LOO-safe view passes strict or loose gates with bad-anchor underprediction controlled, A2C8 predicted best, and permutation-null rank p below `0.10`.
+- Drop if: severity improves but A2C8-best fails, named axes overfit anchor identity, or candidate ranking changes only in ungated in-sample predictions.
+- Current evidence: E41 found strict selector views `0` and loose selector views `0`. `axis_group` was the best severity view: LOOCV MAE `0.000854918`, pairwise rank accuracy `0.785714`, permutation-null rank p `0.014`, correct stage2/ordinal order, and bad-anchor mean underprediction `0.000898399`; but it predicted A2C8 as `+0.001475508` worse in LOO and missed the loose MAE threshold by `0.000004918`. `axis_named` had MAE `0.000827696` but failed rank, stage2/ordinal order, and bad-anchor underprediction.
+- Policy: use only as a diagnostic explaining why E40 failed. Do not use movement+bad-axis predicted public LB as a forecast or submission ranker.
+
+### F29. Fixed-zero anchor selector calibration energy
+
+- Hidden structure: whether the pre-E48 best A2C8 should be treated as a known zero anchor rather than a LOO target when calibrating public-selector geometry.
+- Candidates: nonbaseline LOO with A2C8 fixed at delta `0`, held-out-axis removal for axis views, raw05 gap to selector MAE ratio, best unobserved advantage to MAE ratio, A2C8-to-anchor synthetic trajectory monotonicity, zero-neighborhood collapse warning.
+- Label vs split test: this feature is useful only if it improves nonbaseline rank while preserving enough resolution to read changes smaller than the raw05-A2C8 public gap. It must not turn in-sample current-best anchoring into a forecast.
+- Adopt if: a view passes fixed-zero nonbaseline rank/order gates, trajectory monotonicity is high, raw05 gap/MAE is close to or above `1`, and unobserved candidate advantage/MAE is large enough to be public-readable.
+- Drop if: nonbaseline rank improves but selector MAE remains much larger than the frontier edge, synthetic paths are non-monotone, or "better than raw05" candidates are better by less than selector error.
+- Current evidence: E42 found fixed-zero gates `0` and usable zero-anchor gates `0`. Best `axis_group` nonbaseline rank improved to `0.857143` with null rank p `0.006`, stage2/ordinal order correct, and raw05 predicted best nonbaseline. But nonbaseline MAE was `0.000766262`, raw05 gap/MAE was `0.113520`, best unobserved advantage/MAE was `0.065408`, trajectory monotonicity was `0.428571`, and zero-neighborhood collapse warning was true.
+- Policy: use as a failed calibration diagnostic. Do not submit pair sensors solely because fixed-zero `axis_group` predicts them slightly better than raw05; the predicted edges are far below selector error.
+
+### F30. Selector resolution boundary energy
+
+- Hidden structure: whether current public selector/gate families have enough measurement resolution to detect a candidate edge at the frontier scale.
+- Candidates: selector best/median known-anchor error, LOO/L2O error, raw05 gap to error ratio, candidate predicted edge to selector-error ratio, error-margin certification flags.
+- Label vs split test: this is not a feature for model input. It is a meta-gate that prevents promoting candidates whose expected edge is smaller than the selector's observed error on known public anchors.
+- Adopt if: a selector family has best error below the raw05-A2C8 gap `0.0000869862`, preferably with L2O support, and at least one candidate has predicted edge larger than that error under independent stress.
+- Drop if: all selector errors exceed the raw05-A2C8 gap or all favorable candidate edges vanish after error-margin correction.
+- Current evidence: E43 found selector frontier-resolution gates `0`, certified better-than-A2C8 rows `0`, and certified better-than-raw05 rows `0`. The best selector was pairwise public-order with best LOO error `0.000218288`, raw05-gap/error ratio `0.398493`, and best L2O error `0.000415499`. E40/E41/E42 raw05-gap/error ratios were only `0.111312`, `0.105094`, and `0.113520`.
+- Policy: make this a hard normal-submission gate. A candidate can still be a public sensor, but it should not be described as an improvement candidate unless its edge exceeds selector error or a new selector has sub-gap error.
+
+### F31. Large-edge low-risk census energy
+
+- Hidden structure: whether the current scored candidate universe already contains a larger safe movement that previous per-family audits missed.
+- Candidates: file-level normalized pair p90 edge, pair edge/raw05-gap ratio, pair edge/selector-error ratio, any raw/anchor/old favorable edge, low bad-axis flags, raw05 compatibility, two-selector support, submit-like support, hard-veto status.
+- Label vs split test: this is a meta-feature/gate, not a model input. It must aggregate across source tables without treating raw/anchor-only support as public truth. Pairwise public-order edge must exceed both raw05-A2C8 gap and selector error before it can be considered selector-readable.
+- Adopt if: at least one file has pairwise p90 edge greater than the E43 best selector error `0.000218288`, low bad-axis, raw05 compatibility, no hard veto, and two-selector or submit-like support.
+- Drop if: favorable pairwise edge stays below selector error or if large favorable edge appears only in raw/anchor/honest-CV views while pair/old selectors remain adverse.
+- Current evidence: E44 loaded 29 score tables with 69,869 rows and 48,088 unique files. Pair-negative files were `12,309`, but files with pair edge greater than raw05-A2C8 gap were `0`, files with pair edge greater than selector error were `0`, and normal large-safe files were `0`. Best pair edge was `0.000073768`, only `0.337941` of selector error and `0.848048` of raw05 gap. Any-edge-above-selector files were `21`, dominated by inverse7/mixmin raw/anchor conflict rows.
+- Policy: use as a hard stop against re-ranking existing scored files as improvement submissions. Future work must add a new independent selector target or generate a new representation movement; merely rescoring the current universe is not enough.
+
+### F32. Structured public-subset feasibility energy
+
+- Hidden structure: whether public LB is dominated by a simple subject/order/date/raw-domain test-row subset that can serve as an independent selector target.
+- Candidates: mask kind/name, rows, known-anchor LOO MAE, max abs held-out error, A2C8-best flag, raw05-direction flag, feasible range width, structured-vs-random comparison.
+- Label vs split test: this is a meta-selector feature, not a model input. It uses only known public anchors in leave-one-anchor-out form and tests masks predeclared from row order, subject, calendar, raw-domain, and random controls. A mask is not trusted if it only fits anchors exactly but leaves wide feasible ranges.
+- Adopt if: a mask family gets LOO MAE below the raw05-A2C8 gap `0.0000869862` or at least below the E43 selector error `0.000218288`, preserves A2C8-best/raw05 direction, and has narrow feasible ranges.
+- Drop if: LOO error stays above selector scale or feasible ranges are much wider than the public edge being optimized.
+- Current evidence: E45 tested 145 masks and found selector-scale gates `0` and strict sub-gap gates `0`. Best mask `global_key_order/suffix_frac0.20` had LOO MAE `0.000429528`, max abs `0.00129817`, raw05-gap ratio `4.937886`, and selector-error ratio `1.967712`. Feasible range mean widths were around `0.04`, far too wide for candidate selection.
+- Policy: use as a negative screen. Do not rank candidates from simple structured public-subset inverse fits unless a new public observation gives a real mask anchor or a new independent target reduces the LOO error below the gap.
+
+### F33. Block-rate context target representation
+
+- Hidden structure: hidden rows are generated in subject/session blocks whose target-rate vector changes locally; the missing signal is a block-level rate/count latent rather than a deterministic row-level label.
+- Candidates: held-out block-rate vector, block count vector, subject train-block summary, previous/next block rates, block length/phase, overnight measurement-process context, raw05-compatible block residual, block-rate prediction energy.
+- Label vs split test: this representation is useful only if it predicts validation block-rate targets fold-safely and remains stable under blockwise, anchor-LOO, raw05 compatibility, and train/test domain stress. It must be learned from context available at test time, not from validation labels or public LB fitting.
+- Adopt if: it recovers a meaningful fraction of the `0.106888` temporal-to-block-rate oracle gap, improves blockwise LogLoss or calibration energy, and produces lower high-energy loss concentration without increasing bad-axis/raw05 risk.
+- Drop if: it behaves like Markov row transition, endpoint propagation, nested one-feature threshold, or simple public-mask inverse fit: local-looking gains that do not transfer or recover only a tiny fraction of oracle headroom.
+- Current evidence: E46 shows the block-rate oracle reaches `0.517878`, temporal-to-oracle gap is `0.106888`, full subject identity explains only `0.291286` of the gap, and `26/36` submission blocks have two train flanks. But best Markov is worse than temporal by `+0.002998`, nested threshold is worse by `+0.044275`, endpoint reconstruction gains only `0.003252` over subject mean, and E45 simple public masks have best LOO MAE `0.000429528`.
+- Policy: make this the next JEPA representation target. Do not convert it directly into a submission until it passes blockwise and anchor stress; use its residual first as `block_state_bottleneck_energy` for gating/calibration.
+
+### F34. Block-summary context-to-rate probe
+
+- Hidden structure: whether current fold-safe block summaries already contain enough information to predict the hidden block-rate vector.
+- Candidates: label-context summaries, previous/next train block rates, subject priors, sensor block means/std/deltas, missingness signatures, combined block summaries, block target energy.
+- Label vs split test: useful only if block-rate target loss improves versus temporal block context. A row-blend gain without block-rate loss gain is calibration perturbation, not hidden-state recovery.
+- Adopt if: block weighted LogLoss beats temporal block weighted LogLoss and the 25% row blend recovers a meaningful share of the `0.106888` oracle gap under subject-block folds, with non-collapsed geometry and no targetwise instability.
+- Drop if: sensor/combined views worsen block-rate loss, best improvement is only row-level shrinkage, or targetwise gains depend on selecting views from the full OOF result.
+- Current evidence: E47 shows best 25% row blend `label_context_ridge = 0.623260`, delta `-0.001505`, but oracle-gap recovery is only `0.014083` and block-rate loss is `0.635888` versus temporal block context `0.623448`. `sensor_values_ridge` worsens row blend by `+0.000660`. Label-context geometry is not collapsed (`anisotropy 0.466748`, effective rank `3.547232`) but still not predictive.
+- Policy: negative gate for the current summary/Ridge family. Do not add this as a submission feature. Future block-state work must change context granularity or target type: discrete count/posterior target, contrastive block retrieval, raw overnight sequence tokens, or anchor-conditioned energy.
+
+## Current Feature Policy
+
+- Direct feature addition is paused unless it maps to a hypothesis and stress test.
+- Direct JEPA residual probability movement is banned until latent geometry passes.
+- The most promising public-relevant diagnostic is now the anchor-loss/binary-world geometry that selected `submission_mixmin_0c916bb4.csv`; E48 validates it as a public-sign feature family, not just a sensor label. It is still not private-safe certification or target-axis JEPA semantics. The next useful feature is not another S4/Q3 weight variant, OOF-local Q3/S4 winner, existing block/measurement candidate rescore, naive merge of pair-only and old-only shortlists, old-only Q3/raw05-drift sensor, amplitude-only S4/Q3 rescale, simple row-mask localization, unqualified larger sparse/minimax movement, inverse-LB prior fitting, subject-prior inverse ranking, a single binary inverse incumbent, a small binary world-pool sign readout, generic train-label plausibility gate, OOF selector-rank gate, movement-fingerprint predicted LB used as a score forecast, movement+axis predicted LB used as a score forecast, fixed-zero anchor kNN forecast used to rank near-A2C8 candidates, existing-universe rescore without new evidence, simple structured public-subset mask recovery, or same-summary Ridge block-rate regression. E39-E45 remain negative screens for selector calibration, and E46-E47 still say the 0.54 path requires better held-out block-rate/count representation. Post-E48 feature work must be mixmin-relative: preserve the validated anchor-loss/cancellation direction, reduce private-risk energy, and test whether new block-state context/target designs recover hidden rates instead of only perturbing row probabilities.

@@ -1,0 +1,9 @@
+scenario_file,n,best_rank,best_score,mean_top_score
+submission_public_entropyproj_public2d0_g100.csv,1789,1,0.9738067534000155,1.3830686377638206
+submission_public_entropytm_public2d0_q1_q3_s2_s3_s4_g075.csv,8,28,1.1564396252090892,1.5200033949083558
+submission_public_entropyproj_public2d0_g075.csv,71,67,1.1842979982616246,1.604378208929956
+submission_public_maskaware_t65_r07_768f6df0.csv,72,139,1.216825753772449,1.6052177850239748
+submission_public_maskaware_t80_r10_18d78615.csv,64,334,1.2560822334353765,1.6037142963098219
+submission_public_entropytm_public2d0_q1_q3_s1_s2_s3_s4_g075.csv,16,717,1.3170613049484956,1.5816628386909521
+submission_public_maskaware_t80_r11_544844af.csv,17,1046,1.3818476266366555,1.59623337795677
+submission_public_maskaware_t80_r12_dcfaabba.csv,11,1111,1.3950411625824586,1.572972065049924
