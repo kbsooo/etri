@@ -591,3 +591,12 @@
 - Implementation issue possible: low to medium. E74 still uses local combo/hidden/world/block stress rather than public labels, and bootstrap subsets are not independent public evidence. But the discarded claim is only cell fragility, not public alignment.
 - Bottleneck implication: the remaining blocker is not source-cell fragility. It is public sign and amplitude calibration: alpha20 looks better locally but alpha24 fails strict, so the branch needs public observation or a stronger public-like amplitude selector.
 - Do not repeat: rejecting E73 because it has only `13` source cells. Also do not submit the best bootstrap subset solely because it has slightly better local delta; use the full-pool E74 alpha20 row if testing amplitude.
+
+## FH66. Sparse Q2/S3 safe amplitude is one symmetric scalar
+
+- Failed hypothesis: once the E73 sparse gate is fixed and cell-stability is established, Q2 and S3 can share a single safe alpha. Under this view E74 alpha20 is the natural amplitude ridge and target-specific amplitude should not materially improve the deployable frontier.
+- Observed result: E75 crossed Q2 and S3 alpha values on the E74 full pool. It scored `120` rows, with strict/deployable `37` and loose `109`. `s3_higher` produced `23` strict/deployable rows, `s3_only` produced `6`, `q2_higher` produced `5`, `equal` produced `3`, and `q2_only` produced `0`. The best deployable row was not symmetric: `alpha_q2=8`, `alpha_s3=28`, tag `e75_q2a8.0_s3a28.0_f07219b4`, all delta `-1.23676e-5`, hidden Q2/S3 `-0.000372692`, and block win `0.722222`.
+- Why discard: the local deployable frontier is clearly target-asymmetric. Symmetric alpha20 remains useful as a control, but it is not the best local sparse-gate amplitude under the current stress set. Q2-only being dead while S3-heavy dominates means a single scalar is hiding the actual amplitude boundary.
+- Implementation issue possible: medium. E75 still depends on combo proxies and the true public sign is unknown. But the discarded claim is only local symmetric-amplitude optimality, not public alignment.
+- Bottleneck implication: the remaining blocker is now public sign and target-specific amplitude calibration. If E73 public sign is positive, the next information-rich question is whether public prefers conservative symmetric movement or S3-heavy target-asymmetric movement.
+- Do not repeat: treating E74 alpha20 as the only second sparse-gate sensor. Keep it as symmetric control, and use E75 when the experiment is specifically target-asymmetric amplitude.
