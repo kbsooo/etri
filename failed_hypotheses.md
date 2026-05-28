@@ -582,3 +582,12 @@
 - Implementation issue possible: medium. E72 is still a local combo/hidden/world stress, and public LB is unobserved. But the narrow claim "no deployable non-`none` gate exists" is directly false under the same margin/stress machinery.
 - Bottleneck implication: the bottleneck is now public sign, not mere deployability. We have a materialized sparse-gate sensor; if public rejects it, the failure is local stress overfit or public-subset mismatch, not absence of gate geometry.
 - Do not repeat: abandoning Q2/S3 consensus solely because sign/agreement gates fail. Also do not submit untested soft/agreement/Q2-only variants; the only live E72 file is the selected sparse-magnitude diagnostic.
+
+## FH65. E73 sparse Q2/S3 gate is a single-cell artifact
+
+- Failed hypothesis: the E73 top_abs50 file might only pass because one or two of the `13` source cells dominate the local combo proxy, so deleting cells or sampling subsets would collapse strict/deployable support.
+- Observed result: E74 ran `analysis_outputs/q2_s3_sparse_gate_stability_probe.py` over reference, leave-one-cell-out jackknife, group-keep, rank-keep, and `60` deterministic bootstrap8 variants. It scored `470` rows over `94` variants and found strict/deployable rows `141`. Jackknife alpha16 stayed deployable `13/13`; bootstrap8 alpha16 stayed deployable `48/60`; all jackknife alpha16 rows were loose and deployable. The reference full-pool alpha20 row remained strict/deployable and improved local all delta to `-1.07261e-5`.
+- Why discard: broad jackknife and bootstrap support directly contradicts the single-cell-artifact explanation. The E73 source pool behaves like a stable sparse consensus family under this stress.
+- Implementation issue possible: low to medium. E74 still uses local combo/hidden/world/block stress rather than public labels, and bootstrap subsets are not independent public evidence. But the discarded claim is only cell fragility, not public alignment.
+- Bottleneck implication: the remaining blocker is not source-cell fragility. It is public sign and amplitude calibration: alpha20 looks better locally but alpha24 fails strict, so the branch needs public observation or a stronger public-like amplitude selector.
+- Do not repeat: rejecting E73 because it has only `13` source cells. Also do not submit the best bootstrap subset solely because it has slightly better local delta; use the full-pool E74 alpha20 row if testing amplitude.

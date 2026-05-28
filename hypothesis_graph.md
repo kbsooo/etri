@@ -791,6 +791,18 @@ target co-occurrence
 - public LB 기대 반응: if the E73 file improves, H69 becomes the first post-mixmin sparse Q2/S3 consensus translator. If it worsens, H69 is downgraded to local combo/hidden/world overfit and future candidates need stronger public-subset or structural block-state evidence.
 - 제출 전략: `submission_e72_topabs50_q2s3_gate_4e48cba2.csv` is the current priority-1 diagnostic submission after mixmin, not yet a confirmed replacement.
 
+### H70. E73 sparse-magnitude Q2/S3 gate is stable under cell-subset stress
+
+- 상태: 지지됨 locally; public sign still pending.
+- 왜 그럴듯한가: E73's selected pool has only `13` source cells, so a few influential cells could explain the local strict/deployable result. If the sparse gate is a real latent consensus, deleting cells or sampling subsets should preserve many deployable alpha16/alpha20 rows.
+- 맞다면: leave-one-cell-out variants should remain deployable at alpha16, bootstrap subsets should frequently pass the same strict/deployable gate, and the full-pool alpha20 row should improve local support without immediately breaking hidden/world/block stress.
+- 틀리다면: jackknife variants should fail deployability, bootstrap support should be rare, and the E73 full-pool result should collapse or become adverse when one or two cells are removed.
+- 최소 실험: `analysis_outputs/q2_s3_sparse_gate_stability_probe.py`, using E73's full `translator_tail_soft_p90_m0.50` top_abs50 pool with reference, jackknife, group-keep, rank-keep, and deterministic bootstrap8 variants across alpha `[8, 12, 16, 20, 24]`.
+- 관측: E74 scored `470` rows over `94` variants. Strict/deployable rows were `141`; loose rows were `470`. Jackknife alpha16 deployable was `13/13`, bootstrap8 alpha16 deployable was `48/60`, and reference alpha20 remained strict/deployable with all delta `-1.07261e-5`, hidden Q2/S3 `-0.000484506`, world support `-0.000351115`, and block win rate `0.722222`. Reference alpha24 failed strict, so the amplitude ridge has a visible upper boundary.
+- 성공/폐기 기준: single-cell fragility is discarded. E73 is upgraded from a fragile local sensor to a stable sparse-cell-consensus sensor. The public-alignment and amplitude claims remain open.
+- public LB 기대 반응: if E73 improves but E74 alpha20 worsens, sparse-gate structure is real but alpha20 is over-amplified. If E74 alpha20 improves more, E73 was conservative and amplitude ridge is public-aligned. If both worsen, E74 stability is local-only and H69/H70 are demoted.
+- 제출 전략: keep `submission_e72_topabs50_q2s3_gate_4e48cba2.csv` as the first sensor; materialized secondary amplitude sensor is `analysis_outputs/submission_e74_fullpool_a20_q2s3_gate_55455b60.csv`.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
