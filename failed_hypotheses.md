@@ -451,7 +451,7 @@
 ## FH50. Simple anchor-constrained E56 posterior distillation is submit-safe
 
 - Failed hypothesis: E56 posterior is too large as a full average, but a simple distillation over confident cells, target masks, row gates, caps, and small weights should produce a mixmin-relative submission candidate.
-- Observed result: E58 generated `104727` latent-gated candidates and actual-anchor scored `1200`. Toward-teacher candidates had `631/900` sign-level anchor improvements and all `900` passed world/movement guards, but eligible submission gates were `0` after requiring anchor margin `< -1e-5`. Best toward-teacher delta was only `-0.000003555`. Reverse controls had no world guards and best anchor delta `-0.000000531`.
+- Observed result: E58 generated `104727` latent-gated candidates and actual-anchor scored `1200`; E61 then fixed a sorted-prefilter score-index mismatch with stable `pred_index` and reran the probe. Corrected toward-teacher candidates had `126/900` sign-level anchor improvements and all `900` passed world/movement guards, but eligible submission gates were `0` after requiring anchor margin `< -1e-5`. Best toward-teacher delta was only `-0.000004081`. Reverse controls had no world guards and best anchor delta `-0.0000000126`.
 - Why discard: the apparent safe direction is below selector/public-sensor resolution. It is not large enough to distinguish signal from anchor-proxy noise or justify a public slot.
 - Implementation issue possible: medium. The candidate grid is simple and may miss nonlinear structural target representations. The discarded claim is only that simple gated distillation is enough.
 - Bottleneck implication: E56 energy can be made non-adverse near mixmin, but not useful at frontier scale. The next path needs a structural block target or an independent non-anchor validation signal, not finer slicing of the same teacher grid.
@@ -474,3 +474,12 @@
 - Implementation issue possible: medium. The model is kNN residual prediction and may be too crude, but the failure mode is large and diagnostic: the hidden-sign axis is not calibration-preserving. A future model may use transition residual as one energy, not as the target by itself.
 - Bottleneck implication: independent non-anchor validation for E56 cannot be "hidden-sign residual looks good" alone. It must also preserve pseudo-hidden row calibration, S3, and residual MSE.
 - Do not repeat: generating submissions from transition-residual hidden-sign rates, especially endpoint-mid aggressive residuals. Use E60 only as a risk diagnostic or as a constrained feature in a broader target that keeps row calibration explicit.
+
+## FH53. E58 rejection was only a score-index artifact
+
+- Failed hypothesis: the E58 no-submission decision might be caused by candidate metadata becoming detached from the corresponding prediction array after sorted prefilters, so corrected scoring could open an eligible distillation gate.
+- Observed result: E61 added stable `pred_index` at generation time and used it in `attach_anchor_scores`. The rerun kept `104727` generated candidates and `1200` scored candidates. Eligible gates stayed `0`; diagnostic reverse gates stayed `0`; best toward-teacher delta was `-0.000004081`; best reverse-control delta was `-0.0000000126`; corrected toward sign-level anchor improvements were `126/900`.
+- Why discard: the implementation bug existed, but fixing it did not create a selector-scale candidate or change the no-submission conclusion. It weakened the previous apparent sign-level support rather than strengthening it.
+- Implementation issue possible: low for this specific claim. The remaining limitation is the E58 candidate family itself, not the scoring identity wiring.
+- Bottleneck implication: E58 failed because simple E56 teacher slicing is too weak, not because the scorer mislabeled the best candidates.
+- Do not repeat: any scored candidate table that is sorted, reset, or prefiltered without carrying a stable prediction id. Future grid scorers must preserve candidate-to-probability identity explicitly.

@@ -618,7 +618,7 @@ target co-occurrence
 - 맞다면: at least one toward-teacher candidate should satisfy world guard, movement guard, and actual-anchor improvement margin `< -1e-5` versus mixmin. Reverse controls should not be stronger than the teacher direction.
 - 틀리다면: toward-teacher candidates may show tiny negative anchor deltas but below margin, or reverse controls may be equally good, implying the posterior is not a stable submission direction.
 - 최소 실험: `analysis_outputs/mixmin_hard_posterior_distillation_probe.py`, generating E56 posterior-band candidates with target masks, raw-agreement/support/entropy cell gates, row gates, caps, and small weights; actual-anchor score is a final safety stress after world-support prefilter.
-- 관측: E58 generated `104727` candidates and actual-anchor scored `1200`. Toward-teacher candidates: `900` scored, `631` beat mixmin by sign, but eligible submission gates were `0` after the `1e-5` margin. Best toward-teacher anchor delta was `-0.000003555` with world guard true and mean abs logit move `0.002297`. Reverse controls scored `300`, with best anchor delta only `-0.000000531` and world guard `0`.
+- 관측: E58 generated `104727` candidates and actual-anchor scored `1200`. E61 found and fixed a candidate-prediction index mismatch in the scoring path; the conclusion remained unchanged. Corrected toward-teacher candidates: `900` scored, `126` beat mixmin by sign, but eligible submission gates were `0` after the `1e-5` margin. Best toward-teacher anchor delta was `-0.000004081` from `toward_teacher|low_slack_half|no_q2|raw_agree|all|w0.070|c0.120`. Reverse controls scored `300`, with best anchor delta only `-0.0000000126` and world guard `0`.
 - 성공/폐기 기준: discarded as a submission source because no candidate clears selector-scale anchor margin. Retained as evidence that the E56 direction is not purely adverse when heavily gated, but its safe movement is too small to justify public submission.
 - public LB 기대 반응: submitting the best E58 candidate would be a very low-information micro-probe; any improvement or degradation would be dominated by public noise unless repeated evidence raises the margin.
 - 제출 전략: no submission from E58. Move to structural block target representation or add an independent non-anchor validation signal before revisiting E56 distillation.
@@ -646,6 +646,18 @@ target co-occurrence
 - 성공/폐기 기준: discarded as a candidate generator and as the missing independent validator for E56. Retain transition residual features only as diagnostic energy when evaluating teacher reliability, because hidden-sign support without pseudo-hidden validity is not actionable.
 - public LB 기대 반응: submitting a transition-residual hidden-sign file would be high-downside. Improvement would imply the pseudo-hidden row/residual stress is not public-relevant and the public subset heavily weights the S3/S2/Q3 hidden-sign axis. Worsening would mainly confirm E60.
 - 제출 전략: no submission from E60. The next structural target must avoid both within-block-only pattern targets and aggressive endpoint-residual hidden-sign moves; it should combine E56 energy with a validation target that preserves row calibration.
+
+### H58. E58 posterior-distillation rejection is only a scoring-index artifact
+
+- 상태: 반증됨. A scoring-index bug existed, but the no-submission conclusion survives correction.
+- 왜 그럴듯한가: While designing the next E56/E60 gate, the E58 code path showed `score_prefilter()` sorted/reset candidate rows, while `attach_anchor_scores()` used the post-sort DataFrame index to select `preds`. This could mismatch candidate metadata and probability arrays, invalidating the reported best E58 anchor deltas.
+- 맞다면: after adding stable `pred_index`, corrected actual-anchor scoring should materially change E58 gates, possibly open an eligible candidate or reverse the toward/reverse interpretation.
+- 틀리다면: corrected scoring should keep eligible gates at `0`, keep best anchor improvement below the `1e-5` margin, and preserve E58 as an energy-only branch.
+- 최소 실험: patch E58 to attach `pred_index` before prefilter sorting, rerun `analysis_outputs/mixmin_hard_posterior_distillation_probe.py`, and compare corrected summary against the previous E58 conclusion.
+- 관측: E61 corrected and reran E58. Generated candidates remained `104727`; scored candidates remained `1200`; eligible gates remained `0`. Corrected best toward-teacher delta was `-0.000004081`, still below margin. Corrected toward sign-beats fell from the previous mismatched `631/900` to `126/900`; reverse-control best became only `-0.0000000126` with world guard `0`.
+- 성공/폐기 기준: artifact-only explanation discarded. The script/output now use stable `pred_index`; E58 remains rejected as a submission source.
+- public LB 기대 반응: unchanged. An E58 file would still be sub-margin and low information.
+- 제출 전략: no submission. The fix improves evidence integrity, not candidate priority.
 
 ## 우선 실험 5개
 
@@ -681,7 +693,7 @@ E55는 그 Q/S count manifold translation의 단순 버전을 반증했다. Stri
 
 E56은 그 mixmin-hard world generation을 실제로 실행했고, H53을 부분 지지했다. Mixmin을 hard observation으로 넣고 raw overnight hidden block-rate를 feasibility prior로 쓴 world family는 `45` worlds / `44` unique worlds를 만들었고, 기존 후보 strict gate는 여전히 `0`이었지만 posterior world-LOO strict gate는 `12`개 열렸다. 그러나 E57은 H54를 반증했다. E56 posterior variants `15`개 중 independent actual-anchor plus movement safety joint gate는 `0`이었고, E56 selected diagnostic은 mixmin보다 actual-anchor `+0.020381` 나빴다. 따라서 현재 live branch는 direct posterior submission이 아니라 E56 posterior의 anchor-constrained distillation 또는 structural block target representation이다.
 
-E58은 H55를 submission source로 반증했다. E56 posterior를 target/cell/row gate로 잘라내면 world guard를 만족하는 toward-teacher 후보가 많고, actual-anchor sign이 음수인 후보도 `631/900`개 있었다. 그러나 best anchor delta는 `-3.555e-6`으로 `1e-5` margin을 넘지 못했고 eligible gate는 `0`이었다. Reverse control도 더 강한 반대 방향을 만들지 못했다. 따라서 E56 posterior는 완전히 adverse한 것은 아니지만, 현재 방식으로는 public-sensor 해상도 아래의 energy일 뿐이다.
+E58은 H55를 submission source로 반증했다. E61에서 E58 actual-anchor scoring의 index mismatch를 고쳤고, 결론은 유지됐다. Corrected toward-teacher 후보는 `126/900`개만 sign-level anchor improvement였고, best anchor delta는 `-4.081e-6`으로 여전히 `1e-5` margin을 넘지 못했으며 eligible gate는 `0`이었다. Reverse control도 더 강한 반대 방향을 만들지 못했다. 따라서 E56 posterior는 완전히 adverse한 것은 아니지만, 현재 방식으로는 public-sensor 해상도 아래의 energy일 뿐이다.
 
 E59는 H56을 direct candidate source로 반증했다. 128-state joint block label-pattern target은 확실히 예측 가능했다: raw independent pattern baseline보다 좋은 방법이 `139/216`개였고, own-margin 대비 joint gain이 있는 방법도 `198/216`개였다. 하지만 이 구조는 현재 public frontier latent로 번역되지 않았다. Best pattern method는 pattern NLL을 `-0.062594` 낮췄지만 row LogLoss는 raw보다 `+0.003678` 나빠졌고 hidden mixmin sign도 `+0.000304`로 adverse였다. 반대로 hidden mixmin sign을 음수로 만드는 방법들은 pseudo-hidden row validity와 S3를 크게 망가뜨렸다. 따라서 단순 marginal rate보다 구조적인 target이 필요하다는 직감은 절반만 맞았다. Joint co-occurrence 구조는 존재하지만, within-block joint labels alone으로는 mixmin-relative next candidate가 나오지 않는다.
 

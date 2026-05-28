@@ -411,7 +411,7 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Label vs split test: useful only if toward-teacher movement passes generated-world guard and beats mixmin under actual-anchor stress by a selector-scale margin. Invalid if improvements are only sign-level and below margin.
 - Adopt if: at least one toward-teacher candidate has `anchor_delta_vs_mixmin < -1e-5`, `world_guard=True`, `movement_guard=True`, and reverse controls do not show stronger anchor improvement.
 - Drop if: best anchor improvement is below `1e-5` or reverse controls are comparable.
-- Current evidence: E58 generated `104727` candidates and actual-anchor scored `1200`. Toward-teacher sign-level anchor improvements existed (`631/900`), but eligible gates were `0`; best delta was `-0.000003555`. Reverse-control best delta was only `-0.000000531` and had no world guard.
+- Current evidence: E58 generated `104727` candidates and actual-anchor scored `1200`; E61 fixed a sorted-prefilter score-index mismatch with stable `pred_index`. Corrected toward-teacher sign-level anchor improvements were only `126/900`; eligible gates were `0`; best delta was `-0.000004081`. Reverse-control best delta was only `-0.0000000126` and had no world guard.
 - Policy: negative gate for simple E56 teacher slicing. Keep the best patterns as diagnostics only; do not create a submission from sub-margin distillation. Next useful representation work must add structural block targets or independent non-anchor validation.
 
 ### F43. Structural joint block label-pattern target

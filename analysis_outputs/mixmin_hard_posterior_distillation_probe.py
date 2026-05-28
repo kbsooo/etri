@@ -236,6 +236,7 @@ def generate_candidates(
                                 rows.append(
                                     {
                                         "candidate": f"{direction_name}|{band}|{target_name}|{cell_gate_name}|{row_gate_name}|w{weight:.3f}|c{cap:.3f}",
+                                        "pred_index": len(preds),
                                         "direction": direction_name,
                                         "band": band,
                                         "target_mask": target_name,
@@ -292,7 +293,10 @@ def score_prefilter(
 
 
 def attach_anchor_scores(frame: pd.DataFrame, preds: list[np.ndarray], sample: pd.DataFrame, mixmin: np.ndarray, a2c8: np.ndarray, raw05: np.ndarray) -> pd.DataFrame:
-    candidate_indices = frame.index.to_numpy()
+    if "pred_index" in frame.columns:
+        candidate_indices = frame["pred_index"].to_numpy(dtype=int)
+    else:
+        candidate_indices = frame.index.to_numpy()
     score_preds = [mixmin, a2c8, raw05] + [preds[int(i)] for i in candidate_indices]
     anchor = actual_anchor_score(score_preds, sample)
     mixmin_anchor = float(anchor.iloc[0]["actual_anchor_score_final"])

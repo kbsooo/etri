@@ -20,33 +20,33 @@ Can E56 posterior energy be distilled only on confident cells and still stay pub
 
 | candidate | direction | actual_anchor_score_final | anchor_delta_vs_mixmin | anchor_margin_gate | raw_energy_quarter_median_delta | raw_energy_quarter_p90_delta | world_all_median_delta | mean_abs_logit_move_vs_mixmin | movement_guard | world_guard | eligible_submission_gate |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| toward_teacher|raw_energy_quarter|no_q2|low_entropy40|teacher_row_top50|w0.095|c0.080 | toward_teacher | 0.577731 | -3.5551e-06 | False | -0.000949919 | -0.000949919 | -6.39763e-05 | 0.00229737 | True | True | False |
-| toward_teacher|raw_energy_quarter|no_q2|support60|teacher_row_top50|w0.095|c0.080 | toward_teacher | 0.577731 | -3.4328e-06 | False | -0.000950182 | -0.000950182 | -6.42394e-05 | 0.00229303 | True | True | False |
-| toward_teacher|raw_energy_quarter|q2_s2_s3|raw_agree|all|w0.095|c0.120 | toward_teacher | 0.577731 | -3.35615e-06 | False | -0.00105632 | -0.000476552 | -0.000229003 | 0.00236189 | True | True | False |
-| toward_teacher|raw_energy_half|q3_s|high_abs75|all|w0.095|c0.120 | toward_teacher | 0.577732 | -2.87842e-06 | False | -0.000993027 | -0.000758512 | -0.000133141 | 0.002052 | True | True | False |
-| toward_teacher|raw_energy_quarter|no_q2|support60|support_row_top50|w0.070|c0.120 | toward_teacher | 0.577732 | -2.87652e-06 | False | -0.00109279 | -0.00109279 | -3.83581e-05 | 0.00316816 | True | True | False |
-| toward_teacher|raw_energy_quarter|no_q2|all|all|w0.050|c0.080 | toward_teacher | 0.577732 | -2.83212e-06 | False | -0.00123006 | -0.000570703 | -4.76088e-05 | 0.0033981 | True | True | False |
-| toward_teacher|raw_energy_quarter|all|agree_support60|teacher_row_top50|w0.095|c0.120 | toward_teacher | 0.577732 | -2.81597e-06 | False | -0.00108968 | -0.00108968 | -0.000138598 | 0.0021432 | True | True | False |
-| toward_teacher|raw_energy_half|s_all|all|support_row_top50|w0.095|c0.120 | toward_teacher | 0.577732 | -2.79536e-06 | False | -0.00103502 | -0.000606758 | -0.000120323 | 0.0031872 | True | True | False |
-| toward_teacher|raw_energy_half|all|support60|all|w0.070|c0.120 | toward_teacher | 0.577732 | -2.73848e-06 | False | -0.00113569 | -0.000878663 | -0.000140541 | 0.00372071 | True | True | False |
-| toward_teacher|raw_energy_quarter|all|all|teacher_row_top50|w0.070|c0.080 | toward_teacher | 0.577732 | -2.63076e-06 | False | -0.00123111 | -0.000634273 | -6.57216e-05 | 0.00279147 | True | True | False |
-| toward_teacher|raw_energy_quarter|all|high_abs60|teacher_row_top50|w0.095|c0.080 | toward_teacher | 0.577732 | -2.50532e-06 | False | -0.0011452 | -0.000867253 | -8.11959e-05 | 0.00210194 | True | True | False |
-| toward_teacher|raw_energy_quarter|no_q2|all|all|w0.070|c0.050 | toward_teacher | 0.577732 | -2.49136e-06 | False | -0.00107584 | -0.000501118 | -4.18969e-05 | 0.00298301 | True | True | False |
-| toward_teacher|raw_energy_quarter|q1_q3_s3|low_entropy40|all|w0.095|c0.120 | toward_teacher | 0.577732 | -2.43852e-06 | False | -0.00109248 | -0.00109248 | -0.00016508 | 0.00323363 | True | True | False |
-| toward_teacher|raw_energy_quarter|all|low_entropy40|raw_row_top50|w0.070|c0.120 | toward_teacher | 0.577732 | -2.24822e-06 | False | -0.000950921 | -0.000950921 | -7.74959e-05 | 0.00292995 | True | True | False |
-| toward_teacher|raw_energy_quarter|all|low_entropy40|all|w0.095|c0.050 | toward_teacher | 0.577732 | -2.22726e-06 | False | -0.00111352 | -0.00111352 | -5.10696e-05 | 0.00323496 | True | True | False |
-| toward_teacher|raw_energy_quarter|all|raw_agree|support_row_top50|w0.095|c0.080 | toward_teacher | 0.577732 | -2.20393e-06 | False | -0.00105973 | -0.000523043 | -8.69302e-05 | 0.00202629 | True | True | False |
-| toward_teacher|raw_energy_quarter|all|high_abs60|all|w0.095|c0.050 | toward_teacher | 0.577732 | -2.0113e-06 | False | -0.00101231 | -0.000751736 | -6.50218e-05 | 0.0019 | True | True | False |
-| toward_teacher|raw_energy_quarter|q2_s2_s3|support60|all|w0.095|c0.120 | toward_teacher | 0.577733 | -1.95731e-06 | False | -0.0011076 | -0.0011076 | -0.000195595 | 0.00339851 | True | True | False |
-| toward_teacher|all|q3_s|all|all|w0.070|c0.120 | toward_teacher | 0.577733 | -1.92248e-06 | False | -0.00114732 | -0.000631587 | -0.00067968 | 0.00555203 | True | True | False |
-| toward_teacher|raw_energy_half|all|high_abs60|raw_row_top50|w0.095|c0.120 | toward_teacher | 0.577733 | -1.89812e-06 | False | -0.00117143 | -0.000793599 | -0.000135657 | 0.00238423 | True | True | False |
+| toward_teacher|low_slack_half|no_q2|raw_agree|all|w0.070|c0.120 | toward_teacher | 0.57773 | -4.08086e-06 | False | -0.000860265 | -0.0005282 | -0.000508415 | 0.00419249 | True | True | False |
+| toward_teacher|low_slack_half|no_q2|raw_agree|all|w0.095|c0.120 | toward_teacher | 0.577731 | -3.98584e-06 | False | -0.00116592 | -0.000715262 | -0.000688411 | 0.00568981 | True | True | False |
+| toward_teacher|low_slack_half|no_q2|raw_agree|all|w0.095|c0.080 | toward_teacher | 0.577731 | -3.98101e-06 | False | -0.000778961 | -0.000481783 | -0.000454848 | 0.00386999 | True | True | False |
+| toward_teacher|low_slack_half|all|raw_agree|raw_row_top50|w0.095|c0.120 | toward_teacher | 0.577731 | -3.897e-06 | False | -0.000914361 | -0.000589573 | -0.000425693 | 0.00356328 | True | True | False |
+| toward_teacher|all|no_q2|raw_agree|all|w0.070|c0.120 | toward_teacher | 0.577731 | -3.77731e-06 | False | -0.00096226 | -0.000530949 | -0.000501971 | 0.0042809 | True | True | False |
+| toward_teacher|all|no_q2|raw_agree|all|w0.095|c0.080 | toward_teacher | 0.577731 | -3.71508e-06 | False | -0.000871147 | -0.000480247 | -0.000450865 | 0.00395089 | True | True | False |
+| toward_teacher|all|all|raw_agree|raw_row_top50|w0.095|c0.120 | toward_teacher | 0.577731 | -3.5551e-06 | False | -0.000986346 | -0.00056536 | -0.000405017 | 0.00368974 | True | True | False |
+| toward_teacher|all|no_q2|raw_agree|all|w0.095|c0.120 | toward_teacher | 0.577731 | -3.44887e-06 | False | -0.0013043 | -0.000718952 | -0.000679626 | 0.0058098 | True | True | False |
+| toward_teacher|raw_energy_half|no_q2|raw_agree|raw_row_top50|w0.095|c0.120 | toward_teacher | 0.577731 | -3.3671e-06 | False | -0.00096488 | -0.000545584 | -9.399e-05 | 0.00257442 | True | True | False |
+| toward_teacher|low_slack_half|all|raw_agree|all|w0.095|c0.080 | toward_teacher | 0.577731 | -3.23165e-06 | False | -0.00102295 | -0.000645475 | -0.000558214 | 0.00456567 | True | True | False |
+| toward_teacher|low_slack_half|all|raw_agree|all|w0.070|c0.120 | toward_teacher | 0.577731 | -3.14273e-06 | False | -0.00112746 | -0.000707662 | -0.000625123 | 0.00494838 | True | True | False |
+| toward_teacher|low_slack_half|all|raw_agree|all|w0.050|c0.120 | toward_teacher | 0.577731 | -3.05201e-06 | False | -0.000806141 | -0.000506285 | -0.000447328 | 0.00353455 | True | True | False |
+| toward_teacher|low_slack_half|all|raw_agree|all|w0.070|c0.080 | toward_teacher | 0.577731 | -3.01354e-06 | False | -0.000754404 | -0.000476263 | -0.000411966 | 0.00336418 | True | True | False |
+| toward_teacher|all|all|raw_agree|all|w0.050|c0.120 | toward_teacher | 0.577732 | -2.87652e-06 | False | -0.00089447 | -0.000503463 | -0.000446598 | 0.00362118 | True | True | False |
+| toward_teacher|raw_energy_quarter|no_q2|raw_agree|raw_row_top50|w0.095|c0.120 | toward_teacher | 0.577732 | -2.86687e-06 | False | -0.00105387 | -0.000548751 | -6.79801e-05 | 0.00229613 | True | True | False |
+| toward_teacher|all|all|raw_agree|all|w0.070|c0.080 | toward_teacher | 0.577732 | -2.83212e-06 | False | -0.000835157 | -0.00046876 | -0.000421331 | 0.00344284 | True | True | False |
+| toward_teacher|all|all|raw_agree|all|w0.095|c0.080 | toward_teacher | 0.577732 | -2.81597e-06 | False | -0.00113252 | -0.000635267 | -0.000570899 | 0.00467243 | True | True | False |
+| toward_teacher|all|all|raw_agree|all|w0.070|c0.120 | toward_teacher | 0.577732 | -2.73848e-06 | False | -0.00125109 | -0.000703676 | -0.000624065 | 0.00506965 | True | True | False |
+| toward_teacher|raw_energy_half|all|raw_agree|raw_row_top50|w0.095|c0.120 | toward_teacher | 0.577732 | -2.62753e-06 | False | -0.00124126 | -0.000704888 | -0.000182449 | 0.00315175 | True | True | False |
+| toward_teacher|raw_energy_half|all|raw_agree|raw_row_top50|w0.070|c0.120 | toward_teacher | 0.577732 | -2.60255e-06 | False | -0.000915291 | -0.000520069 | -0.000135113 | 0.00232234 | True | True | False |
 
 ## Decision
 
 - eligible toward-teacher submission gates: `0`.
 - diagnostic reverse-control gates: `0`.
-- best toward-teacher anchor delta: `-3.5551e-06` from `toward_teacher|raw_energy_quarter|no_q2|low_entropy40|teacher_row_top50|w0.095|c0.080`.
-- best reverse-control anchor delta: `-5.31077e-07` from `reverse_control|raw_energy_quarter|s2_s3|high_abs75|teacher_row_top70|w0.010|c0.010`.
+- best toward-teacher anchor delta: `-4.08086e-06` from `toward_teacher|low_slack_half|no_q2|raw_agree|all|w0.070|c0.120`.
+- best reverse-control anchor delta: `-1.25523e-08` from `reverse_control|all|s2_s3|agree_support60|teacher_row_top70|w0.010|c0.018`.
 - No submission file is justified by E58.
 
 ## Interpretation
