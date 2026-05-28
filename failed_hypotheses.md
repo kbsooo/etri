@@ -537,3 +537,12 @@
 - Implementation issue possible: medium. First-order BCE derivatives are approximate and use the current anchor scenario/mask family. A scenario-holdout or hidden/block/row-calibration validation could still rescue the idea, but E67 alone is not enough.
 - Bottleneck implication: the bottleneck moved from "which targets?" to "which Q2/S3 cells have independent support?" The next translator must validate tail-gated cells outside the anchor-tail objective.
 - Do not repeat: first-order anchor-tail gate sweeps as submission candidates without independent validation or selector-scale margin.
+
+## FH60. E67 tail-gated Q2/S3 cells are only same-anchor derivative artifacts
+
+- Failed hypothesis: E67's Q2/S3 tail-gated cells improve only because the same known-anchor combo family was used to define first-order gates and score the response.
+- Observed result: E68 selected `180` promising E67 matched configs, rebuilt gates while holding each combo set out, scored `762` unique predictions, and formed `540` matched comparisons. Independent gates were `155/540`, and strict independent gates were also `155/540`. `tail_soft_max_m1.00` had `44` strict gates; `tail_p90_nonpos_m1.00` had `41` strict gates and best strict heldout delta `-1.260816e-6`. The strongest heldout score, `tail_max_nonpos_m1.00` at `-1.629588e-6`, failed because block-majority wins were `0`.
+- Why discard: held-out combo construction, hidden Q2/S3 improvement, world support, and hidden-block Q2/S3 stress all survive for many selected cells. The artifact-only explanation is too strong.
+- Implementation issue possible: medium. E68 still starts from selected E67 configs and uses proxy combo families, not true public labels. But the heldout reconstruction plus non-anchor diagnostics directly remove the simplest same-anchor arithmetic explanation.
+- Bottleneck implication: the bottleneck is no longer Q2/S3 cell validity. It is amplitude and translation: the validated cells are real-looking but their held-out gains are `1e-6` scale.
+- Do not repeat: dismissing E67 as pure anchor-tail artifact without heldout/non-anchor stress. Also do not submit E68 cells directly; the effect is below selector-scale margin.
