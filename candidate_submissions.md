@@ -166,48 +166,53 @@ Update after E46: block-state bottleneck audit does not add a submission file, b
 
 Update after E47: the first direct block-context target audit also does not add a submission file. `analysis_outputs/block_context_jepa_target_audit.py` shows best non-base 25% row blend `label_context_ridge = 0.623260` (`-0.001505`), but it recovers only `0.014083` of the oracle gap and has worse block-rate loss than temporal (`0.635888` vs `0.623448`). This is weak calibration signal, not hidden block-state recovery. Do not create a submission from these Ridge block-summary predictions.
 
+Update after E49: post-mixmin observation does not add a new submission file. It changes the next candidate requirement. `analysis_outputs/post_mixmin_observation_audit.py` shows mixmin is not explained by simple global/subject/recent priors, and train/test is an interleaved subject-calendar mask rather than future-only forecasting. The next candidate should be mixmin-relative and calendar-block-aware; it should explain why `Q3/Q1/S3` move most and why `Q1/S1` can move against simple priors.
+
 ## Submission Order
 
 Current recommendation after E48: use `analysis_outputs/submission_mixmin_0c916bb4.csv` as the active public frontier. Do not continue a2c8-centered micro-edge submission logic until selectors are recalibrated with the new mixmin anchor.
 
 1. Keep `analysis_outputs/submission_mixmin_0c916bb4.csv` as the active best.
-2. Treat `analysis_outputs/submission_frontier_cvjepa_refine_a2c8d2c8.csv` as the previous-frontier contrast anchor, not the baseline to optimize around blindly.
-3. Re-run selector calibration with mixmin included as a known public anchor; identify which pre-E48 gates failed because they modeled the wrong public worldview.
-4. Hold `analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p25.csv` until it is rescored relative to mixmin. It remains the cleanest raw-structure bridge question, but the target is now "can it improve or preserve mixmin?", not "can it beat a2c8?".
-5. Hold pair-only S4/Q3 sensors until post-mixmin recalibration. Their old purpose, pair-vs-old selector disambiguation around a2c8, is now lower value.
-6. If lower movement risk is more important than maximum diagnostic contrast, use `analysis_outputs/submission_label_flow_sensorcurve_conservative_1bb_full_s0p65_0ee928c4.csv`; expect weaker LB readability.
-7. If `1bbfb735` or the 0.65 scaled sensor improves public LB despite independent survival failure, then the old hidden-subset selector is miscalibrated for S4+Q3 movement and H17 becomes live again.
-8. If it worsens, do not submit `6b9335b1`; treat E14 as pairwise-selector overfit and move to selector reconciliation.
-9. Do not spend a public slot on another S4/Q3 weight variant unless a new anchor or external validation source supports the direction.
-10. Do not promote local OOF Q3/S4 winners as public candidates without selector support; E19 directly falsified that path for the current top OOF set.
-11. Do not promote existing block/measurement/raw05-blockcount/presleep candidates as public candidates; E20 directly falsified that archive as a submit source. If a diagnostic slot is used, raw05-blockcount refine is lower-risk than presleep, but it is not expected to beat a2c8.
-12. Do not rank current candidates by merging pairwise and old selector shortlists. E21 shows the intersection is empty; any public submission now should be explicitly framed as a selector-disambiguation sensor.
-13. Do not spend the next public sensor on an old-only Q3/raw05-drift file unless the specific question is to retest a selector that already failed the raw05/A2C8 known direction.
-14. Do not spend a public slot on the E24 localized `id02_b02` files. They are too small and still old-selector-negative.
-15. Do not present mixmin/direns as strict-survival candidates. If the next public submission is `analysis_outputs/submission_mixmin_0c916bb4.csv`, state that it is a high-risk test of actual-anchor/combo/binary-world/anchor-loss stress against the pairwise/old selector veto.
-16. Do not present inverse7 or inverse7 scale-blends as strict-survival either. E36 makes inverse7 a raw-structure bridge probe, and E37 shows scale/blend variants still do not resolve selector veto.
-17. Do not claim any current unobserved candidate is supported by public-LB inverse fitting; E26 proves the known LBs leave both improvement and degradation feasible.
-18. Do not claim subject-prior inverse fitting supports a candidate; E27 proves global/subject-target priors still leave every checked unobserved candidate sign ambiguous.
-19. Do not claim binary hidden-label inverse fitting supports a candidate; E28 did not produce stable one-sided improvement evidence.
-20. Do not claim binary world-pool support certifies a candidate; E29 has only one frontier-scale world. It can only reprioritize high-risk probe questions.
-21. Do not claim frontier-box binary support certifies mixmin either. E30 makes mixmin the leading high-risk worldview probe, not a strict submission.
-22. Do not claim plausibility-gated binary support certifies mixmin. E31 shows adverse mixmin worlds are not train-geometry outliers.
-23. Do not claim anchor-loss-gated binary support certifies mixmin. E32 makes mixmin the best high-risk public sensor under the binary/actual-anchor worldview, but the gate is derived from known public-anchor decomposition and must be validated by a new observation.
-24. Do not claim anchor-LOO stability certifies mixmin. E33 only says the E32 gate is not one-anchor fragile. It makes the next information-rich probe clearer; it does not make an improvement submission safe.
-25. Do not claim anchor-loss support is JEPA target-axis semantic evidence. E34 says target-axis permutation does not break the signal; the probe is anchored in loss/cancellation geometry.
-26. Do not claim existing independent evidence certifies mixmin. E35 says the normal-submit gate is still closed; mixmin is a public sensor, not a validated improvement candidate.
-27. Do not claim raw-structure pseudo-label support certifies inverse7. E36 says inverse7 is the best bridge candidate under raw observed structure, but selector veto and anchor-LOO weakness remain.
-28. Do not repeat amplitude-only inverse7/mixmin bridge sweeps as if more scales will solve it. E37 already found raw support and anchor support can coexist across many scales while two-selector majority stays `0`.
-29. Do not treat E38 information score as an improvement score. It ranks which public sensor would be most informative; it explicitly found normal-submit candidates `0`.
-30. Do not treat E39 OOF gates as a public selector. OOF sign agrees with known-public direction versus final9, but it gets the stage2/ordinal ordering wrong; use OOF only as a negative screen.
-31. Do not treat E40 predicted public LB as a score forecast. Movement fingerprints are loose: they recover stage2/ordinal but miss bad JEPA severity. Use them only to choose lower-risk diagnostic framing.
-32. Do not treat E41 axis-geometry predicted LB as a score forecast. The best axis view is severity-informative but not selector-certified.
-33. Do not treat E42 fixed-zero axis predictions as a score forecast. A2C8 anchoring improves coarse nonbaseline rank but collapses frontier-scale resolution; the predicted pair-sensor edge is much smaller than selector error.
-34. Do not submit any current micro-edge candidate as an improvement claim unless a new selector gets below `0.0000869862` known-anchor error or the candidate edge exceeds the current best selector error `0.000218288`.
-35. Do not submit any existing scored-universe candidate as an improvement claim solely because a raw/anchor view shows a large edge. E44 found zero files with selector-resolvable pairwise edge and zero normal large-safe files.
-36. Do not submit or rank from simple structured public-subset inverse masks. E45 found zero selector-scale masks and wide feasible ranges; any apparent exact fit is underidentified, not predictive.
-37. Do not submit a candidate merely because it uses block/order/endpoint context. E46 shows those contexts are common (`26/36` hidden blocks have two train flanks) but current Markov, endpoint, and threshold translations do not recover the block-rate oracle. A block-context candidate must demonstrate held-out block-rate vector prediction first.
-38. Do not submit E47 block-summary Ridge predictions. They improve a 25% row blend by `-0.001505` but fail the actual block-rate target stress; any candidate based on them would be another selector-noise-scale micro-blend.
+2. Do not submit a new file yet from E49 alone. The next file must come from a mixmin-relative calendar-block selector, not from another prior tweak or row-level micro-blend.
+3. Treat `analysis_outputs/submission_frontier_cvjepa_refine_a2c8d2c8.csv` as the previous-frontier contrast anchor, not the baseline to optimize around blindly.
+4. Re-run selector calibration with mixmin included as a known public anchor; identify which pre-E48 gates failed because they modeled the wrong public worldview.
+5. Add calendar-mask features to that recalibration: hidden run phase, flank type, run length, subject, dominant moved target, raw05 distance, and simple-prior contradiction.
+6. Hold `analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p25.csv` until it is rescored relative to mixmin. It remains the cleanest raw-structure bridge question, but the target is now "can it improve or preserve mixmin?", not "can it beat a2c8?".
+7. Hold pair-only S4/Q3 sensors until post-mixmin recalibration. Their old purpose, pair-vs-old selector disambiguation around a2c8, is now lower value.
+8. If lower movement risk is more important than maximum diagnostic contrast, use `analysis_outputs/submission_label_flow_sensorcurve_conservative_1bb_full_s0p65_0ee928c4.csv`; expect weaker LB readability.
+9. If `1bbfb735` or the 0.65 scaled sensor improves public LB despite independent survival failure, then the old hidden-subset selector is miscalibrated for S4+Q3 movement and H17 becomes live again.
+10. If it worsens, do not submit `6b9335b1`; treat E14 as pairwise-selector overfit and move to selector reconciliation.
+11. Do not spend a public slot on another S4/Q3 weight variant unless a new anchor or external validation source supports the direction.
+12. Do not promote local OOF Q3/S4 winners as public candidates without selector support; E19 directly falsified that path for the current top OOF set.
+13. Do not promote existing block/measurement/raw05-blockcount/presleep candidates as public candidates; E20 directly falsified that archive as a submit source. If a diagnostic slot is used, raw05-blockcount refine is lower-risk than presleep, but it is not expected to beat a2c8.
+14. Do not rank current candidates by merging pairwise and old selector shortlists. E21 shows the intersection is empty; any public submission now should be explicitly framed as a selector-disambiguation sensor.
+15. Do not spend the next public sensor on an old-only Q3/raw05-drift file unless the specific question is to retest a selector that already failed the raw05/A2C8 known direction.
+16. Do not spend a public slot on the E24 localized `id02_b02` files. They are too small and still old-selector-negative.
+17. Do not present mixmin/direns as strict-survival candidates. If the next public submission is `analysis_outputs/submission_mixmin_0c916bb4.csv`, state that it is a high-risk test of actual-anchor/combo/binary-world/anchor-loss stress against the pairwise/old selector veto.
+18. Do not present inverse7 or inverse7 scale-blends as strict-survival either. E36 makes inverse7 a raw-structure bridge probe, and E37 shows scale/blend variants still do not resolve selector veto.
+19. Do not claim any current unobserved candidate is supported by public-LB inverse fitting; E26 proves the known LBs leave both improvement and degradation feasible.
+20. Do not claim subject-prior inverse fitting supports a candidate; E27 proves global/subject-target priors still leave every checked unobserved candidate sign ambiguous.
+21. Do not claim binary hidden-label inverse fitting supports a candidate; E28 did not produce stable one-sided improvement evidence.
+22. Do not claim binary world-pool support certifies a candidate; E29 has only one frontier-scale world. It can only reprioritize high-risk probe questions.
+23. Do not claim frontier-box binary support certifies mixmin either. E30 makes mixmin the leading high-risk worldview probe, not a strict submission.
+24. Do not claim plausibility-gated binary support certifies mixmin. E31 shows adverse mixmin worlds are not train-geometry outliers.
+25. Do not claim anchor-loss-gated binary support certifies mixmin. E32 makes mixmin the best high-risk public sensor under the binary/actual-anchor worldview, but the gate is derived from known public-anchor decomposition and must be validated by a new observation.
+26. Do not claim anchor-LOO stability certifies mixmin. E33 only says the E32 gate is not one-anchor fragile. It makes the next information-rich probe clearer; it does not make an improvement submission safe.
+27. Do not claim anchor-loss support is JEPA target-axis semantic evidence. E34 says target-axis permutation does not break the signal; the probe is anchored in loss/cancellation geometry.
+28. Do not claim existing independent evidence certifies mixmin. E35 says the normal-submit gate is still closed; mixmin is a public sensor, not a validated improvement candidate.
+29. Do not claim raw-structure pseudo-label support certifies inverse7. E36 says inverse7 is the best bridge candidate under raw observed structure, but selector veto and anchor-LOO weakness remain.
+30. Do not repeat amplitude-only inverse7/mixmin bridge sweeps as if more scales will solve it. E37 already found raw support and anchor support can coexist across many scales while two-selector majority stays `0`.
+31. Do not treat E38 information score as an improvement score. It ranks which public sensor would be most informative; it explicitly found normal-submit candidates `0`.
+32. Do not treat E39 OOF gates as a public selector. OOF sign agrees with known-public direction versus final9, but it gets the stage2/ordinal ordering wrong; use OOF only as a negative screen.
+33. Do not treat E40 predicted public LB as a score forecast. Movement fingerprints are loose: they recover stage2/ordinal but miss bad JEPA severity. Use them only to choose lower-risk diagnostic framing.
+34. Do not treat E41 axis-geometry predicted LB as a score forecast. The best axis view is severity-informative but not selector-certified.
+35. Do not treat E42 fixed-zero axis predictions as a score forecast. A2C8 anchoring improves coarse nonbaseline rank but collapses frontier-scale resolution; the predicted pair-sensor edge is much smaller than selector error.
+36. Do not submit any current micro-edge candidate as an improvement claim unless a new selector gets below `0.0000869862` known-anchor error or the candidate edge exceeds the current best selector error `0.000218288`.
+37. Do not submit any existing scored-universe candidate as an improvement claim solely because a raw/anchor view shows a large edge. E44 found zero files with selector-resolvable pairwise edge and zero normal large-safe files.
+38. Do not submit or rank from simple structured public-subset inverse masks. E45 found zero selector-scale masks and wide feasible ranges; any apparent exact fit is underidentified, not predictive.
+39. Do not submit a candidate merely because it uses block/order/endpoint context. E46 shows those contexts are common (`26/36` hidden blocks have two train flanks) but current Markov, endpoint, and threshold translations do not recover the block-rate oracle. A block-context candidate must demonstrate held-out block-rate vector prediction first.
+40. Do not submit E47 block-summary Ridge predictions. They improve a 25% row blend by `-0.001505` but fail the actual block-rate target stress; any candidate based on them would be another selector-noise-scale micro-blend.
+41. Do not convert E49 calendar-mask observations into a direct row-order/public-subset tweak. They are a context-target design constraint; the next candidate must survive mixmin-anchor and known-anchor stress.
 
 ## Current 0.54 Assessment
 
