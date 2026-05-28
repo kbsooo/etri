@@ -170,15 +170,17 @@ Update after E49: post-mixmin observation does not add a new submission file. It
 
 Update after E50: post-mixmin calendar selector recalibration also does not add a submission file. `analysis_outputs/post_mixmin_calendar_selector.py` found strict selector views `0` and loose selector views `0`. The best `subject_calendar` view had useful coarse order (`MAE 0.000884106`, rank `0.833333`, bad-tail correct), but failed the critical condition: held-out mixmin was predicted at delta `0.00135162` rather than best. The candidate prediction table in `analysis_outputs/post_mixmin_calendar_selector_candidates.csv` is not a public forecast. Do not submit a file from E50; the next candidate must pair calendar context with anchor-loss/binary-world or block-rate target evidence.
 
+Update after E51: anchor-loss plus calendar selector recalibration also does not add a submission file. `analysis_outputs/post_mixmin_anchor_calendar_selector.py` found strict selector views `0` and loose selector views `0`. The best `anchor_residual` view had MAE `0.000835516` and bad-tail correct, but held-out mixmin was predicted at delta `0.00241739` and a2c8/raw05 order failed. This means E32/E38 anchor-loss evidence should not be converted into a kNN public-LB forecast. The next candidate needs either a hidden block-rate/count representation or a mixmin-constrained binary-world sign stress.
+
 ## Submission Order
 
 Current recommendation after E48: use `analysis_outputs/submission_mixmin_0c916bb4.csv` as the active public frontier. Do not continue a2c8-centered micro-edge submission logic until selectors are recalibrated with the new mixmin anchor.
 
 1. Keep `analysis_outputs/submission_mixmin_0c916bb4.csv` as the active best.
-2. Do not submit a new file yet from E49/E50 alone. Calendar-block observation is real, but E50 falsified the standalone selector version.
+2. Do not submit a new file yet from E49/E50/E51 alone. Calendar-block observation is real, and anchor-loss was public-relevant, but both standalone selector conversions failed.
 3. Treat `analysis_outputs/submission_frontier_cvjepa_refine_a2c8d2c8.csv` as the previous-frontier contrast anchor, not the baseline to optimize around blindly.
-4. Re-run selector calibration with mixmin included as a known public anchor, but do not rely on calendar movement alone; E50 shows that route misses mixmin's edge.
-5. Add anchor-loss/binary-world or held-out block-rate/count target evidence to the calendar context: hidden run phase, flank type, run length, subject, dominant moved target, raw05 distance, and simple-prior contradiction are context features, not the full selector.
+4. Stop treating known-anchor kNN as the next default selector. E50/E51 show it cannot explain mixmin-best even with calendar and anchor-loss features.
+5. Next candidate source should be either block-rate/count target prediction from calendar flanks or a regenerated binary-world stress that includes mixmin as a known constraint.
 6. Hold `analysis_outputs/bridge_scan_candidates/submission_bridge_inv7_s0p25.csv` until it is rescored relative to mixmin. It remains the cleanest raw-structure bridge question, but the target is now "can it improve or preserve mixmin?", not "can it beat a2c8?".
 7. Hold pair-only S4/Q3 sensors until post-mixmin recalibration. Their old purpose, pair-vs-old selector disambiguation around a2c8, is now lower value.
 8. If lower movement risk is more important than maximum diagnostic contrast, use `analysis_outputs/submission_label_flow_sensorcurve_conservative_1bb_full_s0p65_0ee928c4.csv`; expect weaker LB readability.
@@ -216,6 +218,7 @@ Current recommendation after E48: use `analysis_outputs/submission_mixmin_0c916b
 40. Do not submit E47 block-summary Ridge predictions. They improve a 25% row blend by `-0.001505` but fail the actual block-rate target stress; any candidate based on them would be another selector-noise-scale micro-blend.
 41. Do not convert E49 calendar-mask observations into a direct row-order/public-subset tweak. They are a context-target design constraint; the next candidate must survive mixmin-anchor and known-anchor stress.
 42. Do not submit or rank from E50 calendar-selector predicted scores. The best subject-calendar selector fails to predict mixmin as best, so its candidate table is diagnostic only.
+43. Do not submit or rank from E51 anchor-calendar predicted scores. The best anchor-residual selector also fails held-out mixmin and a2c8/raw05 order.
 
 ## Current 0.54 Assessment
 

@@ -1,0 +1,9 @@
+view,n_features,loocv_mae,loocv_max_abs_error,mixmin_abs_error,pairwise_rank_accuracy,spearman,mixmin_predicted_best,a2c8_raw05_order_correct,stage2_ordinal_order_correct,bad_tail_correct,edge_scale_gate,mixmin_error_below_edge,null_rank_p_ge_actual,strict_selector_gate,loose_selector_gate
+anchor_residual,132,0.000835516404514131,0.0024173918624621977,0.0024173918624621977,0.75,0.6333333333333333,False,False,True,True,True,False,,False,False
+anchor_shape,132,0.0008529568084705019,0.0025358037249770433,0.0025358037249770433,0.75,0.6333333333333333,False,False,True,True,True,False,,False,False
+contextall_anchor_residual,348,0.0008897064265633962,0.002417956325468732,0.002417956325468732,0.75,0.6833333333333333,False,False,True,False,True,False,,False,False
+targetprior_anchor_shape,224,0.0009132803062505729,0.0025361256085924587,0.0025361256085924587,0.7777777777777778,0.6833333333333333,False,False,True,True,True,False,,False,False
+targetprior_anchor_residual,224,0.0009227840945847469,0.0024174826936175678,0.0024174826936175678,0.75,0.6833333333333333,False,False,True,True,True,False,,False,False
+contextall_anchor_shape,348,0.00099710995593262,0.002376415742088587,0.002376415742088587,0.6944444444444444,0.6333333333333333,False,False,True,False,True,False,,False,False
+movedtargets_anchor_shape,1092,0.0010874344293467571,0.0024994934785969587,0.002377999973744119,0.5833333333333334,0.33333333333333337,False,False,False,False,True,False,,False,False
+movedtargets_anchor_residual,1092,0.0010891529992622109,0.0025001815543143065,0.002379096824030345,0.5833333333333334,0.33333333333333337,False,False,False,False,True,False,,False,False
