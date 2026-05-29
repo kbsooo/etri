@@ -1879,3 +1879,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - broad median `tail_e101 - tail_e95` is `-0.000012634`, but E101-plausible median is effectively `0`.
 - Interpretation: the survivor set is not the Q2/S3 diffuse-tail world that E100/E101 originally isolated. E101 is matched by broad/all-tail allocations where E101 has almost no tail advantage over E95 and local transfer alpha is strongly compressed.
 - Decision: no submission. Same-family Q2/S3 rollback successors are now closed even more strongly. The next experiment should test a different hidden structure or a sensor for why public transfer alpha collapses near the E95/E101 boundary.
+
+## E126. E101 Survivor Cell-Budget Anatomy
+
+- Observe: E125 says the E101-compatible worlds are not `q2s3` mask worlds, but that still leaves a loophole: maybe the broad/all survivors secretly spend their actual selected budget on the same E101-active Q2/S3 cells.
+- Wonder: when the surviving scenarios are expanded to cell-level public-miss budget, what cells are actually being charged?
+- Method: `analysis_outputs/e126_e101_survivor_cell_budget_anatomy.py` reconstructed the E96/E124 scenario selections over all E72-adverse cells, joined each selected cell to target, E101-active, E95-fallback, hidden-block, row-position, context-type, and subject metadata, then compared broad, broad-q2s3, low-alpha, tail-equal, and E101-plausible groups.
+- Result:
+  - E101-plausible selected budget mass: `10.088386` across `57` worlds.
+  - E101-plausible q2s3 mass share: `0.180513`, versus `1.000000` in broad-q2s3 worlds.
+  - E101-plausible E101-active mass share: `0.011234`, versus `0.584840` in broad-q2s3 worlds.
+  - E101-plausible e95-fallback mass share: `0.356179`, versus `0.918953` in broad-q2s3 worlds.
+  - E101-plausible context is more between-train-runs heavy: `0.621562` mass share.
+  - Target mass in E101-plausible worlds is led by `S1 0.248260`, `S2 0.202388`, `Q2 0.176275`, `Q3 0.148398`, and `S4 0.113631`; `S3` is not a top mass driver.
+- Interpretation: E101-compatible public loss is almost entirely outside the cells E101 changed. The public-compatible tail budget is broad, low-alpha, and mostly tail-neutral between E95 and E101; E101's Q2/S3 rollback was a local movement on a surface that public did not mainly charge.
+- Decision: no submission. This closes the last cheap loophole in the same-family Q2/S3 rollback story. The next useful experiment is not another E101/E89/Q2S3 variant; it is a new hidden-structure test that predicts the transfer-shrinkage field before probability movement.

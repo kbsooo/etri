@@ -237,3 +237,21 @@ Resolved sensor: `analysis_outputs/submission_e101_q2s3tail_177569bc.csv`
 실패 시 해석이 실제로 발생했다: E95의 현재 axis/tail surgery가 standing law다. 다음 제출은 이 small-loss boundary를 새로 설명하는 후보여야 하며, E108/E104/E106/E119 또는 E89/non-active graft를 자동으로 제출하지 않는다.
 
 E121-E125 이후 추가 해석: E101은 support budget의 약 `65.7%`를 맞췄고 simple priors는 이 small-loss branch를 거의 정확히 설명한다. 하지만 E95를 이기는 데 필요한 greedy rank-23 S3 cell을 public 없이 adverse로 식별하지 못한다. Cross-target transition motif도 실패했고, E99 broad transfer world도 E101 held-out check를 통과하지 못했으며, q2s3 survivor story도 `0/368`로 죽었다. 따라서 지금 당장 제출할 same-family 파일은 없다.
+
+## 추가 관찰: E101-compatible cell budget은 E101-active cells가 아니다
+
+`analysis_outputs/e126_e101_survivor_cell_budget_anatomy.py`로 E124/E125에서 살아남은 57개 세계를 실제 선택 셀 budget까지 펼쳤다.
+
+- E101-plausible q2s3 mass share: `0.180513`.
+- E101-plausible E101-active mass share: `0.011234`.
+- broad-q2s3 E101-active mass share: `0.584840`.
+- E101-plausible E95-fallback mass share: `0.356179`.
+- E101-plausible between-train-runs mass share: `0.621562`.
+
+이건 마지막 cheap loophole을 닫는다. E101을 맞춘 세계가 broad/all mask였더라도, 혹시 실제 budget은 E101이 움직인 50개 Q2/S3 셀에 몰려 있을 수 있었다. 아니었다. E101-compatible public loss surface의 98.9%는 E101이 건드리지 않은 셀에서 온다.
+
+현재 최강 세계관은 더 압축된다.
+
+`0.5762913298` plateau는 E95의 S-heavy hard-tail surgery가 맞았기 때문에 생긴 것이지만, 그 다음 개선은 Q2/S3 rollback amplitude를 조절해서 나오지 않는다. Public이 E101에서 본 것은 active-cell support 부족이 아니라, E101/E95 차이가 거의 무의미해지는 broad low-alpha transfer-shrinkage field다.
+
+다음으로 가장 정보량이 큰 행동은 이 transfer-shrinkage field를 public score 없이 예측할 수 있는 구조를 찾는 것이다. 같은 E101/E89/Q2S3 line 변형은 중단한다.

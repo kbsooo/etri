@@ -1393,6 +1393,18 @@ target co-occurrence
 - public LB 관측 반응: already observed via E101. E125 says that the E101 public response should not be read as a cue to submit E89/full Q2S3 variants.
 - 제출 전략: no E125 submission. Next candidate must leave same-line rollback or explain transfer-alpha collapse.
 
+### H120. E101-compatible loss budget is mostly outside E101-active Q2/S3 cells
+
+- 상태: supported; this closes the last cheap same-family rollback loophole.
+- 왜 그럴듯한가: E125 rejected `q2s3` masks at scenario level, but broad/all survivors could still have spent their selected public-miss budget on E101-active Q2/S3 cells. If so, a more surgical E101-style gate might still be alive.
+- 맞다면: E101-plausible worlds should allocate substantial budget mass to E101-active cells and q2s3 cells, with high E95-fallback share similar to broad-q2s3 worlds.
+- 틀리다면: selected budget mass should be mostly outside E101-active cells, q2s3 share should be low, and the target/context composition should look broad/all-tail and transfer-shrink rather than Q2/S3 rollback.
+- 최소 실험: `analysis_outputs/e126_e101_survivor_cell_budget_anatomy.py`, reconstructing E96/E124 selected cells and joining them to target, active-cell, fallback, hidden-block, and row-position metadata.
+- 관측: E101-plausible worlds have q2s3 budget mass share `0.180513`, E101-active mass share `0.011234`, E95-fallback mass share `0.356179`, and between-train-runs mass share `0.621562`. Broad-q2s3 worlds have q2s3 share `1.000000` and E101-active share `0.584840`.
+- 성공/폐기 기준: supported because public-compatible budget is not just a broad wrapper around the E101-changed cells. Discard only if a future independent public-free sensor finds a non-overfit S3-cell rule that explains E101 while also charging the E101-active cells.
+- public LB 관측 반응: already observed via E101. E126 says the public response was not mainly about the 50 E101 moved cells; it was about a broader low-alpha tail surface.
+- 제출 전략: no E126 submission. Do not submit E101/E89/Q2S3 same-line variants by default. Next candidate must predict transfer-shrinkage or test a different hidden structure.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

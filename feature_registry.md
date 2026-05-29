@@ -936,6 +936,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E125 found `57/3452` E101 survivors; `all`/`e72_top50_hard` are `43/57`; `q2s3` is `0/368`; deterministic or gamma0 are `40/57`; median alpha collapses `3.310470 -> 0.791985`; median `tail_e101 - tail_e95` moves `-0.000012634 -> ~0`.
 - Policy: set `q2s3_diffuse_tail_residual_world_valid = false`. Treat future Q2/S3 cells only as energy inside a different structure, not as the next standalone same-family line.
 
+### F103. E101 survivor cell-budget energy
+
+- Hidden structure: E101-compatible public-world scenarios may reveal which cell families actually carry the public-miss budget after the E95/E101 boundary is conditioned on the observed score.
+- Candidates: selected-cell budget mass, q2s3 mass share, E101-active mass share, E95-fallback share, target mass profile, context-type mass profile, edge/interior position mass, hidden-block metadata, and low-alpha/tail-equal group membership.
+- Label vs split test: valid as scenario anatomy and gate design input. Invalid as direct public-label fitting, because it uses E101 public feedback to filter worlds and does not reveal true labels.
+- Current evidence: E126 found E101-plausible q2s3 mass share `0.180513`, E101-active mass share `0.011234`, E95-fallback mass share `0.356179`, and between-train-runs mass share `0.621562`. Broad-q2s3 worlds have q2s3 mass share `1.000000` and E101-active mass share `0.584840`.
+- Policy: set `e101_active_cell_budget_explains_survivors = false` and `same_line_q2s3_followup_allowed = false`. Use this feature only as a negative gate and as a target for future transfer-shrinkage representation work.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

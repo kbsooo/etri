@@ -978,3 +978,12 @@
 - Implementation issue possible: low. E125 is a deterministic anatomy of E124 scenarios. It does not claim every possible q2s3 model is false, only that the E99/E96 q2s3 diffuse-tail survivor story is false after E101.
 - Bottleneck implication: same-line Q2/S3 rollback is no longer merely underidentified; the E101-compatible residual world points away from it.
 - Do not repeat: using E100 q2s3 enrichment, E89's diffuse-tail pocket, or q2s3-only E96 masks as the next default public rationale.
+
+## FH109. E101-compatible broad survivors secretly charge the E101-active cells
+
+- Failed hypothesis: although `q2s3` masks have no E101 survivors, the broad/all survivors might still spend most of their selected public-miss budget on the `50` E101-active Q2/S3 cells, leaving a narrower same-line gate alive.
+- Observed result: E126 reconstructed selected cell budgets and found that E101-plausible worlds allocate only `0.180513` of budget mass to Q2/S3 and only `0.011234` to E101-active cells. Broad-q2s3 worlds, by contrast, allocate `1.000000` to Q2/S3 and `0.584840` to E101-active cells. E101-plausible worlds are also low-alpha (`0.791985` median), less E95-fallback-heavy (`0.356179`), and more between-train-runs-heavy (`0.621562`).
+- Why discard: the public-compatible loss surface is not merely a broad scenario family hiding the same E101 cell budget. It is mostly outside the cells E101 changed.
+- Implementation issue possible: low-medium. E126 reconstructs E96/E124 scenario weights deterministically and joins existing hidden-row metadata. The caveat is that the public labels remain unobserved; this is still a scenario-world anatomy, not direct labels.
+- Bottleneck implication: the same-family E101/E89/Q2S3 line is now closed by scenario family, tail relation, and selected-cell budget. The remaining bottleneck is transfer-shrinkage or a different hidden structure, not a missing Q2/S3 amplitude/gate tweak.
+- Do not repeat: E101-active-cell masks, Q2/S3 diffuse-tail variants, active-cell alpha sweeps, or E89-style Q2/S3 fallback as the default next public candidate unless a new independent non-public sensor overturns E126.

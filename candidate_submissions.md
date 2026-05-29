@@ -399,6 +399,7 @@ Conditional E108 files are closed under the observed E101 result. `analysis_outp
 73. Do not submit E72 soft/agreement/Q2-only variants. The only live E72 file is the selected `top_abs50` sparse-magnitude gate; Q2-only produces no loose rows, and soft/agreement gates do not produce strict deployable rows.
 74. Do not submit E74/E75 as direct follow-ups after E73 public failure. E80 shows E73 was a broad all-target movement, and E81 shows pure Q2/S3 is sub-margin while inverse-sign controls fail.
 75. Do not submit E82 pure Q2/S3 grafts. They pass every evaluated non-margin stress but fail selector-scale margin (`0/700` all-margin), so they are diagnostic energy rather than candidates.
+76. Do not submit E101/E89/Q2S3 same-line variants by default after E126. E101-compatible selected budget mass is only `0.011234` E101-active and `0.180513` Q2/S3, so the public-compatible surface is not primarily the cells those files move.
 
 ## Current 0.54 Assessment
 
