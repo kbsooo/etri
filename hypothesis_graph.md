@@ -1249,6 +1249,18 @@ target co-occurrence
 - public LB 관측 반응: broad Q/Q3 raw-context movement should not be submitted before a temporal calibration gain exists. If E101 improves, raw context can be revisited only as S3/Q2 boundary energy; if E101 loses, raw context does not rescue the Q temporal branch.
 - 제출 전략: no E113 submission. Keep E101 as the next public kill-test.
 
+### H108. Raw context can pre-validate E101's active-cell support labels
+
+- 상태: rejected; E101 remains a public hard-label sensor rather than a raw-validated improvement candidate.
+- 왜 그럴듯한가: E105 made E101 depend on only `50` active Q2/S3 cells, mostly S3 flip benefit. Even if broad raw-context prediction fails, raw context might still assign higher probability to the support labels that would make E101 beat E95.
+- 맞다면: raw+subject-prior support probability should exceed subject-prior support probability on E101 active cells, especially on S3. Monte Carlo beat probability and expected E101-vs-E95 delta should improve relative to subject priors. Validation-gating raw to only temporal-valid targets should improve further.
+- 틀리다면: raw support probability should fall below subject prior or reduce E101 beat probability, especially on the S3 cells that dominate flip benefit.
+- 최소 실험: `analysis_outputs/e114_e101_raw_context_support_audit.py`, fitting full-train raw+subject-prior heads for Q2/S3 with leave-one-row subject-prior train features, then scoring E105's active cells by support-label probability and hard-label expected delta.
+- 관측: subject prior gives expected E101-vs-E95 delta `+0.000003926`, beat probability `0.336655`, and mean support probability `0.587686`. Raw+prior worsens these to `+0.000007010`, `0.238325`, and `0.579426`; validation-gated raw is worse again at `+0.000007229` and `0.230710`. S3 owns `0.935862` of flip benefit, but raw S3 support probability is `0.589463` vs subject `0.604450`.
+- 성공/폐기 기준: reject raw-context pre-validation. The raw head does not kill E101, because E101 was never a raw-context bet, but it removes a possible independent support source.
+- public LB 관측 반응: if E101 wins, the support labels were not visible to this raw-context head; revisit hidden local S3 label-world or public subset structure. If E101 loses, raw context already pointed away from the active-cell support world.
+- 제출 전략: no E114 submission. Keep E101 only as a public sensor, not as a raw-validated expected-improvement file.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

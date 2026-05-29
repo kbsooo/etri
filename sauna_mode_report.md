@@ -61,11 +61,22 @@ E95를 단순 hardtail fallback으로만 보던 해석을 더 좁혔다. 지금 
 
 이 결과는 raw context rescue를 약화한다. Q temporal signal은 존재하지만 현재 보이는 raw coverage/head로는 submission-safe calibration으로 번역되지 않는다. S3만 약하게 살아남는 점은 오히려 E95의 S-subject-state 세계관과 맞는다.
 
+## 추가 관찰: raw context는 E101도 미리 지지하지 못함
+
+`analysis_outputs/e114_e101_raw_context_support_audit.py`로 E101의 `50` active cells만 봤다.
+
+- subject prior 기준 E101 beat probability: `0.336655`.
+- raw+prior 기준 E101 beat probability: `0.238325`.
+- validation-gated raw 기준: `0.230710`.
+- S3는 flip benefit의 `0.935862`를 차지하지만, raw S3 support probability는 `0.589463`으로 subject prior `0.604450`보다 낮다.
+
+즉 raw context는 broad Q temporal rescue도 아니고, E101 active-cell label world를 미리 확인해주는 센서도 아니다. E101이 이기면 raw context가 보지 못한 public/local S3 hard-label world가 있었다는 뜻이고, 지면 raw context도 이미 그 방향을 약하게 반대한 셈이다.
+
 ## 다음으로 가장 정보량이 큰 행동
 
 `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` 제출.
 
-이 파일은 E95의 구조를 유지하면서 남은 Q2/S3/S3-heavy ambiguity만 찌른다. E113 이후에도 가장 작은 public kill-test다. raw context branch는 새 제출 후보가 아니라 E101 결과를 해석할 때 쓸 diagnostic energy로 내려간다.
+이 파일은 E95의 구조를 유지하면서 남은 Q2/S3/S3-heavy ambiguity만 찌른다. E114 이후에도 가장 작은 public kill-test다. 다만 raw context가 독립 지지를 주지 못했기 때문에, 이 파일은 “예상 개선 후보”라기보다 hidden public S3 hard-label world를 찌르는 sensor로 더 명확해졌다.
 
 ## 제출 후보
 
