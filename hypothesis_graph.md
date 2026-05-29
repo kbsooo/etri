@@ -1512,6 +1512,18 @@ target co-occurrence
 - public LB 관측 반응: no submission. A public file from E135 would be a weak old-manifold ranking, not a new hidden-world hypothesis.
 - 제출 전략: none. The next branch must redefine the latent target or introduce independent supervision; do not build a submission by blending old predictions according to E135 visibility.
 
+### H130. The safe remainder is visible only after block-target compression
+
+- 상태: supported as the next live representation branch; not yet a submission strategy.
+- 왜 그럴듯한가: E133/E134/E135 tried to recover sparse row-target cells. If the hidden data-generating law is block/run-level, the correct JEPA target is a block-target state, not individual cells.
+- 맞다면: aggregating the same teacher by hidden block and target should improve hidden-block-heldout top-mass recovery beyond cell-level E134/E135 references, especially with raw block context. Row-total compression should be weaker if the target identity still matters.
+- 틀리다면: block-target, block-family, and block-total representations should remain at or below the cell-level enrichment references, or only metadata should explain them through trivial target priors.
+- 최소 실험: `analysis_outputs/e136_target_compression_visibility_audit.py`, aggregating `all_sign_co_vetonull_density` into row-total, block-target, block-family, and block-total units, then predicting each with metadata, raw views, old-prediction geometry, and raw+prediction features under hidden-block holdout.
+- 관측: best compressed result is `block_target` / `all_raw_views_raw_pred` / `ridge` with top10 truth-mass `0.332698`, enrichment `3.326980`, and oracle top10 capture ratio `0.709652`. `night_all_raw` block-target alone reaches enrichment `3.236095`. Cell-level references are E134 `2.572395` and E135 `2.220050`. Row-total stays weak at `1.181643`.
+- 성공/폐기 기준: keep the branch because block-target compression materially improves visibility. It still fails as a submission strategy until a probability movement from this compressed state passes E128/E129/E124-style tail and transfer stress.
+- public LB 관측 반응: no public submission yet. A later block-target-state candidate should improve only if compressed state can be translated into calibrated cell movement without reviving Q2/S3/E101 exposure.
+- 제출 전략: none now. Next experiment should test whether E136 top block-target states provide a safe movement direction or merely explain where the teacher mass aggregates.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

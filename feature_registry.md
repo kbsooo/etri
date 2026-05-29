@@ -1016,6 +1016,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E135 found best predictor `row_prediction_pca_meta` / `ridge` with top50 truth-mass capture `0.063430`, cosine `0.531360`, and JS `0.251301`. Best metadata-only is `0.063040`, while E134 raw/block remains higher at `0.073497`. The best predicted top50 is `Q1:11,Q3:38,S4:1`, with Q2/S3 fraction `0`.
 - Policy: retain only as a negative health check and Q2/S3-suppression diagnostic. Do not submit old-prediction-manifold gates, disagreement gates, or E133/E134/E135 rank translations unless a new target representation materially exceeds this hidden-block-heldout visibility.
 
+### F113. Block-target compressed safe-state visibility
+
+- Hidden structure: the safe remainder may be generated at hidden-block-by-target state level, making cell-level recovery too sparse and row-total recovery too coarse.
+- Candidates: block-target aggregated teacher mass, block-family aggregated teacher mass, raw block views, old-prediction row geometry aggregated to block, metadata, top10 enrichment over random, oracle top10 capture ratio, and row-total contrast.
+- Label vs split test: valid as a JEPA target-redesign audit because it predicts compressed states under leave-hidden-block-out. Invalid as a submission feature until a calibrated cell-level movement from the compressed state passes transfer-shrinkage, hardtail, and post-E101 stress.
+- Current evidence: E136 found best block-target compressed predictor `all_raw_views_raw_pred` / `ridge` with top10 truth-mass `0.332698`, random enrichment `3.326980`, and oracle top10 capture ratio `0.709652`. Pure `night_all_raw` block-target reaches enrichment `3.236095`. Row-total best is only `1.181643`, while cell-level E134/E135 enrichment references are `2.572395` and `2.220050`.
+- Policy: keep as the next live representation target. Do not submit from E136 rankings directly. The next experiment should ask whether block-target safe-state support can define direction/amplitude of probability movement without using weak E133 cell rankings.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

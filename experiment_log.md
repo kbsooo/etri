@@ -2027,3 +2027,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best predicted top50 target mix is `Q1:11,Q3:38,S4:1`, with Q2/S3 fraction `0.000000`.
 - Interpretation: the existing prediction manifold does not reveal the safe remainder either. It preserves the healthy Q2/S3 suppression, but its top-cell recovery is essentially metadata-level and below E134 raw/block context. The old-submission disagreement space is therefore not the missing selector.
 - Decision: no submission. E135 closes the cheap "rank old prediction disagreement to find the remainder" route. The next representation has to change the target itself or bring a new supervision signal; it should not be another cell ranking over E133/E134/E135 visibility scores.
+
+## E136. Target-Compression Visibility Audit
+
+- Observe: E133/E134/E135 may have been asking too sparse a question: "which exact row-target cells are safe?" If the hidden law is block/run-level, a cell-level teacher can look weak even when the coarser state is visible.
+- Wonder: if the same E133 teacher is aggregated into row-total, block-target, block-family, or block-total states, does hidden-block-heldout visibility materially improve from raw/block context or old-prediction geometry?
+- Method: `analysis_outputs/e136_target_compression_visibility_audit.py` aggregated `all_sign_co_vetonull_density` into four target representations, then predicted each under leave-hidden-block-out using metadata, raw block views (`night_all`, `night_mobility`, `all_raw_views`), old-prediction geometry, and raw+prediction combinations.
+- Result:
+  - unit counts: row-total `250`, block-target `252`, block-family `108`, block-total `36`.
+  - best compressed predictor: `block_target` with `all_raw_views_raw_pred` / `ridge`.
+  - top10 truth-mass capture `0.332698`, enrichment over random top10 `3.326980`, capture ratio vs oracle top10 `0.709652`.
+  - best block-target pure raw: `night_all_raw` / `ridge`, top10 enrichment `3.236095`.
+  - best block-family: `metadata` / `knn8`, top10 enrichment `3.271312`.
+  - row-total remains weak: best top10 enrichment `1.181643`.
+  - cell-level references: E134 raw/block top50 enrichment `2.572395`; E135 prediction-manifold top50 enrichment `2.220050`.
+- Interpretation: the safe remainder is not invisible in every representation. It becomes materially more visible when compressed to block-target or block-family state, while row-level total does not help. This supports a target-redesign world model: the weak E133/E134/E135 cell rankings were probably the wrong target granularity, not proof that no hidden state exists.
+- Decision: no submission yet. E136 revives the JEPA branch as "predict block-target hidden safe-mass state from raw/prediction context," but a probability movement must be generated from that state without translating back through weak cell rankings. The next smallest experiment should test whether the top E136 block-target states identify a safe movement direction or only a descriptive aggregation.

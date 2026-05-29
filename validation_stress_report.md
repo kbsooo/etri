@@ -252,3 +252,17 @@ E135 tests the other cheap context for the E133 remainder: the existing predicti
 - Q2/S3 fraction in best predicted top50: `0.000000`.
 
 This blocks a second direct submission path. Existing submissions and their disagreements do not recover the safe remainder better than raw/block context and barely exceed metadata. The validation gate therefore rejects old-prediction-manifold ranking, old-submission disagreement gates, and E133/E134/E135 score translation unless a future target representation materially increases hidden-block-heldout recovery.
+
+## Update After E136
+
+E136 changes the status of the representation branch. The cell-level safe-remainder target was weak under both raw/block and old-prediction contexts, but the same teacher becomes much more visible after block-target compression.
+
+- best compressed predictor: `block_target` / `all_raw_views_raw_pred` / `ridge`.
+- top10 truth-mass capture: `0.332698`.
+- top10 enrichment over random: `3.326980`.
+- oracle top10 capture ratio: `0.709652`.
+- best pure raw block-target predictor: `night_all_raw` / `ridge`, enrichment `3.236095`.
+- row-total best enrichment: `1.181643`.
+- cell references: E134 raw/block enrichment `2.572395`, E135 prediction-manifold enrichment `2.220050`.
+
+This reopens a narrow JEPA-style target-redesign path. The current stress gate still blocks a submission because E136 has not produced a calibrated probability movement, but it changes the next validation target: do not try to rank individual E133 cells; test whether block-target state can generate cell movement that survives transfer-shrinkage, hardtail, and post-E101 stress.
