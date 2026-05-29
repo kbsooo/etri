@@ -771,3 +771,12 @@
 - Implementation issue possible: low. E95 explicitly separated raw best-tail from strict best-tail, deduped predictions, and used positive-tail masks to avoid zero-tail quantile artifacts.
 - Bottleneck implication: the bottleneck is a three-way tradeoff: hard-label tail risk, structural retention, and local margin. E95 creates a lower-downside candidate, but E86/E90 remain meaningful because they test different points on that frontier.
 - Do not repeat: promoting mixmin-like or low-movement rows because their hard-tail exposure is tiny. Require strict structural survival and non-trivial movement before considering a hard-tail-gated submission.
+
+## FH86. E72-derived hard-tail gates are only local diagnostics
+
+- Failed hypothesis: because E72 public labels are unobserved and E95 was built from an E72-adverse proxy, the hard-tail localized gate should be treated as a local diagnostic with no expected public edge.
+- Observed result: `submission_e95_hardtail_541e3973.csv` scored public LB `0.5762913298`, improving over mixmin by `0.0000153107` and over failed E72 by `0.0001164474`. The public gain is `58.42%` of E95's local all-combo margin and `15.14%` of the E72 miss scale.
+- Why discard: E95 converts the E72-derived hard-tail proxy into a real public improvement. The proxy is imperfect and small-scale, but it is not merely post-hoc local stress.
+- Implementation issue possible: low. The public result is direct. The remaining uncertainty is not whether E95 was public-positive, but whether the next candidate should preserve more E86 structure (`E90`/`E86`) or lower tail floor further (`E85`).
+- Bottleneck implication: hard-tail localization is a live feature family and should be part of future LeJEPA-style health checks. It still does not explain the 0.54 gap, because the gain is a localized tail repair rather than hidden block-rate recovery.
+- Do not repeat: dismissing E72-derived gates solely because public labels are hidden. Require conditional-budget stress and structural survival, then treat public observations as sensors for the retained-structure versus conservative-floor tradeoff.

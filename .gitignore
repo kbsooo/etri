@@ -129,6 +129,9 @@ analysis_outputs/*
 !analysis_outputs/e95_hard_tail_gate_scan.csv
 !analysis_outputs/e95_hard_tail_gate_summary.csv
 !analysis_outputs/submission_e95_hardtail_*.csv
+!analysis_outputs/e96_public_miss_budget_scenarios.csv
+!analysis_outputs/e96_public_miss_budget_summary.csv
+!analysis_outputs/e96_public_miss_budget_mask_summary.csv
 !analysis_outputs/submission_e87_noq2_source_consensus_*.csv
 !analysis_outputs/submission_e87_q2_nooverstep_consensus_*.csv
 !analysis_outputs/submission_e87_inverse_top_prior_consensus_*.csv

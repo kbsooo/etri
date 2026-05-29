@@ -1,12 +1,12 @@
 # Hypothesis Graph
 
-작성일: 2026-05-28
+작성일: 2026-05-29
 
-이 문서는 수면 기반 생활습관 로그 예측 대회를 "예측 표"가 아니라 숨은 데이터 생성 과정의 관측 로그로 다루기 위한 가설 그래프다. 현재 best public LB는 `submission_mixmin_0c916bb4.csv`의 `0.5763066405`이다.
+이 문서는 수면 기반 생활습관 로그 예측 대회를 "예측 표"가 아니라 숨은 데이터 생성 과정의 관측 로그로 다루기 위한 가설 그래프다. 현재 best public LB는 `submission_e95_hardtail_541e3973.csv`의 `0.5762913298`이다.
 
 ## 현재 병목 요약
 
-E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해 previous best `a2c8`를 `0.0011326805` 낮췄다. 이 차이는 기존 raw05-a2c8 gap `0.0000869862`의 약 `13.02x`라서 noise-scale micro-edge가 아니다. 따라서 현재 병목은 "a2c8 근처 micro edge를 더 찾는 문제"가 아니라, 왜 pairwise/old selector가 veto한 anchor-loss/binary-world movement가 public에서 맞았는지 설명하고, 그 구조를 mixmin-relative 후보로 재현하는 문제다.
+E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해 previous best `a2c8`를 `0.0011326805` 낮췄고, E97에서 `submission_e95_hardtail_541e3973.csv`가 public `0.5762913298`로 mixmin을 `0.0000153107` 더 낮췄다. Mixmin의 큰 점프는 anchor-loss/binary-world movement가 public-relevant였다는 증거이고, E95의 작은 추가 개선은 E72-adverse hard-label tail localization이 public-real이라는 증거다. 따라서 현재 병목은 "a2c8 근처 micro edge를 더 찾는 문제"가 아니라, mixmin/E95가 맞힌 hidden public world와 아직 못 맞힌 block-rate/calibration structure를 분리하는 문제다.
 
 가장 강한 현재 설명:
 
@@ -17,6 +17,7 @@ E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해
 - JEPA latent에는 local signal이 있지만 큰 이동은 public bad-axis를 강하게 탄다.
 - `a2c8`는 raw05 manifold의 작은 correction이었지만, 이제 frontier가 아니다.
 - Mixmin은 anchor-loss/cancellation geometry와 binary actual-anchor worldview가 public-relevant였다는 첫 강한 관측이다.
+- E95는 E72-adverse hard-label tail localization이 public-positive라는 첫 강한 관측이다.
 - 0.54 진입을 막는 핵심 병목은 여전히 hidden block-rate state inference와 selector calibration이지만, E48 이후에는 pairwise/old selector veto를 hard gate로 쓸 수 없다.
 
 ## 관계 그래프
@@ -1034,15 +1035,27 @@ target co-occurrence
 
 ### H90. E72-adverse hard-tail exposure can be localized into a new post-E86 gate
 
-- 상태: partially supported; pending public observation.
+- 상태: supported by public observation.
 - 왜 그럴듯한가: E94 showed hard-tail exposure explains the E72 miss better than soft representation health. If that exposure is not just a scalar risk score, the risky cells should support a localized fallback that improves downside without fully reverting E86.
 - 맞다면: an E86-derived fallback candidate should remain strict/deployable, reduce E72-adverse hard-tail exposure below E89 or E90, and keep local all-combo margin below the candidate it claims to dominate. It should not be equivalent to mixmin or a broad near-zero rollback.
 - 틀리다면: every low-tail candidate should fail strict hidden/world/block stress, collapse to mixmin/E85, or only reproduce the already-known E89/E90 Pareto points.
 - 최소 실험: `analysis_outputs/e95_hard_tail_gate_scan.py`, sweeping E86/E90 hard-tail row/cell fallback to E89/E85/mixmin plus scalar blends, with positive-tail masks, duplicate prediction deduping, and strict/non-strict tail separation.
-- 관측: E95 generated `178` rows, evaluated `178`, found `112` strict rows and `19` strict non-dominated rows. Raw best non-control tail was `0.000146152` but failed strict stress, confirming that tail minimization alone is a rollback trap. The selected strict file `analysis_outputs/submission_e95_hardtail_541e3973.csv` starts from E86 and falls back to E85 on E72-adverse top-tail cells. It has all delta `-0.0000262074`, E72-adverse exposure `0.000788914`, world `-0.000132931`, hidden Q2/S3 `-0.000251140`, block win `0.750000`, and block-tail safe `0.972222`.
-- 성공/폐기 기준: supported as a candidate generator because E95 beats E89 on both hard-tail exposure (`0.000788914 < 0.000799109`) and local margin (`-2.62074e-5 < -2.58960e-5`) while keeping non-trivial movement (`550` moved cells, active targets `Q2,S1,S2,S3`). Not a universal best because E86 keeps stronger upside and E90 keeps more row-coherent structural retention.
-- public LB 기대 반응: if E95 improves over mixmin and beats E89/E90/E86 when submitted, public is sensitive to E72-adverse hard-tail cells and the fallback gate is real. If E95 is worse than E89, E95 overfit the local hard-tail proxy or E85 fallback harms public despite tail reduction. If E86 beats E95, structural/source-consensus upside dominates the E72 tail risk.
-- 제출 전략: use `analysis_outputs/submission_e95_hardtail_541e3973.csv` as the highest lower-downside hard-tail public sensor. It asks a sharper question than E89: whether E72-adverse hard-tail localization adds information beyond the earlier E72 movement fallback.
+- 관측: E95 generated `178` rows, evaluated `178`, found `112` strict rows and `19` strict non-dominated rows. Raw best non-control tail was `0.000146152` but failed strict stress, confirming that tail minimization alone is a rollback trap. The selected strict file `analysis_outputs/submission_e95_hardtail_541e3973.csv` starts from E86 and falls back to E85 on E72-adverse top-tail cells. It has all delta `-0.0000262074`, E72-adverse exposure `0.000788914`, world `-0.000132931`, hidden Q2/S3 `-0.000251140`, block win `0.750000`, and block-tail safe `0.972222`. Public E95 scored `0.5762913298`, improving over mixmin by `0.0000153107` and over failed E72 by `0.0001164474`.
+- 성공/폐기 기준: supported because E95 beats E89 on both hard-tail exposure (`0.000788914 < 0.000799109`) and local margin (`-2.62074e-5 < -2.58960e-5`) while keeping non-trivial movement (`550` moved cells, active targets `Q2,S1,S2,S3`), then converts that local evidence into a public gain. Not a universal best because the public gain is only `58.42%` of the local margin, E86 keeps stronger upside, E90 keeps more row-coherent structural retention, and E85 has a slightly lower E96 p95 tail floor.
+- public LB 관측 반응: E95 improved over mixmin, so public is sensitive to E72-adverse hard-tail localization. If E90/E86 later beats E95, structural/source-consensus upside dominates residual tail risk. If E85 beats E95, public rewards conservative tail floor more than retained E86 structure.
+- 제출 전략: keep `analysis_outputs/submission_e95_hardtail_541e3973.csv` as the current frontier anchor. Next public candidates should be E95-relative and explicitly test more retained structure (`E90`/`E86`) or a more conservative floor (`E85`).
+
+### H91. E72 public miss budget stress can distinguish hard-tail gate robustness from tail-floor conservatism
+
+- 상태: supported as conditional stress; not a new submission source.
+- 왜 그럴듯한가: E95 was selected using E72-adverse hard-tail exposure, but the public observation gives only a total miss (`+0.0001011367`), not which cells realized the adverse labels. A robust hard-tail candidate should survive many allocations of that miss budget, not only the exact cells emphasized by E95.
+- 맞다면: when E72's observed miss is allocated over plausible E72-adverse hard-label cells, E95 should beat E89/E90/E86 across most complete-budget scenarios and should not rely solely on the E95 fallback mask.
+- 틀리다면: E95 should only win in its own fallback cells, lose broadly to E89 or E85 in all/diffuse scenarios, or become worse than E90/E86 when the realized tail is row-coherent rather than cell-local.
+- 최소 실험: `analysis_outputs/e96_public_miss_budget_tail_scenarios.py`, fixing the E72-minus-mixmin public miss as a LogLoss budget and generating deterministic/random allocations over target masks, E72 hard-tail masks, E95 fallback cells, and candidate movement masks.
+- 관측: E96 generated `3894/3894` complete-budget scenarios over `1750` test-target cells. Failed E72 reconstructs `0.0001011367` in every scenario and mixmin is exactly `0`. Live mean conditional deltas were E95 `0.000057874`, E85 `0.000058977`, E89 `0.000059964`, E90 `0.000069295`, no-Q2 `0.000071237`, and E86 `0.000076162`. Live p95 deltas were E85 `0.000115304`, E95 `0.000115644`, E89 `0.000117735`, E90 `0.000129152`, E86 `0.000138751`, and no-Q2 `0.000138876`. E95 won `0.527478` of live scenarios, beat E89 `0.712378`, E90 `0.999486`, and E86 `0.998973`.
+- 성공/폐기 기준: H91 supports E95 as the best mean/win-rate hard-tail sensor and strengthens it over E89/E90/E86. It rejects the stronger claim that E95 is the most conservative tail-floor candidate under every plausible realization: E85 has a slightly lower p95, and E95 loses most to E89 in diffuse low-amplitude Q2/Q2S3-bottom worlds.
+- public LB 관측 반응: E95 did improve, so H91's ranking was directionally useful despite being a conditional hard-tail stress rather than a public-label fit. The realized public world was not so adverse to E95's retained E86 structure that the hard-tail budget dominated the whole score.
+- 제출 전략: use E95 as the current frontier. Use E90/E86 to test retained-structure upside; use E85 only when the next public question is pure downside floor rather than hard-tail localization with retained E86 structure.
 
 ## 우선 실험 5개
 
