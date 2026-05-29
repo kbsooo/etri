@@ -1738,6 +1738,21 @@
 - Interpretation: E116 pre-registers the branch update before public feedback. The key guard is that tie/loss must not be rationalized into E108, E104 high-alpha, E106 masks, full E89, active-restored variants, or non-active grafts.
 - Decision: no E116 submission. Use `e116_e101_public_feedback_decoder.csv` as the first file to consult when an E101 public LB arrives.
 
+## E117. E95-Like Neighborhood Audit
+
+- Observe: E95's public edge is tiny. If the edge is merely a selector miss inside a rich existing universe, then many E95-shaped alternatives should already exist.
+- Wonder: is E95 one member of a broad S-heavy hardtail family, or a narrow compromise point between retained structure and E72-style tail damage?
+- Method: `analysis_outputs/e117_e95_like_neighborhood_audit.py` collected submission files referenced by root notes and generated reports, resolved `4477` files, deduplicated to `4031` unique prediction tensors, and compared each file to mixmin/E95 by target-axis share, E95-direction cosine, E72-adverse hard-label exposure, and E95-relative edit size.
+- Result:
+  - referenced names `5277`, resolved `4477`, unique tensors `4031`.
+  - E95-like neighborhood count `10`.
+  - E95-like candidates with no higher E72-adverse exposure than E95: `4`.
+  - those four are exactly E101, E85, and the two post-E101-win E108 variants; the E108 files are conditional and should not precede E101 feedback.
+  - E101 is not an independent E95 replacement: it changes only `50` cells vs E95, L1 vs E95 `0.079624`, and E95-relative Q2/S3 share `1.000000`.
+  - closest non-E95 neighbor by E95-like score is E89, but its E72-adverse exposure `0.000799109` is slightly higher than E95 `0.000788914`.
+- Interpretation: existing documented submissions do not hide a large untouched E95-like improvement family. The E95 neighborhood is tiny and consists of already-understood E85/E89/E101/E108/E86/E90 contrast files.
+- Decision: no E117 submission. This strengthens the plateau explanation and weakens "search the current universe harder" as a path. The next public action remains E101; the next non-public research branch must create a new structural/block-state movement rather than rescore old files.
+
 ## Current Decision
 
 가장 저비용으로 많은 가설을 가르는 실험은 E05 selector-only/pairwise-order falsification이었다. 결과는 "micro-refine을 더 많이 만들기보다 selector resolution 또는 large safe representation move가 필요하다"로 수렴한다.

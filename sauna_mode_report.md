@@ -98,6 +98,20 @@ E95를 단순 hardtail fallback으로만 보던 해석을 더 좁혔다. 지금 
 
 이 decoder의 목적은 점수 예측이 아니다. E101 결과를 본 뒤 같은 결과를 입맛대로 해석하지 못하게 하는 장치다. win이면 E108 계열을 exact-delta rerun 뒤 고려할 수 있고, tie/loss면 같은 rollback line을 더 키우지 않는다.
 
+## 추가 관찰: E95 같은 후보는 우주에 많지 않음
+
+`analysis_outputs/e117_e95_like_neighborhood_audit.py`로 문서와 report에 이미 등장한 submission들을 다시 봤다.
+
+- referenced names: `5277`.
+- resolved files: `4477`.
+- unique prediction tensors: `4031`.
+- E95-like neighborhood count: `10`.
+- E95보다 E72-adverse exposure가 낮거나 같은 E95-like 후보: `4`.
+- 그 `4`개는 E101, E85, 그리고 E101-win 이후에만 의미가 있는 E108 두 파일이다.
+- E101은 mixmin 기준 독립 후보라기보다 E95 기준 `50` cells, L1 `0.079624`, Q2/S3 share `1.000000`인 micro edit다.
+
+이 결과는 "기존 submission 우주를 더 잘 뒤지면 E95보다 자연스럽게 좋은 후보가 있을 것"이라는 생각을 약화한다. E95 주변은 넓은 평야가 아니라 좁은 능선에 가깝다. 따라서 E101 결과 없이 E108을 앞당기거나, E89/E85/E90/E86를 자동 승격하는 건 여전히 근거가 약하다.
+
 ## 다음으로 가장 정보량이 큰 행동
 
 `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` 제출.

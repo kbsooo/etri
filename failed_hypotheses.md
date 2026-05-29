@@ -897,3 +897,12 @@
 - Implementation issue possible: medium. E114 uses E113's raw diagnostic probabilities, so a richer raw representation could change the support estimate. The discarded claim is narrower: the current visible raw context cannot be used as independent evidence that E101's active hard-label world is public-likely.
 - Bottleneck implication: raw context is now demoted twice. It cannot rescue broad temporal Q/Q3 calibration, and it cannot pre-certify the S3-heavy E101 active-cell branch. E101 remains a public sensor about hidden local S3 labels, not an internally raw-validated expected-improvement file.
 - Do not repeat: promoting raw-supported E101 masks, raw-gated active-cell rollback, or Q2 raw exceptions before a new raw latent shows both temporal calibration gain and active-cell support gain, especially on S3.
+
+## FH100. Existing documented submissions hide an untested E95-like replacement
+
+- Failed hypothesis: because E95 improved public by only `0.0000153107`, the documented submission universe should already contain another E95-shaped hard-tail candidate that is lower-risk than E95 and can be promoted without waiting for E101 feedback.
+- Observed result: E117 parsed documented submission references, resolved `4477` files, deduplicated them to `4031` unique prediction tensors, and found only `10` E95-like neighbors. Only `4` had no higher E72-adverse exposure than E95: E101, E85, and two E108 post-E101-win variants. The closest non-E95 neighbor E89 had slightly higher E72-adverse exposure (`0.000799109`) than E95 (`0.000788914`), while E101 was only a `50`-cell Q2/S3 micro edit vs E95.
+- Why discard: the E95 neighborhood is sparse and already interpreted. There is no hidden old-file family that cleanly lowers the tail while preserving E95's public-positive geometry.
+- Implementation issue possible: low-medium. E117 only searches files referenced by existing reports and markdown, so an unreferenced local CSV could still exist. But for the documented experiment universe, the negative result is direct and deduplicated at prediction-tensor level.
+- Bottleneck implication: the frontier is a narrow target-axis hard-tail compromise, not a candidate-indexing failure. Further progress likely requires E101 public feedback or a genuinely new structural/block-state movement, not another rescore of old submissions.
+- Do not repeat: old-submission universe search as the next default path, or unconditional E108 promotion before E101 feedback. Use E117 only as a negative scarcity gate.

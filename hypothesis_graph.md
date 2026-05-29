@@ -1285,6 +1285,18 @@ target co-occurrence
 - public LB 관측 반응: use the decoder first. Strong/edge/small win means the Q2/S3 rollback direction is public-real; tie/loss means rebuild the public-world model before another same-family file.
 - 제출 전략: no E116 submission. Use the decoder as a guard before any post-E101 file.
 
+### H111. A better E95-shaped candidate is already hidden in the documented submission universe
+
+- 상태: mostly rejected; only known/conditional same-family neighbors remain.
+- 왜 그럴듯한가: E95 improved public by only `0.0000153107`. If the improvement came from a general S-heavy hardtail law, prior scans and reports may already contain another candidate with the same target-axis geometry and lower E72-tail risk.
+- 맞다면: among documented submissions there should be multiple large S-heavy, E95-aligned, lower-tail candidates not already explained by E85/E89/E101/E108.
+- 틀리다면: the E95-like neighborhood should be tiny, dominated by already-known contrast files, and should not contain an untested lower-tail replacement.
+- 최소 실험: `analysis_outputs/e117_e95_like_neighborhood_audit.py`, scanning referenced submissions, deduplicating prediction tensors, and measuring E95-direction cosine, Q/S movement share, E72-adverse hard-label exposure, and E95-relative edit size.
+- 관측: E117 resolved `4477` referenced files and deduplicated them to `4031` unique tensors. Only `10` fell into the E95-like neighborhood. Only `4` had no higher E72-adverse exposure than E95, and they were E101, E85, and the two E108 post-E101-win variants. E101 is an E95-relative micro edit (`50` active cells vs E95, Q2/S3 share `1.000000`), not a standalone replacement. The closest non-E95 neighbor E89 has slightly higher E72-adverse exposure (`0.000799109`) than E95 (`0.000788914`).
+- 성공/폐기 기준: reject the "just search old submissions harder" branch unless a newly generated file enters this neighborhood with lower tail risk and an independent stress argument. Do not use E108 before E101 public feedback because its lower tail is conditional on E101 winning.
+- public LB 관측 반응: if E101 improves, it validates one of the only lower-tail E95-relative neighbors and opens E108 exact-delta rerun. If E101 ties/loses, there is no untested lower-tail E95-like candidate in the documented universe to auto-promote.
+- 제출 전략: no E117 submission. Keep E101 as the next sensor; otherwise move to new structural/block-state generation.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
