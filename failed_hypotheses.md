@@ -681,3 +681,12 @@
 - Implementation issue possible: low to medium. The combo-set definitions are local proxies, not public labels. That is why `submission_e84_inverse_sensor_1c74da00.csv` is retained as a diagnostic sensor, not discarded as useless.
 - Bottleneck implication: the current live bottleneck is row/block-specific public-world separation, especially whether public behaves like `inverse_top` or like raw05-compatible/all-sign worlds.
 - Do not repeat: presenting E84 recombination as deployable-safe because it has a large local mean edge. Use it only to test public-world identity or to train a gate that explicitly separates the inverse-top conflict.
+
+## FH76. E84 inverse-top conflict must be row/block-specific before target-axis pruning can help
+
+- Failed hypothesis: because E84 passed hidden/world/block stress but failed only the inverse-top combo set, the next useful repair must learn a row/block-specific inverse-top gate; target-axis pruning alone should not open a deployable candidate.
+- Observed result: E85 generated `10135` target-pruned variants from E84 movement and non-anchor evaluated `700`. Strict/deployable rows opened to `535`, and the best `S1,S2,S3` candidate improved every relevant combo view: all delta `-0.0000238758`, inverse-top `-0.0000081666`, raw05-compatible `-0.0000295552`, all-sign `-0.0000339057`. Hidden core, hidden Q2/S3, world, raw-energy, block win, and block-tail diagnostics also stayed favorable.
+- Why discard: the strongest immediate failure mode was target-axis contamination. E84's Q1/Q3/S4 movement was adverse under inverse-top, while S1/S2/S3 preserved enough structural signal to pass strict/deployable stress.
+- Implementation issue possible: medium. Combo worlds are still local sensors, not true public labels, and public may prefer the removed Q1/Q3/S4 movement. But the discarded claim was "target-axis pruning cannot solve the E84 conflict locally"; E85 directly falsifies that.
+- Bottleneck implication: the current bottleneck is now public-world choice among target axes, not only row/block localization. Row/block gates remain useful only if E85 fails public or if a later target-pruned candidate needs more upside.
+- Do not repeat: jumping straight to complex inverse-top row/block gates before testing the simpler S1/S2/S3 target-pruned structural candidate.

@@ -911,6 +911,18 @@ target co-occurrence
 - public LB 기대 반응: `analysis_outputs/submission_e84_inverse_sensor_1c74da00.csv` is a diagnostic sensor only. If public improves, `inverse_top` is over-conservative for public and E84-like structural recombination becomes live. If public worsens, `inverse_top` is public-like and this structural movement must be gated away.
 - 제출 전략: no safe E84 recommendation. Use the materialized file only if the next public slot is meant to test public-world identity, not if the goal is lowest-risk improvement.
 
+### H80. E84 inverse-top conflict is target-axis contamination, not row/block-wide rejection
+
+- 상태: strongly supported locally; public pending.
+- 왜 그럴듯한가: E84's rejected rows were healthy under hidden/world/block stress and two combo worlds, so the remaining conflict might come from specific targets whose public-world sign differs across inverse-top versus raw05/all-sign worlds.
+- 맞다면: per-target contribution should show inverse-top adverse mass concentrated in a few targets; pruning those targets should make the same structural movement pass all combo sets while preserving margin and hidden/world/block support.
+- 틀리다면: all target subsets should either remain inverse-top adverse, lose margin, or fail hidden/world/block/raw-energy stress.
+- 최소 실험: `analysis_outputs/e85_inverse_conflict_target_prune.py`, taking top E84 loose seeds and applying every non-empty target subset of their mixmin-relative logit movement.
+- 관측: E85 generated `10135` target-pruned rows, non-anchor evaluated `700`, and found strict/deployable `535`. The E84 sensor's inverse-top adverse contribution was concentrated in `Q3` (`+6.36e-5`), `Q1` (`+2.14e-5`), `S4` (`+1.44e-5`), and `S2` (`+1.22e-5`), while `S3` was favorable (`-1.93e-5`). The best strict row keeps `S1,S2,S3`, removes `Q1,Q2,Q3,S4`, and has all delta `-2.38758e-5`, inverse-top `-8.17e-6`, raw05-compatible `-2.96e-5`, all-sign `-3.39e-5`, hidden Q2/S3 `-0.000216`, world `-0.000130`, raw-energy `-3.52e-5`.
+- 성공/폐기 기준: the claim "E84 requires row/block-specific gating before any target-axis fix" is rejected. The target-axis prune is a genuine strict candidate under current stress. The unresolved part is public sign: public may still prefer the Q1/Q3/S4 movement that inverse-top rejects.
+- public LB 기대 반응: if `submission_e85_inverse_conflict_pruned_58b23ed1.csv` improves public, public is closer to the all-combo-safe S1/S2/S3 structural world and E84's Q1/Q3/S4 movement was contamination. If it worsens, public was closer to the all-sign/raw05 target movement and inverse-top over-pruned the useful Q1/Q3/S4 axes.
+- 제출 전략: E85 is now the highest-information next submission candidate, stronger than E84 because it is strict/deployable rather than only diagnostic.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
