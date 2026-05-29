@@ -1020,6 +1020,18 @@ target co-occurrence
 - public LB 기대 반응: no submission. If E86/E90/E89 public feedback later improves, target-manifold consistency may be a necessary but weak health signal. If they fail, E93 already warned that target consistency alone cannot protect against public mismatch.
 - 제출 전략: do not rank by `target_manifold_delta_mean`. Keep dependency/manifold features as diagnostics only, especially for detecting gross bad-axis failures, not for selecting the next public file.
 
+### H89. Soft representation health hides hard-label LogLoss tail risk
+
+- 상태: supported as bottleneck explanation; not a standalone public selector.
+- 왜 그럴듯한가: E92 and E93 both liked E72 even though E72 worsened public LB. LogLoss is evaluated on hard binary labels, so a movement can improve soft posterior/manifold consistency while creating a large positive-loss tail if the public labels fall on the opposite side.
+- 맞다면: the hard-label direction that makes E72 wrong should expose substantial loss tail, and live candidates should trade off soft-health gain against this E72-adverse tail. Known public-bad anchors should have higher hard-tail exposure than mixmin.
+- 틀리다면: E72's public miss should require nearly full adverse-label realization, or hard-tail exposure should not separate known public-bad anchors.
+- 최소 실험: `analysis_outputs/e94_soft_health_hard_tail_audit.py`, computing candidate-minus-mixmin LogLoss deltas for hard labels `0/1`, defining the E72-adverse label per cell, and scoring E86/E90/E89/E85 plus known anchors by hard-tail exposure.
+- 관측: E72 moved `893/1750` cells. Full E72-adverse exposure is `0.002330945`, while the observed public miss is only `0.0001011367`, or `4.3389%` of full exposure. Known public sanity is much stronger for hard-tail metrics than soft health: Spearman public LB is `0.793939` for E72-adverse exposure, `0.866667` for KL-if-mixmin-calibrated and hard worst-tail mean, but only `0.081935` for soft-health gain. Among E86/E90/E89, E89 has lowest E72-adverse exposure (`0.000799109`), E90 is middle (`0.000934031`), and E86 is highest (`0.001010242`), while E86 has the largest soft-health gain.
+- 성공/폐기 기준: supported as a bottleneck explanation because it explains how E72 can pass soft JEPA-like health checks but fail public with a small hard-label tail realization. It is not a complete selector because E85 has even lower tail than E89 while less upside, and public subset identity is still unknown.
+- public LB 기대 반응: if E89 beats E90/E86, hard-tail downside dominates. If E86 beats E89/E90, soft structural gain dominates despite tail exposure. If E85 beats all, public prefers the conservative floor over consensus/decontamination variants.
+- 제출 전략: do not create an E94-ranked submission. Use E94 to clarify the tradeoff: E86 is max-upside soft-health, E90 is balanced row-coherent decontamination, E89 is lower-downside among the main three, and E85 is the conservative floor.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -753,3 +753,12 @@
 - Implementation issue possible: medium. E93 uses simple logistic target conditionals and empirical pattern/correlation energies, not a richer subject/block-conditioned target manifold. The discarded claim is only that current train target-manifold consistency can rank or counter-filter post-mixmin submissions.
 - Bottleneck implication: E72 failure is not explained by obvious target dependency violation. The bottleneck is hidden public subset/calibration/world identity after a movement that both block posterior and target co-occurrence can like.
 - Do not repeat: ranking E86/E90/E89 by `target_manifold_delta_mean`, conditional residual RMS, pattern NLL, or pair-correlation gap. Use these as diagnostics only, not submission selectors.
+
+## FH84. Soft representation health is sufficient for post-E72 candidate safety
+
+- Failed hypothesis: if a candidate improves hidden-block posterior CE and target-manifold consistency, it is healthy enough to rank above lower-health candidates despite the E72 miss.
+- Observed result: E94 found that the public-negative E72 file itself has strong soft-health signals, while its observed public miss requires only a small realized hard-label tail. E72 full adverse exposure is `0.002330945`, and the public miss `+0.0001011367` is only `4.3389%` of that scale. Among live candidates, soft-health ranks E86 highest, but E72-adverse positive exposure ranks E85/E89 as lower-tail than E90/E86.
+- Why discard: LogLoss punishes the hard labels that oppose a move, not only the average geometry of a latent. A representation can be coherent and still put probability mass in a direction that is expensive on a small public-label subset.
+- Implementation issue possible: low to medium. E94 uses the E72-adverse direction as a public-negative anchor, not true public labels for unobserved files. The discarded claim is only that soft-health metrics are sufficient without a hard-tail check.
+- Bottleneck implication: the current candidate choice has separate axes: E86 maximum soft-health/upside, E90 row-coherent compromise, E89 lower hard-tail/downside, and E85 conservative floor.
+- Do not repeat: using posterior CE, target-manifold consistency, or aggregate soft-health gain as a standalone submission ranker. Pair every soft representation metric with hard-label tail exposure against known public-negative anchors.
