@@ -971,6 +971,18 @@ target co-occurrence
 - public LB 기대 반응: if E89 improves public more than E86, public is punishing E72-contaminated cells more than it rewards E86's extra margin. If E86 improves more, public rewards source-consensus amplitude despite E72 proximity. If both fail, target-pruned rollback itself is likely a local combo-world artifact.
 - 제출 전략: E86 remains highest-upside. E89 becomes the risk-adjusted fallback above no-Q2 and inverse-top-prior when the goal is lower downside after the E72 public miss.
 
+### H85. E72 decontamination has a row-coherent Pareto knee, not only a minimum-contamination solution
+
+- 상태: supported locally; public pending.
+- 왜 그럴듯한가: E89's minimum-contamination cell fallback lowers E72 proximity most, but it also sacrifices hidden/world/block strength. If the hidden DGP is row/block-state-like, row-coherent fallback may be more public-readable than isolated cell fallback.
+- 맞다면: a row-level E72 fallback should remain cleaner than E85/no-Q2 while preserving more E86 margin, hidden/world support, and block-tail safety than the minimum-contamination E89 file.
+- 틀리다면: every cleaner-than-E85/no-Q2 row should either collapse hidden/world/block support or be dominated by the E89 min-contamination cell fallback.
+- 최소 실험: `analysis_outputs/e90_e89_pareto_knee.py`, scoring strict E89 rows by decontamination, margin retention, hidden/world retention, block/tail safety, and row-coherence while penalizing projection-away repairs.
+- 관측: E90 found `13` eligible strict rows and selected `analysis_outputs/submission_e90_e72pareto_28925de5.csv`: E86 with E85 fallback on top `10%` E72-contaminated rows. It has all delta `-2.69324e-5`, contamination `0.715784`, world `-0.000250999`, hidden Q2/S3 `-0.000299838`, block win `0.777778`, block-tail safe `1.0`, margin retention `0.798048`, world retention `0.681272`, and hidden retention `0.518671`.
+- 성공/폐기 기준: supported if E90's public result beats E89 or E86, because public then rewards row-coherent structural retention after partial E72 removal. Weakened if E89 beats E90, meaning E72 cell contamination dominates. Rejected if E86 beats both, meaning E72 proximity was over-penalized.
+- public LB 기대 반응: E90 should land between the high-upside E86 and low-contamination E89 if the tradeoff is real. A large deviation from that order is highly informative about whether public values contamination removal or structural retention.
+- 제출 전략: use E90 when one slot should balance E86 upside and E72 downside. Keep E86 as the maximum-upside sensor and E89 as the minimum-contamination sensor.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

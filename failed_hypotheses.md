@@ -717,3 +717,12 @@
 - Implementation issue possible: medium. Projection scopes and beta grid were limited, so a more constrained projection could still be useful. The discarded claim is that direct projection is the obvious/safe first repair.
 - Bottleneck implication: the remaining public-risk geometry is local and cell/target-dependent, not a single linear contamination axis. Decontamination should use local fallback or learned gates before global vector surgery.
 - Do not repeat: promoting projection-away rows merely because their contamination index is lower. Require strict/deployable, inverse-top/world/block, and margin survival at the same time.
+
+## FH80. Minimum E72 contamination is automatically the best decontaminated successor
+
+- Failed hypothesis: after E89, the decontamination decision can be ranked primarily by the lowest E72 contamination index among strict rows.
+- Observed result: E90 rescored the same strict E89 scan and found a row-coherent Pareto knee: `analysis_outputs/submission_e90_e72pareto_28925de5.csv`, E86 with E85 fallback on top `10%` E72-contaminated rows. It has higher contamination than E89 (`0.715784` vs `0.676361`) but preserves much more E86 structure: all delta `-0.000026932`, world `-0.000250999`, hidden Q2/S3 `-0.000299838`, block win `0.777778`, and block-tail safe `1.0`.
+- Why discard: minimum contamination and healthy latent geometry are different objectives. The min-contamination cell fallback may be safest if public directly punishes failed E72 cells, but it can underprice row-level hidden-state coherence and E86's source-consensus structural edge.
+- Implementation issue possible: low to medium. E90's scoring weights are a design choice, and public LB is pending. But the discarded claim is only "minimum contamination is the unique local ranking rule"; the strict scan itself shows a non-dominated row-coherent alternative.
+- Bottleneck implication: post-E72 risk has at least two axes: contamination removal and structural retention. The next public observation should identify which axis public rewards rather than treating them as one scalar.
+- Do not repeat: ranking E86 repairs solely by E72 contamination index. Keep E86 for maximum upside, E90 for balanced row-coherent decontamination, and E89 for minimum-contamination downside control.
