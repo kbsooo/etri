@@ -2710,3 +2710,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E174-vs-E172 recovery is concentrated in S3 `-0.000003234`, Q2 `-0.000002953`, S2 `-0.000002682`, and S1 `-0.000001471`; not-E72-active cells carry `88.6%` of the recovery.
 - Interpretation: E174 remains the highest-upside broad expected-score file, but its public read must be conditional. A win validates controlled reopening. A tie/small loss keeps E95 practical and makes E172 the cleaner same-family contrast. A worse-than-E101 result demotes E174 and blocks top-N reopening siblings. A worse-than-mixmin result closes the E174/E172/E169 same-family broad expected-score lane unless a new public-independent bad axis explains the miss.
 - Decision: E175 creates no submission. Submit `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv` only with the E175 decoder attached, and after public feedback run `python3 analysis_outputs/e175_e174_public_feedback_decoder.py --score <PUBLIC_LB>` before choosing E172, E154, or any same-family broad follow-up.
+
+## E176. E174 Component Ablation Probe
+
+- Observe: E175 made E174 interpretable, but E174 still sits close to the Q2/S3 and q2_bad margins. The smallest pre-public challenge is whether E174 is really Pareto, or whether one obvious component can be damped while preserving nearly all of its edge.
+- Wonder: if E174 fails, will the failure be caused by a specific component such as Q2 reopening rather than the whole partial-reopening worldview?
+- Method: `analysis_outputs/e176_e174_component_ablation_probe.py` reconstructs E174 as E172 plus the `75` reopened cells, then scans `162` component ablations/dampings over target, target group, context, E72-active, safe-density, support, top-swing, and top-focus groups. A gate row must keep broadness, visible-tail and geometry guards, stay within `2e-6` of E174 focus edge, and reduce at least one risk axis.
+- Result:
+  - E176 gate variants: `12/162`.
+  - materialized file: `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`.
+  - selected policy: `ablate_q2_to0p75`, damping only the E174 reopened Q2 cells from keep `1.0` to `0.75`.
+  - focus expected delta: E174 `-0.000124367`; E176 `-0.000123384`; E176 gives up only `+0.000000983` vs E174 while remaining `-0.000010689` better than E172.
+  - breadth remains `904/193`; cells-to-flip remains `33`; top1/expected becomes `0.047267`.
+  - risk improves: bad-span energy `0.263996 -> 0.261687`, max bad cosine `0.163229 -> 0.158126`, Q2/S3 share `0.339597 -> 0.334753`, visible p95 `-0.000022709 -> -0.000023096`, worse-than-E101 `0.000220 -> 0.000192`.
+  - direct E176-vs-E174 cost is only Q2 `+0.000000983`. Direct E176-vs-E172 recovery remains broad across S3 `-0.000003234`, S2 `-0.000002682`, Q2 `-0.000001970`, S1 `-0.000001471`, and smaller Q1/Q3/S4.
+- Interpretation: E174 is not strictly Pareto. The hidden world model updates from "partial reopening is best as top-75 full reopen" to "partial reopening is real, but Q2 should be slightly under-opened relative to S3/S2/S1." This is exactly the Q/S asymmetric calibration risk that kept appearing after E101.
+- Decision: promote `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` as the risk-adjusted broad expected-score candidate. Keep E174 as the maximum-edge contrast and E172 as the lower-risk tail-repair contrast. E176 should still be decoded with E175-style bands because it is a same-family E174 sibling, not a new independent branch.

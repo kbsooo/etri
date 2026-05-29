@@ -1788,3 +1788,60 @@ E174를 제출했다면 먼저 이것부터 실행한다.
 `python3 analysis_outputs/e175_e174_public_feedback_decoder.py --score <PUBLIC_LB>`
 
 그 전에는 E172/E169/E166/E154 중 다음 파일을 고르지 않는다.
+
+## E176 업데이트: E174 안에서 Q2만 살짝 덜 열면 더 좋은 risk-adjusted 후보가 된다
+
+내가 발견한 가장 이상한 점:
+
+`E174는 top-75 full reopening 자체가 정답이 아니었다. Q2만 조금 덜 열어도 edge는 거의 유지되고 q2_bad/Q2S3 위험이 줄었다.`
+
+실험:
+
+`analysis_outputs/e176_e174_component_ablation_probe.py`
+
+결과:
+
+- `162`개 component ablation/damping 후보를 테스트.
+- E176 gate 통과 `12`개.
+- materialized:
+  - `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+- 선택 정책:
+  - `ablate_q2_to0p75`
+  - E174가 reopened한 Q2 cells만 keep `1.0 -> 0.75`.
+
+핵심 수치:
+
+- focus expected delta:
+  - E174 `-0.000124367`
+  - E176 `-0.000123384`
+  - E176 vs E174 `+0.000000983`
+  - E176 vs E172 `-0.000010689`
+- breadth:
+  - moved cells/rows `904/193`
+  - cells-to-flip `33`
+  - top1/expected `0.047267`
+- risk 개선:
+  - bad-span energy `0.263996 -> 0.261687`
+  - max bad cosine `0.163229 -> 0.158126`
+  - Q2/S3 share `0.339597 -> 0.334753`
+  - visible p95 `-0.000022709 -> -0.000023096`
+  - worse-than-E101 `0.000220 -> 0.000192`
+
+생각이 바뀐 점:
+
+`partial reopening은 맞아 보이지만, Q2는 S3/S2/S1과 같은 강도로 열면 안 된다.`
+
+현재 최강 세계관:
+
+`broad context/veto body는 살아 있고, visible-positive-loss tail은 줄여야 한다. 그 뒤 일부 rollback cell은 다시 열어야 하지만, Q와 S는 같은 amplitude law를 쓰면 tail risk가 커진다. E176은 S3/S2/S1-heavy partial reopening + Q2 under-open 법칙이다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+딱 하나 제출한다면 이제는 E174보다 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`가 더 균형 잡힌 선택이다.
+
+해석:
+
+- E176이 좋아지면: Q/S-asymmetric partial reopening이 맞다.
+- E176이 tie/small loss면: broad branch는 여전히 hidden hard-label 해상도에 막혔거나 partial reopening 자체가 과했다.
+- E176이 나쁘고 E174가 나중에 좋으면: Q2 full reopening이 public-real이었다.
+- E176이 mixmin보다 나쁘면: E174/E176/E172 same-family broad reopening은 기대 점수 후보가 아니라 실패한 latent family로 본다.

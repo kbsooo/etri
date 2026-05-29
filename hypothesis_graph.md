@@ -1992,6 +1992,18 @@ target co-occurrence
 - public LB 관측 반응: use E175 bands. `<=0.576276019` promotes E174 as broad anchor; `0.576276019..0.576288330` keeps partial reopening alive but unresolved; `0.576288330..0.576300366` keeps E95 practical and points to E172 as contrast; `>0.576300366` demotes E174; `>0.576306641` closes same-family reopening as expected-score follow-up.
 - 제출 전략: after submitting E174, run `python3 analysis_outputs/e175_e174_public_feedback_decoder.py --score <PUBLIC_LB>` before any E172/E169/E166/E154 decision. Do not tune top-N, keep factor, or Q2/S3 guard from a single scalar score.
 
+### H170. E174's Q2 reopening is slightly over-opened relative to the rest of the partial-reopen body
+
+- 상태: supported locally by E176; public feedback pending.
+- 왜 그럴듯한가: E101 already showed that Q2/S3 tail rollback can be locally plausible but public-negative versus E95. E174 recovered useful S3/Q2/S2/S1 edge, but it also pushed Q2/S3 share to `0.339597`, close to the guard.
+- 맞다면: damping reopened Q2 cells should reduce q2_bad/Q2S3 risk while giving up less than `2e-6` of E174's focus edge and retaining E172/E174 broadness.
+- 틀리다면: any Q2 damping should either destroy materiality, fail broadness, or reduce risk only by paying a public-readable edge cost.
+- 최소 실험: `analysis_outputs/e176_e174_component_ablation_probe.py`.
+- 관측: `12/162` component ablation variants pass E176 gate. The selected `ablate_q2_to0p75` materializes `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`, giving up only `+0.000000983` focus delta versus E174 while improving max bad cosine `0.163229 -> 0.158126`, Q2/S3 share `0.339597 -> 0.334753`, visible p95 `-0.000022709 -> -0.000023096`, and worse-than-E101 `0.000220 -> 0.000192`.
+- 성공/폐기 기준: support strengthens if E176 beats E95/E174 or if E174 later loses in a way consistent with Q2/q2_bad over-opening. It weakens if E174 beats E176, meaning the Q2 reopening was public-real at full strength.
+- public LB 관측 반응: E176 win below E95 validates asymmetric Q2 damping inside partial reopening. E176 tie/small-loss keeps partial reopening underresolved and points back to E172/E154 depending on risk appetite. E176 worse than E101 says even the damped Q2 partial-reopen branch is not public-safe.
+- 제출 전략: if submitting one risk-adjusted broad expected-score file now, prefer E176 over E174. Keep E174 as max-edge contrast and E172 as low-risk contrast.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

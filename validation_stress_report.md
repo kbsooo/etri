@@ -867,3 +867,19 @@ E175 pre-registers how to interpret E174 public feedback before seeing it.
 - score bands: `<=0.576276019` validates E174 as a broad anchor, `0.576276019..0.576288330` is micro-win/underresolved, `0.576288330..0.576300366` keeps E95 practical and points to E172 as contrast, `>0.576300366` demotes E174, and `>0.576306641` closes same-family reopening as expected-score follow-up.
 
 Stress implication: E175 does not make E174 safer; it makes the interpretation falsifiable. The main stress risk is still thin public hard-label resolution around a small number of S3/Q2/S2 cells. The next public score should be treated as a banded observation, not as permission to retune reopening counts.
+
+## Update After E176
+
+E176 tests whether E174 is component-Pareto before public feedback.
+
+- script: `analysis_outputs/e176_e174_component_ablation_probe.py`.
+- report: `analysis_outputs/e176_e174_component_ablation_probe_report.md`.
+- variants scored: `162`.
+- E176 gate variants: `12`.
+- materialized file: `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`.
+- selected component: damp only the E174 reopened Q2 cells from keep `1.0` to `0.75`.
+- edge tradeoff: E174 focus `-0.000124367`; E176 focus `-0.000123384`; E176 gives up `+0.000000983` versus E174 while staying `-0.000010689` better than E172.
+- breadth: moved cells/rows `904/193`, cells-to-flip `33`, top1/expected `0.047267`.
+- risk improvements versus E174: bad-span energy `0.263996 -> 0.261687`, max bad cosine `0.163229 -> 0.158126`, Q2/S3 share `0.339597 -> 0.334753`, visible p95 `-0.000022709 -> -0.000023096`, worse-than-E101 `0.000220 -> 0.000192`.
+
+Stress implication: E174 was not strictly Pareto. A simple Q2 damping keeps the partial-reopen body while shaving the exact risk axes that made E174 thin. This makes E176 the risk-adjusted broad candidate; E174 remains the max-edge contrast and E172 the safer tail-repair contrast.
