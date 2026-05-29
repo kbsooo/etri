@@ -663,3 +663,21 @@
 - Implementation issue possible: low to medium. E82 uses source rows from existing local stress families and combo-promising preselection, so it could miss a bad-combo row with surprising public value. But the discarded claim is local strict/deployable submission scale, and that is directly false under the current gate.
 - Bottleneck implication: the missing movement is no longer "cleaner Q2/S3 isolation." It is a broader calibrated structural move that can clear margin while using Q2/S3 as energy/tail guard.
 - Do not repeat: materializing pure Q2/S3 grafts from E72/E75/E76 solely because they are loose and tail-safe. Use them as latent energy or constraints inside a larger block-state candidate.
+
+## FH74. Q2/S3 energy alone can select safe broad structural movement
+
+- Failed hypothesis: E82's coherent Q2/S3 latent energy should be enough to gate older JEPA/block/raw structural deltas into a deployable mixmin-relative candidate.
+- Observed result: E83 generated `3716` structural-gated rows and non-anchor evaluated `700`. Strict/deployable rows were `0`, loose rows `40`, structural-loose rows `189`, and the best broad all-delta reached `-0.0000350517`. The high-margin broad rows beat only `2/3` combo sets and worsened Q2/S3 hidden/world (`hidden_q2s3` about `+0.000443`, world about `+0.000252`). The E72-derived Q2/S3-safe rows kept `3/3` set/tail support and hidden/world improvements, but stayed sub-margin around `-0.000008935`.
+- Why discard: Q2/S3 energy separates useful regimes but does not itself solve the compatibility problem. The structural rows have enough edge and fail Q2/S3/world/set safety; the Q2/S3-safe rows have safety and fail margin.
+- Implementation issue possible: medium. E83 reuses existing structural submission deltas, so a newly trained structural representation could behave differently. The discarded claim is only that row-energy gating over the available broad deltas is sufficient.
+- Bottleneck implication: the bottleneck is not lack of any structural movement. It is coupling structural non-Q2S3 margin with Q2/S3 safety without breaking a public-observation combo set.
+- Do not repeat: another blind E82-energy gate sweep over old structural files. Future work should either recombine target groups explicitly or learn a row/block gate for the remaining combo-world conflict.
+
+## FH75. Target-group recombination of non-Q2S3 structural margin and Q2/S3 safety is deployable
+
+- Failed hypothesis: E83's two pieces can be added in disjoint target groups: structural movement outside Q2/S3 supplies margin, and E72-derived Q2/S3 movement supplies the missing safety, yielding a deployable file.
+- Observed result: E84 generated `1728` recombination rows and non-anchor evaluated `700`. Strict/deployable rows were `0`; loose and structural-loose were `700/700`. Best evaluated all delta was `-0.0000321500`, and every evaluated row passed margin, hidden Q2/S3, world, block-majority, and block-tail guards. But every row beat only `2/3` combo sets and kept `2/3` tails neutral. The rejecting set was `inverse_top`: `0/700` wins, mean inverse-top minus-base `+0.0000859`; raw05-compatible and all-sign sets accepted `700/700`.
+- Why discard: additive target-group separation fixes the Q2/S3 safety and hidden/world/block issues, but not the public-observation set identity conflict. A file that fails one combo world in all `700` evaluated rows is not a safe candidate.
+- Implementation issue possible: low to medium. The combo-set definitions are local proxies, not public labels. That is why `submission_e84_inverse_sensor_1c74da00.csv` is retained as a diagnostic sensor, not discarded as useless.
+- Bottleneck implication: the current live bottleneck is row/block-specific public-world separation, especially whether public behaves like `inverse_top` or like raw05-compatible/all-sign worlds.
+- Do not repeat: presenting E84 recombination as deployable-safe because it has a large local mean edge. Use it only to test public-world identity or to train a gate that explicitly separates the inverse-top conflict.

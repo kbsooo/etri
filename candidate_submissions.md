@@ -231,18 +231,19 @@ Update after E82: the broader E72/E75/E76 Q2/S3 source universe does not rescue 
 
 ## Submission Order
 
-Current recommendation after E82: keep `analysis_outputs/submission_mixmin_0c916bb4.csv` as the active public frontier. Do not submit E73/E74/E75 as direct sparse-gate follow-ups, and do not submit pure Q2/S3 grafts from E82. The submitted E73 combined file is public-adverse, and the pure Q2/S3 source universe is directionally coherent but below submission margin. The next candidate must use Q2/S3 as energy inside a broader structural/block-state or transition representation, not as the sole movement.
+Current recommendation after E84: keep `analysis_outputs/submission_mixmin_0c916bb4.csv` as the active public frontier. E83/E84 found larger local margin, but not a deployable-safe candidate. `analysis_outputs/submission_e84_inverse_sensor_1c74da00.csv` is the only newly materialized file, and it is a diagnostic public-observation sensor, not a safe submit recommendation: it passes margin/hidden/world/block but is rejected by the inverse-top combo set.
 
 1. Keep `analysis_outputs/submission_mixmin_0c916bb4.csv` as the active best.
 2. Do not resubmit or amplify `analysis_outputs/submission_e72_topabs50_q2s3_gate_4e48cba2.csv`. It is now a failed combined-file public sensor.
 3. Hold `analysis_outputs/submission_e75_q2a8_s3a28_sparse_amp_f07219b4.csv`. Its target-asymmetry direction remains locally interesting, but E73 public failure and E81 sub-margin pure Q2/S3 make it too direct a follow-up.
 4. Hold `analysis_outputs/submission_e74_fullpool_a20_q2s3_gate_55455b60.csv`. It is only a symmetric amplitude control if a future pure sparse-gate public sign becomes positive.
-5. Do not submit a new file from E49/E50/E51/E52/E53/E54/E55/E56/E57/E58/E59/E60/E62/E63/E64/E65/E66/E67/E68/E69/E70/E71/E77/E78/E79/E80/E81/E82 alone. E80/E81 turned E72/E73 into a negative public sensor and a sub-margin latent energy; E82 shows the broader pure Q2/S3 source universe is still margin-limited.
-6. Treat `analysis_outputs/submission_frontier_cvjepa_refine_a2c8d2c8.csv` as the previous-frontier contrast anchor, not the baseline to optimize around blindly.
-7. Stop treating known-anchor kNN as the next default selector. E50/E51 show it cannot explain mixmin-best even with calendar and anchor-loss features.
-8. Next candidate source after E82 should not be pure Q2/S3-only. Prioritize structural block target representation or broad-but-safe transition/topology movement that uses Q2/S3 tail energy as a guard.
-9. Do not submit `analysis_outputs/bridge_scan_candidates/submission_bridge_blend_m0p75_s1p25.csv`. E52 says it is a near-tie only, not better than mixmin.
-10. Hold pair-only S4/Q3 sensors until post-mixmin recalibration. Their old purpose, pair-vs-old selector disambiguation around a2c8, is now lower value.
+5. Do not submit a new file from E49/E50/E51/E52/E53/E54/E55/E56/E57/E58/E59/E60/E62/E63/E64/E65/E66/E67/E68/E69/E70/E71/E77/E78/E79/E80/E81/E82/E83 alone. E80/E81 turned E72/E73 into a negative public sensor and a sub-margin latent energy; E82 shows the broader pure Q2/S3 source universe is still margin-limited; E83 shows broad structural margin and Q2/S3 safety are separated.
+6. `analysis_outputs/submission_e84_inverse_sensor_1c74da00.csv` may be used only as a high-information public subset sensor. If it improves public, the inverse-top combo set is over-conservative for public and E84-like recombination becomes live. If it worsens, inverse-top is public-like and E84 broad structural direction should be gated away before any further recombination.
+7. Treat `analysis_outputs/submission_frontier_cvjepa_refine_a2c8d2c8.csv` as the previous-frontier contrast anchor, not the baseline to optimize around blindly.
+8. Stop treating known-anchor kNN as the next default selector. E50/E51 show it cannot explain mixmin-best even with calendar and anchor-loss features.
+9. Next candidate source after E84 should not be pure Q2/S3-only or simple target-group recombination. Prioritize row/block-specific inverse-top conflict separation.
+10. Do not submit `analysis_outputs/bridge_scan_candidates/submission_bridge_blend_m0p75_s1p25.csv`. E52 says it is a near-tie only, not better than mixmin.
+11. Hold pair-only S4/Q3 sensors until post-mixmin recalibration. Their old purpose, pair-vs-old selector disambiguation around a2c8, is now lower value.
 11. If lower movement risk is more important than maximum diagnostic contrast, use `analysis_outputs/submission_label_flow_sensorcurve_conservative_1bb_full_s0p65_0ee928c4.csv`; expect weaker LB readability.
 12. If `1bbfb735` or the 0.65 scaled sensor improves public LB despite independent survival failure, then the old hidden-subset selector is miscalibrated for S4+Q3 movement and H17 becomes live again.
 13. If it worsens, do not submit `6b9335b1`; treat E14 as pairwise-selector overfit and move to selector reconciliation.

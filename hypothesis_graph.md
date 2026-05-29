@@ -887,6 +887,30 @@ target co-occurrence
 - public LB 기대 반응: no E82 public file. If a future candidate improves public, H77 says it probably added a larger structural movement while preserving Q2/S3/tail energy, not merely isolated Q2/S3 better. If it worsens, Q2/S3 energy should be treated as a weak auxiliary, not as the main world model.
 - 제출 전략: none from E82. Next submission should use Q2/S3 as an energy/gate inside a broader block-state or structural transition candidate.
 
+### H78. Q2/S3 latent energy can gate broader structural movement into a safe candidate
+
+- 상태: broad-margin/support split found; direct selector claim rejected.
+- 왜 그럴듯한가: E82 showed pure Q2/S3 movement is coherent but too small. Older JEPA/block/raw candidates have enough movement to clear margin, so Q2/S3 energy might identify the rows where that larger structural movement is compatible with the hidden sleep-state branch.
+- 맞다면: E82 high-energy row gates should turn broad structural deltas into rows that clear margin, preserve Q2/S3 hidden/world support, and beat all combo sets/tails. The inverse/not-top controls should look worse.
+- 틀리다면: broad structural rows should clear margin only by damaging Q2/S3 hidden/world or one combo set, while E72-derived Q2/S3 rows should remain safe but sub-margin.
+- 최소 실험: `analysis_outputs/e83_q2s3_energy_structural_gate_scan.py`, using E82 top-20 Q2/S3 row energy over broad JEPA/block/raw submission movements, target scopes, row gates, and scales.
+- 관측: E83 generated `3716` rows and non-anchor evaluated `700`; strict/deployable `0`, loose `40`, structural-loose `189`. Best broad rows reached `-3.50517e-5` all delta, but beat only `2/3` combo sets and worsened Q2/S3 hidden/world (`hidden_q2s3` about `+0.000443`, world about `+0.000252`). E72-derived rows kept `3/3` set/tail and improved hidden/world but stayed sub-margin around `-8.93545e-6`. Non-Q2/S3 structural rows reached margin-scale around `-2.5291e-5` and improved hidden-core/world, but still only beat `2/3` combo sets and carry no Q2/S3 movement.
+- 성공/폐기 기준: direct "Q2/S3 energy gates broad movement into deployable safety" is rejected. The stronger diagnostic survives: structural margin and Q2/S3 safety are separable pieces of the plateau.
+- public LB 기대 반응: no E83 public file. If a later recombination improves, E83 says the gain came from joining separated structural and Q2/S3 components. If it worsens, the broad structural component is likely public-incompatible even when Q2/S3 is used as energy.
+- 제출 전략: no E83 submission. Use E83 only to seed target-group recombination and row/block-specific conflict analysis.
+
+### H79. Non-Q2/S3 structural margin plus Q2/S3 safety is additive enough for a deployable candidate
+
+- 상태: hidden/world additivity supported; deployable claim rejected; inverse-top conflict isolated.
+- 왜 그럴듯한가: E83 separated two useful pieces: non-Q2/S3 structural rows with margin-scale movement and E72-derived Q2/S3 rows with coherent hidden/world/tail safety. If the conflict is only target-group contamination, adding the pieces in disjoint targets should fix both.
+- 맞다면: recombined rows should clear margin, preserve Q2/S3 hidden/world and block stress, and pass all combo-set/tail guards. Failing rows should be rare and traceable to raw-energy or amplitude, not one systematic public-observation set.
+- 틀리다면: recombined rows should still fail the same combo set or anchor-world despite passing hidden/world/block stress.
+- 최소 실험: `analysis_outputs/e84_structural_margin_q2s3_safety_recombination.py`, combining E83 structural-loose non-Q2S3 deltas with E72-derived Q2/S3-safe deltas and sweeping conservative weights.
+- 관측: E84 generated `1728` rows and non-anchor evaluated `700`; strict/deployable `0`, loose `700`, structural-loose `700`, best evaluated all delta `-3.214999e-5`. All evaluated rows passed margin, all-beats-base, hidden Q2/S3, world, block-majority, and block-tail guards; `672/700` passed raw-energy. The only systematic strict failure was combo-set split: every evaluated row beat `2/3` sets and kept `2/3` tails neutral. The rejecting set was `inverse_top` (`0/700` wins, mean `+8.5858e-5`), while raw05-compatible and all-sign sets were `700/700` favorable.
+- 성공/폐기 기준: target-group additivity is not enough for a safe candidate. However, E84 gives a sharper bottleneck: a single public-observation world conflict remains after hidden/world/block/Q2S3 guards are satisfied.
+- public LB 기대 반응: `analysis_outputs/submission_e84_inverse_sensor_1c74da00.csv` is a diagnostic sensor only. If public improves, `inverse_top` is over-conservative for public and E84-like structural recombination becomes live. If public worsens, `inverse_top` is public-like and this structural movement must be gated away.
+- 제출 전략: no safe E84 recommendation. Use the materialized file only if the next public slot is meant to test public-world identity, not if the goal is lowest-risk improvement.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

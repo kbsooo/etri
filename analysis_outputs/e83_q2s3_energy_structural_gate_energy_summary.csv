@@ -1,0 +1,2 @@
+source,source_rows,source_preds,used_top_predictions,best_e82_tag,best_e82_all_delta,energy_mean,energy_p90,energy_p99,energy_max,nonzero_rows,source_summary
+e82_top20_q2s3_energy,8402,8403,20,e82_e76_delta_graft_q2s3_530bf861,-7.903276394660708e-06,0.0057493624353443405,0.02439019787747872,0.04351034239414184,0.050727605361699714,77,"[{""source"":""e72"",""source_rows"":1051,""source_preds"":4770},{""source"":""e75"",""source_rows"":120,""source_preds"":121},{""source"":""e76"",""source_rows"":1894,""source_preds"":2068}]"
