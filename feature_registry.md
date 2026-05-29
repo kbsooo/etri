@@ -1160,6 +1160,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E153 finds `103` three-of-four near misses and no all-four row. `102` are `missing_actionable`; `101/102` fail active/Q2S3 while relaxed/E72/material blockers are zero. Target contrast shows S3 `+0.022774`, S4 `+0.020949`, S2 `+0.018800`, and Q2 effectively absent. The lone `missing_relaxed` row is Q1-heavy and fails raw/world health.
 - Policy: make this the next local decoder target. A candidate can be materialized only if it repairs S3 active-boundary actionability or raw/world relaxed health while preserving relaxed, E72-budget, post-E101, and actionability gates simultaneously.
 
+### F131. E154 repaired all-four branch energy
+
+- Hidden structure: the S3 active-boundary blocker is local enough that selected E101-active S3 rollback can make E144-plus-orthogonal residual movement satisfy every current health gate.
+- Candidates: S3 rollback mask, E101-active S3 rank, keep factor, all-four flag, E72-budget flag, post-E101 p95, active/actionability flag, local material flag, cosine versus E144/E143/E142, cosine versus E72/E101, target L1 shares, and changed-cell overlap with E144.
+- Label vs split test: valid as a submission-health and latent-geometry feature because it repairs a pre-identified local gate failure without using new public labels. Invalid as a general feature generator until public feedback confirms whether E154's additional branch body is public-real.
+- Current evidence: E154 creates `7458` repair rows from `102` E153 missing-actionable sources and finds `10` all-four materializable rows. The selected row `top_s3_e101_3` keep `0.25` rolls back `3` S3 cells, has all-minus-E95 `-0.000012158050`, moves `294` cells versus E95, contains all `185` E144 cells, and is E144-collinear (`cos 0.983569299`) while avoiding E72/E101 negative axes (`-0.031628728` / `-0.005523655`).
+- Policy: use E154 as the current highest-information public sensor. If public improves, promote S3 active-boundary repair as a real decoder target. If public worsens while E144 later improves, demote this feature to overfit branch-extension energy.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

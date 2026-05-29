@@ -1204,3 +1204,12 @@
 - Implementation issue possible: low to medium. E153 initially exposed a candidate-row identity issue and fixed it with `variant_pos`; after the fix, rows match E152's `2880` projected count. The conclusion is still bounded to E152's projection family.
 - Bottleneck implication: the next useful decoder must make S3 active-boundary safety and raw/world health co-occur. Global threshold relaxation would likely create public-tail exposure rather than a healthy candidate.
 - Do not repeat: relaxing active/Q2S3, action-cos, relaxed, E72, or post-E101 gates globally as the next default. Use E153 blocker classes as the repair target instead.
+
+## FH134. The E153 S3 active-boundary blocker is terminal
+
+- Failed hypothesis: because `102/103` E152 near misses failed actionability and `101/102` failed active/Q2S3, the E152 branch-orthogonal family was fundamentally incompatible with the strict/E72/post-E101/actionability intersection.
+- Observed result: E154 repaired the dominant blocker directly. S3-only rollback over the `102` missing-actionable sources generated `7458` rows, `10` all-four repairs, and `10` materializable rows. The selected `submission_e154_s3repair_9f2e2e73.csv` rolls back only `3` top E101-active S3 cells with keep `0.25`, keeps all-four gates open, and improves local all-minus-E95 to `-0.000012158050`.
+- Why discard: the blocker was localized to a few S3 active-boundary cells in the right source rows. It did not require relaxing global gates or abandoning the branch-orthogonal family.
+- Implementation issue possible: medium. The scan is finite and still E144-branch-collinear; it proves repairability inside this local grid, not a broad new representation. The scoring pipeline reuses E83/E130/E142 controls and materializes only rows that beat E144 locally.
+- Bottleneck implication: the live bottleneck shifts from "no all-four intersection exists" to "does the repaired all-four E144-plus-orthogonal branch survive public labels?" E154 is now the highest-information sensor, while E144 is the conservative contrast.
+- Do not repeat: treating active/Q2S3 failure as a branch killer. Repair S3 active-boundary first, then test public feedback. If E154 fails but E144 wins, the issue is likely added branch body or exact rollback selection, not the entire S3 repair concept.

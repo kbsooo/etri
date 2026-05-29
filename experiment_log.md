@@ -2337,3 +2337,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - missing-actionable target lift is S-side: S3 `+0.022774`, S4 `+0.020949`, S2 `+0.018800`; Q2 is effectively zero, so the old "Q2S3" action fail is really S3 active-boundary exposure.
 - Interpretation: E153 sharpens E152. The dominant near miss is not an E72-budget or post-E101 problem. It is an S3 active-boundary/actionability problem. The only actionable-safe escape is Q1-heavy and fails raw/world structural health. This is a decoder-state incompatibility, not a single threshold miss.
 - Decision: no submission. The next local experiment should target S3 active-boundary repair over the `102` missing-actionable rows, or a raw/world-preserving repair for the lone actionable Q1-heavy row. Success criterion remains all-four intersection only.
+
+## E154. S3 Active-Boundary Repair Probe
+
+- Observe: E153 localized the E152 near-miss failure to `102` missing-actionable rows, with `101/102` failing the old active/Q2S3 gate and target anatomy showing S3/S4/S2 exposure rather than Q2.
+- Wonder: can the blocker be repaired by rolling back only selected S3 active-boundary cells toward E95, while preserving relaxed structural health, E72-budget safety, post-E101 p95 safety, and material local reward?
+- Method: `analysis_outputs/e154_s3_active_boundary_repair_probe.py` rebuilds E152 predictions, keeps the `102` missing-actionable sources, and applies S3-only rollback masks (`s3_e101_active`, `top_s3_e101_k`, `top_s3_abs_k`, `top_s3_composite_k`) with a narrow amplitude grid. It rescored `7458` repair rows with the same E83/E130/E142 stress stack and materialized only all-four rows that beat E144 locally.
+- Result:
+  - source missing-actionable controls: `102`.
+  - generated S3 repair rows: `7458`.
+  - all-four repairs: `10`.
+  - materialized rows: `10`.
+  - selected file: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+  - selected row: `top_s3_e101_3`, keep `0.25`, `3` S3 rollback cells, source `e152_efe33e46`.
+  - selected all-minus-E95: `-0.000012158049659705128`; this is better than E144's local `-0.000009725930`.
+  - E154 moved `294` cells vs E95 and contains all `185` E144 cells; cosine with E144 `0.983569299`, E143 `0.975091856`, E142 `0.939950819`, E72 `-0.031628728`, E101 `-0.005523655`.
+  - logit target L1 share: Q3 `0.356221`, Q1 `0.233468`, S3 `0.152445`, S2 `0.134198`, S4 `0.123668`, Q2/S1 approximately `0`.
+- Interpretation: E153's dominant blocker was real but not terminal. A tiny S3 E101-active rollback is enough to open the all-four intersection for an E144-plus-orthogonal source. This is not a broad new representation; E154 remains E144/E143 branch-collinear, but it is the first non-E144 projected repair that satisfies relaxed, E72-budget, post-E101, actionability, and local material gates together.
+- Decision: promote `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` as the highest-information next public sensor. E144 remains the cleaner conservative contrast if the goal is to test the earlier branch alone. If E154 wins, the world model becomes "E95 + E144 residual branch + S3 active-boundary repair is public-real." If E154 loses while E144 later wins, the added orthogonal body or the three-cell S3 rollback was overfit; if both lose, close the transfer-budget residual branch rather than resweeping top-k masks.

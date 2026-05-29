@@ -1728,6 +1728,18 @@ target co-occurrence
 - public LB 관측 반응: none directly; no file is produced. If E144 improves, H147 remains a local decoder-expansion bottleneck. If E144 fails, H147 becomes stronger because the same S3/Q3/active-boundary weakness seen in E147/E148/E149 likely controls the branch.
 - 제출 전략: no E153 submission. The next file must be generated from S3 active-boundary repair of the `102` missing-actionable rows or raw/world-health repair of the lone actionable row, and must pass all-four gates before materialization.
 
+### H148. S3 active-boundary repair can open the E152 all-four gate, but only as an E144-collinear branch extension
+
+- 상태: supported by E154; materialized candidate.
+- 왜 그럴듯한가: E153 showed the dominant E152 near misses already pass relaxed/E72/post-E101 gates and fail only S3-heavy actionability. If the conflict is local rather than terminal, a tiny S3 rollback on the right active-boundary cells should open all-four without destroying local reward.
+- 맞다면: S3-only rollback should create all-four rows; the surviving rows should target E101-active/S3 cells, keep E72/post-E101 safety, and remain close to the E142/E143/E144 residual branch rather than forming a broad new axis.
+- 틀리다면: S3 rollback should either leave actionability closed, break relaxed/post-E101 health, or produce only non-material micro rows worse than E144.
+- 최소 실험: `analysis_outputs/e154_s3_active_boundary_repair_probe.py`, rolling back selected S3 cells from E152 `missing_actionable` rows toward E95 and rescoring with the same relaxed/E72/post-E101/actionability/local-material gates.
+- 관측: `7458` S3 repair rows from `102` sources produced `10` all-four rows and `10` materializable rows. Selected `submission_e154_s3repair_9f2e2e73.csv` uses `top_s3_e101_3`, keep `0.25`, and `3` S3 rollback cells. It has all-minus-E95 `-0.000012158050`, beats E144 locally, moves `294` cells versus E95, contains all `185` E144 cells, and has cosine with E144 `0.983569299` while staying nearly orthogonal to E72/E101 negative axes (`-0.031628728` / `-0.005523655`).
+- 성공/폐기 기준: support H148 until public feedback rejects E154 or shows E144 is better. A public E154 win strengthens S3 active-boundary repair as the missing gate-intersection law. An E154 loss with E144 win means the added branch-orthogonal body or exact S3 rollback is overfit. Losses for both E154 and E144 close the transfer-budget residual branch as a public-sensor path.
+- public LB 관측 반응: E154 is now the highest-information next public sensor because it tests the repaired all-four intersection directly. E144 remains the conservative same-branch contrast.
+- 제출 전략: submit `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` first if using one slot for the current live hypothesis. Keep `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the contrast file, not the default first file.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

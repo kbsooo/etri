@@ -546,3 +546,21 @@ E153 explains the E152 gate-intersection failure instead of creating another can
 - missing-actionable target lift versus rest: S3 `+0.022774`, S4 `+0.020949`, S2 `+0.018800`; Q2 is effectively absent.
 
 The validation implication is now target-specific. The near misses are not failing because the transfer-budget or post-E101 p95 gates are too strict. Almost all of them pass those gates and die on S3 active-boundary actionability. The only actionability-safe escape dies on raw/world relaxed health. A new local decoder must therefore make S3 active-boundary safety and raw/world health co-occur; relaxing one global scalar gate is not a valid stress fix.
+
+## Update After E154
+
+E154 tests whether the E153 S3 actionability blocker is repairable rather than terminal.
+
+- source missing-actionable controls: `102`.
+- S3 repair rows: `7458`.
+- all-four repairs: `10`.
+- materialized rows: `10`.
+- selected file: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+- selected repair: `top_s3_e101_3`, keep `0.25`, `3` S3 rollback cells.
+- selected all-minus-E95: `-0.000012158050`.
+- E154 changed cells versus E95: `294`.
+- overlap with E144 cells: `185/185`.
+- cosine with E144/E143/E142: `0.983569299` / `0.975091856` / `0.939950819`.
+- cosine with E72/E101 public-negative axes: `-0.031628728` / `-0.005523655`.
+
+The validation implication changes the live branch. The E152 all-four failure was not an irreversible gate incompatibility: a very small S3 E101-active rollback can open it. But the successful row remains E144-branch geometry, so this is not a broad escape from the plateau. E154 is now the sharpest public sensor for the current hypothesis; E144 becomes the conservative contrast for the unrepaired branch.
