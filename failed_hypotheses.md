@@ -762,3 +762,12 @@
 - Implementation issue possible: low to medium. E94 uses the E72-adverse direction as a public-negative anchor, not true public labels for unobserved files. The discarded claim is only that soft-health metrics are sufficient without a hard-tail check.
 - Bottleneck implication: the current candidate choice has separate axes: E86 maximum soft-health/upside, E90 row-coherent compromise, E89 lower hard-tail/downside, and E85 conservative floor.
 - Do not repeat: using posterior CE, target-manifold consistency, or aggregate soft-health gain as a standalone submission ranker. Pair every soft representation metric with hard-label tail exposure against known public-negative anchors.
+
+## FH85. Lowest hard-tail exposure alone is a submission-safe objective
+
+- Failed hypothesis: after E94, the next candidate can be selected by minimizing E72-adverse hard-label tail exposure directly.
+- Observed result: E95 found a raw non-control best tail of `0.000146152`, but those extreme low-tail rows failed strict structural stress because they were broad rollback/mixmin-like moves. The submission-worthy row was not the lowest-tail row. It was the best strict non-dominated candidate, `analysis_outputs/submission_e95_hardtail_541e3973.csv`, with E72-adverse tail `0.000788914`, all delta `-0.0000262074`, hidden Q2/S3 `-0.000251140`, world `-0.000132931`, block win `0.750000`, and block-tail safe `0.972222`.
+- Why discard: hard-tail minimization can erase useful E86 structure. Tail exposure is a gate and risk energy, not a scalar objective to optimize without hidden/world/block and local-margin survival.
+- Implementation issue possible: low. E95 explicitly separated raw best-tail from strict best-tail, deduped predictions, and used positive-tail masks to avoid zero-tail quantile artifacts.
+- Bottleneck implication: the bottleneck is a three-way tradeoff: hard-label tail risk, structural retention, and local margin. E95 creates a lower-downside candidate, but E86/E90 remain meaningful because they test different points on that frontier.
+- Do not repeat: promoting mixmin-like or low-movement rows because their hard-tail exposure is tiny. Require strict structural survival and non-trivial movement before considering a hard-tail-gated submission.

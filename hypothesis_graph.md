@@ -1032,6 +1032,18 @@ target co-occurrence
 - public LB 기대 반응: if E89 beats E90/E86, hard-tail downside dominates. If E86 beats E89/E90, soft structural gain dominates despite tail exposure. If E85 beats all, public prefers the conservative floor over consensus/decontamination variants.
 - 제출 전략: do not create an E94-ranked submission. Use E94 to clarify the tradeoff: E86 is max-upside soft-health, E90 is balanced row-coherent decontamination, E89 is lower-downside among the main three, and E85 is the conservative floor.
 
+### H90. E72-adverse hard-tail exposure can be localized into a new post-E86 gate
+
+- 상태: partially supported; pending public observation.
+- 왜 그럴듯한가: E94 showed hard-tail exposure explains the E72 miss better than soft representation health. If that exposure is not just a scalar risk score, the risky cells should support a localized fallback that improves downside without fully reverting E86.
+- 맞다면: an E86-derived fallback candidate should remain strict/deployable, reduce E72-adverse hard-tail exposure below E89 or E90, and keep local all-combo margin below the candidate it claims to dominate. It should not be equivalent to mixmin or a broad near-zero rollback.
+- 틀리다면: every low-tail candidate should fail strict hidden/world/block stress, collapse to mixmin/E85, or only reproduce the already-known E89/E90 Pareto points.
+- 최소 실험: `analysis_outputs/e95_hard_tail_gate_scan.py`, sweeping E86/E90 hard-tail row/cell fallback to E89/E85/mixmin plus scalar blends, with positive-tail masks, duplicate prediction deduping, and strict/non-strict tail separation.
+- 관측: E95 generated `178` rows, evaluated `178`, found `112` strict rows and `19` strict non-dominated rows. Raw best non-control tail was `0.000146152` but failed strict stress, confirming that tail minimization alone is a rollback trap. The selected strict file `analysis_outputs/submission_e95_hardtail_541e3973.csv` starts from E86 and falls back to E85 on E72-adverse top-tail cells. It has all delta `-0.0000262074`, E72-adverse exposure `0.000788914`, world `-0.000132931`, hidden Q2/S3 `-0.000251140`, block win `0.750000`, and block-tail safe `0.972222`.
+- 성공/폐기 기준: supported as a candidate generator because E95 beats E89 on both hard-tail exposure (`0.000788914 < 0.000799109`) and local margin (`-2.62074e-5 < -2.58960e-5`) while keeping non-trivial movement (`550` moved cells, active targets `Q2,S1,S2,S3`). Not a universal best because E86 keeps stronger upside and E90 keeps more row-coherent structural retention.
+- public LB 기대 반응: if E95 improves over mixmin and beats E89/E90/E86 when submitted, public is sensitive to E72-adverse hard-tail cells and the fallback gate is real. If E95 is worse than E89, E95 overfit the local hard-tail proxy or E85 fallback harms public despite tail reduction. If E86 beats E95, structural/source-consensus upside dominates the E72 tail risk.
+- 제출 전략: use `analysis_outputs/submission_e95_hardtail_541e3973.csv` as the highest lower-downside hard-tail public sensor. It asks a sharper question than E89: whether E72-adverse hard-tail localization adds information beyond the earlier E72 movement fallback.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
