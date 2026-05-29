@@ -735,3 +735,12 @@
 - Implementation issue possible: low to medium. The model class is intentionally simple and uses existing movement features. A different selector target might work, but the discarded claim is specifically that the current known-LB movement regression can rank the next post-mixmin files.
 - Bottleneck implication: public LB observations remain sensors, not enough training labels for a submission ranker. The next file must be chosen by hypothesis value and local stress, not proxy-predicted LB.
 - Do not repeat: building an E91-style proxy-ranked submission or using `proxy_pred_mean` from known-public regression to order E86/E90/E89. Use E86 for max-upside, E90 for row-coherent decontamination, and E89 for minimum-contamination if those are the questions being tested.
+
+## FH82. Hidden-block posterior alignment can rank post-mixmin candidates
+
+- Failed hypothesis: the current hidden-block posterior representation should be public-safe enough to choose among E86, E90, E89, and E85.
+- Observed result: E92 ranked the known public-negative E72 file first by hidden-block alignment and posterior CE. E72 had posterior CE delta `-0.000287300` versus mixmin, ahead of no-Q2 `-0.000257196`, E86 `-0.000255621`, E90 `-0.000250767`, E89 `-0.000235903`, and E85 `-0.000207023`.
+- Why discard: a representation that most rewards the failed E72 movement is not public-safe as a selector, even if it is coherent as a hidden-block target. This is exactly the LeJEPA failure mode: a latent can have healthy-looking block geometry while encoding a shortcut or target that does not match the public metric.
+- Implementation issue possible: medium. The posterior was built from prior hidden-block work and may still be useful as an energy feature. The discarded claim is narrower: posterior CE alone can rank the next public submission.
+- Bottleneck implication: representation/capacity exists, but public-aligned translation is still missing. Hidden-block posterior, E72 contamination, local combo stress, and public LB anchors must remain separate energies.
+- Do not repeat: using `hidden_block_posterior_alignment_score` or posterior CE delta as a direct submission ranker. Treat E92 as a representation-health warning and keep E86/E90/E89 as hypothesis sensors.

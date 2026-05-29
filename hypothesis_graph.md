@@ -995,6 +995,18 @@ target co-occurrence
 - public LB 기대 반응: no submission. Future E86/E90/E89 public scores should be interpreted as sensors, not as validation of this proxy.
 - 제출 전략: do not materialize an E91 proxy-ranked file. Choose E86, E90, or E89 by the hypothesis being tested: maximum source-consensus upside, row-coherent decontamination, or minimum contamination.
 
+### H87. Hidden-block posterior alignment can select among E86/E90/E89
+
+- 상태: rejected as public-safe selector; retained as representation diagnostic.
+- 왜 그럴듯한가: the hidden-block posterior is the closest current JEPA-style target representation: context is subject-calendar/raw/block state, target is hidden block rate. If E90's row-coherent repair is genuinely more DGP-aligned than E89, this representation should prefer E90 without also preferring known-bad E72.
+- 맞다면: E90 should improve posterior CE versus mixmin, reduce E72 failed-direction agreement versus E86, and not be dominated by the known public-negative E72 file.
+- 틀리다면: the hidden-block posterior should rank E72 first, or reward candidates mainly by the same movement that failed public rather than by public-safe block coherence.
+- 최소 실험: `analysis_outputs/e92_hidden_block_posterior_alignment_audit.py`, comparing mixmin-relative E72/E85/E86/no-Q2/E90/E89 movement against `hidden_block_posterior_block_summary.csv` posterior rates, endpoint rates, block-target R2, high-posterior-shift block concentration, and E72 failed-direction mass agreement.
+- 관측: `failed_e72` is the hidden-block alignment leader and best posterior CE candidate (`posterior_ce_delta_all_vs_mixmin = -0.000287300`) despite being public-negative. Among unobserved post-mixmin candidates, no-Q2 and E86 have the strongest posterior CE (`-0.000257196`, `-0.000255621`), E90 is close (`-0.000250767`), and E89 has the highest block-target R2 (`0.356204`) plus lowest E72 direction mass among E86/E90/E89 (`0.635838`).
+- 성공/폐기 기준: rejected as selector because a representation score that ranks known-bad E72 first is E72-tainted. The useful evidence is diagnostic separation: posterior CE favors no-Q2/E86, decontamination favors E89, and E90 remains an intermediate structural-retention compromise rather than an independently certified best.
+- public LB 기대 반응: no submission. If E86 later improves, posterior alignment was useful despite E72 contamination. If E89 improves, E72 contamination dominates posterior CE. If E90 improves, row-coherent compromise is public-real even without being the posterior leader.
+- 제출 전략: do not materialize an E92-ranked file. Keep E86/E90/E89 as hypothesis sensors; do not use hidden-block posterior CE alone as a public-safe ranking target.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
