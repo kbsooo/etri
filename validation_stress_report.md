@@ -400,3 +400,18 @@ E144 tests whether E143's repair boundary was only a coarse-grid artifact.
 - active/Q2S3, original strict actionability, relaxed structural, E72-budget, and post-E101 gates all pass.
 
 This supersedes E143 as the next public file. The validation edge is very small, but it is directionally clean: E144 beats E143 locally and on post-E101 p95 while preserving the same strict gates. The current validation ranking is E144 first, E143 conservative fallback, E142 higher-upside/higher-risk fallback.
+
+## Update After E145
+
+E145 registers the public-feedback stress for E144 before the score is known.
+
+- decoder rows: `7`.
+- breakthrough win: `<=0.576271330`.
+- clean win: `(0.576271330, 0.576284330]`.
+- micro win: `(0.576284330, 0.576289330]`.
+- tie: `(0.576289330, 0.576293330]`.
+- fine-loss branch alive: `(0.576293330, 0.576300366]`.
+- branch loss: `(0.576300366, 0.576306641]`.
+- hard fail: `>0.576306641`.
+
+This is not a model stress; it is an interpretation stress. The key validation rule is that a loss no worse than E101 may justify E143 as a clean boundary contrast, while worse-than-E101 blocks automatic same-family rescue. Worse than mixmin closes the E142/E143/E144 branch as public-sensor overfit.

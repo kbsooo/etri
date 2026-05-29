@@ -699,3 +699,27 @@ E144 fine-boundary audit 전까지 제출 파일은 `analysis_outputs/submission
 `E95 이후의 다음 가망 있는 움직임은 여전히 transfer-budget-neutral residual decoder다. 하지만 그 decoder의 public-tail 안전성은 거친 full rollback보다 더 미세한 active/Q2S3 경계에서 결정된다. E144가 public에서 좋아지면 이 fine boundary가 실재한다는 뜻이고, E144는 실패하지만 E143이 살아나면 keep0.15가 public-tail을 너무 낙관한 것이다.`
 
 지금 제출할 파일은 하나다. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.
+
+## 추가 관찰: E144 결과 해석은 미리 고정해야 한다
+
+`analysis_outputs/e145_e144_public_feedback_decoder.py`로 E144 public feedback decoder를 만들었다.
+
+질문은 이것이었다.
+
+`E144의 public LB가 나오면, 어느 구간부터 fine-boundary 세계관이 살아나고, 어느 구간부터 E143/E142 자동 후속을 막아야 하는가?`
+
+결과:
+
+- `breakthrough_win`: `<=0.576271330`.
+- `clean_win`: `(0.576271330, 0.576284330]`.
+- `micro_win`: `(0.576284330, 0.576289330]`.
+- `tie`: `(0.576289330, 0.576293330]`.
+- `fine_loss_branch_alive`: `(0.576293330, 0.576300366]`.
+- `branch_loss`: `(0.576300366, 0.576306641]`.
+- `hard_fail`: `>0.576306641`.
+
+현재 세계관을 다시 압축한다.
+
+`E144는 점수 자체보다 해석 분기표가 중요하다. E144가 E95를 읽을 만큼 이기면 fine active/Q2S3 boundary가 살아난다. E95보다 지지만 E101보다 나쁘지 않으면 E143만 같은 family contrast로 남는다. E101보다 나쁘면 E143/E142를 자동으로 구하면 안 된다. mixmin보다 나쁘면 E142/E143/E144 branch 자체가 public-sensor overfit이다.`
+
+다음으로 가장 정보량이 큰 행동은 E144를 제출한 뒤 `analysis_outputs/e145_e144_public_feedback_decoder.csv`로만 해석하는 것이다.

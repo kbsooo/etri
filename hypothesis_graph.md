@@ -1620,6 +1620,18 @@ target co-occurrence
 - public LB 관측 반응: if E144 beats `0.5762913298`, strengthen the fine-boundary version of the residual-decoder world. If E144 loses but E143 wins, the retained `0.15` active tail was too optimistic. If E144, E143, and E142 all lose, reject this E101-conditioned transfer-budget branch as a selector.
 - 제출 전략: submit `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` before E143; keep E143 as conservative fallback.
 
+### H139. E144 public feedback must be decoded before same-family followups
+
+- 상태: decoder registered; waiting for public observation.
+- 왜 그럴듯한가: E144's local advantage over E143 is only `~1.75e-7`, while prior public observations moved by `1e-5` to `1e-3`. The next public score can easily be misread unless the branch rules are fixed in advance.
+- 맞다면: E144 public LB can be mapped to stable actions: wins promote E144; a small loss no worse than E101 keeps E143 as a boundary contrast; worse-than-E101 blocks automatic E143/E142 rescue; worse-than-mixmin closes the branch.
+- 틀리다면: the bands will be too coarse to guide action, or the next public result will require a hidden condition not represented by E95/E101/mixmin anchors.
+- 최소 실험: `analysis_outputs/e145_e144_public_feedback_decoder.py`, mapping future E144 LB into seven pre-registered bands relative to E95, E101, and mixmin.
+- 관측: E145 defines `breakthrough_win <=0.576271330`, `clean_win <=0.576284330`, `micro_win <=0.576289330`, `tie <=0.576293330`, `fine_loss_branch_alive <=0.576300366`, `branch_loss <=0.576306641`, and `hard_fail >0.576306641`.
+- 성공/폐기 기준: public feedback must be interpreted through this decoder before any E143/E142 or new boundary followup. If the decoder gives no actionable branch, mark the active-boundary worldview underidentified rather than forcing a next file.
+- public LB 관측 반응: E144 win strengthens H138. E144 fine-loss but no worse than E101 permits E143 as the clean contrast. Worse than E101 weakens H138 enough to block automatic same-family rescue. Worse than mixmin rejects the E142/E143/E144 transfer-budget branch.
+- 제출 전략: no E145 submission. Consult `analysis_outputs/e145_e144_public_feedback_decoder.csv` immediately after E144 LB arrives.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

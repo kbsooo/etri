@@ -1088,6 +1088,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E144 generated `206` repair variants, `32` original-strict variants, and `9` E144-submit variants. The materialized `submission_e144_activeboundary_d7b4b331.csv` uses `top_q2s3_weighted_24`, keep factor `0.15`, rolls back `24` cells, keeps `185` E95-relative changed cells, has local all-minus-E95 `-0.000009725930`, E72 gap `~0`, post-E101 p95 `-0.000003430489`, and passes active/Q2S3 plus original strict actionability.
 - Policy: current top submission candidate. Use it before E143 because it keeps all E143 gates while improving local all-minus-E95 and post-E101 p95. If public rejects it but E143 later succeeds, mark F121 as too fine and keep F120's conservative boundary.
 
+### F122. E144 public-feedback decoder energy
+
+- Hidden structure: E144's tiny local edge may be public-real, noise-scale, or a public-sensor overfit; the next LB must be decoded relative to E95, E101, and mixmin rather than interpreted after the fact.
+- Candidates: E144 public LB, delta vs E95, delta vs E101, delta vs mixmin, E144 local edge over E143, and pre-registered branch labels.
+- Label vs split test: valid as a public-sensor guard because it creates no predictions and blocks post-hoc same-family rescue. It is not a feature for model training.
+- Current evidence: E145 defines seven bands: breakthrough win `<=0.576271330`, clean win `<=0.576284330`, micro win `<=0.576289330`, tie `<=0.576293330`, fine-loss branch alive `<=0.576300366`, branch loss `<=0.576306641`, and hard fail `>0.576306641`.
+- Policy: consult before any post-E144 action. E143 is allowed only in the no-worse-than-E101 loss band; worse-than-E101 blocks E143/E142 automatic rescue, and worse-than-mixmin closes the branch.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

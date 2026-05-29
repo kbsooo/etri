@@ -443,6 +443,8 @@ Update after E143: E142 is superseded as the first file by `analysis_outputs/sub
 
 Update after E144: E143 is now superseded as the first file by `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`. E144 searches the fine boundary around E143 and finds `9` original-strict submit variants that beat E143 locally without worsening post-E101 p95. The selected top24/keep0.15 row keeps all E143 gates, improves local all-minus-E95 from `-0.000009551358` to `-0.000009725930`, and improves post-E101 p95 from `-0.000003368915` to `-0.000003430489`. Submit E144 first; use E143 only if public feedback says the finer retained movement was too optimistic.
 
+Update after E145: `analysis_outputs/e145_e144_public_feedback_decoder.py` pre-registers the E144 interpretation bands. If E144 is `<=0.576284330`, treat the fine-boundary branch as public-real at readable scale. If it is `(0.576284330, 0.576289330]`, promote E144 but do not claim a structural breakthrough. If it is `(0.576289330, 0.576293330]`, keep E95 as practical frontier and do not over-interpret. If it is `(0.576293330, 0.576300366]`, E143 becomes the only same-family contrast worth considering. If it is worse than E101, do not auto-submit E143/E142; if worse than mixmin, close the branch.
+
 ## Current 0.54 Assessment
 
 0.54 is not blocked by a single missing model family. To approach it, one of two things must happen:

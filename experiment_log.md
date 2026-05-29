@@ -2190,3 +2190,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - active/Q2S3 gate, original strict actionability, relaxed structural, E72-budget, and post-E101 gates all pass.
 - Interpretation: E143's repair was directionally right but coarse. The live boundary is not "rollback exactly 21 cells to zero"; it is a fine active-tail cliff around top `22..24` Q2/S3-weighted cells with small retained movement allowed. The edge is tiny, so this is not a 0.54 path by itself, but it is the cleanest next public sensor because it preserves all E143 health checks while recovering a little more transfer-budget-neutral reward.
 - Decision: promote `submission_e144_activeboundary_d7b4b331.csv` above E143. If public improves, strengthen the "fine active/Q2S3 boundary" worldview. If it loses while E143 later wins, the retained `0.15` tail was too optimistic; if E144/E143/E142 all lose, reject E101-conditioned transfer-budget clipping as a submission selector.
+
+## E145. E144 Public Feedback Decoder
+
+- Observe: E144 is now the next public sensor, but its local edge over E143 is only `-0.000000174572`. Without a pre-registered decoder, any public score near E95 could be overinterpreted after the fact.
+- Wonder: what exact public LB bands would validate the fine-boundary world, leave it ambiguous, or kill the E142/E143/E144 transfer-budget branch?
+- Method: `analysis_outputs/e145_e144_public_feedback_decoder.py` reads the E144 frontier rows and defines E144 public score bands relative to E95 `0.5762913298`, E101 `0.5763003660`, and mixmin `0.5763066405`.
+- Result:
+  - decoder rows: `7`.
+  - `breakthrough_win`: `<=0.576271330`.
+  - `clean_win`: `(0.576271330, 0.576284330]`.
+  - `micro_win`: `(0.576284330, 0.576289330]`.
+  - `tie`: `(0.576289330, 0.576293330]`.
+  - `fine_loss_branch_alive`: `(0.576293330, 0.576300366]`.
+  - `branch_loss`: `(0.576300366, 0.576306641]`.
+  - `hard_fail`: `>0.576306641`.
+- Interpretation: the smallest experiment that can kill the current world model is simply E144 public feedback, but it must be read against E145. A loss that stays no worse than E101 keeps E143 as the only same-family contrast; a score worse than E101 blocks E143/E142 automatic rescue; worse than mixmin closes the whole branch as selector overfit.
+- Decision: no submission is materialized. Use `analysis_outputs/e145_e144_public_feedback_decoder.csv` before any post-E144 action.
