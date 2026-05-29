@@ -754,6 +754,35 @@ E144 fine-boundary audit 전까지 제출 파일은 `analysis_outputs/submission
 
 지금 제출할 파일은 여전히 하나다. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.
 
+## 추가 관찰: branch 밖 signal은 많지만 decoder 교집합은 없다
+
+`analysis_outputs/e152_branch_orthogonal_decoder_audit.py`로 E151의 escape hatch를 직접 찔렀다.
+
+질문은 이것이었다.
+
+`E137-E140 안에 E144 branch와 다른 non-collinear signal이 이미 있고, 단지 E144 주변만 보느라 놓친 것인가?`
+
+결과:
+
+- source rows: `4650`.
+- candidate-interest rows: `3953`.
+- E144 기준 non-collinear source rows: `4650`.
+- projected rows: `2880`.
+- relaxed structural rows: `349`.
+- E72-budget rows: `1208`.
+- post-E101-safe rows: `564`.
+- active-veto actionable rows: `122`.
+- all-four intersection: `0`.
+- best local projected move: `-0.0000455468`.
+- `relaxed_budget_post101` intersection: `102`, best `-0.0000128032`, but active-veto/actionability fails.
+- `budget_post101_actionable` intersection: `1`, best `-0.0000106142`, but relaxed structural fails.
+
+현재 세계관을 다시 압축한다.
+
+`0.576대 벽은 branch 밖 signal 부재가 아니다. Signal은 많다. 문제는 signal을 probability movement로 번역하는 순간 structural reward, E72 budget, post-E101 safety, active-veto actionability가 동시에 열리지 않는다는 점이다.`
+
+그래서 E152는 제출 파일을 만들지 않는다. E144는 여전히 다음 public sensor다. E144를 기다리는 동안의 다음 질문은 "더 orthogonal한 방향을 찾자"가 아니라, `E138 relaxed-budget-post101 rows는 왜 active-veto에서 죽고, E139 budget-post101-actionable row는 왜 relaxed structural에서 죽는가?`다.
+
 ## 추가 관찰: 0.5762913298 plateau는 후보 탐색 실패보다 해상도/디코더 병목에 가깝다
 
 `analysis_outputs/e151_plateau_resolution_bottleneck_audit.py`로 지금까지의 E98/E120/E129-E150 증거를 한 테이블로 묶었다.

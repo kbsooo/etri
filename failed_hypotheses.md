@@ -1186,3 +1186,12 @@
 - Bottleneck implication: the frontier is a selector-resolution and representation-to-probability decoder problem. The useful next branch must create a non-collinear movement that survives strict/E72/post101 p95 gates above `1e-5`, not rescore old CSVs.
 - Do not repeat: old submission universe ranking, same-family blend/top-count sweeps, Q2/S3 amplitude tuning, or broad capacity experiments unless E144 public feedback specifically reopens that branch.
 - Remaining question: can a new latent target encode transfer-tail budget and worst-tail geometry directly enough to produce a non-collinear, public-tail-safe probability movement?
+
+## FH132. Branch-orthogonal projection is enough to escape E144 collinearity
+
+- Failed hypothesis: E151's plateau may be solved by taking existing E137-E140 decoder rows, projecting away the E144 branch, and keeping the remaining non-collinear component.
+- Observed result: E152 finds non-collinear signal everywhere (`4650/4650` source rows), but `0/2880` projected rows pass relaxed structural, E72-budget, post-E101, and active-veto/actionability together. The best local projected move is `-0.0000455468` but fails E72/structural/actionable gates. `relaxed_budget_post101` has `102` rows but actionability is false; `budget_post101_actionable` has `1` row but relaxed structural is false.
+- Why discard: orthogonality is not the missing condition. Projection can preserve or enlarge local reward, but it does not make the decoder satisfy the public-tail and active-boundary constraints simultaneously.
+- Implementation issue possible: medium. The audit reuses existing E137-E140 scored families and a finite projection grid, so a genuinely new decoder could still work. Low for this specific shortcut because controls and blocker intersections are explicit.
+- Bottleneck implication: the live bottleneck is gate compatibility, not lack of non-collinear movement. The next model should predict why gates fail together, not search more top-k/alpha projections.
+- Do not repeat: branch-orthogonal full/top50/top100 alpha sweeps over E137-E140 as the next default. Treat E152 outputs as training/diagnostic material for a gate-intersection latent instead.

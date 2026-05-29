@@ -510,3 +510,22 @@ E151 audits the plateau itself rather than a new candidate.
 - live branch counts: E142 relaxed `35`, E143 strict `15`, E144 submit `9`.
 
 The validation implication is strong: the plateau is not mostly an old-candidate ranking failure. Existing validators cannot resolve the frontier edge, and the representation/decoder probes find either local reward or public-tail safety without submit-safe overlap. The only current overlap is the E142/E143/E144 branch, which is nearly E143-collinear. The next validation object must prove sub-`5e-6` ordering on E95/E101/E144 or produce a non-collinear decoder passing strict/E72/post101 p95 gates.
+
+## Update After E152
+
+E152 tests E151's non-collinear escape hatch directly.
+
+- source rows: `4650`.
+- candidate-interest source rows: `3953`.
+- source rows non-collinear to E144: `4650`.
+- projected rows: `2880`.
+- relaxed structural rows: `349`.
+- E72-budget rows: `1208`.
+- post-E101 rows: `564`.
+- active-veto actionable rows: `122`.
+- strict/E72/post101/actionable all-four intersection: `0`.
+- best local projected move: `-0.0000455468`.
+- best `relaxed_budget_post101` row: `-0.0000128032`, but actionability is false.
+- only `budget_post101_actionable` row: `-0.0000106142`, but relaxed structural is false.
+
+The validation implication is narrower and harsher than E151. Non-collinear signal is present, so the latent has not collapsed into the E142/E143/E144 branch. But the current decoder cannot make the necessary gates coincide. The next validation object should explain the gate-intersection failure itself, not repeat orthogonal projection/top-k/alpha scans.

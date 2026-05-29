@@ -1704,6 +1704,18 @@ target co-occurrence
 - public LB 관측 반응: E144 remains the smallest public kill test. Win validates the narrow branch, not a broad representation breakthrough. Loss strengthens the decoder-overfit interpretation unless attribution isolates fine-tail/S3.
 - 제출 전략: no E151 submission. Submit E144 first if using a slot; otherwise build an independent transfer-budget-neutral decoder rather than resweeping old blends.
 
+### H146. Non-collinear signal exists, but current decoder gates are mutually incompatible
+
+- 상태: supported by E152; no submission.
+- 왜 그럴듯한가: E151 left a possible escape hatch: existing E137-E140 decoder rows might contain non-collinear signal that only needed projection away from E144. If true, branch orthogonalization should open strict/E72/post101/actionable candidates.
+- 맞다면: E137-E140 source moves should have large residual ratios versus E144, but projected probability moves should split across incompatible gates: local/relaxed reward, E72 budget, post-E101 p95, and active-veto actionability should not coincide.
+- 틀리다면: at least one branch-orthogonal projection should pass relaxed structural, E72-budget, post-E101, and active-veto/actionability simultaneously with material local gain.
+- 최소 실험: `analysis_outputs/e152_branch_orthogonal_decoder_audit.py`, projecting selected E137-E140 moves into E95-plus-orthogonal and E144-plus-orthogonal families under full/top50/top100 masks and alphas `0.10..1.00`.
+- 관측: source rows `4650`, candidate-interest rows `3953`, non-collinear source rows `4650`, projected rows `2880`; relaxed structural `349`, E72-budget `1208`, post-E101 `564`, active-veto actionable `122`, all-four intersection `0`. `relaxed_budget_post101` has `102` rows but actionable `False`; `budget_post101_actionable` has only `1` row but relaxed structural `False`.
+- 성공/폐기 기준: support H146 until a decoder produces a non-collinear row with all-four intersection and local edge above `1e-5`. Discard only if a new representation-to-probability translator makes these gates coincide without using E144 public feedback.
+- public LB 관측 반응: none directly; E152 produces no submission. E144 remains the public sensor. If E144 wins, H146 still says non-collinear expansion is unresolved; if E144 loses, H146 becomes stronger because even orthogonalized alternatives failed local stress.
+- 제출 전략: no E152 submission. Next strategy should model the gate-intersection failure state itself, especially E138 relaxed-budget-post101 rows that fail active-veto and E139 budget-post101-actionable rows that fail relaxed structural.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

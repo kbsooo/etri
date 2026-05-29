@@ -455,6 +455,8 @@ Update after E150: `analysis_outputs/e150_e144_postfeedback_interpreter.py` supe
 
 Update after E151: no new submission was created. `analysis_outputs/e151_plateau_resolution_bottleneck_audit.py` says the plateau is not mainly missed old candidates or generic capacity: E98 selector p90 is `53.33x` the E95 public edge, E129 has `0` novel strict old-file successors, E130-E139 submit gates remain `0`, and E144 is almost an E143-collinear branch-pruned point. This does not demote `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`; it clarifies that E144 is the next public sensor, while the next local work should be a non-collinear representation-to-probability decoder rather than another top-count/blend/Q2-S3 amplitude sweep.
 
+Update after E152: no new submission was created. `analysis_outputs/e152_branch_orthogonal_decoder_audit.py` tested the obvious E151 escape hatch by projecting E137-E140 decoder moves away from the E144 branch. Non-collinear signal is abundant (`4650/4650` source rows), but the strict/E72-budget/post-E101/actionable intersection is `0/2880`. This keeps `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the single next public sensor. The next local branch should learn or diagnose the gate-intersection state itself, especially the split between E138 relaxed-budget-post101 rows that fail active-veto and E139 budget-post101-actionable rows that fail relaxed structure.
+
 ## Current 0.54 Assessment
 
 0.54 is not blocked by a single missing model family. To approach it, one of two things must happen:

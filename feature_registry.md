@@ -1144,6 +1144,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E151 finds E98 p90 `0.0008164966` is `53.33x` the E95 public edge; E101 actual-minus-local-mean optimism is `0.0000252415`; E129 strict novel actionable count is `0`; E130/E131/E132/E137/E138/E139 have `submit_gate=0`; E142/E143/E144 branch counts are `35`/`15`/`9`; E144 is E143-collinear with cosine `0.991918719`.
 - Policy: use as a hard framing gate. Do not spend work on old-file ranking, blend/top-count sweeps, or same-family Q2/S3 amplitude tweaking unless E144 public feedback explicitly calls for that branch. New local work must target a non-collinear representation-to-probability decoder that passes strict/E72/post101 p95 gates with edge above `1e-5`.
 
+### F129. Branch-orthogonal gate-intersection state
+
+- Hidden structure: useful signal may exist outside the E142/E143/E144 branch, but the public-safe decoder may require a latent state where structural reward, E72 budget, post-E101 safety, and active-veto actionability co-occur.
+- Candidates: E137-E140 source residual ratio versus E144, projection mode, top-k support, alpha, relaxed structural gate, E72-plausible gap, post-E101 p95, active-veto/actionability, blocker-intersection class, and source family.
+- Label vs split test: valid as a diagnostic target because it explicitly separates non-collinear representation signal from calibrated probability movement. Invalid as a direct submission feature because E152 found no all-four intersection and no public file.
+- Current evidence: E152 finds `4650/4650` source rows non-collinear and `2880` projected rows. The individual gates open separately (`349` relaxed, `1208` budget, `564` post-E101, `122` actionable), but all-four intersection is `0`. The best relaxed-budget-post101 row is E138 and fails actionability; the only budget-post101-actionable row is E139 and fails relaxed structure.
+- Policy: use as the next latent/diagnostic target. Do not repeat direct branch-orthogonal projection sweeps unless a new model predicts gate-intersection membership out-of-sample or changes the decoder objective.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

@@ -2305,3 +2305,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - bottleneck statuses: validation mismatch strong, public subset mismatch strong-but-underidentified, target/calibration tail strong, representation-decoder problem strong, old-candidate selection mostly rejected.
 - Interpretation: E151 rejects the easy explanation that the plateau is mainly a missed old CSV or generic model capacity. The signal is visible enough to build E142-E144, but the probability decoder only becomes public-safe after heavy hand-built budget/active pruning, and the remaining movement is E143-collinear and frontier-scale small.
 - Decision: no submission is materialized. E144 remains the next public sensor. If waiting for public feedback, the next local experiment should be an independent representation-to-probability decoder that beats `1e-5` local edge, passes strict/E72/post101 p95 gates, and is not E142/E143/E144-collinear.
+
+## E152. Branch-Orthogonal Decoder Audit
+
+- Observe: E151 left one precise escape hatch: perhaps E137-E140 already contain non-collinear decoder signal, but the E142/E143/E144 branch hid it.
+- Wonder: if we project existing decoder moves away from the E144 branch, does the residual component produce a material local gain while passing strict/E72-budget/post-E101/actionable gates?
+- Method: `analysis_outputs/e152_branch_orthogonal_decoder_audit.py` rebuilds E137-E140 candidate predictions, measures their logit geometry versus E142/E143/E144 axes, selects informative rows per family, and creates E95-plus-orthogonal and E144-plus-orthogonal projections under full/top50/top100 masks and alphas `0.10..1.00`.
+- Result:
+  - source rows: `4650`; candidate-interest rows: `3953`.
+  - all `4650` source rows are non-collinear to E144 under the residual-ratio threshold, so non-collinear signal exists.
+  - projected rows: `2880`.
+  - relaxed structural rows: `349`; E72-budget rows: `1208`; post-E101 rows: `564`; active-veto actionable rows: `122`.
+  - strict/E72/post101/actionable intersection: `0`; E152 submission rows: `0`.
+  - best local projected move: `-0.0000455468`, but it fails E72 budget and structural/actionable gates.
+  - `relaxed_budget_post101` opens `102` rows, best `-0.0000128032`, but active-veto/actionability is false.
+  - `budget_post101_actionable` opens only `1` row, best `-0.0000106142`, but relaxed structural is false.
+- Interpretation: E152 strengthens H145. The missing object is not "any signal outside E144"; there is plenty. The bottleneck is the decoder intersection: structural reward, E72 budget, post-E101 safety, and active-veto actionability are mutually incompatible under this projection family.
+- Decision: no submission. Do not repeat branch-orthogonal top-k/alpha projection sweeps as the next local work. The next useful target is the gate-intersection state itself: why E138 relaxed-budget-post101 rows fail active-veto, and why the lone E139 budget-post101-actionable row fails relaxed structure.
