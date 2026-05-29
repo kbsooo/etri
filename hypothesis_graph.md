@@ -1165,6 +1165,18 @@ target co-occurrence
 - public LB 관측 반응: E101 public feedback remains needed. A positive E101 result can revive E106 rows as post-feedback contrasts; before feedback they should not replace E101.
 - 제출 전략: no E106 file. Submit E101 if using one public slot.
 
+### H101. E101 feedback should choose the next branch by conditional E99 worlds, not unconditional local ranking
+
+- 상태: supported as pre-feedback decision map; public result pending.
+- 왜 그럴듯한가: E104 and E106 disagree in risk profile, and E101 public delta is the missing sensor for which E99 tail world public occupies. The next decision should depend on the observed E101-vs-E95 delta, not on an unconditional average over all possible tail worlds.
+- 맞다면: E101 edge/small win should condition to coherent E99 scenarios and identify a follow-up family; E101 loss should either select older controls or show model tension if the E99/E101 world cannot produce loss.
+- 틀리다면: all hypothetical outcomes should give the same ranking, E106 masks should dominate after subject-local framing, or E101 loss should be easy to explain without model tension.
+- 최소 실험: `analysis_outputs/e107_e101_feedback_decision_map.py`.
+- 관측: candidate universe `292`, outcomes `6`, summary rows `1752`. Edge win, small win, and tie are within-tolerance. Strong win and both loss outcomes require nearest scenario matching. Edge/small wins rank E104 active-all high-alpha rows first; strict E101-pass follow-ups are lower alpha around `0.380`; E106 masks do not outrank E104. Loss outcomes remain near E101 tie and are marked tension.
+- 성공/폐기 기준: support as decision-map. Use E107 after E101 public feedback; do not materialize a pre-feedback file.
+- public LB 관측 반응: E101 win -> amplitude-up E104 branch. E101 loss -> falsify/strain the E99/E101 rollback model and demote E104/E106 follow-ups.
+- 제출 전략: no E107 file. Keep `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` as the next public sensor.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

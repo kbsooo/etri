@@ -852,3 +852,12 @@
 - Implementation issue possible: low-medium. The first E106 run exposed a strict-flag bookkeeping bug for the new strategy name, but the rerun recomputed graft flags and restored `12` E101-pass rows. The remaining caveat is that all tests are still local stress and prior-null simulations, not public labels.
 - Bottleneck implication: the bottleneck is not simply finding the most subject-supported S3 subset. It is whether public realizes the whole E101 active-cell label world.
 - Do not repeat: replacing E101 with subject-prior-gated, S3-only, or high-support masks before E101 public feedback. Use those masks only as post-feedback contrasts if E101 improves.
+
+## FH95. E101 loss can be locally explained by subject-prior or amplitude masks
+
+- Failed hypothesis: if E101 loses public versus E95, the same E99/E101 world family should still identify a smaller subject-prior mask or nearby amplitude variant as the next coherent follow-up.
+- Observed result: E107 conditioned E99 broad-plausible worlds on hypothetical E101 losses of `+0.000010` and `+0.000040` versus E95. Both outcomes required nearest-scenario selection and were marked model tension. The nearest scenarios still had E101 mean around `-0.000000821`, not a real positive loss. The top follow-ups in those strained subsets had positive p95 risk and did not promote E106 subject-prior gates.
+- Why discard: a loss would not be an ordinary in-model branch choice. It would say the E99/E101 local+tail abstraction failed to represent the realized public world for E101. Rescuing the same branch with masks would overfit a model that the public result just falsified.
+- Implementation issue possible: medium. E107 is a conditional decision map and inherits E99's two-term transfer abstraction. A richer future public-world model might explain an E101 loss, but the current E104/E106 universe does not.
+- Bottleneck implication: E101 is a true sensor, not a file family to keep adjusting regardless of feedback. If it loses, return to full E89 or broader structural/block-state questions rather than narrowing E101.
+- Do not repeat: after a negative E101 result, do not submit subject-prior-gated E106 rows or higher-alpha E104 rows as if they are conservative repairs. First rebuild the public-world model.
