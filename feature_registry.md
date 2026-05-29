@@ -920,6 +920,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E123 found temporal logloss deltas versus subject prior of `+0.135183` for `motif_no_s3`, `+0.246239` for `motif_full`, and `+0.349065` for `motif_plus_subject`. Rank-23 support stayed `0.943564`/`0.956191`/`0.984326` for no-S3/full/plus-subject. Aggregate expected deltas were `+0.000027684` to `+0.000028398`, too loss-heavy versus actual `+0.0000090362`.
 - Policy: set `e101_transition_motif_gate_available = false`. Keep transition motifs as a LeJEPA-style collapse/shortcut warning and not as a same-line E95/E101 submission selector.
 
+### F101. E101-conditioned transfer residual energy
+
+- Hidden structure: E99's two-term `local_delta + E72_tail_delta` abstraction may explain the broad hard-tail law while still missing a Q2/S3 boundary variable exposed by E101.
+- Candidates: E99 broad-plausible scenario id, alpha, lambda, predicted E101 delta, actual E101 residual, E101 order-match flag, E101 close-within-`10e-6` flag, E101-plausible subset, future candidate beat-E95 rates, and live/future winner modes.
+- Label vs split test: valid as a held-out public-world model diagnostic because E101 is evaluated after the E72/E95 transfer solve. Invalid if used to tune directly toward E101's public score or to claim a future candidate is certified from only `57` surviving scenarios.
+- Current evidence: E124 found broad-plausible E99 worlds `3452`, predicted E101 mean `-0.000031516` versus actual `-0.000006275`, and only `57` E101-sensor-plausible worlds. Inside those, E95 live win rate is `0.929825`; future E95-beat rates are E89 `0.052632`, E85 `0.017544`, E90/E86 `0`.
+- Policy: set `pre_e101_e99_ranker_valid = false` and `e101_conditioned_same_family_successor_available = false`. Use this energy to prevent inherited E89/E85/E90/E86 promotion after E101 unless a new non-public sensor changes the boundary.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

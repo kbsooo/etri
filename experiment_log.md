@@ -1850,3 +1850,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
 - Result: temporal validation rejected the motif heads. Versus subject prior, logloss deltas were `+0.135183` for `motif_no_s3`, `+0.246239` for `motif_full`, and `+0.349065` for `motif_plus_subject`; even direct S3 flank beta was worse by `+0.014110`. Rank-23 support stayed high: `0.943564` under no-S3 motif and `0.984326` under motif+subject. Aggregate expected public deltas from motif heads overshot the observed E101 delta (`+0.000027684` to `+0.000028398` vs actual `+0.0000090362`).
 - Interpretation: cross-target transition motif is a tempting but unhealthy representation. It can make rank 22 look more adverse, but it fails temporal calibration and does not solve rank 23. This is LeJEPA-style shortcut/collapse evidence, not a gate.
 - Decision: no E123 submission. Same-line E95-to-E101 repair remains closed unless a genuinely different non-public S3-cell sensor appears. The next action should leave this narrow boundary or test a different hidden structure.
+
+## E124. E101-Conditioned Tail Transfer Audit
+
+- Observe: E99 used only E72 failure and E95 success to build a two-term public-world model, then E101 became a third held-out public observation. The pre-E101 model expected E101 to beat E95 in most broad-plausible worlds, but actual E101 was `+0.0000090362` worse than E95.
+- Wonder: does the E99 `local_delta + E72_hard_tail_delta` abstraction survive E101, or did it miss a boundary variable that matters exactly at the Q2/S3 rollback frontier?
+- Method: `analysis_outputs/e124_e101_conditioned_tail_transfer.py` rebuilt the E96 tail scenarios with E101 added, solved the E99 two-term transfer from E72 and E95 only, then measured how often the predicted E101 delta matched the actual small-loss ordering and magnitude. It then ranked E85/E86/E89/E90/noQ2 under the surviving E101-plausible subset.
+- Result:
+  - E99 broad-plausible worlds: `3452`.
+  - broad mean predicted E101 delta: `-0.000031516` vs actual `-0.000006275`, over-optimistic by about `0.000025241`.
+  - E101 order-match worlds: `57`.
+  - E101 close within `10e-6`: `121`.
+  - E101 sensor-plausible worlds: `57`; within them E95 remains live winner mode with `0.929825` rate.
+  - Under that tiny E101-plausible subset, future candidates remain weak: E89 has the largest E95-beat rate at `0.052632`, E85 has future winner mode `0.350877`, and E90/E86 have `0` E95-beat rate.
+- Interpretation: E99 was useful but incomplete. It captured the E72/E95 hard-tail law but missed a Q2/S3 boundary variable that E101 exposed. Conditioning on E101 does not revive E89/E85/E90/E86 as expected-improvement files; it mostly says E95 is still the standing law and the pre-E101 optimistic transfer should not be inherited.
+- Decision: no E124 submission. Treat E124 as a selector reset: do not rank next files by the pre-E101 E99 broad order. Either find a genuinely different non-public S3-cell sensor, or leave the E95/E101 same-family line for another hidden-structure experiment.

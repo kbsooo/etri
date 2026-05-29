@@ -960,3 +960,12 @@
 - Implementation issue possible: medium. E123 uses a simple logistic head over neighbor target-state features rather than a deep sequence model. The discarded claim is narrower: the visible cross-target neighbor motif, in this calibrated train-only form, cannot justify a same-line E101 repair.
 - Bottleneck implication: the E95/E101 plateau is not explained by a missed full-target transition-state feature. The blocker remains one-cell-scale S3 underidentification, and the remaining viable path is a materially different hidden structure or a much stronger S3-specific non-public sensor.
 - Do not repeat: building E101/E95 gates from Q/S neighbor-state motif scores, motif aggregate public-delta matches, or rank-22-only improvements unless the motif first improves temporal validation and reverses rank-23 support without using public LB.
+
+## FH107. Pre-E101 E99 local+tail transfer can rank the next file after E101
+
+- Failed hypothesis: the E99 two-term transfer model, calibrated on E72 failure and E95 success, should remain a reliable candidate ranker once E101 public feedback is known.
+- Observed result: E124 found that broad-plausible E99 worlds predicted mean E101 delta `-0.000031516` versus actual `-0.000006275`, an over-optimism of about `0.000025241`. Only `57/3452` broad-plausible worlds matched the E101 ordering, and the E101-plausible subset kept E95 as live winner mode with `0.929825` rate. Future candidates were weak: E89 beat-E95 `0.052632`, E85 `0.017544`, E90/E86 `0`.
+- Why discard: E99 captures a real hard-tail axis, but E101 reveals an additional boundary variable at the Q2/S3/S3-heavy active-cell edge. Reusing E99 broad order after E101 would inherit a model that already missed the held-out sensor by larger than the E95 edge.
+- Implementation issue possible: low-medium. E124 reuses E96 scenario construction and E99 local deltas, so its conclusion is about this two-term abstraction, not every possible public-world model.
+- Bottleneck implication: the next same-family file is not hidden inside E99's pre-E101 ranking. The bottleneck is boundary resolution, not lack of another broad local+tail rescore.
+- Do not repeat: promoting E89/E85/E90/E86 by pre-E101 E99 broad mean, p95, or beat-rate without conditioning on the observed E101 small-loss branch.

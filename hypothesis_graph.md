@@ -1369,6 +1369,18 @@ target co-occurrence
 - public LB 관측 반응: no submission. If a future same-line file claims transition-motif support, it must first reverse this temporal validation failure and rank-23 support result without using public LB.
 - 제출 전략: none. Same-line E101 repair remains closed; move to another hidden structure or a materially different S3-cell sensor.
 
+### H118. The E99 two-term transfer world is incomplete after E101
+
+- 상태: 부분 지지 후 수정 필요. E99 remains useful for E72/E95 hard-tail attribution, but rejected as a standalone post-E101 selector.
+- 왜 그럴듯한가: E99 matched the failed E72 public sensor and the successful E95 public sensor with a compact `local_delta + hard_tail_delta` model. If the same hidden law governed E101, then the model should predict E101's small loss without seeing that score.
+- 맞다면: broad-plausible scenarios should place E101 near the observed delta and preserve the public ordering `E95 < E101 < mixmin`, while leaving at least one future candidate with nontrivial E95-beat support.
+- 틀리다면: E99 should overpredict E101, order-match scenarios should become rare, and the surviving E101-plausible subset should keep E95 dominant while making future candidates weak sensors rather than expected improvements.
+- 최소 실험: `analysis_outputs/e124_e101_conditioned_tail_transfer.py`, rebuilding E96 scenarios with E101, solving E99 transfer on E72/E95 only, and using actual E101 as a held-out public sensor.
+- 관측: broad-plausible worlds `3452` predicted mean E101 delta `-0.000031516` versus actual `-0.000006275`; only `57` worlds matched the E101 ordering, and only `57` were E101-sensor-plausible. Inside that subset E95 live win rate was `0.929825`; E89's beat-E95 rate was only `0.052632`, E85 `0.017544`, E90/E86 `0`.
+- 성공/폐기 기준: support only the hard-tail-attribution part of E99; discard it as a post-E101 candidate ranker because E101 exposes a missing Q2/S3 boundary variable.
+- public LB 관측 반응: already observed via E101. Future public files should not be selected by pre-E101 E99 broad order unless they test a explicitly different world.
+- 제출 전략: no E124 submission. Keep E95 as frontier; same-line E89/E85/E90/E86 are not automatic successors.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
