@@ -1048,6 +1048,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E139 generated `1188` variants and evaluated `698`. It found `190` transfer-veto-actionable rows but `0` local strict, `0` local-and-veto, and `0` submit-gate rows. Every evaluated row passed all-margin/all-beats-base but failed tail-neutral, world-nonworse, and raw-energy-nonworse checks. Some `all3_mean` rows reached `3/3` combo-set wins but still had only `1/3` tail-neutral sets.
 - Policy: reject as a direct feature. Keep combo-set consensus only as a diagnostic dimension. A future decoder must optimize tail/worst-case and world/raw constraints directly, rather than using consensus as a post-hoc sign filter.
 
+### F117. Tail/world primitive decoder
+
+- Hidden structure: safe movement may exist only at primitive single-cell directions where local reward, combo-set tails, world support, and raw-energy support are simultaneously non-adverse.
+- Candidates: support cell from E136/E138/E139 union, micro direction, target, block-target state value, support count, local reward, set mean wins, set worst-tail deltas, hidden-core delta, world delta, raw-energy delta, primitive score, top-k combined pool, shape, and scale.
+- Label vs split test: valid as a primitive decoder falsifier because it scores both directions for each support cell with the same stress metrics before combination. Invalid as a submission feature if combination keeps world/raw healthy but fails exact all-set tail neutrality or transfer-veto actionability.
+- Current evidence: E140 found `471` support cells, `942` micro rows, `373` local-reward primitives, `119` tail/world/local primitives, and only `3` tolerance-level strict primitives with negligible reward. Combined variants `168` had `0` local strict, `0` transfer-veto-actionable, and `0` submit-gate rows. All combined variants passed hidden-core/world/raw nonworsening, but all failed all-set tail neutrality.
+- Policy: reject as a submission feature. Keep it as evidence that world/raw can be handled by primitive decoding, while combo-set worst-tail remains the main decoder target.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

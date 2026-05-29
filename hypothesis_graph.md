@@ -1560,6 +1560,18 @@ target co-occurrence
 - public LB 관측 반응: no submission. A file from E139 would bet on local combo-set means while violating the same tail/world/raw constraints that explain the E101 near-miss.
 - 제출 전략: none. The next decoder must be trained or constructed with tail-neutral/world/raw constraints as primitive objectives, not added as post-hoc masks or sign filters.
 
+### H134. Tail/world-aware single-cell primitives can accumulate into a safe decoder
+
+- 상태: rejected as sufficient; H130 remains live and now points at combo-set worst-tail balancing.
+- 왜 그럴듯한가: E139 may have failed because it optimized mean combo gradients first and checked tail/world/raw later. If the decoder instead starts from single-cell directions that already satisfy local reward plus tail/world/raw nonworsening, accumulation might preserve the full law.
+- 맞다면: support cells should contain many strict primitives, and top-k combinations should contain at least some local-strict plus transfer-veto-actionable rows with all-set tail neutrality.
+- 틀리다면: primitive cells may satisfy world/raw and local reward, but accumulated movements should still fail exact combo-set worst-tail neutrality.
+- 최소 실험: `analysis_outputs/e140_tailworld_primitive_decoder_probe.py`, evaluating both directions for every visible block-target/veto support cell, then combining tolerant primitive pools.
+- 관측: `471` support cells and `942` micro rows produced `373` local-reward primitives, `119` tail/world/local primitives, and only `3` tolerance-level strict primitives with negligible reward. Combined variants `168` produced `0` local strict, `0` transfer-veto-actionable, and `0` submit-gate rows. All combined rows passed hidden-core/world/raw checks, but all `168/168` failed all-set tail neutrality and max tail-neutral count stayed `1/3`.
+- 성공/폐기 기준: reject primitive tail/world awareness as sufficient. It fixes world/raw geometry but not combo-set worst-tail geometry.
+- public LB 관측 반응: no submission. A file from E140 would still bet against the exact tail law that distinguished E95/E101.
+- 제출 전략: none. The next strategy should explicitly decompose and balance the failing combo-set tail axes rather than broaden primitive selection.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

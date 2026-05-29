@@ -311,3 +311,21 @@ E139 tests whether E138's decoder failure is only combo-set sign conflict. It is
 - best post-E101 sensor mean/p95 vs E95: `-0.000041506` / `-0.000010520`.
 
 The useful stress detail is the gate pattern: `all_margin_vs_mixmin` and `all_beats_base` pass for every evaluated row, and some all-three consensus rows make all `3/3` combo-set means beat base. But `structural_all_sets_tail_neutral`, `structural_world_nonworse`, and `structural_raw_energy_nonworse` fail for every evaluated row. This blocks combo-set consensus as a submission path. The next validation target should treat tail-neutral/world/raw support as primary decoder constraints, not as screens after a BCE-style mean-gradient move.
+
+## Update After E140
+
+E140 turns tail/world/raw health into the primitive objective rather than a post-hoc screen.
+
+- support cells: `471`.
+- micro rows: `942`.
+- local-reward primitives: `373`.
+- tail/world/local primitives: `119`.
+- tolerance-level strict primitives: `3`.
+- combined variants: `168`.
+- local strict variants: `0`.
+- transfer-veto-actionable variants: `0`.
+- submit-gate variants: `0`.
+- best combined all-minus-E95: `-0.000017556`.
+- best post-E101 mean vs E95: `-0.000007182`.
+
+The stress result is asymmetric in the opposite direction from E139. In E140, all combined variants pass hidden-core, world-nonworse, and raw-energy-nonworse, so world/raw is no longer the immediate blocker under primitive decoding. The blocker is exact all-set tail neutrality: every combined row fails it and the best tail-neutral count remains `1/3`. The next validation target should isolate which combo-set worst-tail axis cannot be neutralized and whether a tail-balancing decoder can trade a little mean reward for all-set tail survival.

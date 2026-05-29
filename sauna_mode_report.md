@@ -545,3 +545,35 @@ E136 state는 mean improvement가 생기는 곳을 찾는다. 하지만 현재 E
 `block-target state, transfer-safe overlap, combo-set mean consensus까지는 만들 수 있다. 하지만 현재 gradient 계열은 그 셋을 모두 만족해도 tail/world/raw hidden law를 보존하지 못한다. 0.576대 벽은 support나 sign의 문제가 아니라, worst-tail/world-aware decoder가 없는 문제다.`
 
 지금 제출할 파일은 없다. 다음으로 가장 정보량이 큰 행동은 BCE-style 평균 gradient를 계속 필터링하는 것이 아니라, tail-neutral/world/raw nonworse를 primitive objective로 삼는 decoder를 만드는 것이다.
+
+## 추가 관찰: world/raw는 열렸지만 combo-tail은 여전히 닫혀 있다
+
+`analysis_outputs/e140_tailworld_primitive_decoder_probe.py`로 E139 이후의 가장 작은 decoder 질문을 찔렀다.
+
+질문은 이것이었다.
+
+`block-target/veto support 안의 각 cell을 양방향으로 micro-move 했을 때, local reward와 tail/world/raw nonworse를 동시에 만족하는 원자가 있고, 그것들을 합치면 strict law가 열리는가?`
+
+결과:
+
+- support cells: `471`.
+- micro rows: `942`.
+- local-reward primitives: `373`.
+- tail/world/local primitives: `119`.
+- tolerance-level strict primitives: `3`.
+- combined variants: `168`.
+- local strict variants: `0`.
+- transfer-veto-actionable variants: `0`.
+- submit-gate variants: `0`.
+- best combined all-minus-E95: `-0.000017556`.
+- best post-E101 mean vs E95: `-0.000007182`.
+- 모든 combined row가 hidden-core/world/raw nonworse는 통과했다.
+- 그러나 모든 combined row가 all-set tail neutrality는 실패했고, 최대 tail-neutral count도 `1/3`에 머물렀다.
+
+이건 중요한 실패다. E139에서는 world/raw도 같이 실패했는데, E140은 decoder 목적을 바꾸자 world/raw는 열린다. 하지만 combo-set worst-tail은 여전히 닫혀 있다.
+
+현재 세계관을 다시 압축한다.
+
+`0.576대 벽의 남은 핵심은 block-target state도, transfer-safe support도, combo-set mean sign도, world/raw support도 아니다. 마지막으로 버티는 것은 combo-set worst-tail balancing이다. 평균적으로 좋아지는 움직임은 만들 수 있지만, LogLoss tail을 세 combo-set 모두에서 동시에 중립화하지 못한다.`
+
+지금 제출할 파일은 없다. 다음으로 가장 정보량이 큰 행동은 어떤 combo-set tail axis가 계속 깨지는지 분해하고, 평균 reward를 조금 희생해서라도 `1/3` tail-neutral을 `3/3`으로 올리는 tail-balancing decoder를 만드는 것이다.

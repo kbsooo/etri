@@ -2095,3 +2095,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - the best `all3_mean` rows did reach `3/3` combo-set wins, but still only `1/3` tail-neutral sets and adverse world/raw support.
 - Interpretation: combo-set sign conflict is not the missing decoder. Consensus can make the local combo-set means agree, but the worst-tail/world/raw law remains broken. This splits "mean direction consistency" from "LogLoss tail health"; the frontier wall is not just support selection, co-location, or combo-set sign agreement.
 - Decision: no submission. E139 turns the next question from "which mask should multiply the current gradient?" into "what decoder objective directly preserves tail/world/raw structure inside the visible block-target state?"
+
+## E140. Tail/World Primitive Decoder Probe
+
+- Observe: E139 made it clear that mean-direction consensus is weaker than the structural law. The next smallest question is whether any single-cell directions inside the visible block-target/veto support satisfy the structural law directly.
+- Wonder: if each support cell is probed in both logit directions and scored against local combo, worst-tail, hidden, world, and raw-energy metrics, do tail/world/raw-safe primitives exist, and can they accumulate into a submission-scale decoder?
+- Method: `analysis_outputs/e140_tailworld_primitive_decoder_probe.py` formed the union of E136 block-target plus E138/E139 safety support (`471` cells), evaluated `942` single-cell micro moves with full nonanchor stress, then combined the best tolerant primitives by top-k, shape, and scale. It materializes only if the combined movement passes E95-local strict, transfer-veto, and post-E101 gates.
+- Result:
+  - support cells `471`, with target mix `Q1:109,Q2:10,Q3:166,S2:63,S3:67,S4:56`.
+  - micro rows `942`.
+  - local-reward primitives `373`.
+  - tail/world/local primitives `119`.
+  - tolerance-level strict primitives `3`, all tiny (`Q1`, `Q1`, `Q3`) with best all-minus-base only `-0.000000079`.
+  - combined variants `168`.
+  - local strict variants `0`, transfer-veto-actionable variants `0`, local-and-veto `0`, submit-gate `0`.
+  - best combined all-minus-E95 `-0.000017556`; best post-E101 mean vs E95 `-0.000007182`.
+  - all combined variants passed hidden-core, world-nonworse, and raw-energy-nonworse, but `168/168` failed all-set tail neutrality. The maximum combined tail-neutral count stayed `1/3`.
+- Interpretation: the primitive decoder separates the residual bottleneck. World/raw hidden support is not impossible once the decoder objective is changed; every combined row satisfies those checks. The remaining failure is the exact combo-set worst-tail law. Even cell directions that are locally useful and world/raw-safe accumulate into only `1/3` tail-neutral sets.
+- Decision: no submission. E140 rejects "tail/world-aware primitives are enough" but upgrades the live problem: the next decoder should target combo-set worst-tail balancing specifically, not generic world/raw or sign consensus.

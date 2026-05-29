@@ -1095,3 +1095,12 @@
 - Implementation issue possible: medium. E139 still works inside E95 first-order gradient geometry and tests min/mean sign-consensus decoders, not a learned constrained decoder. The discarded claim is specifically that consensus filtering is the missing constraint.
 - Bottleneck implication: the plateau is not caused by sign disagreement alone. The missing object is a decoder objective that directly models tail-neutral/world/raw nonworsening inside the visible block-target state.
 - Do not repeat: all-three/pairwise gradient consensus filters, agreement-cell top-k sweeps, or combo-set mean-win promotions unless a new decoder first proves worst-tail and world/raw health.
+
+## FH122. Tail/world-aware primitives are enough to decode the block-target state
+
+- Failed hypothesis: if the decoder starts from single-cell directions that already satisfy local reward, worst-tail neutrality, world nonworsening, and raw-energy nonworsening, those primitives should accumulate into a safe E95 successor.
+- Observed result: E140 evaluated `942` micro moves over `471` support cells. It found `119` tail/world/local primitives and only `3` tolerance-level strict primitives, all with negligible local reward. The `168` combined variants produced `0` local strict, `0` transfer-veto-actionable, and `0` submit-gate rows. All combined variants passed hidden-core, world, and raw checks, but all failed all-set tail neutrality; max tail-neutral count remained `1/3`.
+- Why discard: primitive world/raw health can be made additive, but combo-set worst-tail health does not accumulate under this construction. The bottleneck is no longer generic world/raw support; it is exact worst-tail balancing across combo sets.
+- Implementation issue possible: medium. E140 uses micro finite differences and top-k additive combinations, not a learned constrained optimizer. The discarded claim is specifically that primitive tail/world filters alone are sufficient.
+- Bottleneck implication: the next decoder must identify and balance the specific failing combo-set tail axes. Broad primitive selection, sign consensus, and world/raw-safe top-k accumulation are not enough.
+- Do not repeat: primitive top-k accumulation, tolerance-level strict-cell promotion, or world/raw-safe cell pools unless the candidate explicitly improves all-set tail-neutral count beyond `1/3`.
