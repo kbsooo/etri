@@ -1,0 +1,13 @@
+gate,count,known_public_count,same_family_count,novel_count,max_mean_abs_logit_vs_e95,min_e72_exposure_e101_plausible
+gate_cos95_resid025,7,2.0,7.0,0.0,0.0008189674907733517,0.0014963650731568074
+gate_active_q2s3_not_more_than_e101,7,2.0,6.0,1.0,0.005991637575596374,0.0014963650731568074
+gate_e72_not_more_than_e95,55,2.0,5.0,50.0,0.013284660338485936,7.598677225417269e-18
+gate_strict_veto,3,2.0,3.0,0.0,0.0008189674907733517,0.0014963650731568074
+gate_relaxed_veto,4,2.0,4.0,0.0,0.0008189674907733517,0.0014963650731568074
+gate_material_vs_e95,65864,8.0,1048.0,64816.0,0.5415418876852927,7.598677225417269e-18
+gate_strict_actionable,2,1.0,2.0,0.0,0.0008189674907733517,0.0014963650731568074
+gate_strict_novel_actionable,0,0.0,0.0,0.0,,
+raw_path_count,116044,,,,,
+loaded_unique,65865,,,,,
+skipped_load,1,,,,,
+duplicate_tensor,50178,,,,,

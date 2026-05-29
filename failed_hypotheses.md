@@ -1005,3 +1005,12 @@
 - Implementation issue possible: medium. E128 uses a deliberately simple composite. A learned ranker could improve, but the discarded claim is narrower: the current composite is not a safe submit selector.
 - Bottleneck implication: transfer-shrinkage is now a veto/decomposition layer, not the candidate-selection answer. The next improvement still needs selector-scale probability movement or a new public-free representation.
 - Do not repeat: submitting E85/E89/noQ2 solely because transfer-shrinkage risk is low, or replacing E124/E126 public-world stress with one combined energy scalar.
+
+## FH112. Existing universe contains a novel transfer-shrinkage-safe successor
+
+- Failed hypothesis: once E128 veto components are kept separate, the existing local/documented submission universe should contain at least one novel material candidate that passes those vetoes and can become the next submission.
+- Observed result: E129 collected `116044` candidate paths and loaded `65865` unique prediction tensors. Strict veto left only `3` tensors, all same-family; strict actionable left only E85 and E101; relaxed material survivors add only E89. `gate_strict_novel_actionable` was `0`.
+- Why discard: the only survivors are already interpreted files from the E85/E89/E101 hardtail line, and that line is weakened by E124/E126 after the E101 small-loss public observation. No hidden old file solves the plateau.
+- Implementation issue possible: low-medium. E129 depends on filename-based same-family tagging and local/report-referenced file availability. But the scan is broad enough that the discarded claim is strong for the current workspace universe.
+- Bottleneck implication: candidate selection over existing files is not the immediate path. The missing object is a new representation/movement that satisfies the vetoes, not another old-file rank.
+- Do not repeat: full local submission rescans, E85/E89/noQ2 promotion by low veto energy, or "maybe an old CSV is hiding the answer" unless a new representation family has actually produced new files.

@@ -1921,3 +1921,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - Live candidates by this index rank E85, E89, noQ2, E90, E86, but this conflicts with E124/E126's warning that these same-family candidates have weak E95-beat support after E101.
 - Interpretation: the energy is useful as a veto and decomposition. It explains why Q2/S3/active movement is dangerous and why E101 is close but worse. It is not a standalone public selector because the composite score does not rank all known anchors robustly and would over-promote old same-family conservative files without new upside evidence.
 - Decision: no submission. Promote transfer-shrinkage energy to candidate-risk component only. Future candidates must pass this energy in addition to E124/E126 stress and must show selector-scale expected movement.
+
+## E129. Transfer-Shrinkage Pareto Universe Audit
+
+- Observe: E128's separated veto components are useful, but a remaining loophole is that some existing local/documented submission might satisfy all vetoes even if the five live candidates did not.
+- Wonder: after scanning the full local/documented submission universe, do the separated transfer-shrinkage vetoes leave a novel material candidate, or only recover known same-family edits?
+- Method: `analysis_outputs/e129_transfer_shrinkage_pareto_universe_audit.py` collected local and report-referenced `submission*.csv` files, loaded/deduplicated prediction tensors, then applied strict component gates: tail-equal E95-law cosine `>=0.95`, tail residual `<=0.25`, active/Q2S3 rollback no larger than E101, and E101-compatible E72 exposure no larger than E95. A material survivor needed at least E101-scale mean absolute logit movement versus E95.
+- Result:
+  - Candidate paths collected: `116044`.
+  - Unique prediction tensors loaded: `65865`.
+  - Duplicate tensors skipped: `50178`.
+  - `gate_strict_veto`: `3` tensors, all same-family, `0` novel.
+  - `gate_strict_actionable`: `2` tensors: E85 and E101.
+  - `gate_strict_novel_actionable`: `0`.
+  - Relaxed material survivors add only E89.
+- Interpretation: the separated E128 vetoes do not uncover a hidden existing file. They recover the already-known E85/E101/E89 same-family conservative line, exactly the branch E124/E126 made weak after E101.
+- Decision: no submission. Existing-universe search is now a negative screen; the next improvement must come from a new representation/movement, not another rank over old files.

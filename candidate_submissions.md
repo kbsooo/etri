@@ -402,6 +402,7 @@ Conditional E108 files are closed under the observed E101 result. `analysis_outp
 76. Do not submit E101/E89/Q2S3 same-line variants by default after E126. E101-compatible selected budget mass is only `0.011234` E101-active and `0.180513` Q2/S3, so the public-compatible surface is not primarily the cells those files move.
 77. Do not submit a transfer-shrinkage metadata gate from E127 alone. `target_context_tail_e72bin` has real hidden-block-heldout signal, but top50 teacher-mass capture is only `0.252521`; it is a representation target and negative gate, not a probability-movement file.
 78. Do not submit E85/E89/noQ2/E90/E86 solely because E128 transfer-shrinkage risk ranks them low. E128 component energies are useful vetoes, but the combined risk index has known-public Spearman only `0.440559` and conflicts with E124/E126 post-E101 same-family warnings.
+79. Do not continue existing-universe submission ranking as the next default branch. E129 scanned `65865` unique tensors and found `0` novel strict actionable transfer-shrinkage survivors; strict actionable survivors are only E85 and E101, with relaxed material adding E89.
 
 ## Current 0.54 Assessment
 

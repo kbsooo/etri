@@ -1429,6 +1429,18 @@ target co-occurrence
 - public LB 관측 반응: E128 uses E95/E101/mixmin/E72/bad-anchor public observations only as sensors. It explains E101 as close-but-worse through active rollback, but does not justify a new public submission.
 - 제출 전략: no E128 submission. Treat transfer-shrinkage energy as separate veto components, not a single score. A future file must be low on active/Q2S3 rollback and tail residual while also bringing independent upside evidence.
 
+### H123. Existing submission universe does not hide a novel transfer-shrinkage-safe successor
+
+- 상태: supported as a negative universe scan.
+- 왜 그럴듯한가: E128's component vetoes are strong individually, but they were tested only on known anchors and five live candidates. A hidden old/local submission could satisfy the separated vetoes while avoiding the scalar-ranker failure.
+- 맞다면: scanning the full local/documented submission universe should reveal at least one novel, material, low-veto candidate outside the E85/E86/E87/E89/E90/E95/E101/E108 hardtail family.
+- 틀리다면: strict component gates should recover only E95/E101/E85-like same-family files, with no novel actionable survivors.
+- 최소 실험: `analysis_outputs/e129_transfer_shrinkage_pareto_universe_audit.py`, deduplicated full local/report-referenced `submission*.csv` scan with strict separated veto gates.
+- 관측: `116044` candidate paths produced `65865` unique prediction tensors. `gate_strict_veto` left `3` tensors, all same-family. `gate_strict_actionable` left only E85 and E101. `gate_strict_novel_actionable` was `0`; relaxed material survivors add only E89.
+- 성공/폐기 기준: supported because even the very broad existing universe contains no novel low-veto material successor. Discard only if a future scan with a genuinely new representation family creates a non-same-family strict survivor.
+- public LB 관측 반응: no new public submission. E129 explains why E128's veto components should not be turned into an old-file submit queue.
+- 제출 전략: no E129 submission. Stop spending priority on existing-universe rank search; build new representation/movement that can satisfy the vetoes while producing selector-scale upside.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -960,6 +960,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E128 found component Spearman correlations with known public delta of `0.958042` for `q2s3_delta95_l1`, `0.888112` for `tail_equal_law_resid_ratio`, `0.881119` for `e72_adverse_exposure_e101_plausible`, and `0.874126` for `e101_active_delta95_l1`. The combined `transfer_shrinkage_risk_index` was only `0.440559` and ranked E85/E89/noQ2/E90/E86 as live low-risk candidates, conflicting with E124/E126 loss-side evidence.
 - Policy: use the component energies as veto/decomposition fields. Do not submit or rank from the combined score alone. A future candidate must be low-risk on these components and independently pass post-E101 public-world stress with selector-scale expected movement.
 
+### F106. Transfer-shrinkage Pareto-universe veto
+
+- Hidden structure: if the separated E128 components are truly actionable, they should leave some existing non-same-family candidate that preserves the E95 tail-equal law, avoids E101-active/Q2S3 rollback, and does not raise E101-compatible E72 exposure.
+- Candidates: full local/report-referenced `submission*.csv` universe, tensor dedupe hash, strict veto pass, relaxed veto pass, material movement versus E95, same-family flag, and novel actionable flag.
+- Label vs split test: valid as an existing-universe falsification. Invalid as a model-score forecast because it does not estimate public LB; it only asks whether old files satisfy the veto geometry.
+- Current evidence: E129 scanned `116044` candidate paths and `65865` unique tensors. Strict veto left `3` same-family tensors; strict actionable left E85 and E101; relaxed material survivors add E89; novel strict actionable count is `0`.
+- Policy: use this as a negative screen. Do not search or rank old submissions again unless a new representation family has generated genuinely new candidates. The next live feature must create new movement that passes F105/F106, not merely reuse existing files.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.
