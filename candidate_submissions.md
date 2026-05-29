@@ -479,6 +479,8 @@ Update after E160: the E154 follow-up rule is now executable. Run `python3 analy
 
 Update after E161: no new submission was created. `analysis_outputs/e161_e154_inherited_body_pruning_audit.py` tried the obvious E159 rescue by reverting public-free high-risk E154 cells toward E144/E95. It found many safer diagnostic controls (`1226` safer-than-E154 rows, `631` all-four rows, `299` control-grade rows), but `0` submission-grade rows and `0` variants that beat E154 by the `2e-6` public-readable guardrail. Best local delta versus E154 was only `-0.000000045921`. Therefore E161 pruning rows are not a replacement first file. The next submission candidate remains `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
 
+Update after E162: the repaired-branch stack is confirmed cell-fragile. `analysis_outputs/e162_branch_readability_flip_thresholds.py` shows one high-swing hidden row-target label is enough to exceed the `2e-6` public-readable guardrail for E154-vs-E155, E154-vs-E144, E157-vs-E155, and E161-prune controls. E154-vs-E155 has focus expected delta only `+0.000000505` while its top1 cell swing is `0.000010815`; E154-vs-E95 has top1 swing `0.000015340`, about the whole E95-over-mixmin edge. This keeps E154 as the first public sensor and demotes sibling/pruning files to post-feedback instruments.
+
 ## Current 0.54 Assessment
 
 0.54 is not blocked by a single missing model family. To approach it, one of two things must happen:

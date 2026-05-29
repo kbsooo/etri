@@ -1212,3 +1212,34 @@ python3 analysis_outputs/e160_e154_postfeedback_interpreter.py --score <PUBLIC_L
 `E154 내부의 위험 cell은 실제로 보인다. 그러나 그 위험을 잘라내는 순간 얻는 이득은 대부분 prior-risk 공간에서만 크고, public-readable probability edge로는 변환되지 않는다. 즉 plateau는 위험 cell 식별 부족이 아니라, 위험 감소를 충분한 local/public-safe movement로 번역하지 못하는 해상도 병목이다.`
 
 따라서 E161은 새 submission을 만들지 않는다. E154가 여전히 다음 public sensor다. E161 pruning row들은 E154 feedback 이후 branch가 살아 있고 작은 component overextension만 의심될 때 사용할 diagnostic control이지, first-file replacement가 아니다.
+
+## 추가 관찰: branch 후보 순위는 한두 개 hidden label 해상도 안에 있다
+
+`analysis_outputs/e162_branch_readability_flip_thresholds.py`를 만들었다.
+
+질문은 이것이었다.
+
+`E154/E155/E157/E156/E161 같은 sibling control들이 너무 가깝다면, 그 가까움은 LogLoss가 실제로 보는 hidden row-target label 단위에서 얼마나 취약한가?`
+
+결과:
+
+- pairwise comparisons: `13`.
+- 모든 live sibling/control pair에서 `2e-6` public-readable guardrail에 도달하는 데 필요한 top-swing cell 수: `1`.
+- E154 vs E155:
+  - moved cells `294`.
+  - focus expected delta `+0.000000505`.
+  - top1 swing `0.000010815`.
+- E154 vs E144:
+  - focus expected delta `+0.000000638`.
+  - top1 swing `0.000014420`.
+- E157 vs E155:
+  - focus expected delta `-0.000000619`.
+  - top1 swing `0.000002185`.
+- E154 vs E95:
+  - top1 swing `0.000015340`, 거의 E95가 mixmin에서 얻은 public edge 전체와 같은 크기다.
+
+현재 세계관을 다시 압축한다.
+
+`0.57629대 branch에서는 후보 간 평균 차이가 너무 작아서, 한 개 고영향 row-target label realization이 후보 순위보다 크다. 이 때문에 CV, prior, pruning, target-axis micro-control이 모두 그럴듯해 보여도 public에서는 안정적인 ranking 장치가 되지 않는다.`
+
+따라서 다음 제출 후보는 바뀌지 않는다. E154는 "가장 나아 보여서"라기보다 "현재 branch 세계관을 가장 많이 가르는 센서"라서 먼저다. E155/E157/E156/E161은 E154 feedback 이후에만 의미가 있다.

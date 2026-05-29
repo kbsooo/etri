@@ -1267,3 +1267,12 @@
 - Implementation issue possible: medium. The scan is finite and uses public-free priors; a different learned risk model could rank cells differently. Low for this specific shortcut because the search covered component scopes, target scopes, top counts, and both E144/E95 reversion modes with the same E154 stress stack.
 - Bottleneck implication: the frontier is not blocked merely by knowing which E154 cells are risky. The missing object is a decoder that turns risk reduction into a larger public-tail-safe movement, not a local branch prune.
 - Do not repeat: pre-feedback E154 risk-prune submissions or more top-risk revert sweeps unless actual E154 feedback specifically points to a narrow component overextension and E160 permits diagnostic controls.
+
+## FH141. Repaired-branch sibling local ranking is stable enough for pre-feedback submission order
+
+- Failed hypothesis: E154/E155/E157/E156/E161 pruning rows can be ordered by local edge or public-free prior before E154 feedback because their average deltas encode stable structure.
+- Observed result: E162 shows the branch is hidden-label resolution limited. E154-vs-E155 has focus expected delta only `+0.000000505`, while one top-swing cell can move `0.000010815`. E154-vs-E144 has top1 swing `0.000014420`, and E157-vs-E155 has top1 swing `0.000002185`. Every live sibling/control pair needs only `1` top-swing cell to exceed the `2e-6` public-readable guardrail.
+- Why discard: the public-readable signal is not distributed broadly enough to rank sibling controls safely. One high-swing hidden row-target label can dominate the intended file-to-file edge.
+- Implementation issue possible: low for the pairwise hard-label arithmetic because it directly uses submission probabilities; medium for realized public subset because labels are hidden and E159 priors supply only expected-world context.
+- Bottleneck implication: this is a resolution/calibration-tail bottleneck, not a normal model-ranking problem. E154 is valuable as a public sensor, while siblings are post-feedback instruments.
+- Do not repeat: pre-feedback submission order changes among E155/E157/E156/E161 based on `1e-6` local/prior differences. Wait for E154 or build a candidate with a much larger low-tail-safe edge.

@@ -2487,3 +2487,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
 - Verification: `python3 -m py_compile` passed; the script regenerated scan/summary/frontier/report and no submission file was materialized.
 - Interpretation: E159's risk cells are not imaginary; pruning can reduce public-free expected risk. But the effect lives in the same E154/E144 branch tangent and is far below public-readable separation. This strengthens the plateau diagnosis: the problem is not finding a few risky cells, but translating risk reduction into a probability movement with enough independent edge.
 - Decision: no E161 submission. Keep `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` as the next public sensor. Treat E161 pruning rows as diagnostic controls only after E154 feedback, not as a new first file.
+
+## E162. Branch Readability Flip Thresholds
+
+- Observe: E158/E161 say sibling controls are too close, but "too close" should be stated in the unit that LogLoss uses: hidden row-target hard labels.
+- Wonder: how many hidden labels are enough to move E154/E155/E157/E156/E161 branch comparisons by a public-readable amount?
+- Method: `analysis_outputs/e162_branch_readability_flip_thresholds.py` computes pairwise hard-label deltas for E154/E144/E155/E157/E156 and reconstructed E161 best-control/best-risk variants, then measures swing concentration and the minimum number of top-swing cells needed to reach the `2e-6` public-readable guardrail or the full E95-over-mixmin edge.
+- Result:
+  - audited pairs: `13`.
+  - minimum cells needed to reach `2e-6`: `1` for every relevant sibling/control pair.
+  - E154-vs-E155: `294` moved cells, focus expected delta `+0.000000505`, top1 swing `0.000010815`, cells for guard `1`.
+  - E154-vs-E144: focus expected delta `+0.000000638`, top1 swing `0.000014420`, cells for guard `1`.
+  - E157-vs-E155: focus expected delta `-0.000000619`, top1 swing `0.000002185`, cells for guard `1`.
+  - E161 best control-grade vs E154: only `2` moved cells, focus expected delta `-0.000006261`, top1 swing `0.000010761`; it is readable but is literally a two-cell diagnostic, not a broad law.
+  - E154-vs-E95: top1 swing `0.000015340`, roughly the entire E95-over-mixmin public edge.
+- Verification: `python3 -m py_compile` passed and the script regenerated pairwise/top-cell/report outputs.
+- Interpretation: the branch is not just small in aggregate; it is label-fragile. One high-swing row-target label can move more public LogLoss than the whole intended sibling gap. This explains why ordinary CV/model/blend ranking stalls: at this scale, average local improvement is below hidden-label realization noise.
+- Decision: no submission. E154 remains first because it asks the full repaired-branch public question. Sibling controls and E161 pruning rows should be read as post-feedback instruments, not pre-feedback expected-improvement files.

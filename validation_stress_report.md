@@ -689,3 +689,18 @@ E161 tests the most obvious E159 follow-up: prune the cells that public-free pri
 - best focus expected-risk delta versus E154: `-0.000104369145`, but those high-risk prunes give up local health/edge.
 
 The stress implication is that attribution-risk pruning is real but not submission-grade before feedback. It can create safer controls inside the branch, especially by reverting a few S4/Q3/S3 cells, but it does not create an independent readable successor. This keeps the live validation object unchanged: E154 must be used as the public sensor, and E161-style pruning can only become useful if E154 feedback specifically says the branch is alive but a small component is overextended.
+
+## Update After E162
+
+E162 translates the repaired-branch resolution problem into hard-label flip units.
+
+- script: `analysis_outputs/e162_branch_readability_flip_thresholds.py`.
+- pairwise rows: `13`.
+- E154 vs E155 top1 swing: `0.000010815`.
+- E154 vs E144 top1 swing: `0.000014420`.
+- E157 vs E155 top1 swing: `0.000002185`.
+- E154 vs E95 top1 swing: `0.000015340`, about the whole E95-over-mixmin edge.
+- cells needed to reach the `2e-6` public-readable guardrail: `1` for every live sibling/control pair.
+- E154 vs E155 focus expected delta: `+0.000000505`; E154 vs E144 focus expected delta: `+0.000000638`.
+
+The stress implication is stronger than "these files are close." The sibling order is cell-fragile: one high-swing hidden row-target label can move public LogLoss more than the intended local gap. Therefore local CV or public-free priors cannot rank E154/E155/E157/E156/E161 pruning rows as expected-score candidates before public feedback. The only defensible use is as predeclared instruments after E154 reveals which hidden-label world is active.

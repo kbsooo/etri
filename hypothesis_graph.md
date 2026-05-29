@@ -1824,6 +1824,18 @@ target co-occurrence
 - public LB 관측 반응: none yet. E161 should not be submitted before E154 because it does not create a readable independent edge.
 - 제출 전략: no E161 submission. Keep E154 first; keep E161 pruning as post-feedback diagnostic material.
 
+### H156. The repaired-branch plateau is hidden-label resolution limited
+
+- 상태: supported by E162; pending E154 public feedback.
+- 왜 그럴듯한가: E158 and E161 show branch controls differ by `1e-6` scale local gaps. LogLoss on a hidden public subset can move more than that if a single high-swing row-target label realizes support/adverse differently.
+- 맞다면: pairwise E154/E155/E157/E156/E161-control hard-label swings should be concentrated enough that one or a few cells can exceed the `2e-6` public-readable guardrail.
+- 틀리다면: sibling differences should be distributed across many cells, so no single hidden label could dominate the score at the public-readable scale.
+- 최소 실험: `analysis_outputs/e162_branch_readability_flip_thresholds.py`, computing pairwise hard-label deltas, swing concentration, and minimum top-swing cells for the public-readable guardrail.
+- 관측: E154-vs-E155 has focus expected delta `+0.000000505`, but top1 swing `0.000010815`; E154-vs-E144 has top1 swing `0.000014420`; E157-vs-E155 has top1 swing `0.000002185`. For every live sibling/control pair, cells needed to reach the `2e-6` guardrail is `1`. E154-vs-E95 top1 swing is `0.000015340`, roughly the whole E95-over-mixmin edge.
+- 성공/폐기 기준: support until a new candidate has a branch edge that remains larger than the top-cell swing concentration or is validated by public feedback. If E154 public score clearly wins despite this fragility, promote it as a new anchor but still rebuild exact-delta audits.
+- public LB 관측 반응: E154 result should be interpreted as a hidden-label world observation, not as fine-grained ranking among E154/E155/E157/E156. A sibling win/loss without E154 context would be low-information.
+- 제출 전략: keep E154 first. Do not submit sibling/pruning controls as expected-score candidates before E154 feedback.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
