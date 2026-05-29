@@ -1464,6 +1464,18 @@ target co-occurrence
 - public LB 관측 반응: no submission. Any public test from this family would either test an already-rejected local-risk direction or an immaterial safe movement.
 - 제출 전략: no E131 submission. Future work should stop treating transfer-shrinkage as a corrective blend over old directions and instead search for a new latent/movement direction that is safe before correction.
 
+### H126. The E95 combo-set gradient contains a transfer-veto-safe tangent component
+
+- 상태: rejected for the current gradient/mask family.
+- 왜 그럴듯한가: E130/E131 could have failed because old donor directions were contaminated. A donor-free gradient computed directly at E95 might point toward local public-like combo improvement while still allowing masks to remove transfer-shrinkage risk.
+- 맞다면: some E95 gradient-nullspace movement should be local-strict, E128/E129 veto-actionable, and favorable under post-E101 sensor stress.
+- 틀리다면: local-improving gradient rows and transfer-veto-actionable rows should remain disjoint, or local-improving rows should fail hidden/block/Q2S3/world support while safe rows fail local strictness.
+- 최소 실험: `analysis_outputs/e132_veto_nullspace_gradient_probe.py`, direct E95 combo gradient movement under all/LOO/single combo contexts and transfer-veto masks.
+- 관측: `4590` gradient candidates produced `0` gradient local-strict rows, `843` veto-actionable rows, `0` local-strict plus veto-actionable rows, and `0` submit-gate rows. The strongest local row improved E95 local stress by `-0.000112772` but failed strict hidden/block support and had positive post-E101 p95 exposure; the strongest post-E101 sensor rows improved sensor mean but failed local strict structure.
+- 성공/폐기 기준: reject the donor-free gradient tangent as a submission source. Revive only if a future gradient target is learned from a different structural latent and proves strict local support before vetoing.
+- public LB 관측 반응: no public submission. A public test would be low-information because no candidate satisfies both local structure and transfer-veto safety.
+- 제출 전략: no E132 submission. The next strategy is not another E95-neighborhood tangent move; it is a new latent target where local upside and tail safety are co-located before probability translation.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -984,6 +984,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E131 generated `6384` combinations/clipped variants. Local strict rows were `651` and veto-actionable rows were `208`, but their intersection was `0`; submit gate was `0`. The best local row improved E95 by `-0.000001813` but had positive post-E101 sensor mean, and the best sensor mean among evaluated rows was still `+0.000002326`.
 - Policy: set `density_atom_linear_correction_valid = false`. Do not build another submission by mixing old local-upside atoms with safe density atoms unless a new representation first creates co-located local upside and transfer-veto safety.
 
+### F109. Veto-nullspace gradient tangent energy
+
+- Hidden structure: if E95 already sits near a public-compatible surface, the local combo-set gradient around E95 may contain a tangent component that improves local public-like stress without moving into E101/E72 tail-risk regions.
+- Candidates: combo context (`all`, leave-one-combo, single combo), gradient magnitude rank, mask scope, sparse top quantile, shape transform, active-cell count, Q2/S3 cell count, E95-relative local margin, hidden/block/Q2S3 support, E128/E129 veto flags, and post-E101 sensor stress.
+- Label vs split test: valid as a donor-free tangent-space falsifier because it starts from E95 and does not rely on old submission directions. Invalid if a row is promoted from local loss alone while strict hidden/block support or transfer-veto actionability fails.
+- Current evidence: E132 generated `4590` gradient-nullspace candidates. Gradient local-strict count was `0`; veto-actionable count was `843`; local-strict plus veto-actionable was `0`; submit-gate count was `0`. Best local movement was `-0.000112772` but structurally non-strict, while best post-E101 sensor movements were local-structure failures.
+- Policy: use gradient-nullspace metrics as a negative geometry diagnostic only. Do not submit E95 tangent moves from current combo gradients. A future gradient feature must be attached to a different structural latent target that co-locates local margin and tail safety before probability movement.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

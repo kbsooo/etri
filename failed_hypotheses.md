@@ -1032,3 +1032,12 @@
 - Implementation issue possible: medium. E131 tests linear logit-space combinations and hard-tail clipping over the E130 atom family, not all possible nonlinear representations. The discarded claim is the cheap blend/correction rescue path.
 - Bottleneck implication: the next movement must be learned or constructed as safe from the start. Transfer-shrinkage density is still a health target, but it is not a corrective layer over old local-upside donors.
 - Do not repeat: local+safe donor blending, E86/E90 low-alpha plus mixmin/E85 correction, or hard-tail clipping of the same E130 local atoms unless a new independent representation changes the base movement direction.
+
+## FH115. Donor-free E95 combo gradients contain a safe successor tangent
+
+- Failed hypothesis: the post-E131 failure was caused by old donor contamination, and a direct E95 combo-set gradient would reveal a local-upside direction that can be masked into the transfer-veto nullspace.
+- Observed result: E132 generated `4590` gradient-nullspace candidates and evaluated `698`. It found `843` veto-actionable gradient rows but `0` gradient local-strict rows, `0` local-strict plus veto-actionable rows, and `0` submit-gate rows. The best local row improved local stress by `-0.000112772` but failed strict hidden/block/Q2S3/world support and carried positive post-E101 p95 exposure. The best post-E101 sensor rows were locally non-strict.
+- Why discard: removing donors did not make local gradient reward and transfer-safe geometry overlap. Current combo gradients can produce attractive local loss reductions, but those reductions are not structurally healthy under the hidden/block and post-E101 tests.
+- Implementation issue possible: medium. E132 tests first-order BCE-style combo gradients and sparse masks around E95, not a learned nonlinear latent. The discarded claim is specifically that the current E95 tangent field contains a cheap safe successor.
+- Bottleneck implication: the plateau is not a blend-weight or donor-source problem. It is a latent tangent-space mismatch: the visible local gradient and the public-safe tail geometry do not agree in the same cells/targets.
+- Do not repeat: E95-neighborhood gradient/nullspace mask sweeps, top-gradient cell pruning, or LOO-combo gradient rescaling as a submission source unless the target representation itself changes and passes strict local support before veto checks.

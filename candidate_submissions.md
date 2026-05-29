@@ -404,6 +404,7 @@ Conditional E108 files are closed under the observed E101 result. `analysis_outp
 78. Do not submit E85/E89/noQ2/E90/E86 solely because E128 transfer-shrinkage risk ranks them low. E128 component energies are useful vetoes, but the combined risk index has known-public Spearman only `0.440559` and conflicts with E124/E126 post-E101 same-family warnings.
 79. Do not continue existing-universe submission ranking as the next default branch. E129 scanned `65865` unique tensors and found `0` novel strict actionable transfer-shrinkage survivors; strict actionable survivors are only E85 and E101, with relaxed material adding E89.
 80. Do not submit E130/E131 density-family local-upside blends. E130 found `0` local-strict plus veto-actionable rows from direct density-shaped donor interpolation; E131 expanded this to `6384` local+safe combinations/clipped variants and again found `0` local-strict plus veto-actionable rows. The branch is a negative diagnostic, not a file source.
+81. Do not submit E132 gradient-nullspace candidates. E132 removed old donors and moved directly along E95 combo gradients, but still found `0` gradient local-strict rows, `843` veto-actionable rows, `0` in the intersection, and `0` submit-gate rows. The branch is a tangent-space diagnostic, not a submission source.
 
 ## Current 0.54 Assessment
 

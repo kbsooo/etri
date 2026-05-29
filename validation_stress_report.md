@@ -206,3 +206,18 @@ E131 adds a sharp stress verdict to the current submission gate. The post-E101 t
 - E131: even local+safe atom combinations and hard-tail clipped local variants keep the same disjointness.
 
 The stress result is numerically strong: `6384` candidates, `651` local-strict, `208` veto-actionable, `0` in the intersection, and `0` with negative post-E101 sensor mean. The current gate therefore blocks any E95 successor whose only rationale is "local E86/E90 low-alpha upside plus transfer-shrinkage-safe correction." A future candidate must pass the separated vetoes before correction, not after blend surgery.
+
+## Update After E132
+
+E132 closes the donor-free tangent shortcut. The tested branch no longer depends on E86/E90/E85/E89 donor files; it computes direct E95 combo-set gradients and masks them into transfer-veto regions.
+
+The result is again disjoint:
+
+- gradient candidates: `4590`.
+- evaluated candidates: `698`.
+- gradient local-strict rows: `0`.
+- gradient veto-actionable rows: `843`.
+- local-strict plus veto-actionable rows: `0`.
+- submit-gate rows: `0`.
+
+The strongest local gradient move is large enough to matter locally (`-0.000112772` versus E95), but it fails hidden/block/Q2S3/world support and has positive post-E101 p95 exposure. The best post-E101 sensor rows improve the sensor mean but do not become local-strict. Therefore the gate now blocks both old-donor correction and current E95 tangent-gradient movement. The next stress target should be a new structural latent, not another E95-neighborhood probability perturbation.

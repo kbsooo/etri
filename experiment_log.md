@@ -1970,3 +1970,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best post-E101 sensor mean among evaluated rows was still positive at `+0.000002326`.
 - Interpretation: the E130 separation is not a simple linear-combination artifact. The local-upside direction and the transfer-shrinkage veto geometry remain disjoint even after mixing with safe atoms and clipping high-risk cells.
 - Decision: no submission. The next candidate cannot be produced by old-donor density movement plus safe correction. A useful successor needs a genuinely new movement direction or representation where local upside and E72/E101 safety are co-located before probability movement.
+
+## E132. Veto-Nullspace Gradient Probe
+
+- Observe: E130/E131 closed old-donor movement and local+safe atom correction, but one loophole remained: maybe the E95 local pseudo-public combo gradient itself has a component inside the transfer-veto nullspace.
+- Wonder: if we remove donor files entirely and move directly along E95 combo-set gradients, can local upside and transfer-veto safety finally overlap?
+- Method: `analysis_outputs/e132_veto_nullspace_gradient_probe.py` computed BCE-style combo-set gradients at E95 across all combo contexts, leave-one-combo contexts, and single combo contexts. It then generated donor-free E95 logit movements under transfer-shrinkage, E72 hard-tail, E101-active, Q2/S3, low-adverse, and density masks, and rescored them with the E95-relative local stress, E128/E129 separated vetoes, and post-E101 transfer filters.
+- Result:
+  - candidate rows `4596`, gradient candidates `4590`, evaluated candidates `698`.
+  - gradient local-strict candidates `0`.
+  - gradient veto-actionable candidates `843`.
+  - local-strict plus veto-actionable candidates `0`.
+  - final submit gate `0`.
+  - best local candidate improved E95 by `-0.000112772` in local stress, but it failed strict gate and had post-E101 p95 exposure `+0.000086045`.
+  - the best post-E101 sensor rows had much better sensor mean, e.g. `-0.000154192`, but still failed strict local structure through hidden/block/Q2S3/world support.
+- Interpretation: the issue is not only old donor contamination. The local gradient can strongly improve local sensors, and the veto-safe region can be found, but the local strict structure and veto-actionability still do not meet. This turns the plateau into a stronger geometry claim: the public-safe tangent space around E95 is nearly orthogonal to the local gradient directions that current combo sensors reward.
+- Decision: no submission. E132 closes the cheap donor-free gradient route. The next experiment should stop looking for a corrected E95 tangent move and instead change the latent target: predict a structural state where local upside and tail safety are co-located before any probability movement is made.
