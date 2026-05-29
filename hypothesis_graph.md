@@ -1261,6 +1261,18 @@ target co-occurrence
 - public LB 관측 반응: if E101 wins, the support labels were not visible to this raw-context head; revisit hidden local S3 label-world or public subset structure. If E101 loses, raw context already pointed away from the active-cell support world.
 - 제출 전략: no E114 submission. Keep E101 only as a public sensor, not as a raw-validated expected-improvement file.
 
+### H109. E101 is the highest-actionability public sensor after raw-support failure
+
+- 상태: supported as current decision rule, not as proof of public improvement.
+- 왜 그럴듯한가: E114 removed raw support for E101, so the next file must be justified by information value. If E101 still dominates E89/E85/E90/E86 as a sensor, its public result should split E95-conditioned worlds into several actionable win/tie regimes while preserving a high E95-beat rate.
+- 맞다면: in E72/E95-consistent broad-plausible worlds, E101 should have high outcome entropy, high actionable score, and win/tie bins that map to concrete post-feedback branches. Other pending controls should either collapse into loss-heavy outcomes or have much lower actionable information.
+- 틀리다면: E89/E85/E90/E86 should provide comparable actionable information, or E101 should mostly collapse into a single ambiguous/tie/loss outcome after E114.
+- 최소 실험: `analysis_outputs/e115_public_sensor_information_audit.py`, comparing control E101/E89/E85/E90/E86/mixmin outcome distributions across `3452` E95-conditioned broad-plausible worlds from E107/E99.
+- 관측: E101 has actionable information score `1.613953`, entropy `1.728493`, beat-E95 rate `0.983488`, and win/tie/loss `0.911645/0.088355/0.000000`. E89 is much weaker (`0.233881`, beat `0.195829`, loss `0.580243`), and E85/E90/E86 are mostly loss-heavy with actionable scores `0.025735/0.011719/0.002573`.
+- 성공/폐기 기준: support E101 as next public sensor because it is the only live file that is both directionally plausible and information-rich. Do not reinterpret this as public-label certainty; the branch still requires actual LB feedback.
+- public LB 관측 반응: E101 win validates the S3-heavy Q2/S3 over-amplification branch and activates E108 amplitude-up. E101 tie/loss says the E99/E101 broad-world abstraction is incomplete and should be rebuilt, not rescued with same-line masks.
+- 제출 전략: no E115 submission. Keep `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` as the next public sensor.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

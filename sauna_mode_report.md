@@ -72,11 +72,25 @@ E95를 단순 hardtail fallback으로만 보던 해석을 더 좁혔다. 지금 
 
 즉 raw context는 broad Q temporal rescue도 아니고, E101 active-cell label world를 미리 확인해주는 센서도 아니다. E101이 이기면 raw context가 보지 못한 public/local S3 hard-label world가 있었다는 뜻이고, 지면 raw context도 이미 그 방향을 약하게 반대한 셈이다.
 
+## 추가 관찰: 그래도 E101이 다음 센서인 이유
+
+`analysis_outputs/e115_public_sensor_information_audit.py`로 E101/E89/E85/E90/E86를 public sensor로 비교했다.
+
+- E95-conditioned broad-plausible worlds: `3452`.
+- E101 actionable information score: `1.613953`.
+- E101 outcome entropy: `1.728493`.
+- E101 beat-E95 rate: `0.983488`.
+- E101 win/tie/loss: `0.911645` / `0.088355` / `0.000000`.
+- E89 actionable information score: `0.233881`, beat-E95 `0.195829`, loss `0.580243`.
+- E85/E90/E86 actionable scores: `0.025735`, `0.011719`, `0.002573`.
+
+이 결과는 E101을 "raw가 지지하는 파일"로 되살리지 않는다. 대신 더 정확하게 만든다. E101은 현재 남은 세계관을 가장 많이 가르는 public sensor다. E89는 diffuse-tail 질문으로는 살아 있지만 다음 slot에서 E101보다 정보량이 낮고, E85/E90/E86는 대부분 "얼마나 지는가"를 묻는 파일에 가깝다.
+
 ## 다음으로 가장 정보량이 큰 행동
 
 `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` 제출.
 
-이 파일은 E95의 구조를 유지하면서 남은 Q2/S3/S3-heavy ambiguity만 찌른다. E114 이후에도 가장 작은 public kill-test다. 다만 raw context가 독립 지지를 주지 못했기 때문에, 이 파일은 “예상 개선 후보”라기보다 hidden public S3 hard-label world를 찌르는 sensor로 더 명확해졌다.
+이 파일은 E95의 구조를 유지하면서 남은 Q2/S3/S3-heavy ambiguity만 찌른다. E114 이후에도 raw-context support는 없지만, E115 기준으로 가장 actionability가 높은 public kill-test다. 즉 “raw가 맞다고 해서 제출”이 아니라 “남은 세계관을 가장 날카롭게 가르기 때문에 제출”이다.
 
 ## 제출 후보
 

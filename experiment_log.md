@@ -1711,6 +1711,19 @@
 - Interpretation: H108 is rejected. Raw context cannot pre-validate E101's active-cell support labels. This strengthens the plateau story: the next frontier edge depends on hidden/public S3 hard labels that current visible raw context does not expose.
 - Decision: no E114 submission. E101 remains the next public sensor if spending a slot, but its status is now more explicitly "information sensor" than raw-supported expected improvement.
 
+## E115. Public Sensor Information Audit
+
+- Observe: after E114, E101 is no longer supported by raw context. The remaining decision is whether E101 is still the most useful public slot, or whether E89/E85/E90/E86 should be tested first.
+- Wonder: among pending controls, which public result would split the E95-conditioned broad-plausible worlds most actionably instead of merely telling us that a file loses?
+- Method: `analysis_outputs/e115_public_sensor_information_audit.py` reuses the E107/E99 E95-conditioned world machinery. For each pending control it bins predicted public delta versus E95 across `3452` broad-plausible worlds and computes outcome entropy, win/tie/loss rates, raw split information, and actionable information.
+- Result:
+  - E101 actionable information score: `1.613953`, outcome entropy `1.728493`, beat-E95 rate `0.983488`, win/tie/loss `0.911645/0.088355/0.000000`.
+  - E89 actionable score: `0.233881`, beat-E95 `0.195829`, win/tie/loss `0.086037/0.333720/0.580243`.
+  - E85/E90/E86 actionable scores: `0.025735`, `0.011719`, `0.002573`; they mostly collapse into loss buckets.
+  - For E101, broad worlds split into strong win `0.134705`, edge win `0.478273`, small win `0.298667`, and tie `0.088355`.
+- Interpretation: E115 supports H109. The next public slot should still be E101, but now for a stronger reason: it is the only pending control that combines high expected direction with high outcome resolution. E89 has branch value but much lower actionability; E85/E90/E86 mostly ask "how much do we lose?"
+- Decision: no E115 submission. Keep `submission_e101_q2s3tail_177569bc.csv` as the next public sensor. If it wins, E108 amplitude-up is meaningful; if it ties/loses, rebuild the E99/E101 world model rather than amplifying the same line.
+
 ## Current Decision
 
 가장 저비용으로 많은 가설을 가르는 실험은 E05 selector-only/pairwise-order falsification이었다. 결과는 "micro-refine을 더 많이 만들기보다 selector resolution 또는 large safe representation move가 필요하다"로 수렴한다.
