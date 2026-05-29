@@ -1884,6 +1884,18 @@ target co-occurrence
 - public LB 관측 반응: a win below `0.5762913298` is much more informative than another E154 sibling micro-edge because the candidate is broad and non-collinear with E154 (`cos 0.061661852`). A loss weakens the "existing broad latent" escape and returns priority to repaired-branch public sensors.
 - 제출 전략: `submission_e166_broadsurv_s0p01_d8bfa94b.csv` is the broad-escape sensor. `submission_e154_s3repair_9f2e2e73.csv` remains the conservative repaired-branch sensor.
 
+### H161. E166 is context-real but safety-atlas divergent
+
+- 상태: supported by E167 with medium confidence; public feedback pending.
+- 왜 그럴듯한가: E166 passed breadth and bad-axis checks, but broadness can still be a submission-manifold shortcut. A real broad latent should leave traces in hidden row/block/calendar context, while a safer branch should also align with the transfer-shrinkage and veto-null atlas.
+- 맞다면: E166 focus cells should be enriched for non-random context such as edge-like or between-train-runs cells, but their safety-atlas metrics may explain why this branch remains risky.
+- 틀리다면: target-count-matched permutation sets should show similar context rates and safety metrics, making E166 only a random broad perturbation.
+- 최소 실험: `analysis_outputs/e167_broad_survivor_context_alignment.py`.
+- 관측: E166 top-benefit focus cells are context-enriched: edge-like rate `0.689189` vs null `0.470842` (`z=3.902`, `p_high=0.000333`), between-train-runs `0.797297` vs `0.624658` (`z=3.293`, `p_high=0.001333`), and top-subject share `0.243243` vs `0.164563` (`z=3.498`). They are also safety-atlas adverse: all-veto-null `0.297297` vs `0.574158`, all-safe-density `0.117097` vs `0.243966`, broad-low-alpha mass `1.321365` vs `3.199735`, E101-plausible mass `0.238204` vs `0.533727`, while E72-active rate is high at `0.837838` vs `0.670369`.
+- 성공/폐기 기준: support survives if public E166 wins or loses only slightly while attribution points to a missing safety-axis basis. It weakens if E166 hard-fails and the adverse safety-atlas metrics explain the miss without revealing a recoverable context subset.
+- public LB 관측 반응: an E166 win says the safety atlas was too conservative or branch-bound and that hidden calendar context can beat current veto logic. An E166 loss says E72-active and low-veto-null divergence is the missing public-negative axis for this broad branch.
+- 제출 전략: keep E166 as a single broad-escape sensor. Do not scale or same-family tune it before public feedback. If it wins, decompose amplitude/targets around the edge-like/between-train-runs context; if it loses, revise the bad-axis/safety-atlas gate before any broad JEPA-like retry.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

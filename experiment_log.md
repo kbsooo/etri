@@ -2574,3 +2574,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - Q2/S3 share `0.250718585`; cosine to E154/E101/mixmin `0.061661852` / `-0.099145675` / `-0.137683489`.
 - Interpretation: E166 is the first post-E95 file in this branch that is both broad by hard-label breadth and small by probability movement. It is not a full JEPA submission; it is a tiny broad-world graft on E95. This makes it more promising as a plateau-breaking sensor than E154, but less conservative because the broad branch has no direct public win yet.
 - Decision: add `submission_e166_broadsurv_s0p01_d8bfa94b.csv` as the broad-escape public sensor. If only one public slot is for conservative branch interpretation, E154 remains cleaner. If the goal is to test a genuinely broad escape from the 0.57629 plateau, E166 is now the higher-information candidate.
+
+## E167. Broad Survivor Context Alignment
+
+- Observe: E166 passed broadness, bad-axis, and scale gates, but that still did not prove its top hard-label cells touched real row/block context rather than a target-count random subset. The sharper question is whether the broad step aligns with hidden calendar/block structure and with the prior safety atlas that supported the repaired branch.
+- Wonder: are E166's `74` focus cells a real hidden-context signal, a safety-atlas-consistent signal, or just broad submission-space noise?
+- Method: `analysis_outputs/e167_broad_survivor_context_alignment.py` joins E166/E95/E154/E101/mixmin/A2C8 prediction deltas with the E133 local safety colocation atlas, then compares E166 top-benefit and top-swing focus sets against `3000` target-count-preserving permutation nulls.
+- Result:
+  - E166 all moved cells: `1750` cells, `250` rows, `10` subjects, `36` blocks, expected focus delta `-0.000332077`.
+  - E166 top-benefit focus: `74` cells, `64` rows, `9` subjects, `24` blocks, expected delta `-0.000115303`, Q/S share `0.297297`/`0.702703`, Q2/S3 share only `0.054054`.
+  - context enrichment: edge-like rate `0.689189` vs null `0.470842` (`z=3.902`, `p_high=0.000333`), between-train-runs rate `0.797297` vs `0.624658` (`z=3.293`, `p_high=0.001333`), top-subject share `0.243243` vs `0.164563` (`z=3.498`).
+  - safety-atlas divergence: all-veto-null rate `0.297297` vs `0.574158` (`z=-5.127`), all-safe-density mean `0.117097` vs `0.243966` (`z=-5.239`), broad-low-alpha mass `1.321365` vs `3.199735` (`z=-3.387`), E101-plausible mass `0.238204` vs `0.533727` (`z=-3.100`).
+  - E72-active rate is high: `0.837838` vs null `0.670369` (`z=3.310`).
+- Verification: report and CSV outputs regenerated. `python3 -m py_compile` is run in the final verification pass.
+- Interpretation: E166 is not random. It points at real hidden calendar context, especially edge-like and between-train-runs cells. But it is also not safety-atlas-certified: the cells that carry its focus benefit are unusually low on veto-null/safe-density/low-alpha/E101-plausible support and unusually high on E72-active support. This is exactly a broad plateau-break sensor, not a safer expected-score file.
+- Decision: keep `submission_e166_broadsurv_s0p01_d8bfa94b.csv` as a high-information public sensor only. Do not scale E166 up or spawn same-family amplitude variants before public feedback. If E166 wins, the safety atlas was too conservative or branch-bound. If E166 loses, the E72-active/safety-atlas conflict becomes the main explanation for why broad JEPA-like movement remains public-negative.

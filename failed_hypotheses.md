@@ -1294,3 +1294,21 @@
 - Implementation issue possible: medium. The broad branch is dominated by JEPA-family files and has no direct public-positive observation yet. E165's bad-axis basis may be undercomplete, so E166 public feedback is required.
 - Bottleneck implication: the plateau has two separate lanes now. The repaired E154 lane is narrow and hidden-label-resolution limited. The E166 lane is broad and small-amplitude, with real upside but higher worldview risk.
 - Do not repeat: old-file ranking that ignores broadness, or raw JEPA submission that ignores bad-axis and scale control. Future broad candidates must pass both E165-style geometry and E166-style small-amplitude breadth.
+
+## FH144. E166 focus cells are target-count-random broad noise
+
+- Failed hypothesis: E166's broad survivor focus cells pass E164-E166 only because many cells are moved slightly; after matching target counts, their top-benefit/top-swing cells should look like random row-target subsets with no hidden calendar/block signature.
+- Observed result: E167 rejects this. E166 top-benefit cells have edge-like rate `0.689189` versus target-count null `0.470842` (`z=3.902`, `p_high=0.000333`), between-train-runs rate `0.797297` versus `0.624658` (`z=3.293`, `p_high=0.001333`), and top-subject share `0.243243` versus `0.164563` (`z=3.498`). The top-swing set repeats the same direction with between-train-runs `0.824324` and edge-like `0.594595`.
+- Why discard: the E166 broad branch is not merely submission-space noise. It touches real hidden row/block context, especially edge-like and between-train-runs regions.
+- Implementation issue possible: medium. The context atlas is inferred from prior experiments, and the public labels are still hidden. Low for the target-count-null result because the permutation test preserves target composition and uses `3000` nulls.
+- Bottleneck implication: the broad lane remains alive as a hidden-world sensor. A public E166 loss should not be interpreted as "there was no context signal"; it should be interpreted against safety-atlas and public-negative axis mismatch.
+- Do not repeat: dismissing broad E95-relative candidates solely because they are JEPA-family or old-universe files. First test context enrichment and safety divergence separately.
+
+## FH145. E166 inherits the same safety-atlas law as the repaired branch
+
+- Failed hypothesis: if E166's broad focus cells are real, they should also be enriched for the existing transfer-shrinkage/veto-null safety atlas that made E154/E95-style repaired branches plausible.
+- Observed result: E167 finds the opposite. E166 top-benefit cells have all-veto-null rate `0.297297` versus null `0.574158` (`z=-5.127`), all-safe-density mean `0.117097` versus `0.243966` (`z=-5.239`), broad-low-alpha mass `1.321365` versus `3.199735` (`z=-3.387`), and E101-plausible mass `0.238204` versus `0.533727` (`z=-3.100`). E72-active rate is high: `0.837838` versus `0.670369` (`z=3.310`).
+- Why discard: E166 is structurally real but safety-atlas divergent. The existing atlas does not certify it; in fact, the strongest E166 focus cells sit in regions the atlas would treat as risky or under-supported.
+- Implementation issue possible: medium. The atlas is a public-free proxy, and it may be too conservative or branch-bound. But the direction and significance are strong enough to block any claim that E166 is a safer expected-score file.
+- Bottleneck implication: the plateau is not solved by "broad plus tiny scale" alone. The missing ingredient is a safety axis that distinguishes true broad hidden-context signal from E72-active public-negative exposure.
+- Do not repeat: scaling E166, creating E166 amplitude variants, or ranking E166 above repaired-branch files as a safer expected-score candidate before public feedback. Use it only as a broad-escape sensor.

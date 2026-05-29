@@ -743,3 +743,17 @@ E164-E166 reopen the broad-signal lane that E163 demanded.
 - E166 selected amplitude: mean/max abs logit move `0.002243986` / `0.013580886`.
 
 The validation implication changes the next-decision menu. E154 is still the cleaner repaired-branch sensor, but it is narrow. E166 is the first post-E95 candidate that directly addresses the E163 requirement: it is broad, small-amplitude, non-collinear with E154, and rejects scaled known-bad controls. It is therefore a legitimate broad-escape sensor, not a CV/blend tweak. Its risk is that the broad survivor family has no public-positive anchor yet; a loss would specifically falsify the current bad-axis geometry as incomplete.
+
+## Update After E167
+
+E167 stress-tests whether E166's broad cells are hidden-context-real and safety-atlas-compatible.
+
+- script: `analysis_outputs/e167_broad_survivor_context_alignment.py`.
+- E166 focus cells: `74`.
+- permutation nulls per focus set: `3000`.
+- top-benefit expected delta: `-0.000115303`.
+- top-benefit context enrichment: edge-like rate `0.689189` vs null `0.470842`; between-train-runs rate `0.797297` vs `0.624658`; top-subject share `0.243243` vs `0.164563`.
+- top-benefit safety divergence: all-veto-null rate `0.297297` vs null `0.574158`; all-safe-density mean `0.117097` vs `0.243966`; broad-low-alpha mass `1.321365` vs `3.199735`; E101-plausible mass `0.238204` vs `0.533727`.
+- E72-active rate: `0.837838` vs null `0.670369`.
+
+The stress implication is mixed and useful. E166 survives the "random broad noise" stress: its focus cells are genuinely concentrated in hidden calendar/block contexts. It fails the "safety-atlas certified" stress: the same focus cells are unusually low on veto-null/safe-density/low-alpha/E101-plausible support and unusually high on E72-active support. So E166 remains a high-information broad-escape public sensor, but it is not a safer expected-score candidate and should not be scaled before feedback.

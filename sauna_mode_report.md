@@ -1365,3 +1365,43 @@ E163이 남긴 조건은 명확했다.
 한 줄로 말하면:
 
 `E154는 현재 세계관을 정밀하게 읽는다. E166은 현재 세계관을 깨려고 한다.`
+
+## E167 업데이트: E166은 진짜인데 안전하지는 않다
+
+가장 이상한 점:
+
+`E166의 broad focus cell은 랜덤이 아니었다. 그런데 우리가 지금까지 안전하다고 믿어온 safety-atlas와는 반대로 갔다.`
+
+실험:
+
+`analysis_outputs/e167_broad_survivor_context_alignment.py`
+
+E166 top-benefit `74` cells를 target-count preserving permutation null `3000`개와 비교했다.
+
+결과:
+
+- edge-like rate: `0.689189` vs null `0.470842`.
+- between-train-runs rate: `0.797297` vs null `0.624658`.
+- top-subject share: `0.243243` vs null `0.164563`.
+
+즉 E166은 hidden row/block/calendar context를 실제로 건드린다.
+
+하지만:
+
+- all-veto-null rate: `0.297297` vs null `0.574158`.
+- all-safe-density mean: `0.117097` vs null `0.243966`.
+- E101-plausible mass: `0.238204` vs null `0.533727`.
+- E72-active rate: `0.837838` vs null `0.670369`.
+
+따라서 현재 세계관은 이렇게 바뀐다.
+
+`E166은 broad latent hallucination이 아니다. 하지만 E154/E95 쪽 safety law가 인증한 후보도 아니다. E166은 "현재 safety atlas가 너무 보수적인가?"를 묻는 센서다.`
+
+다음 행동:
+
+E166은 제출할 수 있는 정보량 높은 파일이지만, 점수 기대값이 더 안전하다고 말할 수는 없다. public feedback 전에는 E166 scale-up이나 같은 계열 변형을 만들지 않는다.
+
+제출 해석:
+
+- E166이 E95를 이기면: hidden calendar context가 safety-atlas보다 강했고, broad branch를 amplitude/target/context별로 분해한다.
+- E166이 지면: E72-active/low-veto-null conflict가 broad JEPA-like movement의 public-negative axis였다고 본다.
