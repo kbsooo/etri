@@ -643,3 +643,19 @@ E158 turns the repaired branch stack into a public-feedback decoder rather than 
 - E155/E157/E156 cosine vs E144: `0.998962769` / `0.999041566` / `0.999515751`.
 
 The stress implication is that the repaired branch controls are not independent expected-improvement bets. E154 remains the first sensor because it asks the full repaired all-four question and is distinguishable from unrepaired E144, not because its separation from E155 is public-readable. If E154 loses or ties, E155 is the clean amplitude-control; E157/E156 should be treated as target-axis controls only after E155, not as pre-feedback score maximizers.
+
+## Update After E159
+
+E159 adds the attribution stress that E158 deliberately left open.
+
+- script: `analysis_outputs/e159_e154_public_outcome_attribution.py`.
+- segment table: `analysis_outputs/e159_e154_public_outcome_attribution_cells.csv`.
+- outcome rates: `analysis_outputs/e159_e154_public_outcome_attribution_rates.csv`.
+- responsibility tables: `analysis_outputs/e159_e154_public_outcome_group_attribution.csv`, `analysis_outputs/e159_e154_public_outcome_top_responsibility.csv`.
+- unique moved cells: `294`; additive segments: `479`.
+- decomposition verification: max y=1/y=0 hard-delta error `1.75e-16` / `1.93e-16`.
+- component flip-benefit: inherited E144 body `3.292000000`, E154 extra body `0.255975083`, E154 adjustment on E144 body `0.203843941`.
+- focus-prior win mass: global `0.728550`, subject `0.601575`, nearest-hard `0.666680`.
+- branch-or-worse mass: global `0.222590`, subject `0.336125`, nearest-hard `0.259610`.
+
+The stress implication is that E154's public result must be interpreted by component responsibility, not by score band alone. The loss-side stress is dominated by the inherited E144 body under all focus priors; the E154 added body is much smaller. Therefore E155 is a valid follow-up only when the realized E154 band and attribution specifically point to added-body overextension. If E154 fails because the inherited body is adverse, the lower-amplitude E155 control cannot logically rescue the branch.

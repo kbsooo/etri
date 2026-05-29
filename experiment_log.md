@@ -2430,3 +2430,24 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E155/E157/E156 are almost the same branch: cosines vs E144 are `0.998962769`, `0.999041566`, and `0.999515751`.
 - Interpretation: E154 remains first not because it is clearly better than E155 at public resolution, but because it asks the cleanest full repaired all-four question and is distinguishable against unrepaired E144. E155 is the amplitude-control if E154 ties or loses. E157/E156 are too close to E155 to be pre-feedback expected-improvement bets.
 - Decision: keep submission order `E154 -> E155 -> E157 -> E156 -> E144`. If E154 wins by more than a micro-edge, promote it and rebuild exact-delta audits before spending slots on siblings. If E154 ties or small-loses, E155 is the only clean same-family follow-up. If E154 hard-fails above mixmin, do not rescue with E157/E156 target-axis micro-controls; use E144 as the unrepaired contrast or return to representation search.
+
+## E159. E154 Public Outcome Attribution
+
+- Observe: E158 fixed score bands for E154, but a scalar public score still cannot tell whether the repaired body, the inherited E144 branch, or a target-local public prior caused the result.
+- Wonder: if E154 loses, is E155 a meaningful amplitude-control rescue, or would the loss already blame the inherited E144 body and therefore make E155 irrelevant?
+- Method: `analysis_outputs/e159_e154_public_outcome_attribution.py` decomposes E154-vs-E95 into additive hard-label LogLoss segments: E95->E144 inherited body, E144->E154 adjustment on inherited cells, and E154 extra body. Segments on the same row-target share the same simulated hidden label, then E158 bands are applied under global, subject, flank, and nearest-hard priors.
+- Result:
+  - segment table: `analysis_outputs/e159_e154_public_outcome_attribution_cells.csv`.
+  - outcome table: `analysis_outputs/e159_e154_public_outcome_attribution_rates.csv`.
+  - group table: `analysis_outputs/e159_e154_public_outcome_group_attribution.csv`.
+  - responsibility table: `analysis_outputs/e159_e154_public_outcome_top_responsibility.csv`.
+  - report: `analysis_outputs/e159_e154_public_outcome_attribution_report.md`.
+  - unique E154-vs-E95 moved cells: `294`; additive segments: `479`; moved rows/subjects: `139/9`.
+  - component flip-benefit: inherited E144 body `3.292000000`, E154 extra body `0.255975083`, E154 adjustment on E144 body `0.203843941`.
+  - target flip-benefit: Q3 `1.316339056`, Q1 `0.861514603`, S3 `0.617644085`, S2 `0.502753066`, S4 `0.453568213`.
+  - win mass under public-free priors: global `0.728550`, subject `0.601575`, nearest-hard `0.666680`.
+  - branch-or-worse mass: global `0.222590`, subject `0.336125`, nearest-hard `0.259610`.
+  - hard-fail blame is dominated by `inherited_e144_body` under all three focus priors, with Q3/S3/S2 or Q1 as the target-level stress axes depending on prior geometry.
+- Verification: additive segment sums match direct E154-vs-E95 hard-label deltas with max errors `1.75e-16` for y=1 and `1.93e-16` for y=0.
+- Interpretation: E154 is still public-worth testing, but the follow-up rule is sharper. E155 is justified after an E154 tie/small-loss only if attribution blames `e154_adjustment_on_e144_body` or `e154_extra_body`. If E154 branch-loss/hard-fails because inherited E144 body is adverse, E155 is not a rescue.
+- Decision: keep E154 as the next public sensor, but after the public score combine E158 band + E159 attribution before choosing E155/E144/representation search. This prevents treating E154 scalar feedback as a leaderboard-tuning knob.

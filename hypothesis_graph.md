@@ -1788,6 +1788,18 @@ target co-occurrence
 - public LB 관측 반응: E154 clean win validates the repaired all-four branch; E154 tie/small-loss makes E155 an amplitude-control; E154 hard-fail blocks E157/E156 micro-control rescue.
 - 제출 전략: submit order remains `E154 -> E155 -> E157 -> E156 -> E144`, but this order is for information, not raw expected score.
 
+### H153. E154 feedback must be decoded by component responsibility, not score band alone
+
+- 상태: supported by E159; pending public feedback.
+- 왜 그럴듯한가: E158 only says which score band E154 lands in. But E154 is a composite move: it contains inherited E144 body plus E154-specific adjustment and extra cells. A loss can therefore mean full-body overextension, inherited E144 branch failure, or target-prior mismatch; those imply different next actions.
+- 맞다면: decomposing E154 into additive LogLoss segments should show that loss-side worlds can be assigned to specific target/component responsibility groups, and E155 should be justified only when the blame is concentrated in E154-added body rather than inherited E144 body.
+- 틀리다면: component attribution should be diffuse or dominated by the same groups across wins and losses, making it useless for action; or the additive segment decomposition should not reproduce E154-vs-E95 direct deltas.
+- 최소 실험: `analysis_outputs/e159_e154_public_outcome_attribution.py`, decomposing E95->E144, E144->E154-on-inherited-cells, and E154-extra-cell segments, while sharing hidden labels across duplicate row-target segments.
+- 관측: E154 has `294` unique moved cells and `479` additive segments across `139` rows and `9` subjects. Additive segment sums match direct E154-vs-E95 hard-label deltas with max errors `1.75e-16` and `1.93e-16`. Component flip-benefit is dominated by inherited E144 body `3.292000000` versus E154 extra body `0.255975083` and E154 adjustment `0.203843941`. Focus-prior win mass remains meaningful (`0.728550` global, `0.601575` subject, `0.666680` nearest-hard), but hard-fail blame is inherited-body dominated under all focus priors.
+- 성공/폐기 기준: support until E154 public feedback arrives. If E154 ties/small-loses and E159 points to added-body overextension, E155 is the clean follow-up. If E154 branch-loss/hard-fails with inherited-body blame, E155/E157/E156 are not rescues and the branch should fall back to E144 or representation search.
+- public LB 관측 반응: E154 win credits only the groups with negative conditional contribution; E154 non-win must be read through E159 before any sibling submission. A scalar score alone is deliberately insufficient.
+- 제출 전략: keep `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` first, but require E158+E159 interpretation before promoting `analysis_outputs/submission_e155_bodytemp_d27e7965.csv`.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

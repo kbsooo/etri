@@ -1249,3 +1249,12 @@
 - Implementation issue possible: low for the computed geometry and local gaps because E158 reads the actual submission files and selected stress rows. Medium for the `2e-6` guardrail because public feedback could still reveal a hidden target-axis effect not visible locally.
 - Bottleneck implication: E154 is first for interpretability against E144 and the full repaired all-four question, not because it has a public-readable edge over E155. E155/E157/E156 are post-feedback controls.
 - Do not repeat: using E155/E157/E156 before E154 feedback as score-maximizing micro-variants. Use them only to distinguish full-body overextension, target-axis tuning, and minimum-body decomposition after the branch result is known.
+
+## FH139. E154 scalar public band alone can choose the next repaired-branch file
+
+- Failed hypothesis: once E154 public LB is known, E158's score band alone is enough to decide whether to submit E155, E157, E156, E144, or close the branch.
+- Observed result: E159 decomposes E154 into `479` additive LogLoss segments over `294` unique row-target cells and shows the loss-side responsibility is not scalar. The direct decomposition is numerically exact (`<2e-16` hard-delta error), and branch/hard-fail blame is dominated by `inherited_e144_body` under global, subject, and nearest-hard priors. The E154-specific added body is much smaller: flip-benefit `0.255975083` for extra body and `0.203843941` for adjustment, versus `3.292000000` for inherited E144 body.
+- Why discard: E155 only reduces the E144->E154 added body. It cannot logically rescue a failure whose dominant blame is inherited E144 body. A score band without responsibility attribution would confuse component failure with amplitude overextension.
+- Implementation issue possible: low for additive accounting because direct hard-label deltas were verified; medium for realized public attribution because true public labels remain hidden and E159 uses prior-world simulations.
+- Bottleneck implication: candidate selection is now attribution-resolution limited. The next public feedback must be read as a hidden-label world observation, not as a scalar leaderboard ranking.
+- Do not repeat: auto-submit E155 after any E154 tie/small-loss, or auto-close the branch after any E154 non-win without checking whether blame falls on added body, inherited body, or target-local axes.
