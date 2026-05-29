@@ -1195,3 +1195,12 @@
 - Implementation issue possible: medium. The audit reuses existing E137-E140 scored families and a finite projection grid, so a genuinely new decoder could still work. Low for this specific shortcut because controls and blocker intersections are explicit.
 - Bottleneck implication: the live bottleneck is gate compatibility, not lack of non-collinear movement. The next model should predict why gates fail together, not search more top-k/alpha projections.
 - Do not repeat: branch-orthogonal full/top50/top100 alpha sweeps over E137-E140 as the next default. Treat E152 outputs as training/diagnostic material for a gate-intersection latent instead.
+
+## FH133. E152 all-four failure is a single scalar threshold problem
+
+- Failed hypothesis: the zero all-four intersection in E152 is mainly caused by a threshold that is slightly too strict; relaxing one scalar gate should reveal a submit-safe projection.
+- Observed result: E153 classifies `103` three-of-four near misses and finds an asymmetric blocker split. `102/103` are `missing_actionable`, and `101/102` of those fail active/Q2S3 while passing relaxed, E72, and post-E101 gates. The lone `missing_relaxed` row passes actionability but fails raw/world structural health. Target anatomy shows the dominant missing-actionable exposure is S3/S4/S2, not Q2.
+- Why discard: the blockers are not distributed like a scalar tolerance miss. They represent two different state requirements: S3 active-boundary actionability for the main mass and raw/world health for the lone actionable escape.
+- Implementation issue possible: low to medium. E153 initially exposed a candidate-row identity issue and fixed it with `variant_pos`; after the fix, rows match E152's `2880` projected count. The conclusion is still bounded to E152's projection family.
+- Bottleneck implication: the next useful decoder must make S3 active-boundary safety and raw/world health co-occur. Global threshold relaxation would likely create public-tail exposure rather than a healthy candidate.
+- Do not repeat: relaxing active/Q2S3, action-cos, relaxed, E72, or post-E101 gates globally as the next default. Use E153 blocker classes as the repair target instead.

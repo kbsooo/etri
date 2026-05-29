@@ -754,6 +754,35 @@ E144 fine-boundary audit 전까지 제출 파일은 `analysis_outputs/submission
 
 지금 제출할 파일은 여전히 하나다. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.
 
+## 추가 관찰: near miss의 99%는 S3 active-boundary에서 죽는다
+
+`analysis_outputs/e153_gate_intersection_failure_atlas.py`로 E152의 all-four 교차 실패를 분해했다.
+
+질문은 이것이었다.
+
+`E152의 3-of-4 near miss는 threshold를 조금 풀면 살아나는가, 아니면 서로 다른 gate들이 실제로 다른 hidden state를 요구하는가?`
+
+결과:
+
+- projected rows: `2880`.
+- 3-of-4 near misses: `103`.
+- all-four rows: `0`.
+- `missing_actionable`: `102`.
+- `missing_relaxed`: `1`.
+- missing-actionable의 active/Q2S3 fail: `101/102`.
+- missing-actionable의 action-cos fail: `50/102`.
+- missing-actionable의 E72/material fail: `0/102`.
+- missing-actionable의 relaxed fail: `0/102`.
+- missing-relaxed의 raw/world relaxed fail: `1/1`.
+- missing-actionable target lift: S3 `+0.022774`, S4 `+0.020949`, S2 `+0.018800`.
+- Q2 share는 사실상 `0`.
+
+현재 세계관을 다시 압축한다.
+
+`q2s3라는 이름이 이제 부정확하다. E152 near miss를 죽이는 것은 Q2가 아니라 S3 active-boundary exposure다. relaxed/E72/post101은 통과하는 102개 후보가 S3 active-boundary actionability에서 죽고, actionability를 통과하는 유일한 후보는 Q1-heavy raw/world health에서 죽는다. 따라서 이 병목은 scalar threshold 문제가 아니라 decoder가 S3 active-boundary와 raw/world structural health를 동시에 만족하는 상태를 만들지 못하는 문제다.`
+
+지금 제출할 파일은 변하지 않는다. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.
+
 ## 추가 관찰: branch 밖 signal은 많지만 decoder 교집합은 없다
 
 `analysis_outputs/e152_branch_orthogonal_decoder_audit.py`로 E151의 escape hatch를 직접 찔렀다.

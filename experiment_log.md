@@ -2322,3 +2322,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - `budget_post101_actionable` opens only `1` row, best `-0.0000106142`, but relaxed structural is false.
 - Interpretation: E152 strengthens H145. The missing object is not "any signal outside E144"; there is plenty. The bottleneck is the decoder intersection: structural reward, E72 budget, post-E101 safety, and active-veto actionability are mutually incompatible under this projection family.
 - Decision: no submission. Do not repeat branch-orthogonal top-k/alpha projection sweeps as the next local work. The next useful target is the gate-intersection state itself: why E138 relaxed-budget-post101 rows fail active-veto, and why the lone E139 budget-post101-actionable row fails relaxed structure.
+
+## E153. Gate-Intersection Failure Atlas
+
+- Observe: E152 found `103` three-of-four near misses but zero all-four projected rows. That could still mean a scalar threshold was too strict, or it could mean the gates require incompatible target/energy states.
+- Wonder: which gate kills the near misses, and is the blocker localized enough to repair without relaxing every stress gate?
+- Method: `analysis_outputs/e153_gate_intersection_failure_atlas.py` rebuilds the E152 projected predictions, preserves candidate-row identity with `variant_pos`, attaches target/axis movement anatomy, and classifies each row by the missing gate.
+- Result:
+  - projected rows: `2880`; three-of-four near misses: `103`; all-four rows: `0`.
+  - `missing_actionable`: `102` rows; best all-minus-E95 `-0.000012803`; best post-E101 p95 `-0.000005662`; best E72 gap `-0.000010715`.
+  - `missing_relaxed`: `1` row; best all-minus-E95 `-0.000010614`; best post-E101 p95 `-0.000002244`; E72 gap `0`.
+  - missing-actionable blockers: active/Q2S3 `101/102`, action cosine `50/102`, E72/material `0/102`, relaxed components `0/102`.
+  - missing-relaxed blocker: raw/world relaxed health `1/1`, action blockers `0/1`.
+  - missing-actionable target lift is S-side: S3 `+0.022774`, S4 `+0.020949`, S2 `+0.018800`; Q2 is effectively zero, so the old "Q2S3" action fail is really S3 active-boundary exposure.
+- Interpretation: E153 sharpens E152. The dominant near miss is not an E72-budget or post-E101 problem. It is an S3 active-boundary/actionability problem. The only actionable-safe escape is Q1-heavy and fails raw/world structural health. This is a decoder-state incompatibility, not a single threshold miss.
+- Decision: no submission. The next local experiment should target S3 active-boundary repair over the `102` missing-actionable rows, or a raw/world-preserving repair for the lone actionable Q1-heavy row. Success criterion remains all-four intersection only.

@@ -1152,6 +1152,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E152 finds `4650/4650` source rows non-collinear and `2880` projected rows. The individual gates open separately (`349` relaxed, `1208` budget, `564` post-E101, `122` actionable), but all-four intersection is `0`. The best relaxed-budget-post101 row is E138 and fails actionability; the only budget-post101-actionable row is E139 and fails relaxed structure.
 - Policy: use as the next latent/diagnostic target. Do not repeat direct branch-orthogonal projection sweeps unless a new model predicts gate-intersection membership out-of-sample or changes the decoder objective.
 
+### F130. S3 active-boundary gate-intersection target
+
+- Hidden structure: the old active/Q2S3 veto is mostly an S3 active-boundary exposure detector, while the only actionability-safe escape fails raw/world structural health.
+- Candidates: E153 `gate_class`, active/Q2S3 failure flag, action-cos failure flag, target L1 share, S3/S4/S2 lift, Q1-heavy actionable escape flag, raw/world relaxed blockers, tail-equal cosine/residual, and source family/projection mode.
+- Label vs split test: valid as a diagnostic and decoder target because it explains why E152's public-safe gates do not intersect. Invalid as a direct feature unless a new movement passes all-four stress without using public feedback.
+- Current evidence: E153 finds `103` three-of-four near misses and no all-four row. `102` are `missing_actionable`; `101/102` fail active/Q2S3 while relaxed/E72/material blockers are zero. Target contrast shows S3 `+0.022774`, S4 `+0.020949`, S2 `+0.018800`, and Q2 effectively absent. The lone `missing_relaxed` row is Q1-heavy and fails raw/world health.
+- Policy: make this the next local decoder target. A candidate can be materialized only if it repairs S3 active-boundary actionability or raw/world relaxed health while preserving relaxed, E72-budget, post-E101, and actionability gates simultaneously.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

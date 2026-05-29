@@ -529,3 +529,20 @@ E152 tests E151's non-collinear escape hatch directly.
 - only `budget_post101_actionable` row: `-0.0000106142`, but relaxed structural is false.
 
 The validation implication is narrower and harsher than E151. Non-collinear signal is present, so the latent has not collapsed into the E142/E143/E144 branch. But the current decoder cannot make the necessary gates coincide. The next validation object should explain the gate-intersection failure itself, not repeat orthogonal projection/top-k/alpha scans.
+
+## Update After E153
+
+E153 explains the E152 gate-intersection failure instead of creating another candidate.
+
+- projected rows: `2880`.
+- three-of-four near misses: `103`.
+- all-four intersection: `0`.
+- `missing_actionable`: `102`; `missing_relaxed`: `1`.
+- missing-actionable active/Q2S3 blocker: `101/102`.
+- missing-actionable action-cos blocker: `50/102`.
+- missing-actionable E72/material blockers: `0/102`.
+- missing-actionable relaxed blockers: `0/102`.
+- missing-relaxed raw/world blockers: `1/1`.
+- missing-actionable target lift versus rest: S3 `+0.022774`, S4 `+0.020949`, S2 `+0.018800`; Q2 is effectively absent.
+
+The validation implication is now target-specific. The near misses are not failing because the transfer-budget or post-E101 p95 gates are too strict. Almost all of them pass those gates and die on S3 active-boundary actionability. The only actionability-safe escape dies on raw/world relaxed health. A new local decoder must therefore make S3 active-boundary safety and raw/world health co-occur; relaxing one global scalar gate is not a valid stress fix.

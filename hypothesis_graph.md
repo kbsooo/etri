@@ -1716,6 +1716,18 @@ target co-occurrence
 - public LB 관측 반응: none directly; E152 produces no submission. E144 remains the public sensor. If E144 wins, H146 still says non-collinear expansion is unresolved; if E144 loses, H146 becomes stronger because even orthogonalized alternatives failed local stress.
 - 제출 전략: no E152 submission. Next strategy should model the gate-intersection failure state itself, especially E138 relaxed-budget-post101 rows that fail active-veto and E139 budget-post101-actionable rows that fail relaxed structural.
 
+### H147. E152 near misses fail mainly through S3 active-boundary actionability, while the actionable escape fails raw/world health
+
+- 상태: supported by E153; no submission.
+- 왜 그럴듯한가: E152 found `103` three-of-four near misses and no all-four row. If the failure were a global threshold artifact, blockers should be mixed or scalar-relaxable. If it is a real decoder-state conflict, near misses should concentrate in a specific gate/target anatomy.
+- 맞다면: most near misses should pass relaxed/E72/post-E101 but fail the active-boundary/actionability gate, with target anatomy pointing to a concrete exposure axis. Any actionability-safe row should fail a different structural health condition rather than simply needing a small threshold relaxation.
+- 틀리다면: missing-gate classes should be balanced, E72/post-E101/relaxed blockers should be common among near misses, or a near miss should become all-four under a small uniform tolerance without changing target anatomy.
+- 최소 실험: `analysis_outputs/e153_gate_intersection_failure_atlas.py`, rebuilding E152 projected candidates, preserving candidate-row identity with `variant_pos`, attaching target/axis movement anatomy, and classifying gate blockers.
+- 관측: projected rows `2880`, three-of-four near misses `103`, all-four rows `0`. `missing_actionable` has `102` rows, and `101/102` fail active/Q2S3 while E72/material/relaxed blockers are `0/102`. `missing_relaxed` has `1` row and fails raw/world health while action blockers are `0/1`. Missing-actionable target lift is S3 `+0.022774`, S4 `+0.020949`, S2 `+0.018800`, while Q2 is effectively absent.
+- 성공/폐기 기준: support H147 until a decoder creates an all-four row by explicitly reducing S3 active-boundary exposure or preserving raw/world health. Discard only if an independent repair shows the E153 blocker split was an artifact of E152 candidate construction.
+- public LB 관측 반응: none directly; no file is produced. If E144 improves, H147 remains a local decoder-expansion bottleneck. If E144 fails, H147 becomes stronger because the same S3/Q3/active-boundary weakness seen in E147/E148/E149 likely controls the branch.
+- 제출 전략: no E153 submission. The next file must be generated from S3 active-boundary repair of the `102` missing-actionable rows or raw/world-health repair of the lone actionable row, and must pass all-four gates before materialization.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
