@@ -1896,6 +1896,30 @@ target co-occurrence
 - public LB 관측 반응: an E166 win says the safety atlas was too conservative or branch-bound and that hidden calendar context can beat current veto logic. An E166 loss says E72-active and low-veto-null divergence is the missing public-negative axis for this broad branch.
 - 제출 전략: keep E166 as a single broad-escape sensor. Do not scale or same-family tune it before public feedback. If it wins, decompose amplitude/targets around the edge-like/between-train-runs context; if it loses, revise the bad-axis/safety-atlas gate before any broad JEPA-like retry.
 
+### H162. E166's context signal can be safety-repaired without fully killing breadth
+
+- 상태: supported by E168; materialized by E169.
+- 왜 그럴듯한가: E167 showed two opposing facts in the same branch: hidden context enrichment and safety-atlas divergence. If those facts are not perfectly coupled, a context-high plus safety mask should keep material broad edge while improving veto/safe-density and reducing E72-active exposure.
+- 맞다면: simple pre-public masks such as `edge-like OR between-train-runs` intersected with veto-null or high safe-density should keep expected delta below `-1e-4`, retain at least `20` cells-to-flip, keep top1/expected below `0.05`, and improve both context and safety metrics versus all-E166.
+- 틀리다면: every safety-improving mask should become too small, top-cell fragile, context-poor, or expected-edge weak.
+- 최소 실험: `analysis_outputs/e168_e166_safety_context_decoupling.py`.
+- 관측: two policies pass. `context_high__veto` keeps `904` cells across `193` rows, expected delta `-0.000120457`, cells-to-flip `32`, top1/expected `0.048415`, edge-like `0.610619`, between-train-runs `0.819690`, veto `1.0`, safe-density `0.346150`, E72-active `0.268805`. `context_high__high_density_p50` is nearly identical. Strict edge-and-between masks are too top-cell fragile.
+- 성공/폐기 기준: support holds if materialized tensors also pass bad-axis and amplitude stress. It weakens if public feedback on E169 says the safety repair removed the true broad signal or preserved the wrong public-negative cells.
+- public LB 관측 반응: an E169 win says broad hidden-context signal is public-real but needs safety-veto masking. An E169 loss says either the broad branch is still wrong or the E168 safety proxy is not the right public-negative axis.
+- 제출 전략: prefer the context-high veto mask before raw E166 when the public slot asks for balanced broad repair rather than deliberate safety-atlas falsification.
+
+### H163. A materialized context-high safety mask is a healthier broad-branch sensor than raw E166
+
+- 상태: supported locally by E169; public feedback pending.
+- 왜 그럴듯한가: E166 is broad but safety-divergent. A healthier LeJEPA-style successor should preserve hidden-context breadth while lowering bad-axis energy, movement amplitude, and unsafe E72-active exposure.
+- 맞다면: the materialized mask should pass the same breadth/bad-axis stress as E166 with lower bad-span energy and smaller mean logit movement, without becoming an E154/E101 same-family micro-control.
+- 틀리다면: after materialization the mask should collapse into one-cell fragility, align with known bad axes, become too Q2/S3-specific, or lose material expected edge.
+- 최소 실험: `analysis_outputs/e169_e166_context_safety_mask_materializer.py`.
+- 관측: `submission_e169_ctx_veto_c5e806e3.csv` passes stress with expected delta `-0.000120457`, moved cells/rows `904/193`, cells-to-flip `32`, top1/expected `0.048415`, bad-span energy `0.295326`, max bad cosine `0.222381`, mean/max abs logit `0.001096`/`0.010206`, Q2/S3 share `0.347775`, and cosine to E154/E101/mixmin `0.087180`/`-0.021896`/`-0.020672`.
+- 성공/폐기 기준: support until public feedback. A win promotes context/safety repaired broad latent as the next main branch. A loss demotes E168's safety repair and forces either raw E166 as a deliberate falsification test or a new safety-axis search.
+- public LB 관측 반응: better than E95 (`<0.5762913298`) means the broad lane can survive when repaired by context-high/veto masking. Worse than E101 (`>0.5763003660`) means the repair is not enough and broad branch remains public-risky. Between those values is a weak branch-alive but not frontier read.
+- 제출 전략: `analysis_outputs/submission_e169_ctx_veto_c5e806e3.csv` is the best balanced broad-branch candidate. `submission_e169_ctx_high_density_p50_51110c7e.csv` is a near-duplicate control. Raw E166 remains the sharper but riskier atlas-falsification sensor.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

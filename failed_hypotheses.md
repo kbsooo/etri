@@ -1312,3 +1312,21 @@
 - Implementation issue possible: medium. The atlas is a public-free proxy, and it may be too conservative or branch-bound. But the direction and significance are strong enough to block any claim that E166 is a safer expected-score file.
 - Bottleneck implication: the plateau is not solved by "broad plus tiny scale" alone. The missing ingredient is a safety axis that distinguishes true broad hidden-context signal from E72-active public-negative exposure.
 - Do not repeat: scaling E166, creating E166 amplitude variants, or ranking E166 above repaired-branch files as a safer expected-score candidate before public feedback. Use it only as a broad-escape sensor.
+
+## FH146. E166 context-real signal cannot be separated from safety divergence by simple masks
+
+- Failed hypothesis: E167's context enrichment and safety-atlas divergence are fully coupled, so any simple safety repair will either destroy the hidden-context signal or leave the broad branch too top-cell fragile.
+- Observed result: E168 finds `2` decoupling-pass policies. `context_high__veto` keeps `904` cells over `193` rows, expected delta `-0.000120457`, cells-to-flip `32`, top1/expected `0.048415`, edge-like `0.610619`, between-train-runs `0.819690`, veto `1.0`, safe-density `0.346150`, and E72-active `0.268805`. `context_high__high_density_p50` is almost tied with expected delta `-0.000119080`.
+- Why discard: context-high plus veto/density comfort preserves material breadth and improves the exact safety metrics E167 flagged. The failure is not separability; the failure is that strict context-only purity is too small and top-cell fragile.
+- Implementation issue possible: medium. The masks are built on E167's inferred atlas and still need public feedback. Low for this exact falsification because the E168 criteria were pre-public and require both breadth and safety improvements.
+- Bottleneck implication: E166 is not a binary choice between raw broad JEPA movement and total rejection. A repaired broad lane exists locally, but it gives up expected edge for lower risk.
+- Do not repeat: treating E167 safety divergence as a proof that all broad-context E166 variants are dead. First test context-high safety intersections.
+
+## FH147. E168 context-high safety masks collapse when materialized as prediction tensors
+
+- Failed hypothesis: E168's cell-mask rows only look healthy in diagnostic space; once converted to full submissions, they will lose breadth, align with known bad axes, or become another narrow E154/E101-style micro-control.
+- Observed result: E169 materializes `2` stress-gate files. `submission_e169_ctx_veto_c5e806e3.csv` has expected delta `-0.000120457`, moved cells/rows `904/193`, cells-to-flip `32`, top1/expected `0.048415`, bad-span energy `0.295326`, max bad cosine `0.222381`, mean/max abs logit `0.001096`/`0.010206`, and low cosine to E154/E101/mixmin (`0.087180`/`-0.021896`/`-0.020672`). `submission_e169_ctx_high_density_p50_51110c7e.csv` is a near-duplicate stress-pass control.
+- Why discard: materialization preserves the intended broad/small-amplitude geometry while lowering bad-span energy versus raw E166. The candidate remains public-unproven, but it is not a diagnostic-only artifact.
+- Implementation issue possible: medium. The broad branch still lacks a public-positive anchor and `q2_bad` remains the max bad axis. Low for the tensor-materialization check because actual submission files were written and rescored.
+- Bottleneck implication: the live broad branch now has three distinguishable public sensors: repaired E169 for balanced risk, raw E166 for safety-atlas falsification, and E154 for conservative repaired-branch contrast.
+- Do not repeat: demoting E168 masks without materialized stress. If one broad candidate is submitted before feedback, use `submission_e169_ctx_veto_c5e806e3.csv` unless the explicit goal is to challenge the safety atlas with raw E166.

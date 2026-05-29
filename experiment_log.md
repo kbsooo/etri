@@ -2589,3 +2589,30 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
 - Verification: report and CSV outputs regenerated. `python3 -m py_compile` is run in the final verification pass.
 - Interpretation: E166 is not random. It points at real hidden calendar context, especially edge-like and between-train-runs cells. But it is also not safety-atlas-certified: the cells that carry its focus benefit are unusually low on veto-null/safe-density/low-alpha/E101-plausible support and unusually high on E72-active support. This is exactly a broad plateau-break sensor, not a safer expected-score file.
 - Decision: keep `submission_e166_broadsurv_s0p01_d8bfa94b.csv` as a high-information public sensor only. Do not scale E166 up or spawn same-family amplitude variants before public feedback. If E166 wins, the safety atlas was too conservative or branch-bound. If E166 loses, the E72-active/safety-atlas conflict becomes the main explanation for why broad JEPA-like movement remains public-negative.
+
+## E168. E166 Safety-Context Decoupling
+
+- Observe: E167 left a mixed signal: E166 is hidden-context-real, but its strongest focus cells are safety-atlas divergent. The negative interpretation would be that broad context and unsafe E72-active exposure are inseparable in this branch.
+- Wonder: can a simple, pre-public local mask keep enough E166 hidden-context edge while restoring veto/safe-density comfort, or does any safety mask kill the broad edge?
+- Method: `analysis_outputs/e168_e166_safety_context_decoupling.py` masks E166 moved cells by context (`edge-like OR between-train-runs`, strict edge-and-between), safety (`veto-null`, high safe density, not-E72-active), and target groups. A decoupled repair must keep expected edge `<= -1e-4`, cells-to-flip `>=20`, top1/expected `<=0.05`, context gain `>=0.05`, veto and safe-density gains `>=0.05`, and no worse E72-active rate.
+- Result:
+  - decoupling-pass policies: `2`.
+  - all-E166 expected delta `-0.000332077`, cells-to-flip `74`, top1/expected `0.023369627`.
+  - `context_high__veto`: `904` cells, `193` rows, expected delta `-0.000120457`, cells-to-flip `32`, top1/expected `0.048415`, edge-like `0.610619`, between-train-runs `0.819690`, veto `1.0`, safe-density `0.346150`, E72-active `0.268805`.
+  - `context_high__high_density_p50`: `894` cells, expected delta `-0.000119080`, cells-to-flip `32`, top1/expected `0.048975`, edge-like `0.610738`, between-train-runs `0.817673`, veto `1.0`, safe-density `0.349218`, E72-active `0.260626`.
+  - strict edge-and-between masks are too small/top-cell fragile: `context_strict__veto` has expected delta `-0.000055305`, cells-to-flip `14`, top1/expected `0.105452`.
+- Interpretation: the strongest negative reading of E167 is false. E166's hidden-context signal is not fully inseparable from safety divergence. The useful mask is broad-context plus veto/density comfort, not strict context purity.
+- Decision: E168 itself does not create a submission. It justifies materializing the two context-high safety masks and rerunning full breadth/bad-axis stress.
+
+## E169. E166 Context/Safety Mask Materializer
+
+- Observe: E168 was a cell-mask diagnostic. The next falsification is whether those masks survive when converted into actual E95-relative prediction tensors with the full broadness and bad-axis geometry checks.
+- Wonder: does the E168 repaired broad branch remain broad, small-amplitude, and away from known public-bad axes after materialization?
+- Method: `analysis_outputs/e169_e166_context_safety_mask_materializer.py` applies E168 masks to the E95-to-E166 logit movement, scores `11` policies, compares against E154/E101/mixmin axes, and materializes only stress-gate policies.
+- Result:
+  - policies scored: `11`; stress-gate policies: `2`; materialized files: `2`.
+  - `context_high__veto`: materialized `analysis_outputs/submission_e169_ctx_veto_c5e806e3.csv`, expected delta `-0.000120457`, moved cells/rows `904/193`, cells-to-flip `32`, top1/expected `0.048415`, bad-span energy `0.295326`, max bad axis `q2_bad`, max bad cosine `0.222381`, mean/max abs logit move `0.001096`/`0.010206`, Q2/S3 share `0.347775`, cosine to E154/E101/mixmin `0.087180`/`-0.021896`/`-0.020672`.
+  - `context_high__high_density_p50`: materialized `analysis_outputs/submission_e169_ctx_high_density_p50_51110c7e.csv`, expected delta `-0.000119080`, moved cells `894`, cells-to-flip `32`, top1/expected `0.048975`, bad-span energy `0.295856`, max bad cosine `0.222464`, mean/max abs logit move `0.001086`/`0.010206`.
+  - raw `all_e166` remains the high-upside comparator: expected delta `-0.000332077`, moved cells `1750`, cells-to-flip `74`, bad-span energy `0.450742`, mean abs logit `0.002244`.
+- Interpretation: E169 is not an E166 scale-up. It is a lower-amplitude broad repair that keeps only cells where hidden context and veto-density comfort overlap. It gives up about two thirds of E166's expected hard-label edge to reduce amplitude and bad-axis energy.
+- Decision: if the next public slot is a balanced broad-branch test, prefer `submission_e169_ctx_veto_c5e806e3.csv` over raw E166. Use raw E166 only when deliberately testing whether the safety atlas is overconservative. Keep E154 as the conservative repaired-branch contrast.

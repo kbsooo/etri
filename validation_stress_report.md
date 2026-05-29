@@ -757,3 +757,19 @@ E167 stress-tests whether E166's broad cells are hidden-context-real and safety-
 - E72-active rate: `0.837838` vs null `0.670369`.
 
 The stress implication is mixed and useful. E166 survives the "random broad noise" stress: its focus cells are genuinely concentrated in hidden calendar/block contexts. It fails the "safety-atlas certified" stress: the same focus cells are unusually low on veto-null/safe-density/low-alpha/E101-plausible support and unusually high on E72-active support. So E166 remains a high-information broad-escape public sensor, but it is not a safer expected-score candidate and should not be scaled before feedback.
+
+## Update After E168-E169
+
+E168-E169 test whether E167's context-real/safety-divergent split can be repaired before public feedback.
+
+- E168 script: `analysis_outputs/e168_e166_safety_context_decoupling.py`.
+- E169 script: `analysis_outputs/e169_e166_context_safety_mask_materializer.py`.
+- E168 decoupling-pass policies: `2`.
+- `context_high__veto`: expected delta `-0.000120457`, moved cells `904`, cells-to-flip `32`, top1/expected `0.048415`, edge-like `0.610619`, between-train-runs `0.819690`, veto `1.0`, safe-density `0.346150`, E72-active `0.268805`.
+- `context_high__high_density_p50`: expected delta `-0.000119080`, moved cells `894`, cells-to-flip `32`, top1/expected `0.048975`, edge-like `0.610738`, between-train-runs `0.817673`, veto `1.0`, safe-density `0.349218`, E72-active `0.260626`.
+- E169 stress-gate policies: `2/11`.
+- materialized files: `analysis_outputs/submission_e169_ctx_veto_c5e806e3.csv`, `analysis_outputs/submission_e169_ctx_high_density_p50_51110c7e.csv`.
+- `submission_e169_ctx_veto_c5e806e3.csv`: moved cells/rows `904/193`, bad-span energy `0.295326`, max bad axis `q2_bad`, max bad cosine `0.222381`, mean/max abs logit `0.001096`/`0.010206`, Q2/S3 share `0.347775`.
+- raw E166 comparator: expected delta `-0.000332077`, moved cells `1750`, cells-to-flip `74`, bad-span energy `0.450742`, mean abs logit `0.002244`.
+
+The stress implication is that E166's broad hidden-context signal is repairable in local geometry. The repaired version gives up expected edge but lowers amplitude, bad-axis energy, and safety-atlas conflict. This makes `submission_e169_ctx_veto_c5e806e3.csv` the balanced broad-branch public sensor. Raw E166 remains the sharper safety-atlas falsification test, and E154 remains the conservative repaired-branch contrast.
