@@ -1412,3 +1412,12 @@
 - Implementation issue possible: medium. Known anchors are few and public labels remain aggregate. Low for the narrow falsification because the same E179 machinery was applied to fixed known-public pairs.
 - Bottleneck implication: the decisive-cell problem survives, but it shifts from "E176 top cells look bad" to "visible priors cannot certify frontier top cells." This keeps E176 alive while demanding a better representation target for future work.
 - Do not repeat: demoting E176 solely because top4 support is below 0.5, or using visible-prior top-cell support as a standalone submission ranker.
+
+## FH157. E176 is the best-supported live candidate across all latent representations
+
+- Failed hypothesis: after E179/E180, E176 can be described as the best-supported next candidate in a representation-wide sense.
+- Observed result: E181 finds a direct counterprior from the inherited binary hidden-label world pool after reranking worlds by all current public anchors. In best-5 current-anchor residual worlds, E176 has mean delta `+0.000003920` versus E95 and negative rate `0.400`; in best-10 it has mean delta `+0.000007442` and negative rate `0.300`. E154 and E144 are negative in all best-5 worlds, with means `-0.000051451` and `-0.000051445`.
+- Why discard: E176 is supported by visible/body/Q2-damping evidence, not by every latent representation. The binary-world view points to a different branch, so the stronger "E176 is globally most supported" wording is false.
+- Implementation issue possible: medium. The world pool is inherited and was not regenerated with explicit current-anchor E176/E154/E144 objectives; current-anchor residuals are also larger than the E95 public edge. The narrow failure remains valid because E181 only rejects the representation-wide claim, not E176 as a public sensor.
+- Bottleneck implication: the plateau is now a latent-view conflict, not just a top-cell visibility conflict. We need a refreshed current-anchor binary-world stress or public feedback to decide whether visible-body E176 or repaired-branch E154/E144 is closer to the hidden public world.
+- Do not repeat: presenting E176 as certified or universally supported. Present it as a conditional visible-body/Q2-underopen sensor until binary-world conflict is resolved.

@@ -2052,6 +2052,18 @@ target co-occurrence
 - public LB 관측 반응: E176 win says weak visible top support is compatible with success, like E95. E176 tie/loss says visible priors still failed to resolve the exact boundary, not that their top-cell weakness alone was a veto.
 - 제출 전략: no E180 submission. Keep E176 as sensor; do not prune or retune from visible top-cell support alone.
 
+### H175. Current-anchor binary worlds are an adverse counterprior to E176
+
+- 상태: supported by E181 as a counterprior; not a standalone selector.
+- 왜 그럴듯한가: E180 only says visible priors are too weak to veto E176. A different latent representation, the binary hidden-label world pool that originally helped explain mixmin, may encode public-anchor constraints that visible priors miss.
+- 맞다면: when existing binary worlds are reranked by all current public anchors, the lowest-residual worlds should give E176 mixed/adverse deltas versus E95, and may prefer another live branch such as E154/E144. E176 decisive-cell support should not become cleanly one-sided under those worlds.
+- 틀리다면: current-anchor best binary worlds should also favor E176, or should be too noisy to distinguish E176 from E154/E144 in any coherent direction.
+- 최소 실험: `analysis_outputs/e181_e176_binary_world_counterprior_audit.py`.
+- 관측: best-5 current-anchor residual worlds give E176 mean delta `+0.000003920` versus E95 with negative rate `0.400`; best-10 gives `+0.000007442` with negative rate `0.300`. In contrast, E154 and E144 are negative in all best-5 worlds, averaging `-0.000051451` and `-0.000051445`. E176 best-5 top4 world support is `0.433633`, but top16 support is only `0.221275`, and best-10 top4 drops to `0.262881`.
+- 성공/폐기 기준: support strengthens if a refreshed current-anchor binary-world pool keeps E154/E144 one-sided and E176 mixed/adverse. It weakens if regenerated worlds or E176 public feedback show that the inherited pool was stale or residual-rank overfit.
+- public LB 관측 반응: E176 win weakens the inherited binary counterprior and says visible-body/Q2-underopen saw a public-real branch. E176 tie/loss strengthens H175, especially if E154/E144 later improve.
+- 제출 전략: no E181 submission. Do not claim E176 is representation-wide best; treat it as a conditional visible-body sensor. Before replacing it with E154/E144, run a fresh current-anchor binary-world stress with explicit objectives.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

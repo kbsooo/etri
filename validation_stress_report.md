@@ -939,3 +939,18 @@ E180 calibrates E179's warning against known public anchors.
 - all-moved visible-prior sign accuracy across known anchors: `0.5`.
 
 Stress implication: E179's weak top-cell support is not a hard veto. The more important finding is that visible priors are too weak as a decisive-cell selector at frontier scale. E176 remains the next sensor because it is body-supported and Q2-damping-supported, but it is still not locally certified.
+
+## Update After E181
+
+E181 adds the binary-world counterprior stress.
+
+- script: `analysis_outputs/e181_e176_binary_world_counterprior_audit.py`.
+- report: `analysis_outputs/e181_e176_binary_world_counterprior_report.md`.
+- inherited binary worlds were reranked by all current known public anchors.
+- best current-anchor residual world: sum abs residual `0.000518340`, max abs residual `0.000194476`.
+- E176 in best-5 residual worlds: mean delta versus E95 `+0.000003920`, negative rate `0.400`.
+- E176 in best-10 residual worlds: mean delta `+0.000007442`, negative rate `0.300`.
+- E154 and E144 in best-5 worlds: mean deltas `-0.000051451` and `-0.000051445`, negative rate `1.000` each.
+- E176 cell support under best-5 worlds: top4 `0.433633`, top16 `0.221275`; under best-10, top4 `0.262881`.
+
+Stress implication: the live candidate order is now representation-conditional. Visible/body stress keeps E176 alive, but current-anchor binary-world stress points away from E176 and toward E154/E144. Because the binary pool is inherited and residuals are not frontier-precision, E181 is not a submission selector. It is a kill-test for the stronger claim that E176 is supported across all latent views.

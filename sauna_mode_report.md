@@ -2019,3 +2019,50 @@ E176을 후보에서 내리지 않는다. 한 장만 제출한다면 여전히:
 다음 local 연구 질문:
 
 `visible prior보다 더 나은 decisive-cell representation을 만들 수 있는가?`
+
+## E181 업데이트: E176은 representation-wide best가 아니다
+
+내가 발견한 가장 이상한 점:
+
+`visible/body 관점에서는 E176이 살아 있는데, current-anchor binary hidden-label worlds는 E176보다 E154/E144를 더 좋아한다.`
+
+실험:
+
+- `analysis_outputs/e181_e176_binary_world_counterprior_audit.py`
+- report: `analysis_outputs/e181_e176_binary_world_counterprior_report.md`
+
+결과:
+
+- 기존 binary frontier-box worlds를 현재 known public anchors 전체로 다시 ranking했다.
+- best current-anchor residual world: sum abs residual `0.000518340`, max abs residual `0.000194476`.
+- best-5 residual worlds에서 E176은 E95 대비 평균 `+0.000003920`, negative rate `0.400`.
+- best-10 residual worlds에서 E176은 평균 `+0.000007442`, negative rate `0.300`.
+- 반면 E154와 E144는 best-5 residual worlds에서 모두 E95보다 좋다.
+- E154 best-5 mean: `-0.000051451`.
+- E144 best-5 mean: `-0.000051445`.
+- E176 top-cell world support는 best-5 top4 `0.433633`이지만 top16은 `0.221275`로 약하다.
+
+생각이 어떻게 바뀌었는지:
+
+`E176은 아직 살아 있지만, “가장 강하게 지지되는 후보”라고 일반화하면 안 된다. 더 정확한 말은 E176은 visible-body/Q2-underopen worldview의 센서이고, binary hidden-world worldview는 E154/E144 쪽을 가리킨다는 것이다.`
+
+현재 최강 세계관:
+
+`0.57629 plateau는 하나의 selector가 약해서 생긴 게 아니라, latent view들이 서로 다른 세계를 가리키기 때문에 생긴다. visible priors는 broad body와 Q2 damping을 보지만, binary public-anchor worlds는 repaired narrow branch를 본다. 이 충돌이 풀리지 않으면 CV나 단순 blend는 계속 0.576 근처에서 흔들린다.`
+
+그 세계관을 죽일 수 있는 가장 작은 실험:
+
+`current anchors를 직접 반영한 binary-world pool을 새로 만들고, E176/E154/E144를 명시적 objective로 넣는다. 새 pool에서도 E154/E144가 one-sided이고 E176이 mixed/adverse면 E176 우선순위를 내려야 한다. 반대로 새 pool에서 E176이 살아나면 E181은 stale-world counterprior였던 것이다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+제출 파일을 새로 만들지 않는다. 다음 local 실험은:
+
+`E182: refreshed current-anchor binary-world stress with explicit E176/E154/E144 objectives`
+
+현재 제출 후보 해석:
+
+- E176: `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+- 의도: visible-body/Q2-underopen 세계관을 묻는 센서.
+- 기대 public 반응: 이기면 E181 binary counterprior가 stale이거나 너무 보수적이었다는 뜻.
+- 실패 시 해석: current-anchor binary-world counterprior가 맞았을 가능성이 커지고, E154/E144 branch를 다시 최상위로 올려야 한다.

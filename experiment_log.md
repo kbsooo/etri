@@ -2787,3 +2787,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - all-moved visible-prior sign accuracy across known anchors is only `0.5`.
 - Interpretation: E179's top-cell weakness is not a hard veto. Known winners can look just as weak or weaker at the visible-prior top-cell layer. The stronger conclusion is that current visible priors cannot certify decisive cells; they explain some failures like E72 but do not resolve the E95/E101/E176 frontier-scale boundary.
 - Decision: no new submission is created. Keep E176 as the single next sensor. The next representation problem is not "prune weak E176 top cells"; it is to build a better public-free decisive-cell representation than visible priors.
+
+## E181. E176 Binary-World Counterprior Audit
+
+- Observe: E180 kept E176 alive by showing that weak visible top-cell support is not unique to E176. But that only kills a veto; it does not prove E176 is the best-supported hidden-world bet across representations.
+- Wonder: if the existing binary hidden-label worlds are rescored against all current known public anchors, do the current-anchor best worlds support E176, or do they point to a different live branch?
+- Method: `analysis_outputs/e181_e176_binary_world_counterprior_audit.py` loads the existing binary frontier-box label worlds, scores each world against all current public anchors, ranks worlds by current-anchor residual, and computes E95-relative deltas for E176/E174/E172/E169/E166/E154/E144/mixmin/E101. It also measures E176 top-cell support under the best residual worlds. It writes no submission.
+- Result:
+  - report: `analysis_outputs/e181_e176_binary_world_counterprior_report.md`.
+  - the best current-anchor residual world has sum abs residual `0.000518340` and max abs residual `0.000194476`; the best-5 band has residual max `0.000744416`, still much larger than the E95 edge.
+  - E176 in best-5 worlds averages `+0.000003920` versus E95, with negative rate `0.400`.
+  - E176 in best-10 worlds averages `+0.000007442`, with negative rate `0.300`.
+  - E154 and E144 are negative in all best-5 worlds, averaging `-0.000051451` and `-0.000051445` versus E95.
+  - E176 top-cell support under binary worlds is mixed: best-5 top4 support `0.433633`, but top16 support only `0.221275`; best-10 top4 drops to `0.262881`.
+- Interpretation: E176 now has a clean cross-representation conflict. Visible/body/Q2-damping evidence supports it as the next broad hidden-tail sensor, while the current-anchor binary-world counterprior leans toward the repaired E154/E144 branch and is adverse/mixed for E176. This is not enough to demote E176 because the binary pool is inherited and current-anchor residuals are not frontier-precision, but it does invalidate the claim that E176 is the most supported candidate across all latent views.
+- Decision: no new submission. Keep E176 only as the visible-body/Q2-underopen sensor. The next local experiment should regenerate or stress a current-anchor binary-world pool with explicit E176/E154/E144 objectives; if that fresh pool keeps E154/E144 one-sided while E176 remains mixed/adverse, submission priority should be reconsidered.
