@@ -704,3 +704,21 @@ E162 translates the repaired-branch resolution problem into hard-label flip unit
 - E154 vs E155 focus expected delta: `+0.000000505`; E154 vs E144 focus expected delta: `+0.000000638`.
 
 The stress implication is stronger than "these files are close." The sibling order is cell-fragile: one high-swing hidden row-target label can move public LogLoss more than the intended local gap. Therefore local CV or public-free priors cannot rank E154/E155/E157/E156/E161 pruning rows as expected-score candidates before public feedback. The only defensible use is as predeclared instruments after E154 reveals which hidden-label world is active.
+
+## Update After E163
+
+E163 tests whether E162 was local to the repaired sibling stack or a broader post-E95 plateau property.
+
+- script: `analysis_outputs/e163_candidate_edge_breadth_audit.py`.
+- report: `analysis_outputs/e163_candidate_edge_breadth_report.md`.
+- audited pairs: `22`.
+- known public transitions: `7`.
+- known transitions whose actual public delta can be moved by one top hard-label cell: `3/7`.
+- known transitions whose actual public delta can be moved by five top hard-label cells: `5/7`.
+- live post-E95 candidates with one-cell `2e-6` readability fragility: `7/7`.
+- mixmin vs a2c8: actual delta `-0.0011326805`, top1 swing `0.000046919`, cells for actual delta `25`.
+- E95 vs mixmin: actual delta `-0.0000153107`, top1 swing `0.000046477`, cells for actual delta `1`.
+- E101 vs E95: actual delta `+0.0000090362`, top1 swing `0.000011619`, cells for actual delta `1`.
+- E72 vs mixmin/E95: cells for actual delta `4`/`6`, despite the local focus-prior direction being wrong.
+
+The stress implication is now split cleanly. Mixmin was a broad public-relevant move, not a one-cell artifact. The plateau after E95 is different: refinements are real enough to move public LB, but their deltas sit inside a few high-leverage hard-label cells. This is why E101 could be locally coherent and still lose to E95, and why E154/E155/E157/E156 cannot be pre-feedback ranked by micro-edges. E154 remains the next public sensor because it asks the most informative repaired-branch question, not because E163 certifies it as the highest expected-score file.

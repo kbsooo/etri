@@ -2504,3 +2504,23 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
 - Verification: `python3 -m py_compile` passed and the script regenerated pairwise/top-cell/report outputs.
 - Interpretation: the branch is not just small in aggregate; it is label-fragile. One high-swing row-target label can move more public LogLoss than the whole intended sibling gap. This explains why ordinary CV/model/blend ranking stalls: at this scale, average local improvement is below hidden-label realization noise.
 - Decision: no submission. E154 remains first because it asks the full repaired-branch public question. Sibling controls and E161 pruning rows should be read as post-feedback instruments, not pre-feedback expected-improvement files.
+
+## E163. Candidate-Universe Edge Breadth Audit
+
+- Observe: E162 might be only an E154-branch artifact. The harder question is whether known public transitions and live post-E95 candidates show the same hidden-label resolution bottleneck.
+- Wonder: is the plateau around E95 caused by broad missing signal, or by frontier refinements whose measured public deltas are smaller than a few top hard-label cell swings?
+- Method: `analysis_outputs/e163_candidate_edge_breadth_audit.py` compares known public transitions (`mixmin/a2c8`, `raw05/a2c8`, `E95/mixmin`, `E101/E95`, `E101/mixmin`, `E72/mixmin`, `E72/E95`), pre-E95 live files versus mixmin, live post-E95 files versus E95, and repaired siblings. For each pair it computes actual public delta if known, focus-prior expected delta, top hard-label swing concentration, and how many top cells are enough to explain the actual delta or the `2e-6` readability guardrail.
+- Result:
+  - audited pairs: `22`.
+  - known public transitions: `7`.
+  - known transitions whose actual public delta can be moved by one top cell: `3/7`.
+  - known transitions whose actual public delta can be moved by five top cells: `5/7`.
+  - live post-E95 candidates with one-cell `2e-6` fragility: `7/7`.
+  - mixmin vs a2c8 is broad: actual public delta `-0.0011326805`, top1 swing `0.000046919`, cells for actual delta `25`.
+  - E95 vs mixmin is narrow: actual delta `-0.0000153107`, top1 swing `0.000046477`, cells for actual delta `1`.
+  - E101 vs E95 is narrow: actual delta `+0.0000090362`, top1 swing `0.000011619`, cells for actual delta `1`.
+  - E72 miss vs mixmin needs only `4` top cells, and E72 miss vs E95 needs `6` top cells.
+  - E154/E155/E156/E157/E144/E142/E143 versus E95 all need only `1` top cell to exceed the `2e-6` guardrail.
+- Verification: `python3 -m py_compile` passed; the script regenerated summary/top-cell/report outputs.
+- Interpretation: E162 generalizes. Mixmin was a broad public-relevant move, but post-mixmin/E95 refinements are hard-label-resolution limited. This explains why E101 was directionally sane yet worse than E95, and why 0.57629-level local edges cannot be ranked like ordinary CV improvements.
+- Decision: no submission. E154 remains the next public sensor because it asks the repaired all-four branch question, not because E163 can prove its expected-score superiority over E155/E157/E156. The next real escape must either recover another broad mixmin-scale signal or produce a candidate whose low-tail-safe edge is larger than top-cell fragility.

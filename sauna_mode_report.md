@@ -1243,3 +1243,38 @@ python3 analysis_outputs/e160_e154_postfeedback_interpreter.py --score <PUBLIC_L
 `0.57629대 branch에서는 후보 간 평균 차이가 너무 작아서, 한 개 고영향 row-target label realization이 후보 순위보다 크다. 이 때문에 CV, prior, pruning, target-axis micro-control이 모두 그럴듯해 보여도 public에서는 안정적인 ranking 장치가 되지 않는다.`
 
 따라서 다음 제출 후보는 바뀌지 않는다. E154는 "가장 나아 보여서"라기보다 "현재 branch 세계관을 가장 많이 가르는 센서"라서 먼저다. E155/E157/E156/E161은 E154 feedback 이후에만 의미가 있다.
+
+## 추가 관찰: 이 취약성은 E154 sibling만의 문제가 아니다
+
+`analysis_outputs/e163_candidate_edge_breadth_audit.py`를 만들었다.
+
+질문은 이것이었다.
+
+`E162의 one-cell fragility가 E154 sibling stack에만 생긴 지역 현상인가, 아니면 E95 이후 plateau 전체의 법칙인가?`
+
+결과:
+
+- audited pairs: `22`.
+- known public transitions: `7`.
+- 실제 public delta 전체를 top1 hard-label cell 하나로 움직일 수 있는 known transitions: `3/7`.
+- top5 cells로 움직일 수 있는 known transitions: `5/7`.
+- post-E95 live 후보 중 `2e-6` public-readable guardrail을 top1 cell 하나가 넘는 후보: `7/7`.
+- mixmin vs a2c8:
+  - actual delta `-0.0011326805`.
+  - top1 swing `0.000046919`.
+  - actual delta에 필요한 top cells `25`.
+- E95 vs mixmin:
+  - actual delta `-0.0000153107`.
+  - top1 swing `0.000046477`.
+  - actual delta에 필요한 top cells `1`.
+- E101 vs E95:
+  - actual delta `+0.0000090362`.
+  - top1 swing `0.000011619`.
+  - actual delta에 필요한 top cells `1`.
+- E72 miss는 base에 따라 actual delta에 필요한 top cells가 `4` 또는 `6`뿐이다.
+
+현재 세계관을 다시 압축한다.
+
+`mixmin은 broad signal이었다. 하지만 E95 이후 frontier refinement는 broad signal이 아니라 high-leverage hidden label 몇 개의 해상도 안에서 흔들리는 calibration-tail surgery다. 그래서 E101처럼 방향은 맞아도 E95를 못 넘을 수 있고, E154/E155/E157/E156 같은 micro-control은 feedback 없이 안정적으로 rank할 수 없다.`
+
+따라서 새 submission은 만들지 않는다. 지금 제출할 파일은 여전히 `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`다. 다만 이 파일도 "best일 가능성이 증명돼서"가 아니라 "repaired all-four branch가 실제 public hidden labels에서 살아 있는지 가장 많이 알려주는 센서"라서 제출 가치가 있다.

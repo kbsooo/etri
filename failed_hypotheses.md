@@ -1276,3 +1276,12 @@
 - Implementation issue possible: low for the pairwise hard-label arithmetic because it directly uses submission probabilities; medium for realized public subset because labels are hidden and E159 priors supply only expected-world context.
 - Bottleneck implication: this is a resolution/calibration-tail bottleneck, not a normal model-ranking problem. E154 is valuable as a public sensor, while siblings are post-feedback instruments.
 - Do not repeat: pre-feedback submission order changes among E155/E157/E156/E161 based on `1e-6` local/prior differences. Wait for E154 or build a candidate with a much larger low-tail-safe edge.
+
+## FH142. E162's hidden-label fragility is only an E154 sibling artifact
+
+- Failed hypothesis: the one-cell readability issue found in E162 is local to the repaired E154 sibling stack, so broader known-public transitions and live post-E95 candidates can still be ranked by ordinary expected delta or CV-style local edge.
+- Observed result: E163 extends the audit to `22` candidate pairs. Known public transitions are also narrow after mixmin: E95-vs-mixmin actual delta `-0.0000153107` needs `1` top cell, E101-vs-E95 `+0.0000090362` needs `1`, E101-vs-mixmin needs `1`, and the failed E72 move needs only `4-6` top cells depending on base. In contrast, mixmin-vs-a2c8 needs `25` top cells for the actual `-0.0011326805` public delta. All `7/7` live post-E95 candidates need only one top cell to exceed the `2e-6` readability guardrail.
+- Why discard: post-E95 ranking is not just locally close; it is underresolved by the hidden public hard-label realization. The one-cell problem is a plateau property after the broad mixmin move, not an E154-only measurement artifact.
+- Implementation issue possible: low for hard-label arithmetic and known-public deltas; medium for actual hidden-label attribution because true public labels remain hidden and focus-prior expected deltas are only public-free proxies.
+- Bottleneck implication: after E95, the main blocker is candidate-selection resolution/calibration-tail risk. To break out, a candidate must either recover another broad mixmin-scale signal or make a low-tail-safe move whose edge is larger than top-cell swing fragility.
+- Do not repeat: treating a `1e-6` to `3e-5` local edge among post-E95 candidates as a stable expected-public ranking unless it survives explicit hard-label breadth stress.

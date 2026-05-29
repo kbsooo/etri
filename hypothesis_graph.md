@@ -1836,6 +1836,18 @@ target co-occurrence
 - public LB 관측 반응: E154 result should be interpreted as a hidden-label world observation, not as fine-grained ranking among E154/E155/E157/E156. A sibling win/loss without E154 context would be low-information.
 - 제출 전략: keep E154 first. Do not submit sibling/pruning controls as expected-score candidates before E154 feedback.
 
+### H157. The post-E95 plateau is broadly hard-label-resolution limited, while mixmin was a broad signal
+
+- 상태: supported by E163; pending the next public sensor.
+- 왜 그럴듯한가: E95 improved over mixmin by only `0.0000153107`, and E101 lost to E95 by only `0.0000090362`. If those public deltas are smaller than one or a few high-swing hard-label cells, local/CV ranking after E95 is underresolved even when the direction is real.
+- 맞다면: known post-mixmin transitions should require only a few top hard-label cells to explain their actual public deltas, while the original mixmin-vs-a2c8 breakthrough should look broader. Live post-E95 candidates should all have one-cell readability fragility at the `2e-6` guardrail.
+- 틀리다면: E95/E101/E72 public deltas should require many distributed cells, and live E154/E144/E142/E143 branch candidates should have top-cell swings below public-readable scale.
+- 최소 실험: `analysis_outputs/e163_candidate_edge_breadth_audit.py`.
+- 관측: mixmin-vs-a2c8 actual public delta `-0.0011326805` needs `25` top cells; E95-vs-mixmin actual delta `-0.0000153107` needs `1`; E101-vs-E95 actual delta `+0.0000090362` needs `1`; E101-vs-mixmin needs `1`; E72-vs-mixmin and E72-vs-E95 need `4` and `6`; live post-E95 candidates have `7/7` one-cell `2e-6` fragility.
+- 성공/폐기 기준: support until a candidate demonstrates a broad low-tail-safe edge like mixmin or public feedback shows a post-E95 sibling transition with stable multi-cell attribution. If E154 wins, it becomes a new anchor but not a proof that sibling ranking was pre-feedback resolvable.
+- public LB 관측 반응: E154 public feedback should be read as a world observation about the repaired branch. A tiny E154/E155/E157 difference is not enough to infer a reusable local ranker.
+- 제출 전략: no E163 submission. Keep E154 first; require future candidates to either recover broad mixmin-scale structure or explicitly beat top-cell fragility.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
