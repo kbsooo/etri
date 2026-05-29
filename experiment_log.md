@@ -2129,3 +2129,25 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best relaxed all-minus-E95 `-0.000013973289`; best relaxed post-E101 mean `-0.000007182071`; best relaxed post-E101 p95 still positive `+0.000000141478`.
 - Interpretation: E140's all-set tail-neutral failure was partly a numerical exact-gate artifact. But relaxing that artifact does not make a candidate. The surviving blocker is transfer-tail budget: the movement sits just above the E95 E72-plausible exposure boundary and cannot make post-E101 p95 nonpositive before becoming actionable.
 - Decision: no submission. Update the live bottleneck from "combo-set worst-tail balancing" to "transfer-tail budget under E72-plausible exposure and post-E101 p95." The next decoder should reduce that `~3.2e-6` exposure gap without losing the `~1e-5` local all-minus-E95 reward.
+
+## E142. Transfer-Budget Clipped Decoder Probe
+
+- Observe: E141 showed relaxed E140 structural rows exist, but they exceed E95's E72-plausible budget and keep post-E101 p95 positive. The cheapest constructive question is whether the excess budget comes from a small set of cells that can be rolled back without killing the local reward.
+- Wonder: are E140/E141 rows fundamentally unsafe, or are they almost-correct movements contaminated by identifiable high E72-plausible-excess cells?
+- Method: `analysis_outputs/e142_transfer_budget_clipped_decoder_probe.py` rebuilt E140 combined predictions, selected `11` relaxed structural material parents, computed per-cell excess E72-plausible exposure versus E95, and generated cell-level rollback variants. It evaluated them with the same local combo, relaxed tail, hidden/world/raw, E72-budget, and post-E101 sensor gates.
+- Result:
+  - parents used: `11`.
+  - clipped variants: `1844`.
+  - relaxed structural variants: `670`.
+  - relaxed + E72-budget variants: `35`.
+  - relaxed + budget + post-E101 variants: `35`.
+  - submit-relaxed variants: `35`.
+  - materialized submission: `analysis_outputs/submission_e142_transferclip_09a92236.csv`.
+  - selected row starts from parent `e140_score_top_local_25c44401`, rolls back `55` excess-exposure cells, and keeps `185` changed cells versus E95.
+  - selected target movement versus E95: Q1 `38`, Q2 `0`, Q3 `56`, S1 `0`, S2 `23`, S3 `47`, S4 `21` cells.
+  - local all-minus-E95 `-0.000010666782`.
+  - E72-plausible gap versus E95 `~0` (`2.82e-18`).
+  - post-E101 mean/p95/beat versus E95 `-0.000014379591` / `-0.000003762343` / `1.0`.
+  - hidden-core/world/raw-energy deltas versus E95 are `-0.000022` / `-0.000284` / `-0.000049`.
+- Interpretation: E141's transfer-tail budget is not an immovable wall. Full rollback of high excess-exposure cells can neutralize E72 budget while preserving material local reward. The resulting movement is not Q2/S3 rollback; it is a non-Q2 residual direction concentrated in Q1/Q3/S2/S3/S4.
+- Decision: submit candidate opened. `submission_e142_transferclip_09a92236.csv` is the next highest-information file. If public improves, the live world model becomes "E95 plus transfer-budget-neutral residual decoder"; if it fails, E142 falsifies simple excess-exposure clipping and pushes the bottleneck toward public-sensor overconditioning or private/public mismatch.

@@ -1064,6 +1064,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E141 shows tolerance `1e-12` opens `84` relaxed structural rows, but relaxed plus E72 exposure pass remains `0`, relaxed plus post-E101 p95 pass remains `0`, and actionable remains `0`. Minimum relaxed E72 gap is `+0.000003189534`.
 - Policy: keep tolerance-aware tail checks in diagnostics. Do not promote relaxed-tail candidates unless a future decoder also reduces E72-plausible exposure below the E95 threshold and makes post-E101 p95 nonpositive.
 
+### F119. Transfer-budget clipped decoder
+
+- Hidden structure: E140 relaxed structural movement may be locally correct but contaminated by cells that spend too much E72-plausible public-tail budget.
+- Candidates: parent E140 relaxed row, per-cell E72-plausible excess versus E95, rollback ranker, rollback cell count, target mix after rollback, local all-minus-E95, relaxed structural flag, E72-budget flag, post-E101 p95, and tail-equal law residual.
+- Label vs split test: valid as a candidate generator because it creates new predictions and evaluates them against independent local combo, hidden/world/raw, transfer-budget, and post-E101 stress. Risky if the E101-conditioned density is overused as a selector rather than a diagnostic.
+- Current evidence: E142 produced `35` submit-relaxed rows and materialized `submission_e142_transferclip_09a92236.csv`. The selected row rolls back `55` excess-exposure cells from E140 parent `e140_score_top_local_25c44401`, preserves local all-minus-E95 `-0.000010666782`, matches E95's E72-plausible exposure, and has post-E101 p95 `-0.000003762343`.
+- Policy: this is the current top submission candidate. Do not broaden it by uniform shrinkage or partial clipping; those fail budget gates. Treat public feedback as a test of whether E101-conditioned transfer-budget clipping generalizes.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

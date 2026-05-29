@@ -346,3 +346,21 @@ E141 corrects the E140 tail reading. The exact tail gate was too brittle.
 - best relaxed post-E101 p95: `+0.000000141478`.
 
 The validation meaning changes. E140 did not prove that combo-set worst-tail is the main remaining law; it proved that exact-zero tail accounting was over-conservative. Once numerical zero is tolerated, structural rows open, but transfer-tail budget remains closed. The next stress target should be E72-plausible exposure and post-E101 p95 reduction, not another tail-axis balancing sweep.
+
+## Update After E142
+
+E142 tests that exact stress target by clipping only high excess E72-plausible cells from E140 relaxed structural moves.
+
+- parent relaxed structural material rows: `11`.
+- clipped variants: `1844`.
+- relaxed structural variants: `670`.
+- relaxed plus E72-budget variants: `35`.
+- relaxed plus budget plus post-E101 variants: `35`.
+- submit-relaxed variants: `35`.
+- materialized candidate: `analysis_outputs/submission_e142_transferclip_09a92236.csv`.
+- selected local all-minus-E95: `-0.000010666782`.
+- selected E72-plausible gap versus E95: `~0`.
+- selected post-E101 mean/p95/beat versus E95: `-0.000014379591` / `-0.000003762343` / `1.0`.
+- selected movement versus E95: `185` cells, `108` rows, no Q2 movement.
+
+This is the first post-E101 candidate that passes relaxed structural health, E72-budget health, and post-E101 p95 health together. It should be treated as a public sensor on whether E101-conditioned transfer-tail gates generalize, not as proof of a larger 0.54 path.

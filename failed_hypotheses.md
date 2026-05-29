@@ -1113,3 +1113,12 @@
 - Implementation issue possible: low for the audit; it reads existing E140 scored rows and recomputes boolean gates. Medium for generalization because it does not generate new predictions.
 - Bottleneck implication: the next decoder should not spend cycles only improving tail-neutral count. It must lower E72-plausible exposure below the E95 threshold and make post-E101 p95 nonpositive while preserving local reward.
 - Do not repeat: pure tail-axis balancing, exact-zero tail-gate conclusions, or relaxed-tail candidate promotion without E72/post-E101 transfer survival.
+
+## FH124. Uniform shrinkage is enough to fix E140 transfer-tail budget
+
+- Failed hypothesis: E140 relaxed structural rows only need smaller amplitude; shrinking the whole movement should reduce E72-plausible exposure and post-E101 p95 while preserving local reward.
+- Observed result: E142 tested uniform keep factors `0.25`, `0.50`, `0.75`, and `0.90` over relaxed material parents. Uniform rows kept some local reward, but budget survivors remained `0` at every keep factor. Partial cell clipping with keep `0.25` or `0.50` also produced `0` budget survivors.
+- Why discard: transfer-tail exposure is localized and threshold-like, not a smooth global amplitude problem. It only opened when high excess-exposure cells were fully rolled back to E95.
+- Implementation issue possible: low for this family; the same script produced viable full cell-rollback rows under the same scoring pipeline.
+- Bottleneck implication: the live decoder is not "smaller E140." It is "E140 minus specific transfer-budget-spending cells."
+- Do not repeat: uniform shrink, global scale, or partial clipping sweeps over E140 relaxed rows as the main next submission path.

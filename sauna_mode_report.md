@@ -607,3 +607,34 @@ E136 state는 mean improvement가 생기는 곳을 찾는다. 하지만 현재 E
 `0.576대 벽의 현재 최전선은 combo-tail exactness가 아니라 transfer-tail budget이다. E140 계열 움직임은 구조적으로는 거의 살아날 수 있지만, E95가 이미 차지한 E72-plausible exposure 예산을 약 3.2e-6만큼 초과하고 post-E101 p95를 양수로 남긴다.`
 
 지금 제출할 파일은 없다. 다음으로 가장 정보량이 큰 행동은 local all-minus-E95 `~1e-5` 보상을 유지하면서 E72-plausible exposure를 E95 이하로 낮추는 budget-neutral correction을 찾는 것이다.
+
+## 추가 관찰: transfer-tail budget은 clipping으로 열린다
+
+`analysis_outputs/e142_transfer_budget_clipped_decoder_probe.py`로 E141이 남긴 병목을 바로 찔렀다.
+
+질문은 이것이었다.
+
+`E140 relaxed structural row는 전체가 틀린 움직임인가, 아니면 E72-plausible exposure를 쓰는 몇 개 cell만 E95로 되돌리면 살아나는가?`
+
+결과:
+
+- parent relaxed structural material rows: `11`.
+- clipped variants: `1844`.
+- relaxed structural variants: `670`.
+- relaxed + E72-budget variants: `35`.
+- relaxed + budget + post-E101 variants: `35`.
+- submit-relaxed variants: `35`.
+- materialized file: `analysis_outputs/submission_e142_transferclip_09a92236.csv`.
+- selected row: parent `e140_score_top_local_25c44401`, rollback cells `55`, changed cells vs E95 `185`.
+- target movement vs E95: Q1 `38`, Q2 `0`, Q3 `56`, S2 `23`, S3 `47`, S4 `21`.
+- local all-minus-E95: `-0.000010666782`.
+- E72-plausible gap vs E95: `~0`.
+- post-E101 mean/p95/beat vs E95: `-0.000014379591` / `-0.000003762343` / `1.0`.
+
+이건 중요한 변화다. E141에서 보인 budget wall은 완전히 불가능한 벽이 아니었다. 다만 uniform shrink로는 열리지 않았고, high excess-exposure cell을 완전히 롤백해야 열렸다.
+
+현재 세계관을 다시 압축한다.
+
+`E95 이후의 살아 있는 다음 움직임은 Q2/S3 rollback이 아니다. transfer-tail budget을 쓰는 cell을 제거한 Q1/Q3/S/S3 residual decoder다. public이 이것을 받아들이면 0.576대 벽은 "모델 capacity"가 아니라 "E95 law 위에 남은 transfer-budget-neutral tangent를 찾는 문제"로 더 좁아진다. public이 거절하면 E101-conditioned density gate가 selector로는 과적합이라는 뜻이다.`
+
+지금 제출할 파일은 하나다. `analysis_outputs/submission_e142_transferclip_09a92236.csv`.

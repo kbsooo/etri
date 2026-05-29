@@ -1584,6 +1584,18 @@ target co-occurrence
 - public LB 관측 반응: no submission. A file from relaxed E140 would be betting on tiny local reward while still exceeding the E95 transfer-tail budget.
 - 제출 전략: none. The next strategy should explicitly minimize E72-plausible exposure and post-E101 p95 while preserving relaxed structural reward.
 
+### H136. E140 relaxed structural rows are almost-correct moves contaminated by high E72-exposure cells
+
+- 상태: supported locally; public pending.
+- 왜 그럴듯한가: E141 opened relaxed structural rows but found E72-plausible exposure and post-E101 p95 as the remaining blockers. If the blockers are localized rather than global, rolling back high-excess cells should keep much of the local reward.
+- 맞다면: clipped variants should preserve relaxed structural gates while making E72-plausible exposure no worse than E95 and post-E101 p95 nonpositive. The selected movement should not simply collapse back to E95.
+- 틀리다면: clipping should either kill local all-minus-E95 reward, fail relaxed structural gates, or still leave E72/post-E101 positive.
+- 최소 실험: `analysis_outputs/e142_transfer_budget_clipped_decoder_probe.py`, using E140 relaxed material parents and rolling back cells ranked by excess E72-plausible exposure.
+- 관측: E142 generated `1844` variants from `11` parents. `670` remained relaxed structural, `35` passed E72 budget, all `35` also passed post-E101, and `35` passed submit-relaxed. The materialized file `submission_e142_transferclip_09a92236.csv` keeps `185` E95-relative changed cells, no Q2 movement, all-minus-E95 `-0.000010666782`, E72 gap `~0`, and post-E101 p95 `-0.000003762343`.
+- 성공/폐기 기준: locally supported because it opened a candidate. Public LB will decide whether the E101-conditioned transfer-tail gate generalizes or overfits public sensors.
+- public LB 관측 반응: if better than `0.5762913298`, strengthen H136 and H130's transfer-budget decoder view. If worse, reject simple excess-exposure clipping and treat post-E101/E72 gates as overconditioned diagnostics rather than selectors.
+- 제출 전략: submit `analysis_outputs/submission_e142_transferclip_09a92236.csv` next; record its public score as a direct sensor on transfer-budget-neutral residual movement.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
