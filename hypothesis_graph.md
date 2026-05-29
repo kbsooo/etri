@@ -1357,6 +1357,18 @@ target co-occurrence
 - public LB 관측 반응: already observed via E101. If a future file uses E121/E122 to choose cells, require an independent sensor not derived from the E101 public delta.
 - 제출 전략: no E122 submission. Close same-line posterior gating; either search for a genuinely different S3-cell sensor or test a different hidden structure.
 
+### H117. Cross-target transition motifs do not resolve the E95/E101 S3 boundary
+
+- 상태: 반증됨 as a same-line gate; retained only as a collapse warning.
+- 왜 그럴듯한가: E101's decisive boundary is S3-heavy and located near train-label flanks. If S3 is a noisy projection of a broader Q/S latent state, previous/next Q1/Q2/Q3/S1/S2/S4 states could identify the missing support/adverse cell better than direct S3 flank alone.
+- 맞다면: a no-S3 transition-motif head should improve temporal S3 validation over subject prior or direct flank beta, and it should lower the critical rank-23 S3 support probability enough to justify stopping before the E95-beating support count.
+- 틀리다면: motif heads should worsen temporal calibration or overfit interleaved context, and the rank-23 cell should remain support-like.
+- 최소 실험: `analysis_outputs/e123_e101_transition_motif_s3_sensor.py`, using train-only neighbor-state motif features, temporal-tail/interleaved validation, and E101 active S3 boundary scoring.
+- 관측: temporal-tail logloss deltas versus subject prior were `+0.135183` for `motif_no_s3`, `+0.246239` for `motif_full`, and `+0.349065` for `motif_plus_subject`; interleaved split was also worse. Rank-23 support stayed `0.943564` under no-S3 motif and `0.984326` under motif+subject. Motif aggregate expected E101 public deltas overshot the actual small loss (`~+0.000028` vs `+0.0000090362`).
+- 성공/폐기 기준: discarded because the independent motif fails local temporal calibration and does not identify the decisive S3 cell. Keep it only as evidence that cross-target neighbor-state features can create unhealthy overconfident representations.
+- public LB 관측 반응: no submission. If a future same-line file claims transition-motif support, it must first reverse this temporal validation failure and rank-23 support result without using public LB.
+- 제출 전략: none. Same-line E101 repair remains closed; move to another hidden structure or a materially different S3-cell sensor.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
