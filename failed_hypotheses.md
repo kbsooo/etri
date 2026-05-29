@@ -1330,3 +1330,12 @@
 - Implementation issue possible: medium. The broad branch still lacks a public-positive anchor and `q2_bad` remains the max bad axis. Low for the tensor-materialization check because actual submission files were written and rescored.
 - Bottleneck implication: the live broad branch now has three distinguishable public sensors: repaired E169 for balanced risk, raw E166 for safety-atlas falsification, and E154 for conservative repaired-branch contrast.
 - Do not repeat: demoting E168 masks without materialized stress. If one broad candidate is submitted before feedback, use `submission_e169_ctx_veto_c5e806e3.csv` unless the explicit goal is to challenge the safety atlas with raw E166.
+
+## FH148. E169 fully solves the post-E95 hard-label readability bottleneck
+
+- Failed hypothesis: because E169 restores broadness and safety geometry versus E166, its public outcome should be robust enough that local expected delta can be read as a stable score-ranking claim.
+- Observed result: E170 shows E169-vs-E95 is broad in expectation but still public hard-label-resolution limited. It moves `904` cells and has `32` cells-to-flip expected, but the top1 swing is `0.000005832`, `1` cell clears the `2e-6` guard, and only `4` cells cover E95's full public edge over mixmin. The high-density p50 sibling differs by only `10` Q2/S3 cells and `-0.000001377` expected delta.
+- Why discard: E169 is a better sensor, not a solved selector. A few high-swing hidden labels can still decide whether the public LB is win/tie/small-loss even though the local expected edge is broad.
+- Implementation issue possible: low for pairwise hard-label arithmetic and group attribution; medium for public realization because public labels are hidden.
+- Bottleneck implication: E169 addresses the broad-lane safety problem but not the frontier-scale public-label resolution problem. The plateau remains partly a calibration-tail/hidden-label sensor problem.
+- Do not repeat: ranking E169 near-duplicates by sub-`2e-6` local edge, submitting high-density p50 before ctx-veto feedback, or interpreting a tie/small-loss as proof that the broad branch is dead.

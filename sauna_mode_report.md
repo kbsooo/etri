@@ -1470,3 +1470,47 @@ E169는 이 mask를 실제 submission tensor로 만들었다.
 - E169가 E95를 이기면: broad hidden-context branch는 public-real이고, 필요한 것은 context-high/veto mask였다.
 - E169가 E95보다 나쁘지만 E101 근처에서 버티면: broad branch는 살아 있으나 아직 public-tail selector가 모자란다.
 - E169가 E101보다 나쁘면: E168 safety proxy가 틀렸거나, broad survivor branch 자체가 public-negative다.
+
+## E170 업데이트: E169는 넓지만 아직 public hard-label 해상도 안에 있다
+
+가장 이상한 점:
+
+`E169는 broad repair인데도, public에서 읽히는 승패는 여전히 몇 개 hidden label에 걸려 있다.`
+
+E170은 E169 제출 전 해석기를 먼저 고정했다.
+
+실험:
+
+`analysis_outputs/e170_e169_public_feedback_decoder.py`
+
+결과:
+
+- E169 vs E95 moved cells/rows: `904/193`.
+- expected delta: `-0.000120457`.
+- cells-to-flip expected: `32`.
+- top1 swing: `0.000005832`.
+- cells for `2e-6` guard: `1`.
+- cells for E95-over-mixmin edge: `4`.
+- between-train-runs share: `81.1%`.
+- not-E72-active share: `73.7%`.
+- high-density p50 sibling과의 차이: `10` Q2/S3 cells, expected delta `-0.000001377`.
+
+이건 E169 해석을 더 좁힌다.
+
+`E169는 raw E166보다 건강한 broad repair다. 하지만 public label 해상도 문제를 해결한 것은 아니다. 그래서 E169는 점수 기대값 순위가 아니라, context-high/veto broad latent가 public-real인지 묻는 센서다.`
+
+다음 행동:
+
+다음 broad-branch 제출 후보 하나를 고르면 여전히 `analysis_outputs/submission_e169_ctx_veto_c5e806e3.csv`다. 다만 결과가 나오면 반드시 먼저 다음을 실행한다.
+
+`python3 analysis_outputs/e170_e169_public_feedback_decoder.py --score <PUBLIC_LB>`
+
+해석:
+
+- `<=0.576261330`: broad breakthrough. E169를 새 anchor로 승격한다.
+- `<=0.576276019`: clean win. target/context ablation으로 넘어간다.
+- `<=0.576288330`: micro win. amplitude 증폭 금지, attribution 먼저.
+- `<=0.576294330`: tie. E95 practical frontier 유지, raw E166은 information-only.
+- `<=0.576300366`: small loss. high-density p50 금지, E154 vs raw E166은 질문 기준으로 선택.
+- `<=0.576306641`: E101보다 나쁘지만 mixmin 근처. E169 demote, E154 우선.
+- `>0.576306641`: branch loss/hard fail. E169/E166 same-family를 닫고 safety axis를 다시 만든다.

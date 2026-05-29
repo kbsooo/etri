@@ -2616,3 +2616,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - raw `all_e166` remains the high-upside comparator: expected delta `-0.000332077`, moved cells `1750`, cells-to-flip `74`, bad-span energy `0.450742`, mean abs logit `0.002244`.
 - Interpretation: E169 is not an E166 scale-up. It is a lower-amplitude broad repair that keeps only cells where hidden context and veto-density comfort overlap. It gives up about two thirds of E166's expected hard-label edge to reduce amplitude and bad-axis energy.
 - Decision: if the next public slot is a balanced broad-branch test, prefer `submission_e169_ctx_veto_c5e806e3.csv` over raw E166. Use raw E166 only when deliberately testing whether the safety atlas is overconservative. Keep E154 as the conservative repaired-branch contrast.
+
+## E170. E169 Public Feedback Decoder
+
+- Observe: E169 is now the best balanced broad candidate, but without a pre-registered feedback decoder its public LB would be easy to overfit after the fact. The public question is not only "did it beat E95?" but whether the context-high/veto broad world survived at a readable scale.
+- Wonder: what public score bands would kill or strengthen the E169 worldview, and what hard-label cells/targets/contexts are actually carrying the bet?
+- Method: `analysis_outputs/e170_e169_public_feedback_decoder.py` builds score bands relative to E95/E101/mixmin, computes pairwise hard-label readability for E169 vs E95/raw E166/E154/E101/mixmin, and attributes E169-vs-E95 expected edge by target/context/safety groups.
+- Result:
+  - decoder file: `analysis_outputs/e170_e169_public_feedback_decoder_bands.csv`.
+  - report: `analysis_outputs/e170_e169_public_feedback_decoder_report.md`.
+  - E169 vs E95: moved cells/rows `904/193`, expected delta `-0.000120457`, cells-to-flip expected `32`, top1 swing `0.000005832`, top5 swing `0.000023823`, cells for `2e-6` guard `1`, cells for E95-over-mixmin edge `4`, support-prob swing-weighted focus `0.459907`.
+  - raw E166 vs E95: expected delta `-0.000332077`, cells-to-flip `74`, cells for E95 edge `3`.
+  - E169 vs raw E166: expected delta `+0.000211620`, meaning ctx-veto gives up a large prior-favorable part of raw E166 in exchange for safety; cells-to-flip `44`.
+  - group attribution: between-train-runs carries `81.1%` of E169 expected edge; not-E72-active cells carry `73.7%`; target contributions are S1 `19.8%`, S3 `19.1%`, Q2 `15.6%`, S4 `15.6%`, Q1 `11.9%`, S2 `11.6%`, Q3 `6.4%`.
+- Interpretation: E169 is a balanced broad repair, not a fully resolved selector. It satisfies the broad expected-edge criterion (`32` cells-to-flip expected), but public-readable movement can still be decided by a few high-swing labels. This is why a public score must be interpreted by bands, not by post-hoc threshold tuning.
+- Decision: submit `submission_e169_ctx_veto_c5e806e3.csv` if the next public slot asks the balanced broad-repair question. Interpret outcomes with E170: below E95 promotes the context-high/veto latent; tie/small loss keeps E95 and makes raw E166 information-only; worse than E101 demotes E169 and shifts priority to E154 or a new safety-axis search.

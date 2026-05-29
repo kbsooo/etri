@@ -1920,6 +1920,18 @@ target co-occurrence
 - public LB 관측 반응: better than E95 (`<0.5762913298`) means the broad lane can survive when repaired by context-high/veto masking. Worse than E101 (`>0.5763003660`) means the repair is not enough and broad branch remains public-risky. Between those values is a weak branch-alive but not frontier read.
 - 제출 전략: `analysis_outputs/submission_e169_ctx_veto_c5e806e3.csv` is the best balanced broad-branch candidate. `submission_e169_ctx_high_density_p50_51110c7e.csv` is a near-duplicate control. Raw E166 remains the sharper but riskier atlas-falsification sensor.
 
+### H164. E169 is broad in expectation but still public hard-label-resolution limited
+
+- 상태: supported by E170; public feedback pending.
+- 왜 그럴듯한가: E169 fixes E166's safety/context conflict locally, but the public metric observes hidden hard labels. If the remaining public edge can be moved by only a few high-swing cells, E169 should be treated as a pre-registered sensor rather than a stable expected-score claim.
+- 맞다면: E169-vs-E95 should have broad expected support, but `cells_for_2e6_guard` and `cells_for_e95_edge` should remain very small. Near-duplicate E169 variants should differ below useful public resolution.
+- 틀리다면: E169-vs-E95 would need many top cells to move public LB, and E169 variants would separate by target/context in a way that creates a clear next-file ranking.
+- 최소 실험: `analysis_outputs/e170_e169_public_feedback_decoder.py`.
+- 관측: E169-vs-E95 moves `904` cells over `193` rows with expected delta `-0.000120457` and `32` cells-to-flip expected, but only `1` top cell reaches the `2e-6` guard and `4` cells cover the E95-over-mixmin edge. Between-train-runs carries `81.1%` of expected edge, not-E72-active carries `73.7%`, and target shares are distributed across S1/S3/Q2/S4/Q1/S2/Q3. The high-density p50 control differs from ctx-veto by only `10` Q2/S3 cells and `-0.000001377` expected delta.
+- 성공/폐기 기준: a public score below E95 supports the context-high/veto broad latent. Tie/small loss keeps E95 as practical frontier and makes raw E166 information-only. Worse than E101 demotes E169 and shifts toward E154 or a new broad safety-axis search. Worse than mixmin closes near-duplicate E169 variants.
+- public LB 관측 반응: interpret with E170 bands: `<=0.576261330` broad breakthrough; `<=0.576276019` clean win; `<=0.576288330` micro win; `<=0.576294330` tie; `<=0.576300366` small loss; `<=0.576306641` worse than E101 but still mixmin-safe; above mixmin is branch loss/hard fail.
+- 제출 전략: if one broad-branch file is tested, submit `analysis_outputs/submission_e169_ctx_veto_c5e806e3.csv` and immediately run `python3 analysis_outputs/e170_e169_public_feedback_decoder.py --score <PUBLIC_LB>`. Do not submit `ctx_high_density_p50` before ctx-veto feedback.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -488,6 +488,8 @@ Update after E161: no new submission was created. `analysis_outputs/e161_e154_in
 
 Update after E162: the repaired-branch stack is confirmed cell-fragile. `analysis_outputs/e162_branch_readability_flip_thresholds.py` shows one high-swing hidden row-target label is enough to exceed the `2e-6` public-readable guardrail for E154-vs-E155, E154-vs-E144, E157-vs-E155, and E161-prune controls. E154-vs-E155 has focus expected delta only `+0.000000505` while its top1 cell swing is `0.000010815`; E154-vs-E95 has top1 swing `0.000015340`, about the whole E95-over-mixmin edge. This keeps E154 as the first public sensor and demotes sibling/pruning files to post-feedback instruments.
 
+Update after E170: the current broad-branch first file remains `analysis_outputs/submission_e169_ctx_veto_c5e806e3.csv`, but its public read is now pre-registered. E170 says ctx-veto has a broad local edge versus E95 (`904` cells, `193` rows, `32` cells-to-flip expected, expected delta `-0.000120457`) while still being public hard-label-resolution limited (`1` cell for the `2e-6` guard, `4` cells for E95's edge over mixmin). Between-train-runs carries `81.1%` of the expected edge and not-E72-active cells carry `73.7%`, so the bet is not a random Q2/S3 tweak. The high-density p50 sibling differs by only `10` Q2/S3 cells and should not be submitted before ctx-veto feedback. After any E169 public score, run `python3 analysis_outputs/e170_e169_public_feedback_decoder.py --score <PUBLIC_LB>` before choosing raw E166, E154, or same-family variants.
+
 ## Current 0.54 Assessment
 
 0.54 is not blocked by a single missing model family. To approach it, one of two things must happen:

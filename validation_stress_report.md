@@ -773,3 +773,17 @@ E168-E169 test whether E167's context-real/safety-divergent split can be repaire
 - raw E166 comparator: expected delta `-0.000332077`, moved cells `1750`, cells-to-flip `74`, bad-span energy `0.450742`, mean abs logit `0.002244`.
 
 The stress implication is that E166's broad hidden-context signal is repairable in local geometry. The repaired version gives up expected edge but lowers amplitude, bad-axis energy, and safety-atlas conflict. This makes `submission_e169_ctx_veto_c5e806e3.csv` the balanced broad-branch public sensor. Raw E166 remains the sharper safety-atlas falsification test, and E154 remains the conservative repaired-branch contrast.
+
+## Update After E170
+
+E170 pre-registers how to interpret `submission_e169_ctx_veto_c5e806e3.csv` before any public feedback arrives.
+
+- script: `analysis_outputs/e170_e169_public_feedback_decoder.py`.
+- report: `analysis_outputs/e170_e169_public_feedback_decoder_report.md`.
+- E169-vs-E95 hard-label readability: moved cells/rows `904/193`, expected delta `-0.000120457`, cells-to-flip expected `32`, top1 swing `0.000005832`, top5 swing `0.000023823`, cells for `2e-6` guard `1`, cells for E95-over-mixmin edge `4`.
+- raw E166-vs-E95 comparator: expected delta `-0.000332077`, cells-to-flip `74`, cells for E95 edge `3`.
+- E169-vs-raw E166: expected delta `+0.000211620`, so ctx-veto deliberately gives up a large prior-favorable raw-E166 region in exchange for safer context/veto geometry.
+- E169 group attribution: between-train-runs carries `81.1%` of expected edge, not-E72-active carries `73.7%`; target shares are S1 `19.8%`, S3 `19.1%`, Q2 `15.6%`, S4 `15.6%`, Q1 `11.9%`, S2 `11.6%`, Q3 `6.4%`.
+- near-duplicate control: `submission_e169_ctx_high_density_p50_51110c7e.csv` differs from ctx-veto by only `10` Q2/S3 cells and `-0.000001377` expected delta.
+
+Stress implication: E169 is a valid balanced broad-branch sensor, but it has not escaped public hard-label-resolution limits. A win below E95 promotes context-high/veto broad latent. Tie/small loss keeps E95 practical and makes raw E166 information-only. Worse than E101 demotes the E169 repair; worse than mixmin closes same-family E169 threshold variants.
