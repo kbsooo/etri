@@ -1213,6 +1213,18 @@ target co-occurrence
 - public LB 관측 반응: E101 win keeps H102/E108 live. E101 tie/loss closes E108 and also fails the simple non-active E89/graft rescue; it should trigger public-world-model rebuild or a deliberately different retained-structure sensor.
 - 제출 전략: no E110 file. If E101 ties or loses, keep E95 as standing best and do not route automatically to E89/non-active grafts.
 
+### H105. The E95 plateau is target-axis hard-tail surgery, not broad model improvement
+
+- 상태: supported as current SAUNA world model; public E101 result pending.
+- 왜 그럴듯한가: E72 was a locally attractive sparse/latent movement but failed public, while E95 improved by only `0.0000153107`. If the plateau is caused by LogLoss tail calibration rather than model capacity, public-positive movement should be target-axis and cell-risk selective.
+- 맞다면: E72's public-negative movement should look broad across target axes, while E95's public-positive movement should be more target-pruned and closer to a hard-tail edit. E101 should then be the smallest sensor, changing only the remaining ambiguous Q2/S3/S3-heavy cells rather than reopening broad movement.
+- 틀리다면: E95 and E72 should have similar target-axis geometry, or E95 should look like a larger global movement rather than a selective axis edit. Full E89/E90/E86 should be as clean as E101 around E95.
+- 최소 실험: `analysis_outputs/e111_sauna_frontier_movement_atlas.py`.
+- 관측: versus mixmin, E72 failed with public delta `+0.0001011367`, active cells `893`, L1 `2.203482`, Q-share `0.450788`, S-share `0.549212`, and cosine with E95 direction `0.327033`. E95 improved with public delta `-0.0000153107`, active cells `550`, L1 `1.509562`, Q-share only `0.019948`, S-share `0.980052`, and E95-confident movement share `0.386257`. E101 versus E95 changes only `50` Q2/S3 cells across `48` rows with S-target share `0.905306`.
+- 성공/폐기 기준: support the plateau explanation if public-positive E95 is target-pruned and E101 remains the smallest coherent kill-test. Discard if a future public-positive file succeeds through broad Q/Q3/S4 movement without tail stress.
+- public LB 관측 반응: E101 win means the target-axis surgery was directionally right but over-tight on Q2/S3 tail cells. E101 tie/loss means E95's current axis/tail surgery remains the standing law and broad fallback remains unjustified.
+- 제출 전략: no E111 file. Submit E101 as the next observation if using one public slot.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
