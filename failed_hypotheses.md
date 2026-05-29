@@ -798,3 +798,12 @@
 - Implementation issue possible: medium. The transfer model is deliberately simple and only has two terms, so it could miss a row-coherent structural-retention effect. The discarded claim is not "E90/E86 can never win"; it is "E95-conditioned local+tail evidence makes E90/E86 the most likely next improvement."
 - Bottleneck implication: the immediate plateau is not solved by simply retaining more E86 structure. The remaining plausible E95 counterfactual is whether E95 over-localized hard-tail cells and E89's broader cell fallback matches public better.
 - Do not repeat: presenting E90 or E86 as the default next expected-improvement file after E95 without new evidence. Use E90 only for the explicit row-coherent structure question and E86 only for maximum-upside risk testing.
+
+## FH89. E89 counterfactual is a broad lower-downside replacement for E95
+
+- Failed hypothesis: because E89 has the only material E95-beat rate after E99, it should be treated as a generally safer or broadly better E95 successor.
+- Observed result: E100 decomposed the `3452` E99 broad-plausible worlds. E89 beat-E95 rate was `0.195829`, but mean E89-minus-E95 remained `+0.000003833`. E89-beating cases were `676` scenarios with top mask `q2s3` and mean tail surplus `+0.000002916`; the `q2s3` slice had beat rate `0.779891`. E89-not-beating cases had top mask `s1s2s3` and mean tail surplus `-0.000004272`.
+- Why discard: E89's survival is concentrated in Q2/S3 diffuse-tail allocations. It is not a broad low-risk file and does not dominate E95 outside that pocket.
+- Implementation issue possible: low to medium. The decomposition inherits E99's two-term transfer abstraction, so row-coherent effects could still be missed. The rejected claim is only the broad-lower-downside interpretation of E89.
+- Bottleneck implication: the next public slot should be framed as a sharp Q2/S3 tail-world sensor, not as a generic improvement attempt. This keeps candidate selection tied to hidden-world falsification rather than aggregate beat-rate optimism.
+- Do not repeat: promoting E89 because its aggregate E95-beat rate is nonzero without stating the Q2/S3 diffuse-tail condition and the loss condition if public rejects it.

@@ -1081,6 +1081,18 @@ target co-occurrence
 - public LB 관측 반응: if E89 later beats E95, public tail realization is closer to diffuse/cell-fallback E89 geometry than to E95's selected hard-tail cells. If E90/E86 beats E95 despite E99, then the two-term local+tail abstraction missed a row-coherent structural-retention effect.
 - 제출 전략: no E99 file. Keep E95 as current frontier. If spending exactly one diagnostic slot for expected E95-beat probability, E89 is now the sharper counterfactual; E90 should be used only for the explicit row-coherent retained-structure question.
 
+### H94. E89's E95-beat counterfactual is concentrated in Q2/S3 diffuse-tail worlds
+
+- 상태: supported as a diagnostic public-world hypothesis; not a broad improvement claim.
+- 왜 그럴듯한가: E99 gave E89 a nontrivial `0.195829` E95-beat rate while still keeping E95 best mean/p95. That pattern suggests E89 is not globally better, but may dominate a specific tail allocation that E95's hard-tail localization undercovers.
+- 맞다면: E89-beats-E95 cases should cluster around a target/mask family with positive tail-surplus, and E89 should remain worse or neutral outside that family. The favorable slice should explain the E89 edge through tail advantage rather than local structural margin.
+- 틀리다면: E89's beat cases should be diffuse across masks/orders, or should be driven by generic lower local loss rather than tail-surplus. Q2/S3 slices should not have much higher beat rate than the broad average.
+- 최소 실험: `analysis_outputs/e100_e89_counterfactual_anatomy.py`, decomposing E99 broad-plausible scenarios by `mask_name`, `family_mask`, `order_name`, tail advantage, required tail advantage, and tail surplus.
+- 관측: broad-plausible scenarios `3452`; overall E89 beat-E95 rate `0.195829`; E89 live win-rate `0.188876`; E95 live win-rate `0.800406`; mean E89-minus-E95 delta `+0.000003833`. E89-beating cases were `676` scenarios with mean tail surplus `+0.000002916` and top mask `q2s3`. The `q2s3` slice had `n=368`, beat rate `0.779891`, mean E89-minus-E95 `-0.000005030`, and mean tail surplus `+0.000003262`. Non-beating cases had top mask `s1s2s3` and mean tail surplus `-0.000004272`; `s1s2s3` and `e95_fallback_cells` did not provide material E89-beat support.
+- 성공/폐기 기준: supported because the E89-favorable worlds are not broad. They are concentrated in Q2/S3 diffuse-tail allocations where E89's older E72-cell fallback gains enough tail surplus to overcome its local disadvantage versus E95.
+- public LB 관측 반응: if `submission_e89_e72decontam_00d7807f.csv` beats E95, public labels likely realized more Q2/S3 diffuse E72-cell tail than E95 localized. If it loses, E95's hard-tail cells remain the better explanation and E89 should be retired as a near-term successor.
+- 제출 전략: E89 is the next single public slot only as a Q2/S3 diffuse-tail sensor. Do not present it as a general lower-downside candidate or as evidence against E95 unless the public observation confirms it.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
