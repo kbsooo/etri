@@ -1057,6 +1057,18 @@ target co-occurrence
 - public LB 관측 반응: E95 did improve, so H91's ranking was directionally useful despite being a conditional hard-tail stress rather than a public-label fit. The realized public world was not so adverse to E95's retained E86 structure that the hard-tail budget dominated the whole score.
 - 제출 전략: use E95 as the current frontier. Use E90/E86 to test retained-structure upside; use E85 only when the next public question is pure downside floor rather than hard-tail localization with retained E86 structure.
 
+### H92. E95 as a known public anchor makes movement-fingerprint proxy usable for next ranking
+
+- 상태: rejected.
+- 왜 그럴듯한가: E95 is the first public-positive post-mixmin hard-tail move. Adding it to mixmin and failed E72 gives the known-LB table a local bracket around the current frontier, so a movement proxy might become sharp enough to rank E90/E86/E85.
+- 맞다면: LOOCV movement regression should hold out E95/mixmin/E72 with errors below the E95 edge scale, preserve the E72-minus-mixmin sign, and produce future candidate spreads larger than its near-frontier error.
+- 틀리다면: the best proxy should still have p90 error larger than E95's gain, fail one of the critical near-frontier holdout signs, or assign candidate scores that are not interpretable at frontier scale.
+- 최소 실험: `analysis_outputs/e98_e95_updated_selector_audit.py`, adding E95 to `public_probe_observations.csv`, rerunning fixed LOOCV ridge proxy families, auditing E95/mixmin/E72 pair deltas, and scoring E90/E86/E85/E89/E87 candidates.
+- 관측: known anchors increased to `11`. Best fixed proxy remained `raw05_a2c8_compat` with MAE `0.000520095` and p90 abs error `0.000816497`. This p90 error is `53.33x` the E95 edge over mixmin (`0.0000153107`) and `8.07x` the E72 miss over mixmin (`0.0001011367`). Mixmin-minus-E95 sign was correct but abs error was `0.0000619237`; E72-minus-mixmin sign was wrong, predicted `-0.0000305135` vs actual `+0.0001011367`; E72-minus-E95 sign was correct but abs error was `0.0000697264`.
+- 성공/폐기 기준: rejected because the proxy still fails a known near-frontier sign and its error is much larger than the edge we need to rank. The future proxy spread is only `0.000015142`, so the ranking is not interpretable unless the near-frontier anchors can be held out correctly.
+- public LB 관측 반응: if a proxy-ranked E86/E90/E85 file later improves, it should not retroactively validate H92 unless the proxy also becomes able to hold out E95/mixmin/E72. The current evidence says public slots remain sensors, not supervised LB-regression optimization targets.
+- 제출 전략: no E98-ranked submission. Keep the next public file hypothesis-based: E90 for row-coherent retained structure, E86 for max source-consensus upside, or E85 for conservative p95 tail floor.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

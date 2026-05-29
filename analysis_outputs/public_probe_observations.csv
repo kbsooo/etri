@@ -6,5 +6,6 @@ submission_raw_timeline_jepa_rescue_strict_scale0p5.csv,0.5775263072,Raw timelin
 submission_jepa_latent_q2_w0p45.csv,0.5798012862,Direct JEPA latent Q2 movement failed public; bad-axis anchor.
 submission_jepa_latent_residual_probe.csv,0.5812273278,Direct latent residual probe failed public strongly; collapse/risk anchor.
 submission_lejepa_targetwise_strict_best_scale0p5.csv,0.5802468192,LeJEPA target-wise strict scale0.5 improved OOF/geometry but failed public; new bad-axis anchor.
-submission_mixmin_0c916bb4.csv,0.5763066405,Current public frontier; validates anchor-loss/binary-world mixmin sensor despite old selector veto.
+submission_mixmin_0c916bb4.csv,0.5763066405,Previous public frontier; validates anchor-loss/binary-world mixmin sensor despite old selector veto.
 submission_e72_topabs50_q2s3_gate_4e48cba2.csv,0.5764077772,E72/E73 sparse Q2/S3 gate sensor worsened versus mixmin; later audits show broad all-target contamination and sub-margin pure Q2/S3.
+submission_e95_hardtail_541e3973.csv,0.5762913298,Current public frontier; validates E72-adverse hard-tail localization with E86-to-E85 fallback.

@@ -780,3 +780,12 @@
 - Implementation issue possible: low. The public result is direct. The remaining uncertainty is not whether E95 was public-positive, but whether the next candidate should preserve more E86 structure (`E90`/`E86`) or lower tail floor further (`E85`).
 - Bottleneck implication: hard-tail localization is a live feature family and should be part of future LeJEPA-style health checks. It still does not explain the 0.54 gap, because the gain is a localized tail repair rather than hidden block-rate recovery.
 - Do not repeat: dismissing E72-derived gates solely because public labels are hidden. Require conditional-budget stress and structural survival, then treat public observations as sensors for the retained-structure versus conservative-floor tradeoff.
+
+## FH87. E95 public anchor makes known-LB movement regression submission-usable
+
+- Failed hypothesis: after E95 becomes a public-positive frontier anchor, adding it to the known public table should make movement-fingerprint regression sharp enough to rank E90/E86/E85.
+- Observed result: E98 added E95 as the 11th known anchor and reran fixed LOOCV movement proxies. The best proxy was still `raw05_a2c8_compat` with MAE `0.000520095` and p90 abs error `0.000816497`. That p90 error is `53.33x` the E95 edge over mixmin and `8.07x` the E72 miss over mixmin. It still predicted E72-minus-mixmin with the wrong sign (`-0.0000305135` predicted vs `+0.0001011367` actual).
+- Why discard: the proxy error is much larger than the frontier-scale differences and it fails one of the critical known pair signs. Its candidate spread over the post-E95 queue is only `0.000015142`, which is not interpretable under this error.
+- Implementation issue possible: low to medium. The proxy families are intentionally fixed and simple to avoid overfitting the small public table. A different future selector may work, but this specific known-LB regression cannot be used as the next submission order.
+- Bottleneck implication: adding public observations helps the hypothesis graph, not a supervised LB ranker. The next public file remains a sensor for retained structure versus conservative tail floor, not a proxy-optimized candidate.
+- Do not repeat: using E98 `proxy_pred_mean`, `candidate_risk_score`, or any direct known-LB movement-regression ranking to choose E90/E86/E85. Require a selector that can hold out E95/mixmin/E72 before using predicted LB.
