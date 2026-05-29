@@ -816,3 +816,12 @@
 - Implementation issue possible: low to medium. The hidden block reconstruction is derived from existing audits, so a richer block definition could alter details. But the current E101 active-cell atlas is incompatible with a narrow subject/block mask.
 - Bottleneck implication: E101 is an amplitude/calibration-risk sensor, not a shortcut to hidden subject identity. The remaining bottleneck is target-axis Q2/S3 tail calibration near block boundaries, not obvious block membership selection.
 - Do not repeat: building a subject/block-specific follow-up from E101 before public feedback. If E101 improves, test amplitude/edge-risk variants first; if it worsens, demote generic Q2/S3 rollback and keep edge-local rollback only as a weak diagnostic.
+
+## FH91. E101 edge-locality is enough to create a stronger edge-only submission
+
+- Failed hypothesis: because E102 found E101 cells are weakly hidden-block-edge-local, an edge-only or edge-enriched Q2/S3 rollback should dominate the full E101 active-cell rollback and become the next submission.
+- Observed result: E103 scanned `180` active/edge/interior/top-gap rollback variants under the inherited E101 stress frame. `12` rows passed E103 stress, but `0` dominated E101 on broad mean, p95, and beat-E95 rate together. No E103 file was materialized. The best passing active-all alpha `0.375` improved broad mean/p95 but reduced beat-E95 rate to `0.980881` versus E101 `0.983488`; edge-only masks had positive p95 or failed strict safety.
+- Why discard: the edge signal is not strong enough as a standalone selector. The stable branch remains the broader active-all Q2/S3 amplitude rollback, with edge proximity as a diagnostic risk feature.
+- Implementation issue possible: low to medium. E103 reuses E101's transfer frame, so a future public-positive E101 result could justify a richer edge-energy model. The rejected claim is only that direct edge masks are already better than E101 now.
+- Bottleneck implication: boundary geometry may still explain where Q2/S3 calibration risk lives, but selector strength is insufficient. The bottleneck remains amplitude/world calibration, not identifying a simple edge subset.
+- Do not repeat: submitting edge-only, edge-topgap, or handcrafted active-cell edge masks before E101 public feedback or without a new independent stress source.

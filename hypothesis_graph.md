@@ -1117,6 +1117,18 @@ target co-occurrence
 - public LB 관측 반응: if E101 improves, the follow-up should first test Q2/S3 amplitude/edge-risk variants, not subject/block handcrafted masks. If E101 worsens, generic Q2/S3 rollback is weakened; edge-local rollback remains a lower-priority diagnostic because E102 did find a small edge signal.
 - 제출 전략: no E102 submission. E101 remains the public sensor. E102 changes the post-E101 branch decision, not the next file.
 
+### H97. E101's edge-local clue can replace the full Q2/S3 rollback with a sharper edge selector
+
+- 상태: direct replacement rejected; amplitude-line diagnostic remains live.
+- 왜 그럴듯한가: E102 found E101 active cells are unusually close to hidden block edges. If boundary rows are where E95 over-moves Q2/S3, an edge-local rollback might lower tail risk while changing fewer cells than E101.
+- 맞다면: edge-only or edge-enriched masks should pass E101-style strict stress, improve E95-conditioned broad mean/p95, and preserve or improve E101's beat-E95 rate. A materialized E103 file should dominate E101 under mean, p95, and beat-rate together.
+- 틀리다면: edge-only masks should fail strict or p95 stress, or improve mean only by sacrificing beat-rate. The best variants should collapse back to the same active-all amplitude line as E101 rather than a distinct edge selector.
+- 최소 실험: `analysis_outputs/e103_edge_local_q2s3_amplitude_probe.py`, reusing E101's scoring and E95-conditioned transfer frame while scanning active/edge/interior/S3/Q2/top-gap masks and rollback alphas from E95 toward mixmin.
+- 관측: E103 scanned `180` variants. `12` rows passed E103 stress, but `0` dominated E101. No submission was materialized. The best passing active-all alpha `0.375` improved broad mean/p95 versus E101 (`-0.000023425` / `-0.000002159`) but reduced beat-E95 rate to `0.980881` from E101's `0.983488`. Edge-only alpha `1.0` had a favorable mean but positive p95 (`+0.000007795`) and failed strict.
+- 성공/폐기 기준: reject the direct edge-selector submission claim because edge masks do not dominate E101 and fail the p95/strict safety needed for a next public file. Keep edge proximity as a calibration-risk feature because it remains a non-random diagnostic and the active-all amplitude line still passes.
+- public LB 관측 반응: E103 does not change the next public file. If E101 later improves, edge energy can guide amplitude follow-up stress. If E101 worsens, E103 says edge-local variants are not already strong enough to rescue the branch without a new independent signal.
+- 제출 전략: no E103 submission. Keep `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` as the next sensor. Do not submit edge-only or top-gap edge masks before E101 public feedback.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
