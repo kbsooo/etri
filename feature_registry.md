@@ -1078,7 +1078,15 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Candidates: E142-minus-E95 logit deltas, E101-active mask, Q2/S3 and S3 masks, ranked Q2/S3/tension masks, rollback keep factor, active/Q2S3 gate, original strict actionability, E72-budget, and post-E101 p95.
 - Label vs split test: valid as a candidate repair because it starts from an already-opened E142 residual decoder and asks a single public-observation-derived risk question. Risky if the active/Q2S3 veto is overconservative and removes the cells public would reward.
 - Current evidence: E143 generated `80` repair variants; all `80` were relaxed-submit and `15` were original-strict-submit. The materialized `submission_e143_activeq2s3repair_68ca656f.csv` rolls back `21` top Q2/S3-weighted cells, keeps `164` E95-relative changed cells, has local all-minus-E95 `-0.000009551358`, E72 gap `~0`, post-E101 p95 `-0.000003368915`, and passes the active/Q2S3 and original strict gates.
-- Policy: this is the current top submission candidate. Use it before E142 because it preserves most residual-decoder upside while satisfying the stricter E101-informed risk gate.
+- Policy: keep as the conservative fallback after F121. It preserves most residual-decoder upside while satisfying the stricter E101-informed risk gate, but E144 found a finer boundary with slightly better local/post-E101 stress.
+
+### F121. Fine active/Q2S3 boundary gate
+
+- Hidden structure: the E101-informed active/Q2S3 boundary may be a fine LogLoss tail cliff, not a binary decision to fully roll back E143's top `21` cells.
+- Candidates: E142-minus-E95 logit deltas, Q2/S3-weighted ranked masks, tension masks, E101-active masks, top counts `14..24`, keep factors around E143, original strict actionability, E72-budget, active/Q2S3 gate, and post-E101 p95.
+- Label vs split test: valid as a candidate refinement because it starts from E143's already-opened strict branch and asks whether a local boundary can be tightened without changing the worldview. Risky if the tiny retained movement is public-tail overfit.
+- Current evidence: E144 generated `206` repair variants, `32` original-strict variants, and `9` E144-submit variants. The materialized `submission_e144_activeboundary_d7b4b331.csv` uses `top_q2s3_weighted_24`, keep factor `0.15`, rolls back `24` cells, keeps `185` E95-relative changed cells, has local all-minus-E95 `-0.000009725930`, E72 gap `~0`, post-E101 p95 `-0.000003430489`, and passes active/Q2S3 plus original strict actionability.
+- Policy: current top submission candidate. Use it before E143 because it keeps all E143 gates while improving local all-minus-E95 and post-E101 p95. If public rejects it but E143 later succeeds, mark F121 as too fine and keep F120's conservative boundary.
 
 ## Current Feature Policy
 

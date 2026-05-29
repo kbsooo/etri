@@ -382,3 +382,21 @@ E143 tests whether E142's remaining active/Q2S3 veto failure is a real blocker o
 - active/Q2S3, original strict actionability, relaxed structural, E72-budget, and post-E101 gates all pass.
 
 This changes the next public choice. E142 opened the transfer-budget-neutral residual branch, but E143 is the cleaner stress survivor: it keeps most of E142's residual movement while explicitly applying the E101 small-loss lesson as an active/Q2S3 pruning constraint. The current validation ranking is therefore E143 first, E142 second as the higher-upside/higher-risk fallback.
+
+## Update After E144
+
+E144 tests whether E143's repair boundary was only a coarse-grid artifact.
+
+- repair variants: `206`.
+- original-strict repair variants: `32`.
+- E144-submit variants: `9`.
+- materialized candidate: `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.
+- selected mask: `top_q2s3_weighted_24`, keep factor `0.15`.
+- selected rollback cells: `24`.
+- selected changed cells versus E95: `185`.
+- selected local all-minus-E95: `-0.000009725930`.
+- selected E72-plausible gap versus E95: `~0`.
+- selected post-E101 mean/p95/beat versus E95: `-0.000013326583` / `-0.000003430489` / `1.0`.
+- active/Q2S3, original strict actionability, relaxed structural, E72-budget, and post-E101 gates all pass.
+
+This supersedes E143 as the next public file. The validation edge is very small, but it is directionally clean: E144 beats E143 locally and on post-E101 p95 while preserving the same strict gates. The current validation ranking is E144 first, E143 conservative fallback, E142 higher-upside/higher-risk fallback.

@@ -2170,3 +2170,23 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - active/Q2S3 gate, strict actionability, relaxed structural, E72-budget, and post-E101 gates all pass.
 - Interpretation: E142's remaining active/Q2S3 risk is repairable at small local cost. This is stronger than E142 as a next public sensor because it preserves the transfer-budget-neutral residual direction while explicitly respecting the E101 small-loss lesson.
 - Decision: promote `submission_e143_activeq2s3repair_68ca656f.csv` above E142. If public improves, the world model becomes "E95 plus transfer-budget-neutral residual decoder, but Q2/S3 active overconditioning must be cut." If it fails while E142 later wins, the old active/Q2S3 veto was too conservative; if both fail, E101-conditioned transfer-budget clipping is overfit as a selector.
+
+## E144. E143 Active Boundary Refine
+
+- Observe: E143 repaired E142, but its selected row was a coarse full rollback of the top `21` Q2/S3-weighted active cells. That leaves a sharper question: is the active/Q2S3 boundary truly a full-rollback cliff, or can a slightly larger mask with partial retention keep strict safety while recovering more residual reward?
+- Wonder: if the boundary is real but not binary, the best row should sit near E143, pass the exact same strict gates, beat E143 locally, and not worsen the post-E101 p95 sensor.
+- Method: `analysis_outputs/e144_e143_active_boundary_refine.py` fine-scanned top counts `14..24`; ranked masks used Q2/S3, tension, and E101 weights; full masks swept keep factors `0.50..0.75`, ranked masks swept `0.00..0.30`. The submit rule required original strict actionability, active/Q2S3 gate, E72-budget, local materiality, local improvement over E143, and post-E101 p95 no worse than E143.
+- Result:
+  - repair variants: `206`.
+  - original-strict repair variants: `32`.
+  - E144-submit variants: `9`.
+  - materialized file: `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.
+  - selected repair: `top_q2s3_weighted_24`, keep factor `0.15`.
+  - rollback cells: `24`.
+  - changed cells versus E95: `185`.
+  - local all-minus-E95 `-0.000009725930`, versus E143 `-0.000009551358`.
+  - E72-plausible gap versus E95 `~0`.
+  - post-E101 mean/p95/beat versus E95 `-0.000013326583` / `-0.000003430489` / `1.0`.
+  - active/Q2S3 gate, original strict actionability, relaxed structural, E72-budget, and post-E101 gates all pass.
+- Interpretation: E143's repair was directionally right but coarse. The live boundary is not "rollback exactly 21 cells to zero"; it is a fine active-tail cliff around top `22..24` Q2/S3-weighted cells with small retained movement allowed. The edge is tiny, so this is not a 0.54 path by itself, but it is the cleanest next public sensor because it preserves all E143 health checks while recovering a little more transfer-budget-neutral reward.
+- Decision: promote `submission_e144_activeboundary_d7b4b331.csv` above E143. If public improves, strengthen the "fine active/Q2S3 boundary" worldview. If it loses while E143 later wins, the retained `0.15` tail was too optimistic; if E144/E143/E142 all lose, reject E101-conditioned transfer-budget clipping as a submission selector.

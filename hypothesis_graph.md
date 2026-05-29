@@ -1598,7 +1598,7 @@ target co-occurrence
 
 ### H137. E142's active/Q2S3 veto failure is repairable without killing the residual decoder
 
-- 상태: supported locally; public pending.
+- 상태: supported locally; superseded by H138 as first submission; public pending.
 - 왜 그럴듯한가: E101 public `0.5763003660` showed that Q2/S3 rollback was close but not frontier. E142 opens a broader residual decoder, but still fails the legacy active/Q2S3 gate. If the E101 lesson is a local overconditioning warning rather than a rejection of all residual movement, a small rollback on the most Q2/S3-weighted active cells should make E142 stricter without collapsing it to E95.
 - 맞다면: E142-derived repairs should pass `gate_active_q2s3_not_more_than_e101`, original strict actionability, relaxed structural, E72-budget, and post-E101 p95 simultaneously, with local all-minus-E95 still around `1e-5`.
 - 틀리다면: repairing active/Q2S3 should either destroy local reward, fail E72/post-E101 transfer gates, or leave strict actionability closed.
@@ -1606,7 +1606,19 @@ target co-occurrence
 - 관측: E143 generated `80` repair variants. All `80` remained relaxed-submit, and `15` passed original strict-submit. The selected `submission_e143_activeq2s3repair_68ca656f.csv` rolls back `21` top Q2/S3-weighted cells, keeps `164` changed cells, has local all-minus-E95 `-0.000009551358`, E72 gap `~0`, post-E101 p95 `-0.000003368915`, and passes active/Q2S3 and strict actionability.
 - 성공/폐기 기준: locally supported. Public LB decides whether the stricter Q2/S3 repair is the correct next sensor or whether the old active/Q2S3 veto is overconservative.
 - public LB 관측 반응: if E143 beats `0.5762913298`, strengthen the residual-decoder world and treat E101 as an active/Q2S3 pruning constraint. If E143 loses but E142 later wins, weaken the active/Q2S3 veto. If both lose, reject E101-conditioned transfer-budget clipping as a selector.
-- 제출 전략: submit `analysis_outputs/submission_e143_activeq2s3repair_68ca656f.csv` before E142.
+- 제출 전략: keep `analysis_outputs/submission_e143_activeq2s3repair_68ca656f.csv` as the conservative fallback after H138's finer boundary candidate.
+
+### H138. E143's active/Q2S3 repair boundary is fine, not binary
+
+- 상태: supported locally; public pending.
+- 왜 그럴듯한가: E143 proved that the E142 residual decoder can survive the E101 active/Q2S3 lesson, but it used coarse masks and keep factors. If the real public-tail boundary is a small LogLoss cliff, full rollback of exactly `21` cells may be a conservative quantization artifact rather than the best sensor.
+- 맞다면: a fine scan around E143 should find original-strict rows that retain slightly more E142 movement, beat E143 locally, and do not worsen post-E101 p95.
+- 틀리다면: every row that beats E143 locally should fail original strict actionability, active/Q2S3, E72-budget, or post-E101 p95.
+- 최소 실험: `analysis_outputs/e144_e143_active_boundary_refine.py`, sweeping top counts `14..24` and keep factors around E143 on Q2/S3-weighted, tension, and E101-active masks.
+- 관측: E144 generated `206` repair variants, `32` original-strict variants, and `9` E144-submit variants. The selected `submission_e144_activeboundary_d7b4b331.csv` uses `top_q2s3_weighted_24`, keep factor `0.15`, rolls back `24` cells, keeps `185` changed cells, has local all-minus-E95 `-0.000009725930`, post-E101 p95 `-0.000003430489`, E72 gap `~0`, and passes active/Q2S3 plus strict actionability.
+- 성공/폐기 기준: locally supported. Public LB decides whether E144's finer retained movement is real or whether E143's more conservative full rollback is safer.
+- public LB 관측 반응: if E144 beats `0.5762913298`, strengthen the fine-boundary version of the residual-decoder world. If E144 loses but E143 wins, the retained `0.15` active tail was too optimistic. If E144, E143, and E142 all lose, reject this E101-conditioned transfer-budget branch as a selector.
+- 제출 전략: submit `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` before E143; keep E143 as conservative fallback.
 
 ## 우선 실험 5개
 

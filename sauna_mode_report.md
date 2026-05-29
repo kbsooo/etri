@@ -667,4 +667,35 @@ E143 repair 전까지 제출 우선순위는 `analysis_outputs/submission_e142_t
 
 `E95 이후의 다음 가망 있는 움직임은 transfer-budget-neutral residual decoder다. 다만 E101이 보여준 Q2/S3 active 과집중은 반드시 잘라야 한다. 그래서 E142보다 E143이 더 좋은 다음 센서다. E143이 public에서 좋아지면 "E95 law + residual decoder + active/Q2S3 pruning"이 강화되고, 실패하면 transfer-budget clipping 자체가 public-sensor overconditioning이었는지 의심해야 한다.`
 
-지금 제출할 파일은 하나다. `analysis_outputs/submission_e143_activeq2s3repair_68ca656f.csv`.
+E144 fine-boundary audit 전까지 제출 파일은 `analysis_outputs/submission_e143_activeq2s3repair_68ca656f.csv`였다.
+
+## 추가 관찰: E143의 active/Q2S3 경계는 full rollback이 아니라 fine cliff다
+
+`analysis_outputs/e144_e143_active_boundary_refine.py`로 E143의 마지막 경계를 더 촘촘히 찔렀다.
+
+질문은 이것이었다.
+
+`E143의 top21 full rollback은 진짜 최적 경계인가, 아니면 coarse grid가 만든 안전한 점일 뿐인가?`
+
+결과:
+
+- repair variants: `206`.
+- original-strict repair variants: `32`.
+- E144-submit variants: `9`.
+- materialized file: `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.
+- selected repair: `top_q2s3_weighted_24`, keep factor `0.15`.
+- rollback cells: `24`.
+- changed cells vs E95: `185`.
+- local all-minus-E95: `-0.000009725930`.
+- E143 local all-minus-E95: `-0.000009551358`.
+- E72-plausible gap vs E95: `~0`.
+- post-E101 mean/p95/beat vs E95: `-0.000013326583` / `-0.000003430489` / `1.0`.
+- active/Q2S3 gate and original strict actionability both pass.
+
+이건 E143 해석을 한 번 더 좁힌다. active/Q2S3 경계는 "21개를 전부 0으로 롤백해야 한다"가 아니라, `22..24`개 근처에서 아주 작은 retained movement를 허용하는 cliff다.
+
+현재 세계관을 다시 압축한다.
+
+`E95 이후의 다음 가망 있는 움직임은 여전히 transfer-budget-neutral residual decoder다. 하지만 그 decoder의 public-tail 안전성은 거친 full rollback보다 더 미세한 active/Q2S3 경계에서 결정된다. E144가 public에서 좋아지면 이 fine boundary가 실재한다는 뜻이고, E144는 실패하지만 E143이 살아나면 keep0.15가 public-tail을 너무 낙관한 것이다.`
+
+지금 제출할 파일은 하나다. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.

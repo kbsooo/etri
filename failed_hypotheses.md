@@ -1131,3 +1131,12 @@
 - Implementation issue possible: low for this repair family; the control E142 row was scored in the same run and correctly failed the active/Q2S3 gate.
 - Bottleneck implication: the current frontier question is no longer "can transfer-budget residual movement survive the E101 lesson?" It can locally. The question is whether the E101-informed pruning generalizes to public labels.
 - Do not repeat: treating E142's active/Q2S3 veto failure as a hard branch killer. Use E143 as the stricter public sensor, and keep E142 only as a higher-upside fallback if the veto proves overconservative.
+
+## FH126. E143's coarse top21 full rollback is boundary-optimal
+
+- Failed hypothesis: after E143 opened the strict branch, the best active/Q2S3 repair was exactly the coarse `top_q2s3_weighted_21` full rollback; any attempt to retain more movement would either fail strict gates or worsen post-E101 p95.
+- Observed result: E144 generated `206` fine-boundary variants, with `32` original-strict rows and `9` rows that beat E143 locally while not worsening post-E101 p95. The selected `submission_e144_activeboundary_d7b4b331.csv` uses `top_q2s3_weighted_24`, keep factor `0.15`, keeps `185` changed cells, improves local all-minus-E95 from E143's `-0.000009551358` to `-0.000009725930`, and improves post-E101 p95 from `-0.000003368915` to `-0.000003430489`.
+- Why discard: E143's full rollback was a coarse safe point, not the local boundary optimum. The active/Q2S3 cliff is finer and still allows a small amount of retained movement.
+- Implementation issue possible: low for the tested grid; E144 re-scores E142 and E143 controls in the same pipeline and keeps E143 strict. It does not prove that the absolute optimum is found outside the scanned masks.
+- Bottleneck implication: the live branch is extremely narrow. We can still extract a tiny amount of reward from the residual decoder, but the edge size is `1e-7` local scale, so this is a next-sensor refinement rather than a 0.54-path discovery.
+- Do not repeat: assuming E143's coarse mask is optimal. Use E144 first; keep E143 as the conservative fallback if public rejects the fine retained tail.
