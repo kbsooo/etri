@@ -1453,6 +1453,17 @@ target co-occurrence
 - public LB 관측 반응: no public submission. A public test would be low-information because the local-stress-positive candidates are veto-adverse and the veto-safe candidates are immaterial.
 - 제출 전략: no E130 submission. Future candidates need a new representation that disentangles "where density says public budget lives" from "where local probability movement produces safe upside."
 
+### H125. Local-upside and veto-safe density atoms can be linearly recombined
+
+- 왜 그럴듯한가: E130 found both ingredients separately: many local-strict E86/E90 low-alpha atoms and many E129-veto-safe mixmin/E85 atoms. A linear safe correction or hard-tail clipping might cancel the public-risk component while retaining local margin.
+- 맞다면: E95-relative atom-combo candidates should contain at least one row that is local-strict, transfer-veto-actionable, and non-adverse under post-E101 sensor stress.
+- 틀리다면: local-strict rows and veto-actionable rows should remain disjoint; risk-clipped local rows should either lose veto actionability or remain post-E101 adverse.
+- 최소 실험: `analysis_outputs/e131_tail_density_atom_combo_probe.py`, combining E130 local atoms with E130 safe atoms in logit space and clipping hard-tail-risk cells from local atoms.
+- 관측: `6384` candidate rows, `700` evaluated, `651` local-strict, and `208` veto-actionable, but `0` local-strict plus veto-actionable rows and `0` submit-gate rows. The best local row improved E95 by `-0.000001813` but stayed post-E101 adverse; no evaluated row had negative post-E101 sensor mean.
+- 성공/폐기 기준: reject the linear recombination hypothesis. The disjointness is structural under the tested donor/mask family, not just missing blend weights.
+- public LB 관측 반응: no submission. Any public test from this family would either test an already-rejected local-risk direction or an immaterial safe movement.
+- 제출 전략: no E131 submission. Future work should stop treating transfer-shrinkage as a corrective blend over old directions and instead search for a new latent/movement direction that is safe before correction.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

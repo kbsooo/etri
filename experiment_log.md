@@ -1953,3 +1953,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best post-E101-safe micro-move improved E95 by only about `-0.000000018`, below material scale and not strict.
 - Interpretation: transfer-shrinkage density is not enough as a direct probability translator. The local-upside moves toward E86/E90 raise E72/E101-compatible exposure, while veto-safe density moves are too small to matter.
 - Decision: no submission. The next representation must predict where local upside can be added without increasing E72/E101-compatible exposure; simple density-shaped E95-neighborhood synthesis is rejected.
+
+## E131. Tail-Density Atom-Combo Probe
+
+- Observe: E130 left a possible loophole: maybe local-upside atoms and veto-safe atoms are separated only because each was tested alone.
+- Wonder: if a locally strict E86/E90 low-alpha movement is combined with a transfer-shrinkage-safe mixmin/E85 atom, or if its worst hard-tail-risk cells are clipped, can the two gates overlap?
+- Method: `analysis_outputs/e131_tail_density_atom_combo_probe.py` selected `14` E130 local-strict atoms and `22` E130 separated-veto atoms. It built `6384` E95-relative logit-space local+safe combinations and hard-tail risk-clipped local variants, then rescored them with the same E95-relative local stress, E128/E129 separated vetoes, and E124 post-E101 transfer filters.
+- Result:
+  - candidate rows `6384`.
+  - evaluated candidates `700`.
+  - local strict candidates `651`.
+  - veto-actionable candidates `208`.
+  - local-strict plus veto-actionable candidates `0`.
+  - final submit gate `0`.
+  - best local improvement reached `-0.000001813` versus E95, but was post-E101 adverse with sensor mean `+0.000014889` and failed the separated veto.
+  - best post-E101 sensor mean among evaluated rows was still positive at `+0.000002326`.
+- Interpretation: the E130 separation is not a simple linear-combination artifact. The local-upside direction and the transfer-shrinkage veto geometry remain disjoint even after mixing with safe atoms and clipping high-risk cells.
+- Decision: no submission. The next candidate cannot be produced by old-donor density movement plus safe correction. A useful successor needs a genuinely new movement direction or representation where local upside and E72/E101 safety are co-located before probability movement.

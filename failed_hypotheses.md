@@ -1023,3 +1023,12 @@
 - Implementation issue possible: medium. E130 only tests donor interpolation around E95, not a learned representation or new model family. The discarded claim is specifically the simple direct density-shaped synthesis rule.
 - Bottleneck implication: the plateau is not solved by "move on better cells." The next representation must learn a movement direction that is simultaneously local-upside and transfer-veto-safe.
 - Do not repeat: submitting E86/E90 low-alpha density rows, tail-equal micro-moves, or density-only E95 blends unless they pass both local strict E95 improvement and post-E101/E129 separated veto gates.
+
+## FH114. Local-upside density atoms can be rescued by safe correction atoms
+
+- Failed hypothesis: E130 failed only because local-upside and veto-safe atoms were tested independently; adding a safe mixmin/E85 correction or clipping high-risk cells should create an overlap.
+- Observed result: E131 generated `6384` local+safe atom combinations and risk-clipped local variants. It found `651` local-strict candidates and `208` veto-actionable candidates, but `0` local-strict plus veto-actionable candidates and `0` submit-gate candidates. No evaluated candidate had negative post-E101 sensor mean.
+- Why discard: the local-upside direction itself carries the post-E101/E72 exposure that the veto rejects. Safe atoms can make a candidate safe only by giving up the E95-relative local improvement, not by cancelling a small removable component.
+- Implementation issue possible: medium. E131 tests linear logit-space combinations and hard-tail clipping over the E130 atom family, not all possible nonlinear representations. The discarded claim is the cheap blend/correction rescue path.
+- Bottleneck implication: the next movement must be learned or constructed as safe from the start. Transfer-shrinkage density is still a health target, but it is not a corrective layer over old local-upside donors.
+- Do not repeat: local+safe donor blending, E86/E90 low-alpha plus mixmin/E85 correction, or hard-tail clipping of the same E130 local atoms unless a new independent representation changes the base movement direction.

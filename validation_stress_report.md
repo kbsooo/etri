@@ -196,3 +196,13 @@ E94 adds a final post-E72 gate separation: soft-health metrics and hard-label Lo
 13. Gate separation: split the old strict gate into public-sign evidence, private-risk warning, and information-sensor value. E48 proves these cannot be one boolean; E50/E51 prove calendar/anchor kNN cannot be the replacement boolean.
 14. Raw-structure bridge retest: revisit inverse7 only as a mixmin-relative bridge, not as a replacement chosen by pre-E48 selector veto.
 15. Block-state JEPA work remains the only visible 0.54 path. Future block-context targets must beat temporal block weighted LogLoss directly, not just produce a row-level blend gain.
+
+## Update After E131
+
+E131 adds a sharp stress verdict to the current submission gate. The post-E101 transfer-shrinkage branch now has three closed shortcuts:
+
+- E129: existing submission universe has no novel strict actionable survivor.
+- E130: direct tail-density donor interpolation has local-strict rows and veto-safe rows, but no overlap.
+- E131: even local+safe atom combinations and hard-tail clipped local variants keep the same disjointness.
+
+The stress result is numerically strong: `6384` candidates, `651` local-strict, `208` veto-actionable, `0` in the intersection, and `0` with negative post-E101 sensor mean. The current gate therefore blocks any E95 successor whose only rationale is "local E86/E90 low-alpha upside plus transfer-shrinkage-safe correction." A future candidate must pass the separated vetoes before correction, not after blend surgery.

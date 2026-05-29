@@ -976,6 +976,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E130 generated `1792` variants and evaluated `698`. Local strict rows were `25`; E129-veto-actionable rows before local strict were `19`; local-strict plus E129-veto-actionable rows were `0`; final submit gate was `0`. The best local strict move was `-0.000001512` versus E95 but post-E101 sensor-adverse, while the safest micro-moves were immaterial.
 - Policy: use density-shaped synthesis as a falsifier, not a candidate generator. Future features may use tail density as an energy term only if they also prove local E95-relative upside without increasing E72/E101-compatible exposure.
 
+### F108. Tail-density atom-combo veto
+
+- Hidden structure: local-upside and public-safe movement may be nonlinearly separated. If the separation were only additive, local E86/E90 low-alpha atoms could be combined with mixmin/E85 veto-safe atoms or clipped on hard-tail cells to create a safe successor.
+- Candidates: local atom id, safe atom id, logit local/safe scales, safe projection on local movement, hard-tail risk scalar, clipped risk quantile, E95-relative local margin, separated veto flags, and post-E101 transfer stress.
+- Label vs split test: valid as a public-free linearity falsifier because it reuses only pre-existing E130 atoms and predeclared E128/E129/E124 gates. Invalid if a local-strict row is promoted while `gate_strict_actionable` or post-E101 stress remains false.
+- Current evidence: E131 generated `6384` combinations/clipped variants. Local strict rows were `651` and veto-actionable rows were `208`, but their intersection was `0`; submit gate was `0`. The best local row improved E95 by `-0.000001813` but had positive post-E101 sensor mean, and the best sensor mean among evaluated rows was still `+0.000002326`.
+- Policy: set `density_atom_linear_correction_valid = false`. Do not build another submission by mixing old local-upside atoms with safe density atoms unless a new representation first creates co-located local upside and transfer-veto safety.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.
