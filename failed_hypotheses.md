@@ -1222,3 +1222,12 @@
 - Implementation issue possible: low for the ridge existence because it uses the same scoring stack and direct interpolation controls. Medium for public interpretation because lower amplitude may be too small to move public LB even if locally healthy.
 - Bottleneck implication: the branch is less brittle than E154 alone implied. The next risk is amplitude/public-signal resolution, not only gate compatibility.
 - Do not repeat: arguing that an E154 loss automatically rejects S3 active-boundary repair. First separate full-body overextension from the lower-amplitude E155 ridge.
+
+## FH136. E155 is the minimal coherent repaired body
+
+- Failed hypothesis: E155's `25%` diagonal E144->E154 body is the smallest coherent repaired branch; going below it or dropping diagonal target pieces should fail all-four health or lose the E144 edge.
+- Observed result: E156 scans the Q1/Q3/S2/S3/S4 body lattice and finds `3125/3125` all-four variants, `2984` strict candidates, and `85` rows below E155's body ratio. The selected `submission_e156_targetaxis_757546d2.csv` uses only Q1/S2/S4 axes, body ratio `0.171266667`, all-minus-E95 `-0.000010004`, post-E101 p95 `-0.000003712`, and E72 gap `-0.000002266`.
+- Why discard: the repaired branch does not require a diagonal low-amplitude body. Its minimum local survivor is nearly E144 plus a tiny Q1/S2/S4 add-on, with no extra Q3/S3 movement.
+- Implementation issue possible: low for the tested lattice after full non-anchor evaluation was forced; earlier truncated evaluation was corrected by raising `MAX_NONANCHOR_ROWS` above the lattice size. Medium for public interpretation because the local edge is barely above the materiality threshold.
+- Bottleneck implication: the branch is even less brittle than E155 implied, but also more collinear and smaller. The bottleneck is not finding any local all-four low-body point; it is knowing which tiny target-axis add-on, if any, public labels actually reward.
+- Do not repeat: treating E155 as the minimum repaired amplitude. Use E156 only as a low-body decomposition control, not as evidence of a new broad latent.

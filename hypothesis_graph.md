@@ -1752,6 +1752,18 @@ target co-occurrence
 - public LB 관측 반응: E154 remains the first sensor for maximum information and edge. E155 is the conservative amplitude-control sensor, useful if downside risk matters or after an E154 loss.
 - 제출 전략: keep `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` first; add `analysis_outputs/submission_e155_bodytemp_d27e7965.csv` ahead of E144 as the low-amplitude repaired-branch contrast.
 
+### H150. The repaired low-body ridge decomposes into a tiny Q1/S2/S4 add-on over E144
+
+- 상태: supported by E156; materialized low-body decomposition control.
+- 왜 그럴듯한가: E155 target ablations showed that all target drops survived and Q1-only already cleared local submit criteria. That implies the E154 body may not require its extra Q3/S3 components even though E154 itself was opened by S3 active-boundary repair.
+- 맞다면: a target-wise amplitude lattice over E144->E154 should produce all-four candidates with body norm below E155's `0.25`, and the minimum-body survivor should avoid some extra Q3/S3 movement while staying branch-collinear and public-negative-axis safe.
+- 틀리다면: all body-norm `<0.25` target-axis candidates should fail all-four health or fail to beat E144 locally; only the diagonal E155 body should be coherent.
+- 최소 실험: `analysis_outputs/e156_e154_target_axis_lattice.py`, scanning `Q1,Q3,S2,S3,S4` target-axis amplitudes over `0,0.25,0.50,0.75,1.0` with full non-anchor evaluation.
+- 관측: `3125/3125` lattice variants were all-four after full evaluation, `2984` were strict candidates, and `85` used less body norm than E155 while beating E144. The selected file `submission_e156_targetaxis_757546d2.csv` uses `Q1+S2+S4` with alphas `0.25/0.75/0.25`, body ratio `0.171266667`, all-minus-E95 `-0.000010004`, post-E101 p95 `-0.000003712`, and E72 gap `-0.000002266`.
+- 성공/폐기 기준: support until public feedback separates E154/E155/E156/E144. If E156 wins while E154/E155 lose, the live law becomes "tiny Q1/S2/S4 add-on only." If E156 loses while E144 wins, even that add-on is public-overfit. If E154/E155 win, E156 is only a downside-control diagnostic and not the main branch.
+- public LB 관측 반응: E156 should not replace E154 as the first sensor because it has weaker local edge and is almost E144-collinear. It is useful as a third repaired-branch control before falling back to pure E144.
+- 제출 전략: submit order for this branch is E154 -> E155 -> E156 -> E144, unless the goal is specifically to test the conservative unrepaired branch first.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

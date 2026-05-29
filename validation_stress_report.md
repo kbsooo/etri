@@ -583,3 +583,25 @@ E155 tests whether E154's added E144->E154 branch body is an exact tuned point.
 - target-drop all-four rate: `12/12`.
 
 The validation implication is better than expected. E154 is not a single brittle all-four point; a 25% body interpolation from E144 to E154 still clears the health gates and beats E144 locally. That strengthens the repaired-branch worldview, but it also lowers the urgency to trust full E154 amplitude. Use E154 as the highest-information public sensor and E155 as the conservative amplitude-control contrast.
+
+## Update After E156
+
+E156 tests whether the E155 diagonal is the minimum coherent repaired body or whether target-axis pieces can carry the gate health with even less movement.
+
+- active lattice axes: `Q1,Q3,S2,S3,S4`.
+- lattice variants: `3125`.
+- full non-anchor evaluated rows: all lattice rows.
+- all-four lattice rows: `3125`.
+- strict candidates: `2984`.
+- minbody rows below E155 body ratio `0.25`: `85`.
+- materialized low-body file: `analysis_outputs/submission_e156_targetaxis_757546d2.csv`.
+- selected axes: `Q1+S2+S4`.
+- selected alphas: `Q1=0.25`, `S2=0.75`, `S4=0.25`.
+- selected body-norm ratio: `0.171266667`.
+- selected all-minus-E95: `-0.000010004`.
+- selected post-E101 p95: `-0.000003712`.
+- selected E72 plausible gap: `-0.000002266`.
+- cosine vs E144/E155/E154: `0.999515751` / `0.998991027` / `0.985122955`.
+- cosine vs E101/E72: `-0.019678524` / `-0.027413915`.
+
+The validation implication is narrow but important. The repaired branch is even less brittle than E155 implied: full target-axis diagonal movement is not required. However, the minimum-body survivor is almost pure E144 geometry plus a tiny Q1/S2/S4 add-on, and its local edge is weaker than E155 and E154. E156 is therefore a target-decomposition control, not the first public sensor.

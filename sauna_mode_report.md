@@ -754,6 +754,38 @@ E144 fine-boundary audit 전까지 제출 파일은 `analysis_outputs/submission
 
 E154 이전 기준으로는 제출 파일이 `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` 하나였다.
 
+## 추가 관찰: E155보다 더 작은 Q1/S2/S4 target-axis repair가 있다
+
+`analysis_outputs/e156_e154_target_axis_lattice.py`로 E154의 E144->E154 body를 target-axis별로 분해했다.
+
+질문은 이것이었다.
+
+`E155의 25% diagonal body가 정말 최소 coherent repair인가, 아니면 특정 target-axis 조각만으로도 all-four health가 살아나는가?`
+
+결과:
+
+- active lattice axes: `Q1,Q3,S2,S3,S4`.
+- lattice variants: `3125`.
+- all-four lattice rows: `3125`.
+- strict candidates: `2984`.
+- E155 body ratio `0.25`보다 작은 rows: `85`.
+- selected file: `analysis_outputs/submission_e156_targetaxis_757546d2.csv`.
+- selected axes: `Q1+S2+S4`.
+- selected alphas: Q1 `0.25`, S2 `0.75`, S4 `0.25`.
+- selected body ratio: `0.171266667`.
+- selected all-minus-E95: `-0.000010004`.
+- selected post-E101 p95: `-0.000003712`.
+- selected E72 gap: `-0.000002266`.
+- cosine vs E144/E155/E154: `0.999515751` / `0.998991027` / `0.985122955`.
+
+이건 E155 해석을 한 번 더 낮춘다. E154 full body도 필요 없고, E155 diagonal 25% body도 최소가 아니다. 최소 survivor는 거의 E144 위에 붙은 작은 Q1/S2/S4 add-on이다. 다만 local edge는 E154/E155보다 약하고, geometry도 거의 E144/E155와 같은 방향이다.
+
+현재 세계관을 다시 압축한다.
+
+`repaired branch는 single point도 아니고 diagonal body도 아니다. 하지만 지금까지 찾은 낮은 amplitude survivor는 broad hidden law가 아니라 E144-collinear target-axis add-on이다. 따라서 E154가 첫 public sensor, E155가 amplitude-control, E156이 target-axis decomposition control이다. E156을 먼저 내면 질문이 너무 약해진다.`
+
+현재 제출 순서는 바뀌지 않는다. 첫 파일은 `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`, 둘째는 `analysis_outputs/submission_e155_bodytemp_d27e7965.csv`, 셋째 control은 `analysis_outputs/submission_e156_targetaxis_757546d2.csv`다.
+
 ## 추가 관찰: E154는 고립점이 아니라 낮은 amplitude ridge다
 
 `analysis_outputs/e155_e154_branch_body_ablation.py`로 E154의 가장 위험한 부분을 분해했다.

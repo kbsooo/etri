@@ -2373,3 +2373,22 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - target ablation is permissive: all `12/12` target-drop rows remain all-four and submit; Q1-only already submits with body ratio `0.336807`.
 - Interpretation: E154 is not an isolated exact repair point. The hidden law looks more like a low-amplitude E144->E154 ridge: even 25% of the added body keeps the health gates open and beats E144. This strengthens the repaired-branch worldview but weakens the claim that full E154 amplitude is necessary.
 - Decision: keep E154 as the highest-information first public sensor because it tests the full repaired all-four branch with larger local edge. Add `analysis_outputs/submission_e155_bodytemp_d27e7965.csv` as the conservative amplitude-control follow-up. If E154 loses and E155 later wins, blame full-body amplitude/overextension rather than S3 active-boundary repair itself. If both lose, close the repaired branch.
+
+## E156. E154 Target-Axis Lattice
+
+- Observe: E155 showed a low-amplitude repaired ridge, but its target ablation was strange: Q1-only and several target-drop variants survived. The unresolved question was whether the E155 diagonal is the smallest coherent repair or whether a smaller target-axis subset can carry the same gate health.
+- Wonder: if E154/E155 are really a smooth target-axis law, a coarse target-wise amplitude lattice should find low-body all-four candidates below the E155 `0.25` body ratio. If E155 is already minimal, all lower-body lattice rows should fail local edge or health.
+- Method: `analysis_outputs/e156_e154_target_axis_lattice.py` scans the active E144->E154 axes `Q1,Q3,S2,S3,S4` over levels `0,0.25,0.50,0.75,1.0`, forces full non-anchor stress evaluation for all `3125` lattice rows, and materializes a file only if it passes all-four, beats E144 locally, and uses less body norm than E155.
+- Result:
+  - rows: `3129`; lattice variants: `3125`.
+  - all-four lattice rows: `3125`.
+  - strict candidates: `2984`.
+  - minbody submit rows below E155 body ratio: `85`.
+  - materialized file: `analysis_outputs/submission_e156_targetaxis_757546d2.csv`.
+  - selected axes: `Q1+S2+S4` with alphas `Q1=0.25`, `S2=0.75`, `S4=0.25`.
+  - selected body-norm ratio: `0.171266667`, lower than E155 `0.25`.
+  - selected all-minus-E95: `-0.000010004`; E144 is `-0.000009725930`, E155 is `-0.000010362491`, E154 is `-0.000012158050`.
+  - selected post-E101 p95: `-0.000003712`; E72 gap: `-0.000002266`.
+  - E156 movement remains branch-collinear: cosine vs E144 `0.999515751`, vs E155 `0.998991027`, vs E154 `0.985122955`, vs E101/E72 `-0.019678524`/`-0.027413915`.
+- Interpretation: E155 was not the minimal coherent repair. The smallest surviving target-axis repair is E144 plus a tiny Q1/S2/S4 add-on, not Q3/S3. This weakens the story that the repaired body is intrinsically S3/Q3-driven; the S3 part opened E154's source gate, but the low-body public-safe ridge can avoid additional Q3/S3 movement entirely. The caveat is edge size: E156 barely clears the `1e-5` local threshold and does not beat E155 locally.
+- Decision: add `analysis_outputs/submission_e156_targetaxis_757546d2.csv` as a low-body target-decomposition control, not as the first public sensor. E154 remains first for information and edge. E155 remains the cleaner amplitude-control. E156 becomes useful if E154/E155 lose and we need to ask whether only the tiny Q1/S2/S4 add-on over E144 survives.

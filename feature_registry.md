@@ -1176,6 +1176,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E155 scores `44` rows and `40` variants. `34` variants are all-four, `27` pass E155 submit, and `22` reduced-body variants submit. The materialized `submission_e155_bodytemp_d27e7965.csv` uses E144->E154 alpha `0.25`, body-norm ratio `0.25`, all-minus-E95 `-0.000010362491`, and all current health gates. All `12/12` target-drop variants remain all-four.
 - Policy: keep E154 as the first public sensor because it has larger local edge and tests the full repaired branch. Use E155 as the conservative amplitude-control contrast before E144 if downside risk or an E154 loss makes full-body amplitude suspect.
 
+### F133. E156 low-body target-axis decomposition
+
+- Hidden structure: the repaired branch may not require the diagonal E144->E154 body. A tiny target-axis subset could preserve all-four health while exposing which targets actually carry the public-safe low-body law.
+- Candidates: Q1/Q3/S2/S3/S4 body-axis alphas, body-norm ratio, all-four health, strict candidate flag, E155-body-below flag, post-E101 p95, E72 gap, local all-minus-E95, and branch/negative-axis cosine.
+- Label vs split test: valid as a LeJEPA decomposition feature because it tests target-axis separability without using public labels. Invalid as a standalone feature if it is only an E144-collinear low-edge point.
+- Current evidence: E156 scans `3125` target-axis lattice variants with full non-anchor evaluation. All `3125` are all-four, `2984` are strict candidates, and `85` sit below E155's `0.25` body ratio while still beating E144. The selected `submission_e156_targetaxis_757546d2.csv` uses Q1/S2/S4 alphas `0.25/0.75/0.25`, body ratio `0.171266667`, all-minus-E95 `-0.000010004`, post-E101 p95 `-0.000003712`, and E72 gap `-0.000002266`. It is almost pure branch geometry: cosine with E144/E155/E154 is `0.999515751`/`0.998991027`/`0.985122955`.
+- Policy: use E156 as the third repaired-branch control after E154 and E155. If it wins while E154/E155 lose, the live target law becomes tiny Q1/S2/S4 add-on over E144. If it loses while E144 wins, the add-on is public-overfit.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.
