@@ -1128,6 +1128,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E149 shows E144 is nearly aligned with E143 (`cos 0.991918719`) and strongly aligned with E142 (`cos 0.952146833`), while almost orthogonal to E101 (`-0.019625796`) and E72 (`-0.024358970`) negative axes. Residual ratio is `0.126874959` versus E143 and `0.305640978` versus E142. E144's Q2/S3 share is `0.161603888`, far below E101's `1.000000000`.
 - Policy: use as public-feedback interpretation energy. E144 remains the next file because it avoids known negative axes and keeps strong prior support, but expected upside should be framed as branch-pruned residual validation rather than a broad JEPA breakthrough.
 
+### F127. E144 post-feedback decision gate
+
+- Hidden structure: a scalar E144 public score is underidentified unless it is interpreted through score band, target/component attribution, and branch geometry together.
+- Candidates: E145 band, E148 global/subject/nearest-hard world rates and top responsibility groups, E149 branch/negative-axis geometry, branch status, allowed next action, forbidden same-family action, and optional observed-score classification.
+- Label vs split test: valid as a decision feature because it creates no probabilities and prevents post-hoc public-LB overfitting. Invalid as a model feature because it conditions on a future external score.
+- Current evidence: E150 produces `7` decision rows. The key correction is `fine_loss_branch_alive -> conditional_alive`: E143 is allowed only if attribution points to fine-tail/S3 retention. `branch_loss` and `hard_fail` block E143/E142 rescue.
+- Policy: mandatory after E144 public feedback. Run `python3 analysis_outputs/e150_e144_postfeedback_interpreter.py --score <PUBLIC_LB>` before creating or submitting any post-E144 same-family file.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

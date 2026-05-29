@@ -1680,6 +1680,18 @@ target co-occurrence
 - public LB 관측 반응: E144 win strengthens the E142/E143 transfer-budget residual branch and the fine-boundary pruning. E144 loss weakens that branch; only a target/component read consistent with fine-tail/S3 failure should promote E143 as a contrast.
 - 제출 전략: keep `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the next single file. Do not create a new geometry-derived submission from E149.
 
+### H144. E144 post-feedback action must be decided by band plus attribution plus geometry
+
+- 상태: decision contract registered; public pending.
+- 왜 그럴듯한가: E145 bands alone are underidentified. E148 shows the same fine-loss band can be caused by fine-tail/S3, inherited-body, Q3/S2, or broad target-body shortfall, and E149 shows E144 is mostly E143 branch geometry.
+- 맞다면: a single post-feedback interpreter should block mechanical same-family rescue and classify an observed E144 score into a constrained action.
+- 틀리다면: E145 banding alone would be enough, and E143 would be justified whenever E144 lands in `fine_loss_branch_alive`.
+- 최소 실험: `analysis_outputs/e150_e144_postfeedback_interpreter.py`, joining E145 bands, E148 attribution, and E149 geometry, with optional `--score <PUBLIC_LB>` classification.
+- 관측: E150 generates `7` rows. `fine_loss_branch_alive` is `conditional_alive`, E143 is allowed only if attribution points to fine-tail/S3 retention, `branch_loss` blocks E143/E142 automatic rescue, and `hard_fail` closes the local boundary branch.
+- 성공/폐기 기준: support H144 until actual E144 public feedback arrives. If the score is supplied, the interpreter must produce exactly one band and one allowed action.
+- public LB 관측 반응: after E144 public feedback, run E150 first. A win promotes E144 but not broad breakthrough claims. A fine loss requires attribution before E143. Worse than E101 blocks same-family rescue. Worse than mixmin closes E142/E143/E144.
+- 제출 전략: no E150 submission. It is the mandatory post-E144 decision gate.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

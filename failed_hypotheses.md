@@ -1167,3 +1167,12 @@
 - Implementation issue possible: low for geometry measurement; medium for public interpretation because hidden labels are still unknown. The discarded claim is only the broad-breakthrough framing, not E144's submission value.
 - Bottleneck implication: the plateau is still a transfer-budget/calibration/branch-selection bottleneck. E144 may beat E95, but even a win would not by itself explain the route to 0.54.
 - Do not repeat: describing E144 as a JEPA-style broad representation breakthrough. Submit and interpret it as a precise test of the E142/E143 residual branch and fine active-boundary pruning.
+
+## FH130. E145 score band alone is enough for post-E144 action
+
+- Failed hypothesis: the pre-registered E145 bands are sufficient to choose the next file, especially E143 after `fine_loss_branch_alive`.
+- Observed result: E150 combines E145 with E148 and E149 and changes the fine-loss action. Fine loss is now `conditional_alive`, and E143 is allowed only if attribution points to fine-tail/S3 retention. E148 shows global fine-loss blame can be S2/Q3/inherited-body, subject blame can be inherited-body/Q3/S3, and nearest-hard blame can be S3/Q3/fine-tail. E149 shows the whole candidate is mostly E143 branch geometry.
+- Why discard: a scalar score band cannot identify which component failed. Acting on E145 alone would turn public LB into a tuning target.
+- Implementation issue possible: low for the decision table; medium for actual public interpretation because the future score is not known yet.
+- Bottleneck implication: candidate selection is now an interpretation-resolution problem as much as a modeling problem. The next action must preserve attribution discipline.
+- Do not repeat: auto-submit E143 after E144 fine loss, or close/rescue the branch from a scalar band without E148/E149 context.

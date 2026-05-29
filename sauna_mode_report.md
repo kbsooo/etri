@@ -754,6 +754,30 @@ E144 fine-boundary audit 전까지 제출 파일은 `analysis_outputs/submission
 
 지금 제출할 파일은 여전히 하나다. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.
 
+## 추가 관찰: E144 결과 이후 행동 규칙을 실행 가능하게 고정했다
+
+`analysis_outputs/e150_e144_postfeedback_interpreter.py`로 E145/E148/E149를 하나의 decision gate로 합쳤다.
+
+질문은 이것이었다.
+
+`E144 public LB가 나오면, 점수 band만 보고 E143/E142로 자동 후퇴하는 실수를 막을 수 있는가?`
+
+결과:
+
+- interpreter rows: `7`.
+- `fine_loss_branch_alive`: `conditional_alive`.
+- E143 허용 조건: attribution이 fine-tail/S3 retention failure를 가리킬 때만.
+- `branch_loss`: E143/E142 자동 rescue 금지.
+- `hard_fail`: E142/E143/E144 local boundary branch close.
+- 실제 점수가 나오면 실행할 명령:
+  `python3 analysis_outputs/e150_e144_postfeedback_interpreter.py --score <PUBLIC_LB>`.
+
+현재 세계관을 다시 압축한다.
+
+`E144의 public score 하나만으로는 원인을 알 수 없다. E144가 fine-loss여도 그건 fine-tail 실패일 수도 있지만 inherited-body/Q3/S2 실패일 수도 있다. 따라서 다음 행동은 score band + attribution + geometry를 동시에 통과해야 한다. 이 규칙 없이는 public LB를 센서가 아니라 튜닝 타깃으로 오해하게 된다.`
+
+지금 제출할 파일은 변하지 않는다. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.
+
 ## 추가 관찰: E144는 새 법칙이 아니라 branch-pruned residual sensor다
 
 `analysis_outputs/e149_e144_anchor_geometry_audit.py`로 E144의 logit movement를 known public anchor 방향에 놓고 봤다.

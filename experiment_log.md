@@ -2275,3 +2275,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E144-vs-E143 is nearly orthogonal to the full E144 branch direction (`0.004358133`) and weakly opposite to E144-vs-E142 (`-0.075377836`).
 - Interpretation: E144 is not a broad new representation breakthrough. It is a branch-pruned residual sensor: very close to E143 geometry, still close to E142, and mostly separate from the E72/E101 public-negative axes. Its public value depends on whether that residual branch is genuinely public-positive, not on discovering a new large hidden law.
 - Decision: no submission is materialized. Keep `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the next single file, but lower the expected upside framing: a win validates branch-pruned transfer-budget residual geometry; a loss should first ask whether the E142/E143 branch itself failed, not only whether the 24-cell fine tail failed.
+
+## E150. E144 Post-Feedback Interpreter
+
+- Observe: E145's original decoder was created before E148/E149. Its `fine_loss_branch_alive` row still allowed an overly mechanical "submit E143 as clean contrast" read, while E148/E149 later showed fine loss can be inherited-body/Q3/S2 or broad branch failure, not only fine-tail/S3 retention.
+- Wonder: can the future E144 public score be mapped to one executable decision table that combines E145 score bands, E148 target/component attribution, and E149 branch geometry?
+- Method: `analysis_outputs/e150_e144_postfeedback_interpreter.py` joins E145 bands, E148 outcome rates/top responsibility groups, and E149 anchor geometry. It writes `analysis_outputs/e150_e144_postfeedback_interpreter_summary.csv` and supports `--score <PUBLIC_LB>` to classify the observed E144 score without changing rules after the fact.
+- Result:
+  - decoder rows: `7`.
+  - `fine_loss_branch_alive` is now `conditional_alive`, not an automatic E143 trigger.
+  - E143 is conditional only if attribution points specifically to fine-tail/S3 retention, not inherited-body/Q3/S2 or broad branch failure.
+  - `branch_loss` and `hard_fail` block E143/E142 automatic rescue.
+  - classification smoke test maps hypothetical scores to the intended bands: `0.576270` breakthrough, `0.576286` micro-win, `0.576292` tie, `0.576296` fine-loss, `0.576302` branch-loss, `0.576310` hard-fail.
+- Interpretation: E150 is the current post-public decision contract. It prevents the next public result from being overfit by a nearby same-family rescue. The smallest kill experiment remains E144 public feedback, but the allowed response is now stricter than E145 alone.
+- Decision: no submission is materialized. Keep `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the next file. After public feedback, run `python3 analysis_outputs/e150_e144_postfeedback_interpreter.py --score <PUBLIC_LB>` before any E143/E142 decision.

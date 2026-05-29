@@ -481,3 +481,17 @@ E149 stress-tests E144's geometry against known public anchor directions before 
 - E144 target L1 is Q3/Q1/S3/S2/S4, with Q2/S1 at zero.
 
 This makes the validation read less euphoric and more precise. E144 survives the E72/E101 known-negative direction check, but it is not an independent new latent. It is almost the same branch as E143, with a smaller residual correction. Therefore E144 remains the next public file, but the public result should be interpreted as a test of the E142/E143 residual branch plus fine active-boundary pruning, not as evidence for or against a broad new representation family.
+
+## Update After E150
+
+E150 turns the E145/E148/E149 interpretation stack into an executable post-feedback stress.
+
+- interpreter rows: `7`.
+- input bands: E145 public LB ranges.
+- attribution source: E148 target/component responsibility across global, subject, and nearest-hard priors.
+- geometry source: E149 branch/negative-axis audit.
+- fine-loss branch status: `conditional_alive`, not automatic E143.
+- branch-loss status: `weak_rejected`; E143/E142 automatic rescue blocked.
+- hard-fail status: `rejected`; close E142/E143/E144 local boundary repair.
+
+The important validation change is that E143 is no longer justified by E144 fine-loss alone. It is allowed only if the attribution read points to fine-tail/S3 retention. Otherwise, fine loss can be inherited-body/Q3/S2 or broad branch stress, and same-family fallback would be post-hoc overfit. The command to apply after public feedback is `python3 analysis_outputs/e150_e144_postfeedback_interpreter.py --score <PUBLIC_LB>`.
