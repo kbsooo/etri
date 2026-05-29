@@ -754,6 +754,32 @@ E144 fine-boundary audit 전까지 제출 파일은 `analysis_outputs/submission
 
 지금 제출할 파일은 여전히 하나다. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.
 
+## 추가 관찰: E144는 새 법칙이 아니라 branch-pruned residual sensor다
+
+`analysis_outputs/e149_e144_anchor_geometry_audit.py`로 E144의 logit movement를 known public anchor 방향에 놓고 봤다.
+
+질문은 이것이었다.
+
+`E144는 E95 이후의 새로운 넓은 successor law인가, 아니면 E142/E143 residual branch를 E72/E101 손실축에서 떨어뜨린 작은 정제인가?`
+
+결과:
+
+- E144-vs-E95 changed cells: `185`.
+- E144 cosine with E101 loss axis: `-0.019625796`.
+- E144 cosine with E72 fail axis: `-0.024358970`.
+- E144 cosine with E142 branch axis: `0.952146833`.
+- E144 cosine with E143 branch axis: `0.991918719`.
+- residual ratio vs E142 axis: `0.305640978`.
+- residual ratio vs E143 axis: `0.126874959`.
+- E144 Q2/S3 share: `0.161603888`.
+- E101 Q2/S3 share: `1.000000000`.
+
+현재 세계관을 다시 압축한다.
+
+`E144는 broad breakthrough가 아니다. E144는 E143 branch와 거의 같은 방향에 있는, public-negative E72/E101 축을 피한 branch-pruned residual sensor다. 그래서 E144가 이기면 새로운 거대한 법칙이 열린다기보다 E142/E143 transfer-budget residual branch와 fine active-boundary pruning이 public에서도 살아남는다는 뜻이다. E144가 지면 먼저 branch 자체와 S3/Q3/body attribution을 봐야지, 바로 E143를 자동 제출하면 안 된다.`
+
+지금 제출할 파일은 변하지 않는다. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.
+
 ## 추가 관찰: E144 전체도 E95 대비 visible prior가 지지한다
 
 `analysis_outputs/e147_e144_e95_prior_world_audit.py`로 E144 전체와 E95의 차이를 분해했다.

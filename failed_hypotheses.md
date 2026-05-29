@@ -1158,3 +1158,12 @@
 - Implementation issue possible: medium. E148 is simulated from visible priors and does not reveal public labels. The discarded claim is not "E143 can never be useful"; it is "fine-loss alone is sufficient evidence for E143."
 - Bottleneck implication: post-public branch decisions need target/component attribution, not only scalar LB bands. The plateau is partly an interpretation-resolution problem.
 - Do not repeat: auto-submit E143 after any E144 fine loss. Use E145 banding plus E148 attribution first; E143 is justified only if failure is compatible with fine-tail/S3 retention.
+
+## FH129. E144 is a new broad representation breakthrough
+
+- Failed hypothesis: because E144 is supported by E146/E147/E148 prior-world audits, it might represent a new broad successor law beyond the E142/E143 residual branch.
+- Observed result: E149 measures E144 in logit-space against known anchors. E144 cosine with E143 branch axis is `0.991918719`, with E142 branch axis `0.952146833`, and residual ratio versus E143 is only `0.126874959`. It is almost orthogonal to E101 and E72 public-negative axes (`-0.019625796` and `-0.024358970`), but that is avoidance of known bad axes, not a new independent direction.
+- Why discard: E144's geometry is inherited branch geometry plus a small fine-boundary correction. Its value is as a branch-pruned sensor, not as evidence that a new broad latent family has been found.
+- Implementation issue possible: low for geometry measurement; medium for public interpretation because hidden labels are still unknown. The discarded claim is only the broad-breakthrough framing, not E144's submission value.
+- Bottleneck implication: the plateau is still a transfer-budget/calibration/branch-selection bottleneck. E144 may beat E95, but even a win would not by itself explain the route to 0.54.
+- Do not repeat: describing E144 as a JEPA-style broad representation breakthrough. Submit and interpret it as a precise test of the E142/E143 residual branch and fine active-boundary pruning.

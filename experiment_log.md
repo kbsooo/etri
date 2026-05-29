@@ -2260,3 +2260,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - hard-fail worlds are broad support shortfalls, especially inherited-body plus Q3/S3/S2 depending on prior.
 - Interpretation: E148 refines E145. E144 is still the next sensor, and public-free worlds give it meaningful win mass, but a bad result is not automatically a referendum on the 24-cell fine tail. The branch failure has to be read through target/component attribution before spending another slot on E143.
 - Decision: no submission is materialized. After E144 public feedback, first apply E145 banding, then E148 attribution. E143 is a clean next contrast only if the observed band is compatible with a fine-tail/S3 failure rather than inherited-body or broader target-body failure.
+
+## E149. E144 Anchor-Geometry Audit
+
+- Observe: E147/E148 support E144 under visible priors, but that does not answer whether E144 is a genuinely new E95 successor law or mostly a pruned E142/E143 residual branch that avoids known public-negative axes.
+- Wonder: how does E144's logit movement sit relative to the public-positive E95 hardtail direction, the public-negative E72/E101 directions, and the E142/E143 branch axes?
+- Method: `analysis_outputs/e149_e144_anchor_geometry_audit.py` loads mixmin, E72, E85/E86/E89/E90, E95, E101, E142, E143, and E144. It compares logit-space deltas versus E95, computes active-cell overlaps, target L1 shares, cosine/projection against anchor axes, residual ratios versus E142/E143 branch axes, and E144 pairwise directions.
+- Result:
+  - E144 changed `185` cells vs E95, same count as E142, while E143 changed `164`.
+  - E144 cosine with the E101 loss axis is `-0.019625796`; with the E72 fail axis `-0.024358970`.
+  - E144 cosine with the E142 branch axis is `0.952146833`; residual ratio vs E142 axis `0.305640978`.
+  - E144 cosine with the E143 branch axis is `0.991918719`; residual ratio vs E143 axis `0.126874959`.
+  - E144 target L1 shares are Q3 `0.340219`, Q1 `0.230863`, S3 `0.161604`, S2 `0.139733`, S4 `0.127582`, and Q2/S1 `0`.
+  - E144-vs-E143 is nearly orthogonal to the full E144 branch direction (`0.004358133`) and weakly opposite to E144-vs-E142 (`-0.075377836`).
+- Interpretation: E144 is not a broad new representation breakthrough. It is a branch-pruned residual sensor: very close to E143 geometry, still close to E142, and mostly separate from the E72/E101 public-negative axes. Its public value depends on whether that residual branch is genuinely public-positive, not on discovering a new large hidden law.
+- Decision: no submission is materialized. Keep `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the next single file, but lower the expected upside framing: a win validates branch-pruned transfer-budget residual geometry; a loss should first ask whether the E142/E143 branch itself failed, not only whether the 24-cell fine tail failed.

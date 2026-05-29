@@ -1668,6 +1668,18 @@ target co-occurrence
 - public LB 관측 반응: an E144 win should be credited to the target/component groups that carry negative conditional delta in the relevant band. A fine loss allows E143 only if attribution points to fine-tail/S3 retention. Branch loss or hard fail requires checking whether inherited-body and broad target slices failed before closing or rescuing the branch.
 - 제출 전략: no E148 submission. Keep E144 as next file; freeze the interpretation rule.
 
+### H143. E144 is a branch-pruned residual sensor, not a new broad successor law
+
+- 상태: supported by anchor-geometry audit; public pending.
+- 왜 그럴듯한가: E144 inherits almost all of E143/E142 movement, and E147/E148 did not tell whether the resulting file occupies a new latent direction or only a safer point on the same branch.
+- 맞다면: E144 should be close to E142/E143 branch axes, mostly detached from known public-negative E72/E101 axes, and its fine E144-vs-E143 correction should be small relative to the inherited branch body.
+- 틀리다면: E144 would have low cosine with E142/E143 branch axes, high independent alignment with the public-positive hardtail axis, or a large residual direction not explained by prior branch geometry.
+- 최소 실험: `analysis_outputs/e149_e144_anchor_geometry_audit.py`, comparing logit deltas against E95 for mixmin, E72, E101, E142, E143, and E144, then measuring cosine/projection/residual ratios and target shares.
+- 관측: E144 cosine with E143 branch axis is `0.991918719`, with E142 branch axis `0.952146833`, with E101 loss axis `-0.019625796`, and with E72 fail axis `-0.024358970`. Residual ratio is `0.126874959` versus E143 and `0.305640978` versus E142. E144 Q2/S3 share is only `0.161603888`, while E101 is `1.000000000`.
+- 성공/폐기 기준: support H143 as a pre-public geometry layer. Public LB can still validate or reject the branch, but E144 should no longer be described as a broad representation breakthrough.
+- public LB 관측 반응: E144 win strengthens the E142/E143 transfer-budget residual branch and the fine-boundary pruning. E144 loss weakens that branch; only a target/component read consistent with fine-tail/S3 failure should promote E143 as a contrast.
+- 제출 전략: keep `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the next single file. Do not create a new geometry-derived submission from E149.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -1120,6 +1120,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E148 samples `250000` worlds per prior. Global/subject/nearest-hard win-rate mass is `0.745560` / `0.599760` / `0.635616`, while branch-or-worse mass is `0.204972` / `0.333832` / `0.284852`. Fine-loss worlds are rare and not necessarily fine-tail-specific; nearest-hard loss blame is S3/Q3, global loss blame is inherited-body/Q3/S2, and subject loss blame is inherited-body/Q3/S3.
 - Policy: use after E144 public feedback. Apply E145 band first, then E148 attribution. Do not submit E143 simply because E144 lands in fine-loss; require the attribution to point to fine-tail/S3 retention rather than inherited-body or broad target-body failure.
 
+### F126. E144 anchor-geometry residual energy
+
+- Hidden structure: E144 may be a safer point on the E142/E143 residual branch rather than a new broad hidden-state direction. Its submission value depends on branch geometry surviving public labels while avoiding known E72/E101 public-negative axes.
+- Candidates: logit deltas versus E95, cosine/projection against hardtail/E72/E101/E142/E143 axes, active-cell overlaps, target L1 shares, Q2/S3 share, residual ratio versus E142/E143 axes, and E144-vs-E143 / E144-vs-E142 pairwise directions.
+- Label vs split test: valid as a LeJEPA-style geometry health feature because it uses fixed submissions and known public anchors to diagnose collapse/shortcut risk. Invalid as a direct generator because it does not create calibrated probabilities or reveal hidden public labels.
+- Current evidence: E149 shows E144 is nearly aligned with E143 (`cos 0.991918719`) and strongly aligned with E142 (`cos 0.952146833`), while almost orthogonal to E101 (`-0.019625796`) and E72 (`-0.024358970`) negative axes. Residual ratio is `0.126874959` versus E143 and `0.305640978` versus E142. E144's Q2/S3 share is `0.161603888`, far below E101's `1.000000000`.
+- Policy: use as public-feedback interpretation energy. E144 remains the next file because it avoids known negative axes and keeps strong prior support, but expected upside should be framed as branch-pruned residual validation rather than a broad JEPA breakthrough.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

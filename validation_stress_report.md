@@ -465,3 +465,19 @@ E148 pre-registers how to attribute each possible E144 public outcome before fee
 - global fine-loss/branch/hard-fail blame is more inherited-body/Q3/S2, while subject prior points to inherited-body/Q3/S3.
 
 This tightens the post-E144 rule. A fine loss is not automatically an E144-only fine-tail failure. It may instead mean the inherited E143 body or Q3/S2/S3 target slices failed. Therefore E143 should not be submitted mechanically after a fine-loss band; it is justified only if the E148 attribution read is consistent with fine-tail/S3 retention being the actual public problem.
+
+## Update After E149
+
+E149 stress-tests E144's geometry against known public anchor directions before feedback.
+
+- E144 changed cells versus E95: `185`.
+- cosine with E101 public-negative axis: `-0.019625796`.
+- cosine with E72 public-negative axis: `-0.024358970`.
+- cosine with E142 branch axis: `0.952146833`.
+- cosine with E143 branch axis: `0.991918719`.
+- residual ratio versus E142 axis: `0.305640978`.
+- residual ratio versus E143 axis: `0.126874959`.
+- E144 Q2/S3 L1 share: `0.161603888`, far below E101's `1.000000000`.
+- E144 target L1 is Q3/Q1/S3/S2/S4, with Q2/S1 at zero.
+
+This makes the validation read less euphoric and more precise. E144 survives the E72/E101 known-negative direction check, but it is not an independent new latent. It is almost the same branch as E143, with a smaller residual correction. Therefore E144 remains the next public file, but the public result should be interpreted as a test of the E142/E143 residual branch plus fine active-boundary pruning, not as evidence for or against a broad new representation family.
