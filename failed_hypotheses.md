@@ -825,3 +825,12 @@
 - Implementation issue possible: low to medium. E103 reuses E101's transfer frame, so a future public-positive E101 result could justify a richer edge-energy model. The rejected claim is only that direct edge masks are already better than E101 now.
 - Bottleneck implication: boundary geometry may still explain where Q2/S3 calibration risk lives, but selector strength is insufficient. The bottleneck remains amplitude/world calibration, not identifying a simple edge subset.
 - Do not repeat: submitting edge-only, edge-topgap, or handcrafted active-cell edge masks before E101 public feedback or without a new independent stress source.
+
+## FH92. A nearby higher E101 rollback alpha dominates the submitted E101 candidate
+
+- Failed hypothesis: E101's alpha `0.25` is a coarse-grid accident, and a fine-grid alpha slightly above it should improve broad mean/p95 without losing E101's E95-conditioned scenario support.
+- Observed result: E104 scanned `505` variants over alphas `0.000-0.500` by `0.005`. `228` rows passed E101-style stress, but `0` dominated E101 on broad mean, p95, and beat-rate together. In the active-all mask, the first alpha above E101 with beat-rate loss is `0.255`; it improves mean/p95 by only about `3.02e-7`/`2.6e-8` while dropping beat-rate by `0.000289687`. The best passing alpha `0.380` improves mean/p95 more but lowers beat-rate to `0.980881`.
+- Why discard: higher alpha is not a free improvement. It changes the risk preference by trading scenario support for average transfer. That is useful after public feedback, but not enough to replace E101 before observing its public result.
+- Implementation issue possible: low. E104 reuses the E101/E103 scoring frame and validates the exact E101 alpha as the control row. The caveat is that the frame is still E95-conditioned local+tail transfer, not public labels.
+- Bottleneck implication: the immediate bottleneck is not grid resolution. It is deciding which side of the Q2/S3 amplitude risk frontier public actually occupies.
+- Do not repeat: replacing E101 with a higher-alpha active-all rollback based only on better mean/p95 before E101 public feedback. Require either public-positive E101 feedback or a new independent stress source that can justify sacrificing beat-rate.

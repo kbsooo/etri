@@ -1129,6 +1129,18 @@ target co-occurrence
 - public LB 관측 반응: E103 does not change the next public file. If E101 later improves, edge energy can guide amplitude follow-up stress. If E101 worsens, E103 says edge-local variants are not already strong enough to rescue the branch without a new independent signal.
 - 제출 전략: no E103 submission. Keep `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` as the next sensor. Do not submit edge-only or top-gap edge masks before E101 public feedback.
 
+### H98. E101 alpha 0.25 is an amplitude Pareto cliff, not a coarse-grid accident
+
+- 상태: locally supported; no replacement submission.
+- 왜 그럴듯한가: E103 found that higher active-all rollback alpha could improve broad mean/p95 but lower E101's beat-E95 scenario support. A fine grid is needed to know whether a nearby alpha can dominate E101 or whether the support drop starts immediately.
+- 맞다면: alpha values just above `0.25` should improve mean/p95 only by sacrificing beat-rate; edge/interior submasks should not rescue the tradeoff; no row should dominate E101 on mean, p95, and beat-rate together.
+- 틀리다면: a nearby alpha, edge mask, or top-gap mask should pass E101-style stress and dominate E101 across all three transfer metrics, creating a materialized E104 submission.
+- 최소 실험: `analysis_outputs/e104_e101_amplitude_pareto_cliff.py`, fine-scanning alphas `0.000-0.500` by `0.005` over active-all, active-S3, top-gap, edge, and interior masks under the E101/E103 E95-conditioned transfer frame.
+- 관측: E104 scanned `505` variants. `228` rows passed E101-style stress, but `0` dominated E101 and no file was materialized. For active-all, alpha `0.250` matches E101 at broad mean/p95/beat `-0.000016205` / `-0.000001564` / `0.983488`; the first alpha above E101 with beat-rate loss is `0.255`. Alpha `0.255` improves mean/p95 by about `3.02e-7` / `2.6e-8`, but lowers beat-rate by `0.000289687`. Best passing active-all alpha `0.380` improves mean/p95 to `-0.000023695` / `-0.000002181`, but beat-rate drops to `0.980881`. Edge/interior masks have `0` pass rows.
+- 성공/폐기 기준: support the Pareto-cliff claim. E101 is not globally optimal for every transfer metric, but it is the local point that preserves scenario support before amplitude risk starts rising.
+- public LB 관측 반응: if E101 improves public, H98 says follow-up should test risk-tolerant amplitude variants deliberately, not assume higher alpha is automatically better. If E101 worsens, higher-alpha variants should be deprioritized because they already sacrifice E101's scenario support locally.
+- 제출 전략: no E104 submission. Keep `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` as the next sensor. Higher alpha is a post-feedback branch, not a pre-feedback replacement.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
