@@ -1944,6 +1944,18 @@ target co-occurrence
 - public LB 관측 반응: E169 win promotes subject/global broad-body interpretation. E169 tie/small-loss says top critical cells overruled the body. Worse than mixmin says the body prior itself was public-misaligned, not just top-cell underresolution.
 - 제출 전략: E169 remains a high-information sensor, not a stable expected-score claim. Do not use E171 to construct a top-cell prune unless the resulting tensor passes E169 breadth and E170 readability again.
 
+### H166. E169's visible-prior adverse tail can be rolled back without killing the broad body
+
+- 상태: supported locally by E172; public feedback pending.
+- 왜 그럴듯한가: E171 split the same candidate into a visible-prior-favorable body and a visible-prior-adverse public-decisive tail. If those are separable, rolling back only visible-prior-positive-loss cells should keep E169's context/veto breadth while reducing public-tail risk.
+- 맞다면: rollback variants should keep `>=820` moved cells, `>=24` cells-to-flip, focus expected edge `<= -8e-5`, and improve visible-prior p95/worse-than-E101 tail without moving into known bad axes.
+- 틀리다면: any rollback should either destroy the broad edge, become one-cell fragile, keep visible-prior p95 positive, or align more strongly with E72/E101/Q2-bad axes.
+- 최소 실험: `analysis_outputs/e172_e169_critical_tail_rollback_probe.py`.
+- 관측: `67` variants were scored and `7` passed stress-gate. The selected `visible_positive_all_keep0p25` row rolls back `410` cells to `25%` of E169 movement, materializing `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv`. It keeps expected focus delta `-0.000112695`, moved cells/rows `904/193`, cells-to-flip `30`, and top1/expected `0.051750`; visible-prior p95 changes from E169 `+0.000010607` to `-0.000026683`, and visible worse-than-E101 from `0.058545` to `0.000050`. Bad-span energy improves from `0.295326` to `0.257874`.
+- 성공/폐기 기준: support strengthens if E172 beats E95 or beats a future E169 score, because the broad body survived while the visible-positive-loss tail was the missing constraint. It weakens if E172 loses similarly to or worse than E169, because the visible-prior rollback did not match public labels.
+- public LB 관측 반응: E172 win promotes visible-tail rollback as a real broad-branch constraint. E172 tie/small-loss keeps E95 practical and leaves E169 as information-only. E172 worse than mixmin says visible-prior damping overcorrected or the broad body is wrong.
+- 제출 전략: submit `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` before raw E169 when the goal is the strongest broad-branch expected-score candidate. Submit raw E169 only when deliberately asking the pure body-vs-critical-tail question.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

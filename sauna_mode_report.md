@@ -1564,3 +1564,57 @@ E171은 E170에서 드러난 약점을 직접 찔렀다.
 - E169가 이기면: broad body prior가 top-tail visible adversity를 이긴 것이다.
 - E169가 좁게 지면: broad branch 전체가 죽었다기보다 critical-cell tail이 public에서 adverse였다고 먼저 본다.
 - E169가 mixmin보다 나쁘면: top-tail 문제가 아니라 body prior 자체가 public-misaligned였다고 본다.
+
+## E172 업데이트: E169의 위험 tail은 몸통을 죽이지 않고 줄일 수 있다
+
+가장 이상한 점:
+
+`E169는 넓게 맞는 것처럼 보이는데, public을 결정할 수 있는 tail은 visible prior가 싫어한다. 그런데 이 둘은 완전히 붙어 있지 않았다.`
+
+E172는 E171의 경고를 실제 intervention으로 바꿨다.
+
+실험:
+
+`analysis_outputs/e172_e169_critical_tail_rollback_probe.py`
+
+결과:
+
+- variants scored: `67`.
+- stress-gate variants: `7`.
+- materialized file: `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv`.
+- 선택 policy: `visible_positive_all_keep0p25`.
+- rollback cells: `410`.
+- rollback 방식: visible-prior expected loss가 양수인 E169 movement를 `25%`만 남김.
+- focus expected delta vs E95: `-0.000112695`.
+- moved cells/rows: `904/193`.
+- cells-to-flip expected: `30`.
+- visible-prior p95:
+  - E169 `+0.000010607`.
+  - E172 `-0.000026683`.
+- visible-prior worse-than-E101:
+  - E169 `0.058545`.
+  - E172 `0.000050`.
+- bad-span energy:
+  - E169 `0.295326`.
+  - E172 `0.257874`.
+- max bad cosine:
+  - E169 `0.222381`.
+  - E172 `0.142927`.
+
+생각이 바뀐 점:
+
+`E169는 best broad sensor였지만, E172가 더 나은 expected-score broad candidate다.`
+
+E169의 몸통은 살아 있고, E171이 지적한 visible-prior adverse tail은 줄일 수 있었다. 이건 단순 shrink가 아니다. broad body는 유지하고 위험 셀만 damping한 것이다.
+
+다음 행동:
+
+딱 하나를 제출한다면 지금은 `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv`가 더 낫다.
+
+해석:
+
+- E172가 E95를 이기면: broad context/veto body는 public-real이고, E171 visible-tail rollback이 missing constraint였다.
+- E172가 tie/small loss면: broad branch는 살아 있지만 여전히 hidden public tail 해상도에 막혀 있다.
+- E172가 mixmin보다 나쁘면: visible rollback이 과보정됐거나, broad body 자체가 public-misaligned다.
+
+E169는 버리는 파일이 아니다. 다만 이제 역할이 바뀌었다. E169는 “unrolled body-vs-tail sensor”이고, E172는 “tail-repaired expected-score candidate”다.

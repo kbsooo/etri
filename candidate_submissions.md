@@ -492,6 +492,8 @@ Update after E170: the current broad-branch first file remains `analysis_outputs
 
 Update after E171: E169 is now better described as "broad body supported, top-tail risky." The full moved body under `visible_mean` has mean delta `-0.000022659` and win rate `0.868840`, but top-swing support is weak: top1 `0.098648`, top4 `0.330699`, top32 `0.247434`, with top32 below target-matched null (`z=-2.703`). Flank priors are near-tie/adverse while subject/global-style priors are favorable. This does not remove E169 as the next broad sensor; it removes the stronger claim that E169 is a robust expected-score candidate. If submitted, a narrow loss should be read as critical-cell hard-label adversity before discarding the whole broad context/veto worldview.
 
+Update after E172: E172 upgrades the broad branch from "sensor only" to a better expected-score candidate. `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` keeps E169's broad body (`904/193` moved cells/rows, `30` cells-to-flip, focus delta `-0.000112695`) while repairing the visible-prior tail that E171 flagged: visible p95 changes from E169 `+0.000010607` to `-0.000026683`, and visible worse-than-E101 drops from `0.058545` to `0.000050`. It also lowers bad-span energy and Q2/S3 share. If choosing exactly one new broad-branch file now, prefer E172 over E169. Raw E169 remains useful only as the sharper body-vs-tail falsification sensor.
+
 ## Current 0.54 Assessment
 
 0.54 is not blocked by a single missing model family. To approach it, one of two things must happen:

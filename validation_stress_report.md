@@ -801,3 +801,22 @@ E171 stress-tests the exact E170 weak point: the critical high-swing cells.
 - target-matched null: top32 support `0.247434` vs null mean `0.353573`, `z=-2.703`, `p_low=0.001667`.
 
 Stress implication: E169's full body is not random and remains favorable under broad visible priors, but the exact cells that can decide public LB are visible-prior adverse. This keeps E169 as the best broad public sensor, while weakening any claim that it is a stable expected-score improvement. A narrow E169 loss should be interpreted through critical-cell tail adversity before closing the whole broad branch.
+
+## Update After E172
+
+E172 tests whether the E171 critical-tail warning can be turned into a healthier tensor.
+
+- script: `analysis_outputs/e172_e169_critical_tail_rollback_probe.py`.
+- report: `analysis_outputs/e172_e169_critical_tail_rollback_probe_report.md`.
+- variants scored: `67`.
+- stress-gate variants: `7`.
+- materialized file: `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv`.
+- selected rollback: `visible_positive_all_keep0p25`.
+- rollback cells: `410`, with `25%` of their E169-vs-E95 logit movement retained.
+- focus expected delta vs E95: `-0.000112695`.
+- breadth: moved cells/rows `904/193`, cells-to-flip expected `30`, top1/expected `0.051750`.
+- visible-prior tail: mean delta `-0.000052853`, p95 `-0.000026683`, worse-than-E101 probability `0.000050`.
+- geometry: bad-span energy `0.257874`, max bad-axis `q2_bad`, max bad cosine `0.142927`, Q2/S3 share `0.315866`.
+- E169 comparator: expected delta `-0.000120457`, visible p95 `+0.000010607`, visible worse-than-E101 `0.058545`, bad-span energy `0.295326`, max bad cosine `0.222381`.
+
+Stress implication: E171's critical-tail warning is not just a post-hoc objection. A broad-body-preserving rollback exists and improves the exact visible-tail risk metrics that made E169 unstable. E172 is therefore the stronger expected-score broad candidate, while E169 remains the cleaner unrolled body-vs-tail sensor.

@@ -2646,3 +2646,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - target-level visible deltas are mixed: S4 `-0.000010088`, S1 `-0.000009412`, Q1 `-0.000004824`, Q3 `-0.000003050`, while S2 `+0.000003288`, Q2 `+0.000001209`, S3 `+0.000000258`.
 - Interpretation: E169 is strengthened as a broad-body candidate under subject/global-style priors, but weakened as an expected-score claim because its public-decisive top cells are visible-prior adverse. This explains why E169 can be the best information-rich broad sensor while still not feeling like a stable 0.54-path candidate.
 - Decision: keep `submission_e169_ctx_veto_c5e806e3.csv` as the next broad-branch sensor, but do not submit high-density p50 or scale raw E166 as expected-score follow-ups. If E169 loses narrowly, first blame top critical S1/Q3/S4/S2 hard-label adversity before discarding the full broad-body world.
+
+## E172. E169 Critical-Tail Rollback Probe
+
+- Observe: E171 created a contradiction: E169's broad body is favorable under visible/subject/focus priors, but the public-decisive top cells are visible-prior adverse. The key question is whether that adverse tail can be reduced without killing the broad body.
+- Wonder: if the broad context/veto body is real and the critical visible-adverse cells are a removable tail, a rollback toward E95 should lower visible-prior p95 and E101-worse risk while preserving moved-cell breadth, cells-to-flip, and bad-axis health.
+- Method: `analysis_outputs/e172_e169_critical_tail_rollback_probe.py` builds E95-to-E169 logit variants by rolling back cells selected from E171 support/visible-prior criteria. It scores breadth, E165 bad-axis geometry, Q2/S3 share, visible/focus/subject/flank prior moments, and materializes only a stress-gate row.
+- Result:
+  - variants scored: `67`.
+  - stress-gate variants: `7`.
+  - materialized file: `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv`.
+  - selected policy: `visible_positive_all_keep0p25`, rolling back `410` cells with positive visible-prior expected delta so only `25%` of their E169-vs-E95 logit move remains.
+  - selected focus expected delta vs E95: `-0.000112695`, only slightly weaker than E169's `-0.000120457`.
+  - selected breadth: moved cells/rows `904/193`, cells-to-flip expected `30`, top1/expected `0.051750`.
+  - visible-prior tail repair: mean delta improves from E169 `-0.000022620` to `-0.000052853`; p95 improves from `+0.000010607` to `-0.000026683`; worse-than-E101 probability improves from `0.058545` to `0.000050`.
+  - geometry improves: bad-span energy `0.295326 -> 0.257874`, max bad-axis cosine `0.222381 -> 0.142927`, Q2/S3 share `0.347775 -> 0.315866`.
+- Interpretation: the E171 warning is actionable, not merely diagnostic. The broad E169 body can survive a visible-prior critical-tail rollback, and the best repair is not pruning only top cells but damping every visible-prior-positive-loss cell. This makes E172 a lower-tail-risk broad-branch candidate.
+- Decision: promote `submission_e172_vis_pos_all_keep0p25_d90f4407.csv` above raw E169 as the next broad-branch expected-score candidate. Keep E169 as the sharper body-vs-tail public sensor: if E172 wins and E169 later loses, tail rollback was the missing constraint; if both lose, the broad context/veto body itself is likely public-misaligned.

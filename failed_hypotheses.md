@@ -1348,3 +1348,12 @@
 - Implementation issue possible: medium. The priors are train-derived and public-free, not true public labels. Low for the contrast itself because top sets, priors, and target-matched nulls are fixed pre-public.
 - Bottleneck implication: the 0.576 plateau remains a two-layer problem: broad latent body selection and high-swing hard-label tail realization can disagree.
 - Do not repeat: claiming E169 is stable because its full-body visible prior is favorable, or pruning top critical cells solely because E171 says they are adverse without rerunning breadth/readability stress.
+
+## FH150. E171's critical-tail warning is only diagnostic and cannot be repaired locally
+
+- Failed hypothesis: the E169 visible-prior adverse top-tail is inseparable from the broad context/veto body, so any rollback that fixes visible p95 should destroy breadth, focus expected edge, or bad-axis geometry.
+- Observed result: E172 finds `7` stress-gate rollback variants. The selected `visible_positive_all_keep0p25` row keeps `904` moved cells, `193` moved rows, `30` cells-to-flip, focus expected delta `-0.000112695`, top1/expected `0.051750`, and improves visible p95 from `+0.000010607` to `-0.000026683`. Bad-span energy improves from `0.295326` to `0.257874`, and max bad-axis cosine improves from `0.222381` to `0.142927`.
+- Why discard: the adverse tail is at least locally separable. The repair is not a blind top-cell deletion; it damps the full visible-prior-positive-loss subset while preserving the broad body.
+- Implementation issue possible: medium. Visible priors are public-free proxies, not hidden public labels. Low for the separability test because the materialized tensor was rescored with independent breadth and geometry checks.
+- Bottleneck implication: broad body selection and visible-tail calibration are distinct bottlenecks. E169 is a sensor for the split; E172 is the first broad-body-preserving tail repair.
+- Do not repeat: treating E171 as a reason to abandon the broad branch without testing intervention survival, or submitting unrolled E169 as the safer expected-score file when the question is score improvement rather than body-vs-tail falsification.
