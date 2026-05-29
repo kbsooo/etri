@@ -870,3 +870,12 @@
 - Implementation issue possible: medium. E109 is active-cell-only and does not forecast the full public LB for non-active E89/E90/E86 movements. It is strong enough to reject same-line E108 rescue after tie/loss, not strong enough to automatically choose the next full-file branch.
 - Bottleneck implication: E101 tie/loss should be treated as active-label world mismatch, not as an amplitude tuning problem. The remaining live questions become retained structure, active-cell restoration, or a different non-active diffuse-tail hypothesis.
 - Do not repeat: after an E101 tie/loss, do not submit E108, E104 high-alpha, or E106 subject-prior masks as the next default. Rebuild the public-world model or test a genuinely different retained-structure/non-active-tail question.
+
+## FH97. E101 tie/loss can be rescued by full E89 or non-active tail graft
+
+- Failed hypothesis: if E101 ties or loses because its active cells failed, full E89 or a non-active E89/E85/E90/E86 graft should still recover the useful diffuse-tail structure outside the failed active cells.
+- Observed result: E110 built `45` unique candidates from controls, active-restored E89/E85 variants, and E95-to-E89/E85/E90/E86 non-active grafts. Active-loss-safe non-control rows existed (`36`) and `8` rows qualified as diagnostic sensors, but strict candidates were `0` and no submission was materialized. The best non-control row, non-active `S1/S2/S3` E86 alpha `0.25`, still had broad mean/p95 vs E95 `+0.000000714` / `+0.000002798`; active-restored E89/E85 variants also failed broad E95-conditioned stress.
+- Why discard: restoring active cells handles the E109 loss bucket locally, but the residual diffuse movement remains broad-risk-positive under E95-conditioned worlds. That is not a strict expected-improvement branch.
+- Implementation issue possible: medium. E110 inherits E99's local+tail abstraction and E109's simulated active-loss worlds. It is strong enough to reject automatic E89/non-active fallback after E101 loss, not strong enough to prove that all future non-active-tail hypotheses are dead.
+- Bottleneck implication: an E101 tie/loss would leave E95 as the standing best and require a rebuilt public-world model. The easy route from active-cell failure to broader E89 tail is not supported.
+- Do not repeat: after a negative E101 result, do not automatically submit full E89, active-restored E89/E85, or E95-to-source non-active grafts. Use E89 only as a deliberate high-information diffuse-tail sensor, not as a rescue.

@@ -1201,6 +1201,18 @@ target co-occurrence
 - public LB 관측 반응: E101 win keeps H102 live. E101 tie/loss strengthens H103 and should redirect toward active-cell retention, E90/E86 retained-structure testing, or non-active diffuse-tail experiments, not E104/E106.
 - 제출 전략: no E109 file. Use this as the loss-side decision map after E101 feedback.
 
+### H104. E101 tie/loss can be rescued by non-active E89/diffuse-tail graft
+
+- 상태: rejected as strict submission; diagnostic sensor branch remains.
+- 왜 그럴듯한가: E109 says the E101-active cells fail in tie/loss worlds, but it does not test whether the older E89 diffuse-tail law survives outside those `50` cells. If E89's remaining signal is non-active Q2/S3 tail structure, restoring active cells while keeping non-active tail movement could isolate the useful part.
+- 맞다면: active-restored E89/E85 or E95-to-E89/E85/E90/E86 non-active grafts should be active-loss-safe and also pass broad E95-conditioned mean/p95/beat stress. At least one strict candidate should be materialized.
+- 틀리다면: active-loss-safe rows can exist, but broad E95-conditioned p95/mean remain positive and no strict candidate survives.
+- 최소 실험: `analysis_outputs/e110_e101_negative_branch_nonactive_tail.py`.
+- 관측: `45` unique candidates were built. Non-control active-loss-safe rows existed (`36`) and `8` rows were diagnostic sensors, but strict candidates were `0` and no submission was materialized. The best non-control row, non-active `S1/S2/S3` E86 alpha `0.25`, still had broad mean/p95 vs E95 `+0.000000714` / `+0.000002798`; active-restored E89/E85 variants also kept positive broad stress.
+- 성공/폐기 기준: reject the automatic E101-negative fallback to full E89, active-restored E89/E85, or non-active grafts. Keep them only as explicit sensors if the slot is meant to test diffuse-tail structure rather than expected improvement.
+- public LB 관측 반응: E101 win keeps H102/E108 live. E101 tie/loss closes E108 and also fails the simple non-active E89/graft rescue; it should trigger public-world-model rebuild or a deliberately different retained-structure sensor.
+- 제출 전략: no E110 file. If E101 ties or loses, keep E95 as standing best and do not route automatically to E89/non-active grafts.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
