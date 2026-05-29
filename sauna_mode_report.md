@@ -1891,3 +1891,47 @@ E176을 제출한다면 결과는 반드시 다음으로 먼저 읽는다.
 `python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <PUBLIC_LB>`
 
 그 전에는 Q2 keep-factor sibling을 만들지 않는다. E174는 “full Q2가 public-real인가?”를 나중에 묻는 contrast이지, E176 결과를 보고 자동으로 따라갈 후보가 아니다.
+
+## E178 업데이트: plateau의 가장 압축된 법칙
+
+내가 발견한 가장 이상한 점:
+
+`broad signal은 분명히 있는데, public에서 살아남는 edge는 몇 개 hard-label cell 해상도에 갇힌다.`
+
+실험:
+
+- `analysis_outputs/e178_current_plateau_law_audit.py`
+- report: `analysis_outputs/e178_current_plateau_law_report.md`
+
+결과:
+
+- E101 public `0.5763003660`은 E95보다 `+0.0000090362` 나쁘고 mixmin보다 `-0.0000062745` 좋다.
+- E166 broad raw edge는 `-0.000332077`, E95-over-mixmin public edge의 `21.689x`.
+- E176 edge는 `-0.000123384`, E95 edge의 `8.059x`.
+- 그런데 E176은 top hard-label `4` cells만으로 E95 edge 전체가 흔들리고, E101은 `2` cells면 된다.
+- E98 best known-LB selector p90 error는 E95 edge의 `53.33x`.
+
+생각이 바뀐 점:
+
+`0.57629 plateau는 신호 없음이 아니다. broad body는 있다. 병목은 그 broad body를 public-safe hard-label/tail calibration으로 변환하는 해상도다.`
+
+현재 최강 세계관:
+
+`이 대회는 모델 capacity보다 public-tail resolution 문제다. E95 이후 후보들은 평균적으로 좋아 보여도, 몇 개 high-swing S/Q tail cell과 target별 calibration이 public을 결정한다. 그래서 CV가 조금 좋아진 파일, broad expected edge가 큰 파일, Q2/S3를 더 미세하게 만진 파일이 바로 frontier가 되지 않는다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+새 파일을 만들지 않는다. 지금 한 장만 제출한다면 여전히:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+의도:
+
+`broad hidden body는 살리고, Q2는 S3/S2/S1보다 덜 열어야 한다는 Q/S-asymmetric partial reopening 세계관을 테스트한다.`
+
+기대 public 반응:
+
+- `<=0.576276019`: E176 law가 readable scale로 맞다.
+- `0.576288330..0.576300366`: plateau law가 유지된다. E95 practical, E172/E174는 contrast.
+- `>0.576300366`: E176 demote.
+- `>0.576306641`: same-family partial reopening lane을 닫는다.

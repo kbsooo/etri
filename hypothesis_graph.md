@@ -2016,6 +2016,18 @@ target co-occurrence
 - public LB 관측 반응: E176 below E95 validates Q/S-asymmetric partial reopening; tie/small-loss keeps E95 practical and makes E172/E174 only contrast sensors; worse-than-E101 demotes the damped partial-reopen family; E176 loss followed by E174 win says full Q2 reopening was public-real.
 - 제출 전략: submit E176 first if using one risk-adjusted broad slot, then run `python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <PUBLIC_LB>`. Do not tune Q2 keep factors from that score.
 
+### H172. The post-E95 plateau is a broad-signal plus hard-label-resolution law
+
+- 상태: supported by E178; public feedback for E176 pending.
+- 왜 그럴듯한가: E166/E169/E172/E174/E176 all have material focus-prior edges, so "no signal" is too simple. Yet E101's resolved public small loss and E162/E177 readability show that two to four high-swing cells can cover the full frontier edge.
+- 맞다면: broad candidates should show expected deltas many times larger than the E95 public edge, while public-readable differences between safe siblings remain below selector resolution; current selector/proxy errors should be tens of times larger than the live edge.
+- 틀리다면: a current validation object should rank E95/E101/E176 with error below `5e-6`, or a broad all-target candidate should beat E95 while increasing Q2/S3 and bad-axis exposure.
+- 최소 실험: `analysis_outputs/e178_current_plateau_law_audit.py`.
+- 관측: E166 focus edge is `-0.000332077` (`21.689x` E95 edge), E176 focus edge is `-0.000123384` (`8.059x` E95 edge), but E176 needs only `4` cells and E101 only `2` cells to swing an E95-over-mixmin edge. E98 selector p90 is `53.33x` that edge. E176-vs-E174 Q2 damping costs only `0.064x` E95 edge while reducing bad-axis and Q2/S3 exposure.
+- 성공/폐기 기준: support strengthens if E176 lands in a tie/small-loss band where E177 explains the underresolution without spawning a new keep-factor variant. It weakens if E176 cleanly wins at readable scale, because then Q/S-asymmetric partial reopening was stronger than the hard-label-resolution warning.
+- public LB 관측 반응: E176 `<=0.576276019` says target-amplitude calibration was the main remaining issue; E176 `0.576288330..0.576300366` preserves the plateau law; E176 `>0.576300366` demotes partial reopening; E176 `>0.576306641` closes the same-family expected-score lane.
+- 제출 전략: no new E178 submission. Use E176 as the only current risk-adjusted public sensor and treat any follow-up as a worldview update, not scalar tuning.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

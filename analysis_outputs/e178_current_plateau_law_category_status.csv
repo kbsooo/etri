@@ -1,0 +1,7 @@
+category,status,reason,kill_condition
+A_data_signal_shortage,evidence_mixed,"E166/E169/E176 have large focus-prior expected edges, so signal is not absent; public-readable residuals are still cell-scale.",A non-public-aware validation object ranks E95/E101/E176 correctly with error below 5e-6.
+B_validation_mismatch,evidence_strong,Known-LB selector p90 error is over 50x the E95 edge and E101 local stress was optimistic.,Independent local stress predicts the next public delta within the 3e-6 tie band.
+C_public_subset_mismatch,evidence_strong_but_underidentified,E101 lost while preserving part of mixmin gain; public realizes some tail cells differently from broad local priors.,"E176 cleanly wins without new public-subset machinery, implying the mismatch was mostly Q2 amplitude."
+D_target_prior_calibration_tail,evidence_strong,"Hardtail E95 survives, E101 Q2/S3 rollback fails, and E176 only changes Q2 damping to buy safety.",A broad all-target move beats E95 while increasing Q2/S3 and bad-axis exposure.
+E_representation_capacity,evidence_weak,"Representation/broad body exists, but LeJEPA-style bad-axis and tail-risk constraints dominate candidate acceptance.",A new latent creates a non-collinear movement with public-safe tail metrics and material expected edge.
+F_candidate_selection,evidence_partial,"E176 is a better risk-adjusted choice than E174, but the difference is too small to rank from current public sensors.",E176 public result falls into a clean-win or branch-loss band and separates the family.

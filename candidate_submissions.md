@@ -510,6 +510,16 @@ Update after E172: E172 upgrades the broad branch from "sensor only" to a better
 
 Update after E173: E172 now has a pre-public score decoder. Submit `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` only with the E173 interpretation attached: `<=0.576276019` cleanly validates tail repair, `0.576288330..0.576294330` is an underresolved tie, `0.576294330..0.576300366` is small loss, and `>0.576306641` closes E172/E169 same-family broad expected-score followups. E173 also warns that E172 still has one-cell `2e-6` hard-label fragility, so a tie/small loss should not trigger threshold tuning.
 
+Update after E174: E172's keep `0.25` rollback was not the only safe point. `analysis_outputs/e174_e172_rollback_overcorrection_probe.py` found `46/80` gate variants and materialized `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv`. E174 reopens the top `75` focus-recovery rollback cells, improves focus expected delta from E172 `-0.000112695` to `-0.000124367`, and keeps visible p95 negative at `-0.000022709`. It is the max-edge broad contrast, but it spends more Q2/S3 and bad-axis margin than E172.
+
+Update after E175: E174 now has a pre-public decoder. Run `python3 analysis_outputs/e175_e174_public_feedback_decoder.py --score <PUBLIC_LB>` after any E174 result. E174-vs-E172 is only `75` cells and expected recovery `-0.000011672`, so wins validate controlled reopening, while tie/small-loss points back to E172 as contrast and worse-than-E101 demotes same-family reopening.
+
+Update after E176: E174 is not component-Pareto. `analysis_outputs/e176_e174_component_ablation_probe.py` found a better risk-adjusted sibling, `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`, by damping only reopened Q2 cells to keep `0.75`. It gives up only `+0.000000983` focus delta versus E174 while reducing max bad cosine `0.163229 -> 0.158126`, Q2/S3 share `0.339597 -> 0.334753`, visible p95 `-0.000022709 -> -0.000023096`, and worse-than-E101 `0.000220 -> 0.000192`. E176 supersedes E174 as the first broad-branch file if using one slot now.
+
+Update after E177: E176 is a locked public sensor, not an adjustable Q2 knob. E176-vs-E174 changes only `21` Q2 cells with expected cost `+0.000000983`, cells-to-flip `2`, and top1 swing `0.000000832`. Submit E176 only with `analysis_outputs/e177_e176_public_feedback_decoder.py --score <PUBLIC_LB>` attached; do not scan new Q2 keep factors after the score.
+
+Update after E178: no new submission was created. The plateau audit says broad signal exists but public-tail resolution is the live bottleneck: E166 focus edge is `21.689x` the E95 public edge, E176 is `8.059x`, yet E176 needs only `4` top hard-label cells to swing the whole E95-over-mixmin edge and E98 selector p90 is `53.33x` that edge. This keeps `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` as the single risk-adjusted next public sensor, not because it is guaranteed to win, but because it asks the highest-information question with the least extra Q2/S3 risk.
+
 ## Current 0.54 Assessment
 
 0.54 is not blocked by a single missing model family. To approach it, one of two things must happen:

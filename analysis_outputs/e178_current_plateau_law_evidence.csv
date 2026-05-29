@@ -1,0 +1,13 @@
+evidence,value,unit,read
+frontier_edge_e95_vs_mixmin,1.5310700000048527e-05,logloss,E95 beat mixmin by a public-real but tiny hardtail edge.
+e101_loss_vs_e95,9.036200000034356e-06,logloss,Q2/S3 tail rollback returned 59.02% of the E95-over-mixmin gain; the axis is fragile.
+selector_p90_over_e95_edge,53.32849849400172,ratio,Known-LB selector p90 error is far too coarse for post-E95 ranking.
+selector_mae_over_e95_edge,33.96939604358727,ratio,Even average selector error exceeds the frontier edge by an order of magnitude.
+e166_broad_expected_over_e95_edge,21.689184933746766,ratio,"A broad body exists in local/focus-prior space, but it is unsafe before safety controls."
+e169_context_expected_over_e95_edge,7.867486814110337,ratio,Context/veto repair preserves a broad edge larger than E95's public gain.
+e176_expected_over_e95_edge,8.058660580896314,ratio,"Current E176 candidate is still broad on expected score, but public resolution is cell-scale."
+e176_cells_for_e95_edge,4.0,cells,Only a few row-target hard labels can swing an entire E95-over-mixmin edge.
+e101_cells_for_e95_edge,2.0,cells,Resolved E101 loss sits in the same small-cell readability regime.
+e176_q2_damping_cost_over_e95_edge,0.06422434356625897,ratio,The E176-vs-E174 Q2 damping decision is below public resolution from one scalar LB.
+e176_bad_cos_reduction_vs_e174,0.005102248957610883,cosine_delta,E176 buys a small but real LeJEPA-style bad-axis safety improvement over E174.
+e176_q2s3_share_reduction_vs_e174,0.00484386881985599,share_delta,The live candidate deliberately spends less Q2/S3 amplitude than E174.

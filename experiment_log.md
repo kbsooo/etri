@@ -2741,3 +2741,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - prior moments: E176 gives up only `+0.000000082` focus mean versus E174 while improving visible p95 by `-0.000000387` and worse-than-E101 probability by `-0.000028131`.
 - Interpretation: E177 turns E176 from "better-looking sibling" into a falsifiable public sensor. A win below E95 validates Q/S-asymmetric partial reopening. A tie/small loss keeps E95 practical and makes E172/E174 only contrast sensors. A worse-than-E101 result demotes the damped partial-reopen family. If E176 loses but E174 later wins, the full Q2 reopening was public-real; if both lose, the whole partial-reopen lane is public-misaligned.
 - Decision: before any same-family follow-up, run `python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <PUBLIC_LB>` for an E176 result. Do not tune Q2 keep factors from a scalar E176 score.
+
+## E178. Current Plateau Law Audit
+
+- Observe: the user reconfirmed E101 public `0.576300366`, and E95 remains the frontier at `0.5762913298`. E101 is only `+0.0000090362` worse than E95 and still `-0.0000062745` better than mixmin, so it is not a useless branch; it is a fragile negative sensor.
+- Wonder: if E166/E169/E172/E174/E176 all show material focus-prior edge, why does public stay near E95? Is this lack of signal, validation mismatch, target-tail calibration, or same-family candidate-selection noise?
+- Method: `analysis_outputs/e178_current_plateau_law_audit.py` joins fixed public anchors, E162 hard-label readability, E165 bad-axis geometry, E177 E176-vs-E174 contrast, and the E98 selector error scale. It writes no submission.
+- Result:
+  - report: `analysis_outputs/e178_current_plateau_law_report.md`.
+  - broad signal exists: E166 focus-prior edge `-0.000332077`, or `21.689x` the E95-over-mixmin public edge.
+  - repaired broad candidates remain material: E169 `-0.000120457`, E172 `-0.000112695`, E174 `-0.000124367`, E176 `-0.000123384`.
+  - selector scale is the dominant warning: E98 best known-LB selector p90 is `53.33x` the E95 public edge and MAE is `33.97x`.
+  - hard-label resolution remains thin: E176 needs only `4` top cells to cover the E95-over-mixmin edge, and E101 needs `2`.
+  - E176 is a risk-adjusted version of E174, not a new independent law: Q2 damping costs only `0.064x` of the E95 edge while reducing max bad cosine by `0.005102` and Q2/S3 share by `0.004844`.
+- Interpretation: the current plateau is not mainly model capacity and not pure signal absence. The best one-sentence law is: broad hidden signal exists, but after E95 public improvement is filtered through target-tail calibration and a few high-swing hard-label cells that current validation cannot rank below public-edge scale.
+- Decision: no new submission is created. Keep `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` as the single risk-adjusted public sensor if spending one slot, and decode with E177. Do not create another same-family keep-factor sibling before E176 public feedback.

@@ -1385,3 +1385,12 @@
 - Implementation issue possible: low for the decoder arithmetic because it uses fixed tensors and pairwise hard-label deltas. Medium for public interpretation because E176 feedback is still unknown.
 - Bottleneck implication: the plateau is still hidden-hard-label-resolution limited. E176 is submit-worthy as a risk-adjusted sensor, but its score must be used to kill or preserve worldviews, not to estimate a new Q2 keep factor.
 - Do not repeat: treating E176 feedback as permission to scan Q2 keep `0.5/0.65/0.85/1.0` after the fact. Use `analysis_outputs/e177_e176_public_feedback_decoder.py --score <PUBLIC_LB>` first.
+
+## FH154. The current plateau is mainly lack of model capacity or absence of hidden signal
+
+- Failed hypothesis: the reason public stays around E95 is that there is no useful post-E95 structure left, or that ordinary stronger modeling would be the main missing ingredient.
+- Observed result: E178 shows broad hidden signal is still present. E166 has focus-prior edge `-0.000332077`, `21.689x` the E95 public edge; E169/E172/E174/E176 remain material with expected deltas around `-0.000112695` to `-0.000124367`. But the frontier edge is tiny: E176 needs only `4` top cells, E101 only `2`, and E98 selector p90 is `53.33x` the E95-over-mixmin public edge.
+- Why discard: the problem is not signal absence. The problem is that public-real improvements are filtered through target-tail calibration and high-swing hard-label cells that the current validation stack cannot rank at frontier scale.
+- Implementation issue possible: low for hard-label/readability arithmetic and public-anchor ratios; medium for generalizing to private because E176 feedback is still pending.
+- Bottleneck implication: improving model capacity alone is unlikely to jump toward 0.54 unless it also supplies a new hard-label/public-subset sensor or a much larger low-bad-axis movement.
+- Do not repeat: broad model/feature sweeps that produce slightly better CV without proving cell-resolution survival. Future candidates must either beat same-family hard-label fragility or arrive with a new public-free resolution test.

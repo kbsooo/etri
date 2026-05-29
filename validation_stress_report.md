@@ -896,3 +896,17 @@ E177 pre-registers how to interpret E176 public feedback before seeing it.
 - score bands: `<=0.576276019` validates E176 as a broad/Q2-underopen anchor, `0.576276019..0.576288330` is micro-win/underresolved, `0.576288330..0.576300366` keeps E95 practical and limits E172/E174 to contrast sensors, `>0.576300366` demotes E176, and `>0.576306641` closes same-family reopening as expected-score follow-up.
 
 Stress implication: E176 is now a locked public sensor rather than an adjustable Q2 amplitude knob. The Q2 damping contrast is too small to justify post-hoc keep-factor tuning from one score; only a later E174-vs-E176 contrast can revive full Q2 reopening.
+
+## Update After E178
+
+E178 compresses the current E95/E101/E166-E176 evidence into one plateau law.
+
+- script: `analysis_outputs/e178_current_plateau_law_audit.py`.
+- report: `analysis_outputs/e178_current_plateau_law_report.md`.
+- E101 public remains the resolved negative sensor: `0.5763003660`, or `+0.0000090362` versus E95 and `-0.0000062745` versus mixmin.
+- broad signal is real but unsafe by itself: E166 focus-prior edge is `-0.000332077`, `21.689x` the E95-over-mixmin edge.
+- repaired broad candidates remain material but cell-fragile: E169 `-0.000120457`, E172 `-0.000112695`, E174 `-0.000124367`, E176 `-0.000123384`; E176 needs only `4` top hard-label cells to swing the whole E95 edge.
+- selector/proxy ranking is too coarse: E98 best known-LB selector p90 is `53.33x` the E95 edge and MAE is `33.97x`.
+- bottleneck statuses: validation mismatch, public-subset mismatch, and target-prior calibration tail have strong evidence; data signal shortage is mixed; representation capacity is weak evidence; candidate selection is partial.
+
+Stress implication: the plateau is not "no hidden structure" and not "just train a bigger model." The hidden body exists, but current validation cannot rank the final public-tail hard-label cells at frontier scale. E176 remains the next single public sensor; do not generate more same-family Q2 keep-factor siblings before feedback.
