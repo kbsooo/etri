@@ -450,3 +450,18 @@ E147 expands the prior stress from the E144/E143 fine-tail edge to the whole E14
 - nearest-hard component stress: inherited body favorable, fine-tail delta mildly adverse.
 
 This strengthens E144 as the next public sensor because visible priors support the whole file, not only the E144-over-E143 edge. It also narrows the failure mode. If E144 underperforms, the first stress read should be target/component decomposition, especially S3 and Q3, rather than broad rollback to E143 or E142. The expected improvement remains frontier-scale small, so E144 is still a calibrated sensor, not a 0.54-path breakthrough.
+
+## Update After E148
+
+E148 pre-registers how to attribute each possible E144 public outcome before feedback is known.
+
+- simulations per prior: `250000`.
+- simulated cells: the `185` E144-vs-E95 moved cells from E147.
+- global prior: win-rate mass `0.745560`, non-win mass `0.254440`, branch-or-worse `0.204972`.
+- subject prior: win-rate mass `0.599760`, non-win mass `0.400240`, branch-or-worse `0.333832`.
+- nearest-hard prior: win-rate mass `0.635616`, non-win mass `0.364384`, branch-or-worse `0.284852`.
+- fine-loss-alive is only `0.027696..0.033340` across global/subject/nearest-hard priors.
+- nearest-hard clean/micro wins are credited mostly to Q1/S4; nearest-hard fine-loss/branch/hard-fail blame is mostly S3/Q3.
+- global fine-loss/branch/hard-fail blame is more inherited-body/Q3/S2, while subject prior points to inherited-body/Q3/S3.
+
+This tightens the post-E144 rule. A fine loss is not automatically an E144-only fine-tail failure. It may instead mean the inherited E143 body or Q3/S2/S3 target slices failed. Therefore E143 should not be submitted mechanically after a fine-loss band; it is justified only if the E148 attribution read is consistent with fine-tail/S3 retention being the actual public problem.

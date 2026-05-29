@@ -1656,6 +1656,18 @@ target co-occurrence
 - public LB 관측 반응: E144 win strengthens the E95-plus-transfer-budget-neutral residual worldview. E144 tie or fine loss means the visible-prior support was not enough on public's hidden S3/Q3 mix; consult H139 bands and E147 decomposition before selecting E143/E142. E144 worse than E101/mixmin weakens the entire E142/E143/E144 selector branch.
 - 제출 전략: submit `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the next single file; do not create another file from E147 itself.
 
+### H142. E144 public feedback can be pre-attributed by target/component worlds
+
+- 상태: attribution decoder registered; public pending.
+- 왜 그럴듯한가: E145 gives score bands, and E147 gives target/component priors, but public feedback will still be underidentified unless the possible bands are mapped to the hidden support patterns that make them happen.
+- 맞다면: simulated label-worlds under visible priors should show distinct target/component responsibility for wins, fine losses, branch losses, and hard fails. In particular, a fine loss should not automatically imply the E144-only fine tail failed.
+- 틀리다면: all outcomes would have similar target/component attribution, making post-public interpretation mostly arbitrary.
+- 최소 실험: `analysis_outputs/e148_e144_public_outcome_attribution.py`, sampling `250000` label-worlds per prior over E147 cells and assigning each world to the E145 outcome bands.
+- 관측: global/subject/nearest-hard win-rate masses are `0.745560` / `0.599760` / `0.635616`; branch-or-worse masses are `0.204972` / `0.333832` / `0.284852`. Fine-loss-alive is rare (`0.027696..0.033340`) and is not consistently a fine-tail-only event. Nearest-hard losses blame S3/Q3, global losses blame inherited-body/Q3/S2, and subject losses blame inherited-body/Q3/S3.
+- 성공/폐기 기준: support H142 as a pre-public interpretation layer. After E144 feedback, use E145 for banding and E148 for attribution before any same-family followup.
+- public LB 관측 반응: an E144 win should be credited to the target/component groups that carry negative conditional delta in the relevant band. A fine loss allows E143 only if attribution points to fine-tail/S3 retention. Branch loss or hard fail requires checking whether inherited-body and broad target slices failed before closing or rescuing the branch.
+- 제출 전략: no E148 submission. Keep E144 as next file; freeze the interpretation rule.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

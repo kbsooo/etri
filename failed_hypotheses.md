@@ -1149,3 +1149,12 @@
 - Implementation issue possible: medium. E147 is still a prior-world audit, not public labels. It can say the whole-file movement is coherent under train-derived priors, but public can still have a different hidden S3/Q3 mix.
 - Bottleneck implication: the live risk is no longer "E144 has no broad support." It is target/component mismatch: nearest-hard priors oppose S3/Q3 even while Q1/S4/S2 and the inherited body are favorable.
 - Do not repeat: dismissing E144 as only an E143 micro-tweak. If E144 fails, inspect S3/Q3 and fine-tail/body decomposition before assuming E143 was the expectation-safer file.
+
+## FH128. Any E144 fine loss automatically points to E143 as the next file
+
+- Failed hypothesis: if E144 loses to E95 but stays no worse than E101, the retained `keep0.15` fine tail is the natural culprit and E143 should be submitted as the clean contrast.
+- Observed result: E148 conditions simulated E144 outcomes on E145 bands. Fine-loss-alive worlds have rate only `0.027696..0.033340`, and their responsibility is not consistently the E144-only fine tail. Global prior fine-loss blame is inherited-body/Q3/S2; nearest-hard blame is S3/Q3; subject blame is inherited-body/Q3/S3. In some fine-loss worlds the fine-tail component is still favorable or only weakly adverse.
+- Why discard: the same numeric fine-loss band can be caused by inherited-body or broader target-body shortfall, not just retained S3 fine-tail movement.
+- Implementation issue possible: medium. E148 is simulated from visible priors and does not reveal public labels. The discarded claim is not "E143 can never be useful"; it is "fine-loss alone is sufficient evidence for E143."
+- Bottleneck implication: post-public branch decisions need target/component attribution, not only scalar LB bands. The plateau is partly an interpretation-resolution problem.
+- Do not repeat: auto-submit E143 after any E144 fine loss. Use E145 banding plus E148 attribution first; E143 is justified only if failure is compatible with fine-tail/S3 retention.

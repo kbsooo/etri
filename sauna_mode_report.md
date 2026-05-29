@@ -783,3 +783,33 @@ E144 fine-boundary audit 전까지 제출 파일은 `analysis_outputs/submission
 `E144는 단순히 E143보다 아주 조금 나은 local tweak가 아니다. E95 대비 전체 185개 이동도 visible prior에서는 일관되게 지지된다. 다만 그 지지는 inherited E143 body에서 주로 나오고, public에서 깨진다면 S3/Q3 또는 fine-tail retention 쪽에서 깨질 가능성이 높다. 따라서 E144가 실패하면 branch 전체를 즉시 버리거나 E143로 기계적으로 후퇴하지 말고, E145 band와 E147 target/component decomposition으로 실패 위치를 먼저 읽어야 한다.`
 
 지금 제출할 파일은 변하지 않는다. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.
+
+## 추가 관찰: E144 결과를 보기 전에 책임 지도를 고정했다
+
+`analysis_outputs/e148_e144_public_outcome_attribution.py`로 E144 public outcome attribution을 만들었다.
+
+질문은 이것이었다.
+
+`E144가 E145의 각 band에 떨어질 때, 그 결과를 만든 hidden label world는 어떤 target/component support pattern이어야 하는가?`
+
+결과:
+
+- prior마다 `250000`개 label-world를 샘플링했다.
+- global prior win-rate mass: `0.745560`.
+- subject prior win-rate mass: `0.599760`.
+- nearest-hard prior win-rate mass: `0.635616`.
+- global prior branch-or-worse mass: `0.204972`.
+- subject prior branch-or-worse mass: `0.333832`.
+- nearest-hard prior branch-or-worse mass: `0.284852`.
+- fine-loss-alive mass: `0.027696..0.033340`.
+- nearest-hard 기준 loss blame: S3/Q3.
+- global 기준 loss blame: inherited body/Q3/S2.
+- subject 기준 loss blame: inherited body/Q3/S3.
+
+이건 E145의 후속 규칙을 더 엄격하게 만든다. E144가 fine-loss band에 들어간다고 해서 자동으로 E143을 내는 것은 아직 이르다. fine-loss도 fine-tail failure가 아닐 수 있고, inherited E143 body나 Q3/S2/S3 쪽의 broad support shortfall일 수 있다.
+
+현재 세계관을 다시 압축한다.
+
+`E144는 평균적으로 제출할 가치가 있는 다음 sensor지만, hidden public tail이 충분히 adversarial이면 질 수 있다. 그 실패는 하나의 실패가 아니다. fine-tail/S3 failure, inherited-body failure, Q3/S2 target-body failure가 서로 다른 세계관을 뜻한다. 따라서 E144 public 결과가 나오면 E145로 band를 정하고, E148로 책임 위치를 읽은 뒤에야 E143/E142/branch-close를 결정해야 한다.`
+
+지금 제출할 파일은 여전히 하나다. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.

@@ -33,6 +33,7 @@ Public LB는 최적화 target이 아니라 hidden public subset과 calibration s
 8. E124 adds a held-out model check: the E99 transfer world that explained E72/E95 predicted E101 too optimistically. Broad-plausible mean E101 delta was `-0.000031516` versus actual `-0.000006275`, and only `57/3452` broad worlds matched the E101 ordering. Public LB is saying the hard-tail axis is real, but the Q2/S3 boundary variable is missing.
 9. E125 adds survivor anatomy: those `57` worlds are not q2s3 diffuse-tail worlds. `q2s3` has `0/368` survivors; `all`/`e72_top50_hard` have `43/57`; median alpha collapses from `3.310470` to `0.791985`; and E101 loses its tail advantage over E95. Public LB is pointing toward transfer shrinkage/tail allocation outside the active Q2/S3 line.
 10. E144 is the current next sensor, not a public observation yet. It tightens the post-E101 transfer branch by finding a fine active/Q2S3 boundary row that beats E143 locally while preserving all E143 gates. Public feedback on E144 should be read as a test of boundary fineness, not as generic model quality.
+11. E148 adds the pre-public responsibility decoder for E144. Global/subject/nearest-hard simulated win-rate masses are `0.745560` / `0.599760` / `0.635616`, but branch-or-worse masses are `0.204972` / `0.333832` / `0.284852`. A future E144 fine loss is not automatically a fine-tail failure; it may be inherited-body/Q3/S2, S3/Q3, or inherited-body/Q3/S3 depending on which prior geometry best matches the public observation.
 
 ## Derived Local Sensor Updates
 

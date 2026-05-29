@@ -2245,3 +2245,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - nearest-hard component contributions favor the inherited body `-0.000024556352` but oppose the fine-tail delta `+0.000002882583`; subject/global/prev priors are less hostile to the fine tail.
 - Interpretation: E144 is now stronger than a narrow E143 refinement. Visible priors broadly support the whole E144 file versus E95, mostly through the inherited 161-cell E143 body. The weak point is also clear: S3, and under nearest-hard also Q3, carry the adverse target-side risk. Therefore E144 public feedback will be informative even if it loses. A loss should be decomposed target/component-wise rather than treated as a generic rejection of E144.
 - Decision: no new submission is created. Keep `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the single next file. If public improves, strengthen the E95-plus-transfer-budget-neutral residual world. If public loses inside E145's fine-loss band, inspect S3/Q3 and fine-tail versus inherited-body failure before choosing any E143/E142 contrast.
+
+## E148. E144 Public Outcome Attribution
+
+- Observe: E145 pre-registered score bands and E147 identified target/component stress axes, but the branch still lacked a pre-public map from a future E144 LB band to the hidden label pattern that would have produced it.
+- Wonder: if E144 lands in clean win, micro win, tie, fine loss, branch loss, or hard fail, which target/component groups should be credited or blamed under public-free priors? Is a fine loss necessarily evidence that the E144-only fine tail was too optimistic?
+- Method: `analysis_outputs/e148_e144_public_outcome_attribution.py` samples `250000` label-worlds per prior over the `185` E144-vs-E95 moved cells, maps each simulated delta to the E145 bands, then summarizes band rates and conditional target/component attribution.
+- Result:
+  - global prior win-rate mass: `0.745560`; non-win mass `0.254440`; fine-loss-alive `0.027696`; branch-or-worse `0.204972`.
+  - subject prior win-rate mass: `0.599760`; non-win mass `0.400240`; fine-loss-alive `0.033340`; branch-or-worse `0.333832`.
+  - nearest-hard prior win-rate mass: `0.635616`; non-win mass `0.364384`; fine-loss-alive `0.031700`; branch-or-worse `0.284852`.
+  - clean/micro wins are mainly carried by Q1/S4 or inherited-body support depending on prior, not by a generic all-target lift.
+  - fine-loss worlds are not automatically fine-tail failures. Under global prior, S2/Q3/inherited-body are the main positive-delta drag; under nearest-hard, S3/Q3 dominate; under subject, inherited-body/Q3/S3 dominate.
+  - hard-fail worlds are broad support shortfalls, especially inherited-body plus Q3/S3/S2 depending on prior.
+- Interpretation: E148 refines E145. E144 is still the next sensor, and public-free worlds give it meaningful win mass, but a bad result is not automatically a referendum on the 24-cell fine tail. The branch failure has to be read through target/component attribution before spending another slot on E143.
+- Decision: no submission is materialized. After E144 public feedback, first apply E145 banding, then E148 attribution. E143 is a clean next contrast only if the observed band is compatible with a fine-tail/S3 failure rather than inherited-body or broader target-body failure.
