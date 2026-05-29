@@ -1184,6 +1184,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E156 scans `3125` target-axis lattice variants with full non-anchor evaluation. All `3125` are all-four, `2984` are strict candidates, and `85` sit below E155's `0.25` body ratio while still beating E144. The selected `submission_e156_targetaxis_757546d2.csv` uses Q1/S2/S4 alphas `0.25/0.75/0.25`, body ratio `0.171266667`, all-minus-E95 `-0.000010004`, post-E101 p95 `-0.000003712`, and E72 gap `-0.000002266`. It is almost pure branch geometry: cosine with E144/E155/E154 is `0.999515751`/`0.998991027`/`0.985122955`.
 - Policy: use E156 as the third repaired-branch control after E154 and E155. If it wins while E154/E155 lose, the live target law becomes tiny Q1/S2/S4 add-on over E144. If it loses while E144 wins, the add-on is public-overfit.
 
+### F134. E157 low-body axis response and Pareto control
+
+- Hidden structure: E156's minimum-body Q1/S2/S4 row may be a body-minimization artifact. A healthier axis feature should explain finite-difference target responses and identify any low-body row that dominates E155 across multiple stress metrics.
+- Candidates: per-axis finite-difference response for local all-minus, post-E101 p95, E72 gap, body cost, and transfer-shrinkage risk; E155-dominating low-body Pareto rows; target-axis alphas.
+- Label vs split test: valid as a LeJEPA anti-shortcut feature because it rejects overinterpreting a selected target-axis row when the whole lattice gate is saturated. Invalid as a high-confidence submission feature because the E157-over-E155 edge is far below public-resolution scale.
+- Current evidence: E157 finds all `3125` lattice rows all-four and finite-difference local/post-E101 improvements for every axis. Q3 is strongest for local all-minus (`-0.000000383335`) and post-E101 p95 (`-0.000000132956`), while S2 carries E72 budget (`-0.000000714955`). Three rows use less body than E155 while improving local, post-E101 p95, and E72 gap. The materialized `submission_e157_lowbodypareto_bd67930d.csv` uses Q1+Q3+S2+S4, body ratio `0.240336139`, all-minus-E95 `-0.000010404446`, post-E101 p95 `-0.000003807382`, and E72 gap `-0.000001671496`.
+- Policy: keep E157 as an optional tuned low-body Pareto control. It can sit after E154/E155 and before E156 if the question is tuned target-axis low-body performance; otherwise E155 remains the cleaner amplitude-control and E156 the minimum-body control.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

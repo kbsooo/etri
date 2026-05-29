@@ -605,3 +605,24 @@ E156 tests whether the E155 diagonal is the minimum coherent repaired body or wh
 - cosine vs E101/E72: `-0.019678524` / `-0.027413915`.
 
 The validation implication is narrow but important. The repaired branch is even less brittle than E155 implied: full target-axis diagonal movement is not required. However, the minimum-body survivor is almost pure E144 geometry plus a tiny Q1/S2/S4 add-on, and its local edge is weaker than E155 and E154. E156 is therefore a target-decomposition control, not the first public sensor.
+
+## Update After E157
+
+E157 tests whether E156's minimum-body target-axis choice is itself meaningful.
+
+- lattice variants audited: `3125`.
+- all-four variants: `3125`.
+- strict candidates: `2984`.
+- all-minus-E95 span across lattice: `0.000002432120`.
+- strongest local finite-difference axis: Q3, mean all-minus delta `-0.000000383335`.
+- strongest post-E101 p95 finite-difference axis: Q3, mean delta `-0.000000132956`.
+- E72 budget finite-difference axis: S2, mean gap delta `-0.000000714955`; other axes are near zero.
+- E155-dominating low-body rows: `3`.
+- materialized tuned low-body file: `analysis_outputs/submission_e157_lowbodypareto_bd67930d.csv`.
+- selected axes: `Q1+Q3+S2+S4`.
+- selected body ratio: `0.240336139` vs E155 `0.25`.
+- selected all-minus-E95: `-0.000010404446` vs E155 `-0.000010362491`.
+- selected post-E101 p95: `-0.000003807382`.
+- selected E72 gap: `-0.000001671496`.
+
+The validation implication is a warning. E156's Q1/S2/S4 minimum-body row does not mean Q3 is a bad axis; Q3 is the strongest local and post-E101 finite-difference axis. The branch is gate-saturated and smoothly favorable across many axes, so target-axis rows are controls. E157 is a tuned Pareto control and should not outrank E154 or the cleaner E155 amplitude-control on interpretation quality.

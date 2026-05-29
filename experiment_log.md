@@ -2392,3 +2392,23 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E156 movement remains branch-collinear: cosine vs E144 `0.999515751`, vs E155 `0.998991027`, vs E154 `0.985122955`, vs E101/E72 `-0.019678524`/`-0.027413915`.
 - Interpretation: E155 was not the minimal coherent repair. The smallest surviving target-axis repair is E144 plus a tiny Q1/S2/S4 add-on, not Q3/S3. This weakens the story that the repaired body is intrinsically S3/Q3-driven; the S3 part opened E154's source gate, but the low-body public-safe ridge can avoid additional Q3/S3 movement entirely. The caveat is edge size: E156 barely clears the `1e-5` local threshold and does not beat E155 locally.
 - Decision: add `analysis_outputs/submission_e156_targetaxis_757546d2.csv` as a low-body target-decomposition control, not as the first public sensor. E154 remains first for information and edge. E155 remains the cleaner amplitude-control. E156 becomes useful if E154/E155 lose and we need to ask whether only the tiny Q1/S2/S4 add-on over E144 survives.
+
+## E157. E156 Axis Response Audit
+
+- Observe: E156 found `3125/3125` all-four lattice rows. That is suspicious: the target-axis lattice may be saying less about target semantics than about gate saturation inside an E144-collinear branch.
+- Wonder: does E156's Q1/S2/S4 minimum-body row reveal a real target law, or did body-minimization select a low-information point while other axes are locally favorable?
+- Method: `analysis_outputs/e157_e156_axis_response_audit.py` reads the completed E156 scan, computes finite-difference response for each active target axis across all lattice contexts and low-body contexts, then searches for rows that use less body than E155 while improving E155 on local all-minus, post-E101 p95, and E72 gap.
+- Result:
+  - lattice variants: `3125`; all-four variants: `3125`; strict candidates: `2984`.
+  - all-minus-E95 span across the whole lattice: `0.000002432120`.
+  - finite-difference local response is favorable for every axis in every context; Q3 is strongest with mean all-minus delta `-0.000000383335`, followed by Q1 `-0.000000121912`.
+  - post-E101 p95 response is also favorable for every axis; Q3/Q1/S2 are strongest.
+  - E72 budget response is almost entirely S2: S2 mean delta `-0.000000714955`; other axes are essentially zero.
+  - E155-dominating low-body rows: `3`.
+  - materialized file: `analysis_outputs/submission_e157_lowbodypareto_bd67930d.csv`.
+  - selected axes: `Q1+Q3+S2+S4`, alphas `0.25/0.25/0.50/0.00/0.50`.
+  - selected body ratio: `0.240336139` vs E155 `0.25`.
+  - selected all-minus-E95: `-0.000010404446` vs E155 `-0.000010362491`.
+  - selected post-E101 p95: `-0.000003807382`; E72 gap `-0.000001671496`.
+- Interpretation: E156's min-body Q1/S2/S4 choice is not evidence that Q3 is adverse; Q3 is the strongest local/post-E101 finite-difference axis. S3 is not selected because its local reward per body is weak, not because the stress metrics reject it. The E154/E155/E156 branch has saturated all-four gates and small smooth gradients, so target-axis rows are controls rather than new world laws.
+- Decision: add `analysis_outputs/submission_e157_lowbodypareto_bd67930d.csv` as a tuned low-body Pareto control, but do not promote it over E154 or the cleaner E155 amplitude-control. E157 is useful only if we explicitly want to test whether a target-axis-tuned low-body row beats the diagonal control; its edge over E155 is far below public-resolution scale.

@@ -784,7 +784,41 @@ E154 이전 기준으로는 제출 파일이 `analysis_outputs/submission_e144_a
 
 `repaired branch는 single point도 아니고 diagonal body도 아니다. 하지만 지금까지 찾은 낮은 amplitude survivor는 broad hidden law가 아니라 E144-collinear target-axis add-on이다. 따라서 E154가 첫 public sensor, E155가 amplitude-control, E156이 target-axis decomposition control이다. E156을 먼저 내면 질문이 너무 약해진다.`
 
-현재 제출 순서는 바뀌지 않는다. 첫 파일은 `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`, 둘째는 `analysis_outputs/submission_e155_bodytemp_d27e7965.csv`, 셋째 control은 `analysis_outputs/submission_e156_targetaxis_757546d2.csv`다.
+E157 이전 기준의 제출 순서는 바뀌지 않았다. 첫 파일은 `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`, 둘째는 `analysis_outputs/submission_e155_bodytemp_d27e7965.csv`, 셋째 control은 `analysis_outputs/submission_e156_targetaxis_757546d2.csv`였다.
+
+## 추가 관찰: E156의 Q1/S2/S4 선택은 target law가 아니라 body-minimization artifact다
+
+`analysis_outputs/e157_e156_axis_response_audit.py`로 E156 lattice를 target-axis finite difference와 low-body Pareto 관점에서 다시 찔렀다.
+
+질문은 이것이었다.
+
+`E156 min-body가 말하는 Q1/S2/S4 target law가 진짜인가, 아니면 all-four gate가 이미 saturated되어 body objective가 고른 점인가?`
+
+결과:
+
+- lattice variants: `3125`.
+- all-four lattice rows: `3125`.
+- strict candidates: `2984`.
+- all-minus-E95 span across the lattice: `0.000002432120`.
+- Q3 local finite-diff mean: `-0.000000383335`.
+- Q3 post-E101 finite-diff mean: `-0.000000132956`.
+- S2 E72-gap finite-diff mean: `-0.000000714955`.
+- E155-dominating low-body rows: `3`.
+- selected file: `analysis_outputs/submission_e157_lowbodypareto_bd67930d.csv`.
+- selected axes: `Q1+Q3+S2+S4`.
+- selected alphas Q1/Q3/S2/S3/S4: `0.25/0.25/0.50/0.00/0.50`.
+- selected body ratio: `0.240336139`.
+- selected all-minus-E95: `-0.000010404446`.
+- selected post-E101 p95: `-0.000003807382`.
+- selected E72 gap: `-0.000001671496`.
+
+이 결과는 E156의 해석을 다시 낮춘다. Q1/S2/S4만 살아남았다는 게 아니라, Q3는 local/post-E101에서 가장 좋은 축이지만 body norm 비용이 커서 minimum-body objective에서 빠진 것이다. S2는 E72 gap budget을 실질적으로 책임진다. 즉 E156은 target law가 아니라 saturated all-four lattice에서 body objective가 고른 한 점이다.
+
+현재 세계관을 다시 압축한다.
+
+`repaired branch의 낮은 amplitude 영역은 넓게 살아 있지만, 그 안에서 target-axis 선택은 아직 public 법칙이 아니라 micro-geometry다. E154는 가장 정보량 큰 repaired full-body sensor, E155는 깨끗한 amplitude-control, E157은 tuned low-body Pareto control, E156은 minimum-body decomposition control이다. E157/E156을 먼저 내면 E154/E155가 주는 해석력을 버리는 셈이다.`
+
+현재 제출 순서는 `E154 -> E155 -> E157 -> E156 -> E144`다.
 
 ## 추가 관찰: E154는 고립점이 아니라 낮은 amplitude ridge다
 

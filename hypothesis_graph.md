@@ -1764,6 +1764,18 @@ target co-occurrence
 - public LB 관측 반응: E156 should not replace E154 as the first sensor because it has weaker local edge and is almost E144-collinear. It is useful as a third repaired-branch control before falling back to pure E144.
 - 제출 전략: submit order for this branch is E154 -> E155 -> E156 -> E144, unless the goal is specifically to test the conservative unrepaired branch first.
 
+### H151. E156's minimum-body axis choice is a body-selection artifact, not a target law
+
+- 상태: supported by E157; materialized tuned low-body Pareto control.
+- 왜 그럴듯한가: E156 made every lattice row all-four, so the selected Q1/S2/S4 row may reflect the objective "minimize body while barely beating E144" rather than a hidden target-axis law.
+- 맞다면: finite differences over the lattice should show other axes, especially Q3, are still locally favorable; low-body rows that include Q3 should be able to dominate E155 on local/post-E101/E72 stress despite not being the minimum-body row.
+- 틀리다면: Q1/S2/S4 should be uniquely favorable and Q3/S3 should look adverse or unstable under local/post-E101/E72 finite differences.
+- 최소 실험: `analysis_outputs/e157_e156_axis_response_audit.py`, using the E156 scan to compute target-axis finite differences and E155-dominating low-body Pareto rows.
+- 관측: all `3125` lattice rows are all-four and `2984` are strict. Every axis has favorable local and post-E101 finite differences, with Q3 strongest for all-minus (`-0.000000383335`) and post-E101 p95 (`-0.000000132956`). E72 gap is controlled almost entirely by S2 (`-0.000000714955`). Three rows use less body than E155 while improving local, post-E101 p95, and E72 gap; the selected `submission_e157_lowbodypareto_bd67930d.csv` uses Q1+Q3+S2+S4, body ratio `0.240336139`, all-minus `-0.000010404446`, post-E101 p95 `-0.000003807382`, and E72 gap `-0.000001671496`.
+- 성공/폐기 기준: support until public feedback says target-axis-tuned low-body rows behave differently from diagonal E155. If E157 improves while E155 fails, target-axis tuning matters despite tiny local edge. If E155 improves and E157 fails, the tuned Pareto row overfit the local lattice. If both fail, the repaired low-body branch is not public-real.
+- public LB 관측 반응: E157 is not a first sensor because its edge over E155 is only `~4.2e-8` local all-minus. It is an optional tuned-control after E154/E155, not evidence of a new broad latent.
+- 제출 전략: keep E154 first, E155 second for clean amplitude interpretation, then E157 before E156 if the goal is target-axis-tuned low-body control. E156 remains the minimum-body control.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

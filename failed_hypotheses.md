@@ -1231,3 +1231,12 @@
 - Implementation issue possible: low for the tested lattice after full non-anchor evaluation was forced; earlier truncated evaluation was corrected by raising `MAX_NONANCHOR_ROWS` above the lattice size. Medium for public interpretation because the local edge is barely above the materiality threshold.
 - Bottleneck implication: the branch is even less brittle than E155 implied, but also more collinear and smaller. The bottleneck is not finding any local all-four low-body point; it is knowing which tiny target-axis add-on, if any, public labels actually reward.
 - Do not repeat: treating E155 as the minimum repaired amplitude. Use E156 only as a low-body decomposition control, not as evidence of a new broad latent.
+
+## FH137. E156's Q1/S2/S4 minimum-body row is a unique target-axis law
+
+- Failed hypothesis: because E156 selected Q1/S2/S4 as the minimum-body all-four row, Q3/S3 extra movement is unhealthy or unnecessary in a target-semantic sense.
+- Observed result: E157 finds the opposite. Finite-difference response over the E156 lattice shows Q3 is the strongest local all-minus axis (`-0.000000383335`) and strongest post-E101 p95 axis (`-0.000000132956`). S2, not Q1/S2/S4 as a group, carries almost all E72 budget improvement. Three low-body rows including Q3 dominate E155 across local all-minus, post-E101 p95, and E72 gap.
+- Why discard: E156's selected Q1/S2/S4 row was selected by minimum body among barely material rows, not by unique target-axis health. The lattice is gate-saturated (`3125/3125` all-four), so target semantics cannot be inferred from that minimum alone.
+- Implementation issue possible: low for the finite-difference audit because it reuses the completed E156 full-evaluation scan. Medium for public interpretation because E157's improvement over E155 is only `~4.2e-8` local all-minus.
+- Bottleneck implication: the repaired branch has smooth low-body controls, but target-axis selection remains below public-resolution scale. The bottleneck is candidate-selection resolution and public-tail validation, not absence of target-axis alternatives.
+- Do not repeat: claiming Q3/S3 are rejected by E156. Use E157 to describe the branch as a gate-saturated ridge with tiny target-axis controls.
