@@ -221,3 +221,9 @@ The result is again disjoint:
 - submit-gate rows: `0`.
 
 The strongest local gradient move is large enough to matter locally (`-0.000112772` versus E95), but it fails hidden/block/Q2S3/world support and has positive post-E101 p95 exposure. The best post-E101 sensor rows improve the sensor mean but do not become local-strict. Therefore the gate now blocks both old-donor correction and current E95 tangent-gradient movement. The next stress target should be a new structural latent, not another E95-neighborhood probability perturbation.
+
+## Update After E133
+
+E133 maps the cell-level reason E132 failed. The best context is `all_sign`, but even there only `16.1830%` of local reward mass lies inside veto-null+density70. The target mix changes sharply after safety filtering: `all_sign` local top50 is `44%` Q2/S3 and `42%` S3, while co-located top50 is only `2%` Q2/S3 and `0%` E101-active, with `40%` Q3 and `34%` Q1.
+
+The hidden-block CV stress also rejects a simple metadata target. The best category view is `subject_target` with JS `0.240700` and top50 truth-mass capture `0.048280`, only weakly above a flat top50 baseline. Thus E133 does not create a submission gate. It changes the next stress design: the live latent target is now a Q3/Q1-heavy safe remainder that simple metadata cannot recover, not a Q2/S3 rollback or a direct E95 gradient.

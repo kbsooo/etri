@@ -992,6 +992,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E132 generated `4590` gradient-nullspace candidates. Gradient local-strict count was `0`; veto-actionable count was `843`; local-strict plus veto-actionable was `0`; submit-gate count was `0`. Best local movement was `-0.000112772` but structurally non-strict, while best post-E101 sensor movements were local-structure failures.
 - Policy: use gradient-nullspace metrics as a negative geometry diagnostic only. Do not submit E95 tangent moves from current combo gradients. A future gradient feature must be attached to a different structural latent target that co-locates local margin and tail safety before probability movement.
 
+### F110. Local-safety co-location atlas
+
+- Hidden structure: the useful post-E95 target may be a cell field where local gradient reward, transfer-shrinkage density, veto-null tail direction, and low E72/E101 hard-tail exposure overlap.
+- Candidates: per-context squared E95 combo gradient, veto-null flag, low-adverse flag, density rank, co-located local-safety score, local top-k target mix, co-located top-k target mix, and hidden-block-CV metadata predictability.
+- Label vs split test: valid as a latent-target atlas because it does not produce a submission and uses hidden-block holdout to test metadata predictability. Invalid if used as a direct probability gate without proving a selector-scale predictor.
+- Current evidence: E133 found best co-location context `all_sign`, but only `0.161830` of local reward mass lies in veto-null+density70. The co-located top50 cells are Q3/Q1-heavy (`Q3 40%`, `Q1 34%`) and almost exclude Q2/S3 (`2%`) and E101-active cells (`0%`). Best metadata CV top50 truth-mass capture is only `0.048280`.
+- Policy: keep this atlas as a target-design clue, not a submission feature. Next representations should try raw/run/block context prediction of the Q3/Q1-heavy safe remainder and should be rejected if they collapse back into Q2/S3 local reward or metadata-only shortcuts.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

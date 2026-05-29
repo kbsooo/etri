@@ -1041,3 +1041,12 @@
 - Implementation issue possible: medium. E132 tests first-order BCE-style combo gradients and sparse masks around E95, not a learned nonlinear latent. The discarded claim is specifically that the current E95 tangent field contains a cheap safe successor.
 - Bottleneck implication: the plateau is not a blend-weight or donor-source problem. It is a latent tangent-space mismatch: the visible local gradient and the public-safe tail geometry do not agree in the same cells/targets.
 - Do not repeat: E95-neighborhood gradient/nullspace mask sweeps, top-gradient cell pruning, or LOO-combo gradient rescaling as a submission source unless the target representation itself changes and passes strict local support before veto checks.
+
+## FH116. Simple metadata can recover the local-safety co-location field
+
+- Failed hypothesis: after E132, the next latent target could be built directly from visible target/subject/context/block metadata because those metadata should predict where local gradient reward and tail safety co-locate.
+- Observed result: E133 found that even the best context `all_sign` places only `0.161830` of local reward mass in veto-null+density70. The best hidden-block-CV category view, `subject_target`, has JS `0.240700` and top50 truth-mass capture `0.048280`. Local top50 cells in `all_sign` are `44%` Q2/S3 and `42%` S3, but co-located top50 cells are only `2%` Q2/S3 and instead mostly Q3/Q1.
+- Why discard: metadata weakly describes the target-family shift but does not recover top co-located cells at selector scale. It also removes the old Q2/S3 explanation rather than repairing it.
+- Implementation issue possible: medium. E133 uses categorical mean predictors, not raw sequence models or learned block embeddings. The discarded claim is only the simple metadata target path.
+- Bottleneck implication: the next latent cannot be a target/context/fallback/E72-bin table. It needs a richer representation, likely raw/run/block-context based, and should be judged by whether it predicts the Q3/Q1-heavy safe remainder without reviving Q2/S3 tail risk.
+- Do not repeat: metadata-only co-location gates, Q2/S3 rollback resurrections based on local top cells, or direct movement on E133 co-located cells without a stronger raw/run/block predictor.

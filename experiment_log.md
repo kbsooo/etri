@@ -1986,3 +1986,16 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - the best post-E101 sensor rows had much better sensor mean, e.g. `-0.000154192`, but still failed strict local structure through hidden/block/Q2S3/world support.
 - Interpretation: the issue is not only old donor contamination. The local gradient can strongly improve local sensors, and the veto-safe region can be found, but the local strict structure and veto-actionability still do not meet. This turns the plateau into a stronger geometry claim: the public-safe tangent space around E95 is nearly orthogonal to the local gradient directions that current combo sensors reward.
 - Decision: no submission. E132 closes the cheap donor-free gradient route. The next experiment should stop looking for a corrected E95 tangent move and instead change the latent target: predict a structural state where local upside and tail safety are co-located before any probability movement is made.
+
+## E133. Local-Safety Co-location Atlas
+
+- Observe: E132 rejected direct E95 tangent movement, but it did not tell us whether co-located local-upside/tail-safety cells are absent, hidden in a small pocket, or simply not predicted by current metadata.
+- Wonder: at cell level, how much local gradient reward actually lies inside transfer-safe density, and can visible target/subject/context/block metadata predict the co-located field under hidden-block holdout?
+- Method: `analysis_outputs/e133_local_safety_colocation_atlas.py` computed direct E95 combo gradients, squared-gradient local reward, a transfer-safe field from veto-null direction plus low-adverse hard-tail exposure plus E127/E130 density rank, and hidden-block-CV category predictors for the co-located local-safety field.
+- Result:
+  - best context by local mass inside veto-null+density70 is `all_sign`, but only `0.161830` of local reward mass falls there.
+  - in `all_sign`, local top50 cells are `44%` Q2/S3 and `42%` S3, but co-located top50 cells are only `2%` Q2/S3, `0%` E101-active, and mostly Q3/Q1 (`Q3 40%`, `Q1 34%`).
+  - the best hidden-block-CV category view is `subject_target` for `all_sign`, with JS `0.240700`, cosine `0.532639`, and top50 truth-mass capture only `0.048280`.
+  - other contexts are worse by co-location mass: `loo_inverse_top` `0.132611`, `raw05_compatible` `0.122907`, `all` `0.077079`, `loo_raw05_compatible` `0.072271`.
+- Interpretation: co-located cells exist as a weak diagnostic field, but they are not where the old Q2/S3 rollback story lives. Tail safety strips out most Q2/S3 local reward and leaves a Q3/Q1-heavy, non-E101-active pocket that simple metadata cannot recover at selector scale. This supports the plateau world model: the current local reward is target-conflicted, and the safe remainder is too diffuse/underpredicted to move probabilities directly.
+- Decision: no submission. E133 shifts the next latent target away from E95 tangent movement and away from Q2/S3 rollback. The next useful experiment should build or test a richer representation for the Q3/Q1-heavy co-located pocket, probably using raw/run/block context rather than categorical metadata alone.

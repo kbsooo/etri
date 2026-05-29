@@ -1476,6 +1476,18 @@ target co-occurrence
 - public LB 관측 반응: no public submission. A public test would be low-information because no candidate satisfies both local structure and transfer-veto safety.
 - 제출 전략: no E132 submission. The next strategy is not another E95-neighborhood tangent move; it is a new latent target where local upside and tail safety are co-located before probability translation.
 
+### H127. Visible metadata can recover the co-located local-safety field
+
+- 상태: rejected as a direct latent target; retained as an atlas.
+- 왜 그럴듯한가: E133's desired object is no longer a probability movement but a cell field where E95 local gradient reward, veto-null direction, low hard-tail adverse exposure, and transfer-shrinkage density overlap. If this field is visible through subject/target/context/block metadata, it could become a new JEPA-style target.
+- 맞다면: a hidden-block-heldout categorical view should capture a material share of top co-located cells, and local reward mass inside safe density should be broad enough to support a probability movement.
+- 틀리다면: local reward should mostly lie outside safe density, co-located top cells should shift target family relative to local top cells, and metadata CV should capture only weak top-cell mass.
+- 최소 실험: `analysis_outputs/e133_local_safety_colocation_atlas.py`, cell-level atlas over E95 combo gradients, transfer-safe density, and hidden-block-CV categorical predictors.
+- 관측: best context `all_sign` has only `0.161830` local reward mass in veto-null+density70. Its local top50 are `44%` Q2/S3 and `42%` S3, but co-located top50 are `2%` Q2/S3, `0%` E101-active, `40%` Q3, and `34%` Q1. Best category CV is `subject_target` with JS `0.240700` and top50 truth-mass capture `0.048280`.
+- 성공/폐기 기준: reject simple metadata as a direct target generator. Keep the atlas because it identifies the target-family shift from Q2/S3 local reward to Q3/Q1 safe remainder.
+- public LB 관측 반응: no submission. A public test is premature because E133 has not produced a probability movement or a selector-scale latent predictor.
+- 제출 전략: none. Future work should test raw/run/block-context representations for the Q3/Q1-heavy co-located pocket rather than another Q2/S3 or metadata-only gate.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
