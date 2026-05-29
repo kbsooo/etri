@@ -110,6 +110,11 @@ analysis_outputs/*
 !analysis_outputs/e86_e85_target_prune_robustness_scan.csv
 !analysis_outputs/e86_e85_target_prune_source_stability.csv
 !analysis_outputs/submission_e86_e85_consensus_*.csv
+!analysis_outputs/e87_e86_risk_decomposition_scan.csv
+!analysis_outputs/e87_e86_risk_decomposition_choices.csv
+!analysis_outputs/submission_e87_noq2_source_consensus_*.csv
+!analysis_outputs/submission_e87_q2_nooverstep_consensus_*.csv
+!analysis_outputs/submission_e87_inverse_top_prior_consensus_*.csv
 !analysis_outputs/structural_block_target_probe_target_detail.csv
 !analysis_outputs/structural_block_target_probe_pattern_detail.csv
 !analysis_outputs/structural_block_target_probe_hidden_alignment.csv

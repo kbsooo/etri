@@ -935,6 +935,18 @@ target co-occurrence
 - public LB 기대 반응: if `submission_e86_e85_consensus_a3f7c96f.csv` improves public more than E85 or mixmin, public rewards source-stable S1/S2/S3/Q2 structural consensus and the 1.25 overstep is not overfit. If it worsens while E85 improves, public wants the target-prune law but not consensus overstep/Q2 add-back. If both worsen, inverse-top target pruning was a local combo-world artifact.
 - 제출 전략: E86 supersedes E85 as the highest-upside next candidate if one wants source-stable consensus. E85 remains the lower-amplitude conservative sensor for the same target-prune hypothesis.
 
+### H82. E86 public risk decomposes into Q2 add-back, overstep, and inverse-top geometry
+
+- 상태: contrast sensors built; public pending.
+- 왜 그럴듯한가: E86 improved local all-combo margin versus E85 but changed more than one axis at once. It adds Q2 back, uses shrink `1.25`, and ranks by all-delta rather than inverse-top-prior. A single public score for E86 would otherwise be underidentified.
+- 맞다면: no-Q2, no-overstep, and inverse-top-prior variants should all remain strict/deployable locally while creating different public interpretations if E86 fails.
+- 틀리다면: one of the contrast variants should fail the same E86 stress, or all variants should collapse to nearly identical target movement and provide no diagnostic separation.
+- 최소 실험: `analysis_outputs/e87_e86_risk_decomposition.py`, rebuilding the E86 consensus pool and selecting three public contrast files under the same combo, hidden/world/block, raw-energy, and tail stress.
+- 관측: E87 rebuilt `1485` consensus rows and kept a strict/deployable universe of `700`. It wrote three contrasts: `analysis_outputs/submission_e87_noq2_source_consensus_a85c4e39.csv` (`S1,S2,S3`, shrink `1.25`, all delta `-2.69461e-5`), `analysis_outputs/submission_e87_q2_nooverstep_consensus_acd7add0.csv` (`Q2,S1,S2,S3`, shrink `1.00`, all delta `-2.42545e-5`), and `analysis_outputs/submission_e87_inverse_top_prior_consensus_5445ec28.csv` (`Q2,S1,S3`, shrink `1.25`, inverse-top delta `-2.06434e-5`).
+- 성공/폐기 기준: success is not beating E86 locally; success is reducing interpretation entropy after public feedback. If E86 improves, H81 is strengthened and E87 remains diagnostic. If E86 worsens but one contrast improves, the corresponding risk axis becomes the next law. If all fail, demote the E85/E86 target-prune family and reopen row/block or all-sign/raw05-compatible target-axis recovery.
+- public LB 기대 반응: no-Q2 improvement means Q2 add-back was contaminating; no-overstep improvement means shrink `1.25` overstepped calibration; inverse-top-prior improvement means public is closer to inverse-top geometry than all-delta geometry.
+- 제출 전략: do not submit E87 before E86 unless the goal changes from highest-upside candidate to diagnostic contrast. After E86 public feedback, choose the single E87 file whose interpretation best separates the surviving hypothesis.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
