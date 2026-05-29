@@ -2663,3 +2663,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - geometry improves: bad-span energy `0.295326 -> 0.257874`, max bad-axis cosine `0.222381 -> 0.142927`, Q2/S3 share `0.347775 -> 0.315866`.
 - Interpretation: the E171 warning is actionable, not merely diagnostic. The broad E169 body can survive a visible-prior critical-tail rollback, and the best repair is not pruning only top cells but damping every visible-prior-positive-loss cell. This makes E172 a lower-tail-risk broad-branch candidate.
 - Decision: promote `submission_e172_vis_pos_all_keep0p25_d90f4407.csv` above raw E169 as the next broad-branch expected-score candidate. Keep E169 as the sharper body-vs-tail public sensor: if E172 wins and E169 later loses, tail rollback was the missing constraint; if both lose, the broad context/veto body itself is likely public-misaligned.
+
+## E173. E172 Public Feedback Decoder
+
+- Observe: E172 is now the first broad expected-score candidate, but without a pre-registered decoder its public score would invite post-hoc threshold tuning. The question is whether public feedback validates the visible-tail rollback, leaves the broad branch underresolved, or rejects the broad body.
+- Wonder: if E172 is a real repair, it should improve prior-tail moments versus E169 while preserving broad hard-label readability. If it is only a proxy overfit, public score bands must separate "tail repair worked" from "the broad body is still wrong."
+- Method: `analysis_outputs/e173_e172_public_feedback_decoder.py` fixes public LB bands relative to E95/E101/mixmin, scores E172 pairwise hard-label readability against E95/E169/raw E166/E154/E101/mixmin, decomposes E172-vs-E95 and E172-vs-E169 by target/context, and writes no new submission.
+- Result:
+  - decoder files: `analysis_outputs/e173_e172_public_feedback_decoder_*.csv` and report `analysis_outputs/e173_e172_public_feedback_decoder_report.md`.
+  - E172 vs E95: moved cells/rows `904/193`, expected delta `-0.000112695`, cells-to-flip expected `30`, top1 swing `0.000005832`, cells for `2e-6` guard `1`, cells for E95-over-mixmin edge `4`.
+  - E169 vs E95 comparator: expected delta `-0.000120457`, cells-to-flip `32`, same top1/top5 swing and same cells for E95 edge.
+  - E172 vs E169 rollback: `410` cells over `178` rows, expected delta `+0.000007762` under E162 focus priors, cells-to-flip `3`; Q2 and S2 carry most rollback cost, while Q1/Q3 rollback is focus-prior favorable.
+  - E171 prior moments improve strongly: visible p95 `+0.000010607 -> -0.000026683`, visible worse-than-E101 `0.058545 -> 0.000050`, flank_mean mean `+0.000000777 -> -0.000035296`, nearest_hard085 mean `-0.000009 -> -0.000081`.
+  - E172 expected edge remains context-high: between-train-runs carries `80.6%` of E172-vs-E95 expected edge; not-E72-active cells carry `71.6%`.
+- Interpretation: E172 is a better tail-risk candidate than E169, but it has not solved the public hard-label resolution bottleneck. The score can still be decided by one high-swing hidden label even though visible/flank priors are much healthier.
+- Decision: after submitting E172, run `python3 analysis_outputs/e173_e172_public_feedback_decoder.py --score <PUBLIC_LB>`. A win promotes visible-tail rollback; tie/small-loss keeps E95 practical and makes raw E169 information-only; worse than E101 demotes E172/E169 expected-score followups; worse than mixmin closes same-family broad-lane variants.

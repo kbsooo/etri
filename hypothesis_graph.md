@@ -1956,6 +1956,18 @@ target co-occurrence
 - public LB 관측 반응: E172 win promotes visible-tail rollback as a real broad-branch constraint. E172 tie/small-loss keeps E95 practical and leaves E169 as information-only. E172 worse than mixmin says visible-prior damping overcorrected or the broad body is wrong.
 - 제출 전략: submit `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` before raw E169 when the goal is the strongest broad-branch expected-score candidate. Submit raw E169 only when deliberately asking the pure body-vs-critical-tail question.
 
+### H167. E172 repairs prior-tail health but not the hidden hard-label resolution bottleneck
+
+- 상태: supported by E173; public feedback pending.
+- 왜 그럴듯한가: E172 was designed to fix visible-prior tail risk, not to change which high-swing public labels exist. If the broad body is unchanged, hard-label readability may remain nearly identical to E169 even while visible/flank priors improve.
+- 맞다면: E172-vs-E95 should keep broad moved-cell support and improved prior moments, but still require only a few top swing cells to move public LB by the E95-over-mixmin edge.
+- 틀리다면: E172 would either reduce top-cell swing/readability fragility materially or destroy broadness in exchange for prior-tail health.
+- 최소 실험: `analysis_outputs/e173_e172_public_feedback_decoder.py`.
+- 관측: E172-vs-E95 keeps `904/193` moved cells/rows, expected delta `-0.000112695`, and cells-to-flip `30`, while visible p95 changes to `-0.000026683` and visible worse-than-E101 to `0.000050`. However top1 swing remains `0.000005832`, cells for `2e-6` guard remains `1`, and cells for E95-over-mixmin edge remains `4`.
+- 성공/폐기 기준: E172 public win promotes the view that prior-tail repair is enough despite readability fragility. Tie/small loss says tail health improved but hidden hard-label realization still dominates. Worse than mixmin says the broad body or visible-tail proxy is wrong.
+- public LB 관측 반응: use E173 bands. `<=0.576276019` is clean support for tail repair; `0.576288330..0.576294330` is tie/underresolution; `0.576294330..0.576300366` is small loss; `>0.576306641` closes E172/E169 same-family broad-lane expected-score variants.
+- 제출 전략: E172 remains the first broad expected-score candidate, but any result must be decoded before trying E169, raw E166, or threshold siblings.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

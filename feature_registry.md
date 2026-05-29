@@ -1248,6 +1248,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E172 scores `67` rollback variants and finds `7` stress-gate rows. The selected `visible_positive_all_keep0p25` row rolls back `410` visible-prior-positive-loss cells to `25%` of E169 movement, keeping focus expected delta `-0.000112695`, moved cells/rows `904/193`, cells-to-flip `30`, and top1/expected `0.051750`. It improves visible p95 from `+0.000010607` to `-0.000026683`, visible worse-than-E101 from `0.058545` to `0.000050`, bad-span energy from `0.295326` to `0.257874`, and max bad cosine from `0.222381` to `0.142927`.
 - Policy: use `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` as the first broad-branch expected-score candidate. Keep raw E169 as the unrolled body-vs-tail sensor, not as the safer score candidate.
 
+### F142. E173 E172 feedback bands and rollback responsibility map
+
+- Hidden structure: even a healthier broad tensor can remain public hard-label-resolution limited. The feature is a decision layer that separates prior-tail repair from hidden-label readability.
+- Candidates: E172 score bands, E172-vs-E95 pairwise hard-label swing, E172-vs-E169 rollback cell attribution, target/context rollback cost, visible/flank/subject prior moments, and observed-score decision rows.
+- Label vs split test: valid because it is fixed before public feedback and writes no submission. Invalid if its thresholds are changed after seeing E172 LB.
+- Current evidence: E173 shows E172-vs-E95 keeps broad support (`904/193`, expected delta `-0.000112695`) and strong prior-tail repair, but still has top1 swing `0.000005832`, cells for `2e-6` guard `1`, and cells for E95-over-mixmin edge `4`. E172-vs-E169 rollback costs `+0.000007762` under E162 focus priors, mostly Q2/S2, while improving visible/flank tail priors.
+- Policy: after E172 public feedback, run `python3 analysis_outputs/e173_e172_public_feedback_decoder.py --score <PUBLIC_LB>` before any E169/E166/E154 follow-up. Do not tune rollback keep factors from a tie or small loss.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

@@ -1618,3 +1618,56 @@ E169의 몸통은 살아 있고, E171이 지적한 visible-prior adverse tail은
 - E172가 mixmin보다 나쁘면: visible rollback이 과보정됐거나, broad body 자체가 public-misaligned다.
 
 E169는 버리는 파일이 아니다. 다만 이제 역할이 바뀌었다. E169는 “unrolled body-vs-tail sensor”이고, E172는 “tail-repaired expected-score candidate”다.
+
+## E173 업데이트: E172도 public hard-label 해상도 문제는 끝내지 못했다
+
+가장 이상한 점:
+
+`E172는 visible/flank prior tail을 크게 고쳤는데도, public-readable swing은 E169와 거의 같다.`
+
+실험:
+
+`analysis_outputs/e173_e172_public_feedback_decoder.py`
+
+결과:
+
+- E172 vs E95:
+  - moved cells/rows `904/193`.
+  - expected delta `-0.000112695`.
+  - cells-to-flip expected `30`.
+  - top1 swing `0.000005832`.
+  - cells for `2e-6` guard `1`.
+  - cells for E95-over-mixmin edge `4`.
+- E172 vs E169:
+  - rollback cells/rows `410/178`.
+  - focus-prior expected cost `+0.000007762`.
+  - cells-to-flip `3`.
+  - rollback cost는 Q2/S2 쪽이 크고, Q1/Q3 rollback은 오히려 focus-prior favorable.
+- prior-tail repair:
+  - visible p95 `+0.000010607 -> -0.000026683`.
+  - visible worse-than-E101 `0.058545 -> 0.000050`.
+  - flank_mean mean `+0.000000777 -> -0.000035296`.
+- context:
+  - between-train-runs가 E172-vs-E95 expected edge의 `80.6%`.
+  - not-E72-active cells가 `71.6%`.
+
+생각이 바뀐 점:
+
+`E172는 E169보다 더 좋은 expected-score 후보지만, 0.576 plateau의 핵심인 hidden hard-label resolution 병목은 그대로 남아 있다.`
+
+즉 E172의 세계관은 이렇게 정리된다.
+
+`broad context/veto body는 유지한다. visible-positive-loss tail은 줄인다. 하지만 public LB는 여전히 1~4개 high-swing hidden cells에 크게 흔들릴 수 있다.`
+
+다음 행동:
+
+E172를 제출하면 반드시 먼저 다음을 실행한다.
+
+`python3 analysis_outputs/e173_e172_public_feedback_decoder.py --score <PUBLIC_LB>`
+
+해석:
+
+- `<=0.576276019`: tail repair가 public-real. E172를 새 broad anchor로 본다.
+- `0.576288330..0.576294330`: tie. E95 practical frontier 유지. threshold tuning 금지.
+- `0.576294330..0.576300366`: small loss. E169 자동 제출 금지, E154 또는 새 safety-axis를 선택.
+- `>0.576306641`: E172/E169/E166 same-family broad lane expected-score followup을 닫는다.

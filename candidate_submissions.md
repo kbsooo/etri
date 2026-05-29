@@ -494,6 +494,8 @@ Update after E171: E169 is now better described as "broad body supported, top-ta
 
 Update after E172: E172 upgrades the broad branch from "sensor only" to a better expected-score candidate. `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` keeps E169's broad body (`904/193` moved cells/rows, `30` cells-to-flip, focus delta `-0.000112695`) while repairing the visible-prior tail that E171 flagged: visible p95 changes from E169 `+0.000010607` to `-0.000026683`, and visible worse-than-E101 drops from `0.058545` to `0.000050`. It also lowers bad-span energy and Q2/S3 share. If choosing exactly one new broad-branch file now, prefer E172 over E169. Raw E169 remains useful only as the sharper body-vs-tail falsification sensor.
 
+Update after E173: E172 now has a pre-public score decoder. Submit `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` only with the E173 interpretation attached: `<=0.576276019` cleanly validates tail repair, `0.576288330..0.576294330` is an underresolved tie, `0.576294330..0.576300366` is small loss, and `>0.576306641` closes E172/E169 same-family broad expected-score followups. E173 also warns that E172 still has one-cell `2e-6` hard-label fragility, so a tie/small loss should not trigger threshold tuning.
+
 ## Current 0.54 Assessment
 
 0.54 is not blocked by a single missing model family. To approach it, one of two things must happen:

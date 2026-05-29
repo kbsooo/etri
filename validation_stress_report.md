@@ -820,3 +820,17 @@ E172 tests whether the E171 critical-tail warning can be turned into a healthier
 - E169 comparator: expected delta `-0.000120457`, visible p95 `+0.000010607`, visible worse-than-E101 `0.058545`, bad-span energy `0.295326`, max bad cosine `0.222381`.
 
 Stress implication: E171's critical-tail warning is not just a post-hoc objection. A broad-body-preserving rollback exists and improves the exact visible-tail risk metrics that made E169 unstable. E172 is therefore the stronger expected-score broad candidate, while E169 remains the cleaner unrolled body-vs-tail sensor.
+
+## Update After E173
+
+E173 pre-registers how to read E172 public feedback.
+
+- script: `analysis_outputs/e173_e172_public_feedback_decoder.py`.
+- report: `analysis_outputs/e173_e172_public_feedback_decoder_report.md`.
+- E172-vs-E95: moved cells/rows `904/193`, expected delta `-0.000112695`, cells-to-flip expected `30`.
+- E172-vs-E95 hard-label readability: top1 swing `0.000005832`, top5 swing `0.000023823`, cells for `2e-6` guard `1`, cells for E95-over-mixmin edge `4`.
+- E172-vs-E169 rollback: `410` cells over `178` rows, expected delta `+0.000007762` under E162 focus priors, cells-to-flip `3`.
+- prior-tail repair: visible p95 `+0.000010607 -> -0.000026683`; visible worse-than-E101 `0.058545 -> 0.000050`; flank_mean mean `+0.000000777 -> -0.000035296`.
+- attribution: between-train-runs cells carry `80.6%` of E172-vs-E95 expected edge; not-E72-active cells carry `71.6%`.
+
+Stress implication: E172 fixes the visible/flank prior-tail problem, but not the hidden hard-label resolution problem. It is the better expected-score broad candidate than E169, but it still needs public interpretation by bands before any same-family follow-up.
