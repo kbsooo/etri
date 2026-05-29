@@ -1937,3 +1937,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - Relaxed material survivors add only E89.
 - Interpretation: the separated E128 vetoes do not uncover a hidden existing file. They recover the already-known E85/E101/E89 same-family conservative line, exactly the branch E124/E126 made weak after E101.
 - Decision: no submission. Existing-universe search is now a negative screen; the next improvement must come from a new representation/movement, not another rank over old files.
+
+## E130. Tail-Density Synthesis Probe
+
+- Observe: E129 closed the existing-file universe, but E127/E128 still left a constructive possibility: synthesize a new E95-neighborhood movement using the transfer-shrinkage density field rather than selecting an old file.
+- Wonder: can tail-neutral/low-alpha density identify cells where E95 can safely move toward E86/E90/E89/E85/noQ2/mixmin while preserving E95-relative local upside and passing post-E101 vetoes?
+- Method: `analysis_outputs/e130_tail_density_synthesis_probe.py` started from E95, applied partial logit movement toward six donor sources only on E127 density-selected cells, scored every variant E95-relatively, then required local strict improvement, separated E128/E129 veto actionability, and post-E101 sensor safety.
+- Result:
+  - total rows `1800`, variants `1792`, evaluated variants `698`.
+  - local strict variants `25`.
+  - E129-veto-actionable variants before local strict `19`.
+  - local-strict plus E129-veto-actionable variants `0`.
+  - final submit-gate variants `0`.
+  - best local strict move improved E95 by only `-0.000001512` locally and raised post-E101 sensor mean by about `+0.000003863`.
+  - best post-E101-safe micro-move improved E95 by only about `-0.000000018`, below material scale and not strict.
+- Interpretation: transfer-shrinkage density is not enough as a direct probability translator. The local-upside moves toward E86/E90 raise E72/E101-compatible exposure, while veto-safe density moves are too small to matter.
+- Decision: no submission. The next representation must predict where local upside can be added without increasing E72/E101-compatible exposure; simple density-shaped E95-neighborhood synthesis is rejected.

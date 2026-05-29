@@ -968,6 +968,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E129 scanned `116044` candidate paths and `65865` unique tensors. Strict veto left `3` same-family tensors; strict actionable left E85 and E101; relaxed material survivors add E89; novel strict actionable count is `0`.
 - Policy: use this as a negative screen. Do not search or rank old submissions again unless a new representation family has generated genuinely new candidates. The next live feature must create new movement that passes F105/F106, not merely reuse existing files.
 
+### F107. Tail-density synthesis gate
+
+- Hidden structure: tail-neutral/low-alpha density may identify public-compatible cells, but safe public budget placement is not the same as safe probability movement direction.
+- Candidates: E127 density field, donor source (`e86`, `e90`, `e89`, `e85`, `noq2`, `mixmin`), mask scope, alpha, E95-relative local margin, E129 separated veto flags, E95 hard-tail exposure, and post-E101 sensor stress.
+- Label vs split test: valid as a public-free synthesis stress because E130 starts from E95 and tests density-shaped local movement against already defined vetoes. Invalid if a locally strict row is submitted while E129 veto/actionability or post-E101 sensor stress rejects it.
+- Current evidence: E130 generated `1792` variants and evaluated `698`. Local strict rows were `25`; E129-veto-actionable rows before local strict were `19`; local-strict plus E129-veto-actionable rows were `0`; final submit gate was `0`. The best local strict move was `-0.000001512` versus E95 but post-E101 sensor-adverse, while the safest micro-moves were immaterial.
+- Policy: use density-shaped synthesis as a falsifier, not a candidate generator. Future features may use tail density as an energy term only if they also prove local E95-relative upside without increasing E72/E101-compatible exposure.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

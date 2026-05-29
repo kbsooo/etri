@@ -1014,3 +1014,12 @@
 - Implementation issue possible: low-medium. E129 depends on filename-based same-family tagging and local/report-referenced file availability. But the scan is broad enough that the discarded claim is strong for the current workspace universe.
 - Bottleneck implication: candidate selection over existing files is not the immediate path. The missing object is a new representation/movement that satisfies the vetoes, not another old-file rank.
 - Do not repeat: full local submission rescans, E85/E89/noQ2 promotion by low veto energy, or "maybe an old CSV is hiding the answer" unless a new representation family has actually produced new files.
+
+## FH113. Tail-neutral density can be directly translated into an E95 successor
+
+- Failed hypothesis: the E127 tail-neutral/low-alpha density field should be enough to synthesize a new E95-neighborhood file by moving selected cells toward existing donors such as E86/E90/E89/E85/noQ2/mixmin.
+- Observed result: E130 generated `1792` density-shaped variants and evaluated `698`. It found `25` E95-relative local-strict variants and `19` E129-veto-actionable variants, but `0` variants in the intersection and `0` final submit-gate variants. The strongest local strict rows came mostly from E86/E90 low-alpha masks, but they increased post-E101 sensor exposure; the safest rows were only micro-moves and failed strict/material gates.
+- Why discard: density identifies where the post-E101 budget may live, not the direction/amplitude that improves probabilities there. Direct movement toward old donors recreates the same conflict E129 exposed: local margin lives in an exposure-adverse region, while veto-safe movement is too small.
+- Implementation issue possible: medium. E130 only tests donor interpolation around E95, not a learned representation or new model family. The discarded claim is specifically the simple direct density-shaped synthesis rule.
+- Bottleneck implication: the plateau is not solved by "move on better cells." The next representation must learn a movement direction that is simultaneously local-upside and transfer-veto-safe.
+- Do not repeat: submitting E86/E90 low-alpha density rows, tail-equal micro-moves, or density-only E95 blends unless they pass both local strict E95 improvement and post-E101/E129 separated veto gates.

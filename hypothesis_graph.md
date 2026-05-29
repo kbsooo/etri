@@ -1441,6 +1441,18 @@ target co-occurrence
 - public LB 관측 반응: no new public submission. E129 explains why E128's veto components should not be turned into an old-file submit queue.
 - 제출 전략: no E129 submission. Stop spending priority on existing-universe rank search; build new representation/movement that can satisfy the vetoes while producing selector-scale upside.
 
+### H124. Tail-density fields can synthesize an E95 successor by local cell movement
+
+- 상태: rejected as a direct synthesis rule; retained as a representation/veto target.
+- 왜 그럴듯한가: E127 showed tail-neutral/low-alpha density predicts the E101-compatible budget field, and E129 showed old files do not contain a hidden successor. The next plausible step was to use the density field to create a new point near E95.
+- 맞다면: E95-relative variants restricted to high-density cells should include at least one candidate that beats E95 locally, satisfies E128/E129 separated vetoes, and remains favorable under post-E101 sensor stress.
+- 틀리다면: local-upside variants should systematically violate E72/E101 exposure gates, while veto-safe variants should be too small or non-strict.
+- 최소 실험: `analysis_outputs/e130_tail_density_synthesis_probe.py`, moving E95 toward E86/E90/E89/E85/noQ2/mixmin under tail-equal, low-alpha, and density-score masks.
+- 관측: `1792` variants were generated and `698` evaluated. `25` were local-strict against E95 and `19` were E129-veto-actionable before local strict, but their intersection was `0`; final submit-gate variants were `0`. Best local strict improvement was only `-0.000001512` and increased post-E101 sensor mean by about `+0.000003863`; best post-E101-safe micro-moves were `~1e-8` scale and not strict.
+- 성공/폐기 기준: reject the direct density-shaped synthesis rule because local upside and transfer-shrinkage veto safety do not overlap. Retain the density as a LeJEPA-style health/veto signal.
+- public LB 관측 반응: no public submission. A public test would be low-information because the local-stress-positive candidates are veto-adverse and the veto-safe candidates are immaterial.
+- 제출 전략: no E130 submission. Future candidates need a new representation that disentangles "where density says public budget lives" from "where local probability movement produces safe upside."
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
