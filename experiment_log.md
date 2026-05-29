@@ -1908,3 +1908,16 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - Target-only CV is weak: JS `0.316796`, top50 truth-mass capture `0.037897`.
 - Interpretation: the transfer-shrinkage field is not arbitrary. Tail-neutral and low-alpha scenario geometry sees it, and metadata has a weak but real public-free signal once fallback/tail/E72 bins are included. However, even the best metadata top50 captures only about a quarter of the teacher mass, so this is a negative gate and representation target, not a submission generator.
 - Decision: no submission. The next useful branch is to build a public-free tail-neutral/low-alpha transfer-shrinkage representation and only then test whether it can move probabilities above selector noise without reintroducing E72/E101 active-cell tail risk.
+
+## E128. Transfer-Shrinkage Energy Candidate Audit
+
+- Observe: E127 made tail-neutral/low-alpha density a plausible representation target, but not yet an action rule. The next question is whether the energy explains known public anchors and triages live candidates, or only explains E101 after the fact.
+- Wonder: does transfer-shrinkage energy separate E95, E101, mixmin, E72, and bad JEPA anchors, and does it make any live E85/E86/E89/E90/noQ2 candidate submit-worthy?
+- Method: `analysis_outputs/e128_transfer_shrinkage_energy_candidate_audit.py` scored known public anchors and live candidates by movement alignment with the E95 law under E127 tail-equal density, active/Q2S3 rollback from E95, E72-adverse exposure on E101-compatible density, and a simple combined transfer-shrinkage risk index.
+- Result:
+  - Strong known-public single metrics exist: `q2s3_delta95_l1` Spearman with public delta `0.958042`, `tail_equal_law_resid_ratio` `0.888112`, `e72_adverse_exposure_e101_plausible` `0.881119`, and `e101_active_delta95_l1` `0.874126`.
+  - The combined `transfer_shrinkage_risk_index` is weaker: Spearman `0.440559`.
+  - E101 preserves tail-equal E95 law (`tail_equal_law_cosine = 1.000000`) but pays active rollback (`e101_active_delta95_l1 = 0.010792`).
+  - Live candidates by this index rank E85, E89, noQ2, E90, E86, but this conflicts with E124/E126's warning that these same-family candidates have weak E95-beat support after E101.
+- Interpretation: the energy is useful as a veto and decomposition. It explains why Q2/S3/active movement is dangerous and why E101 is close but worse. It is not a standalone public selector because the composite score does not rank all known anchors robustly and would over-promote old same-family conservative files without new upside evidence.
+- Decision: no submission. Promote transfer-shrinkage energy to candidate-risk component only. Future candidates must pass this energy in addition to E124/E126 stress and must show selector-scale expected movement.

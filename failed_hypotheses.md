@@ -996,3 +996,12 @@
 - Implementation issue possible: medium. E127 uses category-mean prediction rather than a richer model; a future representation learner could improve it. The discarded claim is only the direct simple-metadata submission path.
 - Bottleneck implication: the field is partly visible but not translated. Progress requires building a representation from the tail-neutral proxy and then proving margin-scale probability movement.
 - Do not repeat: submitting a file from target/context/fallback/E72-bin metadata ranking alone, or treating E127 metadata CV as a public score forecast.
+
+## FH111. Transfer-shrinkage composite ranker can choose the next submission
+
+- Failed hypothesis: E127's tail-neutral/low-alpha field can be compressed into one candidate-risk score that ranks live E85/E86/E89/E90/noQ2 submissions well enough to choose the next file.
+- Observed result: E128 found strong component metrics against known public deltas: `q2s3_delta95_l1` Spearman `0.958042`, `tail_equal_law_resid_ratio` `0.888112`, `e72_adverse_exposure_e101_plausible` `0.881119`, and `e101_active_delta95_l1` `0.874126`. But the combined `transfer_shrinkage_risk_index` only reached Spearman `0.440559` and would rank live candidates E85/E89/noQ2/E90/E86 despite E124/E126 showing that same-family successors have weak E95-beat support after E101.
+- Why discard: the components measure real risks, but a single scalar loses the separation between active-cell rollback, Q2/S3 rollback, E72 exposure, and tail-equal law residual. That compression would over-promote conservative old files without independent upside.
+- Implementation issue possible: medium. E128 uses a deliberately simple composite. A learned ranker could improve, but the discarded claim is narrower: the current composite is not a safe submit selector.
+- Bottleneck implication: transfer-shrinkage is now a veto/decomposition layer, not the candidate-selection answer. The next improvement still needs selector-scale probability movement or a new public-free representation.
+- Do not repeat: submitting E85/E89/noQ2 solely because transfer-shrinkage risk is low, or replacing E124/E126 public-world stress with one combined energy scalar.

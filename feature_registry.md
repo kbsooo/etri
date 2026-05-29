@@ -952,6 +952,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E127 found `broad_tail_equal` JS `0.038002`, Spearman `0.902053`, top50 truth-mass capture `0.293969`; `broad_q2s3` JS `0.508660`; best metadata view `target_context_tail_e72bin` CV JS `0.073253`, top50 truth-mass capture `0.252521`; target-only CV JS `0.316796`.
 - Policy: use tail-neutral/low-alpha transfer-shrinkage density as a mandatory negative gate for same-family candidates and as the next representation target. Do not promote metadata-only cell ranking to a submission.
 
+### F105. Transfer-shrinkage candidate-risk energy
+
+- Hidden structure: a candidate can look healthy under the broad E95 law while still paying LogLoss through E101-active rollback, Q2/S3 rollback, E72-adverse cells, or tail-equal law residual. These risks must remain visible separately instead of being hidden inside one blend score.
+- Candidates: E95-law cosine under E127 `broad_tail_equal` density, tail-equal residual ratio, E101-active delta vs E95, Q2/S3 delta vs E95, E72-adverse exposure on E101-plausible density, and composite transfer-shrinkage risk index.
+- Label vs split test: valid as a known-public sanity/veto diagnostic if component metrics align with E95/E101/mixmin/E72/bad-anchor ordering. Invalid as a submission selector when the composite scalar conflicts with E124/E126 public-world stress or promotes same-family files without new upside.
+- Current evidence: E128 found component Spearman correlations with known public delta of `0.958042` for `q2s3_delta95_l1`, `0.888112` for `tail_equal_law_resid_ratio`, `0.881119` for `e72_adverse_exposure_e101_plausible`, and `0.874126` for `e101_active_delta95_l1`. The combined `transfer_shrinkage_risk_index` was only `0.440559` and ranked E85/E89/noQ2/E90/E86 as live low-risk candidates, conflicting with E124/E126 loss-side evidence.
+- Policy: use the component energies as veto/decomposition fields. Do not submit or rank from the combined score alone. A future candidate must be low-risk on these components and independently pass post-E101 public-world stress with selector-scale expected movement.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

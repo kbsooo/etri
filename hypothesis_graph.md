@@ -1417,6 +1417,18 @@ target co-occurrence
 - public LB 관측 반응: E101 already supplied the public sensor. E127 says future files should be filtered against tail-neutral/low-alpha density, not q2s3 or E101-active density.
 - 제출 전략: no E127 submission. Build a transfer-shrinkage latent/gate and require it to clear selector-scale margin before any probability movement.
 
+### H122. Transfer-shrinkage energy is a useful veto, not a standalone public selector
+
+- 상태: partially supported as a risk decomposition; rejected as a direct submission ranker.
+- 왜 그럴듯한가: E127's tail-neutral density aligns strongly with the E101-compatible budget field. If that energy is actionable, it should explain known public-anchor ordering and make live E85/E86/E89/E90/noQ2 risk differences explicit.
+- 맞다면: active/Q2S3 rollback, tail-equal law residual, and E72-adverse exposure should correlate with known public deltas. A combined energy should not promote candidates that E124/E126 already mark as weak after E101.
+- 틀리다면: those energy components should fail known-public sanity or collapse into an old same-family ranker that conflicts with post-E101 evidence.
+- 최소 실험: `analysis_outputs/e128_transfer_shrinkage_energy_candidate_audit.py`, scoring known anchors and live candidates by E95-law alignment under tail-equal density, E101-active rollback, Q2/S3 rollback, E72-adverse exposure on E101-compatible density, and a combined risk index.
+- 관측: individual metrics are strong: `q2s3_delta95_l1` Spearman with known public delta `0.958042`, `tail_equal_law_resid_ratio` `0.888112`, `e72_adverse_exposure_e101_plausible` `0.881119`, and `e101_active_delta95_l1` `0.874126`. The combined `transfer_shrinkage_risk_index` is much weaker at `0.440559`. It ranks live candidates E85/E89/noQ2/E90/E86, which conflicts with E124/E126's warning that same-family successors remain weak after E101.
+- 성공/폐기 기준: support the component energies as veto/diagnostic features. Reject the compressed scalar ranker unless a future candidate also passes E124/E126-style public-world stress and creates selector-scale movement.
+- public LB 관측 반응: E128 uses E95/E101/mixmin/E72/bad-anchor public observations only as sensors. It explains E101 as close-but-worse through active rollback, but does not justify a new public submission.
+- 제출 전략: no E128 submission. Treat transfer-shrinkage energy as separate veto components, not a single score. A future file must be low on active/Q2S3 rollback and tail residual while also bringing independent upside evidence.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
