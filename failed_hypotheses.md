@@ -1176,3 +1176,13 @@
 - Implementation issue possible: low for the decision table; medium for actual public interpretation because the future score is not known yet.
 - Bottleneck implication: candidate selection is now an interpretation-resolution problem as much as a modeling problem. The next action must preserve attribution discipline.
 - Do not repeat: auto-submit E143 after E144 fine loss, or close/rescue the branch from a scalar band without E148/E149 context.
+
+## FH131. The current plateau is mainly missed old candidates or generic model capacity
+
+- Failed hypothesis: the `0.5762913298` frontier exists because a better old submission, blend, top-count sweep, or ordinary model-capacity variant has not been selected yet.
+- Observed result: E151 aggregates E98/E120/E129-E150 and finds the opposite pattern. E98's best known-LB selector p90 error is `0.0008164966`, `53.33x` the E95 edge; E101 was locally optimistic by `0.0000252415`; E129 found `0` novel strict actionable old-file successors; E130/E131/E132/E137/E138/E139 all have `submit_gate=0`; and the only live path is the narrow E142/E143/E144 branch with counts `35/15/9` and E144/E143 cosine `0.991918719`.
+- Why discard: old-file search and direct decoder families repeatedly expose the same split: local reward exists, public-tail safety exists, but their intersection is tiny and mostly hand-pruned. This is not what a simple candidate-selection or capacity bottleneck should look like.
+- Implementation issue possible: low for the audit because it only joins previously materialized reports and verifies control counts. Medium for the global claim because an untested genuinely new decoder could still exist.
+- Bottleneck implication: the frontier is a selector-resolution and representation-to-probability decoder problem. The useful next branch must create a non-collinear movement that survives strict/E72/post101 p95 gates above `1e-5`, not rescore old CSVs.
+- Do not repeat: old submission universe ranking, same-family blend/top-count sweeps, Q2/S3 amplitude tuning, or broad capacity experiments unless E144 public feedback specifically reopens that branch.
+- Remaining question: can a new latent target encode transfer-tail budget and worst-tail geometry directly enough to produce a non-collinear, public-tail-safe probability movement?

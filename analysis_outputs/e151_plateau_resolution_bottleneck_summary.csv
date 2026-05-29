@@ -1,0 +1,10 @@
+evidence,value,reference,ratio_vs_e95_edge,ratio_vs_e101_edge,ratio_vs_e144_local_edge,interpretation
+best_known_lb_selector_p90_error,0.0008164966418947,e98_e95_updated_selector_model_scores.csv,53.32849849400172,90.35840750443724,83.95049858807222,movement-fingerprint selectors are far too coarse for frontier-scale ranking
+best_known_lb_selector_mae,0.0005200952320062,e98_e95_updated_selector_model_scores.csv,33.96939604358727,57.55685265977099,53.47511771619817,even average proxy error exceeds the live edge by more than an order of magnitude
+e101_actual_minus_local_mean,2.524149175063108e-05,e120_post_e101_public_observation_summary.csv,1.6486177477549087,2.79337462102821,2.595278056079836,local stress was optimistic by more than the entire E95 gain over mixmin
+e101_actual_minus_local_p95,1.0600278792255598e-05,e120_post_e101_public_observation_summary.csv,0.6923444905995154,1.1730903247178346,1.089898774987481,the public tail beat the local p95 optimism; p95 alone was not conservative enough
+e101_local_mean_vs_actual_direction,-1.6205291750596722e-05,e120_post_e101_public_observation_summary.csv,1.0584291868134938,1.7933746210282098,1.6661946325594548,local mean predicted a win while public gave a loss
+e144_vs_e95_local_edge,-9.72592963266461e-06,e144_e143_active_boundary_refine_frontier.csv,0.635237424326372,1.076329611189176,1.0,E144 is a readable hypothesis sensor but not a 0.54-scale movement
+e144_vs_e143_local_tiebreak,-1.7457186274327796e-07,e144_e143_active_boundary_refine_frontier.csv,0.011401951755486337,0.01931916765262104,0.017949118422261354,the E144-over-E143 local edge is far below selector/public resolution
+e144_post101_p95_vs_e95,-3.4304890503887105e-06,e144_e143_active_boundary_refine_frontier.csv,0.22405827626286437,0.37963845979235383,0.3527157999238846,"E144 survives the E101-tail stress, but only at micro-tail scale"
+e144_cosine_with_e143,0.991918718832651,e149_e144_anchor_geometry_summary.csv,,,,"E144 is branch-pruned geometry, not independent representation"

@@ -2289,3 +2289,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - classification smoke test maps hypothetical scores to the intended bands: `0.576270` breakthrough, `0.576286` micro-win, `0.576292` tie, `0.576296` fine-loss, `0.576302` branch-loss, `0.576310` hard-fail.
 - Interpretation: E150 is the current post-public decision contract. It prevents the next public result from being overfit by a nearby same-family rescue. The smallest kill experiment remains E144 public feedback, but the allowed response is now stricter than E145 alone.
 - Decision: no submission is materialized. Keep `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the next file. After public feedback, run `python3 analysis_outputs/e150_e144_postfeedback_interpreter.py --score <PUBLIC_LB>` before any E143/E142 decision.
+
+## E151. Plateau Resolution Bottleneck Audit
+
+- Observe: the current public frontier edge is tiny. E95 beats mixmin by only `0.0000153107`, while E101 loses to E95 by `0.0000090362` and E144's local edge over E143 is only `0.0000001746`.
+- Wonder: is the `0.5762913298` plateau mostly caused by ordinary candidate selection/model capacity, or by a resolution/decoder bottleneck where local-upside and public-tail-safe directions do not overlap except on the narrow E142/E143/E144 branch?
+- Method: `analysis_outputs/e151_plateau_resolution_bottleneck_audit.py` joins E98 selector resolution, E120 actual E101 feedback, E129 old-universe gate counts, E130-E140 failed representation/decoder families, E142-E144 live branch counts, and E149/E150 E144 geometry.
+- Result:
+  - best known-LB selector p90 error: `0.0008164966`, or `53.33x` the E95-over-mixmin edge.
+  - E101 actual-minus-local-mean optimism: `0.0000252415`, or `1.65x` the E95 edge.
+  - E144 local edge vs E95: `-0.0000097259`; E144-over-E143 local tiebreak: `-0.0000001746`.
+  - E129 strict novel actionable old candidates: `0`.
+  - E130/E131/E132/E137/E138/E139 all have `submit_gate=0`, despite some large local or p95 improvements.
+  - E142/E143/E144 are the only current intersection: E142 relaxed `35`, E143 strict `15`, E144 submit `9`.
+  - bottleneck statuses: validation mismatch strong, public subset mismatch strong-but-underidentified, target/calibration tail strong, representation-decoder problem strong, old-candidate selection mostly rejected.
+- Interpretation: E151 rejects the easy explanation that the plateau is mainly a missed old CSV or generic model capacity. The signal is visible enough to build E142-E144, but the probability decoder only becomes public-safe after heavy hand-built budget/active pruning, and the remaining movement is E143-collinear and frontier-scale small.
+- Decision: no submission is materialized. E144 remains the next public sensor. If waiting for public feedback, the next local experiment should be an independent representation-to-probability decoder that beats `1e-5` local edge, passes strict/E72/post101 p95 gates, and is not E142/E143/E144-collinear.

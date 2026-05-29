@@ -1692,6 +1692,18 @@ target co-occurrence
 - public LB 관측 반응: after E144 public feedback, run E150 first. A win promotes E144 but not broad breakthrough claims. A fine loss requires attribution before E143. Worse than E101 blocks same-family rescue. Worse than mixmin closes E142/E143/E144.
 - 제출 전략: no E150 submission. It is the mandatory post-E144 decision gate.
 
+### H145. The 0.5762913298 plateau is a selector-resolution and decoder bottleneck, not mainly missed old candidates
+
+- 상태: supported by E151; public E144 still pending.
+- 왜 그럴듯한가: E95's public edge over mixmin is only `0.0000153107`, E101's resolved loss is `0.0000090362`, and E144 is an even smaller E143-collinear branch refinement. Existing selector/proxy errors are much larger than these effects, while representation probes repeatedly find either local reward or tail safety but not submit-safe overlap.
+- 맞다면: old submission universe search should have no novel strict successor; known-LB selector p90 should be far above the frontier edge; E130-E139 decoder families should fail submit gates; only E142/E143/E144-like hand-clipped branch candidates should survive.
+- 틀리다면: either an old/non-same-family candidate should pass E129/E120/E149-style stress, or an ordinary validation selector should rank E95/E101/E144 with sub-`5e-6` error, or a broad model/decoder should pass strict/E72/post101 p95 gates without E143 collinearity.
+- 최소 실험: `analysis_outputs/e151_plateau_resolution_bottleneck_audit.py`, joining E98, E120, and E129-E150 evidence.
+- 관측: best known-LB selector p90 `0.0008164966` is `53.33x` the E95 edge; E101 actual-minus-local-mean optimism `0.0000252415` is `1.65x` the E95 edge; E129 strict novel actionable `0`; E130/E131/E132/E137/E138/E139 `submit_gate=0`; live branch counts are E142 `35`, E143 `15`, E144 `9`; E144 cosine with E143 `0.991918719`.
+- 성공/폐기 기준: support H145 until a non-collinear decoder clears strict/E72/post101 p95 gates with local edge above `1e-5`, or a new validation object resolves E95/E101/E144 below `5e-6`.
+- public LB 관측 반응: E144 remains the smallest public kill test. Win validates the narrow branch, not a broad representation breakthrough. Loss strengthens the decoder-overfit interpretation unless attribution isolates fine-tail/S3.
+- 제출 전략: no E151 submission. Submit E144 first if using a slot; otherwise build an independent transfer-budget-neutral decoder rather than resweeping old blends.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

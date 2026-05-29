@@ -754,6 +754,37 @@ E144 fine-boundary audit 전까지 제출 파일은 `analysis_outputs/submission
 
 지금 제출할 파일은 여전히 하나다. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.
 
+## 추가 관찰: 0.5762913298 plateau는 후보 탐색 실패보다 해상도/디코더 병목에 가깝다
+
+`analysis_outputs/e151_plateau_resolution_bottleneck_audit.py`로 지금까지의 E98/E120/E129-E150 증거를 한 테이블로 묶었다.
+
+질문은 이것이었다.
+
+`0.5762913298 plateau는 좋은 후보를 못 고른 문제인가, 아니면 local-upside와 public-tail safety가 아주 좁은 branch에서만 만나는 문제인가?`
+
+결과:
+
+- E95가 mixmin을 이긴 폭: `0.0000153107`.
+- best known-LB selector p90 error: `0.0008164966`, E95 edge의 `53.33x`.
+- E101 actual-minus-local-mean optimism: `0.0000252415`, E95 edge의 `1.65x`.
+- E144 local edge vs E95: `-0.0000097259`.
+- E144-over-E143 local tiebreak: `-0.0000001746`.
+- old submission universe의 strict novel actionable: `0`.
+- E130/E131/E132/E137/E138/E139 representation/decoder families: 모두 `submit_gate=0`.
+- live branch count: E142 relaxed `35`, E143 strict `15`, E144 submit `9`.
+- E144 cosine with E143: `0.991918719`.
+
+현재 세계관을 다시 압축한다.
+
+`E95는 real S-heavy hardtail/calibration law다. 하지만 그 다음 residual structure는 기존 selector 해상도보다 작고, visible state를 probability movement로 디코딩하면 local reward와 public-tail safety가 분리된다. E142/E143/E144만 현재 둘이 만나는 좁은 지점이고, 그마저도 E143 branch와 거의 같은 방향이다.`
+
+따라서 0.576대 벽은 이제 더 정확히 이렇게 보인다.
+
+`좋은 모델을 더 돌리면 되는 벽이 아니라, representation-to-probability decoder가 public-tail-safe tangent를 만들어야 하는 벽이다. 기존 CSV 우주를 더 뒤지는 일은 대부분 닫혔다.`
+
+지금 제출 후보는 변하지 않는다. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.
+E144를 기다리는 동안의 다음 local 행동은 blend/top-count sweep이 아니라, E143과 비공선인 transfer-budget-neutral residual representation을 만들고 strict/E72/post101 p95 gate를 통과시키는 것이다.
+
 ## 추가 관찰: E144 결과 이후 행동 규칙을 실행 가능하게 고정했다
 
 `analysis_outputs/e150_e144_postfeedback_interpreter.py`로 E145/E148/E149를 하나의 decision gate로 합쳤다.

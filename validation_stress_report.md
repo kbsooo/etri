@@ -495,3 +495,18 @@ E150 turns the E145/E148/E149 interpretation stack into an executable post-feedb
 - hard-fail status: `rejected`; close E142/E143/E144 local boundary repair.
 
 The important validation change is that E143 is no longer justified by E144 fine-loss alone. It is allowed only if the attribution read points to fine-tail/S3 retention. Otherwise, fine loss can be inherited-body/Q3/S2 or broad branch stress, and same-family fallback would be post-hoc overfit. The command to apply after public feedback is `python3 analysis_outputs/e150_e144_postfeedback_interpreter.py --score <PUBLIC_LB>`.
+
+## Update After E151
+
+E151 audits the plateau itself rather than a new candidate.
+
+- E95 edge over mixmin: `0.0000153107`.
+- best E98 known-LB selector p90 error: `0.0008164966`, or `53.33x` the E95 edge.
+- E101 actual-minus-local-mean optimism: `0.0000252415`, or `1.65x` the E95 edge.
+- E144 local edge vs E95: `-0.0000097259`.
+- E144-over-E143 local tiebreak: `-0.0000001746`.
+- old-universe strict novel actionable count from E129: `0`.
+- E130/E131/E132/E137/E138/E139 decoder families: all `submit_gate=0`.
+- live branch counts: E142 relaxed `35`, E143 strict `15`, E144 submit `9`.
+
+The validation implication is strong: the plateau is not mostly an old-candidate ranking failure. Existing validators cannot resolve the frontier edge, and the representation/decoder probes find either local reward or public-tail safety without submit-safe overlap. The only current overlap is the E142/E143/E144 branch, which is nearly E143-collinear. The next validation object must prove sub-`5e-6` ordering on E95/E101/E144 or produce a non-collinear decoder passing strict/E72/post101 p95 gates.

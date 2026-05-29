@@ -1136,6 +1136,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E150 produces `7` decision rows. The key correction is `fine_loss_branch_alive -> conditional_alive`: E143 is allowed only if attribution points to fine-tail/S3 retention. `branch_loss` and `hard_fail` block E143/E142 rescue.
 - Policy: mandatory after E144 public feedback. Run `python3 analysis_outputs/e150_e144_postfeedback_interpreter.py --score <PUBLIC_LB>` before creating or submitting any post-E144 same-family file.
 
+### F128. Plateau resolution bottleneck energy
+
+- Hidden structure: the current frontier may be limited less by missing features than by selector resolution and probability-decoder geometry. A useful feature must prove it can create public-tail-safe movement above frontier-scale noise without collapsing into the E142/E143/E144 branch.
+- Candidates: E95-over-mixmin edge, E101 public loss, E98 known-LB selector p90/MAE, E120 local optimism, E129 old-universe strict novelty count, E130-E139 submit gates, E142/E143/E144 branch counts, E144/E143 cosine, and E144 local tiebreak.
+- Label vs split test: valid as a LeJEPA-style decision energy because it tests whether candidate families are healthy enough to create submissions. Invalid as a direct model feature because it aggregates experiment outcomes and public observations.
+- Current evidence: E151 finds E98 p90 `0.0008164966` is `53.33x` the E95 public edge; E101 actual-minus-local-mean optimism is `0.0000252415`; E129 strict novel actionable count is `0`; E130/E131/E132/E137/E138/E139 have `submit_gate=0`; E142/E143/E144 branch counts are `35`/`15`/`9`; E144 is E143-collinear with cosine `0.991918719`.
+- Policy: use as a hard framing gate. Do not spend work on old-file ranking, blend/top-count sweeps, or same-family Q2/S3 amplitude tweaking unless E144 public feedback explicitly calls for that branch. New local work must target a non-collinear representation-to-probability decoder that passes strict/E72/post101 p95 gates with edge above `1e-5`.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.
