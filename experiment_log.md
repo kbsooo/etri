@@ -2726,3 +2726,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - direct E176-vs-E174 cost is only Q2 `+0.000000983`. Direct E176-vs-E172 recovery remains broad across S3 `-0.000003234`, S2 `-0.000002682`, Q2 `-0.000001970`, S1 `-0.000001471`, and smaller Q1/Q3/S4.
 - Interpretation: E174 is not strictly Pareto. The hidden world model updates from "partial reopening is best as top-75 full reopen" to "partial reopening is real, but Q2 should be slightly under-opened relative to S3/S2/S1." This is exactly the Q/S asymmetric calibration risk that kept appearing after E101.
 - Decision: promote `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` as the risk-adjusted broad expected-score candidate. Keep E174 as the maximum-edge contrast and E172 as the lower-risk tail-repair contrast. E176 should still be decoded with E175-style bands because it is a same-family E174 sibling, not a new independent branch.
+
+## E177. E176 Public Feedback Decoder
+
+- Observe: E176 is now the first risk-adjusted broad file, but a single public score can still be misread. The Q2 damping delta versus E174 is only `+0.000000983` expected focus cost over `21` Q2 cells, so a future E176 result should not be used to retune Q2 keep factors post hoc.
+- Wonder: can we lock the E176 score interpretation before feedback, so a win validates Q/S-asymmetric partial reopening while a loss closes or demotes the branch instead of spawning another same-family sibling?
+- Method: `analysis_outputs/e177_e176_public_feedback_decoder.py` fixes E176 score bands relative to E95/E101/mixmin; computes E176 pairwise hard-label readability versus E95/E174/E172/E169/E154/E101/mixmin; attributes E176-vs-E174, E176-vs-E172, and E176-vs-E95 movement by target/context; and writes no submission.
+- Result:
+  - report: `analysis_outputs/e177_e176_public_feedback_decoder_report.md`.
+  - bands: breakthrough `<=0.576261330`, clean win `(0.576261330,0.576276019]`, micro win `(0.576276019,0.576288330]`, tie `(0.576288330,0.576294330]`, small loss `(0.576294330,0.576300366]`, E101-worse/mixmin-safe `(0.576300366,0.576306641]`, branch loss `(0.576306641,0.576341330]`, hard fail `>0.576341330`.
+  - E176-vs-E95: moved cells/rows `904/193`, expected focus delta `-0.000123384`, cells-to-flip `33`, top1 swing `0.000005832`, cells for E95-over-mixmin edge `4`.
+  - E176-vs-E174 Q2 damping: `21` Q2 cells over `21` rows, expected focus cost `+0.000000983`, cells-to-flip `2`, top1 swing `0.000000832`, support probability swing-weighted `0.495994`.
+  - E176-vs-E172 recovery remains broad: `75` cells over `65` rows, expected focus recovery `-0.000010689`, cells-to-flip `5`; by target it is S3 `-0.000003234`, S2 `-0.000002682`, Q2 `-0.000001970`, S1 `-0.000001471`, and smaller Q1/Q3/S4.
+  - prior moments: E176 gives up only `+0.000000082` focus mean versus E174 while improving visible p95 by `-0.000000387` and worse-than-E101 probability by `-0.000028131`.
+- Interpretation: E177 turns E176 from "better-looking sibling" into a falsifiable public sensor. A win below E95 validates Q/S-asymmetric partial reopening. A tie/small loss keeps E95 practical and makes E172/E174 only contrast sensors. A worse-than-E101 result demotes the damped partial-reopen family. If E176 loses but E174 later wins, the full Q2 reopening was public-real; if both lose, the whole partial-reopen lane is public-misaligned.
+- Decision: before any same-family follow-up, run `python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <PUBLIC_LB>` for an E176 result. Do not tune Q2 keep factors from a scalar E176 score.

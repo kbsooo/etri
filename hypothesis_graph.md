@@ -2004,6 +2004,18 @@ target co-occurrence
 - public LB 관측 반응: E176 win below E95 validates asymmetric Q2 damping inside partial reopening. E176 tie/small-loss keeps partial reopening underresolved and points back to E172/E154 depending on risk appetite. E176 worse than E101 says even the damped Q2 partial-reopen branch is not public-safe.
 - 제출 전략: if submitting one risk-adjusted broad expected-score file now, prefer E176 over E174. Keep E174 as max-edge contrast and E172 as low-risk contrast.
 
+### H171. E176 must be decoded as a Q2-amplitude public sensor, not as a scalar score rank
+
+- 상태: supported as a pre-public decision rule by E177; public feedback pending.
+- 왜 그럴듯한가: E176 differs from E174 only by damping `21` reopened Q2 cells. Its expected focus cost versus E174 is only `+0.000000983`, below normal public resolution, so a scalar public LB alone can easily invite post-hoc keep-factor tuning.
+- 맞다면: a useful decoder should pre-register E176 bands, show that E176-vs-E174 is a small Q2-only contrast, and specify when E174, E172, or E154 can be considered without changing thresholds after public feedback.
+- 틀리다면: E176's public score could be interpreted by ordinary ranking alone, or E176-vs-E174 would have broad enough movement that Q2 amplitude attribution is unnecessary.
+- 최소 실험: `analysis_outputs/e177_e176_public_feedback_decoder.py`.
+- 관측: E177 fixes bands from breakthrough `<=0.576261330` through hard fail `>0.576341330`. E176-vs-E95 has moved cells/rows `904/193`, expected focus delta `-0.000123384`, cells-to-flip `33`, top1 swing `0.000005832`, and cells for E95-over-mixmin edge `4`. E176-vs-E174 is only `21` Q2 cells over `21` rows, expected focus cost `+0.000000983`, cells-to-flip `2`, top1 swing `0.000000832`, and swing-weighted support `0.495994`.
+- 성공/폐기 기준: support strengthens if E176 feedback can be mapped to the fixed E177 band table without changing the Q2 keep rule. It weakens if later public observations force an unanticipated interpretation not covered by E177, especially if E176 and E174 diverge in a way unrelated to Q2 amplitude.
+- public LB 관측 반응: E176 below E95 validates Q/S-asymmetric partial reopening; tie/small-loss keeps E95 practical and makes E172/E174 only contrast sensors; worse-than-E101 demotes the damped partial-reopen family; E176 loss followed by E174 win says full Q2 reopening was public-real.
+- 제출 전략: submit E176 first if using one risk-adjusted broad slot, then run `python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <PUBLIC_LB>`. Do not tune Q2 keep factors from that score.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

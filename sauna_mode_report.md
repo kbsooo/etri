@@ -1845,3 +1845,49 @@ E174를 제출했다면 먼저 이것부터 실행한다.
 - E176이 tie/small loss면: broad branch는 여전히 hidden hard-label 해상도에 막혔거나 partial reopening 자체가 과했다.
 - E176이 나쁘고 E174가 나중에 좋으면: Q2 full reopening이 public-real이었다.
 - E176이 mixmin보다 나쁘면: E174/E176/E172 same-family broad reopening은 기대 점수 후보가 아니라 실패한 latent family로 본다.
+
+## E177 업데이트: E176 점수 해석을 먼저 잠갔다
+
+가장 이상한 점:
+
+E176은 E174보다 더 균형 잡힌 후보지만, E176과 E174의 차이는 너무 작다. E176-vs-E174는 Q2 `21` cells뿐이고 expected focus cost는 `+0.000000983`, top1 swing은 `0.000000832`다.
+
+즉 E176 public 점수가 나오면 “Q2 keep을 0.65로 할까 0.85로 할까” 같은 연속 튜닝을 할 수 있는 정보량이 아니다. 그 점수는 Q2 amplitude 추정치가 아니라, Q/S-asymmetric partial reopening 세계관을 살릴지 죽일지 보는 센서다.
+
+실험:
+
+- `analysis_outputs/e177_e176_public_feedback_decoder.py`
+- report: `analysis_outputs/e177_e176_public_feedback_decoder_report.md`
+
+관측:
+
+- E176-vs-E95:
+  - moved cells/rows `904/193`
+  - expected focus delta `-0.000123384`
+  - cells-to-flip `33`
+  - top1 swing `0.000005832`
+  - E95-over-mixmin edge를 덮는 cells `4`
+- E176-vs-E174:
+  - Q2 `21` cells
+  - expected focus cost `+0.000000983`
+  - cells-to-flip `2`
+  - top1 swing `0.000000832`
+- E176-vs-E172:
+  - expected focus recovery `-0.000010689`
+  - S3/S2/Q2/S1 순으로 회복
+
+해석 band:
+
+- `<=0.576276019`: E176 broad/Q2-underopen anchor 검증
+- `0.576276019..0.576288330`: micro-win, 아직 underresolved
+- `0.576288330..0.576300366`: E95 practical, E172/E174는 contrast sensor
+- `>0.576300366`: E176 demote
+- `>0.576306641`: same-family reopening expected-score follow-up close
+
+다음 행동:
+
+E176을 제출한다면 결과는 반드시 다음으로 먼저 읽는다.
+
+`python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <PUBLIC_LB>`
+
+그 전에는 Q2 keep-factor sibling을 만들지 않는다. E174는 “full Q2가 public-real인가?”를 나중에 묻는 contrast이지, E176 결과를 보고 자동으로 따라갈 후보가 아니다.

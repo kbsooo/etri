@@ -883,3 +883,16 @@ E176 tests whether E174 is component-Pareto before public feedback.
 - risk improvements versus E174: bad-span energy `0.263996 -> 0.261687`, max bad cosine `0.163229 -> 0.158126`, Q2/S3 share `0.339597 -> 0.334753`, visible p95 `-0.000022709 -> -0.000023096`, worse-than-E101 `0.000220 -> 0.000192`.
 
 Stress implication: E174 was not strictly Pareto. A simple Q2 damping keeps the partial-reopen body while shaving the exact risk axes that made E174 thin. This makes E176 the risk-adjusted broad candidate; E174 remains the max-edge contrast and E172 the safer tail-repair contrast.
+
+## Update After E177
+
+E177 pre-registers how to interpret E176 public feedback before seeing it.
+
+- script: `analysis_outputs/e177_e176_public_feedback_decoder.py`.
+- report: `analysis_outputs/e177_e176_public_feedback_decoder_report.md`.
+- E176-vs-E95 readability: moved cells/rows `904/193`, expected focus delta `-0.000123384`, cells-to-flip `33`, top1 swing `0.000005832`, cells for `2e-6` guard `1`, cells for E95-over-mixmin edge `4`.
+- E176-vs-E174 Q2 damping: `21` Q2 cells over `21` rows, expected focus cost `+0.000000983`, cells-to-flip `2`, top1 swing `0.000000832`.
+- E176-vs-E172 recovery: `75` cells over `65` rows, expected focus recovery `-0.000010689`, cells-to-flip `5`; target recovery is S3 `-0.000003234`, S2 `-0.000002682`, Q2 `-0.000001970`, S1 `-0.000001471`, plus smaller Q1/Q3/S4.
+- score bands: `<=0.576276019` validates E176 as a broad/Q2-underopen anchor, `0.576276019..0.576288330` is micro-win/underresolved, `0.576288330..0.576300366` keeps E95 practical and limits E172/E174 to contrast sensors, `>0.576300366` demotes E176, and `>0.576306641` closes same-family reopening as expected-score follow-up.
+
+Stress implication: E176 is now a locked public sensor rather than an adjustable Q2 amplitude knob. The Q2 damping contrast is too small to justify post-hoc keep-factor tuning from one score; only a later E174-vs-E176 contrast can revive full Q2 reopening.

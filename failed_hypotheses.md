@@ -1376,3 +1376,12 @@
 - Bottleneck implication: the current broad-lane bottleneck is not only "which cells reopen"; it is target-specific amplitude law inside those cells. S3/S2/S1 can stay fully reopened while Q2 should be under-opened unless public feedback proves the full Q2 movement is real.
 - Do not repeat: treating top-N full reopening as fixed, or tuning Q2 amplitude after public feedback. Component damping must be pre-public and interpreted as a Q/S-asymmetric calibration hypothesis.
 - Remaining question: is Q2 under-opening enough to make the partial-reopen family public-positive, or is the entire E169/E172/E174/E176 broad lane still hidden hard-label-resolution limited?
+
+## FH153. E176 can be interpreted with ordinary score ranking or E175 alone
+
+- Failed hypothesis: because E176 is only a small E174 sibling, its public score can be interpreted by ordinary leaderboard ordering or by reusing E175 without a Q2-amplitude-specific decoder.
+- Observed result: E177 shows E176-vs-E174 is a tiny Q2-only contrast: `21` cells over `21` rows, expected focus cost `+0.000000983`, cells-to-flip `2`, top1 swing `0.000000832`, and swing-weighted support `0.495994`. Meanwhile E176-vs-E95 remains broad (`904/193`, expected focus `-0.000123384`, cells-to-flip `33`, cells for E95-over-mixmin edge `4`). The public score must therefore be read as a banded observation about Q/S-asymmetric partial reopening, not as a continuous Q2 keep-factor signal.
+- Why discard: a single scalar E176 score cannot resolve full-Q2 versus damped-Q2 amplitude at sub-`1e-6` expected edge scale. Without a locked decoder, any next E174/E172/E154 choice would become post-hoc tuning.
+- Implementation issue possible: low for the decoder arithmetic because it uses fixed tensors and pairwise hard-label deltas. Medium for public interpretation because E176 feedback is still unknown.
+- Bottleneck implication: the plateau is still hidden-hard-label-resolution limited. E176 is submit-worthy as a risk-adjusted sensor, but its score must be used to kill or preserve worldviews, not to estimate a new Q2 keep factor.
+- Do not repeat: treating E176 feedback as permission to scan Q2 keep `0.5/0.65/0.85/1.0` after the fact. Use `analysis_outputs/e177_e176_public_feedback_decoder.py --score <PUBLIC_LB>` first.
