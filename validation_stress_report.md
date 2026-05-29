@@ -564,3 +564,22 @@ E154 tests whether the E153 S3 actionability blocker is repairable rather than t
 - cosine with E72/E101 public-negative axes: `-0.031628728` / `-0.005523655`.
 
 The validation implication changes the live branch. The E152 all-four failure was not an irreversible gate incompatibility: a very small S3 E101-active rollback can open it. But the successful row remains E144-branch geometry, so this is not a broad escape from the plateau. E154 is now the sharpest public sensor for the current hypothesis; E144 becomes the conservative contrast for the unrepaired branch.
+
+## Update After E155
+
+E155 tests whether E154's added E144->E154 branch body is an exact tuned point.
+
+- rows: `44`.
+- variant rows: `40`.
+- all-four variants: `34`.
+- E155-submit variants: `27`.
+- reduced-body submit variants: `22`.
+- materialized lower-body file: `analysis_outputs/submission_e155_bodytemp_d27e7965.csv`.
+- selected row: `branch_body_alpha`, alpha `0.25`.
+- selected all-minus-E95: `-0.000010362491`.
+- selected body-norm ratio: `0.25`.
+- post-E101 p95: about `-0.00000377`.
+- E72 plausible gap: about `-0.00000108`.
+- target-drop all-four rate: `12/12`.
+
+The validation implication is better than expected. E154 is not a single brittle all-four point; a 25% body interpolation from E144 to E154 still clears the health gates and beats E144 locally. That strengthens the repaired-branch worldview, but it also lowers the urgency to trust full E154 amplitude. Use E154 as the highest-information public sensor and E155 as the conservative amplitude-control contrast.

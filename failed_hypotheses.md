@@ -1213,3 +1213,12 @@
 - Implementation issue possible: medium. The scan is finite and still E144-branch-collinear; it proves repairability inside this local grid, not a broad new representation. The scoring pipeline reuses E83/E130/E142 controls and materializes only rows that beat E144 locally.
 - Bottleneck implication: the live bottleneck shifts from "no all-four intersection exists" to "does the repaired all-four E144-plus-orthogonal branch survive public labels?" E154 is now the highest-information sensor, while E144 is the conservative contrast.
 - Do not repeat: treating active/Q2S3 failure as a branch killer. Repair S3 active-boundary first, then test public feedback. If E154 fails but E144 wins, the issue is likely added branch body or exact rollback selection, not the entire S3 repair concept.
+
+## FH135. E154 requires the exact full branch body
+
+- Failed hypothesis: E154's all-four health is an isolated tuned point; reducing its E144->E154 body or removing target pieces should kill all-four health or lose the E144 local edge.
+- Observed result: E155 finds the opposite. Among `40` ablation variants, `34` remain all-four, `27` pass the E155 submit rule, and `22` reduced-body variants still beat E144. The selected lower-body file `submission_e155_bodytemp_d27e7965.csv` uses only `25%` of the E154 body and still has all-minus-E95 `-0.000010362491`. All `12/12` target-drop rows remain all-four.
+- Why discard: the repaired direction is an amplitude ridge, not a single exact point. Full E154 amplitude may still be the higher-information public sensor, but it is not required for local gate health.
+- Implementation issue possible: low for the ridge existence because it uses the same scoring stack and direct interpolation controls. Medium for public interpretation because lower amplitude may be too small to move public LB even if locally healthy.
+- Bottleneck implication: the branch is less brittle than E154 alone implied. The next risk is amplitude/public-signal resolution, not only gate compatibility.
+- Do not repeat: arguing that an E154 loss automatically rejects S3 active-boundary repair. First separate full-body overextension from the lower-amplitude E155 ridge.

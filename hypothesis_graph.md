@@ -1740,6 +1740,18 @@ target co-occurrence
 - public LB 관측 반응: E154 is now the highest-information next public sensor because it tests the repaired all-four intersection directly. E144 remains the conservative same-branch contrast.
 - 제출 전략: submit `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` first if using one slot for the current live hypothesis. Keep `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the contrast file, not the default first file.
 
+### H149. The E154 branch body is a low-amplitude ridge, not an exact point
+
+- 상태: supported by E155; materialized conservative control candidate.
+- 왜 그럴듯한가: E154 may have passed all-four because the selected E152 source carries a robust E144-plus residual direction, not because every full-amplitude added cell is required. A low-amplitude interpolation should preserve health if the direction is real.
+- 맞다면: E144->E154 logit interpolation at alpha below `1.0` should keep relaxed structural, E72-budget, post-E101, actionability, and local material gates open. Target-drop/target-only ablations should not show a single fragile target whose removal kills all-four.
+- 틀리다면: only full E154 or the exact selected-source keep factor should pass all-four; lower body ratios should fail actionability, relaxed health, or E144 local edge.
+- 최소 실험: `analysis_outputs/e155_e154_branch_body_ablation.py`, scoring body alphas, source S3 repair keep factors, and target drop/only ablations with the same health gates.
+- 관측: `44` rows, `40` variants, `34` all-four variants, `27` submit variants, and `22` reduced-body submit variants. The materialized `submission_e155_bodytemp_d27e7965.csv` uses E144->E154 alpha `0.25`, body-norm ratio `0.25`, all-minus-E95 `-0.000010362491`, post-E101 p95 `-0.00000377`, and E72 gap `-0.00000108`. All `12/12` target-drop rows remain all-four and submit.
+- 성공/폐기 기준: support until public feedback separates E154/E155/E144. If E154 and E155 both win, the repaired branch is robust. If E154 loses but E155 wins, full-body amplitude is overextended. If E155 loses while E154 wins, the lower-amplitude local edge was too weak or public requires the full body. If both lose, close the branch.
+- public LB 관측 반응: E154 remains the first sensor for maximum information and edge. E155 is the conservative amplitude-control sensor, useful if downside risk matters or after an E154 loss.
+- 제출 전략: keep `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` first; add `analysis_outputs/submission_e155_bodytemp_d27e7965.csv` ahead of E144 as the low-amplitude repaired-branch contrast.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

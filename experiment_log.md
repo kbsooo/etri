@@ -2355,3 +2355,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - logit target L1 share: Q3 `0.356221`, Q1 `0.233468`, S3 `0.152445`, S2 `0.134198`, S4 `0.123668`, Q2/S1 approximately `0`.
 - Interpretation: E153's dominant blocker was real but not terminal. A tiny S3 E101-active rollback is enough to open the all-four intersection for an E144-plus-orthogonal source. This is not a broad new representation; E154 remains E144/E143 branch-collinear, but it is the first non-E144 projected repair that satisfies relaxed, E72-budget, post-E101, actionability, and local material gates together.
 - Decision: promote `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` as the highest-information next public sensor. E144 remains the cleaner conservative contrast if the goal is to test the earlier branch alone. If E154 wins, the world model becomes "E95 + E144 residual branch + S3 active-boundary repair is public-real." If E154 loses while E144 later wins, the added orthogonal body or the three-cell S3 rollback was overfit; if both lose, close the transfer-budget residual branch rather than resweeping top-k masks.
+
+## E155. E154 Branch-Body Ablation
+
+- Observe: E154 opened all-four, but it also moved `294` cells versus E95 and added `109` cells beyond E144. The unresolved question is whether public-safe health requires the full E154 branch body or whether a smaller E144->E154 interpolation carries the same hidden law.
+- Wonder: if E154 is an exact overfit point, reducing the added body should either lose all-four health or fall below E144. If the repaired branch is real, a lower-amplitude body should keep relaxed/E72/post-E101/actionability health and still beat E144 locally.
+- Method: `analysis_outputs/e155_e154_branch_body_ablation.py` keeps the selected E154 source `e152_efe33e46`, then tests logit-space E144->E154 body alphas, selected-source S3 repair keep factors, and target drop/only ablations under the same E83/E130/E142 stress stack.
+- Result:
+  - total rows: `44`; variant rows: `40`.
+  - all-four variants: `34`.
+  - E155-submit variants: `27`.
+  - reduced-body submit variants: `22`.
+  - materialized lower-body file: `analysis_outputs/submission_e155_bodytemp_d27e7965.csv`.
+  - selected row: `branch_body_alpha`, alpha `0.25`.
+  - selected all-minus-E95: `-0.000010362491`; E144 is `-0.000009725930`, E154 is `-0.000012158050`.
+  - selected body-norm ratio: `0.25`; post-E101 p95 `-0.00000377`; E72 gap `-0.00000108`.
+  - target ablation is permissive: all `12/12` target-drop rows remain all-four and submit; Q1-only already submits with body ratio `0.336807`.
+- Interpretation: E154 is not an isolated exact repair point. The hidden law looks more like a low-amplitude E144->E154 ridge: even 25% of the added body keeps the health gates open and beats E144. This strengthens the repaired-branch worldview but weakens the claim that full E154 amplitude is necessary.
+- Decision: keep E154 as the highest-information first public sensor because it tests the full repaired all-four branch with larger local edge. Add `analysis_outputs/submission_e155_bodytemp_d27e7965.csv` as the conservative amplitude-control follow-up. If E154 loses and E155 later wins, blame full-body amplitude/overextension rather than S3 active-boundary repair itself. If both lose, close the repaired branch.

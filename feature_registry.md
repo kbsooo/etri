@@ -1168,6 +1168,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E154 creates `7458` repair rows from `102` E153 missing-actionable sources and finds `10` all-four materializable rows. The selected row `top_s3_e101_3` keep `0.25` rolls back `3` S3 cells, has all-minus-E95 `-0.000012158050`, moves `294` cells versus E95, contains all `185` E144 cells, and is E144-collinear (`cos 0.983569299`) while avoiding E72/E101 negative axes (`-0.031628728` / `-0.005523655`).
 - Policy: use E154 as the current highest-information public sensor. If public improves, promote S3 active-boundary repair as a real decoder target. If public worsens while E144 later improves, demote this feature to overfit branch-extension energy.
 
+### F132. E155 branch-body amplitude ridge
+
+- Hidden structure: the repaired E154 direction may be robust at lower amplitude, meaning the public-safe law is the E144->E154 ridge rather than the exact full E154 body.
+- Candidates: E144->E154 body alpha, source repair keep factor, target drop/only group, body-norm ratio, all-four health, E155 submit flag, post-E101 p95, E72 gap, target body shares, and materialized lower-body candidate.
+- Label vs split test: valid as a LeJEPA anti-brittleness feature because it tests whether a repaired latent direction survives amplitude and target ablation without public labels. Invalid as a blind blend recipe; it only applies to the E154 branch.
+- Current evidence: E155 scores `44` rows and `40` variants. `34` variants are all-four, `27` pass E155 submit, and `22` reduced-body variants submit. The materialized `submission_e155_bodytemp_d27e7965.csv` uses E144->E154 alpha `0.25`, body-norm ratio `0.25`, all-minus-E95 `-0.000010362491`, and all current health gates. All `12/12` target-drop variants remain all-four.
+- Policy: keep E154 as the first public sensor because it has larger local edge and tests the full repaired branch. Use E155 as the conservative amplitude-control contrast before E144 if downside risk or an E154 loss makes full-body amplitude suspect.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

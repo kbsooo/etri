@@ -754,6 +754,37 @@ E144 fine-boundary audit 전까지 제출 파일은 `analysis_outputs/submission
 
 E154 이전 기준으로는 제출 파일이 `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` 하나였다.
 
+## 추가 관찰: E154는 고립점이 아니라 낮은 amplitude ridge다
+
+`analysis_outputs/e155_e154_branch_body_ablation.py`로 E154의 가장 위험한 부분을 분해했다.
+
+질문은 이것이었다.
+
+`E154가 all-four를 연 것은 정확히 그 full branch body가 필요했기 때문인가, 아니면 E144에서 E154 방향으로 조금만 움직여도 같은 hidden law가 살아나는가?`
+
+결과:
+
+- total rows: `44`.
+- variant rows: `40`.
+- all-four variants: `34`.
+- E155-submit variants: `27`.
+- reduced-body submit variants: `22`.
+- selected file: `analysis_outputs/submission_e155_bodytemp_d27e7965.csv`.
+- selected row: E144->E154 logit body alpha `0.25`.
+- selected all-minus-E95: `-0.000010362491`.
+- E144 all-minus-E95: `-0.000009725930`.
+- E154 all-minus-E95: `-0.000012158050`.
+- selected body-norm ratio: `0.25`.
+- target-drop all-four: `12/12`.
+
+이건 E154 해석을 바꾼다. E154는 single exact point가 아니다. 방향 자체는 훨씬 낮은 amplitude에서도 살아 있다. 다만 E155의 local edge는 E154보다 훨씬 작다. 그래서 public 센서로는 E154가 더 정보량이 크고, E155는 full-body overextension을 의심할 때 쓰는 보수적 amplitude-control이다.
+
+현재 세계관을 다시 압축한다.
+
+`E95 이후 살아 있는 branch는 E144 위에 있고, S3 active-boundary repair가 그 branch를 확장한다. E154는 full repaired branch를 묻는 센서이고, E155는 같은 방향을 25%만 믿는 센서다. E154가 이기면 full repair가 public-real이다. E154가 지고 E155가 이기면 방향은 맞지만 amplitude가 과했다. 둘 다 지면 repaired branch 자체를 닫아야 한다.`
+
+지금 한 파일만 고르면 여전히 `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`다. `analysis_outputs/submission_e155_bodytemp_d27e7965.csv`는 두 번째, 더 보수적인 amplitude-control이다.
+
 ## 추가 관찰: S3 active-boundary repair가 all-four 교차점을 열었다
 
 `analysis_outputs/e154_s3_active_boundary_repair_probe.py`로 E153의 가장 큰 blocker를 직접 찔렀다.
