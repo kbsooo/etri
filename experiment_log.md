@@ -2013,3 +2013,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best predicted top50 target mix: `Q1:37,Q3:4,S4:9`, Q2/S3 fraction `0.000000`.
 - Interpretation: raw/block context adds a small amount over metadata and preserves the useful Q2/S3 suppression, but the gain is not selector-scale. The safe remainder is not strongly visible in the current raw overnight/block geometry.
 - Decision: no submission. E134 weakens the "raw context can directly become the JEPA context for the E133 safe remainder" branch. The plateau explanation is now sharper: local-upside and public-safe geometry overlap weakly, and even the overlap is only faintly observable from current raw/block context.
+
+## E135. Prediction-Manifold Remainder Visibility
+
+- Observe: E134 left one cheap escape hatch open. Maybe the Q3/Q1-heavy safe remainder is not visible in raw/block context, but is visible in the manifold of old predictions and their disagreements.
+- Wonder: do existing submission tensors, per-cell prediction scalars, row-level prediction PCA, and uncertainty/disagreement features recover E133's `all_sign_co_vetonull_density` teacher better than raw/block or metadata under hidden-block holdout?
+- Method: `analysis_outputs/e135_prediction_manifold_remainder_visibility.py` used `12` known submission files, including E95, mixmin, E101, E72, E85/E86/E89/E90, A2C8, stage2, final9, and ordinal. It predicted the E133 teacher over `1750` cells and `36` hidden blocks using target-only, visible metadata, submission metadata, cell prediction scalars, row prediction PCA/full vectors, row uncertainty, and the combined prediction-manifold feature set.
+- Result:
+  - best predictor: `row_prediction_pca_meta` / `ridge`.
+  - best top50 truth-mass capture `0.063430`, cosine `0.531360`, JS `0.251301`.
+  - best metadata-only predictor: `submission_metadata` / `ridge`, top50 truth-mass capture `0.063040`.
+  - E134 raw/block reference remains higher at `0.073497`.
+  - best predicted top50 target mix is `Q1:11,Q3:38,S4:1`, with Q2/S3 fraction `0.000000`.
+- Interpretation: the existing prediction manifold does not reveal the safe remainder either. It preserves the healthy Q2/S3 suppression, but its top-cell recovery is essentially metadata-level and below E134 raw/block context. The old-submission disagreement space is therefore not the missing selector.
+- Decision: no submission. E135 closes the cheap "rank old prediction disagreement to find the remainder" route. The next representation has to change the target itself or bring a new supervision signal; it should not be another cell ranking over E133/E134/E135 visibility scores.

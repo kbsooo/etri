@@ -1500,6 +1500,18 @@ target co-occurrence
 - public LB 관측 반응: no submission. Any file made directly from E134 would test a weak raw-context ranking, not a credible public-improvement hypothesis.
 - 제출 전략: none. Future work should either change the target representation or find an independent larger movement; raw overnight block kNN alone is not enough.
 
+### H129. Existing prediction manifold can recover the Q3/Q1-heavy safe remainder
+
+- 상태: rejected as a direct latent selector; retained only as a weak Q2/S3-suppression diagnostic.
+- 왜 그럴듯한가: if the E133 safe remainder is a structure already exploited by some old submissions, then row-level prediction PCA, per-cell disagreement, uncertainty, or old-submission scalar fields should expose it better than raw/block context.
+- 맞다면: prediction-manifold features should materially beat metadata and E134 raw/block recovery under hidden-block holdout, with a concentrated top-cell set that can become a gate.
+- 틀리다면: prediction-manifold features should collapse to metadata-level recovery, mostly reflect target priors, or fail to beat raw/block visibility.
+- 최소 실험: `analysis_outputs/e135_prediction_manifold_remainder_visibility.py`, using `12` known submission tensors to predict E133's `all_sign_co_vetonull_density` teacher over `1750` cells and `36` hidden blocks.
+- 관측: best prediction-manifold result is `row_prediction_pca_meta` / `ridge` with top50 truth-mass capture `0.063430`, cosine `0.531360`, and JS `0.251301`. Best metadata-only is `0.063040`, and the E134 raw/block reference is higher at `0.073497`. The top50 remains Q3/Q1-heavy and Q2/S3-suppressed, but not selector-scale.
+- 성공/폐기 기준: reject as a direct selector because it does not materially improve over metadata and is worse than E134 raw/block context. Retain only as evidence that old predictions agree with suppressing Q2/S3.
+- public LB 관측 반응: no submission. A public file from E135 would be a weak old-manifold ranking, not a new hidden-world hypothesis.
+- 제출 전략: none. The next branch must redefine the latent target or introduce independent supervision; do not build a submission by blending old predictions according to E135 visibility.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

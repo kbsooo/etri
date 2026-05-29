@@ -1008,6 +1008,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E134 found best predictor `night_all_blockknn` / `target_knn8` with top50 truth-mass capture `0.073497`, cosine `0.498528`, and JS `0.260922`. Metadata-only `submission_metadata` / `ridge` captured `0.063040`. The best predicted top50 is `Q1:37,Q3:4,S4:9` with Q2/S3 fraction `0`.
 - Policy: retain as a weak negative/health energy only. Do not submit raw-block co-location gates. A future representation must materially exceed this visibility level or use a different target that creates a movement direction, not only a ranking.
 
+### F112. Prediction-manifold safe-remainder visibility energy
+
+- Hidden structure: the E133 co-located safe remainder may be encoded in the geometry of old submissions, prediction disagreement, row-level prediction PCA, or per-cell uncertainty even if raw/block context sees it weakly.
+- Candidates: known-submission logits/probabilities, row prediction PCA, per-cell mean/std/range/entropy-like scalars, target-wise old-prediction features, visible metadata plus prediction metadata, top50 truth-mass capture, Q1/Q3 mass, and Q2/S3 suppression fraction.
+- Label vs split test: valid as a latent visibility audit because it predicts the E133 teacher under hidden-block holdout and does not generate a submission. Invalid as a direct selector if it is only metadata-level or worse than E134 raw/block context.
+- Current evidence: E135 found best predictor `row_prediction_pca_meta` / `ridge` with top50 truth-mass capture `0.063430`, cosine `0.531360`, and JS `0.251301`. Best metadata-only is `0.063040`, while E134 raw/block remains higher at `0.073497`. The best predicted top50 is `Q1:11,Q3:38,S4:1`, with Q2/S3 fraction `0`.
+- Policy: retain only as a negative health check and Q2/S3-suppression diagnostic. Do not submit old-prediction-manifold gates, disagreement gates, or E133/E134/E135 rank translations unless a new target representation materially exceeds this hidden-block-heldout visibility.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

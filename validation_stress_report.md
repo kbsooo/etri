@@ -239,3 +239,16 @@ E134 tests the obvious next context for that E133 remainder: raw overnight/run/b
 - Q2/S3 fraction in best predicted top50: `0.000000`.
 
 This is useful as a stress result, not as a submission gate. Raw/block context does suppress Q2/S3 and slightly improves top-cell recovery, but it does not materially recover the safe-remainder field. The current validation gate therefore blocks direct raw-block co-location submissions. The next candidate needs a different target or movement source, not another ranking over the E133 field.
+
+## Update After E135
+
+E135 tests the other cheap context for the E133 remainder: the existing prediction manifold.
+
+- best prediction-manifold predictor: `row_prediction_pca_meta` / `ridge`.
+- top50 truth-mass capture: `0.063430`.
+- best metadata-only top50 truth-mass capture: `0.063040`.
+- E134 raw/block reference top50 truth-mass capture: `0.073497`.
+- best top50 target mix: `Q1:11,Q3:38,S4:1`.
+- Q2/S3 fraction in best predicted top50: `0.000000`.
+
+This blocks a second direct submission path. Existing submissions and their disagreements do not recover the safe remainder better than raw/block context and barely exceed metadata. The validation gate therefore rejects old-prediction-manifold ranking, old-submission disagreement gates, and E133/E134/E135 score translation unless a future target representation materially increases hidden-block-heldout recovery.

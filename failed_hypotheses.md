@@ -1059,3 +1059,12 @@
 - Implementation issue possible: medium. E134 tests PCA block aggregates, ridge, and target-wise kNN; it does not rule out richer sequence models or a different representation target. It rejects the cheap raw-block visibility path.
 - Bottleneck implication: the E133 safe remainder is not simply hidden in raw overnight block geometry. The current wall is not just "use raw context as JEPA context"; the target or movement direction itself must change.
 - Do not repeat: direct raw-block kNN/ridge co-location gates or raw-view ranking of E133 cells as a submission source unless a new target or substantially stronger heldout recovery appears.
+
+## FH118. Existing prediction disagreement reveals the safe remainder
+
+- Failed hypothesis: the Q3/Q1-heavy E133 safe remainder is already present in the manifold of old submissions, so prediction disagreement, row prediction PCA, uncertainty, or per-cell old-submission scalars can recover it better than raw/block context.
+- Observed result: E135 used `12` known submission tensors and hidden-block holdout over `1750` cells. The best predictor, `row_prediction_pca_meta` / `ridge`, captured top50 truth-mass `0.063430`, barely above metadata-only `0.063040` and below E134 raw/block `0.073497`. The predicted top50 stayed Q2/S3-suppressed but did not recover selector-scale mass.
+- Why discard: old prediction geometry is mostly restating target/metadata priors for this teacher. It is not a hidden selector for the safe remainder and does not justify another old-submission blend/rank.
+- Implementation issue possible: medium. E135 tests PCA/scalar/manifold summaries of existing submissions, not every possible nonlinear meta-model. The discarded claim is the cheap old-prediction-manifold visibility path.
+- Bottleneck implication: the plateau is not caused by failing to rank the old CSV manifold. The safe target itself is weak under both raw/block and old-prediction contexts, so progress requires a different target representation or independent supervision.
+- Do not repeat: old-submission disagreement gates, prediction-PCA ranking, uncertainty-only blending, or direct probability movement from E133/E134/E135 cell ranks unless a new latent target materially improves hidden-block-heldout recovery.
