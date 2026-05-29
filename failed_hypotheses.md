@@ -699,3 +699,12 @@
 - Implementation issue possible: medium. The source-consensus stress is still local and public-pending. Public may punish the consensus overstep or Q2 add-back even if the single-source-artifact objection is locally false.
 - Bottleneck implication: the live question is no longer "is E85 just one row?" It is whether public accepts target-pruned structural movement at E86 amplitude, or only the lower-amplitude E85 version.
 - Do not repeat: dismissing E85 solely because it came from one selected row. The next falsification must be public LB or a genuinely independent target-pruned world, not another single-source objection.
+
+## FH78. E87 inverse-top-prior is the safest E86 fallback
+
+- Failed hypothesis: because inverse-top was the rejecting combo world in E84 and E85 fixed that conflict, the E87 inverse-top-prior contrast should be the safest fallback if E86 is risky.
+- Observed result: E88 measured the inverse-top-prior contrast against the known public-negative E72 movement and found the highest E72 proximity among E85/E86/E87 variants: high-E72 cell mass `0.602577`, E72 overlap ratio `1.113262`, E72 contamination index `0.928415`, and E72 row correlation `0.743567`.
+- Why discard: inverse-top-prior is good for testing public-world geometry, but it is not safer under the actual post-E72 public observation. It moves fewer cells and has a strong inverse-top local edge, yet its movement mass concentrates more on the failed E72 manifold than E86 or no-Q2.
+- Implementation issue possible: medium. E88 is label-free movement attribution, not public-label scoring. But the discarded claim is about safety ranking, not whether inverse-top can be informative.
+- Bottleneck implication: public-risk decomposition must include observed movement-manifold proximity, not just local combo-world scores. After an E86 miss, no-Q2 is the cleaner first contrast unless the explicit question is inverse-top public-world identity.
+- Do not repeat: promoting inverse-top-prior as the conservative fallback solely because it wins the inverse-top proxy. Treat it as diagnostic only.

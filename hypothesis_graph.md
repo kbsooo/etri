@@ -947,6 +947,18 @@ target co-occurrence
 - public LB 기대 반응: no-Q2 improvement means Q2 add-back was contaminating; no-overstep improvement means shrink `1.25` overstepped calibration; inverse-top-prior improvement means public is closer to inverse-top geometry than all-delta geometry.
 - 제출 전략: do not submit E87 before E86 unless the goal changes from highest-upside candidate to diagnostic contrast. After E86 public feedback, choose the single E87 file whose interpretation best separates the surviving hypothesis.
 
+### H83. E86/E87 are second-order mixmin rollbacks with measurable E72-contamination risk
+
+- 상태: supported as attribution/risk lens; public pending.
+- 왜 그럴듯한가: E72 was a public-negative combined sparse-gate file. E85/E86/E87 are all mixmin-relative movements generated after the E72 miss, so their public risk should be judged by whether they avoid or reuse E72's failed row/cell manifold.
+- 맞다면: E86/E87 movement should have negative signed correlation with mixmin-vs-a2c8 if they are rollbacks, and public-riskier variants should have higher row/cell overlap with E72-vs-mixmin.
+- 틀리다면: E86/E87 should align positively with mixmin's original public-positive move, or E72 proximity should be low and indistinguishable across variants.
+- 최소 실험: `analysis_outputs/e88_frontier_movement_attribution.py`, comparing mixmin, E72, E85, E86, and E87 logit movements across target cells, rows, subject/calendar/raw-domain context, and prior CE proxies.
+- 관측: E86 has high-E72 cell mass `0.443457`, E72 overlap ratio `0.819288`, contamination index `0.772379`, row correlation with E72 failed movement `0.725471`, and signed cell correlation with mixmin-vs-a2c8 `-0.758417`. no-Q2 has lower contamination index `0.730408`; no-overstep keeps the same geometry as E86; inverse-top-prior is worst by contamination index `0.928415`.
+- 성공/폐기 기준: success is not a new submission. Success is a sharper public-feedback decision tree. If E86 improves, H81 survives despite E72 proximity. If E86 fails and no-Q2 improves, Q2 add-back is the likely contaminant. If no-overstep improves, amplitude is the likely contaminant. If inverse-top-prior improves despite high E72 proximity, public-world identity is stranger than the E72 attribution lens predicts.
+- public LB 기대 반응: E86 public result now carries downside evidence as well as upside evidence. A worse E86 score should not immediately kill target-prune; it should first route to no-Q2.
+- 제출 전략: keep E86 as highest-upside information sensor if a single pre-feedback file must be chosen. Do not promote inverse-top-prior as a safety fallback; use it only as a diagnostic if the question is public-world geometry.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
