@@ -36,6 +36,18 @@ submission geometry만 사용해 mixmin/E72/E85/E86/E89/E90/E95/E101/E108의 act
 
 E95를 단순 hardtail fallback으로만 보던 해석을 더 좁혔다. 지금 더 정확한 해석은 target-axis surgery다. E95는 실패한 E72류 movement에서 Q/Q3/S4 broad contamination을 거의 제거하고 S1/S2/S3 중심으로 남긴다.
 
+## 추가 관찰: 왜 S축인가
+
+`analysis_outputs/e112_sauna_qs_temporal_axis_audit.py`로 train label/order만 봤다.
+
+- S-target subject-LOO logloss gain: `0.068724`, Q-target `0.020146`.
+- strongest subject-prior targets: `S3`, `S2`, `S1`, 전부 E95-active.
+- Q-target temporal persistence lift: `0.135700`, S-target `0.087255`.
+- 하지만 test rows가 양쪽 train row로 3일 내 bracket되는 비율은 `0.080000`뿐이다.
+- pairwise corr는 within-S `0.260803`, within-Q `0.187934`, Q-S `0.030038`.
+
+따라서 E95가 S-heavy인 이유는 S축이 subject/block state를 더 잘 담기 때문으로 보인다. Q축도 temporal signal은 강하지만, test에 직접 전파할 train adjacency가 부족해서 broad Q/Q3 movement는 위험하다.
+
 ## 다음으로 가장 정보량이 큰 행동
 
 `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` 제출.

@@ -1225,6 +1225,18 @@ target co-occurrence
 - public LB 관측 반응: E101 win means the target-axis surgery was directionally right but over-tight on Q2/S3 tail cells. E101 tie/loss means E95's current axis/tail surgery remains the standing law and broad fallback remains unjustified.
 - 제출 전략: no E111 file. Submit E101 as the next observation if using one public slot.
 
+### H106. S-axis movement survives because it carries subject/block state; Q-axis movement is temporal but hard to transfer
+
+- 상태: supported as a refinement of H105.
+- 왜 그럴듯한가: E111 showed E95 is S-heavy target-axis surgery, but submission geometry alone cannot say whether that axis is real or just public-tail luck. If S targets carry stronger subject/block state while Q targets carry short temporal persistence that is not safely observable in test, then E95's S-heavy survival and Q/Q3 contamination failure can coexist.
+- 맞다면: S/E95-active targets should have larger subject-prior gains than inactive axes; Q targets may show higher local temporal persistence, but train/test adjacency should be sparse enough that direct temporal copy remains unsafe. Q/S pairwise correlations should be weak relative to within-axis correlations.
+- 틀리다면: S and E95-active axes should not show stronger subject-prior structure, Q/S correlations should be high enough to justify broad target mixing, or test rows should be densely bracketed by nearby train labels so temporal Q structure is directly usable.
+- 최소 실험: `analysis_outputs/e112_sauna_qs_temporal_axis_audit.py`.
+- 관측: S-target mean subject-LOO logloss gain is `0.068724` vs Q-target `0.020146`; S subject-rate variance is `0.040376` vs Q `0.020313`. The three strongest subject-prior targets are exactly `S3`, `S2`, and `S1`, all E95-active. Q targets have stronger temporal persistence lift (`0.135700` vs S `0.087255`), led by `Q2`, `Q3`, `Q1`, but test rows are weakly bracketed by nearby train labels: prev<=3 days `0.340000`, next<=3 days `0.228000`, both sides `0.080000`. Pairwise correlations are within-S `0.260803`, within-Q `0.187934`, and Q-S only `0.030038`.
+- 성공/폐기 기준: support the refined world model. E95 is not a row-neighbor temporal-copy solution; it is a restricted translation of subject/block S-state plus a small Q2 temporal-tail question. Discard if a future public-positive broad Q/Q3/S4 movement succeeds without target-tail stress.
+- public LB 관측 반응: E101 win means the Q2/S3 boundary between temporal-tail and S-subject state was too tight in E95. E101 loss means S-subject-state surgery remains right and Q2 temporal rollback is not public-real.
+- 제출 전략: no E112 file. Keep E101 as the next public kill-test; do not build direct Q1/Q3 temporal propagation without a stronger train/test adjacency bridge.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
