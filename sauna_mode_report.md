@@ -151,11 +151,23 @@ E95를 단순 hardtail fallback으로만 보던 해석을 더 좁혔다. 지금 
 
 이건 E101을 무의미한 파일로 만드는 결과가 아니다. E101은 mixmin보다 아직 좋다. 하지만 E95 frontier를 이길 만큼의 Q2/S3/S3-heavy support는 public에 없었다. 따라서 E95의 target-axis hard-tail surgery가 현재 standing law이고, E99/E101 local stress는 loss-side public tail을 과소평가했다.
 
+## 추가 관찰: E101 small loss는 한두 개 고영향 S3 셀 규모의 경계다
+
+`analysis_outputs/e121_e101_small_loss_inverse_posterior.py`로 E101 public delta를 active-cell hard-label budget으로 역변환했다.
+
+- all-support E101-vs-E95 delta: `-0.0000966787`.
+- all-adverse E101-vs-E95 delta: `+0.0002116767`.
+- 실제 E101-vs-E95 delta `+0.0000090362`는 active flip benefit의 `0.657165`가 support로 실현된 세계에 해당한다.
+- greedy top-flip support 기준 mixmin을 처음 이기는 지점은 `21`, 실제 관측에 가장 가까운 지점은 `22`, E95를 처음 이기는 지점은 `23`이다.
+- exact-observed worlds는 local/flank prior에서 약 `4.4-4.7%`로 충분히 흔하지만, global prior에서는 `0.8%` 수준이다.
+
+이 결과는 E101 방향이 완전히 틀렸다는 뜻이 아니다. E101은 E95를 이기기 직전까지 왔지만, public에서 고영향 S3 support가 대략 한 셀 부족했다. 그래서 병목은 "Q2/S3 rollback alpha를 더 미세하게 조절하자"가 아니라 "그 한두 개의 고영향 S3 support/adverse 셀을 public 없이 식별할 센서가 있는가"다.
+
 ## 다음으로 가장 정보량이 큰 행동
 
-E95/E101을 동시에 만족하는 post-E101 public-world rebuild.
+E95/E101을 동시에 만족하는 post-E101 public-world rebuild는 E121로 1차 완료됐다.
 
-이제 가장 정보량이 큰 행동은 같은 Q2/S3 rollback line을 더 키우는 것이 아니다. E101 결과는 E108/E104 higher-alpha, E106 subject-prior masks, E119 flank-gated variants, full E89, non-active graft automatic fallback을 닫는다. 다음 실험은 E95가 이기고 E101이 작은 폭으로 지는 이 경계 자체를 target으로 삼아야 한다.
+이제 가장 정보량이 큰 행동은 같은 Q2/S3 rollback line을 더 키우는 것이 아니다. E101 결과는 E108/E104 higher-alpha, E106 subject-prior masks, E119 flank-gated variants, full E89, non-active graft automatic fallback을 닫는다. 다음 실험은 고영향 S3 셀을 public feedback 없이 구분할 독립 센서가 있는지 찾거나, 그게 없으면 같은 line을 떠나 다른 hidden structure를 찌르는 것이다.
 
 ## 제출 후보
 
@@ -168,3 +180,5 @@ Resolved sensor: `analysis_outputs/submission_e101_q2s3tail_177569bc.csv`
 결과: public `0.5763003660`, E95보다 `+0.0000090362` 나쁘고 mixmin보다 `-0.0000062745` 좋다.
 
 실패 시 해석이 실제로 발생했다: E95의 현재 axis/tail surgery가 standing law다. 다음 제출은 이 small-loss boundary를 새로 설명하는 후보여야 하며, E108/E104/E106/E119 또는 E89/non-active graft를 자동으로 제출하지 않는다.
+
+E121 이후 추가 해석: E101은 support budget의 약 `65.7%`를 맞췄지만 E95를 이기는 데 필요한 greedy top-flip support `23`개에는 못 미쳤다. 따라서 지금 당장 제출할 same-family 파일은 없다.

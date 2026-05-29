@@ -933,3 +933,12 @@
 - Implementation issue possible: low. The public LB is external feedback. The only caveat is that it gives aggregate LogLoss, not per-target labels, so it closes automatic same-line followups but does not identify the failed cells directly.
 - Bottleneck implication: the bottleneck is now the E95/E101 boundary itself. E95 is right enough to remain best; E101 is right enough to beat mixmin but wrong enough to lose the frontier. The local stress model missed that tail.
 - Do not repeat: submitting E108 amp050/amp038, E104 higher-alpha, E106 subject/S3 masks, E119 flank-gated variants, full E89, or non-active grafts as automatic post-E101 repairs.
+
+## FH104. Exact E101 public score can directly identify the next same-line gate
+
+- Failed hypothesis: once E101's exact small-loss score is known, the active-cell inverse posterior should identify a stable subset/gate that can be submitted as the next E95-to-E101 repair.
+- Observed result: E121 found that the exact observation requires `0.657165` of active-cell flip benefit. Greedy high-impact support first beats mixmin at `21`, matches the observed boundary near `22`, and first beats E95 at `23`. Exact-observed worlds are common under local/flank priors (`~0.044-0.047`) but the posterior is prior-dependent and does not expose a clean visible selector; global prior makes the exact world rare (`0.007963`).
+- Why discard: the exact public score narrows the hidden label budget, but it does not reveal which high-impact S3 cells are support/adverse without using the leaderboard as labels. A submission chosen from this exact posterior would be public-score fitting unless backed by an independent sensor.
+- Implementation issue possible: low-medium. The active-cell LogLoss map is deterministic, and the simulations are stable at `300000` worlds per prior. The caveat is public subset normalization; this affects absolute rates but not the qualitative knife-edge result.
+- Bottleneck implication: the same-line frontier is underidentified at one or two high-impact S3 cells. Progress requires a non-public sensor for those cells or a move to a different hidden-structure hypothesis.
+- Do not repeat: creating E101 variants by fitting the exact E101 public delta, or treating posterior cell support from E121 as target labels.

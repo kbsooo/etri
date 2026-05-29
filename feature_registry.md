@@ -896,6 +896,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E120 found E101 public `0.5763003660`, delta vs E95 `+0.0000090362`, delta vs mixmin `-0.0000062745`, E116 outcome `small_loss`, giveback share `0.590189`, and remaining share `0.409811`. Actual public was `+0.0000252415` worse than local E101 mean and `+0.0000106001` worse than local p95. E110 non-control strict candidates remain `0`; E119 E101-dominating rows remain `0`.
 - Policy: set `e101_same_line_followup_open = false`. Use this feature as a mandatory guard: any next candidate must explain the E95/E101 boundary or explicitly test a different hidden structure. Do not use E108/E104/E106/E119, full E89, or non-active grafts as automatic next files.
 
+### F98. E101 exact small-loss inverse-posterior energy
+
+- Hidden structure: E101's observed small loss may be a hard-label budget boundary over the `50` active Q2/S3 cells. The key feature is how much active flip benefit public realized, not a new probability transformation.
+- Candidates: observed E101-vs-E95 delta, all-support/all-adverse active-cell deltas, needed flip-benefit share, greedy top-flip support count, exact-observed prior world rate, top10/top22/top23 support rate, S3 support rate, and soft posterior support per active cell.
+- Label vs split test: valid as a public-sensor interpretation because it uses aggregate public LB only to constrain an already-defined active-cell hard-label map. Invalid if used to fit a new submission directly to the exact public score.
+- Current evidence: E121 found all-support/all-adverse deltas `-0.0000966787` / `+0.0002116767`. The actual E101 delta `+0.0000090362` requires `0.657165` of active flip benefit. Greedy top-flip support first beats mixmin at `21`, matches the observation near `22`, and first beats E95 at `23`. Exact-observed worlds are common under local/flank priors (`~0.044-0.047`) but rare under global prior (`0.007963`), with top10 support `~0.81-0.86` and S3 support `~0.58-0.60`.
+- Policy: set `e101_exact_small_loss_boundary_identified = true` and `e101_public_score_fitted_gate_allowed = false`. This energy can rank future independent S3-cell sensors, but cannot by itself create a same-line submission.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

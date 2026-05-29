@@ -1798,6 +1798,21 @@
 - Interpretation: E101 was an information-rich negative sensor, not a random failure. The public label world keeps enough of E101's structure to beat mixmin, but not enough to beat E95. E95's target-axis hard-tail surgery remains the standing law, and the E99/E101 transfer model underestimated the downside tail.
 - Decision: no new same-family submission. Keep E95 as frontier, close E108/E104/E106/E119 and automatic E89/non-active graft followups, and rebuild a two-point E95/E101 public-world model before the next file.
 
+## E121. Exact E101 Small-Loss Inverse Posterior
+
+- Observe: E101 lost to E95 by only `+0.0000090362`, while still beating mixmin by `-0.0000062745`. That is too specific to treat as simple failure.
+- Wonder: what hard-label world over the `50` active Q2/S3 cells makes this exact E95/E101/mixmin ordering natural?
+- Method: `analysis_outputs/e121_e101_small_loss_inverse_posterior.py` converted the observed public delta into an active-cell LogLoss budget, then simulated `300000` label worlds per train-derived prior and computed exact-observed posterior support over the E101 active cells.
+- Result:
+  - all-support E101-vs-E95 delta: `-0.0000966787`.
+  - all-adverse E101-vs-E95 delta: `+0.0002116767`.
+  - observed E101-vs-E95 delta requires `0.657165` of the available active-cell flip benefit.
+  - greedy high-flip support count that first beats mixmin: `21`; closest to the exact observation: `22`; first that beats E95: `23`.
+  - exact-observed bucket rate is about `0.044-0.047` for most local/flank priors, but only `0.007963` for global prior.
+  - exact-observed worlds hold top10 support around `0.81-0.86`, top22 support around `0.73-0.74`, and S3 support around `0.58-0.60`.
+- Interpretation: E101's small loss is a knife-edge boundary, not a broad rejection. The public world realizes most of the S3-heavy E101 support but stops roughly one high-impact S3 cell short of beating E95.
+- Decision: no same-line submission follows from this. The public result identifies the missing object as an independent non-public sensor for the high-impact S3 support/adverse cells. Without that sensor, finer E101 amplitude or exact-score-fitted gates are leaderboard overfit.
+
 ## Current Decision
 
 가장 저비용으로 많은 가설을 가르는 실험은 E05 selector-only/pairwise-order falsification이었다. 결과는 "micro-refine을 더 많이 만들기보다 selector resolution 또는 large safe representation move가 필요하다"로 수렴한다.

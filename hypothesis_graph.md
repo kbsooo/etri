@@ -1333,6 +1333,18 @@ target co-occurrence
 - public LB 관측 반응: already observed. Future public candidates must state whether they are testing the two-point E95/E101 hard-tail boundary or a genuinely different hidden structure.
 - 제출 전략: no immediate same-family submission. Keep E95 as frontier and rebuild the public-world model with E101 as a negative anchor.
 
+### H115. E101 small-loss is a one-cell-scale S3 hard-label boundary, not an amplitude problem
+
+- 상태: supported as the post-E101 boundary model; no direct submission branch.
+- 왜 그럴듯한가: E101 is worse than E95 but still better than mixmin. That implies its active Q2/S3 rollback is partly public-real. The remaining difference is small enough that the determining object may be a few high-impact active cells rather than broad target amplitude.
+- 맞다면: converting the observed public delta into E101 active-cell hard-label deltas should require most, but not all, available flip benefit. The exact-observed posterior should concentrate on high S3 support but not expose a clean visible gate.
+- 틀리다면: the observed delta would require either almost no support, almost all support, a clean subject/block/edge selector, or a support pattern incompatible with E105/E118 priors.
+- 최소 실험: `analysis_outputs/e121_e101_small_loss_inverse_posterior.py`, using actual E101 public `0.5763003660` as an aggregate active-cell budget and simulating `300000` label worlds per prior.
+- 관측: all-support/all-adverse E101-vs-E95 deltas are `-0.0000966787` / `+0.0002116767`. The actual delta `+0.0000090362` requires `0.657165` of active flip benefit. Greedy top-flip supports first beat mixmin at `21`, match the observed boundary around `22`, and first beat E95 at `23`. Exact-observed worlds under local/flank priors have top10 support `~0.81-0.86`, top22 support `~0.73-0.74`, and S3 support `~0.58-0.60`; global prior makes the exact world rare (`0.007963`).
+- 성공/폐기 기준: support if the exact boundary is a narrow high-impact S3 support budget and no clean visible gate appears. Discard if a non-public sensor later identifies the missing high-impact cells with stress-stable gains.
+- public LB 관측 반응: already observed. Future same-family files must show an independent sensor for the missing high-impact S3 cells, not merely fit the E101 public delta.
+- 제출 전략: no E121 submission. Keep E95 as current best; next file should test a different hidden structure or a newly validated S3-cell sensor.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
