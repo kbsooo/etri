@@ -654,3 +654,12 @@
 - Implementation issue possible: low. The inverse controls are direct algebraic sign reversals around the mixmin anchor and use the same stress machinery.
 - Bottleneck implication: the useful object is not public-LB reaction sign flipping. It is calibration-safe translation of a sub-margin Q2/S3 latent.
 - Do not repeat: building inverse sparse-gate submissions from E73 public failure without an independent structural gate.
+
+## FH73. Removing broad base contamination makes pure Q2/S3 source grafts submission-scale
+
+- Failed hypothesis: E73 public failure was mainly caused by non-Q2/S3 base contamination, so the wider E72/E75/E76 Q2/S3 source universe should produce a strict/deployable candidate when only Q2/S3 value or source-base delta movement is grafted onto mixmin.
+- Observed result: E82 generated `8402` pure mixmin-anchored source graft rows and non-anchor evaluated `700` combo-promising rows. Strict/deployable rows were `0`, loose rows were `700`, and best evaluated all delta was `-0.00000790328`, below the `-1e-5` selector margin.
+- Why discard: the failure is not hidden/world/block/tail inconsistency. Every evaluated row passed all non-margin guards (`700/700` all beats base, all sets beat base, all tails neutral, hidden Q2/S3 improves, world nonworse, block majority beats, block tail safe), but `all_margin_vs_mixmin` was `0/700`. Pure Q2/S3 is coherent but too small.
+- Implementation issue possible: low to medium. E82 uses source rows from existing local stress families and combo-promising preselection, so it could miss a bad-combo row with surprising public value. But the discarded claim is local strict/deployable submission scale, and that is directly false under the current gate.
+- Bottleneck implication: the missing movement is no longer "cleaner Q2/S3 isolation." It is a broader calibrated structural move that can clear margin while using Q2/S3 as energy/tail guard.
+- Do not repeat: materializing pure Q2/S3 grafts from E72/E75/E76 solely because they are loose and tail-safe. Use them as latent energy or constraints inside a larger block-state candidate.

@@ -860,8 +860,8 @@ target co-occurrence
 - 최소 실험: `analysis_outputs/q2_s3_public_like_rowblock_amplitude_probe.py`, reusing E75 full-pool `top_abs50` unit delta and sweeping `61` topology/energy/subject/flank/target-specific masks over target alphas.
 - 관측: E79 scored `6516` rows. Strict/deployable rows were `1318`, loose rows `3403`, deployable rows beating E75 were `0`, and best all stayed E75-equivalent at `-1.23676e-5`. E75 sparse movement is active on only `72/250` rows/cells; positive energy top30/top50 masks reduce the active set to `22`/`36` rows but do not improve edge. Best row/block/flank masks remain deployable but weaker than E75.
 - 성공/폐기 기준: the direct claim "public-like topology/flanks repair exact E75 amplitude" is rejected. The softer claim "row/block context is useful representation context" remains live for structural block targets, because E79 tests only handcrafted masks over E75 movement.
-- public LB 기대 반응: no E79 submission. If E75 improves public, E79 says public likely accepted the full active sparse amplitude rather than a simple topology/flank subset. If E75 worsens, E79 says simple row/block/flank localization would not have fixed it.
-- 제출 전략: none. Public order remains E73 first, E75 second for target asymmetry, E74 symmetric control.
+- public LB 기대 반응: no E79 submission. If E75 improves public, E79 says public likely accepted the full active sparse amplitude rather than a simple topology/flank subset. If E75 worsens, E79 says simple row/block/flank localization would not have fixed it. E80-E82 later paused this direct public order.
+- 제출 전략: none. Row/block/flank masks are retained only as context/energy for structural targets, not as direct sparse-gate submission rules.
 
 ### H76. E73 public failure is broad-base contamination, while isolated Q2/S3 is sub-margin
 
@@ -874,6 +874,18 @@ target co-occurrence
 - 성공/폐기 기준: direct E74/E75 amplitude follow-up is rejected after public feedback. The isolated Q2/S3 latent survives as energy, not as a current submission.
 - public LB 기대 반응: no immediate public file. If a future structural gate improves, E80/E81 imply it succeeded by removing broad-base contamination and lifting sub-margin Q2/S3 safely; if it worsens, Q2/S3 consensus should be demoted further behind block-state representation work.
 - 제출 전략: none from E81. Next submission must be a new mixmin-anchored structural/combo-tail gate, not E73 amplification or public-sign inversion.
+
+### H77. Pure Q2/S3 source grafts are structurally coherent but margin-limited
+
+- 상태: supported locally; pure Q2/S3 candidate-generator claim rejected.
+- 왜 그럴듯한가: E81 tested only the final submitted E73 Q2/S3 values. The broader E72/E75/E76 source universe contains target-asymmetric and subset-stable Q2/S3 movements that might survive if only their Q2/S3 value or source-base delta is grafted onto mixmin.
+- 맞다면: pure grafts should pass combo-set, tail, hidden, world, and block stress, but may still fail the selector-scale all-margin gate if Q2/S3 alone lacks enough probability mass.
+- 틀리다면: at least one pure source graft should become strict/deployable, or the pure-graft family should fail hidden/world/block/tail stress rather than only margin.
+- 최소 실험: `analysis_outputs/e82_pure_q2s3_source_graft_scan.py`.
+- 관측: E82 generated `8402` pure graft rows from E72/E75/E76 source predictions and evaluated `700` combo-promising rows under non-anchor stress. Strict/deployable rows were `0`, loose rows `700`, and best evaluated all delta was `-0.00000790328`. All evaluated rows passed all non-margin guards (`700/700` all beats base, all sets beat base, all tails neutral, hidden Q2/S3 improves, world nonworse, block majority beats, block tail safe), while `all_margin_vs_mixmin` was `0/700`.
+- 성공/폐기 기준: pure Q2/S3-only candidate generation is rejected because the only failing condition is margin. Q2/S3 remains valid as latent energy, but not enough as the sole submitted movement.
+- public LB 기대 반응: no E82 public file. If a future candidate improves public, H77 says it probably added a larger structural movement while preserving Q2/S3/tail energy, not merely isolated Q2/S3 better. If it worsens, Q2/S3 energy should be treated as a weak auxiliary, not as the main world model.
+- 제출 전략: none from E82. Next submission should use Q2/S3 as an energy/gate inside a broader block-state or structural transition candidate.
 
 ## 우선 실험 5개
 
