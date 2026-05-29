@@ -1980,6 +1980,18 @@ target co-occurrence
 - public LB 관측 반응: E174 win means E172's tail repair was directionally right but too conservative. E174 tie/small-loss means the broad branch is still hidden-label underresolved or the reopened Q2/S3/S3 cells overfit public-free priors. E174 worse than mixmin closes this partial-reopening family until a new public-independent bad-axis explains the miss.
 - 제출 전략: if using one broad expected-score slot now, E174 is the sharper candidate. E172 remains the safer contrast; raw E169 remains only the unrolled body-vs-tail sensor.
 
+### H169. E174 must be decoded by pre-registered public bands, not scalar win/loss
+
+- 상태: supported by E175 as decision hygiene; public feedback pending.
+- 왜 그럴듯한가: E174 differs from E172 by only `75` reopened cells, and both retain the same broad `904/193` moved-cell body. A small public delta can be explained either by true partial-reopening benefit, hidden hard-label underresolution, or Q2/S3/q2_bad over-reopening.
+- 맞다면: E174-vs-E172 should show a readable but thin responsibility map, with recovery concentrated in specific targets/contexts and with visible-tail margin spent but not collapsed. Public bands should imply different next actions before the score is known.
+- 틀리다면: E174 public feedback could be interpreted by simple score ordering alone, or the E174-vs-E172 movement would be too diffuse/too tiny to assign responsibility.
+- 최소 실험: `analysis_outputs/e175_e174_public_feedback_decoder.py`.
+- 관측: E175 fixes score bands from breakthrough `<=0.576261330` through hard fail `>0.576341330`. E174-vs-E172 changes `75` cells over `65` rows, recovers expected focus delta `-0.000011672`, needs `5` expected-support cells to flip that recovery, and has top1 swing `0.000002996`. Recovery is mostly S3/Q2/S2/S1, while visible-tail margin versus E172 is spent by p95 `+0.000003974` and worse-than-E101 `+0.000169869`.
+- 성공/폐기 기준: support strengthens if an E174 public score lands in a band whose prescribed next action remains coherent with later E172/E154 feedback. It weakens if E174's score cannot be explained by the fixed responsibility map and requires post-hoc threshold changes.
+- public LB 관측 반응: use E175 bands. `<=0.576276019` promotes E174 as broad anchor; `0.576276019..0.576288330` keeps partial reopening alive but unresolved; `0.576288330..0.576300366` keeps E95 practical and points to E172 as contrast; `>0.576300366` demotes E174; `>0.576306641` closes same-family reopening as expected-score follow-up.
+- 제출 전략: after submitting E174, run `python3 analysis_outputs/e175_e174_public_feedback_decoder.py --score <PUBLIC_LB>` before any E172/E169/E166/E154 decision. Do not tune top-N, keep factor, or Q2/S3 guard from a single scalar score.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

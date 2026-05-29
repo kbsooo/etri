@@ -853,3 +853,17 @@ E174 tests whether E172's keep `0.25` rollback is overconservative.
 - direct recovery vs E172 by target: S3 `-0.000003234`, Q2 `-0.000002953`, S2 `-0.000002682`, S1 `-0.000001471`, Q1/Q3/S4 smaller.
 
 Stress implication: E172's visible-tail rollback is not uniquely optimal. A partial reopening can recover a public-readable amount of focus-prior edge while preserving E172's visible-tail guard. The remaining risk is not visible-tail collapse; it is that E174 sits close to the Q2/S3 guard and spends more bad-axis margin than E172. Treat E174 as the sharper expected-score candidate and E172 as the safer contrast.
+
+## Update After E175
+
+E175 pre-registers how to interpret E174 public feedback before seeing it.
+
+- script: `analysis_outputs/e175_e174_public_feedback_decoder.py`.
+- report: `analysis_outputs/e175_e174_public_feedback_decoder_report.md`.
+- E174-vs-E95 readability: moved cells/rows `904/193`, expected focus delta `-0.000124367`, cells-to-flip expected `33`, top1 swing `0.000005832`, cells for E95-over-mixmin edge `4`.
+- E174-vs-E172 readability: changed cells/rows `75/65`, expected focus recovery `-0.000011672`, cells-to-flip `5`, top1 swing `0.000002996`, cells for E95-over-mixmin edge `7`.
+- prior-tail tradeoff versus E172: focus mean improves by `-0.000001861`; visible mean worsens by `+0.000002220`, visible p95 by `+0.000003974`, and worse-than-E101 probability by `+0.000169869`.
+- responsibility map: direct E174-vs-E172 recovery is mainly S3 `27.7%`, Q2 `25.3%`, S2 `23.0%`, and S1 `12.6%`; not-E72-active cells carry `88.6%`.
+- score bands: `<=0.576276019` validates E174 as a broad anchor, `0.576276019..0.576288330` is micro-win/underresolved, `0.576288330..0.576300366` keeps E95 practical and points to E172 as contrast, `>0.576300366` demotes E174, and `>0.576306641` closes same-family reopening as expected-score follow-up.
+
+Stress implication: E175 does not make E174 safer; it makes the interpretation falsifiable. The main stress risk is still thin public hard-label resolution around a small number of S3/Q2/S2 cells. The next public score should be treated as a banded observation, not as permission to retune reopening counts.

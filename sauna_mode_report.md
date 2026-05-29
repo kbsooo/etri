@@ -1732,3 +1732,59 @@ E174는 E172보다 더 공격적이다. visible-tail guard는 살아 있지만, 
 - E174가 mixmin보다 나쁘면: 이 partial reopening family는 닫고, broad body 자체 또는 q2_bad axis를 다시 봐야 한다.
 
 E172는 버리지 않는다. E174가 높은 기대값 후보라면, E172는 낮은 tail-risk contrast다.
+
+## E175 업데이트: E174 점수 해석을 먼저 고정했다
+
+내가 발견한 가장 이상한 점:
+
+`E174는 E172보다 더 날카롭지만, public score 하나만 보고는 partial reopening 성공과 Q2/S3 과개방을 구분하기 어렵다.`
+
+실험:
+
+`analysis_outputs/e175_e174_public_feedback_decoder.py`
+
+결과:
+
+- report:
+  - `analysis_outputs/e175_e174_public_feedback_decoder_report.md`
+- E174 vs E95:
+  - moved cells/rows `904/193`
+  - expected focus delta `-0.000124367`
+  - cells-to-flip `33`
+  - top1 swing `0.000005832`
+  - E95-over-mixmin edge를 설명하는 셀 수 `4`
+- E174 vs E172:
+  - changed cells/rows `75/65`
+  - expected focus recovery `-0.000011672`
+  - cells-to-flip `5`
+  - top1 swing `0.000002996`
+  - E95-over-mixmin edge를 설명하는 셀 수 `7`
+- E174가 E172 대비 얻은 회복:
+  - S3 `27.7%`
+  - Q2 `25.3%`
+  - S2 `23.0%`
+  - S1 `12.6%`
+  - not-E72-active cells `88.6%`
+- E174가 E172 대비 쓴 tail margin:
+  - visible p95 `+0.000003974`
+  - worse-than-E101 probability `+0.000169869`
+
+고정한 public band:
+
+- `<=0.576276019`: E174를 broad anchor로 승격.
+- `0.576276019..0.576288330`: micro win. partial reopening은 살아 있지만 아직 hidden-label 해상도 병목.
+- `0.576288330..0.576300366`: E95 practical 유지. E172가 cleaner contrast.
+- `>0.576300366`: E174 demote. top-N reopening siblings 금지.
+- `>0.576306641`: E174/E172/E169 same-family reopening expected-score followup 닫기.
+
+생각이 바뀐 점:
+
+`E174는 제출 후보이지만, 그 점수는 tuning permission이 아니라 가설 관측값이다.`
+
+다음 행동:
+
+E174를 제출했다면 먼저 이것부터 실행한다.
+
+`python3 analysis_outputs/e175_e174_public_feedback_decoder.py --score <PUBLIC_LB>`
+
+그 전에는 E172/E169/E166/E154 중 다음 파일을 고르지 않는다.

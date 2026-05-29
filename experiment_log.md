@@ -2695,3 +2695,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - direct E174-vs-E172 E162 focus recovery is concentrated in S3 `-0.000003234`, Q2 `-0.000002953`, S2 `-0.000002682`, and S1 `-0.000001471`.
 - Interpretation: E172's keep `0.25` rollback was conservative, not uniquely Pareto-optimal. The public-free stress says a controlled reopening recovers a readable amount of body edge while retaining the visible-tail repair. The caveat is that E174 spends Q2/S3 and bad-axis margin, so it is a sharper expected-score bet, not the safer sensor.
 - Decision: promote `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv` as the highest-upside broad expected-score candidate. Keep `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` as the safer tail-repair contrast if E174 ties or loses and the failure looks like Q2/S3/bad-axis over-reopening rather than broad-body rejection.
+
+## E175. E174 Public Feedback Decoder
+
+- Observe: E174 is the sharper broad expected-score candidate, but its value depends on whether public feedback distinguishes partial reopening success from Q2/S3 or q2_bad over-reopening. Without a pre-registered decoder, any E174 score would invite post-hoc top-N/keep-factor tuning.
+- Wonder: can the E174 public result be mapped in advance to a world-model update and next action, using only known public anchors and the already-fixed E174/E172/E169 tensors?
+- Method: `analysis_outputs/e175_e174_public_feedback_decoder.py` fixes score bands relative to E95, E101, and mixmin; computes pairwise hard-label readability for E174 against E95/E172/E169/E166/E154/E101/mixmin; attributes E174 movement by target/context/E72-active split; and compares E169/E172/E174 prior-tail moments.
+- Result:
+  - report: `analysis_outputs/e175_e174_public_feedback_decoder_report.md`.
+  - bands: breakthrough `<=0.576261330`, clean win `(0.576261330,0.576276019]`, micro win `(0.576276019,0.576288330]`, tie `(0.576288330,0.576294330]`, small loss `(0.576294330,0.576300366]`, E101-worse/mixmin-safe `(0.576300366,0.576306641]`, branch loss `(0.576306641,0.576341330]`, hard fail `>0.576341330`.
+  - E174-vs-E95: moved cells/rows `904/193`, expected focus delta `-0.000124367`, cells-to-flip `33`, top1 swing `0.000005832`, cells for E95-over-mixmin edge `4`.
+  - E174-vs-E172 reopening: `75` cells over `65` rows, expected focus recovery `-0.000011672`, cells-to-flip `5`, top1 swing `0.000002996`, cells for E95-over-mixmin edge `7`.
+  - prior-tail tradeoff: E174 improves focus mean versus E172 by `-0.000001861`, but spends visible-tail margin: visible mean `+0.000002220`, visible p95 `+0.000003974`, worse-than-E101 probability `+0.000169869` versus E172.
+  - E174-vs-E172 recovery is concentrated in S3 `-0.000003234`, Q2 `-0.000002953`, S2 `-0.000002682`, and S1 `-0.000001471`; not-E72-active cells carry `88.6%` of the recovery.
+- Interpretation: E174 remains the highest-upside broad expected-score file, but its public read must be conditional. A win validates controlled reopening. A tie/small loss keeps E95 practical and makes E172 the cleaner same-family contrast. A worse-than-E101 result demotes E174 and blocks top-N reopening siblings. A worse-than-mixmin result closes the E174/E172/E169 same-family broad expected-score lane unless a new public-independent bad axis explains the miss.
+- Decision: E175 creates no submission. Submit `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv` only with the E175 decoder attached, and after public feedback run `python3 analysis_outputs/e175_e174_public_feedback_decoder.py --score <PUBLIC_LB>` before choosing E172, E154, or any same-family broad follow-up.

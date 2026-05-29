@@ -38,6 +38,8 @@ E88 adds one important risk lens after the E72 miss: post-mixmin target-pruned c
 
 Update after E174: E174 supersedes E172 as the sharper broad expected-score file, while E172 remains the safer contrast. `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv` reopens the top `75` E172 rollback cells back to E169 and improves E162 focus expected delta from E172 `-0.000112695` to `-0.000124367` while keeping visible p95 negative (`-0.000022709`) and worse-than-E101 small (`0.000220`). The risk is that it spends more Q2/S3 and bad-axis margin than E172: Q2/S3 share rises to `0.339597`, close to the E174 guard. If using one slot for expected score, submit E174; if the slot is a lower-risk tail-repair sensor, submit E172; if testing the raw unrolled body-vs-tail hypothesis, submit E169.
 
+Update after E175: E174 now has a pre-public feedback decoder. Submit `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv` only with `analysis_outputs/e175_e174_public_feedback_decoder.py` attached. A score `<=0.576276019` validates E174 as a broad anchor; `0.576276019..0.576288330` keeps partial reopening alive but underresolved; `0.576288330..0.576300366` keeps E95 practical and makes E172 the clean same-family contrast; `>0.576300366` demotes E174; `>0.576306641` closes E174/E172/E169 same-family reopening as expected-score follow-up. After feedback, run `python3 analysis_outputs/e175_e174_public_feedback_decoder.py --score <PUBLIC_LB>` before any next file.
+
 ## Pre-E48 Strict Gate
 
 Before the new public observation, strict local submit candidate count was `0`. That conclusion was useful as a risk warning, but E48 shows it was too conservative as a hard gate because it vetoed the now-best mixmin candidate.
