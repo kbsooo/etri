@@ -843,3 +843,12 @@
 - Implementation issue possible: low. The calculation is deterministic conditional on E95/E101 probabilities; the Monte Carlo only samples null label worlds from train priors. The remaining uncertainty is whether public labels follow a still-richer local process.
 - Bottleneck implication: the next public feedback is about hidden local label realization, not global calibration. If E101 wins, it identifies a local S3-heavy tail world; if it loses, the rollback-favorable local world did not materialize.
 - Do not repeat: describing E101 as a generic Q2/S3 prior correction or using global prevalence to justify higher-alpha rollback.
+
+## FH94. Subject-prior support can replace E101 before public feedback
+
+- Failed hypothesis: because E105 makes E101 much less adverse under subject priors than global priors, subject-supported or S3-only active-cell masks should create a cleaner pre-feedback E101 replacement.
+- Observed result: E106 scanned `268` subject-prior gate variants over E101 active cells. It found E101-pass `12`, prior-healthier `56`, interesting non-replacements `6`, but replacement rows `0` and E101-dominating rows `0`. The best interpretable S3-heavy masks at alpha `0.25` reduce prior risk but lose E101's broad support; `active_s3_all` has mean/p95/beat `-0.000015728/-0.000001195/0.973349` versus E101 `-0.000016205/-0.000001564/0.983488`.
+- Why discard: subject-prior support is useful to interpret the hidden label world, but as a selector it removes too much of the amplitude rollback that makes E101 survive E95-conditioned stress.
+- Implementation issue possible: low-medium. The first E106 run exposed a strict-flag bookkeeping bug for the new strategy name, but the rerun recomputed graft flags and restored `12` E101-pass rows. The remaining caveat is that all tests are still local stress and prior-null simulations, not public labels.
+- Bottleneck implication: the bottleneck is not simply finding the most subject-supported S3 subset. It is whether public realizes the whole E101 active-cell label world.
+- Do not repeat: replacing E101 with subject-prior-gated, S3-only, or high-support masks before E101 public feedback. Use those masks only as post-feedback contrasts if E101 improves.

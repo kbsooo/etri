@@ -1153,6 +1153,18 @@ target co-occurrence
 - public LB 관측 반응: if E101 beats E95, strengthen a local S3 tail-label world and revisit amplitude only inside that world. If E101 loses, weaken generic Q2/S3 rollback and reject E104 higher-alpha amplification unless a new independent stress source appears.
 - 제출 전략: no E105 file. Submit E101 if using one public slot; use E105 to interpret the result.
 
+### H100. Subject-prior support can pre-gate E101 into a better submission
+
+- 상태: rejected as pre-feedback candidate generator; kept as interpretation energy.
+- 왜 그럴듯한가: E105 showed subject priors raise E101 beat probability from `0.016610` under global priors to `0.335360`, suggesting subject-supported active cells might be the safer subset.
+- 맞다면: subject-support or subject-expected masks should pass E101 stress and dominate E101, or at least replace it on broad mean/p95/beat while improving prior health.
+- 틀리다면: prior-healthier masks should lose broad scenario support, or broad-transfer masks should become prior-unhealthy/global-prior shortcuts.
+- 최소 실험: `analysis_outputs/e106_e101_subject_prior_gate.py`, scanning subject expected delta, subject-support quantiles, S3-only masks, flip-benefit ranking, global/subject expected rankings, and alphas `0.25/0.50/0.75/1.00`.
+- 관측: `268` variants, E101-pass `12`, prior-healthier `56`, interesting non-replacements `6`, replacement/dominating rows `0`; no submission was materialized. `active_s3_all` alpha `0.25` is interpretable but has broad mean/p95/beat `-0.000015728` / `-0.000001195` / `0.973349`, weaker than E101 `-0.000016205` / `-0.000001564` / `0.983488`.
+- 성공/폐기 기준: reject as a pre-feedback candidate generator because no subject-prior-gated row replaces or dominates E101.
+- public LB 관측 반응: E101 public feedback remains needed. A positive E101 result can revive E106 rows as post-feedback contrasts; before feedback they should not replace E101.
+- 제출 전략: no E106 file. Submit E101 if using one public slot.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
