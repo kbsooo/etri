@@ -2077,3 +2077,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - it still failed strict actionability: only `2/3` combo sets beat base, only `1/3` tails were neutral, hidden Q2/S3 was adverse by `+0.000084793`, world support was adverse by `+0.001092051`, and E72-adverse exposure stayed high at `0.000772209`.
 - Interpretation: co-location is real enough to rescue the transfer-veto/post-E101 side, but it does not rescue the structural law. The blocker is not state visibility and not simple overlap with a transfer-safe mask; the blocker is that the current gradient direction/amplitude violates all-set tail neutrality and world/raw hidden structure inside that overlap.
 - Decision: no submission. Keep E136 block-target state as context, but reject "block-target state x veto-null mask x current gradient" as a candidate generator. The next decoder must be trained or constructed to preserve all combo sets, tail neutrality, and world/raw structure at the same time.
+
+## E139. Block-Target Set-Consensus Decoder Probe
+
+- Observe: E138 still left one plausible decoder excuse. The overlap might have failed because the E95 gradient directions disagreed across combo sets before the state/veto masks were applied.
+- Wonder: if probability movement is kept only where `inverse_top`, `raw05_compatible`, and `all_sign` combo-set gradients agree, does the block-target state finally become a safe decoder rather than a mean-improvement trap?
+- Method: `analysis_outputs/e139_blocktarget_set_consensus_decoder_probe.py` built combo-set-consensus decoders (`all3_min`, `all3_mean`, and pairwise min decoders), intersected them with E136 block-target state masks plus E138-style veto-null / low-adverse safety masks, and scored the resulting E95-neighborhood movements with the same local strict, transfer-veto, hardtail, raw/world, and post-E101 gates.
+- Result:
+  - candidate rows `1196`, set-consensus variants `1188`, evaluated variants `698`.
+  - local strict variants `0`.
+  - transfer-veto-actionable variants `190`.
+  - local-strict plus transfer-veto-actionable variants `0`.
+  - submit-gate variants `0`.
+  - best local delta vs E95 `-0.000022029`.
+  - best post-E101 sensor mean/p95 vs E95 `-0.000041506` / `-0.000010520`.
+  - all evaluated rows passed all-margin and all-beats-base, but `698/698` failed tail-neutral, `698/698` failed world-nonworse, and `698/698` failed raw-energy-nonworse.
+  - the best `all3_mean` rows did reach `3/3` combo-set wins, but still only `1/3` tail-neutral sets and adverse world/raw support.
+- Interpretation: combo-set sign conflict is not the missing decoder. Consensus can make the local combo-set means agree, but the worst-tail/world/raw law remains broken. This splits "mean direction consistency" from "LogLoss tail health"; the frontier wall is not just support selection, co-location, or combo-set sign agreement.
+- Decision: no submission. E139 turns the next question from "which mask should multiply the current gradient?" into "what decoder objective directly preserves tail/world/raw structure inside the visible block-target state?"

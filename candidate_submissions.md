@@ -411,6 +411,7 @@ Conditional E108 files are closed under the observed E101 result. `analysis_outp
 85. Do not submit E136 block-target compressed rankings directly. E136 is a target-representation discovery, not a calibrated probability movement. A file is allowed only after the compressed state creates a cell movement that passes transfer-shrinkage and hardtail stress.
 86. Do not submit E137 block-target-gradient rows. They improve local/post-E101 means but have `0` strict and `0` transfer-veto-actionable survivors; this is the classic mean-good/tail-bad failure mode.
 87. Do not submit E138 block-target x veto-null overlap rows. They repair transfer-veto/post-E101 sensor signs (`373` veto-actionable rows), but still have `0` local-strict, `0` local-and-veto, and `0` submit-gate rows. The best local/post-E101 row fails all-set tail neutrality and world/raw hidden support, so it is a decoder failure diagnostic, not a frontier candidate.
+88. Do not submit E139 block-target set-consensus rows. Combo-set mean agreement is not enough: E139 produced `190` transfer-veto-actionable rows but `0` local strict, `0` local-and-veto, and `0` submit-gate rows, with every evaluated row failing tail-neutral, world-nonworse, and raw-energy-nonworse checks.
 
 Update after E134: there is no new submission candidate. The single-file frontier remains `analysis_outputs/submission_e95_hardtail_541e3973.csv`, and the latest public sensor `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` remains a resolved negative against E95 at `0.5763003660`. The next file should not be made from E133/E134 cell rankings unless a new target representation materially improves hidden-block-heldout recovery and yields an actual probability movement that passes E128/E129/E124 stress.
 
@@ -421,6 +422,8 @@ Update after E136: no submission yet, but the live branch changes. The best next
 Update after E137: still no submission. E136 block-target state is useful, but current E95 combo gradients are not a safe decoder: `1980` variants, `0` local strict, `0` transfer-veto-actionable, `0` submit-gate. A future file must come from a new block-target direction/amplitude translator, not from scaling the E137 mean-improving rows.
 
 Update after E138: still no submission. Intersecting E136 block-target state with veto-null / low-adverse masks creates many transfer-veto-actionable rows (`373`) and favorable post-E101 mean/p95 in the best rows, but strict structural gates remain closed (`0` local strict, `0` local-and-veto, `0` submit-gate). This demotes mask multiplication itself: the next file, if any, must be a new decoder that preserves all combo sets, tail neutrality, and world/raw structure inside the block-target state.
+
+Update after E139: still no submission. Set-consensus decoders can clean up combo-set mean direction enough to produce all-three mean wins, but they do not repair LogLoss tails or world/raw hidden support. The next candidate should not be another E95-gradient mask/filter. It should be a decoder whose primitive objective is worst-tail neutrality and world/raw nonworsening inside the E136 block-target state.
 
 ## Current 0.54 Assessment
 

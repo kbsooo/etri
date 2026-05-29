@@ -1,0 +1,6 @@
+decoder,source_sets,agreement_cells,agreement_rows,agreement_q2s3_cells,agreement_s_cells,unit_mean_abs,unit_active_mean_abs,unit_max_abs
+all3_min,all3,592,233,120,411,8.181099187690707e-07,2.41839925311803e-06,1.591134310322795e-05
+all3_mean,all3,592,233,120,411,1.8732672924696189e-06,5.537530003077419e-06,8.112547870611126e-05
+pair_inverse_top__raw05_compatible_min,"inverse_top,raw05_compatible",1032,249,211,674,2.2919614653715473e-06,3.886562562403303e-06,7.991643248996605e-05
+pair_inverse_top__all_sign_min,"inverse_top,all_sign",690,234,166,463,9.705604924155107e-07,2.4615664662712225e-06,1.591134310322795e-05
+pair_raw05_compatible__all_sign_min,"raw05_compatible,all_sign",1212,249,363,685,2.0654542418558543e-06,2.9822977914585353e-06,1.591134310322795e-05

@@ -1548,6 +1548,18 @@ target co-occurrence
 - public LB 관측 반응: no submission. A file from E138 would chase favorable mean/post-E101 sensors while ignoring the exact strict-tail failure that E95/E101 exposed.
 - 제출 전략: none. The next strategy must learn or construct a decoder that directly optimizes all-set tail neutrality and world/raw structure inside the block-target state, not multiply more masks onto the current gradient.
 
+### H133. Combo-set sign consensus is the missing block-target decoder constraint
+
+- 상태: rejected as sufficient; H130 remains live and narrower.
+- 왜 그럴듯한가: E138's best rows failed some combo-set and tail criteria. If the current gradient was mostly right but internally conflicted across `inverse_top`, `raw05_compatible`, and `all_sign`, keeping only agreement cells should remove the unstable part.
+- 맞다면: all-three or pairwise consensus decoders should produce at least some local-strict plus transfer-veto-actionable rows, and all-three rows with `3/3` combo-set wins should also improve tail/world/raw health.
+- 틀리다면: combo-set mean wins may improve, but tail-neutral, world-nonworse, and raw-energy-nonworse gates should remain closed.
+- 최소 실험: `analysis_outputs/e139_blocktarget_set_consensus_decoder_probe.py`, building `all3_min`, `all3_mean`, and pairwise min decoders before intersecting E136 state and E138 safety masks.
+- 관측: `1188` variants and `698` evaluated rows produced `0` local strict, `190` transfer-veto-actionable, `0` local-and-veto, and `0` submit-gate rows. All evaluated rows passed all-margin and all-beats-base, but tail-neutral, world-nonworse, and raw-energy-nonworse each failed for `698/698` rows. The best all-three consensus rows reached `3/3` combo-set wins but only `1/3` tail-neutral sets.
+- 성공/폐기 기준: reject combo-set sign consensus as the missing decoder. It solves mean-direction disagreement only, not the LogLoss tail/world law.
+- public LB 관측 반응: no submission. A file from E139 would bet on local combo-set means while violating the same tail/world/raw constraints that explain the E101 near-miss.
+- 제출 전략: none. The next decoder must be trained or constructed with tail-neutral/world/raw constraints as primitive objectives, not added as post-hoc masks or sign filters.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

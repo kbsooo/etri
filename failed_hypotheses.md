@@ -1086,3 +1086,12 @@
 - Implementation issue possible: medium. E138 still uses current E95 combo gradients and mask intersections, not a learned decoder. The discarded claim is narrower: co-location of E136 state and E132/E128 safety masks is not sufficient.
 - Bottleneck implication: the current wall is now specifically direction/amplitude decoding inside a visible block-target state. Visibility and safety-region overlap exist; calibrated all-set/world-preserving movement does not.
 - Do not repeat: more state-veto mask multiplication, top-fraction sweeps, or scale-only variants on the same gradient. Future work should first define a decoder target that rewards all-set tail neutrality and world/raw hidden support before materializing probabilities.
+
+## FH121. Combo-set sign consensus is enough to decode block-target state
+
+- Failed hypothesis: E138's failure came from conflicting gradient signs across combo-set views, and filtering to cells where `inverse_top`, `raw05_compatible`, and `all_sign` agree would make the block-target movement strict.
+- Observed result: E139 generated `1188` set-consensus variants and evaluated `698`. It found `190` transfer-veto-actionable variants, but `0` local strict variants, `0` local-strict plus veto-actionable variants, and `0` submit-gate variants. Every evaluated row passed all-margin and all-beats-base, but all `698` failed tail-neutral, world-nonworse, and raw-energy-nonworse gates. The best all-three consensus rows got `3/3` combo-set mean wins but only `1/3` tail-neutral sets.
+- Why discard: combo-set mean agreement is a weaker condition than LogLoss tail health. It can align average local directions while still pushing probability mass into hidden world/raw and worst-tail regions that the frontier cannot afford.
+- Implementation issue possible: medium. E139 still works inside E95 first-order gradient geometry and tests min/mean sign-consensus decoders, not a learned constrained decoder. The discarded claim is specifically that consensus filtering is the missing constraint.
+- Bottleneck implication: the plateau is not caused by sign disagreement alone. The missing object is a decoder objective that directly models tail-neutral/world/raw nonworsening inside the visible block-target state.
+- Do not repeat: all-three/pairwise gradient consensus filters, agreement-cell top-k sweeps, or combo-set mean-win promotions unless a new decoder first proves worst-tail and world/raw health.

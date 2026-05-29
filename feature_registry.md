@@ -1040,6 +1040,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E138 generated `1314` overlap variants and evaluated `698`. Transfer-veto-actionable rows rose to `373`, but local strict rows stayed `0`, local-and-veto stayed `0`, and submit-gate stayed `0`. The best local row improved all stress by `-0.000030467` and post-E101 mean/p95 by `-0.000055772` / `-0.000015691`, but only `2/3` combo sets beat base and only `1/3` tails were neutral; hidden Q2/S3 and world support were adverse.
 - Policy: retain only as a diagnostic energy. It proves state-veto co-location is not enough. Do not build files by intersecting more masks with the current gradient; the next feature must define a decoder objective that preserves all-set tail neutrality and world/raw hidden structure.
 
+### F116. Block-target set-consensus decoder
+
+- Hidden structure: the unsafe part of the current block-target translator might be disagreement among combo-set gradient directions, so a decoder using only `inverse_top`, `raw05_compatible`, and `all_sign` agreement cells might preserve the public-compatible law.
+- Candidates: decoder family (`all3_min`, `all3_mean`, pairwise min), source combo sets, agreement cell counts, agreement Q2/S3/S-cell counts, state/safety overlap masks, gradient shape/scale, combo-set mean wins, tail-neutral count, world/raw nonworse flags, and post-E101 transfer sensors.
+- Label vs split test: valid as a decoder falsifier because it uses public-free combo gradients and the existing E136/E138 stress gates. Invalid as a submission feature if it passes mean combo-set wins while failing tail/world/raw health.
+- Current evidence: E139 generated `1188` variants and evaluated `698`. It found `190` transfer-veto-actionable rows but `0` local strict, `0` local-and-veto, and `0` submit-gate rows. Every evaluated row passed all-margin/all-beats-base but failed tail-neutral, world-nonworse, and raw-energy-nonworse checks. Some `all3_mean` rows reached `3/3` combo-set wins but still had only `1/3` tail-neutral sets.
+- Policy: reject as a direct feature. Keep combo-set consensus only as a diagnostic dimension. A future decoder must optimize tail/worst-case and world/raw constraints directly, rather than using consensus as a post-hoc sign filter.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

@@ -515,3 +515,33 @@ E136 state는 mean improvement가 생기는 곳을 찾는다. 하지만 현재 E
 `safe mass는 block-target state로 보이고 transfer-safe region과도 겹치지만, 그 안의 현재 gradient는 all-set tail-neutral/world-consistent law가 아니다. 0.576대 벽은 state visibility나 co-location이 아니라 calibrated decoder의 부재다.`
 
 지금 제출할 파일은 없다. 다음으로 가장 정보량이 큰 행동은 mask를 더 겹치는 것이 아니라, block-target state 안에서 all-set tail neutrality와 world/raw hidden support를 보존하는 방향/amplitude decoder를 직접 만드는 것이다.
+
+## 추가 관찰: combo-set consensus도 tail/world 법칙을 열지 못한다
+
+`analysis_outputs/e139_blocktarget_set_consensus_decoder_probe.py`로 E138의 마지막 쉬운 변명을 찔렀다.
+
+질문은 이것이었다.
+
+`E138이 실패한 이유가 combo-set gradient sign conflict라면, inverse_top/raw05_compatible/all_sign이 동의하는 cell만 움직이면 strict law가 열리는가?`
+
+결과:
+
+- set-consensus variants: `1188`.
+- evaluated variants: `698`.
+- transfer-veto-actionable variants: `190`.
+- local strict variants: `0`.
+- local-strict plus transfer-veto-actionable: `0`.
+- submit-gate variants: `0`.
+- best local delta vs E95: `-0.000022029`.
+- best post-E101 mean/p95 vs E95: `-0.000041506` / `-0.000010520`.
+- 모든 evaluated row가 all-margin/all-beats-base는 통과했다.
+- 그러나 tail-neutral, world-nonworse, raw-energy-nonworse는 `698/698` 전부 실패했다.
+- all-three consensus로 `3/3` combo-set mean win을 만든 row도 tail-neutral은 `1/3`뿐이었다.
+
+이건 E138보다 더 좁은 반증이다. 이제 sign conflict 핑계도 죽었다. combo-set 평균 방향은 맞출 수 있지만, LogLoss가 벌주는 worst-tail/world/raw 법칙은 전혀 열리지 않는다.
+
+현재 세계관을 다시 압축한다.
+
+`block-target state, transfer-safe overlap, combo-set mean consensus까지는 만들 수 있다. 하지만 현재 gradient 계열은 그 셋을 모두 만족해도 tail/world/raw hidden law를 보존하지 못한다. 0.576대 벽은 support나 sign의 문제가 아니라, worst-tail/world-aware decoder가 없는 문제다.`
+
+지금 제출할 파일은 없다. 다음으로 가장 정보량이 큰 행동은 BCE-style 평균 gradient를 계속 필터링하는 것이 아니라, tail-neutral/world/raw nonworse를 primitive objective로 삼는 decoder를 만드는 것이다.
