@@ -2113,3 +2113,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - all combined variants passed hidden-core, world-nonworse, and raw-energy-nonworse, but `168/168` failed all-set tail neutrality. The maximum combined tail-neutral count stayed `1/3`.
 - Interpretation: the primitive decoder separates the residual bottleneck. World/raw hidden support is not impossible once the decoder objective is changed; every combined row satisfies those checks. The remaining failure is the exact combo-set worst-tail law. Even cell directions that are locally useful and world/raw-safe accumulate into only `1/3` tail-neutral sets.
 - Decision: no submission. E140 rejects "tail/world-aware primitives are enough" but upgrades the live problem: the next decoder should target combo-set worst-tail balancing specifically, not generic world/raw or sign consensus.
+
+## E141. Tail Tolerance / Transfer Audit
+
+- Observe: E140's combined rows had raw05/all-sign worst-tail deltas at numerical zero (`~1.11e-16`) in many rows. The exact `<=0` tail gate may have been over-reporting tail failure.
+- Wonder: if tiny numerical tail positives are treated as zero, does E140 become structurally actionable, or does a different transfer-tail veto remain?
+- Method: `analysis_outputs/e141_tail_tolerance_transfer_audit.py` re-read E140 micro/combined outputs, swept tail tolerances from exact `0` to `1e-5`, recomputed relaxed structural gates, and compared survivors against the E95 E72-plausible exposure threshold and post-E101 p95 condition.
+- Result:
+  - exact tail pass among combined rows: `0`.
+  - with tolerance `1e-12`: tail pass `129`, relaxed structural pass `84`.
+  - with tolerance `1e-6`: relaxed structural pass `91`.
+  - relaxed plus E72 exposure pass: `0` at every tolerance.
+  - relaxed plus post-E101 mean<0 and p95<=0: `0`.
+  - minimum relaxed E72-plausible exposure `0.001560524555` versus E95 threshold `0.001557335020`, gap `+0.000003189534`.
+  - best relaxed all-minus-E95 `-0.000013973289`; best relaxed post-E101 mean `-0.000007182071`; best relaxed post-E101 p95 still positive `+0.000000141478`.
+- Interpretation: E140's all-set tail-neutral failure was partly a numerical exact-gate artifact. But relaxing that artifact does not make a candidate. The surviving blocker is transfer-tail budget: the movement sits just above the E95 E72-plausible exposure boundary and cannot make post-E101 p95 nonpositive before becoming actionable.
+- Decision: no submission. Update the live bottleneck from "combo-set worst-tail balancing" to "transfer-tail budget under E72-plausible exposure and post-E101 p95." The next decoder should reduce that `~3.2e-6` exposure gap without losing the `~1e-5` local all-minus-E95 reward.

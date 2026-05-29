@@ -1104,3 +1104,12 @@
 - Implementation issue possible: medium. E140 uses micro finite differences and top-k additive combinations, not a learned constrained optimizer. The discarded claim is specifically that primitive tail/world filters alone are sufficient.
 - Bottleneck implication: the next decoder must identify and balance the specific failing combo-set tail axes. Broad primitive selection, sign consensus, and world/raw-safe top-k accumulation are not enough.
 - Do not repeat: primitive top-k accumulation, tolerance-level strict-cell promotion, or world/raw-safe cell pools unless the candidate explicitly improves all-set tail-neutral count beyond `1/3`.
+
+## FH123. E140 is blocked mainly by real combo-set tail failure
+
+- Failed hypothesis: E140's all combined rows failing exact all-set tail neutrality means the main remaining decoder task is combo-set tail-axis balancing.
+- Observed result: E141 applied small tolerances to E140's worst-tail deltas. At tolerance `1e-12`, tail pass became `129` and relaxed structural pass became `84`; at `1e-6`, relaxed structural pass became `91`. But relaxed plus E72 exposure pass stayed `0`, relaxed plus post-E101 p95 pass stayed `0`, and actionable stayed `0`. The best relaxed E72 gap was `+0.000003189534`, and best relaxed post-E101 p95 was `+0.000000141478`.
+- Why discard: the exact tail gate counted numerical-zero raw05/all-sign deltas as failures. Once that artifact is removed, structural rows exist, but the transfer-tail budget still blocks them.
+- Implementation issue possible: low for the audit; it reads existing E140 scored rows and recomputes boolean gates. Medium for generalization because it does not generate new predictions.
+- Bottleneck implication: the next decoder should not spend cycles only improving tail-neutral count. It must lower E72-plausible exposure below the E95 threshold and make post-E101 p95 nonpositive while preserving local reward.
+- Do not repeat: pure tail-axis balancing, exact-zero tail-gate conclusions, or relaxed-tail candidate promotion without E72/post-E101 transfer survival.

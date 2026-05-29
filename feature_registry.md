@@ -1056,6 +1056,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E140 found `471` support cells, `942` micro rows, `373` local-reward primitives, `119` tail/world/local primitives, and only `3` tolerance-level strict primitives with negligible reward. Combined variants `168` had `0` local strict, `0` transfer-veto-actionable, and `0` submit-gate rows. All combined variants passed hidden-core/world/raw nonworsening, but all failed all-set tail neutrality.
 - Policy: reject as a submission feature. Keep it as evidence that world/raw can be handled by primitive decoding, while combo-set worst-tail remains the main decoder target.
 
+### F118. Tail-tolerance transfer audit
+
+- Hidden structure: E140's all-set tail failure may be a numerical exact-zero artifact, and the real blocker may be E72-plausible transfer exposure.
+- Candidates: tail tolerance, relaxed structural pass count, E95 E72-plausible exposure threshold, relaxed minimum E72 exposure, E72 gap, post-E101 p95, strict-veto/actionable counts, and exact raw05/all-sign tail deltas.
+- Label vs split test: valid as a validator audit because it does not create new predictions and only reinterprets E140's already scored rows. Invalid as a candidate source because it relaxes a gate rather than improving the prediction.
+- Current evidence: E141 shows tolerance `1e-12` opens `84` relaxed structural rows, but relaxed plus E72 exposure pass remains `0`, relaxed plus post-E101 p95 pass remains `0`, and actionable remains `0`. Minimum relaxed E72 gap is `+0.000003189534`.
+- Policy: keep tolerance-aware tail checks in diagnostics. Do not promote relaxed-tail candidates unless a future decoder also reduces E72-plausible exposure below the E95 threshold and makes post-E101 p95 nonpositive.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

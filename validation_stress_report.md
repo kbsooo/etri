@@ -329,3 +329,20 @@ E140 turns tail/world/raw health into the primitive objective rather than a post
 - best post-E101 mean vs E95: `-0.000007182`.
 
 The stress result is asymmetric in the opposite direction from E139. In E140, all combined variants pass hidden-core, world-nonworse, and raw-energy-nonworse, so world/raw is no longer the immediate blocker under primitive decoding. The blocker is exact all-set tail neutrality: every combined row fails it and the best tail-neutral count remains `1/3`. The next validation target should isolate which combo-set worst-tail axis cannot be neutralized and whether a tail-balancing decoder can trade a little mean reward for all-set tail survival.
+
+## Update After E141
+
+E141 corrects the E140 tail reading. The exact tail gate was too brittle.
+
+- tail pass at exact `0`: `0`.
+- tail pass at tolerance `1e-12`: `129`.
+- relaxed structural pass at tolerance `1e-12`: `84`.
+- relaxed structural pass at tolerance `1e-6`: `91`.
+- relaxed plus E72 exposure pass: `0`.
+- relaxed plus post-E101 p95 pass: `0`.
+- relaxed actionable: `0`.
+- E95 E72-plausible exposure threshold: `0.001557335020`.
+- minimum relaxed E72 exposure: `0.001560524555`, gap `+0.000003189534`.
+- best relaxed post-E101 p95: `+0.000000141478`.
+
+The validation meaning changes. E140 did not prove that combo-set worst-tail is the main remaining law; it proved that exact-zero tail accounting was over-conservative. Once numerical zero is tolerated, structural rows open, but transfer-tail budget remains closed. The next stress target should be E72-plausible exposure and post-E101 p95 reduction, not another tail-axis balancing sweep.

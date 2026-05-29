@@ -1572,6 +1572,18 @@ target co-occurrence
 - public LB 관측 반응: no submission. A file from E140 would still bet against the exact tail law that distinguished E95/E101.
 - 제출 전략: none. The next strategy should explicitly decompose and balance the failing combo-set tail axes rather than broaden primitive selection.
 
+### H135. E140's blocker is exact combo-tail failure rather than transfer-tail budget
+
+- 상태: rejected; H130 is narrowed to transfer-tail budget.
+- 왜 그럴듯한가: E140 reported all `168` combined rows failing all-set tail neutrality, so the obvious remaining blocker looked like combo-set worst-tail balancing.
+- 맞다면: applying a small numerical tolerance to worst-tail deltas should still leave few or no relaxed structural survivors, or the relaxed survivors should become actionable once exact-zero artifacts are removed.
+- 틀리다면: relaxed structural survivors should open, but E72-plausible exposure, transfer-veto, or post-E101 p95 should remain closed.
+- 최소 실험: `analysis_outputs/e141_tail_tolerance_transfer_audit.py`, re-scoring E140 rows under tail tolerances and E95-relative transfer thresholds.
+- 관측: at tolerance `1e-12`, tail pass rises to `129` and relaxed structural pass to `84`, but relaxed plus E72 exposure pass is `0`, relaxed plus post-E101 p95 pass is `0`, and relaxed actionable remains `0`. The minimum relaxed E72 gap is `+0.000003189534`; best relaxed p95 is still `+0.000000141478`.
+- 성공/폐기 기준: reject exact combo-tail failure as the primary blocker. Keep combo-tail tolerance in the validator, but do not claim it creates a file.
+- public LB 관측 반응: no submission. A file from relaxed E140 would be betting on tiny local reward while still exceeding the E95 transfer-tail budget.
+- 제출 전략: none. The next strategy should explicitly minimize E72-plausible exposure and post-E101 p95 while preserving relaxed structural reward.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

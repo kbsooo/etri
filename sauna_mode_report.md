@@ -577,3 +577,33 @@ E136 state는 mean improvement가 생기는 곳을 찾는다. 하지만 현재 E
 `0.576대 벽의 남은 핵심은 block-target state도, transfer-safe support도, combo-set mean sign도, world/raw support도 아니다. 마지막으로 버티는 것은 combo-set worst-tail balancing이다. 평균적으로 좋아지는 움직임은 만들 수 있지만, LogLoss tail을 세 combo-set 모두에서 동시에 중립화하지 못한다.`
 
 지금 제출할 파일은 없다. 다음으로 가장 정보량이 큰 행동은 어떤 combo-set tail axis가 계속 깨지는지 분해하고, 평균 reward를 조금 희생해서라도 `1/3` tail-neutral을 `3/3`으로 올리는 tail-balancing decoder를 만드는 것이다.
+
+## 추가 관찰: tail 실패의 일부는 gate artifact였고, 진짜 벽은 transfer-tail budget이다
+
+`analysis_outputs/e141_tail_tolerance_transfer_audit.py`로 E140의 tail 실패를 다시 찔렀다.
+
+질문은 이것이었다.
+
+`E140의 all-set tail neutrality 실패는 실제 tail-axis 실패인가, 아니면 raw05/all_sign의 1e-16 수준 numerical zero를 exact <=0 gate가 실패로 세는 artifact인가?`
+
+결과:
+
+- exact `0` tail pass: `0`.
+- tolerance `1e-12` tail pass: `129`.
+- tolerance `1e-12` relaxed structural pass: `84`.
+- tolerance `1e-6` relaxed structural pass: `91`.
+- relaxed + E72 exposure pass: `0`.
+- relaxed + post-E101 p95 pass: `0`.
+- relaxed actionable: `0`.
+- E95 E72-plausible threshold: `0.001557335020`.
+- minimum relaxed E72 exposure: `0.001560524555`.
+- minimum gap: `+0.000003189534`.
+- best relaxed post-E101 p95: `+0.000000141478`.
+
+이건 E140 결론을 정정한다. combo-tail이 전부 닫힌 게 아니다. exact gate가 너무 빡빡했다. 하지만 tolerance를 주면 구조 row가 열리는데도 submission gate는 열리지 않는다.
+
+현재 세계관을 다시 압축한다.
+
+`0.576대 벽의 현재 최전선은 combo-tail exactness가 아니라 transfer-tail budget이다. E140 계열 움직임은 구조적으로는 거의 살아날 수 있지만, E95가 이미 차지한 E72-plausible exposure 예산을 약 3.2e-6만큼 초과하고 post-E101 p95를 양수로 남긴다.`
+
+지금 제출할 파일은 없다. 다음으로 가장 정보량이 큰 행동은 local all-minus-E95 `~1e-5` 보상을 유지하면서 E72-plausible exposure를 E95 이하로 낮추는 budget-neutral correction을 찾는 것이다.
