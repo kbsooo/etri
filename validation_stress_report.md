@@ -910,3 +910,17 @@ E178 compresses the current E95/E101/E166-E176 evidence into one plateau law.
 - bottleneck statuses: validation mismatch, public-subset mismatch, and target-prior calibration tail have strong evidence; data signal shortage is mixed; representation capacity is weak evidence; candidate selection is partial.
 
 Stress implication: the plateau is not "no hidden structure" and not "just train a bigger model." The hidden body exists, but current validation cannot rank the final public-tail hard-label cells at frontier scale. E176 remains the next single public sensor; do not generate more same-family Q2 keep-factor siblings before feedback.
+
+## Update After E179
+
+E179 asks whether E176's fragile public-decisive cells are actually visible before public feedback.
+
+- script: `analysis_outputs/e179_e176_critical_cell_visibility_audit.py`.
+- report: `analysis_outputs/e179_e176_critical_cell_visibility_report.md`.
+- full-body visible-mean expected delta vs E95: `-0.000050824`.
+- visible-mean simulated E176 win rate: `0.999080`; focus-mean win rate: `1.000000`.
+- top4 E95-edge cells visible swing-weighted support: `0.330699`.
+- top33 expected-flip support: `0.245771` vs target-matched null mean `0.335713`, `z=-1.983811`, `p_low=0.014667`.
+- E176-vs-E174 Q2 damping visible-mean delta: `-0.000000191`; swing-weighted support `0.690495`; hard support rate `0.904762`.
+
+Stress implication: E176 is body-supported and Q2-damping-supported, but not decisive-cell-certified. That keeps it as the single best next public sensor while preserving the plateau warning: the public result can still hinge on a few hidden labels that train-derived visible priors do not resolve.

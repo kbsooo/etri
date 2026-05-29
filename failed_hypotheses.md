@@ -1394,3 +1394,12 @@
 - Implementation issue possible: low for hard-label/readability arithmetic and public-anchor ratios; medium for generalizing to private because E176 feedback is still pending.
 - Bottleneck implication: improving model capacity alone is unlikely to jump toward 0.54 unless it also supplies a new hard-label/public-subset sensor or a much larger low-bad-axis movement.
 - Do not repeat: broad model/feature sweeps that produce slightly better CV without proving cell-resolution survival. Future candidates must either beat same-family hard-label fragility or arrive with a new public-free resolution test.
+
+## FH155. E176 is locally certified at public-decisive hard-label resolution
+
+- Failed hypothesis: because E176 passed broadness, visible-tail, bad-axis, and Q2-damping checks, its top public-decisive cells should also be train-prior visible enough to treat E176 as a certified expected-score improvement.
+- Observed result: E179 supports the full body but rejects decisive-cell certification. Full E176-vs-E95 visible-mean expected delta is `-0.000050824`, and visible-mean simulated win rate is `0.999080`. E176-vs-E174 Q2 damping is also visible-prior favorable with expected delta `-0.000000191`, support `0.690495`, and hard support rate `0.904762`. But the top4 E95-edge cells have support only `0.330699`; top33 expected-flip support is `0.245771` versus target-matched null mean `0.335713` (`p_low=0.014667`).
+- Why discard: visible priors support E176 as a body and support Q2 damping, but they do not resolve the high-swing cells that can decide public LB. E176 is a good sensor, not a certified improvement.
+- Implementation issue possible: medium. The target-matched null and priors are train-derived, not true public labels. Low for the falsification of certification because the same fixed E176/E95/E174 cells were audited before feedback.
+- Bottleneck implication: the plateau remains a hard-label visibility problem. The missing object is not another E176-family amplitude variant; it is a public-free way to identify the decisive cells below the current public-edge scale.
+- Do not repeat: calling E176 "safe" from full-body support alone, or creating another Q2 keep-factor sibling because E179 says Q2 damping is favorable. Wait for E176 public feedback and decode with E177/E179.

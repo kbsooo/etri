@@ -2756,3 +2756,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E176 is a risk-adjusted version of E174, not a new independent law: Q2 damping costs only `0.064x` of the E95 edge while reducing max bad cosine by `0.005102` and Q2/S3 share by `0.004844`.
 - Interpretation: the current plateau is not mainly model capacity and not pure signal absence. The best one-sentence law is: broad hidden signal exists, but after E95 public improvement is filtered through target-tail calibration and a few high-swing hard-label cells that current validation cannot rank below public-edge scale.
 - Decision: no new submission is created. Keep `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` as the single risk-adjusted public sensor if spending one slot, and decode with E177. Do not create another same-family keep-factor sibling before E176 public feedback.
+
+## E179. E176 Critical-Cell Visibility Audit
+
+- Observe: E178 says E176 has a broad expected edge, but the public score can still be decided by a few hard-label cells. The user also reconfirmed E101 public `0.576300366`, which keeps E101 as a resolved small-loss sensor against E95 rather than a pending ambiguity.
+- Wonder: are E176's public-decisive cells visible to train-derived subject/flank/global priors before public feedback, or is E176 still a hidden-label lottery despite a healthy full-body prior?
+- Method: `analysis_outputs/e179_e176_critical_cell_visibility_audit.py` compares E176 against E95 and the E176-vs-E174 Q2 damping contrast. It joins E118-style train-derived priors, E162 hard-label swings, E177 score-band tensors, and target-matched nulls. It writes no submission.
+- Result:
+  - report: `analysis_outputs/e179_e176_critical_cell_visibility_report.md`.
+  - full E176-vs-E95 body under `visible_mean` has expected delta `-0.000050824`.
+  - `visible_mean` simulated E176 win rate is `0.999080`; focus-mean win rate is `1.000000`.
+  - the top4 cells that cover the E95-over-mixmin edge have swing-weighted visible support only `0.330699`.
+  - top33 expected-flip support is `0.245771` versus target-matched null mean `0.335713` (`z=-1.983811`, `p_low=0.014667`).
+  - E176-vs-E174 Q2 damping is locally supported under visible priors: visible-mean expected delta `-0.000000191`, swing-weighted support `0.690495`, hard support rate `0.904762`.
+- Interpretation: E176 is better supported than a raw same-family sibling because its full body and Q2 damping pass visible-prior checks. But E176 is not locally certified at hard-label resolution: its highest-swing public-decisive cells are weak versus target-matched nulls.
+- Decision: no new submission is created. E176 remains the single risk-adjusted public sensor, but the expected outcome should be read with E177/E179 together: a win validates the hidden-tail realization, while a tie/small loss would support the plateau law rather than justify another Q2 keep-factor sibling.

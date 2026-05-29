@@ -2028,6 +2028,18 @@ target co-occurrence
 - public LB 관측 반응: E176 `<=0.576276019` says target-amplitude calibration was the main remaining issue; E176 `0.576288330..0.576300366` preserves the plateau law; E176 `>0.576300366` demotes partial reopening; E176 `>0.576306641` closes the same-family expected-score lane.
 - 제출 전략: no new E178 submission. Use E176 as the only current risk-adjusted public sensor and treat any follow-up as a worldview update, not scalar tuning.
 
+### H173. E176 is visible-prior supported as a body but not certified at decisive-cell resolution
+
+- 상태: partially supported by E179; hidden public labels remain unobserved.
+- 왜 그럴듯한가: E176 was selected by broadness, visible-tail, bad-axis, and Q2-damping stress, but E178 showed that only `4` top cells can swing the E95-over-mixmin edge. A good local explanation must therefore separate full-body support from top-cell certification.
+- 맞다면: E176's full body should have favorable visible-prior expected delta, while top public-decisive cells should look weak, ambiguous, or below target-matched null; Q2 damping should be supportable without implying another keep-factor scan.
+- 틀리다면: the top4/top16/top33 decisive cells should be at least null-level or better under visible priors, or Q2 damping should look adverse under the same train-derived priors.
+- 최소 실험: `analysis_outputs/e179_e176_critical_cell_visibility_audit.py`.
+- 관측: full E176 body has visible-mean expected delta `-0.000050824`, visible win rate `0.999080`, and focus win rate `1.000000`. But top4 swing-weighted support is only `0.330699`, and top33 expected-flip support is `0.245771` versus null mean `0.335713` (`z=-1.983811`, `p_low=0.014667`). E176-vs-E174 Q2 damping is mildly supported: visible-mean delta `-0.000000191`, swing-weighted support `0.690495`, hard support rate `0.904762`.
+- 성공/폐기 기준: support strengthens if E176 wins or ties in a way E177/E179 can decode without new tuning. It weakens if E176 hard-fails despite the full-body visible support, because then the visible-prior body is missing a public-negative axis. It is falsified as a certification claim if E176's top cells later prove public-favorable while local priors kept rejecting them.
+- public LB 관측 반응: E176 win says the weak top-cell priors missed the hidden/public-tail realization; E176 tie/small loss says E179's top-cell warning was decisive; E176 worse than E101 demotes the partial-reopen family despite its full-body support.
+- 제출 전략: no new E179 submission. Keep E176 as the only next broad expected-score sensor, decode with E177, and use E179 to decide whether a result was body validation or decisive-cell miss.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

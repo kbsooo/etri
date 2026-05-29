@@ -1935,3 +1935,43 @@ E176을 제출한다면 결과는 반드시 다음으로 먼저 읽는다.
 - `0.576288330..0.576300366`: plateau law가 유지된다. E95 practical, E172/E174는 contrast.
 - `>0.576300366`: E176 demote.
 - `>0.576306641`: same-family partial reopening lane을 닫는다.
+
+## E179 업데이트: E176은 몸통은 보이지만 결정 셀은 아직 안 보인다
+
+내가 발견한 가장 이상한 점:
+
+`E176의 전체 방향과 Q2 damping은 train-derived prior로 지지되는데, 실제 public edge를 뒤집을 수 있는 top hard-label cells는 오히려 약하게 보인다.`
+
+실험:
+
+- `analysis_outputs/e179_e176_critical_cell_visibility_audit.py`
+- report: `analysis_outputs/e179_e176_critical_cell_visibility_report.md`
+
+결과:
+
+- E176 full body visible-mean delta: `-0.000050824`.
+- visible-mean simulated win rate: `0.999080`.
+- E176-vs-E174 Q2 damping visible-mean delta: `-0.000000191`.
+- Q2 damping support: `0.690495`, hard support rate `0.904762`.
+- 하지만 top4 decisive-cell support는 `0.330699`.
+- top33 expected-flip support는 `0.245771`, target-matched null `0.335713`보다 낮다 (`p_low=0.014667`).
+
+생각이 바뀐 점:
+
+`E176은 더 강해졌다기보다 더 정확히 정의됐다. 몸통과 Q2-underopen 가설은 local evidence가 있지만, public을 실제로 가르는 top-cell label은 아직 local에서 못 본다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+여전히 새 파일을 만들지 않는다. 한 장만 낸다면:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+단, 의도는 "이길 것 같은 파일"보다 더 좁다.
+
+`body-supported / Q2-underopened broad law가 hidden public tail과 맞는지 관측하는 파일`이다.
+
+실패 시 해석:
+
+- tie/small-loss: broad body는 맞아도 decisive-cell tail을 못 맞힌 것일 수 있다.
+- worse than E101: partial-reopen family 자체를 demote한다.
+- win: visible-prior가 약하게 본 top cells에서 hidden public tail이 E176 쪽으로 실현된 것이다.
