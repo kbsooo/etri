@@ -807,3 +807,12 @@
 - Implementation issue possible: low to medium. The decomposition inherits E99's two-term transfer abstraction, so row-coherent effects could still be missed. The rejected claim is only the broad-lower-downside interpretation of E89.
 - Bottleneck implication: the next public slot should be framed as a sharp Q2/S3 tail-world sensor, not as a generic improvement attempt. This keeps candidate selection tied to hidden-world falsification rather than aggregate beat-rate optimism.
 - Do not repeat: promoting E89 because its aggregate E95-beat rate is nonzero without stating the Q2/S3 diffuse-tail condition and the loss condition if public rejects it.
+
+## FH90. E101 active cells are a hidden subject/block-local selector
+
+- Failed hypothesis: the `50` active Q2/S3 cells in E101 identify a small hidden subject or block subset, so the next improvement should be a handcrafted subject/block-local rollback mask.
+- Observed result: E102 found the active cells spread across `48` rows, `26` hidden blocks, and all `10` subjects. Target-count-preserving permutation nulls did not support subject/block concentration: max cells per block p `0.997300`, blocks touched p `0.935553`, subjects touched p `1.0`.
+- Why discard: the active set is too distributed to justify a block- or subject-local selector. The only clear structure is edge-locality: edge-or-near-edge rate `0.620` vs null `0.471289`, p `0.016999`; mean edge distance `1.680` vs null `2.138444`, p `0.040848`.
+- Implementation issue possible: low to medium. The hidden block reconstruction is derived from existing audits, so a richer block definition could alter details. But the current E101 active-cell atlas is incompatible with a narrow subject/block mask.
+- Bottleneck implication: E101 is an amplitude/calibration-risk sensor, not a shortcut to hidden subject identity. The remaining bottleneck is target-axis Q2/S3 tail calibration near block boundaries, not obvious block membership selection.
+- Do not repeat: building a subject/block-specific follow-up from E101 before public feedback. If E101 improves, test amplitude/edge-risk variants first; if it worsens, demote generic Q2/S3 rollback and keep edge-local rollback only as a weak diagnostic.

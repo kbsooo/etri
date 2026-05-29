@@ -1521,6 +1521,20 @@
 - Interpretation: H95 is supported locally. The live branch is sharper than "submit E89": public may prefer E95's structural hard-tail gate except that E95 still over-moves a small Q2/S3 tail subset. This is a rollback of only E95's Q2/S3 correction cells, not a broad E89 decontamination file.
 - Decision: promote `submission_e101_q2s3tail_177569bc.csv` as the next highest-information public sensor ahead of full E89. If it improves public, the world model shifts to "E95 was right structurally but Q2/S3 tail amplitude was too high." If it worsens, retire the E101 rollback branch and test full E89 only if the question remains diffuse Q2/S3 tail rather than amplitude.
 
+## E102. E101 Active-Cell Structure Audit
+
+- Observe: E101's selected file changes only `50` Q2/S3 cells versus E95. Before building another rollback, we need to know whether those cells form a hidden block/subject subset or are simply the Q2/S3 cells where E95 differs from mixmin.
+- Wonder: if E101 improves public, should the next experiment be a block/subject-local mask, a broader Q2/S3 amplitude line, or a return to block-state representation work?
+- Method: `analysis_outputs/e102_e101_active_cell_structure_audit.py` built a 500-cell Q2/S3 atlas over all submission rows, attached hidden submission block metadata, measured active-cell enrichment by target/subject/block/context/position, and ran a target-count-preserving permutation null with `20000` permutations.
+- Result:
+  - active cells/rows/blocks/subjects: `50/48/26/10`.
+  - target split: Q2 `11`, S3 `39`; every active cell is exactly `25%` rollback toward mixmin.
+  - largest active hidden block has only `4` active cells; active cells touch all subjects and most blocks, so this is not a narrow subject/block mask.
+  - strongest enrichment is target S3 (`39/50`, z `3.959798`), followed by weak subject/block enrichments such as id06 rows and id04 cells.
+  - permutation null: edge-or-near-edge rate `0.620` vs null mean `0.471289`, p `0.016999`; mean edge distance `1.680` vs null `2.138444`, p `0.040848`; block/subject concentration metrics are not significant (`max_cells_per_block` p `0.997300`, `n_blocks_touched` p `0.935553`, `n_subjects_touched` p `1.0`).
+- Interpretation: H96 is supported only in the weak edge-local sense. E101 is primarily a target-axis amplitude rollback, not a hidden subject/block-local selector. The one non-random structure is proximity to hidden block edges, which fits the broader calibration/tail story: boundary rows may be where E95's Q2/S3 correction over-moves.
+- Decision: keep E101 as the next public sensor. If it improves, the next local branch should be an E101-centered Q2/S3 amplitude or edge-risk gate, not a handcrafted subject/block mask. If it worsens, the failure should mostly kill generic Q2/S3 rollback; only the edge-local variant remains weakly alive.
+
 ## Current Decision
 
 가장 저비용으로 많은 가설을 가르는 실험은 E05 selector-only/pairwise-order falsification이었다. 결과는 "micro-refine을 더 많이 만들기보다 selector resolution 또는 large safe representation move가 필요하다"로 수렴한다.

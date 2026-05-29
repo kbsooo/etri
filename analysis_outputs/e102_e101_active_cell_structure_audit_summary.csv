@@ -1,0 +1,12 @@
+metric,value
+eligible_q2s3_cells,500.0
+e101_active_cells,50.0
+e101_active_rows,48.0
+e101_active_blocks,26.0
+e101_active_subjects,10.0
+q2_active_cells,11.0
+s3_active_cells,39.0
+e95_mixmin_active_q2s3_cells,50.0
+max_active_cells_per_block,4.0
+blocks_with_ge3_active_cells,9.0
+min_perm_p,0.016999150042497874

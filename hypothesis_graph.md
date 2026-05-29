@@ -1105,6 +1105,18 @@ target co-occurrence
 - public LB 관측 반응: if E101 improves over E95, update the world model to "E95's retained E86 structure is useful, but Q2/S3 tail amplitude is too high; small rollback beats full E89." If E101 worsens, Q2/S3 rollback is overfit to tail-transfer stress and the active frontier remains E95; full E89 should only be used if the public question specifically remains diffuse Q2/S3 allocation.
 - 제출 전략: next highest-information file is `analysis_outputs/submission_e101_q2s3tail_177569bc.csv`. It should be submitted before full E89 because it isolates the E100 hypothesis with fewer changed cells and less non-Q2/S3 movement.
 
+### H96. E101's 50 active Q2/S3 cells are a hidden subject/block-local selector
+
+- 상태: mostly rejected; weak edge-local variant remains live.
+- 왜 그럴듯한가: E101 changes only 50 Q2/S3 cells. If those cells are concentrated in a few hidden submission blocks or subjects, then the next improvement after E101 should be a block-local rollback mask rather than a target-axis amplitude line.
+- 맞다면: active cells should touch fewer blocks/subjects/rows than a target-count-preserving random Q2/S3 selection, have high max cells per hidden block/subject, or show strong context-type concentration.
+- 틀리다면: active cells should be spread across many blocks and all subjects, with no significant block/subject concentration after preserving the Q2/S3 target counts. Any residual structure should be weak or tied to row position rather than block identity.
+- 최소 실험: `analysis_outputs/e102_e101_active_cell_structure_audit.py`, building a 500-cell Q2/S3 atlas, attaching hidden block metadata, computing enrichment, and running a `20000`-draw target-count-preserving permutation null.
+- 관측: E101 active cells are `50` cells across `48` rows, `26` hidden blocks, and all `10` subjects. Q2/S3 split is `11/39`, and active cells are exactly `25%` rollback toward mixmin. The strongest target-count null result is edge-or-near-edge rate `0.620` vs null mean `0.471289`, p `0.016999`; mean edge distance is `1.680` vs null `2.138444`, p `0.040848`. Block/subject concentration is absent: max cells per block is `4` with p `0.997300`, blocks touched `26` with p `0.935553`, and subjects touched `10` with p `1.0`.
+- 성공/폐기 기준: reject the strong block/subject-local selector version. Keep only a weak edge-local calibration variant because edge proximity is the only non-random structure under the null.
+- public LB 관측 반응: if E101 improves, the follow-up should first test Q2/S3 amplitude/edge-risk variants, not subject/block handcrafted masks. If E101 worsens, generic Q2/S3 rollback is weakened; edge-local rollback remains a lower-priority diagnostic because E102 did find a small edge signal.
+- 제출 전략: no E102 submission. E101 remains the public sensor. E102 changes the post-E101 branch decision, not the next file.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
