@@ -879,3 +879,12 @@
 - Implementation issue possible: medium. E110 inherits E99's local+tail abstraction and E109's simulated active-loss worlds. It is strong enough to reject automatic E89/non-active fallback after E101 loss, not strong enough to prove that all future non-active-tail hypotheses are dead.
 - Bottleneck implication: an E101 tie/loss would leave E95 as the standing best and require a rebuilt public-world model. The easy route from active-cell failure to broader E89 tail is not supported.
 - Do not repeat: after a negative E101 result, do not automatically submit full E89, active-restored E89/E85, or E95-to-source non-active grafts. Use E89 only as a deliberate high-information diffuse-tail sensor, not as a rescue.
+
+## FH98. Visible raw lifelog context can rescue Q temporal prediction directly
+
+- Failed hypothesis: because E112 showed stronger temporal persistence in Q targets, daily raw lifelog context should replace missing nearby labels and make broad Q/Q3 temporal movement submission-safe.
+- Observed result: E113 aggregated `114` raw daily coverage/context features and found complete train/test raw coverage (`1.000000`/`1.000000`). Despite that, raw+subject-prior worsened temporal holdout LogLoss versus subject prior on Q targets by `+0.038804`, S targets by `+0.058534`, and E95-active axes by `+0.059881`. Random within-subject also worsened on average, and Q2's random-only gain contradicted its temporal degradation. Only S3 improved in temporal holdout by `-0.004643`.
+- Why discard: raw context contains some ranking signal, but it does not translate into calibrated temporal LogLoss after subject prior. The random/temporal divergence is a LeJEPA-style shortcut warning, not evidence of a healthy latent.
+- Implementation issue possible: medium. E113 uses a logistic diagnostic head over coverage-style raw aggregates, not a rich representation learner. The discarded claim is narrower: visible raw context in this form should not be promoted into a broad Q/Q3 probability movement or used to replace E101.
+- Bottleneck implication: Q temporal state likely exists but is still mostly unobservable in a submission-safe way. S3 remains the only raw-context temporal survivor, which fits the S subject/block-state explanation for E95.
+- Do not repeat: building broad Q/Q3 raw-context submissions from daily raw coverage, AUC, or random-split gains. Require temporal holdout calibration improvement after subject prior first.

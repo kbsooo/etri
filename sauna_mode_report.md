@@ -48,11 +48,24 @@ E95를 단순 hardtail fallback으로만 보던 해석을 더 좁혔다. 지금 
 
 따라서 E95가 S-heavy인 이유는 S축이 subject/block state를 더 잘 담기 때문으로 보인다. Q축도 temporal signal은 강하지만, test에 직접 전파할 train adjacency가 부족해서 broad Q/Q3 movement는 위험하다.
 
+## 추가 관찰: raw context는 Q temporal state를 구하지 못함
+
+`analysis_outputs/e113_sauna_raw_context_visibility_audit.py`로 visible raw lifelog context가 sparse Q temporal labels를 대체할 수 있는지 봤다.
+
+- raw daily feature count: `114`.
+- train/test raw coverage: `1.000000` / `1.000000`.
+- temporal holdout에서 raw+subject-prior는 subject prior보다 Q targets `+0.038804`, S targets `+0.058534` 나빠졌다.
+- random split에서도 평균적으로 Q `+0.007833`, S `+0.016497` 나빠졌다.
+- 유일한 temporal gain은 S3 `-0.004643`뿐이다.
+- Q2의 random-only 개선과 temporal degradation은 shortcut/collapse 경고다.
+
+이 결과는 raw context rescue를 약화한다. Q temporal signal은 존재하지만 현재 보이는 raw coverage/head로는 submission-safe calibration으로 번역되지 않는다. S3만 약하게 살아남는 점은 오히려 E95의 S-subject-state 세계관과 맞는다.
+
 ## 다음으로 가장 정보량이 큰 행동
 
 `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` 제출.
 
-이 파일은 E95의 구조를 유지하면서 남은 Q2/S3/S3-heavy ambiguity만 찌른다. 가장 작은 public kill-test다.
+이 파일은 E95의 구조를 유지하면서 남은 Q2/S3/S3-heavy ambiguity만 찌른다. E113 이후에도 가장 작은 public kill-test다. raw context branch는 새 제출 후보가 아니라 E101 결과를 해석할 때 쓸 diagnostic energy로 내려간다.
 
 ## 제출 후보
 

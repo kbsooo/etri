@@ -1237,6 +1237,18 @@ target co-occurrence
 - public LB 관측 반응: E101 win means the Q2/S3 boundary between temporal-tail and S-subject state was too tight in E95. E101 loss means S-subject-state surgery remains right and Q2 temporal rollback is not public-real.
 - 제출 전략: no E112 file. Keep E101 as the next public kill-test; do not build direct Q1/Q3 temporal propagation without a stronger train/test adjacency bridge.
 
+### H107. Visible raw lifelog context can replace missing Q temporal labels
+
+- 상태: rejected as a submission-safe rescue route; retained only as diagnostic energy.
+- 왜 그럴듯한가: E112 showed Q targets have stronger temporal persistence than S targets, but test label adjacency is sparse. If raw lifelog coverage carries the missing daily context, an I-JEPA-style context head should recover temporal target state without direct label neighbors.
+- 맞다면: raw daily context should improve temporal holdout LogLoss over subject prior, especially on Q targets or E95-boundary targets, and random/temporal behavior should agree rather than diverge.
+- 틀리다면: raw context may show AUC/ranking signal while worsening calibrated temporal LogLoss, or improve only random within-subject splits. That would mark a shortcut/collapse signal rather than a submission-safe representation.
+- 최소 실험: `analysis_outputs/e113_sauna_raw_context_visibility_audit.py`, aggregating raw parquets into daily coverage/context features, then testing subject-prior, raw-only, and raw+subject-prior logistic heads under temporal-last25-by-subject and random-within-subject splits.
+- 관측: raw coverage exists for all train/test rows (`1.000000`/`1.000000`) with `114` daily raw features, but raw+prior worsens temporal LogLoss versus subject prior on Q targets by `+0.038804`, S targets by `+0.058534`, and E95-active axes by `+0.059881`. Random split also worsens on average (`+0.007833` Q, `+0.016497` S), while Q2's random-only improvement conflicts with its temporal degradation. Only S3 has a small temporal gain (`-0.004643`).
+- 성공/폐기 기준: reject broad raw-context probability movement because it fails temporal calibrated LogLoss after subject prior. Keep S3 raw context as weak diagnostic energy, not a new file family.
+- public LB 관측 반응: broad Q/Q3 raw-context movement should not be submitted before a temporal calibration gain exists. If E101 improves, raw context can be revisited only as S3/Q2 boundary energy; if E101 loses, raw context does not rescue the Q temporal branch.
+- 제출 전략: no E113 submission. Keep E101 as the next public kill-test.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
