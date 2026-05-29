@@ -1800,6 +1800,18 @@ target co-occurrence
 - public LB 관측 반응: E154 win credits only the groups with negative conditional contribution; E154 non-win must be read through E159 before any sibling submission. A scalar score alone is deliberately insufficient.
 - 제출 전략: keep `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` first, but require E158+E159 interpretation before promoting `analysis_outputs/submission_e155_bodytemp_d27e7965.csv`.
 
+### H154. E154 post-feedback action can be pre-committed as an executable interpreter
+
+- 상태: supported by E160; pending public feedback.
+- 왜 그럴듯한가: E158 and E159 are useful but separate. If the future E154 score requires manual synthesis, the branch can still drift into post-hoc score interpretation.
+- 맞다면: a deterministic interpreter should map any E154 public score into exactly one E158 band, join the E159 component read, and mark E155/E157/E156 eligibility before seeing the score.
+- 틀리다면: score bands and component attribution would conflict or leave multiple incompatible actions for the same outcome.
+- 최소 실험: `analysis_outputs/e160_e154_postfeedback_interpreter.py`, building a seven-row decision table and validating score probes.
+- 관측: E160 produced `7` decision rows. E155 gate is `not_needed` for win bands, `information_only` for tie and small_loss, and `not_recommended` for branch_loss/hard_fail. Score probes mapped `0.5763003660` to `small_loss` and `0.5762880000` to `micro_win`. Branch_loss/hard_fail component tops are inherited E144 body under all focus priors.
+- 성공/폐기 기준: support until actual E154 feedback arrives. If E160 maps the score to branch_loss/hard_fail, sibling controls are blocked. If it maps tie/small_loss, E155 is only information-only unless the component read is added-body dominant. If it maps a win, promote E154 and rebuild anchor audits.
+- public LB 관측 반응: run `python3 analysis_outputs/e160_e154_postfeedback_interpreter.py --score <PUBLIC_LB>` after E154 submission before choosing a follow-up.
+- 제출 전략: E154 remains next. E160, not manual judgment, decides whether E155 is allowed afterward.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

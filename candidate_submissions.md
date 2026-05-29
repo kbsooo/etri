@@ -475,6 +475,8 @@ Update after E158: the repaired-branch stack is now pre-registered as public-fee
 
 Update after E159: E154 now has a pre-public responsibility map. `analysis_outputs/e159_e154_public_outcome_attribution.py` decomposes E154 into `479` additive LogLoss segments over `294` unique moved cells and confirms the decomposition against direct E154-vs-E95 hard-label deltas with max error below `2e-16`. Public-free win mass is still meaningful: global `0.728550`, subject `0.601575`, nearest-hard `0.666680`. The caution is that branch-or-worse outcomes are mostly blamed on `inherited_e144_body`, not the small E154 added body. Therefore the next public file remains `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`, but E155 is not automatic after any loss. E155 is justified only if E158 says tie/small-loss and E159 attribution blames `e154_adjustment_on_e144_body` or `e154_extra_body`; if blame is inherited E144 body, use E144 as the unrepaired contrast or leave the branch.
 
+Update after E160: the E154 follow-up rule is now executable. Run `python3 analysis_outputs/e160_e154_postfeedback_interpreter.py --score <PUBLIC_LB>` after E154 public feedback. The current pre-feedback table says E155 is `information_only` for tie/small_loss, not a clean expected-improvement rescue, because component reads are split between E154-added body and inherited E144 body. For branch_loss and hard_fail, E155 is `not_recommended` and E157/E156 are blocked. This does not change the next submission: use `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+
 ## Current 0.54 Assessment
 
 0.54 is not blocked by a single missing model family. To approach it, one of two things must happen:

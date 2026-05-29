@@ -2451,3 +2451,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
 - Verification: additive segment sums match direct E154-vs-E95 hard-label deltas with max errors `1.75e-16` for y=1 and `1.93e-16` for y=0.
 - Interpretation: E154 is still public-worth testing, but the follow-up rule is sharper. E155 is justified after an E154 tie/small-loss only if attribution blames `e154_adjustment_on_e144_body` or `e154_extra_body`. If E154 branch-loss/hard-fails because inherited E144 body is adverse, E155 is not a rescue.
 - Decision: keep E154 as the next public sensor, but after the public score combine E158 band + E159 attribution before choosing E155/E144/representation search. This prevents treating E154 scalar feedback as a leaderboard-tuning knob.
+
+## E160. E154 Post-Feedback Interpreter
+
+- Observe: E158 and E159 exist separately, but future feedback needs a single executable rule. Otherwise the next public score can still be reinterpreted post hoc.
+- Wonder: what exact action is allowed for each E154 public band once component responsibility is included?
+- Method: `analysis_outputs/e160_e154_postfeedback_interpreter.py` joins E158 bands, E158 geometry/pairwise readability, and E159 outcome attribution into one decision table. With `--score <PUBLIC_LB>`, it writes the observed decision row to `analysis_outputs/e160_e154_observed_score_decision.csv`.
+- Result:
+  - summary: `analysis_outputs/e160_e154_postfeedback_interpreter_summary.csv`.
+  - report: `analysis_outputs/e160_e154_postfeedback_interpreter_report.md`.
+  - rows: `7`, one for each E158 band.
+  - E155 gate: `not_needed` for breakthrough/clean/micro wins, `information_only` for tie/small_loss, `not_recommended` for branch_loss/hard_fail.
+  - component top read for tie: global `e154_extra_body`, subject `e154_adjustment_on_e144_body`, nearest-hard `inherited_e144_body`.
+  - component top read for small_loss: global `e154_extra_body`, subject/nearest-hard `inherited_e144_body`.
+  - component top read for branch_loss and hard_fail: inherited E144 body under all focus priors.
+- Verification: `python3 -m py_compile` passed; score probes `0.5763003660` and `0.5762880000` mapped to `small_loss` and `micro_win`; temporary observed decision output was removed after the probe.
+- Interpretation: E155 is not a clean expected-improvement follow-up after E154. It is only an information-only amplitude contrast for tie/small-loss, because at least one but not all focus priors blame E154-added body. Branch_loss/hard_fail point to inherited-body failure, so E155/E157/E156 are blocked.
+- Decision: after E154 public feedback, run `python3 analysis_outputs/e160_e154_postfeedback_interpreter.py --score <PUBLIC_LB>` before selecting any sibling control. The next public file remains E154.

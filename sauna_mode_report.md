@@ -1144,3 +1144,45 @@ E154 이전 기준으로는 제출 파일이 `analysis_outputs/submission_e144_a
 `E154는 여전히 지금 가장 정보량 높은 제출 후보지만, E154의 실패는 하나가 아니다. E154가 tie/small-loss에 들어가고 blame이 E154 extra/adjustment body에 있으면 E155가 의미 있는 amplitude-control이다. 하지만 branch-loss/hard-fail이 inherited E144 body에서 나오면 E155는 구조적으로 rescue가 아니다. 그 경우에는 E144 contrast를 보거나 이 branch를 닫아야 한다.`
 
 지금 제출할 파일은 변하지 않는다. `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+
+## 추가 관찰: E154 feedback 해석기를 실행 가능한 형태로 고정했다
+
+`analysis_outputs/e160_e154_postfeedback_interpreter.py`를 만들었다.
+
+질문은 이것이었다.
+
+`E154 public score가 들어온 뒤, 우리가 즉석에서 해석을 바꾸지 않으려면 어떤 decision table을 미리 고정해야 하는가?`
+
+결과:
+
+- decision rows: `7`.
+- E155 gate:
+  - breakthrough/clean/micro win: `not_needed`.
+  - tie: `information_only`.
+  - small_loss: `information_only`.
+  - branch_loss: `not_recommended`.
+  - hard_fail: `not_recommended`.
+- tie component read:
+  - global: `e154_extra_body`.
+  - subject: `e154_adjustment_on_e144_body`.
+  - nearest-hard: `inherited_e144_body`.
+- small_loss component read:
+  - global: `e154_extra_body`.
+  - subject/nearest-hard: `inherited_e144_body`.
+- branch_loss/hard_fail component read:
+  - all focus priors: `inherited_e144_body`.
+- score probe:
+  - `0.5763003660` -> `small_loss`.
+  - `0.5762880000` -> `micro_win`.
+
+현재 세계관을 다시 압축한다.
+
+`E154가 tie/small_loss여도 E155는 clean rescue가 아니라 information-only amplitude contrast다. branch_loss/hard_fail이면 E155/E157/E156은 막힌다. 이제 E154 public feedback이 오면 손으로 해석하지 말고, 먼저 E160을 실행해야 한다.`
+
+실행 명령:
+
+```bash
+python3 analysis_outputs/e160_e154_postfeedback_interpreter.py --score <PUBLIC_LB>
+```
+
+지금 제출할 파일은 여전히 `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` 하나다.

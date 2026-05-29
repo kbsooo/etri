@@ -659,3 +659,16 @@ E159 adds the attribution stress that E158 deliberately left open.
 - branch-or-worse mass: global `0.222590`, subject `0.336125`, nearest-hard `0.259610`.
 
 The stress implication is that E154's public result must be interpreted by component responsibility, not by score band alone. The loss-side stress is dominated by the inherited E144 body under all focus priors; the E154 added body is much smaller. Therefore E155 is a valid follow-up only when the realized E154 band and attribution specifically point to added-body overextension. If E154 fails because the inherited body is adverse, the lower-amplitude E155 control cannot logically rescue the branch.
+
+## Update After E160
+
+E160 makes the E154 post-feedback rule executable.
+
+- script: `analysis_outputs/e160_e154_postfeedback_interpreter.py`.
+- summary: `analysis_outputs/e160_e154_postfeedback_interpreter_summary.csv`.
+- report: `analysis_outputs/e160_e154_postfeedback_interpreter_report.md`.
+- decision rows: `7`.
+- E155 gate by band: `not_needed` for win bands, `information_only` for tie and small_loss, `not_recommended` for branch_loss and hard_fail.
+- score probe check: `0.5763003660` maps to `small_loss`; `0.5762880000` maps to `micro_win`.
+
+The stress implication is now operational: after E154 public feedback, run the E160 interpreter before selecting E155/E157/E156/E144. The current pre-feedback attribution makes E155 an information-only amplitude contrast at best unless the realized score lands in a tie/small-loss band and the component read points to E154-added body.
