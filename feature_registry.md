@@ -1024,6 +1024,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E136 found best block-target compressed predictor `all_raw_views_raw_pred` / `ridge` with top10 truth-mass `0.332698`, random enrichment `3.326980`, and oracle top10 capture ratio `0.709652`. Pure `night_all_raw` block-target reaches enrichment `3.236095`. Row-total best is only `1.181643`, while cell-level E134/E135 enrichment references are `2.572395` and `2.220050`.
 - Policy: keep as the next live representation target. Do not submit from E136 rankings directly. The next experiment should ask whether block-target safe-state support can define direction/amplitude of probability movement without using weak E133 cell rankings.
 
+### F114. Block-target gated E95-gradient translator
+
+- Hidden structure: E136 may have found the right state support, and the remaining issue may be selecting the E95 local gradient only inside that state.
+- Candidates: E136 predicted block-target state masks, donor-free E95 combo gradients, context name, hard/soft state mask, target scope, shape, scale, local strict gate, transfer veto, post-E101 p95, and hardtail exposure.
+- Label vs split test: valid as a movement translator falsifier because it uses public-free E136 state predictions and pre-existing E95-relative stress gates. Invalid as a submission if local mean improves but strict/veto/post-E101 p95 fails.
+- Current evidence: E137 generated `1980` block-target gradient variants. Evaluated variants `698`; local strict `0`; transfer-veto-actionable `0`; local-and-veto `0`; submit-gate `0`. Best local delta vs E95 is `-0.000043592`, and best post-E101 mean vs E95 is `-0.000040388`, but p95 remains positive (`~0.000026`) and tail-equal law alignment is poor.
+- Policy: mark this translator invalid. Keep F113 as a representation target, but do not use current E95 combo gradients as its decoder. Future translators must learn direction/amplitude inside block-target state or use hardtail-support labels directly.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

@@ -266,3 +266,18 @@ E136 changes the status of the representation branch. The cell-level safe-remain
 - cell references: E134 raw/block enrichment `2.572395`, E135 prediction-manifold enrichment `2.220050`.
 
 This reopens a narrow JEPA-style target-redesign path. The current stress gate still blocks a submission because E136 has not produced a calibrated probability movement, but it changes the next validation target: do not try to rank individual E133 cells; test whether block-target state can generate cell movement that survives transfer-shrinkage, hardtail, and post-E101 stress.
+
+## Update After E137
+
+E137 applies the first movement stress to the E136 branch. It uses the visible block-target state only as a gate on donor-free E95 combo gradients.
+
+- block-target gradient variants: `1980`.
+- evaluated variants: `698`.
+- local strict variants: `0`.
+- transfer-veto-actionable variants: `0`.
+- local-strict plus transfer-veto-actionable variants: `0`.
+- submit-gate variants: `0`.
+- best local delta vs E95: `-0.000043592`.
+- best post-E101 mean vs E95: `-0.000040388`, but p95 is still positive at about `0.000026`.
+
+The validation meaning is narrow but important: E136's representation visibility is real enough to concentrate mean improvements, but the existing E95 gradient still points into structurally unsafe/tail-adverse movement. Future validation should keep block-target state as context, but require a new direction/amplitude translator before any file is considered.

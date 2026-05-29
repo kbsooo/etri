@@ -1524,6 +1524,18 @@ target co-occurrence
 - public LB 관측 반응: no public submission yet. A later block-target-state candidate should improve only if compressed state can be translated into calibrated cell movement without reviving Q2/S3/E101 exposure.
 - 제출 전략: none now. Next experiment should test whether E136 top block-target states provide a safe movement direction or merely explain where the teacher mass aggregates.
 
+### H131. E136 block-target state can make the current E95 gradient safe
+
+- 상태: rejected for the current translator; H130 remains live.
+- 왜 그럴듯한가: E136's compressed state captures where safe mass lives. If E132 failed mainly because it selected cells poorly, using E136 state masks should align the donor-free E95 gradient with local upside and transfer safety.
+- 맞다면: block-target gated gradient variants should produce at least some local-strict and transfer-veto-actionable overlap, with post-E101 p95 nonpositive and a material E95-relative local gain.
+- 틀리다면: local mean gains may appear, but strict structural gates and transfer-veto gates should remain empty, or post-E101 p95/tail exposure should stay adverse.
+- 최소 실험: `analysis_outputs/e137_blocktarget_state_movement_probe.py`, using E136 predicted block-target state as hard/soft masks over E95 combo gradients across contexts, target scopes, shapes, and scales.
+- 관측: `1980` block-target gradient variants and `698` evaluated variants produced `0` local strict, `0` transfer-veto-actionable, `0` local-and-veto, and `0` submit-gate candidates. Best local delta vs E95 is `-0.000043592`, and best post-E101 mean vs E95 is `-0.000040388`, but p95 stays positive (`0.000026205`), tail-equal law cosine is only about `0.66-0.70`, and E72 exposure is elevated.
+- 성공/폐기 기준: reject the current translator because visibility does not become safe movement. Keep the state representation if a future translator learns direction/amplitude rather than multiplying the old gradient.
+- public LB 관측 반응: no submission. A file from E137 would bet on mean local/post-E101 improvement while ignoring strict and transfer-veto failures, which is exactly the failure mode E95/E101 exposed.
+- 제출 전략: none. Next branch should build a block-target-state direction model or hardtail-support translator, not another E95 gradient mask.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

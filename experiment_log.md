@@ -2043,3 +2043,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - cell-level references: E134 raw/block top50 enrichment `2.572395`; E135 prediction-manifold top50 enrichment `2.220050`.
 - Interpretation: the safe remainder is not invisible in every representation. It becomes materially more visible when compressed to block-target or block-family state, while row-level total does not help. This supports a target-redesign world model: the weak E133/E134/E135 cell rankings were probably the wrong target granularity, not proof that no hidden state exists.
 - Decision: no submission yet. E136 revives the JEPA branch as "predict block-target hidden safe-mass state from raw/prediction context," but a probability movement must be generated from that state without translating back through weak cell rankings. The next smallest experiment should test whether the top E136 block-target states identify a safe movement direction or only a descriptive aggregation.
+
+## E137. Block-Target State Movement Probe
+
+- Observe: E136 made the safe-mass state visible after block-target compression, but it did not say whether this state can move probabilities. E132 already showed that raw E95 combo-gradient masks fail; E137 asks whether E136 block-target state fixes that gradient geometry.
+- Wonder: if donor-free E95 combo gradients are gated by the E136 predicted block-target state, do local upside and transfer/hardtail safety finally overlap?
+- Method: `analysis_outputs/e137_blocktarget_state_movement_probe.py` took the E136 best block-target predictor (`all_raw_views_raw_pred` / `ridge`), mapped predicted state mass back to row-target masks, and generated E95-neighborhood gradient movements across `6` combo contexts, hard/soft state masks, target scopes, shapes, and scales. It scored candidates with the same E95-relative local stress, transfer-shrinkage veto, hardtail metrics, and post-E101 sensor filters used by E130/E132.
+- Result:
+  - candidate rows `1986`, gradient variants `1980`, evaluated variants `698`.
+  - local strict variants `0`.
+  - transfer-veto-actionable variants `0`.
+  - local-strict plus transfer-veto-actionable variants `0`.
+  - final submit-gate variants `0`.
+  - best local delta vs E95 `-0.000043592`.
+  - best post-E101 sensor mean vs E95 `-0.000040388`, but best p95 remains positive (`0.000026205`) and transfer vetoes fail.
+  - top state masks are meaningful: top30 state covers teacher mass `0.607103`, but the movement still has poor tail-equal law alignment (`tail_equal_law_cosine` around `0.66-0.70`, residual ratio around `1.0+`) and elevated E72 exposure.
+- Interpretation: E136 found a visible state, but the current E95 combo-gradient is still the wrong translator. The state can concentrate local mean and sensor mean improvements, yet cannot pass strict structure or transfer safety. This distinguishes representation visibility from movement validity.
+- Decision: no submission. Keep block-target safe-state as the live representation object, but reject "block-target state mask times current E95 gradient" as a candidate generator. The next translator must learn direction/amplitude inside the block-target state, not reuse the old local combo gradient.

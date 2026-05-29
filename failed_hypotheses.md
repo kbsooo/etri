@@ -1068,3 +1068,12 @@
 - Implementation issue possible: medium. E135 tests PCA/scalar/manifold summaries of existing submissions, not every possible nonlinear meta-model. The discarded claim is the cheap old-prediction-manifold visibility path.
 - Bottleneck implication: the plateau is not caused by failing to rank the old CSV manifold. The safe target itself is weak under both raw/block and old-prediction contexts, so progress requires a different target representation or independent supervision.
 - Do not repeat: old-submission disagreement gates, prediction-PCA ranking, uncertainty-only blending, or direct probability movement from E133/E134/E135 cell ranks unless a new latent target materially improves hidden-block-heldout recovery.
+
+## FH119. E136 block-target state makes current E95 gradients safe
+
+- Failed hypothesis: E132's donor-free gradient failed because the cell masks were weak; replacing them with E136 predicted block-target safe-state masks should make local upside and transfer safety overlap.
+- Observed result: E137 generated `1980` block-target-gated gradient variants and evaluated `698`. It found `0` local strict variants, `0` transfer-veto-actionable variants, `0` local-strict plus veto-actionable variants, and `0` submit-gate variants. The best local delta versus E95 was `-0.000043592`, and the best post-E101 mean was `-0.000040388`, but post-E101 p95 stayed positive and transfer-veto components failed.
+- Why discard: the visible block-target state helps locate mean-improving regions, but the current combo-gradient decoder still carries unsafe tail/e72 exposure and poor tail-equal law alignment. The problem is not only support selection; direction and amplitude are wrong.
+- Implementation issue possible: medium. E137 tests donor-free first-order gradients, not a learned nonlinear block-target decoder. The discarded claim is specifically "E136 state mask times current E95 gradient is enough."
+- Bottleneck implication: the live representation branch remains block-target state, but movement must be learned or defined differently. The plateau is now a decoder problem, not merely a context visibility problem.
+- Do not repeat: E95 combo-gradient masks over E136 state, larger scale sweeps over the same masks, or submitting mean-improving block-target-gradient rows without strict/veto/post-E101 p95 survival.
