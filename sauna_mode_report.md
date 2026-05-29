@@ -723,3 +723,33 @@ E144 fine-boundary audit 전까지 제출 파일은 `analysis_outputs/submission
 `E144는 점수 자체보다 해석 분기표가 중요하다. E144가 E95를 읽을 만큼 이기면 fine active/Q2S3 boundary가 살아난다. E95보다 지지만 E101보다 나쁘지 않으면 E143만 같은 family contrast로 남는다. E101보다 나쁘면 E143/E142를 자동으로 구하면 안 된다. mixmin보다 나쁘면 E142/E143/E144 branch 자체가 public-sensor overfit이다.`
 
 다음으로 가장 정보량이 큰 행동은 E144를 제출한 뒤 `analysis_outputs/e145_e144_public_feedback_decoder.csv`로만 해석하는 것이다.
+
+## 추가 관찰: E144의 retained S3 tail은 독립 prior도 지지한다
+
+`analysis_outputs/e146_e144_e143_tail_prior_audit.py`로 E144와 E143의 차이만 분리했다.
+
+질문은 이것이었다.
+
+`E144가 E143보다 나은 이유는 local strict gate의 미세한 산술인가, 아니면 visible global/subject/flank prior도 E144의 retained tail을 지지하는가?`
+
+결과:
+
+- E144와 E143이 다른 셀: `24`.
+- 전부 `S3`.
+- rows/subjects touched: `24` / `4`.
+- E143 대비 E95에서 멀어지는 셀: `21`.
+- E143 대비 E95 쪽으로 돌아가는 셀: `3`.
+- edge-like cells: `7`.
+- flank-conflict cells: `0`.
+- E144를 선호한 public-free prior: `10/10`.
+- best expected prior: `nearest_hard085`, E144-minus-E143 `-0.000010294767`.
+- weakest expected prior: `subject`, E144-minus-E143 `-0.000001097289`.
+- simulated `p(E144 beats E143)`: subject prior `0.540545`, nearest-hard prior `0.925720`.
+
+이건 E144 해석을 조금 강화한다. E144의 `keep0.15` retained S3 tail은 단지 local gate가 고른 숫자가 아니다. visible prior도 E143보다 E144를 더 자연스럽게 본다.
+
+현재 세계관을 다시 압축한다.
+
+`E144는 E143보다 작은 local edge만 가진 파일이지만, 그 edge는 24개의 S3 fine-tail 셀에 집중되어 있고 public-free prior도 같은 방향을 본다. 따라서 E144가 실패하면 "E143이 원래 더 안전했다"가 아니라 "public hidden S3 tail이 visible prior보다 더 adverse였다"로 읽어야 한다. E143은 기대값 rescue가 아니라 fine-tail retention contrast로만 남는다.`
+
+지금 제출할 파일은 여전히 하나다. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.

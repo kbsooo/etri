@@ -1096,6 +1096,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E145 defines seven bands: breakthrough win `<=0.576271330`, clean win `<=0.576284330`, micro win `<=0.576289330`, tie `<=0.576293330`, fine-loss branch alive `<=0.576300366`, branch loss `<=0.576306641`, and hard fail `>0.576306641`.
 - Policy: consult before any post-E144 action. E143 is allowed only in the no-worse-than-E101 loss band; worse-than-E101 blocks E143/E142 automatic rescue, and worse-than-mixmin closes the branch.
 
+### F123. E144/E143 retained S3-tail prior support
+
+- Hidden structure: E144's fine boundary may be a real S3 tail-state correction rather than a strict-gate artifact; visible train flanks and subject priors should weakly recognize it if so.
+- Candidates: E144-vs-E143 differing cells, hard-label support direction, target, row/block/edge context, global/subject/flank priors, expected E144-minus-E143 delta, simulated beat probability, and high-impact cell support.
+- Label vs split test: valid as a public-free interpretation feature because it uses only train-derived priors and known candidate probabilities. Invalid as a submission generator because it is a prior explanation over `24` cells, not a new calibrated probability movement.
+- Current evidence: E146 finds `24` E144-vs-E143 differing cells, all `S3`, with `0` flank conflicts. All `10/10` public-free priors prefer E144 over E143; expected deltas range from `-0.000010294767` to `-0.000001097289`, and simulated beat probability ranges from `0.540545` to `0.925720`.
+- Policy: use as fallback interpretation energy. It strengthens E144 as the next public sensor. If E144 loses narrowly, do not automatically promote E143 as expectation-safer; read the loss as hidden public S3-tail adversity unless the next public slot is explicitly a fine-tail retention contrast.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

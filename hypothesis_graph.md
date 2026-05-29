@@ -1632,6 +1632,18 @@ target co-occurrence
 - public LB 관측 반응: E144 win strengthens H138. E144 fine-loss but no worse than E101 permits E143 as the clean contrast. Worse than E101 weakens H138 enough to block automatic same-family rescue. Worse than mixmin rejects the E142/E143/E144 transfer-budget branch.
 - 제출 전략: no E145 submission. Consult `analysis_outputs/e145_e144_public_feedback_decoder.csv` immediately after E144 LB arrives.
 
+### H140. E144's retained S3 tail is public-free prior-supported, not only local-gate supported
+
+- 상태: locally supported; public pending.
+- 왜 그럴듯한가: E144's advantage over E143 is only `~1.75e-7` locally. If the 24 retained cells are random strict-gate arithmetic, visible global/subject/flank priors should not systematically prefer E144 over E143.
+- 맞다면: E144-vs-E143 differing cells should be concentrated in a coherent target/tail state, and public-free priors should expect E144-minus-E143 LogLoss deltas to be negative.
+- 틀리다면: priors should split signs, prefer E143, or show the edge comes from unsupported high-conflict cells.
+- 최소 실험: `analysis_outputs/e146_e144_e143_tail_prior_audit.py`, isolating only E144-vs-E143 differing cells and scoring hard-label deltas under global, subject, and train-flank priors.
+- 관측: E144 differs from E143 in `24` cells, all `S3`, across `24` rows and `4` subjects. `21` cells move away from E95 versus E143 and `3` move toward E95. Flank-conflict cells are `0`. All `10/10` public-free priors prefer E144 over E143. Expected E144-minus-E143 deltas range from `-0.000010294767` under nearest-hard to `-0.000001097289` under subject prior. Simulated E144 beat probability ranges from `0.540545` to `0.925720`.
+- 성공/폐기 기준: support H140 as a pre-public interpretation layer. Public LB can still kill the retained-tail movement, but if it does, the failure is hidden public S3-tail adversity rather than lack of public-free prior support.
+- public LB 관측 반응: E144 win strengthens H138 and H140 together. E144 narrow loss weakens public transfer of visible S3 priors and makes E143 only a deliberate contrast on tail retention, not an expectation-ranked rescue. E144 worse than E101 still blocks automatic same-family rescue as H139 specified.
+- 제출 전략: no E146 submission. Keep `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the next single file.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

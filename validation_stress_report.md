@@ -415,3 +415,20 @@ E145 registers the public-feedback stress for E144 before the score is known.
 - hard fail: `>0.576306641`.
 
 This is not a model stress; it is an interpretation stress. The key validation rule is that a loss no worse than E101 may justify E143 as a clean boundary contrast, while worse-than-E101 blocks automatic same-family rescue. Worse than mixmin closes the E142/E143/E144 branch as public-sensor overfit.
+
+## Update After E146
+
+E146 stress-tests the E144-over-E143 edge without using public feedback.
+
+- differing E144-vs-E143 cells: `24`.
+- targets: all `24` are `S3`.
+- rows/subjects touched: `24` / `4`.
+- movement direction: `21` cells move away from E95 versus E143, `3` move toward E95.
+- edge-like cells: `7`.
+- flank-conflict cells: `0`.
+- public-free priors preferring E144: `10/10`.
+- best expected prior delta E144-minus-E143: `nearest_hard085` at `-0.000010294767`.
+- weakest expected prior delta: `subject` at `-0.000001097289`.
+- simulated `p(E144 beats E143)`: `0.540545` under subject prior to `0.925720` under nearest-hard prior.
+
+This does not create a new submission, but it changes the fallback logic. E144's retained `S3` fine tail is not merely local-gate arithmetic; visible global/subject/flank priors all lean E144 over E143. Therefore a future narrow E144 public loss should be interpreted as hidden public S3-tail adversity, not as public-free evidence that E143 was the better expectation candidate. E143 remains a clean contrast only for the specific question "did keep0.15 retention fail?", not as an automatic rescue.

@@ -2207,3 +2207,22 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - `hard_fail`: `>0.576306641`.
 - Interpretation: the smallest experiment that can kill the current world model is simply E144 public feedback, but it must be read against E145. A loss that stays no worse than E101 keeps E143 as the only same-family contrast; a score worse than E101 blocks E143/E142 automatic rescue; worse than mixmin closes the whole branch as selector overfit.
 - Decision: no submission is materialized. Use `analysis_outputs/e145_e144_public_feedback_decoder.csv` before any post-E144 action.
+
+## E146. E144/E143 Tail Prior Audit
+
+- Observe: E144's edge over E143 is tiny, and it comes entirely from the fine retained active-tail cells. Before seeing public feedback, the next smallest question is whether visible public-free priors already prefer E144 or E143 on exactly those cells.
+- Wonder: is E144's keep `0.15` retained S3 tail supported by global/subject/flank label context, or is E143's stricter rollback the public-free safer choice?
+- Method: `analysis_outputs/e146_e144_e143_tail_prior_audit.py` isolates only the cells where E144 differs from E143, computes hard-label deltas for E144-minus-E143, attaches hidden row/flank context, and evaluates global, subject, prev/next/nearest/both-flank, edge-endpoint, hard-nearest, and conflict-flat priors. It then simulates E144-vs-E143 outcomes under each prior.
+- Result:
+  - differing cells: `24`.
+  - targets: all `24` cells are `S3`.
+  - rows/subjects touched: `24` rows, `4` subjects.
+  - direction: `21` cells move away from E95 versus E143, `3` move toward E95.
+  - edge-like cells: `7`.
+  - flank-conflict cells: `0`.
+  - priors preferring E144 over E143: `10/10`.
+  - best expected prior: `nearest_hard085`, delta `-0.000010294767` E144-minus-E143.
+  - weakest expected prior: `subject`, delta `-0.000001097289`.
+  - simulated E144 beat probability ranges from `0.540545` under subject prior to `0.925720` under nearest-hard prior.
+- Interpretation: E144 is not just a local strict-gate artifact. The exact 24-cell S3 retained tail is independently supported by visible priors, especially nearest/flank context. That makes E144 a better public sensor than E143. It also changes the fallback meaning: if E144 loses narrowly, E143 should not be treated as automatically safer by public-free evidence; the loss would mean public S3 tail labels were more adverse than visible priors.
+- Decision: no submission is materialized. Keep `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the single next file. E143 remains a clean contrast only if the public slot is explicitly testing fine-tail retention after E144 feedback, not as an expectation-ranked rescue.
