@@ -1309,6 +1309,18 @@ target co-occurrence
 - public LB 관측 반응: if E101 wins, H112 strengthens and E108/E104 follow-ups should be rerun through exact E101-delta conditioning. If E101 ties or loses, the visible flank signal was real but insufficient, and same-line amplitude escalation should stay closed.
 - 제출 전략: no E118 submission. Keep E101 as the next sensor; use E118 only to pre-register how to interpret that sensor.
 
+### H113. Visible flank support can replace full E101 with a gated variant
+
+- 상태: rejected before public feedback.
+- 왜 그럴듯한가: E118 raised E101 beat-E95 probability under edge/flank priors from subject `0.337185` to `0.437780`, and active cells were enriched for edge and conflict contexts. If that support identifies the right cells, a flank-gated subset should reduce risk while retaining E101's benefit.
+- 맞다면: flank/support/edge/flip-benefit selectors should produce at least one E101-pass variant that dominates full E101 on broad mean, broad p95, and broad beat-rate.
+- 틀리다면: smaller visible-context gates should improve mean only by sacrificing scenario support, or fail p95/strict support before beating E101.
+- 최소 실험: `analysis_outputs/e119_e101_flank_gate_variant_stress.py`, scanning E95-to-E101 movement over flank-support, expected-delta, edge, S3/Q2, conflict, and flip-benefit selectors.
+- 관측: E119 generated `602` variants, `66` E101-pass rows, and `0` E101-dominating rows. Active-all scale `1.50` improved mean/p95 versus E101 but dropped beat-rate from `0.983488` to `0.980881`; scale `2.00` improved mean further but failed E101-pass and dropped beat-rate to `0.977984`. Gated rows such as `flip_benefit_best_top45`, `active_s3_all`, and `near_edge_first_top45` showed the same mean-vs-support tradeoff.
+- 성공/폐기 기준: 폐기. E118 support remains interpretation energy, not a pre-feedback selector.
+- public LB 관측 반응: if E101 later wins, use E119 as evidence that the full active-set law was necessary before amplitude-up; rerun exact-delta follow-ups rather than handcrafted flank gates. If E101 ties/loses, E119 prevents using flank support to rescue same-line gates.
+- 제출 전략: no E119 submission. Do not replace E101 with a flank-gated file before public feedback.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

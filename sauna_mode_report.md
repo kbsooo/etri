@@ -125,11 +125,24 @@ E95를 단순 hardtail fallback으로만 보던 해석을 더 좁혔다. 지금 
 
 이건 E101을 단순 public-only blind sensor로 보는 해석을 약화한다. active cells에는 실제 edge/flank transition-state 냄새가 있다. 하지만 expected delta가 아직 positive라서 로컬 인증은 아니다. 결론은 더 좁다. E101은 보이는 구조가 약하게 지지하는 transition-state sensor지만, public feedback 없이 E108이나 higher-alpha를 먼저 열 만큼 강하지 않다.
 
+## 추가 관찰: flank support는 E101 대체 gate가 아님
+
+`analysis_outputs/e119_e101_flank_gate_variant_stress.py`로 E118의 flank support를 실제 pre-feedback candidate gate로 바꿔봤다.
+
+- variants: `602`.
+- E101-pass rows: `66`.
+- E101-dominating rows: `0`.
+- materialized submission: `none`.
+- active-all scale `1.50`은 broad mean을 E101보다 좋게 만들었지만 beat-rate를 `0.983488`에서 `0.980881`로 낮췄다.
+- active-all scale `2.00`은 mean을 `-0.000029942`까지 낮췄지만 E101-pass를 잃고 beat-rate도 `0.977984`로 낮아졌다.
+
+이 결과는 더 정확하다. flank signal은 E101 active cells가 random이 아니라 transition-state 쪽이라는 해석을 강화한다. 하지만 visible flank로 subset을 자르면 E101의 scenario support가 먼저 죽는다. 따라서 E101은 여전히 다음 public sensor이고, E119는 "E101을 더 작게 잘라 제출하자"는 shortcut을 닫는다.
+
 ## 다음으로 가장 정보량이 큰 행동
 
 `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` 제출.
 
-이 파일은 E95의 구조를 유지하면서 남은 Q2/S3/S3-heavy ambiguity만 찌른다. E114 이후에도 raw-context support는 없고, E118 이후 visible flank support는 있지만 로컬 인증은 아니다. 따라서 제출 이유는 “검증된 개선”이 아니라 “남은 세계관을 가장 날카롭게 가르는 public kill-test”다.
+이 파일은 E95의 구조를 유지하면서 남은 Q2/S3/S3-heavy ambiguity만 찌른다. E114 이후에도 raw-context support는 없고, E118 이후 visible flank support는 있지만 로컬 인증은 아니다. E119 이후에는 그 flank support를 잘라낸 대체 파일도 없다. 따라서 제출 이유는 “검증된 개선”이 아니라 “남은 세계관을 가장 날카롭게 가르는 public kill-test”다.
 
 ## 제출 후보
 

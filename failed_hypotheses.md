@@ -915,3 +915,12 @@
 - Implementation issue possible: low to medium. The flank model is deliberately simple and uses reconstructed block context, but it directly tests the low-cost visible-context certification claim.
 - Bottleneck implication: E101 is a transition-state public sensor, not a guaranteed improvement. The hidden public labels still decide whether the visible flank clue is strong enough.
 - Do not repeat: using flank support to submit E108, increase E101 amplitude, or build same-line masks before actual E101 feedback.
+
+## FH102. Flank-gated E101 variants can replace full E101 before feedback
+
+- Failed hypothesis: the E118 flank/edge support signal can be converted into a safer pre-feedback submission by applying the E95-to-E101 move only on flank-supported active cells.
+- Observed result: E119 generated `602` flank/support/edge/flip-benefit gated variants and found `66` E101-pass rows but `0` E101-dominating rows. No submission was materialized. Active-all scale `1.50` improved broad mean/p95 versus E101 but dropped beat-rate from `0.983488` to `0.980881`; active-all scale `2.00` improved mean further but failed E101-pass and dropped beat-rate to `0.977984`.
+- Why discard: the visible flank signal is distributed and interpretive. Hard-gating by flanks, edge rank, support probability, or flip benefit removes E101's scenario support faster than it removes risk.
+- Implementation issue possible: medium. The selector family is handcrafted and the stress model is still E99/E101-conditioned rather than public labels. But it directly tests the low-cost replacement claim and no selector came close to dominance.
+- Bottleneck implication: the next public information is still the full E101 active-set law, not a visible-flank subset. Flank support can explain a future E101 win, but cannot certify or replace it.
+- Do not repeat: pre-feedback E119-style flank/support subset gates over E101 unless E101 public feedback changes the branch.

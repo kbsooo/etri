@@ -1767,6 +1767,22 @@
 - Interpretation: train flanks add visible transition-state support for E101 beyond subject prior, but not enough to make expected delta negative. E101 is no longer a pure blind public sensor, but it is not locally certified.
 - Decision: no E118 submission. Keep E101 as the next public sensor. If E101 wins, interpret it as edge/flank transition-state validation; if it ties or loses, flank evidence was insufficient and must not rescue same-line E108/amplitude escalation.
 
+## E119. E101 Flank-Gated Variant Stress
+
+- Observe: E118 made edge/flank transition-state support plausible, but did not certify E101. The immediate temptation was to use those visible flanks as a pre-feedback gate over E101's active cells.
+- Wonder: can train-flank support select a smaller E101-direction move that dominates full E101 before spending a public slot?
+- Method: `analysis_outputs/e119_e101_flank_gate_variant_stress.py` generated `602` variants from E95 by moving selected E118 active cells along the E95-to-E101 direction. Selectors included active-all, S3-only, Q2-only, edge/near-edge, both-flanks, conflict/agreement, support quantiles, expected-delta ranks, flip-benefit ranks, and near-edge ranks. Each variant was scored through the E101/E104 local+tail transfer stress, and materialization was allowed only if a row dominated E101 on broad mean, broad p95, and broad beat-rate simultaneously.
+- Result:
+  - variant rows: `602`.
+  - E101-pass rows: `66`.
+  - E101-dominating rows: `0`.
+  - materialized submission: `none`.
+  - full active-all scale `1.50` improved broad mean vs E95 to `-0.000023425` from E101's `-0.000016205`, and p95 to `-0.000002159` from `-0.000001564`, but beat-rate fell from `0.983488` to `0.980881`.
+  - best full active-all scale `2.00` improved broad mean further to `-0.000029942`, but strict/E101-pass failed and beat-rate fell to `0.977984`.
+  - best gated pass rows such as `flip_benefit_best_top45` and `active_s3_all` also traded mean for lower beat-rate; none reached E101's support.
+- Interpretation: visible flank support is real enough to explain why E101 is not arbitrary, but it is not a usable pre-feedback replacement gate. The useful signal appears distributed over the full active set; hard-gating removes scenario support faster than it removes risk.
+- Decision: no E119 submission. Keep E101 as the next public sensor. Treat E118/E119 together as: flank transition support strengthens interpretation, while flank-gated candidate generation is rejected before public feedback.
+
 ## Current Decision
 
 가장 저비용으로 많은 가설을 가르는 실험은 E05 selector-only/pairwise-order falsification이었다. 결과는 "micro-refine을 더 많이 만들기보다 selector resolution 또는 large safe representation move가 필요하다"로 수렴한다.
