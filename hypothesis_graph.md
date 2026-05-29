@@ -1273,6 +1273,18 @@ target co-occurrence
 - public LB 관측 반응: E101 win validates the S3-heavy Q2/S3 over-amplification branch and activates E108 amplitude-up. E101 tie/loss says the E99/E101 broad-world abstraction is incomplete and should be rebuilt, not rescued with same-line masks.
 - 제출 전략: no E115 submission. Keep `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` as the next public sensor.
 
+### H110. E101 public feedback must be decoded before post-hoc reasoning
+
+- 상태: supported as a procedural guardrail for the next public observation.
+- 왜 그럴듯한가: E101 is a sensor, not a guaranteed improvement. If its public LB is interpreted after the fact, the same result could be rationalized into incompatible branches such as E108 amplification, E89 diffuse fallback, raw rescue, or model rebuild.
+- 맞다면: exact LB bands should be enough to pre-register which world model is strengthened, which branch is allowed, and which tempting followups are forbidden.
+- 틀리다면: E101 public deltas would not map cleanly to branch decisions, or the E107/E115 bands would be too ambiguous to prevent post-hoc candidate selection.
+- 최소 실험: `analysis_outputs/e116_e101_public_feedback_decoder.py`, mapping future E101 LB to delta bands relative to E95 public `0.5762913298` with E115 rates and E107 tension flags.
+- 관측: E116 defines strong win `<= 0.576261330`, edge win `(0.576261330, 0.576280330]`, small win `(0.576280330, 0.576288330]`, tie `(0.576288330, 0.576294330]`, and loss `> 0.576294330`. Win bands activate exact-delta rerun/E108 consideration; tie/loss bands keep E95 and block same-line rescue.
+- 성공/폐기 기준: support if the decoder prevents branch ambiguity after E101 public feedback. It is not a model score and should be replaced only by a rerun using the actual observed delta.
+- public LB 관측 반응: use the decoder first. Strong/edge/small win means the Q2/S3 rollback direction is public-real; tie/loss means rebuild the public-world model before another same-family file.
+- 제출 전략: no E116 submission. Use the decoder as a guard before any post-E101 file.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

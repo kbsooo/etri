@@ -86,6 +86,18 @@ E95를 단순 hardtail fallback으로만 보던 해석을 더 좁혔다. 지금 
 
 이 결과는 E101을 "raw가 지지하는 파일"로 되살리지 않는다. 대신 더 정확하게 만든다. E101은 현재 남은 세계관을 가장 많이 가르는 public sensor다. E89는 diffuse-tail 질문으로는 살아 있지만 다음 slot에서 E101보다 정보량이 낮고, E85/E90/E86는 대부분 "얼마나 지는가"를 묻는 파일에 가깝다.
 
+## 추가 관찰: E101 점수 해석은 미리 고정해야 함
+
+`analysis_outputs/e116_e101_public_feedback_decoder.py`로 E101 public LB band를 고정했다.
+
+- strong win: `<= 0.576261330`.
+- edge win: `(0.576261330, 0.576280330]`.
+- small win: `(0.576280330, 0.576288330]`.
+- tie: `(0.576288330, 0.576294330]`.
+- loss: `> 0.576294330`.
+
+이 decoder의 목적은 점수 예측이 아니다. E101 결과를 본 뒤 같은 결과를 입맛대로 해석하지 못하게 하는 장치다. win이면 E108 계열을 exact-delta rerun 뒤 고려할 수 있고, tie/loss면 같은 rollback line을 더 키우지 않는다.
+
 ## 다음으로 가장 정보량이 큰 행동
 
 `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` 제출.

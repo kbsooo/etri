@@ -1724,6 +1724,20 @@
 - Interpretation: E115 supports H109. The next public slot should still be E101, but now for a stronger reason: it is the only pending control that combines high expected direction with high outcome resolution. E89 has branch value but much lower actionability; E85/E90/E86 mostly ask "how much do we lose?"
 - Decision: no E115 submission. Keep `submission_e101_q2s3tail_177569bc.csv` as the next public sensor. If it wins, E108 amplitude-up is meaningful; if it ties/loses, rebuild the E99/E101 world model rather than amplifying the same line.
 
+## E116. E101 Public Feedback Decoder
+
+- Observe: E115 picked E101 as the next sensor, but the next public LB value should not be interpreted ad hoc after seeing it.
+- Wonder: can we pre-register exact public-score bands that map an E101 result to branch decisions and forbidden followups?
+- Method: `analysis_outputs/e116_e101_public_feedback_decoder.py` converts E101 public LB into delta versus the current E95 frontier (`0.5762913298`). It combines E115 outcome rates with E107 model-tension flags and writes a decoder table.
+- Result:
+  - strong win: LB `<= 0.576261330`, E107 nearest/tension; rerun branch map, then consider risk E108 amp050.
+  - edge win: `(0.576261330, 0.576280330]`, within-tolerance; E108 amp050 or strict amp038 can be considered.
+  - small win: `(0.576280330, 0.576288330]`, within-tolerance; prefer strict amp038 if risk control matters.
+  - tie: `(0.576288330, 0.576294330]`; keep E95 and rebuild E99/E101 worlds, do not amplify.
+  - small/large loss: `> 0.576294330`; stop the same rollback line and rebuild hidden public-world structure.
+- Interpretation: E116 pre-registers the branch update before public feedback. The key guard is that tie/loss must not be rationalized into E108, E104 high-alpha, E106 masks, full E89, active-restored variants, or non-active grafts.
+- Decision: no E116 submission. Use `e116_e101_public_feedback_decoder.csv` as the first file to consult when an E101 public LB arrives.
+
 ## Current Decision
 
 가장 저비용으로 많은 가설을 가르는 실험은 E05 selector-only/pairwise-order falsification이었다. 결과는 "micro-refine을 더 많이 만들기보다 selector resolution 또는 large safe representation move가 필요하다"로 수렴한다.
