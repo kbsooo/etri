@@ -1177,6 +1177,18 @@ target co-occurrence
 - public LB 관측 반응: E101 win -> amplitude-up E104 branch. E101 loss -> falsify/strain the E99/E101 rollback model and demote E104/E106 follow-ups.
 - 제출 전략: no E107 file. Keep `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` as the next public sensor.
 
+### H102. E101-win amplitude follow-up should be pre-materialized but not pre-submitted
+
+- 상태: supported as decision hygiene; public result pending.
+- 왜 그럴듯한가: E107 already chooses E104 active-all amplitude-up after an E101 edge/small win, but leaving the next files implicit risks post-hoc candidate choice once the public result is known.
+- 맞다면: the same E104 rows should be reproducible through the E101/E104 stress path, produce valid submission files, and keep the same conditional E107 ranking: high-alpha amp050 as top conditional upside, lower-alpha amp038 as the conservative E101-pass branch.
+- 틀리다면: materialized files would not match E107 labels/tags, stress metrics would differ, or E101 tie/loss worlds would also justify the files.
+- 최소 실험: `analysis_outputs/e108_e101_win_amplitude_followup.py`.
+- 관측: two files were materialized. `analysis_outputs/submission_e108_if_e101win_amp050_079aab57.csv` is alpha `0.500`, not E101-pass, but ranks `1` vs E101 under both edge-win and small-win conditioned worlds. `analysis_outputs/submission_e108_if_e101win_strict_amp038_64514c53.csv` is alpha `0.380`, E101-pass, and ranks `54`/`49` under edge/small win. Tie worlds have positive p95 vs E101 and loss worlds are E107 model-tension cases.
+- 성공/폐기 기준: support as a conditional materialization layer, not as a new pre-feedback submission. The files are valid only if E101 improves by edge/small-win scale.
+- public LB 관측 반응: E101 edge/small win -> submit amp050 for upside or amp038 for conservative branch. E101 tie/loss -> do not submit E108; update the hidden-tail world model.
+- 제출 전략: no immediate E108 submission. These are post-E101-win files only.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
