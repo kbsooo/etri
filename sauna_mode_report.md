@@ -112,11 +112,24 @@ E95를 단순 hardtail fallback으로만 보던 해석을 더 좁혔다. 지금 
 
 이 결과는 "기존 submission 우주를 더 잘 뒤지면 E95보다 자연스럽게 좋은 후보가 있을 것"이라는 생각을 약화한다. E95 주변은 넓은 평야가 아니라 좁은 능선에 가깝다. 따라서 E101 결과 없이 E108을 앞당기거나, E89/E85/E90/E86를 자동 승격하는 건 여전히 근거가 약하다.
 
+## 추가 관찰: E101은 완전한 blind sensor는 아니지만 flank가 인증하지도 않음
+
+`analysis_outputs/e118_e101_flank_label_support_audit.py`로 E101의 `50` active cells를 visible train-label flanks 관점에서 다시 봤다.
+
+- best flank prior `edge_endpoint_beta` beat-E95 probability: `0.437780`.
+- subject prior beat-E95 probability: `0.337185`.
+- global prior beat-E95 probability: `0.015920`.
+- best flank prior expected delta/all cells: `+0.000003014`.
+- active edge/near-edge rate: `0.620000` vs null `0.471289`, p `0.016999`.
+- flank conflict rate: `0.240000` vs null `0.149933`, p `0.048998`.
+
+이건 E101을 단순 public-only blind sensor로 보는 해석을 약화한다. active cells에는 실제 edge/flank transition-state 냄새가 있다. 하지만 expected delta가 아직 positive라서 로컬 인증은 아니다. 결론은 더 좁다. E101은 보이는 구조가 약하게 지지하는 transition-state sensor지만, public feedback 없이 E108이나 higher-alpha를 먼저 열 만큼 강하지 않다.
+
 ## 다음으로 가장 정보량이 큰 행동
 
 `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` 제출.
 
-이 파일은 E95의 구조를 유지하면서 남은 Q2/S3/S3-heavy ambiguity만 찌른다. E114 이후에도 raw-context support는 없지만, E115 기준으로 가장 actionability가 높은 public kill-test다. 즉 “raw가 맞다고 해서 제출”이 아니라 “남은 세계관을 가장 날카롭게 가르기 때문에 제출”이다.
+이 파일은 E95의 구조를 유지하면서 남은 Q2/S3/S3-heavy ambiguity만 찌른다. E114 이후에도 raw-context support는 없고, E118 이후 visible flank support는 있지만 로컬 인증은 아니다. 따라서 제출 이유는 “검증된 개선”이 아니라 “남은 세계관을 가장 날카롭게 가르는 public kill-test”다.
 
 ## 제출 후보
 

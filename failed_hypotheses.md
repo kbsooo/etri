@@ -906,3 +906,12 @@
 - Implementation issue possible: low-medium. E117 only searches files referenced by existing reports and markdown, so an unreferenced local CSV could still exist. But for the documented experiment universe, the negative result is direct and deduplicated at prediction-tensor level.
 - Bottleneck implication: the frontier is a narrow target-axis hard-tail compromise, not a candidate-indexing failure. Further progress likely requires E101 public feedback or a genuinely new structural/block-state movement, not another rescore of old submissions.
 - Do not repeat: old-submission universe search as the next default path, or unconditional E108 promotion before E101 feedback. Use E117 only as a negative scarcity gate.
+
+## FH101. Train-label flanks certify E101 before public feedback
+
+- Failed hypothesis: visible train flanks around hidden blocks make E101 locally expected-positive enough to treat it as certified before public feedback.
+- Observed result: E118 found that the best flank prior `edge_endpoint_beta` improves beat-E95 probability from subject prior `0.337185` to `0.437780`, but expected delta remains positive at `+0.000003014` per all cells and match-edge probability is only `0.120745`.
+- Why discard: flanks are useful support but not enough. Active cells are also enriched for flank conflict, which means transition uncertainty rather than deterministic support.
+- Implementation issue possible: low to medium. The flank model is deliberately simple and uses reconstructed block context, but it directly tests the low-cost visible-context certification claim.
+- Bottleneck implication: E101 is a transition-state public sensor, not a guaranteed improvement. The hidden public labels still decide whether the visible flank clue is strong enough.
+- Do not repeat: using flank support to submit E108, increase E101 amplitude, or build same-line masks before actual E101 feedback.

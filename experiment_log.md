@@ -1753,6 +1753,20 @@
 - Interpretation: existing documented submissions do not hide a large untouched E95-like improvement family. The E95 neighborhood is tiny and consists of already-understood E85/E89/E101/E108/E86/E90 contrast files.
 - Decision: no E117 submission. This strengthens the plateau explanation and weakens "search the current universe harder" as a path. The next public action remains E101; the next non-public research branch must create a new structural/block-state movement rather than rescore old files.
 
+## E118. E101 Flank-Label Support Audit
+
+- Observe: E102 found weak edge-localization and E114 rejected raw-context support, but visible train-label flanks around hidden blocks had not yet been tested as E101 active-cell evidence.
+- Wonder: are the `50` active Q2/S3 cells a genuine edge/flank transition-state calibration pocket, or still only an externally unresolved public sensor?
+- Method: `analysis_outputs/e118_e101_flank_label_support_audit.py` scored E101 active-cell hard-label deltas under global, subject, previous/next/nearest/edge/both-flank priors, then target-count permutation-tested active-cell flank conflict and edge structure.
+- Result:
+  - best flank prior `edge_endpoint_beta`: beat-E95 `0.437780`, expected delta/all cells `+0.000003014`, match E95-vs-mixmin edge `0.120745`.
+  - subject prior: beat-E95 `0.337185`, expected delta/all cells `+0.000007853`.
+  - global prior: beat-E95 `0.015920`, expected delta/all cells `+0.000048950`.
+  - active cells have edge/near-edge rate `0.620000` vs null `0.471289`, p `0.016999`.
+  - active cells also have flank conflict rate `0.240000` vs null `0.149933`, p `0.048998`; conflict-given-both `0.400000` vs null `0.240056`, p `0.018649`.
+- Interpretation: train flanks add visible transition-state support for E101 beyond subject prior, but not enough to make expected delta negative. E101 is no longer a pure blind public sensor, but it is not locally certified.
+- Decision: no E118 submission. Keep E101 as the next public sensor. If E101 wins, interpret it as edge/flank transition-state validation; if it ties or loses, flank evidence was insufficient and must not rescue same-line E108/amplitude escalation.
+
 ## Current Decision
 
 가장 저비용으로 많은 가설을 가르는 실험은 E05 selector-only/pairwise-order falsification이었다. 결과는 "micro-refine을 더 많이 만들기보다 selector resolution 또는 large safe representation move가 필요하다"로 수렴한다.

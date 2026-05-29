@@ -1297,6 +1297,18 @@ target co-occurrence
 - public LB 관측 반응: if E101 improves, it validates one of the only lower-tail E95-relative neighbors and opens E108 exact-delta rerun. If E101 ties/loses, there is no untested lower-tail E95-like candidate in the documented universe to auto-promote.
 - 제출 전략: no E117 submission. Keep E101 as the next sensor; otherwise move to new structural/block-state generation.
 
+### H112. E101 active cells are visible edge/flank transition-state calibration risk
+
+- 상태: partially supported but not certified.
+- 왜 그럴듯한가: E102 showed E101 active cells are edge-enriched, E105 showed S3-heavy subject-prior dependence, and E114 showed raw context cannot see the support labels. If hidden block transitions carry the missing signal, visible train-label flanks should improve E101 hard-label support over subject priors.
+- 맞다면: active cells should be enriched for block-edge and flank-conflict contexts, and a flank-derived prior should raise E101 beat probability relative to subject priors.
+- 틀리다면: flank priors should behave like global/subject priors, active cells should not be structurally enriched, or expected E101-vs-E95 delta should remain clearly adverse under every visible flank view.
+- 최소 실험: `analysis_outputs/e118_e101_flank_label_support_audit.py`, scoring E101 active-cell hard-label deltas under global/subject/flank priors and target-count-preserving structure nulls.
+- 관측: best flank prior `edge_endpoint_beta` raises beat-E95 probability to `0.437780` versus subject `0.337185` and global `0.015920`, but expected delta remains positive at `+0.000003014` per all cells. Active cells are edge/near-edge enriched (`0.620000` vs null `0.471289`, p `0.016999`) and flank-conflict enriched (`0.240000` vs null `0.149933`, p `0.048998`; conflict-given-both p `0.018649`).
+- 성공/폐기 기준: support the edge/flank transition-state reading, but reject local certification because the best visible prior does not produce negative expected delta or high match probability against E95's public edge.
+- public LB 관측 반응: if E101 wins, H112 strengthens and E108/E104 follow-ups should be rerun through exact E101-delta conditioning. If E101 ties or loses, the visible flank signal was real but insufficient, and same-line amplitude escalation should stay closed.
+- 제출 전략: no E118 submission. Keep E101 as the next sensor; use E118 only to pre-register how to interpret that sensor.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
