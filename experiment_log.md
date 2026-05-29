@@ -2678,3 +2678,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E172 expected edge remains context-high: between-train-runs carries `80.6%` of E172-vs-E95 expected edge; not-E72-active cells carry `71.6%`.
 - Interpretation: E172 is a better tail-risk candidate than E169, but it has not solved the public hard-label resolution bottleneck. The score can still be decided by one high-swing hidden label even though visible/flank priors are much healthier.
 - Decision: after submitting E172, run `python3 analysis_outputs/e173_e172_public_feedback_decoder.py --score <PUBLIC_LB>`. A win promotes visible-tail rollback; tie/small-loss keeps E95 practical and makes raw E169 information-only; worse than E101 demotes E172/E169 expected-score followups; worse than mixmin closes same-family broad-lane variants.
+
+## E174. E172 Rollback Overcorrection Probe
+
+- Observe: E173 exposed a new tension: E172 fixed visible/flank prior-tail health, but the E172-vs-E169 rollback costs E162 focus-prior edge, especially around Q2/S2. The question is whether keep `0.25` is necessary safety, or whether it overcorrects a subset of cells.
+- Wonder: can we reopen only the E172 rollback cells with strongest focus-prior recovery while keeping the visible-tail, broadness, and bad-axis guards closed?
+- Method: `analysis_outputs/e174_e172_rollback_overcorrection_probe.py` scans `80` E172-to-E169 partial reopening policies over the `410` visible-positive-loss rollback cells. It requires broadness, visible-tail guard, bad-axis geometry, and at least `2e-6` E162 focus-prior recovery versus E172.
+- Result:
+  - E174-gate variants: `46/80`.
+  - materialized file: `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv`.
+  - selected policy: `reopen_focus_cost_top75_to1p0`, reopening the top `75` rollback cells fully back to E169 while leaving the rest at E172 keep `0.25`.
+  - focus expected delta vs E95 improves from E172 `-0.000112695` to `-0.000124367`, i.e. `-0.000011672` versus E172.
+  - breadth remains `904/193` moved cells/rows; cells-to-flip expected increases to `33`; top1/expected improves to `0.046893`.
+  - visible-tail guard remains closed: visible mean `-0.000050633`, visible p95 `-0.000022709`, worse-than-E101 `0.000220`.
+  - geometry remains inside the gate but with less margin than E172: bad-span energy `0.263996`, max bad cosine `0.163229`, Q2/S3 share `0.339597`.
+  - direct E174-vs-E172 E162 focus recovery is concentrated in S3 `-0.000003234`, Q2 `-0.000002953`, S2 `-0.000002682`, and S1 `-0.000001471`.
+- Interpretation: E172's keep `0.25` rollback was conservative, not uniquely Pareto-optimal. The public-free stress says a controlled reopening recovers a readable amount of body edge while retaining the visible-tail repair. The caveat is that E174 spends Q2/S3 and bad-axis margin, so it is a sharper expected-score bet, not the safer sensor.
+- Decision: promote `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv` as the highest-upside broad expected-score candidate. Keep `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` as the safer tail-repair contrast if E174 ties or loses and the failure looks like Q2/S3/bad-axis over-reopening rather than broad-body rejection.

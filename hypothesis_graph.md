@@ -1966,7 +1966,19 @@ target co-occurrence
 - 관측: E172-vs-E95 keeps `904/193` moved cells/rows, expected delta `-0.000112695`, and cells-to-flip `30`, while visible p95 changes to `-0.000026683` and visible worse-than-E101 to `0.000050`. However top1 swing remains `0.000005832`, cells for `2e-6` guard remains `1`, and cells for E95-over-mixmin edge remains `4`.
 - 성공/폐기 기준: E172 public win promotes the view that prior-tail repair is enough despite readability fragility. Tie/small loss says tail health improved but hidden hard-label realization still dominates. Worse than mixmin says the broad body or visible-tail proxy is wrong.
 - public LB 관측 반응: use E173 bands. `<=0.576276019` is clean support for tail repair; `0.576288330..0.576294330` is tie/underresolution; `0.576294330..0.576300366` is small loss; `>0.576306641` closes E172/E169 same-family broad-lane expected-score variants.
-- 제출 전략: E172 remains the first broad expected-score candidate, but any result must be decoded before trying E169, raw E166, or threshold siblings.
+- 제출 전략: E173 originally made E172 the first broad expected-score candidate. H168/E174 supersedes that for upside: E174 is now sharper, while E172 remains the safer tail-repair contrast.
+
+### H168. E172's visible-tail rollback is locally overconservative on a recoverable subset
+
+- 상태: supported locally by E174; public feedback pending.
+- 왜 그럴듯한가: E173 showed E172 repairs visible/flank priors but pays E162 focus-prior cost versus E169. If that cost is concentrated in a separable subset, reopening only those cells should recover edge without reopening the E171 visible-prior tail.
+- 맞다면: some E172-to-E169 partial-reopen policies should improve E162 focus expected delta by at least `2e-6` versus E172 while keeping moved-cell breadth, visible p95/worse-than-E101, and bad-axis geometry inside E172-style stress guards.
+- 틀리다면: any material reopening should either make visible p95 positive, increase worse-than-E101 materially, cross Q2/S3/bad-axis guards, or fail to recover a public-readable amount of focus edge.
+- 최소 실험: `analysis_outputs/e174_e172_rollback_overcorrection_probe.py`.
+- 관측: `46/80` policies pass the E174 gate. The selected `reopen_focus_cost_top75_to1p0` materializes `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv`, with expected focus delta `-0.000124367` (`-0.000011672` vs E172), moved cells/rows `904/193`, cells-to-flip `33`, visible p95 `-0.000022709`, worse-than-E101 `0.000220`, bad-span energy `0.263996`, max bad cosine `0.163229`, and Q2/S3 share `0.339597`.
+- 성공/폐기 기준: support strengthens if E174 beats E172/E95 or lands in the E173 clean/micro-win bands. It weakens if E174 loses while E172 later wins or ties better, especially with a read consistent with Q2/S3 or q2_bad over-reopening.
+- public LB 관측 반응: E174 win means E172's tail repair was directionally right but too conservative. E174 tie/small-loss means the broad branch is still hidden-label underresolved or the reopened Q2/S3/S3 cells overfit public-free priors. E174 worse than mixmin closes this partial-reopening family until a new public-independent bad-axis explains the miss.
+- 제출 전략: if using one broad expected-score slot now, E174 is the sharper candidate. E172 remains the safer contrast; raw E169 remains only the unrolled body-vs-tail sensor.
 
 ## 우선 실험 5개
 

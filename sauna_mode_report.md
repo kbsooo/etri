@@ -1671,3 +1671,64 @@ E172를 제출하면 반드시 먼저 다음을 실행한다.
 - `0.576288330..0.576294330`: tie. E95 practical frontier 유지. threshold tuning 금지.
 - `0.576294330..0.576300366`: small loss. E169 자동 제출 금지, E154 또는 새 safety-axis를 선택.
 - `>0.576306641`: E172/E169/E166 same-family broad lane expected-score followup을 닫는다.
+
+## E174 업데이트: E172는 안전했지만 조금 과보수적이었다
+
+내가 발견한 가장 이상한 점:
+
+`E172는 visible-tail을 고쳤지만, 그 과정에서 recoverable body signal도 같이 너무 많이 접었다.`
+
+실험:
+
+`analysis_outputs/e174_e172_rollback_overcorrection_probe.py`
+
+결과:
+
+- `80`개 E172 rollback reopening 정책을 테스트.
+- E174 gate 통과 `46`개.
+- materialized:
+  - `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv`
+- 선택 정책:
+  - `reopen_focus_cost_top75_to1p0`
+  - E172가 접었던 셀 중 focus recovery 상위 `75`개를 E169 쪽으로 완전히 되돌림.
+
+핵심 수치:
+
+- focus expected delta:
+  - E172 `-0.000112695`
+  - E174 `-0.000124367`
+  - E174 vs E172 `-0.000011672`
+- breadth:
+  - moved cells/rows `904/193`
+  - cells-to-flip `33`
+  - top1/expected `0.046893`
+- visible-tail:
+  - visible mean `-0.000050633`
+  - visible p95 `-0.000022709`
+  - worse-than-E101 `0.000220`
+- geometry:
+  - bad-span energy `0.263996`
+  - max bad cosine `0.163229`
+  - Q2/S3 share `0.339597`
+
+생각이 바뀐 점:
+
+`E172의 방향은 맞았지만 keep 0.25는 유일한 안전점이 아니었다.`
+
+E174는 E172보다 더 공격적이다. visible-tail guard는 살아 있지만, Q2/S3 share가 `0.34` guard 바로 아래라 margin은 얇다.
+
+현재 최강 세계관:
+
+`broad context/veto body는 살아 있고, visible-positive-loss tail은 줄여야 한다. 다만 모든 rollback cell을 똑같이 줄이면 body signal 일부를 과하게 잃는다. rollback cell 내부에도 JEPA-style energy ranking이 있다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+딱 하나 제출한다면 지금은 `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv`가 가장 날카롭다.
+
+해석:
+
+- E174가 E95/E172 기대보다 잘 나오면: E172는 과보수적이었고, partial reopening이 맞았다.
+- E174가 tie/small loss면: broad branch는 여전히 hidden hard-label 해상도에 막혔거나, Q2/S3 reopening이 살짝 과했다.
+- E174가 mixmin보다 나쁘면: 이 partial reopening family는 닫고, broad body 자체 또는 q2_bad axis를 다시 봐야 한다.
+
+E172는 버리지 않는다. E174가 높은 기대값 후보라면, E172는 낮은 tail-risk contrast다.

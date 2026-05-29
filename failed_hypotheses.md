@@ -1357,3 +1357,12 @@
 - Implementation issue possible: medium. Visible priors are public-free proxies, not hidden public labels. Low for the separability test because the materialized tensor was rescored with independent breadth and geometry checks.
 - Bottleneck implication: broad body selection and visible-tail calibration are distinct bottlenecks. E169 is a sensor for the split; E172 is the first broad-body-preserving tail repair.
 - Do not repeat: treating E171 as a reason to abandon the broad branch without testing intervention survival, or submitting unrolled E169 as the safer expected-score file when the question is score improvement rather than body-vs-tail falsification.
+
+## FH151. E172 keep `0.25` is the only safe visible-tail rollback amplitude
+
+- Failed hypothesis: after E172, any meaningful reopening of the visible-positive-loss rollback cells toward E169 will reopen visible-tail risk, increase E101-like downside, or cross bad-axis/Q2-S3 geometry guards.
+- Observed result: E174 scores `80` reopening policies and finds `46` E174-gate survivors. The materialized `submission_e174_ro_fc_top75_to1p0_95638e73.csv` reopens the top `75` focus-recovery cells fully toward E169, improving focus expected delta versus E172 by `-0.000011672` while keeping visible p95 `-0.000022709`, worse-than-E101 `0.000220`, bad-span energy `0.263996`, max bad cosine `0.163229`, and Q2/S3 share `0.339597`.
+- Why discard: keep `0.25` was a safe rollback, not a unique Pareto point. A structured subset of rollback cells carries recoverable broad-body signal that local stress can reopen without losing the main visible-tail repair.
+- Implementation issue possible: medium. The gate is public-free and E174 sits close to the Q2/S3 guard, so public feedback could still reject the reopened subset. Low for the falsification itself because E174 used actual materialized tensors, not only cell summaries.
+- Bottleneck implication: the broad-lane bottleneck is now three-layered: broad body, visible-tail damping, and rollback-cell amplitude selection. E174 improves the third layer but still does not solve hidden hard-label resolution.
+- Do not repeat: freezing E172's keep factor as a constant or creating same-family keep siblings without explicit visible-tail, bad-axis, and public-readability stress.
