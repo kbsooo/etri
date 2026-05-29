@@ -1783,6 +1783,21 @@
 - Interpretation: visible flank support is real enough to explain why E101 is not arbitrary, but it is not a usable pre-feedback replacement gate. The useful signal appears distributed over the full active set; hard-gating removes scenario support faster than it removes risk.
 - Decision: no E119 submission. Keep E101 as the next public sensor. Treat E118/E119 together as: flank transition support strengthens interpretation, while flank-gated candidate generation is rejected before public feedback.
 
+## E120. Post-E101 Public Observation Audit
+
+- Observe: `submission_e101_q2s3tail_177569bc.csv` returned public LB `0.5763003660`.
+- Wonder: does this observed score open E108/amplitude-up, revive E89/non-active fallback, or force a rebuild of the public-world model?
+- Method: `analysis_outputs/e120_post_e101_public_observation_audit.py` applied the exact E101 public delta to the pre-registered E116 decoder, then cross-checked the loss-side conclusions from E107, E109, E110, and E119.
+- Result:
+  - delta vs E95: `+0.0000090362`.
+  - delta vs mixmin: `-0.0000062745`.
+  - E116 branch: `small_loss`, model tension `True`.
+  - E101 gives back `59.02%` of E95's gain over mixmin and preserves `40.98%`.
+  - local E101 stress mean/p95/beat vs E95 had been `-0.0000162053` / `-0.000001564` / `0.983488`; actual public was `+0.0000252415` worse than local mean and `+0.0000106001` worse than local p95.
+  - loss-side automatic followups stay closed: E110 non-control strict candidates `0`, E119 E101-dominating rows `0`.
+- Interpretation: E101 was an information-rich negative sensor, not a random failure. The public label world keeps enough of E101's structure to beat mixmin, but not enough to beat E95. E95's target-axis hard-tail surgery remains the standing law, and the E99/E101 transfer model underestimated the downside tail.
+- Decision: no new same-family submission. Keep E95 as frontier, close E108/E104/E106/E119 and automatic E89/non-active graft followups, and rebuild a two-point E95/E101 public-world model before the next file.
+
 ## Current Decision
 
 가장 저비용으로 많은 가설을 가르는 실험은 E05 selector-only/pairwise-order falsification이었다. 결과는 "micro-refine을 더 많이 만들기보다 selector resolution 또는 large safe representation move가 필요하다"로 수렴한다.

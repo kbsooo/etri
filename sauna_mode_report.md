@@ -136,21 +136,35 @@ E95를 단순 hardtail fallback으로만 보던 해석을 더 좁혔다. 지금 
 - active-all scale `1.50`은 broad mean을 E101보다 좋게 만들었지만 beat-rate를 `0.983488`에서 `0.980881`로 낮췄다.
 - active-all scale `2.00`은 mean을 `-0.000029942`까지 낮췄지만 E101-pass를 잃고 beat-rate도 `0.977984`로 낮아졌다.
 
-이 결과는 더 정확하다. flank signal은 E101 active cells가 random이 아니라 transition-state 쪽이라는 해석을 강화한다. 하지만 visible flank로 subset을 자르면 E101의 scenario support가 먼저 죽는다. 따라서 E101은 여전히 다음 public sensor이고, E119는 "E101을 더 작게 잘라 제출하자"는 shortcut을 닫는다.
+이 결과는 더 정확하다. flank signal은 E101 active cells가 random이 아니라 transition-state 쪽이라는 해석을 강화한다. 하지만 visible flank로 subset을 자르면 E101의 scenario support가 먼저 죽는다. 따라서 E119는 "E101을 더 작게 잘라 제출하자"는 shortcut을 닫는다.
+
+## 추가 관찰: E101 public feedback은 small loss였다
+
+`analysis_outputs/e120_post_e101_public_observation_audit.py`로 실제 E101 public LB를 E116 decoder에 넣었다.
+
+- E101 public LB: `0.5763003660`.
+- E95 대비 delta: `+0.0000090362`.
+- mixmin 대비 delta: `-0.0000062745`.
+- E116 outcome: `small_loss`.
+- E95가 mixmin에서 얻은 gain 중 `59.02%`를 E101이 되돌려 놓았고, `40.98%`는 보존했다.
+- local E101 stress mean/p95/beat는 `-0.0000162053` / `-0.000001564` / `0.983488`였지만, 실제 public은 local mean보다 `+0.0000252415`, local p95보다 `+0.0000106001` 나빴다.
+
+이건 E101을 무의미한 파일로 만드는 결과가 아니다. E101은 mixmin보다 아직 좋다. 하지만 E95 frontier를 이길 만큼의 Q2/S3/S3-heavy support는 public에 없었다. 따라서 E95의 target-axis hard-tail surgery가 현재 standing law이고, E99/E101 local stress는 loss-side public tail을 과소평가했다.
 
 ## 다음으로 가장 정보량이 큰 행동
 
-`analysis_outputs/submission_e101_q2s3tail_177569bc.csv` 제출.
+E95/E101을 동시에 만족하는 post-E101 public-world rebuild.
 
-이 파일은 E95의 구조를 유지하면서 남은 Q2/S3/S3-heavy ambiguity만 찌른다. E114 이후에도 raw-context support는 없고, E118 이후 visible flank support는 있지만 로컬 인증은 아니다. E119 이후에는 그 flank support를 잘라낸 대체 파일도 없다. 따라서 제출 이유는 “검증된 개선”이 아니라 “남은 세계관을 가장 날카롭게 가르는 public kill-test”다.
+이제 가장 정보량이 큰 행동은 같은 Q2/S3 rollback line을 더 키우는 것이 아니다. E101 결과는 E108/E104 higher-alpha, E106 subject-prior masks, E119 flank-gated variants, full E89, non-active graft automatic fallback을 닫는다. 다음 실험은 E95가 이기고 E101이 작은 폭으로 지는 이 경계 자체를 target으로 삼아야 한다.
 
 ## 제출 후보
 
-파일: `analysis_outputs/submission_e101_q2s3tail_177569bc.csv`
+현재 즉시 제출할 same-family 후보는 없다.
 
-의도: E95의 target-axis hard-tail surgery가 Q2/S3/S3-heavy cells에서 너무 tight한지 검증한다.
+Resolved sensor: `analysis_outputs/submission_e101_q2s3tail_177569bc.csv`
 
-기대 public 반응:
+의도: E95의 target-axis hard-tail surgery가 Q2/S3/S3-heavy cells에서 너무 tight한지 검증했다.
 
-- E101 improves over E95: E95의 큰 세계관은 맞지만 Q2/S3 tail localization이 과했다. E108/E104 amplitude-up branch가 열린다.
-- E101 ties or loses: E95의 현재 axis/tail surgery가 standing law다. E108/E104/E106와 full E89/non-active graft fallback은 닫고 public-world model을 다시 짠다.
+결과: public `0.5763003660`, E95보다 `+0.0000090362` 나쁘고 mixmin보다 `-0.0000062745` 좋다.
+
+실패 시 해석이 실제로 발생했다: E95의 현재 axis/tail surgery가 standing law다. 다음 제출은 이 small-loss boundary를 새로 설명하는 후보여야 하며, E108/E104/E106/E119 또는 E89/non-active graft를 자동으로 제출하지 않는다.

@@ -924,3 +924,12 @@
 - Implementation issue possible: medium. The selector family is handcrafted and the stress model is still E99/E101-conditioned rather than public labels. But it directly tests the low-cost replacement claim and no selector came close to dominance.
 - Bottleneck implication: the next public information is still the full E101 active-set law, not a visible-flank subset. Flank support can explain a future E101 win, but cannot certify or replace it.
 - Do not repeat: pre-feedback E119-style flank/support subset gates over E101 unless E101 public feedback changes the branch.
+
+## FH103. E101 win unlocks same-line amplitude followups
+
+- Failed hypothesis: E101 would beat E95, or at least land close enough to the E116 tie/win bands that E108/E104 amplitude-up, E106 subject-prior masks, or E119 flank gates should become the next same-family submission.
+- Observed result: actual E101 public LB is `0.5763003660`, which is `+0.0000090362` worse than E95 and therefore E116 `small_loss`. It still beats mixmin by `0.0000062745`, but that only preserves `40.98%` of E95's mixmin gain. The actual public delta is `+0.0000252415` worse than the local E101 stress mean and `+0.0000106001` worse than local p95.
+- Why discard: the observed public branch is exactly the pre-registered loss-side model-tension branch. Same-line amplification would be post-hoc rationalization of a direction that failed to beat the frontier.
+- Implementation issue possible: low. The public LB is external feedback. The only caveat is that it gives aggregate LogLoss, not per-target labels, so it closes automatic same-line followups but does not identify the failed cells directly.
+- Bottleneck implication: the bottleneck is now the E95/E101 boundary itself. E95 is right enough to remain best; E101 is right enough to beat mixmin but wrong enough to lose the frontier. The local stress model missed that tail.
+- Do not repeat: submitting E108 amp050/amp038, E104 higher-alpha, E106 subject/S3 masks, E119 flank-gated variants, full E89, or non-active grafts as automatic post-E101 repairs.

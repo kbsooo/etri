@@ -1321,6 +1321,18 @@ target co-occurrence
 - public LB 관측 반응: if E101 later wins, use E119 as evidence that the full active-set law was necessary before amplitude-up; rerun exact-delta follow-ups rather than handcrafted flank gates. If E101 ties/loses, E119 prevents using flank support to rescue same-line gates.
 - 제출 전략: no E119 submission. Do not replace E101 with a flank-gated file before public feedback.
 
+### H114. E101 public small-loss means E95 is the standing hard-tail law
+
+- 상태: supported by actual public feedback; same-line followups rejected.
+- 왜 그럴듯한가: E116 pre-registered a loss-side branch where E101 fails to beat E95, E109/E110/E119 already showed that tie/loss should not be rescued by stronger same-line rollback, subject/flank gates, or non-active grafts. The actual E101 public result now lands in that branch.
+- 맞다면: E101 should be worse than E95 but not necessarily catastrophic; it may still beat mixmin because most of E95's structural law remains. The exact result should be outside the favorable E99/E101 local stress distribution, implying model tension rather than ordinary amplitude tuning.
+- 틀리다면: E101 would beat E95 or at least tie inside E116's near-zero band, or a pre-registered loss-side family would contain a strict follow-up candidate.
+- 최소 실험: `analysis_outputs/e120_post_e101_public_observation_audit.py`, applying actual E101 public `0.5763003660` to the E116 decoder and cross-checking E107/E109/E110/E119 loss-side audits.
+- 관측: E101 delta vs E95 is `+0.0000090362`, E116 outcome `small_loss`, exact E101 still beats mixmin by `0.0000062745`. It gives back `59.02%` of E95's mixmin gain and preserves `40.98%`. The actual public delta is `+0.0000252415` worse than the local E101 mean and `+0.0000106001` worse than local p95. E110 has non-control strict candidates `0`; E119 has E101-dominating rows `0`.
+- 성공/폐기 기준: support H114 unless a new, non-same-line public-world model explains both E95 win and E101 small loss while producing a stress-surviving candidate. Reject automatic E108/E104/E106/E119/E89/non-active-graft followups.
+- public LB 관측 반응: already observed. Future public candidates must state whether they are testing the two-point E95/E101 hard-tail boundary or a genuinely different hidden structure.
+- 제출 전략: no immediate same-family submission. Keep E95 as frontier and rebuild the public-world model with E101 as a negative anchor.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
