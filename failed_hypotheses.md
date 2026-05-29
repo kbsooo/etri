@@ -834,3 +834,12 @@
 - Implementation issue possible: low. E104 reuses the E101/E103 scoring frame and validates the exact E101 alpha as the control row. The caveat is that the frame is still E95-conditioned local+tail transfer, not public labels.
 - Bottleneck implication: the immediate bottleneck is not grid resolution. It is deciding which side of the Q2/S3 amplitude risk frontier public actually occupies.
 - Do not repeat: replacing E101 with a higher-alpha active-all rollback based only on better mean/p95 before E101 public feedback. Require either public-positive E101 feedback or a new independent stress source that can justify sacrificing beat-rate.
+
+## FH93. E101 is a global-prior Q2/S3 correction
+
+- Failed hypothesis: E101 should be interpreted as a broad target-prior correction, so global train prevalence should already make its `50` active Q2/S3 cells favorable versus E95.
+- Observed result: E105 computed hard-label E101-minus-E95 deltas for every active cell. Under global train priors, expected E101-vs-E95 delta is `+0.000048971` and Monte Carlo beat probability is only `0.016610`. Under subject priors, expected delta is much closer to neutral at `+0.000007854` with beat probability `0.335360`. S3 owns `0.935862` of total flip benefit.
+- Why discard: E101 only becomes plausible when active cells are interpreted through subject/block-local label tendencies, especially S3. It is not supported by global prevalence alone.
+- Implementation issue possible: low. The calculation is deterministic conditional on E95/E101 probabilities; the Monte Carlo only samples null label worlds from train priors. The remaining uncertainty is whether public labels follow a still-richer local process.
+- Bottleneck implication: the next public feedback is about hidden local label realization, not global calibration. If E101 wins, it identifies a local S3-heavy tail world; if it loses, the rollback-favorable local world did not materialize.
+- Do not repeat: describing E101 as a generic Q2/S3 prior correction or using global prevalence to justify higher-alpha rollback.

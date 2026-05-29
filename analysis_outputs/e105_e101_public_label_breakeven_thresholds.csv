@@ -1,0 +1,6 @@
+threshold,target_delta_per_all_cells,min_high_impact_support_cells,support_cell_fraction,achieved_delta_per_all_cells,selected_flip_benefit_share
+beat_e95_zero_delta,0.0,23,0.46,-1.9809600014417673e-06,0.6928942178676664
+beat_e95_by_1e-6,-1e-06,23,0.46,-1.9809600014417673e-06,0.6928942178676664
+beat_e95_by_5e-6,-5e-06,24,0.48,-9.43922233564127e-06,0.7170814449724833
+match_e95_edge_vs_mixmin,-1.53107e-05,25,0.5,-1.6515157424453942e-05,0.7400287805988084
+all_support,-9.667868940905596e-05,50,1.0,-9.6678689409056e-05,1.0000000000000002

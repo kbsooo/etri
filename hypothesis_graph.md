@@ -1141,6 +1141,18 @@ target co-occurrence
 - public LB 관측 반응: if E101 improves public, H98 says follow-up should test risk-tolerant amplitude variants deliberately, not assume higher alpha is automatically better. If E101 worsens, higher-alpha variants should be deprioritized because they already sacrifice E101's scenario support locally.
 - 제출 전략: no E104 submission. Keep `analysis_outputs/submission_e101_q2s3tail_177569bc.csv` as the next sensor. Higher alpha is a post-feedback branch, not a pre-feedback replacement.
 
+### H99. E101 tests a subject/block-local S3 tail label world, not global Q2/S3 prevalence
+
+- 상태: supported as public-feedback framing; public result pending.
+- 왜 그럴듯한가: E101 changes only `50` Q2/S3 cells. Whether it beats E95 depends entirely on the hidden hard labels in those cells. If the active-cell label world follows global train prevalence, E101 may be a bad bet even if local E95-conditioned stress likes it.
+- 맞다면: E101's favorable labels should be S3-dominated and sensitive to subject/block-local priors. Under global train priors its expected public delta should be unfavorable, while subject priors should bring it closer to live. A public E101 win would therefore imply local S3 tail departure rather than generic Q2/S3 rollback quality.
+- 틀리다면: global priors should already make E101 favorable, Q2 should contribute material swing mass, or E101 should require an implausibly large number of favorable cells even under subject priors.
+- 최소 실험: `analysis_outputs/e105_e101_public_label_breakeven.py`, computing E101-minus-E95 hard-label deltas for every active cell, then simulating hidden labels under global and subject train priors.
+- 관측: active cells `50` with Q2 `11` and S3 `39`; support labels split `25/25` between label 0 and label 1. All-support delta is `-0.000096679`, all-adverse delta is `+0.000211677`. The minimum high-impact supportive cells to beat E95 is `23/50`; to match E95's edge over mixmin is `25/50`. S3 contributes `0.935862` of total flip benefit. Under global priors, expected E101-vs-E95 delta is `+0.000048971` and beat probability `0.016610`; under subject priors, expected delta is `+0.000007854` and beat probability `0.335360`.
+- 성공/폐기 기준: support the framing claim. E101 is not a global-prior correction; it is a high-information sensor for whether the active subject/block-local S3-heavy cells realize labels on the rollback-favorable side.
+- public LB 관측 반응: if E101 beats E95, strengthen a local S3 tail-label world and revisit amplitude only inside that world. If E101 loses, weaken generic Q2/S3 rollback and reject E104 higher-alpha amplification unless a new independent stress source appears.
+- 제출 전략: no E105 file. Submit E101 if using one public slot; use E105 to interpret the result.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

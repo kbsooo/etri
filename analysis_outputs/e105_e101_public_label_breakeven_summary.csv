@@ -1,0 +1,14 @@
+metric,value
+active_cells,50.0
+q2_cells,11.0
+s3_cells,39.0
+support_label_0_cells,25.0
+support_label_1_cells,25.0
+all_support_delta_vs_e95,-9.667868940905596e-05
+all_adverse_delta_vs_e95,0.0002116767207369125
+min_high_impact_support_cells_to_beat_e95,23.0
+min_high_impact_support_cells_to_match_e95_edge,25.0
+global_prior_mean_delta_vs_e95,4.897063867834456e-05
+global_prior_p_e101_beats_e95,0.01661
+subject_prior_mean_delta_vs_e95,7.854324369275885e-06
+subject_prior_p_e101_beats_e95,0.33536
