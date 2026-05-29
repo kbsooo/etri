@@ -487,3 +487,31 @@ E136 state는 mean improvement가 생기는 곳을 찾는다. 하지만 현재 E
 `safe mass는 block-target state로 관측된다. 그러나 E95 근처의 기존 combo-gradient는 그 state를 public-safe probability movement로 번역하지 못한다. 0.576대 벽은 state를 못 보는 벽에서, state를 안전한 방향과 amplitude로 decode하지 못하는 벽으로 이동했다.`
 
 지금 제출할 파일은 없다. 다음으로 가장 정보량이 큰 행동은 block-target state 안에서 gradient를 재사용하지 말고, hardtail support 또는 targetwise label-state를 직접 예측하는 decoder를 만드는 것이다.
+
+## 추가 관찰: state와 veto-null을 겹쳐도 strict law는 열리지 않는다
+
+`analysis_outputs/e138_blocktarget_vetonull_overlap_probe.py`로 E137의 마지막 싼 escape hatch를 찔렀다.
+
+질문은 이것이었다.
+
+`E136 block-target state와 E132/E128 transfer-safe veto-null/low-adverse mask를 겹치면, 기존 E95 gradient도 드디어 안전해지는가?`
+
+결과:
+
+- overlap variants: `1314`.
+- evaluated variants: `698`.
+- transfer-veto-actionable variants: `373`.
+- local strict variants: `0`.
+- local-strict plus transfer-veto-actionable: `0`.
+- submit-gate variants: `0`.
+- best local delta vs E95: `-0.000030467`.
+- best post-E101 mean/p95 vs E95: `-0.000055772` / `-0.000015691`.
+- 하지만 best row도 combo-set win은 `2/3`, tail-neutral은 `1/3`뿐이고 hidden Q2/S3와 world support는 adverse다.
+
+이 결과는 미묘하지만 중요하다. E137에서는 transfer-veto가 완전히 닫혀 있었는데, E138에서는 `373`개가 열린다. 즉 block-target state와 transfer-safe field는 실제로 어느 정도 만난다. 그런데도 strict law는 하나도 열리지 않는다.
+
+현재 세계관을 다시 압축한다.
+
+`safe mass는 block-target state로 보이고 transfer-safe region과도 겹치지만, 그 안의 현재 gradient는 all-set tail-neutral/world-consistent law가 아니다. 0.576대 벽은 state visibility나 co-location이 아니라 calibrated decoder의 부재다.`
+
+지금 제출할 파일은 없다. 다음으로 가장 정보량이 큰 행동은 mask를 더 겹치는 것이 아니라, block-target state 안에서 all-set tail neutrality와 world/raw hidden support를 보존하는 방향/amplitude decoder를 직접 만드는 것이다.

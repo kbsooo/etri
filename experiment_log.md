@@ -2060,3 +2060,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - top state masks are meaningful: top30 state covers teacher mass `0.607103`, but the movement still has poor tail-equal law alignment (`tail_equal_law_cosine` around `0.66-0.70`, residual ratio around `1.0+`) and elevated E72 exposure.
 - Interpretation: E136 found a visible state, but the current E95 combo-gradient is still the wrong translator. The state can concentrate local mean and sensor mean improvements, yet cannot pass strict structure or transfer safety. This distinguishes representation visibility from movement validity.
 - Decision: no submission. Keep block-target safe-state as the live representation object, but reject "block-target state mask times current E95 gradient" as a candidate generator. The next translator must learn direction/amplitude inside the block-target state, not reuse the old local combo gradient.
+
+## E138. Block-Target x Veto-Null Overlap Probe
+
+- Observe: E137 left one cheap loophole open. Maybe E136 state was meaningful, and E132/E137 failed only because the state mask was not explicitly intersected with the E128/E129 transfer-safe veto-null / low-adverse regions.
+- Wonder: if the visible block-target state and the transfer-safe field are co-located, can their overlap finally turn the current E95 gradient into a locally useful and post-E101-safe movement?
+- Method: `analysis_outputs/e138_blocktarget_vetonull_overlap_probe.py` intersected E136 block-target state masks with E132-style veto-null and low-adverse masks, under `all` and `raw05_compatible` gradient contexts. It scanned hard/state-soft overlap, target scopes, `raw/sqrt/sign` gradient shapes, and small scales, then applied the same E95-relative strict, transfer-veto, hardtail, and post-E101 sensor gates.
+- Result:
+  - candidate rows `1322`, overlap variants `1314`, evaluated variants `698`.
+  - local strict variants `0`.
+  - transfer-veto-actionable variants `373`.
+  - local-strict plus transfer-veto-actionable variants `0`.
+  - final submit-gate variants `0`.
+  - best local evaluated row: `all / state_top30_all_hard / low_adverse75_top50 / hard / sqrt / scale 0.04`.
+  - that row moved `233` cells, improved local all stress by `-0.000030467`, and had post-E101 mean/p95 vs E95 `-0.000055772` / `-0.000015691`.
+  - it still failed strict actionability: only `2/3` combo sets beat base, only `1/3` tails were neutral, hidden Q2/S3 was adverse by `+0.000084793`, world support was adverse by `+0.001092051`, and E72-adverse exposure stayed high at `0.000772209`.
+- Interpretation: co-location is real enough to rescue the transfer-veto/post-E101 side, but it does not rescue the structural law. The blocker is not state visibility and not simple overlap with a transfer-safe mask; the blocker is that the current gradient direction/amplitude violates all-set tail neutrality and world/raw hidden structure inside that overlap.
+- Decision: no submission. Keep E136 block-target state as context, but reject "block-target state x veto-null mask x current gradient" as a candidate generator. The next decoder must be trained or constructed to preserve all combo sets, tail neutrality, and world/raw structure at the same time.

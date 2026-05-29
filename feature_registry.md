@@ -1032,6 +1032,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E137 generated `1980` block-target gradient variants. Evaluated variants `698`; local strict `0`; transfer-veto-actionable `0`; local-and-veto `0`; submit-gate `0`. Best local delta vs E95 is `-0.000043592`, and best post-E101 mean vs E95 is `-0.000040388`, but p95 remains positive (`~0.000026`) and tail-equal law alignment is poor.
 - Policy: mark this translator invalid. Keep F113 as a representation target, but do not use current E95 combo gradients as its decoder. Future translators must learn direction/amplitude inside block-target state or use hardtail-support labels directly.
 
+### F115. Block-target x veto-null overlap mask
+
+- Hidden structure: E136 block-target state and E128/E132 transfer-safe veto-null fields may be two partial views of the same safe hidden region; their overlap might be where a probability movement becomes both locally useful and public-tail safe.
+- Candidates: state scope/fraction, veto-null or low-adverse safety scope, overlap kind, selected cells/rows, Q2/S3 share, S share, gradient context/shape/scale, local strict gate, separated transfer-veto gate, post-E101 mean/p95, combo-set tail neutrality, hidden Q2/S3 support, world support, and E72 hard-tail exposure.
+- Label vs split test: valid as a movement-decoder falsifier because it uses public-free state predictions and predeclared veto/stress gates. Invalid as a submission feature if it only fixes transfer-veto or post-E101 mean while failing all-set strict/tail/world health.
+- Current evidence: E138 generated `1314` overlap variants and evaluated `698`. Transfer-veto-actionable rows rose to `373`, but local strict rows stayed `0`, local-and-veto stayed `0`, and submit-gate stayed `0`. The best local row improved all stress by `-0.000030467` and post-E101 mean/p95 by `-0.000055772` / `-0.000015691`, but only `2/3` combo sets beat base and only `1/3` tails were neutral; hidden Q2/S3 and world support were adverse.
+- Policy: retain only as a diagnostic energy. It proves state-veto co-location is not enough. Do not build files by intersecting more masks with the current gradient; the next feature must define a decoder objective that preserves all-set tail neutrality and world/raw hidden structure.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

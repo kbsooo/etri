@@ -1536,6 +1536,18 @@ target co-occurrence
 - public LB 관측 반응: no submission. A file from E137 would bet on mean local/post-E101 improvement while ignoring strict and transfer-veto failures, which is exactly the failure mode E95/E101 exposed.
 - 제출 전략: none. Next branch should build a block-target-state direction model or hardtail-support translator, not another E95 gradient mask.
 
+### H132. Block-target state becomes usable when intersected with transfer-safe veto-null masks
+
+- 상태: rejected as sufficient; H130 remains live.
+- 왜 그럴듯한가: E137 may have failed because it used E136 state without forcing transfer-shrinkage safety. E132 separately found many veto-actionable rows. If the missing structure is simply the overlap between those two maps, intersecting state and veto masks should create safe candidate movement.
+- 맞다면: overlap variants should contain at least some local-strict plus transfer-veto-actionable rows, post-E101 p95 should be nonpositive, and the best candidates should preserve all-set tail neutrality and world/raw hidden structure.
+- 틀리다면: overlap rows can improve local mean and transfer sensors, but strict all-set/tail/world/raw health remains broken and submit gates stay empty.
+- 최소 실험: `analysis_outputs/e138_blocktarget_vetonull_overlap_probe.py`, intersecting E136 block-target state with veto-null / low-adverse masks under `all` and `raw05_compatible` gradient contexts.
+- 관측: `1314` overlap variants and `698` evaluated variants produced `0` local strict rows, `373` transfer-veto-actionable rows, `0` local-strict plus transfer-veto-actionable rows, and `0` submit-gate rows. The best evaluated row improved local all by `-0.000030467` and post-E101 mean/p95 by `-0.000055772` / `-0.000015691`, but only `2/3` combo sets beat base, only `1/3` tails were neutral, hidden Q2/S3 was `+0.000084793`, and world support was `+0.001092051`.
+- 성공/폐기 기준: reject simple state-veto overlap as a movement generator. It succeeds only as a diagnostic showing that transfer-veto safety can be found without restoring the full structural law.
+- public LB 관측 반응: no submission. A file from E138 would chase favorable mean/post-E101 sensors while ignoring the exact strict-tail failure that E95/E101 exposed.
+- 제출 전략: none. The next strategy must learn or construct a decoder that directly optimizes all-set tail neutrality and world/raw structure inside the block-target state, not multiply more masks onto the current gradient.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

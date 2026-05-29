@@ -1077,3 +1077,12 @@
 - Implementation issue possible: medium. E137 tests donor-free first-order gradients, not a learned nonlinear block-target decoder. The discarded claim is specifically "E136 state mask times current E95 gradient is enough."
 - Bottleneck implication: the live representation branch remains block-target state, but movement must be learned or defined differently. The plateau is now a decoder problem, not merely a context visibility problem.
 - Do not repeat: E95 combo-gradient masks over E136 state, larger scale sweeps over the same masks, or submitting mean-improving block-target-gradient rows without strict/veto/post-E101 p95 survival.
+
+## FH120. E136 state plus transfer-safe overlap is enough to create a safe movement
+
+- Failed hypothesis: E137 failed only because it did not explicitly intersect the visible block-target state with E132/E128 transfer-safe veto-null and low-adverse masks.
+- Observed result: E138 generated `1314` block-target x veto-null overlap variants and evaluated `698`. It found `373` transfer-veto-actionable variants, but still `0` local strict variants, `0` local-strict plus veto-actionable variants, and `0` submit-gate variants. The best evaluated row improved local all stress by `-0.000030467` and post-E101 mean/p95 by `-0.000055772` / `-0.000015691`, but failed strict actionability with only `2/3` combo-set wins, `1/3` tail-neutral sets, hidden Q2/S3 `+0.000084793`, and world support `+0.001092051`.
+- Why discard: state-veto co-location fixes one side of the problem but not the structural decoder. The overlap can be transfer-safe while still violating the all-set tail and world/raw laws that distinguish E95 from E101-style local optimism.
+- Implementation issue possible: medium. E138 still uses current E95 combo gradients and mask intersections, not a learned decoder. The discarded claim is narrower: co-location of E136 state and E132/E128 safety masks is not sufficient.
+- Bottleneck implication: the current wall is now specifically direction/amplitude decoding inside a visible block-target state. Visibility and safety-region overlap exist; calibrated all-set/world-preserving movement does not.
+- Do not repeat: more state-veto mask multiplication, top-fraction sweeps, or scale-only variants on the same gradient. Future work should first define a decoder target that rewards all-set tail neutrality and world/raw hidden support before materializing probabilities.

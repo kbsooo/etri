@@ -281,3 +281,18 @@ E137 applies the first movement stress to the E136 branch. It uses the visible b
 - best post-E101 mean vs E95: `-0.000040388`, but p95 is still positive at about `0.000026`.
 
 The validation meaning is narrow but important: E136's representation visibility is real enough to concentrate mean improvements, but the existing E95 gradient still points into structurally unsafe/tail-adverse movement. Future validation should keep block-target state as context, but require a new direction/amplitude translator before any file is considered.
+
+## Update After E138
+
+E138 tests the last cheap rescue of the E136/E137 branch: force the visible block-target state to overlap with transfer-safe veto-null / low-adverse masks before applying the E95 gradient.
+
+- overlap variants: `1314`.
+- evaluated variants: `698`.
+- local strict variants: `0`.
+- transfer-veto-actionable variants: `373`.
+- local-strict plus transfer-veto-actionable variants: `0`.
+- submit-gate variants: `0`.
+- best local all delta vs E95: `-0.000030467`.
+- best post-E101 mean/p95 vs E95: `-0.000055772` / `-0.000015691`.
+
+This is an asymmetric result. The overlap can satisfy the transfer/post-E101 side, but no evaluated row satisfies strict structural health. The best rows still have at most `2/3` combo-set wins and `1/3` tail-neutral sets, with world/raw-style support universally adverse in the evaluated rows. Therefore the validation gate blocks "block-target state plus veto-null overlap" as a submission path. The next validator should not ask for another mask intersection; it should ask whether a new decoder can preserve all-set tail neutrality and world/raw hidden structure while using the block-target state.
