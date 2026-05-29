@@ -923,6 +923,18 @@ target co-occurrence
 - public LB 기대 반응: if `submission_e85_inverse_conflict_pruned_58b23ed1.csv` improves public, public is closer to the all-combo-safe S1/S2/S3 structural world and E84's Q1/Q3/S4 movement was contamination. If it worsens, public was closer to the all-sign/raw05 target movement and inverse-top over-pruned the useful Q1/Q3/S4 axes.
 - 제출 전략: E85 is now the highest-information next submission candidate, stronger than E84 because it is strict/deployable rather than only diagnostic.
 
+### H81. E85 target-prune law is source-stable enough to support a consensus candidate
+
+- 상태: strongly supported locally; public pending.
+- 왜 그럴듯한가: E85 strict rows were not confined to one structural source. The same S1/S2/S3-like masks appeared across gate, rawcorr-refine, and rawcorr-micro families, so averaging source-diverse logit deltas may reduce single-row risk while preserving the target-axis law.
+- 맞다면: source-diverse consensus variants should remain strict/deployable across combo, hidden/world/block, raw-energy, and tail stress. Small overstep should improve local margin without breaking inverse-top.
+- 틀리다면: consensus should wash out the edge, fail inverse-top, or expose source-family-specific shortcuts.
+- 최소 실험: `analysis_outputs/e86_e85_target_prune_robustness.py`, rebuilding E85 predictions and forming source-diverse logit-delta consensus variants across target masks, source-file/seed-rank/top-row selections, mean/median/trimmed aggregators, and shrink/overstep values.
+- 관측: E86 generated `1485` consensus rows; non-anchor evaluated `700`; strict/deployable/loose were `700/700`. The selected consensus keeps `Q2,S1,S2,S3`, averages top `40` strict E85 rows from `18` source files across `gate,rawcorr_micro,rawcorr_refine`, and uses shrink `1.25`. It has all delta `-2.77059e-5`, inverse-top `-6.91e-6`, raw05-compatible `-3.53387e-5`, all-sign `-4.08689e-5`, hidden Q2/S3 `-0.000377585`, world `-0.000307439`, raw-energy `-0.000172786`, block win `0.833333`, and block-tail safe `1.0`.
+- 성공/폐기 기준: the single-source-artifact objection to E85 is rejected locally. The unresolved part is whether the source-consensus overstep is public-safe or whether E85's lower-amplitude S1/S2/S3-only file is safer.
+- public LB 기대 반응: if `submission_e86_e85_consensus_a3f7c96f.csv` improves public more than E85 or mixmin, public rewards source-stable S1/S2/S3/Q2 structural consensus and the 1.25 overstep is not overfit. If it worsens while E85 improves, public wants the target-prune law but not consensus overstep/Q2 add-back. If both worsen, inverse-top target pruning was a local combo-world artifact.
+- 제출 전략: E86 supersedes E85 as the highest-upside next candidate if one wants source-stable consensus. E85 remains the lower-amplitude conservative sensor for the same target-prune hypothesis.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

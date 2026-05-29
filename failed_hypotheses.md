@@ -690,3 +690,12 @@
 - Implementation issue possible: medium. Combo worlds are still local sensors, not true public labels, and public may prefer the removed Q1/Q3/S4 movement. But the discarded claim was "target-axis pruning cannot solve the E84 conflict locally"; E85 directly falsifies that.
 - Bottleneck implication: the current bottleneck is now public-world choice among target axes, not only row/block localization. Row/block gates remain useful only if E85 fails public or if a later target-pruned candidate needs more upside.
 - Do not repeat: jumping straight to complex inverse-top row/block gates before testing the simpler S1/S2/S3 target-pruned structural candidate.
+
+## FH77. E85 target-prune edge is a single-source artifact
+
+- Failed hypothesis: E85's selected S1/S2/S3 target-pruned file is an accidental row/source artifact; averaging strict E85 movements across source files should wash out the edge or break inverse-top stress.
+- Observed result: E86 rebuilt E85 predictions, grouped strict rows by target mask, and generated `1485` source-diverse consensus variants. The evaluated `700` rows were all strict/deployable/loose. The selected `analysis_outputs/submission_e86_e85_consensus_a3f7c96f.csv` keeps `Q2,S1,S2,S3`, averages top `40` rows from `18` source files across `gate,rawcorr_micro,rawcorr_refine`, uses mean aggregation and shrink `1.25`, and improves all delta to `-0.0000277059` while preserving inverse-top, raw05-compatible, all-sign, hidden/world/block, and block-tail stress.
+- Why discard: source diversity did not wash out the target-prune law. It strengthened the local edge and improved block-tail safety from E85's `0.944444` to `1.0`.
+- Implementation issue possible: medium. The source-consensus stress is still local and public-pending. Public may punish the consensus overstep or Q2 add-back even if the single-source-artifact objection is locally false.
+- Bottleneck implication: the live question is no longer "is E85 just one row?" It is whether public accepts target-pruned structural movement at E86 amplitude, or only the lower-amplitude E85 version.
+- Do not repeat: dismissing E85 solely because it came from one selected row. The next falsification must be public LB or a genuinely independent target-pruned world, not another single-source objection.
