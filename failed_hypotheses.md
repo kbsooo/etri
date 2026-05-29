@@ -744,3 +744,12 @@
 - Implementation issue possible: medium. The posterior was built from prior hidden-block work and may still be useful as an energy feature. The discarded claim is narrower: posterior CE alone can rank the next public submission.
 - Bottleneck implication: representation/capacity exists, but public-aligned translation is still missing. Hidden-block posterior, E72 contamination, local combo stress, and public LB anchors must remain separate energies.
 - Do not repeat: using `hidden_block_posterior_alignment_score` or posterior CE delta as a direct submission ranker. Treat E92 as a representation-health warning and keep E86/E90/E89 as hypothesis sensors.
+
+## FH83. Target-manifold consistency can counter-filter E72-tainted representations
+
+- Failed hypothesis: because E92 hidden-block posterior alignment rewards the public-negative E72 file, the train Q/S target dependency manifold should provide a counter-energy that rejects E72 while preserving E86/E90/E89.
+- Observed result: E93 found the opposite. E72 improved target-manifold delta mean versus mixmin by `-0.001468687`. Live candidates were favorable but smaller: E86 `-0.000921783`, no-Q2 `-0.000914184`, E90 `-0.000877945`, E89 `-0.000806467`, E85 `-0.000742113`. Older known public-bad anchors also looked target-manifold-consistent (`final9` `-0.020801364`, `bad_q2_jepa` `-0.002958703`).
+- Why discard: target co-occurrence consistency is not the public-safe missing geometry. A movement can look healthier under train conditional labels, empirical label patterns, and pair correlations while still worsening public LB. This is another LeJEPA warning: representation geometry can be real but aligned to the wrong evaluation world.
+- Implementation issue possible: medium. E93 uses simple logistic target conditionals and empirical pattern/correlation energies, not a richer subject/block-conditioned target manifold. The discarded claim is only that current train target-manifold consistency can rank or counter-filter post-mixmin submissions.
+- Bottleneck implication: E72 failure is not explained by obvious target dependency violation. The bottleneck is hidden public subset/calibration/world identity after a movement that both block posterior and target co-occurrence can like.
+- Do not repeat: ranking E86/E90/E89 by `target_manifold_delta_mean`, conditional residual RMS, pattern NLL, or pair-correlation gap. Use these as diagnostics only, not submission selectors.

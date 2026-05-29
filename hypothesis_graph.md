@@ -143,12 +143,13 @@ target co-occurrence
 
 ### H11. Q/S target dependency manifold constrains calibration
 
-- 상태: 증거 있음.
+- 상태: 증거 있음 as diagnostic; rejected as public-safe selector.
 - 왜 그럴듯한가: S2-S4 corr `0.478`, S2-S3 `0.394`, Q1-S1 `0.361`, Q2-Q3 `0.340` 등 target dependency가 존재한다.
 - 맞다면: target dependency violation energy가 bad candidates를 구분해야 한다.
 - 틀리다면: dependency correction이 anchor stress에서 일관 악화한다.
 - 최소 실험: target dependency violation energy, targetwise temperature/intercept stress.
-- 제출 전략: hard constraints 금지. dependency energy로 clipping/blend strength 조절.
+- 최근 증거: E93 fitted seven train-label conditional target models and empirical pattern/correlation energies. It did not reject the known public-negative E72 file. E72 improved target-manifold delta versus mixmin by `-0.001468687`, and live candidates were also all favorable, led by E86 `-0.000921783`. Known bad anchors such as `final9` and `bad_q2_jepa` looked even more target-manifold-consistent despite worse public LB, and public-LB sanity correlation was weak.
+- 제출 전략: hard constraints 금지. Target dependency is useful as a consistency/diagnostic energy, but not as a submission ranker or E72 counter-gate.
 
 ### H12. Validation mismatch is a primary plateau cause
 
@@ -1006,6 +1007,18 @@ target co-occurrence
 - 성공/폐기 기준: rejected as selector because a representation score that ranks known-bad E72 first is E72-tainted. The useful evidence is diagnostic separation: posterior CE favors no-Q2/E86, decontamination favors E89, and E90 remains an intermediate structural-retention compromise rather than an independently certified best.
 - public LB 기대 반응: no submission. If E86 later improves, posterior alignment was useful despite E72 contamination. If E89 improves, E72 contamination dominates posterior CE. If E90 improves, row-coherent compromise is public-real even without being the posterior leader.
 - 제출 전략: do not materialize an E92-ranked file. Keep E86/E90/E89 as hypothesis sensors; do not use hidden-block posterior CE alone as a public-safe ranking target.
+
+### H88. Train target-manifold energy can counter-filter E72-tainted block alignment
+
+- 상태: rejected as public-safe selector; retained as diagnostic.
+- 왜 그럴듯한가: E92 showed hidden-block posterior CE rewards E72. A natural counter-hypothesis is that E72 is block-coherent but violates the Q/S target dependency manifold, so train target co-occurrence could act as a LeJEPA-style geometry health check.
+- 맞다면: E72 should worsen conditional target self-consistency, empirical label-pattern NLL, or pair-correlation gap versus mixmin, while E86/E90/E89 should remain neutral or improve.
+- 틀리다면: E72 should also look target-manifold-consistent, or known public-bad anchors should score well under the same energy.
+- 최소 실험: `analysis_outputs/e93_target_manifold_counterenergy_audit.py`, fitting `target_j ~ other targets` logistic conditionals on train labels and scoring submissions by conditional logit residual, empirical pattern mixture NLL, nearest pattern NLL, and pair-correlation gap.
+- 관측: E72 target-manifold delta mean was `-0.001468687` versus mixmin, so the counter-energy likes the failed public file. Live candidates were also favorable but smaller: E86 `-0.000921783`, no-Q2 `-0.000914184`, E90 `-0.000877945`, E89 `-0.000806467`, E85 `-0.000742113`. Worse public anchors also received favorable scores (`final9` `-0.020801364`, `bad_q2_jepa` `-0.002958703`), so this energy is not public-safe.
+- 성공/폐기 기준: rejected as selector because it fails the known E72 counterexample and does not align monotonically with public LB among known anchors.
+- public LB 기대 반응: no submission. If E86/E90/E89 public feedback later improves, target-manifold consistency may be a necessary but weak health signal. If they fail, E93 already warned that target consistency alone cannot protect against public mismatch.
+- 제출 전략: do not rank by `target_manifold_delta_mean`. Keep dependency/manifold features as diagnostics only, especially for detecting gross bad-axis failures, not for selecting the next public file.
 
 ## 우선 실험 5개
 
