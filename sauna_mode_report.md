@@ -753,3 +753,33 @@ E144 fine-boundary audit 전까지 제출 파일은 `analysis_outputs/submission
 `E144는 E143보다 작은 local edge만 가진 파일이지만, 그 edge는 24개의 S3 fine-tail 셀에 집중되어 있고 public-free prior도 같은 방향을 본다. 따라서 E144가 실패하면 "E143이 원래 더 안전했다"가 아니라 "public hidden S3 tail이 visible prior보다 더 adverse였다"로 읽어야 한다. E143은 기대값 rescue가 아니라 fine-tail retention contrast로만 남는다.`
 
 지금 제출할 파일은 여전히 하나다. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.
+
+## 추가 관찰: E144 전체도 E95 대비 visible prior가 지지한다
+
+`analysis_outputs/e147_e144_e95_prior_world_audit.py`로 E144 전체와 E95의 차이를 분해했다.
+
+질문은 이것이었다.
+
+`E146이 본 24개 S3 fine-tail만이 아니라, E144의 185개 전체 이동이 E95 frontier 대비 public-free prior에서도 말이 되는가?`
+
+결과:
+
+- E144-vs-E95 moved cells: `185`.
+- rows/subjects touched: `108` / `9`.
+- target mix: Q3 `56`, S3 `47`, Q1 `38`, S2 `23`, S4 `21`.
+- Q2/S1 movement: `0`.
+- component mix: inherited E143 body `161`, E144 fine-tail delta `24`.
+- edge-like cells: `62`.
+- flank-conflict cells: `26`.
+- E144를 선호한 public-free prior: `10/10`.
+- expected E144-minus-E95 delta range: `-0.000049865515` to `-0.000012197928`.
+- simulated `p(E144 beats E95)`: `0.583850` to `0.762700`.
+- nearest-hard 기준 favorable target: Q1, S4, S2.
+- nearest-hard 기준 adverse target: S3, Q3.
+- nearest-hard 기준 inherited body는 favorable, fine-tail delta는 mild adverse.
+
+현재 세계관을 다시 압축한다.
+
+`E144는 단순히 E143보다 아주 조금 나은 local tweak가 아니다. E95 대비 전체 185개 이동도 visible prior에서는 일관되게 지지된다. 다만 그 지지는 inherited E143 body에서 주로 나오고, public에서 깨진다면 S3/Q3 또는 fine-tail retention 쪽에서 깨질 가능성이 높다. 따라서 E144가 실패하면 branch 전체를 즉시 버리거나 E143로 기계적으로 후퇴하지 말고, E145 band와 E147 target/component decomposition으로 실패 위치를 먼저 읽어야 한다.`
+
+지금 제출할 파일은 변하지 않는다. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.

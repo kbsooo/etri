@@ -2226,3 +2226,22 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - simulated E144 beat probability ranges from `0.540545` under subject prior to `0.925720` under nearest-hard prior.
 - Interpretation: E144 is not just a local strict-gate artifact. The exact 24-cell S3 retained tail is independently supported by visible priors, especially nearest/flank context. That makes E144 a better public sensor than E143. It also changes the fallback meaning: if E144 loses narrowly, E143 should not be treated as automatically safer by public-free evidence; the loss would mean public S3 tail labels were more adverse than visible priors.
 - Decision: no submission is materialized. Keep `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the single next file. E143 remains a clean contrast only if the public slot is explicitly testing fine-tail retention after E144 feedback, not as an expectation-ranked rescue.
+
+## E147. E144/E95 Prior-World Audit
+
+- Observe: E146 only validated the 24-cell E144-over-E143 fine-tail edge. The stronger question is whether E144's whole 185-cell movement is public-free prior-supported against the actual E95 frontier, or whether E144 is only locally better than E143 while globally drifting away from visible label structure.
+- Wonder: if E144 is the right next sensor, its full movement should not rely only on the retained S3 tail. The inherited E143 body should carry most of the expected benefit, and public-free priors should prefer E144 over E95 even though some target slices may be adverse.
+- Method: `analysis_outputs/e147_e144_e95_prior_world_audit.py` isolates all cells where E144 differs from E95, labels each as `inherited_e143_body` or `e144_fine_tail_delta`, attaches global/subject/flank/nearest priors, computes hard-label support deltas, summarizes by target/component, and simulates E144-vs-E95 outcomes under each prior.
+- Result:
+  - moved E144-vs-E95 cells: `185`.
+  - touched rows/subjects: `108` / `9`.
+  - target counts: Q3 `56`, S3 `47`, Q1 `38`, S2 `23`, S4 `21`; Q2 and S1 `0`.
+  - component counts: inherited E143 body `161`, E144 fine-tail delta `24`.
+  - edge-like cells: `62`; flank-conflict cells: `26`.
+  - public-free priors preferring E144 over E95: `10/10`.
+  - expected E144-minus-E95 deltas range from `-0.000049865515` under global prior to `-0.000012197928` under nearest/edge beta priors.
+  - simulated `p(E144 beats E95)` ranges from `0.583850` to `0.762700`.
+  - nearest-hard target contributions are favorable on Q1 `-0.000035329747`, S4 `-0.000022307601`, and S2 `-0.000007249103`, but adverse on Q3 `+0.000008466410` and S3 `+0.000034746272`.
+  - nearest-hard component contributions favor the inherited body `-0.000024556352` but oppose the fine-tail delta `+0.000002882583`; subject/global/prev priors are less hostile to the fine tail.
+- Interpretation: E144 is now stronger than a narrow E143 refinement. Visible priors broadly support the whole E144 file versus E95, mostly through the inherited 161-cell E143 body. The weak point is also clear: S3, and under nearest-hard also Q3, carry the adverse target-side risk. Therefore E144 public feedback will be informative even if it loses. A loss should be decomposed target/component-wise rather than treated as a generic rejection of E144.
+- Decision: no new submission is created. Keep `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the single next file. If public improves, strengthen the E95-plus-transfer-budget-neutral residual world. If public loses inside E145's fine-loss band, inspect S3/Q3 and fine-tail versus inherited-body failure before choosing any E143/E142 contrast.

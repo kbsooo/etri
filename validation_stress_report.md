@@ -432,3 +432,21 @@ E146 stress-tests the E144-over-E143 edge without using public feedback.
 - simulated `p(E144 beats E143)`: `0.540545` under subject prior to `0.925720` under nearest-hard prior.
 
 This does not create a new submission, but it changes the fallback logic. E144's retained `S3` fine tail is not merely local-gate arithmetic; visible global/subject/flank priors all lean E144 over E143. Therefore a future narrow E144 public loss should be interpreted as hidden public S3-tail adversity, not as public-free evidence that E143 was the better expectation candidate. E143 remains a clean contrast only for the specific question "did keep0.15 retention fail?", not as an automatic rescue.
+
+## Update After E147
+
+E147 expands the prior stress from the E144/E143 fine-tail edge to the whole E144-vs-E95 movement.
+
+- E144-vs-E95 moved cells: `185`.
+- touched rows/subjects: `108` / `9`.
+- target mix: Q3 `56`, S3 `47`, Q1 `38`, S2 `23`, S4 `21`, Q2/S1 `0`.
+- component mix: inherited E143 body `161`, E144 fine-tail delta `24`.
+- edge-like cells: `62`.
+- flank-conflict cells: `26`.
+- public-free priors preferring E144 over E95: `10/10`.
+- expected E144-minus-E95 delta range: `-0.000049865515` to `-0.000012197928`.
+- simulated `p(E144 beats E95)`: `0.583850` to `0.762700`.
+- nearest-hard target stress: Q1/S4/S2 favorable, Q3/S3 adverse.
+- nearest-hard component stress: inherited body favorable, fine-tail delta mildly adverse.
+
+This strengthens E144 as the next public sensor because visible priors support the whole file, not only the E144-over-E143 edge. It also narrows the failure mode. If E144 underperforms, the first stress read should be target/component decomposition, especially S3 and Q3, rather than broad rollback to E143 or E142. The expected improvement remains frontier-scale small, so E144 is still a calibrated sensor, not a 0.54-path breakthrough.

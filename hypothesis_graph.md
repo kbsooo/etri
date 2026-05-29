@@ -1644,6 +1644,18 @@ target co-occurrence
 - public LB 관측 반응: E144 win strengthens H138 and H140 together. E144 narrow loss weakens public transfer of visible S3 priors and makes E143 only a deliberate contrast on tail retention, not an expectation-ranked rescue. E144 worse than E101 still blocks automatic same-family rescue as H139 specified.
 - 제출 전략: no E146 submission. Keep `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the next single file.
 
+### H141. E144's whole E95-relative movement is visible-prior supported, with S3/Q3 as the stress axis
+
+- 상태: locally supported; public pending.
+- 왜 그럴듯한가: E146 validated only the 24-cell E144-over-E143 fine tail. A real next submission candidate must also make sense as a whole against E95, because public LB will score all 185 moved cells, not just the fine-tail delta.
+- 맞다면: global, subject, and flank priors should prefer E144 over E95 on the full moved-cell set; most expected benefit should come from the inherited E143 body rather than the tiny E144-only delta; any adverse pockets should be target/component-specific enough to guide interpretation.
+- 틀리다면: visible priors would split signs or prefer E95 globally, especially if E144 were only a local-gate artifact.
+- 최소 실험: `analysis_outputs/e147_e144_e95_prior_world_audit.py`, scoring all E144-vs-E95 moved cells under global, subject, prev/next/nearest/both-flank, hard-nearest, edge-endpoint, and conflict-flat priors, then simulating E144-vs-E95 outcomes.
+- 관측: E144 moves `185` cells across `108` rows and `9` subjects: Q3 `56`, S3 `47`, Q1 `38`, S2 `23`, S4 `21`, Q2/S1 `0`. All `10/10` public-free priors prefer E144 over E95. Expected deltas range from `-0.000049865515` to `-0.000012197928`, and simulated beat probability ranges from `0.583850` to `0.762700`. The inherited E143 body is favorable under nearest-hard (`-0.000024556352`), while the E144 fine-tail delta is mildly adverse there (`+0.000002882583`). Target stress is favorable on Q1/S4/S2 and adverse on S3/Q3 under nearest-hard.
+- 성공/폐기 기준: support H141 as the pre-public whole-file interpretation layer. Public LB can still kill the branch, but a loss should first be localized to S3/Q3 or fine-tail/body components before broad family rollback.
+- public LB 관측 반응: E144 win strengthens the E95-plus-transfer-budget-neutral residual worldview. E144 tie or fine loss means the visible-prior support was not enough on public's hidden S3/Q3 mix; consult H139 bands and E147 decomposition before selecting E143/E142. E144 worse than E101/mixmin weakens the entire E142/E143/E144 selector branch.
+- 제출 전략: submit `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` as the next single file; do not create another file from E147 itself.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

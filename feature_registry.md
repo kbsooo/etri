@@ -1104,6 +1104,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E146 finds `24` E144-vs-E143 differing cells, all `S3`, with `0` flank conflicts. All `10/10` public-free priors prefer E144 over E143; expected deltas range from `-0.000010294767` to `-0.000001097289`, and simulated beat probability ranges from `0.540545` to `0.925720`.
 - Policy: use as fallback interpretation energy. It strengthens E144 as the next public sensor. If E144 loses narrowly, do not automatically promote E143 as expectation-safer; read the loss as hidden public S3-tail adversity unless the next public slot is explicitly a fine-tail retention contrast.
 
+### F124. E144/E95 whole-file prior-world energy
+
+- Hidden structure: E144 may be a coherent E95-relative residual state rather than a local E143 refinement. If so, visible priors should prefer E144 over E95 across the whole moved-cell surface, with any failure localized to specific targets/components.
+- Candidates: E144-vs-E95 moved cells, inherited E143 body versus E144-only fine-tail delta, hard-label support direction, target/component contribution, edge/flank context, global/subject/flank priors, expected E144-minus-E95 delta, simulated beat probability, and high-impact support cells.
+- Label vs split test: valid as a public-free candidate-health energy because it uses train-derived priors and pre-existing submissions only. Invalid as a direct feature generator because it does not create new probabilities; it interprets the pending E144 public sensor.
+- Current evidence: E147 finds `185` E144-vs-E95 moved cells across `108` rows and `9` subjects. All `10/10` public-free priors prefer E144 over E95, with expected deltas from `-0.000049865515` to `-0.000012197928` and simulated beat probability from `0.583850` to `0.762700`. The inherited E143 body carries the main favorable signal, while S3/Q3 are the visible stress axes under nearest-hard priors.
+- Policy: use as the whole-file interpretation layer for E144. If E144 wins, this energy is strengthened. If E144 loses, first decompose S3/Q3 and fine-tail/body failure before falling back to E143/E142 or closing the branch.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

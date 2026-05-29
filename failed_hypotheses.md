@@ -1140,3 +1140,12 @@
 - Implementation issue possible: low for the tested grid; E144 re-scores E142 and E143 controls in the same pipeline and keeps E143 strict. It does not prove that the absolute optimum is found outside the scanned masks.
 - Bottleneck implication: the live branch is extremely narrow. We can still extract a tiny amount of reward from the residual decoder, but the edge size is `1e-7` local scale, so this is a next-sensor refinement rather than a 0.54-path discovery.
 - Do not repeat: assuming E143's coarse mask is optimal. Use E144 first; keep E143 as the conservative fallback if public rejects the fine retained tail.
+
+## FH127. E144 is supported only by the tiny E144-over-E143 fine-tail edge
+
+- Failed hypothesis: E146's support might be too narrow to matter; E144 could still be globally unhealthy versus E95 because public scores all `185` moved cells, not just the `24` cells that differ from E143.
+- Observed result: E147 finds all `10/10` public-free priors prefer E144 over E95 on the full moved-cell set. Expected E144-minus-E95 deltas range from `-0.000049865515` to `-0.000012197928`, and simulated beat probability ranges from `0.583850` to `0.762700`. The inherited E143 body, not only the E144 fine-tail delta, carries the main favorable signal.
+- Why discard: the visible-prior evidence is whole-file positive. E144 is not merely a 24-cell local-gate artifact.
+- Implementation issue possible: medium. E147 is still a prior-world audit, not public labels. It can say the whole-file movement is coherent under train-derived priors, but public can still have a different hidden S3/Q3 mix.
+- Bottleneck implication: the live risk is no longer "E144 has no broad support." It is target/component mismatch: nearest-hard priors oppose S3/Q3 even while Q1/S4/S2 and the inherited body are favorable.
+- Do not repeat: dismissing E144 as only an E143 micro-tweak. If E144 fails, inspect S3/Q3 and fine-tail/body decomposition before assuming E143 was the expectation-safer file.
