@@ -726,3 +726,12 @@
 - Implementation issue possible: low to medium. E90's scoring weights are a design choice, and public LB is pending. But the discarded claim is only "minimum contamination is the unique local ranking rule"; the strict scan itself shows a non-dominated row-coherent alternative.
 - Bottleneck implication: post-E72 risk has at least two axes: contamination removal and structural retention. The next public observation should identify which axis public rewards rather than treating them as one scalar.
 - Do not repeat: ranking E86 repairs solely by E72 contamination index. Keep E86 for maximum upside, E90 for balanced row-coherent decontamination, and E89 for minimum-contamination downside control.
+
+## FH81. E72-updated movement-fingerprint proxy can rank post-mixmin candidates
+
+- Failed hypothesis: adding E72 as a public-negative anchor to the known-LB movement-fingerprint proxy should make it good enough to choose among E86, E90, E89, and E85.
+- Observed result: E91 used `10` known public anchors and found best fixed LOOCV proxy `raw05_a2c8_compat` with MAE `0.000543412` and p90 error `0.001010234`. The same proxy holds out mixmin at `0.5774493627` even though actual mixmin is `0.5763066405`, an error of `+0.001142722`. E72's actual delta vs mixmin is `+0.0001011367`, but the proxy predicts E72-minus-mixmin as `-0.0000460726`.
+- Why discard: the proxy error is roughly `10x` the E72 public miss and even gets the E72-vs-mixmin sign wrong under leave-one-out. A selector that cannot resolve the known frontier and first post-frontier miss cannot rank unobserved E86/E90/E89 candidates.
+- Implementation issue possible: low to medium. The model class is intentionally simple and uses existing movement features. A different selector target might work, but the discarded claim is specifically that the current known-LB movement regression can rank the next post-mixmin files.
+- Bottleneck implication: public LB observations remain sensors, not enough training labels for a submission ranker. The next file must be chosen by hypothesis value and local stress, not proxy-predicted LB.
+- Do not repeat: building an E91-style proxy-ranked submission or using `proxy_pred_mean` from known-public regression to order E86/E90/E89. Use E86 for max-upside, E90 for row-coherent decontamination, and E89 for minimum-contamination if those are the questions being tested.

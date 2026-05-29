@@ -117,6 +117,8 @@ analysis_outputs/*
 !analysis_outputs/submission_e89_e72decontam_*.csv
 !analysis_outputs/e90_e89_pareto_knee_scores.csv
 !analysis_outputs/submission_e90_e72pareto_*.csv
+!analysis_outputs/e91_e72_updated_selector_known_loo.csv
+!analysis_outputs/e91_e72_updated_selector_candidates.csv
 !analysis_outputs/submission_e87_noq2_source_consensus_*.csv
 !analysis_outputs/submission_e87_q2_nooverstep_consensus_*.csv
 !analysis_outputs/submission_e87_inverse_top_prior_consensus_*.csv

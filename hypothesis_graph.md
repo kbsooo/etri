@@ -983,6 +983,18 @@ target co-occurrence
 - public LB 기대 반응: E90 should land between the high-upside E86 and low-contamination E89 if the tradeoff is real. A large deviation from that order is highly informative about whether public values contamination removal or structural retention.
 - 제출 전략: use E90 when one slot should balance E86 upside and E72 downside. Keep E86 as the maximum-upside sensor and E89 as the minimum-contamination sensor.
 
+### H86. E72-updated movement-fingerprint proxy can rank post-mixmin candidates
+
+- 상태: rejected as selector; retained only as diagnostic.
+- 왜 그럴듯한가: E72 is the first public-negative anchor after mixmin and is close to mixmin in movement geometry. If any cheap known-LB proxy could rank E86/E90/E89, adding E72 should improve frontier-scale resolution.
+- 맞다면: the best LOOCV proxy should hold out mixmin near the true frontier, predict E72 worse than mixmin with the correct sign, and have error below the E72 public miss scale or at least below the E86/E90/E89 expected edge scale.
+- 틀리다면: the proxy should mispredict mixmin or E72 by more than the entire E72 public miss, or rank post-mixmin candidates while failing the known frontier itself.
+- 최소 실험: `analysis_outputs/e91_e72_updated_selector_collapse_audit.py`, reusing public-anchor movement features with 10 known public anchors and scoring only E85/E86/E87/E89/E90.
+- 관측: best fixed proxy `raw05_a2c8_compat` has MAE `0.000543412` and p90 error `0.001010234`. It holds out mixmin at `0.5774493627` despite actual `0.5763066405`, error `+0.001142722`. It predicts E72-minus-mixmin `-0.0000460726` while actual is `+0.0001011367`.
+- 성공/폐기 기준: rejected because proxy p90 error is `9.99x` the E72 public miss and the mixmin holdout error is `11.30x` the E72 miss. A selector that cannot rank the known frontier against E72 cannot choose E86/E90/E89.
+- public LB 기대 반응: no submission. Future E86/E90/E89 public scores should be interpreted as sensors, not as validation of this proxy.
+- 제출 전략: do not materialize an E91 proxy-ranked file. Choose E86, E90, or E89 by the hypothesis being tested: maximum source-consensus upside, row-coherent decontamination, or minimum contamination.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
