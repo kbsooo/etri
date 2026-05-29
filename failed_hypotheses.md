@@ -861,3 +861,12 @@
 - Implementation issue possible: medium. E107 is a conditional decision map and inherits E99's two-term transfer abstraction. A richer future public-world model might explain an E101 loss, but the current E104/E106 universe does not.
 - Bottleneck implication: E101 is a true sensor, not a file family to keep adjusting regardless of feedback. If it loses, return to full E89 or broader structural/block-state questions rather than narrowing E101.
 - Do not repeat: after a negative E101 result, do not submit subject-prior-gated E106 rows or higher-alpha E104 rows as if they are conservative repairs. First rebuild the public-world model.
+
+## FH96. E101 tie/loss can be rescued by stronger same-line rollback
+
+- Failed hypothesis: if E101 ties or loses, the next coherent repair should still stay on the same active Q2/S3 rollback line, either by submitting E108 amp050/amp038 or by shrinking/masking the same cells.
+- Observed result: E109 sampled `200000` active-cell hidden-label worlds under global and subject priors. Under subject priors, E101 small-loss and large-loss buckets have mass `0.355350` and `0.244350`. Those buckets are driven by missing high-impact S3 support: top10 support rate drops from `0.916933` in edge wins to `0.805226` in small losses and `0.719218` in large losses. In subject small-loss worlds, E108 amp050/amp038 active mean versus E101 is `+0.000011723` / `+0.000006026`, with beat-E101 rate `0`; large-loss worlds are worse again.
+- Why discard: negative E101 feedback would mean the active rollback direction failed on the hard labels that matter most. More rollback on the same cells amplifies that failure; the active-cell-only ranking instead favors retaining E95/E90/E86 behavior.
+- Implementation issue possible: medium. E109 is active-cell-only and does not forecast the full public LB for non-active E89/E90/E86 movements. It is strong enough to reject same-line E108 rescue after tie/loss, not strong enough to automatically choose the next full-file branch.
+- Bottleneck implication: E101 tie/loss should be treated as active-label world mismatch, not as an amplitude tuning problem. The remaining live questions become retained structure, active-cell restoration, or a different non-active diffuse-tail hypothesis.
+- Do not repeat: after an E101 tie/loss, do not submit E108, E104 high-alpha, or E106 subject-prior masks as the next default. Rebuild the public-world model or test a genuinely different retained-structure/non-active-tail question.

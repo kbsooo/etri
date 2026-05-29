@@ -1189,6 +1189,18 @@ target co-occurrence
 - public LB 관측 반응: E101 edge/small win -> submit amp050 for upside or amp038 for conservative branch. E101 tie/loss -> do not submit E108; update the hidden-tail world model.
 - 제출 전략: no immediate E108 submission. These are post-E101-win files only.
 
+### H103. E101 tie/loss means the active Q2/S3 hard-label world failed, not that the same rollback should be amplified
+
+- 상태: supported by active-cell hard-label simulation; public result pending.
+- 왜 그럴듯한가: E107 marked E101 loss as model tension, but E105 showed E101 depends on only `50` active Q2/S3 labels. If a tie/loss happens, those active labels should reveal whether the same rollback direction remains alive.
+- 맞다면: sampled tie/loss worlds should show missing high-impact support labels, especially S3; higher E101-style amplitudes should be worse than E101 in those buckets; retaining E95/E90/E86 active-cell behavior should look healthier.
+- 틀리다면: E108 amp050/amp038 or subject-prior masks would still beat E101 in loss buckets, or loss buckets would be driven by a clean subject/block selector rather than broad active-cell support failure.
+- 최소 실험: `analysis_outputs/e109_e101_tie_loss_label_world_audit.py`.
+- 관측: under subject priors, outcome rates are edge win `0.142385`, small win `0.132400`, tie `0.125515`, small loss `0.355350`, large loss `0.244350`. Top10 support rate drops from `0.916933` in edge wins to `0.805226` in small loss and `0.719218` in large loss; support flip-share drops from `0.749273` to `0.650286` and `0.585604`. In subject small-loss worlds, E108 amp050/amp038 active mean vs E101 is `+0.000011723` / `+0.000006026`, beat-E101 rate `0`; E86/E90/E95 rank above E101 on active cells.
+- 성공/폐기 기준: support as a negative branch rule. E101 tie/loss closes same-line E108 amplification and subject-prior rescue before any new public-world model is built.
+- public LB 관측 반응: E101 win keeps H102 live. E101 tie/loss strengthens H103 and should redirect toward active-cell retention, E90/E86 retained-structure testing, or non-active diffuse-tail experiments, not E104/E106.
+- 제출 전략: no E109 file. Use this as the loss-side decision map after E101 feedback.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
