@@ -113,6 +113,8 @@ analysis_outputs/*
 !analysis_outputs/e87_e86_risk_decomposition_scan.csv
 !analysis_outputs/e87_e86_risk_decomposition_choices.csv
 !analysis_outputs/e88_frontier_movement_attribution_feature_corr.csv
+!analysis_outputs/e89_e86_e72_decontamination_scan.csv
+!analysis_outputs/submission_e89_e72decontam_*.csv
 !analysis_outputs/submission_e87_noq2_source_consensus_*.csv
 !analysis_outputs/submission_e87_q2_nooverstep_consensus_*.csv
 !analysis_outputs/submission_e87_inverse_top_prior_consensus_*.csv

@@ -959,6 +959,18 @@ target co-occurrence
 - public LB 기대 반응: E86 public result now carries downside evidence as well as upside evidence. A worse E86 score should not immediately kill target-prune; it should first route to no-Q2.
 - 제출 전략: keep E86 as highest-upside information sensor if a single pre-feedback file must be chosen. Do not promote inverse-top-prior as a safety fallback; use it only as a diagnostic if the question is public-world geometry.
 
+### H84. E72-contamination can be reduced by cell-level fallback to E85 without killing strict stress
+
+- 상태: supported locally; public pending.
+- 왜 그럴듯한가: E88 shows E86's extra local margin and E72 proximity are entangled, but E85 is a lower-amplitude target-pruned law from the same family. If E72 proximity is localized to a subset of cells, replacing only those cells with E85 movement may preserve the structural law while reducing the known public-negative manifold.
+- 맞다면: a controlled E86-to-E85 fallback on high-E72 cells should keep combo, hidden/world/block, raw-energy, and tail stress while lowering E72 contamination below E86, no-Q2, and E85 controls.
+- 틀리다면: all decontamination variants should either collapse margin below strict/deployable, worsen inverse-top/world/block stress, or reduce contamination only by shrinking movement to near-mixmin.
+- 최소 실험: `analysis_outputs/e89_e86_e72_decontamination_scan.py`, sweeping E86/no-Q2 blends, high-E72 row/cell fallback, Q2-row removal, and projection-away from E72 failed delta.
+- 관측: E89 generated `52` rows, evaluated all `52`, and found strict/deployable `37`. The selected `analysis_outputs/submission_e89_e72decontam_00d7807f.csv` starts from E86 and falls back to E85 on cells in the top `20%` of E72 failed absolute movement. It has all delta `-2.58960e-5`, inverse-top `-5.55392e-6`, raw05-compatible `-3.33148e-5`, all-sign `-3.88191e-5`, hidden Q2/S3 `-0.000216060`, world `-0.000140452`, block win `0.638889`, block-tail safe `0.944444`, and E72 contamination index `0.676361`.
+- 성공/폐기 기준: H84 succeeds as a local risk-adjusted repair because contamination drops below E86 `0.772379`, no-Q2 `0.730408`, and E85 `0.734771` while strict/deployable remains true. It is not yet proven as a better public submission because it sacrifices E86's stronger hidden/world/block edge.
+- public LB 기대 반응: if E89 improves public more than E86, public is punishing E72-contaminated cells more than it rewards E86's extra margin. If E86 improves more, public rewards source-consensus amplitude despite E72 proximity. If both fail, target-pruned rollback itself is likely a local combo-world artifact.
+- 제출 전략: E86 remains highest-upside. E89 becomes the risk-adjusted fallback above no-Q2 and inverse-top-prior when the goal is lower downside after the E72 public miss.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

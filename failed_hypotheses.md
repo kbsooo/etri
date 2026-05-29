@@ -708,3 +708,12 @@
 - Implementation issue possible: medium. E88 is label-free movement attribution, not public-label scoring. But the discarded claim is about safety ranking, not whether inverse-top can be informative.
 - Bottleneck implication: public-risk decomposition must include observed movement-manifold proximity, not just local combo-world scores. After an E86 miss, no-Q2 is the cleaner first contrast unless the explicit question is inverse-top public-world identity.
 - Do not repeat: promoting inverse-top-prior as the conservative fallback solely because it wins the inverse-top proxy. Treat it as diagnostic only.
+
+## FH79. Direct projection away from E72 is the clean decontamination repair
+
+- Failed hypothesis: once E88 identifies E72 contamination, the cleanest E86 repair should be to project the E86 movement away from the E72 failed movement vector.
+- Observed result: E89 projection-away variants could lower E72 proximity, but aggressive projection often broke inverse-top/world/block stress or strict/deployable status. The selected strict repair was not projection. It was a simpler cell-local fallback: keep E86, but replace top-20% E72 failed cells with E85 movement, yielding contamination index `0.676361`, all delta `-0.000025896`, inverse-top `-0.000005554`, world `-0.000140452`, and block-tail safe `0.944444`.
+- Why discard: projection treats E72 contamination as one global vector, but the stress failures show the bad axis is not orthogonal to useful E86 structure. Cell-local fallback preserves the target-pruned law better.
+- Implementation issue possible: medium. Projection scopes and beta grid were limited, so a more constrained projection could still be useful. The discarded claim is that direct projection is the obvious/safe first repair.
+- Bottleneck implication: the remaining public-risk geometry is local and cell/target-dependent, not a single linear contamination axis. Decontamination should use local fallback or learned gates before global vector surgery.
+- Do not repeat: promoting projection-away rows merely because their contamination index is lower. Require strict/deployable, inverse-top/world/block, and margin survival at the same time.
