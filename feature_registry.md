@@ -928,6 +928,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E124 found broad-plausible E99 worlds `3452`, predicted E101 mean `-0.000031516` versus actual `-0.000006275`, and only `57` E101-sensor-plausible worlds. Inside those, E95 live win rate is `0.929825`; future E95-beat rates are E89 `0.052632`, E85 `0.017544`, E90/E86 `0`.
 - Policy: set `pre_e101_e99_ranker_valid = false` and `e101_conditioned_same_family_successor_available = false`. Use this energy to prevent inherited E89/E85/E90/E86 promotion after E101 unless a new non-public sensor changes the boundary.
 
+### F102. E101 survivor anatomy energy
+
+- Hidden structure: the tiny E101-compatible subset may reveal whether the residual public law is Q2/S3-specific, broad hard-tail, or local-transfer shrinkage.
+- Candidates: E124 scenario family, mask name, gamma, alpha, selected cell count, E101-vs-E95 tail relation, `q2s3` survivor count, broad/all-tail survivor share, and median alpha collapse.
+- Label vs split test: valid as a post-E101 worldview diagnostic. Invalid as a submission generator because it uses E101 public feedback to inspect scenario compatibility.
+- Current evidence: E125 found `57/3452` E101 survivors; `all`/`e72_top50_hard` are `43/57`; `q2s3` is `0/368`; deterministic or gamma0 are `40/57`; median alpha collapses `3.310470 -> 0.791985`; median `tail_e101 - tail_e95` moves `-0.000012634 -> ~0`.
+- Policy: set `q2s3_diffuse_tail_residual_world_valid = false`. Treat future Q2/S3 cells only as energy inside a different structure, not as the next standalone same-family line.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

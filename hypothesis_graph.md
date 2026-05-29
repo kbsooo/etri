@@ -1381,6 +1381,18 @@ target co-occurrence
 - public LB 관측 반응: already observed via E101. Future public files should not be selected by pre-E101 E99 broad order unless they test a explicitly different world.
 - 제출 전략: no E124 submission. Keep E95 as frontier; same-line E89/E85/E90/E86 are not automatic successors.
 
+### H119. E101 survivors are broad transfer-shrink worlds, not Q2/S3 diffuse-tail worlds
+
+- 상태: supported; this weakens the E89/Q2S3 same-family continuation.
+- 왜 그럴듯한가: E100 had found E89's main E95-beat pocket in `q2s3` tail worlds, and E101 was designed to isolate that pocket. If that worldview still survived E101, the E124 survivor set should be q2s3-enriched.
+- 맞다면: E101-plausible worlds should have many `q2s3` mask scenarios, preserve E101's tail advantage over E95, and keep a high local-transfer alpha.
+- 틀리다면: `q2s3` should have few or zero survivors; survivors should come from broad/all or high-hard-tail masks, with lower alpha and little E101-vs-E95 tail advantage.
+- 최소 실험: `analysis_outputs/e125_e101_survivor_anatomy.py`, category/numeric/mask contrast of E124 E101-plausible worlds.
+- 관측: `all`/`e72_top50_hard` masks are `43/57` survivors; `q2s3` has `0/368`; deterministic or `gamma=0` are `40/57`; median alpha collapses from `3.310470` to `0.791985`; median `tail_e101 - tail_e95` moves from `-0.000012634` to `~0`.
+- 성공/폐기 기준: supported because the residual survivor world is broad transfer shrinkage, not Q2/S3 diffuse-tail. Discard only if a new independent S3-specific sensor later explains E101 while reviving q2s3 worlds without public fitting.
+- public LB 관측 반응: already observed via E101. E125 says that the E101 public response should not be read as a cue to submit E89/full Q2S3 variants.
+- 제출 전략: no E125 submission. Next candidate must leave same-line rollback or explain transfer-alpha collapse.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

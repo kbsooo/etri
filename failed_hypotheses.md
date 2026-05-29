@@ -969,3 +969,12 @@
 - Implementation issue possible: low-medium. E124 reuses E96 scenario construction and E99 local deltas, so its conclusion is about this two-term abstraction, not every possible public-world model.
 - Bottleneck implication: the next same-family file is not hidden inside E99's pre-E101 ranking. The bottleneck is boundary resolution, not lack of another broad local+tail rescore.
 - Do not repeat: promoting E89/E85/E90/E86 by pre-E101 E99 broad mean, p95, or beat-rate without conditioning on the observed E101 small-loss branch.
+
+## FH108. The remaining E101-compatible world is Q2/S3 diffuse-tail allocation
+
+- Failed hypothesis: after E101, the surviving public-world subset should still be dominated by the `q2s3` mask that made E89 interesting in E100.
+- Observed result: E125 found `0/368` E101-plausible scenarios under the `q2s3` mask. The survivors are dominated by `all` and `e72_top50_hard` masks (`43/57`), low-gamma/deterministic allocation (`40/57`), median alpha collapse from `3.310470` to `0.791985`, and E101-vs-E95 tail neutrality (`tail_e101 - tail_e95` median `~0`).
+- Why discard: q2s3 worlds make E101 too favorable versus E95 (`pred_vs_e95_e101` mean `-0.000028957`), exactly the error the public result rejected. The surviving worlds explain E101 by compressing local transfer and removing E101's tail advantage, not by selecting better Q2/S3 cells.
+- Implementation issue possible: low. E125 is a deterministic anatomy of E124 scenarios. It does not claim every possible q2s3 model is false, only that the E99/E96 q2s3 diffuse-tail survivor story is false after E101.
+- Bottleneck implication: same-line Q2/S3 rollback is no longer merely underidentified; the E101-compatible residual world points away from it.
+- Do not repeat: using E100 q2s3 enrichment, E89's diffuse-tail pocket, or q2s3-only E96 masks as the next default public rationale.

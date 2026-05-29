@@ -1865,3 +1865,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - Under that tiny E101-plausible subset, future candidates remain weak: E89 has the largest E95-beat rate at `0.052632`, E85 has future winner mode `0.350877`, and E90/E86 have `0` E95-beat rate.
 - Interpretation: E99 was useful but incomplete. It captured the E72/E95 hard-tail law but missed a Q2/S3 boundary variable that E101 exposed. Conditioning on E101 does not revive E89/E85/E90/E86 as expected-improvement files; it mostly says E95 is still the standing law and the pre-E101 optimistic transfer should not be inherited.
 - Decision: no E124 submission. Treat E124 as a selector reset: do not rank next files by the pre-E101 E99 broad order. Either find a genuinely different non-public S3-cell sensor, or leave the E95/E101 same-family line for another hidden-structure experiment.
+
+## E125. E101-Plausible Scenario Survivor Anatomy
+
+- Observe: E124 left only `57/3452` broad-plausible worlds that match E101. The old residual story said the unresolved pocket was Q2/S3 diffuse-tail allocation.
+- Wonder: are the `57` survivor worlds actually enriched for the `q2s3` E96 mask, or do they reveal a different missing variable?
+- Method: `analysis_outputs/e125_e101_survivor_anatomy.py` contrasted E101-plausible worlds against all E124 broad worlds by family, mask, gamma, alpha, tail relation, selected cells, and E101-vs-E95 predicted/tail deltas.
+- Result:
+  - `all` or `e72_top50_hard` masks account for `43/57` survivors.
+  - `q2s3` mask has `0/368` survivors and predicts E101 far too favorable: mean `pred_vs_e95_e101 = -0.000028957`.
+  - deterministic or `gamma=0` worlds account for `40/57` survivors.
+  - broad median alpha `3.310470` collapses to E101-plausible median alpha `0.791985`.
+  - broad median `tail_e101 - tail_e95` is `-0.000012634`, but E101-plausible median is effectively `0`.
+- Interpretation: the survivor set is not the Q2/S3 diffuse-tail world that E100/E101 originally isolated. E101 is matched by broad/all-tail allocations where E101 has almost no tail advantage over E95 and local transfer alpha is strongly compressed.
+- Decision: no submission. Same-family Q2/S3 rollback successors are now closed even more strongly. The next experiment should test a different hidden structure or a sensor for why public transfer alpha collapses near the E95/E101 boundary.

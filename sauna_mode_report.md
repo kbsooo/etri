@@ -205,11 +205,24 @@ E95를 단순 hardtail fallback으로만 보던 해석을 더 좁혔다. 지금 
 
 이 결과는 E99를 완전히 버리라는 뜻은 아니다. E99는 E72/E95 hard-tail axis를 설명했다. 하지만 E101이라는 held-out public sensor를 통과하지 못했으므로, E99 broad order를 그대로 다음 제출 순서로 쓰면 안 된다. 현재 더 정확한 말은 이거다: hard-tail law는 real이고, Q2/S3 boundary variable은 아직 missing이다.
 
+## 추가 관찰: E101-compatible 세계는 q2s3 세계가 아니다
+
+`analysis_outputs/e125_e101_survivor_anatomy.py`로 E124에서 살아남은 57개 세계를 해부했다.
+
+- E101-plausible worlds: `57/3452`.
+- `all` 또는 `e72_top50_hard`: `43/57`.
+- `q2s3`: `0/368`.
+- deterministic 또는 `gamma=0`: `40/57`.
+- median alpha: `3.310470 -> 0.791985`.
+- median `tail_e101 - tail_e95`: `-0.000012634 -> ~0`.
+
+이건 E100의 q2s3 diffuse-tail residual story를 거의 닫는다. E101을 맞춘 세계는 Q2/S3 cell을 더 잘 고른 세계가 아니라, E101의 local rollback margin을 강하게 압축하고 E101/E95 tail 차이를 거의 없애는 세계다.
+
 ## 다음으로 가장 정보량이 큰 행동
 
 E95/E101을 동시에 만족하는 post-E101 public-world rebuild는 E121-E122로 1차 완료됐다.
 
-이제 가장 정보량이 큰 행동은 같은 Q2/S3 rollback line을 더 키우는 것이 아니다. E101 결과는 E108/E104 higher-alpha, E106 subject-prior masks, E119 flank-gated variants, full E89, non-active graft automatic fallback, E121/E122 posterior-fitted gates, E123 transition-motif gates, pre-E101 E99-ranked successors를 닫는다. 다음 실험은 정말 다른 종류의 고영향 S3 셀 센서가 떠오르지 않는 한, 같은 line을 떠나 다른 hidden structure를 찌르는 것이다.
+이제 가장 정보량이 큰 행동은 같은 Q2/S3 rollback line을 더 키우는 것이 아니다. E101 결과는 E108/E104 higher-alpha, E106 subject-prior masks, E119 flank-gated variants, full E89, non-active graft automatic fallback, E121/E122 posterior-fitted gates, E123 transition-motif gates, pre-E101 E99-ranked successors, E100 q2s3 diffuse-tail successor를 닫는다. 다음 실험은 정말 다른 종류의 고영향 S3 셀 센서가 떠오르지 않는 한, 같은 line을 떠나 다른 hidden structure를 찌르는 것이다.
 
 ## 제출 후보
 
@@ -223,4 +236,4 @@ Resolved sensor: `analysis_outputs/submission_e101_q2s3tail_177569bc.csv`
 
 실패 시 해석이 실제로 발생했다: E95의 현재 axis/tail surgery가 standing law다. 다음 제출은 이 small-loss boundary를 새로 설명하는 후보여야 하며, E108/E104/E106/E119 또는 E89/non-active graft를 자동으로 제출하지 않는다.
 
-E121-E124 이후 추가 해석: E101은 support budget의 약 `65.7%`를 맞췄고 simple priors는 이 small-loss branch를 거의 정확히 설명한다. 하지만 E95를 이기는 데 필요한 greedy rank-23 S3 cell을 public 없이 adverse로 식별하지 못한다. Cross-target transition motif도 실패했고, E99 broad transfer world도 E101 held-out check를 통과하지 못했다. 따라서 지금 당장 제출할 same-family 파일은 없다.
+E121-E125 이후 추가 해석: E101은 support budget의 약 `65.7%`를 맞췄고 simple priors는 이 small-loss branch를 거의 정확히 설명한다. 하지만 E95를 이기는 데 필요한 greedy rank-23 S3 cell을 public 없이 adverse로 식별하지 못한다. Cross-target transition motif도 실패했고, E99 broad transfer world도 E101 held-out check를 통과하지 못했으며, q2s3 survivor story도 `0/368`로 죽었다. 따라서 지금 당장 제출할 same-family 파일은 없다.
