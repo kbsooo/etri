@@ -944,6 +944,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E126 found E101-plausible q2s3 mass share `0.180513`, E101-active mass share `0.011234`, E95-fallback mass share `0.356179`, and between-train-runs mass share `0.621562`. Broad-q2s3 worlds have q2s3 mass share `1.000000` and E101-active mass share `0.584840`.
 - Policy: set `e101_active_cell_budget_explains_survivors = false` and `same_line_q2s3_followup_allowed = false`. Use this feature only as a negative gate and as a target for future transfer-shrinkage representation work.
 
+### F104. Transfer-shrinkage predictability energy
+
+- Hidden structure: if the E101-compatible budget field is real, public-free tail-neutral/low-alpha scenario geometry should predict it better than q2s3 or target-only metadata.
+- Candidates: proxy distribution JS/TV/cosine/top-k overlap against E101-plausible budget, hidden-block-heldout metadata CV score, tail-equal mass, low-alpha mass, fallback flags, E72-positive bin, context type, and target.
+- Label vs split test: valid as a post-E101 representation audit and future gate target. Invalid as a direct submission selector because the teacher is defined by E101 public compatibility.
+- Current evidence: E127 found `broad_tail_equal` JS `0.038002`, Spearman `0.902053`, top50 truth-mass capture `0.293969`; `broad_q2s3` JS `0.508660`; best metadata view `target_context_tail_e72bin` CV JS `0.073253`, top50 truth-mass capture `0.252521`; target-only CV JS `0.316796`.
+- Policy: use tail-neutral/low-alpha transfer-shrinkage density as a mandatory negative gate for same-family candidates and as the next representation target. Do not promote metadata-only cell ranking to a submission.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

@@ -1894,3 +1894,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - Target mass in E101-plausible worlds is led by `S1 0.248260`, `S2 0.202388`, `Q2 0.176275`, `Q3 0.148398`, and `S4 0.113631`; `S3` is not a top mass driver.
 - Interpretation: E101-compatible public loss is almost entirely outside the cells E101 changed. The public-compatible tail budget is broad, low-alpha, and mostly tail-neutral between E95 and E101; E101's Q2/S3 rollback was a local movement on a surface that public did not mainly charge.
 - Decision: no submission. This closes the last cheap loophole in the same-family Q2/S3 rollback story. The next useful experiment is not another E101/E89/Q2S3 variant; it is a new hidden-structure test that predicts the transfer-shrinkage field before probability movement.
+
+## E127. Transfer-Shrinkage Field Predictability
+
+- Observe: E126 leaves one constructive question open: if E101-compatible budget lives outside the E101-active cells, was that field visible before public feedback, or is it just post-public hindsight?
+- Wonder: which public-free view best predicts the E101-compatible cell budget density: scenario-tail proxies such as tail-equal/low-alpha, or simple structural metadata such as target/context/fallback/E72 bins?
+- Method: `analysis_outputs/e127_transfer_shrinkage_field_predictability.py` treated E126 E101-plausible cell budget share as a teacher. It compared public-free scenario proxy distributions (`broad`, `broad_low_alpha`, `broad_tail_equal`, etc.) against that teacher, then ran hidden-block-heldout category-mean prediction using target/context/position/fallback/E72-bin metadata.
+- Result:
+  - Best proxy is `broad_tail_equal`: cosine `0.945388`, Spearman `0.902053`, TV `0.173650`, JS `0.038002`, top50 overlap `0.760000`, and truth mass in proxy top50 `0.293969`.
+  - `broad_low_alpha` is second: JS `0.103608`, truth mass in top50 `0.228487`.
+  - Rejected `broad_q2s3` is far worse: JS `0.508660`, TV `0.819487`, Spearman `0.108504`.
+  - Best hidden-block-heldout metadata view is `target_context_tail_e72bin`: CV cosine `0.818819`, Spearman `0.877137`, JS `0.073253`, top50 truth-mass capture `0.252521`.
+  - Target-only CV is weak: JS `0.316796`, top50 truth-mass capture `0.037897`.
+- Interpretation: the transfer-shrinkage field is not arbitrary. Tail-neutral and low-alpha scenario geometry sees it, and metadata has a weak but real public-free signal once fallback/tail/E72 bins are included. However, even the best metadata top50 captures only about a quarter of the teacher mass, so this is a negative gate and representation target, not a submission generator.
+- Decision: no submission. The next useful branch is to build a public-free tail-neutral/low-alpha transfer-shrinkage representation and only then test whether it can move probabilities above selector noise without reintroducing E72/E101 active-cell tail risk.

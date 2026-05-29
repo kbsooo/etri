@@ -1405,6 +1405,18 @@ target co-occurrence
 - public LB 관측 반응: already observed via E101. E126 says the public response was not mainly about the 50 E101 moved cells; it was about a broader low-alpha tail surface.
 - 제출 전략: no E126 submission. Do not submit E101/E89/Q2S3 same-line variants by default. Next candidate must predict transfer-shrinkage or test a different hidden structure.
 
+### H121. Transfer-shrinkage field is visible as tail-neutral/low-alpha geometry, but not yet as a direct metadata gate
+
+- 상태: partially supported; useful as a representation target and negative gate, not a submission generator.
+- 왜 그럴듯한가: E126 implies that E101-compatible worlds are low-alpha and tail-neutral. If that is real rather than post-hoc, public-free scenario proxies should resemble the E101-compatible cell budget before a new probability move is made.
+- 맞다면: `broad_tail_equal` or low-alpha proxy distributions should have low JS/TV distance to E101-compatible cell budget, while `q2s3` should remain far. Metadata views should recover some signal only when they include tail/fallback/E72 budget terms, not from target names alone.
+- 틀리다면: all public-free proxies should look similarly weak, or a simple q2s3/target-only view should predict the field just as well.
+- 최소 실험: `analysis_outputs/e127_transfer_shrinkage_field_predictability.py`, proxy distribution matching plus hidden-block-heldout category prediction.
+- 관측: `broad_tail_equal` has JS `0.038002`, TV `0.173650`, Spearman `0.902053`, and top50 truth-mass capture `0.293969`; `broad_q2s3` has JS `0.508660` and Spearman `0.108504`. Best metadata view `target_context_tail_e72bin` has CV JS `0.073253` and top50 truth-mass capture `0.252521`; target-only has JS `0.316796`.
+- 성공/폐기 기준: supports transfer-shrinkage as a public-free representation target. Discards the simpler claim that target/context metadata alone is enough to generate a submission.
+- public LB 관측 반응: E101 already supplied the public sensor. E127 says future files should be filtered against tail-neutral/low-alpha density, not q2s3 or E101-active density.
+- 제출 전략: no E127 submission. Build a transfer-shrinkage latent/gate and require it to clear selector-scale margin before any probability movement.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

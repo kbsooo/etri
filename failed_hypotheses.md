@@ -987,3 +987,12 @@
 - Implementation issue possible: low-medium. E126 reconstructs E96/E124 scenario weights deterministically and joins existing hidden-row metadata. The caveat is that the public labels remain unobserved; this is still a scenario-world anatomy, not direct labels.
 - Bottleneck implication: the same-family E101/E89/Q2S3 line is now closed by scenario family, tail relation, and selected-cell budget. The remaining bottleneck is transfer-shrinkage or a different hidden structure, not a missing Q2/S3 amplitude/gate tweak.
 - Do not repeat: E101-active-cell masks, Q2/S3 diffuse-tail variants, active-cell alpha sweeps, or E89-style Q2/S3 fallback as the default next public candidate unless a new independent non-public sensor overturns E126.
+
+## FH110. Simple metadata alone is enough to submit a transfer-shrinkage gate
+
+- Failed hypothesis: after E126 identifies broad transfer-shrinkage, target/context/position/fallback metadata should directly identify the E101-compatible budget cells strongly enough to generate the next submission.
+- Observed result: E127 found real but insufficient metadata signal. The best hidden-block-heldout metadata view `target_context_tail_e72bin` reached CV JS `0.073253` and top50 truth-mass capture `0.252521`, while target-only was weak at JS `0.316796` and top50 mass `0.037897`. The much stronger view was not metadata alone but scenario-level `broad_tail_equal`, with JS `0.038002` and top50 mass `0.293969`.
+- Why discard: metadata can diagnose and weakly rank cells, but it does not yet provide a selector-scale action gate. The missing object is a tail-neutral/low-alpha representation, not a few categorical feature rules.
+- Implementation issue possible: medium. E127 uses category-mean prediction rather than a richer model; a future representation learner could improve it. The discarded claim is only the direct simple-metadata submission path.
+- Bottleneck implication: the field is partly visible but not translated. Progress requires building a representation from the tail-neutral proxy and then proving margin-scale probability movement.
+- Do not repeat: submitting a file from target/context/fallback/E72-bin metadata ranking alone, or treating E127 metadata CV as a public score forecast.

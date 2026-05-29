@@ -400,6 +400,7 @@ Conditional E108 files are closed under the observed E101 result. `analysis_outp
 74. Do not submit E74/E75 as direct follow-ups after E73 public failure. E80 shows E73 was a broad all-target movement, and E81 shows pure Q2/S3 is sub-margin while inverse-sign controls fail.
 75. Do not submit E82 pure Q2/S3 grafts. They pass every evaluated non-margin stress but fail selector-scale margin (`0/700` all-margin), so they are diagnostic energy rather than candidates.
 76. Do not submit E101/E89/Q2S3 same-line variants by default after E126. E101-compatible selected budget mass is only `0.011234` E101-active and `0.180513` Q2/S3, so the public-compatible surface is not primarily the cells those files move.
+77. Do not submit a transfer-shrinkage metadata gate from E127 alone. `target_context_tail_e72bin` has real hidden-block-heldout signal, but top50 teacher-mass capture is only `0.252521`; it is a representation target and negative gate, not a probability-movement file.
 
 ## Current 0.54 Assessment
 
