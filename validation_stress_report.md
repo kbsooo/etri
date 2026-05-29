@@ -364,3 +364,21 @@ E142 tests that exact stress target by clipping only high excess E72-plausible c
 - selected movement versus E95: `185` cells, `108` rows, no Q2 movement.
 
 This is the first post-E101 candidate that passes relaxed structural health, E72-budget health, and post-E101 p95 health together. It should be treated as a public sensor on whether E101-conditioned transfer-tail gates generalize, not as proof of a larger 0.54 path.
+
+## Update After E143
+
+E143 tests whether E142's remaining active/Q2S3 veto failure is a real blocker or a repairable risk.
+
+- repair variants: `80`.
+- relaxed-submit repair variants: `80`.
+- original-strict-submit repair variants: `15`.
+- materialized candidate: `analysis_outputs/submission_e143_activeq2s3repair_68ca656f.csv`.
+- selected mask: `top_q2s3_weighted_21`, keep factor `0.0`.
+- selected rollback cells: `21`.
+- selected changed cells versus E95: `164`.
+- selected local all-minus-E95: `-0.000009551358`.
+- selected E72-plausible gap versus E95: `~0`.
+- selected post-E101 mean/p95/beat versus E95: `-0.000013131201` / `-0.000003368915` / `1.0`.
+- active/Q2S3, original strict actionability, relaxed structural, E72-budget, and post-E101 gates all pass.
+
+This changes the next public choice. E142 opened the transfer-budget-neutral residual branch, but E143 is the cleaner stress survivor: it keeps most of E142's residual movement while explicitly applying the E101 small-loss lesson as an active/Q2S3 pruning constraint. The current validation ranking is therefore E143 first, E142 second as the higher-upside/higher-risk fallback.

@@ -637,4 +637,34 @@ E136 state는 mean improvement가 생기는 곳을 찾는다. 하지만 현재 E
 
 `E95 이후의 살아 있는 다음 움직임은 Q2/S3 rollback이 아니다. transfer-tail budget을 쓰는 cell을 제거한 Q1/Q3/S/S3 residual decoder다. public이 이것을 받아들이면 0.576대 벽은 "모델 capacity"가 아니라 "E95 law 위에 남은 transfer-budget-neutral tangent를 찾는 문제"로 더 좁아진다. public이 거절하면 E101-conditioned density gate가 selector로는 과적합이라는 뜻이다.`
 
-지금 제출할 파일은 하나다. `analysis_outputs/submission_e142_transferclip_09a92236.csv`.
+E143 repair 전까지 제출 우선순위는 `analysis_outputs/submission_e142_transferclip_09a92236.csv`였다.
+
+## 추가 관찰: E142의 마지막 active/Q2S3 리스크는 작게 고칠 수 있다
+
+`analysis_outputs/e143_e142_active_q2s3_veto_repair.py`로 E142를 한 번 더 찔렀다.
+
+질문은 이것이었다.
+
+`E142가 E72-budget과 post-E101 p95는 통과하지만 active/Q2S3 strict gate를 실패한다면, 그 실패는 residual decoder 전체가 틀렸다는 뜻인가, 아니면 Q2/S3 active cell 일부만 과하게 남았다는 뜻인가?`
+
+결과:
+
+- repair variants: `80`.
+- relaxed-submit repair variants: `80`.
+- original-strict-submit repair variants: `15`.
+- materialized file: `analysis_outputs/submission_e143_activeq2s3repair_68ca656f.csv`.
+- selected repair: `top_q2s3_weighted_21`, keep factor `0.0`.
+- rollback cells: `21`.
+- changed cells vs E95: `164`.
+- local all-minus-E95: `-0.000009551358`.
+- E72-plausible gap vs E95: `~0`.
+- post-E101 mean/p95/beat vs E95: `-0.000013131201` / `-0.000003368915` / `1.0`.
+- active/Q2S3 gate and original strict actionability both pass.
+
+이건 E142 해석을 다시 좁힌다. E142의 마지막 리스크는 residual decoder 전체의 실패가 아니라, E101 small-loss가 경고한 Q2/S3 active edge를 조금 덜어내야 하는 문제였다.
+
+현재 세계관을 다시 압축한다.
+
+`E95 이후의 다음 가망 있는 움직임은 transfer-budget-neutral residual decoder다. 다만 E101이 보여준 Q2/S3 active 과집중은 반드시 잘라야 한다. 그래서 E142보다 E143이 더 좋은 다음 센서다. E143이 public에서 좋아지면 "E95 law + residual decoder + active/Q2S3 pruning"이 강화되고, 실패하면 transfer-budget clipping 자체가 public-sensor overconditioning이었는지 의심해야 한다.`
+
+지금 제출할 파일은 하나다. `analysis_outputs/submission_e143_activeq2s3repair_68ca656f.csv`.

@@ -2151,3 +2151,22 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - hidden-core/world/raw-energy deltas versus E95 are `-0.000022` / `-0.000284` / `-0.000049`.
 - Interpretation: E141's transfer-tail budget is not an immovable wall. Full rollback of high excess-exposure cells can neutralize E72 budget while preserving material local reward. The resulting movement is not Q2/S3 rollback; it is a non-Q2 residual direction concentrated in Q1/Q3/S2/S3/S4.
 - Decision: submit candidate opened. `submission_e142_transferclip_09a92236.csv` is the next highest-information file. If public improves, the live world model becomes "E95 plus transfer-budget-neutral residual decoder"; if it fails, E142 falsifies simple excess-exposure clipping and pushes the bottleneck toward public-sensor overconditioning or private/public mismatch.
+
+## E143. E142 Active/Q2S3 Veto Repair
+
+- Observe: E142 passes relaxed structural, E72-budget, and post-E101 p95 gates, but the older E128/E130 strict actionability frame still flags active/Q2S3 movement as above the E101 reference. The unresolved question is whether E142 is genuinely overconditioned around E101-sensitive Q2/S3 cells or whether that veto is only conservative.
+- Wonder: can the E142 residual decoder be repaired by rolling back only E101-active/Q2S3/S3 cells, while preserving most of the transfer-budget-neutral local reward?
+- Method: `analysis_outputs/e143_e142_active_q2s3_veto_repair.py` starts from E142, builds E101-active, Q2/S3, S3, and ranked tension masks over E142-minus-E95 logit movement, applies rollback keep factors, then scores every candidate with the same local combo, relaxed structural, E72-budget, post-E101, active/Q2S3, and strict-actionability gates.
+- Result:
+  - repair variants: `80`.
+  - relaxed-submit repair variants: `80`.
+  - original-strict-submit repair variants: `15`.
+  - materialized file: `analysis_outputs/submission_e143_activeq2s3repair_68ca656f.csv`.
+  - selected repair: `top_q2s3_weighted_21`, keep factor `0.0`, rollback cells `21`.
+  - changed cells versus E95: `164`.
+  - local all-minus-E95 `-0.000009551358`, versus E142 control `-0.000010666782`.
+  - E72-plausible gap versus E95 `~0`.
+  - post-E101 mean/p95/beat versus E95 `-0.000013131201` / `-0.000003368915` / `1.0`.
+  - active/Q2S3 gate, strict actionability, relaxed structural, E72-budget, and post-E101 gates all pass.
+- Interpretation: E142's remaining active/Q2S3 risk is repairable at small local cost. This is stronger than E142 as a next public sensor because it preserves the transfer-budget-neutral residual direction while explicitly respecting the E101 small-loss lesson.
+- Decision: promote `submission_e143_activeq2s3repair_68ca656f.csv` above E142. If public improves, the world model becomes "E95 plus transfer-budget-neutral residual decoder, but Q2/S3 active overconditioning must be cut." If it fails while E142 later wins, the old active/Q2S3 veto was too conservative; if both fail, E101-conditioned transfer-budget clipping is overfit as a selector.

@@ -1122,3 +1122,12 @@
 - Implementation issue possible: low for this family; the same script produced viable full cell-rollback rows under the same scoring pipeline.
 - Bottleneck implication: the live decoder is not "smaller E140." It is "E140 minus specific transfer-budget-spending cells."
 - Do not repeat: uniform shrink, global scale, or partial clipping sweeps over E140 relaxed rows as the main next submission path.
+
+## FH125. E142's active/Q2S3 veto failure is irreparable
+
+- Failed hypothesis: E142's failure of the older active/Q2S3 strict gate means the transfer-budget clipped residual branch cannot be made stricter without collapsing local reward.
+- Observed result: E143 generated `80` E142 repair variants by rolling back E101-active/Q2S3/S3 cells. All `80` remained relaxed-submit, and `15` passed original strict-submit. The selected `submission_e143_activeq2s3repair_68ca656f.csv` rolls back `21` top Q2/S3-weighted cells, keeps local all-minus-E95 `-0.000009551358`, has E72 gap `~0`, post-E101 p95 `-0.000003368915`, and passes active/Q2S3 plus strict actionability.
+- Why discard: the active/Q2S3 risk was localized. It can be cut at small local cost instead of invalidating the whole E142 residual decoder.
+- Implementation issue possible: low for this repair family; the control E142 row was scored in the same run and correctly failed the active/Q2S3 gate.
+- Bottleneck implication: the current frontier question is no longer "can transfer-budget residual movement survive the E101 lesson?" It can locally. The question is whether the E101-informed pruning generalizes to public labels.
+- Do not repeat: treating E142's active/Q2S3 veto failure as a hard branch killer. Use E143 as the stricter public sensor, and keep E142 only as a higher-upside fallback if the veto proves overconservative.

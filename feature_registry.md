@@ -1070,7 +1070,15 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Candidates: parent E140 relaxed row, per-cell E72-plausible excess versus E95, rollback ranker, rollback cell count, target mix after rollback, local all-minus-E95, relaxed structural flag, E72-budget flag, post-E101 p95, and tail-equal law residual.
 - Label vs split test: valid as a candidate generator because it creates new predictions and evaluates them against independent local combo, hidden/world/raw, transfer-budget, and post-E101 stress. Risky if the E101-conditioned density is overused as a selector rather than a diagnostic.
 - Current evidence: E142 produced `35` submit-relaxed rows and materialized `submission_e142_transferclip_09a92236.csv`. The selected row rolls back `55` excess-exposure cells from E140 parent `e140_score_top_local_25c44401`, preserves local all-minus-E95 `-0.000010666782`, matches E95's E72-plausible exposure, and has post-E101 p95 `-0.000003762343`.
-- Policy: this is the current top submission candidate. Do not broaden it by uniform shrinkage or partial clipping; those fail budget gates. Treat public feedback as a test of whether E101-conditioned transfer-budget clipping generalizes.
+- Policy: keep as a higher-upside/higher-risk fallback. Do not broaden it by uniform shrinkage or partial clipping; those fail budget gates. Treat public feedback as a test of whether E101-conditioned transfer-budget clipping generalizes.
+
+### F120. Active/Q2S3 repair gate for transfer-budget residuals
+
+- Hidden structure: after E101's small public loss, residual decoder movement may still be useful only if the most active Q2/S3-weighted cells are pruned back toward E95.
+- Candidates: E142-minus-E95 logit deltas, E101-active mask, Q2/S3 and S3 masks, ranked Q2/S3/tension masks, rollback keep factor, active/Q2S3 gate, original strict actionability, E72-budget, and post-E101 p95.
+- Label vs split test: valid as a candidate repair because it starts from an already-opened E142 residual decoder and asks a single public-observation-derived risk question. Risky if the active/Q2S3 veto is overconservative and removes the cells public would reward.
+- Current evidence: E143 generated `80` repair variants; all `80` were relaxed-submit and `15` were original-strict-submit. The materialized `submission_e143_activeq2s3repair_68ca656f.csv` rolls back `21` top Q2/S3-weighted cells, keeps `164` E95-relative changed cells, has local all-minus-E95 `-0.000009551358`, E72 gap `~0`, post-E101 p95 `-0.000003368915`, and passes the active/Q2S3 and original strict gates.
+- Policy: this is the current top submission candidate. Use it before E142 because it preserves most residual-decoder upside while satisfying the stricter E101-informed risk gate.
 
 ## Current Feature Policy
 

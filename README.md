@@ -8,6 +8,7 @@ Current public frontier:
 - Public LB: `0.5762913298`
 - Previous frontier: `analysis_outputs/submission_mixmin_0c916bb4.csv`
 - Improvement over previous frontier: `0.0000153107`
+- Current best next sensor: `analysis_outputs/submission_e143_activeq2s3repair_68ca656f.csv`
 
 Primary working notes:
 

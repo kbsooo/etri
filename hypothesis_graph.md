@@ -1586,7 +1586,7 @@ target co-occurrence
 
 ### H136. E140 relaxed structural rows are almost-correct moves contaminated by high E72-exposure cells
 
-- 상태: supported locally; public pending.
+- 상태: supported locally; superseded by H137 as first submission; public pending.
 - 왜 그럴듯한가: E141 opened relaxed structural rows but found E72-plausible exposure and post-E101 p95 as the remaining blockers. If the blockers are localized rather than global, rolling back high-excess cells should keep much of the local reward.
 - 맞다면: clipped variants should preserve relaxed structural gates while making E72-plausible exposure no worse than E95 and post-E101 p95 nonpositive. The selected movement should not simply collapse back to E95.
 - 틀리다면: clipping should either kill local all-minus-E95 reward, fail relaxed structural gates, or still leave E72/post-E101 positive.
@@ -1594,7 +1594,19 @@ target co-occurrence
 - 관측: E142 generated `1844` variants from `11` parents. `670` remained relaxed structural, `35` passed E72 budget, all `35` also passed post-E101, and `35` passed submit-relaxed. The materialized file `submission_e142_transferclip_09a92236.csv` keeps `185` E95-relative changed cells, no Q2 movement, all-minus-E95 `-0.000010666782`, E72 gap `~0`, and post-E101 p95 `-0.000003762343`.
 - 성공/폐기 기준: locally supported because it opened a candidate. Public LB will decide whether the E101-conditioned transfer-tail gate generalizes or overfits public sensors.
 - public LB 관측 반응: if better than `0.5762913298`, strengthen H136 and H130's transfer-budget decoder view. If worse, reject simple excess-exposure clipping and treat post-E101/E72 gates as overconditioned diagnostics rather than selectors.
-- 제출 전략: submit `analysis_outputs/submission_e142_transferclip_09a92236.csv` next; record its public score as a direct sensor on transfer-budget-neutral residual movement.
+- 제출 전략: keep `analysis_outputs/submission_e142_transferclip_09a92236.csv` as the higher-upside fallback sensor after H137's active/Q2S3 repair.
+
+### H137. E142's active/Q2S3 veto failure is repairable without killing the residual decoder
+
+- 상태: supported locally; public pending.
+- 왜 그럴듯한가: E101 public `0.5763003660` showed that Q2/S3 rollback was close but not frontier. E142 opens a broader residual decoder, but still fails the legacy active/Q2S3 gate. If the E101 lesson is a local overconditioning warning rather than a rejection of all residual movement, a small rollback on the most Q2/S3-weighted active cells should make E142 stricter without collapsing it to E95.
+- 맞다면: E142-derived repairs should pass `gate_active_q2s3_not_more_than_e101`, original strict actionability, relaxed structural, E72-budget, and post-E101 p95 simultaneously, with local all-minus-E95 still around `1e-5`.
+- 틀리다면: repairing active/Q2S3 should either destroy local reward, fail E72/post-E101 transfer gates, or leave strict actionability closed.
+- 최소 실험: `analysis_outputs/e143_e142_active_q2s3_veto_repair.py`, rolling back E142-minus-E95 movement on E101-active/Q2S3/S3 masks and ranked tension masks.
+- 관측: E143 generated `80` repair variants. All `80` remained relaxed-submit, and `15` passed original strict-submit. The selected `submission_e143_activeq2s3repair_68ca656f.csv` rolls back `21` top Q2/S3-weighted cells, keeps `164` changed cells, has local all-minus-E95 `-0.000009551358`, E72 gap `~0`, post-E101 p95 `-0.000003368915`, and passes active/Q2S3 and strict actionability.
+- 성공/폐기 기준: locally supported. Public LB decides whether the stricter Q2/S3 repair is the correct next sensor or whether the old active/Q2S3 veto is overconservative.
+- public LB 관측 반응: if E143 beats `0.5762913298`, strengthen the residual-decoder world and treat E101 as an active/Q2S3 pruning constraint. If E143 loses but E142 later wins, weaken the active/Q2S3 veto. If both lose, reject E101-conditioned transfer-budget clipping as a selector.
+- 제출 전략: submit `analysis_outputs/submission_e143_activeq2s3repair_68ca656f.csv` before E142.
 
 ## 우선 실험 5개
 
