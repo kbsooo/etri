@@ -2631,3 +2631,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - group attribution: between-train-runs carries `81.1%` of E169 expected edge; not-E72-active cells carry `73.7%`; target contributions are S1 `19.8%`, S3 `19.1%`, Q2 `15.6%`, S4 `15.6%`, Q1 `11.9%`, S2 `11.6%`, Q3 `6.4%`.
 - Interpretation: E169 is a balanced broad repair, not a fully resolved selector. It satisfies the broad expected-edge criterion (`32` cells-to-flip expected), but public-readable movement can still be decided by a few high-swing labels. This is why a public score must be interpreted by bands, not by post-hoc threshold tuning.
 - Decision: submit `submission_e169_ctx_veto_c5e806e3.csv` if the next public slot asks the balanced broad-repair question. Interpret outcomes with E170: below E95 promotes the context-high/veto latent; tie/small loss keeps E95 and makes raw E166 information-only; worse than E101 demotes E169 and shifts priority to E154 or a new safety-axis search.
+
+## E171. E169 Critical-Cell Prior Audit
+
+- Observe: E170 made the E169 bet sharper: broad in expectation, but public-readable through a few high-swing hidden labels. The unresolved question is whether those top cells are independently supported by visible global/subject/flank priors.
+- Wonder: is E169's apparent edge coming from broad body support, or are the cells that decide the public score actually visible-prior adverse?
+- Method: `analysis_outputs/e171_e169_critical_cell_prior_audit.py` joins E169-vs-E95 moved cells with hidden row metadata, train-label flank context, E167 context/safety fields, and global/subject/flank support priors. It summarizes critical top-swing sets, simulates E170 score-band outcomes under `10` priors, and compares top critical sets with target-matched nulls.
+- Result:
+  - full E169 moved body under `visible_mean`: mean delta `-0.000022659`, win rate `0.868840`, E95-edge-or-better `0.638120`, worse-than-E101 `0.057860`.
+  - subject prior: mean `-0.000021115`, win `0.853520`; focus_mean: mean `-0.000053678`, win `0.994460`.
+  - flank-only priors are weak/adverse: `nearest_beta` mean `+0.000005364`, win `0.388080`; `edge_endpoint_beta` mean `+0.000005106`, win `0.389420`; `flank_mean` mean `+0.000000790`, win `0.480740`.
+  - critical top-swing cells are poorly supported: top1 support under visible_mean `0.098648`; top4 swing-weighted support `0.330699`; top16 `0.266074`; top32 `0.247434`.
+  - target-matched null says this is not normal for top32: observed top32 support `0.247434` vs null mean `0.353573`, `z=-2.703`, `p_low=0.001667`.
+  - target-level visible deltas are mixed: S4 `-0.000010088`, S1 `-0.000009412`, Q1 `-0.000004824`, Q3 `-0.000003050`, while S2 `+0.000003288`, Q2 `+0.000001209`, S3 `+0.000000258`.
+- Interpretation: E169 is strengthened as a broad-body candidate under subject/global-style priors, but weakened as an expected-score claim because its public-decisive top cells are visible-prior adverse. This explains why E169 can be the best information-rich broad sensor while still not feeling like a stable 0.54-path candidate.
+- Decision: keep `submission_e169_ctx_veto_c5e806e3.csv` as the next broad-branch sensor, but do not submit high-density p50 or scale raw E166 as expected-score follow-ups. If E169 loses narrowly, first blame top critical S1/Q3/S4/S2 hard-label adversity before discarding the full broad-body world.

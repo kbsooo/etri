@@ -1339,3 +1339,12 @@
 - Implementation issue possible: low for pairwise hard-label arithmetic and group attribution; medium for public realization because public labels are hidden.
 - Bottleneck implication: E169 addresses the broad-lane safety problem but not the frontier-scale public-label resolution problem. The plateau remains partly a calibration-tail/hidden-label sensor problem.
 - Do not repeat: ranking E169 near-duplicates by sub-`2e-6` local edge, submitting high-density p50 before ctx-veto feedback, or interpreting a tie/small-loss as proof that the broad branch is dead.
+
+## FH149. E169's public-decisive top cells are independently visible-prior supported
+
+- Failed hypothesis: E169's top hard-label cells should be at least as well supported by visible global/subject/flank priors as the rest of the moved body, making the E170 hard-label fragility less concerning.
+- Observed result: E171 shows the opposite. The full moved body is favorable under `visible_mean` with mean delta `-0.000022659` and win rate `0.868840`, but the top critical cells are weak: top1 support `0.098648`, top4 swing-weighted support `0.330699`, top16 `0.266074`, top32 `0.247434`. The top32 support is significantly below target-matched null mean `0.353573` (`z=-2.703`, `p_low=0.001667`). Flank-only priors are also weak/adverse: `nearest_beta` mean `+0.000005364`, `edge_endpoint_beta` mean `+0.000005106`, `flank_mean` mean `+0.000000790`.
+- Why discard: visible priors support the broad E169 body more than the public-decisive tail. E169 is not a resolved selector; it is a broad-body hypothesis with critical-cell tail risk.
+- Implementation issue possible: medium. The priors are train-derived and public-free, not true public labels. Low for the contrast itself because top sets, priors, and target-matched nulls are fixed pre-public.
+- Bottleneck implication: the 0.576 plateau remains a two-layer problem: broad latent body selection and high-swing hard-label tail realization can disagree.
+- Do not repeat: claiming E169 is stable because its full-body visible prior is favorable, or pruning top critical cells solely because E171 says they are adverse without rerunning breadth/readability stress.

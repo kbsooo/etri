@@ -787,3 +787,17 @@ E170 pre-registers how to interpret `submission_e169_ctx_veto_c5e806e3.csv` befo
 - near-duplicate control: `submission_e169_ctx_high_density_p50_51110c7e.csv` differs from ctx-veto by only `10` Q2/S3 cells and `-0.000001377` expected delta.
 
 Stress implication: E169 is a valid balanced broad-branch sensor, but it has not escaped public hard-label-resolution limits. A win below E95 promotes context-high/veto broad latent. Tie/small loss keeps E95 practical and makes raw E166 information-only. Worse than E101 demotes the E169 repair; worse than mixmin closes same-family E169 threshold variants.
+
+## Update After E171
+
+E171 stress-tests the exact E170 weak point: the critical high-swing cells.
+
+- script: `analysis_outputs/e171_e169_critical_cell_prior_audit.py`.
+- full moved body under `visible_mean`: mean delta `-0.000022659`, win rate `0.868840`, E95-edge-or-better rate `0.638120`.
+- subject prior: mean delta `-0.000021115`, win `0.853520`.
+- focus_mean: mean delta `-0.000053678`, win `0.994460`.
+- flank-only priors are weak/adverse: `nearest_beta` mean `+0.000005364`, win `0.388080`; `edge_endpoint_beta` mean `+0.000005106`, win `0.389420`; `flank_mean` mean `+0.000000790`, win `0.480740`.
+- top critical support under visible_mean: top1 `0.098648`, top4 `0.330699`, top16 `0.266074`, top32 `0.247434`.
+- target-matched null: top32 support `0.247434` vs null mean `0.353573`, `z=-2.703`, `p_low=0.001667`.
+
+Stress implication: E169's full body is not random and remains favorable under broad visible priors, but the exact cells that can decide public LB are visible-prior adverse. This keeps E169 as the best broad public sensor, while weakening any claim that it is a stable expected-score improvement. A narrow E169 loss should be interpreted through critical-cell tail adversity before closing the whole broad branch.

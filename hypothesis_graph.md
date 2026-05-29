@@ -1932,6 +1932,18 @@ target co-occurrence
 - public LB 관측 반응: interpret with E170 bands: `<=0.576261330` broad breakthrough; `<=0.576276019` clean win; `<=0.576288330` micro win; `<=0.576294330` tie; `<=0.576300366` small loss; `<=0.576306641` worse than E101 but still mixmin-safe; above mixmin is branch loss/hard fail.
 - 제출 전략: if one broad-branch file is tested, submit `analysis_outputs/submission_e169_ctx_veto_c5e806e3.csv` and immediately run `python3 analysis_outputs/e170_e169_public_feedback_decoder.py --score <PUBLIC_LB>`. Do not submit `ctx_high_density_p50` before ctx-veto feedback.
 
+### H165. E169's broad body and public-decisive cells have opposite visible-prior health
+
+- 상태: supported by E171.
+- 왜 그럴듯한가: E170 showed the broad body and top hard-label cells are different objects. A broad expected edge can coexist with top-cell visible-prior adversity if the candidate is a hidden-label sensor rather than a resolved selector.
+- 맞다면: full E169 moved cells should be favorable under broad/global/subject priors, while the top swing cells that decide public readability should have low support and possibly fall below target-matched null support.
+- 틀리다면: top swing sets would be at least as supported as target-matched nulls, and flank priors would agree with subject/global priors on a win.
+- 최소 실험: `analysis_outputs/e171_e169_critical_cell_prior_audit.py`.
+- 관측: full `visible_mean` simulation gives mean delta `-0.000022659` and win rate `0.868840`; subject gives win `0.853520`, focus_mean `0.994460`. But flank priors are weak/adverse (`nearest_beta` mean `+0.000005364`, `edge_endpoint_beta` `+0.000005106`, `flank_mean` `+0.000000790`). Top1 support is only `0.098648`, top4 swing-weighted support `0.330699`, top32 `0.247434`; top32 is below a target-matched null mean `0.353573` with `z=-2.703`, `p_low=0.001667`.
+- 성공/폐기 기준: if E169 wins, the broad-body prior was more informative than critical-cell visible flank support. If E169 loses or small-loses, top-cell adversity explains the miss without killing the whole broad branch.
+- public LB 관측 반응: E169 win promotes subject/global broad-body interpretation. E169 tie/small-loss says top critical cells overruled the body. Worse than mixmin says the body prior itself was public-misaligned, not just top-cell underresolution.
+- 제출 전략: E169 remains a high-information sensor, not a stable expected-score claim. Do not use E171 to construct a top-cell prune unless the resulting tensor passes E169 breadth and E170 readability again.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

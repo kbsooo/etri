@@ -1514,3 +1514,53 @@ E170은 E169 제출 전 해석기를 먼저 고정했다.
 - `<=0.576300366`: small loss. high-density p50 금지, E154 vs raw E166은 질문 기준으로 선택.
 - `<=0.576306641`: E101보다 나쁘지만 mixmin 근처. E169 demote, E154 우선.
 - `>0.576306641`: branch loss/hard fail. E169/E166 same-family를 닫고 safety axis를 다시 만든다.
+
+## E171 업데이트: E169의 몸통과 tail이 서로 다른 말을 한다
+
+가장 이상한 점:
+
+`E169 전체 body는 visible prior가 지지하지만, public 승패를 좌우할 top critical cells는 visible prior가 싫어한다.`
+
+E171은 E170에서 드러난 약점을 직접 찔렀다.
+
+실험:
+
+`analysis_outputs/e171_e169_critical_cell_prior_audit.py`
+
+결과:
+
+- full E169 moved body under visible_mean:
+  - mean delta vs E95: `-0.000022659`.
+  - win rate: `0.868840`.
+  - E95-edge-or-better rate: `0.638120`.
+- subject prior:
+  - mean delta `-0.000021115`.
+  - win rate `0.853520`.
+- focus_mean:
+  - mean delta `-0.000053678`.
+  - win rate `0.994460`.
+- flank-only priors:
+  - nearest_beta mean `+0.000005364`, win `0.388080`.
+  - edge_endpoint_beta mean `+0.000005106`, win `0.389420`.
+  - flank_mean mean `+0.000000790`, win `0.480740`.
+- top critical support:
+  - top1 visible support `0.098648`.
+  - top4 `0.330699`.
+  - top16 `0.266074`.
+  - top32 `0.247434`.
+- target-matched null:
+  - top32 observed `0.247434`.
+  - null mean `0.353573`.
+  - z `-2.703`, p_low `0.001667`.
+
+이건 현재 세계관을 더 정확하게 만든다.
+
+`E169는 broad body hypothesis로는 살아 있다. 하지만 public에서 이길지 여부는 visible prior가 오히려 adverse하게 보는 top S1/Q3/S4/S2 hard-label tail에 걸려 있다.`
+
+따라서 E169는 아직 다음 broad sensor로 가치가 있다. 하지만 이건 “안정적 기대점수 후보”가 아니라 “broad body와 critical tail 중 어느 쪽이 public을 지배하는지 묻는 센서”다.
+
+해석:
+
+- E169가 이기면: broad body prior가 top-tail visible adversity를 이긴 것이다.
+- E169가 좁게 지면: broad branch 전체가 죽었다기보다 critical-cell tail이 public에서 adverse였다고 먼저 본다.
+- E169가 mixmin보다 나쁘면: top-tail 문제가 아니라 body prior 자체가 public-misaligned였다고 본다.

@@ -490,6 +490,8 @@ Update after E162: the repaired-branch stack is confirmed cell-fragile. `analysi
 
 Update after E170: the current broad-branch first file remains `analysis_outputs/submission_e169_ctx_veto_c5e806e3.csv`, but its public read is now pre-registered. E170 says ctx-veto has a broad local edge versus E95 (`904` cells, `193` rows, `32` cells-to-flip expected, expected delta `-0.000120457`) while still being public hard-label-resolution limited (`1` cell for the `2e-6` guard, `4` cells for E95's edge over mixmin). Between-train-runs carries `81.1%` of the expected edge and not-E72-active cells carry `73.7%`, so the bet is not a random Q2/S3 tweak. The high-density p50 sibling differs by only `10` Q2/S3 cells and should not be submitted before ctx-veto feedback. After any E169 public score, run `python3 analysis_outputs/e170_e169_public_feedback_decoder.py --score <PUBLIC_LB>` before choosing raw E166, E154, or same-family variants.
 
+Update after E171: E169 is now better described as "broad body supported, top-tail risky." The full moved body under `visible_mean` has mean delta `-0.000022659` and win rate `0.868840`, but top-swing support is weak: top1 `0.098648`, top4 `0.330699`, top32 `0.247434`, with top32 below target-matched null (`z=-2.703`). Flank priors are near-tie/adverse while subject/global-style priors are favorable. This does not remove E169 as the next broad sensor; it removes the stronger claim that E169 is a robust expected-score candidate. If submitted, a narrow loss should be read as critical-cell hard-label adversity before discarding the whole broad context/veto worldview.
+
 ## Current 0.54 Assessment
 
 0.54 is not blocked by a single missing model family. To approach it, one of two things must happen:
