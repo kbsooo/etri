@@ -1050,3 +1050,12 @@
 - Implementation issue possible: medium. E133 uses categorical mean predictors, not raw sequence models or learned block embeddings. The discarded claim is only the simple metadata target path.
 - Bottleneck implication: the next latent cannot be a target/context/fallback/E72-bin table. It needs a richer representation, likely raw/run/block-context based, and should be judged by whether it predicts the Q3/Q1-heavy safe remainder without reviving Q2/S3 tail risk.
 - Do not repeat: metadata-only co-location gates, Q2/S3 rollback resurrections based on local top cells, or direct movement on E133 co-located cells without a stronger raw/run/block predictor.
+
+## FH117. Raw overnight block context directly recovers the safe remainder
+
+- Failed hypothesis: the Q3/Q1-heavy E133 safe remainder is visible enough in raw overnight/run/block context to become the next JEPA-style target or direct selector.
+- Observed result: E134 used hidden-block holdout over `1750` cells and `36` hidden blocks. The best raw/block predictor was `night_all_blockknn` / `target_knn8` with top50 truth-mass capture `0.073497`, cosine `0.498528`, JS `0.260922`, and predicted top50 mix `Q1:37,Q3:4,S4:9`. The best metadata-only baseline already captured `0.063040`.
+- Why discard: raw context is only slightly better than metadata and far below selector-scale recovery. It does preserve Q2/S3 suppression, but it does not identify enough of the safe remainder to justify probability movement.
+- Implementation issue possible: medium. E134 tests PCA block aggregates, ridge, and target-wise kNN; it does not rule out richer sequence models or a different representation target. It rejects the cheap raw-block visibility path.
+- Bottleneck implication: the E133 safe remainder is not simply hidden in raw overnight block geometry. The current wall is not just "use raw context as JEPA context"; the target or movement direction itself must change.
+- Do not repeat: direct raw-block kNN/ridge co-location gates or raw-view ranking of E133 cells as a submission source unless a new target or substantially stronger heldout recovery appears.

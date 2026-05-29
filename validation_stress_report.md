@@ -227,3 +227,15 @@ The strongest local gradient move is large enough to matter locally (`-0.0001127
 E133 maps the cell-level reason E132 failed. The best context is `all_sign`, but even there only `16.1830%` of local reward mass lies inside veto-null+density70. The target mix changes sharply after safety filtering: `all_sign` local top50 is `44%` Q2/S3 and `42%` S3, while co-located top50 is only `2%` Q2/S3 and `0%` E101-active, with `40%` Q3 and `34%` Q1.
 
 The hidden-block CV stress also rejects a simple metadata target. The best category view is `subject_target` with JS `0.240700` and top50 truth-mass capture `0.048280`, only weakly above a flat top50 baseline. Thus E133 does not create a submission gate. It changes the next stress design: the live latent target is now a Q3/Q1-heavy safe remainder that simple metadata cannot recover, not a Q2/S3 rollback or a direct E95 gradient.
+
+## Update After E134
+
+E134 tests the obvious next context for that E133 remainder: raw overnight/run/block structure. The result is only weakly positive.
+
+- best predictor: `night_all_blockknn` / `target_knn8`.
+- top50 truth-mass capture: `0.073497`.
+- best metadata-only top50 truth-mass capture: `0.063040`.
+- best top50 target mix: `Q1:37,Q3:4,S4:9`.
+- Q2/S3 fraction in best predicted top50: `0.000000`.
+
+This is useful as a stress result, not as a submission gate. Raw/block context does suppress Q2/S3 and slightly improves top-cell recovery, but it does not materially recover the safe-remainder field. The current validation gate therefore blocks direct raw-block co-location submissions. The next candidate needs a different target or movement source, not another ranking over the E133 field.

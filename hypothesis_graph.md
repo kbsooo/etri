@@ -1488,6 +1488,18 @@ target co-occurrence
 - public LB 관측 반응: no submission. A public test is premature because E133 has not produced a probability movement or a selector-scale latent predictor.
 - 제출 전략: none. Future work should test raw/run/block-context representations for the Q3/Q1-heavy co-located pocket rather than another Q2/S3 or metadata-only gate.
 
+### H128. Raw/run/block context can recover the Q3/Q1-heavy safe remainder
+
+- 상태: weakly supported as diagnostic signal, rejected as direct selector-scale target.
+- 왜 그럴듯한가: E54 showed raw overnight context can recover strict pseudo-hidden block state, and E133 said the next target is no longer Q2/S3 local reward but a Q3/Q1-heavy co-located safe-remainder field.
+- 맞다면: hidden-block-heldout raw/block embeddings or raw block kNN should materially beat metadata, capture a large share of the E133 co-located top cells, and keep Q2/S3 suppressed.
+- 틀리다면: raw/block predictors should only weakly beat metadata or mostly reproduce target priors, leaving top-cell mass far below a reliable selector threshold.
+- 최소 실험: `analysis_outputs/e134_raw_block_colocation_predictability.py`, predicting `all_sign_co_vetonull_density` with target/metadata ridge, raw overnight block embeddings, and target-wise raw block kNN under hidden-block holdout.
+- 관측: best raw/block predictor `night_all_blockknn` captures top50 truth mass `0.073497` with cosine `0.498528` and JS `0.260922`. Best metadata-only predictor captures `0.063040`. The best top50 has `Q1:37,Q3:4,S4:9` and Q2/S3 fraction `0`.
+- 성공/폐기 기준: reject as a direct latent selector because the improvement over metadata is small and top50 mass remains far from material recovery. Retain only as a weak energy that confirms Q2/S3 suppression.
+- public LB 관측 반응: no submission. Any file made directly from E134 would test a weak raw-context ranking, not a credible public-improvement hypothesis.
+- 제출 전략: none. Future work should either change the target representation or find an independent larger movement; raw overnight block kNN alone is not enough.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

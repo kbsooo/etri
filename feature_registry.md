@@ -1000,6 +1000,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E133 found best co-location context `all_sign`, but only `0.161830` of local reward mass lies in veto-null+density70. The co-located top50 cells are Q3/Q1-heavy (`Q3 40%`, `Q1 34%`) and almost exclude Q2/S3 (`2%`) and E101-active cells (`0%`). Best metadata CV top50 truth-mass capture is only `0.048280`.
 - Policy: keep this atlas as a target-design clue, not a submission feature. Next representations should try raw/run/block context prediction of the Q3/Q1-heavy safe remainder and should be rejected if they collapse back into Q2/S3 local reward or metadata-only shortcuts.
 
+### F111. Raw-block safe-remainder visibility energy
+
+- Hidden structure: the E133 co-located safe remainder may be a real block-state field visible in raw overnight/run/block context, rather than only a submission-geometry construction.
+- Candidates: raw overnight view name, block aggregate PCA vector, target-wise raw block kNN score, hidden-block-heldout ridge score, top50 truth-mass capture, Q1/Q3 mass, and Q2/S3 suppression fraction.
+- Label vs split test: valid as a latent visibility audit because it predicts the E133 teacher under hidden-block holdout and does not generate a submission. Invalid as a direct selector if the raw signal only weakly beats metadata or uses the post-E101 teacher to tune probabilities.
+- Current evidence: E134 found best predictor `night_all_blockknn` / `target_knn8` with top50 truth-mass capture `0.073497`, cosine `0.498528`, and JS `0.260922`. Metadata-only `submission_metadata` / `ridge` captured `0.063040`. The best predicted top50 is `Q1:37,Q3:4,S4:9` with Q2/S3 fraction `0`.
+- Policy: retain as a weak negative/health energy only. Do not submit raw-block co-location gates. A future representation must materially exceed this visibility level or use a different target that creates a movement direction, not only a ranking.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

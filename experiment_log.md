@@ -1999,3 +1999,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - other contexts are worse by co-location mass: `loo_inverse_top` `0.132611`, `raw05_compatible` `0.122907`, `all` `0.077079`, `loo_raw05_compatible` `0.072271`.
 - Interpretation: co-located cells exist as a weak diagnostic field, but they are not where the old Q2/S3 rollback story lives. Tail safety strips out most Q2/S3 local reward and leaves a Q3/Q1-heavy, non-E101-active pocket that simple metadata cannot recover at selector scale. This supports the plateau world model: the current local reward is target-conflicted, and the safe remainder is too diffuse/underpredicted to move probabilities directly.
 - Decision: no submission. E133 shifts the next latent target away from E95 tangent movement and away from Q2/S3 rollback. The next useful experiment should build or test a richer representation for the Q3/Q1-heavy co-located pocket, probably using raw/run/block context rather than categorical metadata alone.
+
+## E134. Raw/Block Co-location Predictability
+
+- Observe: E133 identified a Q3/Q1-heavy safe remainder, but metadata CV captured only `0.048280` of top50 teacher mass.
+- Wonder: is that safe remainder actually visible in raw overnight/run/block context, or is it mostly a submission-geometry artifact that current observed features cannot recover?
+- Method: `analysis_outputs/e134_raw_block_colocation_predictability.py` used hidden-block holdout to predict E133's primary teacher `all_sign_co_vetonull_density`. It compared target/metadata ridge baselines, raw overnight block embeddings from E54 views, and target-wise block-kNN over raw block vectors.
+- Result:
+  - rows/cells `1750`, hidden blocks `36`, raw views `9`.
+  - best predictor: `night_all_blockknn` / `target_knn8`.
+  - best top50 truth-mass capture `0.073497`, cosine `0.498528`, JS `0.260922`, top50 overlap `0.160000`.
+  - best metadata-only predictor: `submission_metadata` / `ridge`, top50 truth-mass capture `0.063040`.
+  - best predicted top50 target mix: `Q1:37,Q3:4,S4:9`, Q2/S3 fraction `0.000000`.
+- Interpretation: raw/block context adds a small amount over metadata and preserves the useful Q2/S3 suppression, but the gain is not selector-scale. The safe remainder is not strongly visible in the current raw overnight/block geometry.
+- Decision: no submission. E134 weakens the "raw context can directly become the JEPA context for the E133 safe remainder" branch. The plateau explanation is now sharper: local-upside and public-safe geometry overlap weakly, and even the overlap is only faintly observable from current raw/block context.
