@@ -789,3 +789,12 @@
 - Implementation issue possible: low to medium. The proxy families are intentionally fixed and simple to avoid overfitting the small public table. A different future selector may work, but this specific known-LB regression cannot be used as the next submission order.
 - Bottleneck implication: adding public observations helps the hypothesis graph, not a supervised LB ranker. The next public file remains a sensor for retained structure versus conservative tail floor, not a proxy-optimized candidate.
 - Do not repeat: using E98 `proxy_pred_mean`, `candidate_risk_score`, or any direct known-LB movement-regression ranking to choose E90/E86/E85. Require a selector that can hold out E95/mixmin/E72 before using predicted LB.
+
+## FH88. E95-conditioned tail worlds promote E90/E86 as the next expected-improvement bet
+
+- Failed hypothesis: after E95 improves public, the best next file should be the candidate that preserves more E86 structure, especially E90 or E86, because E95 may have sacrificed too much hidden/world/block signal.
+- Observed result: E99 forced each complete E96 tail scenario to explain both E72's public miss and E95's public gain using `public_delta = alpha * local_all_delta + lambda * E96_tail_delta`. All `3894` scenarios solved, `3452` were broad-plausible, and E95 remained best mean, best p95, and winner mode. Broad-plausible beat-E95 rates were E90 `0.002607` and E86 `0.000290`, while E89 was `0.195829`.
+- Why discard: once E95 is conditioned in, the local+tail abstraction says the current frontier is already the best compromise. E90/E86 are still valuable structural sensors, but not strong expected-improvement bets over E95 under this model.
+- Implementation issue possible: medium. The transfer model is deliberately simple and only has two terms, so it could miss a row-coherent structural-retention effect. The discarded claim is not "E90/E86 can never win"; it is "E95-conditioned local+tail evidence makes E90/E86 the most likely next improvement."
+- Bottleneck implication: the immediate plateau is not solved by simply retaining more E86 structure. The remaining plausible E95 counterfactual is whether E95 over-localized hard-tail cells and E89's broader cell fallback matches public better.
+- Do not repeat: presenting E90 or E86 as the default next expected-improvement file after E95 without new evidence. Use E90 only for the explicit row-coherent structure question and E86 only for maximum-upside risk testing.

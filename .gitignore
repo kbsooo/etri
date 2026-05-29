@@ -135,6 +135,9 @@ analysis_outputs/*
 !analysis_outputs/e98_e95_updated_selector_known_loo.csv
 !analysis_outputs/e98_e95_updated_selector_candidates.csv
 !analysis_outputs/e98_e95_updated_selector_model_scores.csv
+!analysis_outputs/e99_e95_conditioned_tail_transfer_scenarios.csv
+!analysis_outputs/e99_e95_conditioned_tail_transfer_summary.csv
+!analysis_outputs/e99_e95_conditioned_tail_transfer_filter_summary.csv
 !analysis_outputs/submission_e87_noq2_source_consensus_*.csv
 !analysis_outputs/submission_e87_q2_nooverstep_consensus_*.csv
 !analysis_outputs/submission_e87_inverse_top_prior_consensus_*.csv

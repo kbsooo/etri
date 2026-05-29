@@ -1069,6 +1069,18 @@ target co-occurrence
 - public LB 관측 반응: if a proxy-ranked E86/E90/E85 file later improves, it should not retroactively validate H92 unless the proxy also becomes able to hold out E95/mixmin/E72. The current evidence says public slots remain sensors, not supervised LB-regression optimization targets.
 - 제출 전략: no E98-ranked submission. Keep the next public file hypothesis-based: E90 for row-coherent retained structure, E86 for max source-consensus upside, or E85 for conservative p95 tail floor.
 
+### H93. E95-conditioned local+tail transfer can rerank unresolved post-E95 candidates
+
+- 상태: supported as a negative ranking update; not a submission generator.
+- 왜 그럴듯한가: E96's tail worlds explained the E72 public miss, but after E95's public gain those worlds must also explain why the hard-tail fallback improved. A minimal local-margin plus tail-exposure transfer model can test whether E90/E86/E85 still look plausible after this second observation.
+- 맞다면: many E96 scenarios should admit positive/interpretable alpha and lambda values that exactly reconstruct both E72 and E95. If E90/E86/E85 are true improvement candidates, they should beat E95 across a nontrivial share of those E95-conditioned worlds or have better mean/p95 predicted deltas.
+- 틀리다면: E95 should remain the best mean/p95/winner candidate after conditioning, and E90/E86/E85 beat-E95 rates should collapse. If alpha/lambda are mostly negative or extreme, the whole two-term transfer view should be rejected.
+- 최소 실험: `analysis_outputs/e99_e95_conditioned_tail_transfer.py`, solving `public_delta = alpha * local_all_delta + lambda * E96_tail_delta` for each complete E96 scenario using the observed E72 and E95 public deltas, then scoring E85/E86/no-Q2/E90/E89/E95.
+- 관측: all `3894` complete E96 scenarios solved; `3849` had positive alpha/lambda, and `3452` passed the broad-plausible filter. Broad-plausible median alpha/lambda were `3.310470` and `1.345192`. E95 was winner mode, best mean, and best p95. Broad-plausible mean deltas were E95 `-0.000015311`, E89 `-0.000011477`, E85 `-0.000005652`, E90 `-0.000001938`, no-Q2 `-0.000000021`, and E86 `+0.000005034`. Beat-E95 rates were E89 `0.195829`, E85 `0.031866`, no-Q2 `0.023175`, E90 `0.002607`, and E86 `0.000290`.
+- 성공/폐기 기준: H93 supports the negative ranking claim: E95-conditioned local+tail worlds do not justify an immediate E90/E86/E85 improvement bet. The remaining nontrivial counterfactual is E89, not because it dominates E95, but because it is the only unresolved file with material E95-beat rate under the conditioned worlds.
+- public LB 관측 반응: if E89 later beats E95, public tail realization is closer to diffuse/cell-fallback E89 geometry than to E95's selected hard-tail cells. If E90/E86 beats E95 despite E99, then the two-term local+tail abstraction missed a row-coherent structural-retention effect.
+- 제출 전략: no E99 file. Keep E95 as current frontier. If spending exactly one diagnostic slot for expected E95-beat probability, E89 is now the sharper counterfactual; E90 should be used only for the explicit row-coherent retained-structure question.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
