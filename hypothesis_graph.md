@@ -1776,6 +1776,18 @@ target co-occurrence
 - public LB 관측 반응: E157 is not a first sensor because its edge over E155 is only `~4.2e-8` local all-minus. It is an optional tuned-control after E154/E155, not evidence of a new broad latent.
 - 제출 전략: keep E154 first, E155 second for clean amplitude interpretation, then E157 before E156 if the goal is target-axis-tuned low-body control. E156 remains the minimum-body control.
 
+### H152. Repaired-branch controls are post-feedback instruments, not independent first sensors
+
+- 상태: supported by E158 local distinguishability; pending public feedback.
+- 왜 그럴듯한가: E154/E155/E157/E156/E144 are all E144-collinear, and E157/E156 were created inside a saturated all-four lattice. The risk is ranking tiny local edge differences as if they were public-readable independent signals.
+- 맞다면: E155/E157/E156 pairwise local gaps should be below the public-readable guardrail, while E154 should remain meaningful mainly against unrepaired E144 and as a full-body interpretation sensor.
+- 틀리다면: E154/E155/E157/E156 should separate at local deltas larger than `2e-6`, with materially different logit geometry or different stress gates.
+- 최소 실험: `analysis_outputs/e158_repaired_branch_public_decoder.py`, computing live submission geometry, local stress gaps, pairwise distinguishability, and pre-registered public score bands.
+- 관측: E154 vs E155 local gap is `-0.000001795559`, below `2e-6`; E157 vs E155 is only `-0.000000041955`; E156 vs E155 is `+0.000000358921`. E154 vs E144 is `-0.000002432120`, above guardrail. E155/E157/E156 cosines vs E144 are `0.998962769`/`0.999041566`/`0.999515751`.
+- 성공/폐기 기준: support until public feedback shows a target-axis control like E157/E156 separates from E155 despite sub-guardrail local gaps. If E154 wins clearly, siblings should not be auto-submitted before exact-delta rebuild. If E154 loses or ties, E155 is the only clean same-family follow-up.
+- public LB 관측 반응: E154 clean win validates the repaired all-four branch; E154 tie/small-loss makes E155 an amplitude-control; E154 hard-fail blocks E157/E156 micro-control rescue.
+- 제출 전략: submit order remains `E154 -> E155 -> E157 -> E156 -> E144`, but this order is for information, not raw expected score.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

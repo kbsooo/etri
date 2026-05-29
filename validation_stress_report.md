@@ -626,3 +626,20 @@ E157 tests whether E156's minimum-body target-axis choice is itself meaningful.
 - selected E72 gap: `-0.000001671496`.
 
 The validation implication is a warning. E156's Q1/S2/S4 minimum-body row does not mean Q3 is a bad axis; Q3 is the strongest local and post-E101 finite-difference axis. The branch is gate-saturated and smoothly favorable across many axes, so target-axis rows are controls. E157 is a tuned Pareto control and should not outrank E154 or the cleaner E155 amplitude-control on interpretation quality.
+
+## Update After E158
+
+E158 turns the repaired branch stack into a public-feedback decoder rather than another candidate generator.
+
+- script: `analysis_outputs/e158_repaired_branch_public_decoder.py`.
+- candidate table: `analysis_outputs/e158_repaired_branch_public_decoder_candidates.csv`.
+- pairwise table: `analysis_outputs/e158_repaired_branch_public_decoder_pairwise.csv`.
+- band table: `analysis_outputs/e158_repaired_branch_public_decoder_bands.csv`.
+- report: `analysis_outputs/e158_repaired_branch_public_decoder_report.md`.
+- E154 vs E155 local all-minus gap: `-0.000001795559`, below the `2e-6` public-readable guardrail.
+- E154 vs E144 local all-minus gap: `-0.000002432120`, above the guardrail.
+- E157 vs E155 local all-minus gap: `-0.000000041955`.
+- E156 vs E155 local all-minus gap: `+0.000000358921`.
+- E155/E157/E156 cosine vs E144: `0.998962769` / `0.999041566` / `0.999515751`.
+
+The stress implication is that the repaired branch controls are not independent expected-improvement bets. E154 remains the first sensor because it asks the full repaired all-four question and is distinguishable from unrepaired E144, not because its separation from E155 is public-readable. If E154 loses or ties, E155 is the clean amplitude-control; E157/E156 should be treated as target-axis controls only after E155, not as pre-feedback score maximizers.

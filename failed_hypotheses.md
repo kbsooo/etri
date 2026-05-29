@@ -1240,3 +1240,12 @@
 - Implementation issue possible: low for the finite-difference audit because it reuses the completed E156 full-evaluation scan. Medium for public interpretation because E157's improvement over E155 is only `~4.2e-8` local all-minus.
 - Bottleneck implication: the repaired branch has smooth low-body controls, but target-axis selection remains below public-resolution scale. The bottleneck is candidate-selection resolution and public-tail validation, not absence of target-axis alternatives.
 - Do not repeat: claiming Q3/S3 are rejected by E156. Use E157 to describe the branch as a gate-saturated ridge with tiny target-axis controls.
+
+## FH138. E154 is public-readably better than E155 and target-axis controls before feedback
+
+- Failed hypothesis: after E154/E155/E157/E156 are generated, their local ordering can be treated as an expected-score ranking before public feedback.
+- Observed result: E158 shows the repaired controls are too close for that. E154 beats E155 locally by `-0.000001795559`, below the `2e-6` public-readable guardrail. E157 beats E155 by only `-0.000000041955`, and E156 is `+0.000000358921` worse than E155. The only readable local separation inside the immediate stack is E154 versus unrepaired E144 at `-0.000002432120`.
+- Why discard: the sibling controls are highly E144-collinear and below public-resolution scale. Ranking them as if they were independent score candidates would turn a sensor stack into leaderboard-chasing noise.
+- Implementation issue possible: low for the computed geometry and local gaps because E158 reads the actual submission files and selected stress rows. Medium for the `2e-6` guardrail because public feedback could still reveal a hidden target-axis effect not visible locally.
+- Bottleneck implication: E154 is first for interpretability against E144 and the full repaired all-four question, not because it has a public-readable edge over E155. E155/E157/E156 are post-feedback controls.
+- Do not repeat: using E155/E157/E156 before E154 feedback as score-maximizing micro-variants. Use them only to distinguish full-body overextension, target-axis tuning, and minimum-body decomposition after the branch result is known.

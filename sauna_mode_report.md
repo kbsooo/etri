@@ -820,6 +820,36 @@ E157 이전 기준의 제출 순서는 바뀌지 않았다. 첫 파일은 `analy
 
 현재 제출 순서는 `E154 -> E155 -> E157 -> E156 -> E144`다.
 
+## 추가 관찰: repaired-branch control들은 첫 sensor가 아니라 public-feedback 도구다
+
+`analysis_outputs/e158_repaired_branch_public_decoder.py`로 E154/E155/E157/E156/E144 stack을 한 번 더 압축했다.
+
+질문은 이것이었다.
+
+`E154, E155, E157, E156의 작은 local 차이는 public에서 읽을 수 있는 독립 신호인가, 아니면 E154 결과를 해석하기 위한 post-feedback control인가?`
+
+결과:
+
+- E154 vs E155 local all-minus gap: `-0.000001795559`.
+- E154 vs E144 local all-minus gap: `-0.000002432120`.
+- E157 vs E155 local all-minus gap: `-0.000000041955`.
+- E156 vs E155 local all-minus gap: `+0.000000358921`.
+- public-readable guardrail: `2e-6`.
+- E155/E157/E156 cosine vs E144: `0.998962769` / `0.999041566` / `0.999515751`.
+- decoder files:
+  - `analysis_outputs/e158_repaired_branch_public_decoder_candidates.csv`
+  - `analysis_outputs/e158_repaired_branch_public_decoder_pairwise.csv`
+  - `analysis_outputs/e158_repaired_branch_public_decoder_bands.csv`
+  - `analysis_outputs/e158_repaired_branch_public_decoder_report.md`
+
+이 결과는 E154의 의미를 더 정확하게 만든다. E154가 첫 제출인 이유는 E155보다 public-readable하게 낫기 때문이 아니다. E154는 unrepaired E144 대비 full repaired all-four 질문을 가장 선명하게 묻기 때문에 첫 sensor다. 반대로 E155/E157/E156은 서로 너무 가까워서 public feedback 전 기대점수 순위로 쓰면 안 된다.
+
+현재 세계관을 다시 압축한다.
+
+`E154/E155/E157/E156은 점수 순위표가 아니라 하나의 branch를 해부하는 sensor stack이다. E154가 이기면 full repaired branch를 새 anchor로 삼고 형제 파일을 바로 내지 않는다. E154가 tie/small-loss면 E155만 깨끗한 amplitude-control이다. E154가 hard-fail이면 E157/E156으로 rescue하지 말고 E144 contrast 또는 representation search로 돌아간다.`
+
+현재 제출 순서는 그대로 `E154 -> E155 -> E157 -> E156 -> E144`지만, 이 순서는 기대점수 순서가 아니라 질문 순서다.
+
 ## 추가 관찰: E154는 고립점이 아니라 낮은 amplitude ridge다
 
 `analysis_outputs/e155_e154_branch_body_ablation.py`로 E154의 가장 위험한 부분을 분해했다.

@@ -2412,3 +2412,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - selected post-E101 p95: `-0.000003807382`; E72 gap `-0.000001671496`.
 - Interpretation: E156's min-body Q1/S2/S4 choice is not evidence that Q3 is adverse; Q3 is the strongest local/post-E101 finite-difference axis. S3 is not selected because its local reward per body is weak, not because the stress metrics reject it. The E154/E155/E156 branch has saturated all-four gates and small smooth gradients, so target-axis rows are controls rather than new world laws.
 - Decision: add `analysis_outputs/submission_e157_lowbodypareto_bd67930d.csv` as a tuned low-body Pareto control, but do not promote it over E154 or the cleaner E155 amplitude-control. E157 is useful only if we explicitly want to test whether a target-axis-tuned low-body row beats the diagonal control; its edge over E155 is far below public-resolution scale.
+
+## E158. Repaired Branch Public Decoder
+
+- Observe: E154/E155/E157/E156/E144 now form a stack of highly collinear controls around E95. The unresolved question is not which local edge is largest, but which public score would kill the repaired branch, the full-body amplitude, the target-axis micro-controls, or the unrepaired E144 contrast.
+- Wonder: are the E155/E157/E156 local differences large enough to justify spending public slots before E154 feedback, or are they only post-feedback controls?
+- Method: `analysis_outputs/e158_repaired_branch_public_decoder.py` loads the live submissions, computes logit-space movement geometry versus E95/E144/E154, joins local stress rows from E154-E157 scans, builds pairwise distinguishability against a `2e-6` public-readable guardrail, and pre-registers E154 score bands.
+- Result:
+  - candidate table: `analysis_outputs/e158_repaired_branch_public_decoder_candidates.csv`.
+  - pairwise table: `analysis_outputs/e158_repaired_branch_public_decoder_pairwise.csv`.
+  - score bands: `analysis_outputs/e158_repaired_branch_public_decoder_bands.csv`.
+  - report: `analysis_outputs/e158_repaired_branch_public_decoder_report.md`.
+  - E154 vs E155 local all-minus gap: `-0.000001795559`, below the `2e-6` readability guardrail.
+  - E154 vs E144 local all-minus gap: `-0.000002432120`, above the guardrail.
+  - E157 vs E155 local all-minus gap: `-0.000000041955`.
+  - E156 vs E155 local all-minus gap: `+0.000000358921`.
+  - E155/E157/E156 are almost the same branch: cosines vs E144 are `0.998962769`, `0.999041566`, and `0.999515751`.
+- Interpretation: E154 remains first not because it is clearly better than E155 at public resolution, but because it asks the cleanest full repaired all-four question and is distinguishable against unrepaired E144. E155 is the amplitude-control if E154 ties or loses. E157/E156 are too close to E155 to be pre-feedback expected-improvement bets.
+- Decision: keep submission order `E154 -> E155 -> E157 -> E156 -> E144`. If E154 wins by more than a micro-edge, promote it and rebuild exact-delta audits before spending slots on siblings. If E154 ties or small-loses, E155 is the only clean same-family follow-up. If E154 hard-fails above mixmin, do not rescue with E157/E156 target-axis micro-controls; use E144 as the unrepaired contrast or return to representation search.

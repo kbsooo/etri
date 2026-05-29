@@ -471,6 +471,8 @@ Update after E156: the E155 diagonal is not the minimum coherent repaired body. 
 
 Update after E157: E156's minimum-body target set should not be overinterpreted. `analysis_outputs/e157_e156_axis_response_audit.py` shows the E156 lattice is all-four saturated (`3125/3125`), Q3 has the strongest local/post-E101 finite-difference response, and S2 carries most of the E72-gap benefit. The materialized `analysis_outputs/submission_e157_lowbodypareto_bd67930d.csv` uses Q1+Q3+S2+S4 with alphas Q1/Q3/S2/S3/S4 = `0.25/0.25/0.50/0.00/0.50`, body ratio `0.240336139`, and slightly dominates E155 while using less body. Keep it after E154/E155 as a tuned low-body Pareto control, with E156 moved to minimum-body decomposition control.
 
+Update after E158: the repaired-branch stack is now pre-registered as public-feedback instrumentation. `analysis_outputs/e158_repaired_branch_public_decoder.py` shows E154 beats E155 locally by only `-0.000001795559`, below the `2e-6` public-readable guardrail, while E154 beats unrepaired E144 by `-0.000002432120`, above it. E157 and E156 are even closer to E155 (`-0.000000041955` and `+0.000000358921`). Therefore E154 remains first because it asks the full repaired all-four question and is readable against E144, not because it is score-distinguishable from E155. If E154 ties or loses, E155 is the only clean same-family follow-up; E157/E156 are post-E155 target-axis controls, not pre-feedback score maximizers.
+
 ## Current 0.54 Assessment
 
 0.54 is not blocked by a single missing model family. To approach it, one of two things must happen:
