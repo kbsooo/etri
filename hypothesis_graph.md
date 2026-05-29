@@ -1093,6 +1093,18 @@ target co-occurrence
 - public LB 관측 반응: if `submission_e89_e72decontam_00d7807f.csv` beats E95, public labels likely realized more Q2/S3 diffuse E72-cell tail than E95 localized. If it loses, E95's hard-tail cells remain the better explanation and E89 should be retired as a near-term successor.
 - 제출 전략: E89 is the next single public slot only as a Q2/S3 diffuse-tail sensor. Do not present it as a general lower-downside candidate or as evidence against E95 unless the public observation confirms it.
 
+### H95. E95's remaining Q2/S3 tail risk is separable as a smaller rollback than full E89
+
+- 상태: supported locally; public sensor pending.
+- 왜 그럴듯한가: E100 showed E89's only E95-beat pocket is Q2/S3 diffuse-tail. Full E89 carries extra movement and is worse than E95 on broad mean. If the hidden world is truly "E95 over-localized or over-amplified Q2/S3 tail cells", then a small E95-relative Q2/S3 rollback should test that hypothesis more cleanly than full E89.
+- 맞다면: E95-to-mixmin rollback on selected Q2/S3 cells should remain strict/deployable, lower E72-adverse exposure, keep combo/hidden/world/block support, and beat E95 in E95-conditioned broad and Q2/S3-tail scenarios with non-positive p95 risk.
+- 틀리다면: Q2/S3 rollback should fail strict combo stress, lose local margin, only work under non-strict inverse-top-conflicted rows, or beat E95 only in the Q2/S3 slice while worsening broad-plausible scenarios.
+- 최소 실험: `analysis_outputs/e101_q2s3_tail_graft_probe.py`, generating E95-based grafts from E89/E85/mixmin over Q2/S3 selectors and scoring them with E83 stress plus E96/E99 E95-conditioned transfer.
+- 관측: E101 generated `618` rows, `612` grafts, `581` strict-like rows, and `54` pass rows. It materialized `analysis_outputs/submission_e101_q2s3tail_177569bc.csv`, which shrinks E95's effective Q2/S3 movement by `25%` toward mixmin on only `50` active cells versus E95. The selected file has all delta `-0.0000253724`, E72-adverse exposure `0.000692235` vs E95 `0.000788914`, hidden Q2/S3 `-0.000191316`, world `-0.000115685`, block win `0.75`, strict/deployable `true`, and E95-conditioned broad-plausible mean/p95/beat-E95 of `-0.0000162053`, `-0.000001564`, and `0.983488`.
+- 성공/폐기 기준: supported locally because the candidate survives strict stress and has non-positive p95 in broad-plausible E95-conditioned worlds. It is still a public sensor, not proof: the transfer model may overweight the E72/E95 hard-tail abstraction, and the selected move is a small rollback rather than a new block-state representation.
+- public LB 관측 반응: if E101 improves over E95, update the world model to "E95's retained E86 structure is useful, but Q2/S3 tail amplitude is too high; small rollback beats full E89." If E101 worsens, Q2/S3 rollback is overfit to tail-transfer stress and the active frontier remains E95; full E89 should only be used if the public question specifically remains diffuse Q2/S3 allocation.
+- 제출 전략: next highest-information file is `analysis_outputs/submission_e101_q2s3tail_177569bc.csv`. It should be submitted before full E89 because it isolates the E100 hypothesis with fewer changed cells and less non-Q2/S3 movement.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

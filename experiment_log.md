@@ -1507,6 +1507,20 @@
 - Interpretation: H94 is supported. E89 is not a general lower-risk successor to E95. It is specifically a Q2/S3 diffuse-tail counterfactual: E89 wins only when the realized public tail is spread through Q2/S3-like E72 cells rather than the cells E95 localized as hard-tail fallback.
 - Decision: no E100 submission file. Keep `analysis_outputs/submission_e89_e72decontam_00d7807f.csv` as the single highest-information next public sensor only if the question is "did E95 over-localize Q2/S3 tail risk?" If E89 improves, update the world model toward diffuse Q2/S3 tail allocation. If E89 worsens, close the E89 branch and keep E95's localized hard-tail gate as the better current explanation.
 
+## E101. Q2/S3 Tail Graft Probe
+
+- Observe: E100 left one live counterfactual, but full E89 changes more than the favorable Q2/S3 tail pocket. If the pocket is real, a smaller E95-relative graft should test the same world with less non-Q2/S3 movement.
+- Wonder: can the Q2/S3 diffuse-tail advantage be separated from E89 as a strict/deployable E95 graft, or does separation break combo/hidden/world/block stress?
+- Method: `analysis_outputs/e101_q2s3_tail_graft_probe.py` used E95 as base and grafted E89/E85/mixmin values onto Q2/S3 scopes selected by E72-positive tail, E89-vs-E95 tail advantage, E95 fallback cells, or logit difference. It then rescored candidates with E83 combo/hidden/world/block stress and E96/E99 E95-conditioned transfer scenarios. Pass required strict gate, lower E72-adverse exposure than E95, broad-plausible mean better than E95, broad p95 non-positive, broad beat-E95 rate above `0.75`, and Q2/S3-slice improvement.
+- Result:
+  - rows/grafts/strict-like/pass: `618/612/581/54`.
+  - materialized file: `analysis_outputs/submission_e101_q2s3tail_177569bc.csv`.
+  - selected rule: start from E95 and shrink Q2/S3 movement `25%` toward mixmin. The recorded selector is `q2s3_all`, but effective active cells vs E95 are only `50` because most Q2/S3 cells already equal mixmin.
+  - selected local stress: all delta `-0.0000253724`, E72-adverse exposure `0.000692235` versus E95 `0.000788914`, hidden Q2/S3 `-0.000191316`, world `-0.000115685`, block win `0.750000`, block-tail safe `0.972222`, inverse-top `-0.000001974`, raw05-compatible `-0.000033936`, all-sign `-0.000040207`, strict/deployable `true`.
+  - E95-conditioned transfer: broad-plausible mean vs E95 `-0.0000162053`, beat-E95 rate `0.983488`, p95 vs E95 `-0.000001564`; Q2/S3-slice mean vs E95 `-0.0000289568`, beat rate `1.0`, p95 `-0.0000150661`.
+- Interpretation: H95 is supported locally. The live branch is sharper than "submit E89": public may prefer E95's structural hard-tail gate except that E95 still over-moves a small Q2/S3 tail subset. This is a rollback of only E95's Q2/S3 correction cells, not a broad E89 decontamination file.
+- Decision: promote `submission_e101_q2s3tail_177569bc.csv` as the next highest-information public sensor ahead of full E89. If it improves public, the world model shifts to "E95 was right structurally but Q2/S3 tail amplitude was too high." If it worsens, retire the E101 rollback branch and test full E89 only if the question remains diffuse Q2/S3 tail rather than amplitude.
+
 ## Current Decision
 
 가장 저비용으로 많은 가설을 가르는 실험은 E05 selector-only/pairwise-order falsification이었다. 결과는 "micro-refine을 더 많이 만들기보다 selector resolution 또는 large safe representation move가 필요하다"로 수렴한다.

@@ -140,6 +140,10 @@ analysis_outputs/*
 !analysis_outputs/e99_e95_conditioned_tail_transfer_filter_summary.csv
 !analysis_outputs/e100_e89_counterfactual_anatomy_slices.csv
 !analysis_outputs/e100_e89_counterfactual_anatomy_cases.csv
+!analysis_outputs/e101_q2s3_tail_graft_probe_scan.csv
+!analysis_outputs/e101_q2s3_tail_graft_probe_summary.csv
+!analysis_outputs/e101_q2s3_tail_graft_probe_transfer.csv
+!analysis_outputs/submission_e101_q2s3tail_*.csv
 !analysis_outputs/submission_e87_noq2_source_consensus_*.csv
 !analysis_outputs/submission_e87_q2_nooverstep_consensus_*.csv
 !analysis_outputs/submission_e87_inverse_top_prior_consensus_*.csv
