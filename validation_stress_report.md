@@ -924,3 +924,18 @@ E179 asks whether E176's fragile public-decisive cells are actually visible befo
 - E176-vs-E174 Q2 damping visible-mean delta: `-0.000000191`; swing-weighted support `0.690495`; hard support rate `0.904762`.
 
 Stress implication: E176 is body-supported and Q2-damping-supported, but not decisive-cell-certified. That keeps it as the single best next public sensor while preserving the plateau warning: the public result can still hinge on a few hidden labels that train-derived visible priors do not resolve.
+
+## Update After E180
+
+E180 calibrates E179's warning against known public anchors.
+
+- script: `analysis_outputs/e180_known_anchor_decisive_cell_visibility.py`.
+- report: `analysis_outputs/e180_known_anchor_decisive_cell_visibility_report.md`.
+- E95-vs-mixmin public-positive top4 visible support: `0.100896`.
+- E101-vs-mixmin public-positive top4 visible support: `0.100896`.
+- mixmin-vs-a2c8 public-positive top4 visible support: `0.310904`.
+- E176 pending top4 visible support: `0.330699`, above known-winner mean `0.170898` and known-winner max `0.310904`.
+- failed E72 has strong observed-adverse top4 support (`0.793304` vs mixmin, `0.696441` vs E95), but E101-vs-E95 near loss has only `0.100896` observed-adverse top4 support.
+- all-moved visible-prior sign accuracy across known anchors: `0.5`.
+
+Stress implication: E179's weak top-cell support is not a hard veto. The more important finding is that visible priors are too weak as a decisive-cell selector at frontier scale. E176 remains the next sensor because it is body-supported and Q2-damping-supported, but it is still not locally certified.

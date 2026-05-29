@@ -1403,3 +1403,12 @@
 - Implementation issue possible: medium. The target-matched null and priors are train-derived, not true public labels. Low for the falsification of certification because the same fixed E176/E95/E174 cells were audited before feedback.
 - Bottleneck implication: the plateau remains a hard-label visibility problem. The missing object is not another E176-family amplitude variant; it is a public-free way to identify the decisive cells below the current public-edge scale.
 - Do not repeat: calling E176 "safe" from full-body support alone, or creating another Q2 keep-factor sibling because E179 says Q2 damping is favorable. Wait for E176 public feedback and decode with E177/E179.
+
+## FH156. E179's weak top-cell support is a hard veto against E176
+
+- Failed hypothesis: E176 top4 visible support `0.330699` is low enough by itself to demote E176 below other candidates.
+- Observed result: E180 shows known public winners can be as weak or weaker at the top-cell layer. E95-vs-mixmin public-positive top4 support is only `0.100896`; E101-vs-mixmin is also `0.100896`; mixmin-vs-a2c8 is `0.310904`. E176 top4 `0.330699` is above the known-winner mean `0.170898` and max `0.310904` in this anchor set. Visible-prior all-moved sign accuracy over known anchors is only `0.5`.
+- Why discard: weak visible top-cell support is not a hard veto because successful anchors can have weak top-cell support. The failure is the selector, not necessarily the candidate.
+- Implementation issue possible: medium. Known anchors are few and public labels remain aggregate. Low for the narrow falsification because the same E179 machinery was applied to fixed known-public pairs.
+- Bottleneck implication: the decisive-cell problem survives, but it shifts from "E176 top cells look bad" to "visible priors cannot certify frontier top cells." This keeps E176 alive while demanding a better representation target for future work.
+- Do not repeat: demoting E176 solely because top4 support is below 0.5, or using visible-prior top-cell support as a standalone submission ranker.

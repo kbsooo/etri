@@ -2040,6 +2040,18 @@ target co-occurrence
 - public LB 관측 반응: E176 win says the weak top-cell priors missed the hidden/public-tail realization; E176 tie/small loss says E179's top-cell warning was decisive; E176 worse than E101 demotes the partial-reopen family despite its full-body support.
 - 제출 전략: no new E179 submission. Keep E176 as the only next broad expected-score sensor, decode with E177, and use E179 to decide whether a result was body validation or decisive-cell miss.
 
+### H174. Visible priors explain some anchors but cannot certify frontier decisive cells
+
+- 상태: supported by E180; does not certify E176.
+- 왜 그럴듯한가: E179 made E176's top cells look weak, but the same visible-prior machinery may also understate successful known anchors. The real hidden structure might be that visible priors are useful body/tail diagnostics but poor top-cell selectors at frontier scale.
+- 맞다면: known public winners should sometimes have weak visible top-cell support; visible-prior sign accuracy over known anchors should be mediocre; failed anchors may be explained when they are large/contaminated, while E95/E101-scale boundary remains unresolved.
+- 틀리다면: known winners should have consistently high visible support and known failures should have consistently high adverse support, making E176's weak support a direct rejection signal.
+- 최소 실험: `analysis_outputs/e180_known_anchor_decisive_cell_visibility.py`.
+- 관측: E95-vs-mixmin public-positive top4 support is only `0.100896`; E101-vs-mixmin is also `0.100896`; mixmin-vs-a2c8 is `0.310904`. E176 top4 is `0.330699`, above known-winner mean `0.170898` and max `0.310904`. Failed E72 has high observed-adverse support, but E101-vs-E95 near loss has only `0.100896`. All-moved visible-prior sign accuracy across known anchors is `0.5`.
+- 성공/폐기 기준: support strengthens if E176 feedback can be interpreted as hidden-tail underresolution rather than visible-prior certification. It weakens if future anchors show visible-prior top support consistently predicts public direction once more anchors are added.
+- public LB 관측 반응: E176 win says weak visible top support is compatible with success, like E95. E176 tie/loss says visible priors still failed to resolve the exact boundary, not that their top-cell weakness alone was a veto.
+- 제출 전략: no E180 submission. Keep E176 as sensor; do not prune or retune from visible top-cell support alone.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

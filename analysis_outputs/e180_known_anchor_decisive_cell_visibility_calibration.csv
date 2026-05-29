@@ -1,0 +1,4 @@
+question,e176_top4_intended_support_visible,known_winner_min,known_winner_mean,known_winner_max,e176_below_winner_min,e176_above_winner_mean,e176_above_winner_max,known_loss_mean_observed_adverse_support,known_loss_max_observed_adverse_support,e176_lower_than_loss_adverse_mean,known_pairs,sign_accuracy
+e176_top4_vs_known_winners,0.33069909410426507,0.1008956832763761,0.17089841606894765,0.31090388165409083,False,True,True,,,,,
+e176_top4_vs_known_losses_observed_adverse,0.33069909410426507,,,,,,,0.530213596746371,0.7933036340487052,True,,
+known_anchor_visible_sign_accuracy_all_moved,,,,,,,,,,,6.0,0.5

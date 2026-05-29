@@ -2771,3 +2771,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E176-vs-E174 Q2 damping is locally supported under visible priors: visible-mean expected delta `-0.000000191`, swing-weighted support `0.690495`, hard support rate `0.904762`.
 - Interpretation: E176 is better supported than a raw same-family sibling because its full body and Q2 damping pass visible-prior checks. But E176 is not locally certified at hard-label resolution: its highest-swing public-decisive cells are weak versus target-matched nulls.
 - Decision: no new submission is created. E176 remains the single risk-adjusted public sensor, but the expected outcome should be read with E177/E179 together: a win validates the hidden-tail realization, while a tie/small loss would support the plateau law rather than justify another Q2 keep-factor sibling.
+
+## E180. Known-Anchor Decisive-Cell Visibility Calibration
+
+- Observe: E179's top-cell warning could be over-interpreted. If known public winners also had weak visible-prior top cells, E176's weak top support is not a hard veto.
+- Wonder: does E176 top-cell visibility look worse than successful public anchors, or is the real problem that visible priors are not reliable decisive-cell selectors at all?
+- Method: `analysis_outputs/e180_known_anchor_decisive_cell_visibility.py` rebuilds the same cell/prior audit for known public transitions: mixmin-vs-a2c8, E95-vs-mixmin, E101-vs-E95, E101-vs-mixmin, E72-vs-mixmin, E72-vs-E95, and pending E176-vs-E95. It compares top4/frontier-edge/actual-edge support in the actual public direction. It writes no submission.
+- Result:
+  - report: `analysis_outputs/e180_known_anchor_decisive_cell_visibility_report.md`.
+  - E95's public-positive top4 visible support is only `0.100896`.
+  - E101-vs-mixmin, also public-positive, has the same top4 support `0.100896`.
+  - mixmin-vs-a2c8 top4 support is `0.310904`.
+  - E176 top4 support is `0.330699`, above known-winner mean `0.170898` and above known-winner max `0.310904`.
+  - failed E72 has high observed-adverse support (`0.793304` vs mixmin, `0.696441` vs E95), but the near-frontier E101 loss has only `0.100896` observed-adverse top4 support.
+  - all-moved visible-prior sign accuracy across known anchors is only `0.5`.
+- Interpretation: E179's top-cell weakness is not a hard veto. Known winners can look just as weak or weaker at the visible-prior top-cell layer. The stronger conclusion is that current visible priors cannot certify decisive cells; they explain some failures like E72 but do not resolve the E95/E101/E176 frontier-scale boundary.
+- Decision: no new submission is created. Keep E176 as the single next sensor. The next representation problem is not "prune weak E176 top cells"; it is to build a better public-free decisive-cell representation than visible priors.

@@ -1975,3 +1975,47 @@ E176을 제출한다면 결과는 반드시 다음으로 먼저 읽는다.
 - tie/small-loss: broad body는 맞아도 decisive-cell tail을 못 맞힌 것일 수 있다.
 - worse than E101: partial-reopen family 자체를 demote한다.
 - win: visible-prior가 약하게 본 top cells에서 hidden public tail이 E176 쪽으로 실현된 것이다.
+
+## E180 업데이트: E179의 top-cell 약함은 hard veto가 아니다
+
+내가 발견한 가장 이상한 점:
+
+`성공한 E95 hardtail도 top4 visible support가 겨우 0.100896이었다.`
+
+실험:
+
+- `analysis_outputs/e180_known_anchor_decisive_cell_visibility.py`
+- report: `analysis_outputs/e180_known_anchor_decisive_cell_visibility_report.md`
+
+결과:
+
+- E95-vs-mixmin public-positive top4 support: `0.100896`.
+- E101-vs-mixmin public-positive top4 support: `0.100896`.
+- mixmin-vs-a2c8 public-positive top4 support: `0.310904`.
+- E176 top4 support: `0.330699`.
+- E176은 known-winner top4 평균 `0.170898`과 max `0.310904`보다 높다.
+- 하지만 visible-prior all-moved sign accuracy는 known anchors에서 `0.5`뿐이다.
+- 실패한 E72는 observed-adverse support가 높다: `0.793304` vs mixmin, `0.696441` vs E95.
+- 반면 E101-vs-E95 near loss는 observed-adverse top4 support도 `0.100896`이라 frontier boundary는 여전히 안 보인다.
+
+생각이 어떻게 바뀌었는지:
+
+`E179는 E176을 죽이는 근거가 아니었다. E179/E180을 합치면 결론은 “E176 top cell이 나쁘다”가 아니라 “visible prior는 body/tail diagnostic이지 frontier decisive-cell selector가 아니다”다.`
+
+현재 최강 세계관:
+
+`0.57629 plateau는 broad body signal 부족이 아니라, public을 실제로 가르는 high-swing cell direction을 visible context가 안정적으로 못 보는 문제다. E72 같은 큰 실패는 보이지만, E95/E101/E176 같은 frontier boundary는 아직 안 보인다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+E176을 후보에서 내리지 않는다. 한 장만 제출한다면 여전히:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+단, E176을 “visible top-cell certified”라고 부르지 않는다. 이 파일은:
+
+`body-supported + Q2-underopened broad law가 hidden public decisive cells와 맞는지 묻는 센서`
+
+다음 local 연구 질문:
+
+`visible prior보다 더 나은 decisive-cell representation을 만들 수 있는가?`
