@@ -1278,3 +1278,90 @@ python3 analysis_outputs/e160_e154_postfeedback_interpreter.py --score <PUBLIC_L
 `mixmin은 broad signal이었다. 하지만 E95 이후 frontier refinement는 broad signal이 아니라 high-leverage hidden label 몇 개의 해상도 안에서 흔들리는 calibration-tail surgery다. 그래서 E101처럼 방향은 맞아도 E95를 못 넘을 수 있고, E154/E155/E157/E156 같은 micro-control은 feedback 없이 안정적으로 rank할 수 없다.`
 
 따라서 새 submission은 만들지 않는다. 지금 제출할 파일은 여전히 `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`다. 다만 이 파일도 "best일 가능성이 증명돼서"가 아니라 "repaired all-four branch가 실제 public hidden labels에서 살아 있는지 가장 많이 알려주는 센서"라서 제출 가치가 있다.
+
+## 추가 관찰: broad escape branch는 아직 죽지 않았다
+
+E163이 남긴 조건은 명확했다.
+
+`post-E95 micro-control이 아니라, mixmin처럼 여러 hidden label을 동시에 요구하는 넓은 신호를 찾아야 한다.`
+
+그래서 `analysis_outputs/e164_universe_broad_edge_screen.py`를 만들었다.
+
+질문은 이것이었다.
+
+`이미 만든 submission universe 안에 E95 이후에도 broad hard-label edge를 가진 후보가 남아 있는가?`
+
+결과:
+
+- tracked submission paths: `2052`.
+- unique prediction tensors: `1977`.
+- broad-edge rows vs E95: `198`.
+- low-E72-axis broad rows: `193`.
+- conservative candidate-gate rows: `192`.
+- known public-bad rows that still pass broadness: `2`.
+
+가장 강한 broad row는 `jepa/submission_block_canvas_multifeature_k8_c0p02_all_scale1p0.csv`였다.
+
+- focus expected delta vs E95: `-0.025880912`.
+- cells to flip expected: `54`.
+- top1/expected: `0.029985445`.
+- moved cells: `1750`.
+
+하지만 이걸 그대로 제출하면 안 된다. E164는 broadness가 필요조건임을 말했을 뿐이고, E72/LeJEPA처럼 public-bad인 row도 broadness를 통과했다.
+
+그래서 `analysis_outputs/e165_broad_edge_bad_axis_geometry.py`를 붙였다.
+
+질문은 이것이었다.
+
+`broad candidate가 known public-bad/collapse geometry 안에 들어 있는가?`
+
+결과:
+
+- bad axes: `a2c8,raw05,stage2,ordinal,final9,e72,q2_bad,lejepa_bad,resid_bad`.
+- scored rows: `205`.
+- E164 candidate rows scored: `192`.
+- geometry-health survivors: `90`.
+- known public-bad broad controls: rejected.
+
+즉, broad branch는 전부 죽지 않았다. 다만 raw amplitude가 너무 크다.
+
+그래서 `analysis_outputs/e166_broad_survivor_scale_probe.py`를 만들었다.
+
+질문은 이것이었다.
+
+`E95에서 broad survivor 방향으로 아주 작게만 움직이면, broad edge는 남고 bad-axis 위험은 통제되는가?`
+
+결과:
+
+- source directions: `21`.
+- scaled rows scored: `198`.
+- negative-control scaled rows: `22`.
+- negative-control sensor gates: `0`.
+- scaled sensor-gate rows: `112`.
+- material rows with scale `<=0.03`: `51`.
+- materialized file: `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
+
+선택된 파일:
+
+- source: `submission_block_canvas_multifeature_k8_c0p02_all_scale1p0.csv`.
+- scale: `0.01`.
+- focus expected delta vs E95: `-0.000332077`.
+- cells to flip expected: `74`.
+- top1/expected: `0.023369627`.
+- bad-span energy: `0.450742441`.
+- max bad-axis: `q2_bad`, cosine `0.268538582`.
+- mean/max abs logit move: `0.002243986` / `0.013580886`.
+- cosine with E154/E101/mixmin: `0.061661852` / `-0.099145675` / `-0.137683489`.
+
+현재 세계관을 다시 압축한다.
+
+`E154 branch는 좁고 해상도 병목 안에 있다. E166 branch는 넓고 작다. E166은 점수 tweak가 아니라, E95가 놓친 broad latent branch가 아직 존재한다는 주장이다.`
+
+따라서 다음 public 선택지는 둘로 갈라졌다.
+
+- 보수적 해석 센서: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+- broad plateau-break 센서: `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
+
+한 줄로 말하면:
+
+`E154는 현재 세계관을 정밀하게 읽는다. E166은 현재 세계관을 깨려고 한다.`

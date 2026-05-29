@@ -1285,3 +1285,12 @@
 - Implementation issue possible: low for hard-label arithmetic and known-public deltas; medium for actual hidden-label attribution because true public labels remain hidden and focus-prior expected deltas are only public-free proxies.
 - Bottleneck implication: after E95, the main blocker is candidate-selection resolution/calibration-tail risk. To break out, a candidate must either recover another broad mixmin-scale signal or make a low-tail-safe move whose edge is larger than top-cell swing fragility.
 - Do not repeat: treating a `1e-6` to `3e-5` local edge among post-E95 candidates as a stable expected-public ranking unless it survives explicit hard-label breadth stress.
+
+## FH143. The existing candidate universe has no broad post-E95 escape branch
+
+- Failed hypothesis: because E129 found no novel strict old-file successor and E163 showed live post-E95 branch files are one-cell fragile, the already generated submission universe contains no broad E95-relative direction worth testing.
+- Observed result: E164 scanned `2052` tracked submission paths and `1977` unique tensors, finding `198` broad-edge rows and `192` conservative candidate-gate rows. E165 then rejected known public-bad broad controls but left `90` geometry-health survivors. E166 showed those survivors can be shrunk into small E95-relative movements while preserving breadth: `112` scaled sensor-gate rows and `51` material rows at scale `<=0.03`.
+- Why discard: the universe does contain a broad latent branch; it was hidden behind unsafe raw amplitude and known-bad JEPA controls. The correct statement is not "no broad branch exists" but "raw broad branch submissions are unsafe without geometry and scale control."
+- Implementation issue possible: medium. The broad branch is dominated by JEPA-family files and has no direct public-positive observation yet. E165's bad-axis basis may be undercomplete, so E166 public feedback is required.
+- Bottleneck implication: the plateau has two separate lanes now. The repaired E154 lane is narrow and hidden-label-resolution limited. The E166 lane is broad and small-amplitude, with real upside but higher worldview risk.
+- Do not repeat: old-file ranking that ignores broadness, or raw JEPA submission that ignores bad-axis and scale control. Future broad candidates must pass both E165-style geometry and E166-style small-amplitude breadth.

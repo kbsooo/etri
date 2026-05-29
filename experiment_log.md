@@ -2524,3 +2524,53 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
 - Verification: `python3 -m py_compile` passed; the script regenerated summary/top-cell/report outputs.
 - Interpretation: E162 generalizes. Mixmin was a broad public-relevant move, but post-mixmin/E95 refinements are hard-label-resolution limited. This explains why E101 was directionally sane yet worse than E95, and why 0.57629-level local edges cannot be ranked like ordinary CV improvements.
 - Decision: no submission. E154 remains the next public sensor because it asks the repaired all-four branch question, not because E163 can prove its expected-score superiority over E155/E157/E156. The next real escape must either recover another broad mixmin-scale signal or produce a candidate whose low-tail-safe edge is larger than top-cell fragility.
+
+## E164. Universe Broad Edge Screen
+
+- Observe: E163 says the post-E95 local branch is hidden-label-resolution limited. The next falsifiable question is whether an already generated submission contains a broad E95-relative successor, closer to the mixmin regime than the E154 sibling regime.
+- Wonder: if a broad successor exists, it should beat one-cell fragility: the expected hard-label edge should require many top cells to overturn, should move many rows/targets, and should avoid the known E72/E101 narrow negative axes.
+- Method: `analysis_outputs/e164_universe_broad_edge_screen.py` scans tracked `submission*.csv` tensors with stable key loading, de-duplicates predictions, computes E95-relative hard-label breadth metrics under focus priors, and calibrates against known public rows.
+- Result:
+  - raw tracked submission paths scanned: `2052`; unique tensors: `1977`; duplicates: `75`.
+  - broad-edge rows versus E95: `198`.
+  - broad-edge rows with low E72-axis cosine: `193`.
+  - conservative candidate-gate rows: `192`.
+  - known public-bad rows that still pass broad-edge gate: `2`.
+  - top broad row: `jepa/submission_block_canvas_multifeature_k8_c0p02_all_scale1p0.csv`, focus expected delta vs E95 `-0.025880912`, cells to flip expected `54`, top1/expected `0.029985445`, Q2/S3 share `0.250718585`.
+- Interpretation: the old universe does contain broad-looking post-E95 directions. However broadness alone is insufficient because `submission_e72_topabs50_q2s3_gate_4e48cba2.csv` and `submission_lejepa_targetwise_strict_best_scale0p5.csv` are known public-bad and still pass broadness-style filters.
+- Decision: do not submit raw broad rows. Use E165 to reject broad shortcut/collapse directions by known bad-axis geometry.
+
+## E165. Broad Edge Bad-Axis Geometry
+
+- Observe: E164 found broad candidates, but known-bad LeJEPA/E72 rows can look broad locally. The missing question is whether the broad candidates live in the span of public-bad moves.
+- Wonder: a real broad survivor should be broad while staying away from known bad axes (`a2c8`, `raw05`, `stage2`, `ordinal`, `final9`, `E72`, Q2-bad, LeJEPA-bad, residual-bad). Known bad controls should fail this geometry health check.
+- Method: `analysis_outputs/e165_broad_edge_bad_axis_geometry.py` scores E164 candidate rows plus known-public controls against the normalized bad-axis span, entropy movement, E154/E101/mixmin axes, and max bad-axis cosine.
+- Result:
+  - bad axes used: `a2c8,raw05,stage2,ordinal,final9,e72,q2_bad,lejepa_bad,resid_bad`.
+  - E164 rows: `1977`; selected/scored rows: `205/205`.
+  - E164 candidate-gate rows scored: `192`.
+  - geometry-health survivor rows: `90`.
+  - known public-bad broad rows: `2`, both rejected by geometry health.
+  - top survivor: `submission_block_canvas_multifeature_k8_c0p02_all_scale1p0.csv`, bad-span energy `0.450742441`, max bad-axis `q2_bad`, max cosine `0.268538582`, entropy delta `0.020377694`, mean abs logit move `0.224398639`.
+- Interpretation: E165 kills the known broad-bad controls but does not kill the entire broad branch. A live branch remains, but raw survivor amplitude is far too large and global to submit directly.
+- Decision: treat broad survivors as latent directions, not submissions. The next experiment must shrink them from E95 and ask whether broad hard-label edge survives at tiny amplitude.
+
+## E166. Broad Survivor Scale Probe
+
+- Observe: E165 left `90` broad geometry-health survivors, but raw survivor files are all-cell JEPA-scale moves. The repaired E154 branch is narrow; a scaled broad survivor could be the first post-E95 candidate that actually beats top-cell fragility.
+- Wonder: does a tiny E95-to-survivor logit step keep broad hard-label support and bad-axis health, while negative controls stay rejected?
+- Method: `analysis_outputs/e166_broad_survivor_scale_probe.py` takes E165 survivor directions plus known-bad controls, blends from E95 in logit space at scales `0.005..0.20`, recomputes E164 breadth metrics and E165 geometry metrics, and materializes only the smallest material-gate row with scale `<=0.03`.
+- Result:
+  - source directions: `21`; scaled rows scored: `198`.
+  - negative-control scaled rows: `22`; negative-control sensor gates: `0`.
+  - scaled sensor-gate rows: `112`.
+  - material-gate rows with scale `<=0.03`: `51`.
+  - materialized file: `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
+  - selected row source: `submission_block_canvas_multifeature_k8_c0p02_all_scale1p0.csv`, scale `0.01`.
+  - selected focus expected delta vs E95: `-0.000332077`.
+  - selected cells to flip expected: `74`; top1/expected `0.023369627`.
+  - bad-span energy `0.450742441`; max bad-axis `q2_bad`, cosine `0.268538582`.
+  - mean/max abs logit move: `0.002243986` / `0.013580886`.
+  - Q2/S3 share `0.250718585`; cosine to E154/E101/mixmin `0.061661852` / `-0.099145675` / `-0.137683489`.
+- Interpretation: E166 is the first post-E95 file in this branch that is both broad by hard-label breadth and small by probability movement. It is not a full JEPA submission; it is a tiny broad-world graft on E95. This makes it more promising as a plateau-breaking sensor than E154, but less conservative because the broad branch has no direct public win yet.
+- Decision: add `submission_e166_broadsurv_s0p01_d8bfa94b.csv` as the broad-escape public sensor. If only one public slot is for conservative branch interpretation, E154 remains cleaner. If the goal is to test a genuinely broad escape from the 0.57629 plateau, E166 is now the higher-information candidate.

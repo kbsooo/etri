@@ -1848,6 +1848,42 @@ target co-occurrence
 - public LB 관측 반응: E154 public feedback should be read as a world observation about the repaired branch. A tiny E154/E155/E157 difference is not enough to infer a reusable local ranker.
 - 제출 전략: no E163 submission. Keep E154 first; require future candidates to either recover broad mixmin-scale structure or explicitly beat top-cell fragility.
 
+### H158. The existing submission universe still contains a broad post-E95 branch
+
+- 상태: supported by E164, but raw direct submission is rejected.
+- 왜 그럴듯한가: E163 says post-E95 repaired-branch candidates are too narrow. If the plateau is not fundamental signal exhaustion, a previously generated latent/JEPAs branch may still contain a broad direction that was rejected only because direct amplitude was unsafe.
+- 맞다면: scanning existing tracked submissions should find E95-relative rows with many moved cells, many rows, many top cells required to overturn the focus-prior expected edge, and low direct alignment with the E72/E101 failure axes.
+- 틀리다면: every candidate would be E154-like one-cell fragile, known-bad-axis aligned, or locally expected-positive versus E95.
+- 최소 실험: `analysis_outputs/e164_universe_broad_edge_screen.py`.
+- 관측: `2052` tracked submission paths produced `1977` unique tensors. E164 found `198` broad-edge rows, `193` low-E72-axis rows, and `192` candidate-gate rows. The top row `submission_block_canvas_multifeature_k8_c0p02_all_scale1p0.csv` has focus expected delta `-0.025880912`, cells-to-flip `54`, and top1/expected `0.029985445`.
+- 성공/폐기 기준: support only if broad rows survive bad-axis geometry and amplitude control. E164 alone is not sufficient because known public-bad E72/LeJEPA rows can pass broadness-style gates.
+- public LB 관측 반응: a raw broad JEPA public loss would not refute the branch, only the direct amplitude. A small scaled survivor win would strengthen H158.
+- 제출 전략: do not submit raw E164 rows. Pass through E165/E166.
+
+### H159. Broad survivor rows are not merely known public-bad geometry
+
+- 상태: supported by E165 with medium confidence.
+- 왜 그럴듯한가: E164 broadness could be shortcut/collapse if it lies in the span of public-bad moves. A LeJEPA-style geometry check should kill those rows before any submission.
+- 맞다면: known public-bad broad controls should have high bad-span energy or max bad-axis cosine, while some broad candidates remain low-energy outside that span.
+- 틀리다면: all broad rows should either fail geometry health or the health gate should also admit known public-bad controls.
+- 최소 실험: `analysis_outputs/e165_broad_edge_bad_axis_geometry.py`.
+- 관측: bad axes `a2c8,raw05,stage2,ordinal,final9,e72,q2_bad,lejepa_bad,resid_bad` reject known broad-bad controls. E165 scored `205` rows, including `192` E164 candidate rows, and left `90` geometry-health survivors. The top survivor has bad-span energy `0.450742441`, max bad-axis cosine `0.268538582`, and mean abs logit move `0.224398639`.
+- 성공/폐기 기준: support is conditional on amplitude shrinkage. If a tiny scaled survivor fails public badly, H159 weakens because the current bad-axis basis is undercomplete.
+- public LB 관측 반응: E166 win strengthens the claim that the survivor branch is not a known-bad shortcut. E166 loss says the bad-axis span missed the relevant public-negative geometry.
+- 제출 전략: use broad survivors only after logit-scale shrinkage.
+
+### H160. A tiny E95-to-broad-survivor step can beat top-cell fragility
+
+- 상태: newly supported locally by E166; pending public feedback.
+- 왜 그럴듯한가: raw broad survivors are too large, but their direction may encode a real latent branch. A `1%` logit step from E95 can keep distributed hard-label support while making the probability movement small enough to avoid full-JEPA collapse risk.
+- 맞다면: scaled survivor rows should keep a large negative focus-prior expected delta, require many top cells to overturn that expected edge, stay outside known bad axes, and reject scaled known-bad controls.
+- 틀리다면: after shrinking, broad edge should disappear, become one-cell fragile, align with bad axes, or allow known bad controls through the same gate.
+- 최소 실험: `analysis_outputs/e166_broad_survivor_scale_probe.py`.
+- 관측: `198` scaled rows were scored, `112` passed the scaled sensor gate, and `51` material rows passed scale `<=0.03`. Negative controls passed `0` gates. The selected file `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv` uses scale `0.01` toward `submission_block_canvas_multifeature_k8_c0p02_all_scale1p0.csv`, with focus expected delta `-0.000332077`, cells-to-flip `74`, top1/expected `0.023369627`, bad-span energy `0.450742441`, max bad-axis cosine `0.268538582`, and mean/max abs logit move `0.002243986` / `0.013580886`.
+- 성공/폐기 기준: if public improves over E95, broad-survivor latent becomes the main branch and should be amplitude/target-decomposed. If public loses but stays near E95, the branch may still be directionally partial but amplitude/target mixture is wrong. If it hard-fails, E165 geometry is undercomplete and this broad survivor family should be blocked.
+- public LB 관측 반응: a win below `0.5762913298` is much more informative than another E154 sibling micro-edge because the candidate is broad and non-collinear with E154 (`cos 0.061661852`). A loss weakens the "existing broad latent" escape and returns priority to repaired-branch public sensors.
+- 제출 전략: `submission_e166_broadsurv_s0p01_d8bfa94b.csv` is the broad-escape sensor. `submission_e154_s3repair_9f2e2e73.csv` remains the conservative repaired-branch sensor.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -722,3 +722,24 @@ E163 tests whether E162 was local to the repaired sibling stack or a broader pos
 - E72 vs mixmin/E95: cells for actual delta `4`/`6`, despite the local focus-prior direction being wrong.
 
 The stress implication is now split cleanly. Mixmin was a broad public-relevant move, not a one-cell artifact. The plateau after E95 is different: refinements are real enough to move public LB, but their deltas sit inside a few high-leverage hard-label cells. This is why E101 could be locally coherent and still lose to E95, and why E154/E155/E157/E156 cannot be pre-feedback ranked by micro-edges. E154 remains the next public sensor because it asks the most informative repaired-branch question, not because E163 certifies it as the highest expected-score file.
+
+## Update After E164-E166
+
+E164-E166 reopen the broad-signal lane that E163 demanded.
+
+- E164 script: `analysis_outputs/e164_universe_broad_edge_screen.py`.
+- E165 script: `analysis_outputs/e165_broad_edge_bad_axis_geometry.py`.
+- E166 script: `analysis_outputs/e166_broad_survivor_scale_probe.py`.
+- E164 unique tensors scanned: `1977`; broad-edge rows: `198`; candidate-gate rows: `192`.
+- E164 caveat: known public-bad rows can pass broadness, including E72 and LeJEPA controls.
+- E165 bad axes: `a2c8,raw05,stage2,ordinal,final9,e72,q2_bad,lejepa_bad,resid_bad`.
+- E165 geometry-health survivors: `90`; known public-bad broad controls rejected by geometry health.
+- E166 scaled rows: `198`; scaled sensor-gate rows: `112`; material rows at scale `<=0.03`: `51`; negative-control sensor gates: `0`.
+- E166 materialized file: `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
+- E166 selected scale/source: `0.01` toward `submission_block_canvas_multifeature_k8_c0p02_all_scale1p0.csv`.
+- E166 selected focus expected delta vs E95: `-0.000332077`.
+- E166 selected hard-label breadth: cells-to-flip expected `74`, top1/expected `0.023369627`.
+- E166 selected geometry: bad-span energy `0.450742441`, max bad-axis `q2_bad`, cosine `0.268538582`.
+- E166 selected amplitude: mean/max abs logit move `0.002243986` / `0.013580886`.
+
+The validation implication changes the next-decision menu. E154 is still the cleaner repaired-branch sensor, but it is narrow. E166 is the first post-E95 candidate that directly addresses the E163 requirement: it is broad, small-amplitude, non-collinear with E154, and rejects scaled known-bad controls. It is therefore a legitimate broad-escape sensor, not a CV/blend tweak. Its risk is that the broad survivor family has no public-positive anchor yet; a loss would specifically falsify the current bad-axis geometry as incomplete.
