@@ -1258,3 +1258,12 @@
 - Implementation issue possible: low for additive accounting because direct hard-label deltas were verified; medium for realized public attribution because true public labels remain hidden and E159 uses prior-world simulations.
 - Bottleneck implication: candidate selection is now attribution-resolution limited. The next public feedback must be read as a hidden-label world observation, not as a scalar leaderboard ranking.
 - Do not repeat: auto-submit E155 after any E154 tie/small-loss, or auto-close the branch after any E154 non-win without checking whether blame falls on added body, inherited body, or target-local axes.
+
+## FH140. E154 high-risk cell pruning creates a new first submission
+
+- Failed hypothesis: because E159 identifies inherited/added cells that can dominate E154 loss-side attribution, pruning the highest-risk cells toward E144 or E95 before public feedback should create a safer successor to E154.
+- Observed result: E161 generated `1608` pruning variants from E159 cell-level risk. Many rows were diagnostically real: `1226` were safer than E154 under focus expected risk, `631` preserved all-four health, and `299` were control-grade. But `0` were submission-grade and `0` beat E154 by the `2e-6` public-readable guardrail. The best local delta versus E154 was only `-0.000000045921`.
+- Why discard: pruning can reduce prior-risk, but the improvement does not translate into an independently readable probability movement. The strongest risk reductions give up too much local health/edge, while healthy pruning rows remain E154-collinear micro-controls.
+- Implementation issue possible: medium. The scan is finite and uses public-free priors; a different learned risk model could rank cells differently. Low for this specific shortcut because the search covered component scopes, target scopes, top counts, and both E144/E95 reversion modes with the same E154 stress stack.
+- Bottleneck implication: the frontier is not blocked merely by knowing which E154 cells are risky. The missing object is a decoder that turns risk reduction into a larger public-tail-safe movement, not a local branch prune.
+- Do not repeat: pre-feedback E154 risk-prune submissions or more top-risk revert sweeps unless actual E154 feedback specifically points to a narrow component overextension and E160 permits diagnostic controls.

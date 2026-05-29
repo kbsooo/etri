@@ -1186,3 +1186,29 @@ python3 analysis_outputs/e160_e154_postfeedback_interpreter.py --score <PUBLIC_L
 ```
 
 지금 제출할 파일은 여전히 `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` 하나다.
+
+## 추가 관찰: E154의 위험 셀은 보이지만, 잘라내도 새 후보가 되지는 않는다
+
+`analysis_outputs/e161_e154_inherited_body_pruning_audit.py`를 만들었다.
+
+질문은 이것이었다.
+
+`E159가 inherited E144 body blame을 보여줬다면, 그 위험 cell을 public-free prior로 미리 잘라내서 E154보다 더 좋은 후보를 만들 수 있는가?`
+
+결과:
+
+- pruning variants: `1608`.
+- all-four health rows: `631`.
+- control-grade rows: `299`.
+- submission-grade rows: `0`.
+- focus expected-risk 기준 E154보다 안전한 rows: `1226`.
+- local all-minus 기준 E154보다 나은 rows: `180`.
+- `2e-6` public-readable guardrail 기준 E154보다 나은 rows: `0`.
+- best local delta vs E154: `-0.000000045921`.
+- best focus expected-risk delta vs E154: `-0.000104369145`, 하지만 이 extreme prune은 health/local edge를 잃는다.
+
+현재 세계관을 다시 압축한다.
+
+`E154 내부의 위험 cell은 실제로 보인다. 그러나 그 위험을 잘라내는 순간 얻는 이득은 대부분 prior-risk 공간에서만 크고, public-readable probability edge로는 변환되지 않는다. 즉 plateau는 위험 cell 식별 부족이 아니라, 위험 감소를 충분한 local/public-safe movement로 번역하지 못하는 해상도 병목이다.`
+
+따라서 E161은 새 submission을 만들지 않는다. E154가 여전히 다음 public sensor다. E161 pruning row들은 E154 feedback 이후 branch가 살아 있고 작은 component overextension만 의심될 때 사용할 diagnostic control이지, first-file replacement가 아니다.

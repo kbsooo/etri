@@ -1812,6 +1812,18 @@ target co-occurrence
 - public LB 관측 반응: run `python3 analysis_outputs/e160_e154_postfeedback_interpreter.py --score <PUBLIC_LB>` after E154 submission before choosing a follow-up.
 - 제출 전략: E154 remains next. E160, not manual judgment, decides whether E155 is allowed afterward.
 
+### H155. E154 attribution-risk pruning is diagnostic but not a public-readable successor
+
+- 상태: supported by E161; no new submission.
+- 왜 그럴듯한가: E159 shows branch/hard-fail worlds can blame inherited E144 body. If that blame is concentrated in identifiable cells, pruning high-risk cells toward E144 or E95 might reduce public-tail risk while preserving the repaired all-four state.
+- 맞다면: top-risk cell pruning should produce all-four rows, reduce public-free expected LogLoss risk versus E154, and at least some rows should beat E154 by a public-readable local margin.
+- 틀리다면: pruning may reduce expected risk but either break health/local edge or remain too close to E154 to justify a pre-feedback submission.
+- 최소 실험: `analysis_outputs/e161_e154_inherited_body_pruning_audit.py`, using E159 cell-level risk to generate `1608` top-risk prune variants and rescoring them with the E154/E155 relaxed/E72/post-E101/actionability stack.
+- 관측: `631/1608` pruning rows keep all-four health, `299` are control-grade, and `1226` are safer than E154 under focus expected risk. But submission-grade rows are `0`, public-readably better-than-E154 rows are `0`, and the best local delta versus E154 is only `-0.000000045921`, far below the `2e-6` guardrail.
+- 성공/폐기 기준: support until E154 feedback. If E154 wins, pruning is unnecessary. If E154 tie/small-loses with added-body blame, E155 remains the cleaner amplitude-control; if inherited-body blame dominates but the branch is still alive, E161 rows become diagnostic controls rather than first-line submissions.
+- public LB 관측 반응: none yet. E161 should not be submitted before E154 because it does not create a readable independent edge.
+- 제출 전략: no E161 submission. Keep E154 first; keep E161 pruning as post-feedback diagnostic material.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

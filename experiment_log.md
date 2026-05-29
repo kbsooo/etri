@@ -2468,3 +2468,22 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
 - Verification: `python3 -m py_compile` passed; score probes `0.5763003660` and `0.5762880000` mapped to `small_loss` and `micro_win`; temporary observed decision output was removed after the probe.
 - Interpretation: E155 is not a clean expected-improvement follow-up after E154. It is only an information-only amplitude contrast for tie/small-loss, because at least one but not all focus priors blame E154-added body. Branch_loss/hard_fail point to inherited-body failure, so E155/E157/E156 are blocked.
 - Decision: after E154 public feedback, run `python3 analysis_outputs/e160_e154_postfeedback_interpreter.py --score <PUBLIC_LB>` before selecting any sibling control. The next public file remains E154.
+
+## E161. E154 Inherited-Body Pruning Audit
+
+- Observe: E159 says E154 loss-side blame is often inherited E144 body. A tempting rescue is to prune those high-risk cells before public feedback.
+- Wonder: are the inherited/added high-risk cells actually removable in a way that creates a public-readable successor to E154, or does pruning only produce sub-resolution controls?
+- Method: `analysis_outputs/e161_e154_inherited_body_pruning_audit.py` ranks E154-vs-E95 cells by global/subject/nearest-hard/focus-mean expected LogLoss risk, reverts top-risk cells either to E144 or E95 across component/target scopes, then rescores `1608` pruning variants with the same E154/E155 relaxed/E72/post-E101/actionability health stack.
+- Result:
+  - pruning rows: `1608`.
+  - all-four rows: `631`.
+  - control-grade rows: `299`.
+  - submission-grade rows: `0`.
+  - variants safer than E154 under focus expected risk: `1226`.
+  - variants locally better than E154: `180`.
+  - variants public-readably better than E154 at the `2e-6` guardrail: `0`.
+  - best local delta versus E154: `-0.000000045921`.
+  - best focus expected-risk delta versus E154: `-0.000104369145`, but it loses too much local edge and fails health.
+- Verification: `python3 -m py_compile` passed; the script regenerated scan/summary/frontier/report and no submission file was materialized.
+- Interpretation: E159's risk cells are not imaginary; pruning can reduce public-free expected risk. But the effect lives in the same E154/E144 branch tangent and is far below public-readable separation. This strengthens the plateau diagnosis: the problem is not finding a few risky cells, but translating risk reduction into a probability movement with enough independent edge.
+- Decision: no E161 submission. Keep `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` as the next public sensor. Treat E161 pruning rows as diagnostic controls only after E154 feedback, not as a new first file.

@@ -477,6 +477,8 @@ Update after E159: E154 now has a pre-public responsibility map. `analysis_outpu
 
 Update after E160: the E154 follow-up rule is now executable. Run `python3 analysis_outputs/e160_e154_postfeedback_interpreter.py --score <PUBLIC_LB>` after E154 public feedback. The current pre-feedback table says E155 is `information_only` for tie/small_loss, not a clean expected-improvement rescue, because component reads are split between E154-added body and inherited E144 body. For branch_loss and hard_fail, E155 is `not_recommended` and E157/E156 are blocked. This does not change the next submission: use `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
 
+Update after E161: no new submission was created. `analysis_outputs/e161_e154_inherited_body_pruning_audit.py` tried the obvious E159 rescue by reverting public-free high-risk E154 cells toward E144/E95. It found many safer diagnostic controls (`1226` safer-than-E154 rows, `631` all-four rows, `299` control-grade rows), but `0` submission-grade rows and `0` variants that beat E154 by the `2e-6` public-readable guardrail. Best local delta versus E154 was only `-0.000000045921`. Therefore E161 pruning rows are not a replacement first file. The next submission candidate remains `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+
 ## Current 0.54 Assessment
 
 0.54 is not blocked by a single missing model family. To approach it, one of two things must happen:

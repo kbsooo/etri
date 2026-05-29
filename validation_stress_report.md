@@ -672,3 +672,20 @@ E160 makes the E154 post-feedback rule executable.
 - score probe check: `0.5763003660` maps to `small_loss`; `0.5762880000` maps to `micro_win`.
 
 The stress implication is now operational: after E154 public feedback, run the E160 interpreter before selecting E155/E157/E156/E144. The current pre-feedback attribution makes E155 an information-only amplitude contrast at best unless the realized score lands in a tie/small-loss band and the component read points to E154-added body.
+
+## Update After E161
+
+E161 tests the most obvious E159 follow-up: prune the cells that public-free priors call risky.
+
+- script: `analysis_outputs/e161_e154_inherited_body_pruning_audit.py`.
+- pruning variants: `1608`.
+- all-four health variants: `631`.
+- control-grade variants: `299`.
+- submission-grade variants: `0`.
+- public-free safer-than-E154 variants: `1226`.
+- locally better-than-E154 variants: `180`.
+- public-readably better-than-E154 variants under the `2e-6` guardrail: `0`.
+- best local delta versus E154: `-0.000000045921`.
+- best focus expected-risk delta versus E154: `-0.000104369145`, but those high-risk prunes give up local health/edge.
+
+The stress implication is that attribution-risk pruning is real but not submission-grade before feedback. It can create safer controls inside the branch, especially by reverting a few S4/Q3/S3 cells, but it does not create an independent readable successor. This keeps the live validation object unchanged: E154 must be used as the public sensor, and E161-style pruning can only become useful if E154 feedback specifically says the branch is alive but a small component is overextended.
