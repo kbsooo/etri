@@ -1813,6 +1813,20 @@
 - Interpretation: E101's small loss is a knife-edge boundary, not a broad rejection. The public world realizes most of the S3-heavy E101 support but stops roughly one high-impact S3 cell short of beating E95.
 - Decision: no same-line submission follows from this. The public result identifies the missing object as an independent non-public sensor for the high-impact S3 support/adverse cells. Without that sensor, finer E101 amplitude or exact-score-fitted gates are leaderboard overfit.
 
+## E122. E101 Independent Sensor Boundary Audit
+
+- Observe: E121 left one practical question open: did any non-public sensor already see the exact E101 small-loss boundary, or would a post-E101 gate be public-score fitting?
+- Wonder: if train-derived subject/flank/raw priors forecast the small loss, then E101's public miss was not a surprise to all visible structure. If they also identify the rank-23 stop cell, a same-line gate might be alive.
+- Method: `analysis_outputs/e122_e101_independent_sensor_boundary_audit.py` compared pre-existing local transfer, train-flank priors, raw-context priors, and deterministic `p >= 0.5` hard gates against the actual E101-vs-E95 public delta and the rank `18-26` high-impact boundary cells.
+- Result:
+  - actual E101-vs-E95 public delta: `+0.0000090362`.
+  - best expectation sensor was `raw_full_subject_prior_y1`: expected `+0.000008889`, error `-0.000000148`, same `small_loss` branch.
+  - train-flank expectation sensors also matched the branch: `flank_conflict_flat` expected `+0.000009521`, `flank_both_distance_beta` expected `+0.000009532`, and `flank_subject` expected `+0.000007853`.
+  - the failed sensor was E119 local transfer: active-all mean expected `-0.000016205`, wrong sign and wrong branch.
+  - boundary rank `22` has low support under subject/edge/raw/posterior (`0.104/0.069/0.146/0.126`), but rank `23`, the first greedy support count that would beat E95, has high support under the same sensors (`0.958/0.972/0.864/0.940`).
+- Interpretation: the E101 small loss was forecastable by simple subject/flank/raw priors better than by the E99/E119 local transfer model. But those same sensors do not identify a usable stopping gate: the critical rank-23 cell looks support-like under every visible view.
+- Decision: no submission. E122 explains why E101 was not catastrophic, but it does not open a same-line E101 posterior gate. The next action is either a genuinely different non-public S3-cell sensor, or leaving this Q2/S3 rollback line for a different hidden-structure test.
+
 ## Current Decision
 
 가장 저비용으로 많은 가설을 가르는 실험은 E05 selector-only/pairwise-order falsification이었다. 결과는 "micro-refine을 더 많이 만들기보다 selector resolution 또는 large safe representation move가 필요하다"로 수렴한다.

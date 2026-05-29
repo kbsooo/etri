@@ -1345,6 +1345,18 @@ target co-occurrence
 - public LB 관측 반응: already observed. Future same-family files must show an independent sensor for the missing high-impact S3 cells, not merely fit the E101 public delta.
 - 제출 전략: no E121 submission. Keep E95 as current best; next file should test a different hidden structure or a newly validated S3-cell sensor.
 
+### H116. Simple subject/flank/raw priors explain E101 small-loss, but cannot gate the next file
+
+- 상태: supported as an explanation, rejected as a submission gate.
+- 왜 그럴듯한가: E121 showed the exact public result is one high-impact S3-cell scale away from beating E95. If visible train-derived priors already forecast the small-loss branch, then the E99/E119 local transfer model was the wrong sensor. If those priors identify the boundary cells, same-line repair could remain possible.
+- 맞다면: expectation-style subject/flank/raw priors should predict a positive but small E101-vs-E95 delta close to `+0.0000090362`, while the local transfer model may overestimate upside. A real gate would also need to downweight the critical rank-23 support cell that separates small loss from E95 win.
+- 틀리다면: visible priors should predict a win or a large loss, fail the E116 branch, or expose a clean high-impact cell selector that E121 missed.
+- 최소 실험: `analysis_outputs/e122_e101_independent_sensor_boundary_audit.py`, comparing pre-existing E119 local transfer, E118 train-flank priors, E114 raw-context priors, deterministic support gates, and E121 posterior cells.
+- 관측: `raw_full_subject_prior_y1` expected `+0.000008889` with error `-0.000000148`; `flank_conflict_flat` expected `+0.000009521`; `flank_both_distance_beta` expected `+0.000009532`; `flank_subject` expected `+0.000007853`. E119 active-all local transfer expected `-0.000016205`, wrong sign. The critical rank `23` S3 cell still has high support under subject, edge, raw, and posterior views (`0.958333`, `0.972222`, `0.864418`, `0.940119`).
+- 성공/폐기 기준: support the explanation because simple visible priors match the small-loss branch; reject the submission gate because no non-public view identifies rank `23` as adverse enough to stop before E95.
+- public LB 관측 반응: already observed via E101. If a future file uses E121/E122 to choose cells, require an independent sensor not derived from the E101 public delta.
+- 제출 전략: no E122 submission. Close same-line posterior gating; either search for a genuinely different S3-cell sensor or test a different hidden structure.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

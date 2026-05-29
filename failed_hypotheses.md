@@ -942,3 +942,12 @@
 - Implementation issue possible: low-medium. The active-cell LogLoss map is deterministic, and the simulations are stable at `300000` worlds per prior. The caveat is public subset normalization; this affects absolute rates but not the qualitative knife-edge result.
 - Bottleneck implication: the same-line frontier is underidentified at one or two high-impact S3 cells. Progress requires a non-public sensor for those cells or a move to a different hidden-structure hypothesis.
 - Do not repeat: creating E101 variants by fitting the exact E101 public delta, or treating posterior cell support from E121 as target labels.
+
+## FH105. E119 local transfer or existing visible priors can certify the post-E101 boundary
+
+- Failed hypothesis: the pre-public E119 local-transfer stress, or the existing subject/flank/raw support priors, should identify a same-line E101 repair after the exact E101 small-loss result is known.
+- Observed result: E122 found that E119 local transfer expected active-all E101 to improve versus E95 by `-0.000016205`, while actual public was `+0.0000090362`; it missed the sign and E116 branch. Simple visible priors explained the aggregate branch much better: `raw_full_subject_prior_y1` expected `+0.000008889`, `flank_conflict_flat` `+0.000009521`, and `flank_both_distance_beta` `+0.000009532`. But the critical rank-23 S3 cell, whose support would be the first greedy count that beats E95, remains high-support under subject, edge, raw, and posterior views (`0.958333`, `0.972222`, `0.864418`, `0.940119`).
+- Why discard: E119 is over-optimistic for this boundary, while the simple priors are explanation sensors, not action sensors. They match the aggregate small-loss branch but do not supply a non-public rule for which high-impact S3 cell to withhold.
+- Implementation issue possible: low-medium. E122 reuses E114/E118/E121 tables, and the script now regenerates ignored E118/E121 intermediate cells if absent. A richer future S3-cell sensor could still exist, but these existing sensors do not certify it.
+- Bottleneck implication: same-line post-E101 progress is blocked by cell-level underidentification, not by lack of aggregate branch explanation. The public boundary is visible in simple priors at the score level but not resolvable into a safe probability edit.
+- Do not repeat: using E119 local-transfer optimism, E121 inverse posterior, or E122 best aggregate-prior match to submit another E95-to-E101 gate. Require a genuinely new non-public S3-cell signal or switch to a different hidden-structure test.

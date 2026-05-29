@@ -163,11 +163,27 @@ E95를 단순 hardtail fallback으로만 보던 해석을 더 좁혔다. 지금 
 
 이 결과는 E101 방향이 완전히 틀렸다는 뜻이 아니다. E101은 E95를 이기기 직전까지 왔지만, public에서 고영향 S3 support가 대략 한 셀 부족했다. 그래서 병목은 "Q2/S3 rollback alpha를 더 미세하게 조절하자"가 아니라 "그 한두 개의 고영향 S3 support/adverse 셀을 public 없이 식별할 센서가 있는가"다.
 
+## 추가 관찰: simple prior는 small loss를 설명하지만 제출 gate는 아니다
+
+`analysis_outputs/e122_e101_independent_sensor_boundary_audit.py`로 E121의 열린 질문을 찔렀다.
+
+- 실제 E101-vs-E95 public delta: `+0.0000090362`.
+- `raw_full_subject_prior_y1` expected delta: `+0.000008889`.
+- `flank_conflict_flat` expected delta: `+0.000009521`.
+- `flank_both_distance_beta` expected delta: `+0.000009532`.
+- E119 local-transfer active-all expected delta: `-0.000016205`.
+- rank 22 S3 cell support probability: subject `0.104167`, edge `0.069444`, raw+prior `0.145957`, posterior `0.125880`.
+- rank 23 S3 cell support probability: subject `0.958333`, edge `0.972222`, raw+prior `0.864418`, posterior `0.940119`.
+
+이건 중요한 분리다. E101의 small loss는 완전히 예측 불가능한 일이 아니었다. 단순한 subject/flank/raw prior가 E119 local-transfer보다 훨씬 잘 맞췄다. 하지만 그건 제출 가능한 gate가 아니다. E95를 처음 이기게 만드는 rank 23 셀은 visible prior와 posterior 모두에서 여전히 support처럼 보인다.
+
+따라서 E122의 결론은 "E101 실패는 설명된다"이지 "다음 E101 변형을 제출하자"가 아니다. 현재 같은 line은 닫힌 상태다.
+
 ## 다음으로 가장 정보량이 큰 행동
 
-E95/E101을 동시에 만족하는 post-E101 public-world rebuild는 E121로 1차 완료됐다.
+E95/E101을 동시에 만족하는 post-E101 public-world rebuild는 E121-E122로 1차 완료됐다.
 
-이제 가장 정보량이 큰 행동은 같은 Q2/S3 rollback line을 더 키우는 것이 아니다. E101 결과는 E108/E104 higher-alpha, E106 subject-prior masks, E119 flank-gated variants, full E89, non-active graft automatic fallback을 닫는다. 다음 실험은 고영향 S3 셀을 public feedback 없이 구분할 독립 센서가 있는지 찾거나, 그게 없으면 같은 line을 떠나 다른 hidden structure를 찌르는 것이다.
+이제 가장 정보량이 큰 행동은 같은 Q2/S3 rollback line을 더 키우는 것이 아니다. E101 결과는 E108/E104 higher-alpha, E106 subject-prior masks, E119 flank-gated variants, full E89, non-active graft automatic fallback, E121/E122 posterior-fitted gates를 닫는다. 다음 실험은 기존 subject/flank/raw prior와 다른 종류의 고영향 S3 셀 센서가 있는지 찾거나, 그게 없으면 같은 line을 떠나 다른 hidden structure를 찌르는 것이다.
 
 ## 제출 후보
 
@@ -181,4 +197,4 @@ Resolved sensor: `analysis_outputs/submission_e101_q2s3tail_177569bc.csv`
 
 실패 시 해석이 실제로 발생했다: E95의 현재 axis/tail surgery가 standing law다. 다음 제출은 이 small-loss boundary를 새로 설명하는 후보여야 하며, E108/E104/E106/E119 또는 E89/non-active graft를 자동으로 제출하지 않는다.
 
-E121 이후 추가 해석: E101은 support budget의 약 `65.7%`를 맞췄지만 E95를 이기는 데 필요한 greedy top-flip support `23`개에는 못 미쳤다. 따라서 지금 당장 제출할 same-family 파일은 없다.
+E121-E122 이후 추가 해석: E101은 support budget의 약 `65.7%`를 맞췄고 simple priors는 이 small-loss branch를 거의 정확히 설명한다. 하지만 E95를 이기는 데 필요한 greedy rank-23 S3 cell을 public 없이 adverse로 식별하지 못한다. 따라서 지금 당장 제출할 same-family 파일은 없다.
