@@ -3011,3 +3011,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E176 has `3` adverse decoder bands that route to E154/search, while E154 has `0` bands that resolve the E176 broad/Q2-underopen worldview.
 - Interpretation: E154 is the right counter-world, but not the right first sensor. Submitting E154 first tests the repaired-branch branch but leaves the current E176 broad/Q2-underopen worldview mostly unobserved. Submitting E176 first gives the cleaner decision tree: win validates broad/Q2-underopen; adverse loss routes to E154 or representation search and forbids same-family tuning.
 - Decision: no new submission. Keep `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` as the next single public sensor. E154 becomes first follow-up only if E176 lands in an E177 adverse band or if we intentionally choose the high-binary/low-pair worldview before spending the slot.
+
+## E196. E176 Motif Nearest-Anchor Stress
+
+- Observe: E179/E180/E195 leave one narrow gap before E176 feedback: maybe E176's decisive cells can be judged by row/order/block/target motif rather than by visible priors or binary worlds.
+- Wonder: do E176 top critical cells look more like known public-winning or public-losing critical-cell motifs if label priors are ignored?
+- Method: `analysis_outputs/e196_e176_motif_nearest_anchor.py` profiles known E180 public-anchor critical cells and pending E176 cells over top4/top16/top33 swing sets. It builds `sequence_only`, `sequence_axis`, and `sequence_axis_flank` feature views using target, row-order, block, context, known-axis, and flank-conflict anatomy, then runs leave-one-known-pair nearest-neighbor stress and scores E176 nearest anchors. It creates no submission.
+- Result:
+  - report: `analysis_outputs/e196_e176_motif_nearest_anchor_report.md`.
+  - action-grade views: `0/9`.
+  - best view: `top4 / sequence_axis_flank`, known-pair LOO accuracy `0.833333`, but exact E101/E95 boundary correctness `0`.
+  - in the best view, E176's nearest anchor is `e72_vs_e95` with `new_lost`; inverse-distance vote is nearly tied, new_won `0.505761` vs new_lost `0.494239`.
+  - top16 views also place E176 nearest to `e72_vs_e95`; top33 drifts toward `mixmin_vs_a2c8`, but top33 known-pair LOO accuracy is only `0.333333`.
+- Interpretation: row/order/block motif contains real structure but is not a decisive-cell selector. It misses the exact E101/E95 boundary, and E176's top critical cells carry a mild loss-motif warning rather than a clean winner signature. The broader top33 mixmin resemblance is too weak to override that failure.
+- Decision: no new submission. Keep E176 as the next public sensor because E195's information-value argument is still stronger than motif-only nearest-anchor evidence. Do not use motif profiles to certify E176; use them only as an anatomy warning if E176 loses.

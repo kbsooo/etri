@@ -1210,3 +1210,30 @@ E195 stress-tests the next-slot choice after E194 identified E154 as the explici
   - E154 has `0` bands that resolve the E176 broad/Q2-underopen worldview.
 
 Stress implication: E154 is the live counter-world, not the first sensor. E176 first gives a two-sided decision tree: promotion if broad/Q2-underopen wins, and a pre-registered route to E154/search if it loses. Submitting E154 first is coherent only when the binary-world counterprior is intentionally promoted above the E194 flip condition.
+
+## Update After E196
+
+E196 tests a structural motif selector for E176 decisive cells.
+
+- script: `analysis_outputs/e196_e176_motif_nearest_anchor.py`.
+- report: `analysis_outputs/e196_e176_motif_nearest_anchor_report.md`.
+- views tested:
+  - `sequence_only`.
+  - `sequence_axis`.
+  - `sequence_axis_flank`.
+- top sets tested:
+  - top4.
+  - top16.
+  - top33.
+- action-grade views: `0/9`.
+- best view:
+  - `top4 / sequence_axis_flank`.
+  - known-pair LOO accuracy `0.833333`.
+  - exact E101/E95 boundary correctness `0`.
+  - mixmin broad-success correctness `1`.
+- E176 read:
+  - best-view nearest anchor `e72_vs_e95`, direction `new_lost`.
+  - inverse-distance vote new_won `0.505761`.
+  - top33 nearest winner `mixmin_vs_a2c8`, but top33 LOO accuracy only `0.333333`.
+
+Stress implication: row/order/block motif has signal but fails the frontier-boundary requirement. It is a warning/anatomy layer, not a submission selector and not enough to demote E176 before public feedback.

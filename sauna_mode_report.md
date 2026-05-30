@@ -2591,3 +2591,32 @@ E184 이후에도 제출 후보 순위는 바뀌지 않는다.
 다음으로 가장 정보량이 큰 행동:
 
 제출한다면 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` 하나다. Public LB가 나쁘면 그때 E154가 첫 counter-world로 올라온다. E176 점수를 보고 같은 family keep-factor를 다시 튜닝하는 행동은 금지한다.
+
+## E196 업데이트: E176 motif 인증은 실패했다
+
+내가 발견한 가장 이상한 점:
+
+`E176의 top critical cells는 broad/Q2-underopen 세계관의 센서인데, row/order/block motif로 보면 top4/top16은 오히려 E72-vs-E95 loss motif에 가깝다. 다만 broader top33은 mixmin 쪽으로 약하게 이동한다.`
+
+실험:
+
+- `analysis_outputs/e196_e176_motif_nearest_anchor.py`
+- report: `analysis_outputs/e196_e176_motif_nearest_anchor_report.md`
+
+결과:
+
+- action-grade motif views: `0/9`
+- best view: `top4 / sequence_axis_flank`
+- known-pair LOO accuracy: `0.833333`
+- exact E101/E95 boundary correctness: `0`
+- E176 nearest anchor in best view: `e72_vs_e95`, direction `new_lost`
+- E176 inverse-distance vote: new_won `0.505761`, new_lost `0.494239`
+- top33 nearest anchor: `mixmin_vs_a2c8`, but top33 LOO accuracy `0.333333`
+
+생각이 어떻게 바뀌었는지:
+
+`E176을 제출할 근거가 motif 인증으로 강화되지는 않았다. 오히려 critical top cells에는 약한 warning이 생겼다. 그래도 이 warning은 E176을 내리지 못한다. 이유는 motif selector가 exact E101/E95 boundary를 틀리기 때문이다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+제출한다면 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`다. E196은 E176 실패 시 해석에 쓸 warning이지, E176 제출 전 priority를 뒤집는 근거가 아니다.

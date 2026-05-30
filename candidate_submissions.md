@@ -719,3 +719,20 @@ Current submission order by information value:
 4. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` - conservative repaired-branch/tail-risk contrast, not first follow-up unless E154 branch interpretation asks for it.
 
 No new file is created by E195. The next public result must be decoded with the relevant pre-registered decoder, not by scalar score intuition.
+
+## Update After E196
+
+The single next public sensor remains:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+E196 tested a possible last-minute demotion rule: row/order/block/target motif nearest-anchor matching. It failed as an action-grade selector.
+
+- best motif view: `top4 / sequence_axis_flank`.
+- known-pair LOO accuracy: `0.833333`.
+- exact E101/E95 boundary correctness: `0`.
+- E176 nearest anchor in that best view: `e72_vs_e95`, direction `new_lost`.
+- E176 inverse-distance vote in that best view: new_won `0.505761`, new_lost `0.494239`.
+- top33 E176 profiles drift toward `mixmin_vs_a2c8`, but top33 LOO accuracy is only `0.333333`.
+
+This adds a caution, not a priority inversion. E176 is still the first sensor because its public result resolves the broad/Q2-underopen vs binary-world conflict. E196 only says not to claim E176 is certified by motif anatomy.

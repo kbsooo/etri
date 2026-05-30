@@ -1432,6 +1432,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E176 ranks first. E176-vs-E154 has `1027` moved cells and focus expected delta `-0.000093546`; E154-vs-E144 has `294` moved cells and delta `-0.000002432`; E154-vs-E155 is not readable at `-0.000001796`. E176 adverse bands route to E154/search, while E154 does not resolve the E176 broad/Q2-underopen worldview.
 - Policy: use E195 to lock next-slot order: E176 first, E154 first counter-world after adverse E176 feedback. Do not use E154-first unless deliberately adopting the high-binary/low-pair worldview before public feedback.
 
+### F165. E196 decisive-cell motif nearest-anchor profile
+
+- Hidden structure: public-decisive cells may be governed by row/order/block/target motifs rather than visible priors. If true, known public anchor motif profiles should transfer to pending E176 cells.
+- Candidates: top4/top16/top33 swing-cell profiles; target shares; context type shares; block position/length shares; subject/block coverage; e72/e101 active rates; all-veto/safe-density; flank-conflict rates; nearest-anchor distance and inverse-distance vote.
+- Label vs split test: valid as a diagnostic because public labels are used only for known-pair LOO stress and E176 is scored as pending. Invalid as a submission selector because known anchors are few and all action-grade gates fail.
+- Current evidence: `0/9` views are action-grade. The best `top4 / sequence_axis_flank` view has LOO accuracy `0.833333` but exact E101/E95 correctness `0`; E176 is nearest to `e72_vs_e95` in top4/top16 views, while top33 nearest winner evidence is weak because top33 LOO accuracy is `0.333333`.
+- Policy: use E196 as a warning/anatomy feature only. Do not demote or promote E176 based on motif nearest-neighbor scores, and do not create motif-gated E176 variants before a new exact-boundary-safe structural target exists.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

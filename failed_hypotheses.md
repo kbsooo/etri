@@ -1529,3 +1529,12 @@
 - Implementation issue possible: low. The script only joins existing pre-registered decoder and pairwise files; it does not create new labels or tune thresholds. Medium for the broader ranking because actual public feedback could still surprise either decoder.
 - Bottleneck implication: the bottleneck remains hidden-label/worldview underidentification. The next public slot should be used to distinguish pair/shape/broad-body vs binary-world, then route to E154 if E176 loses.
 - Do not repeat: promoting E154 ahead of E176 merely because it is the explicit counter-world. Promote E154 first only under an intentional high-binary/low-pair prior, or after adverse E176 feedback.
+
+## FH170. Row/order/block motif nearest anchors can certify E176 before public feedback
+
+- Failed hypothesis: E176's decisive cells can be certified or rejected before public feedback by comparing their row/order/block/target motif profile to known public-winning and public-losing transitions.
+- Observed result: E196 finds `0/9` action-grade motif views. The best view, `top4 / sequence_axis_flank`, reaches known-pair LOO accuracy `0.833333` but fails the exact E101/E95 boundary. In that best view E176 is nearest to the known losing `e72_vs_e95` transition, with only a near-tie inverse-distance new_won vote `0.505761`. Top33 shifts nearest to `mixmin_vs_a2c8`, but top33 LOO accuracy collapses to `0.333333`.
+- Why discard: motif structure exists, but it is not invariant across the exact frontier boundary that matters most. A selector that misses E101/E95 cannot safely override the E177/E195 public-sensor plan.
+- Implementation issue possible: medium. Known public anchors are few and nearest-neighbor geometry is coarse. Low for rejecting this exact shortcut because every view fails the explicit action-grade gate.
+- Bottleneck implication: row/order/sequence motif is not enough by itself. The missing representation must resolve hard-label critical cells at frontier-boundary scale, not merely cluster them by block anatomy.
+- Do not repeat: motif-only nearest-anchor certification, motif-gated E176 variants, or using E176's E72-like top4 motif as a standalone demotion rule.
