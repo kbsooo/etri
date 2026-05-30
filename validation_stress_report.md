@@ -1123,3 +1123,25 @@ E191 tests whether explicit exact-boundary hard negatives can make the E72 detec
   - E144 still has partial shape contamination pressure, but not a support-safe gate.
 
 Stress implication: the support failure is not repaired by hard-negative weighting or prototype contrast. Exact-boundary safety currently belongs to the shape/target/context view only, so support remains a diagnostic latent, not a submission selector.
+
+## Update After E192
+
+E192 decomposes the only E191-clean score instead of creating a new model.
+
+- script: `analysis_outputs/e192_shape_e72_score_anatomy.py`.
+- report: `analysis_outputs/e192_shape_e72_score_anatomy_report.md`.
+- exact E95/E101:
+  - shape E72 probability `0.031016`, below non-E72 p99.
+- known thresholds from full-data anatomy:
+  - non-E72 p95 `0.020815`.
+  - non-E72 p99 `0.044812`.
+  - known positive floor `0.804849`.
+- live branches:
+  - E144 max `0.038723`, crosses p95 in `1/3` but not p99 or positive floor.
+  - E154 max `0.007973`, never crosses p95.
+  - E176 max `0.000008`, never crosses p95.
+- nearest-neighbor stress:
+  - E144 top-3 nearest known rows are all non-E72.
+  - E176 top-3 nearest known rows are all non-E72 low-score contexts.
+
+Stress implication: clean-shape E72 score is not an action-grade live contamination selector. It is a tail-risk diagnostic. E176 remains the lowest-contamination next sensor; E144's partial alarm should be interpreted as shape-tail risk, not as proof of E72 contamination.

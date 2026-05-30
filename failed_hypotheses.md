@@ -1493,3 +1493,12 @@
 - Implementation issue possible: medium. The positive E72 set is tiny and all positives still depend on one failed anchor, so this does not prove no future one-class/contrastive target can work. Low for rejecting this exact weighting/prototype repair.
 - Bottleneck implication: the support problem is representation-level, not sample-weight level. The next useful target must separate E72 contamination and tight hardtail boundary structurally, probably with additional non-public context or a different contrastive target.
 - Do not repeat: reweighting exact E95/E101 harder, using prototype distance to E72 vs E95/E101, or calling support clean because E72-neighbor AUC is high while exact E95/E101 remains high.
+
+## FH166. Mild clean-shape E72 pressure is enough to rerank live branches
+
+- Failed hypothesis: because the boundary-clean shape-only E72 score partially flags E144, that score can be used as a live contamination selector to promote or demote E144/E154/E176.
+- Observed result: E192 decomposes the clean `shape_target_context_abs` score. E144 crosses known non-E72 p95 in only `1/3` scenarios (`0.038723` vs p95 `0.020815`), remains below non-E72 p99 (`0.044812`), and is far below the known positive floor (`0.804849`). Its nearest known top-3 rows are all non-E72. E154 and E176 never cross p95, with maxima `0.007973` and `0.000008`.
+- Why discard: the E144 signal is tail-risk evidence, not E72-like contamination evidence. It does not support a new submission or a support-gated branch change.
+- Implementation issue possible: medium. E192 full-data AUC/AP are anatomy-only and optimistic; E191 pair-LOO is the real stress layer. Low for the narrow discard because nearest-neighbor and threshold comparisons all reject live E72-positive resemblance.
+- Bottleneck implication: the remaining E72 score is useful as an energy diagnostic, but not a selector. The plateau is still caused by unresolved target/shape hard-tail calibration and hidden public critical cells, not by a missed E72-contamination gate for E176.
+- Do not repeat: treating E144's p95 crossing as positive contamination proof, or replacing E176 with E144/E154 based only on clean-shape E72 score.

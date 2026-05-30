@@ -630,3 +630,24 @@ This narrows the submission rationale again:
 4. A support-gated live file should not be created before a genuinely new structural target exists.
 
 Submission order remains unchanged. If one file is submitted next, use E176 only as the pre-registered broad/Q2-underopen sensor and decode with `analysis_outputs/e177_e176_public_feedback_decoder.py --score <PUBLIC_LB>`.
+
+## Update After E192
+
+The single next public sensor remains:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+E192 decomposed the only boundary-clean E72 score, `shape_target_context_abs`. It did not create a submission. The important live result is:
+
+- E144: one pressure scenario crosses the known non-E72 p95 (`0.038723` vs p95 `0.020815`) but stays below p99 (`0.044812`) and far below the known positive floor (`0.804849`); nearest known rows are all non-E72.
+- E154: all scenarios stay below p95, max `0.007973`.
+- E176: all scenarios stay near zero, max `0.000008`.
+
+So E192 does not promote E144/E154 and does not justify support gating. It narrows the interpretation: E144 has shape-tail risk, while E176 remains the clean broad/Q2-underopen sensor.
+
+Submission order remains unchanged:
+
+1. `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` — broad/Q2-underopen sensor with lowest E72-shape contamination.
+2. `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv` — full-Q2 reopening contrast after E176 feedback.
+3. `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` — repaired-branch alternate worldview.
+4. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` — conservative branch contrast, now explicitly marked as mild shape-tail-risk rather than contamination-positive.

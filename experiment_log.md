@@ -2949,3 +2949,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - live E176 remains near-zero contamination: max `0.000008` for the best clean shape row; E144 is still the only live branch with partial shape contamination pressure.
 - Interpretation: exact-boundary-aware weighting improves the clean shape score calibration but does not rehabilitate support. Support's conflict is not simply that E95/E101 was underweighted; support features continue to confuse the E72 correction axis with the tight frontier boundary.
 - Decision: no submission. E176 remains a shape/broad-Q2-underopen sensor. Support stays diagnostic-only until a new structural target solves both E72-heldout calibration and exact-boundary false positives.
+
+## E192. Shape-Only E72 Score Anatomy
+
+- Observe: after E191, the only boundary-clean E72-contamination diagnostic was `shape_target_context_abs`. It still gave E144 partial live pressure while leaving E176 near zero.
+- Wonder: does the clean shape score mark true E72-like contamination, a generic tail anomaly, or only an E144-specific pressure artifact?
+- Method: `analysis_outputs/e192_shape_e72_score_anatomy.py` fits the clean full-data shape score only for anatomy, decomposes live pressure-branch logits into family/target contributions, and finds nearest known pair rows in the standardized shape/target/context z-feature space. It writes no submission.
+- Result:
+  - report: `analysis_outputs/e192_shape_e72_score_anatomy_report.md`.
+  - full-data shape score separates known E72-neighbor rows from non-E72 rows with AUC/AP `1.000/1.000`; this is anatomy only, while E191 pair-LOO remains the stress evidence.
+  - exact E95/E101 stays low: mean/max `0.031016`.
+  - known non-E72 p95 is `0.020815`, p99 is `0.044812`, and known positive floor is `0.804849`.
+  - E144 has one scenario above non-E72 p95 (`0.038723`) but below p99 and far below the positive floor; its nearest known top-3 rows are all non-E72.
+  - E154 stays below p95 in all scenarios (`max 0.007973`).
+  - E176 is far below p95 in all scenarios (`max 0.000008`) and nearest-neighbors low-score bad-LeJEPA/ordinal contexts rather than E72 positives.
+  - live pressure-branch context terms are zero in this frame; the remaining signal is target/shape contribution geometry, dominated by target support-swing terms rather than deployable support-family features.
+- Interpretation: E144's partial alarm is a tail-risk score, not evidence of E72-like contamination or a reason to resurrect support gating. E176 remains the cleanest live branch under the only boundary-safe E72 diagnostic.
+- Decision: no submission. The next public sensor remains `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`, interpreted strictly as a shape/broad-Q2-underopen test.

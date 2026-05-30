@@ -2184,6 +2184,18 @@ target co-occurrence
 - public LB 관측 반응: E176 feedback should not be read as support-gate evidence. A future support-gated submission would need a new structural target, not hard-negative reweighting.
 - 제출 전략: no E191 submission. Keep E176 as shape/broad-Q2-underopen sensor; do not create support-gated E176/E154/E144 variants.
 
+### H186. Clean shape-only E72 score is a live contamination selector
+
+- 상태: 부분 지지 as diagnostic, 반증 as live selector by E192.
+- 왜 그럴듯한가: E191 left `shape_target_context_abs` as the only boundary-clean E72-neighbor score. If that score truly represented E72 contamination, live branches with high values should resemble known E72-neighbor rows and should justify branch reranking.
+- 맞다면: E144/E154/E176 pressure branches that score high should have nearest known rows enriched for E72 positives, should approach the known positive floor, and should get contributions from the same family/target geometry as known E72 positives.
+- 틀리다면: live high-ish scores will only cross non-E72 tail thresholds, nearest known rows will remain non-E72, and the branch should be interpreted as tail risk rather than contamination evidence.
+- 최소 실험: `analysis_outputs/e192_shape_e72_score_anatomy.py`.
+- 관측: E144 has one scenario above non-E72 p95 (`0.038723`) but below p99 (`0.044812`) and far below known positive floor (`0.804849`); nearest known top-3 rows are all non-E72. E154 max is `0.007973`; E176 max is `0.000008`. Exact E95/E101 stays low at `0.031016`. Live pressure-branch context terms are zero, so the live score is target/shape anatomy rather than a complete context gate.
+- 성공/폐기 기준: deployable live contamination-selector version 폐기. Diagnostic tail-risk version retained: E144 is mildly shape-tail-risk, E176 is contamination-clean.
+- public LB 관측 반응: E176 public feedback should test broad/Q2-underopen shape worldview, not E72 contamination. E144 public feedback, if ever used, should be read as an active-boundary/tail-risk contrast rather than as an E72-contamination branch.
+- 제출 전략: no E192 submission. Keep E176 as the single next sensor.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -2448,3 +2448,38 @@ E184 이후에도 제출 후보 순위는 바뀌지 않는다.
 - 의도: broad/Q2-underopen hidden-tail sensor
 - 기대 public 반응: `<=0.576276019`면 broad/Q2-underopen worldview 강화
 - 실패 시 해석: support를 더 섞는 쪽이 아니라, shape/broad branch 자체 또는 public critical-cell tail이 틀렸다고 봐야 한다
+
+## E192 업데이트: 남은 clean shape score는 gate가 아니라 tail-risk 현미경이다
+
+내가 발견한 가장 이상한 점:
+
+`E144는 clean shape E72 score에서 살짝 뜨지만, E72 positive처럼 보이지 않는다. nearest known rows가 전부 non-E72이고, known positive floor와는 두 자릿수 이상 떨어져 있다. 반면 E176은 거의 0에 붙어 있다.`
+
+실험:
+
+- `analysis_outputs/e192_shape_e72_score_anatomy.py`
+- report: `analysis_outputs/e192_shape_e72_score_anatomy_report.md`
+
+결과:
+
+- exact E95/E101 score:
+  - `0.031016`
+- known thresholds:
+  - non-E72 p95 `0.020815`
+  - non-E72 p99 `0.044812`
+  - E72 positive floor `0.804849`
+- live branch:
+  - E144 max `0.038723`, p95는 넘지만 p99와 positive floor는 못 넘음
+  - E154 max `0.007973`
+  - E176 max `0.000008`
+- nearest known:
+  - E144 top3 nearest는 모두 non-E72
+  - E176 top3 nearest도 모두 non-E72 low-score context
+
+생각이 어떻게 바뀌었는지:
+
+`clean shape score를 live contamination gate로 쓰는 생각은 약해졌다. 이 score는 E144의 꼬리 위험을 표시할 수는 있지만, E72 contamination을 증명하지 않는다. E176은 이 관점에서 가장 깨끗하다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+새 submission은 만들지 않는다. 다음 제출 후보는 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`다. 이 파일은 support/E72 gate가 아니라 broad/Q2-underopen 세계관을 묻는 센서다.
