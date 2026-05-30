@@ -2412,3 +2412,29 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - do not promote a file only because p90 is negative.
 - Failure condition:
   - if null-safe candidates remain below selector resolution and selector-visible candidates have null strict rate above `0.10`, classify the family as an invariant failure rather than a tuning failure.
+
+## E294 Candidate-Level Invariant Policy
+
+- Target hypothesis tested: candidate output geometry can distinguish true S4 lifestyle placement from matched null placements and therefore become the missing gate.
+- Feature/representation source:
+  - E293 candidate and null score features;
+  - selector deltas versus E247;
+  - anchor/reference geometry;
+  - S4-local probability/movement features;
+  - leave-one-source-out actual-vs-null classifiers.
+- Validation result:
+  - source candidates: `64`;
+  - matched null rows: `1344`;
+  - best actual-vs-null AUC: `0.883498`;
+  - S4-local AUC: `0.619617`;
+  - public-ready candidates: `0`.
+- Updated registry status:
+  - actual-vs-null identity is approved as a diagnostic only.
+  - all-output realness is not approved as a promotion gate.
+  - S4-local realness is too weak to use.
+- Adopt rule for future candidate-level features:
+  - train on outcome health, not identity, whenever possible;
+  - report the sign of correlation with null strict rate;
+  - reject any gate whose score increases with null strict promotion.
+- Failure condition:
+  - if a learned realness score separates actual from null but correlates positively with null strict rate, classify it as shortcut geometry rather than hidden-state recovery.

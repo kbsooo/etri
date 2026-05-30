@@ -2187,3 +2187,12 @@
 - Implementation issue possible: low for rejecting this sweep family. E293 directly evaluates the intended S4 files against matched nulls. Medium for the broader S4 branch because a different candidate-level invariant or a validated tiny-edge selector could still use the same pocket.
 - Bottleneck implication: public LB should not be spent on S4 low-null variants until candidate visibility and null rarity are learned jointly.
 - Do not repeat: submitting `submission_e293_s4lownull_*` files or running another amplitude/top-k sweep without changing the invariant.
+
+## FH243. Actual-vs-null candidate identity is enough to gate S4 low-null submissions
+
+- Failed hypothesis: because E293 actual placements are matched against explicit null placements, a learned actual-vs-null identity score should provide the missing submission gate.
+- Observed result: E294 learns actual-vs-null identity well (`all_output` AUC `0.883498`, top3 `0.671875`), but this realness score is not healthy. S4-local AUC is only `0.619617`, and realness correlates positively with null strict rate (`+0.360322` all-output, `+0.478847` selector-only). Public-ready candidates remain `0`.
+- Why discard: the learned signal recognizes broad output/anchor geometry and movement identity, not safe hidden S4 state. It is entangled with the same movement that matched nulls can exploit.
+- Implementation issue possible: low for rejecting actual-vs-null identity as a gate, because the leave-one-source-out stress directly tests whether identity transfers across candidate sources. Medium for future outcome models, because low-null positive examples are scarce.
+- Bottleneck implication: the bottleneck is target definition. The next latent target must be selector-visible and null-rare outcome, not actual placement identity.
+- Do not repeat: using high actual-vs-null realness as a public submission reason or adding more output-geometry identity classifiers without outcome health checks.

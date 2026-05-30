@@ -3328,6 +3328,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E293. A public win from an E293 file would mean the current matched-null governor is overly conservative exactly at the S4 cliff, but local evidence does not justify that sensor spend.
 - 제출 전략: none. Future strategy must change the invariant or governor resolution, not simply tune S4 amplitude.
 
+### H294: candidate-level actual-vs-null identity can gate S4 low-null submissions
+
+- 상태: rejected as a promotion gate; supported only as a diagnostic of movement identity.
+- 왜 그럴듯한가: E293 might fail because the old selector cannot see the difference between real and null S4 placements. If output-space geometry can identify the actual placement, it could provide the missing LeJEPA-style health gate.
+- 맞다면: a leave-one-source-out actual-vs-null classifier should rank the actual placement above nulls, and its realness score should correlate with lower null strict rate, higher mean dominance, and public-free readiness.
+- 틀리다면: actual-vs-null classification may work, but the score will track movement size or selector artifacts and correlate with null promotion rather than safety.
+- 최소 실험: `analysis_outputs/e294_s4_candidate_invariant_audit.py`.
+- 관측: actual-vs-null identity is learnable (`all_output` AUC `0.883498`, top3 `0.671875`), but S4-local AUC is only `0.619617`. Realness correlates positively with null strict rate (`+0.360322` all-output, `+0.478847` selector-only), and public-ready remains `0`.
+- 성공/폐기 기준: reject actual-vs-null realness as a submission gate. Keep it only as evidence that the recognizable part of the tensor is broad output geometry rather than safe S4 hidden state.
+- public LB 관측 반응: no public LB should be spent on E294. A public win from a high-realness E293 candidate would mean the matched-null stress is too conservative, but the local sign is adverse because high realness is also high null-promotion.
+- 제출 전략: none. Next strategy should target low-null outcome directly or pivot to another hidden-state family with more positive safe examples.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -3076,3 +3076,30 @@ Decision:
 - Do not submit any E293 file.
 - Public LB is preserved.
 - The S4 low-null pocket has a resolution cliff: null-safe movement is too small, and selector-visible movement is placebo-reproducible.
+
+## E294 S4 Candidate-Level Invariant Governor
+
+Question: can output-space candidate geometry distinguish real S4 lifestyle placement from matched null placement?
+
+Method: `analysis_outputs/e294_s4_candidate_invariant_audit.py`.
+
+- Input: E293 candidate scores and matched row/subject/dateblock null scores.
+- Stress: leave-one-source-out actual-vs-null classification.
+- Feature sets: selector, anchor geometry, S4-local, and all output-space features.
+- Submission health check: correlation between realness and null strict rate / mean dominance / p90 dominance.
+
+Result:
+
+- source candidates: `64`.
+- matched null rows: `1344`.
+- best actual-vs-null AUC: `0.883498`.
+- best top3 actual rank rate: `0.671875`.
+- S4-local-only AUC: `0.619617`.
+- realness vs null strict rate: positive, not negative.
+- public-free ready candidates: `0`.
+
+Decision:
+
+- Do not submit any E294/E293 file.
+- Public LB is preserved.
+- Candidate identity is learnable, but it is not a safe promotion invariant.

@@ -1,0 +1,8 @@
+feature,actual_better_direction,mean_actual_better_than_null_rate,median_actual_better_than_null_rate,source_rate_ge_0p8,source_rate_le_0p2
+pred_delta_vs_current_p90,lower,0.765625,0.7857142857142857,0.5,0.0
+move_abs_a2c8_S4,higher,0.6867559523809523,0.6904761904761905,0.296875,0.0
+bad_axis_abs_load,lower,0.5587797619047619,0.6190476190476191,0.140625,0.0625
+mean_prob_S4,higher,0.47247023809523814,0.47619047619047616,0.0,0.0
+pred_delta_vs_current_p10,lower,0.40104166666666663,0.38095238095238093,0.0,0.03125
+pred_delta_vs_current_mean,lower,0.3943452380952381,0.38095238095238093,0.0,0.046875
+raw05_a2c8_compat_energy,lower,0.35416666666666663,0.38095238095238093,0.0,0.21875

@@ -2776,3 +2776,34 @@ Next submission candidate requirement:
 - a future S4 lifestyle candidate must either pass a different candidate-level invariant or use a validated tiny-edge selector;
 - negative p90 alone is not enough;
 - do not spend public LB on S4 low-null scale variants.
+
+## Update After E294 S4 Candidate-Level Invariant Audit
+
+Current submission policy remains: **no new public submission.**
+
+What was tested:
+
+- whether E293 actual S4 placements can be distinguished from matched row/subject/dateblock null placements;
+- leave-one-source-out actual-vs-null classifiers;
+- selector, anchor geometry, S4-local, and all-output feature sets;
+- whether realness aligns with null safety.
+
+What was learned:
+
+- Actual placement is learnable: best AUC `0.883498`.
+- But this does not certify submission health. High realness correlates with high null strict rate.
+- S4-local features alone are weak (`0.619617` AUC), so the learned identity is mostly broad output/anchor geometry.
+- Public-ready files remain `0`.
+
+Do not submit:
+
+- any `analysis_outputs/submission_e293_s4lownull_*.csv` file based on E294 realness.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+Next submission candidate requirement:
+
+- the next gate must predict `selector-visible + null-rare`, not merely `actual placement`;
+- if there are too few positive examples for that target, pivot to another human-state branch instead of tuning S4 further.

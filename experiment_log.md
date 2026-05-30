@@ -4483,3 +4483,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - stronger p90 candidates around `-0.000268` have null strict rate `1.000000`.
 - Interpretation: the S4 lifestyle pocket is not fake, but it has a hard resolution cliff. Below the cliff it is placebo-resistant but too small for submission; above the cliff matched nulls also promote. More scale tuning is unlikely to solve this because the failure is discrete candidate-level invariance, not amplitude granularity.
 - Decision: no E293 public submission. The next branch should not spend public LB on S4 low-null files. It should either learn a candidate-level null-outcome invariant, change the local selector resolution for tiny but null-safe S4 edits, or pivot away from this branch.
+
+## E294. S4 Candidate-Level Invariant Audit
+
+- Observe: E293's S4 branch failed by a cliff: real placement could be null-safe when tiny, but selector-visible movement became null-reproducible.
+- Wonder: does the candidate tensor itself contain a public-free invariant that distinguishes the real S4 lifestyle placement from its matched row/subject/dateblock null placements?
+- Method: `analysis_outputs/e294_s4_candidate_invariant_audit.py` reuses E293 candidate scores and matched null scores. It trains leave-one-source-out classifiers to separate actual placement from null placements using selector features, anchor geometry, S4-local features, and all output-space features. It then checks whether "actual realness" aligns with submission health. No public LB was used and no submission was generated.
+- Result:
+  - source candidates: `64`;
+  - matched null rows: `1344`;
+  - best actual-vs-null AUC: `0.883498` with `all_output`;
+  - top3 actual rank rate: `0.671875`;
+  - S4-local-only AUC: `0.619617`;
+  - realness vs null strict Spearman: `+0.360322` for `all_output`, `+0.478847` for selector-only;
+  - public-free ready candidates: `0`.
+- Interpretation: actual placement is visible, but not in a healthy way. The visibility mostly comes from broad output/anchor geometry, not clean S4 semantics, and it increases with matched-null strict promotion. In JEPA terms, this is a recognizable representation that is not a useful latent gate: it recognizes movement identity, not low-risk hidden state.
+- Decision: no E294 public submission. Do not use actual-vs-null realness as a promotion gate. The next useful target must be "selector-visible and null-rare outcome", not actual placement identity.

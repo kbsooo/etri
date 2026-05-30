@@ -506,3 +506,18 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - strongest p90 candidates: null strict rate `1.000000`.
 - interpretation: S4 lifestyle-bin low-null signal is a diagnostic pocket, not a submission-ready file. The failure mode is a discrete selector/invariant cliff.
 - next experiment: do not spend public LB on another S4 scale variant. Either build a candidate-level null-outcome invariant or switch to a different hidden-state branch.
+
+## Public-Free Observation: E294
+
+- submission files: none generated.
+- public LB: not submitted.
+- reason not submitted: E294 was a diagnostic audit and produced `0` public-ready candidates.
+- local observation:
+  - source candidates: `64`;
+  - matched null rows: `1344`;
+  - best actual-vs-null AUC: `0.883498`;
+  - S4-local-only AUC: `0.619617`;
+  - realness vs null strict rate: positive;
+  - public-free ready files: `0`.
+- interpretation: E293 actual placement identity is learnable, but it is not the desired hidden state. It tracks broad output geometry and null-promotable movement.
+- next experiment: avoid E293/S4 public submissions. Either train a direct null-outcome gate if enough positives can be created, or pivot to a different lifestyle state with cleaner target evidence.
