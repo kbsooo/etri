@@ -47,6 +47,40 @@ Core invariants baked into the decoder:
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | q2_underopen_breakthrough | 0.644880632909 | 0.573288885104 | 0.77452446544 | 0.093921574293 | 0.226423980395 | 0.773576019605 | 0.24577113637 |
 
+## Selected Score Decode
+
+```json
+{
+  "between_train_runs_focus_share": 0.7745244654395543,
+  "component_interpretation": "The broad partial-reopen body gives back the frontier edge.",
+  "drop_top33_remaining_focus_share": 0.7735760196046824,
+  "followup_body_rollback_fraction": 0.8775761177039181,
+  "followup_candidate": "e154_counterworld",
+  "followup_changed_cells": 1027.0,
+  "followup_condition": "Demote partial-reopen; test repaired-branch counter-world or search.",
+  "followup_file": "analysis_outputs/submission_e154_s3repair_9f2e2e73.csv",
+  "followup_off_e176_abs_share": 0.2925009591938516,
+  "followup_role": "body_exit_counterworld",
+  "followup_rollback_abs_share": 0.6268578548662456,
+  "followup_top33_rollback_count": 31.0,
+  "forbidden_action": "Do not submit E169 or E166 unless explicitly spending a falsification slot.; Do not infer Q2-only causality from the scalar score.",
+  "kill_switch": "Close same-family followups unless explicitly spending a falsification slot.",
+  "outcome": "branch_loss",
+  "primary_s_focus_share": 0.573288885103777,
+  "public_lb_hi_inclusive": 0.5763413298,
+  "public_lb_lo_exclusive": 0.5763066405,
+  "q2_only_focus_share": 0.0939215742930403,
+  "required_next_evidence": "Non-collinear latent or repaired-branch counter-world.",
+  "s_only_focus_share": 0.6448806329086503,
+  "score": 0.576311831,
+  "strengthened": "Current broad partial-reopen axis gives back frontier edge",
+  "top33_focus_share": 0.2264239803953178,
+  "top33_visible_support": 0.2457711363703791,
+  "weakened": "E176/E174/E172/E169 as expected-score follow-ups",
+  "worldview_update_class": "close_same_family_expected_score_lane"
+}
+```
+
 ## Decision
 
 No submission is created. After E176 public feedback, run this decoder with `--score` before choosing any follow-up file.

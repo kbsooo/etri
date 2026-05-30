@@ -959,3 +959,25 @@ Then follow the selected route:
 5. Hard fail: close the same-family expected-score lane and return to non-collinear hidden-structure search.
 
 Do not choose E172, E154, or E174 from scalar closeness alone.
+
+## Update After E206
+
+E176 is resolved:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` -> public LB `0.576311831`
+
+E205 selected route:
+
+- outcome: `branch_loss`
+- worldview update: `close_same_family_expected_score_lane`
+- follow-up role: `body_exit_counterworld`
+- follow-up file: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`
+
+Submission order now changes:
+
+1. Do not submit E174 as a rescue; Q2 amplitude is not the explanation.
+2. Do not submit E172 as the immediate next file; E172 was reserved for tie/small-loss safety, and this was branch loss.
+3. If using an existing file next, E154 is the coherent sensor because it exits the E176 body.
+4. If not spending a slot on E154, return to non-collinear hidden-block/sequence/target-dependency search.
+
+Current read: E176 disproves the expected-score version of the broad partial-reopen family, not the existence of S-stage/body signal itself.

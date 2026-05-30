@@ -8,8 +8,8 @@ Current public frontier:
 - Public LB: `0.5762913298`
 - Previous frontier: `analysis_outputs/submission_mixmin_0c916bb4.csv`
 - Improvement over previous frontier: `0.0000153107`
-- Current best next sensor: `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
-- Latest diagnostic: E205 turns E201-E204 into an executable post-E176 public-feedback decoder. After E176 public LB arrives, run `python3 analysis_outputs/e205_e176_public_feedback_executable_decoder.py --score <E176_PUBLIC_LB>` before choosing any follow-up.
+- Latest resolved sensor: `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` public LB `0.576311831`
+- Latest diagnostic: E206 applies the E205 decoder and classifies E176 as `branch_loss`. Same-family broad partial-reopen expected-score follow-ups are weakened; the coherent existing follow-up is E154 body-exit counter-world, or non-collinear latent search.
 
 Primary working notes:
 

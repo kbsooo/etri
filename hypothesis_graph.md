@@ -2352,6 +2352,18 @@ target co-occurrence
 - public LB 관측 반응: public feedback becomes an input to `--score`, not a free-form optimizer. Win/tie/loss branches update the corresponding worldview without reopening scalar Q2 keep-factor sweeps.
 - 제출 전략: no E205 submission. Before any post-E176 file, run `python3 analysis_outputs/e205_e176_public_feedback_executable_decoder.py --score <E176_PUBLIC_LB>`.
 
+### H200. The E176 broad partial-reopen family gives back the public frontier edge
+
+- 상태: 지지 by E206 public observation.
+- 왜 그럴듯한가: E176 had strong local broad-body diagnostics but weak hard-label/top-cell resolution. If public tail cells disagreed, the broad body could give back the E95 edge even if the representation was non-collapsed.
+- 맞다면: actual E176 public LB should land in an E205 adverse band, and the decoder should route away from E176/E174/E172 same-family expected-score followups.
+- 틀리다면: E176 should land in clean/micro/tie bands where same-family safety or Q2-amplitude probes remain live.
+- 최소 실험: `python3 analysis_outputs/e205_e176_public_feedback_executable_decoder.py --score 0.576311831`.
+- 관측: public LB `0.576311831`; delta vs E95 `+0.0000205012`; delta vs mixmin `+0.0000051905`; E205 outcome `branch_loss`; worldview update `close_same_family_expected_score_lane`; follow-up role `body_exit_counterworld` with E154.
+- 성공/폐기 기준: supported for public expected-score ordering unless a later private result or paired public sensor proves E176-like body helps outside the public subset. It does not prove the broad S-stage/body signal is nonexistent; it proves this translation is not public-frontier-safe.
+- public LB 관측 반응: same-family expected-score lane is weakened. E174/Q2 sibling and E172 immediate safety are not the next action; E154/search is coherent.
+- 제출 전략: do not submit E174, E172, E169, or E166 as automatic follow-up. Submit E154 only if deliberately testing the repaired-branch counter-world; otherwise design a non-collinear hidden-structure experiment.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

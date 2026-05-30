@@ -1512,6 +1512,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E205 joins E201-E204 into an executable routebook. Example `0.576291` routes to E172 safety, `0.576303` routes to E154 counter-world, and clean win bands explicitly forbid immediate sibling sweeps.
 - Policy: run `python3 analysis_outputs/e205_e176_public_feedback_executable_decoder.py --score <E176_PUBLIC_LB>` before any post-E176 action. Do not manually choose E172/E154/E174/Q2 siblings from scalar closeness.
 
+### F175. E206 actual E176 branch-loss observation
+
+- Hidden structure: a non-collapsed broad body can still be public-adverse if frontier high-swing hard-label cells cancel it. This is now observed, not hypothetical, for E176.
+- Candidates: actual public LB, delta vs E95/mixmin/E101, E205 selected route, selected follow-up file, weakened family, forbidden sibling actions, and component attribution.
+- Label vs split test: valid as public-sensor evidence because it is an actual leaderboard observation. Invalid as a private-proof because public subset may differ from private.
+- Current evidence: E176 public LB `0.576311831`, E205 route `branch_loss`, follow-up role `body_exit_counterworld`, E154 selected as existing-file counter-world. E176 is worse than E95 by `+0.0000205012`.
+- Policy: treat E176/E174/E172/E169 as weakened expected-score followups. Use E154 only as a counter-world test, not as a scalar rescue; otherwise return to non-collinear representation search.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

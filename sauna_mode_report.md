@@ -2919,3 +2919,31 @@ E176 public band를 먼저 보고, 그 band가 묻는 세계관에 맞는 follow
 다음으로 가장 정보량이 큰 행동:
 
 E176 public LB가 들어오면 `python3 analysis_outputs/e205_e176_public_feedback_executable_decoder.py --score <E176_PUBLIC_LB>`를 먼저 실행한다.
+
+## E206 업데이트: E176은 branch loss였다
+
+내가 발견한 가장 이상한 점:
+
+`E176은 local evidence로는 넓은 S-stage / between-train-runs body가 살아 있었지만, public에서는 mixmin보다도 나빠졌다. body는 보였는데 public frontier edge는 돌아오지 않았다.`
+
+실험:
+
+- submission: `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+- public LB: `0.576311831`
+- decoder: `python3 analysis_outputs/e205_e176_public_feedback_executable_decoder.py --score 0.576311831`
+
+결과:
+
+- E95 대비 `+0.0000205012`
+- mixmin 대비 `+0.0000051905`
+- E101 대비 `+0.000011465`
+- E205 outcome: `branch_loss`
+- next coherent existing file: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`
+
+생각이 어떻게 바뀌었는지:
+
+`E176/E174/E172/E169 같은 broad partial-reopen family를 expected-score 후보로 계속 미는 길은 약해졌다. 이 결과는 Q2 keep-factor의 실패가 아니라, broad body가 public hard-label/tail realization에서 frontier edge를 되돌려준 사건이다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+E154로 repaired-branch counter-world를 묻거나, 아예 non-collinear hidden-block/sequence/target-dependency representation으로 돌아간다. E174/Q2 sibling과 E172 immediate safety는 이번 score의 다음 질문이 아니다.

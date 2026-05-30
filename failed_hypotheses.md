@@ -1619,3 +1619,12 @@
 - Implementation issue possible: low. E205 is a join over locked CSV artifacts and creates no submission. The main operational risk is submitting a follow-up without running it with the real score.
 - Bottleneck implication: one plateau bottleneck is feedback-resolution discipline. Public LB is useful only if each observed scalar kills or preserves a specific worldview.
 - Do not repeat: choosing E172, E154, E174, or a Q2 sibling from scalar intuition after E176. Run `python3 analysis_outputs/e205_e176_public_feedback_executable_decoder.py --score <E176_PUBLIC_LB>` first.
+
+## FH180. E176 broad partial-reopen is an expected-score improvement over E95
+
+- Failed hypothesis: E176's broad S-stage / between-train-runs body with Q2 under-opening is not just a useful public sensor, but a likely expected-score improvement over E95.
+- Observed result: E176 public LB is `0.576311831`, worse than E95 by `+0.0000205012` and worse than mixmin by `+0.0000051905`. E205 decodes the score as `branch_loss`, not tie/small-loss.
+- Why discard: the broad body may be real locally, but public frontier LogLoss is decided by hard-label tail realization at a scale where this body gives back the E95 edge. The scalar score also does not justify Q2-only tuning because E202/E203 showed Q2-only is a small expected-share component.
+- Implementation issue possible: low for the public outcome and decoder route. Medium for global private inference because public subset may not equal private, but this candidate's expected-score public route is closed.
+- Bottleneck implication: the plateau is not solved by broad partial-reopen amplitude. The missing object is a representation that can identify public-favorable high-swing cells or a genuinely non-collinear latent branch.
+- Do not repeat: E174/Q2 sibling, E172 immediate safety, or E169/E166 broad expected-score follow-up after this branch-loss result. Use E154 only as body-exit counter-world, or search outside the same-family lane.

@@ -3163,3 +3163,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - clean E176 win or breakthrough routes to no immediate sibling; first decompose S-stage / between-train-runs body.
 - Interpretation: E205 adds no score and no model, but it removes the last post-score interpretive freedom. E176 is now a fixed measurement protocol: score band first, component/body-tail interpretation second, follow-up role third.
 - Decision: before any post-E176 action, run `python3 analysis_outputs/e205_e176_public_feedback_executable_decoder.py --score <E176_PUBLIC_LB>`. Do not manually translate the scalar score into Q2 tuning, E172 safety, E154 counter-world, or E174 amplitude without this decoder.
+
+## E206. E176 Public Observation Assimilation
+
+- Observe: `submission_e176_abl_q2_to0p75_91e49725.csv` returned public LB `0.576311831`, worse than E95 by `+0.0000205012`, worse than mixmin by `+0.0000051905`, and worse than E101 by `+0.000011465`.
+- Wonder: which pre-registered E205 branch does the actual scalar score activate, and what does it kill?
+- Method: ran `python3 analysis_outputs/e205_e176_public_feedback_executable_decoder.py --score 0.576311831`.
+- Result:
+  - selected JSON: `analysis_outputs/e205_e176_public_feedback_executable_decoder_selected.json`.
+  - decoded outcome: `branch_loss`.
+  - worldview update: `close_same_family_expected_score_lane`.
+  - component interpretation: "The broad partial-reopen body gives back the frontier edge."
+  - follow-up candidate: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+  - follow-up role: `body_exit_counterworld`.
+  - weakened: `E176/E174/E172/E169 as expected-score follow-ups`.
+- Interpretation: this is not a Q2 keep-factor result. E176 was mostly S-stage / between-train-runs body, and public rejected that broad partial-reopen body at expected-score scale. The earlier warning was correct: body-level local evidence can be real while a small set of public hard-label cells cancels the frontier edge.
+- Decision: do not submit E174 or another Q2 sibling. Do not use E172 as first response because this was not tie/small-loss. The coherent existing next sensor is E154 if testing the repaired-branch counter-world; otherwise move to non-collinear hidden-structure search.
