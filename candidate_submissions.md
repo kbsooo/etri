@@ -1517,3 +1517,23 @@ Submission policy:
 2. If the next public question is the clean unpruned Q3/S4 JEPA translator, submit E224 instead.
 3. If the goal is to test the hand-prune counterfactual after E224 feedback, keep E230 as the comparator.
 4. Do not submit lower-ranked E237 siblings before the top file; they answer the same cell-tail question with weaker stress metrics.
+
+## Update After E238
+
+E238 does not create a new submission. It locks how the top E237 public result must be interpreted before seeing the score.
+
+Routebook:
+
+- `<=0.576276019`: clean support for learned Q3 decisive-cell JEPA.
+- `0.576276019..0.576288330`: weak support; wait for E224/E230 contrast before siblings.
+- `0.576288330..0.576294330`: tie; prefer E224 as the cleaner contrast if still untested.
+- `0.576294330..0.576306641`: weak-to-clear rejection; do not tune E237 top-k siblings.
+- `0.576306641..0.576341330`: branch loss; move to E166/E154 or another target representation.
+- `>0.576591330`: E216-like translator collapse; rebuild the target instead of threshold-tuning.
+
+Current one-file policy:
+
+1. Learned-JEPA Q3-tail question: `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+2. Clean unpruned JEPA question: `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+3. Hand-prune control after E224 attribution: E230 risk/swing files, not before.
+4. E216-style S2/maskfam siblings remain demoted after public `0.5772865088`.

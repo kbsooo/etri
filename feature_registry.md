@@ -1738,6 +1738,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E237 scans `240` materialized rows and selects `7`. The top candidate drops `25` Q3 cells and no S4 cells, with expected loss vs E224 `-0.000005612`, adverse reduction `0.000576400`, actual-vs-E95 adverse reduction `0.000553281`, support gain `0.006450259`, and E230 risk-top21 overlap `11`.
 - Policy: use F202 only for the learned Q3 decisive-cell JEPA branch. Top candidate is `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`. Do not generalize it into an S2 or S4 gate without separate target-specific stress.
 
+### F203. E238 public-feedback routebook features
+
+- Hidden structure: the same public score can mean different things unless the candidate's movement anatomy and contrast files are fixed in advance.
+- Candidates: E237 public outcome band, E237-vs-E224 delta band, pairwise movement cosine, target abs-share, Q3 cell overlap with E230 hand-prunes, and E216-like fail distance.
+- Label vs split test: this is not a training feature and must not be used to tune probabilities. It is an interpretation feature for future public feedback.
+- Current evidence: E238 locks clean support at `<=0.576276019`, unresolved tie through `0.576294330`, branch loss above `0.576306641`, and E216-like collapse above `0.576591330`. E237 changes `25` Q3 cells versus E224, overlaps E230 swing25 by `13`, and overlaps E230 risk21 by `11`.
+- Policy: use F203 only after an E237 public score is known. Do not create lower-ranked E237 siblings from one scalar public result; use the routebook to decide whether E224, E230, E166, E154, or a new target representation is the next question.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

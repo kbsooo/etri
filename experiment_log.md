@@ -3638,3 +3638,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - top metrics: expected loss vs E224 `-0.000005612`, adverse reduction vs E224 `0.000576400`, support gain vs E224 `0.006450259`, actual adverse reduction vs E224 `0.000553281`, Q3 top1/expected `0.747139811`, E230 risk-top21 overlap `11`.
 - Interpretation: the row-level learned tail mask was the wrong granularity. A JEPA-style target that predicts decisive row-target cells recovers a learned Q3-only prune aligned with the earlier hand-prune geometry, while still leaving S4 untouched.
 - Decision: if spending one submission on the learned-JEPA Q3-tail question, use the top E237 file. E224 remains the cleaner unpruned JEPA sensor; E230 remains the hand-prune comparator. E237 is stronger than E236 because it passes both graft and actual public-free stress, but it is still public-unverified.
+
+## E238. E237 Public Feedback Decoder
+
+- Observe: E237 produced the first learned cell-level JEPA Q3-tail candidate, but a single public score would be easy to over-interpret without a pre-registered decoder. The E216 public miss also makes it important to distinguish a small Q3-tail loss from a true JEPA translator collapse.
+- Wonder: if E237 is submitted, what score bands should strengthen or kill the learned Q3 decisive-cell world, and how much does E237 actually overlap E230 hand-prunes?
+- Method: `analysis_outputs/e238_e237_public_feedback_decoder.py` builds a routebook for future E237 public LB, an optional E237-vs-E224 contrast decoder, and movement/cell-overlap anatomy versus E224, E230, E154, and E95. It trains no model and creates no submission.
+- Result:
+  - report: `analysis_outputs/e238_e237_public_feedback_decoder_report.md`.
+  - clean win band: `<=0.576276019`; micro-win up to `0.576288330`; tie up to `0.576294330`; small loss up to E101 `0.576300366`; mixmin-safe loss up to `0.576306641`; branch loss up to `0.576341330`; hard fail up to `0.576591330`; E216-like fail above that.
+  - E237-vs-E224 contrast routebook is fixed: readable E237 win over E224 requires `<= -0.000010`, micro win `<= -0.000003`, tie within `+/-0.000003`.
+  - E237 top changes only `25` Q3 cells vs E224. It overlaps E230 swing25 by `13` cells and E230 risk21 by `11` cells, so it is related but not identical to the hand-prune.
+  - E237 from E95 remains a Q3/S4 movement: Q3 abs share `0.466410`, S4 `0.415839`, cosine vs E224 `0.891501`.
+- Interpretation: public feedback on E237 is now identifiable. A win supports learned Q3 decisive-cell JEPA, a tie/small loss requires E224 contrast, and a branch loss closes same-family top-k tuning rather than just picking another E237 sibling.
+- Decision: if E237 is submitted, decode with `python3 analysis_outputs/e238_e237_public_feedback_decoder.py --score <PUBLIC_LB>`; if E224 is also known, add `--e224-score <E224_LB>`.

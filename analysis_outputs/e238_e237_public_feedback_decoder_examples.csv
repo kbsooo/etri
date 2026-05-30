@@ -1,0 +1,10 @@
+score,outcome,world_update_class,delta_vs_e95,next_action,candidate_to_test
+0.5762513297999999,cell_tail_breakthrough,strong_support,-4.0000000000040004e-05,"Do not tune a lower-ranked E237 sibling. First compare against E224 if available, then audit which Q3 cells carried the gain.",conditional:e237_component_attribution_or_e224_contrast
+0.5762713298,clean_win,support,-2.0000000000020002e-05,Promote E237 as the learned-Q3-tail anchor. Submit E224 only if the explicit next question is how much the learned prune contributed.,analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv
+0.5762833298,micro_win,weak_support,-8.000000000008e-06,"Keep E237 as preferred learned-JEPA sensor, but wait for E224/E230 contrast or exact-score cell attribution before siblings.",conditional:e237_exact_cell_attribution
+0.5762913298,tie,underresolved,0.0,"Do not submit lower-ranked E237 files. If E224 is untested, E224 becomes the cleaner contrast; otherwise compare E237-E224.",analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv
+0.576300366,small_loss,weak_rejection,9.036200000034356e-06,"Use E224-vs-E237 contrast if E224 is known. If E224 is unknown, do not choose E230/E237 siblings until the loss is attributed.",conditional:e224_or_loss_attribution
+0.5763066405,mixmin_safe_loss,rejection,1.5310700000048527e-05,Demote E237 siblings. Keep E224 only as a clean diagnostic or move to E166/E154 branch depending on the next hidden-world question.,conditional:e166_or_e154_or_e224_diagnostic
+0.5763163298,branch_loss,strong_rejection,2.5000000000052758e-05,Close E237 siblings as expected-score candidates. Use E166 for independent broad-world testing or E154 for repaired-branch testing.,conditional:e166_or_e154
+0.5763913298,hard_fail,hard_rejection,9.999999999998899e-05,Run miss anatomy before any further E224/E230/E237 family submission.,conditional:e237_public_miss_anatomy
+0.5772865088,e216_like_fail,translator_collapse,0.0009951790000000127,Treat E237 as a root-cause failure. Rebuild the target representation rather than tuning a cell threshold.,conditional:root_cause_rebuild

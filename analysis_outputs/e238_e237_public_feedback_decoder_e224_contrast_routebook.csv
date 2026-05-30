@@ -1,0 +1,5 @@
+outcome,delta_lo_exclusive,delta_hi_inclusive,contrast_update,next_action
+e237_beats_e224_readably,-inf,-1e-05,The learned Q3 cell-prune adds public value beyond the clean E224 body.,Promote E237 over E224; use E230 only as a hand-prune control.
+e237_beats_e224_micro,-1e-05,-3e-06,"The learned prune helps, but only at hard-label-resolution scale.",Keep E237 as preferred learned sensor; do not tune top-k without attribution.
+e237_e224_tie,-3e-06,3e-06,The learned prune is not public-readable versus E224.,Prefer the cleaner E224 for worldview reading; E237 remains diagnostic.
+e237_worse_than_e224,3e-06,inf,The learned Q3 cell-prune removed public-useful Q3 movement or selected wrong cells.,Demote E237 siblings; compare E224 against E230 hand-prune only if Q3 tail blame remains.

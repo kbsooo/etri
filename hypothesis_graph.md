@@ -2748,6 +2748,18 @@ target co-occurrence
 - public LB 관측 반응: if top E237 wins or cleanly beats E224/E95, strengthen the "decisive Q3 cell-tail" world and demote pure row-level JEPA gates. If it loses materially, treat E237 as another local-tail false positive and return to E224/E166/E154 branch routing.
 - 제출 전략: top learned-JEPA Q3-tail candidate is `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
 
+### H233. E237 public feedback is identifiable only through a pre-registered contrast routebook
+
+- 상태: 지지 by E238 governance; public LB 미확인.
+- 왜 그럴듯한가: E237 is close to E224/E230 in movement family, while E216 showed that a JEPA-looking local translator can fail by almost `0.001`. A scalar public score alone cannot say whether the Q3 cell law worked, tied, or collapsed unless the score bands and contrast files are fixed first.
+- 맞다면: a routebook should separate clean win, tie, small loss, branch loss, and E216-like collapse before public feedback. It should also identify whether E237 is a new learned object or just E230 hand-prune duplication.
+- 틀리다면: E237/E224/E230 movement anatomy would be too entangled to make any pre-score interpretation stable, or the routebook would require post-hoc thresholds from the public score.
+- 최소 실험: `analysis_outputs/e238_e237_public_feedback_decoder.py`.
+- 관측: clean support band is `<=0.576276019`; tie is `0.576288330..0.576294330`; branch loss starts above `0.576306641`; E216-like collapse starts above `0.576591330`. E237 changes `25` Q3 cells vs E224, overlaps E230 swing25 by `13`, and overlaps E230 risk21 by `11`, so it is related but not identical.
+- 성공/폐기 기준: supported as a governance hypothesis because it locks the public interpretation without seeing E237's score. It is not evidence that E237 will win.
+- public LB 관측 반응: after E237 public feedback, run the decoder. A clean win strengthens H232; tie/small loss requires E224 contrast; branch loss kills E237 siblings; E216-like fail kills the current cell translator target.
+- 제출 전략: no new submission from H233. Use the top E237 file only when the next public question is learned Q3 decisive-cell JEPA.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -2016,6 +2016,24 @@ E237 cell-level decisive JEPA target stress:
 
 Stress implication after E237: the failed E236 target was too coarse. Cell-level decisive-label prediction recovers a learned Q3-only tail intervention that survives stricter public-free stress. This is now the leading learned-JEPA candidate if the next submission is meant to test a JEPA-derived Q3-tail translator.
 
+E238 E237 public-feedback decoder stress:
+
+- script: `analysis_outputs/e238_e237_public_feedback_decoder.py`.
+- report: `analysis_outputs/e238_e237_public_feedback_decoder_report.md`.
+- selected files: none; this is a pre-public routebook.
+- stress dimensions:
+  - fixed E237 top file versus E224/E230/E154/E95.
+  - public score bands anchored to E95, E101, mixmin, and E216.
+  - E237-vs-E224 contrast bands.
+  - pairwise movement anatomy, target anatomy, and exact Q3 cell overlap.
+- key results:
+  - clean E237 public support requires `<=0.576276019`; branch loss starts above mixmin `0.576306641`; E216-like translator collapse starts above `0.576591330`.
+  - E237-vs-E224 readable win requires delta `<= -0.000010`; `+/-0.000003` is treated as unresolved.
+  - E237 changes exactly `25` Q3 cells versus E224, overlaps E230 swing25 by `13` and E230 risk21 by `11`, and touches no S4 cells in the prune.
+  - E237 movement from E95 is still mostly Q3/S4: Q3 abs share `0.466410`, S4 `0.415839`.
+
+Stress implication after E238: the E237 public score is now interpretable as a falsification test. A win supports learned Q3 decisive-cell structure; a tie or small loss calls for E224 contrast; a branch loss closes same-family top-k tuning; an E216-like loss means the cell translator collapsed.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.
