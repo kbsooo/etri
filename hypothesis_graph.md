@@ -2424,6 +2424,18 @@ target co-occurrence
 - public LB 관측 반응: E211 win strengthens target-specific JEPA translation. E211 loss weakens S4 dependency gating, not raw Q3 JEPA.
 - 제출 전략: top sensor is `submission_e211_jepa_q3rawcloser_q3s1p0_s4s1p0_e154_a0p5_c20eee9c.csv`; clean E95 sensor is `submission_e211_jepa_q3rawtoward_q3s1p0_s4s1p0_e95_a0p5_e4e44d91.csv`.
 
+### H206. JEPA-family public feedback must be ordered by hypothesis value, not raw survival score
+
+- 상태: 지지 by E212; public feedback pending.
+- 왜 그럴듯한가: E209, E210, and E211 all originate from the same trained E208 JEPA representation but answer different hidden-world questions. A public score from the wrong first file could confound raw JEPA usefulness, E154 repaired-branch anchoring, S4 dependency filtering, and blunt over-gating.
+- 맞다면: a scoring rule that combines local OOF, geometry, parent integrity, hard-tail anatomy, anchor purity, and routebook interpretability should rank E211 before E210 despite E210's stronger hard-tail survival numbers.
+- 틀리다면: E210 should dominate after accounting for its public-prior hard-tail improvement, or E209 should remain first because E211's target-specific gate adds no local/geometry value.
+- 최소 실험: `analysis_outputs/e212_jepa_family_sensor_ordering.py`.
+- 관측: E212 ranks E211 E154 closer first for structured survival, E211 E95 toward first for clean current-frontier sensing, E209 E95 Q3/S4 first among raw controls, and E210 behind all E211/E209 Q3/S4 candidates because local/geometry parent integrity collapses.
+- 성공/폐기 기준: supported until public feedback contradicts the routebook. If E211 loses but E210 later wins, the E212 parent-integrity penalty was too strong. If E211 and E209 both lose, the current JEPA probability-graft family is weakened.
+- public LB 관측 반응: E211 E95 win means actual JEPA is cleanly useful. E211 E154-only win means the E154 anchor may be doing heavy work. E211 loss plus E209 win means S4 dependency gating is overfit. E211/E209 losses mean the current JEPA probability translation is not the 0.54 path.
+- 제출 전략: submit E211 E154 closer for maximum survival or E211 E95 toward for clean JEPA attribution; do not submit E210 before E211 unless deliberately asking only the blunt dependency-tail question.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

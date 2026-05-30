@@ -1091,3 +1091,30 @@ Selected files:
 Submission policy:
 
 If using one public slot for the strongest JEPA-derived structured hypothesis, E211 E154 closer is now the top candidate. If isolating the current-frontier JEPA hypothesis, use E211 E95 toward before E210. E209 remains useful as the ungated raw-JEPA control.
+
+## Update After E212
+
+E212 fixes the JEPA-family submission order and feedback interpretation.
+
+Artifacts:
+
+- `analysis_outputs/e212_jepa_family_sensor_ordering.py`
+- `analysis_outputs/e212_jepa_family_sensor_ordering_report.md`
+- `analysis_outputs/e212_jepa_family_sensor_ordering_summary.csv`
+- `analysis_outputs/e212_jepa_family_sensor_ordering_routebook.csv`
+- `analysis_outputs/e212_jepa_family_sensor_ordering_pairwise.csv`
+
+Submission order:
+
+1. Maximum structured JEPA survival:
+   `analysis_outputs/submission_e211_jepa_q3rawcloser_q3s1p0_s4s1p0_e154_a0p5_c20eee9c.csv`
+2. Clean current-frontier JEPA sensor:
+   `analysis_outputs/submission_e211_jepa_q3rawtoward_q3s1p0_s4s1p0_e95_a0p5_e4e44d91.csv`
+3. Raw-JEPA control:
+   `analysis_outputs/submission_e209_jepa_q3_center_c010_s4_rank_e95_s0p25_08289063.csv`
+4. Blunt dependency-tail sensor:
+   `analysis_outputs/submission_e210_jepa_depgate_q3_center_c010_s4_rank_closer_sh0p75_e95_s1p0_49d77d44.csv`
+
+Interpretation:
+
+E211 is first because it is the only JEPA family member that improves on E209 locally while adding a target-specific dependency gate. E210 is no longer the next expected-score move; it is a follow-up only if public feedback specifically says the raw/E211 JEPA body is tail-adverse. If the E211 E154 file wins and the E95 twin later loses, the repaired-branch anchor is doing much of the work. If the E211 E95 file wins, actual JEPA is cleanly useful beyond E154.

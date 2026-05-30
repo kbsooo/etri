@@ -1560,6 +1560,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: Q3 raw + S4 toward improves OOF versus E209 and keeps geometry negative. The selected E154/E95 files pass frontier gates with lower top1/abs than E209.
 - Policy: prefer F180 over F179 for target-dependency follow-up. Keep E209 as the raw control and E211 as the target-specific gated candidate.
 
+### F181. E212 JEPA-family sensor ordering score
+
+- Hidden structure: JEPA-derived candidates are not interchangeable. The same trained E208 representation can express raw Q3/S4 translation, E154-anchored survival, blunt target-dependency filtering, or target-specific S4 gating. The submission order must preserve which hidden-world claim the public score tests.
+- Candidates: `structured_survival_score`, `clean_sensor_score`, `control_value_score`, local delta, geometry delta, parent-integrity penalty, hard-tail survival, top1 concentration, bad-axis guard, anchor cleanliness, pairwise movement cosine, and routebook outcome bands.
+- Label vs split test: valid as governance because it reads locked E209/E210/E211 artifacts and selected submission tensors. Invalid as a new predictive feature because it does not fit labels or create probabilities.
+- Current evidence: E211 E154 closer is ranked first for structured survival; E211 E95 toward is ranked first for clean current-frontier sensing; E209 E95 Q3/S4 is the raw control; E210 is demoted because it loses the E209 local/geometry body despite strong hard-tail anatomy.
+- Policy: use F181 before any JEPA-family public submission. Submit E211 E154 closer when prioritizing maximum survival, or E211 E95 toward when prioritizing clean JEPA attribution. Decode the public result with the E212 routebook before choosing E209/E210 follow-ups.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

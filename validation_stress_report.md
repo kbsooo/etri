@@ -1592,3 +1592,32 @@ Result:
 - selected E154 closer candidate has focus delta `-0.000685`, top1/abs `0.229657`, and bad-span energy `0.348576`.
 
 Stress implication: E211 is a real improvement over the blunt E210 gate. It supports target-specific translation: Q3 should preserve JEPA body, while S4 can be dependency-gated. This is currently the best structured JEPA follow-up family.
+
+## Update After E212
+
+E212 converts the E209/E210/E211 validation evidence into a submission-order stress report.
+
+- script: `analysis_outputs/e212_jepa_family_sensor_ordering.py`.
+- report: `analysis_outputs/e212_jepa_family_sensor_ordering_report.md`.
+- summary: `analysis_outputs/e212_jepa_family_sensor_ordering_summary.csv`.
+- routebook: `analysis_outputs/e212_jepa_family_sensor_ordering_routebook.csv`.
+- pairwise movement: `analysis_outputs/e212_jepa_family_sensor_ordering_pairwise.csv`.
+
+Stress dimensions:
+
+- local OOF delta and parent-integrity versus the previous JEPA family member.
+- geometry delta and geometry win rate.
+- public-prior hard-tail survival, top1/abs concentration, and bad-axis cosine.
+- anchor purity: E95 clean sensor versus E154-confounded survival.
+- pairwise movement similarity against E95.
+- routebook interpretability of future public feedback.
+
+Result:
+
+- structured survival rank 1 is E211 E154 closer, score `0.831942`.
+- clean sensor rank 1 is E211 E95 toward, score `0.962262`.
+- E209 E95 Q3/S4 is the raw-JEPA control, clean sensor rank 3.
+- E210 closer files have high hard-tail survival but weak parent integrity (`~0.019..0.027`) because their local delta is much worse than ungated E209.
+- E211 E154 closer and E211 E154 toward are near twins (`cosine=0.996351`), while E211 E95 toward and closer are also near twins (`cosine=0.994943`).
+
+Stress implication: the next JEPA public slot should be E211, not E210. The maximum-survival version uses the E154 anchor; the cleanest hypothesis test uses the E95 anchor. E212 adds no new performance claim, but it prevents post-hoc interpretation of whichever JEPA sensor is submitted.

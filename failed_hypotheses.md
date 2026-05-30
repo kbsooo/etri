@@ -1673,3 +1673,12 @@
 - Implementation issue possible: low for this rejection because E211 directly compares raw/gated/zero/anti S4 controls while holding Q3 policy explicit. Medium for public inference until LB feedback arrives.
 - Bottleneck implication: the remaining JEPA bottleneck is not simply "gate or do not gate"; it is per-target translation.
 - Do not repeat: applying one dependency gate across Q3 and S4 without a target-specific justification.
+
+## FH186. E210 should be the next JEPA submission because its hard-tail survival score is highest
+
+- Failed hypothesis: E210's stronger public-prior hard-tail anatomy should make it the next JEPA public slot ahead of E211 and E209.
+- Observed result: E212 ranks E210 behind E211 and the raw E209 Q3/S4 control once parent integrity and geometry are included. E210's survival scores are high, but the selected closer files lose most of the E209 local body: local delta around `-0.000482..-0.000550` versus E209 `-0.001273`, and geometry delta around `-0.000096..-0.000026` versus E209 `-0.000795`.
+- Why discard: hard-tail survival alone is not a healthy JEPA criterion. It can be achieved by cutting away useful Q3 body. E211 preserves Q3 raw movement while applying the dependency signal only to S4, so it asks the sharper hypothesis first.
+- Implementation issue possible: medium. If public feedback later strongly favors E210 after E211/E209 fail, the current parent-integrity penalty was too strong. Low for the current ordering decision because E212 uses locked selected artifacts and no new model fit.
+- Bottleneck implication: the JEPA bottleneck is feedback ordering and probability translation, not just hard-tail minimization.
+- Do not repeat: promoting a dependency-gated JEPA candidate solely because its public-prior survival score is larger. Require parent-integrity and target-specific evidence.

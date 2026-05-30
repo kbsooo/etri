@@ -3260,3 +3260,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - target deltas confirm the split: Q3 stays at `-0.005775`, while S4 improves from raw `-0.003134` to dependency-toward `-0.003451`.
 - Interpretation: E211 is the first JEPA branch that improves on E209 locally while adding a target-specific gate. It does not solve the 0.54 gap, but it gives a cleaner hidden-world statement: Q3 wants JEPA residual body; S4 wants dependency-consistent JEPA movement.
 - Decision: E211 now outranks E210 as the dependency-tail follow-up and is competitive with E209 as the next JEPA-derived submission. Use the E154 closer file for maximum survival, or the E95 toward file for a cleaner current-frontier sensor.
+
+## E212. JEPA Family Sensor Ordering
+
+- Observe: after E209/E210/E211, the problem is no longer "did we use JEPA?" but "which JEPA-derived public observation should be spent first?" E209 is raw feature-neighbor JEPA, E210 is blunt dependency gating, and E211 is target-specific translation.
+- Wonder: can we pre-register the next JEPA submission order so that public feedback distinguishes raw JEPA, target-specific S4 gating, E154 anchor confounding, and blunt dependency over-filtering?
+- Method: `analysis_outputs/e212_jepa_family_sensor_ordering.py` reads the selected E209/E210/E211 artifacts, audits the selected submission tensors against the sample schema, scores each file by local OOF/geometry/parent-integrity/hard-tail anatomy/anchor purity, writes pairwise movement similarity, and builds a public feedback routebook. It trains no model and creates no new submission tensor.
+- Result:
+  - report: `analysis_outputs/e212_jepa_family_sensor_ordering_report.md`.
+  - summary: `analysis_outputs/e212_jepa_family_sensor_ordering_summary.csv`.
+  - routebook: `analysis_outputs/e212_jepa_family_sensor_ordering_routebook.csv`.
+  - pairwise movement: `analysis_outputs/e212_jepa_family_sensor_ordering_pairwise.csv`.
+  - structured survival rank 1: `analysis_outputs/submission_e211_jepa_q3rawcloser_q3s1p0_s4s1p0_e154_a0p5_c20eee9c.csv`.
+  - clean current-frontier rank 1: `analysis_outputs/submission_e211_jepa_q3rawtoward_q3s1p0_s4s1p0_e95_a0p5_e4e44d91.csv`.
+  - raw-JEPA control rank 1: `analysis_outputs/submission_e209_jepa_q3_center_c010_s4_rank_e95_s0p25_08289063.csv`.
+  - E210 is demoted despite high hard-tail survival because its parent-integrity score collapses after losing the E209 local/geometry body.
+- Interpretation: actual JEPA is now represented by a falsifiable family, not just an idea. The strongest current worldview is E211: Q3 raw JEPA body plus S4 dependency-consistent JEPA movement. The E154 E211 file is the best survival bet but confounds JEPA with the repaired-branch anchor; the E95 E211 file is the cleanest test that JEPA itself helps the current frontier.
+- Decision: if spending one slot for expected structured survival, submit `submission_e211_jepa_q3rawcloser_q3s1p0_s4s1p0_e154_a0p5_c20eee9c.csv`. If spending one slot to answer "does actual JEPA help E95?", submit `submission_e211_jepa_q3rawtoward_q3s1p0_s4s1p0_e95_a0p5_e4e44d91.csv`. Decode the returned LB with E212 before touching E209 or E210.
