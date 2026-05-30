@@ -3481,3 +3481,39 @@ Decision:
 - No current archive file should be submitted only because it is old-strict or has attractive p90.
 - The local promotion rule is now stricter: old visibility is only a prefilter; a candidate needs null rarity and mode-wise dominance before public LB.
 - The latest hand-built S4 family should be paused. It repeatedly creates visible/null-common actions, not public-free actions.
+
+## E309 Episode Target-Interaction Stress
+
+Question: did E297 fail because human episode states were translated as single-target movements even though the true signal is target dependency?
+
+Method: `analysis_outputs/e309_episode_target_interaction_probe.py`.
+
+- Input states: E295/E296 human episode states.
+- Target object: 4-class joint label for E296-neighborhood target pairs.
+- Quick scan: actual pair-logloss delta only.
+- Strict stress: top `32` rows, row/subject/dateblock nulls, `12` reps per mode.
+- Public LB: not used.
+
+Result:
+
+- quick scanned rows: `426`.
+- strict rerun rows: `32`.
+- strict gates: `29`.
+- robust gates: `13`.
+- pair gates: `12`.
+- pair-family read:
+  - QS rows: `18`, strict `16`, robust `8`, best delta `-0.046023`;
+  - SS rows: `12`, strict `12`, robust `5`, best delta `-0.019841`;
+  - QQ rows: `2`, strict `1`, robust `0`, best delta `-0.016790`.
+- strongest pair gates:
+  - `cashflow_stress/Q1_S1`: best delta `-0.046023`, strict instances `3`, robust instances `2`;
+  - `cashflow_stress/S1_S4`, `S1_S2`, `S1_S3`;
+  - `bedtime_arousal/Q1_S1`, `Q3_S3`, `Q1_S3`, `Q2_S3`, `S1_S2`;
+  - `home_recovery/Q1_S3`, `S3_S4`;
+  - `badnight_aftereffect/Q3_S3`.
+
+Decision:
+
+- Human/social state survives as a target-interaction representation.
+- This is not yet a submission certificate. It must be translated into coupled target deltas and then pass wrong-pair plus shuffled-state materialization nulls.
+- E309 makes the next public-free branch clear: target-pair dependency correction, especially cashflow/Q1-S1 and bedtime-arousal/Q-S/S-stage pairs.

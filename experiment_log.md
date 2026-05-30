@@ -4736,3 +4736,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - leave-experiment-out AUCs: selector-visible `0.998857`, null-rare `0.982794`, null-common `0.986466`.
 - Interpretation: the archive has a structural split: many candidates are null-rare but too weak/invisible, while most visible candidates are null-common. The recent hand-built S4 branch is especially exhausted: after E303 it has no null-rare candidates at all. The high outcome-model AUC mostly reflects that candidate health is encoded in action geometry and experiment family, but positive `visible_null_rare` labels are too sparse to generate a new submission directly.
 - Decision: no public submission. Future candidates must be judged by a local promotion rule before any LB use: selector-visible, null-rare, edge/dominance healthy, and not superseded by a larger independent null confirmation. The next useful experiment should either learn synthetic/action-health labels with explicit controls or pivot to a non-S4 target interaction where controls clearly lose.
+
+## E309. Human Episode Target-Interaction Probe
+
+- Observe: E297 failed when strict human episode states were translated as single-target edits. That failure does not prove the human states are useless; they may act through target dependencies.
+- Wonder: do social/lifestyle states such as cashflow stress, bedtime arousal, home recovery, and bad-night aftereffect predict Q/S joint target patterns better than row/subject/dateblock null placements?
+- Method: `analysis_outputs/e309_episode_target_interaction_probe.py` uses E295/E296 episode states and evaluates 4-class joint labels for target pairs. It first scans E296-neighborhood episode/pair candidates, then reruns the top `32` under row, subject, and dateblock nulls with `12` reps per mode. No public LB and no submission file.
+- Result:
+  - quick scanned rows: `426`;
+  - strict rerun rows: `32`;
+  - strict gates: `29`;
+  - robust gates: `13`;
+  - pair gates: `12`;
+  - strongest pair family: QS with best delta `-0.046023`;
+  - strongest story: `cashflow_stress -> Q1_S1`, with `3/3` strict instances and `2/3` robust instances;
+  - other robust stories: bedtime arousal on `Q1_S1`, `Q3_S3`, `Q1_S3`, `Q2_S3`, `S1_S2`; home recovery on `Q1_S3` and `S3_S4`; bad-night aftereffect on `Q3_S3`.
+- Interpretation: this is a real positive human/social result. The target of the human state is often not a single label but a Q/S dependency: subjective satisfaction vs stage stress, screen/social arousal vs stage composition, recovery vs subjective-objective alignment. The user's payday/cashflow intuition is supported in a specific form: money rumination is strongest as `Q1-S1` and S-stage joint structure, not as a standalone target prior.
+- Decision: no public submission yet. E309 justifies the next materialization branch: coupled target-pair deltas with wrong-pair and shuffled-state controls, then E308-style governor. Do not return to single-target episode edits.

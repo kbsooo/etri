@@ -3073,3 +3073,32 @@ Next submission-worthy path:
 
 - either a learned action-health candidate that creates new visible/null-rare positives under row/subject/dateblock/sign nulls;
 - or a non-S4 target interaction where the intended direction beats wrong-direction and matched-placement controls before public LB.
+
+## Update After E309 Episode Target-Interaction Probe
+
+Current submission policy remains: **no new public submission yet**, but the next candidate path is now more concrete.
+
+What changed:
+
+- E309 found that human/social episode states survive much better as target-pair representations than as single-target edits.
+- `cashflow_stress/Q1_S1` is the strongest live story: best pair-logloss delta `-0.046023`, `3/3` strict instances, `2/3` robust instances.
+- Bedtime arousal also survives as Q/S and S-stage dependency: `Q1_S1`, `Q3_S3`, `Q1_S3`, `Q2_S3`, `S1_S2`.
+- Home recovery and bad-night aftereffect also show smaller robust pair gates.
+
+Why no submission yet:
+
+- E297 already showed that single-target human episode edits become visible/null-common on current submission probabilities.
+- E309 is a representation proof, not a probability-tensor proof.
+
+Next submission-worthy file would need:
+
+- coupled target-pair deltas from the E309 robust gates;
+- wrong-pair controls that lose;
+- shuffled-state row/subject/dateblock controls that lose;
+- E308-style `selector_visible + null_rare + dominance` confirmation.
+
+Priority for next materialization:
+
+1. `cashflow_stress/Q1_S1`
+2. `bedtime_arousal/Q3_S3` and `bedtime_arousal/Q1_S3/Q2_S3`
+3. `home_recovery/Q1_S3` and `home_recovery/S3_S4`

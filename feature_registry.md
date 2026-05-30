@@ -2702,3 +2702,30 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - after E301, small-null ready status is insufficient unless independently confirmed.
 - Failure condition:
   - if a new feature only increases selector-visible/null-common counts, classify it as public-LB-waste risk even when local p90 looks attractive.
+
+## E309 Episode Target-Interaction Representation
+
+- Target hypothesis tested:
+  - human/social episode states affect target dependencies, not only individual targets.
+- Feature/representation source:
+  - E295 episode states: cashflow stress, bedtime arousal, routine fragmentation, routine anchor recovery, home recovery, social overload, bad-night aftereffect;
+  - E288 context views: family-JEPA, raw human context, hybrid context;
+  - target-pair labels represented as 4-class joint Q/S states.
+- Validation result:
+  - quick scanned rows `426`;
+  - strict rerun rows `32`;
+  - strict gates `29`;
+  - robust gates `13`;
+  - pair gates `12`;
+  - strongest QS result: `cashflow_stress/Q1_S1` best delta `-0.046023`;
+  - strongest story clusters: cashflow stress, bedtime arousal, home recovery, bad-night aftereffect.
+- Updated registry status:
+  - approved as a live representation family;
+  - not approved as a direct submission feature until coupled materialization passes null governance;
+  - cashflow/payday-style features should be treated as Q/S dependency features, not standalone prior tweaks.
+- Adopt rule for future features:
+  - when a human story fails as a single-target edit, test its joint target manifold before discarding it;
+  - materialization must move coupled targets together and include wrong-pair controls;
+  - require E308-style selector/null/dominance gates before public LB.
+- Failure condition:
+  - if pair materialization is reproduced by wrong-pair or shuffled-state controls, keep E309 only as an interpretability/world-model clue.

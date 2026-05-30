@@ -3506,6 +3506,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on current archive rows. The next public submission should be reserved for a candidate that creates a new visible/null-rare quadrant under independent null confirmation.
 - 제출 전략: none immediately. Use E308 to prevent LB waste and to define the next target: action health, not another hand-built S4 delta.
 
+### H309: human/social episode states act through Q/S target interactions rather than single targets
+
+- 상태: supported as a representation-level breakthrough; untested as submission materialization.
+- 왜 그럴듯한가: E297 found strong single-target train signals but current-tensor materialization was null-common. A human story such as cashflow stress or bedtime arousal should change a joint state, for example subjective satisfaction together with sleep-stage stress, not only one label.
+- 맞다면: episode states should improve 4-class joint target-pair logloss under grouped OOF and beat row/subject/dateblock shuffled-state nulls.
+- 틀리다면: pair improvements should vanish under nulls, or only repeat the same single-target geometry without cross-target concentration.
+- 최소 실험: `analysis_outputs/e309_episode_target_interaction_probe.py`.
+- 관측: `426` quick rows, `32` strict reruns, `29` strict gates, `13` robust gates, `12` pair gates. Strongest is `cashflow_stress/Q1_S1` with best delta `-0.046023`; other live interactions include cashflow with `S1_S2/S1_S3/S1_S4`, bedtime arousal with `Q1_S1/Q3_S3/Q1_S3/Q2_S3/S1_S2`, home recovery with `Q1_S3/S3_S4`, and bad-night aftereffect with `Q3_S3`.
+- 성공/폐기 기준: keep as a live world model if coupled materialization can make wrong-pair and shuffled-state controls lose. Reject as submission path if coupled target deltas become visible/null-common like E297.
+- public LB 관측 반응: no immediate public LB. A future candidate should be a pair-dependency correction, not a single-target episode edit.
+- 제출 전략: E310 should materialize coupled target-pair deltas from the robust gates and run E308-style governor plus wrong-pair controls.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

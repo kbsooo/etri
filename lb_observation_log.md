@@ -738,3 +738,19 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - post-E303 S4 rows: `68`, null-rare `0`.
 - interpretation: public LB should not be used on the current archive. Most candidates either have no visible edge or have a visible edge that matched nulls can imitate.
 - next experiment: generate a genuinely new action-health positive, or pivot away from hand-built S4 deltas to a target interaction where controls fail locally before any public submission.
+
+## Public-Free Observation: E309
+
+- submission files: none.
+- public LB: not submitted.
+- reason not submitted: E309 is a representation/null-stress probe, not a materialized candidate.
+- local observation:
+  - quick scanned rows: `426`;
+  - strict rerun rows: `32`;
+  - strict gates: `29`;
+  - robust gates: `13`;
+  - pair gates: `12`;
+  - strongest pair: `cashflow_stress/Q1_S1`, best delta `-0.046023`;
+  - strongest family: QS target dependency, strict `16/18`, robust `8/18`.
+- interpretation: the human/social branch is not dead. Its live form is target dependency, especially cashflow or money-rumination effects on Q1-S1 and bedtime arousal effects on Q/S-stage pairs.
+- next experiment: materialize coupled pair-delta candidates and reject them locally unless wrong-pair and shuffled-state controls lose.
