@@ -1536,6 +1536,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: the JEPA model beats copy-self and mean-target controls on validation MSE for all three seeds. Downstream best local features are Q3 `e208_resid_self_pc10`, S2 `e208_pred_pc12`, and S4 `e208_pred_pc14`; geometry stress passes only Q3/S4 rows. S2 is a local shortcut until repaired.
 - Policy: materialize only a separate E209 Q3/S4 stress candidate. Do not add the entire E208 feature block to a frontier submission. Do not use S2 despite local gains unless it passes geometry folds.
 
+### F178. E209 Q3/S4 JEPA graft policy
+
+- Hidden structure: actual JEPA signal is target-local and calibration-sensitive. Q3 residual-self and S4 predicted-neighbor axes can move frontier probabilities, but only when converted into small, target-specific logit grafts.
+- Candidates: Q3 `e208_resid_self_pc10` subject-centered/subject-z/subject-rank variants, S4 `e208_pred_pc14` subject-rank variant, stage2-learned logit movement, E95/E154/mixmin anchor grafts, frontier gate score, hard-label cell concentration, and bad-axis energy.
+- Label vs split test: valid as a JEPA materialization feature because the source representation is learned from feature-neighbor context-to-target prediction, not labels. It is invalid as a global feature import because target movement is selected by OOF/subject/geometry stress and must remain Q3/S4-only unless new evidence passes the same gate.
+- Current evidence: `q3_center_c010_s4_rank` has OOF delta `-0.001272724`, subject-half win rate `0.900000`, and geometry delta `-0.000794598`. Four low-scale E95/E154 grafts pass the frontier gate. High-scale Q3/S4 grafts and broader latent movement are rejected.
+- Policy: use E209 only as a low-scale public sensor. Prefer `submission_e209_jepa_q3_center_c010_s4_rank_e154_s0p25_1e4591ca.csv` for maximum survival score, or `submission_e209_jepa_q3_center_c010_s4_rank_e95_s0p25_08289063.csv` to isolate JEPA on the current frontier. Do not use F178 to justify S2, full-latent, or high-amplitude JEPA features.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

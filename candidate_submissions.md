@@ -1028,3 +1028,28 @@ Submission policy:
 Interpretation:
 
 E208 is the first practical "real JEPA" branch. It says the model can learn hidden neighbor representation, but it also says the useful probability movement is narrow. A full-latent JEPA blend would be exactly the kind of shortcut LeJEPA warns against.
+
+## Update After E209
+
+E209 creates the first actual JEPA-derived submission files.
+
+Result:
+
+- script: `analysis_outputs/e209_feature_neighbor_jepa_materialization_stress.py`
+- report: `analysis_outputs/e209_feature_neighbor_jepa_materialization_report.md`
+- selected candidates: `4`
+
+Submission order depends on the public question:
+
+1. Maximum E209 survival score:
+   `analysis_outputs/submission_e209_jepa_q3_center_c010_s4_rank_e154_s0p25_1e4591ca.csv`
+2. Cleanest JEPA-only sensor on the current E95 frontier:
+   `analysis_outputs/submission_e209_jepa_q3_center_c010_s4_rank_e95_s0p25_08289063.csv`
+3. Cleaner bad-axis but narrower S4-only E154 branch:
+   `analysis_outputs/submission_e209_jepa_s4_rank_e154_s0p75_030e88de.csv`
+4. Cleaner bad-axis but narrower S4-only E95 branch:
+   `analysis_outputs/submission_e209_jepa_s4_rank_e95_s0p75_0ed14a13.csv`
+
+Interpretation:
+
+The best single file by survival score is the E154-anchored Q3/S4 JEPA graft, but it confounds the E154 counter-world with JEPA. If the next public slot should specifically answer "does actual JEPA help?", use the E95-anchored Q3/S4 file. A win strengthens the narrow Q3/S4 JEPA-translation hypothesis. A loss weakens this probability translation path, not the fact that E208 learned a nontrivial representation.

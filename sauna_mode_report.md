@@ -3005,3 +3005,31 @@ E208은 feature-neighbor JEPA다. context는 broad stage2 latent와 feature-fami
 다음으로 가장 정보량이 큰 행동:
 
 E209를 만든다면 Q3 `e208_resid_self_pc10`와 S4 `e208_pred_pc14`만 물질화한다. S2는 local gain이 커도 geometry stress가 나쁘므로 아직 제출 후보가 아니다. E209는 반드시 E95/E154/E176 branch-loss geometry와 비교한 뒤에만 public slot을 쓴다.
+
+## E209 업데이트: JEPA 신호를 실제 submission 후보로 옮겼다
+
+내가 발견한 가장 이상한 점:
+
+`JEPA는 전역적으로 강한 모델이 아니라, Q3/S4에만 좁고 날카로운 신호를 준다. 이 신호는 stage2 OOF와 geometry에서는 살아남지만, public hard-label 한두 셀에 여전히 취약하다.`
+
+실험:
+
+- `analysis_outputs/e209_feature_neighbor_jepa_materialization_stress.py`
+- report: `analysis_outputs/e209_feature_neighbor_jepa_materialization_report.md`
+
+실험 결과:
+
+- `q3_center_c010_s4_rank`는 OOF delta `-0.001272724`, subject-half win rate `0.900000`, geometry delta `-0.000794598`.
+- 제출 후보 4개를 만들었다.
+- 가장 높은 survival score:
+  `analysis_outputs/submission_e209_jepa_q3_center_c010_s4_rank_e154_s0p25_1e4591ca.csv`
+- JEPA 자체를 가장 깨끗하게 묻는 후보:
+  `analysis_outputs/submission_e209_jepa_q3_center_c010_s4_rank_e95_s0p25_08289063.csv`
+
+생각이 어떻게 바뀌었는지:
+
+`JEPA를 쓴다는 건 이제 말뿐이 아니다. 실제 context-to-target JEPA를 학습했고, 그 latent에서 Q3/S4 확률 이동을 만들었다. 다만 이건 0.54로 가는 큰 문이 아니라, 현재로서는 Q3/S4 hard-tail을 찌르는 좁은 센서다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+한 파일만 낸다면 목적을 정해야 한다. 점수 기대를 조금 더 보려면 E154-anchored 파일, JEPA가 실제로 frontier에 도움이 되는지 깨끗하게 보려면 E95-anchored 파일이다. 둘 다 지면 JEPA 학습 자체가 아니라 현재 probability translation이 죽는 것이다.

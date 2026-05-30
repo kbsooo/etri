@@ -1646,3 +1646,12 @@
 - Implementation issue possible: medium. E208 is CPU MLP/PCA based and could improve with stronger architecture, different masks, or target representation. Low for rejecting the current wholesale-submission shortcut because the generated diagnostics directly show anisotropy and target selectivity.
 - Bottleneck implication: JEPA can expose hidden structure, but the bottleneck is probability translation and target-specific calibration risk. The useful branch is narrow Q3/S4 residual movement, not global capacity.
 - Do not repeat: all-feature E208 blend, S2 local shortcut materialization, or "JEPA succeeded therefore submit the latent" reasoning. Run E209 Q3/S4-only materialization and hard-tail/frontier geometry first.
+
+## FH183. E209 proves that JEPA should be applied broadly or at high scale
+
+- Failed hypothesis: after E208/E209, the correct next move is to trust the learned JEPA signal broadly, add S2 back because it was locally strong, or increase Q3/S4 scale because expected local deltas improve.
+- Observed result: E209 opens only low-scale Q3/S4 candidates. `q3_center_c010_s4_rank` survives OOF, subject-half, and geometry stress, but high-scale Q3/S4 grafts fail the frontier gate. S2 remains excluded from materialization because E208 geometry was adverse. The selected candidates still need only `1` hard-label cell for the `2e-6` guard, so public hard-tail brittleness remains.
+- Why discard: JEPA learnability does not remove LogLoss tail risk. The low-scale gate is not a conservative habit; it is the stress result. Pushing scale or target coverage would restore the same collapse/shortcut failure modes that LeJEPA warned about.
+- Implementation issue possible: medium. A stronger architecture or a different context-target definition may produce a healthier latent later. Low for rejecting the current E209 broad/high-scale shortcut because the generated frontier-stress table directly marks those rows as non-gated.
+- Bottleneck implication: the bottleneck is not whether JEPA can learn anything. It can. The bottleneck is translating a learned representation into public-stable calibrated probability movement.
+- Do not repeat: high-scale E209 Q3/S4 submissions, S2 comeback from local OOF alone, or full-latent JEPA blending without new geometry evidence.

@@ -1512,3 +1512,31 @@ E208 stress-tests an actually trained JEPA representation, not just a JEPA-style
   - S2 has strong local/subject deltas but geometry delta is positive, so it fails the E208 gate.
 
 Stress implication: JEPA is not a dead idea here. The bottleneck is translation. A trained feature-neighbor JEPA finds real target-specific residual structure, but the full latent is too anisotropic and only Q3/S4 survive stress. E209 should materialize Q3/S4 only, with E95/E154 geometry comparison before public submission.
+
+## Update After E209
+
+E209 stress-tests the probability translation of the trained E208 JEPA signal.
+
+- script: `analysis_outputs/e209_feature_neighbor_jepa_materialization_stress.py`.
+- report: `analysis_outputs/e209_feature_neighbor_jepa_materialization_report.md`.
+- summary: `analysis_outputs/e209_feature_neighbor_jepa_materialization_summary.csv`.
+- frontier stress: `analysis_outputs/e209_feature_neighbor_jepa_materialization_frontier_stress.csv`.
+
+Stress dimensions:
+
+- stage2 OOF delta for the learned Q3/S4 movement.
+- repeated subject-half delta and win rate.
+- geometry-fold delta and win rate.
+- E95/E154/mixmin graft safety.
+- known bad-axis cosine and bad-span energy.
+- hard-label top-cell concentration under focus priors.
+- schema audit for each selected submission.
+
+Result:
+
+- `q3_center_c010_s4_rank` passes OOF, subject-half, and geometry stress: delta `-0.001272724`, subject-half win rate `0.900000`, geometry delta `-0.000794598`.
+- the best survival candidate is `submission_e209_jepa_q3_center_c010_s4_rank_e154_s0p25_1e4591ca.csv`, survival score `0.013853189`.
+- the cleanest current-frontier JEPA sensor is `submission_e209_jepa_q3_center_c010_s4_rank_e95_s0p25_08289063.csv`, survival score `0.012445288`.
+- high-scale Q3/S4 grafts fail the E209 frontier gate despite larger local expected deltas.
+
+Stress implication: actual JEPA now produces submission-grade candidates, but only as a narrow Q3/S4 low-scale graft. The full-latent and high-scale interpretations remain rejected. Public feedback should be decoded as a test of JEPA probability translation, not as proof that JEPA has solved the 0.54 gap.

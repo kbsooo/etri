@@ -2388,6 +2388,18 @@ target co-occurrence
 - public LB 관측 반응: an E209 win would strengthen the view that real JEPA helps via target-specific residual/energy, not via monolithic latent blending. An E209 loss would not kill JEPA learnability; it would kill the current probability-translation path.
 - 제출 전략: build E209 from only passing Q3/S4 operations and compare against frontier geometry. Do not submit all E208 features, S2 local shortcut, or a full predicted-latent blend.
 
+### H203. E208 JEPA can be materialized only as a low-scale Q3/S4 graft
+
+- 상태: 부분 지지 by E209; high-scale and broad-JEPA claims rejected.
+- 왜 그럴듯한가: E208's learnable representation survives downstream stress only on Q3/S4. A healthy materialization should therefore move only those axes, at low enough scale to avoid known hard-tail and bad-axis collapse.
+- 맞다면: Q3/S4 grafts should improve stage2 OOF, repeated subject-half, and geometry folds, while high-scale or broader target grafts should fail frontier stress. E95-anchored files should isolate JEPA, and E154-anchored files should score higher if the repaired-branch counter-world is also useful.
+- 틀리다면: Q3/S4 movements would not survive geometry, or high-scale/full-latent movement would pass the same frontier gate. Alternatively, E154 anchoring would not change survival relative to E95 if the anchor branch is irrelevant.
+- 최소 실험: `analysis_outputs/e209_feature_neighbor_jepa_materialization_stress.py`.
+- 관측: `q3_center_c010_s4_rank` has OOF delta `-0.001272724`, subject-half win rate `0.900000`, and geometry delta `-0.000794598`. Four low-scale submissions pass the E209 frontier gate. High-scale Q3/S4 grafts fail. The best survival score belongs to the E154-anchored Q3/S4 file, while the E95-anchored Q3/S4 file is the cleaner JEPA-only sensor.
+- 성공/폐기 기준: supported until public LB feedback says the graft is adverse. If the E95-anchored Q3/S4 file loses clearly, the current JEPA probability translation path is weakened. If only the E154-anchored file wins, the repaired-branch anchor may be more important than JEPA itself.
+- public LB 관측 반응: an E95-anchored E209 win strengthens "actual JEPA helps via Q3/S4 residual translation." An E154-anchored win with E95-anchored loss strengthens "E154 branch plus JEPA is needed." A loss for both means E208 learnability did not survive public hard-label translation.
+- 제출 전략: use `submission_e209_jepa_q3_center_c010_s4_rank_e154_s0p25_1e4591ca.csv` for maximum E209 survival, or `submission_e209_jepa_q3_center_c010_s4_rank_e95_s0p25_08289063.csv` for a clean JEPA sensor. Do not submit S2, high-scale, or full-latent JEPA variants.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

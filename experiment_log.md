@@ -3211,3 +3211,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - materialization gate pass count: `8`.
 - Interpretation: this is the first actual JEPA training run that passes the "learnability" test. It does not justify a full predicted-latent submission: the full prediction space is too anisotropic, S2 fails geometry despite strong local deltas, and Q1/Q2/S1/S3 do not carry stable signal. The live signal is narrower: Q3 `e208_resid_self_pc10` and S4 `e208_pred_pc14`.
 - Decision: no direct E208 submission. Build E209 only from passing Q3/S4 operations, then compare against E95/E154/E176 frontier geometry before spending a public slot. Treat S2 as a rejected local shortcut until it passes geometry stress.
+
+## E209. Feature-Neighbor JEPA Materialization Stress
+
+- Observe: E208 proves the feature-neighbor JEPA objective is learnable, but the representation is not globally healthy enough to submit wholesale. The useful question is whether the two surviving target axes, Q3 `e208_resid_self_pc10` and S4 `e208_pred_pc14`, can be translated into frontier probabilities without recreating the hard-tail failures seen in E176/E101 branches.
+- Wonder: if JEPA is used as an actual world-model objective rather than a naming convention, does its learned neighbor-representation signal survive OOF, subject-half, geometry, and known-frontier stress after being grafted onto E95/E154 anchors?
+- Method: `analysis_outputs/e209_feature_neighbor_jepa_materialization_stress.py` takes the E208 train/submission JEPA features, learns only Q3/S4 logit movements from stage2 OOF, evaluates repeated subject halves and geometry folds, then grafts the same movement onto E95/E154/mixmin anchors at small scales. It writes four submission files only when a candidate passes the E209 frontier gate.
+- Result:
+  - report: `analysis_outputs/e209_feature_neighbor_jepa_materialization_report.md`.
+  - best local combo: `q3_center_s4_rank` with OOF delta `-0.001370190`, subject-half delta `-0.001394602`, geometry delta `-0.000978984`.
+  - selected safe-scale combo: `q3_center_c010_s4_rank` with OOF delta `-0.001272724`, subject-half win rate `0.900000`, geometry delta `-0.000794598`.
+  - selected submissions:
+    - `analysis_outputs/submission_e209_jepa_q3_center_c010_s4_rank_e154_s0p25_1e4591ca.csv`
+    - `analysis_outputs/submission_e209_jepa_s4_rank_e154_s0p75_030e88de.csv`
+    - `analysis_outputs/submission_e209_jepa_q3_center_c010_s4_rank_e95_s0p25_08289063.csv`
+    - `analysis_outputs/submission_e209_jepa_s4_rank_e95_s0p75_0ed14a13.csv`
+- Interpretation: E209 is the first submitted-family branch whose movement is directly downstream of a trained JEPA objective. The live signal is still narrow and hard-label brittle: every selected row needs only `1` cell for the `2e-6` public-readable guard, and support probability remains below `0.5`. The e154-anchored file has the best survival score but mixes two hypotheses: E154 repaired-branch plus JEPA Q3/S4 translation. The e95-anchored Q3/S4 file is the cleanest JEPA-only public sensor.
+- Decision: if maximizing E209 survival score, submit `submission_e209_jepa_q3_center_c010_s4_rank_e154_s0p25_1e4591ca.csv`. If isolating whether JEPA itself helps the current frontier, submit `submission_e209_jepa_q3_center_c010_s4_rank_e95_s0p25_08289063.csv`. Do not submit high-scale Q3/S4, S2, or full-latent JEPA blends.
