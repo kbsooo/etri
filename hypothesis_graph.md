@@ -3340,6 +3340,42 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E294. A public win from a high-realness E293 candidate would mean the matched-null stress is too conservative, but the local sign is adverse because high realness is also high null-promotion.
 - 제출 전략: none. Next strategy should target low-null outcome directly or pivot to another hidden-state family with more positive safe examples.
 
+### H295: human episode states exist but are target-specific, not a shared all-target latent
+
+- 상태: supported as target-specific representation; rejected as broad all-target feature.
+- 왜 그럴듯한가: E288's broad lifestyle bundle was reconstructable but downstream-adverse. Human sleep behavior should instead be episodic: bedtime arousal, routine fragmentation, cash-flow stress, home recovery, commute pressure, and bad-night aftereffects may affect different targets differently.
+- 맞다면: large episode states should be context-predictable, and predicted states should beat row/subject/dateblock nulls for specific targets while the full bundle may still fail the 7-target mean.
+- 틀리다면: reconstruction may be possible, but target-specific deltas should vanish under matched nulls or concentrate only in measurement shortcuts.
+- 최소 실험: `analysis_outputs/e295_episode_state_jepa_audit.py`.
+- 관측: `11` episode states produce strong dateblock reconstruction (`family_jepa_context/dateblock5` mean R2 `0.438241`) and `51` light-null target gates, but broad bundle label gates are `0`. Strong target deltas include `cashflow_stress/S1 -0.017244`, `bedtime_arousal/S1 -0.017000`, `bedtime_arousal/S3 -0.016376`, and `badnight_aftereffect/Q3 -0.015000`.
+- 성공/폐기 기준: keep target-specific episode states; reject broad shared episode bundle as a direct feature block.
+- public LB 관측 반응: no public LB should be spent from E295 alone because null budget was discovery-grade, not promotion-grade.
+- 제출 전략: none directly. Rerun strict null stress on consensus episode-target pairs.
+
+### H296: presleep arousal and routine fragmentation are the strongest strict human-state signals
+
+- 상태: supported locally; not yet submission-translatable.
+- 왜 그럴듯한가: E295's top gates were broad and numerous; a real hidden state should survive a larger null budget and not rely on one lucky shuffle set.
+- 맞다면: a small set of episode-target pairs should survive `64` row, subject, and dateblock null reps, with strong dominance and repeated view/split support.
+- 틀리다면: E295 gates should collapse under stricter nulls, especially cash-flow and social stories with high calendar confounding risk.
+- 최소 실험: `analysis_outputs/e296_episode_target_strict_null_audit.py`.
+- 관측: `33` instances produce `19` strict gates, `5` robust gates, and `2` pair gates. Robust instances are `bedtime_arousal/S3`, `routine_fragmentation/S1`, `routine_anchor_recovery/S2`, `routine_fragmentation/S3`, and `bedtime_arousal/S1`; pair gates are `bedtime_arousal/S1` and `bedtime_arousal/S3`. Cash-flow stress has large deltas but loses robust status against extreme nulls.
+- 성공/폐기 기준: use E296 robust rows only for materialization; do not use E295's full 51-gate set.
+- public LB 관측 반응: no public LB should be spent until these states survive current-best materialization nulls.
+- 제출 전략: target-limited E247-current edits only for E296 robust states.
+
+### H297: strict episode-state label deltas can be translated into E247-current probability edits
+
+- 상태: rejected for the current logistic-delta translator.
+- 왜 그럴듯한가: E296 found robust target-specific states. If the missing object was only "which target and state", a target-specific logistic state delta should improve E247-current predictions and beat matched null placements.
+- 맞다면: E297 materializations should pass old selector and matched row/subject/dateblock null governor with low null strict rate and strong mean/p90 dominance.
+- 틀리다면: old selector may promote broad S1/S3 movements, but matched nulls with the same movement distribution will also promote, or null-safe variants will stay below selector resolution.
+- 최소 실험: `analysis_outputs/e297_episode_state_materializer.py`.
+- 관측: `150` candidates produce `25` old strict rows and best p90 `-0.000565475`, but `39` null-evaluated candidates produce public-free ready `0`. Selector-visible bedtime/routine S1 edits have null strict rates mostly `0.714286` to `1.000000`; null-safe variants are `too_small_to_submit`.
+- 성공/폐기 기준: reject logistic-delta materialization. Keep E296 states as priors for a direct outcome target: selector-visible and null-rare.
+- public LB 관측 반응: no public LB should be spent on E297 candidates.
+- 제출 전략: none. Next strategy should predict materialization health directly rather than label delta.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -4499,3 +4499,51 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - public-free ready candidates: `0`.
 - Interpretation: actual placement is visible, but not in a healthy way. The visibility mostly comes from broad output/anchor geometry, not clean S4 semantics, and it increases with matched-null strict promotion. In JEPA terms, this is a recognizable representation that is not a useful latent gate: it recognizes movement identity, not low-risk hidden state.
 - Decision: no E294 public submission. Do not use actual-vs-null realness as a promotion gate. The next useful target must be "selector-visible and null-rare outcome", not actual placement identity.
+
+## E295. Human Episode-State JEPA Audit
+
+- Observe: E293/E294 narrowed S4 too far and hit a selector/invariant cliff. The user also pushed for more human social theory, including payday/cash-flow stories. The next question should not be another S4 scale sweep; it should ask whether larger human episode states exist at all.
+- Wonder: can raw lifelog stories be grouped into interpretable hidden day states, predicted from separate context views, and then used target-specifically under matched null stress?
+- Method: `analysis_outputs/e295_episode_state_jepa_audit.py` builds `11` episode states: commute pressure, bedtime arousal, routine fragmentation, routine anchor recovery, cash-flow stress, cash-flow relief/spend, physiology strain, home recovery, social overload, measurement wear confidence, and bad-night aftereffect. Three context views predict these states under subject/dateblock OOF; predicted states are tested against row/subject/dateblock shuffled states on 7 targets. No public LB and no submission.
+- Result:
+  - episode states: `11`;
+  - reconstruction rows: `66`;
+  - broad bundle label gates: `0`;
+  - target-specific gates: `51`;
+  - best target delta: `cashflow_stress/S1` at `-0.017243504`.
+  - best reconstructions are dateblock-stable: `family_jepa_context/dateblock5` mean R2 `0.438241`; top states include measurement wear confidence R2 `0.691952`, badnight aftereffect R2 `0.627828`, and commute pressure R2 `0.622068`.
+  - target gates concentrate on S targets: S3 `13`, S1 `12`, S2 `10`, S4 `7`, Q3 `5`, Q1 `4`.
+- Interpretation: the human/social theory is not empty. But the signal is not a single all-target lifestyle latent. It is target-episode specific: bedtime/routine/cashflow/home states can help individual Q/S labels while the broad bundle hurts the mean.
+- Decision: no E295 submission. E295 is an atlas. Strong episode-target rows must be rerun with a stricter null budget before any materialization.
+
+## E296. Episode-Target Strict Null Audit
+
+- Observe: E295 used only `4` null reps per mode, enough for discovery but too weak for public-free promotion.
+- Wonder: which E295 episode-target wins survive a stricter local null stress without using public LB?
+- Method: `analysis_outputs/e296_episode_target_strict_null_audit.py` selects E295 multi-view/split consensus pairs plus large single-view all-null wins, then reruns each candidate instance with `64` row, `64` subject, and `64` dateblock nulls. No public LB and no submission.
+- Result:
+  - candidate instances: `33`;
+  - strict gates: `19`;
+  - robust gates: `5`;
+  - pair gates: `2`.
+  - robust instances: `bedtime_arousal/S3`, `routine_fragmentation/S1`, `routine_anchor_recovery/S2`, `routine_fragmentation/S3`, and `bedtime_arousal/S1`.
+  - pair-gated states: `bedtime_arousal/S1` and `bedtime_arousal/S3`.
+  - cash-flow stress still has large negative deltas, but fails robust gate because extreme nulls can also win.
+- Interpretation: the strongest current human theory is not payday/cashflow. It is presleep arousal and routine fragmentation: screen/message/search/media/bed-phone and broken routine states carry target-specific S1/S3/S2 information that is hard to reproduce with matched shuffles.
+- Decision: still no submission. Use only the strict surviving episode-target states for E247-current materialization; do not materialize all `51` E295 gates.
+
+## E297. Episode-State Materializer
+
+- Observe: E296 gives real train-side episode-target states, but the central bottleneck has repeatedly been translation into current-best test probabilities.
+- Wonder: can the strict E296 states be converted into target-limited edits on `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` and survive the public-free matched-null governor?
+- Method: `analysis_outputs/e297_episode_state_materializer.py` uses the `5` E296 robust instances. For each episode-target state, it learns a target-specific base-vs-state logistic delta, materializes `150` E247-current target-only edits across scale and top-k rules, prefilters with the E272 current-anchor selector, then evaluates `39` selected candidates against matched row/subject/dateblock null submissions. No public LB was used.
+- Result:
+  - generated candidates: `150`;
+  - old strict candidates: `25`;
+  - null-evaluated candidates: `39`;
+  - public-free ready candidates: `0`;
+  - best actual p90: `-0.000565475`;
+  - best null strict rate: `0.000000`, but only on `too_small_to_submit` rows.
+  - old-strict bedtime/routine S1 edits are attractive by selector, but matched nulls promote too often: null strict rates mostly `0.714286` to `1.000000`.
+- Interpretation: the episode states are real local label signals, but the current logistic-delta translator collapses into generic S1 movement once placed on E247. This mirrors the earlier Q3/S4 lifestyle failures: discovery is not the bottleneck; public-safe placement/materialization is.
+- Decision: no E297 public submission. The next useful experiment should learn an outcome target directly: `selector-visible + null-rare`, not just episode state or logistic label delta.

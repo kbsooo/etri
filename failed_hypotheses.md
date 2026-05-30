@@ -2196,3 +2196,21 @@
 - Implementation issue possible: low for rejecting actual-vs-null identity as a gate, because the leave-one-source-out stress directly tests whether identity transfers across candidate sources. Medium for future outcome models, because low-null positive examples are scarce.
 - Bottleneck implication: the bottleneck is target definition. The next latent target must be selector-visible and null-rare outcome, not actual placement identity.
 - Do not repeat: using high actual-vs-null realness as a public submission reason or adding more output-geometry identity classifiers without outcome health checks.
+
+## FH244. Broad human episode-state bundles are directly usable as all-target features
+
+- Failed hypothesis: composing human/social/cash-flow stories into larger episode states should produce a shared latent that improves the 7-target objective when used as a bundle.
+- Observed result: E295 reconstructs episode states well, especially under `family_jepa_context/dateblock5` with mean R2 `0.438241`, but bundle label gates are `0`. The useful effects are target-specific: E295 finds `51` light target gates, and E296 keeps only `5` robust episode-target instances.
+- Why discard: reconstructability is not enough. The broad bundle mixes target-specific signals with adverse target/noise regimes.
+- Implementation issue possible: medium. The state definitions are hand-built and could be refined, but the broad bundle failure is consistent with E288/E289/E290.
+- Bottleneck implication: hidden human states are real, but they must be target-specific and stress-tested. A larger shared lifestyle embedding is likely to add subject/block shortcuts.
+- Do not repeat: adding all episode states or their PCs to every target as a direct feature block.
+
+## FH245. Strict episode-state label signals directly translate into E247-current edits
+
+- Failed hypothesis: once E296 finds robust bedtime/routine episode-target states, a target-specific logistic state delta should produce public-free submission-ready edits on top of E247.
+- Observed result: E297 generates `150` materialized candidates and gets `25` old strict-promote rows, but `39` matched-null-evaluated candidates produce public-free ready `0`. Best p90 is `-0.000565475`, but old-strict rows have high null strict rates; null-safe rows are `too_small_to_submit`.
+- Why discard: the translator turns real episode states into generic S1/S3 movement that matched row/subject/dateblock nulls can mimic.
+- Implementation issue possible: medium. A better translator could predict candidate outcome health directly, use block-level constraints, or combine with E247 feature-neighbor geometry. Low for blocking these exact E297 files because the current-anchor/null governor directly rejects them.
+- Bottleneck implication: the bottleneck is not lack of human theory. It is the action layer: target-specific hidden state must be converted into movement that is both selector-visible and null-rare.
+- Do not repeat: submitting `submission_e297_epstate_*.csv` or scaling the same logistic episode-state deltas without a new null-outcome gate.

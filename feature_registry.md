@@ -2438,3 +2438,27 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - reject any gate whose score increases with null strict promotion.
 - Failure condition:
   - if a learned realness score separates actual from null but correlates positively with null strict rate, classify it as shortcut geometry rather than hidden-state recovery.
+
+## E295-E297 Human Episode-State Policy
+
+- Target hypothesis tested: human/social/cash-flow stories should be composed into larger episode states before being used as JEPA targets.
+- Feature/representation source:
+  - E268 human-social story features;
+  - E270 payday/cash-flow story features;
+  - E288 family/raw/hybrid context views;
+  - episode states for bedtime arousal, routine fragmentation, routine anchor recovery, cash-flow stress/relief, commute, home recovery, physiology strain, social overload, measurement confidence, and bad-night aftereffect.
+- Validation result:
+  - E295: `11` states, `51` light target gates, broad bundle label gates `0`;
+  - E296: `33` strict candidates, `19` strict gates, `5` robust gates, `2` pair gates;
+  - E297: `150` materialized candidates, `25` old strict candidates, public-free ready candidates `0`.
+- Updated registry status:
+  - bedtime arousal is approved as the strongest current human-state diagnostic for S1/S3.
+  - routine fragmentation and routine anchor recovery are approved as target-specific diagnostics.
+  - cash-flow/payday remains a diagnostic only; do not promote it before strict null and materialization survival.
+  - logistic episode-state delta is not approved as a direct E247-current translator.
+- Adopt rule for future episode-state features:
+  - build target-specific states, not a shared all-target lifestyle feature;
+  - require strict row/subject/dateblock null survival before materialization;
+  - require current-anchor matched-null dominance before any public submission.
+- Failure condition:
+  - if an episode-state edit passes the old selector but matched nulls promote at high rate, classify it as generic target movement rather than recovered human state.

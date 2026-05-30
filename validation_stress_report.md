@@ -3103,3 +3103,84 @@ Decision:
 - Do not submit any E294/E293 file.
 - Public LB is preserved.
 - Candidate identity is learnable, but it is not a safe promotion invariant.
+
+## E295 Human Episode-State JEPA Audit
+
+Question: can broader human social episode states be predicted from context and help labels without public LB?
+
+Method: `analysis_outputs/e295_episode_state_jepa_audit.py`.
+
+- Episode states: commute pressure, bedtime arousal, routine fragmentation, routine anchor recovery, cash-flow stress, cash-flow relief/spend, physiology strain, home recovery, social overload, measurement wear confidence, and bad-night aftereffect.
+- Context views: `family_jepa_context`, `raw_human_context`, `hybrid_context`.
+- Stress: subject5/dateblock5 OOF reconstruction, target label CV, row/subject/dateblock shuffled state nulls.
+
+Result:
+
+- episode states: `11`.
+- reconstruction rows: `66`.
+- broad label gates: `0`.
+- target-specific gates: `51`.
+- best context reconstruction: `family_jepa_context/dateblock5`, mean R2 `0.438241`.
+- best target instance: `cashflow_stress/S1`, delta `-0.017243504`.
+
+Decision:
+
+- No public submission.
+- E295 is a discovery atlas only.
+- Target-specific episode states are worth stricter null testing; the broad episode bundle is not.
+
+## E296 Episode-Target Strict Null Governor
+
+Question: which E295 episode-target signals survive a stricter null budget?
+
+Method: `analysis_outputs/e296_episode_target_strict_null_audit.py`.
+
+- Candidate set: E295 multi-view/split consensus pairs plus large single-view all-null wins.
+- Null budget: `64` row, `64` subject, `64` dateblock reps per candidate instance.
+- Stress target: target-specific label CV delta versus matched shuffled state.
+
+Result:
+
+- candidate instances: `33`.
+- strict gates: `19`.
+- robust gates: `5`.
+- pair gates: `2`.
+- robust signals:
+  - `bedtime_arousal/S3`;
+  - `routine_fragmentation/S1`;
+  - `routine_anchor_recovery/S2`;
+  - `routine_fragmentation/S3`;
+  - `bedtime_arousal/S1`.
+- pair-gated signals: `bedtime_arousal/S1` and `bedtime_arousal/S3`.
+
+Decision:
+
+- No public submission.
+- Use only E296 robust states for materialization.
+- Cash-flow/payday remains a diagnostic but not the strongest strict signal.
+
+## E297 Episode-State Materialization Governor
+
+Question: can E296 robust states produce current-best E247 edits that beat matched null submissions?
+
+Method: `analysis_outputs/e297_episode_state_materializer.py`.
+
+- Source states: the `5` E296 robust episode-target instances.
+- Materialization: target-specific logistic state delta on top of `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+- Candidates: `150` scale/top-k variants.
+- Prefilter: E272 current-anchor selector.
+- Stress: `39` selected candidates against row/subject/dateblock null submissions.
+
+Result:
+
+- old strict candidates: `25`.
+- public-free ready candidates: `0`.
+- best actual p90: `-0.000565475`.
+- lowest null strict rate: `0.000000`, but those rows are `too_small_to_submit`.
+- selector-visible bedtime/routine S1 candidates are blocked by null strict rates around `0.714286` to `1.000000`.
+
+Decision:
+
+- Do not submit any `submission_e297_epstate_*.csv` file.
+- Public LB is preserved.
+- The next governor must target candidate outcome health, not only human episode label delta.

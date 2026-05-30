@@ -521,3 +521,49 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - public-free ready files: `0`.
 - interpretation: E293 actual placement identity is learnable, but it is not the desired hidden state. It tracks broad output geometry and null-promotable movement.
 - next experiment: avoid E293/S4 public submissions. Either train a direct null-outcome gate if enough positives can be created, or pivot to a different lifestyle state with cleaner target evidence.
+
+## Public-Free Observation: E295
+
+- submission files: none generated.
+- public LB: not submitted.
+- reason not submitted: E295 was a discovery atlas with light null stress, not a promotion governor.
+- local observation:
+  - episode states: `11`;
+  - reconstruction rows: `66`;
+  - broad bundle label gates: `0`;
+  - target-specific gates: `51`;
+  - best reconstruction view: `family_jepa_context/dateblock5`, mean R2 `0.438241`;
+  - best target instance: `cashflow_stress/S1`, delta `-0.017243504`.
+- interpretation: human/social/cash-flow episode states are real as target-specific representations, but not as a shared all-target feature block.
+- next experiment: strict null audit on consensus and large single-view episode-target pairs.
+
+## Public-Free Observation: E296
+
+- submission files: none generated.
+- public LB: not submitted.
+- reason not submitted: E296 was a strict train-side null audit, not a current-submission materializer.
+- local observation:
+  - candidate instances: `33`;
+  - strict gates: `19`;
+  - robust gates: `5`;
+  - pair gates: `2`;
+  - strongest robust states: `bedtime_arousal/S3`, `routine_fragmentation/S1`, `routine_anchor_recovery/S2`, `routine_fragmentation/S3`, `bedtime_arousal/S1`;
+  - pair-gated states: `bedtime_arousal/S1` and `bedtime_arousal/S3`.
+- interpretation: presleep arousal and routine fragmentation are the current strongest human-state hypotheses. Cash-flow/payday is not dead, but it is not strict enough yet for scarce public testing.
+- next experiment: materialize only robust episode-target states on E247 and apply the matched-null governor.
+
+## Public-Free Observation: E297
+
+- submission files: `analysis_outputs/submission_e297_epstate_*.csv`
+- public LB: not submitted.
+- reason not submitted: no E297 candidate passed the current public-free matched-null governor.
+- local observation:
+  - generated candidates: `150`;
+  - old strict candidates: `25`;
+  - null-evaluated candidates: `39`;
+  - public-free ready files: `0`;
+  - best actual p90: `-0.000565475`;
+  - best null strict rate: `0.000000`, but only for `too_small_to_submit` rows;
+  - old-strict bedtime/routine S1 rows are blocked by high matched-null strict rates.
+- interpretation: the human episode states survived local label nulls, but the logistic materializer collapses into generic target movement when translated onto E247.
+- next experiment: learn candidate outcome health directly: selector-visible and null-rare, with bedtime/routine states as priors.

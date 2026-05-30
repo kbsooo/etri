@@ -2807,3 +2807,34 @@ Next submission candidate requirement:
 
 - the next gate must predict `selector-visible + null-rare`, not merely `actual placement`;
 - if there are too few positive examples for that target, pivot to another human-state branch instead of tuning S4 further.
+
+## Update After E295-E297 Human Episode-State Branch
+
+Current submission policy remains: **no new public submission.**
+
+What was tested:
+
+- E295 grouped human/social/cash-flow stories into `11` larger episode states.
+- E296 reran the strongest E295 episode-target pairs with `64` matched null reps per mode.
+- E297 materialized the `5` robust E296 states onto current best E247 and ran the public-free matched-null governor.
+
+What was learned:
+
+- Human episode states are real as local representations. E295 found `51` target-specific gates and strong dateblock reconstruction.
+- The strict survivors are mainly bedtime/routine states, not cash-flow: `bedtime_arousal/S1`, `bedtime_arousal/S3`, `routine_fragmentation/S1`, `routine_fragmentation/S3`, and `routine_anchor_recovery/S2`.
+- Direct E247 materialization is still blocked. E297 generated `150` candidates, found `25` old strict candidates, but `0` public-free ready files.
+- Best E297 p90 is `-0.000565475`, but matched nulls promote too often. Null-safe variants are below selector resolution.
+
+Do not submit:
+
+- any `analysis_outputs/submission_e297_epstate_*.csv` file.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+Next submission candidate requirement:
+
+- it must learn candidate health directly: `selector-visible + null-rare`;
+- bedtime/routine episode states are the best human priors;
+- cash-flow/payday stories should stay diagnostic until they pass strict null and materialization governance.
