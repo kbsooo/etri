@@ -2305,3 +2305,54 @@ E184 이후에도 제출 후보 순위는 바뀌지 않는다.
 다음으로 가장 정보량이 큰 행동:
 
 제출 후보는 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` 하나다. 단, 제출 이유는 “support decoder가 인증했다”가 아니라 “shape-only도 E176을 고르고, visible-body/Q2-underopen worldview가 아직 살아 있으며, public feedback이 가장 많은 세계관을 죽일 수 있다”로 좁혀졌다.
+
+## E189 업데이트: support의 정체는 broad selector가 아니라 E72 오염 센서다
+
+내가 발견한 가장 이상한 점:
+
+`support가 wider E95-edge stress를 고치는 것처럼 보였지만, 실제로 고친 row는 전부 E72-neighbor였다. 반대로 shape-only가 support를 이긴 row는 전부 exact E95/E101 boundary였다. 즉 둘은 같은 문제를 다르게 푸는 것이 아니라, 서로 다른 숨은 센서를 보고 있다.`
+
+실험:
+
+- `analysis_outputs/e189_shape_support_disagreement_atlas.py`
+- report: `analysis_outputs/e189_shape_support_disagreement_atlas_report.md`
+
+결과:
+
+- primary file-LOO E95-edge slice:
+  - support rescue: `6`
+  - shape-only win: `4`
+- support rescue:
+  - E72-frontier-neighbor share: `1.000`
+  - exact E95/E101 share: `0.000`
+- shape-only win:
+  - exact E95/E101 share: `1.000`
+  - E72-frontier-neighbor share: `0.000`
+- filename gate:
+  - E95-edge accuracy `1.000`
+  - frontier accuracy `0.933333`
+  - 하지만 live candidate에는 E72/E95/E101 filename identity가 없으므로 제출 규칙이 아니다.
+
+생각이 어떻게 바뀌었는지:
+
+`support-heavy decoder는 넓은 의미의 public selector가 아니다. 지금 관측된 useful part는 E72-contamination correction이다. E95/E101 같은 tight hardtail boundary에서는 shape-only가 더 건강하다. 따라서 E186에서 E176을 지지한 support evidence는 더 약해졌고, auxiliary sensor로만 남는다.`
+
+현재 최강 세계관:
+
+`0.57629 plateau는 하나의 selector가 모자란 문제가 아니라, 서로 다른 hidden sensor들이 각자 다른 boundary를 맞히는 문제다. support는 E72 오염을 보고, shape는 tight hardtail 경계를 본다. 우리가 아직 못 가진 것은 live sample/candidate에서 어느 센서를 믿어야 하는지 알려주는 구조적 E72-contamination detector다.`
+
+그 세계관을 죽일 수 있는 가장 작은 실험:
+
+`filename을 쓰지 않고 movement shape, target-axis, bad-axis, row/block context만으로 E72-neighbor contamination을 예측하는 detector를 만든다. 그 detector가 E72 rescue row를 잡고 E95/E101 row를 피하면서 live branch ranking까지 안정화하면 E189의 "support는 identity shortcut" 결론이 약해진다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+새 submission은 만들지 않는다. 다음 제출 후보는 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`지만, 이유는 좁아졌다.
+
+- 남은 근거: shape-only도 E176을 고른다.
+- 남은 근거: broad/Q2-underopen worldview가 아직 살아 있다.
+- 빠진 근거: support-heavy decoder가 E176을 인증했다는 해석.
+
+제출 후보 해석:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`는 expected-score 인증 파일이 아니라, broad/Q2-underopen 세계관을 public에 묻는 센서다. Public LB가 좋아지면 E176 세계관과 shape-only branch sensor가 강화된다. 나빠지면 support를 더 섞는 쪽이 아니라, E72-contamination detector나 repaired-branch worldview 쪽으로 돌아가야 한다.

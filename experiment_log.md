@@ -2902,3 +2902,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - edge-band accuracy stays at `0.785714` until the boundary starts to fail; it never reaches the `0.80` action-grade threshold while preserving E95/E101.
 - Interpretation: support is not a weak repair prior. It is a conflicting latent shortcut whose useful edge-band corrections arrive only after it has already inverted the tight frontier boundary.
 - Decision: keep E176 as the next information sensor if a public slot is spent, but treat E186 support evidence as auxiliary only. The next real improvement path needs a new decisive-cell/structural target, not a smoother shape/support blend.
+
+## E189. Shape/Support Disagreement Atlas
+
+- Observe: E188 showed shape/support blending cannot repair the selector, but it did not identify what support is actually good for. Support could still be a broad conditional edge sensor, or it could be rescuing one anchor family while harming the tight E95/E101 boundary.
+- Wonder: among rows where shape-only and support disagree, are support's wins broad frontier structure, or concentrated in a specific known-anchor motif?
+- Method: `analysis_outputs/e189_shape_support_disagreement_atlas.py` compares shape-only and support antisymmetric file-LOO predictions row by row, labels disagreement classes, isolates E95-edge / frontier / exact E95-E101 / E72-frontier-neighbor slices, tests simple identity gates, and audits z-feature differences. It writes no submission.
+- Result:
+  - report: `analysis_outputs/e189_shape_support_disagreement_atlas_report.md`.
+  - in the primary file-LOO E95-edge slice, support rescues `6` rows and shape-only wins `4` rows.
+  - all `6/6` support rescues are E72-frontier-neighbor rows: E95/E101/mixmin versus E72 orientations.
+  - all `4/4` shape-only wins are the exact E95/E101 boundary orientations.
+  - a file-identity gate that uses support only on E72-neighbor rows reaches E95-edge accuracy `1.000` and frontier accuracy `0.933333`, but it is not deployable because live candidates do not arrive with E72/E95/E101 filenames.
+  - aligned z-feature audit shows support families separate the two disagreement classes by orientation, not by a public-free live-candidate rule.
+- Interpretation: support's useful edge gain is anchor-specific. It is an E72-contamination correction sensor, not a general frontier selector. The exact E95/E101 hardtail boundary remains a shape-only boundary.
+- Decision: no new submission. E176 remains the next sensor only because shape-only also selects E176 and the separate broad/Q2-underopen worldview is still alive. Support-heavy pair evidence must not be used to rank E176/E154/E144 without a new structural target that can identify E72-contamination separately from tight hardtail boundaries.

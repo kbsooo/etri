@@ -1054,3 +1054,25 @@ E188 tests whether low-alpha shape/support logit blending repairs the conflict.
 - no positive alpha raises edge accuracy above shape-only while preserving exact E95/E101.
 
 Stress implication: support is not a tunable calibration layer on top of shape geometry. The selector must either use shape-only with lower edge stress or wait for a new representation; support-heavy selection needs an external boundary veto.
+
+## Update After E189
+
+E189 audits where shape-only and support actually disagree.
+
+- script: `analysis_outputs/e189_shape_support_disagreement_atlas.py`.
+- report: `analysis_outputs/e189_shape_support_disagreement_atlas_report.md`.
+- primary file-LOO E95-edge disagreements:
+  - support rescues: `6`.
+  - shape-only wins: `4`.
+  - both wrong: `0`.
+- support rescue concentration:
+  - E72-frontier-neighbor share: `1.000`.
+  - exact E95/E101 share: `0.000`.
+- shape-only win concentration:
+  - exact E95/E101 share: `1.000`.
+  - E72-frontier-neighbor share: `0.000`.
+- file-identity gate:
+  - support only on E72-neighbor rows gives E95-edge accuracy `1.000`, frontier accuracy `0.933333`, micro accuracy `0.937500`.
+  - not deployable because it depends on known filenames rather than live structural signals.
+
+Stress implication: the support-vs-shape conflict is not a smooth calibration tradeoff. It is two different hidden sensors: support repairs E72-neighbor contamination, shape preserves the tight E95/E101 hardtail boundary. Future validation must include both axes separately.

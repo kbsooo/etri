@@ -1466,3 +1466,12 @@
 - Implementation issue possible: low for the exact-boundary falsification because E101 public `0.5763003660` is known and file/pair LOO predictions are fixed. Medium for generalizing to future branches because known public anchors remain few.
 - Bottleneck implication: the next bottleneck is not support-weight tuning. We need a new decisive-cell or structural target representation that resolves tight public boundaries without borrowing a support shortcut.
 - Do not repeat: creating a submission from support-heavy pair-decoder branch scores, or tuning shape/support blend alpha, unless an independent exact-boundary veto or new public-free cell-resolution sensor is added first.
+
+## FH163. Support-heavy edge gain is a broad deployable selector
+
+- Failed hypothesis: even if support cannot be blended smoothly, its wider E95-edge gains reflect a broad conditional frontier law that can be used to rank live submissions after adding an exact-boundary veto.
+- Observed result: E189 finds that in the primary E95-edge file-LOO slice, support rescues exactly `6` rows and all `6/6` are E72-frontier-neighbor orientations. Shape-only wins exactly `4` rows and all `4/4` are the exact E95/E101 boundary. A support-only-on-E72-neighbor gate reaches E95-edge accuracy `1.000`, but this uses known file identity and does not transfer to unlabeled live candidate branches.
+- Why discard: the broad-selector claim is false. Support is useful in a specific known-anchor contamination context, not as a general frontier law. The apparent gate is a diagnostic of E72 adjacency, not a deployable candidate selector.
+- Implementation issue possible: medium. Known public anchors are few, and a future structural detector might recover E72 contamination without filenames. Low for the narrow falsification because the current support wins and shape wins are exactly concentrated in opposing known slices.
+- Bottleneck implication: the current pair-decoder bottleneck is not "add support with a veto"; it is to define a new target representation that separates E72-contamination from tight hardtail boundary movement.
+- Do not repeat: using support-heavy E186/E187/E189 branch probabilities to certify E176, E154, or E144. Use support only as auxiliary evidence or as a target for a future E72-contamination detector.

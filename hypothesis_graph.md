@@ -2148,6 +2148,18 @@ target co-occurrence
 - public LB 관측 반응: a future E176 public win would validate the branch sensor but still would not validate support as a general boundary selector unless exact E95/E101 remains explicitly handled.
 - 제출 전략: no blend-generated submission. Keep E176 only as a predeclared sensor.
 
+### H183. Support edge gain is a broad conditional frontier law
+
+- 상태: 반증/정밀화 by E189.
+- 왜 그럴듯한가: E186/E187 support models improve wider E95-edge file-LOO stress even though they miss exact E95/E101. If support captured a real conditional law, its wins over shape-only should appear across multiple frontier contexts and should provide a deployable gate.
+- 맞다면: shape/support disagreements should show support rescues spread across E95/E101/mixmin/E72 and other frontier relations, and a non-file-identity structural gate should preserve E95/E101 while using support where it helps.
+- 틀리다면: support rescues should concentrate in one anchor family, especially the already-failed E72 neighborhood, while shape-only wins should concentrate on the exact E95/E101 hardtail boundary.
+- 최소 실험: `analysis_outputs/e189_shape_support_disagreement_atlas.py`.
+- 관측: in the primary E95-edge file-LOO slice, support rescues `6` rows and shape-only wins `4` rows. Support rescues are E72-frontier-neighbor rows at rate `1.000`; shape-only wins are exact E95/E101 rows at rate `1.000`. A cheating file-identity gate can make E95-edge accuracy `1.000` and frontier accuracy `0.933333`, but it uses filenames, not a live structural selector.
+- 성공/폐기 기준: broad-law version 폐기. The remaining supported version is narrower: support is an E72-contamination diagnostic. It may become useful again only if a public-free representation can identify E72-contaminated movement without file identity and without flipping E95/E101.
+- public LB 관측 반응: a future E176 win would not validate support as a selector, because E189 shows support's known wins are E72-neighbor-specific. A future E72-like failure/win can validate or refute the contamination-diagnostic role.
+- 제출 전략: no E189 submission. Keep `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` only as a broad/Q2-underopen plus shape-only-supported sensor.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -584,3 +584,20 @@ Submission order by information value stays:
 4. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` — conservative branch contrast.
 
 Do not create a submission from E187/E188. Their value is negative selection: support-decoder branch scores require an exact-boundary veto or a new structural target.
+
+## Update After E189
+
+The single next public sensor remains:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+The reason is now even narrower. E189 shows support's wider E95-edge gain is almost entirely an E72-neighbor correction: `6/6` primary support rescues are E72-frontier-neighbor rows, while `4/4` shape-only wins are exact E95/E101 boundary rows. A file-identity gate can look excellent locally, but it is not deployable to live branches.
+
+Submission order by information value:
+
+1. `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` — broad/Q2-underopen sensor, supported by shape-only pair geometry and previous body/tail audits.
+2. `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv` — full-Q2 reopening contrast only after E176 feedback.
+3. `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` — repaired-branch alternate worldview.
+4. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` — conservative branch contrast.
+
+Do not promote any support-heavy E189 gate into a submission. Its live use requires a new public-free E72-contamination detector, not filename identity.
