@@ -1674,6 +1674,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: adding E176/E216 yields best proxy MAE `0.000496259`, still too coarse for frontier ordering. E224's expected edge is only `1.316x` this proxy MAE and carries large adverse capacity; E166's expected edge is `0.669x`; E154's is `0.060x`. Therefore the table cannot certify a score. It can only route the next public observation.
 - Policy: choose E224 only when the explicit question is JEPA after E216. Choose E166 when the explicit question is independent broad-world structure. Keep E154 conditional. Do not use F194 as a model feature or LB-fitting device.
 
+### F195. E230 E224 Q3 support-tail prune features
+
+- Hidden structure: E224 may contain a healthy S4 body plus a fragile Q3 tail. The useful feature is not a new raw column, but a cell-level risk energy over E224's moved Q3 cells.
+- Candidates: E224-vs-E154 logit swing, expected focus sign, support probability, risk score, target tag, adverse-capacity contribution, and top-cell concentration.
+- Label vs split test: valid only as conditional submission triage. It uses no new public score, but it is not OOF-learned, so it must not be treated as a trained samplewise gate.
+- Current evidence: `q3_swingtop25_drop` cuts adverse by `0.000633168` for only `0.000023308` expected-focus cost vs E224; `q3_risktop21_drop` improves expected focus by `0.000067892` under the prior while gaining `0.021076971` support.
+- Policy: use F195 only after E224 feedback suggests Q3 tail blame. Do not use it to skip the cleaner E224 observation or to tune Q3 thresholds from public LB.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

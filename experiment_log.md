@@ -3522,3 +3522,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - conservative branch remains conditional: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
 - Interpretation: E216 does not kill every JEPA idea. It kills the S2/rank masked-family translator. E224 is mostly Q3/S4 movement and nearly orthogonal to E216 (`cos_vs_e216=0.043542`), so it remains the clean JEPA question. E166 is the clean non-collinear escape question (`cos_vs_e224=0.074348`). E154 is lower first-slot information because E224 covers `0.885621` of E154 mass same-sign.
 - Decision: no E229 submission. If the next public slot is meant to answer "can JEPA solve this?", submit E224 and decode with E225. If the next slot is meant to leave JEPA and test a different hidden-world law, submit E166 and decode with E227. Do not use public-anchor proxy ordering or an E224/E166/E154 blend.
+
+## E230. E224 Support-Tail Prune Audit
+
+- Observe: E224 remains the clean JEPA question after E216, but its support probability is still below `0.5` and E222/E224 identify Q3 as the fragile tail. A direct public submission of E224 should stay clean, yet a conditional sibling is useful if E224 small-loses by Q3 hard-label tail.
+- Wonder: can a public-free support-tail prune remove the fragile Q3 cells while preserving the E224 S4 body and most of the expected JEPA movement?
+- Method: `analysis_outputs/e230_e224_support_tail_prune_audit.py` compares E224 against E154 and E95, ranks E224 Q3/S4 moved cells by support probability, swing, expected sign, and risk, then rolls selected cells back toward E154. It uses the locked E222/E224 public-free priors; no public score is fitted.
+- Result:
+  - report: `analysis_outputs/e230_e224_support_tail_prune_audit_report.md`.
+  - selected conditional siblings:
+    - `analysis_outputs/submission_e230_q3_swingtop25_drop_e0918606.csv`: expected focus `-0.000600044`, only `+0.000023308` weaker than E224, adverse reduction `+0.000633168`, support gain `+0.009873471`, Q3 top1/expected `0.490396`.
+    - `analysis_outputs/submission_e230_q3_risktop21_drop_7d95c14a.csv`: expected focus `-0.000691244`, `-0.000067892` better than E224 under the prior, adverse reduction `+0.000444730`, support gain `+0.021076971`, Q3 top1/expected `0.469525`.
+    - `analysis_outputs/submission_e230_q3_risktop13_drop_9704f7c9.csv`: expected focus `-0.000674532`, adverse reduction `+0.000326867`, support gain `+0.014719432`, Q3 top1/expected `0.517503`.
+- Interpretation: Q3 tail pruning can make a plausible E224 sibling, but it is not OOF-learned. It should not replace E224 as the first JEPA public sensor because doing so would obscure whether capped-Q3/S4 translation works at all.
+- Decision: keep E224 as the first JEPA observation. Use E230 only after E224 feedback, especially if E224 lands in tie/small-loss bands and the E225 attribution points to Q3 tail rather than the S4 body.

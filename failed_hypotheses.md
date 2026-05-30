@@ -1800,3 +1800,12 @@
 - Implementation issue possible: medium. More anchors or a better inverse subset model could reduce error later. Low for rejecting current use because the error floor is directly measured by leave-one-anchor validation.
 - Bottleneck implication: candidate selection remains an observation-design problem, not a score-regression problem. The next submission should be chosen by which hidden-world belief it can kill: E224 for JEPA, E166 for independent broad-world, E154 for repaired branch.
 - Do not repeat: ranking E224/E166/E154 by scalar proxy forecast, or creating a new blend because the proxy cannot separate them.
+
+## FH200. E230 Q3-tail prune should replace E224 before any E224 feedback
+
+- Failed hypothesis: because E230 improves E224's Q3 support-tail geometry, an E230 sibling should supersede E224 as the first JEPA-family public file.
+- Observed result: E230 does improve the public-free tail audit, but only as an intervention on an already selected E224 movement. `q3_swingtop25_drop` reduces adverse capacity by `0.000633168` at a small expected-focus cost, and `q3_risktop21_drop` improves expected focus under the prior, but the prune criterion is not OOF-learned and is chosen from E224's own movement anatomy.
+- Why discard: submitting E230 first would confound the main question. We would no longer know whether the capped-Q3/S4 JEPA translator works, only whether a hand-pruned Q3 tail variant happened to fit public.
+- Implementation issue possible: medium. A future OOF-trained Q3 tail model could promote this from conditional repair to first-class translator. Low for rejecting current first-slot replacement because the current prune is deliberately an audit, not a learned gate.
+- Bottleneck implication: E224 likely has a prunable Q3 tail, but the bottleneck remains public-tail translation and observation design.
+- Do not repeat: using E230-style prunes as automatic pre-feedback replacements. First submit E224 if testing JEPA; use E230 only after E224 tie/small-loss attribution points to Q3 tail.

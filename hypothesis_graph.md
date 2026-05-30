@@ -2652,6 +2652,18 @@ target co-occurrence
 - public LB 관측 반응: an E224 score updates whether the current JEPA translator survives E216; an E166 score updates whether broad survivor structure was over-vetoed. The same scalar LB band must be read through the chosen routebook.
 - 제출 전략: forced one-slot under current JEPA question is E224. If the next goal changes to escaping JEPA, choose E166. Do not submit E154 first unless the explicit question is repaired-branch validation or attribution points there.
 
+### H225. E224's weak point is a prunable Q3 tail, but the first JEPA observation should stay unpruned
+
+- 상태: 부분 지지 by E230; public outcome pending.
+- 왜 그럴듯한가: E222/E224 localized E211-family risk to Q3 concentration, while S4 carried the healthier body. If that diagnosis is real, pruning a small number of low-support Q3 cells should improve adverse/support geometry with little expected-focus cost.
+- 맞다면: small Q3-only rollbacks should reduce adverse capacity, raise swing-weighted support, keep expected focus materially negative, and avoid touching the S4 body.
+- 틀리다면: any Q3 prune will either remove most of E224's expected edge, fail to reduce adverse capacity, or require a broad threshold that no longer tests the same E224 latent.
+- 최소 실험: `analysis_outputs/e230_e224_support_tail_prune_audit.py`.
+- 관측: `q3_swingtop25_drop` keeps expected focus `-0.000600044` with only `+0.000023308` loss vs E224, reduces adverse by `0.000633168`, and raises support by `0.009873471`. `q3_risktop21_drop` is even better under the prior on expected focus (`-0.000691244`, `-0.000067892` vs E224) with support gain `0.021076971`.
+- 성공/폐기 기준: supported as a conditional repair, not as a first-slot replacement. The prune rule is public-free but not OOF-learned, so it cannot supersede E224 before E224 receives public feedback.
+- public LB 관측 반응: if E224 tie/small-loses and E225 attribution points to Q3 tail, an E230 win would strengthen "S4 body survives, Q3 tail was the defect." If E224 hard-fails, E230 is too narrow and the E211 translator itself is suspect.
+- 제출 전략: submit E224 first for the JEPA question. Use `analysis_outputs/submission_e230_q3_swingtop25_drop_e0918606.csv` or `analysis_outputs/submission_e230_q3_risktop21_drop_7d95c14a.csv` only as a post-E224 conditional sibling.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

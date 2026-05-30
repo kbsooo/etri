@@ -1859,6 +1859,26 @@ E229 next public-slot decision audit:
 
 Stress implication after E229: the next slot is not a universal "best expected LB" file. It is an observation choice. Use E224 for the JEPA question, E166 for the independent broad-world question, and E154 only after attribution or after those questions are demoted.
 
+E230 E224 support-tail prune stress:
+
+- script: `analysis_outputs/e230_e224_support_tail_prune_audit.py`.
+- report: `analysis_outputs/e230_e224_support_tail_prune_audit_report.md`.
+- selected files:
+  - `analysis_outputs/submission_e230_q3_swingtop25_drop_e0918606.csv`.
+  - `analysis_outputs/submission_e230_q3_risktop21_drop_7d95c14a.csv`.
+  - `analysis_outputs/submission_e230_q3_risktop13_drop_9704f7c9.csv`.
+- stress dimensions:
+  - E224 vs E154 graft anatomy.
+  - actual E224 vs E95 movement anatomy.
+  - public-free focus/subject/nearest support probabilities from E222/E224.
+  - adverse-capacity reduction versus E224.
+  - Q3 top-cell concentration and selected-cell count cap.
+- key selected result:
+  - `q3_swingtop25_drop`: expected focus `-0.000600044`, expected loss vs E224 `+0.000023308`, adverse reduction `0.000633168`, support gain `0.009873471`, Q3 top1/expected `0.490396`.
+  - `q3_risktop21_drop`: expected focus `-0.000691244`, expected loss vs E224 `-0.000067892`, adverse reduction `0.000444730`, support gain `0.021076971`, Q3 top1/expected `0.469525`.
+
+Stress implication after E230: the Q3 tail can be pruned without destroying the E224 body under public-free priors, but the prune rule is not OOF-learned. E230 should be a post-E224 conditional sibling, not the first public JEPA sensor.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

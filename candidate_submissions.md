@@ -1379,3 +1379,34 @@ Current one-slot policy:
    - Reason not first: E154 is partly inherited inside E224; E224 covers `0.885621` of E154 mass same-sign.
 
 Do not submit an E229 blend. E224 and E166 are high-information separate sensors, and blending before feedback destroys the observation.
+
+## Update After E230
+
+E230 creates conditional E224 siblings by pruning only fragile Q3 tail cells from the E224 movement. This is a repair audit, not a replacement for the first JEPA sensor.
+
+Selected conditional files:
+
+1. `analysis_outputs/submission_e230_q3_swingtop25_drop_e0918606.csv`
+   - Best E230 score.
+   - Drops the top `25` Q3 swing cells back to E154.
+   - Expected focus `-0.000600044`, only `+0.000023308` worse than E224.
+   - Adverse reduction vs E224 `+0.000633168`.
+   - Support gain vs E224 `+0.009873471`.
+
+2. `analysis_outputs/submission_e230_q3_risktop21_drop_7d95c14a.csv`
+   - Strongest support gain among selected small-prune siblings.
+   - Drops `21` Q3 low-support risk cells.
+   - Expected focus `-0.000691244`, `-0.000067892` better than E224 under the public-free prior.
+   - Adverse reduction vs E224 `+0.000444730`.
+   - Support gain vs E224 `+0.021076971`.
+
+3. `analysis_outputs/submission_e230_q3_risktop13_drop_9704f7c9.csv`
+   - Smaller risk-top prune.
+   - Expected focus `-0.000674532`, adverse reduction `+0.000326867`, support gain `+0.014719432`.
+
+Submission policy:
+
+- Do not submit E230 before E224 if the intended question is "does JEPA help here?" E224 is the cleaner observation.
+- If E224 is a clean or micro win, do not use E230 immediately; first decode the win with E225.
+- If E224 lands in the tie/small-loss band and attribution blames Q3 tail, use an E230 sibling. Prefer `q3_swingtop25_drop` for lower adverse capacity; prefer `q3_risktop21_drop` if support gain is the priority.
+- If E224 loses worse than mixmin-safe, E230 is probably too narrow. Route to E166 or E154/search instead of pruning the same translator.
