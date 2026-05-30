@@ -1408,6 +1408,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: exact E95/E101 remains low (`0.031016`). E144 crosses non-E72 p95 in only one scenario (`0.038723`) but stays below p99 and far below the E72-positive floor (`0.804849`); its nearest known rows are non-E72. E154 and E176 remain below p95, with E176 max `0.000008`.
 - Policy: use E192 only as a tail-risk diagnostic. It supports E176 as contamination-clean and marks E144 as mild shape-tail risk; it does not justify support gating or branch reranking.
 
+### F162. E193 live candidate evidence ledger
+
+- Hidden structure: no single current latent view is stable enough to rank E176/E154/E144 alone. The useful feature is a governance layer that records which hidden-world sensors support, warn against, or underidentify each branch.
+- Candidates: support/warning/underidentified/missing axes from E179 visible priors, E180 top-cell calibration, E181 binary-world counterprior, E182/E183 pressure ranges and local-prior branch anatomy, E186 pair geometry, and E192 clean-shape E72/tail risk.
+- Label vs split test: valid as a decision ledger because it does not train on public LB or create a new prediction. Invalid as a learned score forecast because axis weights are interpretive and current public anchors still underidentify branch signs.
+- Current evidence: E176 has evidence balance `3.100`; E154 has `-0.225`; E144 has `-1.725`. E176 is the only positive-balance branch but still has material binary-world and local-prior warnings.
+- Policy: use E193 to choose the next public sensor and prevent diagnostic cherry-picking. Do not use it as an expected-LB predictor or as a reason to tune E176 without E177 feedback.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

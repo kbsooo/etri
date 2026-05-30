@@ -1145,3 +1145,23 @@ E192 decomposes the only E191-clean score instead of creating a new model.
   - E176 top-3 nearest known rows are all non-E72 low-score contexts.
 
 Stress implication: clean-shape E72 score is not an action-grade live contamination selector. It is a tail-risk diagnostic. E176 remains the lowest-contamination next sensor; E144's partial alarm should be interpreted as shape-tail risk, not as proof of E72 contamination.
+
+## Update After E193
+
+E193 converts the live E176/E154/E144 dispute into a fixed multi-sensor stress ledger.
+
+- script: `analysis_outputs/e193_live_candidate_evidence_ledger.py`.
+- report: `analysis_outputs/e193_live_candidate_evidence_ledger_report.md`.
+- signals included:
+  - E179 visible full-body and Q2-damping priors.
+  - E180 known-winner top-cell calibration.
+  - E181 inherited binary-world counterprior.
+  - E182/E183 refreshed pressure-range and local-prior branch anatomy.
+  - E186 antisymmetric pair geometry.
+  - E192 clean-shape E72/tail-risk diagnostics.
+- evidence balance:
+  - E176: `3.100`.
+  - E154: `-0.225`.
+  - E144: `-1.725`.
+
+Stress implication: E176 is the best next public sensor by cross-sensor balance, not by certified expected LogLoss. The unresolved stress remains explicit: inherited binary worlds and local pressure-branch priors still warn against E176. This means E176 feedback should be treated as a world-model observation, not as permission for post-hoc keep-factor tuning.

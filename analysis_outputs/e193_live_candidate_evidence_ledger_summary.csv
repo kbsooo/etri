@@ -1,0 +1,4 @@
+candidate,role,file,support_axes,warning_axes,underidentified_axes,missing_axes,evidence_balance,recommended_role
+e176,visible_body_q2_underopen,submission_e176_abl_q2_to0p75_91e49725.csv,8,4,0,0,3.1,"first public sensor if spending one slot: broad/Q2-underopen worldview has the strongest cross-sensor balance, but still needs E177 decoding"
+e154,repaired_branch_s3,submission_e154_s3repair_9f2e2e73.csv,4,4,1,3,-0.2250000000000001,"alternate repaired-branch worldview: inherited binary support remains alive, but pressure/pair/E72 diagnostics do not promote it over E176"
+e144,unrepaired_repaired_branch_contrast,submission_e144_activeboundary_d7b4b331.csv,3,5,1,3,-1.725,"unrepaired contrast/control: useful if repaired branch needs falsification, but mild shape-tail risk and pair-geometry rejection block first priority"

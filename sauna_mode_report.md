@@ -2483,3 +2483,46 @@ E184 이후에도 제출 후보 순위는 바뀌지 않는다.
 다음으로 가장 정보량이 큰 행동:
 
 새 submission은 만들지 않는다. 다음 제출 후보는 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`다. 이 파일은 support/E72 gate가 아니라 broad/Q2-underopen 세계관을 묻는 센서다.
+
+## E193 업데이트: E176은 인증된 승자가 아니라 가장 정보량 큰 센서다
+
+내가 발견한 가장 이상한 점:
+
+`E176을 지지하는 증거와 E154/E144를 지지하는 증거가 서로 다른 latent view에서 동시에 존재한다. 그래서 "어느 파일이 좋아 보이나"보다 "어떤 증거를 어떤 무게로 믿을 수 있나"가 더 중요한 문제가 됐다.`
+
+실험:
+
+- `analysis_outputs/e193_live_candidate_evidence_ledger.py`
+- report: `analysis_outputs/e193_live_candidate_evidence_ledger_report.md`
+
+결과:
+
+- E176:
+  - support `8`
+  - warning `4`
+  - evidence balance `3.100`
+- E154:
+  - support `4`
+  - warning `4`
+  - underidentified `1`
+  - missing `3`
+  - evidence balance `-0.225`
+- E144:
+  - support `3`
+  - warning `5`
+  - underidentified `1`
+  - missing `3`
+  - evidence balance `-1.725`
+
+생각이 어떻게 바뀌었는지:
+
+`E176은 "이길 것 같은 파일"이라기보다, 현재 살아 있는 세계관 중 가장 덜 모순적인 public 센서다. E154/E144는 죽은 후보가 아니라 inherited binary-world가 지지하는 alternate repaired-branch worldview다. 하지만 지금 증거 전체를 세면 첫 슬롯은 아니다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+제출한다면 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` 하나다.
+
+- 의도: broad/Q2-underopen 세계관을 public 센서로 찌르기
+- 기대 public 반응: 개선되면 E176 세계관 강화
+- 실패 시 해석: tie/small-loss면 hidden-label resolution 병목 강화, worse-than-E101이면 partial-reopen family를 demote
+- 금지: E176 스칼라 결과를 보고 Q2 keep factor를 다시 튜닝하지 않는다. 반드시 E177 decoder로 해석한다.

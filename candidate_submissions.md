@@ -651,3 +651,26 @@ Submission order remains unchanged:
 2. `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv` — full-Q2 reopening contrast after E176 feedback.
 3. `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` — repaired-branch alternate worldview.
 4. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` — conservative branch contrast, now explicitly marked as mild shape-tail-risk rather than contamination-positive.
+
+## Update After E193
+
+The single next public sensor remains:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+E193 did not create a submission. It consolidated the live evidence for E176/E154/E144 so the next file is chosen by a fixed evidence ledger rather than by whichever diagnostic is most convenient.
+
+Evidence balance:
+
+- E176: `3.100` (`8` support axes, `4` warnings, `0` underidentified, `0` missing).
+- E154: `-0.225` (`4` support axes, `4` warnings, `1` underidentified, `3` missing).
+- E144: `-1.725` (`3` support axes, `5` warnings, `1` underidentified, `3` missing).
+
+Submission order by information value:
+
+1. `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` — broad/Q2-underopen sensor; highest cross-sensor evidence balance, not certified expected-score winner.
+2. `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv` — full-Q2 reopening contrast only after E176 feedback.
+3. `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` — repaired-branch alternate worldview; supported by inherited binary counterprior but rejected by pressure/pair geometry as first-choice.
+4. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` — conservative branch contrast; useful only as a tail-risk/repaired-branch control.
+
+If E176 is submitted, run `python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <PUBLIC_LB>` before choosing any same-family or repaired-branch follow-up.

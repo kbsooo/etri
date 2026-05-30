@@ -2196,6 +2196,18 @@ target co-occurrence
 - public LB 관측 반응: E176 public feedback should test broad/Q2-underopen shape worldview, not E72 contamination. E144 public feedback, if ever used, should be read as an active-boundary/tail-risk contrast rather than as an E72-contamination branch.
 - 제출 전략: no E192 submission. Keep E176 as the single next sensor.
 
+### H187. Cross-sensor evidence balance can choose the next live public sensor without certifying expected LB
+
+- 상태: 지지 as sensor-selection ledger, 반증 as expected-score certificate by E193.
+- 왜 그럴듯한가: E176/E154/E144 are currently separated by conflicting latent views. E176 has visible-body, Q2-damping, pair-geometry, and clean-E72 support, while E154/E144 have inherited binary-world support. A fixed ledger can prevent cherry-picking diagnostics while preserving the distinction between "next sensor" and "certified winner."
+- 맞다면: E176 should stay first only if its support survives after binary-world counterprior, local-prior rejection, pressure-width, pair-geometry, and E72-tail diagnostics are all counted explicitly. E154/E144 should remain alive only as alternate worldview controls, not first-choice candidates.
+- 틀리다면: the ledger would either put E154/E144 ahead, or show all branches as too conflicted to justify any next submission.
+- 최소 실험: `analysis_outputs/e193_live_candidate_evidence_ledger.py`.
+- 관측: E176 has support axes `8`, warning axes `4`, and evidence balance `3.100`; E154 has `4/4/1/3` support/warning/underidentified/missing with balance `-0.225`; E144 has `3/5/1/3` with balance `-1.725`. E176 is supported by E179/E180/E183/E186/E192, but warned by E181 and E183 local-prior rejection.
+- 성공/폐기 기준: supported only for ranking the next information sensor. Rejected as an expected-score certificate because the binary-world conflict and pressure-branch local-prior rejection remain unresolved.
+- public LB 관측 반응: E176 win strengthens the broad/Q2-underopen worldview. Tie/small-loss strengthens the hidden-label resolution bottleneck. Worse-than-E101 demotes the partial-reopen family instead of justifying Q2 keep-factor tuning.
+- 제출 전략: no E193 submission. If one public slot is spent, submit `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` and decode with E177.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

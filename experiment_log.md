@@ -2966,3 +2966,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - live pressure-branch context terms are zero in this frame; the remaining signal is target/shape contribution geometry, dominated by target support-swing terms rather than deployable support-family features.
 - Interpretation: E144's partial alarm is a tail-risk score, not evidence of E72-like contamination or a reason to resurrect support gating. E176 remains the cleanest live branch under the only boundary-safe E72 diagnostic.
 - Decision: no submission. The next public sensor remains `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`, interpreted strictly as a shape/broad-Q2-underopen test.
+
+## E193. Live Candidate Evidence Ledger
+
+- Observe: after E192 the local evidence was no longer one-dimensional. E176 was supported by visible-body/Q2-underopen evidence, antisymmetric pair geometry, and clean-E72 diagnostics, while E181 inherited binary worlds still favored E154/E144. The risk was story-switching: choosing the sensor by whichever diagnostic happened to support the desired file.
+- Wonder: if all current diagnostics are put into one explicit ledger, does E176 remain the next public sensor, or do E154/E144 become stronger once the counter-evidence is counted?
+- Method: `analysis_outputs/e193_live_candidate_evidence_ledger.py` consolidates E179/E180/E181/E182/E183/E186/E192 evidence for E176/E154/E144. Each signal is marked as support, warning, underidentified, or missing, with a small evidence-balance contribution. This is explicitly not an LB predictor and creates no submission.
+- Result:
+  - report: `analysis_outputs/e193_live_candidate_evidence_ledger_report.md`.
+  - E176: support axes `8`, warning axes `4`, underidentified `0`, missing `0`, evidence balance `3.100`.
+  - E154: support axes `4`, warning axes `4`, underidentified `1`, missing `3`, evidence balance `-0.225`.
+  - E144: support axes `3`, warning axes `5`, underidentified `1`, missing `3`, evidence balance `-1.725`.
+  - E176 support comes from visible full-body prior, Q2 damping visibility, known-winner top-cell calibration, narrowest refreshed pressure range, E183 global-prior exception, E186 antisymmetric pair geometry, and E192 clean-shape/E72 cleanliness.
+  - E176 warnings remain real: E181 binary worlds are adverse/mixed, and E183 local subject/flank/visible priors reject the favorable pressure branch.
+- Interpretation: E176 is still the highest-information next public sensor, but the reason is narrow. It is not a certified expected-score winner. It is the only live branch whose cross-sensor evidence balance is positive after explicitly counting the main counterprior. E154/E144 remain the alternate repaired-branch worldview, not dead candidates.
+- Decision: no new submission. The next single public file remains `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` if one slot is spent. Decode the result with `analysis_outputs/e177_e176_public_feedback_decoder.py --score <PUBLIC_LB>`. If E176 wins, strengthen broad/Q2-underopen; if it ties or small-loses, strengthen the hidden-label resolution bottleneck; if it loses worse than E101, demote the partial-reopen family rather than tuning another keep factor.

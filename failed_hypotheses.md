@@ -1502,3 +1502,12 @@
 - Implementation issue possible: medium. E192 full-data AUC/AP are anatomy-only and optimistic; E191 pair-LOO is the real stress layer. Low for the narrow discard because nearest-neighbor and threshold comparisons all reject live E72-positive resemblance.
 - Bottleneck implication: the remaining E72 score is useful as an energy diagnostic, but not a selector. The plateau is still caused by unresolved target/shape hard-tail calibration and hidden public critical cells, not by a missed E72-contamination gate for E176.
 - Do not repeat: treating E144's p95 crossing as positive contamination proof, or replacing E176 with E144/E154 based only on clean-shape E72 score.
+
+## FH167. Evidence balance certifies E176 as an expected-score winner
+
+- Failed hypothesis: once E179/E180/E186/E192 evidence is consolidated, E176 should be certifiable as the likely public winner rather than merely selected as the next information sensor.
+- Observed result: E193 gives E176 the only positive evidence balance (`3.100`) and keeps it first, but the warnings are still material. E181 inherited binary worlds are adverse/mixed for E176, and E183 local subject/flank/visible priors reject the favorable pressure branch for all candidates. The ledger therefore supports sensor priority, not expected-score certainty.
+- Why discard: a positive cross-sensor balance is not the same as a hidden-label certificate. The unresolved counter-evidence is exactly in the public-sensitive cell-resolution layer that has produced the 0.57629 plateau.
+- Implementation issue possible: medium. Evidence weights in E193 are bookkeeping weights, not learned public-LB weights. Low for the narrow failure because the script explicitly preserves the adverse binary and local-prior signals instead of optimizing them away.
+- Bottleneck implication: the current bottleneck is still latent-view conflict and hidden public critical-cell sign ambiguity. E176 is the best next question, not the solved answer.
+- Do not repeat: describing E176 as guaranteed or locally certified. Describe it as the broad/Q2-underopen public sensor, and decode feedback with E177 before any follow-up.
