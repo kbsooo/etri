@@ -2282,3 +2282,30 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - require per-target matched-null dominance, not only reconstructability or cluster interpretability.
 - Failure condition:
   - if a bundle has high story R2 but positive mean label delta, classify it as descriptive diary state rather than predictive representation.
+
+## E289 Target-Specific Lifestyle Slice Policy
+
+- Target hypothesis tested: broad lifestyle state fails because targets have different noise channels; splitting by target should reveal useful Q/S-specific slices.
+- Feature/representation source:
+  - E288 lifestyle-story bundle;
+  - family JEPA context, raw human context, and hybrid context;
+  - subject/dateblock OOF story predictions;
+  - PC and cluster lifestyle reps;
+  - current E247 submission as protected base tensor.
+- Validation result:
+  - target-slice rows: `84`;
+  - target-gate rows: `7`;
+  - materialized candidates: `28`;
+  - matched row/subject/dateblock nulls: `420`;
+  - public-ready candidates: `0`.
+- Updated registry status:
+  - Q3 lifestyle slices are approved as diagnostic latent energy.
+  - S4 lifestyle clusters are approved as diagnostic latent energy.
+  - the S1 raw-human dateblock PC slice is a weaker diagnostic.
+  - no E289 lifestyle slice is approved for direct probability editing.
+- Adopt rule for future target-specific lifestyle features:
+  - keep target-specific effects separate;
+  - report matched null dominance by row, subject, and dateblock;
+  - use lifestyle energy to learn row/block placement, not as a scalar logit shift.
+- Failure condition:
+  - if a slice improves train CV but its materialized tensor has null strict rate near `1.0`, classify it as generic target movement rather than certified row placement.

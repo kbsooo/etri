@@ -4397,3 +4397,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - cluster geometry is not collapsed in the dateblock view: family context k4 train/test JS `0.037356`, subject NMI `0.035200`, self-transition `0.515909`. Subject-split raw context has high subject NMI and large label damage, suggesting shortcut risk.
 - Interpretation: broad lifestyle state is recoverable as a human diary representation, including payday/cash-flow and heart-stress stories. But the full bundle is not a safe downstream representation; it mixes useful target-specific signals with subject/block identity and opposite target effects. The "big hidden state" exists descriptively, but the probability translator must be target-specific or residualized.
 - Decision: no E288 public submission. Next branch should not use a broad lifestyle bundle as a feature block. It should isolate target-specific bundle slices, especially dateblock-stable S4/Q3/S2 clusters, and require per-target matched-null survival before any edit.
+
+## E289. Target-Specific Lifestyle Slice Audit
+
+- Observe: E288 rejected the broad lifestyle bundle, but it also showed target-specific improvements hidden inside the failed mean: S4/Q3/S2 could improve while other targets were damaged.
+- Wonder: if the lifestyle bundle is split by target and each target slice is tested against matched row/subject/dateblock nulls, does any slice become a public-free E247 edit?
+- Method: `analysis_outputs/e289_target_specific_lifestyle_slice_audit.py` reuses the E288 story bundle and context views, but evaluates PC/cluster lifestyle slices per target. A slice must beat target-specific train nulls before materialization. Surviving slices are converted into tiny E247-current target-only logit edits and scored against matched test null submissions. No public LB was used.
+- Result:
+  - target-slice rows: `84`;
+  - target-gate rows: `7`;
+  - materialized candidates: `28`;
+  - matched null candidates: `420`;
+  - public-free ready candidates: `0`.
+  - strongest train slice: `Q3_raw_human_context_subject5_pc`, delta `-0.014465898`, dominance `0.962963`.
+  - strongest S4 slices: `S4_family_jepa_context_dateblock5_cluster6` delta `-0.011131`, and `S4_raw_human_context_dateblock5_cluster6` delta `-0.009936`, both dominance `1.000000`.
+  - best-looking candidate by local selector, `submission_e289_lifeslice_Q3_family_jepa_context_subject5_cluster6_raw_s050_09f712a2.csv`, had actual mean `-0.000674` and p90 `-0.000417`, but null strict rate `1.000000` and worst-mode p90 dominance `0.000000`.
+- Interpretation: target-specific social/lifestyle signal is real, especially for Q3 and S4. The failure is not "human stories are fake"; it is row/block placement and materialization. The same magnitude/direction can be reproduced by row/subject/dateblock shuffles, so public LB should not be spent.
+- Decision: no E289 public submission. Keep Q3/S4 lifestyle slices as latent diagnostics. The next branch should learn the row/block placement law directly, not scale the target slices.

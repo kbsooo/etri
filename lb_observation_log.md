@@ -418,3 +418,20 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - top reconstructable payday/cash-flow story: `paymonth_start_post3_late_shopping`, R2 `0.813342`.
 - interpretation: social/cash-flow lifestyle states are real as hidden diary states, but the broad bundle is not a public-ready probability representation.
 - next experiment: target-specific bundle slicing with per-target null governance, focusing on dateblock-stable S4/Q3/S2 improvements rather than shared 7-target bundle features.
+
+## Public-Free Observation: E289
+
+- submission files: `analysis_outputs/submission_e289_lifeslice_*.csv`
+- public LB: not submitted.
+- reason not submitted: public LB is scarce, and E289 failed the local E247-current matched row/subject/dateblock null governor.
+- local observation:
+  - target-slice rows: `84`;
+  - target-gate rows: `7`;
+  - candidates: `28`;
+  - matched nulls: `420`;
+  - public-free ready files: `0`;
+  - best Q3 target slice: `Q3_raw_human_context_subject5_pc`, train delta `-0.014465898`;
+  - best S4 target slice: `S4_family_jepa_context_dateblock5_cluster6`, train delta `-0.011131`;
+  - strongest candidate null strict rate: `1.000000`.
+- interpretation: target-specific lifestyle state is real on train, especially Q3/S4, but direct E247-current materialization is not certified because matched shuffles reproduce the movement.
+- next experiment: learn row/block placement from the Q3/S4 lifestyle energy rather than submitting a scalar target edit.

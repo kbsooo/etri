@@ -3268,6 +3268,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E288. If a broad-bundle file won publicly despite this, it would imply local matched-null/mean-target governance is too conservative or public subset is concentrated in the S4/Q3/S2-improved clusters.
 - 제출 전략: none. Next branch should test target-specific bundle slices with per-target nulls, especially dateblock-stable clusters where S4/Q3/S2 improve without averaging across adverse targets.
 
+### H289: target-specific lifestyle slices can become public-free E247 edits
+
+- 상태: supported as target-specific latent signal; rejected as current submission translator.
+- 왜 그럴듯한가: E288's broad bundle failed the 7-target mean, but the same latent helped individual S4/Q3/S2 slices. If human lifestyle state has target-specific noise channels, per-target slices should survive where broad sharing failed.
+- 맞다면: Q3/S4/S2 slices should beat row/subject/dateblock train nulls, and the materialized E247 target-only edits should also beat matched test null submissions with low null strict rate and high p90/worst-mode dominance.
+- 틀리다면: train target slices may be strong, but their E247-current probability movements will be reproducible by matched row/subject/dateblock shuffles or below local resolution.
+- 최소 실험: `analysis_outputs/e289_target_specific_lifestyle_slice_audit.py`.
+- 관측: `84` target slices produced `7` train target gates. Q3 and S4 were the clear winners: `Q3_raw_human_context_subject5_pc` delta `-0.014465898`, `S4_family_jepa_context_dateblock5_cluster6` delta `-0.011131`, and `S4_raw_human_context_dateblock5_cluster6` delta `-0.009936`. But `28` materialized candidates and `420` matched nulls produced public-ready `0`. The best-looking local candidate had mean `-0.000674` and p90 `-0.000417`, but null strict rate `1.000000` and worst-mode p90 dominance `0.000000`.
+- 성공/폐기 기준: reject direct materialization. Keep target-specific lifestyle slices as representation diagnostics and potential row-placement targets.
+- public LB 관측 반응: no public LB should be spent on E289. If an E289 file won publicly, it would indicate the matched-null governor is missing a very public-specific row subset; the local evidence does not support that bet.
+- 제출 전략: none. The next strategy should predict the row/block placement law that distinguishes real Q3/S4 lifestyle rows from matched shuffles.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

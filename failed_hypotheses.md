@@ -2142,3 +2142,12 @@
 - Implementation issue possible: medium. The bundle may still work if residualized or split by target/noise regime. Low for blocking wholesale feature use because matched-null label stress directly rejects the broad representation.
 - Bottleneck implication: the hidden human state exists, but it is not one axis shared by all targets. The next useful step is target-specific lifestyle-state slicing, not broader story aggregation.
 - Do not repeat: adding broad lifestyle PCs/clusters to all targets or treating high story reconstruction R2 as a submission certificate.
+
+## FH238. Target-specific lifestyle slices are directly submission-ready
+
+- Failed hypothesis: after splitting E288's broad lifestyle bundle by target, the surviving Q3/S4/S1 slices should materialize into public-free E247-current target edits.
+- Observed result: E289 finds real train target signal (`7/84` target gates), but all `28` materialized candidates fail matched-null governance. The strongest local candidate has actual mean `-0.000674` and p90 `-0.000417`, but null strict rate `1.000000` and worst-mode p90 dominance `0.000000`.
+- Why discard: target-specific lifestyle state exists, but the direct translator still does not identify the correct test rows/blocks. Row/subject/dateblock shuffles with the same movement distribution are too competitive.
+- Implementation issue possible: medium. The materializer is a small logistic delta on one target at a time, so a learned row/block placement model could still use these slices. Low for blocking the exact E289 files because the matched-null failure is direct.
+- Bottleneck implication: the active bottleneck is not story creativity or target specificity. It is placement: deciding where in test the Q3/S4 lifestyle energy should move probabilities.
+- Do not repeat: submitting `submission_e289_lifeslice_*` or scaling Q3/S4 lifestyle slices until they pass an old selector without matched-null dominance.

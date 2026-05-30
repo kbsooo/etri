@@ -2936,3 +2936,33 @@ Decision:
 - Do not submit any E288 file.
 - Public LB is preserved.
 - The broad human lifestyle state is real as representation but unsafe as a shared label feature. Future validation should be target-specific and must not average useful S4/Q3/S2 slices with adverse Q/S axes.
+
+## E289 Target-Specific Lifestyle Slice Governor
+
+Question: can E288's broad lifestyle state become useful when split into per-target Q/S slices and materialized as tiny E247-current edits?
+
+Method: `analysis_outputs/e289_target_specific_lifestyle_slice_audit.py`.
+
+- Hidden target: the same E288 lifestyle-story bundle, but evaluated per downstream target.
+- Context views: family JEPA context, raw human context, and hybrid context.
+- Train stress: per-target subject/dateblock CV versus row/subject/dateblock shuffled lifestyle reps.
+- Test stress: E247-current target-only logit edits versus matched row/subject/dateblock null submissions.
+
+Result:
+
+- target-slice rows: `84`.
+- target-gate rows: `7`.
+- materialized candidates: `28`.
+- matched nulls: `420`.
+- public-free ready candidates: `0`.
+- strongest target slices:
+  - `Q3_raw_human_context_subject5_pc`, delta `-0.014465898`;
+  - `S4_family_jepa_context_dateblock5_cluster6`, delta `-0.011131`;
+  - `S4_raw_human_context_dateblock5_cluster6`, delta `-0.009936`.
+- best-looking local candidate has mean `-0.000674` and p90 `-0.000417`, but null strict rate `1.000000` and worst-mode p90 dominance `0.000000`.
+
+Decision:
+
+- Do not submit any E289 file.
+- Public LB is preserved.
+- Target-specific lifestyle signal is real, especially Q3/S4, but current materialization is not row-placement certified.

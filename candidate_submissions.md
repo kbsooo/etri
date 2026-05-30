@@ -2616,3 +2616,35 @@ Next submission candidate requirement:
 - do not add broad lifestyle bundle features wholesale;
 - test target-specific bundle slices with per-target matched-null stress;
 - only materialize a file if a target-specific slice beats nulls without increasing average tail risk.
+
+## Update After E289 Target-Specific Lifestyle Slice Audit
+
+Current submission policy remains: **no new public submission.**
+
+What was tested:
+
+- target-specific lifestyle bundle slices for all 7 targets;
+- per-target train null stress;
+- E247-current target-only materialization;
+- matched row/subject/dateblock null submissions.
+
+What was learned:
+
+- Broad lifestyle state was hiding real target-specific signal: `7/84` slices pass train target gates.
+- Q3 and S4 are the strongest targets; Q1/Q2/S3 do not show usable target-slice evidence here.
+- Direct materialization fails the public-free governor: `28` candidates, `420` matched nulls, `0` ready files.
+- The strongest local candidate is still null-reproducible, with null strict-promote rate `1.000000`.
+
+Do not submit:
+
+- any `analysis_outputs/submission_e289_lifeslice_*.csv` file.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+Next submission candidate requirement:
+
+- use Q3/S4 lifestyle slices as diagnostic energy, not direct probability edits;
+- find a placement law that beats row/subject/dateblock nulls;
+- keep public LB unused until a candidate passes `public_free_submission_ready`.
