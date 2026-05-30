@@ -4769,3 +4769,22 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - strong old-strict clusters: `cashflow_stress/Q1_S1`, `cashflow_stress/S1_S2`, `cashflow_stress/S1_S3`, `cashflow_stress/S1_S4`, `home_recovery/Q1_S3`.
 - Interpretation: the human/social pair signal is real as representation, but the current translator collapses into null-common probability movement. The local selector likes many coupled cashflow/QS and SS edits, yet matched nulls also pass at high rates. The most useful E310 result is a safety rule: do not submit pair-delta files unless they beat wrong-pair and shuffled-state controls.
 - Decision: no E310 public submission. Keep E309 as a world-model clue and move the next branch toward action-health learning or using pair state as an energy/gate, not direct coupled logit deltas.
+
+## E311. Pair Micro-Action Combiner
+
+- Observe: E310 split into two groups: old-strict visible pair actions were null-common, while null-rare actions were too small.
+- Wonder: is the cliff only a single-action artifact? Can multiple null-rare micro actions stack into a visible but still null-rare candidate, or can subtracting matched-null movement from visible actions isolate a safe residual?
+- Method: `analysis_outputs/e311_pair_micro_action_combiner.py` creates two action families:
+  - `microstack/microdiverse/microcash`: stack null-rare E310 too-small actions across Q/S pair stories;
+  - `residualized_visible`: subtract row/subject/dateblock/wrong-pair/swap null means from old-strict E310 actions, then rescale/sparsify.
+  Candidates are checked by current-anchor prefilter and row/subject/dateblock/swap/wrong-pair/sign null controls. No public LB was used.
+- Result:
+  - generated candidates: `512`;
+  - old strict candidates: `489`;
+  - info candidates: `23`;
+  - null-evaluated candidates: `37`;
+  - public-free ready candidates: `0`;
+  - best microstack p90: `-0.000807827`, but best microstack null strict rate `0.611111`;
+  - residualized-visible has null-safe too-small rows, but visible residuals remain null-common.
+- Interpretation: the visibility/null-rarity cliff is structural for the current pair translator. Stacking small safe actions makes them visible but also makes matched nulls visible. Subtracting average null motion reduces some unsafe geometry, but the remaining visible Q1-S1 residual is still reproducible by controls.
+- Decision: no E311 public submission. The next useful target is not another hand-built pair delta. It should predict action outcome health directly or use pair state only as a censor/energy in a larger locally governed translator.

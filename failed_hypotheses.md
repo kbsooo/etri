@@ -2304,3 +2304,21 @@
 - Implementation issue possible: medium. E310 used logistic pair marginal deltas and handcrafted masks; a learned action-health translator or energy gate may still use the same pair representation. Low for rejecting all generated E310 files because the null governor directly rejects them.
 - Bottleneck implication: the current bottleneck is not finding human/social stories. It is converting stories into probability movements that are visible and locally non-null.
 - Do not repeat: submitting `submission_e310_pair_*.csv` or scaling the same coupled pair deltas without a new wrong-pair/shuffled-state resistant gate.
+
+## FH256. Null-rare pair micro-actions can be safely stacked into a visible submission
+
+- Failed hypothesis: E310's too-small null-rare pair actions are individually below selector resolution, but combining them should create a visible candidate while retaining null rarity.
+- Observed result: E311 generated microstack/microdiverse/microcash candidates. All become old-strict when amplified, but none are public-free ready. The strongest microstack p90 was `-0.000807827`, yet null strict rate was `0.611111`; microdiverse and microcash null strict rates were at least `0.722222`.
+- Why discard: stacking increases visibility and null-common behavior together. The small-action safety does not compose under the current pair translator.
+- Implementation issue possible: medium. E311 used additive logit stacking and current-anchor null governance. A non-additive action-health model may still exploit these components, but simple stacking is directly rejected.
+- Bottleneck implication: the visibility/null-rarity cliff is structural, not merely under-scaling.
+- Do not repeat: submitting `submission_e311_pairmicro_microstack_*`, `microdiverse_*`, or `microcash_*` files.
+
+## FH257. Subtracting matched-null average movement rescues visible pair actions
+
+- Failed hypothesis: old-strict E310 pair actions are unsafe because they contain generic null movement; subtracting row/subject/dateblock/wrong-pair/swap null mean should isolate the true social pair residual.
+- Observed result: E311 residualized-visible candidates produced old-strict rows, but no public-free ready rows. Null-safe residuals exist only when too small; visible residuals remain null-common.
+- Why discard: average-null subtraction removes some generic motion but not the local shortcut that the selector reads. The remaining visible Q1-S1 movement is still reproducible by controls.
+- Implementation issue possible: medium. Mean subtraction is a crude residualizer; learned nonlinear outcome-health prediction could still be useful. Low for rejecting these exact residualized files.
+- Bottleneck implication: the next target must be candidate outcome health, not an algebraic cleanup of pair deltas.
+- Do not repeat: submitting `submission_e311_pairmicro_resid_*` files or tuning null-subtraction lambda/top-k grids without a new validation target.

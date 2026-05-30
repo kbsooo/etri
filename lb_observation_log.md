@@ -771,3 +771,19 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - null-rare candidates are below submission resolution.
 - interpretation: public LB should not be used on E310. The pair-interaction representation is useful, but direct coupled logit deltas are not a certified action layer.
 - next experiment: use pair state as action-health supervision or energy/gate, and keep wrong-pair plus shuffled-state controls as mandatory local blockers.
+
+## Public-Free Observation: E311
+
+- submission files: `analysis_outputs/submission_e311_pairmicro_*.csv`.
+- public LB: not submitted.
+- reason not submitted: no E311 candidate passed the local row/subject/dateblock/swap/wrong-pair/sign governor.
+- local observation:
+  - generated candidates: `512`;
+  - old strict candidates: `489`;
+  - null-evaluated candidates: `37`;
+  - public-free ready files: `0`;
+  - best actual p90: `-0.000807827`;
+  - best null strict rate: `0.000000`, but only on too-small residualized rows;
+  - visible microstacks are null-common, with best microstack null strict rate `0.611111`.
+- interpretation: public LB should not be used on E311. The pair-action safety cliff survives stacking and mean-null residualization.
+- next experiment: stop direct pair-delta materialization unless a learned action-health target or a new hidden-state objective changes the visible/null-rare tradeoff.

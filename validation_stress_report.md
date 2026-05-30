@@ -3548,3 +3548,33 @@ Decision:
 - No E310 file should be submitted.
 - This locally enforces the user's constraint: public LB is not the checker; matched controls are the checker.
 - Pair state remains a valid diagnostic, but direct coupled delta translation is rejected until an action-health or energy-gated translator makes the intended pair beat wrong-pair and shuffled-state controls.
+
+## E311 Pair Micro-Action Combiner Stress
+
+Question: can E310's null-rare too-small pair actions be stacked into a visible candidate without becoming null-common, or can matched-null residualization rescue old-strict pair actions?
+
+Method: `analysis_outputs/e311_pair_micro_action_combiner.py`.
+
+- Candidate actions:
+  - stack top null-rare E310 micro actions;
+  - stack one null-rare action per pair;
+  - stack cashflow-only micro actions;
+  - subtract E310 row/subject/dateblock/wrong/swap null means from old-strict actions.
+- Null stress: row, subject, dateblock, swap-targets, wrong-pair, and sign-flip controls.
+- Public LB: not used.
+
+Result:
+
+- generated candidates: `512`.
+- old strict candidates: `489`.
+- null-evaluated candidates: `37`.
+- public-free ready candidates: `0`.
+- `microstack` creates the strongest local edge, best p90 `-0.000807827`, but null strict rate is at least `0.611111`.
+- `microdiverse` and `microcash` also become old-strict, but null strict rates are at least `0.722222`.
+- `residualized_visible` can make null-safe too-small rows, but visible residuals still fail the governor.
+
+Decision:
+
+- No E311 file should be submitted.
+- The E310/E311 pair branch is now locally falsified as direct probability movement.
+- The next target should be a learned action-health representation, not scale, stacking, or average-null subtraction.

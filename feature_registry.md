@@ -2755,3 +2755,29 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - prefer a translator trained to predict public-free governor health over hand-coded pair marginal deltas.
 - Failure condition:
   - if a pair feature is selector-visible but matched nulls also promote, classify it as target-movement geometry rather than hidden-world recovery.
+
+## E311 Pair Micro-Action and Null-Residual Features
+
+- Target hypothesis tested:
+  - E310's safe-but-small pair actions can be stacked, or E310's visible-but-null-common actions can be residualized against matched-null movement.
+- Feature/representation source:
+  - E310 null-rare too-small candidate deltas;
+  - E310 old-strict coupled pair deltas;
+  - row/subject/dateblock/wrong-pair/swap null mean deltas;
+  - microstack, microdiverse, microcash, and residualized-visible action recipes.
+- Validation result:
+  - generated candidates `512`;
+  - old strict candidates `489`;
+  - public-free ready `0`;
+  - best microstack p90 `-0.000807827`, but null strict rate at least `0.611111`;
+  - residualized-visible has null-safe rows only below old-strict submission resolution.
+- Updated registry status:
+  - micro-stacked pair actions are not approved as submission features;
+  - average-null residualization is not approved as a sufficient action-health fix;
+  - the safe/useful feature is the observed cliff itself: visibility and null rarity must be modeled jointly.
+- Adopt rule for future features:
+  - do not stack safe micro-actions as a submission shortcut;
+  - do not treat null-mean subtraction as a public-free certificate;
+  - future pair features must train or validate against `visible_null_rare`, not only pair-logloss or old strict p90.
+- Failure condition:
+  - if a candidate becomes visible only by increasing null strict rate, classify it as an action-layer cliff, not a hidden-state breakthrough.

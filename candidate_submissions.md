@@ -3126,3 +3126,25 @@ Meaning:
 Current best public file remains:
 
 - `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+## Update After E311 Pair Micro-Action Combiner
+
+Current submission policy remains: **no new public submission.**
+
+Why:
+
+- E311 tested the obvious rescue for E310: combine small null-rare pair actions, or subtract matched-null movement from visible pair actions.
+- It generated `512` candidates and `489` were old-strict, so visibility is not the bottleneck.
+- But `37` null-evaluated candidates again produced `0` public-free ready files.
+- The strongest microstack candidate had a large local p90 edge (`-0.000807827`) but null strict rate `0.611111`.
+- Residualized candidates can become null-rare only when they are too small; once visible, controls catch up.
+
+Meaning:
+
+- Do not submit `submission_e311_pairmicro_*.csv`.
+- The pair-interaction social theory is still useful for understanding the data, but direct pair probability movement is exhausted for now.
+- Next submission-worthy work should require a learned action-health gate that predicts `visible + null-rare`, or a different representation target that does not collapse when materialized.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.

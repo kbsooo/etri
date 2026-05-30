@@ -3530,6 +3530,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E310 files.
 - 제출 전략: none. Pair state should next be used as an energy/gate or as supervision for candidate outcome health, not as direct coupled logit delta.
 
+### H311: E310's visibility/null-rarity cliff can be crossed by stacking micro actions or subtracting matched-null motion
+
+- 상태: 반증됨.
+- 왜 그럴듯한가: E310 had null-rare candidates that were too small and visible candidates that were null-common. If the cliff were a scale artifact, stacking small safe actions or residualizing null-common actions could cross it.
+- 맞다면: micro-stacked candidates should become old-strict while keeping low null strict rate, or residualized old-strict actions should beat row/subject/dateblock/wrong-pair/swap controls.
+- 틀리다면: micro-stacks should become null-common as soon as they are visible, and residualized candidates should be either too small or null-common.
+- 최소 실험: `analysis_outputs/e311_pair_micro_action_combiner.py`.
+- 관측: generated `512`, old strict `489`, null-evaluated `37`, public-free ready `0`. `microstack` reached best p90 `-0.000807827` but null strict rate `0.611111`; `microdiverse`/`microcash` had null strict at least `0.722222`; residualized null-safe rows were too small.
+- 성공/폐기 기준: reject more stacking/residual-average pair-delta materializers unless they add a genuinely new action-health target.
+- public LB 관측 반응: no public LB should be spent on E311 files.
+- 제출 전략: none. Treat E310/E311 as evidence that pair states need a learned outcome-health translator or should remain diagnostic.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
