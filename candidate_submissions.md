@@ -1232,3 +1232,33 @@ Interpretation rule:
 
 - If E223 improves public LB, the lesson is not "bigger JEPA worked"; it means E211's S4 body plus reduced-Q3 tail is closer to the public hidden subset.
 - If E223 loses similarly to E216, then E211's Q3/S4 expected-good movement shares the same low-support public-tail mismatch and the current JEPA probability-translation lane should be demoted.
+
+## Update After E224
+
+E224 tests whether E223's q3_scale `0.75` was the real knee. It was not. A finer Pareto sweep says the current JEPA-family sensor should lower Q3 further to `0.625`.
+
+Selected E224 files:
+
+1. `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`
+   - current preferred JEPA-family sensor.
+   - graft vs anchor expected focus `-0.000623352`.
+   - adverse capacity `0.003400775`.
+   - support probability `0.465984`.
+   - Q3 top1/expected `0.875120`.
+   - local delta `-0.001098893`, geometry delta `-0.000505582`.
+
+2. `analysis_outputs/submission_e224_e224_q3s0p625_s4toward_e95_a0p5_9c52abe2.csv`
+   - cleaner E95-anchor contrast.
+   - graft vs anchor expected focus `-0.000621278`, adverse `0.003461158`, support `0.466428`, Q3 top1/expected `0.860804`.
+
+Updated submission policy:
+
+1. If submitting exactly one JEPA-family file now, use `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+2. Keep E223 as the q3_scale `0.75` ablation, not the first JEPA candidate.
+3. Use E224 E95-anchor siblings only if the explicit question is clean current-frontier attribution without E154 body.
+4. Do not submit E216/E220/E221 S2 variants.
+
+Interpretation rule:
+
+- If E224 beats E95/E216 and ideally the public frontier, the update is specific: E211's S4 body is useful, but Q3 must be capped more aggressively than E223.
+- If E224 loses around E216 scale, demote the current E211 probability translator. The JEPA axes may still be real, but this translation into public probabilities is not support-safe.

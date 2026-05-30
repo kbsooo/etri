@@ -1771,6 +1771,17 @@ E223 Q3-tail rebalance:
 
 Stress implication after E223: E223 is the preferred JEPA-family public sensor if using one JEPA slot now. It does not solve the sub-0.5 support-probability problem, but it materially reduces the specific Q3 tail failure exposed by E222.
 
+E224 Q3-scale Pareto stress:
+
+- script: `analysis_outputs/e224_e211_q3_scale_pareto.py`.
+- report: `analysis_outputs/e224_e211_q3_scale_pareto_report.md`.
+- selected file: `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+- selected graft-vs-anchor metrics: local delta `-0.001098893`, geometry delta `-0.000505582`, expected focus `-0.000623352`, adverse capacity `0.003400775`, support probability `0.465984`, Q3 top1/expected `0.875120`.
+- q3_scale `0.75` keeps more local body but fails the E224 gate because Q3 top1/expected remains too high (`~0.92..0.94`) and adverse capacity is larger.
+- q3_scale `0.50` is safer but gives up too much local body for the current JEPA sensor role.
+
+Stress implication after E224: the current JEPA stress stack favors a capped-Q3 knee at `0.625`, not full-Q3 E211 and not E223 `0.75`. The remaining risk is still support probability below `0.5`, so E224 is a public sensor rather than a safe expected-score certificate.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

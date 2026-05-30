@@ -1755,3 +1755,12 @@
 - Implementation issue possible: medium. E222 uses public-free priors, not true public labels, and known winners can also have weak visible support. But E216 public feedback made this exact failure mode actionable enough to update the candidate order.
 - Bottleneck implication: E211's JEPA axes are real, but target-level probability translation remains the bottleneck. The hidden law is not "use the whole JEPA move"; it is "preserve S4 body and control Q3 tail."
 - Do not repeat: submitting original full-Q3 E211 as the default JEPA file without acknowledging that public feedback will be a support-tail sensor. Prefer E223 q3-scale `0.75` if testing this lane now.
+
+## FH195. E223 q3_scale 0.75 is the best E211 tail knee
+
+- Failed hypothesis: after E222, reducing Q3 from `1.0` to `0.75` is enough, and lower Q3 scales mainly throw away useful JEPA signal.
+- Observed result: E224's Pareto sweep selects q3_scale `0.625`, not `0.75`. Best selected row `e224_q3s0p625_s4closer_e154_a0p5` has expected focus `-0.000623352`, adverse `0.003400775`, support `0.465984`, Q3 top1/expected `0.875120`, and geometry `-0.000505582`. The `0.75` rows keep more local/expected body but fail the stricter E224 tail gate because Q3 top1/expected remains above `0.92..0.94` and adverse capacity is higher.
+- Why discard: E223 was a useful first correction, but the sharper stress says Q3 is still too concentrated at `0.75`. The best current hidden-world question is not "does reduced Q3 work?" but "does S4 body plus Q3 capped near `0.625` transfer to public?"
+- Implementation issue possible: medium. The E224 gate is still a public-free stress proxy and support remains below `0.5`. Low for replacing E223 in submission order because the sweep is locked before public feedback and uses the same E222 failure criterion derived from E216.
+- Bottleneck implication: the JEPA bottleneck is amplitude-specific target translation. Stronger local Q3 improvement can be the wrong public question if it raises top-cell hard-label exposure.
+- Do not repeat: treating q3_scale `0.75` as an optimal constant. Re-evaluate target-specific scales under adverse capacity, support probability, and top-cell concentration whenever a JEPA movement is materialized.

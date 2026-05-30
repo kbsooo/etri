@@ -2580,6 +2580,18 @@ target co-occurrence
 - public LB 관측 반응: if E223 beats E95/E216 and ideally E95 frontier, the world update is "S4 body plus reduced-Q3 tail is public-aligned." If it loses like E216, low-support Q3/S4 translation is the bottleneck and JEPA probability movement should be demoted.
 - 제출 전략: current preferred JEPA-family file is `analysis_outputs/submission_e223_jepa_q3s0p75_s4closer_e154_a0p5_794b0349.csv`; use E95-anchor sibling only for clean attribution.
 
+### H219. The E211 Q3 tail knee is lower than E223's 0.75 scale
+
+- 상태: 지지 by E224 as current candidate-ranking update.
+- 왜 그럴듯한가: E223 showed Q3 reduction helps, but Q3 still had low support and high concentration. If Q3 is mainly a fragile auxiliary tail while S4 carries the healthier body, the best public sensor should cap Q3 below `0.75`.
+- 맞다면: a lower q3_scale should remain local/geometry negative, keep expected focus materially negative, and reduce adverse capacity plus Q3 top1/expected enough to pass a stricter support-tail gate.
+- 틀리다면: lower q3_scale will either lose the local/expected body or fail to reduce the specific Q3 tail enough to change candidate order.
+- 최소 실험: `analysis_outputs/e224_e211_q3_scale_pareto.py`, sweeping q3_scale `0.0..1.0` for S4 `closer/toward` and E95/E154 anchors while joining E211 local/geometry with E222 support-tail metrics.
+- 관측: q3_scale `0.625` is the selected knee. Best row `e224_q3s0p625_s4closer_e154_a0p5` has local delta `-0.001098893`, geometry delta `-0.000505582`, expected focus `-0.000623352`, adverse `0.003400775`, support `0.465984`, and Q3 top1/expected `0.875120`. q3_scale `0.75` has stronger expected/local body but fails the E224 tail gate; q3_scale `0.50` is safer but too weak.
+- 성공/폐기 기준: supported for submission ordering, not for safety certification. Support remains below `0.5`, so public feedback can still reject the translator.
+- public LB 관측 반응: if E224 wins, strengthen the "S4 body plus capped-Q3 residual" world. If it loses materially, demote the E211 probability translator and keep JEPA axes only as diagnostics.
+- 제출 전략: preferred JEPA-family file becomes `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`; E223 becomes the q3_scale `0.75` ablation.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -3431,3 +3431,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - compared with original E211 E154 closer actual vs E95, expected weakens only `0.00001831`, while adverse capacity drops by about `0.00089358` and top1/expected drops from `0.229657` to `0.176972`.
 - Interpretation: E223 is not fully support-safe because support probability remains below `0.5`, but it is the cleanest post-E216 correction of the live JEPA lane. It preserves the E211 hidden-world bet while reducing the Q3 tail that E222 identified.
 - Decision: if testing one JEPA-family candidate after E216, prefer `submission_e223_jepa_q3s0p75_s4closer_e154_a0p5_794b0349.csv` over the original E211 full-Q3 files. Public feedback should be interpreted as a Q3-tail-rebalance sensor, not as proof of broad JEPA success.
+
+## E224. E211 Q3 Scale Pareto Sweep
+
+- Observe: E223 reduced Q3 to `0.75`, but E222's target anatomy said Q3 still carried fragile adverse capacity and sub-`0.5` support. The remaining question was whether `0.75` was a true knee or just the first safer point tested.
+- Wonder: can a lower Q3 scale preserve enough E211 local/geometry signal while cutting the Q3 top-cell and adverse-capacity risk further?
+- Method: `analysis_outputs/e224_e211_q3_scale_pareto.py` sweeps q3_scale `0.0,0.25,0.50,0.625,0.75,0.875,1.0` for S4 `closer/toward` and anchors `e95/e154` at anchor scale `0.5`. It joins E211 local/subject/geometry metrics with E222 support-tail anatomy and selects only candidates with local delta `<= -0.00090`, negative geometry, expected focus `<= -0.00058`, adverse capacity `<= 0.00425`, support probability `>= 0.464`, and Q3 top1/expected `<= 0.88`.
+- Result:
+  - report: `analysis_outputs/e224_e211_q3_scale_pareto_report.md`.
+  - selected best: `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+  - best selected graft vs anchor: local delta `-0.001098893`, geometry delta `-0.000505582`, expected focus `-0.000623352`, adverse capacity `0.003400775`, support probability `0.465984`, Q3 top1/expected `0.875120`.
+  - the top four selected files all use q3_scale `0.625`; q3_scale `0.75` has stronger local/expected metrics but fails the new E224 tail gate because Q3 top1/expected rises above `0.92..0.94` and adverse capacity approaches `0.00384..0.00391` vs anchor.
+  - q3_scale `0.50` is safer on adverse capacity but gives up too much local signal for this JEPA sensor role.
+- Interpretation: E224 sharpens E223. The live JEPA law is not "use the strongest Q3/S4 latent" and not even "Q3 0.75 is enough"; it is "S4 body plus a capped Q3 residual around `0.625` gives the best current tail/readability tradeoff." Support remains below `0.5`, so this is still a sensor, not a certified safe move.
+- Decision: E224 supersedes E223 as the preferred JEPA-family public sensor. If submitting one JEPA-derived file now, use `submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`. Interpret a public win as evidence that reduced-Q3/S4-body translation is public-aligned; interpret a loss as a rejection of the current E211 probability translator rather than a rejection of JEPA axes themselves.

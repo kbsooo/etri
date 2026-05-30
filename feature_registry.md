@@ -1626,6 +1626,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: original E211 is expected-good but low-support (`~0.463` swing-weighted support). Q3 has top1/expected above `1.0`; S4 has top1/expected around `0.166`. E223 q3_scale `0.75` reduces actual-vs-E95 adverse capacity from `0.005426827` to `0.004533247` with only a small expected-focus sacrifice.
 - Policy: prefer `analysis_outputs/submission_e223_jepa_q3s0p75_s4closer_e154_a0p5_794b0349.csv` if testing the JEPA family now. Treat it as a risk-rebalanced public sensor, not a certified safe feature.
 
+### F189. E224 capped-Q3 JEPA translator
+
+- Hidden structure: E211's S4 body is the healthier latent component, while Q3 should be treated as a capped residual rather than a full target translation.
+- Candidates: q3_scale sweep values, S4 `closer/toward` body mode, E95/E154 anchor contrast, E222 support probability, adverse capacity, and Q3 top1-over-expected.
+- Label vs split test: valid only as candidate triage because it uses public-free priors and locked E211/E222 diagnostics. Unsafe as a general feature if q3_scale is tuned from public LB or if support remains below `0.5` without public-feedback interpretation.
+- Current evidence: q3_scale `0.625` is the best current Pareto knee. `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv` has local delta `-0.001098893`, geometry delta `-0.000505582`, expected focus `-0.000623352`, adverse `0.003400775`, support `0.465984`, and Q3 top1/expected `0.875120`.
+- Policy: prefer F189 over F188/E223 for the next JEPA-family public sensor. Keep E223 as an ablation and do not generalize the `0.625` scale to other targets without a fresh support-tail audit.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.
