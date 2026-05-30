@@ -2201,6 +2201,20 @@ E248 directly tests that unresolved invariance risk and finds it adverse.
 
 Stress implication after E248: E247 passes test-side materialization stress but fails OOF invariance. It should not be ranked above E237 for likely score. Its role is a public sensor for whether hidden public labels prefer feature-neighbor smoothing despite OOF evidence saying the rule is adverse.
 
+## Update After E250
+
+E249/E250 splits feature-NN1 into two different stress outcomes.
+
+- Direct feature-NN1 smoothing remains OOF-adverse from E248.
+- Feature-NN1 as context inside the E237 decisive-cell target is partially stress-positive:
+  - E249 scans `2496` OOF rows and promotes `276`.
+  - Paired `latent_no_targetid/hgb_shallow` rows improve tail-AUC at rate `0.625000`, but median loss delta is adverse at `+0.000053880`.
+  - E250 materializes `120` rows and finds `4` E237-gate passes.
+  - best selected E250 top21 row has expected loss vs E224 `-0.000000845`, adverse reduction `0.000524271`, support gain `0.005790882`, actual adverse reduction `0.000502064`, and Q3 top1/abs-expected `0.660128`.
+- The strongest E249 OOF-loss row is rejected by materialization: broad `drop_q3_top50` keeps high OOF gain but fails support/top-cell stress.
+
+Stress implication after E250: feature-NN1 is not a submit-safe scalar criterion. It can survive as a context feature for high-impact Q3 decisive-cell prediction, but the gate must remain tail-AUC/support/top-cell based. E237 remains the better score-biased candidate; E250 top21 is the sharper feature-NN1-context sensor.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

@@ -1750,3 +1750,38 @@ Practical rule:
 - If the next submit is chosen for likely score, prefer E237 over E247.
 - If the next submit is chosen to answer "can JEPA feature-neighbor smoothing itself solve the public Q3 tail?", E247 is still the sharper sensor.
 - Do not submit E247 siblings or threshold variants before public feedback; E248 says the local smoothing rule lacks OOF invariance.
+
+## Update After E250
+
+E249/E250 changes the feature-NN1 JEPA branch again.
+
+New live feature-NN1-context sensor:
+
+`analysis_outputs/submission_e250_featnn1_decisive_all3_latent_no_targetid_featnn1_hgb_shallow_row5_risk_q0p10_drop_q3_top21_4e9a88af.csv`
+
+Artifact facts:
+
+- selected by feature-NN1 context inside the E237 decisive-cell target, not by direct smoothing.
+- changes `21` E224 cells, all `Q3`.
+- OOF loss_vs_full `-0.000185023`.
+- OOF tail-AUC `0.887356598`.
+- expected loss vs E224 `-0.000000845`.
+- adverse reduction vs E224 `0.000524271`.
+- support gain vs E224 `0.005790882`.
+- actual adverse reduction vs E224 `0.000502064`.
+- Q3 top1/abs-expected `0.660128450`.
+
+Current candidate order by purpose:
+
+1. **Best current JEPA score bet:** `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+2. **Best feature-NN1-context decisive-cell sensor:** `analysis_outputs/submission_e250_featnn1_decisive_all3_latent_no_targetid_featnn1_hgb_shallow_row5_risk_q0p10_drop_q3_top21_4e9a88af.csv`.
+3. **Highest-information direct feature-NN1 smoothing sensor:** `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+4. **Clean JEPA body ablation:** `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+5. **Non-JEPA escape:** `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
+6. **Conservative repaired branch:** `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+
+Practical rule:
+
+- If the next submit is chosen for likely score, E237 remains first because its locked OOF tail-AUC and E237 score are stronger.
+- If the next submit is chosen to test "JEPA as actual feature-neighbor context, not just an idea", E250 top21 is now the cleaner sensor than E247.
+- Do not submit E249 top50 or E250 siblings before feedback. E250 already shows average OOF gain is not enough; only the narrow top21 risk row survives the full stress gate.

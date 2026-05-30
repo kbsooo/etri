@@ -1899,3 +1899,12 @@
 - Implementation issue possible: medium. OOF `q3_e224` benefit may not equal hidden public labels, and train-only neighbor geometry is not exactly the test feature-NN1 graph. Low for downgrading E247 as an expected-score candidate because the exact missing claim was OOF invariance.
 - Bottleneck implication: the plateau is not solved by making predictions smoother on a plausible JEPA manifold. The hard part is still target-specific probability materialization: which cells should move, not whether a manifold exists.
 - Do not repeat: creating E247 sibling sweeps or smoothness-threshold variants before public feedback or before training a true OOF feature-NN1 decisive-cell target.
+
+## FH211. E249 top OOF feature-NN1 policy is submission-safe because average OOF gain is large
+
+- Failed hypothesis: E249's best feature-NN1 OOF row, `drop_q3_top50`, should be safe to materialize because its loss_vs_full is very strong at `-0.000706695`.
+- Observed result: E250 materialization rejects that family. The top50/broad contrast rows keep attractive OOF loss but fail the E237 gate because support gain turns negative and Q3 top1/abs-expected is high. The selected rows are narrower risk-target policies, led by `drop_q3_top21` with OOF loss_vs_full only `-0.000185023` but tail-AUC `0.887357` and positive support/adverse stress.
+- Why discard: average OOF gain is again the wrong selection variable. The public-facing object is high-impact Q3 tail identity plus materialized support geometry, not broad loss improvement.
+- Implementation issue possible: low for rejecting the top50 submission claim, because the same materialization code selects four narrower rows while rejecting the broad top50 row. Medium for public truth because hidden labels are unknown.
+- Bottleneck implication: this reinforces the E242 lesson. JEPA context can help, but only when the target and gate are tail-specific. Broad OOF-winning policies are likely calibration/support traps.
+- Do not repeat: submitting E249 `drop_q3_top50`, broad global top-k policies, or E250 siblings ranked by OOF loss before public feedback.

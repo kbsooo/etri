@@ -2859,6 +2859,30 @@ target co-occurrence
 - public LB 관측 반응: win over E95 means JEPA manifold smoothing is actionable. Loss near E95/E101 means the hypothesis remains weak. E216-scale loss closes smoothing selectors until OOF invariance is learned.
 - 제출 전략: if spending one slot to falsify feature-NN1 smoothing directly, submit E247. If choosing the best current score-biased JEPA file, submit E237 instead.
 
+### H249: Feature-NN1 context helps only when paired with a decisive-cell target
+
+- 상태: partially supported by E249/E250; not certified as a higher-score replacement for E237.
+- 왜 그럴듯한가: E248 showed direct smoothness is not OOF-invariant, but I-JEPA suggests context should predict a hidden representation, not force raw smoothness. The hidden target here is E237-style Q3/S4 decisive-cell risk.
+- 맞다면: adding feature-NN1 context to E237 OOF frames should improve some tail-discrimination rows, and at least one materialized policy should pass graft-vs-E154 plus actual-vs-E95 stress without becoming a broad top-k smoothing clone.
+- 틀리다면: feature-NN1-augmented rows should either fail OOF promotion, fail materialization support/adverse gates, or only produce the same E247/E237 clone cells.
+- 최소 실험: `analysis_outputs/e249_feature_nn1_decisive_oof_audit.py` and `analysis_outputs/e250_feature_nn1_decisive_materialization_stress.py`.
+- 관측: E249 scans `2496` rows and promotes `276`; feature-NN1 `latent_no_targetid/hgb_shallow` improves tail-AUC in `62.5%` of paired rows but worsens median loss by `+0.000053880`. E250 then finds `4/120` gate-passing materializations. The best file drops `21` Q3 cells, has OOF tail-AUC `0.887357`, expected loss vs E224 `-0.000000845`, adverse reduction `0.000524271`, support gain `0.005790882`, and Q3 top1/abs-expected `0.660128`.
+- 성공/폐기 기준: accepted as a live feature-NN1-context sensor because it passes OOF and materialization stress; rejected as a broad replacement because median paired loss is worse and E237 has stronger locked OOF/tail metrics.
+- public LB 관측 반응: an E250 win would strengthen "feature-NN1 context improves decisive-cell JEPA translation." A loss near E95/E101 would keep E237 first and demote feature-NN1 context to a weak diagnostic. An E216-like loss would say even decisive-cell feature-NN1 context is a calibration shortcut.
+- 제출 전략: submit E250 top21 only if the explicit next question is feature-NN1-context transfer. For likely score, keep E237 first.
+
+### H250: E249's broad top50 OOF gain is not submission-safe
+
+- 상태: rejected by E250 materialization stress.
+- 왜 그럴듯한가: E249's strongest OOF row had loss_vs_full `-0.000706695`, far better than locked E237 by average OOF loss.
+- 맞다면: the same top50 Q3 drop should retain negative expected loss, positive support gain, bounded top-cell concentration, and E237-gate survival after submission-side grafting.
+- 틀리다면: the broad top50 drop should lose support, become top-cell concentrated, or fail actual-vs-E95 safety despite the attractive OOF loss.
+- 최소 실험: materialize E249 promoted rows with `analysis_outputs/e250_feature_nn1_decisive_materialization_stress.py`.
+- 관측: the `drop_q3_top50` family ranks high by OOF loss but fails E237 gate after materialization. Its support gain is negative around `-0.006080609` and Q3 top1/abs-expected is high around `0.928874`.
+- 성공/폐기 기준: rejected as a submission lane. Tail-AUC/support/top-cell stress outranks average OOF gain for this branch.
+- public LB 관측 반응: no submission should be spent on the top50 row. If a sibling is submitted, it should be one of the E250 gate-pass rows, not the OOF-loss maximum.
+- 제출 전략: do not submit E249 top50 or broad global policies. Use E250 top21 if using this branch at all.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

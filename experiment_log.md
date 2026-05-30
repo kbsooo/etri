@@ -3797,3 +3797,32 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - split stress is also positive: train-only analogue mean `+0.002638697`, all-PCA analogue mean `+0.002950123`.
 - Interpretation: E247's smoothing selector is not OOF-certified. It survives public-free materialization stress, but train OOF says the same smoothness rule tends to remove helpful Q3 movement, not harmful movement.
 - Decision: downgrade E247 from "score-biased next JEPA file" to "high-information public sensor for the feature-NN1 manifold hypothesis." If the goal is the best current JEPA score bet, E237 is safer because it has OOF tail-AUC support. If the goal is to directly falsify whether feature-NN1 smoothing is the missing public law, E247 remains the cleaner sensor.
+
+## E249. Feature-NN1 Decisive OOF Audit
+
+- Observe: E248 rejected direct feature-NN1 smoothing as an invariant harmful-row selector, but it did not test feature-NN1 as context inside the sharper E237 decisive-cell target.
+- Wonder: can the same feature-neighbor world help when the target is not "smooth Q3" but "which Q3/S4 cells are decisive public-tail risks?"
+- Method: `analysis_outputs/e249_feature_nn1_decisive_oof_audit.py` augments the E237 OOF long frame with feature-NN1 row, distance, neighbor probability/logit/margin differences, and source/incoming/total smoothing-gain context. It then rescans E237-style tail-risk/contrast targets under row and subject stress without using submission labels.
+- Result:
+  - report: `analysis_outputs/e249_feature_nn1_decisive_report.md`.
+  - scanned rows: `2496`; stress-promoted rows: `276`.
+  - best feature-NN1 OOF row: `all3 / latent_no_targetid_featnn1 / hgb_shallow / subject5 / contrast / q=0.10 / drop_q3_top50`, loss_vs_full `-0.000706695`, subject win rate `0.800000`, but tail-AUC only `0.594252`.
+  - locked E237 reference remains loss_vs_full `-0.000271441`, tail-AUC `0.901873`.
+  - paired with original E237 views, `latent_no_targetid/hgb_shallow` improves tail-AUC in `62.5%` of pairs but worsens median loss by `+0.000053880`.
+- Interpretation: feature-NN1 context is not a broad upgrade. It creates sharper OOF rows, but the strongest average-loss row is too broad and weak on tail discrimination to submit directly. This is the first useful split after E248: JEPA-as-smoothing failed, but JEPA-as-context-for-decisive-cell-target remains alive.
+- Decision: run materialization stress only. Do not submit the E249 top OOF row before checking E237 graft/actual gates.
+
+## E250. Feature-NN1 Decisive Materialization Stress
+
+- Observe: E249 produced OOF-improved feature-NN1 decisive policies, but E216 and E248 already showed that locally plausible JEPA translators can fail public-facing geometry.
+- Wonder: do any E249 policies survive the same E237 graft-vs-E154 and actual-vs-E95 stress gates after materialization?
+- Method: `analysis_outputs/e250_feature_nn1_decisive_materialization_stress.py` materializes the top E249 policies by rolling selected E224 Q3/S4 cells toward E154, then audits expected focus movement, adverse capacity, support gain, top-cell concentration, and actual-vs-E95 safety. Public LB is not used.
+- Result:
+  - report: `analysis_outputs/e250_feature_nn1_decisive_materialization_report.md`.
+  - audited graft rows: `120`; E237-gate pass count: `4`.
+  - best selected file: `analysis_outputs/submission_e250_featnn1_decisive_all3_latent_no_targetid_featnn1_hgb_shallow_row5_risk_q0p10_drop_q3_top21_4e9a88af.csv`.
+  - best selected row changes `21` Q3 cells and no S4 cells; OOF loss_vs_full `-0.000185023`; OOF tail-AUC `0.887357`.
+  - versus E224: expected loss `-0.000000845`, adverse reduction `0.000524271`, support gain `0.005790882`, Q3 top1/abs-expected `0.660128`, actual adverse reduction `0.000502064`.
+  - E249's best OOF `drop_q3_top50` fails the materialization gate because support gain turns negative and Q3 top-cell concentration is high.
+- Interpretation: E250 is weaker than E237 on expected-score evidence, but it is a cleaner answer to "can feature-NN1 context be used inside a JEPA decisive-cell target?" than E247. The answer is yes, but only as a narrow Q3 risk top21 sensor, not as a broad feature-NN smoothing or top50 OOF-gain sweep.
+- Decision: keep E237 as the best current score-biased JEPA candidate. Promote E250 top21 as the best feature-NN1-context public sensor if the next question is specifically whether the E207 feature-neighbor regime improves E237-style decisive-cell selection.

@@ -1804,6 +1804,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: all `16/16` feature-NN1 selectors pass E237-like test-side stress. The selected E247 file changes `34` Q3 cells, has E237 overlap `13`, E230 swing25 overlap `10`, expected loss vs E224 `-0.000066519`, adverse reduction `0.000632592`, and feature-NN1 Q3 roughness delta `-0.014223558` global / `-0.057353058` affected. E248 then rejects OOF invariance: the train-only smooth-sum analogue has rollback delta `+0.002829987`, and the all-PCA analogue has `+0.002922728`.
 - Policy: F210 is actionable only as a high-information public sensor, not as an OOF-certified feature. Do not sweep thresholds or siblings before feedback. If E247 wins despite E248, hidden public labels differ from OOF in a feature-neighbor-specific way and F210 should be rebuilt as an OOF/public-contrast JEPA target. If it loses, demote F210 to a smoothing/calibration shortcut.
 
+### F211. E249/E250 feature-NN1 decisive-cell context features
+
+- Hidden structure: feature-neighbor geometry may not say "smooth Q3"; instead it may help predict the hidden representation "which moved Q3/S4 cells are high-impact tail risks?"
+- Candidates: feature-NN1 row index, distance, neighbor base/full/prob/logit/margin deltas, source/incoming/total smoothing gains, E237 decisive-cell risk/contrast labels, OOF tail-AUC, support gain, adverse reduction, Q3 top-cell concentration, and E230 overlap.
+- Label vs split test: valid only when trained/evaluated on OOF decisive-cell targets and then materialized through E237 graft/actual stress. It must not be used as a direct smoothing selector or as an average OOF loss ranker.
+- Current evidence: E249 promotes `276/2496` OOF rows. Feature-NN1 context improves paired tail-AUC for `latent_no_targetid/hgb_shallow` in `62.5%` of rows but worsens median loss by `+0.000053880`. E250 finds `4/120` materialization gate passes. The best top21 file changes only Q3, has OOF tail-AUC `0.887357`, expected loss vs E224 `-0.000000845`, adverse reduction `0.000524271`, support gain `0.005790882`, and actual adverse reduction `0.000502064`.
+- Policy: F211 is the preferred way to use feature-NN1 if the next question is JEPA-as-context. It does not outrank E237 for expected score. Reject broad top50 OOF-gain rows and E250 sibling sweeps before feedback.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.
