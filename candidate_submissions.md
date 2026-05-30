@@ -30,7 +30,7 @@ Current best next submission candidate depends on the public question:
 - unrolled broad body-vs-tail sensor: `analysis_outputs/submission_e169_ctx_veto_c5e806e3.csv`.
 - raw broad plateau-break/safety-atlas falsification sensor: `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
 - conservative repaired-branch sensor: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
-- current-anchor binary-world branch to re-stress before promotion: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` / `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`.
+- current-anchor binary-world branch remains underidentified after refresh: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` / `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` are worldview sensors, not certified replacements.
 
 Previous frontier: `analysis_outputs/submission_mixmin_0c916bb4.csv` with public LB `0.5763066405`.
 
@@ -51,6 +51,8 @@ Update after E179: E176 remains the single next public sensor, but the claim is 
 Update after E180: E179's top-cell weakness should not be treated as a veto. Known public winners can look equally weak or weaker: E95-vs-mixmin and E101-vs-mixmin both have public-positive top4 visible support `0.100896`, while mixmin-vs-a2c8 has `0.310904`. E176 top4 `0.330699` is above that small known-winner set. The issue is not "E176 top4 is worse than winners"; the issue is that visible priors have only `0.5` all-moved sign accuracy across known anchors and cannot certify frontier-scale decisive cells. This keeps E176 at priority 1A, with the exact same action rule: submit as a hidden-tail sensor, not as a certified win.
 
 Update after E181: E176 is no longer the unqualified best-supported latent view. `analysis_outputs/e181_e176_binary_world_counterprior_audit.py` reranks the inherited binary hidden-label worlds by all current public-anchor residuals. In the best-5 residual worlds, E176 averages `+0.000003920` versus E95 with negative rate `0.400`; in best-10 it averages `+0.000007442` with negative rate `0.300`. Meanwhile E154 and E144 are negative in all best-5 worlds, averaging `-0.000051451` and `-0.000051445`. This does not automatically promote E154/E144 because the world pool is inherited and residuals are still larger than the E95 edge, but it changes the wording: E176 is priority 1A only when the next slot is meant to test the visible-body/Q2-underopen world. If the next slot should follow current-anchor binary worlds, first regenerate that pool with explicit E176/E154/E144 objectives.
+
+Update after E182: `analysis_outputs/e182_current_anchor_binary_world_refresh.py` ran that regeneration against the current public anchors, including E101 public `0.5763003660`. The refreshed worlds fit anchors at frontier-scale max residuals (`0.0000784319`, `0.0000513148`, `0.0000762925`), but exact range incumbents are sparse (`0.233`) and objective-pressure worlds make E176/E154/E144 all cross zero in every scenario. This weakens the E181-based priority inversion: E154/E144 are still the repaired-branch alternate worldview, but they are not certified replacements. E176 also remains uncertified. The next public slot should be chosen by the question being asked: E176 for visible-body/Q2-underopen; E154/E144 only for repaired-branch validity with a decoder.
 
 ## Pre-E48 Strict Gate
 

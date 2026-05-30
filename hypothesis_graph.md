@@ -2064,6 +2064,18 @@ target co-occurrence
 - public LB 관측 반응: E176 win weakens the inherited binary counterprior and says visible-body/Q2-underopen saw a public-real branch. E176 tie/loss strengthens H175, especially if E154/E144 later improve.
 - 제출 전략: no E181 submission. Do not claim E176 is representation-wide best; treat it as a conditional visible-body sensor. Before replacing it with E154/E144, run a fresh current-anchor binary-world stress with explicit objectives.
 
+### H176. Refreshed current-anchor binary worlds underidentify E176/E154/E144 signs
+
+- 상태: supported by E182.
+- 왜 그럴듯한가: E181's inherited world pool favored E154/E144, but its residuals were not frontier-precision and its worlds were generated before the current E95/E101 anchor structure was fully integrated. A truly current-anchor stress should either certify the repaired branch or expose that the inverse public-label problem remains underidentified.
+- 맞다면: regenerated worlds should fit known public anchors at frontier scale while objective-pressure solves can still produce both favorable and adverse deltas for E176, E154, and E144. Strict residual-budget ranges should be hard or sparse because the frontier-scale hidden-label feasible region is thin.
+- 틀리다면: at least one branch should become one-sided under all current-anchor scenarios, or E181's E154/E144 preference should survive as a refreshed certificate with adverse E176 pressure worlds only.
+- 최소 실험: `analysis_outputs/e182_current_anchor_binary_world_refresh.py`.
+- 관측: scenario fits have max absolute residuals `0.0000784319`, `0.0000513148`, and `0.0000762925`, all inside the raw05/A2C8 frontier-scale gap. Strict range incumbents appear in only `0.233` of candidate-direction rows. Objective-pressure worlds make E176/E154/E144 cross zero in `1.000` / `1.000` / `1.000` of scenarios, with E176 pressure spans around `-0.000421216..+0.000254123`, E154 `-0.00109286..+0.000923535`, and E144 `-0.000992245..+0.000838041`.
+- 성공/폐기 기준: support strengthens if future public feedback shows both E176-family and repaired-branch outcomes are explainable only after adding a new hidden-label/cell selector. It weakens if a stronger exact MILP or new anchor collapses one branch to one-sided support without post-hoc tuning.
+- public LB 관측 반응: E176 win means the visible-body branch realized one of the E182 favorable worlds. E176 loss plus E154/E144 win means the repaired-branch world was selected by public labels, not certified pre-public. E154/E144 loss after E176 loss would strengthen the broader underidentification/selector-resolution diagnosis.
+- 제출 전략: E182 creates no submission and no priority inversion. Use E176 when the question is visible-body/Q2-underopen. Use E154/E144 only when deliberately testing repaired-branch validity with a decoder, not because E182 certifies expected improvement.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

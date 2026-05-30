@@ -2066,3 +2066,48 @@ E176을 후보에서 내리지 않는다. 한 장만 제출한다면 여전히:
 - 의도: visible-body/Q2-underopen 세계관을 묻는 센서.
 - 기대 public 반응: 이기면 E181 binary counterprior가 stale이거나 너무 보수적이었다는 뜻.
 - 실패 시 해석: current-anchor binary-world counterprior가 맞았을 가능성이 커지고, E154/E144 branch를 다시 최상위로 올려야 한다.
+
+## E182 업데이트: current-anchor binary world도 아직 한쪽을 못 고른다
+
+내가 발견한 가장 이상한 점:
+
+`E181은 E154/E144 쪽을 가리켰지만, current anchors로 binary world를 새로 만들고 E176/E154/E144를 직접 압박하면 셋 다 이기는 세계와 지는 세계가 나온다.`
+
+실험:
+
+- `analysis_outputs/e182_current_anchor_binary_world_refresh.py`
+- report: `analysis_outputs/e182_current_anchor_binary_world_refresh_report.md`
+
+결과:
+
+- E101 public `0.5763003660`을 포함한 current anchors로 다시 MILP world를 만들었다.
+- scenario fit max residuals: `0.0000784319`, `0.0000513148`, `0.0000762925`.
+- strict residual-budget range incumbent rate: `0.233`.
+- objective-pressure worlds에서 E176/E154/E144 zero-crossing rate: `1.000` / `1.000` / `1.000`.
+- pressure span:
+  - E176: `-0.000421216..+0.000254123`.
+  - E154: `-0.00109286..+0.000923535`.
+  - E144: `-0.000992245..+0.000838041`.
+
+생각이 어떻게 바뀌었는지:
+
+`E181은 E176을 보편 최강 후보에서 끌어내리는 데는 성공했지만, E154/E144를 자동 승격시키는 데는 실패했다. 새로 만든 current-anchor world에서도 hidden label space는 여전히 E176 쪽 세계와 E154/E144 쪽 세계를 모두 허용한다.`
+
+현재 최강 세계관:
+
+`0.57629 plateau는 candidate ranking 실패라기보다 hidden-label sign underidentification이다. public anchors는 known score들을 frontier scale로 맞추게 해주지만, 다음 live branch의 부호를 고정할 만큼 충분히 세계를 줄이지 못한다.`
+
+그 세계관을 죽일 수 있는 가장 작은 실험:
+
+`새 public feedback을 하나 더 얻거나, public 없이 high-swing decisive cell의 방향을 E176/E154/E144 사이에서 5e-6 이하 오차로 가르는 독립 representation을 만든다. 둘 중 하나 없이는 same-anchor inverse world만으로 우선순위를 뒤집을 수 없다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+새 submission은 만들지 않는다. 한 장을 고른다면 여전히 질문을 먼저 정해야 한다.
+
+- visible-body/Q2-underopen 세계관을 물을 거면 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`.
+- repaired-branch 세계관을 물을 거면 `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`나 `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`에 먼저 E177/E160급 decoder를 붙인다.
+
+제출 후보 해석:
+
+E182 이후 E176, E154, E144 중 어느 것도 “인증된 expected-score 파일”이 아니다. 다음 제출은 점수 예측이 아니라 어느 hidden world가 public에서 실현되는지 보는 센서다.

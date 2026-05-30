@@ -954,3 +954,17 @@ E181 adds the binary-world counterprior stress.
 - E176 cell support under best-5 worlds: top4 `0.433633`, top16 `0.221275`; under best-10, top4 `0.262881`.
 
 Stress implication: the live candidate order is now representation-conditional. Visible/body stress keeps E176 alive, but current-anchor binary-world stress points away from E176 and toward E154/E144. Because the binary pool is inherited and residuals are not frontier-precision, E181 is not a submission selector. It is a kill-test for the stronger claim that E176 is supported across all latent views.
+
+## Update After E182
+
+E182 refreshes the binary-world stress using current public anchors and explicit E176/E154/E144 objectives.
+
+- script: `analysis_outputs/e182_current_anchor_binary_world_refresh.py`.
+- report: `analysis_outputs/e182_current_anchor_binary_world_refresh_report.md`.
+- current anchors include E101 public `0.5763003660` as a resolved small-loss observation against E95.
+- scenario max residuals: global target prior `0.0000784319`, weak subject-target prior `0.0000513148`, tight subject-target prior `0.0000762925`.
+- strict residual-budget range incumbent rate: `0.233`.
+- objective-pressure E176/E154/E144 zero-crossing rates: `1.000` / `1.000` / `1.000`.
+- representative pressure spans versus E95: E176 `-0.000421216..+0.000254123`, E154 `-0.00109286..+0.000923535`, E144 `-0.000992245..+0.000838041`.
+
+Stress implication: E181's inherited counterprior is not strong enough to reorder submissions by itself. The refreshed current-anchor problem can make all three live branches look favorable or adverse depending on objective pressure. This strengthens the plateau diagnosis: known public anchors constrain the hidden world, but they do not identify the next frontier-scale candidate sign. The next submission remains a worldview sensor, not a local expected-score certificate.

@@ -2802,3 +2802,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E176 top-cell support under binary worlds is mixed: best-5 top4 support `0.433633`, but top16 support only `0.221275`; best-10 top4 drops to `0.262881`.
 - Interpretation: E176 now has a clean cross-representation conflict. Visible/body/Q2-damping evidence supports it as the next broad hidden-tail sensor, while the current-anchor binary-world counterprior leans toward the repaired E154/E144 branch and is adverse/mixed for E176. This is not enough to demote E176 because the binary pool is inherited and current-anchor residuals are not frontier-precision, but it does invalidate the claim that E176 is the most supported candidate across all latent views.
 - Decision: no new submission. Keep E176 only as the visible-body/Q2-underopen sensor. The next local experiment should regenerate or stress a current-anchor binary-world pool with explicit E176/E154/E144 objectives; if that fresh pool keeps E154/E144 one-sided while E176 remains mixed/adverse, submission priority should be reconsidered.
+
+## E182. Current-Anchor Binary-World Refresh
+
+- Observe: E181's counterprior used inherited binary worlds. The user also confirmed E101's public `0.576300366`, so the current anchor set includes E95 frontier, E101 small-loss, mixmin, E72, raw05/a2c8, and bad JEPA anchors. If E181 is stale, a regenerated current-anchor stress should stop favoring E154/E144 one-sidedly.
+- Wonder: does the refreshed current-anchor binary problem actually identify the sign of E176/E154/E144, or can the same public anchors support both favorable and adverse hidden-label worlds?
+- Method: `analysis_outputs/e182_current_anchor_binary_world_refresh.py` rebuilds MILP worlds from current public anchors under three structural prior scenarios: global target band only, weak subject-target band, and tight subject-target band. It solves strict residual-budget candidate ranges and a fallback objective-pressure stress for E176/E154/E144. It writes no submission.
+- Result:
+  - report: `analysis_outputs/e182_current_anchor_binary_world_refresh_report.md`.
+  - all three scenario fits have frontier-scale max residuals: `0.0000784319`, `0.0000513148`, and `0.0000762925`.
+  - strict range MILP incumbents are sparse: only `0.233` of candidate-direction rows found incumbents inside the time limit.
+  - objective-pressure worlds cross zero for E176/E154/E144 in `1.000` / `1.000` / `1.000` of scenarios.
+  - pressure ranges versus E95 are wide: E176 roughly `[-0.000421216, +0.000254123]`, E154 roughly `[-0.00109286, +0.000923535]`, and E144 roughly `[-0.000992245, +0.000838041]` across scenarios.
+- Interpretation: E181's inherited counterprior remains useful as a warning, but it is not a certificate. Once the worlds are regenerated under current anchors and explicit candidate objectives, all three live branches are sign-underidentified. The plateau law is stronger: current anchors and structural priors can fit known public observations while still allowing mutually contradictory frontier-scale hidden-label worlds.
+- Decision: no new submission. Do not promote E154/E144 over E176 solely from E181. E176 remains the visible-body/Q2-underopen sensor if the next public slot asks that worldview. E154/E144 remain the repaired-branch alternate worldview, but they need either a fresh decoder/public-feedback plan or a stronger non-public selector before becoming first-choice replacements.
