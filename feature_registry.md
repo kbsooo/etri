@@ -2596,3 +2596,30 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - if the feature cannot separate from subject/dateblock nulls, keep it as latent diagnostics only.
 - Failure condition:
   - if a future S4 feature reproduces E303's pattern, many old-strict rows but zero large-null ready rows, classify it as action-layer shortcut and stop that branch.
+
+## E304-E305 Hidden Block-State Policy
+
+- Target hypothesis tested:
+  - E304: raw human diary context can recover hidden subject/dateblock Q/S residual state.
+  - E305: that recovered S4 block prior can directly generate a public-free S4 submission.
+- Feature/representation source:
+  - family-JEPA diary PCs, energies, and residual/prednorm signals;
+  - story/episode states including routine, bedtime arousal, cash-flow, home recovery, social overload, measurement confidence;
+  - raw top lifelog aggregates;
+  - block-level aggregation by subject/dateblock;
+  - target representation: shrunken block logit residual after subtracting subject prior.
+- Validation result:
+  - E304 best view `family_jepa/subject_holdout`: mean Spearman `0.143141`, null dominance `0.986111`, S4 Spearman `0.124633`;
+  - E304 candidate alignment: E299/E300/E303 active S4 blocks are anti-aligned with predicted S4 state;
+  - E305 generated `111` candidates, old strict `14`, public-free ready `0`;
+  - E305 best null strict rate `0.648438`.
+- Updated registry status:
+  - hidden block-state features are approved as diagnostics;
+  - direct top-block S4 movement is rejected as an action feature;
+  - block-prior features may be used only inside a contrastive action-health target.
+- Adopt rule for future features:
+  - separate block-state recovery from probability materialization;
+  - require `selector-visible + null-rare` before any public candidate;
+  - use anti-alignment with E304 state as a failure explanation for old S4 files.
+- Failure condition:
+  - if a block-prior feature only creates old-strict but null-common candidates, classify it as generic target movement and do not submit.

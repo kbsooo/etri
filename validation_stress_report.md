@@ -3328,3 +3328,57 @@ Decision:
 - No E303 file should be submitted.
 - E302's human placement prior remains a diagnostic feature, not an action-layer feature.
 - Future S4 work needs a new hidden block-placement target; another mask or multiplier sweep is low value.
+
+## E304 Hidden Block-State JEPA Stress
+
+Question: can raw human diary context predict hidden subject/dateblock target residual state?
+
+Method: `analysis_outputs/e304_hidden_block_state_jepa_probe.py`.
+
+- Target representation: shrunken block-level Q/S logit residual after subtracting subject prior.
+- Context views: calendar, family-JEPA diary state, story/episode state, raw top features, full human diary.
+- Stress: subject-held OOF, block-random OOF, and shuffled block-target nulls.
+- Public LB: not used.
+
+Result:
+
+- representation gates: `3`.
+- best view: `family_jepa/subject_holdout`.
+- best mean Spearman: `0.143141`.
+- null dominance: `0.986111`.
+- positive Spearman targets: `7/7`.
+- S4 Spearman: `0.124633`.
+- candidate alignment diagnostic:
+  - E299 active blocks are anti-aligned with predicted S4 state: active minus inactive predicted S4 `-0.151507`;
+  - E300 improves by removing `id07_b9`, which E304 predicts as S4-low (`-0.415169`), but still remains anti-aligned overall.
+
+Decision:
+
+- Hidden block-state recovery is alive.
+- This is not enough for public submission, but it explains why previous S4 placement edits failed.
+- The next materializer should test whether E304-positive S4 blocks can move probabilities while beating matched nulls.
+
+## E305 Block-Prior S4 Materializer Stress
+
+Question: does the E304 block prior directly create a public-free S4 candidate?
+
+Method: `analysis_outputs/e305_block_prior_s4_materializer.py`.
+
+- Generated candidates: `111`.
+- Old strict candidates: `14`.
+- Null-evaluated candidates: `14`.
+- Null stress: `32` row, `32` subject, `32` dateblock, and `32` sign nulls per selected candidate.
+- Public LB: not used.
+
+Result:
+
+- public-free ready candidates: `0`.
+- best null strict rate: `0.648438`.
+- best mean dominance: `0.562500`.
+- best actual p90: `-0.000127522`.
+
+Decision:
+
+- No E305 file should be submitted.
+- The block prior is a real diagnostic state, but direct top-block S4 lifting is null-common.
+- Future action-layer work must predict `selector-visible + null-rare` movement, not only high predicted S4 blocks.

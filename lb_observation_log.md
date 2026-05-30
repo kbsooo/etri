@@ -651,3 +651,36 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - best actual p90: `-0.000074119`.
 - interpretation: the E302 human placement prior creates attractive S4 movements, but public-free checks still see subject/dateblock placement as reproducible by null worlds.
 - next experiment: do not spend public LB on E303. Either define a new hidden block-placement target or pivot away from S4 mask surgery.
+
+## Public-Free Observation: E304
+
+- submission files: none.
+- public LB: not submitted.
+- reason not submitted: E304 is a hidden block-state representation probe, not a probability materializer.
+- local observation:
+  - train blocks: `86`;
+  - representation gates: `3`;
+  - best view: `family_jepa/subject_holdout`;
+  - mean Spearman: `0.143141`;
+  - null dominance: `0.986111`;
+  - S4 Spearman: `0.124633`;
+  - E299 active-minus-inactive predicted S4: `-0.151507`;
+  - `id07_b9` predicted S4 residual: `-0.415169`.
+- interpretation: raw human diary/JEPA context can weakly recover hidden block target state, and it explains why previous S4 placements failed.
+- next experiment: materialize the E304 block prior under matched-null governance before any public LB.
+
+## Public-Free Observation: E305
+
+- submission files: `analysis_outputs/submission_e305_blockprior_s4_*.csv`.
+- public LB: not submitted.
+- reason not submitted: no E305 candidate passed the local large-null governor.
+- local observation:
+  - generated candidates: `111`;
+  - old strict candidates: `14`;
+  - null-evaluated candidates: `14`;
+  - public-free ready files: `0`;
+  - best null strict rate: `0.648438`;
+  - best mean dominance: `0.562500`;
+  - best actual p90: `-0.000127522`.
+- interpretation: E304's hidden block prior is real as a diagnostic, but direct S4 top-block materialization is null-common.
+- next experiment: learn a contrastive action-health target, or pause S4 and use E304 block state as a broader Q/S world-model feature.

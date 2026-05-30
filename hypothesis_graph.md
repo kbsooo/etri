@@ -3445,6 +3445,31 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E303 files.
 - 제출 전략: none. The next submission path needs a new invariant for hidden subject/dateblock placement, not another S4 mask derived from the same prior.
 
+### H304: raw human diary context recovers hidden subject/dateblock target state
+
+- 상태: supported as a world-model diagnostic.
+- 왜 그럴듯한가: E301-E303 all point to subject/dateblock placement as the S4 bottleneck. If the data contains a hidden block state, day-level family-JEPA/story/episode context should predict block target residuals after removing subject priors.
+- 맞다면: block-level human context should predict shrunken Q/S residual vectors under subject-held stress and beat shuffled block-target nulls.
+- 틀리다면: calendar-only or shuffled targets should match the human views, and target-wise Spearman should be mixed or negative.
+- 최소 실험: `analysis_outputs/e304_hidden_block_state_jepa_probe.py`.
+- 관측: `family_jepa/subject_holdout` reached mean Spearman `0.143141`, null dominance `0.986111`, `7/7` positive target Spearman, and S4 Spearman `0.124633`. Story/episode also gated in subject-held and block-random stress.
+- 추가 단서: rejected S4 candidates are anti-aligned with predicted S4 block state. E299 active-minus-inactive predicted S4 is `-0.151507`; `id07_b9` is predicted S4-low (`-0.415169`) and E300 improved by dropping it.
+- 성공/폐기 기준: support hidden block-state recovery as a live world model; do not claim submission readiness.
+- public LB 관측 반응: no public LB needed. This explains previous failures and motivates one block-prior materializer.
+- 제출 전략: use only after a materializer also passes matched nulls.
+
+### H305: E304-positive S4 blocks can be directly lifted into a public-free candidate
+
+- 상태: rejected as direct materialization.
+- 왜 그럴듯한가: if prior S4 candidates failed because they were anti-aligned, moving S4 upward on E304-positive blocks should fix placement.
+- 맞다면: top-block or redistributed S4 edits should pass old strict and matched null governance.
+- 틀리다면: old strict candidates should appear but be null-common, indicating generic S4 movement rather than unique block placement.
+- 최소 실험: `analysis_outputs/e305_block_prior_s4_materializer.py`.
+- 관측: generated `111`, old-strict `14`, null-evaluated `14`, ready `0`. Best null strict rate `0.648438`, best mean dominance `0.562500`.
+- 성공/폐기 기준: reject direct top-block S4 lifting. Keep E304 prior as a diagnostic and require a contrastive action-outcome target.
+- public LB 관측 반응: no public LB should be spent on E305 files.
+- 제출 전략: none yet. Next strategy must learn `selector-visible + null-rare` movement from block-prior geometry.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

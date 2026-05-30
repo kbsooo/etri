@@ -2259,3 +2259,12 @@
 - Implementation issue possible: medium. E303 used a constrained handcrafted mask family and a decoder trained on E301 placement worlds. A new target that predicts outcome health directly may still work. Low for rejecting all E303 files because the matched-null failure is direct.
 - Bottleneck implication: the S4 bottleneck is not target direction or p90/tail visibility. It is hidden subject/dateblock placement.
 - Do not repeat: submitting `submission_e303_s4meanprior_*.csv` or running another E302-prior mask/multiplier sweep without a new block-placement invariant.
+
+## FH251. E304-positive S4 blocks can be directly submitted by raising S4
+
+- Failed hypothesis: once E304 identifies S4-high hidden blocks, simply increasing S4 on those blocks or redistributing parent S4 mass there should produce a public-free candidate.
+- Observed result: E305 generated `111` block-prior S4 candidates and found `14` old-strict candidates, but none passed matched row/subject/dateblock/sign null governance. Best null strict rate was `0.648438`, best mean dominance `0.562500`, and best p90 `-0.000127522`.
+- Why discard: the materializer creates generic positive S4 movement that the local selector likes but matched nulls can reproduce. The block prior is informative, but this action rule is not unique enough.
+- Implementation issue possible: medium. E305 used simple top-k/block and redistribution rules. A learned contrastive action-health model may still work, because E304 itself was a positive representation result.
+- Bottleneck implication: hidden block-state recovery is not the same as hidden action recovery. The next target must predict `selector-visible + null-rare`, not only `S4-high block`.
+- Do not repeat: submitting `submission_e305_blockprior_s4_*.csv` or expanding top-k/amplitude grids without changing the action-health target.

@@ -4646,3 +4646,36 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best actual p90: `-0.000074119`.
 - Interpretation: the E302 human placement prior is diagnostic, but it is not yet a submission generator. It can produce selector-visible S4 candidates, but matched nulls still reproduce too much of the mean edge. The old strict selector remains a prefilter only, not a public-free certificate.
 - Decision: no E303 public submission. The current S4 mask-surgery branch should pause unless the next experiment introduces a genuinely new block-placement target; otherwise the work should pivot back to broader episode/block-state representation.
+
+## E304. Hidden Block-State JEPA Probe
+
+- Observe: E303 killed the current S4 mask generator, but E301-E303 all pointed to the same missing object: subject/dateblock placement state.
+- Wonder: can raw human diary context predict a hidden block-level target representation at all?
+- Method: `analysis_outputs/e304_hidden_block_state_jepa_probe.py` treats each subject/dateblock as a latent target. Context is calendar, family-JEPA diary state, story/episode state, raw top features, or full human diary block aggregates. Target is the shrunken block Q/S logit residual after removing the subject prior. Evaluation uses subject-held and block-random OOF plus shuffled block-target nulls. No public LB was used.
+- Result:
+  - train blocks: `86`;
+  - representation gates: `3`;
+  - best view: `family_jepa/subject_holdout`;
+  - best mean Spearman: `0.143141`;
+  - null dominance: `0.986111`;
+  - positive target Spearman count: `7/7`;
+  - S4 Spearman: `0.124633`.
+- Key discovery: rejected S4 candidates are anti-aligned with the recovered S4 block state. E299/E300/E303 active blocks have lower predicted S4 state than inactive blocks. `id07_b9`, which E300 removed, is predicted as strongly S4-low (`-0.415169`) while E299 had placed positive S4 mass there.
+- Interpretation: this is the first clean evidence that a human/JEPA block-state target exists and explains the S4 mask failure. It does not yet create a submission, but it gives a better world model: S4 placement should be block-state aligned, not found by row-mask probing.
+- Decision: run a conservative block-prior S4 materializer before any public LB use.
+
+## E305. Block-Prior S4 Materializer
+
+- Observe: E304 recovered a weak but robust block S4 prior and showed that previous S4 edits were anti-aligned with it.
+- Wonder: does moving S4 on E304-positive blocks produce a public-free candidate?
+- Method: `analysis_outputs/e305_block_prior_s4_materializer.py` creates S4-only edits on current E247: top predicted S4 blocks up, bottom blocks down, signed top/bottom, and redistributed E299 parent S4 mass onto top-prior rows. It then applies the current-anchor selector and row/subject/dateblock/sign matched-null governor. No public LB was used.
+- Result:
+  - generated candidates: `111`;
+  - old strict candidates: `14`;
+  - null-evaluated candidates: `14`;
+  - public-free ready candidates: `0`;
+  - best null strict rate: `0.648438`;
+  - best mean dominance: `0.562500`;
+  - best p90: `-0.000127522`.
+- Interpretation: the block prior is strong enough to make visually attractive S4 edits, but the simple materializer collapses into generic positive S4 movement. Matched nulls reproduce it too often. This preserves E304 as a diagnostic world-model discovery and rejects direct top-block S4 lifting.
+- Decision: no E305 public submission. The next path is not S4 amplitude or top-k tuning. It must predict a contrastive action outcome: which block-prior movement is both selector-visible and null-rare.

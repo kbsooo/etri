@@ -2412,6 +2412,30 @@ Current best public file remains:
 
 - `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
 
+## Update After E304-E305 Hidden Block-State Probe
+
+Current submission policy remains: **no new public submission.**
+
+What changed:
+
+- E304 found a real hidden block-state signal. `family_jepa/subject_holdout` predicts block Q/S residual state with mean Spearman `0.143141`, null dominance `0.986111`, and all `7/7` targets positive.
+- E304 also explains the S4 failure: E299/E300/E303 active S4 blocks are anti-aligned with predicted S4 state. `id07_b9` is strongly S4-low and E300 improved by dropping it.
+- E305 tested the obvious submission idea: move S4 upward on E304-positive blocks. It generated `111` candidates and `14` old-strict files, but public-free ready remained `0`.
+
+Do not submit:
+
+- any `analysis_outputs/submission_e305_blockprior_s4_*.csv` file.
+
+Meaning:
+
+- Hidden block-state recovery is now one of the strongest live world models.
+- Direct S4 top-block materialization is not a safe submission path because matched nulls reproduce it too often.
+- The next submit-worthy file needs a contrastive action target: block-prior movement that is simultaneously selector-visible and null-rare.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
 ## Update After E303 S4 Mean-Placement Prior
 
 Current submission policy remains: **no new public submission.**
