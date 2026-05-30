@@ -4563,3 +4563,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - selector-visible and null-common candidates: `160`.
 - Interpretation: the existing archive does not hide a public-free safe submission. Useful-looking movement is usually null-reproducible; null-safe movement is below selector/action resolution.
 - Decision: no public submission. The next experiment should target materialization health directly: create or learn `selector-visible + null-rare` placement, using bedtime/routine states as priors instead of direct logit deltas.
+
+## E299. Visibility/Null Bridge Scan
+
+- Observe: E298 left two possible explanations: either the visibility/null-rarity gap is structural, or the existing scale grids skipped a tiny crossing point.
+- Wonder: can logit-space rescaling of the nearest E298 candidates produce a public-free ready bridge without new public LB?
+- Method: `analysis_outputs/e299_visibility_null_bridge_scan.py` selected E298 near-misses from three lanes: null-rare edge-near, visible low-null, and visible null-common. It generated rescaled variants around those candidates and reran the same current-anchor plus row/subject/dateblock matched-null governor.
+- Result:
+  - base rows: `14`;
+  - generated candidates: `102`;
+  - old strict prefilter candidates: `81`;
+  - null-evaluated candidates: `71`;
+  - public-free ready candidates: `0`.
+  - closest row: E292 S4 lifestyle `visible_low_null_near`, multiplier `0.97`, old strict true, p90 `-0.000050918`, null strict `0.095238`, p90 dominance `0.952381`, worst-mode `0.857143`, but mean dominance `0.476190`.
+  - E297 S1 null-safe rows needed scale `1.20+` to become strict and then null strict jumped to `0.428571+`.
+- Interpretation: this is not just a coarse amplitude-grid miss. The closest live branch is an S4 mean-dominance failure, likely within-subject/dateblock placement rather than target direction.
+- Decision: no E299 public submission. The next useful experiment is a S4 placement/sign/mask rescue aimed specifically at mean dominance, not another global scale sweep.

@@ -3388,6 +3388,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent from this archive.
 - 제출 전략: none directly. The next strategy must learn or construct the translator outcome itself: `selector-visible + null-rare`, not another raw social-state score or amplitude sweep.
 
+### H299: the E298 visibility/null-rarity gap is only a coarse amplitude-grid artifact
+
+- 상태: mostly rejected; one useful S4 near-miss remains diagnostic.
+- 왜 그럴듯한가: E298 had candidates just below thresholds, especially null-safe S1 and low-null S4 rows. A small logit rescale might cross the old selector without increasing matched-null promotion.
+- 맞다면: rescaled near-miss candidates should produce at least one row with `old_strict_promote=True`, `null_strict_rate<=0.10`, and dominance gates passing.
+- 틀리다면: scaling null-safe rows up should quickly increase null promotion, while scaling visible rows down should lose dominance or remain null-reproducible.
+- 최소 실험: `analysis_outputs/e299_visibility_null_bridge_scan.py`.
+- 관측: `14` base rows, `102` generated bridge candidates, `81` old-strict prefilter rows, `71` null-evaluated rows, public-free ready `0`. The closest row is S4 `visible_low_null_near` from E292 with multiplier `0.97`: old-strict true, p90 `-0.000050918`, null strict `0.095238`, p90 dominance `0.952381`, worst-mode `0.857143`, but mean dominance only `0.476190`.
+- 성공/폐기 기준: reject another plain scale sweep. Keep the S4 row as a diagnostic for mean-dominance/within-subject placement rescue.
+- public LB 관측 반응: no public LB should be spent on E299 files.
+- 제출 전략: none. Next strategy should alter placement/sign/mask geometry to improve mean dominance while preserving the S4 null-rarity pocket.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

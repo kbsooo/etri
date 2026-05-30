@@ -2865,3 +2865,24 @@ Next candidate rule:
 
 - only consider a new submission if the local governor sees `selector-visible + null-rare`;
 - otherwise use the experiment as representation diagnostics, not public LB.
+
+## Update After E299 Visibility/Null Bridge Scan
+
+Current submission policy remains: **no new public submission.**
+
+Why:
+
+- E299 generated `102` rescaled near-miss candidates and null-evaluated `71`.
+- public-free ready candidates: `0`.
+- The closest file is `analysis_outputs/submission_e299_bridge_visible_low_null_near_e292_contrastlife_S4_family_jepa_context_dateblock5_cluste_m0p970_66cc85cf.csv`.
+- That file passes old strict, p90 edge, p90 dominance, worst-mode dominance, and null strict rate `0.095238`, but fails mean dominance at `0.476190`.
+
+Meaning:
+
+- Do not submit E299 files.
+- The most promising local object is no longer bedtime/routine S1 scaling. It is S4 lifestyle placement with a mean-dominance failure.
+
+Next candidate rule:
+
+- a future candidate must rescue S4 mean dominance without losing null rarity;
+- another amplitude-only sweep is low value.

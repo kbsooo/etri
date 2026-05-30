@@ -3208,3 +3208,28 @@ Decision:
 
 - No public submission from the E279/E284-E297 archive.
 - The local gate is now explicit: future candidates must satisfy `selector-visible + null-rare`, not only negative p90 or story plausibility.
+
+## E299 Visibility/Null Bridge Scan
+
+Question: did E298 miss a ready candidate because the scale grid was too coarse?
+
+Method: `analysis_outputs/e299_visibility_null_bridge_scan.py`.
+
+- Base near-misses: `14`.
+- Generated rescaled candidates: `102`.
+- Old strict prefilter candidates: `81`.
+- Null-evaluated candidates: `71`.
+- Public LB: not used.
+
+Result:
+
+- public-free ready candidates: `0`.
+- `null_rare_edge_near`: strict `2/12`, but best strict null rate `0.428571`.
+- `visible_common_scale_down`: strict `45/45`, but minimum null strict rate `0.952381`.
+- `visible_low_null_near`: best S4 row has old strict true, null strict `0.095238`, p90 dominance `0.952381`, worst-mode `0.857143`, but mean dominance only `0.476190`.
+
+Decision:
+
+- No E299 public submission.
+- Plain amplitude rescaling is now deprioritized.
+- The next stress should target S4 mean-dominance/within-subject placement, not visibility.

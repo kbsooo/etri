@@ -584,3 +584,19 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - selector-visible and null-common candidates: `160`.
 - interpretation: the current archive does not contain a hidden safe submission. The action layer has a visibility/null-rarity cliff.
 - next experiment: build a local-only translator target for `selector-visible + null-rare`; do not spend public LB on another amplitude or story-ranked variant.
+
+## Public-Free Observation: E299
+
+- submission files: `analysis_outputs/submission_e299_bridge_*.csv`.
+- public LB: not submitted.
+- reason not submitted: no E299 bridge candidate passed the public-free matched-null governor.
+- local observation:
+  - base near-miss rows: `14`;
+  - generated candidates: `102`;
+  - old strict prefilter candidates: `81`;
+  - null-evaluated candidates: `71`;
+  - public-free ready candidates: `0`;
+  - closest file: `analysis_outputs/submission_e299_bridge_visible_low_null_near_e292_contrastlife_S4_family_jepa_context_dateblock5_cluste_m0p970_66cc85cf.csv`;
+  - closest file metrics: p90 `-0.000050918`, null strict `0.095238`, p90 dominance `0.952381`, worst-mode `0.857143`, mean dominance `0.476190`.
+- interpretation: scale bridging is insufficient. The live near-miss is S4 placement with subject/dateblock mean-dominance failure.
+- next experiment: S4 sign/mask/within-subject placement rescue under the same matched-null governor.

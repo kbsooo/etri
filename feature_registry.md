@@ -2489,3 +2489,28 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
 - Failure condition:
   - if a feature is selector-visible but null-common, classify it as movement hallucination;
   - if a feature is null-rare but invisible, classify it as below-resolution diagnostic.
+
+## E299 Bridge-Scale Policy
+
+- Target hypothesis tested: near-miss human/social materializations may only need finer logit-scale search to satisfy `selector-visible + null-rare`.
+- Feature/representation source:
+  - E298 near-miss rows;
+  - logit-space rescaling up for null-safe invisible candidates;
+  - logit-space rescaling down for visible null-common candidates;
+  - current-anchor and matched row/subject/dateblock null governor.
+- Validation result:
+  - base rows: `14`;
+  - generated candidates: `102`;
+  - old strict rows: `81`;
+  - public-free ready candidates: `0`;
+  - closest S4 candidate fails only mean dominance.
+- Updated registry status:
+  - amplitude-only bridge search is not approved for direct submission.
+  - S4 lifestyle placement remains live as a narrow mean-dominance diagnostic.
+  - E297 S1 bedtime/routine scaling is deprioritized because null strict rises too fast after visibility.
+- Adopt rule for future features:
+  - report which governor component fails, not just ready count;
+  - for S4 near-misses, optimize mean dominance under subject/dateblock nulls specifically;
+  - avoid global scale sweeps unless the geometry changes.
+- Failure condition:
+  - if rescaling creates many old-strict candidates but no ready rows, classify the issue as placement geometry, not amplitude.

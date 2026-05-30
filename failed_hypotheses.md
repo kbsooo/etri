@@ -2223,3 +2223,12 @@
 - Implementation issue possible: low for the archive-level conclusion because the same governor columns were normalized across all existing materialization branches. Medium for future work because the archive contains few or no positives for the desired outcome target.
 - Bottleneck implication: public LB should not be used to test these files. The next branch must construct or learn a new action-layer invariant for `selector-visible + null-rare`.
 - Do not repeat: selecting a submission from E279/E284-E297 by negative p90, old strict promotion, story plausibility, or local CV without matched-null rarity.
+
+## FH247. The visibility/null-rarity gap is solved by finer amplitude search
+
+- Failed hypothesis: E298 produced zero ready candidates because the evaluated scale grids were too coarse; small logit rescaling should find a crossing point.
+- Observed result: E299 generates `102` rescaled near-miss candidates and old-strict promotes `81`, but public-free ready remains `0`. The best S4 bridge reaches old strict and null strict `0.095238`, yet fails mean dominance at `0.476190`. S1 null-safe rows become strict only after null strict rises to `0.428571+`.
+- Why discard: the core failure is not visibility. It is matched-null placement competitiveness, especially subject/dateblock mean behavior.
+- Implementation issue possible: low for rejecting another global scale sweep because E299 directly tested up/down rescaling around the nearest known cliffs. Medium for S4 because sign/mask/placement geometry was not yet changed.
+- Bottleneck implication: the next action-layer target is S4 mean-dominance rescue, not amplitude tuning.
+- Do not repeat: submitting `submission_e299_bridge_*` files or running another scalar multiplier sweep without changing row/sign/mask placement.
