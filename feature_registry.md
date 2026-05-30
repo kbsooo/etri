@@ -1650,6 +1650,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: `analysis_outputs/e226_noncollinear_candidate_scan.py` evaluated `73` documented/materialized files. The best actionable independent sensor is `submission_e166_broadsurv_s0p01_d8bfa94b.csv` with cos(E224) `0.074348`, cos(E216) `0.055999`, expected focus `-0.000332077`, adverse `0.000713053`, support `0.465747`. E154 remains the conservative repaired-branch counter-world. E209/E210/E211/E223 are same-Q3/S4 JEPA family, and E216 siblings are S2 bad-axis neighbors.
 - Policy: use F191 to prevent duplicate-world submissions. It can choose between E224, E166, and E154 by the hidden-world question being asked. It must not promote E166 as certified public improvement, and it must not resurrect E52 bridge or E216 siblings.
 
+### F192. E227 E166 public-feedback protocol features
+
+- Hidden structure: a broad latent can be real in row/block context and still fail public because its safety-atlas support is wrong. E166 specifically tests whether edge-like, between-train-runs broad survivor cells are public-real despite E72-active and low-veto-null warnings.
+- Candidates: E166 routebook bands, movement geometry versus E224/E154/E176/E216/E72, E167 top-benefit context rates, E72-active rate, all-veto-null rate, safe-density, and E101-plausible mass.
+- Label vs split test: valid only as pre-registered public-feedback interpretation. It uses known public anchors to define score bands, so it must not be used to fit labels or tune amplitudes.
+- Current evidence: E166 moves `1750` cells across all `7` targets, has cos(E224) `0.074348`, expected focus `-0.000332077`, adverse `0.000713053`, support `0.465747`. Its top-benefit cells are context-real but conflicted: edge-like `0.689189`, between-train-runs `0.797297`, E72-active `0.837838`, all-veto-null `0.297297`.
+- Policy: use `analysis_outputs/e227_e166_public_feedback_decoder.py --score <PUBLIC_LB>` after any E166 submission. Do not scale E166 or submit E166-family siblings before decoding. Treat wins as safety-atlas-overconservatism evidence and losses as E72-active/low-veto-null warning evidence.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

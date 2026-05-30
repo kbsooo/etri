@@ -1806,6 +1806,20 @@ E226 non-collinear candidate scan:
 
 Stress implication after E226: E224-neighbor files are not escape routes; they are amplitude variants of the same Q3/S4 translator. If a non-E224 public sensor is needed, E166 is the information-rich broad counter-world and E154 is the conservative repaired-branch counter-world. E216-style S2 and E52 bridge near-tie are closed until a new stress dimension is built.
 
+E227 E166 public-feedback decoder:
+
+- script: `analysis_outputs/e227_e166_public_feedback_decoder.py`.
+- report: `analysis_outputs/e227_e166_public_feedback_decoder_report.md`.
+- routebook: `analysis_outputs/e227_e166_public_feedback_decoder_routebook.csv`.
+- stress dimensions:
+  - pre-registered score bands relative to E95, E101, mixmin, E176, E72, and E216.
+  - movement geometry between E166, E224, E154, E176, E216, E101, mixmin, and E72.
+  - E167 context evidence: edge-like, between-train-runs, E72-active, all-veto-null, safe-density, and E101-plausible mass.
+- key E166 anatomy: `1750` moved cells, `250` rows, all `7` targets, cos(E224) `0.074348`, expected focus `-0.000332077`, adverse `0.000713053`, support `0.465747`.
+- top-benefit context warning: edge-like `0.689189` and between-train-runs `0.797297` are high, but E72-active is also high at `0.837838` and all-veto-null is low at `0.297297`.
+
+Stress implication after E227: E166 is valid only as a broad hidden-world public sensor. A win strengthens broad survivor context and weakens hard safety-atlas vetoes; a loss strengthens the E72-active/low-veto-null warning. No E166 sibling or scale change should be used before score decoding.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

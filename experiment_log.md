@@ -3474,3 +3474,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - `bridge_scan_candidates/submission_bridge_blend_m0p75_s1p25.csv` is explicitly kept as `local_rejected_neartie` because E52 already rejected it as a mixmin-relative near-tie, not a replacement.
 - Interpretation: the live post-E224 choice is not "another E211 sibling." It is either E224 as the JEPA capped-Q3/S4 sensor, E166 as a broad safety-atlas-overconservatism sensor, or E154 as the conservative repaired-branch counter-world. E166 has better independent expected/tail anatomy than the repaired branch, but it is a worldview test, not a certified improvement.
 - Decision: no new submission from E226 alone. If the user asks for one existing non-E224 worldview sensor, use E166. If the question is conservative branch repair after broad failures, use E154. Do not submit E216 siblings, E209/E210/E211/E223 as "new" E224 alternatives, or the E52 bridge near-tie.
+
+## E227. E166 Public Feedback Decoder
+
+- Observe: E226 made E166 the best existing non-E224 independent broad sensor, but E167 says E166 is context-real and safety-atlas divergent. Without a routebook, a future E166 score would invite post-hoc broad-amplitude tuning.
+- Wonder: if `submission_e166_broadsurv_s0p01_d8bfa94b.csv` is submitted, how should each public score band update the hidden-world model, and how should E166 be separated from E224 and E154?
+- Method: `analysis_outputs/e227_e166_public_feedback_decoder.py` builds an executable routebook for E166, plus candidate-role, movement-geometry, and context-evidence tables. It uses the known public anchors E95/E101/mixmin/E176/E72/E216, E226 movement-family scan, and E167 context alignment. It creates no submission.
+- Result:
+  - report: `analysis_outputs/e227_e166_public_feedback_decoder_report.md`.
+  - routebook: `analysis_outputs/e227_e166_public_feedback_decoder_routebook.csv`.
+  - candidate roles:
+    - E224: JEPA slot, capped-Q3/S4 translator.
+    - E166: independent broad counter-world, cos(E224) `0.074348`, expected focus `-0.000332077`, adverse `0.000713053`, support `0.465747`.
+    - E154: conservative repaired-branch counter-world.
+  - E166 movement: `1750` cells, `250` rows, all `7` targets; top-benefit cells edge-like `0.689189`, between-train-runs `0.797297`, E72-active `0.837838`, all-veto-null `0.297297`.
+  - score bands are locked from broad breakthrough through E72-like fail. Example: a score below `0.576276019` is a clean broad-world win; `0.576300366..0.576306641` is mixmin-safe loss and routes away from broad survivor; worse than E176 routes to E154/search; E72-scale loss requires an E166 miss anatomy.
+- Interpretation: E166 is not the "best next file" in the same sense as E224. It is the cleanest existing test of whether the current safety atlas became too conservative after E72/E101/E176/E216. A win strengthens broad survivor / edge-context structure; a loss strengthens the E167 E72-active and low-veto-null warning.
+- Decision: if one JEPA-family public slot is being spent, submit E224. If one non-E224 independent worldview slot is being spent, submit E166 and decode with E227. If the question is lower-risk existing-file branch testing, submit E154 and decode with E160. Do not scale E166 or submit E166 siblings before public feedback.

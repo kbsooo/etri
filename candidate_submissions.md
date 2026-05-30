@@ -1306,3 +1306,28 @@ Do not use these as next-file shortcuts:
 - E216 siblings. They are S2 bad-axis neighbors after the public miss.
 - `bridge_scan_candidates/submission_bridge_blend_m0p75_s1p25.csv`. E226 shape looks tempting, but E52 already rejected it as a mixmin-relative near-tie.
 - hardtail parent diagnostics such as E84/E86/E87/E89/E90/E108 unless the explicit question is revisiting the hardtail branch, not finding a new post-E224 worldview.
+
+## Update After E227
+
+E227 locks the E166 public-feedback interpretation before any E166 submission.
+
+Use this command after an E166 score is known:
+
+`python3 analysis_outputs/e227_e166_public_feedback_decoder.py --score <PUBLIC_LB>`
+
+Current candidate roles:
+
+1. JEPA question: `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`
+   - asks whether E211's S4 body plus capped Q3 residual transfers to public.
+   - decode with E225.
+
+2. Independent broad-world question: `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`
+   - asks whether the safety atlas became too conservative and broad survivor edge/between-train-runs context is public-real.
+   - decode with E227.
+   - do not scale or submit E166 siblings first.
+
+3. Conservative repaired-branch question: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`
+   - asks whether the E144/E154 repaired S3 active-boundary branch is the clean counter-world after broad/JEPA losses.
+   - decode with E160.
+
+Practical ordering is question-dependent, not score-dependent. If the user wants to test JEPA now, choose E224. If the user wants the most non-collinear existing worldview test, choose E166. If the user wants lower-risk branch repair, choose E154.

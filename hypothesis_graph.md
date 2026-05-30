@@ -2616,6 +2616,18 @@ target co-occurrence
 - public LB 관측 반응: if E166 wins, the safety atlas after E72/E101/E176/E216 was overconservative for broad survivor structure. If E166 loses, broad survivor/E72-active low-veto-null tension is likely public-negative and E154/search becomes the cleaner counter-world path.
 - 제출 전략: E224 for JEPA capped-Q3/S4. E166 for one independent broad worldview sensor. E154 for conservative repaired-branch sensor. Do not spend a public slot on E209/E210/E211/E223 as an "independent" E224 alternative.
 
+### H222. E166 is a context-real but safety-divergent broad-world sensor
+
+- 상태: 지지 as public-sensor protocol by E227; public outcome pending.
+- 왜 그럴듯한가: E167 showed E166 top-benefit cells are enriched for edge-like and between-train-runs context, but also have high E72-active and low safety-atlas support. E226 then selected E166 as the best existing non-E224 independent candidate.
+- 맞다면: E166 public feedback should strongly update the safety-atlas worldview. A win means the atlas is too conservative for broad survivor context; a loss means E72-active/low-veto-null warnings are public-causal.
+- 틀리다면: E166 would score near E95 with no clear separation, leaving the broad-world question underresolved and making E224/E154 question-dependent next actions more useful.
+- 최소 실험: submit `submission_e166_broadsurv_s0p01_d8bfa94b.csv`, then run `analysis_outputs/e227_e166_public_feedback_decoder.py --score <PUBLIC_LB>`.
+- 관측: routebook locked before feedback. E166 moves `1750` cells across all `7` targets, cos(E224) `0.074348`, expected focus `-0.000332077`, adverse `0.000713053`, support `0.465747`. Top-benefit cells have edge-like `0.689189`, between-train-runs `0.797297`, E72-active `0.837838`, all-veto-null `0.297297`.
+- 성공/폐기 기준: public win below `0.576276019` supports broad-world safety-atlas-overconservative hypothesis; mixmin-safe loss or worse demotes broad survivor expected-score lane; E72-scale loss requires miss anatomy before any broad candidate.
+- public LB 관측 반응: E227 has explicit bands from broad breakthrough through E72-like fail and S2-JEPA-like collapse.
+- 제출 전략: E166 only when the intended question is independent broad-world structure. E224 remains the JEPA slot; E154 remains conservative repaired-branch.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

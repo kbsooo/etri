@@ -1,0 +1,84 @@
+# E227 E166 Public Feedback Decoder
+
+## Question
+
+If `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv` is submitted, how should its public LB update the hidden-world model before any post-hoc amplitude or sibling choice?
+
+## Main Read
+
+- E166 is the best existing non-E224 broad counter-world from E226, not a JEPA sibling.
+- Movement versus E95: `1750` cells, `250` rows, targets `Q1,Q2,Q3,S1,S2,S3,S4`.
+- E226 anatomy: expected focus `-0.000332077`, adverse `0.000713053`, support `0.465746836`.
+- E167 context: top-benefit cells have edge-like rate `0.689189`, between-train-runs rate `0.797297`, E72-active rate `0.837838`, all-veto-null rate `0.297297`.
+
+## Candidate Roles
+
+| public_slot_role | submission | rank_if_question | hidden_world_bet | why_now | score_source | candidate_role | submission_sensor_score | cos_vs_e224 | cos_vs_e216 | cos_vs_e72 | expected_focus | adverse_delta | support_prob_focus_swing_weighted |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| jepa_slot | analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv | 1 | E211 S4 body plus capped Q3 residual transfers to public. | This is the preferred JEPA-family sensor and is orthogonal to the E216 S2 miss. | E225 routebook | current_e224_sensor | -0.090514874 | 1.000000000 | 0.043542250 | 0.056401060 | -0.000653189 | 0.004094069 | 0.465789507 |
+| independent_broad_counterworld | analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv | 1 | The current safety atlas is overconservative and broad survivor edge/between-train-runs context is public-real. | E226 top independent non-E224 sensor; E167 says context-real but safety-divergent. | E226/E167/E227 routebook | broad_survivor_counterworld | 1.686847335 | 0.074348354 | 0.055998599 | 0.108705614 | -0.000332077 | 0.000713053 | 0.465746836 |
+| conservative_repaired_branch | analysis_outputs/submission_e154_s3repair_9f2e2e73.csv | 1 | The E144/E154 repaired S3 active-boundary branch is the clean counter-world after broad/JEPA losses. | E226 keeps it as the conservative repaired-branch counter-world; E160 has an existing decoder. | E160 routebook | repaired_branch_counterworld | 1.671770965 | 0.316350240 | 0.135253079 | -0.031628728 | -0.000029838 | 0.000924070 | 0.472782386 |
+
+## Routebook
+
+| outcome | delta_vs_e95_lo_exclusive | delta_vs_e95_hi_inclusive | public_lb_lo_exclusive | public_lb_hi_inclusive | beats_e95 | beats_e101 | beats_mixmin | beats_e176 | world_update_class | hidden_world_update | next_action | candidate_to_test | forbidden_action | strengthened | weakened |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| broad_breakthrough | -inf | -0.000030000 | -inf | 0.576261330 | True | True | True | True | strong_support | E166 wins beyond the normal post-E95 edge scale. The public hidden labels reward broad survivor context that earlier safety atlases treated as dangerous. | Promote broad survivor structure as a live hidden-world target. Do an exact E166 component/block attribution before scaling or submitting any E166-family sibling. | conditional:e166_component_block_attribution | Do not scale E166 up from a single win; E167 already says this branch is safety-atlas divergent. | broad survivor / safety-atlas-overconservative world; subject-calendar edge context | E72/E101/E176/E216-derived veto atlas as a hard rejection rule |
+| clean_win | -0.000030000 | -0.000015311 | 0.576261330 | 0.576276019 | True | True | True | True | support | E166 beats E95 by at least the E95-over-mixmin edge. Broad survivor context is public-readable, but still at frontier hard-label scale. | Use E166 as the new broad-world anchor and audit whether the top benefit cells are between-train-runs or S-stage driven. | conditional:e166_context_component_attribution | Do not jump to E169/E176 siblings; E176 already branch-lost and E166 asks a different raw broad-survivor question. | E166 context-real broad branch | repaired-branch-only next-action policy |
+| micro_win | -0.000015311 | -0.000003000 | 0.576276019 | 0.576288330 | True | True | True | True | weak_support | E166 is public-positive but only at one/few-cell scale. The broad branch may be real, but the public score does not yet identify the safe substructure. | Keep E166 alive. Decode exact cells and compare against E167 top-benefit context before any same-family file. | conditional:e166_exact_cell_decoder | Do not treat a micro-win as evidence that broad survivor amplitude should increase. | broad branch not dead | claim that E166 is a 0.54-path breakthrough |
+| tie | -0.000003000 | 0.000003000 | 0.576288330 | 0.576294330 | False | True | True | True | underresolved | E166 does not separate from E95. The context-real signal and safety-atlas divergence balance at public resolution. | Keep E95 practical. Prefer E224 if the next question is JEPA, or E154 if the next question is the conservative branch. | conditional:e224_or_e154_by_question | Do not select an E166 sibling from a tie. | plateau hard-label-resolution law | E166 expected-score claim |
+| small_loss | 0.000003000 | 0.000009036 | 0.576294330 | 0.576300366 | False | False | True | True | weak_rejection | E166 loses no worse than E101. The broad branch is not public-positive, but the failure is still frontier-scale. | Do not rescue by scaling. Compare loss cells to E72-active and low-veto-null warnings, then choose E154 or new representation search. | conditional:e166_loss_cell_attribution_then_e154_or_search | Do not submit E169/E172/E174/E176 same-family broad repairs as automatic rescue. | E167 safety-divergence warning | E166 as next expected-score file |
+| mixmin_safe_loss | 0.000009036 | 0.000015311 | 0.576300366 | 0.576306641 | False | False | False | True | rejection | E166 loses more than E101 but remains mixmin-safe. The broad survivor direction likely conflicts with the hidden public support tail. | Route away from broad survivor as an expected-score lane. Use E154 for conservative branch test or E224 for the distinct JEPA test. | conditional:e154_or_e224_by_question | Do not scale E166 or revive E176-like broad siblings. | public-tail/support mismatch on broad survivor | safety-atlas-overconservative world |
+| broad_branch_loss | 0.000015311 | 0.000020501 | 0.576306641 | 0.576311831 | False | False | False | False | strong_rejection | E166 gives back the E95-over-mixmin gain but is not worse than E176. This is the broad-family branch-loss band. | Treat E166 like E176: broad survivor body is public-misaligned at frontier resolution. Route to E154 or a non-collinear representation. | analysis_outputs/submission_e154_s3repair_9f2e2e73.csv | Do not submit E169/E172/E174/E176 as rescue variants. | broad-family public mismatch | raw broad survivor branch |
+| broad_fail | 0.000020501 | 0.000050000 | 0.576311831 | 0.576341330 | False | False | False | False | hard_rejection | E166 is worse than E176 but not in E72-scale failure. The broad survivor safety divergence is likely public-negative. | Close E166-family expected-score followups. Use E154 if testing existing files; otherwise search for a new block/sequence target. | analysis_outputs/submission_e154_s3repair_9f2e2e73.csv | Do not interpret this as a reason to tune E166 amplitude; the branch itself failed. | E167 E72-active / low-veto-null warning | E166 broad survivor hidden-world claim |
+| e72_like_fail | 0.000050000 | 0.000116447 | 0.576341330 | 0.576407777 | False | False | False | False | very_hard_rejection | E166 fails on the path toward the known E72 miss scale. The E72-active warning in E167 was probably causal. | Run an E166 miss anatomy before any broad candidate. Treat E72-active broad survivor structure as public-dangerous. | conditional:e166_public_miss_anatomy | Do not submit any broad survivor sibling first. | E72-active hidden-tail veto | context-real means public-safe |
+| s2_jepa_like_fail_or_worse | 0.000116447 | inf | 0.576407777 | inf | False | False | False | False | collapse | E166 fails worse than E72-scale public miss. A broad hidden-context signal can be catastrophically miscalibrated under public labels. | Do a root-cause miss anatomy and stop broad survivor submissions until a public-tail target is rebuilt. | conditional:e166_public_miss_anatomy | Do not use E166/E169/E176 as probability translators. | LeJEPA shortcut/collapse warning | broad survivor probability movement |
+
+## Example Score Decodes
+
+| score | outcome | world_update_class | delta_vs_e95 | next_action | candidate_to_test |
+| --- | --- | --- | --- | --- | --- |
+| 0.576251330 | broad_breakthrough | strong_support | -0.000040000 | Promote broad survivor structure as a live hidden-world target. Do an exact E166 component/block attribution before scaling or submitting any E166-family sibling. | conditional:e166_component_block_attribution |
+| 0.576271330 | clean_win | support | -0.000020000 | Use E166 as the new broad-world anchor and audit whether the top benefit cells are between-train-runs or S-stage driven. | conditional:e166_context_component_attribution |
+| 0.576283330 | micro_win | weak_support | -0.000008000 | Keep E166 alive. Decode exact cells and compare against E167 top-benefit context before any same-family file. | conditional:e166_exact_cell_decoder |
+| 0.576291330 | tie | underresolved | 0.000000000 | Keep E95 practical. Prefer E224 if the next question is JEPA, or E154 if the next question is the conservative branch. | conditional:e224_or_e154_by_question |
+| 0.576300366 | small_loss | weak_rejection | 0.000009036 | Do not rescue by scaling. Compare loss cells to E72-active and low-veto-null warnings, then choose E154 or new representation search. | conditional:e166_loss_cell_attribution_then_e154_or_search |
+| 0.576306641 | mixmin_safe_loss | rejection | 0.000015311 | Route away from broad survivor as an expected-score lane. Use E154 for conservative branch test or E224 for the distinct JEPA test. | conditional:e154_or_e224_by_question |
+| 0.576311831 | broad_branch_loss | strong_rejection | 0.000020501 | Treat E166 like E176: broad survivor body is public-misaligned at frontier resolution. Route to E154 or a non-collinear representation. | analysis_outputs/submission_e154_s3repair_9f2e2e73.csv |
+| 0.576331330 | broad_fail | hard_rejection | 0.000040000 | Close E166-family expected-score followups. Use E154 if testing existing files; otherwise search for a new block/sequence target. | analysis_outputs/submission_e154_s3repair_9f2e2e73.csv |
+| 0.576407777 | e72_like_fail | very_hard_rejection | 0.000116447 | Run an E166 miss anatomy before any broad candidate. Treat E72-active broad survivor structure as public-dangerous. | conditional:e166_public_miss_anatomy |
+| 0.577286509 | s2_jepa_like_fail_or_worse | collapse | 0.000995179 | Do a root-cause miss anatomy and stop broad survivor submissions until a public-tail target is rebuilt. | conditional:e166_public_miss_anatomy |
+
+## Movement Geometry
+
+| tag | file_name | moved_cells_vs_e95 | moved_rows_vs_e95 | mean_abs_logit_vs_e95 | max_abs_logit_vs_e95 | l1_logit_vs_e95 | cos_vs_e166 | cos_vs_e224 | cos_vs_e154 | cos_vs_e176 | cos_vs_e216 | cos_vs_e72 | abs_share_Q1 | abs_share_Q2 | abs_share_Q3 | abs_share_S1 | abs_share_S2 | abs_share_S3 | abs_share_S4 | targets_moved_vs_e95 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| e166 | submission_e166_broadsurv_s0p01_d8bfa94b.csv | 1750 | 250 | 0.002243986 | 0.013580886 | 3.926976185 | 1.000000000 | 0.074348354 | 0.061661852 | 0.604828951 | 0.055998599 | 0.108705614 | 0.130519916 | 0.124661162 | 0.116408335 | 0.207573871 | 0.170756390 | 0.126057424 | 0.124022903 | Q1,Q2,Q3,S1,S2,S3,S4 |
+| e224 | submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv | 534 | 250 | 0.010191854 | 0.172092355 | 17.835743894 | 0.074348354 | 1.000000000 | 0.316350240 | 0.064385682 | 0.043542250 | 0.056401060 | 0.046218889 | 0.000000000 | 0.533416245 | 0.000000000 | 0.026566654 | 0.030178977 | 0.363619236 | Q1,Q3,S2,S3,S4 |
+| e154 | submission_e154_s3repair_9f2e2e73.csv | 294 | 139 | 0.002017647 | 0.026844359 | 3.530882159 | 0.061661852 | 0.316350240 | 1.000000000 | 0.088331868 | 0.135253079 | -0.031628728 | 0.233468076 | 0.000000000 | 0.356221481 | 0.000000000 | 0.134197635 | 0.152444765 | 0.123668043 | Q1,Q3,S2,S3,S4 |
+| e176 | submission_e176_abl_q2_to0p75_91e49725.csv | 904 | 193 | 0.000822914 | 0.010205926 | 1.440100092 | 0.604828951 | 0.064385682 | 0.088331868 | 1.000000000 | 0.050194929 | 0.061621732 | 0.123750781 | 0.163599632 | 0.116554754 | 0.160652124 | 0.131725373 | 0.171153161 | 0.132564176 | Q1,Q2,Q3,S1,S2,S3,S4 |
+| e216 | submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv | 505 | 250 | 0.015109305 | 0.249981125 | 26.441284124 | 0.055998599 | 0.043542250 | 0.135253079 | 0.050194929 | 1.000000000 | 0.020603820 | 0.031176559 | 0.000000000 | 0.047568645 | 0.000000000 | 0.884383598 | 0.020356973 | 0.016514224 | Q1,Q3,S2,S3,S4 |
+| e101 | submission_e101_q2s3tail_177569bc.csv | 50 | 48 | 0.000308355 | 0.020333589 | 0.539621968 | -0.099145675 | -0.001290180 | -0.005523655 | -0.026343500 | -0.000797466 | 0.201134072 | 0.000000000 | 0.064137678 | 0.000000000 | 0.000000000 | 0.000000000 | 0.935862322 | 0.000000000 | Q2,S3 |
+| mixmin | submission_mixmin_0c916bb4.csv | 550 | 250 | 0.005548278 | 0.081334357 | 9.709487240 | -0.137683489 | -0.005554926 | -0.023782332 | -0.009782260 | 0.024899308 | 0.671902535 | 0.000000000 | 0.014258261 | 0.000000000 | 0.400826422 | 0.376866486 | 0.208048831 | 0.000000000 | Q2,S1,S2,S3 |
+| e72 | submission_e72_topabs50_q2s3_gate_4e48cba2.csv | 1047 | 250 | 0.008825089 | 0.041004057 | 15.443905077 | 0.108705614 | 0.056401060 | -0.031628728 | 0.061621732 | 0.020603820 | 1.000000000 | 0.120987334 | 0.061064744 | 0.116377751 | 0.242814702 | 0.306023757 | 0.045311471 | 0.107420241 | Q1,Q2,Q3,S1,S2,S3,S4 |
+
+## Context Evidence
+
+| pair | set_type | n_cells | n_rows | expected_delta | swing_weighted_support_prob | q_share | s_share | q2s3_share | edge_like_rate | between_train_runs_rate | e72_active_rate | all_veto_null_rate | all_safe_density_mean | broad_low_alpha_mass_sum | e101_plausible_mass_sum | top_subject_share |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| e166_vs_e95 | all_moved | 1750 | 250 | -0.000332077 | 0.465746836 | 0.428571429 | 0.571428571 | 0.285714286 | 0.472000000 | 0.624000000 | 0.510285714 | 0.671428571 | 0.233368366 | 66.016980925 | 10.088385825 | 0.128000000 |
+| e166_vs_e95 | top_benefit_nfocus | 74 | 64 | -0.000115303 | 0.506992358 | 0.297297297 | 0.702702703 | 0.054054054 | 0.689189189 | 0.797297297 | 0.837837838 | 0.297297297 | 0.117097166 | 1.321365440 | 0.238204293 | 0.243243243 |
+| e166_vs_e95 | top_swing_nfocus | 74 | 67 | -0.000101442 | 0.459046101 | 0.310810811 | 0.689189189 | 0.067567568 | 0.594594595 | 0.824324324 | 0.783783784 | 0.351351351 | 0.142310695 | 1.354317193 | 0.232534857 | 0.229729730 |
+| e154_vs_e95 | all_moved | 294 | 139 | -0.000029838 | 0.472782386 | 0.561224490 | 0.438775510 | 0.190476190 | 0.323129252 | 0.472789116 | 0.316326531 | 0.921768707 | 0.356440026 | 5.688204616 | 0.751267060 | 0.285714286 |
+| e154_vs_e95 | top_benefit_nfocus | 3 | 3 | -0.000012543 | 0.569085817 | 0.666666667 | 0.333333333 | 0.000000000 | 0.666666667 | 0.000000000 | 0.000000000 | 1.000000000 | 0.421013653 | 0.000000000 | 0.000000000 | 0.666666667 |
+| e154_vs_e95 | top_swing_nfocus | 3 | 3 | 0.000005138 | 0.389591003 | 1.000000000 | 0.000000000 | 0.000000000 | 0.333333333 | 0.666666667 | 0.000000000 | 1.000000000 | 0.421013653 | 0.000000000 | 0.000000000 | 0.333333333 |
+| e95_vs_mixmin | all_moved | 550 | 250 | -0.000144543 | 0.513004651 | 0.020000000 | 0.980000000 | 0.090909091 | 0.485454545 | 0.621818182 | 0.720000000 | 0.547272727 | 0.243393517 | 42.580266721 | 4.659647867 | 0.129090909 |
+| e95_vs_mixmin | top_benefit_nfocus | 4 | 4 | -0.000066583 | 0.481957623 | 0.000000000 | 1.000000000 | 1.000000000 | 0.750000000 | 1.000000000 | 1.000000000 | 0.250000000 | 0.000000000 | 0.218977359 | 0.002700301 | 0.500000000 |
+| e95_vs_mixmin | top_swing_nfocus | 4 | 4 | -0.000050119 | 0.337777778 | 0.000000000 | 1.000000000 | 1.000000000 | 0.500000000 | 1.000000000 | 1.000000000 | 0.250000000 | 0.000000000 | 0.178898648 | 0.011247235 | 0.750000000 |
+
+## Decision
+
+- E224 remains the JEPA-family slot.
+- E166 is the next independent broad-world sensor if the question is whether the safety atlas became too conservative after E72/E101/E176/E216.
+- E154 remains the conservative repaired-branch counter-world if the goal is lower-risk existing-file branch testing.
+- Do not submit E166 siblings or scale E166 before a public score is decoded by this routebook.
