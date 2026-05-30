@@ -1022,3 +1022,35 @@ E186 repairs the E185 geometry by enforcing antisymmetric pair scores.
 - caveat: the support-based antisymmetric model still misreads E95 versus E101, assigning E101 the win over E95 with high confidence when either file is held out.
 
 Stress implication: the next most informative public sensor is still E176, now for a stronger reason. It is not just visible-body/Q2-underopen; it is also the only live pressure branch selected by a reciprocity-healthy known-LB pair decoder. The E95/E101 miss keeps it below certification.
+
+## Update After E187
+
+E187 stress-tests the exact E95/E101 miss instead of averaging it away.
+
+- script: `analysis_outputs/e187_e95_e101_boundary_miss_anatomy.py`.
+- report: `analysis_outputs/e187_e95_e101_boundary_miss_anatomy_report.md`.
+- exact E95/E101 file-LOO:
+  - `shape_only`: correct, E95 mean probability `0.762677`.
+  - `shape_axis_no_support`: correct, same behavior.
+  - all support-containing ablations: incorrect, E95 mean probability roughly `0.002..0.050`.
+- wider file-LOO E95-edge:
+  - shape-only `0.785714`.
+  - support variants often `0.857143`.
+- branch stress:
+  - shape-only and most support variants still select E176 favorable branch in `3/3`.
+  - `shape_support_keep_mean_only` loses E176 branch selection.
+
+Stress implication: exact frontier boundary and wider edge-band stress are different validation targets. The support family improves one while breaking the other, so it cannot be the submission selector.
+
+## Update After E188
+
+E188 tests whether low-alpha shape/support logit blending repairs the conflict.
+
+- script: `analysis_outputs/e188_shape_support_logit_blend_stress.py`.
+- report: `analysis_outputs/e188_shape_support_logit_blend_stress_report.md`.
+- action-grade rows: `0`.
+- first exact E95/E101 failure alpha:
+  - support variants fail at `0.170..0.285`.
+- no positive alpha raises edge accuracy above shape-only while preserving exact E95/E101.
+
+Stress implication: support is not a tunable calibration layer on top of shape geometry. The selector must either use shape-only with lower edge stress or wait for a new representation; support-heavy selection needs an external boundary veto.

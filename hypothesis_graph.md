@@ -2124,6 +2124,30 @@ target co-occurrence
 - public LB 관측 반응: E176 `<=0.576288330` would strengthen H180 and the Q2-underopen broad branch. E176 worse than E101 or mixmin would weaken H180 sharply and force a return to structural target design rather than pair-LB decoding.
 - 제출 전략: if using one slot, submit `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` as an E186-informed public sensor, not as a certified expected-score file.
 
+### H181. The E95/E101 support-decoder miss is a removable family artifact
+
+- 상태: 반증 by E187.
+- 왜 그럴듯한가: E186 support models improve file-LOO frontier and E95-edge stress, but only the exact E95/E101 boundary is wrong. A single support family such as subject, flank, visible, or nearest could be the culprit.
+- 맞다면: removing the culprit family should preserve support-model edge stress and E176 branch selection while restoring exact E95/E101 correctness.
+- 틀리다면: all support-family ablations still invert E95/E101, and contribution mass is spread across multiple support families.
+- 최소 실험: `analysis_outputs/e187_e95_e101_boundary_miss_anatomy.py`.
+- 관측: shape-only and axis-no-support get E95/E101 correct, but every support-containing ablation tested gets it wrong. The adverse E95 contribution is distributed across flank, visible, subject, focus, nearest, global, and all-prior support families.
+- 성공/폐기 기준: 폐기. This is not a one-family bug; support is a different frontier shortcut.
+- public LB 관측 반응: E101's actual public `0.576300366` is exactly the sensor that kills the support-selector interpretation.
+- 제출 전략: no support-decoder selected submission. Use support-decoder outputs only as hypothesis sensors with an explicit exact-boundary veto.
+
+### H182. A small shape/support logit blend can repair the selector
+
+- 상태: 반증 by E188.
+- 왜 그럴듯한가: shape-only respects E95/E101 and selects E176, while support improves wider E95-edge stress. A low-alpha support prior might combine both.
+- 맞다면: some `alpha > 0` should keep exact E95/E101 accuracy `1.0`, keep E176 favorable rate `1.0`, and raise file-LOO edge accuracy to at least `0.80`.
+- 틀리다면: edge accuracy stays at shape-only level until exact E95/E101 flips.
+- 최소 실험: `analysis_outputs/e188_shape_support_logit_blend_stress.py`.
+- 관측: action-grade rows `0`. For all seven support variants, the best exact-boundary row is `alpha=0.0`; first exact-boundary failure appears at alpha `0.170..0.285`, before edge-band accuracy improves.
+- 성공/폐기 기준: 폐기. Support cannot be smoothed into the selector without an external boundary veto.
+- public LB 관측 반응: a future E176 public win would validate the branch sensor but still would not validate support as a general boundary selector unless exact E95/E101 remains explicitly handled.
+- 제출 전략: no blend-generated submission. Keep E176 only as a predeclared sensor.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

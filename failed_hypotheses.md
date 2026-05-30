@@ -1457,3 +1457,12 @@
 - Implementation issue possible: medium. Pair labels are sparse and public anchors are few. Low for the narrow failure because the reciprocal sanity check is a mathematical requirement of the task.
 - Bottleneck implication: the plateau is partly representation geometry, not only lack of signal. Known-LB pair structure is useful only after orientation constraints.
 - Do not repeat: using unconstrained pair probabilities, post-hoc feature-set choice, or reciprocal-inconsistent scores to rank live submissions.
+
+## FH162. Support-heavy antisymmetric pair features are a repairable weak prior
+
+- Failed hypothesis: E186 support-heavy features miss exact E95/E101 only because one support family is over-weighted, so ablation or a low-alpha blend can keep E95/E101 correct while improving edge-band stress.
+- Observed result: E187 shows shape-only gets exact E95/E101 correct, but every support-containing ablation tested flips the boundary. The adverse logit contribution is distributed across support flank, visible, subject, focus, nearest, global, and all-prior families. E188 then tests logit blends and finds `0` action-grade rows; for every support variant, the best exact-boundary row is `alpha=0.0`, and exact E95/E101 fails at alpha `0.170..0.285` before edge-band accuracy improves.
+- Why discard: support is not a weak local correction on top of shape geometry. It is a different public-quality shortcut that can help wider edge stress while violating the tight frontier boundary.
+- Implementation issue possible: low for the exact-boundary falsification because E101 public `0.5763003660` is known and file/pair LOO predictions are fixed. Medium for generalizing to future branches because known public anchors remain few.
+- Bottleneck implication: the next bottleneck is not support-weight tuning. We need a new decisive-cell or structural target representation that resolves tight public boundaries without borrowing a support shortcut.
+- Do not repeat: creating a submission from support-heavy pair-decoder branch scores, or tuning shape/support blend alpha, unless an independent exact-boundary veto or new public-free cell-resolution sensor is added first.

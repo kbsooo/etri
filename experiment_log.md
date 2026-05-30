@@ -2873,3 +2873,32 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - caveat: support-based antisymmetric models still misread the exact E95-vs-E101 boundary, predicting E101 over E95 with high confidence when either file is held out. `shape_only` gets that boundary right but is weaker on file-LOO frontier/micro stress.
 - Interpretation: the main E185 failure was geometry, not absence of signal. E186 turns known-LB pair structure into a stronger sensor-prior for E176, but it is not a certificate because the E95/E101 boundary remains the most important unresolved edge.
 - Decision: no new submission is created. If spending one public slot now, the strongest information candidate remains `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`, now supported by both the visible-body/Q2-underopen worldview and an antisymmetric known-LB pair decoder. Public feedback must still be decoded with E177; do not tune siblings from the scalar score.
+
+## E187. E95/E101 Boundary Miss Anatomy
+
+- Observe: E186's support-based antisymmetric decoder selected E176 and looked better on E95-edge stress, but the user supplied E101 public `0.576300366`, so the exact E95-over-E101 boundary is now known and support models missed it.
+- Wonder: is that exact-boundary miss caused by one removable support family, or is it the same support geometry that improves edge-band stress and selects E176?
+- Method: `analysis_outputs/e187_e95_e101_boundary_miss_anatomy.py` ablates support families and decomposes exact E95/E101 logit contributions under file-LOO/pair-LOO. It also rescans E176/E154/E144 pressure branches for every ablation.
+- Result:
+  - report: `analysis_outputs/e187_e95_e101_boundary_miss_anatomy_report.md`.
+  - `shape_only` and `shape_axis_no_support` get exact E95/E101 correct under file-LOO and pair-LOO, with E95 mean probability about `0.763` file-LOO and `0.820` pair-LOO.
+  - every support-containing ablation tested gets exact E95/E101 wrong, often with extreme confidence: support models give E95 mean probability near `0.002..0.050` and E101 near `0.950..0.998`.
+  - support models keep stronger broad file-LOO edge stress (`0.857` for many variants) while shape-only stays at `0.786`.
+  - all support variants except `keep_mean_only` still select E176 favorable branch in `3/3`; shape-only also selects E176.
+  - contribution audit says the exact miss is not one support family: flank, visible, subject, focus, nearest, global, and all-prior support contributions all push E95 below E101, overpowering positive shape/target terms.
+- Interpretation: support features are not a removable local bug. They encode a different public-quality shortcut that helps the wider edge band but reverses the tightest known frontier boundary.
+- Decision: no submission. Do not use the support-based antisymmetric decoder as an automatic selector. E176 remains a public sensor only because shape-only also selects E176 and because the separate visible-body/Q2-underopen worldview remains alive.
+
+## E188. Shape/Support Logit Blend Stress
+
+- Observe: E187 left one possible repair: maybe support is useful only at tiny weight, enough to lift edge-band stress while keeping shape-only's exact E95/E101 boundary.
+- Wonder: does a logit blend `(1-alpha)*shape + alpha*support` create an action-grade selector?
+- Method: `analysis_outputs/e188_shape_support_logit_blend_stress.py` blends shape-only file-LOO probabilities with seven support variants over `alpha=0..0.5`, and blends branch probabilities the same way.
+- Result:
+  - report: `analysis_outputs/e188_shape_support_logit_blend_stress_report.md`.
+  - action-grade rows: `0`.
+  - for every support variant, the best row that preserves exact E95/E101 is `alpha=0.0`, i.e. pure shape-only.
+  - first exact-boundary failure occurs at alpha `0.170..0.285` depending on support variant.
+  - edge-band accuracy stays at `0.785714` until the boundary starts to fail; it never reaches the `0.80` action-grade threshold while preserving E95/E101.
+- Interpretation: support is not a weak repair prior. It is a conflicting latent shortcut whose useful edge-band corrections arrive only after it has already inverted the tight frontier boundary.
+- Decision: keep E176 as the next information sensor if a public slot is spent, but treat E186 support evidence as auxiliary only. The next real improvement path needs a new decisive-cell/structural target, not a smoother shape/support blend.

@@ -2267,3 +2267,41 @@ E184 이후에도 제출 후보 순위는 바뀌지 않는다.
 다음으로 가장 정보량이 큰 행동:
 
 한 장만 제출한다면 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`다. Public LB가 좋아지면 E176 broad/Q2-underopen + antisymmetric-pair worldview가 강화된다. 나빠지면 E186은 known-anchor overfit 또는 branch shortcut으로 내려가고, 다음은 pair-LB decoder가 아니라 structural target representation으로 돌아가야 한다.
+
+## E187/E188 업데이트: support decoder는 selector가 아니라 충돌하는 센서다
+
+내가 발견한 가장 이상한 점:
+
+`shape_only는 E95/E101 경계를 맞히고 E176도 고른다. support를 넣으면 wider edge stress는 좋아지지만, E95/E101을 거의 확신 있게 반대로 찍는다. 더 이상한 것은 이 오판이 특정 support family 하나가 아니라 support 전반에 퍼져 있다는 점이다.`
+
+실험:
+
+- `analysis_outputs/e187_e95_e101_boundary_miss_anatomy.py`
+- `analysis_outputs/e188_shape_support_logit_blend_stress.py`
+- reports:
+  - `analysis_outputs/e187_e95_e101_boundary_miss_anatomy_report.md`
+  - `analysis_outputs/e188_shape_support_logit_blend_stress_report.md`
+
+결과:
+
+- E187:
+  - `shape_only` exact E95/E101 file-LOO accuracy `1.000`, E95 mean probability `0.762677`
+  - support-containing variants exact E95/E101 accuracy `0.000`
+  - support variants often wider E95-edge accuracy `0.857143`
+  - adverse E95 contribution is distributed across flank/visible/subject/focus/nearest/global/all-prior support families
+- E188:
+  - action-grade blend rows `0`
+  - all support variants have best exact-boundary row at `alpha=0.0`
+  - first exact-boundary failure alpha `0.170..0.285`
+
+생각이 어떻게 바뀌었는지:
+
+`E186의 좋은 점은 antisymmetric geometry였지 support feature 전체가 아니다. support는 public-like residue를 들고 있지만 tight frontier boundary에서는 방향이 다른 shortcut이다. 그래서 E176을 고르는 support score는 auxiliary evidence일 뿐, selector가 아니다.`
+
+현재 최강 세계관:
+
+`0.57629 plateau는 wider edge signal과 exact frontier boundary signal이 서로 다른 latent view에서 나온다. shape geometry는 tight boundary에 건강하지만 edge stress가 약하고, support geometry는 wider edge에 강하지만 tight boundary를 깬다. 현재 병목은 이 둘을 섞는 문제가 아니라, 둘 중 무엇이 hidden public cell labels에 가까운지 판별할 structural target이 없다는 점이다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+제출 후보는 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` 하나다. 단, 제출 이유는 “support decoder가 인증했다”가 아니라 “shape-only도 E176을 고르고, visible-body/Q2-underopen worldview가 아직 살아 있으며, public feedback이 가장 많은 세계관을 죽일 수 있다”로 좁혀졌다.

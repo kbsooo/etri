@@ -561,3 +561,26 @@ Current order if spending public slots by information value:
 2. `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv` — full-Q2 reopening contrast if E176 under-opening is rejected.
 3. `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` — repaired-branch worldview, not first after E186 unless the explicit question is E154/E144 branch repair.
 4. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` — conservative unrepaired branch contrast.
+
+## Update After E188
+
+The single next public sensor is still:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+But the reason is narrower than after E186. E187/E188 show the support-heavy known-LB decoder is not action-grade: it improves wider E95-edge stress but flips the exact E95/E101 boundary, and no positive shape/support logit blend repairs this without losing E95/E101.
+
+What still supports E176:
+
+- shape-only antisymmetric decoder gets E95/E101 correct and still selects E176.
+- E176 remains the visible-body/Q2-underopen broad-world sensor.
+- support-heavy decoders also select E176, but that evidence is auxiliary and boundary-vetoed.
+
+Submission order by information value stays:
+
+1. `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` — best current worldview sensor, not certified expected-score winner.
+2. `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv` — full-Q2 reopening contrast only after E176 feedback.
+3. `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` — repaired-branch alternate worldview.
+4. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` — conservative branch contrast.
+
+Do not create a submission from E187/E188. Their value is negative selection: support-decoder branch scores require an exact-boundary veto or a new structural target.
