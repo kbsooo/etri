@@ -2197,3 +2197,34 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - do not submit story-ranked E247 residual edits with p90 edges below `1e-5`.
 - Failure condition:
   - if a future E247 residual feature only explains E247/E256 anatomy but produces no old strict promotes or no matched-null dominance, keep it diagnostic and block public submission.
+
+## E286 E247 Preserve/Avoid Contrastive Context Policy
+
+- Target hypothesis tested: learned contrastive E247 preserve/avoid labels can turn the E285 human/social boundary anatomy into a submission-grade Q3 edit.
+- Feature/representation source:
+  - E283 app-entropy state/story context;
+  - E273 diary-state JEPA PCs/clusters and family prednorm/residual features;
+  - E268 human-social story scores;
+  - E270 payday/month-start cash-flow stories;
+  - E280 story registry columns;
+  - E284 decisive-cell summaries;
+  - E247/E256/E284 cell-geometry and current smoothing metrics.
+- Validation result:
+  - latent rows: `128`;
+  - selected latents: `12`;
+  - materialized candidates: `533`;
+  - matched row/subject/dateblock nulls: `11193`;
+  - old strict-promote candidates: `0`;
+  - matched-placebo gate passes: `0`;
+  - public-ready candidates: `0`.
+- Updated registry status:
+  - `cell_geometry` is approved as a diagnostic for E247 identity but not as a novel signal by itself.
+  - human/social features remain approved as boundary diagnostics, especially for the tiny E247-only/E256-only sibling split.
+  - human/social features are not approved as a current test-side pseudo-label cell-identity target because source-transfer is weak.
+  - E247 remains the protected current body.
+- Adopt rule for future E247 preserve/avoid features:
+  - define the hidden target from train/OOF residuals, label lift, or row-alignment transfer when possible;
+  - use test-side E247/E256 cell groups only as diagnostic anatomy, not as the sole training label;
+  - require source-transfer and matched-null dominance before materialization.
+- Failure condition:
+  - if a learned preserve/avoid latent has high AUC only because it reads cell geometry and produces p90 edges below `1e-5`, classify it as E247 replay rather than a breakthrough representation.

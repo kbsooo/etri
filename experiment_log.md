@@ -4340,3 +4340,24 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best undo p90: `-0.000000902`.
 - Interpretation: the human/social/cash-flow state is not imaginary. It separates the E247/E256 cell boundary in a way that reads like a real lifestyle-state difference. But direct E247 residual surgery is still below the current local decision resolution. The local evidence says not to spend public LB here.
 - Decision: no E285 public submission. Preserve E247. The next healthy target is not another handcrafted add/undo rule; it is a learned contrastive E247 preserve/avoid latent whose row/cell identity must beat matched nulls before materialization.
+
+## E286. E247 Preserve/Avoid Contrastive Latent Audit
+
+- Observe: E285 left a specific loophole. The E247/E256 boundary has human/social anatomy, but handcrafted scalar rules may be too weak. A learned preserve/avoid latent could still turn that anatomy into a sharper E247-current Q3 edit.
+- Wonder: can context predict the hidden identity of E247-relative cells strongly enough that add/undo/swap actions beat matched row/subject/dateblock nulls without public LB?
+- Method: `analysis_outputs/e286_e247_preserve_avoid_contrastive_latent.py` builds contrastive cell labels from current E247, E256, and E284 cell groups. It tests four target tasks (`e247_body_vs_risk`, `e247_common_vs_e284_extra`, `e247_only_vs_e256_only`, `e247_body_vs_clean_neither`) across human/social, cell-geometry, human+geometry, and human+oldlaw contexts. Latents are stress-tested with stratified, subject, dateblock, permutation AUC, and source-transfer. Selected latents materialize E247-current Q3 add/undo/swap/control candidates and score them against matched row/subject/dateblock nulls. No public LB was used.
+- Result:
+  - latent rows: `128`;
+  - selected latents: `12`;
+  - materialized candidates: `533`;
+  - matched nulls: `11193`;
+  - old strict-promote candidates: `0`;
+  - matched-placebo gate passes: `0`;
+  - public-free ready candidates: `0`.
+  - broad E247 identity is very learnable by geometry: `e247_body_vs_clean_neither / cell_geometry / lr_l2` min AUC `0.998917`, mean AUC `0.999399`, health `1.640264`.
+  - human/social-only is not a broad E247-body detector: on `e247_body_vs_clean_neither`, AUC is around chance or worse under subject/dateblock stress.
+  - the tiny sibling boundary has a local human/social clue: `e247_only_vs_e256_only / human_social / lr_l1` min AUC `0.857143`, mean AUC `0.872711`, but it is only `17` labeled cells.
+  - source-transfer kills the strong interpretation: training common-vs-E284 and testing E247-only-vs-E256-only gives best AUC `0.519231`; `human_social` falls to `0.403846` or `0.173077`.
+  - best candidate p90 values are only around `-0.000004`, and all final decisions are `too_small_to_submit` or `below_selector_resolution`.
+- Interpretation: E247 preserve/avoid identity is recoverable, but mostly because E247's own feature-neighbor geometry defines the cell set. Human/social features contain a small sibling-boundary signal, yet that signal does not transfer and does not create an action-grade tensor. This is a useful negative result because it blocks a tempting public-LB-consuming route.
+- Decision: no E286 public submission. Preserve E247. The next useful target should be train/OOF-supervised social residual or row-alignment transfer, not another test-side pseudo-label of E247 cell identity.

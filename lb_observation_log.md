@@ -366,3 +366,21 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - best undo p90: `-0.000000902`.
 - interpretation: human/social/payday state explains E247/E256 boundary anatomy, including month-start shopping/money-rumination and app-state-by-amplitude signals, but the direct add/undo translator is not strong enough.
 - next experiment: keep E247 as the protected body and learn a contrastive E247 preserve/avoid latent before any new public LB slot is used.
+
+## Public-Free Observation: E286
+
+- submission files: `analysis_outputs/submission_e286_e247contrast_*.csv`
+- public LB: not submitted.
+- reason not submitted: public LB is scarce, and E286 failed the local E247-current matched row/subject/dateblock placebo governor.
+- local observation:
+  - latent rows: `128`;
+  - selected latents: `12`;
+  - candidates: `533`;
+  - matched nulls: `11193`;
+  - old strict-promote candidates: `0`;
+  - matched-placebo gate passes: `0`;
+  - public-free ready files: `0`;
+  - best source-transfer AUC: `0.519231`;
+  - best candidate p90 scale: about `-0.000004`.
+- interpretation: learned E247 preserve/avoid identity mostly recovers E247 geometry, not a transferable human/social hidden state. Human/social context contains a small local sibling-boundary clue, but it is not strong enough to justify public LB.
+- next experiment: ground the social/JEPA latent in train OOF residuals or row-alignment transfer before materializing another current-frontier tensor.

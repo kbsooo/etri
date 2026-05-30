@@ -2843,3 +2843,41 @@ Decision:
 - Do not submit any E285 file.
 - Public LB is preserved.
 - E285 raises the confidence that human/social state is useful as E247 boundary context, but blocks direct hand-built E247 residual edits.
+
+## E286 E247 Preserve/Avoid Contrastive Governor
+
+Question: can a learned contrastive E247 preserve/avoid latent turn human/social boundary anatomy into a locally certified E247-current Q3 tensor?
+
+Method: `analysis_outputs/e286_e247_preserve_avoid_contrastive_latent.py`.
+
+- Context families: human/social story state, app-entropy/diary/cash-flow context, cell geometry, human+geometry, and human+oldlaw context.
+- Latent stress: stratified, subject, dateblock, permutation AUC p95, and source-transfer from E247-common-vs-E284-extra to E247-only-vs-E256-only.
+- Materialization stress: E247-current Q3 add/undo/swap/control actions versus matched row/subject/dateblock nulls.
+
+Result:
+
+- latent rows: `128`.
+- selected latents: `12`.
+- materialized candidates: `533`.
+- matched nulls: `11193`.
+- old strict-promote candidates: `0`.
+- matched-placebo gate passes: `0`.
+- public-free submission-ready candidates: `0`.
+- best broad identity latent is geometry-driven:
+  - `e247_body_vs_clean_neither / cell_geometry / lr_l2`;
+  - min AUC `0.998917`;
+  - mean AUC `0.999399`.
+- best human/social sibling-boundary latent is local but fragile:
+  - `e247_only_vs_e256_only / human_social / lr_l1`;
+  - min AUC `0.857143`;
+  - mean AUC `0.872711`;
+  - source-transfer AUC `0.403846`.
+- best source-transfer AUC overall is only `0.519231`.
+- best candidate p90 values are around `-0.000004`, below submission resolution.
+
+Decision:
+
+- Do not submit any E286 file.
+- Public LB is preserved.
+- E286 blocks "learn E247 cell identity from current pseudo-labels" as a breakthrough route.
+- The next valid stress target is train/OOF-grounded social residual or row-alignment transfer, where the latent is supervised by labels/residuals rather than by test-side submission cell membership.

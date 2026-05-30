@@ -2518,3 +2518,35 @@ Next submission candidate requirement:
 - do not hand-edit E247 cells by scalar story ranks;
 - learn a contrastive E247 preserve/avoid target using E247-common/E247-only versus E256-only/E284-extra anatomy;
 - require matched-null dominance before creating a public candidate.
+
+## Update After E286 E247 Preserve/Avoid Contrastive Audit
+
+Current submission policy remains: **no new public submission.**
+
+What was tested:
+
+- learned E247 preserve/avoid cell identity from E247/E256/E284 contrastive groups;
+- human/social-only, cell-geometry, human+geometry, and human+oldlaw context views;
+- stratified, subject, dateblock, permutation, and source-transfer latent health;
+- E247-current Q3 add/undo/swap/control materializations;
+- matched row/subject/dateblock null governance.
+
+What was learned:
+
+- E247 cell identity is highly learnable, but mostly through geometry that re-describes E247 itself.
+- Human/social context has a local clue on the tiny E247-only-vs-E256-only sibling boundary, but it does not transfer reliably.
+- `533` candidates and `11193` matched nulls produced `0` old strict promotes, `0` matched-placebo passes, and `0` public-free ready files.
+
+Do not submit:
+
+- any `analysis_outputs/submission_e286_e247contrast_*.csv` file.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+Next submission candidate requirement:
+
+- do not use current test-side E247 cell membership as the only target representation;
+- ground the next social/JEPA latent in train OOF residuals, label lift, or explicit row-alignment transfer;
+- require matched-null dominance before public LB.

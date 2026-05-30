@@ -2115,3 +2115,12 @@
 - Implementation issue possible: medium. The direct rules are intentionally small scalar rank/top-k edits, so a learned contrastive E247 preserve/avoid target can still use these features. Low for blocking the exact E285 files because the final current-anchor/null governor directly tests the proposed movement.
 - Bottleneck implication: feature discovery is no longer the only bottleneck. We need a target representation that turns human/social context into stable cell identity, not just another story score.
 - Do not repeat: submitting `submission_e285_e247resid_*` files or creating more scalar E247 add/undo variants without a learned target and matched-null dominance.
+
+## FH235. Learning E247 preserve/avoid pseudo-cell identity is enough for a submission
+
+- Failed hypothesis: after E285, replacing scalar story rules with a learned contrastive E247 preserve/avoid latent should produce a public-free submission candidate.
+- Observed result: E286 creates `128` latent rows, selects `12` latents, materializes `533` candidates, and compares them to `11193` matched row/subject/dateblock nulls. Old strict-promote candidates are `0`, matched-placebo gate passes are `0`, and public-ready candidates are `0`.
+- Why discard: the learnable part is mostly E247 geometry replay. `cell_geometry` reaches min AUC `0.998917` on broad E247-vs-clean identity, while human/social-only is weak on broad identity and the local E247-only-vs-E256-only human clue does not transfer. The best source-transfer AUC is only `0.519231`, and candidate p90 edges are around `-0.000004`.
+- Implementation issue possible: medium. The logistic latent and cell-label definitions are intentionally simple, and a richer train-supervised target may still work. Low for blocking these exact E286 files because the tensor-level current-anchor/null governor directly rejects them.
+- Bottleneck implication: the bottleneck is not only model capacity or feature creativity. The hidden target definition is the bottleneck. Test-side pseudo cell identity is too self-referential unless it is grounded by train labels/residuals or row-alignment transfer.
+- Do not repeat: training more models to recognize current E247 cells and submitting tiny add/undo/swap edits unless the latent first passes source-transfer and matched-null dominance.

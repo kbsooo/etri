@@ -3232,6 +3232,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E285. If an E285 file were submitted and won, it would imply the local current-anchor governor is missing a very tiny public-specific subset, not that the handcrafted rule was locally certified.
 - 제출 전략: none. Preserve E247. The next branch should learn a contrastive E247 preserve/avoid latent from E247-common/E247-only versus E256-only/E284-extra cells, then require matched-null dominance before materialization.
 
+### H286: learned E247 preserve/avoid cell identity can convert human/social boundary anatomy into a public-free candidate
+
+- 상태: rejected as submission translator; supported as a diagnostic split between geometry and human state.
+- 왜 그럴듯한가: E285 showed interpretable human/social/cash-flow anatomy around the E247/E256 Q3 boundary, but scalar add/undo rules were too weak. A learned contrastive latent should be a sharper I-JEPA-style target: context predicts hidden E247-relative preserve/avoid cell identity instead of raw values or story scores.
+- 맞다면: human/social or human+geometry context should learn E247-preserve versus avoid labels across stratified, subject, and dateblock splits; source-transfer from E247-common-vs-E284-extra to E247-only-vs-E256-only should remain above chance; materialized E247-current Q3 edits should beat matched row/subject/dateblock nulls.
+- 틀리다면: cell identity will be learnable mostly from E247 geometry itself, human/social-only signal will be local or non-transferable, and final Q3 add/undo/swap candidates will be below selector resolution or no better than matched nulls.
+- 최소 실험: `analysis_outputs/e286_e247_preserve_avoid_contrastive_latent.py`.
+- 관측: `128` latent rows and `12` selected latents were generated; `533` candidates and `11193` matched nulls produced old strict promotes `0`, matched-placebo passes `0`, and public-ready files `0`. Cell identity is extremely learnable with geometry (`e247_body_vs_clean_neither` cell-geometry min AUC `0.998917`, mean AUC `0.999399`), but human/social-only is weak on the broad body task and source-transfer fails (`human_social` transfer AUC `0.403846`, `human_plus_oldlaw_context` best transfer AUC only `0.519231`). Best non-control p90 deltas are around `-0.000004`, below submission resolution.
+- 성공/폐기 기준: learned E247 preserve/avoid identity is not enough when the target is defined by current test-side cell membership. The useful result is negative: E247 identity is recoverable, but mostly as geometry replay; the human/social sibling-boundary clue is too small and non-transferable for a public-free tensor.
+- public LB 관측 반응: no public LB should be spent on E286. If an E286 file won publicly, it would mean the local matched-null governor missed an extremely narrow public subset, not that the learned preserve/avoid latent was locally certified.
+- 제출 전략: none. Preserve E247. The next branch should ground social latents in train/OOF residual labels or row-alignment transfer targets rather than pseudo-labeling E247 cell identity from test-side submission anatomy.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
