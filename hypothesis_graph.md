@@ -2762,15 +2762,28 @@ target co-occurrence
 
 ### H234. E237's learned Q3 cells are a latent residual-energy motif, not just a top-k/calendar shortcut
 
-- 상태: 부분 지지 by E239 motif atlas; public LB 미확인.
+- 상태: 수정됨 by E240. residual-energy motif는 지지, learned-selector uniqueness는 약화.
 - 왜 그럴듯한가: E237 overlaps E230 hand-prunes only partially, yet passes actual-vs-E95 public-free stress. If it is real, the selected cells should have a context motif beyond "largest E224 movement" or obvious row/date edge.
 - 맞다면: E237 cells should not be fully explained by top-25 amplitude, subject edge, or train-date adjacency. They should instead show stable latent-context anomaly signals that are plausibly tied to Q3 tail risk.
 - 틀리다면: E237 would be nearly identical to E230 top swing/risk rows, or its selected cells would be almost entirely top-25 E224 movement / calendar-edge cells without additional latent enrichment.
 - 최소 실험: `analysis_outputs/e239_e237_cell_motif_atlas.py`.
 - 관측: E237 has only `13/25` overlap with E230 swing25 and `11/21` with E230 risk21. Only `52%` of E237 cells are E224 top-25 amplitude, though `96%` are top-50. Edge/calendar explanations weaken because near-test-edge-2 is `0.120` vs population `0.240`, and train-gap-adjacent-2 is `0.240` vs `0.344`. Strong enrichments appear in E208 latent residual/neighbor-distance features: `e208_resid_self_abs_mean`, `e208_nn_target_dist`, `e208_resid_self_norm`, `e208_resid_self_pc10`.
-- 성공/폐기 기준: supported as a local motif if E237 public is clean/micro win or beats E224 in contrast. If E237 branch-loses, reinterpret the same residual-energy motif as a learned shortcut that local stress failed to punish.
+- E240 추가 관측: deterministic residual-energy rules also pass the E237-like gate. `simple_pc10_top25` has expected loss vs E224 `-0.000062119`, adverse reduction `0.000594489`, support gain `0.016747154`, actual adverse reduction `0.000573879`, and overlaps E237 by only `14/25`. All `9/9` non-control E240 simple selectors pass the E237-like gate.
+- 성공/폐기 기준: the residual-energy motif is supported locally, but the learned E237 selector is not unique. Public support for E237 would support the broader Q3 residual-energy cell-tail world, not specifically the E237 learned model. If E237 loses, it closes both the learned selector and the current simple residual-energy rollback idea until train/OOF validation is rebuilt.
 - public LB 관측 반응: E237 win strengthens the Q3 residual-energy decisive-cell world; E237 tie keeps it diagnostic only; E237 loss closes E237 siblings and shifts the residual-energy features into the negative-control registry.
 - 제출 전략: no new file from H234. The only currently meaningful public test remains the fixed E237 top file; do not tune top-k or add residual-energy masks before public contrast.
+
+### H235. Current E237/E230 stress gates cannot distinguish learned Q3 cells from simple residual-energy rules
+
+- 상태: 지지 by E240.
+- 왜 그럴듯한가: E239 found that E237 cells are residual-energy enriched. If the stress gate is only checking "remove some high-risk Q3 cells while preserving S4", a simple residual ranking may pass without proving a learned JEPA target.
+- 맞다면: simple rules based on E208 residual PC10, residual abs mean, NN distance, or residual+amplitude combinations should pass the same graft-vs-E154 and actual-vs-E95 stress that selected E237.
+- 틀리다면: simple rules would fail expected loss, adverse reduction, support gain, Q3 top-cell, or actual-vs-E95 checks, leaving E237 as uniquely learned.
+- 최소 실험: `analysis_outputs/e240_e237_residual_rule_ablation.py`.
+- 관측: all `9/9` non-control simple selectors pass the E237-like gate. Best simple rule `simple_pc10_top25` beats E237 control on expected loss, support gain, Q3 top1/expected, and actual adverse reduction while overlapping E237 only `14/25`.
+- 성공/폐기 기준: supported until a stricter train/OOF validation or public feedback separates learned E237 from simple residual rules.
+- public LB 관측 반응: if E237 wins, the hidden-world update should be "Q3 residual-energy cell-tail is public-real", not "the E237 learned classifier is uniquely right." If E237 loses, do not submit simple residual siblings; they share the same stress-gate blind spot.
+- 제출 전략: no submission from H235. Next local experiment should validate simple residual-energy rules on train/OOF Q3 benefit labels before any materialization.
 
 ## 우선 실험 5개
 

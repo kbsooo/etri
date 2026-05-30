@@ -2053,6 +2053,23 @@ E239 E237 cell motif atlas stress:
 
 Stress implication after E239: E237's local signal is not just a calendar edge or top-k amplitude artifact. It is best described as high-Q3-movement cells under high E208 residual/NN-distance energy. This strengthens the learned-cell motif as an interpretable hidden-world bet, but it does not create a new submission or justify tuning E237 siblings before public feedback.
 
+E240 E237 residual-rule ablation stress:
+
+- script: `analysis_outputs/e240_e237_residual_rule_ablation.py`.
+- report: `analysis_outputs/e240_e237_residual_rule_ablation_report.md`.
+- selected files: none; this is a diagnostic ablation and creates no submission.
+- stress dimensions:
+  - deterministic Q3 rollback rules from amplitude, E208 residual abs mean, E208 NN distance, E208 residual PC10, E215 residual, and top50-amplitude filters.
+  - same graft-vs-E154 and actual-vs-E95 E237-like gate used for E237 interpretation.
+  - overlap against E237, E230 swing25, and E230 risk21.
+- key results:
+  - all `9/9` non-control simple selectors pass the E237-like gate and E230 gate.
+  - `simple_pc10_top25` is best by E237-like score: expected loss vs E224 `-0.000062119`, adverse reduction `0.000594489`, support gain `0.016747154`, actual adverse reduction `0.000573879`.
+  - `simple_pc10_top25` overlaps E237 only `14/25`, so it is not merely copying E237, but it overlaps E230 swing25 by `18/25`.
+  - E237 control remains valid but no longer uniquely strong under local stress.
+
+Stress implication after E240: the current E237/E230 public-free stress is not sufficient to prove learned-selector uniqueness. It supports a broader Q3 residual-energy cell-tail world. A simple-rule submission is not justified because the rule is post-hoc and not train/OOF-validated, but future JEPA work should validate residual PC10-like target cells directly.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

@@ -1752,7 +1752,16 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Candidates: E237/E224 Q3 logit delta, E224 top-25/top-50 movement rank, E230 swing/risk overlap flags, E208 residual self norm/abs mean/PC10, E208 nearest-neighbor target distance, E215 residual norms, subject/date/test-edge/train-adjacency diagnostics, and E237-only/E230-only disagreement selectors.
 - Label vs split test: valid only as a motif diagnostic. It uses the fixed E237 output and public-free latent/context features, not public labels. It must not become a new gate until E237 public feedback tells whether the motif is helpful or a shortcut.
 - Current evidence: E237 overlaps E230 only partially (`13/25` swing25, `11/21` risk21). It is amplitude-filtered but not pure top-k (`0.520` top-25, `0.960` top-50). Edge/calendar explanations weaken (`0.120` near-test-edge-2 vs `0.240` population; `0.240` gap-adjacent-2 vs `0.344`). E208 residual/NN features are strongly enriched, especially `e208_resid_self_abs_mean`, `e208_nn_target_dist`, and `e208_resid_self_pc10`.
-- Policy: if E237 wins, promote F204 into the next Q3 decisive-cell JEPA target design. If E237 loses, demote F204 to a shortcut/negative-control feature family. Do not submit a residual-energy top-k variant before that public contrast.
+- E240 update: simple residual-energy rules pass the same E237-like stress. `simple_pc10_top25` has expected loss vs E224 `-0.000062119`, adverse reduction `0.000594489`, support gain `0.016747154`, actual adverse reduction `0.000573879`, and overlaps E237 only `14/25`.
+- Policy: F204 is promoted as a diagnostic feature family, but not as a submission rule. If E237 wins, promote the broader Q3 residual-energy cell-tail world, not the exact learned selector. If E237 loses, demote both E237 and simple residual rules until train/OOF validation is rebuilt.
+
+### F205. E240 simple residual-energy Q3 rollback rules
+
+- Hidden structure: if residual-energy is the real Q3 tail signal, deterministic rules based on E208 residual PC10, residual abs mean, NN distance, and top50-amplitude filters should reproduce E237-like public-free stress.
+- Candidates: `simple_pc10_top25`, `top50_amp_then_resid_combo25`, `top50_amp_then_nn25`, `global_e239_combo25`, and related deterministic selectors from `analysis_outputs/e240_e237_residual_rule_ablation.py`.
+- Label vs split test: currently diagnostic only. These rules are built from post-E239 test-side motif observation and are not OOF-trained. A submission would require train-side Q3 benefit validation, subject/row stress, and a new pre-public routebook.
+- Current evidence: all `9/9` non-control simple selectors pass the E237-like gate and E230 gate. This shows the current stress gate is under-discriminating for learned-vs-heuristic cell rules.
+- Policy: do not materialize E240 submissions yet. Use F205 as the next train/OOF validation target and as a warning against overclaiming E237 as a learned-JEPA breakthrough.
 
 ## Current Feature Policy
 

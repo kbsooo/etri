@@ -3667,3 +3667,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E237-only-not-swing25 cells retain amplitude/top50 enrichment but show weak id01/Tuesday enrichment; E230-risk-only-not-E237 instead has late-subject-position and far-from-train-run motifs.
 - Interpretation: E237 is partly amplitude-ranked, but the cell selection is not reducible to top-k, row edge, or train adjacency. The most plausible hidden object is Q3 movement under high E208 residual/neighbor-distance energy: a latent-context anomaly where E224's capped Q3 step is unusually risky. E230's hand risk-only cells appear to lean more on temporal/train-gap motifs, so E237 and E230 are related but not identical tail lenses.
 - Decision: no new submission from E239. If E237 wins, rebuild the next JEPA target around E208 residual/NN-distance Q3 decisive-cell context. If E237 loses, treat those same enrichments as a shortcut warning and do not submit lower-ranked E237 siblings.
+
+## E240. E237 Residual-Rule Ablation
+
+- Observe: E239 narrowed E237's visible motif to Q3 amplitude top50 plus E208 residual/NN-distance energy. The next falsification is whether a simple public-free rule can reproduce or beat the learned E237 selector under the same E237/E230 stress.
+- Wonder: is E237 actually a learned cell-level JEPA target, or did the model mostly rediscover a simple residual-energy score?
+- Method: `analysis_outputs/e240_e237_residual_rule_ablation.py` builds deterministic Q3 rollback selectors from E239 features: pure amplitude, E208 residual abs mean, E208 NN distance, E208 residual PC10, top50-amplitude-then-residual variants, and combined E208/E215 residual scores. It applies each selector to the E224-to-E154 Q3 rollback tensor and audits graft-vs-E154 plus actual-vs-E95 metrics using the same E230/E237-style gates. No submission file is created.
+- Result:
+  - report: `analysis_outputs/e240_e237_residual_rule_ablation_report.md`.
+  - all `9/9` non-control simple selectors pass the E237-like gate, and all `9/9` pass the E230 gate.
+  - `simple_pc10_top25` is the best stress row: expected loss vs E224 `-0.000062119`, adverse reduction `0.000594489`, support gain `0.016747154`, actual adverse reduction `0.000573879`, overlap with E237 `14`, overlap with E230 swing25 `18`.
+  - E237 control remains gate-valid but no longer uniquely strong: expected loss vs E224 `-0.000005612`, support gain `0.006450259`, Q3 top1/expected `0.747139811`.
+  - E230 swing25 still fails the stricter E237-like gate because actual expected delta is positive, despite high adverse reduction.
+- Interpretation: E237's selected cells are not a unique learned-model discovery. The public-free stress gate is satisfied by much simpler residual-energy rules, especially E208 residual PC10. This weakens the "learned JEPA cell selector" claim and strengthens the "E208 residual-energy Q3 tail sensor" claim.
+- Decision: no E240 submission. Do not replace E237 with a post-hoc simple-PC10 file yet; it is not OOF-learned and was derived after E239. The next useful test is train-side/OOF validation of whether E208 residual PC10 identifies harmful Q3 movement, or public feedback on the fixed E237 sensor if the goal is to observe the residual-energy Q3-tail world.

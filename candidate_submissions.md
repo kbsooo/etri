@@ -1556,3 +1556,25 @@ Submission policy stays:
 2. Do not submit lower-ranked E237 top13/top10/p05 siblings before public feedback. E239 says the motif is residual-energy-plus-top50, not a scalar top-k knob.
 3. If E237 wins, the next experiment should rebuild a Q3 decisive-cell JEPA target around E208 residual/NN-distance context.
 4. If E237 loses, the same motif becomes a shortcut warning and E237-family siblings should be closed rather than tuned.
+
+## Update After E240
+
+E240 changes the confidence label on E237. The Q3 residual-energy cell-tail motif is stronger, but the claim that E237 uniquely needs a learned cell classifier is weaker.
+
+Key finding:
+
+- All `9/9` non-control simple residual/amplitude selectors pass the E237-like gate.
+- Best simple rule is `simple_pc10_top25`:
+  - expected loss vs E224 `-0.000062119`.
+  - adverse reduction vs E224 `0.000594489`.
+  - support gain vs E224 `0.016747154`.
+  - actual adverse reduction vs E224 `0.000573879`.
+  - overlap with E237 only `14/25`.
+- E237 control still passes, but its advantage is no longer local-stress uniqueness.
+
+Submission policy:
+
+1. Do not create or submit E240 simple-rule files yet. They are post-E239 diagnostics, not OOF-learned translators.
+2. If submitting the existing E237 top file, describe it as a Q3 residual-energy cell-tail public sensor, not as proof that the learned E237 classifier is uniquely correct.
+3. The next local work should validate E208 residual PC10 / residual-energy rules against train-side Q3 benefit labels before materializing a simple-rule submission.
+4. If E237 public wins, the next candidate family should be residual-energy Q3 cell-tail rules with OOF support, not lower-ranked E237 top-k siblings.

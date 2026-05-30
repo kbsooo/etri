@@ -1854,3 +1854,12 @@
 - Implementation issue possible: medium. E236 only tests the current E234 policy family on the current E224/E154 tensor. It does not kill future cell-level decisive-label targets or new JEPA objectives. Low for rejecting this exact submission branch because every public-free gate is zero.
 - Bottleneck implication: E234 proves that changing JEPA targets can expose local tail structure, but target-specific public materialization is still the bottleneck. The Q3 public tail remains visible as an intervention energy, not as a learned invariant gate.
 - Do not repeat: submitting E234-derived Q3/S4 learned-mask files, or replacing E230 with a learned Q3/S4 gate, unless a new target definition passes E224 expected-focus, support, adverse, and top-cell concentration stress.
+
+## FH206. E237's local stress success proves learned-selector uniqueness
+
+- Failed hypothesis: because E237 is OOF-trained and passes graft-vs-E154 plus actual-vs-E95 stress, the selected Q3 cells should be treated as a uniquely learned cell-level JEPA target rather than a residual-energy heuristic.
+- Observed result: E240 tests deterministic rules from the E239 residual-energy motif. All `9/9` non-control simple selectors pass the same E237-like gate. `simple_pc10_top25` beats E237 control on expected loss vs E224 (`-0.000062119` vs `-0.000005612`), support gain (`0.016747154` vs `0.006450259`), actual adverse reduction (`0.000573879` vs `0.000553281`), and Q3 top1/expected (`0.485061` vs `0.747140`), while overlapping E237 only `14/25`.
+- Why discard: the public-free gate is not discriminative enough to separate learned-cell representation from simple residual-energy sorting. E237 can still be a useful sensor, but its win would validate the broader residual-energy Q3-tail world, not the uniqueness of the learned classifier.
+- Implementation issue possible: medium. E240 rules are post-hoc test-side diagnostics and should not replace E237 without train/OOF validation. Low for rejecting the uniqueness claim because the same local gates directly pass for many simple rules.
+- Bottleneck implication: the next bottleneck is not "train a sharper E237 sibling"; it is proving whether residual PC10-like Q3 cells are supported by train/OOF benefit and public-like stress.
+- Do not repeat: claiming E237 is a JEPA breakthrough solely because it passes E237/E230 stress, or submitting lower-ranked E237 siblings before separating learned target value from residual-energy heuristic value.
