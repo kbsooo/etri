@@ -1341,3 +1341,24 @@ E200 stress-tests the practical ordering question created by E199: should the cl
   - E176-vs-E154 moves `1027` cells and resolves the main broad-vs-repaired-branch conflict.
 
 Stress implication: E172 passes as a clean safety fallback, but not as a first-slot replacement. The ordering is robust to the E199 cleanliness update: E176 first, E172 after tie/small-loss, E154 after branch/hard-loss.
+
+## Update After E201
+
+E201 stress-tests the process risk: the next E176 public score must not be interpreted after the fact by whichever story fits the number.
+
+- script: `analysis_outputs/e201_e176_public_sensor_packet.py`.
+- report: `analysis_outputs/e201_e176_public_sensor_packet_report.md`.
+- audited E176 SHA256: `34d38587b04640327824b972f4cbc18ae03cab2f92802ac7c144f94b96184206`.
+- file audit:
+  - rows/columns: `250/10`.
+  - sample columns and key order: exact match.
+  - duplicate keys: `0`.
+  - probability range: `0.068110176672..0.979776651464`.
+  - changed cells vs E95: `904` over `193` rows.
+- route stress:
+  - E176 better than `0.5762883298`: broad/Q2-underopen branch remains useful, but no same-family sibling is justified immediately.
+  - E176 from `0.5762883298` to `0.576300366`: the same-family branch is underresolved or slightly bad; E172 is the only coherent same-family safety test.
+  - E176 worse than `0.576300366`: the partial-reopen branch is demoted; E154/search becomes the next branch.
+  - E176 worse than `0.5763413298`: same-family expected-score lane closes.
+
+Stress implication: the next public observation is now a fixed decision-tree test. This does not make E176 safer, but it makes the feedback interpretable and prevents post-score Q2 keep-factor tuning.

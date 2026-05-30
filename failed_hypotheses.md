@@ -1574,3 +1574,12 @@
 - Implementation issue possible: low. E200 uses locked E177/E197/E199 artifacts and derives E172-vs-E95 algebraically from pairwise rows rather than fitting a new selector.
 - Bottleneck implication: safety and information value are different axes. The current bottleneck remains hidden-world underidentification, so the first sensor should maximize resolution; safety fallback comes after the relevant band.
 - Do not repeat: promoting E172 ahead of E176 solely from support surplus or clean-shape E72 probability. Use E172 only after an E176 tie/small-loss or under an explicit private-risk-minimization objective.
+
+## FH175. E176 public feedback can be interpreted after seeing the scalar score
+
+- Failed hypothesis: because E177 already has score bands, it is acceptable to wait for E176 public LB and then reason informally about what the number means.
+- Observed result: E201 shows this is too loose. The exact E176 file is now fixed by SHA256 `34d38587b04640327824b972f4cbc18ae03cab2f92802ac7c144f94b96184206`, and every public-score regime has a pre-registered route. Better than `0.5762883298` means E176 is useful but does not justify an immediate sibling; `0.5762883298..0.576300366` activates only E172 as same-family safety; worse than `0.576300366` demotes partial-reopen toward E154/search; worse than `0.5763413298` closes the same-family expected-score lane.
+- Why discard: scalar post-hoc interpretation is exactly the mechanism that creates redundant keep-factor siblings and ambiguous branch decisions. It does not respect the fact that E176-vs-E172 is only `75` cells while E176-vs-E154 is the broader `1027`-cell worldview conflict.
+- Implementation issue possible: low. E201 is file/schema/router governance, not a fitted selector. The only possible issue would be submitting a different file than the audited hash.
+- Bottleneck implication: the bottleneck is not only model signal; it is also feedback-resolution discipline. Public LB can help only if each observation kills or preserves a specific worldview.
+- Do not repeat: making another E176/Q2 sibling directly from the public scalar. Decode with E177/E201 first.

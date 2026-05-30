@@ -828,3 +828,29 @@ Current order is unchanged:
 2. `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` - if E176 ties or small-loses; same-family safety contrast.
 3. `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` - if E176 branch-loses or hard-fails; repaired-branch counter-world.
 4. `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv` - Q2 full-reopen contrast only after an explicit E176/E174 amplitude question.
+
+## Update After E201
+
+The single next public sensor remains:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+E201 turns that recommendation into an auditable packet rather than a loose preference.
+
+- SHA256: `34d38587b04640327824b972f4cbc18ae03cab2f92802ac7c144f94b96184206`.
+- Submission audit: `250` rows, exact sample columns/key order, no duplicate keys, finite probabilities inside `[0, 1]`.
+- E176 vs E95 movement: `904` cells across `193` rows.
+- Main movement share: Q2 `0.209702`, S4 `0.145285`, Q3 `0.141693`, S2 `0.130103`, Q1 `0.128746`, S3 `0.126307`, S1 `0.118164`.
+
+Pre-registered follow-up policy:
+
+1. If E176 is better than `0.5762883298`, do not rush another same-family file. First decompose whether the gain came from Q2 damping or S-stage body.
+2. If E176 lands from `0.5762883298` through `0.576300366`, use E172 only if the next question is same-family safety.
+3. If E176 is worse than `0.576300366`, demote the partial-reopen branch and prefer E154 or non-collinear latent search.
+4. If E176 is worse than `0.5763413298`, close E176/E174/E172/E169 as expected-score follow-ups.
+
+Before any post-E176 file is chosen, run:
+
+`python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <E176_PUBLIC_LB>`
+
+and compare the result against `analysis_outputs/e201_e176_public_sensor_packet_route_summary.csv`.

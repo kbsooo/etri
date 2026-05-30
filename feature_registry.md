@@ -1472,6 +1472,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E176 has `0.0000106885` expected focus edge over E172, `0.698x` of E95-over-mixmin. E172 has visible/focus surplus advantages `0.008852`/`0.007054` and clean-shape E72 probability advantage `0.00000972`. E176-vs-E172 is `75` cells; E176-vs-E154 is `1027` cells; same-family/counter-world expected-delta ratio is `0.114`.
 - Policy: keep E176 first. Use E172 only after E176 tie/small-loss or if the explicit objective changes to private-risk minimization over information value.
 
+### F170. E201 public-score router and file-identity audit
+
+- Hidden structure: public LB is a sensor only if the observation is tied to an exact prediction tensor and a fixed interpretation map. Otherwise the same scalar can become a post-hoc shortcut.
+- Candidates: SHA256, schema/key/probability validity, changed cells and rows versus E95, target absolute-delta share, pre-registered score bands, next-candidate role, strengthened/weakened worldview, kill-switch, and required next evidence.
+- Label vs split test: valid as governance and leakage prevention because it creates no labels, no new prediction, and no score fit. Invalid as a performance feature because it does not forecast LB; it only constrains interpretation after feedback.
+- Current evidence: E176 SHA256 `34d38587b04640327824b972f4cbc18ae03cab2f92802ac7c144f94b96184206`; file audit passes. E176 moves `904` cells over `193` rows; target movement share is Q2 `0.209702`, S4 `0.145285`, Q3 `0.141693`, S2 `0.130103`, Q1 `0.128746`, S3 `0.126307`, S1 `0.118164`. Router thresholds are `<0.5762883298`, `0.5762883298..0.576300366`, `>0.576300366`, and `>0.5763413298`.
+- Policy: use E201 before and after the E176 public submission. Do not create an E176 sibling, E172 fallback, or E154 counter-world file from scalar intuition; first route the score through E177/E201.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

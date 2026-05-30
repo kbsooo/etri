@@ -2292,6 +2292,18 @@ target co-occurrence
 - public LB 관측 반응: E176 win validates first-sensor ordering. E176 tie/small-loss activates E172 as planned. E176 branch/hard-loss shifts to E154/search; E172 should not be retroactively treated as the missed first choice unless the score lands specifically in the E172-conditional band.
 - 제출 전략: no E200 submission. Keep E176 first, E172 after tie/small-loss, E154 after branch/hard-loss.
 
+### H195. E176 feedback must be decoded by a pre-registered router, not scalar intuition
+
+- 상태: 지지 by E201 as governance rule.
+- 왜 그럴듯한가: E176 is a thin public-edge sensor: only `4` cells can cover the E95-over-mixmin edge, and E176/E172/E174 differ on narrow same-family axes. Without a fixed router, the same public number could be retrofitted into Q2 tuning, E172 safety, E154 counter-world, or new-latent stories.
+- 맞다면: a useful pre-feedback artifact should verify the exact submission file and map every possible E176 public score band to a unique worldview update and follow-up policy.
+- 틀리다면: file/schema/hash audit would fail, or the route table would leave important score bands ambiguous enough to justify multiple contradictory follow-ups.
+- 최소 실험: `analysis_outputs/e201_e176_public_sensor_packet.py`.
+- 관측: E176 SHA256 is `34d38587b04640327824b972f4cbc18ae03cab2f92802ac7c144f94b96184206`; file audit passes sample schema/key/probability checks; E176 moves `904` cells over `193` rows versus E95. The route table fixes four main regimes: `<0.5762883298` promote/decompose E176, `0.5762883298..0.576300366` same-family underresolved with E172 as only coherent safety contrast, `>0.576300366` demote partial-reopen toward E154/search, and `>0.5763413298` close same-family expected-score lane.
+- 성공/폐기 기준: supported as long as the next E176 public result is interpreted through E177/E201 before any follow-up file is chosen. It is violated if a new E176 sibling is generated from the public scalar without matching the pre-registered route.
+- public LB 관측 반응: the score itself will update H176/H194-family beliefs by band; H195 governs the interpretation process. A win strengthens broad/Q2-underopen; tie/small-loss activates E172; adverse loss activates E154/search.
+- 제출 전략: no E201 submission. Submit only the audited E176 if spending the next slot, then run `python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <E176_PUBLIC_LB>` and compare to `analysis_outputs/e201_e176_public_sensor_packet_route_summary.csv`.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

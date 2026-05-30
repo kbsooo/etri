@@ -3086,3 +3086,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - Both E172 and E176 remain below the E199 non-E72 p95 shape threshold.
 - Interpretation: E172 is a safer same-family rollback, not a better first sensor. Submitting E172 first gives up most of the E176-over-E172 frontier-scale edge and mostly asks a narrow tail-repair question, while leaving the broad/Q2-underopen worldview underobserved.
 - Decision: no submission. Keep `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` first. If E176 ties or small-loses, use `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` as the same-family safety contrast. If E176 branch-loses or hard-fails, route to E154/search by E177.
+
+## E201. E176 Public Sensor Packet
+
+- Observe: after E200, the next failure mode is procedural rather than modeling: E176 is fixed as first sensor, but its eventual public LB could still be interpreted post-hoc by scalar intuition or lead to another Q2 keep-factor sibling.
+- Wonder: can the E176 submission file identity and score-to-worldview decision tree be frozen before the public score is known?
+- Method: `analysis_outputs/e201_e176_public_sensor_packet.py` audits E176/E95/E172/E174/E154 against the sample submission schema, records SHA256 and changed-cell anatomy, then joins E177 bands with E197/E199/E200 diagnostics into a pre-registered route table. It creates no submission.
+- Result:
+  - report: `analysis_outputs/e201_e176_public_sensor_packet_report.md`.
+  - E176 SHA256: `34d38587b04640327824b972f4cbc18ae03cab2f92802ac7c144f94b96184206`.
+  - E176 is submission-ready: `250` rows, exact sample columns/key order, `0` duplicate keys, finite probabilities in `[0.068110176672, 0.979776651464]`.
+  - E176 moves `904` cells over `193` rows versus E95; target absolute-delta share is Q2 `0.209702`, S4 `0.145285`, Q3 `0.141693`, S2 `0.130103`, Q1 `0.128746`, S3 `0.126307`, S1 `0.118164`.
+  - score router:
+    - `<0.5762883298`: E176 is useful; decompose responsibility, no immediate sibling.
+    - `0.5762883298..0.576300366`: same-family underresolved/slightly bad; E172 is the only coherent same-family follow-up.
+    - `>0.576300366`: demote partial-reopen branch; prefer E154 or non-collinear latent search.
+    - `>0.5763413298`: close same-family expected-score lane.
+- Interpretation: E201 adds no score, but removes degrees of freedom. The next public observation should decide a worldview branch, not trigger another E176 sibling sweep.
+- Decision: no submission is created. Submit only the audited E176 file if spending the next public slot. After the score, use `analysis_outputs/e201_e176_public_sensor_packet_route_summary.csv` and `python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <E176_PUBLIC_LB>` before any follow-up.

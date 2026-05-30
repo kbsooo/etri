@@ -1,0 +1,15 @@
+key,value
+recommended_submission,analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv
+recommended_sha256,34d38587b04640327824b972f4cbc18ae03cab2f92802ac7c144f94b96184206
+recommended_ready_for_submission,True
+recommended_changed_cells_vs_e95,904
+recommended_changed_rows_vs_e95,193
+e176_vs_e172_changed_cells,75
+e172_ready_for_submission,True
+current_frontier_file,analysis_outputs/submission_e95_hardtail_541e3973.csv
+current_frontier_public_lb,0.5762913298
+mixmin_public_lb,0.5763066405
+e101_public_lb,0.576300366
+clean_win_hi_public_lb,0.5762760190999999
+router_rule,Use route_summary outcome matching observed E176 public LB before making another file.
+decoder_command,python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <E176_PUBLIC_LB>

@@ -2760,3 +2760,41 @@ E176 제출 전 우선순위는 그대로다. 새 파일을 만들지 않는다.
 다음으로 가장 정보량이 큰 행동:
 
 제출한다면 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` 하나다. E172는 E176이 tie/small-loss일 때만 같은 family의 safety contrast로 쓴다. E176이 branch/hard-loss이면 E172가 아니라 E154/search로 간다.
+
+## E201 업데이트: E176은 이제 파일이 아니라 관측 프로토콜이다
+
+내가 발견한 가장 이상한 점:
+
+`E176을 제출하기로 정했어도, public 숫자를 본 뒤에 해석을 바꾸면 관측이 아니라 튜닝이 된다. 이 대회에서 위험한 것은 틀린 파일만이 아니라, 맞는 파일을 내고도 결과를 아무 방향으로나 해석하는 것이다.`
+
+실험:
+
+- `analysis_outputs/e201_e176_public_sensor_packet.py`
+- report: `analysis_outputs/e201_e176_public_sensor_packet_report.md`
+
+결과:
+
+- E176 file: `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+- SHA256: `34d38587b04640327824b972f4cbc18ae03cab2f92802ac7c144f94b96184206`
+- sample schema/key/probability audit: pass
+- E176 vs E95: `904` cells, `193` rows
+- target movement share:
+  - Q2 `0.209702`
+  - S4 `0.145285`
+  - Q3 `0.141693`
+  - S2 `0.130103`
+  - Q1 `0.128746`
+  - S3 `0.126307`
+  - S1 `0.118164`
+
+생각이 어떻게 바뀌었는지:
+
+`이제 "E176을 낸다"가 아니라 "E176이라는 측정 장치를 작동시킨다"가 맞다. 0.5762883298보다 좋으면 broad/Q2-underopen 세계관이 살아남지만 sibling을 바로 만들지 않는다. 0.5762883298..0.576300366이면 E172 safety contrast만 의미 있다. 0.576300366보다 나쁘면 partial-reopen branch를 내리고 E154/search로 간다. 0.5763413298보다 나쁘면 same-family expected-score lane은 닫는다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+제출한다면 E176 하나다. public 결과가 나오면 반드시:
+
+`python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <E176_PUBLIC_LB>`
+
+를 먼저 실행하고, `analysis_outputs/e201_e176_public_sensor_packet_route_summary.csv`와 맞춰본 뒤 다음 파일을 결정한다.
