@@ -20,18 +20,17 @@ submission_survival_score =
 
 ## Current Public Frontier
 
-Current public frontier: `analysis_outputs/submission_e95_hardtail_541e3973.csv` with public LB `0.5762913298`.
+Current public frontier: `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` with public LB `0.5761589494`.
 
 Current best next submission candidate depends on the public question:
 
-- visible-body/Q2-underopen sensor: `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`.
-- sharper max-edge broad expected-score contrast: `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv`.
-- safer broad tail-repair contrast: `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv`.
-- unrolled broad body-vs-tail sensor: `analysis_outputs/submission_e169_ctx_veto_c5e806e3.csv`.
-- raw broad plateau-break/safety-atlas falsification sensor: `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
-- conservative repaired-branch sensor: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
-- current-anchor binary-world branch remains underidentified after refresh: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` / `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` are worldview sensors, not certified replacements.
-- E183 visible-prior branch anatomy says visible/subject/flank priors reject the favorable pressure branch for E176/E154/E144, so none of these files should be promoted as visible-prior-certified expected improvements.
+- score plus information after E247: `analysis_outputs/submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv`.
+- clean E224 body attribution: `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+- OOF-vs-materialization conflict sensor: `analysis_outputs/submission_e252_e237_e250_union_q3top31_67707aef.csv`.
+- learned Q3 decisive-cell contrast: `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+- conservative repaired branch: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+
+E247 supersedes the earlier E95-centered candidate order. E176/E174/E172/E169/E166 remain historical worldview sensors, not the current first choice, because E247 has provided a stronger public-positive JEPA mechanism.
 
 Previous frontier: `analysis_outputs/submission_mixmin_0c916bb4.csv` with public LB `0.5763066405`.
 
@@ -1901,3 +1900,30 @@ Practical rule:
 - If the next file should seek score while still answering a clean question, use E256.
 - If the next file should explain whether E247's win came mostly from E224 body, use E224.
 - Do not submit an E247 sibling sweep; E256 is the controlled first follow-up.
+
+## Update After E257
+
+E257 explains what E256 actually changes relative to E247.
+
+- E247 and E256 share `21` Q3 rollback cells.
+- E247-only has `13` low-amplitude broad-smoothing cells:
+  - rollback amplitude mean `0.039125051`.
+  - smooth-gain sum `1.002858981`.
+  - E237/E230 overlap `0`.
+- E256-only has `4` high-amplitude cells:
+  - rollback amplitude mean `0.110316918`.
+  - smooth-gain sum `0.049289874`.
+  - E230 swing overlap `4/4`.
+- E247-all keeps more total smoothness mass (`3.555889570`), while E256-all has stronger affected-pair roughness reduction (`-0.070332985` vs `-0.057353058`).
+
+Candidate order by purpose remains:
+
+1. **Current public best:** `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+2. **Best score-plus-information follow-up:** `analysis_outputs/submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv`.
+3. **Clean body attribution:** `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+
+Practical rule:
+
+- Use E256 if the next public question is whether high-amplitude smoothing beats broad smoothness.
+- Use E224 if the next public question is whether the E247 win mostly came from the E224 body.
+- Do not create another E247-family sibling before E256 or E224 resolves one of those two questions.

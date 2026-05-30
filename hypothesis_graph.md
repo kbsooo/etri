@@ -2,11 +2,11 @@
 
 작성일: 2026-05-29
 
-이 문서는 수면 기반 생활습관 로그 예측 대회를 "예측 표"가 아니라 숨은 데이터 생성 과정의 관측 로그로 다루기 위한 가설 그래프다. 현재 best public LB는 `submission_e95_hardtail_541e3973.csv`의 `0.5762913298`이다.
+이 문서는 수면 기반 생활습관 로그 예측 대회를 "예측 표"가 아니라 숨은 데이터 생성 과정의 관측 로그로 다루기 위한 가설 그래프다. 현재 best public LB는 `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`의 `0.5761589494`이다.
 
 ## 현재 병목 요약
 
-E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해 previous best `a2c8`를 `0.0011326805` 낮췄고, E97에서 `submission_e95_hardtail_541e3973.csv`가 public `0.5762913298`로 mixmin을 `0.0000153107` 더 낮췄다. Mixmin의 큰 점프는 anchor-loss/binary-world movement가 public-relevant였다는 증거이고, E95의 작은 추가 개선은 E72-adverse hard-label tail localization이 public-real이라는 증거다. 따라서 현재 병목은 "a2c8 근처 micro edge를 더 찾는 문제"가 아니라, mixmin/E95가 맞힌 hidden public world와 아직 못 맞힌 block-rate/calibration structure를 분리하는 문제다.
+E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해 previous best `a2c8`를 `0.0011326805` 낮췄고, E97에서 `submission_e95_hardtail_541e3973.csv`가 public `0.5762913298`로 mixmin을 `0.0000153107` 더 낮췄다. E255에서 `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`가 public `0.5761589494`로 E95를 `0.0001323804` 더 낮췄다. Mixmin의 큰 점프는 anchor-loss/binary-world movement가 public-relevant였다는 증거이고, E95의 작은 추가 개선은 E72-adverse hard-label tail localization이 public-real이라는 증거이며, E247의 큰 추가 개선은 feature-NN1 Q3 smoothing geometry가 public-real이라는 증거다. 따라서 현재 병목은 "a2c8/E95 근처 micro edge를 더 찾는 문제"가 아니라, E247이 포착한 test-side feature-neighbor Q3 law와 아직 설명되지 않은 E224-body/calibration/block-rate structure를 분리하는 문제다.
 
 가장 강한 현재 설명:
 
@@ -18,7 +18,8 @@ E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해
 - `a2c8`는 raw05 manifold의 작은 correction이었지만, 이제 frontier가 아니다.
 - Mixmin은 anchor-loss/cancellation geometry와 binary actual-anchor worldview가 public-relevant였다는 첫 강한 관측이다.
 - E95는 E72-adverse hard-label tail localization이 public-positive라는 첫 강한 관측이다.
-- 0.54 진입을 막는 핵심 병목은 여전히 hidden block-rate state inference와 selector calibration이지만, E48 이후에는 pairwise/old selector veto를 hard gate로 쓸 수 없다.
+- E247은 feature-NN1 Q3 smoothing을 실제 public-positive JEPA mechanism으로 승격시킨 첫 강한 관측이다.
+- 0.54 진입을 막는 핵심 병목은 여전히 hidden block-rate state inference와 selector calibration이지만, E247 이후에는 OOF smoothing veto도 hard gate로 쓸 수 없다.
 
 ## 관계 그래프
 
@@ -2837,7 +2838,7 @@ target co-occurrence
 
 ### H246: Feature-NN1 smoothing is an actionable Q3 selector, not just an E237 explanation
 
-- 상태: mixed. Supported as test-side geometry by E246, weakened as an invariant harmful-cell selector by E248; public-unverified.
+- 상태: public-supported as E247 mechanism; still rejected as an OOF-invariant harmful-cell selector.
 - 왜 그럴듯한가: E245 showed E237 locally smooths Q3 under the only E207 true-JEPA pair regime, but the effect was weak. If that regime is the hidden public law, directly selecting rows by hypothetical feature-NN1 Q3 smoothing should survive E237 stress without needing the learned E237 classifier.
 - 맞다면: smoothing-based selectors should pass graft-vs-E154 and actual-vs-E95 stress, improve adverse/support metrics versus E224, avoid collapsing into pure E237 or amplitude-top-k selections, and identify negative-benefit train OOF Q3 rows under analogous feature-NN graphs.
 - 틀리다면: smoothing selectors will fail the E237-like gate, only pass as E237 clones, pass only by violating Q3 top-cell/adverse constraints, or look label-adverse/non-invariant under train OOF benefit.
@@ -2849,7 +2850,7 @@ target co-occurrence
 
 ### H247: E247 is the most informative current JEPA-as-solution public sensor
 
-- 상태: candidate selected only as high-information feature-NN1 manifold sensor; downgraded from best expected-score JEPA candidate by E248.
+- 상태: strongly supported by public LB; current public best, with E224-body attribution still unresolved.
 - 왜 그럴듯한가: E237 is OOF-learned but only weakly feature-NN1-compatible. E247 is not OOF-learned, but it is generated directly from the E207 feature-neighbor context-target representation and passes the same stress gate with stronger smoothing and a non-clone row set.
 - 맞다면: the E247 artifact should be Q3-only, schema-clean, materially stronger in feature-NN1 roughness reduction than E237, and either OOF-invariant or explicitly useful as a public falsification of feature-NN1 smoothing.
 - 틀리다면: artifact integrity will fail, movement will leak into other targets, stress metrics will not hold after materialization, or E248-like OOF checks will show that smoothing is not a label-relevant harmful-cell selector.
@@ -2954,6 +2955,18 @@ target co-occurrence
 - 성공/폐기 기준: E256 win strengthens high-amplitude smoothing; near loss keeps E247 broad top34; hard loss warns that E247's exact top34 or E224-body interaction is nonlocal.
 - public LB 관측 반응: pending.
 - 제출 전략: E256 is the next one-file post-E247 information candidate.
+
+### H257: E247-only broad smoothness cells are the key difference from E256
+
+- 상태: live; E257 atlas supports a clean broad-vs-amplitude interpretation, public outcome pending.
+- 왜 그럴듯한가: E256 shares `21/34` E247 cells but replaces the remaining low-amplitude broad smoothing cells with only `4` high-amplitude cells. This is a controlled anatomy change inside the same feature-NN1 Q3 mechanism family.
+- 맞다면: E256 should underperform E247 if E247-only broad smoothness mass is public-useful, even though E256 has stronger amplitude and affected-pair roughness reduction.
+- 틀리다면: E256 should beat or tie E247, implying E247's lower-amplitude extra cells were noise/private risk and the public law is amplitude-constrained smoothing.
+- 최소 실험: `analysis_outputs/e257_e247_e256_cell_contrast_atlas.py`, then public submission of E256 if one score-plus-information slot is used.
+- 관측: E247-only cells have rollback amplitude mean `0.039125051`, smooth-gain sum `1.002858981`, and no E237/E230 overlap. E256-only cells have amplitude mean `0.110316918`, smooth-gain sum only `0.049289874`, E230 swing overlap `4/4`, and support probability `0.531582541`. E247-all has more smoothness mass; E256-all has stronger affected-pair roughness reduction.
+- 성공/폐기 기준: E256 win strengthens high-amplitude constrained smoothing; close loss strengthens broad smoothness; hard loss implies exact E247 top34 or E224-body interaction.
+- public LB 관측 반응: pending.
+- 제출 전략: E256 remains the next information-rich post-E247 file; do not create more siblings before this broad-vs-amplitude sensor is resolved.
 
 ## 우선 실험 5개
 

@@ -3913,3 +3913,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - overlaps: E237 `14`, E230 swing25 `14`, amp-top25 `14`, and E247 `21`.
 - Interpretation: E256 is not a generic sibling sweep. It is a controlled sensor for broad-vs-amplitude-constrained smoothness after E247's public win.
 - Decision: if one next post-E247 file is needed, E256 is the best information candidate. Public win over E247 means high-amplitude smoothing beats broad top34; close-but-worse means broad top34 carries real extra public signal; hard loss means E247 depends on its exact nonlocal cell set or E224 body interaction.
+
+## E257. E247/E256 Cell Contrast Atlas
+
+- Observe: E247 is the new public best, while E256 is the first controlled same-family follow-up. Before spending that public slot, the exact changed-cell difference needs to be understood.
+- Wonder: is E256 replacing noisy broad smoothness cells with genuinely stronger high-amplitude smooth cells, or is it deleting the low-amplitude cells that made E247 public-positive?
+- Method: `analysis_outputs/e257_e247_e256_cell_contrast_atlas.py` compares E247-only, E256-only, common, E247-all, and E256-all Q3 rollback cells using E246 smoothing metrics, E222 hard-tail anatomy, E230/E237 overlap flags, and feature-NN1 roughness deltas. No public LB beyond the already known E247 observation is used, and no new submission is created.
+- Result:
+  - report: `analysis_outputs/e257_e247_e256_cell_contrast_atlas_report.md`.
+  - common cells: `21`; E247-only: `13`; E256-only: `4`.
+  - E247-only cells are broad-smoothness cells: rollback amplitude mean `0.039125051`, smooth-gain sum `1.002858981`, E237/E230 overlap `0`, support probability `0.453917630`.
+  - E256-only cells are amplitude-heavy cells: rollback amplitude mean `0.110316918`, smooth-gain sum only `0.049289874`, E230 swing overlap `4/4`, support probability `0.531582541`.
+  - E247-all has more smoothness mass (`3.555889570`) and lower top1/abs expected (`1.413603067`); E256-all has higher amplitude mean (`0.088715124`) and stronger affected-pair roughness reduction (`-0.070332985` vs `-0.057353058`).
+- Interpretation: E256 is a clean sensor because it keeps the E247 mechanism family but changes the cell anatomy. It trades E247's low-amplitude broad smoothing mass for a smaller high-amplitude/E230-swing-aligned subset.
+- Decision: keep E256 as the highest-information post-E247 score candidate. If E256 beats E247, the public law is amplitude-constrained smoothing. If E256 is worse but close, E247-only broad smoothness is real public signal. If E256 fails hard, the public law depends on E247's exact top34 nonlocal set or E224-body interaction.

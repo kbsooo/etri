@@ -1834,7 +1834,8 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Candidates: E247 public win, E246 selector family, E247 overlap/Jaccard, high-amplitude constrained smoothing, selected smooth-gain sum, global/affected pair roughness delta, and E224-body attribution.
 - Label vs split test: public LB is used as a sensor, not a fit target. E248 remains the split contradiction: train OOF analogues are adverse, so future models must learn public-contrastive geometry rather than reuse OOF smoothing labels directly.
 - Current evidence: E247 public `0.5761589494` beats E95 by `0.0001323804`. E256 changes `25` Q3 cells, overlaps E247 on `21`, has expected loss vs E224 `-0.000047418`, adverse reduction `0.000615602`, and affected-pair roughness delta `-0.070332985`.
-- Policy: F214 is now the live score-plus-information feature family. Submit only controlled follow-ups: first E256 for broad-vs-amplitude smoothing, or E224 for body attribution. Do not sweep all E246 siblings.
+- E257 anatomy: E247-only cells are low-amplitude broad smoothness (`13` cells, amplitude mean `0.039125051`, smooth-gain sum `1.002858981`, E237/E230 overlap `0`), while E256-only cells are high-amplitude swing cells (`4` cells, amplitude mean `0.110316918`, E230 swing overlap `4/4`, smooth-gain sum `0.049289874`).
+- Policy: F214 is now the live score-plus-information feature family. Submit only controlled follow-ups: first E256 for broad-vs-amplitude smoothing, or E224 for body attribution. Do not sweep all E246 siblings before E256/E224 feedback.
 
 ## Current Feature Policy
 
