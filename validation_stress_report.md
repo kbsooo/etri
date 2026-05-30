@@ -2070,6 +2070,25 @@ E240 E237 residual-rule ablation stress:
 
 Stress implication after E240: the current E237/E230 public-free stress is not sufficient to prove learned-selector uniqueness. It supports a broader Q3 residual-energy cell-tail world. A simple-rule submission is not justified because the rule is post-hoc and not train/OOF-validated, but future JEPA work should validate residual PC10-like target cells directly.
 
+E241 residual PC10 OOF benefit validation stress:
+
+- script: `analysis_outputs/e241_residual_pc10_oof_benefit_validation.py`.
+- report: `analysis_outputs/e241_residual_pc10_oof_benefit_validation_report.md`.
+- selected files: none; this is a train/OOF falsification of E240 simple residual rules.
+- stress dimensions:
+  - full-train top-k Q3 OOF benefit for E224-like Q3 movement.
+  - random stratified, row-contiguous, and subject-LOO stress.
+  - residual/amplitude/margin scores including E208 residual PC10, residual abs mean, NN target distance, E215/E208 combo, and negative-PC10 control.
+  - test-context overlap against E237, E230 swing25, and E230 risk21.
+- key results:
+  - no full-train top-k score has negative selected-benefit delta.
+  - best top-10% full-train score is `score_low_margin`, still adverse at `+0.000345376`.
+  - `score_pc10` is adverse: full top-10% `+0.001867628`, split-stress top-10% `+0.002633171`, win rate `0.30`.
+  - best split-stress top-10% score is `score_nn_dist`, but it remains non-negative at `+0.000270542` with win rate `0.50`.
+  - test `score_pc10` top25 still overlaps E237 `14/25` and E230 swing25 `18/25`.
+
+Stress implication after E241: the residual-energy motif exists in the test Q3 cell atlas, but it is not an OOF-valid harmful-row selector under the current train label construction. E240 simple residual rules are closed as submissions. E237 remains a learned-cell public sensor, but not because scalar PC10 top-k is validated.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

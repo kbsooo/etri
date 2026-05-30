@@ -1578,3 +1578,23 @@ Submission policy:
 2. If submitting the existing E237 top file, describe it as a Q3 residual-energy cell-tail public sensor, not as proof that the learned E237 classifier is uniquely correct.
 3. The next local work should validate E208 residual PC10 / residual-energy rules against train-side Q3 benefit labels before materializing a simple-rule submission.
 4. If E237 public wins, the next candidate family should be residual-energy Q3 cell-tail rules with OOF support, not lower-ranked E237 top-k siblings.
+
+## Update After E241
+
+E241 closes the immediate simple residual-rule branch. The E240 stress success does not transfer to train OOF Q3 benefit labels.
+
+Key finding:
+
+- No residual/amplitude/margin score has negative full-train selected-benefit delta.
+- `score_pc10`, the strongest E240-style simple motif, is adverse on OOF Q3:
+  - full train top-10% drop delta `+0.001867628`.
+  - split-stress top-10% drop delta `+0.002633171`.
+  - split-stress win rate `0.30`.
+- The motif is still real on test geometry: `score_pc10` top25 overlaps E237 by `14/25` and E230 swing25 by `18/25`.
+
+Submission policy:
+
+1. Do not submit any E240/E241 simple residual-PC10 rule.
+2. The learned E237 file remains the only defensible Q3 decisive-cell JEPA sensor, because it is OOF-trained and has a pre-registered decoder.
+3. If E237 public wins, rebuild from OOF decisive-cell targets rather than from scalar PC10 top-k rules.
+4. If E237 loses, close the whole current Q3 residual-energy prune family until a new OOF target explains the train/test motif mismatch.

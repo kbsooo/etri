@@ -2775,15 +2775,28 @@ target co-occurrence
 
 ### H235. Current E237/E230 stress gates cannot distinguish learned Q3 cells from simple residual-energy rules
 
-- 상태: 지지 by E240.
+- 상태: 지지 by E240; 단순 residual-rule 제출 가설은 E241로 반증.
 - 왜 그럴듯한가: E239 found that E237 cells are residual-energy enriched. If the stress gate is only checking "remove some high-risk Q3 cells while preserving S4", a simple residual ranking may pass without proving a learned JEPA target.
 - 맞다면: simple rules based on E208 residual PC10, residual abs mean, NN distance, or residual+amplitude combinations should pass the same graft-vs-E154 and actual-vs-E95 stress that selected E237.
 - 틀리다면: simple rules would fail expected loss, adverse reduction, support gain, Q3 top-cell, or actual-vs-E95 checks, leaving E237 as uniquely learned.
 - 최소 실험: `analysis_outputs/e240_e237_residual_rule_ablation.py`.
 - 관측: all `9/9` non-control simple selectors pass the E237-like gate. Best simple rule `simple_pc10_top25` beats E237 control on expected loss, support gain, Q3 top1/expected, and actual adverse reduction while overlapping E237 only `14/25`.
-- 성공/폐기 기준: supported until a stricter train/OOF validation or public feedback separates learned E237 from simple residual rules.
-- public LB 관측 반응: if E237 wins, the hidden-world update should be "Q3 residual-energy cell-tail is public-real", not "the E237 learned classifier is uniquely right." If E237 loses, do not submit simple residual siblings; they share the same stress-gate blind spot.
-- 제출 전략: no submission from H235. Next local experiment should validate simple residual-energy rules on train/OOF Q3 benefit labels before any materialization.
+- E241 추가 관측: train OOF Q3 benefit validation rejects the simple rule as a harmful-row selector. No score has negative selected-benefit delta; `score_pc10` top-10% has drop delta `+0.001867628`, split-stress mean `+0.002633171`, and win rate `0.30`. Yet the same `score_pc10` top25 overlaps E237 by `14/25` and E230 swing25 by `18/25` on test.
+- 성공/폐기 기준: the stress-gate weakness is supported, but simple residual-energy rules are rejected as submission translators under current OOF labels. E237 is not proven unique, but it remains more defensible than post-hoc PC10 because it is OOF-trained on decisive-cell labels.
+- public LB 관측 반응: if E237 wins, the update should favor learned Q3 decisive-cell structure with residual-energy motif support, not simple PC10 top-k. If E237 loses, both E237 siblings and simple residual rules should be closed until the OOF target is rebuilt.
+- 제출 전략: no H235/H241 simple residual submission. Use only the fixed E237 file if deliberately testing the learned cell-tail world.
+
+### H236. E208 residual-PC10 alone is an OOF-valid Q3 harmful-cell selector
+
+- 상태: 반증 by E241.
+- 왜 그럴듯한가: E239 found high residual-PC10 enrichment in E237 cells, and E240 showed residual-PC10 rules pass the same public-free stress as E237/E230 while overlapping E230 swing cells strongly.
+- 맞다면: residual-PC10 and related residual/NN-distance scores should pick train OOF Q3 rows where the E224-like Q3 movement is harmful. Top-k selected-benefit deltas should be negative, split stress should have win rate above random, and the effect should survive row-contiguous and subject-LOO folds.
+- 틀리다면: residual-PC10 will overlap the test motif but fail to select harmful OOF train rows; selected-benefit deltas will be non-negative or fold-unstable.
+- 최소 실험: `analysis_outputs/e241_residual_pc10_oof_benefit_validation.py`.
+- 관측: no score has negative full-train selected-benefit delta. `score_pc10` top-10% is adverse (`+0.001867628`) and split-stress mean is also adverse (`+0.002633171`, win rate `0.30`). The best split-stress top-10% score, `score_nn_dist`, remains slightly adverse (`+0.000270542`, win rate `0.50`).
+- 성공/폐기 기준: rejected for current labels and current E224-like Q3 movement.
+- public LB 관측 반응: no public submission should be used to test this directly. A future E237 public win would not resurrect simple PC10 unless a new OOF target explains why train OOF and public-tail geometry diverge.
+- 제출 전략: do not create or submit E240-style residual-PC10 files.
 
 ## 우선 실험 5개
 

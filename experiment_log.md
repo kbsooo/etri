@@ -3681,3 +3681,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E230 swing25 still fails the stricter E237-like gate because actual expected delta is positive, despite high adverse reduction.
 - Interpretation: E237's selected cells are not a unique learned-model discovery. The public-free stress gate is satisfied by much simpler residual-energy rules, especially E208 residual PC10. This weakens the "learned JEPA cell selector" claim and strengthens the "E208 residual-energy Q3 tail sensor" claim.
 - Decision: no E240 submission. Do not replace E237 with a post-hoc simple-PC10 file yet; it is not OOF-learned and was derived after E239. The next useful test is train-side/OOF validation of whether E208 residual PC10 identifies harmful Q3 movement, or public feedback on the fixed E237 sensor if the goal is to observe the residual-energy Q3-tail world.
+
+## E241. Residual PC10 OOF Benefit Validation
+
+- Observe: E240 made simple E208 residual-energy rules look as good as, or better than, E237 under the E237/E230 public-free test stress. That could mean the residual-energy rule is the true Q3 law, or it could mean the stress gate is too weak.
+- Wonder: do residual-PC10 and related E239/E240 scores identify train OOF Q3 rows where the E224-like Q3 movement is harmful?
+- Method: `analysis_outputs/e241_residual_pc10_oof_benefit_validation.py` joins the E232 `q3_e224` train OOF benefit frame with the E239 test motif features. It evaluates residual/amplitude/margin scores by full-train top-k benefit, stratified row, row-contiguous, and subject-LOO stress, then checks whether the same scores overlap E237/E230 cells on test.
+- Result:
+  - report: `analysis_outputs/e241_residual_pc10_oof_benefit_validation_report.md`.
+  - no full-train top-k score has negative selected-benefit delta. Best top-10% score is `score_low_margin`, still adverse at `+0.000345376` per train row.
+  - `score_pc10`, the E240-winning simple family, is clearly adverse on train: top-10% drop delta `+0.001867628`, split-stress top-10% mean `+0.002633171`, win rate `0.30`.
+  - best split-stress top-10% row is `score_nn_dist`, but it is still non-negative at `+0.000270542` with win rate `0.50`.
+  - on test, `score_pc10` still overlaps E237 by `14/25` and E230 swing25 by `18/25`, so the motif exists in test geometry even though train OOF does not support it as a harmful-row selector.
+- Interpretation: E240 exposed an under-discriminating local stress gate, not a deployable simple residual-energy law. Residual-PC10 is a visible test motif for the E237/E230 cells, but under current train OOF labels it does not identify rows where Q3 movement should be removed. This makes a simple-PC10 submission unjustified and reclassifies residual-energy as a motif/energy diagnostic rather than a stand-alone translator.
+- Decision: no E241 submission. Keep the fixed E237 file as the only learned Q3 decisive-cell sensor if we want to test that world. Do not materialize E240 simple residual rules unless a new OOF target or public feedback changes this negative.

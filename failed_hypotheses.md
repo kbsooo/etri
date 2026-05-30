@@ -1863,3 +1863,12 @@
 - Implementation issue possible: medium. E240 rules are post-hoc test-side diagnostics and should not replace E237 without train/OOF validation. Low for rejecting the uniqueness claim because the same local gates directly pass for many simple rules.
 - Bottleneck implication: the next bottleneck is not "train a sharper E237 sibling"; it is proving whether residual PC10-like Q3 cells are supported by train/OOF benefit and public-like stress.
 - Do not repeat: claiming E237 is a JEPA breakthrough solely because it passes E237/E230 stress, or submitting lower-ranked E237 siblings before separating learned target value from residual-energy heuristic value.
+
+## FH207. E240 simple residual-energy rules are OOF-valid Q3 rollback candidates
+
+- Failed hypothesis: because E240 residual-energy rules pass E237/E230 public-free stress, residual PC10 or related scores should identify train OOF rows where E224-like Q3 movement is harmful and could become a simple submission rule.
+- Observed result: E241 finds no full-train top-k score with negative selected-benefit delta. `score_pc10` top-10% has drop delta `+0.001867628`; split-stress top-10% mean is `+0.002633171` with win rate `0.30`. The best split-stress score, `score_nn_dist`, is still non-negative at `+0.000270542` and win rate `0.50`.
+- Why discard: the rule is a test-side motif that overlaps E237/E230 cells, not an invariant harmful-row selector under current OOF labels.
+- Implementation issue possible: medium. The OOF target is E224-like Q3 benefit and may not perfectly match hidden public cells. Low for rejecting immediate submission because every direct validation metric is adverse or non-negative.
+- Bottleneck implication: the Q3 residual-energy motif is not enough. The plateau remains a translation problem: visible latent energy can mark interesting cells, but probability movement needs OOF cell-target supervision or public-feedback routing.
+- Do not repeat: materializing `simple_pc10_top25`, `top50_amp_then_resid_combo25`, or similar residual-energy top-k rules without a new OOF target or public contrast.

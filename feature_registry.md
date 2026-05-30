@@ -1761,7 +1761,16 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Candidates: `simple_pc10_top25`, `top50_amp_then_resid_combo25`, `top50_amp_then_nn25`, `global_e239_combo25`, and related deterministic selectors from `analysis_outputs/e240_e237_residual_rule_ablation.py`.
 - Label vs split test: currently diagnostic only. These rules are built from post-E239 test-side motif observation and are not OOF-trained. A submission would require train-side Q3 benefit validation, subject/row stress, and a new pre-public routebook.
 - Current evidence: all `9/9` non-control simple selectors pass the E237-like gate and E230 gate. This shows the current stress gate is under-discriminating for learned-vs-heuristic cell rules.
-- Policy: do not materialize E240 submissions yet. Use F205 as the next train/OOF validation target and as a warning against overclaiming E237 as a learned-JEPA breakthrough.
+- E241 update: train/OOF validation rejects the direct feature. No residual/amplitude/margin score has negative selected-benefit delta. `score_pc10` top-10% is adverse on full train (`+0.001867628`) and split stress (`+0.002633171`, win rate `0.30`), even though the same score overlaps E237 `14/25` and E230 swing25 `18/25` on test.
+- Policy: do not materialize E240 submissions. Keep F205 as a negative-control motif family and as evidence that public-free test stress can be fooled by residual-energy top-k rules.
+
+### F206. E241 OOF residual-energy validation features
+
+- Hidden structure: a public-relevant Q3 residual-energy motif should also have some train OOF trace in rows where E224-like Q3 movement hurts.
+- Candidates: `score_pc10`, `score_nn_dist`, `score_resid_abs`, `score_resid_norm`, `score_low_margin`, `score_amp`, `score_e239_combo`, `score_e215_e208_combo`, selected-benefit deltas, split win rates, and test overlaps with E237/E230.
+- Label vs split test: valid as a falsification feature. It uses train OOF Q3 benefits, random/row/subject stress, and no public labels. It is not a deployment feature because the result is negative.
+- Current evidence: the motif is test-visible but not OOF-supported. Best top-10% full train delta is still `+0.000345376`; best split-stress top-10% delta is `+0.000270542`; PC10 itself is clearly adverse.
+- Policy: treat residual energy as an explanatory motif and stress negative control, not as a submission gate. If E237 public wins, learn from OOF decisive-cell labels again rather than promoting scalar residual-energy rules.
 
 ## Current Feature Policy
 
