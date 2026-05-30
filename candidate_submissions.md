@@ -2052,3 +2052,18 @@ Current submission policy remains:
 1. Current best anchor: `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
 2. Attribution-only sensor: `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
 3. Score-seeking next step: build and validate the lifestyle-conditioned Q3 tail representation before materialization.
+
+## Update After E264/E265
+
+The lifestyle branch produced a real local signal, but no submission yet.
+
+- E264: best human-only `human_late` OOF row has loss_vs_full `-0.001689622`.
+- E265: random controls also pass strict gates at rate `0.290909`, with best random loss_vs_full `-0.000723735`.
+
+Submission decision:
+
+- **Do not submit** a broad lifestyle rollback such as `human_late/drop_global_p20`.
+- The signal is strong enough to continue, but the gate is too easy.
+- The next submission-eligible artifact must pass materialization stress: E224/E154 graft, actual-vs-E95, Q3 top-cell concentration, support/adverse capacity, and overlap with known risk cells.
+
+Current one-file submission answer remains: no new file from the human/social branch. If a public slot must be used before E266, use only the pre-existing attribution sensor E224, not an E264 broad gate.

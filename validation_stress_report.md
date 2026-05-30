@@ -2398,3 +2398,20 @@ Required stress before any submission:
 - LeJEPA geometry check: no subject collapse, no high anisotropy, no public-anchor-only shortcut.
 
 Current status: diagnostic only. E263 is useful because it defines the next target representation, not because it certifies a gate.
+
+## Update After E264/E265
+
+E264 performed the required OOF analogue for the human/social branch.
+
+- `human_late` survives both `subject5` and `dateblock5` stress.
+- best human-only OOF loss_vs_full is `-0.001689622`.
+- dateblock LR best is `-0.000690449`, so this is not only a subject-heldout HGB artifact.
+- latent+human views add some strict rows, but median improvements are mixed.
+
+E265 adds the negative control.
+
+- random cell noise strict gate rate is `0.290909`.
+- best random loss_vs_full is `-0.000723735`.
+- human_late still beats random clearly, but the strict gate itself is too permissive.
+
+Stress implication: lifestyle state is a real local representation, but broad OOF rollback policy is not a submission gate. The next validation layer must include top-cell ranking, overlap with public-free risk cells, and E224/E154 materialization-side stress.

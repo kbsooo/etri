@@ -1885,6 +1885,22 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E256-only cells show high late cognitive load, late search/browser, HR, and moderate presleep movement, while being lower in late social/message, public-social-presence, screen/onset-risk, and presleep social/search compared with the common E247/E256 core.
 - Policy: do not materialize a submission from E263 directly. Build a masked lifestyle-family JEPA head that predicts Q3 tail-risk/smoothing-validity, then use LeJEPA geometry checks before any gate.
 
+### F221. E264 late/presleep lifestyle tail representation
+
+- Hidden structure: harmful Q3/S4 tail movement is partly tied to late/presleep human diary context, not only feature-neighbor numeric smoothness.
+- Candidates: `human_late` context features from E262, especially late/presleep search/browser, social/message, calls, screen, charging, movement, HR, light, ambience, and composite cognitive/onset/social scores.
+- Label vs split test: E264 uses fold-local train OOF tail labels with `subject5` and `dateblock5`. This is stronger than E263, but still not materialization-side public stress.
+- Current evidence: best human-only OOF row loss_vs_full `-0.001689622`; best dateblock LR row `-0.000690449`; human-only strict gates `443/936`. E265 shows random controls can pass many gates, so the policy gate is not certifying.
+- Policy: keep F221 as a representation/energy. Use it to build sharper cell-tail ranking or materialization stress. Do not use broad `drop_global_p20` or similar policies as submissions.
+
+### F222. E265 random-control policy-gate health
+
+- Hidden structure: broad rollback policies may improve OOF even without meaningful context, making naive strict gates overoptimistic.
+- Candidates: random cell bad-probability controls, random strict rate, random best loss_vs_full, and excess human-over-random margin.
+- Label vs split test: negative control only; it does not create features. It tests whether an observed gate is hard enough to mean something.
+- Current evidence: random strict rate `0.290909`; random best loss_vs_full `-0.000723735`; E264 human_late best `-0.001689622`.
+- Policy: any future lifestyle gate must beat random controls by margin and pass materialization-side public-free tail anatomy. Treat broad OOF policy loss as an insufficient adoption criterion.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

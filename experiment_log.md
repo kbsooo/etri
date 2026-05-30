@@ -4008,3 +4008,30 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - The four public-swing cells are Q3 rows `188`, `96`, `87`, and `138`.
 - Interpretation: E247/E256 is no longer only a feature-NN smoothing story. A plausible human-world read is that high-amplitude Q3 smoothing fails on “cognitively active but not socially/nocturnally fragmented” days. That is exactly the kind of latent state JEPA should target.
 - Decision: next high-value JEPA experiment should mask lifestyle families and predict Q3 tail-risk/smoothing-validity, then stress by subject/date block and train/test lifestyle shift. No submission yet.
+
+## E264. Human/Social Tail JEPA OOF
+
+- Observe: E263 was test-side and only four E256-only cells. A proper falsification needs a train OOF analogue of Q3/S4 harmful tail-risk.
+- Wonder: can human/social diary context predict held-out Q3/S4 cells where the E224-style movement is harmful, under subject/date-block stress?
+- Method: `analysis_outputs/e264_human_social_tail_jepa_oof.py` joins E262 lifestyle features onto E237 cell-level Q3/S4 tail frames. It scans human-only and latent+human views under `subject5` and `dateblock5`, with risk/contrast tail targets. No public labels and no submission.
+- Result:
+  - scanned `2184` policies.
+  - strict lifestyle gates `725`; human-only strict gates `443`.
+  - best human-only row: `human_late / hgb_shallow / subject5 / q3s4 risk / drop_global_p20`, loss_vs_full `-0.001689622`, Q3 loss_vs_full `-0.001493975`, S4 loss_vs_full `-0.001885269`, subject win `0.90`, dateblock win `0.701493`.
+  - `human_late` also survives `dateblock5` with LR: best loss_vs_full `-0.000690449`.
+  - adding human_late to latent produces extra strict rows, but median delta is small and mixed.
+- Interpretation: lifestyle context is real enough to predict harmful Q3/S4 tail movement locally. The strongest object is the late/presleep human diary view, not generic all-feature dumping.
+- Decision: do not submit yet. The gate count is suspiciously high, so a random-policy control is required before interpreting E264 as a candidate generator.
+
+## E265. Human/Social Tail Negative Controls
+
+- Observe: E264's strict gate count is too large. A broad rollback policy may improve OOF even with a weak or random scorer.
+- Wonder: does random cell noise pass the same E264 policy gate often enough to make the gate non-certifying?
+- Method: `analysis_outputs/e265_human_social_tail_negative_controls.py` evaluates random cell bad-probability policies through the same E237/E264 policy machinery. It uses only representative broad/drop policies to keep this a sanity check.
+- Result:
+  - random control rows `220`; random strict gate rate `0.290909`.
+  - best random loss_vs_full `-0.000723735`.
+  - best E264 human-only loss_vs_full `-0.001689622`.
+  - random best tail AUC `0.564280`; human-only best tail AUC `0.612834`.
+- Interpretation: E264 is not a pure artifact because human_late beats random by a large margin. But the policy-level strict gate is too easy and cannot certify a submission by itself.
+- Decision: alive but narrowed. Next representation target must be sharper: cell-tail ranking, top-cell overlap, and materialization-side public-free stress. A broad human_late rollback submission is explicitly blocked.

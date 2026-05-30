@@ -1998,3 +1998,12 @@
 - Implementation issue possible: low for the public score interpretation. Medium for exact cell causality because E256 simultaneously removes `13` E247-only cells and adds `4` high-amplitude cells.
 - Bottleneck implication: the live bottleneck is not "find a sharper threshold inside E246." It is attribution/non-collinearity: E247 exact top34, E224 body interaction, or a different hidden-world branch.
 - Do not repeat: submitting more E246/E256 scalar-threshold siblings or blending E247/E256 before an attribution/non-collinear observation.
+
+## FH222. E264 strict lifestyle gate certifies a submission
+
+- Failed hypothesis: if human/social lifestyle features produce many strict OOF gates under subject/date-block stress, a broad lifestyle-conditioned rollback can be treated as submission-ready.
+- Observed result: E264 did produce strong gates, but E265 random cell noise also passed strict gates at rate `0.290909` and reached loss_vs_full `-0.000723735`. The best human_late row is stronger at `-0.001689622`, but the gate itself is too easy.
+- Why discard: policy-level broad rollback improvement is not a sufficiently sharp latent health criterion. It can be triggered by random cell ordering often enough that it cannot certify public-facing Q3/S4 tail geometry.
+- Implementation issue possible: low for rejecting the broad gate; E265 uses the same policy machinery. Medium for the exact random rate because only `5` seeds and representative policies were used for speed, but the failure is large enough to block immediate submission.
+- Bottleneck implication: the human/social representation is alive, but the missing object is sharper target translation: cell-tail ranking, top-cell overlap, and materialization-side support/adverse stress.
+- Do not repeat: broad `drop_global_pXX` lifestyle rollback submissions without E224/E154 materialization stress and random-control margin.

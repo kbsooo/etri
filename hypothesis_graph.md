@@ -3030,15 +3030,27 @@ target co-occurrence
 
 ### H263: E256 failed because high-amplitude Q3 smoothing hits a different human-day state
 
-- 상태: weak-live; E263 supports a hypothesis-generating lifestyle contrast, but sample size is only four E256-only cells.
+- 상태: live but narrowed; E263 supports a hypothesis-generating lifestyle contrast, and E264 shows lifestyle context predicts OOF tail movement. E265 blocks direct broad rollback submission because the policy gate is too easy.
 - 왜 그럴듯한가: E256-only cells are the first suspect after E256's public loss. If those cells share a lifestyle state, then the failure is not just amplitude; it is missing human context in the Q3 tail translator.
 - 맞다면: E256-only public-swing rows should be separable from common/E247-only rows by human diary features such as late cognitive load, social-message load, screen/onset-risk, HR, and presleep movement. A held-out analogue should predict similar high-risk smoothing cells.
 - 틀리다면: E256-only rows should look like random selected Q3 cells under lifestyle features, or the lifestyle signature should vanish under subject/date blocking.
 - 최소 실험: E263 join and contrast; next, train an OOF cell-tail classifier using E262 lifestyle context with feature-family masks.
-- 관측: E256-only rows show high late cognitive load and HR but lower late social/message, public-social-presence, screen/onset-risk, and presleep social/search than the common E247/E256 core.
-- 성공/폐기 기준: keep only if an OOF lifestyle-tail JEPA head predicts held-out Q3 smoothing-validity without subject leakage. Discard if E263's contrast is a four-row coincidence.
+- 관측: E256-only rows show high late cognitive load and HR but lower late social/message, public-social-presence, screen/onset-risk, and presleep social/search than the common E247/E256 core. E264's human_late OOF head reaches best human-only loss_vs_full `-0.001689622`; E265 random best is only `-0.000723735`.
+- 성공/폐기 기준: keep only if a sharper OOF lifestyle-tail JEPA head predicts held-out Q3 smoothing-validity and passes materialization stress. Discard broad policy-level gates because random controls pass too often.
 - public LB 관측 반응: if this is right, a future candidate should avoid E256-like high-amplitude cells specifically when the day looks cognitively active but not socially/screen-fragmented.
 - 제출 전략: no immediate file. Build a lifestyle-conditioned Q3 tail gate.
+
+### H264: late/presleep human diary context predicts Q3/S4 harmful tail movement
+
+- 상태: supported as local representation; not submission-certified.
+- 왜 그럴듯한가: E262 extracted late social/search/screen/charging/movement/HR context. E263 suggested public-sensitive Q3 cells differ by this human-day state. E264 tests the same idea on train OOF tail labels.
+- 맞다면: human_late should survive subject/date-block OOF and beat random policy controls by more than noise.
+- 틀리다면: human views should fail blocked OOF or be indistinguishable from random broad rollback selection.
+- 최소 실험: E264 OOF scan plus E265 random control.
+- 관측: E264 human_late best loss_vs_full `-0.001689622`; dateblock LR best `-0.000690449`; human-only strict gates `443`. E265 random strict rate is high at `0.290909`, but random best loss_vs_full is only `-0.000723735`.
+- 성공/폐기 기준: local representation survives because best human_late is much stronger than random. Submission certification fails because random gates are frequent. Next test must use top-cell ranking/materialization, not broad policy loss.
+- public LB 관측 반응: no public submission from this hypothesis yet. A future public-positive file should be a narrow lifestyle-conditioned cell gate, not a 90+ cell broad rollback.
+- 제출 전략: build E266-style materialization stress only for sharp cells that beat random and pass public-free Q3/S4 tail anatomy.
 
 ## 우선 실험 5개
 
