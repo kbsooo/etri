@@ -2253,3 +2253,29 @@ Current submission policy:
 - No active human/social diary submission should be used until it beats a matched-placebo gate.
 - A future candidate must beat its own row/subject/dateblock shuffle nulls, not only E272 current-anchor stress.
 - Surviving positive clue: `only_mobility_context_m160` and `jepa_only_m160` promote, while `nonjepa_only_m160` fails. The next search should isolate JEPA/mobility Q3 state under a placebo-resistant selector.
+
+## Update After E277 Placebo-Resistant Gate
+
+There is currently **no submission candidate** from the q-sleep human/social diary branch.
+
+E277 converted the E276 warning into a hard promotion rule. Each semantic candidate was compared against its own matched row/subject/dateblock shuffle nulls.
+
+Result:
+
+- semantic/control candidates tested: `21`.
+- matched null files generated: `441`.
+- old strict-promote candidates: `10`.
+- E277 placebo-resistant promotes: `0`.
+- all `10` old strict candidates were blocked by high null strict-promote rates.
+
+Important rows:
+
+- `jepa_only_m160`: old p90 `-0.000093390`, p90 dominance `0.761905`, but null strict rate `0.904762`.
+- `no_media_game_m160`: old p90 `-0.000129314`, p90 dominance `0.666667`, null strict rate `0.904762`.
+- E275 primary: old p90 `-0.000084726`, p90 dominance `0.571429`, null strict rate `0.952381`.
+
+Decision:
+
+- Do not submit E275, E276, or any q-sleep diary variant generated so far.
+- The live breakthrough path is now row-alignment learning: build a JEPA/mobility/Q3 representation whose real row placement beats matched shuffle nulls.
+- Candidate ranking must now include `placebo_resistant_gate=True`; old `promote_candidate` is only a weak diagnostic.

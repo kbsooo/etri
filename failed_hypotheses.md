@@ -2043,3 +2043,12 @@
 - Implementation issue possible: low for demoting E275 under current evidence. The inverse control fails, so the direction is not random; the remaining uncertainty is whether a better row-aligned gate can recover the signal.
 - Bottleneck implication: validation design and candidate selection are now the immediate bottleneck. Any future public-free candidate must beat matched row/subject/dateblock placebo nulls.
 - Do not repeat: submitting E275 or any similar Q-diary energy variant after E272 alone, without matched-placebo resistance.
+
+## FH227. One of the existing q-sleep semantic ablations is placebo-resistant
+
+- Failed hypothesis: although E275 primary failed matched placebos, a narrower existing variant such as JEPA-only, mobility-only, or Q3-only will beat its own matched nulls.
+- Observed result: E277 tests `21` semantic/control variants and `441` matched null files. Old strict-promote candidates `10`; placebo-resistant promotes `0`.
+- Why discard: every old strict candidate has high null strict-promote rate. `jepa_only_m160` is closest with p90 dominance `0.761905`, but null strict rate is `0.904762`; E275 primary has dominance `0.571429` and null strict `0.952381`.
+- Implementation issue possible: low for blocking current variants, because the nulls preserve exact movement magnitudes. Medium for future row-alignment objectives, because the current selector family is still coarse.
+- Bottleneck implication: the problem is not which current semantic subset to submit. The missing object is a representation/gate that optimizes row alignment against matched nulls.
+- Do not repeat: selecting q-sleep candidates by old p90, old strict gate, or semantic story alone.

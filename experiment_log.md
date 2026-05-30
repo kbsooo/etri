@@ -4188,3 +4188,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - semantic positives remain but are not submission-safe: `only_mobility_context_m160` p90 `-0.000095305`, `jepa_only_m160` p90 `-0.000093390`, while `nonjepa_only_m160` fails with p90 `+0.000183796`.
 - Interpretation: E275 found a real Q-side movement family, but the current selector does not prove the human/social row alignment. It is too magnitude-sensitive.
 - Decision: demote E275 from submission candidate to diagnostic. No E275/E276 human diary file should be submitted until it beats matched row/subject/dateblock shuffle nulls. Next experiment should build a placebo-resistant gate and then re-isolate JEPA/mobility/Q3 state.
+
+## E277. Placebo-Resistant Q-Sleep Gate
+
+- Observe: E276 showed that primary E275 and many semantic ablations pass old E272 stress, but matched shuffles pass too. The warning needs to become an executable promotion rule.
+- Wonder: does any existing q-sleep diary candidate beat its own matched row/subject/dateblock shuffle nulls?
+- Method: `analysis_outputs/e277_placebo_resistant_qsleep_gate.py` regenerates E275/E276 semantic candidates, creates `7` null replicates per mode for each candidate, scores all files with the E272 current-anchor selector, and requires p90/mean dominance over nulls plus a low null strict-promote rate.
+- Result:
+  - candidates tested: `21`.
+  - matched null files: `441`.
+  - old strict-promote candidates: `10`.
+  - E277 placebo-resistant promotes: `0`.
+  - all old strict candidates are blocked by high null strict-promote rates.
+  - `jepa_only_m160` is the closest diagnostic row: p90 `-0.000093390`, p90 dominance `0.761905`, but null strict rate `0.904762`.
+  - E275 primary has p90 dominance only `0.571429` and null strict rate `0.952381`.
+- Interpretation: the live q-sleep branch has directional Q-side/JEPA/mobility signal, but the current selector cannot certify row alignment. The hidden structure is not yet a submission tensor; it is a row-alignment learning problem.
+- Decision: no submission from E275/E276/E277. The next experiment should train or construct a JEPA/mobility/Q3 row-alignment objective that directly maximizes separation from matched shuffle nulls.

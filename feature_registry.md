@@ -2017,3 +2017,22 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - `mobility_context` and JEPA-derived axes remain the most promising.
   - `jepa_only_m160` passes old stress while `nonjepa_only_m160` fails, so JEPA context-target energy is preferred over raw PC/energy-only features.
 - Failure condition: if a future JEPA/mobility Q3 candidate cannot beat matched placebos, retire this branch as score-action and keep it only for interpretation.
+
+## E277 Placebo-Resistant Gate Feature Policy
+
+- Target hypothesis tested: a narrower existing q-sleep semantic subset might beat its own matched nulls.
+- Feature source: E275/E276 q-sleep variants generated from E273/E274 diary-energy axes.
+- Validation result:
+  - candidates: `21`;
+  - matched nulls: `441`;
+  - old strict candidates: `10`;
+  - placebo-resistant candidates: `0`.
+- Updated registry status:
+  - `jepa_prednorm_*mobility_context*`, `jepa_resid_subject_bedtime_phone`, and cognitive/money Q3 axes remain diagnostic.
+  - No q-sleep diary axis is currently approved for submission-time probability movement.
+  - Any future feature in this family must provide a row-alignment score and must beat matched row/subject/dateblock nulls.
+- Adopt rule:
+  - require `placebo_resistant_gate=True`;
+  - require old strict gate only as a first screen;
+  - require null strict-promote rate <= `0.20`;
+  - require p90 dominance over matched nulls >= `0.80`.

@@ -2569,3 +2569,35 @@ Surviving signal:
 - `nonjepa_only_m160` fails with p90 `+0.000183796`.
 
 This says JEPA/mobility Q3 signal is still alive, but the current row placement is not proven.
+
+## E277 Placebo-Resistant Q-Sleep Gate
+
+Question: can any q-sleep diary-energy candidate beat its own matched shuffle null distribution?
+
+Method: `analysis_outputs/e277_placebo_resistant_qsleep_gate.py`.
+
+- Candidate set: `21` semantic/control E275/E276 variants.
+- Nulls: `441` matched shuffle files.
+- Null modes: row, subject, dateblock.
+- Promotion rule:
+  - old strict gate must pass;
+  - p90 dominance over all nulls >= `0.80`;
+  - mean dominance over all nulls >= `0.70`;
+  - worst per-mode p90 dominance >= `0.60`;
+  - null strict-promote rate <= `0.20`;
+  - inverse controls cannot promote.
+
+Result:
+
+- old strict-promote candidates: `10`.
+- E277 placebo-resistant promotes: `0`.
+- all old strict candidates are blocked by placebo-promote rate.
+- E275 primary: p90 `-0.000084726`, null strict rate `0.952381`, p90 dominance `0.571429`.
+- `jepa_only_m160`: p90 `-0.000093390`, null strict rate `0.904762`, p90 dominance `0.761905`.
+- `no_media_game_m160`: p90 `-0.000129314`, null strict rate `0.904762`, p90 dominance `0.666667`.
+
+Decision:
+
+- Passing E272/E275 is no longer a valid submission certificate.
+- No q-sleep diary file is submission-ready.
+- The next validation target is row-alignment: real JEPA/mobility/Q3 rows must separate from their matched shuffle nulls before any public LB use.

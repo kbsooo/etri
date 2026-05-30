@@ -3123,6 +3123,18 @@ target co-occurrence
 - public LB 관측 반응: no new public LB should be spent on E275/E276 variants under the old gate.
 - 제출 전략: none. Future human/social candidates must pass a matched-placebo-resistant gate where the real candidate beats row/subject/dateblock shuffle nulls.
 
+### H277: current q-sleep diary candidates do not beat matched placebo nulls
+
+- 상태: supported; active bottleneck diagnosis.
+- 왜 그럴듯한가: E276 showed placebos can pass for E275. A valid hidden lifestyle-state candidate must beat its own null distribution, not just old public-free stress.
+- 맞다면: applying a candidate-specific matched-placebo gate to all current q-sleep variants should demote old strict candidates.
+- 틀리다면: at least one semantic variant, especially JEPA-only or mobility-only, should retain old strict promotion while beating row/subject/dateblock nulls with high dominance and low null strict rate.
+- 최소 실험: `analysis_outputs/e277_placebo_resistant_qsleep_gate.py`.
+- 관측: old strict candidates `10`, E277 placebo-resistant promotes `0`. E275 primary p90 dominance `0.571429`, null strict rate `0.952381`. `jepa_only_m160` is closer but still blocked: p90 dominance `0.761905`, null strict rate `0.904762`.
+- 성공/폐기 기준: H277 supported. Existing q-sleep diary variants are diagnostic only.
+- public LB 관측 반응: no public submission from this branch until a candidate has `placebo_resistant_gate=True`.
+- 제출 전략: none. Next build row-alignment objective or gate.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
