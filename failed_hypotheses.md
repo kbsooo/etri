@@ -2106,3 +2106,12 @@
 - Implementation issue possible: medium. The model family is intentionally small and the target still inherits E237/E249 design choices. But the tensor-level E247-current null failure is direct enough to block these exact files.
 - Bottleneck implication: the bottleneck is target anchoring, not only feature discovery. The social/JEPA representation can be real while the hidden target representation is stale.
 - Do not repeat: materializing more E224/E154-anchored app-entropy decisive-cell rollbacks unless the target is rebuilt around E247 preserve/undo/avoid labels.
+
+## FH234. Human/social boundary anatomy is enough for direct E247 residual surgery
+
+- Failed hypothesis: because E247/E256 cell groups are separable by human/social/cash-flow state, scalar rules over those states should produce E247-relative add/undo candidates that are public-free submission-ready.
+- Observed result: E285 audits `158` candidates and `3318` matched row/subject/dateblock nulls. Old strict-promote candidates are `0`, matched-placebo gate passes are `0`, and public-ready candidates are `0`. Best add p90 is only `-0.000003481`; best undo p90 is `-0.000000902`.
+- Why discard: the boundary anatomy is descriptive but too weak as a hand-built probability translator. It separates E247-only and E256-only cells, but the resulting tensor movements are below selector resolution or not robust enough to justify public LB.
+- Implementation issue possible: medium. The direct rules are intentionally small scalar rank/top-k edits, so a learned contrastive E247 preserve/avoid target can still use these features. Low for blocking the exact E285 files because the final current-anchor/null governor directly tests the proposed movement.
+- Bottleneck implication: feature discovery is no longer the only bottleneck. We need a target representation that turns human/social context into stable cell identity, not just another story score.
+- Do not repeat: submitting `submission_e285_e247resid_*` files or creating more scalar E247 add/undo variants without a learned target and matched-null dominance.

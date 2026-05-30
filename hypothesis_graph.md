@@ -3220,6 +3220,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E284. If an E284 file were submitted and won anyway, it would imply the E247-current matched-placebo governor is too conservative or that the public subset rewards stale E224/E154 Q3 tail rollback over E247-preserving geometry.
 - 제출 전략: none. Next branch should use E247 itself as the target anchor: predict preserve/undo/avoid labels for E247 cells, with app-entropy as context and matched-null dominance as the promotion rule.
 
+### H285: human/social state can directly repair E247 residual cells
+
+- 상태: rejected as direct cell surgery; supported as boundary anatomy.
+- 왜 그럴듯한가: E247 is the current public-best body, E256 is its close same-family loser, and E284 showed app-entropy/diary context becomes stale when anchored to E224/E154. If the hidden human state is real, it should help decide which E247 cells to preserve, undo, or extend.
+- 맞다면: E247-only, E256-only, and E284-extra cells should have interpretable social/diary/cash-flow differences, and those differences should generate E247-relative add/undo candidates that beat matched row/subject/dateblock nulls under the current-anchor governor.
+- 틀리다면: boundary features may separate the cell groups descriptively, but the resulting add/undo tensors will be too small, below selector resolution, or no better than matched nulls.
+- 최소 실험: `analysis_outputs/e285_e247_residual_human_state_audit.py`.
+- 관측: boundary anatomy is real. E247-only versus E256-only separates on amplitude (`amp_z` d `-2.192525`), state-amplitude (`-1.647799`), month-start late-shopping (`+1.445509`), month-start money-rumination (`+1.159548`), diary PCs, social-communication JEPA prednorm, bedtime-phone, mobility, and bright-light features. But `158` E247-relative candidates and `3318` matched nulls produced old strict promotes `0`, matched-placebo passes `0`, and public-free ready files `0`. Best add p90 was only `-0.000003481`; best undo p90 only `-0.000000902`.
+- 성공/폐기 기준: direct hand-built E247 residual surgery is rejected. The social/payday/app-entropy coordinates remain useful for explaining E247/E256 anatomy and for future learned E247 preserve/avoid labels.
+- public LB 관측 반응: no public LB should be spent on E285. If an E285 file were submitted and won, it would imply the local current-anchor governor is missing a very tiny public-specific subset, not that the handcrafted rule was locally certified.
+- 제출 전략: none. Preserve E247. The next branch should learn a contrastive E247 preserve/avoid latent from E247-common/E247-only versus E256-only/E284-extra cells, then require matched-null dominance before materialization.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -2169,3 +2169,31 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - require E247-current matched row/subject/dateblock null dominance before any public LB.
 - Failure condition:
   - if the app-entropy model improves OOF but selects cells with low E247 overlap and positive E247-current p90, classify it as stale-target learning rather than current-frontier signal.
+
+## E285 E247-Residual Human-State Context Policy
+
+- Target hypothesis tested: human/social/cash-flow diary state can directly decide E247-relative preserve/undo/add Q3 smoothing cells.
+- Feature/representation source:
+  - E283 app-entropy state/story context;
+  - E273 diary-state JEPA PCs/clusters and family prednorm/residual features;
+  - E268 human-social story scores;
+  - E270 payday/month-start cash-flow stories;
+  - E280 story registry columns;
+  - E284 decisive-cell selection scores and overlap summaries.
+- Validation result:
+  - boundary features: `51`;
+  - materialized E247-relative candidates: `158`;
+  - matched row/subject/dateblock nulls: `3318`;
+  - old strict-promote candidates: `0`;
+  - matched-placebo gate passes: `0`;
+  - public-ready candidates: `0`.
+- Updated registry status:
+  - month-start shopping/money-rumination, app-state-by-amplitude, diary PCs, social communication, bedtime-phone, mobility, and bright-light features are approved as E247/E256 boundary diagnostics.
+  - They are not approved as direct scalar add/undo selectors.
+  - E247 is the protected current body until a learned E247-relative target beats matched nulls.
+- Adopt rule for future human-state E247 features:
+  - treat social/payday/app-entropy features as context for a learned preserve/avoid target;
+  - require final tensor movement to beat matched row/subject/dateblock nulls;
+  - do not submit story-ranked E247 residual edits with p90 edges below `1e-5`.
+- Failure condition:
+  - if a future E247 residual feature only explains E247/E256 anatomy but produces no old strict promotes or no matched-null dominance, keep it diagnostic and block public submission.

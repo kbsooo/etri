@@ -2482,3 +2482,39 @@ Next submission candidate requirement:
 
 - learn E247-relative residual placement directly: preserve/undo/avoid labels around E247 cells, not E224/E154 rollback labels;
 - app-entropy may be used as JEPA context, but only if the final tensor beats matched row/subject/dateblock nulls.
+
+## Update After E285 E247-Residual Human-State Audit
+
+Current submission policy remains: **no new public submission.**
+
+What was tested:
+
+- E247-relative Q3 cell undo/add actions;
+- human/social diary-state context;
+- app-entropy state and app-state-by-amplitude;
+- payday/month-start shopping and money-rumination features;
+- diary-state JEPA PCs/clusters and E284 decisive-cell summaries;
+- matched row/subject/dateblock null governance.
+
+What was learned:
+
+- The E247/E256 boundary has a real human-state shape:
+  - E256-only cells are higher amplitude and state-amplitude;
+  - E247-only cells are more associated with month-start late-shopping and money-rumination features;
+  - social communication, mobility, bedtime-phone, bright light, and diary PCs also separate the groups.
+- But this anatomy does not yet make a safe submission.
+- `158` candidates and `3318` matched nulls produced `0` old strict promotes, `0` matched-placebo passes, and `0` public-free ready files.
+
+Do not submit:
+
+- any `analysis_outputs/submission_e285_e247resid_*.csv` file.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+Next submission candidate requirement:
+
+- do not hand-edit E247 cells by scalar story ranks;
+- learn a contrastive E247 preserve/avoid target using E247-common/E247-only versus E256-only/E284-extra anatomy;
+- require matched-null dominance before creating a public candidate.

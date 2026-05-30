@@ -2809,3 +2809,37 @@ Decision:
 - E284 is locally informative but blocked for submission.
 - App-entropy improves the learned decisive-cell representation, but the selected cells miss most of the E247 public-positive set.
 - Future validation must target E247 residual/preserve/undo labels directly; E224/E154 rollback gates are now too stale for current-frontier promotion.
+
+## E285 E247-Residual Human-State Governor
+
+Question: can the human/social/payday diary state repair E247 directly by choosing Q3 cells to preserve, undo, or extend?
+
+Method: `analysis_outputs/e285_e247_residual_human_state_audit.py`.
+
+- Anchor: current public-best E247 Q3 smoothing body.
+- Candidate actions: partially undo selected E247 cells toward E224, or add selected outside-E247 cells toward E154/E247-like smoothing.
+- Context: app-entropy state, diary-state JEPA features, human-social stories, cash-flow/payday stories, E280 story registry columns, and E284 decisive-cell summaries.
+- Nulls: matched row, subject, and dateblock shuffles preserving movement shape.
+- Local selector: E272/E279 current-anchor matched-placebo governor.
+
+Result:
+
+- boundary features: `51`.
+- materialized candidates: `158`.
+- matched nulls: `3318`.
+- old strict-promote candidates: `0`.
+- matched-placebo gate passes: `0`.
+- public-free submission-ready candidates: `0`.
+- best add p90: `-0.000003481`.
+- best undo p90: `-0.000000902`.
+
+Boundary anatomy:
+
+- E247-only cells differ strongly from E256-only cells on amplitude, state-amplitude, month-start shopping/money-rumination, diary PCs, social communication, bedtime-phone, mobility, and bright-light features.
+- This is a real diagnostic signal, not a submission certificate.
+
+Decision:
+
+- Do not submit any E285 file.
+- Public LB is preserved.
+- E285 raises the confidence that human/social state is useful as E247 boundary context, but blocks direct hand-built E247 residual edits.

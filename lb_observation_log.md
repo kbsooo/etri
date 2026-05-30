@@ -350,3 +350,19 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - top selected Q3 overlap with E247: `11/25`, Jaccard `0.229167`.
 - interpretation: app-entropy is useful as JEPA context, but the materialized E224/E154 rollback target is stale relative to the current public-best E247 smoothing body.
 - next experiment: learn E247-relative preserve/undo/avoid cell labels and keep public LB unused until a candidate beats matched nulls locally.
+
+## Public-Free Observation: E285
+
+- submission files: `analysis_outputs/submission_e285_e247resid_*.csv`
+- public LB: not submitted.
+- reason not submitted: public LB is scarce, and E285 failed the local E247-current matched row/subject/dateblock placebo governor.
+- local observation:
+  - candidates: `158`;
+  - matched nulls: `3318`;
+  - old strict-promote candidates: `0`;
+  - matched-placebo gate passes: `0`;
+  - public-free ready files: `0`;
+  - best add p90: `-0.000003481`;
+  - best undo p90: `-0.000000902`.
+- interpretation: human/social/payday state explains E247/E256 boundary anatomy, including month-start shopping/money-rumination and app-state-by-amplitude signals, but the direct add/undo translator is not strong enough.
+- next experiment: keep E247 as the protected body and learn a contrastive E247 preserve/avoid latent before any new public LB slot is used.

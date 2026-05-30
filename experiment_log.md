@@ -4319,3 +4319,24 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - selected Q3 cells overlap E247 weakly: top25 overlap `11/25`, Jaccard `0.229167`, missing `23` of E247's `34` cells; top21 overlap `9/21`, Jaccard `0.195652`.
 - Interpretation: app-entropy is useful context for learning the old E224/E154-era decisive-cell law, but the resulting cells do not match the current E247 public-positive Q3 smoothing body. The failure is not "social state is fake"; it is "the target anchor is stale."
 - Decision: no E284 public submission. The next valid target is E247-relative residual placement: learn which E247 cells to preserve, undo, or avoid, with the matched-placebo governor as the first-class objective.
+
+## E285. E247-Residual Human-State Audit
+
+- Observe: E284 made the target-anchor problem explicit. App-entropy helped old decisive-cell learning, but the selected cells missed E247. The next question must be E247-relative: can human/social diary state decide which E247 Q3 smoothing cells should be preserved, undone, or extended?
+- Wonder: are E247/E256 differences just arbitrary leaderboard noise, or do they line up with interpretable human-state stories such as routine fragmentation, month-start shopping/money concern, bedtime-phone, mobility, bright light, and social communication?
+- Method: `analysis_outputs/e285_e247_residual_human_state_audit.py` builds an E247-current residual audit. It joins E246/E247/E256 smoothing cells, E283 app-entropy state, E273 diary-state JEPA features, E268 human-social stories, E270 cash-flow/payday stories, E280 story registry columns, and E284 decisive-cell summaries. It materializes E247-relative `undo` and `add` Q3 candidates, then scores them against matched row/subject/dateblock nulls through the current-anchor governor. No public LB was used.
+- Result:
+  - boundary features audited: `51`.
+  - materialized candidates: `158`.
+  - matched null candidates: `3318`.
+  - old strict-promote candidates: `0`.
+  - matched-placebo gate passes: `0`.
+  - final public-free ready candidates: `0`.
+  - strongest boundary signals:
+    - E247-only is lower than E256-only on amplitude (`amp_z` d `-2.192525`) and state-amplitude (`-1.647799`);
+    - E247-only is higher on month-start late-shopping (`+1.445509`) and month-start money-rumination (`+1.159548`);
+    - E256-only is higher on diary PC6, social-communication prednorm, mobility prednorm, and bright-light-late.
+  - best add candidate: `add_e247like_z_diary_state_pc6_top5_f0p25`, p90 `-0.000003481`, final decision `too_small_to_submit`.
+  - best undo p90: `-0.000000902`.
+- Interpretation: the human/social/cash-flow state is not imaginary. It separates the E247/E256 cell boundary in a way that reads like a real lifestyle-state difference. But direct E247 residual surgery is still below the current local decision resolution. The local evidence says not to spend public LB here.
+- Decision: no E285 public submission. Preserve E247. The next healthy target is not another handcrafted add/undo rule; it is a learned contrastive E247 preserve/avoid latent whose row/cell identity must beat matched nulls before materialization.
