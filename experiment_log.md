@@ -4221,3 +4221,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - inverse control is adverse: `+0.001682720 / +0.001176547`.
 - Interpretation: the q-sleep diary signal is real on train labels and not just random row placement. The bottleneck is transfer/calibration: train-positive row alignment does not become E277 test/public-free placebo resistance.
 - Decision: still no submission. Next experiment should learn a transfer gate: rows where train row-alignment score predicts test matched-placebo dominance, probably focusing on JEPA/mobility/Q3 and bedtime-phone as separate mechanisms.
+
+## E279. Public-Free Submission Governor
+
+- Observe: public LB cannot be used as the iteration loop. E272-style strict promotion already over-trusted Q-side movement, while E277/E278 showed that row placement and train-to-test transfer must be checked separately.
+- Wonder: can a single local governor block false candidates before public submission by combining old selector stress, matched-placebo resistance, known-public calibration, and q-sleep train row-alignment support?
+- Method: `analysis_outputs/e279_public_free_submission_governor.py` audits active E247+ candidates and known public anchors. For every non-current candidate it creates `7` row, subject, and dateblock shuffle nulls, scores actual/null files with the E272 selector, joins E278 train row-alignment support for q-sleep policies, and blocks known-public files already worse than E247.
+- Result:
+  - candidates audited: `66`.
+  - matched null files: `1365`.
+  - old strict-promote candidates: `13`.
+  - matched-placebo gate passes: `0`.
+  - final public-free submission-ready candidates: `0`.
+  - all q-sleep old strict candidates are blocked by high null strict rates, e.g. E275 m1.60 null strict `0.952381`, `jepa_only_m160` null strict `0.857143`, `only_mobility_context_m160` null strict `0.904762`.
+- Interpretation: the local governor now agrees with the public constraint: do not submit just because a file has favorable selector p90. Existing candidates are either too small, known-public worse than E247, or unable to beat matched row/subject/dateblock placebo movement.
+- Decision: no current submission. The next useful work is not another scalar blend. It is a transfer objective that makes the real test row placement distinguishable from its matched nulls.

@@ -2053,3 +2053,22 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
 - Updated feature status:
   - These features are approved for row-alignment model training/diagnosis.
   - They are still not approved for direct submission movement until E277-style test matched-placebo resistance is also satisfied.
+
+## E279 Public-Free Governor Feature Policy
+
+- Target hypothesis tested: a candidate can be locally promoted only when row-aligned movement is stronger than matched movement with row identity destroyed.
+- Representation source: any active submission tensor relative to E247; q-sleep tensors also inherit E278 policy-level train alignment.
+- Adopt rule:
+  - `old_strict_promote=True` is only the first screen.
+  - `matched_placebo_gate=True` is mandatory for submission recommendation.
+  - q-sleep candidates additionally need E278 `train_support_gate=True`.
+  - known-public files worse than E247 are blocked regardless of local selector shape.
+- Validation result:
+  - audited candidates: `66`;
+  - old strict candidates: `13`;
+  - matched-placebo gate passes: `0`;
+  - final submission-ready candidates: `0`.
+- Updated registry status:
+  - E274/E275/E276 diary-energy axes remain diagnostic and training targets.
+  - No current feature group is approved for direct probability movement.
+  - Future features must be registered with both train row-alignment evidence and test matched-placebo resistance.

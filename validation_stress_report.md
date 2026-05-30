@@ -2637,3 +2637,33 @@ Decision:
 - Future validation must require both:
   - train row-alignment null dominance, and
   - test/public-free matched-placebo resistance.
+
+## E279 Public-Free Submission Governor
+
+Question: can we stop using public LB as the candidate filter?
+
+Method: `analysis_outputs/e279_public_free_submission_governor.py`.
+
+- Candidate pool: `66` active E247+ files and known public anchors.
+- Nulls: `1365` matched row/subject/dateblock shuffle files.
+- Local score: E272 current-anchor selector.
+- Extra gates:
+  - actual movement must beat its own matched nulls;
+  - null strict-promote rate must be `<= 0.10`;
+  - q-sleep candidates must have E278 train row-alignment support;
+  - known-public files worse than E247 are blocked.
+
+Result:
+
+- old strict-promote candidates: `13`.
+- matched-placebo gate passes: `0`.
+- final public-free submission-ready candidates: `0`.
+- strongest old strict rows are all blocked:
+  - `submission_e276_no_media_game_m160_72fc6fa6.csv`: p90 `-0.000129314`, null strict `0.952381`;
+  - `submission_e276_jepa_only_m160_75d0e9cf.csv`: p90 `-0.000093390`, null strict `0.857143`;
+  - `submission_e275_q_sleep_amp_m160_86528b2f.csv`: p90 `-0.000084726`, null strict `0.952381`.
+
+Decision:
+
+- E279 is now the default pre-public gate for q-sleep/social-style candidate files.
+- A candidate may be interesting as a hypothesis sensor, but it should not be recommended as score-seeking submission unless `public_free_submission_ready=True`.

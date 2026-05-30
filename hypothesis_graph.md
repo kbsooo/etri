@@ -3147,6 +3147,18 @@ target co-occurrence
 - public LB 관측 반응: no public submission yet. A candidate must satisfy both E278 train row-alignment and E277 test matched-placebo resistance.
 - 제출 전략: none from current policies. Next build a transfer gate or JEPA target that predicts placebo-resistant row placement.
 
+### H279: public-free submission selection requires matched-placebo governance
+
+- 상태: supported; active operating rule.
+- 왜 그럴듯한가: E272 promoted q-sleep candidates that E276/E277 showed were not row-placement certified. Public LB is scarce, so the local system must block magnitude-only candidates before submission.
+- 맞다면: active candidates that look good under old selector stress should be rejected unless their real row placement beats row/subject/dateblock shuffle nulls; known-public losers should also be blocked.
+- 틀리다면: at least one current active candidate would pass old strict stress, beat matched nulls with low null strict-promote rate, and have no known-public contradiction.
+- 최소 실험: `analysis_outputs/e279_public_free_submission_governor.py`.
+- 관측: candidates audited `66`, matched nulls `1365`, old strict candidates `13`, matched-placebo gate passes `0`, final submission-ready candidates `0`.
+- 성공/폐기 기준: H279 supported. The current candidate pool contains no public-free submission candidate.
+- public LB 관측 반응: no new public LB should be used on these candidates. Public LB should be reserved for a future file passing E279, or for a pre-declared information-only sensor.
+- 제출 전략: none now. Build a transfer objective where test row placements become distinguishable from matched shuffle nulls.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

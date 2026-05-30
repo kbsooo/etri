@@ -2061,3 +2061,12 @@
 - Implementation issue possible: medium. E278 uses fixed E274-selected axes, so it is diagnostic rather than a clean nested CV estimate. But the matched null margins and inverse-control sign are strong enough to reject "no signal."
 - Bottleneck implication: representation/capacity is not the first problem. Train-to-test row-alignment transfer and calibration are the active bottleneck.
 - Do not repeat: abandoning human/social q-sleep JEPA features entirely because E277 blocked direct submissions.
+
+## FH229. Existing active candidates can be filtered by E272-style selector stress alone
+
+- Failed hypothesis: the current public-free selector plus known-public anchors is enough to decide which active E247+ candidate deserves the next public slot.
+- Observed result: E279 audits `66` active candidates and `1365` matched row/subject/dateblock nulls. Old strict-promote candidates `13`, but matched-placebo gate passes `0` and final submission-ready candidates `0`.
+- Why discard: the old selector still likes Q-side movement magnitude even when row placement is not certified. E279 also blocks known-public losers against E247, keeping public observations as calibration rather than an optimization loop.
+- Implementation issue possible: medium. E279 still uses the E272 selector family, so it is a conservative governor rather than a true LB predictor. Low for the immediate decision because every old strict q-sleep row has high null strict-promote rate.
+- Bottleneck implication: candidate selection is now constrained by row-placement evidence, not scalar p90. The next useful candidate must beat matched nulls before public submission.
+- Do not repeat: recommending a candidate because it has negative E272 mean/p90 or because the social story is plausible without `public_free_submission_ready=True`.

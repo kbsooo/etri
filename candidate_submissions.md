@@ -2307,3 +2307,34 @@ Interpretation:
 - The q-sleep diary signal is not fake and not merely a random row-order artifact on train labels.
 - The current failure is transfer: train row-alignment does not become a test/public-free placebo-resistant candidate.
 - Therefore do not submit a file yet. The next useful candidate must explicitly solve train-to-test row-alignment transfer, not just reuse the train-positive policies.
+
+## Update After E279 Public-Free Governor
+
+Current submission policy: **do not submit any current q-sleep/human-social follow-up.**
+
+E279 built a public-free governor that combines:
+
+- E272 old selector stress;
+- matched row/subject/dateblock shuffle nulls;
+- E278 train row-alignment support for q-sleep policies;
+- known-public calibration against E247.
+
+Result:
+
+- candidates audited: `66`.
+- matched null files: `1365`.
+- old strict-promote candidates: `13`.
+- matched-placebo gate passes: `0`.
+- final `public_free_submission_ready=True`: `0`.
+
+What this means:
+
+- E275/E276 q-sleep files are not submission candidates even when their p90 looks good.
+- E269/E271 social/cashflow files are too small under the governor.
+- E256/E267/mixmin/E95 and older public files are automatically blocked because public already showed they are worse than E247.
+
+Current recommendation:
+
+- Best public file remains `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+- No new public LB slot should be spent until a candidate passes E279 or we deliberately decide to spend a slot for information rather than expected score.
+- Next candidate must solve the row-placement problem: real test rows must beat their own matched shuffle nulls.
