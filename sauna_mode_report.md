@@ -2857,3 +2857,38 @@ E176 제출 전 우선순위는 그대로다. 새 파일을 만들지 않는다.
 다음으로 가장 정보량이 큰 행동:
 
 E176 제출 순서는 유지한다. clean win일 때만 Q2 amplitude를 paired question으로 묻고, tie/loss면 E172 safety 또는 E154/search route로 간다.
+
+## E204 업데이트: 후속 파일들은 같은 사다리가 아니다
+
+내가 발견한 가장 이상한 점:
+
+`E172, E154, E174는 E176 다음 후보처럼 보이지만 같은 축의 세기 조절이 아니다. 각각 같은-family rollback, body-exit counter-world, Q2 amplitude probe다.`
+
+실험:
+
+- `analysis_outputs/e204_e176_followup_correction_map.py`
+- report: `analysis_outputs/e204_e176_followup_correction_map_report.md`
+
+결과:
+
+- E172:
+  - changed cells `75`
+  - off-E176 abs share `0.000000`
+  - rollback share `1.000000`
+  - body rollback fraction `0.089780`
+- E154:
+  - changed cells `1027`
+  - off-E176 abs share `0.292501`
+  - body rollback fraction `0.877576`
+- E174:
+  - changed cells `21`
+  - rollback share `0.000000`
+  - Q2 amplitude probe
+
+생각이 어떻게 바뀌었는지:
+
+`E176 결과가 애매하면 E172가 맞다. E176 결과가 나쁘면 E154가 맞다. E176 결과가 좋을 때만 E174가 의미 있는 질문이 된다. 이 셋은 점수 근처 후보가 아니라 서로 다른 세계관 질문이다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+E176 public band를 먼저 보고, 그 band가 묻는 세계관에 맞는 follow-up만 선택한다. scalar로 가장 가까운 파일을 고르지 않는다.

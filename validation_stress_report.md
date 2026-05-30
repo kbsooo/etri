@@ -1409,3 +1409,28 @@ E203 stress-tests whether E176 is a broad body or only a compact critical-cell b
   - only top8 has E72-tail-risk role with E72 active rate `0.625`.
 
 Stress implication: E176 should not be demoted merely because top critical cells are weakly visible; those cells are not the whole signal. But if public rejects E176, the most coherent blame is compact hard-tail cancellation rather than absence of the broad S/body structure.
+
+## Update After E204
+
+E204 stress-tests follow-up interchangeability after E176 feedback.
+
+- script: `analysis_outputs/e204_e176_followup_correction_map.py`.
+- report: `analysis_outputs/e204_e176_followup_correction_map_report.md`.
+- E172:
+  - changed cells vs E176 `75`.
+  - off-E176 abs share `0.000000`.
+  - rollback share in overlap `1.000000`.
+  - body rollback fraction `0.089780`.
+  - metric focus delta on E176 cells `+0.000001778`; visible delta `-0.000002029`.
+- E154:
+  - changed cells vs E176 `1027`.
+  - off-E176 abs share `0.292501`.
+  - body rollback fraction `0.877576`.
+  - metric focus delta on E176 cells `+0.000082018`.
+- E174:
+  - changed cells vs E176 `21`.
+  - off-E176 abs share `0.000000`.
+  - rollback share `0.000000`.
+  - metric focus delta `-0.000000082`; visible delta `+0.000000191`.
+
+Stress implication: E172, E154, and E174 do not form a scalar ladder. They ask different hidden-world questions. E172 is same-family safety, E154 is body-exit counter-world, and E174 is Q2 amplitude probe only after broad-body validation.

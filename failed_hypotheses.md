@@ -1601,3 +1601,12 @@
 - Implementation issue possible: low for the narrow rejection because the knockout uses the exact E179 moved-cell table. Medium for final public attribution because public labels are still unobserved.
 - Bottleneck implication: the current bottleneck is broad-body versus compact-tail cancellation, not a pure critical-cell selector. A loss can still mean body-tail cancellation rather than absence of body.
 - Do not repeat: replacing E176 with a top33-only variant or reading E176 feedback as only a top-cell selector before checking the score band and component route.
+
+## FH178. E172, E154, and E174 are interchangeable post-E176 rescues
+
+- Failed hypothesis: after E176 feedback, E172/E154/E174 can be treated as nearby rescue candidates on one scalar axis.
+- Observed result: E204 separates their geometry. E172 is a same-family rollback: `75` changed cells, all inside E176, rollback share `1.000000`, off-body share `0.000000`, and body rollback fraction `0.089780`. E154 is a body-exit counter-world: `1027` changed cells, `123` off-E176 cells, off-body abs share `0.292501`, and body rollback fraction `0.877576`. E174 is a Q2 amplitude probe: `21` changed cells, rollback `0`.
+- Why discard: these files answer different hidden-world questions. Choosing among them by scalar closeness would produce an uninformative public observation.
+- Implementation issue possible: low. The comparison uses locked submission tensors and direct cell-level movement overlap. Medium for final public causality because E176 public feedback is pending.
+- Bottleneck implication: candidate selection remains a worldview-routing problem, not a local rescue ranking problem.
+- Do not repeat: swapping E172/E154/E174 after E176 feedback without first matching the E201/E202/E203/E204 route condition.

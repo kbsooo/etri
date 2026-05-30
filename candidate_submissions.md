@@ -905,3 +905,35 @@ Post-score rule is now stricter:
 2. Micro win, tie, or small loss: treat the body as probably real but cancelled by compact hard-tail cells; E172 only if asking same-family safety.
 3. Branch/hard loss: broad body is public-misaligned or cancelled too strongly; route to E154/search.
 4. Q2 amplitude is a second-order paired question, not the first post-E176 action.
+
+## Update After E204
+
+The single next public sensor remains:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+E204 maps what the current follow-up candidates actually do relative to E176.
+
+- `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv`
+  - same-family rollback.
+  - changes `75` cells, all inside E176 cells.
+  - rollback share in E176 overlap `1.000000`.
+  - off-E176 abs share `0.000000`.
+  - E176 body rollback fraction `0.089780`.
+- `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`
+  - counter-world / body-exit.
+  - changes `1027` cells and adds `123` off-E176 cells.
+  - off-E176 abs share `0.292501`.
+  - E176 body rollback fraction `0.877576`.
+- `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv`
+  - Q2 amplitude probe.
+  - changes only `21` E176-overlap cells.
+  - rollback share `0`.
+  - should not be used as rescue after tie/loss.
+
+Conditional order is now:
+
+1. E176 first.
+2. E172 only after E176 tie/small-loss.
+3. E154 after E176 branch/hard-loss.
+4. E174 only after clean E176 win if the next question is Q2 amplitude.

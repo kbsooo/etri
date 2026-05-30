@@ -2328,6 +2328,18 @@ target co-occurrence
 - public LB 관측 반응: clean win validates broad S/body first. Tie/small-loss means the broad body survived but compact tail cancelled enough public mass. Branch/hard loss means either body is public-misaligned or tail cancellation dominates, so E154/search is more coherent than Q2 tuning.
 - 제출 전략: no E203 submission. Keep E176 first; do not submit top33-only, Q2-only, or another scalar sibling before E176 feedback.
 
+### H198. E176 follow-ups are different world probes, not a scalar rescue ladder
+
+- 상태: 지지 by E204 as route-specific correction map.
+- 왜 그럴듯한가: E172, E154, and E174 are all plausible post-E176 files, but they may move along different axes. If they are treated as a ladder, the next public slot could answer the wrong question.
+- 맞다면: E172 should be a same-family rollback with minimal off-body movement, E154 should exit the E176 body and add off-axis movement, and E174 should amplify the Q2 subset rather than repair a tie/loss.
+- 틀리다면: all three follow-ups should mainly differ by scalar strength on the same E176 cells, with similar off-body shares and rollback patterns.
+- 최소 실험: `analysis_outputs/e204_e176_followup_correction_map.py`.
+- 관측: E172 changes `75` cells, all inside E176, with rollback share `1.000000` and body rollback fraction `0.089780`. E154 changes `1027` cells, has `123` off-E176 cells, off-E176 abs share `0.292501`, and body rollback fraction `0.877576`. E174 changes `21` E176 cells, rollback share `0`, and is a Q2 amplitude probe.
+- 성공/폐기 기준: supported unless a future public result shows the supposed route-specific behavior is irrelevant, or a new file is built that dominates all three axes under the same stress.
+- public LB 관측 반응: E176 tie/small-loss activates E172 because the question is same-family safety. E176 branch/hard-loss activates E154 because the question is body-exit counter-world. E176 clean win can activate E174 only if the next question is Q2 amplitude.
+- 제출 전략: no E204 submission. Keep the pre-registered post-E176 decision tree and do not substitute E174/E154/E172 by scalar closeness alone.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

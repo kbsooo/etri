@@ -1496,6 +1496,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: S-only carries `0.644881` of the E179 focus delta, primary S-stage carries `0.573289`, and between-train-runs carries `0.774524`. Q2-only carries `0.093922`. Top33 carries `0.226424`, but dropping top33 still leaves `0.773576`; top33 visible support is only `0.245771`.
 - Policy: use F172 to distinguish body validation from tail cancellation. Do not demote E176 as top33-only, and do not promote Q2-only amplitude tuning unless a clean E176 win first validates the broad body.
 
+### F173. E204 follow-up correction map
+
+- Hidden structure: post-E176 candidates encode different hidden-world probes. Same-family rollback, body-exit counter-world, and Q2 amplitude amplification should not be selected by scalar score proximity alone.
+- Candidates: off-E176 movement share, rollback share in E176-overlap cells, E176 body rollback fraction, top33 rollback count, component metric delta under focus/visible priors, and component-specific rollback fractions.
+- Label vs split test: valid as route governance because it compares locked submission tensors and E179 public-free priors. Invalid as a public-LB predictor because the E176 public score is still pending.
+- Current evidence: E172 changes `75` cells, all inside E176, with overlap rollback `1.000000` and body rollback `0.089780`. E154 changes `1027` cells with off-E176 abs share `0.292501` and body rollback `0.877576`. E174 changes `21` cells with rollback `0`, acting as Q2 amplitude.
+- Policy: use F173 only for post-E176 route selection. E172 follows tie/small-loss, E154 follows branch/hard-loss, and E174 follows only clean win plus explicit Q2-amplitude question.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

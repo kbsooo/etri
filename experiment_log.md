@@ -3134,3 +3134,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - top33 cells carry `0.226424` with weak visible support `0.245771`, while dropping top33 still leaves `0.773576`.
 - Interpretation: E176 is broad-body necessary, not top33-only. But the top33 layer is exactly where cancellation can kill the body. Therefore a good score validates broad S/body; tie/loss should be read as compact tail cancellation before changing Q2 amplitude.
 - Decision: no new submission. E203 strengthens the E201/E202 rule: only ask Q2 amplitude after a clean E176 win validates the broad body first.
+
+## E204. E176 Follow-up Correction Map
+
+- Observe: E203 says E176 has broad body plus compact tail fragility, but the follow-up files E172/E154/E174 ask different questions. Treating them as interchangeable would erase the body-tail diagnosis.
+- Wonder: after an E176 tie/loss band, which existing file actually corrects the same-family tail, and which one exits the E176 body?
+- Method: `analysis_outputs/e204_e176_followup_correction_map.py` overlays E172, E154, E174, E144, and E95 onto E176's E179 moved-cell anatomy. It measures overlap with E176 cells, off-body movement share, rollback/amplification share, component rollback fraction, and metric-scale expected deltas under E179 focus/visible priors. It creates no submission.
+- Result:
+  - report: `analysis_outputs/e204_e176_followup_correction_map_report.md`.
+  - E172 changes `75` cells, all inside E176 cells, rollback share `1.000000`, off-E176 abs share `0.000000`, and E176 body rollback fraction `0.089780`.
+  - E154 changes `1027` cells with `123` off-E176 cells, off-E176 abs share `0.292501`, and E176 body rollback fraction `0.877576`.
+  - E174 changes `21` cells, all inside E176 cells, rollback share `0`, and metric focus delta `-0.000000082349` versus E176 on E176 cells while visible delta is `+0.000000190656`.
+  - E144 behaves like a stronger body-exit rollback, not a clean same-family safety file.
+- Interpretation: E172 is the coherent same-family safety response after tie/small-loss because it rolls back a small part of the E176 body without adding a new axis. E154 is the coherent adverse-band response because it exits the E176 body and introduces counter-world movement. E174 is not a rescue file; it is a paired Q2 amplitude probe after broad-body validation.
+- Decision: no new submission. Keep E176 first. Post-score route: E172 only for tie/small-loss safety, E154 for branch/hard-loss, E174 only after clean E176 win and an explicit Q2 amplitude question.

@@ -9,7 +9,7 @@ Current public frontier:
 - Previous frontier: `analysis_outputs/submission_mixmin_0c916bb4.csv`
 - Improvement over previous frontier: `0.0000153107`
 - Current best next sensor: `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
-- Latest diagnostic: E203 adds component knockout stress on top of E201/E202. E176 remains first; its body is broad S-stage / between-train-runs, while top33 is a compact cancellation layer rather than the whole signal.
+- Latest diagnostic: E204 maps post-E176 follow-up geometry. E176 remains first; E172 is same-family safety after tie/small-loss, E154 is body-exit counter-world after adverse loss, and E174 is only a Q2 amplitude probe after clean win.
 
 Primary working notes:
 
