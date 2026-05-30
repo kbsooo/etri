@@ -1410,3 +1410,19 @@ Submission policy:
 - If E224 is a clean or micro win, do not use E230 immediately; first decode the win with E225.
 - If E224 lands in the tie/small-loss band and attribution blames Q3 tail, use an E230 sibling. Prefer `q3_swingtop25_drop` for lower adverse capacity; prefer `q3_risktop21_drop` if support gain is the priority.
 - If E224 loses worse than mixmin-safe, E230 is probably too narrow. Route to E166 or E154/search instead of pruning the same translator.
+
+## Update After E231
+
+E231 tried to promote the E230 Q3 hand-prune into an OOF-learned support gate. It failed the promotion test.
+
+Key result:
+
+- best Q3 support model AUC: `0.588101` under subject5; subject-LOO and row-contiguous variants are weaker.
+- no learned gate passes both OOF preservation and submission-side tail stress.
+- no E231 submission file is selected.
+
+Submission policy stays unchanged:
+
+1. JEPA-first question: submit `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+2. Conditional Q3-tail repair after E224 tie/small-loss: use `analysis_outputs/submission_e230_q3_swingtop25_drop_e0918606.csv` or `analysis_outputs/submission_e230_q3_risktop21_drop_7d95c14a.csv`.
+3. If E224 hard-fails or E225 does not blame Q3 tail, do not use E230/E231. Route to E166, E154, or new non-collinear search.

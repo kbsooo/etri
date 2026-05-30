@@ -1682,6 +1682,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: `q3_swingtop25_drop` cuts adverse by `0.000633168` for only `0.000023308` expected-focus cost vs E224; `q3_risktop21_drop` improves expected focus by `0.000067892` under the prior while gaining `0.021076971` support.
 - Policy: use F195 only after E224 feedback suggests Q3 tail blame. Do not use it to skip the cleaner E224 observation or to tune Q3 thresholds from public LB.
 
+### F196. E231 learned Q3 support-prune features
+
+- Hidden structure: if E224's fragile Q3 cells are not arbitrary, train/OOF features should identify rows where the capped-Q3 residual helps versus hurts.
+- Candidates: E208/E209 latent features, subject/order features, base and E224-like Q3/S4 probabilities, Q3/S4 logit steps, margin/step-size features, and subject one-hot context used by `analysis_outputs/e231_e224_q3_oof_support_prune.py`.
+- Label vs split test: valid only as OOF support diagnostics. The support label is supervised by whether E224-like Q3 improves train OOF loss, so a submission gate requires stability under row-contiguous, subject-kfold, subject-LOO, and submission-side E222/E224 tail stress.
+- Current evidence: support is only weakly learnable. Best AUC is `0.588101`, and no gate passes both OOF preservation and submission-side tail stress.
+- Policy: do not use F196 as a submission gate. Keep it as negative evidence that current E224 Q3 tail risk is not an invariant learned object; use E230 hand-prune only after E224 public attribution.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

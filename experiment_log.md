@@ -3536,3 +3536,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     - `analysis_outputs/submission_e230_q3_risktop13_drop_9704f7c9.csv`: expected focus `-0.000674532`, adverse reduction `+0.000326867`, support gain `+0.014719432`, Q3 top1/expected `0.517503`.
 - Interpretation: Q3 tail pruning can make a plausible E224 sibling, but it is not OOF-learned. It should not replace E224 as the first JEPA public sensor because doing so would obscure whether capped-Q3/S4 translation works at all.
 - Decision: keep E224 as the first JEPA observation. Use E230 only after E224 feedback, especially if E224 lands in tie/small-loss bands and the E225 attribution points to Q3 tail rather than the S4 body.
+
+## E231. E224 Q3 OOF Support Prune
+
+- Observe: E230's hand-pruned Q3 siblings are tempting, but they are still interventions on E224's submission anatomy rather than learned support gates.
+- Wonder: can the same Q3 prune be learned from train/OOF evidence strongly enough to promote it from conditional repair to a first-class JEPA translator?
+- Method: `analysis_outputs/e231_e224_q3_oof_support_prune.py` rebuilds the E224-like train/test tensors, labels Q3 rows by whether E224 improves OOF loss versus stage2, trains small support models under stratified, row-contiguous, subject-kfold, and subject-LOO stress, then applies low-support gates to E224 while leaving the S4 body intact.
+- Result:
+  - report: `analysis_outputs/e231_e224_q3_oof_support_prune_report.md`.
+  - train Q3 support-label rate is `0.502222`; full E224-like Q3 OOF delta versus stage2 is `-0.004262113`.
+  - best support-model AUC is only `0.588101` (`hgb_shallow`, subject5). Row-contiguous and subject-LOO AUCs are weaker or unstable.
+  - some OOF prune gates improve Q3 OOF loss, but they do not jointly pass subject stability and submission-side tail stress.
+  - no E231 submission file is selected.
+- Interpretation: the Q3 tail is locally prunable, but the useful prune boundary is not currently learnable as an invariant OOF support representation. This is another LeJEPA-style failure: prediction/gate signal exists, but geometry transfer is not healthy enough.
+- Decision: do not submit E231. Keep E224 as the clean JEPA public sensor and keep E230 only as a post-E224 conditional hand-prune if public feedback specifically implicates Q3 tail.

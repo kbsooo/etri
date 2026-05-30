@@ -1879,6 +1879,24 @@ E230 E224 support-tail prune stress:
 
 Stress implication after E230: the Q3 tail can be pruned without destroying the E224 body under public-free priors, but the prune rule is not OOF-learned. E230 should be a post-E224 conditional sibling, not the first public JEPA sensor.
 
+E231 E224 Q3 OOF support-prune stress:
+
+- script: `analysis_outputs/e231_e224_q3_oof_support_prune.py`.
+- report: `analysis_outputs/e231_e224_q3_oof_support_prune_report.md`.
+- selected files: none.
+- stress dimensions:
+  - Q3 support label = whether E224-like Q3 improves OOF loss versus stage2.
+  - stratified, row-contiguous, subject-kfold, and subject-LOO support-model folds.
+  - OOF prune-gate preservation of Q3 delta.
+  - submission-side E222/E224 tail audit after rolling low-support Q3 cells back to E154.
+- key results:
+  - support-label rate `0.502222`.
+  - full E224-like Q3 OOF delta `-0.004262113`.
+  - best support-model AUC `0.588101` (`hgb_shallow`, subject5), with weaker row-contiguous and subject-LOO evidence.
+  - best OOF gates can improve Q3 loss versus full E224, but no gate jointly passes OOF stability and public-free tail stress.
+
+Stress implication after E231: E224's Q3 tail is not yet an invariant learned support object. The hand-prune diagnosis from E230 remains useful only after E224 feedback; it should not be upgraded into a learned submission lane.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

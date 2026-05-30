@@ -1809,3 +1809,12 @@
 - Implementation issue possible: medium. A future OOF-trained Q3 tail model could promote this from conditional repair to first-class translator. Low for rejecting current first-slot replacement because the current prune is deliberately an audit, not a learned gate.
 - Bottleneck implication: E224 likely has a prunable Q3 tail, but the bottleneck remains public-tail translation and observation design.
 - Do not repeat: using E230-style prunes as automatic pre-feedback replacements. First submit E224 if testing JEPA; use E230 only after E224 tie/small-loss attribution points to Q3 tail.
+
+## FH201. A learned E224 Q3 support gate can promote E230 into a first-class translator
+
+- Failed hypothesis: E230's hand-pruned Q3 tail can be learned from train/OOF support labels strongly enough to create a submission-safe gate.
+- Observed result: E231 rebuilds E224-like Q3 OOF movement and trains small support models under stratified, row-contiguous, subject-kfold, and subject-LOO stress. Best AUC is only `0.588101`; OOF-helpful gates do not jointly pass subject stability and submission-side tail stress. No E231 submission file is selected.
+- Why discard: the support boundary that improves OOF Q3 is not the same as the public-facing tail boundary. Current features can sort a little, but not enough to make a stable learned translator.
+- Implementation issue possible: medium. The classifier family is intentionally small. But this was the right falsification for replacing E224 now: if even weak invariant signal existed, at least one small gate should have passed the strict joint stress.
+- Bottleneck implication: E224's Q3 problem is not just "missing a small classifier." It is a target-tail translation problem where public-safe support is not currently identifiable from the available OOF row context.
+- Do not repeat: submitting learned Q3 support-prune files before E224 public feedback. Use E231 only as a diagnostic unless a new JEPA target representation changes the support label geometry.

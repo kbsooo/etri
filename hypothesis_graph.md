@@ -2664,6 +2664,18 @@ target co-occurrence
 - public LB 관측 반응: if E224 tie/small-loses and E225 attribution points to Q3 tail, an E230 win would strengthen "S4 body survives, Q3 tail was the defect." If E224 hard-fails, E230 is too narrow and the E211 translator itself is suspect.
 - 제출 전략: submit E224 first for the JEPA question. Use `analysis_outputs/submission_e230_q3_swingtop25_drop_e0918606.csv` or `analysis_outputs/submission_e230_q3_risktop21_drop_7d95c14a.csv` only as a post-E224 conditional sibling.
 
+### H226. E230-style Q3 tail pruning is learnable enough to replace E224 as the JEPA translator
+
+- 상태: 반증 by E231 for current E224/E230 representation.
+- 왜 그럴듯한가: E230 showed Q3 tail cells can be rolled back with low expected-focus cost and better support/adverse geometry. If those fragile cells are visible in train/OOF structure, a learned gate would be cleaner than hand-pruning submission anatomy.
+- 맞다면: Q3 support classifiers should achieve stable AUC across stratified, row-contiguous, subject-kfold, and subject-LOO splits; OOF gates should preserve E224's Q3 gain; the same gates on test should reduce Q3 adverse capacity and pass E222/E224 tail stress.
+- 틀리다면: local support AUC will be weak or fold-sensitive, OOF-good gates and test-tail-safe gates will not overlap, and no selected submission file will survive joint stress.
+- 최소 실험: `analysis_outputs/e231_e224_q3_oof_support_prune.py`.
+- 관측: support-label rate `0.502222`; full E224-like Q3 OOF delta `-0.004262113`; best support-model AUC only `0.588101`; no OOF/support-tail joint gate passes; no submission file selected.
+- 성공/폐기 기준: rejected as a first-class translator. The Q3 hand-prune remains a conditional public-feedback repair only.
+- public LB 관측 반응: none, because no E231 candidate should be submitted. If E224 later tie/small-loses and Q3 tail is blamed, use E230 hand-prune rather than E231 learned gates.
+- 제출 전략: do not submit E231. Submit E224 first if testing JEPA; use E230 only after E224 attribution.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
