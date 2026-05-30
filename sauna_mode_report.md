@@ -2559,3 +2559,35 @@ E184 이후에도 제출 후보 순위는 바뀌지 않는다.
 다음으로 가장 정보량이 큰 행동:
 
 제출한다면 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`다. E176이 나쁘게 나오면 같은 family 튜닝으로 도망가지 말고 E154 쪽 counter-world를 우선 재검토한다.
+
+## E195 업데이트: E154는 반대 세계관이지만 첫 센서는 아니다
+
+내가 발견한 가장 이상한 점:
+
+`E154가 E176의 가장 강한 반대 세계관이라는 사실과, E154를 먼저 제출해야 한다는 결론은 다르다. 첫 제출은 가장 많은 세계관을 가르는 센서여야 한다.`
+
+실험:
+
+- `analysis_outputs/e195_next_sensor_information_value.py`
+- report: `analysis_outputs/e195_next_sensor_information_value_report.md`
+
+결과:
+
+- E176:
+  - sensor rank `1`
+  - E176-vs-E154 moved cells/rows `1027/238`
+  - focus expected delta `-0.000093546`
+  - adverse decoder bands that route to E154/search `3`
+- E154:
+  - sensor rank `2`
+  - E154-vs-E144 moved cells/rows `294/139`
+  - local delta `-0.000002432`
+  - E154-vs-E155 is not readable: `-0.000001796`
+
+생각이 어떻게 바뀌었는지:
+
+`E154는 죽은 후보가 아니라 E176 실패 후 가장 먼저 봐야 할 세계관이다. 하지만 E154를 먼저 내면 E176의 broad/Q2-underopen 세계관이 맞는지 틀린지 거의 모른 채 repaired-branch만 보게 된다. 그래서 첫 센서는 여전히 E176이다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+제출한다면 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` 하나다. Public LB가 나쁘면 그때 E154가 첫 counter-world로 올라온다. E176 점수를 보고 같은 family keep-factor를 다시 튜닝하는 행동은 금지한다.

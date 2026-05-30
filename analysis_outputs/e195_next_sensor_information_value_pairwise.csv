@@ -1,0 +1,4 @@
+contrast,question,moved_cells,moved_rows,focus_expected_delta,top1_swing,cells_for_2e6_guard,cells_for_e95_edge,readability
+e176_vs_e154,broad/Q2-underopen vs repaired-branch counterworld,1027,238,-9.354617654320108e-05,1.5957496211765992e-05,1.0,1.0,public-readable but hard-label fragile
+e154_vs_e144,full repaired branch vs unrepaired residual branch,294,139,-2.4321200270405186e-06,,,,barely readable against E144
+e154_vs_e155,full repaired branch vs lower-amplitude sibling,294,139,-1.7955591461449316e-06,,,,not public-readable by E158 guard

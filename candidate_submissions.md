@@ -697,3 +697,25 @@ Submission meaning is now precise:
 1. Submit E176 if asking whether pair/shape/broad-body evidence beats inherited binary-world counterprior.
 2. If E176 loses, the strongest alternate worldview is E154, not another E176 keep-factor sibling.
 3. Do not treat E194 as LB prediction. It only says the E176 priority is reasonably robust as a sensor choice.
+
+## Update After E195
+
+The single next public sensor remains:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+E195 compared E176 and E154 as public sensors, not as expected-score predictions. The result is that E176 still spends the next slot better.
+
+- E176 asks the bigger live question: whether pair/shape/broad-body evidence beats the inherited binary-world counterprior.
+- E176-vs-E154 is public-readable: `1027` moved cells over `238` rows, focus expected delta `-0.000093546`.
+- If E176 loses, E177 already routes adverse bands toward E154/search and forbids same-family tuning.
+- E154 is valuable but narrower: it tests repaired E144-collinear S3 active-boundary repair. E154-vs-E144 is barely readable at `-0.000002432`, and E154-vs-E155 is not readable at `-0.000001796`.
+
+Current submission order by information value:
+
+1. `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` - first sensor; broad/Q2-underopen vs binary-world conflict.
+2. `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` - first counter-world if E176 lands in an adverse E177 band, or if we deliberately trust binary-world above E194's flip threshold.
+3. `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv` - full-Q2 reopening contrast only if the next question is Q2 amplitude after E176 feedback.
+4. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` - conservative repaired-branch/tail-risk contrast, not first follow-up unless E154 branch interpretation asks for it.
+
+No new file is created by E195. The next public result must be decoded with the relevant pre-registered decoder, not by scalar score intuition.

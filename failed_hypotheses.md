@@ -1520,3 +1520,12 @@
 - Implementation issue possible: medium. E194 still uses interpretive source families and does not learn weights from public LB. Low for rejecting the narrow artifact claim because source leaveout and randomized weights directly stress the bookkeeping.
 - Bottleneck implication: the real uncertainty is not arbitrary ledger scoring. It is which latent view deserves trust: pair/shape/broad-body evidence or inherited binary-world counterprior.
 - Do not repeat: dismissing E176 solely because the ledger is weighted. The coherent E176 objection is more specific: trust E181 binary-world evidence above `1.760x`, or discount pair geometry below `0.725x` after removing non-comparable visible/top-cell evidence.
+
+## FH169. E154 should be submitted first because it is the strongest counter-world
+
+- Failed hypothesis: after E194 identified E154 as the explicit counter-world to E176, the next public slot should be E154 rather than E176.
+- Observed result: E195 shows E154 is a good counter-world but a narrower first measurement. E176-vs-E154 moves `1027` cells over `238` rows with focus expected delta `-0.000093546`, while E154-vs-E144 is barely readable at `-0.000002432` and E154-vs-E155 is not readable at `-0.000001796`. E176 has adverse decoder bands that route to E154/search; E154 feedback does not directly resolve whether E176's broad/Q2-underopen worldview is public-real.
+- Why discard: first-sensor choice should maximize worldview resolution, not simply submit the best alternate branch. E154 first mainly asks whether repaired E144-collinear S3 active-boundary repair is real; it does not kill or validate the current E176 broad branch.
+- Implementation issue possible: low. The script only joins existing pre-registered decoder and pairwise files; it does not create new labels or tune thresholds. Medium for the broader ranking because actual public feedback could still surprise either decoder.
+- Bottleneck implication: the bottleneck remains hidden-label/worldview underidentification. The next public slot should be used to distinguish pair/shape/broad-body vs binary-world, then route to E154 if E176 loses.
+- Do not repeat: promoting E154 ahead of E176 merely because it is the explicit counter-world. Promote E154 first only under an intentional high-binary/low-pair prior, or after adverse E176 feedback.

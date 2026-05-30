@@ -2996,3 +2996,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - if non-comparable E176-only visible/top-cell evidence is removed, E176 still leads E154 by `0.825`; but then antisymmetric-pair evidence must stay above `0.725x` of its E193 weight or E154 becomes first.
 - Interpretation: E193 is not a pure weight artifact. E176 priority survives ordinary source/weight stress. But the live alternative is now exact: a high-trust binary-world / low-trust pair-geometry worldview selects E154, not E144. This is the most useful counterfactual to E176.
 - Decision: no new submission. Keep E176 as the next single public sensor, but record the failure mode: if E176 loses, the next branch to revisit is not E144 first or another Q2 keep factor; it is whether E154's inherited binary-world counterprior was the cleaner hidden-label proxy.
+
+## E195. Next Sensor Information Value
+
+- Observe: E194 made E154 the explicit counter-world to E176. That creates a new decision problem: maybe E154 should be submitted before E176 because it represents the strongest alternate worldview.
+- Wonder: if exactly one public slot is spent next, which candidate is the higher-information sensor: E176, which tests pair/shape/broad-body vs binary-world, or E154, which tests the repaired E144-collinear branch?
+- Method: `analysis_outputs/e195_next_sensor_information_value.py` reads the pre-registered E177 E176 decoder, the E158/E160 E154 decoders, E177/E158 pairwise contrast tables, and E194 robustness thresholds. It compares decision-tree resolution, counter-world routing, and public-readable pairwise contrast size. It creates no submission.
+- Result:
+  - report: `analysis_outputs/e195_next_sensor_information_value_report.md`.
+  - E176 remains rank `1`; E154 remains rank `2`.
+  - E176-vs-E154 moves `1027` cells over `238` rows with focus expected delta `-0.000093546`.
+  - E154-vs-E144 moves `294` cells over `139` rows with local all-minus delta `-0.000002432`.
+  - E154-vs-E155 is below the E158 readable guard at `-0.000001796`.
+  - E176 has `3` adverse decoder bands that route to E154/search, while E154 has `0` bands that resolve the E176 broad/Q2-underopen worldview.
+- Interpretation: E154 is the right counter-world, but not the right first sensor. Submitting E154 first tests the repaired-branch branch but leaves the current E176 broad/Q2-underopen worldview mostly unobserved. Submitting E176 first gives the cleaner decision tree: win validates broad/Q2-underopen; adverse loss routes to E154 or representation search and forbids same-family tuning.
+- Decision: no new submission. Keep `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` as the next single public sensor. E154 becomes first follow-up only if E176 lands in an E177 adverse band or if we intentionally choose the high-binary/low-pair worldview before spending the slot.

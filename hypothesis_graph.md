@@ -2220,6 +2220,18 @@ target co-occurrence
 - public LB 관측 반응: E176 win validates the pair/shape/broad-body weighting. E176 loss should elevate E154 as the next repaired-branch worldview before another same-family E176 tweak.
 - 제출 전략: no E194 submission. Keep E176 as next sensor; keep E154 as the explicit counterfactual branch.
 
+### H189. E176 is a higher-information first public sensor than E154
+
+- 상태: 지지 as sensor ordering by E195.
+- 왜 그럴듯한가: E194 identified E154 as the coherent counter-world, but being the counter-world does not automatically make it the best first public sensor. The first slot should resolve the largest live conflict with the cleanest post-feedback action tree.
+- 맞다면: E176 should distinguish broad/Q2-underopen from the E154 repaired-branch counter-world with a larger public-readable contrast, and adverse E176 bands should already route to E154/search. E154 feedback should mostly decide the repaired branch while leaving the E176 broad worldview unresolved.
+- 틀리다면: E154 should have a cleaner or larger counter-world contrast, or E154 decoder bands should directly resolve whether E176's broad/Q2-underopen branch is public-real.
+- 최소 실험: `analysis_outputs/e195_next_sensor_information_value.py`.
+- 관측: E176-vs-E154 moves `1027` cells over `238` rows with focus expected delta `-0.000093546`, while E154-vs-E144 moves `294` cells over `139` rows with delta `-0.000002432` and E154-vs-E155 is not public-readable (`-0.000001796`). E176 has `3` adverse bands that route to E154/search; E154 has no band that directly resolves the E176 broad worldview.
+- 성공/폐기 기준: supported until actual E176 feedback. If E176 lands in a clean-win band, broad/Q2-underopen is promoted. If E176 lands in an adverse band, E154 becomes the next worldview to test. If E154 is submitted first for non-experimental reasons, its result must not be used to declare the E176 broad branch dead.
+- public LB 관측 반응: E176 below E95 validates the current first-sensor ordering. E176 worse than E101 or mixmin shifts priority to E154/search. E154 first only makes sense under an explicit high-binary/low-pair prior before submission.
+- 제출 전략: no E195 submission. Submit `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` first if spending one public slot; keep `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` as the first counter-world branch after adverse E176 feedback.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -1424,6 +1424,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E176 wins every single-source leaveout and `0.771300..0.905950` of random family-weight perturbations. Binary-world alone selects E154/E144; binary weight above `1.760x` flips E176 versus E154. Without visible/top-cell evidence, pair geometry must stay above `0.725x`.
 - Policy: keep E176 as the next sensor, but make E154 the explicit counterfactual if E176 public feedback is bad. Do not use E194 as a numerical submission-survival score.
 
+### F164. E195 next-sensor information value map
+
+- Hidden structure: the best first public slot is not necessarily the candidate with the strongest counter-world support. It is the candidate whose feedback most cleanly separates the largest live worldviews and gives a pre-registered follow-up route.
+- Candidates: decoder band action classes, counterworld-route counts, same-family-forbidden counts, E176-vs-E154 moved-cell contrast, E154-vs-E144/E155 readability, and E194 flip-threshold conditions.
+- Label vs split test: valid as a governance feature because it reads only pre-existing decoders and stress outputs, and creates no prediction file. Invalid as a public-LB predictor because it ranks information value, not expected score.
+- Current evidence: E176 ranks first. E176-vs-E154 has `1027` moved cells and focus expected delta `-0.000093546`; E154-vs-E144 has `294` moved cells and delta `-0.000002432`; E154-vs-E155 is not readable at `-0.000001796`. E176 adverse bands route to E154/search, while E154 does not resolve the E176 broad/Q2-underopen worldview.
+- Policy: use E195 to lock next-slot order: E176 first, E154 first counter-world after adverse E176 feedback. Do not use E154-first unless deliberately adopting the high-binary/low-pair worldview before public feedback.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

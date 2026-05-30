@@ -1183,3 +1183,30 @@ E194 stress-tests the E193 ledger itself.
   - after removing non-comparable visible/top-cell evidence, pair geometry must stay above `0.725x` for E176 to remain above E154.
 
 Stress implication: E176 priority is not a trivial weight artifact, but it depends on trusting pair/shape/broad-body evidence over inherited binary worlds. The next public feedback should explicitly test that worldview conflict.
+
+## Update After E195
+
+E195 stress-tests the next-slot choice after E194 identified E154 as the explicit counter-world.
+
+- script: `analysis_outputs/e195_next_sensor_information_value.py`.
+- report: `analysis_outputs/e195_next_sensor_information_value_report.md`.
+- E176 rank: `1`.
+- E154 rank: `2`.
+- E176-vs-E154:
+  - moved cells `1027`.
+  - moved rows `238`.
+  - focus expected delta `-0.000093546`.
+  - public-readable but hard-label fragile.
+- E154-vs-E144:
+  - moved cells `294`.
+  - moved rows `139`.
+  - local all-minus delta `-0.000002432`.
+  - barely readable.
+- E154-vs-E155:
+  - local all-minus delta `-0.000001796`.
+  - not readable by the E158 guard.
+- decoder action stress:
+  - E176 has `3` adverse bands that route to E154/search.
+  - E154 has `0` bands that resolve the E176 broad/Q2-underopen worldview.
+
+Stress implication: E154 is the live counter-world, not the first sensor. E176 first gives a two-sided decision tree: promotion if broad/Q2-underopen wins, and a pre-registered route to E154/search if it loses. Submitting E154 first is coherent only when the binary-world counterprior is intentionally promoted above the E194 flip condition.
