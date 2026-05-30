@@ -1544,6 +1544,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: `q3_center_c010_s4_rank` has OOF delta `-0.001272724`, subject-half win rate `0.900000`, and geometry delta `-0.000794598`. Four low-scale E95/E154 grafts pass the frontier gate. High-scale Q3/S4 grafts and broader latent movement are rejected.
 - Policy: use E209 only as a low-scale public sensor. Prefer `submission_e209_jepa_q3_center_c010_s4_rank_e154_s0p25_1e4591ca.csv` for maximum survival score, or `submission_e209_jepa_q3_center_c010_s4_rank_e95_s0p25_08289063.csv` to isolate JEPA on the current frontier. Do not use F178 to justify S2, full-latent, or high-amplitude JEPA features.
 
+### F179. E210 target-dependency JEPA gate
+
+- Hidden structure: Q3/S4 JEPA movement may be public-risky when it violates the target-dependency manifold implied by the other six targets.
+- Candidates: conditional target expectation from other target probabilities, movement-toward-conditional gate, movement-closer-to-conditional gate, soft-toward multiplier, anti-toward control, and E95/E154 anchor graft stress.
+- Label vs split test: valid as a diagnostic because conditional models are fit on train labels and evaluated through OOF, subject-half, and geometry stress. Invalid as direct proof of public improvement because the selected files trade away much of the ungated E209 OOF/geometry edge.
+- Current evidence: selected closer-gated Q3/S4 files improve public-prior hard-tail anatomy, but weaken local OOF and geometry versus E209. S4 dependency alignment is locally coherent; Q3 dependency alignment is conflicted.
+- Policy: use F179 as a follow-up sensor, not a replacement feature. It is useful after E209 feedback if the next question is whether public hard-tail cells demand dependency filtering.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

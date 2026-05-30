@@ -2400,6 +2400,18 @@ target co-occurrence
 - public LB 관측 반응: an E95-anchored E209 win strengthens "actual JEPA helps via Q3/S4 residual translation." An E154-anchored win with E95-anchored loss strengthens "E154 branch plus JEPA is needed." A loss for both means E208 learnability did not survive public hard-label translation.
 - 제출 전략: use `submission_e209_jepa_q3_center_c010_s4_rank_e154_s0p25_1e4591ca.csv` for maximum E209 survival, or `submission_e209_jepa_q3_center_c010_s4_rank_e95_s0p25_08289063.csv` for a clean JEPA sensor. Do not submit S2, high-scale, or full-latent JEPA variants.
 
+### H204. Target-dependency gating localizes E209 hard-tail risk but cuts useful Q3 body
+
+- 상태: 부분 지지 by E210; replacement claim weakened.
+- 왜 그럴듯한가: E209's frontier risk is concentrated in a small number of high-swing Q3/S4 cells. If the remaining error is target-manifold violation, then a conditional target-dependency model should keep public-favorable cells and reject dangerous cells.
+- 맞다면: dependency-aligned cells should have better local loss, anti-aligned controls should fail frontier stress, and the gated movement should reduce top-cell concentration or bad-axis energy without destroying OOF/geometry.
+- 틀리다면: dependency gates would either be polarity-free, fail anti-controls, or remove the useful OOF/geometry body while looking good only under public-prior heuristics.
+- 최소 실험: `analysis_outputs/e210_jepa_target_dependency_gate.py`.
+- 관측: selected E210 closer files improve public-prior hard-tail anatomy strongly, with focus deltas near `-0.00137` and top1/abs near `0.17`. Anti-toward controls do not pass the frontier gate. However selected Q3/S4 closer gates weaken OOF versus ungated E209 by about `+0.00079` and geometry by about `+0.00084`. Cell anatomy says S4 dependency alignment is useful, but Q3 not-closer/not-toward cells are often the larger local winners.
+- 성공/폐기 기준: supported as a hard-tail localization sensor. Rejected as a replacement for raw E209 unless public feedback shows the dependency-tail prior is more important than the lost OOF/geometry body.
+- public LB 관측 반응: E210 win after E209 tie/loss strengthens "public tail wanted target-dependency filtering." E210 loss weakens the dependency gate and says E209's raw Q3 body was useful despite target-manifold tension.
+- 제출 전략: do not submit E210 before E209 if the goal is a clean JEPA test. Submit E210 only as a follow-up sensor for target-dependency hard-tail localization.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

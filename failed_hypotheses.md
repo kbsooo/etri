@@ -1655,3 +1655,12 @@
 - Implementation issue possible: medium. A stronger architecture or a different context-target definition may produce a healthier latent later. Low for rejecting the current E209 broad/high-scale shortcut because the generated frontier-stress table directly marks those rows as non-gated.
 - Bottleneck implication: the bottleneck is not whether JEPA can learn anything. It can. The bottleneck is translating a learned representation into public-stable calibrated probability movement.
 - Do not repeat: high-scale E209 Q3/S4 submissions, S2 comeback from local OOF alone, or full-latent JEPA blending without new geometry evidence.
+
+## FH184. Target-dependency gating is a strict E209 replacement
+
+- Failed hypothesis: because E210 dependency-gated candidates improve public-prior hard-tail anatomy, they should replace E209 as the next generic JEPA submission.
+- Observed result: the selected E210 closer files are much worse than ungated E209 on local validation. The top selected e154 closer file has OOF `-0.000482` versus ungated E209 `-0.001273`, and geometry `-0.000096` versus ungated geometry `-0.000939`. Cell anatomy also splits by target: S4 dependency alignment is useful, while Q3 non-aligned cells often carry the larger local improvement.
+- Why discard: the gate may be a good public-tail sensor, but it cuts away a large part of the locally validated JEPA body. That is not a strict dominance relationship.
+- Implementation issue possible: medium. A better conditional target model or Q3/S4-specific gate could preserve more body. Low for rejecting the current strict-replacement claim because the OOF/geometry deltas are direct.
+- Bottleneck implication: the bottleneck is target-specific translation. S4 can use dependency alignment; Q3 needs a different gate or public-tail sensor.
+- Do not repeat: promoting E210 ahead of E209 without an explicit hard-tail localization question or public feedback from E209.

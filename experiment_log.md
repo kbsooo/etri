@@ -3228,3 +3228,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     - `analysis_outputs/submission_e209_jepa_s4_rank_e95_s0p75_0ed14a13.csv`
 - Interpretation: E209 is the first submitted-family branch whose movement is directly downstream of a trained JEPA objective. The live signal is still narrow and hard-label brittle: every selected row needs only `1` cell for the `2e-6` public-readable guard, and support probability remains below `0.5`. The e154-anchored file has the best survival score but mixes two hypotheses: E154 repaired-branch plus JEPA Q3/S4 translation. The e95-anchored Q3/S4 file is the cleanest JEPA-only public sensor.
 - Decision: if maximizing E209 survival score, submit `submission_e209_jepa_q3_center_c010_s4_rank_e154_s0p25_1e4591ca.csv`. If isolating whether JEPA itself helps the current frontier, submit `submission_e209_jepa_q3_center_c010_s4_rank_e95_s0p25_08289063.csv`. Do not submit high-scale Q3/S4, S2, or full-latent JEPA blends.
+
+## E210. JEPA Target-Dependency Gate
+
+- Observe: E209's main weakness is hard-label brittleness: the selected files need only one public-readable cell to flip the expected edge. A natural next question is whether target-dependency geometry can identify which Q3/S4 JEPA moves are coherent with the other targets.
+- Wonder: does a dependency manifold learned from train labels and OOF target probabilities make E209 safer, or does it merely cut away useful JEPA body and create another train-only shortcut?
+- Method: `analysis_outputs/e210_jepa_target_dependency_gate.py` fits target-conditional logistic models from the other six target probabilities. It gates the raw E209 Q3/S4 movement by whether the movement goes toward or closer to that conditional target expectation, then stress-tests OOF, subject halves, geometry folds, anti-toward controls, and E95/E154/mixmin frontier grafts.
+- Result:
+  - report: `analysis_outputs/e210_jepa_target_dependency_gate_report.md`.
+  - selected files:
+    - `analysis_outputs/submission_e210_jepa_depgate_q3_center_c010_s4_rank_closer_sh0p75_e154_s1p0_2f69729d.csv`
+    - `analysis_outputs/submission_e210_jepa_depgate_q3_center_c010_s4_rank_closer_sh0p75_e95_s1p0_49d77d44.csv`
+    - `analysis_outputs/submission_e210_jepa_depgate_q3_center_c010_s4_rank_closer_sh1p0_e154_s0p75_67d1b011.csv`
+    - `analysis_outputs/submission_e210_jepa_depgate_q3_center_c010_s4_rank_closer_sh1p0_e95_s0p75_35e6b0a9.csv`
+  - best selected e154 closer file has public-prior focus delta `-0.001379`, top1/abs `0.171181`, and bad-span energy `0.314060`.
+  - but it weakens local evidence versus ungated E209: OOF delta `-0.000482` versus ungated `-0.001273`, and geometry delta `-0.000096` versus ungated geometry `-0.000939`.
+  - cell anatomy is asymmetric: S4 closer/toward cells are locally useful, while Q3 not-closer/not-toward cells are often more useful than the dependency-aligned Q3 cells.
+- Interpretation: target dependency is a real diagnostic for S4 and a public-tail localizer, but not a clean replacement for E209. E210's selected files are high-information sensors for the hypothesis "E209 loses because public tail wants target-dependency filtering." They are not safer expected-score submissions than E209 by local evidence.
+- Decision: do not supersede E209 with E210 automatically. If the next public slot should isolate actual JEPA, use E209. If the next question is specifically hard-tail dependency localization, use the E210 e95/e154 closer pair and decode wins/losses as target-dependency gate evidence.

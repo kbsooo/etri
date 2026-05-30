@@ -1053,3 +1053,22 @@ Submission order depends on the public question:
 Interpretation:
 
 The best single file by survival score is the E154-anchored Q3/S4 JEPA graft, but it confounds the E154 counter-world with JEPA. If the next public slot should specifically answer "does actual JEPA help?", use the E95-anchored Q3/S4 file. A win strengthens the narrow Q3/S4 JEPA-translation hypothesis. A loss weakens this probability translation path, not the fact that E208 learned a nontrivial representation.
+
+## Update After E210
+
+E210 creates dependency-gated E209 variants, but they should not automatically jump ahead of E209.
+
+Selected files:
+
+1. Maximum E210 survival / E154-confounded dependency-tail sensor:
+   `analysis_outputs/submission_e210_jepa_depgate_q3_center_c010_s4_rank_closer_sh0p75_e154_s1p0_2f69729d.csv`
+2. Cleanest E210 dependency-tail sensor on E95:
+   `analysis_outputs/submission_e210_jepa_depgate_q3_center_c010_s4_rank_closer_sh0p75_e95_s1p0_49d77d44.csv`
+3. Higher keep-share E154 dependency-tail sensor:
+   `analysis_outputs/submission_e210_jepa_depgate_q3_center_c010_s4_rank_closer_sh1p0_e154_s0p75_67d1b011.csv`
+4. Higher keep-share E95 dependency-tail sensor:
+   `analysis_outputs/submission_e210_jepa_depgate_q3_center_c010_s4_rank_closer_sh1p0_e95_s0p75_35e6b0a9.csv`
+
+Submission policy:
+
+E209 remains the cleaner answer to "does actual JEPA help?" E210 is the next sensor only if the question is "does public hard-tail prefer target-dependency filtering over the raw JEPA Q3/S4 body?" A good E210 score would credit dependency-tail localization. A bad E210 score would mean the gate removed useful Q3 body or followed a train-only target-dependency shortcut.

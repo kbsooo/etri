@@ -1540,3 +1540,29 @@ Result:
 - high-scale Q3/S4 grafts fail the E209 frontier gate despite larger local expected deltas.
 
 Stress implication: actual JEPA now produces submission-grade candidates, but only as a narrow Q3/S4 low-scale graft. The full-latent and high-scale interpretations remain rejected. Public feedback should be decoded as a test of JEPA probability translation, not as proof that JEPA has solved the 0.54 gap.
+
+## Update After E210
+
+E210 stress-tests a target-dependency gate for the E209 JEPA movement.
+
+- script: `analysis_outputs/e210_jepa_target_dependency_gate.py`.
+- report: `analysis_outputs/e210_jepa_target_dependency_gate_report.md`.
+- selected: `analysis_outputs/e210_jepa_target_dependency_gate_selected.csv`.
+
+Stress dimensions:
+
+- OOF target-conditional dependency alignment.
+- repeated subject-half stability.
+- geometry-fold stability.
+- anti-toward negative control.
+- E95/E154/mixmin frontier graft stress.
+- hard-label top-cell concentration and bad-axis energy.
+
+Result:
+
+- Q3/S4 closer-gated files have much better public-prior hard-tail anatomy than E209: top selected e154 file has focus delta `-0.001379` and top1/abs `0.171181`.
+- the same selected files lose local evidence versus ungated E209: OOF `-0.000482` versus `-0.001273`, geometry `-0.000096` versus `-0.000939`.
+- S4 dependency alignment is meaningful locally; Q3 dependency alignment is not clean because Q3 not-closer/not-toward cells carry larger local gains.
+- anti-toward controls do not pass frontier gates, so the public-prior side is not completely polarity-free.
+
+Stress implication: E210 is a hard-tail localization sensor, not an E209 replacement. It strengthens the diagnosis that the remaining JEPA bottleneck is target-specific probability translation, especially Q3 versus S4 dependency conflict.
