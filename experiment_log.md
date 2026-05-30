@@ -3179,3 +3179,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - weakened: `E176/E174/E172/E169 as expected-score follow-ups`.
 - Interpretation: this is not a Q2 keep-factor result. E176 was mostly S-stage / between-train-runs body, and public rejected that broad partial-reopen body at expected-score scale. The earlier warning was correct: body-level local evidence can be real while a small set of public hard-label cells cancels the frontier edge.
 - Decision: do not submit E174 or another Q2 sibling. Do not use E172 as first response because this was not tie/small-loss. The coherent existing next sensor is E154 if testing the repaired-branch counter-world; otherwise move to non-collinear hidden-structure search.
+
+## E207. LeJEPA Identifiability Conditions Audit
+
+- Observe: the new LeJEPA identifiability paper makes a stronger claim than the earlier JEPA-style feature work: a true JEPA world model is plausible only when the positive-pair transition has nontrivial autocorrelation, Gaussian-ish increments, stable rank, and no obvious split/shortcut collapse.
+- Wonder: if we actually use JEPA rather than only borrowing the idea, which positive-pair definition should be trained? Same-subject adjacent rows, subject lag-2, feature-neighbor pairs, submission-only lags, or target-neighbor diagnostics?
+- Method: `analysis_outputs/e207_lejepa_identifiability_conditions_audit.py` scores 7 latent spaces across 11 pair regimes. Inputs include broad stage2 features, existing JEPA group features, raw-IJEPA, neural-JEPA, block-canvas, and LeJEPA block-canvas features. Diagnostics include random-projection marginal/increment Gaussianity, coordinate autocorrelation, alignment-vs-random distance, effective rank, split stationarity, train-label consistency, and smoothness of known frontier deltas E101/E154/E176 vs E95.
+- Result:
+  - summary: `analysis_outputs/e207_lejepa_identifiability_conditions_audit_summary.csv`.
+  - report: `analysis_outputs/e207_lejepa_identifiability_conditions_audit_report.md`.
+  - decision counts: `56` diagnostic-only, `20` energy/auxiliary, `1` true-JEPA candidate.
+  - only `broad_stage2_pca64 + feature_nn1_all` is marked `true_jepa_candidate`: readiness `0.652939`, rho `0.494280`, alignment ratio `0.636020`, increment Gaussian score `0.435262`, frontier smoothness `0.422099`.
+  - existing LeJEPA block-canvas is strongest by readiness on `subject_lag2_all` (`0.668530`) but fails true-JEPA status because increment Gaussianity is poor (`0.194814`) and split distance CV is high (`0.660020`).
+  - block-canvas subject-lag1 is usable as energy/auxiliary (`0.621422..0.640868`) but not as a certified world-model transition.
+- Interpretation: this answers the user's JEPA question concretely. Yes, JEPA can be used, but not as "train a bigger subject-order JEPA." The only currently defensible true-JEPA training target is feature-neighbor context/target prediction over broad stage2 representation. Subject/order/LeJEPA block-canvas latents remain useful as gates or energies, but their positive-pair transitions look non-identifiable or split-sensitive.
+- Decision: next true-JEPA attempt should be E208 feature-neighbor JEPA: context = one row's broad latent / local feature family masks, target = nearest-neighbor latent or its hidden target-rate/residual representation, with LeJEPA-style Gaussian/isotropy diagnostics kept as hard guardrails. Do not average all pair regimes into one training set.

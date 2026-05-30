@@ -2364,6 +2364,18 @@ target co-occurrence
 - public LB 관측 반응: same-family expected-score lane is weakened. E174/Q2 sibling and E172 immediate safety are not the next action; E154/search is coherent.
 - 제출 전략: do not submit E174, E172, E169, or E166 as automatic follow-up. Submit E154 only if deliberately testing the repaired-branch counter-world; otherwise design a non-collinear hidden-structure experiment.
 
+### H201. True JEPA should start from feature-neighbor positive pairs, not subject-order pairs
+
+- 상태: 부분 지지 by E207; subject-order true-JEPA claim weakened.
+- 왜 그럴듯한가: the new LeJEPA identifiability reading says world-model recovery depends on the positive-pair transition, not just on using a JEPA-like loss. Subject/date order is visible in this dataset, but it may be nonstationary or non-Gaussian at the increments that matter for public hard-label cells.
+- 맞다면: an identifiability audit should find only a narrow set of pair regimes with intermediate autocorrelation, useful alignment gap, Gaussian-ish increments, stable rank, and tolerable split behavior. Existing subject-lag LeJEPA latents may remain useful as energy but fail certification.
+- 틀리다면: same-subject adjacent/lagged rows should pass the strict true-JEPA gate, with good increment Gaussianity and stable split distance; feature-neighbor pairs should not be uniquely preferred.
+- 최소 실험: `analysis_outputs/e207_lejepa_identifiability_conditions_audit.py`.
+- 관측: among `77` latent/regime combinations, only `broad_stage2_pca64 + feature_nn1_all` is `true_jepa_candidate` (`readiness=0.652939`, `rho=0.494280`, `alignment=0.636020`, `increment_gauss=0.435262`). `lejepa_l0p2_d32_pca48 + subject_lag2_all` has higher readiness (`0.668530`) but is only auxiliary because increment Gaussianity is low (`0.194814`) and split distance CV is high (`0.660020`).
+- 성공/폐기 기준: supported until a specialized subject/order latent passes the same increment/stationarity gate. Discard if E208 feature-neighbor JEPA fails while a subject-order JEPA passes these diagnostics and downstream stress.
+- public LB 관측 반응: no immediate submission. A later feature-neighbor JEPA candidate should improve only if it converts the one certified pair regime into a probability movement that survives hard-tail and known-frontier stress.
+- 제출 전략: build E208 feature-neighbor JEPA diagnostics first. Do not train a monolithic subject-order JEPA or average all pair types into one submission family.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -2947,3 +2947,30 @@ E176 public LB가 들어오면 `python3 analysis_outputs/e205_e176_public_feedba
 다음으로 가장 정보량이 큰 행동:
 
 E154로 repaired-branch counter-world를 묻거나, 아예 non-collinear hidden-block/sequence/target-dependency representation으로 돌아간다. E174/Q2 sibling과 E172 immediate safety는 이번 score의 다음 질문이 아니다.
+
+## E207 업데이트: JEPA를 진짜로 쓰려면 pair부터 골라야 한다
+
+내가 발견한 가장 이상한 점:
+
+`기존 LeJEPA block-canvas는 subject lag2에서 그럴듯해 보이지만, LeJEPA 논문 조건으로 보면 increment가 너무 비정규적이고 split별 거리도 흔들린다. 즉 "좋은 latent"처럼 보이는 것과 "식별 가능한 JEPA transition"은 다르다.`
+
+실험:
+
+- `analysis_outputs/e207_lejepa_identifiability_conditions_audit.py`
+- summary: `analysis_outputs/e207_lejepa_identifiability_conditions_audit_summary.csv`
+- report: `analysis_outputs/e207_lejepa_identifiability_conditions_audit_report.md`
+
+실험 결과:
+
+- 전체 `77`개 latent/pair 조합 중 true-JEPA 후보는 `1`개뿐이다.
+- 살아남은 조합은 `broad_stage2_pca64 + feature_nn1_all`.
+- readiness `0.652939`, rho `0.494280`, alignment `0.636020`, increment Gaussian score `0.435262`.
+- `lejepa_l0p2_d32_pca48 + subject_lag2_all`은 readiness `0.668530`이지만 increment Gaussian score `0.194814`, split distance CV `0.660020`이라 energy/auxiliary로 강등된다.
+
+생각이 어떻게 바뀌었는지:
+
+`JEPA를 쓴다면 subject-order row sequence를 크게 학습시키는 게 아니라, feature-neighbor positive pair를 중심으로 context-to-target representation을 예측해야 한다. 기존 subject/block LeJEPA는 버릴 필요는 없지만, submission 생성기보다는 gate/energy로 써야 한다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+E208은 feature-neighbor JEPA다. context는 broad stage2 latent와 feature-family mask, target은 nearest-neighbor latent/hidden residual representation으로 두고, LeJEPA-style Gaussianity/isotropy/alignment diagnostics를 hard guard로 붙인다. E208 진단 전에는 새 JEPA submission을 만들지 않는다.

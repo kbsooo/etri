@@ -981,3 +981,26 @@ Submission order now changes:
 4. If not spending a slot on E154, return to non-collinear hidden-block/sequence/target-dependency search.
 
 Current read: E176 disproves the expected-score version of the broad partial-reopen family, not the existence of S-stage/body signal itself.
+
+## Update After E207
+
+E207 creates no submission. It answers the "use JEPA for real" question by selecting the only currently healthy positive-pair regime for true JEPA training.
+
+Result:
+
+- `analysis_outputs/e207_lejepa_identifiability_conditions_audit_summary.csv`
+- `analysis_outputs/e207_lejepa_identifiability_conditions_audit_report.md`
+- true-JEPA candidates: `1/77`
+- selected regime: `broad_stage2_pca64 + feature_nn1_all`
+- readiness `0.652939`, rho `0.494280`, alignment ratio `0.636020`, increment Gaussian score `0.435262`
+
+What this changes:
+
+1. Do not train a monolithic subject-order JEPA over all row lags.
+2. Do not treat existing LeJEPA block-canvas subject-lag2 as a certified world model despite its high readiness; its increment Gaussianity is too low (`0.194814`) and split-distance CV is high (`0.660020`).
+3. If building a new JEPA submission family, start with feature-neighbor context-to-target prediction and keep subject/order/block-canvas latents as auxiliary gates.
+
+Submission order is unchanged for existing files:
+
+1. Existing coherent counter-world sensor remains `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` if using a public slot now.
+2. New JEPA work should first produce E208 feature-neighbor JEPA diagnostics before materializing a submission.

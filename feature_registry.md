@@ -1520,6 +1520,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E176 public LB `0.576311831`, E205 route `branch_loss`, follow-up role `body_exit_counterworld`, E154 selected as existing-file counter-world. E176 is worse than E95 by `+0.0000205012`.
 - Policy: treat E176/E174/E172/E169 as weakened expected-score followups. Use E154 only as a counter-world test, not as a scalar rescue; otherwise return to non-collinear representation search.
 
+### F176. E207 LeJEPA positive-pair identifiability score
+
+- Hidden structure: a JEPA latent is only worth training as a world model if the chosen positive-pair transition is identifiable enough: intermediate autocorrelation, Gaussian-ish increments, stable rank, nontrivial alignment gap, and no obvious split shortcut.
+- Candidates: `lejepa_readiness`, `decision`, `rho_abs_mean`, `alignment_ratio`, increment/marginal Gaussian scores, rank fraction, frontier smoothness, train-label consistency, and split-distance CV for each latent/pair regime.
+- Label vs split test: valid as a pretraining-regime selector because it does not use public labels and treats known submissions only as frontier-movement smoothness diagnostics. Invalid as a direct probability feature because readiness is not calibrated LogLoss and target-neighbor pairs are diagnostic upper bounds, not inference-safe pairs.
+- Current evidence: only `broad_stage2_pca64 + feature_nn1_all` passes `true_jepa_candidate` (`readiness=0.652939`, `rho=0.494280`, `alignment=0.636020`, `increment_gauss=0.435262`). Existing LeJEPA subject-lag2 has higher raw readiness (`0.668530`) but is demoted to auxiliary because increment Gaussianity is poor (`0.194814`) and split stationarity is weak.
+- Policy: use F176 to choose E208 true-JEPA pairs. Train on feature-neighbor positive pairs first. Treat subject/order and block-canvas LeJEPA signals as energy/gate features until they pass a stricter increment/stationarity audit.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

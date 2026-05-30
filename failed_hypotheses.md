@@ -1628,3 +1628,12 @@
 - Implementation issue possible: low for the public outcome and decoder route. Medium for global private inference because public subset may not equal private, but this candidate's expected-score public route is closed.
 - Bottleneck implication: the plateau is not solved by broad partial-reopen amplitude. The missing object is a representation that can identify public-favorable high-swing cells or a genuinely non-collinear latent branch.
 - Do not repeat: E174/Q2 sibling, E172 immediate safety, or E169/E166 broad expected-score follow-up after this branch-loss result. Use E154 only as body-exit counter-world, or search outside the same-family lane.
+
+## FH181. Any subject-order JEPA transition is healthy enough for true JEPA training
+
+- Failed hypothesis: because this dataset has strong subject/date structure, a true JEPA should train directly on same-subject adjacent or lagged rows, especially with the existing LeJEPA block-canvas latent.
+- Observed result: E207 shows the strongest existing LeJEPA subject-lag2 regime has high readiness (`0.668530`) but poor increment Gaussianity (`0.194814`) and high split distance CV (`0.660020`), so it is demoted to `energy_or_auxiliary`. Subject-lag1 block-canvas regimes are also auxiliary, not certified. The only `true_jepa_candidate` is `broad_stage2_pca64 + feature_nn1_all`.
+- Why discard: subject/order autocorrelation alone is not enough. Under the new LeJEPA reading, the transition must also have Gaussian-ish increments, stable stationarity, and a nontrivial alignment gap. Subject lag structure is visible but not identifiable enough as the main JEPA world-model target.
+- Implementation issue possible: medium. The audit uses PCA summaries and proxy Gaussianity tests, so a more specialized latent could pass later. The narrow claim being discarded is only "use any subject-order JEPA transition directly."
+- Bottleneck implication: the bottleneck is not lack of JEPA branding or network capacity. It is choosing a positive-pair regime whose transition is actually identifiable and public-relevant.
+- Do not repeat: training one large JEPA over all subject lags or averaging every positive-pair regime. Start with feature-neighbor JEPA, and keep subject/order/block-canvas latents as gates until they pass increment/stationarity diagnostics.

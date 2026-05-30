@@ -1466,3 +1466,30 @@ E176 public feedback was observed and decoded.
 - coherent existing follow-up: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
 
 Stress implication: E176 failed exactly in the branch-loss band, not the tie/small-loss safety band. This weakens same-family expected-score follow-ups and makes E154/search the next valid question. E172 remains a safety contrast, but not the immediate response to this score.
+
+## Update After E207
+
+E207 stress-tests JEPA positive-pair regimes before training a new JEPA.
+
+- script: `analysis_outputs/e207_lejepa_identifiability_conditions_audit.py`.
+- report: `analysis_outputs/e207_lejepa_identifiability_conditions_audit_report.md`.
+- summary: `analysis_outputs/e207_lejepa_identifiability_conditions_audit_summary.csv`.
+
+Stress dimensions:
+
+- random-projection marginal Gaussianity.
+- positive-pair increment Gaussianity.
+- coordinate autocorrelation and anisotropy.
+- positive-pair distance versus random-pair distance.
+- effective rank / covariance health.
+- train-label consistency when both endpoints are train rows.
+- known frontier-movement smoothness for E101/E154/E176 versus E95 when both endpoints are submission rows.
+- split-distance CV for regimes containing train/submission/mixed pairs.
+
+Result:
+
+- `true_jepa_candidate`: `1/77`.
+- best certified regime: `broad_stage2_pca64 + feature_nn1_all`.
+- strongest rejected-as-auxiliary regime: `lejepa_l0p2_d32_pca48 + subject_lag2_all`, because increment Gaussianity is low and split stationarity is weak.
+
+Stress implication: true JEPA training should not begin with subject-order pairs or an all-regime average. The next JEPA experiment must start from feature-neighbor positive pairs and keep subject/order/block-canvas latents as auxiliary gates until they pass increment/stationarity stress.
