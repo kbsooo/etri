@@ -1565,3 +1565,12 @@
 - Implementation issue possible: medium. Direct candidate-vs-E95 scoring is not identical to pressure-branch scoring, and the clean detector remains imperfect. Low for rejecting the narrow missing-score concern because direct scoring is the exact movement that would be submitted.
 - Bottleneck implication: follow-up uncertainty is not E72-shape contamination for E172/E154. It remains hidden-label slippage, repaired-branch margin fragility, and public hard-label critical-cell realization.
 - Do not repeat: blocking E172/E154 follow-up solely because they lacked E192 pressure-branch scores. Use E199 direct scores for that caveat.
+
+## FH174. E172 should replace E176 as the first sensor because it is safer
+
+- Failed hypothesis: after E199, E172's cleaner shape and larger support-mass surplus are enough to submit E172 before E176.
+- Observed result: E200 shows E172 is safer but lower-information. E176 has `0.0000106885` focus expected edge over E172, equal to `0.698x` of the E95-over-mixmin public edge. E172's visible/focus surplus advantages are `0.008852`/`0.007054`, and its clean-shape E72 probability advantage is only `0.00000972`. E176-vs-E172 is a `75`-cell rollback contrast, while E176-vs-E154 is a `1027`-cell counter-world contrast.
+- Why discard: the first public slot should resolve the largest live worldview conflict, not merely choose the safest same-family rollback. E172's safety gain is real but does not replace E176's broader Q2-underopen sensor role.
+- Implementation issue possible: low. E200 uses locked E177/E197/E199 artifacts and derives E172-vs-E95 algebraically from pairwise rows rather than fitting a new selector.
+- Bottleneck implication: safety and information value are different axes. The current bottleneck remains hidden-world underidentification, so the first sensor should maximize resolution; safety fallback comes after the relevant band.
+- Do not repeat: promoting E172 ahead of E176 solely from support surplus or clean-shape E72 probability. Use E172 only after an E176 tie/small-loss or under an explicit private-risk-minimization objective.

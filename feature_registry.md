@@ -1464,6 +1464,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E172/E174/E176/E166 direct probabilities are `0.000087`/`0.000097`/`0.000097`/`0.000677`; E154/E155 are `0.007860`/`0.009284`; all are below p95. E144 is `0.054385`, above p99 but far below positive floor, with nearest known rows all non-E72.
 - Policy: use E199 only for conditional routing after E176 feedback. E172 is acceptable after E176 tie/small-loss; E154 is preferred over E144 after branch/hard-loss; E144 remains a tail-risk control.
 
+### F169. E200 first-sensor resolution ledger
+
+- Hidden structure: safety and information value are separate latent axes. A cleaner same-family fallback can be correct after feedback while still being a worse first public measurement.
+- Candidates: E176-over-E172 expected edge, E172 support-surplus advantage, direct clean-shape E72 advantage, same-family vs counter-world moved-cell ratio, same-family vs counter-world expected-delta ratio, and E95-over-mixmin edge fraction.
+- Label vs split test: valid as a governance feature because it reads only locked E177/E197/E199 artifacts and derives E172-vs-E95 algebraically. Invalid as a public-LB forecast because it chooses measurement order, not expected score.
+- Current evidence: E176 has `0.0000106885` expected focus edge over E172, `0.698x` of E95-over-mixmin. E172 has visible/focus surplus advantages `0.008852`/`0.007054` and clean-shape E72 probability advantage `0.00000972`. E176-vs-E172 is `75` cells; E176-vs-E154 is `1027` cells; same-family/counter-world expected-delta ratio is `0.114`.
+- Policy: keep E176 first. Use E172 only after E176 tie/small-loss or if the explicit objective changes to private-risk minimization over information value.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

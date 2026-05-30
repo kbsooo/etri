@@ -9,7 +9,7 @@ Current public frontier:
 - Previous frontier: `analysis_outputs/submission_mixmin_0c916bb4.csv`
 - Improvement over previous frontier: `0.0000153107`
 - Current best next sensor: `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
-- Latest diagnostic: E199 shows E176 follow-up candidates are mostly clean-shape non-E72; E144 alone carries a p99 tail alarm.
+- Latest diagnostic: E200 keeps E176 first. E172 is safer but lower-information and should be used only after an E176 tie/small-loss.
 
 Primary working notes:
 

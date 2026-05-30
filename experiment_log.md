@@ -3072,3 +3072,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E144 direct probability `0.054385`, above non-E72 p99 `0.044812` but far below positive floor `0.804849`; nearest top-3 known rows are all non-E72.
 - Interpretation: the unscored E198 branch candidates do not hide E72-shape exposure. E172 is a clean same-family safety contrast, and E154 is a cleaner repaired-branch counter-world than E144 because E144 has the only direct p99 tail alarm.
 - Decision: no submission. Keep E176 first. If E176 ties/small-loses, E172 remains the same-family safety contrast. If E176 branch/hard-loses, E154 remains the first repaired-branch counter-world; E144 is a tail-risk control, not first follow-up.
+
+## E200. E176 vs E172 First-Sensor Resolution
+
+- Observe: E199 strengthened E172 as a clean same-family fallback. It has lower direct clean-shape E72 probability than E176 and higher support-mass surplus, so the remaining question is whether E172 should move ahead of E176 before public feedback.
+- Wonder: does E172's safety advantage justify spending the first public slot on the safer rollback contrast, or does that lose too much information and expected edge versus E176?
+- Method: `analysis_outputs/e200_e176_vs_e172_first_sensor_resolution.py` combines E177 pairwise deltas, E197 support-mass profiles, and E199 direct clean-shape E72 scores. It derives E172-vs-E95 from the locked E176-vs-E95 and E176-vs-E172 pairwise rows, then compares expected edge, support surplus, clean-shape E72 exposure, and sensor-resolution contrast size. It creates no submission.
+- Result:
+  - report: `analysis_outputs/e200_e176_vs_e172_first_sensor_resolution_report.md`.
+  - E176's focus-prior expected edge over E172 is `0.0000106885`, which is `0.698x` of the entire E95-over-mixmin public edge.
+  - E172's safety advantages are real but small: visible surplus advantage `0.008852`, focus surplus advantage `0.007054`, and lower clean-shape E72 probability by only `0.00000972`.
+  - E176-vs-E172 changes `75` cells, while E176-vs-E154 changes `1027` cells. The same-family E176/E172 contrast is only `0.114x` of the E176/E154 counter-world contrast by expected delta.
+  - Both E172 and E176 remain below the E199 non-E72 p95 shape threshold.
+- Interpretation: E172 is a safer same-family rollback, not a better first sensor. Submitting E172 first gives up most of the E176-over-E172 frontier-scale edge and mostly asks a narrow tail-repair question, while leaving the broad/Q2-underopen worldview underobserved.
+- Decision: no submission. Keep `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` first. If E176 ties or small-loses, use `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` as the same-family safety contrast. If E176 branch-loses or hard-fails, route to E154/search by E177.

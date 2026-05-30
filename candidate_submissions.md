@@ -804,3 +804,27 @@ Current conditional order:
 2. If E176 tie/small-loss: `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` - same-family safety contrast, clean-shape non-E72.
 3. If E176 branch/hard-loss: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` - repaired-branch counter-world, clean-shape non-E72.
 4. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` - tail-risk control, not first follow-up.
+
+## Update After E200
+
+The single next public sensor still remains:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+E200 directly tested whether E172 should replace E176 as first submission after E199 made E172 look slightly cleaner.
+
+- E176 has `0.0000106885` expected focus edge over E172.
+- That edge is `0.698x` of the whole E95-over-mixmin public edge, so giving it up is not a harmless safety swap.
+- E172 is safer but narrowly so:
+  - visible support surplus advantage `0.008852`.
+  - focus support surplus advantage `0.007054`.
+  - clean-shape E72 probability advantage only `0.00000972`.
+- E176-vs-E172 is a `75`-cell same-family rollback contrast.
+- E176-vs-E154 is a `1027`-cell counter-world contrast.
+
+Current order is unchanged:
+
+1. `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` - first sensor; broad/Q2-underopen worldview test.
+2. `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` - if E176 ties or small-loses; same-family safety contrast.
+3. `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` - if E176 branch-loses or hard-fails; repaired-branch counter-world.
+4. `analysis_outputs/submission_e174_ro_fc_top75_to1p0_95638e73.csv` - Q2 full-reopen contrast only after an explicit E176/E174 amplitude question.

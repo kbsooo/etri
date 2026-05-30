@@ -1,0 +1,11 @@
+metric,value,scale,read
+e176_expected_edge_over_e172,1.068851278044273e-05,logloss,E176 is lower than E172 by this focus-prior expected amount.
+e176_edge_as_fraction_of_e95_mixmin_edge,0.698107387670639,ratio,Choosing E172 first gives up about this fraction of the current E95-over-mixmin public edge.
+e172_visible_surplus_advantage,0.008852118449531196,support_mass,E172 is safer than E176 under the visible support-mass lens by this amount.
+e172_focus_surplus_advantage,0.0070535709771321065,support_mass,E172 is safer than E176 under the focus support-mass lens by this amount.
+e172_clean_shape_e72_advantage,9.722761163667292e-06,probability,E172 has this tiny lower clean-shape E72 probability; both are far below non-E72 p95.
+same_family_contrast_cells,75.0,cells,E176-vs-E172 is a narrow rollback contrast.
+counterworld_contrast_cells,1027.0,cells,E176-vs-E154 is the broad counter-world contrast.
+same_family_to_counterworld_delta_ratio,0.11425921588047597,ratio,"E172-first mostly tests a narrow same-family safety rollback, not the broad world conflict."
+e176_cells_for_e95_edge,4.0,cells,E176 is still hard-label fragile at public-edge scale.
+e176_vs_e172_cells_for_e95_edge,7.0,cells,The E176/E172 difference is public-readable but very thin.

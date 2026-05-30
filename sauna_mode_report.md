@@ -2730,3 +2730,33 @@ E176 제출 전 우선순위는 그대로다. 새 파일을 만들지 않는다.
 - tie/small-loss: E172 safety contrast 우선
 - branch/hard-loss: E154 repaired-branch counter-world 우선
 - E144: p99 tail alarm control로 보류
+
+## E200 업데이트: E172는 안전하지만 첫 센서는 아니다
+
+내가 발견한 가장 이상한 점:
+
+`E172는 E176보다 안전해 보인다. 그런데 안전하다는 사실이 곧 첫 제출 후보라는 뜻은 아니다. E172는 더 깨끗한 rollback contrast지만, E176이 묻는 broad/Q2-underopen 세계관 자체를 충분히 관측하지 못한다.`
+
+실험:
+
+- `analysis_outputs/e200_e176_vs_e172_first_sensor_resolution.py`
+- report: `analysis_outputs/e200_e176_vs_e172_first_sensor_resolution_report.md`
+
+결과:
+
+- E176 expected edge over E172: `0.0000106885`
+- 이 edge는 E95-over-mixmin public edge의 `0.698x`
+- E172 visible surplus advantage: `0.008852`
+- E172 focus surplus advantage: `0.007054`
+- E172 clean-shape E72 probability advantage: `0.00000972`
+- E176-vs-E172: `75` cells
+- E176-vs-E154: `1027` cells
+- same-family / counter-world expected-delta ratio: `0.114`
+
+생각이 어떻게 바뀌었는지:
+
+`E172의 장점은 인정해야 한다. 하지만 그 장점은 첫 센서를 바꿀 만큼 크지 않고, 질문도 좁다. E172-first는 "안전한 rollback이 맞나?"를 묻고, E176-first는 "broad/Q2-underopen 세계관이 public-real인가?"를 묻는다. 지금 필요한 것은 더 안전한 질문이 아니라 더 많은 세계관을 죽이는 질문이다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+제출한다면 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` 하나다. E172는 E176이 tie/small-loss일 때만 같은 family의 safety contrast로 쓴다. E176이 branch/hard-loss이면 E172가 아니라 E154/search로 간다.

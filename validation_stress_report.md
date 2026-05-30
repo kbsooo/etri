@@ -1317,3 +1317,27 @@ E199 fills the E198 missing-score gap by scoring direct candidate-vs-E95 movemen
   - E172/E174/E176 nearest contexts are low-score a2c8/jepa-latent/raw-jepa contexts, not E72 positives.
 
 Stress implication: the post-E176 route is cleaner than E198 could prove. E172 is not an E72-shaped same-family fallback; E154/E155 are not E72-shaped repaired branches; E144 carries the only direct p99 tail alarm and should remain a control rather than first counter-world.
+
+## Update After E200
+
+E200 stress-tests the practical ordering question created by E199: should the cleaner E172 fallback replace E176 as the first public sensor?
+
+- script: `analysis_outputs/e200_e176_vs_e172_first_sensor_resolution.py`.
+- report: `analysis_outputs/e200_e176_vs_e172_first_sensor_resolution_report.md`.
+- candidate comparison:
+  - E172 focus expected delta vs E95: `-0.000112695`.
+  - E176 focus expected delta vs E95: `-0.000123384`.
+  - E174 focus expected delta vs E95: `-0.000124367`.
+- E176 over E172:
+  - expected edge `0.0000106885`.
+  - `0.698x` of E95-over-mixmin public edge.
+  - E176-vs-E172 changed cells `75`.
+- E172 over E176:
+  - visible surplus advantage `0.008852`.
+  - focus surplus advantage `0.007054`.
+  - direct clean-shape E72 probability advantage `0.00000972`.
+- information stress:
+  - E176-vs-E172 is only `0.114x` of E176-vs-E154 by expected-delta magnitude.
+  - E176-vs-E154 moves `1027` cells and resolves the main broad-vs-repaired-branch conflict.
+
+Stress implication: E172 passes as a clean safety fallback, but not as a first-slot replacement. The ordering is robust to the E199 cleanliness update: E176 first, E172 after tie/small-loss, E154 after branch/hard-loss.

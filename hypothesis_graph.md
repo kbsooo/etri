@@ -2280,6 +2280,18 @@ target co-occurrence
 - public LB 관측 반응: E176 tie/small-loss should allow E172 as same-family safety contrast without E72-shape caveat. E176 branch/hard-loss should route to E154 before E144 because E154 is thin-margin clean-shape while E144 has p99 tail alarm.
 - 제출 전략: no E199 submission. Use E199 to rank follow-up routes after E176 feedback, not to replace E176 before feedback.
 
+### H194. E172 is safer than E176 but lower-information as the first sensor
+
+- 상태: 지지 by E200 as ordering rule; 반증된 버전은 "E172 should replace E176 first."
+- 왜 그럴듯한가: E172 has slightly better support-mass surplus and lower clean-shape E72 probability than E176, so it is tempting to submit it first as the safer broad-family candidate.
+- 맞다면: E172's safety advantage should be large enough to justify giving up E176's expected edge and should resolve the same live worldview conflict that E176 resolves.
+- 틀리다면: E172 should be safer only on a narrow same-family rollback axis, while E176 retains a material frontier-scale edge and the broader E176-vs-E154 conflict.
+- 최소 실험: `analysis_outputs/e200_e176_vs_e172_first_sensor_resolution.py`.
+- 관측: E176's expected focus edge over E172 is `0.0000106885`, `0.698x` of the full E95-over-mixmin public edge. E172's advantages are smaller safety margins: visible surplus `+0.008852`, focus surplus `+0.007054`, and clean-shape E72 probability lower by only `0.00000972`. E176-vs-E172 changes `75` cells, while E176-vs-E154 changes `1027`; the same-family delta is only `0.114x` of the counter-world delta.
+- 성공/폐기 기준: ordering supported unless the objective changes from information-rich public sensor to private-risk minimization. It weakens if public feedback later shows E172-like rollback wins while E176 loses in the exact same broad-family setting.
+- public LB 관측 반응: E176 win validates first-sensor ordering. E176 tie/small-loss activates E172 as planned. E176 branch/hard-loss shifts to E154/search; E172 should not be retroactively treated as the missed first choice unless the score lands specifically in the E172-conditional band.
+- 제출 전략: no E200 submission. Keep E176 first, E172 after tie/small-loss, E154 after branch/hard-loss.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
