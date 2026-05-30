@@ -3710,3 +3710,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E240 simple-PC10 remains disqualified by E241: it has good test stress but train top-10 drop delta `+0.001867628`.
 - Interpretation: E237's transferable object is not average OOF loss improvement. It is high-impact Q3 risk-tail discrimination plus test-side support/top-cell stress. That explains why simple PC10 fails despite looking good locally: it mimics the test motif without the learned tail-label support.
 - Decision: no E242 submission. Do not choose E237 siblings by OOF rank alone. If testing this branch publicly, use the already locked top E237 file and interpret it as a learned high-impact Q3 tail sensor, not a generic OOF-best policy.
+
+## E243. Next Public Slot After E242
+
+- Observe: E216 is a hard public-negative for masked-family S2 JEPA, while E242 keeps E237 live only as a high-impact Q3 tail-discrimination sensor. E224 is still the clean unpruned capped-Q3/S4 JEPA body sensor.
+- Wonder: if the next public slot is about using JEPA, should it be E237, E224, or a non-JEPA escape such as E166?
+- Method: `analysis_outputs/e243_next_public_slot_after_e242.py` joins E224, E237, E242, E229, E226, E228, and E230 metrics into a decision table and contrast table. No model is trained and no submission is created.
+- Result:
+  - report: `analysis_outputs/e243_next_public_slot_after_e242_report.md`.
+  - improvement-biased JEPA slot: `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+  - clean JEPA ablation slot: `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+  - non-JEPA escape slot: `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
+  - conservative repaired branch: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+- Interpretation: E237 is the closest "JEPA as solution" attempt because it uses a learned decisive-cell target and ranks `1/120` by OOF tail-AUC/support/top-cell safety, but it does not universally replace E224. E224 remains the cleaner scientific read on whether the unpruned capped-Q3/S4 JEPA body works.
+- Decision: if asked for one JEPA-as-solution submission, choose E237. If asked for the cleanest JEPA body experiment, choose E224. Do not submit E216 siblings, E240 simple residual-PC10 rules, lower-ranked E237 siblings, or an E224/E166/E154 blend before feedback.

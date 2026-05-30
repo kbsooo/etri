@@ -1881,3 +1881,12 @@
 - Implementation issue possible: low for the ranking claim because it is a direct audit over all existing E237 materialization rows. Medium for public truth because the real hidden labels are unknown.
 - Bottleneck implication: the live E237 object is high-impact Q3 tail identity, not generic OOF-CV improvement. This helps explain why many high-OOF policies fail support/top-cell stress.
 - Do not repeat: submitting E237 siblings because they improve OOF more than the locked top file, or calling E237 a broad learned translator.
+
+## FH209. E237 should universally replace E224 as the next JEPA file
+
+- Failed hypothesis: because E237 improves E224's Q3 tail geometry and is the closest learned JEPA cell-tail translator, it should supersede E224 for every JEPA-related public slot.
+- Observed result: E243 separates the question roles. E237 is ranked first for an improvement-biased JEPA-tail public test, but E224 remains first for the clean unpruned capped-Q3/S4 JEPA body test. E237 changes only `25` Q3 cells, so a public result from E237 would confound body validity with Q3 pre-pruning unless interpreted through E238 and ideally contrasted with E224.
+- Why discard: universal replacement would destroy feedback identifiability. If E237 wins, we would not know whether the clean E224 body also works; if it loses, we would not know whether the pre-pruned Q3 tail or the E224 body failed.
+- Implementation issue possible: low. This is a deterministic decision-geometry issue, not a stochastic training result.
+- Bottleneck implication: the bottleneck is still public-tail translation plus observation design. The next file must be chosen by the question: E237 for JEPA-as-solution, E224 for clean JEPA ablation, E166 for non-JEPA escape.
+- Do not repeat: saying "submit E237" without specifying that it is a learned Q3-tail bet, or demoting E224 without acknowledging that E224 answers a different clean-body question.

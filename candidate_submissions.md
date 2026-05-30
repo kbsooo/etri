@@ -1619,3 +1619,25 @@ Submission policy:
 2. Do not submit E237 siblings because they look better by average OOF gain.
 3. Do not submit simple residual-PC10 rules; E242 strengthens the distinction between learned high-impact tail labels and scalar residual-energy motifs.
 4. If E237 is submitted, public feedback should update the high-impact Q3 tail-discrimination worldview, not a generic OOF-CV worldview.
+
+## Update After E243
+
+E243 fixes the next-slot policy after E242. It does not create a new file; it separates two different JEPA questions that were easy to conflate.
+
+Current one-file policy:
+
+1. If the public slot is **JEPA-as-solution / improvement-biased**, submit:
+   `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+2. If the public slot is **clean JEPA body ablation**, submit:
+   `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+3. If the public slot is **non-JEPA escape**, submit:
+   `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
+4. Keep `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` as a conservative repaired-branch counter-world, not the highest-information first slot.
+
+Why E237 is now the closest real JEPA attempt:
+
+- It changes only `25` Q3 cells versus E224 and leaves S4 intact.
+- It has E224-relative expected loss `-0.000005612`, adverse reduction `0.000576400`, and support gain `0.006450259`.
+- E242 ranks it `1/120` by OOF tail-AUC, support gain, and Q3 top-cell safety, while only `71/120` by average OOF gain.
+
+Do not submit E216 siblings, E240 simple residual-PC10 rules, lower-ranked E237 siblings, or an E224/E166/E154 blend before feedback.

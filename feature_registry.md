@@ -1780,6 +1780,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: OOF gain is not useful as a selector (`AUC=0.426043`, top E237 rank `71/120`), while OOF tail-AUC is highly aligned with the E237 gate (`AUC=0.958913`, top E237 rank `1/120`).
 - Policy: use high-impact tail discrimination as the E237 feature identity. Do not use average OOF gain or raw residual PC10 as promotion criteria for E237 siblings.
 
+### F208. E243 public-slot question-routing features
+
+- Hidden structure: different candidate tensors can be valid only under different hidden-world questions; a feature can be useful for choosing the next observation without being a probability feature.
+- Candidates: public-slot role, JEPA-as-solution rank, clean-JEPA-ablation rank, non-JEPA escape rank, E237-vs-E224 Q3 dropped-cell count, E242 tail-AUC/support/top-cell ranks, E224/E216 cosine, E224/E166 cosine, E154 inherited-body penalty, and routebook decoder availability.
+- Label vs split test: this is governance metadata, not a model feature. It should never be trained into predictions or used to tune probabilities. It exists to prevent post-hoc blending and to preserve public LB as a sensor.
+- Current evidence: E243 ranks E237 first only for improvement-biased JEPA-tail testing, E224 first for clean JEPA body ablation, E166 first for non-JEPA broad-world escape, and E154 as conservative conditional branch.
+- Policy: use F208 to decide which public question is being asked before choosing a file. Do not collapse E237/E224/E166/E154 into one scalar rank or blend.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

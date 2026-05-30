@@ -2811,6 +2811,18 @@ target co-occurrence
 - public LB 관측 반응: E237 public win strengthens high-impact tail-discrimination, not generic OOF policy gain. E237 public loss says even that tail-discrimination plus stress gate is insufficient.
 - 제출 전략: do not submit E237 siblings chosen by OOF gain rank.
 
+### H238. E237 universally supersedes E224 as the next JEPA public file
+
+- 상태: 반증 as a universal rule by E243; 조건부 지지 for improvement-biased JEPA-as-solution.
+- 왜 그럴듯한가: E237 keeps E224's S4 body, drops only `25` Q3 cells, improves E224-relative support/adverse geometry, and E242 ranks it `1/120` by OOF tail-AUC/support/top-cell safety.
+- 맞다면: the next public slot should always be E237 whenever the word JEPA is the question, because it strictly dominates E224 in both information value and expected score.
+- 틀리다면: E237 and E224 answer different public questions. E237 tests learned Q3 decisive-cell pruning; E224 tests the clean unpruned capped-Q3/S4 JEPA body. A single public score from E237 cannot tell whether an E224 body failure/success was caused by body alignment or by pre-pruned Q3 cells unless E224 is also known or the E238 contrast routebook is used.
+- 최소 실험: `analysis_outputs/e243_next_public_slot_after_e242.py`.
+- 관측: E243 ranks E237 first only for an `improvement_biased_jepa_tail_sensor` slot. E224 remains first for `clean_unpruned_jepa_body_sensor`. E166 remains first for `independent_non_jepa_broad_world_sensor`, and E154 remains conservative/conditional.
+- 성공/폐기 기준: universal-supersession is rejected. Conditional E237 promotion is supported when the explicit goal is to try JEPA as a solution rather than isolate the clean body. E224 remains the cleaner ablation.
+- public LB 관측 반응: if E237 is submitted and wins, strengthen H232 high-impact Q3 tail-discrimination but still use E238/E224 contrast before increasing Q3 or tuning siblings. If E237 loses, close the current learned Q3-tail branch; do not infer that E224 would have failed unless the loss is E216-like or an E224 contrast is known.
+- 제출 전략: one-file JEPA-as-solution candidate is `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`. One-file clean JEPA body candidate remains `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

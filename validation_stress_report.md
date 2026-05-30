@@ -2109,6 +2109,24 @@ E242 E237 OOF-to-test transfer audit:
 
 Stress implication after E242: E237 is not an average-OOF-gain translator. Its valid local claim is narrower: high-impact Q3 risk-tail discrimination transfers to the public-free gate, while mean OOF loss rank does not. Future E237 siblings should not be selected by OOF delta alone.
 
+E243 next public-slot governance:
+
+- script: `analysis_outputs/e243_next_public_slot_after_e242.py`.
+- report: `analysis_outputs/e243_next_public_slot_after_e242_report.md`.
+- selected files: none; this is a decision protocol over existing candidates.
+- stress dimensions:
+  - E237-vs-E224: learned Q3 decisive-cell tail versus clean capped-Q3/S4 body.
+  - E237-vs-E230: learned cell-tail target versus hand Q3 prune.
+  - E237-vs-simple-PC10: OOF-trained tail target versus post-hoc residual-energy motif.
+  - E224-vs-E166 and E224-vs-E154: public-question separability and blend risk.
+- key results:
+  - E237 is ranked first only for an improvement-biased JEPA-as-solution public slot.
+  - E224 remains first for clean JEPA body ablation.
+  - E166 remains first for a non-JEPA independent broad-world slot.
+  - E154 remains conservative and conditional.
+
+Stress implication after E243: the live JEPA branch has two distinct experimental roles. E237 is the closest deployable JEPA-tail attempt, but it does not universally supersede E224 because it pre-prunes Q3 and would obscure the clean body question. Public-slot choice must be tied to the question, not to one scalar "best candidate" label.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.
