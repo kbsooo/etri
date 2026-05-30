@@ -2835,6 +2835,30 @@ target co-occurrence
 - public LB 관측 반응: E237 public win plus E245 weak compatibility would justify training a direct feature-NN1/decisive-cell JEPA target. E237 public loss overrides this weak compatibility and closes current E237 siblings unless an E224 contrast says the body was worse.
 - 제출 전략: no new E245 submission. Keep the audited E237 file as the one-file JEPA-as-solution candidate.
 
+### H246: Feature-NN1 smoothing is an actionable Q3 selector, not just an E237 explanation
+
+- 상태: supported locally; public-unverified.
+- 왜 그럴듯한가: E245 showed E237 locally smooths Q3 under the only E207 true-JEPA pair regime, but the effect was weak. If that regime is the hidden public law, directly selecting rows by hypothetical feature-NN1 Q3 smoothing should survive E237 stress without needing the learned E237 classifier.
+- 맞다면: smoothing-based selectors should pass graft-vs-E154 and actual-vs-E95 stress, improve adverse/support metrics versus E224, and avoid collapsing into pure E237 or amplitude-top-k selections.
+- 틀리다면: smoothing selectors will fail the E237-like gate, only pass as E237 clones, or pass only by violating Q3 top-cell/adverse constraints.
+- 최소 실험: `analysis_outputs/e246_feature_nn1_smoothing_selector_ablation.py`.
+- 관측: all `16/16` feature-NN1 selectors pass the E237-like gate. Best `nn_smooth_sum_top34` has expected loss vs E224 `-0.000066519`, adverse reduction `0.000632592`, support gain `0.005788959`, actual adverse reduction `0.000596176`, Q3 top1/expected `0.549713494`, and E237 overlap `13`.
+- 성공/폐기 기준: locally supported because a non-clone selector passes the full E237-like stress gate. Not final until public feedback because the selector is test-geometry-derived rather than OOF-learned.
+- public LB 관측 반응: E247 public win promotes feature-NN1 smoothing to a real JEPA selector. Near-tie keeps it informative but unresolved. E216-like loss demotes feature-NN1 smoothing to calibration shortcut.
+- 제출 전략: materialize exactly one high-information file in E247; do not sweep siblings before feedback.
+
+### H247: E247 is the most informative current JEPA-as-solution public sensor
+
+- 상태: candidate selected.
+- 왜 그럴듯한가: E237 is OOF-learned but only weakly feature-NN1-compatible. E247 is not OOF-learned, but it is generated directly from the E207 feature-neighbor context-target representation and passes the same stress gate with stronger smoothing and a non-clone row set.
+- 맞다면: the E247 artifact should be Q3-only, schema-clean, and have materially stronger feature-NN1 roughness reduction than E237 while preserving adverse/support stress.
+- 틀리다면: artifact integrity will fail, movement will leak into other targets, or stress metrics will not hold after materialization.
+- 최소 실험: `analysis_outputs/e247_feature_nn1_smoothing_materializer.py`.
+- 관측: `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` is schema/key/probability clean, changes `34` E224 cells all on Q3, SHA256 `3f4086d73b23a9c87294986aaa3a8ff32613312e69a398352d6744b8646ce839`, and reduces feature-NN1 Q3 roughness by `-0.014223558` globally and `-0.057353058` on affected pairs.
+- 성공/폐기 기준: selected as high-information public sensor. It is not private-safe certified because it fails E230's old `<=25` pruned-cell guard and lacks OOF selector validation.
+- public LB 관측 반응: win over E95 means JEPA manifold smoothing is actionable. Loss near E95/E101 means the hypothesis remains weak. E216-scale loss closes smoothing selectors until OOF invariance is learned.
+- 제출 전략: if spending one slot to test JEPA as a mechanism, submit E247. If choosing conservative OOF-learned JEPA, submit E237 instead.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

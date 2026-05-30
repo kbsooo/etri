@@ -2168,6 +2168,23 @@ E245 feature-NN1 JEPA compatibility audit:
 
 Stress implication after E245: E237 is compatible with the only LeJEPA-identifiable feature-neighbor regime, but the evidence is not strong enough to create a new candidate or override public feedback. This strengthens E237 as the next JEPA-as-solution sensor but does not certify the branch.
 
+## Update After E247
+
+E246/E247 adds a sharper stress result.
+
+- E246 tests `16` feature-NN1 smoothing selectors. All `16/16` pass the E237-like gate.
+- Best selector `nn_smooth_sum_top34` is non-clone: E237 overlap `13`, E230 swing25 overlap `10`, amp top25 overlap `10`.
+- It passes the E237-like graft plus actual-vs-E95 gate with:
+  - expected loss vs E224 `-0.000066519`.
+  - adverse reduction vs E224 `0.000632592`.
+  - support gain vs E224 `0.005788959`.
+  - actual adverse reduction vs E224 `0.000596176`.
+  - Q3 top1/expected `0.549713494`.
+- It fails the older E230 gate only because it prunes `34` Q3 cells, above E230's `<=25` cell-count guard.
+- E247 artifact check passes exact schema/key/probability integrity and changes only Q3 versus E224.
+
+Stress implication after E247: feature-NN1 smoothing is now a live selector, not only a diagnostic. The main unresolved risk is not local stress but invariance: the top selector is public-free and test-geometry-based, but not OOF-trained. Public feedback should decide whether this is a true JEPA manifold law or a local calibration-smoothing shortcut.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

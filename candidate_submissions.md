@@ -1689,3 +1689,39 @@ Submission policy remains:
 2. Do not create a new E245 submission.
 3. If E237 wins, train the next JEPA target directly on feature-NN1 decisive-cell compatibility.
 4. If E237 loses, E245 is too weak to justify tuning E237 siblings.
+
+## Update After E247
+
+E246/E247 changes the JEPA submission policy.
+
+New high-information JEPA candidate:
+
+`analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+
+Artifact facts:
+
+- selector: `nn_smooth_sum_top34`.
+- SHA256: `3f4086d73b23a9c87294986aaa3a8ff32613312e69a398352d6744b8646ce839`.
+- exact sample schema/key order.
+- finite probabilities in `[0,1]`.
+- E224 대비 changed cells `34`, all `Q3`.
+- expected loss vs E224 `-0.000066519`.
+- adverse reduction vs E224 `0.000632592`.
+- support gain vs E224 `0.005788959`.
+- actual-vs-E95 adverse reduction `0.000596176`.
+- feature-NN1 Q3 pair roughness delta `-0.014223558` global, `-0.057353058` affected.
+- E237 overlap `13`, E230 swing25 overlap `10`, amp top25 overlap `10`.
+
+Current candidate order:
+
+1. **Most informative JEPA-as-solution test:** E247 feature-NN1 smoothing file above.
+2. **More conservative learned-cell JEPA test:** `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+3. **Clean JEPA body ablation:** `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+4. **Non-JEPA escape:** `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
+5. **Conservative repaired branch:** `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+
+Interpretation rule:
+
+- If E247 beats E95, feature-NN1 broad-stage2 neighbor consistency becomes a real actionable JEPA selector, not just a diagnostic.
+- If E247 is near E95/E101 but not better, the selector is informative but too weak at public hard-label resolution; fall back to E237 or wait for an OOF-trained feature-NN1 decisive target.
+- If E247 is E216-like bad, the feature-NN1 smoothing gate is a calibration shortcut and should be demoted despite local stress success.

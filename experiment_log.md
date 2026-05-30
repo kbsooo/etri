@@ -3754,3 +3754,32 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - candidate movement-health table does not make E237 globally smoother than E224: E224 movement pair ratio `1.124777`, E237 `1.213392`; the support is specifically local Q3 NN-compatibility after rollback.
 - Interpretation: E237 does not conflict with the E207 true-JEPA pair regime. Its Q3 rollback locally moves E224 toward feature-NN consistency, which is exactly the direction a real context-target representation should prefer. But the null comparison is not strong enough to claim that feature-NN1 world modeling has solved the public tail. E237 remains a high-impact Q3 tail sensor with an additional weak LeJEPA compatibility check, not a certified 0.54 path.
 - Decision: no new submission. Keep E237 as the one-file JEPA-as-solution candidate if spending a slot now. If E237 public wins, next work should train a true feature-NN1/decisive-cell JEPA target directly; if it loses, E245 is too weak to rescue the branch.
+
+## E246. Feature-NN1 Smoothing Selector Ablation
+
+- Observe: E245 made E237 feature-NN1-compatible, but did not prove feature-NN1 geometry could select rows by itself. E216 also warned that locally plausible JEPA translators can collapse publicly.
+- Wonder: if the real hidden law is Q3 local consistency under the E207 `broad_stage2_pca64 / feature_nn1_all` regime, can a selector based only on hypothetical feature-NN1 Q3 smoothing pass the same E237 stress gate?
+- Method: `analysis_outputs/e246_feature_nn1_smoothing_selector_ablation.py` computes the single-row Q3 rollback effect on directed feature-nearest-neighbor abs-logit roughness, builds smoothing/amplitude selectors, and audits them against E230/E237 graft-vs-E154 plus actual-vs-E95 stress. No public LB is used.
+- Result:
+  - report: `analysis_outputs/e246_feature_nn1_smoothing_selector_report.md`.
+  - feature selectors tested: `16`; E237-like gate passes: `16/16`.
+  - best selector: `nn_smooth_sum_top34`.
+  - `nn_smooth_sum_top34` has expected loss vs E224 `-0.000066519`, adverse reduction `0.000632592`, support gain `0.005788959`, actual adverse reduction `0.000596176`, Q3 top1/expected `0.549713494`.
+  - it overlaps E237 by only `13` rows, E230 swing25 by `10`, and amp top25 by `10`, so this is not just an E237 clone or amplitude top-k.
+- Interpretation: E245 is no longer just a compatibility story. Feature-NN1 JEPA geometry can generate public-free Q3 rollback selectors that survive the existing stress stack. The caveat is that this is still test-side geometry, not an OOF-learned label selector.
+- Decision: promote the strongest selector to a materialized artifact in E247. Treat it as a high-information JEPA-world test, not as a certified low-risk replacement for E95.
+
+## E247. Feature-NN1 Smoothing Materializer
+
+- Observe: E246's top non-clone selector is stronger than the E237 control under the E237-like stress score, but it must be converted into a clean submission artifact before it can be considered.
+- Wonder: can the feature-NN1 selector become a one-file submission with exact schema, Q3-only movement, and an interpretable public hypothesis?
+- Method: `analysis_outputs/e247_feature_nn1_smoothing_materializer.py` materializes the top E246 selector `nn_smooth_sum_top34` by rolling back selected Q3 cells from E224 toward E154. It audits sample schema, key order, finite probabilities, changed-cell count, SHA256, and feature-NN1 roughness delta.
+- Result:
+  - submission: `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+  - report: `analysis_outputs/e247_feature_nn1_smoothing_materializer_report.md`.
+  - SHA256: `3f4086d73b23a9c87294986aaa3a8ff32613312e69a398352d6744b8646ce839`.
+  - exact sample columns/key order: `True`; finite probabilities in `[0,1]`: `True`.
+  - changed cells vs E224: `34`, all `Q3`.
+  - feature-NN1 Q3 global pair abs-logit delta: `-0.014223558`; affected-pair delta: `-0.057353058` over `62` directed pairs.
+- Interpretation: this is the first candidate in the branch where JEPA is not only an idea reference. The selector itself is a context-target representation rule: choose Q3 cells whose rollback makes broad-stage2 feature-neighbor predictions locally coherent.
+- Decision: if the next public slot is "try JEPA as an actual solution", E247 is now the most informative file. E237 remains the more conservative OOF-learned Q3 decisive-cell file. A public E247 win promotes feature-NN1 smoothing to an actionable JEPA selector; a loss says the local stress gate is still too calibration-prior-driven.

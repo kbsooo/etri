@@ -1796,6 +1796,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E237 reduces global Q3 NN-pair roughness by `-0.000802649` and affected-pair roughness by `-0.006472972`, but null percentiles are only weakly supportive (`0.1080` affected all-row; `0.2896` affected top50-amplitude). E237 is not globally smoother than E224 by movement pair ratio.
 - Policy: use F209 as a compatibility diagnostic for E237, not as a submission feature. If E237 wins, build a direct feature-NN1/decisive-cell JEPA target; if E237 loses, do not rescue the branch with F209 alone.
 
+### F210. E246/E247 feature-NN1 smoothing selector features
+
+- Hidden structure: Q3 probability should be locally coherent on the `broad_stage2_pca64 / feature_nn1_all` manifold; rows whose E224 Q3 logits violate that neighbor geometry are candidate rollback cells.
+- Candidates: directed feature-NN1 pair index, nearest-neighbor distance, single-row source pair smoothing delta, incoming pair smoothing delta, total/mean Q3 smoothing gain, amplitude-weighted smoothing gain, E237/E230/amp-top overlap, and selected-row roughness deltas after materialization.
+- Label vs split test: public-free and label-free on test, but not leak-free in the broader sense because it uses test geometry and candidate predictions. It must be treated as a sensor/candidate rule, not as a train-validated feature until an OOF analogue is built.
+- Current evidence: all `16/16` feature-NN1 selectors pass E237-like stress. The selected E247 file changes `34` Q3 cells, has E237 overlap `13`, E230 swing25 overlap `10`, expected loss vs E224 `-0.000066519`, adverse reduction `0.000632592`, and feature-NN1 Q3 roughness delta `-0.014223558` global / `-0.057353058` affected.
+- Policy: F210 is now an actionable JEPA selector for one high-information public test. Do not sweep thresholds or siblings before feedback. If E247 wins, convert F210 into an OOF-trained feature-NN1 decisive-cell objective. If it loses badly, demote F210 to a smoothing/calibration shortcut.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.
