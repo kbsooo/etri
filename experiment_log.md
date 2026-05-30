@@ -4431,3 +4431,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best-looking materialized candidate has actual mean `-0.000495` and p90 `-0.000308`, but null strict rate `1.000000` and p90/worst-mode dominance `0.000000`.
 - Interpretation: the row-placement law exists in labeled train rows. The breakthrough is not blocked by absence of human/social signal. It is blocked by train-to-test placement transfer: current test edits still look like generic Q3 movement under the local governor.
 - Decision: no E290 public submission. The next useful branch should either identify a stronger test-side invariant for Q3 placement or change the target from probability movement to block-level hidden-state assignment.
+
+## E291. Lifestyle Block-State Assignment Audit
+
+- Observe: E290 proved that train row placement is learnable, but the test tensor still cannot distinguish real placement from row/subject/dateblock shuffles. The next question is whether the missing invariant is coarser than rows: subject-weekday, subject-weekend, dateblock, month/payday phase, or lifestyle-bin block state.
+- Wonder: can Q3/S4 lifestyle corrections be assigned by hidden human block state rather than rowwise gates?
+- Method: `analysis_outputs/e291_lifestyle_block_state_assignment_audit.py` lifts E289/E290 target-slice benefit to block labels. It evaluates dateblock, subject-weekday, subject-weekend, subject-month-phase, and subject-lifestyle-bin block schemes, trains block-state predictors under subject/dateblock CV, stress-tests them against row/subject/dateblock block-score shuffles, then materializes top block policies on E247-current and compares them with matched null submissions. No public LB was used.
+- Result:
+  - block policy rows: `560`;
+  - train block gates: `39`;
+  - materialized candidates: `40`;
+  - matched null candidates: `600`;
+  - public-free ready candidates: `0`.
+  - strongest train block policy: `S4_family_jepa_context_dateblock5_cluster6_subject_lifestyle_bin_mean_good_subject_cv`, block fraction `0.50`, actual delta `-0.017607` versus null median `-0.011219`, dominance `0.979167`.
+  - strongest Q3 weekday/weekend policies also survived train stress, e.g. `Q3_family_jepa_context_dateblock5_pc_subject_weekday_strong35_subject_cv`, block fraction `0.70`, actual delta `-0.013683`, dominance `1.000000`.
+  - best-looking materialized candidate has mean `-0.000796` or p90 around `-0.000314` depending on rank, but all promote-scale candidates are blocked by matched nulls; public-ready remains `0`.
+- Interpretation: the social/lifestyle block state is real on train. Weekday/weekend and lifestyle-bin structure matters, and payday/month-phase is worth keeping as a diagnostic axis. But the current test materialization still collapses into generic Q3/S4 movement. Coarser blocks alone do not solve placement transfer.
+- Decision: no E291 public submission. The next useful experiment should stop asking only "which rows or blocks receive the existing delta" and instead learn a contrastive test-side invariant: why true Q3/S4 lifestyle states differ from matched null placements with the same target movement.

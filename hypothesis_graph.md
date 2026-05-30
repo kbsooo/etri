@@ -3292,6 +3292,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E290. A public win would imply the local matched-null governor is overly conservative for Q3 placement; the current evidence says this is a low-quality bet.
 - 제출 전략: none. Next branch should move from rowwise scalar placement to block-level hidden-state assignment or an independent test-side invariant for Q3 placement.
 
+### H291: hidden lifestyle block-state assignment transfers better than rowwise placement
+
+- 상태: supported as train-side block structure; rejected as current submission translator.
+- 왜 그럴듯한가: E290 found a strong row-placement law in labeled train rows but failed test matched-null governance. Human sleep behavior should be episodic: weekdays, weekends, month/payday phases, and lifestyle clusters can define states where Q3/S4 corrections are valid.
+- 맞다면: block-state predictors should beat row/subject/dateblock score shuffles on train and then produce E247-current candidates whose local gains are not reproduced by matched block nulls.
+- 틀리다면: train block states may look meaningful, but the materialized candidates will remain null-reproducible because block labels still do not identify the public/test placement invariant.
+- 최소 실험: `analysis_outputs/e291_lifestyle_block_state_assignment_audit.py`.
+- 관측: `560` block policy rows produced `39` train block gates. S4 subject-lifestyle-bin and Q3 subject-weekday/weekend states were strong on train; the best S4 policy reached actual delta `-0.017607` with dominance `0.979167`, and a Q3 weekday policy reached `-0.013683` with dominance `1.000000`. But `40` materialized candidates and `600` matched nulls produced public-ready `0`.
+- 성공/폐기 기준: reject direct block-state materialization. Keep lifestyle-bin, weekday/weekend, and month/payday phase as diagnostic axes, but require an independent test-side invariant before public submission.
+- public LB 관측 반응: no public LB should be spent on E291. If an E291 candidate wins publicly, it would imply the matched-null governor is too conservative for block-level edits; local evidence does not support that risk.
+- 제출 전략: none. The next strategy should learn contrastive true-vs-null placement identity or a target representation that separates real Q3/S4 lifestyle states from generic movement.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

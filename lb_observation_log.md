@@ -453,3 +453,21 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - strongest candidate null strict rate: `1.000000`.
 - interpretation: train labels can teach where lifestyle corrections help, but the learned placement does not transfer into a test tensor that beats matched nulls.
 - next experiment: search for an independent test-side placement invariant or move from rowwise placement to hidden block-state assignment.
+
+## Public-Free Observation: E291
+
+- submission files: `analysis_outputs/submission_e291_lifeblock_*.csv`
+- public LB: not submitted.
+- reason not submitted: public LB is scarce, and E291 failed the local E247-current matched row/subject/dateblock null governor.
+- local observation:
+  - block policy rows: `560`;
+  - train block gates: `39`;
+  - candidates: `40`;
+  - matched nulls: `600`;
+  - public-free ready files: `0`;
+  - best train block delta: `-0.017607`;
+  - best candidate actual mean: `-0.000796`;
+  - best candidate p90 scale: about `-0.000314`;
+  - promote-scale candidates are blocked by matched nulls.
+- interpretation: hidden lifestyle block state is real on train, but direct block-gated E247-current edits are not certified.
+- next experiment: learn a contrastive true-vs-null placement representation before spending another public LB slot.

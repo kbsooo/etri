@@ -2681,3 +2681,35 @@ Next submission candidate requirement:
 - a future lifestyle candidate must carry an independent test-side placement invariant;
 - negative mean/p90 against current is not enough if matched nulls strict-promote too;
 - move toward block-level state assignment or test-invariant Q3 placement, not another scalar row gate.
+
+## Update After E291 Lifestyle Block-State Assignment Audit
+
+Current submission policy remains: **no new public submission.**
+
+What was tested:
+
+- hidden lifestyle block assignment for Q3/S4/S1 slices;
+- dateblock, weekday/weekend, month/payday phase, and lifestyle-bin block states;
+- subject/dateblock train block stress;
+- E247-current block-gated materialization with matched null submissions.
+
+What was learned:
+
+- Block state is not fake. `39/560` train block policies pass the train gate.
+- Strongest train evidence is S4 lifestyle-bin and Q3 weekday/weekend state.
+- But test materialization still fails: `40` candidates, `600` matched nulls, and `0` public-free ready files.
+- The best negative local deltas are still explainable by matched null placement, so they should not consume public LB.
+
+Do not submit:
+
+- any `analysis_outputs/submission_e291_lifeblock_*.csv` file.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+Next submission candidate requirement:
+
+- it must distinguish true lifestyle placement from null placement, not only choose a plausible weekday/weekend or lifestyle-bin block;
+- require matched-null dominance before public testing;
+- treat month/payday phase as a diagnostic state axis until it produces a test-side invariant.

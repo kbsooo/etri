@@ -2334,3 +2334,30 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - prefer block-level or independently test-identifiable placement features over scalar row gates.
 - Failure condition:
   - if a candidate has negative actual mean/p90 but null strict rate near `1.0`, classify it as generic Q3 movement rather than row-placement evidence.
+
+## E291 Lifestyle Block-State Policy
+
+- Target hypothesis tested: row placement may fail because the true assignment is a coarser human episode, such as weekday/weekend, month/payday phase, dateblock, or lifestyle-bin state.
+- Feature/representation source:
+  - E289/E290 Q3/S4/S1 lifestyle slices;
+  - dateblock and subject calendar groups;
+  - weekday/weekend subject blocks;
+  - month-phase labels with pay-start and month-end buckets;
+  - lifestyle-bin states from JEPA/raw human context PCs and clusters.
+- Validation result:
+  - block policy rows: `560`;
+  - train block gates: `39`;
+  - materialized candidates: `40`;
+  - matched row/subject/dateblock nulls: `600`;
+  - public-ready candidates: `0`.
+- Updated registry status:
+  - S4 lifestyle-bin state is approved as a train diagnostic.
+  - Q3 weekday/weekend state is approved as a train diagnostic.
+  - month/payday phase remains a plausible diagnostic axis but is not approved as a direct probability feature.
+  - no E291 block-state model is approved for direct E247-current editing.
+- Adopt rule for future block features:
+  - use block-state scores as inputs to contrastive true-vs-null placement tests;
+  - do not treat a plausible social calendar story as sufficient;
+  - require candidate-level matched-null dominance, not only train block dominance.
+- Failure condition:
+  - if a block-gated candidate has negative local mean/p90 but is blocked by matched nulls, classify it as generic target movement rather than certified hidden block state.

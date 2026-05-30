@@ -2160,3 +2160,12 @@
 - Implementation issue possible: medium. The placement model is intentionally simple and rowwise; a block-level or externally invariant placement target may still work. Low for blocking these exact E290 files because the matched-null failure is direct.
 - Bottleneck implication: the problem is now narrower than "find human stories." We need a test-identifiable placement invariant or hidden block-state assignment.
 - Do not repeat: submitting `submission_e290_lifeplace_*` files or treating train placement gates as enough without test matched-null resistance.
+
+## FH240. Hidden lifestyle block state directly transfers to current test submissions
+
+- Failed hypothesis: if rowwise lifestyle placement fails, lifting the assignment to coarser human episodes such as weekday/weekend, lifestyle-bin, dateblock, or month/payday phase should create a public-free submission-ready block-gated edit.
+- Observed result: E291 finds strong train block structure (`39/560` block gates). The strongest S4 lifestyle-bin policy reaches actual delta `-0.017607` with dominance `0.979167`, and Q3 weekday/weekend policies are also train-positive. But all `40` materialized candidates fail matched-null governance against `600` nulls; public-ready candidates remain `0`.
+- Why discard: the block states are meaningful diagnostics, but they still do not identify the correct test placement. Matched nulls with comparable target movement can reproduce the local selector response.
+- Implementation issue possible: medium. The block definitions are intentionally simple and hand-built; a learned contrastive block target may still work. Low for blocking exact E291 files because the candidate/null governor directly tests the proposed materialization.
+- Bottleneck implication: the active bottleneck is not lack of human/social stories, not lack of target-specific slices, and not simply row-versus-block granularity. The missing object is a test-visible invariant that separates true lifestyle placement from null placement under the same movement budget.
+- Do not repeat: submitting `submission_e291_lifeblock_*` files or creating more calendar/social block edits without contrastive matched-null evidence.

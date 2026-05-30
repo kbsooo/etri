@@ -2992,3 +2992,31 @@ Decision:
 - Do not submit any E290 file.
 - Public LB is preserved.
 - Train row-placement exists, but test transfer is still not matched-null certified.
+
+## E291 Lifestyle Block-State Assignment Governor
+
+Question: can the failed row-placement problem be lifted to hidden subject/calendar/lifestyle block states?
+
+Method: `analysis_outputs/e291_lifestyle_block_state_assignment_audit.py`.
+
+- Hidden target: block-level benefit for E289/E290 target-specific lifestyle slices.
+- Block schemes: dateblock, subject-weekday, subject-weekend, subject-month/payday phase, and subject-lifestyle-bin.
+- Train stress: subject/dateblock CV block predictors versus row/subject/dateblock block-score shuffles.
+- Test stress: E247-current block-gated target edits versus matched null submissions.
+
+Result:
+
+- block policy rows: `560`.
+- train block gates: `39`.
+- materialized candidates: `40`.
+- matched nulls: `600`.
+- public-free ready candidates: `0`.
+- strongest train block: S4 lifestyle-bin mean-good subject-CV, block fraction `0.50`, actual delta `-0.017607`, null median `-0.011219`, dominance `0.979167`.
+- strongest Q3 block family: weekday/weekend policies from family-JEPA/dateblock PC state, with train deltas around `-0.013683` to `-0.016741`.
+- best submitted-scale local candidates have negative mean/p90 but fail matched-null governance; all promote-scale rows end as `blocked_by_matched_nulls`.
+
+Decision:
+
+- Do not submit any E291 file.
+- Public LB is preserved.
+- Coarser social block state is real on train, but block assignment alone does not solve test placement transfer.
