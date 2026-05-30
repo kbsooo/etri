@@ -2279,3 +2279,31 @@ Decision:
 - Do not submit E275, E276, or any q-sleep diary variant generated so far.
 - The live breakthrough path is now row-alignment learning: build a JEPA/mobility/Q3 representation whose real row placement beats matched shuffle nulls.
 - Candidate ranking must now include `placebo_resistant_gate=True`; old `promote_candidate` is only a weak diagnostic.
+
+## Update After E278 Train Row-Alignment Audit
+
+Still no submission candidate, but the reason is now sharper.
+
+E278 applies the same q-sleep policies to labeled train rows on top of OOF calendar/subject Q baselines, then compares real row placement against row/subject/dateblock shuffle nulls.
+
+Result:
+
+- candidate/split rows: `40`.
+- train-align gate rows: `27`.
+- candidates passing both subject and dateblock train gates: `13`.
+- `full_qsleep` passes both train gates:
+  - subject OOF delta `-0.001998955`;
+  - dateblock OOF delta `-0.001362687`.
+- `jepa_only` passes both train gates:
+  - subject OOF delta `-0.001263774`;
+  - dateblock OOF delta `-0.000802362`.
+- `q3_only` passes both train gates:
+  - subject OOF delta `-0.001363003`;
+  - dateblock OOF delta `-0.000879044`.
+- inverse control is strongly adverse.
+
+Interpretation:
+
+- The q-sleep diary signal is not fake and not merely a random row-order artifact on train labels.
+- The current failure is transfer: train row-alignment does not become a test/public-free placebo-resistant candidate.
+- Therefore do not submit a file yet. The next useful candidate must explicitly solve train-to-test row-alignment transfer, not just reuse the train-positive policies.

@@ -2052,3 +2052,12 @@
 - Implementation issue possible: low for blocking current variants, because the nulls preserve exact movement magnitudes. Medium for future row-alignment objectives, because the current selector family is still coarse.
 - Bottleneck implication: the problem is not which current semantic subset to submit. The missing object is a representation/gate that optimizes row alignment against matched nulls.
 - Do not repeat: selecting q-sleep candidates by old p90, old strict gate, or semantic story alone.
+
+## FH228. E277 means q-sleep diary row signal is absent
+
+- Failed hypothesis: because q-sleep candidates fail test matched-placebo resistance, the underlying human diary row-alignment signal is absent or random.
+- Observed result: E278 shows strong labeled-train row alignment. `full_qsleep`, `q3_only`, `jepa_only`, `only_bedtime_phone`, and `only_mobility_context` beat matched row/subject/dateblock nulls on OOF Q baselines; inverse movement is adverse.
+- Why discard: E277 and E278 together imply transfer failure, not signal absence.
+- Implementation issue possible: medium. E278 uses fixed E274-selected axes, so it is diagnostic rather than a clean nested CV estimate. But the matched null margins and inverse-control sign are strong enough to reject "no signal."
+- Bottleneck implication: representation/capacity is not the first problem. Train-to-test row-alignment transfer and calibration are the active bottleneck.
+- Do not repeat: abandoning human/social q-sleep JEPA features entirely because E277 blocked direct submissions.

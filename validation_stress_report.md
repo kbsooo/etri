@@ -2601,3 +2601,39 @@ Decision:
 - Passing E272/E275 is no longer a valid submission certificate.
 - No q-sleep diary file is submission-ready.
 - The next validation target is row-alignment: real JEPA/mobility/Q3 rows must separate from their matched shuffle nulls before any public LB use.
+
+## E278 Train Row-Alignment Null Audit
+
+Question: is the q-sleep row-alignment signal absent, or does it exist on train but fail to transfer to test/public-free selector geometry?
+
+Method: `analysis_outputs/e278_train_row_alignment_null_audit.py`.
+
+- Baselines: OOF calendar/subject logistic models for Q1/Q2/Q3.
+- Splits: subject-group OOF and dateblock-group OOF.
+- Policies: the same E275/E276 q-sleep semantic variants.
+- Nulls: `200` matched row/subject/dateblock shuffles per candidate/split/mode.
+- Metric: mean Q-target logloss delta versus OOF baseline.
+
+Result:
+
+- candidate/split rows: `40`.
+- train-align gate rows: `27`.
+- candidates passing both subject and dateblock gates: `13`.
+- strongest broad policy:
+  - `full_qsleep` subject/dateblock deltas `-0.001998955 / -0.001362687`.
+- strongest clean target policy:
+  - `q3_only` subject/dateblock deltas `-0.001363003 / -0.000879044`.
+- JEPA policy:
+  - `jepa_only` subject/dateblock deltas `-0.001263774 / -0.000802362`.
+- single-family row alignment:
+  - `only_bedtime_phone` passes both gates with small but highly null-dominant Q3 deltas.
+  - `only_mobility_context` passes both gates.
+- inverse control is adverse: subject/dateblock deltas `+0.001682720 / +0.001176547`.
+
+Decision:
+
+- Row alignment exists on labeled train data.
+- E277's failure is not evidence of no signal. It is evidence of train-to-test/public selector transfer failure.
+- Future validation must require both:
+  - train row-alignment null dominance, and
+  - test/public-free matched-placebo resistance.

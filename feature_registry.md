@@ -2036,3 +2036,20 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - require old strict gate only as a first screen;
   - require null strict-promote rate <= `0.20`;
   - require p90 dominance over matched nulls >= `0.80`.
+
+## E278 Train Row-Alignment Diagnostic Features
+
+- Target hypothesis tested: q-sleep diary features may have supervised row signal even if current test candidates fail matched-placebo resistance.
+- Feature source: same E273/E274/E275 diary-energy axes, evaluated on train with OOF Q baselines.
+- Positive train-aligned feature groups:
+  - `full_qsleep`: strong broad Q-side train alignment.
+  - `q3_only`: clean Q3 row-alignment signal.
+  - `jepa_only`: JEPA-derived mobility/routine/bedtime/money axes transfer within train.
+  - `only_bedtime_phone`: small but highly null-dominant Q3 row alignment.
+  - `only_mobility_context`: passes both subject/dateblock train gates.
+- Negative/control:
+  - inverse full movement is adverse.
+  - `only_media_game` and `only_cognitive_money` do not pass robust train gates as standalone axes.
+- Updated feature status:
+  - These features are approved for row-alignment model training/diagnosis.
+  - They are still not approved for direct submission movement until E277-style test matched-placebo resistance is also satisfied.

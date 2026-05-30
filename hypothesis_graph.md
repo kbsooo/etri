@@ -3135,6 +3135,18 @@ target co-occurrence
 - public LB 관측 반응: no public submission from this branch until a candidate has `placebo_resistant_gate=True`.
 - 제출 전략: none. Next build row-alignment objective or gate.
 
+### H278: q-sleep row alignment exists on train, but fails transfer to test/public selector
+
+- 상태: supported; strongest current q-sleep bottleneck explanation.
+- 왜 그럴듯한가: E277 could be caused either by no row signal or by train/test row-alignment transfer failure. Train labels can distinguish these.
+- 맞다면: q-sleep policies should beat matched row/subject/dateblock shuffle nulls on labeled train OOF baselines, while still failing E277 on test candidate geometry.
+- 틀리다면: train actual row placement would not beat shuffle nulls either.
+- 최소 실험: `analysis_outputs/e278_train_row_alignment_null_audit.py`.
+- 관측: train-align gate rows `27/40`; candidates passing both subject/dateblock gates `13`. `full_qsleep` deltas `-0.001998955 / -0.001362687`; `q3_only` `-0.001363003 / -0.000879044`; `jepa_only` `-0.001263774 / -0.000802362`. Inverse control is adverse.
+- 성공/폐기 기준: H278 supported. Signal exists on train; current failure is transfer/calibration/selector, not total absence of human diary information.
+- public LB 관측 반응: no public submission yet. A candidate must satisfy both E278 train row-alignment and E277 test matched-placebo resistance.
+- 제출 전략: none from current policies. Next build a transfer gate or JEPA target that predicts placebo-resistant row placement.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

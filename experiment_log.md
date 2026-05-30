@@ -4204,3 +4204,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E275 primary has p90 dominance only `0.571429` and null strict rate `0.952381`.
 - Interpretation: the live q-sleep branch has directional Q-side/JEPA/mobility signal, but the current selector cannot certify row alignment. The hidden structure is not yet a submission tensor; it is a row-alignment learning problem.
 - Decision: no submission from E275/E276/E277. The next experiment should train or construct a JEPA/mobility/Q3 row-alignment objective that directly maximizes separation from matched shuffle nulls.
+
+## E278. Train Row-Alignment Null Audit
+
+- Observe: E277 rejected all q-sleep candidates on test-side matched-placebo resistance. That could mean no row signal exists, or it could mean train row signal fails to transfer.
+- Wonder: on labeled train rows, do the same q-sleep policies choose rows that improve Q-target OOF logloss more than matched shuffles?
+- Method: `analysis_outputs/e278_train_row_alignment_null_audit.py` applies E275/E276 q-sleep policies to train rows on top of OOF calendar/subject baselines for Q1/Q2/Q3. It compares actual row placement to `200` row/subject/dateblock shuffle nulls per candidate/split/mode.
+- Result:
+  - candidate/split rows: `40`.
+  - train-align gate rows: `27`.
+  - candidates passing both subject and dateblock gates: `13`.
+  - `full_qsleep` passes both: subject/dateblock deltas `-0.001998955 / -0.001362687`.
+  - `q3_only` passes both: `-0.001363003 / -0.000879044`.
+  - `jepa_only` passes both: `-0.001263774 / -0.000802362`.
+  - `only_bedtime_phone` passes both with highly null-dominant small Q3 gains.
+  - inverse control is adverse: `+0.001682720 / +0.001176547`.
+- Interpretation: the q-sleep diary signal is real on train labels and not just random row placement. The bottleneck is transfer/calibration: train-positive row alignment does not become E277 test/public-free placebo resistance.
+- Decision: still no submission. Next experiment should learn a transfer gate: rows where train row-alignment score predicts test matched-placebo dominance, probably focusing on JEPA/mobility/Q3 and bedtime-phone as separate mechanisms.
