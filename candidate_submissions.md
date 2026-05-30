@@ -2550,3 +2550,36 @@ Next submission candidate requirement:
 - do not use current test-side E247 cell membership as the only target representation;
 - ground the next social/JEPA latent in train OOF residuals, label lift, or explicit row-alignment transfer;
 - require matched-null dominance before public LB.
+
+## Update After E287 Train-Supervised Row-Alignment Transfer Audit
+
+Current submission policy remains: **no new public submission.**
+
+What was tested:
+
+- train OOF row-action benefit as the hidden target;
+- q-sleep policies including Q3-only, mobility Q3, bedtime-phone Q3, JEPA-only, full Q-side, and attention/money Q3;
+- subject/dateblock OOF train gates;
+- E247-current test materialization;
+- matched row/subject/dateblock null governance.
+
+What was learned:
+
+- The label-grounded train target is not empty: `q3_only` and `mobility_q3` can pass train row-placement gates.
+- Strong latent AUC alone is not enough: `bedtime_q3` reaches AUC `0.852632` but does not pass train placement.
+- Transfer is still the bottleneck. The best transferred file, `submission_e287_rowalign_q3_only_subject_oof_lr_l1_tf70_5fc12bc2.csv`, has negative mean/p90 but is `too_small_to_submit`.
+- Mobility Q3 transfers become adverse on the current tensor.
+
+Do not submit:
+
+- any `analysis_outputs/submission_e287_rowalign_*.csv` file.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+Next submission candidate requirement:
+
+- train-supervised row-action benefit can be used as an energy feature, but not yet as a direct edit;
+- a future candidate must beat matched nulls in p90 and worst-mode dominance, not only show negative mean;
+- public LB should stay unused until that governor passes.

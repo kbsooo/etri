@@ -2124,3 +2124,12 @@
 - Implementation issue possible: medium. The logistic latent and cell-label definitions are intentionally simple, and a richer train-supervised target may still work. Low for blocking these exact E286 files because the tensor-level current-anchor/null governor directly rejects them.
 - Bottleneck implication: the bottleneck is not only model capacity or feature creativity. The hidden target definition is the bottleneck. Test-side pseudo cell identity is too self-referential unless it is grounded by train labels/residuals or row-alignment transfer.
 - Do not repeat: training more models to recognize current E247 cells and submitting tiny add/undo/swap edits unless the latent first passes source-transfer and matched-null dominance.
+
+## FH236. Train-supervised q-sleep row-action benefit directly transfers to E247-current submissions
+
+- Failed hypothesis: if row-action benefit is supervised by train OOF labels rather than by test-side E247 pseudo-labels, the learned gate should produce a public-free submission-ready E247-current edit.
+- Observed result: E287 creates `36` latent rows and `180` train policy rows. Three policies pass train row-placement gates, but all three test materializations fail the current matched-null governor. The best file has mean `-0.000051070` and p90 `-0.000034973`, but final decision `too_small_to_submit`; the two mobility Q3 files are adverse on test.
+- Why discard: train signal exists, but the public-facing tensor does not have enough matched-null dominance or resolution. The current transfer rule still cannot decide which test rows should receive the train-positive q-sleep/Q3 action.
+- Implementation issue possible: medium. The train target is small, action families are narrow, and models are intentionally simple. A sharper bridge may still work, especially if it predicts transfer energy rather than directly edits probabilities.
+- Bottleneck implication: the active bottleneck is train-to-test row-alignment transfer, not lack of human/social hypotheses. Local train labels can identify useful actions, but current test placement is not certified.
+- Do not repeat: submitting `submission_e287_rowalign_*` files or treating negative mean movement as enough without p90 and worst-mode matched-null dominance.

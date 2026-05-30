@@ -4361,3 +4361,22 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best candidate p90 values are only around `-0.000004`, and all final decisions are `too_small_to_submit` or `below_selector_resolution`.
 - Interpretation: E247 preserve/avoid identity is recoverable, but mostly because E247's own feature-neighbor geometry defines the cell set. Human/social features contain a small sibling-boundary signal, yet that signal does not transfer and does not create an action-grade tensor. This is a useful negative result because it blocks a tempting public-LB-consuming route.
 - Decision: no E286 public submission. Preserve E247. The next useful target should be train/OOF-supervised social residual or row-alignment transfer, not another test-side pseudo-label of E247 cell identity.
+
+## E287. Train-Supervised Row-Alignment Transfer Audit
+
+- Observe: E278 showed q-sleep diary actions are row-aligned on labeled train rows, while E276/E277/E279 showed test-side q-sleep tensors fail matched placebos. E286 also blocked current-test pseudo-labeling of E247 cell identity.
+- Wonder: can the hidden target be made less self-referential by training directly on OOF row-action benefit, then transferring only rows whose placement beats matched nulls?
+- Method: `analysis_outputs/e287_train_supervised_row_alignment_transfer.py` builds train cells from OOF Q1/Q2/Q3 baselines and q-sleep policy moves, labels a cell as good when the action lowers row logloss, learns the benefit gate from diary/social/app-entropy/action context, stress-tests train row placement against row/subject/dateblock shuffles, then materializes only train-gated policies on the E247-current test tensor. No public LB was used.
+- Result:
+  - latent rows: `36`;
+  - train policy rows: `180`;
+  - train-gated policies: `3`;
+  - materialized candidates: `3`;
+  - matched nulls: `63`;
+  - public-free ready candidates: `0`.
+  - strongest latent: `bedtime_q3/dateblock_oof/lr_l2`, AUC `0.852632`, AP lift `0.169223`, but it did not pass the train row-placement gate.
+  - train-gated survivors: `q3_only/subject_oof/lr_l1` delta `-0.000979`, `mobility_q3/dateblock_oof/hgb_shallow` delta `-0.000254`, and `mobility_q3/dateblock_oof/lr_l2` delta `-0.000214`.
+  - best test transfer: `submission_e287_rowalign_q3_only_subject_oof_lr_l1_tf70_5fc12bc2.csv`, actual mean `-0.000051070`, p90 `-0.000034973`, but final decision `too_small_to_submit` with p90 dominance only `0.714286` and worst-mode p90 dominance `0.428571`.
+  - mobility Q3 transfers were adverse on the current tensor: actual means `+0.000037869` and `+0.000060097`.
+- Interpretation: the social/q-sleep row-action target is not empty; train OOF can learn some row placement. The bottleneck is transfer and resolution: train-positive gates do not become a test-side movement that beats matched nulls with enough margin. Payday/cognitive-money context also did not become a train-gated transfer policy in this run.
+- Decision: no E287 public submission. The result strengthens "row-alignment transfer" as the current bottleneck and weakens further public-LB spending on tiny q-sleep/Q3 social edits unless they pass a matched-null governor first.

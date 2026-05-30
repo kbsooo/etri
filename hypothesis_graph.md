@@ -3244,6 +3244,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E286. If an E286 file won publicly, it would mean the local matched-null governor missed an extremely narrow public subset, not that the learned preserve/avoid latent was locally certified.
 - 제출 전략: none. Preserve E247. The next branch should ground social latents in train/OOF residual labels or row-alignment transfer targets rather than pseudo-labeling E247 cell identity from test-side submission anatomy.
 
+### H287: train-supervised q-sleep row-action benefit can transfer to the current E247 tensor
+
+- 상태: partially supported as train signal; rejected as current submission translator.
+- 왜 그럴듯한가: E278 showed that q-sleep policies improve labeled train rows against row/subject/dateblock nulls. E276/E277/E279 showed the same family fails when materialized directly on test. A label-grounded row-action target should be less self-referential than E247 pseudo-cell identity.
+- 맞다면: OOF row-action benefit should be predictable from human/social/JEPAlike context, train-gated policies should beat matched shuffles, and the same gates should create E247-current test edits that beat matched row/subject/dateblock nulls with enough p90 and worst-mode dominance.
+- 틀리다면: some train row benefit may be learnable, but the test tensor will be below selector resolution, adverse on mobility/Q3, or indistinguishable from matched nulls.
+- 최소 실험: `analysis_outputs/e287_train_supervised_row_alignment_transfer.py`.
+- 관측: latent rows `36`, train policy rows `180`, train-gated policies `3`, candidates `3`, matched nulls `63`, public-ready `0`. `bedtime_q3/dateblock_oof/lr_l2` had AUC `0.852632` but no train gate. `q3_only/subject_oof/lr_l1` passed train with delta `-0.000978542`, but test final decision was `too_small_to_submit`; mobility transfers were positive/adverse on the current tensor.
+- 성공/폐기 기준: train-supervised q-sleep row benefit is alive as a diagnostic target, but the current transfer/materialization is rejected. A future version must improve worst-mode matched-null dominance and produce an edge above local resolution before public LB.
+- public LB 관측 반응: no public LB should be spent on E287. If E287-like q3_only were submitted and won, it would imply the local governor is over-conservative for small Q3-only edges; if it loses, it would confirm the transfer-resolution bottleneck.
+- 제출 전략: none from E287. Next branch should either learn a sharper train-to-test bridge, or use the train row-action target as an energy feature rather than a direct probability edit.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -2228,3 +2228,31 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - require source-transfer and matched-null dominance before materialization.
 - Failure condition:
   - if a learned preserve/avoid latent has high AUC only because it reads cell geometry and produces p90 edges below `1e-5`, classify it as E247 replay rather than a breakthrough representation.
+
+## E287 Train-Supervised Row-Action Benefit Policy
+
+- Target hypothesis tested: q-sleep human/social context can learn where a row-level Q action improves OOF labels, then transfer that action to E247-current test rows.
+- Feature/representation source:
+  - E273 diary-state JEPA PCs/clusters and family prediction residuals;
+  - E282 app-entropy state/story features;
+  - q-sleep action metadata from E274/E276 axes;
+  - base probability/logit and target/family/kind/feature identity;
+  - OOF row-action benefit labels from subject/dateblock train baselines.
+- Validation result:
+  - latent rows: `36`;
+  - train policy rows: `180`;
+  - train-gated policies: `3`;
+  - materialized candidates: `3`;
+  - matched row/subject/dateblock nulls: `63`;
+  - public-ready candidates: `0`.
+- Updated registry status:
+  - `q3_only` and `mobility_q3` row-action benefit are approved as train-supervised diagnostic targets.
+  - `bedtime_q3` is approved as a high-AUC latent clue but not as a row-placement policy.
+  - `attention_money_q3` remains diagnostic only in this audit; it did not pass train-to-test policy gates.
+  - no E287 row-action feature is approved for direct submission.
+- Adopt rule for future train-supervised row-action features:
+  - report both latent AUC/AP and actual train row-placement delta;
+  - require row, subject, and dateblock null dominance before transfer;
+  - require test matched-null p90 and worst-mode dominance before public LB.
+- Failure condition:
+  - if a row-action model is train-positive but test p90 remains below `1e-5` or worst-mode dominance is below `0.8`, keep it as energy/context, not as a probability edit.

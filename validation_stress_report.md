@@ -2881,3 +2881,32 @@ Decision:
 - Public LB is preserved.
 - E286 blocks "learn E247 cell identity from current pseudo-labels" as a breakthrough route.
 - The next valid stress target is train/OOF-grounded social residual or row-alignment transfer, where the latent is supervised by labels/residuals rather than by test-side submission cell membership.
+
+## E287 Train-Supervised Row-Alignment Transfer Governor
+
+Question: can train OOF row-action benefit provide a label-grounded gate that transfers to E247-current test rows without public LB?
+
+Method: `analysis_outputs/e287_train_supervised_row_alignment_transfer.py`.
+
+- Train target: whether a q-sleep policy cell lowers OOF Q1/Q2/Q3 row logloss.
+- Context: diary-state JEPA features, human/social/app-entropy context, action metadata, target/family/kind dummies, and base probability/logit.
+- Train stress: subject and dateblock OOF baselines, row/subject/dateblock shuffled score nulls.
+- Test stress: current E247 tensor movement versus matched row/subject/dateblock null candidates.
+
+Result:
+
+- latent rows: `36`.
+- train policy rows: `180`.
+- train-gated policies: `3`.
+- materialized candidates: `3`.
+- matched nulls: `63`.
+- public-free ready candidates: `0`.
+- best train-gated policy by loss: `q3_only/subject_oof/lr_l1`, train delta `-0.000978542`, dominance `0.900000`.
+- best test transfer: `submission_e287_rowalign_q3_only_subject_oof_lr_l1_tf70_5fc12bc2.csv`, actual mean `-0.000051070`, actual p90 `-0.000034973`, final decision `too_small_to_submit`.
+- mobility Q3 policies pass train gates but are adverse on current test tensor.
+
+Decision:
+
+- Do not submit any E287 file.
+- Public LB is preserved.
+- E287 separates signal from translator: train row-action placement has signal, but current train-to-test materialization is too small or unstable to spend a public slot.

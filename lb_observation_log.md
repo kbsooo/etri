@@ -384,3 +384,21 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - best candidate p90 scale: about `-0.000004`.
 - interpretation: learned E247 preserve/avoid identity mostly recovers E247 geometry, not a transferable human/social hidden state. Human/social context contains a small local sibling-boundary clue, but it is not strong enough to justify public LB.
 - next experiment: ground the social/JEPA latent in train OOF residuals or row-alignment transfer before materializing another current-frontier tensor.
+
+## Public-Free Observation: E287
+
+- submission files: `analysis_outputs/submission_e287_rowalign_*.csv`
+- public LB: not submitted.
+- reason not submitted: public LB is scarce, and E287 failed the local E247-current matched row/subject/dateblock null governor.
+- local observation:
+  - latent rows: `36`;
+  - train-gated policies: `3`;
+  - candidates: `3`;
+  - matched nulls: `63`;
+  - public-free ready files: `0`;
+  - best transferred candidate: `submission_e287_rowalign_q3_only_subject_oof_lr_l1_tf70_5fc12bc2.csv`;
+  - best actual mean: `-0.000051070`;
+  - best actual p90: `-0.000034973`;
+  - best final decision: `too_small_to_submit`.
+- interpretation: train-supervised row-action benefit is a better hidden target than current-test pseudo-label identity, but it still does not transfer into a robust E247-current probability edit.
+- next experiment: use train row-action benefit as an energy/context signal, or build a sharper train-to-test bridge, before spending another public LB slot.
