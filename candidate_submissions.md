@@ -1494,3 +1494,26 @@ Submission policy stays unchanged:
 2. E224 remains the clean JEPA public sensor if testing capped Q3 plus S4 body.
 3. E230 remains conditional only after E224 tie/small-loss attribution points to Q3 tail.
 4. E234 stays useful as local representation evidence, not as a direct public translator.
+
+## Update After E237
+
+E237 changes the JEPA branch status. The learned Q3/S4 row-level masks failed in E236, but a sharper cell-level decisive-label target produced submission candidates.
+
+Top candidate:
+
+1. `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`
+   - Intent: test whether a learned JEPA-style decisive-cell head can replace the hand Q3 prune while preserving E224's S4 body.
+   - Drops `25` Q3 cells and `0` S4 cells.
+   - Expected loss vs E224 `-0.000005612`.
+   - Adverse reduction vs E224 `0.000576400`.
+   - Actual-vs-E95 adverse reduction vs E224 `0.000553281`.
+   - Support gain vs E224 `0.006450259`.
+   - Q3 top1/expected `0.747139811`, better than E224's `0.875120`.
+   - Overlap with E230 Q3 risk-top21: `11` rows.
+
+Submission policy:
+
+1. If the next public question is "can a real learned JEPA target improve the Q3 tail?", submit the top E237 file.
+2. If the next public question is the clean unpruned Q3/S4 JEPA translator, submit E224 instead.
+3. If the goal is to test the hand-prune counterfactual after E224 feedback, keep E230 as the comparator.
+4. Do not submit lower-ranked E237 siblings before the top file; they answer the same cell-tail question with weaker stress metrics.

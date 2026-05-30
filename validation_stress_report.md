@@ -1995,6 +1995,27 @@ E236 Q3/S4 tail-contrastive materialization stress:
 
 Stress implication after E236: E234's Q3/S4 tail labels are useful local diagnostics but not a submission-safe learned replacement for E230's hand-pruned Q3 tail. The Q3 learned masks select the wrong public-free support rows, while S4 learned masks remove too much healthy E224 body.
 
+E237 cell-level decisive JEPA target stress:
+
+- script: `analysis_outputs/e237_cell_decisive_jepa_target.py`.
+- report: `analysis_outputs/e237_cell_decisive_jepa_target_report.md`.
+- selected files: `7`.
+- stress dimensions:
+  - OOF decisive-cell labels over Q3/S4 cells, with S2/Q3/S4 `all3` source labels as a control.
+  - latent-with-target, latent-without-target, and movement views.
+  - shallow HGB and linear models under subject and row folds.
+  - materialized E224-to-E154 rollback policies by Q3-only, S4-only, and joint drops.
+  - graft-vs-E154 and actual-vs-E95 public-free audits.
+  - Q3 top-cell concentration and E230 risk/swing overlap.
+- key results:
+  - OOF policy rows: `3744`; stress-promoted rows: `441`.
+  - materialized scan rows: `240`.
+  - selected rows/files: `7`.
+  - top selected file: `submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+  - top selected stress: expected loss vs E224 `-0.000005612`, adverse reduction `0.000576400`, support gain `0.006450259`, actual-vs-E95 adverse reduction `0.000553281`, Q3 top1/expected `0.747139811`, E230 risk-top21 overlap `11`.
+
+Stress implication after E237: the failed E236 target was too coarse. Cell-level decisive-label prediction recovers a learned Q3-only tail intervention that survives stricter public-free stress. This is now the leading learned-JEPA candidate if the next submission is meant to test a JEPA-derived Q3-tail translator.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

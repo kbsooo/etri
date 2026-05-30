@@ -2736,6 +2736,18 @@ target co-occurrence
 - public LB 관측 반응: none, because no E236 file should be submitted. If E224 later suggests Q3-tail blame, the conditional repair is still E230 rather than E236.
 - 제출 전략: do not submit E236. Keep E224/E230 policy unchanged and move JEPA work toward sharper cell-level decisive-label targets or a different target representation.
 
+### H232. Q3/S4 tail law is cell-level decisive, not row-level support
+
+- 상태: 부분 지지 by E237 public-free stress; public LB 미확인.
+- 왜 그럴듯한가: E230's hand-prune acted on a small set of Q3 cells, while E236's row-level Q3/S4 masks failed by either losing support or erasing S4 body. That pattern suggests the hidden law lives at row-target-cell granularity.
+- 맞다면: a bad-cell predictor trained on OOF decisive-cell labels should identify Q3 cells whose rollback improves E224 public-free stress while leaving S4 mostly untouched. It should improve both graft-vs-E154 and actual-vs-E95 stress, not only OOF.
+- 틀리다면: cell-level models will reproduce E236's failure: Q3 support loss, high top-cell concentration, S4 body loss, or no actual-vs-E95 improvement.
+- 최소 실험: `analysis_outputs/e237_cell_decisive_jepa_target.py`.
+- 관측: OOF rows `3744`, stress-promoted rows `441`, materialized scan rows `240`, gate passes `7`. Top candidate drops `25` Q3 cells, `0` S4 cells, improves expected loss vs E224 by `-0.000005612`, reduces adverse by `0.000576400`, improves actual-vs-E95 adverse by `0.000553281`, and overlaps E230 risk-top21 by `11` rows.
+- 성공/폐기 기준: supported locally because it passes OOF, graft-vs-E154, and actual-vs-E95 stress. It remains public-unconfirmed until submitted.
+- public LB 관측 반응: if top E237 wins or cleanly beats E224/E95, strengthen the "decisive Q3 cell-tail" world and demote pure row-level JEPA gates. If it loses materially, treat E237 as another local-tail false positive and return to E224/E166/E154 branch routing.
+- 제출 전략: top learned-JEPA Q3-tail candidate is `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

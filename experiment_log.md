@@ -3623,3 +3623,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best S4 masks can improve support by up to `0.006519636`, but sacrifice expected focus (`expected_loss_vs_e224=0.000166178`) and leave Q3 tail risk unchanged.
 - Interpretation: E234 Q3/S4 local tail labels are not the same object as the E230 public-free Q3 tail geometry. Q3 learned masks are anti-support at test geometry; S4 learned masks are mostly body-erasing.
 - Decision: no E236 submission. Keep E224 as the clean JEPA public sensor and keep E230 as the conditional hand-prune after E224 feedback.
+
+## E237. Cell-Level Decisive JEPA Target
+
+- Observe: E236 killed row-level Q3/S4 learned masks, but E230 still showed that some Q3 cells can be pruned without destroying E224's S4 body.
+- Wonder: is the public-safe Q3 tail law a row-target cell object rather than a row-level Q3/S4 support object?
+- Method: `analysis_outputs/e237_cell_decisive_jepa_target.py` trains fold-safe bad-cell predictors over Q3/S4 cells, with `all3` S2/Q3/S4 source labels as a control view. It uses OOF decisive-cell labels, subject/row folds, risk/contrast targets, then materializes E224-to-E154 Q3/S4 rollbacks and audits both graft-vs-E154 and actual-vs-E95 stress.
+- Result:
+  - report: `analysis_outputs/e237_cell_decisive_jepa_target_report.md`.
+  - OOF policy rows: `3744`; stress-promoted rows: `441`.
+  - materialized scan rows: `240`.
+  - selected rows/files after the stricter actual-vs-E95 gate: `7`.
+  - top file: `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+  - top metrics: expected loss vs E224 `-0.000005612`, adverse reduction vs E224 `0.000576400`, support gain vs E224 `0.006450259`, actual adverse reduction vs E224 `0.000553281`, Q3 top1/expected `0.747139811`, E230 risk-top21 overlap `11`.
+- Interpretation: the row-level learned tail mask was the wrong granularity. A JEPA-style target that predicts decisive row-target cells recovers a learned Q3-only prune aligned with the earlier hand-prune geometry, while still leaving S4 untouched.
+- Decision: if spending one submission on the learned-JEPA Q3-tail question, use the top E237 file. E224 remains the cleaner unpruned JEPA sensor; E230 remains the hand-prune comparator. E237 is stronger than E236 because it passes both graft and actual public-free stress, but it is still public-unverified.

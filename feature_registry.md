@@ -1730,6 +1730,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: graft rows `92`; gate pass `0`; materialized files `0`. Best Q3 rows reduce adverse but lose support and increase Q3 top-cell concentration; best S4 rows improve support but erase expected focus and do not fix Q3.
 - Policy: do not use F201 to generate a submission. Treat E234 Q3/S4 as local representation evidence, keep E230 as conditional hand-prune after E224 feedback, and require a sharper cell-level target before reopening learned Q3/S4 gates.
 
+### F202. E237 cell-level decisive JEPA target features
+
+- Hidden structure: E224's fragile Q3 tail may be a row-target-cell law rather than a row-level support law. A useful feature must identify exactly which Q3 cells should roll back without erasing the S4 body.
+- Candidates: OOF decisive-cell risk/contrast labels, target id, Q3/S4 cell deltas, E224/E154 logits, latent-with-target and latent-without-target embeddings, movement-shape features, subject/row fold predictions, dropped Q3/S4 cell counts, Q3 top1/expected, actual-vs-E95 stress metrics, and E230 risk/swing overlap.
+- Label vs split test: valid as a candidate generator only after OOF plus submission-side stress. The labels come from train OOF benefit, so deployment requires public-free graft and actual-vs-E95 checks; the feature must not be tuned from public LB.
+- Current evidence: E237 scans `240` materialized rows and selects `7`. The top candidate drops `25` Q3 cells and no S4 cells, with expected loss vs E224 `-0.000005612`, adverse reduction `0.000576400`, actual-vs-E95 adverse reduction `0.000553281`, support gain `0.006450259`, and E230 risk-top21 overlap `11`.
+- Policy: use F202 only for the learned Q3 decisive-cell JEPA branch. Top candidate is `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`. Do not generalize it into an S2 or S4 gate without separate target-specific stress.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.
