@@ -2111,3 +2111,61 @@ E176을 후보에서 내리지 않는다. 한 장만 제출한다면 여전히:
 제출 후보 해석:
 
 E182 이후 E176, E154, E144 중 어느 것도 “인증된 expected-score 파일”이 아니다. 다음 제출은 점수 예측이 아니라 어느 hidden world가 public에서 실현되는지 보는 센서다.
+
+## E183 업데이트: visible prior는 branch selector가 아니라 anti-selector다
+
+내가 발견한 가장 이상한 점:
+
+`E182에서 후보가 좋아지는 favorable pressure branch를 train-derived visible/subject/flank prior가 전혀 고르지 못한다. 세 후보 E176/E154/E144 모두에서 local/visible prior는 오히려 adverse branch를 고른다.`
+
+실험:
+
+- `analysis_outputs/e183_pressure_world_branch_anatomy.py`
+- report: `analysis_outputs/e183_pressure_world_branch_anatomy_report.md`
+
+결과:
+
+- visible-mean favorable-branch preference:
+  - E176: `0.000`
+  - E154: `0.000`
+  - E144: `0.000`
+- subject prior와 flank-mean prior도 셋 모두 `0.000`.
+- support-gap coefficient-weighted mean:
+  - E176: `0.797945`
+  - E154: `0.973558`
+  - E144: `0.888923`
+- average differing moved cells:
+  - E176: `601.7`
+  - E154: `282.7`
+  - E144: `164.0`
+- E176은 global prior만 favorable branch를 `1.000` 비율로 선호하지만, subject/flank/visible prior는 모두 반대다.
+
+생각이 어떻게 바뀌었는지:
+
+`visible prior는 후보 body의 건강 상태를 보는 데는 쓸 수 있지만, E182 pressure branch의 부호를 고르는 데는 오히려 반대 방향으로 작동한다. 따라서 E176이든 E154/E144든 visible-prior 인증 후보라고 부르면 안 된다.`
+
+현재 최강 세계관:
+
+`0.57629 plateau는 hidden-label sign underidentification이고, 지금의 visible/subject/flank prior는 그 sign을 풀지 못한다. 더 나쁘게는 branch-level에서는 anti-selector처럼 작동한다.`
+
+그 세계관을 죽일 수 있는 가장 작은 실험:
+
+`visible prior가 아닌 새로운 decisive-cell representation을 만들고, E182 pressure branch labels를 held-out/anchor-free 방식으로 예측하게 한다. 그 representation이 E176/E154/E144 중 하나의 favorable branch를 고르고 나중 public feedback과 맞으면 H177은 약해진다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+새 submission은 만들지 않는다. 다음 행동은 두 갈래다.
+
+- 제출 슬롯을 쓴다면, E176/E154/E144 중 하나를 “점수 후보”가 아니라 worldview sensor로 고르고 pre-registered decoder를 붙인다.
+- local 실험을 계속한다면, visible prior와 독립적인 decisive-cell/pressure-branch representation을 만든다.
+
+제출 후보 해석:
+
+E183 이후 한 장만 고르라고 해도 답은 “인증된 후보”가 아니라 “어떤 세계관을 물을지”다.
+
+- visible-body/Q2-underopen을 묻기: `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+- repaired-branch를 묻기: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` 또는 `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv`
+
+실패 시 해석:
+
+어느 파일이 지더라도 바로 같은 family sibling으로 도망가면 안 된다. 그 결과는 candidate quality보다 pressure-branch hidden labels가 어느 쪽이었는지를 먼저 말한다.

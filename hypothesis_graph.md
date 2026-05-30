@@ -2076,6 +2076,18 @@ target co-occurrence
 - public LB 관측 반응: E176 win means the visible-body branch realized one of the E182 favorable worlds. E176 loss plus E154/E144 win means the repaired-branch world was selected by public labels, not certified pre-public. E154/E144 loss after E176 loss would strengthen the broader underidentification/selector-resolution diagnosis.
 - 제출 전략: E182 creates no submission and no priority inversion. Use E176 when the question is visible-body/Q2-underopen. Use E154/E144 only when deliberately testing repaired-branch validity with a decoder, not because E182 certifies expected improvement.
 
+### H177. Visible priors are anti-selectors for E182 pressure branches
+
+- 상태: supported by E183.
+- 왜 그럴듯한가: E179/E180 already showed visible priors can support candidate bodies while failing at decisive-cell resolution. E182 then showed the live candidate signs are pressure-world underidentified. If the decisive pressure cells are hidden from train-derived priors, visible/subject/flank priors should not select the favorable branch.
+- 맞다면: on the cells that differ between favorable pressure-min and adverse pressure-max worlds, visible/subject/flank priors should prefer the adverse max labels rather than the candidate-favorable min labels. This should hold across E176, E154, and E144 rather than being a single-candidate artifact.
+- 틀리다면: at least one candidate branch, especially E176 because its full body is visible-supported, should have visible or subject/flank priors preferring the favorable pressure branch in most scenarios.
+- 최소 실험: `analysis_outputs/e183_pressure_world_branch_anatomy.py`.
+- 관측: visible-mean favorable-branch preference is `0.000` for E176/E154/E144 across scenarios. Subject and flank preference rates are also `0.000`. Support-gap coefficient-weighted means are high: E176 `0.797945`, E154 `0.973558`, E144 `0.888923`, so the disagreement is on candidate-driving cells. E176's global prior prefers the favorable branch in `1.000` of scenarios, but subject/flank/visible priors still prefer the adverse branch.
+- 성공/폐기 기준: support strengthens if future public feedback can be explained by hidden pressure-cell labels that visible/subject/flank priors got wrong. It weakens if a new public-free representation, independent of these priors, predicts the pressure branch and also matches public feedback.
+- public LB 관측 반응: E176/E154/E144 win despite E183 visible-prior rejection means the winning branch is hidden from current train-derived priors. A loss for all three would say the pressure-world favorable branches were feasible but not public-real.
+- 제출 전략: no E183 submission. Treat visible priors as diagnostics and possible anti-selectors for pressure branches. If submitting E176/E154/E144, do it as an explicit worldview sensor with a decoder, not as visible-prior-certified expected improvement.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -2816,3 +2816,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - pressure ranges versus E95 are wide: E176 roughly `[-0.000421216, +0.000254123]`, E154 roughly `[-0.00109286, +0.000923535]`, and E144 roughly `[-0.000992245, +0.000838041]` across scenarios.
 - Interpretation: E181's inherited counterprior remains useful as a warning, but it is not a certificate. Once the worlds are regenerated under current anchors and explicit candidate objectives, all three live branches are sign-underidentified. The plateau law is stronger: current anchors and structural priors can fit known public observations while still allowing mutually contradictory frontier-scale hidden-label worlds.
 - Decision: no new submission. Do not promote E154/E144 over E176 solely from E181. E176 remains the visible-body/Q2-underopen sensor if the next public slot asks that worldview. E154/E144 remain the repaired-branch alternate worldview, but they need either a fresh decoder/public-feedback plan or a stronger non-public selector before becoming first-choice replacements.
+
+## E183. Pressure-World Branch Anatomy
+
+- Observe: E182 can force favorable and adverse pressure worlds for E176, E154, and E144 while still fitting known anchors. The missing question is whether train-derived visible/subject/flank priors can identify which branch is more plausible on the exact moved cells that create the candidate range.
+- Wonder: are the favorable E182 pressure branches visible from local train context, or are they hidden-label branches that current public-free priors systematically cannot select?
+- Method: `analysis_outputs/e183_pressure_world_branch_anatomy.py` compares each candidate's favorable pressure-min world against its adverse pressure-max world. It joins the differing moved cells with E179-style global, subject, nearest-hard, focus, flank, and visible-mean priors, then asks which branch those priors prefer. It writes no submission.
+- Result:
+  - report: `analysis_outputs/e183_pressure_world_branch_anatomy_report.md`.
+  - visible-mean favorable-branch preference is `0.000` / `0.000` / `0.000` for E176/E154/E144 across the three E182 scenarios.
+  - subject and flank priors also prefer the favorable branch in `0.000` of scenarios for all three candidates.
+  - the branch differences are not numerical dust: support-gap coefficient-weighted means are E176 `0.797945`, E154 `0.973558`, and E144 `0.888923`.
+  - E176 is the lone special case where the global prior prefers the favorable branch in `1.000` of scenarios, but subject/flank/visible priors still reject it.
+  - the favorable branch is decided by many high-impact cells: E176 averages `601.7` differing moved cells, E154 `282.7`, and E144 `164.0`.
+- Interpretation: E183 does not identify the next best file. It identifies a stronger bottleneck: the pressure-world favorable branches are exactly the cells where visible/subject/flank priors prefer the opposite labels. Current visible priors are therefore branch anti-selectors for this E182 problem, not hidden-world selectors.
+- Decision: no new submission. Do not rank E176/E154/E144 by visible-prior branch preference. The next useful local experiment needs a non-visible decisive-cell representation or a pre-registered public-feedback decoder for the chosen worldview.

@@ -1430,3 +1430,12 @@
 - Implementation issue possible: medium. Exact range MILPs are incumbent-sparse under the time limit, so E182 uses pressure worlds as a diagnostic. Low for the narrow failure because the pressure worlds all have incumbents and all three branches cross zero across scenarios.
 - Bottleneck implication: current public anchors and train structural priors still underidentify frontier-scale live-candidate signs. The bottleneck is hidden-label/cell-resolution and latent-view conflict, not a simple choice between E176 and E154/E144.
 - Do not repeat: promoting E154/E144 solely because inherited binary worlds favor them. Before changing priority, either obtain public feedback, build a stronger non-public selector, or attach a pre-registered decoder to the repaired-branch submission.
+
+## FH159. Visible/subject/flank priors can select the favorable E182 pressure branch
+
+- Failed hypothesis: once E182 exposes favorable and adverse pressure worlds, train-derived visible, subject, or flank priors should prefer the favorable branch on the differing moved cells for at least one live candidate.
+- Observed result: E183 finds favorable-branch preference rates of `0.000` for E176/E154/E144 under visible-mean priors. Subject and flank priors also have `0.000` favorable preference for all three candidates. The disagreement is not small-cell noise: support-gap coefficient-weighted means are E176 `0.797945`, E154 `0.973558`, and E144 `0.888923`.
+- Why discard: the pressure branches that make candidates look good require labels that current train-derived visible/local priors systematically dislike. Visible priors can still describe bodies and risk, but they are not branch selectors at the current hidden-label resolution.
+- Implementation issue possible: medium. E183 depends on E182 pressure-world solutions and train-derived priors, not true public labels. Low for the narrow failure because the same prior machinery rejects the favorable branch across all candidates and scenarios.
+- Bottleneck implication: the current plateau is not solved by reusing visible priors as a gate. The missing object is a different decisive-cell representation or public feedback that identifies the pressure branch.
+- Do not repeat: ranking E176/E154/E144 by visible-prior branch preference, or claiming a candidate is certified because its full body has favorable visible-prior expectation.

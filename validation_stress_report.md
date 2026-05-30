@@ -968,3 +968,18 @@ E182 refreshes the binary-world stress using current public anchors and explicit
 - representative pressure spans versus E95: E176 `-0.000421216..+0.000254123`, E154 `-0.00109286..+0.000923535`, E144 `-0.000992245..+0.000838041`.
 
 Stress implication: E181's inherited counterprior is not strong enough to reorder submissions by itself. The refreshed current-anchor problem can make all three live branches look favorable or adverse depending on objective pressure. This strengthens the plateau diagnosis: known public anchors constrain the hidden world, but they do not identify the next frontier-scale candidate sign. The next submission remains a worldview sensor, not a local expected-score certificate.
+
+## Update After E183
+
+E183 asks whether the favorable E182 pressure branches are visible from train-derived priors.
+
+- script: `analysis_outputs/e183_pressure_world_branch_anatomy.py`.
+- report: `analysis_outputs/e183_pressure_world_branch_anatomy_report.md`.
+- favorable-branch preference under visible-mean priors: E176/E154/E144 = `0.000` / `0.000` / `0.000`.
+- favorable-branch preference under subject priors: `0.000` for all three.
+- favorable-branch preference under flank-mean priors: `0.000` for all three.
+- support-gap coefficient-weighted means: E176 `0.797945`, E154 `0.973558`, E144 `0.888923`.
+- average differing moved cells: E176 `601.7`, E154 `282.7`, E144 `164.0`.
+- E176 global prior prefers the favorable branch in `1.000` of scenarios, but all local/visible priors prefer the adverse branch.
+
+Stress implication: E183 turns visible priors from candidate selectors into anti-selector diagnostics for the current pressure-world problem. They can still explain bodies and risks, but they cannot choose the favorable hidden branch for E176/E154/E144. Any next submission must be framed as a worldview sensor or backed by a new decisive-cell representation.
