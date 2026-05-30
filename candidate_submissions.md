@@ -2031,3 +2031,24 @@ Policy:
 - Do not submit another E246/E256 threshold sibling.
 - Do not blend E247/E256 to split the difference; E256 has already answered the broad-vs-amplitude question at public scale.
 - If E224 is submitted next, it should be because the question is "did E224 body carry E247?", not because it is expected to beat E247.
+
+## Update After E262/E263
+
+No new submission is selected from the human/social branch yet.
+
+Reason:
+
+- E262 creates a new non-collinear information source, but it has not passed blocked OOF validation.
+- E263 links lifestyle context to the E256 public miss, but the decisive set is only `4` Q3 cells.
+- A direct lifestyle gate would risk subject/domain leakage.
+
+Next candidate class:
+
+- lifestyle-conditioned Q3 tail gate: keep E247 as anchor, then adjust only cells whose smoothing-validity is supported by an OOF human/social JEPA target.
+- This should be treated as a new non-collinear branch, not an E247/E256 threshold sibling.
+
+Current submission policy remains:
+
+1. Current best anchor: `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+2. Attribution-only sensor: `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+3. Score-seeking next step: build and validate the lifestyle-conditioned Q3 tail representation before materialization.

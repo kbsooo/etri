@@ -2380,3 +2380,21 @@ Result:
 - E217 materialization gate pass count is `0`.
 
 Stress implication: teacher-student JEPA learned a latent but did not create a geometry-stable submission source. Keep it as an energy/diagnostic branch; do not create an E217 submission before a separate target-specific materialization test.
+
+## Update After E262/E263
+
+E262/E263 open a new validation branch: human/social lifestyle state as JEPA context for public-tail prediction.
+
+- E262 generated `790` raw lifestyle/context features over `700` rows.
+- E262's strongest cheap signals are not enough for submission because HR/pedometer coverage also shows train/test shift.
+- E263 links E262 context to E247/E256 Q3 tail cells, but the critical E256-only set has only `4` rows.
+
+Required stress before any submission:
+
+- subject/date-block OOF, not random row CV.
+- within-subject lift check for lifestyle features.
+- train/test adversarial check to reject pure domain signatures.
+- OOF analogue of Q3 smoothing-validity/tail-risk, not test-only E247/E256 cell labels.
+- LeJEPA geometry check: no subject collapse, no high anisotropy, no public-anchor-only shortcut.
+
+Current status: diagnostic only. E263 is useful because it defines the next target representation, not because it certifies a gate.

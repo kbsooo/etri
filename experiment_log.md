@@ -3983,3 +3983,28 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - Updated public-anchor proxy remains too coarse: best LOOCV MAE `0.000457410`, far above the E247/E256/E95 gaps.
 - Interpretation: E256 rejects high-amplitude constrained smoothing as the next score route, but it does not reject the broader feature-NN1 smoothing mechanism because E256 still beats the old E95 frontier. E247's exact top34 / body-plus-rollback interaction is strengthened.
 - Decision: stop E246/E256 sibling sweeps and do not build scalar-threshold smoothing variants. If attribution is the question, E224 is the clean next public observation. If score is the question, refresh non-collinear candidates under the expanded E247/E256 anchor set.
+
+## E262. Human/Social Lifelog JEPA Blueprint
+
+- Observe: the raw logs are not anonymous numeric sensors only. `mUsageStats` exposes recognizable human activity traces: KakaoTalk, calls/messages, browser/search, Toss/finance, shopping, walk/reward apps, and a religion/routine app (`성경일독Q`). This means the data can be read as a day-level lifestyle diary.
+- Wonder: can we stop treating raw lifelog as generic tabular aggregates and instead create JEPA context/target variables around social stimulation, routine stability, commute rhythm, presleep cognitive load, physical fatigue, and sleep-onset fragmentation?
+- Method: `analysis_outputs/e262_human_social_lifelog_jepa_blueprint.py` builds `790` lifestyle/raw context features over `700` train+test rows, with time windows from day to presleep/deepnight. It writes `analysis_outputs/e262_human_social_lifelog_jepa_blueprint_report.md`.
+- Result:
+  - strongest cheap label-lift probes include late music/ambience, deepnight/evening GPS speed, presleep charging, late cognitive load, sleep-onset risk, late call time, and presleep search/browser time.
+  - family max effects: other_lifestyle `0.247788`, workday_commute `0.238938`, routine_stability `0.212389`, late_cognitive_load `0.208275`, sleep_onset_fragmentation `0.203540`, social_overstimulation `0.178550`.
+  - largest train/test shifts are HR and pedometer coverage/count features, so these must be treated as domain/block signatures as well as possible signal.
+- Interpretation: the next JEPA object should not reconstruct raw apps. It should predict hidden human-day states: social-night, routine-stability, commute/workday, sleep-onset, and target-state/tail-risk representations.
+- Decision: use E262 features as context/energy, not immediate submission features. Reject any family that only predicts subject identity or train/test split without within-subject target lift.
+
+## E263. Human/Social Context Around Public-Tail Q3 Cells
+
+- Observe: E256 public loss is concentrated in a tiny set of E256-only high-amplitude Q3 cells. These cells were previously described numerically, but not as human days.
+- Wonder: are those four cells just smoothing artifacts, or do they live on a recognizable lifestyle state that explains why high-amplitude smoothing failed?
+- Method: `analysis_outputs/e263_human_social_public_tail_context.py` joins E257/E260 Q3 cell groups to E262 human-social day features and compares common, E247-only, and E256-only cell groups. No public labels are fit.
+- Result:
+  - E256-only rows are tiny (`4`), so this is hypothesis generation.
+  - E256-only rows show high late cognitive load (`mean robust z 5.64`, subject-z feature `5.38`), high late search/browser signal, higher HR, and moderate presleep movement.
+  - Compared with common E247/E256 core, E256-only rows are lower in late social/message, public-social-presence, screen/onset-risk, and presleep social/search intensity.
+  - The four public-swing cells are Q3 rows `188`, `96`, `87`, and `138`.
+- Interpretation: E247/E256 is no longer only a feature-NN smoothing story. A plausible human-world read is that high-amplitude Q3 smoothing fails on “cognitively active but not socially/nocturnally fragmented” days. That is exactly the kind of latent state JEPA should target.
+- Decision: next high-value JEPA experiment should mask lifestyle families and predict Q3 tail-risk/smoothing-validity, then stress by subject/date block and train/test lifestyle shift. No submission yet.

@@ -1869,6 +1869,22 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E256 public `0.5762805676`; delta versus E247 `+0.0001216182`; delta versus E95 `-0.0000107622`; E259 outcome `same_family_loss`; two top E256-vs-E247 swing cells can explain the observed delta scale.
 - Policy: close high-amplitude smoothing as a score route. Keep E247 as current anchor. Use E224 only for body attribution. For score, require a refreshed non-collinear candidate rather than another E247/E256 scalar threshold.
 
+### F219. E262 human/social diary features
+
+- Hidden structure: the raw lifelog may encode daily human states: late social stimulation, presleep cognitive load, commute/workday rhythm, routine anchors, physical fatigue, home/away/public context, and sleep-onset fragmentation.
+- Candidates: app-category time by window, presleep/deepnight social/search/call/media/religion/finance/shopping usage, charging/screen windows, GPS speed/range, WiFi/BLE density, ambience speech/music/public, light, HR, pedometer, and composites such as `human_late_cognitive_load`, `human_routine_anchor`, `human_commute_mobility`, `human_sleep_onset_risk`.
+- Label vs split test: must be used with subject/date-block stress. HR/pedometer count shifts are also train/test domain signatures, so raw importance is not enough. Require within-subject label lift and tail-risk transfer.
+- Current evidence: E262 creates `790` lifestyle/raw context features over `700` rows. Strong cheap lifts appear in commute/mobility, routine, late cognitive load, sleep-onset risk, and social overstimulation families. E263 links these features to E247/E256 Q3 public-tail cells.
+- Policy: use F219 as JEPA context/energy, not as direct feature dump. Any downstream use must answer which hidden human state it targets and must survive subject/date-block and train/test adversarial checks.
+
+### F220. E263 lifestyle-conditioned Q3 tail-risk features
+
+- Hidden structure: public-sensitive Q3 smoothing cells may depend on human-day state. E256-only high-amplitude cells may be unsafe on cognitively active but lower-social/lower-screen-fragmentation days.
+- Candidates: E257/E260 cell group labels joined to E262 lifestyle features; groupwise robust z/percentiles; row-level E256-only swing context; future OOF labels for Q3 smoothing-validity or rollback-risk.
+- Label vs split test: E263 uses test-side candidate cell groups, so it is diagnostic only. A deployable version needs an OOF analogue trained on train cells and evaluated under subject/date blocks.
+- Current evidence: E256-only cells show high late cognitive load, late search/browser, HR, and moderate presleep movement, while being lower in late social/message, public-social-presence, screen/onset-risk, and presleep social/search compared with the common E247/E256 core.
+- Policy: do not materialize a submission from E263 directly. Build a masked lifestyle-family JEPA head that predicts Q3 tail-risk/smoothing-validity, then use LeJEPA geometry checks before any gate.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

@@ -3016,6 +3016,30 @@ target co-occurrence
 - public LB 관측 반응: current observation rejects amplitude-constrained smoothing as the next score route but keeps feature-NN1 smoothing as a validated mechanism relative to E95.
 - 제출 전략: no more E247-family threshold siblings. Use E224 for attribution or refresh non-collinear candidates for score.
 
+### H262: raw lifelog contains human/social lifestyle states that should be JEPA context, not generic features
+
+- 상태: live; E262 gives strong observational support, but no downstream validation yet.
+- 왜 그럴듯한가: raw app usage contains recognizable behavior categories: KakaoTalk/messages/calls, browser/search, finance/shopping, media, health-walk, and religion/routine apps. Sensors add charging, screen, GPS, WiFi/BLE, light, pedometer, HR, and ambience. These are enough to describe daily social load, routine stability, commute/workday rhythm, and sleep-onset fragmentation.
+- 맞다면: lifestyle composites should show within-subject label lift and should help predict held-out Q/S tail-risk states under subject/date-block stress. They should also explain some public-sensitive cells that numeric smoothing alone cannot explain.
+- 틀리다면: the same composites will mostly predict subject identity or train/test split, and OOF tail-risk prediction will fail after subject/date blocking.
+- 최소 실험: E262 feature build plus E263 public-tail context join; next, OOF lifestyle-tail JEPA target over Q3 cells.
+- 관측: E262 family max effects include workday/commute `0.238938`, routine `0.212389`, late cognitive load `0.208275`, sleep-onset risk `0.203540`, and social overstimulation `0.178550`. Train/test shift is largest in HR/pedometer coverage, so domain leakage risk is real.
+- 성공/폐기 기준: success requires a blocked OOF latent that predicts Q3/S tail-risk beyond subject/date priors and improves or explains frontier candidate disagreement. Discard if it only produces train/test adversarial signal.
+- public LB 관측 반응: a successful future submission from this branch should be non-collinear with E247/E256 and should not look like another Q3 smoothing threshold sibling.
+- 제출 전략: not yet. Use as JEPA context/energy and build a lifestyle-tail target before materialization.
+
+### H263: E256 failed because high-amplitude Q3 smoothing hits a different human-day state
+
+- 상태: weak-live; E263 supports a hypothesis-generating lifestyle contrast, but sample size is only four E256-only cells.
+- 왜 그럴듯한가: E256-only cells are the first suspect after E256's public loss. If those cells share a lifestyle state, then the failure is not just amplitude; it is missing human context in the Q3 tail translator.
+- 맞다면: E256-only public-swing rows should be separable from common/E247-only rows by human diary features such as late cognitive load, social-message load, screen/onset-risk, HR, and presleep movement. A held-out analogue should predict similar high-risk smoothing cells.
+- 틀리다면: E256-only rows should look like random selected Q3 cells under lifestyle features, or the lifestyle signature should vanish under subject/date blocking.
+- 최소 실험: E263 join and contrast; next, train an OOF cell-tail classifier using E262 lifestyle context with feature-family masks.
+- 관측: E256-only rows show high late cognitive load and HR but lower late social/message, public-social-presence, screen/onset-risk, and presleep social/search than the common E247/E256 core.
+- 성공/폐기 기준: keep only if an OOF lifestyle-tail JEPA head predicts held-out Q3 smoothing-validity without subject leakage. Discard if E263's contrast is a four-row coincidence.
+- public LB 관측 반응: if this is right, a future candidate should avoid E256-like high-amplitude cells specifically when the day looks cognitively active but not socially/screen-fragmented.
+- 제출 전략: no immediate file. Build a lifestyle-conditioned Q3 tail gate.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
