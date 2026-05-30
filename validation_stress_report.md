@@ -2339,6 +2339,19 @@ E260 adds a hard-label sensitivity layer to the E259 routebook.
 
 Stress implication after E260: E256 remains the right next score-plus-information stress, but the pre-registered read is narrower. A bad E256 score means the high-amplitude added cells failed first. It does not automatically mean E247-only broad smoothing was the causal public signal.
 
+## Update After E261
+
+E256 public returned `0.5762805676`.
+
+- E259 outcome: `same_family_loss`.
+- Public delta versus E247: `+0.0001216182`.
+- Public delta versus E95: `-0.0000107622`.
+- E260 expected delta versus E247: `+0.000019101`.
+- Actual over expected: `+0.000102517`.
+- Minimum top swing cells needed to explain actual delta: `2`.
+
+Stress implication after E261: the E256 stress did its job and rejects high-amplitude constrained smoothing as an improvement path. It does not reject feature-NN1 smoothing as a mechanism because E256 remains better than E95. The stress stack should now block E247-family scalar sweeps and route either to E224 attribution or to a non-collinear branch.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

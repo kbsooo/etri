@@ -1861,6 +1861,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E256 expected penalty is `+0.000019101` versus E247, while E224 is `+0.000066519`. E256's E247-only deletion group is slightly favorable (`-0.000001767`), and the E256-only four-cell group is adverse (`+0.000020868`). E224's common rollback removal is adverse (`+0.000068286`).
 - Policy: use F217 when decoding E256/E224 feedback. If E256 loses, inspect the four high-amplitude additions first; do not automatically restore all E247-only broad cells. If E224 wins, treat it as evidence against the common rollback core.
 
+### F218. E261 public-assimilated smoothing-branch state
+
+- Hidden structure: public distinguishes feature-NN1 smoothing mechanism from the specific E256 amplitude-constrained refinement.
+- Candidates: E256 public delta versus E247/E95/mixmin, E259 outcome, E260 actual-over-expected ratio, min top swing cells explaining public delta, and post-public branch status.
+- Label vs split test: this is public-observation governance. It must not be used as a probability feature or as permission to tune siblings. It is used to close or keep alive hidden-world branches.
+- Current evidence: E256 public `0.5762805676`; delta versus E247 `+0.0001216182`; delta versus E95 `-0.0000107622`; E259 outcome `same_family_loss`; two top E256-vs-E247 swing cells can explain the observed delta scale.
+- Policy: close high-amplitude smoothing as a score route. Keep E247 as current anchor. Use E224 only for body attribution. For score, require a refreshed non-collinear candidate rather than another E247/E256 scalar threshold.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

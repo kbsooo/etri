@@ -2994,15 +2994,27 @@ target co-occurrence
 
 ### H260: E256's public risk is the four high-amplitude additions, not broad-smoothing deletion
 
-- 상태: supported by public-free hard-label atlas; public outcome pending.
+- 상태: public-supported as a failure interpretation, not as full cell-causal proof.
 - 왜 그럴듯한가: E257 showed E256 differs from E247 in two ways at once: it removes `13` E247-only broad smoothness cells and adds `4` high-amplitude/E230-swing cells. Without separating these groups, an E256 public loss would be easy to misread as proof that broad smoothness was necessary.
 - 맞다면: E256-vs-E247 expected risk should concentrate in the E256-only high-amplitude group, while the E247-only deletion should be neutral or favorable under current hard-label priors.
 - 틀리다면: the E247-only broad deletion should carry the main positive expected penalty, and the E256-only added cells should be neutral or favorable.
 - 최소 실험: `analysis_outputs/e260_post_e247_next_slot_risk_atlas.py`.
 - 관측: E256 expected focus versus E247 is `+0.000019101`. The E247-only deletion group is slightly favorable (`-0.000001767`), while the E256-only high-amplitude group is adverse (`+0.000020868`). E224-vs-E247 is larger-risk at `+0.000066519`, dominated by common rollback removal (`+0.000068286`).
-- 성공/폐기 기준: if E256 public wins, H260 says public labels favored the four high-amplitude cells despite current prior. If E256 loses, blame those four cells first. If a later cell-level ablation shows E256-only additions are safe but E247-only deletions are harmful, H260 is rejected.
-- public LB 관측 반응: E256 `<=0.576155949` strengthens high-amplitude smoothing. E256 close loss does not by itself prove broad smoothing was causal unless the loss scale matches the E256-only adverse budget. E224 win/tie rejects the common rollback core.
-- 제출 전략: E256 remains the score-plus-information file; do not build an E247-only restoration blend unless E256 public feedback specifically indicates the four added cells were not the culprit.
+- 성공/폐기 기준: E256 public `0.5762805676` landed in `same_family_loss`. This supports the failure-reading side of H260: high-amplitude constrained additions should be blamed before broad-deletion restoration. If a later cell-level ablation shows E256-only additions are safe but E247-only deletions are harmful, H260 is rejected.
+- public LB 관측 반응: observed E256 loss strengthens E247 exact top34 / body interaction and weakens high-amplitude smoothing as score route. It does not prove broad smoothness alone was causal because top two E256-vs-E247 swing cells can explain the actual delta scale.
+- 제출 전략: stop E256-like siblings. Submit E224 only for body attribution; otherwise refresh non-collinear candidates under the new E247/E256 public-anchor set.
+
+### H261: E256 loss is a same-family rejection, not a feature-NN1 collapse
+
+- 상태: supported by public LB.
+- 왜 그럴듯한가: E256 is built inside the E247 feature-NN1 Q3 smoothing family, but it changes the cell anatomy from broad top34 to amplitude-constrained top25. A loss to E247 could mean either the entire smoothing mechanism is false or that this refinement is too concentrated.
+- 맞다면: E256 should be worse than E247 but not catastrophically worse than the pre-E247 frontier; E259 should decode it below E247 but above hard-loss territory.
+- 틀리다면: E256 would fall below E95/mixmin or into E216-like miss territory.
+- 최소 실험: user-supplied public LB plus `analysis_outputs/e261_e256_public_feedback_assimilation.py`.
+- 관측: E256 public `0.5762805676`, worse than E247 by `+0.0001216182`, better than E95 by `-0.0000107622`, and E259 outcome `same_family_loss`.
+- 성공/폐기 기준: supported for now. A future E224 hard loss plus non-collinear branch win would reframe E247 as a narrow public overfit; an E224 tie/win would support body sufficiency and keep E247 rollback optional.
+- public LB 관측 반응: current observation rejects amplitude-constrained smoothing as the next score route but keeps feature-NN1 smoothing as a validated mechanism relative to E95.
+- 제출 전략: no more E247-family threshold siblings. Use E224 for attribution or refresh non-collinear candidates for score.
 
 ## 우선 실험 5개
 

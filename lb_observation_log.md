@@ -315,3 +315,14 @@ No new public LB was added. E260 refines how the next public observation should 
 - E224's downside is mainly the removal of the `21` common rollback cells.
 
 Public decoding addition: if E256 is worse than E247, do not immediately conclude that E247-only broad smoothness was the cause. First test whether the four E256-only high-amplitude cells were public-adverse. If E224 ties or beats E247, interpret that as evidence against the common rollback core and for body sufficiency.
+
+## Public Observation: E256
+
+- submission file: `submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv`
+- public LB: `0.5762805676`
+- expected LB reaction: E256 was the score-plus-information follow-up for broad-vs-amplitude feature-NN1 Q3 smoothing.
+- actual LB reaction: worse than E247 by `+0.0001216182`, but still better than E95 by `-0.0000107622`.
+- E259 decoding: `same_family_loss`.
+- interpretation: high-amplitude constrained smoothing loses the E247 edge. This strengthens E247 exact top34 / body-plus-rollback interaction and weakens E256-like high-amplitude sibling sweeps.
+- unresolved: E256 loss does not prove the `13` E247-only broad cells alone caused E247's win; E260 still marks the `4` E256-only high-amplitude additions as the first suspect.
+- next experiment: E224 only if body attribution is the explicit question; otherwise refresh non-collinear candidates with E247/E256 included as public anchors.

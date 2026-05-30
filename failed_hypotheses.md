@@ -1989,3 +1989,12 @@
 - Implementation issue possible: medium. The decomposition uses current hard-label priors, not hidden public labels. Low for rejecting the prior-based explanation, because group attribution is deterministic over the submitted tensors.
 - Bottleneck implication: the next bottleneck is cell-level public label resolution, not broad-vs-amplitude story alone. The public may still reward broad smoothness, but E260 says that is not the current public-free risk explanation.
 - Do not repeat: making an E247/E256 blend or E247-only restoration variant immediately after an E256 loss without first isolating the four E256-only cells.
+
+## FH221. High-amplitude constrained smoothing beats broad top34 smoothing
+
+- Failed hypothesis: E256's amplitude-constrained top25 smoothing should beat E247's broad top34 smoothing because it keeps the shared E247 core and swaps low-amplitude broad cells for high-amplitude/E230-aligned cells.
+- Observed result: E256 public LB is `0.5762805676`, worse than E247 by `+0.0001216182`. E259 decodes this as `same_family_loss`.
+- Why discard: public directly rejects E256 as the next score route. It remains above E95, so the failure is not feature-NN1 smoothing collapse; it is the specific high-amplitude refinement losing the E247 edge.
+- Implementation issue possible: low for the public score interpretation. Medium for exact cell causality because E256 simultaneously removes `13` E247-only cells and adds `4` high-amplitude cells.
+- Bottleneck implication: the live bottleneck is not "find a sharper threshold inside E246." It is attribution/non-collinearity: E247 exact top34, E224 body interaction, or a different hidden-world branch.
+- Do not repeat: submitting more E246/E256 scalar-threshold siblings or blending E247/E256 before an attribution/non-collinear observation.

@@ -88,13 +88,16 @@ This routebook pre-registers how to read the next two clean observations before 
 
 ## Decoded Future Scores
 
-_No future score was supplied._
+| candidate_id | score | delta_vs_e247 | outcome | world_update_class | next_action |
+| --- | --- | --- | --- | --- | --- |
+| E256 | 0.576280568 | 0.000121618 | same_family_loss | rejection | Stop sibling sweeps. Submit E224 only if the next question is body attribution; otherwise search non-collinear structure. |
 
 ## Decision
 
-- If the next public slot should still try to improve score while answering a clean question, use E256.
-- If the next public slot should maximize attribution information, use E224.
-- Do not blend E247/E256/E224 before one of these two axes is observed; blending would hide the only clean causal split left.
+- E256 has now been observed and should no longer be the next score slot.
+- Stop E246/E256 sibling sweeps; the high-amplitude constrained smoothing refinement lost the E247 edge.
+- Use E224 only if the next question is body attribution.
+- If the next question is score, refresh non-collinear candidates under the updated E247/E256 public anchors.
 
 ## Interpretation Shortcut
 

@@ -1,0 +1,23 @@
+[
+  {
+    "candidate_id": "E256",
+    "outcome": "same_family_loss",
+    "public_lb_lo_exclusive": 0.5761889494,
+    "public_lb_hi_inclusive": 0.5762913298,
+    "delta_vs_e247_lo_exclusive": 2.999999999997449e-05,
+    "delta_vs_e247_hi_inclusive": 0.0001323803999999651,
+    "delta_vs_e95_hi_inclusive": 0.0,
+    "beats_e247": false,
+    "beats_e95": false,
+    "world_update_class": "rejection",
+    "hidden_world_update": "E256 loses the E247 edge but remains at or above the old E95 frontier. The exact E247 top34 set or E224-body interaction matters.",
+    "next_action": "Stop sibling sweeps. Submit E224 only if the next question is body attribution; otherwise search non-collinear structure.",
+    "strengthened": "E247 exact top34 / body interaction",
+    "weakened": "amplitude-constrained smoothing as score route",
+    "private_risk": "E247 may be public-overfit; E256 loss alone cannot prove E247 private safety.",
+    "score": 0.5762805676,
+    "delta_vs_e247": 0.00012161820000000656,
+    "delta_vs_e95": -1.0762199999958533e-05,
+    "delta_vs_mixmin": -2.607290000000706e-05
+  }
+]

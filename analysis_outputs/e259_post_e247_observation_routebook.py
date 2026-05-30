@@ -366,8 +366,26 @@ def make_report(
         "next_action",
     ]
     decoded_text = "_No future score was supplied._"
+    decision_text = """- If the next public slot should still try to improve score while answering a clean question, use E256.
+- If the next public slot should maximize attribution information, use E224.
+- Do not blend E247/E256/E224 before one of these two axes is observed; blending would hide the only clean causal split left."""
     if decoded:
-        decoded_text = md_table(pd.DataFrame(decoded)[["candidate_id", "score", "delta_vs_e247", "outcome", "world_update_class", "next_action"]])
+        decoded_df = pd.DataFrame(decoded)
+        decoded_text = md_table(decoded_df[["candidate_id", "score", "delta_vs_e247", "outcome", "world_update_class", "next_action"]])
+        e256_decoded = decoded_df[decoded_df["candidate_id"].eq("E256")]
+        if not e256_decoded.empty and str(e256_decoded.iloc[-1]["outcome"]) in {"same_family_loss", "hard_loss"}:
+            decision_text = """- E256 has now been observed and should no longer be the next score slot.
+- Stop E246/E256 sibling sweeps; the high-amplitude constrained smoothing refinement lost the E247 edge.
+- Use E224 only if the next question is body attribution.
+- If the next question is score, refresh non-collinear candidates under the updated E247/E256 public anchors."""
+        elif not e256_decoded.empty and str(e256_decoded.iloc[-1]["outcome"]) in {"amplitude_smoothing_breakthrough", "clean_win"}:
+            decision_text = """- E256 has been observed as public-positive and should replace E247 as the operational smoothing-family anchor.
+- Before another sibling, run an E256-vs-E247 attribution audit to isolate which cell group carried the gain.
+- E224 remains useful only for body attribution."""
+        elif not e256_decoded.empty:
+            decision_text = """- E256 has been observed but did not separate clearly from E247.
+- Do not tune smoothing siblings from this underresolved result.
+- Use E224 for attribution or switch to a non-collinear question."""
 
     return f"""# E259 Post-E247 Observation Routebook
 
@@ -418,9 +436,7 @@ This routebook pre-registers how to read the next two clean observations before 
 
 ## Decision
 
-- If the next public slot should still try to improve score while answering a clean question, use E256.
-- If the next public slot should maximize attribution information, use E224.
-- Do not blend E247/E256/E224 before one of these two axes is observed; blending would hide the only clean causal split left.
+{decision_text}
 
 ## Interpretation Shortcut
 

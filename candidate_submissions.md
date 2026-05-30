@@ -2008,3 +2008,26 @@ Failure interpretation:
 - If E256 wins, public is saying those four high-amplitude cells beat the current public-free prior.
 - If E224 ties or wins, public is rejecting the common rollback core and strengthening the body-sufficiency world.
 - If E224 loses, body-only attribution weakens and E247 should be read as body plus necessary Q3 trim.
+
+## Update After E261
+
+E256 public is now known: `0.5762805676`.
+
+Read:
+
+- E256 loses to E247 by `+0.0001216182`.
+- E256 still beats E95 by `-0.0000107622`.
+- E259 classifies this as `same_family_loss`, not `hard_loss`.
+- E260 says the public loss is compatible with a small number of hard-label cells; top two swing cells can explain the delta scale.
+
+Candidate order changes:
+
+1. **Current anchor:** `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+2. **Attribution slot only:** `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+3. **Score-seeking next action:** no E247/E256 sibling. Refresh non-collinear candidates using the expanded E247/E256 public-anchor set.
+
+Policy:
+
+- Do not submit another E246/E256 threshold sibling.
+- Do not blend E247/E256 to split the difference; E256 has already answered the broad-vs-amplitude question at public scale.
+- If E224 is submitted next, it should be because the question is "did E224 body carry E247?", not because it is expected to beat E247.

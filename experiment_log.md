@@ -3968,3 +3968,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - Both branches are hard-label fragile: one top cell can overturn the expected focus in either pair.
 - Interpretation: E256 remains the best score-plus-information next file, but not for the reason "broad smoothing removal is safer." Its public fate is mostly a four-cell high-amplitude bet. E224 is cleaner attribution but carries a larger expected public-free penalty because it removes the shared rollback core.
 - Decision: keep E256 as the next score attempt if one file is needed. If E256 loses, blame the four E256-only high-amplitude cells before blaming deletion of E247-only broad smoothness. Use E224 only when the explicit question is whether the E224 body alone carried E247.
+
+## E261. E256 Public Feedback Assimilation
+
+- Observe: `submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv` returned public LB `0.5762805676`.
+- Wonder: does this kill the feature-NN1 smoothing branch, or only reject the high-amplitude constrained refinement?
+- Method: reran E259 with `--e256-score 0.5762805676`, appended E256 to `analysis_outputs/public_probe_observations.csv`, reran `analysis_outputs/public_anchor_bottleneck_decomposition.py`, and created `analysis_outputs/e261_e256_public_feedback_assimilation.py`.
+- Result:
+  - E259 outcome: `same_family_loss`.
+  - E256 is worse than E247 by `+0.0001216182`.
+  - E256 is still better than E95 by `-0.0000107622` and better than mixmin by `-0.0000260729`.
+  - E260 expected E256-vs-E247 loss was only `+0.000019101`; actual loss is `6.367x` that prior expectation.
+  - The actual loss scale is still hard-label-plausible: the top two E256-vs-E247 swing cells can explain it.
+  - Updated public-anchor proxy remains too coarse: best LOOCV MAE `0.000457410`, far above the E247/E256/E95 gaps.
+- Interpretation: E256 rejects high-amplitude constrained smoothing as the next score route, but it does not reject the broader feature-NN1 smoothing mechanism because E256 still beats the old E95 frontier. E247's exact top34 / body-plus-rollback interaction is strengthened.
+- Decision: stop E246/E256 sibling sweeps and do not build scalar-threshold smoothing variants. If attribution is the question, E224 is the clean next public observation. If score is the question, refresh non-collinear candidates under the expanded E247/E256 anchor set.

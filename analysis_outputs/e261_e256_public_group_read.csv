@@ -1,0 +1,3 @@
+pair_id,e257_group,moved_cells,expected_focus,adverse_delta,support_prob_focus_swing_weighted,top1_over_abs_expected,post_public_read
+e256_vs_e247,e247_only,13,-1.7673468740781087e-06,0.000130160743039,0.4539176304685109,17.859802609628197,not_proven_causal_by_E256_loss
+e256_vs_e247,e256_only,4,2.086843719934726e-05,0.0001389812840978,0.4684174594442564,4.055804916534481,first_suspect_after_E256_loss
