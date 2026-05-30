@@ -1426,3 +1426,22 @@ Submission policy stays unchanged:
 1. JEPA-first question: submit `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
 2. Conditional Q3-tail repair after E224 tie/small-loss: use `analysis_outputs/submission_e230_q3_swingtop25_drop_e0918606.csv` or `analysis_outputs/submission_e230_q3_risktop21_drop_7d95c14a.csv`.
 3. If E224 hard-fails or E225 does not blame Q3 tail, do not use E230/E231. Route to E166, E154, or new non-collinear search.
+
+## Update After E232
+
+E232 tested whether the E216 S2 miss, E224 Q3 tail, and E224 S4 body share one support boundary. They do not.
+
+Key result:
+
+- max support-label correlation across S2/Q3/S4: `0.057278`.
+- max benefit correlation: `0.090611`.
+- Q3-vs-S2 test low-support top25 overlap: `1` row.
+- best cross-target transfer is movement-shape based (`AUC=0.745452`), while latent-context transfer is weaker (`0.707003`) and not enough to define public-safe rows.
+
+Submission policy stays conservative:
+
+1. No E232 submission.
+2. Do not create a shared S2/Q3/S4 support-gated submission.
+3. JEPA-first public sensor remains `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+4. E230 remains conditional only after E224 tie/small-loss attribution to Q3 tail.
+5. The next new JEPA branch should train target-specific support/energy heads, not a common support regularizer.

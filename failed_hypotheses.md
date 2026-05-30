@@ -1818,3 +1818,12 @@
 - Implementation issue possible: medium. The classifier family is intentionally small. But this was the right falsification for replacing E224 now: if even weak invariant signal existed, at least one small gate should have passed the strict joint stress.
 - Bottleneck implication: E224's Q3 problem is not just "missing a small classifier." It is a target-tail translation problem where public-safe support is not currently identifiable from the available OOF row context.
 - Do not repeat: submitting learned Q3 support-prune files before E224 public feedback. Use E231 only as a diagnostic unless a new JEPA target representation changes the support label geometry.
+
+## FH202. A single shared S2/Q3/S4 support latent can drive the next JEPA gate
+
+- Failed hypothesis: E216 S2, E224 Q3, and E224 S4 support-tail risks are expressions of one hidden row/block support state, so one shared JEPA support/energy gate should transfer across targets.
+- Observed result: E232 shows almost no shared row support. Max support-label correlation is `0.057278`, max benefit correlation is `0.090611`, and subject support-rate correlations are mixed or negative. Test-side low-support overlap is also weak: Q3/S2 top25 overlap `1`, Q3/S4 top25 `2`, S2/S4 top25 `4`.
+- Why discard: cross-target prediction survives mainly through movement-shape features, not through row identity or JEPA latent context. Best movement-only held-out transfer AUC is `0.745452`, while best latent-context transfer is `0.707003`, and overlap of the actual risky test rows is too small to justify a common gate.
+- Implementation issue possible: medium. E232 uses the current E216/E224 translators, so a new JEPA objective could change support geometry. Low for rejecting a shared gate on the current tensors because the direct overlap and transfer diagnostics are consistent.
+- Bottleneck implication: support-tail failure is target-specific. The 0.576x plateau is not fixed by one larger latent regularizer; it needs target-specific translation and calibration heads.
+- Do not repeat: building one S2/Q3/S4 support-gated submission or claiming S4 support is a proxy for Q3/S2 support. Use target-specific heads and treat movement-shape support as an auxiliary calibration diagnostic.

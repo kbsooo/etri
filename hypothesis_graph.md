@@ -2676,6 +2676,18 @@ target co-occurrence
 - public LB 관측 반응: none, because no E231 candidate should be submitted. If E224 later tie/small-loses and Q3 tail is blamed, use E230 hand-prune rather than E231 learned gates.
 - 제출 전략: do not submit E231. Submit E224 first if testing JEPA; use E230 only after E224 attribution.
 
+### H227. S2/Q3/S4 support-tail risk is one shared row/block latent
+
+- 상태: 반증 for the current E216/E224 translators by E232.
+- 왜 그럴듯한가: E216 S2, E224 Q3, and E224 S4 all involve JEPA-derived target translations and all are evaluated through hard-label LogLoss support. If their failures come from hidden subject/block identity, a shared support gate or LeJEPA regularizer should align support labels across targets.
+- 맞다면: support labels and benefit vectors should be positively correlated across S2/Q3/S4; subject support rates should share signs; a model trained on one target movement should transfer to another through row/latent context; test-side low-support rows should overlap.
+- 틀리다면: label/benefit overlap should stay near zero, subject correlations may conflict, transfer should depend mostly on movement-shape features, and test low-support overlap should be small.
+- 최소 실험: `analysis_outputs/e232_cross_target_support_invariance.py`.
+- 관측: max row-label correlation `0.057278`, max benefit correlation `0.090611`; subject support correlations Q3/S2 `-0.442384`, Q3/S4 `0.128085`, S2/S4 `-0.491326`; Q3/S2 test low-support top25 overlap `1` row. Best cross-target AUC is movement-shape transfer `0.745452`, while best latent-context transfer is only `0.707003`.
+- 성공/폐기 기준: rejected as a shared row/block latent. The transferable part is generic movement calibration, not a shared support identity.
+- public LB 관측 반응: no direct submission. If a future shared S2/Q3/S4 gate wins, it must first explain why E232 showed almost no support overlap; otherwise such a win should be treated as public-luck or target-specific leakage.
+- 제출 전략: do not submit shared support-gated S2/Q3/S4 files. Build future JEPA support/energy objectives target-specifically, with movement-shape calibration as an auxiliary diagnostic.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

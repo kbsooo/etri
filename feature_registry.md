@@ -1690,6 +1690,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: support is only weakly learnable. Best AUC is `0.588101`, and no gate passes both OOF preservation and submission-side tail stress.
 - Policy: do not use F196 as a submission gate. Keep it as negative evidence that current E224 Q3 tail risk is not an invariant learned object; use E230 hand-prune only after E224 public attribution.
 
+### F197. E232 cross-target support-invariance features
+
+- Hidden structure: if S2/Q3/S4 support-tail risk came from one hidden row/block state, support labels should transfer across E216 S2, E224 Q3, and E224 S4.
+- Candidates: target support labels, target benefit vectors, subject support rates, movement-shape features, E215/E208 latent context, held-out target transfer predictions, and test low-support overlap scores from `analysis_outputs/e232_cross_target_support_invariance.py`.
+- Label vs split test: valid only as a diagnostic. Support labels are supervised by train OOF loss deltas and cannot be used as direct submission labels without target-specific OOF, row/subject, and submission-side stress.
+- Current evidence: shared support overlap is nearly absent. Max row-label correlation is `0.057278`, max benefit correlation `0.090611`, and Q3/S2 test low-support top25 overlap is only `1` row. Movement-shape transfer can reach AUC `0.745452`, but latent-context transfer is weaker and does not define common public-safe rows.
+- Policy: do not use F197 as a shared S2/Q3/S4 support gate. Use it to require target-specific JEPA support or energy heads and to keep movement-shape risk as a calibration diagnostic.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

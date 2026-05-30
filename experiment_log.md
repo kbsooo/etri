@@ -3550,3 +3550,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - no E231 submission file is selected.
 - Interpretation: the Q3 tail is locally prunable, but the useful prune boundary is not currently learnable as an invariant OOF support representation. This is another LeJEPA-style failure: prediction/gate signal exists, but geometry transfer is not healthy enough.
 - Decision: do not submit E231. Keep E224 as the clean JEPA public sensor and keep E230 only as a post-E224 conditional hand-prune if public feedback specifically implicates Q3 tail.
+
+## E232. Cross-Target Support Invariance
+
+- Observe: E216 S2 failed publicly, E231 rejected an OOF-learned Q3 support gate, and E224 still depends on a healthier S4 body. The remaining JEPA question is whether these support-tail failures share one row/block latent or whether each target needs its own support target.
+- Wonder: if a shared support latent exists, should S2, Q3, and S4 support labels overlap by row/subject and transfer across targets?
+- Method: `analysis_outputs/e232_cross_target_support_invariance.py` joins E216 S2 and E224-like Q3/S4 train/test tensors. It labels each train row by whether the target-specific movement improves OOF LogLoss over stage2, then measures row-label overlap, subject-rate correlation, within-target OOF support predictability, cross-target transfer, and test-side low-support overlap.
+- Result:
+  - report: `analysis_outputs/e232_cross_target_support_invariance_report.md`.
+  - max row-label correlation across S2/Q3/S4 support labels: `0.057278`; max benefit correlation: `0.090611`.
+  - subject support correlations are not shared-positive: Q3/S2 `-0.442384`, Q3/S4 `0.128085`, S2/S4 `-0.491326`.
+  - within-target movement-shape support is strong for S2/S4 but weak for Q3: best AUCs S2 `0.747495`, S4 `0.865816`, Q3 `0.602244`.
+  - true cross-target transfer survives mostly through movement shape, not JEPA latent context: best movement transfer AUC `0.745452`, best latent-context transfer AUC `0.707003`.
+  - test-side low-support overlap is tiny: Q3-vs-S2 top25 overlap `1` row, Q3-vs-S4 top25 `2`, S2-vs-S4 top25 `4`.
+- Interpretation: there is no useful single row/block support latent shared by E216 S2, E224 Q3, and E224 S4. The transferable object is a generic movement-shape calibration risk, while row identity and current JEPA latent context do not align the target support tails.
+- Decision: no E232 submission. Do not build one shared JEPA support gate for S2/Q3/S4. Future JEPA work should use target-specific support/energy heads, especially separate S2 and Q3 heads, with movement-shape regularization as a diagnostic rather than a submission selector.

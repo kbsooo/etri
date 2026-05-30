@@ -1897,6 +1897,26 @@ E231 E224 Q3 OOF support-prune stress:
 
 Stress implication after E231: E224's Q3 tail is not yet an invariant learned support object. The hand-prune diagnosis from E230 remains useful only after E224 feedback; it should not be upgraded into a learned submission lane.
 
+E232 cross-target support-invariance stress:
+
+- script: `analysis_outputs/e232_cross_target_support_invariance.py`.
+- report: `analysis_outputs/e232_cross_target_support_invariance_report.md`.
+- selected files: none.
+- stress dimensions:
+  - row-label and benefit overlap between E216 S2, E224-like Q3, and E224-like S4 support labels.
+  - subject-level support-rate correlation.
+  - within-target OOF support predictability under stratified and subject folds.
+  - held-out target transfer where the target task is excluded from the source set.
+  - test-side low-support overlap across targets.
+- key results:
+  - max row-label correlation `0.057278`; max benefit correlation `0.090611`.
+  - subject support correlations are Q3/S2 `-0.442384`, Q3/S4 `0.128085`, and S2/S4 `-0.491326`.
+  - within-target support is target-specific: best AUC Q3 `0.602244`, S2 `0.747495`, S4 `0.865816`.
+  - best true cross-target transfer comes from movement shape (`AUC=0.745452`), while best latent-context transfer is lower (`0.707003`).
+  - test low-support overlap is small: Q3/S2 top25 `1`, Q3/S4 top25 `2`, S2/S4 top25 `4`.
+
+Stress implication after E232: reject a single shared S2/Q3/S4 row-support regularizer. The live support signal is target-specific plus a generic movement-shape calibration risk. Future JEPA stress should train separate S2/Q3/S4 support or energy heads and use movement-shape transfer only as a diagnostic.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.
