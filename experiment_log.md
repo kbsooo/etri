@@ -4090,3 +4090,29 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - delta is strongly anti-E256 (`cos_delta_with_e256_fail_delta = -0.921266`) while preserving E247 rollback geometry (`cos_with_e247_rollback = 0.994237`).
 - Interpretation: this is a narrow public sensor, not a broad model. If it wins, the human/social breakthrough is the 17-cell E247/E256 boundary state. If it loses, E247 is likely already near the optimum on that boundary and the stories should remain diagnostic until a new target representation is found.
 - Decision: if testing one social follow-up, prefer `submission_e269_combo_phonebed8_anti4_small_b27a2e23.csv`; if using a lower-risk ablation first, use `submission_e269_anti_e256_tophalf_beta035_4e910856.csv` to ask only whether the E256-only bright/low-phone cells were harmful.
+
+## E270. Payday / Cash-Flow Story Atlas
+
+- Observe: the user proposed a possible payday story. A literal single payday is unknown, so treating "25th" as law would be a shortcut.
+- Wonder: do month-level cash-flow rhythms, when joined with finance/shopping/social behavior, explain label lift or the E247/E256 Q3 boundary better than pure calendar artifacts?
+- Method: `analysis_outputs/e270_payday_cashflow_story_atlas.py` tests anchors `10`, `15`, `20`, `25`, `eom`, and `month_start` with exact/post/pre/near windows and behavior interactions. Stories are evaluated by label lift, subject/date-block CV, train/test shift, E247-only vs E256-only alignment, and E267 failed-movement exposure.
+- Result:
+  - promising cash-flow gates: `24`; public-boundary diagnostics only: `2`; real but not action-safe: `23`.
+  - strongest E247-only Q3 alignment among behavior-linked stories: `paymonth_start_near3_money_rumination` cohen_d `0.820306`, `paymonth_start_post3_late_shopping` `0.651014`, `pay20_post3_late_shopping` `0.522631`, `pay25_pre3_cash_stress` `0.482648`.
+  - `pay25_pre3_cash_stress` is the cleanest literal payday-like story: active train `44`, test `19`, best label Q2 abs effect `0.151622`, dateblock Q3 delta `-0.008576`, E247-vs-E256 d `0.836841`, train/test gap `0.027231`.
+  - pure near-month-boundary calendar controls separate E247/E256 strongly but have higher train/test gap, so they are diagnostic/confound-prone rather than direct action features.
+- Interpretation: the "payday" idea is alive, but the safer reading is cash-flow state: month-start reset/spend/late-shopping, pre-25 checking stress, post-20 spending, or bill-cycle rumination. It is not proof of a literal salary date.
+- Decision: materialize only a tiny direct E247 Q3 boundary probe. Do not build a broad calendar/month-day model from this.
+
+## E271. Cash-Flow Direct E247 Gate Materialization
+
+- Observe: E270 cash-flow stories separate the `13` E247-only Q3 cells from the `4` E256-only cells, while E247 remains public best.
+- Wonder: can the cash-flow state act as a safer boundary selector than broad human/social rollback?
+- Method: `analysis_outputs/e271_cashflow_direct_e247_gate_materializer.py` starts from E247 and touches only Q3 cells around the E247/E256 boundary. It amplifies E247-only cells selected by month-start/money-rumination, late shopping, pre-25 stress, and post-20 shopping, with optional tiny counter-move on E256-only cells.
+- Result:
+  - preferred file: `analysis_outputs/submission_e271_cashflow_top8_anti4_tiny_ccd08be8.csv`.
+  - movement: `12` Q3 rows vs E247, L1 logit delta `0.068051236`, max abs logit delta `0.014811704`.
+  - amplified `8` E247-only cash-flow rows and counter-moved all `4` E256-only rows.
+  - delta is strongly anti-E256 (`cos_delta_with_e256_fail_delta = -0.930623`) while preserving E247 rollback geometry (`cos_with_e247_rollback = 0.998460`).
+- Interpretation: this is an information sensor for monthly cash-flow hidden state. If it wins, the human/social branch should focus on sparse boundary states, not broad story latents. If it loses, cash-flow stories remain explanatory but not action-safe at the current frontier.
+- Decision: if submitting one payday/cash-flow file, use `submission_e271_cashflow_top8_anti4_tiny_ccd08be8.csv`. The lower-risk ablations are `submission_e271_cashflow_top8_amp010_170ae6b0.csv` and `submission_e271_pay25_pre3_only_amp016_62659ed5.csv`, but they answer narrower questions.

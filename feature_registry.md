@@ -1941,3 +1941,17 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
 - Strongest surviving story: `phone_in_bed`, which separates E247-only from E256-only Q3 rows with cohen_d `1.164309` and is not exposed in E267 failed movements.
 - Failure condition: broad latent usage is rejected. The PCA story latent worsens blocked CV on every target, so these features should be used as sparse gates/diagnostics, not dumped wholesale into a model.
 - Current action: E269 uses these stories only on the `17` Q3 rows separating E247 and E256.
+
+## E270 Payday / Cash-Flow Story Features
+
+- Target hypothesis: monthly financial rhythm is a hidden human-state generator for sleep labels and the E247/E256 Q3 boundary, but not necessarily a literal salary date.
+- Feature source: `analysis_outputs/e270_payday_cashflow_story_atlas.py`, built from E262 finance/shopping/social day-level lifelog features plus day-of-month anchors.
+- Anchors tested: `10`, `15`, `20`, `25`, `eom`, `month_start`; phases include pre/post/near windows and behavior-linked variants.
+- Surviving feature families:
+  - `paymonth_start_near3_money_rumination`: month-start finance/shopping/search rumination; E247-only Q3 cohen_d `0.820306`.
+  - `paymonth_start_post3_late_shopping`: month-start late shopping/finance use; E247-vs-E256 cohen_d `0.899993`.
+  - `pay25_pre3_cash_stress`: clean pre-25 cash-checking stress; dateblock Q3 delta `-0.008576`, train/test gap `0.027231`.
+  - `pay20_post3_late_shopping`: post-20 spending/late-shopping state; train/test gap `0.004853`.
+- Label vs split test: pure calendar-only features can separate boundary cells but have high train/test gap, so they are confound-prone. Behavior-linked cash-flow features are preferred.
+- Failure condition: if a cash-flow direct boundary probe loses public LB, do not expand this into a broad calendar feature dump. Use it only as context/energy for future sparse gates.
+- Current action: E271 materializes a tiny direct E247 Q3 probe using only this story family.

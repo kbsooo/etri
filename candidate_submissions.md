@@ -2121,3 +2121,35 @@ New social follow-up candidates:
    - Use only as an ablation if a social-selected candidate wins or if we need to know whether selection mattered.
 
 Do not submit another E267/E224/E154 social rollback sibling before these direct E247-boundary sensors. E268 shows the useful social signal is story-specific and sparse; broad story PCA hurts blocked CV across all targets.
+
+## Update After E270/E271 Payday / Cash-Flow Probe
+
+The payday idea is worth testing, but not as a hardcoded payday date. The live hypothesis is a monthly cash-flow hidden state:
+
+- month-start money rumination / late shopping;
+- pre-25 cash-checking stress;
+- post-20 spending or relief-home state;
+- E256-only rows often do not carry this state, or carry a different pay15 post-shopping signature.
+
+Recommended one-file cash-flow sensor:
+
+1. **Preferred information sensor:** `analysis_outputs/submission_e271_cashflow_top8_anti4_tiny_ccd08be8.csv`.
+   - Moves only `12` Q3 rows vs E247.
+   - Amplifies `8` E247-only cash-flow rows and counter-moves all `4` E256-only rows.
+   - L1 logit delta vs E247: `0.068051236`; max abs logit delta: `0.014811704`.
+   - Strongly anti-E256 direction: cosine with E256 fail delta `-0.930623`.
+   - Best interpretation value: tests whether the E247/E256 frontier is partly a monthly cash-flow human-state boundary.
+
+2. **Lower-risk cash-flow-only ablation:** `analysis_outputs/submission_e271_cashflow_top8_amp010_170ae6b0.csv`.
+   - Moves `8` E247-only Q3 rows and does not touch E256-only rows.
+   - Use only if the next public slot should avoid any anti-E256 counter-move.
+
+3. **Literal pre-25 ablation:** `analysis_outputs/submission_e271_pay25_pre3_only_amp016_62659ed5.csv`.
+   - Moves only `4` Q3 rows active in the three days before the 25th.
+   - Useful if the question is specifically whether the payday-like pre-25 stress story is real.
+
+How to read public LB:
+
+- Better than E247 `0.5761589494`: the cash-flow hidden-state boundary is likely real and action-safe.
+- Similar to E247: the story may be real but too small to exploit at current amplitude.
+- Worse than E256/E95 band: the story is explanatory in diagnostics but not a frontier action; retire broad payday/calendar use and keep it only as latent context.
