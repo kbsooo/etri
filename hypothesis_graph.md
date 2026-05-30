@@ -3518,6 +3518,18 @@ target co-occurrence
 - public LB 관측 반응: no immediate public LB. A future candidate should be a pair-dependency correction, not a single-target episode edit.
 - 제출 전략: E310 should materialize coupled target-pair deltas from the robust gates and run E308-style governor plus wrong-pair controls.
 
+### H310: E309 target-pair states directly translate into coupled current-tensor deltas
+
+- 상태: 반증됨 as a submission strategy; representation remains alive.
+- 왜 그럴듯한가: E309 pair logloss gates were strong under row/subject/dateblock nulls, especially `cashflow_stress/Q1_S1`. A true Q/S dependency might require moving both targets together rather than a single target.
+- 맞다면: coupled pair deltas should pass the current selector and, more importantly, beat row/subject/dateblock shuffles, target swaps, wrong-pair placement, and sign-flip controls.
+- 틀리다면: old strict candidates should appear, but matched nulls and wrong-pair controls should also promote; null-rare candidates should be too weak to submit.
+- 최소 실험: `analysis_outputs/e310_pair_interaction_materializer.py`.
+- 관측: generated `455`, old strict `77`, null-evaluated `42`, public-free ready `0`. Best p90 was `-0.000379563` from `cashflow_stress/Q1_S1`, but old-strict rows were null-common; robust null-rare rows were below old strict resolution.
+- 성공/폐기 기준: reject all `submission_e310_pair_*.csv` as public submissions unless a later independent action-health governor can separate real pair movement from wrong-pair and shuffled controls.
+- public LB 관측 반응: no public LB should be spent on E310 files.
+- 제출 전략: none. Pair state should next be used as an energy/gate or as supervision for candidate outcome health, not as direct coupled logit delta.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

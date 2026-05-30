@@ -754,3 +754,20 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - strongest family: QS target dependency, strict `16/18`, robust `8/18`.
 - interpretation: the human/social branch is not dead. Its live form is target dependency, especially cashflow or money-rumination effects on Q1-S1 and bedtime arousal effects on Q/S-stage pairs.
 - next experiment: materialize coupled pair-delta candidates and reject them locally unless wrong-pair and shuffled-state controls lose.
+
+## Public-Free Observation: E310
+
+- submission files: `analysis_outputs/submission_e310_pair_*.csv`.
+- public LB: not submitted.
+- reason not submitted: no E310 candidate passed the local row/subject/dateblock/swap/wrong-pair/sign governor.
+- local observation:
+  - generated candidates: `455`;
+  - old strict candidates: `77`;
+  - null-evaluated candidates: `42`;
+  - public-free ready files: `0`;
+  - best actual p90: `-0.000379563`;
+  - strongest visible stories: `cashflow_stress/Q1_S1`, `cashflow_stress/S1_S2`, `cashflow_stress/S1_S3`, `cashflow_stress/S1_S4`, `home_recovery/Q1_S3`;
+  - old-strict visible candidates are mostly null-common;
+  - null-rare candidates are below submission resolution.
+- interpretation: public LB should not be used on E310. The pair-interaction representation is useful, but direct coupled logit deltas are not a certified action layer.
+- next experiment: use pair state as action-health supervision or energy/gate, and keep wrong-pair plus shuffled-state controls as mandatory local blockers.

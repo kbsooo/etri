@@ -2729,3 +2729,29 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - require E308-style selector/null/dominance gates before public LB.
 - Failure condition:
   - if pair materialization is reproduced by wrong-pair or shuffled-state controls, keep E309 only as an interpretability/world-model clue.
+
+## E310 Pair-Interaction Action Layer
+
+- Target hypothesis tested:
+  - E309 human/social target-pair states can be converted into coupled probability deltas on current E247.
+- Feature/representation source:
+  - E309 robust episode-pair rows;
+  - predicted episode state from family/raw/hybrid JEPA contexts;
+  - 4-class joint target models for pairs such as `cashflow_stress/Q1_S1`, `cashflow_stress/S1_S2`, and `home_recovery/Q1_S3`;
+  - coupled marginal logit deltas shaped by dense/sparse/sign/difference rules.
+- Validation result:
+  - generated candidates `455`;
+  - old strict candidates `77`;
+  - null-evaluated candidates `42`;
+  - public-free ready `0`;
+  - best current-anchor p90 `-0.000379563`, but old-strict rows are null-common.
+- Updated registry status:
+  - pair-interaction deltas are not approved as direct submission features;
+  - pair state remains approved as diagnostic/energy/supervision for action-health learning;
+  - wrong-pair and target-swap controls are now mandatory for future target-dependency materializations.
+- Adopt rule for future features:
+  - do not call a human/social pair story submission-worthy until it beats wrong-pair and shuffled-state controls;
+  - treat old strict promotion as visibility only, not correctness;
+  - prefer a translator trained to predict public-free governor health over hand-coded pair marginal deltas.
+- Failure condition:
+  - if a pair feature is selector-visible but matched nulls also promote, classify it as target-movement geometry rather than hidden-world recovery.

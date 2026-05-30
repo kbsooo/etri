@@ -2295,3 +2295,12 @@
 - Implementation issue possible: low for blocking current archive submissions, because E308 is an aggregation of previous independent governors. Medium for future use as a generator, because positive visible/null-rare labels are too sparse.
 - Bottleneck implication: the limiting factor is not lack of local attractive candidates. It is lack of actions that remain rare under matched row/subject/dateblock/sign nulls.
 - Do not repeat: using public LB to test archive rows that fail E308-style local promotion, especially post-E303 S4 hand-built candidates.
+
+## FH255. Human/social target-pair states directly materialize as safe coupled logit deltas
+
+- Failed hypothesis: E309's robust Q/S and S/S pair signals should become public-free candidates if both targets are moved together instead of applying single-target episode edits.
+- Observed result: E310 generated `455` coupled pair-delta candidates and found `77` old strict candidates, but `42` selected candidates produced public-free ready `0`. The best old-strict p90 was `-0.000379563`, mostly from `cashflow_stress/Q1_S1`, but matched nulls and controls remained competitive. Null-rare rows were too small to submit.
+- Why discard: the translator converts a real pair representation into generic current-tensor target movement. The old selector sees the move, but the move is not rare under row/subject/dateblock/wrong-pair/swap controls.
+- Implementation issue possible: medium. E310 used logistic pair marginal deltas and handcrafted masks; a learned action-health translator or energy gate may still use the same pair representation. Low for rejecting all generated E310 files because the null governor directly rejects them.
+- Bottleneck implication: the current bottleneck is not finding human/social stories. It is converting stories into probability movements that are visible and locally non-null.
+- Do not repeat: submitting `submission_e310_pair_*.csv` or scaling the same coupled pair deltas without a new wrong-pair/shuffled-state resistant gate.

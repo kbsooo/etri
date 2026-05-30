@@ -4753,3 +4753,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - other robust stories: bedtime arousal on `Q1_S1`, `Q3_S3`, `Q1_S3`, `Q2_S3`, `S1_S2`; home recovery on `Q1_S3` and `S3_S4`; bad-night aftereffect on `Q3_S3`.
 - Interpretation: this is a real positive human/social result. The target of the human state is often not a single label but a Q/S dependency: subjective satisfaction vs stage stress, screen/social arousal vs stage composition, recovery vs subjective-objective alignment. The user's payday/cashflow intuition is supported in a specific form: money rumination is strongest as `Q1-S1` and S-stage joint structure, not as a standalone target prior.
 - Decision: no public submission yet. E309 justifies the next materialization branch: coupled target-pair deltas with wrong-pair and shuffled-state controls, then E308-style governor. Do not return to single-target episode edits.
+
+## E310. Coupled Pair-Interaction Materializer
+
+- Observe: E309 found strong human/social target-pair representations, especially `cashflow_stress/Q1_S1`, but public LB cannot be spent on every plausible social story.
+- Wonder: can E309's joint Q/S signal be translated into coupled target deltas on current E247, while wrong-pair and shuffled-state controls lose?
+- Method: `analysis_outputs/e310_pair_interaction_materializer.py` fits joint 4-class pair models with and without predicted episode state, converts marginal pair differences into coupled current-tensor logit deltas, then tests candidates with current-anchor prefilter plus row/subject/dateblock/swap/wrong-pair/sign null submissions. No public LB was used.
+- Result:
+  - generated candidates: `455`;
+  - old strict candidates: `77`;
+  - null-evaluated candidates: `42`;
+  - public-free ready candidates: `0`;
+  - best actual p90: `-0.000379563`;
+  - best null strict rate: `0.000000` only on too-small candidates;
+  - strong old-strict clusters: `cashflow_stress/Q1_S1`, `cashflow_stress/S1_S2`, `cashflow_stress/S1_S3`, `cashflow_stress/S1_S4`, `home_recovery/Q1_S3`.
+- Interpretation: the human/social pair signal is real as representation, but the current translator collapses into null-common probability movement. The local selector likes many coupled cashflow/QS and SS edits, yet matched nulls also pass at high rates. The most useful E310 result is a safety rule: do not submit pair-delta files unless they beat wrong-pair and shuffled-state controls.
+- Decision: no E310 public submission. Keep E309 as a world-model clue and move the next branch toward action-health learning or using pair state as an energy/gate, not direct coupled logit deltas.

@@ -3102,3 +3102,27 @@ Priority for next materialization:
 1. `cashflow_stress/Q1_S1`
 2. `bedtime_arousal/Q3_S3` and `bedtime_arousal/Q1_S3/Q2_S3`
 3. `home_recovery/Q1_S3` and `home_recovery/S3_S4`
+
+## Update After E310 Pair-Interaction Materializer
+
+Current submission policy remains: **no new public submission.**
+
+Why:
+
+- E310 generated `455` coupled pair-delta candidates from E309's human/social target-interaction signals.
+- `77` candidates passed the old strict prefilter, so the signal is visible to the current local selector.
+- But `42` selected candidates produced `0` public-free ready files under row/subject/dateblock/swap/wrong-pair/sign controls.
+- The attractive candidates are mostly visible/null-common:
+  - `cashflow_stress/Q1_S1` has the best p90 edge (`-0.000379563`) but high null strict rates;
+  - cashflow S-stage pairs and `home_recovery/Q1_S3` show the same issue.
+- The only very null-rare rows are too small to submit.
+
+Meaning:
+
+- Do not submit `submission_e310_pair_*.csv`.
+- E309 is still valuable, but as a hidden target-dependency map, not as a direct current-tensor delta.
+- The next submission-worthy path needs a learned action-health gate or pair-state energy that first proves wrong-pair and shuffled-state controls lose locally.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.

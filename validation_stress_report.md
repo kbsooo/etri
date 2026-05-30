@@ -3517,3 +3517,34 @@ Decision:
 - Human/social state survives as a target-interaction representation.
 - This is not yet a submission certificate. It must be translated into coupled target deltas and then pass wrong-pair plus shuffled-state materialization nulls.
 - E309 makes the next public-free branch clear: target-pair dependency correction, especially cashflow/Q1-S1 and bedtime-arousal/Q-S/S-stage pairs.
+
+## E310 Pair-Interaction Materialization Governor
+
+Question: can E309's robust target-pair states be converted into public-free current-tensor probability movement?
+
+Method: `analysis_outputs/e310_pair_interaction_materializer.py`.
+
+- Source: E309 robust/strict episode-pair rows.
+- Candidate actions: coupled pair deltas on current E247, using `joint_centered`, sparse top-abs, same-sign, opposite-sign, and difference masks across scales.
+- Null stress: row, subject, dateblock, swap-targets, wrong-pair, and sign-flip controls.
+- Public LB: not used.
+
+Result:
+
+- generated candidates: `455`.
+- old strict candidates: `77`.
+- null-evaluated candidates: `42`.
+- public-free ready candidates: `0`.
+- strongest old-strict source family:
+  - `cashflow_stress/Q1_S1`: `29/70` old strict, best p90 `-0.000379563`;
+  - `home_recovery/Q1_S3`: `17/35` old strict;
+  - `cashflow_stress/S1_S2`: `15/35` old strict;
+  - `cashflow_stress/S1_S3`: `13/35` old strict.
+- best old-strict candidates are rejected because null strict rates are usually `0.55` to `0.83`.
+- too-small candidates can be null-rare, but their old strict gate is false and their edge is below submission resolution.
+
+Decision:
+
+- No E310 file should be submitted.
+- This locally enforces the user's constraint: public LB is not the checker; matched controls are the checker.
+- Pair state remains a valid diagnostic, but direct coupled delta translation is rejected until an action-health or energy-gated translator makes the intended pair beat wrong-pair and shuffled-state controls.
