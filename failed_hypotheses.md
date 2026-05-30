@@ -1691,3 +1691,12 @@
 - Implementation issue possible: medium. A larger permutation budget or independent JEPA training seeds could refine p-values, but the current effect sizes are wide enough to reject the cheap cherry-pick explanation.
 - Bottleneck implication: if E211 fails publicly, the likely failure is public-tail probability translation, anchor confounding, or calibration risk, not absence of a real JEPA axis.
 - Do not repeat: dismissing the current JEPA branch as random axis selection without a stronger null or independent retraining audit.
+
+## FH188. A small supervised benefit classifier is enough to gate JEPA translation
+
+- Failed hypothesis: E211's remaining translation risk can be fixed by training a small public-free classifier to predict whether each Q3/S4 raw JEPA cell improves OOF log loss.
+- Observed result: E214's benefit gates have only weak sorting power: Q3 AUC `0.552169`, S4 AUC `0.568968`. Probability, rank-normalized, margin, and dependency-composed gate variants all lose too much local signal. The best benefit-gated local policy (`q3raw_s4benefit_rank`) reaches only `-0.000918`, while raw JEPA is `-0.001273` and E211 toward is `-0.001318`.
+- Why discard: a good gate must preserve the Q3/S4 body and reduce public-tail risk. E214 improves geometry for one variant (`-0.000987`) but sacrifices enough OOF/local signal that no policy passes frontier selection.
+- Implementation issue possible: medium. The gate probability calibration is weak and could be improved, but rank-normalization was also tested and still failed to close the gap.
+- Bottleneck implication: the translation problem is not solved by cell-wise benefit classification. It likely needs a different JEPA target representation, a narrower public-tail rule, or public-feedback-guided routebook interpretation after E211.
+- Do not repeat: training a generic benefit gate over the same E209/E211 Q3/S4 step unless a new feature family gives materially higher benefit AUC.

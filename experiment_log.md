@@ -3292,3 +3292,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - S4 axis: delta `-0.003134`, half win `0.733333`, global/subject permutation p `0.020408/0.020408`, same-family pool rank `1/16`.
 - Interpretation: the live E211 axes are unlikely to be random coordinate picks under these nulls. This strengthens the "actual JEPA found a narrow Q3/S4 representation" claim. It does not prove public improvement, because the remaining risk is still translation from a real axis into public-stable probability movement.
 - Decision: keep E211 ahead of E210/E209 for the next JEPA sensor. If E211 loses publicly, the failure should be read as probability-translation/public-tail failure, not as evidence that the Q3/S4 JEPA axes were merely noise.
+
+## E214. JEPA Benefit Gate Translation
+
+- Observe: E213 supports the Q3/S4 JEPA axes, but E211 still translates them with simple fixed movement and dependency-consistency rules. A plausible next bottleneck is sample-level translation: some row-target cells should accept the JEPA step, others should reject it.
+- Wonder: can a public-free benefit classifier, trained from OOF cell-wise loss improvement of the raw E209 JEPA step, identify where to keep the JEPA movement better than the E211 dependency gate?
+- Method: `analysis_outputs/e214_jepa_benefit_gate_translation.py` trains small subject-CV logistic benefit gates for Q3 and S4 using base/candidate/dependency probabilities, step geometry, entropy, and the E208 axis transform. It tests raw probability gates, rank-normalized gates, margin gates, and dependency-composed gates under OOF, subject-half, geometry, and frontier stress.
+- Result:
+  - report: `analysis_outputs/e214_jepa_benefit_gate_translation_report.md`.
+  - gate audit: Q3 gate AUC `0.552169`, S4 gate AUC `0.568968`.
+  - best benefit-gated local policy `q3raw_s4benefit_rank`: delta `-0.000918`, versus raw JEPA `-0.001273` and E211 toward `-0.001318`.
+  - geometry for `q3raw_s4benefit_rank` is good (`-0.000987`, better than raw by `-0.000079`), but the local loss of S4 movement is too large.
+  - no benefit-gated policy passes the E214 frontier gate; no submission is selected.
+- Interpretation: there is weak row-level sorting signal in the JEPA benefit labels, but it is not strong/calibrated enough to replace E211's simpler target-dependency S4 gate. The next bottleneck is not "train a small classifier to decide JEPA cells"; it is either a different representation target or a probability translator that preserves the Q3/S4 body while fixing only a narrower public-tail failure.
+- Decision: do not submit E214. Keep E211 as the next JEPA public sensor. Reuse E214 only as evidence that benefit-label gating is a weak diagnostic, not a frontier candidate.

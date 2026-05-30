@@ -1127,3 +1127,15 @@ E213 strengthens the E211-first policy by rejecting the cheap cherry-pick object
 - S4 `e208_pred_pc14`: permutation p-values `0.020408`, same-family pool rank `1/16`.
 
 Submission policy remains unchanged: E211 E154 closer is the maximum-survival JEPA sensor, and E211 E95 toward is the clean current-frontier JEPA sensor. If either loses, interpret it first as translation/public-tail failure, not as proof that the JEPA axes are noise.
+
+## Update After E214
+
+E214 tried to turn the JEPA axes into a stronger submission by learning a row-target benefit gate. It did not produce a submission-worthy file.
+
+- Q3 benefit gate AUC: `0.552169`.
+- S4 benefit gate AUC: `0.568968`.
+- Best benefit-gated local policy: `q3raw_s4benefit_rank`, delta `-0.000918`.
+- E211 toward baseline: delta `-0.001318`.
+- Selected E214 submissions: none.
+
+Submission policy remains E211-first. The next JEPA submission candidate is still `analysis_outputs/submission_e211_jepa_q3rawcloser_q3s1p0_s4s1p0_e154_a0p5_c20eee9c.csv` for maximum structured survival, or `analysis_outputs/submission_e211_jepa_q3rawtoward_q3s1p0_s4s1p0_e95_a0p5_e4e44d91.csv` for a clean E95-frontier JEPA sensor. E214 is a failed translator, not a replacement candidate.

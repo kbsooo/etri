@@ -1576,6 +1576,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: Q3 `e208_resid_self_pc10` and S4 `e208_pred_pc14` both pass as `specific`; both have permutation p-values `0.020408` and same-family pool rank `1/16`.
 - Policy: keep these axes as live JEPA representation features. Do not expand to all PCs or nearby PCs. If public feedback is bad, revise the translation/gate, not the existence of the Q3/S4 axes.
 
+### F183. E214 JEPA benefit-gate translator
+
+- Hidden structure: if a JEPA axis is real but not uniformly valid, the row-target cells where the JEPA step helps should be predictable from step direction, dependency direction, entropy, and axis energy.
+- Candidates: subject-CV benefit probability, rank-normalized benefit probability, margin gate, toward/closer-composed benefit gates for Q3/S4.
+- Label vs split test: valid as a public-free OOF translation diagnostic only when evaluated through subject-CV and geometry folds. It is unsafe as a submission feature if it simply learns train label benefit without stress survival.
+- Current evidence: Q3/S4 benefit AUCs are weak (`0.552169`, `0.568968`). Best benefit-gated local policy loses to raw JEPA and E211. No E214 policy passes frontier selection.
+- Policy: do not use F183 for submission. Keep it as a negative control showing that the JEPA translation bottleneck is not fixed by a simple supervised benefit gate.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

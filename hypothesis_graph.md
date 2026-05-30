@@ -2448,6 +2448,18 @@ target co-occurrence
 - public LB 관측 반응: E211 public loss would now mean "real axis, bad translation/public tail" before it means "JEPA axis was noise." E211 public win would strengthen both axis specificity and translation.
 - 제출 전략: do not drop the Q3/S4 JEPA axis family solely because it was selected from many latent coordinates. Keep public tests focused on E211/E209 translation and feedback decoding.
 
+### H208. A supervised JEPA benefit gate can fix the E211 translation bottleneck
+
+- 상태: 약화 by E214.
+- 왜 그럴듯한가: E213 suggests the JEPA axes are real, so a remaining failure mode is heterogeneous row-target validity. If true, the OOF cells where raw JEPA improves log loss should be predictable from base/candidate/dependency geometry and axis energy.
+- 맞다면: subject-CV benefit gates should have useful AUC, gated policies should preserve most of the Q3/S4 local gain, and frontier stress should beat or at least match E211 with lower hard-tail risk.
+- 틀리다면: gate AUC should be weak, probability/rank/margin gates should shrink useful movement, and E211's simpler S4 dependency-consistency gate should remain dominant.
+- 최소 실험: `analysis_outputs/e214_jepa_benefit_gate_translation.py`.
+- 관측: Q3 gate AUC `0.552169`, S4 gate AUC `0.568968`. Best benefit-gated policy `q3raw_s4benefit_rank` has local delta `-0.000918`, weaker than raw JEPA `-0.001273` and E211 toward `-0.001318`. It improves geometry to `-0.000987`, but no E214 benefit policy passes frontier selection.
+- 성공/폐기 기준: failed as a submission strategy. It remains a diagnostic because it shows weak benefit sorting and a geometry/local tradeoff.
+- public LB 관측 반응: no E214 submission should be used before E211. If E211 fails, do not jump to E214 benefit gates; rebuild the representation or the translator.
+- 제출 전략: none. Keep E211/E209 ordering.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

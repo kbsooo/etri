@@ -1647,3 +1647,31 @@ Result:
 - All permutation null medians are adverse, and the best same-family S4 alternative is still adverse.
 
 Stress implication: E211 is not mainly a latent-coordinate cherry-pick. The live bottleneck remains public-tail probability translation, not whether JEPA found a real narrow representation.
+
+## Update After E214
+
+E214 stress-tests a direct translation repair: learn subject-CV benefit gates for the E209/E211 Q3/S4 JEPA step.
+
+- script: `analysis_outputs/e214_jepa_benefit_gate_translation.py`.
+- report: `analysis_outputs/e214_jepa_benefit_gate_translation_report.md`.
+- gate audit: `analysis_outputs/e214_jepa_benefit_gate_translation_gate_audit.csv`.
+- summary: `analysis_outputs/e214_jepa_benefit_gate_translation_summary.csv`.
+- frontier stress: `analysis_outputs/e214_jepa_benefit_gate_translation_frontier_summary.csv`.
+
+Stress dimensions:
+
+- subject-CV gate OOF.
+- subject-half stability.
+- geometry-fold refit.
+- raw probability, rank-normalized, margin, and dependency-composed gate variants.
+- E95/E154 frontier hard-tail stress.
+
+Result:
+
+- Q3 benefit gate AUC is `0.552169`; S4 benefit gate AUC is `0.568968`.
+- E211-style baseline remains best locally: `baseline_q3raw_s4toward` delta `-0.001318`.
+- Best benefit-gated local policy is only `q3raw_s4benefit_rank` at `-0.000918`.
+- Benefit gates can improve geometry in one case (`q3raw_s4benefit_rank` geometry `-0.000987`), but the local loss is too large.
+- No benefit-gated policy passes the E214 frontier gate; no submission is selected.
+
+Stress implication: simple learned benefit gating is not the missing JEPA translator. E211 remains the stronger public sensor.
