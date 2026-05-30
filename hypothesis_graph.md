@@ -2724,6 +2724,18 @@ target co-occurrence
 - public LB 관측 반응: none; no E235 file should be submitted. The existing E216 public miss remains the public observation that governs this lane.
 - 제출 전략: keep E216/E235 S2 closed. Do not submit smaller-scale or E95-anchor S2 variants unless a new target definition changes the submission-side support geometry.
 
+### H231. E234 Q3/S4 learned tail masks can replace E230 hand-pruned Q3 intervention
+
+- 상태: 반증 by E236 for current E224/E234 Q3/S4 tensors.
+- 왜 그럴듯한가: E234's tail-contrastive target improves Q3 and S4 OOF loss versus full movement, while E230 showed that E224's Q3 tail can be pruned without destroying the S4 body. A learned E234 mask would be cleaner than E230's hand intervention.
+- 맞다면: at least one Q3-only, S4-only, or Q3+S4 materialization should preserve E224 expected focus, reduce adverse capacity, improve support, and lower Q3 top-cell concentration under the public-free E222/E230 stress frame.
+- 틀리다면: learned Q3 masks will reduce some adverse capacity but select low-support rows or worsen top-cell concentration; learned S4 masks will erase healthy S4 body; no joint materialization will pass the gate.
+- 최소 실험: `analysis_outputs/e236_q3s4_tail_contrastive_materialization.py`.
+- 관측: graft rows `92`; gate passes `0`; materialized files `0`. Best Q3 masks reduce adverse by `0.000329753` but support drops `-0.004017252` and Q3 top1/expected rises to `3.054720`. Best S4 support gain is `0.006519636`, but expected focus weakens by `0.000166178` and Q3 tail risk remains.
+- 성공/폐기 기준: rejected as a learned replacement for E230. E234 remains a local target-representation clue, not a direct submission translator.
+- public LB 관측 반응: none, because no E236 file should be submitted. If E224 later suggests Q3-tail blame, the conditional repair is still E230 rather than E236.
+- 제출 전략: do not submit E236. Keep E224/E230 policy unchanged and move JEPA work toward sharper cell-level decisive-label targets or a different target representation.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

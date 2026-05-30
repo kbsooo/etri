@@ -1722,6 +1722,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: `240` S2 materializations scanned; `0` submission-gate pass and `0` joint-gate pass. Max support remains below `0.5`, and the best expected rows still exceed the observed E216 miss in adverse capacity.
 - Policy: keep F200 as a hard negative screen for S2 JEPA translators. Do not submit E235 or remaining E216 S2 siblings without a new target representation and a new pass through this stress.
 
+### F201. E236 Q3/S4 learned-tail materialization stress features
+
+- Hidden structure: if E234's Q3/S4 high-impact tail representation captures the same public-facing tail law as E230, it should become a learned replacement for E230's hand-pruned Q3 intervention on top of E224.
+- Candidates: E234 Q3/S4 policy id, selected test rows, Q3/S4 dropped-row counts, E224-vs-E154 expected focus, adverse capacity, support probability, Q3 top-cell concentration, S4 body loss, and overlaps with E230 risk/swing rows.
+- Label vs split test: valid only as a public-free materialization stress. It uses OOF-derived E234 policies and deterministic E224/E154 test tensors, but no new public labels. It must not be relaxed post hoc just to force a file.
+- Current evidence: graft rows `92`; gate pass `0`; materialized files `0`. Best Q3 rows reduce adverse but lose support and increase Q3 top-cell concentration; best S4 rows improve support but erase expected focus and do not fix Q3.
+- Policy: do not use F201 to generate a submission. Treat E234 Q3/S4 as local representation evidence, keep E230 as conditional hand-prune after E224 feedback, and require a sharper cell-level target before reopening learned Q3/S4 gates.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

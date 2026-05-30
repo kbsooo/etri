@@ -1845,3 +1845,12 @@
 - Implementation issue possible: medium. E235 intentionally tests only S2 and only the current E216/E95 materialization geometry. It does not kill E234 Q3/S4 or future cell-level tail targets. Low for rejecting immediate S2 submission because the exact post-E216 capacity gate has zero passes.
 - Bottleneck implication: JEPA target/loss changes can find local structure, but S2 translation is still blocked by public subset/support mismatch. The bottleneck is not just representation learning; it is target-specific probability materialization.
 - Do not repeat: smaller-scale E216 S2 siblings, E95-anchor S2 variants, or E234-S2-derived files unless a new target definition passes the same submission-side support/adverse stress.
+
+## FH205. E234 Q3/S4 learned tail masks are a submission-safe replacement for E230
+
+- Failed hypothesis: E234's locally promoted Q3/S4 tail-contrastive policies should learn the same public-facing Q3/S4 tail law that E230 hand-pruned from E224.
+- Observed result: E236 scans `92` graft-side materializations and selects `0` files. Best Q3 masks reduce adverse capacity by `0.000329753`, but support drops by `-0.004017252` and Q3 top1/expected rises to `3.054720`. Best S4 masks can improve support by `0.006519636`, but lose `0.000166178` expected focus and leave Q3 risk unchanged.
+- Why discard: the learned tail masks do not preserve the joint E224 geometry. Q3 learned drops are not aligned with public-free support; S4 learned drops are mostly healthy-body removal.
+- Implementation issue possible: medium. E236 only tests the current E234 policy family on the current E224/E154 tensor. It does not kill future cell-level decisive-label targets or new JEPA objectives. Low for rejecting this exact submission branch because every public-free gate is zero.
+- Bottleneck implication: E234 proves that changing JEPA targets can expose local tail structure, but target-specific public materialization is still the bottleneck. The Q3 public tail remains visible as an intervention energy, not as a learned invariant gate.
+- Do not repeat: submitting E234-derived Q3/S4 learned-mask files, or replacing E230 with a learned Q3/S4 gate, unless a new target definition passes E224 expected-focus, support, adverse, and top-cell concentration stress.

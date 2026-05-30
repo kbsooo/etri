@@ -1478,3 +1478,19 @@ Submission policy:
 3. Keep E216/E235 S2 closed as a public lane.
 4. Keep E224 as the clean JEPA public sensor if the next public question is still JEPA.
 5. The next JEPA diagnostic should audit E234 Q3/S4 materialization or train a sharper cell-level decisive-label target, not another S2 rescue.
+
+## Update After E236
+
+E236 audited the remaining E234 Q3/S4 branch by trying to materialize learned tail masks on the live E224 tensor. It also failed the submission gate: `92` graft rows, `0` gate passes, and `0` materialized files.
+
+Key result:
+
+- Q3 learned masks reduce adverse capacity a little, but they are anti-support and concentrate risk into a worse top-cell shape (`q3_top1_over_abs_expected=3.054720`).
+- S4 learned masks improve support in some rows, but they erase too much of E224's expected body and do not address Q3 tail risk.
+
+Submission policy stays unchanged:
+
+1. No E236 submission.
+2. E224 remains the clean JEPA public sensor if testing capped Q3 plus S4 body.
+3. E230 remains conditional only after E224 tie/small-loss attribution points to Q3 tail.
+4. E234 stays useful as local representation evidence, not as a direct public translator.

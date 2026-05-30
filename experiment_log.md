@@ -3609,3 +3609,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best low-scale rows reduce expected movement but still have adverse around `0.001869`, about `1.878x` the observed E216 miss, and support below `0.5`.
 - Interpretation: E234's S2 tail-risk target improves OOF, but the OOF tail boundary does not transfer to public-safe S2 support geometry. This reinforces the post-E216 read: S2 masked-family JEPA is a diagnostic latent, not a submission-safe translator.
 - Decision: keep E216/E235 S2 closed. The next JEPA work should either materialize E234 Q3/S4 under separate public-free stress or define a sharper cell-level decisive-label target; do not spend another slot on S2 rescue variants.
+
+## E236. Q3/S4 Tail-Contrastive Materialization
+
+- Observe: E234 revived Q3/S4 local tail targets after E235 closed the S2 lane, and E230 still leaves open whether Q3 tail pruning can be learned instead of hand-pruned.
+- Wonder: can E234 Q3/S4 high-impact masks improve the E224 submission tensor under public-free E222/E230 stress?
+- Method: `analysis_outputs/e236_q3s4_tail_contrastive_materialization.py` applies promoted E234 Q3/S4 drop policies to the E224-vs-E154 tensor, scans Q3-only, S4-only, and Q3+S4 combinations, and audits graft-vs-E154 plus actual-vs-E95 support/tail geometry.
+- Result:
+  - report: `analysis_outputs/e236_q3s4_tail_contrastive_materialization_report.md`.
+  - scanned candidate rows: `184` including actual-vs-E95 duplicates.
+  - graft-side rows: `92`; graft-side gate passes: `0`; materialized files: `0`.
+  - best Q3 masks reduce adverse capacity by up to `0.000329753`, but lose support (`-0.004017252`) and make Q3 top-cell concentration worse (`q3_top1_over_abs_expected=3.054720`).
+  - best S4 masks can improve support by up to `0.006519636`, but sacrifice expected focus (`expected_loss_vs_e224=0.000166178`) and leave Q3 tail risk unchanged.
+- Interpretation: E234 Q3/S4 local tail labels are not the same object as the E230 public-free Q3 tail geometry. Q3 learned masks are anti-support at test geometry; S4 learned masks are mostly body-erasing.
+- Decision: no E236 submission. Keep E224 as the clean JEPA public sensor and keep E230 as the conditional hand-prune after E224 feedback.

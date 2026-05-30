@@ -1976,6 +1976,25 @@ E235 S2 tail-contrastive materialization stress:
 
 Stress implication after E235: the OOF tail-contrastive S2 signal is not public-safe under current tensors. E216 S2 remains closed; future JEPA work should not use S2 as the next public lane without a different target definition and a stronger submission-side support proof.
 
+E236 Q3/S4 tail-contrastive materialization stress:
+
+- script: `analysis_outputs/e236_q3s4_tail_contrastive_materialization.py`.
+- report: `analysis_outputs/e236_q3s4_tail_contrastive_materialization_report.md`.
+- selected files: none.
+- stress dimensions:
+  - promoted E234 Q3/S4 high-impact tail policies.
+  - E224 capped-Q3/S4 submission tensor relative to E154.
+  - Q3-only, S4-only, and Q3+S4 learned-mask materializations.
+  - E222/E230-style public-free expected focus, adverse capacity, support probability, Q3 top-cell concentration, and actual-vs-E95 duplicate checks.
+- key results:
+  - graft rows: `92`.
+  - graft gate pass: `0`.
+  - materialized submission files: `0`.
+  - best Q3 adverse reduction: `0.000329753`, but support gain is `-0.004017252` and Q3 top1/expected rises to `3.054720`.
+  - best S4 support gain: `0.006519636`, but expected focus weakens by `0.000166178` and Q3 tail risk is unchanged.
+
+Stress implication after E236: E234's Q3/S4 tail labels are useful local diagnostics but not a submission-safe learned replacement for E230's hand-pruned Q3 tail. The Q3 learned masks select the wrong public-free support rows, while S4 learned masks remove too much healthy E224 body.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.
