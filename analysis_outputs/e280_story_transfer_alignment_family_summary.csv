@@ -1,0 +1,10 @@
+mapped_family,n_stories,max_transfer_survival_score,mean_transfer_survival_score,alive_story_state_gate_n,alive_needs_transfer_test_n,blocked_transfer_gap_n,top_story_id,top_story_human,e278_only_gate_count,jepa_context_oof_r2_mean
+mobility_context,5,0.7919062582243951,0.6413695254047853,1,0,0,commute_workday,Morning/evening movement and WiFi variety consistent with commute.,2,0.6381806400681596
+bedtime_phone,4,0.7819926864485228,0.5947196320840089,1,0,0,bright_light_late,Phone/wearable light exposure near sleep.,2,0.5880664515873499
+diary_global,1,0.5938188195331261,0.5938188195331261,1,0,0,morning_after_badnight,High morning heart/mobility after a possibly fragmented night.,2,
+routine_calendar,21,0.7161794832921275,0.46037630867536317,0,9,3,single_app_monotony,One dominant app or ritual dominates the day.,0,0.09994776741066595
+physiology_activity,4,0.613616128965246,0.5341145618176972,0,2,0,heart_stress_late,High late/presleep heart rate and variance.,0,0.8614787168084691
+media_game,4,0.5802893308856999,0.5267151190712662,0,1,0,media_binge_late,Late video/music/game consumption.,0,0.5613276218521478
+cognitive_money,41,0.553285455765853,0.39791332824760495,0,10,3,paymonth_start_post7_spend_outing,First week after anchor month_start: broader spending/social state.,0,-0.10600657630095539
+social_comm,4,0.4841282966221648,0.4374078978020193,0,0,0,social_isolation_media,Low direct social signal but high passive media/home utility.,0,0.579754945677125
+sensor_measurement,2,0.47591400495628255,0.465726133791163,0,1,0,sensor_sparse_day,Sparse sensor counts that may encode phone/watch availability.,0,0.9676580277460272

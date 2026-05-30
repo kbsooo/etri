@@ -2667,3 +2667,55 @@ Decision:
 
 - E279 is now the default pre-public gate for q-sleep/social-style candidate files.
 - A candidate may be interesting as a hypothesis sensor, but it should not be recommended as score-seeking submission unless `public_free_submission_ready=True`.
+
+## E280 Story Transfer Atlas
+
+Question: can human/social and payday stories be ranked without using more public LB?
+
+Method: `analysis_outputs/e280_story_transfer_alignment_atlas.py`.
+
+- Inputs: E268/E270 story verdicts/features, E273 JEPA family diagnostics, E275 q-sleep row overlap, E278 train row-alignment support, E279 public-free governor context.
+- Stress dimensions: label lift, blocked CV delta, train/test story-score z-gap, E278 family support, E273 context-to-family R2, and E275 q-sleep selected-row alignment.
+
+Result:
+
+- stories audited: `86`.
+- alive for story-state gate: `3`.
+- alive but needs transfer test: `23`.
+- blocked transfer gap: `6`.
+- public-anchor diagnostic only: `6`.
+- top rows: `commute_workday` `0.791906`, `bright_light_late` `0.781993`, `single_app_monotony` `0.716179`, `app_entropy_scattered_day` `0.649240`.
+
+Decision:
+
+- E280 is a ranking/triage layer, not a submission validator.
+- Public-anchor alignment is not enough. Stories with high public alignment but weak local CV are diagnostic only.
+
+## E281 Story-State JEPA Row Selector Stress
+
+Question: can a social story become a target-free JEPA state whose row placement beats matched nulls?
+
+Method: `analysis_outputs/e281_story_state_jepa_row_selector_audit.py`.
+
+- Top E280 stories tested: `6`.
+- Hidden target: subject-normalized story score.
+- Context: other numeric diary-state columns, excluding the mapped family and story column.
+- Splits: subject5 and dateblock5.
+- Downstream stress: predicted story state added to calendar/subject label baseline for all 7 targets.
+- Nulls: `25` row, `25` subject, and `25` dateblock shuffles per story/split.
+
+Result:
+
+- story/split rows: `12`.
+- JEPA story gate rows: `3`.
+- both-split gate stories: `1`.
+- `app_entropy_scattered_day` passes both:
+  - subject5: state R2 `0.419010`, mean delta `-0.001949852`, dominance `1.000000`.
+  - dateblock5: state R2 `0.728347`, mean delta `-0.000108720`, dominance `0.920000`.
+- `single_app_monotony` passes subject5 only; dateblock mean delta is `+0.000025`.
+- `commute_workday`, `bright_light_late`, `vehicle_noise_day`, and `heart_stress_late` fail as overall row selectors despite some target-specific wins.
+
+Decision:
+
+- `app_entropy_scattered_day` is the current strongest public-free human/social JEPA state.
+- It is not submission-ready until materialized and passed through an E279-style matched-placebo governor.

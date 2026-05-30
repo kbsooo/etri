@@ -4236,3 +4236,34 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - all q-sleep old strict candidates are blocked by high null strict rates, e.g. E275 m1.60 null strict `0.952381`, `jepa_only_m160` null strict `0.857143`, `only_mobility_context_m160` null strict `0.904762`.
 - Interpretation: the local governor now agrees with the public constraint: do not submit just because a file has favorable selector p90. Existing candidates are either too small, known-public worse than E247, or unable to beat matched row/subject/dateblock placebo movement.
 - Decision: no current submission. The next useful work is not another scalar blend. It is a transfer objective that makes the real test row placement distinguishable from its matched nulls.
+
+## E280. Story Transfer and Row-Alignment Atlas
+
+- Observe: E268/E270 produced many human/social/payday stories, but E279 blocks direct social/cash-flow materializations. We need to know whether the stories are dead or whether only the row-action translation is dead.
+- Wonder: which stories have enough local label/CV signal, train/test stability, q-sleep row-alignment support, and JEPA-family health to justify the next public-free transfer experiment?
+- Method: `analysis_outputs/e280_story_transfer_alignment_atlas.py` combines E268 human/social stories, E270 cash-flow stories, E273 family JEPA diagnostics, E275 q-sleep row overlap, E278 train row-alignment support, and E279 governor context. It scores `86` stories without creating a submission.
+- Result:
+  - alive for story-state gate: `3`.
+  - alive but needs transfer test: `23`.
+  - blocked by train/test transfer gap: `6`.
+  - public-anchor diagnostic only: `6`.
+  - top E280 stories: `commute_workday` score `0.791906`, `bright_light_late` `0.781993`, `vehicle_noise_day` `0.716287`, `single_app_monotony` `0.716179`, `app_entropy_scattered_day` `0.649240`.
+- Interpretation: human/social stories are not dead, but the prior direct Q3 boundary edits were too tiny or too public-boundary-specific. The next valid object is a story-state row selector, not another handcrafted probability tweak.
+- Decision: no submission from E280. Run JEPA-style context-to-story-state OOF/null stress on the strongest stories.
+
+## E281. Story-State JEPA Row Selector Audit
+
+- Observe: E280 made `commute_workday`, `bright_light_late`, `single_app_monotony`, `app_entropy_scattered_day`, and similar stories look alive, but E279 says no direct row edit is trusted.
+- Wonder: if we predict a story's hidden state from other diary context families, does that target-free JEPA representation help labels more than row/subject/dateblock shuffled nulls?
+- Method: `analysis_outputs/e281_story_state_jepa_row_selector_audit.py` tests the top `6` E280 stories. For each story it predicts subject-normalized story score from all other numeric diary-state context columns excluding the mapped family, then adds the predicted story state to a calendar/subject label baseline under subject5 and dateblock5 OOF. It compares against `25` row, subject, and dateblock matched shuffles per story/split.
+- Result:
+  - story/split rows: `12`.
+  - JEPA story gate rows: `3`.
+  - stories passing both subject and dateblock gates: `1`.
+  - `app_entropy_scattered_day` passes both gates:
+    - subject5 state R2 `0.419010`, mean delta `-0.001949852`, dominance `1.000000`, best target Q3 delta `-0.017952`.
+    - dateblock5 state R2 `0.728347`, mean delta `-0.000108720`, dominance `0.920000`, best target Q2 delta `-0.005987`.
+  - `single_app_monotony` passes subject5 but not dateblock5 because dateblock mean delta is slightly positive (`+0.000025`), despite strong Q2/Q3 target rows.
+  - E280 leaders `commute_workday` and `bright_light_late` do not survive E281 as overall row selectors.
+- Interpretation: the first concrete social/human breakthrough candidate is not commute, light, or payday. It is routine fragmentation / attention entropy: days where app usage is scattered encode a hidden subjective sleep state that is predictable from other context and locally row-aligned beyond matched nulls.
+- Decision: still no public submission. The next materialization, if any, should be an `app_entropy_scattered_day` story-state candidate and must pass a separate public-free materialization governor before any public LB slot is used.

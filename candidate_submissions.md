@@ -2338,3 +2338,35 @@ Current recommendation:
 - Best public file remains `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
 - No new public LB slot should be spent until a candidate passes E279 or we deliberately decide to spend a slot for information rather than expected score.
 - Next candidate must solve the row-placement problem: real test rows must beat their own matched shuffle nulls.
+
+## Update After E280/E281 Human-Social Story-State Audits
+
+Current submission policy remains: **no new public submission yet.**
+
+What changed:
+
+- E280 ranked `86` human/social and cash-flow stories with local transfer evidence instead of public LB.
+- E281 converted the top `6` stories into JEPA-style context-to-story-state row selectors and matched-null stress tests.
+- Only `app_entropy_scattered_day` passed both subject and dateblock gates:
+  - subject5 mean delta `-0.001949852`, dominance `1.000000`;
+  - dateblock5 mean delta `-0.000108720`, dominance `0.920000`;
+  - best target rows: Q3 subject delta `-0.017952`, Q2 dateblock delta `-0.005987`, S2 dateblock delta `-0.003491`.
+
+Why this is not a submission yet:
+
+- E281 validates a hidden story-state representation on train OOF labels.
+- It does not yet materialize a test probability tensor relative to E247.
+- E279 already showed that good-looking tensors can fail matched-placebo governance.
+
+Next submission candidate shape, if built:
+
+- source story: `app_entropy_scattered_day`;
+- world bet: routine/attention fragmentation is a hidden subjective-sleep state;
+- likely target scope: Q3 first, Q2/S2 only if materialization stress supports them;
+- required local gate before public LB: E279-style matched row/subject/dateblock null dominance.
+
+Do not submit:
+
+- `commute_workday` direct gate: failed E281 as an overall row selector.
+- `bright_light_late` direct gate: failed E281 despite E280 transfer score.
+- payday/cash-flow direct gates: still diagnostic or transfer-test only, not submission-ready.

@@ -2070,3 +2070,12 @@
 - Implementation issue possible: medium. E279 still uses the E272 selector family, so it is a conservative governor rather than a true LB predictor. Low for the immediate decision because every old strict q-sleep row has high null strict-promote rate.
 - Bottleneck implication: candidate selection is now constrained by row-placement evidence, not scalar p90. The next useful candidate must beat matched nulls before public submission.
 - Do not repeat: recommending a candidate because it has negative E272 mean/p90 or because the social story is plausible without `public_free_submission_ready=True`.
+
+## FH230. The strongest human-social story by transfer atlas is automatically the strongest JEPA row selector
+
+- Failed hypothesis: E280 top-ranked stories such as `commute_workday` and `bright_light_late` should remain strongest when converted into JEPA-style context-to-story-state predictors.
+- Observed result: E281 rejects that shortcut. `commute_workday` has positive mean deltas under both splits (`+0.003311` subject5, `+0.000897` dateblock5). `bright_light_late` is strongly adverse as an overall selector (`+0.014784` subject5, `+0.002905` dateblock5), despite one target-specific S1/S4 win.
+- Why discard: a story can have label lift, public-boundary alignment, and plausible human meaning while still failing as a transferable row selector. E280 is a triage score, not a representation-health certificate.
+- Implementation issue possible: medium. E281 uses a linear Ridge story predictor and logistic downstream head; a different nonlinear context model may rescue some stories. Low for the immediate decision because matched-null dominance is poor for these two leaders.
+- Bottleneck implication: the live human/social branch is now narrower: routine/attention fragmentation, especially `app_entropy_scattered_day`, not generic commute or light exposure.
+- Do not repeat: materializing a direct story gate from E280 rank alone without E281-style context-to-state and matched-null validation.

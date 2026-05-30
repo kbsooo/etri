@@ -3159,6 +3159,31 @@ target co-occurrence
 - public LB 관측 반응: no new public LB should be used on these candidates. Public LB should be reserved for a future file passing E279, or for a pre-declared information-only sensor.
 - 제출 전략: none now. Build a transfer objective where test row placements become distinguishable from matched shuffle nulls.
 
+### H280: human/social stories are alive only if they transfer as story-state row selectors
+
+- 상태: partially supported; direct submission blocked.
+- 왜 그럴듯한가: E268/E270 found many plausible social/payday stories, but E269/E271 direct gates were too small and E279 blocks current materializations. The story may still be real while the action is wrong.
+- 맞다면: story ranking should reveal a small set with label/CV signal, train/test stability, E278 family row support, and JEPA-family health. Public-anchor-only stories should separate from locally transferable stories.
+- 틀리다면: no story should pass a multi-stress transfer score, or top stories should all be public-anchor diagnostics with weak local evidence.
+- 최소 실험: `analysis_outputs/e280_story_transfer_alignment_atlas.py`.
+- 관측: `86` stories audited; alive story-state gate `3`, alive-needs-transfer `23`, blocked transfer gap `6`, public-anchor diagnostic only `6`. Top transfer rows were `commute_workday`, `bright_light_late`, `single_app_monotony`, and `app_entropy_scattered_day`.
+- 성공/폐기 기준: H280 supported as a triage claim, not a submission claim. Direct public-boundary materialization remains blocked until E279-style matched-placebo resistance.
+- public LB 관측 반응: no public LB should be spent from E280 alone.
+- 제출 전략: none. Run JEPA-style context-to-story-state null stress on top stories.
+
+### H281: routine fragmentation / app entropy is the first social JEPA state with both-split row-alignment support
+
+- 상태: supported locally; not submission-ready.
+- 왜 그럴듯한가: scattered app use is a human attention/routine-fragmentation story. It should affect subjective sleep labels through cognitive load and irregular day structure, and unlike a direct app feature it may be predictable from broader context.
+- 맞다면: context excluding the routine-calendar family should predict the `app_entropy_scattered_day` story state, and the predicted state should improve label OOF beyond row/subject/dateblock shuffled nulls under both subject and dateblock splits.
+- 틀리다면: context prediction would have low R2, label deltas would be positive, or matched nulls would match/beat the actual row placement.
+- 최소 실험: `analysis_outputs/e281_story_state_jepa_row_selector_audit.py`.
+- 관측: `app_entropy_scattered_day` passes both gates. Subject5 state R2 `0.419010`, mean delta `-0.001949852`, dominance `1.000000`, best target Q3 delta `-0.017952`. Dateblock5 state R2 `0.728347`, mean delta `-0.000108720`, dominance `0.920000`, best target Q2 delta `-0.005987`.
+- 반증된 주변 가설: `commute_workday` and `bright_light_late` looked strong in E280 but failed E281 as overall row selectors. `single_app_monotony` passed subject5 but failed dateblock mean delta.
+- 성공/폐기 기준: H281 survives as the next materialization hypothesis. It is not public-ready until an app-entropy story-state probability tensor passes E279-style matched-placebo governance.
+- public LB 관측 반응: if a future governed app-entropy candidate improves public LB, the world model shifts toward routine-fragmentation hidden state. If it loses after passing local governor, the failure is likely materialization/calibration, not absence of the story state.
+- 제출 전략: build a small `app_entropy_scattered_day` Q3/Q2/S2 materialization and audit it locally before any public LB.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

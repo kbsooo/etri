@@ -2072,3 +2072,27 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - E274/E275/E276 diary-energy axes remain diagnostic and training targets.
   - No current feature group is approved for direct probability movement.
   - Future features must be registered with both train row-alignment evidence and test matched-placebo resistance.
+
+## E280/E281 Story-State Feature Policy
+
+- Target hypothesis tested: explicit human/social stories can become hidden-state representations only if they transfer as row selectors, not merely because they sound plausible.
+- Feature source:
+  - E268 human/social story scores;
+  - E270 payday/cash-flow story scores;
+  - E273 family JEPA context diagnostics;
+  - E281 context-to-story-state predictions.
+- Current approved diagnostic story-state:
+  - `app_entropy_scattered_day`: routine/attention fragmentation state.
+    - E281 subject5 state R2 `0.419010`, mean label delta `-0.001949852`, dominance `1.000000`.
+    - E281 dateblock5 state R2 `0.728347`, mean label delta `-0.000108720`, dominance `0.920000`.
+    - strongest local target effects: Q3 subject, Q2/S2 dateblock.
+- Hold / diagnostic only:
+  - `single_app_monotony`: subject5 strong but dateblock mean delta slightly positive, so it is not yet a both-split gate.
+  - `commute_workday`, `bright_light_late`, `vehicle_noise_day`, `heart_stress_late`: story scores are interpretable, but E281 does not support them as overall row selectors.
+  - payday/cash-flow stories: still useful as human hypotheses, but no E281-level both-split state yet.
+- Adopt rule:
+  - a story can enter materialization only if its predicted story state beats row/subject/dateblock nulls under both subject and dateblock OOF;
+  - direct public-boundary edits from story scores remain blocked;
+  - materialized candidates must still pass E279-style matched-placebo governance before public LB.
+- Failure condition:
+  - if app-entropy materialization cannot beat matched nulls, keep story-state features for diagnostics/row-slice analysis only and do not create more direct social gates.
