@@ -4679,3 +4679,24 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best p90: `-0.000127522`.
 - Interpretation: the block prior is strong enough to make visually attractive S4 edits, but the simple materializer collapses into generic positive S4 movement. Matched nulls reproduce it too often. This preserves E304 as a diagnostic world-model discovery and rejects direct top-block S4 lifting.
 - Decision: no E305 public submission. The next path is not S4 amplitude or top-k tuning. It must predict a contrastive action outcome: which block-prior movement is both selector-visible and null-rare.
+
+## E306. Within-Dateblock S4 Row-Placement Probe
+
+- Observe: E305 failed mostly because dateblock nulls could reproduce uniform S4 movement. The missing object may be row identity inside an S4-high block.
+- Wonder: can human/JEPA row context rank S4-positive rows within the same dateblock, and can that row-placement signal make a public-free candidate that beats dateblock shuffles?
+- Method: `analysis_outputs/e306_within_block_s4_row_placement.py` builds row-level views from calendar, family-JEPA, story/episode, and dateblock-centered family/story features. It evaluates within-dateblock S4 AUC against within-block shuffled-score nulls, then materializes S4-only E247 edits from E304 block prior plus row-placement score and confirms selected files against row/subject/dateblock/sign null submissions. No public LB was used.
+- Result:
+  - row views: `5`;
+  - row-placement gates: `6`;
+  - best row view: `family_jepa_dbdelta/row_stratified5`;
+  - best within-dateblock AUC: `0.585020`;
+  - strongest safe split: `family_jepa_dbdelta/dateblock_holdout` within AUC `0.574899`, null dominance `0.979167`;
+  - generated candidates: `272`;
+  - old strict candidates: `22`;
+  - null-evaluated candidates: `20`;
+  - public-free ready candidates: `0`;
+  - best null strict rate: `0.625000`;
+  - best dateblock p90 dominance: `0.875000`;
+  - best mean dominance: `0.671875`.
+- Interpretation: row-placement signal is real on train, especially when family-JEPA features are centered within dateblock. But the current materializer still becomes selector-visible in a way matched nulls can reproduce. Calendar also has surprising within-block signal, so the social/human story may partly be schedule position and within-block rhythm, not just app semantics.
+- Decision: no E306 public submission. Keep `family_jepa_dbdelta` as a useful row-placement diagnostic. The next action-layer target should predict null-governor outcome directly, or use row-placement only as an energy/censor, not as a positive S4 mass generator.

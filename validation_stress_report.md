@@ -3382,3 +3382,36 @@ Decision:
 - No E305 file should be submitted.
 - The block prior is a real diagnostic state, but direct top-block S4 lifting is null-common.
 - Future action-layer work must predict `selector-visible + null-rare` movement, not only high predicted S4 blocks.
+
+## E306 Within-Dateblock S4 Row-Placement Stress
+
+Question: can the E304 block prior be repaired by choosing the right row inside each dateblock?
+
+Method: `analysis_outputs/e306_within_block_s4_row_placement.py`.
+
+- Row-placement diagnostic:
+  - best view: `family_jepa_dbdelta/row_stratified5`;
+  - best within-dateblock AUC: `0.585020`;
+  - dateblock-held family-JEPA-delta within AUC: `0.574899`;
+  - row-placement gates: `6/15`;
+  - mixed train dateblocks: `60`.
+- Candidate stress:
+  - generated candidates: `272`;
+  - old strict candidates: `22`;
+  - null-evaluated candidates: `20`;
+  - null stress: `32` row, `32` subject, `32` dateblock, and `32` sign nulls per selected candidate.
+- Public LB: not used.
+
+Result:
+
+- public-free ready candidates: `0`.
+- best null strict rate: `0.625000`.
+- best dateblock p90 dominance: `0.875000`.
+- best mean dominance: `0.671875`.
+- controls using wrong rows can still look selector-visible, which means the current selector is not yet reading row identity cleanly.
+
+Decision:
+
+- No E306 file should be submitted.
+- The row-placement latent is live, but materialization remains unhealthy.
+- Future public-free checks should keep dateblock-shuffle nulls as mandatory; otherwise a candidate can look good by block or target movement alone.

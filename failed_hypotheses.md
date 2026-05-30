@@ -2268,3 +2268,12 @@
 - Implementation issue possible: medium. E305 used simple top-k/block and redistribution rules. A learned contrastive action-health model may still work, because E304 itself was a positive representation result.
 - Bottleneck implication: hidden block-state recovery is not the same as hidden action recovery. The next target must predict `selector-visible + null-rare`, not only `S4-high block`.
 - Do not repeat: submitting `submission_e305_blockprior_s4_*.csv` or expanding top-k/amplitude grids without changing the action-health target.
+
+## FH252. Within-dateblock S4 row placement directly solves block-prior materialization
+
+- Failed hypothesis: if E304's S4 block prior is real, selecting the highest-scored row inside those blocks with dateblock-centered human/JEPA context should create a public-free S4 candidate.
+- Observed result: E306 confirms the row-placement representation but rejects the direct action. `family_jepa_dbdelta/dateblock_holdout` reaches within-dateblock AUC `0.574899` with null dominance `0.979167`, and the best row diagnostic reaches `0.585020`. But `272` materialized candidates produce `22` old-strict candidates and `0` public-free ready candidates. Best null strict rate is `0.625000`; best mean dominance is `0.671875`.
+- Why discard: the row signal is real on labeled train rows, but additive S4 mass on test rows remains matched-null common. Wrong-row controls can still look selector-visible, showing the current selector is still seeing target/block movement more than true row identity.
+- Implementation issue possible: medium. E306 used logistic row models and simple additive S4 edits. A better translator may use row-placement as a censor, target dependency gate, or candidate-outcome model. Low for rejecting the generated `submission_e306_withinblock_s4_*` files because the matched-null governor directly rejects them.
+- Bottleneck implication: the S4 branch now has both block-state and row-placement diagnostics, but the action layer is still the bottleneck. Public LB should not be used until a candidate is both selector-visible and dateblock-null resistant.
+- Do not repeat: submitting E306 rowtop/global-rowcenter files or treating within-dateblock AUC as sufficient evidence for a public candidate.

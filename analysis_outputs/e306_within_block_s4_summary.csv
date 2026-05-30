@@ -1,0 +1,2 @@
+row_views,row_gate_count,best_view,best_split,best_within_auc,generated_candidates,old_strict,null_evaluated,ready_32rep,best_null_strict_rate,best_dateblock_p90_dominance,best_mean_dominance
+5,6,family_jepa_dbdelta,row_stratified5,0.5850202429149798,272,22,20,0,0.625,0.875,0.671875

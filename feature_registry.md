@@ -2623,3 +2623,29 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - use anti-alignment with E304 state as a failure explanation for old S4 files.
 - Failure condition:
   - if a block-prior feature only creates old-strict but null-common candidates, classify it as generic target movement and do not submit.
+
+## E306 Within-Dateblock Row-Placement Policy
+
+- Target hypothesis tested:
+  - dateblock-centered human/JEPA row features can identify which row inside a block carries S4 state.
+- Feature/representation source:
+  - `family_jepa_dbdelta`: family-JEPA row features minus the dateblock mean;
+  - `story_episode_dbdelta`;
+  - calendar row position controls;
+  - E304 predicted S4 block residual;
+  - combined row/block score for S4-only materialization.
+- Validation result:
+  - `family_jepa_dbdelta/dateblock_holdout` within-dateblock AUC `0.574899`, null dominance `0.979167`;
+  - best row diagnostic `family_jepa_dbdelta/row_stratified5` within-dateblock AUC `0.585020`;
+  - materialization generated `272` candidates, old strict `22`, public-free ready `0`;
+  - best null strict rate `0.625000`.
+- Updated registry status:
+  - dateblock-centered family-JEPA row features are approved as diagnostics/energies;
+  - direct S4 rowtop or global-rowcenter additive edits are not approved as submission features;
+  - calendar row position is a live confounder and must be included as a control in future human/social row-placement claims.
+- Adopt rule for future features:
+  - keep within-dateblock shuffle nulls mandatory;
+  - do not treat train row-placement AUC as sufficient for public candidate selection;
+  - use row-placement features to predict candidate outcome health or to veto risky rows, not to simply add positive S4 mass.
+- Failure condition:
+  - if a feature improves within-block train AUC but its materialized tensor is matched-null common, classify it as a representation-only feature.

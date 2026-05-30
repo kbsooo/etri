@@ -3004,3 +3004,24 @@ Updated public-free rule:
 Current best public file remains:
 
 - `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+## Update After E304-E306 Block/Row S4 Work
+
+Current submission policy remains: **no new public submission.**
+
+Why:
+
+- E304 found a real hidden block-state diagnostic: `family_jepa/subject_holdout` mean Spearman `0.143141`, null dominance `0.986111`, S4 Spearman `0.124633`.
+- E305 tried direct top-block S4 lifting and produced `0` ready files; best null strict rate was `0.648438`.
+- E306 added within-dateblock row placement. Train row-placement was real: best within-dateblock AUC `0.585020`, and dateblock-held `family_jepa_dbdelta` AUC `0.574899`.
+- But E306 materialization still produced `0` public-free ready files. Best null strict rate was `0.625000`; best mean dominance was `0.671875`.
+
+Meaning:
+
+- The useful discovery is not a submission file. It is a better bottleneck diagnosis: S4 has recoverable block and row state, but the current action layer turns it into null-common probability movement.
+- Do not submit `submission_e305_*` or `submission_e306_withinblock_s4_*`.
+- The next candidate must be certified by `selector-visible + null-rare + dateblock-shuffle-resistant` behavior before public LB is spent.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.

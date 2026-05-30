@@ -3470,6 +3470,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E305 files.
 - 제출 전략: none yet. Next strategy must learn `selector-visible + null-rare` movement from block-prior geometry.
 
+### H306: within-dateblock human/JEPA row state can repair S4 block-prior materialization
+
+- 상태: representation supported, direct materialization rejected.
+- 왜 그럴듯한가: E305 showed that block-level S4 movement is null-common. If E304's block prior is right, the missing piece should be row identity inside each dateblock.
+- 맞다면: dateblock-centered human/JEPA row features should rank S4-positive rows within mixed train dateblocks and beat within-dateblock shuffled-score nulls. A materialized test edit should then beat dateblock-shuffle submission nulls.
+- 틀리다면: within-dateblock AUC should stay near shuffled nulls, or materialized files should be indistinguishable from dateblock nulls even if train row ranking exists.
+- 최소 실험: `analysis_outputs/e306_within_block_s4_row_placement.py`.
+- 관측: row-placement exists locally. `family_jepa_dbdelta/dateblock_holdout` reached within-dateblock AUC `0.574899`, null dominance `0.979167`; best row-stratified AUC was `0.585020`. But `272` candidates yielded `22` old-strict rows and `0` public-free ready rows. Best null strict rate was `0.625000`.
+- 성공/폐기 기준: keep dateblock-centered family-JEPA row state as a diagnostic energy. Reject direct positive S4 row mass generation as a submission path.
+- public LB 관측 반응: no public LB should be spent on E306 files.
+- 제출 전략: none yet. Next strategy must predict action-governor outcome directly or use row-placement as a censor/gate rather than an additive S4 generator.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

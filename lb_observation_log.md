@@ -684,3 +684,22 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - best actual p90: `-0.000127522`.
 - interpretation: E304's hidden block prior is real as a diagnostic, but direct S4 top-block materialization is null-common.
 - next experiment: learn a contrastive action-health target, or pause S4 and use E304 block state as a broader Q/S world-model feature.
+
+## Public-Free Observation: E306
+
+- submission files: `analysis_outputs/submission_e306_withinblock_s4_*.csv`.
+- public LB: not submitted.
+- reason not submitted: no E306 candidate passed the local row/subject/dateblock/sign governor.
+- local observation:
+  - row-placement gates: `6`;
+  - best row diagnostic: `family_jepa_dbdelta/row_stratified5`, within-dateblock AUC `0.585020`;
+  - dateblock-held diagnostic: `family_jepa_dbdelta/dateblock_holdout`, within-dateblock AUC `0.574899`, null dominance `0.979167`;
+  - generated candidates: `272`;
+  - old strict candidates: `22`;
+  - null-evaluated candidates: `20`;
+  - public-free ready files: `0`;
+  - best null strict rate: `0.625000`;
+  - best dateblock p90 dominance: `0.875000`;
+  - best mean dominance: `0.671875`.
+- interpretation: hidden row-placement state exists in train, but direct S4 row mass still looks too much like null movement on the current public-free selector.
+- next experiment: use row-placement as an action-health feature or censor, not as a direct additive S4 generator.
