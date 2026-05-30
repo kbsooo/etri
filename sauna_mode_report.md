@@ -2526,3 +2526,36 @@ E184 이후에도 제출 후보 순위는 바뀌지 않는다.
 - 기대 public 반응: 개선되면 E176 세계관 강화
 - 실패 시 해석: tie/small-loss면 hidden-label resolution 병목 강화, worse-than-E101이면 partial-reopen family를 demote
 - 금지: E176 스칼라 결과를 보고 Q2 keep factor를 다시 튜닝하지 않는다. 반드시 E177 decoder로 해석한다.
+
+## E194 업데이트: E176 우선순위는 weight artifact는 아니지만, 반대 세계관은 E154다
+
+내가 발견한 가장 이상한 점:
+
+`E176을 고르는 결정은 한두 개 evidence source를 빼도 유지된다. 하지만 binary-world를 충분히 더 믿거나 pair geometry를 충분히 덜 믿으면 E154가 올라온다. 즉 반대편은 E144가 아니라 E154다.`
+
+실험:
+
+- `analysis_outputs/e194_evidence_ledger_robustness.py`
+- report: `analysis_outputs/e194_evidence_ledger_robustness_report.md`
+
+결과:
+
+- single-source leaveout:
+  - E176 win rate `1.000`
+- random family-weight stress:
+  - loguniform `0.25..4`: E176 win rate `0.771300`
+  - loguniform `0.5..2`: E176 win rate `0.905950`
+  - 20% family dropout: E176 win rate `0.896500`
+- binary-world alone:
+  - E154/E144 선택
+- flip condition:
+  - binary-world weight가 `1.760x`를 넘으면 E176보다 E154가 앞선다
+  - visible/top-cell evidence를 제외하면 pair geometry가 `0.725x` 아래로 떨어질 때 E154가 앞선다
+
+생각이 어떻게 바뀌었는지:
+
+`E176은 weight artifact는 아니다. 하지만 "제출하면 이길 것"도 아니다. 현재 선택은 pair/shape/broad-body evidence를 binary-world counterprior보다 더 신뢰한다는 명시적 베팅이다. 이 베팅이 틀리면 다음은 E154 worldview를 봐야 한다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+제출한다면 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`다. E176이 나쁘게 나오면 같은 family 튜닝으로 도망가지 말고 E154 쪽 counter-world를 우선 재검토한다.

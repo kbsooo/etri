@@ -2208,6 +2208,18 @@ target co-occurrence
 - public LB 관측 반응: E176 win strengthens the broad/Q2-underopen worldview. Tie/small-loss strengthens the hidden-label resolution bottleneck. Worse-than-E101 demotes the partial-reopen family instead of justifying Q2 keep-factor tuning.
 - 제출 전략: no E193 submission. If one public slot is spent, submit `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` and decode with E177.
 
+### H188. E176 priority is robust to ordinary evidence-weight uncertainty
+
+- 상태: 부분 지지 by E194.
+- 왜 그럴듯한가: E193 uses hand-set evidence weights. A robust sensor decision should survive reasonable perturbations and leave-one-source checks; a weight artifact should flip under mild changes.
+- 맞다면: E176 remains first under single-source leaveout, most random family-weight perturbations, and missing-evidence penalties. The exact condition that would promote E154/E144 should be identifiable.
+- 틀리다면: E176 loses under ordinary source removal or moderate weight perturbation, making E154/E144 the more honest next sensor.
+- 최소 실험: `analysis_outputs/e194_evidence_ledger_robustness.py`.
+- 관측: E176 wins every single-source leaveout. E176 Monte Carlo win rates are `0.771300` for loguniform `0.25..4`, `0.905950` for loguniform `0.5..2`, and `0.896500` under 20% family dropout. Binary-world alone selects E154/E144; scaling binary-world above `1.760x` flips E176 versus E154. If visible/top-cell E176-only evidence is removed, E176 still leads, but pair geometry must remain above `0.725x` of its E193 weight.
+- 성공/폐기 기준: ordinary robustness supported. Absolute-certainty version rejected because a coherent high-binary/low-pair worldview promotes E154.
+- public LB 관측 반응: E176 win validates the pair/shape/broad-body weighting. E176 loss should elevate E154 as the next repaired-branch worldview before another same-family E176 tweak.
+- 제출 전략: no E194 submission. Keep E176 as next sensor; keep E154 as the explicit counterfactual branch.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

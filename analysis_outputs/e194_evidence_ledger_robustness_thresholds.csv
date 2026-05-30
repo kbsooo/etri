@@ -1,0 +1,15 @@
+family_scaled,challenger,baseline_e176_minus_challenger,family_diff_component,non_family_diff_component,flip_multiplier,interpretation
+antisymmetric_pair,e154,3.325,3.0,0.3250000000000002,-0.10833333333333339,cannot flip by positive multiplier alone
+antisymmetric_pair,e144,4.825,3.0,1.8250000000000002,-0.6083333333333334,cannot flip by positive multiplier alone
+binary_world,e154,3.325,-4.375,7.7,1.76,positive multiplier can flip ranking
+binary_world,e144,4.825,-4.375,9.2,2.1028571428571428,positive multiplier can flip ranking
+clean_e72_tail,e154,3.325,0.0,3.325,,family has no relative effect
+clean_e72_tail,e144,4.825,1.5,3.325,-2.216666666666667,cannot flip by positive multiplier alone
+known_winner_topcell,e154,3.325,0.5,2.825,-5.65,cannot flip by positive multiplier alone
+known_winner_topcell,e144,4.825,0.5,4.325,-8.65,cannot flip by positive multiplier alone
+pressure_branch,e154,3.325,2.2,1.125,-0.5113636363636364,cannot flip by positive multiplier alone
+pressure_branch,e144,4.825,2.2,2.625,-1.1931818181818181,cannot flip by positive multiplier alone
+visible_body_q2,e154,3.325,2.0,1.3250000000000002,-0.6625000000000001,cannot flip by positive multiplier alone
+visible_body_q2,e144,4.825,2.0,2.825,-1.4125,cannot flip by positive multiplier alone
+antisymmetric_pair_after_dropping_noncomparable_visible,e154,0.8250000000000002,3.0,-2.175,0.725,conservative stress: pair evidence must stay above this multiplier
+antisymmetric_pair_after_dropping_noncomparable_visible,e144,2.325,3.0,-0.6749999999999998,0.22499999999999995,conservative stress: pair evidence must stay above this multiplier

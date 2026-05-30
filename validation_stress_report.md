@@ -1165,3 +1165,21 @@ E193 converts the live E176/E154/E144 dispute into a fixed multi-sensor stress l
   - E144: `-1.725`.
 
 Stress implication: E176 is the best next public sensor by cross-sensor balance, not by certified expected LogLoss. The unresolved stress remains explicit: inherited binary worlds and local pressure-branch priors still warn against E176. This means E176 feedback should be treated as a world-model observation, not as permission for post-hoc keep-factor tuning.
+
+## Update After E194
+
+E194 stress-tests the E193 ledger itself.
+
+- script: `analysis_outputs/e194_evidence_ledger_robustness.py`.
+- report: `analysis_outputs/e194_evidence_ledger_robustness_report.md`.
+- single-source leaveout:
+  - E176 win rate `1.000`.
+- Monte Carlo family-weight stress:
+  - loguniform `0.25..4`: E176 win rate `0.771300`.
+  - loguniform `0.5..2`: E176 win rate `0.905950`.
+  - 20% family dropout: E176 win rate `0.896500`.
+- adversarial threshold:
+  - binary-world weight `>1.760x` flips E176 versus E154.
+  - after removing non-comparable visible/top-cell evidence, pair geometry must stay above `0.725x` for E176 to remain above E154.
+
+Stress implication: E176 priority is not a trivial weight artifact, but it depends on trusting pair/shape/broad-body evidence over inherited binary worlds. The next public feedback should explicitly test that worldview conflict.

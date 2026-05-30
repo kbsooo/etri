@@ -2981,3 +2981,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E176 warnings remain real: E181 binary worlds are adverse/mixed, and E183 local subject/flank/visible priors reject the favorable pressure branch.
 - Interpretation: E176 is still the highest-information next public sensor, but the reason is narrow. It is not a certified expected-score winner. It is the only live branch whose cross-sensor evidence balance is positive after explicitly counting the main counterprior. E154/E144 remain the alternate repaired-branch worldview, not dead candidates.
 - Decision: no new submission. The next single public file remains `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` if one slot is spent. Decode the result with `analysis_outputs/e177_e176_public_feedback_decoder.py --score <PUBLIC_LB>`. If E176 wins, strengthen broad/Q2-underopen; if it ties or small-loses, strengthen the hidden-label resolution bottleneck; if it loses worse than E101, demote the partial-reopen family rather than tuning another keep factor.
+
+## E194. Evidence Ledger Robustness
+
+- Observe: E193 used interpretive evidence weights. If E176 wins the ledger only because of arbitrary weights, then the "next sensor" recommendation is fragile and should be demoted before public feedback.
+- Wonder: does E176 remain first under leave-one-source removal, random family-weight perturbation, missing-evidence penalties, and adversarial scaling of the binary-world counterprior?
+- Method: `analysis_outputs/e194_evidence_ledger_robustness.py` reads the E193 signal audit, groups evidence into visible-body/Q2, known-winner top-cell, binary-world, pressure-branch, antisymmetric-pair, and clean-E72/tail families, then runs source leaveout, missing-penalty, Monte Carlo family-weight, family-alone, and flip-threshold stress. It writes no submission.
+- Result:
+  - report: `analysis_outputs/e194_evidence_ledger_robustness_report.md`.
+  - single-source leaveout E176 win rate: `1.000`.
+  - baseline balances: E176 `3.100`, E154 `-0.225`, E144 `-1.725`.
+  - Monte Carlo win rate for E176: `0.771300` under loguniform `0.25..4`, `0.905950` under loguniform `0.5..2`, and `0.896500` under 20% family dropout.
+  - binary-world family alone picks E154/E144; its multiplier must exceed `1.760` to flip E176 versus E154 if all other evidence stays fixed.
+  - if non-comparable E176-only visible/top-cell evidence is removed, E176 still leads E154 by `0.825`; but then antisymmetric-pair evidence must stay above `0.725x` of its E193 weight or E154 becomes first.
+- Interpretation: E193 is not a pure weight artifact. E176 priority survives ordinary source/weight stress. But the live alternative is now exact: a high-trust binary-world / low-trust pair-geometry worldview selects E154, not E144. This is the most useful counterfactual to E176.
+- Decision: no new submission. Keep E176 as the next single public sensor, but record the failure mode: if E176 loses, the next branch to revisit is not E144 first or another Q2 keep factor; it is whether E154's inherited binary-world counterprior was the cleaner hidden-label proxy.

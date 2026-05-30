@@ -1416,6 +1416,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E176 has evidence balance `3.100`; E154 has `-0.225`; E144 has `-1.725`. E176 is the only positive-balance branch but still has material binary-world and local-prior warnings.
 - Policy: use E193 to choose the next public sensor and prevent diagnostic cherry-picking. Do not use it as an expected-LB predictor or as a reason to tune E176 without E177 feedback.
 
+### F163. E194 evidence-ledger robustness stress
+
+- Hidden structure: a multi-sensor ledger can itself become a shortcut if the branch ranking depends on arbitrary evidence weights. A robust decision should survive source leaveout and weight perturbation, while still exposing which worldview would flip the ranking.
+- Candidates: single-source leaveout score, family-alone winner, Monte Carlo family-weight win rate, missing-evidence penalty, binary-world flip multiplier, and conservative pair-geometry threshold after removing non-comparable visible/top-cell evidence.
+- Label vs split test: valid as governance stress because it uses only existing E193 diagnostic rows and does not touch public labels or prediction files. Invalid as a learned LB model because weights remain interpretive.
+- Current evidence: E176 wins every single-source leaveout and `0.771300..0.905950` of random family-weight perturbations. Binary-world alone selects E154/E144; binary weight above `1.760x` flips E176 versus E154. Without visible/top-cell evidence, pair geometry must stay above `0.725x`.
+- Policy: keep E176 as the next sensor, but make E154 the explicit counterfactual if E176 public feedback is bad. Do not use E194 as a numerical submission-survival score.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

@@ -1,0 +1,7 @@
+family,winner_if_alone,e176_balance,e154_balance,e144_balance,e176_minus_e154,e176_minus_e144
+antisymmetric_pair,e176,1.5,-1.5,-1.5,3.0,3.0
+binary_world,e154,-2.5,1.875,1.875,-4.375,-4.375
+clean_e72_tail,e176,1.25,1.25,-0.25,0.0,1.5
+known_winner_topcell,e176,0.5,0.0,0.0,0.5,0.5
+pressure_branch,e176,0.35,-1.85,-1.85,2.2,2.2
+visible_body_q2,e176,2.0,0.0,0.0,2.0,2.0

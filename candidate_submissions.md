@@ -674,3 +674,26 @@ Submission order by information value:
 4. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` — conservative branch contrast; useful only as a tail-risk/repaired-branch control.
 
 If E176 is submitted, run `python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <PUBLIC_LB>` before choosing any same-family or repaired-branch follow-up.
+
+## Update After E194
+
+The single next public sensor remains:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+E194 stress-tested whether E193's evidence ledger was just arbitrary weighting. It was not fully arbitrary:
+
+- single-source leaveout: E176 wins `1.000`.
+- Monte Carlo family weights:
+  - loguniform `0.25..4`: E176 win rate `0.771300`.
+  - loguniform `0.5..2`: E176 win rate `0.905950`.
+  - 20% family dropout: E176 win rate `0.896500`.
+- binary-world family alone picks E154/E144.
+- E181 binary-world evidence would flip E176 versus E154 if trusted `>1.760x` relative to the rest.
+- if E176-only visible/top-cell evidence is removed, E176 still leads, but pair geometry must keep at least `0.725x` of its current weight.
+
+Submission meaning is now precise:
+
+1. Submit E176 if asking whether pair/shape/broad-body evidence beats inherited binary-world counterprior.
+2. If E176 loses, the strongest alternate worldview is E154, not another E176 keep-factor sibling.
+3. Do not treat E194 as LB prediction. It only says the E176 priority is reasonably robust as a sensor choice.

@@ -1511,3 +1511,12 @@
 - Implementation issue possible: medium. Evidence weights in E193 are bookkeeping weights, not learned public-LB weights. Low for the narrow failure because the script explicitly preserves the adverse binary and local-prior signals instead of optimizing them away.
 - Bottleneck implication: the current bottleneck is still latent-view conflict and hidden public critical-cell sign ambiguity. E176 is the best next question, not the solved answer.
 - Do not repeat: describing E176 as guaranteed or locally certified. Describe it as the broad/Q2-underopen public sensor, and decode feedback with E177 before any follow-up.
+
+## FH168. E193 chooses E176 only because of arbitrary evidence weights
+
+- Failed hypothesis: the E193 E176-first decision is so weight-sensitive that a modest change in evidence weights or removal of one source would promote E154/E144, making E176 priority a bookkeeping artifact.
+- Observed result: E194 finds E176 wins every single-source leaveout. It also wins `0.905950` of moderate loguniform `0.5..2` family-weight draws and `0.896500` under 20% family dropout. Missing-evidence penalties only strengthen E176 because E154/E144 have more missing comparable axes.
+- Why discard: ordinary robustness stress does not flip the decision. E176 priority is not just arbitrary E193 weighting.
+- Implementation issue possible: medium. E194 still uses interpretive source families and does not learn weights from public LB. Low for rejecting the narrow artifact claim because source leaveout and randomized weights directly stress the bookkeeping.
+- Bottleneck implication: the real uncertainty is not arbitrary ledger scoring. It is which latent view deserves trust: pair/shape/broad-body evidence or inherited binary-world counterprior.
+- Do not repeat: dismissing E176 solely because the ledger is weighted. The coherent E176 objection is more specific: trust E181 binary-world evidence above `1.760x`, or discount pair geometry below `0.725x` after removing non-comparable visible/top-cell evidence.
