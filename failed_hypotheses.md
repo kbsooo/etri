@@ -2025,3 +2025,12 @@
 - Implementation issue possible: medium. The linear blocked-CV head may underuse nonlinear target-specific structure, but it is enough to reject a broad feature dump or broad submission from E273.
 - Bottleneck implication: representation exists; translation is the bottleneck. The next object must be target-specific energy or a support/tail head, not a larger all-family latent.
 - Do not repeat: adding `diary_state_pc*`, all family PCs, or all JEPA residual energies wholesale to a model/submission without target-specific gating and E272 promotion.
+
+## FH225. The diary energy correction should move Q and S targets together
+
+- Failed hypothesis: if the human diary state is real, the best candidate should use both subjective Q targets and objective S-stage targets.
+- Observed result: E274 broad `energy_top18_balanced` has mean delta `+0.000048165` and beats-current rate `0.117647`; S-only has mean `+0.000006602` and p90 `+0.000053228`. Q-only q-sleep is the only strong branch, and E275 promotes it across amplitudes.
+- Why discard: Q and S are not sharing the same translation. Human lifestyle state is useful for subjective sleep/intervention/quality labels, while objective stage-ratio targets need a different representation or should be left unchanged.
+- Implementation issue possible: medium. S-only feature selection may need a sharper objective-stage target, but E274 is enough to reject joint Q+S diary correction as the next action.
+- Bottleneck implication: target semantics matter. The candidate path is target-specific Q-side correction, not universal lifestyle modeling.
+- Do not repeat: adding S targets to the E275 q-sleep candidate for symmetry.

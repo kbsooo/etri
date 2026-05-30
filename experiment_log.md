@@ -4143,3 +4143,33 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - label/boundary diagnostics are strong: mobility JEPA energy has Q3 lift `-0.327434`; E247/E256 boundary is separated by subject social pred-norm d `-1.332902`, diary PC6 d `-1.239802`, and dateblock cognitive-money residual d `1.199200`.
 - Interpretation: the human diary latent exists, but broad use collapses into subject/device/routine identity and overfits blocked CV. The useful object is not "add diary latent to model"; it is target-specific energy: mobility/context for Q3/Q1/S3, bedtime-phone residual for Q1/Q3, cognitive-money residual for S1 and E247/E256 boundary, and social pred-norm for frontier-boundary separation.
 - Decision: no submission from E273. The broad diary-state hypothesis is rejected as an action path. The next useful experiment is a target-specific support/tail head using only the surviving energy axes, then the E272 public-free promotion audit before any public LB.
+
+## E274. Target-Specific Diary Energy Audit
+
+- Observe: E273 killed broad diary-state modeling but left strong target-specific energy axes. The next question is whether those axes can survive subject/dateblock CV and become a candidate without public LB.
+- Wonder: is the human/social diary signal really tied to Q/S sleep labels, or only to E247/E256 boundary diagnostics?
+- Method: `analysis_outputs/e274_target_specific_diary_energy_audit.py` scans every E273 continuous state/energy feature against all 7 targets using calendar/subject baseline plus one feature under `subject5` and `dateblock5`. Selected axes are materialized as E247-relative candidates and audited by the E272 public-free promotion model.
+- Result:
+  - scanned `581` target-axis rows.
+  - action-gate axes: `44`; diagnostic-gate axes: `6`.
+  - top axes are overwhelmingly Q3 subjective sleep energy: mobility/context prednorm, routine calendar prednorm, bedtime-phone residual, mobility energy, and cognitive-money prednorm.
+  - the broad all-target and S-only candidates did not promote.
+  - `submission_e274_q_sleep_subjective_top12_8e391007.csv` was near-promoted: mean delta vs E247 `-0.000098347`, p90 `-0.000048780`, beats-current `0.970588`, but promotion decision `too_small_to_submit`.
+- Interpretation: the big human diary structure is not a universal sleep-stage model. It is mainly a Q-side subjective sleep state model, especially Q3. Human routine/mobility/bedtime/cognitive-money context matters for subjective sleep labels more than for S objective-stage labels.
+- Decision: run an amplitude robustness audit before recommending any submission. A single near-threshold row is not enough.
+
+## E275. Q-Sleep Diary Energy Amplitude Robustness Audit
+
+- Observe: E274 q-sleep missed strict promotion by only `0.000001220` on p90, while all lower amplitudes were consistently mean-negative.
+- Wonder: is the q-sleep diary-energy candidate a threshold accident, or is the direction stable across amplitude?
+- Method: `analysis_outputs/e275_q_sleep_diary_energy_amplitude_audit.py` reuses the top 12 Q1/Q2/Q3 diary-energy axes from E274 and tests a pre-declared amplitude ladder `0.60, 0.80, 1.00, 1.15, 1.30, 1.45, 1.60`. Promotion requires at least two adjacent strict passes and best p90 <= `-0.000065`.
+- Result:
+  - strict ladder rows: `4`.
+  - adjacent strict pass: `True`.
+  - robust amplitude gate: `True`.
+  - promoted range: m1.15 to m1.60.
+  - strongest file: `analysis_outputs/submission_e275_q_sleep_amp_m160_86528b2f.csv`.
+  - m1.60 predicted mean/p90 delta vs E247: `-0.000190473 / -0.000084726`; beats-current `0.970588`; incremental bad-axis `-0.004007782`.
+  - movement: `185` Q cells over `143` rows; Q1 `24`, Q2 `47`, Q3 `114`; max prob delta `0.021974698`.
+- Interpretation: this is the first public-free promoted candidate from the human/social diary branch. The hidden-world bet is not "apps predict sleep" broadly; it is "subjective sleep Q labels are driven by a lifestyle state combining mobility/routine/bedtime/cognitive-money energy, while S labels should mostly be left alone."
+- Decision: current top candidate from this branch is `submission_e275_q_sleep_amp_m160_86528b2f.csv`. It is still one local selector model, so treat it as a strong candidate, not proof. If submitted, public win supports Q-side lifestyle-state correction; loss means the E272 selector is over-trusting Q-axis movement or amplitude is too aggressive.

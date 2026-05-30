@@ -2502,3 +2502,34 @@ Decision:
 - Do not submit a broad diary-state or broad social latent file.
 - Treat E273 as a LeJEPA failure mode: representation is real but not invariant enough for direct probability movement.
 - Surviving local work should be target-specific and energy-gated, especially Q3/Q1/S3 mobility-context, Q1/Q3 bedtime-phone residual, and S1/E247-boundary cognitive-money residual.
+
+## E274/E275 Target-Specific Diary Energy Stress
+
+Question: after rejecting broad diary-state modeling, can target-specific diary energy pass local and public-free stress?
+
+Methods:
+
+- E274: `analysis_outputs/e274_target_specific_diary_energy_audit.py`.
+- E275: `analysis_outputs/e275_q_sleep_diary_energy_amplitude_audit.py`.
+
+Local axis stress:
+
+- E274 scanned `581` target-feature axes.
+- `44` action-gate axes survived subject/dateblock single-feature stress.
+- The strongest axes are Q3/Q-side:
+  - `jepa_prednorm_dateblock_mobility_context` Q3: dateblock delta `-0.013697360`, subject delta `-0.035301799`.
+  - `jepa_prednorm_subject_mobility_context` Q3: dateblock `-0.012267053`, subject `-0.036501166`.
+  - `jepa_resid_subject_bedtime_phone` Q3: dateblock `-0.018941832`, subject `-0.014521025`.
+  - `jepa_prednorm_subject_cognitive_money` Q3: dateblock `-0.015051731`, subject `-0.015188610`.
+
+Candidate stress:
+
+- E274 q-sleep top12 candidate was near-promotion: mean `-0.000098347`, p90 `-0.000048780`, beats-current `0.970588`.
+- E275 amplitude ladder gives `4` adjacent strict rows from m1.15 through m1.60.
+- E275 m1.60: mean/p90 `-0.000190473 / -0.000084726`, beats-current `0.970588`, incremental bad-axis `-0.004007782`.
+- Movement remains Q-only: Q1 `24`, Q2 `47`, Q3 `114`; S1-S4 untouched.
+
+Decision:
+
+- `submission_e275_q_sleep_amp_m160_86528b2f.csv` passes the current public-free promotion rule and the E275 amplitude robustness rule.
+- Risk caveat: selected E272-style selector model count is `1`, so this is not a guaranteed LB improvement. It is the best locally certified human/social diary candidate so far.

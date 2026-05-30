@@ -2194,3 +2194,37 @@ Submission policy:
 
 - A future candidate from this branch must be target-specific and pass E272. It cannot be a broad diary latent or another tiny 12-cell E247 overlay.
 - Promotion bar remains p90 predicted delta vs E247 `< -0.00005`, beats-current rate `>=0.75`, and low bad-axis movement.
+
+## Update After E274/E275 Target-Specific Diary Energy
+
+New locally promoted candidate:
+
+1. **Primary human/social diary candidate:** `analysis_outputs/submission_e275_q_sleep_amp_m160_86528b2f.csv`
+   - Worldview: subjective sleep labels Q1/Q2/Q3 need a lifestyle-state correction; objective S1-S4 should not be touched.
+   - Local evidence: E275 amplitude ladder has `4` adjacent strict-promoted rows from m1.15 to m1.60.
+   - Public-free score: mean/p90 predicted delta vs E247 `-0.000190473 / -0.000084726`.
+   - Beats-current scenario rate: `0.970588`.
+   - Movement: `185` cells over `143` rows; Q1 `24`, Q2 `47`, Q3 `114`; max probability delta `0.021974698`.
+   - Risk: E272 selected only one reliable current-order selector model, so this remains a locally certified bet rather than proof.
+
+Lower-amplitude fallbacks:
+
+2. `analysis_outputs/submission_e275_q_sleep_amp_m145_3a3aff10.csv`
+   - mean/p90 `-0.000164916 / -0.000070089`.
+   - Same rows, lower max probability delta `0.019917641`.
+
+3. `analysis_outputs/submission_e275_q_sleep_amp_m130_27722489.csv`
+   - mean/p90 `-0.000141975 / -0.000064075`.
+   - Cleans the strict gate with smaller amplitude.
+
+Current recommendation:
+
+- If using one public slot from the human/social branch, use `submission_e275_q_sleep_amp_m160_86528b2f.csv`.
+- If prioritizing lower amplitude over expected edge, use m1.45.
+- Do not submit E274 all-target, S-only, or broad energy variants; they did not pass promotion.
+
+Public interpretation:
+
+- Better than E247 `0.5761589494`: the breakthrough is Q-side lifestyle-state correction, not S-stage modeling.
+- Slight loss or tie: Q-side state is real but amplitude/selector is overconfident; retry lower amplitude or support gate.
+- Hard loss: E272's current-order selector is overfitting Q-axis movement, and diary energy should return to diagnostic-only until an independent selector is found.

@@ -1982,3 +1982,19 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - `jepa_prednorm_subject_mobility_context`: Q3 label lift `-0.327434`.
   - `jepa_resid_subject_bedtime_phone`: Q1 lift `-0.221239`, Q3 lift `-0.203540`.
 - Failure condition: broad diary-state feature dump is rejected because blocked CV worsens all targets. These features may be used only as target-specific energy/gates with an E272-style promotion audit.
+
+## E274/E275 Target-Specific Q-Sleep Diary Energy
+
+- Target hypothesis: the diary state should be split by target semantics. Q1/Q2/Q3 are subjective sleep/quality/intervention labels and can be affected by lifestyle interpretation; S1-S4 are objective stage-ratio labels and should not necessarily receive the same correction.
+- Feature source: E273 energy axes, selected by E274 subject/dateblock single-feature stress.
+- Surviving Q-side axes:
+  - Q3 mobility/context pred-norm and energy: "home/away/commute/environment state says subjective quality changes."
+  - Q3 bedtime-phone residual: "bed phone/light/fragmentation violates expected day-state."
+  - Q3 routine-calendar pred-norm: "routine pressure/ritual stability changes perceived sleep quality."
+  - Q3 cognitive-money pred-norm: "search/work/shopping/finance rumination changes perceived sleep quality."
+  - Q2 media-game and diary PC10: "intervention/behavior label has attention/media component."
+- Validation:
+  - E274: `44` action-gate axes under subject/dateblock stress.
+  - E275: q-sleep amplitude ladder m1.15..m1.60 passes strict public-free promotion.
+- Adopt rule: use only Q1/Q2/Q3 movement from these axes. Do not expand this to S targets unless a separate S-only candidate passes promotion.
+- Current candidate: `submission_e275_q_sleep_amp_m160_86528b2f.csv`.

@@ -3088,6 +3088,29 @@ target co-occurrence
 - public LB 관측 반응: no public submission should be made from this broad latent. A future public-positive branch must use target-specific energy and pass E272 public-free promotion first.
 - 제출 전략: none from E273. Build a target-specific mobility/bedtime/cognitive-money/social energy head if continuing this branch.
 
+### H274: human diary energy is target-specific and mainly Q-side
+
+- 상태: supported locally.
+- 왜 그럴듯한가: Q1/Q2/Q3 are subjective/intervention/quality labels, while S1-S4 are objective stage-ratio labels. Human social/routine/cognitive stories should affect Q labels more directly.
+- 맞다면: E273 energy axes should improve Q targets under subject/dateblock stress, while all-target or S-only probability movement should be weaker.
+- 틀리다면: surviving axes should be evenly spread across S targets, or Q-side materialization should fail E272 promotion like the broad candidate.
+- 최소 실험: `analysis_outputs/e274_target_specific_diary_energy_audit.py`.
+- 관측: `44` action-gate axes survive; top axes are Q3 mobility/routine/bedtime/cognitive-money. E274 q-sleep candidate has mean/p90 `-0.000098347 / -0.000048780`, while broad all-target and S-only candidates are below selector resolution or positive.
+- 성공/폐기 기준: supported but near-threshold. Requires amplitude robustness before submission.
+- 제출 전략: run E275 q-sleep amplitude ladder.
+
+### H275: Q-side diary energy correction is robust enough for a public-free candidate
+
+- 상태: promoted by local public-free audit; public unobserved.
+- 왜 그럴듯한가: E274 q-sleep was near-promoted and its top axes have interpretable human stories: mobility/context, routine, bedtime-phone, cognitive-money, and media/attention.
+- 맞다면: increasing amplitude should monotonically improve public-free predicted delta without increasing bad-axis load, and multiple adjacent amplitudes should pass strict promotion.
+- 틀리다면: only one threshold-tuned amplitude would pass, or higher amplitude would flip into bad-axis/block gates.
+- 최소 실험: `analysis_outputs/e275_q_sleep_diary_energy_amplitude_audit.py`.
+- 관측: m1.15, m1.30, m1.45, and m1.60 all pass strict promotion. m1.60 mean/p90 delta is `-0.000190473 / -0.000084726`, beats-current `0.970588`, incremental bad-axis `-0.004007782`.
+- 성공/폐기 기준: locally promoted. Caveat: selected E272 model count is `1`, so this is a strong candidate but not a proven LB win.
+- public LB 관측 반응: win supports Q-side lifestyle hidden state; tie/small loss supports lower-amplitude or better support gating; hard loss demotes E272 q-axis selector and returns diary energy to diagnostic-only.
+- 제출 전략: `analysis_outputs/submission_e275_q_sleep_amp_m160_86528b2f.csv` first from this branch; m1.45 as lower-amplitude fallback.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
