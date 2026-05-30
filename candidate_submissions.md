@@ -2228,3 +2228,28 @@ Public interpretation:
 - Better than E247 `0.5761589494`: the breakthrough is Q-side lifestyle-state correction, not S-stage modeling.
 - Slight loss or tie: Q-side state is real but amplitude/selector is overconfident; retry lower amplitude or support gate.
 - Hard loss: E272's current-order selector is overfitting Q-axis movement, and diary energy should return to diagnostic-only until an independent selector is found.
+
+## Update After E276 Placebo Ablation
+
+E275 is **demoted from submission candidate to diagnostic candidate**.
+
+Reason: E276 kept the same E275 movement magnitude but destroyed row/state alignment through shuffle placebos. The current E272-style selector still promoted most of those placebos:
+
+- shuffled placebo strict promotes: `13 / 15`.
+- primary E275 p90 delta: `-0.000084726`.
+- dateblock-shuffled best p90: `-0.000132538`, better than the real row-aligned candidate.
+- row-shuffled strict promotes: `4 / 5`.
+- subject-shuffled strict promotes: `4 / 5`.
+- inverse control did not promote, so direction is identifiable, but row placement is not certified.
+
+Interpretation:
+
+- The Q-side diary-energy axes are real supervised signals, especially JEPA/mobility/Q3.
+- The current public-free promotion gate is too magnitude-sensitive. It likes "Q-side movement of this shape" even when the lifestyle row alignment is randomized.
+- Therefore `submission_e275_q_sleep_amp_m160_86528b2f.csv` should not be submitted as a score candidate.
+
+Current submission policy:
+
+- No active human/social diary submission should be used until it beats a matched-placebo gate.
+- A future candidate must beat its own row/subject/dateblock shuffle nulls, not only E272 current-anchor stress.
+- Surviving positive clue: `only_mobility_context_m160` and `jepa_only_m160` promote, while `nonjepa_only_m160` fails. The next search should isolate JEPA/mobility Q3 state under a placebo-resistant selector.

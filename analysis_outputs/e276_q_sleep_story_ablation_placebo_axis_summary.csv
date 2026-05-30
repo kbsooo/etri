@@ -1,0 +1,12 @@
+target,story_family,axis_kind,n_axes,mean_local_axis_score,min_dateblock_delta,mean_abs_label_lift,features
+Q3,mobility_context,jepa_prednorm,2,0.02924740673599715,-0.0136973598137665,0.29203539823008845,jepa_prednorm_dateblock_mobility_context;jepa_prednorm_subject_mobility_context
+Q3,routine_calendar,jepa_prednorm,1,0.0274764423745464,-0.0185698105413579,0.1858407079646017,jepa_prednorm_subject_routine_calendar
+Q3,bedtime_phone,jepa_resid,1,0.0266055306607601,-0.018941831799753,0.2035398230088496,jepa_resid_subject_bedtime_phone
+Q3,mobility_context,energy,1,0.0260423390302982,-0.0131279642382641,0.2566371681415929,mobility_context_energy
+Q2,media_game,pc,1,0.0228288901589588,-0.0151337423699896,0.1946902654867257,media_game_pc2
+Q3,diary_global,energy,1,0.0228006181823917,-0.0120696790234166,0.1858407079646018,diary_state_energy
+Q3,cognitive_money,jepa_prednorm,1,0.0227878278468602,-0.0150517311375073,0.1769911504424778,jepa_prednorm_subject_cognitive_money
+Q3,social_comm,energy,1,0.0152235265630588,-0.0065557572530791,0.1327433628318584,social_comm_energy
+Q3,diary_global,pc,1,0.013915672988867,-0.0070725690972484,0.1769911504424778,diary_state_pc1
+Q2,diary_global,pc,1,0.0108793511045422,-0.0043551921557567,0.1858407079646017,diary_state_pc10
+Q1,mobility_context,jepa_prednorm,1,0.0090814100101534,-0.0020455648362697,0.2035398230088494,jepa_prednorm_subject_mobility_context

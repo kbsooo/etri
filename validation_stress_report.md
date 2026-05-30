@@ -2533,3 +2533,39 @@ Decision:
 
 - `submission_e275_q_sleep_amp_m160_86528b2f.csv` passes the current public-free promotion rule and the E275 amplitude robustness rule.
 - Risk caveat: selected E272-style selector model count is `1`, so this is not a guaranteed LB improvement. It is the best locally certified human/social diary candidate so far.
+
+## E276 Matched-Placebo Stress For E275
+
+Question: does E275 pass because it preserves human lifestyle row alignment, or because the selector likes any Q-side movement with the same magnitude?
+
+Method: `analysis_outputs/e276_q_sleep_story_ablation_placebo_audit.py`.
+
+- Rebuilt semantic variants: family-only, leave-one-family-out, JEPA-only, non-JEPA-only, Q3-only, Q1/Q2-only.
+- Built matched nulls from the real E275 logit delta:
+  - row shuffle;
+  - subject-within-target shuffle;
+  - dateblock-within-target shuffle.
+- Added inverse control.
+
+Result:
+
+- primary E275 remains strict-promoted by old E272 gate: p90 `-0.000084726`.
+- shuffled placebo strict promotes: `13 / 15`.
+- dateblock shuffled placebos: `5 / 5` strict, best p90 `-0.000132538`.
+- subject shuffled placebos: `4 / 5` strict, best p90 `-0.000123510`.
+- row shuffled placebos: `4 / 5` strict, best p90 `-0.000091288`.
+- inverse control does not promote: p90 `+0.000207722`.
+
+Decision:
+
+- E275 fails placebo-resistant validation. It should be held, not submitted.
+- The old E272 gate is useful for detecting target/movement-family direction, but insufficient for row-level lifestyle-state certification.
+- New promotion rule: a candidate must beat matched row/subject/dateblock shuffle nulls. Passing E272 alone is no longer enough.
+
+Surviving signal:
+
+- `only_mobility_context_m160` strict-promotes with p90 `-0.000095305`.
+- `jepa_only_m160` strict-promotes with p90 `-0.000093390`.
+- `nonjepa_only_m160` fails with p90 `+0.000183796`.
+
+This says JEPA/mobility Q3 signal is still alive, but the current row placement is not proven.

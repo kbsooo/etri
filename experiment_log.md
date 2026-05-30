@@ -4173,3 +4173,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - movement: `185` Q cells over `143` rows; Q1 `24`, Q2 `47`, Q3 `114`; max prob delta `0.021974698`.
 - Interpretation: this is the first public-free promoted candidate from the human/social diary branch. The hidden-world bet is not "apps predict sleep" broadly; it is "subjective sleep Q labels are driven by a lifestyle state combining mobility/routine/bedtime/cognitive-money energy, while S labels should mostly be left alone."
 - Decision: current top candidate from this branch is `submission_e275_q_sleep_amp_m160_86528b2f.csv`. It is still one local selector model, so treat it as a strong candidate, not proof. If submitted, public win supports Q-side lifestyle-state correction; loss means the E272 selector is over-trusting Q-axis movement or amplitude is too aggressive.
+
+## E276. Q-Sleep Story Ablation + Placebo Audit
+
+- Observe: E275 promoted under E272, but E272 only had one reliable current-order selector. A real lifestyle-state candidate should care about row placement; a magnitude artifact will still pass after shuffling its deltas.
+- Wonder: does E275 encode coherent human lifestyle row alignment, or does the selector simply like Q-side movement with this magnitude and target mix?
+- Method: `analysis_outputs/e276_q_sleep_story_ablation_placebo_audit.py` tests family-only and leave-one-family variants, JEPA-only and non-JEPA-only variants, Q3-only and Q1/Q2-only variants, an inverse control, and matched row/subject/dateblock shuffle placebos that keep E275's logit deltas but destroy row/state alignment.
+- Result:
+  - primary E275 still passes old E272: mean/p90 `-0.000190473 / -0.000084726`.
+  - shuffled placebos also pass: `13 / 15` strict-promoted.
+  - dateblock shuffle is most damaging to the E275 story: `5 / 5` strict-promoted, best p90 `-0.000132538`, better than real E275.
+  - row shuffle `4 / 5` and subject shuffle `4 / 5` strict-promoted.
+  - inverse control fails: p90 `+0.000207722`, so direction is not arbitrary.
+  - semantic positives remain but are not submission-safe: `only_mobility_context_m160` p90 `-0.000095305`, `jepa_only_m160` p90 `-0.000093390`, while `nonjepa_only_m160` fails with p90 `+0.000183796`.
+- Interpretation: E275 found a real Q-side movement family, but the current selector does not prove the human/social row alignment. It is too magnitude-sensitive.
+- Decision: demote E275 from submission candidate to diagnostic. No E275/E276 human diary file should be submitted until it beats matched row/subject/dateblock shuffle nulls. Next experiment should build a placebo-resistant gate and then re-isolate JEPA/mobility/Q3 state.

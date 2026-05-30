@@ -2034,3 +2034,12 @@
 - Implementation issue possible: medium. S-only feature selection may need a sharper objective-stage target, but E274 is enough to reject joint Q+S diary correction as the next action.
 - Bottleneck implication: target semantics matter. The candidate path is target-specific Q-side correction, not universal lifestyle modeling.
 - Do not repeat: adding S targets to the E275 q-sleep candidate for symmetry.
+
+## FH226. E275 row placement is certified by the old public-free selector
+
+- Failed hypothesis: `submission_e275_q_sleep_amp_m160_86528b2f.csv` is submission-ready because its Q-side diary corrections are placed on the right lifestyle-state rows.
+- Observed result: E276 matched-placebo stress preserves E275's logit deltas but shuffles row/state alignment. Shuffled placebos strict-promote `13/15`; dateblock shuffles strict-promote `5/5`, and best dateblock placebo p90 `-0.000132538` beats E275's real p90 `-0.000084726`.
+- Why discard: the E272/E275 selector is too magnitude-sensitive. It certifies the Q-side movement family, not the human/social row alignment.
+- Implementation issue possible: low for demoting E275 under current evidence. The inverse control fails, so the direction is not random; the remaining uncertainty is whether a better row-aligned gate can recover the signal.
+- Bottleneck implication: validation design and candidate selection are now the immediate bottleneck. Any future public-free candidate must beat matched row/subject/dateblock placebo nulls.
+- Do not repeat: submitting E275 or any similar Q-diary energy variant after E272 alone, without matched-placebo resistance.

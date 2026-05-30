@@ -1998,3 +1998,22 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - E275: q-sleep amplitude ladder m1.15..m1.60 passes strict public-free promotion.
 - Adopt rule: use only Q1/Q2/Q3 movement from these axes. Do not expand this to S targets unless a separate S-only candidate passes promotion.
 - Current candidate: `submission_e275_q_sleep_amp_m160_86528b2f.csv`.
+
+## E276 Matched-Placebo Rule For Q-Sleep Diary Features
+
+- Target hypothesis tested: E275's row placements encode real lifestyle-state alignment.
+- Feature/representation source: the same E274/E275 top-12 Q-side diary-energy axes.
+- Negative controls:
+  - same logit deltas shuffled by row;
+  - same logit deltas shuffled within subject;
+  - same logit deltas shuffled within dateblock;
+  - inverse E275 movement.
+- Result: shuffled placebos promote `13/15`, so the old adopt rule is invalid.
+- Updated adopt rule:
+  - E274/E275 Q-side diary axes can stay in the registry as diagnostic features.
+  - They cannot produce a submission unless the real row-aligned candidate beats matched row/subject/dateblock shuffle nulls.
+  - Passing E272/E275 amplitude gates alone is now insufficient.
+- Surviving subfeatures:
+  - `mobility_context` and JEPA-derived axes remain the most promising.
+  - `jepa_only_m160` passes old stress while `nonjepa_only_m160` fails, so JEPA context-target energy is preferred over raw PC/energy-only features.
+- Failure condition: if a future JEPA/mobility Q3 candidate cannot beat matched placebos, retire this branch as score-action and keep it only for interpretation.

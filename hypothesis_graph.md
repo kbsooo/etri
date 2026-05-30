@@ -3111,6 +3111,18 @@ target co-occurrence
 - public LB 관측 반응: win supports Q-side lifestyle hidden state; tie/small loss supports lower-amplitude or better support gating; hard loss demotes E272 q-axis selector and returns diary energy to diagnostic-only.
 - 제출 전략: `analysis_outputs/submission_e275_q_sleep_amp_m160_86528b2f.csv` first from this branch; m1.45 as lower-amplitude fallback.
 
+### H276: E275 old promotion is Q-movement geometry, not proven lifestyle row alignment
+
+- 상태: supported as submission blocker; supersedes H275 submission recommendation.
+- 왜 그럴듯한가: E275 was promoted by only one selected E272-style current-order selector. If that selector mainly recognizes target/movement geometry, then shuffling E275's row placement while preserving logit deltas should still pass.
+- 맞다면: matched row/subject/dateblock shuffle placebos should pass the same promotion gate at a high rate, possibly matching or beating E275's p90 delta.
+- 틀리다면: E275 should beat all or nearly all shuffled nulls, and null strict-promote count should be near zero.
+- 최소 실험: `analysis_outputs/e276_q_sleep_story_ablation_placebo_audit.py`.
+- 관측: shuffled placebos strict-promoted `13/15`. Dateblock shuffles were `5/5` strict and best p90 `-0.000132538`, stronger than E275 real p90 `-0.000084726`. Row and subject shuffles were each `4/5` strict. Inverse control failed with p90 `+0.000207722`.
+- 성공/폐기 기준: H276 supported because matched nulls pass too often. Direction is identifiable, but row placement is not certified.
+- public LB 관측 반응: no new public LB should be spent on E275/E276 variants under the old gate.
+- 제출 전략: none. Future human/social candidates must pass a matched-placebo-resistant gate where the real candidate beats row/subject/dateblock shuffle nulls.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
