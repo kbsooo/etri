@@ -1,0 +1,12 @@
+{
+  "context_dim": 44,
+  "family_count": 5,
+  "materialization_gate_pass_count": 10,
+  "seeds": [
+    291218,
+    291234,
+    291256
+  ],
+  "submission_rows": 250,
+  "train_rows": 450
+}

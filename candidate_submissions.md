@@ -1139,3 +1139,18 @@ E214 tried to turn the JEPA axes into a stronger submission by learning a row-ta
 - Selected E214 submissions: none.
 
 Submission policy remains E211-first. The next JEPA submission candidate is still `analysis_outputs/submission_e211_jepa_q3rawcloser_q3s1p0_s4s1p0_e154_a0p5_c20eee9c.csv` for maximum structured survival, or `analysis_outputs/submission_e211_jepa_q3rawtoward_q3s1p0_s4s1p0_e95_a0p5_e4e44d91.csv` for a clean E95-frontier JEPA sensor. E214 is a failed translator, not a replacement candidate.
+
+## Update After E215/E216
+
+E215 changed the JEPA target representation and found a new Q1/S2/S4 masked-family channel. E216 materialized it and selected only S2-safe sensors.
+
+Selected E216 files:
+
+- `analysis_outputs/submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv`
+- `analysis_outputs/submission_e216_maskfam_jepa_s2_rank_e95_s0p75_4f8dc44d.csv`
+- `analysis_outputs/submission_e216_maskfam_jepa_s2_rank_e154_s0p5_0ca3d931.csv`
+- `analysis_outputs/submission_e216_maskfam_jepa_s2_rank_e95_s0p5_4516fb93.csv`
+
+Interpretation:
+
+E216 is not stronger than E211 as the first JEPA slot. E211 still has the higher structured survival score and tests the Q3/S4 lane closest to the current frontier. E216 is valuable because it is non-collinear: a masked-family JEPA S2-only sensor. If E211 feedback says Q3/S4 translation is not public-safe, E216 becomes the next JEPA representation test.

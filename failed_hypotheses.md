@@ -1700,3 +1700,12 @@
 - Implementation issue possible: medium. The gate probability calibration is weak and could be improved, but rank-normalization was also tested and still failed to close the gap.
 - Bottleneck implication: the translation problem is not solved by cell-wise benefit classification. It likely needs a different JEPA target representation, a narrower public-tail rule, or public-feedback-guided routebook interpretation after E211.
 - Do not repeat: training a generic benefit gate over the same E209/E211 Q3/S4 step unless a new feature family gives materially higher benefit AUC.
+
+## FH189. The strongest E215 local masked-family JEPA combo should be submitted directly
+
+- Failed hypothesis: because `q1_s2_s4_rank` has the best E216 local/geometry profile, it should be the natural masked-family JEPA submission.
+- Observed result: `q1_s2_s4_rank` has strong local evidence (`delta=-0.001807`, subject-half win `1.000`, geometry `-0.001628`) but fails frontier stress. At useful E95/E154 scales, its expected public-sensitive movement becomes positive, while S2-only remains negative and low bad-axis energy.
+- Why discard: local strength is not sufficient when public-tail stress says the broad move points the wrong way. This repeats the plateau law: public-safe narrow movement beats broad local improvement.
+- Implementation issue possible: medium. The public-tail stress is a proxy, not the leaderboard. But the contrast is large enough to avoid direct broad-combo submission before a specific audit.
+- Bottleneck implication: masked-family JEPA is useful, but public-safe translation is target-selective. S2 is currently the clean survivor; Q1/S4 need separate public-tail explanation.
+- Do not repeat: promoting the locally largest multi-target JEPA combo without checking frontier stress and target-specific public-tail direction.

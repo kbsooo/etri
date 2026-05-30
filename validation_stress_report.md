@@ -1675,3 +1675,33 @@ Result:
 - No benefit-gated policy passes the E214 frontier gate; no submission is selected.
 
 Stress implication: simple learned benefit gating is not the missing JEPA translator. E211 remains the stronger public sensor.
+
+## Update After E215/E216
+
+E215 and E216 test a different JEPA target representation: masked feature-family blocks.
+
+- E215 script: `analysis_outputs/e215_masked_family_jepa_probe.py`.
+- E215 report: `analysis_outputs/e215_masked_family_jepa_report.md`.
+- E216 script: `analysis_outputs/e216_masked_family_jepa_materialization.py`.
+- E216 report: `analysis_outputs/e216_masked_family_jepa_materialization_report.md`.
+
+E215 stress result:
+
+- Training val MSE `0.585-0.604` versus mean-block MSE around `1.000`.
+- Geometry-stressed pass count: `10`.
+- Best downstream target deltas:
+  - Q1 `e215_pred_pc06`: `-0.004965`.
+  - S2 `e215_resid_pc10`: `-0.004370`.
+  - S4 `e215_deep_resid_abs_mean`: `-0.003313`.
+
+E216 frontier result:
+
+- Strongest local combo `q1_s2_s4_rank`: delta `-0.001807`, subject-half win `1.000`, geometry `-0.001628`.
+- Frontier stress rejects that broad combo at useful scales.
+- S2-only survives:
+  - `submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv`.
+  - `submission_e216_maskfam_jepa_s2_rank_e95_s0p75_4f8dc44d.csv`.
+  - `submission_e216_maskfam_jepa_s2_rank_e154_s0p5_0ca3d931.csv`.
+  - `submission_e216_maskfam_jepa_s2_rank_e95_s0p5_4516fb93.csv`.
+
+Stress implication: changing the JEPA target representation is useful. But the public-safe translation is narrower than the locally strongest representation signal; for E215, S2 is the clean survivor.

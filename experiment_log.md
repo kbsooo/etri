@@ -3306,3 +3306,34 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - no benefit-gated policy passes the E214 frontier gate; no submission is selected.
 - Interpretation: there is weak row-level sorting signal in the JEPA benefit labels, but it is not strong/calibrated enough to replace E211's simpler target-dependency S4 gate. The next bottleneck is not "train a small classifier to decide JEPA cells"; it is either a different representation target or a probability translator that preserves the Q3/S4 body while fixing only a narrower public-tail failure.
 - Decision: do not submit E214. Keep E211 as the next JEPA public sensor. Reuse E214 only as evidence that benefit-label gating is a weak diagnostic, not a frontier candidate.
+
+## E215. Masked Feature-Family JEPA Probe
+
+- Observe: E208's feature-neighbor JEPA found narrow Q3/S4 axes. E214 showed that a generic benefit gate does not fix translation. The next live question is whether the JEPA target representation itself is too narrow.
+- Wonder: if context is visible feature-family representation blocks and target is the hidden feature-family block, does a more I-JEPA-like masked-block objective uncover different target structure?
+- Method: `analysis_outputs/e215_masked_family_jepa_probe.py` trains a masked-family JEPA over five PCA family blocks (`deep`, `prectx`, `presleep`, `proxy`, `quiet`). For each row/family mask, the model predicts the held-out family representation from the other families. It exports prediction/residual/hidden features and runs the E208-style downstream OOF, subject-half, and geometry stress.
+- Result:
+  - report: `analysis_outputs/e215_masked_family_jepa_report.md`.
+  - training val MSE is around `0.585-0.604` versus mean-block MSE around `1.000`.
+  - downstream bests: Q1 `e215_pred_pc06` delta `-0.004965`, S2 `e215_resid_pc10` delta `-0.004370`, S4 `e215_deep_resid_abs_mean` delta `-0.003313`.
+  - geometry-stressed pass count: `10`.
+- Interpretation: changing the JEPA target representation opens a different channel from E208. E208 was Q3/S4-narrow; E215 is Q1/S2/S4-heavy, with unusually strong Q1 and S2 local signal. This supports representation-target mismatch as a real bottleneck.
+- Decision: E215 is strong enough to materialize, but not directly submit. Run E216 to test whether the Q1/S2/S4 movement survives frontier/public-tail stress.
+
+## E216. Masked-Family JEPA Materialization
+
+- Observe: E215's strongest local combo is Q1+S2+S4 (`-0.001807`, geometry `-0.001628`), but current public frontier has repeatedly punished locally good broad movement. The key question is which part of E215 survives public-tail stress.
+- Wonder: do the masked-family JEPA Q1/S2/S4 signals transfer to E95/E154, or are only narrower pieces public-safe?
+- Method: `analysis_outputs/e216_masked_family_jepa_materialization.py` materializes E215 operations on the stage2 OOF/submission tensor, then grafts their logit movement onto E95/E154/Mixmin anchors at scales `0.20/0.35/0.50/0.75/1.00` with the existing hard-tail/bad-axis frontier stress.
+- Result:
+  - report: `analysis_outputs/e216_masked_family_jepa_materialization_report.md`.
+  - best local combo: `q1_s2_s4_rank`, delta `-0.001807`, subject-half win `1.000`, geometry `-0.001628`.
+  - public-tail stress rejects the broad Q1+S2+S4 combo because expected public movement becomes positive at useful scales.
+  - S2-only survives best: `s2_rank` local delta `-0.000624`, geometry `-0.000686`, subject-half win `0.934615`.
+  - selected sensors:
+    - `submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv`
+    - `submission_e216_maskfam_jepa_s2_rank_e95_s0p75_4f8dc44d.csv`
+    - `submission_e216_maskfam_jepa_s2_rank_e154_s0p5_0ca3d931.csv`
+    - `submission_e216_maskfam_jepa_s2_rank_e95_s0p5_4516fb93.csv`
+- Interpretation: E215 is real, but the public-safe part is not the locally best broad combo. Public-tail stress points to a narrow S2 masked-family JEPA sensor. This is a distinct representation lane from E211: E211 tests E208 Q3/S4 target-specific JEPA, E216 tests E215 S2-only masked-family JEPA.
+- Decision: keep E211 as the higher expected JEPA-family submission because its survival score is stronger and it targets the known Q3/S4 frontier. Use E216 S2-only as the next non-collinear JEPA representation sensor if a second JEPA slot is available or if E211 feedback says Q3/S4 translation is not the route.

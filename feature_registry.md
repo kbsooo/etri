@@ -1584,6 +1584,22 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: Q3/S4 benefit AUCs are weak (`0.552169`, `0.568968`). Best benefit-gated local policy loses to raw JEPA and E211. No E214 policy passes frontier selection.
 - Policy: do not use F183 for submission. Keep it as a negative control showing that the JEPA translation bottleneck is not fixed by a simple supervised benefit gate.
 
+### F184. E215 masked feature-family JEPA representations
+
+- Hidden structure: visible feature-family representation blocks may predict a hidden family block, exposing a cross-family latent state distinct from E208's feature-neighbor target.
+- Candidates: `e215_pred_pc*`, `e215_resid_pc*`, `e215_hidden_z*`, and family-specific residual/predicted coordinates such as `e215_deep_resid_abs_mean`.
+- Label vs split test: self-supervised train+submission representation is allowed as public-free latent construction, but downstream use must pass OOF, subject-half, and geometry stress.
+- Current evidence: E215 pass count `10`; strongest target features are Q1 `e215_pred_pc06`, S2 `e215_resid_pc10`, and S4 `e215_deep_resid_abs_mean`.
+- Policy: use E215 as a representation source. Do not submit direct full-combo movement without E216-style frontier stress.
+
+### F185. E216 masked-family JEPA S2 materialization
+
+- Hidden structure: public-safe masked-family JEPA movement appears concentrated in S2, even though Q1/S2/S4 is stronger locally.
+- Candidates: `s2_rank` grafts from E215, especially E154/E95 scales `0.50` and `0.75`.
+- Label vs split test: selected only after local OOF, subject-half, geometry, bad-axis, and hard-tail frontier stress.
+- Current evidence: `s2_rank` local delta `-0.000624`, subject-half win `0.934615`, geometry `-0.000686`; selected files are `submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv`, `submission_e216_maskfam_jepa_s2_rank_e95_s0p75_4f8dc44d.csv`, `submission_e216_maskfam_jepa_s2_rank_e154_s0p5_0ca3d931.csv`, and `submission_e216_maskfam_jepa_s2_rank_e95_s0p5_4516fb93.csv`.
+- Policy: E216 is a non-collinear S2 JEPA sensor, not the first JEPA submission over E211. Use it if a second JEPA representation test is needed.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.
