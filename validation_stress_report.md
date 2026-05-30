@@ -2297,6 +2297,20 @@ E257 decomposes the E247/E256 stress question into exact cell groups.
 
 Stress implication after E257: E256 is a clean public sensor, not a sibling sweep. It asks whether public prefers broad low-amplitude feature-neighbor smoothing or a smaller high-amplitude/E230-swing-aligned subset. A win promotes amplitude-constrained smoothing; a close loss promotes E247-only broad smoothness; a hard loss points to exact E247 top34 or E224-body interaction.
 
+## Update After E258
+
+E258 adds attribution stress for the E247 win.
+
+- E224 body is large and low-support: `534` cells, expected focus `-0.000653189`, support probability `0.465789507`.
+- E247 rollback is small but support-positive: `34` Q3 cells, expected focus `-0.000066519`, support probability `0.566510083`.
+- The rollback is not an independent same-sign feature. It is a near-complete trim of the E224 body on selected cells:
+  - selected cosine `-0.992683110`.
+  - opposite-sign share `1.000000`.
+  - rollback abs over selected body abs `0.984581403`.
+- E247 total preserves the body while reducing Q3 hard-tail concentration: Q3 top1/abs expected changes from E224 body `0.863839051` to E247 total `0.545240602`.
+
+Stress implication after E258: the next public decision splits into two valid routes. E256 tests whether the Q3 tail correction can be improved without leaving the E247 mechanism. E224 tests whether the body alone was already enough. A blend would blur the only clean attribution axes left.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

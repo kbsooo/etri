@@ -1,0 +1,3 @@
+component_id,selected_cells,cos_body_rollback_all,cos_body_rollback_selected,cos_rollback_total,rollback_l2_over_body_l2,rollback_l2_over_total_l2,selected_body_abs_share,rollback_abs_over_selected_body_abs,opposite_sign_share_selected,same_sign_share_selected,body_zero_share_selected,median_abs_body_selected,median_abs_rollback_selected
+e247_rollback_vs_e224,34,-0.40527143382399966,-0.9926831099844182,-0.010416342101165812,0.3957483346901808,0.43286854228581917,0.13013323217332567,0.9845814027097409,1.0,0.0,0.0,0.05981417804183113,0.060410210445673004
+e256_rollback_vs_e224,25,-0.430970350460015,-0.9953028800478515,-0.005548369338034807,0.42596361305959657,0.472044619240633,0.12660538035933433,0.9821872232106805,1.0,0.0,0.0,0.08463970464558312,0.07946944659775523

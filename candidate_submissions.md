@@ -1927,3 +1927,35 @@ Practical rule:
 - Use E256 if the next public question is whether high-amplitude smoothing beats broad smoothness.
 - Use E224 if the next public question is whether the E247 win mostly came from the E224 body.
 - Do not create another E247-family sibling before E256 or E224 resolves one of those two questions.
+
+## Update After E258
+
+E258 separates E247 into body and rollback.
+
+- `E95 -> E224` body:
+  - `534` moved cells over `250` rows.
+  - expected focus `-0.000653189`.
+  - support probability `0.465789507`.
+  - Q3/S4 carry `0.897035` of logit movement.
+- `E224 -> E247` rollback:
+  - `34` Q3 cells.
+  - expected focus `-0.000066519`.
+  - support probability `0.566510083`.
+  - selected-cell cosine versus E224 body `-0.992683110`.
+  - opposite-sign share `1.000000`.
+- `E95 -> E247` total:
+  - expected focus `-0.000719708`.
+  - adverse delta reduced to `0.003497893`.
+  - Q3 top1/abs improves from E224 body `0.863839051` to `0.545240602`.
+
+Candidate order by question:
+
+1. **Score plus information:** `analysis_outputs/submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv`.
+2. **Clean body attribution:** `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+3. **Keep current anchor:** `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+
+Practical rule:
+
+- E247 is body plus tail correction. Do not interpret E247 public as isolated smoothing proof.
+- If the next submission should still try to beat E247, E256 is the sharper bet.
+- If the next submission should explain the win, E224 is more informative even if it may be less score-oriented.

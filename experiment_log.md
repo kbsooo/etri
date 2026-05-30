@@ -3927,3 +3927,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E247-all has more smoothness mass (`3.555889570`) and lower top1/abs expected (`1.413603067`); E256-all has higher amplitude mean (`0.088715124`) and stronger affected-pair roughness reduction (`-0.070332985` vs `-0.057353058`).
 - Interpretation: E256 is a clean sensor because it keeps the E247 mechanism family but changes the cell anatomy. It trades E247's low-amplitude broad smoothing mass for a smaller high-amplitude/E230-swing-aligned subset.
 - Decision: keep E256 as the highest-information post-E247 score candidate. If E256 beats E247, the public law is amplitude-constrained smoothing. If E256 is worse but close, E247-only broad smoothness is real public signal. If E256 fails hard, the public law depends on E247's exact top34 nonlocal set or E224-body interaction.
+
+## E258. E247 Body/Rollback Attribution Atlas
+
+- Observe: E247's public win is not a pure smoothing observation because E247 equals E224 capped-Q3/S4 body plus a Q3 feature-NN1 rollback. The unobserved E224 body remains a major attribution gap.
+- Wonder: did public reward the E224 body, the E247 Q3 rollback, or the interaction between them?
+- Method: `analysis_outputs/e258_e247_body_rollback_attribution_atlas.py` decomposes `E95 -> E224`, `E224 -> E247`, `E224 -> E256`, and total `E95 -> E247/E256` movements in logit space. It audits hard-tail expected focus/support using E222 priors and computes rollback-vs-body overlap. No new public LB and no new submission are used.
+- Result:
+  - report: `analysis_outputs/e258_e247_body_rollback_attribution_report.md`.
+  - E224 body vs E95 moves `534` cells over `250` rows, expected focus `-0.000653189`, adverse delta `0.004094069`, support probability `0.465789507`; Q3/S4 carry `0.897035` of logit mass.
+  - E247 rollback vs E224 moves `34` Q3 cells, expected focus `-0.000066519`, support probability `0.566510083`, but top1/abs expected is high at `1.413603067`.
+  - E247 total vs E95 improves expected focus to `-0.000719708`, lowers adverse delta to `0.003497893`, and reduces Q3 top1/abs from E224 `0.863839051` to `0.545240602`.
+  - On selected cells, E247 rollback is an opposite-sign trim of E224 body: selected cosine `-0.992683110`, opposite-sign share `1.000000`, rollback abs over selected body abs `0.984581403`.
+  - E256 is the same kind of trim but more concentrated: selected cosine `-0.995302880`, opposite-sign share `1.000000`, rollback abs over selected body abs `0.982187223`.
+- Interpretation: E247 should be read as E224 body plus a Q3 tail correction, not as a standalone smoothing replacement. The public win cannot be attributed from E247 alone.
+- Decision: E256 remains the score-plus-information next candidate. E224 is the cleaner attribution candidate if the next public question is "was the body itself the main reason E247 won?" Do not blend E247/E256 or tune another sibling before either E256 or E224 resolves one axis.

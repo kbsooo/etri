@@ -1837,6 +1837,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - E257 anatomy: E247-only cells are low-amplitude broad smoothness (`13` cells, amplitude mean `0.039125051`, smooth-gain sum `1.002858981`, E237/E230 overlap `0`), while E256-only cells are high-amplitude swing cells (`4` cells, amplitude mean `0.110316918`, E230 swing overlap `4/4`, smooth-gain sum `0.049289874`).
 - Policy: F214 is now the live score-plus-information feature family. Submit only controlled follow-ups: first E256 for broad-vs-amplitude smoothing, or E224 for body attribution. Do not sweep all E246 siblings before E256/E224 feedback.
 
+### F215. E258 body-vs-rollback attribution features
+
+- Hidden structure: the public-positive E247 tensor may be a composition of a broad capped-Q3/S4 JEPA body and a smaller Q3 tail trim, rather than an isolated feature-NN1 smoothing law.
+- Candidates: `E95 -> E224` body vector, `E224 -> E247` rollback vector, `E224 -> E256` rollback vector, selected-cell body/rollback cosine, opposite-sign share, rollback magnitude over selected body magnitude, total expected focus, targetwise hard-tail concentration, and body-vs-rollback attribution route.
+- Label vs split test: public LB is not fit. This is a deterministic decomposition of existing tensors plus E222 hard-tail priors. It can support attribution routing but cannot prove which component caused E247's public score.
+- Current evidence: E247 rollback is an opposite-sign trim of E224 body on selected Q3 cells: selected cosine `-0.992683110`, opposite-sign share `1.000000`, and rollback abs over selected body abs `0.984581403`. E247 total preserves the E224 body while improving Q3 top1/abs expected from `0.863839051` to `0.545240602`.
+- Policy: use F215 to prevent post-hoc overclaiming. E247 validates the composition, not isolated smoothing. Submit E256 for rollback refinement or E224 for body attribution; do not blend/tune before one of those sensors resolves.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

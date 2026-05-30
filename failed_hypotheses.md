@@ -1962,3 +1962,12 @@
 - Implementation issue possible: low for rejecting the veto, because public LB directly contradicts it. Medium for attributing the gain solely to smoothing because E224 body is still unobserved.
 - Bottleneck implication: validation mismatch is now stronger than model-capacity bottleneck for the live JEPA branch. The next representation should be public-contrastive, not another average OOF benefit head.
 - Do not repeat: using adverse OOF smoothing analogues as a hard pre-public veto for E247-family candidates. Use them as mismatch diagnostics and require controlled public sensors like E256.
+
+## FH218. E247 public win proves standalone feature-NN1 smoothing
+
+- Failed hypothesis: because E247 won public, the feature-NN1 smoothing rollback itself can be treated as an independent replacement law and freely tuned/blended.
+- Observed result: E258 shows E247 rollback is an opposite-sign trim of the E224 body, not an independent same-sign movement. On selected cells, rollback-vs-body cosine is `-0.992683110`, opposite-sign share is `1.000000`, and rollback abs over selected body abs is `0.984581403`. E247 total movement keeps the E224 body and improves Q3 tail concentration.
+- Why discard: E247 public LB validates the composition of E224 body plus Q3 feature-NN1 rollback. It does not tell us whether E224 alone, E247 rollback, or their interaction carried the public gain.
+- Implementation issue possible: low for the decomposition; it is deterministic logit arithmetic over the submitted tensors. Medium for public attribution because E224 is still unobserved.
+- Bottleneck implication: the immediate bottleneck is attribution and controlled observation, not another threshold sweep. The next useful public files are E256 for rollback refinement or E224 for body attribution.
+- Do not repeat: treating E247 siblings, E247/E256 blends, or arbitrary smoothing threshold variants as justified before E256/E224 feedback.

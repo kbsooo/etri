@@ -2968,6 +2968,18 @@ target co-occurrence
 - public LB 관측 반응: pending.
 - 제출 전략: E256 remains the next information-rich post-E247 file; do not create more siblings before this broad-vs-amplitude sensor is resolved.
 
+### H258: E247's public win is a body-plus-tail-correction effect, not standalone smoothing
+
+- 상태: supported as an attribution diagnosis; public attribution still pending.
+- 왜 그럴듯한가: E247 is built on top of E224. A public win from E247 alone cannot tell whether E224's capped-Q3/S4 body was already strong, whether the Q3 rollback added the key public edge, or whether both were necessary.
+- 맞다면: the E247 rollback should be a small, target-local, opposite-sign trim of the E224 Q3 body, while E247 total movement should preserve E224's S4/body signal and improve Q3 tail concentration.
+- 틀리다면: E247 rollback would be a same-sign independent movement, or the total E247 movement would not show body preservation plus Q3 tail repair.
+- 최소 실험: `analysis_outputs/e258_e247_body_rollback_attribution_atlas.py`.
+- 관측: E224 body vs E95 moves `534` cells with expected focus `-0.000653189`; E247 rollback moves `34` Q3 cells with expected focus `-0.000066519`. On selected cells, rollback is almost exactly opposite to body: cosine `-0.992683110`, opposite-sign share `1.000000`, rollback abs over selected body abs `0.984581403`. E247 total improves expected focus to `-0.000719708` and Q3 top1/abs to `0.545240602`.
+- 성공/폐기 기준: supported as a geometry diagnosis. Public attribution requires either E224 public LB or E256 public LB; E247 alone is insufficient.
+- public LB 관측 반응: E224 beating or tying E247 would mean body carried most of the win and rollback may be over-pruning. E224 losing clearly while E256 stays strong means Q3 rollback is necessary. E256 beating E247 means amplitude-constrained rollback is better than broad rollback.
+- 제출 전략: Use E256 for score-plus-information; use E224 for clean body attribution. Avoid E247/E256 blending before one axis is observed.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
