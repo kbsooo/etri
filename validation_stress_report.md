@@ -1387,3 +1387,25 @@ E202 stress-tests component-responsibility risk: even with the E201 route table,
   - branch/hard loss: demote same-family partial-reopen and route to E154/search.
 
 Stress implication: E176's next public score has two layers of interpretation. E201 chooses the route by score band; E202 assigns component responsibility inside that route. This prevents a Q2-only post-hoc read.
+
+## Update After E203
+
+E203 stress-tests whether E176 is a broad body or only a compact critical-cell bet.
+
+- script: `analysis_outputs/e203_e176_component_knockout_stress.py`.
+- report: `analysis_outputs/e203_e176_component_knockout_stress_report.md`.
+- broad-body stress:
+  - S-only focus share `0.644881`.
+  - primary S-stage S3/S1/S4 share `0.573289`.
+  - between-train-runs share `0.774524`.
+  - dropping between-train-runs leaves `0.225476`.
+- target-amplitude stress:
+  - Q2-only share `0.093922`.
+  - dropping Q2 leaves `0.906078`.
+- hard-tail stress:
+  - top33 share `0.226424`.
+  - dropping top33 still leaves `0.773576`.
+  - top33 visible support `0.245771`.
+  - only top8 has E72-tail-risk role with E72 active rate `0.625`.
+
+Stress implication: E176 should not be demoted merely because top critical cells are weakly visible; those cells are not the whole signal. But if public rejects E176, the most coherent blame is compact hard-tail cancellation rather than absence of the broad S/body structure.

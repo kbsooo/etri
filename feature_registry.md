@@ -1488,6 +1488,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: S-targets carry `0.651098` of focus-prior expected movement versus `0.348902` for Q-targets; between-train-runs rows carry `0.807772`; Q2 carries `0.209702` raw movement share but only `0.121416` expected share; top33 visible support remains weak at `p_low=0.014667`.
 - Policy: use F171 only after E176 feedback to assign component responsibility. A win credits S3/S1/S4 body first; tie/loss credits hard-tail/cancellation failure first. Do not create Q2 keep-factor siblings from the scalar score alone.
 
+### F172. E203 component knockout stress
+
+- Hidden structure: E176 may combine a broad public-real body with a compact public-fragile tail. A useful feature must separate necessary body components from cancellation components before public feedback.
+- Candidates: keep/drop Q/S groups, Q2-only/drop-Q2, primary S-stage S3/S1/S4, between-train-runs, top33/top8 swing cells, top subjects, visible-high/visible-low support cells, and cells-to-cover E95-over-mixmin edge.
+- Label vs split test: valid as a diagnostic because it uses only E179 moved-cell priors and creates no prediction file. Invalid as a direct public predictor because no public labels for E176 are observed.
+- Current evidence: S-only carries `0.644881` of the E179 focus delta, primary S-stage carries `0.573289`, and between-train-runs carries `0.774524`. Q2-only carries `0.093922`. Top33 carries `0.226424`, but dropping top33 still leaves `0.773576`; top33 visible support is only `0.245771`.
+- Policy: use F172 to distinguish body validation from tail cancellation. Do not demote E176 as top33-only, and do not promote Q2-only amplitude tuning unless a clean E176 win first validates the broad body.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

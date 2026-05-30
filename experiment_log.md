@@ -3119,3 +3119,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - top33 hard-label cells remain weakly visible: target-matched visible-support `p_low=0.014667`.
 - Interpretation: E176 is a broad S-stage / between-train-runs body with Q2 damping as a secondary guard, not a Q2-only amplitude claim. A good score should first strengthen S3/S1/S4 body and Q/S asymmetry. A weak score should first be read as hard-tail/cancellation failure, not as proof that Q2 keep `0.75` is wrong.
 - Decision: no new submission. E176 remains the next single public sensor. After its public result, route through E201/E202 before considering E174, E172, E154, or any Q2 sibling.
+
+## E203. E176 Component Knockout Stress
+
+- Observe: E202 separates S-stage body from Q2 naming, but it still leaves an ambiguity: is E176 mainly a broad body, a compact top-critical-cell bet, or a target-specific edit?
+- Wonder: which component is necessary for E176's worldview, and which component mostly carries public-tail fragility?
+- Method: `analysis_outputs/e203_e176_component_knockout_stress.py` uses the E179 moved-cell table to build virtual keep/drop component stress rows for Q/S groups, Q2, primary S-stage targets, between-train-runs rows, top33/top8 swing cells, top subjects, and visible-support regimes. It creates no submission.
+- Result:
+  - report: `analysis_outputs/e203_e176_component_knockout_stress_report.md`.
+  - in the E179 cell prior, full E176 focus delta is `-0.000078041955`.
+  - S-only carries `0.644881`; Q2-only carries only `0.093922`.
+  - primary S-stage body S3/S1/S4 carries `0.573289`.
+  - between-train-runs rows carry `0.774524`; dropping them leaves only `0.225476`.
+  - top33 cells carry `0.226424` with weak visible support `0.245771`, while dropping top33 still leaves `0.773576`.
+- Interpretation: E176 is broad-body necessary, not top33-only. But the top33 layer is exactly where cancellation can kill the body. Therefore a good score validates broad S/body; tie/loss should be read as compact tail cancellation before changing Q2 amplitude.
+- Decision: no new submission. E203 strengthens the E201/E202 rule: only ask Q2 amplitude after a clean E176 win validates the broad body first.

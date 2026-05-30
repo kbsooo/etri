@@ -2316,6 +2316,18 @@ target co-occurrence
 - public LB 관측 반응: a win credits broad S-stage / between-train-runs body first; a micro win says body and hard-tail nearly cancel; tie/small-loss points to unresolved hard-label tail; adverse loss demotes same-family partial-reopen toward E154/search. None of those bands alone proves Q2-only causality.
 - 제출 전략: no E202 submission. Keep E176 first, but after the score use E202 component responsibility before E174/E172/E154 decisions.
 
+### H197. E176 needs a broad body, while public fragility lives in a compact tail layer
+
+- 상태: 지지 by E203 as knockout stress.
+- 왜 그럴듯한가: E176 has two conflicting diagnostics: broad S/body support and weak top critical-cell visibility. It could be a broad-body signal with a small tail risk, or merely a compact top-cell gamble.
+- 맞다면: broad groups should retain most of the expected focus delta, while top33/top8 should explain fragility but not the whole body.
+- 틀리다면: Q2-only or top33-only should carry most of the expected delta, or dropping top33 should destroy most of the E176 body.
+- 최소 실험: `analysis_outputs/e203_e176_component_knockout_stress.py`.
+- 관측: full E176 E179 focus delta is `-0.000078041955`. S-only carries `0.644881`, primary S3/S1/S4 carries `0.573289`, and between-train-runs carries `0.774524`. Q2-only carries `0.093922`. Top33 carries `0.226424` with visible support `0.245771`; dropping top33 still leaves `0.773576`.
+- 성공/폐기 기준: supported until public feedback or a target-isolated public observation shows that a compact tail-only or Q2-only component explains the score. It weakens if E176 wins/losses exactly like a top33-only or Q2-only paired contrast.
+- public LB 관측 반응: clean win validates broad S/body first. Tie/small-loss means the broad body survived but compact tail cancelled enough public mass. Branch/hard loss means either body is public-misaligned or tail cancellation dominates, so E154/search is more coherent than Q2 tuning.
+- 제출 전략: no E203 submission. Keep E176 first; do not submit top33-only, Q2-only, or another scalar sibling before E176 feedback.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -878,3 +878,30 @@ Current conditional order:
 4. If E176 is worse than E101 or mixmin-safe bands, use `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` or non-collinear latent search.
 
 Do not infer Q2-only causality from the scalar public score.
+
+## Update After E203
+
+The single next public sensor remains:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+E203 adds a keep/drop component stress around E176.
+
+- E176 is broad-body necessary:
+  - S-only focus share `0.644881`.
+  - primary S-stage S3/S1/S4 share `0.573289`.
+  - between-train-runs share `0.774524`.
+- E176 is not Q2-only:
+  - Q2-only share `0.093922`.
+  - dropping Q2 still leaves `0.906078`.
+- E176 is not top33-only:
+  - top33 share `0.226424`.
+  - dropping top33 still leaves `0.773576`.
+  - top33 visible support is weak at `0.245771`.
+
+Post-score rule is now stricter:
+
+1. Clean E176 win: decompose broad S-stage / between-train-runs body first.
+2. Micro win, tie, or small loss: treat the body as probably real but cancelled by compact hard-tail cells; E172 only if asking same-family safety.
+3. Branch/hard loss: broad body is public-misaligned or cancelled too strongly; route to E154/search.
+4. Q2 amplitude is a second-order paired question, not the first post-E176 action.

@@ -1592,3 +1592,12 @@
 - Implementation issue possible: low for the narrow rejection because the decomposition uses the locked E176 tensor and existing E177/E179/E201 artifacts. Medium for final causality because the actual E176 public score is still pending.
 - Bottleneck implication: the plateau is still a component/tail-resolution problem, not a one-dimensional Q2 amplitude problem. The useful signal lives in how broad S-stage body, Q2 guard, and hard-label tail cancel.
 - Do not repeat: Q2 keep-factor sibling sweeps directly after E176 public feedback. Use E201 score route plus E202 component responsibility first.
+
+## FH177. E176 is mainly a compact top33 critical-cell bet
+
+- Failed hypothesis: E176's useful edge is mostly concentrated in top33/top8 swing cells, so public feedback should be interpreted primarily as a compact critical-cell selector result.
+- Observed result: E203 shows top33 cells carry only `0.226424` of the E179 focus body and top8 only `0.068714`. Dropping top33 still leaves `0.773576` of the focus body. The broad components are much larger: S-only `0.644881`, primary S3/S1/S4 `0.573289`, and between-train-runs `0.774524`.
+- Why discard: top33 is public-fragile and weakly visible, but not sufficient to explain the whole E176 movement. Treating E176 as top33-only would erase the broad body that makes it an information-rich sensor.
+- Implementation issue possible: low for the narrow rejection because the knockout uses the exact E179 moved-cell table. Medium for final public attribution because public labels are still unobserved.
+- Bottleneck implication: the current bottleneck is broad-body versus compact-tail cancellation, not a pure critical-cell selector. A loss can still mean body-tail cancellation rather than absence of body.
+- Do not repeat: replacing E176 with a top33-only variant or reading E176 feedback as only a top-cell selector before checking the score band and component route.

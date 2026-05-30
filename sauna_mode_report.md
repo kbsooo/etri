@@ -2827,3 +2827,33 @@ E176 제출 전 우선순위는 그대로다. 새 파일을 만들지 않는다.
 다음으로 가장 정보량이 큰 행동:
 
 제출 후보는 그대로 E176 하나다. 하지만 결과가 나오면 E201 score router와 E202 component router를 같이 보고 다음 행동을 정한다. Q2 sibling은 public 숫자 하나로 만들지 않는다.
+
+## E203 업데이트: E176의 몸통과 꼬리를 분리했다
+
+내가 발견한 가장 이상한 점:
+
+`E176의 top33 cell은 중요하지만 전체 신호가 아니다. 넓은 body는 살아 있고, public에서 죽을 수 있는 부분은 compact tail/cancellation 층이다.`
+
+실험:
+
+- `analysis_outputs/e203_e176_component_knockout_stress.py`
+- report: `analysis_outputs/e203_e176_component_knockout_stress_report.md`
+
+결과:
+
+- full E176 focus delta in E179 cell prior: `-0.000078041955`
+- S-only share: `0.644881`
+- primary S3/S1/S4 share: `0.573289`
+- between-train-runs share: `0.774524`
+- Q2-only share: `0.093922`
+- top33 share: `0.226424`
+- drop top33 leaves: `0.773576`
+- top33 visible support: `0.245771`
+
+생각이 어떻게 바뀌었는지:
+
+`E176이 실패해도 broad body 자체가 없었다고 바로 읽으면 안 된다. 더 정밀한 해석은 body는 있는데 top33/hard-tail에서 cancellation이 public edge를 먹었다는 것이다. 반대로 E176이 이기면 Q2가 아니라 S-stage / between-train-runs body가 먼저 살아난다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+E176 제출 순서는 유지한다. clean win일 때만 Q2 amplitude를 paired question으로 묻고, tie/loss면 E172 safety 또는 E154/search route로 간다.
