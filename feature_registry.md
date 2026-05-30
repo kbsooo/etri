@@ -1528,6 +1528,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: only `broad_stage2_pca64 + feature_nn1_all` passes `true_jepa_candidate` (`readiness=0.652939`, `rho=0.494280`, `alignment=0.636020`, `increment_gauss=0.435262`). Existing LeJEPA subject-lag2 has higher raw readiness (`0.668530`) but is demoted to auxiliary because increment Gaussianity is poor (`0.194814`) and split stationarity is weak.
 - Policy: use F176 to choose E208 true-JEPA pairs. Train on feature-neighbor positive pairs first. Treat subject/order and block-canvas LeJEPA signals as energy/gate features until they pass a stricter increment/stationarity audit.
 
+### F177. E208 feature-neighbor JEPA residual and prediction features
+
+- Hidden structure: a row's feature-family context can predict the latent state of its nearest feature-neighbor, and the prediction residual may expose target-specific calibration risk that ordinary tabular features average away.
+- Candidates: `e208_pred_pc*`, `e208_hidden_z*`, `e208_resid_self_pc*`, `e208_resid_nn_pc*`, prediction/hidden norms, seed disagreement, prediction-to-self/neighbor cosine, and nearest-neighbor target distance.
+- Label vs split test: valid as a learned representation feature because the JEPA target is feature-neighbor broad latent, not the labels. Invalid as a direct submission move until OOF, repeated-subject, and geometry stress all pass. The full predicted latent is specifically unsafe because of anisotropy.
+- Current evidence: the JEPA model beats copy-self and mean-target controls on validation MSE for all three seeds. Downstream best local features are Q3 `e208_resid_self_pc10`, S2 `e208_pred_pc12`, and S4 `e208_pred_pc14`; geometry stress passes only Q3/S4 rows. S2 is a local shortcut until repaired.
+- Policy: materialize only a separate E209 Q3/S4 stress candidate. Do not add the entire E208 feature block to a frontier submission. Do not use S2 despite local gains unless it passes geometry folds.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

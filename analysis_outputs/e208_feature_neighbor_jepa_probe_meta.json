@@ -1,0 +1,14 @@
+{
+  "context_dim": 44,
+  "materialization_gate_pass_count": 8,
+  "pair_count": 700,
+  "pair_regime": "feature_nn1_all",
+  "seeds": [
+    261002,
+    261020,
+    261038
+  ],
+  "submission_rows": 250,
+  "target_dim": 64,
+  "train_rows": 450
+}

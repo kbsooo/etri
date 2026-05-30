@@ -1493,3 +1493,22 @@ Result:
 - strongest rejected-as-auxiliary regime: `lejepa_l0p2_d32_pca48 + subject_lag2_all`, because increment Gaussianity is low and split stationarity is weak.
 
 Stress implication: true JEPA training should not begin with subject-order pairs or an all-regime average. The next JEPA experiment must start from feature-neighbor positive pairs and keep subject/order/block-canvas latents as auxiliary gates until they pass increment/stationarity stress.
+
+## Update After E208
+
+E208 stress-tests an actually trained JEPA representation, not just a JEPA-style diagnostic.
+
+- script: `analysis_outputs/e208_feature_neighbor_jepa_probe.py`.
+- report: `analysis_outputs/e208_feature_neighbor_jepa_probe_report.md`.
+- training controls:
+  - seed `261002`: validation MSE `0.588331`, copy-self `0.812629`, mean-target `0.639551`.
+  - seed `261020`: validation MSE `0.555652`, copy-self `0.885360`, mean-target `0.613004`.
+  - seed `261038`: validation MSE `0.550826`, copy-self `0.815146`, mean-target `0.630471`.
+- geometry stress:
+  - prediction mean is compressed/anistropic: rank fraction `0.287411`, condition `1365.92`.
+  - hidden mean is healthier: rank fraction `0.611836`, condition `44.0311`.
+  - Q3 `e208_resid_self_pc10` has multiple OOF/subject/geometry passing rows.
+  - S4 `e208_pred_pc14` passes one geometry-stressed row.
+  - S2 has strong local/subject deltas but geometry delta is positive, so it fails the E208 gate.
+
+Stress implication: JEPA is not a dead idea here. The bottleneck is translation. A trained feature-neighbor JEPA finds real target-specific residual structure, but the full latent is too anisotropic and only Q3/S4 survive stress. E209 should materialize Q3/S4 only, with E95/E154 geometry comparison before public submission.

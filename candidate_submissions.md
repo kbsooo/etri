@@ -1004,3 +1004,27 @@ Submission order is unchanged for existing files:
 
 1. Existing coherent counter-world sensor remains `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` if using a public slot now.
 2. New JEPA work should first produce E208 feature-neighbor JEPA diagnostics before materializing a submission.
+
+## Update After E208
+
+E208 still creates no submission, but it opens one real JEPA materialization branch.
+
+Result:
+
+- `analysis_outputs/e208_feature_neighbor_jepa_probe_report.md`
+- materialization gate pass count: `8`
+- passing target families: Q3 and S4
+- strongest Q3 feature: `e208_resid_self_pc10`
+- strongest S4 feature: `e208_pred_pc14`
+- rejected local shortcut: S2 `e208_pred_pc12`, because geometry stress is adverse despite strong OOF/subject deltas.
+
+Submission policy:
+
+1. Do not submit an E208 file directly; none exists by design.
+2. If building a new file, create E209 from the passing Q3/S4 operations only.
+3. Before public submission, compare E209 movement against E95, E154, E176 branch-loss anatomy, and known hard-tail cells.
+4. If using a public slot immediately without E209, the coherent existing sensor remains `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+
+Interpretation:
+
+E208 is the first practical "real JEPA" branch. It says the model can learn hidden neighbor representation, but it also says the useful probability movement is narrow. A full-latent JEPA blend would be exactly the kind of shortcut LeJEPA warns against.

@@ -1637,3 +1637,12 @@
 - Implementation issue possible: medium. The audit uses PCA summaries and proxy Gaussianity tests, so a more specialized latent could pass later. The narrow claim being discarded is only "use any subject-order JEPA transition directly."
 - Bottleneck implication: the bottleneck is not lack of JEPA branding or network capacity. It is choosing a positive-pair regime whose transition is actually identifiable and public-relevant.
 - Do not repeat: training one large JEPA over all subject lags or averaging every positive-pair regime. Start with feature-neighbor JEPA, and keep subject/order/block-canvas latents as gates until they pass increment/stationarity diagnostics.
+
+## FH182. A trained JEPA predicted latent can be submitted wholesale
+
+- Failed hypothesis: once E208 shows the feature-neighbor JEPA task is learnable, the full predicted latent or every locally helpful JEPA feature should be blended into a submission.
+- Observed result: E208 training is real, but geometry and downstream stress are selective. `pred_mean` has rank fraction `0.287411` and covariance condition `1365.92`, while the healthier `hidden_mean` still does not translate broadly. S2 has strong local/subject deltas but fails geometry with positive geometry delta. Q1/Q2/S1/S3 provide no stable materialization path. Only Q3 residual-self pc10 and S4 predicted pc14 pass the E208 gate.
+- Why discard: learnability is not submission health. A compressed predicted representation can encode shortcuts, and local OOF gains can be fold-specific. LeJEPA discipline requires geometry and stress to decide which pieces survive.
+- Implementation issue possible: medium. E208 is CPU MLP/PCA based and could improve with stronger architecture, different masks, or target representation. Low for rejecting the current wholesale-submission shortcut because the generated diagnostics directly show anisotropy and target selectivity.
+- Bottleneck implication: JEPA can expose hidden structure, but the bottleneck is probability translation and target-specific calibration risk. The useful branch is narrow Q3/S4 residual movement, not global capacity.
+- Do not repeat: all-feature E208 blend, S2 local shortcut materialization, or "JEPA succeeded therefore submit the latent" reasoning. Run E209 Q3/S4-only materialization and hard-tail/frontier geometry first.

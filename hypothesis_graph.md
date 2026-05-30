@@ -2376,6 +2376,18 @@ target co-occurrence
 - public LB 관측 반응: no immediate submission. A later feature-neighbor JEPA candidate should improve only if it converts the one certified pair regime into a probability movement that survives hard-tail and known-frontier stress.
 - 제출 전략: build E208 feature-neighbor JEPA diagnostics first. Do not train a monolithic subject-order JEPA or average all pair types into one submission family.
 
+### H202. Feature-neighbor JEPA learns real structure, but only Q3/S4 translation is currently stable
+
+- 상태: 부분 지지 by E208; full-latent submission claim rejected.
+- 왜 그럴듯한가: E207 selected feature-neighbor positive pairs as the only true-JEPA candidate. If this regime is meaningful, a context encoder should predict neighbor representation better than trivial controls. But if LeJEPA-style collapse/shortcut warnings apply, not every predicted dimension or target should be trusted.
+- 맞다면: validation MSE should beat copy-self/mean/random controls; latent geometry should expose which embeddings are healthy; downstream stress should pass only target/feature operations whose signal survives OOF, repeated-subject, and geometry folds.
+- 틀리다면: validation MSE should be no better than copy-self or mean-target, or downstream gains should disappear under geometry stress. Alternatively, a globally healthy predicted latent should pass across many targets without anisotropy.
+- 최소 실험: `analysis_outputs/e208_feature_neighbor_jepa_probe.py`.
+- 관측: all three seeds beat copy-self and mean-target baselines. `hidden_mean` has healthier geometry than `pred_mean`; `pred_mean` is anisotropic. Q3 `e208_resid_self_pc10` and S4 `e208_pred_pc14` pass materialization gates. S2 is locally strong but geometry-adverse; Q1/Q2/S1/S3 do not provide stable movement.
+- 성공/폐기 기준: supported for a narrow Q3/S4 JEPA residual branch. Discard the broad claim if E209 Q3/S4 materialization fails E95/E154/E176 hard-tail stress or public feedback. Discard the full-latent claim now because prediction geometry is compressed and target coverage is narrow.
+- public LB 관측 반응: an E209 win would strengthen the view that real JEPA helps via target-specific residual/energy, not via monolithic latent blending. An E209 loss would not kill JEPA learnability; it would kill the current probability-translation path.
+- 제출 전략: build E209 from only passing Q3/S4 operations and compare against frontier geometry. Do not submit all E208 features, S2 local shortcut, or a full predicted-latent blend.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

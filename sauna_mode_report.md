@@ -2974,3 +2974,34 @@ E154로 repaired-branch counter-world를 묻거나, 아예 non-collinear hidden-
 다음으로 가장 정보량이 큰 행동:
 
 E208은 feature-neighbor JEPA다. context는 broad stage2 latent와 feature-family mask, target은 nearest-neighbor latent/hidden residual representation으로 두고, LeJEPA-style Gaussianity/isotropy/alignment diagnostics를 hard guard로 붙인다. E208 진단 전에는 새 JEPA submission을 만들지 않는다.
+
+## E208 업데이트: JEPA를 실제로 학습시켰고, 신호는 Q3/S4에만 살아남았다
+
+내가 발견한 가장 이상한 점:
+
+`JEPA 학습 자체는 된다. 하지만 모든 target을 좋아지게 하는 만능 latent가 아니라, Q3 residual과 S4 prediction 쪽에만 안정적인 신호가 나온다. S2는 local에서는 좋아 보이지만 geometry에서 죽는다.`
+
+실험:
+
+- `analysis_outputs/e208_feature_neighbor_jepa_probe.py`
+- report: `analysis_outputs/e208_feature_neighbor_jepa_probe_report.md`
+
+실험 결과:
+
+- JEPA validation MSE가 copy-self보다 전부 낮다.
+  - `0.588331 < 0.812629`
+  - `0.555652 < 0.885360`
+  - `0.550826 < 0.815146`
+- mean-target baseline도 전부 이긴다.
+- `pred_mean`은 유용하지만 anisotropic하다: rank fraction `0.287411`, condition `1365.92`.
+- `hidden_mean`은 더 건강하다: rank fraction `0.611836`, condition `44.0311`.
+- downstream에서 Q3/S4만 materialization gate를 통과했다.
+- gate pass count는 `8`.
+
+생각이 어떻게 바뀌었는지:
+
+`JEPA는 쓸 수 있다. 다만 "JEPA latent 전체를 넣자"가 아니라, JEPA가 만들어낸 residual/energy 중에서 Q3/S4에 안정적으로 살아남는 부분만 써야 한다. 이건 아이디어 차용이 아니라 실제 context-to-target representation 학습이다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+E209를 만든다면 Q3 `e208_resid_self_pc10`와 S4 `e208_pred_pc14`만 물질화한다. S2는 local gain이 커도 geometry stress가 나쁘므로 아직 제출 후보가 아니다. E209는 반드시 E95/E154/E176 branch-loss geometry와 비교한 뒤에만 public slot을 쓴다.

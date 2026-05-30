@@ -3194,3 +3194,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - block-canvas subject-lag1 is usable as energy/auxiliary (`0.621422..0.640868`) but not as a certified world-model transition.
 - Interpretation: this answers the user's JEPA question concretely. Yes, JEPA can be used, but not as "train a bigger subject-order JEPA." The only currently defensible true-JEPA training target is feature-neighbor context/target prediction over broad stage2 representation. Subject/order/LeJEPA block-canvas latents remain useful as gates or energies, but their positive-pair transitions look non-identifiable or split-sensitive.
 - Decision: next true-JEPA attempt should be E208 feature-neighbor JEPA: context = one row's broad latent / local feature family masks, target = nearest-neighbor latent or its hidden target-rate/residual representation, with LeJEPA-style Gaussian/isotropy diagnostics kept as hard guardrails. Do not average all pair regimes into one training set.
+
+## E208. Feature-Neighbor JEPA Probe
+
+- Observe: E207 left only one credible true-JEPA transition: `broad_stage2_pca64 + feature_nn1_all`. The open question was whether this regime is merely diagnostic, or whether a context encoder can actually predict the hidden neighbor representation better than copy-self/mean/random controls and then help target LogLoss under stress.
+- Wonder: can we solve part of the plateau by training a real JEPA objective, not just naming a latent "JEPA"? If yes, does the useful signal appear globally, or only in specific target/residual axes?
+- Method: `analysis_outputs/e208_feature_neighbor_jepa_probe.py` trains a PyTorch context-to-target model. Context is made from 5 feature-family PCA blocks (`deep`, `prectx`, `presleep`, `proxy`, `quiet`); target is the E207-selected broad stage2 nearest-neighbor latent. The loss predicts target representation and adds variance/covariance regularization. Three seeds are trained, then predicted/hidden/residual embeddings are scanned as downstream calibration features with OOF, repeated-subject guardrail, and geometry folds.
+- Result:
+  - report: `analysis_outputs/e208_feature_neighbor_jepa_probe_report.md`.
+  - context rows: `700`; context families: `5`.
+  - validation MSE beats copy-self for all seeds: `0.588331 < 0.812629`, `0.555652 < 0.885360`, `0.550826 < 0.815146`.
+  - validation MSE also beats mean-target baseline for all seeds: ratios `0.919912`, `0.906442`, `0.873673`.
+  - prediction latent is useful but anisotropic: `pred_mean` rank fraction `0.287411`, covariance condition `1365.92`.
+  - hidden bottleneck is healthier: `hidden_mean` rank fraction `0.611836`, covariance condition `44.0311`.
+  - downstream best local target moves are Q3 `-0.006458`, S2 `-0.004215`, S4 `-0.003134`, but geometry stress admits only Q3 and S4 families.
+  - materialization gate pass count: `8`.
+- Interpretation: this is the first actual JEPA training run that passes the "learnability" test. It does not justify a full predicted-latent submission: the full prediction space is too anisotropic, S2 fails geometry despite strong local deltas, and Q1/Q2/S1/S3 do not carry stable signal. The live signal is narrower: Q3 `e208_resid_self_pc10` and S4 `e208_pred_pc14`.
+- Decision: no direct E208 submission. Build E209 only from passing Q3/S4 operations, then compare against E95/E154/E176 frontier geometry before spending a public slot. Treat S2 as a rejected local shortcut until it passes geometry stress.
