@@ -2628,6 +2628,18 @@ target co-occurrence
 - public LB 관측 반응: E227 has explicit bands from broad breakthrough through E72-like fail and S2-JEPA-like collapse.
 - 제출 전략: E166 only when the intended question is independent broad-world structure. E224 remains the JEPA slot; E154 remains conservative repaired-branch.
 
+### H223. E224/E166/E154 are not one blendable worldview
+
+- 상태: 지지 by E228 movement-conflict atlas.
+- 왜 그럴듯한가: E224, E166, and E154 survived as the live post-E216 choices, but if they share the same moved cells or signs then submitting/mixing them would only retest one latent branch.
+- 맞다면: E224/E166 and E166/E154 should be low-cosine, low top-k-overlap pairs; E224/E154 should reveal whether E154 is inherited inside E224 rather than independent.
+- 틀리다면: pairwise cosines and top-k overlaps would be high across all three, and a tri-blend would be a reasonable amplitude smoother.
+- 최소 실험: `analysis_outputs/e228_triworld_conflict_atlas.py`.
+- 관측: E224/E166 cosine `0.074348`, top50 overlap `1`, same-sign E166 coverage of E224 mass `0.035638`; E166/E154 cosine `0.061662`, top50 overlap `0`; E224/E154 cosine `0.316350`, and E154's active cells are fully inside E224 active cells with `0.885621` same-sign E154 mass coverage.
+- 성공/폐기 기준: supported for routing. E224 and E166 are separate public questions; E154 is not fully independent from E224 because E224 inherits its repaired body.
+- public LB 관측 반응: an E224 score should be decoded as capped-Q3/S4 JEPA feedback; an E166 score should be decoded as broad safety-atlas feedback. An E154 score is most informative after attribution says the E224 residual, not the inherited body, is the suspect.
+- 제출 전략: do not build a blind tri-world blend. Submit E224 for the JEPA question, E166 for the independent broad question, and E154 only as the conservative repaired-branch counter-world.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

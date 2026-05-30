@@ -1658,6 +1658,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E166 moves `1750` cells across all `7` targets, has cos(E224) `0.074348`, expected focus `-0.000332077`, adverse `0.000713053`, support `0.465747`. Its top-benefit cells are context-real but conflicted: edge-like `0.689189`, between-train-runs `0.797297`, E72-active `0.837838`, all-veto-null `0.297297`.
 - Policy: use `analysis_outputs/e227_e166_public_feedback_decoder.py --score <PUBLIC_LB>` after any E166 submission. Do not scale E166 or submit E166-family siblings before decoding. Treat wins as safety-atlas-overconservatism evidence and losses as E72-active/low-veto-null warning evidence.
 
+### F193. E228 tri-world conflict atlas features
+
+- Hidden structure: live candidates can be useful because they ask different hidden-world questions, not because they can be averaged into a smoother probability tensor.
+- Candidates: E224/E166/E154 cell movements, pairwise cosine, active overlap, same-sign shared mass, sign-conflict mass, top-k overlap, target conflict, and subject/block concentration.
+- Label vs split test: valid as deterministic submission-geometry routing only. It uses no labels and creates no public prediction, so it can reject duplicate-world or uninterpretable blends but cannot certify public improvement.
+- Current evidence: E224/E166 are almost orthogonal (`cos=0.074348`) with top50 overlap `1`; E166/E154 are also almost orthogonal (`cos=0.061662`) with top50 overlap `0`; E224/E154 are related (`cos=0.316350`) because E224 contains most of E154's same-sign repaired body (`0.885621` E154 mass coverage).
+- Policy: use F193 to keep E224 and E166 as separate public sensors. Do not create a blind E224/E166/E154 blend. Treat E154 as a conditional repaired-branch test, not as a clean independent post-E224 alternative.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

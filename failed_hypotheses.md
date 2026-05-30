@@ -1782,3 +1782,12 @@
 - Implementation issue possible: low for routing. The file can remain a diagnostic contrast, but not a submission candidate without new evidence.
 - Bottleneck implication: old near-ties are not the hidden 0.54 route. We need new structure, not re-ranking stale bridge files after a bad JEPA result.
 - Do not repeat: resurrecting bridge blends from cosmetic non-collinearity without a new falsifiable hypothesis.
+
+## FH198. E224/E166/E154 should be blindly blended before public feedback
+
+- Failed hypothesis: because E224, E166, and E154 are the live post-E216 files, a weighted blend across all three should be a safer next candidate than choosing one worldview.
+- Observed result: E228 shows the three-way geometry is not a single blendable family. E224/E166 cosine is only `0.074348`, with top50 overlap `1` and same-sign E166 covering only `0.035638` of E224 mass. E166/E154 cosine is `0.061662` with top50 overlap `0`. E224/E154 are related because E154 is mostly inherited inside E224: `0.885621` of E154 mass is same-sign covered by E224.
+- Why discard: a tri-blend would destroy public-feedback identifiability. If it wins, we cannot tell whether JEPA Q3/S4, broad safety-atlas structure, or cancellation helped; if it loses, we cannot isolate the failed branch.
+- Implementation issue possible: low. The rejection is deterministic movement geometry, not a stochastic model result. A future blend may become valid only after one component receives public feedback and attribution.
+- Bottleneck implication: candidate selection is now an observation-design problem. The next useful public slot should isolate a hidden-world law instead of averaging mutually underidentified laws.
+- Do not repeat: building a blended submission from live sensors just because each has some local or routebook support.

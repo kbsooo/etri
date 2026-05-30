@@ -3491,3 +3491,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - score bands are locked from broad breakthrough through E72-like fail. Example: a score below `0.576276019` is a clean broad-world win; `0.576300366..0.576306641` is mixmin-safe loss and routes away from broad survivor; worse than E176 routes to E154/search; E72-scale loss requires an E166 miss anatomy.
 - Interpretation: E166 is not the "best next file" in the same sense as E224. It is the cleanest existing test of whether the current safety atlas became too conservative after E72/E101/E176/E216. A win strengthens broad survivor / edge-context structure; a loss strengthens the E167 E72-active and low-veto-null warning.
 - Decision: if one JEPA-family public slot is being spent, submit E224. If one non-E224 independent worldview slot is being spent, submit E166 and decode with E227. If the question is lower-risk existing-file branch testing, submit E154 and decode with E160. Do not scale E166 or submit E166 siblings before public feedback.
+
+## E228. Tri-World Conflict Atlas For E224/E166/E154
+
+- Observe: E224, E166, and E154 are the three live post-E216/E227 choices, but their roles could collapse if we blindly blend or submit them as independent alternatives.
+- Wonder: are these three files genuinely separate hidden-world questions, or are some of them duplicate movements on the same latent branch?
+- Method: `analysis_outputs/e228_triworld_conflict_atlas.py` compares E224/E166/E154 logit movements against E95 at cell, target, subject, and block levels. It computes pairwise cosine, active-cell overlap, same-sign shared mass, sign-conflict mass, top-k overlap, target-level conflict, and block concentration. It creates no submission.
+- Result:
+  - report: `analysis_outputs/e228_triworld_conflict_atlas_report.md`.
+  - E224 vs E166: cosine `0.074348`, same-sign E166 covers only `0.035638` of E224 mass, top50 overlap `1` cell, sign-conflict rate by shared min-mass `0.372637`.
+  - E166 vs E154: cosine `0.061662`, top50 overlap `0`, sign-conflict rate `0.394238`.
+  - E224 vs E154: cosine `0.316350`; E154 active cells are fully inside E224 active cells, and same-sign shared movement covers `0.885621` of E154 mass but only `0.175323` of E224 mass.
+  - target anatomy says the E224/E166 conflict is mainly Q3/S4: Q3 conflict rate `0.536444`, S4 conflict rate `0.127998`; E224/E154 has no conflict on Q1/S2/S3 and only Q3/S4 residual conflict.
+- Interpretation: E224 and E166 are genuinely different public sensors. E154 is not independent in the same sense because E224 already inherits most of E154's repaired body, while adding the JEPA Q3/S4 residual. A tri-blend would erase interpretability and could win or lose by cancellation.
+- Decision: do not create a blind E224/E166/E154 blend. Keep E224 as the JEPA capped-Q3/S4 sensor, E166 as the independent broad safety-atlas sensor, and E154 as a conditional conservative branch only after E224/E166 feedback or an attribution result points away from the Q3/S4 residual.

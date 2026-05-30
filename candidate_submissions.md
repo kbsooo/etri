@@ -1331,3 +1331,31 @@ Current candidate roles:
    - decode with E160.
 
 Practical ordering is question-dependent, not score-dependent. If the user wants to test JEPA now, choose E224. If the user wants the most non-collinear existing worldview test, choose E166. If the user wants lower-risk branch repair, choose E154.
+
+## Update After E228
+
+E228 checks whether the three live files should be mixed or treated as separate public sensors.
+
+Main result:
+
+1. `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`
+   - JEPA capped-Q3/S4 sensor.
+   - cos(E166) `0.074348`; same-sign E166 covers only `0.035638` of E224 mass.
+   - cos(E154) `0.316350`; E154 covers `0.885621` of its own mass inside E224 but only `0.175323` of E224 mass.
+
+2. `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`
+   - independent broad safety-atlas-overconservatism sensor.
+   - cos(E154) `0.061662`.
+   - top50 overlap with E154 is `0`, and top50 overlap with E224 is only `1` cell.
+
+3. `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`
+   - conservative repaired-branch counter-world.
+   - not fully independent from E224 because E224 contains most of its same-sign repaired body.
+   - best used after E224/E166 feedback, or if the explicit question is "does the repaired branch work without the JEPA Q3/S4 residual?"
+
+Submission policy update:
+
+- Do not submit a naive E224/E166/E154 blend before public feedback. It would be hard to interpret and would not tell us which hidden-world law survived.
+- If spending one JEPA slot: E224.
+- If spending one independent non-JEPA worldview slot: E166.
+- If spending one conservative repaired-branch slot after attribution: E154.

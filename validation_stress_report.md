@@ -1820,6 +1820,24 @@ E227 E166 public-feedback decoder:
 
 Stress implication after E227: E166 is valid only as a broad hidden-world public sensor. A win strengthens broad survivor context and weakens hard safety-atlas vetoes; a loss strengthens the E72-active/low-veto-null warning. No E166 sibling or scale change should be used before score decoding.
 
+E228 tri-world conflict atlas:
+
+- script: `analysis_outputs/e228_triworld_conflict_atlas.py`.
+- report: `analysis_outputs/e228_triworld_conflict_atlas_report.md`.
+- outputs: `analysis_outputs/e228_triworld_conflict_atlas_summary.csv`, `analysis_outputs/e228_triworld_conflict_atlas_pairwise.csv`, `analysis_outputs/e228_triworld_conflict_atlas_targets.csv`, `analysis_outputs/e228_triworld_conflict_atlas_blocks.csv`, `analysis_outputs/e228_triworld_conflict_atlas_cells.csv`.
+- stress dimensions:
+  - pairwise cosine and top-k active-cell overlap.
+  - same-sign shared movement mass versus sign-conflict mass.
+  - target-level conflict rates.
+  - subject/block concentration of live movement and conflicts.
+- key results:
+  - E224/E166 cosine `0.074348`; same-sign E166 covers only `0.035638` of E224 mass; top50 overlap `1` cell.
+  - E166/E154 cosine `0.061662`; top50 overlap `0`.
+  - E224/E154 cosine `0.316350`; E154 active cells are fully inside E224 active cells, and same-sign shared movement covers `0.885621` of E154 mass.
+  - E224/E166 target conflict is concentrated in Q3/S4, with Q3 conflict rate `0.536444`.
+
+Stress implication after E228: E224 and E166 should remain separate high-information public sensors. E154 is a conservative branch counter-world, but not a clean independent alternative to E224 because E224 already includes most of the E154 repaired body. A blind tri-world blend is rejected before feedback.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.
