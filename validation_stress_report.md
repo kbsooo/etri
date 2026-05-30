@@ -2469,3 +2469,36 @@ Decision:
 - E269/E271 are blocked as score submissions.
 - They remain useful as evidence that the boundary has social/cash-flow structure, but the materialized moves are too small relative to local selector uncertainty.
 - Next validation work should demand either larger safe movement or better hidden-state selector reliability before producing another CSV.
+
+## E273 Human Diary State JEPA Audit
+
+Question: can a broad human/social/cash-flow diary state be used locally instead of spending public LB?
+
+Method: `analysis_outputs/e273_human_diary_state_jepa_audit.py`.
+
+- Input features: E262 day-level lifelog, E268 social stories, E270 cash-flow stories.
+- Hidden views: eight family PC blocks plus JEPA-style residual/prediction energy for held-out family prediction under subject and dateblock grouping.
+- Stress: calendar/subject baseline vs baseline+diary-state features under `subject5` and `dateblock5`.
+
+Result:
+
+- strict submit evidence: none.
+- blocked CV deltas are all adverse:
+  - dateblock mean delta `+0.047561770`.
+  - subject mean delta `+0.149546366`.
+  - best target/split is Q3 dateblock at `+0.014363799`, still worse than baseline.
+- latent is not empty:
+  - sensor dateblock OOF R2 `0.976587`;
+  - physiology dateblock OOF R2 `0.891374`;
+  - mobility dateblock OOF R2 `0.746016`;
+  - social dateblock OOF R2 `0.642126`.
+- boundary diagnostics are strong:
+  - `jepa_prednorm_subject_social_comm` E247-vs-E256 d `-1.332902`;
+  - `diary_state_pc6` d `-1.239802`;
+  - `jepa_resid_dateblock_cognitive_money` d `1.199200`.
+
+Decision:
+
+- Do not submit a broad diary-state or broad social latent file.
+- Treat E273 as a LeJEPA failure mode: representation is real but not invariant enough for direct probability movement.
+- Surviving local work should be target-specific and energy-gated, especially Q3/Q1/S3 mobility-context, Q1/Q3 bedtime-phone residual, and S1/E247-boundary cognitive-money residual.

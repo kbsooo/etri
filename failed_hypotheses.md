@@ -2016,3 +2016,12 @@
 - Implementation issue possible: low for the ranking decision; all metrics come from the same E266 materialization table. Medium for true public outcome because hidden labels may still reward the broad support sensor.
 - Bottleneck implication: candidate selection is now part of the bottleneck. The branch can produce files, but picking by one scalar stress score can reintroduce the broad-gate failure.
 - Do not repeat: submitting the broadest/highest-support lifestyle tensor before the balanced routebook candidate has public feedback.
+
+## FH224. Broad human diary state can be added directly as a submission feature
+
+- Failed hypothesis: if all social, cash-flow, mobility, bedtime, physiology, routine, and sensor logs are compressed into a JEPA-style diary latent, that broad latent should improve local prediction and create a larger breakthrough path.
+- Observed result: E273 finds real latent structure but direct use is adverse. The best blocked-CV row is Q3 dateblock delta `+0.014363799`, and the means are dateblock `+0.047561770`, subject `+0.149546366`, all worse than the calendar/subject baseline.
+- Why discard: the diary latent is not empty, but it is too entangled with subject/device/routine identity. It explains E247/E256 boundary cells and label lifts, yet broad probability modeling turns that into split shortcut.
+- Implementation issue possible: medium. The linear blocked-CV head may underuse nonlinear target-specific structure, but it is enough to reject a broad feature dump or broad submission from E273.
+- Bottleneck implication: representation exists; translation is the bottleneck. The next object must be target-specific energy or a support/tail head, not a larger all-family latent.
+- Do not repeat: adding `diary_state_pc*`, all family PCs, or all JEPA residual energies wholesale to a model/submission without target-specific gating and E272 promotion.

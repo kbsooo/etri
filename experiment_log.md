@@ -4130,3 +4130,16 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E269 anti-E256 top-half is locally best among these, mean `-0.000017223`, but still far below the `-0.00005` p90 promotion bar.
 - Interpretation: the social/cash-flow stories are not dead, but current materializations are too small to spend public LB. They are diagnostic explanations for the E247/E256 boundary, not score candidates.
 - Decision: do not submit E269/E271 for score. Next work must either produce a larger locally certified move or improve the selector/hidden-state representation enough that the expected edge exceeds local uncertainty.
+
+## E273. Human Diary State JEPA Audit
+
+- Observe: E268/E270 found sparse social/cash-flow stories, but E272 blocked their tiny E247 overlays as below local selector resolution. A larger breakthrough would need a hidden lifestyle state, not another 12-cell tweak.
+- Wonder: can raw lifelog + social stories + cash-flow stories form a broad human diary latent that explains labels and current frontier boundaries under public-free stress?
+- Method: `analysis_outputs/e273_human_diary_state_jepa_audit.py` groups all day-level features into eight human families: social communication, cognitive/money, media/game, bedtime phone/light, mobility/context, physiology/activity, routine/calendar, and sensor/measurement. It creates family PCs, JEPA-style context-to-held-out-family residual energies under subject and dateblock groups, global diary-state PCs/clusters, label lifts, E247/E256/E267 boundary alignment, and blocked CV against a calendar/subject baseline.
+- Result:
+  - many families are predictable from the rest of the diary: sensor dateblock OOF R2 `0.976587`, physiology dateblock `0.891374`, mobility dateblock `0.746016`, bedtime dateblock `0.735212`, social dateblock `0.642126`.
+  - clusters are real but subject-like: k8 subject NMI `0.349076`, ARI `0.166160`, self-transition `0.608696`.
+  - broad diary-state features worsen blocked CV everywhere: dateblock mean delta `+0.047561770`, subject mean delta `+0.149546366`; best row is still adverse, Q3 dateblock `+0.014363799`.
+  - label/boundary diagnostics are strong: mobility JEPA energy has Q3 lift `-0.327434`; E247/E256 boundary is separated by subject social pred-norm d `-1.332902`, diary PC6 d `-1.239802`, and dateblock cognitive-money residual d `1.199200`.
+- Interpretation: the human diary latent exists, but broad use collapses into subject/device/routine identity and overfits blocked CV. The useful object is not "add diary latent to model"; it is target-specific energy: mobility/context for Q3/Q1/S3, bedtime-phone residual for Q1/Q3, cognitive-money residual for S1 and E247/E256 boundary, and social pred-norm for frontier-boundary separation.
+- Decision: no submission from E273. The broad diary-state hypothesis is rejected as an action path. The next useful experiment is a target-specific support/tail head using only the surviving energy axes, then the E272 public-free promotion audit before any public LB.

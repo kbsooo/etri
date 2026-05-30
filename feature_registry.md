@@ -1955,3 +1955,30 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
 - Label vs split test: pure calendar-only features can separate boundary cells but have high train/test gap, so they are confound-prone. Behavior-linked cash-flow features are preferred.
 - Failure condition: if a cash-flow direct boundary probe loses public LB, do not expand this into a broad calendar feature dump. Use it only as context/energy for future sparse gates.
 - Current action: E271 materializes a tiny direct E247 Q3 probe using only this story family.
+
+## E273 Human Diary State JEPA Features
+
+- Target hypothesis: raw lifelog is better treated as a human diary state than as unrelated tabular columns. The useful latent may be a residual energy: "given the rest of the day, is this social/mobility/bedtime/money pattern expected?"
+- Feature source: `analysis_outputs/e273_human_diary_state_jepa_audit.py`.
+- Families:
+  - `social_comm`: messages, calls, speech, social isolation.
+  - `cognitive_money`: search, work/study, finance, shopping, cash-flow windows.
+  - `media_game`: media, game, music, attention entropy.
+  - `bedtime_phone`: screen, charging, light, phone-in-bed, fragmentation.
+  - `mobility_context`: home/away, commute, vehicle/public context.
+  - `physiology_activity`: steps, HR, fatigue, sedentary/overtraining.
+  - `routine_calendar`: weekday/weekend, rituals, stable routine.
+  - `sensor_measurement`: wear/device/sensor density and missingness process.
+- JEPA target: predict held-out family PCs from the other family PCs under subject and dateblock grouping; use residual and prediction norm as energy, not raw reconstruction.
+- Validation used:
+  - subject/dateblock OOF family predictability;
+  - diary-state cluster health and subject NMI;
+  - blocked CV baseline vs baseline+state;
+  - train label lift;
+  - E247/E256/E267 boundary alignment.
+- Strong diagnostic axes:
+  - `jepa_prednorm_subject_social_comm`: E247-vs-E256 boundary d `-1.332902`.
+  - `jepa_resid_dateblock_cognitive_money`: boundary d `1.199200`.
+  - `jepa_prednorm_subject_mobility_context`: Q3 label lift `-0.327434`.
+  - `jepa_resid_subject_bedtime_phone`: Q1 lift `-0.221239`, Q3 lift `-0.203540`.
+- Failure condition: broad diary-state feature dump is rejected because blocked CV worsens all targets. These features may be used only as target-specific energy/gates with an E272-style promotion audit.

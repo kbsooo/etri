@@ -3076,6 +3076,18 @@ target co-occurrence
 - public LB 관측 반응: see `analysis_outputs/e267_human_social_tail_submission_routebook_report.md`.
 - 제출 전략: submit `analysis_outputs/submission_e267_humansocial_tail_balanced_2936100f.csv` if using the next slot on the human/social JEPA branch.
 
+### H273: broad human diary state exists but is not submission-invariant
+
+- 상태: supported as diagnostic energy; rejected as broad action path.
+- 왜 그럴듯한가: E268/E270 found sparse human/social/cash-flow stories, and the user explicitly proposed richer human theories. A true hidden lifestyle state should make feature families predictable from each other and explain Q/S labels or frontier boundaries.
+- 맞다면: family-to-family JEPA prediction should be nontrivial; clusters should be interpretable; some residual energies should align with labels or E247/E256 boundary cells.
+- 틀리다면: family prediction would be near-null, clusters random, and no label/boundary lifts would appear.
+- 최소 실험: `analysis_outputs/e273_human_diary_state_jepa_audit.py`.
+- 관측: JEPA predictability is strong for several families, e.g. sensor dateblock OOF R2 `0.976587`, physiology `0.891374`, mobility `0.746016`, bedtime `0.735212`, social `0.642126`. Boundary alignment is also strong: social pred-norm d `-1.332902`, cognitive-money residual d `1.199200`. But adding the full diary state worsens blocked CV everywhere: dateblock mean `+0.047561770`, subject mean `+0.149546366`.
+- 성공/폐기 기준: diagnostic part supported; broad submission part rejected. The latent is real but not invariant enough for direct modeling.
+- public LB 관측 반응: no public submission should be made from this broad latent. A future public-positive branch must use target-specific energy and pass E272 public-free promotion first.
+- 제출 전략: none from E273. Build a target-specific mobility/bedtime/cognitive-money/social energy head if continuing this branch.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

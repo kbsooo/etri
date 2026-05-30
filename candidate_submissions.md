@@ -2170,3 +2170,27 @@ Current public-free rule:
 - If a candidate is negative only by `1e-5` scale, it remains a hypothesis probe and should not consume public LB.
 
 Next submission-worthy candidate must be larger or independently certified. The next useful action is not another tiny E247-boundary tweak; it is rebuilding the hidden-state selector so social/cash-flow stories can choose a bigger safe movement.
+
+## Update After E273 Human Diary State JEPA Audit
+
+No new submission is recommended.
+
+E273 tested the larger idea the user asked for: turning all raw lifelog/social/cash-flow logs into a human diary state and using JEPA-style context-to-family residuals as latent energy. The result is diagnostic, not action-grade.
+
+Why no file:
+
+- Broad diary-state features worsen every blocked-CV target/split.
+- Best case is still adverse: Q3 dateblock delta `+0.014363799`.
+- Mean adverse delta is large: dateblock `+0.047561770`, subject `+0.149546366`.
+- The latent also has subject/device/routine identity flavor, so dumping it into a submission would likely amplify split shortcut.
+
+What remains alive:
+
+- E273 energy separates current frontier boundaries very strongly.
+- `jepa_prednorm_subject_social_comm`, `diary_state_pc6`, and `jepa_resid_dateblock_cognitive_money` distinguish E247-only/E256-only Q3 cells with d around `1.2..1.33`.
+- Mobility and bedtime-phone energies show large label lifts, especially Q3/Q1.
+
+Submission policy:
+
+- A future candidate from this branch must be target-specific and pass E272. It cannot be a broad diary latent or another tiny 12-cell E247 overlay.
+- Promotion bar remains p90 predicted delta vs E247 `< -0.00005`, beats-current rate `>=0.75`, and low bad-axis movement.
