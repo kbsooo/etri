@@ -3883,3 +3883,33 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - feature-NN1 smooth-gain sign also changes by group: shared `featnn1_total_smooth_gain` moves from `-0.086784` train to `+0.045484` test, while E250-only moves from `+0.090721` train to `-0.075050` test.
 - Interpretation: the conflict is not only "OOF vs materialization metric." The same named cell groups sit in different probability-step and feature-neighbor regimes between train OOF and test. Consensus is OOF-good, but test hard-tail safety is dominated by concentration and parent-specific cells.
 - Decision: do not build an intersection submission. Do not promote E252 as OOF-certified. The next JEPA target should be a contrastive head that explicitly separates "OOF-harmful consensus cells" from "test hard-tail-adverse parent-specific cells" rather than unioning or intersecting selected rows.
+
+## E255. E247 Public Feedback Decoder
+
+- Observe: `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` returned public LB `0.5761589494`, the new best. This directly contradicts the pre-public ranking that preferred E237 for likely score because E248 rejected E247's OOF analogue.
+- Wonder: does the public score make feature-NN1 smoothing a real mechanism, or only say that the E224 body is strong?
+- Method: `analysis_outputs/e255_e247_public_feedback_decoder.py` records E247 against E95/E101/mixmin/E176/E216, ranks E246 smoothing-family follow-ups by stress score plus non-clone information value, and writes `analysis_outputs/e255_e247_public_feedback_decoder_report.md`.
+- Result:
+  - E247 beats E95 by `0.0001323804` and mixmin by `0.0001476911`.
+  - the gain is `8.646x` the E95-over-mixmin edge, so this is not a hard-label-resolution micro-tie.
+  - the public observation promotes feature-NN1 Q3 smoothing from sensor to current public-positive JEPA mechanism.
+  - attribution remains incomplete: E247 proves the combined E224 body plus feature-NN1 Q3 rollback branch, not the isolated rollback effect.
+  - highest-information same-family follow-up is `top50_amp_then_smooth25` with information score `0.077389165`, E247 overlap `21`, Jaccard `0.552632`, and symmetric difference `17`.
+  - refreshed public-anchor decomposition after adding E247 still has best LOOCV MAE `0.000481276` and p90 `0.000741555`, far too coarse to rank frontier siblings by predicted LB.
+- Interpretation: E248 was not useless. It now says ordinary OOF harmful-row labels are misaligned with public test-side feature-neighbor Q3 geometry. This is exactly the plateau bottleneck: the right latent geometry exists, but the usual local validator can veto it incorrectly.
+- Decision: make the first post-E247 follow-up a single amplitude-constrained smoothing sensor, not a sweep. If attribution is the priority, E224 clean body is the right public question; if score plus information is the priority, materialize `top50_amp_then_smooth25`.
+
+## E256. E247-Family Follow-Up Materializer
+
+- Observe: E255 selected `top50_amp_then_smooth25` as the first post-E247 same-family question.
+- Wonder: did public like E247 because the broad top34 feature-neighbor smoothing set was correct, or because only high-amplitude smooth cells should be rolled back?
+- Method: `analysis_outputs/e256_e247_family_followup_materializer.py` materializes exactly one Q3-only file from the E246 selector row, audits schema/key/probabilities, and writes `analysis_outputs/e256_e247_family_followup_materializer_report.md`.
+- Result:
+  - submission: `analysis_outputs/submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv`.
+  - selected Q3 cells: `25`; changed other targets: `0`.
+  - SHA256: `630ea5e2ebedd2b970d87c1a0f7e81d467b7a571dfbd0c3587e35a5d18d2c131`.
+  - expected loss vs E224 `-0.000047418`, adverse reduction `0.000615602`, support gain `0.003037928`, actual adverse reduction `0.000592484`, Q3 top1/abs `0.615425803`.
+  - feature-NN1 roughness reduction: global `-0.010409282`, affected pairs `-0.070332985`.
+  - overlaps: E237 `14`, E230 swing25 `14`, amp-top25 `14`, and E247 `21`.
+- Interpretation: E256 is not a generic sibling sweep. It is a controlled sensor for broad-vs-amplitude-constrained smoothness after E247's public win.
+- Decision: if one next post-E247 file is needed, E256 is the best information candidate. Public win over E247 means high-amplitude smoothing beats broad top34; close-but-worse means broad top34 carries real extra public signal; hard loss means E247 depends on its exact nonlocal cell set or E224 body interaction.

@@ -1,0 +1,7 @@
+anchor_id,file_name,public_lb,delta_vs_e247,delta_vs_e95,role
+e247,submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv,0.5761589494,0.0,-0.0001323803999999651,new_public_frontier
+e95,submission_e95_hardtail_541e3973.csv,0.5762913298,0.0001323803999999651,0.0,previous_frontier
+e101,submission_e101_q2s3tail_177569bc.csv,0.576300366,0.00014141659999999945,9.036200000034356e-06,small_loss_q2s3_tail
+mixmin,submission_mixmin_0c916bb4.csv,0.5763066405,0.00014769110000001362,1.5310700000048527e-05,anchor_loss_binary_world
+e176,submission_e176_abl_q2_to0p75_91e49725.csv,0.576311831,0.00015288160000004325,2.0501200000078157e-05,broad_q2_damped
+e216,submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv,0.5772865088,0.0011275593999999778,0.0009951790000000127,bad_s2_maskfam_jepa

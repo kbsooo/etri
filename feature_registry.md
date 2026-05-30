@@ -1828,6 +1828,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: shared cells are OOF-best with benefit mean `-0.028234084`, but test shared has Q3 top1/abs `3.412733926`. Union is OOF-diluted (`-0.002117914`) yet changes the test hard-tail profile. The largest shifts are `prob_gap` (`-1.52` to `-1.80` std), `logit_step` (`-1.40` to `-1.67` std), and feature-NN1 smooth-gain sign flips.
 - Policy: use F213 to design the next JEPA objective: a contrastive head for OOF-harmful consensus versus test hard-tail-adverse parent-specific geometry. Do not use it to submit intersection, union, or another scalar threshold variant.
 
+### F214. E255/E256 public-positive feature-NN1 smoothing features
+
+- Hidden structure: the public Q3 tail follows feature-nearest-neighbor smoothing on the E207 broad-stage2 manifold more than ordinary train OOF harmful-row labels.
+- Candidates: E247 public win, E246 selector family, E247 overlap/Jaccard, high-amplitude constrained smoothing, selected smooth-gain sum, global/affected pair roughness delta, and E224-body attribution.
+- Label vs split test: public LB is used as a sensor, not a fit target. E248 remains the split contradiction: train OOF analogues are adverse, so future models must learn public-contrastive geometry rather than reuse OOF smoothing labels directly.
+- Current evidence: E247 public `0.5761589494` beats E95 by `0.0001323804`. E256 changes `25` Q3 cells, overlaps E247 on `21`, has expected loss vs E224 `-0.000047418`, adverse reduction `0.000615602`, and affected-pair roughness delta `-0.070332985`.
+- Policy: F214 is now the live score-plus-information feature family. Submit only controlled follow-ups: first E256 for broad-vs-amplitude smoothing, or E224 for body attribution. Do not sweep all E246 siblings.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

@@ -2931,6 +2931,30 @@ target co-occurrence
 - public LB 관측 반응: an E252 win would mean public follows the test materialization side despite OOF dilution; an E252 loss would mean the OOF/shared signal was the safer proxy after all. Either result should be interpreted through this geometry-shift lens, not as a generic JEPA pass/fail.
 - 제출 전략: no new E254 submission. Keep E237 first for expected score; E252 remains a conflict sensor only.
 
+### H255: E247 feature-NN1 Q3 smoothing is public-real despite OOF rejection
+
+- 상태: strongly supported by public LB; attribution still incomplete.
+- 왜 그럴듯한가: E246 found a test-side feature-neighbor Q3 smoothing intervention that survived materialization stress, while E248 rejected its train OOF analogue. A public win would mean public follows the test feature-neighbor geometry more than the ordinary OOF harmful-row label.
+- 맞다면: E247 should beat E95 by more than frontier noise and should force the candidate order away from E237/E252 toward feature-NN1 smoothing follow-ups.
+- 틀리다면: E247 should tie or lose, making E248's OOF rejection a valid veto and demoting smoothing to calibration shortcut.
+- 최소 실험: public submission of `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`; E255 feedback decoder.
+- 관측: E247 public LB `0.5761589494`; beats E95 by `0.0001323804`, mixmin by `0.0001476911`, and the E95-over-mixmin edge by `8.646x`.
+- 성공/폐기 기준: supported as a public-positive branch because the win is much larger than previous frontier micro-edges. Not accepted as isolated rollback proof because E224 clean body remains unobserved.
+- public LB 관측 반응: already observed as strong support. Future E224 feedback would split body-vs-rollback attribution.
+- 제출 전략: E247 is current public best. The next score-plus-information file should come from the E247 family, not from E237/E252, unless the explicit question is clean JEPA body or OOF-vs-materialization conflict.
+
+### H256: E247's public win comes from high-amplitude smooth cells rather than broad top34 smoothness
+
+- 상태: live; E256 created to test it.
+- 왜 그럴듯한가: E247 top34 includes lower-amplitude broad smoothness cells. E255 ranks `top50_amp_then_smooth25` as the best non-identical follow-up because it keeps `21/34` E247 cells but constrains to high-amplitude Q3 cells.
+- 맞다면: E256 should beat E247 or at least retain most of the gain with fewer cells, showing that the extra broad top34 cells were noise or private risk.
+- 틀리다면: E256 should lose clearly to E247, meaning broad smoothness cells outside the high-amplitude subset are public-useful.
+- 최소 실험: submit `analysis_outputs/submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv`.
+- 관측: E256 changes `25` Q3 cells, overlaps E247 on `21`, has E237/E230/amp-top25 overlap `14`, expected loss vs E224 `-0.000047418`, adverse reduction `0.000615602`, and affected-pair roughness delta `-0.070332985`.
+- 성공/폐기 기준: E256 win strengthens high-amplitude smoothing; near loss keeps E247 broad top34; hard loss warns that E247's exact top34 or E224-body interaction is nonlocal.
+- public LB 관측 반응: pending.
+- 제출 전략: E256 is the next one-file post-E247 information candidate.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

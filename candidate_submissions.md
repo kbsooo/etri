@@ -1872,3 +1872,32 @@ Practical rule:
 - Do not create an E237/E250 intersection file.
 - Do not promote E252 unless the next public question deliberately targets the OOF-vs-test geometry conflict.
 - The next score-oriented submission should come from a new contrastive target, not from another union/intersection of existing cells.
+
+## Update After E255/E256
+
+E247 is now the public best:
+
+`analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+
+Public LB: `0.5761589494`.
+
+Interpretation:
+
+- E247 beats E95 by `0.0001323804`, which is `8.646x` the E95-over-mixmin edge.
+- E248's OOF failure is now evidence of validation mismatch rather than a reason to discard feature-NN1 smoothing.
+- The unresolved issue is attribution: E247 proves the combined E224 body plus Q3 feature-NN1 rollback, not the isolated rollback.
+- The refreshed public-anchor proxy is still too coarse: best LOOCV MAE `0.000481276`, p90 `0.000741555`.
+
+New candidate order by purpose:
+
+1. **Current public best:** `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+2. **Best post-E247 score-plus-information follow-up:** `analysis_outputs/submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv`.
+3. **Clean E224 body attribution:** `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+4. **OOF-vs-materialization conflict sensor:** `analysis_outputs/submission_e252_e237_e250_union_q3top31_67707aef.csv`.
+5. **Learned Q3 decisive-cell contrast:** `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+
+Practical rule:
+
+- If the next file should seek score while still answering a clean question, use E256.
+- If the next file should explain whether E247's win came mostly from E224 body, use E224.
+- Do not submit an E247 sibling sweep; E256 is the controlled first follow-up.

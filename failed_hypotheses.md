@@ -1953,3 +1953,12 @@
 - Implementation issue possible: medium. The atlas compares OOF benefit and public-free priors, not hidden public labels. Low for rejecting simple set arithmetic because the feature shifts are directly observable.
 - Bottleneck implication: the plateau is a validation-geometry transfer problem. A useful next model must learn a contrastive representation of tail regime, not just reweight E237/E250 cells.
 - Do not repeat: creating new E237/E250 set-operation files before training or auditing a contrastive head that explains the train/test geometry shift.
+
+## FH217. E248 OOF smoothing rejection should veto E247
+
+- Failed hypothesis: because E247's train OOF analogue is adverse under E248, E247 should be ranked below OOF-certified learned Q3-tail candidates for expected public score.
+- Observed result: E247 public LB is `0.5761589494`, beating E95 by `0.0001323804` and mixmin by `0.0001476911`.
+- Why discard: the exact reason E248 was useful is now inverted. It did not prove smoothing was false; it proved the ordinary OOF smoothing target is not the public invariant. Public follows the test-side feature-neighbor geometry in this branch.
+- Implementation issue possible: low for rejecting the veto, because public LB directly contradicts it. Medium for attributing the gain solely to smoothing because E224 body is still unobserved.
+- Bottleneck implication: validation mismatch is now stronger than model-capacity bottleneck for the live JEPA branch. The next representation should be public-contrastive, not another average OOF benefit head.
+- Do not repeat: using adverse OOF smoothing analogues as a hard pre-public veto for E247-family candidates. Use them as mismatch diagnostics and require controlled public sensors like E256.

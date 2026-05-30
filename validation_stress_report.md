@@ -2272,6 +2272,19 @@ E254 localizes the E253 mismatch.
 
 Stress implication after E254: the next target cannot be "consensus cells" or "union cells." It must predict a contrastive representation: OOF-harmful consensus versus test hard-tail-adverse parent-specific cells. Until that exists, E237 remains the best expected-score JEPA file and E252 remains only a public sensor.
 
+## Update After E255/E256
+
+E247 public feedback changes the stress hierarchy.
+
+- E247 public LB is `0.5761589494`, a new best.
+- It beats E95 by `0.0001323804` and mixmin by `0.0001476911`.
+- This is `8.646x` the E95-over-mixmin edge, so the result is not a frontier-scale tie.
+- E248's OOF rejection is now interpreted as validation mismatch, not as a valid veto: the train OOF smoothing analogue is adverse, but public rewards the test-side feature-NN1 Q3 smoothing geometry.
+- E255 ranks `top50_amp_then_smooth25` as the highest-information same-family follow-up.
+- E256 materializes that file as `analysis_outputs/submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv`, changing `25` Q3 cells only.
+
+Stress implication after E256: E247 is the current public-positive JEPA mechanism. The next stress is not "does smoothing work?" but "which part of smoothing works?" E256 tests broad top34 smoothness versus high-amplitude constrained smoothness.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.
