@@ -2897,15 +2897,27 @@ target co-occurrence
 
 ### H252: The shared E237/E250 core alone is the safe Q3 tail
 
-- 상태: rejected by E251.
+- 상태: conflicted. Rejected by submission-side E251, locally supported by OOF E253.
 - 왜 그럴듯한가: two independent context views selecting the same `15` Q3 cells could indicate a high-confidence consensus core.
 - 맞다면: the intersection should pass materialization stress with lower top-cell concentration than either parent.
 - 틀리다면: the intersection should become too concentrated or positive expected loss, implying that the useful structure is distributed across parent-specific cells.
-- 최소 실험: E251 intersection audit.
-- 관측: shared intersection fails materialization gate with expected loss vs E224 `+0.000028815` and Q3 top1/abs-expected `1.054975`.
-- 성공/폐기 기준: rejected as a standalone submission law. Consensus alone is not enough; complementarity matters more than overlap.
-- public LB 관측 반응: no public slot should test the intersection by itself.
+- 최소 실험: E251 intersection materialization audit and E253 OOF analogue.
+- 관측: E251 shared intersection fails materialization gate with expected loss vs E224 `+0.000028815` and Q3 top1/abs-expected `1.054975`. E253 gives the opposite train-OOF read: shared intersection is the strongest OOF variant with loss_vs_full `-0.000376454`, better than E237 `-0.000271441`, E250 `-0.000185023`, and union `-0.000080010`.
+- 성공/폐기 기준: rejected as a direct submission law because materialization stress fails; retained as a validation-mismatch signal because OOF strongly supports it.
+- public LB 관측 반응: no public slot should test intersection-only yet. If E252 loses and E237 wins, E253's OOF-intersection signal becomes a warning that materialization union overreached.
 - 제출 전략: do not materialize an intersection-only candidate.
+
+### H253: E252 union has OOF-certified complementarity
+
+- 상태: rejected as certification; weakly supported only as stress-promoted sensor.
+- 왜 그럴듯한가: E251 union had the strongest public-free materialization anatomy, suggesting parent-specific E237 and E250 cells might be complementary.
+- 맞다면: the OOF union should beat both E237 and E250 parents or at least approach the shared-intersection OOF benefit while remaining stress-promoted.
+- 틀리다면: the union should be stress-promoted but diluted versus the parents, or become outright adverse, showing that materialization support/adverse anatomy over-rewards broad cell unioning.
+- 최소 실험: `analysis_outputs/e253_e237_e250_union_oof_analogue.py`.
+- 관측: union is stress-promoted, but loss_vs_full is only `-0.000080010`, worse than E237 by `+0.000191431` and worse than E250 by `+0.000105013`. Parent-specific cells are OOF-adverse: E237-only `+0.000105013`, E250-only `+0.000191431`, symmetric difference `+0.000296444`.
+- 성공/폐기 기준: rejected as OOF-certified complementarity. The union remains a public sensor because it passed E251/E252 materialization, not because OOF proves it.
+- public LB 관측 반응: E252 win would imply hidden public labels prefer materialization support geometry over train OOF intersection. E252 loss would reinforce validation mismatch and keep E237 first.
+- 제출 전략: E252 is lower-confidence than E237; use only if the chosen question is OOF-vs-public-free materialization conflict.
 
 ## 우선 실험 5개
 

@@ -1926,3 +1926,21 @@
 - Implementation issue possible: low for this exact cell set; the gate miss is small but deterministic.
 - Bottleneck implication: feature-NN1 context currently adds marginal tail cells that need a learned-cell backbone. It is not yet a standalone selector.
 - Do not repeat: submitting E250-only or promoting feature-NN1-only differences without the E237 backbone.
+
+## FH214. E252 union is OOF-certified as better than both parents
+
+- Failed hypothesis: because E251's E237/E250 union has the best submission-side materialization anatomy, the same union should beat both parent policies on train OOF.
+- Observed result: E253 shows union loss_vs_full `-0.000080010`, worse than E237 parent `-0.000271441` and E250 parent `-0.000185023`. The union remains stress-promoted, but parent-specific cells are OOF-adverse and dilute the shared signal.
+- Why discard: materialization support/adverse geometry and train OOF benefit are not aligned for these Q3 cells. E252 cannot be called OOF-certified.
+- Implementation issue possible: medium. The union is reconstructed from two different OOF split regimes (`subject5` and `row5`), which is exactly the point of the stress. Low for rejecting the "better than both parents" claim because parent and union metrics are in the same script.
+- Bottleneck implication: candidate ranking is constrained by validation mismatch, not lack of Q3 tail candidates. A public E252 result would be a sensor for which geometry public follows.
+- Do not repeat: promoting E252 as likely-score first without public feedback, or unioning parent-specific cells from two views and treating materialization score as validation.
+
+## FH215. OOF consensus implies submission-side public safety
+
+- Failed hypothesis: cells selected by both E237 and E250 should be safest because they are consensus across two context views.
+- Observed result: E253 says the OOF shared intersection is strongest with loss_vs_full `-0.000376454`, but E251 says the corresponding materialized shared intersection fails with expected loss `+0.000028815` and Q3 top1/abs-expected `1.054975`.
+- Why discard: consensus is OOF-good but public-free materialization-bad. It is not a safe public law under current stress.
+- Implementation issue possible: medium because train and test row sets differ, but the conflict is the core discovery rather than an error.
+- Bottleneck implication: the hidden public subset likely weights a different Q3 hard-label tail than random/subject OOF. This strengthens validation mismatch and public-tail translation as the current bottleneck.
+- Do not repeat: using overlap/intersection as a confidence gate without materialization stress.

@@ -2237,6 +2237,27 @@ E251/E252 adds a cross-candidate cell-set stress.
 
 Stress implication after E252: the current strongest materialization object is E237/E250 complementarity, not simple consensus. However, E252 is weaker than E237 on validation provenance because the union has no direct OOF policy identity. Rank it as a public sensor, not a certified score candidate.
 
+## Update After E253
+
+E253 adds the missing train-OOF analogue for E252.
+
+- E252-style union is OOF stress-promoted, but weak:
+  - union loss_vs_full `-0.000080010`.
+  - E237 parent `-0.000271441`.
+  - E250 parent `-0.000185023`.
+  - union minus E237 `+0.000191431`.
+- OOF shared intersection is strongest:
+  - loss_vs_full `-0.000376454`.
+  - dropped mean benefit `-0.028234084`.
+  - stress_promote `True`.
+- Parent-specific cells are OOF-adverse:
+  - E237-only `+0.000105013`.
+  - E250-only `+0.000191431`.
+  - symmetric difference `+0.000296444`.
+- This directly conflicts with E251 materialization, where shared intersection failed and union was best.
+
+Stress implication after E253: E252 is not OOF-certified. The stronger finding is validation mismatch: OOF consensus cells and public-free materialization support cells disagree. This strengthens the diagnosis that frontier movement is limited by target-specific public-tail translation, not by absence of JEPA latent signal.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

@@ -1823,3 +1823,31 @@ Practical rule:
 - Choose E237 if the goal is the most defensible expected-score submission.
 - Choose E252 if the goal is the most informative new public sensor from the JEPA branch: it asks whether learned decisive-cell and feature-NN1-context cell sets are complementary.
 - Do not call E252 certified. Its weakness is no direct OOF policy identity for the union.
+
+## Update After E253
+
+E253 downgrades E252's expected-score claim and sharpens what it tests.
+
+OOF analogue result:
+
+- E237 parent loss_vs_full `-0.000271441`.
+- E250 parent loss_vs_full `-0.000185023`.
+- E252-style union loss_vs_full `-0.000080010`.
+- Union remains stress-promoted, but is `+0.000191431` worse than E237.
+- OOF shared intersection is strongest at `-0.000376454`, even though E251 materialization rejected the shared intersection.
+
+Current candidate order by purpose:
+
+1. **Best current JEPA score bet:** `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+2. **Best OOF-vs-materialization conflict sensor:** `analysis_outputs/submission_e252_e237_e250_union_q3top31_67707aef.csv`.
+3. **Best pure feature-NN1-context decisive-cell sensor:** `analysis_outputs/submission_e250_featnn1_decisive_all3_latent_no_targetid_featnn1_hgb_shallow_row5_risk_q0p10_drop_q3_top21_4e9a88af.csv`.
+4. **Highest-information direct feature-NN1 smoothing sensor:** `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+5. **Clean JEPA body ablation:** `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+6. **Non-JEPA escape:** `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
+7. **Conservative repaired branch:** `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+
+Practical rule:
+
+- Do not submit E252 as a likely-score upgrade over E237.
+- Submit E252 only if the explicit information goal is: does public behave more like E251 materialization support geometry than E253 train OOF?
+- If only one JEPA score-biased file is wanted, E237 remains the file.

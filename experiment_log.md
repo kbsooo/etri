@@ -3854,3 +3854,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - changed cells vs E224: `31`, all `Q3`; no Q1/Q2/S/S4 movement.
 - Interpretation: E252 is the cleanest current complementarity sensor between learned E237 and feature-NN-context E250. It is not OOF-certified as a standalone selector.
 - Decision: if the next public question is likely score, E237 remains first. If the next public question is whether E237/E250 Q3 cell sets are complementary, E252 is more informative than submitting E250 alone.
+
+## E253. E237/E250 Union OOF Analogue
+
+- Observe: E252's main weakness is provenance. The union of E237 and E250 cells passed submission-side stress, but it was not itself selected by a single fold-safe OOF policy.
+- Wonder: does the E237/E250 union also survive train OOF, or is it only a materialization-side support/adverse artifact?
+- Method: `analysis_outputs/e253_e237_e250_union_oof_analogue.py` reconstructs the exact parent OOF policies: E237 `all3/latent_no_targetid/hgb_shallow/subject5/risk/q=0.10/drop_q3_top25` and E250 `all3/latent_no_targetid_featnn1/hgb_shallow/row5/risk/q=0.10/drop_q3_top21`. It then evaluates parent, intersection, union, E237-only, E250-only, and symmetric-difference amplitudes on train OOF labels.
+- Result:
+  - report: `analysis_outputs/e253_e237_e250_union_oof_analogue_report.md`.
+  - E237 parent OOF loss_vs_full `-0.000271441`; E250 parent `-0.000185023`; union `-0.000080010`.
+  - union remains stress-promoted, but is worse than the best parent by `+0.000191431`.
+  - OOF shared intersection is strongest: loss_vs_full `-0.000376454`, dropped mean benefit `-0.028234084`.
+  - OOF E237-only, E250-only, and symmetric difference all fail stress promotion and have positive loss_vs_full.
+- Interpretation: this is a validation mismatch, not a clean union breakthrough. OOF likes the shared core, while submission-side E251 rejected the shared core and liked the union. That is exactly the kind of hidden public-tail mismatch that makes frontier-scale changes unstable.
+- Decision: keep E237 as the expected-score JEPA candidate. Keep E252 only as a public sensor for the OOF-vs-materialization conflict. Do not promote E252 above E237 without public feedback or a new OOF target that explains why the union should beat the OOF intersection.
