@@ -3565,3 +3565,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - test-side low-support overlap is tiny: Q3-vs-S2 top25 overlap `1` row, Q3-vs-S4 top25 `2`, S2-vs-S4 top25 `4`.
 - Interpretation: there is no useful single row/block support latent shared by E216 S2, E224 Q3, and E224 S4. The transferable object is a generic movement-shape calibration risk, while row identity and current JEPA latent context do not align the target support tails.
 - Decision: no E232 submission. Do not build one shared JEPA support gate for S2/Q3/S4. Future JEPA work should use target-specific support/energy heads, especially separate S2 and Q3 heads, with movement-shape regularization as a diagnostic rather than a submission selector.
+
+## E233. Target-Specific Soft Energy Heads
+
+- Observe: E232 killed the shared support gate, but left open the softer possibility that target-specific support probabilities could act as continuous JEPA amplitude/energy heads instead of hard keep/drop gates.
+- Wonder: can a soft target-specific energy preserve or improve the full E216/E224 target movement, and for Q3 does it naturally downweight the same fragile rows that E230 found by public-free support-tail geometry?
+- Method: `analysis_outputs/e233_target_specific_soft_energy_heads.py` trains target-specific support classifiers for E216 S2, E224 Q3, and E224 S4 under stratified and subject folds. It turns OOF support probabilities into soft amplitude policies, evaluates target LogLoss versus base and full movement, then checks Q3 test low-amplitude overlap with E230 risk/swing/expected-positive rows.
+- Result:
+  - report: `analysis_outputs/e233_target_specific_soft_energy_heads_report.md`.
+  - promoted soft policies: `0`.
+  - best learned Q3 delta `-0.002548953`, but full Q3 movement is `-0.004262113`; best learned Q3 loses `+0.001713160` versus full.
+  - best learned S2 delta `-0.002769599`, full S2 is `-0.004370425`; best learned S2 loses `+0.001600825`.
+  - best learned S4 delta `-0.002931629`, full S4 is `-0.003430136`; best learned S4 loses `+0.000498506`.
+  - Q3 low-amplitude top25 overlap with E230 risk-top21 is `0` rows.
+- Interpretation: support probabilities are not the missing amplitude head. They rank some local support, especially S2/S4, but softening the current movement mostly just under-scales useful signal and still misses Q3's hand-identified fragile public-tail rows.
+- Decision: no E233 submission. Do not spend time on softened versions of E221/E231 support classifiers. The next JEPA work must change the target representation/loss itself, not just convert support classifiers into continuous gates.

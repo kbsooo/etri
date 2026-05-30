@@ -1445,3 +1445,22 @@ Submission policy stays conservative:
 3. JEPA-first public sensor remains `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
 4. E230 remains conditional only after E224 tie/small-loss attribution to Q3 tail.
 5. The next new JEPA branch should train target-specific support/energy heads, not a common support regularizer.
+
+## Update After E233
+
+E233 tested the cheapest target-specific support-head rescue: use support probabilities as soft amplitudes instead of hard gates. It failed as a candidate generator.
+
+Key result:
+
+- promoted soft policies: `0`.
+- best learned Q3 soft delta loses to full E224-like Q3 by `+0.001713160`.
+- best learned S2 soft delta loses to full E216 S2 by `+0.001600825`.
+- best learned S4 soft delta loses to full E224-like S4 by `+0.000498506`.
+- Q3 low-amplitude top25 overlap with E230 risk-top21 is `0` rows.
+
+Submission policy:
+
+1. No E233 submission.
+2. Do not create a softened E221/E231 support-gate file.
+3. Keep E224 as the clean JEPA public sensor if the next public question is still JEPA.
+4. Future JEPA work should change the self-supervised/auxiliary target itself, for example a target-specific tail/benefit representation, instead of reusing current support probabilities as amplitudes.

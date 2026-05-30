@@ -2688,6 +2688,18 @@ target co-occurrence
 - public LB 관측 반응: no direct submission. If a future shared S2/Q3/S4 gate wins, it must first explain why E232 showed almost no support overlap; otherwise such a win should be treated as public-luck or target-specific leakage.
 - 제출 전략: do not submit shared support-gated S2/Q3/S4 files. Build future JEPA support/energy objectives target-specifically, with movement-shape calibration as an auxiliary diagnostic.
 
+### H228. Target-specific support probabilities can be reused as soft JEPA amplitude heads
+
+- 상태: 반증 by E233 for the current E216/E224 support representations.
+- 왜 그럴듯한가: E221 and E232 showed S2/S4 support is locally learnable, while E231 showed hard Q3 gates are too brittle. A continuous probability-to-amplitude head might avoid hard-gate discontinuity and preserve more useful movement.
+- 맞다면: soft amplitude policies should beat or match the full target movement in OOF, keep subject stability, and for Q3 assign low amplitude to E230's public-free fragile risk rows.
+- 틀리다면: soft policies will mostly under-scale full movement, fail to beat full target deltas, and their low-amplitude Q3 rows will not overlap E230 risk cells.
+- 최소 실험: `analysis_outputs/e233_target_specific_soft_energy_heads.py`.
+- 관측: promoted policies `0`; best learned Q3 soft delta `-0.002548953` versus full `-0.004262113`; best learned S2 `-0.002769599` versus full `-0.004370425`; best learned S4 `-0.002931629` versus full `-0.003430136`; Q3 low-amplitude top25 overlap with E230 risk-top21 is `0`.
+- 성공/폐기 기준: rejected as a candidate generator and as a cheap support-head rescue.
+- public LB 관측 반응: none, because no E233 candidate should be submitted. A future support-energy submission must come from a changed target representation/loss, not from these post-hoc support probabilities.
+- 제출 전략: do not create softened E221/E231 support-gate files. Keep E224/E230 public policy unchanged and design a new target-specific JEPA target.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

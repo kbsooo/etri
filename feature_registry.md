@@ -1698,6 +1698,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: shared support overlap is nearly absent. Max row-label correlation is `0.057278`, max benefit correlation `0.090611`, and Q3/S2 test low-support top25 overlap is only `1` row. Movement-shape transfer can reach AUC `0.745452`, but latent-context transfer is weaker and does not define common public-safe rows.
 - Policy: do not use F197 as a shared S2/Q3/S4 support gate. Use it to require target-specific JEPA support or energy heads and to keep movement-shape risk as a calibration diagnostic.
 
+### F198. E233 target-specific soft support-energy heads
+
+- Hidden structure: after shared support fails, target-specific support probabilities might still be useful as continuous amplitude/energy heads for JEPA movements.
+- Candidates: OOF support probabilities for E216 S2, E224 Q3, and E224 S4; soft probability, squared-probability, threshold-linear, and centered amplitude policies; Q3 low-amplitude overlap with E230 risk cells.
+- Label vs split test: valid only as a promotion diagnostic. These probabilities are trained from OOF benefit labels, so they cannot be used as deployment amplitudes unless they beat full movement under target/subject stress and align with independent public-free tail anatomy.
+- Current evidence: no soft policy passes promotion. Best learned policies under-scale full movement by `+0.001713160` Q3, `+0.001600825` S2, and `+0.000498506` S4 versus full target movement. Q3 low-amp top25 overlaps E230 risk-top21 by `0` rows.
+- Policy: do not use F198 for submission. Future target-specific JEPA work must change the representation target or loss; simply softening current support classifiers is closed.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

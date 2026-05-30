@@ -1827,3 +1827,12 @@
 - Implementation issue possible: medium. E232 uses the current E216/E224 translators, so a new JEPA objective could change support geometry. Low for rejecting a shared gate on the current tensors because the direct overlap and transfer diagnostics are consistent.
 - Bottleneck implication: support-tail failure is target-specific. The 0.576x plateau is not fixed by one larger latent regularizer; it needs target-specific translation and calibration heads.
 - Do not repeat: building one S2/Q3/S4 support-gated submission or claiming S4 support is a proxy for Q3/S2 support. Use target-specific heads and treat movement-shape support as an auxiliary calibration diagnostic.
+
+## FH203. Softening the target-specific support gates is enough
+
+- Failed hypothesis: E221/E231 failed partly because hard keep/drop gates are too discontinuous; using the same target-specific support probabilities as continuous amplitudes should preserve useful JEPA movement while reducing tail risk.
+- Observed result: E233 finds `0` promoted soft policies. Best learned Q3 soft delta is `-0.002548953` versus full `-0.004262113`; best learned S2 is `-0.002769599` versus full `-0.004370425`; best learned S4 is `-0.002931629` versus full `-0.003430136`. For Q3, learned low-amplitude top25 rows overlap E230 risk-top21 by `0`.
+- Why discard: the soft heads under-scale useful movement instead of isolating harmful rows, and they do not rediscover the independent Q3 public-free tail anatomy. This is not a threshold artifact.
+- Implementation issue possible: medium. E233 uses simple probability-to-amplitude transforms and small models, but the negative is broad across all three target tasks and includes the independent E230 Q3 alignment check.
+- Bottleneck implication: current support probabilities are diagnostics, not deployable amplitude heads. The JEPA bottleneck is in the target representation/loss, not just in the post-hoc gate function.
+- Do not repeat: softened E221/E231 submissions or more scalar transforms of the same support probabilities. Build a new target-specific JEPA target before reopening this lane.

@@ -1917,6 +1917,25 @@ E232 cross-target support-invariance stress:
 
 Stress implication after E232: reject a single shared S2/Q3/S4 row-support regularizer. The live support signal is target-specific plus a generic movement-shape calibration risk. Future JEPA stress should train separate S2/Q3/S4 support or energy heads and use movement-shape transfer only as a diagnostic.
 
+E233 target-specific soft-energy stress:
+
+- script: `analysis_outputs/e233_target_specific_soft_energy_heads.py`.
+- report: `analysis_outputs/e233_target_specific_soft_energy_heads_report.md`.
+- selected files: none.
+- stress dimensions:
+  - target-specific OOF support classifiers for E216 S2, E224 Q3, and E224 S4.
+  - soft probability-to-amplitude policies instead of hard keep/drop gates.
+  - stratified and subject-fold target LogLoss deltas versus both base and full movement.
+  - Q3 test low-amplitude overlap with E230 public-free risk/swing/expected-positive rows.
+- key results:
+  - promoted soft policies: `0`.
+  - best learned Q3 soft policy delta `-0.002548953` versus full Q3 delta `-0.004262113`.
+  - best learned S2 soft policy delta `-0.002769599` versus full S2 delta `-0.004370425`.
+  - best learned S4 soft policy delta `-0.002931629` versus full S4 delta `-0.003430136`.
+  - Q3 low-amplitude top25 overlap with E230 risk-top21: `0` rows.
+
+Stress implication after E233: softening the existing support classifiers does not fix the JEPA translation bottleneck. The support probabilities are diagnostic scores, not usable amplitude heads. The next target-specific JEPA experiment should change the training target/loss, not just the post-hoc gate shape.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.
