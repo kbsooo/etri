@@ -1621,3 +1621,29 @@ Result:
 - E211 E154 closer and E211 E154 toward are near twins (`cosine=0.996351`), while E211 E95 toward and closer are also near twins (`cosine=0.994943`).
 
 Stress implication: the next JEPA public slot should be E211, not E210. The maximum-survival version uses the E154 anchor; the cleanest hypothesis test uses the E95 anchor. E212 adds no new performance claim, but it prevents post-hoc interpretation of whichever JEPA sensor is submitted.
+
+## Update After E213
+
+E213 adds a specificity stress test for the actual JEPA axes used by E209/E211.
+
+- script: `analysis_outputs/e213_jepa_axis_specificity_audit.py`.
+- report: `analysis_outputs/e213_jepa_axis_specificity_audit_report.md`.
+- summary: `analysis_outputs/e213_jepa_axis_specificity_audit_summary.csv`.
+- nulls: `analysis_outputs/e213_jepa_axis_specificity_audit_nulls.csv`.
+- pool audit: `analysis_outputs/e213_jepa_axis_specificity_audit_pool.csv`.
+
+Stress dimensions:
+
+- global row permutation null.
+- within-subject permutation null.
+- same-family PC coordinate pool.
+- original E208 scan rank and geometry pass status.
+- subject-half fixed-weight stability.
+
+Result:
+
+- Q3 `e208_resid_self_pc10` is specific: delta `-0.005775`, subject-half win `0.95`, permutation p-values `0.020408`, and pool rank `1/16`.
+- S4 `e208_pred_pc14` is also specific: delta `-0.003134`, subject-half win `0.733333`, permutation p-values `0.020408`, and pool rank `1/16`.
+- All permutation null medians are adverse, and the best same-family S4 alternative is still adverse.
+
+Stress implication: E211 is not mainly a latent-coordinate cherry-pick. The live bottleneck remains public-tail probability translation, not whether JEPA found a real narrow representation.

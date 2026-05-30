@@ -2436,6 +2436,18 @@ target co-occurrence
 - public LB 관측 반응: E211 E95 win means actual JEPA is cleanly useful. E211 E154-only win means the E154 anchor may be doing heavy work. E211 loss plus E209 win means S4 dependency gating is overfit. E211/E209 losses mean the current JEPA probability translation is not the 0.54 path.
 - 제출 전략: submit E211 E154 closer for maximum survival or E211 E95 toward for clean JEPA attribution; do not submit E210 before E211 unless deliberately asking only the blunt dependency-tail question.
 
+### H207. The live Q3/S4 JEPA axes are specific representation signals, not random latent cherry-picks
+
+- 상태: 지지 by E213; public translation still unproven.
+- 왜 그럴듯한가: E208 scanned many JEPA coordinates, so the surviving Q3/S4 axes could be false discoveries. A real representation signal should beat permutations and neighboring PC coordinates under the same OOF correction path.
+- 맞다면: Q3 `e208_resid_self_pc10` and S4 `e208_pred_pc14` should beat global and within-subject permutation nulls, rank near the top of their same-family PC pools, and keep nonpositive E208 geometry.
+- 틀리다면: same-family PCs or permuted values would regularly match the live axes, or the live axes would rely on subject identity rather than feature-neighbor representation.
+- 최소 실험: `analysis_outputs/e213_jepa_axis_specificity_audit.py`.
+- 관측: Q3 and S4 both have global/subject permutation p-values `0.020408`, same-family pool rank `1/16`, and `specific` decisions. Q3 half win is `0.950000`; S4 half win is `0.733333`.
+- 성공/폐기 기준: supported as a representation-specific signal. It would be weakened if a larger null or independent seed family finds many equivalent axes, or if public feedback rejects every E209/E211 probability translation.
+- public LB 관측 반응: E211 public loss would now mean "real axis, bad translation/public tail" before it means "JEPA axis was noise." E211 public win would strengthen both axis specificity and translation.
+- 제출 전략: do not drop the Q3/S4 JEPA axis family solely because it was selected from many latent coordinates. Keep public tests focused on E211/E209 translation and feedback decoding.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

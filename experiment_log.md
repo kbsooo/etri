@@ -3277,3 +3277,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E210 is demoted despite high hard-tail survival because its parent-integrity score collapses after losing the E209 local/geometry body.
 - Interpretation: actual JEPA is now represented by a falsifiable family, not just an idea. The strongest current worldview is E211: Q3 raw JEPA body plus S4 dependency-consistent JEPA movement. The E154 E211 file is the best survival bet but confounds JEPA with the repaired-branch anchor; the E95 E211 file is the cleanest test that JEPA itself helps the current frontier.
 - Decision: if spending one slot for expected structured survival, submit `submission_e211_jepa_q3rawcloser_q3s1p0_s4s1p0_e154_a0p5_c20eee9c.csv`. If spending one slot to answer "does actual JEPA help E95?", submit `submission_e211_jepa_q3rawtoward_q3s1p0_s4s1p0_e95_a0p5_e4e44d91.csv`. Decode the returned LB with E212 before touching E209 or E210.
+
+## E213. JEPA Axis Specificity Audit
+
+- Observe: E212 makes E211 the next JEPA-family sensor, but a remaining objection is that Q3 `e208_resid_self_pc10` and S4 `e208_pred_pc14` might simply be cherry-picked coordinates from a high-dimensional latent.
+- Wonder: do the two live E211 axes beat permutation nulls and same-family PC alternatives, or are they only artifacts of scanning many JEPA coordinates?
+- Method: `analysis_outputs/e213_jepa_axis_specificity_audit.py` evaluates the live Q3/S4 axes against 48 global permutations, 48 within-subject permutations, and all same-family PC coordinates for each axis, using the same OOF correction style as E208/E209. It joins E208 scan rank and geometry diagnostics. It creates no submission.
+- Result:
+  - report: `analysis_outputs/e213_jepa_axis_specificity_audit_report.md`.
+  - summary: `analysis_outputs/e213_jepa_axis_specificity_audit_summary.csv`.
+  - nulls: `analysis_outputs/e213_jepa_axis_specificity_audit_nulls.csv`.
+  - pool audit: `analysis_outputs/e213_jepa_axis_specificity_audit_pool.csv`.
+  - Q3 axis: delta `-0.005775`, half win `0.950000`, global/subject permutation p `0.020408/0.020408`, same-family pool rank `1/16`.
+  - S4 axis: delta `-0.003134`, half win `0.733333`, global/subject permutation p `0.020408/0.020408`, same-family pool rank `1/16`.
+- Interpretation: the live E211 axes are unlikely to be random coordinate picks under these nulls. This strengthens the "actual JEPA found a narrow Q3/S4 representation" claim. It does not prove public improvement, because the remaining risk is still translation from a real axis into public-stable probability movement.
+- Decision: keep E211 ahead of E210/E209 for the next JEPA sensor. If E211 loses publicly, the failure should be read as probability-translation/public-tail failure, not as evidence that the Q3/S4 JEPA axes were merely noise.

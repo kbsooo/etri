@@ -1118,3 +1118,12 @@ Submission order:
 Interpretation:
 
 E211 is first because it is the only JEPA family member that improves on E209 locally while adding a target-specific dependency gate. E210 is no longer the next expected-score move; it is a follow-up only if public feedback specifically says the raw/E211 JEPA body is tail-adverse. If the E211 E154 file wins and the E95 twin later loses, the repaired-branch anchor is doing much of the work. If the E211 E95 file wins, actual JEPA is cleanly useful beyond E154.
+
+## Update After E213
+
+E213 strengthens the E211-first policy by rejecting the cheap cherry-pick objection.
+
+- Q3 `e208_resid_self_pc10`: permutation p-values `0.020408`, same-family pool rank `1/16`.
+- S4 `e208_pred_pc14`: permutation p-values `0.020408`, same-family pool rank `1/16`.
+
+Submission policy remains unchanged: E211 E154 closer is the maximum-survival JEPA sensor, and E211 E95 toward is the clean current-frontier JEPA sensor. If either loses, interpret it first as translation/public-tail failure, not as proof that the JEPA axes are noise.

@@ -1682,3 +1682,12 @@
 - Implementation issue possible: medium. If public feedback later strongly favors E210 after E211/E209 fail, the current parent-integrity penalty was too strong. Low for the current ordering decision because E212 uses locked selected artifacts and no new model fit.
 - Bottleneck implication: the JEPA bottleneck is feedback ordering and probability translation, not just hard-tail minimization.
 - Do not repeat: promoting a dependency-gated JEPA candidate solely because its public-prior survival score is larger. Require parent-integrity and target-specific evidence.
+
+## FH187. E211's live Q3/S4 axes are probably random JEPA coordinate cherry-picks
+
+- Failed hypothesis: the Q3 `e208_resid_self_pc10` and S4 `e208_pred_pc14` axes survived only because many JEPA coordinates were scanned.
+- Observed result: E213 tests both axes against global permutations, within-subject permutations, and same-family PC pools. Both axes hit the minimum empirical permutation p-value available with 48 reps (`0.020408`) for global and subject nulls. Both are rank `1/16` in their same-family coordinate pool. Q3's pool runner-up is much weaker (`-0.002200` versus `-0.005775`), and S4's pool runner-up is adverse (`+0.001377` versus `-0.003134`).
+- Why discard: the selected axes are not easily reproduced by shuffled values or neighboring PCs under the same OOF correction path.
+- Implementation issue possible: medium. A larger permutation budget or independent JEPA training seeds could refine p-values, but the current effect sizes are wide enough to reject the cheap cherry-pick explanation.
+- Bottleneck implication: if E211 fails publicly, the likely failure is public-tail probability translation, anchor confounding, or calibration risk, not absence of a real JEPA axis.
+- Do not repeat: dismissing the current JEPA branch as random axis selection without a stronger null or independent retraining audit.

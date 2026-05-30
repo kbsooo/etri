@@ -1568,6 +1568,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E211 E154 closer is ranked first for structured survival; E211 E95 toward is ranked first for clean current-frontier sensing; E209 E95 Q3/S4 is the raw control; E210 is demoted because it loses the E209 local/geometry body despite strong hard-tail anatomy.
 - Policy: use F181 before any JEPA-family public submission. Submit E211 E154 closer when prioritizing maximum survival, or E211 E95 toward when prioritizing clean JEPA attribution. Decode the public result with the E212 routebook before choosing E209/E210 follow-ups.
 
+### F182. E213 JEPA axis specificity audit
+
+- Hidden structure: a useful JEPA coordinate should remain special after breaking row-feature alignment and after comparing against nearby coordinates in the same learned representation family.
+- Candidates: global permutation p-value, within-subject permutation p-value, same-family PC pool rank, pool best delta, E208 scan rank, E208 geometry delta, and subject-half win rate.
+- Label vs split test: valid as a representation sanity check because it uses the same OOF correction path and public-free nulls. Invalid as a public-LB predictor because it does not audit anchor/public-tail translation.
+- Current evidence: Q3 `e208_resid_self_pc10` and S4 `e208_pred_pc14` both pass as `specific`; both have permutation p-values `0.020408` and same-family pool rank `1/16`.
+- Policy: keep these axes as live JEPA representation features. Do not expand to all PCs or nearby PCs. If public feedback is bad, revise the translation/gate, not the existence of the Q3/S4 axes.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.
