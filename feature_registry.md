@@ -1706,6 +1706,22 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: no soft policy passes promotion. Best learned policies under-scale full movement by `+0.001713160` Q3, `+0.001600825` S2, and `+0.000498506` S4 versus full target movement. Q3 low-amp top25 overlaps E230 risk-top21 by `0` rows.
 - Policy: do not use F198 for submission. Future target-specific JEPA work must change the representation target or loss; simply softening current support classifiers is closed.
 
+### F199. E234 tail-contrastive JEPA target features
+
+- Hidden structure: the useful JEPA target may be high-impact tail identity, not all-row support. LogLoss frontier errors are dominated by rows/cells where a target movement is sharply helpful or harmful.
+- Candidates: target-specific high-adverse `risk` labels, high-positive-vs-high-adverse `contrast` labels, movement/logit context, latent-with-target and latent-without-target views, dropped-row mean benefit, subject win-rate, and Q3 overlap with E230 risk/swing/expected-positive rows.
+- Label vs split test: valid as OOF target-representation diagnostics only. The labels are built from OOF benefit, so a deployed probability movement requires separate submission-side tail stress and cannot be promoted from OOF delta alone.
+- Current evidence: E234 promotes `323` policies. Best loss versus full movement is S2 `-0.002653627`, Q3 `-0.000870181`, S4 `-0.000833194`. Q3 best-loss policy has weak E230 alignment, so the feature is not directly public-certified.
+- Policy: use F199 to generate target-specific materialization tests. Do not submit raw E234 policies. Treat S2 as closed after F200; Q3/S4 remain possible only after separate public-free materialization audits.
+
+### F200. E235 S2 tail materialization stress features
+
+- Hidden structure: a locally good S2 tail representation must also satisfy the public-facing hard-label support geometry exposed by the E216 miss.
+- Candidates: E234 S2 policy id, test selected rows, dropped rows, E95-anchor E216 S2 logit deltas, expected focus, adverse capacity, adverse-over-observed-miss ratio, support probability, top-cell swing share, and scale.
+- Label vs split test: valid as a submission-side stress test because it does not fit public labels; it uses the pre-existing observed E216 miss as a capacity bound. Unsafe as a tuning oracle if thresholds are relaxed post hoc to force a file.
+- Current evidence: `240` S2 materializations scanned; `0` submission-gate pass and `0` joint-gate pass. Max support remains below `0.5`, and the best expected rows still exceed the observed E216 miss in adverse capacity.
+- Policy: keep F200 as a hard negative screen for S2 JEPA translators. Do not submit E235 or remaining E216 S2 siblings without a new target representation and a new pass through this stress.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

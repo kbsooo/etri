@@ -2700,6 +2700,30 @@ target co-occurrence
 - public LB 관측 반응: none, because no E233 candidate should be submitted. A future support-energy submission must come from a changed target representation/loss, not from these post-hoc support probabilities.
 - 제출 전략: do not create softened E221/E231 support-gate files. Keep E224/E230 public policy unchanged and design a new target-specific JEPA target.
 
+### H229. Tail-contrastive target representation can recover JEPA translation signal
+
+- 상태: 부분 지지 locally by E234; submission transfer unresolved outside S2.
+- 왜 그럴듯한가: E233 showed support probabilities are the wrong amplitude object, but E216/E224 movements still have target-specific OOF benefit. A JEPA target that predicts high-impact adverse/positive tails rather than all-row support may align better with LogLoss bottlenecks.
+- 맞다면: high-impact `risk` or `contrast` tail models should beat the full target movement under OOF/subject stress, and dropped rows should have negative mean benefit.
+- 틀리다면: tail labels should behave like the failed support heads: no promoted policies, weak subject stability, and no improvement versus full target movement.
+- 최소 실험: `analysis_outputs/e234_tail_contrastive_jepa_target.py`.
+- 관측: promoted policies `323`; best loss versus full movement is S2 `-0.002653627`, Q3 `-0.000870181`, and S4 `-0.000833194`. Dropped rows for promoted policies have negative mean benefit, so this is not just scalar shrinkage.
+- 성공/폐기 기준: supported as a local representation clue. Not promoted to public submission until target-side materialization passes public-free tail stress.
+- public LB 관측 반응: no direct public reaction because E234 creates diagnostics, not a selected file. A future E234 Q3/S4 materialization win would strengthen this hypothesis; an E235-like public-free failure on all targets would demote it to OOF-only structure.
+- 제출 전략: do not submit E234 directly. Materialize target-specific branches separately; S2 was tested first and failed in H230, so Q3/S4 or cell-level decisive-label variants are the remaining live paths.
+
+### H230. E234 S2 tail-risk drops can rescue the failed E216 S2 public lane
+
+- 상태: 반증 by E235 for current E216/E234 S2 tensors.
+- 왜 그럴듯한가: E234's largest local gain is S2, and the best risk policies strongly improve OOF loss versus full E216 S2. If the public miss was caused by identifiable high-adverse S2 rows, these drops should lower E216's adverse capacity.
+- 맞다면: at least one S2 materialization should preserve E234 OOF gain and pass E221 submission-side stress: negative expected focus, adverse capacity below the observed E216 miss, support above `0.5`, and no single-cell dominance.
+- 틀리다면: OOF-good S2 drops will still have too much public-tail adverse capacity or too little support when applied to test.
+- 최소 실험: `analysis_outputs/e235_s2_tail_contrastive_materialization.py`.
+- 관측: scanned `240` S2 rows; submission gate pass `0`; joint gate pass `0`; materialized files `0`. Best expected rows still show adverse capacity `1.878x..4.068x` the observed E216 miss and support below `0.5`.
+- 성공/폐기 기준: rejected as a public-safe S2 rescue.
+- public LB 관측 반응: none; no E235 file should be submitted. The existing E216 public miss remains the public observation that governs this lane.
+- 제출 전략: keep E216/E235 S2 closed. Do not submit smaller-scale or E95-anchor S2 variants unless a new target definition changes the submission-side support geometry.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

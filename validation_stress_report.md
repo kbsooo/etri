@@ -1936,6 +1936,46 @@ E233 target-specific soft-energy stress:
 
 Stress implication after E233: softening the existing support classifiers does not fix the JEPA translation bottleneck. The support probabilities are diagnostic scores, not usable amplitude heads. The next target-specific JEPA experiment should change the training target/loss, not just the post-hoc gate shape.
 
+E234 tail-contrastive JEPA target stress:
+
+- script: `analysis_outputs/e234_tail_contrastive_jepa_target.py`.
+- report: `analysis_outputs/e234_tail_contrastive_jepa_target_report.md`.
+- selected files: none; diagnostic CSVs only.
+- stress dimensions:
+  - high-adverse `risk` and high-positive-vs-high-adverse `contrast` target representations.
+  - E216 S2 and E224-like Q3/S4 target-specific movement tensors.
+  - stratified and subject folds.
+  - target LogLoss versus both base and full movement.
+  - subject win-rate and dropped-row mean benefit.
+  - Q3 test alignment against E230 public-free risk/swing/expected-positive rows.
+- key results:
+  - promoted tail-contrastive policies: `323`.
+  - best S2 loss versus full movement: `-0.002653627`.
+  - best Q3 loss versus full movement: `-0.000870181`.
+  - best S4 loss versus full movement: `-0.000833194`.
+  - Q3 best selected drop has weak public-tail alignment: E230 risk-top21 overlap `2` rows for the top25 contrast policy, while a Q3 risk p20 variant reaches only `5` rows.
+
+Stress implication after E234: changing the JEPA target/loss revives local target-specific signal, unlike E233's soft support heads. This is a real representation clue, but not a public candidate by itself because Q3 alignment is weak and S2 must survive the stricter post-E216 materialization gate.
+
+E235 S2 tail-contrastive materialization stress:
+
+- script: `analysis_outputs/e235_s2_tail_contrastive_materialization.py`.
+- report: `analysis_outputs/e235_s2_tail_contrastive_materialization_report.md`.
+- selected files: none.
+- stress dimensions:
+  - promoted E234 S2 risk/contrast policies.
+  - E216 S2 submission tensor on E95 anchor.
+  - scales `0.35`, `0.50`, and `0.75`.
+  - E221 submission-side tail-capacity gate: expected focus, adverse capacity versus observed E216 miss, support probability, and top-cell dominance.
+- key results:
+  - scanned policies: `240`.
+  - submission gate pass: `0`.
+  - joint gate pass: `0`.
+  - materialized submission files: `0`.
+  - best support remains below threshold (`0.497582` max support), and best expected rows still carry adverse capacity above the observed E216 miss.
+
+Stress implication after E235: the OOF tail-contrastive S2 signal is not public-safe under current tensors. E216 S2 remains closed; future JEPA work should not use S2 as the next public lane without a different target definition and a stronger submission-side support proof.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

@@ -3580,3 +3580,32 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - Q3 low-amplitude top25 overlap with E230 risk-top21 is `0` rows.
 - Interpretation: support probabilities are not the missing amplitude head. They rank some local support, especially S2/S4, but softening the current movement mostly just under-scales useful signal and still misses Q3's hand-identified fragile public-tail rows.
 - Decision: no E233 submission. Do not spend time on softened versions of E221/E231 support classifiers. The next JEPA work must change the target representation/loss itself, not just convert support classifiers into continuous gates.
+
+## E234. Tail-Contrastive JEPA Target
+
+- Observe: E233 rejected support probabilities as soft amplitudes, so the next JEPA question had to change the target representation/loss itself.
+- Wonder: if the useful latent is a high-impact tail representation rather than all-row support, can it identify rows where E216/E224 target movement should be dropped?
+- Method: `analysis_outputs/e234_tail_contrastive_jepa_target.py` rebuilds E216 S2 and E224-like Q3/S4 tensors, creates high-adverse `risk` and high-positive-vs-high-adverse `contrast` labels, trains small linear/HGB models under stratified and subject folds, and evaluates drop/soft policies versus the full target movement.
+- Result:
+  - report: `analysis_outputs/e234_tail_contrastive_jepa_target_report.md`.
+  - promoted tail-contrastive policies: `323`.
+  - best S2 loss versus full E216 S2: `-0.002653627`; best target delta `-0.007024051` versus full `-0.004370425`.
+  - best Q3 loss versus full E224-like Q3: `-0.000870181`; best target delta `-0.005132294` versus full `-0.004262113`.
+  - best S4 loss versus full E224-like S4: `-0.000833194`; best target delta `-0.004263330` versus full `-0.003430136`.
+  - Q3 best-loss policy is locally useful but weak as a public-tail proxy: its best selected drop has tail AUC `0.503703` and only `2` rows overlap E230 risk-top21.
+- Interpretation: changing the JEPA target/loss works locally where soft support heads failed. The healthy object is not "support probability"; it is a target-specific high-impact tail representation. But the Q3 public-tail alignment is still too weak to submit directly, and S2 needs submission-side materialization stress because E216 already failed publicly.
+- Decision: no direct E234 submission. Use E234 as a generator of target-specific materialization tests, starting with S2 because it has the largest local gain.
+
+## E235. S2 Tail-Contrastive Materialization
+
+- Observe: E234's strongest local result is S2, but E216 already showed that S2 JEPA movement can look locally good and still miss public by almost `0.001`.
+- Wonder: can E234's S2 risk/contrast drops rescue the failed E216 S2 translator when applied to the submission tensor and checked with the E221 public-free tail-capacity gate?
+- Method: `analysis_outputs/e235_s2_tail_contrastive_materialization.py` takes promoted E234 S2 drop policies, fits them on full train, applies them to E216 S2 on the E95 anchor at scales `0.35`, `0.50`, and `0.75`, then checks negative expected focus, adverse capacity below the observed E216 miss, support probability above `0.5`, and single-cell dominance.
+- Result:
+  - report: `analysis_outputs/e235_s2_tail_contrastive_materialization_report.md`.
+  - scanned rows: `240`.
+  - submission gate passes: `0`; joint gate passes: `0`; materialized files: `0`.
+  - best expected-focus rows still fail: the best high-scale row has adverse `0.004049`, about `4.068x` the observed E216 miss, and support `0.490319`.
+  - best low-scale rows reduce expected movement but still have adverse around `0.001869`, about `1.878x` the observed E216 miss, and support below `0.5`.
+- Interpretation: E234's S2 tail-risk target improves OOF, but the OOF tail boundary does not transfer to public-safe S2 support geometry. This reinforces the post-E216 read: S2 masked-family JEPA is a diagnostic latent, not a submission-safe translator.
+- Decision: keep E216/E235 S2 closed. The next JEPA work should either materialize E234 Q3/S4 under separate public-free stress or define a sharper cell-level decisive-label target; do not spend another slot on S2 rescue variants.

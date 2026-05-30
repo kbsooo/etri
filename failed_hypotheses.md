@@ -1836,3 +1836,12 @@
 - Implementation issue possible: medium. E233 uses simple probability-to-amplitude transforms and small models, but the negative is broad across all three target tasks and includes the independent E230 Q3 alignment check.
 - Bottleneck implication: current support probabilities are diagnostics, not deployable amplitude heads. The JEPA bottleneck is in the target representation/loss, not just in the post-hoc gate function.
 - Do not repeat: softened E221/E231 submissions or more scalar transforms of the same support probabilities. Build a new target-specific JEPA target before reopening this lane.
+
+## FH204. E234 S2 tail-risk drops can be materialized as a public-safe E216 rescue
+
+- Failed hypothesis: because E234's S2 high-impact tail target beats full E216 S2 OOF movement by as much as `-0.002653627`, applying those drops to the E216 S2 submission tensor should rescue the public-failed S2 lane.
+- Observed result: E235 scans `240` S2 materialization rows across E234 promoted policies and scales `0.35`, `0.50`, and `0.75`. Submission gate pass is `0`, joint gate pass is `0`, and no submission file is materialized. Best expected-focus rows still have adverse capacity about `1.878x..4.068x` the observed E216 miss, and support remains below `0.5`.
+- Why discard: the OOF tail-risk boundary and the public-facing S2 hard-label support boundary are not the same object under the current E216 translator.
+- Implementation issue possible: medium. E235 intentionally tests only S2 and only the current E216/E95 materialization geometry. It does not kill E234 Q3/S4 or future cell-level tail targets. Low for rejecting immediate S2 submission because the exact post-E216 capacity gate has zero passes.
+- Bottleneck implication: JEPA target/loss changes can find local structure, but S2 translation is still blocked by public subset/support mismatch. The bottleneck is not just representation learning; it is target-specific probability materialization.
+- Do not repeat: smaller-scale E216 S2 siblings, E95-anchor S2 variants, or E234-S2-derived files unless a new target definition passes the same submission-side support/adverse stress.

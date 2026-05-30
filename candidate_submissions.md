@@ -1464,3 +1464,17 @@ Submission policy:
 2. Do not create a softened E221/E231 support-gate file.
 3. Keep E224 as the clean JEPA public sensor if the next public question is still JEPA.
 4. Future JEPA work should change the self-supervised/auxiliary target itself, for example a target-specific tail/benefit representation, instead of reusing current support probabilities as amplitudes.
+
+## Update After E234/E235
+
+E234 changed the JEPA target/loss from all-row support to high-impact tail representation. That produced local signal: `323` promoted policies, with best loss versus full movement of `-0.002653627` for S2, `-0.000870181` for Q3, and `-0.000833194` for S4. This is the first positive sign after the E232/E233 support-gate failures.
+
+E235 then tried to turn the strongest local branch, S2, into a public-safe submission. It failed: `240` S2 materialization rows scanned, `0` submission-gate passes, `0` joint passes, and `0` materialized files. The best expected rows still have adverse capacity above the observed E216 miss and support below `0.5`.
+
+Submission policy:
+
+1. No E234 direct submission.
+2. No E235 S2 submission.
+3. Keep E216/E235 S2 closed as a public lane.
+4. Keep E224 as the clean JEPA public sensor if the next public question is still JEPA.
+5. The next JEPA diagnostic should audit E234 Q3/S4 materialization or train a sharper cell-level decisive-label target, not another S2 rescue.
