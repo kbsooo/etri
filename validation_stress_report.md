@@ -2966,3 +2966,29 @@ Decision:
 - Do not submit any E289 file.
 - Public LB is preserved.
 - Target-specific lifestyle signal is real, especially Q3/S4, but current materialization is not row-placement certified.
+
+## E290 Lifestyle Row-Placement Law Governor
+
+Question: can E289's Q3/S4 lifestyle slices learn where they should be applied from train OOF row benefit?
+
+Method: `analysis_outputs/e290_lifestyle_row_placement_law_audit.py`.
+
+- Hidden target: whether the E289 slice improves a train row under OOF base-vs-augmented target prediction.
+- Train stress: subject/dateblock placement gates versus row/subject/dateblock score shuffles.
+- Test stress: E247-current target-only edits selected by the learned gate versus matched row/subject/dateblock null submissions.
+
+Result:
+
+- placement rows: `420`.
+- train placement gates: `59`.
+- materialized candidates: `48`.
+- matched nulls: `720`.
+- public-free ready candidates: `0`.
+- best train gate: Q3 raw-human subject5 PC, strong35/dateblock5/HGB, top_frac `0.35`, actual delta `-0.024399167`.
+- best candidate-level movement: mean `-0.000495`, p90 `-0.000308`, but null strict rate `1.000000`.
+
+Decision:
+
+- Do not submit any E290 file.
+- Public LB is preserved.
+- Train row-placement exists, but test transfer is still not matched-null certified.

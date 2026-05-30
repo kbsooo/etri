@@ -435,3 +435,21 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - strongest candidate null strict rate: `1.000000`.
 - interpretation: target-specific lifestyle state is real on train, especially Q3/S4, but direct E247-current materialization is not certified because matched shuffles reproduce the movement.
 - next experiment: learn row/block placement from the Q3/S4 lifestyle energy rather than submitting a scalar target edit.
+
+## Public-Free Observation: E290
+
+- submission files: `analysis_outputs/submission_e290_lifeplace_*.csv`
+- public LB: not submitted.
+- reason not submitted: public LB is scarce, and E290 failed the local E247-current matched row/subject/dateblock null governor.
+- local observation:
+  - placement rows: `420`;
+  - train placement gates: `59`;
+  - candidates: `48`;
+  - matched nulls: `720`;
+  - public-free ready files: `0`;
+  - best train placement delta: `-0.024399167`;
+  - best candidate actual mean: `-0.000495`;
+  - best candidate actual p90: `-0.000308`;
+  - strongest candidate null strict rate: `1.000000`.
+- interpretation: train labels can teach where lifestyle corrections help, but the learned placement does not transfer into a test tensor that beats matched nulls.
+- next experiment: search for an independent test-side placement invariant or move from rowwise placement to hidden block-state assignment.

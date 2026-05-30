@@ -2309,3 +2309,28 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - use lifestyle energy to learn row/block placement, not as a scalar logit shift.
 - Failure condition:
   - if a slice improves train CV but its materialized tensor has null strict rate near `1.0`, classify it as generic target movement rather than certified row placement.
+
+## E290 Lifestyle Row-Placement Policy
+
+- Target hypothesis tested: E289 slices fail because we do not know which rows should receive them; OOF row benefit can supervise that placement law.
+- Feature/representation source:
+  - E289 target-gated Q3/S4/S1 lifestyle slices;
+  - subject/calendar baseline features;
+  - lifestyle PCs/clusters;
+  - base-vs-augmented OOF probability deltas and within-subject/dateblock ranks.
+- Validation result:
+  - placement rows: `420`;
+  - train placement gates: `59`;
+  - materialized candidates: `48`;
+  - matched row/subject/dateblock nulls: `720`;
+  - public-ready candidates: `0`.
+- Updated registry status:
+  - Q3 lifestyle row-placement is approved as a train-supervised diagnostic target.
+  - S4 lifestyle row-placement is approved as a weaker train-supervised diagnostic target.
+  - no E290 row-placement model is approved for direct E247-current editing.
+- Adopt rule for future placement features:
+  - require train placement dominance and test matched-null dominance;
+  - report null strict-promote rate, not only actual p90;
+  - prefer block-level or independently test-identifiable placement features over scalar row gates.
+- Failure condition:
+  - if a candidate has negative actual mean/p90 but null strict rate near `1.0`, classify it as generic Q3 movement rather than row-placement evidence.

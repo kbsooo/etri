@@ -3280,6 +3280,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E289. If an E289 file won publicly, it would indicate the matched-null governor is missing a very public-specific row subset; the local evidence does not support that bet.
 - 제출 전략: none. The next strategy should predict the row/block placement law that distinguishes real Q3/S4 lifestyle rows from matched shuffles.
 
+### H290: train OOF lifestyle row-placement law transfers to E247-current test rows
+
+- 상태: supported on train placement; rejected as current submission translator.
+- 왜 그럴듯한가: E289 showed target-specific Q3/S4 lifestyle signal but failed direct row placement. If the missing variable is "which rows should receive the slice", OOF row benefit should provide a label-grounded JEPA target.
+- 맞다면: a placement gate should beat row/subject/dateblock train score shuffles and then produce E247-current candidate deltas that beat matched test null submissions.
+- 틀리다면: train gates may be strong, but test materialization will still be null-reproducible because the learned placement law does not identify the public/test row subset.
+- 최소 실험: `analysis_outputs/e290_lifestyle_row_placement_law_audit.py`.
+- 관측: `420` placement rows produced `59` train placement gates. The strongest Q3 placement improves train target loss by `-0.024399167`, better than the full slice delta `-0.014466`. But `48` materialized candidates and `720` matched nulls produced public-ready `0`. The best candidate has mean `-0.000495` and p90 `-0.000308`, but null strict rate `1.000000` and worst-mode p90 dominance `0.000000`.
+- 성공/폐기 기준: reject direct transfer. Keep train placement as evidence that lifestyle row laws exist, but require a stronger test invariant before submission.
+- public LB 관측 반응: no public LB should be spent on E290. A public win would imply the local matched-null governor is overly conservative for Q3 placement; the current evidence says this is a low-quality bet.
+- 제출 전략: none. Next branch should move from rowwise scalar placement to block-level hidden-state assignment or an independent test-side invariant for Q3 placement.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

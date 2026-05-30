@@ -2151,3 +2151,12 @@
 - Implementation issue possible: medium. The materializer is a small logistic delta on one target at a time, so a learned row/block placement model could still use these slices. Low for blocking the exact E289 files because the matched-null failure is direct.
 - Bottleneck implication: the active bottleneck is not story creativity or target specificity. It is placement: deciding where in test the Q3/S4 lifestyle energy should move probabilities.
 - Do not repeat: submitting `submission_e289_lifeslice_*` or scaling Q3/S4 lifestyle slices until they pass an old selector without matched-null dominance.
+
+## FH239. Train-learned lifestyle row placement directly transfers to current test rows
+
+- Failed hypothesis: after E289, using train OOF row benefit as the hidden target should learn where to apply Q3/S4 lifestyle slices and produce a public-free submission candidate.
+- Observed result: E290 finds strong train placement (`59/420` gates). The best Q3 placement gate reaches actual train delta `-0.024399167`, better than the full slice. But all `48` materialized candidates fail matched-null governance against `720` nulls. The strongest candidate has mean `-0.000495` and p90 `-0.000308`, yet null strict rate `1.000000` and worst-mode p90 dominance `0.000000`.
+- Why discard: the train placement target is real, but the transfer to current test rows still collapses into generic Q3 movement. Matched shuffles preserve the movement distribution and are just as acceptable to the local selector.
+- Implementation issue possible: medium. The placement model is intentionally simple and rowwise; a block-level or externally invariant placement target may still work. Low for blocking these exact E290 files because the matched-null failure is direct.
+- Bottleneck implication: the problem is now narrower than "find human stories." We need a test-identifiable placement invariant or hidden block-state assignment.
+- Do not repeat: submitting `submission_e290_lifeplace_*` files or treating train placement gates as enough without test matched-null resistance.

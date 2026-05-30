@@ -4414,3 +4414,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best-looking candidate by local selector, `submission_e289_lifeslice_Q3_family_jepa_context_subject5_cluster6_raw_s050_09f712a2.csv`, had actual mean `-0.000674` and p90 `-0.000417`, but null strict rate `1.000000` and worst-mode p90 dominance `0.000000`.
 - Interpretation: target-specific social/lifestyle signal is real, especially for Q3 and S4. The failure is not "human stories are fake"; it is row/block placement and materialization. The same magnitude/direction can be reproduced by row/subject/dateblock shuffles, so public LB should not be spent.
 - Decision: no E289 public submission. Keep Q3/S4 lifestyle slices as latent diagnostics. The next branch should learn the row/block placement law directly, not scale the target slices.
+
+## E290. Lifestyle Row-Placement Law Audit
+
+- Observe: E289 left a precise failure mode. Q3/S4 lifestyle slices help train targets, but direct E247-current edits are reproducible by matched row/subject/dateblock shuffles.
+- Wonder: can train OOF row benefit teach a placement law, so that the lifestyle slice is applied only to rows where it is expected to help?
+- Method: `analysis_outputs/e290_lifestyle_row_placement_law_audit.py` takes the E289 target-gated slices, computes OOF base-vs-augmented row benefit per target, trains placement gates under subject/dateblock splits, stress-tests selected rows against row/subject/dateblock score shuffles, then materializes top train-gated policies on E247-current and compares them to matched null submissions. No public LB was used.
+- Result:
+  - placement rows: `420`;
+  - train placement gates: `59`;
+  - materialized candidates: `48`;
+  - matched null candidates: `720`;
+  - public-free ready candidates: `0`.
+  - strongest train placement: `Q3_raw_human_context_subject5_pc_strong35_dateblock5_hgb_shallow` at top_frac `0.35`, actual delta `-0.024399167` versus null median `-0.009823`.
+  - train placement can outperform the full slice: the same Q3 slice's full augmented delta is `-0.014466`, while the best row-placement gate reaches `-0.024399`.
+  - best-looking materialized candidate has actual mean `-0.000495` and p90 `-0.000308`, but null strict rate `1.000000` and p90/worst-mode dominance `0.000000`.
+- Interpretation: the row-placement law exists in labeled train rows. The breakthrough is not blocked by absence of human/social signal. It is blocked by train-to-test placement transfer: current test edits still look like generic Q3 movement under the local governor.
+- Decision: no E290 public submission. The next useful branch should either identify a stronger test-side invariant for Q3 placement or change the target from probability movement to block-level hidden-state assignment.

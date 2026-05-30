@@ -2648,3 +2648,36 @@ Next submission candidate requirement:
 - use Q3/S4 lifestyle slices as diagnostic energy, not direct probability edits;
 - find a placement law that beats row/subject/dateblock nulls;
 - keep public LB unused until a candidate passes `public_free_submission_ready`.
+
+## Update After E290 Lifestyle Row-Placement Law Audit
+
+Current submission policy remains: **no new public submission.**
+
+What was tested:
+
+- learned row-placement gates for E289 target-specific lifestyle slices;
+- train OOF row-benefit labels;
+- subject/dateblock gate splits;
+- row/subject/dateblock train score shuffles;
+- E247-current materialization with matched test null submissions.
+
+What was learned:
+
+- The placement law is not empty. `59/420` train placement rows pass the train gate.
+- Best train placement improves Q3 by `-0.024399167`, stronger than applying the full Q3 slice.
+- But test materialization still fails: `48` candidates, `720` matched nulls, and `0` public-free ready files.
+- Strong-looking candidates are blocked because nulls also strict-promote at rate `1.000000`.
+
+Do not submit:
+
+- any `analysis_outputs/submission_e290_lifeplace_*.csv` file.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+Next submission candidate requirement:
+
+- a future lifestyle candidate must carry an independent test-side placement invariant;
+- negative mean/p90 against current is not enough if matched nulls strict-promote too;
+- move toward block-level state assignment or test-invariant Q3 placement, not another scalar row gate.
