@@ -2258,6 +2258,20 @@ E253 adds the missing train-OOF analogue for E252.
 
 Stress implication after E253: E252 is not OOF-certified. The stronger finding is validation mismatch: OOF consensus cells and public-free materialization support cells disagree. This strengthens the diagnosis that frontier movement is limited by target-specific public-tail translation, not by absence of JEPA latent signal.
 
+## Update After E254
+
+E254 localizes the E253 mismatch.
+
+- Train OOF shared cells are the strongest group: benefit mean `-0.028234084`, while the union is only `-0.002117914`.
+- Test hard-tail anatomy says the shared set is not deployable by itself: expected focus is favorable at `-0.000028815`, but Q3 top1/abs is `3.412733926`.
+- Test union has the opposite E224-vs-E154 cell risk shape: expected focus `+0.000035272`, adverse sum `0.000721005`, and support-delta sum `-0.000906285`.
+- The selected train/test groups are not geometrically stationary:
+  - `prob_gap` shifts by `-1.517107` std for shared, `-1.544628` for E237-only, and `-1.804342` for E250-only.
+  - `logit_step` shifts by `-1.468916` std for shared and `-1.665033` for E250-only.
+  - feature-NN1 smooth-gain flips sign for shared and E250-only groups.
+
+Stress implication after E254: the next target cannot be "consensus cells" or "union cells." It must predict a contrastive representation: OOF-harmful consensus versus test hard-tail-adverse parent-specific cells. Until that exists, E237 remains the best expected-score JEPA file and E252 remains only a public sensor.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

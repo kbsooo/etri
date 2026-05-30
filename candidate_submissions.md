@@ -1851,3 +1851,24 @@ Practical rule:
 - Do not submit E252 as a likely-score upgrade over E237.
 - Submit E252 only if the explicit information goal is: does public behave more like E251 materialization support geometry than E253 train OOF?
 - If only one JEPA score-biased file is wanted, E237 remains the file.
+
+## Update After E254
+
+E254 explains why E252 should stay a sensor rather than a score bet.
+
+- OOF shared intersection is genuinely strong on train, but its corresponding test hard-tail shape is concentrated.
+- Parent-specific cells look weak or adverse in OOF, but they alter the test hard-tail profile that made the union attractive in E251.
+- The groups have large train/test shifts in `prob_gap`, `logit_step`, and feature-NN1 smooth-gain, so the conflict is a representation-transfer problem rather than a simple set-selection mistake.
+
+Current candidate order by purpose remains:
+
+1. **Best current JEPA score bet:** `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+2. **Best OOF-vs-materialization conflict sensor:** `analysis_outputs/submission_e252_e237_e250_union_q3top31_67707aef.csv`.
+3. **Best pure feature-NN1-context decisive-cell sensor:** `analysis_outputs/submission_e250_featnn1_decisive_all3_latent_no_targetid_featnn1_hgb_shallow_row5_risk_q0p10_drop_q3_top21_4e9a88af.csv`.
+4. **Highest-information direct feature-NN1 smoothing sensor:** `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+
+Practical rule:
+
+- Do not create an E237/E250 intersection file.
+- Do not promote E252 unless the next public question deliberately targets the OOF-vs-test geometry conflict.
+- The next score-oriented submission should come from a new contrastive target, not from another union/intersection of existing cells.

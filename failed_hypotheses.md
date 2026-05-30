@@ -1944,3 +1944,12 @@
 - Implementation issue possible: medium because train and test row sets differ, but the conflict is the core discovery rather than an error.
 - Bottleneck implication: the hidden public subset likely weights a different Q3 hard-label tail than random/subject OOF. This strengthens validation mismatch and public-tail translation as the current bottleneck.
 - Do not repeat: using overlap/intersection as a confidence gate without materialization stress.
+
+## FH216. The E237/E250 conflict is only a set arithmetic artifact
+
+- Failed hypothesis: the E253 contradiction can be resolved by choosing the right set operation, such as intersection for OOF or union for materialization, without changing the representation target.
+- Observed result: E254 shows the conflict has visible geometry. Selected groups shift strongly from train to test in `prob_gap` and `logit_step`; feature-NN1 smooth-gain also flips sign for shared and E250-only cells. Train shared cells have benefit mean `-0.028234084`, while test shared cells have favorable expected focus but extreme concentration (`top1/abs=3.412733926`). Union is OOF-diluted but changes the test hard-tail anatomy.
+- Why discard: the issue is not only which rows are selected. The selected rows live in different train/test regimes, so union/intersection cannot be certified by set logic alone.
+- Implementation issue possible: medium. The atlas compares OOF benefit and public-free priors, not hidden public labels. Low for rejecting simple set arithmetic because the feature shifts are directly observable.
+- Bottleneck implication: the plateau is a validation-geometry transfer problem. A useful next model must learn a contrastive representation of tail regime, not just reweight E237/E250 cells.
+- Do not repeat: creating new E237/E250 set-operation files before training or auditing a contrastive head that explains the train/test geometry shift.

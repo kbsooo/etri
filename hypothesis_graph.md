@@ -2919,6 +2919,18 @@ target co-occurrence
 - public LB 관측 반응: E252 win would imply hidden public labels prefer materialization support geometry over train OOF intersection. E252 loss would reinforce validation mismatch and keep E237 first.
 - 제출 전략: E252 is lower-confidence than E237; use only if the chosen question is OOF-vs-public-free materialization conflict.
 
+### H254: The E237/E250 conflict is a train/test Q3 geometry shift, not simple consensus error
+
+- 상태: supported as a bottleneck diagnosis; not yet a submission rule.
+- 왜 그럴듯한가: E253 showed a contradiction that simple validation labels cannot resolve: OOF likes shared consensus, while materialization likes union. If the selected cells also shift in feature-neighbor and logit-step geometry between train and test, then the contradiction is a real hidden-world mismatch.
+- 맞다면: shared, E237-only, and E250-only groups should have different train/test distributions in probability gap, logit step, or feature-NN1 smoothing context; consensus should not be a safe scalar confidence score.
+- 틀리다면: train/test selected groups should be similar on those visible axes, and the conflict would more likely be implementation noise or a metric-definition artifact.
+- 최소 실험: E254 conflict atlas comparing train OOF benefit, test hard-tail anatomy, and feature shifts for shared/E237-only/E250-only/union groups.
+- 관측: train shared cells have OOF benefit mean `-0.028234084`, while train union is only `-0.002117914`. Test shared cells have favorable expected focus `-0.000028815` but Q3 top1/abs `3.412733926`, and union changes the hard-tail profile. The largest train/test shifts are `prob_gap` (`-1.52` to `-1.80` std across selected groups) and `logit_step` (`-1.40` to `-1.67` std), with feature-NN1 smooth-gain sign flips in shared and E250-only groups.
+- 성공/폐기 기준: supported for diagnosis because multiple visible axes move in the same conflict direction. Not accepted as an action rule until a contrastive target trained on OOF can predict which test cells belong to public-tail-adverse parent-specific geometry.
+- public LB 관측 반응: an E252 win would mean public follows the test materialization side despite OOF dilution; an E252 loss would mean the OOF/shared signal was the safer proxy after all. Either result should be interpreted through this geometry-shift lens, not as a generic JEPA pass/fail.
+- 제출 전략: no new E254 submission. Keep E237 first for expected score; E252 remains a conflict sensor only.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

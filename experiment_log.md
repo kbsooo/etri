@@ -3868,3 +3868,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - OOF E237-only, E250-only, and symmetric difference all fail stress promotion and have positive loss_vs_full.
 - Interpretation: this is a validation mismatch, not a clean union breakthrough. OOF likes the shared core, while submission-side E251 rejected the shared core and liked the union. That is exactly the kind of hidden public-tail mismatch that makes frontier-scale changes unstable.
 - Decision: keep E237 as the expected-score JEPA candidate. Keep E252 only as a public sensor for the OOF-vs-materialization conflict. Do not promote E252 above E237 without public feedback or a new OOF target that explains why the union should beat the OOF intersection.
+
+## E254. E237/E250 Conflict Atlas
+
+- Observe: E253 exposed a direct contradiction: train OOF says the E237/E250 shared Q3 intersection is best, while submission-side materialization says that same shared set is unsafe and the union is best.
+- Wonder: is this conflict just a scoring artifact, or do the train and test selected cells occupy different feature-neighbor / logit-step regimes?
+- Method: `analysis_outputs/e254_e237_e250_conflict_atlas.py` compares E237/E250 Q3 groups across train OOF benefit, test hard-tail anatomy, feature-NN1 context, and train/test standardized shifts. It writes `analysis_outputs/e254_e237_e250_conflict_atlas_report.md` plus train/test/feature-shift CSVs. No public LB and no new submission are used.
+- Result:
+  - train shared cells are strongest by OOF benefit: mean `-0.028234084`, negative-rate `0.583333333`.
+  - train union is much weaker: mean `-0.002117914`.
+  - test shared cells have favorable E224 expected focus `-0.000028815`, but bad concentration: Q3 top1/abs `3.412733926`.
+  - test union flips the hard-tail anatomy in the E224-vs-E154 cell view: expected focus `+0.000035272`, adverse sum `0.000721005`, support-delta sum `-0.000906285`.
+  - selected groups show large train/test direction shifts: `prob_gap` shifts by `-1.52` std for shared, `-1.54` for E237-only, `-1.80` for E250-only; `logit_step` shifts by `-1.47` std for shared and `-1.67` for E250-only.
+  - feature-NN1 smooth-gain sign also changes by group: shared `featnn1_total_smooth_gain` moves from `-0.086784` train to `+0.045484` test, while E250-only moves from `+0.090721` train to `-0.075050` test.
+- Interpretation: the conflict is not only "OOF vs materialization metric." The same named cell groups sit in different probability-step and feature-neighbor regimes between train OOF and test. Consensus is OOF-good, but test hard-tail safety is dominated by concentration and parent-specific cells.
+- Decision: do not build an intersection submission. Do not promote E252 as OOF-certified. The next JEPA target should be a contrastive head that explicitly separates "OOF-harmful consensus cells" from "test hard-tail-adverse parent-specific cells" rather than unioning or intersecting selected rows.

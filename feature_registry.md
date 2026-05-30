@@ -1820,6 +1820,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E251 finds E237 `25`, E250 `21`, shared `15`, E237-only `10`, E250-only `6`, union `31`. Union stress score is `0.077866812`, above E237 `0.058941606` and E250 `0.053008707`, with support gain `0.010353010`. E252 materializes a schema-clean union file changing only Q3. E253 weakens adoption: train-OOF union is stress-promoted but worse than E237 (`-0.000080010` vs `-0.000271441`), and the OOF shared intersection is strongest (`-0.000376454`) despite failing E251 materialization.
 - Policy: F212 is a validation-mismatch diagnostic and public sensor family, not a certified feature. Use E252 only to test whether public follows materialization geometry over OOF; keep E237 first for expected score.
 
+### F213. E254 OOF-vs-test Q3 conflict atlas features
+
+- Hidden structure: the same Q3 cell group can be healthy under train OOF and unsafe under test hard-tail geometry because train/test probability-step and feature-neighbor regimes differ.
+- Candidates: group identity (`shared`, `e237_only`, `e250_only`, `union`), train OOF benefit/negative-rate, test expected focus/adverse/support/top1 concentration, `prob_gap`, `logit_step`, feature-NN1 smooth-gain, feature-NN1 pair logit gap, and standardized train/test shifts by group.
+- Label vs split test: valid as a diagnostic atlas only. It compares train OOF labels to public-free test hard-tail priors but uses no public LB. It must not become a direct gate until a new OOF contrastive target learns the split.
+- Current evidence: shared cells are OOF-best with benefit mean `-0.028234084`, but test shared has Q3 top1/abs `3.412733926`. Union is OOF-diluted (`-0.002117914`) yet changes the test hard-tail profile. The largest shifts are `prob_gap` (`-1.52` to `-1.80` std), `logit_step` (`-1.40` to `-1.67` std), and feature-NN1 smooth-gain sign flips.
+- Policy: use F213 to design the next JEPA objective: a contrastive head for OOF-harmful consensus versus test hard-tail-adverse parent-specific geometry. Do not use it to submit intersection, union, or another scalar threshold variant.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.
