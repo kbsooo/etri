@@ -601,3 +601,15 @@ Submission order by information value:
 4. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` — conservative branch contrast.
 
 Do not promote any support-heavy E189 gate into a submission. Its live use requires a new public-free E72-contamination detector, not filename identity.
+
+## Update After E190
+
+The single next public sensor remains:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+E190 tried to build the missing filename-free E72-contamination detector. The result is diagnostic, not deployable. `shape_target_context_abs` detects E72-neighbor structure under pair-LOO with AUC `0.978836`, but only `0.666667` top-k recall and an E72-heldout blind spot. Support-containing views misclassify exact E95/E101 as contamination with mean probability around `0.957..0.975`.
+
+For live pressure branches, E176 has near-zero contamination score and never crosses E72 thresholds. So E190 does not add a reason to trust support for E176; it says E176 should be read as a shape/broad-Q2-underopen sensor.
+
+Submission order remains unchanged. Do not create a support-gated E176/E154/E144 file from E190.

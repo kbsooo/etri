@@ -1076,3 +1076,26 @@ E189 audits where shape-only and support actually disagree.
   - not deployable because it depends on known filenames rather than live structural signals.
 
 Stress implication: the support-vs-shape conflict is not a smooth calibration tradeoff. It is two different hidden sensors: support repairs E72-neighbor contamination, shape preserves the tight E95/E101 hardtail boundary. Future validation must include both axes separately.
+
+## Update After E190
+
+E190 tests the first filename-free version of the E72-contamination detector.
+
+- script: `analysis_outputs/e190_e72_contamination_detector.py`.
+- report: `analysis_outputs/e190_e72_contamination_detector_report.md`.
+- best pair-LOO E72-neighbor detector:
+  - view: `shape_target_context_abs`.
+  - AUC `0.978836`.
+  - average precision `0.809524`.
+  - top-k recall `0.666667`.
+- any-file LOO:
+  - AUC `0.974576` for `shape_target_context_abs`.
+  - skipped positive rows `6` because holding out E72 removes all positive training examples.
+- exact E95/E101 false positive:
+  - `shape_target_context_abs`: mean contamination probability `0.161306`.
+  - support/all views: mean contamination probability `0.957369..0.975040`.
+- live pressure branches:
+  - E176 contamination probability is near zero in every view and never crosses non-E72 p95 or min-positive thresholds.
+  - E144 is partially flagged only by the cleaner shape/target/context view, not by support/all views.
+
+Stress implication: movement anatomy can recognize some E72-neighbor structure, but the support-heavy detector is not healthy because it calls exact E95/E101 contamination. The E176 branch does not look E72-contaminated; support should not be used to gate it.

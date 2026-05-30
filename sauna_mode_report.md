@@ -2356,3 +2356,51 @@ E184 이후에도 제출 후보 순위는 바뀌지 않는다.
 제출 후보 해석:
 
 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`는 expected-score 인증 파일이 아니라, broad/Q2-underopen 세계관을 public에 묻는 센서다. Public LB가 좋아지면 E176 세계관과 shape-only branch sensor가 강화된다. 나빠지면 support를 더 섞는 쪽이 아니라, E72-contamination detector나 repaired-branch worldview 쪽으로 돌아가야 한다.
+
+## E190 업데이트: filename-free E72 detector는 diagnostic이지 gate가 아니다
+
+내가 발견한 가장 이상한 점:
+
+`E72-neighbor는 파일명 없이도 어느 정도 구조적으로 보인다. 그런데 support feature를 많이 넣는 순간 exact E95/E101도 E72-contamination처럼 보인다. support가 고치는 문제와 support가 망치는 문제가 같은 feature view 안에서 분리되지 않는다.`
+
+실험:
+
+- `analysis_outputs/e190_e72_contamination_detector.py`
+- report: `analysis_outputs/e190_e72_contamination_detector_report.md`
+
+결과:
+
+- E72-neighbor detection, pair-LOO:
+  - best view: `shape_target_context_abs`
+  - AUC `0.978836`
+  - AP `0.809524`
+  - top-k recall `0.666667`
+- any-file LOO:
+  - E72 자체를 hold out하면 positive가 모두 사라진다.
+  - skipped positive rows `6`
+- exact E95/E101 false positive:
+  - `shape_target_context_abs`: `0.161306`
+  - support/all views: `0.957..0.975`
+- live branch:
+  - E176 contamination score는 모든 view에서 거의 0.
+  - E176은 non-E72 p95나 positive threshold를 한 번도 넘지 않는다.
+
+생각이 어떻게 바뀌었는지:
+
+`E72 contamination이라는 구조는 실제로 있다. 하지만 현재 detector는 support를 다시 살릴 만큼 건강하지 않다. support-rich view는 E189/E187의 실패를 그대로 반복한다. E176은 E72-contaminated branch가 아니므로 support로 보강할 이유가 더 약해졌다.`
+
+현재 최강 세계관:
+
+`support는 E72 오염 센서로 남지만, E176의 세계관은 support가 아니라 shape/broad-Q2-underopen 쪽이다. 0.57629 병목은 support를 잘 섞는 문제가 아니라, E72 오염과 tight hardtail boundary를 동시에 분리하는 invariant representation이 없다는 문제다.`
+
+그 세계관을 죽일 수 있는 가장 작은 실험:
+
+`E72 positive가 한 파일에만 묶이지 않도록 one-class/contrastive contamination target을 만들거나, exact E95/E101 false positive를 objective에 직접 넣은 detector를 만든다. 그 detector가 E72 recall을 유지하면서 E95/E101을 낮게 두고 live branch를 안정적으로 분리하면 E190의 gate 실패가 약해진다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+새 submission은 만들지 않는다. 제출 후보는 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` 하나지만, E190 이후 이유는 더 분명하다.
+
+- E176은 E72-contamination branch가 아니다.
+- E176은 shape-only와 broad/Q2-underopen worldview를 묻는 파일이다.
+- support gate를 E176에 붙이는 것은 지금 근거가 없다.

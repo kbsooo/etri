@@ -1475,3 +1475,12 @@
 - Implementation issue possible: medium. Known public anchors are few, and a future structural detector might recover E72 contamination without filenames. Low for the narrow falsification because the current support wins and shape wins are exactly concentrated in opposing known slices.
 - Bottleneck implication: the current pair-decoder bottleneck is not "add support with a veto"; it is to define a new target representation that separates E72-contamination from tight hardtail boundary movement.
 - Do not repeat: using support-heavy E186/E187/E189 branch probabilities to certify E176, E154, or E144. Use support only as auxiliary evidence or as a target for a future E72-contamination detector.
+
+## FH164. Current E72 contamination detector makes support deployable
+
+- Failed hypothesis: after E189, a filename-free structural detector can identify E72-contaminated cases well enough to turn support back into a live gate for E176/E154/E144.
+- Observed result: E190 finds real E72-neighbor signal, but not an action-grade gate. `shape_target_context_abs` reaches pair-LOO AUC `0.978836` and AP `0.809524`, but top-k recall is only `0.666667`, and any-file LOO skips `6` positive rows when E72 itself is held out. Support-rich views keep high E72 detection metrics while assigning exact E95/E101 contamination probability around `0.957..0.975`. Live E176 contamination is near zero and never crosses non-E72 p95 or min-positive thresholds.
+- Why discard: the detector is useful as a diagnostic, but it does not solve the exact-boundary false-positive problem or the E72-heldout one-class problem. It also gives no support-gate reason for E176.
+- Implementation issue possible: medium. The label set is tiny, and E72-neighbor positives are all derived from one known failed submission. Low for the narrow failure because the exact E95/E101 false-positive check directly repeats the boundary that killed support.
+- Bottleneck implication: support's E72 signal is real but not yet invariant. The missing object is a contamination representation that can be trained or calibrated without relying on E72 identity and that preserves the E95/E101 hardtail boundary.
+- Do not repeat: treating high E72-neighbor AUC from support features as permission to support-gate E176. Require low exact-boundary false positives and a stronger E72-heldout/one-class stress first.

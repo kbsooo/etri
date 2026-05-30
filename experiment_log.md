@@ -2917,3 +2917,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - aligned z-feature audit shows support families separate the two disagreement classes by orientation, not by a public-free live-candidate rule.
 - Interpretation: support's useful edge gain is anchor-specific. It is an E72-contamination correction sensor, not a general frontier selector. The exact E95/E101 hardtail boundary remains a shape-only boundary.
 - Decision: no new submission. E176 remains the next sensor only because shape-only also selects E176 and the separate broad/Q2-underopen worldview is still alive. Support-heavy pair evidence must not be used to rank E176/E154/E144 without a new structural target that can identify E72-contamination separately from tight hardtail boundaries.
+
+## E190. Filename-Free E72 Contamination Detector
+
+- Observe: E189 left a concrete escape hatch: perhaps support can be used if E72-contamination is detected structurally rather than by filename.
+- Wonder: can movement anatomy detect E72-neighbor contamination without file names, and can that detector tell whether live E176/E154/E144 pressure branches should trust support or shape?
+- Method: `analysis_outputs/e190_e72_contamination_detector.py` trains detectors on absolute antisymmetric z-features only, excluding filename/public-score inputs. It evaluates pair-LOO, pair-context-LOO, one-sided file LOO, and any-file LOO, then scores E176/E154/E144 pressure branches. It writes no submission.
+- Result:
+  - report: `analysis_outputs/e190_e72_contamination_detector_report.md`.
+  - best pair-LOO E72-neighbor detector is `shape_target_context_abs`: AUC `0.978836`, AP `0.809524`, top-k recall `0.666667`.
+  - any-file LOO keeps useful rank signal but exposes the blind spot: `22` skipped rows and `6` skipped positive rows because holding out E72 itself leaves no positive examples in training.
+  - support-containing detector views get high E72-neighbor AUC but catastrophically mis-score exact E95/E101 as contamination: exact E95/E101 mean probability about `0.957..0.975`.
+  - the cleaner `shape_target_context_abs` view has lower exact E95/E101 false positive probability `0.161306`, but only `0.666667` top-k recall.
+  - live E176 contamination scores are near zero in every view: max `0.000005` for shape/target/context and about `0.0026` for support-only, always below non-E72 p95 and min-positive thresholds.
+  - live E144 receives some shape/target/context contamination pressure (`2/3` scenarios above non-E72 p95), but not under support/all views.
+- Interpretation: filename-free movement anatomy does contain E72-neighbor signal, but the current detector is not a deployable support gate. The support-heavy views reproduce the original failure by treating exact E95/E101 as E72-like. E176 specifically looks non-E72-contaminated, so E190 weakens rather than strengthens any argument for using support to rank E176.
+- Decision: no submission. Keep E176 as a shape/broad-Q2-underopen sensor. A future E72 detector must preserve E72 recall while keeping exact E95/E101 false positives low and must survive a stricter E72-heldout design or one-class structural calibration.

@@ -2160,6 +2160,18 @@ target co-occurrence
 - public LB 관측 반응: a future E176 win would not validate support as a selector, because E189 shows support's known wins are E72-neighbor-specific. A future E72-like failure/win can validate or refute the contamination-diagnostic role.
 - 제출 전략: no E189 submission. Keep `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` only as a broad/Q2-underopen plus shape-only-supported sensor.
 
+### H184. E72 contamination can be detected structurally enough to gate support
+
+- 상태: 부분 지지 but action-gate 반증 by E190.
+- 왜 그럴듯한가: E189 says support's useful wins are E72-neighbor corrections. If E72-contamination has a movement-shape signature, a detector using absolute z-features should identify it without filenames and let support be used only on those rows.
+- 맞다면: pair/context/file stress should detect E72-neighbor rows while assigning low contamination probability to exact E95/E101; live branches with high contamination should be the only cases where support evidence is trusted.
+- 틀리다면: either the detector cannot generalize beyond known E72 pairs, or support-containing features reproduce the original shortcut by misclassifying exact E95/E101 as E72-like.
+- 최소 실험: `analysis_outputs/e190_e72_contamination_detector.py`.
+- 관측: `shape_target_context_abs` detects E72-neighbor under pair-LOO with AUC `0.978836` and AP `0.809524`, but top-k recall is only `0.666667`. Any-file LOO skips `6` positive rows when E72 itself is held out, because no positive examples remain. Support-containing views show high E72-neighbor scores but assign exact E95/E101 contamination probability about `0.957..0.975`. Live E176 has near-zero contamination scores across all views and never crosses non-E72 p95 or min-positive thresholds.
+- 성공/폐기 기준: structural-signal version supported; deployable support-gate version not supported. A future detector must combine E72 recall with exact-boundary false-positive control and a stronger E72-heldout/one-class calibration.
+- public LB 관측 반응: E176 win/loss should be interpreted as broad/Q2-underopen or shape-only branch evidence, not support-gate evidence. A future candidate explicitly designed as E72-contaminated would be the right public sensor for H184.
+- 제출 전략: no E190 submission. Do not use support as a live E176 gate. Use E190 only as a diagnostic feature registry entry.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
