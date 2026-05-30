@@ -2089,6 +2089,26 @@ E241 residual PC10 OOF benefit validation stress:
 
 Stress implication after E241: the residual-energy motif exists in the test Q3 cell atlas, but it is not an OOF-valid harmful-row selector under the current train label construction. E240 simple residual rules are closed as submissions. E237 remains a learned-cell public sensor, but not because scalar PC10 top-k is validated.
 
+E242 E237 OOF-to-test transfer audit:
+
+- script: `analysis_outputs/e242_e237_oof_to_test_transfer_audit.py`.
+- report: `analysis_outputs/e242_e237_oof_to_test_transfer_report.md`.
+- selected files: none; this audits E237 ranking and transfer logic.
+- stress dimensions:
+  - `120` graft-side E237 materialization rows.
+  - average OOF policy gain versus E237 gate and E237 score.
+  - OOF tail-AUC versus E237 gate and E237 score.
+  - public-free test materialization metrics: expected/actual gain, adverse reduction, support gain, Q3 top-cell safety.
+  - conflict examples between OOF-strong rows and test-gate-strong rows.
+- key results:
+  - E237 gate pass rows: `7/120`.
+  - top E237 file rank by OOF gain: `71/120`; OOF gain gate AUC `0.426043`.
+  - top E237 file rank by OOF tail-AUC: `1/120`; OOF tail-AUC gate AUC `0.958913`.
+  - top E237 file ranks `1/120` by support gain and Q3 top-cell safety, and `3/120` by expected/actual gain versus E224.
+  - OOF gain versus E237 score Spearman is only `0.108953`.
+
+Stress implication after E242: E237 is not an average-OOF-gain translator. Its valid local claim is narrower: high-impact Q3 risk-tail discrimination transfers to the public-free gate, while mean OOF loss rank does not. Future E237 siblings should not be selected by OOF delta alone.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

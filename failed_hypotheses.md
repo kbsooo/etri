@@ -1872,3 +1872,12 @@
 - Implementation issue possible: medium. The OOF target is E224-like Q3 benefit and may not perfectly match hidden public cells. Low for rejecting immediate submission because every direct validation metric is adverse or non-negative.
 - Bottleneck implication: the Q3 residual-energy motif is not enough. The plateau remains a translation problem: visible latent energy can mark interesting cells, but probability movement needs OOF cell-target supervision or public-feedback routing.
 - Do not repeat: materializing `simple_pc10_top25`, `top50_amp_then_resid_combo25`, or similar residual-energy top-k rules without a new OOF target or public contrast.
+
+## FH208. E237 siblings should be ranked by average OOF gain
+
+- Failed hypothesis: because E237 is learned from OOF decisive-cell labels, candidates with stronger average OOF loss improvement should be the best E237 submission siblings.
+- Observed result: E242 audits `120` graft-side materialization rows. The top E237 file ranks only `71/120` by OOF gain; OOF gain has gate AUC `0.426043` and Spearman `0.108953` with E237 score. By contrast, OOF tail-AUC has gate AUC `0.958913`, and the top E237 file ranks `1/120` by OOF tail-AUC.
+- Why discard: average OOF gain mixes useful high-impact tail discrimination with broad body/support tradeoffs that do not transfer to the public-free materialization gate.
+- Implementation issue possible: low for the ranking claim because it is a direct audit over all existing E237 materialization rows. Medium for public truth because the real hidden labels are unknown.
+- Bottleneck implication: the live E237 object is high-impact Q3 tail identity, not generic OOF-CV improvement. This helps explain why many high-OOF policies fail support/top-cell stress.
+- Do not repeat: submitting E237 siblings because they improve OOF more than the locked top file, or calling E237 a broad learned translator.

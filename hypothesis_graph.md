@@ -2738,12 +2738,13 @@ target co-occurrence
 
 ### H232. Q3/S4 tail law is cell-level decisive, not row-level support
 
-- 상태: 부분 지지 by E237 public-free stress; public LB 미확인.
+- 상태: 부분 지지 by E237/E242 public-free stress; public LB 미확인.
 - 왜 그럴듯한가: E230's hand-prune acted on a small set of Q3 cells, while E236's row-level Q3/S4 masks failed by either losing support or erasing S4 body. That pattern suggests the hidden law lives at row-target-cell granularity.
 - 맞다면: a bad-cell predictor trained on OOF decisive-cell labels should identify Q3 cells whose rollback improves E224 public-free stress while leaving S4 mostly untouched. It should improve both graft-vs-E154 and actual-vs-E95 stress, not only OOF.
 - 틀리다면: cell-level models will reproduce E236's failure: Q3 support loss, high top-cell concentration, S4 body loss, or no actual-vs-E95 improvement.
 - 최소 실험: `analysis_outputs/e237_cell_decisive_jepa_target.py`.
 - 관측: OOF rows `3744`, stress-promoted rows `441`, materialized scan rows `240`, gate passes `7`. Top candidate drops `25` Q3 cells, `0` S4 cells, improves expected loss vs E224 by `-0.000005612`, reduces adverse by `0.000576400`, improves actual-vs-E95 adverse by `0.000553281`, and overlaps E230 risk-top21 by `11` rows.
+- E242 추가 관측: E237's selected top file is not a mean-OOF-gain winner (`71/120` by OOF gain, OOF-gain gate AUC `0.426043`), but it is the top OOF tail-AUC row (`1/120`) and OOF tail-AUC predicts the E237 gate strongly (`AUC=0.958913`). It is also `1/120` by support gain and Q3 top-cell safety.
 - 성공/폐기 기준: supported locally because it passes OOF, graft-vs-E154, and actual-vs-E95 stress. It remains public-unconfirmed until submitted.
 - public LB 관측 반응: if top E237 wins or cleanly beats E224/E95, strengthen the "decisive Q3 cell-tail" world and demote pure row-level JEPA gates. If it loses materially, treat E237 as another local-tail false positive and return to E224/E166/E154 branch routing.
 - 제출 전략: top learned-JEPA Q3-tail candidate is `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
@@ -2797,6 +2798,18 @@ target co-occurrence
 - 성공/폐기 기준: rejected for current labels and current E224-like Q3 movement.
 - public LB 관측 반응: no public submission should be used to test this directly. A future E237 public win would not resurrect simple PC10 unless a new OOF target explains why train OOF and public-tail geometry diverge.
 - 제출 전략: do not create or submit E240-style residual-PC10 files.
+
+### H237. E237 should be ranked by average OOF policy gain
+
+- 상태: 반증 by E242.
+- 왜 그럴듯한가: E237 is OOF-trained. If the learned cell policy is a normal supervised translator, policies with the best OOF loss improvement should be the safest public-free materializations.
+- 맞다면: OOF gain should correlate with E237 score, predict E237 gate membership, and rank the selected top file near the top.
+- 틀리다면: OOF mean-gain winners will often fail materialization support/top-cell stress, and the selected E237 file will be chosen by tail-discrimination/test geometry instead.
+- 최소 실험: `analysis_outputs/e242_e237_oof_to_test_transfer_audit.py`.
+- 관측: OOF gain vs E237 score Spearman is `0.108953`; OOF gain gate AUC is `0.426043`; top E237 file is only `71/120` by OOF gain. In contrast, OOF tail-AUC gate AUC is `0.958913`, and the top E237 file ranks `1/120` by OOF tail-AUC, support gain, and Q3 top-cell safety.
+- 성공/폐기 기준: rejected as a ranking rule. E237 should be read as a high-impact tail classifier plus public-free stress survivor, not as an average OOF gain maximizer.
+- public LB 관측 반응: E237 public win strengthens high-impact tail-discrimination, not generic OOF policy gain. E237 public loss says even that tail-discrimination plus stress gate is insufficient.
+- 제출 전략: do not submit E237 siblings chosen by OOF gain rank.
 
 ## 우선 실험 5개
 

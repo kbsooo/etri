@@ -1772,6 +1772,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: the motif is test-visible but not OOF-supported. Best top-10% full train delta is still `+0.000345376`; best split-stress top-10% delta is `+0.000270542`; PC10 itself is clearly adverse.
 - Policy: treat residual energy as an explanatory motif and stress negative control, not as a submission gate. If E237 public wins, learn from OOF decisive-cell labels again rather than promoting scalar residual-energy rules.
 
+### F207. E242 high-impact Q3 tail-transfer diagnostics
+
+- Hidden structure: E237 may transfer only as a high-impact Q3 tail classifier, not as an average OOF policy-improvement model.
+- Candidates: E237 OOF tail-AUC, OOF gain, subject win rate, E237 score, support gain, adverse reduction, Q3 top-cell safety, and E230 overlap metrics across the `120` graft-side materialization rows.
+- Label vs split test: valid as a ranking/governance diagnostic. It uses existing OOF labels and public-free materialization stress; it does not fit public labels or create probabilities.
+- Current evidence: OOF gain is not useful as a selector (`AUC=0.426043`, top E237 rank `71/120`), while OOF tail-AUC is highly aligned with the E237 gate (`AUC=0.958913`, top E237 rank `1/120`).
+- Policy: use high-impact tail discrimination as the E237 feature identity. Do not use average OOF gain or raw residual PC10 as promotion criteria for E237 siblings.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

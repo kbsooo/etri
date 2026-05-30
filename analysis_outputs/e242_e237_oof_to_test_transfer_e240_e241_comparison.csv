@@ -1,0 +1,3 @@
+item,source,expected_loss_vs_e224,adverse_reduction_vs_e224,support_gain_vs_e224,actual_adverse_reduction_vs_e224,overlap_e237,overlap_e230_swing25,oof_or_train_delta,oof_or_train_note
+E237 top learned selector,all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25,-5.611507748198071e-06,0.0005763997403527,0.0064502585911332,0.0005532808665571,25.0,13.0,-0.0002714413491506,E237 OOF loss_vs_full
+E240 best simple selector,simple_pc10_top25,-6.21187379176777e-05,0.0005944890225902,0.0167471540219331,0.0005738787340561,14.0,18.0,0.0018676283036005,E241 score_pc10 train top10 drop_delta

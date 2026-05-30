@@ -1598,3 +1598,24 @@ Submission policy:
 2. The learned E237 file remains the only defensible Q3 decisive-cell JEPA sensor, because it is OOF-trained and has a pre-registered decoder.
 3. If E237 public wins, rebuild from OOF decisive-cell targets rather than from scalar PC10 top-k rules.
 4. If E237 loses, close the whole current Q3 residual-energy prune family until a new OOF target explains the train/test motif mismatch.
+
+## Update After E242
+
+E242 refines why E237 is still live after E241. The selected E237 file is not an average-OOF-gain winner; it is a high-impact tail discriminator that passes the test-side support/top-cell stress.
+
+Key finding:
+
+- E237 gate pass rows are only `7/120`.
+- Top E237 file rank by OOF gain is `71/120`.
+- OOF gain gate AUC is `0.426043`, so average OOF improvement is not the selector.
+- Top E237 file rank by OOF tail-AUC is `1/120`.
+- OOF tail-AUC gate AUC is `0.958913`.
+- Top E237 file also ranks `1/120` by support gain and Q3 top-cell safety.
+
+Submission policy:
+
+1. Keep the same top E237 file if the next public question is learned Q3 decisive-cell JEPA:
+   `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+2. Do not submit E237 siblings because they look better by average OOF gain.
+3. Do not submit simple residual-PC10 rules; E242 strengthens the distinction between learned high-impact tail labels and scalar residual-energy motifs.
+4. If E237 is submitted, public feedback should update the high-impact Q3 tail-discrimination worldview, not a generic OOF-CV worldview.

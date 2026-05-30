@@ -3695,3 +3695,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - on test, `score_pc10` still overlaps E237 by `14/25` and E230 swing25 by `18/25`, so the motif exists in test geometry even though train OOF does not support it as a harmful-row selector.
 - Interpretation: E240 exposed an under-discriminating local stress gate, not a deployable simple residual-energy law. Residual-PC10 is a visible test motif for the E237/E230 cells, but under current train OOF labels it does not identify rows where Q3 movement should be removed. This makes a simple-PC10 submission unjustified and reclassifies residual-energy as a motif/energy diagnostic rather than a stand-alone translator.
 - Decision: no E241 submission. Keep the fixed E237 file as the only learned Q3 decisive-cell sensor if we want to test that world. Do not materialize E240 simple residual rules unless a new OOF target or public feedback changes this negative.
+
+## E242. E237 OOF-to-Test Transfer Audit
+
+- Observe: after E241, the important remaining question is not whether scalar residual-PC10 works, but whether E237's learned cell policy transfers from OOF evidence to test-side materialization stress.
+- Wonder: is the selected E237 file supported by generic OOF policy quality, by high-impact tail discrimination, or mostly by the graft/actual public-free gate?
+- Method: `analysis_outputs/e242_e237_oof_to_test_transfer_audit.py` reuses E237 materialization/OFF outputs plus E240/E241 summaries. It audits `120` graft-side materialization rows, ranking them by OOF gain, OOF tail AUC, subject win rate, E237 score, support/adverse metrics, and selected-file ranks.
+- Result:
+  - report: `analysis_outputs/e242_e237_oof_to_test_transfer_report.md`.
+  - E237 gate pass rows: `7/120`.
+  - top E237 file rank by mean OOF gain is weak: `71/120`; OOF gain vs E237 score Spearman is only `0.108953`, and OOF gain gate AUC is `0.426043`.
+  - top E237 file rank by OOF tail-AUC is strong: `1/120`; OOF tail-AUC gate AUC is `0.958913`.
+  - top E237 file is also rank `1/120` by support gain and Q3 top-cell safety, and rank `3/120` by expected/actual gain versus E224.
+  - E240 simple-PC10 remains disqualified by E241: it has good test stress but train top-10 drop delta `+0.001867628`.
+- Interpretation: E237's transferable object is not average OOF loss improvement. It is high-impact Q3 risk-tail discrimination plus test-side support/top-cell stress. That explains why simple PC10 fails despite looking good locally: it mimics the test motif without the learned tail-label support.
+- Decision: no E242 submission. Do not choose E237 siblings by OOF rank alone. If testing this branch publicly, use the already locked top E237 file and interpret it as a learned high-impact Q3 tail sensor, not a generic OOF-best policy.
