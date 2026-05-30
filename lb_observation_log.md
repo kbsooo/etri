@@ -402,3 +402,19 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - best final decision: `too_small_to_submit`.
 - interpretation: train-supervised row-action benefit is a better hidden target than current-test pseudo-label identity, but it still does not transfer into a robust E247-current probability edit.
 - next experiment: use train row-action benefit as an energy/context signal, or build a sharper train-to-test bridge, before spending another public LB slot.
+
+## Public-Free Observation: E288
+
+- submission files: none produced.
+- public LB: not submitted.
+- reason not submitted: E288 is a representation/stress audit and failed local label gates.
+- local observation:
+  - stories: `28`;
+  - context views: `3`;
+  - label stress rows: `12`;
+  - label-gate rows: `0`;
+  - best mean label delta: `+0.002092612`;
+  - best reconstruction view: `family_jepa_context/dateblock5`, mean story R2 `0.385944`;
+  - top reconstructable payday/cash-flow story: `paymonth_start_post3_late_shopping`, R2 `0.813342`.
+- interpretation: social/cash-flow lifestyle states are real as hidden diary states, but the broad bundle is not a public-ready probability representation.
+- next experiment: target-specific bundle slicing with per-target null governance, focusing on dateblock-stable S4/Q3/S2 improvements rather than shared 7-target bundle features.

@@ -4380,3 +4380,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - mobility Q3 transfers were adverse on the current tensor: actual means `+0.000037869` and `+0.000060097`.
 - Interpretation: the social/q-sleep row-action target is not empty; train OOF can learn some row placement. The bottleneck is transfer and resolution: train-positive gates do not become a test-side movement that beats matched nulls with enough margin. Payday/cognitive-money context also did not become a train-gated transfer policy in this run.
 - Decision: no E287 public submission. The result strengthens "row-alignment transfer" as the current bottleneck and weakens further public-LB spending on tiny q-sleep/Q3 social edits unless they pass a matched-null governor first.
+
+## E288. Lifestyle-Bundle JEPA Audit
+
+- Observe: E287 still treated social context as an action gate. The objective asks for a larger hidden human state, and E280 had already ranked multiple stories: commute/workday, bright light, single-app monotony, app entropy, heart stress, payday/month-start shopping, and cash-stress.
+- Wonder: are individual stories weak because sleep responds to a bundle of lifestyle states rather than one scalar story?
+- Method: `analysis_outputs/e288_lifestyle_bundle_jepa_audit.py` selects the top `28` E280 human/social/cash-flow stories and treats their subject-normalized scores as the hidden target bundle. Three context views (`family_jepa_context`, `raw_human_context`, `hybrid_context`) predict this bundle under subject/dateblock OOF. The predicted bundle is compressed into PCs/clusters and tested on label CV against matched row/subject/dateblock shuffles. No public LB and no submission.
+- Result:
+  - stories: `28`;
+  - context views: `3`;
+  - label stress rows: `12`;
+  - label-gate rows: `0`;
+  - best mean label delta: `+0.002092612`.
+  - reconstruction is real in dateblock view: `family_jepa_context/dateblock5` mean story R2 `0.385944`, positive R2 rate `0.928571`; top stories include `heart_stress_late` R2 `0.852864`, `paymonth_start_post3_late_shopping` R2 `0.813342`, and `app_entropy_scattered_day` R2 `0.739960`.
+  - label translation fails: best label stress is `raw_human_context/dateblock5/cluster6`, mean delta `+0.002093`; it improves S4 by `-0.009653`, S2 by `-0.003008`, and Q3 by `-0.002447`, but worsens enough other targets that the mean is positive.
+  - cluster geometry is not collapsed in the dateblock view: family context k4 train/test JS `0.037356`, subject NMI `0.035200`, self-transition `0.515909`. Subject-split raw context has high subject NMI and large label damage, suggesting shortcut risk.
+- Interpretation: broad lifestyle state is recoverable as a human diary representation, including payday/cash-flow and heart-stress stories. But the full bundle is not a safe downstream representation; it mixes useful target-specific signals with subject/block identity and opposite target effects. The "big hidden state" exists descriptively, but the probability translator must be target-specific or residualized.
+- Decision: no E288 public submission. Next branch should not use a broad lifestyle bundle as a feature block. It should isolate target-specific bundle slices, especially dateblock-stable S4/Q3/S2 clusters, and require per-target matched-null survival before any edit.

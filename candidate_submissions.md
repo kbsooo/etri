@@ -2583,3 +2583,36 @@ Next submission candidate requirement:
 - train-supervised row-action benefit can be used as an energy feature, but not yet as a direct edit;
 - a future candidate must beat matched nulls in p90 and worst-mode dominance, not only show negative mean;
 - public LB should stay unused until that governor passes.
+
+## Update After E288 Lifestyle-Bundle JEPA Audit
+
+Current submission policy remains: **no new public submission.**
+
+What was tested:
+
+- broad hidden lifestyle bundle from `28` human/social/cash-flow stories;
+- raw day context, family JEPA context, and hybrid context;
+- dateblock and subject reconstruction;
+- PC and cluster label features;
+- matched row/subject/dateblock null governance.
+
+What was learned:
+
+- The lifestyle bundle is reconstructable, especially under dateblock OOF.
+- Payday/month-start and cash-flow stories are not imaginary: `paymonth_start_post3_late_shopping` is strongly reconstructable.
+- But broad bundle label translation fails. The best mean label delta is `+0.002092612`, and label-gate rows are `0`.
+- The best clusters help some targets such as S4/Q3/S2, but the shared representation damages enough other targets to be unsafe.
+
+Do not submit:
+
+- any E288-derived broad lifestyle-bundle candidate. The audit intentionally produced no submission file.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+Next submission candidate requirement:
+
+- do not add broad lifestyle bundle features wholesale;
+- test target-specific bundle slices with per-target matched-null stress;
+- only materialize a file if a target-specific slice beats nulls without increasing average tail risk.

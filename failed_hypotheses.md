@@ -2133,3 +2133,12 @@
 - Implementation issue possible: medium. The train target is small, action families are narrow, and models are intentionally simple. A sharper bridge may still work, especially if it predicts transfer energy rather than directly edits probabilities.
 - Bottleneck implication: the active bottleneck is train-to-test row-alignment transfer, not lack of human/social hypotheses. Local train labels can identify useful actions, but current test placement is not certified.
 - Do not repeat: submitting `submission_e287_rowalign_*` files or treating negative mean movement as enough without p90 and worst-mode matched-null dominance.
+
+## FH237. Broad lifestyle-story bundles can be added as a shared label representation
+
+- Failed hypothesis: individual human stories may be weak because the true hidden state is a broad bundle of commute, bright light, app entropy, payday/cash-flow, heart stress, and routine stories; adding the bundle as a shared latent should improve labels.
+- Observed result: E288 reconstructs the bundle well under dateblock OOF, but all label gates fail. `family_jepa_context/dateblock5` has mean story R2 `0.385944`, yet broad label deltas remain positive. The best label-stress row is `raw_human_context/dateblock5/cluster6` with mean delta `+0.002092612` despite improving S4/Q3/S2 slices.
+- Why discard: reconstructability is not predictive health. The broad latent mixes target-specific useful states with adverse target effects and subject/block identity.
+- Implementation issue possible: medium. The bundle may still work if residualized or split by target/noise regime. Low for blocking wholesale feature use because matched-null label stress directly rejects the broad representation.
+- Bottleneck implication: the hidden human state exists, but it is not one axis shared by all targets. The next useful step is target-specific lifestyle-state slicing, not broader story aggregation.
+- Do not repeat: adding broad lifestyle PCs/clusters to all targets or treating high story reconstruction R2 as a submission certificate.

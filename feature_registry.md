@@ -2256,3 +2256,29 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - require test matched-null p90 and worst-mode dominance before public LB.
 - Failure condition:
   - if a row-action model is train-positive but test p90 remains below `1e-5` or worst-mode dominance is below `0.8`, keep it as energy/context, not as a probability edit.
+
+## E288 Lifestyle-Bundle JEPA Policy
+
+- Target hypothesis tested: multiple human/social/cash-flow stories can form a hidden lifestyle state that is more useful than single-story features.
+- Feature/representation source:
+  - top `28` E280 story scores;
+  - E262 raw day human/social/sensor context;
+  - E273 family JEPA context and diary-state features;
+  - cash-flow/payday/month-start story scores from E270.
+- Validation result:
+  - context views: `3`;
+  - label stress rows: `12`;
+  - label-gate rows: `0`;
+  - best mean label delta: `+0.002092612`;
+  - best reconstruction: `family_jepa_context/dateblock5`, mean story R2 `0.385944`.
+- Updated registry status:
+  - broad lifestyle bundle is approved as a diagnostic hidden-state representation.
+  - broad lifestyle bundle is not approved as a shared downstream feature or submission translator.
+  - cash-flow/payday late-shopping remains a real story coordinate, but not a direct feature block.
+  - dateblock-stable S4/Q3/S2 cluster slices are candidates for future target-specific audits.
+- Adopt rule for future lifestyle-bundle features:
+  - split by target group before label modeling;
+  - report targetwise benefit and harm separately;
+  - require per-target matched-null dominance, not only reconstructability or cluster interpretability.
+- Failure condition:
+  - if a bundle has high story R2 but positive mean label delta, classify it as descriptive diary state rather than predictive representation.

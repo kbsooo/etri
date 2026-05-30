@@ -3256,6 +3256,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E287. If E287-like q3_only were submitted and won, it would imply the local governor is over-conservative for small Q3-only edges; if it loses, it would confirm the transfer-resolution bottleneck.
 - 제출 전략: none from E287. Next branch should either learn a sharper train-to-test bridge, or use the train row-action target as an energy feature rather than a direct probability edit.
 
+### H288: broad lifestyle-story bundles recover the hidden human state and improve labels
+
+- 상태: supported as reconstructable diary state; rejected as broad downstream label feature.
+- 왜 그럴듯한가: individual stories may be too narrow. Human sleep may respond to combined commute/workday rhythm, bright light, app entropy, phone-in-bed, heart stress, and payday/month-start behavior. A JEPA-style bundle target should recover a larger hidden lifestyle state than any scalar story.
+- 맞다면: multi-story bundle predictions should be reconstructable under subject/dateblock OOF, have healthy latent geometry, improve 7-target CV beyond subject/calendar baseline, and beat matched row/subject/dateblock shuffles.
+- 틀리다면: reconstruction may be strong, but downstream label deltas will be positive on average, target effects will conflict, or subject-split latents will show shortcut/identity risk.
+- 최소 실험: `analysis_outputs/e288_lifestyle_bundle_jepa_audit.py`.
+- 관측: `28` stories and `3` context views were tested. Dateblock reconstruction is strong (`family_jepa_context` mean R2 `0.385944`, positive R2 rate `0.928571`) and includes cash-flow/payday stories (`paymonth_start_post3_late_shopping` R2 `0.813342`). But label gates are `0/12`; best mean delta is still positive at `+0.002092612`. Best target deltas exist for S4/Q3/S2, but the broad representation damages other targets.
+- 성공/폐기 기준: reject broad-bundle-as-feature. Keep lifestyle bundle as diagnostic hidden state and split it into target-specific/residualized states before materialization.
+- public LB 관측 반응: no public LB should be spent on E288. If a broad-bundle file won publicly despite this, it would imply local matched-null/mean-target governance is too conservative or public subset is concentrated in the S4/Q3/S2-improved clusters.
+- 제출 전략: none. Next branch should test target-specific bundle slices with per-target nulls, especially dateblock-stable clusters where S4/Q3/S2 improve without averaging across adverse targets.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

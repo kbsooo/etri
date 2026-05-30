@@ -2910,3 +2910,29 @@ Decision:
 - Do not submit any E287 file.
 - Public LB is preserved.
 - E287 separates signal from translator: train row-action placement has signal, but current train-to-test materialization is too small or unstable to spend a public slot.
+
+## E288 Lifestyle-Bundle JEPA Governor
+
+Question: can a broad bundle of human/social/cash-flow stories become a stable hidden lifestyle state that improves labels beyond matched nulls?
+
+Method: `analysis_outputs/e288_lifestyle_bundle_jepa_audit.py`.
+
+- Hidden target: top `28` E280 story scores, including commute/workday, bright-light, routine/app-entropy, heart-stress, and payday/month-start cash-flow stories.
+- Context views: E273 family JEPA context, E262 raw human/day context, and a hybrid view.
+- Latent stress: subject/dateblock OOF reconstruction, PCA geometry, k4/k6/k8 cluster train/test JS, subject NMI, self-transition.
+- Label stress: subject/dateblock CV with PC or cluster latent added to subject/calendar baseline, compared to row/subject/dateblock shuffles.
+
+Result:
+
+- label stress rows: `12`.
+- label-gate rows: `0`.
+- best mean label delta: `+0.002092612`.
+- strongest reconstruction: `family_jepa_context/dateblock5`, mean story R2 `0.385944`, positive R2 rate `0.928571`.
+- strongest story reconstructions include `heart_stress_late` R2 `0.852864`, `paymonth_start_post3_late_shopping` R2 `0.813342`, and `app_entropy_scattered_day` R2 `0.739960`.
+- best label-stress row: `raw_human_context/dateblock5/cluster6`, dominance `0.972222` versus nulls but actual mean `+0.002093`, so it fails because it worsens the average target loss.
+
+Decision:
+
+- Do not submit any E288 file.
+- Public LB is preserved.
+- The broad human lifestyle state is real as representation but unsafe as a shared label feature. Future validation should be target-specific and must not average useful S4/Q3/S2 slices with adverse Q/S axes.
