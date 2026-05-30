@@ -1566,3 +1566,29 @@ Result:
 - anti-toward controls do not pass frontier gates, so the public-prior side is not completely polarity-free.
 
 Stress implication: E210 is a hard-tail localization sensor, not an E209 replacement. It strengthens the diagnosis that the remaining JEPA bottleneck is target-specific probability translation, especially Q3 versus S4 dependency conflict.
+
+## Update After E211
+
+E211 stress-tests the target-specific fix implied by E210: keep Q3 raw, dependency-gate only S4.
+
+- script: `analysis_outputs/e211_target_specific_jepa_gate.py`.
+- report: `analysis_outputs/e211_target_specific_jepa_gate_report.md`.
+- selected: `analysis_outputs/e211_target_specific_jepa_gate_selected.csv`.
+
+Stress dimensions:
+
+- OOF and targetwise deltas versus stage2 and ungated E209.
+- repeated subject-half stability.
+- geometry-fold stability.
+- raw/toward/closer/soft/anti/zero S4 gate controls.
+- E95/E154/mixmin frontier graft stress.
+
+Result:
+
+- Q3 raw + S4 toward improves OOF over ungated E209: `-0.001318` versus `-0.001273`.
+- Q3 raw + S4 closer is nearly tied locally: `-0.001315`.
+- both keep subject-half win rates above `0.96` and geometry win rate `0.875`.
+- geometry delta is weaker than raw E209 under the E211 geometry seed but remains clearly negative: toward `-0.000659`, closer `-0.000620`.
+- selected E154 closer candidate has focus delta `-0.000685`, top1/abs `0.229657`, and bad-span energy `0.348576`.
+
+Stress implication: E211 is a real improvement over the blunt E210 gate. It supports target-specific translation: Q3 should preserve JEPA body, while S4 can be dependency-gated. This is currently the best structured JEPA follow-up family.

@@ -1552,6 +1552,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: selected closer-gated Q3/S4 files improve public-prior hard-tail anatomy, but weaken local OOF and geometry versus E209. S4 dependency alignment is locally coherent; Q3 dependency alignment is conflicted.
 - Policy: use F179 as a follow-up sensor, not a replacement feature. It is useful after E209 feedback if the next question is whether public hard-tail cells demand dependency filtering.
 
+### F180. E211 target-specific JEPA gate
+
+- Hidden structure: Q3 and S4 share the E208/E209 JEPA source but not the same translation law. Q3 behaves like a residual-body axis; S4 behaves like a target-dependency axis.
+- Candidates: Q3 raw scale, S4 dependency mode, S4 dependency scale, E95/E154 anchor scale, subject-half stability, geometry stability, and hard-tail top1 concentration.
+- Label vs split test: valid as a feature policy because Q3/S4 target-specific gates are selected through OOF, subject-half, geometry, and anti/zero controls. Invalid as proof of public improvement until E211 public feedback is observed.
+- Current evidence: Q3 raw + S4 toward improves OOF versus E209 and keeps geometry negative. The selected E154/E95 files pass frontier gates with lower top1/abs than E209.
+- Policy: prefer F180 over F179 for target-dependency follow-up. Keep E209 as the raw control and E211 as the target-specific gated candidate.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

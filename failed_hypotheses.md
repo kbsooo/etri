@@ -1664,3 +1664,12 @@
 - Implementation issue possible: medium. A better conditional target model or Q3/S4-specific gate could preserve more body. Low for rejecting the current strict-replacement claim because the OOF/geometry deltas are direct.
 - Bottleneck implication: the bottleneck is target-specific translation. S4 can use dependency alignment; Q3 needs a different gate or public-tail sensor.
 - Do not repeat: promoting E210 ahead of E209 without an explicit hard-tail localization question or public feedback from E209.
+
+## FH185. A single Q3/S4 dependency gate is the right JEPA translator
+
+- Failed hypothesis: Q3 and S4 should use the same dependency gate because both are E209 JEPA-derived targets.
+- Observed result: E211 shows the better policy is split. Q3 raw movement carries the main local body, while S4 benefits from dependency-toward/closer gating. Q3 raw + S4 toward improves OOF to `-0.001318`, better than ungated E209's `-0.001273`, whereas E210's shared closer gate fell to `-0.000482`.
+- Why discard: target grouping by "Q3/S4 both JEPA" hides different noise geometry. Q3 is residual-body dominated; S4 is dependency-consistency dominated.
+- Implementation issue possible: low for this rejection because E211 directly compares raw/gated/zero/anti S4 controls while holding Q3 policy explicit. Medium for public inference until LB feedback arrives.
+- Bottleneck implication: the remaining JEPA bottleneck is not simply "gate or do not gate"; it is per-target translation.
+- Do not repeat: applying one dependency gate across Q3 and S4 without a target-specific justification.

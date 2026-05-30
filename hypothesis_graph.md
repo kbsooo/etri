@@ -2412,6 +2412,18 @@ target co-occurrence
 - public LB 관측 반응: E210 win after E209 tie/loss strengthens "public tail wanted target-dependency filtering." E210 loss weakens the dependency gate and says E209's raw Q3 body was useful despite target-manifold tension.
 - 제출 전략: do not submit E210 before E209 if the goal is a clean JEPA test. Submit E210 only as a follow-up sensor for target-dependency hard-tail localization.
 
+### H205. Q3 wants raw JEPA body, S4 wants dependency-consistent JEPA movement
+
+- 상태: 지지 by E211; needs public sensor.
+- 왜 그럴듯한가: E210's target anatomy showed S4 dependency-aligned cells are locally favorable, while Q3 dependency alignment removes useful residual body. A shared Q3/S4 gate should therefore underperform a target-specific policy.
+- 맞다면: keeping Q3 raw while dependency-gating S4 should improve or preserve OOF relative to ungated E209, pass subject/geometry stress, and improve frontier hard-tail anatomy relative to raw E209 without collapsing into the E210 Q3 body loss.
+- 틀리다면: S4 gating would lose OOF/geometry, anti/zero controls would match the selected policies, or public-prior hard-tail anatomy would not improve enough to justify the added gate.
+- 최소 실험: `analysis_outputs/e211_target_specific_jepa_gate.py`.
+- 관측: Q3 raw + S4 toward improves OOF to `-0.001318` versus E209 `-0.001273`; Q3 raw + S4 closer gives `-0.001315`. Q3 target delta stays `-0.005775`, and S4 improves from raw `-0.003134` to toward `-0.003451`. Geometry remains negative with win rate `0.875`.
+- 성공/폐기 기준: supported locally. Public support requires an E211 E95/E154 sensor to beat or match E209. If E211 loses while E209 wins, S4 dependency gate is overfit. If E211 wins while E209 loses/ties, S4 dependency filtering becomes the live translation law.
+- public LB 관측 반응: E211 win strengthens target-specific JEPA translation. E211 loss weakens S4 dependency gating, not raw Q3 JEPA.
+- 제출 전략: top sensor is `submission_e211_jepa_q3rawcloser_q3s1p0_s4s1p0_e154_a0p5_c20eee9c.csv`; clean E95 sensor is `submission_e211_jepa_q3rawtoward_q3s1p0_s4s1p0_e95_a0p5_e4e44d91.csv`.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -1072,3 +1072,22 @@ Selected files:
 Submission policy:
 
 E209 remains the cleaner answer to "does actual JEPA help?" E210 is the next sensor only if the question is "does public hard-tail prefer target-dependency filtering over the raw JEPA Q3/S4 body?" A good E210 score would credit dependency-tail localization. A bad E210 score would mean the gate removed useful Q3 body or followed a train-only target-dependency shortcut.
+
+## Update After E211
+
+E211 supersedes E210 for target-dependency follow-up because it keeps Q3 raw and gates only S4.
+
+Selected files:
+
+1. Maximum E211 survival / E154-confounded:
+   `analysis_outputs/submission_e211_jepa_q3rawcloser_q3s1p0_s4s1p0_e154_a0p5_c20eee9c.csv`
+2. E154 near-twin with S4 toward:
+   `analysis_outputs/submission_e211_jepa_q3rawtoward_q3s1p0_s4s1p0_e154_a0p5_50e6b7ec.csv`
+3. Clean E95 current-frontier sensor with S4 toward:
+   `analysis_outputs/submission_e211_jepa_q3rawtoward_q3s1p0_s4s1p0_e95_a0p5_e4e44d91.csv`
+4. Clean E95 current-frontier sensor with S4 closer:
+   `analysis_outputs/submission_e211_jepa_q3rawcloser_q3s1p0_s4s1p0_e95_a0p5_8e3dc02d.csv`
+
+Submission policy:
+
+If using one public slot for the strongest JEPA-derived structured hypothesis, E211 E154 closer is now the top candidate. If isolating the current-frontier JEPA hypothesis, use E211 E95 toward before E210. E209 remains useful as the ungated raw-JEPA control.

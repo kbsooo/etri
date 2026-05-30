@@ -3246,3 +3246,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - cell anatomy is asymmetric: S4 closer/toward cells are locally useful, while Q3 not-closer/not-toward cells are often more useful than the dependency-aligned Q3 cells.
 - Interpretation: target dependency is a real diagnostic for S4 and a public-tail localizer, but not a clean replacement for E209. E210's selected files are high-information sensors for the hypothesis "E209 loses because public tail wants target-dependency filtering." They are not safer expected-score submissions than E209 by local evidence.
 - Decision: do not supersede E209 with E210 automatically. If the next public slot should isolate actual JEPA, use E209. If the next question is specifically hard-tail dependency localization, use the E210 e95/e154 closer pair and decode wins/losses as target-dependency gate evidence.
+
+## E211. Target-Specific JEPA Gate
+
+- Observe: E210 split the targets: S4 dependency-aligned cells were locally useful, but Q3 dependency filtering cut away useful JEPA body. A single gate over both Q3 and S4 is therefore too blunt.
+- Wonder: can we preserve the E209 Q3 residual body while applying dependency geometry only to S4, producing a better compromise between local JEPA validity and public hard-tail safety?
+- Method: `analysis_outputs/e211_target_specific_jepa_gate.py` starts from the E209 `q3_center_c010_s4_rank` movement. Q3 is kept raw at scale `0.75` or `1.0`; S4 is scanned over raw/toward/closer/soft/anti/zero dependency gates and scales. The script evaluates OOF, repeated subject halves, geometry folds, target deltas, and E95/E154/mixmin frontier graft stress.
+- Result:
+  - report: `analysis_outputs/e211_target_specific_jepa_gate_report.md`.
+  - best local policy: Q3 scale `1.0`, S4 `toward` scale `1.0`, OOF delta `-0.001318` versus E209 ungated `-0.001273`.
+  - best frontier selected file: `analysis_outputs/submission_e211_jepa_q3rawcloser_q3s1p0_s4s1p0_e154_a0p5_c20eee9c.csv`.
+  - clean E95 sensor: `analysis_outputs/submission_e211_jepa_q3rawtoward_q3s1p0_s4s1p0_e95_a0p5_e4e44d91.csv`.
+  - target deltas confirm the split: Q3 stays at `-0.005775`, while S4 improves from raw `-0.003134` to dependency-toward `-0.003451`.
+- Interpretation: E211 is the first JEPA branch that improves on E209 locally while adding a target-specific gate. It does not solve the 0.54 gap, but it gives a cleaner hidden-world statement: Q3 wants JEPA residual body; S4 wants dependency-consistent JEPA movement.
+- Decision: E211 now outranks E210 as the dependency-tail follow-up and is competitive with E209 as the next JEPA-derived submission. Use the E154 closer file for maximum survival, or the E95 toward file for a cleaner current-frontier sensor.
