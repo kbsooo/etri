@@ -2831,3 +2831,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - the favorable branch is decided by many high-impact cells: E176 averages `601.7` differing moved cells, E154 `282.7`, and E144 `164.0`.
 - Interpretation: E183 does not identify the next best file. It identifies a stronger bottleneck: the pressure-world favorable branches are exactly the cells where visible/subject/flank priors prefer the opposite labels. Current visible priors are therefore branch anti-selectors for this E182 problem, not hidden-world selectors.
 - Decision: no new submission. Do not rank E176/E154/E144 by visible-prior branch preference. The next useful local experiment needs a non-visible decisive-cell representation or a pre-registered public-feedback decoder for the chosen worldview.
+
+## E184. Public-Anchor Motif Pressure Selector
+
+- Observe: E183 killed visible/subject/flank priors as pressure-branch selectors, but that does not prove no public-free-ish cell motif exists. Known public transitions already tell us which candidate support directions were aggregate-public-compatible.
+- Wonder: can a metadata-only/non-visible cell motif learned from known public winners and losers predict whether support direction is public-compatible, and then select the favorable E182 pressure branch?
+- Method: `analysis_outputs/e184_public_anchor_motif_pressure_selector.py` trains logistic motif models on E180 known public anchor cells. Labels are pair-level public direction (`support direction compatible` for wins, incompatible for losses), weighted by cell swing and balanced by pair. It evaluates leave-one-pair and leave-one-family stress before scoring E183 pressure branches. Feature sets range from core row/block/target metadata to public-axis flags and swing. It writes no submission.
+- Result:
+  - report: `analysis_outputs/e184_public_anchor_motif_pressure_selector_report.md`.
+  - best direct pair-LOO model is `meta_public_axis_plus_swing`, but sign accuracy is only `0.333` and AUC `0.425`.
+  - family-level best direct accuracy/AUC are only `0.600` / `0.178`.
+  - several models show polarity-inverted signals, but the inversion is not stable enough: pair best-polarity can reach `1.000`, while family best-polarity remains only `0.600`.
+  - live branch scores are feature-set unstable: `meta_core` and `meta_public_axis_plus_swing` reject the favorable branch for E176/E154/E144, while `meta_public_axis` and `meta_public_axis_plus_support_label` favor all three.
+- Interpretation: this is another selector-collapse result. Known-public metadata motifs contain signal, but its polarity and family transfer are not stable enough to rank E176/E154/E144. Public-axis features can flip the live branch decision without passing LOO/LOFO, so they are not action-grade.
+- Decision: no new submission. The next decisive-cell representation cannot be a shallow public-anchor metadata classifier. Either build a representation that predicts pressure-branch labels from a held-out structural target, or choose a worldview and attach a public-feedback decoder.

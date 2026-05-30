@@ -2088,6 +2088,18 @@ target co-occurrence
 - public LB 관측 반응: E176/E154/E144 win despite E183 visible-prior rejection means the winning branch is hidden from current train-derived priors. A loss for all three would say the pressure-world favorable branches were feasible but not public-real.
 - 제출 전략: no E183 submission. Treat visible priors as diagnostics and possible anti-selectors for pressure branches. If submitting E176/E154/E144, do it as an explicit worldview sensor with a decoder, not as visible-prior-certified expected improvement.
 
+### H178. A shallow known-public metadata motif can select E182 pressure branches
+
+- 상태: 반증됨 by E184.
+- 왜 그럴듯한가: E183 only killed train-derived visible priors. Known public transitions include aggregate signs for mixmin, E95, E101, and E72, so their moved-cell metadata might encode a non-visible public-compatible motif.
+- 맞다면: leave-one-pair and leave-one-family motif models should recover known public support-direction compatibility with stable polarity, and the same model should choose one coherent live pressure branch rather than flipping by feature set.
+- 틀리다면: direct LOO/LOFO scores should be weak or polarity-inverted, and live branch preference should depend on fragile feature choices such as public-axis flags or swing.
+- 최소 실험: `analysis_outputs/e184_public_anchor_motif_pressure_selector.py`.
+- 관측: best direct pair-LOO model has sign accuracy `0.333` and AUC `0.425`; best direct family accuracy/AUC are `0.600` / `0.178`. Polarity-inverted pair accuracy can reach `1.000`, but family best-polarity accuracy is only `0.600`. Live pressure-branch preference is unstable: core and swing feature sets reject all favorable branches, while public-axis feature sets favor all three.
+- 성공/폐기 기준: 폐기. A future version needs pre-specified polarity and stable family transfer, not only pair-level inversion after seeing results.
+- public LB 관측 반응: if a future E176/E154/E144 public score matches one of the E184 feature-set branch preferences, it should not validate E184 unless the polarity/feature-set rule was fixed before feedback.
+- 제출 전략: no E184 submission. Do not use shallow public-anchor metadata motif scores to rank E176/E154/E144.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

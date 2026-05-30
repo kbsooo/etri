@@ -1439,3 +1439,12 @@
 - Implementation issue possible: medium. E183 depends on E182 pressure-world solutions and train-derived priors, not true public labels. Low for the narrow failure because the same prior machinery rejects the favorable branch across all candidates and scenarios.
 - Bottleneck implication: the current plateau is not solved by reusing visible priors as a gate. The missing object is a different decisive-cell representation or public feedback that identifies the pressure branch.
 - Do not repeat: ranking E176/E154/E144 by visible-prior branch preference, or claiming a candidate is certified because its full body has favorable visible-prior expectation.
+
+## FH160. A shallow known-public metadata motif can select live pressure branches
+
+- Failed hypothesis: known public transition cells contain enough target/context/public-axis metadata to learn a public-compatible support-direction motif, and that motif can choose the favorable E182 pressure branch.
+- Observed result: E184's best direct pair-LOO model has sign accuracy `0.333` and AUC `0.425`; best direct family accuracy/AUC are `0.600` / `0.178`. Polarity inversion can make some pair-level results look strong, but family best-polarity accuracy is only `0.600`. Live branch preference is unstable: `meta_core` and `meta_public_axis_plus_swing` reject all favorable branches, while `meta_public_axis` and `meta_public_axis_plus_support_label` favor all three.
+- Why discard: a selector whose polarity must be chosen after seeing held-out results and whose live decision flips by feature set is not a usable hidden-world representation. It is public-anchor residue, not a stable branch law.
+- Implementation issue possible: medium. Cell-level labels are aggregate pair labels and are noisy by construction. Low for the failure of this exact approach because both pair and family stress were run before using live branch scores.
+- Bottleneck implication: the missing decisive-cell representation is not a shallow metadata classifier over known public anchors. It likely needs a structural target or new public feedback.
+- Do not repeat: using known-public metadata motif scores, inverted motif scores, or public-axis cell flags as a direct E176/E154/E144 ranking rule.

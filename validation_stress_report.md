@@ -983,3 +983,16 @@ E183 asks whether the favorable E182 pressure branches are visible from train-de
 - E176 global prior prefers the favorable branch in `1.000` of scenarios, but all local/visible priors prefer the adverse branch.
 
 Stress implication: E183 turns visible priors from candidate selectors into anti-selector diagnostics for the current pressure-world problem. They can still explain bodies and risks, but they cannot choose the favorable hidden branch for E176/E154/E144. Any next submission must be framed as a worldview sensor or backed by a new decisive-cell representation.
+
+## Update After E184
+
+E184 tests the first non-visible pressure-branch selector: a known-public metadata motif learned from public-positive and public-negative transitions.
+
+- script: `analysis_outputs/e184_public_anchor_motif_pressure_selector.py`.
+- report: `analysis_outputs/e184_public_anchor_motif_pressure_selector_report.md`.
+- best direct pair-LOO model: `meta_public_axis_plus_swing`, sign accuracy `0.333`, AUC `0.425`.
+- best direct family-level accuracy/AUC: `0.600` / `0.178`.
+- polarity inversion looks tempting but unstable: pair best-polarity accuracy can reach `1.000`, while family best-polarity accuracy stays `0.600`.
+- live branch preferences are feature-set unstable: `meta_core=0.000`, `meta_public_axis=1.000`, `meta_public_axis_plus_support_label=1.000`, `meta_public_axis_plus_swing=0.000`.
+
+Stress implication: a shallow public-anchor metadata motif is not a branch selector. It may encode public-response residue, but the polarity is not stable enough to act on, and adding public-axis flags can flip all live branch decisions without passing the held-out stress. E184 keeps the plateau diagnosis at hidden-label/cell-resolution underidentification.
