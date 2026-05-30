@@ -3304,6 +3304,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E291. If an E291 candidate wins publicly, it would imply the matched-null governor is too conservative for block-level edits; local evidence does not support that risk.
 - 제출 전략: none. The next strategy should learn contrastive true-vs-null placement identity or a target representation that separates real Q3/S4 lifestyle states from generic movement.
 
+### H292: anti-null block rarity separates real lifestyle placement from generic movement
+
+- 상태: partially supported as S4 diagnostic; rejected as current submission translator.
+- 왜 그럴듯한가: E291 failed because matched nulls could mimic plausible block edits. If true lifestyle placement has an invariant, selected blocks should not only be high-score but also be hard to select by row/subject/dateblock score shuffles.
+- 맞다면: contrast-filtered blocks should pass train stress and then reduce candidate-level null strict rate on E247-current submissions.
+- 틀리다면: contrast filters may pass train but test candidates will still either be below selector resolution or blocked by matched nulls.
+- 최소 실험: `analysis_outputs/e292_contrastive_lifestyle_placement_invariant.py`.
+- 관측: `98` contrast rows produced `34` train contrast gates, but `56` materialized candidates and `840` matched nulls produced public-ready `0`. S4 improved relative to E291 in one important way: one old-strict candidate reached null strict rate `0.133333` with p90 `-0.000053`; however mean dominance was only `0.466667`. Q3 promote-scale candidates remained null strict rate `1.000000`.
+- 성공/폐기 기준: reject broad E292 submission. Keep anti-null rarity as a promising S4 diagnostic and a narrow next target.
+- public LB 관측 반응: no public LB should be spent on E292. A public win from the near-miss S4 file would imply the governor is slightly too strict around null strict `0.13`; current evidence still says it is not ready.
+- 제출 전략: none now. Next branch should train a candidate-level null outcome model or focus on S4 lifestyle-bin low-null raw edits with stronger mean-dominance constraints.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

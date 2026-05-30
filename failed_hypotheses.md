@@ -2169,3 +2169,12 @@
 - Implementation issue possible: medium. The block definitions are intentionally simple and hand-built; a learned contrastive block target may still work. Low for blocking exact E291 files because the candidate/null governor directly tests the proposed materialization.
 - Bottleneck implication: the active bottleneck is not lack of human/social stories, not lack of target-specific slices, and not simply row-versus-block granularity. The missing object is a test-visible invariant that separates true lifestyle placement from null placement under the same movement budget.
 - Do not repeat: submitting `submission_e291_lifeblock_*` files or creating more calendar/social block edits without contrastive matched-null evidence.
+
+## FH241. Anti-null block rarity is enough to make lifestyle placement submission-ready
+
+- Failed hypothesis: if E291 fails because matched nulls choose similar blocks, penalizing blocks that are frequently selected by row/subject/dateblock score shuffles should create a public-free submission-ready candidate.
+- Observed result: E292 produces real train contrast (`34/98` gates) but no public-ready candidate. The best S4 near-miss reduces null strict rate to `0.133333`, but mean dominance is only `0.466667`. Q3 promote-scale candidates remain null strict rate `1.000000`.
+- Why discard: anti-null rarity is useful but insufficient. It reduces one failure mode for S4, yet it does not provide enough candidate-level dominance, and it does not rescue Q3 placement at all.
+- Implementation issue possible: medium. E292 uses deterministic contrast scores, not a learned candidate-level null outcome model. A focused S4 null-outcome target may still work. Low for blocking the exact E292 files because the governor directly evaluates the generated tensors.
+- Bottleneck implication: the live branch is now narrower: S4 lifestyle-bin placement has a weak anti-null invariant; Q3 lifestyle placement is still collapsed into generic movement.
+- Do not repeat: submitting `submission_e292_contrastlife_*` files or treating train contrast gates as public-ready without candidate-level null dominance.

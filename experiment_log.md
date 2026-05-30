@@ -4448,3 +4448,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best-looking materialized candidate has mean `-0.000796` or p90 around `-0.000314` depending on rank, but all promote-scale candidates are blocked by matched nulls; public-ready remains `0`.
 - Interpretation: the social/lifestyle block state is real on train. Weekday/weekend and lifestyle-bin structure matters, and payday/month-phase is worth keeping as a diagnostic axis. But the current test materialization still collapses into generic Q3/S4 movement. Coarser blocks alone do not solve placement transfer.
 - Decision: no E291 public submission. The next useful experiment should stop asking only "which rows or blocks receive the existing delta" and instead learn a contrastive test-side invariant: why true Q3/S4 lifestyle states differ from matched null placements with the same target movement.
+
+## E292. Contrastive Lifestyle Placement Invariant Audit
+
+- Observe: E291's best block-state edits were plausible but matched nulls could still strict-promote at rate `1.0`. A useful next step is not another lifestyle story, but an anti-null representation: selected blocks should be high-scoring while also being hard for row/subject/dateblock shuffles to select.
+- Wonder: can real Q3/S4 lifestyle block placement be separated from matched-null placement before materializing a submission?
+- Method: `analysis_outputs/e292_contrastive_lifestyle_placement_invariant.py` reuses E291 block policies and computes per-block null-selection rates under row/subject/dateblock score shuffles. It builds contrast/rareness scores, stress-tests selected train blocks against shuffled contrast scores, and then materializes only contrast-filtered E247-current edits with the same matched-null governor. No public LB was used.
+- Result:
+  - parent block policies: `560`;
+  - contrast rows: `98`;
+  - train contrast gates: `34`;
+  - materialized candidates: `56`;
+  - matched null candidates: `840`;
+  - public-free ready candidates: `0`.
+  - best train contrast policy: `S4_family_jepa_context_dateblock5_cluster6_subject_lifestyle_bin_strong35_subject_cv_contrast_half_bf70`, train delta `-0.014723`, dominance `0.972222`.
+  - Q3 weekday contrast still fails at test because promote-scale candidates keep null strict rate `1.000000`.
+  - S4 contrast does reduce null susceptibility: `submission_e292_contrastlife_S4_family_jepa_context_dateblock5_cluster6_subject_lifestyle_bin_strong35_subject_cv_base_lo_f83c007a.csv` has null strict rate `0.133333`, p90 `-0.000053`, and worst-mode p90 dominance `0.600000`, but mean dominance is only `0.466667`, so it remains blocked.
+- Interpretation: the anti-null idea is partly alive. It does not solve placement, but unlike E291 it can lower null strict rate for S4 lifestyle-bin raw edits. The remaining failure is not story discovery; it is candidate resolution and mean-dominance after aggressive null filtering. Q3 remains more collapsed into generic movement than S4.
+- Decision: no E292 public submission. The next branch should focus narrowly on the near-miss S4 lifestyle-bin low-null family, or learn a stronger contrastive score directly against candidate-level null outcomes rather than block-score null rates.

@@ -3020,3 +3020,32 @@ Decision:
 - Do not submit any E291 file.
 - Public LB is preserved.
 - Coarser social block state is real on train, but block assignment alone does not solve test placement transfer.
+
+## E292 Contrastive Lifestyle Placement Governor
+
+Question: can real lifestyle block placement be separated from matched-null placement before probability materialization?
+
+Method: `analysis_outputs/e292_contrastive_lifestyle_placement_invariant.py`.
+
+- Input: E291 train block policies and E247-current base tensor.
+- Hidden target: blocks that are high-score under the real lifestyle placement model but comparatively rare under row/subject/dateblock score shuffles.
+- Train stress: selected contrast blocks versus shuffled contrast scores.
+- Test stress: E247-current contrast-gated edits versus matched row/subject/dateblock null submissions.
+
+Result:
+
+- contrast rows: `98`.
+- train contrast gates: `34`.
+- materialized candidates: `56`.
+- matched nulls: `840`.
+- public-free ready candidates: `0`.
+- best train contrast delta: `-0.014723076`.
+- old strict-promote candidates: `18`.
+- lowest old-strict null strict rate: `0.133333` on an S4 lifestyle-bin `base_lowmax35/raw/0.50` candidate.
+- Q3 contrast candidates remain mostly null-reproducible; best Q3 p90 candidates have null strict rate `1.000000`.
+
+Decision:
+
+- Do not submit any E292 file.
+- Public LB is preserved.
+- Anti-null filtering is a partial diagnostic success for S4 but not yet a promotion rule.

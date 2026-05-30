@@ -2361,3 +2361,28 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - require candidate-level matched-null dominance, not only train block dominance.
 - Failure condition:
   - if a block-gated candidate has negative local mean/p90 but is blocked by matched nulls, classify it as generic target movement rather than certified hidden block state.
+
+## E292 Contrastive Lifestyle Placement Policy
+
+- Target hypothesis tested: real lifestyle placement differs from matched-null placement by anti-null rarity, not only by high block score.
+- Feature/representation source:
+  - E291 block policy scores;
+  - row/subject/dateblock null-selection rates;
+  - contrast score, rarity score, null-gap score;
+  - E247-current matched-null governor.
+- Validation result:
+  - contrast rows: `98`;
+  - train contrast gates: `34`;
+  - materialized candidates: `56`;
+  - matched row/subject/dateblock nulls: `840`;
+  - public-ready candidates: `0`.
+- Updated registry status:
+  - anti-null rarity is approved as an S4 diagnostic.
+  - anti-null rarity is not approved as a Q3 placement feature.
+  - no E292 contrast feature is approved for direct public submission.
+- Adopt rule for future contrast features:
+  - report null strict rate separately from p90;
+  - do not accept old strict-promote if null strict rate remains high;
+  - treat low-null but low-mean-dominance candidates as near-miss diagnostics, not submissions.
+- Failure condition:
+  - if a contrast candidate remains null strict rate `1.0`, classify it as generic target movement regardless of train contrast dominance.

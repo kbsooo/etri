@@ -471,3 +471,21 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - promote-scale candidates are blocked by matched nulls.
 - interpretation: hidden lifestyle block state is real on train, but direct block-gated E247-current edits are not certified.
 - next experiment: learn a contrastive true-vs-null placement representation before spending another public LB slot.
+
+## Public-Free Observation: E292
+
+- submission files: `analysis_outputs/submission_e292_contrastlife_*.csv`
+- public LB: not submitted.
+- reason not submitted: public LB is scarce, and E292 did not produce a public-free ready candidate.
+- local observation:
+  - contrast rows: `98`;
+  - train contrast gates: `34`;
+  - candidates: `56`;
+  - matched nulls: `840`;
+  - public-free ready files: `0`;
+  - best train contrast delta: `-0.014723076`;
+  - best old-strict null strict rate: `0.133333`;
+  - best low-null candidate p90: `-0.000053`;
+  - best low-null candidate mean dominance: `0.466667`.
+- interpretation: anti-null placement filtering partially works for S4, but not enough to justify public LB. Q3 contrast placement remains null-reproducible.
+- next experiment: focus on candidate-level null-outcome modeling for S4 lifestyle-bin raw edits, or stop the lifestyle-placement branch until a stronger invariant appears.

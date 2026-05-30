@@ -2713,3 +2713,34 @@ Next submission candidate requirement:
 - it must distinguish true lifestyle placement from null placement, not only choose a plausible weekday/weekend or lifestyle-bin block;
 - require matched-null dominance before public testing;
 - treat month/payday phase as a diagnostic state axis until it produces a test-side invariant.
+
+## Update After E292 Contrastive Lifestyle Placement Audit
+
+Current submission policy remains: **no new public submission.**
+
+What was tested:
+
+- anti-null contrast filters on top of E291 lifestyle block policies;
+- block null-selection rate under row/subject/dateblock score shuffles;
+- contrast/rareness block selection before E247-current materialization;
+- matched null submission governor.
+
+What was learned:
+
+- Contrast filtering works on train: `34/98` contrast rows pass train stress.
+- It also partly helps S4 on test: one old-strict S4 lifestyle-bin candidate reduces null strict rate to `0.133333`.
+- But no candidate passes all promotion rules. Best S4 near-miss still has weak mean dominance `0.466667`; Q3 remains mostly null strict rate `1.000000`.
+
+Do not submit:
+
+- any `analysis_outputs/submission_e292_contrastlife_*.csv` file.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+Next submission candidate requirement:
+
+- S4 low-null lifestyle-bin raw edits are now the narrow live branch;
+- require null strict rate below `0.10` and mean dominance at least `0.70`;
+- do not spend public LB on Q3 contrast placement until it stops promoting matched nulls.
