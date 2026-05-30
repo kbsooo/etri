@@ -3025,3 +3025,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - top16 views also place E176 nearest to `e72_vs_e95`; top33 drifts toward `mixmin_vs_a2c8`, but top33 known-pair LOO accuracy is only `0.333333`.
 - Interpretation: row/order/block motif contains real structure but is not a decisive-cell selector. It misses the exact E101/E95 boundary, and E176's top critical cells carry a mild loss-motif warning rather than a clean winner signature. The broader top33 mixmin resemblance is too weak to override that failure.
 - Decision: no new submission. Keep E176 as the next public sensor because E195's information-value argument is still stronger than motif-only nearest-anchor evidence. Do not use motif profiles to certify E176; use them only as an anatomy warning if E176 loses.
+
+## E197. Public Support-Mass Inverse
+
+- Observe: E196 rejects motif-only certification, but it does not quantify what hidden public-label shift would actually make E176 fail.
+- Wonder: can known public LB pairs be rewritten as a support-mass slippage law, and can that law distinguish E176 from repaired-branch alternatives?
+- Method: `analysis_outputs/e197_public_support_mass_inverse.py` rewrites each known public pair as `delta = adverse_sum - q * swing_sum`, where `q` is the aggregate hidden-label support mass for the new submission. It then measures observed slippage versus visible/focus priors and applies the known slippages as analogues to live candidates E176/E174/E172/E166/E154/E144/E155.
+- Result:
+  - report: `analysis_outputs/e197_public_support_mass_report.md`.
+  - E72 known failures have large visible-prior adverse slippage: `-0.071348` for E72-vs-E95 and `-0.120707` for E72-vs-mixmin.
+  - E176 visible-prior support surplus to tie is `0.061761`; focus-prior surplus is `0.094836`.
+  - E176 visible slippage stress: clean-or-better `4/6`, win `4/6`, branch/hard fail `1/6`; it fails only under E72-like adverse slippage.
+  - E172 is slightly safer in this lens (`0.070613` visible surplus), so it remains the same-family safer contrast after E176 tie/small-loss.
+  - E154/E144/E155 are thin-margin branch sensors: visible surplus only `0.010284`/`0.011545`/`0.011227`, with branch/hard fail `4/6`.
+- Interpretation: support-mass inversion is useful as a decoder, not a selector. It strengthens the current read that E176 is the first sensor unless we deliberately believe the next public observation will repeat E72-like adverse slippage.
+- Decision: no new submission. Keep `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` first. If E176 loses, read the loss as E72-like adverse public slippage and route to E172/E154 by band/question rather than tuning another Q2 keep factor.

@@ -1440,6 +1440,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: `0/9` views are action-grade. The best `top4 / sequence_axis_flank` view has LOO accuracy `0.833333` but exact E101/E95 correctness `0`; E176 is nearest to `e72_vs_e95` in top4/top16 views, while top33 nearest winner evidence is weak because top33 LOO accuracy is `0.333333`.
 - Policy: use E196 as a warning/anatomy feature only. Do not demote or promote E176 based on motif nearest-neighbor scores, and do not create motif-gated E176 variants before a new exact-boundary-safe structural target exists.
 
+### F166. E197 public support-mass slippage
+
+- Hidden structure: public LB deltas imply an aggregate hidden-label support mass `q` over moved cells. The gap between observed `q` and visible/focus prior `q` is public slippage.
+- Candidates: known-pair observed q, q-to-tie, q-to-clean-win, visible/focus/nearest support surplus, known-slippage analogue outcomes, branch/hard-fail rate.
+- Label vs split test: valid as a decoder because known public labels are never estimated per-cell; only aggregate public deltas are inverted. Invalid as a selector because E172 can look slightly safer than E176 without answering the same public-world question.
+- Current evidence: E176 visible surplus-to-tie `0.061761`, focus `0.094836`; E72 adverse visible slippages are `-0.071348` and `-0.120707`, exactly the failure condition for E176. E154/E144/E155 visible surpluses are only around `0.010..0.012`.
+- Policy: use as public-feedback decoder and failure attribution. Do not create support-mass-tuned submissions before feedback. If E176 loses, treat it as E72-like adverse slippage and branch rather than tuning Q2 keep.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

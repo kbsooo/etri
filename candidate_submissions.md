@@ -736,3 +736,20 @@ E196 tested a possible last-minute demotion rule: row/order/block/target motif n
 - top33 E176 profiles drift toward `mixmin_vs_a2c8`, but top33 LOO accuracy is only `0.333333`.
 
 This adds a caution, not a priority inversion. E176 is still the first sensor because its public result resolves the broad/Q2-underopen vs binary-world conflict. E196 only says not to claim E176 is certified by motif anatomy.
+
+## Update After E197
+
+The single next public sensor still remains:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+E197 adds a sharper decoder around that choice. Known public pairs were inverted into support-mass slippage:
+
+- E176 visible-prior support surplus to tie: `0.061761`.
+- E176 focus-prior support surplus to tie: `0.094836`.
+- Under visible-prior known-slippage analogues, E176 is clean-or-better in `4/6`, wins in `4/6`, and branch/hard-fails in `1/6`.
+- The only losing analogues are E72-like adverse slippages; E72-vs-E95 gives small loss and E72-vs-mixmin gives branch loss.
+- E172 is slightly safer by this support-mass lens (`0.070613` visible surplus), so it is the same-family safety contrast if E176 lands tie/small-loss.
+- E154/E144/E155 have much thinner visible surplus (`0.010284`/`0.011545`/`0.011227`) and branch/hard-fail in `4/6` analogues.
+
+This does not promote E172 over E176 because E176 is still the higher-information broad/Q2-underopen sensor with a pre-registered decoder. It does change the failure interpretation: an E176 loss should be read as E72-like adverse public slippage, not as generic visible-support failure.

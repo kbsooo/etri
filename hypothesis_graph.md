@@ -2244,6 +2244,18 @@ target co-occurrence
 - public LB 관측 반응: E176 loss would make the top4/top16 E72-like motif warning more relevant. E176 win would show that motif-only nearest anchors missed the public-real broad/Q2-underopen branch. Either way, E196 should not be used post-hoc to tune another same-family file.
 - 제출 전략: no E196 submission. Keep E176 first as an information sensor, but do not claim motif anatomy certifies it.
 
+### H191. Known public LB pairs define a support-mass slippage decoder for live candidates
+
+- 상태: 지지 as decoder by E197; 반증 as standalone submission selector.
+- 왜 그럴듯한가: every moved cell has two hard-label LogLoss deltas. A public pair score can therefore be rewritten as `delta = adverse_sum - q * swing_sum`, exposing how much hidden support mass was actually realized versus visible/focus priors.
+- 맞다면: known successful and failed pairs should have interpretable observed-q slippage, and applying those slippages to E176/E154 should reveal which public-world failure mode each candidate is sensitive to.
+- 틀리다면: observed q will be outside feasible range, slippage analogues will be unstructured, or live candidates will all look identical under the stress.
+- 최소 실험: `analysis_outputs/e197_public_support_mass_inverse.py`.
+- 관측: E72 failures have large adverse visible slippage (`-0.071348`, `-0.120707`). E176 has visible surplus-to-tie `0.061761` and focus surplus `0.094836`; it survives all non-E72 slippage analogues and fails only under E72-like adverse slippage. E154/E144/E155 have thin visible surplus (`0.010284`/`0.011545`/`0.011227`) and branch/hard-fail in `4/6` visible analogues.
+- 성공/폐기 기준: decoder retained because it produces a concrete failure condition. Selector 폐기 because E172 has slightly higher support-mass tolerance than E176 while E176 remains the more informative pre-registered worldview sensor.
+- public LB 관측 반응: E176 win means public slippage was not E72-like; E176 small/branch loss means E72-like adverse slippage is the active hidden variable and same-family keep-factor tuning is blocked.
+- 제출 전략: no E197 submission. Keep E176 first; if E176 ties/small-loses, use E172 as same-family safety contrast by decoder band. If E176 branch-loses or hard-fails, route to E154 or representation search.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

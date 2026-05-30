@@ -1538,3 +1538,12 @@
 - Implementation issue possible: medium. Known public anchors are few and nearest-neighbor geometry is coarse. Low for rejecting this exact shortcut because every view fails the explicit action-grade gate.
 - Bottleneck implication: row/order/sequence motif is not enough by itself. The missing representation must resolve hard-label critical cells at frontier-boundary scale, not merely cluster them by block anatomy.
 - Do not repeat: motif-only nearest-anchor certification, motif-gated E176 variants, or using E176's E72-like top4 motif as a standalone demotion rule.
+
+## FH171. Public support-mass inversion can directly select the next submission
+
+- Failed hypothesis: inverting known public LB pairs into observed support mass is enough to choose the next file by stress score.
+- Observed result: E197 produces a useful slippage decoder but not a clean selector. E172 has slightly higher visible support surplus than E176 (`0.070613` vs `0.061761`), while E176 remains the more informative broad/Q2-underopen sensor. E166 has strong focus stress but hard-fails under E72-vs-mixmin slippage. E154/E144/E155 are thin-margin branch sensors.
+- Why discard: the support-mass score mixes two quantities: expected-score safety and information value. A safer same-family contrast can score better without asking the live broad/Q2-underopen question. A broad safety-atlas falsification sensor can score well but carry too much E72-like tail.
+- Implementation issue possible: low for rejecting selector use; the algebra is direct. Medium for absolute slippage values because public subset composition is still hidden.
+- Bottleneck implication: public LB observations can define failure modes, but they do not remove hidden-world underidentification. We still need public sensor feedback or a stronger decisive-cell representation.
+- Do not repeat: ranking candidates solely by support surplus, clean-or-better rate, or slippage stress score.

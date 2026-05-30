@@ -2620,3 +2620,33 @@ E184 이후에도 제출 후보 순위는 바뀌지 않는다.
 다음으로 가장 정보량이 큰 행동:
 
 제출한다면 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`다. E196은 E176 실패 시 해석에 쓸 warning이지, E176 제출 전 priority를 뒤집는 근거가 아니다.
+
+## E197 업데이트: E176이 지는 세계는 더 좁아졌다
+
+내가 발견한 가장 이상한 점:
+
+`visible prior만 보면 E176은 충분히 이길 것처럼 보인다. 그런데 E72도 visible prior로는 좋아 보였고 public에서 크게 죽었다. 차이는 평균 support가 아니라 public slippage다.`
+
+실험:
+
+- `analysis_outputs/e197_public_support_mass_inverse.py`
+- report: `analysis_outputs/e197_public_support_mass_report.md`
+
+결과:
+
+- known pair를 `delta = adverse_sum - q * swing_sum`으로 역분해했다.
+- E72-vs-E95 visible slippage: `-0.071348`
+- E72-vs-mixmin visible slippage: `-0.120707`
+- E176 visible surplus-to-tie: `0.061761`
+- E176 focus surplus-to-tie: `0.094836`
+- E176 visible stress: clean-or-better `4/6`, win `4/6`, branch/hard fail `1/6`
+- E172 visible surplus-to-tie: `0.070613`
+- E154/E144/E155 visible surplus-to-tie: `0.010284` / `0.011545` / `0.011227`
+
+생각이 어떻게 바뀌었는지:
+
+`E176은 안전해서 1순위가 아니다. E176은 지는 조건이 이제 명확해서 1순위다. E176이 지려면 public hidden labels가 E72처럼 visible support를 강하게 배반해야 한다. 반면 E154 계열은 margin이 얇아서 작은 negative slippage에도 쉽게 branch-loss가 된다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+제출한다면 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`다. E176이 지면 같은 Q2 keep-factor를 튜닝하지 말고, E72-like adverse slippage가 활성화됐다고 보고 E172 safety contrast 또는 E154 counter-world로 분기한다.

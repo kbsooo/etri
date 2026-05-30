@@ -1237,3 +1237,28 @@ E196 tests a structural motif selector for E176 decisive cells.
   - top33 nearest winner `mixmin_vs_a2c8`, but top33 LOO accuracy only `0.333333`.
 
 Stress implication: row/order/block motif has signal but fails the frontier-boundary requirement. It is a warning/anatomy layer, not a submission selector and not enough to demote E176 before public feedback.
+
+## Update After E197
+
+E197 tests a public-score inverse support-mass decoder.
+
+- script: `analysis_outputs/e197_public_support_mass_inverse.py`.
+- report: `analysis_outputs/e197_public_support_mass_report.md`.
+- equation: `delta = adverse_sum - q * swing_sum`.
+- known-pair slippage versus visible prior:
+  - E72-vs-E95: `-0.071348`.
+  - E72-vs-mixmin: `-0.120707`.
+  - E95-vs-mixmin: `-0.031934`.
+  - mixmin-vs-a2c8: `+0.025458`.
+- E176 profile:
+  - visible surplus to tie `0.061761`.
+  - focus surplus to tie `0.094836`.
+  - visible stress clean-or-better `4/6`, win `4/6`, branch/hard fail `1/6`.
+  - focus stress clean-or-better `4/6`, win `5/6`, branch/hard fail `1/6`.
+- E172 profile:
+  - visible surplus to tie `0.070613`; slightly safer than E176 in this lens.
+- E154/E144/E155:
+  - visible surplus to tie only `0.010284`/`0.011545`/`0.011227`.
+  - visible stress branch/hard fail `4/6`.
+
+Stress implication: E176 is not certified, but its failure mode is now narrower. It loses only if the next public observation behaves like E72-like adverse slippage. E154 remains a counter-world, not the first stress survivor.
