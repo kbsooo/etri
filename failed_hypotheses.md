@@ -2277,3 +2277,12 @@
 - Implementation issue possible: medium. E306 used logistic row models and simple additive S4 edits. A better translator may use row-placement as a censor, target dependency gate, or candidate-outcome model. Low for rejecting the generated `submission_e306_withinblock_s4_*` files because the matched-null governor directly rejects them.
 - Bottleneck implication: the S4 branch now has both block-state and row-placement diagnostics, but the action layer is still the bottleneck. Public LB should not be used until a candidate is both selector-visible and dateblock-null resistant.
 - Do not repeat: submitting E306 rowtop/global-rowcenter files or treating within-dateblock AUC as sufficient evidence for a public candidate.
+
+## FH253. S4 latent-current mismatch can be directly used as a safe calibration censor
+
+- Failed hypothesis: instead of raising S4 on latent-positive rows, tempering or correcting current S4 logits where latent state and current probability disagree should produce a null-resistant LogLoss candidate.
+- Observed result: E307 generated `765` candidates and `106` old-strict candidates, but `22` selected candidates produced public-free ready `0`. Best null strict rate was `0.750000`, best mean dominance `0.546875`, and best dateblock p90 dominance `0.656250`. Wrong-direction sharpening controls were competitive with the intended latent-censor actions.
+- Why discard: the action remains dominated by generic S4 movement/confidence geometry. Sign nulls are easy, but row/subject/dateblock nulls reproduce the apparent edge.
+- Implementation issue possible: medium. The tested actions were simple top-k/amp/tempering families. A learned action-health target may still use latent-current mismatch as an input. Low for rejecting all E307 submission files because the matched-null governor directly rejects them.
+- Bottleneck implication: the current S4 hand-built action family is exhausted. The live signal is representation-level, not submission-level.
+- Do not repeat: submitting `submission_e307_s4latentcensor_*` or using latent-current mismatch as a direct S4 delta without a learned null-aware translator.

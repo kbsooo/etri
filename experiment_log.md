@@ -4700,3 +4700,22 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best mean dominance: `0.671875`.
 - Interpretation: row-placement signal is real on train, especially when family-JEPA features are centered within dateblock. But the current materializer still becomes selector-visible in a way matched nulls can reproduce. Calendar also has surprising within-block signal, so the social/human story may partly be schedule position and within-block rhythm, not just app semantics.
 - Decision: no E306 public submission. Keep `family_jepa_dbdelta` as a useful row-placement diagnostic. The next action-layer target should predict null-governor outcome directly, or use row-placement only as an energy/censor, not as a positive S4 mass generator.
+
+## E307. S4 Latent-State Censor Materializer
+
+- Observe: E305/E306 both failed when the latent was used as a positive S4 generator. A different action may be needed: use hidden state as a calibration-risk censor.
+- Wonder: is the right move not "raise S4 on likely rows" but "temper current S4 overconfidence where current logits disagree with hidden block/row state"?
+- Method: `analysis_outputs/e307_s4_latent_censor_materializer.py` aligns E306 row state with current E247 S4 logits, computes latent-vs-current mismatch, and creates S4-only edits that temper logits toward 0.5, lower overconfident-lowlatent rows, raise underconfident-highlatent rows, or apply wrong-direction controls. Selected candidates are tested against row/subject/dateblock/sign nulls. No public LB was used.
+- Result:
+  - latent/current S4 logit correlation: `0.302062`;
+  - block/row latent correlation: approximately `0.000000`, so the two states are nearly orthogonal;
+  - generated candidates: `765`;
+  - old strict candidates: `106`;
+  - null-evaluated candidates: `22`;
+  - public-free ready candidates: `0`;
+  - best null strict rate: `0.750000`;
+  - best mean dominance: `0.546875`;
+  - best dateblock p90 dominance: `0.656250`;
+  - best actual p90: `-0.000197843`.
+- Interpretation: censoring creates strong selector-visible edges, but it is even more null-common than E306. Controls that sharpen overconfident rows look competitive, so the old selector is still reading S4 movement geometry rather than recovered latent correctness.
+- Decision: no E307 public submission. Simple latent-vs-current S4 calibration edits are rejected as a direct path. The next target must be learned action outcome or a different target group, not another hand-built S4 action from the same latent.

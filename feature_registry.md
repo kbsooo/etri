@@ -2649,3 +2649,29 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - use row-placement features to predict candidate outcome health or to veto risky rows, not to simply add positive S4 mass.
 - Failure condition:
   - if a feature improves within-block train AUC but its materialized tensor is matched-null common, classify it as a representation-only feature.
+
+## E307 S4 Latent Censor Policy
+
+- Target hypothesis tested:
+  - hidden S4 block/row state can identify current S4 overconfidence and support calibration-risk censoring.
+- Feature/representation source:
+  - E306 test row latent state;
+  - E304/E306 block and row S4 scores;
+  - current E247 S4 logits and confidence;
+  - latent-current mismatch, overconfident-lowlatent score, underconfident-highlatent score.
+- Validation result:
+  - latent/current S4 logit correlation `0.302062`;
+  - generated candidates `765`, old strict `106`, public-free ready `0`;
+  - best null strict rate `0.750000`;
+  - best mean dominance `0.546875`;
+  - wrong-direction controls remain competitive.
+- Updated registry status:
+  - latent-current mismatch is approved as a diagnostic/risk feature;
+  - direct S4 temper/down/up corrections are not approved as submission features;
+  - current S4 confidence is a strong confounder and must be controlled in future S4 action models.
+- Adopt rule for future features:
+  - never promote S4 censoring only because it improves p90 or old strict visibility;
+  - require controls to lose before claiming latent correctness;
+  - prefer learned action-health targets over hand-coded S4 delta projection.
+- Failure condition:
+  - if a censoring feature is matched by control sharpening or reproduced by row/subject/dateblock nulls, classify it as selector geometry rather than hidden-state action.

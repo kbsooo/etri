@@ -1,0 +1,2 @@
+n_rows,corr_latent_current_logit,corr_block_row_state,mismatch_top24_current_mean,mismatch_top24_latent_mean,generated_candidates,old_strict,null_evaluated,ready_32rep,best_null_strict_rate,best_mean_dominance,best_dateblock_p90_dominance,best_actual_p90
+250,0.3020620743038681,-1.1228977557675823e-17,0.6158380458125362,0.26146385383457693,765,106,22,0,0.75,0.546875,0.65625,-0.0001978433672527529

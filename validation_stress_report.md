@@ -3415,3 +3415,35 @@ Decision:
 - No E306 file should be submitted.
 - The row-placement latent is live, but materialization remains unhealthy.
 - Future public-free checks should keep dateblock-shuffle nulls as mandatory; otherwise a candidate can look good by block or target movement alone.
+
+## E307 S4 Latent Censor Stress
+
+Question: can hidden S4 block/row state be used as a calibration-risk censor instead of a positive S4 generator?
+
+Method: `analysis_outputs/e307_s4_latent_censor_materializer.py`.
+
+- Current/latent diagnostics:
+  - latent-current S4 logit correlation: `0.302062`;
+  - block-row latent correlation: approximately `0.000000`;
+  - top-24 mismatch rows have current S4 mean `0.615838`.
+- Candidate stress:
+  - generated candidates: `765`;
+  - old strict candidates: `106`;
+  - null-evaluated candidates: `22`;
+  - null stress: `32` row, `32` subject, `32` dateblock, and `32` sign nulls per selected candidate.
+- Public LB: not used.
+
+Result:
+
+- public-free ready candidates: `0`.
+- best null strict rate: `0.750000`.
+- best mean dominance: `0.546875`.
+- best dateblock p90 dominance: `0.656250`.
+- best actual p90: `-0.000197843`.
+- sign nulls are beaten, but row/subject/dateblock nulls are essentially too competitive; the selected censor actions do not certify row/block identity.
+
+Decision:
+
+- No E307 file should be submitted.
+- Simple latent-current mismatch censoring is rejected as a direct action layer.
+- The S4 branch now has repeated evidence that old strict visibility is cheap and not enough.

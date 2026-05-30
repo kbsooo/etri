@@ -703,3 +703,21 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - best mean dominance: `0.671875`.
 - interpretation: hidden row-placement state exists in train, but direct S4 row mass still looks too much like null movement on the current public-free selector.
 - next experiment: use row-placement as an action-health feature or censor, not as a direct additive S4 generator.
+
+## Public-Free Observation: E307
+
+- submission files: `analysis_outputs/submission_e307_s4latentcensor_*.csv`.
+- public LB: not submitted.
+- reason not submitted: no E307 candidate passed the local row/subject/dateblock/sign governor.
+- local observation:
+  - generated candidates: `765`;
+  - old strict candidates: `106`;
+  - null-evaluated candidates: `22`;
+  - public-free ready files: `0`;
+  - best null strict rate: `0.750000`;
+  - best mean dominance: `0.546875`;
+  - best dateblock p90 dominance: `0.656250`;
+  - best actual p90: `-0.000197843`;
+  - wrong-direction/sharpening controls were competitive.
+- interpretation: S4 latent-current mismatch is useful as a diagnostic, but direct censoring is not public-free safe. The public-free selector can be triggered by generic S4 confidence movement.
+- next experiment: stop hand-built S4 delta families unless a learned action-health model or a non-S4 interaction creates controls that clearly lose.

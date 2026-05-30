@@ -3482,6 +3482,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E306 files.
 - 제출 전략: none yet. Next strategy must predict action-governor outcome directly or use row-placement as a censor/gate rather than an additive S4 generator.
 
+### H307: S4 latent-current mismatch identifies calibration-risk rows that can be safely censored
+
+- 상태: rejected as direct materialization.
+- 왜 그럴듯한가: E306 shows row placement exists but positive S4 mass is null-common. If the true bottleneck is LogLoss calibration, moving overconfident mismatched rows toward 0.5 should be healthier than raising S4.
+- 맞다면: latent-current mismatch tempering should outperform matched row/subject/dateblock/sign nulls, and wrong-direction sharpening controls should be weaker.
+- 틀리다면: many old-strict candidates appear but matched nulls and controls remain competitive.
+- 최소 실험: `analysis_outputs/e307_s4_latent_censor_materializer.py`.
+- 관측: generated `765`, old strict `106`, null-evaluated `22`, ready `0`. Best null strict rate `0.750000`, best mean dominance `0.546875`, best dateblock p90 dominance `0.656250`. Controls were competitive.
+- 성공/폐기 기준: reject simple latent-vs-current S4 censoring as a submission path.
+- public LB 관측 반응: no public LB should be spent on E307 files.
+- 제출 전략: none. Need learned action-outcome target or a non-S4 branch where control directions fail.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -3025,3 +3025,24 @@ Meaning:
 Current best public file remains:
 
 - `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+## Update After E307 S4 Latent Censor
+
+Current submission policy remains: **no new public submission.**
+
+Why:
+
+- E307 tested the alternative action: temper or correct current S4 overconfidence using E304/E306 latent mismatch.
+- It generated `765` candidates and `106` old strict candidates, so selector visibility is not the bottleneck.
+- But null governance rejected all selected files:
+  - public-free ready: `0`;
+  - best null strict rate: `0.750000`;
+  - best mean dominance: `0.546875`;
+  - best dateblock p90 dominance: `0.656250`.
+- Wrong-direction/sharpening controls looked competitive, which means the local selector is still dominated by generic S4 movement geometry rather than latent-correct row identity.
+
+Meaning:
+
+- Do not submit `submission_e307_s4latentcensor_*`.
+- The S4 hidden-state diagnostics remain useful for understanding failures, but the current hand-built S4 action family is exhausted.
+- Next public-free candidate work should either learn action outcome directly from governed candidates or pivot to another target interaction where controls do not match the real latent direction.
