@@ -1,0 +1,13 @@
+name,families,n_families
+single_deep,deep,1
+single_prectx,prectx,1
+single_presleep,presleep,1
+single_proxy,proxy,1
+single_quiet,quiet,1
+pair_deep_prectx,"deep,prectx",2
+pair_prectx_presleep,"prectx,presleep",2
+pair_presleep_proxy,"presleep,proxy",2
+pair_proxy_quiet,"proxy,quiet",2
+pair_quiet_deep,"deep,quiet",2
+triple_lowfreq,"deep,prectx,presleep",3
+triple_highfreq,"presleep,proxy,quiet",3

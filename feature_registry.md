@@ -1600,6 +1600,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: `s2_rank` local delta `-0.000624`, subject-half win `0.934615`, geometry `-0.000686`; selected files are `submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv`, `submission_e216_maskfam_jepa_s2_rank_e95_s0p75_4f8dc44d.csv`, `submission_e216_maskfam_jepa_s2_rank_e154_s0p5_0ca3d931.csv`, and `submission_e216_maskfam_jepa_s2_rank_e95_s0p5_4516fb93.csv`.
 - Policy: E216 is a non-collinear S2 JEPA sensor, not the first JEPA submission over E211. Use it if a second JEPA representation test is needed.
 
+### F186. E217 teacher-student tabular JEPA energy
+
+- Hidden structure: masked feature-family context plus same-subject row-neighborhood context can predict an EMA teacher's full-row latent, but this full-row latent may encode fold-sensitive calibration state instead of public-stable target movement.
+- Candidates: `e217_teacher_pc*`, `e217_pred_pc*`, `e217_context_pc*`, `e217_resid_pc*`, `e217_hard_resid_pc*`, prediction/teacher cosine, hard-vs-single mask residual norm, and mask disagreement.
+- Label vs split test: self-supervised train+submission pretraining is allowed because no labels enter the JEPA objective. Downstream use is unsafe unless the feature passes OOF, subject-half, geometry, and later frontier stress.
+- Current evidence: the objective is learnable (`val_loss` about `7%` of mean-teacher baseline), but no feature passes geometry materialization. Best local S2 `e217_teacher_pc07` fails with positive geometry delta `+0.000410`.
+- Policy: keep E217 features as diagnostics/energy only. Do not submit an E217-based probability movement unless a later target-specific materializer turns it geometry-negative and frontier-safe.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

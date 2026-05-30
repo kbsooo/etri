@@ -2484,6 +2484,18 @@ target co-occurrence
 - public LB 관측 반응: if an S2-only E216 file wins, masked-family JEPA has a public-safe S2 channel. If broad E215/E216 combos win later, the current public-tail stress is too conservative for Q1/S4.
 - 제출 전략: submit S2-only if testing E215; do not submit Q1+S2+S4 before a targeted public-tail audit explains the stress contradiction.
 
+### H211. A full teacher-student tabular JEPA can replace fixed-target JEPA probes
+
+- 상태: 약화 by E217.
+- 왜 그럴듯한가: E215 still predicted a fixed PCA family block. A closer I-JEPA translation should use an EMA teacher target encoder and let the target representation emerge from the data, potentially avoiding the narrow E208/E215 target-specific lanes.
+- 맞다면: masked current feature-family context plus same-subject row-neighborhood context should predict the EMA full-row teacher latent, produce healthy geometry, and create downstream features that survive OOF, subject-half, and geometry stress better than E208/E215.
+- 틀리다면: the teacher-student objective may learn well but downstream gains will be fold/geometry fragile, or useful signal will remain local to targets already captured by E211/E216.
+- 최소 실험: `analysis_outputs/e217_teacher_student_tabular_jepa_probe.py`.
+- 관측: training is nontrivial (`val_loss=0.00185..0.00191`, about `7%` of mean-teacher baseline), but no downstream row passes the E217 geometry gate. Best local S2 via `e217_teacher_pc07` has delta `-0.002853` but geometry delta `+0.000410`; Q3 residual rows are near-neutral but below win-rate threshold.
+- 성공/폐기 기준: weakened as a direct submission source. It would reopen only if a target-specific materializer or different teacher target converts E217 energy into negative geometry and frontier-safe movement.
+- public LB 관측 반응: no E217 public sensor should be submitted. If later E217-derived target-specific materialization wins, the current failure should be reinterpreted as translator failure rather than representation failure.
+- 제출 전략: none now. Keep E211 and E216 as the actionable JEPA lanes.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

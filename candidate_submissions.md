@@ -1154,3 +1154,26 @@ Selected E216 files:
 Interpretation:
 
 E216 is not stronger than E211 as the first JEPA slot. E211 still has the higher structured survival score and tests the Q3/S4 lane closest to the current frontier. E216 is valuable because it is non-collinear: a masked-family JEPA S2-only sensor. If E211 feedback says Q3/S4 translation is not public-safe, E216 becomes the next JEPA representation test.
+
+## Update After E217
+
+E217 tested a closer teacher-student tabular JEPA with an EMA teacher full-row latent. It did not produce a submission file.
+
+Artifacts:
+
+- `analysis_outputs/e217_teacher_student_tabular_jepa_probe.py`
+- `analysis_outputs/e217_teacher_student_tabular_jepa_report.md`
+- `analysis_outputs/e217_teacher_student_tabular_jepa_downstream_geometry_summary.csv`
+- `analysis_outputs/e217_teacher_student_tabular_jepa_train_features.parquet`
+- `analysis_outputs/e217_teacher_student_tabular_jepa_submission_features.parquet`
+
+Interpretation:
+
+The JEPA objective is learnable, but its best downstream signals fail geometry materialization. S2 is the strongest local feature, yet its geometry delta is positive. Therefore E217 should not change the submission order. The actionable JEPA order remains:
+
+1. `analysis_outputs/submission_e211_jepa_q3rawcloser_q3s1p0_s4s1p0_e154_a0p5_c20eee9c.csv`
+2. `analysis_outputs/submission_e211_jepa_q3rawtoward_q3s1p0_s4s1p0_e95_a0p5_e4e44d91.csv`
+3. `analysis_outputs/submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv`
+4. `analysis_outputs/submission_e216_maskfam_jepa_s2_rank_e95_s0p75_4f8dc44d.csv`
+
+E217 is now a diagnostic/energy source only. Do not submit an E217-derived file unless a later target-specific materializer converts it into negative geometry and passes frontier hard-tail stress.

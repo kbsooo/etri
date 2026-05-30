@@ -1709,3 +1709,12 @@
 - Implementation issue possible: medium. The public-tail stress is a proxy, not the leaderboard. But the contrast is large enough to avoid direct broad-combo submission before a specific audit.
 - Bottleneck implication: masked-family JEPA is useful, but public-safe translation is target-selective. S2 is currently the clean survivor; Q1/S4 need separate public-tail explanation.
 - Do not repeat: promoting the locally largest multi-target JEPA combo without checking frontier stress and target-specific public-tail direction.
+
+## FH190. A more faithful teacher-student JEPA is itself enough to create the next submission
+
+- Failed hypothesis: replacing fixed PCA targets with a closer EMA teacher-student tabular JEPA should unlock a healthier latent and therefore a direct candidate.
+- Observed result: E217 training is clearly nontrivial: validation loss is about `7%` of mean-teacher baseline and `4.5%` of shuffled-teacher baseline. But downstream materialization fails. Best S2 `e217_teacher_pc07` has local delta `-0.002853` and subject-half win `0.757692`, but geometry delta is `+0.000410`; Q3 residual rows are closer to neutral but below the pass thresholds. E217 selects no submission.
+- Why discard: better JEPA mechanics did not remove the plateau bottleneck. The learned full-row latent behaves like a fold-sensitive calibration energy, not a public-safe probability translator.
+- Implementation issue possible: medium. The objective is small CPU tabular JEPA and could change with teacher target, mask schedule, or a target-specific materializer. Low for rejecting direct E217 submission because the current geometry table directly fails the gate.
+- Bottleneck implication: the limiting factor is still translation/public-tail geometry, not merely whether JEPA is implemented faithfully. JEPA helps when it creates target-specific sensors such as E211 Q3/S4 or E216 S2.
+- Do not repeat: "make JEPA more real, then submit its strongest local feature" without target-specific geometry and frontier stress.

@@ -1,0 +1,14 @@
+{
+  "seeds": [
+    291228,
+    291246,
+    291264
+  ],
+  "n_rows": 700,
+  "n_train": 450,
+  "n_submission": 250,
+  "context_dim": 44,
+  "input_dim": 140,
+  "n_families": 5,
+  "n_masks": 12
+}

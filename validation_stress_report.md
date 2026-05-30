@@ -1705,3 +1705,32 @@ E216 frontier result:
   - `submission_e216_maskfam_jepa_s2_rank_e95_s0p5_4516fb93.csv`.
 
 Stress implication: changing the JEPA target representation is useful. But the public-safe translation is narrower than the locally strongest representation signal; for E215, S2 is the clean survivor.
+
+## Update After E217
+
+E217 stress-tests a closer teacher-student tabular JEPA.
+
+- script: `analysis_outputs/e217_teacher_student_tabular_jepa_probe.py`.
+- report: `analysis_outputs/e217_teacher_student_tabular_jepa_report.md`.
+- downstream scan: `analysis_outputs/e217_teacher_student_tabular_jepa_downstream_scan_summary.csv`.
+- geometry stress: `analysis_outputs/e217_teacher_student_tabular_jepa_downstream_geometry_summary.csv`.
+
+Stress dimensions:
+
+- EMA teacher-student validation against mean-teacher and shuffled-teacher baselines.
+- random mask specs over feature families.
+- same-subject row-neighborhood context.
+- downstream OOF correction over stage2 probabilities.
+- repeated subject-half guardrail.
+- row-order/geometry folds.
+- latent covariance/rank diagnostics.
+
+Result:
+
+- Training passes the nontriviality check: val loss `0.001853..0.001914`, mean-teacher loss `0.026019..0.026827`.
+- Best local S2 row: `e217_teacher_pc07`, delta `-0.002853`, mean subject-half delta `-0.001629`, win rate `0.757692`.
+- That same S2 row fails geometry with delta `+0.000410` and win rate `0.375`.
+- Q3 residual rows have small negative geometry in some modes but fail win-rate/local thresholds.
+- E217 materialization gate pass count is `0`.
+
+Stress implication: teacher-student JEPA learned a latent but did not create a geometry-stable submission source. Keep it as an energy/diagnostic branch; do not create an E217 submission before a separate target-specific materialization test.

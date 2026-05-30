@@ -3337,3 +3337,16 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     - `submission_e216_maskfam_jepa_s2_rank_e95_s0p5_4516fb93.csv`
 - Interpretation: E215 is real, but the public-safe part is not the locally best broad combo. Public-tail stress points to a narrow S2 masked-family JEPA sensor. This is a distinct representation lane from E211: E211 tests E208 Q3/S4 target-specific JEPA, E216 tests E215 S2-only masked-family JEPA.
 - Decision: keep E211 as the higher expected JEPA-family submission because its survival score is stronger and it targets the known Q3/S4 frontier. Use E216 S2-only as the next non-collinear JEPA representation sensor if a second JEPA slot is available or if E211 feedback says Q3/S4 translation is not the route.
+
+## E217. Teacher-Student Tabular JEPA Probe
+
+- Observe: E215 still used a fixed PCA block as the target representation. If the user wants "actually use JEPA", the next falsifiable question is whether an EMA teacher-student latent objective creates a healthier hidden-state representation than the fixed-target probes.
+- Wonder: can masked feature-family context plus same-subject row-neighborhood context predict an EMA teacher's full-row latent in a way that survives OOF, repeated-subject, and geometry stress?
+- Method: `analysis_outputs/e217_teacher_student_tabular_jepa_probe.py` trains three CPU teacher-student JEPA seeds. The context encoder sees masked current family blocks, neighbor mean/delta, and mask id. The EMA teacher sees only the full current row representation. The predictor matches teacher latent, not raw feature values. Frozen latent features are then scanned as calibrated stage2 residual/gate features.
+- Result:
+  - report: `analysis_outputs/e217_teacher_student_tabular_jepa_report.md`.
+  - training works: val loss is `0.00185..0.00191`, only about `7.1%..7.3%` of mean-teacher baseline and `4.5%` of shuffled-teacher baseline.
+  - best local downstream targets: S2 `e217_teacher_pc07` delta `-0.002853`, Q3 `e217_resid_pc09` delta `-0.001134`, S1 `e217_resid_pc14` delta `-0.001424`.
+  - no candidate passes the E217 materialization gate. S2 is locally strong but geometry-adverse (`geometry_delta_mean=+0.000410` for the best S2 row). Q3 is closer to neutral but win rate stays below the gate.
+- Interpretation: a real teacher-student JEPA objective can learn nontrivial row latent structure, but the full-row teacher target does not produce a public-safe probability translator. This weakens "just implement JEPA harder" as a direct submission route and strengthens the existing diagnosis: JEPA is useful only after target-specific translation and geometry stress.
+- Decision: no E217 submission. Keep E211/E216 as the actionable JEPA sensors. Use E217 as negative evidence that full-row teacher-student latent is currently an energy/diagnostic, not a frontier candidate.
