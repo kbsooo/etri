@@ -2892,3 +2892,30 @@ E176 제출 순서는 유지한다. clean win일 때만 Q2 amplitude를 paired q
 다음으로 가장 정보량이 큰 행동:
 
 E176 public band를 먼저 보고, 그 band가 묻는 세계관에 맞는 follow-up만 선택한다. scalar로 가장 가까운 파일을 고르지 않는다.
+
+## E205 업데이트: E176 결과 해석을 실행 파일로 고정했다
+
+내가 발견한 가장 이상한 점:
+
+`E201-E204가 이미 해석 규칙을 만들었는데도, 실제 public score가 나오면 사람이 다시 scalar 감각으로 해석할 위험이 남아 있었다. 이 위험은 모델 문제가 아니라 feedback protocol 문제다.`
+
+실험:
+
+- `analysis_outputs/e205_e176_public_feedback_executable_decoder.py`
+- report: `analysis_outputs/e205_e176_public_feedback_executable_decoder_report.md`
+- routebook: `analysis_outputs/e205_e176_public_feedback_executable_decoder_routebook.csv`
+- examples: `analysis_outputs/e205_e176_public_feedback_executable_decoder_examples.csv`
+
+결과:
+
+- `0.576291` 예시는 `tie`로 해석되고 E172 same-family safety로 간다.
+- `0.576303` 예시는 `e101_worse_mixmin_safe`로 해석되고 E154 body-exit counter-world로 간다.
+- clean win / breakthrough는 즉시 sibling을 만들지 않고 broad S-stage / between-train-runs body를 먼저 분해한다.
+
+생각이 어떻게 바뀌었는지:
+
+`이제 E176은 파일 하나가 아니라 측정 프로토콜이다. score를 받으면 먼저 E205로 디코딩하고, 그 다음에만 follow-up을 고른다. Q2 amplitude, E172 safety, E154 counter-world, E174 probe는 같은 사다리가 아니라 score band가 묻는 서로 다른 질문이다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+E176 public LB가 들어오면 `python3 analysis_outputs/e205_e176_public_feedback_executable_decoder.py --score <E176_PUBLIC_LB>`를 먼저 실행한다.

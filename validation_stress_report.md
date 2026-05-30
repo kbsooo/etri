@@ -1434,3 +1434,22 @@ E204 stress-tests follow-up interchangeability after E176 feedback.
   - metric focus delta `-0.000000082`; visible delta `+0.000000191`.
 
 Stress implication: E172, E154, and E174 do not form a scalar ladder. They ask different hidden-world questions. E172 is same-family safety, E154 is body-exit counter-world, and E174 is Q2 amplitude probe only after broad-body validation.
+
+## Update After E205
+
+E205 stress-tests the feedback process itself.
+
+- script: `analysis_outputs/e205_e176_public_feedback_executable_decoder.py`.
+- report: `analysis_outputs/e205_e176_public_feedback_executable_decoder_report.md`.
+- routebook: `analysis_outputs/e205_e176_public_feedback_executable_decoder_routebook.csv`.
+- examples: `analysis_outputs/e205_e176_public_feedback_executable_decoder_examples.csv`.
+
+Process stress:
+
+- every public score band maps to exactly one outcome.
+- every outcome carries a component interpretation inherited from E202.
+- every outcome carries body/tail constants inherited from E203.
+- every outcome carries a follow-up role inherited from E204.
+- optional `--score` writes a selected JSON record for the actual E176 public LB.
+
+Stress implication: post-E176 public feedback is no longer a free-form interpretation step. If a score near `0.576291` arrives, the decoder routes to E172 safety; if a score near `0.576303` arrives, it routes to E154 counter-world. Clean wins do not authorize immediate sibling sweeps.

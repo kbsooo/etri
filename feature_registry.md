@@ -1504,6 +1504,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E172 changes `75` cells, all inside E176, with overlap rollback `1.000000` and body rollback `0.089780`. E154 changes `1027` cells with off-E176 abs share `0.292501` and body rollback `0.877576`. E174 changes `21` cells with rollback `0`, acting as Q2 amplitude.
 - Policy: use F173 only for post-E176 route selection. E172 follows tie/small-loss, E154 follows branch/hard-loss, and E174 follows only clean win plus explicit Q2-amplitude question.
 
+### F174. E205 executable public-feedback decoder
+
+- Hidden structure: public feedback has value only when the scalar score is bound to a fixed measurement protocol. Otherwise the modeler can smuggle in a new interpretation after seeing the number.
+- Candidates: score band, outcome, worldview update class, component interpretation, forbidden action, required next evidence, follow-up candidate, follow-up role, follow-up geometry, and body/tail constants.
+- Label vs split test: valid as governance because it uses only locked pre-feedback artifacts and creates no prediction file. Invalid as a performance feature because it does not predict the score; it only prevents post-score interpretive drift.
+- Current evidence: E205 joins E201-E204 into an executable routebook. Example `0.576291` routes to E172 safety, `0.576303` routes to E154 counter-world, and clean win bands explicitly forbid immediate sibling sweeps.
+- Policy: run `python3 analysis_outputs/e205_e176_public_feedback_executable_decoder.py --score <E176_PUBLIC_LB>` before any post-E176 action. Do not manually choose E172/E154/E174/Q2 siblings from scalar closeness.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

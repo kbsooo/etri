@@ -1,0 +1,9 @@
+score,outcome,worldview_update_class,followup_candidate,followup_role,component_interpretation
+0.57625,q2_underopen_breakthrough,promote_broad_q2_underopen,none,no_immediate_submission,"Credit broad S-stage/between-train-runs body first; Q2 damping is a secondary guard, not the whole explanation."
+0.57627,clean_win,anchor_e176_as_current_world,none,no_immediate_submission,Treat E176 as a broad-body anchor; the win supports Q/S asymmetry but does not prove Q2 keep=0.75 is optimal.
+0.576282,micro_win,weakly_promote_e176_but_keep_resolution_doubt,e174_q2_reopen,optional_q2_amplitude_probe,The sign is right but hard-label resolution is still thin; body and tail probably nearly cancel.
+0.576291,tie,underresolved_same_family,e172_safety,same_family_safety,The broad body exists but top critical cells are underresolved; the top33 visible support p_low is the warning.
+0.576297,small_loss,demote_e176_but_not_family,e172_safety,same_family_safety_or_e154,"Read as tail/cancellation failure, not as proof that Q2 alone is wrong."
+0.576303,e101_worse_mixmin_safe,demote_partial_reopen_branch,e154_counterworld,body_exit_counterworld,Partial-reopen is public-misaligned despite Q2 damping.
+0.57632,branch_loss,close_same_family_expected_score_lane,e154_counterworld,body_exit_counterworld,The broad partial-reopen body gives back the frontier edge.
+0.57635,hard_fail,search_non_collinear_latent,search,non_collinear_search,Dominant negative axis is outside this component family.

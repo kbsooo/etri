@@ -1610,3 +1610,12 @@
 - Implementation issue possible: low. The comparison uses locked submission tensors and direct cell-level movement overlap. Medium for final public causality because E176 public feedback is pending.
 - Bottleneck implication: candidate selection remains a worldview-routing problem, not a local rescue ranking problem.
 - Do not repeat: swapping E172/E154/E174 after E176 feedback without first matching the E201/E202/E203/E204 route condition.
+
+## FH179. E176 score routing can be safely reconstructed from notes by hand
+
+- Failed hypothesis: because E201-E204 are documented, the eventual E176 public score can be interpreted manually from those notes without an executable route.
+- Observed result: E205 converts the notes into one deterministic decoder. Example `0.576291` maps to `tie` / E172 same-family safety, while example `0.576303` maps to `e101_worse_mixmin_safe` / E154 body-exit counter-world. Clean win bands explicitly route to no immediate sibling.
+- Why discard: manual interpretation reintroduces the exact post-hoc scalar freedom that E201 tried to remove. The score band, component attribution, body/tail constants, and follow-up geometry must be read together, not reconstructed from memory.
+- Implementation issue possible: low. E205 is a join over locked CSV artifacts and creates no submission. The main operational risk is submitting a follow-up without running it with the real score.
+- Bottleneck implication: one plateau bottleneck is feedback-resolution discipline. Public LB is useful only if each observed scalar kills or preserves a specific worldview.
+- Do not repeat: choosing E172, E154, E174, or a Q2 sibling from scalar intuition after E176. Run `python3 analysis_outputs/e205_e176_public_feedback_executable_decoder.py --score <E176_PUBLIC_LB>` first.

@@ -937,3 +937,25 @@ Conditional order is now:
 2. E172 only after E176 tie/small-loss.
 3. E154 after E176 branch/hard-loss.
 4. E174 only after clean E176 win if the next question is Q2 amplitude.
+
+## Update After E205
+
+The single next public sensor is still:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+E205 changes the post-score process, not the first file.
+
+After E176 public LB arrives, run:
+
+`python3 analysis_outputs/e205_e176_public_feedback_executable_decoder.py --score <E176_PUBLIC_LB>`
+
+Then follow the selected route:
+
+1. Breakthrough or clean win: no immediate sibling; decompose broad S-stage / between-train-runs body first.
+2. Micro win: optional E174 only if deliberately asking a Q2 amplitude question.
+3. Tie or small loss: E172 is the same-family safety file.
+4. Worse than E101 / branch loss: E154 is the body-exit counter-world.
+5. Hard fail: close the same-family expected-score lane and return to non-collinear hidden-structure search.
+
+Do not choose E172, E154, or E174 from scalar closeness alone.

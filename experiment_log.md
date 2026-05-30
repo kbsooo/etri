@@ -3148,3 +3148,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E144 behaves like a stronger body-exit rollback, not a clean same-family safety file.
 - Interpretation: E172 is the coherent same-family safety response after tie/small-loss because it rolls back a small part of the E176 body without adding a new axis. E154 is the coherent adverse-band response because it exits the E176 body and introduces counter-world movement. E174 is not a rescue file; it is a paired Q2 amplitude probe after broad-body validation.
 - Decision: no new submission. Keep E176 first. Post-score route: E172 only for tie/small-loss safety, E154 for branch/hard-loss, E174 only after clean E176 win and an explicit Q2 amplitude question.
+
+## E205. E176 Public-Feedback Executable Decoder
+
+- Observe: E201-E204 fixed the E176 file, component responsibility, body/tail anatomy, and follow-up geometry, but the evidence was spread across separate notes. That still leaves a practical failure mode: after the actual public score arrives, scalar intuition could override the pre-registered route.
+- Wonder: can the pending E176 public score be decoded mechanically into one score band, one component interpretation, one forbidden-action set, and one follow-up role before any new file is chosen?
+- Method: `analysis_outputs/e205_e176_public_feedback_executable_decoder.py` joins `e201_e176_public_sensor_packet_route_summary.csv`, `e202_e176_component_responsibility_outcome_summary.csv`, `e203_e176_component_knockout_stress_components.csv`, and `e204_e176_followup_correction_map_summary.csv`. It creates an executable routebook, example decodes, and an optional selected-score JSON when run with `--score`. It creates no submission.
+- Result:
+  - report: `analysis_outputs/e205_e176_public_feedback_executable_decoder_report.md`.
+  - routebook: `analysis_outputs/e205_e176_public_feedback_executable_decoder_routebook.csv`.
+  - examples: `analysis_outputs/e205_e176_public_feedback_executable_decoder_examples.csv`.
+  - example score `0.576291` decodes to `tie` and routes to E172 as same-family safety.
+  - example score `0.576303` decodes to `e101_worse_mixmin_safe` and routes to E154 as body-exit counter-world.
+  - clean E176 win or breakthrough routes to no immediate sibling; first decompose S-stage / between-train-runs body.
+- Interpretation: E205 adds no score and no model, but it removes the last post-score interpretive freedom. E176 is now a fixed measurement protocol: score band first, component/body-tail interpretation second, follow-up role third.
+- Decision: before any post-E176 action, run `python3 analysis_outputs/e205_e176_public_feedback_executable_decoder.py --score <E176_PUBLIC_LB>`. Do not manually translate the scalar score into Q2 tuning, E172 safety, E154 counter-world, or E174 amplitude without this decoder.

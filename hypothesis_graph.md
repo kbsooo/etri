@@ -2340,6 +2340,18 @@ target co-occurrence
 - public LB 관측 반응: E176 tie/small-loss activates E172 because the question is same-family safety. E176 branch/hard-loss activates E154 because the question is body-exit counter-world. E176 clean win can activate E174 only if the next question is Q2 amplitude.
 - 제출 전략: no E204 submission. Keep the pre-registered post-E176 decision tree and do not substitute E174/E154/E172 by scalar closeness alone.
 
+### H199. E176 public feedback must be decoded by an executable routebook, not manual scalar intuition
+
+- 상태: 지지 by E205 as feedback-protocol governance.
+- 왜 그럴듯한가: E201-E204 already fix the file, score bands, component responsibility, body/tail anatomy, and follow-up geometry, but they live in separate artifacts. After the real public score arrives, a manual read can still collapse the evidence into "Q2 worked" or "try the closest file."
+- 맞다면: the E201-E204 artifacts should be joinable into a deterministic routebook where every possible E176 public band maps to one outcome, one component interpretation, one forbidden-action set, and one follow-up role.
+- 틀리다면: the artifacts should disagree or leave score bands that cannot be assigned to a unique route without new subjective judgment.
+- 최소 실험: `analysis_outputs/e205_e176_public_feedback_executable_decoder.py`.
+- 관측: E205 writes a routebook/report/examples. Example `0.576291` decodes to `tie` and E172 same-family safety; `0.576303` decodes to `e101_worse_mixmin_safe` and E154 body-exit counter-world. Clean win / breakthrough bands route to no immediate sibling and require broad S-stage / between-train-runs decomposition first.
+- 성공/폐기 기준: supported as long as the submitted file is exactly the audited E176 tensor and the real public score falls in a defined band. It is violated if the score belongs to a route not represented by the E201-E204 evidence or if a follow-up is chosen without the decoder.
+- public LB 관측 반응: public feedback becomes an input to `--score`, not a free-form optimizer. Win/tie/loss branches update the corresponding worldview without reopening scalar Q2 keep-factor sweeps.
+- 제출 전략: no E205 submission. Before any post-E176 file, run `python3 analysis_outputs/e205_e176_public_feedback_executable_decoder.py --score <E176_PUBLIC_LB>`.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
