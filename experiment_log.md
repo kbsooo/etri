@@ -3056,3 +3056,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E144 has one mild p95 tail alarm (`max 0.038723`) but remains below p99 and far below positive scale.
 - Interpretation: E176 has an algebraic E72-like failure mode, but the best boundary-clean structural E72 diagnostic does not support E176 being E72-like. E154/E144 risk is mostly thin-margin/tail-risk, not E72 contamination.
 - Decision: no new submission. Keep `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` as the next public sensor. If it fails, use the pre-registered LB band decoder rather than claiming E176 was structurally E72-contaminated before feedback.
+
+## E199. Candidate Direct Clean-Shape E72 Exposure
+
+- Observe: E198 left a practical gap. E172/E174/E166/E155 were not directly scored by E192 because E192 used pressure-branch records, yet these candidates are exactly the branch options after E176 feedback.
+- Wonder: if E176 fails and the next branch is E172, E154, E144, E166, or E155, do any of those direct candidate-vs-E95 movements look structurally E72-shaped?
+- Method: `analysis_outputs/e199_candidate_shape_e72_exposure.py` converts every E197 candidate into a direct `candidate vs E95` antisymmetric movement z-record, then scores it with the same boundary-clean `shape_target_context_abs` E72 detector used in E191/E192. It also records nearest known contexts and contribution summaries.
+- Result:
+  - report: `analysis_outputs/e199_candidate_shape_e72_exposure_report.md`.
+  - E172 direct clean-shape E72 probability `0.000087`, below non-E72 p95.
+  - E174 direct probability `0.000097`, below p95.
+  - E176 direct probability `0.000097`, below p95.
+  - E166 direct probability `0.000677`, below p95.
+  - E154/E155 direct probabilities `0.007860`/`0.009284`, below p95 but thin-margin.
+  - E144 direct probability `0.054385`, above non-E72 p99 `0.044812` but far below positive floor `0.804849`; nearest top-3 known rows are all non-E72.
+- Interpretation: the unscored E198 branch candidates do not hide E72-shape exposure. E172 is a clean same-family safety contrast, and E154 is a cleaner repaired-branch counter-world than E144 because E144 has the only direct p99 tail alarm.
+- Decision: no submission. Keep E176 first. If E176 ties/small-loses, E172 remains the same-family safety contrast. If E176 branch/hard-loses, E154 remains the first repaired-branch counter-world; E144 is a tail-risk control, not first follow-up.

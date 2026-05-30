@@ -781,3 +781,26 @@ Submission order is unchanged:
 3. `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` - same-family safety contrast if E176 lands in the tie/small-loss slippage band.
 
 Do not create an E72-demoted E176 variant before public feedback. The current evidence says E176 can fail like E72 algebraically, but it does not look like E72 structurally under the clean detector.
+
+## Update After E199
+
+The single next public sensor still remains:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+E199 scores all E197 candidates directly with the clean-shape E72 detector.
+
+- E172 direct E72 probability `0.000087`: clean same-family safety contrast.
+- E174 direct E72 probability `0.000097`: clean Q2 full-reopen contrast, but lower information before E176 feedback.
+- E176 direct E72 probability `0.000097`: clean first sensor.
+- E166 direct E72 probability `0.000677`: clean shape, but still broad slippage/tail-risk by E197.
+- E154 direct E72 probability `0.007860`: clean repaired-branch counter-world, but thin-margin.
+- E155 direct E72 probability `0.009284`: clean low-body control, but not first counter-world.
+- E144 direct E72 probability `0.054385`: above non-E72 p99 but far below positive floor; tail-risk control.
+
+Current conditional order:
+
+1. `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` - first sensor.
+2. If E176 tie/small-loss: `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` - same-family safety contrast, clean-shape non-E72.
+3. If E176 branch/hard-loss: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` - repaired-branch counter-world, clean-shape non-E72.
+4. `analysis_outputs/submission_e144_activeboundary_d7b4b331.csv` - tail-risk control, not first follow-up.

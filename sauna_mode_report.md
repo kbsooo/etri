@@ -2693,3 +2693,40 @@ E184 이후에도 제출 후보 순위는 바뀌지 않는다.
 다음으로 가장 정보량이 큰 행동:
 
 제출한다면 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`다. E176 실패 전에는 E72-demoted sibling을 만들지 않는다. 실패 후에는 scalar 점수 감으로 튜닝하지 말고 E177/E197 decoder band로 E172 safety contrast와 E154 counter-world 중 어디로 갈지 결정한다.
+
+## E199 업데이트: E176 이후 분기 후보들도 대부분 E72 shape가 아니다
+
+내가 발견한 가장 이상한 점:
+
+`E198은 E176의 clean-shape E72 노출을 반증했지만, 정작 E176 실패 후 갈 후보들 중 일부는 아직 같은 방식으로 직접 점수화되지 않았다. 분기 정책의 약점은 E176이 아니라 follow-up 후보의 미진단 상태였다.`
+
+실험:
+
+- `analysis_outputs/e199_candidate_shape_e72_exposure.py`
+- report: `analysis_outputs/e199_candidate_shape_e72_exposure_report.md`
+
+결과:
+
+- E172 direct E72 probability: `0.000087`
+- E174 direct E72 probability: `0.000097`
+- E176 direct E72 probability: `0.000097`
+- E166 direct E72 probability: `0.000677`
+- E154 direct E72 probability: `0.007860`
+- E155 direct E72 probability: `0.009284`
+- E144 direct E72 probability: `0.054385`
+- thresholds:
+  - non-E72 p95 `0.020815`
+  - non-E72 p99 `0.044812`
+  - E72-positive floor `0.804849`
+
+생각이 어떻게 바뀌었는지:
+
+`E172/E174/E166/E154/E155가 E72-shape 때문에 막혀 있는 것은 아니다. E172는 E176 tie/small-loss 후 same-family safety contrast로 남을 수 있고, E154는 E176 branch/hard-loss 후 E144보다 더 깔끔한 repaired-branch counter-world다. E144는 tail-risk control이지 첫 follow-up이 아니다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+E176 제출 전 우선순위는 그대로다. 새 파일을 만들지 않는다. E176 public이 나오면:
+
+- tie/small-loss: E172 safety contrast 우선
+- branch/hard-loss: E154 repaired-branch counter-world 우선
+- E144: p99 tail alarm control로 보류

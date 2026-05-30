@@ -1293,3 +1293,27 @@ E198 joins E197 slippage stress with the E191/E192 boundary-clean E72 shape diag
   - max clean E72 probability `0.038723`, above p95 but below p99 and far below positive floor.
 
 Stress implication: E176's failure mode remains real but is not structurally E72-like under the clean shape detector. The loss condition is public hidden-label slippage, not a pre-visible E72 contamination signature. This strengthens E176 as the next sensor but does not certify expected LB.
+
+## Update After E199
+
+E199 fills the E198 missing-score gap by scoring direct candidate-vs-E95 movements for all E197 candidates.
+
+- script: `analysis_outputs/e199_candidate_shape_e72_exposure.py`.
+- report: `analysis_outputs/e199_candidate_shape_e72_exposure_report.md`.
+- direct clean-shape E72 probabilities:
+  - E144: `0.054385`, `non_e72_p99_tail`.
+  - E155: `0.009284`, below p95.
+  - E154: `0.007860`, below p95.
+  - E166: `0.000677`, below p95.
+  - E176: `0.000097`, below p95.
+  - E174: `0.000097`, below p95.
+  - E172: `0.000087`, below p95.
+- thresholds:
+  - non-E72 p95 `0.020815`.
+  - non-E72 p99 `0.044812`.
+  - E72-positive floor `0.804849`.
+- nearest-known check:
+  - E144 top-3 nearest known rows are still all non-E72.
+  - E172/E174/E176 nearest contexts are low-score a2c8/jepa-latent/raw-jepa contexts, not E72 positives.
+
+Stress implication: the post-E176 route is cleaner than E198 could prove. E172 is not an E72-shaped same-family fallback; E154/E155 are not E72-shaped repaired branches; E144 carries the only direct p99 tail alarm and should remain a control rather than first counter-world.

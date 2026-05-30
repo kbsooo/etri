@@ -2268,6 +2268,18 @@ target co-occurrence
 - public LB 관측 반응: E176 win strengthens the non-E72 broad/Q2-underopen read. E176 small/branch loss means E72-like public slippage occurred despite clean-shape non-exposure, so the missing variable is hidden-label realization rather than visible E72 movement shape. E144/E154 future wins/losses should be read as repaired-branch/tail-risk tests, not E72 contamination tests.
 - 제출 전략: no E198 submission. Keep E176 first. Do not demote E176 solely because E197 has an E72-like algebraic stress case; also do not call E176 certified, because the clean detector recall is only `0.666667`.
 
+### H193. E176 follow-up candidates are not hidden E72-shape branches, except E144 tail risk
+
+- 상태: 지지 by E199.
+- 왜 그럴듯한가: E198 scored only pressure branches for E144/E154/E176. The actual next-branch candidates after E176 feedback include E172, E174, E166, and E155, so an unscored candidate could still be E72-shaped and unsafe.
+- 맞다면: direct candidate-vs-E95 clean-shape E72 scores for E172/E174/E166/E155 should stay below non-E72 p95, while any branch to demote should cross p95/p99 or approach positive scale.
+- 틀리다면: E172 or E154 should show high direct E72-shape probability, making the post-E176 branch route unsafe before another diagnostic.
+- 최소 실험: `analysis_outputs/e199_candidate_shape_e72_exposure.py`.
+- 관측: direct clean-shape E72 probabilities are E172 `0.000087`, E174 `0.000097`, E176 `0.000097`, E166 `0.000677`, E154 `0.007860`, E155 `0.009284`, all below non-E72 p95 `0.020815`. E144 alone reaches `0.054385`, above non-E72 p99 `0.044812` but far below positive floor `0.804849`, with top-3 nearest labels all non-E72.
+- 성공/폐기 기준: retained until public feedback or a stronger E72 detector contradicts it. It weakens if E172/E154 later fail specifically in an E72-contamination-like way while E144/E166 do not.
+- public LB 관측 반응: E176 tie/small-loss should allow E172 as same-family safety contrast without E72-shape caveat. E176 branch/hard-loss should route to E154 before E144 because E154 is thin-margin clean-shape while E144 has p99 tail alarm.
+- 제출 전략: no E199 submission. Use E199 to rank follow-up routes after E176 feedback, not to replace E176 before feedback.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

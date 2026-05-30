@@ -9,7 +9,7 @@ Current public frontier:
 - Previous frontier: `analysis_outputs/submission_mixmin_0c916bb4.csv`
 - Improvement over previous frontier: `0.0000153107`
 - Current best next sensor: `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
-- Latest diagnostic: E198 shows E176's E72-like loss mode is algebraic slippage, not clean-shape E72 exposure.
+- Latest diagnostic: E199 shows E176 follow-up candidates are mostly clean-shape non-E72; E144 alone carries a p99 tail alarm.
 
 Primary working notes:
 

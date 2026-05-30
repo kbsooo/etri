@@ -1556,3 +1556,12 @@
 - Implementation issue possible: medium. The clean detector has top-k recall `0.666667` and all E72 positives still come from one anchor family, so absence of clean-shape exposure is not a proof of safety. Low for rejecting this narrow demotion shortcut.
 - Bottleneck implication: the active bottleneck is hidden public-label realization at critical-cell scale. We can describe an E72-like failure scenario, but the available structural diagnostics do not identify it before feedback.
 - Do not repeat: creating E72-demoted E176 siblings or dropping E176 solely because E197 includes E72-like failure analogues. Use E177/E197 decoding after public feedback instead.
+
+## FH173. Unscored E176 follow-up candidates hide direct E72-shape exposure
+
+- Failed hypothesis: E198 was incomplete because E172/E174/E166/E155 were not pressure-branch-scored; one of those direct candidate movements may be E72-shaped and unsafe as a follow-up route.
+- Observed result: E199 scores direct candidate-vs-E95 movement for all E197 candidates. E172 `0.000087`, E174 `0.000097`, E176 `0.000097`, E166 `0.000677`, E154 `0.007860`, and E155 `0.009284` all stay below non-E72 p95 `0.020815`. Only E144 crosses p99 at `0.054385`, still far below the positive floor `0.804849`.
+- Why discard: the missing candidates do not hide clean-shape E72 exposure. The post-E176 route can be chosen by information role and margin fragility rather than by fear of unscored E72 shape.
+- Implementation issue possible: medium. Direct candidate-vs-E95 scoring is not identical to pressure-branch scoring, and the clean detector remains imperfect. Low for rejecting the narrow missing-score concern because direct scoring is the exact movement that would be submitted.
+- Bottleneck implication: follow-up uncertainty is not E72-shape contamination for E172/E154. It remains hidden-label slippage, repaired-branch margin fragility, and public hard-label critical-cell realization.
+- Do not repeat: blocking E172/E154 follow-up solely because they lacked E192 pressure-branch scores. Use E199 direct scores for that caveat.
