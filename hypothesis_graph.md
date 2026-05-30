@@ -2837,27 +2837,27 @@ target co-occurrence
 
 ### H246: Feature-NN1 smoothing is an actionable Q3 selector, not just an E237 explanation
 
-- 상태: supported locally; public-unverified.
+- 상태: mixed. Supported as test-side geometry by E246, weakened as an invariant harmful-cell selector by E248; public-unverified.
 - 왜 그럴듯한가: E245 showed E237 locally smooths Q3 under the only E207 true-JEPA pair regime, but the effect was weak. If that regime is the hidden public law, directly selecting rows by hypothetical feature-NN1 Q3 smoothing should survive E237 stress without needing the learned E237 classifier.
-- 맞다면: smoothing-based selectors should pass graft-vs-E154 and actual-vs-E95 stress, improve adverse/support metrics versus E224, and avoid collapsing into pure E237 or amplitude-top-k selections.
-- 틀리다면: smoothing selectors will fail the E237-like gate, only pass as E237 clones, or pass only by violating Q3 top-cell/adverse constraints.
-- 최소 실험: `analysis_outputs/e246_feature_nn1_smoothing_selector_ablation.py`.
-- 관측: all `16/16` feature-NN1 selectors pass the E237-like gate. Best `nn_smooth_sum_top34` has expected loss vs E224 `-0.000066519`, adverse reduction `0.000632592`, support gain `0.005788959`, actual adverse reduction `0.000596176`, Q3 top1/expected `0.549713494`, and E237 overlap `13`.
-- 성공/폐기 기준: locally supported because a non-clone selector passes the full E237-like stress gate. Not final until public feedback because the selector is test-geometry-derived rather than OOF-learned.
+- 맞다면: smoothing-based selectors should pass graft-vs-E154 and actual-vs-E95 stress, improve adverse/support metrics versus E224, avoid collapsing into pure E237 or amplitude-top-k selections, and identify negative-benefit train OOF Q3 rows under analogous feature-NN graphs.
+- 틀리다면: smoothing selectors will fail the E237-like gate, only pass as E237 clones, pass only by violating Q3 top-cell/adverse constraints, or look label-adverse/non-invariant under train OOF benefit.
+- 최소 실험: `analysis_outputs/e246_feature_nn1_smoothing_selector_ablation.py`; OOF invariance audit in `analysis_outputs/e248_feature_nn1_oof_smoothing_invariance.py`.
+- 관측: all `16/16` feature-NN1 selectors pass the E237-like gate. Best `nn_smooth_sum_top34` has expected loss vs E224 `-0.000066519`, adverse reduction `0.000632592`, support gain `0.005788959`, actual adverse reduction `0.000596176`, Q3 top1/expected `0.549713494`, and E237 overlap `13`. E248 then weakens the invariant-selector claim: at the E247 selection fraction, the train-only PCA smooth-sum analogue has OOF rollback delta `+0.002829987`, the all-PCA analogue has `+0.002922728`, and split-stress means remain positive. Even the best full-train score is only the negative-control direction and still non-negative at `+0.000489209`.
+- 성공/폐기 기준: supported as a test-side geometric stress survivor, rejected as OOF-certified harmful-row selector. A future upgrade requires an OOF-trained feature-NN1 decisive target or public feedback from E247 that specifically supports the manifold rule.
 - public LB 관측 반응: E247 public win promotes feature-NN1 smoothing to a real JEPA selector. Near-tie keeps it informative but unresolved. E216-like loss demotes feature-NN1 smoothing to calibration shortcut.
-- 제출 전략: materialize exactly one high-information file in E247; do not sweep siblings before feedback.
+- 제출 전략: E247 remains a high-information public sensor only. For the more score-biased JEPA bet, prefer E237 because it has OOF tail-AUC support; do not sweep E247 siblings before feedback.
 
 ### H247: E247 is the most informative current JEPA-as-solution public sensor
 
-- 상태: candidate selected.
+- 상태: candidate selected only as high-information feature-NN1 manifold sensor; downgraded from best expected-score JEPA candidate by E248.
 - 왜 그럴듯한가: E237 is OOF-learned but only weakly feature-NN1-compatible. E247 is not OOF-learned, but it is generated directly from the E207 feature-neighbor context-target representation and passes the same stress gate with stronger smoothing and a non-clone row set.
-- 맞다면: the E247 artifact should be Q3-only, schema-clean, and have materially stronger feature-NN1 roughness reduction than E237 while preserving adverse/support stress.
-- 틀리다면: artifact integrity will fail, movement will leak into other targets, or stress metrics will not hold after materialization.
-- 최소 실험: `analysis_outputs/e247_feature_nn1_smoothing_materializer.py`.
-- 관측: `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` is schema/key/probability clean, changes `34` E224 cells all on Q3, SHA256 `3f4086d73b23a9c87294986aaa3a8ff32613312e69a398352d6744b8646ce839`, and reduces feature-NN1 Q3 roughness by `-0.014223558` globally and `-0.057353058` on affected pairs.
-- 성공/폐기 기준: selected as high-information public sensor. It is not private-safe certified because it fails E230's old `<=25` pruned-cell guard and lacks OOF selector validation.
+- 맞다면: the E247 artifact should be Q3-only, schema-clean, materially stronger in feature-NN1 roughness reduction than E237, and either OOF-invariant or explicitly useful as a public falsification of feature-NN1 smoothing.
+- 틀리다면: artifact integrity will fail, movement will leak into other targets, stress metrics will not hold after materialization, or E248-like OOF checks will show that smoothing is not a label-relevant harmful-cell selector.
+- 최소 실험: `analysis_outputs/e247_feature_nn1_smoothing_materializer.py`; OOF invariance audit in `analysis_outputs/e248_feature_nn1_oof_smoothing_invariance.py`.
+- 관측: `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` is schema/key/probability clean, changes `34` E224 cells all on Q3, SHA256 `3f4086d73b23a9c87294986aaa3a8ff32613312e69a398352d6744b8646ce839`, and reduces feature-NN1 Q3 roughness by `-0.014223558` globally and `-0.057353058` on affected pairs. E248 adds the missing LeJEPA skepticism: the same smoothing rule does not select negative-benefit OOF rows; train-only/all-PCA analogues are positive-delta at `+0.002829987` and `+0.002922728`.
+- 성공/폐기 기준: selected as a clean public sensor for whether feature-NN1 manifold smoothing itself is the hidden law. Downgraded as an expected-score candidate because it fails OOF selector validation.
 - public LB 관측 반응: win over E95 means JEPA manifold smoothing is actionable. Loss near E95/E101 means the hypothesis remains weak. E216-scale loss closes smoothing selectors until OOF invariance is learned.
-- 제출 전략: if spending one slot to test JEPA as a mechanism, submit E247. If choosing conservative OOF-learned JEPA, submit E237 instead.
+- 제출 전략: if spending one slot to falsify feature-NN1 smoothing directly, submit E247. If choosing the best current score-biased JEPA file, submit E237 instead.
 
 ## 우선 실험 5개
 

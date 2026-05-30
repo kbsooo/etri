@@ -1890,3 +1890,12 @@
 - Implementation issue possible: low. This is a deterministic decision-geometry issue, not a stochastic training result.
 - Bottleneck implication: the bottleneck is still public-tail translation plus observation design. The next file must be chosen by the question: E237 for JEPA-as-solution, E224 for clean JEPA ablation, E166 for non-JEPA escape.
 - Do not repeat: saying "submit E237" without specifying that it is a learned Q3-tail bet, or demoting E224 without acknowledging that E224 answers a different clean-body question.
+
+## FH210. Feature-NN1 smoothing is an OOF-certified harmful-Q3-row selector
+
+- Failed hypothesis: because E246/E247 directly reduce Q3 roughness on the E207 feature-NN1 manifold, high smoothing-gain rows should also be train/OOF rows where E224-like Q3 movement is harmful and rollback improves LogLoss.
+- Observed result: E248 shows the opposite for the E247 analogue. At the `34/250 = 0.136` selection fraction, train-only PCA `score_trainpca_smooth_sum` has rollback delta `+0.002829987`, all-PCA `score_allpca_smooth_sum` has `+0.002922728`, and split-stress means are positive (`+0.002638697` and `+0.002950123`). The best full-train score is the negative-control smoothness direction, and even that is non-negative at `+0.000489209`.
+- Why discard: the smoothing rule is a real geometric intervention, but not an invariant label-support selector under current OOF Q3 benefit. It tends to remove helpful movement rather than isolate harmful movement.
+- Implementation issue possible: medium. OOF `q3_e224` benefit may not equal hidden public labels, and train-only neighbor geometry is not exactly the test feature-NN1 graph. Low for downgrading E247 as an expected-score candidate because the exact missing claim was OOF invariance.
+- Bottleneck implication: the plateau is not solved by making predictions smoother on a plausible JEPA manifold. The hard part is still target-specific probability materialization: which cells should move, not whether a manifold exists.
+- Do not repeat: creating E247 sibling sweeps or smoothness-threshold variants before public feedback or before training a true OOF feature-NN1 decisive-cell target.

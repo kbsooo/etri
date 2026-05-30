@@ -2185,6 +2185,22 @@ E246/E247 adds a sharper stress result.
 
 Stress implication after E247: feature-NN1 smoothing is now a live selector, not only a diagnostic. The main unresolved risk is not local stress but invariance: the top selector is public-free and test-geometry-based, but not OOF-trained. Public feedback should decide whether this is a true JEPA manifold law or a local calibration-smoothing shortcut.
 
+## Update After E248
+
+E248 directly tests that unresolved invariance risk and finds it adverse.
+
+- E247 train-only PCA smooth-sum analogue at the `34/250` selection rate:
+  - full-train rollback delta `+0.002829987`.
+  - split-stress mean `+0.002638697`.
+  - split-stress win rate `0.30`.
+- E247 all-PCA smooth-sum analogue:
+  - full-train rollback delta `+0.002922728`.
+  - split-stress mean `+0.002950123`.
+  - split-stress win rate `0.15`.
+- Best full-train score at that fraction is the reversed smoothness direction, but it is still non-negative: `+0.000489209`.
+
+Stress implication after E248: E247 passes test-side materialization stress but fails OOF invariance. It should not be ranked above E237 for likely score. Its role is a public sensor for whether hidden public labels prefer feature-neighbor smoothing despite OOF evidence saying the rule is adverse.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

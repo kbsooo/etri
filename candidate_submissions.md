@@ -1725,3 +1725,28 @@ Interpretation rule:
 - If E247 beats E95, feature-NN1 broad-stage2 neighbor consistency becomes a real actionable JEPA selector, not just a diagnostic.
 - If E247 is near E95/E101 but not better, the selector is informative but too weak at public hard-label resolution; fall back to E237 or wait for an OOF-trained feature-NN1 decisive target.
 - If E247 is E216-like bad, the feature-NN1 smoothing gate is a calibration shortcut and should be demoted despite local stress success.
+
+## Update After E248
+
+E248 downgrades E247's expected-score claim.
+
+OOF result:
+
+- E247 train-only PCA analogue at the same `0.136` selection fraction has rollback delta `+0.002829987`.
+- E247 all-PCA analogue has rollback delta `+0.002922728`.
+- Split-stress means are also adverse: `+0.002638697` and `+0.002950123`.
+- Even the best score at that fraction, `score_neg_trainpca_smooth_sum`, remains non-negative at `+0.000489209`.
+
+Current candidate order by purpose:
+
+1. **Best current JEPA score bet:** `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+2. **Highest-information feature-NN1 mechanism sensor:** `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+3. **Clean JEPA body ablation:** `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+4. **Non-JEPA escape:** `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
+5. **Conservative repaired branch:** `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+
+Practical rule:
+
+- If the next submit is chosen for likely score, prefer E237 over E247.
+- If the next submit is chosen to answer "can JEPA feature-neighbor smoothing itself solve the public Q3 tail?", E247 is still the sharper sensor.
+- Do not submit E247 siblings or threshold variants before public feedback; E248 says the local smoothing rule lacks OOF invariance.

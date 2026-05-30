@@ -3783,3 +3783,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - feature-NN1 Q3 global pair abs-logit delta: `-0.014223558`; affected-pair delta: `-0.057353058` over `62` directed pairs.
 - Interpretation: this is the first candidate in the branch where JEPA is not only an idea reference. The selector itself is a context-target representation rule: choose Q3 cells whose rollback makes broad-stage2 feature-neighbor predictions locally coherent.
 - Decision: if the next public slot is "try JEPA as an actual solution", E247 is now the most informative file. E237 remains the more conservative OOF-learned Q3 decisive-cell file. A public E247 win promotes feature-NN1 smoothing to an actionable JEPA selector; a loss says the local stress gate is still too calibration-prior-driven.
+
+## E248. Feature-NN1 OOF Smoothing Invariance
+
+- Observe: E247 is generated from test-side feature-NN geometry. That makes it a real JEPA mechanism test, but not automatically a stable selector. The key missing check is whether the same smoothing score identifies harmful Q3 movement on train OOF labels.
+- Wonder: do rows with high feature-NN1 Q3 smoothing gain have negative OOF `q3_e224` benefit, meaning rollback would improve train LogLoss?
+- Method: `analysis_outputs/e248_feature_nn1_oof_smoothing_invariance.py` builds train-only and all-PCA feature-NN1 graphs over train OOF rows, computes the rollback-to-base smoothing gain for `q3_e224`, and evaluates top-fraction benefit at E247's `34/250 = 0.136` selection rate under full-train, random-stratified, row-contiguous, and subject-LOO stress.
+- Result:
+  - report: `analysis_outputs/e248_feature_nn1_oof_smoothing_invariance_report.md`.
+  - best full-train score at E247 fraction is the negative control `score_neg_trainpca_smooth_sum`, but it is still adverse: drop delta `+0.000489209`.
+  - E247 train-only PCA analogue `score_trainpca_smooth_sum` is clearly adverse: `+0.002829987`.
+  - E247 all-PCA analogue is also adverse: `+0.002922728`.
+  - split stress is also positive: train-only analogue mean `+0.002638697`, all-PCA analogue mean `+0.002950123`.
+- Interpretation: E247's smoothing selector is not OOF-certified. It survives public-free materialization stress, but train OOF says the same smoothness rule tends to remove helpful Q3 movement, not harmful movement.
+- Decision: downgrade E247 from "score-biased next JEPA file" to "high-information public sensor for the feature-NN1 manifold hypothesis." If the goal is the best current JEPA score bet, E237 is safer because it has OOF tail-AUC support. If the goal is to directly falsify whether feature-NN1 smoothing is the missing public law, E247 remains the cleaner sensor.
