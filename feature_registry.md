@@ -1853,6 +1853,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E259 maps E256 scores into amplitude breakthrough / tie / broad-smoothness loss / same-family loss, and maps E224 scores into body breakthrough / rollback-helped / body-only loss. The routebook is stored at `analysis_outputs/e259_post_e247_observation_routebook_report.md`.
 - Policy: use F216 before acting on any E256 or E224 public LB. Do not submit E247-family blends or extra siblings before one pre-registered route is observed.
 
+### F217. E260 hard-label route sensitivity features
+
+- Hidden structure: post-E247 candidate risk is not only the candidate-level expected loss; it is the cell-group-level ability of a few public hard labels to overturn the public-free prior.
+- Candidates: pair role (`E256-vs-E247`, `E224-vs-E247`), E257 cell group (`common`, `e247_only`, `e256_only`), cell action, hard-label swing, expected-focus contribution, adverse capacity, top1/top5 over expected edge, and cells needed to cross E259 public bands.
+- Label vs split test: diagnostic only. It uses public-free priors and known submitted tensors, not hidden public labels. It should decide which failure explanation is admissible after public feedback, not train a probability model.
+- Current evidence: E256 expected penalty is `+0.000019101` versus E247, while E224 is `+0.000066519`. E256's E247-only deletion group is slightly favorable (`-0.000001767`), and the E256-only four-cell group is adverse (`+0.000020868`). E224's common rollback removal is adverse (`+0.000068286`).
+- Policy: use F217 when decoding E256/E224 feedback. If E256 loses, inspect the four high-amplitude additions first; do not automatically restore all E247-only broad cells. If E224 wins, treat it as evidence against the common rollback core.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

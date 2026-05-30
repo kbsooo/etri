@@ -2992,6 +2992,18 @@ target co-occurrence
 - public LB 관측 반응: E256 win strengthens amplitude-constrained smoothing; E256 close loss strengthens broad low-amplitude smoothness; E224 win/tie strengthens body sufficiency; E224 worse than mixmin rejects body-only translator.
 - 제출 전략: E256 first for score plus information; E224 first for attribution. No E247-family blend before one score is observed.
 
+### H260: E256's public risk is the four high-amplitude additions, not broad-smoothing deletion
+
+- 상태: supported by public-free hard-label atlas; public outcome pending.
+- 왜 그럴듯한가: E257 showed E256 differs from E247 in two ways at once: it removes `13` E247-only broad smoothness cells and adds `4` high-amplitude/E230-swing cells. Without separating these groups, an E256 public loss would be easy to misread as proof that broad smoothness was necessary.
+- 맞다면: E256-vs-E247 expected risk should concentrate in the E256-only high-amplitude group, while the E247-only deletion should be neutral or favorable under current hard-label priors.
+- 틀리다면: the E247-only broad deletion should carry the main positive expected penalty, and the E256-only added cells should be neutral or favorable.
+- 최소 실험: `analysis_outputs/e260_post_e247_next_slot_risk_atlas.py`.
+- 관측: E256 expected focus versus E247 is `+0.000019101`. The E247-only deletion group is slightly favorable (`-0.000001767`), while the E256-only high-amplitude group is adverse (`+0.000020868`). E224-vs-E247 is larger-risk at `+0.000066519`, dominated by common rollback removal (`+0.000068286`).
+- 성공/폐기 기준: if E256 public wins, H260 says public labels favored the four high-amplitude cells despite current prior. If E256 loses, blame those four cells first. If a later cell-level ablation shows E256-only additions are safe but E247-only deletions are harmful, H260 is rejected.
+- public LB 관측 반응: E256 `<=0.576155949` strengthens high-amplitude smoothing. E256 close loss does not by itself prove broad smoothing was causal unless the loss scale matches the E256-only adverse budget. E224 win/tie rejects the common rollback core.
+- 제출 전략: E256 remains the score-plus-information file; do not build an E247-only restoration blend unless E256 public feedback specifically indicates the four added cells were not the culprit.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

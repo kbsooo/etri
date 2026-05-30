@@ -1984,3 +1984,27 @@ How to read the next score:
 - E224 `>=0.576306641`: body-only translator is unsafe; E247 was a rescued interaction.
 
 Practical rule: do not submit an E247/E256/E224 blend before one of E256 or E224 has public feedback.
+
+## Update After E260
+
+E260 adds a public-free hard-label risk atlas for the two clean post-E247 options.
+
+- `analysis_outputs/submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv` has expected penalty versus E247 `+0.000019101`.
+- `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv` has expected penalty versus E247 `+0.000066519`.
+- E224's penalty is `3.482x` larger than E256's.
+- E256 risk is concentrated in `4` E256-only high-amplitude Q3 cells (`+0.000020868` expected focus).
+- Removing the `13` E247-only broad-smoothness cells is slightly favorable under the current focus prior (`-0.000001767`).
+- E224 risk is mostly the removal of the `21` common rollback cells (`+0.000068286`).
+
+Updated one-file order:
+
+1. **Score plus information:** `analysis_outputs/submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv`.
+2. **Attribution only:** `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+3. **Anchor:** `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+
+Failure interpretation:
+
+- If E256 loses, the first suspect is the four high-amplitude added cells, not the deletion of E247-only broad cells.
+- If E256 wins, public is saying those four high-amplitude cells beat the current public-free prior.
+- If E224 ties or wins, public is rejecting the common rollback core and strengthening the body-sufficiency world.
+- If E224 loses, body-only attribution weakens and E247 should be read as body plus necessary Q3 trim.

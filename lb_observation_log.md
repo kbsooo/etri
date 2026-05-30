@@ -303,3 +303,15 @@ Pre-registered thresholds:
 - E224 body-only loss: `>=0.576306641`.
 
 Interpretation policy: do not use the next public score as a generic rank signal. Decode it as one of the routebook worlds, then choose the follow-up that falsifies the remaining branch.
+
+## Update After E260
+
+No new public LB was added. E260 refines how the next public observation should be interpreted.
+
+- E256 expected penalty versus E247: `+0.000019101`.
+- E224 expected penalty versus E247: `+0.000066519`.
+- E256 is still the next score-plus-information file because its expected downside is smaller.
+- The E256 downside is concentrated in `4` high-amplitude added Q3 cells, not in deletion of the `13` E247-only broad cells.
+- E224's downside is mainly the removal of the `21` common rollback cells.
+
+Public decoding addition: if E256 is worse than E247, do not immediately conclude that E247-only broad smoothness was the cause. First test whether the four E256-only high-amplitude cells were public-adverse. If E224 ties or beats E247, interpret that as evidence against the common rollback core and for body sufficiency.

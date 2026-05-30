@@ -2328,6 +2328,17 @@ E259 turns the E247/E256/E224 stress split into a pre-registered observation rou
 
 Stress implication after E259: public feedback must be read through the declared routebook. A same-family blend before E256/E224 feedback is now explicitly blocked because it would remove attribution resolution.
 
+## Update After E260
+
+E260 adds a hard-label sensitivity layer to the E259 routebook.
+
+- Pair summary: E256-vs-E247 expected focus `+0.000019101`; E224-vs-E247 expected focus `+0.000066519`.
+- E256 is lower expected downside than E224, but its top-cell fragility is higher relative to the tiny expected gap: top1/abs expected `4.431072193`.
+- E224 is less ratio-fragile but more broadly adverse because removing the common rollback core contributes `+0.000068286`.
+- E256's E247-only broad-smoothness deletion is not the adverse part under current priors (`-0.000001767`). Its adverse part is the E256-only high-amplitude cell insertion (`+0.000020868`).
+
+Stress implication after E260: E256 remains the right next score-plus-information stress, but the pre-registered read is narrower. A bad E256 score means the high-amplitude added cells failed first. It does not automatically mean E247-only broad smoothing was the causal public signal.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

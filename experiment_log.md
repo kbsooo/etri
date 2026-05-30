@@ -3954,3 +3954,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - The report fixes the current split: E256 tests broad-vs-amplitude Q3 smoothing; E224 tests body attribution.
 - Interpretation: the next public slot should not be another blend. A blend would erase the only clean causal split left after E247.
 - Decision: if score plus information is prioritized, submit E256. If attribution is prioritized, submit E224. Decode either score with E259 before making a follow-up.
+
+## E260. Post-E247 Next-Slot Risk Atlas
+
+- Observe: E259 leaves two clean public questions, E256 for score plus information and E224 for body attribution. Both are still hard-label-sensitive because their expected gaps versus E247 are tiny.
+- Wonder: if one public slot is used next, which candidate has smaller expected downside versus E247, and which exact cells are responsible for the risk?
+- Method: `analysis_outputs/e260_post_e247_next_slot_risk_atlas.py` compares E256-vs-E247 and E224-vs-E247 changed cells using E162 hard-label priors plus E257 cell-group labels. It writes pair, target, group, and top-cell atlases plus `analysis_outputs/e260_post_e247_next_slot_risk_atlas_report.md`. No submission is created and no public LB is fit.
+- Result:
+  - E256 expected penalty versus E247 is `+0.000019101`; E224 expected penalty is `+0.000066519`, `3.482x` larger.
+  - E256 has `17` moved Q3 cells; E224 has `34`.
+  - E256's `13` E247-only broad cells are slightly favorable to remove under the focus prior (`-0.000001767`), while its `4` E256-only high-amplitude cells are adverse (`+0.000020868`).
+  - E224 risk is dominated by removing the common rollback core: `21` common cells, expected focus `+0.000068286`.
+  - Both branches are hard-label fragile: one top cell can overturn the expected focus in either pair.
+- Interpretation: E256 remains the best score-plus-information next file, but not for the reason "broad smoothing removal is safer." Its public fate is mostly a four-cell high-amplitude bet. E224 is cleaner attribution but carries a larger expected public-free penalty because it removes the shared rollback core.
+- Decision: keep E256 as the next score attempt if one file is needed. If E256 loses, blame the four E256-only high-amplitude cells before blaming deletion of E247-only broad smoothness. Use E224 only when the explicit question is whether the E224 body alone carried E247.

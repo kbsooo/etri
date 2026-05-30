@@ -1980,3 +1980,12 @@
 - Implementation issue possible: low for the governance conclusion; the ambiguity is structural. Medium for exact thresholds because they are pragmatic public-resolution bands, not hidden labels.
 - Bottleneck implication: the bottleneck is no longer only candidate generation. It is feedback identifiability. A public slot should kill a branch, not just produce another number.
 - Do not repeat: interpreting E256/E224/E247-family scores post-hoc, or creating a blend before one clean axis has public feedback.
+
+## FH220. E256's main risk is deleting E247-only broad smoothness
+
+- Failed hypothesis: if E256 loses to E247, the natural first explanation should be that the `13` E247-only low-amplitude broad-smoothness cells were public-real and should be restored.
+- Observed result: E260 separates E256-vs-E247 by E257 cell group. The `13` E247-only deletion cells are slightly favorable under the focus prior (`-0.000001767`), while the `4` E256-only high-amplitude additions are adverse (`+0.000020868`). Total E256-vs-E247 expected focus is `+0.000019101`.
+- Why discard: the candidate-level E256 penalty is driven by the added high-amplitude cells, not by the removed broad cells. A scalar E256 loss would be underidentified without this decomposition.
+- Implementation issue possible: medium. The decomposition uses current hard-label priors, not hidden public labels. Low for rejecting the prior-based explanation, because group attribution is deterministic over the submitted tensors.
+- Bottleneck implication: the next bottleneck is cell-level public label resolution, not broad-vs-amplitude story alone. The public may still reward broad smoothness, but E260 says that is not the current public-free risk explanation.
+- Do not repeat: making an E247/E256 blend or E247-only restoration variant immediately after an E256 loss without first isolating the four E256-only cells.
