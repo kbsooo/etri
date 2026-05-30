@@ -1838,6 +1838,27 @@ E228 tri-world conflict atlas:
 
 Stress implication after E228: E224 and E166 should remain separate high-information public sensors. E154 is a conservative branch counter-world, but not a clean independent alternative to E224 because E224 already includes most of the E154 repaired body. A blind tri-world blend is rejected before feedback.
 
+E229 next public-slot decision audit:
+
+- script: `analysis_outputs/e229_next_public_slot_decision.py`.
+- report: `analysis_outputs/e229_next_public_slot_decision_report.md`.
+- summary: `analysis_outputs/e229_next_public_slot_decision_summary.csv`.
+- route summary: `analysis_outputs/e229_next_public_slot_decision_route_summary.csv`.
+- stress dimensions:
+  - E216 and E176 inserted into `analysis_outputs/public_probe_observations.csv`.
+  - 14-anchor public bottleneck proxy rerun after E216.
+  - E225/E227/E160 routebook outcome coverage.
+  - E228 pairwise conflict/overlap evidence.
+  - expected edge compared to proxy error floor.
+- key results:
+  - best public-anchor proxy remains `raw05_a2c8_compat`, MAE `0.000496259`, p90 `0.000695363`.
+  - this error floor is still larger than E95/E101/mixmin/E176 gaps, so proxy score ranking is invalid for the next frontier file.
+  - E224 remains the JEPA-first public sensor because it is Q3/S4-dominant and nearly orthogonal to the failed E216 S2 translator (`cos_vs_e216=0.043542`).
+  - E166 remains the independent broad sensor (`cos_vs_e224=0.074348`).
+  - E154 remains conditional because its body is mostly contained in E224 (`0.885621` same-sign E154 mass coverage).
+
+Stress implication after E229: the next slot is not a universal "best expected LB" file. It is an observation choice. Use E224 for the JEPA question, E166 for the independent broad-world question, and E154 only after attribution or after those questions are demoted.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

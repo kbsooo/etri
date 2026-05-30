@@ -1791,3 +1791,12 @@
 - Implementation issue possible: low. The rejection is deterministic movement geometry, not a stochastic model result. A future blend may become valid only after one component receives public feedback and attribution.
 - Bottleneck implication: candidate selection is now an observation-design problem. The next useful public slot should isolate a hidden-world law instead of averaging mutually underidentified laws.
 - Do not repeat: building a blended submission from live sensors just because each has some local or routebook support.
+
+## FH199. The updated public-anchor proxy can choose the next frontier file
+
+- Failed hypothesis: after adding E176 and E216 to the public observation ledger, the known-anchor proxy should be good enough to pick the next post-E95 file by predicted LB or expected edge.
+- Observed result: rerunning `analysis_outputs/public_anchor_bottleneck_decomposition.py` with 14 anchors keeps `raw05_a2c8_compat` as the best proxy, but its MAE is still `0.000496259` and p90 error is `0.000695363`. That is far larger than the gaps separating E95, E101, mixmin, and E176.
+- Why discard: the proxy is useful for coarse geometry and known-bad JEPA-axis separation, but its resolution is too low for frontier ordering. Using it as a selector would turn public LB into post-hoc prior tweaking.
+- Implementation issue possible: medium. More anchors or a better inverse subset model could reduce error later. Low for rejecting current use because the error floor is directly measured by leave-one-anchor validation.
+- Bottleneck implication: candidate selection remains an observation-design problem, not a score-regression problem. The next submission should be chosen by which hidden-world belief it can kill: E224 for JEPA, E166 for independent broad-world, E154 for repaired branch.
+- Do not repeat: ranking E224/E166/E154 by scalar proxy forecast, or creating a new blend because the proxy cannot separate them.

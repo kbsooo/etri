@@ -1359,3 +1359,23 @@ Submission policy update:
 - If spending one JEPA slot: E224.
 - If spending one independent non-JEPA worldview slot: E166.
 - If spending one conservative repaired-branch slot after attribution: E154.
+
+## Update After E229
+
+E229 folds the real E216 public miss into the machine-readable public-anchor table and reruns the public-anchor bottleneck decomposition. The selector still cannot rank frontier files by expected LB: best LOOCV proxy MAE is `0.000496259`, far larger than the current frontier gaps. Therefore the next file must be chosen by the hidden-world question, not by the proxy.
+
+Current one-slot policy:
+
+1. JEPA-first question: submit `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+   - Intent: test whether E216 was a narrow S2/rank failure or whether current JEPA probability translation is broadly unsafe.
+   - Public read: decode with `python3 analysis_outputs/e225_e224_public_feedback_decoder.py --score <PUBLIC_LB>`.
+
+2. Independent non-JEPA question: submit `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
+   - Intent: test whether the safety atlas is overconservative on broad survivor / edge / between-train-runs context.
+   - Public read: decode with `python3 analysis_outputs/e227_e166_public_feedback_decoder.py --score <PUBLIC_LB>`.
+
+3. Conservative repaired branch: keep `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` conditional.
+   - Intent: test E144/E154 repaired body only after JEPA or independent broad evidence points away from the active residual.
+   - Reason not first: E154 is partly inherited inside E224; E224 covers `0.885621` of E154 mass same-sign.
+
+Do not submit an E229 blend. E224 and E166 are high-information separate sensors, and blending before feedback destroys the observation.

@@ -1666,6 +1666,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E224/E166 are almost orthogonal (`cos=0.074348`) with top50 overlap `1`; E166/E154 are also almost orthogonal (`cos=0.061662`) with top50 overlap `0`; E224/E154 are related (`cos=0.316350`) because E224 contains most of E154's same-sign repaired body (`0.885621` E154 mass coverage).
 - Policy: use F193 to keep E224 and E166 as separate public sensors. Do not create a blind E224/E166/E154 blend. Treat E154 as a conditional repaired-branch test, not as a clean independent post-E224 alternative.
 
+### F194. E229 public-slot decision and anchor-ledger features
+
+- Hidden structure: the public LB ledger itself is a sensor, but only at the resolution allowed by its leave-one-anchor error. After E216, the meaningful feature is not a scalar predicted LB; it is the mapping from each candidate to the hidden-world question its score can answer.
+- Candidates: `analysis_outputs/public_probe_observations.csv`, 14-anchor `raw05_a2c8_compat` MAE/p90, E225/E227/E160 routebook outcome counts, E228 cosine/overlap relations, expected edge divided by proxy MAE, and role labels `jepa_first`, `independent_broad`, `conservative_branch`.
+- Label vs split test: valid as governance and experiment tracking. It uses public observations, so it must never become a feature for probability fitting, prior tweaking, or post-hoc LB optimization.
+- Current evidence: adding E176/E216 yields best proxy MAE `0.000496259`, still too coarse for frontier ordering. E224's expected edge is only `1.316x` this proxy MAE and carries large adverse capacity; E166's expected edge is `0.669x`; E154's is `0.060x`. Therefore the table cannot certify a score. It can only route the next public observation.
+- Policy: choose E224 only when the explicit question is JEPA after E216. Choose E166 when the explicit question is independent broad-world structure. Keep E154 conditional. Do not use F194 as a model feature or LB-fitting device.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

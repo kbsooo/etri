@@ -2640,6 +2640,18 @@ target co-occurrence
 - public LB 관측 반응: an E224 score should be decoded as capped-Q3/S4 JEPA feedback; an E166 score should be decoded as broad safety-atlas feedback. An E154 score is most informative after attribution says the E224 residual, not the inherited body, is the suspect.
 - 제출 전략: do not build a blind tri-world blend. Submit E224 for the JEPA question, E166 for the independent broad question, and E154 only as the conservative repaired-branch counter-world.
 
+### H224. The next public slot is question-dependent, not proxy-score-dependent
+
+- 상태: 지지 by E229 governance audit.
+- 왜 그럴듯한가: adding E176/E216 to the public-anchor table improves coarse proxy fit, but the frontier gaps remain far below the proxy error floor. At the same time, E228 shows live candidates ask genuinely different questions.
+- 맞다면: the public-anchor proxy should remain too coarse to certify a next frontier file, while E224/E166/E154 routebooks should separate into JEPA-first, independent broad, and conservative repaired-branch questions.
+- 틀리다면: the updated 14-anchor proxy would resolve a candidate as better than E95 beyond its LOOCV error, or E228 would show the live files are duplicate enough that a scalar score rank/blend is justified.
+- 최소 실험: `analysis_outputs/e229_next_public_slot_decision.py`, using E225/E227/E160 routebooks, E228 conflict atlas, and the updated `public_anchor_bottleneck_decomposition.py`.
+- 관측: best proxy MAE is `0.000496259` with p90 `0.000695363`, still larger than the E95/E101/mixmin/E176 gaps. E224 is selected only under the JEPA-first question because it is low-cosine to E216 (`0.043542`) and Q3/S4-dominant. E166 is first under independent broad-world testing. E154 is conditional because E224 covers `0.885621` of its mass same-sign.
+- 성공/폐기 기준: supported as routing policy. It does not prove E224 will score better; it proves the next slot should be a pre-declared observation, not a public-anchor proxy bet.
+- public LB 관측 반응: an E224 score updates whether the current JEPA translator survives E216; an E166 score updates whether broad survivor structure was over-vetoed. The same scalar LB band must be read through the chosen routebook.
+- 제출 전략: forced one-slot under current JEPA question is E224. If the next goal changes to escaping JEPA, choose E166. Do not submit E154 first unless the explicit question is repaired-branch validation or attribution points there.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

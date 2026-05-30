@@ -3505,3 +3505,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - target anatomy says the E224/E166 conflict is mainly Q3/S4: Q3 conflict rate `0.536444`, S4 conflict rate `0.127998`; E224/E154 has no conflict on Q1/S2/S3 and only Q3/S4 residual conflict.
 - Interpretation: E224 and E166 are genuinely different public sensors. E154 is not independent in the same sense because E224 already inherits most of E154's repaired body, while adding the JEPA Q3/S4 residual. A tri-blend would erase interpretability and could win or lose by cancellation.
 - Decision: do not create a blind E224/E166/E154 blend. Keep E224 as the JEPA capped-Q3/S4 sensor, E166 as the independent broad safety-atlas sensor, and E154 as a conditional conservative branch only after E224/E166 feedback or an attribution result points away from the Q3/S4 residual.
+
+## E229. Next Public Slot Decision After E216
+
+- Observe: E216's public miss needed to be added to the reusable public-observation ledger, and the live E224/E166/E154 files needed a single next-slot rule that did not collapse into proxy score chasing.
+- Wonder: if only one public slot is spent next, should it test JEPA directly, escape JEPA with an independent broad worldview, or use the conservative repaired branch?
+- Method: `analysis_outputs/e229_next_public_slot_decision.py` joins the E225 E224 routebook, E227 E166 routebook, E160 E154 interpreter, E228 conflict atlas, and the updated 14-anchor public bottleneck decomposition. It creates no submission.
+- Result:
+  - report: `analysis_outputs/e229_next_public_slot_decision_report.md`.
+  - summary: `analysis_outputs/e229_next_public_slot_decision_summary.csv`.
+  - route summary: `analysis_outputs/e229_next_public_slot_decision_route_summary.csv`.
+  - E216 has been inserted into `analysis_outputs/public_probe_observations.csv`; rerunning `public_anchor_bottleneck_decomposition.py` keeps `raw05_a2c8_compat` as the best proxy with MAE `0.000496259` and p90 `0.000695363`.
+  - the proxy error remains larger than the E95/E101/mixmin/E176 frontier gaps, so it is still a geometry descriptor rather than a next-file selector.
+  - forced JEPA-first choice: `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+  - first independent non-JEPA follow-up: `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
+  - conservative branch remains conditional: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+- Interpretation: E216 does not kill every JEPA idea. It kills the S2/rank masked-family translator. E224 is mostly Q3/S4 movement and nearly orthogonal to E216 (`cos_vs_e216=0.043542`), so it remains the clean JEPA question. E166 is the clean non-collinear escape question (`cos_vs_e224=0.074348`). E154 is lower first-slot information because E224 covers `0.885621` of E154 mass same-sign.
+- Decision: no E229 submission. If the next public slot is meant to answer "can JEPA solve this?", submit E224 and decode with E225. If the next slot is meant to leave JEPA and test a different hidden-world law, submit E166 and decode with E227. Do not use public-anchor proxy ordering or an E224/E166/E154 blend.

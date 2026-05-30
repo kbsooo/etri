@@ -10,3 +10,5 @@ submission_mixmin_0c916bb4.csv,0.5763066405,Previous public frontier; validates 
 submission_e72_topabs50_q2s3_gate_4e48cba2.csv,0.5764077772,E72/E73 sparse Q2/S3 gate sensor worsened versus mixmin; later audits show broad all-target contamination and sub-margin pure Q2/S3.
 submission_e95_hardtail_541e3973.csv,0.5762913298,Current public frontier; validates E72-adverse hard-tail localization with E86-to-E85 fallback.
 submission_e101_q2s3tail_177569bc.csv,0.5763003660,Resolved E95-relative Q2/S3 rollback sensor; small_loss versus E95 (+0.0000090362) but still beats mixmin (-0.0000062745); closes E108 and same-line automatic followups.
+submission_e176_abl_q2_to0p75_91e49725.csv,0.5763118310,Broad partial-reopen / Q2-damped sensor resolved as branch_loss versus E95; demotes same-family E176/E174/E172/E169 expected-score followups.
+submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv,0.5772865088,Masked-family JEPA S2-only translator severe miss; closes E216 siblings as public-safe submissions until S2 support-tail failure is rebuilt.
