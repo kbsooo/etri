@@ -619,3 +619,19 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - row/subject/dateblock/sign null strict rates: `0.000000` / `0.250000` / `0.406250` / `0.000000`.
 - interpretation: the S4 sign pattern is meaningful, but subject/dateblock placement is not certified. Public LB should be preserved.
 - next experiment: learn or construct a subject/dateblock placement-health target; do not submit hand-probed S4 dateblock masks.
+
+## Public-Free Observation: E302
+
+- submission files: none.
+- public LB: not submitted.
+- reason not submitted: E302 is a placement-health decoder, not a probability submission generator.
+- local observation:
+  - placements: `257`;
+  - null placements: `256`;
+  - `human_all` leave-mode-out mean Spearman: `0.400962`;
+  - `human_all_plus_topology` leave-mode-out mean Spearman: `0.325973`;
+  - `human_all` p90 Spearman: `-0.090201`;
+  - E300 actual mean predicted rank pct under `human_all_plus_topology`: `0.433594`;
+  - E300 actual p90 predicted rank pct under `human_all_plus_topology`: `0.000000`.
+- interpretation: human diary context weakly explains mean placement health, but it does not make E300 exceptional on the failing axis. The branch remains diagnostic.
+- next experiment: build a constrained S4 mean-placement prior from the E302 decoder and rerun large-null confirmation, or abandon S4 mask surgery if that fails.

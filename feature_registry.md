@@ -2542,3 +2542,30 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - public-free promotion requires strict confirmation after candidate discovery.
 - Failure condition:
   - if a candidate passes a small null governor but fails large subject/dateblock null confirmation, classify it as selector/mask overfit and do not submit.
+
+## E302 S4 Placement-Health Decoder Policy
+
+- Target hypothesis tested: subject/dateblock S4 placement health can be decoded from human diary/story/episode aggregates.
+- Feature/representation source:
+  - E301 actual/null placement tensors;
+  - signed, absolute, active-row, and positive-minus-negative aggregates over diary JEPA features;
+  - E280 story scores;
+  - E295 episode states;
+  - topology controls for subject/dateblock mass.
+- Validation result:
+  - placements: `257`;
+  - null placements: `256`;
+  - `human_all` leave-mode-out mean Spearman `0.400962`;
+  - `human_all_plus_topology` leave-mode-out mean Spearman `0.325973`;
+  - `story_episode` strict AUC `0.629383`;
+  - p90 health is not stable under the same human features.
+- Updated registry status:
+  - S4 placement-health features are diagnostic and eligible for one constrained follow-up;
+  - they are not approved as direct submission features;
+  - p90-based placement scoring is demoted because it is easier to satisfy than mean-dominance.
+- Adopt rule for future features:
+  - optimize subject/dateblock mean placement, not only p90;
+  - use human diary placement score as a prior, then run E301-style large-null confirmation;
+  - do not choose a null placement itself as a submission.
+- Failure condition:
+  - if a placement prior improves p90 but not mean dominance under large nulls, classify it as another visibility shortcut.

@@ -4614,3 +4614,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - watchlist public-free ready: false.
 - Interpretation: the S4 sign is meaningful, but subject/dateblock placement is not certified. Dateblock nulls can reproduce the mean edge too often, so the local governor rejects this as a public candidate.
 - Decision: no E300 public submission. E301 becomes the stricter promotion gate for future scarce-public candidates.
+
+## E302. S4 Placement-Health Decoder
+
+- Observe: E301 narrowed the failure mode. The S4 sign/p90 edge is not random, but subject/dateblock nulls can reproduce the mean edge.
+- Wonder: is that placement health visible in raw human diary context, or are we only seeing selector geometry?
+- Method: `analysis_outputs/e302_s4_placement_health_decoder.py` treats E301 as a small placement-world lab: one actual E300 placement plus `256` row/subject/dateblock/sign null placements. For every placement it aggregates S4 logit deltas against diary/story/episode features, then predicts selector mean, p90, and strict-promote status under leave-mode-out stress.
+- Result:
+  - placements: `257`;
+  - null placements: `256`;
+  - best leave-mode-out mean-health feature set: `human_all`, mean Spearman `0.400962`, mean MAE `0.000051`, strict AUC `0.597838`;
+  - `human_all_plus_topology` has mean Spearman `0.325973`, strict AUC `0.601454`;
+  - p90 health is not reliably decoded by human features: `human_all` p90 Spearman `-0.090201`;
+  - E300 actual predicted mean rank under `human_all_plus_topology`: `0.433594`, so it is not human-context exceptional on the failing mean axis;
+  - E300 actual predicted p90 rank: `0.000000`, matching its strong p90/tail behavior.
+- Interpretation: human diary features do contain some subject/dateblock placement-health signal, especially around bedtime-phone, mobility, sensor measurement, physiology/activity JEPA residuals, social communication, and night-out mobility. But this signal explains the mean axis only weakly and does not certify E300. The exact E301 pattern is reproduced: p90 is easy to make look good; mean placement is the hard axis.
+- Decision: no public submission and no E301 null submission. Next step, if continuing S4, is a constrained placement prior that optimizes mean health from the human placement decoder and then reruns E301-style large-null confirmation.

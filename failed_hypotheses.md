@@ -2241,3 +2241,12 @@
 - Implementation issue possible: low for rejecting this exact file because E301 uses a different seed prefix and a larger null budget. Medium for the S4 branch because raw sign direction is meaningful: sign null dominance was `1.000000`.
 - Bottleneck implication: S4 direction is not the hard part; hidden subject/dateblock placement is. Future work should model placement/outcome health directly, not choose masks by row probes alone.
 - Do not repeat: submitting `submission_e300_s4mean_drop_dateblock_id07_b9_raw_m1p16_d285ff4a.csv` or trusting small-null ready status without E301-style large-null confirmation.
+
+## FH249. E300 is certified by human diary placement context
+
+- Failed hypothesis: if E300's S4 placement is genuinely human-state aligned, an E301 placement-health decoder should rank it as exceptional on the failing mean axis.
+- Observed result: E302 finds some human-context predictability, but E300 actual is not exceptional on mean. Under `human_all_plus_topology`, the actual p90 predicted rank pct is `0.000000`, while mean predicted rank pct is only `0.433594`. The best human feature set reaches mean Spearman `0.400962`, but p90 Spearman is negative.
+- Why discard: E300's strong p90 is aligned with a visibility axis that the model can rank, but its mean placement is not enough better than subject/dateblock nulls. This matches the E301 rejection rather than overturning it.
+- Implementation issue possible: medium. E302 is trained on E301 placement worlds, not independent labeled public data. But this is enough to reject using E302 as a reason to submit E300.
+- Bottleneck implication: p90/tail visibility is the easy shortcut. The next healthy target is mean-placement under subject/dateblock nulls.
+- Do not repeat: presenting E300 as human-theory validated because it aligns with p90 or because some diary features predict placement health.

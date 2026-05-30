@@ -2412,6 +2412,40 @@ Current best public file remains:
 
 - `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
 
+## Update After E302 S4 Placement-Health Decoder
+
+Current submission policy remains: **no new public submission.**
+
+What was tested:
+
+- E302 used E301's `1` actual placement and `256` null placements as a local placement-world lab.
+- It asked whether S4 placement health can be predicted from raw human diary/story/episode aggregates.
+- This is public-free and does not create a submission.
+
+What was learned:
+
+- There is some human-context signal for the failing mean axis:
+  - `human_all` leave-mode-out mean Spearman `0.400962`;
+  - `human_all_plus_topology` leave-mode-out mean Spearman `0.325973`.
+- But p90/tail health is not decoded reliably by the same human features:
+  - `human_all` p90 Spearman `-0.090201`;
+  - `human_all_plus_topology` p90 Spearman `-0.104041`.
+- E300 actual is predicted as excellent on p90 but only middle-of-pack on mean:
+  - `human_all_plus_topology` actual mean predicted rank pct `0.433594`;
+  - actual p90 predicted rank pct `0.000000`.
+
+Meaning:
+
+- Do not submit E300.
+- Do not submit any E301 null placement.
+- The S4 branch is not fully dead, but it must target mean-placement health directly.
+- The useful human/social clues are not broad payday/cash-flow stories; the visible weights are bedtime-phone, mobility/night-out, measurement confidence, physiology/activity JEPA residuals, and social communication balance.
+
+Next candidate requirement:
+
+- a future S4 candidate must be generated from a constrained human placement prior, then pass E301-style large-null confirmation;
+- old selector p90 improvement alone is not enough.
+
 ## Update After E283 App-Entropy Q3 Smoothing Context Audit
 
 Current submission policy remains: **no new public submission.**

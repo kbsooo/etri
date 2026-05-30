@@ -3416,6 +3416,23 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E300.
 - 제출 전략: none. Future S4 work must predict subject/dateblock placement health directly, not only drop a visible dateblock after probing.
 
+### H302: S4 subject/dateblock placement health is partially encoded in human diary context
+
+- 상태: partially supported as a diagnostic, not yet a candidate generator.
+- 왜 그럴듯한가: E301 showed that row/sign nulls are harmless while subject/dateblock nulls remain competitive. If S4 movement should be placed according to real lifestyle blocks, signed aggregates of diary/social/episode state over active rows should predict which placements have lower selector mean or p90.
+- 맞다면: human diary aggregate features should predict E301 null placement health under leave-mode-out mode stress, and the actual placement should be exceptional on the failing mean axis.
+- 틀리다면: topology or random mode identity should explain almost everything, human features should fail leave-mode-out, or actual should be indistinguishable from nulls.
+- 최소 실험: `analysis_outputs/e302_s4_placement_health_decoder.py`.
+- 관측:
+  - E301 placement lab: `257` placements, `256` nulls.
+  - `human_all` leave-mode-out mean Spearman `0.400962`; `human_all_plus_topology` `0.325973`.
+  - p90 Spearman is weak/negative for human feature sets.
+  - E300 actual predicted p90 rank is extreme-good (`0.000000`), but predicted mean rank is only middle (`0.433594`) under `human_all_plus_topology`.
+  - top better-mean weights include bedtime-phone PC2, mobility context energy, night-out mobility, sensor measurement JEPA prednorms, physiology/activity residuals, social communication residuals, and calendar phase.
+- 성공/폐기 기준: support the existence of a weak placement-health signal; reject E300 as a candidate because the actual placement is not exceptional on mean health.
+- public LB 관측 반응: no public LB should be spent. If a later constrained placement-prior candidate passes large-null confirmation, public LB can be used as a scarce sensor.
+- 제출 전략: none yet. Next strategy is E303-style constrained mean-placement prior followed by E301-style large-null confirmation.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

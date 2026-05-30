@@ -3275,3 +3275,30 @@ Decision:
 - Do not submit E300.
 - Future public candidates must pass this large-null confirmation layer before being recommended.
 - The current public-free validator is now stricter than the old E272 selector: old strict promotion is treated as prefilter only.
+
+## E302 Placement-Health Decoder Stress
+
+Question: after E301, can raw human diary context predict which S4 placements are healthy?
+
+Method: `analysis_outputs/e302_s4_placement_health_decoder.py`.
+
+- Placement lab: E301 actual candidate plus `256` null placements.
+- Features: topology, story/episode states, all diary JEPA/human features, and diary plus topology.
+- Evaluation: leave-mode-out over row/subject/dateblock/sign null modes, plus random 5-fold diagnostics.
+- Public LB: not used.
+
+Result:
+
+- `human_all` leave-mode-out mean Spearman: `0.400962`.
+- `human_all_plus_topology` leave-mode-out mean Spearman: `0.325973`.
+- `story_episode` strict AUC: `0.629383`, but mean Spearman only `0.139057`.
+- p90 Spearman is weak or negative for human feature sets.
+- E300 actual candidate:
+  - predicted mean rank pct `0.433594` under `human_all_plus_topology`;
+  - predicted p90 rank pct `0.000000`.
+
+Decision:
+
+- E302 does not produce a submission candidate.
+- It supports a narrower next validator: optimize and confirm the mean-placement axis, not p90/tail visibility.
+- Human/social context has enough signal to justify one constrained S4 placement-prior experiment, but not enough to override E301 rejection.
