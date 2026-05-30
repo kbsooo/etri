@@ -3376,6 +3376,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E297 candidates.
 - 제출 전략: none. Next strategy should predict materialization health directly rather than label delta.
 
+### H298: existing human/social materializers already contain a selector-visible and null-rare submission
+
+- 상태: rejected across the current governor archive.
+- 왜 그럴듯한가: E289-E297 produced many target-specific lifestyle, S4 block, app-entropy, bedtime-arousal, routine-fragmentation, and E247-relative candidates. If the bottleneck were only candidate shortlisting, at least one should satisfy both local visibility and matched-null rarity.
+- 맞다면: aggregating all current-anchor governor outputs should reveal a nonempty intersection of `selector_visible`, `null_rare`, dominance gates, and negative p90 edge.
+- 틀리다면: selector-visible candidates should be mostly matched-null reproducible, while null-rare candidates should be too small or invisible.
+- 최소 실험: `analysis_outputs/e298_materialization_outcome_atlas.py`.
+- 관측: `1044` governed candidates across `11` governor files. `ready_like=0`, `selector_visible=162`, `null_rare=867`, `selector_visible AND null_rare=0`, `null_rare AND edge_ok=0`. `160/162` selector-visible rows are `visible_but_null_common`; the remaining `2` are visible but still not null-rare.
+- 성공/폐기 기준: reject the idea that a ready public-free human/social submission is already hidden in E279/E284-E297 artifacts.
+- public LB 관측 반응: no public LB should be spent from this archive.
+- 제출 전략: none directly. The next strategy must learn or construct the translator outcome itself: `selector-visible + null-rare`, not another raw social-state score or amplitude sweep.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -2462,3 +2462,30 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - require current-anchor matched-null dominance before any public submission.
 - Failure condition:
   - if an episode-state edit passes the old selector but matched nulls promote at high rate, classify it as generic target movement rather than recovered human state.
+
+## E298 Materialization Outcome Policy
+
+- Target hypothesis tested: the current governed archive may already contain a usable human/social submission if we rank by outcome health instead of CV or story plausibility.
+- Feature/representation source:
+  - all current-anchor governor outputs from E279, E284-E293, and E297;
+  - selector visibility;
+  - matched null strict rate;
+  - p90, mean, and worst-mode dominance;
+  - negative edge versus current.
+- Validation result:
+  - governed candidates: `1044`;
+  - ready-like candidates: `0`;
+  - selector-visible candidates: `162`;
+  - null-rare candidates: `867`;
+  - selector-visible and null-rare candidates: `0`.
+- Updated registry status:
+  - existing materialized human/social candidates are diagnostic only.
+  - `selector-visible + null-rare` becomes the required outcome target for any new action-layer feature.
+  - negative p90, old strict promotion, and story plausibility are insufficient by themselves.
+- Adopt rule for future features:
+  - separate representation health from action health;
+  - only let a social/JEPA feature move probabilities if its placement survives matched nulls;
+  - if no positive outcome examples exist, generate controlled near-miss families before training a gate.
+- Failure condition:
+  - if a feature is selector-visible but null-common, classify it as movement hallucination;
+  - if a feature is null-rare but invisible, classify it as below-resolution diagnostic.

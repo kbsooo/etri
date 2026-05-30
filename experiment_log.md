@@ -4547,3 +4547,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - old-strict bedtime/routine S1 edits are attractive by selector, but matched nulls promote too often: null strict rates mostly `0.714286` to `1.000000`.
 - Interpretation: the episode states are real local label signals, but the current logistic-delta translator collapses into generic S1 movement once placed on E247. This mirrors the earlier Q3/S4 lifestyle failures: discovery is not the bottleneck; public-safe placement/materialization is.
 - Decision: no E297 public submission. The next useful experiment should learn an outcome target directly: `selector-visible + null-rare`, not just episode state or logistic label delta.
+
+## E298. Materialization Outcome Atlas
+
+- Observe: E289-E297 created many plausible human/social/lifestyle candidates, but public LB is scarce and cannot be used to sort them.
+- Wonder: is there already a candidate in the governed archive that is both visible to the local selector and rare under matched row/subject/dateblock nulls?
+- Method: `analysis_outputs/e298_materialization_outcome_atlas.py` normalizes `11` governor summaries from E279, E284-E293, and E297, then classifies every candidate by selector visibility, null strict rate, dominance, and p90 edge. No public LB was used.
+- Result:
+  - governed candidates: `1044`;
+  - ready-like candidates: `0`;
+  - selector-visible candidates: `162`;
+  - null-rare candidates: `867`;
+  - selector-visible and null-rare candidates: `0`;
+  - null-rare and edge-ok candidates: `0`;
+  - selector-visible and null-common candidates: `160`.
+- Interpretation: the existing archive does not hide a public-free safe submission. Useful-looking movement is usually null-reproducible; null-safe movement is below selector/action resolution.
+- Decision: no public submission. The next experiment should target materialization health directly: create or learn `selector-visible + null-rare` placement, using bedtime/routine states as priors instead of direct logit deltas.

@@ -2838,3 +2838,30 @@ Next submission candidate requirement:
 - it must learn candidate health directly: `selector-visible + null-rare`;
 - bedtime/routine episode states are the best human priors;
 - cash-flow/payday stories should stay diagnostic until they pass strict null and materialization governance.
+
+## Update After E298 Materialization Outcome Atlas
+
+Current submission policy remains: **no new public submission.**
+
+Why:
+
+- E298 aggregated `1044` governed candidates across E279/E284-E293/E297.
+- ready-like candidates: `0`.
+- selector-visible candidates: `162`.
+- null-rare candidates: `867`.
+- selector-visible and null-rare candidates: `0`.
+- null-rare and edge-ok candidates: `0`.
+
+Meaning:
+
+- The existing archive does not hide a public-free safe submission.
+- Bedtime/routine and S4 lifestyle signals remain useful priors, but the current translators turn them into either generic target movement or below-resolution movement.
+
+Current best public file:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+Next candidate rule:
+
+- only consider a new submission if the local governor sees `selector-visible + null-rare`;
+- otherwise use the experiment as representation diagnostics, not public LB.

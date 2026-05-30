@@ -567,3 +567,20 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - old-strict bedtime/routine S1 rows are blocked by high matched-null strict rates.
 - interpretation: the human episode states survived local label nulls, but the logistic materializer collapses into generic target movement when translated onto E247.
 - next experiment: learn candidate outcome health directly: selector-visible and null-rare, with bedtime/routine states as priors.
+
+## Public-Free Observation: E298
+
+- submission files: none.
+- public LB: not submitted.
+- reason not submitted: E298 is an archive-level local governor audit; it found no public-free ready candidate.
+- local observation:
+  - governor files loaded: `11`;
+  - governed candidates: `1044`;
+  - ready-like candidates: `0`;
+  - selector-visible candidates: `162`;
+  - null-rare candidates: `867`;
+  - selector-visible and null-rare candidates: `0`;
+  - null-rare and edge-ok candidates: `0`;
+  - selector-visible and null-common candidates: `160`.
+- interpretation: the current archive does not contain a hidden safe submission. The action layer has a visibility/null-rarity cliff.
+- next experiment: build a local-only translator target for `selector-visible + null-rare`; do not spend public LB on another amplitude or story-ranked variant.

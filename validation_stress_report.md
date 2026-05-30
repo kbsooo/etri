@@ -3184,3 +3184,27 @@ Decision:
 - Do not submit any `submission_e297_epstate_*.csv` file.
 - Public LB is preserved.
 - The next governor must target candidate outcome health, not only human episode label delta.
+
+## E298 Materialization Outcome Atlas
+
+Question: does the existing governed archive already contain a public-free candidate worth submitting?
+
+Method: `analysis_outputs/e298_materialization_outcome_atlas.py`.
+
+- Inputs: `11` current-anchor governor summaries.
+- Candidate rows: `1044`.
+- Public LB: not used.
+
+Result:
+
+- ready-like candidates: `0`.
+- selector-visible candidates: `162`.
+- null-rare candidates: `867`.
+- selector-visible and null-rare candidates: `0`.
+- null-rare and edge-ok candidates: `0`.
+- selector-visible and null-common candidates: `160`.
+
+Decision:
+
+- No public submission from the E279/E284-E297 archive.
+- The local gate is now explicit: future candidates must satisfy `selector-visible + null-rare`, not only negative p90 or story plausibility.

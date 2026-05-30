@@ -2214,3 +2214,12 @@
 - Implementation issue possible: medium. A better translator could predict candidate outcome health directly, use block-level constraints, or combine with E247 feature-neighbor geometry. Low for blocking these exact E297 files because the current-anchor/null governor directly rejects them.
 - Bottleneck implication: the bottleneck is not lack of human theory. It is the action layer: target-specific hidden state must be converted into movement that is both selector-visible and null-rare.
 - Do not repeat: submitting `submission_e297_epstate_*.csv` or scaling the same logistic episode-state deltas without a new null-outcome gate.
+
+## FH246. The existing governed archive contains a hidden public-free ready social submission
+
+- Failed hypothesis: after E279/E284-E293/E297, a usable candidate may already exist if all governor summaries are aggregated and ranked by outcome health.
+- Observed result: E298 aggregates `1044` governed candidates from `11` files. ready-like candidates are `0`. `162` candidates are selector-visible, but none are null-rare; `867` are null-rare, but none have selector-visible negative edge.
+- Why discard: the archive has a structural gap, not a sorting problem. Useful-looking candidates are matched-null hallucinations, while null-safe candidates are below action resolution.
+- Implementation issue possible: low for the archive-level conclusion because the same governor columns were normalized across all existing materialization branches. Medium for future work because the archive contains few or no positives for the desired outcome target.
+- Bottleneck implication: public LB should not be used to test these files. The next branch must construct or learn a new action-layer invariant for `selector-visible + null-rare`.
+- Do not repeat: selecting a submission from E279/E284-E297 by negative p90, old strict promotion, story plausibility, or local CV without matched-null rarity.
