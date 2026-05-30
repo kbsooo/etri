@@ -3046,3 +3046,30 @@ Meaning:
 - Do not submit `submission_e307_s4latentcensor_*`.
 - The S4 hidden-state diagnostics remain useful for understanding failures, but the current hand-built S4 action family is exhausted.
 - Next public-free candidate work should either learn action outcome directly from governed candidates or pivot to another target interaction where controls do not match the real latent direction.
+
+## Update After E308 Action-Outcome Atlas
+
+Current submission policy remains: **no new public submission.**
+
+Why:
+
+- E308 aggregated `1304` governed candidate rows from `18` matched-null governor files.
+- Only `2` rows were both selector-visible and null-rare.
+- The only raw strict-large-null ready row was the E300 small-governor S4 file already rejected by E301, so certified public-free ready is `0`.
+- After E303, the S4 hand-built branch has `68` governed rows and `0` null-rare rows.
+- Diagnostic outcome models can predict selector-visible/null-common behavior with high leave-experiment-out AUC, but the positive class for truly usable `visible_null_rare` behavior is too sparse to trust as a generator.
+
+Meaning:
+
+- We should not spend public LB on `submission_e305_*`, `submission_e306_*`, or `submission_e307_*`.
+- Old strict promotion is now only a cheap prefilter.
+- A public slot should require a file to survive local null governance, not just look good against current/best anchors.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+Next submission-worthy path:
+
+- either a learned action-health candidate that creates new visible/null-rare positives under row/subject/dateblock/sign nulls;
+- or a non-S4 target interaction where the intended direction beats wrong-direction and matched-placement controls before public LB.

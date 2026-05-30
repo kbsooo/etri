@@ -721,3 +721,20 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - wrong-direction/sharpening controls were competitive.
 - interpretation: S4 latent-current mismatch is useful as a diagnostic, but direct censoring is not public-free safe. The public-free selector can be triggered by generic S4 confidence movement.
 - next experiment: stop hand-built S4 delta families unless a learned action-health model or a non-S4 interaction creates controls that clearly lose.
+
+## Public-Free Observation: E308
+
+- submission files: none.
+- public LB: not submitted.
+- reason not submitted: E308 is a governor audit, not a candidate generator.
+- local observation:
+  - governed candidate rows: `1304`;
+  - experiments loaded: `18`;
+  - selector-visible rows: `367`;
+  - null-rare rows: `918`;
+  - visible/null-rare rows: `2`;
+  - strict-large-null ready raw: `1`;
+  - certified public-free ready after E301 supersession: `0`;
+  - post-E303 S4 rows: `68`, null-rare `0`.
+- interpretation: public LB should not be used on the current archive. Most candidates either have no visible edge or have a visible edge that matched nulls can imitate.
+- next experiment: generate a genuinely new action-health positive, or pivot away from hand-built S4 deltas to a target interaction where controls fail locally before any public submission.

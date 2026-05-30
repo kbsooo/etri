@@ -4719,3 +4719,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best actual p90: `-0.000197843`.
 - Interpretation: censoring creates strong selector-visible edges, but it is even more null-common than E306. Controls that sharpen overconfident rows look competitive, so the old selector is still reading S4 movement geometry rather than recovered latent correctness.
 - Decision: no E307 public submission. Simple latent-vs-current S4 calibration edits are rejected as a direct path. The next target must be learned action outcome or a different target group, not another hand-built S4 action from the same latent.
+
+## E308. Governed Action-Outcome Atlas
+
+- Observe: public LB cannot be spent on every attractive old-strict candidate. E279-E307 produced enough governed failures to treat candidate outcome itself as data.
+- Wonder: can we explain, without public LB, which action families are selector-visible, null-rare, or null-common under leave-experiment-out stress?
+- Method: `analysis_outputs/e308_action_outcome_atlas.py` aggregates `18` matched-null governor files from E279-E307 into one action-outcome table. Labels include `selector_visible`, `null_rare`, `visible_null_rare`, `visible_null_common`, and `certified_public_free_ready`. It also trains leave-experiment-out outcome models only as diagnostics, not as a submission generator.
+- Result:
+  - governed candidate rows: `1304`;
+  - selector-visible rows: `367`;
+  - null-rare rows: `918`;
+  - visible/null-rare rows: `2`;
+  - strict-large-null ready raw: `1`;
+  - certified public-free ready after E301 supersession: `0`;
+  - post-E303 S4 rows: `68`, null-rare `0`;
+  - leave-experiment-out AUCs: selector-visible `0.998857`, null-rare `0.982794`, null-common `0.986466`.
+- Interpretation: the archive has a structural split: many candidates are null-rare but too weak/invisible, while most visible candidates are null-common. The recent hand-built S4 branch is especially exhausted: after E303 it has no null-rare candidates at all. The high outcome-model AUC mostly reflects that candidate health is encoded in action geometry and experiment family, but positive `visible_null_rare` labels are too sparse to generate a new submission directly.
+- Decision: no public submission. Future candidates must be judged by a local promotion rule before any LB use: selector-visible, null-rare, edge/dominance healthy, and not superseded by a larger independent null confirmation. The next useful experiment should either learn synthetic/action-health labels with explicit controls or pivot to a non-S4 target interaction where controls clearly lose.

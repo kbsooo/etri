@@ -3494,6 +3494,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E307 files.
 - 제출 전략: none. Need learned action-outcome target or a non-S4 branch where control directions fail.
 
+### H308: public LB can be protected by a governed action-outcome atlas
+
+- 상태: supported as a blocking/evaluation layer, not as a submission generator.
+- 왜 그럴듯한가: E279-E307 generated many attractive local candidates, but public LB is scarce. The repeated failure pattern itself should be treated as supervision.
+- 맞다면: governed action outcomes should separate into stable quadrants: null-rare-but-invisible, visible-but-null-common, and rare visible/null-rare near misses. Recent failed families should be identifiable before public LB.
+- 틀리다면: leave-experiment-out outcome prediction should be noisy, and current archive should contain multiple certified candidates that the local governor cannot distinguish.
+- 최소 실험: `analysis_outputs/e308_action_outcome_atlas.py`.
+- 관측: `1304` governed rows, selector-visible `367`, null-rare `918`, visible/null-rare `2`, certified public-free ready `0`. Post-E303 S4 rows have null-rare `0`. Leave-experiment-out AUCs are high for selector-visible (`0.998857`) and null-common (`0.986466`), meaning failure modes are locally diagnosable.
+- 성공/폐기 기준: adopt E308 as a promotion/blocking governor. Do not use it as a generator until positive visible/null-rare labels are richer.
+- public LB 관측 반응: no public LB should be spent on current archive rows. The next public submission should be reserved for a candidate that creates a new visible/null-rare quadrant under independent null confirmation.
+- 제출 전략: none immediately. Use E308 to prevent LB waste and to define the next target: action health, not another hand-built S4 delta.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

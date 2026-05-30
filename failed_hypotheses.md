@@ -2286,3 +2286,12 @@
 - Implementation issue possible: medium. The tested actions were simple top-k/amp/tempering families. A learned action-health target may still use latent-current mismatch as an input. Low for rejecting all E307 submission files because the matched-null governor directly rejects them.
 - Bottleneck implication: the current S4 hand-built action family is exhausted. The live signal is representation-level, not submission-level.
 - Do not repeat: submitting `submission_e307_s4latentcensor_*` or using latent-current mismatch as a direct S4 delta without a learned null-aware translator.
+
+## FH254. The current governed archive already contains a certified public-free candidate
+
+- Failed hypothesis: among E279-E307 governed candidates, at least one candidate should remain selector-visible, null-rare, dominance-healthy, and not superseded by a stricter confirmation.
+- Observed result: E308 aggregated `1304` candidate rows from `18` governor files. It found selector-visible `367`, null-rare `918`, visible/null-rare `2`, strict-large-null ready raw `1`, and certified public-free ready `0` after excluding the E300 small-governor row that E301 rejected. Post-E303 S4 rows had null-rare `0`.
+- Why discard: the only apparent ready row was already falsified by larger independent null stress. The rest of the archive splits into safe-but-invisible or visible-but-null-common candidates.
+- Implementation issue possible: low for blocking current archive submissions, because E308 is an aggregation of previous independent governors. Medium for future use as a generator, because positive visible/null-rare labels are too sparse.
+- Bottleneck implication: the limiting factor is not lack of local attractive candidates. It is lack of actions that remain rare under matched row/subject/dateblock/sign nulls.
+- Do not repeat: using public LB to test archive rows that fail E308-style local promotion, especially post-E303 S4 hand-built candidates.

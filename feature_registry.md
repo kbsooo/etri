@@ -2675,3 +2675,30 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - prefer learned action-health targets over hand-coded S4 delta projection.
 - Failure condition:
   - if a censoring feature is matched by control sharpening or reproduced by row/subject/dateblock nulls, classify it as selector geometry rather than hidden-state action.
+
+## E308 Action-Outcome Atlas Policy
+
+- Target hypothesis tested:
+  - governed candidate outcomes can replace repeated public LB checks as a local promotion/blocking layer.
+- Feature/representation source:
+  - normalized governor fields from E279-E307;
+  - action metadata, target/family labels, candidate movement summaries, current-anchor deltas, matched-null rates and dominance metrics;
+  - derived labels `selector_visible`, `null_rare`, `visible_null_rare`, `visible_null_common`, and `certified_public_free_ready`.
+- Validation result:
+  - governed rows `1304`;
+  - selector-visible `367`;
+  - null-rare `918`;
+  - visible/null-rare `2`;
+  - certified public-free ready `0`;
+  - post-E303 S4 rows `68`, null-rare `0`;
+  - leave-experiment-out diagnostic AUCs: selector-visible `0.998857`, null-common `0.986466`.
+- Updated registry status:
+  - E308 outcome labels are approved as a validation/governor feature family;
+  - they are not approved as a direct submission generator because usable positive labels are too sparse;
+  - old strict promotion is downgraded to prefilter status only.
+- Adopt rule for future features:
+  - every candidate family must report selector visibility, null rarity, mode-wise dominance, and control-direction behavior before public LB;
+  - no public submission should be recommended if its edge can be matched by row/subject/dateblock/sign nulls;
+  - after E301, small-null ready status is insufficient unless independently confirmed.
+- Failure condition:
+  - if a new feature only increases selector-visible/null-common counts, classify it as public-LB-waste risk even when local p90 looks attractive.

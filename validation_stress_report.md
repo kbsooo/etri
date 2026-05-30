@@ -3447,3 +3447,37 @@ Decision:
 - No E307 file should be submitted.
 - Simple latent-current mismatch censoring is rejected as a direct action layer.
 - The S4 branch now has repeated evidence that old strict visibility is cheap and not enough.
+
+## E308 Action-Outcome Governor Atlas
+
+Question: can public LB be replaced by a stricter local promotion rule built from all governed candidate outcomes?
+
+Method: `analysis_outputs/e308_action_outcome_atlas.py`.
+
+- Sources: `18` governor files from E279-E307.
+- Rows: `1304` governed candidates.
+- Labels:
+  - `selector_visible`: old/local selector sees a negative edge;
+  - `null_rare`: matched row/subject/dateblock/sign nulls rarely reproduce the edge;
+  - `visible_null_rare`: both conditions;
+  - `certified_public_free_ready`: visible/null-rare plus edge and dominance gates, excluding E300 small-governor rows superseded by E301.
+- Public LB: not used.
+
+Result:
+
+- selector-visible: `367/1304`.
+- null-rare: `918/1304`.
+- visible/null-rare: `2/1304`.
+- certified public-free ready: `0/1304`.
+- post-E303 S4 action rows: `68`; null-rare `0`.
+- leave-experiment-out diagnostic AUC:
+  - selector-visible `0.998857`;
+  - null-rare `0.982794`;
+  - null-common `0.986466`;
+  - visible-null-common `0.989142`.
+
+Decision:
+
+- No current archive file should be submitted only because it is old-strict or has attractive p90.
+- The local promotion rule is now stricter: old visibility is only a prefilter; a candidate needs null rarity and mode-wise dominance before public LB.
+- The latest hand-built S4 family should be paused. It repeatedly creates visible/null-common actions, not public-free actions.
