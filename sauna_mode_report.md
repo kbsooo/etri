@@ -2404,3 +2404,47 @@ E184 이후에도 제출 후보 순위는 바뀌지 않는다.
 - E176은 E72-contamination branch가 아니다.
 - E176은 shape-only와 broad/Q2-underopen worldview를 묻는 파일이다.
 - support gate를 E176에 붙이는 것은 지금 근거가 없다.
+
+## E191 업데이트: hard negative를 줘도 support는 살아나지 않았다
+
+내가 발견한 가장 이상한 점:
+
+`exact E95/E101을 명시적인 hard negative로 넣어도 support view는 여전히 exact boundary를 E72-contamination처럼 본다. 반대로 shape/target/context view는 clean해진다. 즉 support 문제는 weight 문제가 아니라 representation 문제다.`
+
+실험:
+
+- `analysis_outputs/e191_boundary_aware_e72_score.py`
+- report: `analysis_outputs/e191_boundary_aware_e72_score_report.md`
+
+결과:
+
+- best clean pair-LOO:
+  - `shape_target_context_abs` / `plain_logit_c025`
+  - AUC `0.978836`
+  - AP `0.809524`
+  - top-k recall `0.666667`
+  - exact E95/E101 mean `0.057658`
+- support-containing clean rows:
+  - `0`
+- support-only exact E95/E101 probability:
+  - `0.785758..0.839112`
+- shape+support/all exact E95/E101 probability:
+  - `0.766102..0.824223`
+- live E176:
+  - contamination max around `0.000008`
+
+생각이 어떻게 바뀌었는지:
+
+`support는 E72 contamination을 보는 듯하지만, exact hardtail boundary와 분리되지 않는다. 이건 샘플 가중치나 prototype contrast로 고칠 수 있는 수준이 아니다. 현재 support는 gate가 아니라 현상 설명용 diagnostic이다.`
+
+현재 최강 세계관:
+
+`0.57629 병목의 한 축은 서로 다른 latent sensor가 각기 다른 boundary를 맞히는 데서 온다. shape/target/context는 tight E95/E101 boundary에 건강하고, support는 E72-neighbor correction에 반응하지만 exact boundary를 망친다. 이 둘을 섞는 것이 아니라, 언제 어떤 sensor를 믿을지 알려주는 새로운 structural target이 필요하다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+새 submission은 만들지 않는다. 다음 제출 후보는 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` 하나다.
+
+- 의도: broad/Q2-underopen hidden-tail sensor
+- 기대 public 반응: `<=0.576276019`면 broad/Q2-underopen worldview 강화
+- 실패 시 해석: support를 더 섞는 쪽이 아니라, shape/broad branch 자체 또는 public critical-cell tail이 틀렸다고 봐야 한다

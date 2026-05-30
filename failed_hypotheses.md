@@ -1484,3 +1484,12 @@
 - Implementation issue possible: medium. The label set is tiny, and E72-neighbor positives are all derived from one known failed submission. Low for the narrow failure because the exact E95/E101 false-positive check directly repeats the boundary that killed support.
 - Bottleneck implication: support's E72 signal is real but not yet invariant. The missing object is a contamination representation that can be trained or calibrated without relying on E72 identity and that preserves the E95/E101 hardtail boundary.
 - Do not repeat: treating high E72-neighbor AUC from support features as permission to support-gate E176. Require low exact-boundary false positives and a stronger E72-heldout/one-class stress first.
+
+## FH165. Exact E95/E101 hard-negative weighting can make support deployable
+
+- Failed hypothesis: support-rich E72 detectors fail mainly because exact E95/E101 is not explicitly penalized; adding exact E95/E101 as a hard negative should lower support false positives while preserving E72-neighbor recall.
+- Observed result: E191 finds boundary-clean pair-LOO rows only for `shape_target_context_abs`. The best clean shape row has AUC `0.978836`, AP `0.809524`, top-k recall `0.666667`, and exact E95/E101 mean probability `0.057658`. Support-containing clean rows are `0`; support-only exact E95/E101 probability stays around `0.785758..0.839112`, and shape+support/all stays around `0.766102..0.824223`.
+- Why discard: hard-negative weighting changes calibration of the clean shape view but does not alter the support conflict. Support remains entangled with the exact frontier boundary even when that boundary is explicitly named as negative supervision.
+- Implementation issue possible: medium. The positive E72 set is tiny and all positives still depend on one failed anchor, so this does not prove no future one-class/contrastive target can work. Low for rejecting this exact weighting/prototype repair.
+- Bottleneck implication: the support problem is representation-level, not sample-weight level. The next useful target must separate E72 contamination and tight hardtail boundary structurally, probably with additional non-public context or a different contrastive target.
+- Do not repeat: reweighting exact E95/E101 harder, using prototype distance to E72 vs E95/E101, or calling support clean because E72-neighbor AUC is high while exact E95/E101 remains high.

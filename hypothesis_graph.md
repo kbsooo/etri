@@ -2172,6 +2172,18 @@ target co-occurrence
 - public LB 관측 반응: E176 win/loss should be interpreted as broad/Q2-underopen or shape-only branch evidence, not support-gate evidence. A future candidate explicitly designed as E72-contaminated would be the right public sensor for H184.
 - 제출 전략: no E190 submission. Do not use support as a live E176 gate. Use E190 only as a diagnostic feature registry entry.
 
+### H185. Exact-boundary hard negatives can rehabilitate support as an E72 gate
+
+- 상태: 반증 by E191.
+- 왜 그럴듯한가: E190's support-rich detector may have false-positived exact E95/E101 because the objective did not explicitly punish that tight boundary. If exact E95/E101 is upweighted as a hard negative, support might keep E72 recall while lowering boundary risk.
+- 맞다면: support-containing feature views should pass a boundary-clean pair-LOO gate: E72 top-k recall at least `0.666667`, exact E95/E101 mean <= `0.20`, exact max <= `0.30`, and live branches should not be spuriously flagged.
+- 틀리다면: only shape/target/context views will pass; support-only and shape+support/all views will keep exact E95/E101 probabilities high even under hard-negative weighting.
+- 최소 실험: `analysis_outputs/e191_boundary_aware_e72_score.py`.
+- 관측: `shape_target_context_abs` passes with pair-LOO AUC `0.978836`, AP `0.809524`, top-k recall `0.666667`, and exact E95/E101 mean `0.057658`. Boundary-clean support-containing pair-LOO rows are `0`; support-only exact E95/E101 remains `~0.785758..0.839112`, and shape+support/all remains `~0.766102..0.824223`. E176 contamination remains near zero.
+- 성공/폐기 기준: support-rehabilitation version 폐기. The surviving version is narrower: shape/target/context can act as a cleaner contamination diagnostic, while support remains a conflicting E72-specific shortcut.
+- public LB 관측 반응: E176 feedback should not be read as support-gate evidence. A future support-gated submission would need a new structural target, not hard-negative reweighting.
+- 제출 전략: no E191 submission. Keep E176 as shape/broad-Q2-underopen sensor; do not create support-gated E176/E154/E144 variants.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -1099,3 +1099,27 @@ E190 tests the first filename-free version of the E72-contamination detector.
   - E144 is partially flagged only by the cleaner shape/target/context view, not by support/all views.
 
 Stress implication: movement anatomy can recognize some E72-neighbor structure, but the support-heavy detector is not healthy because it calls exact E95/E101 contamination. The E176 branch does not look E72-contaminated; support should not be used to gate it.
+
+## Update After E191
+
+E191 tests whether explicit exact-boundary hard negatives can make the E72 detector support-safe.
+
+- script: `analysis_outputs/e191_boundary_aware_e72_score.py`.
+- report: `analysis_outputs/e191_boundary_aware_e72_score_report.md`.
+- best clean pair-LOO row:
+  - view/spec: `shape_target_context_abs` / `plain_logit_c025`.
+  - AUC `0.978836`.
+  - average precision `0.809524`.
+  - top-k recall `0.666667`.
+  - exact E95/E101 mean probability `0.057658`.
+- support-containing clean rows:
+  - count `0`.
+  - support-only exact E95/E101 probability remains `~0.785758..0.839112`.
+  - shape+support/all exact E95/E101 probability remains `~0.766102..0.824223`.
+- any-file LOO:
+  - clean shape rows still skip `6` E72-positive rows when E72 is held out.
+- live pressure branches:
+  - E176 remains near zero contamination, max around `0.000008` for the best clean shape row.
+  - E144 still has partial shape contamination pressure, but not a support-safe gate.
+
+Stress implication: the support failure is not repaired by hard-negative weighting or prototype contrast. Exact-boundary safety currently belongs to the shape/target/context view only, so support remains a diagnostic latent, not a submission selector.

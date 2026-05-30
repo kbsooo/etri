@@ -2933,3 +2933,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - live E144 receives some shape/target/context contamination pressure (`2/3` scenarios above non-E72 p95), but not under support/all views.
 - Interpretation: filename-free movement anatomy does contain E72-neighbor signal, but the current detector is not a deployable support gate. The support-heavy views reproduce the original failure by treating exact E95/E101 as E72-like. E176 specifically looks non-E72-contaminated, so E190 weakens rather than strengthens any argument for using support to rank E176.
 - Decision: no submission. Keep E176 as a shape/broad-Q2-underopen sensor. A future E72 detector must preserve E72 recall while keeping exact E95/E101 false positives low and must survive a stricter E72-heldout design or one-class structural calibration.
+
+## E191. Boundary-Aware E72 Score
+
+- Observe: E190's clean shape/target/context detector reduced exact E95/E101 false positives, while support-rich detectors called exact E95/E101 E72-like. The smallest repair is to make exact E95/E101 a hard negative and see whether support becomes usable without filenames.
+- Wonder: is support's false positive an objective/calibration artifact, or is it a deeper conflict that survives explicit boundary-aware training?
+- Method: `analysis_outputs/e191_boundary_aware_e72_score.py` reuses E190 absolute antisymmetric z-features, labels E72-neighbor rows as positives, labels exact E95/E101 as explicit hard negatives, and tests weighted logistic/prototype scores under pair-LOO, pair-context-LOO, and any-file LOO only for pair-clean candidates. It writes no submission.
+- Result:
+  - report: `analysis_outputs/e191_boundary_aware_e72_score_report.md`.
+  - best pair-LOO row: `shape_target_context_abs` / `plain_logit_c025`, AUC `0.978836`, AP `0.809524`, top-k recall `0.666667`, exact E95/E101 mean probability `0.057658`.
+  - boundary-clean support-containing pair-LOO rows: `0`.
+  - support-only exact E95/E101 probability remains high: about `0.785758..0.839112`.
+  - shape+support/all exact E95/E101 probability remains high: about `0.766102..0.824223`.
+  - any-file LOO for clean shape rows still skips `6` E72-positive rows when E72 itself is held out.
+  - live E176 remains near-zero contamination: max `0.000008` for the best clean shape row; E144 is still the only live branch with partial shape contamination pressure.
+- Interpretation: exact-boundary-aware weighting improves the clean shape score calibration but does not rehabilitate support. Support's conflict is not simply that E95/E101 was underweighted; support features continue to confuse the E72 correction axis with the tight frontier boundary.
+- Decision: no submission. E176 remains a shape/broad-Q2-underopen sensor. Support stays diagnostic-only until a new structural target solves both E72-heldout calibration and exact-boundary false positives.

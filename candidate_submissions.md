@@ -613,3 +613,20 @@ E190 tried to build the missing filename-free E72-contamination detector. The re
 For live pressure branches, E176 has near-zero contamination score and never crosses E72 thresholds. So E190 does not add a reason to trust support for E176; it says E176 should be read as a shape/broad-Q2-underopen sensor.
 
 Submission order remains unchanged. Do not create a support-gated E176/E154/E144 file from E190.
+
+## Update After E191
+
+The single next public sensor remains:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+E191 tested the last cheap support-rehabilitation idea: make exact E95/E101 a hard negative in the E72-contamination detector. It failed for support. Boundary-clean pair-LOO rows exist only for `shape_target_context_abs`; support-containing clean rows are `0`. Exact E95/E101 probability remains about `0.786..0.839` for support-only and `0.766..0.824` for shape+support/all views.
+
+This narrows the submission rationale again:
+
+1. E176 is not support-gated.
+2. E176 is not E72-contamination-like.
+3. E176 is still the shape/broad-Q2-underopen public sensor.
+4. A support-gated live file should not be created before a genuinely new structural target exists.
+
+Submission order remains unchanged. If one file is submitted next, use E176 only as the pre-registered broad/Q2-underopen sensor and decode with `analysis_outputs/e177_e176_public_feedback_decoder.py --score <PUBLIC_LB>`.
