@@ -3196,6 +3196,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E282. If submitted anyway and it improves, it would imply the matched-null governor is too conservative for Q3 prior-like shifts, not that row-state materialization was certified.
 - 제출 전략: none. Next branch must predict a sharper Q3 row/cell tail target conditioned on app-entropy, or keep app-entropy as an energy/diagnostic feature only.
 
+### H283: app-entropy can improve E247 by selecting/refilling Q3 smoothing cells
+
+- 상태: rejected as a submission selector; retained as a diagnostic energy axis.
+- 왜 그럴듯한가: E247 is the current public-best mechanism, and E257/E283 anatomy shows E256-only public-worse cells are much higher in app-entropy state/story and rollback amplitude than E247-only cells.
+- 맞다면: app-state/app-story-conditioned Q3 smoothing selectors should preserve E246/E237 local geometry and beat E247-relative matched row/subject/dateblock nulls, especially by avoiding high state-by-amplitude cells.
+- 틀리다면: app-entropy-conditioned selectors may explain E247/E256 anatomy but remain below selector resolution or fail matched-placebo dominance.
+- 최소 실험: `analysis_outputs/e283_appentropy_q3_smooth_context_audit.py`.
+- 관측: selectors `28`, local gate passes `27`, candidates `27`, old strict promotes `0`, matched-placebo passes `0`, public-ready `0`. E256-only cells are high app-state/app-story/high amplitude, but the best app-conditioned variants have p90 deltas only around `-5e-6` and do not dominate matched nulls.
+- 성공/폐기 기준: direct app-entropy selector/refill rejected. The app-entropy state remains alive only as context/energy for a sharper JEPA cell-tail target.
+- public LB 관측 반응: no public LB should be spent on E283. If an E283 file were submitted and won, it would primarily falsify the current placebo governor's strictness, not certify this selector from local evidence.
+- 제출 전략: none. Keep E247 as best public file; next branch should learn cell-tail risk or row-placement transfer, not scalar app-entropy smoothing ranks.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

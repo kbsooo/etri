@@ -2088,3 +2088,12 @@
 - Implementation issue possible: medium. The materializer is linear and small, so a sharper nonlinear row/cell target may still work. Low for blocking these exact files, because nulls preserve the same movement magnitudes and destroy only row placement.
 - Bottleneck implication: the hidden social state is not the bottleneck. The bottleneck is translating it into a public-compatible row/cell probability edit without collapsing into generic Q3 prior movement.
 - Do not repeat: submitting `submission_e282_appentropy_*` files or scaling app-entropy Q3 shifts until they cross old selector thresholds without matched-placebo resistance.
+
+## FH232. App-entropy can rescue E247 by directly re-ranking Q3 smoothing cells
+
+- Failed hypothesis: because E256-only public-worse cells are high app-entropy/high-amplitude, app-entropy state/story should improve the E247 Q3 feature-NN smoothing selector through rank boosts, bands, or high state-by-amplitude penalties.
+- Observed result: E283 tests `28` selectors and materializes `27` non-current Q3 smoothing candidates. Local E246/E237 geometry passes for `27`, but old strict-promote candidates are `0`, matched-placebo gate passes are `0`, and public-ready candidates are `0`.
+- Why discard: the anatomy signal is descriptive rather than selective. App-entropy distinguishes some E247/E256 cell groups, but once turned into a selector it either makes changes below resolution or fails to beat matched row/subject/dateblock nulls.
+- Implementation issue possible: medium. The selector rules are scalar and handcrafted; a learned cell-tail target may still use app-entropy successfully. Low for blocking these exact files because the final tensor-level null audit directly tests the proposed row/cell placement.
+- Bottleneck implication: the active bottleneck is not discovering another social scalar. It is learning a placement-aware Q3 cell-tail representation that stays distinguishable from nulls at submission scale.
+- Do not repeat: creating more app-entropy rank/band/refill variants around E247 unless the target changes from scalar selector perturbation to learned cell-tail or matched-null row-alignment training.

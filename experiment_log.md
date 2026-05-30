@@ -4283,3 +4283,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - final public-free submission-ready candidates: `0`.
 - Interpretation: app-entropy is a real latent story-state, but its current probability translation is not a row-aligned hidden-state reconstruction. At submit-scale, it collapses into generic Q3 direction/prior movement that matched nulls can reproduce.
 - Decision: no E282 public submission. Keep app-entropy as a diagnostic/state feature. The next breakthrough needs either a sharper cell/row target for Q3 routine-fragmentation or a different social story-state materialization that remains distinguishable from nulls at submit-scale.
+
+## E283. App-Entropy-Conditioned Q3 Smoothing Context Audit
+
+- Observe: E247 is the current best public file and its mechanism is Q3 feature-neighbor smoothing. E282 showed that scalar app-entropy Q3 shifts collapse into generic Q3 movement, but E257 suggested the E256 public-worse added cells have much higher app-entropy state/story values than the E247-only cells.
+- Wonder: does routine/attention fragmentation help decide which E247-style Q3 smoothing cells are trustworthy, instead of directly moving all Q3 probabilities?
+- Method: `analysis_outputs/e283_appentropy_q3_smooth_context_audit.py` joins E282 app-entropy state onto E246 Q3 smoothing selector rows, builds state/story-conditioned selector variants, materializes `27` non-current E247-relative Q3 smoothing candidates, and scores them against matched row/subject/dateblock nulls through the E272 current-anchor governor.
+- Result:
+  - selectors tested: `28`.
+  - E246/E237-like local gate passes: `27`.
+  - materialized non-current candidates: `27`.
+  - matched null candidates: `891`.
+  - old strict-promote candidates: `0`.
+  - matched-placebo gate passes: `0`.
+  - final public-free submission-ready candidates: `0`.
+  - anatomy signal is real: E256-only cells have app-state mean `0.719624`, app-story mean `1.142024`, rollback amp mean `0.110317`; E247-only cells have app-state mean `0.235262`, app-story mean `0.570663`, rollback amp mean `0.039125`.
+  - best-looking variants are still below submission resolution or placebo weak, e.g. `state_score_bm0p2_top34` has p90 `-0.000004766` with p90 dominance `0.696970`, and `avoid_high_state_amp_b0p25_top34` has p90 `-0.000005847` with p90 dominance `0.515152`.
+- Interpretation: app-entropy explains some public-positive/public-worse Q3 cell anatomy, especially the high-entropy/high-amplitude risk of E256-only cells. But converting that observation into a selector does not beat E247 in a placebo-resistant way. The current public-positive mechanism remains feature-NN1 Q3 smoothing geometry, not app-entropy-conditioned replacement/refill.
+- Decision: no E283 public submission. App-entropy should remain a context/energy diagnostic for Q3 cell-tail work, not a standalone Q3 smoothing selector.

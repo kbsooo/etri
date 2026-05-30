@@ -2121,3 +2121,27 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - any new candidate must show that row/cell placement matters, not only Q3 prior direction.
 - Failure condition:
   - if a future app-entropy candidate only becomes strong after nulls also pass, classify it as calibration/prior movement and block public submission.
+
+## E283 App-Entropy Q3 Smoothing Context Policy
+
+- Target hypothesis tested: app-entropy can choose or refill E247-style Q3 feature-NN smoothing cells.
+- Feature/representation source:
+  - E282 app-entropy predicted story-state;
+  - E246/E247 feature-NN1 Q3 smoothing cell metrics;
+  - E257 E247/E256 public-boundary anatomy.
+- Validation result:
+  - selectors: `28`;
+  - local E246/E237 gate passes: `27`;
+  - materialized candidates: `27`;
+  - matched-placebo candidates passing final gate: `0`;
+  - public-ready candidates: `0`.
+- Updated registry status:
+  - `app_entropy_scattered_day` remains approved as a diagnostic context feature.
+  - It is not approved as a direct selector override, rank boost, band filter, or E247 refill rule.
+  - High app-state-by-amplitude is a useful risk descriptor for E256-like cells, not a sufficient gating feature.
+- Adopt rule for future Q3 app-entropy use:
+  - use it inside a learned cell-tail or row-alignment target;
+  - require placebo dominance against row/subject/dateblock matched nulls;
+  - do not materialize scalar app-entropy sorting rules as public candidates.
+- Failure condition:
+  - if app-entropy changes only a few Q3 smoothing cells and the p90 edge is under `1e-5` without null dominance, classify as selector-resolution noise.

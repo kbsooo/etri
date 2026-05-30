@@ -2748,3 +2748,32 @@ Decision:
 - Do not submit any E282 app-entropy file.
 - The hidden story-state is locally real, but the current probability edit is not row-placement-certified.
 - Public LB is preserved. This is exactly the intended use of the local governor: block a plausible story when it becomes indistinguishable from matched placebo movement at submit-scale.
+
+## E283 App-Entropy Q3 Smoothing Context Governor
+
+Question: can app-entropy decide which E247-style Q3 feature-neighbor smoothing cells should be trusted?
+
+Method: `analysis_outputs/e283_appentropy_q3_smooth_context_audit.py`.
+
+- Inputs: E246 feature-NN1 Q3 smoothing selector rows, E247/E256 selected cell sets, and E282 app-entropy story-state scores.
+- Candidate family: app-state/app-story score perturbations, app-state bands, E247 refill variants, and high state-by-amplitude penalties.
+- Public-free stress: E246/E237 local geometry, E272 current-anchor scoring, and matched row/subject/dateblock placebo nulls.
+
+Result:
+
+- selectors audited: `28`.
+- local E246/E237-like passes: `27`.
+- materialized candidates: `27`.
+- old strict-promote candidates: `0`.
+- matched-placebo gate passes: `0`.
+- public-free submission-ready candidates: `0`.
+- E247/E256 anatomy:
+  - E247-only cells are lower amplitude and moderately high app-entropy story;
+  - E256-only cells are high amplitude and very high app-entropy story/state;
+  - this explains why amplitude-constrained smoothing was risky, but it does not produce a stronger selector.
+
+Decision:
+
+- Do not submit any E283 file.
+- App-entropy is useful as a diagnostic axis around Q3 smoothing, but not yet a local-governed selector.
+- The next valid experiment should learn a sharper cell-tail target or row-alignment transfer objective; another scalar app-entropy rank tweak is blocked.

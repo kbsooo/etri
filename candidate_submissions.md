@@ -2411,3 +2411,35 @@ Reason: they are not hidden-row-state recoveries yet. They are mostly generic Q3
 Current best public file remains:
 
 - `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+## Update After E283 App-Entropy Q3 Smoothing Context Audit
+
+Current submission policy remains: **no new public submission.**
+
+What was tested:
+
+- app-entropy-conditioned modifications of the E247 Q3 feature-NN smoothing cell selector;
+- state/story rank boosts and penalties;
+- app-entropy bands;
+- high app-state-by-amplitude avoidance rules;
+- E247 cell removal/refill variants.
+
+What was learned:
+
+- E256's public-worse extra cells look socially interpretable: high app-entropy state/story and high rollback amplitude.
+- But using that interpretation as a selector does not create a placebo-resistant candidate.
+- No E283 candidate passed old strict promotion, matched-placebo dominance, or public-ready governance.
+
+Do not submit:
+
+- any `analysis_outputs/submission_e283_appentropy_q3smooth_*.csv` file.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+Next submission candidate requirement:
+
+- must beat E247-relative matched row/subject/dateblock nulls;
+- must preserve the E247 feature-NN1 Q3 smoothing body or explain why replacing it is safer;
+- app-entropy can be used as context/energy, not as a scalar rank override by itself.
