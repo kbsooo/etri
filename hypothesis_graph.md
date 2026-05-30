@@ -2462,39 +2462,51 @@ target co-occurrence
 
 ### H209. Masked feature-family JEPA reveals a different Q1/S2/S4 latent channel
 
-- 상태: 지지 by E215; materialization partially supported by E216.
+- 상태: representation 지지 by E215; public translation 약화 by E216 public feedback.
 - 왜 그럴듯한가: E208's target representation was feature-neighbor broad-space and produced narrow Q3/S4 axes. A true I-JEPA-style block mask should ask a different question: can visible feature-family representations predict a hidden family representation?
 - 맞다면: masked-family JEPA should beat mean/copy baselines, produce healthy enough latent geometry, and its downstream features should survive OOF, subject-half, and geometry stress on targets not already explained by E208.
 - 틀리다면: the masked-family objective would either collapse, recreate only E208-like Q3/S4 signals, or fail geometry stress.
 - 최소 실험: `analysis_outputs/e215_masked_family_jepa_probe.py`.
-- 관측: E215 val MSE `0.585-0.604` versus mean-block MSE around `1.000`; pass count `10`; best target deltas Q1 `-0.004965`, S2 `-0.004370`, S4 `-0.003313`.
-- 성공/폐기 기준: supported as a representation source. It is not yet proof of public improvement because E216 shows only S2 survives frontier stress cleanly.
-- public LB 관측 반응: an E216 S2-only public win would strengthen masked-family JEPA as a second representation lane. A loss would weaken the S2 translation but not erase E215's local representation evidence.
-- 제출 전략: use E216 S2-only files as non-collinear JEPA sensors after or alongside E211, not as replacements.
+- 관측: E215 val MSE `0.585-0.604` versus mean-block MSE around `1.000`; pass count `10`; best target deltas Q1 `-0.004965`, S2 `-0.004370`, S4 `-0.003313`. E216 then selected S2-only locally, but `submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv` scored public `0.5772865088`, `+0.0009951790` worse than E95.
+- 성공/폐기 기준: supported as a representation source, weakened as a public probability translator. E215 remains evidence that the masked-family question finds signal; E216 rejects the current S2-only translation.
+- public LB 관측 반응: E216 S2-only public loss weakens masked-family JEPA as a second submission lane but does not erase E215's local representation evidence. A future masked-family attempt needs a different translator or a specific explanation of the S2 public tail.
+- 제출 전략: do not submit remaining E216 siblings by default. Use E215/E216 features as diagnostics or negative controls until S2 tail failure is explained.
 
 ### H210. The locally strongest masked-family JEPA combo is not public-safe
 
-- 상태: 지지 by E216.
+- 상태: 지지 by E216 for broad combo rejection; S2-only survivor rejected by public feedback.
 - 왜 그럴듯한가: many previous experiments show that broad local gains can invert on public-tail stress. E215's Q1+S2+S4 combo is locally strong, but it may move public-sensitive cells in the wrong direction.
 - 맞다면: combined Q1/S2/S4 local OOF and geometry should be strong, while frontier graft stress should reject it or prefer a narrower target subset.
 - 틀리다면: `q1_s2_s4_rank` should dominate both local and frontier stress.
 - 최소 실험: `analysis_outputs/e216_masked_family_jepa_materialization.py`.
-- 관측: `q1_s2_s4_rank` has delta `-0.001807`, subject-half win `1.000`, geometry `-0.001628`, but frontier stress does not select it. S2-only is selected at E95/E154 scales `0.50/0.75`.
-- 성공/폐기 기준: supported. It would be weakened only if public LB later rewards the broad combo despite stress rejection.
-- public LB 관측 반응: if an S2-only E216 file wins, masked-family JEPA has a public-safe S2 channel. If broad E215/E216 combos win later, the current public-tail stress is too conservative for Q1/S4.
-- 제출 전략: submit S2-only if testing E215; do not submit Q1+S2+S4 before a targeted public-tail audit explains the stress contradiction.
+- 관측: `q1_s2_s4_rank` has delta `-0.001807`, subject-half win `1.000`, geometry `-0.001628`, but frontier stress does not select it. S2-only was selected at E95/E154 scales `0.50/0.75`; the submitted E154 scale `0.75` S2-only file returned public `0.5772865088`.
+- 성공/폐기 기준: broad-combo rejection remains supported. The narrower S2-only rescue is rejected as public-safe for this translator and anchor/scale.
+- public LB 관측 반응: the observed S2-only loss means E216 did not find a public-safe masked-family channel. If broad E215/E216 combos won later, the current public-tail stress would be too conservative for Q1/S4, but they are not currently recommended.
+- 제출 전략: no E216 submission until a targeted public-tail audit explains why S2-only failed despite local and geometry stress.
 
 ### H211. A full teacher-student tabular JEPA can replace fixed-target JEPA probes
 
 - 상태: 약화 by E217.
 - 왜 그럴듯한가: E215 still predicted a fixed PCA family block. A closer I-JEPA translation should use an EMA teacher target encoder and let the target representation emerge from the data, potentially avoiding the narrow E208/E215 target-specific lanes.
 - 맞다면: masked current feature-family context plus same-subject row-neighborhood context should predict the EMA full-row teacher latent, produce healthy geometry, and create downstream features that survive OOF, subject-half, and geometry stress better than E208/E215.
-- 틀리다면: the teacher-student objective may learn well but downstream gains will be fold/geometry fragile, or useful signal will remain local to targets already captured by E211/E216.
+- 틀리다면: the teacher-student objective may learn well but downstream gains will be fold/geometry fragile, or useful signal will remain local to targets already captured by E211 or E215-style diagnostics.
 - 최소 실험: `analysis_outputs/e217_teacher_student_tabular_jepa_probe.py`.
 - 관측: training is nontrivial (`val_loss=0.00185..0.00191`, about `7%` of mean-teacher baseline), but no downstream row passes the E217 geometry gate. Best local S2 via `e217_teacher_pc07` has delta `-0.002853` but geometry delta `+0.000410`; Q3 residual rows are near-neutral but below win-rate threshold.
 - 성공/폐기 기준: weakened as a direct submission source. It would reopen only if a target-specific materializer or different teacher target converts E217 energy into negative geometry and frontier-safe movement.
 - public LB 관측 반응: no E217 public sensor should be submitted. If later E217-derived target-specific materialization wins, the current failure should be reinterpreted as translator failure rather than representation failure.
-- 제출 전략: none now. Keep E211 and E216 as the actionable JEPA lanes.
+- 제출 전략: none now. Keep E211 as the actionable JEPA lane; E216 is demoted by public feedback.
+
+### H212. E216 S2-only masked-family JEPA is public-safe
+
+- 상태: 반증 by public feedback.
+- 왜 그럴듯한가: E216's `s2_rank` passed local OOF, subject-half, geometry, bad-axis, and hard-tail frontier stress, while the broad Q1/S2/S4 masked-family combo was rejected.
+- 맞다면: the E154 scale `0.75` S2-only file should land near E95 or improve as a non-collinear JEPA S2 sensor.
+- 틀리다면: public LB should punish the S2-only graft enough to show that the stress stack missed a public-adverse tail.
+- 최소 실험: submit `submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv`.
+- 관측: public LB `0.5772865088`, `+0.0009951790` worse than E95 and `+0.0009798683` worse than mixmin.
+- 성공/폐기 기준: discarded as a public-safe submission lane. Smaller-scale and E95-anchor siblings are not automatically equivalent, but they are demoted until this miss is explained.
+- public LB 관측 반응: the result points to S2-specific public-tail mismatch or anchor/scale amplification, not to a generic absence of masked-family signal.
+- 제출 전략: none. Use E216 siblings only as negative controls or root-cause probes.
 
 ## 우선 실험 5개
 

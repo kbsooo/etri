@@ -1594,11 +1594,11 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 
 ### F185. E216 masked-family JEPA S2 materialization
 
-- Hidden structure: public-safe masked-family JEPA movement appears concentrated in S2, even though Q1/S2/S4 is stronger locally.
+- Hidden structure: masked-family JEPA movement appeared concentrated in S2 after local stress, but public feedback shows the current S2 translator is not public-safe.
 - Candidates: `s2_rank` grafts from E215, especially E154/E95 scales `0.50` and `0.75`.
 - Label vs split test: selected only after local OOF, subject-half, geometry, bad-axis, and hard-tail frontier stress.
-- Current evidence: `s2_rank` local delta `-0.000624`, subject-half win `0.934615`, geometry `-0.000686`; selected files are `submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv`, `submission_e216_maskfam_jepa_s2_rank_e95_s0p75_4f8dc44d.csv`, `submission_e216_maskfam_jepa_s2_rank_e154_s0p5_0ca3d931.csv`, and `submission_e216_maskfam_jepa_s2_rank_e95_s0p5_4516fb93.csv`.
-- Policy: E216 is a non-collinear S2 JEPA sensor, not the first JEPA submission over E211. Use it if a second JEPA representation test is needed.
+- Current evidence: `s2_rank` local delta `-0.000624`, subject-half win `0.934615`, geometry `-0.000686`; selected files were `submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv`, `submission_e216_maskfam_jepa_s2_rank_e95_s0p75_4f8dc44d.csv`, `submission_e216_maskfam_jepa_s2_rank_e154_s0p5_0ca3d931.csv`, and `submission_e216_maskfam_jepa_s2_rank_e95_s0p5_4516fb93.csv`. Public feedback on the first file was `0.5772865088`, `+0.0009951790` worse than E95.
+- Policy: treat E216 S2 features as diagnostics and negative controls. Do not submit remaining E216 siblings unless a targeted S2 public-tail audit explains the failure and a new translator passes stricter stress.
 
 ### F186. E217 teacher-student tabular JEPA energy
 

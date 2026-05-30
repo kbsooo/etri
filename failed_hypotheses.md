@@ -1707,7 +1707,7 @@
 - Observed result: `q1_s2_s4_rank` has strong local evidence (`delta=-0.001807`, subject-half win `1.000`, geometry `-0.001628`) but fails frontier stress. At useful E95/E154 scales, its expected public-sensitive movement becomes positive, while S2-only remains negative and low bad-axis energy.
 - Why discard: local strength is not sufficient when public-tail stress says the broad move points the wrong way. This repeats the plateau law: public-safe narrow movement beats broad local improvement.
 - Implementation issue possible: medium. The public-tail stress is a proxy, not the leaderboard. But the contrast is large enough to avoid direct broad-combo submission before a specific audit.
-- Bottleneck implication: masked-family JEPA is useful, but public-safe translation is target-selective. S2 is currently the clean survivor; Q1/S4 need separate public-tail explanation.
+- Bottleneck implication: masked-family JEPA is useful, but public-safe translation is target-selective. S2 was the clean local survivor, but later public feedback rejected it; Q1/S4/S2 all need separate public-tail explanation before another E215/E216 submission.
 - Do not repeat: promoting the locally largest multi-target JEPA combo without checking frontier stress and target-specific public-tail direction.
 
 ## FH190. A more faithful teacher-student JEPA is itself enough to create the next submission
@@ -1716,5 +1716,14 @@
 - Observed result: E217 training is clearly nontrivial: validation loss is about `7%` of mean-teacher baseline and `4.5%` of shuffled-teacher baseline. But downstream materialization fails. Best S2 `e217_teacher_pc07` has local delta `-0.002853` and subject-half win `0.757692`, but geometry delta is `+0.000410`; Q3 residual rows are closer to neutral but below the pass thresholds. E217 selects no submission.
 - Why discard: better JEPA mechanics did not remove the plateau bottleneck. The learned full-row latent behaves like a fold-sensitive calibration energy, not a public-safe probability translator.
 - Implementation issue possible: medium. The objective is small CPU tabular JEPA and could change with teacher target, mask schedule, or a target-specific materializer. Low for rejecting direct E217 submission because the current geometry table directly fails the gate.
-- Bottleneck implication: the limiting factor is still translation/public-tail geometry, not merely whether JEPA is implemented faithfully. JEPA helps when it creates target-specific sensors such as E211 Q3/S4 or E216 S2.
+- Bottleneck implication: the limiting factor is still translation/public-tail geometry, not merely whether JEPA is implemented faithfully. JEPA helps only when target-specific sensors survive public-tail translation; after E216 feedback, E211 Q3/S4 is the only live example.
 - Do not repeat: "make JEPA more real, then submit its strongest local feature" without target-specific geometry and frontier stress.
+
+## FH191. E216 S2-only masked-family JEPA is a public-safe non-collinear sensor
+
+- Failed hypothesis: after E216 rejected the broad Q1/S2/S4 masked-family move, its S2-only `s2_rank` survivor should be public-safe enough to test as the next non-collinear JEPA lane.
+- Observed result: `submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv` scored public `0.5772865088`, which is `+0.0009951790` worse than E95, `+0.0009798683` worse than mixmin, and `+0.0009861428` worse than E101.
+- Why discard: the miss is too large to treat as frontier noise. Local OOF, subject-half, geometry, bad-axis, and hard-tail stress all failed to detect a public-adverse S2 tail for this anchor/scale.
+- Implementation issue possible: medium. The submitted file used the E154 anchor and scale `0.75`; smaller scale or E95 anchor may lose less. Low for keeping E216 as a next submission lane because the first public sensor directly rejects its selection logic.
+- Bottleneck implication: JEPA can expose local latent signal, but S2 translation is especially public-tail brittle. The bottleneck is not only representation discovery; it is converting a latent coordinate into calibrated probability movement under the hidden public subset.
+- Do not repeat: submitting remaining E216 siblings as automatic followups. First explain why S2-only failed despite passing the stress stack, or rebuild the translator with a target-specific public-tail audit.

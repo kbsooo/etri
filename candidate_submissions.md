@@ -1153,7 +1153,9 @@ Selected E216 files:
 
 Interpretation:
 
-E216 is not stronger than E211 as the first JEPA slot. E211 still has the higher structured survival score and tests the Q3/S4 lane closest to the current frontier. E216 is valuable because it is non-collinear: a masked-family JEPA S2-only sensor. If E211 feedback says Q3/S4 translation is not public-safe, E216 becomes the next JEPA representation test.
+Initial pre-public interpretation: E216 was not stronger than E211 as the first JEPA slot, but looked valuable as a non-collinear masked-family JEPA S2-only sensor.
+
+Public feedback update: `submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv` scored `0.5772865088`, which is `+0.0009951790` worse than E95. That rejects E216 S2-only as a public-safe submission lane. The sibling E216 files remain useful as negative controls only; do not submit them before a specific S2 tail-failure audit explains why local/geometry/frontier stress missed this public-adverse movement.
 
 ## Update After E217
 
@@ -1169,11 +1171,10 @@ Artifacts:
 
 Interpretation:
 
-The JEPA objective is learnable, but its best downstream signals fail geometry materialization. S2 is the strongest local feature, yet its geometry delta is positive. Therefore E217 should not change the submission order. The actionable JEPA order remains:
+The JEPA objective is learnable, but its best downstream signals fail geometry materialization. S2 is the strongest local feature, yet its geometry delta is positive. Therefore E217 should not change the submission order. After the E216 public miss, the actionable JEPA order is:
 
 1. `analysis_outputs/submission_e211_jepa_q3rawcloser_q3s1p0_s4s1p0_e154_a0p5_c20eee9c.csv`
 2. `analysis_outputs/submission_e211_jepa_q3rawtoward_q3s1p0_s4s1p0_e95_a0p5_e4e44d91.csv`
-3. `analysis_outputs/submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv`
-4. `analysis_outputs/submission_e216_maskfam_jepa_s2_rank_e95_s0p75_4f8dc44d.csv`
+3. `analysis_outputs/submission_e209_jepa_q3_center_c010_s4_rank_e95_s0p25_08289063.csv`, only as an E211-control sensor after E211 feedback.
 
-E217 is now a diagnostic/energy source only. Do not submit an E217-derived file unless a later target-specific materializer converts it into negative geometry and passes frontier hard-tail stress.
+E216 and E217 are now diagnostic/energy sources only. Do not submit an E216 sibling or E217-derived file unless a later target-specific materializer converts the signal into negative geometry, passes frontier hard-tail stress, and explains the `0.5772865088` E216 failure.

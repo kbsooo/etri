@@ -3335,8 +3335,8 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     - `submission_e216_maskfam_jepa_s2_rank_e95_s0p75_4f8dc44d.csv`
     - `submission_e216_maskfam_jepa_s2_rank_e154_s0p5_0ca3d931.csv`
     - `submission_e216_maskfam_jepa_s2_rank_e95_s0p5_4516fb93.csv`
-- Interpretation: E215 is real, but the public-safe part is not the locally best broad combo. Public-tail stress points to a narrow S2 masked-family JEPA sensor. This is a distinct representation lane from E211: E211 tests E208 Q3/S4 target-specific JEPA, E216 tests E215 S2-only masked-family JEPA.
-- Decision: keep E211 as the higher expected JEPA-family submission because its survival score is stronger and it targets the known Q3/S4 frontier. Use E216 S2-only as the next non-collinear JEPA representation sensor if a second JEPA slot is available or if E211 feedback says Q3/S4 translation is not the route.
+- Interpretation before public feedback: E215 is real, but the public-safe part did not look like the locally best broad combo. Public-tail stress pointed to a narrow S2 masked-family JEPA sensor. This was a distinct representation lane from E211: E211 tests E208 Q3/S4 target-specific JEPA, E216 tests E215 S2-only masked-family JEPA.
+- Decision before public feedback: keep E211 as the higher expected JEPA-family submission because its survival score is stronger and it targets the known Q3/S4 frontier. Use E216 S2-only only as the next non-collinear JEPA representation sensor if a second JEPA slot is available or if E211 feedback says Q3/S4 translation is not the route.
 
 ## E217. Teacher-Student Tabular JEPA Probe
 
@@ -3349,4 +3349,13 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best local downstream targets: S2 `e217_teacher_pc07` delta `-0.002853`, Q3 `e217_resid_pc09` delta `-0.001134`, S1 `e217_resid_pc14` delta `-0.001424`.
   - no candidate passes the E217 materialization gate. S2 is locally strong but geometry-adverse (`geometry_delta_mean=+0.000410` for the best S2 row). Q3 is closer to neutral but win rate stays below the gate.
 - Interpretation: a real teacher-student JEPA objective can learn nontrivial row latent structure, but the full-row teacher target does not produce a public-safe probability translator. This weakens "just implement JEPA harder" as a direct submission route and strengthens the existing diagnosis: JEPA is useful only after target-specific translation and geometry stress.
-- Decision: no E217 submission. Keep E211/E216 as the actionable JEPA sensors. Use E217 as negative evidence that full-row teacher-student latent is currently an energy/diagnostic, not a frontier candidate.
+- Decision: no E217 submission. Keep E211 as the actionable JEPA sensor. Use E217 as negative evidence that full-row teacher-student latent is currently an energy/diagnostic, not a frontier candidate.
+
+## E218. E216 Public Feedback
+
+- Observe: `submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv` returned public LB `0.5772865088`.
+- Wonder: did the E216 S2-only masked-family JEPA sensor actually survive public, or did the local/geometry/frontier stress stack false-positive on S2?
+- Method: treat the public LB as a sensor and compare against the current known anchors.
+- Result: E216 is worse than E95 by `+0.0009951790`, mixmin by `+0.0009798683`, E101 by `+0.0009861428`, and E176 by `+0.0009746778`.
+- Interpretation: the E215 masked-family latent can still be real, but the E216 S2 probability translation is public-adverse. This is not a tiny plateau fluctuation; it is a direct rejection of the "S2-only masked-family JEPA is public-safe" hypothesis. The failure also says our frontier stress missed a public tail that is specific enough to punish S2-only even when local, subject-half, and geometry checks looked clean.
+- Decision: demote all remaining E216 siblings to negative controls. Keep E211 Q3/S4 as the only live JEPA submission lane. The next JEPA work should explain the S2 tail failure or rebuild a target-specific translator before any new E216-style submission.

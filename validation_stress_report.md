@@ -1694,7 +1694,7 @@ E215 stress result:
   - S2 `e215_resid_pc10`: `-0.004370`.
   - S4 `e215_deep_resid_abs_mean`: `-0.003313`.
 
-E216 frontier result:
+E216 frontier result before public feedback:
 
 - Strongest local combo `q1_s2_s4_rank`: delta `-0.001807`, subject-half win `1.000`, geometry `-0.001628`.
 - Frontier stress rejects that broad combo at useful scales.
@@ -1704,7 +1704,16 @@ E216 frontier result:
   - `submission_e216_maskfam_jepa_s2_rank_e154_s0p5_0ca3d931.csv`.
   - `submission_e216_maskfam_jepa_s2_rank_e95_s0p5_4516fb93.csv`.
 
-Stress implication: changing the JEPA target representation is useful. But the public-safe translation is narrower than the locally strongest representation signal; for E215, S2 is the clean survivor.
+Stress implication before public feedback: changing the JEPA target representation is useful. But the public-safe translation appeared narrower than the locally strongest representation signal; for E215, S2 was the clean survivor.
+
+Public feedback update:
+
+- `submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv`: public LB `0.5772865088`.
+- Delta vs E95: `+0.0009951790`.
+- Delta vs mixmin: `+0.0009798683`.
+- Delta vs E101: `+0.0009861428`.
+
+Stress implication after public feedback: E216 is a stress false positive. The local/subject/geometry/frontier stack rejected the broad Q1/S2/S4 combo but still failed to detect a public-adverse S2-only tail. Remaining E216 siblings are demoted to negative controls; the stress design needs an S2-specific public-tail audit before another masked-family S2 submission.
 
 ## Update After E217
 
