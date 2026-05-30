@@ -2823,6 +2823,18 @@ target co-occurrence
 - public LB 관측 반응: if E237 is submitted and wins, strengthen H232 high-impact Q3 tail-discrimination but still use E238/E224 contrast before increasing Q3 or tuning siblings. If E237 loses, close the current learned Q3-tail branch; do not infer that E224 would have failed unless the loss is E216-like or an E224 contrast is known.
 - 제출 전략: one-file JEPA-as-solution candidate is `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`. One-file clean JEPA body candidate remains `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
 
+### H239. E237 aligns with the E207 feature-NN1 true-JEPA regime
+
+- 상태: 약한 지지 by E245; not certified.
+- 왜 그럴듯한가: E207 found only one plausible true-JEPA positive-pair regime, `broad_stage2_pca64 / feature_nn1_all`. E237 is currently the closest real JEPA-as-solution candidate, but E217 showed that a larger teacher-student JEPA can learn a latent and still fail translation. If E237 is a healthier representation rather than a local tail artifact, its Q3 rollback should at least move E224 toward feature-neighbor compatibility.
+- 맞다면: applying E237's 25 Q3 rollbacks should reduce feature-nearest-neighbor Q3 logit roughness, especially on pairs affected by those rows, and should not look worse than random row rollbacks of the same size.
+- 틀리다면: E237 rollback will be neutral/adverse under feature-NN1 pair roughness, or any smoothness improvement will be indistinguishable from random top-amplitude rollback.
+- 최소 실험: `analysis_outputs/e245_feature_nn1_jepa_compat_audit.py`.
+- 관측: actual E237 rollback reduces global Q3 NN-pair abs-logit roughness by `-0.000802649` and affected-pair roughness by `-0.006472972` over `31` affected directed pairs. However, the null is not decisive: all-row percentiles are `0.1754` global and `0.1080` affected, and top50-amplitude null percentiles are `0.3132` and `0.2896`.
+- 성공/폐기 기준: weakly supported as compatibility, not accepted as certification. A strong result would have required top50-amplitude null percentile below roughly `0.10` on the affected-pair metric.
+- public LB 관측 반응: E237 public win plus E245 weak compatibility would justify training a direct feature-NN1/decisive-cell JEPA target. E237 public loss overrides this weak compatibility and closes current E237 siblings unless an E224 contrast says the body was worse.
+- 제출 전략: no new E245 submission. Keep the audited E237 file as the one-file JEPA-as-solution candidate.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -2147,6 +2147,27 @@ E244 E237 pre-submission integrity audit:
 
 Stress implication after E244: the E237 public score, if submitted, is attributable to the intended learned Q3 decisive-cell rollback rather than artifact drift. E244 adds no new local-score evidence, but it closes submission-file ambiguity.
 
+E245 feature-NN1 JEPA compatibility audit:
+
+- script: `analysis_outputs/e245_feature_nn1_jepa_compat_audit.py`.
+- report: `analysis_outputs/e245_feature_nn1_jepa_compat_report.md`.
+- selected files: none; this is a representation-health audit for E237.
+- stress dimensions:
+  - E207 true-JEPA pair regime: `broad_stage2_pca64 / feature_nn1_all`.
+  - submission-side feature-nearest-neighbor Q3 logit roughness.
+  - actual E237 25-row rollback from E224 to E154.
+  - random rollback nulls from all rows and top50 Q3-amplitude rows.
+  - candidate movement geometry for E95/E101/E154/E166/E176/E216/E224/E237.
+- key results:
+  - verdict `supportive`, not decisive.
+  - E237 reduces global Q3 NN-pair roughness by `-0.000802649`.
+  - E237 reduces affected-pair roughness by `-0.006472972` across `31` affected directed pairs.
+  - all-row null percentile is `0.1754` global and `0.1080` affected.
+  - top50-amplitude null percentile is `0.3132` global and `0.2896` affected.
+  - E237 is not globally smoother than E224 by movement pair ratio (`1.213392` vs `1.124777`), so the signal is local to the Q3 rollback.
+
+Stress implication after E245: E237 is compatible with the only LeJEPA-identifiable feature-neighbor regime, but the evidence is not strong enough to create a new candidate or override public feedback. This strengthens E237 as the next JEPA-as-solution sensor but does not certify the branch.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

@@ -3739,3 +3739,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - movement versus E95 remains the expected E224-family body plus Q3 tail rollback: Q3 `238` changed cells and S4 `119` changed cells from the E95 anchor.
 - Interpretation: E237 is a clean submission artifact. The public question remains narrow and identifiable: whether a learned Q3 decisive-cell rollback improves the clean E224 capped-Q3/S4 JEPA body. E244 adds no new performance evidence, but removes file-integrity ambiguity.
 - Decision: if using the JEPA-as-solution slot, submit `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv` and decode with `python3 analysis_outputs/e238_e237_public_feedback_decoder.py --score <PUBLIC_LB>`. Do not modify or rescale it before feedback.
+
+## E245. Feature-NN1 JEPA Compatibility Audit
+
+- Observe: E207 identified only one `true_jepa_candidate` pair regime, `broad_stage2_pca64 / feature_nn1_all`. E217 did not use that regime; it trained a subject-neighborhood full-row teacher and failed as a submission translator. Before training another JEPA, the smallest useful question is whether the live E237 Q3 rollback is at least compatible with the E207 identifiable pair geometry.
+- Wonder: does E237's 25-cell Q3 rollback make E224 more feature-nearest-neighbor-consistent, or is the learned decisive-cell head unrelated to the one LeJEPA-identifiable world-model regime?
+- Method: `analysis_outputs/e245_feature_nn1_jepa_compat_audit.py` rebuilds the broad stage2 PCA space, constructs submission-side feature-NN1 pairs, and measures Q3 logit pair roughness before/after applying the E237 rollback from E224 toward E154. It compares the actual 25 selected rows against random 25-row rollback nulls from all rows and from the top50 E224-E154 Q3 amplitude rows. It also scores candidate movement geometry for E95/E101/E154/E166/E176/E216/E224/E237.
+- Result:
+  - report: `analysis_outputs/e245_feature_nn1_jepa_compat_report.md`.
+  - verdict: `supportive`, not decisive.
+  - E237 rollback changes `25` rows and reduces global Q3 feature-NN pair abs-logit roughness by `-0.000802649`.
+  - affected directed NN pairs reduce roughness by `-0.006472972` over `31` affected pairs.
+  - versus all-row random rollback, actual percentile is `0.1754` global and `0.1080` affected. Versus top50-amplitude random rollback, actual percentile is weaker: `0.3132` global and `0.2896` affected.
+  - candidate movement-health table does not make E237 globally smoother than E224: E224 movement pair ratio `1.124777`, E237 `1.213392`; the support is specifically local Q3 NN-compatibility after rollback.
+- Interpretation: E237 does not conflict with the E207 true-JEPA pair regime. Its Q3 rollback locally moves E224 toward feature-NN consistency, which is exactly the direction a real context-target representation should prefer. But the null comparison is not strong enough to claim that feature-NN1 world modeling has solved the public tail. E237 remains a high-impact Q3 tail sensor with an additional weak LeJEPA compatibility check, not a certified 0.54 path.
+- Decision: no new submission. Keep E237 as the one-file JEPA-as-solution candidate if spending a slot now. If E237 public wins, next work should train a true feature-NN1/decisive-cell JEPA target directly; if it loses, E245 is too weak to rescue the branch.

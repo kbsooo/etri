@@ -1788,6 +1788,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E243 ranks E237 first only for improvement-biased JEPA-tail testing, E224 first for clean JEPA body ablation, E166 first for non-JEPA broad-world escape, and E154 as conservative conditional branch.
 - Policy: use F208 to decide which public question is being asked before choosing a file. Do not collapse E237/E224/E166/E154 into one scalar rank or blend.
 
+### F209. E245 feature-NN1 LeJEPA compatibility features
+
+- Hidden structure: the only E207-identifiable true-JEPA positive-pair regime, `broad_stage2_pca64 / feature_nn1_all`, may provide a health check for whether E237's Q3 cell rollback is a world-model-compatible representation rather than a standalone tail edit.
+- Candidates: submission-side feature-NN1 pair indices, Q3 pair abs-logit roughness, E224-to-E154 rollback deltas, affected-pair flags, random all-row rollback null, top50-amplitude rollback null, candidate movement pair ratios, residual embedding rank fraction, covariance condition, and random-projection Gaussian score.
+- Label vs split test: valid as a public-free representation audit. It uses no public labels and creates no probabilities. It is not a selector unless future public feedback plus a stronger null result shows the feature-neighbor regime carries public-tail direction.
+- Current evidence: E237 reduces global Q3 NN-pair roughness by `-0.000802649` and affected-pair roughness by `-0.006472972`, but null percentiles are only weakly supportive (`0.1080` affected all-row; `0.2896` affected top50-amplitude). E237 is not globally smoother than E224 by movement pair ratio.
+- Policy: use F209 as a compatibility diagnostic for E237, not as a submission feature. If E237 wins, build a direct feature-NN1/decisive-cell JEPA target; if E237 loses, do not rescue the branch with F209 alone.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

@@ -1667,3 +1667,25 @@ Current candidate order is unchanged:
 4. Conservative repaired branch: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
 
 E244 adds no new score evidence. It only closes the artifact-risk question: if E237 is selected, submit exactly this checksum-matched file and read public feedback as the learned Q3 decisive-cell worldview test.
+
+## Update After E245
+
+E245 adds a representation-compatibility check, not a new submission.
+
+Key finding:
+
+- E207's only `true_jepa_candidate` pair regime is `broad_stage2_pca64 / feature_nn1_all`.
+- E237's 25-cell Q3 rollback reduces Q3 feature-NN1 pair roughness:
+  - global abs-logit pair delta `-0.000802649`.
+  - affected-pair abs-logit delta `-0.006472972` across `31` affected directed pairs.
+- The effect is supportive but not decisive:
+  - all-row random rollback percentile `0.1754` global, `0.1080` affected.
+  - top50-amplitude rollback percentile `0.3132` global, `0.2896` affected.
+- E237 is not globally smoother than E224 by movement ratio, so this is a local Q3 compatibility signal, not a broad latent-health certificate.
+
+Submission policy remains:
+
+1. If using one JEPA-as-solution public slot, submit the audited E237 file.
+2. Do not create a new E245 submission.
+3. If E237 wins, train the next JEPA target directly on feature-NN1 decisive-cell compatibility.
+4. If E237 loses, E245 is too weak to justify tuning E237 siblings.
