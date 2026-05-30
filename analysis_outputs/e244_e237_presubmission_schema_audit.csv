@@ -1,0 +1,9 @@
+check,pass
+columns_exact,True
+shape_exact_250x10,True
+key_order_matches_sample,True
+keys_unique,True
+sample_keys_unique,True
+probabilities_finite,True
+probabilities_in_unit_interval,True
+no_missing_values,True

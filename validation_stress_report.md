@@ -2127,6 +2127,26 @@ E243 next public-slot governance:
 
 Stress implication after E243: the live JEPA branch has two distinct experimental roles. E237 is the closest deployable JEPA-tail attempt, but it does not universally supersede E224 because it pre-prunes Q3 and would obscure the clean body question. Public-slot choice must be tied to the question, not to one scalar "best candidate" label.
 
+E244 E237 pre-submission integrity audit:
+
+- script: `analysis_outputs/e244_e237_presubmission_audit.py`.
+- report: `analysis_outputs/e244_e237_presubmission_audit_report.md`.
+- selected file: `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+- stress dimensions:
+  - exact schema and key-order match against `data/ch2026_submission_sample.csv`.
+  - duplicate key, missing value, finite probability, and `[0,1]` probability checks.
+  - E237-vs-E224 targetwise movement audit.
+  - E237-vs-E95 movement context check.
+  - checksum lock for the public candidate.
+- key results:
+  - status `READY`.
+  - SHA256 `6521b0e26622713eb9391c804af03b20eba84b924c4157bcc4ef50941b053915`.
+  - exact `250 x 10` sample schema and sample key order.
+  - E237 changes exactly `25` cells versus E224, all on Q3.
+  - no material Q1/Q2/S1/S2/S3/S4 movement versus E224.
+
+Stress implication after E244: the E237 public score, if submitted, is attributable to the intended learned Q3 decisive-cell rollback rather than artifact drift. E244 adds no new local-score evidence, but it closes submission-file ambiguity.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

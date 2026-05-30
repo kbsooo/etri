@@ -3724,3 +3724,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - conservative repaired branch: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
 - Interpretation: E237 is the closest "JEPA as solution" attempt because it uses a learned decisive-cell target and ranks `1/120` by OOF tail-AUC/support/top-cell safety, but it does not universally replace E224. E224 remains the cleaner scientific read on whether the unpruned capped-Q3/S4 JEPA body works.
 - Decision: if asked for one JEPA-as-solution submission, choose E237. If asked for the cleanest JEPA body experiment, choose E224. Do not submit E216 siblings, E240 simple residual-PC10 rules, lower-ranked E237 siblings, or an E224/E166/E154 blend before feedback.
+
+## E244. E237 Pre-Submission Integrity Audit
+
+- Observe: E243 recommends E237 if the next public slot is an improvement-biased JEPA-as-solution test, but that recommendation is only useful if the exact CSV is schema-clean and its movement is the intended locked Q3 cell-tail edit.
+- Wonder: is the recommended E237 file a safe submission artifact, or did later materialization/CSV handling accidentally move unrelated targets, rows, keys, or probabilities?
+- Method: `analysis_outputs/e244_e237_presubmission_audit.py` compares the E237 CSV against `data/ch2026_submission_sample.csv`, E224, and E95. It checks column order, row count, key order, duplicate keys, missing/invalid probabilities, SHA256, targetwise movement, and the exact changed cells versus E224.
+- Result:
+  - report: `analysis_outputs/e244_e237_presubmission_audit_report.md`.
+  - status: `READY`.
+  - SHA256: `6521b0e26622713eb9391c804af03b20eba84b924c4157bcc4ef50941b053915`.
+  - schema: exact `250 x 10`, exact sample column order, exact sample key order, no duplicate keys, finite probabilities in `[0,1]`.
+  - movement versus E224: exactly `25` changed cells, all `Q3`; no material movement on `Q1,Q2,S1,S2,S3,S4`.
+  - movement versus E95 remains the expected E224-family body plus Q3 tail rollback: Q3 `238` changed cells and S4 `119` changed cells from the E95 anchor.
+- Interpretation: E237 is a clean submission artifact. The public question remains narrow and identifiable: whether a learned Q3 decisive-cell rollback improves the clean E224 capped-Q3/S4 JEPA body. E244 adds no new performance evidence, but removes file-integrity ambiguity.
+- Decision: if using the JEPA-as-solution slot, submit `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv` and decode with `python3 analysis_outputs/e238_e237_public_feedback_decoder.py --score <PUBLIC_LB>`. Do not modify or rescale it before feedback.

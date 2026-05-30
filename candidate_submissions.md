@@ -1641,3 +1641,29 @@ Why E237 is now the closest real JEPA attempt:
 - E242 ranks it `1/120` by OOF tail-AUC, support gain, and Q3 top-cell safety, while only `71/120` by average OOF gain.
 
 Do not submit E216 siblings, E240 simple residual-PC10 rules, lower-ranked E237 siblings, or an E224/E166/E154 blend before feedback.
+
+## Update After E244
+
+E244 converts the E243 E237 recommendation from a modeling decision into a submission-ready artifact audit.
+
+Submission-ready file:
+
+`analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`
+
+Integrity facts:
+
+- status `READY`.
+- SHA256 `6521b0e26622713eb9391c804af03b20eba84b924c4157bcc4ef50941b053915`.
+- exact sample schema/key order against `data/ch2026_submission_sample.csv`.
+- finite probabilities, all in `[0,1]`.
+- exactly `25` cells changed versus E224, all on `Q3`.
+- no Q1/Q2/S1/S2/S3/S4 movement versus E224 beyond floating-point zero.
+
+Current candidate order is unchanged:
+
+1. JEPA-as-solution / improvement-biased public slot: E237 audited file above.
+2. Clean JEPA body ablation: `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+3. Non-JEPA escape: `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
+4. Conservative repaired branch: `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+
+E244 adds no new score evidence. It only closes the artifact-risk question: if E237 is selected, submit exactly this checksum-matched file and read public feedback as the learned Q3 decisive-cell worldview test.
