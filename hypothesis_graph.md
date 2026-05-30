@@ -3208,6 +3208,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E283. If an E283 file were submitted and won, it would primarily falsify the current placebo governor's strictness, not certify this selector from local evidence.
 - 제출 전략: none. Keep E247 as best public file; next branch should learn cell-tail risk or row-placement transfer, not scalar app-entropy smoothing ranks.
 
+### H284: app-entropy can help a decisive-cell JEPA target, but the old E224/E154 target anchor is stale
+
+- 상태: representation supported; current submission translator rejected.
+- 왜 그럴듯한가: E281 validated app-entropy as a hidden routine/attention-fragmentation state, while E237/E249 showed that Q3/S4 decisive-cell targets are sharper than row-level support or scalar smoothing. Combining them should help if the social state truly explains cell-tail risk.
+- 맞다면: app-entropy context should improve OOF decisive-cell loss/tail-AUC and open E237 gates. But if E247 has become the live public-positive mechanism, an E224/E154 rollback target may still fail against E247-current nulls and show weak overlap with E247 cells.
+- 틀리다면: app-entropy context would not improve OOF decisive-cell metrics, or selected cells would strongly overlap E247 and pass E247-current matched-placebo governance.
+- 최소 실험: `analysis_outputs/e284_appentropy_decisive_cell_jepa_audit.py`.
+- 관측: best app-state interaction OOF view has median delta loss `-0.000080361` and mean tail-AUC delta `+0.003713380`; E237 gate passes `9`. However E247-current public-free ready files are `0`, best p90 is still positive (`+0.000025223`), and top selected Q3 files overlap E247 weakly (`11/25` and `9/21` selected cells).
+- 성공/폐기 기준: app-entropy survives as decisive-cell context, but E224/E154-anchored app-entropy rollback is rejected as a current-frontier submission route.
+- public LB 관측 반응: no public LB should be spent on E284. If an E284 file were submitted and won anyway, it would imply the E247-current matched-placebo governor is too conservative or that the public subset rewards stale E224/E154 Q3 tail rollback over E247-preserving geometry.
+- 제출 전략: none. Next branch should use E247 itself as the target anchor: predict preserve/undo/avoid labels for E247 cells, with app-entropy as context and matched-null dominance as the promotion rule.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

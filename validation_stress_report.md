@@ -2777,3 +2777,35 @@ Decision:
 - Do not submit any E283 file.
 - App-entropy is useful as a diagnostic axis around Q3 smoothing, but not yet a local-governed selector.
 - The next valid experiment should learn a sharper cell-tail target or row-alignment transfer objective; another scalar app-entropy rank tweak is blocked.
+
+## E284 App-Entropy Decisive-Cell JEPA Governor
+
+Question: can app-entropy become useful when it is moved from scalar selector logic into the E237/E249 decisive-cell JEPA target?
+
+Method: `analysis_outputs/e284_appentropy_decisive_cell_jepa_audit.py`.
+
+- Context views: app-state, app-state interactions, and app-story interactions added to the feature-NN1 decisive-cell latent.
+- Local OOF stress: row5/subject5, risk/contrast targets, Q3/S4/all3 source scopes.
+- Materialization stress: E237 gates versus E224/E154/E95.
+- Current-frontier stress: E247-current matched row/subject/dateblock placebo governor.
+
+Result:
+
+- OOF rows: `3744`.
+- OOF stress-promoted rows: `409`.
+- E237 gate passes: `9`.
+- selected materialized files: `9`.
+- matched-placebo gate passes: `0`.
+- public-free submission-ready files: `0`.
+- best OOF paired improvement came from app-state interaction LR:
+  - median delta loss `-0.000080361`;
+  - mean tail-AUC delta `+0.003713380`;
+  - app better loss rate `0.650641`.
+- top materialized file dropped `25` Q3 cells and had E237 score `0.056990432`, but E247-current p90 was adverse/below resolution at `+0.000027736`.
+- strongest E247-current row was still not usable: top21 file p90 `+0.000025223`, p90 dominance `0.037037`, matched-placebo gate `False`.
+
+Decision:
+
+- E284 is locally informative but blocked for submission.
+- App-entropy improves the learned decisive-cell representation, but the selected cells miss most of the E247 public-positive set.
+- Future validation must target E247 residual/preserve/undo labels directly; E224/E154 rollback gates are now too stale for current-frontier promotion.

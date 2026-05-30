@@ -336,3 +336,17 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - interpretation: public rejects this specific social-gated rollback materialization. The loss does not kill the broader social-state hypothesis because the file translated the story through an old E224/E154 branch rather than directly through the current E247 frontier.
 - unresolved: we still do not know whether social/context features identify the public tail, only that the chosen rollback action was too blunt or pointed at the wrong probability body.
 - next experiment: build a human/social hypothesis atlas that tests stories as falsifiable signals first; only materialize a direct E247 overlay if a story survives OOF, subject/block stress, train/test shift, and E267 movement-context checks.
+
+## Public-Free Observation: E284
+
+- submission files: `analysis_outputs/submission_e284_appentropy_decisive_*.csv`
+- public LB: not submitted.
+- reason not submitted: public LB is being preserved; E284 failed the local E247-current matched row/subject/dateblock placebo governor.
+- local observation:
+  - E237 gate passes: `9`;
+  - public-free ready files: `0`;
+  - best E247-current p90: `+0.000025223`;
+  - matched-placebo gate passes: `0/9`;
+  - top selected Q3 overlap with E247: `11/25`, Jaccard `0.229167`.
+- interpretation: app-entropy is useful as JEPA context, but the materialized E224/E154 rollback target is stale relative to the current public-best E247 smoothing body.
+- next experiment: learn E247-relative preserve/undo/avoid cell labels and keep public LB unused until a candidate beats matched nulls locally.

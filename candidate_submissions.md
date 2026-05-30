@@ -2443,3 +2443,42 @@ Next submission candidate requirement:
 - must beat E247-relative matched row/subject/dateblock nulls;
 - must preserve the E247 feature-NN1 Q3 smoothing body or explain why replacing it is safer;
 - app-entropy can be used as context/energy, not as a scalar rank override by itself.
+
+## Update After E284 App-Entropy Decisive-Cell JEPA Audit
+
+Current submission policy remains: **no new public submission.**
+
+What was tested:
+
+- app-entropy as context inside the E237/E249 Q3/S4 decisive-cell JEPA target;
+- app-state/app-story interaction views;
+- E237-style materialized Q3 rollback files;
+- E247-current matched row/subject/dateblock placebo governance.
+
+What survived locally:
+
+- app-entropy improves OOF decisive-cell learning:
+  - best paired median delta loss `-0.000080361`;
+  - best paired mean tail-AUC delta `+0.003713380`.
+- `9` materialized files passed the older E237 gate.
+
+What failed:
+
+- `0/9` passed the E247-current matched-placebo governor.
+- The selected Q3 cells are mostly not the E247 winning body:
+  - top25 selected only `11` of E247's `34` cells;
+  - top21 selected only `9` of E247's `34` cells.
+- Best E247-current p90 deltas were positive or below resolution, so these are not public-free candidates.
+
+Do not submit:
+
+- any `analysis_outputs/submission_e284_appentropy_decisive_*.csv` file.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+Next submission candidate requirement:
+
+- learn E247-relative residual placement directly: preserve/undo/avoid labels around E247 cells, not E224/E154 rollback labels;
+- app-entropy may be used as JEPA context, but only if the final tensor beats matched row/subject/dateblock nulls.

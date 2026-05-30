@@ -2145,3 +2145,27 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - do not materialize scalar app-entropy sorting rules as public candidates.
 - Failure condition:
   - if app-entropy changes only a few Q3 smoothing cells and the p90 edge is under `1e-5` without null dominance, classify as selector-resolution noise.
+
+## E284 App-Entropy Decisive-Cell Context Policy
+
+- Target hypothesis tested: app-entropy may be useful as context for learned Q3/S4 decisive-cell risk, even though it failed as a scalar Q3 shift or E247 smoothing rank override.
+- Feature/representation source:
+  - E282 app-entropy predicted story-state;
+  - app-state/app-story z-scores by subject and dateblock;
+  - interactions with feature-NN1 decisive-cell metrics such as `prob_gap`, `logit_step`, margins, smooth gain, pair abs-logit, and distance.
+- Validation result:
+  - OOF decisive-cell rows: `3744`;
+  - OOF stress-promoted rows: `409`;
+  - E237 gate passes: `9`;
+  - E247-current matched-placebo gate passes: `0`;
+  - public-ready candidates: `0`.
+- Updated registry status:
+  - `app_entropy_scattered_day` is approved as JEPA context/energy for decisive-cell learning.
+  - It is not approved for an E224/E154-anchored rollback submission.
+  - The current live use is diagnostic: identify where routine fragmentation explains old Q3/S4 tail risk and where that disagrees with E247.
+- Adopt rule for future app-entropy decisive-cell features:
+  - anchor the target to E247 residuals rather than E224/E154 rollback;
+  - report overlap with E247 public-positive cells before materialization;
+  - require E247-current matched row/subject/dateblock null dominance before any public LB.
+- Failure condition:
+  - if the app-entropy model improves OOF but selects cells with low E247 overlap and positive E247-current p90, classify it as stale-target learning rather than current-frontier signal.

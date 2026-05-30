@@ -4301,3 +4301,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best-looking variants are still below submission resolution or placebo weak, e.g. `state_score_bm0p2_top34` has p90 `-0.000004766` with p90 dominance `0.696970`, and `avoid_high_state_amp_b0p25_top34` has p90 `-0.000005847` with p90 dominance `0.515152`.
 - Interpretation: app-entropy explains some public-positive/public-worse Q3 cell anatomy, especially the high-entropy/high-amplitude risk of E256-only cells. But converting that observation into a selector does not beat E247 in a placebo-resistant way. The current public-positive mechanism remains feature-NN1 Q3 smoothing geometry, not app-entropy-conditioned replacement/refill.
 - Decision: no E283 public submission. App-entropy should remain a context/energy diagnostic for Q3 cell-tail work, not a standalone Q3 smoothing selector.
+
+## E284. App-Entropy Decisive-Cell JEPA Audit
+
+- Observe: E281/E282 supported `app_entropy_scattered_day` as a real human/social story-state, while E283 showed that scalar app-entropy sorting cannot improve the E247 Q3 smoothing selector.
+- Wonder: does app-entropy help when used as JEPA context for the sharper hidden target, namely Q3/S4 decisive-cell identity, instead of as a direct probability shift or rank override?
+- Method: `analysis_outputs/e284_appentropy_decisive_cell_jepa_audit.py` adds app-entropy state/story features and interactions to the E237/E249 decisive-cell target. It scans OOF cell-risk policies, materializes E237-style rollback candidates, compares selected Q3 cells to E247/E256, and runs the E247-current matched row/subject/dateblock placebo governor. No public LB was used.
+- Result:
+  - OOF rows: `3744`.
+  - OOF stress-promoted rows: `409`.
+  - E237 materialization gate passes: `9`.
+  - selected files: `9`.
+  - public-free ready files: `0`.
+  - best OOF paired view: `latent_no_targetid_featnn1_appstate_inter` with `lr_l2_c0p10`, median delta loss `-0.000080361`, mean tail-AUC delta `+0.003713380`, promoted-by-app `22`, demoted-by-app `3`.
+  - strongest selected materialization: `all3_latent_no_targetid_featnn1_appstory_inter_hgb_shallow_row5_risk_q0p20_drop_q3_top25`, dropping `25` Q3 cells, OOF tail-AUC `0.851333544`, expected loss vs E224 `-0.000021997`, E237 score `0.056990432`.
+  - but all E247-current governor p90 deltas are positive or below resolution; best actual p90 is `+0.000025223`, and matched-placebo gate passes `0/9`.
+  - selected Q3 cells overlap E247 weakly: top25 overlap `11/25`, Jaccard `0.229167`, missing `23` of E247's `34` cells; top21 overlap `9/21`, Jaccard `0.195652`.
+- Interpretation: app-entropy is useful context for learning the old E224/E154-era decisive-cell law, but the resulting cells do not match the current E247 public-positive Q3 smoothing body. The failure is not "social state is fake"; it is "the target anchor is stale."
+- Decision: no E284 public submission. The next valid target is E247-relative residual placement: learn which E247 cells to preserve, undo, or avoid, with the matched-placebo governor as the first-class objective.

@@ -2097,3 +2097,12 @@
 - Implementation issue possible: medium. The selector rules are scalar and handcrafted; a learned cell-tail target may still use app-entropy successfully. Low for blocking these exact files because the final tensor-level null audit directly tests the proposed row/cell placement.
 - Bottleneck implication: the active bottleneck is not discovering another social scalar. It is learning a placement-aware Q3 cell-tail representation that stays distinguishable from nulls at submission scale.
 - Do not repeat: creating more app-entropy rank/band/refill variants around E247 unless the target changes from scalar selector perturbation to learned cell-tail or matched-null row-alignment training.
+
+## FH233. App-entropy decisive-cell JEPA on the old E224/E154 anchor is submission-ready
+
+- Failed hypothesis: once app-entropy is moved into a learned decisive-cell JEPA target, the resulting E237-gated Q3/S4 rollback candidates should become current-frontier submission candidates.
+- Observed result: E284 improves OOF decisive-cell learning and opens `9` E237 gates, but every file fails the E247-current matched-placebo governor. Best p90 is still positive at `+0.000025223`, matched-placebo gate passes are `0/9`, and selected Q3 cells overlap E247 weakly (`11/25` for top25, `9/21` for top21).
+- Why discard: the learned app-entropy target is anchored to the older E224/E154 rollback law. It can find locally plausible Q3 tail cells, but those cells miss most of the E247 public-positive smoothing body and therefore cannot be trusted as current-frontier movement.
+- Implementation issue possible: medium. The model family is intentionally small and the target still inherits E237/E249 design choices. But the tensor-level E247-current null failure is direct enough to block these exact files.
+- Bottleneck implication: the bottleneck is target anchoring, not only feature discovery. The social/JEPA representation can be real while the hidden target representation is stale.
+- Do not repeat: materializing more E224/E154-anchored app-entropy decisive-cell rollbacks unless the target is rebuilt around E247 preserve/undo/avoid labels.
