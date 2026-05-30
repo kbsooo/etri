@@ -2386,3 +2386,29 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - treat low-null but low-mean-dominance candidates as near-miss diagnostics, not submissions.
 - Failure condition:
   - if a contrast candidate remains null strict rate `1.0`, classify it as generic target movement regardless of train contrast dominance.
+
+## E293 S4 Low-Null Candidate Policy
+
+- Target hypothesis tested: the S4 lifestyle-bin near-miss can become public-free ready by refining low-null block filters and raw-delta scale.
+- Feature/representation source:
+  - E291/E292 S4 `family_jepa_context/dateblock5/cluster6/subject_lifestyle_bin` parent policies;
+  - block null mean/max rates;
+  - rarity score and contrast score;
+  - raw S4 delta scales from `0.30` to `0.60`;
+  - E247-current matched row/subject/dateblock governor.
+- Validation result:
+  - generated candidates: `840`;
+  - old strict candidates: `554`;
+  - null-evaluated candidates: `64`;
+  - matched null evaluations: `1344`;
+  - public-ready candidates: `0`.
+- Updated registry status:
+  - S4 low-null lifestyle-bin pocket remains approved only as a diagnostic.
+  - low-null/rarity/contrast filters are not approved for direct S4 submission.
+  - scale sweeps in this family are deprioritized unless a new candidate-level invariant is added.
+- Adopt rule for future S4 lifestyle features:
+  - require the candidate to be both selector-visible and matched-null rare;
+  - explicitly report the too-small/null-safe versus old-strict/null-reproducible cliff;
+  - do not promote a file only because p90 is negative.
+- Failure condition:
+  - if null-safe candidates remain below selector resolution and selector-visible candidates have null strict rate above `0.10`, classify the family as an invariant failure rather than a tuning failure.

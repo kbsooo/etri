@@ -2178,3 +2178,12 @@
 - Implementation issue possible: medium. E292 uses deterministic contrast scores, not a learned candidate-level null outcome model. A focused S4 null-outcome target may still work. Low for blocking the exact E292 files because the governor directly evaluates the generated tensors.
 - Bottleneck implication: the live branch is now narrower: S4 lifestyle-bin placement has a weak anti-null invariant; Q3 lifestyle placement is still collapsed into generic movement.
 - Do not repeat: submitting `submission_e292_contrastlife_*` files or treating train contrast gates as public-ready without candidate-level null dominance.
+
+## FH242. S4 low-null lifestyle scale refinement is enough for a submission
+
+- Failed hypothesis: after E292, the S4 lifestyle-bin near-miss only needs a better scale/filter point; a narrow sweep should find a candidate that is old-strict, null-safe, and mean-dominant.
+- Observed result: E293 generates `840` S4-only candidates, finds `554` old strict rows, and null-evaluates `64` candidates against `1344` matched row/subject/dateblock nulls. Public-ready candidates remain `0`. Null strict `0.000000` candidates exist only as `too_small_to_submit`; the nearest old-strict 31-row pocket has null strict `0.476190` to `0.523810`, and stronger p90 candidates have null strict `1.000000`.
+- Why discard: the failure is not scale granularity. It is a resolution cliff between "too small but placebo-resistant" and "selector-visible but placebo-reproducible."
+- Implementation issue possible: low for rejecting this sweep family. E293 directly evaluates the intended S4 files against matched nulls. Medium for the broader S4 branch because a different candidate-level invariant or a validated tiny-edge selector could still use the same pocket.
+- Bottleneck implication: public LB should not be spent on S4 low-null variants until candidate visibility and null rarity are learned jointly.
+- Do not repeat: submitting `submission_e293_s4lownull_*` files or running another amplitude/top-k sweep without changing the invariant.

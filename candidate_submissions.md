@@ -2744,3 +2744,35 @@ Next submission candidate requirement:
 - S4 low-null lifestyle-bin raw edits are now the narrow live branch;
 - require null strict rate below `0.10` and mean dominance at least `0.70`;
 - do not spend public LB on Q3 contrast placement until it stops promoting matched nulls.
+
+## Update After E293 S4 Low-Null Refiner
+
+Current submission policy remains: **no new public submission.**
+
+What was tested:
+
+- narrow S4-only low-null lifestyle-bin edits from the E291/E292 parent policies;
+- low-null, rarity, contrast, and hybrid block filters;
+- raw delta scale sweep from `0.30` to `0.60`;
+- old selector plus matched row/subject/dateblock null governor.
+
+What was learned:
+
+- The best null-safe S4 pocket exists but is too small for the old local selector: null strict rate `0.000000`, p90 about `-0.000044`, final `too_small_to_submit`.
+- Making the same pocket selector-visible raises null strict rate to `0.476190` or worse.
+- Stronger p90 candidates around `-0.000268` are fully null-reproducible with null strict rate `1.000000`.
+- This is a selector/invariant cliff, not a normal tuning problem.
+
+Do not submit:
+
+- any `analysis_outputs/submission_e293_s4lownull_*.csv` file.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+Next submission candidate requirement:
+
+- a future S4 lifestyle candidate must either pass a different candidate-level invariant or use a validated tiny-edge selector;
+- negative p90 alone is not enough;
+- do not spend public LB on S4 low-null scale variants.

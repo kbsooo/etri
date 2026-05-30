@@ -3316,6 +3316,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E292. A public win from the near-miss S4 file would imply the governor is slightly too strict around null strict `0.13`; current evidence still says it is not ready.
 - 제출 전략: none now. Next branch should train a candidate-level null outcome model or focus on S4 lifestyle-bin low-null raw edits with stronger mean-dominance constraints.
 
+### H293: S4 low-null lifestyle pocket can be made submission-ready by scale/selection refinement
+
+- 상태: rejected for scale/selection refinement; retained as a diagnostic pocket.
+- 왜 그럴듯한가: E292 found the first S4 lifestyle-bin candidate whose null strict rate was far below the Q3/QS movement failures. If the only issue was over-filtering or amplitude, a narrower sweep should find a point that is old-strict and null-safe.
+- 맞다면: low-null rarity/contrast/hybrid filters should produce at least one old-strict candidate with null strict rate `<=0.10`, p90 dominance `>=0.80`, mean dominance `>=0.70`, and worst-mode p90 dominance `>=0.55`.
+- 틀리다면: null-safe candidates will remain below old selector resolution, while old-strict candidates will be matched-null reproducible.
+- 최소 실험: `analysis_outputs/e293_s4_lownull_lifestyle_candidate_refiner.py`.
+- 관측: `840` generated S4 candidates produced `554` old strict candidates and `64` null-evaluated rows, but public-ready stayed `0`. Null strict `0.000000` rows exist only in `too_small_to_submit` candidates around p90 `-0.000044`. The nearest old-strict 31-row pocket has null strict `0.476190` to `0.523810`; stronger p90 rows reach null strict `1.000000`.
+- 성공/폐기 기준: reject more scale/threshold sweeps as the next action. Keep the 31-row S4 pocket as a diagnostic object only if a different selector or candidate-level invariant can explain why it is not null-like.
+- public LB 관측 반응: no public LB should be spent on E293. A public win from an E293 file would mean the current matched-null governor is overly conservative exactly at the S4 cliff, but local evidence does not justify that sensor spend.
+- 제출 전략: none. Future strategy must change the invariant or governor resolution, not simply tune S4 amplitude.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

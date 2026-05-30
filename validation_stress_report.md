@@ -3049,3 +3049,30 @@ Decision:
 - Do not submit any E292 file.
 - Public LB is preserved.
 - Anti-null filtering is a partial diagnostic success for S4 but not yet a promotion rule.
+
+## E293 S4 Low-Null Lifestyle Candidate Governor
+
+Question: can the E292 S4 near-miss become public-free ready by refining scale and low-null block selection?
+
+Method: `analysis_outputs/e293_s4_lownull_lifestyle_candidate_refiner.py`.
+
+- Scope: only S4 `family_jepa_context/dateblock5/cluster6/subject_lifestyle_bin` parent policies.
+- Candidate filters: low-null max-rate thresholds, rarity/contrast top-k, and hybrid low-null top-k rules.
+- Candidate scales: `0.30` to `0.60`.
+- Stress: old local selector prefilter plus matched row/subject/dateblock null submissions.
+
+Result:
+
+- generated candidates: `840`.
+- old strict candidates: `554`.
+- null-evaluated candidates: `64`.
+- matched null evaluations: `1344`.
+- public-free ready candidates: `0`.
+- null strict rate `0.000000` appears only for `too_small_to_submit` candidates.
+- old-strict versions of the same pocket start at null strict rate `0.476190`; broad p90-strong candidates go to `1.000000`.
+
+Decision:
+
+- Do not submit any E293 file.
+- Public LB is preserved.
+- The S4 low-null pocket has a resolution cliff: null-safe movement is too small, and selector-visible movement is placebo-reproducible.

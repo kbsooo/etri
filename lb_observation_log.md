@@ -489,3 +489,20 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - best low-null candidate mean dominance: `0.466667`.
 - interpretation: anti-null placement filtering partially works for S4, but not enough to justify public LB. Q3 contrast placement remains null-reproducible.
 - next experiment: focus on candidate-level null-outcome modeling for S4 lifestyle-bin raw edits, or stop the lifestyle-placement branch until a stronger invariant appears.
+
+## Public-Free Observation: E293
+
+- submission files: `analysis_outputs/submission_e293_s4lownull_*.csv`
+- public LB: not submitted.
+- reason not submitted: public LB is scarce, and E293 failed the local public-free matched-null governor.
+- local observation:
+  - generated candidates: `840`;
+  - old strict candidates: `554`;
+  - null-evaluated candidates: `64`;
+  - matched null evaluations: `1344`;
+  - public-free ready files: `0`;
+  - best null-safe candidates: null strict rate `0.000000`, final `too_small_to_submit`;
+  - nearest old-strict 31-row pocket: null strict rate `0.476190` to `0.523810`;
+  - strongest p90 candidates: null strict rate `1.000000`.
+- interpretation: S4 lifestyle-bin low-null signal is a diagnostic pocket, not a submission-ready file. The failure mode is a discrete selector/invariant cliff.
+- next experiment: do not spend public LB on another S4 scale variant. Either build a candidate-level null-outcome invariant or switch to a different hidden-state branch.

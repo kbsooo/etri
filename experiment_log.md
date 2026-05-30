@@ -4466,3 +4466,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - S4 contrast does reduce null susceptibility: `submission_e292_contrastlife_S4_family_jepa_context_dateblock5_cluster6_subject_lifestyle_bin_strong35_subject_cv_base_lo_f83c007a.csv` has null strict rate `0.133333`, p90 `-0.000053`, and worst-mode p90 dominance `0.600000`, but mean dominance is only `0.466667`, so it remains blocked.
 - Interpretation: the anti-null idea is partly alive. It does not solve placement, but unlike E291 it can lower null strict rate for S4 lifestyle-bin raw edits. The remaining failure is not story discovery; it is candidate resolution and mean-dominance after aggressive null filtering. Q3 remains more collapsed into generic movement than S4.
 - Decision: no E292 public submission. The next branch should focus narrowly on the near-miss S4 lifestyle-bin low-null family, or learn a stronger contrastive score directly against candidate-level null outcomes rather than block-score null rates.
+
+## E293. S4 Low-Null Lifestyle Candidate Refiner
+
+- Observe: E292 left one narrow near-miss: S4 lifestyle-bin raw edits could reduce matched-null strict promotion to `0.133333`, unlike Q3 edits that stayed null-reproducible.
+- Wonder: is there a scale/selection pocket where the S4 lifestyle-bin edit is large enough for the old local selector but still rare enough under matched row/subject/dateblock nulls?
+- Method: `analysis_outputs/e293_s4_lownull_lifestyle_candidate_refiner.py` generates only S4 edits from the E291/E292 `family_jepa_context/dateblock5/cluster6/subject_lifestyle_bin` parent policies. It sweeps low-null block filters, rarity/contrast top-k filters, hybrid low-null top-k filters, and small raw-delta scales. Candidates are prefiltered by the old E272-style local selector and then audited against matched row/subject/dateblock null submissions. No public LB was used.
+- Result:
+  - generated candidates: `840`;
+  - old strict candidates: `554`;
+  - null-evaluated candidates: `64`;
+  - matched null evaluations: `1344`;
+  - public-free ready candidates: `0`;
+  - best null-strict candidates have null strict rate `0.000000`, but are `too_small_to_submit` around p90 `-0.000044`;
+  - once the same 31-row pocket reaches old promotion, null strict jumps to `0.476190` or higher;
+  - stronger p90 candidates around `-0.000268` have null strict rate `1.000000`.
+- Interpretation: the S4 lifestyle pocket is not fake, but it has a hard resolution cliff. Below the cliff it is placebo-resistant but too small for submission; above the cliff matched nulls also promote. More scale tuning is unlikely to solve this because the failure is discrete candidate-level invariance, not amplitude granularity.
+- Decision: no E293 public submission. The next branch should not spend public LB on S4 low-null files. It should either learn a candidate-level null-outcome invariant, change the local selector resolution for tiny but null-safe S4 edits, or pivot away from this branch.
