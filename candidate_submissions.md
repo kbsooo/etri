@@ -2153,3 +2153,20 @@ How to read public LB:
 - Better than E247 `0.5761589494`: the cash-flow hidden-state boundary is likely real and action-safe.
 - Similar to E247: the story may be real but too small to exploit at current amplitude.
 - Worse than E256/E95 band: the story is explanatory in diagnostics but not a frontier action; retire broad payday/calendar use and keep it only as latent context.
+
+## Update After E272 Public-Free Audit
+
+Submission policy is tightened: **do not submit E269/E271 as score candidates now.**
+
+E272 current-anchor stress says the social/cash-flow probes are directionally plausible but below local selector resolution:
+
+- `submission_e271_cashflow_top8_anti4_tiny_ccd08be8.csv`: mean predicted delta vs E247 `-0.000005422`, p90 `-0.000001953`, decision `too_small_to_submit`.
+- `submission_e269_combo_phonebed8_anti4_small_b27a2e23.csv`: mean predicted delta vs E247 `-0.000011178`, p90 `-0.000003311`, decision `too_small_to_submit`.
+- `submission_e269_anti_e256_tophalf_beta035_4e910856.csv`: strongest local direction, mean `-0.000017223`, p90 `-0.000008141`, still below the `-0.00005` promotion bar.
+
+Current public-free rule:
+
+- Submit only if p90 predicted delta vs E247 is below `-0.00005`, beats-current stress rate is at least `0.75`, and incremental bad-axis change versus E247 is small.
+- If a candidate is negative only by `1e-5` scale, it remains a hypothesis probe and should not consume public LB.
+
+Next submission-worthy candidate must be larger or independently certified. The next useful action is not another tiny E247-boundary tweak; it is rebuilding the hidden-state selector so social/cash-flow stories can choose a bigger safe movement.

@@ -4116,3 +4116,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - delta is strongly anti-E256 (`cos_delta_with_e256_fail_delta = -0.930623`) while preserving E247 rollback geometry (`cos_with_e247_rollback = 0.998460`).
 - Interpretation: this is an information sensor for monthly cash-flow hidden state. If it wins, the human/social branch should focus on sparse boundary states, not broad story latents. If it loses, cash-flow stories remain explanatory but not action-safe at the current frontier.
 - Decision: if submitting one payday/cash-flow file, use `submission_e271_cashflow_top8_anti4_tiny_ccd08be8.csv`. The lower-risk ablations are `submission_e271_cashflow_top8_amp010_170ae6b0.csv` and `submission_e271_pay25_pre3_only_amp016_62659ed5.csv`, but they answer narrower questions.
+
+## E272. Public-Free Candidate Promotion Audit
+
+- Observe: public LB slots are scarce. E269/E271 should not be promoted just because they are plausible tiny sensors.
+- Wonder: can any social/cash-flow follow-up clear a local promotion bar against current best E247 without another public submission?
+- Method: `analysis_outputs/e272_public_free_candidate_audit.py` builds a current-anchor pairwise selector from the `17` known public observations. It stress-tests models by LOO/L2O pair ordering, requires E247 to be ranked as current best, then scores E269/E271 candidates against E247 across full/LOO/current-held-out scenarios. It also audits movement anatomy versus known failed directions E256 and E267.
+- Result:
+  - strict promote count: `0`.
+  - selected reliable current-order selector models: `1`; median LOO sign accuracy `0.732`, median L2O sign accuracy `0.625`.
+  - E271 cash-flow preferred predicted delta vs E247: mean `-0.000005422`, p10/p90 `-0.000007555 / -0.000001953`, beats-current rate `1.0`, decision `too_small_to_submit`.
+  - E269 social preferred predicted delta vs E247: mean `-0.000011178`, p10/p90 `-0.000015892 / -0.000003311`, beats-current rate `0.970588`, decision `too_small_to_submit`.
+  - E269 anti-E256 top-half is locally best among these, mean `-0.000017223`, but still far below the `-0.00005` p90 promotion bar.
+- Interpretation: the social/cash-flow stories are not dead, but current materializations are too small to spend public LB. They are diagnostic explanations for the E247/E256 boundary, not score candidates.
+- Decision: do not submit E269/E271 for score. Next work must either produce a larger locally certified move or improve the selector/hidden-state representation enough that the expected edge exceeds local uncertainty.

@@ -2444,3 +2444,28 @@ E267 stress summary:
 - movement versus E247: `60` cells, mostly Q3 (`51`) and S4 (`9`).
 
 Stress implication: this is submission-eligible as a public sensor, not as a certified replacement for E247. Its result will decide whether human/social hidden state is a score-relevant Q3/S4 tail law or only a local/E224-family diagnostic.
+## E272 Public-Free Promotion Gate
+
+Question: can the social/cash-flow candidates be checked locally instead of spending public LB?
+
+Method: `analysis_outputs/e272_public_free_candidate_audit.py`.
+
+- Current anchor: `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+- Known public observations used as old calibration sensors: `17`.
+- Local selector stress: pairwise known-LB order models with LOO, L2O, and current-anchor-held-out scenarios.
+- Promotion bar: p90 predicted delta vs E247 < `-0.00005`, beats-current scenario rate >= `0.75`, and incremental bad-axis change vs E247 <= `0.015`.
+
+Result:
+
+- strict promote candidates: `0`.
+- E271 cash-flow preferred: mean `-0.000005422`, p10/p90 `-0.000007555 / -0.000001953`, decision `too_small_to_submit`.
+- E269 social preferred: mean `-0.000011178`, p10/p90 `-0.000015892 / -0.000003311`, decision `too_small_to_submit`.
+- E269 anti-E256 top-half: mean `-0.000017223`, p90 `-0.000008141`, locally best but still sub-threshold.
+- E256 known fail is correctly scored positive/adverse versus E247: mean `+0.000051379`.
+- E267 known fail is also positive/adverse: mean `+0.000030913`.
+
+Decision:
+
+- E269/E271 are blocked as score submissions.
+- They remain useful as evidence that the boundary has social/cash-flow structure, but the materialized moves are too small relative to local selector uncertainty.
+- Next validation work should demand either larger safe movement or better hidden-state selector reliability before producing another CSV.
