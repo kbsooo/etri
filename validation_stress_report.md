@@ -1362,3 +1362,28 @@ E201 stress-tests the process risk: the next E176 public score must not be inter
   - E176 worse than `0.5763413298`: same-family expected-score lane closes.
 
 Stress implication: the next public observation is now a fixed decision-tree test. This does not make E176 safer, but it makes the feedback interpretable and prevents post-score Q2 keep-factor tuning.
+
+## Update After E202
+
+E202 stress-tests component-responsibility risk: even with the E201 route table, E176 could still be misread as a scalar Q2 keep-factor test because of the file name.
+
+- script: `analysis_outputs/e202_e176_component_responsibility_router.py`.
+- report: `analysis_outputs/e202_e176_component_responsibility_report.md`.
+- component stress:
+  - S-target expected-share: `0.651098`.
+  - Q-target expected-share: `0.348902`.
+  - between-train-runs expected-share: `0.807772`.
+  - Q2 raw movement share: `0.209702`.
+  - Q2 expected-share: `0.121416`.
+  - top33 visible-support `p_low`: `0.014667`.
+- target responsibility:
+  - primary S-stage body: S3 `0.203515`, S1 `0.189679`, S4 `0.146985`.
+  - Q2 is a name-mismatch target: biggest raw movement, mid expected gain.
+  - Q3 is visibly supported but low expected share.
+- outcome stress:
+  - clean win or breakthrough: credit broad S-stage / between-train-runs body first.
+  - micro win: sign is right but hard-label resolution is thin.
+  - tie/small-loss: read tail/cancellation failure before Q2 amplitude failure.
+  - branch/hard loss: demote same-family partial-reopen and route to E154/search.
+
+Stress implication: E176's next public score has two layers of interpretation. E201 chooses the route by score band; E202 assigns component responsibility inside that route. This prevents a Q2-only post-hoc read.

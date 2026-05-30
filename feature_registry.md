@@ -1480,6 +1480,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E176 SHA256 `34d38587b04640327824b972f4cbc18ae03cab2f92802ac7c144f94b96184206`; file audit passes. E176 moves `904` cells over `193` rows; target movement share is Q2 `0.209702`, S4 `0.145285`, Q3 `0.141693`, S2 `0.130103`, Q1 `0.128746`, S3 `0.126307`, S1 `0.118164`. Router thresholds are `<0.5762883298`, `0.5762883298..0.576300366`, `>0.576300366`, and `>0.5763413298`.
 - Policy: use E201 before and after the E176 public submission. Do not create an E176 sibling, E172 fallback, or E154 counter-world file from scalar intuition; first route the score through E177/E201.
 
+### F171. E202 component responsibility router
+
+- Hidden structure: a submission can be named after one visible edit while the public-relevant responsibility lives in a different target group, row regime, or hard-label tail. E176 is especially vulnerable because `q2_to0p75` suggests Q2 amplitude, but its expected movement is mostly S-stage / between-train-runs body.
+- Candidates: target expected-share, raw probability movement share, Q/S expected-share, between-train-runs expected-share, top33/top8 hard-label cell visibility, subject swing concentration, and score-band-to-component route.
+- Label vs split test: valid as a pre-public interpretation guard because it uses only locked submission movements and existing public-free diagnostics. Invalid as a learned predictor because it does not observe the E176 public score and should not assign new probabilities.
+- Current evidence: S-targets carry `0.651098` of focus-prior expected movement versus `0.348902` for Q-targets; between-train-runs rows carry `0.807772`; Q2 carries `0.209702` raw movement share but only `0.121416` expected share; top33 visible support remains weak at `p_low=0.014667`.
+- Policy: use F171 only after E176 feedback to assign component responsibility. A win credits S3/S1/S4 body first; tie/loss credits hard-tail/cancellation failure first. Do not create Q2 keep-factor siblings from the scalar score alone.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

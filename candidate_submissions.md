@@ -854,3 +854,27 @@ Before any post-E176 file is chosen, run:
 `python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <E176_PUBLIC_LB>`
 
 and compare the result against `analysis_outputs/e201_e176_public_sensor_packet_route_summary.csv`.
+
+## Update After E202
+
+The single next public sensor remains:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+E202 changes how the score must be interpreted, not which file is next.
+
+- E176 is not a Q2-only experiment despite the `q2_to0p75` name.
+- S-targets carry `0.651098` of focus-prior expected movement; Q-targets carry `0.348902`.
+- Between-train-runs rows carry `0.807772` of expected movement.
+- Q2 is largest by raw probability movement (`0.209702`) but only fifth by expected contribution (`0.121416`).
+- The top expected contributors are S3 `0.203515`, S1 `0.189679`, and S4 `0.146985`.
+- Top33 hard-label visibility remains thin (`p_low=0.014667`), so tie/loss bands are tail/cancellation evidence before they are Q2-amplitude evidence.
+
+Current conditional order:
+
+1. Submit `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` if spending the next public slot.
+2. If E176 wins, decompose S3/S1/S4 and between-train-runs body first. Do not jump straight to E174 or another Q2 sibling.
+3. If E176 ties or small-loses, use `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` only as same-family safety.
+4. If E176 is worse than E101 or mixmin-safe bands, use `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` or non-collinear latent search.
+
+Do not infer Q2-only causality from the scalar public score.

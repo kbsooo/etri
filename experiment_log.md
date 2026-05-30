@@ -3104,3 +3104,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     - `>0.5763413298`: close same-family expected-score lane.
 - Interpretation: E201 adds no score, but removes degrees of freedom. The next public observation should decide a worldview branch, not trigger another E176 sibling sweep.
 - Decision: no submission is created. Submit only the audited E176 file if spending the next public slot. After the score, use `analysis_outputs/e201_e176_public_sensor_packet_route_summary.csv` and `python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <E176_PUBLIC_LB>` before any follow-up.
+
+## E202. E176 Component Responsibility Router
+
+- Observe: E201 locks the file and score router, but the E176 file name can still make the next public score look like a Q2-only keep-factor experiment.
+- Wonder: if E176 wins, ties, or loses, which component should be credited or blamed before creating any follow-up file?
+- Method: `analysis_outputs/e202_e176_component_responsibility_router.py` joins the E177 pair/score bands, E179 critical-cell visibility, E201 route table, and the E176-vs-E95 full movement. It decomposes E176 by target, Q/S group, subject, between-train-runs exposure, top33/top8 hard-label cells, and visible support. It creates no submission.
+- Result:
+  - report: `analysis_outputs/e202_e176_component_responsibility_report.md`.
+  - S-targets carry `0.651098` of focus-prior expected movement versus `0.348902` for Q-targets.
+  - between-train-runs rows carry `0.807772` of expected movement.
+  - Q2 is the largest raw probability movement share (`0.209702`) but only `0.121416` of expected focus contribution.
+  - target expected-share order is S3 `0.203515`, S1 `0.189679`, S4 `0.146985`, Q1 `0.145593`, Q2 `0.121416`, S2 `0.110919`, Q3 `0.081893`.
+  - top33 hard-label cells remain weakly visible: target-matched visible-support `p_low=0.014667`.
+- Interpretation: E176 is a broad S-stage / between-train-runs body with Q2 damping as a secondary guard, not a Q2-only amplitude claim. A good score should first strengthen S3/S1/S4 body and Q/S asymmetry. A weak score should first be read as hard-tail/cancellation failure, not as proof that Q2 keep `0.75` is wrong.
+- Decision: no new submission. E176 remains the next single public sensor. After its public result, route through E201/E202 before considering E174, E172, E154, or any Q2 sibling.

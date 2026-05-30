@@ -2798,3 +2798,32 @@ E176 제출 전 우선순위는 그대로다. 새 파일을 만들지 않는다.
 `python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <E176_PUBLIC_LB>`
 
 를 먼저 실행하고, `analysis_outputs/e201_e176_public_sensor_packet_route_summary.csv`와 맞춰본 뒤 다음 파일을 결정한다.
+
+## E202 업데이트: E176은 Q2 실험이 아니라 S-stage/body 센서다
+
+내가 발견한 가장 이상한 점:
+
+`E176 파일명은 Q2 keep 0.75를 가리키지만, 실제 기대 책임은 Q2보다 S3/S1/S4와 between-train-runs body에 더 크다. 이름을 믿으면 public score를 잘못 읽게 된다.`
+
+실험:
+
+- `analysis_outputs/e202_e176_component_responsibility_router.py`
+- report: `analysis_outputs/e202_e176_component_responsibility_report.md`
+
+결과:
+
+- S-target expected share: `0.651098`
+- Q-target expected share: `0.348902`
+- between-train-runs expected share: `0.807772`
+- Q2 raw movement share: `0.209702`
+- Q2 expected share: `0.121416`
+- top expected contributors: S3 `0.203515`, S1 `0.189679`, S4 `0.146985`
+- top33 visible-support `p_low`: `0.014667`
+
+생각이 어떻게 바뀌었는지:
+
+`E176이 좋게 나오면 "Q2 keep이 맞았다"가 아니라 "S-stage / between-train-runs body가 public에서 살았다"가 첫 해석이다. E176이 애매하거나 나쁘면 "Q2만 틀렸다"가 아니라 "hard-label tail/cancellation을 못 풀었다"가 첫 해석이다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+제출 후보는 그대로 E176 하나다. 하지만 결과가 나오면 E201 score router와 E202 component router를 같이 보고 다음 행동을 정한다. Q2 sibling은 public 숫자 하나로 만들지 않는다.

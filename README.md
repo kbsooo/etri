@@ -9,7 +9,7 @@ Current public frontier:
 - Previous frontier: `analysis_outputs/submission_mixmin_0c916bb4.csv`
 - Improvement over previous frontier: `0.0000153107`
 - Current best next sensor: `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
-- Latest diagnostic: E201 locks the E176 file hash and public-score router. E176 remains first; E172 is only the tie/small-loss same-family follow-up, and E154/search handles adverse bands.
+- Latest diagnostic: E202 adds component responsibility on top of the E201 file/hash router. E176 remains first, but its score should be read as broad S-stage / between-train-runs body with Q2 as a guard, not as Q2-only amplitude feedback.
 
 Primary working notes:
 

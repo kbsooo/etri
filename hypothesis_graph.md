@@ -2304,6 +2304,18 @@ target co-occurrence
 - public LB 관측 반응: the score itself will update H176/H194-family beliefs by band; H195 governs the interpretation process. A win strengthens broad/Q2-underopen; tie/small-loss activates E172; adverse loss activates E154/search.
 - 제출 전략: no E201 submission. Submit only the audited E176 if spending the next slot, then run `python3 analysis_outputs/e177_e176_public_feedback_decoder.py --score <E176_PUBLIC_LB>` and compare to `analysis_outputs/e201_e176_public_sensor_packet_route_summary.csv`.
 
+### H196. E176 public feedback mostly tests S-stage / between-train-runs body, not Q2-only amplitude
+
+- 상태: 지지 by E202 as component-responsibility rule.
+- 왜 그럴듯한가: E176's filename emphasizes Q2 damping, but the submitted tensor moves many targets and rows. If the public score is read as "Q2 keep factor worked/failed," the next action could become another scalar sibling sweep rather than a hidden-structure update.
+- 맞다면: E176's expected contribution should concentrate more in S-stage body and between-train-runs rows than in Q2 alone, while Q2 may still be large in raw probability movement.
+- 틀리다면: Q2 should dominate both raw movement and focus-prior expected contribution, and win/loss bands should naturally route to Q2-amplitude follow-ups.
+- 최소 실험: `analysis_outputs/e202_e176_component_responsibility_router.py`.
+- 관측: S-targets carry `0.651098` of focus-prior expected movement versus `0.348902` for Q-targets. Between-train-runs rows carry `0.807772`. Q2 is largest by raw probability movement (`0.209702`) but only `0.121416` of expected contribution, behind S3 `0.203515`, S1 `0.189679`, S4 `0.146985`, and Q1 `0.145593`. Top33 visible support is thin (`p_low=0.014667`).
+- 성공/폐기 기준: supported unless a paired E174/E176 or later target-isolated public observation proves that Q2 amplitude, rather than S-stage body/tail cancellation, explains the score. It is violated if the first post-E176 action is a Q2 sibling created only from the scalar score.
+- public LB 관측 반응: a win credits broad S-stage / between-train-runs body first; a micro win says body and hard-tail nearly cancel; tie/small-loss points to unresolved hard-label tail; adverse loss demotes same-family partial-reopen toward E154/search. None of those bands alone proves Q2-only causality.
+- 제출 전략: no E202 submission. Keep E176 first, but after the score use E202 component responsibility before E174/E172/E154 decisions.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

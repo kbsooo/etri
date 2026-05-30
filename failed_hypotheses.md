@@ -1583,3 +1583,12 @@
 - Implementation issue possible: low. E201 is file/schema/router governance, not a fitted selector. The only possible issue would be submitting a different file than the audited hash.
 - Bottleneck implication: the bottleneck is not only model signal; it is also feedback-resolution discipline. Public LB can help only if each observation kills or preserves a specific worldview.
 - Do not repeat: making another E176/Q2 sibling directly from the public scalar. Decode with E177/E201 first.
+
+## FH176. E176 public feedback can be read as Q2-only amplitude feedback
+
+- Failed hypothesis: because the next file is named `q2_to0p75`, E176's public score can be interpreted mainly as evidence for or against Q2 keep-factor amplitude.
+- Observed result: E202 shows the file name is misleading at component level. S-targets carry `0.651098` of focus-prior expected movement versus `0.348902` for Q-targets, and between-train-runs rows carry `0.807772`. Q2 is the largest raw movement target (`0.209702`) but only `0.121416` of expected contribution, behind S3/S1/S4/Q1. Top33 hard-label visibility is weak (`p_low=0.014667`).
+- Why discard: raw probability movement is not the same as expected public-relevant responsibility. A scalar Q2 read would over-credit the most moved target and under-credit the S-stage/body structure that actually carries the expected edge.
+- Implementation issue possible: low for the narrow rejection because the decomposition uses the locked E176 tensor and existing E177/E179/E201 artifacts. Medium for final causality because the actual E176 public score is still pending.
+- Bottleneck implication: the plateau is still a component/tail-resolution problem, not a one-dimensional Q2 amplitude problem. The useful signal lives in how broad S-stage body, Q2 guard, and hard-label tail cancel.
+- Do not repeat: Q2 keep-factor sibling sweeps directly after E176 public feedback. Use E201 score route plus E202 component responsibility first.
