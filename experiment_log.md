@@ -3942,3 +3942,15 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E256 is the same kind of trim but more concentrated: selected cosine `-0.995302880`, opposite-sign share `1.000000`, rollback abs over selected body abs `0.982187223`.
 - Interpretation: E247 should be read as E224 body plus a Q3 tail correction, not as a standalone smoothing replacement. The public win cannot be attributed from E247 alone.
 - Decision: E256 remains the score-plus-information next candidate. E224 is the cleaner attribution candidate if the next public question is "was the body itself the main reason E247 won?" Do not blend E247/E256 or tune another sibling before either E256 or E224 resolves one axis.
+
+## E259. Post-E247 Observation Routebook
+
+- Observe: E247 is now the public frontier, but the score underidentifies three worlds: E224 body alone, Q3 rollback alone, and body-plus-rollback interaction.
+- Wonder: can the next public score be made maximally informative before seeing it, rather than interpreted post-hoc?
+- Method: `analysis_outputs/e259_post_e247_observation_routebook.py` builds a pre-registered routebook for E256 and E224 using E247/E95/mixmin/E216 public anchors plus E257/E258 anatomy. It writes `analysis_outputs/e259_post_e247_observation_routebook_report.md`, `analysis_outputs/e259_post_e247_routebook.csv`, and `analysis_outputs/e259_post_e247_score_examples.csv`. No submission is created.
+- Result:
+  - E256 bands: clean win if `<=0.576155949`, tie around `0.576155949..0.576161949`, near loss up to `0.576188949`, same-family loss up to E95 `0.5762913298`.
+  - E224 bands: body tie/micro-win up to `0.576161949`, rollback-helped up to E95, body-not-enough up to mixmin, and body-loss beyond mixmin.
+  - The report fixes the current split: E256 tests broad-vs-amplitude Q3 smoothing; E224 tests body attribution.
+- Interpretation: the next public slot should not be another blend. A blend would erase the only clean causal split left after E247.
+- Decision: if score plus information is prioritized, submit E256. If attribution is prioritized, submit E224. Decode either score with E259 before making a follow-up.

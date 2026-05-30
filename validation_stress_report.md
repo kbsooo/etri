@@ -2311,6 +2311,23 @@ E258 adds attribution stress for the E247 win.
 
 Stress implication after E258: the next public decision splits into two valid routes. E256 tests whether the Q3 tail correction can be improved without leaving the E247 mechanism. E224 tests whether the body alone was already enough. A blend would blur the only clean attribution axes left.
 
+## Update After E259
+
+E259 turns the E247/E256/E224 stress split into a pre-registered observation routebook.
+
+- Script: `analysis_outputs/e259_post_e247_observation_routebook.py`.
+- Report: `analysis_outputs/e259_post_e247_observation_routebook_report.md`.
+- E256 is decoded as broad-vs-amplitude smoothing:
+  - clean win `<=0.576155949`.
+  - tie `0.576155949..0.576161949`.
+  - same-family loss starts above `0.576188949`.
+- E224 is decoded as body attribution:
+  - body tie/micro-win `<=0.576161949`.
+  - rollback-helped up to E95 `0.576291330`.
+  - body-only loss beyond mixmin `0.576306641`.
+
+Stress implication after E259: public feedback must be read through the declared routebook. A same-family blend before E256/E224 feedback is now explicitly blocked because it would remove attribution resolution.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

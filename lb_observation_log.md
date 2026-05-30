@@ -284,3 +284,22 @@ These are not public LB observations; they are local stress results that decide 
 | E240 E237 residual-rule ablation | deterministic E239 residual-energy Q3 rollback rules | all `9/9` non-control simple selectors pass E237-like stress; best `simple_pc10_top25` expected loss vs E224 `-0.000062119`, adverse reduction `0.000594489`, support gain `0.016747154`, actual adverse reduction `0.000573879`, overlap with E237 `14/25` | E237's local success is not uniquely learned. The public-observation question is now Q3 residual-energy cell-tail reality, not E237 classifier superiority | no submission from E240; validate residual PC10-like Q3 cells on train/OOF before materializing a simple-rule candidate |
 | E241 residual PC10 OOF validation | E240 residual-energy scores checked against train OOF Q3 benefit | no full-train top-k score has negative selected-benefit delta; `score_pc10` top-10% is adverse (`+0.001867628`), split-stress top-10% is also adverse (`+0.002633171`, win rate `0.30`); test `score_pc10` still overlaps E237 `14/25` and E230 swing25 `18/25` | residual energy is a visible Q3 motif but not an OOF-valid harmful-row selector. The E240 simple-rule submission branch is closed; E237 remains the learned-cell sensor if that public question is worth asking | no submission from E241; do not submit simple residual-PC10 rules without a rebuilt OOF decisive-cell target |
 | E242 E237 OOF-to-test transfer audit | E237 materialization rows ranked by OOF gain, OOF tail-AUC, and test stress | gate pass `7/120`; top E237 file ranks `71/120` by OOF gain but `1/120` by OOF tail-AUC, support gain, and Q3 top-cell safety; OOF gain gate AUC `0.426043`; OOF tail-AUC gate AUC `0.958913` | E237 is not a generic OOF-CV winner. Its meaningful local claim is high-impact Q3 tail discrimination plus public-free support/top-cell survival | no submission from E242; if E237 is submitted, read it as a high-impact tail sensor and do not pick siblings by OOF gain |
+
+## Update After E259
+
+`submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` remains the current public anchor at `0.5761589494`. E259 adds no new public LB, but it changes how the next public LB should be used.
+
+- E256 score should be treated as the sensor for broad top34 smoothness versus high-amplitude constrained Q3 rollback.
+- E224 score should be treated as the sensor for whether the E224 capped-Q3/S4 body carried E247.
+- Routebook file: `analysis_outputs/e259_post_e247_observation_routebook_report.md`.
+
+Pre-registered thresholds:
+
+- E256 clean win: `<=0.576155949`.
+- E256 near loss: `0.576161949..0.576188949`.
+- E256 hard loss: `>=0.576291330`.
+- E224 body tie/micro-win: `<=0.576161949`.
+- E224 rollback-helped: `0.576161949..0.576291330`.
+- E224 body-only loss: `>=0.576306641`.
+
+Interpretation policy: do not use the next public score as a generic rank signal. Decode it as one of the routebook worlds, then choose the follow-up that falsifies the remaining branch.

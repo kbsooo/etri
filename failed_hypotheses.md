@@ -1971,3 +1971,12 @@
 - Implementation issue possible: low for the decomposition; it is deterministic logit arithmetic over the submitted tensors. Medium for public attribution because E224 is still unobserved.
 - Bottleneck implication: the immediate bottleneck is attribution and controlled observation, not another threshold sweep. The next useful public files are E256 for rollback refinement or E224 for body attribution.
 - Do not repeat: treating E247 siblings, E247/E256 blends, or arbitrary smoothing threshold variants as justified before E256/E224 feedback.
+
+## FH219. A post-E247 scalar score can be interpreted without a routebook
+
+- Failed hypothesis: after E247, the next E247-family public score can be interpreted by scalar rank alone.
+- Observed result: E257 and E258 show the family is underidentified. E256 and E224 ask different questions, and the same delta size has different meaning depending on which file produced it.
+- Why discard: scalar rank cannot distinguish body sufficiency, rollback necessity, broad smoothness, amplitude smoothing, or exact top34 interaction. E259 pre-registers separate score bands and actions for E256 and E224.
+- Implementation issue possible: low for the governance conclusion; the ambiguity is structural. Medium for exact thresholds because they are pragmatic public-resolution bands, not hidden labels.
+- Bottleneck implication: the bottleneck is no longer only candidate generation. It is feedback identifiability. A public slot should kill a branch, not just produce another number.
+- Do not repeat: interpreting E256/E224/E247-family scores post-hoc, or creating a blend before one clean axis has public feedback.

@@ -1959,3 +1959,28 @@ Practical rule:
 - E247 is body plus tail correction. Do not interpret E247 public as isolated smoothing proof.
 - If the next submission should still try to beat E247, E256 is the sharper bet.
 - If the next submission should explain the win, E224 is more informative even if it may be less score-oriented.
+
+## Update After E259
+
+E259 converts the post-E247 branch into a score-decoding protocol.
+
+- Routebook: `analysis_outputs/e259_post_e247_observation_routebook_report.md`.
+- Machine table: `analysis_outputs/e259_post_e247_routebook.csv`.
+- Current public anchor: E247 `0.5761589494`.
+
+Candidate order by immediate purpose remains:
+
+1. **Score plus information:** `analysis_outputs/submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv`.
+2. **Clean body attribution:** `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+3. **Current best anchor:** `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+
+How to read the next score:
+
+- E256 `<=0.576155949`: high-amplitude constrained smoothing is stronger than E247 broad top34 smoothing.
+- E256 `0.576161949..0.576188949`: E247-only low-amplitude broad smoothness is probably public-useful.
+- E256 `>=0.576291330`: same-family refinement failed; stop smoothing siblings.
+- E224 `<=0.576161949`: body carried most of E247's win.
+- E224 `0.576161949..0.576291330`: body is real but rollback is necessary.
+- E224 `>=0.576306641`: body-only translator is unsafe; E247 was a rescued interaction.
+
+Practical rule: do not submit an E247/E256/E224 blend before one of E256 or E224 has public feedback.

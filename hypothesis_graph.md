@@ -2980,6 +2980,18 @@ target co-occurrence
 - public LB 관측 반응: E224 beating or tying E247 would mean body carried most of the win and rollback may be over-pruning. E224 losing clearly while E256 stays strong means Q3 rollback is necessary. E256 beating E247 means amplitude-constrained rollback is better than broad rollback.
 - 제출 전략: Use E256 for score-plus-information; use E224 for clean body attribution. Avoid E247/E256 blending before one axis is observed.
 
+### H259: post-E247 feedback must be decoded by route, not scalar rank
+
+- 상태: supported as governance; public outcomes pending.
+- 왜 그럴듯한가: E247 is underidentified because the same public win can be explained by E224 body, Q3 rollback, or interaction. E257/E258 show the candidate axes are cleanly separable only if E256 or E224 is observed alone.
+- 맞다면: a future E256 or E224 public score should map to a specific hidden-world update without post-hoc sibling tuning.
+- 틀리다면: E256/E224 scores would be uninterpretable even with pre-registered bands, or a blend would produce more information than an isolated axis.
+- 최소 실험: `analysis_outputs/e259_post_e247_observation_routebook.py`; then submit exactly one of E256 or E224 depending on whether the next question is score-plus-information or attribution.
+- 관측: routebook written to `analysis_outputs/e259_post_e247_observation_routebook_report.md`. E256 bands separate amplitude breakthrough, tie, broad-smoothness loss, same-family loss, and hard loss. E224 bands separate body breakthrough, body tie, rollback-helped, body-not-enough, and body collapse.
+- 성공/폐기 기준: after public feedback, the decoded action should be followed without creating an unplanned sibling blend. If both E256 and E224 later contradict the routebook interpretation, H259 weakens and the live branch becomes non-collinear structure search.
+- public LB 관측 반응: E256 win strengthens amplitude-constrained smoothing; E256 close loss strengthens broad low-amplitude smoothness; E224 win/tie strengthens body sufficiency; E224 worse than mixmin rejects body-only translator.
+- 제출 전략: E256 first for score plus information; E224 first for attribution. No E247-family blend before one score is observed.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

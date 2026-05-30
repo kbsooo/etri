@@ -1845,6 +1845,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E247 rollback is an opposite-sign trim of E224 body on selected Q3 cells: selected cosine `-0.992683110`, opposite-sign share `1.000000`, and rollback abs over selected body abs `0.984581403`. E247 total preserves the E224 body while improving Q3 top1/abs expected from `0.863839051` to `0.545240602`.
 - Policy: use F215 to prevent post-hoc overclaiming. E247 validates the composition, not isolated smoothing. Submit E256 for rollback refinement or E224 for body attribution; do not blend/tune before one of those sensors resolves.
 
+### F216. E259 public-observation route features
+
+- Hidden structure: the same scalar public LB can support different hidden-world explanations unless the candidate's role is fixed before submission.
+- Candidates: candidate role (`E256` broad-vs-amplitude smoothing, `E224` body attribution), public score band, delta vs E247, delta vs E95, world-update class, next-action route, and forbidden follow-up class.
+- Label vs split test: this is governance metadata, not a model feature. It uses known public anchors only to define interpretation bands; it must not be trained into predictions or used for prior tweaking.
+- Current evidence: E259 maps E256 scores into amplitude breakthrough / tie / broad-smoothness loss / same-family loss, and maps E224 scores into body breakthrough / rollback-helped / body-only loss. The routebook is stored at `analysis_outputs/e259_post_e247_observation_routebook_report.md`.
+- Policy: use F216 before acting on any E256 or E224 public LB. Do not submit E247-family blends or extra siblings before one pre-registered route is observed.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

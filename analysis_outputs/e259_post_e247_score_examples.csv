@@ -1,0 +1,15 @@
+candidate_id,score,delta_vs_e247,outcome,world_update_class,next_action
+E256,0.5761089494,-4.999999999999449e-05,amplitude_smoothing_breakthrough,strong_support,Promote amplitude-constrained smoothing. Search around high-amplitude cells only after auditing private risk; do not restore E247-only broad cells.
+E256,0.5761489494,-9.99999999995449e-06,clean_win,support,"Use E256 as new operational anchor, then run an E256-vs-E247-only attribution audit before any sibling."
+E256,0.5761589494,0.0,tie,underresolved,"Do not tune smoothing siblings. Use E224 if attribution is still needed, or switch to a non-collinear question."
+E256,0.5761689494,9.99999999995449e-06,near_loss,weak_rejection,"Keep E247 as anchor. Do not submit high-amplitude siblings. If continuing, isolate E247-only cells rather than increasing amplitude."
+E256,0.5762813298,0.0001223804000000106,same_family_loss,rejection,Stop sibling sweeps. Submit E224 only if the next question is body attribution; otherwise search non-collinear structure.
+E256,0.5763013297999999,0.00014238039999991958,hard_loss,hard_rejection,Close E256-like refinements. Treat E247 as a fragile public observation until E224 attribution or another independent sensor confirms the body.
+E256,0.5763266405,0.00016769110000003362,hard_loss,hard_rejection,Close E256-like refinements. Treat E247 as a fragile public observation until E224 attribution or another independent sensor confirms the body.
+E224,0.5761089494,-4.999999999999449e-05,body_breakthrough,strong_support,Promote E224 body as the core law. Audit rollback harm cells; do not add Q3 smoothing until a body-preserving gate exists.
+E224,0.5761489494,-9.99999999995449e-06,body_tie_or_micro_win,support,"Use E224 as attribution-confirmed anchor. Revisit Q3 rollback only as a private-risk reducer, not as a score requirement."
+E224,0.5761589494,0.0,body_tie_or_micro_win,support,"Use E224 as attribution-confirmed anchor. Revisit Q3 rollback only as a private-risk reducer, not as a score requirement."
+E224,0.5761689494,9.99999999995449e-06,rollback_helped,mixed_support,Keep E247 as anchor. Use E256 result if available to decide broad vs amplitude rollback; otherwise do not remove rollback.
+E224,0.5762813298,0.0001223804000000106,rollback_helped,mixed_support,Keep E247 as anchor. Use E256 result if available to decide broad vs amplitude rollback; otherwise do not remove rollback.
+E224,0.5763013297999999,0.00014238039999991958,body_not_enough,weak_rejection,"Demote body-only candidates. Keep E247; if exploring, target Q3 tail correction rather than larger body."
+E224,0.5763266405,0.00016769110000003362,body_loss,rejection,Do not submit E224 siblings. Treat E247 as a specific body-plus-trim construction and move to non-collinear structure.
