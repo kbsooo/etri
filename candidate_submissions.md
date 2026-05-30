@@ -2067,3 +2067,27 @@ Submission decision:
 - The next submission-eligible artifact must pass materialization stress: E224/E154 graft, actual-vs-E95, Q3 top-cell concentration, support/adverse capacity, and overlap with known risk cells.
 
 Current one-file submission answer remains: no new file from the human/social branch. If a public slot must be used before E266, use only the pre-existing attribution sensor E224, not an E264 broad gate.
+
+## Update After E266/E267
+
+The human/social branch now has a submission candidate, but it should be treated as a public sensor rather than a guaranteed score upgrade.
+
+Recommended one-file candidate:
+
+1. **Human/social JEPA tail sensor:** `analysis_outputs/submission_e267_humansocial_tail_balanced_2936100f.csv`.
+2. **Current best anchor:** `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+3. **Attribution-only fallback:** `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+
+Why E267 is first from this branch:
+
+- It is the balanced E266 survivor, not the broadest E237-score row.
+- It rolls back `25` Q3 and `25` S4 cells from the E224 body toward E154 using human/social tail context.
+- It keeps expected_loss_vs_e224 non-positive at `-0.000004014`.
+- It reduces adverse capacity by `0.000418519` and improves support by `0.004541355`.
+- It is different from E247: `60` moved cells versus E247, mostly Q3 plus a small S4 component.
+
+How to read public LB:
+
+- `<=0.5761589494`: lifestyle/day-state tail law is real enough to beat the numeric feature-NN1 smoothing frontier.
+- `0.5761589494..0.5762805676`: the signal is real but weaker than E247's exact body-plus-Q3 smoothing interaction.
+- `>=0.5762913298`: E266 materialization likely overfit E224/E154 geometry; next branch should overlay human/social gates directly on E247 rather than continuing E224-family rollback.

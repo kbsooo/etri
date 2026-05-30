@@ -4035,3 +4035,32 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - random best tail AUC `0.564280`; human-only best tail AUC `0.612834`.
 - Interpretation: E264 is not a pure artifact because human_late beats random by a large margin. But the policy-level strict gate is too easy and cannot certify a submission by itself.
 - Decision: alive but narrowed. Next representation target must be sharper: cell-tail ranking, top-cell overlap, and materialization-side public-free stress. A broad human_late rollback submission is explicitly blocked.
+
+## E266. Human/Social Tail Materialization Stress
+
+- Observe: E264/E265 left a live but uncertified branch. The signal beats random, but broad rollback gates are too easy.
+- Wonder: can the lifestyle representation survive the harder E237 materialization stress: E224/E154 graft, actual-vs-E95, support/adverse capacity, Q3 top-cell concentration, and E230 overlap?
+- Method: `analysis_outputs/e266_human_social_tail_materialization_stress.py` filters E264 to sharper policies only, excludes broad p15/p20 rollbacks, appends human/social context to the E237 Q3/S4 cell-tail frame, and passes candidates through `e237.scan_materializations`.
+- Result:
+  - OOF pool rows `80`; materialized rows `160`; selected submissions `22`.
+  - best expected_loss_vs_e224 `-0.000027985`.
+  - best adverse_reduction_vs_e224 `0.000589659`.
+  - best support_gain_vs_e224 `0.005063832`.
+  - top E237-score file `c1e018aa` has strong support/adverse but positive expected loss and 75 dropped cells.
+  - balanced `2936100f` has `25` Q3 + `25` S4 dropped cells, expected_loss_vs_e224 `-0.000004014`, adverse reduction `0.000418519`, support gain `0.004541355`, actual-vs-E95 support gain `0.003984398`, and E230 Q3 risk overlap `6`.
+- Interpretation: the human/social branch is no longer only an EDA story. It can produce a submission-grade cell-tail tensor under the existing JEPA materialization stress, but the top score must be penalized for broadness because E265 already warned that broad gates are easy.
+- Decision: do not submit the broad top-score `c1e018aa` first. Build a routebook that picks one candidate by survival score and records what the public score would mean.
+
+## E267. Human/Social Tail Submission Routebook
+
+- Observe: E266 selected 22 files, many duplicates by prediction digest. A public slot needs one pre-registered file and interpretation, not a post-hoc top-k choice.
+- Wonder: if only one human/social JEPA candidate is submitted, which file best balances expected safety, support/adverse movement, non-broadness, and information value?
+- Method: `analysis_outputs/e267_human_social_tail_submission_routebook.py` deduplicates E266 selected files, computes a social-JEPA survival score that penalizes positive expected loss and broad cell count, compares the recommended candidate against E247/E256/E224/E95, and writes a stable alias submission.
+- Result:
+  - recommended file: `analysis_outputs/submission_e267_humansocial_tail_balanced_2936100f.csv`.
+  - source: `analysis_outputs/submission_e237_cell_decisive_all3_human_core_lr_l2_c0p10_dateblock5_contrast_q0p10_drop_global_top50_2936100f.csv`.
+  - routebook: `analysis_outputs/e267_human_social_tail_submission_routebook_report.md`.
+  - movement versus E247: `60` cells over `54` rows, mostly Q3 (`51`) plus S4 (`9`); mean abs logit delta `0.001928809`.
+  - movement versus E224: `34` cells over `25` rows; Q3 `25`, S4 `9`.
+- Interpretation: this is the first concrete “human/social diary -> hidden Q3/S4 tail state -> JEPA cell rollback” public sensor. It is not guaranteed to beat E247, but it is non-collinear enough to answer whether lifestyle state explains the residual tail beyond numeric smoothing.
+- Decision: if a single new file is tested from this branch, use `submission_e267_humansocial_tail_balanced_2936100f.csv`. A win over E247 supports human/social hidden-state tail law; a score between E247 and E256 supports real but weaker lifestyle signal; near/worse than E95 sends the branch back to a direct E247 overlay instead of E224-family rollback.

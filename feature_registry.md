@@ -1901,6 +1901,22 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: random strict rate `0.290909`; random best loss_vs_full `-0.000723735`; E264 human_late best `-0.001689622`.
 - Policy: any future lifestyle gate must beat random controls by margin and pass materialization-side public-free tail anatomy. Treat broad OOF policy loss as an insufficient adoption criterion.
 
+### F223. E266 lifestyle-conditioned Q3/S4 cell-tail materialization
+
+- Hidden structure: late/presleep human diary context marks target-specific tail cells where the E224 Q3/S4 body should be rolled back toward E154.
+- Candidates: E264 human/social views (`human_late`, `human_core`, latent+human variants), sharp top-k/p05/p10 policies, Q3/S4 dropped-cell counts, expected_loss_vs_e224, adverse_reduction_vs_e224, support_gain_vs_e224, actual-vs-E95 stress, Q3 top1/abs expected, and E230 Q3 risk overlap.
+- Label vs split test: stronger than E264 because it uses subject/date-block OOF heads and E237 materialization-side public-free stress. Still not public-certified because the stress uses priors/anchors rather than hidden public labels.
+- Current evidence: E266 selected `22` files. Balanced `2936100f` has `25` Q3 + `25` S4 dropped cells, expected_loss_vs_e224 `-0.000004014`, adverse reduction `0.000418519`, support gain `0.004541355`, and E230 risk overlap `6`.
+- Policy: F223 is the first submission-grade human/social feature family, but only through pre-registered routebook selection. Do not submit broad support-only variants.
+
+### F224. E267 social-JEPA survival route features
+
+- Hidden structure: a healthy lifestyle-conditioned tensor should not maximize support by broad rollback; it should preserve expected loss while reducing adverse capacity and keeping enough public-tail support to be informative.
+- Candidates: social-JEPA survival score, balanced gate, sharp gate, support-sensor gate, duplicate prediction digest, movement versus E247/E256/E224/E95, and public-feedback interpretation band.
+- Label vs split test: governance/selection metadata, not an input feature. It prevents post-hoc candidate picking after E266 generated many sibling files.
+- Current evidence: E267 ranks `submission_e267_humansocial_tail_balanced_2936100f.csv` first. It moves `60` cells versus E247 over `54` rows, with Q3 `51` and S4 `9`.
+- Policy: use F224 only to choose and decode the next public sensor. Do not train it into predictions or tune it after public feedback.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

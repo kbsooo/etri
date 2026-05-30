@@ -2007,3 +2007,12 @@
 - Implementation issue possible: low for rejecting the broad gate; E265 uses the same policy machinery. Medium for the exact random rate because only `5` seeds and representative policies were used for speed, but the failure is large enough to block immediate submission.
 - Bottleneck implication: the human/social representation is alive, but the missing object is sharper target translation: cell-tail ranking, top-cell overlap, and materialization-side support/adverse stress.
 - Do not repeat: broad `drop_global_pXX` lifestyle rollback submissions without E224/E154 materialization stress and random-control margin.
+
+## FH223. E266 highest E237 score is automatically the first lifestyle submission
+
+- Failed hypothesis: once E266 selected files, the highest E237-score row should be the next public file.
+- Observed result: the top E237-score `c1e018aa` has strong adverse/support numbers, but it drops `75` Q3/S4 cells and has positive expected_loss_vs_e224 `+0.000010956`. E267's survival routebook penalizes exactly this broad expected-positive pattern and ranks balanced `2936100f` first.
+- Why discard: E265 already showed broad gates can look good too easily. A top-score row that wins mainly by support/adverse mass but increases expected loss and broadness is not the clean first public sensor.
+- Implementation issue possible: low for the ranking decision; all metrics come from the same E266 materialization table. Medium for true public outcome because hidden labels may still reward the broad support sensor.
+- Bottleneck implication: candidate selection is now part of the bottleneck. The branch can produce files, but picking by one scalar stress score can reintroduce the broad-gate failure.
+- Do not repeat: submitting the broadest/highest-support lifestyle tensor before the balanced routebook candidate has public feedback.

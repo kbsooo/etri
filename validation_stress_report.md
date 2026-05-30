@@ -2415,3 +2415,32 @@ E265 adds the negative control.
 - human_late still beats random clearly, but the strict gate itself is too permissive.
 
 Stress implication: lifestyle state is a real local representation, but broad OOF rollback policy is not a submission gate. The next validation layer must include top-cell ranking, overlap with public-free risk cells, and E224/E154 materialization-side stress.
+
+## Update After E266/E267
+
+E266 adds the missing materialization-side stress for the human/social branch.
+
+- sharp E264 pool rows: `80`.
+- materialized rows: `160`.
+- E237 gate passes / selected files: `22`.
+- best expected_loss_vs_e224: `-0.000027985`.
+- best adverse_reduction_vs_e224: `0.000589659`.
+- best support_gain_vs_e224: `0.005063832`.
+
+Stress read:
+
+- The branch passes the harder "can this become a tensor?" check.
+- However, the highest E237-score file is broad (`75` dropped cells) and expected-positive (`+0.000010956`), so the E265 broad-gate warning still matters.
+- E267 re-ranks by a stricter survival score and chooses `submission_e267_humansocial_tail_balanced_2936100f.csv`.
+
+E267 stress summary:
+
+- expected_loss_vs_e224 `-0.000004014`.
+- adverse_reduction_vs_e224 `0.000418519`.
+- support_gain_vs_e224 `0.004541355`.
+- actual_expected_delta_vs_e224 `-0.000004014`.
+- actual_adverse_reduction_vs_e224 `0.000383531`.
+- actual_support_gain_vs_e224 `0.003984398`.
+- movement versus E247: `60` cells, mostly Q3 (`51`) and S4 (`9`).
+
+Stress implication: this is submission-eligible as a public sensor, not as a certified replacement for E247. Its result will decide whether human/social hidden state is a score-relevant Q3/S4 tail law or only a local/E224-family diagnostic.

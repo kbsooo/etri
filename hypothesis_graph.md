@@ -3052,6 +3052,30 @@ target co-occurrence
 - public LB 관측 반응: no public submission from this hypothesis yet. A future public-positive file should be a narrow lifestyle-conditioned cell gate, not a 90+ cell broad rollback.
 - 제출 전략: build E266-style materialization stress only for sharp cells that beat random and pass public-free Q3/S4 tail anatomy.
 
+### H266: human/social tail state can survive JEPA materialization if the target is row-target-cell risk
+
+- 상태: supported locally; public unobserved.
+- 왜 그럴듯한가: E264 showed late/presleep human context predicts harmful Q3/S4 movement, while E265 rejected broad gates. The natural sharper target is not "bad day" but "which Q3/S4 cells should be rolled back."
+- 맞다면: sharp human/social E264 policies should pass E237 materialization-side public-free stress and produce non-broad candidate tensors with negative or neutral expected loss, adverse reduction, support gain, and reasonable Q3 top-cell concentration.
+- 틀리다면: materialization should be empty, or only broad/expected-positive files should pass.
+- 최소 실험: `analysis_outputs/e266_human_social_tail_materialization_stress.py`.
+- 관측: E266 selected `22` files. The best balanced digest `2936100f` has expected_loss_vs_e224 `-0.000004014`, adverse reduction `0.000418519`, support gain `0.004541355`, actual support gain `0.003984398`, and E230 Q3 risk overlap `6`.
+- 성공/폐기 기준: supported as a candidate source because non-broad balanced files pass. Not yet public-certified; a public miss near/worse than E95 would demote this exact E224/E154 materialization path.
+- public LB 관측 반응: a win over E247 would strongly support human/social hidden state as the missing Q3/S4 tail law. A mild loss would keep it as weak energy. A hard loss would imply E224-family materialization mismatch.
+- 제출 전략: use only the pre-registered balanced E267 file first, not the broad top-score candidate.
+
+### H267: the best human/social public sensor is the balanced 2936100f tensor, not the broad E237-score winner
+
+- 상태: active routebook.
+- 왜 그럴듯한가: E265 showed broad rollback gates are too easy. E266's broad `c1e018aa` has the highest E237 score but positive expected loss and `75` dropped cells. A healthier public sensor should trade some support for lower broadness and non-positive expected loss.
+- 맞다면: a survival score that penalizes positive expected loss and broad cell count should rank `2936100f` above `c1e018aa`, while preserving enough support/adverse signal to be informative.
+- 틀리다면: every non-broad candidate would lose support/adverse signal, leaving only tiny sharp files with little public information.
+- 최소 실험: `analysis_outputs/e267_human_social_tail_submission_routebook.py`.
+- 관측: E267 ranks `2936100f` first with social-JEPA survival score `8.230181390`; movement versus E247 is `60` cells over `54` rows, mostly Q3 (`51`) plus S4 (`9`).
+- 성공/폐기 기준: routebook accepted for one public sensor. Public LB decides whether the hidden-world bet is score-useful or only diagnostic.
+- public LB 관측 반응: see `analysis_outputs/e267_human_social_tail_submission_routebook_report.md`.
+- 제출 전략: submit `analysis_outputs/submission_e267_humansocial_tail_balanced_2936100f.csv` if using the next slot on the human/social JEPA branch.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
