@@ -2556,6 +2556,30 @@ target co-occurrence
 - public LB 관측 반응: no E221 file should be submitted. If a future S2 file is made, it must change the representation target or loss, not merely learn a row support classifier on E215 features.
 - 제출 전략: none. Continue with E211 Q3/S4 or design a new S2 target representation with support/tail regularization baked into the objective.
 
+### H217. E211 Q3/S4 is support-safe under the E216 failure criterion
+
+- 상태: 약화 by E222.
+- 왜 그럴듯한가: E211 passed local OOF, subject-half, geometry, bad-axis, and public-prior expected-delta stress, while E213 showed the Q3/S4 axes are not cheap PCA cherry-picks.
+- 맞다면: E211 grafts should have negative expected focus movement with swing-weighted support probability above `0.5`, and target-level top-cell concentration should not dominate the expected edge.
+- 틀리다면: E211 will look like E216 in the new stress dimension: expected-good but low support probability, with one target carrying fragile top-cell risk.
+- 최소 실험: `analysis_outputs/e222_e211_support_tail_audit.py`.
+- 관측: E211 E154 closer graft has expected focus `-0.000655277` but support probability `0.463231`; E211 E95 toward has expected `-0.000654330` and support `0.463587`. Target breakdown shows S4 is healthier, while Q3 expected is only `-0.000144..-0.000147` and Q3 top1/expected is `>1.0`.
+- 성공/폐기 기준: E211 is not fully support-safe. The representation remains live, but original full-Q3 E211 submissions are now riskier than the older E212 ranking implied.
+- public LB 관측 반응: a public win from original E211 would mean low support probability was too conservative for Q3/S4; a loss would strongly validate E222 and close full-Q3 E211 as a translator.
+- 제출 전략: prefer a Q3-tail-rebalanced E211 variant before submitting the original full-Q3 E211 files.
+
+### H218. Reducing E211 Q3 scale preserves most expected gain while cutting tail risk
+
+- 상태: 부분 지지 by E223.
+- 왜 그럴듯한가: E222 localized the healthier part of E211 to S4 and the fragile part to Q3. Reducing Q3 should reduce adverse capacity and top-cell concentration without discarding the S4 dependency-gated body.
+- 맞다면: q3_scale `0.75` variants should remain E211-frontier/geometry eligible, keep expected focus near the full-Q3 files, and reduce adverse capacity/top1 concentration.
+- 틀리다면: Q3 reduction will either kill expected gain, fail existing geometry/local checks, or not reduce tail risk enough to matter.
+- 최소 실험: `analysis_outputs/e223_e211_q3_tail_rebalance.py`.
+- 관측: selected `submission_e223_jepa_q3s0p75_s4closer_e154_a0p5_794b0349.csv` has graft expected `-0.000636968`, adverse `0.003852760`, support `0.464872`, and geometry `-0.000556139`. Actual vs E95 expected is `-0.000666805`, adverse `0.004533247`, top1/expected `0.176972`.
+- 성공/폐기 기준: partially supported as a risk-rebalanced sensor, not a certified safe move. Support probability remains below `0.5`, so it does not solve the whole tail-support problem.
+- public LB 관측 반응: if E223 beats E95/E216 and ideally E95 frontier, the world update is "S4 body plus reduced-Q3 tail is public-aligned." If it loses like E216, low-support Q3/S4 translation is the bottleneck and JEPA probability movement should be demoted.
+- 제출 전략: current preferred JEPA-family file is `analysis_outputs/submission_e223_jepa_q3s0p75_s4closer_e154_a0p5_794b0349.csv`; use E95-anchor sibling only for clean attribution.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

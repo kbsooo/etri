@@ -1749,6 +1749,28 @@ E221 OOF support-classifier audit:
 
 Stress implication after E221: S2 support is learnable locally, but the learned support boundary is not invariant to the public-facing test tail. This closes ordinary OOF support classifiers as an E216 rescue. A future S2 JEPA submission must change the representation/loss target rather than learn a gate on the same E215 features.
 
+E222 E211 support-tail audit:
+
+- script: `analysis_outputs/e222_e211_support_tail_audit.py`.
+- report: `analysis_outputs/e222_e211_support_tail_audit_report.md`.
+- E211 E154 closer graft vs anchor: expected focus `-0.000655277`, adverse `0.004765654`, support probability `0.463231`, top1/expected `0.240115`.
+- E211 E95 toward graft vs anchor: expected focus `-0.000654330`, adverse `0.004824911`, support probability `0.463587`, top1/expected `0.240462`.
+- E216 S2 negative control vs anchor: expected focus `-0.000288312`, adverse `0.006048480`, support probability `0.473945`.
+- Target breakdown: E211 S4 has expected focus about `-0.00051` and low top-cell concentration (`~0.166x`), while Q3 has expected focus only `-0.000144..-0.000147` and top1/expected above `1.0x`.
+
+Stress implication after E222: E211 is a live JEPA lane but not a support-safe lane. Its hidden-world bet should be narrowed: preserve S4, reduce Q3 tail exposure, and interpret public feedback as a Q3/S4 support sensor.
+
+E223 Q3-tail rebalance:
+
+- script: `analysis_outputs/e223_e211_q3_tail_rebalance.py`.
+- report: `analysis_outputs/e223_e211_q3_tail_rebalance_report.md`.
+- selected risk-rebalanced file: `analysis_outputs/submission_e223_jepa_q3s0p75_s4closer_e154_a0p5_794b0349.csv`.
+- graft vs E154: expected focus `-0.000636968`, adverse `0.003852760`, support probability `0.464872`, geometry delta `-0.000556139`.
+- actual vs E95: expected focus `-0.000666805`, adverse `0.004533247`, top1/expected `0.176972`.
+- Relative to original E211 E154 closer actual-vs-E95, E223 reduces adverse capacity by about `0.00089358` while sacrificing only about `0.00001831` expected focus.
+
+Stress implication after E223: E223 is the preferred JEPA-family public sensor if using one JEPA slot now. It does not solve the sub-0.5 support-probability problem, but it materially reduces the specific Q3 tail failure exposed by E222.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

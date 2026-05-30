@@ -1746,3 +1746,12 @@
 - Implementation issue possible: medium. The classifier family is intentionally small and tabular. But the failure is not weak local modeling: AUC is high enough locally, and the joint failure occurs after test-tail stress. That is the relevant rejection for a submission candidate.
 - Bottleneck implication: S2 JEPA is not blocked by encoder capacity alone. It is blocked by train/test-public support mismatch and LogLoss tail exposure. Reopening S2 requires changing the target representation or adding support/tail structure to the JEPA objective itself.
 - Do not repeat: ordinary benefit/support classifiers on E215 S2 features as submission gates. Use them only as diagnostics unless a new representation target changes the test-tail behavior.
+
+## FH194. Original full-Q3 E211 is support-safe after the E216 lesson
+
+- Failed hypothesis: because E211 Q3/S4 passed local, subject-half, geometry, bad-axis, and focus-expected stress, it should also pass the E216-derived support/tail criterion.
+- Observed result: E222 shows the live E211 grafts are expected-good but low-support. E211 E154 closer graft has expected focus `-0.000655277`, adverse `0.004765654`, and support probability `0.463231`; E211 E95 toward has expected `-0.000654330`, adverse `0.004824911`, and support `0.463587`.
+- Why discard: support probability remains below `0.5`, and the target breakdown shows Q3 is fragile: expected focus only about `-0.000144..-0.000147` while Q3 top1/expected exceeds `1.0`. This is too similar to the E216 failure pattern to call original full-Q3 E211 safe.
+- Implementation issue possible: medium. E222 uses public-free priors, not true public labels, and known winners can also have weak visible support. But E216 public feedback made this exact failure mode actionable enough to update the candidate order.
+- Bottleneck implication: E211's JEPA axes are real, but target-level probability translation remains the bottleneck. The hidden law is not "use the whole JEPA move"; it is "preserve S4 body and control Q3 tail."
+- Do not repeat: submitting original full-Q3 E211 as the default JEPA file without acknowledging that public feedback will be a support-tail sensor. Prefer E223 q3-scale `0.75` if testing this lane now.

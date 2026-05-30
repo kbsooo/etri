@@ -1194,3 +1194,41 @@ Submission policy is unchanged and stricter:
 3. `analysis_outputs/submission_e209_jepa_q3_center_c010_s4_rank_e95_s0p25_08289063.csv`, only as a raw-JEPA control after E211 feedback.
 
 Do not submit E216/E220/E221 S2 variants. The current evidence says masked-family S2 JEPA is a diagnostic latent, not a public-safe probability translator.
+
+## Update After E222/E223
+
+E222 applied the E216 failure criterion to the live E211 Q3/S4 candidates.
+
+Key result:
+
+- Original E211 E154 closer remains expected-good, but it is not support-safe:
+  - graft expected focus `-0.000655277`
+  - adverse capacity `0.004765654`
+  - support probability `0.463231`
+  - Q3 top1/expected `1.090401`
+- E211's S4 component is the healthier part. Q3 contributes only about `-0.000144` expected focus while carrying about `0.00358` adverse capacity and top-cell concentration above `1.0x` of its expected gain.
+
+E223 therefore creates a risk-rebalanced JEPA candidate by lowering Q3 scale from `1.0` to `0.75` while keeping the S4 dependency-gated body:
+
+1. `analysis_outputs/submission_e223_jepa_q3s0p75_s4closer_e154_a0p5_794b0349.csv`
+   - current preferred JEPA-family sensor.
+   - actual vs E95 expected focus `-0.000666805`.
+   - adverse capacity `0.004533247`, down from original E211 E154 closer's `0.005426827`.
+   - top1/expected `0.176972`, down from `0.229657`.
+   - not fully support-safe: support probability remains `0.464769`.
+
+2. `analysis_outputs/submission_e223_jepa_q3s0p75_s4toward_e95_a0p5_55d326e5.csv`
+   - cleaner E95-anchor contrast if the next slot should isolate JEPA movement from E154 repaired-branch body.
+   - actual vs E95 expected focus `-0.000635269`, adverse `0.003912769`.
+
+Updated submission policy:
+
+1. If submitting exactly one JEPA-family file now, use `analysis_outputs/submission_e223_jepa_q3s0p75_s4closer_e154_a0p5_794b0349.csv`.
+2. Use the original E211 E154 closer only if the explicit question is maximum original E211 body, not risk-rebalanced tail survival.
+3. Use the E211/E223 E95-anchor files only as clean attribution sensors.
+4. Do not submit E216/E220/E221 S2 variants.
+
+Interpretation rule:
+
+- If E223 improves public LB, the lesson is not "bigger JEPA worked"; it means E211's S4 body plus reduced-Q3 tail is closer to the public hidden subset.
+- If E223 loses similarly to E216, then E211's Q3/S4 expected-good movement shares the same low-support public-tail mismatch and the current JEPA probability-translation lane should be demoted.

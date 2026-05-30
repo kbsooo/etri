@@ -1618,6 +1618,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: support is locally learnable (`AUC=0.748104` stratified, `0.717482` row-contiguous, `0.713730` subject-LOO), but no gate passes both OOF support and submission-side tail stress.
 - Policy: do not use F187 as a submission gate for E216 S2. Keep it as evidence that local support and public-tail support are different objects under the current S2 translator.
 
+### F188. E222/E223 target-specific JEPA support-tail features
+
+- Hidden structure: the same JEPA latent can be healthy for one target component and tail-fragile for another. E211's S4 body appears healthier than its Q3 body under E216-style hard-label support stress.
+- Candidates: E222 cell-level support probability, target-level adverse capacity, Q3/S4 top1-over-expected, E211 q3_scale rebalancing, and S4 dependency-gated body preservation.
+- Label vs split test: these are public-free prior diagnostics, not true labels. They are allowed for candidate triage only when joined with existing E211 local/subject/geometry stress and negative controls from E216.
+- Current evidence: original E211 is expected-good but low-support (`~0.463` swing-weighted support). Q3 has top1/expected above `1.0`; S4 has top1/expected around `0.166`. E223 q3_scale `0.75` reduces actual-vs-E95 adverse capacity from `0.005426827` to `0.004533247` with only a small expected-focus sacrifice.
+- Policy: prefer `analysis_outputs/submission_e223_jepa_q3s0p75_s4closer_e154_a0p5_794b0349.csv` if testing the JEPA family now. Treat it as a risk-rebalanced public sensor, not a certified safe feature.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

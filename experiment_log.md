@@ -3403,3 +3403,31 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - no gate passes both OOF support reproduction and submission-side tail stress. OOF-passing gates with negative expected focus usually keep too much adverse capacity; gates that pass submission tail stress are weak or adverse in OOF.
 - Interpretation: E216 S2 has learnable local support structure, but that structure does not transfer to the public-facing test subset in a submission-safe way. This is a stronger rejection than E220: even an OOF support model cannot currently align local S2-help with public-tail safety.
 - Decision: no E221 submission. Keep E215/E216 S2 as diagnostic energy only. The live JEPA submission lane remains E211 Q3/S4; future S2 work needs a different target representation or an explicit public-tail target, not another threshold or ordinary benefit classifier.
+
+## E222. E211 Support/Tail Audit After E216
+
+- Observe: E216 failed because expected-good S2 movement had sub-0.5 support probability. The live E211 Q3/S4 files had not yet been tested under that new failure criterion.
+- Wonder: does E211 avoid E216's low-support hard-label tail, or is it also an expected-good-but-support-fragile JEPA translator?
+- Method: `analysis_outputs/e222_e211_support_tail_audit.py` audits E211/E209/E210 candidates and E216 negative controls against E95/anchor using focus/global/subject/nearest priors, adverse capacity, top-cell concentration, and swing-weighted support probability.
+- Result:
+  - report: `analysis_outputs/e222_e211_support_tail_audit_report.md`.
+  - E211 E154 closer graft: expected focus `-0.000655277`, adverse `0.004765654`, support probability `0.463231`, Q3 top1/expected `1.090401`.
+  - E211 E95 toward graft: expected focus `-0.000654330`, adverse `0.004824911`, support probability `0.463587`.
+  - E216 S2 negative control: expected focus `-0.000288312`, adverse `0.006048480`, support probability `0.473945`.
+  - E211's S4 component is healthier than Q3: S4 expected about `-0.00051` with top1/expected about `0.165..0.169`; Q3 expected only `-0.000144..-0.000147` with top1/expected above `1.0`.
+- Interpretation: E211 is real but not support-safe. The representation evidence survives, but the translator is a public-tail sensor. The actionable clue is target-specific: S4 carries most of the healthy expected movement, while Q3 adds fragile adverse capacity.
+- Decision: do not treat the original E211 selected files as "cleared" after E216. Run a Q3-tail rebalance before recommending an E211-family submission.
+
+## E223. E211 Q3 Tail Rebalance
+
+- Observe: E222 says E211's S4 body is comparatively healthy and Q3 is the fragile part.
+- Wonder: can we keep E211's S4 dependency-gated body while reducing Q3 from scale `1.0` to `0.75`?
+- Method: `analysis_outputs/e223_e211_q3_tail_rebalance.py` rematerializes E211 policies with Q3 scale `0.75/1.0`, S4 `closer/toward`, anchors `e95/e154`, and anchor scale `0.5`; then audits them with the E222 support/tail metrics and joins existing E211 local/geometry stress.
+- Result:
+  - report: `analysis_outputs/e223_e211_q3_tail_rebalance_report.md`.
+  - selected risk-rebalanced file: `analysis_outputs/submission_e223_jepa_q3s0p75_s4closer_e154_a0p5_794b0349.csv`.
+  - graft expected focus `-0.000636968`, adverse `0.003852760`, support probability `0.464872`, geometry delta `-0.000556139`.
+  - actual vs E95 expected focus `-0.000666805`, adverse `0.004533247`, top1/expected `0.176972`.
+  - compared with original E211 E154 closer actual vs E95, expected weakens only `0.00001831`, while adverse capacity drops by about `0.00089358` and top1/expected drops from `0.229657` to `0.176972`.
+- Interpretation: E223 is not fully support-safe because support probability remains below `0.5`, but it is the cleanest post-E216 correction of the live JEPA lane. It preserves the E211 hidden-world bet while reducing the Q3 tail that E222 identified.
+- Decision: if testing one JEPA-family candidate after E216, prefer `submission_e223_jepa_q3s0p75_s4closer_e154_a0p5_794b0349.csv` over the original E211 full-Q3 files. Public feedback should be interpreted as a Q3-tail-rebalance sensor, not as proof of broad JEPA success.
