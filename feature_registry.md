@@ -1610,6 +1610,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: the objective is learnable (`val_loss` about `7%` of mean-teacher baseline), but no feature passes geometry materialization. Best local S2 `e217_teacher_pc07` fails with positive geometry delta `+0.000410`.
 - Policy: keep E217 features as diagnostics/energy only. Do not submit an E217-based probability movement unless a later target-specific materializer turns it geometry-negative and frontier-safe.
 
+### F187. E221 S2 support classifier gate features
+
+- Hidden structure: the E216 S2 graft may help only on rows where movement direction, E215 latent state, subject position, and local calibration state imply high hard-label support.
+- Candidates: E215 latent columns, subject/order features, base/full S2 probabilities, S2 logit step, movement direction, probability margin, absolute step size, and subject one-hot context used by `analysis_outputs/e221_s2_oof_support_classifier.py`.
+- Label vs split test: allowed only as OOF support diagnostics. The support label is supervised by whether the E216 S2 movement improves train OOF loss, so submission use requires strict subject/row-contiguous OOF stress plus separate test-tail capacity stress.
+- Current evidence: support is locally learnable (`AUC=0.748104` stratified, `0.717482` row-contiguous, `0.713730` subject-LOO), but no gate passes both OOF support and submission-side tail stress.
+- Policy: do not use F187 as a submission gate for E216 S2. Keep it as evidence that local support and public-tail support are different objects under the current S2 translator.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

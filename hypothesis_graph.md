@@ -2544,6 +2544,18 @@ target co-occurrence
 - public LB 관측 반응: no E220 submission should be used. A future S2 candidate must show both expected gain and bounded adverse capacity under a trainable gate.
 - 제출 전략: none. Keep E216/E220 as negative evidence and continue with E211 or a new S2 support-model experiment.
 
+### H216. A trainable OOF support classifier can rescue E216 S2
+
+- 상태: 반증 by E221 for current E215/E216 feature family.
+- 왜 그럴듯한가: E216 S2 was strongly positive on local OOF, and E219 showed the failure mode was support/tail fragility. If the cells where the S2 move helps are learnable from JEPA latent/state/order features, a trainable gate could keep the local signal while reducing public-tail exposure.
+- 맞다면: OOF support classifiers should have above-noise AUC, OOF-gated S2 delta should remain negative, subject/block stress should survive, and the same gate on test should have negative focus expected delta with adverse capacity below the observed E216 miss.
+- 틀리다면: support may be learnable locally, but OOF-good gates and test-tail-safe gates will select different subsets; no joint gate passes both criteria.
+- 최소 실험: `analysis_outputs/e221_s2_oof_support_classifier.py`.
+- 관측: support classification is locally real (`AUC=0.748104` stratified, `0.717482` row-contiguous, `0.713730` subject-LOO), and many OOF gates have strong negative S2 deltas. But no scanned gate passes both OOF and submission-side tail stress. The best OOF-safe gates often carry adverse capacity far above the E216 miss, while the few submission-tail-safe gates fail OOF support/win criteria.
+- 성공/폐기 기준: rejected for the current feature/translator setup. This does not prove S2 has no signal; it proves the present E215 S2 translator lacks a train/test-stable support gate.
+- public LB 관측 반응: no E221 file should be submitted. If a future S2 file is made, it must change the representation target or loss, not merely learn a row support classifier on E215 features.
+- 제출 전략: none. Continue with E211 Q3/S4 or design a new S2 target representation with support/tail regularization baked into the objective.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -1178,3 +1178,19 @@ The JEPA objective is learnable, but its best downstream signals fail geometry m
 3. `analysis_outputs/submission_e209_jepa_q3_center_c010_s4_rank_e95_s0p25_08289063.csv`, only as an E211-control sensor after E211 feedback.
 
 E216 and E217 are now diagnostic/energy sources only. E219 explains why the remaining E216 siblings are not automatic safer variants: the E154 body alone cannot explain the miss (`0.000924070` adverse capacity < observed `0.0009951790`), while the pure S2 graft can (`0.006048995` adverse capacity) and has weak support probability (`0.473945`). E220 then rejects simple support/tail thresholding: high-support subsets become expected-adverse and expected-negative subsets retain too much adverse capacity. Do not submit an E216 sibling, E220 threshold file, or E217-derived file unless a later target-specific materializer converts the signal into negative geometry, passes frontier hard-tail stress, and adds an OOF-reproducible S2 support/tail guard.
+
+## Update After E221
+
+E221 tried that OOF-reproducible S2 support/tail guard and did not produce a candidate.
+
+- Support labels are locally learnable: best support-classifier AUCs are `0.748104` stratified, `0.717482` row-contiguous, and `0.713730` subject-LOO.
+- OOF gates can preserve much of the E216 S2 local gain; for example `hgb_shallow__subject_loo/top250` gives S2 target delta `-0.004050232` with support precision `0.704000`.
+- But no gate passes both sides of the submission rule. OOF-good gates remain public-tail unsafe, while submission-tail-safe gates fail OOF support/win criteria.
+
+Submission policy is unchanged and stricter:
+
+1. `analysis_outputs/submission_e211_jepa_q3rawcloser_q3s1p0_s4s1p0_e154_a0p5_c20eee9c.csv`
+2. `analysis_outputs/submission_e211_jepa_q3rawtoward_q3s1p0_s4s1p0_e95_a0p5_e4e44d91.csv`
+3. `analysis_outputs/submission_e209_jepa_q3_center_c010_s4_rank_e95_s0p25_08289063.csv`, only as a raw-JEPA control after E211 feedback.
+
+Do not submit E216/E220/E221 S2 variants. The current evidence says masked-family S2 JEPA is a diagnostic latent, not a public-safe probability translator.

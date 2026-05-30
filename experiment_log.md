@@ -3388,3 +3388,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - pure expected-negative pruning is locally tempting but still violates the adverse-capacity guard: `expected_neg_only` expected `-0.001204825`, adverse `0.002118163`.
 - Interpretation: the E219 diagnosis is real but not trivially repairable. The S2 cells that look support-safe are not the cells that carry favorable expected movement; the favorable cells still have enough adverse capacity to recreate a public miss.
 - Decision: no E220 submission. E216 remains closed as a submission lane. The next viable S2 work would need a train/OOF-reproducible support classifier, not a simple public-tail threshold.
+
+## E221. S2 OOF Support Classifier
+
+- Observe: E220 closed public-prior threshold gates, but did not yet test whether the E216 S2-helping rows are learnable from train-only JEPA/state features.
+- Wonder: can a train/OOF-reproducible classifier predict where the E216 S2 movement helps, then select a test subset that keeps OOF gain while bounding public-tail adverse capacity?
+- Method: `analysis_outputs/e221_s2_oof_support_classifier.py` labels train rows by whether the E216 `s2_rank` movement improves S2 OOF log loss. It trains logistic, shallow HGB, and shallow GB support classifiers over E215 latent features plus row/subject/order/state features under stratified, row-contiguous, subject-fold, and subject-LOO stress. It then scans probability/top-k/score gates and evaluates E95-anchor test-side S2 grafts with focus expected delta, adverse capacity, support probability, and top-swing concentration.
+- Result:
+  - report: `analysis_outputs/e221_s2_oof_support_classifier_report.md`.
+  - support-label rate: `0.551111`.
+  - full E216 S2 target OOF delta versus stage2: `-0.004370425`.
+  - support classification is real locally: best AUCs are `0.748104` stratified, `0.717482` row-contiguous, `0.713730` subject-LOO, and `0.696682` subject-fold.
+  - many OOF gates look good; e.g. `hgb_shallow__subject_loo/top250` has support precision `0.704000`, S2 delta `-0.004050232`, subject win `0.700000`.
+  - no gate passes both OOF support reproduction and submission-side tail stress. OOF-passing gates with negative expected focus usually keep too much adverse capacity; gates that pass submission tail stress are weak or adverse in OOF.
+- Interpretation: E216 S2 has learnable local support structure, but that structure does not transfer to the public-facing test subset in a submission-safe way. This is a stronger rejection than E220: even an OOF support model cannot currently align local S2-help with public-tail safety.
+- Decision: no E221 submission. Keep E215/E216 S2 as diagnostic energy only. The live JEPA submission lane remains E211 Q3/S4; future S2 work needs a different target representation or an explicit public-tail target, not another threshold or ordinary benefit classifier.

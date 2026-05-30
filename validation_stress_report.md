@@ -1737,6 +1737,18 @@ E220 support-gate audit:
 
 Stress implication after E220: add a support-probability metric to future stress reports, but do not treat thresholding as a rescue. S2 JEPA needs a train/OOF-reproducible support model before any new submission file is actionable.
 
+E221 OOF support-classifier audit:
+
+- script: `analysis_outputs/e221_s2_oof_support_classifier.py`.
+- report: `analysis_outputs/e221_s2_oof_support_classifier_report.md`.
+- support-label rate: `0.551111`.
+- full E216 S2 target OOF delta versus stage2: `-0.004370425`.
+- best local support AUCs: stratified `0.748104`, row-contiguous `0.717482`, subject-LOO `0.713730`, subject-fold `0.696682`.
+- OOF gates can look strong; `hgb_shallow__subject_loo/top250` gives support precision `0.704000`, S2 delta `-0.004050232`, subject win `0.700000`.
+- no joint gate passes OOF support reproduction plus submission-side tail stress.
+
+Stress implication after E221: S2 support is learnable locally, but the learned support boundary is not invariant to the public-facing test tail. This closes ordinary OOF support classifiers as an E216 rescue. A future S2 JEPA submission must change the representation/loss target rather than learn a gate on the same E215 features.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

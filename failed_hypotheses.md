@@ -1737,3 +1737,12 @@
 - Implementation issue possible: medium. A richer trainable gate may still work, but the current public-tail threshold/drop rules are not enough and should not create a submission.
 - Bottleneck implication: S2 needs a real translator, not a post-hoc public-tail threshold. This strengthens the view that 0.576x is a calibration/hidden-subset tail bottleneck rather than an encoder-capacity bottleneck.
 - Do not repeat: submitting an E220 thresholded S2 file without an OOF-reproducible support model.
+
+## FH193. A trainable OOF S2 support classifier can rescue E216
+
+- Failed hypothesis: E216's S2 failure can be fixed by training a row-level classifier to predict whether the E216 S2 movement helps in OOF, then applying that support gate to test.
+- Observed result: E221 shows support is locally learnable but not submission-stable. Best classifier AUCs are `0.748104` on stratified folds, `0.717482` on row-contiguous folds, and `0.713730` under subject-LOO. Many OOF gates keep strong S2 gains, but none also pass submission-side expected/adverse/support stress. The best OOF-safe gates either have positive expected focus movement on test or adverse capacity above the observed E216 miss; the submission-tail-safe gates fail OOF support/win criteria.
+- Why discard: the local support boundary and the public-facing test-tail boundary are not the same object under the current E215/E216 representation. A row support classifier learns local label compatibility, not the hidden public subset support geometry.
+- Implementation issue possible: medium. The classifier family is intentionally small and tabular. But the failure is not weak local modeling: AUC is high enough locally, and the joint failure occurs after test-tail stress. That is the relevant rejection for a submission candidate.
+- Bottleneck implication: S2 JEPA is not blocked by encoder capacity alone. It is blocked by train/test-public support mismatch and LogLoss tail exposure. Reopening S2 requires changing the target representation or adding support/tail structure to the JEPA objective itself.
+- Do not repeat: ordinary benefit/support classifiers on E215 S2 features as submission gates. Use them only as diagnostics unless a new representation target changes the test-tail behavior.
