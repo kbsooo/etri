@@ -2034,6 +2034,25 @@ E238 E237 public-feedback decoder stress:
 
 Stress implication after E238: the E237 public score is now interpretable as a falsification test. A win supports learned Q3 decisive-cell structure; a tie or small loss calls for E224 contrast; a branch loss closes same-family top-k tuning; an E216-like loss means the cell translator collapsed.
 
+E239 E237 cell motif atlas stress:
+
+- script: `analysis_outputs/e239_e237_cell_motif_atlas.py`.
+- report: `analysis_outputs/e239_e237_cell_motif_atlas_report.md`.
+- selected files: none; this is a read-only motif/stress audit.
+- stress dimensions:
+  - E237 selected Q3 cells versus E224/E154/E95 movement magnitude.
+  - exact overlap/disagreement with E230 swing/risk hand-prunes.
+  - subject/date/test-edge/train-adjacency motifs.
+  - E208/E215 latent residual and nearest-neighbor context.
+  - permutation enrichment rather than fitted submission scoring.
+- key results:
+  - E237 overlaps E230 swing25 by `13/25` and risk21 by `11/21`.
+  - E237 is only `0.520` top-25 amplitude but `0.960` top-50 amplitude, so it is amplitude-filtered but not pure top-k.
+  - edge/date shortcuts weaken: near-test-edge-2 rate `0.120` vs population `0.240`; gap-adjacent-2 rate `0.240` vs population `0.344`.
+  - latent residual energy is enriched: `e208_resid_self_abs_mean` lift `1.366`, `e208_nn_target_dist` lift `1.310`, `e208_resid_self_pc10` lift `6.734`.
+
+Stress implication after E239: E237's local signal is not just a calendar edge or top-k amplitude artifact. It is best described as high-Q3-movement cells under high E208 residual/NN-distance energy. This strengthens the learned-cell motif as an interpretable hidden-world bet, but it does not create a new submission or justify tuning E237 siblings before public feedback.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

@@ -1537,3 +1537,22 @@ Current one-file policy:
 2. Clean unpruned JEPA question: `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
 3. Hand-prune control after E224 attribution: E230 risk/swing files, not before.
 4. E216-style S2/maskfam siblings remain demoted after public `0.5772865088`.
+
+## Update After E239
+
+E239 does not change the one-file submission policy. It explains what the top E237 file is actually betting on.
+
+Motif read:
+
+- E237 drops `25` Q3 cells.
+- It overlaps E230 swing25 by `13` and E230 risk21 by `11`, so it is not just the hand-prune replayed.
+- It is not pure top-k amplitude: only `52%` of E237 cells are E224 top-25 by absolute movement, though `96%` are top-50.
+- It is not a simple date-edge rule: near-test-edge-2 is `0.120` versus population `0.240`; train-gap-adjacent-2 is `0.240` versus `0.344`.
+- The strongest extra signal is latent residual/neighbor energy: E208 residual self norm/abs mean, E208 nearest-neighbor target distance, and E208 residual PC10.
+
+Submission policy stays:
+
+1. If testing learned JEPA Q3-tail, submit exactly `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+2. Do not submit lower-ranked E237 top13/top10/p05 siblings before public feedback. E239 says the motif is residual-energy-plus-top50, not a scalar top-k knob.
+3. If E237 wins, the next experiment should rebuild a Q3 decisive-cell JEPA target around E208 residual/NN-distance context.
+4. If E237 loses, the same motif becomes a shortcut warning and E237-family siblings should be closed rather than tuned.

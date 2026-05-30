@@ -3652,3 +3652,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E237 from E95 remains a Q3/S4 movement: Q3 abs share `0.466410`, S4 `0.415839`, cosine vs E224 `0.891501`.
 - Interpretation: public feedback on E237 is now identifiable. A win supports learned Q3 decisive-cell JEPA, a tie/small loss requires E224 contrast, and a branch loss closes same-family top-k tuning rather than just picking another E237 sibling.
 - Decision: if E237 is submitted, decode with `python3 analysis_outputs/e238_e237_public_feedback_decoder.py --score <PUBLIC_LB>`; if E224 is also known, add `--e224-score <E224_LB>`.
+
+## E239. E237 Cell Motif Atlas
+
+- Observe: E237 rolls back exactly `25` Q3 cells, but E238 showed only partial overlap with the E230 hand-prunes. Before treating E237 as a real JEPA target, we need to know whether those cells are just amplitude top-k, calendar edge cells, or a distinct latent motif.
+- Wonder: what hidden context makes the E237-selected Q3 cells unusual, and what distinguishes the E237-only cells from E230's hand-pruned risk/swing cells?
+- Method: `analysis_outputs/e239_e237_cell_motif_atlas.py` builds a row-level Q3 atlas for all `250` test rows. It joins E237/E224/E230/E154/E95 movement, E232/E208/E215 latent context, subject/date/train-adjacency features, and permutation enrichment tests for E237, E230, overlap, and disagreement selectors. It trains no model and creates no submission.
+- Result:
+  - report: `analysis_outputs/e239_e237_cell_motif_atlas_report.md`.
+  - E237 overlap remains partial: `13/25` with E230 swing25 and `11/21` with E230 risk21.
+  - E237 is not a pure top-25 amplitude rule: `52%` of E237 cells are in E224 top-25 absolute movement, while `96%` are in top-50.
+  - E237 is not an obvious test-edge/calendar-adjacent motif: near-test-edge-2 rate is `0.120` vs population `0.240`, and gap-adjacent-2 rate is `0.240` vs population `0.344`.
+  - strongest nontrivial enrichments are E208 latent residual/neighbor-distance signals: `e208_resid_self_abs_mean` lift `1.366`, `e208_nn_target_dist` lift `1.310`, `e208_resid_self_pc10` lift `6.734`.
+  - E237-only-not-swing25 cells retain amplitude/top50 enrichment but show weak id01/Tuesday enrichment; E230-risk-only-not-E237 instead has late-subject-position and far-from-train-run motifs.
+- Interpretation: E237 is partly amplitude-ranked, but the cell selection is not reducible to top-k, row edge, or train adjacency. The most plausible hidden object is Q3 movement under high E208 residual/neighbor-distance energy: a latent-context anomaly where E224's capped Q3 step is unusually risky. E230's hand risk-only cells appear to lean more on temporal/train-gap motifs, so E237 and E230 are related but not identical tail lenses.
+- Decision: no new submission from E239. If E237 wins, rebuild the next JEPA target around E208 residual/NN-distance Q3 decisive-cell context. If E237 loses, treat those same enrichments as a shortcut warning and do not submit lower-ranked E237 siblings.

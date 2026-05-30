@@ -2760,6 +2760,18 @@ target co-occurrence
 - public LB 관측 반응: after E237 public feedback, run the decoder. A clean win strengthens H232; tie/small loss requires E224 contrast; branch loss kills E237 siblings; E216-like fail kills the current cell translator target.
 - 제출 전략: no new submission from H233. Use the top E237 file only when the next public question is learned Q3 decisive-cell JEPA.
 
+### H234. E237's learned Q3 cells are a latent residual-energy motif, not just a top-k/calendar shortcut
+
+- 상태: 부분 지지 by E239 motif atlas; public LB 미확인.
+- 왜 그럴듯한가: E237 overlaps E230 hand-prunes only partially, yet passes actual-vs-E95 public-free stress. If it is real, the selected cells should have a context motif beyond "largest E224 movement" or obvious row/date edge.
+- 맞다면: E237 cells should not be fully explained by top-25 amplitude, subject edge, or train-date adjacency. They should instead show stable latent-context anomaly signals that are plausibly tied to Q3 tail risk.
+- 틀리다면: E237 would be nearly identical to E230 top swing/risk rows, or its selected cells would be almost entirely top-25 E224 movement / calendar-edge cells without additional latent enrichment.
+- 최소 실험: `analysis_outputs/e239_e237_cell_motif_atlas.py`.
+- 관측: E237 has only `13/25` overlap with E230 swing25 and `11/21` with E230 risk21. Only `52%` of E237 cells are E224 top-25 amplitude, though `96%` are top-50. Edge/calendar explanations weaken because near-test-edge-2 is `0.120` vs population `0.240`, and train-gap-adjacent-2 is `0.240` vs `0.344`. Strong enrichments appear in E208 latent residual/neighbor-distance features: `e208_resid_self_abs_mean`, `e208_nn_target_dist`, `e208_resid_self_norm`, `e208_resid_self_pc10`.
+- 성공/폐기 기준: supported as a local motif if E237 public is clean/micro win or beats E224 in contrast. If E237 branch-loses, reinterpret the same residual-energy motif as a learned shortcut that local stress failed to punish.
+- public LB 관측 반응: E237 win strengthens the Q3 residual-energy decisive-cell world; E237 tie keeps it diagnostic only; E237 loss closes E237 siblings and shifts the residual-energy features into the negative-control registry.
+- 제출 전략: no new file from H234. The only currently meaningful public test remains the fixed E237 top file; do not tune top-k or add residual-energy masks before public contrast.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

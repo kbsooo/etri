@@ -1746,6 +1746,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E238 locks clean support at `<=0.576276019`, unresolved tie through `0.576294330`, branch loss above `0.576306641`, and E216-like collapse above `0.576591330`. E237 changes `25` Q3 cells versus E224, overlaps E230 swing25 by `13`, and overlaps E230 risk21 by `11`.
 - Policy: use F203 only after an E237 public score is known. Do not create lower-ranked E237 siblings from one scalar public result; use the routebook to decide whether E224, E230, E166, E154, or a new target representation is the next question.
 
+### F204. E239 E237 Q3 residual-energy cell motif features
+
+- Hidden structure: the E237 Q3 cells may be high-movement Q3 cells under abnormal JEPA residual/nearest-neighbor context, rather than calendar-edge cells or a scalar top-k cutoff.
+- Candidates: E237/E224 Q3 logit delta, E224 top-25/top-50 movement rank, E230 swing/risk overlap flags, E208 residual self norm/abs mean/PC10, E208 nearest-neighbor target distance, E215 residual norms, subject/date/test-edge/train-adjacency diagnostics, and E237-only/E230-only disagreement selectors.
+- Label vs split test: valid only as a motif diagnostic. It uses the fixed E237 output and public-free latent/context features, not public labels. It must not become a new gate until E237 public feedback tells whether the motif is helpful or a shortcut.
+- Current evidence: E237 overlaps E230 only partially (`13/25` swing25, `11/21` risk21). It is amplitude-filtered but not pure top-k (`0.520` top-25, `0.960` top-50). Edge/calendar explanations weaken (`0.120` near-test-edge-2 vs `0.240` population; `0.240` gap-adjacent-2 vs `0.344`). E208 residual/NN features are strongly enriched, especially `e208_resid_self_abs_mean`, `e208_nn_target_dist`, and `e208_resid_self_pc10`.
+- Policy: if E237 wins, promote F204 into the next Q3 decisive-cell JEPA target design. If E237 loses, demote F204 to a shortcut/negative-control feature family. Do not submit a residual-energy top-k variant before that public contrast.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.
