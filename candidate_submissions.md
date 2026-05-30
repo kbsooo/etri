@@ -2091,3 +2091,33 @@ How to read public LB:
 - `<=0.5761589494`: lifestyle/day-state tail law is real enough to beat the numeric feature-NN1 smoothing frontier.
 - `0.5761589494..0.5762805676`: the signal is real but weaker than E247's exact body-plus-Q3 smoothing interaction.
 - `>=0.5762913298`: E266 materialization likely overfit E224/E154 geometry; next branch should overlay human/social gates directly on E247 rather than continuing E224-family rollback.
+
+## Update After E267 Public Loss And E268/E269
+
+Current best remains:
+
+1. **Public frontier:** `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public `0.5761589494`.
+
+E267 public result:
+
+- `analysis_outputs/submission_e267_humansocial_tail_balanced_2936100f.csv` public `0.5763294974`.
+- This rejects the E224/E154-style social rollback action, not the whole human/social hypothesis.
+
+New social follow-up candidates:
+
+1. **Preferred information sensor:** `analysis_outputs/submission_e269_combo_phonebed8_anti4_small_b27a2e23.csv`.
+   - Moves only `12` Q3 rows vs E247.
+   - Amplifies `8` E247-only phone-in-bed rows and counter-moves all `4` E256-only bright-light/low-phone rows.
+   - Best interpretation value: tests whether the social breakthrough is exactly the E247/E256 17-cell boundary.
+   - Expected public response: a win should be small but meaningful; a loss says E247 is already calibrated on this boundary.
+
+2. **Lower-risk ablation:** `analysis_outputs/submission_e269_anti_e256_tophalf_beta035_4e910856.csv`.
+   - Moves only `2` Q3 rows vs E247.
+   - Tests just the strongest half of the anti-E256 bright-light/low-phone hypothesis.
+   - Use this if the next slot should isolate the E256-only failure cause rather than combine both social actions.
+
+3. **Control:** `analysis_outputs/submission_e269_e247only_all_amp006_control_2cef7c9d.csv`.
+   - Moves all `13` E247-only Q3 rows with tiny amplification and no social selection.
+   - Use only as an ablation if a social-selected candidate wins or if we need to know whether selection mattered.
+
+Do not submit another E267/E224/E154 social rollback sibling before these direct E247-boundary sensors. E268 shows the useful social signal is story-specific and sparse; broad story PCA hurts blocked CV across all targets.

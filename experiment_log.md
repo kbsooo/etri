@@ -4064,3 +4064,29 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - movement versus E224: `34` cells over `25` rows; Q3 `25`, S4 `9`.
 - Interpretation: this is the first concrete “human/social diary -> hidden Q3/S4 tail state -> JEPA cell rollback” public sensor. It is not guaranteed to beat E247, but it is non-collinear enough to answer whether lifestyle state explains the residual tail beyond numeric smoothing.
 - Decision: if a single new file is tested from this branch, use `submission_e267_humansocial_tail_balanced_2936100f.csv`. A win over E247 supports human/social hidden-state tail law; a score between E247 and E256 supports real but weaker lifestyle signal; near/worse than E95 sends the branch back to a direct E247 overlay instead of E224-family rollback.
+
+## E268. Human/Social Story Atlas After E267 Public Miss
+
+- Observe: `submission_e267_humansocial_tail_balanced_2936100f.csv` public `0.5763294974` lost to E247 by `+0.0001705480`, but it used the older E224/E154 rollback body rather than acting directly on the E247/E256 boundary.
+- Wonder: did the human/social worldview fail, or did the action target fail?
+- Method: `analysis_outputs/e268_human_social_story_atlas.py` builds `35` explicit day-level stories from E262 all-raw lifelog features. Each story is tested by train label lift, subject/date-block CV, train/test shift, E247-only vs E256-only Q3 cell alignment, and E267 failed-movement exposure.
+- Result:
+  - strongest direct-gate story: `phone_in_bed`, with E247-only Q3 cohen_d `0.476689`, E247-vs-E256 cohen_d `1.164309`, E267 moved cohen_d `-0.259547`, dateblock Q3 delta `-0.001091`.
+  - strongest target stories include `single_app_monotony` dateblock Q3 delta `-0.008958`, `ritual_anchor` dateblock Q3 delta `-0.009102`, `bright_light_late` dateblock S4 delta `-0.013849`, and `app_entropy_scattered_day` dateblock Q3 delta `-0.006340`.
+  - E247-only Q3 rows are higher in `phone_in_bed` and `app_entropy_scattered_day`; E256-only rows are especially high in `bright_light_late` and low in phone-in-bed.
+  - broad PCA over all story features hurts blocked CV on every target, so the signal is sparse/story-specific, not a healthy broad latent to dump into a model.
+- Interpretation: human/social context is not dead. The current live hypothesis is sharper: E247's public-positive Q3 boundary looks like a small human-state split, especially "phone in bed without bright-light/heart-stress public-outing signature" versus "bright-light low-phone E256-only rows."
+- Decision: do not continue E224/E154 social rollback siblings. Materialize only a direct E247 boundary sensor on the 17 E247/E256 Q3 disagreement rows.
+
+## E269. Social Direct E247 Gate Materialization
+
+- Observe: E247 and E256 differ on only `17` Q3 rows: `13` E247-only rows and `4` E256-only rows. E256 lost publicly by `+0.0001216182`.
+- Wonder: can E268's human-state stories safely act on those 17 rows without touching the rest of the submission?
+- Method: `analysis_outputs/e269_social_direct_e247_gate_materializer.py` creates small E247-relative Q3 candidates. It amplifies E247-only rows selected by a phone-in-bed/low-bright/low-heart gate, counter-moves E256-only rows selected by bright-light/low-phone, or combines both.
+- Result:
+  - preferred file: `analysis_outputs/submission_e269_combo_phonebed8_anti4_small_b27a2e23.csv`.
+  - movement: `12` Q3 rows vs E247, L1 logit delta `0.124283781`, max abs logit delta `0.029623409`.
+  - it amplifies `8` E247-only rows and counter-moves all `4` E256-only rows.
+  - delta is strongly anti-E256 (`cos_delta_with_e256_fail_delta = -0.921266`) while preserving E247 rollback geometry (`cos_with_e247_rollback = 0.994237`).
+- Interpretation: this is a narrow public sensor, not a broad model. If it wins, the human/social breakthrough is the 17-cell E247/E256 boundary state. If it loses, E247 is likely already near the optimum on that boundary and the stories should remain diagnostic until a new target representation is found.
+- Decision: if testing one social follow-up, prefer `submission_e269_combo_phonebed8_anti4_small_b27a2e23.csv`; if using a lower-risk ablation first, use `submission_e269_anti_e256_tophalf_beta035_4e910856.csv` to ask only whether the E256-only bright/low-phone cells were harmful.

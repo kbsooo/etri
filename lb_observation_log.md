@@ -326,3 +326,13 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - interpretation: high-amplitude constrained smoothing loses the E247 edge. This strengthens E247 exact top34 / body-plus-rollback interaction and weakens E256-like high-amplitude sibling sweeps.
 - unresolved: E256 loss does not prove the `13` E247-only broad cells alone caused E247's win; E260 still marks the `4` E256-only high-amplitude additions as the first suspect.
 - next experiment: E224 only if body attribution is the explicit question; otherwise refresh non-collinear candidates with E247/E256 included as public anchors.
+
+## Public Observation: E267
+
+- submission file: `submission_e267_humansocial_tail_balanced_2936100f.csv`
+- public LB: `0.5763294974`
+- expected LB reaction: the file tested whether human/social lifestyle gates could safely choose a balanced E224/E154-style Q3/S4 tail rollback.
+- actual LB reaction: worse than E247 by `+0.0001705480`, worse than E95 by `+0.0000381676`, and worse than mixmin by `+0.0000228569`.
+- interpretation: public rejects this specific social-gated rollback materialization. The loss does not kill the broader social-state hypothesis because the file translated the story through an old E224/E154 branch rather than directly through the current E247 frontier.
+- unresolved: we still do not know whether social/context features identify the public tail, only that the chosen rollback action was too blunt or pointed at the wrong probability body.
+- next experiment: build a human/social hypothesis atlas that tests stories as falsifiable signals first; only materialize a direct E247 overlay if a story survives OOF, subject/block stress, train/test shift, and E267 movement-context checks.
