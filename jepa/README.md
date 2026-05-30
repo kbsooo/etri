@@ -2,6 +2,12 @@
 
 Created from the I-JEPA idea: predict abstract target-block representations from context, then use the learned predictability/residual structure as features for the sleep/lifelog multilabel task.
 
+## Paper Notes
+
+- `ijepa.pdf`: original I-JEPA reference.
+- `lejepa.pdf`: LeJEPA/SIGReg reference.
+- `whendoeslejepa.pdf`: identifiability reference. Main practical update: do not trust a JEPA-style latent just because it is isotropic or locally predictive. First audit whether positive-pair transitions have near-Gaussian marginals/increments, useful non-trivial autocorrelation, stable rank, and low alignment gap. See `whendoeslejepa_reading_notes.md`.
+
 ## What Was Built
 
 - `run_jepa_experiments.py`: builds JEPA-style features and scans them against the current stage2 OOF baseline.
