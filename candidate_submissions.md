@@ -1284,3 +1284,25 @@ Movement read:
 
 - E224 vs E95 is still highly collinear with E223 (`cos=0.996078`) and full E211 (`cos=0.975464`), so it is not a fresh representation lane.
 - It is nearly orthogonal to the failed E216 S2 miss (`cos=0.043542`), so E216's public miss does not automatically kill E224. It only supplies the support-tail stress logic.
+
+## Update After E226
+
+E226 scans the existing documented/materialized submission pool after the E216 public miss and E224 routebook. It is a candidate-order audit, not a new score forecast.
+
+Main result:
+
+1. JEPA slot remains `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`. It is the capped-Q3/S4 E211-family sensor.
+2. Best non-E224 independent worldview sensor is `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
+   - role: `broad_survivor_counterworld`.
+   - cos(E224) `0.074348`, cos(E216) `0.055999`, cos(E72) `0.108706`.
+   - expected focus `-0.000332077`, adverse `0.000713053`, support `0.465747`.
+   - interpretation: tests whether the safety atlas after E72/E101/E176/E216 became too conservative around broad survivor structure.
+3. Conservative repaired-branch counter-world remains `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+   - It is less broad and lower expected edge than E166, but easier to interpret as the repaired E144/E154 branch.
+
+Do not use these as next-file shortcuts:
+
+- E209/E210/E211/E223 as independent alternatives to E224. E226 classifies them as same Q3/S4 JEPA family.
+- E216 siblings. They are S2 bad-axis neighbors after the public miss.
+- `bridge_scan_candidates/submission_bridge_blend_m0p75_s1p25.csv`. E226 shape looks tempting, but E52 already rejected it as a mixmin-relative near-tie.
+- hardtail parent diagnostics such as E84/E86/E87/E89/E90/E108 unless the explicit question is revisiting the hardtail branch, not finding a new post-E224 worldview.

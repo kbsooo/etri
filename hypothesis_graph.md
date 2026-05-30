@@ -2604,6 +2604,18 @@ target co-occurrence
 - public LB 관측 반응: after E224 feedback, run the decoder before choosing any sibling. A win strengthens capped-Q3/S4-body; a loss worse than mixmin closes the current E211 translator.
 - 제출 전략: no new submission. Attach E225 to the E224 submission protocol.
 
+### H221. Existing post-E224 escape routes are mostly same-family or already rejected
+
+- 상태: 부분 지지 by E226 as candidate-order update.
+- 왜 그럴듯한가: E216 rejected the masked-family S2 public translation, and E224 is almost collinear with E223/full E211. If the existing pool contains a real escape route, it should be visibly non-collinear to those axes and should not sit near E72/E176/E216 public-negative movement.
+- 맞다면: most high-scoring JEPA siblings will collapse into the same Q3/S4 family, E216 siblings will be S2 bad-axis neighbors, and only a small set of non-collinear counter-world files will remain.
+- 틀리다면: E209/E210/E211/E223 siblings or bridge/mixmin-near files would survive as independent, public-meaningful alternatives under cosine, support-tail, and known-public vetoes.
+- 최소 실험: `analysis_outputs/e226_noncollinear_candidate_scan.py`.
+- 관측: evaluated `73` documented/materialized files. E209/E210/E211/E223/E224 are marked same Q3/S4 JEPA family. E216 siblings are S2 bad-axis neighbors. The E52 bridge blend is demoted as `local_rejected_neartie`. The top actionable independent file is `submission_e166_broadsurv_s0p01_d8bfa94b.csv` with cos(E224) `0.074348`, expected focus `-0.000332077`, adverse `0.000713053`, support `0.465747`; E154 remains the conservative repaired-branch counter-world.
+- 성공/폐기 기준: supported for existing-pool routing, not for public-score certification. The scan can rank what to test next but cannot prove E166 improves public LB.
+- public LB 관측 반응: if E166 wins, the safety atlas after E72/E101/E176/E216 was overconservative for broad survivor structure. If E166 loses, broad survivor/E72-active low-veto-null tension is likely public-negative and E154/search becomes the cleaner counter-world path.
+- 제출 전략: E224 for JEPA capped-Q3/S4. E166 for one independent broad worldview sensor. E154 for conservative repaired-branch sensor. Do not spend a public slot on E209/E210/E211/E223 as an "independent" E224 alternative.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

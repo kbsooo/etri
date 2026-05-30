@@ -1792,6 +1792,20 @@ E225 E224 public-feedback decoder:
 
 Stress implication after E225: the E224 public score must be read as a capped-Q3 translator test. A win does not authorize bigger Q3; a loss worse than mixmin closes the current E211-family expected-score lane until a new support/tail representation is built.
 
+E226 non-collinear candidate scan:
+
+- script: `analysis_outputs/e226_noncollinear_candidate_scan.py`.
+- report: `analysis_outputs/e226_noncollinear_candidate_scan_report.md`.
+- evaluated `73` documented/materialized files and skipped `2` duplicate references.
+- stress dimensions:
+  - cosine distance from E224/E223/E211/E216/E176/E72/E154/E101/mixmin.
+  - E222 support-tail anatomy: expected focus movement, adverse capacity, swing-weighted support, top-cell concentration.
+  - explicit vetoes for known public-negative anchors, same-Q3/S4 JEPA siblings, S2 bad-axis neighbors, E72/E176 bad-axis neighbors, hardtail parent diagnostics, high adverse capacity, and E52 local near-tie.
+- top actionable independent row: `submission_e166_broadsurv_s0p01_d8bfa94b.csv` with score `1.686847`, cos(E224) `0.074348`, cos(E216) `0.055999`, cos(E72) `0.108706`, expected focus `-0.000332077`, adverse `0.000713053`, support `0.465747`.
+- repaired-branch cluster remains live but not independent from itself: E144/E156/E157/E155/E143/E142/E154 form one family, with E154 retained as the conservative counter-world.
+
+Stress implication after E226: E224-neighbor files are not escape routes; they are amplitude variants of the same Q3/S4 translator. If a non-E224 public sensor is needed, E166 is the information-rich broad counter-world and E154 is the conservative repaired-branch counter-world. E216-style S2 and E52 bridge near-tie are closed until a new stress dimension is built.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

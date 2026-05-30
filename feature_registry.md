@@ -1642,6 +1642,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: E224 is collinear with E223 (`cos=0.996078`) and full E211 (`0.975464`) but far from E216 (`0.043542`). Therefore the public score should route capped-Q3 translator beliefs, not broad JEPA-family beliefs.
 - Policy: always run `analysis_outputs/e225_e224_public_feedback_decoder.py --score <PUBLIC_LB>` after E224 feedback. Do not select E223/E211/q3_scale siblings from scalar intuition.
 
+### F191. E226 movement-family and bad-axis scan features
+
+- Hidden structure: after a public miss, the next useful candidate may be defined more by movement-family geometry than by local CV. A file near the E224 line retests the same Q3/S4 translator; a file near the E216 S2 line inherits the masked-family S2 public miss; a file near E72/E176 inherits known public-negative axes.
+- Candidates: movement cosines versus E224/E223/E211/E216/E176/E72/E154/E101/mixmin, E222 support-tail metrics, known-public vetoes, E52 local near-tie veto, hardtail-parent diagnostic labels, and role labels such as `broad_survivor_counterworld`, `repaired_branch_counterworld`, `same_q3s4_jepa_family`, and `s2_bad_axis_neighbor`.
+- Label vs split test: valid as a candidate-routing diagnostic only. It uses known public outcomes to mark bad axes, so it must not become a score optimizer. It is unsafe as a public-LB predictor or as a reason to tune amplitudes after the fact.
+- Current evidence: `analysis_outputs/e226_noncollinear_candidate_scan.py` evaluated `73` documented/materialized files. The best actionable independent sensor is `submission_e166_broadsurv_s0p01_d8bfa94b.csv` with cos(E224) `0.074348`, cos(E216) `0.055999`, expected focus `-0.000332077`, adverse `0.000713053`, support `0.465747`. E154 remains the conservative repaired-branch counter-world. E209/E210/E211/E223 are same-Q3/S4 JEPA family, and E216 siblings are S2 bad-axis neighbors.
+- Policy: use F191 to prevent duplicate-world submissions. It can choose between E224, E166, and E154 by the hidden-world question being asked. It must not promote E166 as certified public improvement, and it must not resurrect E52 bridge or E216 siblings.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

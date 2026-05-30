@@ -1764,3 +1764,21 @@
 - Implementation issue possible: medium. The E224 gate is still a public-free stress proxy and support remains below `0.5`. Low for replacing E223 in submission order because the sweep is locked before public feedback and uses the same E222 failure criterion derived from E216.
 - Bottleneck implication: the JEPA bottleneck is amplitude-specific target translation. Stronger local Q3 improvement can be the wrong public question if it raises top-cell hard-label exposure.
 - Do not repeat: treating q3_scale `0.75` as an optimal constant. Re-evaluate target-specific scales under adverse capacity, support probability, and top-cell concentration whenever a JEPA movement is materialized.
+
+## FH196. E209/E210/E211/E223 are independent alternatives to E224
+
+- Failed hypothesis: if E224 is uncertain, nearby JEPA files such as E209/E210/E211/E223 can be used as independent fallback sensors.
+- Observed result: E226 marks them as the same Q3/S4 JEPA family. E224 is collinear with E223 (`0.996078`) and full E211 (`0.975464`); E209/E210 variants also sit on the same family line even when their scalar scores differ.
+- Why discard: another same-family file would mostly retest Q3/S4 amplitude/anchor details, not a new hidden-world law. E225 already provides the correct E224 feedback routebook.
+- Implementation issue possible: low. The movement vectors are deterministic submission deltas, not model-estimated features.
+- Bottleneck implication: the post-E224 question is not "which sibling has the prettiest local metric"; it is whether capped-Q3/S4 translation transfers at all. If it fails, search non-collinear structure.
+- Do not repeat: submitting E209/E210/E211/E223 as if they were a fresh JEPA lane after E224 feedback.
+
+## FH197. The E52 bridge near-tie can be revived by E226 shape
+
+- Failed hypothesis: because `bridge_scan_candidates/submission_bridge_blend_m0p75_s1p25.csv` has decent non-E224 shape, it should be revived as a post-E224 candidate.
+- Observed result: E226 classifies it as `local_rejected_neartie`, not a live candidate. E52 already conditioned binary worlds on mixmin and found no strict/loose better-than-mixmin replacement; this bridge was only a near-tie with positive median/max risk.
+- Why discard: movement shape alone cannot override a prior experiment that directly tested the mixmin-relative replacement claim.
+- Implementation issue possible: low for routing. The file can remain a diagnostic contrast, but not a submission candidate without new evidence.
+- Bottleneck implication: old near-ties are not the hidden 0.54 route. We need new structure, not re-ranking stale bridge files after a bad JEPA result.
+- Do not repeat: resurrecting bridge blends from cosmetic non-collinearity without a new falsifiable hypothesis.

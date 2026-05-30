@@ -3459,3 +3459,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E224 is nearly the same direction as E223 and E211 from E95: cosine vs E223 `0.996078`, vs full E211 `0.975464`, but almost orthogonal to the failed E216 S2 miss (`0.043542`).
 - Interpretation: E224 is a clean cap on the E211/E223 Q3 amplitude, not a new non-collinear JEPA family. Therefore public feedback is a capped-Q3 translator test. A win does not justify raising Q3; a loss worse than mixmin demotes the current E211 probability translator.
 - Decision: after E224 public feedback, run `python3 analysis_outputs/e225_e224_public_feedback_decoder.py --score <PUBLIC_LB>` before choosing any JEPA sibling. Do not submit E223, full-Q3 E211, q3_scale `0.5`, or E224 E95-anchor sibling from scalar intuition alone.
+
+## E226. Non-Collinear Candidate Scan After E224/E216
+
+- Observe: E216 is a severe public miss, while E224 is almost the same direction as E223/full E211. If the next action after E224 were another nearby JEPA amplitude variant, it would mostly retest the same capped-Q3/S4 translator.
+- Wonder: among existing materialized files, which candidates are genuinely non-collinear to E224 and not already ruled out by E216, E176, E72, E101, mixmin-safe loss, or E52 near-tie evidence?
+- Method: `analysis_outputs/e226_noncollinear_candidate_scan.py` scans documented/materialized submissions, computes movement cosines versus E224/E223/E211/E216/E176/E72/E154/E101/mixmin, applies the E222 support-tail audit, and demotes known-public-negative, same-Q3/S4-JEPA, S2-bad-axis, E72/E176-neighbor, hardtail-parent, high-adverse, and E52-near-tie files. No model is trained and no new submission is selected automatically.
+- Result:
+  - report: `analysis_outputs/e226_noncollinear_candidate_scan_report.md`.
+  - evaluated `73` files; skipped `2` duplicate references.
+  - top actionable independent sensor: `submission_e166_broadsurv_s0p01_d8bfa94b.csv`, role `broad_survivor_counterworld`, score `1.686847`, cos(E224) `0.074348`, cos(E216) `0.055999`, cos(E176) `0.604829`, cos(E72) `0.108706`, expected focus `-0.000332077`, adverse `0.000713053`, support `0.465747`, top1/expected `0.023370`.
+  - next family is repaired-branch: E144/E156/E157/E155/E143/E142/E154 are similar; E154 remains the clean conservative `repaired_branch_counterworld`.
+  - E209/E210/E211/E223/E224 are classified as the same Q3/S4 JEPA family, not independent escape routes.
+  - `bridge_scan_candidates/submission_bridge_blend_m0p75_s1p25.csv` is explicitly kept as `local_rejected_neartie` because E52 already rejected it as a mixmin-relative near-tie, not a replacement.
+- Interpretation: the live post-E224 choice is not "another E211 sibling." It is either E224 as the JEPA capped-Q3/S4 sensor, E166 as a broad safety-atlas-overconservatism sensor, or E154 as the conservative repaired-branch counter-world. E166 has better independent expected/tail anatomy than the repaired branch, but it is a worldview test, not a certified improvement.
+- Decision: no new submission from E226 alone. If the user asks for one existing non-E224 worldview sensor, use E166. If the question is conservative branch repair after broad failures, use E154. Do not submit E216 siblings, E209/E210/E211/E223 as "new" E224 alternatives, or the E52 bridge near-tie.
