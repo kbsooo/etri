@@ -2719,3 +2719,32 @@ Decision:
 
 - `app_entropy_scattered_day` is the current strongest public-free human/social JEPA state.
 - It is not submission-ready until materialized and passed through an E279-style matched-placebo governor.
+
+## E282 App-Entropy Materialization Governor
+
+Question: can the strongest E281 story-state become an actual E247-relative submission tensor without public LB?
+
+Method: `analysis_outputs/e282_appentropy_story_materializer.py`.
+
+- Story state: predict `app_entropy_scattered_day_subj_z` from all other numeric context families, excluding the routine-calendar/story columns.
+- Materialization: small logit edits on E247 for Q3, Q2/Q3, and Q2/Q3/S2; Q3 linear amplitudes were swept around the old-selector threshold.
+- Nulls: `726` matched row/subject/dateblock shuffles preserving each candidate's target-wise logit-delta distribution.
+- Local selector: E272 current-anchor pairwise selector plus E279-style matched-placebo gates.
+
+Result:
+
+- candidates audited: `22`.
+- matched null files: `726`.
+- old strict-promote candidates: `6`.
+- matched-placebo gate passes: `0`.
+- final `public_free_submission_ready=True`: `0`.
+- Q3-only linear is the only viable shape, but:
+  - amp `0.022` is too small: p90 `-0.000048005`;
+  - amp `0.023` barely crosses old strict but null strict rate is `0.121212`;
+  - amp `0.030` looks strong by old selector but null strict rate is `0.939394`.
+
+Decision:
+
+- Do not submit any E282 app-entropy file.
+- The hidden story-state is locally real, but the current probability edit is not row-placement-certified.
+- Public LB is preserved. This is exactly the intended use of the local governor: block a plausible story when it becomes indistinguishable from matched placebo movement at submit-scale.

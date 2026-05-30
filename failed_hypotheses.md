@@ -2079,3 +2079,12 @@
 - Implementation issue possible: medium. E281 uses a linear Ridge story predictor and logistic downstream head; a different nonlinear context model may rescue some stories. Low for the immediate decision because matched-null dominance is poor for these two leaders.
 - Bottleneck implication: the live human/social branch is now narrower: routine/attention fragmentation, especially `app_entropy_scattered_day`, not generic commute or light exposure.
 - Do not repeat: materializing a direct story gate from E280 rank alone without E281-style context-to-state and matched-null validation.
+
+## FH231. App-entropy story-state can be used as a simple Q3/Q2/S2 probability shift
+
+- Failed hypothesis: because `app_entropy_scattered_day` passes E281 both-split story-state gates, a simple E247-relative Q3/Q2/S2 logit materialization should be submission-ready.
+- Observed result: E282 tests `22` materialized candidates and `726` matched row/subject/dateblock nulls. Old strict-promote candidates appear for Q3 linear amplitudes `0.023` through `0.030`, but matched-placebo gate passes `0`.
+- Why discard: the usable amplitude window is contradictory. Below amp `0.023`, Q3 movement is below selector resolution. At amp `0.023+`, matched nulls also begin to pass; at amp `0.030`, null strict rate is `0.939394`. Q2/S2 additions degrade dominance rather than improving the story translation.
+- Implementation issue possible: medium. The materializer is linear and small, so a sharper nonlinear row/cell target may still work. Low for blocking these exact files, because nulls preserve the same movement magnitudes and destroy only row placement.
+- Bottleneck implication: the hidden social state is not the bottleneck. The bottleneck is translating it into a public-compatible row/cell probability edit without collapsing into generic Q3 prior movement.
+- Do not repeat: submitting `submission_e282_appentropy_*` files or scaling app-entropy Q3 shifts until they cross old selector thresholds without matched-placebo resistance.

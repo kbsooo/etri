@@ -3184,6 +3184,18 @@ target co-occurrence
 - public LB 관측 반응: if a future governed app-entropy candidate improves public LB, the world model shifts toward routine-fragmentation hidden state. If it loses after passing local governor, the failure is likely materialization/calibration, not absence of the story state.
 - 제출 전략: build a small `app_entropy_scattered_day` Q3/Q2/S2 materialization and audit it locally before any public LB.
 
+### H282: app-entropy can be submitted by simple Q3/Q2/S2 logit materialization
+
+- 상태: rejected for current materialization; underlying state remains supported.
+- 왜 그럴듯한가: E281 showed app-entropy predicted story-state is row-aligned on train OOF under both subject and dateblock splits, with strong Q3 and moderate Q2/S2 target effects.
+- 맞다면: an E247-relative app-entropy logit edit should pass the old public-anchor selector and beat matched row/subject/dateblock nulls at the same movement magnitude.
+- 틀리다면: either the edit stays below selector resolution, or once amplified enough to pass old strict, matched nulls also pass because the selector is reading generic target direction/magnitude rather than row placement.
+- 최소 실험: `analysis_outputs/e282_appentropy_story_materializer.py`.
+- 관측: `22` candidates and `726` matched nulls. Q3-only linear is the only live shape. Amp `0.022` is too small with p90 `-0.000048005`; amp `0.023` crosses old strict with p90 `-0.000050139` but has null strict rate `0.121212`; amp `0.030` has p90 `-0.000064970` but null strict rate `0.939394`. Q2/S2 additions degrade row-placement dominance.
+- 성공/폐기 기준: direct simple materialization rejected. No E282 file is public-free submission-ready.
+- public LB 관측 반응: no public LB should be spent on E282. If submitted anyway and it improves, it would imply the matched-null governor is too conservative for Q3 prior-like shifts, not that row-state materialization was certified.
+- 제출 전략: none. Next branch must predict a sharper Q3 row/cell tail target conditioned on app-entropy, or keep app-entropy as an energy/diagnostic feature only.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

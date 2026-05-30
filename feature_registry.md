@@ -2096,3 +2096,28 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - materialized candidates must still pass E279-style matched-placebo governance before public LB.
 - Failure condition:
   - if app-entropy materialization cannot beat matched nulls, keep story-state features for diagnostics/row-slice analysis only and do not create more direct social gates.
+
+## E282 App-Entropy Materialization Policy
+
+- Target hypothesis tested: `app_entropy_scattered_day` can be translated from a validated story-state into an E247-relative probability tensor.
+- Feature/representation source:
+  - E281 context-to-story-state predictor;
+  - target direction from E281 target deltas and train logistic state coefficients;
+  - E247-relative logit edits for Q3, Q2, and S2.
+- Validation result:
+  - candidates: `22`;
+  - matched nulls: `726`;
+  - old strict-promote candidates: `6`;
+  - matched-placebo candidates: `0`;
+  - public-ready candidates: `0`.
+- Updated registry status:
+  - `app_entropy_scattered_day` remains approved as a diagnostic hidden state and future row/cell-target context feature.
+  - It is not approved for direct submission movement.
+  - Q3-only linear movement is directionally alive but not row-placement-certified.
+  - Q2/S2 additions are not approved for this materialization route.
+- Adopt rule for future app-entropy features:
+  - use app-entropy as context or energy, not as a scalar probability shift;
+  - require matched-null resistance at the final tensor level;
+  - any new candidate must show that row/cell placement matters, not only Q3 prior direction.
+- Failure condition:
+  - if a future app-entropy candidate only becomes strong after nulls also pass, classify it as calibration/prior movement and block public submission.

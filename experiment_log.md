@@ -4267,3 +4267,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E280 leaders `commute_workday` and `bright_light_late` do not survive E281 as overall row selectors.
 - Interpretation: the first concrete social/human breakthrough candidate is not commute, light, or payday. It is routine fragmentation / attention entropy: days where app usage is scattered encode a hidden subjective sleep state that is predictable from other context and locally row-aligned beyond matched nulls.
 - Decision: still no public submission. The next materialization, if any, should be an `app_entropy_scattered_day` story-state candidate and must pass a separate public-free materialization governor before any public LB slot is used.
+
+## E282. App-Entropy Story-State Materializer
+
+- Observe: E281 made `app_entropy_scattered_day` the only both-split human/social JEPA state, but this still had not been translated into an E247-relative submission tensor.
+- Wonder: can routine/attention fragmentation become a small Q3/Q2/S2 probability edit whose row placement beats matched row/subject/dateblock nulls?
+- Method: `analysis_outputs/e282_appentropy_story_materializer.py` predicts app-entropy story state from other context families, derives target direction from E281/train logistic support, materializes `22` E247-relative candidates, and scores them plus `726` matched nulls through the E272 public-anchor selector. No public LB is used.
+- Result:
+  - state prediction remains strong: subject5 R2 `0.419010`, dateblock5 R2 `0.728347`.
+  - supported target directions are Q3, Q2, S2, but only Q3-only linear movement looks locally useful.
+  - Q2/Q3 and Q2/Q3/S2 variants lose row-placement dominance and fall to selector-resolution or adverse zones.
+  - Q3 linear amplitudes `0.023` to `0.030` pass the old strict selector, but all are blocked by matched placebos.
+  - near-threshold example: `submission_e282_appentropy_q3_linear_a0p023_ce916f68.csv` has old promote, p90 `-0.000050139`, but null strict rate `0.121212`, above the `<=0.10` governor bar.
+  - larger example: `submission_e282_appentropy_q3_linear_a0p030_798f561b.csv` has p90 `-0.000064970`, but null strict rate `0.939394`.
+  - final public-free submission-ready candidates: `0`.
+- Interpretation: app-entropy is a real latent story-state, but its current probability translation is not a row-aligned hidden-state reconstruction. At submit-scale, it collapses into generic Q3 direction/prior movement that matched nulls can reproduce.
+- Decision: no E282 public submission. Keep app-entropy as a diagnostic/state feature. The next breakthrough needs either a sharper cell/row target for Q3 routine-fragmentation or a different social story-state materialization that remains distinguishable from nulls at submit-scale.

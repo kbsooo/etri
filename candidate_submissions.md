@@ -2370,3 +2370,44 @@ Do not submit:
 - `commute_workday` direct gate: failed E281 as an overall row selector.
 - `bright_light_late` direct gate: failed E281 despite E280 transfer score.
 - payday/cash-flow direct gates: still diagnostic or transfer-test only, not submission-ready.
+
+## Update After E282 App-Entropy Materializer
+
+Current submission policy remains: **no new public submission.**
+
+What was tested:
+
+- `app_entropy_scattered_day` was materialized into `22` E247-relative candidates.
+- Target scopes: Q3, Q2/Q3, Q2/Q3/S2.
+- Shapes: continuous linear state and tail-only state.
+- Local matched-null audit: `726` row/subject/dateblock nulls.
+
+What survived:
+
+- The story-state itself survived again:
+  - subject5 R2 `0.419010`;
+  - dateblock5 R2 `0.728347`.
+- Q3-only linear movement is directionally alive.
+
+What failed:
+
+- Q2 and S2 additions weakened the candidate despite train support.
+- Tail-only materialization was too small.
+- Q3 linear materialization has a bad threshold:
+  - below amp `0.023`, it is too small for selector resolution;
+  - at amp `0.023+`, it passes old strict but matched nulls also pass.
+
+Do not submit these E282 files:
+
+- `analysis_outputs/submission_e282_appentropy_q3_linear_a0p023_ce916f68.csv`
+- `analysis_outputs/submission_e282_appentropy_q3_linear_a0p024_3aa39b55.csv`
+- `analysis_outputs/submission_e282_appentropy_q3_linear_a0p025_29551469.csv`
+- `analysis_outputs/submission_e282_appentropy_q3_linear_a0p026_136f92ff.csv`
+- `analysis_outputs/submission_e282_appentropy_q3_linear_a0p028_8f5c4791.csv`
+- `analysis_outputs/submission_e282_appentropy_q3_linear_a0p030_798f561b.csv`
+
+Reason: they are not hidden-row-state recoveries yet. They are mostly generic Q3 direction/prior movement under the current public-anchor selector, because matched placebo movement reaches the same gate.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
