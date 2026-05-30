@@ -2532,6 +2532,18 @@ target co-occurrence
 - public LB 관측 반응: a future S2-gated JEPA file should only be submitted if it reduces low-support S2 swing while preserving local/geometry gains.
 - 제출 전략: none yet. Build an S2-tail audit/gate first; E211 Q3/S4 remains the live JEPA submission lane.
 
+### H215. A simple support/tail threshold can rescue E216 S2
+
+- 상태: 반증 by E220.
+- 왜 그럴듯한가: E219 identified support probability as the missing stress dimension. A threshold on focus/subject/nearest support or a drop of the E219 posterior-risk top cells might remove the public-adverse tail while retaining the S2 expected gain.
+- 맞다면: some gate should keep nontrivial S2 cells, have negative expected focus movement, adverse capacity below the observed E216 miss `0.0009951790`, support probability above `0.5`, and low simulation probability of matching the observed miss.
+- 틀리다면: high-support gates will lose the expected gain, while expected-negative gates will keep too much adverse capacity.
+- 최소 실험: `analysis_outputs/e220_s2_support_tail_gate_audit.py`.
+- 관측: no gate passes. `focus_support_ge_0p7` has support `0.791501` and adverse `0.000209735`, but expected focus is positive `+0.000018940`. `focus_support_ge_0p6_expected_neg` has expected `-0.000578857`, but adverse `0.001402108`, above the observed miss. `expected_neg_only` has expected `-0.001204825`, but adverse `0.002118163`.
+- 성공/폐기 기준: rejected for simple threshold/drop gates. The diagnosis remains useful, but the repair needs a richer OOF-reproducible support classifier.
+- public LB 관측 반응: no E220 submission should be used. A future S2 candidate must show both expected gain and bounded adverse capacity under a trainable gate.
+- 제출 전략: none. Keep E216/E220 as negative evidence and continue with E211 or a new S2 support-model experiment.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

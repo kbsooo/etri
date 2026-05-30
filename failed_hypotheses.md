@@ -1728,3 +1728,12 @@
 - Implementation issue possible: medium. Smaller scale may lose less, but E219 shows E95-anchor and lower-scale siblings are not automatically safe because the pure S2 graft has enough adverse capacity. Low for keeping E216 as a next submission lane because the first public sensor directly rejects its selection logic.
 - Bottleneck implication: JEPA can expose local latent signal, but S2 translation is especially public-tail brittle. The missing stress dimension is support probability: focus swing-weighted support for the S2 graft is only `0.473945`, below `0.5`, despite slightly favorable expected delta.
 - Do not repeat: submitting remaining E216 siblings as automatic followups. First explain why S2-only failed despite passing the stress stack, or rebuild the translator with a target-specific public-tail audit.
+
+## FH192. A simple S2 support/tail threshold can rescue E216
+
+- Failed hypothesis: E219's support-probability diagnosis can be turned into a simple threshold or top-risk-cell drop that preserves E216's favorable S2 expected movement while bounding public-tail loss.
+- Observed result: E220 scans focus/subject/nearest support thresholds, expected-negative filters, and E219 posterior-risk drops. No gate passes. High-support gates are expected-adverse (`focus_support_ge_0p7` expected `+0.000018940`), while expected-negative gates remain worst-case unsafe (`focus_support_ge_0p6_expected_neg` adverse `0.001402108`; `expected_neg_only` adverse `0.002118163`, both above the observed E216 miss `0.0009951790`).
+- Why discard: the support-safe cells and expected-helpful cells are not the same simple subset. A scalar support threshold just trades one failure mode for another.
+- Implementation issue possible: medium. A richer trainable gate may still work, but the current public-tail threshold/drop rules are not enough and should not create a submission.
+- Bottleneck implication: S2 needs a real translator, not a post-hoc public-tail threshold. This strengthens the view that 0.576x is a calibration/hidden-subset tail bottleneck rather than an encoder-capacity bottleneck.
+- Do not repeat: submitting an E220 thresholded S2 file without an OOF-reproducible support model.

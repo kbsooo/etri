@@ -1599,7 +1599,8 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Label vs split test: selected only after local OOF, subject-half, geometry, bad-axis, and hard-tail frontier stress.
 - Current evidence: `s2_rank` local delta `-0.000624`, subject-half win `0.934615`, geometry `-0.000686`; selected files were `submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv`, `submission_e216_maskfam_jepa_s2_rank_e95_s0p75_4f8dc44d.csv`, `submission_e216_maskfam_jepa_s2_rank_e154_s0p5_0ca3d931.csv`, and `submission_e216_maskfam_jepa_s2_rank_e95_s0p5_4516fb93.csv`. Public feedback on the first file was `0.5772865088`, `+0.0009951790` worse than E95.
 - E219 tail audit: pure S2 graft has enough adverse capacity (`0.006048995`) to explain the public miss, while E154 body alone does not (`0.000924070`). The weak point is support geometry: focus swing-weighted support probability is `0.473945`, below `0.5`, despite slightly favorable expected delta.
-- Policy: treat E216 S2 features as diagnostics and negative controls. Do not submit remaining E216 siblings unless a targeted S2 support/tail gate prunes the E219 top-cell pattern and a new translator passes stricter stress.
+- E220 gate audit: no simple support/tail threshold rescues the feature. High-support cells become expected-adverse (`focus_support_ge_0p7` expected `+0.000018940`), while expected-negative cells keep adverse capacity above the observed miss (`focus_support_ge_0p6_expected_neg` adverse `0.001402108`).
+- Policy: treat E216 S2 features as diagnostics and negative controls. Do not submit remaining E216 siblings or simple E220 threshold variants. Only a train/OOF-reproducible support model can reopen this feature family.
 
 ### F186. E217 teacher-student tabular JEPA energy
 

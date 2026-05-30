@@ -3374,3 +3374,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - near-observed worlds attribute essentially all loss to S2: S2 graft component mean `0.000920169` with `100.4%` share; E154 body is near zero/slightly helpful.
 - Interpretation: the missing stress dimension is not generic bad-axis cosine or anchor body; it is S2 tail support. E216 selected a movement with small favorable expectation but sub-0.5 support probability, so a small hidden-public skew can flip it hard.
 - Decision: do not submit E216 E95 or scale `0.5` siblings as "safer" by default; pure S2 variants have enough adverse capacity too. Any future masked-family JEPA translator needs an explicit S2 support/tail gate using the E219 top-cell pattern before it can re-enter candidate order.
+
+## E220. S2 Support Tail Gate Audit
+
+- Observe: E219 suggested a repair direction: prune E216's S2 graft by support probability or near-observed top-cell risk.
+- Wonder: can a simple S2 support/tail gate reduce adverse capacity below the observed E216 miss while preserving negative expected movement?
+- Method: `analysis_outputs/e220_s2_support_tail_gate_audit.py` scans focus/subject/nearest support thresholds, expected-negative filters, and E219 posterior-risk top-cell drops. It evaluates expected focus delta, all-adverse capacity, support-weighted probability, and focus-prior simulation risk. No submission is selected automatically.
+- Result:
+  - report: `analysis_outputs/e220_s2_support_tail_gate_report.md`.
+  - no gate passes full criteria.
+  - high-support gates are too small and expected-adverse: `focus_support_ge_0p7` keeps `7` cells, support `0.791501`, adverse `0.000209735`, but expected focus is `+0.000018940`.
+  - expected-negative gates keep signal but remain worst-case unsafe: `focus_support_ge_0p6_expected_neg` keeps `61` cells, expected `-0.000578857`, but adverse `0.001402108`, above the observed E216 miss.
+  - pure expected-negative pruning is locally tempting but still violates the adverse-capacity guard: `expected_neg_only` expected `-0.001204825`, adverse `0.002118163`.
+- Interpretation: the E219 diagnosis is real but not trivially repairable. The S2 cells that look support-safe are not the cells that carry favorable expected movement; the favorable cells still have enough adverse capacity to recreate a public miss.
+- Decision: no E220 submission. E216 remains closed as a submission lane. The next viable S2 work would need a train/OOF-reproducible support classifier, not a simple public-tail threshold.

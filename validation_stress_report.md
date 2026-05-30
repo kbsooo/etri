@@ -1726,6 +1726,17 @@ E219 root-cause audit:
 
 Stress implication after E219: the old gate over-weighted expected focus delta and under-weighted support probability. Future S2 JEPA materialization needs a `support_prob_swing_weighted > 0.5` or equivalent low-support-tail guard, plus top-cell pruning, before it can be public-safe.
 
+E220 support-gate audit:
+
+- script: `analysis_outputs/e220_s2_support_tail_gate_audit.py`.
+- report: `analysis_outputs/e220_s2_support_tail_gate_report.md`.
+- no simple support/tail gate passes full criteria.
+- High support is not enough: `focus_support_ge_0p7` keeps only `7` cells and has adverse capacity `0.000209735`, but expected focus movement is bad (`+0.000018940`).
+- Expected-negative is not enough: `focus_support_ge_0p6_expected_neg` keeps `61` cells with expected `-0.000578857`, but adverse capacity `0.001402108` is still above the observed E216 miss.
+- Pure expected-negative is larger but also unsafe: `expected_neg_only` expected `-0.001204825`, adverse `0.002118163`.
+
+Stress implication after E220: add a support-probability metric to future stress reports, but do not treat thresholding as a rescue. S2 JEPA needs a train/OOF-reproducible support model before any new submission file is actionable.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.
