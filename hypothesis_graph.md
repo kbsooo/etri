@@ -3433,6 +3433,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent. If a later constrained placement-prior candidate passes large-null confirmation, public LB can be used as a scarce sensor.
 - 제출 전략: none yet. Next strategy is E303-style constrained mean-placement prior followed by E301-style large-null confirmation.
 
+### H303: E302's S4 mean-placement prior is strong enough to generate a public-free candidate
+
+- 상태: rejected as a submission strategy; retained as diagnostic evidence.
+- 왜 그럴듯한가: E302 found `human_all` mean-health Spearman `0.400962`, so a constrained generator might place the E299 S4 movement in rows/dateblocks that matched nulls cannot reproduce.
+- 맞다면: mean-prior-ranked S4 masks should pass the old selector and also show low null strict rate, p90 dominance, mean dominance, and stable mode-wise dominance under row/subject/dateblock/sign shuffles.
+- 틀리다면: many candidates may look good to the old selector, but matched nulls should reproduce their mean edge too often.
+- 최소 실험: `analysis_outputs/e303_s4_mean_prior_materializer.py`.
+- 관측: generated `260` candidates, old-strict `183`, null-evaluated `12`, public-free ready `0`. Best null strict rate was `0.187500`, best mean dominance `0.695312`, and best actual p90 `-0.000074119`.
+- 성공/폐기 기준: reject E302-prior mask generation as a public submission path. Keep the weak human-placement signal as a diagnostic for future block-placement targets.
+- public LB 관측 반응: no public LB should be spent on E303 files.
+- 제출 전략: none. The next submission path needs a new invariant for hidden subject/dateblock placement, not another S4 mask derived from the same prior.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

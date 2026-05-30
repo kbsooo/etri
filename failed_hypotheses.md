@@ -2250,3 +2250,12 @@
 - Implementation issue possible: medium. E302 is trained on E301 placement worlds, not independent labeled public data. But this is enough to reject using E302 as a reason to submit E300.
 - Bottleneck implication: p90/tail visibility is the easy shortcut. The next healthy target is mean-placement under subject/dateblock nulls.
 - Do not repeat: presenting E300 as human-theory validated because it aligns with p90 or because some diary features predict placement health.
+
+## FH250. E302 mean-placement prior can directly materialize a public-free S4 submission
+
+- Failed hypothesis: the weak E302 human diary mean-placement decoder is strong enough to rank S4 masks so that the resulting candidate is both selector-visible and matched-null rare.
+- Observed result: E303 generated `260` S4-only candidates and found `183` old-strict candidates, but `12` selected candidates against row/subject/dateblock/sign nulls produced public-free ready `0`. Best null strict rate was `0.187500`, best mean dominance `0.695312`, and best p90 `-0.000074119`.
+- Why discard: the action layer still collapses into a placement pattern that matched nulls can reproduce. The old selector sees useful-looking S4 movement, but the large-null governor does not certify row/block placement.
+- Implementation issue possible: medium. E303 used a constrained handcrafted mask family and a decoder trained on E301 placement worlds. A new target that predicts outcome health directly may still work. Low for rejecting all E303 files because the matched-null failure is direct.
+- Bottleneck implication: the S4 bottleneck is not target direction or p90/tail visibility. It is hidden subject/dateblock placement.
+- Do not repeat: submitting `submission_e303_s4meanprior_*.csv` or running another E302-prior mask/multiplier sweep without a new block-placement invariant.

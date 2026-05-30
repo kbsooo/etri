@@ -4630,3 +4630,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E300 actual predicted p90 rank: `0.000000`, matching its strong p90/tail behavior.
 - Interpretation: human diary features do contain some subject/dateblock placement-health signal, especially around bedtime-phone, mobility, sensor measurement, physiology/activity JEPA residuals, social communication, and night-out mobility. But this signal explains the mean axis only weakly and does not certify E300. The exact E301 pattern is reproduced: p90 is easy to make look good; mean placement is the hard axis.
 - Decision: no public submission and no E301 null submission. Next step, if continuing S4, is a constrained placement prior that optimizes mean health from the human placement decoder and then reruns E301-style large-null confirmation.
+
+## E303. S4 Mean-Placement Prior Materializer
+
+- Observe: E302 gave a weak but real decoder for S4 mean-placement health, while E301 showed that p90/sign edges can be misleading.
+- Wonder: can that decoder be used as a constrained generator, not only a diagnostic, and produce a public-free S4 candidate that survives matched nulls?
+- Method: `analysis_outputs/e303_s4_mean_prior_materializer.py` trains placement-health decoders on E301 null placements, ranks S4 masks from the E299 parent movement by predicted mean health, materializes S4-only E247 edits, prefilters with the current-anchor selector, and confirms selected rows against row/subject/dateblock/sign nulls. No public LB was used.
+- Result:
+  - generated candidates: `260`;
+  - old strict prefilter candidates: `183`;
+  - null-evaluated candidates: `12`;
+  - public-free ready candidates: `0`;
+  - best null strict rate: `0.187500`;
+  - best mean dominance: `0.695312`;
+  - best actual p90: `-0.000074119`.
+- Interpretation: the E302 human placement prior is diagnostic, but it is not yet a submission generator. It can produce selector-visible S4 candidates, but matched nulls still reproduce too much of the mean edge. The old strict selector remains a prefilter only, not a public-free certificate.
+- Decision: no E303 public submission. The current S4 mask-surgery branch should pause unless the next experiment introduces a genuinely new block-placement target; otherwise the work should pivot back to broader episode/block-state representation.

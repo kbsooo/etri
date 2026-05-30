@@ -2569,3 +2569,30 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - do not choose a null placement itself as a submission.
 - Failure condition:
   - if a placement prior improves p90 but not mean dominance under large nulls, classify it as another visibility shortcut.
+
+## E303 S4 Mean-Prior Materialization Policy
+
+- Target hypothesis tested: the E302 mean-placement decoder can be used to generate public-free S4 candidates.
+- Feature/representation source:
+  - E301 placement-health lab;
+  - E302 human diary/story/episode placement decoders;
+  - E299 parent S4 movement;
+  - mean-prior row/drop/dateblock masks;
+  - row/subject/dateblock/sign matched null confirmation.
+- Validation result:
+  - generated candidates: `260`;
+  - old strict candidates: `183`;
+  - null-evaluated candidates: `12`;
+  - public-free ready candidates: `0`;
+  - best null strict rate: `0.187500`;
+  - best mean dominance: `0.695312`.
+- Updated registry status:
+  - E302 mean-prior features are not approved as direct action features;
+  - S4 sign/tail features remain diagnostic;
+  - S4 mask-surgery candidates require a new block-placement target before more public testing.
+- Adopt rule for future features:
+  - do not promote a candidate because it is old-strict or mean-prior-ranked;
+  - require matched-null rarity and mode-wise mean dominance;
+  - if the feature cannot separate from subject/dateblock nulls, keep it as latent diagnostics only.
+- Failure condition:
+  - if a future S4 feature reproduces E303's pattern, many old-strict rows but zero large-null ready rows, classify it as action-layer shortcut and stop that branch.

@@ -2412,6 +2412,31 @@ Current best public file remains:
 
 - `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
 
+## Update After E303 S4 Mean-Placement Prior
+
+Current submission policy remains: **no new public submission.**
+
+Why:
+
+- E303 generated `260` S4 mean-prior candidates from the E302 human placement decoder.
+- `183` candidates passed the old strict prefilter, so the branch can still create attractive-looking files.
+- After matched row/subject/dateblock/sign null confirmation, `0` candidates were public-free ready.
+- The best null strict rate was only `0.187500`, and the best mean dominance was `0.695312`, just below the conservative line while still weak by mode.
+
+Do not submit:
+
+- any `analysis_outputs/submission_e303_s4meanprior_*.csv` file.
+
+Meaning:
+
+- Public LB should be preserved.
+- The S4 sign/tail branch is not dead, but mask surgery is no longer the highest-value path.
+- A future S4 candidate must learn a new block-placement invariant, not only reuse the E302 mean prior.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
 ## Update After E302 S4 Placement-Health Decoder
 
 Current submission policy remains: **no new public submission.**

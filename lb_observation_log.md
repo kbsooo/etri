@@ -635,3 +635,19 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - E300 actual p90 predicted rank pct under `human_all_plus_topology`: `0.000000`.
 - interpretation: human diary context weakly explains mean placement health, but it does not make E300 exceptional on the failing axis. The branch remains diagnostic.
 - next experiment: build a constrained S4 mean-placement prior from the E302 decoder and rerun large-null confirmation, or abandon S4 mask surgery if that fails.
+
+## Public-Free Observation: E303
+
+- submission files: `analysis_outputs/submission_e303_s4meanprior_*.csv`.
+- public LB: not submitted.
+- reason not submitted: no E303 candidate passed the local large-null governor.
+- local observation:
+  - generated candidates: `260`;
+  - old strict prefilter candidates: `183`;
+  - null-evaluated candidates: `12`;
+  - public-free ready files: `0`;
+  - best null strict rate: `0.187500`;
+  - best mean dominance: `0.695312`;
+  - best actual p90: `-0.000074119`.
+- interpretation: the E302 human placement prior creates attractive S4 movements, but public-free checks still see subject/dateblock placement as reproducible by null worlds.
+- next experiment: do not spend public LB on E303. Either define a new hidden block-placement target or pivot away from S4 mask surgery.

@@ -3302,3 +3302,29 @@ Decision:
 - E302 does not produce a submission candidate.
 - It supports a narrower next validator: optimize and confirm the mean-placement axis, not p90/tail visibility.
 - Human/social context has enough signal to justify one constrained S4 placement-prior experiment, but not enough to override E301 rejection.
+
+## E303 S4 Mean-Placement Prior Stress
+
+Question: can the E302 mean-placement prior become a public-free S4 candidate generator?
+
+Method: `analysis_outputs/e303_s4_mean_prior_materializer.py`.
+
+- Generated S4-only candidates: `260`.
+- Old strict prefilter candidates: `183`.
+- Null-evaluated candidates: `12`.
+- Null stress: `32` row, `32` subject, `32` dateblock, and `32` sign nulls per selected candidate.
+- Public LB: not used.
+
+Result:
+
+- public-free ready candidates: `0`.
+- best null strict rate: `0.187500`.
+- best mean dominance: `0.695312`.
+- best actual p90: `-0.000074119`.
+- the best-looking rows still fail conservative gates because null strict rate remains above the `0.10` scarce-public line and worst-mode mean dominance is weak.
+
+Decision:
+
+- No E303 file should be submitted.
+- E302's human placement prior remains a diagnostic feature, not an action-layer feature.
+- Future S4 work needs a new hidden block-placement target; another mask or multiplier sweep is low value.
