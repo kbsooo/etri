@@ -1634,6 +1634,14 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Current evidence: q3_scale `0.625` is the best current Pareto knee. `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv` has local delta `-0.001098893`, geometry delta `-0.000505582`, expected focus `-0.000623352`, adverse `0.003400775`, support `0.465984`, and Q3 top1/expected `0.875120`.
 - Policy: prefer F189 over F188/E223 for the next JEPA-family public sensor. Keep E223 as an ablation and do not generalize the `0.625` scale to other targets without a fresh support-tail audit.
 
+### F190. E225 E224 public-feedback routebook
+
+- Hidden structure: E224 is a public observation protocol, not just a probability tensor. The same score can otherwise be misread as Q3 scale evidence, anchor evidence, or JEPA evidence.
+- Candidates: score bands relative to E95/E101/mixmin/E216, E224/E223/E211/E216 movement cosines, target absolute movement shares, and forbidden-action rules.
+- Label vs split test: valid as governance because it uses known public anchors and locked submission tensors. Invalid as a score predictor or label inference mechanism.
+- Current evidence: E224 is collinear with E223 (`cos=0.996078`) and full E211 (`0.975464`) but far from E216 (`0.043542`). Therefore the public score should route capped-Q3 translator beliefs, not broad JEPA-family beliefs.
+- Policy: always run `analysis_outputs/e225_e224_public_feedback_decoder.py --score <PUBLIC_LB>` after E224 feedback. Do not select E223/E211/q3_scale siblings from scalar intuition.
+
 ## Current Feature Policy
 
 - Direct feature addition is paused unless it maps to a hypothesis and stress test.

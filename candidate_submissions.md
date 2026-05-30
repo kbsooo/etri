@@ -1262,3 +1262,25 @@ Interpretation rule:
 
 - If E224 beats E95/E216 and ideally the public frontier, the update is specific: E211's S4 body is useful, but Q3 must be capped more aggressively than E223.
 - If E224 loses around E216 scale, demote the current E211 probability translator. The JEPA axes may still be real, but this translation into public probabilities is not support-safe.
+
+## Update After E225
+
+E225 locks the public-feedback interpretation for E224 before submission.
+
+Use this command after an E224 score is known:
+
+`python3 analysis_outputs/e225_e224_public_feedback_decoder.py --score <PUBLIC_LB>`
+
+Score bands:
+
+- `<=0.576276019`: clean or stronger win. Promote capped-Q3/S4-body as public-readable, but do not raise Q3 to `0.75/1.0` without a new tail audit.
+- `0.576276019..0.576288330`: micro win. Keep E224 preferred, but run exact attribution before any sibling.
+- `0.576288330..0.576294330`: tie. E224 is underresolved; keep E95 practical.
+- `0.576294330..0.576300366`: small loss. Do not submit another amplitude sibling; audit E154 body vs Q3/S4 residual.
+- `0.576300366..0.576306641`: mixmin-safe loss. Demote E211/E223/E224 as expected-score followups.
+- `>0.576306641`: branch loss or worse. Close current E211-family probability translator until a new support/tail target is built.
+
+Movement read:
+
+- E224 vs E95 is still highly collinear with E223 (`cos=0.996078`) and full E211 (`cos=0.975464`), so it is not a fresh representation lane.
+- It is nearly orthogonal to the failed E216 S2 miss (`cos=0.043542`), so E216's public miss does not automatically kill E224. It only supplies the support-tail stress logic.

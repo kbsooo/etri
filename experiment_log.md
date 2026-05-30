@@ -3445,3 +3445,17 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - q3_scale `0.50` is safer on adverse capacity but gives up too much local signal for this JEPA sensor role.
 - Interpretation: E224 sharpens E223. The live JEPA law is not "use the strongest Q3/S4 latent" and not even "Q3 0.75 is enough"; it is "S4 body plus a capped Q3 residual around `0.625` gives the best current tail/readability tradeoff." Support remains below `0.5`, so this is still a sensor, not a certified safe move.
 - Decision: E224 supersedes E223 as the preferred JEPA-family public sensor. If submitting one JEPA-derived file now, use `submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`. Interpret a public win as evidence that reduced-Q3/S4-body translation is public-aligned; interpret a loss as a rejection of the current E211 probability translator rather than a rejection of JEPA axes themselves.
+
+## E225. E224 Public Feedback Decoder
+
+- Observe: E224 produces a concrete JEPA-family candidate, but a single public score would otherwise invite post-hoc Q3 scale tuning.
+- Wonder: before E224 is submitted, can we lock how each public score band should update the hidden-world model?
+- Method: `analysis_outputs/e225_e224_public_feedback_decoder.py` builds an executable routebook for `submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`. It joins known public anchors E95/E101/mixmin/E216 with E224/E223/E211 movement anatomy and target shares.
+- Result:
+  - report: `analysis_outputs/e225_e224_public_feedback_decoder_report.md`.
+  - routebook: `analysis_outputs/e225_e224_public_feedback_decoder_routebook.csv`.
+  - score bands: clean win `<=0.576276019`, micro win `0.576276019..0.576288330`, tie `0.576288330..0.576294330`, small loss `0.576294330..0.576300366`, mixmin-safe loss `0.576300366..0.576306641`, branch loss `0.576306641..0.576341330`, hard fail above that.
+  - E224 movement vs E95 is `534` cells / `250` rows with target absolute logit share Q3 `0.533416`, S4 `0.363619`, Q1 `0.046219`, S3 `0.030179`, S2 `0.026567`.
+  - E224 is nearly the same direction as E223 and E211 from E95: cosine vs E223 `0.996078`, vs full E211 `0.975464`, but almost orthogonal to the failed E216 S2 miss (`0.043542`).
+- Interpretation: E224 is a clean cap on the E211/E223 Q3 amplitude, not a new non-collinear JEPA family. Therefore public feedback is a capped-Q3 translator test. A win does not justify raising Q3; a loss worse than mixmin demotes the current E211 probability translator.
+- Decision: after E224 public feedback, run `python3 analysis_outputs/e225_e224_public_feedback_decoder.py --score <PUBLIC_LB>` before choosing any JEPA sibling. Do not submit E223, full-Q3 E211, q3_scale `0.5`, or E224 E95-anchor sibling from scalar intuition alone.

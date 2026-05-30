@@ -1782,6 +1782,16 @@ E224 Q3-scale Pareto stress:
 
 Stress implication after E224: the current JEPA stress stack favors a capped-Q3 knee at `0.625`, not full-Q3 E211 and not E223 `0.75`. The remaining risk is still support probability below `0.5`, so E224 is a public sensor rather than a safe expected-score certificate.
 
+E225 E224 public-feedback decoder:
+
+- script: `analysis_outputs/e225_e224_public_feedback_decoder.py`.
+- report: `analysis_outputs/e225_e224_public_feedback_decoder_report.md`.
+- routebook: `analysis_outputs/e225_e224_public_feedback_decoder_routebook.csv`.
+- E224 public score bands are locked before feedback: clean win `<=0.576276019`, micro win up to `0.576288330`, tie up to `0.576294330`, small loss up to E101 `0.576300366`, mixmin-safe loss up to mixmin `0.576306641`, branch loss up to `0.576341330`, hard fail above.
+- movement anatomy: E224 vs E95 moves `534` cells and remains E211-line collinear (`cos=0.975464` vs full E211, `0.996078` vs E223) while staying far from E216 S2 miss (`cos=0.043542`).
+
+Stress implication after E225: the E224 public score must be read as a capped-Q3 translator test. A win does not authorize bigger Q3; a loss worse than mixmin closes the current E211-family expected-score lane until a new support/tail representation is built.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

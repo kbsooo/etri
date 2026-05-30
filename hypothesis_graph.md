@@ -2592,6 +2592,18 @@ target co-occurrence
 - public LB 관측 반응: if E224 wins, strengthen the "S4 body plus capped-Q3 residual" world. If it loses materially, demote the E211 probability translator and keep JEPA axes only as diagnostics.
 - 제출 전략: preferred JEPA-family file becomes `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`; E223 becomes the q3_scale `0.75` ablation.
 
+### H220. E224 public feedback must route through a capped-Q3 decoder, not scalar amplitude tuning
+
+- 상태: 지지 by E225 governance.
+- 왜 그럴듯한가: E224 is almost collinear with E223/full E211, differing mainly by Q3 amplitude. Without a decoder, any public score could be overread as "increase/decrease Q3" after the fact.
+- 맞다면: the pre-public routebook should map each score band to a unique world update and explicitly forbid the tempting amplitude siblings.
+- 틀리다면: E224 movement would be non-collinear enough to require a new family decoder, or the score bands would not separate E95/E101/mixmin/E216 reference outcomes.
+- 최소 실험: `analysis_outputs/e225_e224_public_feedback_decoder.py`.
+- 관측: routebook bands are locked: clean win `<=0.576276019`, tie `0.576288330..0.576294330`, small loss up to `0.576300366`, mixmin-safe loss up to `0.576306641`, branch loss above. Movement anatomy confirms E224 is collinear with E223 (`0.996078`) and full E211 (`0.975464`), but far from E216 S2 miss (`0.043542`).
+- 성공/폐기 기준: supported as governance. It does not predict the score; it prevents post-hoc route collapse after the score arrives.
+- public LB 관측 반응: after E224 feedback, run the decoder before choosing any sibling. A win strengthens capped-Q3/S4-body; a loss worse than mixmin closes the current E211 translator.
+- 제출 전략: no new submission. Attach E225 to the E224 submission protocol.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
