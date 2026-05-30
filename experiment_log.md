@@ -3359,3 +3359,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
 - Result: E216 is worse than E95 by `+0.0009951790`, mixmin by `+0.0009798683`, E101 by `+0.0009861428`, and E176 by `+0.0009746778`.
 - Interpretation: the E215 masked-family latent can still be real, but the E216 S2 probability translation is public-adverse. This is not a tiny plateau fluctuation; it is a direct rejection of the "S2-only masked-family JEPA is public-safe" hypothesis. The failure also says our frontier stress missed a public tail that is specific enough to punish S2-only even when local, subject-half, and geometry checks looked clean.
 - Decision: demote all remaining E216 siblings to negative controls. Keep E211 Q3/S4 as the only live JEPA submission lane. The next JEPA work should explain the S2 tail failure or rebuild a target-specific translator before any new E216-style submission.
+
+## E219. E216 Public Miss Anatomy
+
+- Observe: E216-E154 moved `505` cells vs E95 across `Q1,Q3,S2,S3,S4`, but only `250` cells vs E154, all on S2. The public miss is `+0.0009951790` vs E95.
+- Wonder: is the miss mostly E154 inherited body, or did the masked-family JEPA S2 graft itself contain enough public-adverse capacity?
+- Method: `analysis_outputs/e219_e216_public_miss_anatomy.py` decomposes E95 -> E154 body and E154 -> E216 S2 graft as additive hard-label loss segments, then simulates hidden labels under global/subject/nearest/focus priors conditioned on near-observed public-loss worlds.
+- Result:
+  - report: `analysis_outputs/e219_e216_public_miss_anatomy_report.md`.
+  - E154 body alone has all-adverse capacity `0.000924070`, below the observed `0.0009951790`; it cannot fully explain the miss under the current 250x7 public-cell normalization.
+  - pure S2 graft has all-adverse capacity `0.006048995` vs E95 and expected focus delta around `-0.000287798`; it can fully explain the miss.
+  - S2 graft support probability is weak: focus swing-weighted support `0.473945`, below `0.5`, even though expected delta is slightly favorable.
+  - focus-prior simulation: mean delta `-0.000318228`, but `25.382%` of worlds lose, `4.3915%` reach at least half the observed loss, and `0.2920%` reach or exceed the observed loss.
+  - near-observed worlds attribute essentially all loss to S2: S2 graft component mean `0.000920169` with `100.4%` share; E154 body is near zero/slightly helpful.
+- Interpretation: the missing stress dimension is not generic bad-axis cosine or anchor body; it is S2 tail support. E216 selected a movement with small favorable expectation but sub-0.5 support probability, so a small hidden-public skew can flip it hard.
+- Decision: do not submit E216 E95 or scale `0.5` siblings as "safer" by default; pure S2 variants have enough adverse capacity too. Any future masked-family JEPA translator needs an explicit S2 support/tail gate using the E219 top-cell pattern before it can re-enter candidate order.

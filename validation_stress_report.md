@@ -1715,6 +1715,17 @@ Public feedback update:
 
 Stress implication after public feedback: E216 is a stress false positive. The local/subject/geometry/frontier stack rejected the broad Q1/S2/S4 combo but still failed to detect a public-adverse S2-only tail. Remaining E216 siblings are demoted to negative controls; the stress design needs an S2-specific public-tail audit before another masked-family S2 submission.
 
+E219 root-cause audit:
+
+- script: `analysis_outputs/e219_e216_public_miss_anatomy.py`.
+- report: `analysis_outputs/e219_e216_public_miss_anatomy_report.md`.
+- E154 body all-adverse capacity vs E95 is `0.000924070`, which is smaller than the observed E216 miss of `0.0009951790`.
+- Pure S2 graft all-adverse capacity vs E95 is `0.006048995`, enough to explain the public miss without invoking the E154 body.
+- Focus-prior S2 graft support probability is only `0.473945` swing-weighted. This is the missing stress condition: expected delta was slightly favorable, but the support side of the move was below `0.5`.
+- Near-observed focus-prior worlds attribute `0.000920169` mean delta to the S2 graft and `-0.000004004` to E154 body.
+
+Stress implication after E219: the old gate over-weighted expected focus delta and under-weighted support probability. Future S2 JEPA materialization needs a `support_prob_swing_weighted > 0.5` or equivalent low-support-tail guard, plus top-cell pruning, before it can be public-safe.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.

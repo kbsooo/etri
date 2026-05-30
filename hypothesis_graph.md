@@ -2508,6 +2508,30 @@ target co-occurrence
 - public LB 관측 반응: the result points to S2-specific public-tail mismatch or anchor/scale amplification, not to a generic absence of masked-family signal.
 - 제출 전략: none. Use E216 siblings only as negative controls or root-cause probes.
 
+### H213. E216 failed because of E154 anchor body rather than S2 JEPA tail
+
+- 상태: 반증 by E219.
+- 왜 그럴듯한가: the submitted E216 file was anchored on E154, and vs E95 it moved `505` cells across `Q1,Q3,S2,S3,S4`, not just S2. A bad E154 inherited body could have made the S2 graft look worse than it is.
+- 맞다면: E154 body alone should have enough adverse hard-label capacity to explain the observed `+0.0009951790` miss, or near-observed hidden-label worlds should attribute substantial loss to the E95 -> E154 body segment.
+- 틀리다면: E154 body adverse capacity will be smaller than the observed miss, while pure S2 graft has enough adverse capacity and dominates near-observed loss attribution.
+- 최소 실험: `analysis_outputs/e219_e216_public_miss_anatomy.py`.
+- 관측: E154 body all-adverse capacity is `0.000924070`, below the observed miss. Pure S2 graft adverse capacity is `0.006048995`. Near-observed focus-prior worlds attribute mean `0.000920169` to the S2 graft and `-0.000004004` to E154 body.
+- 성공/폐기 기준: rejected as the main explanation. Anchor interaction may amplify small details, but it is not sufficient to explain the public failure.
+- public LB 관측 반응: E216's public result should now be read as S2-tail fragility, not merely E154-anchor bad luck.
+- 제출 전략: do not use E216 E95-anchor siblings as automatic "anchor-clean" fixes. A new candidate needs an S2 support/tail gate.
+
+### H214. S2 support-probability fragility is a missing stress dimension
+
+- 상태: 지지 by E219.
+- 왜 그럴듯한가: E216 passed local OOF and geometry because expected loss was slightly favorable, but LogLoss public response can flip if the moved cells' support labels are only weakly probable.
+- 맞다면: S2 graft expected delta can be negative while swing-weighted support probability is below or near `0.5`; observed-loss-like simulations should be rare but plausible and dominated by S2.
+- 틀리다면: support probability should be comfortably high, or near-observed worlds should require broad non-S2 attribution.
+- 최소 실험: E219 segment simulation under global/subject/nearest/focus priors.
+- 관측: pure S2 graft focus expected delta is about `-0.000287798`, but swing-weighted support probability is only `0.473945`. Focus-prior simulation has `25.382%` loss worlds and `0.2920%` worlds at or above the observed miss. Near-observed worlds are ~`100%` S2-attributed.
+- 성공/폐기 기준: supported as the immediate root-cause for E216. It should be converted into a future gate and then retested locally before any S2 JEPA submission.
+- public LB 관측 반응: a future S2-gated JEPA file should only be submitted if it reduces low-support S2 swing while preserving local/geometry gains.
+- 제출 전략: none yet. Build an S2-tail audit/gate first; E211 Q3/S4 remains the live JEPA submission lane.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
