@@ -1448,3 +1448,12 @@
 - Implementation issue possible: medium. Cell-level labels are aggregate pair labels and are noisy by construction. Low for the failure of this exact approach because both pair and family stress were run before using live branch scores.
 - Bottleneck implication: the missing decisive-cell representation is not a shallow metadata classifier over known public anchors. It likely needs a structural target or new public feedback.
 - Do not repeat: using known-public metadata motif scores, inverted motif scores, or public-axis cell flags as a direct E176/E154/E144 ranking rule.
+
+## FH161. An unconstrained known-LB pair decoder is action-grade if its accuracy is high enough
+
+- Failed hypothesis: broader pair-level known-LB movement features can be used directly as a selector once leave-one-file or leave-one-pair accuracy is materially above chance.
+- Observed result: E185's best leave-one-file model reaches accuracy `0.811`, frontier accuracy `0.833`, and E95-edge accuracy `0.714`, but reciprocal orientation is unhealthy: E95-edge reciprocity MAE is `0.081` in file-LOO and `0.146` in pair-LOO for the best public-axis model. Live E176/E154/E144 branch preference also flips by feature set.
+- Why discard: public pair ordering is antisymmetric. A decoder that can rate both directions of one pair as favorable is not a hidden-world law, even if threshold accuracy looks acceptable.
+- Implementation issue possible: medium. Pair labels are sparse and public anchors are few. Low for the narrow failure because the reciprocal sanity check is a mathematical requirement of the task.
+- Bottleneck implication: the plateau is partly representation geometry, not only lack of signal. Known-LB pair structure is useful only after orientation constraints.
+- Do not repeat: using unconstrained pair probabilities, post-hoc feature-set choice, or reciprocal-inconsistent scores to rank live submissions.

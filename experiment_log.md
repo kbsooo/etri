@@ -2845,3 +2845,31 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - live branch scores are feature-set unstable: `meta_core` and `meta_public_axis_plus_swing` reject the favorable branch for E176/E154/E144, while `meta_public_axis` and `meta_public_axis_plus_support_label` favor all three.
 - Interpretation: this is another selector-collapse result. Known-public metadata motifs contain signal, but its polarity and family transfer are not stable enough to rank E176/E154/E144. Public-axis features can flip the live branch decision without passing LOO/LOFO, so they are not action-grade.
 - Decision: no new submission. The next decisive-cell representation cannot be a shallow public-anchor metadata classifier. Either build a representation that predicts pressure-branch labels from a held-out structural target, or choose a worldview and attach a public-feedback decoder.
+
+## E185. Known-LB Pair Structural Decoder
+
+- Observe: E184 killed shallow cell metadata motifs, but it did not kill the broader idea that already-known public LB pairs contain a structural movement law. The user also supplied E101 public `0.576300366`, making the E95/E101/mixmin edge a resolved frontier boundary.
+- Wonder: can a pair-level movement representation, trained on all known public submission pairs, generalize to a held-out file and choose the E176/E154/E144 pressure branch?
+- Method: `analysis_outputs/e185_known_lb_pair_structural_decoder.py` builds oriented pair features for all known-public submissions, including E95, E101, mixmin, E72, A2C8/raw05, older hybrid/ordinal/final9 anchors, and bad JEPA controls. It evaluates leave-one-file and leave-one-pair stress, then scores the pressure-min branches for E176/E154/E144.
+- Result:
+  - report: `analysis_outputs/e185_known_lb_pair_structural_decoder_report.md`.
+  - best leave-one-file decoder: `shape_support_public_axis`, overall accuracy `0.811`, frontier accuracy `0.833`, E95-edge accuracy `0.714`.
+  - best leave-one-pair E95-edge accuracy: `0.786`.
+  - E95-edge reciprocity MAE is nontrivial: file-LOO `0.081`, pair-LOO `0.146` for the best public-axis model.
+  - branch scores are unstable by representation: `shape_only` favors E144/E154 and rejects E176, while `shape_support` and `shape_support_public_axis` favor E176 and mostly reject E154/E144.
+- Interpretation: there is pair-level public-response signal, but the unconstrained decoder violates orientation sanity. Some near-frontier pairs can receive high probability in both directions, so good-looking accuracy is not a healthy LeJEPA geometry.
+- Decision: no submission. E185 becomes a failure mode: a known-LB decoder must be antisymmetric or otherwise reciprocity-controlled before it can rank live branches.
+
+## E186. Antisymmetric Pair Decoder
+
+- Observe: E185's useful signal may be real but geometrically collapsed. For an ordered pair, a healthy decoder should obey `score(A,B)=-score(B,A)` instead of learning two unrelated orientations.
+- Wonder: if reciprocity is enforced, does the known-LB pair representation become stable enough to inform the next public sensor?
+- Method: `analysis_outputs/e186_antisymmetric_pair_decoder.py` reuses the E185 pair features but converts them into antisymmetric z-features, fits logistic heads with no intercept, evaluates file-LOO and pair-LOO, and rescans E176/E154/E144 pressure branches.
+- Result:
+  - report: `analysis_outputs/e186_antisymmetric_pair_decoder_report.md`.
+  - best antisymmetric file-LOO: `shape_support`, overall accuracy `0.795`, frontier accuracy `0.867`, micro accuracy `0.8125`, E95-edge accuracy `0.857`, reciprocity MAE `0`.
+  - best pair-LOO E95-edge: `shape_only`, E95-edge accuracy `1.000`, frontier accuracy `0.933`.
+  - pressure-branch choice becomes stable: E176 favorable pressure-min branch is selected in `3/3` scenarios across all feature sets; E144 and E154 are rejected in `3/3` scenarios across all feature sets.
+  - caveat: support-based antisymmetric models still misread the exact E95-vs-E101 boundary, predicting E101 over E95 with high confidence when either file is held out. `shape_only` gets that boundary right but is weaker on file-LOO frontier/micro stress.
+- Interpretation: the main E185 failure was geometry, not absence of signal. E186 turns known-LB pair structure into a stronger sensor-prior for E176, but it is not a certificate because the E95/E101 boundary remains the most important unresolved edge.
+- Decision: no new submission is created. If spending one public slot now, the strongest information candidate remains `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`, now supported by both the visible-body/Q2-underopen worldview and an antisymmetric known-LB pair decoder. Public feedback must still be decoded with E177; do not tune siblings from the scalar score.

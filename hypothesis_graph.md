@@ -2100,6 +2100,30 @@ target co-occurrence
 - public LB 관측 반응: if a future E176/E154/E144 public score matches one of the E184 feature-set branch preferences, it should not validate E184 unless the polarity/feature-set rule was fixed before feedback.
 - 제출 전략: no E184 submission. Do not use shallow public-anchor metadata motif scores to rank E176/E154/E144.
 
+### H179. Unconstrained known-LB pair movement structure can select live pressure branches
+
+- 상태: 부분 반증 by E185.
+- 왜 그럴듯한가: E184 may have failed because cell metadata was too shallow. Known public LB pairs contain richer movement-shape, support, bad-axis, and public-axis information, and the resolved E95/E101/mixmin boundary gives a real frontier-scale training target.
+- 맞다면: leave-one-file and leave-one-pair decoders should preserve frontier ordering, especially E95/E101/mixmin/E72 edges, and branch preferences should be stable across feature sets. Reciprocal pairs should satisfy `P(A beats B)+P(B beats A) ~= 1`.
+- 틀리다면: aggregate accuracy can look good while reciprocal orientation collapses or live branch preferences flip by feature set.
+- 최소 실험: `analysis_outputs/e185_known_lb_pair_structural_decoder.py`.
+- 관측: best file-LOO `shape_support_public_axis` has overall accuracy `0.811`, frontier accuracy `0.833`, and E95-edge accuracy `0.714`, but E95-edge reciprocity MAE is `0.081`. Best pair-LOO E95-edge accuracy reaches `0.786`, but reciprocity MAE is `0.146`. Branch preference flips: `shape_only` favors E144/E154 and rejects E176, while support/public-axis models favor E176.
+- 성공/폐기 기준: 폐기 as an action-grade selector. A future pair decoder must fix reciprocal orientation before branch scores are usable.
+- public LB 관측 반응: a future E176/E154/E144 score cannot validate E185 unless the same branch was selected by a reciprocity-healthy model before feedback.
+- 제출 전략: no E185 submission. Use E185 only as evidence that pair-level signal exists and needs antisymmetric geometry.
+
+### H180. Antisymmetric known-LB pair structure is a useful sensor-prior for E176
+
+- 상태: supported but not certified by E186.
+- 왜 그럴듯한가: Public LB pair ordering is antisymmetric by definition. If the E185 signal is real, forcing the representation to respect this geometry should improve frontier stress and stabilize live branch decisions.
+- 맞다면: reciprocity error should collapse to zero, frontier/E95-edge stress should improve, and E176/E154/E144 branch choices should stop flipping across feature sets.
+- 틀리다면: edge stress remains weak or branch preferences still flip after antisymmetry.
+- 최소 실험: `analysis_outputs/e186_antisymmetric_pair_decoder.py`.
+- 관측: best file-LOO has overall accuracy `0.795`, frontier accuracy `0.867`, micro accuracy `0.8125`, and E95-edge accuracy `0.857` with reciprocity MAE `0`. Pair-LOO `shape_only` reaches E95-edge accuracy `1.000`. E176 favorable pressure-min branch is selected in `3/3` scenarios across all feature sets, while E144/E154 are rejected in `3/3`.
+- 반증 조건: the support-based model still misses the exact E95-vs-E101 boundary, predicting E101 over E95 with high confidence. If E176 public fails in the E177 demotion bands, E186 was a sensor-prior overfit to known anchors or a branch-level shortcut.
+- public LB 관측 반응: E176 `<=0.576288330` would strengthen H180 and the Q2-underopen broad branch. E176 worse than E101 or mixmin would weaken H180 sharply and force a return to structural target design rather than pair-LB decoding.
+- 제출 전략: if using one slot, submit `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` as an E186-informed public sensor, not as a certified expected-score file.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

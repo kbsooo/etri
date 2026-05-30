@@ -2222,3 +2222,48 @@ E184 이후에도 제출 후보 순위는 바뀌지 않는다.
 - E176: visible-body/Q2-underopen worldview sensor.
 - E154/E144: repaired-branch worldview sensor.
 - 어느 쪽도 E184로 인증되지 않았다.
+
+## E185/E186 업데이트: pair-level signal은 살아있지만 geometry가 병목이다
+
+내가 발견한 가장 이상한 점:
+
+`known public LB pair에는 cell metadata보다 강한 신호가 있다. 그런데 unconstrained decoder는 같은 pair의 양방향을 동시에 좋게 보는 reciprocal collapse를 일으킨다. 이건 점수 예측 문제가 아니라 representation geometry 문제다.`
+
+실험:
+
+- `analysis_outputs/e185_known_lb_pair_structural_decoder.py`
+- `analysis_outputs/e186_antisymmetric_pair_decoder.py`
+- reports:
+  - `analysis_outputs/e185_known_lb_pair_structural_decoder_report.md`
+  - `analysis_outputs/e186_antisymmetric_pair_decoder_report.md`
+
+결과:
+
+- E185 best file-LOO:
+  - `shape_support_public_axis`
+  - overall accuracy `0.811`
+  - frontier accuracy `0.833`
+  - E95-edge accuracy `0.714`
+  - but E95-edge reciprocity MAE `0.081`
+- E186 antisymmetric file-LOO:
+  - `shape_support`
+  - overall accuracy `0.795`
+  - frontier accuracy `0.867`
+  - micro accuracy `0.8125`
+  - E95-edge accuracy `0.857`
+  - reciprocity MAE `0`
+- E186 branch decision:
+  - E176 favorable pressure-min branch: selected `3/3`
+  - E144/E154 favorable branch: rejected `3/3`
+
+생각이 어떻게 바뀌었는지:
+
+`0.57629 plateau는 signal absence가 아니다. pair-level public response signal은 있다. 문제는 그 signal을 action으로 바꾸는 representation geometry와 E95/E101 같은 exact frontier boundary calibration이다.`
+
+현재 최강 세계관:
+
+`E176은 visible-body/Q2-underopen sensor일 뿐 아니라, antisymmetric known-LB pair geometry에서도 가장 일관된 live branch다. 단, support-based decoder가 E95/E101 boundary를 틀리므로 인증 후보는 아니다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+한 장만 제출한다면 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`다. Public LB가 좋아지면 E176 broad/Q2-underopen + antisymmetric-pair worldview가 강화된다. 나빠지면 E186은 known-anchor overfit 또는 branch shortcut으로 내려가고, 다음은 pair-LB decoder가 아니라 structural target representation으로 돌아가야 한다.

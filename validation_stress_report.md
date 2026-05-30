@@ -996,3 +996,29 @@ E184 tests the first non-visible pressure-branch selector: a known-public metada
 - live branch preferences are feature-set unstable: `meta_core=0.000`, `meta_public_axis=1.000`, `meta_public_axis_plus_support_label=1.000`, `meta_public_axis_plus_swing=0.000`.
 
 Stress implication: a shallow public-anchor metadata motif is not a branch selector. It may encode public-response residue, but the polarity is not stable enough to act on, and adding public-axis flags can flip all live branch decisions without passing the held-out stress. E184 keeps the plateau diagnosis at hidden-label/cell-resolution underidentification.
+
+## Update After E185
+
+E185 moves from cell-level public motifs to pair-level known-LB structural decoding.
+
+- script: `analysis_outputs/e185_known_lb_pair_structural_decoder.py`.
+- report: `analysis_outputs/e185_known_lb_pair_structural_decoder_report.md`.
+- best leave-one-file decoder: `shape_support_public_axis`, accuracy `0.811`, frontier accuracy `0.833`, E95-edge accuracy `0.714`.
+- best leave-one-pair E95-edge accuracy: `0.786`.
+- reciprocity is unhealthy: best public-axis E95-edge reciprocity MAE is `0.081` under file-LOO and `0.146` under pair-LOO.
+- live branch scoring is unstable: `shape_only` favors E144/E154 and rejects E176, while support/public-axis features favor E176.
+
+Stress implication: known-LB pair movement contains real public-response signal, but unconstrained orientation geometry is not healthy enough for action. E185 is a LeJEPA failure: accuracy without reciprocal consistency is a shortcut.
+
+## Update After E186
+
+E186 repairs the E185 geometry by enforcing antisymmetric pair scores.
+
+- script: `analysis_outputs/e186_antisymmetric_pair_decoder.py`.
+- report: `analysis_outputs/e186_antisymmetric_pair_decoder_report.md`.
+- best file-LOO: `shape_support`, accuracy `0.795`, frontier accuracy `0.867`, micro accuracy `0.8125`, E95-edge accuracy `0.857`, reciprocity MAE `0`.
+- best pair-LOO E95-edge stress: `shape_only` accuracy `1.000`.
+- pressure branch scores stabilize: E176 favorable branch selected in `3/3` scenarios across all feature sets; E144/E154 favorable branches rejected in `3/3`.
+- caveat: the support-based antisymmetric model still misreads E95 versus E101, assigning E101 the win over E95 with high confidence when either file is held out.
+
+Stress implication: the next most informative public sensor is still E176, now for a stronger reason. It is not just visible-body/Q2-underopen; it is also the only live pressure branch selected by a reciprocity-healthy known-LB pair decoder. The E95/E101 miss keeps it below certification.
