@@ -3400,6 +3400,22 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E299 files.
 - 제출 전략: none. Next strategy should alter placement/sign/mask geometry to improve mean dominance while preserving the S4 null-rarity pocket.
 
+### H300: S4 mean dominance can be rescued by dropping a bad dateblock and preserving the raw sign
+
+- 상태: initially supported by small-null E300, then rejected for public submission by E301 strict confirmation.
+- 왜 그럴듯한가: E299's closest near-miss already had the hard parts: old strict promotion, low null strict rate, strong p90 dominance, and worst-mode p90 dominance. Only mean dominance failed. If a few adverse rows or a single dateblock were dragging the mean, row/mask surgery could rescue it.
+- 맞다면: a mask variant should keep old strict and low null strict while beating matched nulls on both p90 and mean across row/subject/dateblock permutations.
+- 틀리다면: the apparent rescue should disappear when the null seed/budget changes, especially under subject/dateblock shuffles.
+- 최소 실험: `analysis_outputs/e300_s4_mean_dominance_rescue.py`, followed by `analysis_outputs/e301_s4_ready_strict_confirm.py`.
+- 관측:
+  - E300 generated `1305` S4 variants and found one small-governor ready file: `analysis_outputs/submission_e300_s4mean_drop_dateblock_id07_b9_raw_m1p16_d285ff4a.csv`.
+  - E300 ready metrics: p90 `-0.000051307`, mean `-0.000161310`, null strict `0.095238`, p90 dominance `0.904762`, mean dominance `0.714286`.
+  - E301 strict confirmation with `256` nulls rejected it: null strict `0.164062`, mean dominance `0.691406`, worst-mode mean dominance `0.328125`.
+  - sign null dominance was `1.000000`, while subject/dateblock null strict rates were `0.250000` and `0.406250`.
+- 성공/폐기 기준: reject as a public candidate. Keep as evidence that S4 sign is meaningful, but subject/dateblock placement is not yet recovered.
+- public LB 관측 반응: no public LB should be spent on E300.
+- 제출 전략: none. Future S4 work must predict subject/dateblock placement health directly, not only drop a visible dateblock after probing.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

@@ -600,3 +600,22 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - closest file metrics: p90 `-0.000050918`, null strict `0.095238`, p90 dominance `0.952381`, worst-mode `0.857143`, mean dominance `0.476190`.
 - interpretation: scale bridging is insufficient. The live near-miss is S4 placement with subject/dateblock mean-dominance failure.
 - next experiment: S4 sign/mask/within-subject placement rescue under the same matched-null governor.
+
+## Public-Free Observation: E300-E301
+
+- submission file: `analysis_outputs/submission_e300_s4mean_drop_dateblock_id07_b9_raw_m1p16_d285ff4a.csv`.
+- public LB: not submitted.
+- reason not submitted: E301 large-null confirmation rejected the E300 small-governor ready result.
+- local observation:
+  - E300 generated candidates: `1305`;
+  - E300 small-governor ready candidates: `1`;
+  - E301 null submissions: `256`;
+  - actual strict promote: true;
+  - actual mean/p90: `-0.000161310` / `-0.000051307`;
+  - null strict rate: `0.164062`;
+  - p90 dominance: `0.937500`;
+  - mean dominance: `0.691406`;
+  - worst-mode mean dominance: `0.328125`;
+  - row/subject/dateblock/sign null strict rates: `0.000000` / `0.250000` / `0.406250` / `0.000000`.
+- interpretation: the S4 sign pattern is meaningful, but subject/dateblock placement is not certified. Public LB should be preserved.
+- next experiment: learn or construct a subject/dateblock placement-health target; do not submit hand-probed S4 dateblock masks.

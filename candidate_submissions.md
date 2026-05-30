@@ -2886,3 +2886,38 @@ Next candidate rule:
 
 - a future candidate must rescue S4 mean dominance without losing null rarity;
 - another amplitude-only sweep is low value.
+
+## Update After E300-E301 S4 Mean-Dominance Rescue
+
+Current submission policy remains: **no new public submission.**
+
+Why:
+
+- E300 did find one apparent public-free ready S4 placement rescue:
+  `analysis_outputs/submission_e300_s4mean_drop_dateblock_id07_b9_raw_m1p16_d285ff4a.csv`.
+- The candidate removed three parent S4 rows from `id07_b9` and scaled the remaining S4 movement by `1.16`.
+- E300 small-null governor looked promising: old strict true, p90 `-0.000051307`, null strict `0.095238`, p90 dominance `0.904762`, mean dominance `0.714286`.
+- E301 reran the single file with a stricter independent null budget: `64` row, `64` subject, `64` dateblock, and `64` sign nulls.
+- E301 result: `conservative_public_free_ready=False`, `watchlist_public_free_ready=False`, decision `do_not_submit`.
+- The blocker is not sign direction. Sign nulls were easy to beat. The blocker is subject/dateblock mean behavior:
+  - total null strict rate `0.164062`;
+  - subject null strict rate `0.250000`;
+  - dateblock null strict rate `0.406250`;
+  - mean dominance `0.691406`, just below the conservative `0.70` line;
+  - worst-mode mean dominance `0.328125`.
+
+Meaning:
+
+- E300 was a useful local anatomy discovery, not a submission file.
+- Public LB should not be spent on it.
+- The current S4 branch still lacks a true placement invariant; subject/dateblock shuffles can reproduce the mean edge too often.
+
+Updated public-free rule:
+
+- `old_strict_promote` is no longer enough.
+- A candidate must pass a large-null confirmation before being recommended for public LB.
+- Minimum requirement for a scarce public slot: low null strict rate plus p90 and mean dominance across row, subject, dateblock, and sign nulls.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.

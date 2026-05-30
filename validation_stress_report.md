@@ -3233,3 +3233,45 @@ Decision:
 - No E299 public submission.
 - Plain amplitude rescaling is now deprioritized.
 - The next stress should target S4 mean-dominance/within-subject placement, not visibility.
+
+## E300-E301 S4 Large-Null Confirmation Gate
+
+Question: can the closest E299 S4 near-miss be rescued locally without spending public LB?
+
+Method:
+
+- `analysis_outputs/e300_s4_mean_dominance_rescue.py` generated mask/sign/dateblock variants from the closest E299 S4 candidate and used a small matched-null governor.
+- `analysis_outputs/e301_s4_ready_strict_confirm.py` then took the single E300 ready file and reran it against a larger independent null set.
+
+E300 result:
+
+- generated candidates: `1305`.
+- old strict prefilter candidates: `199`.
+- null-evaluated candidates: `120`.
+- small-governor ready candidates: `1`.
+- ready file: `analysis_outputs/submission_e300_s4mean_drop_dateblock_id07_b9_raw_m1p16_d285ff4a.csv`.
+
+E301 strict confirmation:
+
+- null submissions: `256`.
+- null modes: row, subject, dateblock, sign.
+- actual p90: `-0.000051307`.
+- actual mean: `-0.000161310`.
+- null strict rate: `0.164062`.
+- p90 dominance: `0.937500`.
+- mean dominance: `0.691406`.
+- worst-mode mean dominance: `0.328125`.
+- decision: `do_not_submit`.
+
+Failure mode:
+
+- sign nulls do not threaten the file, so the S4 direction is not arbitrary.
+- row nulls also do not threaten it.
+- subject/dateblock nulls do threaten it: subject strict rate `0.250000`, dateblock strict rate `0.406250`.
+- The file's p90 edge is real-looking, but the mean edge is reproducible by matched block placement.
+
+Decision:
+
+- Do not submit E300.
+- Future public candidates must pass this large-null confirmation layer before being recommended.
+- The current public-free validator is now stricter than the old E272 selector: old strict promotion is treated as prefilter only.

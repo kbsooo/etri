@@ -2232,3 +2232,12 @@
 - Implementation issue possible: low for rejecting another global scale sweep because E299 directly tested up/down rescaling around the nearest known cliffs. Medium for S4 because sign/mask/placement geometry was not yet changed.
 - Bottleneck implication: the next action-layer target is S4 mean-dominance rescue, not amplitude tuning.
 - Do not repeat: submitting `submission_e299_bridge_*` files or running another scalar multiplier sweep without changing row/sign/mask placement.
+
+## FH248. E300's S4 dateblock-drop rescue is public-ready after small-null governance
+
+- Failed hypothesis: the E299 S4 near-miss can be made public-ready by dropping the adverse `id07_b9` dateblock rows and preserving the raw S4 sign pattern.
+- Observed result: E300 found one small-governor ready file, `analysis_outputs/submission_e300_s4mean_drop_dateblock_id07_b9_raw_m1p16_d285ff4a.csv`. E301 then reran only that file against `256` independent row/subject/dateblock/sign nulls and rejected it. The file kept old strict promotion and p90 dominance `0.937500`, but total null strict rate was `0.164062`, mean dominance `0.691406`, and worst-mode mean dominance `0.328125`.
+- Why discard: the small-governor ready result was not robust enough. Subject/dateblock nulls remain competitive: subject null strict rate `0.250000`, dateblock null strict rate `0.406250`. This is exactly the public-free failure mode the user warned about: a candidate that looks close locally but should not consume a public LB slot.
+- Implementation issue possible: low for rejecting this exact file because E301 uses a different seed prefix and a larger null budget. Medium for the S4 branch because raw sign direction is meaningful: sign null dominance was `1.000000`.
+- Bottleneck implication: S4 direction is not the hard part; hidden subject/dateblock placement is. Future work should model placement/outcome health directly, not choose masks by row probes alone.
+- Do not repeat: submitting `submission_e300_s4mean_drop_dateblock_id07_b9_raw_m1p16_d285ff4a.csv` or trusting small-null ready status without E301-style large-null confirmation.

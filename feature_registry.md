@@ -2514,3 +2514,31 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - avoid global scale sweeps unless the geometry changes.
 - Failure condition:
   - if rescaling creates many old-strict candidates but no ready rows, classify the issue as placement geometry, not amplitude.
+
+## E300-E301 S4 Placement Rescue Policy
+
+- Target hypothesis tested: the E299 S4 mean-dominance failure may be fixable by row/sign/dateblock mask placement.
+- Feature/representation source:
+  - E299 closest S4 lifestyle movement;
+  - row-level selector probes;
+  - subject/dateblock drop masks;
+  - raw S4 sign-preserving movement;
+  - strengthened row/subject/dateblock/sign null confirmation.
+- Validation result:
+  - E300 small-governor ready candidates: `1`;
+  - E301 large-null confirmation candidates: `0`;
+  - tested file: `analysis_outputs/submission_e300_s4mean_drop_dateblock_id07_b9_raw_m1p16_d285ff4a.csv`;
+  - E301 null strict rate: `0.164062`;
+  - E301 mean dominance: `0.691406`;
+  - E301 worst-mode mean dominance: `0.328125`;
+  - E301 sign p90 dominance: `1.000000`.
+- Updated registry status:
+  - raw S4 sign direction is a valid diagnostic feature;
+  - hand-probed dateblock-drop mask is not approved as a public submission feature;
+  - subject/dateblock placement health is now the missing target.
+- Adopt rule for future features:
+  - any S4 feature must be checked against subject/dateblock nulls with a large null budget;
+  - sign correctness is insufficient if mean dominance is reproduced by block shuffles;
+  - public-free promotion requires strict confirmation after candidate discovery.
+- Failure condition:
+  - if a candidate passes a small null governor but fails large subject/dateblock null confirmation, classify it as selector/mask overfit and do not submit.

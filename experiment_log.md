@@ -4579,3 +4579,38 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E297 S1 null-safe rows needed scale `1.20+` to become strict and then null strict jumped to `0.428571+`.
 - Interpretation: this is not just a coarse amplitude-grid miss. The closest live branch is an S4 mean-dominance failure, likely within-subject/dateblock placement rather than target direction.
 - Decision: no E299 public submission. The next useful experiment is a S4 placement/sign/mask rescue aimed specifically at mean dominance, not another global scale sweep.
+
+## E300. S4 Mean-Dominance Rescue
+
+- Observe: E299 produced one unusually close S4 near-miss. It was selector-visible and null-rare on p90, but subject/dateblock nulls could match or beat the mean.
+- Wonder: can row/sign/mask placement rescue mean dominance without using public LB?
+- Method: `analysis_outputs/e300_s4_mean_dominance_rescue.py` starts from the closest E299 S4 file, probes each active S4 row, builds subject/dateblock/drop/top-k masks, materializes `1305` S4-only variants on E247, and evaluates `120` selected candidates against matched row/subject/dateblock nulls.
+- Result:
+  - row probes: `50`;
+  - generated candidates: `1305`;
+  - old strict prefilter candidates: `199`;
+  - null-evaluated candidates: `120`;
+  - public-free ready under the small E300 governor: `1`.
+  - selected file: `analysis_outputs/submission_e300_s4mean_drop_dateblock_id07_b9_raw_m1p16_d285ff4a.csv`;
+  - metrics: actual mean `-0.000161310`, p90 `-0.000051307`, null strict `0.095238`, p90 dominance `0.904762`, mean dominance `0.714286`.
+- Interpretation: the S4 placement branch is not dead. Removing `id07_b9` from the parent movement creates a plausible mean-dominance rescue.
+- Decision: do not submit yet. E300 used a small null budget and was found through many masks; it requires independent strict confirmation.
+
+## E301. S4 Ready Strict Confirmation
+
+- Observe: public LB cannot be used to keep testing near-miss files. E300 must be treated as a candidate to kill, not a candidate to trust.
+- Wonder: does the single E300 ready file still beat matched nulls when the null seed prefix and budget are changed?
+- Method: `analysis_outputs/e301_s4_ready_strict_confirm.py` evaluates only `analysis_outputs/submission_e300_s4mean_drop_dateblock_id07_b9_raw_m1p16_d285ff4a.csv` against `256` null submissions: `64` row, `64` subject, `64` dateblock, and `64` sign nulls. No public LB is used.
+- Result:
+  - actual strict promote: true;
+  - actual mean/p90: `-0.000161310` / `-0.000051307`;
+  - total null strict rate: `0.164062`;
+  - row/subject/dateblock/sign null strict rates: `0.000000` / `0.250000` / `0.406250` / `0.000000`;
+  - p90 dominance: `0.937500`;
+  - mean dominance: `0.691406`;
+  - worst-mode p90 dominance: `0.843750`;
+  - worst-mode mean dominance: `0.328125`;
+  - conservative public-free ready: false;
+  - watchlist public-free ready: false.
+- Interpretation: the S4 sign is meaningful, but subject/dateblock placement is not certified. Dateblock nulls can reproduce the mean edge too often, so the local governor rejects this as a public candidate.
+- Decision: no E300 public submission. E301 becomes the stricter promotion gate for future scarce-public candidates.
