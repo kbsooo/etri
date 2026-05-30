@@ -753,3 +753,31 @@ E197 adds a sharper decoder around that choice. Known public pairs were inverted
 - E154/E144/E155 have much thinner visible surplus (`0.010284`/`0.011545`/`0.011227`) and branch/hard-fail in `4/6` analogues.
 
 This does not promote E172 over E176 because E176 is still the higher-information broad/Q2-underopen sensor with a pre-registered decoder. It does change the failure interpretation: an E176 loss should be read as E72-like adverse public slippage, not as generic visible-support failure.
+
+## Update After E198
+
+The single next public sensor still remains:
+
+`analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`
+
+E198 checked whether E176's E72-like loss condition is structurally visible before feedback.
+
+- E176 loses under E72-like slippage stress:
+  - visible E72-vs-E95: `small_loss`.
+  - visible E72-vs-mixmin: `branch_loss`.
+  - focus E72-vs-mixmin: `branch_loss`.
+- But E176's clean shape E72 probability is only `0.000008`.
+- That is far below:
+  - non-E72 p95 `0.020815`.
+  - non-E72 p99 `0.044812`.
+  - known E72-positive floor `0.804849`.
+- E154 remains the counter-world but its risk is thin margin, not E72 contamination (`max 0.007973`).
+- E144 has a mild p95 tail alarm (`0.038723`) but not positive-scale E72 evidence.
+
+Submission order is unchanged:
+
+1. `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` - first sensor; broad/Q2-underopen, not clean-shape E72-exposed.
+2. `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv` - first counter-world after adverse E176 feedback.
+3. `analysis_outputs/submission_e172_vis_pos_all_keep0p25_d90f4407.csv` - same-family safety contrast if E176 lands in the tie/small-loss slippage band.
+
+Do not create an E72-demoted E176 variant before public feedback. The current evidence says E176 can fail like E72 algebraically, but it does not look like E72 structurally under the clean detector.

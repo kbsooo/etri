@@ -3040,3 +3040,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E154/E144/E155 are thin-margin branch sensors: visible surplus only `0.010284`/`0.011545`/`0.011227`, with branch/hard fail `4/6`.
 - Interpretation: support-mass inversion is useful as a decoder, not a selector. It strengthens the current read that E176 is the first sensor unless we deliberately believe the next public observation will repeat E72-like adverse slippage.
 - Decision: no new submission. Keep `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` first. If E176 loses, read the loss as E72-like adverse public slippage and route to E172/E154 by band/question rather than tuning another Q2 keep factor.
+
+## E198. E72 Slippage Exposure
+
+- Observe: E197 made E176's losing condition narrow: it loses only under E72-like adverse slippage. But E196 gave an E72-like motif warning on E176 top cells, while E191/E192 said the clean shape E72 score was near zero. Those two facts were in tension.
+- Wonder: if E176 fails only under E72-like slippage, does it also look structurally E72-like under the boundary-clean E72 shape diagnostic, or is the failure only an algebraic stress case?
+- Method: `analysis_outputs/e198_e72_slippage_exposure.py` joins E197 support-mass slippage profiles with E192 clean-shape E72 branch anatomy. It records candidate-level surplus-to-tie, E72-vs-E95/E72-vs-mixmin stress outcomes, max clean E72 shape probability, threshold band, and combined verdict.
+- Result:
+  - report: `analysis_outputs/e198_e72_slippage_exposure_report.md`.
+  - E191 clean detector health: AUC `0.978836`, AP `0.809524`, top-k recall `0.666667`, exact E95/E101 mean probability `0.057658`.
+  - thresholds: non-E72 p95 `0.020815`, non-E72 p99 `0.044812`, E72-positive floor `0.804849`.
+  - E176 visible surplus-to-tie `0.061761`, focus `0.094836`; E72-vs-E95 stress is `small_loss` under visible prior and `micro_win` under focus prior; E72-vs-mixmin stress is `branch_loss`.
+  - E176 max clean shape E72 probability is only `0.000008`, far below non-E72 p95 and positive floor.
+  - E154 is thin-margin but clean-shape non-E72 (`max 0.007973`).
+  - E144 has one mild p95 tail alarm (`max 0.038723`) but remains below p99 and far below positive scale.
+- Interpretation: E176 has an algebraic E72-like failure mode, but the best boundary-clean structural E72 diagnostic does not support E176 being E72-like. E154/E144 risk is mostly thin-margin/tail-risk, not E72 contamination.
+- Decision: no new submission. Keep `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` as the next public sensor. If it fails, use the pre-registered LB band decoder rather than claiming E176 was structurally E72-contaminated before feedback.

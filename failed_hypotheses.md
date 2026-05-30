@@ -1547,3 +1547,12 @@
 - Implementation issue possible: low for rejecting selector use; the algebra is direct. Medium for absolute slippage values because public subset composition is still hidden.
 - Bottleneck implication: public LB observations can define failure modes, but they do not remove hidden-world underidentification. We still need public sensor feedback or a stronger decisive-cell representation.
 - Do not repeat: ranking candidates solely by support surplus, clean-or-better rate, or slippage stress score.
+
+## FH172. E176 should be demoted because its only losing stress is E72-like
+
+- Failed hypothesis: since E197 shows E176 loses under E72-like adverse slippage, E176 should be treated as structurally E72-like and demoted before public feedback.
+- Observed result: E198 joins the E197 slippage law with E192 clean-shape E72 anatomy. E176 branch-loses under E72-vs-mixmin stress, but its max clean E72 probability is only `0.000008`, far below non-E72 p95 `0.020815`, non-E72 p99 `0.044812`, and the known-positive floor `0.804849`.
+- Why discard: "can lose under an E72-like aggregate slippage" is not the same as "has an E72-like movement shape." The clean structural detector sees E176 as non-E72. The proper use is failure attribution after public feedback, not pre-feedback demotion.
+- Implementation issue possible: medium. The clean detector has top-k recall `0.666667` and all E72 positives still come from one anchor family, so absence of clean-shape exposure is not a proof of safety. Low for rejecting this narrow demotion shortcut.
+- Bottleneck implication: the active bottleneck is hidden public-label realization at critical-cell scale. We can describe an E72-like failure scenario, but the available structural diagnostics do not identify it before feedback.
+- Do not repeat: creating E72-demoted E176 siblings or dropping E176 solely because E197 includes E72-like failure analogues. Use E177/E197 decoding after public feedback instead.

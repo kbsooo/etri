@@ -1262,3 +1262,34 @@ E197 tests a public-score inverse support-mass decoder.
   - visible stress branch/hard fail `4/6`.
 
 Stress implication: E176 is not certified, but its failure mode is now narrower. It loses only if the next public observation behaves like E72-like adverse slippage. E154 remains a counter-world, not the first stress survivor.
+
+## Update After E198
+
+E198 joins E197 slippage stress with the E191/E192 boundary-clean E72 shape diagnostic.
+
+- script: `analysis_outputs/e198_e72_slippage_exposure.py`.
+- report: `analysis_outputs/e198_e72_slippage_exposure_report.md`.
+- detector health:
+  - clean detector `shape_target_context_abs / plain_logit_c025 / loo_pair_id`.
+  - AUC `0.978836`.
+  - AP `0.809524`.
+  - top-k recall `0.666667`.
+  - exact E95/E101 mean probability `0.057658`.
+- thresholds:
+  - non-E72 p95 `0.020815`.
+  - non-E72 p99 `0.044812`.
+  - E72-positive floor `0.804849`.
+- E176:
+  - visible E72-vs-E95 stress: `small_loss`.
+  - visible E72-vs-mixmin stress: `branch_loss`.
+  - focus E72-vs-E95 stress: `micro_win`.
+  - focus E72-vs-mixmin stress: `branch_loss`.
+  - max clean E72 probability `0.000008`, below non-E72 p95.
+- E154:
+  - thin margin, hard-fails under E72 analogues.
+  - max clean E72 probability `0.007973`, below non-E72 p95.
+- E144:
+  - thin margin, hard-fails under E72 analogues.
+  - max clean E72 probability `0.038723`, above p95 but below p99 and far below positive floor.
+
+Stress implication: E176's failure mode remains real but is not structurally E72-like under the clean shape detector. The loss condition is public hidden-label slippage, not a pre-visible E72 contamination signature. This strengthens E176 as the next sensor but does not certify expected LB.

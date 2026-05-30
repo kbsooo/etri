@@ -2256,6 +2256,18 @@ target co-occurrence
 - public LB 관측 반응: E176 win means public slippage was not E72-like; E176 small/branch loss means E72-like adverse slippage is the active hidden variable and same-family keep-factor tuning is blocked.
 - 제출 전략: no E197 submission. Keep E176 first; if E176 ties/small-loses, use E172 as same-family safety contrast by decoder band. If E176 branch-loses or hard-fails, route to E154 or representation search.
 
+### H192. E176's E72-like failure mode is algebraic rather than clean-shape structural
+
+- 상태: 지지 by E198, with recall caveat.
+- 왜 그럴듯한가: E197 says E176 loses only under E72-like adverse slippage, while E192 says E176's clean shape E72 score is nearly zero. If both are true, E176's risk is a public-label slippage scenario, not an observed E72-contaminated movement shape.
+- 맞다면: E176 should branch-lose under E72-vs-mixmin slippage stress but stay far below E191/E192 non-E72 p95 and E72-positive thresholds. Repaired-branch alternatives should fail mainly from thin support margins, not from high clean E72 probability.
+- 틀리다면: E176 should cross non-E72 p95/p99 or approach the known E72-positive floor in the clean shape diagnostic, or E154/E144 should show the same clean E72 exposure at higher probability.
+- 최소 실험: `analysis_outputs/e198_e72_slippage_exposure.py`.
+- 관측: E176 visible/focus surplus-to-tie is `0.061761`/`0.094836`; E72-vs-mixmin slippage gives `branch_loss`, but E176 max clean E72 probability is `0.000008` versus non-E72 p95 `0.020815`, p99 `0.044812`, and positive floor `0.804849`. E154 max is `0.007973`; E144 max is `0.038723`, a mild p95 tail alarm but not positive-scale.
+- 성공/폐기 기준: retained while no public feedback contradicts it. If E176 public fails badly, this hypothesis does not automatically die; it says the failure was not pre-diagnosed by the clean shape E72 score and must be decoded by LB band/slippage. It weakens if a stronger structural E72 detector later scores E176 high before feedback.
+- public LB 관측 반응: E176 win strengthens the non-E72 broad/Q2-underopen read. E176 small/branch loss means E72-like public slippage occurred despite clean-shape non-exposure, so the missing variable is hidden-label realization rather than visible E72 movement shape. E144/E154 future wins/losses should be read as repaired-branch/tail-risk tests, not E72 contamination tests.
+- 제출 전략: no E198 submission. Keep E176 first. Do not demote E176 solely because E197 has an E72-like algebraic stress case; also do not call E176 certified, because the clean detector recall is only `0.666667`.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

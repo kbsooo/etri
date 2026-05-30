@@ -2650,3 +2650,46 @@ E184 이후에도 제출 후보 순위는 바뀌지 않는다.
 다음으로 가장 정보량이 큰 행동:
 
 제출한다면 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`다. E176이 지면 같은 Q2 keep-factor를 튜닝하지 말고, E72-like adverse slippage가 활성화됐다고 보고 E172 safety contrast 또는 E154 counter-world로 분기한다.
+
+## E198 업데이트: E176의 E72 위험은 shape가 아니라 slippage다
+
+내가 발견한 가장 이상한 점:
+
+`E176은 E72-like slippage stress에서는 질 수 있다. 그런데 clean E72 shape detector로 보면 E176은 E72와 전혀 닮지 않았다. 실패 조건은 보이지만, 실패의 shape signature는 보이지 않는다.`
+
+실험:
+
+- `analysis_outputs/e198_e72_slippage_exposure.py`
+- report: `analysis_outputs/e198_e72_slippage_exposure_report.md`
+
+결과:
+
+- E191 clean detector:
+  - AUC `0.978836`
+  - AP `0.809524`
+  - top-k recall `0.666667`
+  - exact E95/E101 mean probability `0.057658`
+- thresholds:
+  - non-E72 p95 `0.020815`
+  - non-E72 p99 `0.044812`
+  - E72-positive floor `0.804849`
+- E176:
+  - visible surplus-to-tie `0.061761`
+  - focus surplus-to-tie `0.094836`
+  - visible E72-vs-E95 stress `small_loss`
+  - visible E72-vs-mixmin stress `branch_loss`
+  - clean shape E72 max probability `0.000008`
+- E154:
+  - visible surplus-to-tie `0.010284`
+  - clean shape E72 max probability `0.007973`
+- E144:
+  - clean shape E72 max probability `0.038723`
+  - p95 tail alarm은 있지만 p99/positive floor에는 못 미침
+
+생각이 어떻게 바뀌었는지:
+
+`E176을 "E72처럼 질 수 있다"와 "E72처럼 생겼다"는 같은 말이 아니다. 전자는 E197이 보여준 대수적 stress이고, 후자는 E198에서 지지되지 않았다. 그래서 E176을 내릴 이유는 늘지 않았지만, public에서 나쁘게 나오면 hidden-label slippage가 clean-shape detector 밖에서 발생했다는 뜻으로 읽어야 한다.`
+
+다음으로 가장 정보량이 큰 행동:
+
+제출한다면 여전히 `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv`다. E176 실패 전에는 E72-demoted sibling을 만들지 않는다. 실패 후에는 scalar 점수 감으로 튜닝하지 말고 E177/E197 decoder band로 E172 safety contrast와 E154 counter-world 중 어디로 갈지 결정한다.
