@@ -1785,3 +1785,41 @@ Practical rule:
 - If the next submit is chosen for likely score, E237 remains first because its locked OOF tail-AUC and E237 score are stronger.
 - If the next submit is chosen to test "JEPA as actual feature-neighbor context, not just an idea", E250 top21 is now the cleaner sensor than E247.
 - Do not submit E249 top50 or E250 siblings before feedback. E250 already shows average OOF gain is not enough; only the narrow top21 risk row survives the full stress gate.
+
+## Update After E252
+
+E251/E252 creates a stronger but less OOF-certified complementarity sensor.
+
+New union sensor:
+
+`analysis_outputs/submission_e252_e237_e250_union_q3top31_67707aef.csv`
+
+Artifact facts:
+
+- E237 cells `25`, E250 cells `21`, shared `15`, union `31`.
+- exact sample schema/key order.
+- finite probabilities in `[0.068110176672, 0.979776651464]`.
+- E224 대비 changed cells `31`, all `Q3`.
+- materialization stress from E251:
+  - expected loss vs E224 `-0.000035272`.
+  - adverse reduction vs E224 `0.000721005`.
+  - support gain vs E224 `0.010353010`.
+  - actual adverse reduction vs E224 `0.000688037`.
+  - Q3 top1/abs-expected `0.506203451`.
+  - score `0.077866812`, above E237 `0.058941606` and E250 `0.053008707`.
+
+Current candidate order by purpose:
+
+1. **Best current JEPA score bet:** `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.
+2. **Best E237/E250 complementarity sensor:** `analysis_outputs/submission_e252_e237_e250_union_q3top31_67707aef.csv`.
+3. **Best pure feature-NN1-context decisive-cell sensor:** `analysis_outputs/submission_e250_featnn1_decisive_all3_latent_no_targetid_featnn1_hgb_shallow_row5_risk_q0p10_drop_q3_top21_4e9a88af.csv`.
+4. **Highest-information direct feature-NN1 smoothing sensor:** `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+5. **Clean JEPA body ablation:** `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
+6. **Non-JEPA escape:** `analysis_outputs/submission_e166_broadsurv_s0p01_d8bfa94b.csv`.
+7. **Conservative repaired branch:** `analysis_outputs/submission_e154_s3repair_9f2e2e73.csv`.
+
+Practical rule:
+
+- Choose E237 if the goal is the most defensible expected-score submission.
+- Choose E252 if the goal is the most informative new public sensor from the JEPA branch: it asks whether learned decisive-cell and feature-NN1-context cell sets are complementary.
+- Do not call E252 certified. Its weakness is no direct OOF policy identity for the union.

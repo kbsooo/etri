@@ -1,0 +1,7 @@
+check,ok,value
+shape,True,"(250, 10)"
+columns,True,"subject_id,sleep_date,lifelog_date,Q1,Q2,Q3,S1,S2,S3,S4"
+key_order,True,exact_sample_order
+finite,True,finite
+prob_min,True,0.068110176672
+prob_max,True,0.979776651464

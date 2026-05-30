@@ -2883,6 +2883,30 @@ target co-occurrence
 - public LB 관측 반응: no submission should be spent on the top50 row. If a sibling is submitted, it should be one of the E250 gate-pass rows, not the OOF-loss maximum.
 - 제출 전략: do not submit E249 top50 or broad global policies. Use E250 top21 if using this branch at all.
 
+### H251: E237 and E250 are complementary Q3 tail views, not simple substitutes
+
+- 상태: supported by materialization anatomy; OOF status for the union is unverified.
+- 왜 그럴듯한가: E237 has stronger OOF tail-AUC, while E250 adds feature-NN1 context. If the two contexts see different public-tail cells, their union should outperform either parent under support/adverse/top-cell stress.
+- 맞다면: E237 and E250 should partially overlap but not be identical; union should pass materialization stress and improve support/adverse metrics; E250-only should not necessarily be sufficient alone.
+- 틀리다면: E250 should be a near-clone of E237, union should fail by over-pruning, or only one parent should carry all materialization gains.
+- 최소 실험: `analysis_outputs/e251_e237_e250_cellset_contrast.py`.
+- 관측: E237 has `25` Q3 cells, E250 has `21`, shared `15`, E237-only `10`, E250-only `6`. The union of `31` cells passes with expected loss vs E224 `-0.000035272`, adverse reduction `0.000721005`, support gain `0.010353010`, Q3 top1/abs-expected `0.506203`, and score `0.077866812`, above E237 `0.058941606` and E250 `0.053008707`.
+- 성공/폐기 기준: supported as a public-free complementarity signal. Not accepted as OOF-certified until a train-side analogue or public feedback confirms that the union cells are not a post-hoc materialization artifact.
+- public LB 관측 반응: E252 win would strengthen complementary Q3 tail views. E252 loss while E237/E250 are untested would mean the materialization gate over-rewarded union broadness. E252 E216-like loss closes unioning before OOF certification.
+- 제출 전략: E252 can be submitted only as a complementarity sensor. E237 remains first for expected score.
+
+### H252: The shared E237/E250 core alone is the safe Q3 tail
+
+- 상태: rejected by E251.
+- 왜 그럴듯한가: two independent context views selecting the same `15` Q3 cells could indicate a high-confidence consensus core.
+- 맞다면: the intersection should pass materialization stress with lower top-cell concentration than either parent.
+- 틀리다면: the intersection should become too concentrated or positive expected loss, implying that the useful structure is distributed across parent-specific cells.
+- 최소 실험: E251 intersection audit.
+- 관측: shared intersection fails materialization gate with expected loss vs E224 `+0.000028815` and Q3 top1/abs-expected `1.054975`.
+- 성공/폐기 기준: rejected as a standalone submission law. Consensus alone is not enough; complementarity matters more than overlap.
+- public LB 관측 반응: no public slot should test the intersection by itself.
+- 제출 전략: do not materialize an intersection-only candidate.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

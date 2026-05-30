@@ -1908,3 +1908,21 @@
 - Implementation issue possible: low for rejecting the top50 submission claim, because the same materialization code selects four narrower rows while rejecting the broad top50 row. Medium for public truth because hidden labels are unknown.
 - Bottleneck implication: this reinforces the E242 lesson. JEPA context can help, but only when the target and gate are tail-specific. Broad OOF-winning policies are likely calibration/support traps.
 - Do not repeat: submitting E249 `drop_q3_top50`, broad global top-k policies, or E250 siblings ranked by OOF loss before public feedback.
+
+## FH212. E237/E250 shared consensus cells are the safest standalone Q3 law
+
+- Failed hypothesis: if two JEPA context views agree on `15` Q3 rollback cells, that intersection should be the safest high-confidence tail set.
+- Observed result: E251 shows the shared intersection fails materialization: expected loss vs E224 is positive at `+0.000028815`, and Q3 top1/abs-expected is `1.054975`. The best anatomy is the union, not the consensus core.
+- Why discard: agreement creates concentration, not safety. The useful public-free signal is distributed across parent-specific cells.
+- Implementation issue possible: low for rejecting intersection-only materialization; medium for public truth because the union still lacks OOF provenance.
+- Bottleneck implication: multi-view JEPA health is not simple consensus voting. The next representation should model complementary cell sets, not only cells selected by multiple views.
+- Do not repeat: materializing intersection-only E237/E250 files or using overlap count as a hard confidence score.
+
+## FH213. E250-only cells are independently deployable
+
+- Failed hypothesis: feature-NN1 context's `6` cells outside E237 should be enough to create an independent E250-only public-safe correction.
+- Observed result: E251 E250-only has favorable expected movement (`-0.000029661`) and support gain (`0.003048691`) but fails the materialization gate because adverse reduction is only `0.000144605` and actual adverse reduction `0.000134756`, both below the gate.
+- Why discard: E250-only cells are useful as complements to E237-only cells, not as an independent public-safe branch.
+- Implementation issue possible: low for this exact cell set; the gate miss is small but deterministic.
+- Bottleneck implication: feature-NN1 context currently adds marginal tail cells that need a learned-cell backbone. It is not yet a standalone selector.
+- Do not repeat: submitting E250-only or promoting feature-NN1-only differences without the E237 backbone.

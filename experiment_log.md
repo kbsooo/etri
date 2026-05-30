@@ -3826,3 +3826,31 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E249's best OOF `drop_q3_top50` fails the materialization gate because support gain turns negative and Q3 top-cell concentration is high.
 - Interpretation: E250 is weaker than E237 on expected-score evidence, but it is a cleaner answer to "can feature-NN1 context be used inside a JEPA decisive-cell target?" than E247. The answer is yes, but only as a narrow Q3 risk top21 sensor, not as a broad feature-NN smoothing or top50 OOF-gain sweep.
 - Decision: keep E237 as the best current score-biased JEPA candidate. Promote E250 top21 as the best feature-NN1-context public sensor if the next question is specifically whether the E207 feature-neighbor regime improves E237-style decisive-cell selection.
+
+## E251. E237/E250 Cell-Set Contrast
+
+- Observe: E250 selected a Q3 top21 set with weaker OOF metrics than E237, but the selected cells could still be complementary if feature-NN1 context finds a different part of the Q3 tail.
+- Wonder: is E250 just an E237 sibling, or do the E237-only and E250-only cells jointly improve the public-free materialization anatomy?
+- Method: `analysis_outputs/e251_e237_e250_cellset_contrast.py` compares E237 and E250 Q3 rollback rows versus E224, then audits intersection, union, E237-only, E250-only, and symmetric-difference cell sets with the same graft-vs-E154 and actual-vs-E95 stress metrics. No public LB is used and no submission is created by E251.
+- Result:
+  - report: `analysis_outputs/e251_e237_e250_cellset_contrast_report.md`.
+  - E237 Q3 cells `25`; E250 Q3 cells `21`; shared `15`; E237-only `10`; E250-only `6`; union `31`.
+  - union passes materialization gate and scores best: expected loss vs E224 `-0.000035272`, adverse reduction `0.000721005`, support gain `0.010353010`, Q3 top1/abs-expected `0.506203`, actual adverse reduction `0.000688037`, score `0.077866812`.
+  - E237 and E250 parents also pass, at scores `0.058941606` and `0.053008707`.
+  - E250-only fails the gate because adverse reduction is just below threshold (`0.000144605`) and actual adverse reduction is `0.000134756`; shared intersection also fails because expected loss is positive and Q3 top1/abs-expected is `1.054975`.
+- Interpretation: E250 is neither a pure clone nor independently deployable. The useful signal appears in the union of E237-only and E250-only cells, while the shared core alone is too concentrated. This supports a complementarity hypothesis, but the union has no direct OOF policy identity yet.
+- Decision: materialize the exact union only as a public sensor in E252. Do not replace E237 as likely-score first choice until an OOF analogue or public feedback supports the union.
+
+## E252. E237/E250 Union Materializer
+
+- Observe: E251's union is the strongest public-free materialization anatomy in the E237/E250 contrast, but it needs an exact CSV and schema audit before it can be considered a sensor.
+- Wonder: can the E237/E250 union be preserved as a clean Q3-only submission artifact without accidental row/key/target drift?
+- Method: `analysis_outputs/e252_e237_e250_union_materializer.py` materializes the union of E237 and E250 Q3 rollback cells by moving those E224 cells to E154, audits sample schema/key order/probability range, and counts targetwise movement.
+- Result:
+  - submission: `analysis_outputs/submission_e252_e237_e250_union_q3top31_67707aef.csv`.
+  - report: `analysis_outputs/e252_e237_e250_union_materializer_report.md`.
+  - SHA256: `5da8e3c9dbe79b62c18b3372fd542ca98369d66f225617356dc335ff1a49a58c`.
+  - exact sample shape/columns/key order: `True`; finite probabilities in `[0.068110176672, 0.979776651464]`.
+  - changed cells vs E224: `31`, all `Q3`; no Q1/Q2/S/S4 movement.
+- Interpretation: E252 is the cleanest current complementarity sensor between learned E237 and feature-NN-context E250. It is not OOF-certified as a standalone selector.
+- Decision: if the next public question is likely score, E237 remains first. If the next public question is whether E237/E250 Q3 cell sets are complementary, E252 is more informative than submitting E250 alone.

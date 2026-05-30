@@ -2215,6 +2215,28 @@ E249/E250 splits feature-NN1 into two different stress outcomes.
 
 Stress implication after E250: feature-NN1 is not a submit-safe scalar criterion. It can survive as a context feature for high-impact Q3 decisive-cell prediction, but the gate must remain tail-AUC/support/top-cell based. E237 remains the better score-biased candidate; E250 top21 is the sharper feature-NN1-context sensor.
 
+## Update After E252
+
+E251/E252 adds a cross-candidate cell-set stress.
+
+- E237 and E250 overlap on `15` Q3 cells, but are not clones:
+  - E237-only `10`.
+  - E250-only `6`.
+  - union `31`.
+- Materialization gate pass count is `5/7` cell-set variants.
+- Best materialization anatomy is the union:
+  - expected loss vs E224 `-0.000035272`.
+  - adverse reduction `0.000721005`.
+  - support gain `0.010353010`.
+  - actual adverse reduction `0.000688037`.
+  - Q3 top1/abs-expected `0.506203451`.
+  - no-OOF score `0.077866812`.
+- Negative controls are informative:
+  - shared intersection fails with expected loss `+0.000028815` and Q3 top1/abs-expected `1.054975`.
+  - E250-only fails because adverse reduction is just below the gate.
+
+Stress implication after E252: the current strongest materialization object is E237/E250 complementarity, not simple consensus. However, E252 is weaker than E237 on validation provenance because the union has no direct OOF policy identity. Rank it as a public sensor, not a certified score candidate.
+
 ## Update After E217
 
 E217 stress-tests a closer teacher-student tabular JEPA.
