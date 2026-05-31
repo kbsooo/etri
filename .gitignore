@@ -234,6 +234,10 @@ analysis_outputs/*
 !analysis_outputs/e364_public_like_cellaction_*.md
 !analysis_outputs/e364_public_like_cellaction_*.py
 !analysis_outputs/submission_e364_publiclike_cellaction_*_uploadsafe.csv
+!analysis_outputs/e365_public_like_jackknife_*.csv
+!analysis_outputs/e365_public_like_jackknife_*.md
+!analysis_outputs/e365_public_like_jackknife_*.py
+!analysis_outputs/submission_e365_jackknife_*_uploadsafe.csv
 
 !analysis_outputs/bridge_scan_candidates/
 analysis_outputs/bridge_scan_candidates/*

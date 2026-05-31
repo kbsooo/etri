@@ -2772,3 +2772,12 @@
 - Implementation issue possible: medium-high. The E364 public sensor is small and can overfit known public observations. This does not prove the donor-graft file is better; it rejects the stronger claim that E363 local robustness alone contains all useful ranking information.
 - Bottleneck implication: candidate selection is now a three-way tradeoff: local visibility, hidden lifestyle row-state health, and known-public movement-axis survival.
 - Do not repeat: selecting future E363-neighborhood candidates by `e363_robust_score` alone. Use a public-like calibration sensor or wait for public feedback to distinguish target-scale from donor-graft branches.
+
+## FH308. E364 is a one-public-file or one-view artifact
+
+- Failed hypothesis: the E364 donor-graft selection only wins because the public-like sensor overfit one known public submission or one representation view.
+- Observed result: E365 tested `84` scenarios from `6` feature views and leave-one-known-public masks. E364 beats E363 in `84/84` scenarios, with top1/top10 rates `0.500000/0.809524`; E363 top10 rate is `0.488095`. Every feature view has E364-better rate `1.0`.
+- Why discard: the E364 selection is not explained by a single dropped public file or a single feature family. The nearest challengers are donor-graft siblings, not the source-law target-scale candidate.
+- Implementation issue possible: medium-high. The whole stress is still built from the same scarce known-public ledger, so this does not prove public LB transfer. It only rejects the narrower overfit explanation.
+- Bottleneck implication: the live uncertainty has moved from "is E364 internally stable?" to "does this internally stable donor-graft public-like latent match the real public/private hidden subset?"
+- Do not repeat: another leave-one-public rerank of the same E364 pool unless new public observations are added. The next information should come from public feedback or from a new calibration/subset latent target.

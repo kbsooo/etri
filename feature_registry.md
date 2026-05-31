@@ -3914,3 +3914,22 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - selected target shares: Q1 `0.505235`, Q2 `0.210718`, Q3 `0.053685`, S1 `0.230361`, S3 `0.000000`.
 - Registry status: approved as a high-information public probe. It is less conservative than E363 because it changes family from target-scale to donor-graft.
 - Failure condition: if public LB worsens clearly, treat the known-public sensor as over-trusting donor geometry; return to source-law-preserving E363 or learn a less public-LB-scarce calibration target.
+
+### E365 public-like jackknife stability latent
+
+- Target hidden structure: stability of the E364 public-like donor-graft latent under masked public observations and masked context views.
+- Why needed: E364 uses only `13` locally available public-observed files. A useful representation should not depend on one known public score or one feature family.
+- Feature/action form:
+  - no new probability action;
+  - feature views: all, axis, target, anatomy, bad_good, compact;
+  - public masks: no drop plus leave-one-known-public file out;
+  - score: per-scenario public-like score with E363 local gate and relative E363-selected margins.
+- Current evidence:
+  - scenarios: `84`;
+  - E364 beats E363: `84/84`;
+  - E364 top1/top10 rates: `0.500000` / `0.809524`;
+  - E363 top10 rate: `0.488095`;
+  - selected audited file: `analysis_outputs/submission_e365_jackknife_selected_e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_co_b851baf9_uploadsafe.csv`;
+  - closest alternate is another donor-graft sibling, supporting family-level donor recovery geometry.
+- Registry status: approved as the current strongest submission probe and as a stability check for E364.
+- Failure condition: if public LB is clearly worse, do not continue local donor-graft jackknife selection. Treat the public-like latent as internally stable but externally wrong, and move to a new calibration/subset target.

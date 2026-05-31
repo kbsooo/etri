@@ -5970,3 +5970,27 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - This is not a guaranteed score candidate: the public-predicted delta improvement over E363 is tiny, and the sensor has only `13` available public files.
   - The information value is high because E364 tests a different world model: whether S1 recovery mass should be imported from a healthier donor action rather than produced by simple target-scale refinement.
 - Decision: E364 becomes the most information-rich next public probe if one slot is spent, but the expected score edge is modest. E363 remains the conservative source-law-preserving reference.
+
+## E365. Public-Like Jackknife Stress
+
+- Observe: E364 relied on only `13` locally available known-public observations, so its donor-graft choice could be a one-file or one-feature-view artifact.
+- Wonder: does the E364 donor-graft S1-recovery candidate remain ahead of E363 when public observations and representation views are masked?
+- Hypothesis: if E364 is a real public-like hidden lifestyle-action gate, it should beat E363 under leave-one-public-file-out and under multiple context views: all movement, public axes, target shares, compact anatomy, and bad/good axes.
+- Method: `analysis_outputs/e365_public_like_jackknife_stress.py`.
+  - Candidate pool: fixed E364/E363 cell-action candidates; no new probability movement.
+  - Scenarios: `84` total = `6` feature views x `14` public-drop settings.
+  - Views: all `129`, axis `62`, target `49`, anatomy `18`, bad_good `38`, compact `20` features.
+  - Gate: each scenario reuses E363 local gate plus relative E363-selected public-like margins.
+- Result:
+  - E364 beats E363 in `84/84` scenarios;
+  - E364 top1 rate: `0.500000`;
+  - E364 top10 rate: `0.809524`;
+  - E363 top10 rate: `0.488095`;
+  - feature-view E364-better rates are `1.0` for all, anatomy, axis, bad_good, compact, and target;
+  - selected/upload-safe file: `analysis_outputs/submission_e365_jackknife_selected_e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_co_b851baf9_uploadsafe.csv`;
+  - closest alternate: `e362_graft_donor_q3_e360_e349_compact_core__learned_pc_episode_s1_counter_11`, with top1 count `34` and top10 count `82`.
+- Interpretation:
+  - E364 is not just a one-public-file artifact. The donor-graft branch remains stable across leave-public and feature-view masks.
+  - The family-level signal is broader than one exact file: Q3/S1 donor-graft and Q3 donor-graft siblings both survive. This strengthens the hypothesis that the missing public-like action is donor-informed recovery geometry, not another target-scale tweak.
+  - E365 does not prove public LB improvement; it only makes E364 the highest-information next probe over E363.
+- Decision: keep E365/E364 as the current next public-test candidate. If it fails publicly, the whole donor-graft S1-recovery public-like hypothesis weakens, not just one file.

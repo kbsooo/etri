@@ -5324,3 +5324,31 @@ Stress conclusion:
 - E363's local target-scale law is real, but not necessarily the best public-transfer point inside the basin.
 - Known-public and row-state sensors prefer a donor-graft candidate with more S1 recovery mass and less public-bad-axis exposure.
 - The improvement signal is diagnostic rather than decisive because the known-public sensor has only `13` available examples. E364 is therefore a high-information public probe, not a guaranteed large-LB candidate.
+
+## E365 Public-Like Jackknife Stress
+
+Question: is the E364 donor-graft public-like selection stable when individual known-public observations and whole feature views are hidden?
+
+Stress setup:
+
+- script: `analysis_outputs/e365_public_like_jackknife_stress.py`;
+- fixed pool: E364-scored E363 candidates;
+- scenarios: `84` total;
+- masks: `6` feature views x `14` public-drop settings;
+- views: all `129`, axis `62`, target `49`, anatomy `18`, bad_good `38`, compact `20`;
+- gate: E363 local submission gate plus per-scenario relative E363-selected margins.
+
+Stress result:
+
+- E364 beats E363 in `84/84` scenarios;
+- E364 top1 rate: `0.500000`;
+- E364 top10 rate: `0.809524`;
+- E363 top10 rate: `0.488095`;
+- feature-view E364-better rate is `1.0` for all, anatomy, axis, bad_good, compact, and target;
+- selected audited file: `analysis_outputs/submission_e365_jackknife_selected_e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_co_b851baf9_uploadsafe.csv`.
+
+Stress conclusion:
+
+- E364 is not a one-known-public-file accident under the tested masks.
+- The stable signal is donor-graft recovery geometry: the closest challenger is another donor-graft sibling, while the E363 target-scale row does not retake the lead.
+- E365 upgrades E364 from "interesting public-like rerank" to "current highest-information public probe"; it still does not certify public LB improvement.

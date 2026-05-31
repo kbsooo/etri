@@ -4602,3 +4602,29 @@ Expected public interpretation:
 - If E364 improves over E247/E363, donor-grafted S1 recovery is likely a missing hidden lifestyle-action component.
 - If E364 is worse but E363 later improves, the public-like known-axis sensor overtrusted donor geometry and source-law preservation matters more.
 - If both E363 and E364 fail, the E363 basin is locally valid but not public-transferable; the next experiment should learn public-like subset/calibration state more directly instead of perturbing the same action family.
+
+## Update After E365 Public-Like Jackknife Stress
+
+Current highest-information submission file:
+
+`analysis_outputs/submission_e365_jackknife_selected_e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_co_b851baf9_uploadsafe.csv`
+
+This is the same probability candidate family selected by E364, now copied under the E365 audit name after jackknife validation.
+
+Why it is now preferred over E363:
+
+- E365 re-ran the E364 public-like sensor under `84` stress scenarios: `6` feature views x leave-one-known-public masks.
+- E365 found E364 beats E363 in `84/84` scenarios.
+- E364/E365 top10 rate is `0.809524`; E363 top10 rate is `0.488095`.
+- E364/E365 is top1 in `42/84` scenarios. The main rival is another donor-graft sibling, not the E363 target-scale file.
+
+What this submission is betting:
+
+- The hidden lifestyle-state action is not only "Q1-heavy target scaling."
+- The stronger hypothesis is now: Q1/Q2 preserve subjective visibility, S3 stays suppressed, and S1 recovery geometry should be borrowed from a healthier donor action.
+
+Public-result interpretation:
+
+- If E365 improves, donor-grafted S1 recovery becomes the strongest current hidden-action law.
+- If E365 is neutral but E363 later improves, donor geometry was unnecessary and source-law-preserving target balance is safer.
+- If E365 worsens clearly, stop nearby donor-graft reranking; the known-public sensor is too scarce or the donor family is a public-transfer shortcut.

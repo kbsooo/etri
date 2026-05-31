@@ -4212,3 +4212,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept locally if the sensor has positive LOO diagnostics and the chosen candidate clears E363 local gate while improving at least two independent public-like risks versus E363 selected. This is observed. Accept publicly only if LB improves or is at least competitive enough to validate donor-graft S1 recovery as a useful component.
 - public LB 관측 반응: if E364 improves, the hidden law likely needs donor-grafted S1 recovery rather than pure target-scale balance. If E364 fails but E363 improves, source-law preservation beats the known-public calibration sensor. If both fail, abandon local E363 basin tweaking and learn a public-like subset/calibration latent.
 - 제출 전략: `analysis_outputs/submission_e364_publiclike_cellaction_selected_e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_co_b851baf9_uploadsafe.csv` is the highest-information next probe; E363 remains the conservative reference.
+
+### H365: E364's donor-graft public-like choice is stable under public/view masking
+
+- 상태: locally supported; public LB pending.
+- 왜 그럴듯한가: E364 selected a donor-graft candidate from a tiny public sensor, so it could be a one-public-file artifact. A real same-level latent should remain preferred when individual known public files or whole context views are masked.
+- 맞다면: E364 should beat E363 across leave-one-public-file and feature-view jackknife scenarios, and the top supported alternatives should come from the same donor-graft recovery family rather than unrelated tiny/ungated moves.
+- 틀리다면: dropping a single known public file should flip the decision back to E363, or axis-only/target-only/anatomy-only views should contradict the donor-graft preference.
+- 최소 실험: `analysis_outputs/e365_public_like_jackknife_stress.py`.
+- 관측: `84` scenarios from `6` feature views and `14` public-drop settings. E364 beats E363 in `84/84` scenarios. E364 top1/top10 rates are `0.500000/0.809524`; E363 top10 rate is `0.488095`. The closest competitor is another donor-graft sibling, not the E363 target-scale row.
+- 성공/폐기 기준: accept locally if E364 beats E363 in at least `60%` of scenarios and stays top10 in at least `50%`. This is observed strongly.
+- public LB 관측 반응: if E365 improves, donor-graft S1 recovery is likely a real missing component. If E365 fails but E363 improves, jackknife stability was still overfit to known-public geometry. If both fail, abandon E363/E364 local-basin candidate selection and learn a new public-like subset/calibration latent.
+- 제출 전략: `analysis_outputs/submission_e365_jackknife_selected_e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_co_b851baf9_uploadsafe.csv` supersedes the raw E364 filename as the next audited probe.
