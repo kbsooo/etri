@@ -4499,3 +4499,41 @@ Stress conclusion:
 - The E338 Q3 episode gate is not collapsed, but it is low-energy.
 - Existing stronger Q3 directions do not align with the hidden episode state enough to become safe visible actions.
 - Q3 episode gating remains a diagnostic/placement energy, not a submission-ready amplifier.
+
+## E340 Microstate Coalition Action-Health
+
+Question: can clean but individually invisible Q1 and Q3 lifestyle micro-states cross selector visibility when combined?
+
+Method: `analysis_outputs/e340_microstate_coalition_action_health.py`.
+
+Stress used:
+
+- action-health archive from E335, E338, and E339;
+- leave-experiment style action-health/visibility diagnostics;
+- E272 public-free selector;
+- fresh movement nulls: row, target, sign, row-sign, cell, subject, and dateblock.
+
+Result:
+
+- archive rows: `5560`;
+- safe-invisible source rows: `37`;
+- action-health ExtraTrees OOF Spearman: `0.938224`;
+- visibility-margin ExtraTrees OOF Spearman: `0.921134`;
+- null-health ExtraTrees OOF Spearman: `0.004871`;
+- generated coalitions: `7400`;
+- selector-promoted candidates: `0`;
+- information-sensor candidates: `4248`;
+- movement-null-safe promoted candidates: `0`.
+- best stressed coalition:
+  - mean `-0.000168`;
+  - p90 `-0.000028`;
+  - beats `0.944444`;
+  - movement-null mean/p90 dominance `1.000000/1.000000`;
+  - null strict rate `0.000000`;
+  - decision `too_small_to_submit`.
+
+Stress conclusion:
+
+- The safe-invisible basin is real: clean Q1/Q3 coalitions stay null-dominant but do not become selector-visible.
+- Visibility is learnable from candidate geometry, but null-health is not learnable from the current archive.
+- Future validation should prioritize finding visible/null-rare positives, not summing more safe-invisible micro-states.

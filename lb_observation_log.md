@@ -1362,3 +1362,32 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - the current public-free evidence does not justify a public LB sensor spend.
 - expected public reaction if submitted anyway:
   - likely tiny/noisy effect around E247 because selector-promoted count is zero.
+
+## Public-Free Observation: E340 Microstate Coalition Action-Health
+
+- submission files: generated locally, but none promoted for public testing.
+- public LB: not submitted.
+- reason not submitted: Q1+Q3 hidden lifestyle micro-state coalitions remain below strict selector p90 resolution.
+- local observation:
+  - archive rows: `5560`;
+  - safe-invisible source rows: `37`;
+  - generated coalitions: `7400`;
+  - selector-promoted candidates: `0`;
+  - information-sensor candidates: `4248`;
+  - movement-null-safe promoted candidates: `0`.
+- latent observation:
+  - action-health score is predictable, OOF Spearman `0.938224`;
+  - visibility margin is predictable, OOF Spearman `0.921134`;
+  - null-health is not predictable from this archive, OOF Spearman `0.004871`.
+- closest local candidate:
+  - `submission_e340_q1_E335_submission_e335_q1__q3_E339_submission_e339_q3__w1_25_1_00_bad_veto_38d229fd.csv`;
+  - mean `-0.000168`;
+  - p90 `-0.000028`;
+  - beats `0.944444`;
+  - movement-null mean/p90 dominance `1.000000/1.000000`;
+  - decision `too_small_to_submit`.
+- interpretation:
+  - combining clean lifestyle micro-states improves mean and stability but still does not create public-visible p90;
+  - the bottleneck is a missing visible/null-rare positive support axis, not merely too few small sensors.
+- expected public reaction if submitted anyway:
+  - likely small/noisy improvement at best, with insufficient evidence to justify spending a public slot.

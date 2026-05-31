@@ -3912,3 +3912,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: reject as a generator if no candidate clears selector promotion and movement-null gates; keep the episode gate as a sensor if negative p90 and null dominance persist. This is observed.
 - public LB 관측 반응: no public LB should be spent. Expected public effect is low-information because the best deltas remain below submission resolution.
 - 제출 전략: none from E339. Future Q3 work needs a learned visibility target or a new independent positive support axis, not direct reuse of older Q3 directions through the same gate.
+
+### H340: multiple safe lifestyle micro-states can cross selector visibility together
+
+- 상태: 반증됨 as submission/action generator; 지지됨 as action-health/visibility diagnostic.
+- 왜 그럴듯한가: E335 Q1 tails and E338/E339 Q3 episodes are individually null-dominant but too small. If the only blocker is selector resolution, cross-target coalition should accumulate enough p90 edge while preserving null rarity.
+- 맞다면: Q1+Q3 coalitions should produce at least one `strict_promote_gate=True` candidate and fresh movement-null dominance should remain high.
+- 틀리다면: p90 should improve but saturate above `-0.00005`, or visibility should appear only in matched-null-common variants.
+- 최소 실험: `analysis_outputs/e340_microstate_coalition_action_health.py`.
+- 관측: `5560` archive rows, `37` safe-invisible source rows, `7400` coalitions, `0` selector-promoted, `4248` information sensors, `0` movement-null-safe promoted. Best p90 is only about `-0.000028`, while the best null-stressed file has dominance `1.000000/1.000000` but remains `too_small_to_submit`.
+- 성공/폐기 기준: reject as generator if no coalition clears strict selector plus movement-null gates; keep as diagnostic if action-health/visibility latent is predictable. This is observed: visibility OOF Spearman `0.921134`, action-health OOF Spearman `0.938224`, but null-health OOF Spearman is near zero.
+- public LB 관측 반응: no public LB should be spent. The expected public effect is likely small/noisy because all files are below strict p90 resolution.
+- 제출 전략: none from E340. The next route must introduce a new visibility-positive support axis or learn null-health from richer positive examples; further Q1/Q3 summing is low priority.

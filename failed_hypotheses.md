@@ -2592,3 +2592,12 @@
 - Implementation issue possible: medium. The experiment uses hand-coded logit transforms and scales, so a learned nonlinear amplifier could still use the episode state. Low for rejecting the generated files because selector, movement-null, and source-alignment diagnostics agree.
 - Bottleneck implication: the Q3 episode state is a placement sensor, not enough positive support for a probability action. The missing object is now a visibility/action-health latent or an independent cross-target support axis.
 - Do not repeat: public-testing E338/E339 Q3 episode-gated files or increasing scale on the same historical Q3 directions without first obtaining selector promotion and fresh movement-null dominance.
+
+## FH288. Safe-invisible Q1/Q3 micro-states become submission-grade when combined
+
+- Failed hypothesis: individually clean but below-resolution Q1 and Q3 lifestyle micro-states can be combined across targets to cross selector visibility while preserving movement-null rarity.
+- Observed result: E340 generated `7400` Q1+Q3 and Q1+Q3+Q3 coalitions. None cleared selector promotion. The best stressed file had mean `-0.000168`, p90 `-0.000028`, beats `0.944444`, movement-null dominance `1.000000/1.000000`, and null strict rate `0.000000`, but still `too_small_to_submit`.
+- Why discard: the family improves stability and mean, but p90 saturates above the strict `-0.00005` threshold. This is not just a single-state amplitude problem; the current Q1/Q3 safe sources lack a visibility-positive tail.
+- Implementation issue possible: medium. The coalition weights and transforms are hand-designed. A nonlinear generator might still do better, but the direct additive route is weak because `7400` variants all fail the same selector boundary.
+- Bottleneck implication: visibility and action-health are learnable as diagnostics, but null-rare visible action is missing from the archive. Future work needs a new positive support axis or richer public-free positives.
+- Do not repeat: summing more E335/E338/E339 safe-invisible sensors or scaling Q1/Q3 coalition weights unless a new validator first predicts strict p90 visibility.

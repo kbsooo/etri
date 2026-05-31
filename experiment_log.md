@@ -5366,3 +5366,34 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     - mean about `-0.000008`, p90 about `-0.000004`, beats `0.986111`, but still `too_small_to_submit`.
 - Interpretation: E338's Q3 episode gate is a real low-energy sensor, but existing stronger Q3 directions do not share the same hidden placement law strongly enough. The gate filters movement into a safer shape, yet it also removes almost all public-visible energy.
 - Decision: do not submit E339 candidates. The branch "borrow a stronger historical Q3 direction and pass it through the E338 lifestyle episode gate" is now weakened. The next useful hidden lifestyle-state experiment should learn action-health/visibility directly or search outside Q3-only episode amplification.
+
+## E340. Microstate Coalition Action-Health
+
+- Observe: E335 Q1 action-health tails and E338/E339 Q3 episode gates are both clean but below selector resolution. A plausible hidden-world explanation is that each state is real, but public-free visibility requires a coalition of multiple independent lifestyle micro-states.
+- Wonder: can Q1 safe-invisible tails plus Q3 dateblock episode sensors cross selector visibility without becoming movement-null common?
+- Hypothesis: if the bottleneck is only selector resolution, combining null-dominant Q1 and Q3 micro-states should push p90 below `-0.00005` while keeping movement-null dominance high.
+- Method: `analysis_outputs/e340_microstate_coalition_action_health.py`.
+  - Build an action-health source archive from E335, E338, and E339.
+  - Treat candidate geometry and movement-null readout as context; target is action-health / visibility margin.
+  - Select `7` Q1 and `14` Q3 safe-invisible sources.
+  - Generate Q1+Q3 and Q1+Q3+Q3 coalitions with raw, bad-veto, target-centered, and veto-centered transforms.
+  - Stress with E272 selector plus fresh movement-null modes: row, target, sign, row-sign, cell, subject, and dateblock permutations.
+- Result:
+  - archive rows: `5560`;
+  - safe-invisible source rows: `37`;
+  - action-health latent diagnostic:
+    - `action_health_score` ExtraTrees OOF Spearman `0.938224`;
+    - `visibility_margin` ExtraTrees OOF Spearman `0.921134`;
+    - `null_health` OOF Spearman approximately `0.004871`, effectively not learnable from this archive.
+  - generated candidates: `7400`;
+  - selector-promoted candidates: `0`;
+  - information-sensor candidates: `4248`;
+  - movement-null-safe promoted candidates: `0`.
+  - best selector p90: about `-0.000028`, still short of the strict `-0.00005` gate.
+  - best null-stressed coalition:
+    - `submission_e340_q1_E335_submission_e335_q1__q3_E339_submission_e339_q3__w1_25_1_00_bad_veto_38d229fd.csv`;
+    - mean `-0.000168`, p90 `-0.000028`, beats `0.944444`;
+    - movement-null mean/p90 dominance `1.000000/1.000000`, null strict rate `0.000000`;
+    - still `too_small_to_submit`.
+- Interpretation: visibility and action-health are predictable latent quantities, but null-health is not predictable from the current archive. Combining clean Q1/Q3 micro-states improves p90 from single-sensor scale, but it saturates below the selector threshold. The bottleneck is not just "add more small lifestyle states"; it is finding a new visibility-positive axis or learning null-health with richer positives.
+- Decision: do not submit E340 candidates. Keep the coalition result as strong evidence that the safe-invisible basin is real and that future work should seek a new positive support axis rather than further summing Q1/Q3 sensors.

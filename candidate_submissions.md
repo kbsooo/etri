@@ -3824,3 +3824,36 @@ Next submission rule:
 - do not submit E338/E339 Q3 episode sensors until a learned visibility/action-health target creates selector promotion;
 - do not treat older Q3 movement as reusable signal unless it passes episode-sign alignment and movement-null dominance;
 - next candidate should come from a new positive support axis or cross-target action-health latent, not direct Q3-only amplification.
+
+## Update After E340 Microstate Coalition Action-Health
+
+No E340 file should be submitted.
+
+Closest local probes:
+
+- `analysis_outputs/submission_e340_q1_E335_submission_e335_q1__q3_E339_submission_e339_q3__w1_25_1_00_bad_veto_38d229fd.csv`
+- `analysis_outputs/submission_e340_q1_E335_submission_e335_q1__q3_E339_submission_e339_q3__w1_25_2_60_bad_veto_dde6afdc.csv`
+- `analysis_outputs/submission_e340_q1_E335_submission_e335_q1__q3_E339_submission_e339_q3__w1_00_1_00_raw_78a21e95.csv`
+
+Why blocked:
+
+- `7400` generated coalitions produce `0` selector-promoted files.
+- The best files are cleaner than many previous attempts but remain too small:
+  - best p90 about `-0.000028`, versus strict gate `-0.00005`;
+  - best stressed candidate mean `-0.000168`;
+  - beats `0.944444`;
+  - movement-null mean/p90 dominance `1.000000/1.000000`;
+  - null strict rate `0.000000`;
+  - decision `too_small_to_submit`.
+- Combining Q1 and Q3 hidden lifestyle micro-states improves stability, not enough visibility.
+
+Current best public frontier remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+- public LB `0.5761589494`
+
+Next submission rule:
+
+- do not submit Q1+Q3 safe-invisible coalitions;
+- require a new visible/null-rare positive support axis before generating another submission candidate;
+- use E340's action-health and visibility diagnostics as a blocker/ranker, not as a standalone generator.

@@ -3460,3 +3460,30 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - require both episode-sign alignment and selector promotion before spending a public slot.
 - Failure condition:
   - if a gated borrowed direction stays below selector resolution despite negative p90 and null dominance, classify it as safe-invisible, not public-ready.
+
+## E340 Microstate Coalition Action-Health Features
+
+- Target hypothesis tested:
+  - safe-invisible Q1 and Q3 hidden lifestyle micro-states can be combined into a selector-visible and null-rare coalition action.
+- Feature/representation source:
+  - E335 Q1 action-health tail candidates;
+  - E338 cluster-local Q3 episode candidates;
+  - E339 Q3 episode-gated historical-direction candidates;
+  - candidate geometry, target-share anatomy, selector p90/mean/beats, E323/E216 bad-axis movement, and movement-null dominance.
+- Validation result:
+  - `5560` archive rows and `37` safe-invisible source rows;
+  - action-health OOF Spearman `0.938224`;
+  - visibility-margin OOF Spearman `0.921134`;
+  - null-health OOF Spearman `0.004871`;
+  - `7400` generated coalitions;
+  - `0` selector-promoted candidates.
+- Updated registry status:
+  - approved as an action-health/visibility diagnostic;
+  - rejected as a current coalition submission feature;
+  - treat null-health as missing/unlearned in the current source archive.
+- Adopt rule for future features:
+  - do not assume clean small sensors add linearly into a public candidate;
+  - require visible/null-rare positive examples before training another action generator;
+  - keep E340 source-health fields as ranking and blocking features.
+- Failure condition:
+  - if coalition candidates have high null dominance but p90 remains above `-0.00005`, classify the family as safe-invisible saturation.
