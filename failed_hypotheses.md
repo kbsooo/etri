@@ -2475,3 +2475,12 @@
 - Implementation issue possible: medium. E326 uses linear signed semantic support and simple censor policies. A learned joint semantic+placement-health generator may still work. Low for rejecting current E326 files as priority replacements.
 - Bottleneck implication: the breakthrough remains placement-null-common residualization plus high-rep null health. Human/social semantics should be auxiliary constraints, not a public submission shortcut.
 - Do not repeat: public-testing semantic-gated siblings that do not locally beat the current residual priority across null strict, p90/mean dominance, and worst-mode dominance.
+
+## FH275. Competitive build-null signatures can directly improve the E324 priority
+
+- Failed hypothesis: the remaining E324 risk is a removable cell-level residue visible in competitive row/subject/dateblock build nulls.
+- Observed result: E327 generated `540` nullfail-risk variants, selected `40`, and evaluated `7760` fresh stress nulls. Nullfail-censor variants beat anti-controls (`2/33` ready vs `0/7`), but `0` candidates beat the E324 priority. Aggressive badmean subtraction looked strong in prefilter and then became null-common on fresh stress.
+- Why discard: the null-fail signal is real, but direct subtraction/damping does not improve the current priority's risk-return tradeoff. The priority is already close to this local null-risk Pareto boundary.
+- Implementation issue possible: medium. E327 uses simple cell-level linear risk statistics. A learned joint risk model might improve, but the current direct censor files are not priority replacements.
+- Bottleneck implication: next breakthrough likely needs an independent calibration/public-subset axis or a new latent target, not another local censor of `5508f966`.
+- Do not repeat: public-testing build-null-risk files that win old p90 but fail fresh null stress or fail to beat the current priority.

@@ -3430,3 +3430,32 @@ Submission policy:
 - Do not spend public LB on E326 yet.
 - If exactly one public-free file must be tested next, keep E324 priority `5508f966`.
 - E326 becomes a follow-up only if E324 improves public and we need a same-world semantic-censor contrast. If E324 worsens, E326 should not be used as rescue; the failure would point to missing public/private calibration rather than missing semantic pruning.
+
+## Update After E327 Null-Fail Risk Censor
+
+Current next submission candidate remains unchanged:
+
+- `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_5508f966.csv`
+
+Why E327 does not replace it:
+
+- E327 generated `540` build-null-risk variants and stress-tested `40` candidates on `7760` fresh null rows.
+- It produced `2` public-free ready variants, but `0` beat E324 priority locally.
+- Best E327 ready file:
+  - `analysis_outputs/submission_e327_nullrisk_null_common_residual__src_human_regime_only__recipe_fa__risk_damp25__q0_85__b1_00__s0_75_15b9159f.csv`;
+  - p90 `-0.000059602`;
+  - null strict `0.061856`;
+  - worst-mode p90 dominance `0.854167`.
+- E324 priority remains lower risk:
+  - p90 `-0.000053747`;
+  - null strict `0.050388`;
+  - worst-mode p90 dominance `0.859375`.
+
+Submission policy:
+
+- Public LB is scarce. Do not submit a candidate just because it is locally interesting or beats one old selector.
+- Required promotion gate: the candidate must beat the current priority on the public-free selector and on fresh null stress that was not used to generate it.
+- If a candidate fails this gate, record it as diagnostic evidence and keep the public slot closed.
+- Do not submit E327 before E324 priority.
+- E327 is useful evidence that risk-damping is safer than aggressive bad-null subtraction, but it does not create a better public candidate.
+- If E324 later improves public, E327's `risk_damp25` file can be kept as a diagnostic sibling, not as the next score-first choice.

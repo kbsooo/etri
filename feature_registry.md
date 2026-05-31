@@ -3141,3 +3141,30 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - keep semantic z, null strict rate, p90 dominance, mean dominance, and worst-mode dominance in the same table.
 - Failure condition:
   - if semantic pruning increases p90 edge but raises null strict rate above priority, mark it as semantic over-pruning or null-common scaling, not a public candidate.
+
+## E327 Null-Fail Risk Censor Features
+
+- Target hypothesis tested:
+  - the remaining E324 risk is encoded in cells favored by competitive row/subject/dateblock build null placements.
+- Feature/representation source:
+  - build nulls separated from fresh stress nulls;
+  - cell-level bad-null mean, bad-null q75 magnitude, sign-match frequency, relative null risk, and support = actual abs delta minus bad-null q75;
+  - policies: badmean subtraction, support keep, risk damp/drop, low-risk keep, orthogonal projection, plus anti-controls.
+- Validation result:
+  - generated `540` candidates;
+  - prefilter strict `179`;
+  - selected `40`;
+  - build null rows `288`;
+  - fresh stress null rows `7760`;
+  - ready `2`;
+  - beats E324 priority locally `0`.
+- Updated registry status:
+  - approved as a null-risk diagnostic;
+  - not approved as a priority replacement feature;
+  - aggressive bad-null subtraction is marked high overfit risk.
+- Adopt rule for future features:
+  - split build nulls and stress nulls whenever using null-derived features;
+  - treat conservative risk damping as safer than subtracting full bad-null means;
+  - require a candidate to improve null strictness and worst-mode dominance, not only p90.
+- Failure condition:
+  - if a null-derived feature wins prefilter but fails fresh stress, classify it as null-overfit and do not public-test it.

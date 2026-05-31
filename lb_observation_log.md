@@ -1045,3 +1045,23 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - do not spend a public slot on E326 before E324 priority;
   - if E324 later improves public, E326 can become a follow-up contrast for whether semantic pruning adds value;
   - if E324 worsens, E326 should be blocked because the issue would likely be public/private subset or calibration mismatch, not insufficient semantic pruning.
+
+## Public-Free Observation: E327
+
+- submission files: generated locally, but none promoted above the existing E324 priority.
+- public LB: not submitted.
+- reason not submitted: E327 produced public-free ready variants, but none dominated the current E324 priority under fresh null stress.
+- local observation:
+  - generated candidates: `540`;
+  - prefilter strict candidates: `179`;
+  - build null rows: `288`;
+  - stress null rows: `7760`;
+  - public-free ready: `2`;
+  - beats E324 priority locally: `0`;
+  - nullfail-censor selected ready: `2/33`;
+  - anti-control selected ready: `0/7`.
+- interpretation: competitive null placements contain useful diagnostic signal, but direct bad-null subtraction overfits and conservative damping is not stronger than the original residual candidate.
+- expected public reaction:
+  - do not spend a public slot on E327 before E324 priority;
+  - if E324 improves, E327 can be used as a second-order diagnostic sibling;
+  - if E324 worsens, E327 should also be blocked because it is built on the same local residual world and selector family.

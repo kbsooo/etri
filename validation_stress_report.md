@@ -4030,3 +4030,55 @@ Decision:
 - E326 passes the semantic-vs-anti sanity check but fails the replacement gate.
 - Do not public-test E326 before E323/E324 priority.
 - The local checker is working as intended: public LB is blocked unless a new candidate beats both the public-free selector and matched-null stress relative to the current priority.
+
+## E327 Null-Fail Risk Censor Stress
+
+Question: can the remaining null risk in the E324 priority be reduced by learning which cells are favored by competitive row/subject/dateblock null placements?
+
+Method: `analysis_outputs/e327_nullfail_risk_censor.py`.
+
+- Build nulls:
+  - modes: row, subject, dateblock;
+  - reps: `32` per mode per E324-ready parent;
+  - rows: `288`.
+- Stress nulls:
+  - fresh rep offset, not reused from build;
+  - modes: row, subject, dateblock, target-permutation, sign-flip, Q/S-swap;
+  - rows: `7760`.
+- Candidates:
+  - generated `540`;
+  - prefilter strict `179`;
+  - stress-evaluated `40`.
+- Public LB: not used.
+
+Result:
+
+- ready candidates: `2`;
+- candidates beating E324 priority locally: `0`;
+- nullfail-censor selected rows: `33`, ready `2`;
+- anti-control selected rows: `7`, ready `0`;
+- best ready candidate:
+  - `submission_e327_nullrisk_null_common_residual__src_human_regime_only__recipe_fa__risk_damp25__q0_85__b1_00__s0_75_15b9159f.csv`;
+  - p90 `-0.000059602`;
+  - null strict `0.061856`;
+  - p90 dominance `0.938144`;
+  - mean dominance `0.907216`;
+  - worst-mode p90 dominance `0.854167`.
+- E324 priority comparison:
+  - p90 `-0.000053747`;
+  - null strict `0.050388`;
+  - p90 dominance `0.926357`;
+  - mean dominance `0.914729`;
+  - worst-mode p90 dominance `0.859375`.
+
+Decision:
+
+- E327 does not replace the E324 priority.
+- The best ready E327 file has slightly stronger p90 but worse null strict and slightly worse worst-mode dominance.
+- Aggressive bad-null subtraction is rejected: it wins the prefilter but fails fresh null stress.
+
+Operational rule after E327:
+
+- Public LB should not be used to check every variant.
+- The local checker must carry the first rejection burden: old selector p90, fresh row/subject/dateblock nulls, target-permutation/sign-flip/Q-S-swap stress, current-priority dominance, and an anti-control comparison when possible.
+- A public submission is allowed only when the file survives this stress as a stronger candidate than the current priority, or when it is explicitly predeclared as a high-information sensor rather than a score-seeking file.

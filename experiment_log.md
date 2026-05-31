@@ -5060,3 +5060,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best ready candidate: `submission_e326_semcensor_null_common_residual__src_human_regime_only__recipe_fami__keep_l1__q0_70__s1_25_1af7dabf.csv` with p90 `-0.000081631`, null strict `0.061856`, worst-mode dominance `0.875000`.
 - Interpretation: the semantic axes are not fake; semantic-censored variants are healthier than anti-controls. But the censor is still weaker than the original E324 null-common residual priority because it either loses too much selector margin or becomes null-common when aggressive.
 - Decision: no new E326 submission replaces E323/E324 priority. Keep `5508f966` as the public-free next candidate. Use E326 as a diagnostic: human/social semantics help explain and prune actions, but the primary breakthrough remains placement-null residualization, not semantic gating.
+
+## E327. Null-Fail Risk Censor
+
+- Observe: E326 showed semantic pruning is not enough. The remaining practical risk is that some row/subject/dateblock null placements still look competitive to the public-free selector.
+- Wonder: can we learn the cells favored by competitive build nulls, then damp or subtract that null-fail signature and survive fresh stress nulls?
+- Hypothesis: if E324's remaining risk is a removable null-fail residue, build-null-informed censor variants should beat anti-controls and at least one should locally dominate the E324 priority.
+- Method: `analysis_outputs/e327_nullfail_risk_censor.py` used separate build and stress nulls. It generated `288` build row/subject/dateblock nulls from the E324-ready parents, estimated cell-level null-fail risk, produced `540` candidate variants, selected `40`, and evaluated them on `7760` fresh null rows. Public LB was not used.
+- Result:
+  - generated candidates: `540`;
+  - prefilter strict candidates: `179`;
+  - null-evaluated candidates: `40`;
+  - public-free ready candidates: `2`;
+  - beats E324 priority locally: `0`;
+  - nullfail-censor selected rows: `33`, ready `2`;
+  - anti-control selected rows: `7`, ready `0`;
+  - best ready file: `submission_e327_nullrisk_null_common_residual__src_human_regime_only__recipe_fa__risk_damp25__q0_85__b1_00__s0_75_15b9159f.csv` with p90 `-0.000059602`, null strict `0.061856`, worst-mode dominance `0.854167`.
+- Interpretation: the null-fail signal is real, but it is hard to act on. Aggressive bad-null subtraction looks excellent in prefilter and then becomes null-common on fresh stress. Conservative risk-damping can stay ready, but it is not lower-risk than `5508f966`.
+- Decision: no E327 file replaces E324 priority. This strengthens the rule that a candidate must beat the priority under fresh null stress, not just improve old selector p90.

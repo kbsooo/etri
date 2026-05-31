@@ -3768,3 +3768,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: keep semantic axes as diagnostic if semantic ready rate > anti ready rate; reject replacement if no candidate beats E324 priority under matched null stress.
 - public LB 관측 반응: no public LB should be spent on E326 before E324 priority. A public-positive E326 after E324 would mean semantic pruning adds signal; a public-negative E326 would confirm semantic attribution is not enough as action policy.
 - 제출 전략: none now. Preserve E324 priority `5508f966`.
+
+### H327: remaining E324 risk is removable by censoring competitive null-fail cells
+
+- 상태: 부분 지지됨 as risk diagnostic; 반증됨 as priority replacement.
+- 왜 그럴듯한가: E324 priority still has nonzero row/subject/target-perm null strict rates. If the remaining risk is a stable null-fail residue, competitive build nulls should reveal cells to subtract or damp, and fresh stress should improve.
+- 맞다면: build-null-risk variants should beat anti-controls and at least one should beat E324 priority on null strict plus p90/mean/worst-mode dominance under fresh nulls.
+- 틀리다면: aggressive risk removal should overfit build nulls and become null-common on fresh stress, while conservative damping may survive but not dominate the original priority.
+- 최소 실험: `analysis_outputs/e327_nullfail_risk_censor.py`.
+- 관측: generated `540`, prefilter strict `179`, build null rows `288`, fresh stress null rows `7760`, ready `2`, beats E324 priority `0`; nullfail-censor ready `2/33`, anti-control ready `0/7`.
+- 성공/폐기 기준: keep if censor variants beat anti-controls; reject as replacement if no file beats E324 priority. This is exactly the observed split.
+- public LB 관측 반응: no public LB should be spent on E327 before E324 priority. If E324 improves, E327 can test whether conservative risk damping is a valid second-order sibling.
+- 제출 전략: none now. Preserve E324 priority `5508f966`.
