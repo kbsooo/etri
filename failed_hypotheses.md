@@ -2412,3 +2412,12 @@
 - Implementation issue possible: low for this mini-world. Future larger placement datasets should still include shape controls.
 - Bottleneck implication: the human/social context is genuinely informative, but only for identity unless paired with health labels.
 - Do not repeat: dismissing the human/social branch as only action-shape replay.
+
+## FH268. A universal human placement-health score is enough for submission generation
+
+- Failed hypothesis: after E316, replacing identity with direct human placement-health prediction should produce a general score that can certify or generate a submission.
+- Observed result: E317 source-held health is real, but bounded. Human+identity+action reaches p90-rank Spearman `0.459774` and top-mode accuracy `0.582090`; however within a fixed mode action shape beats human context (`0.326136` vs `0.238693` p90-rank Spearman), and leave-mode-out human transfer is only `0.133354`.
+- Why discard: the human signal is a placement-regime selector, not a universal health rule. It helps decide which row/subject/dateblock family is plausible, but the actual within-mode health still depends on action geometry.
+- Implementation issue possible: medium. E317 uses linear heads and E315-only mini-worlds; a nonlinear mode-specialist model may improve. Low for rejecting direct universal human-score submission selection.
+- Bottleneck implication: the next action layer must be mode-specialized and directly governed by matched nulls.
+- Do not repeat: applying one human/social placement score as a global multiplier or submitting files that only look good under pooled source-held health.

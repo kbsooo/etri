@@ -2922,3 +2922,30 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - public LB must not be used to resolve files that fail these local health labels.
 - Failure condition:
   - if a candidate is highly recognizable as the intended human/social placement but has low subject/dateblock/worst-mode dominance, classify it as identity-positive and health-negative.
+
+## E317 Human Placement Outcome Features
+
+- Target hypothesis tested:
+  - raw human diary context can predict placement outcome health directly, not only intended placement identity.
+- Feature/representation source:
+  - E316 human diary signatures;
+  - E316 action shape signatures;
+  - E316 OOF human identity prediction;
+  - E315 actual plus row/subject/dateblock null local score outcomes.
+- Validation result:
+  - placement rows `1072`;
+  - source-held p90-rank Spearman: human `0.320748`, action shape `0.000000`, human+action `0.451921`;
+  - source top-mode accuracy: human `0.432836`, human+action `0.552239`, human+identity+action `0.582090`, action shape `0.029851`;
+  - source-held joint-health AUC: human `0.731185`, action shape `0.683432`;
+  - within-mode p90-rank mean Spearman: action shape `0.326136`, human `0.238693`;
+  - null-mode holdout p90-rank mean Spearman: human `0.133354`, action shape `-0.358750`.
+- Updated registry status:
+  - approved as a regime-selection/placement-health diagnostic;
+  - not approved as a direct submission feature;
+  - human context and action geometry should be separated by mode rather than blended into one universal score.
+- Adopt rule for future features:
+  - use human context to choose or weight row/subject/dateblock regime;
+  - use mode-specific action geometry for within-regime health;
+  - require direct matched-null promotion after materialization.
+- Failure condition:
+  - if a feature only improves pooled source-held health but fails leave-mode or within-mode governance, treat it as a diagnostic latent, not a candidate selector.

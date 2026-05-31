@@ -879,3 +879,20 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - identity rank vs null strict rate Spearman: `-0.206034`.
 - interpretation: hidden human/social placement identity is real and locally measurable without public LB. But the health target is different from the identity target, so public LB should not be used until a candidate passes direct placement-health governance.
 - next experiment: train an outcome-health target for row/subject/dateblock dominance using E315/E316 near misses, with actual-vs-null identity as only one input feature.
+
+## Public-Free Observation: E317
+
+- submission files: none.
+- public LB: not submitted.
+- reason not submitted: E317 is a local placement-outcome learner and does not produce a probability tensor.
+- local observation:
+  - placement rows: `1072`;
+  - sources: `67`;
+  - joint-health positive rate: `0.152052`;
+  - source-held p90-rank Spearman: human `0.320748`, action shape `0.000000`, human+action `0.451921`, human+identity+action `0.459774`;
+  - source top-mode accuracy: human `0.432836`, human+action `0.552239`, human+identity+action `0.582090`, action shape `0.029851`;
+  - source-held joint-health AUC: human `0.731185`, action shape `0.683432`, shape+identity `0.794344`;
+  - within-mode p90-rank mean Spearman: action shape `0.326136`, human `0.238693`;
+  - null-mode holdout p90-rank mean Spearman: human `0.133354`, action shape `-0.358750`.
+- interpretation: E317 should not spend public LB. Human diary context helps with source/mode placement health, but mode-internal health remains too action-geometry-dependent.
+- next experiment: build a mode-specialized generator that uses human context to choose row/subject/dateblock regime and action geometry to place movement within that regime, then test matched nulls locally.

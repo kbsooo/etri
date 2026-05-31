@@ -3602,6 +3602,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E316 itself or on candidates justified only by recognizable human placement. A future public-positive file from this branch must first pass direct placement-health controls locally.
 - 제출 전략: none from E316. Next strategy is an outcome-health target that predicts row/subject/dateblock dominance and uses identity rank only as one feature.
 
+### H317: human context predicts placement regime health, but not a universal healthy action
+
+- 상태: 지지됨 as a bounded placement-health latent; 반증됨 as a universal submission generator.
+- 왜 그럴듯한가: E316 recovered intended placement but not health. If the missing target is outcome health, human diary signatures should predict which row/subject/dateblock placement is healthier under source-held stress.
+- 맞다면: human signatures should beat action shape for source-held within-source health ranking or top-mode selection. If this is a general invariant, the signal should remain strong under leave-mode-out and within fixed modes.
+- 틀리다면: action shape should dominate all health targets, or human signal should vanish under source-held stress.
+- 최소 실험: `analysis_outputs/e317_human_placement_outcome_learner.py`.
+- 관측: source-held p90-rank Spearman human `0.320748`, action `0.000000`, human+action `0.451921`; source top-mode accuracy human+identity+action `0.582090` vs action `0.029851`; source-held joint-health AUC human `0.731185`, action `0.683432`. But within-mode p90-rank mean Spearman is action `0.326136` vs human `0.238693`, and null-mode holdout human is only `0.133354`.
+- 성공/폐기 기준: keep H317 as a regime-selection latent. Reject the universal human-score multiplier and any submission that lacks direct mode-specific null governance.
+- public LB 관측 반응: no public LB should be spent on E317-derived identity/health scores alone. A future public-positive file would need a mode-specialized generator and local matched-null passage first.
+- 제출 전략: none from E317. Next strategy is row/subject/dateblock specialist generation using human context for regime selection and action geometry for within-mode placement.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

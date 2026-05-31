@@ -3724,3 +3724,46 @@ Decision:
 - E316 passes the hidden-placement identity stress: human diary signatures recover intended placement, and shape alone cannot.
 - E316 fails as a submission-health certifier: intended placement is not the same as locally healthy placement.
 - Promotion rule update: actual-vs-null identity can be used as a diagnostic feature, but public submission still requires direct row/subject/dateblock health dominance. Public LB is not the checker.
+
+## E317 Human Placement Outcome Stress
+
+Question: after E316, can human diary context predict placement health itself instead of intended placement identity?
+
+Method: `analysis_outputs/e317_human_placement_outcome_learner.py`.
+
+- Inputs: E315 actual candidates, E315 row/subject/dateblock null placements, E316 human identity OOF signal, and E316 human/action signatures.
+- Rows: `1072` actual-or-placement rows from `67` sources.
+- Stress:
+  - source-group OOF;
+  - leave-mode-out for actual, row, subject, dateblock;
+  - within-mode source-group OOF.
+- Public LB: not used.
+
+Result:
+
+- source-held p90-rank Spearman:
+  - human `0.320748`;
+  - action shape `0.000000`;
+  - human+action `0.451921`;
+  - human+identity+action `0.459774`.
+- source top-mode accuracy:
+  - human `0.432836`;
+  - human+action `0.552239`;
+  - human+identity+action `0.582090`;
+  - action shape `0.029851`.
+- source-held joint-health AUC:
+  - human `0.731185`;
+  - action shape `0.683432`;
+  - shape+identity `0.794344`.
+- within-mode p90-rank mean Spearman:
+  - action shape `0.326136`;
+  - human `0.238693`.
+- null-mode holdout p90-rank mean Spearman:
+  - human `0.133354`;
+  - action shape `-0.358750`.
+
+Decision:
+
+- E317 supports a hidden placement-health latent, but only as a weak/moderate local governor.
+- Human context is useful for choosing which placement regime is plausible; action geometry still controls health inside a fixed regime.
+- No submission is promoted. The next local validator should test a mode-specialized generator rather than a universal human/social multiplier.

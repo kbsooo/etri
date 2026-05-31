@@ -4878,3 +4878,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - identity rank has weak health alignment: Spearman `0.159448` versus worst-mode p90 dominance and `-0.206034` versus null strict rate.
 - Interpretation: this is the first very strong positive result for hidden human/social placement identity. The raw diary representation knows where the designed action "belongs" better than action-shape controls. But identity is not health: many near misses have actual rank `1.0` and still worst-mode dominance `0.0`. JEPA target design must therefore predict placement outcome health, not merely reconstruct intended placement.
 - Decision: no E316 public submission. E316 is now a local checker design result: public LB should not be spent on human/social files unless they pass a direct placement-health target with row/subject/dateblock dominance.
+
+## E317. Human Placement Outcome Learner
+
+- Observe: E316 found hidden placement identity, but identity did not align enough with health. Public LB still cannot be used as the checker.
+- Wonder: can raw human diary signatures predict actual placement outcome health directly, and does the signal survive source-holdout and mode-holdout stress?
+- Method: `analysis_outputs/e317_human_placement_outcome_learner.py` uses E315 actual plus row/subject/dateblock null placements. Targets are local p90/mean, within-source p90/mean rank health, composite health score, and joint health. It evaluates source-group OOF, leave-mode-out, and within-mode stress. No public LB and no submission file.
+- Result:
+  - placement rows: `1072`;
+  - sources: `67`;
+  - joint-health positive rate: `0.152052`;
+  - source-held p90-rank Spearman: human `0.320748`, action shape `0.000000`, human+action `0.451921`, human+identity+action `0.459774`;
+  - source top-mode accuracy: human `0.432836`, human+action `0.552239`, human+identity+action `0.582090`, action shape `0.029851`;
+  - source-held joint-health AUC: human `0.731185`, action shape `0.683432`, shape+identity `0.794344`;
+  - within-mode p90-rank mean Spearman: action shape `0.326136`, human `0.238693`;
+  - null-mode holdout p90-rank mean Spearman: human `0.133354`, action shape `-0.358750`.
+- Interpretation: E317 is a real but bounded positive. Human context helps choose the plausible placement mode/source neighborhood, and it is the only positive signal when a null mode is held out. But once the mode is fixed, action geometry is stronger, and joint-health classification is not independently solved by human context.
+- Decision: no E317 public submission. The next generator should be mode-specialized: use human context to choose row/subject/dateblock regime, then use mode-specific action geometry to place probability movement. Do not use a universal human-score multiplier.
