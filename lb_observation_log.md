@@ -1144,3 +1144,29 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - next public-free experiment should localize the residual state to rows/blocks/cells before another submission candidate is considered.
 - expected public reaction if submitted anyway:
   - likely low-information because the best local scores still have p90 crossing above zero and no strict promote gate.
+
+## Public-Free Observation: E331 Residual-State Localization
+
+- submission files: generated locally, but none promoted.
+- public LB: not submitted.
+- reason not submitted: localized residual-state gates are label-useful, but current E247 materializations are too small or not movement-null-safe enough.
+- local observation:
+  - localized gates: `39`;
+  - generated candidates: `43`;
+  - selector-promoted candidates: `0`;
+  - selector+E323+movement-null-safe candidates: `0`.
+- strongest localized states:
+  - Q1 `jepa_resid/dateblock/pos_q80`, label delta `-0.029674864`, dominance `1.000000`, test rows `42`;
+  - Q1 `jepa_resid/dateblock/pos_q90`, label delta `-0.022958364`, dominance `1.000000`, test rows `11`;
+  - Q2 `jepa_resid/subject/pos_q80`, label delta `-0.017481597`, dominance `0.900000`, test rows `51`;
+  - S2 `jepa_resid/dateblock/pos_q80`, label delta `-0.016882963`, dominance `1.000000`, test rows `54`.
+- closest local candidate:
+  - `submission_e331_localresid_Q1_jepa_resid_dateblock_pos_q90_s0p7_cf6801db.csv`;
+  - selector mean `-0.000053263`, p90 `-0.000008279`, beats rate `0.972222`;
+  - decision `too_small_to_submit`.
+- interpretation:
+  - localization confirms that hidden lifestyle residual state exists at episode-tail level;
+  - public-grade movement has not been solved;
+  - Q1 positive-tail residual state is now the most promising single object, but not yet a public candidate.
+- expected public reaction if submitted anyway:
+  - likely low-information or small-noise movement because the best p90 remains too close to zero.

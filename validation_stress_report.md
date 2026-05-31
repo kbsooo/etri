@@ -4168,3 +4168,38 @@ Stress conclusion:
 - target-specific lifestyle residual states pass the representation stress that broad E328 failed.
 - materialization remains unhealthy: full-test target calibration is too diffuse and below selector resolution.
 - The next stress should move from target-level residual state to row/block/cell localization before writing another submission.
+
+## E331 Residual-State Localization Stress
+
+Question: can E330's target-specific lifestyle residual states be localized to row/block/cell tails strongly enough to preserve label-null gains and become E247-safe?
+
+Method: `analysis_outputs/e331_residual_state_localization.py`.
+
+- Source states: top E330 target/view/split residual rows.
+- Local policies: absolute, positive, negative, and block-absolute quantile tails.
+- Label stress: blocked target logloss versus subject/calendar base and row/subject/dateblock shuffled feature nulls.
+- Submission stress: E272 public-free selector, E323 movement anatomy, and movement-null shuffles that preserve candidate magnitude but move placement.
+- Public LB: not used.
+
+Result:
+
+- localized gates: `39`;
+- generated candidates: `43`;
+- selector-promoted candidates: `0`;
+- selector+E323-safe candidates: `0`;
+- selector+E323+movement-null-safe candidates: `0`.
+- strongest label-null gates:
+  - Q1 `jepa_resid/dateblock/pos_q80`, delta `-0.029674864`, dominance `1.000000`;
+  - Q1 `jepa_resid/dateblock/pos_q90`, delta `-0.022958364`, dominance `1.000000`;
+  - Q2 `jepa_resid/subject/pos_q80`, delta `-0.017481597`, dominance `0.900000`;
+  - S2 `jepa_resid/dateblock/pos_q80`, delta `-0.016882963`, dominance `1.000000`.
+- closest selector rows:
+  - Q1 `pos_q90` scale `0.7`: mean `-0.000053263`, p90 `-0.000008279`, beats rate `0.972222`, `too_small_to_submit`;
+  - Q1 `pos_q90` scale `1.0`: mean `-0.000065115`, p90 `-0.000005876`, beats rate `0.944444`, `too_small_to_submit`.
+
+Stress conclusion:
+
+- Localization improved the representation health relative to E330.
+- The Q1 positive residual tail is the current cleanest hidden lifestyle-state object.
+- It is still not a submission candidate because the current action is below selector resolution and composition increases null risk.
+- The next validator should focus on high-repetition Q1 positive-tail movement-null stress before scaling or composing it.

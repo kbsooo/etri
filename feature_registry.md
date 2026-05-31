@@ -3241,3 +3241,27 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - treat S4 as unsupported by this residual-state construction unless a new view changes the evidence.
 - Failure condition:
   - if a residual-state candidate only produces diffuse all-row target movement, do not submit even when the representation stress is strong.
+
+## E331 Localized Residual-State Tail Features
+
+- Target hypothesis tested:
+  - target-specific lifestyle residual states should become more useful when converted into high-energy row/block/cell tail gates instead of full-test target calibration.
+- Feature/representation source:
+  - E330 predicted residual-state columns;
+  - quantile-tail policies over absolute, positive, negative, and block-absolute residual energy;
+  - localized action masks for E247 target-only logit movement.
+- Validation result:
+  - `39` localized gates pass label/null criteria;
+  - strongest Q1 JEPA-residual dateblock positive tails improve Q1 logloss by `-0.029674864` and `-0.022958364`;
+  - `43` materialized probes produce `0` selector-promoted candidates;
+  - best Q1 `pos_q90` probes are stable but `too_small_to_submit`.
+- Updated registry status:
+  - approved as a diagnostic and localization feature;
+  - rejected as a current direct submission feature;
+  - highest-priority feature object: Q1 `jepa_resid/dateblock/pos_q90`.
+- Adopt rule for future features:
+  - use localized residual tails as action-health targets or gates, not as standalone probability edits;
+  - test the Q1 positive tail separately before composing it with Q2/S2;
+  - require high-repetition movement-null safety before public submission.
+- Failure condition:
+  - if a localized residual-tail action is only selector-visible after widening the gate or composing multiple targets, classify it as null-risky and do not submit.

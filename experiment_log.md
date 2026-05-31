@@ -5137,3 +5137,28 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - all candidate movements are E323-negative or nearly orthogonal by cosine, but below selector resolution or rejected.
 - Interpretation: target-specific lifestyle residual states exist locally. This is the first post-E328 evidence that the lifestyle-state target should be supervised residual/outcome state, not broad lifestyle reconstruction. The failure is the translator: applying the state as a full-test target logit calibration is too diffuse to become a submission-grade E247 edit.
 - Decision: do not submit E330 candidates. Next step should localize these residual states to rows/blocks/cells before materialization, especially Q2/Q1/S2 JEPA-residual and S2 raw-day axes.
+
+## E331. Residual-State Localization
+
+- Observe: E330 found real target-specific lifestyle residual states, but the full-test target calibration translator spread the signal too thinly. The question became whether those states can identify specific rows/blocks/cells instead of an entire target column.
+- Wonder: does the residual-state latent become submission-useful when it is localized to high-energy tails such as Q1 JEPA-residual dateblock positive state, Q2 JEPA-residual subject state, or S2 JEPA-residual/raw-day states?
+- Hypothesis: if the hidden lifestyle residual state is a real placement law, localized residual-state gates should improve blocked label logloss versus row/subject/dateblock shuffled feature nulls and materialize into E247 edits that remain E323-negative.
+- Method: `analysis_outputs/e331_residual_state_localization.py`.
+  - Inputs: strongest E330 residual-state rows.
+  - Policies: `abs_q75`, `abs_q85`, `abs_q92`, `pos_q80`, `pos_q90`, `neg_q80`, `neg_q90`, `blockabs_q65`, `blockabs_q80`.
+  - Stress: blocked label logloss versus base, row/subject/dateblock shuffled feature nulls, E272 public-free selector, E323 movement anatomy, and movement-null shuffles.
+- Result:
+  - localized gates: `39`;
+  - generated candidates: `43`;
+  - selector-promoted candidates: `0`;
+  - selector+E323+movement-null-safe candidates: `0`.
+  - strongest local gates:
+    - Q1 `jepa_resid/dateblock/pos_q80`: delta `-0.029674864`, dominance `1.000000`, test rows `42`;
+    - Q1 `jepa_resid/dateblock/pos_q90`: delta `-0.022958364`, dominance `1.000000`, test rows `11`;
+    - Q2 `jepa_resid/subject/pos_q80`: delta `-0.017481597`, dominance `0.900000`, test rows `51`;
+    - S2 `jepa_resid/dateblock/pos_q80`: delta `-0.016882963`, dominance `1.000000`, test rows `54`.
+  - closest public-free probes:
+    - `submission_e331_localresid_Q1_jepa_resid_dateblock_pos_q90_s0p7_cf6801db.csv`: mean `-0.000053263`, p90 `-0.000008279`, beats rate `0.972222`, decision `too_small_to_submit`;
+    - `submission_e331_localresid_Q1_jepa_resid_dateblock_pos_q90_s1p0_02a5d855.csv`: mean `-0.000065115`, p90 `-0.000005876`, beats rate `0.944444`, decision `too_small_to_submit`.
+- Interpretation: localization is the right direction. The residual state becomes sharper and produces real label-null wins, especially for Q1 positive JEPA-residual dateblock tails. But the materialized movement is still below submission-grade resolution, and multi-target composition reintroduces null-common risk.
+- Decision: do not submit E331 candidates yet. The next useful experiment should stay on the Q1 positive-tail residual state and test a stronger but still localized translator, preferably with higher-repetition movement-null stress before any public slot.

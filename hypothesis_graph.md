@@ -3804,3 +3804,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept the representation because it survives label/null stress; reject the current translator because no materialized candidate promotes.
 - public LB 관측 반응: no public LB should be spent. The local selector says the next public test would be low information.
 - 제출 전략: none from E330. Build row/block/cell-localized actions from Q2/Q1/S2 residual states and retest with matched nulls plus E323-negative anatomy.
+
+### H331: localized target-residual lifestyle tails are real but still below action visibility
+
+- 상태: 지지됨 as localized representation; 반증됨 as current submission translator.
+- 왜 그럴듯한가: E330's residual states were strong but diffuse. If the hidden lifestyle state is episodic, only high-energy residual tails should carry the useful correction.
+- 맞다면: localized tails should beat blocked label baselines and row/subject/dateblock shuffled feature nulls, with cleaner E323 anatomy than E323 public-bad movement.
+- 틀리다면: tail gates should lose to shuffled feature nulls, or any candidate movement should become E323-like or null-common after materialization.
+- 최소 실험: `analysis_outputs/e331_residual_state_localization.py`.
+- 관측: `39` localized gates, `43` probes, `0` selector-promoted. Strongest gates are Q1 `jepa_resid/dateblock/pos_q80` delta `-0.029674864`, Q1 `pos_q90` delta `-0.022958364`, Q2 `jepa_resid/subject/pos_q80` delta `-0.017481597`, and S2 `jepa_resid/dateblock/pos_q80` delta `-0.016882963`. Best public-free probes are Q1 `pos_q90`, but all are `too_small_to_submit`.
+- 성공/폐기 기준: accept localization if label-null dominance survives; reject current translator if no candidate clears selector/E323/movement-null gates. This is the observed split.
+- public LB 관측 반응: no public LB should be spent yet. A public test would mainly measure noise because the best edge is below selector resolution.
+- 제출 전략: none from current E331. Continue only with a Q1 positive-tail translator and stronger movement-null stress.

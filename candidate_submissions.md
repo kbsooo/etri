@@ -3545,3 +3545,31 @@ Next submission rule:
 
 - do not submit residual-state full-test calibrations;
 - turn the Q2/Q1/S2 residual states into row/block/cell-localized actions and re-run matched nulls plus E323-negative anatomy.
+
+## Update After E331 Residual-State Localization
+
+No E331 file should be submitted yet.
+
+Closest local probes:
+
+- `analysis_outputs/submission_e331_localresid_Q1_jepa_resid_dateblock_pos_q90_s0p7_cf6801db.csv`
+- `analysis_outputs/submission_e331_localresid_Q1_jepa_resid_dateblock_pos_q90_s1p0_02a5d855.csv`
+- `analysis_outputs/submission_e331_localresid_Q1_jepa_resid_dateblock_pos_q90_s0p4_01f360c3.csv`
+
+Why blocked:
+
+- `43` localized E247 probes produced `0` selector-promoted files.
+- The best Q1 `pos_q90` probes are directionally clean but still `too_small_to_submit`.
+- Wider Q1 `pos_q80` and S2/Q2 localized actions get stronger mean deltas, but p90 and movement-null behavior are not clean enough.
+- The combo candidate is not safe; composition loses the narrow Q1 advantage and reintroduces null-common movement.
+
+Current best public frontier remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+- public LB `0.5761589494`
+
+Next submission rule:
+
+- do not spend a public slot on E331 as currently scaled;
+- if this branch is continued, start from Q1 `jepa_resid/dateblock/pos_q90`, not from Q2/S2 or a combo;
+- require a stronger high-repetition movement-null check before any public test.

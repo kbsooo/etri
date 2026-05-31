@@ -2511,3 +2511,12 @@
 - Implementation issue possible: medium. The residual-state teacher is simple `y - base_prob` and the materializer is linear/logistic. A row/block/cell-localized translator may still work. Low for rejecting all E330 generated submission files because the public-free selector and E323 anatomy agree they are not submission-grade.
 - Bottleneck implication: the next target is localization of the residual state, not discovery of another broad state. Use Q2/Q1/S2 residual axes as row/block/cell selectors.
 - Do not repeat: submitting E330 targetresid files or increasing their scale without a localization and fresh matched-null stress.
+
+## FH279. Localized residual-state tails are submission-grade with the current translator
+
+- Failed hypothesis: localizing E330 residual-state axes to high-energy row/block/cell tails is enough to create a selector-promoted E247 candidate.
+- Observed result: E331 found `39` localized label-null gates and generated `43` probes, but selector-promoted candidates remained `0`. The strongest local gates were real, especially Q1 `jepa_resid/dateblock/pos_q80` delta `-0.029674864` and Q1 `pos_q90` delta `-0.022958364`, both with dominance `1.000000`. The closest Q1 `pos_q90` submissions were still marked `too_small_to_submit`.
+- Why discard: the representation localized correctly, but the probability translator remains underpowered. A clean 11-row Q1 tail moves too little to justify a public slot, while broader or composed edits lose p90/movement-null safety.
+- Implementation issue possible: medium. E331 uses simple quantile gates and fixed logit scales, so a learned or block-adaptive translator may still work. Low for rejecting current E331 submission files because selector, E323 anatomy, and movement-null checks agree they are not submission-grade.
+- Bottleneck implication: the hidden lifestyle residual state is real and local, but the missing object is a visibility-preserving, null-rare translator. The next branch should focus on Q1 positive-tail action health, not more broad state discovery.
+- Do not repeat: submitting E331 Q1/Q2/S2 files as currently scaled, or combining multiple localized gates before the single clean Q1 tail has passed high-repetition movement-null stress.
