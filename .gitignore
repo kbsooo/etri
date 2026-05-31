@@ -242,6 +242,10 @@ analysis_outputs/*
 !analysis_outputs/e366_hidden_lifestyle_donor_family_*.md
 !analysis_outputs/e366_hidden_lifestyle_donor_family_*.py
 !analysis_outputs/submission_e366_hiddenlife_donorlatent_*_uploadsafe.csv
+!analysis_outputs/e367_public_rowmask_validity_*.csv
+!analysis_outputs/e367_public_rowmask_validity_*.md
+!analysis_outputs/e367_public_rowmask_validity_*.py
+!analysis_outputs/submission_e367_publicrowmask_selected_*_uploadsafe.csv
 
 !analysis_outputs/bridge_scan_candidates/
 analysis_outputs/bridge_scan_candidates/*

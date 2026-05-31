@@ -6012,3 +6012,26 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - The donor-graft family remains meaningful, but the current row-lifestyle translator fails a LeJEPA-style anti-collapse test.
   - The local sensor can be fooled by a permuted row gate with the same broad target-row translator, so a high score is not proof of a human/social row-state law.
   - Do not submit E366. Keep E365 as the current audited candidate, and next target should learn row-mask validity or public/private subset identity rather than only row-state semantics.
+
+## E367. Public Row-Mask Validity Latent
+
+- Observe: E366's failure was not that row placement is useless; it was that row placement can be faked by a random/permuted mask. The next question is whether public-good versus public-bad row support is predictable from lifestyle/story context.
+- Wonder: is there a public/private row-mask identity that is stable under known-public drops and explainable by E328/E358 human/social state?
+- Hypothesis: if row-mask validity is a real hidden lifestyle-state latent, then public-good minus public-bad row support should be predictable from lifestyle/story features, stable under leave-public stress, and generated row-gated donor candidates should beat null row masks.
+- Method: `analysis_outputs/e367_public_rowmask_validity_latent.py`.
+  - target representation: row-level public-good support minus public-bad support from fixed known-public movements relative to E247;
+  - context: E328/E358 own-lifestyle state plus human/social story axes;
+  - generated `30` candidates: learned row-mask gates, direct public-row diagnostic gates, and null/permuted row-mask gates;
+  - stress: lifestyle predictability CV/permutation null, leave-public row-mask stability, E363/E364/E365-style `98` jackknife scenarios.
+- Result:
+  - aggregate `public_row_validity` is not lifestyle-predictive: KFold Spearman `0.073804` versus null p95 `0.135689`;
+  - `public_bad_row_support` is predictive: `0.141450` versus null p95 `0.100992`;
+  - target-specific signals survive for Q2 (`0.392982` versus `0.105015`) and S1 (`0.110407` versus `0.099875`), but not Q1 or Q3;
+  - row-mask target is leave-public stable: min Spearman `0.827446`;
+  - best null gate `e367_null_validboost_baddamp_random_validity` dominates with top1 `89/98`;
+  - best learned real gate `e367_target_validity_amp1.00` has top1 `0/98`, top10 `92/98`;
+  - decision: `reject_e367_rowmask_not_lifestyle_predictive_keep_e365`.
+- Interpretation:
+  - The public/private row-mask target is stable, but the aggregate target is not explained by current lifestyle/story context and null masks still dominate.
+  - Do not submit E367.
+  - The next live clue is narrower: Q2/S1 target-specific row validity appears lifestyle-predictable. A future experiment should build a Q2/S1-specific cell-action target rather than another aggregate row gate.

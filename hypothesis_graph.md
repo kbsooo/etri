@@ -4236,3 +4236,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept only if best real lifestyle gate beats null/permuted gates on top1/top10 and does not depend on a single view. This is not observed.
 - public LB 관측 반응: no E366 file should be submitted now. If E365 later fails publicly, E366 says the donor-graft family may be an internally stable but externally wrong row-mask shortcut. If E365 succeeds, the family can be real, but E366 still says current lifestyle gate is not the reason.
 - 제출 전략: none from E366. Keep `analysis_outputs/submission_e365_jackknife_selected_e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_co_b851baf9_uploadsafe.csv` as the audited candidate.
+
+### H367: public/private row-mask identity is a lifestyle-predictable hidden latent
+
+- 상태: aggregate row-mask translator는 반증됨; Q2/S1 target-specific row validity는 부분 생존.
+- 왜 그럴듯한가: E366 showed random/permuted row masks can beat semantic row gates. A stronger target is to learn where known public-good movements land and where known public-bad movements land, then ask whether lifestyle/story context predicts that row support.
+- 맞다면: aggregate public row validity should beat permutation null in lifestyle-feature CV, remain stable under leave-public drops, and learned row-mask candidates should beat null row-mask candidates under jackknife.
+- 틀리다면: aggregate row validity should not be lifestyle-predictive, or random/permuted masks should dominate generated candidates.
+- 최소 실험: `analysis_outputs/e367_public_rowmask_validity_latent.py`.
+- 관측: aggregate `public_row_validity` KFold Spearman `0.073804`, below null p95 `0.135689`; row-mask stability is high, min leave-public Spearman `0.827446`; best null gate top1 `89/98`; best learned real gate top1 `0/98`. Target-specific Q2 row validity is strong (`0.392982` vs null p95 `0.105015`) and S1 barely survives (`0.110407` vs `0.099875`), while Q3 fails.
+- 성공/폐기 기준: accept only if aggregate row validity is lifestyle-predictive and learned gates beat null gates. This is not observed.
+- public LB 관측 반응: no E367 file should be submitted. If E365 fails publicly, aggregate row-mask learning still does not explain the failure; the next test should isolate Q2/S1 row validity rather than broad row placement.
+- 제출 전략: none from E367. Keep E365 as the audited candidate.

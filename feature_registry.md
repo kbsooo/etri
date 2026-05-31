@@ -3951,3 +3951,24 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - decision: `reject_e366_lifestyle_gate_keep_e365`.
 - Registry status: rejected as a submission feature. Keep as diagnostic evidence that current row-story gates are vulnerable to row-mask shortcuts.
 - Failure condition: do not use E366-style row gates in a submission unless they beat null/permuted row-mask controls and preserve E365/E363/E364 stress.
+
+### E367 public/private row-mask validity latent
+
+- Target hidden structure: row-level public-good versus public-bad movement support, predicted from lifestyle/story context.
+- Why needed: E366 showed that semantic row gates can be beaten by random/permuted masks. A valid row gate needs evidence that the row-mask target itself is lifestyle-predictable and stable.
+- Feature/action form:
+  - target representation: known-public movement support relative to E247, converted into public-good row support, public-bad row support, and target-specific validity for Q1/Q2/Q3/S1;
+  - context features: E328/E358 own-lifestyle state and E268 human/social story axes;
+  - generated actions: learned row-mask damp/boost, target-validity routing, diagnostic direct-public gates, and null/permuted row-mask gates;
+  - stress: lifestyle CV/permutation null, leave-public row-mask stability, and E365-style jackknife.
+- Current evidence:
+  - generated candidates: `30`;
+  - scenarios: `98`;
+  - aggregate public row validity KFold Spearman `0.073804`, null p95 `0.135689`;
+  - row-mask stability min Spearman `0.827446`;
+  - Q2 target validity KFold Spearman `0.392982`, null p95 `0.105015`;
+  - S1 target validity KFold Spearman `0.110407`, null p95 `0.099875`;
+  - best null gate top1 `89/98`; best learned real gate top1 `0/98`;
+  - decision: `reject_e367_rowmask_not_lifestyle_predictive_keep_e365`.
+- Registry status: rejected as an aggregate submission feature; keep Q2/S1 target-specific validity as a live representation candidate.
+- Failure condition: do not use aggregate row-mask validity in submissions. A future Q2/S1-specific feature must beat null masks before being uploadable.

@@ -5381,3 +5381,34 @@ Stress conclusion:
 - E366 fails the null anti-collapse test. A permuted row gate can look more public-like than the real human/social lifestyle gate under the current sensor.
 - This rejects E366 as a submission route, even though the donor-graft family itself remains alive.
 - The next useful stress should target row-mask validity or public/private subset identity. More semantic row stories alone are not enough.
+
+## E367 Public Row-Mask Validity Latent Stress
+
+Question: can known public-good/public-bad row movement support be predicted from lifestyle/story context and used to gate E365 better than null masks?
+
+Stress setup:
+
+- script: `analysis_outputs/e367_public_rowmask_validity_latent.py`;
+- target representation: public-good row support minus public-bad row support relative to E247;
+- context: E328/E358 lifestyle state plus human/social story features;
+- generated candidates: `30`;
+- combined pool: `1616`;
+- scenarios: `98` = `7` feature views x `14` public-drop settings;
+- anti-collapse: lifestyle CV versus permutation null, leave-public row-mask stability, and null/permuted row-mask candidates.
+
+Stress result:
+
+- aggregate public row validity KFold Spearman: `0.073804`;
+- aggregate null p95: `0.135689`;
+- leave-public row-mask stability min Spearman: `0.827446`;
+- Q2 target-specific validity: `0.392982` versus null p95 `0.105015`;
+- S1 target-specific validity: `0.110407` versus null p95 `0.099875`;
+- best null gate: `e367_null_validboost_baddamp_random_validity`, top1 `89/98`, top10 `97/98`;
+- best learned real gate: `e367_target_validity_amp1.00`, top1 `0/98`, top10 `92/98`;
+- decision: `reject_e367_rowmask_not_lifestyle_predictive_keep_e365`.
+
+Stress conclusion:
+
+- The aggregate public/private row-mask target is stable but not currently lifestyle-predictive.
+- Null row masks still beat learned row masks, so E367 is not a submission route.
+- The stress leaves a narrower live path: Q2/S1 target-specific row-mask validity.

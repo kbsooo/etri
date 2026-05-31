@@ -2790,3 +2790,12 @@
 - Implementation issue possible: medium-high. The E366 sensor still depends on scarce known-public observations and inherited E363/E364/E365 features. But the negative control is strong enough to reject the current submission route.
 - Bottleneck implication: the donor-graft family is still live, but row-state semantics are not enough. The missing latent is likely row-mask validity, public/private subset identity, or target-specific calibration health.
 - Do not repeat: uploading E366 row-gated donor-family candidates or adding more story names to the same gate. First build a gate that beats random/permuted row-mask controls.
+
+## FH310. Aggregate public/private row-mask validity is a lifestyle-state submission latent
+
+- Failed hypothesis: known public-good versus public-bad row support can be converted into an aggregate human/social lifestyle latent and used to improve E365.
+- Observed result: E367's aggregate row-mask target is stable under leave-public drops, with min Spearman `0.827446`, but lifestyle-feature KFold Spearman is only `0.073804`, below permutation null p95 `0.135689`. Generated learned gates do not win: best real gate top1 `0/98`, while a random null row-mask gate wins top1 `89/98`.
+- Why discard: the aggregate target is a stable output-space pattern, but it is not a validated lifestyle-state representation. Null row placement dominates the local sensor.
+- Implementation issue possible: medium. Known-public rows are scarce and all worse than E247, so public-good support is relative rather than absolute. Still, the null candidate dominance is strong enough to reject E367 as a submission route.
+- Bottleneck implication: row-mask validity may exist only target-wise. Q2 validity is strongly lifestyle-predictive and S1 is weakly alive; Q3 and aggregate validity fail.
+- Do not repeat: aggregate public/private row-mask gating over the E365 donor family. Next test should be Q2/S1-specific cell-action validity with null controls.

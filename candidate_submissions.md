@@ -4649,3 +4649,24 @@ Submission interpretation:
 1. Do not upload an E366 generated file.
 2. Keep E365 as the audited candidate if one slot is used.
 3. The next candidate should only replace E365 if it can beat null row masks, not merely score well under story-labeled gates.
+
+## Update After E367 Public Row-Mask Validity Latent
+
+No new E367 submission should be tested now.
+
+Current highest-information submission remains:
+
+`analysis_outputs/submission_e365_jackknife_selected_e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_co_b851baf9_uploadsafe.csv`
+
+Why E367 is not a submission:
+
+- The aggregate public/private row-mask target is stable under leave-public drops, but it is not predicted by lifestyle/story context beyond permutation null.
+- The best learned real E367 gate has top1 `0/98`.
+- A random null row mask wins top1 `89/98`.
+- Therefore E367 would be another row-mask shortcut, not a trustworthy hidden lifestyle-state submission.
+
+What remains useful:
+
+1. Q2 row validity is strongly lifestyle-predictive.
+2. S1 row validity is weakly but positively lifestyle-predictive.
+3. The next submission candidate should come only after a Q2/S1-specific cell-action experiment beats null masks.
