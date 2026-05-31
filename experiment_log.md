@@ -6035,3 +6035,27 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - The public/private row-mask target is stable, but the aggregate target is not explained by current lifestyle/story context and null masks still dominate.
   - Do not submit E367.
   - The next live clue is narrower: Q2/S1 target-specific row validity appears lifestyle-predictable. A future experiment should build a Q2/S1-specific cell-action target rather than another aggregate row gate.
+## E368. Q2/S1 Row-Mask Cell-Action Latent
+
+- Observe: E367 rejected aggregate row-mask validity, but Q2 validity was strongly lifestyle-predictive and S1 validity was weakly alive. This suggests the hidden lifestyle state may not be a whole-row gate; it may only translate into Q2/S1 cells.
+- Wonder: can learned lifestyle/story context predict Q2/S1 public row-validity well enough to make a small E365-preserving Q2/S1 edit that beats direct-public and null/permuted masks?
+- Hypothesis: if the Q2/S1 lifestyle-state latent is real, then Q2/S1 row-validity should beat permutation nulls, remain stable under leave-public masking, and learned Q2/S1 cell actions should outrank direct-public/null controls under E363/E364/E365-style stress.
+- Method: `analysis_outputs/e368_q2s1_rowmask_cellaction_latent.py`.
+  - context: E328/E358 own-lifestyle state plus human/social story features;
+  - target representation: known-public Q2/S1 row-good minus row-bad support relative to E247;
+  - action: preserve E365 everywhere except Q2/S1 cells;
+  - generated `52` candidates: learned Q2/S1 gates, direct-public diagnostic gates, and null/permuted Q2/S1 gates;
+  - stress: lifestyle CV/null diagnostics, leave-public stability, and `98` feature-view/public-drop scenarios.
+- Result:
+  - Q2 validity KFold Spearman `0.426940` versus null p95 `0.102237`;
+  - S1 validity KFold Spearman `0.157989` versus null p95 `0.102777`;
+  - leave-public stability min Spearman across Q2/S1 validity `0.692973`, median `0.990183`;
+  - best learned gate `e368_q2_damp_s1_recover_amp1.06`: top1 `73/98`, top10 `97/98`;
+  - best direct-public diagnostic: top1 `19/98`;
+  - best null/permuted gate: top1 `4/98`;
+  - selected/upload-safe file: `analysis_outputs/submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv`.
+- Interpretation:
+  - This is the first post-E365 row/lifestyle experiment where learned lifestyle masks beat both direct-public and null controls clearly.
+  - The movement is intentionally small and target-specific: relative to E365, only Q2 (`34` rows) and S1 (`160` rows) change; Q1/Q3/S2/S3/S4 stay fixed.
+  - The live hidden-world model is now: public-like lifestyle state is not aggregate row identity; it is a Q2 intervention/rough-night validity mask paired with an S1 recovery mask.
+- Decision: E368 supersedes E365 as the highest-information local candidate, but it still needs public LB confirmation because the known-public sensor is scarce and all public observations are relative to E247.

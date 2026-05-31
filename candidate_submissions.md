@@ -4670,3 +4670,29 @@ What remains useful:
 1. Q2 row validity is strongly lifestyle-predictive.
 2. S1 row validity is weakly but positively lifestyle-predictive.
 3. The next submission candidate should come only after a Q2/S1-specific cell-action experiment beats null masks.
+
+## Update After E368 Q2/S1 Row-Mask Cell-Action Latent
+
+Current highest-information local submission candidate:
+
+`analysis_outputs/submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv`
+
+Why it supersedes E365 locally:
+
+- E368 uses E365 as the backbone and changes only Q2/S1 cells, so it is a narrow test rather than a new broad blend.
+- The Q2/S1 row-validity targets are lifestyle-predictive: Q2 `0.426940` vs null p95 `0.102237`, S1 `0.157989` vs `0.102777`.
+- The selected learned gate wins `73/98` stress scenarios and is top10 in `97/98`.
+- Direct-public masks do not explain the win: best direct-public top1 is `19/98`.
+- Null/permuted row masks do not explain the win: best null top1 is `4/98`.
+
+What this submission is betting:
+
+- The missing hidden state is not "which whole row is public-like."
+- It is more specific: Q2 has a lifestyle/intervention validity mask, and S1 has a recovery-stage validity mask.
+- The correct action is not to rebuild the prediction tensor, but to preserve E365 and make a small Q2/S1 correction.
+
+Expected public interpretation:
+
+- If public LB improves, prioritize target-specific lifestyle validity and build the next experiment around Q2/S1 local calibration rather than aggregate row gates.
+- If public LB is neutral, E368 may still be a useful probe, but the amplitude/sign needs calibration.
+- If public LB worsens clearly, the Q2/S1 local stress overfit known-public row support despite beating null/direct controls; return to E365 or build a public-free Q2/S1 validation proxy before submitting more variants.

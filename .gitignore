@@ -246,6 +246,10 @@ analysis_outputs/*
 !analysis_outputs/e367_public_rowmask_validity_*.md
 !analysis_outputs/e367_public_rowmask_validity_*.py
 !analysis_outputs/submission_e367_publicrowmask_selected_*_uploadsafe.csv
+!analysis_outputs/e368_q2s1_rowmask_cellaction_*.csv
+!analysis_outputs/e368_q2s1_rowmask_cellaction_*.md
+!analysis_outputs/e368_q2s1_rowmask_cellaction_*.py
+!analysis_outputs/submission_e368_q2s1rowmask_selected_*_uploadsafe.csv
 
 !analysis_outputs/bridge_scan_candidates/
 analysis_outputs/bridge_scan_candidates/*

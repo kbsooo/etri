@@ -5412,3 +5412,32 @@ Stress conclusion:
 - The aggregate public/private row-mask target is stable but not currently lifestyle-predictive.
 - Null row masks still beat learned row masks, so E367 is not a submission route.
 - The stress leaves a narrower live path: Q2/S1 target-specific row-mask validity.
+
+## E368 Q2/S1 Row-Mask Cell-Action Stress
+
+Question: can the target-specific Q2/S1 row-validity signal left alive by E367 survive direct-public and null-mask controls as a submission candidate?
+
+Stress setup:
+
+- script: `analysis_outputs/e368_q2s1_rowmask_cellaction_latent.py`;
+- generated candidates: `52`;
+- combined pool: `1638`;
+- scenarios: `98` = `7` feature views x `14` public-drop settings;
+- feature views: all `164`, axis `62`, target `60`, anatomy `18`, bad_good `50`, compact `20`, rowmask `35`;
+- anti-collapse: Q2/S1 lifestyle predictability CV versus permutation null, leave-public Q2/S1 target stability, direct-public diagnostic masks, and null/permuted masks.
+
+Stress result:
+
+- Q2 row-validity: KFold Spearman `0.426940`, group Spearman `0.061183`, null p95 `0.102237`;
+- S1 row-validity: KFold Spearman `0.157989`, group Spearman `0.096909`, null p95 `0.102777`;
+- Q2/S1 leave-public stability: min Spearman `0.692973`, median `0.990183`;
+- best learned gate: `e368_q2_damp_s1_recover_amp1.06`, top1 `73/98`, top10 `97/98`, rank mean `2.051020`;
+- best direct-public diagnostic: top1 `19/98`;
+- best null/permuted mask: top1 `4/98`;
+- selected file passes upload safety: shape `(250, 10)`, no NaN, all probabilities clipped.
+
+Stress conclusion:
+
+- E368 is locally stronger than E365 under this Q2/S1-specific stress and is not explained by direct-public mask copying or random row placement.
+- The selected movement is narrow: versus E365, only Q2 (`34` rows, max abs `0.005157`) and S1 (`160` rows, max abs `0.002106`) change.
+- Remaining risk: all known-public observations are still scarce and relative to E247, so public LB must be treated as a sensor for whether the Q2/S1 lifestyle validity world model is real.

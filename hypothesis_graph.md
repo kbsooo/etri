@@ -4248,3 +4248,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept only if aggregate row validity is lifestyle-predictive and learned gates beat null gates. This is not observed.
 - public LB 관측 반응: no E367 file should be submitted. If E365 fails publicly, aggregate row-mask learning still does not explain the failure; the next test should isolate Q2/S1 row validity rather than broad row placement.
 - 제출 전략: none from E367. Keep E365 as the audited candidate.
+
+### H368: Q2/S1 row-mask validity is the lifestyle-state translator, not aggregate row identity
+
+- 상태: locally supported; public LB pending.
+- 왜 그럴듯한가: H367 killed aggregate row-mask validity but left target-specific Q2 and S1 validity alive. Q2 maps naturally to intervention/rough-night state, and S1 maps to objective recovery-stage state, so a human lifestyle latent could express itself only through these cells.
+- 맞다면: Q2/S1 validity should be predictable from lifestyle/story context beyond permutation nulls, stable under leave-public drops, and learned Q2/S1 cell actions should beat both direct-public controls and null/permuted masks.
+- 틀리다면: direct-public masks or null/permuted Q2/S1 masks should outrank learned lifestyle masks, or one of Q2/S1 should fail the CV/null diagnostic.
+- 최소 실험: `analysis_outputs/e368_q2s1_rowmask_cellaction_latent.py`.
+- 관측: Q2 validity KFold Spearman `0.426940` vs null p95 `0.102237`; S1 `0.157989` vs `0.102777`; Q2/S1 leave-public stability min `0.692973`. Learned `e368_q2_damp_s1_recover_amp1.06` wins top1 `73/98`, top10 `97/98`; best direct-public top1 `19/98`; best null top1 `4/98`.
+- 성공/폐기 기준: accept locally only if both Q2 and S1 beat null p95, row-mask target is stable, best learned gate beats best direct-public and null gates, and movement is limited to Q2/S1 relative to E365. This is observed.
+- public LB 관측 반응: if E368 improves public LB, the live hidden law becomes target-specific lifestyle validity: Q2 intervention-state damping plus S1 recovery-state correction. If E368 worsens, the local public-sensor ranking overfit known-public Q2/S1 row support even though it beat null controls.
+- 제출 전략: `analysis_outputs/submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv` is now the highest-information local candidate.

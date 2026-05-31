@@ -2799,3 +2799,12 @@
 - Implementation issue possible: medium. Known-public rows are scarce and all worse than E247, so public-good support is relative rather than absolute. Still, the null candidate dominance is strong enough to reject E367 as a submission route.
 - Bottleneck implication: row-mask validity may exist only target-wise. Q2 validity is strongly lifestyle-predictive and S1 is weakly alive; Q3 and aggregate validity fail.
 - Do not repeat: aggregate public/private row-mask gating over the E365 donor family. Next test should be Q2/S1-specific cell-action validity with null controls.
+
+## FH311. Q2/S1 row-validity is only a direct-public or null row-mask artifact
+
+- Failed hypothesis: the Q2/S1 signal left by E367 is not learnable from lifestyle context; it should only work when direct public row masks or random/permuted masks are used.
+- Observed result: E368 learned Q2/S1 validity from lifestyle/story context and the learned `q2_damp_s1_recover_amp1.06` gate won top1 in `73/98` stress scenarios. Best direct-public diagnostic won top1 in only `19/98`; best null/permuted mask won top1 in `4/98`.
+- Why discard: direct-public copying and row-placement randomness do not explain the E368 local support. The learned lifestyle translator is stronger under the tested feature-view and leave-public stress.
+- Implementation issue possible: medium. The known-public sensor is still scarce and relative to E247, so this only rejects the direct/null-artifact explanation locally. Public LB can still falsify transfer.
+- Bottleneck implication: the live path is now target-specific lifestyle validity, especially Q2/S1, not aggregate row-mask gating.
+- Do not repeat: direct-public Q2/S1 mask submissions unless a public-free validation proxy supports them. They are diagnostic controls, not selected candidates.

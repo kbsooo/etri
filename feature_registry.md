@@ -3972,3 +3972,23 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - decision: `reject_e367_rowmask_not_lifestyle_predictive_keep_e365`.
 - Registry status: rejected as an aggregate submission feature; keep Q2/S1 target-specific validity as a live representation candidate.
 - Failure condition: do not use aggregate row-mask validity in submissions. A future Q2/S1-specific feature must beat null masks before being uploadable.
+
+### E368 Q2/S1 target-specific row-validity latent
+
+- Target hidden structure: a hidden lifestyle state that is visible only through Q2 intervention/rough-night validity and S1 recovery validity, not through aggregate public/private row identity.
+- Why needed: E367 showed aggregate row-mask validity is not lifestyle-predictive and is beaten by null masks, while Q2 and S1 target-specific validity survived. E368 tests that narrower feature before allowing any new submission.
+- Feature/action form:
+  - target representation: known-public Q2/S1 row-good minus row-bad support relative to E247;
+  - context: E328/E358 own-lifestyle state and E268 human/social story axes;
+  - action: E365 backbone plus Q2/S1-only cell scaling/source recovery;
+  - controls: direct-public Q2/S1 masks, swapped masks, permuted masks, inverse masks, random masks.
+- Current evidence:
+  - Q2 validity KFold Spearman `0.426940`, null p95 `0.102237`;
+  - S1 validity KFold Spearman `0.157989`, null p95 `0.102777`;
+  - Q2/S1 leave-public stability min `0.692973`;
+  - best learned gate top1/top10 `73/98` and `97/98`;
+  - best direct-public top1 `19/98`;
+  - best null top1 `4/98`;
+  - selected file: `analysis_outputs/submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv`.
+- Registry status: approved as the current highest-information local submission candidate, public LB pending.
+- Failure condition: if public LB worsens clearly, do not keep sweeping Q2/S1 masks from the same known-public target. Treat the target as locally valid but public-transfer overfit, and build a public-free Q2/S1 calibration proxy.
