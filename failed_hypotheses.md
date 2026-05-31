@@ -2484,3 +2484,12 @@
 - Implementation issue possible: medium. E327 uses simple cell-level linear risk statistics. A learned joint risk model might improve, but the current direct censor files are not priority replacements.
 - Bottleneck implication: next breakthrough likely needs an independent calibration/public-subset axis or a new latent target, not another local censor of `5508f966`.
 - Do not repeat: public-testing build-null-risk files that win old p90 but fail fresh null stress or fail to beat the current priority.
+
+## FH276. E323/E324 null-common residual health transfers to public
+
+- Failed hypothesis: a candidate that survives E323/E324 high-repetition row/subject/dateblock null stress, semantic attribution, and follow-up censor diagnostics should be a viable public candidate.
+- Observed result: `analysis_outputs/submission_e323_5508f966_uploadsafe.csv` scored public LB `0.5770355016`, worse than E247 by `+0.0008765522`, worse than E95 by `+0.0007441718`, and worse than mixmin by `+0.0007288611`.
+- Why discard: the miss is too large to call a tiny calibration edge. The local stress found a real non-random residual, but it did not identify the public-evaluated hidden subset or calibration direction.
+- Implementation issue possible: low. The upload-safe file matches sample schema, has no NaN/Inf, values are strictly in `(0,1)`, and differs from the original tensor by `<5e-11`. This is model evidence, not a packaging artifact.
+- Bottleneck implication: row/subject/dateblock null rarity is necessary but insufficient. The validation design needs an E323-negative slice or an independent public/private subset calibration axis.
+- Do not repeat: submitting E323 direct siblings, E326 semantic-censor siblings, or E327 nullfail-censor siblings as rescue files. Same-family refinements are blocked until a new checker explains and removes the E323 public-adverse movement.

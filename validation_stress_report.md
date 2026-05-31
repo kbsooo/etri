@@ -4082,3 +4082,24 @@ Operational rule after E327:
 - Public LB should not be used to check every variant.
 - The local checker must carry the first rejection burden: old selector p90, fresh row/subject/dateblock nulls, target-permutation/sign-flip/Q-S-swap stress, current-priority dominance, and an anti-control comparison when possible.
 - A public submission is allowed only when the file survives this stress as a stronger candidate than the current priority, or when it is explicitly predeclared as a high-information sensor rather than a score-seeking file.
+
+## E323 Public Resolution
+
+Observed public result:
+
+- file: `analysis_outputs/submission_e323_5508f966_uploadsafe.csv`;
+- public LB: `0.5770355016`;
+- E247 best: `0.5761589494`;
+- delta vs E247: `+0.0008765522` worse.
+
+Stress conclusion:
+
+- The E323/E324 local checker produced a false positive for public transfer.
+- The failure is larger than the local frontier edges that motivated the candidate, so this branch is not a near-miss.
+- Row/subject/dateblock null rarity, even high-repetition plus semantic and nullfail follow-ups, is not enough to identify the public hidden subset.
+
+Validator change:
+
+- Future promotion checks must include an E323-negative slice.
+- Passing fresh matched nulls is necessary but no longer sufficient.
+- A candidate from the same residual family is blocked unless it explicitly removes the E323 public-adverse movement and proves that removal under an independent stress view.

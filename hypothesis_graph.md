@@ -3728,19 +3728,19 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 
 ### H323: E322 near misses contain recoverable signal after removing placement-null-common movement
 
-- 상태: 지지됨 by E323/E324 local stress; public unresolved.
+- 상태: 반증됨 as public-transfer candidate; 지지됨 only as local diagnostic.
 - 왜 그럴듯한가: E322 near misses were not target/sign wrong. They were visible but null-common. If the true hidden placement component is entangled with null-common movement, subtracting the row/subject/dateblock-common part should reveal a rarer residual.
 - 맞다면: residualized or null-orthogonal variants should keep old-selector visibility while sharply reducing null strict rate, and should survive more than the small E323 governor.
 - 틀리다면: residualized candidates should either become invisible or remain null-common under larger null samples.
 - 최소 실험: `analysis_outputs/e323_null_common_residual_generator.py`, followed by `analysis_outputs/e324_e323_ready_highrep_stress.py`.
-- 관측: E323 generated `420`, old-strict `291`, fresh ready `3`; E324 retested those `3` with `774` null rows and kept high-rep ready `3/3`. Priority file high-rep p90 `-0.000053747`, null strict `0.050388`, worst-mode dominance `0.859375`.
-- 성공/폐기 기준: support if at least one residual candidate survives high-rep null stress. This criterion is met.
-- public LB 관측 반응: if the priority file improves public LB, strengthen the null-common residual hidden-placement world. If it worsens, local matched nulls are still missing public/private subset structure or the edge is below public readability.
-- 제출 전략: priority candidate `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_5508f966.csv`.
+- 관측: E323 generated `420`, old-strict `291`, fresh ready `3`; E324 retested those `3` with `774` null rows and kept high-rep ready `3/3`. Priority file high-rep p90 `-0.000053747`, null strict `0.050388`, worst-mode dominance `0.859375`. Upload-safe public result for `5508f966` was `0.5770355016`, worse than E247 by `+0.0008765522`.
+- 성공/폐기 기준: local support criterion was met, but the public criterion failed decisively. Treat local null-common residualization as an explanatory diagnostic, not as a generator.
+- public LB 관측 반응: resolved negative. Local matched nulls missed a public/private subset or calibration axis.
+- 제출 전략: none. Block E323 direct siblings and require an E323-negative stress slice for future candidates.
 
 ### H325: E323's residual action is lifestyle-interpretable, not only numeric residualization
 
-- 상태: 부분 지지됨; semantic support is real but moderate.
+- 상태: 부분 지지됨 as attribution; 반증됨 as public-candidate support.
 - 왜 그럴듯한가: E323 was generated from human-regime-only family-consensus candidates. If it is genuinely part of the user-requested human/social hidden-state route, the moved rows should align with interpretable diary states more than matched row/subject/dateblock placements do.
 - 맞다면: target-specific delta-weighted story means should be extreme against semantic nulls, and the top stories should match earlier robust human theories such as bedtime arousal, mobility/night-out, social isolation, or cash-flow stress.
 - 틀리다면: top semantic z-scores should be near null, or the strongest alignments should be random calendar/payday artifacts with no relation to prior robust episode states.
@@ -3754,8 +3754,8 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준:
   - support if signed semantic z clears `2.0` on repeated prior story axes while high-rep null stress remains healthy;
   - reject semantic-sibling expansion unless semantic z improves without worsening high-rep null strictness.
-- public LB 관측 반응: if the E324 priority improves public, semantic attribution becomes an explanatory layer for the residual law. If it worsens, do not discard human stories; instead mark semantic-null attribution as insufficient for public subset/calibration transfer.
-- 제출 전략: no new file. Preserve E324 priority order.
+- public LB 관측 반응: resolved negative through E323 public `0.5770355016`. Do not discard human stories, but semantic-null attribution is insufficient for public subset/calibration transfer.
+- 제출 전략: no new file. Do not preserve E324 priority order after public failure.
 
 ### H326: E325 semantic axes can censor E323 residuals into a stronger public-free candidate
 
@@ -3766,8 +3766,8 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 최소 실험: `analysis_outputs/e326_semantic_residual_censor.py`.
 - 관측: generated `252`, prefilter strict `141`, null-evaluated `36`, null rows `6984`; semantic selected rows `24` with ready `2`, anti-control rows `12` with ready `0`; beats E324 priority locally `0`.
 - 성공/폐기 기준: keep semantic axes as diagnostic if semantic ready rate > anti ready rate; reject replacement if no candidate beats E324 priority under matched null stress.
-- public LB 관측 반응: no public LB should be spent on E326 before E324 priority. A public-positive E326 after E324 would mean semantic pruning adds signal; a public-negative E326 would confirm semantic attribution is not enough as action policy.
-- 제출 전략: none now. Preserve E324 priority `5508f966`.
+- public LB 관측 반응: E324 priority resolved public-negative, so E326 same-family semantic siblings are blocked.
+- 제출 전략: none. Do not use E326 as rescue.
 
 ### H327: remaining E324 risk is removable by censoring competitive null-fail cells
 
@@ -3778,5 +3778,5 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 최소 실험: `analysis_outputs/e327_nullfail_risk_censor.py`.
 - 관측: generated `540`, prefilter strict `179`, build null rows `288`, fresh stress null rows `7760`, ready `2`, beats E324 priority `0`; nullfail-censor ready `2/33`, anti-control ready `0/7`.
 - 성공/폐기 기준: keep if censor variants beat anti-controls; reject as replacement if no file beats E324 priority. This is exactly the observed split.
-- public LB 관측 반응: no public LB should be spent on E327 before E324 priority. If E324 improves, E327 can test whether conservative risk damping is a valid second-order sibling.
-- 제출 전략: none now. Preserve E324 priority `5508f966`.
+- public LB 관측 반응: E324 priority resolved public-negative, so E327 same-family nullfail siblings are blocked.
+- 제출 전략: none. Do not use E327 as rescue.

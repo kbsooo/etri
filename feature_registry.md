@@ -3168,3 +3168,25 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - require a candidate to improve null strictness and worst-mode dominance, not only p90.
 - Failure condition:
   - if a null-derived feature wins prefilter but fails fresh stress, classify it as null-overfit and do not public-test it.
+
+## E323-Negative Public Stress Feature
+
+- Target hypothesis tested:
+  - future candidates should avoid the movement anatomy that made E323/E324 public-adverse.
+- Feature/representation source:
+  - delta similarity to `analysis_outputs/submission_e323_5508f966_uploadsafe.csv` versus E247;
+  - overlap with E323 active cells, target shares, subject/dateblock concentration, and row/subject/dateblock null-failure axes;
+  - same-family flags for E323/E324/E326/E327 residual/censor descendants.
+- Validation result:
+  - E323 upload-safe public LB `0.5770355016`;
+  - worse than E247 by `+0.0008765522`;
+  - local high-rep null health did not transfer.
+- Updated registry status:
+  - approved as a negative stress feature;
+  - not a predictive feature by itself;
+  - use it as a veto or penalty until a future candidate independently explains why E323-like movement is safe.
+- Adopt rule for future features:
+  - any public-free promotion report should include E323-negative similarity and same-family flags;
+  - same-family descendants require stronger independent evidence than ordinary candidates.
+- Failure condition:
+  - if a candidate is E323-similar and only passes row/subject/dateblock nulls, do not public-test it.

@@ -3461,3 +3461,31 @@ Submission policy:
 - Do not submit E327 before E324 priority.
 - E327 is useful evidence that risk-damping is safer than aggressive bad-null subtraction, but it does not create a better public candidate.
 - If E324 later improves public, E327's `risk_damp25` file can be kept as a diagnostic sibling, not as the next score-first choice.
+
+## Update After E323 Upload-Safe Public Result
+
+Public result:
+
+- file: `analysis_outputs/submission_e323_5508f966_uploadsafe.csv`;
+- public LB: `0.5770355016`;
+- worse than E247 best `0.5761589494` by `+0.0008765522`;
+- worse than E95 `0.5762913298` by `+0.0007441718`;
+- worse than mixmin `0.5763066405` by `+0.0007288611`.
+
+Decision:
+
+- E323/E324 is demoted from next-candidate branch to failed public-transfer diagnostic.
+- Do not submit E323 siblings `de5d9c5d` or `51ed84b0`.
+- Do not submit E326 semantic-censor siblings or E327 nullfail-censor siblings as rescue files. They are built on the same local residual worldview and did not beat `5508f966` locally anyway.
+- The current public frontier remains `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+
+Interpretation:
+
+- The local row/subject/dateblock null stress was not sufficient. It detected some non-random action geometry, but that geometry did not transfer to public.
+- The failure is too large to treat as selector noise. It points to a missing public/private subset or calibration axis, not a packaging issue and not a tiny over-smoothing mistake.
+- Human/social semantic attribution remains useful as explanation, but it cannot promote a candidate unless it is coupled to a validation design that has already survived public-negative branches like E323.
+
+Next submission policy:
+
+- Public slot is closed until a candidate is independent of the E323 residual family or explicitly fixes the E323 failure mode.
+- Any next candidate must be compared against E247 and must include an E323-negative stress slice: it should not only beat row/subject/dateblock nulls, it must also avoid the movement anatomy that made `5508f966` public-worse.

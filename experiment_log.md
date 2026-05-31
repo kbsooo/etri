@@ -5078,3 +5078,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - best ready file: `submission_e327_nullrisk_null_common_residual__src_human_regime_only__recipe_fa__risk_damp25__q0_85__b1_00__s0_75_15b9159f.csv` with p90 `-0.000059602`, null strict `0.061856`, worst-mode dominance `0.854167`.
 - Interpretation: the null-fail signal is real, but it is hard to act on. Aggressive bad-null subtraction looks excellent in prefilter and then becomes null-common on fresh stress. Conservative risk-damping can stay ready, but it is not lower-risk than `5508f966`.
 - Decision: no E327 file replaces E324 priority. This strengthens the rule that a candidate must beat the priority under fresh null stress, not just improve old selector p90.
+
+## E328. E323 Public Feedback
+
+- Observe: the long E323 priority file produced a platform submission-value error, so an upload-safe version was rebuilt from the official sample key order with fixed float formatting. The predictions are unchanged to `<5e-11`.
+- Public result:
+  - file: `analysis_outputs/submission_e323_5508f966_uploadsafe.csv`;
+  - public LB: `0.5770355016`;
+  - delta vs E247 best `0.5761589494`: `+0.0008765522`;
+  - delta vs E95 `0.5762913298`: `+0.0007441718`;
+  - delta vs mixmin `0.5763066405`: `+0.0007288611`.
+- Interpretation: this is a hard negative for the E323/E324 public-transfer claim. The branch learned a locally non-random null-rare residual, but not the public hidden state. E325 semantic coloring is explanatory only; it did not make the residual public-safe.
+- Decision:
+  - block E323 direct siblings;
+  - block E326 and E327 same-family rescue files;
+  - keep E247 as the public frontier;
+  - add an E323-negative stress slice before any future public promotion.

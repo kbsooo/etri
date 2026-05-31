@@ -8,8 +8,8 @@ Current public frontier:
 - Public LB: `0.5761589494`
 - Previous frontier: `analysis_outputs/submission_e95_hardtail_541e3973.csv`
 - Improvement over previous frontier: `0.0001323804`
-- Latest resolved public sensor: `analysis_outputs/submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv` public LB `0.5762805676`, which rejects the amplitude-constrained E247 follow-up while keeping feature-NN1 Q3 smoothing positive versus E95.
-- Latest public-free diagnostic: E327 null-fail risk censor on top of the E323/E324 null-common residual branch. E327 generated `540` build-null-risk variants and stress-tested `40` selected candidates against `7760` fresh null rows. Nullfail-censor variants beat anti-controls (`2/33` ready vs `0/7`), but no file beat the E324 priority locally. E324 still selects the `5508f966` tensor as the current priority candidate, with high-rep p90 `-0.000053747`, null strict `0.050388`, and worst-mode dominance `0.859375`. Use upload-safe path `analysis_outputs/submission_e323_5508f966_uploadsafe.csv`; the long original path is retained as the tensor source but produced a platform submission-value error.
+- Latest resolved public sensor: `analysis_outputs/submission_e323_5508f966_uploadsafe.csv` public LB `0.5770355016`, which is worse than E247 by `0.0008765522`. This rejects the E323/E324 null-common residual branch as a public-transfer candidate, despite its strong local null stress.
+- Latest public-free diagnostic before that public result: E327 null-fail risk censor on top of the E323/E324 branch. E327 generated `540` build-null-risk variants and stress-tested `40` selected candidates against `7760` fresh null rows. Nullfail-censor variants beat anti-controls (`2/33` ready vs `0/7`), but no file beat the E324 priority locally. The later E323 public result shows that this whole local matched-null family was missing a public/private calibration or subset axis.
 
 Public LB operating rule:
 

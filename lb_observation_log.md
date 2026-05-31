@@ -1081,3 +1081,23 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - mitigation method: rebuild from `data/ch2026_submission_sample.csv`, copy original predictions into target columns, clip to `1e-7..1-1e-7`, and write fixed decimal formatting.
 - max absolute prediction change from original: `< 5e-11`.
 - interpretation: this is treated as a packaging/platform-parse issue, not model evidence. It should not update the E323 worldview until the upload-safe file receives an actual LB score.
+
+## Public LB Observation: E323 Upload-Safe
+
+- submission file: `analysis_outputs/submission_e323_5508f966_uploadsafe.csv`.
+- actual public LB: `0.5770355016`.
+- expected reaction before submission: if E324 worsens clearly, local matched nulls are missing a public/private calibration or subset axis and E323 should become diagnostic rather than generative.
+- actual reaction:
+  - vs E247 best `0.5761589494`: `+0.0008765522` worse;
+  - vs E256 `0.5762805676`: `+0.0007549340` worse;
+  - vs E95 `0.5762913298`: `+0.0007441718` worse;
+  - vs mixmin `0.5763066405`: `+0.0007288611` worse.
+- interpretation:
+  - this is a hard negative, not a frontier-scale tie;
+  - E323/E324 local null-common residualization learned a locally non-random residual, but not the public-evaluated hidden state;
+  - E325 semantic alignment did not imply public correctness;
+  - E326/E327 should not be used as rescue because both are same-family refinements that failed to dominate `5508f966` locally.
+- next experiment consequence:
+  - add an E323-negative stress slice to future promotion checks;
+  - block direct siblings of E323/E324/E326/E327;
+  - do not spend another public slot until the new candidate explains why the E323 movement should be avoided or orthogonalized.
