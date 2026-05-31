@@ -1065,3 +1065,19 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - do not spend a public slot on E327 before E324 priority;
   - if E324 improves, E327 can be used as a second-order diagnostic sibling;
   - if E324 worsens, E327 should also be blocked because it is built on the same local residual world and selector family.
+
+## Submission-Format Observation: E323 Priority
+
+- original file: `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_5508f966.csv`.
+- observed platform reaction: submission-value error.
+- local schema check:
+  - shape equals sample: `250 x 10`;
+  - columns equal sample: `subject_id,sleep_date,lifelog_date,Q1,Q2,Q3,S1,S2,S3,S4`;
+  - key order equals sample: true;
+  - NaN/Inf: none;
+  - target values strictly inside `(0, 1)`: true;
+  - min/max: `0.0683439958` / `0.9793394519`.
+- mitigation file: `analysis_outputs/submission_e323_5508f966_uploadsafe.csv`.
+- mitigation method: rebuild from `data/ch2026_submission_sample.csv`, copy original predictions into target columns, clip to `1e-7..1-1e-7`, and write fixed decimal formatting.
+- max absolute prediction change from original: `< 5e-11`.
+- interpretation: this is treated as a packaging/platform-parse issue, not model evidence. It should not update the E323 worldview until the upload-safe file receives an actual LB score.

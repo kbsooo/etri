@@ -3435,7 +3435,8 @@ Submission policy:
 
 Current next submission candidate remains unchanged:
 
-- `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_5508f966.csv`
+- Upload-safe file: `analysis_outputs/submission_e323_5508f966_uploadsafe.csv`
+- Original tensor source: `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_5508f966.csv`
 
 Why E327 does not replace it:
 
@@ -3456,6 +3457,7 @@ Submission policy:
 - Public LB is scarce. Do not submit a candidate just because it is locally interesting or beats one old selector.
 - Required promotion gate: the candidate must beat the current priority on the public-free selector and on fresh null stress that was not used to generate it.
 - If a candidate fails this gate, record it as diagnostic evidence and keep the public slot closed.
+- The long original E323 filename produced a platform submission-value error despite matching sample schema locally. Use `submission_e323_5508f966_uploadsafe.csv`, which rewrites the same predictions from the official sample key order, clips to the open unit interval, and fixes float formatting. Max absolute prediction change versus the original is below `5e-11`.
 - Do not submit E327 before E324 priority.
 - E327 is useful evidence that risk-damping is safer than aggressive bad-null subtraction, but it does not create a better public candidate.
 - If E324 later improves public, E327's `risk_damp25` file can be kept as a diagnostic sibling, not as the next score-first choice.
