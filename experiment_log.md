@@ -5994,3 +5994,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - The family-level signal is broader than one exact file: Q3/S1 donor-graft and Q3 donor-graft siblings both survive. This strengthens the hypothesis that the missing public-like action is donor-informed recovery geometry, not another target-scale tweak.
   - E365 does not prove public LB improvement; it only makes E364 the highest-information next probe over E363.
 - Decision: keep E365/E364 as the current next public-test candidate. If it fails publicly, the whole donor-graft S1-recovery public-like hypothesis weakens, not just one file.
+
+## E366. Hidden Lifestyle-State Donor-Family Latent Stress
+
+- Observe: E365 support was not a single file; Q3/S1, Q3-only, and S1-only donor-graft siblings all survived the jackknife. That suggests a family-level hidden lifestyle action, but it could also be a movable row-mask shortcut.
+- Wonder: can E328/E358 own-lifestyle state decide row-wise whether to trust Q3-only, S1-only, or Q3/S1 donor geometry?
+- Hypothesis: if the donor-graft family is a true hidden lifestyle-state latent, real row-state/story gates should beat constant centers and null/permuted gates under the same E363/E364/E365 stress.
+- Method: `analysis_outputs/e366_hidden_lifestyle_donor_family_latent.py`.
+  - generated `79` candidates: family centers, pair centers, target-cell centers, row/story gates, target-row gates, and null row-gate controls.
+  - stress: E272 selector, E358 row-state survival, E363 submission gate, E364 known-public movement-axis score, and `84` E365-style jackknife scenarios.
+- Result:
+  - best real lifestyle gate: `e366_targetrow_q3_good_s1_bad_cluster_356_bad`, top1 `0/84`, top10 `84/84`, rank mean `2.345238`;
+  - best null gate: `e366_nulltargetrow_q3_good_s1_bad_perm_cluster_2`, top1 `81/84`, top10 `84/84`, rank mean `1.071429`;
+  - E365 reference top10 rate in the expanded pool: `0.166667`;
+  - decision: `reject_e366_lifestyle_gate_keep_e365`.
+- Interpretation:
+  - The donor-graft family remains meaningful, but the current row-lifestyle translator fails a LeJEPA-style anti-collapse test.
+  - The local sensor can be fooled by a permuted row gate with the same broad target-row translator, so a high score is not proof of a human/social row-state law.
+  - Do not submit E366. Keep E365 as the current audited candidate, and next target should learn row-mask validity or public/private subset identity rather than only row-state semantics.

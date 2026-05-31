@@ -4628,3 +4628,24 @@ Public-result interpretation:
 - If E365 improves, donor-grafted S1 recovery becomes the strongest current hidden-action law.
 - If E365 is neutral but E363 later improves, donor geometry was unnecessary and source-law-preserving target balance is safer.
 - If E365 worsens clearly, stop nearby donor-graft reranking; the known-public sensor is too scarce or the donor family is a public-transfer shortcut.
+
+## Update After E366 Hidden Lifestyle-State Donor-Family Latent Stress
+
+No new E366 submission should be tested now.
+
+Current highest-information submission remains:
+
+`analysis_outputs/submission_e365_jackknife_selected_e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_co_b851baf9_uploadsafe.csv`
+
+Why E366 is not a submission:
+
+- E366 tried to turn the E365 donor-graft family into a row-wise hidden lifestyle-state latent.
+- The best real lifestyle gate stayed top10 in `84/84` scenarios, but did not win top1 in any scenario.
+- A permuted/null target-row gate won top1 in `81/84` scenarios.
+- That means the current local sensor can reward the row-mask shape without proving that the human/social row story is real.
+
+Submission interpretation:
+
+1. Do not upload an E366 generated file.
+2. Keep E365 as the audited candidate if one slot is used.
+3. The next candidate should only replace E365 if it can beat null row masks, not merely score well under story-labeled gates.

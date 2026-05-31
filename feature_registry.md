@@ -3933,3 +3933,21 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - closest alternate is another donor-graft sibling, supporting family-level donor recovery geometry.
 - Registry status: approved as the current strongest submission probe and as a stability check for E364.
 - Failure condition: if public LB is clearly worse, do not continue local donor-graft jackknife selection. Treat the public-like latent as internally stable but externally wrong, and move to a new calibration/subset target.
+
+### E366 hidden lifestyle donor-family row gate
+
+- Target hidden structure: row-wise hidden lifestyle state deciding whether Q3/S1, Q3-only, or S1-only donor-graft geometry should be trusted.
+- Why needed: E365 support is family-level, not a single exact file. A real hidden lifestyle state should explain which rows need Q3/S1 subjective/objective recovery movement and which rows should stay closer to the anchor.
+- Feature/action form:
+  - source family: E365-supported Q3/S1, Q3-only, and S1-only donor-graft siblings;
+  - row context: E328/E358 own-lifestyle latent, row-state bad/good clusters, weekend/phone/finance/routine/recovery story tails;
+  - actions: family centers, pair centers, target-cell recombinations, row/story gates, target-row gates;
+  - null controls: inverse cluster, random rate-matched, and permuted cluster row gates.
+- Current evidence:
+  - generated candidates: `79`;
+  - scenarios: `84`;
+  - best real lifestyle gate: top1 `0/84`, top10 `84/84`, rank mean `2.345238`;
+  - best null/permuted gate: top1 `81/84`, top10 `84/84`, rank mean `1.071429`;
+  - decision: `reject_e366_lifestyle_gate_keep_e365`.
+- Registry status: rejected as a submission feature. Keep as diagnostic evidence that current row-story gates are vulnerable to row-mask shortcuts.
+- Failure condition: do not use E366-style row gates in a submission unless they beat null/permuted row-mask controls and preserve E365/E363/E364 stress.

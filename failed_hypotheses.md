@@ -2781,3 +2781,12 @@
 - Implementation issue possible: medium-high. The whole stress is still built from the same scarce known-public ledger, so this does not prove public LB transfer. It only rejects the narrower overfit explanation.
 - Bottleneck implication: the live uncertainty has moved from "is E364 internally stable?" to "does this internally stable donor-graft public-like latent match the real public/private hidden subset?"
 - Do not repeat: another leave-one-public rerank of the same E364 pool unless new public observations are added. The next information should come from public feedback or from a new calibration/subset latent target.
+
+## FH309. E365 donor-graft row-lifestyle gate is a trustworthy submission translator
+
+- Failed hypothesis: the E365 donor-graft family can be improved by using E328/E358 human/social lifestyle state to choose row-wise Q3/S1 donor geometry.
+- Observed result: E366 generated `79` center, target-cell, real row-gate, and null row-gate candidates. The best real lifestyle gate, `e366_targetrow_q3_good_s1_bad_cluster_356_bad`, reached top10 in `84/84` scenarios but top1 in `0/84`. The best null/permuted gate, `e366_nulltargetrow_q3_good_s1_bad_perm_cluster_2`, reached top1 in `81/84` and top10 in `84/84`.
+- Why discard: a null row mask beats the real lifestyle gate under the same E365-style public/view jackknife. This means the row-gate translator is not a trustworthy human/social hidden-state discovery, even if its local rank looks excellent.
+- Implementation issue possible: medium-high. The E366 sensor still depends on scarce known-public observations and inherited E363/E364/E365 features. But the negative control is strong enough to reject the current submission route.
+- Bottleneck implication: the donor-graft family is still live, but row-state semantics are not enough. The missing latent is likely row-mask validity, public/private subset identity, or target-specific calibration health.
+- Do not repeat: uploading E366 row-gated donor-family candidates or adding more story names to the same gate. First build a gate that beats random/permuted row-mask controls.

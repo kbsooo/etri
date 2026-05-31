@@ -5352,3 +5352,32 @@ Stress conclusion:
 - E364 is not a one-known-public-file accident under the tested masks.
 - The stable signal is donor-graft recovery geometry: the closest challenger is another donor-graft sibling, while the E363 target-scale row does not retake the lead.
 - E365 upgrades E364 from "interesting public-like rerank" to "current highest-information public probe"; it still does not certify public LB improvement.
+
+## E366 Hidden Lifestyle-State Donor-Family Latent Stress
+
+Question: can the E365 donor-graft family be converted into a row-wise human/social lifestyle-state gate that beats null row masks?
+
+Stress setup:
+
+- script: `analysis_outputs/e366_hidden_lifestyle_donor_family_latent.py`;
+- source family: E365 Q3/S1 donor-graft, Q3 donor-graft, and S1 donor-graft siblings;
+- generated pool: `79` candidates;
+- candidate types: family centers, pair centers, target-cell recombinations, row/story gates, target-row gates, and null row-gate controls;
+- scenarios: `84` total = `6` feature views x `14` public-drop settings;
+- anti-collapse: inverse cluster gate, random rate-matched gates, and permuted cluster gates.
+
+Stress result:
+
+- best real lifestyle gate: `e366_targetrow_q3_good_s1_bad_cluster_356_bad`;
+- best real lifestyle gate top1/top10: `0/84` and `84/84`;
+- best real lifestyle gate rank mean: `2.345238`;
+- best null gate: `e366_nulltargetrow_q3_good_s1_bad_perm_cluster_2`;
+- best null gate top1/top10: `81/84` and `84/84`;
+- best null gate rank mean: `1.071429`;
+- final decision: `reject_e366_lifestyle_gate_keep_e365`.
+
+Stress conclusion:
+
+- E366 fails the null anti-collapse test. A permuted row gate can look more public-like than the real human/social lifestyle gate under the current sensor.
+- This rejects E366 as a submission route, even though the donor-graft family itself remains alive.
+- The next useful stress should target row-mask validity or public/private subset identity. More semantic row stories alone are not enough.

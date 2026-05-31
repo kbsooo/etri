@@ -4224,3 +4224,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept locally if E364 beats E363 in at least `60%` of scenarios and stays top10 in at least `50%`. This is observed strongly.
 - public LB 관측 반응: if E365 improves, donor-graft S1 recovery is likely a real missing component. If E365 fails but E363 improves, jackknife stability was still overfit to known-public geometry. If both fail, abandon E363/E364 local-basin candidate selection and learn a new public-like subset/calibration latent.
 - 제출 전략: `analysis_outputs/submission_e365_jackknife_selected_e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_co_b851baf9_uploadsafe.csv` supersedes the raw E364 filename as the next audited probe.
+
+### H366: E365 donor-graft family can be turned into a row-wise hidden lifestyle-state latent
+
+- 상태: submission translator는 반증됨; donor-graft family signal은 여전히 생존.
+- 왜 그럴듯한가: E365의 top support가 단일 파일이 아니라 Q3/S1, Q3-only, S1-only donor-graft sibling으로 나뉘었다. 이것은 row별 hidden lifestyle state가 target geometry를 선택한다는 가설과 맞는다.
+- 맞다면: E328/E358 lifestyle state, human/social story tail, target-row gate가 constant center와 null/permuted row gate보다 안정적으로 높아야 한다. 특히 real gate가 E365-style public/view jackknife에서 top1/top10 우위를 가져야 한다.
+- 틀리다면: 같은 row-rate나 target-row translator를 가진 random/permuted gate가 real lifestyle gate와 같거나 더 높은 rank를 가져야 한다.
+- 최소 실험: `analysis_outputs/e366_hidden_lifestyle_donor_family_latent.py`.
+- 관측: `79` generated candidates and `84` jackknife scenarios. Best real target-row lifestyle gate `e366_targetrow_q3_good_s1_bad_cluster_356_bad` has top1 `0/84`, top10 `84/84`, rank mean `2.345238`. Best null/permuted gate `e366_nulltargetrow_q3_good_s1_bad_perm_cluster_2` has top1 `81/84`, top10 `84/84`, rank mean `1.071429`.
+- 성공/폐기 기준: accept only if best real lifestyle gate beats null/permuted gates on top1/top10 and does not depend on a single view. This is not observed.
+- public LB 관측 반응: no E366 file should be submitted now. If E365 later fails publicly, E366 says the donor-graft family may be an internally stable but externally wrong row-mask shortcut. If E365 succeeds, the family can be real, but E366 still says current lifestyle gate is not the reason.
+- 제출 전략: none from E366. Keep `analysis_outputs/submission_e365_jackknife_selected_e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_co_b851baf9_uploadsafe.csv` as the audited candidate.
