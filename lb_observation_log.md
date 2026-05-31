@@ -839,3 +839,22 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - old-strict lifted rows become null-common, with the top visible row null strict rate `0.346154`.
 - interpretation: human-readiness energy identifies plausible seeds, but individual scalar lift is not a public-free action layer. It still falls into safe-but-invisible versus visible-but-null-common behavior.
 - next experiment: do not public-test E314 files. Reserve a new local run for non-single consensus/orthogonal-stack materialization, or move to a target-level materializer that changes the action geometry rather than the amplitude.
+
+## Public-Free Observation: E315
+
+- submission files: `analysis_outputs/submission_e315_humancomp_*.csv`.
+- public LB: not submitted.
+- reason not submitted: no E315 candidate passed the local row/subject/dateblock/target-permutation/QS-swap/sign governor.
+- local observation:
+  - safe human-ready seeds loaded: `180`;
+  - generated candidates: `660`;
+  - old strict candidates: `229`;
+  - info candidates: `297`;
+  - null-evaluated candidates: `67`;
+  - public-free ready files: `0`;
+  - best actual p90: `-0.000523248`;
+  - best null strict rate: `0.090909`, but on non-strict orthogonal story stacks with subject/dateblock weakness;
+  - bedtime-arousal family consensus is selector-visible but null-common;
+  - routine-fragmentation/S1 target consensus is a strong information sensor but fails row dominance.
+- interpretation: public LB should not be spent. E315 says the human/social branch is still useful for world modeling, but existing probability-delta composition does not solve hidden placement.
+- next experiment: train or construct a placement-health target from E315 near misses rather than stacking more human-ready deltas.

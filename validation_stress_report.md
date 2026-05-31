@@ -3669,3 +3669,31 @@ Decision:
 - No E314 file should be submitted.
 - This is the local check the user asked for: public LB is not the checker; matched null governance blocks these files.
 - The remaining live path is not more scalar amplitude. It is either an E314b materializer with quota-reserved consensus/orthogonal stacks, or a new target-level action layer that changes the geometry before visibility.
+
+## E315 Human-Readiness Composition Stress
+
+Question: can non-single human-ready compositions create null-resistant action geometry?
+
+Method: `analysis_outputs/e315_human_ready_composition_materializer.py`.
+
+- Candidate actions: family consensus, target consensus, ranked negative-edge stacks, orthogonal story stacks, and target-balanced story stacks.
+- Single-seed lift: explicitly excluded.
+- Null stress: row, subject, dateblock, target permutation, Q/S swap, and sign flip.
+- Public LB: not used.
+
+Result:
+
+- generated candidates: `660`.
+- old strict candidates: `229`.
+- info candidates: `297`.
+- null-evaluated candidates: `67`.
+- public-free ready candidates: `0`.
+- best p90: `-0.000523248`, from `routine_fragmentation/S1` target consensus, but it is information-sensor only and row dominance is weak.
+- best null strict rate: `0.090909`, from orthogonal story stacks, but these fail old strict and subject/dateblock dominance.
+- strongest old-strict family is `bedtime_arousal`, but null strict rates remain high.
+
+Decision:
+
+- No E315 file should be submitted.
+- Human/social composition is not useless: it strengthens local edges and identifies target-specific stories, especially bedtime arousal and S1 routine fragmentation.
+- The blocker is still hidden placement. The next benchmark should directly predict subject/dateblock/row placement health, not stack more existing deltas.

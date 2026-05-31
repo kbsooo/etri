@@ -2864,3 +2864,30 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - reserve generation quota for non-single recipes when testing whether multiple weak human-ready signals compose safely.
 - Failure condition:
   - if a feature only converts safe seeds into visible null-common moves, classify it as action geometry overfit rather than hidden human-state recovery.
+
+## E315 Human-Readiness Composition Features
+
+- Target hypothesis tested:
+  - multiple safe human-ready seeds can compose into a null-resistant action geometry even though individual scalar lifts fail.
+- Feature/representation source:
+  - E313 human-readiness seed table;
+  - normalized candidate deltas from previous human/social, cell-boundary, pair, and S4 low-null branches;
+  - family consensus, target consensus, negative-edge stacks, orthogonal low-cosine story stacks, and target-balanced story stacks.
+- Validation result:
+  - generated candidates `660`;
+  - old strict candidates `229`;
+  - null-evaluated candidates `67`;
+  - public-free ready `0`;
+  - strongest visible semantic family: `bedtime_arousal`;
+  - strongest information sensor: `routine_fragmentation/S1`;
+  - best null strict rate `0.090909` occurs in orthogonal story stacks but fails subject/dateblock dominance and old strict.
+- Updated registry status:
+  - human-ready composition is not approved as a direct submission feature;
+  - bedtime-arousal and routine-fragmentation/S1 remain approved as hidden-state diagnostic features;
+  - orthogonal story composition is approved only as a near-miss dataset for placement-health learning.
+- Adopt rule for future features:
+  - do not stack more human-ready deltas without explicitly modeling row/subject/dateblock placement;
+  - use mode-specific dominance to diagnose which hidden placement layer failed;
+  - treat target/sign robustness as necessary but insufficient.
+- Failure condition:
+  - if a candidate only beats target permutation, Q/S swap, and sign controls but loses subject/dateblock or row controls, classify it as a real semantic direction with wrong hidden placement, not a submission.

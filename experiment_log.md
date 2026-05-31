@@ -4841,3 +4841,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
 - Important limitation: this first materializer filled its candidate budget with `single_human_ready_lift` rows, so consensus/negative-stack recipes were not actually exercised. E314 is therefore a rejection of individual scalar lifts, not a rejection of all human-ready combination strategies.
 - Interpretation: human-readiness is a useful energy for finding seeds, but scalar individual amplification crosses the same visibility/null-rarity cliff. Once the move is visible, matched nulls can often imitate it; when it is null-rare, it is below submission resolution.
 - Decision: no E314 public submission. The next public-free branch should not spend LB. It should test a different target-level materializer or an E314b consensus/orthogonal-stack design with a fixed quota reserved for non-single recipes.
+
+## E315. Human-Readiness Composition Materializer
+
+- Observe: E314 did not actually test non-single composition, and the goal requires public-free checking before any LB use.
+- Wonder: if multiple human/social seeds point to the same hidden lifestyle state, can their consensus or orthogonal stack create a different action geometry that beats matched nulls?
+- Method: `analysis_outputs/e315_human_ready_composition_materializer.py` forbids single-seed lifts and generates only family/target consensus, ranked negative-edge stacks, orthogonal story stacks, and target-balanced story stacks from the `180` E313 safe seeds. It then applies row, subject, dateblock, target-permutation, Q/S-swap, and sign-flip nulls. No public LB was used.
+- Result:
+  - generated candidates: `660`;
+  - old strict candidates: `229`;
+  - info candidates: `297`;
+  - null-evaluated candidates: `67`;
+  - public-free ready candidates: `0`;
+  - best actual p90: `-0.000523248`;
+  - best null strict rate: `0.090909`, but only on orthogonal-story candidates that fail old strict and subject/dateblock dominance;
+  - strongest visible family: `bedtime_arousal`, with p90 down to `-0.000338863` but null strict usually `0.45+`;
+  - strongest information sensor: `routine_fragmentation/S1`, with mean `-0.001506650` and p90 `-0.000523248`, but row dominance only `0.2` on the top candidate.
+- Interpretation: human/social compositions create larger and more interpretable local edges than single lifts, but the failure mode is still hidden placement. Bedtime arousal survives target/sign controls but not null frequency; orthogonal story stacks survive row/target/sign controls but fail subject/dateblock placement; S1 routine fragmentation has a strong target signal but fails row placement.
+- Decision: no E315 public submission. The next useful experiment should stop stacking existing probability deltas and instead learn the missing invariant directly: subject/dateblock/row placement health for the human/social action, likely using the E315 near-miss candidates as supervised positives/negatives for an action-placement target.

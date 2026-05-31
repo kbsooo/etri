@@ -3578,6 +3578,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on `submission_e314_humanready_single_*`. A future public-positive result from this branch must first pass direct matched-null governance; public LB is not the checker.
 - 제출 전략: none from E314. Next strategy is E314b with reserved non-single recipes, or a target-level materializer that changes geometry rather than amplitude.
 
+### H315: non-single human-ready compositions can cross the action-health cliff
+
+- 상태: 반증됨 as direct additive composition; supported as a placement-health supervision source.
+- 왜 그럴듯한가: E314 only tested individual scalar lift. If multiple human/social seeds are views of the same hidden lifestyle state, a family consensus or orthogonal story stack might change geometry enough to beat matched nulls.
+- 맞다면: composite candidates should be selector-visible and null-rare at the same time, with row/subject/dateblock/target/sign controls losing. Semantically coherent stories such as bedtime arousal or routine fragmentation should remain robust.
+- 틀리다면: composites should create strong local edges but still fail mode-specific nulls, revealing which hidden placement layer is wrong.
+- 최소 실험: `analysis_outputs/e315_human_ready_composition_materializer.py`.
+- 관측: generated `660`, old strict `229`, info `297`, null-evaluated `67`, public-free ready `0`. Best p90 was `-0.000523248`; best null strict was `0.090909` on orthogonal story stacks, but these failed old strict and subject/dateblock dominance. Bedtime-arousal family consensus was visible but null-common; routine-fragmentation/S1 was a strong information sensor but weak on row dominance.
+- 성공/폐기 기준: reject direct additive human-ready composition as submission strategy. Keep the near misses as labels for hidden placement-health learning.
+- public LB 관측 반응: no public LB should be spent on `submission_e315_humancomp_*`. A future submission from this branch must first show direct row/subject/dateblock placement health, not only semantic coherence or target/sign robustness.
+- 제출 전략: none from E315. Next strategy is to learn subject/dateblock/row placement health from E315/E314/E313 governed candidates, or to construct a non-additive materializer that explicitly optimizes the failing mode-specific dominance.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

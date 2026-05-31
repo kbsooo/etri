@@ -3189,3 +3189,22 @@ Meaning:
 - Do not submit `analysis_outputs/submission_e314_humanready_single_*.csv`.
 - The current best public file remains `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` at public LB `0.5761589494`.
 - The next submission-worthy path is an offline-certified E314b-style non-single materializer or a new target-level action layer. Until it passes null governance locally, no public slot should be spent.
+
+## Update After E315 Human-Readiness Composition Materializer
+
+Current submission policy remains: **no new public submission.**
+
+Why:
+
+- E315 tested the E314 gap by excluding single-seed lifts and generating only composite human/social actions.
+- It produced `660` candidates, `229` old-strict candidates, and `67` null-governed candidates.
+- Public-free ready files: `0`.
+- The best local p90 was strong (`-0.000523248`), but it came from information-sensor-only `routine_fragmentation/S1`.
+- The lowest null strict rate was `0.090909`, but from orthogonal story stacks that fail old strict and subject/dateblock dominance.
+- Bedtime-arousal compositions are the most coherent visible human story, but still null-common.
+
+Meaning:
+
+- Do not submit `analysis_outputs/submission_e315_humancomp_*.csv`.
+- Human/social theory is still useful, but not as additive probability stacking.
+- The next submission-worthy path must prove hidden placement health locally: row/subject/dateblock dominance first, public LB later.

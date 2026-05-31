@@ -2376,3 +2376,21 @@
 - Implementation issue possible: low for this scalar-lift family because the matched nulls directly use the same delta shape under alternative placements/signs. Medium for a future composition method that changes geometry.
 - Bottleneck implication: public-free checking must remain mandatory even for semantically plausible, previously safe seeds.
 - Do not repeat: using old strict promotion or source-seed null rarity as a substitute for direct matched-null governance.
+
+## FH264. Non-single human-ready composition solves the visibility/null-rarity cliff
+
+- Failed hypothesis: E314 only failed because it tested individual scalar lifts; family consensus, target consensus, negative-edge stacks, and orthogonal story stacks should create a different geometry that passes matched nulls.
+- Observed result: E315 generated `660` composite candidates and found `229` old strict candidates, but `67` selected rows produced public-free ready `0`. The best p90 was `-0.000523248`, and the best null strict rate was `0.090909`, but no row satisfied old strict, null rarity, mean dominance, and worst-mode dominance together.
+- Why discard: composition strengthens the local signal but does not solve hidden placement. The same action still loses to row, subject, or dateblock nulls depending on the recipe.
+- Implementation issue possible: medium. E315 uses additive normalized deltas, so a learned non-additive materializer could still use the same states. Low for rejecting all generated `submission_e315_humancomp_*` files.
+- Bottleneck implication: the next target is placement health, not broader stacking.
+- Do not repeat: using larger consensus/orthogonal stacks as public candidates without direct placement-health evidence.
+
+## FH265. Bedtime-arousal and routine-fragmentation composition are submission-ready because they are semantically coherent
+
+- Failed hypothesis: the strongest human stories in E315 should be public-free if the human interpretation is right.
+- Observed result: bedtime-arousal family consensus is selector-visible but null-common, with null strict rates around `0.45+`. Routine-fragmentation/S1 target consensus has actual mean `-0.001506650` and p90 `-0.000523248`, but it is information-sensor only and has weak row dominance. Orthogonal story stacks can reduce null strict to `0.090909`, but subject/dateblock dominance collapses.
+- Why discard: semantic coherence gives target direction, not the correct subject/dateblock/row placement.
+- Implementation issue possible: low for direct submission, medium for future use as supervision. These stories may still be useful labels for a hidden placement model.
+- Bottleneck implication: human/social theory is not enough unless JEPA learns where the story lives in the hidden subject/calendar block.
+- Do not repeat: submitting a file because its story reads well, even when mode-specific nulls expose the placement failure.
