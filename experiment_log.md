@@ -4915,3 +4915,42 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - oracle p90-rank upper bound: `0.937500`, so the remaining gap is large.
 - Interpretation: E318 supports the hidden-placement world model but does not promote a file. The actual E315 materializer often puts human/social probability movement in the wrong regime; a learned policy can improve the regime choice. But the edge is too small and too dependent on the existing null-placement pool to become a submission. The control files selected by E318 are diagnostic alternatives, not public candidates.
 - Decision: no E318 public submission. The next useful action is a fresh mode-specialized generator: choose regime first from human/identity context, then construct movement with mode-specific geometry, then rerun row/subject/dateblock/sign/target null governance before any public LB use.
+
+## E319. Mode-Specialized Generator
+
+- Observe: E318 selected healthier row/subject/dateblock regimes but did not produce a valid tensor. Public LB still cannot be used as the checker.
+- Wonder: can E318 route policies be translated into fresh consensus, blend, and residual probability tensors that are visible to the local selector and rare under matched nulls?
+- Method: `analysis_outputs/e319_mode_specialized_generator.py` uses E318 route selections for `human_identity_action_p90_rank`, `human_action_p90_rank`, `regime_then_geometry`, `human_regime_only`, and an oracle route control. It does not submit selected null-control files. Instead it computes selected, actual, blend, and residual deltas, builds policy/mode/recipe consensus tensors, then runs row/subject/dateblock/target-permutation/sign/QS-swap null governance. No public LB was used.
+- Result:
+  - routes: `335`;
+  - generated candidates: `540`;
+  - old strict candidates: `403`;
+  - info candidates: `103`;
+  - null-evaluated candidates: `54`;
+  - public-free ready candidates: `0`;
+  - best actual p90: `-0.004283155`;
+  - best null strict rate: `0.000000`;
+  - non-oracle governed candidates: `47`;
+  - non-oracle old-strict inside governor: `30`.
+- Interpretation: E319 proves the route policies can create very visible tensors, but not public-free tensors. The failure is not lack of amplitude. Some rows are huge and locally attractive, yet matched nulls still block them. Average consensus of selected placements is therefore another form of generic placement movement, not a recovered hidden law.
+- Decision: no E319 public submission. Do not scale E319 candidates or choose from the nearest misses. The next target must learn mode-specific action health against same-mode adversarial controls.
+
+## E320. E319 Failure Anatomy
+
+- Observe: E319 had many old-strict candidates but no public-free ready file. We need to know which null controls actually killed the branch.
+- Wonder: is the failure target/sign/QS confusion, or hidden row/subject/dateblock placement ambiguity?
+- Method: `analysis_outputs/e320_e319_failure_anatomy.py` analyzes E319 governor rows, assigns each non-oracle candidate a killer mode, evaluates relaxed promotion thresholds, and ranks near misses by normalized gate deficit. No public LB and no submission file.
+- Result:
+  - non-oracle governed candidates: `47`;
+  - old-strict candidates inside governor: `30`;
+  - public-free ready candidates: `0`;
+  - target-permutation mean dominance: `1.000000`;
+  - sign-flip mean dominance: `1.000000`;
+  - Q/S-swap mean dominance: `0.978723`;
+  - subject mean dominance: `0.611702`;
+  - dateblock mean dominance: `0.702128`;
+  - row mean dominance: `0.755319`;
+  - killer modes: row `16`, subject `15`, dateblock `15`, Q/S swap `1`;
+  - if null strict threshold were relaxed to `0.20`, only `1` candidate would pass the remaining gates; at `0.50`, `8` would pass.
+- Interpretation: the human/social route is not mostly wrong in target direction or sign. It is wrong in hidden placement geometry. The three real blockers are row, subject, and dateblock, almost evenly split. This makes "more consensus" or "more amplitude" the wrong next move.
+- Decision: no E320 public submission. The next experiment should train or construct a mode-specific adversarial action objective: for a chosen regime, learn delta shapes that beat same-regime row/subject/dateblock alternatives before old-selector visibility is considered.

@@ -9,7 +9,7 @@ Current public frontier:
 - Previous frontier: `analysis_outputs/submission_e95_hardtail_541e3973.csv`
 - Improvement over previous frontier: `0.0001323804`
 - Latest resolved public sensor: `analysis_outputs/submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv` public LB `0.5762805676`, which rejects the amplitude-constrained E247 follow-up while keeping feature-NN1 Q3 smoothing positive versus E95.
-- Latest public-free diagnostic: E318 mode-specialized placement policy probe. It uses no public LB and creates no submission. It confirms that E317's human/identity/action score can choose healthier row/subject/dateblock regimes inside the E315 actual/null mini-world, but the best non-oracle lift is still small (`delta_rank_vs_actual=0.028918`). Current policy is no public submission until a fresh mode-specialized generator proves row/subject/dateblock health locally; E315 null-placement files are controls, not candidates.
+- Latest public-free diagnostic: E319/E320 mode-specialized generator and failure anatomy. E319 converts E318 route policies into fresh consensus/blend/residual tensors and creates no public submission. It generated `540` candidates and `403` old-strict candidates, but `0` public-free ready files. E320 shows the failure is not target/sign/QS; target permutation and sign controls have mean dominance `1.0`, Q/S swap `0.978723`, while row/subject/dateblock are the blockers. Current policy is no public submission until a generator learns mode-specific action geometry that beats row/subject/dateblock adversarial controls locally.
 
 Primary working notes:
 

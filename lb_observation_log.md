@@ -914,3 +914,41 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - selected placement mix: actual `0.089552`, row `0.149254`, subject `0.552239`, dateblock `0.208955`.
 - interpretation: E318 is a useful public-free sensor. It strengthens the belief that hidden placement regime matters and that human context helps select it, but it rejects direct public testing of E315 null placements.
 - next experiment: build a fresh mode-specialized generator, then apply direct row/subject/dateblock/sign/target null governance before any public LB use.
+
+## Public-Free Observation: E319
+
+- submission files: `analysis_outputs/submission_e319_modespec_*.csv`.
+- public LB: not submitted.
+- reason not submitted: E319 generated fresh mode-specialized tensors, but none passed matched null governance. Public LB is not needed to reject this branch.
+- local observation:
+  - routes from E318 policies: `335`;
+  - generated candidates: `540`;
+  - old strict candidates: `403`;
+  - info candidates: `103`;
+  - null-evaluated candidates: `54`;
+  - public-free ready candidates: `0`;
+  - best actual p90: `-0.004283155`;
+  - best null strict rate: `0.000000`, but not with all promotion gates satisfied;
+  - non-oracle governed candidates: `47`;
+  - non-oracle old-strict candidates inside governor: `30`.
+- interpretation: E319 proves that E318 routes can make very visible tensors, but the visibility is not a healthy hidden-state signal. The candidates are locally attractive and still reproducible by row/subject/dateblock controls.
+- next experiment: do not public-test E319 files. Build an adversarial mode-specific action-health learner before generating another tensor.
+
+## Public-Free Observation: E320
+
+- submission files: none.
+- public LB: not submitted.
+- reason not submitted: E320 is a failure-anatomy diagnostic for E319, not a probability tensor.
+- local observation:
+  - non-oracle governed candidates: `47`;
+  - old-strict candidates inside governor: `30`;
+  - public-free ready candidates: `0`;
+  - target-permutation mean dominance: `1.000000`;
+  - sign-flip mean dominance: `1.000000`;
+  - Q/S-swap mean dominance: `0.978723`;
+  - subject mean dominance: `0.611702`;
+  - dateblock mean dominance: `0.702128`;
+  - row mean dominance: `0.755319`;
+  - killer modes: row `16`, subject `15`, dateblock `15`, Q/S swap `1`.
+- interpretation: the E319 failure is not mainly wrong target, wrong sign, or Q/S confusion. The blocker is hidden placement ambiguity: the same movement can be imitated by row, subject, or dateblock alternatives.
+- next experiment: make row/subject/dateblock placement health the explicit JEPA-style target and use public LB only after that local target survives.

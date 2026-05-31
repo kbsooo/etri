@@ -3677,3 +3677,27 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: keep the signal if it separates regime selection under source-wise normalization; reject as submission selection if selected rows are mostly null controls or the oracle gap remains large.
 - public LB 관측 반응: no public LB should be spent. E318 is a public-free checker and routebook only.
 - 제출 전략: none directly. Build a fresh mode-specialized generator, then run matched row/subject/dateblock/sign/target null governance before considering a public submission.
+
+### H319: E318 route policies can generate a fresh submission-ready tensor
+
+- 상태: 반증됨 as current consensus/blend/residual generator.
+- 왜 그럴듯한가: E318 showed a real regime-selection edge. If hidden placement regime is the missing layer, translating selected routes into new mode-specialized consensus or residual tensors might beat null controls without public LB.
+- 맞다면: fresh generated tensors should be both visible to old local selectors and rare under row/subject/dateblock/target/sign/QS matched nulls. Old strict promotion should not be the only positive signal.
+- 틀리다면: generated tensors should become very visible but still be matched by placement nulls, meaning the generator averaged regimes rather than learning healthy within-regime action geometry.
+- 최소 실험: `analysis_outputs/e319_mode_specialized_generator.py`.
+- 관측: generated `540`, old strict `403`, null-evaluated `54`, public-free ready `0`; best actual p90 `-0.004283155`; non-oracle governed `47` with `30` old-strict rows.
+- 성공/폐기 기준: reject E319 submission files if public-free ready is `0`, regardless of actual p90 or old strict count.
+- public LB 관측 반응: no public LB should be spent. A public-positive E319 file would be uninterpretable because local controls already show the branch is null-common.
+- 제출 전략: none. The route policy remains diagnostic; generation must be redesigned around mode-specific adversarial health.
+
+### H320: E319 failed because target/sign/QS semantics are wrong
+
+- 상태: 반증됨; hidden row/subject/dateblock placement ambiguity is the stronger explanation.
+- 왜 그럴듯한가: E319 combines multiple human/social route policies and target-family tensors. A failed generator could be mixing the wrong targets, flipping direction, or confusing Q-side and S-side effects.
+- 맞다면: target-permutation, sign-flip, or Q/S-swap nulls should be the main killer modes, and row/subject/dateblock dominance should be secondary.
+- 틀리다면: target/sign/QS controls should be mostly beaten, while row, subject, and dateblock controls should account for most failures.
+- 최소 실험: `analysis_outputs/e320_e319_failure_anatomy.py`.
+- 관측: target-permutation mean dominance `1.000000`, sign-flip `1.000000`, Q/S swap `0.978723`; killer modes are row `16`, subject `15`, dateblock `15`, Q/S swap `1`.
+- 성공/폐기 기준: reject the target/sign/QS-confusion explanation if those controls are mostly dominated and killer modes concentrate in placement controls.
+- public LB 관측 반응: no public LB should be spent. Public testing would only ask the leaderboard to tell us what local placement controls already answered.
+- 제출 전략: train or construct row/subject/dateblock mode-specific action-health objectives before any new submission candidate.

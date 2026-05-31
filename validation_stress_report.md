@@ -3798,3 +3798,50 @@ Decision:
 - E318 fails the "ready to submit or generate directly from this pool" stress because the improvement is modest and selects many null-control placements.
 - No selected E315 null-placement CSV should be treated as a public candidate.
 - Promotion rule update: public LB is only allowed after a fresh generator creates a probability tensor and the tensor passes direct row/subject/dateblock/sign/target null governance.
+
+## E319/E320 Mode-Specialized Generator Stress
+
+Question: can E318 regime-selection policies generate a fresh tensor that survives local matched-null governance without public LB?
+
+Methods:
+
+- `analysis_outputs/e319_mode_specialized_generator.py`
+- `analysis_outputs/e320_e319_failure_anatomy.py`
+
+E319 generated consensus/blend/residual tensors from E318 selected routes, then tested row, subject, dateblock, target permutation, sign flip, and Q/S swap nulls. E320 decomposed the failed gates.
+
+Result:
+
+- routes: `335`;
+- generated candidates: `540`;
+- old strict candidates: `403`;
+- null-evaluated candidates: `54`;
+- public-free ready candidates: `0`;
+- best actual p90: `-0.004283155`;
+- non-oracle governed candidates: `47`;
+- non-oracle old-strict candidates: `30`;
+- target-permutation mean dominance: `1.000000`;
+- sign-flip mean dominance: `1.000000`;
+- Q/S-swap mean dominance: `0.978723`;
+- subject/dateblock/row mean dominance: `0.611702` / `0.702128` / `0.755319`;
+- killer modes: row `16`, subject `15`, dateblock `15`, Q/S swap `1`.
+
+Decision:
+
+- E319 passes visibility stress but fails public-free governance.
+- E320 shows the target/sign/QS layer is mostly healthy; the failure is hidden placement ambiguity across row, subject, and dateblock.
+- No E319 file should be submitted.
+- Promotion rule update: a future mode-specialized generator must include adversarial same-mode health, not only average consensus of selected placements.
+
+## Current Public-Free Promotion Rule
+
+Public LB is no longer allowed to be the repeated checker. A candidate can be considered for public submission only if it first satisfies all local requirements below:
+
+- selector visibility: old strict or a documented replacement selector must show a material negative edge;
+- matched-null rarity: row, subject, dateblock, target permutation, sign flip, and Q/S swap controls must not reproduce the same edge;
+- mode dominance: no single hidden placement family can be the obvious killer mode;
+- target sanity: target/sign/QS controls should be beaten before interpreting a human/social story;
+- stability: the candidate must not rely on one amplitude, one seed, or one archive route unless a null-control explains why that singleton is valid;
+- interpretability: the file must state which hidden-world hypothesis it tests and what a public win/loss would mean.
+
+Under this rule, E319/E320 produces no submission. The next candidate must first solve row/subject/dateblock action-health locally.

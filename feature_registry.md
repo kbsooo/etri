@@ -2976,3 +2976,33 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - require fresh materialization and matched-null governance before promotion.
 - Failure condition:
   - if a mode policy only selects healthier controls inside an archive but cannot create a new visible/null-rare tensor, keep it as a diagnostic and do not spend public LB.
+
+## E319/E320 Mode-Specialized Generator and Failure Features
+
+- Target hypothesis tested:
+  - E318 regime routes can be converted into fresh consensus/blend/residual tensors that are visible and rare under matched null controls.
+- Feature/representation source:
+  - E318 selected routes for `human_identity_action_p90_rank`, `human_action_p90_rank`, `regime_then_geometry`, and `human_regime_only`;
+  - selected, actual, blend, and residual deltas;
+  - policy/mode/recipe consensus tensors;
+  - row, subject, dateblock, target-permutation, sign-flip, and Q/S-swap null dominance diagnostics.
+- Validation result:
+  - E319 generated candidates `540`;
+  - old strict candidates `403`;
+  - null-evaluated candidates `54`;
+  - public-free ready candidates `0`;
+  - best actual p90 `-0.004283155`;
+  - E320 target-permutation dominance `1.000000`;
+  - E320 sign-flip dominance `1.000000`;
+  - E320 Q/S-swap dominance `0.978723`;
+  - E320 killer modes: row `16`, subject `15`, dateblock `15`, Q/S swap `1`.
+- Updated registry status:
+  - approved as a negative generator test and failure-anatomy diagnostic;
+  - not approved as a submission feature;
+  - target/sign/QS diagnostics remain useful sanity checks, but they are not the blocker for this branch.
+- Adopt rule for future features:
+  - old strict visibility is insufficient when row/subject/dateblock dominance is weak;
+  - future human/social features must include mode-specific adversarial action-health labels;
+  - public LB cannot be used to distinguish near misses that already fail local placement controls.
+- Failure condition:
+  - if a generated tensor is visible but its killer mode is row, subject, or dateblock, classify it as hidden-placement failure, not target-semantics failure.

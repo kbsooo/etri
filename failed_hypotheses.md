@@ -2430,3 +2430,21 @@
 - Implementation issue possible: medium. The E318 policy uses linear OOF predictions from an E315-only mini-world, and a fresh nonlinear or mode-specific generator may work better. Low for rejecting direct submission of selected E315 null controls.
 - Bottleneck implication: hidden placement regime is real, but the missing step is generation, not selection from existing controls.
 - Do not repeat: submitting files from `analysis_outputs/e315_human_ready_composition_nulls/` or treating an archive policy ranking as public eligibility without fresh matched-null governance.
+
+## FH270. E318 route policies are enough to generate a public-free tensor through average consensus
+
+- Failed hypothesis: once E318 selects healthier regimes, averaging selected placements, blending them with actual placements, or residualizing them should create a fresh mode-specialized candidate that survives local null governance.
+- Observed result: E319 generated `540` fresh tensors and `403` old-strict candidates, but public-free ready remained `0`. Best actual p90 was strong at `-0.004283155`, yet no governed row satisfied the matched-null promotion rules.
+- Why discard: the generator creates visibility, not invariant hidden-placement health. Consensus/blend/residual recipes still average across row/subject/dateblock ambiguity and become null-common when visible.
+- Implementation issue possible: medium. E319 is a deterministic consensus/blend/residual generator, not a learned nonlinear mode specialist. Low for rejecting all `submission_e319_modespec_*.csv` files.
+- Bottleneck implication: the routebook is useful, but the action layer must learn mode-specific health under adversarial row/subject/dateblock controls.
+- Do not repeat: scaling E319 tensors, choosing the strongest old-strict E319 row, or public-testing E319 files without a new local gate.
+
+## FH271. E319 failed because target/sign/QS semantics are wrong
+
+- Failed hypothesis: the mode-specialized generator failed mainly because it mixed the wrong target group, wrong sign, or Q/S dependency direction.
+- Observed result: E320 found target-permutation mean dominance `1.000000`, sign-flip mean dominance `1.000000`, and Q/S-swap mean dominance `0.978723`. The actual killer modes were row `16`, subject `15`, dateblock `15`, and Q/S swap only `1`.
+- Why discard: target direction is mostly sane. The failure lives in hidden placement: the same movement is too easy to reproduce by shifting row, subject, or dateblock placement.
+- Implementation issue possible: low for identifying the dominant failure mode because E320 decomposes every governed non-oracle E319 candidate by matched control family. Medium for future branches where target/sign issues may reappear.
+- Bottleneck implication: the next useful JEPA target is not another target-family mask. It is row/subject/dateblock action-health within a selected mode.
+- Do not repeat: treating target permutation, sign flip, or Q/S swap as the main fix for E319-style failures while row/subject/dateblock dominance remains weak.
