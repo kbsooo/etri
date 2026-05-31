@@ -3487,3 +3487,29 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - keep E340 source-health fields as ranking and blocking features.
 - Failure condition:
   - if coalition candidates have high null dominance but p90 remains above `-0.00005`, classify the family as safe-invisible saturation.
+
+## E341 Sparse Residual Lifestyle Support Features
+
+- Target hypothesis tested:
+  - E330 target-residual lifestyle states are useful on rare human/social test tails even though broad all-row materialization fails.
+- Feature/representation source:
+  - E330 gated residual-state rows;
+  - masked lifestyle views (`jepa_resid`, `raw_day`, `family_jepa_story`, `family`);
+  - sparse tail masks from predicted residual movement: `absdelta`, `posdelta`, `negdelta`, `state_abs_x_delta`;
+  - raw/inverse and E323/E216 bad-veto action variants.
+- Validation result:
+  - `864` generated candidates;
+  - `0` selector-promoted;
+  - `96` information sensors;
+  - best selector p90 `-0.000017477`;
+  - best movement-null dominance `1.000000/1.000000`, but p90 only `-0.000005843`.
+- Updated registry status:
+  - approved as rare-tail placement and sign-transfer diagnostic;
+  - rejected as current submission feature;
+  - Q2 inverse residual tail is the strongest surviving clue.
+- Adopt rule for future features:
+  - never materialize train residual direction directly without a sign-transfer check;
+  - prefer sparse tail placement over broad all-row residual movement;
+  - require p90 near `-0.00005` before public submission.
+- Failure condition:
+  - if sparse tails remain below strict promotion and only inverse directions survive, classify residual states as local CV features needing a separate public-geometry translator.

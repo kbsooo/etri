@@ -3857,3 +3857,38 @@ Next submission rule:
 - do not submit Q1+Q3 safe-invisible coalitions;
 - require a new visible/null-rare positive support axis before generating another submission candidate;
 - use E340's action-health and visibility diagnostics as a blocker/ranker, not as a standalone generator.
+
+## Update After E341 Sparse Residual Lifestyle Support Axis
+
+No E341 file should be submitted.
+
+Closest local probes:
+
+- `analysis_outputs/submission_e341_sparseresid_Q2_jepa_resid_subject_posdelta_top34_inv_s0_55_787b726b.csv`
+- `analysis_outputs/submission_e341_sparseresid_Q2_jepa_resid_subject_posdelta_top34_inv_bad_veto_s0_55_836c3ab3.csv`
+- `analysis_outputs/submission_e341_sparseresid_Q1_jepa_resid_dateblock_absdelta_top12_raw_s0_55_ddc802bf.csv`
+
+Why blocked:
+
+- `864` sparse residual-tail candidates produce `0` selector-promoted files.
+- The best selector probe is Q2 inverse residual tail:
+  - mean `-0.000151`;
+  - p90 `-0.000017477`;
+  - beats `0.902778`;
+  - decision `too_small_to_submit`.
+- The best fresh-null probe is clean but too small:
+  - mean `-0.000033082`;
+  - p90 `-0.000005843`;
+  - movement-null mean/p90 dominance `1.000000/1.000000`;
+  - null strict rate `0.000000`.
+
+Current best public frontier remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+- public LB `0.5761589494`
+
+Next submission rule:
+
+- do not submit sparse E330 residual-tail files;
+- treat Q2 inverse residual tail as a sign-transfer clue, not a candidate;
+- the next candidate must either learn residual-state sign transfer or introduce a new positive support axis that pushes p90 closer to `-0.00005`.

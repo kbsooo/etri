@@ -3924,3 +3924,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: reject as generator if no coalition clears strict selector plus movement-null gates; keep as diagnostic if action-health/visibility latent is predictable. This is observed: visibility OOF Spearman `0.921134`, action-health OOF Spearman `0.938224`, but null-health OOF Spearman is near zero.
 - public LB 관측 반응: no public LB should be spent. The expected public effect is likely small/noisy because all files are below strict p90 resolution.
 - 제출 전략: none from E340. The next route must introduce a new visibility-positive support axis or learn null-health from richer positive examples; further Q1/Q3 summing is low priority.
+
+### H341: E330 residual lifestyle states become public-visible when restricted to rare tails
+
+- 상태: 약화됨 as submission generator; 지지됨 as information-sensor/sign-transfer clue.
+- 왜 그럴듯한가: E330 had strong blocked-CV residual states but moved every test row. If the latent is a real human/social state, the signal may be concentrated in extreme days rather than the full distribution.
+- 맞다면: sparse top-k residual tails should produce at least one strict selector-promoted file, or p90 close to `-0.00005`, with movement-null dominance preserved.
+- 틀리다면: sparse tails should improve mean but still saturate far above the strict p90 gate, and movement-null-safe files should remain `too_small_to_submit`.
+- 최소 실험: `analysis_outputs/e341_sparse_residual_support_axis.py`.
+- 관측: `864` sparse residual-tail candidates, `0` selector-promoted, `96` information sensors, `0` movement-null-safe promoted. Best Q2 inverse sparse tail has mean `-0.000151`, p90 `-0.000017477`, beats `0.902778`. Best null-dominant Q1 tail reaches dominance `1.000000/1.000000` but p90 only `-0.000005843`.
+- 성공/폐기 기준: reject as a submission generator because strict promotion is zero and p90 remains about 3x weaker than the gate. Keep as a clue because inverse Q2 residual-tail movement is consistently better than direct broad E330.
+- public LB 관측 반응: no public LB should be spent. Expected public response is too small/noisy.
+- 제출 전략: none from E341. Next strategy should learn sign-transfer/visibility mapping from residual states to E247 action geometry, or find a new support axis outside E330 residual tails.

@@ -1391,3 +1391,32 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - the bottleneck is a missing visible/null-rare positive support axis, not merely too few small sensors.
 - expected public reaction if submitted anyway:
   - likely small/noisy improvement at best, with insufficient evidence to justify spending a public slot.
+
+## Public-Free Observation: E341 Sparse Residual Lifestyle Support Axis
+
+- submission files: generated locally, but none promoted for public testing.
+- public LB: not submitted.
+- reason not submitted: E330 residual-state rare tails still fail strict selector visibility.
+- local observation:
+  - generated candidates: `864`;
+  - selector-promoted candidates: `0`;
+  - information-sensor candidates: `96`;
+  - movement-null-safe promoted candidates: `0`.
+- closest selector candidate:
+  - `submission_e341_sparseresid_Q2_jepa_resid_subject_posdelta_top34_inv_s0_55_787b726b.csv`;
+  - mean `-0.000151`;
+  - p90 `-0.000017477`;
+  - beats `0.902778`;
+  - decision `too_small_to_submit`.
+- closest null-dominant candidate:
+  - `submission_e341_sparseresid_Q1_jepa_resid_dateblock_absdelta_top12_raw_s0_55_ddc802bf.csv`;
+  - mean `-0.000033082`;
+  - p90 `-0.000005843`;
+  - movement-null mean/p90 dominance `1.000000/1.000000`;
+  - null strict rate `0.000000`.
+- interpretation:
+  - sparse residual-tail placement is healthier than broad residual action;
+  - local train residual sign does not transfer directly because the best sensor is Q2 inverse movement;
+  - p90 remains too weak for a public slot.
+- expected public reaction if submitted anyway:
+  - likely too small/noisy to justify a submission; could provide information about Q2 inverse residual tails, but score upside is weak.

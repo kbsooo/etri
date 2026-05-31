@@ -2601,3 +2601,12 @@
 - Implementation issue possible: medium. The coalition weights and transforms are hand-designed. A nonlinear generator might still do better, but the direct additive route is weak because `7400` variants all fail the same selector boundary.
 - Bottleneck implication: visibility and action-health are learnable as diagnostics, but null-rare visible action is missing from the archive. Future work needs a new positive support axis or richer public-free positives.
 - Do not repeat: summing more E335/E338/E339 safe-invisible sensors or scaling Q1/Q3 coalition weights unless a new validator first predicts strict p90 visibility.
+
+## FH289. Sparse E330 residual tails are enough to become submission-grade
+
+- Failed hypothesis: E330's target-residual lifestyle latent failed only because it moved every test row; applying it to rare tails should recover a visible/null-rare support axis.
+- Observed result: E341 generated `864` sparse residual-tail candidates. None cleared selector promotion. The best selector probe had mean `-0.000151`, p90 `-0.000017477`, and beats `0.902778`, while the best null-dominant probe had movement-null dominance `1.000000/1.000000` but p90 only `-0.000005843`.
+- Why discard: sparse placement improves E330's geometry but remains far below the strict p90 gate. The strongest sensor is inverse Q2 residual movement, showing that the local residual sign is not directly transferable.
+- Implementation issue possible: medium. The experiment uses hand-designed top-k tail masks and linear logit movement. A learned sign-transfer/action translator could still use the residual states.
+- Bottleneck implication: E330 residual states are local information, not direct public action. The missing layer is a public-geometry sign/visibility translator or a new positive support axis.
+- Do not repeat: broad E330 residual materialization or sparse top-k residual tails without first learning which residual signs should invert under E247 geometry.

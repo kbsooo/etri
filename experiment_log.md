@@ -5397,3 +5397,35 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     - still `too_small_to_submit`.
 - Interpretation: visibility and action-health are predictable latent quantities, but null-health is not predictable from the current archive. Combining clean Q1/Q3 micro-states improves p90 from single-sensor scale, but it saturates below the selector threshold. The bottleneck is not just "add more small lifestyle states"; it is finding a new visibility-positive axis or learning null-health with richer positives.
 - Decision: do not submit E340 candidates. Keep the coalition result as strong evidence that the safe-invisible basin is real and that future work should seek a new positive support axis rather than further summing Q1/Q3 sensors.
+
+## E341. Sparse Residual Lifestyle Support Axis
+
+- Observe: E330 target-residual lifestyle states improved blocked train CV, but the submitted-style materialization moved all `250` test rows and the selector rejected it. E340 showed that summing safe micro-states remains below visibility. The next smallest question is whether E330 is real only on rare lifestyle-state tails.
+- Wonder: if the train residual latent is a real human/social state, does applying it only to extreme test days create a null-rare public-visible support axis?
+- Hypothesis: sparse top-k residual tails should beat broad E330 movement. If the issue is only dilution, one of the rare-tail candidates should cross `strict_promote_gate` or at least approach p90 `-0.00005` while fresh movement nulls remain weaker.
+- Method: `analysis_outputs/e341_sparse_residual_support_axis.py`.
+  - Reuse the top `6` E330 gated residual states.
+  - Recompute target residual students from masked lifestyle views.
+  - Materialize rare test tails using `absdelta`, `posdelta`, `negdelta`, and `state_abs_x_delta`.
+  - Test raw/inverse and E323/E216 bad-veto directions at top `12/20/34` rows and scales `0.55/1.00/1.60`.
+  - Score with E272 selector and stress the top candidates with row, target, sign, row-sign, cell, subject, and dateblock movement nulls.
+- Result:
+  - generated candidates: `864`;
+  - selector-promoted candidates: `0`;
+  - information-sensor candidates: `96`;
+  - movement-null-safe promoted candidates: `0`.
+  - best selector file:
+    - `submission_e341_sparseresid_Q2_jepa_resid_subject_posdelta_top34_inv_s0_55_787b726b.csv`;
+    - mean `-0.000151`;
+    - p90 `-0.000017477`;
+    - beats `0.902778`;
+    - decision `too_small_to_submit`.
+  - best movement-null dominance example:
+    - `submission_e341_sparseresid_Q1_jepa_resid_dateblock_absdelta_top12_raw_s0_55_ddc802bf.csv`;
+    - mean `-0.000033082`;
+    - p90 `-0.000005843`;
+    - beats `0.972222`;
+    - movement-null mean/p90 dominance `1.000000/1.000000`, null strict rate `0.000000`;
+    - still below submission resolution.
+- Interpretation: sparse tailing fixes part of E330's broad-movement problem, but the public-free edge is still too weak. The strongest pattern is a sign-transfer surprise: the best visible sensor is `Q2/jepa_resid/subject/posdelta` with the movement inverted, not the direct local-CV direction. This means the train residual latent is not useless, but direct label-residual action does not transfer as-is to E247 public geometry.
+- Decision: do not submit E341 candidates. Keep E341 as evidence that rare lifestyle tails are real information sensors and that the next experiment should target sign-transfer/visibility mapping, not more broad residual materialization.

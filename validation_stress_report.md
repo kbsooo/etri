@@ -4537,3 +4537,44 @@ Stress conclusion:
 - The safe-invisible basin is real: clean Q1/Q3 coalitions stay null-dominant but do not become selector-visible.
 - Visibility is learnable from candidate geometry, but null-health is not learnable from the current archive.
 - Future validation should prioritize finding visible/null-rare positives, not summing more safe-invisible micro-states.
+
+## E341 Sparse Residual Lifestyle Support Axis
+
+Question: can E330 target-residual lifestyle states become public-visible if applied only to rare test tails?
+
+Method: `analysis_outputs/e341_sparse_residual_support_axis.py`.
+
+Stress used:
+
+- E330 gated residual-state sources;
+- sparse top-k row masks: `absdelta`, `posdelta`, `negdelta`, `state_abs_x_delta`;
+- raw/inverse and E323/E216 bad-veto movement directions;
+- E272 public-free selector;
+- fresh movement nulls: row, target, sign, row-sign, cell, subject, and dateblock.
+
+Result:
+
+- generated candidates: `864`;
+- selector-promoted candidates: `0`;
+- information-sensor candidates: `96`;
+- movement-null-safe promoted candidates: `0`.
+- best selector sensor:
+  - `submission_e341_sparseresid_Q2_jepa_resid_subject_posdelta_top34_inv_s0_55_787b726b.csv`;
+  - mean `-0.000151`;
+  - p90 `-0.000017477`;
+  - beats `0.902778`;
+  - decision `too_small_to_submit`.
+- best null-dominant sensor:
+  - `submission_e341_sparseresid_Q1_jepa_resid_dateblock_absdelta_top12_raw_s0_55_ddc802bf.csv`;
+  - mean `-0.000033082`;
+  - p90 `-0.000005843`;
+  - beats `0.972222`;
+  - movement-null mean/p90 dominance `1.000000/1.000000`;
+  - null strict rate `0.000000`;
+  - decision `too_small_to_submit`.
+
+Stress conclusion:
+
+- Sparse tails are better shaped than E330 broad residual movement, but still below submission resolution.
+- The best Q2 sensor is inverse-direction, so local train residual sign does not transfer directly to E247 public geometry.
+- Do not submit E341. Use it as a sign-transfer and rare-tail placement diagnostic.
