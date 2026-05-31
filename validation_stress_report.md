@@ -5262,3 +5262,35 @@ Stress conclusion:
 - E362 is the first post-E358 candidate to pass the combined local output and row-state health gate.
 - The positive structure is target-specific: Q1/Q2 carry most of the story-counter action, S1 carries a sparse recovery action, and S3 must be suppressed.
 - The public-risk caveat remains: the E358 row-state sensor is based on few known public files. E362 is therefore the next information-dense public probe, not a certified replacement.
+
+## E363 Cell-Action Robustness Stress
+
+Question: is the E362 cell-action candidate robust, or did it only cross a narrow threshold by chance?
+
+Stress setup:
+
+- script: `analysis_outputs/e363_cell_action_robustness_probe.py`;
+- seed: E362 selected upload-safe file;
+- perturbation families: target-scale grid, row-risk gates, donor blends/grafts, and target ablations;
+- generated pool: `1586`;
+- stress: actual E272 selector plus actual E358 row-state public-survival.
+
+Stress result:
+
+- strict output candidates: `811`;
+- near candidates: `811`;
+- submission-gate candidates: `797`;
+- target-scale pass rate: `0.565285`;
+- donor-graft pass rate: `0.422414`;
+- selected upload-safe file: `analysis_outputs/submission_e363_cellrobust_selected_e362_scale_g1_06_q11_08_q20_90_q31_00_s11_30_c2d9a88a_uploadsafe.csv`;
+- selected p90 delta: `-0.000052147`;
+- selected bad-axis increment: `0.012277951`;
+- selected row-state predicted public loss mean/std: `0.000520036` / `0.000376469`;
+- selected row-state bad-minus-good exposure: `0.133572983`;
+- selected target shares: Q1 `0.580616`, Q2 `0.201798`, Q3 `0.047181`, S1 `0.170405`, S3 `0.000000`.
+
+Stress conclusion:
+
+- The one-point accident hypothesis is weakened: the E362 target-scale neighborhood is broad under the current local stress.
+- The refined action law is Q1-heavy, Q2-lighter, S1-recovery-stronger, Q3-small, and S3-suppressed.
+- Donor grafts can score higher locally, but they are less source-law preserving and should wait for E363/E362 public feedback before becoming first-priority candidates.

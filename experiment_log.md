@@ -5915,3 +5915,31 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - The learned structure is not "move a lifestyle row globally." It is target-specific: strong Q1/Q2 story-counter movement, small Q3 social-lowrisk movement, sparse S1 recovery movement, and full S3 suppression.
   - The result supports a hidden lifestyle-state action law where subjective Q targets and objective S recovery targets should not be moved with the same scalar gate.
 - Decision: E362 is the next single public-test candidate if a slot is used. It is still a probe, not a guaranteed score improvement, because the row-state public model is trained from few known public observations.
+
+## E363. E362 Cell-Action Robustness Probe
+
+- Observe: E362 selected exactly one candidate out of `1550`, so it could still be a threshold accident. Before spending public feedback, the selected cell-action needs counterfactual stress around target scales, row-risk gates, donor grafts, and ablations.
+- Wonder: does the E362 structure survive nearby perturbations, and can a more robust E362-neighborhood candidate lower row-state risk without losing p90 visibility?
+- Hypothesis: if E362 is a real hidden lifestyle-action basin, many nearby target-scale variants should pass actual E272/E358 gates, while the chosen candidate should preserve S3 suppression and the Q-story/S-recovery interpretation.
+- Method: `analysis_outputs/e363_cell_action_robustness_probe.py`.
+  - Seed: E362 selected upload-safe file.
+  - Perturbations: target-scale grid, row-risk gates, donor blends/grafts from E362 near-misses, and target ablations.
+  - Candidate count: `1586`.
+  - Stress: actual E272 public-free selector and E358 row-state public-survival.
+- Result:
+  - strict output candidates: `811`;
+  - near candidates: `811`;
+  - submission-gate candidates: `797`;
+  - target-scale family pass rate: `0.565285`;
+  - donor-graft family pass rate: `0.422414`;
+  - selected variant: `e362_scale_g1.06_q11.08_q20.90_q31.00_s11.30`;
+  - selected upload-safe file: `analysis_outputs/submission_e363_cellrobust_selected_e362_scale_g1_06_q11_08_q20_90_q31_00_s11_30_c2d9a88a_uploadsafe.csv`;
+  - p90 delta: `-0.000052147`;
+  - row-state predicted public loss mean/std: `0.000520036` / `0.000376469`;
+  - bad-minus-good exposure: `0.133572983`;
+  - movement shares: Q1 `0.580616`, Q2 `0.201798`, Q3 `0.047181`, S1 `0.170405`, S3 `0.000000`.
+- Interpretation:
+  - E362 is not a single-point accident. The broad target-scale pass rate means the row x target hidden action has a local basin.
+  - The refined structure is clearer: Q1 drives most subjective visibility, Q2 should be lower than E362, S1 should be stronger as a health/recovery regularizer, Q3 remains small, and S3 should stay suppressed.
+  - Donor grafts produce higher point scores, but they borrow more source-specific geometry and often raise Q3/S1 mass sharply. E363 selects the target-scale refinement because it stays closest to the E362 source law with higher family-level pass rate.
+- Decision: E363 supersedes E362 as the next single public-test candidate. Keep the top donor-graft rows as second-order probes only after E363 public feedback.

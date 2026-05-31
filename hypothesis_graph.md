@@ -4188,3 +4188,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept locally if one candidate passes strict p90, beat-rate, bad-axis, row-state loss, row-state variance, and exposure gates. This is observed. Accept publicly only if the selected upload improves or meaningfully competes with the known public frontier.
 - public LB 관측 반응: if E362 improves, it supports the row x target lifestyle-action law: Q-story/S-recovery movement with S3 suppression. If E362 fails, the local row-state/action-health sensors are still incomplete or overfit to known public observations.
 - 제출 전략: `analysis_outputs/submission_e362_cellaction_selected_e360_e351_robust_center__learned_story_nonmonotone_s1_counter_1273__cell_e019daf5_uploadsafe.csv` is the next single high-information probe.
+
+### H363: E362 is a robust target-balance basin, not a one-point accident
+
+- 상태: locally supported; public LB pending.
+- 왜 그럴듯한가: E362 had only one strict selected candidate from the generator, so it could be a lucky threshold crossing. A real hidden lifestyle-action latent should survive local perturbations in target balance, row-risk damping, donor grafts, and ablations.
+- 맞다면: nearby target-scale variants should pass E272/E358 at a high rate, and a refined candidate should improve row-state public-risk without losing p90 visibility or S3 suppression.
+- 틀리다면: only the seed should pass, or all risk-reducing perturbations should fall below p90 visibility.
+- 최소 실험: `analysis_outputs/e363_cell_action_robustness_probe.py`.
+- 관측: `1586` perturbations, `811` strict output candidates, `797` submission-gate candidates. Target-scale variants pass at `0.565285`; donor grafts pass at `0.422414`. The selected variant is `e362_scale_g1.06_q11.08_q20.90_q31.00_s11.30`, with p90 `-0.000052147`, row-state loss `0.000520036`, exposure `0.133572983`, and S3 share `0`.
+- 성공/폐기 기준: accept locally if target-scale perturbations have broad pass support and the selected refinement improves row-state loss/exposure versus E362 while preserving strict p90. This is observed.
+- public LB 관측 반응: if E363 improves, the hidden law is target-balance action: Q1 visibility plus S1 recovery regularization, lower Q2, small Q3, and no S3. If E363 fails but E362 succeeds, the balance refinement overshot. If both fail, current E272/E358 stress is too permissive.
+- 제출 전략: `analysis_outputs/submission_e363_cellrobust_selected_e362_scale_g1_06_q11_08_q20_90_q31_00_s11_30_c2d9a88a_uploadsafe.csv` supersedes E362 as the next single probe.

@@ -3876,3 +3876,22 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - selected target movement shares: Q1 `0.571868`, Q2 `0.238509`, Q3 `0.050188`, S1 `0.139435`, S3 `0.000000`.
 - Registry status: approved as the current top submission probe and as the strongest local evidence for row x target hidden lifestyle-action geometry.
 - Failure condition: if public LB is clearly worse, do not keep generating E362 variants by small parameter tweaks. First recalibrate the row-state public-survival target or bring in an independent public-like subset/calibration latent.
+
+### E363 cell-action robustness and target-balance latent
+
+- Target hidden structure: robust target-balance manifold around the E362 row x target lifestyle-action, separating visibility targets from health-regularizing targets.
+- Why needed: E362 selected one file, so the immediate risk was a one-point threshold artifact. A useful representation should survive local counterfactual perturbations and expose which target cells are structural.
+- Feature/action form:
+  - seed: E362 selected cell-action;
+  - perturbation views: target-scale grid, row-risk gates, donor blends/grafts, and target ablations;
+  - local target representation: actual E272 visibility plus E358 row-state public-survival;
+  - selection: family-level pass-rate support plus robust local score.
+- Current evidence:
+  - candidates: `1586`;
+  - submission-gate passes: `797`;
+  - target-scale pass rate: `0.565285`;
+  - selected file: `analysis_outputs/submission_e363_cellrobust_selected_e362_scale_g1_06_q11_08_q20_90_q31_00_s11_30_c2d9a88a_uploadsafe.csv`;
+  - selected row-state loss improves to `0.000520036`;
+  - selected target shares: Q1 `0.580616`, Q2 `0.201798`, Q3 `0.047181`, S1 `0.170405`, S3 `0.000000`.
+- Registry status: approved as the current top submission probe. Use E363 before E362 if only one public slot is available.
+- Failure condition: if E363 public LB fails, do not only keep target-scale tweaking. The next branch should either test the top donor-graft family as a separate hypothesis or build a stricter public-like subset/calibration sensor.

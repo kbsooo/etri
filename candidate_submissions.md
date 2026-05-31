@@ -4534,3 +4534,36 @@ Expected public interpretation:
 - If E362 improves over E247/E95/E247-derived bests, the hidden lifestyle-state law is likely row x target specific: subjective Q story movement plus sparse S recovery, with S3 suppression.
 - If E362 worsens but compact-basin files improve, E358/E362 row-state health is too pessimistic and output-space calibration dominates this public slice.
 - If E362 worsens and compact-basin files also fail, the next target should leave the compact source family and learn public-like subset/calibration state more directly.
+
+## Update After E363 Cell-Action Robustness Probe
+
+Selected upload-safe file:
+
+`analysis_outputs/submission_e363_cellrobust_selected_e362_scale_g1_06_q11_08_q20_90_q31_00_s11_30_c2d9a88a_uploadsafe.csv`
+
+Why this supersedes E362:
+
+- E363 tested whether E362 was a one-point threshold accident. It was not: `797/1586` perturbations passed the combined E272/E358 gate.
+- The target-scale family alone has `723/1279` passes, so the selected structure is a local basin, not a single fragile file.
+- The selected E363 file improves E362 row-state predicted public loss from `0.000729697` to `0.000520036` while keeping p90 visible.
+- It preserves the same story as E362 but refines target balance: more Q1 and S1, less Q2, tiny Q3, zero S3.
+
+Evidence:
+
+- p90 delta: `-0.000052147`;
+- bad-axis increment: `0.012277951`;
+- row-state predicted public loss mean/std: `0.000520036` / `0.000376469`;
+- bad-minus-good exposure: `0.133572983`;
+- target movement shares: Q1 `0.580616`, Q2 `0.201798`, Q3 `0.047181`, S1 `0.170405`, S3 `0.000000`.
+
+Submission priority interpretation:
+
+1. If one public slot is used now, submit E363 before E362.
+2. E362 remains a backup/reference because it is the seed action.
+3. Top donor-graft E363 rows are interesting but not first-priority because they borrow source-specific Q2/Q3/S1 geometry; test them only if E363 public feedback says the cell-action family is alive.
+
+Expected public interpretation:
+
+- If E363 improves, the current best hidden law is target-balance lifestyle action: Q1 visibility + S1 recovery regularization + S3 suppression.
+- If E363 is worse but E362 is better later, E363 over-amplified Q1/S1 or underweighted Q2.
+- If both fail, the local E272/E358 stress is too permissive and the next target must model public-like subset/calibration state more directly.

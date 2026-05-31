@@ -2754,3 +2754,12 @@
 - Implementation issue possible: low-medium. The tested scale policies are simple, but they cover the natural scalar and target-balance fixes. The failure is enough to reject amplitude-only repair.
 - Bottleneck implication: the next candidate must change the cell/target action pattern or use a new source action family outside the compact basin.
 - Do not repeat: global/no-S3/Q-heavy/S1-heavy/Q1-S1 amplitude sweeps over E360 rows without changing the source cell geometry.
+
+## FH306. E362 is only a one-point threshold accident
+
+- Failed hypothesis: because E362 selected exactly one candidate from its original generator, the row x target cell-action result is probably a lucky threshold crossing rather than a stable hidden lifestyle-state action.
+- Observed result: E363 generated `1586` local perturbations around E362 and found `797` strict combined E272/E358 passes. The target-scale family alone had `723/1279` passes, with pass rate `0.565285`. The selected refinement improved row-state predicted public loss from E362's `0.000729697` to `0.000520036` while keeping p90 visible at `-0.000052147`.
+- Why discard: the E362 neighborhood is broad under current local stress. The target-balance structure survives many Q1/Q2/Q3/S1 scale changes and keeps S3 suppressed.
+- Implementation issue possible: medium. E363 uses the same E272/E358 sensors, so this refutes "local one-point accident" but does not prove public transfer.
+- Bottleneck implication: the bottleneck is no longer finding a row x target cell-action at all. It is deciding whether the local target-balance basin transfers to public, or whether the sensors are too permissive.
+- Do not repeat: another blind target-scale grid around E362 before public feedback or a stricter public-like subset/calibration sensor is added.
