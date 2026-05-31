@@ -3930,3 +3930,33 @@ Submission decision:
 
 - do not spend a public LB slot unless the explicit purpose is information gain about bad-axis tolerance;
 - for score-seeking, the next candidate must either clear both p90 and bad-axis locally or add an independent support axis that makes E342's p90 edge survive cleanup.
+
+## Update After E344 Counter-Axis Sign-Transfer
+
+Submission candidate:
+
+- `analysis_outputs/submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv`
+
+Why it is worth one public test:
+
+- It is the first hidden lifestyle-state candidate in this branch that clears the full local gate:
+  - mean `-0.000246354`;
+  - p90 `-0.000053606`;
+  - beats current `0.972222`;
+  - incremental bad-axis `0.014849687`, below the `0.015` cap.
+- It also survives fresh movement-null stress:
+  - mean dominance `0.928571`;
+  - p90 dominance `1.000000`;
+  - null strict promote rate `0.000000`.
+- It uses the E342 Q2+Q1/Q3 hidden lifestyle-state signal, but adds a small E315 human-composition counter-axis with `w=0.10` and `cellveto`.
+
+Risk:
+
+- bad-axis margin is narrow, about `0.000150` under the cap;
+- E315/E319/E326/E327 counter sources include branches that were not directly public-safe alone, so the public question is whether small counter use transfers safely;
+- this is an information-rich public sensor, not a guaranteed large LB jump.
+
+Interpretation rule:
+
+- If public LB improves, the hidden lifestyle-state + counter-axis hypothesis becomes the strongest current world model.
+- If public LB worsens, the next fix is not more counter weight; it is learning which counter sources are public-transferable rather than locally anti-bad.

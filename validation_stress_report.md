@@ -4600,7 +4600,7 @@ Result:
 
 - E342 generated candidates: `1314`;
 - E342 selector-promoted: `0`;
-- E342 information sensors: `1097`;
+- E342 information sensors: `1019`;
 - E342 best near-miss:
   - `submission_e342_signtransfer_q2_submission_e341_sp__micro_submission_e340_q1__w0_75_1_00_sum_bad_veto_07fbe22a.csv`;
   - mean `-0.000248`;
@@ -4624,3 +4624,38 @@ Stress conclusion:
 - The blocker is not movement-null rarity; it is bad-axis entanglement.
 - Projection cleanup lowers bad-axis but also removes the p90 edge, so E342/E343 are not submission-safe.
 - Next validation should search for an independent visible support axis or train a generator that creates visibility without borrowing E323/E216-like movement.
+
+## E344 Counter-Axis Sign-Transfer Stress
+
+Question: can an independent anti-bad support axis preserve the E342 hidden lifestyle-state p90 edge while bringing bad-axis under the strict cap?
+
+Method:
+
+- `analysis_outputs/e344_counter_axis_signtransfer.py`
+- E342 sources: `8` selector-visible, movement-null-healthy near-misses.
+- Counter sources: `14` negative bad-axis sources from E315/E319/E326/E327, diversified by score family.
+- Generated candidates: `3330`.
+- Stress tests:
+  - E272 public-free selector;
+  - E323/E216 bad-axis cap;
+  - row, target, sign, row-sign, cell, subject, and dateblock movement nulls.
+
+Result:
+
+- selector-promoted: `6`;
+- information sensors: `2677`;
+- movement-null-safe promoted: `6`;
+- best candidate:
+  - `submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv`;
+  - mean `-0.000246354`;
+  - p90 `-0.000053606`;
+  - beats `0.972222`;
+  - incremental bad-axis `0.014849687`;
+  - actual mean/p90 dominance `0.928571/1.000000`;
+  - null strict promote rate `0.000000`.
+
+Stress conclusion:
+
+- The separable-counter route succeeds where projection cleanup failed.
+- The useful E342 energy is not cleanly removable from bad-axis by projection, but it can be locally stabilized with a small E315-derived counter-axis.
+- This is the current best local submission candidate; public LB is needed as the next sensor.

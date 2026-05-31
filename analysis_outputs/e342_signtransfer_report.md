@@ -32,7 +32,7 @@ Are the weak Q2 residual intervention tail and the weak Q1/Q3 human-social micro
 
 - generated candidates: `1314`
 - selector-promoted candidates: `0`
-- information-sensor candidates: `1097`
+- information-sensor candidates: `1019`
 - movement-null-safe promoted candidates: `0`
 
 ### Best Selector Scores

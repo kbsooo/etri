@@ -1,25 +1,31 @@
 #!/usr/bin/env python3
-"""E342: sign-transfer hidden lifestyle-state latent coalition.
+"""E344: counter-axis support for sign-transfer lifestyle latent.
 
-E340 found a Q1/Q3 lifestyle microstate coalition that is null-healthy but
-below selector visibility.  E341 found an independent Q2 sparse residual tail
-that also remains below visibility.  This experiment tests whether those two
-weak signals are two projections of the same hidden lifestyle state.
+E342 found a selector-visible hidden lifestyle-state coalition:
+Q2 inverse residual tail + Q1/Q3 microstate sign-transfer.  The blocker was
+not visibility, but too much incremental bad-axis load.  E343 tried to clean
+the signal by projection and lost most of the p90 edge.
+
+This experiment asks a different question:
+
+    Is there an independent counter-axis that can reduce the bad-axis load
+    while preserving the E342 lifestyle-state visibility?
 
 JEPA translation:
-    context = Q1/Q3 human-social microstate movement plus Q2 residual tail
-    target  = a shared hidden lifestyle state, not raw feature reconstruction
-    action  = sign-transfer/gated coalition only if the state is public-free
-              selector-visible and movement-null resistant
+    context = E342 visible hidden state
+    target  = a counter-state learned from prior local experiments whose
+              movement is anti-bad-axis but not used as a public submission
+    action  = small logit-space composition, accepted only if it passes the
+              E272 selector and movement-null stress
 
-No public LB is used.  E247 is the current anchor; E323/E216 are negative
-movement axes used as veto geometry.
+No public LB is used.
 """
 
 from __future__ import annotations
 
 from pathlib import Path
 import hashlib
+import shutil
 import sys
 from typing import Any
 import warnings
@@ -31,19 +37,13 @@ from scipy.special import expit
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "analysis_outputs"
-NULL_DIR = OUT / "e342_signtransfer_nulls"
+NULL_DIR = OUT / "e344_counter_axis_nulls"
 if str(OUT) not in sys.path:
     sys.path.insert(0, str(OUT))
 
 from e272_public_free_candidate_audit import CURRENT, build_features, evaluate_models, score_candidates  # noqa: E402
 from e328_ownlatent_lifestyle_state_experiment import load_sub_frame, md_table, safe_id  # noqa: E402
-from e337_residual_lifestyle_cluster_state import (  # noqa: E402
-    bad_axes,
-    cell_bad_veto,
-    center_by_target,
-    cos,
-    target_abs,
-)
+from e337_residual_lifestyle_cluster_state import bad_axes, cell_bad_veto, center_by_target, cos, target_abs  # noqa: E402
 from public_anchor_bottleneck_decomposition import KEYS, TARGETS, load_sub, logit  # noqa: E402
 from public_selector_universe_audit import build_known_and_refs  # noqa: E402
 
@@ -51,21 +51,21 @@ from public_selector_universe_audit import build_known_and_refs  # noqa: E402
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=UserWarning)
 
-RNG_SEED = 20260531 + 342
+RNG_SEED = 20260531 + 344
 EPS = 1.0e-12
 CAP = 0.18
-MAX_Q2_SOURCES = 4
-MAX_MICRO_SOURCES = 8
+MAX_E342_SOURCES = 8
+MAX_COUNTER_SOURCES = 14
 MAX_NULL_CANDIDATES = 32
 NULL_REPS = 4
 
-Q2_SOURCE_OUT = OUT / "e342_signtransfer_q2_sources.csv"
-MICRO_SOURCE_OUT = OUT / "e342_signtransfer_micro_sources.csv"
-CANDIDATE_OUT = OUT / "e342_signtransfer_candidates.csv"
-SCORE_OUT = OUT / "e342_signtransfer_scores.csv"
-ANATOMY_OUT = OUT / "e342_signtransfer_anatomy.csv"
-MOVE_NULL_OUT = OUT / "e342_signtransfer_movement_nulls.csv"
-REPORT_OUT = OUT / "e342_signtransfer_report.md"
+E342_SOURCE_OUT = OUT / "e344_counter_axis_e342_sources.csv"
+COUNTER_SOURCE_OUT = OUT / "e344_counter_axis_counter_sources.csv"
+CANDIDATE_OUT = OUT / "e344_counter_axis_candidates.csv"
+SCORE_OUT = OUT / "e344_counter_axis_scores.csv"
+ANATOMY_OUT = OUT / "e344_counter_axis_anatomy.csv"
+MOVE_NULL_OUT = OUT / "e344_counter_axis_movement_nulls.csv"
+REPORT_OUT = OUT / "e344_counter_axis_report.md"
 
 
 def stable_seed(*parts: object) -> int:
@@ -114,7 +114,7 @@ def load_delta(path: Path, base: pd.DataFrame, base_logit: np.ndarray) -> np.nda
 def write_candidate(base: pd.DataFrame, base_logit: np.ndarray, delta: np.ndarray, candidate_id: str) -> Path:
     out = base.copy()
     out[TARGETS] = clip_prob(expit(np.clip(base_logit + np.clip(delta, -CAP, CAP), -40.0, 40.0)))
-    path = OUT / f"submission_e342_signtransfer_{safe_id(candidate_id, 112)}_{short_hash(out)}.csv"
+    path = OUT / f"submission_e344_counteraxis_{safe_id(candidate_id, 112)}_{short_hash(out)}.csv"
     out.to_csv(path, index=False)
     return path
 
@@ -129,30 +129,27 @@ def entropy(weights: np.ndarray) -> float:
     return float(-(nz * np.log(nz)).sum() / np.log(len(p))) if len(p) > 1 else 0.0
 
 
-def source_table(prefix: str) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    scores = pd.read_csv(OUT / f"{prefix}_scores.csv")
-    candidates = pd.read_csv(OUT / f"{prefix}_candidates.csv")
-    movement_path = OUT / f"{prefix}_movement_nulls.csv"
-    movement = pd.read_csv(movement_path) if movement_path.exists() else pd.DataFrame()
-    merged = scores[~scores["basename"].eq(CURRENT)].merge(
-        candidates,
-        on="basename",
-        how="left",
-        suffixes=("_score", "_meta"),
-    )
+def resolve_file_column(df: pd.DataFrame) -> pd.Series:
+    for col in ["file", "source_path", "file_meta", "file_score"]:
+        if col in df.columns:
+            return df[col].astype(str)
+    return df["basename"].map(lambda x: str(OUT / str(x)))
+
+
+def select_e342_sources() -> pd.DataFrame:
+    scores = pd.read_csv(OUT / "e342_signtransfer_scores.csv").drop_duplicates("basename", keep="first")
+    candidates = pd.read_csv(OUT / "e342_signtransfer_candidates.csv")
+    null_path = OUT / "e342_signtransfer_movement_nulls.csv"
+    nulls = pd.read_csv(null_path) if null_path.exists() else pd.DataFrame()
+    merged = scores[~scores["basename"].eq(CURRENT)].merge(candidates, on="basename", how="left", suffixes=("_score", "_meta"))
     if "file_meta" in merged:
         merged["file"] = merged["file_meta"]
     elif "file_score" in merged:
         merged["file"] = merged["file_score"]
-    elif "file" not in merged:
-        merged["file"] = merged["basename"].map(lambda x: str(OUT / str(x)))
-    if len(movement):
-        merged = merged.merge(movement, on="basename", how="left", suffixes=("", "_move"))
-    return scores, candidates, merged
-
-
-def select_q2_sources() -> pd.DataFrame:
-    _, _, merged = source_table("e341_sparse_residual_support")
+    else:
+        merged["file"] = resolve_file_column(merged)
+    if len(nulls):
+        merged = merged.merge(nulls, on="basename", how="left", suffixes=("", "_null"))
     for col, default in [
         ("actual_p90_dominance", 0.50),
         ("actual_mean_dominance", 0.50),
@@ -162,89 +159,113 @@ def select_q2_sources() -> pd.DataFrame:
             merged[col] = default
         merged[col] = pd.to_numeric(merged[col], errors="coerce").fillna(default)
     pool = merged[
-        merged["target"].eq("Q2")
-        & (merged["pred_delta_vs_current_mean"] < 0.0)
-        & (merged["pred_beats_current_rate"] >= 0.85)
-        & (merged["incremental_bad_axis_vs_current"].abs() <= 0.018)
-        & (merged["pred_delta_vs_current_p90"] < 0.00001)
+        (merged["pred_delta_vs_current_p90"] < -0.000050)
+        & (merged["pred_beats_current_rate"] >= 0.95)
+        & (merged["incremental_bad_axis_vs_current"] > 0.015)
+        & (merged["incremental_bad_axis_vs_current"] <= 0.025)
+        & (merged["actual_p90_dominance"] >= 0.85)
+        & (merged["null_strict_promote_rate"] <= 0.05)
         & merged["file"].notna()
     ].copy()
-    pool["movement_health"] = (
-        0.45 * pool["pred_beats_current_rate"]
-        + 0.30 * pool["actual_p90_dominance"]
-        + 0.25 * (1.0 - pool["null_strict_promote_rate"].clip(0.0, 1.0))
-    )
+    pool["source_path_exists"] = pool["file"].map(lambda x: locate(x) is not None)
+    pool = pool[pool["source_path_exists"]].copy()
     pool["visibility_margin"] = -pool["pred_delta_vs_current_p90"]
+    pool["bad_excess"] = pool["incremental_bad_axis_vs_current"] - 0.015
+    pool["source_rank_score"] = pool["visibility_margin"] / (pool["bad_excess"].clip(lower=0.0005))
     pool = pool.sort_values(
-        ["visibility_margin", "movement_health", "pred_delta_vs_current_mean"],
+        ["source_rank_score", "visibility_margin", "pred_delta_vs_current_mean"],
         ascending=[False, False, True],
-    ).head(MAX_Q2_SOURCES)
-    pool.to_csv(Q2_SOURCE_OUT, index=False)
+    ).head(MAX_E342_SOURCES)
+    pool.to_csv(E342_SOURCE_OUT, index=False)
     return pool.reset_index(drop=True)
 
 
-def select_micro_sources() -> pd.DataFrame:
-    _, _, merged = source_table("e340_microstate_coalition")
-    for col, default in [
-        ("actual_p90_dominance", 0.50),
-        ("actual_mean_dominance", 0.50),
-        ("null_strict_promote_rate", 1.0),
-        ("source_p90_dom_min", 0.50),
-        ("source_null_rate_max", 1.0),
-    ]:
-        if col not in merged:
-            merged[col] = default
-        merged[col] = pd.to_numeric(merged[col], errors="coerce").fillna(default)
-    pool = merged[
-        (merged["pred_delta_vs_current_mean"] < 0.0)
-        & (merged["pred_delta_vs_current_p90"] < 0.0)
-        & (merged["pred_beats_current_rate"] >= 0.90)
-        & (merged["incremental_bad_axis_vs_current"].abs() <= 0.015)
-        & (merged["source_null_rate_max"] <= 0.05)
-        & merged["file"].notna()
+def iter_score_tables() -> pd.DataFrame:
+    rows: list[pd.DataFrame] = []
+    wanted = {
+        "basename",
+        "file",
+        "source_path",
+        "pred_delta_vs_current_mean",
+        "pred_delta_vs_current_p90",
+        "pred_beats_current_rate",
+        "incremental_bad_axis_vs_current",
+        "strict_promote_gate",
+        "info_sensor_gate",
+        "promotion_decision",
+    }
+    for path in OUT.glob("*_scores.csv"):
+        if path.name.startswith(("e342_", "e343_", "e344_")):
+            continue
+        try:
+            df = pd.read_csv(path, usecols=lambda c: c in wanted)
+        except Exception:
+            continue
+        required = {"basename", "pred_delta_vs_current_mean", "pred_delta_vs_current_p90", "pred_beats_current_rate", "incremental_bad_axis_vs_current"}
+        if not required.issubset(df.columns):
+            continue
+        df = df[~df["basename"].eq(CURRENT)].copy()
+        if df.empty:
+            continue
+        df["score_file"] = path.name
+        df["file"] = resolve_file_column(df)
+        rows.append(df)
+    if not rows:
+        return pd.DataFrame()
+    out = pd.concat(rows, ignore_index=True)
+    out = out.drop_duplicates("basename", keep="first").reset_index(drop=True)
+    return out
+
+
+def select_counter_sources() -> pd.DataFrame:
+    all_scores = iter_score_tables()
+    if all_scores.empty:
+        all_scores.to_csv(COUNTER_SOURCE_OUT, index=False)
+        return all_scores
+    pool = all_scores[
+        (all_scores["incremental_bad_axis_vs_current"] < -0.001)
+        & (all_scores["incremental_bad_axis_vs_current"] >= -0.050)
+        & (all_scores["pred_delta_vs_current_p90"] < 0.000050)
+        & (all_scores["pred_delta_vs_current_mean"] < 0.000100)
+        & (all_scores["pred_beats_current_rate"] >= 0.65)
+        & all_scores["file"].notna()
     ].copy()
-    pool["movement_health"] = (
-        0.35 * pool["pred_beats_current_rate"]
-        + 0.25 * pool["source_p90_dom_min"]
-        + 0.25 * pool["actual_p90_dominance"]
-        + 0.15 * (1.0 - pool["null_strict_promote_rate"].clip(0.0, 1.0))
-    )
-    pool["visibility_margin"] = -pool["pred_delta_vs_current_p90"]
-    pool = pool.sort_values(
-        ["visibility_margin", "movement_health", "pred_delta_vs_current_mean"],
+    pool["source_path_exists"] = pool["file"].map(lambda x: locate(x) is not None)
+    pool = pool[pool["source_path_exists"]].copy()
+    pool["family"] = pool["score_file"].str.replace("_scores.csv", "", regex=False)
+    pool["counter_strength"] = -pool["incremental_bad_axis_vs_current"]
+    pool["p90_health"] = -pool["pred_delta_vs_current_p90"]
+    pool["risk_penalty"] = pool["counter_strength"].clip(lower=0.0) * (pool["pred_delta_vs_current_p90"] < -0.001).astype(float)
+    pool["counter_rank_score"] = pool["counter_strength"] + 0.20 * pool["pred_beats_current_rate"] + 50.0 * pool["p90_health"] - 0.25 * pool["risk_penalty"]
+    ranked = pool.sort_values(
+        ["counter_rank_score", "pred_beats_current_rate", "pred_delta_vs_current_p90"],
         ascending=[False, False, True],
-    ).head(MAX_MICRO_SOURCES)
-    pool.to_csv(MICRO_SOURCE_OUT, index=False)
-    return pool.reset_index(drop=True)
+    )
+    # Keep a few per family so one old failed generator cannot define the
+    # entire counter-space.  The counter is support evidence, not the thesis.
+    diversified = ranked.groupby("family", group_keys=False).head(4)
+    diversified = diversified.sort_values(
+        ["counter_rank_score", "pred_beats_current_rate", "pred_delta_vs_current_p90"],
+        ascending=[False, False, True],
+    ).head(MAX_COUNTER_SOURCES)
+    diversified.to_csv(COUNTER_SOURCE_OUT, index=False)
+    return diversified.reset_index(drop=True)
 
 
-def row_gate_from_q2(delta_q2: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
-    row_abs = np.sum(np.abs(delta_q2), axis=1)
-    active = (row_abs > EPS).astype(float)
-    scale = float(np.quantile(row_abs[row_abs > EPS], 0.85)) if np.any(row_abs > EPS) else 1.0
-    if not np.isfinite(scale) or scale <= EPS:
-        scale = 1.0
-    soft = np.clip(row_abs / scale, 0.0, 1.0)
-    return active.reshape(-1, 1), soft.reshape(-1, 1)
-
-
-def transform_variants(
-    q2_delta: np.ndarray,
-    micro_delta: np.ndarray,
-    w_q2: float,
-    w_micro: float,
-    e323_bad: np.ndarray,
-    e216_bad: np.ndarray,
-) -> dict[str, np.ndarray]:
-    q = float(w_q2) * np.asarray(q2_delta, dtype=np.float64)
-    m = float(w_micro) * np.asarray(micro_delta, dtype=np.float64)
-    hard_gate, soft_gate = row_gate_from_q2(q2_delta)
-    variants: dict[str, np.ndarray] = {
-        "sum_bad_veto": cell_bad_veto(q + m, e323_bad, e216_bad, strength=0.35),
-        "sum_veto_centered": center_by_target(cell_bad_veto(q + m, e323_bad, e216_bad, strength=0.35)),
-        "q2tail_micro_soft": q + soft_gate * m,
-        "q2tail_joint_soft_veto": cell_bad_veto(soft_gate * (q + m), e323_bad, e216_bad, strength=0.35),
-        "q2tail_joint_centered": center_by_target(cell_bad_veto(hard_gate * (q + m), e323_bad, e216_bad, strength=0.35)),
+def counter_variants(source: np.ndarray, counter: np.ndarray, weight: float, e323_bad: np.ndarray, e216_bad: np.ndarray) -> dict[str, np.ndarray]:
+    patch = float(weight) * np.asarray(counter, dtype=np.float64)
+    q2_keep = patch.copy()
+    q2_idx = TARGETS.index("Q2")
+    q2_keep[:, q2_idx] = 0.0
+    bad_mask = ((source * e323_bad) > 0.0) | ((source * e216_bad) > 0.0)
+    source_active = np.sum(np.abs(source), axis=1, keepdims=True) > EPS
+    variants = {
+        "add": source + patch,
+        "cellveto": cell_bad_veto(source + patch, e323_bad, e216_bad, strength=0.25),
+        "centered": center_by_target(cell_bad_veto(source + patch, e323_bad, e216_bad, strength=0.25)),
+        "badcell_patch": source + patch * bad_mask,
+        "preserve_q2": source + q2_keep,
+        "source_rows_only": source + patch * source_active,
     }
     return {name: val for name, val in variants.items() if float(np.sum(np.abs(val))) > EPS}
 
@@ -252,86 +273,81 @@ def transform_variants(
 def materialize_candidates() -> tuple[pd.DataFrame, list[Path], pd.DataFrame, np.ndarray, np.ndarray, np.ndarray]:
     base = load_current()
     base_logit, e323_bad, e216_bad = bad_axes(base)
-    q2_sources = select_q2_sources()
-    micro_sources = select_micro_sources()
-    if q2_sources.empty or micro_sources.empty:
+    e342_sources = select_e342_sources()
+    counters = select_counter_sources()
+    if e342_sources.empty or counters.empty:
         pd.DataFrame().to_csv(CANDIDATE_OUT, index=False)
         return pd.DataFrame(), [], base, base_logit, e323_bad, e216_bad
 
     delta_cache: dict[str, np.ndarray] = {}
 
-    def get_delta(row: dict[str, Any]) -> np.ndarray:
-        name = str(row["basename"])
+    def get_delta(rec: dict[str, Any]) -> np.ndarray:
+        name = str(rec["basename"])
         if name not in delta_cache:
-            path = locate(row.get("file", row.get("file_meta", name)))
-            if path is None:
-                path = locate(name)
+            path = locate(rec.get("file", name))
             if path is None:
                 raise FileNotFoundError(name)
             delta_cache[name] = load_delta(path, base, base_logit)
         return delta_cache[name]
 
-    q2_weights = [0.55, 0.75, 1.00]
-    micro_weights = [0.75, 1.00, 1.25]
+    weights = [0.04, 0.07, 0.10, 0.14, 0.20]
     rows: list[dict[str, Any]] = []
     paths: list[Path] = []
-    for q2_row in q2_sources.to_dict("records"):
-        dq2 = get_delta(q2_row)
-        q2_active_rows = int((np.sum(np.abs(dq2), axis=1) > EPS).sum())
-        for micro_row in micro_sources.to_dict("records"):
-            dm = get_delta(micro_row)
-            micro_active_rows = int((np.sum(np.abs(dm), axis=1) > EPS).sum())
-            overlap_rows = int(((np.sum(np.abs(dq2), axis=1) > EPS) & (np.sum(np.abs(dm), axis=1) > EPS)).sum())
-            for wq in q2_weights:
-                for wm in micro_weights:
-                    variants = transform_variants(dq2, dm, wq, wm, e323_bad, e216_bad)
-                    for variant_name, direction in variants.items():
-                        if float(np.max(np.abs(direction))) > CAP * 1.80:
-                            continue
-                        candidate_id = (
-                            f"q2_{q2_row['basename'][:18]}__micro_{micro_row['basename'][:18]}"
-                            f"__w{wq:.2f}_{wm:.2f}_{variant_name}"
-                        )
-                        path = write_candidate(base, base_logit, direction, candidate_id)
-                        paths.append(path)
-                        row_abs = np.sum(np.abs(direction), axis=1)
-                        rows.append(
-                            {
-                                "candidate_id": candidate_id,
-                                "file": rel(path),
-                                "basename": path.name,
-                                "recipe": "q2_micro_signtransfer",
-                                "variant": variant_name,
-                                "q2_source": q2_row["basename"],
-                                "micro_source": micro_row["basename"],
-                                "q2_tail_mask": q2_row.get("tail_mask", ""),
-                                "q2_topk": q2_row.get("topk", ""),
-                                "q2_variant": q2_row.get("variant", ""),
-                                "micro_variant": micro_row.get("variant", ""),
-                                "q2_weight": float(wq),
-                                "micro_weight": float(wm),
-                                "q2_source_mean": float(q2_row["pred_delta_vs_current_mean"]),
-                                "q2_source_p90": float(q2_row["pred_delta_vs_current_p90"]),
-                                "micro_source_mean": float(micro_row["pred_delta_vs_current_mean"]),
-                                "micro_source_p90": float(micro_row["pred_delta_vs_current_p90"]),
-                                "q2_source_bad_axis": float(q2_row["incremental_bad_axis_vs_current"]),
-                                "micro_source_bad_axis": float(micro_row["incremental_bad_axis_vs_current"]),
-                                "q2_active_rows": q2_active_rows,
-                                "micro_active_rows": micro_active_rows,
-                                "source_overlap_rows": overlap_rows,
-                                "changed_rows": int(np.any(np.abs(direction) > EPS, axis=1).sum()),
-                                "changed_cells": int((np.abs(direction) > EPS).sum()),
-                                "row_energy_entropy": entropy(row_abs),
-                                "mean_abs_logit_delta": float(np.mean(np.abs(direction))),
-                                "max_abs_logit_delta": float(np.max(np.abs(direction))),
-                                "l1_logit_delta": float(np.sum(np.abs(direction))),
-                                "cos_with_e323_bad": cos(direction, e323_bad),
-                                "cos_with_e216_bad": cos(direction, e216_bad),
-                                **target_abs(direction),
-                            }
-                        )
+    for src in e342_sources.to_dict("records"):
+        src_delta = get_delta(src)
+        src_bad = float(src["incremental_bad_axis_vs_current"])
+        src_rows = np.sum(np.abs(src_delta), axis=1) > EPS
+        for counter in counters.to_dict("records"):
+            counter_delta = get_delta(counter)
+            counter_rows = np.sum(np.abs(counter_delta), axis=1) > EPS
+            overlap_rows = int((src_rows & counter_rows).sum())
+            for weight in weights:
+                for variant, direction in counter_variants(src_delta, counter_delta, weight, e323_bad, e216_bad).items():
+                    if float(np.max(np.abs(direction))) > CAP * 1.80:
+                        continue
+                    candidate_id = (
+                        f"e342_{Path(src['basename']).stem[:34]}"
+                        f"__ctr_{Path(counter['basename']).stem[:34]}"
+                        f"__w{weight:.2f}_{variant}"
+                    )
+                    path = write_candidate(base, base_logit, direction, candidate_id)
+                    paths.append(path)
+                    row_abs = np.sum(np.abs(direction), axis=1)
+                    rows.append(
+                        {
+                            "candidate_id": candidate_id,
+                            "file": rel(path),
+                            "basename": path.name,
+                            "recipe": "e342_visible_plus_counter_axis",
+                            "variant": variant,
+                            "counter_weight": float(weight),
+                            "e342_source": src["basename"],
+                            "counter_source": counter["basename"],
+                            "counter_family": counter["family"],
+                            "e342_source_mean": float(src["pred_delta_vs_current_mean"]),
+                            "e342_source_p90": float(src["pred_delta_vs_current_p90"]),
+                            "e342_source_bad_axis": src_bad,
+                            "e342_source_null_p90_dom": float(src.get("actual_p90_dominance", np.nan)),
+                            "counter_source_mean": float(counter["pred_delta_vs_current_mean"]),
+                            "counter_source_p90": float(counter["pred_delta_vs_current_p90"]),
+                            "counter_source_bad_axis": float(counter["incremental_bad_axis_vs_current"]),
+                            "expected_bad_axis_linear": src_bad + weight * float(counter["incremental_bad_axis_vs_current"]),
+                            "source_active_rows": int(src_rows.sum()),
+                            "counter_active_rows": int(counter_rows.sum()),
+                            "source_counter_overlap_rows": overlap_rows,
+                            "changed_rows": int(np.any(np.abs(direction) > EPS, axis=1).sum()),
+                            "changed_cells": int((np.abs(direction) > EPS).sum()),
+                            "row_energy_entropy": entropy(row_abs),
+                            "mean_abs_logit_delta": float(np.mean(np.abs(direction))),
+                            "max_abs_logit_delta": float(np.max(np.abs(direction))),
+                            "l1_logit_delta": float(np.sum(np.abs(direction))),
+                            "cos_with_e323_bad": cos(direction, e323_bad),
+                            "cos_with_e216_bad": cos(direction, e216_bad),
+                            **target_abs(direction),
+                        }
+                    )
     candidates = pd.DataFrame(rows).drop_duplicates("basename").sort_values(
-        ["variant", "q2_weight", "micro_weight", "q2_source", "micro_source"]
+        ["expected_bad_axis_linear", "e342_source_p90", "counter_family", "counter_weight"]
     ).reset_index(drop=True)
     keep = set(candidates["basename"])
     paths = [p for p in paths if p.name in keep]
@@ -454,7 +470,7 @@ def movement_null_stress(scores: pd.DataFrame, candidates: pd.DataFrame, base: p
                 nd = null_delta(delta, mode, meta, stable_seed(rec["basename"], mode, rep))
                 out = base.copy()
                 out[TARGETS] = clip_prob(expit(np.clip(base_logit + np.clip(nd, -CAP, CAP), -40.0, 40.0)))
-                npath = NULL_DIR / f"submission_e342null_{safe_id(Path(rec['basename']).stem, 58)}_{mode}_r{rep}_{short_hash(out)}.csv"
+                npath = NULL_DIR / f"submission_e344null_{safe_id(Path(rec['basename']).stem, 58)}_{mode}_r{rep}_{short_hash(out)}.csv"
                 out.to_csv(npath, index=False)
                 null_paths.append(npath)
                 null_rows.append({"basename": rec["basename"], "null_basename": npath.name, "mode": mode, "rep": rep})
@@ -509,7 +525,7 @@ def movement_null_stress(scores: pd.DataFrame, candidates: pd.DataFrame, base: p
     return out
 
 
-def write_report(q2_sources: pd.DataFrame, micro_sources: pd.DataFrame, candidates: pd.DataFrame, scores: pd.DataFrame, anat: pd.DataFrame, nulls: pd.DataFrame) -> None:
+def write_report(e342_sources: pd.DataFrame, counters: pd.DataFrame, candidates: pd.DataFrame, scores: pd.DataFrame, anat: pd.DataFrame, nulls: pd.DataFrame) -> None:
     non_current = scores[~scores["basename"].eq(CURRENT)].copy() if len(scores) else pd.DataFrame()
     promoted = non_current[non_current["strict_promote_gate"].astype(bool)] if len(non_current) else pd.DataFrame()
     info = non_current[non_current["info_sensor_gate"].astype(bool)] if len(non_current) else pd.DataFrame()
@@ -533,39 +549,50 @@ def write_report(q2_sources: pd.DataFrame, micro_sources: pd.DataFrame, candidat
     cand_cols = [
         "basename",
         "variant",
-        "q2_weight",
-        "micro_weight",
-        "q2_source_mean",
-        "q2_source_p90",
-        "micro_source_mean",
-        "micro_source_p90",
-        "source_overlap_rows",
-        "changed_rows",
+        "counter_weight",
+        "counter_family",
+        "e342_source_p90",
+        "e342_source_bad_axis",
+        "counter_source_p90",
+        "counter_source_bad_axis",
+        "expected_bad_axis_linear",
+        "source_counter_overlap_rows",
         "share_Q1",
         "share_Q2",
         "share_Q3",
-        "cos_with_e323_bad",
+        "share_S1",
+        "share_S3",
     ]
     lines = [
-        "# E342 Sign-Transfer Hidden Lifestyle-State Latent",
+        "# E344 Counter-Axis Sign-Transfer Latent",
         "",
         "## Question",
         "",
-        "Are the weak Q2 residual intervention tail and the weak Q1/Q3 human-social microstate coalition two projections of one hidden lifestyle state?",
+        "Can the E342 selector-visible hidden lifestyle-state signal keep its p90 edge if we add only a small independent counter-axis that reduces public-bad geometry?",
         "",
-        "## Source Selection",
+        "## E342 Source Near-Misses",
         "",
-        "### Q2 Residual-Tail Sources",
+        f"- E342 sources: `{len(e342_sources)}`",
         "",
-        md_table(q2_sources[["basename", "tail_mask", "topk", "variant", "scale", "pred_delta_vs_current_mean", "pred_delta_vs_current_p90", "pred_beats_current_rate", "incremental_bad_axis_vs_current"]], n=16, floatfmt=".9f")
-        if len(q2_sources)
-        else "_empty_",
+        md_table(
+            e342_sources[["basename", "pred_delta_vs_current_mean", "pred_delta_vs_current_p90", "pred_beats_current_rate", "incremental_bad_axis_vs_current", "actual_p90_dominance", "null_strict_promote_rate"]]
+            if len(e342_sources)
+            else e342_sources,
+            n=20,
+            floatfmt=".9f",
+        ),
         "",
-        "### Q1/Q3 Microstate Sources",
+        "## Counter Sources",
         "",
-        md_table(micro_sources[["basename", "recipe", "variant", "q1_weight", "q3_weight", "pred_delta_vs_current_mean", "pred_delta_vs_current_p90", "pred_beats_current_rate", "incremental_bad_axis_vs_current"]], n=20, floatfmt=".9f")
-        if len(micro_sources)
-        else "_empty_",
+        f"- counter sources: `{len(counters)}`",
+        "",
+        md_table(
+            counters[["basename", "family", "pred_delta_vs_current_mean", "pred_delta_vs_current_p90", "pred_beats_current_rate", "incremental_bad_axis_vs_current", "promotion_decision"]]
+            if len(counters)
+            else counters,
+            n=30,
+            floatfmt=".9f",
+        ),
         "",
         "## Generated Candidates",
         "",
@@ -589,7 +616,7 @@ def write_report(q2_sources: pd.DataFrame, micro_sources: pd.DataFrame, candidat
         "",
         "### Candidate Anatomy",
         "",
-        md_table(candidates[cand_cols].sort_values(["cos_with_e323_bad", "changed_rows"]) if len(candidates) else candidates, n=40, floatfmt=".9f"),
+        md_table(candidates[cand_cols], n=40, floatfmt=".9f") if len(candidates) else "_empty_",
         "",
         "## Movement-Null Stress",
         "",
@@ -600,28 +627,31 @@ def write_report(q2_sources: pd.DataFrame, micro_sources: pd.DataFrame, candidat
     ]
     if len(null_safe):
         best = null_safe.sort_values(["actual_p90", "actual_mean"]).iloc[0]
-        lines.append(f"`{best['basename']}` is the top submission candidate: it clears selector and fresh movement-null gates.")
+        src_path = locate(best["basename"])
+        uploadsafe = ""
+        if src_path is not None:
+            tag = str(best["basename"]).replace(".csv", "").split("_")[-1]
+            upload_path = OUT / f"submission_e344_counteraxis_lifestyle_{tag}_uploadsafe.csv"
+            shutil.copyfile(src_path, upload_path)
+            uploadsafe = f" Use `{rel(upload_path)}` for upload-safe submission."
+        lines.append(f"`{best['basename']}` is a submission candidate: it keeps selector visibility, clears bad-axis, and survives movement-null stress.{uploadsafe}")
     elif len(promoted):
-        best = promoted.sort_values(["pred_delta_vs_current_p90", "pred_delta_vs_current_mean"]).iloc[0]
-        lines.append(f"`{best['basename']}` crosses selector visibility, but no promoted candidate survives movement-null stress. Treat sign-transfer as shortcut-prone.")
+        lines.append("Counter-axis composition creates selector-promoted files, but none survive movement-null stress. The support axis is still too shortcut-prone.")
     elif len(info):
         best = non_current.sort_values(["pred_delta_vs_current_p90", "pred_delta_vs_current_mean"]).iloc[0]
-        if float(best["pred_delta_vs_current_p90"]) < -0.00005:
-            lines.append(
-                f"Sign-transfer crosses the strict p90 visibility threshold (`{best['pred_delta_vs_current_p90']:.9f}`), "
-                f"but remains an information sensor because incremental bad-axis is `{best['incremental_bad_axis_vs_current']:.9f}` above the `0.015` cap."
-            )
-        else:
-            lines.append(f"Sign-transfer remains an information sensor only. Best p90 is `{best['pred_delta_vs_current_p90']:.9f}`, below submission standard but useful as support-axis evidence.")
+        lines.append(
+            f"Counter-axis composition remains information-sensor only. Best p90 is `{best['pred_delta_vs_current_p90']:.9f}` "
+            f"with bad-axis `{best['incremental_bad_axis_vs_current']:.9f}`. This means independent counter support did not yet make E342 submission-safe."
+        )
     else:
-        lines.append("Combining Q2 residual tails with Q1/Q3 microstates does not produce a visible shared latent. This weakens the single hidden lifestyle-state hypothesis in this form.")
+        lines.append("No visible E342+counter latent survived selector stress. This weakens the separable-counter-axis hypothesis.")
     lines.extend(
         [
             "",
             "## Files",
             "",
-            f"- `{Q2_SOURCE_OUT.name}`",
-            f"- `{MICRO_SOURCE_OUT.name}`",
+            f"- `{E342_SOURCE_OUT.name}`",
+            f"- `{COUNTER_SOURCE_OUT.name}`",
             f"- `{CANDIDATE_OUT.name}`",
             f"- `{SCORE_OUT.name}`",
             f"- `{ANATOMY_OUT.name}`",
@@ -647,14 +677,18 @@ def main() -> None:
         nulls = pd.read_csv(MOVE_NULL_OUT)
     else:
         nulls = movement_null_stress(scores, candidates, base, base_logit)
-    q2_sources = pd.read_csv(Q2_SOURCE_OUT) if Q2_SOURCE_OUT.exists() else select_q2_sources()
-    micro_sources = pd.read_csv(MICRO_SOURCE_OUT) if MICRO_SOURCE_OUT.exists() else select_micro_sources()
-    write_report(q2_sources, micro_sources, candidates, scores, anat, nulls)
+    e342_sources = pd.read_csv(E342_SOURCE_OUT) if E342_SOURCE_OUT.exists() else select_e342_sources()
+    counters = pd.read_csv(COUNTER_SOURCE_OUT) if COUNTER_SOURCE_OUT.exists() else select_counter_sources()
+    write_report(e342_sources, counters, candidates, scores, anat, nulls)
     print(REPORT_OUT)
     if len(scores):
         non_current = scores[~scores["basename"].eq(CURRENT)].copy()
         cols = ["basename", "promotion_decision", "pred_delta_vs_current_mean", "pred_delta_vs_current_p90", "pred_beats_current_rate", "incremental_bad_axis_vs_current"]
-        print(non_current[cols].head(50).round(9).to_string(index=False))
+        ordered = non_current.sort_values(
+            ["strict_promote_gate", "info_sensor_gate", "pred_delta_vs_current_p90"],
+            ascending=[False, False, True],
+        )
+        print(ordered[cols].head(60).round(9).to_string(index=False))
     if len(nulls):
         print("[movement-null]")
         print(nulls.head(30).round(9).to_string(index=False))

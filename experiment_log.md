@@ -5441,7 +5441,7 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - Score `1314` candidates with E272 and stress the top `32` with movement nulls.
 - Result:
   - selector-promoted candidates: `0`;
-  - information-sensor candidates: `1097`;
+  - information-sensor candidates: `1019`;
   - movement-null-safe promoted candidates: `0`.
   - The best file, `submission_e342_signtransfer_q2_submission_e341_sp__micro_submission_e340_q1__w0_75_1_00_sum_bad_veto_07fbe22a.csv`, has mean `-0.000248`, p90 `-0.000055`, beats `0.986111`, and movement-null p90 dominance `0.964286`.
   - It misses strict promotion only because incremental bad-axis is `0.017962`, above the `0.015` cap.
@@ -5466,3 +5466,24 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - Some variants reduce bad-axis below `0.015`, but their p90 moves above the strict threshold.
 - Interpretation: E342's visible energy and bad-axis load are currently entangled. The hidden lifestyle-state sign-transfer is real as an information sensor, but not yet a clean public-safe submission tensor.
 - Decision: no E343 submission. Next useful question is not "more projection cleanup"; it is to find a new support axis or learn a generator that produces visibility without borrowing the bad-axis component.
+
+## E344. Counter-Axis Support for Sign-Transfer Lifestyle Latent
+
+- Observe: E342 was selector-visible but over the bad-axis cap; E343 showed direct projection cleanup kills p90. The next smallest question is whether a separate anti-bad support axis can reduce risk without editing away the E342 hidden-state signal.
+- Wonder: is E342's bad-axis load inseparable from the signal, or can an independent lifestyle/action counter-state absorb just enough of that public-bad geometry?
+- Hypothesis: if the visible hidden lifestyle state is usable, adding a very small counter-axis from prior local experiments should keep p90 below `-0.00005`, reduce incremental bad-axis under `0.015`, and survive movement-null stress.
+- Method: `analysis_outputs/e344_counter_axis_signtransfer.py`.
+  - Select `8` E342 near-misses that already cross p90 visibility and survive movement-null shape checks.
+  - Select `14` independent negative bad-axis counter sources from E315/E319/E326/E327 score archives, diversified by family.
+  - Compose the E342 logit delta with small counter weights `0.04/0.07/0.10/0.14/0.20`.
+  - Test add, cell-veto, target-centered, bad-cell patch, Q2-preserving, and source-row-only variants.
+  - Score `3330` candidates with E272 and stress the top `32` with movement nulls.
+- Result:
+  - selector-promoted candidates: `6`;
+  - information-sensor candidates: `2677`;
+  - movement-null-safe promoted candidates: `6`;
+  - top submission candidate: `analysis_outputs/submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv`;
+  - mean `-0.000246354`, p90 `-0.000053606`, beats `0.972222`, bad-axis `0.014849687`;
+  - movement-null mean/p90 dominance `0.928571/1.000000`, null strict promote rate `0.000000`.
+- Interpretation: this is the first current hidden lifestyle-state branch that clears the full local submission rule. Projection cleanup could not separate the E342 signal, but small counter-axis composition can make it locally safe.
+- Decision: E344 produces a real submission candidate. Submit `analysis_outputs/submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv` if we want the next public sensor to test whether the local counter-axis safety translates to public LB.

@@ -3944,7 +3944,7 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 맞다면: combined Q2+Q1/Q3 sign-transfer should improve p90 beyond either source, beat movement nulls, and ideally cross strict promotion without increasing known public-bad axes.
 - 틀리다면: combinations should remain near E340/E341 p90, or only become visible by moving along public-bad axes.
 - 최소 실험: `analysis_outputs/e342_signtransfer_lifestyle_latent.py`.
-- 관측: `1314` candidates, `0` selector-promoted, `1097` information sensors. Best p90 crosses visibility (`-0.000055`) with beats `0.986111` and movement-null p90 dominance up to `1.000000` on several near-misses, but incremental bad-axis is `0.017962+`, above the `0.015` cap.
+- 관측: `1314` candidates, `0` selector-promoted, `1019` information sensors. Best p90 crosses visibility (`-0.000055`) with beats `0.986111` and movement-null p90 dominance up to `1.000000` on several near-misses, but incremental bad-axis is `0.017962+`, above the `0.015` cap.
 - 성공/폐기 기준: accept as representation if cross-target combination beats both sources and movement nulls; reject as submission if bad-axis prevents strict promotion. This split is observed.
 - public LB 관측 반응: no public LB should be spent on raw E342. Expected upside exists but downside risk is E323/E216-like public-bad geometry.
 - 제출 전략: none directly. Use as the strongest current sign-transfer clue; next experiment must separate useful visibility from bad-axis load.
@@ -3960,3 +3960,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: reject cleanup route because no file simultaneously clears p90 and bad-axis. Keep E342 as a latent clue, not a candidate.
 - public LB 관측 반응: do not submit. If submitted anyway, expected reaction is uncertain and likely not worth a public slot because the strict local safety condition is not met.
 - 제출 전략: none from E343. Need a new support axis or a generator trained to produce visible/null-rare movement without borrowing the bad-axis component.
+
+### H344: an independent counter-axis can make the E342 hidden lifestyle state submission-safe
+
+- 상태: 지지됨 locally; public LB 미확인.
+- 왜 그럴듯한가: E342 crossed visibility but exceeded bad-axis. E343 proved direct cleanup removes useful p90. If the signal is a real hidden lifestyle state, a separate anti-bad action state should reduce only the risk component.
+- 맞다면: E342+counter candidates should keep p90 `< -0.00005`, lower incremental bad-axis `<= 0.015`, and beat row/target/sign/subject/dateblock movement nulls.
+- 틀리다면: bad-axis reduction should again destroy p90, or strict candidates should be null-common.
+- 최소 실험: `analysis_outputs/e344_counter_axis_signtransfer.py`.
+- 관측: `3330` candidates, `6` selector-promoted, `2677` information sensors, `6` movement-null-safe promoted. Best candidate `submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv` has mean `-0.000246354`, p90 `-0.000053606`, beats `0.972222`, bad-axis `0.014849687`, movement-null p90 dominance `1.000000`, and null strict rate `0.000000`.
+- 성공/폐기 기준: accept locally if strict selector plus movement-null gates pass; require public LB before treating the counter-axis as generally valid. Local acceptance is observed.
+- public LB 관측 반응: if public improves, this strongly supports the hidden lifestyle-state + counter-axis world model. If public worsens, the local selector is likely accepting an E315/E342 interaction that is still public-subset-specific or private-risky.
+- 제출 전략: submit `analysis_outputs/submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv` as the next high-information candidate.

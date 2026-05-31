@@ -1431,7 +1431,7 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - local observation:
   - E342 candidates: `1314`;
   - E342 selector-promoted candidates: `0`;
-  - E342 information-sensor candidates: `1097`;
+  - E342 information-sensor candidates: `1019`;
   - E343 candidates: `1512`;
   - E343 selector-promoted candidates: `0`;
   - E343 information-sensor candidates: `845`.
@@ -1456,3 +1456,20 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - uncertain and not worth a scarce slot for score-seeking;
   - if the public LB improved, it would imply the E272 bad-axis cap is too conservative for this branch;
   - if it worsened, it would confirm that E323-like bad-axis entanglement remains the active bottleneck.
+
+## Public-Free Observation: E344 Counter-Axis Sign-Transfer
+
+- submission file recommended for public test: `analysis_outputs/submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv`.
+- public LB: pending.
+- changed point: E344 keeps the E342 hidden lifestyle-state sign-transfer signal and adds a small E315-derived counter-axis (`w=0.10`, `cellveto`) to reduce bad-axis below the strict cap.
+- expected LB reaction:
+  - improve if E342's Q2/Q1/Q3 lifestyle-state signal is real and the counter-axis transfers to the public subset;
+  - worsen if the E315 counter is only locally anti-bad or if the narrow bad-axis margin is still too risky.
+- local evidence:
+  - `3330` candidates;
+  - `6` selector-promoted;
+  - `6` movement-null-safe promoted;
+  - top file mean `-0.000246354`, p90 `-0.000053606`, beats `0.972222`, bad-axis `0.014849687`, null strict rate `0.000000`.
+- next experiment after public result:
+  - if improved, build a learned counter-source selector around E315/E342 interaction;
+  - if worse, audit why E315 local counter geometry fails public transfer before increasing weight or adding more counters.

@@ -2614,7 +2614,7 @@
 ## FH290. Raw Q2+Q1/Q3 sign-transfer is already submission-grade
 
 - Failed hypothesis: combining E341 Q2 inverse residual tails with E340 Q1/Q3 microstate coalitions should produce a clean selector-visible, movement-null-rare hidden lifestyle-state action.
-- Observed result: E342 generated `1314` candidates and found `1097` information sensors, but `0` selector-promoted files. The best near-miss crossed p90 visibility (`-0.000055`) and had beats `0.986111`, but incremental bad-axis was `0.017962`, above the strict `0.015` cap.
+- Observed result: E342 generated `1314` candidates and found `1019` information sensors, but `0` selector-promoted files. The best near-miss crossed p90 visibility (`-0.000055`) and had beats `0.986111`, but incremental bad-axis was `0.017962`, above the strict `0.015` cap.
 - Why discard as submission: movement-null rarity is good, but the visible edge carries too much known public-bad geometry. This is the exact failure mode that hurt E323-style public transfer.
 - Implementation issue possible: medium. The sign-transfer transforms are hand-coded and may not find the clean subspace. Low for rejecting current files because the bad-axis gate and E343 cleanup agree.
 - Bottleneck implication: the hidden lifestyle state exists more strongly than in E340/E341 alone, but translating it into public-safe probability movement is still unresolved.
@@ -2628,3 +2628,12 @@
 - Implementation issue possible: medium. The projection cleanup is linear in logit space and may not match the true nonlinear public-bad manifold. Low for rejecting current cleaned files because the tradeoff is monotone across many variants.
 - Bottleneck implication: the next breakthrough must add independent visible support or learn a generator that never enters the bad-axis subspace, rather than cleaning it afterward.
 - Do not repeat: further fine grids of the same projection-removal alphas unless a new target/axis changes the tradeoff.
+
+## FH292. The E342 signal must be fixed by direct cleanup only
+
+- Failed hypothesis: if E343 projection cleanup fails, the E342 hidden lifestyle-state signal is unusable for submission until a new generator is trained from scratch.
+- Observed result: E344 added a small independent counter-axis instead of deleting the E342 component. It produced `3330` candidates, `6` selector-promoted files, and `6` movement-null-safe promoted files. The top candidate has p90 `-0.000053606`, bad-axis `0.014849687`, and null strict rate `0.000000`.
+- Why discard: direct cleanup failed, but composition with a separate action-health counter-state succeeded locally. The useful E342 signal does not have to be removed; it has to be balanced.
+- Implementation issue possible: medium. The successful counter source is still hand-selected and the bad-axis margin is narrow, so public LB must decide transferability.
+- Bottleneck implication: the current best route is hidden lifestyle-state plus learned counter-axis selection, not raw projection cleanup.
+- Do not repeat: treating E342 as dead because E343 failed. The correct next question is whether E344's counter-axis transfers publicly.

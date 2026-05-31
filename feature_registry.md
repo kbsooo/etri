@@ -3524,7 +3524,7 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - Q2-tail row gates, full-sum sign-transfer, E323/E216 bad-veto transforms, and target-centered variants;
   - E343 projection cleanup against Q2-bad, residual-bad, LeJEPA-bad, and ordinal public-bad reference axes.
 - Validation result:
-  - E342: `1314` candidates, `1097` information sensors, `0` selector-promoted;
+  - E342: `1314` candidates, `1019` information sensors, `0` selector-promoted;
   - best E342 p90 `-0.000055`, mean `-0.000248`, beats `0.986111`, but bad-axis `0.017962`;
   - E343: `1512` candidates, `845` information sensors, `0` selector-promoted;
   - best cleaned p90 `-0.000046`, bad-axis `0.015414`.
@@ -3538,3 +3538,21 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - if a cleanup step kills p90, treat the feature as diagnostic only.
 - Failure condition:
   - if a sign-transfer feature crosses p90 only by increasing public-bad-axis load, do not submit it; use it to identify the missing action-health target.
+
+### E344 counter-axis lifestyle-state composition
+
+- Target hidden structure: E342 visible Q2/Q1/Q3 hidden lifestyle state plus a small independent anti-bad action-health counter-state.
+- Why needed: E342 proves visibility but fails bad-axis; E343 proves projection cleanup kills visibility. E344 tests whether a separate counter-state can preserve the latent while correcting geometry.
+- Feature/action form:
+  - E342 logit delta as primary context representation;
+  - E315/E319/E326/E327 negative bad-axis sources as counter contexts;
+  - small counter weights `0.04-0.20`;
+  - add, cell-veto, centered, bad-cell patch, Q2-preserving, and source-row-only transforms.
+- Current evidence:
+  - `3330` candidates;
+  - `6` selector-promoted;
+  - `2677` information sensors;
+  - `6` movement-null-safe promoted;
+  - best file `submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv` with p90 `-0.000053606`, bad-axis `0.014849687`, and null strict rate `0.000000`.
+- Leakage/stability condition: keep only candidates that clear E272 selector, bad-axis cap, and movement nulls. Do not treat the counter source itself as public-safe unless it passes independently.
+- Public interpretation: improvement supports hidden lifestyle-state + counter-axis composition; deterioration means local anti-bad geometry is not public-transferable enough.
