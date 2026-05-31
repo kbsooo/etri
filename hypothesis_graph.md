@@ -3900,3 +3900,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept localization if movement-null dominance improves; reject as submission if selector promotion remains zero. This is observed.
 - public LB 관측 반응: do not submit yet. Expected public effect is too small/noisy despite healthy local movement.
 - 제출 전략: none directly. The next strategy is constrained Q3 episode amplification or E338 episode-gated blend with an independent Q3 direction.
+
+### H339: E338 Q3 episode gate can safely amplify an older Q3 direction
+
+- 상태: 반증됨 as submission/action generator; 지지됨 as low-energy Q3 episode sensor.
+- 왜 그럴듯한가: E338 found a clean Q3/dateblock episode placement but below selector resolution. Existing public-surviving files contain larger Q3 movements, so a healthy hidden-state gate might preserve only the correct rows/signs.
+- 맞다면: E338-gated projections of E95/mixmin/E101/E176/E256/E267/E211 directions should produce selector-promoted candidates with negative p90 and movement-null dominance. Older Q3 directions should align with the episode signs more than chance.
+- 틀리다면: source directions should show weak episode-sign alignment, and projected candidates should remain below selector resolution or become null-common/p90-risky.
+- 최소 실험: `analysis_outputs/e339_q3_episode_gate_amplifier.py`.
+- 관측: `5430` candidates, `0` selector-promoted, `1492` information sensors, `0` movement-null-safe promoted. E95/mixmin/E101 Q3 directions agree with the E338 episode signs only `0.510204`, E176 `0.489796`, E267 `0.122449`, and E256 `0.020408`. The best candidate has mean `-0.000019`, p90 `-0.000005`, and movement-null dominance `1.000000/1.000000`, but is `too_small_to_submit`.
+- 성공/폐기 기준: reject as a generator if no candidate clears selector promotion and movement-null gates; keep the episode gate as a sensor if negative p90 and null dominance persist. This is observed.
+- public LB 관측 반응: no public LB should be spent. Expected public effect is low-information because the best deltas remain below submission resolution.
+- 제출 전략: none from E339. Future Q3 work needs a learned visibility target or a new independent positive support axis, not direct reuse of older Q3 directions through the same gate.

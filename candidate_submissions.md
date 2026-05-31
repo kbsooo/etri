@@ -3792,3 +3792,35 @@ Next submission rule:
 - do not public-test safe-invisible E338 probes;
 - next candidate must keep the E338 top2 Q3 episode placement but add an independently justified amplification or use it as a gate for a stronger Q3 direction;
 - reject any amplified file if p90 dominance or movement-null rarity collapses.
+
+## Update After E339 Q3 Episode-Gated Amplifier
+
+No E339 file should be submitted.
+
+Closest local probes:
+
+- `analysis_outputs/submission_e339_q3_top2_submission_e267_humansocial_tail_balanced_2936100f_src_inv_raw_s0_40_fe50f59e.csv`
+- `analysis_outputs/submission_e339_q3_top2_submission_e95_hardtail_541e3973_gate_shape_veto_centered_s1_10_fbd66c13.csv`
+- `analysis_outputs/submission_e339_q3_top2_submission_mixmin_0c916bb4_gate_shape_veto_centered_s1_10_fbd66c13.csv`
+
+Why blocked:
+
+- `5430` generated candidates produce `0` selector-promoted files.
+- The best local file is clean but too small:
+  - mean `-0.000019`;
+  - p90 `-0.000005`;
+  - beats `0.944444`;
+  - movement-null mean/p90 dominance `1.000000/1.000000`;
+  - decision `too_small_to_submit`.
+- Older public-surviving Q3 directions only weakly agree with the E338 Q3 episode signs, so the gate removes energy instead of producing a visible corrected action.
+
+Current best public frontier remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+- public LB `0.5761589494`
+
+Next submission rule:
+
+- do not submit E338/E339 Q3 episode sensors until a learned visibility/action-health target creates selector promotion;
+- do not treat older Q3 movement as reusable signal unless it passes episode-sign alignment and movement-null dominance;
+- next candidate should come from a new positive support axis or cross-target action-health latent, not direct Q3-only amplification.

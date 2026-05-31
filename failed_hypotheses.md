@@ -2583,3 +2583,12 @@
 - Implementation issue possible: medium. Episode action uses simple residual means and fixed caps; a learned monotone amplifier or gated blend may still work.
 - Bottleneck implication: the next bottleneck is visibility under null-safe local placement, especially for Q3 dateblock episodes.
 - Do not repeat: submitting E338 safe-invisible files as-is. Use them as gates/sensors for a stronger Q3 action.
+
+## FH287. E338-gated older Q3 directions are submission-grade
+
+- Failed hypothesis: the E338 Q3/dateblock episode gate can safely amplify an older stronger Q3 direction from frontier/public-tested submissions and produce a selector-visible, movement-null-rare E247 edit.
+- Observed result: E339 generated `5430` Q3 episode-gated candidates and found `0` selector-promoted files and `0` movement-null-safe promoted files. `1492` were information sensors, but the best file still had only mean `-0.000019`, p90 `-0.000005`, and decision `too_small_to_submit`.
+- Why discard: the gate is healthy but the borrowed directions do not match it. E95/mixmin/E101 agree with E338 episode signs only `0.510204`, E176 `0.489796`, E267 `0.122449`, and E256 `0.020408`. The operation filters risk, but also removes the energy needed to matter publicly.
+- Implementation issue possible: medium. The experiment uses hand-coded logit transforms and scales, so a learned nonlinear amplifier could still use the episode state. Low for rejecting the generated files because selector, movement-null, and source-alignment diagnostics agree.
+- Bottleneck implication: the Q3 episode state is a placement sensor, not enough positive support for a probability action. The missing object is now a visibility/action-health latent or an independent cross-target support axis.
+- Do not repeat: public-testing E338/E339 Q3 episode-gated files or increasing scale on the same historical Q3 directions without first obtaining selector promotion and fresh movement-null dominance.

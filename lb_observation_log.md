@@ -1333,3 +1333,32 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - the next public-free experiment should test constrained amplification or an E338-gated Q3 blend.
 - expected public reaction if submitted anyway:
   - likely tiny/noisy public effect because the candidate is explicitly below selector resolution.
+
+## Public-Free Observation: E339 Q3 Episode-Gated Amplifier
+
+- submission files: generated locally, but none promoted for public testing.
+- public LB: not submitted.
+- reason not submitted: every amplified Q3 episode candidate remains below selector promotion despite clean local p90/null readings.
+- local observation:
+  - generated candidates: `5430`;
+  - information-sensor candidates: `1492`;
+  - selector-promoted candidates: `0`;
+  - movement-null-safe promoted candidates: `0`.
+- source-alignment observation:
+  - E95/mixmin/E101 Q3 directions agree with E338 episode signs only `0.510204`;
+  - E176 agreement is `0.489796`;
+  - E267 agreement is `0.122449`;
+  - E256 agreement is `0.020408`.
+- closest local candidate:
+  - `submission_e339_q3_top2_submission_e267_humansocial_tail_balanced_2936100f_src_inv_raw_s0_40_fe50f59e.csv`;
+  - mean `-0.000019`;
+  - p90 `-0.000005`;
+  - beats `0.944444`;
+  - movement-null mean/p90 dominance `1.000000/1.000000`;
+  - decision `too_small_to_submit`.
+- interpretation:
+  - E338's episode gate is a real Q3 lifestyle-state sensor;
+  - older stronger Q3 directions are not the missing hidden target representation;
+  - the current public-free evidence does not justify a public LB sensor spend.
+- expected public reaction if submitted anyway:
+  - likely tiny/noisy effect around E247 because selector-promoted count is zero.

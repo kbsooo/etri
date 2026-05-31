@@ -4460,3 +4460,42 @@ Stress conclusion:
 - Local episode placement is healthier than E337 global action.
 - It is still below public-slot resolution.
 - The next stress should test constrained amplification or use the Q3 episode state as a gate for an independently stronger Q3 direction.
+
+## E339 Q3 Episode-Gated Amplifier
+
+Question: can the E338 safe-but-small Q3 episode gate amplify an older stronger Q3 direction without becoming a shortcut?
+
+Method: `analysis_outputs/e339_q3_episode_gate_amplifier.py`.
+
+Stress used:
+
+- fixed E338 Q3/dateblock episode placement;
+- source-direction diagnostics on public-tested and frontier-near files;
+- E272 public-free selector;
+- E323/E216 public-bad anatomy;
+- movement-null shuffles for the closest probes.
+
+Result:
+
+- generated candidates: `5430`;
+- selector-promoted candidates: `0`;
+- information-sensor candidates: `1492`;
+- movement-null-safe promoted candidates: `0`.
+- source agreement with E338 Q3 episode signs:
+  - E95/mixmin/E101: `0.510204`;
+  - E176: `0.489796`;
+  - E267: `0.122449`;
+  - E256: `0.020408`.
+- closest sensor:
+  - `submission_e339_q3_top2_submission_e267_humansocial_tail_balanced_2936100f_src_inv_raw_s0_40_fe50f59e.csv`;
+  - selector mean `-0.000019`;
+  - p90 `-0.000005`;
+  - beats `0.944444`;
+  - movement-null mean/p90 dominance `1.000000/1.000000`;
+  - decision `too_small_to_submit`.
+
+Stress conclusion:
+
+- The E338 Q3 episode gate is not collapsed, but it is low-energy.
+- Existing stronger Q3 directions do not align with the hidden episode state enough to become safe visible actions.
+- Q3 episode gating remains a diagnostic/placement energy, not a submission-ready amplifier.

@@ -3435,3 +3435,28 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - any amplification must preserve negative p90 and movement-null dominance.
 - Failure condition:
   - if amplification turns the E338 safe-invisible movement into p90-positive or null-common movement, classify it as visibility-overfit.
+
+## E339 Q3 Episode-Gated Amplifier Features
+
+- Target hypothesis tested:
+  - E338's Q3/dateblock episode state can act as a hidden placement gate for older, stronger Q3 probability directions.
+- Feature/representation source:
+  - E338 Q3 episode rows and signed residual deltas;
+  - borrowed Q3 logit directions from E256, E267, E95, mixmin, E101, E176, E224, E211, E269 controls, E323, and E216;
+  - transform families: raw, inverse, sign-agree, disagreement-inverse, gate-signed-absolute, gate-signed-sqrt, and constant gate-shape;
+  - E323/E216 veto and movement-null stress as health diagnostics.
+- Validation result:
+  - `5430` generated candidates;
+  - `1492` information-sensor candidates;
+  - `0` selector-promoted candidates;
+  - `0` movement-null-safe promoted candidates;
+  - best sensor mean `-0.000019`, p90 `-0.000005`, movement-null dominance `1.000000/1.000000`, but `too_small_to_submit`.
+- Updated registry status:
+  - approved as a Q3 episode-gate diagnostic;
+  - rejected as a current Q3 amplifier/submission feature;
+  - retain source episode-sign alignment as a prerequisite check for future Q3 borrowing.
+- Adopt rule for future features:
+  - an older public-surviving Q3 direction is not automatically useful inside a hidden lifestyle episode;
+  - require both episode-sign alignment and selector promotion before spending a public slot.
+- Failure condition:
+  - if a gated borrowed direction stays below selector resolution despite negative p90 and null dominance, classify it as safe-invisible, not public-ready.

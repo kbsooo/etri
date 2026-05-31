@@ -5341,3 +5341,28 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     - `submission_e338_local_veto_centered_top2_s0_20_28122ea1.csv`, mean `-0.000034`, p90 `-0.00000036`, beats `0.902778`, movement-null mean/p90 dominance `1.000000/1.000000`, but `too_small_to_submit`.
 - Interpretation: localizing the hidden lifestyle-state action helps. E338 improves over E337's global smear by producing safe-invisible Q3 episode sensors. It still does not produce a submission-grade tensor because the useful movement is below selector resolution.
 - Decision: do not submit E338 candidates. The next useful experiment should either amplify this Q3 episode path under a monotone/null-safe constraint or use the episode score as a gate for an existing stronger Q3 direction.
+
+## E339. Q3 Episode-Gated Amplifier
+
+- Observe: E338's best Q3/dateblock episode action is unusually clean under movement-null stress, but its selector p90 is only `-0.00000036`. The useful state may be correct row placement with insufficient amplitude.
+- Wonder: can the E338 episode gate borrow an independently stronger Q3 direction from existing frontier/public-tested submissions without becoming E323-like or movement-null common?
+- Hypothesis: if E338 discovered the missing Q3 placement law, then projecting older Q3 movements through the E338 top episodes should create at least one candidate that is selector-visible, p90-negative, and movement-null dominant.
+- Method: `analysis_outputs/e339_q3_episode_gate_amplifier.py`.
+  - Keep the E338 gated Q3 episodes fixed: four `k=6` dateblock states, led by cluster `3` positive Q3 residual and cluster `0` negative Q3 residual.
+  - Borrow Q3 directions from E256, E267, E95, mixmin, E101, E176, E224, E211, E269 controls, E323, and E216.
+  - Test raw, inverse, sign-agree, disagreement-inverse, gate-signed-absolute, gate-signed-sqrt, and constant gate-shape transforms over scales `0.15-1.10`.
+  - Stress with E272 public-free selector, E323/E216 anatomy, and movement-null shuffles on the best local probes.
+- Result:
+  - generated candidates: `5430`;
+  - selector-promoted candidates: `0`;
+  - information-sensor candidates: `1492`;
+  - movement-null-safe promoted candidates: `0`.
+  - Source alignment is weak: E95/mixmin/E101 Q3 directions agree with E338 episode signs only `0.510204`; E176 is `0.489796`; E256 is `0.020408`; E267 is `0.122449`.
+  - best public-free sensor:
+    - `submission_e339_q3_top2_submission_e267_humansocial_tail_balanced_2936100f_src_inv_raw_s0_40_fe50f59e.csv`;
+    - mean `-0.000019`, p90 `-0.000005`, beats `0.944444`, movement-null mean/p90 dominance `1.000000/1.000000`, but `too_small_to_submit`.
+  - best old-frontier-gated family:
+    - E95/mixmin/E101 `gate_shape/veto_centered/s1.10`;
+    - mean about `-0.000008`, p90 about `-0.000004`, beats `0.986111`, but still `too_small_to_submit`.
+- Interpretation: E338's Q3 episode gate is a real low-energy sensor, but existing stronger Q3 directions do not share the same hidden placement law strongly enough. The gate filters movement into a safer shape, yet it also removes almost all public-visible energy.
+- Decision: do not submit E339 candidates. The branch "borrow a stronger historical Q3 direction and pass it through the E338 lifestyle episode gate" is now weakened. The next useful hidden lifestyle-state experiment should learn action-health/visibility directly or search outside Q3-only episode amplification.
