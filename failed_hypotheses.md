@@ -2763,3 +2763,12 @@
 - Implementation issue possible: medium. E363 uses the same E272/E358 sensors, so this refutes "local one-point accident" but does not prove public transfer.
 - Bottleneck implication: the bottleneck is no longer finding a row x target cell-action at all. It is deciding whether the local target-balance basin transfers to public, or whether the sensors are too permissive.
 - Do not repeat: another blind target-scale grid around E362 before public feedback or a stricter public-like subset/calibration sensor is added.
+
+## FH307. E363 local robustness alone is enough to rank the next submission
+
+- Failed hypothesis: after E363 established a broad cell-action basin, the best next file can be chosen from E363's local robustness score and family pass rate alone.
+- Observed result: E364 added a fixed known-public movement-axis and row-state calibration sensor over the same `1586` E363 candidates. The public sensor has positive LOO diagnostics over `13` known files: ExtraTrees Spearman `0.895604`, Ridge1 `0.769231`, Ridge10 `0.686813`, KNN3 `0.642857`. Under this view, the E363 target-scale file ranks below a donor-graft candidate among the `797` E363-gated rows. The donor-graft replacement lowers public-bad-axis sum from `0.006034` to `0.004203` and row-state predicted public loss from `0.000520036` to `0.000438374`, while preserving p90 visibility.
+- Why discard as a complete ranking rule: E363's local robustness is still necessary, but it is not sufficient. It prefers source-law preservation, while E364 exposes a separate public-like calibration tradeoff inside the same basin.
+- Implementation issue possible: medium-high. The E364 public sensor is small and can overfit known public observations. This does not prove the donor-graft file is better; it rejects the stronger claim that E363 local robustness alone contains all useful ranking information.
+- Bottleneck implication: candidate selection is now a three-way tradeoff: local visibility, hidden lifestyle row-state health, and known-public movement-axis survival.
+- Do not repeat: selecting future E363-neighborhood candidates by `e363_robust_score` alone. Use a public-like calibration sensor or wait for public feedback to distinguish target-scale from donor-graft branches.

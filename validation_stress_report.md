@@ -5294,3 +5294,33 @@ Stress conclusion:
 - The one-point accident hypothesis is weakened: the E362 target-scale neighborhood is broad under the current local stress.
 - The refined action law is Q1-heavy, Q2-lighter, S1-recovery-stronger, Q3-small, and S3-suppressed.
 - Donor grafts can score higher locally, but they are less source-law preserving and should wait for E363/E362 public feedback before becoming first-priority candidates.
+
+## E364 Public-Like Cell-Action Calibration Stress
+
+Question: among the broad E363-passing basin, which candidate best survives fixed known-public movement axes and hidden lifestyle row-state risk?
+
+Stress setup:
+
+- script: `analysis_outputs/e364_public_like_cellaction_calibration.py`;
+- candidate pool: `1586` E363 cell-action perturbations;
+- public sensor: known public delta versus E247 from `13` locally available public-observed submissions;
+- context: movement anatomy, known public-good/bad axis projections, E363 row-state/story exposure, and E363 robustness metrics;
+- replacement constraint: a new file must pass E363 submission gate and stay within E363-selected margins for public-bad-axis, row-state loss, and exposure.
+
+Stress result:
+
+- LOO public-sensor Spearman: ExtraTrees `0.895604`, Ridge1 `0.769231`, Ridge10 `0.686813`, KNN3 `0.642857`;
+- E363-gated pool: `797`;
+- selected replacement: `e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_counter_11`;
+- selected upload-safe file: `analysis_outputs/submission_e364_publiclike_cellaction_selected_e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_co_b851baf9_uploadsafe.csv`;
+- E364 score: `5.169168` versus E363 selected `4.461602`;
+- public-bad-axis sum: `0.004203` versus `0.006034`;
+- row-state predicted public loss: `0.000438374` versus `0.000520036`;
+- E363 robust score: `0.637083` versus `0.681414`;
+- bad-minus-good row-state exposure: `0.137438` versus `0.133573`.
+
+Stress conclusion:
+
+- E363's local target-scale law is real, but not necessarily the best public-transfer point inside the basin.
+- Known-public and row-state sensors prefer a donor-graft candidate with more S1 recovery mass and less public-bad-axis exposure.
+- The improvement signal is diagnostic rather than decisive because the known-public sensor has only `13` available examples. E364 is therefore a high-information public probe, not a guaranteed large-LB candidate.

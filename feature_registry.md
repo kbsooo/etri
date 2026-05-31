@@ -3895,3 +3895,22 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - selected target shares: Q1 `0.580616`, Q2 `0.201798`, Q3 `0.047181`, S1 `0.170405`, S3 `0.000000`.
 - Registry status: approved as the current top submission probe. Use E363 before E362 if only one public slot is available.
 - Failure condition: if E363 public LB fails, do not only keep target-scale tweaking. The next branch should either test the top donor-graft family as a separate hypothesis or build a stricter public-like subset/calibration sensor.
+
+### E364 public-like cell-action calibration latent
+
+- Target hidden structure: public-transfer health inside the E363 row x target cell-action basin.
+- Why needed: E363's local gate is broad enough that local robustness alone no longer ranks candidates sharply. A candidate can be visible and row-state-acceptable while still aligning with known public-bad movements.
+- Feature/action form:
+  - fixed candidate pool: all E363 generated files;
+  - context features: movement anatomy versus E247, projections onto known public-good/bad axes, E363 hidden lifestyle row-state/story exposure, and E363 local stress metrics;
+  - target representation: known public delta versus E247 from available submitted files;
+  - selection rule: replacement must pass E363 gate and improve public-like risk relative to E363 selected within bounded margins.
+- Current evidence:
+  - known available public files: `13`;
+  - LOO Spearman: ExtraTrees `0.895604`, Ridge1 `0.769231`, Ridge10 `0.686813`, KNN3 `0.642857`;
+  - selected file: `analysis_outputs/submission_e364_publiclike_cellaction_selected_e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_co_b851baf9_uploadsafe.csv`;
+  - selected public-bad-axis sum: `0.004203` versus E363 selected `0.006034`;
+  - selected row-state public-loss mean: `0.000438374` versus E363 selected `0.000520036`;
+  - selected target shares: Q1 `0.505235`, Q2 `0.210718`, Q3 `0.053685`, S1 `0.230361`, S3 `0.000000`.
+- Registry status: approved as a high-information public probe. It is less conservative than E363 because it changes family from target-scale to donor-graft.
+- Failure condition: if public LB worsens clearly, treat the known-public sensor as over-trusting donor geometry; return to source-law-preserving E363 or learn a less public-LB-scarce calibration target.

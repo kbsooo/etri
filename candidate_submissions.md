@@ -4567,3 +4567,38 @@ Expected public interpretation:
 - If E363 improves, the current best hidden law is target-balance lifestyle action: Q1 visibility + S1 recovery regularization + S3 suppression.
 - If E363 is worse but E362 is better later, E363 over-amplified Q1/S1 or underweighted Q2.
 - If both fail, the local E272/E358 stress is too permissive and the next target must model public-like subset/calibration state more directly.
+
+## Update After E364 Public-Like Cell-Action Calibration
+
+Selected upload-safe file:
+
+`analysis_outputs/submission_e364_publiclike_cellaction_selected_e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_co_b851baf9_uploadsafe.csv`
+
+Why this can supersede E363 as an information probe:
+
+- E364 does not make a new arbitrary blend. It re-scores the fixed E363 neighborhood using known public-good/bad movement axes and hidden lifestyle row-state exposure.
+- The selected donor-graft candidate ranks `1/797` among E363 submission-gate candidates under the E364 public-like score.
+- It keeps E363 visibility while lowering public-bad-axis exposure and row-state predicted public loss versus the E363 target-scale file.
+- It tests a sharper hypothesis than another scale tweak: S1 recovery mass may need to come from a healthier donor action while S3 remains suppressed.
+
+Evidence versus E363 selected:
+
+- E364 score: `5.169168` versus `4.461602`;
+- public-bad-axis sum: `0.004203` versus `0.006034`;
+- row-state predicted public loss mean: `0.000438374` versus `0.000520036`;
+- predicted public delta mean: `0.000203228` versus `0.000208123`;
+- E363 robust score is lower: `0.637083` versus `0.681414`;
+- row-state bad-minus-good exposure is slightly higher: `0.137438` versus `0.133573`;
+- target shares shift from Q1-heavy target-scale to S1-heavier donor-graft: Q1 `0.505235`, Q2 `0.210718`, Q3 `0.053685`, S1 `0.230361`, S3 `0.000000`.
+
+Submission priority interpretation:
+
+1. If the next public slot is meant to maximize information, submit E364 before E363.
+2. If the next public slot is meant to stay conservative and source-law-preserving, submit E363 first.
+3. Do not submit the top ungated E364 rows; many look public-like only because they are too small or fail E363 local visibility.
+
+Expected public interpretation:
+
+- If E364 improves over E247/E363, donor-grafted S1 recovery is likely a missing hidden lifestyle-action component.
+- If E364 is worse but E363 later improves, the public-like known-axis sensor overtrusted donor geometry and source-law preservation matters more.
+- If both E363 and E364 fail, the E363 basin is locally valid but not public-transferable; the next experiment should learn public-like subset/calibration state more directly instead of perturbing the same action family.

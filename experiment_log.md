@@ -5943,3 +5943,30 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - The refined structure is clearer: Q1 drives most subjective visibility, Q2 should be lower than E362, S1 should be stronger as a health/recovery regularizer, Q3 remains small, and S3 should stay suppressed.
   - Donor grafts produce higher point scores, but they borrow more source-specific geometry and often raise Q3/S1 mass sharply. E363 selects the target-scale refinement because it stays closest to the E362 source law with higher family-level pass rate.
 - Decision: E363 supersedes E362 as the next single public-test candidate. Keep the top donor-graft rows as second-order probes only after E363 public feedback.
+
+## E364. Public-Like Cell-Action Calibration Stress
+
+- Observe: E363 made the E362 cell-action basin look real, but it also made the local gate too broad: `797/1586` candidates passed. A broad local pass rate can mean either a robust hidden law or an overly permissive validation sensor.
+- Wonder: among E363-passing candidates, which movements avoid the known public-bad axes from E216/E267/E323/final9/ordinal while still landing on healthier E328 hidden lifestyle row states?
+- Hypothesis: if the current hidden lifestyle action needs a public-like calibration layer, a known-public contrast sensor should demote some locally robust E363 candidates and may elevate a donor-graft candidate that preserves visibility with lower bad-axis and row-state risk.
+- Method: `analysis_outputs/e364_public_like_cellaction_calibration.py`.
+  - Candidate pool: all `1586` E363 candidates.
+  - Context view: logit movement anatomy versus E247, projections onto known public-good/bad submission axes, E363 row-state/story latent exposure, and E363 local robustness metrics.
+  - Target view: fixed known public delta versus E247 for `13` available public-observed files.
+  - Anti-collapse: leave-one-public-file-out public sensor plus replacement gates relative to the existing E363 selection.
+- Result:
+  - public-sensor LOO Spearman: ExtraTrees `0.895604`, Ridge1 `0.769231`, Ridge10 `0.686813`, KNN3 `0.642857`;
+  - E363 original score under E364: `4.461602`;
+  - selected replacement: `e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_counter_11`;
+  - selected upload-safe file: `analysis_outputs/submission_e364_publiclike_cellaction_selected_e362_graft_donor_q3s1_e360_e349_compact_core__learned_pc_episode_s1_co_b851baf9_uploadsafe.csv`;
+  - selected E364 score: `5.169168`;
+  - predicted public delta mean: `0.000203228` versus E363 original `0.000208123`;
+  - public bad-axis sum: `0.004203` versus E363 original `0.006034`;
+  - row-state predicted public loss: `0.000438374` versus E363 original `0.000520036`;
+  - row-state bad-minus-good exposure: `0.137438`, slightly worse than E363 original `0.133573`;
+  - target shares: Q1 `0.505235`, Q2 `0.210718`, Q3 `0.053685`, S1 `0.230361`, S3 `0.000000`.
+- Interpretation:
+  - E363's target-scale candidate is no longer the only credible next probe. E364 says a donor-graft branch may express the same hidden lifestyle action with less known-public-bad projection and lower row-state public-loss.
+  - This is not a guaranteed score candidate: the public-predicted delta improvement over E363 is tiny, and the sensor has only `13` available public files.
+  - The information value is high because E364 tests a different world model: whether S1 recovery mass should be imported from a healthier donor action rather than produced by simple target-scale refinement.
+- Decision: E364 becomes the most information-rich next public probe if one slot is spent, but the expected score edge is modest. E363 remains the conservative source-law-preserving reference.
