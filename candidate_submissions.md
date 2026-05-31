@@ -26,6 +26,8 @@ Current next submission candidate: **none selected after E312**.
 
 Public LB budget is now treated as scarce. A file is not submission-worthy unless it passes public-free governance: selector visibility, matched-null rarity, mode-wise dominance, wrong-direction or wrong-pair controls where applicable, and leave-experiment-out action-health sanity. E312 specifically blocks E310/E311 descendants because their apparent edges are predictable null-common action geometry.
 
+Update after E313: this remains **none selected**. Raw human-diary action signatures are real diagnostics, especially for readiness distance (`0.700161` Spearman), but they do not beat the geometry/null-common blocker and their top-ranked rows are mostly safe-but-too-small. Do not submit E313-ranked files directly.
+
 Resolved or historical sensors after E247:
 
 - E256 amplitude-constrained E247 follow-up: public `0.5762805676`, worse than E247 but still slightly better than E95. Broad feature-NN1 Q3 smoothing remains live; high-amplitude refinement is rejected.

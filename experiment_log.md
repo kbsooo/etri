@@ -4805,3 +4805,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - `full_safe` readiness-distance OOF Spearman: `0.102712`.
 - Interpretation: the current failure is not that we lack enough human stories. The stronger signal is that action recipes themselves fall into predictable geometry classes: safe-but-invisible or visible-but-null-common. E312 is therefore a local blocker/gate, not a generator. It can stop bad public tests, but it cannot yet rank a ready submission because visible/null-rare positives are almost absent.
 - Decision: no E312 public submission. The next useful experiment must create a genuinely new action class or train richer row/block action-health from synthetic controls before materializing probabilities.
+
+## E313. Human-Diary Action Signature
+
+- Observe: E312 saw candidate action geometry but not the actual raw human/lifestyle state of the rows each candidate touched.
+- Wonder: if human/social hidden state is really relevant, does the delta-weighted diary signature of touched test rows explain action health beyond recipe geometry?
+- Method: `analysis_outputs/e313_human_action_signature.py` reads `1379/1383` governed candidate submission files, computes logit deltas versus E247, and projects those deltas onto test-side E268/E270/E273 human diary features. It evaluates `human_signature`, `shape_signature`, `geometry_only`, and combined blocks under leave-experiment-out stress. No public LB and no submission file.
+- Result:
+  - selected human aggregate columns: `520`;
+  - `human_signature` null-common AUC: `0.866674`;
+  - `shape_signature` null-common AUC: `0.945643`;
+  - `geometry_only` null-common AUC: `0.982733`;
+  - `geometry_plus_shape` null-common AUC: `0.987170`;
+  - `geometry_shape_human` null-common AUC: `0.956459`;
+  - `human_signature` readiness-distance Spearman: `0.700161`;
+  - `geometry_only` readiness-distance Spearman: `0.031522`;
+  - within selector-visible rows, `human_signature` null-common AUC is `0.745343` versus geometry-only `0.537255`, but this slice is extremely imbalanced.
+- Interpretation: raw human row placement is real, but it is not the main global null-common blocker. Its strongest role is ranking how close a candidate is to readiness and distinguishing the rare safe cases inside already-visible rows. The top human-ready rows are mostly `safe_but_too_small_or_wrong_sign`, so the missing piece is still a materializer that can make those human-aligned rows visible without crossing into null-common geometry.
+- Decision: no E313 public submission. Next useful branch: use human-readiness energy as a target for a new action class, not as a direct submission selector.

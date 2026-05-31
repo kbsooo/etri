@@ -805,3 +805,19 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - `full_safe` readiness-distance OOF Spearman: `0.102712`.
 - interpretation: public LB should not be used to test E310/E311 descendants. The archive says their failure is predictable action geometry: many candidates are visible or safe, but almost none are both.
 - next experiment: generate a new action class or train a richer row/block action-health objective. The governor may veto submissions, but it cannot certify a ready file by itself.
+
+## Public-Free Observation: E313
+
+- submission files: none.
+- public LB: not submitted.
+- reason not submitted: E313 is a human-diary action signature audit, not a probability tensor.
+- local observation:
+  - candidate files found: `1379/1383`;
+  - human aggregate columns: `520`;
+  - `human_signature` null-common AUC: `0.866674`;
+  - `geometry_only` null-common AUC: `0.982733`;
+  - `geometry_plus_shape` null-common AUC: `0.987170`;
+  - `human_signature` readiness-distance Spearman: `0.700161`;
+  - `geometry_only` readiness-distance Spearman: `0.031522`.
+- interpretation: human/lifestyle row placement is real but not sufficient for public submission selection. It explains readiness distance and some selector-visible rare cases, while geometry remains the stronger global null-common checker.
+- next experiment: use human-readiness energy to create a new materializer that starts from safe-but-too-small human-aligned rows and tries to become visible without entering the geometry null-common region.

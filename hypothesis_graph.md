@@ -3554,6 +3554,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on candidates blocked by E312 geometry/null checks. A future public-positive file that E312 predicts null-common would mean the governor is too conservative or missing a new action class.
 - 제출 전략: none from E312 alone. Use it to block public tests; create new action classes or richer row/block synthetic controls before selecting a submission.
 
+### H313: raw human diary row placement explains action readiness as an energy, not as a global binary gate
+
+- 상태: 지지됨 as a readiness/energy representation; 반증됨 as a direct submission selector.
+- 왜 그럴듯한가: E312 used candidate metadata and geometry, but not the actual lifestyle state of touched test rows. If human/social theory matters, delta-weighted diary signatures should explain which actions are close to readiness.
+- 맞다면: human-diary signatures should predict some action-health outcomes under leave-experiment-out stress, especially readiness distance or selector-visible rare cases. They may fail as a global null-common classifier if positives are too sparse.
+- 틀리다면: human signatures should be near chance for null-common, readiness distance, and selector-visible slices, and top coefficients should look like noise.
+- 최소 실험: `analysis_outputs/e313_human_action_signature.py`.
+- 관측: candidate files found `1379/1383`; selected human aggregate columns `520`. `human_signature` null-common AUC `0.866674`, below geometry-only `0.982733`; `geometry_shape_human` null-common AUC worsens to `0.956459`. But `human_signature` readiness-distance Spearman is `0.700161`, far above geometry-only `0.031522`. In selector-visible rows, human null-common AUC is `0.745343` versus geometry-only `0.537255`, though the slice has positive rate `0.976077`.
+- 성공/폐기 기준: keep human signatures as energy if they rank readiness distance and rare selector-visible cases. Reject them as direct gates if adding them to geometry worsens global held-out null-common classification or top rows remain too small.
+- public LB 관측 반응: no public LB should be spent on E313-ranked files directly. A future public-positive action generated from human-readiness seeds would strengthen H313 only if it also passes matched-null geometry controls.
+- 제출 전략: none from E313 alone. Next strategy is a new materializer: start from safe-but-too-small human-ready rows and reshape/amplify them while preserving geometry-plus-shape null rarity.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

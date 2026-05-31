@@ -2340,3 +2340,21 @@
 - Implementation issue possible: medium. A richer synthetic-control dataset could create more positive examples. Low for using the current E312 model as a certifier.
 - Bottleneck implication: action-health modeling is a blocker/gate now, not a generator.
 - Do not repeat: submitting a file only because E312 ranks it high. It must still pass direct row/subject/dateblock/wrong-control governance.
+
+## FH260. Raw human-diary action signatures improve the global null-common blocker beyond geometry
+
+- Failed hypothesis: once candidate deltas are projected onto raw lifestyle rows, human/social context should improve global action-health classification beyond E312 action geometry.
+- Observed result: E313's `human_signature` null-common AUC is `0.866674`, but `geometry_only` is `0.982733` and `geometry_plus_shape` is `0.987170`. Adding human signatures to geometry lowers global null-common AUC to `0.956459`.
+- Why discard: human row placement is predictive, but high-dimensional human signatures do not add stable global null-common discrimination over action geometry under leave-experiment-out stress.
+- Implementation issue possible: medium. E313 uses linear/logistic heads and aggregate signatures; a lower-dimensional energy model may use the signal better. Low for rejecting blind human-feature concatenation as a public-free submission gate.
+- Bottleneck implication: the immediate checker remains geometry/null governance. Human context should guide new action construction, not override the geometry blocker.
+- Do not repeat: recommending public tests because a candidate touches plausible human/social/payday rows while its geometry remains null-common.
+
+## FH261. Human-readiness top-ranked rows are already submission-ready
+
+- Failed hypothesis: the strong E313 human readiness-distance signal should reveal a ready public-free candidate in the existing archive.
+- Observed result: `human_signature` readiness-distance Spearman is strong at `0.700161`, but top human-ready rows are mostly `safe_but_too_small_or_wrong_sign`; many have null strict rate `0.000000` but actual p90 near zero or positive and selector_visible false.
+- Why discard: human readiness identifies promising seed states, not enough probability movement.
+- Implementation issue possible: medium. The existing archive may simply lack the right action class. This does not reject human-readiness energy as a target for generating new actions.
+- Bottleneck implication: the next step is a materializer problem: amplify or reshape human-aligned safe actions without entering the null-common geometry region.
+- Do not repeat: submitting top E313 human-readiness rows directly.

@@ -3608,3 +3608,35 @@ Decision:
 - E312 is strong enough as a public-free blocker: if a new action is predicted as null-common by geometry, it should not be submitted.
 - E312 is not yet a submission selector: the archive has too few visible/null-rare positives and readiness ranking does not transfer well.
 - Promotion rule update: a future file must pass matched-null governance directly; action-health predictions can veto but cannot certify by themselves.
+
+## E313 Human-Diary Action Signature Stress
+
+Question: does the raw lifestyle context of touched rows add public-free action-health signal beyond geometry?
+
+Method: `analysis_outputs/e313_human_action_signature.py`.
+
+- Inputs: E312 governed rows plus candidate submission files, E247 current frontier, and test-side E268/E270/E273 human diary features.
+- Rows: `1383` governed candidates; candidate files found `1379`.
+- Feature views:
+  - `human_signature`: delta-weighted human/social/cashflow/diary features of touched rows;
+  - `shape_signature`: candidate delta shape only;
+  - `geometry_only`: E312 non-leaking action geometry;
+  - combined geometry/shape/human blocks.
+- Split: leave-one-experiment-family-out.
+- Public LB: not used.
+
+Result:
+
+- `human_signature` null-common AUC: `0.866674`.
+- `geometry_only` null-common AUC: `0.982733`.
+- `geometry_plus_shape` null-common AUC: `0.987170`.
+- `geometry_shape_human` null-common AUC: `0.956459`.
+- `human_signature` readiness-distance Spearman: `0.700161`.
+- `geometry_only` readiness-distance Spearman: `0.031522`.
+- In selector-visible rows, `human_signature` null-common AUC is `0.745343`, but positive rate is `0.976077`, so this is a rare-negative diagnostic, not a certificate.
+
+Decision:
+
+- Human diary row placement is a real diagnostic, especially for readiness distance.
+- It does not improve the global null-common blocker over action geometry and therefore cannot certify a submission.
+- Promotion rule update: human-readiness energy can rank or guide new materializers, but every resulting file still needs direct matched-null passage.

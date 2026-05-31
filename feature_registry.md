@@ -2808,3 +2808,31 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - semantic story improvements must still prove that their translated action has different geometry from wrong-row/wrong-pair controls.
 - Failure condition:
   - if a feature only raises semantic plausibility while leaving action geometry in the null-common region, reject it before public LB.
+
+## E313 Human-Diary Action Signature Features
+
+- Target hypothesis tested:
+  - the raw lifestyle context of rows touched by a candidate contains action-health signal that E312's recipe/geometry features missed.
+- Feature/representation source:
+  - E268 human/social story features;
+  - E270 payday/cashflow cycle features;
+  - E273 human diary JEPA state features;
+  - candidate logit deltas versus E247, aggregated as abs-weighted, signed, active-row, and Q-minus-S diary signatures.
+- Validation result:
+  - governed rows `1383`;
+  - candidate files found `1379`;
+  - selected human aggregate columns `520`;
+  - `human_signature` null-common AUC `0.866674`;
+  - `geometry_only` null-common AUC `0.982733`;
+  - `geometry_plus_shape` null-common AUC `0.987170`;
+  - `human_signature` readiness-distance Spearman `0.700161`.
+- Updated registry status:
+  - approved as a diagnostic/energy feature family;
+  - not approved as a direct submission certifier;
+  - top signals include routine-calendar, weekend social jetlag, bright-light, bedtime-phone, cognitive-money, cash-stress/payday, screen fragmentation, and mobility signatures.
+- Adopt rule for future features:
+  - use human signatures to rank safe-but-too-small action seeds or explain selector-visible rare cases;
+  - do not add high-dimensional human signatures blindly to geometry gates, because E313 shows global null-common transfer worsens;
+  - future materializers should treat human-readiness distance as a regression/energy target rather than a binary null-common label.
+- Failure condition:
+  - if a candidate is human-ready but remains below selector resolution, do not submit it; use it as a seed for a new action class.
