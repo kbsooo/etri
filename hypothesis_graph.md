@@ -3590,6 +3590,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on `submission_e315_humancomp_*`. A future submission from this branch must first show direct row/subject/dateblock placement health, not only semantic coherence or target/sign robustness.
 - 제출 전략: none from E315. Next strategy is to learn subject/dateblock/row placement health from E315/E314/E313 governed candidates, or to construct a non-additive materializer that explicitly optimizes the failing mode-specific dominance.
 
+### H316: human diary signatures recover intended placement but not placement health
+
+- 상태: 지지됨 for hidden placement identity; 반증됨 as a submission-health certificate.
+- 왜 그럴듯한가: E315 near misses failed because row/subject/dateblock placement was wrong, not because the human/social stories were empty. If raw diary context contains the hidden lifestyle state, it should distinguish the intended placement from matched row/subject/dateblock null placements.
+- 맞다면: a leave-source-out actual-vs-placement-null classifier using human diary signatures should rank the actual placement above matched nulls, while action-shape-only features should not. If this is also health, identity rank should correlate with null strict rate and worst-mode dominance.
+- 틀리다면: human signatures should be near chance against placement nulls, or action shape should explain the same identity result. If identity is a shortcut, it should not align strongly with health metrics.
+- 최소 실험: `analysis_outputs/e316_human_placement_health_learner.py`.
+- 관측: placement rows `1541`, sources `67`, placement null rows `1005`. `human_signature` actual-vs-placement-null AUC `0.998856`, AP `0.992019`, mean actual rank `0.999005`; `action_shape` AUC `0.500000`. But identity-health alignment is weak: Spearman `0.159448` versus worst-mode p90 dominance and `-0.206034` versus null strict rate.
+- 성공/폐기 기준: keep human diary signatures as a hidden-placement identity representation. Reject actual-vs-null identity as a sufficient public-free submission gate.
+- public LB 관측 반응: no public LB should be spent on E316 itself or on candidates justified only by recognizable human placement. A future public-positive file from this branch must first pass direct placement-health controls locally.
+- 제출 전략: none from E316. Next strategy is an outcome-health target that predicts row/subject/dateblock dominance and uses identity rank only as one feature.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

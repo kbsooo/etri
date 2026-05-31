@@ -3697,3 +3697,30 @@ Decision:
 - No E315 file should be submitted.
 - Human/social composition is not useless: it strengthens local edges and identifies target-specific stories, especially bedtime arousal and S1 routine fragmentation.
 - The blocker is still hidden placement. The next benchmark should directly predict subject/dateblock/row placement health, not stack more existing deltas.
+
+## E316 Human Placement-Health Stress
+
+Question: can raw human diary context check placement locally so public LB is not used as the checker?
+
+Method: `analysis_outputs/e316_human_placement_health_learner.py`.
+
+- Inputs: E315 governed actual candidates, E315 row/subject/dateblock null placements, E247 current frontier, and E313 human diary signature machinery.
+- Rows: `1541` placement rows from `67` source candidates.
+- Null rows: `1005` placement nulls and `1474` total nulls.
+- Split: grouped by `source_basename` so the same candidate family is not memorized across folds.
+- Public LB: not used.
+
+Result:
+
+- `human_signature` actual-vs-placement-null AUC `0.998856`, AP `0.992019`, logloss `0.071854`.
+- `human_plus_shape` actual-vs-placement-null AUC `0.998129`.
+- `action_shape` and `shape_signature` actual-vs-placement-null AUC `0.500000`.
+- `human_signature` mean actual rank against placement nulls `0.999005`.
+- `human_plus_shape` predicts local p90 with Spearman `0.900789`; `action_shape` alone `0.813769`; human-only `0.391977`.
+- Identity rank correlation with health is weak: Spearman `0.159448` versus worst-mode p90 dominance and `-0.206034` versus null strict rate.
+
+Decision:
+
+- E316 passes the hidden-placement identity stress: human diary signatures recover intended placement, and shape alone cannot.
+- E316 fails as a submission-health certifier: intended placement is not the same as locally healthy placement.
+- Promotion rule update: actual-vs-null identity can be used as a diagnostic feature, but public submission still requires direct row/subject/dateblock health dominance. Public LB is not the checker.

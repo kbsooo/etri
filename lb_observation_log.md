@@ -858,3 +858,24 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - routine-fragmentation/S1 target consensus is a strong information sensor but fails row dominance.
 - interpretation: public LB should not be spent. E315 says the human/social branch is still useful for world modeling, but existing probability-delta composition does not solve hidden placement.
 - next experiment: train or construct a placement-health target from E315 near misses rather than stacking more human-ready deltas.
+
+## Public-Free Observation: E316
+
+- submission files: none.
+- public LB: not submitted.
+- reason not submitted: E316 is a local hidden-placement diagnostic and explicitly finds that placement identity is not enough for health.
+- local observation:
+  - placement rows: `1541`;
+  - source candidates: `67`;
+  - actual rows: `67`;
+  - placement null rows: `1005`;
+  - all null rows: `1474`;
+  - `human_signature` actual-vs-placement-null AUC: `0.998856`;
+  - `human_signature` AP: `0.992019`;
+  - `human_signature` mean actual rank: `0.999005`;
+  - `action_shape` actual-vs-placement-null AUC: `0.500000`;
+  - `human_plus_shape` local p90 Spearman: `0.900789`;
+  - identity rank vs worst-mode p90 dominance Spearman: `0.159448`;
+  - identity rank vs null strict rate Spearman: `-0.206034`.
+- interpretation: hidden human/social placement identity is real and locally measurable without public LB. But the health target is different from the identity target, so public LB should not be used until a candidate passes direct placement-health governance.
+- next experiment: train an outcome-health target for row/subject/dateblock dominance using E315/E316 near misses, with actual-vs-null identity as only one input feature.

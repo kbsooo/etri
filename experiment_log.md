@@ -4859,3 +4859,22 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - strongest information sensor: `routine_fragmentation/S1`, with mean `-0.001506650` and p90 `-0.000523248`, but row dominance only `0.2` on the top candidate.
 - Interpretation: human/social compositions create larger and more interpretable local edges than single lifts, but the failure mode is still hidden placement. Bedtime arousal survives target/sign controls but not null frequency; orthogonal story stacks survive row/target/sign controls but fail subject/dateblock placement; S1 routine fragmentation has a strong target signal but fails row placement.
 - Decision: no E315 public submission. The next useful experiment should stop stacking existing probability deltas and instead learn the missing invariant directly: subject/dateblock/row placement health for the human/social action, likely using the E315 near-miss candidates as supervised positives/negatives for an action-placement target.
+
+## E316. Human Placement-Health Learner
+
+- Observe: E315's strongest candidates were semantically coherent and often locally strong, but they failed row/subject/dateblock controls. The user also clarified that public LB cannot be the checker.
+- Wonder: can raw human diary signatures tell whether an action is placed in its intended hidden lifestyle context, and does that identity signal also imply healthy placement?
+- Method: `analysis_outputs/e316_human_placement_health_learner.py` treats E315 actual candidates and their row/subject/dateblock null placements as a mini-world. It builds delta-weighted human diary signatures, action-shape signatures, and combined views, then evaluates actual-vs-null identity and local score regression with group splits by source candidate. No public LB and no submission file.
+- Result:
+  - placement rows: `1541`;
+  - sources: `67`;
+  - actual rows: `67`;
+  - placement null rows: `1005`;
+  - all null rows: `1474`;
+  - `human_signature` actual-vs-placement-null AUC `0.998856`, AP `0.992019`, logloss `0.071854`;
+  - `action_shape` actual-vs-placement-null AUC `0.500000`;
+  - mean actual rank versus placement nulls `0.999005`;
+  - `human_plus_shape` local p90 regression Spearman `0.900789`, while human-only p90 Spearman is `0.391977`;
+  - identity rank has weak health alignment: Spearman `0.159448` versus worst-mode p90 dominance and `-0.206034` versus null strict rate.
+- Interpretation: this is the first very strong positive result for hidden human/social placement identity. The raw diary representation knows where the designed action "belongs" better than action-shape controls. But identity is not health: many near misses have actual rank `1.0` and still worst-mode dominance `0.0`. JEPA target design must therefore predict placement outcome health, not merely reconstruct intended placement.
+- Decision: no E316 public submission. E316 is now a local checker design result: public LB should not be spent on human/social files unless they pass a direct placement-health target with row/subject/dateblock dominance.

@@ -2394,3 +2394,21 @@
 - Implementation issue possible: low for direct submission, medium for future use as supervision. These stories may still be useful labels for a hidden placement model.
 - Bottleneck implication: human/social theory is not enough unless JEPA learns where the story lives in the hidden subject/calendar block.
 - Do not repeat: submitting a file because its story reads well, even when mode-specific nulls expose the placement failure.
+
+## FH266. Actual-vs-null placement identity is enough to certify a submission
+
+- Failed hypothesis: if raw human diary context can identify the intended placement of a human/social action against row/subject/dateblock nulls, then that candidate is likely public-free healthy.
+- Observed result: E316 strongly identifies actual placement with `human_signature` AUC `0.998856`, AP `0.992019`, and mean actual rank `0.999005`, but identity rank correlates only `0.159448` with worst-mode p90 dominance and `-0.206034` with null strict rate. Many near misses have actual rank `1.0` and still fail subject/dateblock or worst-mode health.
+- Why discard: intended placement is partly a reconstruction target of our materializer. Health is a different target: whether the movement beats matched row/subject/dateblock alternatives on LogLoss proxies.
+- Implementation issue possible: low for this conclusion because the identity result is very strong and the health correlation is directly measured on the same source candidates. Medium for future nonlinear health models that use identity as one feature.
+- Bottleneck implication: the JEPA target cannot be only "recover hidden placement identity." It must be "recover hidden outcome health under placement controls."
+- Do not repeat: using high actual-vs-null recognizability or coherent human diary placement as a public submission certificate.
+
+## FH267. Action shape alone explains E315 actual placement identity
+
+- Failed hypothesis: E316's placement identity result might be a trivial artifact of movement scale, target share, or action shape rather than human/social diary context.
+- Observed result: `action_shape` and `shape_signature` both score AUC `0.500000` on actual-vs-placement-null identity, while `human_signature` scores AUC `0.998856`.
+- Why discard: row/subject/dateblock null placements preserve enough action-shape structure that shape alone cannot distinguish actual from null. The identifying signal is in the human diary placement.
+- Implementation issue possible: low for this mini-world. Future larger placement datasets should still include shape controls.
+- Bottleneck implication: the human/social context is genuinely informative, but only for identity unless paired with health labels.
+- Do not repeat: dismissing the human/social branch as only action-shape replay.

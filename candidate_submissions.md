@@ -3208,3 +3208,25 @@ Meaning:
 - Do not submit `analysis_outputs/submission_e315_humancomp_*.csv`.
 - Human/social theory is still useful, but not as additive probability stacking.
 - The next submission-worthy path must prove hidden placement health locally: row/subject/dateblock dominance first, public LB later.
+
+## Update After E316 Human Placement-Health Learner
+
+Current submission policy remains: **no new public submission.**
+
+Why:
+
+- E316 is a diagnostic model, not a submitted tensor.
+- Human diary signatures identify intended E315 placement extremely well: actual-vs-placement-null AUC `0.998856` and mean actual rank `0.999005`.
+- Shape/action metadata alone cannot identify intended placement: AUC `0.500000`.
+- But identity does not certify health. Identity rank has only weak correlation with worst-mode p90 dominance (`0.159448`) and negative correlation with null strict rate (`-0.206034`).
+- Several near misses are exactly the dangerous case: actual placement rank `1.0`, but subject/dateblock/worst-mode health fails.
+
+Meaning:
+
+- Do not submit a file just because the human/social story placement is recognizable.
+- Public LB should be reserved for a file that first passes a direct placement-health target: row, subject, dateblock, and worst-mode dominance.
+- The next candidate generator should learn or optimize health, not actual-vs-null identity.
+
+Current best public file remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.

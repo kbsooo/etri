@@ -2891,3 +2891,34 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - treat target/sign robustness as necessary but insufficient.
 - Failure condition:
   - if a candidate only beats target permutation, Q/S swap, and sign controls but loses subject/dateblock or row controls, classify it as a real semantic direction with wrong hidden placement, not a submission.
+
+## E316 Human Placement Identity and Health Features
+
+- Target hypothesis tested:
+  - raw human diary context can recover hidden placement information from E315 actual/null mini-worlds, and that signal may or may not align with action health.
+- Feature/representation source:
+  - E313 delta-weighted human diary signatures;
+  - E315 actual candidate placements;
+  - E315 row, subject, and dateblock null placements;
+  - action-shape features such as touched cells, row concentration, target share, and movement magnitude.
+- Validation result:
+  - placement rows `1541`;
+  - source candidates `67`;
+  - placement null rows `1005`;
+  - `human_signature` actual-vs-placement-null AUC `0.998856`;
+  - `human_signature` AP `0.992019`;
+  - `human_signature` mean actual rank `0.999005`;
+  - `action_shape` AUC `0.500000`;
+  - `human_plus_shape` local p90 Spearman `0.900789`;
+  - identity rank vs worst-mode p90 dominance Spearman `0.159448`;
+  - identity rank vs null strict rate Spearman `-0.206034`.
+- Updated registry status:
+  - human placement identity is approved as a strong diagnostic representation;
+  - action shape is not approved as an identity feature in this mini-world;
+  - identity rank is not approved as a submission-health gate.
+- Adopt rule for future features:
+  - use actual-vs-placement-null identity as one input to a health model, not as a standalone promotion rule;
+  - require mode-specific health labels: row dominance, subject dominance, dateblock dominance, and worst-mode dominance;
+  - public LB must not be used to resolve files that fail these local health labels.
+- Failure condition:
+  - if a candidate is highly recognizable as the intended human/social placement but has low subject/dateblock/worst-mode dominance, classify it as identity-positive and health-negative.
