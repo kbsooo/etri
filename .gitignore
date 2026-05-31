@@ -250,6 +250,9 @@ analysis_outputs/*
 !analysis_outputs/e368_q2s1_rowmask_cellaction_*.md
 !analysis_outputs/e368_q2s1_rowmask_cellaction_*.py
 !analysis_outputs/submission_e368_q2s1rowmask_selected_*_uploadsafe.csv
+!analysis_outputs/e369_q2s1_lifestyle_transfer_*.csv
+!analysis_outputs/e369_q2s1_lifestyle_transfer_*.md
+!analysis_outputs/e369_q2s1_lifestyle_transfer_*.py
 
 !analysis_outputs/bridge_scan_candidates/
 analysis_outputs/bridge_scan_candidates/*

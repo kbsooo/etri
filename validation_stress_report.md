@@ -5441,3 +5441,33 @@ Stress conclusion:
 - E368 is locally stronger than E365 under this Q2/S1-specific stress and is not explained by direct-public mask copying or random row placement.
 - The selected movement is narrow: versus E365, only Q2 (`34` rows, max abs `0.005157`) and S1 (`160` rows, max abs `0.002106`) change.
 - Remaining risk: all known-public observations are still scarce and relative to E247, so public LB must be treated as a sensor for whether the Q2/S1 lifestyle validity world model is real.
+
+## E369 Public-Free Q2/S1 Lifestyle-Transfer Stress
+
+Question: does the E368 Q2/S1 action align with train-side hidden lifestyle residual states without public LB labels?
+
+Stress setup:
+
+- script: `analysis_outputs/e369_q2s1_lifestyle_transfer_audit.py`;
+- target representation: Q2/S1 train residual after subject/calendar base model;
+- context views: family, JEPA residual, story bundle, raw day, family-story, family-JEPA-story;
+- probe families: masked residual student, kNN train-residual analogy, kMeans train-residual cluster analogy;
+- null: `160` permuted test-gate/movement controls per alignment;
+- movement audit: E368 selected file versus E365, with E323 bad-axis cosine.
+
+Stress result:
+
+- decision: `support_e368_hidden_lifestyle_state`;
+- Q2 supports: `64` total = `5` student, `24` kNN, `35` cluster;
+- S1 supports: `42` total = `5` student, `18` kNN, `19` cluster;
+- Q2 best abs gate Spearman: `0.369592`; best abs movement Spearman: `0.421147`;
+- S1 best abs gate Spearman: `0.232458`; best abs movement Spearman: `0.181906`;
+- E368 movement versus E365: `168` rows, `194` cells, mean abs logit delta `0.000106680`;
+- all-target E323 bad-axis cosine: `0.001520`;
+- Q2-only E323 bad-axis cosine versus E365: `0.591735`, but versus E247: `-0.014661`.
+
+Stress conclusion:
+
+- E368 passes a stronger test than H368 alone: public-free lifestyle residual structure independently points to the Q2/S1 rows that E368 changes.
+- This supports hidden lifestyle-state transfer rather than direct public-row copying.
+- The Q2-only bad-axis warning prevents broad amplification. Future E368 descendants should be Q2-amplitude constrained or explicitly neutralized against Q2 bad-axis movement.

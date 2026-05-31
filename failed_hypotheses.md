@@ -2808,3 +2808,12 @@
 - Implementation issue possible: medium. The known-public sensor is still scarce and relative to E247, so this only rejects the direct/null-artifact explanation locally. Public LB can still falsify transfer.
 - Bottleneck implication: the live path is now target-specific lifestyle validity, especially Q2/S1, not aggregate row-mask gating.
 - Do not repeat: direct-public Q2/S1 mask submissions unless a public-free validation proxy supports them. They are diagnostic controls, not selected candidates.
+
+## FH312. E368 is only a known-public sensor artifact
+
+- Failed hypothesis: E368's Q2/S1 action is only a public-row-support artifact and should not be recoverable from train-side lifestyle labels without public LB targets.
+- Observed result: E369 used Q2/S1 train residuals after a subject/calendar base model as a public-free target. The E368 gate/movement aligned with masked residual student, kNN residual analogy, and cluster residual analogy beyond permutation nulls. Q2 had `64` supporting rows; S1 had `42`.
+- Why discard: direct public-row support is no longer the only explanation. A separate train-side hidden lifestyle residual state points to similar Q2/S1 rows.
+- Implementation issue possible: medium. The residual models are small and some teacher R2 values are negative, so this proves alignment and transfer, not a perfect predictive model.
+- Bottleneck implication: the next bottleneck is calibration/amplitude, not discovering whether Q2/S1 hidden lifestyle validity exists at all.
+- Do not repeat: rejecting E368 solely because its first teacher used known-public row masks. Future objections should target Q2 amplitude, Q2 bad-axis similarity, or public/private prior calibration.

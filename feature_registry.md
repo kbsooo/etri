@@ -3992,3 +3992,21 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - selected file: `analysis_outputs/submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv`.
 - Registry status: approved as the current highest-information local submission candidate, public LB pending.
 - Failure condition: if public LB worsens clearly, do not keep sweeping Q2/S1 masks from the same known-public target. Treat the target as locally valid but public-transfer overfit, and build a public-free Q2/S1 calibration proxy.
+
+### E369 public-free Q2/S1 lifestyle residual transfer
+
+- Target hidden structure: Q2/S1 lifestyle residual state that can be learned from train labels and context views without public LB targets.
+- Why needed: E368 beat direct-public and null row masks, but its target representation still came from known-public row support. E369 asks whether train-side hidden lifestyle residuals independently explain the same Q2/S1 action.
+- Feature/action form:
+  - no new submission movement;
+  - base features: subject/calendar model;
+  - teacher: Q2/S1 train residual after the base model;
+  - context views: family PCs, JEPA residuals, story bundle, raw day, family-story, family-JEPA-story;
+  - diagnostics: masked residual student, kNN residual analogy, cluster residual analogy, permuted gate/movement nulls, E323-axis movement audit.
+- Current evidence:
+  - Q2: `64` supporting rows, best gate Spearman `0.369592`, best abs-delta Spearman `0.421147`;
+  - S1: `42` supporting rows, best gate Spearman `0.232458`, best abs-delta Spearman `0.181906`;
+  - all-target E323 bad-axis cosine `0.001520`;
+  - Q2-only E323 cosine versus E365 `0.591735`, so Q2 amplitude must be monitored.
+- Registry status: approved as validation evidence for E368, not as a standalone submission feature.
+- Failure condition: do not use E369 scores to amplify E368 unless the Q2 target-only bad-axis warning is neutralized.

@@ -4260,3 +4260,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept locally only if both Q2 and S1 beat null p95, row-mask target is stable, best learned gate beats best direct-public and null gates, and movement is limited to Q2/S1 relative to E365. This is observed.
 - public LB 관측 반응: if E368 improves public LB, the live hidden law becomes target-specific lifestyle validity: Q2 intervention-state damping plus S1 recovery-state correction. If E368 worsens, the local public-sensor ranking overfit known-public Q2/S1 row support even though it beat null controls.
 - 제출 전략: `analysis_outputs/submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv` is now the highest-information local candidate.
+
+### H369: E368 Q2/S1 validity corresponds to a public-free hidden lifestyle residual state
+
+- 상태: locally supported; public LB pending.
+- 왜 그럴듯한가: H368's teacher used known-public Q2/S1 row support, so the remaining objection is public-sensor overfit. If the same rows are recoverable from train residual lifestyle state, E368 is more likely to be a real hidden lifestyle-state action.
+- 맞다면: Q2/S1 train residual states predicted from lifestyle context should align with E368's test gate and selected Q2/S1 cell movement under masked-student, kNN, and cluster probes, beating permuted test-gate/movement nulls.
+- 틀리다면: only public-trained rowmask scores should align with E368, while public-free train residual probes should fall inside permutation nulls or align with E323 bad movement.
+- 최소 실험: `analysis_outputs/e369_q2s1_lifestyle_transfer_audit.py`.
+- 관측: Q2 has `64` supporting rows across public-free probes; S1 has `42`. Q2 best abs gate Spearman is `0.369592`, best abs-delta Spearman `0.421147`; S1 best abs gate Spearman is `0.232458`, best abs-delta Spearman `0.181906`. E368 all-target E323-bad cosine is `0.001520`, though Q2-only cosine versus E365 is `0.591735`.
+- 성공/폐기 기준: accept if both Q2 and S1 have support from at least two probe families and all-target E323-bad cosine stays small. This is observed. Monitor Q2 target-only bad-axis cosine before amplifying.
+- public LB 관측 반응: if E368 improves, H368/H369 become the strongest current world model: target-specific Q2 intervention validity plus S1 recovery validity. If E368 worsens, the public-free residual alignment was real but not public-calibrated, and the next experiment should damp or re-sign Q2 rather than abandon S1.
+- 제출 전략: no E369 file. Keep the E368 upload-safe file as the current candidate; future derived files must include Q2 target-only bad-axis stress.

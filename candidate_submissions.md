@@ -4696,3 +4696,28 @@ Expected public interpretation:
 - If public LB improves, prioritize target-specific lifestyle validity and build the next experiment around Q2/S1 local calibration rather than aggregate row gates.
 - If public LB is neutral, E368 may still be a useful probe, but the amplitude/sign needs calibration.
 - If public LB worsens clearly, the Q2/S1 local stress overfit known-public row support despite beating null/direct controls; return to E365 or build a public-free Q2/S1 validation proxy before submitting more variants.
+
+## Update After E369 Public-Free Q2/S1 Lifestyle-Transfer Audit
+
+Current highest-information candidate remains:
+
+`analysis_outputs/submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv`
+
+Why E369 strengthens it:
+
+- E369 removed public LB from the teacher and used train-side Q2/S1 residual states instead.
+- Q2 transfer is supported by `64` public-free rows across student/kNN/cluster probes.
+- S1 transfer is supported by `42` public-free rows across the same probe families.
+- E368's all-target movement is not E323-like: cosine `0.001520` versus E365.
+
+Why no new E369 file:
+
+- E369 is an audit, not a new action generator.
+- It says E368 is better justified, not that a larger or reweighted variant is safe.
+- Q2-only movement has an E323-axis warning versus E365 (`0.591735`), so amplifying Q2 would be unjustified without another stress.
+
+Expected public interpretation:
+
+- If E368 improves, the strongest current hidden-world model is Q2 intervention/rough-night validity plus S1 recovery validity.
+- If E368 is neutral, keep the latent but test Q2 amplitude/sign and S1 recovery separately.
+- If E368 worsens, the hidden lifestyle residual exists locally but its public calibration is wrong; the next file should not be a larger E368, but a constrained Q2/S1 recalibration.

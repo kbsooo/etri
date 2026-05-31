@@ -6059,3 +6059,29 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - The movement is intentionally small and target-specific: relative to E365, only Q2 (`34` rows) and S1 (`160` rows) change; Q1/Q3/S2/S3/S4 stay fixed.
   - The live hidden-world model is now: public-like lifestyle state is not aggregate row identity; it is a Q2 intervention/rough-night validity mask paired with an S1 recovery mask.
 - Decision: E368 supersedes E365 as the highest-information local candidate, but it still needs public LB confirmation because the known-public sensor is scarce and all public observations are relative to E247.
+
+## E369. Public-Free Q2/S1 Lifestyle-Transfer Audit
+
+- Observe: E368 was the first Q2/S1 row-mask branch where learned lifestyle gates beat direct-public and null controls, but its teacher still came from known-public movement sensors.
+- Wonder: can the same E368 Q2/S1 movement be explained by train-side lifestyle residual structure without using public LB as the target?
+- Hypothesis: if E368 found a real hidden lifestyle state, then public-free train residual states for Q2/S1 should align with E368's test gate and selected Q2/S1 movement under multiple views: masked residual student, kNN residual analogy, and cluster residual analogy.
+- Method: `analysis_outputs/e369_q2s1_lifestyle_transfer_audit.py`.
+  - base: subject/calendar model for Q2/S1;
+  - teacher: train label residual after the base model;
+  - context: family, JEPA residual, story bundle, raw day, family-story, family-JEPA-story views;
+  - stress: 160 permuted test-gate/movement nulls per alignment plus E323-axis movement audit.
+- Result:
+  - global decision: `support_e368_hidden_lifestyle_state`;
+  - Q2 support rows: `64`, with `5` masked-student, `24` kNN, and `35` cluster supports;
+  - S1 support rows: `42`, with `5` masked-student, `18` kNN, and `19` cluster supports;
+  - best Q2 gate Spearman: `0.369592`; best Q2 abs-delta Spearman: `0.421147`;
+  - best S1 gate Spearman: `0.232458`; best S1 abs-delta Spearman: `0.181906`;
+  - Q2 `jepa_resid/subject` masked residual student improves local blocked logloss by `-0.030211`;
+  - S1 `family_jepa_story/subject` masked residual student improves local blocked logloss by `-0.009128`;
+  - E368-vs-E365 all-target cosine to E323 bad axis is only `0.001520`.
+- Nuance:
+  - Q2-only E368 movement has high E323 cosine versus E365 (`0.591735`), but not versus E247 (`-0.014661`). Since the all-target move is tiny and near-orthogonal, this is an amplitude risk to monitor, not a veto.
+- Interpretation:
+  - E368 is no longer only a known-public row-mask artifact. A train-side hidden lifestyle residual state independently recovers where the Q2/S1 action wants to move.
+  - The strongest lifestyle signal is still target-specific, not an aggregate row/day type.
+- Decision: do not create a new E369 submission. Keep `analysis_outputs/submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv` as the current information-rich candidate, with a Q2 amplitude/bad-axis monitor.
