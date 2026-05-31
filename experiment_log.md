@@ -5113,3 +5113,27 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - all generated E328 anti-E323 submissions are `below_selector_resolution`.
 - Interpretation: the latent is real and interpretable as a human lifestyle atlas, but it is too broad to be a direct predictive or submission latent. It mostly reconstructs lifestyle/context geometry, not label-useful hidden state.
 - Decision: do not submit E328 candidates. Keep the latent features as diagnostics. The next useful JEPA target should be target-specific or outcome-health-specific: Q3/S4 block states, Q/S pair states, or an E323-negative action-health latent.
+
+## E330. Target-Residual Lifestyle Latent
+
+- Observe: E328 rejected the broad lifestyle atlas as a direct predictive latent. The next smallest JEPA/data2vec target is not raw feature reconstruction, but per-target residual state after subject/calendar priors.
+- Wonder: can masked lifestyle context predict target-specific base residuals strongly enough to survive row/subject/dateblock nulls, while avoiding E323 public-bad movement?
+- Hypothesis: if lifestyle state is real but target-specific, then residual-state predictions should improve blocked label CV for specific targets and beat shuffled residual-state nulls. If the current bottleneck is only materialization, those states may still fail as E247 edits.
+- Method: `analysis_outputs/e330_target_residual_lifestyle_latent.py`.
+  - Teacher: `y - base_prob` for each target under the same subject/dateblock split.
+  - Context views: `family`, `jepa_resid`, `story_bundle`, `raw_day`, `family_story`, `family_jepa_story`.
+  - Student: Ridge predicts the residual state OOF by subject/dateblock.
+  - Stress: label logloss delta vs subject/calendar base plus row/subject/dateblock shuffled residual-state nulls; candidate probes are scored against E247 and E323 movement anatomy.
+- Result:
+  - gated residual-state rows: `16/84`;
+  - target distribution: S2 `6`, S1 `3`, Q1 `2`, Q2 `2`, Q3 `2`, S3 `1`, S4 `0`;
+  - strongest rows:
+    - Q2 `jepa_resid/subject`: delta `-0.030210616`, dominance `1.000000`;
+    - Q1 `jepa_resid/dateblock`: delta `-0.025842772`, dominance `0.958333`;
+    - S2 `raw_day/subject`: delta `-0.016452074`, dominance `0.958333`;
+    - S2 `jepa_resid/dateblock`: delta `-0.014211218`, dominance `1.000000`.
+  - materialized E247 candidates: `25`;
+  - selector-promoted candidates: `0`;
+  - all candidate movements are E323-negative or nearly orthogonal by cosine, but below selector resolution or rejected.
+- Interpretation: target-specific lifestyle residual states exist locally. This is the first post-E328 evidence that the lifestyle-state target should be supervised residual/outcome state, not broad lifestyle reconstruction. The failure is the translator: applying the state as a full-test target logit calibration is too diffuse to become a submission-grade E247 edit.
+- Decision: do not submit E330 candidates. Next step should localize these residual states to rows/blocks/cells before materialization, especially Q2/Q1/S2 JEPA-residual and S2 raw-day axes.

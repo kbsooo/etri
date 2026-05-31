@@ -3217,3 +3217,27 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - include E323-negative alignment before any candidate promotion.
 - Failure condition:
   - if a lifestyle latent is easy to predict but worsens blocked label CV, classify it as lifestyle atlas or subject/routine shortcut, not a submission representation.
+
+## E330 Target-Residual Lifestyle-State Features
+
+- Target hypothesis tested:
+  - lifestyle context should predict target-specific residual state after subject/calendar base priors, even when broad lifestyle atlas features fail.
+- Feature/representation source:
+  - teacher: target residual `y - base_prob`;
+  - context views: family, JEPA residual, story bundle, raw day, family story, family+JEPA+story;
+  - student feature: OOF predicted residual state for each target/view/split.
+- Validation result:
+  - `16/84` rows pass label/null gates;
+  - strongest targets are Q2, Q1, and S2;
+  - S4 has no gated rows;
+  - materialized E247 edits generate `0` selector-promoted candidates.
+- Updated registry status:
+  - approved as a target-specific diagnostic feature;
+  - rejected as a direct full-test calibration feature;
+  - highest-priority axes: Q2 JEPA residual subject state, Q1 JEPA residual dateblock state, S2 raw-day subject state, S2 JEPA residual dateblock state.
+- Adopt rule for future features:
+  - use residual-state predictions to choose rows/blocks/cells, not to move an entire target column;
+  - preserve the shuffled-null gate and E323-negative anatomy check;
+  - treat S4 as unsupported by this residual-state construction unless a new view changes the evidence.
+- Failure condition:
+  - if a residual-state candidate only produces diffuse all-row target movement, do not submit even when the representation stress is strong.

@@ -4137,3 +4137,34 @@ Stress conclusion:
 - broad hidden lifestyle state is real and interpretable, but not a healthy direct predictive latent.
 - It should be used to name clusters and diagnose action failures, not to move probabilities.
 - Future stress must demand target-specific label benefit and E323-negative action anatomy before candidate generation.
+
+## E330 Target-Residual Lifestyle Latent Stress
+
+Question: after E328's broad-latent failure, do target-specific lifestyle residual states survive blocked label and null stress?
+
+Method: `analysis_outputs/e330_target_residual_lifestyle_latent.py`.
+
+- Teacher: per-target `y - base_prob` residual after subject/calendar base.
+- Student context: six lifestyle views, including JEPA residual, raw-day, story, and family+story views.
+- Splits: subject and dateblock.
+- Nulls: row, subject, and dateblock shuffles of the same residual-state feature, `8` reps each.
+- Public LB: not used.
+
+Result:
+
+- total audited rows: `84`;
+- gated residual-state rows: `16`;
+- strongest label/null rows:
+  - Q2 `jepa_resid/subject`, delta `-0.030210616`, dominance `1.000000`;
+  - Q1 `jepa_resid/dateblock`, delta `-0.025842772`, dominance `0.958333`;
+  - S2 `raw_day/subject`, delta `-0.016452074`, dominance `0.958333`;
+  - S2 `jepa_resid/dateblock`, delta `-0.014211218`, dominance `1.000000`.
+- generated E247 edits: `25`;
+- selector-promoted candidates: `0`;
+- E323-negative candidates by cosine: `25`.
+
+Stress conclusion:
+
+- target-specific lifestyle residual states pass the representation stress that broad E328 failed.
+- materialization remains unhealthy: full-test target calibration is too diffuse and below selector resolution.
+- The next stress should move from target-level residual state to row/block/cell localization before writing another submission.

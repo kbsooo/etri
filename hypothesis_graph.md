@@ -3792,3 +3792,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: reject direct use because label stress fails and E323-negative separation is weak. Keep diagnostic use because clusters are coherent and E247/E256 boundary is visible.
 - public LB 관측 반응: no public LB should be spent. The local stress says E328 would be an information-poor public test.
 - 제출 전략: none from E328. Redesign the latent target around Q3/S4, Q/S pair state, or action-health/E323-negative objectives.
+
+### H330: target-specific lifestyle residual state is real, but needs localization
+
+- 상태: 지지됨 as representation; 반증됨 as diffuse target calibration submission.
+- 왜 그럴듯한가: E328 showed broad lifestyle state was too mixed with subject/routine shortcuts. A JEPA/data2vec-like learned target should be closer to the actual prediction problem: the per-target residual after subject/calendar base priors.
+- 맞다면: residual-state predictions should improve blocked label CV for specific targets and beat row/subject/dateblock shuffled residual nulls. But if materialization is still the bottleneck, full-target E247 edits may remain below selector resolution.
+- 틀리다면: residual-state rows should not beat shuffled nulls, or any apparent target improvement should be reproduced by row/subject/dateblock shuffles.
+- 최소 실험: `analysis_outputs/e330_target_residual_lifestyle_latent.py`.
+- 관측: `16/84` residual-state rows pass gates. Top rows: Q2 `jepa_resid/subject` delta `-0.030210616`, Q1 `jepa_resid/dateblock` `-0.025842772`, S2 `raw_day/subject` `-0.016452074`, S2 `jepa_resid/dateblock` `-0.014211218`. E247 materializations: `25`; selector-promoted: `0`; E323-negative candidates: `25`.
+- 성공/폐기 기준: accept the representation because it survives label/null stress; reject the current translator because no materialized candidate promotes.
+- public LB 관측 반응: no public LB should be spent. The local selector says the next public test would be low information.
+- 제출 전략: none from E330. Build row/block/cell-localized actions from Q2/Q1/S2 residual states and retest with matched nulls plus E323-negative anatomy.

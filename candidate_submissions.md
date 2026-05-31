@@ -3521,3 +3521,27 @@ Next candidate rule:
 
 - do not submit a broad lifestyle-state latent;
 - require a target-specific or action-health latent that improves blocked label stress and is explicitly E323-negative before creating another public file.
+
+## Update After E330 Target-Residual Lifestyle Latent
+
+No E330 file should be submitted.
+
+Why:
+
+- `16/84` target-residual latent rows survive local label/null gates, so the representation is real.
+- But `25` materialized E247 candidates produce `0` selector-promoted files.
+- The best-looking negative means are still below resolution:
+  - `submission_e330_targetresid_S2_jepa_resid_dateblock_s0p4_d0318d11.csv`: mean `-0.000161164`, p90 `+0.000095935`;
+  - `submission_e330_targetresid_S2_family_dateblock_s0p4_84ce9917.csv`: mean `-0.000110005`, p90 `+0.000102612`;
+  - `submission_e330_targetresid_S2_jepa_resid_dateblock_s0p65_8379e29c.csv`: mean `-0.000214843`, p90 `+0.000182606`.
+- The E323-negative check is not the blocker: candidate cosines with E323 bad movement are near zero or slightly negative. The blocker is that the movement is diffuse and not selector-grade.
+
+Current public frontier remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+- public LB `0.5761589494`
+
+Next submission rule:
+
+- do not submit residual-state full-test calibrations;
+- turn the Q2/Q1/S2 residual states into row/block/cell-localized actions and re-run matched nulls plus E323-negative anatomy.

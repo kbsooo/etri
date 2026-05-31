@@ -2502,3 +2502,12 @@
 - Implementation issue possible: medium. The broad-latent construction is PCA/KMeans/Ridge-based and may miss nonlinear target-specific state. Low for rejecting the generated E328 candidates because the stress failure is direct and multi-view.
 - Bottleneck implication: the hidden lifestyle state exists, but it must be made target-specific or action-health-specific. The broad human/social state is too mixed with subject/routine/calendar shortcuts.
 - Do not repeat: adding broad ownlife PCs/clusters to a candidate or using lifestyle-state energy as a global gate without label stress and E323-negative evidence.
+
+## FH278. Target-residual lifestyle state can be submitted as diffuse target calibration
+
+- Failed hypothesis: once a target-specific lifestyle residual state passes blocked label/null stress, applying it as a small full-test target logit calibration on E247 should produce a submission-grade candidate.
+- Observed result: E330 found `16/84` gated residual-state rows, but `25` materialized E247 candidates produced selector-promoted count `0`. Most candidates were `below_selector_resolution`; two were `block_or_reject`. E323 movement cosine was not the blocker because all candidates were near-zero or negative versus E323.
+- Why discard: the representation is local and target-specific, but the translator spreads movement across all `250` test rows for one target. That turns a sharp residual-state signal into diffuse calibration noise.
+- Implementation issue possible: medium. The residual-state teacher is simple `y - base_prob` and the materializer is linear/logistic. A row/block/cell-localized translator may still work. Low for rejecting all E330 generated submission files because the public-free selector and E323 anatomy agree they are not submission-grade.
+- Bottleneck implication: the next target is localization of the residual state, not discovery of another broad state. Use Q2/Q1/S2 residual axes as row/block/cell selectors.
+- Do not repeat: submitting E330 targetresid files or increasing their scale without a localization and fresh matched-null stress.

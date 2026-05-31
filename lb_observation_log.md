@@ -1121,3 +1121,26 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - the next public candidate should not come from broad lifestyle PCA/KMeans, but from target-specific or action-health latent objectives.
 - expected public reaction if submitted anyway:
   - likely flat/noisy or worse, because the local checker sees no label benefit and no strong E323-negative axis.
+
+## Public-Free Observation: E330 Target-Residual Lifestyle Latent
+
+- submission files: generated locally, but none promoted.
+- public LB: not submitted.
+- reason not submitted: target-residual representation survives local label/null stress, but materialized E247 edits are below selector resolution or rejected.
+- local observation:
+  - audited target/view/split rows: `84`;
+  - gated residual-state rows: `16`;
+  - generated candidates: `25`;
+  - selector-promoted candidates: `0`;
+  - E323-negative candidates by movement cosine: `25`.
+- strongest residual states:
+  - Q2 `jepa_resid/subject`, label delta `-0.030210616`;
+  - Q1 `jepa_resid/dateblock`, label delta `-0.025842772`;
+  - S2 `raw_day/subject`, label delta `-0.016452074`;
+  - S2 `jepa_resid/dateblock`, label delta `-0.014211218`.
+- interpretation:
+  - hidden lifestyle-state signal exists after target residualization;
+  - current full-target materializer is too diffuse;
+  - next public-free experiment should localize the residual state to rows/blocks/cells before another submission candidate is considered.
+- expected public reaction if submitted anyway:
+  - likely low-information because the best local scores still have p90 crossing above zero and no strict promote gate.
