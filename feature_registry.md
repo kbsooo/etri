@@ -4010,3 +4010,20 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - Q2-only E323 cosine versus E365 `0.591735`, so Q2 amplitude must be monitored.
 - Registry status: approved as validation evidence for E368, not as a standalone submission feature.
 - Failure condition: do not use E369 scores to amplify E368 unless the Q2 target-only bad-axis warning is neutralized.
+
+### E370 Q2/S1 risk-constrained recalibration diagnostic
+
+- Target hidden structure: separability of E368's validated Q2/S1 lifestyle-state signal from Q2-only E323 bad-axis exposure.
+- Why needed: E369 supports E368, but Q2-only movement versus E365 has high E323 similarity. Before submitting a derivative, we need to know whether the Q2 risk can be removed without killing the signal.
+- Feature/action form:
+  - no new feature family;
+  - candidate action: E365 plus E368 Q2/S1 delta with Q2 scale, S1 scale, and optional Q2 projection away from E323-vs-E365 bad axis;
+  - diagnostics: E368 public-like jackknife, E369 public-free transfer alignment, all-target and Q2-only bad-axis cosine.
+- Current evidence:
+  - generated candidates: `275`;
+  - eligible safer replacements: `0`;
+  - baseline Q2 transfer abs Spearman `0.428458`, S1 `0.197475`;
+  - Q2 orthogonalization reduces bad-axis cosine but drops Q2 transfer abs Spearman to about `0.181`;
+  - best local stress row is S1-amplified but still has Q2 bad-axis cosine `0.591735`.
+- Registry status: rejected as a submission feature; keep as a risk diagnostic.
+- Failure condition: do not use linear bad-axis projection as the next Q2 safety mechanism. A future feature must learn Q2 calibration risk directly from public-free or anchor-stress targets.

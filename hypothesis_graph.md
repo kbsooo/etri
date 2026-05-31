@@ -4272,3 +4272,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept if both Q2 and S1 have support from at least two probe families and all-target E323-bad cosine stays small. This is observed. Monitor Q2 target-only bad-axis cosine before amplifying.
 - public LB 관측 반응: if E368 improves, H368/H369 become the strongest current world model: target-specific Q2 intervention validity plus S1 recovery validity. If E368 worsens, the public-free residual alignment was real but not public-calibrated, and the next experiment should damp or re-sign Q2 rather than abandon S1.
 - 제출 전략: no E369 file. Keep the E368 upload-safe file as the current candidate; future derived files must include Q2 target-only bad-axis stress.
+
+### H370: E368 Q2 bad-axis exposure can be neutralized without losing lifestyle-state support
+
+- 상태: 반증됨 for linear Q2 projection/amplitude recalibration; E368 remains the candidate.
+- 왜 그럴듯한가: E369 showed the all-target E368 movement is almost E323-orthogonal, but Q2-only movement has high E323-vs-E365 cosine. If that Q2 cosine is incidental, a projection-away or amplitude correction should reduce risk while preserving Q2/S1 transfer support.
+- 맞다면: at least one E370 candidate should reduce Q2 bad-axis cosine by `0.12+`, keep all-target bad-axis cosine small, preserve E368 public-like score/top10 support, and keep Q2/S1 transfer correlations non-negative.
+- 틀리다면: orthogonalization should destroy transfer alignment or public-like support, while unprojected amplitude variants keep the Q2 bad-axis warning.
+- 최소 실험: `analysis_outputs/e370_q2s1_risk_constrained_recalibration.py`.
+- 관측: `275` candidates tested. Eligible safer replacements: `0`. Best stress row amplifies S1 to `1.15` and gets top1/top10 `0.602041/0.959184`, but Q2 bad-axis cosine remains `0.591735`. Q2 orthogonalization lowers cosine to `0.482276`, `0.344547`, or lower, but Q2 transfer abs Spearman falls from `0.428458` to about `0.181` and scenario support weakens.
+- 성공/폐기 기준: accept only if Q2 bad-axis cosine drops materially without losing public-like and public-free transfer support. Not observed.
+- public LB 관측 반응: no E370 file should be submitted. If E368 fails publicly, H370 says a simple projection fix is unlikely to be enough; the next correction must learn a new Q2 safety/calibration latent, not just remove the E323 direction.
+- 제출 전략: keep `analysis_outputs/submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv`.

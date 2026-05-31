@@ -6085,3 +6085,24 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E368 is no longer only a known-public row-mask artifact. A train-side hidden lifestyle residual state independently recovers where the Q2/S1 action wants to move.
   - The strongest lifestyle signal is still target-specific, not an aggregate row/day type.
 - Decision: do not create a new E369 submission. Keep `analysis_outputs/submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv` as the current information-rich candidate, with a Q2 amplitude/bad-axis monitor.
+
+## E370. Q2/S1 Risk-Constrained Recalibration
+
+- Observe: E369 supported the E368 Q2/S1 hidden lifestyle-state action, but also exposed a Q2-only similarity to the E323 bad axis versus E365.
+- Wonder: can we remove that Q2 bad-axis component while keeping E368's public-like scenario support and public-free Q2/S1 transfer alignment?
+- Hypothesis: if the bad-axis component is only an incidental risk, projecting Q2 away from E323 or changing Q2/S1 amplitudes should preserve the E368 support signals.
+- Method: `analysis_outputs/e370_q2s1_risk_constrained_recalibration.py`.
+  - Backbone: E365.
+  - Delta source: E368 selected Q2/S1-only movement.
+  - Search: `275` candidates over Q2 scale, S1 scale, and Q2 projection away from E323-vs-E365 bad axis.
+  - Stress: E368 public-like jackknife, E369 public-free transfer alignment, E323-axis movement audit, and E363/E358-style row/action health features.
+- Result:
+  - decision: `keep_e368_no_safer_e370_replacement`;
+  - eligible safer replacements: `0`;
+  - current E368-like row: top10 `0.571429`, public-like score `8.323439`, Q2 bad-axis cosine `0.591735`, all-target bad-axis cosine `0.001520`, Q2 transfer abs Spearman `0.428458`, S1 transfer abs Spearman `0.197475`;
+  - strongest stress row `e370_q21p0_s11p15_orth0p0_plain`: top1 `0.602041`, top10 `0.959184`, public-like score `8.468447`, but Q2 bad-axis cosine stays `0.591735`;
+  - orthogonalizing Q2 reduces Q2 bad-axis cosine, but also cuts Q2 transfer alignment to about `0.181` and weakens scenario support.
+- Interpretation:
+  - E368's Q2 risk is entangled with the signal. The currently visible Q2 component cannot be cleanly removed by a linear bad-axis projection without losing the lifestyle-state support that made E368 interesting.
+  - S1 `1.15` amplification looks locally strong, but it keeps the unresolved Q2 risk and therefore is not selected as a public probe.
+- Decision: no E370 submission. Keep E368 as the current candidate and do not amplify Q2 until a different Q2 safety representation exists.

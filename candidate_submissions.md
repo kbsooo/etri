@@ -4721,3 +4721,25 @@ Expected public interpretation:
 - If E368 improves, the strongest current hidden-world model is Q2 intervention/rough-night validity plus S1 recovery validity.
 - If E368 is neutral, keep the latent but test Q2 amplitude/sign and S1 recovery separately.
 - If E368 worsens, the hidden lifestyle residual exists locally but its public calibration is wrong; the next file should not be a larger E368, but a constrained Q2/S1 recalibration.
+
+## Update After E370 Q2/S1 Risk-Constrained Recalibration
+
+No new E370 submission should be tested now.
+
+Current highest-information candidate remains:
+
+`analysis_outputs/submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv`
+
+Why E370 is not a submission:
+
+- E370 tried to preserve E368 while reducing Q2-only E323-axis exposure.
+- The only locally stronger stress candidate, `e370_q21p0_s11p15_orth0p0_plain`, improves top1/top10 support to `0.602041/0.959184` by amplifying S1, but it does not reduce Q2 risk.
+- Q2 orthogonalization reduces the Q2 bad-axis cosine, but also damages the Q2 transfer signal that E369 used to validate E368.
+- No candidate met the combined criteria: E363/E368 gate, public-like score, Q2 bad-axis reduction, all-target safety, and Q2/S1 transfer alignment.
+
+Submission interpretation:
+
+1. Keep E368 as the next information-rich public probe if one file is submitted.
+2. Do not submit E370 S1-amplified variants just because local top1 improves; they leave the Q2 unresolved risk untouched.
+3. Do not submit Q2-orthogonalized variants; they are safer only by deleting much of the Q2 lifestyle signal.
+4. If E368 later fails publicly, the next branch should learn a Q2 calibration/safety latent rather than use linear E323 projection.

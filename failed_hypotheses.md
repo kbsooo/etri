@@ -2817,3 +2817,12 @@
 - Implementation issue possible: medium. The residual models are small and some teacher R2 values are negative, so this proves alignment and transfer, not a perfect predictive model.
 - Bottleneck implication: the next bottleneck is calibration/amplitude, not discovering whether Q2/S1 hidden lifestyle validity exists at all.
 - Do not repeat: rejecting E368 solely because its first teacher used known-public row masks. Future objections should target Q2 amplitude, Q2 bad-axis similarity, or public/private prior calibration.
+
+## FH313. E368 Q2 bad-axis risk is linearly removable
+
+- Failed hypothesis: the Q2-only E323-axis warning in E368 is an incidental direction that can be projected away or damped while preserving E368 public-like support and E369 public-free transfer alignment.
+- Observed result: E370 generated `275` Q2/S1 recalibration variants and selected none. The strongest stress candidate, `e370_q21p0_s11p15_orth0p0_plain`, had top1/top10 `0.602041/0.959184` but kept Q2 bad-axis cosine at `0.591735`. Orthogonalized Q2 variants reduced the cosine, but Q2 transfer abs Spearman fell from `0.428458` to about `0.181`, and scenario support weakened.
+- Why discard: the current Q2 bad-axis component is entangled with the validated lifestyle-state Q2 movement. Linear projection makes the candidate look safer by removing useful signal, not by learning a better public-safe Q2 law.
+- Implementation issue possible: medium. The bad axis is based on limited known bad submissions, and projection is linear in logit space. But the monotone loss of transfer support is strong enough to reject E370 as a submission route.
+- Bottleneck implication: E368's next correction needs a new Q2 calibration/safety latent or public-free anchor stress, not an E323 projection.
+- Do not repeat: Q2 projection-away or S1 amplification sweeps around E368 unless new public observations or a new independent Q2 safety target changes the risk definition.

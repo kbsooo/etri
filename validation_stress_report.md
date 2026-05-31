@@ -5471,3 +5471,34 @@ Stress conclusion:
 - E368 passes a stronger test than H368 alone: public-free lifestyle residual structure independently points to the Q2/S1 rows that E368 changes.
 - This supports hidden lifestyle-state transfer rather than direct public-row copying.
 - The Q2-only bad-axis warning prevents broad amplification. Future E368 descendants should be Q2-amplitude constrained or explicitly neutralized against Q2 bad-axis movement.
+
+## E370 Q2/S1 Risk-Constrained Recalibration Stress
+
+Question: can E368's Q2/S1 lifestyle-state movement be made safer by reducing Q2-only E323-axis exposure while preserving E368/E369 support?
+
+Stress setup:
+
+- script: `analysis_outputs/e370_q2s1_risk_constrained_recalibration.py`;
+- backbone: E365;
+- delta source: E368 selected Q2/S1-only movement;
+- generated candidates: `275`;
+- scenarios: `98`;
+- search controls: Q2 scale, S1 scale, Q2 projection away from E323-vs-E365 bad axis, optional Q2 renormalization;
+- anti-collapse: E368 public/view jackknife support, E369 public-free transfer support, E323-axis movement audit, E363/E358 row/action health features.
+
+Stress result:
+
+- selected decision: `keep_e368_no_safer_e370_replacement`;
+- eligible safer replacements: `0`;
+- E368-like baseline top1/top10: `0.000000` / `0.571429`;
+- E368-like Q2 bad-axis cosine: `0.591735`;
+- E368-like all-target bad-axis cosine: `0.001520`;
+- E368-like Q2/S1 transfer abs Spearman: `0.428458` / `0.197475`;
+- best stress candidate: `e370_q21p0_s11p15_orth0p0_plain`, top1/top10 `0.602041` / `0.959184`, but Q2 bad-axis cosine still `0.591735`;
+- Q2 orthogonalization lowers Q2 bad-axis cosine but drops Q2 transfer alignment to about `0.181` and weakens support.
+
+Stress conclusion:
+
+- The immediate safer-Q2 projection hypothesis fails.
+- E368 remains more defensible than E370 derivatives because the Q2 bad-axis component appears entangled with the locally validated Q2 lifestyle signal.
+- Do not submit S1-amplified or Q2-orthogonalized E370 files yet. The next useful test needs a new Q2 safety/calibration latent rather than a linear projection.

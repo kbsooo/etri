@@ -253,6 +253,10 @@ analysis_outputs/*
 !analysis_outputs/e369_q2s1_lifestyle_transfer_*.csv
 !analysis_outputs/e369_q2s1_lifestyle_transfer_*.md
 !analysis_outputs/e369_q2s1_lifestyle_transfer_*.py
+!analysis_outputs/e370_q2s1_risk_constrained_*.csv
+!analysis_outputs/e370_q2s1_risk_constrained_*.md
+!analysis_outputs/e370_q2s1_risk_constrained_*.py
+!analysis_outputs/submission_e370_q2s1safe_selected_*_uploadsafe.csv
 
 !analysis_outputs/bridge_scan_candidates/
 analysis_outputs/bridge_scan_candidates/*
