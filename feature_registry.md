@@ -3678,3 +3678,20 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - selected p90 `-0.000050191`, risk `0.044765398`, bad-axis `0.014741236`, Q1 specificity margin `0.324251`, support `35`, distance vs E349 `0.006241`.
 - Registry status: approved as the practical selector for scarce public submissions from the E350 plateau.
 - Failure condition: if E351 underperforms E350 publicly, relax the E349-distance penalty and allow stronger S3-tail restoration; if both fail, the E350 plateau is local-only and needs a new public-transfer latent.
+
+### E352 selector-sensitivity gate
+
+- Target hidden structure: whether the compact lifestyle-state plateau has a stable action center or only arbitrary selector-dependent winners.
+- Why needed: E351's maximin selector is hand-designed. A reliable latent action should survive selector perturbations before it gets a scarce public slot.
+- Feature/action form:
+  - reuse E351-ranked E350 plateau candidates;
+  - perturb gates over p90 gain, public-analog risk, bad-axis margin, Q1 specificity, support, E349 compatibility, scale, and public-bad positive-cosine veto;
+  - perturb ranking weights over the same axes with worst-axis and S3-tail terms.
+- Current evidence:
+  - `2500` random selector worlds;
+  - `1118` non-empty worlds;
+  - E351 robust candidate `compact_t75_s1.005_s3a0.25` wins top1/top3 `0.224508/0.277281`;
+  - original E350 rank winner wins top1/top3 `0.000000/0.004472`;
+  - E351 wins every deterministic profile except p90_hungry.
+- Registry status: approved as a selection-stability validator. It does not create a new feature family or submission file.
+- Failure condition: if public later prefers E350 over E351, reduce the weight of selector stability and restore stronger S3-tail/p90 pressure in the next candidate ranking.

@@ -4905,3 +4905,42 @@ Stress conclusion:
 - The original E350 rank winner is a stronger sensor but fails the E351 conservative compatibility gate because it moves too far from E349.
 - E351 is the lower-regret candidate if only one plateau-family file is submitted.
 - The robust S3-tail setting is small (`alpha=0.25`), not full restoration.
+
+## E352 Selector Sensitivity Audit
+
+Question: is the E351 robust selector stable under plausible changes to public-free selector gates and weights?
+
+Stress setup:
+
+- script: `analysis_outputs/e352_selector_sensitivity_audit.py`;
+- input: E351-ranked E350 plateau only;
+- random selector worlds generated: `2500`;
+- non-empty selector worlds: `1118`;
+- random gates over p90 gain, risk delta, bad-axis margin, Q1 specificity, support, E349 distance, scale, and public-bad positive-cosine veto;
+- random weights over p90/risk/bad-margin/Q1-specificity/support/E349-compatibility/micro-scale, plus worst-axis penalty and S3-tail preference;
+- deterministic profiles: balanced, public_skeptic, p90_hungry, state_specific, e349_conservative, s3_tail_tolerant.
+
+Stress result:
+
+- selector-stable winner:
+  - `compact_t75_s1.005_s3a0.25`;
+  - same candidate as E351 robust upload-safe file;
+  - top1 rate `0.224508`;
+  - top3 rate `0.277281`;
+  - p90 gain vs E349 `0.000000156`;
+  - public-analog risk `0.044765398`;
+  - bad-axis margin `0.000258764`;
+  - Q1 specificity margin `0.324251`;
+  - plateau support `35`.
+- runner-up:
+  - `compact_t45_s1.005_s3a0.50`;
+  - top1/top3 `0.135063/0.238819`.
+- original E350 rank winner:
+  - `compact_t45_s1.005_s3a1.00`;
+  - top1/top3 `0.000000/0.004472`.
+
+Stress conclusion:
+
+- E351 is not merely a hand-weighted winner.
+- The stable basin center keeps small S3-tail restoration (`alpha=0.25`) rather than full restoration.
+- Public submission priority remains E351 first, E350 second as an aggressive S3-tail sensor.

@@ -5652,3 +5652,26 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - But for scarce public tests, E351 is a more conservative representative of that basin than the original E350 rank winner.
   - The S3-tail story is softened: robust selection uses only S3 alpha `0.25`, not full S3 restoration.
 - Decision: promote E351 above E350 for a single practical submission slot. Keep E350 as the more aggressive/high-information stress candidate.
+
+## E352. Selector Sensitivity Audit
+
+- Observe: E351 chose a safer representative of the E350 compact lifestyle-state plateau, but the selector itself was hand-weighted.
+- Wonder: is E351 the actual stable center of the plateau, or only the winner under one arbitrary maximin recipe?
+- Hypothesis: a real robust lifestyle-state representative should remain near the top when selector gates and weights are perturbed across plausible public-free worlds.
+- Method: `analysis_outputs/e352_selector_sensitivity_audit.py`.
+  - Input: E351-ranked E350 plateau only; no public LB.
+  - Random selector worlds: `2500` generated, `1118` non-empty.
+  - Perturbed gates: p90 gain, public-analog risk delta, bad-axis margin, Q1 specificity delta, plateau support, E349 distance, scale size, and hard public-bad positive-cosine veto.
+  - Perturbed scores: random weights over p90/risk/bad-margin/Q1-specificity/support/E349-compatibility/micro-scale, plus worst-axis penalty and small S3-tail preference.
+  - Fixed stress profiles: balanced, public_skeptic, p90_hungry, state_specific, e349_conservative, and s3_tail_tolerant.
+- Result:
+  - selector-stable winner: `compact_t75_s1.005_s3a0.25`, the E351 robust candidate;
+  - E351 top1/top3 rate: `0.224508` / `0.277281`;
+  - runner-up `compact_t45_s1.005_s3a0.50` top1/top3 rate: `0.135063` / `0.238819`;
+  - original E350 rank winner top1/top3 rate: `0.000000` / `0.004472`;
+  - E351 wins balanced, public_skeptic, state_specific, e349_conservative, and s3_tail_tolerant profiles; only p90_hungry chooses the runner-up.
+- Interpretation:
+  - E351 is not just a hand-weighted selector artifact.
+  - The robust center of the compact lifestyle-state basin is a high-threshold, small-S3-tail point, not the full-S3 E350 rank winner.
+  - The strongest practical file remains `analysis_outputs/submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv`.
+- Decision: no new submission file is needed from E352 because it confirms the existing E351 upload-safe file. E350 stays as an aggressive sensor; E351 is the lower-regret first public test.

@@ -4229,3 +4229,33 @@ Risk:
 
 - It gives up some p90 edge versus E350 rank winner.
 - If public prefers stronger S3 restoration, E350 can beat E351.
+
+## Update After E352 Selector Sensitivity Audit
+
+No new upload-safe file is needed.
+
+E352 tests whether the E351 candidate is stable or just a hand-weighted selector artifact.
+
+Evidence:
+
+- selector worlds generated: `2500`;
+- non-empty worlds: `1118`;
+- E351 robust `compact_t75_s1.005_s3a0.25` top1/top3: `0.224508` / `0.277281`;
+- runner-up `compact_t45_s1.005_s3a0.50` top1/top3: `0.135063` / `0.238819`;
+- original E350 rank winner `compact_t45_s1.005_s3a1.00` top1/top3: `0.000000` / `0.004472`;
+- E351 wins balanced, public_skeptic, state_specific, e349_conservative, and s3_tail_tolerant profiles;
+- only p90_hungry chooses the runner-up.
+
+Updated priority for practical public slots:
+
+1. `analysis_outputs/submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv`
+2. `analysis_outputs/submission_e350_compactplateau_selected_compact_t45_s1_005_s3a1_00_ef54727b_uploadsafe.csv`
+3. `analysis_outputs/submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv`
+4. `analysis_outputs/submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv`
+5. `analysis_outputs/submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv`
+
+Why E351 remains first:
+
+- It is now supported by two independent public-free checks: maximin robust selection and selector-sensitivity stability.
+- It keeps the compact lifestyle-state basin while avoiding the full-S3 restoration that makes E350 more aggressive.
+- If it loses publicly while E350 wins, the diagnosis becomes clear: public prefers p90/S3-tail pressure over robust center stability.

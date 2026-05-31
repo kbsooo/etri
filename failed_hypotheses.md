@@ -2682,3 +2682,12 @@
 - Implementation issue possible: medium. The E351 selector is hand-weighted/maximin and could be too conservative. Low for rejecting the "same candidate" claim because the compatibility gate and maximin score both choose a different point.
 - Bottleneck implication: after finding a hidden state, candidate selection is its own modeling problem. The next gain may come from better public-transfer selection, not another latent.
 - Do not repeat: ranking plateau candidates only by E350 rank score without a distance/risk/specificity robustness check.
+
+## FH298. E351 is only a hand-weighted selector artifact
+
+- Failed hypothesis: E351's robust candidate won only because of one arbitrary maximin weighting, so selector perturbation should quickly move the winner elsewhere.
+- Observed result: E352 generated `2500` random selector worlds with `1118` non-empty worlds. E351 robust `compact_t75_s1.005_s3a0.25` remained the top selector-stable candidate with top1/top3 `0.224508/0.277281`. The runner-up reached `0.135063/0.238819`, while the original E350 rank winner reached only `0.000000/0.004472`.
+- Why discard: E351 wins under broad random perturbations and under most deterministic stress profiles, including public_skeptic, state_specific, e349_conservative, and s3_tail_tolerant.
+- Implementation issue possible: medium. The perturbation family is still built from our public-free metrics, so it cannot prove public transfer. Low for rejecting the artifact claim because the selector was deliberately varied across risk, p90, support, compatibility, and S3 preference.
+- Bottleneck implication: the current uncertainty is not whether E351 was hand-picked. It is whether the E350/E351 compact-state basin transfers to the hidden public subset.
+- Do not repeat: replacing E351 with E350 solely because E350 has a stronger original rank score. Public testing should distinguish robust-center stability from aggressive S3-tail pressure.

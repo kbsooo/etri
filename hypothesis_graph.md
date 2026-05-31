@@ -4056,3 +4056,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept if a candidate inside the E350 basin keeps p90 improvement, bounded risk, and better maximin balance than the original rank winner. This is observed.
 - public LB 관측 반응: if E351 improves, robust plateau selection matters more than maximum E350 rank/S3 restoration. If E350 improves more than E351, public prefers stronger S3-tail restoration and p90 edge. If both fail, the local plateau is not public-transferable enough.
 - 제출 전략: use E351 as the practical first submission from the plateau branch; keep E350 as the aggressive information sensor.
+
+### H352: E351 is the selector-stable center of the compact lifestyle-state basin
+
+- 상태: 지지됨 locally; public LB 미확인.
+- 왜 그럴듯한가: E351 was selected by a hand-designed maximin rule. If that rule is arbitrary, small changes to selector gates or weights should move the winner to many other plateau points.
+- 맞다면: across many plausible public-free selector worlds, the E351 candidate should have the highest top1/top3 selection rate and should win most deterministic stress profiles.
+- 틀리다면: the E350 rank winner or another nearby point should dominate once weights/gates are perturbed.
+- 최소 실험: `analysis_outputs/e352_selector_sensitivity_audit.py`.
+- 관측: `2500` selector worlds generated, `1118` non-empty. E351 `compact_t75_s1.005_s3a0.25` wins top1/top3 `0.224508/0.277281`, ahead of runner-up `0.135063/0.238819`. The original E350 rank winner has top1/top3 `0.000000/0.004472`.
+- 성공/폐기 기준: accept if E351 remains rank 1 under random perturbations and wins the public-skeptic/state-specific/e349-conservative profiles. This is observed.
+- public LB 관측 반응: if E351 improves, the public-transfer story should emphasize robust plateau-center selection rather than full S3-tail restoration. If E351 fails but E350 improves, public values the aggressive p90/S3 edge more than selector stability. If both fail, the compact plateau is local-only.
+- 제출 전략: no new E352 upload is necessary; keep `analysis_outputs/submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv` as the first practical public test.
