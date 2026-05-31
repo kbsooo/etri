@@ -5056,3 +5056,37 @@ Stress conclusion:
 - The action-health representation is real enough to diagnose candidate geometry.
 - It is not yet sufficient for public-transfer selection because it conflicts with E352 selector stability.
 - No E355 candidate should be public-tested. The next stress target should include E352/public-transfer stability directly.
+
+## E356 Transfer-Stability Latent Selector
+
+Question: can E352 selector/public-transfer stability itself be learned from hidden lifestyle-state movement context?
+
+Stress setup:
+
+- script: `analysis_outputs/e356_transfer_stability_latent_selector.py`;
+- training candidates: `311` E351-ranked compact-state rows;
+- selection pool: `36` E351-compatible plateau rows;
+- target: E352 top1/top3 stability compressed into `transfer_signal_raw` and `transfer_signal_rank`;
+- views:
+  - strict movement geometry without selector-health columns;
+  - public-free selector context without E352 labels;
+  - selector context plus E355 action-health latent;
+- stress: random KFold, threshold holdout, S3-alpha holdout, and scale holdout.
+
+Stress result:
+
+- diagnostics rows: `144`;
+- compat-pool best transfer raw OOF Spearman: `0.835013`;
+- compat-pool best E352 top3 random-KFold Spearman: `0.796029`;
+- compat-pool best E352 top3 threshold-holdout Spearman: `0.772806`;
+- strict geometry only is weaker: random-KFold E352 top3 Spearman `0.415948`/`0.386403`, and S3/scale holdouts are unstable;
+- selected probe: `analysis_outputs/submission_e356_transferstable_selected_compact_t45_s1_005_s3a0_50_0ace76e5_uploadsafe.csv`;
+- selected probe E352 top1/top3: `0.135063` / `0.238819`;
+- E351 raw E352 top1/top3: `0.224508` / `0.277281`;
+- E356 vs E351 movement is very small: mean abs delta Q1 `0.000004`, S1 `0.000002`, S3 `0.000006`.
+
+Stress conclusion:
+
+- Transfer-stability is not pure noise; it can be predicted from candidate lifestyle-state context.
+- The proof is not strong enough to say E356 is strictly safer than E351, because raw E352 still favors E351 and scale holdout is weak.
+- E356 is a high-information public-transfer probe: if it beats E247/E351 publicly, learned transfer-latent ranking matters more than raw selector-stability. If it fails, the E352 raw robust center remains the safer local rule.

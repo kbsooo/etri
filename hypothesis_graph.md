@@ -4104,3 +4104,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept representation if action-health OOF Spearman is high across families; accept submission if a non-E351 row also has E352/public-transfer stability and conservative local gates. Representation is accepted, submission is not.
 - public LB 관측 반응: no E355 file should be submitted. If E351 improves publicly, E352-style stability was the missing transfer feature. If E351 fails, E355 says action-health is learnable but needs a richer public-transfer target.
 - 제출 전략: none from E355. Keep E351 first; use E355 diagnostics to design an E352-aware latent.
+
+### H356: transfer-stability is a learnable latent inside the compact lifestyle-state basin
+
+- 상태: representation은 지지됨; submission 후보는 정보성 probe로 보류.
+- 왜 그럴듯한가: E355 learned action health but selected candidates with weak E352 stability. If public-transfer stability is a separate hidden state, it should be predicted directly from candidate movement context instead of inferred from p90/risk/Q1 pieces.
+- 맞다면: E352 top1/top3 stability should be predictable under random and structural holdouts, and a non-E351 point may rank above E351 under the learned transfer latent while staying in the same compact plateau.
+- 틀리다면: OOF diagnostics should collapse, strict geometry should fail entirely, or the learned winner should violate E351/E352 public-free gates.
+- 최소 실험: `analysis_outputs/e356_transfer_stability_latent_selector.py`.
+- 관측: `311` candidates, `36` E351-compatible plateau pool. Compat-pool transfer raw Spearman reaches `0.835013`; E352 top3 reaches `0.796029` random-KFold and `0.772806` threshold-holdout. Strict geometry is weaker and scale holdout is unstable. E356 selects `compact_t45_s1.005_s3a0.50`, with E352 top1/top3 `0.135063/0.238819`; E351 still has higher raw E352 `0.224508/0.277281`.
+- 성공/폐기 기준: accept representation if transfer stability is learnable across at least random and threshold holdouts. Accept submission only as a probe if the selected row remains in E351-compatible plateau and passes local gates. This is observed with caveats.
+- public LB 관측 반응: if E356 improves publicly, learned transfer-latent ranking beats raw E352 stability. If E356 fails but E351 improves, raw robust-center stability is preferable. If both fail, the compact lifestyle-state basin is not enough for public subset transfer.
+- 제출 전략: `analysis_outputs/submission_e356_transferstable_selected_compact_t45_s1_005_s3a0_50_0ace76e5_uploadsafe.csv` is the information-rich E356 probe; E351 remains the conservative reference.

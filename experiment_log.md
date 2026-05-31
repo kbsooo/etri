@@ -5746,3 +5746,31 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - But the learned action-health latent favors locally attractive lower-threshold points that do not survive E352 selector-stability strongly enough. The top E355 candidate has E355 top3 rate `0.50`, but E352 top3 rate only `0.022361`.
   - E351 remains preferred because E352 stability is a public-transfer proxy not fully captured by the current action-health target.
 - Decision: no E355 submission. Keep E351 as the practical candidate. Next useful target is an E352-aware/public-transfer action-health latent, not another local p90/risk selector.
+
+## E356. Transfer-Stability Latent Selector
+
+- Observe: E355 proved action-health is learnable, but its top point failed E352 selector stability. The missing target is therefore not local action health alone; it is action health plus public-transfer/stress stability.
+- Wonder: can E352 selector-stability be predicted from hidden lifestyle-state movement context, or is it only a hand-built selector echo?
+- Hypothesis: if transfer-stability is a real latent, candidate movement geometry should predict E352 top1/top3 stability under random, threshold, S3-alpha, and scale stress. A usable non-E351 candidate must remain inside the compact plateau and pass conservative public-free gates.
+- Method: `analysis_outputs/e356_transfer_stability_latent_selector.py`.
+  - Training rows: `311` E351-ranked compact-state candidates.
+  - Prediction pool: `36` E351-compatible plateau candidates.
+  - Context views:
+    - `strict_geometry`: recipe and movement geometry with selector-health columns removed.
+    - `selector_context`: E351 public-free selector components, excluding final E352 rates.
+    - `action_augmented`: selector context plus E355 action-health latent predictions.
+  - Target representation: E352 top1/top3 rates compressed into `transfer_signal_raw` and `transfer_signal_rank`.
+  - Stress: random KFold, threshold holdout, S3-alpha holdout, scale holdout.
+- Result:
+  - best OOF signal is strong in selector/action views: compat-pool transfer raw Spearman up to `0.835013`; E352 top3 random-KFold up to `0.796029`; threshold-holdout top3 up to `0.772806`;
+  - strict geometry alone is weaker, especially under S3/scale holdout, so the latent is not purely independent of the selector-context geometry;
+  - E356 selects `compact_t45_s1.005_s3a0.50`;
+  - E356 selected file: `analysis_outputs/submission_e356_transferstable_selected_compact_t45_s1_005_s3a0_50_0ace76e5_uploadsafe.csv`;
+  - E356 candidate E352 top1/top3: `0.135063` / `0.238819`;
+  - E351 E352 top1/top3 remains higher: `0.224508` / `0.277281`;
+  - E356 vs E351 movement is tiny: mean abs delta Q1 `0.000004`, S1 `0.000002`, S3 `0.000006`, Q2/Q3/S2/S4 unchanged.
+- Interpretation:
+  - Transfer-stability is partly learnable from lifestyle-state movement context.
+  - The selected E356 file is an information-rich probe, not a proven replacement: it tests whether learned transfer-latent ranking beats raw E352 selector-stability center.
+  - The bottleneck has sharpened: the compact lifestyle-state basin is real, but candidate choice inside that basin is dominated by very small calibration geometry.
+- Decision: keep E356 as the next high-information candidate from the hidden lifestyle-state latent branch. Treat E351 as the more conservative raw-stability reference.

@@ -4339,3 +4339,36 @@ Meaning:
 - We can now learn action health from archive geometry.
 - But the learned target is still local-action health, not public-transfer stability.
 - E351 remains first because E352 stability is the stronger scarce-submission proxy.
+
+## Update After E356 Transfer-Stability Latent Selector
+
+New upload-safe probe:
+
+`analysis_outputs/submission_e356_transferstable_selected_compact_t45_s1_005_s3a0_50_0ace76e5_uploadsafe.csv`
+
+What changed:
+
+- E356 learns E352-style transfer/stress stability from candidate movement context.
+- It selects `compact_t45_s1.005_s3a0.50`, a nearby point inside the same E350/E351 compact lifestyle-state basin.
+- The file differs from E351 only very slightly: mean abs delta Q1 `0.000004`, S1 `0.000002`, S3 `0.000006`; Q2/Q3/S2/S4 are unchanged versus E351.
+- Versus E247, it keeps the compact action on Q1/Q2/Q3/S1/S3 while S2/S4 remain unchanged.
+
+Evidence:
+
+- transfer-stability latent is learnable: best compat-pool transfer raw Spearman `0.835013`;
+- E352 top3 random-KFold Spearman up to `0.796029`;
+- threshold-holdout E352 top3 Spearman up to `0.772806`;
+- E356 top candidate has E352 top1/top3 `0.135063/0.238819`;
+- E351 still has higher raw E352 top1/top3 `0.224508/0.277281`.
+
+Submission priority interpretation:
+
+1. If the next public test should maximize information about the new JEPA/lifestyle-state transfer latent, submit `analysis_outputs/submission_e356_transferstable_selected_compact_t45_s1_005_s3a0_50_0ace76e5_uploadsafe.csv`.
+2. If the next public test should be the most conservative raw-stability representative, keep `analysis_outputs/submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv`.
+3. Current known public best remains `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` until either E351/E356 is publicly tested.
+
+Expected public interpretation:
+
+- If E356 beats E247/E351: learned transfer-stability latent is a better selector than raw E352 perturbation count.
+- If E356 is worse but E351 later improves: raw robust-center selection matters more than learned latent extrapolation.
+- If both E351/E356 fail: the compact lifestyle-state basin is likely a local/public-free calibration basin, not the missing public subset state.

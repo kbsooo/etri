@@ -3747,3 +3747,21 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - no selected submission because the top row has weak E352 stability.
 - Registry status: approved as a diagnostic latent; rejected as a standalone submission selector.
 - Failure condition: do not use E355 rank alone for public candidates. A future version must include E352/public-transfer stability in the target before it can override E351.
+
+### E356 transfer-stability latent gate
+
+- Target hidden structure: public-transfer/stress stability inside the compact lifestyle-state action basin.
+- Why needed: E355 proved action health is learnable but not enough for public-transfer candidate choice. E352 stability is the local proxy that survived after E355, so it becomes the same-level latent target.
+- Feature/action form:
+  - context views from candidate movement geometry, recipe descriptors, E351 selector context, and optional E355 action-health predictions;
+  - target representation from E352 top1/top3 selector perturbation rates;
+  - candidate ranking by multi-view transfer-stability prediction plus conservative plateau gates.
+- Current evidence:
+  - `311` training candidates and `36` E351-compatible prediction candidates;
+  - best compat-pool transfer raw OOF Spearman `0.835013`;
+  - best E352 top3 random-KFold Spearman `0.796029`;
+  - best E352 top3 threshold-holdout Spearman `0.772806`;
+  - selected probe `compact_t45_s1.005_s3a0.50`;
+  - raw E352 still favors E351 over E356.
+- Registry status: approved as a diagnostic latent and approved as an information-rich public-transfer probe. Not approved as a proven replacement for E351.
+- Failure condition: if E356 public LB is worse than E247/E351, do not keep increasing learned selector complexity inside the same tiny plateau. The next target must model public subset/calibration state directly.
