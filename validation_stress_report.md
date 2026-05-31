@@ -4690,3 +4690,31 @@ Stress conclusion:
 - The E342+E315 hidden lifestyle/counter-axis state is not a one-off.
 - E345 widens the bad-axis margin versus E344 but gives up p90 margin.
 - Current ranking remains E344 first for public testing, E345 second as the safer-margin follow-up.
+
+## E346 Public-Analog Stress
+
+Question: do E344/E345 avoid the anatomy of public-loss submissions already observed on LB?
+
+Method:
+
+- `analysis_outputs/e346_counteraxis_public_analog_audit.py`
+- Known public observations are converted into E247-relative logit-delta axes.
+- Candidate risk is measured by positive cosine to public-loss axes and compared against matched row/target/sign/subject/dateblock movement nulls.
+
+Result:
+
+- E344 upload:
+  - public-analog risk `0.051129078`;
+  - survival `0.452806122`;
+  - direct positive E323/E216/E267/E256 alignment `0.000000000`.
+- E345 upload:
+  - public-analog risk `0.051144175`;
+  - survival `0.461734694`;
+  - direct positive E323/E216/E267/E256 alignment `0.000000000`.
+- certification-grade public-analog dominance: `False`.
+
+Stress conclusion:
+
+- No hard veto: E344/E345 are anti-aligned or neutral to the strongest known public-bad axes.
+- No certification: the public-analog dominance is not stronger than matched movement nulls by enough margin.
+- This keeps E344/E345 eligible but does not upgrade confidence beyond the E344/E345 local evidence.

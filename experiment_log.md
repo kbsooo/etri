@@ -5507,3 +5507,18 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - selected local metrics: mean `-0.000246580`, p90 `-0.000051888`, beats `0.972222`, bad-axis `0.014655826`, null strict promote rate `0.000000`.
 - Interpretation: E344 is not a one-point accident. The hidden lifestyle-state plus E315 counter-axis has a real local basin. However, the best E345 refinement trades away some p90 margin for a wider bad-axis margin.
 - Decision: keep E344 as the first score-seeking public candidate because it has stronger p90 (`-0.000053606`). Keep E345 as the safer-margin follow-up or diagnostic backup if E344's public result indicates bad-axis transfer risk.
+
+## E346. Counter-Axis Public-Analog Preflight
+
+- Observe: E344/E345 are locally stable, but E323 proved that local null-safe geometry can still fail public badly. The next uncertainty is public transfer, not another local counter-weight grid.
+- Wonder: do E344/E345 look like already observed public-loss movements such as E323, E216, E267, or E256?
+- Hypothesis: a public-ready counter-axis candidate should have no direct positive alignment to known public-bad axes and should be lower-risk than matched movement nulls under public-observation analog metrics.
+- Method: `analysis_outputs/e346_counteraxis_public_analog_audit.py`.
+  - Build logit-delta axes from all available known public-observation files relative to E247.
+  - Score E344/E345 uploads and nearby null-safe candidates on public-loss-weighted positive cosine, severe-loss positive cosine, E323/E216/E267/E256 positive cosine, and matched row/target/sign/subject/dateblock null dominance.
+- Result:
+  - E344 upload: public-analog risk `0.051129078`, survival `0.452806122`, direct positive E323/E216/E267/E256 alignment `0.000000000`;
+  - E345 upload: public-analog risk `0.051144175`, survival `0.461734694`, direct positive E323/E216/E267/E256 alignment `0.000000000`;
+  - certification-grade public-analog dominance: `False`.
+- Interpretation: E346 does not veto E344/E345 because neither candidate directly aligns with the strongest public-bad axes. But it also does not certify them, because their public-analog null dominance is only middle-of-pack.
+- Decision: no new submission from E346. Keep E344 first because it has slightly lower public-analog risk and stronger local p90; keep E345 as the bad-axis-margin backup.

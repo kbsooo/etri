@@ -3575,3 +3575,18 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - selected file `submission_e345_counterrefine_lifestyle_61d91c4c_uploadsafe.csv` with p90 `-0.000051888`, bad-axis `0.014655826`, and null strict rate `0.000000`.
 - Registry status: approved as a robustness and bad-axis-margin feature; second submission priority behind E344.
 - Failure condition: if E344 and E345 both fail publicly, stop treating local E315 counter-axis safety as transferable and learn a counter-source selector before another public test.
+
+### E346 public-analog counter-axis gate
+
+- Target hidden structure: public-transfer risk of the E342+E315 counter-axis state.
+- Why needed: E323 was locally null-safe but public-bad. Local movement nulls alone cannot certify public transfer.
+- Feature/action form:
+  - known public-observation files are converted into E247-relative logit-delta axes;
+  - candidate movement is scored by public-loss-weighted positive cosine and direct positive cosine to E323/E216/E267/E256;
+  - matched row/target/sign/subject/dateblock nulls provide dominance thresholds.
+- Current evidence:
+  - E344 upload risk `0.051129078`, survival `0.452806122`;
+  - E345 upload risk `0.051144175`, survival `0.461734694`;
+  - direct positive E323/E216/E267/E256 alignment `0.000000000` for both.
+- Registry status: approved as a veto diagnostic; not approved as a certification gate.
+- Failure condition: if a future candidate has positive hard-veto alignment or public-analog survival below current E344/E345 while claiming to be safer, block it before public submission.

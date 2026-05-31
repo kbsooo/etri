@@ -1492,3 +1492,21 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - E345 strengthens the claim that E344 is a stable local basin, not a one-off;
   - E344 remains first because p90 is stronger;
   - E345 is the bad-axis-margin follow-up if public feedback suggests risk margin matters more.
+
+## Public-Free Observation: E346 Counter-Axis Public-Analog Preflight
+
+- submission file: none created.
+- public LB: not submitted.
+- changed point: E346 uses known public LB observations as fixed diagnostic axes, comparing E344/E345 movement to public-loss anatomies relative to E247.
+- local observation:
+  - E344 upload public-analog risk `0.051129078`, survival `0.452806122`;
+  - E345 upload public-analog risk `0.051144175`, survival `0.461734694`;
+  - both have direct positive E323/E216/E267/E256 alignment `0.000000000`;
+  - certification-grade public-analog dominance is `False`.
+- interpretation:
+  - E346 provides no hard veto against E344/E345;
+  - E346 also does not certify either candidate as public-transferable;
+  - the known public-bad axes are not the obvious reason to avoid E344/E345, but the public subset/calibration uncertainty remains.
+- next experiment after public result:
+  - if E344 improves, treat public-analog hard-veto as sufficient and learn a counter-source selector;
+  - if E344 worsens, search for a public subset/calibration state not represented by the E323/E216/E267/E256 axes.

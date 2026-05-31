@@ -3984,3 +3984,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept the stability claim if many nearby variants survive strict selector plus movement-null stress. This is observed. Do not upgrade E345 above E344 unless public feedback or a revised survival score values bad-axis margin over p90 margin.
 - public LB 관측 반응: if E344 improves and E345 also improves, the counter-axis basin becomes the strongest current world model. If E344 worsens but E345 improves, bad-axis margin matters more than p90. If both worsen, the local counter-axis safety is not public-transferable.
 - 제출 전략: keep E344 as first public sensor; use `analysis_outputs/submission_e345_counterrefine_lifestyle_61d91c4c_uploadsafe.csv` as the refined bad-axis-margin follow-up.
+
+### H346: local counter-axis safety is also certified by known public-loss analogs
+
+- 상태: 부분 지지 / certification은 반증됨.
+- 왜 그럴듯한가: E323 showed that local row/subject/dateblock null safety can still fail public. A stronger preflight should compare E344/E345 against known public-bad movements, not only synthetic movement nulls.
+- 맞다면: E344/E345 should have low positive cosine to E323/E216/E267/E256 axes and public-analog risk should dominate matched movement nulls by at least `0.70`.
+- 틀리다면: candidates should either align with known public-bad axes or show only median-level public-analog null dominance.
+- 최소 실험: `analysis_outputs/e346_counteraxis_public_analog_audit.py`.
+- 관측: E344/E345 direct positive alignment to E323/E216/E267/E256 is `0.000000000`, so there is no hard public-bad veto. But survival scores are only `0.452806` and `0.461735`, below certification threshold `0.70`.
+- 성공/폐기 기준: accept as hard-veto pass but reject as certification. This is observed.
+- public LB 관측 반응: if E344 improves, E346 was sufficient as a veto but overly conservative as a certifier. If E344 worsens, the missing factor is not simple E323/E216/E267/E256 cosine; it is a public subset or calibration state not captured by current public analog axes.
+- 제출 전략: no new file. Keep E344 first, E345 second.

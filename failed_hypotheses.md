@@ -2646,3 +2646,12 @@
 - Implementation issue possible: low for rejecting the knife-edge claim, because E345 reuses E344 scoring and expands the local grid. Medium for public transfer, because all checks are still local public-free proxies.
 - Bottleneck implication: the next uncertainty is not local stability. It is public transfer of the E315 counter-axis and the tradeoff between p90 margin and bad-axis margin.
 - Do not repeat: another fine grid around the same E344 point unless public feedback distinguishes E344 from E345.
+
+## FH294. Known public-loss axes certify E344/E345 public transfer
+
+- Failed hypothesis: if E344/E345 avoid E323/E216/E267/E256 public-bad axes, then known public-observation geometry should certify them with strong matched-null dominance.
+- Observed result: E346 found zero direct positive alignment to E323/E216/E267/E256 for both uploads, but public-analog survival was only `0.452806` for E344 and `0.461735` for E345, below the `0.70` certification threshold.
+- Why discard as certification: absence of the obvious public-bad anatomy is not enough. Matched nulls can achieve comparable public-analog risk, so the check is a hard-veto screen rather than a positive proof.
+- Implementation issue possible: medium. Several high-loss direct JEPA files are missing locally, so their axes could not be included. The rejection is about certification strength, not about E344/E345 quality.
+- Bottleneck implication: the remaining hidden variable may be a public subset/calibration state not captured by current known public-loss axes.
+- Do not repeat: claiming E344/E345 are public-certified solely because E323/E216 cosine is zero.

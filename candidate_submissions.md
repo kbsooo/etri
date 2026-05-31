@@ -3997,3 +3997,28 @@ Why E345 is still useful:
 
 - E345 has a wider bad-axis margin: bad-axis `0.014655826` versus E344 `0.014849687`.
 - If E344 fails publicly in a way that looks like bad-axis transfer risk, E345 is the next most informative public sensor.
+
+## Update After E346 Public-Analog Preflight
+
+No new submission file is created by E346.
+
+What it tested:
+
+- whether E344/E345 resemble known public-loss movements relative to E247;
+- especially E323, E216, E267, and E256;
+- whether that public-loss similarity is lower than matched movement nulls.
+
+Result:
+
+- E344 upload public-analog risk: `0.051129078`;
+- E345 upload public-analog risk: `0.051144175`;
+- both have direct positive E323/E216/E267/E256 alignment `0.000000000`;
+- both fail certification-grade survival because null dominance is only about `0.45-0.46`, below the `0.70` threshold.
+
+Decision:
+
+- E346 does not block E344/E345.
+- E346 also does not justify a new candidate or a reorder.
+- Current submission priority remains:
+  1. `analysis_outputs/submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv`
+  2. `analysis_outputs/submission_e345_counterrefine_lifestyle_61d91c4c_uploadsafe.csv`
