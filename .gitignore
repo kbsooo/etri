@@ -257,6 +257,10 @@ analysis_outputs/*
 !analysis_outputs/e370_q2s1_risk_constrained_*.md
 !analysis_outputs/e370_q2s1_risk_constrained_*.py
 !analysis_outputs/submission_e370_q2s1safe_selected_*_uploadsafe.csv
+!analysis_outputs/e371_q2_rowwise_safety_*.csv
+!analysis_outputs/e371_q2_rowwise_safety_*.md
+!analysis_outputs/e371_q2_rowwise_safety_*.py
+!analysis_outputs/submission_e371_q2rowsafe_selected_*_uploadsafe.csv
 
 !analysis_outputs/bridge_scan_candidates/
 analysis_outputs/bridge_scan_candidates/*

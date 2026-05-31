@@ -4743,3 +4743,24 @@ Submission interpretation:
 2. Do not submit E370 S1-amplified variants just because local top1 improves; they leave the Q2 unresolved risk untouched.
 3. Do not submit Q2-orthogonalized variants; they are safer only by deleting much of the Q2 lifestyle signal.
 4. If E368 later fails publicly, the next branch should learn a Q2 calibration/safety latent rather than use linear E323 projection.
+
+## Update After E371 Row-Wise Q2 Safety Latent
+
+No new E371 submission should be tested now.
+
+Current highest-information candidate remains:
+
+`analysis_outputs/submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv`
+
+Why E371 is not a submission:
+
+- E371 tested the natural follow-up to E370: maybe Q2 risk is row-specific rather than vector-specific.
+- The strongest E371 candidate has excellent local scenario support, but barely reduces Q2 risk: cosine `0.591735 -> 0.585298`.
+- The candidates that reduce Q2 risk meaningfully lose scenario support completely.
+- Therefore E371 does not give a safer public probe; it only shows that current row-wise Q2 trust scores are not enough.
+
+Submission interpretation:
+
+1. E368 remains the only current Q2/S1 candidate with coherent evidence from both known-public stress and public-free transfer.
+2. E371 S1-amplified/transfer-floor files should not be uploaded as "safer" variants.
+3. If E368 public LB is bad, the next file should not be another E368 row gate. It should target Q2 calibration/prior shift directly.

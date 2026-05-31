@@ -5502,3 +5502,33 @@ Stress conclusion:
 - The immediate safer-Q2 projection hypothesis fails.
 - E368 remains more defensible than E370 derivatives because the Q2 bad-axis component appears entangled with the locally validated Q2 lifestyle signal.
 - Do not submit S1-amplified or Q2-orthogonalized E370 files yet. The next useful test needs a new Q2 safety/calibration latent rather than a linear projection.
+
+## E371 Row-Wise Q2 Safety Latent Stress
+
+Question: can E368's Q2 risk be separated at row level using public-free Q2 transfer, E368 Q2 validity, and Q2 bad-contribution risk?
+
+Stress setup:
+
+- script: `analysis_outputs/e371_q2_rowwise_safety_latent.py`;
+- generated candidates: `369`;
+- scenarios: `98`;
+- context scores: Q2 transfer, S1 transfer, Q2 gate, bad gate, row validity, and Q2 bad-contribution rank;
+- candidate families: transfer floors, trust floors, risk-damp gates, contribution-damp gates, hard trust masks, and weak-transfer bad-tail dampers;
+- anti-collapse: E368 public/view jackknife, E369 transfer alignment, Q2 bad-axis cosine, Q2 positive bad-contribution share.
+
+Stress result:
+
+- decision: `keep_e368_no_rowwise_safe_replacement`;
+- eligible safer replacements: `0`;
+- strongest total candidate: `e371_transfer_floor0.65_g0.7_q21p08_s11p15`;
+- strongest total top1/top10: `0.479592` / `0.959184`;
+- strongest total public-like score: `8.449785`;
+- strongest total Q2 bad-axis cosine: `0.585298`;
+- strongest total Q2 transfer abs Spearman: `0.428500`;
+- materially safer bad-tail candidates reach Q2 cosine around `0.539628`, but have top10 `0.0`.
+
+Stress conclusion:
+
+- Row-wise Q2 trust does not currently solve the E368 risk. The transfer-preserving gates keep the risk; the risk-reducing gates lose the support.
+- This is a stronger negative than E370 because it rules out the simplest "right signal, wrong rows" explanation.
+- Keep E368. The next Q2 safety target must be a different latent, probably calibration/prior residual rather than E323 movement similarity.

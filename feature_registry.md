@@ -4027,3 +4027,20 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - best local stress row is S1-amplified but still has Q2 bad-axis cosine `0.591735`.
 - Registry status: rejected as a submission feature; keep as a risk diagnostic.
 - Failure condition: do not use linear bad-axis projection as the next Q2 safety mechanism. A future feature must learn Q2 calibration risk directly from public-free or anchor-stress targets.
+
+### E371 row-wise Q2 safety/trust latent
+
+- Target hidden structure: row-level trust for E368 Q2 movement, separating public-free Q2 lifestyle transfer rows from E323-like risk rows.
+- Why needed: E370 showed Q2 risk is not removable by global projection. The next plausible separation is row-wise: good Q2 rows versus risky Q2 rows.
+- Feature/action form:
+  - context scores: Q2 transfer, Q2 gate, row validity, bad gate, and Q2 bad-contribution rank;
+  - candidate actions: Q2 row weights by transfer floor, trust floor, risk damp, contribution damp, hard trust mask, and weak-transfer bad-tail damp;
+  - S1 variants: fixed E368 S1 with scales `1.00`, `1.06`, and `1.15`.
+- Current evidence:
+  - generated candidates: `369`;
+  - eligible safer replacements: `0`;
+  - best total candidate top1/top10 `0.479592/0.959184`;
+  - best total Q2 cosine only improves to `0.585298`;
+  - risk-reducing candidates around Q2 cosine `0.539628` have top10 `0.0`.
+- Registry status: rejected as a submission feature; keep as evidence that Q2 risk is not separable by current row-wise lifestyle trust.
+- Failure condition: do not repeat row-wise Q2 damping based only on transfer/gate/risk ranks. A future row-wise Q2 feature needs a new target label, not a reweighted version of these scores.

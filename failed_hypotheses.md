@@ -2826,3 +2826,12 @@
 - Implementation issue possible: medium. The bad axis is based on limited known bad submissions, and projection is linear in logit space. But the monotone loss of transfer support is strong enough to reject E370 as a submission route.
 - Bottleneck implication: E368's next correction needs a new Q2 calibration/safety latent or public-free anchor stress, not an E323 projection.
 - Do not repeat: Q2 projection-away or S1 amplification sweeps around E368 unless new public observations or a new independent Q2 safety target changes the risk definition.
+
+## FH314. E368 Q2 bad-axis risk is only a wrong-row problem
+
+- Failed hypothesis: the Q2 risk in E368 can be fixed by preserving Q2 movement on rows with strong public-free transfer and damping rows with high E323-like contribution.
+- Observed result: E371 generated `369` row-wise Q2 safety candidates and selected none. The best stress candidate had top1/top10 `0.479592/0.959184` and Q2 transfer `0.428500`, but Q2 cosine only moved from `0.591735` to `0.585298`. Candidates that reduced Q2 cosine to about `0.539628` had top10 `0.0`.
+- Why discard: current Q2 transfer/gate scores do not separate safe rows from risky rows. They preserve the same anatomy that creates the Q2 warning.
+- Implementation issue possible: medium. The row-wise target is hand-built from E369/E368 scores and E323 contribution, not learned from new public labels. But it is enough to reject this specific row-damping route.
+- Bottleneck implication: Q2 risk is an action-calibration/prior problem, not just a row-mask problem.
+- Do not repeat: transfer-floor, hard-trust, or weak-transfer bad-tail damping around E368 Q2 unless a new Q2 calibration target is introduced.

@@ -6106,3 +6106,24 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E368's Q2 risk is entangled with the signal. The currently visible Q2 component cannot be cleanly removed by a linear bad-axis projection without losing the lifestyle-state support that made E368 interesting.
   - S1 `1.15` amplification looks locally strong, but it keeps the unresolved Q2 risk and therefore is not selected as a public probe.
 - Decision: no E370 submission. Keep E368 as the current candidate and do not amplify Q2 until a different Q2 safety representation exists.
+
+## E371. Row-Wise Q2 Safety/Calibration Latent
+
+- Observe: E370 killed linear Q2 projection. The remaining plausible fix is row-wise: keep Q2 where public-free lifestyle transfer is strong, damp Q2 where E323-like contribution is high and transfer is weak.
+- Wonder: is the Q2 bad-axis warning a row-placement problem rather than a direction/vector problem?
+- Hypothesis: if row-wise Q2 trust is real, a gate built from Q2 public-free transfer, E368 Q2 validity, and row-wise E323 contribution risk should lower Q2 bad-axis exposure while preserving E368 scenario support.
+- Method: `analysis_outputs/e371_q2_rowwise_safety_latent.py`.
+  - generated `369` candidates;
+  - context: Q2 transfer score, E368 Q2 row-validity, E368 bad gate, and Q2 bad-contribution rank;
+  - actions: transfer floors, trust floors, risk-damp gates, hard trust masks, and weak-transfer bad-tail dampers;
+  - stress: same `98` E368 public/view jackknife scenarios plus E369 transfer and Q2 bad-axis diagnostics.
+- Result:
+  - decision: `keep_e368_no_rowwise_safe_replacement`;
+  - eligible safer replacements: `0`;
+  - strongest total row `e371_transfer_floor0.65_g0.7_q21p08_s11p15`: top1 `0.479592`, top10 `0.959184`, public-like score `8.449785`, Q2 transfer `0.428500`, but Q2 bad-axis cosine only falls from `0.591735` to `0.585298`;
+  - candidates that materially reduce Q2 cosine to about `0.539628` or lower have top10 `0.0` under the scenario stress;
+  - Q2 transfer-aligned gates preserve transfer but remain positively correlated with Q2 contribution risk (`0.259451`), so they do not actually isolate a safe Q2 substate.
+- Interpretation:
+  - The Q2 risk is not just "wrong rows." The rows with transferable Q2 signal are still partly the rows carrying the bad-axis anatomy.
+  - The local stress likes S1 amplification and mild Q2 transfer gating, but that does not solve the Q2 safety question.
+- Decision: no E371 submission. Keep E368, and stop trying to fix Q2 by row-wise damping alone. The next useful Q2 experiment needs a different target, likely Q2 outcome/calibration residual or public-private prior state rather than E323-similarity suppression.

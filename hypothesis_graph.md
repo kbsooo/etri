@@ -4284,3 +4284,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept only if Q2 bad-axis cosine drops materially without losing public-like and public-free transfer support. Not observed.
 - public LB 관측 반응: no E370 file should be submitted. If E368 fails publicly, H370 says a simple projection fix is unlikely to be enough; the next correction must learn a new Q2 safety/calibration latent, not just remove the E323 direction.
 - 제출 전략: keep `analysis_outputs/submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv`.
+
+### H371: E368 Q2 bad-axis exposure is a row-wise trust problem
+
+- 상태: 반증됨 for current Q2 transfer/validity/risk gates.
+- 왜 그럴듯한가: H370 showed linear projection destroys signal. If the bad axis comes from a subset of rows, a lifestyle-state trust gate should keep Q2 movement on public-free supported rows and damp unsupported E323-like rows.
+- 맞다면: row-wise Q2 gates should reduce Q2 bad-axis cosine and positive contribution share while keeping top10 scenario support and Q2 transfer alignment near E368.
+- 틀리다면: gates that preserve scenario/transfer support should barely reduce Q2 risk, while gates that reduce Q2 risk should lose scenario support.
+- 최소 실험: `analysis_outputs/e371_q2_rowwise_safety_latent.py`.
+- 관측: `369` row-wise Q2 safety candidates tested. Eligible safer replacements: `0`. Best total candidate has top1/top10 `0.479592/0.959184` and Q2 transfer `0.428500`, but Q2 bad cosine remains `0.585298`. Candidates reducing Q2 cosine to about `0.539628` have top10 `0.0`.
+- 성공/폐기 기준: accept only if Q2 risk drops materially while top10 and transfer remain near E368. Not observed.
+- public LB 관측 반응: no E371 file should be submitted. If E368 fails, the next correction should not be another row-wise Q2 damp gate; it needs a new calibration target.
+- 제출 전략: keep E368; do not upload E371 files.
