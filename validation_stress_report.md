@@ -4757,3 +4757,44 @@ Stress conclusion:
 - E347 upgrades the E344 family from "locally safe but public-analog uncertified" to a more balanced candidate: slightly weaker p90 than E344, but lower public-analog risk and stronger public-analog survival.
 - The movement remains tied to the Q1 JEPA-residual dateblock lifestyle state, so this is not just a broad dilution trick.
 - Current public-test ranking becomes E347 first for evidence balance, E344 second for score-seeking p90, and E345 third as bad-axis-margin backup.
+
+## E348 Lifestyle-State Specificity Stress
+
+Question: is E347's Q1 dateblock lifestyle-state alignment specific, or does every output movement get a plausible lifestyle story after the fact?
+
+Method:
+
+- `analysis_outputs/e348_lifestyle_state_specificity_audit.py`
+- Inputs: E347 candidate rows plus public-control files including E323, E216, E267, E256, E95, E101, mixmin, final9, and stage2.
+- Positive latent: `rs01_Q1_jepa_resid_dateblock`.
+- Negative controls:
+  - calendar-only max correlation;
+  - non-Q1 residual max correlation;
+  - own-latent max correlation;
+  - random Gaussian control columns;
+  - permuted Q1 state.
+
+Result:
+
+- E348 gate passes: `3`;
+- selected canonical file remains:
+  - `submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv`;
+  - Q1 state corr `0.432330`;
+  - Q1 state enrichment `0.852584`;
+  - Q1 specificity margin `0.297346`;
+  - broader specificity margin `0.271772`;
+  - calendar corr `0.053213`;
+  - non-Q1 residual corr `0.160558`;
+  - own-latent corr `0.137435`;
+  - random p95 `0.134984`;
+  - permuted-Q1 p95 `0.114145`.
+- Public-bad controls fail:
+  - E323 q1 corr `0.069575`, broad-state-not-specific `True`;
+  - E216 q1 corr `0.045828`, broad-state-not-specific `True`;
+  - E256 q1 corr `0.092337`, broad-state-not-specific `True`.
+
+Stress conclusion:
+
+- E347's lifestyle-state explanation survives negative-control stress.
+- This does not prove public LB transfer, but it removes the strongest local objection that E347 was just a generic stateful-looking E344 movement.
+- Keep E347 as first public sensor.

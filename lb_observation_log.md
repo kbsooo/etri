@@ -1534,3 +1534,26 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - improve if the public subset rewards the Q1 dateblock residual lifestyle-state plus lower public-analog risk;
   - underperform E344 if pure p90 margin matters more than public-analog/lifestyle-state balance;
   - worsen if the missing public state is outside E328/E337's hidden lifestyle teacher.
+
+## Public-Free Observation: E348 Lifestyle-State Specificity Audit
+
+- submission file: none new; canonical recommendation remains `analysis_outputs/submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv`.
+- public LB: not submitted.
+- changed point: E348 tests whether E347's lifestyle-state explanation survives controls instead of merely sounding plausible.
+- local observation:
+  - E348 gate passes `3/25`;
+  - selected file remains E347;
+  - selected Q1 state corr `0.432330`;
+  - selected Q1 state enrichment `0.852584`;
+  - Q1 specificity margin `0.297346`;
+  - broader specificity margin `0.271772`;
+  - calendar corr `0.053213`;
+  - non-Q1 residual corr `0.160558`;
+  - own-latent corr `0.137435`;
+  - random p95 `0.134984`;
+  - permuted-Q1 p95 `0.114145`;
+  - E323/E216/E256 public-bad controls fail specificity.
+- interpretation:
+  - E348 strengthens E347 priority;
+  - it does not create a new public test;
+  - the next public observation should still be E347 unless the user wants the more aggressive E344 p90 sensor.

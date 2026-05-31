@@ -38,6 +38,8 @@ analysis_outputs/*
 !analysis_outputs/e346_counteraxis_public_analog_nulls.csv
 !analysis_outputs/e347_lifestyle_state_candidate_reaudit_scores.csv
 !analysis_outputs/e347_lifestyle_state_candidate_reaudit_nulls.csv
+!analysis_outputs/e348_lifestyle_state_specificity_scores.csv
+!analysis_outputs/e348_lifestyle_state_specificity_controls.csv
 !analysis_outputs/e325_e323_semantic_null_attribution.csv
 !analysis_outputs/e325_e323_semantic_feature_meta.csv
 !analysis_outputs/e276_q_sleep_story_ablation_placebo_*.csv

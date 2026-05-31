@@ -4063,3 +4063,31 @@ Risk:
 
 - Its p90 is weaker than E344 (`-0.000050116` versus `-0.000053606`).
 - If public LB rewards pure p90 margin more than public-analog/lifestyle-state safety, E344 may still beat E347.
+
+## Update After E348 Specificity Audit
+
+No new submission file is needed.
+
+E348 tested whether E347's hidden lifestyle-state claim was too generic. It was not.
+
+Key checks for the E347 file:
+
+- Q1 dateblock residual state corr `0.432330`;
+- Q1 enrichment `0.852584`;
+- Q1 specificity margin `0.297346`;
+- broader specificity margin `0.271772`;
+- calendar corr only `0.053213`;
+- random p95 `0.134984`;
+- permuted-Q1 p95 `0.114145`;
+- public-bad controls fail specificity.
+
+Submission priority remains:
+
+1. `analysis_outputs/submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv`
+2. `analysis_outputs/submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv`
+3. `analysis_outputs/submission_e345_counterrefine_lifestyle_61d91c4c_uploadsafe.csv`
+
+Interpretation:
+
+- E347 is now the best single public sensor because it passes public-analog risk, local visibility, bad-axis cap, and latent-specificity checks.
+- E344 is still useful if the public subset rewards stronger p90 more than specificity/risk balance.

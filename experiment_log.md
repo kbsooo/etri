@@ -5544,3 +5544,28 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - dominant state: `rs01_Q1_jepa_resid_dateblock`.
 - Interpretation: the public-analog safer E344 neighborhood is not merely a diluted move. It is still anchored on the Q1 JEPA-residual dateblock lifestyle state that has survived since E331/E342. The tradeoff is lower p90 margin than E344 upload, but better public-analog risk and better survival.
 - Decision: promote E347 as the most evidence-balanced public sensor. Keep E344 as the more aggressive p90 candidate and E345 as the bad-axis-margin backup.
+
+## E348. Lifestyle-State Specificity Audit
+
+- Observe: E347 gave all E344/E345-family rows lifestyle-state score `1.0`, so the remaining doubt was whether `rs01_Q1_jepa_resid_dateblock` is a real discriminating latent or a generic explanation attached to every movement in that family.
+- Wonder: does the E347 candidate align with Q1 dateblock residual state more than with calendar-only, non-Q1 residual, own-latent, random, permuted-Q1, or known public-bad control movements?
+- Hypothesis: E347 priority is strengthened only if the selected row remains specific to the Q1 dateblock residual state after these controls. If public-bad controls or calendar/random controls show similar alignment, downgrade the statefulness claim.
+- Method: `analysis_outputs/e348_lifestyle_state_specificity_audit.py`.
+  - Re-score E347 candidates plus public-control submissions against split latent views.
+  - Positive axis: `rs01_Q1_jepa_resid_dateblock`.
+  - Negative controls: calendar max correlation, non-Q1 residual max correlation, own-latent max correlation, random Gaussian columns, and permuted Q1 state.
+- Result:
+  - E348 gate pass count: `3`;
+  - selected file remains `analysis_outputs/submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv`;
+  - selected Q1 state corr `0.432330`;
+  - selected Q1 enrichment `0.852584`;
+  - Q1 specificity margin `0.297346`;
+  - broader specificity margin `0.271772`;
+  - calendar corr only `0.053213`;
+  - non-Q1 residual corr `0.160558`;
+  - own-latent corr `0.137435`;
+  - random p95 `0.134984`;
+  - permuted-Q1 p95 `0.114145`;
+  - public-bad controls all fail specificity gate.
+- Interpretation: E347's statefulness is not merely a calendar/random/public-bad artifact. It is a specific Q1 dateblock residual lifestyle-state action inside the E344 family.
+- Decision: no new submission is needed. E347 remains first priority; E344 remains the p90-aggressive backup and E345 the bad-axis-margin backup.

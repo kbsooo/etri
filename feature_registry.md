@@ -3608,3 +3608,19 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - dominant state `rs01_Q1_jepa_resid_dateblock`, state/null dominance `1.000000`.
 - Registry status: approved as the current evidence-balanced submission gate.
 - Failure condition: if public LB rejects E347 while E344/E345 remain better, downgrade lifestyle-state alignment below raw p90/bad-axis margin for this branch.
+
+### E348 lifestyle-state specificity gate
+
+- Target hidden structure: whether E347's Q1 dateblock residual lifestyle-state action is specific rather than an after-the-fact broad state story.
+- Why needed: E347's state score was saturated across the E344/E345 family, so a stronger anti-collapse test was needed before treating statefulness as a submission-ranking signal.
+- Feature/action form:
+  - positive latent axis `rs01_Q1_jepa_resid_dateblock`;
+  - controls from calendar-only, non-Q1 residual, own-latent, random columns, permuted-Q1 state, and public-bad movement controls.
+- Current evidence:
+  - E348 gate passes `3`;
+  - selected canonical file remains `submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv`;
+  - selected Q1 corr `0.432330`, Q1 enrichment `0.852584`;
+  - Q1 specificity margin `0.297346`, broader margin `0.271772`;
+  - public-bad controls fail specificity.
+- Registry status: approved as a specificity validator for the E347 priority, not a new feature family.
+- Failure condition: if future public feedback rejects E347, keep the specificity result as local evidence but stop assuming local lifestyle specificity implies public transfer.

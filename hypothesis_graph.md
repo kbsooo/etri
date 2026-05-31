@@ -4008,3 +4008,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept locally if a lower-risk candidate remains p90-visible, bad-axis-safe, E323/E216/E267/E256-neutral, and lifestyle-state-aligned versus nulls. This is observed.
 - public LB 관측 반응: if E347 improves, public-transfer prefers stateful public-analog risk over maximum p90 margin. If E344 beats E347, p90 margin is the stronger sensor. If both fail, the missing state is not captured by Q1 dateblock residual lifestyle alignment.
 - 제출 전략: submit `analysis_outputs/submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv` first as the most evidence-balanced sensor.
+
+### H348: E347's Q1 dateblock lifestyle-state alignment is specific, not generic post-hoc storytelling
+
+- 상태: 지지됨 locally.
+- 왜 그럴듯한가: E347 found all E344-family rows strongly state-aligned, so the statefulness test could have been too easy. A real hidden lifestyle-state action should beat calendar-only, random, permuted-state, non-Q1 residual, own-latent, and public-bad controls.
+- 맞다면: the selected E347 movement should have large positive Q1-specificity margin and public-bad controls should fail the same specificity gate.
+- 틀리다면: public-bad controls or calendar/random controls should show comparable Q1 state alignment, or E347 should be better explained by broad own-latent/calendar state than by `rs01_Q1_jepa_resid_dateblock`.
+- 최소 실험: `analysis_outputs/e348_lifestyle_state_specificity_audit.py`.
+- 관측: selected E347 file has Q1 corr `0.432330`, Q1 enrichment `0.852584`, specificity margin `0.297346`, broader margin `0.271772`, calendar corr `0.053213`, random p95 `0.134984`, and permuted-Q1 p95 `0.114145`. E323/E216/E256 controls fail specificity.
+- 성공/폐기 기준: accept if Q1 specificity margin is positive by at least `0.10` and public-bad controls fail. This is observed.
+- public LB 관측 반응: if E347 improves, H347/H348 become the strongest current hidden lifestyle-state world model. If E347 fails, the latent is locally specific but not public-subset-transferable.
+- 제출 전략: no new E348 file; keep E347 first.
