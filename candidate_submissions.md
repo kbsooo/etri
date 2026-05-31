@@ -4091,3 +4091,50 @@ Interpretation:
 
 - E347 is now the best single public sensor because it passes public-analog risk, local visibility, bad-axis cap, and latent-specificity checks.
 - E344 is still useful if the public subset rewards stronger p90 more than specificity/risk balance.
+
+## Update After E349 Target/Cell Ablation Stress
+
+New candidate:
+
+- `analysis_outputs/submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv`
+
+What changed:
+
+- E349 does not train a new model.
+- It takes the E347 movement and asks which target/cell parts are actually needed.
+- The selected file keeps the Q1/Q2/Q3/S1 high-magnitude action and removes low-magnitude/noisy cells, especially the pieces that behave like weak S-tail calibration.
+
+Evidence:
+
+- variants tested: `158`;
+- general gate passes: `10`;
+- replacement gate passes: `2`;
+- selected local mean `-0.000249286`;
+- selected p90 `-0.000050035`;
+- beats-current rate `0.972222`;
+- bad-axis `0.014667610`;
+- public-analog survival `0.525510204`;
+- public-analog risk `0.044736209`;
+- direct E323/E216/E267/E256 positive alignment `0`;
+- Q1 state corr `0.440884`;
+- Q1 specificity margin `0.299145`;
+- changed cells vs E347 `347`.
+
+Updated priority:
+
+1. `analysis_outputs/submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv`
+2. `analysis_outputs/submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv`
+3. `analysis_outputs/submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv`
+4. `analysis_outputs/submission_e345_counterrefine_lifestyle_61d91c4c_uploadsafe.csv`
+
+Why E349 moves first:
+
+- It is meaningfully different from E347, unlike near-duplicate cell-pruning variants.
+- It keeps E347's local visibility and Q1 lifestyle-state specificity.
+- It lowers public-analog risk relative to E347 (`0.044736209` versus `0.044818570`) while staying hard-veto neutral.
+- It tests the sharper hypothesis that the hidden state is a compact Q1/Q2/Q3/S1 episode state rather than a broad E347 movement.
+
+Risk:
+
+- Its p90 margin is barely over the strict threshold (`-0.000050035`), weaker than E344 and close to selector resolution.
+- If the pruned S3/low-magnitude cells were useful public calibration, E347 can beat E349.

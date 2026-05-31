@@ -1557,3 +1557,25 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - E348 strengthens E347 priority;
   - it does not create a new public test;
   - the next public observation should still be E347 unless the user wants the more aggressive E344 p90 sensor.
+
+## Public-Free Observation: E349 Target/Cell Lifestyle-State Ablation
+
+- submission file recommended for public test: `analysis_outputs/submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv`.
+- public LB: pending.
+- changed point: E349 converts E347 from a full movement into a compact Q1/Q2/Q3/S1 high-magnitude cell action, keeping the same hidden Q1 dateblock lifestyle-state view but removing weak/noisy cells.
+- local observation:
+  - `158` variants tested;
+  - general gate passes `10`;
+  - replacement gate passes `2`;
+  - selected p90 `-0.000050035`;
+  - selected bad-axis `0.014667610`;
+  - public-analog survival `0.525510204`;
+  - public-analog risk `0.044736209`;
+  - direct E323/E216/E267/E256 positive alignment `0`;
+  - Q1 state corr `0.440884`;
+  - Q1 specificity margin `0.299145`;
+  - changed cells vs E347 `347`.
+- interpretation before submission:
+  - improvement would support the compact Q1/Q2/Q3/S1 hidden lifestyle-state story;
+  - deterioration while E347 remains strong would mean the removed low-magnitude/S3 cells were calibration support rather than noise;
+  - a large deterioration would demote target/cell pruning and move the next question back to public-subset/calibration transfer.

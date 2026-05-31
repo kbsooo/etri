@@ -5569,3 +5569,31 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - public-bad controls all fail specificity gate.
 - Interpretation: E347's statefulness is not merely a calendar/random/public-bad artifact. It is a specific Q1 dateblock residual lifestyle-state action inside the E344 family.
 - Decision: no new submission is needed. E347 remains first priority; E344 remains the p90-aggressive backup and E345 the bad-axis-margin backup.
+
+## E349. E347 Target/Cell Ablation Stress
+
+- Observe: E348 proves E347 is locally specific to the Q1 dateblock residual lifestyle state, but it does not say whether the useful action is Q1-only, Q-family-only, or a coupled Q/S movement.
+- Wonder: if the hidden lifestyle-state action is real, which part of the E347 delta is necessary? Can a target/cell-pruned action keep local visibility, public-bad-axis safety, and Q1-state specificity while becoming meaningfully different from E347?
+- Hypothesis: a replacement can beat E347 only if it keeps the E272 strict selector gate, avoids E323/E216/E267/E256 positive alignment, preserves Q1-specific latent alignment, and changes enough cells versus E347 to be an information-bearing public sensor.
+- Method: `analysis_outputs/e349_e347_target_cell_ablation_stress.py`.
+  - Base: E247.
+  - Action: logit(E347) - logit(E247).
+  - Variants: target masks, Q1-state row masks, movement row masks, cell-magnitude masks, sign masks, and mild scales.
+  - Stress: E272 public-free selector, E346 public-analog axes, E348-style Q1 dateblock specificity, and an extra "not near-duplicate of E347" gate.
+- Result:
+  - candidates tested: `158`;
+  - general E349 gate passes: `10`;
+  - replacement gate passes: `2`;
+  - selected file: `analysis_outputs/submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv`;
+  - selected variant: `cell_abs_top65_q1q2q3s1`;
+  - local mean `-0.000249286`, p90 `-0.000050035`, beats `0.972222`;
+  - bad-axis `0.014667610`;
+  - public-analog survival `0.525510204`, risk `0.044736209`;
+  - direct positive E323/E216/E267/E256 alignment `0.000000`;
+  - Q1 state corr `0.440884`, enrichment `0.852584`, specificity margin `0.299145`;
+  - changed cells vs E247 `356`, changed cells vs E347 `347`, probability L1 delta vs E347 `0.006839`.
+- Interpretation:
+  - Q1-only and Q-only row-sliced moves often have much stronger latent specificity, but they fail selector visibility or pick up public-bad positive alignment.
+  - S-only and isolated S targets fail badly; S3 alone is especially public-analog risky.
+  - The surviving structure is not "Q1만 맞추자". It is a compact Q1/Q2/Q3/S1 movement with small cells removed, meaning the hidden lifestyle state appears as a coupled subjective/objective episode state.
+- Decision: E349 creates a more informative follow-up than E347, not a guaranteed improvement. If only one new file is tested from this branch, use `submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv`; if public rejects it, downgrade target/cell pruning and return to canonical E347/E344.

@@ -4798,3 +4798,47 @@ Stress conclusion:
 - E347's lifestyle-state explanation survives negative-control stress.
 - This does not prove public LB transfer, but it removes the strongest local objection that E347 was just a generic stateful-looking E344 movement.
 - Keep E347 as first public sensor.
+
+## E349 E347 Target/Cell Ablation Stress
+
+Question: can the E347 hidden lifestyle-state action be made more informative by pruning targets or cells, or is the full E347 movement required?
+
+Method:
+
+- `analysis_outputs/e349_e347_target_cell_ablation_stress.py`
+- Action source: logit(E347) - logit(E247).
+- Variant classes:
+  - target masks including Q-only, S-only, Q1/Q2/Q3/S1, and target dropouts;
+  - Q1-state row masks;
+  - movement row masks;
+  - cell-magnitude masks;
+  - positive/negative sign masks;
+  - mild scaling.
+- Stress:
+  - E272 public-free selector;
+  - E346 public-analog axes and matched null dominance;
+  - E348-style Q1 dateblock specificity;
+  - non-near-duplicate gate versus E347.
+
+Result:
+
+- variants tested: `158`;
+- general gate passes: `10`;
+- replacement gate passes: `2`;
+- selected upload-safe file:
+  - `submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv`;
+  - local mean `-0.000249286`;
+  - p90 `-0.000050035`;
+  - beats-current rate `0.972222`;
+  - incremental bad-axis `0.014667610`;
+  - public-analog survival `0.525510204`;
+  - public-analog risk `0.044736209`;
+  - direct E323/E216/E267/E256 positive alignment `0.000000`;
+  - Q1 specificity margin `0.299145`;
+  - changed cells vs E347 `347`.
+
+Stress conclusion:
+
+- Single-target Q1 specificity is not enough. The Q1-only row masks look semantically strong but fail submission-grade selector stress.
+- The locally surviving state is compact and coupled: Q1/Q2/Q3/S1 with low-magnitude cells pruned.
+- E349 is the highest-information follow-up file from this branch because it is meaningfully different from E347 while keeping the E347 latent and public-bad-axis constraints.

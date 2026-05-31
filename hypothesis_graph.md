@@ -4020,3 +4020,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept if Q1 specificity margin is positive by at least `0.10` and public-bad controls fail. This is observed.
 - public LB 관측 반응: if E347 improves, H347/H348 become the strongest current hidden lifestyle-state world model. If E347 fails, the latent is locally specific but not public-subset-transferable.
 - 제출 전략: no new E348 file; keep E347 first.
+
+### H349: the E347 lifestyle-state action is a compact coupled Q/S state, not a Q1-only target trick
+
+- 상태: 지지됨 locally; public LB 미확인.
+- 왜 그럴듯한가: E347/E348 identify a Q1 dateblock residual lifestyle-state action, but Q1 specificity alone could be misleading. A real human lifestyle state should appear through a small target manifold such as Q1/Q2/Q3/S1 rather than a single isolated target edit.
+- 맞다면: target/cell-pruned variants around E347 should show that Q1-only or S-only fragments are not submission-grade, while a compact coupled Q/S slice keeps selector visibility, public-bad-axis neutrality, and Q1-state specificity.
+- 틀리다면: Q1-only should retain the full local edge, or pruning should destroy the E347 gate entirely.
+- 최소 실험: `analysis_outputs/e349_e347_target_cell_ablation_stress.py`.
+- 관측: `158` variants tested, `10` general gates, `2` replacement gates. The selected file `submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv` keeps p90 `-0.000050035`, bad-axis `0.014667610`, public-analog survival/risk `0.525510204/0.044736209`, direct bad-axis positive cosine sum `0`, Q1 corr `0.440884`, and changes `347` cells versus E347. Q1-only/Q-only row slices become very state-specific but fail selector visibility or add bad-axis leakage; S-only and isolated S targets fail.
+- 성공/폐기 기준: accept locally if a meaningfully different ablation passes strict selector, bad-axis cap, public-analog risk, hard-veto axes, and Q1 specificity. This is observed for the Q1/Q2/Q3/S1 cell-pruned variants.
+- public LB 관측 반응: if E349 improves, the hidden state should be treated as a compact coupled subjective/objective episode state. If E349 worsens while E347 survives, the small S3/tail cells removed by E349 were useful calibration rather than noise.
+- 제출 전략: use `analysis_outputs/submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv` as the next high-information sensor after E347.

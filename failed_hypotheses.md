@@ -2655,3 +2655,12 @@
 - Implementation issue possible: medium. Several high-loss direct JEPA files are missing locally, so their axes could not be included. The rejection is about certification strength, not about E344/E345 quality.
 - Bottleneck implication: the remaining hidden variable may be a public subset/calibration state not captured by current known public-loss axes.
 - Do not repeat: claiming E344/E345 are public-certified solely because E323/E216 cosine is zero.
+
+## FH295. E347's lifestyle-state action is Q1-only
+
+- Failed hypothesis: because E347/E348 are dominated by `rs01_Q1_jepa_resid_dateblock`, a Q1-only or Q-only slice should be the cleanest submission-grade version.
+- Observed result: E349 target/cell ablation shows the opposite. Q1-only and Q-only row-sliced variants can have much stronger Q1-state correlation, but they fail the strict selector gate or pick up public-bad positive alignment. The replacement-gate survivors are Q1/Q2/Q3/S1 cell-pruned variants.
+- Why discard: latent specificity by itself is not the metric. The action also needs Log Loss visibility, bad-axis cap, and public-analog safety. Q1-only has the story but not the full action geometry.
+- Implementation issue possible: medium. A different nonlinear Q1 translator may still work, but direct E347 slicing rejects the current Q1-only route.
+- Bottleneck implication: the hidden lifestyle state is a coupled subjective/objective episode state. Q1 is the clearest sensor, not the whole mechanism.
+- Do not repeat: public-testing Q1-only E347 slices or ranking candidates by Q1-state correlation alone.

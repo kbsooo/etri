@@ -3624,3 +3624,21 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - public-bad controls fail specificity.
 - Registry status: approved as a specificity validator for the E347 priority, not a new feature family.
 - Failure condition: if future public feedback rejects E347, keep the specificity result as local evidence but stop assuming local lifestyle specificity implies public transfer.
+
+### E349 target/cell lifestyle-state ablation gate
+
+- Target hidden structure: whether the E347 Q1 dateblock lifestyle-state action is target-separable or only healthy as a coupled Q/S episode state.
+- Why needed: E347/E348 prove local Q1-specific statefulness, but not the action support. A public submission should not spend a slot on Q1-only storytelling if the actual Log Loss geometry needs Q2/Q3/S1 support.
+- Feature/action form:
+  - E247 baseline plus masked/scaled logit(E347)-logit(E247) action;
+  - masks over targets, Q1-state rows, movement rows, cell magnitude, and sign;
+  - extra gate requiring meaningful probability/cell distance from E347.
+- Current evidence:
+  - `158` variants;
+  - `10` E349 gate passes;
+  - `2` replacement-gate passes;
+  - selected file `submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv`;
+  - selected metrics: p90 `-0.000050035`, bad-axis `0.014667610`, public-analog risk `0.044736209`, direct bad positive cosine sum `0`, Q1 corr `0.440884`, Q1 specificity margin `0.299145`;
+  - changed cells vs E347 `347`, so this is not a near-duplicate.
+- Registry status: approved as the current compact-lifestyle-state candidate and as evidence that the useful latent is Q1/Q2/Q3/S1-coupled, not Q1-only.
+- Failure condition: if public rejects E349 while E347 is better, restore the low-magnitude/S3 cells as calibration support and stop pruning the state by target/cell without a stronger public-transfer proxy.
