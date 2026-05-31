@@ -2949,3 +2949,30 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - require direct matched-null promotion after materialization.
 - Failure condition:
   - if a feature only improves pooled source-held health but fails leave-mode or within-mode governance, treat it as a diagnostic latent, not a candidate selector.
+
+## E318 Mode-Specialized Policy Features
+
+- Target hypothesis tested:
+  - E317 human/identity/action predictions can be used as a mode-specialized policy over actual, row, subject, and dateblock placements, rather than as one universal multiplier.
+- Feature/representation source:
+  - E317 OOF `predict_p90_rank`, `predict_health_score`, and `classify_joint_health`;
+  - E316/E317 placement features;
+  - source-wise normalized score combinations for human-only, human+action, human+identity+action, joint-health, regime-first, and geometry-only policies.
+- Validation result:
+  - placement rows `1072`;
+  - sources `67`;
+  - best non-oracle policy `human_identity_action_p90_rank`;
+  - delta p90-rank health versus actual `0.028918`;
+  - p90-rank health mean `0.649254` versus actual `0.620336`;
+  - joint-health rate `0.313433` versus actual `0.134328`;
+  - oracle upper bound p90-rank health mean `0.937500`.
+- Updated registry status:
+  - approved as a regime-selection diagnostic;
+  - not approved as a submission selector;
+  - not approved for selecting E315 null-control CSVs as public candidates.
+- Adopt rule for future features:
+  - separate regime choice from within-regime action geometry;
+  - use source-wise normalization or grouped OOF predictions so the policy cannot win by family scale leakage;
+  - require fresh materialization and matched-null governance before promotion.
+- Failure condition:
+  - if a mode policy only selects healthier controls inside an archive but cannot create a new visible/null-rare tensor, keep it as a diagnostic and do not spend public LB.

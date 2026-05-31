@@ -2421,3 +2421,12 @@
 - Implementation issue possible: medium. E317 uses linear heads and E315-only mini-worlds; a nonlinear mode-specialist model may improve. Low for rejecting direct universal human-score submission selection.
 - Bottleneck implication: the next action layer must be mode-specialized and directly governed by matched nulls.
 - Do not repeat: applying one human/social placement score as a global multiplier or submitting files that only look good under pooled source-held health.
+
+## FH269. Existing E315 actual/null placements are enough once selected by a mode-specialized policy
+
+- Failed hypothesis: E317's outcome learner should be strong enough to select an already-existing E315 actual/null placement that is ready for public testing.
+- Observed result: E318's best non-oracle policy, `human_identity_action_p90_rank`, improves p90-rank health from `0.620336` to `0.649254` and joint-health rate from `0.134328` to `0.313433`, but the delta rank versus actual is only `0.028918`. The policy also selects mostly control placements: subject `0.552239`, dateblock `0.208955`, row `0.149254`, and actual `0.089552`.
+- Why discard: selecting a healthier control placement inside a mini-world is not the same as creating a valid submission tensor. The selected null-placement CSVs are deliberately generated controls; using them as public candidates would make public LB the checker again.
+- Implementation issue possible: medium. The E318 policy uses linear OOF predictions from an E315-only mini-world, and a fresh nonlinear or mode-specific generator may work better. Low for rejecting direct submission of selected E315 null controls.
+- Bottleneck implication: hidden placement regime is real, but the missing step is generation, not selection from existing controls.
+- Do not repeat: submitting files from `analysis_outputs/e315_human_ready_composition_nulls/` or treating an archive policy ranking as public eligibility without fresh matched-null governance.

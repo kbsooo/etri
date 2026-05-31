@@ -3767,3 +3767,34 @@ Decision:
 - E317 supports a hidden placement-health latent, but only as a weak/moderate local governor.
 - Human context is useful for choosing which placement regime is plausible; action geometry still controls health inside a fixed regime.
 - No submission is promoted. The next local validator should test a mode-specialized generator rather than a universal human/social multiplier.
+
+## E318 Mode-Specialized Placement Policy Stress
+
+Question: can the E317 outcome learner select a healthier row/subject/dateblock regime inside the E315 actual/null mini-world strongly enough to justify public testing?
+
+Method: `analysis_outputs/e318_mode_specialized_policy_probe.py`.
+
+- Inputs: E317 source-held OOF predictions, E316/E317 human identity features, and E315 actual plus row/subject/dateblock null placements.
+- Rows: `1072` placements from `67` sources.
+- Stress:
+  - one selected placement per source;
+  - source-wise z-score normalization so policies cannot win by global scale;
+  - comparison against actual baseline, geometry-only controls, human-only policies, joint-health policies, and two oracle upper bounds.
+- Public LB: not used.
+
+Result:
+
+- best non-oracle policy: `human_identity_action_p90_rank`;
+- delta p90-rank health versus actual baseline: `0.028918`;
+- p90-rank health mean: `0.649254` versus actual `0.620336`;
+- joint-health rate: `0.313433` versus actual `0.134328`;
+- oracle-mode accuracy: `0.582090`;
+- selected mode mix: actual `0.089552`, row `0.149254`, subject `0.552239`, dateblock `0.208955`;
+- oracle p90-rank health mean: `0.937500`, showing much of the controllable placement gap remains unsolved.
+
+Decision:
+
+- E318 passes the "there is a regime-selection signal" stress.
+- E318 fails the "ready to submit or generate directly from this pool" stress because the improvement is modest and selects many null-control placements.
+- No selected E315 null-placement CSV should be treated as a public candidate.
+- Promotion rule update: public LB is only allowed after a fresh generator creates a probability tensor and the tensor passes direct row/subject/dateblock/sign/target null governance.

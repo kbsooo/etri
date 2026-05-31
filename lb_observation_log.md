@@ -896,3 +896,21 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - null-mode holdout p90-rank mean Spearman: human `0.133354`, action shape `-0.358750`.
 - interpretation: E317 should not spend public LB. Human diary context helps with source/mode placement health, but mode-internal health remains too action-geometry-dependent.
 - next experiment: build a mode-specialized generator that uses human context to choose row/subject/dateblock regime and action geometry to place movement within that regime, then test matched nulls locally.
+
+## Public-Free Observation: E318
+
+- submission files: none.
+- public LB: not submitted.
+- reason not submitted: E318 selects among E315 actual/null placement controls and does not produce a fresh probability tensor. Public LB should not be used as the checker for these controls.
+- local observation:
+  - placement rows: `1072`;
+  - sources: `67`;
+  - policies: `10`;
+  - best non-oracle policy: `human_identity_action_p90_rank`;
+  - p90-rank health mean: `0.649254` versus actual baseline `0.620336`;
+  - delta rank versus actual: `0.028918`;
+  - joint-health rate: `0.313433` versus actual baseline `0.134328`;
+  - oracle-mode accuracy: `0.582090`;
+  - selected placement mix: actual `0.089552`, row `0.149254`, subject `0.552239`, dateblock `0.208955`.
+- interpretation: E318 is a useful public-free sensor. It strengthens the belief that hidden placement regime matters and that human context helps select it, but it rejects direct public testing of E315 null placements.
+- next experiment: build a fresh mode-specialized generator, then apply direct row/subject/dateblock/sign/target null governance before any public LB use.

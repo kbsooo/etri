@@ -9,7 +9,7 @@ Current public frontier:
 - Previous frontier: `analysis_outputs/submission_e95_hardtail_541e3973.csv`
 - Improvement over previous frontier: `0.0001323804`
 - Latest resolved public sensor: `analysis_outputs/submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv` public LB `0.5762805676`, which rejects the amplitude-constrained E247 follow-up while keeping feature-NN1 Q3 smoothing positive versus E95.
-- Latest public-free diagnostic: E317 human placement outcome learner. It uses no public LB and creates no submission. It shows human diary context is useful for source-held placement health and top-mode selection, but fixed-mode health is still controlled more by action geometry. Current policy is no public submission until a mode-specialized generator proves row/subject/dateblock health locally.
+- Latest public-free diagnostic: E318 mode-specialized placement policy probe. It uses no public LB and creates no submission. It confirms that E317's human/identity/action score can choose healthier row/subject/dateblock regimes inside the E315 actual/null mini-world, but the best non-oracle lift is still small (`delta_rank_vs_actual=0.028918`). Current policy is no public submission until a fresh mode-specialized generator proves row/subject/dateblock health locally; E315 null-placement files are controls, not candidates.
 
 Primary working notes:
 

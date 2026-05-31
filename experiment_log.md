@@ -4895,3 +4895,23 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - null-mode holdout p90-rank mean Spearman: human `0.133354`, action shape `-0.358750`.
 - Interpretation: E317 is a real but bounded positive. Human context helps choose the plausible placement mode/source neighborhood, and it is the only positive signal when a null mode is held out. But once the mode is fixed, action geometry is stronger, and joint-health classification is not independently solved by human context.
 - Decision: no E317 public submission. The next generator should be mode-specialized: use human context to choose row/subject/dateblock regime, then use mode-specific action geometry to place probability movement. Do not use a universal human-score multiplier.
+
+## E318. Mode-Specialized Placement Policy Probe
+
+- Observe: E317 said human context is mostly a placement-regime selector, while action geometry matters inside a fixed regime. The user also made the operating rule explicit: public LB cannot be the repeated checker.
+- Wonder: if E317 OOF outcome predictions are used only to choose among E315 actual, row, subject, and dateblock placements, can a public-free policy select healthier placements strongly enough to justify a new generator?
+- Method: `analysis_outputs/e318_mode_specialized_policy_probe.py` loads E317 OOF predictions and E316/E317 placement rows, builds source-wise z-scored policy scores, then selects one placement per E315 source under ten policies. Policies include human-only p90 rank, human+action p90 rank, human+identity+action p90 rank, joint-health scores, regime-then-geometry, and geometry-only controls. No public LB and no submission file.
+- Result:
+  - placement rows: `1072`;
+  - sources: `67`;
+  - policies: `10`;
+  - best non-oracle policy: `human_identity_action_p90_rank`;
+  - selected actual rate: `0.089552`;
+  - selected row/subject/dateblock rates: `0.149254` / `0.552239` / `0.208955`;
+  - oracle-mode accuracy: `0.582090`;
+  - p90-rank health mean: `0.649254` versus actual baseline `0.620336`;
+  - delta rank versus actual: `0.028918`;
+  - joint-health rate: `0.313433` versus actual baseline `0.134328`;
+  - oracle p90-rank upper bound: `0.937500`, so the remaining gap is large.
+- Interpretation: E318 supports the hidden-placement world model but does not promote a file. The actual E315 materializer often puts human/social probability movement in the wrong regime; a learned policy can improve the regime choice. But the edge is too small and too dependent on the existing null-placement pool to become a submission. The control files selected by E318 are diagnostic alternatives, not public candidates.
+- Decision: no E318 public submission. The next useful action is a fresh mode-specialized generator: choose regime first from human/identity context, then construct movement with mode-specific geometry, then rerun row/subject/dateblock/sign/target null governance before any public LB use.
