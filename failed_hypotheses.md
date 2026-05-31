@@ -2709,3 +2709,12 @@
 - Implementation issue possible: medium. E286 support sources are derived from a narrow E247/E256 cell boundary; a richer support target could still work. Low for rejecting current generated files because strict gate pass count is `0` and the anatomy shows E351 is already aligned with the support body.
 - Bottleneck implication: the missing breakthrough is not "add E247 support back." It is learning a latent that predicts submission action health or public-transfer stability, then using it to choose movement inside or near the E351 compact-state basin.
 - Do not repeat: E247/E256 support graft sweeps or Q3 support guards on E351 unless the support target itself changes.
+
+## FH301. Archive-learned action health alone can replace E351
+
+- Failed hypothesis: once action health is learned from archive geometry, the learned latent should directly select a better E350/E351 plateau submission than the E351 robust-center file.
+- Observed result: E355 learns the representation well, but does not select a submission. The top learned row is `compact_t45_s1.005_s3a0.25`, with E355 top3 rate `0.50`, but E352 top3 rate only `0.022361`. E351 ranks only `14` under E355, yet has much stronger E352 top1/top3 `0.224508/0.277281`.
+- Why discard as submission route: E355 predicts local action-health components, but public-transfer/selector-stability is not fully in the target. The learned top row is attractive locally but not stable enough under prior selector-world perturbations.
+- Implementation issue possible: medium. The archive has only `653` full rows and over-represents E350-local geometry. A richer target that includes E352 selection frequency or public-transfer analog labels may work.
+- Bottleneck implication: action health is learnable, but the decisive latent is action health plus transfer stability. Current best remains E351 because it is less locally attractive but more selector-stable.
+- Do not repeat: ranking plateau candidates by E355 action-health score alone. Add E352/public-transfer stability to the target first.

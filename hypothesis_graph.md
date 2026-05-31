@@ -4092,3 +4092,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept only if at least one graft/guard improves support/risk while preserving strict p90 and Q1 specificity with healthy source transfer. This is not observed.
 - public LB 관측 반응: no E354 file should be submitted. If E351 later fails, do not assume the missing component is the current E247/E256 support boundary; learn a richer support/action-health latent instead.
 - 제출 전략: none from E354. Keep E351 priority unchanged.
+
+### H355: candidate action-health is a learnable hidden representation, and can select a better E350/E351 plateau point
+
+- 상태: representation은 지지됨; submission selection은 반증/보류.
+- 왜 그럴듯한가: E340-E354 repeatedly showed that human/social latent states can be visible or null-rare separately, but action translation fails. This suggests the missing latent is not a row state alone but an action-health state over probability movements.
+- 맞다면: candidate movement geometry should predict p90 visibility, public-analog risk, Q1 lifestyle specificity, and bad-axis margin across experiment families. A selected plateau point should also survive E352 selector stability.
+- 틀리다면: out-of-family diagnostics should be weak, or the learned selector should choose unstable candidates that contradict prior stress tests.
+- 최소 실험: `analysis_outputs/e355_action_health_latent_selector.py`.
+- 관측: `653` full action-health rows. ExtraTrees OOF Spearman: action health `0.852240`, risk `0.849353`, Q1 specificity `0.943806`, bad margin `0.976341`, visibility `0.749160`. RandomForest confirms action health `0.825717`, risk `0.807470`, Q1 specificity `0.976885`, bad margin `0.994272`, but visibility is weak `0.231544`. The top E355 plateau row is `compact_t45_s1.005_s3a0.25`, while E351 ranks `14`.
+- 성공/폐기 기준: accept representation if action-health OOF Spearman is high across families; accept submission if a non-E351 row also has E352/public-transfer stability and conservative local gates. Representation is accepted, submission is not.
+- public LB 관측 반응: no E355 file should be submitted. If E351 improves publicly, E352-style stability was the missing transfer feature. If E351 fails, E355 says action-health is learnable but needs a richer public-transfer target.
+- 제출 전략: none from E355. Keep E351 first; use E355 diagnostics to design an E352-aware latent.

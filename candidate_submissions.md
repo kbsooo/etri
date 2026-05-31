@@ -4311,3 +4311,31 @@ Meaning:
 
 - The current E247/E256 support boundary is not the missing independent lifestyle-state axis.
 - A bigger jump likely needs a latent trained to predict action health/public-transfer stability directly, not a graft from E286 support identity.
+
+## Update After E355 Action-Health Latent Selector
+
+No new upload-safe file is selected.
+
+E355 trains a candidate-level action-health latent from the archive and applies it to the E350/E351 plateau.
+
+Evidence:
+
+- full action-health archive rows: `653`;
+- ExtraTrees action-health OOF Spearman: `0.852240`;
+- RandomForest action-health OOF Spearman: `0.825717`;
+- top E355 row: `compact_t45_s1.005_s3a0.25`;
+- E351 E355 rank: `14`;
+- E355 top row fails public-transfer stability: E352 top3 rate only `0.022361`;
+- selected file: none.
+
+Submission priority is unchanged:
+
+1. `analysis_outputs/submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv`
+2. `analysis_outputs/submission_e350_compactplateau_selected_compact_t45_s1_005_s3a1_00_ef54727b_uploadsafe.csv`
+3. `analysis_outputs/submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv`
+
+Meaning:
+
+- We can now learn action health from archive geometry.
+- But the learned target is still local-action health, not public-transfer stability.
+- E351 remains first because E352 stability is the stronger scarce-submission proxy.

@@ -3730,3 +3730,20 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - grafts trade public-analog risk against strict p90 and Q1 lifestyle specificity.
 - Registry status: rejected as a submission-generating feature family for the current E247/E256 boundary. Keep the support anatomy metrics as diagnostics.
 - Failure condition: revive this only if a richer support target is learned, such as action-health/public-transfer labels or a non-E247/E256 social-state boundary.
+
+### E355 action-health latent gate
+
+- Target hidden structure: candidate-level action health, not row-level lifestyle state alone.
+- Why needed: repeated failures showed that valid human/social states often fail during probability movement translation. The feature should predict whether a movement is visible, public-analog safe, Q1-specific, and bad-axis safe.
+- Feature/action form:
+  - context features from movement geometry, target shares, reference-axis geometry, and recipe descriptors;
+  - target representation from p90 visibility, public-analog risk, Q1 specificity, and bad-axis margin;
+  - leave-experiment-out action-health predictions over the E350/E351 plateau.
+- Current evidence:
+  - `653` full target rows;
+  - ExtraTrees action-health OOF Spearman `0.852240`;
+  - RandomForest action-health OOF Spearman `0.825717`;
+  - top E355 row `compact_t45_s1.005_s3a0.25`;
+  - no selected submission because the top row has weak E352 stability.
+- Registry status: approved as a diagnostic latent; rejected as a standalone submission selector.
+- Failure condition: do not use E355 rank alone for public candidates. A future version must include E352/public-transfer stability in the target before it can override E351.

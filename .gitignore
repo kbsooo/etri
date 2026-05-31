@@ -56,6 +56,8 @@ analysis_outputs/*
 !analysis_outputs/submission_e353_publictangent_*_uploadsafe.csv
 !analysis_outputs/e354_e247_support_lifestyle_graft_*.csv
 !analysis_outputs/submission_e354_e247support_*_uploadsafe.csv
+!analysis_outputs/e355_action_health_*.csv
+!analysis_outputs/submission_e355_actionhealth_*_uploadsafe.csv
 !analysis_outputs/e325_e323_semantic_null_attribution.csv
 !analysis_outputs/e325_e323_semantic_feature_meta.csv
 !analysis_outputs/e276_q_sleep_story_ablation_placebo_*.csv

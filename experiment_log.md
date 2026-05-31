@@ -5723,3 +5723,26 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - The E286 support latent separates E247 cell identity, but the current E247/E256 boundary is not a new action-safe improvement axis on top of E351.
   - The useful latent is still the compact coupled Q1/Q2/Q3/S1 lifestyle-state plateau; the missing breakthrough is not a direct E247-support graft.
 - Decision: no E354 submission. Keep E351 as the practical candidate. The next latent target should be richer than E247/E256 cell identity, likely predicting lifestyle-state action health or public-transfer stability directly.
+
+## E355. Action-Health Latent Selector
+
+- Observe: E354 killed the direct E247-support graft route. The remaining missing object is not another hand-coded support axis, but a latent that predicts whether a probability action itself will be visible, safe, and lifestyle-specific.
+- Wonder: can the experiment archive be used as a JEPA/data2vec target, where candidate movement geometry is context and action-health outcomes are target representations?
+- Hypothesis: if the archive contains a real action-health latent, movement geometry should predict p90 visibility, public-analog risk, Q1 lifestyle specificity, and bad-axis margin across experiment families. If this latent is submission-useful, it should select a stable E350/E351 plateau point that also survives E352 selector sensitivity.
+- Method: `analysis_outputs/e355_action_health_latent_selector.py`.
+  - Archive: E349/E350/E353/E354 full action-health rows, `653` rows total.
+  - Context features: target movement shares, logit/probability movement geometry, reference-axis geometry, and high-level recipe descriptors.
+  - Target representation: p90 visibility, public-analog risk, Q1 specificity, and bad-axis margin.
+  - Anti-collapse: leave-experiment-out ExtraTrees/RandomForest diagnostics plus prediction worlds over the E350 plateau.
+- Result:
+  - action-health latent is learnable: ExtraTrees OOF Spearman `0.852240`; RandomForest `0.825717`;
+  - strongest component diagnostics: bad margin `0.976341/0.994272`, Q1 specificity `0.943806/0.976885`, risk `0.849353/0.807470`;
+  - visibility is weaker: ExtraTrees `0.749160`, RandomForest `0.231544`;
+  - top E355 plateau row: `compact_t45_s1.005_s3a0.25`;
+  - E351 row rank under E355: `14`;
+  - selected upload-safe file: none.
+- Interpretation:
+  - Candidate action health is not random. It is encoded in movement geometry and can be predicted out-of-family.
+  - But the learned action-health latent favors locally attractive lower-threshold points that do not survive E352 selector-stability strongly enough. The top E355 candidate has E355 top3 rate `0.50`, but E352 top3 rate only `0.022361`.
+  - E351 remains preferred because E352 stability is a public-transfer proxy not fully captured by the current action-health target.
+- Decision: no E355 submission. Keep E351 as the practical candidate. Next useful target is an E352-aware/public-transfer action-health latent, not another local p90/risk selector.

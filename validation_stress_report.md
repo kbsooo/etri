@@ -5008,3 +5008,51 @@ Stress conclusion:
 - E351 already preserves the E247 Q3 support body, so a guard has little real work to do.
 - The current E286 support latent is useful for explaining E247/E256 cell identity but not for creating a new submission-safe movement.
 - No E354 candidate should be public-tested under the current gate.
+
+## E355 Action-Health Latent Selector
+
+Question: can candidate movement geometry predict the hidden action-health target well enough to choose a better E350/E351 plateau candidate?
+
+Stress setup:
+
+- script: `analysis_outputs/e355_action_health_latent_selector.py`;
+- archive rows with full action-health target: `653`;
+- experiments used: E349, E350, E353, E354;
+- context view: movement geometry, target shares, reference-axis geometry, and recipe descriptors;
+- target view: p90 visibility, public-analog risk, Q1 lifestyle specificity, and bad-axis margin;
+- anti-collapse: leave-experiment-out ExtraTrees/RandomForest diagnostics plus four E350 plateau prediction worlds.
+
+Stress result:
+
+- ExtraTrees OOF Spearman:
+  - action health `0.852240`;
+  - visibility `0.749160`;
+  - risk `0.849353`;
+  - Q1 specificity `0.943806`;
+  - bad margin `0.976341`.
+- RandomForest OOF Spearman:
+  - action health `0.825717`;
+  - visibility `0.231544`;
+  - risk `0.807470`;
+  - Q1 specificity `0.976885`;
+  - bad margin `0.994272`.
+- top E355 plateau row:
+  - `compact_t45_s1.005_s3a0.25`;
+  - E355 top3 rate `0.50`;
+  - E352 top3 rate `0.022361`;
+  - p90 `-0.000050159`;
+  - public-analog risk `0.044718012`;
+  - Q1 specificity `0.313901444`.
+- E351 row:
+  - E355 rank `14`;
+  - E352 top1/top3 `0.224508/0.277281`;
+  - p90 `-0.000050191`;
+  - public-analog risk `0.044765398`;
+  - Q1 specificity `0.324250876`.
+- selected upload-safe file: none.
+
+Stress conclusion:
+
+- The action-health representation is real enough to diagnose candidate geometry.
+- It is not yet sufficient for public-transfer selection because it conflicts with E352 selector stability.
+- No E355 candidate should be public-tested. The next stress target should include E352/public-transfer stability directly.
