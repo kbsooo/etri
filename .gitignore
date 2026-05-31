@@ -210,6 +210,10 @@ analysis_outputs/*
 !analysis_outputs/e358_rowstate_public_survival_*.md
 !analysis_outputs/e358_rowstate_public_survival_*.py
 !analysis_outputs/submission_e358_rowstate_publicsurvival_*_uploadsafe.csv
+!analysis_outputs/e359_rowplacement_action_health_*.csv
+!analysis_outputs/e359_rowplacement_action_health_*.md
+!analysis_outputs/e359_rowplacement_action_health_*.py
+!analysis_outputs/submission_e359_rowplacement_*_uploadsafe.csv
 
 !analysis_outputs/bridge_scan_candidates/
 analysis_outputs/bridge_scan_candidates/*

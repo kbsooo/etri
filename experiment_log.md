@@ -5823,3 +5823,24 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - This is a useful contradiction: the compact basin is not yet the hidden row-state law. It may be a narrow calibration/output-space basin sitting on rows that row-level lifestyle latent regards as risky.
   - The next breakthrough should not keep tuning S3-tail/amplification inside this compact basin. It should learn an action that changes *which rows* are touched, using row-state public-survival as a constraint.
 - Decision: no E358 submission. Treat this as a refutation/guardrail for the current compact-basin branch.
+
+## E359. Row-Placement Action-Health Probe
+
+- Observe: E358 found that output-space compact candidates are not row-state-certified. The open question is whether the compact action is basically right but placed on the wrong lifestyle rows.
+- Wonder: if E351/E356/E357 movement is damped on E323-heavy rows and boosted or preserved on E247-like rows, can it keep E272 visibility while lowering E358 row-state public-survival risk?
+- Hypothesis: if row placement is the missing hidden lifestyle-state law, simple row gates over the existing compact delta should produce at least one candidate that passes both E272 strict visibility and E358 row-state survival gates.
+- Method: `analysis_outputs/e359_rowplacement_action_health_probe.py`.
+  - Source actions: E349, E351, E356, E357.
+  - Row context: E328 own-latent lifestyle state, E358 E247/E323/E256 cluster-rate exposure, ownlife energy/residual/distance, and E268 human/social story tails.
+  - Candidate generation: `124` row-gated variants using high-risk-row damping, smooth risk gates, good-row boosting, cluster suppression, and bad-cluster-rate damping.
+  - Stress: E272 public-free selector plus E358 row-state public-survival sensor.
+- Result:
+  - `0/124` candidates pass the combined E359 submission gate;
+  - each source has `4` E272 strict-promote rows and `27` information-sensor rows, so visibility did not disappear completely;
+  - all E272-strict rows fail row-state health: best strict p90 is about `-0.000059`, but row-state predicted public loss remains `0.001038-0.001153`;
+  - the top overall row-gated variant is `e357_fulls3_noamp__goodboost20_riskdamp80`, but it is still `too_small_to_submit`: p90 `-0.000046486`, row-state predicted public loss mean `0.000965778`, bad-minus-good exposure `0.145854`.
+- Interpretation:
+  - Row gating improved the question but did not solve the problem. The compact action is not merely misplaced across lifestyle rows.
+  - The useful signal is now sharper: output-space visibility and row-state health are entangled. When the action remains visible, row-state public-risk stays too high; when risky rows are suppressed, visibility drops below submission resolution.
+  - The next JEPA target should learn row-action health directly from candidate/row-state context, instead of applying hand-shaped gates to the same compact delta.
+- Decision: no E359 submission. Keep the generated scores as a negative-control dataset for a learned row-action-health generator.

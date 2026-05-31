@@ -5147,3 +5147,31 @@ Stress conclusion:
 - E358 contradicts the stronger reading of E357. E357 remains an output-space information probe, but it is not row-state-certified.
 - The compact lifestyle-state basin likely captures a narrow calibration/output-space law, not the broader hidden human/social row-state law.
 - The next stress should change row placement or learn a row-state action-health target, rather than keep tuning S3-tail and micro-scale inside the same basin.
+
+## E359 Row-Placement Action-Health Probe
+
+Question: is the compact action only on the wrong lifestyle rows?
+
+Stress setup:
+
+- script: `analysis_outputs/e359_rowplacement_action_health_probe.py`;
+- source actions: E349, E351, E356, E357;
+- row state: E328 own-latent lifestyle clusters, E358 public-good/public-bad cluster rates, and E268 story-tail exposures;
+- candidate pool: `124` row-gated variants;
+- stress: E272 public-free selector plus E358 row-state public-survival models.
+
+Stress result:
+
+- combined E359 gate-passing candidates: `0`;
+- E272-only strict-promote candidates: `16`, so the output-space signal is still present;
+- E272 strict rows fail row-state public-survival, with row-state predicted public loss `0.001038-0.001153`;
+- best overall row-gated candidate: `e357_fulls3_noamp__goodboost20_riskdamp80`;
+- best overall p90 `-0.000046486`, below the strict submission edge;
+- best overall row-state predicted public loss mean `0.000965778`, still above the row-state health gate;
+- selected upload-safe file: none.
+
+Stress conclusion:
+
+- The simple "right action, wrong rows" explanation is weakened.
+- Row-state gating can reduce bad-minus-good exposure, but doing so either leaves row-state risk high or makes the action too small for public-free submission confidence.
+- Next stress should train a row-action-health latent/generator, using E359 failures as negative examples, rather than manually gating the same compact movement.

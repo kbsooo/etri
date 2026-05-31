@@ -4440,3 +4440,35 @@ Expected public interpretation:
 - If E357 still improves publicly, row-state E358 is too pessimistic and output-space calibration dominates this region.
 - If E357 fails, E358 becomes strong evidence that compact-basin tuning is the wrong breakthrough route.
 - The next candidate should probably alter row placement using row-state action-health, not continue S3-tail/amplification micro-tuning.
+
+## Update After E359 Row-Placement Action-Health Probe
+
+No new upload-safe file is selected.
+
+What changed:
+
+- E359 tried the direct repair suggested by E358: keep the compact E349/E351/E356/E357 action, but move it away from E323-heavy lifestyle rows and toward E247-like rows.
+- It generated `124` row-gated variants using risk damping, smooth risk gates, good-row boost, and cluster suppression.
+- The test required both E272 public-free visibility and E358 row-state public-survival health.
+
+Evidence:
+
+- combined E359 gate-passing candidates: `0`;
+- E272-only strict-promote rows: `16`, proving the row gates did not simply erase every visible movement;
+- all E272-strict rows fail row-state health, with predicted row-state public loss around `0.001038-0.001153`;
+- top overall row-gated variant: `e357_fulls3_noamp__goodboost20_riskdamp80`;
+- top overall p90: `-0.000046486`, slightly below strict visibility;
+- top overall row-state predicted public loss mean: `0.000965778`;
+- selected file: none.
+
+Submission priority interpretation:
+
+1. Do not spend a public slot on E359.
+2. E357/E356/E351 remain information probes only, not row-state-certified score candidates.
+3. Current known public best remains `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+4. The next submission-worthy route needs a learned row-action-health generator, not hand row gates over the existing compact delta.
+
+Expected public interpretation:
+
+- If a compact-basin file still improves publicly, output-space calibration dominates row-state health in this local region.
+- If compact-basin files fail, E358/E359 together strongly argue that the breakthrough must leave the current compact action family.

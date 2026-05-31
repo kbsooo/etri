@@ -1,0 +1,90 @@
+# E359 Row-Placement Action-Health Probe
+
+## Question
+
+Can E351/E356/E357 compact actions become row-state healthy if their movement is gated away from E323-heavy lifestyle rows and toward E247-like rows?
+
+## Method
+
+- Source actions: E349, E351, E356, E357.
+- Row context: E328 own-latent lifestyle state, k8 public-bad/public-good cluster rates, and E358 risk score.
+- Candidate generation: row gates that damp high-risk rows, smooth risk exposure, boost good rows, or suppress E323-heavy clusters.
+- Stress: E272 public-free selector plus E358 row-state public-survival sensor.
+
+## Decision
+
+| decision | variant | selected_uploadsafe_file | e359_rowgate_score | pred_delta_vs_current_p90 | rowstate_pred_public_loss_mean | rowstate_bad_minus_good_exposure | reason |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| no_rowplacement_submission | e357_fulls3_noamp__goodboost20_riskdamp80 | none | 2.760887097 | -0.000046486 | 0.000965778 | 0.145854230 | Row gating improved the question but did not clear E272 visibility plus E358 row-state public-survival gates. |
+
+## Source Summary
+
+| source_id | n | gate_count | best_p90 | best_rowstate_loss | best_bad_minus_good | info_count | strict_count |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| e357_fulls3_noamp | 31 | 0 | -0.000058663 | 0.000894921 | 0.125499783 | 27 | 4 |
+| e356_halfs3_amp | 31 | 0 | -0.000058615 | 0.000895400 | 0.125508435 | 27 | 4 |
+| e351_robust_center | 31 | 0 | -0.000058580 | 0.000895910 | 0.125483209 | 27 | 4 |
+| e349_compact_core | 31 | 0 | -0.000058516 | 0.000965077 | 0.125490437 | 27 | 4 |
+
+## Top Candidates
+
+| variant | source_id | gate_id | promotion_decision | e359_gate | e359_rowgate_score | pred_delta_vs_current_mean | pred_delta_vs_current_p90 | pred_beats_current_rate | incremental_bad_axis_vs_current | rowstate_pred_public_loss_mean | rowstate_pred_public_loss_std | rowstate_bad_minus_good_exposure | rowstate_good_exposure | move_l1 | gated_l1_ratio | file |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| e357_fulls3_noamp__goodboost20_riskdamp80 | e357_fulls3_noamp | goodboost20_riskdamp80 | too_small_to_submit | False | 2.760887097 | -0.000236060 | -0.000046486 | 0.986111111 | 0.014269152 | 0.000965778 | 0.000579107 | 0.145854230 | 0.052672717 | 4.335411039 | 0.937483528 | analysis_outputs/submission_e359_rowplacement_e357_fulls3_noamp__goodboost20_riskdamp80_cc07bbd2.csv |
+| e356_halfs3_amp__goodboost20_riskdamp80 | e356_halfs3_amp | goodboost20_riskdamp80 | too_small_to_submit | False | 2.702016129 | -0.000237094 | -0.000046264 | 0.986111111 | 0.014338380 | 0.000966240 | 0.000579451 | 0.145877210 | 0.052713659 | 4.341635207 | 0.937391251 | analysis_outputs/submission_e359_rowplacement_e356_halfs3_amp__goodboost20_riskdamp80_d35e19b5.csv |
+| e351_robust_center__goodboost20_riskdamp80 | e351_robust_center | goodboost20_riskdamp80 | too_small_to_submit | False | 2.686290323 | -0.000237185 | -0.000046251 | 0.986111111 | 0.014341952 | 0.000966955 | 0.000579399 | 0.145853568 | 0.052740967 | 4.343822861 | 0.937477568 | analysis_outputs/submission_e359_rowplacement_e351_robust_center__goodboost20_riskdamp80_58667b0e.csv |
+| e357_fulls3_noamp__cluster3-6_damp0p25 | e357_fulls3_noamp | cluster3-6_damp0p25 | too_small_to_submit | False | 2.631048387 | -0.000222413 | -0.000044178 | 0.986111111 | 0.013850590 | 0.000991205 | 0.000613478 | 0.140086407 | 0.048734191 | 4.129509054 | 0.892959556 | analysis_outputs/submission_e359_rowplacement_e357_fulls3_noamp__cluster3-6_damp0p25_04866f6a.csv |
+| e357_fulls3_noamp__risk_top80_damp0p5 | e357_fulls3_noamp | risk_top80_damp0p5 | too_small_to_submit | False | 2.602822581 | -0.000223396 | -0.000046041 | 0.986111111 | 0.013248589 | 0.000964111 | 0.000570785 | 0.153987142 | 0.050050479 | 4.111055260 | 0.888969132 | analysis_outputs/submission_e359_rowplacement_e357_fulls3_noamp__risk_top80_damp0p5_b5473962.csv |
+| e351_robust_center__risk_top80_damp0p5 | e351_robust_center | risk_top80_damp0p5 | too_small_to_submit | False | 2.577419355 | -0.000224555 | -0.000046143 | 0.986111111 | 0.013314886 | 0.000965404 | 0.000570688 | 0.153995476 | 0.050113030 | 4.118846858 | 0.888923572 | analysis_outputs/submission_e359_rowplacement_e351_robust_center__risk_top80_damp0p5_8f9affc6.csv |
+| e351_robust_center__smooth_risk_q65_renorm115 | e351_robust_center | smooth_risk_q65_renorm115 | too_small_to_submit | False | 2.570161290 | -0.000183558 | -0.000039206 | 0.986111111 | 0.011358386 | 0.001002135 | 0.000631212 | 0.132443087 | 0.052131278 | 3.384233328 | 0.730380343 | analysis_outputs/submission_e359_rowplacement_e351_robust_center__smooth_risk_q65_renorm115_5a5b169c.csv |
+| e357_fulls3_noamp__risk_top80_damp0p25 | e357_fulls3_noamp | risk_top80_damp0p25 | too_small_to_submit | False | 2.552822581 | -0.000211204 | -0.000044354 | 0.986111111 | 0.012538102 | 0.001007835 | 0.000626607 | 0.144174360 | 0.050278090 | 3.854323043 | 0.833453698 | analysis_outputs/submission_e359_rowplacement_e357_fulls3_noamp__risk_top80_damp0p25_5a0e0804.csv |
+| e357_fulls3_noamp__risk_top70_damp0p0 | e357_fulls3_noamp | risk_top70_damp0p0 | too_small_to_submit | False | 2.547983871 | -0.000168910 | -0.000031195 | 0.986111111 | 0.011425318 | 0.000975482 | 0.000613274 | 0.125499783 | 0.047173743 | 3.241316966 | 0.700898078 | analysis_outputs/submission_e359_rowplacement_e357_fulls3_noamp__risk_top70_damp0p0_11f0fa2e.csv |
+| e356_halfs3_amp__risk_top80_damp0p5 | e356_halfs3_amp | risk_top80_damp0p5 | too_small_to_submit | False | 2.547177419 | -0.000224464 | -0.000046119 | 0.986111111 | 0.013312197 | 0.000964737 | 0.000570794 | 0.154018255 | 0.050087272 | 4.116967144 | 0.888883749 | analysis_outputs/submission_e359_rowplacement_e356_halfs3_amp__risk_top80_damp0p5_8c99816f.csv |
+| e351_robust_center__smooth_risk_q85 | e351_robust_center | smooth_risk_q85 | too_small_to_submit | False | 2.543548387 | -0.000245614 | -0.000047569 | 0.986111111 | 0.014905059 | 0.000994153 | 0.000609719 | 0.149378809 | 0.051112839 | 4.547634139 | 0.981463823 | analysis_outputs/submission_e359_rowplacement_e351_robust_center__smooth_risk_q85_62baf16c.csv |
+| e357_fulls3_noamp__badcluster_rate_top20_damp0p2 | e357_fulls3_noamp | badcluster_rate_top20_damp0p2 | too_small_to_submit | False | 2.540725806 | -0.000218910 | -0.000043431 | 0.986111111 | 0.013698195 | 0.000998957 | 0.000625484 | 0.137562512 | 0.048656042 | 4.065678214 | 0.879156860 | analysis_outputs/submission_e359_rowplacement_e357_fulls3_noamp__badcluster_rate_top20_damp0p2_37526b52.csv |
+| e356_halfs3_amp__cluster3-6_damp0p25 | e356_halfs3_amp | cluster3-6_damp0p25 | too_small_to_submit | False | 2.534274194 | -0.000223422 | -0.000043946 | 0.986111111 | 0.013917256 | 0.000991745 | 0.000613890 | 0.140107122 | 0.048775169 | 4.135105636 | 0.892799984 | analysis_outputs/submission_e359_rowplacement_e356_halfs3_amp__cluster3-6_damp0p25_46082ecf.csv |
+| e357_fulls3_noamp__smooth_risk_q65_renorm115 | e357_fulls3_noamp | smooth_risk_q65_renorm115 | too_small_to_submit | False | 2.532258065 | -0.000182590 | -0.000039077 | 0.986111111 | 0.011303071 | 0.001001189 | 0.000631231 | 0.132460842 | 0.052057929 | 3.377179301 | 0.730276769 | analysis_outputs/submission_e359_rowplacement_e357_fulls3_noamp__smooth_risk_q65_renorm115_7d47ee67.csv |
+| e351_robust_center__risk_top70_damp0p0 | e351_robust_center | risk_top70_damp0p0 | too_small_to_submit | False | 2.529838710 | -0.000169755 | -0.000031017 | 0.986111111 | 0.011485410 | 0.000975881 | 0.000613411 | 0.125483209 | 0.047235588 | 3.247763895 | 0.700927707 | analysis_outputs/submission_e359_rowplacement_e351_robust_center__risk_top70_damp0p0_9c5e351b.csv |
+| e357_fulls3_noamp__goodboost30_riskdamp80 | e357_fulls3_noamp | goodboost30_riskdamp80 | too_small_to_submit | False | 2.528629032 | -0.000236728 | -0.000044128 | 0.986111111 | 0.014193457 | 0.000991463 | 0.000610479 | 0.144993445 | 0.052041068 | 4.388032143 | 0.948862246 | analysis_outputs/submission_e359_rowplacement_e357_fulls3_noamp__goodboost30_riskdamp80_5ebdbeff.csv |
+| e356_halfs3_amp__smooth_risk_q65_renorm115 | e356_halfs3_amp | smooth_risk_q65_renorm115 | too_small_to_submit | False | 2.522983871 | -0.000183484 | -0.000039147 | 0.986111111 | 0.011356694 | 0.001001297 | 0.000631120 | 0.132473363 | 0.052100930 | 3.382435661 | 0.730292953 | analysis_outputs/submission_e359_rowplacement_e356_halfs3_amp__smooth_risk_q65_renorm115_16ebca72.csv |
+| e351_robust_center__cluster3-6_damp0p25 | e351_robust_center | cluster3-6_damp0p25 | too_small_to_submit | False | 2.518548387 | -0.000223496 | -0.000043909 | 0.986111111 | 0.013918990 | 0.000992601 | 0.000614005 | 0.140083902 | 0.048801359 | 4.137034627 | 0.892848830 | analysis_outputs/submission_e359_rowplacement_e351_robust_center__cluster3-6_damp0p25_79f72ed4.csv |
+| e356_halfs3_amp__smooth_risk_q85 | e356_halfs3_amp | smooth_risk_q85 | too_small_to_submit | False | 2.518145161 | -0.000245522 | -0.000047595 | 0.986111111 | 0.014902818 | 0.000993386 | 0.000609703 | 0.149403679 | 0.051087392 | 4.545590364 | 0.981426682 | analysis_outputs/submission_e359_rowplacement_e356_halfs3_amp__smooth_risk_q85_0dc363ac.csv |
+| e357_fulls3_noamp__smooth_risk_q75 | e357_fulls3_noamp | smooth_risk_q75 | too_small_to_submit | False | 2.504435484 | -0.000206552 | -0.000043034 | 0.986111111 | 0.012773244 | 0.001006903 | 0.000633669 | 0.136826450 | 0.050381282 | 3.819797869 | 0.825988021 | analysis_outputs/submission_e359_rowplacement_e357_fulls3_noamp__smooth_risk_q75_d27cb741.csv |
+| e356_halfs3_amp__risk_top70_damp0p0 | e356_halfs3_amp | risk_top70_damp0p0 | too_small_to_submit | False | 2.503629032 | -0.000169688 | -0.000031060 | 0.986111111 | 0.011482379 | 0.000975697 | 0.000613284 | 0.125508435 | 0.047208990 | 3.246060369 | 0.700848515 | analysis_outputs/submission_e359_rowplacement_e356_halfs3_amp__risk_top70_damp0p0_d5e6da2e.csv |
+| e356_halfs3_amp__risk_top80_damp0p25 | e356_halfs3_amp | risk_top80_damp0p25 | too_small_to_submit | False | 2.477016129 | -0.000212185 | -0.000044388 | 0.986111111 | 0.012598936 | 0.001008352 | 0.000627006 | 0.144198369 | 0.050319450 | 3.859643308 | 0.833325624 | analysis_outputs/submission_e359_rowplacement_e356_halfs3_amp__risk_top80_damp0p25_f7bd45be.csv |
+| e356_halfs3_amp__badcluster_rate_top20_damp0p2 | e356_halfs3_amp | badcluster_rate_top20_damp0p2 | too_small_to_submit | False | 2.463306452 | -0.000219897 | -0.000043196 | 0.986111111 | 0.013764234 | 0.000999196 | 0.000626414 | 0.137581091 | 0.048697985 | 4.071127592 | 0.878986650 | analysis_outputs/submission_e359_rowplacement_e356_halfs3_amp__badcluster_rate_top20_damp0p2_c9e4984a.csv |
+| e351_robust_center__risk_top80_damp0p25 | e351_robust_center | risk_top80_damp0p25 | too_small_to_submit | False | 2.460483871 | -0.000212265 | -0.000044356 | 0.986111111 | 0.012601711 | 0.001009041 | 0.000626933 | 0.144178352 | 0.050345938 | 3.861509326 | 0.833385358 | analysis_outputs/submission_e359_rowplacement_e351_robust_center__risk_top80_damp0p25_0b0f1bcb.csv |
+| e357_fulls3_noamp__risk_top70_damp0p25 | e357_fulls3_noamp | risk_top70_damp0p25 | too_small_to_submit | False | 2.458467742 | -0.000189655 | -0.000036528 | 0.986111111 | 0.012236379 | 0.000951718 | 0.000569995 | 0.139953143 | 0.047978634 | 3.587117648 | 0.775673559 | analysis_outputs/submission_e359_rowplacement_e357_fulls3_noamp__risk_top70_damp0p25_a6bcd4e1.csv |
+| e351_robust_center__badcluster_rate_top20_damp0p2 | e351_robust_center | badcluster_rate_top20_damp0p2 | too_small_to_submit | False | 2.456451613 | -0.000219968 | -0.000043158 | 0.986111111 | 0.013765898 | 0.001000074 | 0.000626555 | 0.137558271 | 0.048724319 | 4.073045328 | 0.879038752 | analysis_outputs/submission_e359_rowplacement_e351_robust_center__badcluster_rate_top20_damp0p2_432dd62f.csv |
+| e351_robust_center__risk_top80_damp0p5_renorm110 | e351_robust_center | risk_top80_damp0p5_renorm110 | too_small_to_submit | False | 2.450000000 | -0.000244107 | -0.000046768 | 0.986111111 | 0.014646375 | 0.000966952 | 0.000572205 | 0.153995476 | 0.050113030 | 4.530731543 | 0.977815929 | analysis_outputs/submission_e359_rowplacement_e351_robust_center__risk_top80_damp0p5_renorm110_6031a858.csv |
+| e356_halfs3_amp__smooth_risk_q75 | e356_halfs3_amp | smooth_risk_q75 | too_small_to_submit | False | 2.443951613 | -0.000207482 | -0.000043017 | 0.986111111 | 0.012834441 | 0.001007276 | 0.000633880 | 0.136842739 | 0.050422550 | 3.825311997 | 0.825913239 | analysis_outputs/submission_e359_rowplacement_e356_halfs3_amp__smooth_risk_q75_4f666abf.csv |
+| e351_robust_center__risk_top70_damp0p25 | e351_robust_center | risk_top70_damp0p25 | too_small_to_submit | False | 2.442741935 | -0.000190644 | -0.000036511 | 0.986111111 | 0.012299366 | 0.000952889 | 0.000570261 | 0.139946083 | 0.048037847 | 3.594203402 | 0.775695780 | analysis_outputs/submission_e359_rowplacement_e351_robust_center__risk_top70_damp0p25_12528964.csv |
+| e357_fulls3_noamp__risk_top70_damp0p25_renorm110 | e357_fulls3_noamp | risk_top70_damp0p25_renorm110 | too_small_to_submit | False | 2.436290323 | -0.000206766 | -0.000037716 | 0.986111111 | 0.013460017 | 0.000953295 | 0.000571049 | 0.139953143 | 0.047978634 | 3.945829413 | 0.853240914 | analysis_outputs/submission_e359_rowplacement_e357_fulls3_noamp__risk_top70_damp0p25_renorm110_3f82d8ef.csv |
+| e357_fulls3_noamp__risk_top80_damp0p25_renorm110 | e357_fulls3_noamp | risk_top80_damp0p25_renorm110 | too_small_to_submit | False | 2.434274194 | -0.000229384 | -0.000044901 | 0.986111111 | 0.013791912 | 0.001009301 | 0.000628032 | 0.144174360 | 0.050278090 | 4.239755347 | 0.916799068 | analysis_outputs/submission_e359_rowplacement_e357_fulls3_noamp__risk_top80_damp0p25_renorm110_3fc7ddce.csv |
+| e351_robust_center__smooth_risk_q75 | e351_robust_center | smooth_risk_q75 | too_small_to_submit | False | 2.433064516 | -0.000207558 | -0.000042987 | 0.986111111 | 0.012836237 | 0.001008073 | 0.000633935 | 0.136817173 | 0.050450206 | 3.827179556 | 0.825976357 | analysis_outputs/submission_e359_rowplacement_e351_robust_center__smooth_risk_q75_8c60daa3.csv |
+| e357_fulls3_noamp__risk_top80_damp0p0 | e357_fulls3_noamp | risk_top80_damp0p0 | too_small_to_submit | False | 2.420564516 | -0.000199719 | -0.000043784 | 0.986111111 | 0.011827615 | 0.001050983 | 0.000696249 | 0.132961053 | 0.050538186 | 3.597590825 | 0.777938264 | analysis_outputs/submission_e359_rowplacement_e357_fulls3_noamp__risk_top80_damp0p0_9e3a581c.csv |
+| e356_halfs3_amp__risk_top70_damp0p25 | e356_halfs3_amp | risk_top70_damp0p25 | too_small_to_submit | False | 2.418951613 | -0.000190566 | -0.000036555 | 0.986111111 | 0.012296464 | 0.000951955 | 0.000570067 | 0.139972734 | 0.048011983 | 3.592448981 | 0.775636387 | analysis_outputs/submission_e359_rowplacement_e356_halfs3_amp__risk_top70_damp0p25_18645cca.csv |
+| e357_fulls3_noamp__risk_top70_damp0p0_renorm110 | e357_fulls3_noamp | risk_top70_damp0p0_renorm110 | too_small_to_submit | False | 2.404435484 | -0.000183919 | -0.000029496 | 0.986111111 | 0.012567850 | 0.000976964 | 0.000614233 | 0.125499783 | 0.047173743 | 3.565448663 | 0.770987886 | analysis_outputs/submission_e359_rowplacement_e357_fulls3_noamp__risk_top70_damp0p0_renorm110_838593fa.csv |
+| e351_robust_center__goodboost30_riskdamp80 | e351_robust_center | goodboost30_riskdamp80 | too_small_to_submit | False | 2.387903226 | -0.000237681 | -0.000043452 | 0.986111111 | 0.014264234 | 0.000992479 | 0.000610573 | 0.144997786 | 0.052112169 | 4.396236443 | 0.948789391 | analysis_outputs/submission_e359_rowplacement_e351_robust_center__goodboost30_riskdamp80_89f6ecf0.csv |
+| e351_robust_center__risk_top80_damp0p0 | e351_robust_center | risk_top80_damp0p0 | too_small_to_submit | False | 2.384677419 | -0.000200691 | -0.000043768 | 0.986111111 | 0.011888537 | 0.001051652 | 0.000696693 | 0.132959344 | 0.050612105 | 3.604171794 | 0.777847144 | analysis_outputs/submission_e359_rowplacement_e351_robust_center__risk_top80_damp0p0_7f849517.csv |
+| e351_robust_center__smooth_risk_q65 | e351_robust_center | smooth_risk_q65 | too_small_to_submit | False | 2.377419355 | -0.000167553 | -0.000036348 | 0.986111111 | 0.010370700 | 0.001000911 | 0.000630026 | 0.132443087 | 0.052131278 | 3.089952169 | 0.666869008 | analysis_outputs/submission_e359_rowplacement_e351_robust_center__smooth_risk_q65_d3739294.csv |
+| e356_halfs3_amp__risk_top80_damp0p0 | e356_halfs3_amp | risk_top80_damp0p0 | too_small_to_submit | False | 2.368951613 | -0.000200622 | -0.000043801 | 0.986111111 | 0.011885675 | 0.001051612 | 0.000696755 | 0.132975557 | 0.050584798 | 3.602319471 | 0.777767499 | analysis_outputs/submission_e359_rowplacement_e356_halfs3_amp__risk_top80_damp0p0_ae627791.csv |
+| e351_robust_center__risk_top70_damp0p0_renorm110 | e351_robust_center | risk_top70_damp0p0_renorm110 | too_small_to_submit | False | 2.366935484 | -0.000184785 | -0.000029172 | 0.986111111 | 0.012633951 | 0.000977367 | 0.000614375 | 0.125483209 | 0.047235588 | 3.572540284 | 0.771020478 | analysis_outputs/submission_e359_rowplacement_e351_robust_center__risk_top70_damp0p0_renorm110_1351b646.csv |
+
+## Gate-Passing Candidates
+
+_empty_
+
+## Interpretation
+
+- A pass would mean the compact action was not wrong, only misplaced across lifestyle rows.
+- No pass means the compact movement and row-state survival are still entangled: dampening risky rows removes too much visibility or remains row-state risky.
+- In that case the next target should be learned row-action health directly, not hand-shaped row gates over the same compact delta.
+
+## Files
+
+- `analysis_outputs/e359_rowplacement_action_health_candidates.csv`
+- `analysis_outputs/e359_rowplacement_action_health_scores.csv`
+- `analysis_outputs/e359_rowplacement_action_health_known.csv`
+- `analysis_outputs/e359_rowplacement_action_health_selection.csv`
+- `analysis_outputs/e359_rowplacement_action_health_report.md`

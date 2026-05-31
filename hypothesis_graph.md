@@ -4140,3 +4140,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept row-state sensor if LOO beats permutation and public-bad exposure orders known failures sensibly. Accept compact candidate only if it also passes transfer-stability and row-state exposure gates. Sensor is accepted; compact candidate is not.
 - public LB 관측 반응: if E357 improves despite E358, output-space calibration dominates row-state semantics in this narrow region. If E357 fails, E358 becomes strong evidence to stop compact-basin tuning and learn row-placement/action-health directly.
 - 제출 전략: no E358 submission. Use E358 as a veto/diagnostic before future compact-basin candidates.
+
+### H359: row-gating the existing compact action is enough to recover row-state health
+
+- 상태: 반증됨 for simple monotone row gates over E349/E351/E356/E357 compact deltas.
+- 왜 그럴듯한가: E358 may have rejected compact candidates because the action was placed on E323-heavy lifestyle rows. If so, damping high-risk rows and preserving/boosting E247-like rows should keep output visibility while improving row-state survival.
+- 맞다면: at least one row-gated compact variant should pass E272 strict visibility and E358 row-state public-survival gates. E272-strict candidates should show lower row-state predicted public loss than ungated compact candidates.
+- 틀리다면: visible row-gated candidates should retain high row-state predicted public loss, while row-state-safer candidates should become too small or lose p90 visibility.
+- 최소 실험: `analysis_outputs/e359_rowplacement_action_health_probe.py`.
+- 관측: `124` row-gated variants over E349/E351/E356/E357. Combined E359 gate passes `0`. There are `16` E272-only strict-promote rows, but their row-state predicted public loss remains `0.001038-0.001153`. The best overall variant is `e357_fulls3_noamp__goodboost20_riskdamp80`, with p90 `-0.000046486`, row-state predicted public loss `0.000965778`, and bad-minus-good exposure `0.145854`.
+- 성공/폐기 기준: accept only if a generated row-gated candidate passes strict p90, bad-axis, low row-state loss, low row-state variance, and low bad-minus-good exposure. This is not observed.
+- public LB 관측 반응: no E359 file should be submitted. If E357/E356/E351 still improve publicly, E358/E359 are too pessimistic for this compact region. If they fail, H359 strengthens the case that a new row-action-health generator is needed.
+- 제출 전략: none. Use E359 failures as negative rows for learning row-action health directly.

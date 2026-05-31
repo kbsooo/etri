@@ -3805,3 +3805,21 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - top compact candidate `compact_t45_s1.000_s3a1.00` has row-state predicted public loss `0.000956664`.
 - Registry status: approved as a veto/diagnostic latent. Rejected as a submission-generating feature family for the current compact basin.
 - Failure condition: if a future public-tested compact candidate improves strongly, recalibrate E358's pessimistic public-loss model. Otherwise use E358 to force the next branch toward row-placement/action-health rather than micro-scale tuning.
+
+### E359 row-placement action-health gates
+
+- Target hidden structure: whether the existing compact action can become healthy by changing only the lifestyle rows it touches.
+- Why needed: E358 showed a row-state/public-survival contradiction but did not distinguish wrong action from wrong row placement.
+- Feature/action form:
+  - source deltas: E349, E351, E356, E357 compact movements relative to E247;
+  - row scores: E328 own-latent risk/good scores from E247/E323/E256 cluster rates, ownlife energy, residual energy, and cluster distance;
+  - gate families: high-risk-row damp, smooth risk gates, E247-like good-row boost, ownlife cluster suppression, and bad-cluster-rate damp;
+  - candidate context: E272 output-space selector metrics plus E358 row-state public-survival features.
+- Current evidence:
+  - generated candidates: `124`;
+  - combined E359 passes: `0`;
+  - E272-only strict-promote rows: `16`;
+  - strict-visible rows fail row-state health, with predicted row-state public loss `0.001038-0.001153`;
+  - top non-passing row-balanced variant `e357_fulls3_noamp__goodboost20_riskdamp80` has p90 `-0.000046486` and row-state predicted public loss `0.000965778`.
+- Registry status: rejected as a hand-engineered submission feature. Approved as a negative-control dataset for a learned row-action-health latent.
+- Failure condition: do not reuse these monotone row gates unless a future learned generator identifies a different source action or a non-monotone row placement rule.

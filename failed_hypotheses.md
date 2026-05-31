@@ -2727,3 +2727,12 @@
 - Implementation issue possible: medium-high. Only `13` known public files are available locally, and the public target is tiny. But the contradiction is still useful because the row-state sensor beats permutation and orders known failures with interpretable E323-heavy exposure.
 - Bottleneck implication: the next breakthrough is unlikely to come from more S3-tail/amplification tuning inside the compact basin. It should change row placement or learn row-state action health directly.
 - Do not repeat: submitting another compact-basin micro-scale/S3-tail variant as a "human/social latent" candidate unless it explicitly passes row-state exposure gates.
+
+## FH303. Simple row gates can rescue the compact action
+
+- Failed hypothesis: the E349/E351/E356/E357 compact action is basically right, and E358 fails only because too much movement lands on E323-heavy lifestyle rows.
+- Observed result: E359 generated `124` row-gated variants. Combined E359 gate passes were `0`. There were `16` E272-only strict-promote rows, but all failed row-state public-survival with predicted row-state public loss around `0.001038-0.001153`. The top overall row-balanced variant was still below strict visibility at p90 `-0.000046486` and had row-state predicted public loss `0.000965778`.
+- Why discard as submission route: monotone risk damping or good-row boosting cannot simultaneously preserve public-free p90 visibility and lower row-state risk enough. The action and row placement are entangled, not separable by a simple gate.
+- Implementation issue possible: medium. The row-state public-loss model has only `13` known public files and the gates are hand-shaped. However, the failure is consistent across E349/E351/E356/E357 sources and multiple gate families.
+- Bottleneck implication: the next branch should learn row-action health directly, using candidate/row-state context as the JEPA target, instead of applying manual row gates to the same compact delta.
+- Do not repeat: risk-top, smooth-risk, goodboost, or cluster-suppression sweeps over the same compact deltas without changing the generator or target representation.
