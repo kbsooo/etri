@@ -3845,3 +3845,33 @@ Public LB is no longer allowed to be the repeated checker. A candidate can be co
 - interpretability: the file must state which hidden-world hypothesis it tests and what a public win/loss would mean.
 
 Under this rule, E319/E320 produces no submission. The next candidate must first solve row/subject/dateblock action-health locally.
+
+## E321 Mode-Specific Adversarial Action-Health Stress
+
+Question: after E320 identifies row/subject/dateblock placement as the blocker, is that blocker learnable locally without public LB?
+
+Method: `analysis_outputs/e321_mode_adversarial_action_health.py`.
+
+- Pair dataset: E319 actual candidates versus matched row/subject/dateblock nulls.
+- Rows: `564` actual-vs-null pairs from `47` non-oracle governed candidates.
+- Split: GroupKFold by candidate basename, so null siblings of the same candidate do not leak across train/validation.
+- Targets: p90 win, mean win, null-not-strict, pair-health, and candidate-level adversarial health.
+- Public LB: not used.
+
+Result:
+
+- p90-win AUC using full-pair geometry:
+  - row `0.821035`;
+  - subject `0.930077`;
+  - dateblock `0.915720`.
+- candidate-level Spearman:
+  - predicted worst placement dominance vs actual `0.614177`;
+  - predicted null strict rate vs actual `0.548433`;
+  - predicted adversarial health vs actual `0.508146`.
+- ready-like candidates after ranking: `0`.
+
+Decision:
+
+- Positive: row/subject/dateblock action health is locally learnable, so E320's blocker is not random noise.
+- Negative: the current E319 pool still has no submission candidate.
+- Promotion rule update: a future generator should use adversarial health as a pre-materialization target or local preselector before expensive null evaluation; public LB remains blocked.

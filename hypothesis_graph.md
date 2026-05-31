@@ -3701,3 +3701,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: reject the target/sign/QS-confusion explanation if those controls are mostly dominated and killer modes concentrate in placement controls.
 - public LB 관측 반응: no public LB should be spent. Public testing would only ask the leaderboard to tell us what local placement controls already answered.
 - 제출 전략: train or construct row/subject/dateblock mode-specific action-health objectives before any new submission candidate.
+
+### H321: row/subject/dateblock action health is locally learnable
+
+- 상태: 지지됨 as a local checker and JEPA-style action target; not sufficient as a submission selector.
+- 왜 그럴듯한가: E320's failures were structured, not random: target/sign/QS controls were mostly beaten, while row/subject/dateblock controls killed candidates. Structured failure should be predictable from action geometry and route metadata.
+- 맞다면: held-out-candidate models should predict actual-vs-null p90 wins and candidate-level adversarial health above chance, especially for subject/dateblock modes.
+- 틀리다면: pairwise p90-win AUC and candidate-health Spearman should be near chance, implying hidden placement requires raw diary context not present in the action layer.
+- 최소 실험: `analysis_outputs/e321_mode_adversarial_action_health.py`.
+- 관측: full-pair p90-win AUC row `0.821035`, subject `0.930077`, dateblock `0.915720`; candidate worst-placement dominance Spearman `0.614177`; adversarial-health Spearman `0.508146`; ready-like candidates `0`.
+- 성공/폐기 기준: keep the action-health learner if OOF AUC/Spearman are useful; reject direct submission use if predicted top candidates still do not pass ready-like local gates.
+- public LB 관측 반응: no public LB should be spent from E321 alone. A future public-positive file must first show that E321-guided generation survives fresh matched nulls.
+- 제출 전략: none directly. Use E321 as pre-materialization target or preselector for public-free null evaluation.

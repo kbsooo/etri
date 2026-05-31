@@ -3311,3 +3311,22 @@ Because public LB cannot be used repeatedly, the local gate is now stricter than
 - If it fails primarily on row/subject/dateblock, it is blocked even if target/sign/QS controls look healthy.
 
 By this rule there is currently no new public-test candidate after E247. The best next work item is not another submission file; it is a local mode-specific adversarial action-health experiment.
+
+## Update After E321 Mode-Specific Adversarial Action-Health Learner
+
+Current submission policy remains: **no new public submission.**
+
+Why:
+
+- E321 shows the blocker is learnable locally:
+  - row p90-win AUC `0.821035`;
+  - subject p90-win AUC `0.930077`;
+  - dateblock p90-win AUC `0.915720`.
+- But this is a checker, not a candidate generator.
+- Candidate-level adversarial-health ranking has Spearman `0.508146`, and the predicted top10 still contains `0` ready-like candidates.
+
+Meaning:
+
+- Do not submit E319 or E321-ranked E319 files.
+- The next candidate must be generated with this adversarial health objective built into the action layer, or must pass fresh local null evaluation after E321 preselection.
+- Current best public file remains `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` at public LB `0.5761589494`.

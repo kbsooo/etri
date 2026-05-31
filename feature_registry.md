@@ -3006,3 +3006,29 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - public LB cannot be used to distinguish near misses that already fail local placement controls.
 - Failure condition:
   - if a generated tensor is visible but its killer mode is row, subject, or dateblock, classify it as hidden-placement failure, not target-semantics failure.
+
+## E321 Adversarial Action-Health Features
+
+- Target hypothesis tested:
+  - row/subject/dateblock placement health can be learned as an explicit action target from E319 actual-vs-null pairs, instead of being checked only after generation.
+- Feature/representation source:
+  - E319 candidate geometry versus public-anchor references;
+  - route metadata: policy, recipe, base variant, source count, selected mode mix;
+  - matched null geometry for row, subject, and dateblock controls;
+  - pairwise labels: p90 win, mean win, null-not-strict, and pair-health.
+- Validation result:
+  - pair rows `564`;
+  - candidates `47`;
+  - full-pair p90-win AUC: row `0.821035`, subject `0.930077`, dateblock `0.915720`;
+  - candidate adversarial-health Spearman `0.508146`;
+  - ready-like candidates `0`.
+- Updated registry status:
+  - approved as a local adversarial-health diagnostic and future pre-materialization target;
+  - not approved as a submission feature;
+  - not sufficient to promote any E319 candidate directly.
+- Adopt rule for future features:
+  - model row/subject/dateblock action health before creating large visible tensors;
+  - use actual-geometry versions for broad preselection and full-pair versions for local null validation;
+  - require fresh null governance after any E321-guided generation.
+- Failure condition:
+  - if an E321-guided candidate improves predicted health but still has `ready_like_actual = 0` under fresh nulls, classify it as checker overfit, not a public candidate.

@@ -952,3 +952,19 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - killer modes: row `16`, subject `15`, dateblock `15`, Q/S swap `1`.
 - interpretation: the E319 failure is not mainly wrong target, wrong sign, or Q/S confusion. The blocker is hidden placement ambiguity: the same movement can be imitated by row, subject, or dateblock alternatives.
 - next experiment: make row/subject/dateblock placement health the explicit JEPA-style target and use public LB only after that local target survives.
+
+## Public-Free Observation: E321
+
+- submission files: none.
+- public LB: not submitted.
+- reason not submitted: E321 is a local action-health learner and produces no probability tensor.
+- local observation:
+  - pair rows: `564`;
+  - candidates: `47`;
+  - p90-win AUC with full-pair geometry: row `0.821035`, subject `0.930077`, dateblock `0.915720`;
+  - candidate predicted worst-placement dominance Spearman: `0.614177`;
+  - predicted null strict rate Spearman: `0.548433`;
+  - predicted adversarial health Spearman: `0.508146`;
+  - ready-like candidates: `0`.
+- interpretation: placement health is locally learnable and should become a JEPA-style action target. The current E319 candidate pool still has no public candidate.
+- next experiment: use E321 as a pre-materialization health model or a public-free preselector for additional null evaluation.

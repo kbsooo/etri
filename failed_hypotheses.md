@@ -2448,3 +2448,12 @@
 - Implementation issue possible: low for identifying the dominant failure mode because E320 decomposes every governed non-oracle E319 candidate by matched control family. Medium for future branches where target/sign issues may reappear.
 - Bottleneck implication: the next useful JEPA target is not another target-family mask. It is row/subject/dateblock action-health within a selected mode.
 - Do not repeat: treating target permutation, sign flip, or Q/S swap as the main fix for E319-style failures while row/subject/dateblock dominance remains weak.
+
+## FH272. E321 adversarial ranking is sufficient to promote an existing E319 candidate
+
+- Failed hypothesis: once row/subject/dateblock health is learned from E319 actual-vs-null pairs, ranking the existing E319 governed candidates should reveal a ready public-free file.
+- Observed result: E321 pairwise prediction is useful, but ready-like candidates remain `0`. Candidate-level adversarial-health Spearman is `0.508146`, and predicted top10 contains `0` ready-like candidates.
+- Why discard: the model can explain part of the failure anatomy but cannot create missing action geometry inside the current E319 pool.
+- Implementation issue possible: medium. E321 only ranks the governed E319 pool and uses linear models; a future generator or broader preselection may benefit from the same target. Low for promoting current E319 files.
+- Bottleneck implication: action health is learnable but must be used before materialization, not as a post-hoc rescue of average-consensus tensors.
+- Do not repeat: submitting E319 files because E321 ranks them high unless they pass fresh matched-null governance.

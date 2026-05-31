@@ -4954,3 +4954,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - if null strict threshold were relaxed to `0.20`, only `1` candidate would pass the remaining gates; at `0.50`, `8` would pass.
 - Interpretation: the human/social route is not mostly wrong in target direction or sign. It is wrong in hidden placement geometry. The three real blockers are row, subject, and dateblock, almost evenly split. This makes "more consensus" or "more amplitude" the wrong next move.
 - Decision: no E320 public submission. The next experiment should train or construct a mode-specific adversarial action objective: for a chosen regime, learn delta shapes that beat same-regime row/subject/dateblock alternatives before old-selector visibility is considered.
+
+## E321. Mode-Specific Adversarial Action-Health Learner
+
+- Observe: E320 said row/subject/dateblock placement ambiguity is the blocker. Public LB cannot be used to decide whether a near miss is real.
+- Wonder: can E319 actual-vs-null placement outcomes be predicted from candidate geometry and route metadata under held-out-candidate stress?
+- Method: `analysis_outputs/e321_mode_adversarial_action_health.py` builds `564` actual-vs-null pair rows from `47` non-oracle E319 governed candidates. Labels are p90 win, mean win, null-not-strict, and pair-health against row, subject, and dateblock nulls. Evaluation is grouped by candidate basename. No public LB and no submission file.
+- Result:
+  - pair rows: `564`;
+  - candidates: `47`;
+  - positive p90-win rate: `0.689716`;
+  - positive pair-health rate: `0.251773`;
+  - full-pair p90-win AUC: row `0.821035`, subject `0.930077`, dateblock `0.915720`;
+  - candidate predicted worst-placement dominance vs actual worst dominance Spearman `0.614177`;
+  - predicted null strict rate vs actual null strict rate Spearman `0.548433`;
+  - predicted adversarial health vs actual adversarial health Spearman `0.508146`;
+  - ready-like candidates: `0`.
+- Interpretation: placement health is not pure noise. It is learnable enough to become a local JEPA-style action target. But the current E319 candidate pool still contains no submission candidate, even after adversarial ranking.
+- Decision: no E321 public submission. Next branch should use this health model before materialization, or use it to preselect candidates for additional local null evaluation. Do not spend public LB.
