@@ -3785,3 +3785,23 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - selected file `analysis_outputs/submission_e357_publicsurvival_selected_compact_t45_s1_000_s3a1_00_a08a4957_uploadsafe.csv`.
 - Registry status: approved as a public-survival diagnostic latent and information-rich compact-basin probe. Not approved as a standalone public optimizer because the known public target set is small.
 - Failure condition: if E357 public LB is worse than E247/E351/E356, stop tuning compact-basin S3-tail/amplification details and move to a different lifestyle-state/public-subset latent.
+
+### E358 row-state public-survival gate
+
+- Target hidden structure: whether probability movement lands on healthy human/social lifestyle rows rather than E323-heavy row-state pockets.
+- Why needed: E357 only sees output-space movement. A true hidden lifestyle-state law should also be visible in row placement over E328 own-latent lifestyle states and E268 human/social story tails.
+- Feature/action form:
+  - row state: E328 `ownlife_*` PCs, energy, residual energy, cluster distance, and k8 cluster public-bad/public-good rates;
+  - human semantics: E268 story axes aligned with E328 bad-minus-good cluster markers;
+  - candidate context: movement-weighted row-state means, movement share in high-risk clusters, target-specific bad/good exposure, and story-tail exposure;
+  - target representation: known public `delta_vs_e247`;
+  - anti-collapse: leave-one-public-file-out regressors and permutation p95 checks.
+- Current evidence:
+  - known public files: `13`;
+  - candidate pool: `181`;
+  - ExtraTrees LOO Spearman `0.873626`;
+  - KNN3 LOO Spearman `0.692308`, beating permutation p95;
+  - no compact candidate passes row-state + E352/E356/E357 gates;
+  - top compact candidate `compact_t45_s1.000_s3a1.00` has row-state predicted public loss `0.000956664`.
+- Registry status: approved as a veto/diagnostic latent. Rejected as a submission-generating feature family for the current compact basin.
+- Failure condition: if a future public-tested compact candidate improves strongly, recalibrate E358's pessimistic public-loss model. Otherwise use E358 to force the next branch toward row-placement/action-health rather than micro-scale tuning.

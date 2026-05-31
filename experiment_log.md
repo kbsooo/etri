@@ -5798,3 +5798,28 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - Known public anatomy does not simply endorse E356. It says S3-tail and micro-amplification are the key calibration tradeoff inside the compact basin.
   - The highest information next probe is now E357: remove the `1.005` amplification while keeping full S3-tail, and test whether public-survival contrast beats E351/E356's raw stability preferences.
 - Decision: E357 becomes the top information-rich compact-basin probe. E356 remains the learned transfer-latent probe; E351 remains the conservative raw-stability reference.
+
+## E358. Row-State Public-Survival Audit
+
+- Observe: E357 was selected from output-space movement anatomy. That does not prove the movement lands on healthy hidden lifestyle states. E328 already showed that broad row-level lifestyle state can be semantically coherent but unhealthy as a probability-moving representation.
+- Wonder: if candidate movement is weighted by E328 own-latent row states and E268 human/social story tails, does the compact basin still look public-safe?
+- Hypothesis: if the compact lifestyle-state basin is the missing public row-state law, E351/E356/E357 movement should avoid E323-heavy ownlife clusters, preserve E247-only row-state clusters, and known public deltas should be predictable from row-state exposure.
+- Method: `analysis_outputs/e358_rowstate_public_survival_audit.py`.
+  - Row state: E328 `ownlife_*` features and k8 clusters on the 250 test rows.
+  - Human semantics: E268 story axes most aligned with E328 bad-minus-good cluster markers.
+  - Context representation: where each submission's E247-relative movement lands across ownlife clusters, row-state bad/good exposure, high-energy rows, target-specific bad/good exposure, and story tails.
+  - Target representation: known public delta versus E247.
+  - Anti-collapse: leave-one-public-file-out models plus permutation checks.
+- Result:
+  - known local public files: `13`;
+  - compact candidate pool: `181`;
+  - LOO Spearman: ExtraTrees `0.873626`, KNN3 `0.692308`, Ridge10 `0.494505`, Ridge1 `0.483516`;
+  - KNN3/Ridge10/Ridge1 beat permutation p95, so row-state public-survival exposure has signal;
+  - no compact candidate passes the combined row-state public-survival + E352/E356/E357 gates;
+  - top row remains `compact_t45_s1.000_s3a1.00`, but predicted row-state public loss mean is high at `0.000956664`;
+  - its row-state bad-minus-good exposure is `0.170344`, closer to the E323-heavy side than expected for a safe row-state-certified action.
+- Interpretation:
+  - E357 is still a valid output-space information probe, but E358 refuses to certify it as a row-level human/social lifestyle-state action.
+  - This is a useful contradiction: the compact basin is not yet the hidden row-state law. It may be a narrow calibration/output-space basin sitting on rows that row-level lifestyle latent regards as risky.
+  - The next breakthrough should not keep tuning S3-tail/amplification inside this compact basin. It should learn an action that changes *which rows* are touched, using row-state public-survival as a constraint.
+- Decision: no E358 submission. Treat this as a refutation/guardrail for the current compact-basin branch.

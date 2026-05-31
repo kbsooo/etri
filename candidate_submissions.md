@@ -4407,3 +4407,36 @@ Expected public interpretation:
 - If E357 beats E247/E351/E356: public likely likes full S3-tail support but not extra micro-amplification.
 - If E357 fails while E356 works: the learned transfer-stability latent and half-tail/micro-scale choice matter more than public-preservation contrast.
 - If E351/E356/E357 all fail: the compact lifestyle-state basin is not the missing public subset state, and the next search should move away from this basin rather than tune it further.
+
+## Update After E358 Row-State Public-Survival Audit
+
+No new upload-safe file is selected.
+
+What changed:
+
+- E358 rechecks the E351/E356/E357 compact basin through row-level hidden lifestyle states, not only output movement anatomy.
+- It uses E328 own-latent row states, E328 k8 cluster public-bad/public-good rates, and E268 human/social story tails.
+- It asks whether candidate movement lands on E247-like row states or E323-heavy row states.
+
+Evidence:
+
+- known public files: `13`;
+- compact candidate pool: `181`;
+- LOO Spearman: ExtraTrees `0.873626`, KNN3 `0.692308`, Ridge10 `0.494505`, Ridge1 `0.483516`;
+- KNN3/Ridge10/Ridge1 beat permutation p95;
+- no candidate passes row-state public-survival plus E352/E356/E357 gates;
+- top row remains `compact_t45_s1.000_s3a1.00`, but row-state predicted public loss mean is `0.000956664`;
+- selected file: none.
+
+Submission priority interpretation:
+
+1. E357 is no longer row-state-certified. It remains useful only if the next submission is deliberately an output-space compact-basin sensor.
+2. E356 remains useful only as a transfer-stability sensor.
+3. E351 remains the conservative compact-basin representative.
+4. Current known public best remains `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+
+Expected public interpretation:
+
+- If E357 still improves publicly, row-state E358 is too pessimistic and output-space calibration dominates this region.
+- If E357 fails, E358 becomes strong evidence that compact-basin tuning is the wrong breakthrough route.
+- The next candidate should probably alter row placement using row-state action-health, not continue S3-tail/amplification micro-tuning.

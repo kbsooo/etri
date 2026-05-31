@@ -5118,3 +5118,32 @@ Stress conclusion:
 
 - E357 does not prove breakthrough beyond E247; it proves the next compact-basin uncertainty is full S3-tail versus micro-amplification.
 - E357 is information-rich because it tests public-survival contrast preferring less amplification while E352/E356 requires enough S3-tail support.
+
+## E358 Row-State Public-Survival Audit
+
+Question: does the compact-basin candidate selected by E357 still look safe when movement is projected onto hidden row-level lifestyle states?
+
+Stress setup:
+
+- script: `analysis_outputs/e358_rowstate_public_survival_audit.py`;
+- row state: E328 own-latent lifestyle state and k8 clusters;
+- human semantics: E268 human/social story axes aligned with E328 bad-minus-good clusters;
+- public observations: `13` locally available files;
+- candidate pool: `181` compact lifestyle-state candidates;
+- context: target movement share, row movement concentration, E323-heavy/E247-only cluster exposure, high-energy row exposure, and story-tail exposure;
+- target: public `delta_vs_e247`;
+- stress: leave-one-public-file-out models and permutation checks.
+
+Stress result:
+
+- LOO Spearman: ExtraTrees `0.873626`, KNN3 `0.692308`, Ridge10 `0.494505`, Ridge1 `0.483516`;
+- KNN3/Ridge10/Ridge1 beat permutation p95, so row-state exposure has real public-survival signal;
+- no compact candidate passes the combined row-state + E352/E356/E357 gate;
+- top candidate by row-state score is still `compact_t45_s1.000_s3a1.00`, but predicted row-state public loss mean is `0.000956664`;
+- selected upload-safe file: none.
+
+Stress conclusion:
+
+- E358 contradicts the stronger reading of E357. E357 remains an output-space information probe, but it is not row-state-certified.
+- The compact lifestyle-state basin likely captures a narrow calibration/output-space law, not the broader hidden human/social row-state law.
+- The next stress should change row placement or learn a row-state action-health target, rather than keep tuning S3-tail and micro-scale inside the same basin.

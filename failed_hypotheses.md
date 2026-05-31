@@ -2718,3 +2718,12 @@
 - Implementation issue possible: medium. The archive has only `653` full rows and over-represents E350-local geometry. A richer target that includes E352 selection frequency or public-transfer analog labels may work.
 - Bottleneck implication: action health is learnable, but the decisive latent is action health plus transfer stability. Current best remains E351 because it is less locally attractive but more selector-stable.
 - Do not repeat: ranking plateau candidates by E355 action-health score alone. Add E352/public-transfer stability to the target first.
+
+## FH302. E357 compact-basin public survival is also row-state public survival
+
+- Failed hypothesis: if E357 selects `compact_t45_s1.000_s3a1.00` from known public output-space anatomy, then the same candidate should also be safe when movement is projected onto E328 hidden row-level lifestyle states.
+- Observed result: E358 found a learnable row-state public-survival sensor, but selected no submission. LOO Spearman was ExtraTrees `0.873626`, KNN3 `0.692308`, Ridge10 `0.494505`, Ridge1 `0.483516`, with KNN/Ridge beating permutation p95. However, no compact candidate passed row-state plus E352/E356/E357 gates. The top row remained `compact_t45_s1.000_s3a1.00`, but its row-state predicted public loss was `0.000956664` and row-state bad-minus-good exposure was `0.170344`.
+- Why discard as submission route: output-space survival and row-state survival disagree. The compact basin can be a useful calibration probe without being the true hidden human/social row-state law.
+- Implementation issue possible: medium-high. Only `13` known public files are available locally, and the public target is tiny. But the contradiction is still useful because the row-state sensor beats permutation and orders known failures with interpretable E323-heavy exposure.
+- Bottleneck implication: the next breakthrough is unlikely to come from more S3-tail/amplification tuning inside the compact basin. It should change row placement or learn row-state action health directly.
+- Do not repeat: submitting another compact-basin micro-scale/S3-tail variant as a "human/social latent" candidate unless it explicitly passes row-state exposure gates.

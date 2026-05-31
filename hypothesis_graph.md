@@ -4128,3 +4128,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept the representation if LOO public-delta ranking beats permutation and chosen candidates remain interpretable under public-good/bad axes. Accept submission only as a high-information probe because the public label count is tiny. This is observed.
 - public LB 관측 반응: if E357 improves, the compact basin needs full S3-tail support but not micro-amplification. If E356 improves more, learned transfer-stability matters more than public-survival preservation. If E351/E356/E357 all fail, abandon the compact-basin tuning branch and search for a different hidden public subset/lifestyle-state axis.
 - 제출 전략: `analysis_outputs/submission_e357_publicsurvival_selected_compact_t45_s1_000_s3a1_00_a08a4957_uploadsafe.csv` is the next compact-basin calibration probe; it is not a proven replacement for E247.
+
+### H358: compact-basin public survival is not yet row-state-certified
+
+- 상태: row-state public-survival representation은 지지됨; compact-basin row-state certification은 반증됨/보류.
+- 왜 그럴듯한가: E357 uses output movement anatomy, but the user-level hidden law may live in row placement: which human/social lifestyle days are being touched. E328/E330 showed that row-level lifestyle states are semantically coherent but hard to translate into safe submissions.
+- 맞다면: known public deltas should be predictable from row-state movement exposure, and E351/E356/E357 should land on E247-like rather than E323-heavy row-state clusters.
+- 틀리다면: row-state LOO diagnostics should collapse, or the compact candidates should pass row-state gates with low bad-minus-good exposure.
+- 최소 실험: `analysis_outputs/e358_rowstate_public_survival_audit.py`.
+- 관측: `13` known public files and `181` compact candidates. LOO Spearman is ExtraTrees `0.873626`, KNN3 `0.692308`, Ridge10 `0.494505`, Ridge1 `0.483516`; KNN/Ridge beat permutation p95. However, no compact candidate passes row-state public-survival plus E352/E356/E357 gates. The top row remains `compact_t45_s1.000_s3a1.00`, but predicted row-state public loss is `0.000956664` and bad-minus-good row-state exposure is `0.170344`.
+- 성공/폐기 기준: accept row-state sensor if LOO beats permutation and public-bad exposure orders known failures sensibly. Accept compact candidate only if it also passes transfer-stability and row-state exposure gates. Sensor is accepted; compact candidate is not.
+- public LB 관측 반응: if E357 improves despite E358, output-space calibration dominates row-state semantics in this narrow region. If E357 fails, E358 becomes strong evidence to stop compact-basin tuning and learn row-placement/action-health directly.
+- 제출 전략: no E358 submission. Use E358 as a veto/diagnostic before future compact-basin candidates.

@@ -206,6 +206,10 @@ analysis_outputs/*
 !analysis_outputs/e357_public_survival_contrast_*.md
 !analysis_outputs/e357_public_survival_contrast_*.py
 !analysis_outputs/submission_e357_publicsurvival_*_uploadsafe.csv
+!analysis_outputs/e358_rowstate_public_survival_*.csv
+!analysis_outputs/e358_rowstate_public_survival_*.md
+!analysis_outputs/e358_rowstate_public_survival_*.py
+!analysis_outputs/submission_e358_rowstate_publicsurvival_*_uploadsafe.csv
 
 !analysis_outputs/bridge_scan_candidates/
 analysis_outputs/bridge_scan_candidates/*
