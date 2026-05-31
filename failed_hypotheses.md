@@ -2547,3 +2547,12 @@
 - Implementation issue possible: medium. The censor families are hand-designed and the translator is still scalar. A learned action-health generator may work. Low for rejecting current E334 files because selector, E323 anatomy, and movement-null stress agree.
 - Bottleneck implication: the hidden lifestyle state is now easier to find than to use. The next JEPA target must be action outcome health itself, not another row mask around the same Q1 scalar action.
 - Do not repeat: submitting Q1 row-censored scalar files, or treating local Q1 row-mask dominance as sufficient without selector visibility and movement-null dominance.
+
+## FH283. Q1 action-health latent can generate a public-grade Q1-only action from the current archive
+
+- Failed hypothesis: learning a same-level action-health latent from E332/E333/E334 Q1 candidate geometry and moved-row lifestyle signatures should be enough to generate a selector-visible, E323-safe, movement-null-safe E247 edit.
+- Observed result: E335 learned the health ranking well inside held-out experiment/family stress, with leave-family trees Spearman `0.938198` and top20 overlap `0.891304`. But `55` generated candidates produced `0` selector-promoted files and `0` selector+E323+movement-null-safe files.
+- Why discard: the learned generator falls into the safe-invisible basin. Best candidates have negative mean/p90 and strong movement-null p90 dominance, but are `too_small_to_submit`. The archive has too few positive examples that are both visible and null-rare.
+- Implementation issue possible: medium. The health model is tree/ridge over hand-engineered signatures, and generated tensors are consensus/projection variants. A broader generator with cross-target positives may still work. Low for rejecting current E335 files because selector, E323 anatomy, and movement-null stress agree.
+- Bottleneck implication: action-health is learnable, but Q1-only materialization lacks enough visible/null-rare support. The next branch should add an independent action axis or train against E323/public-negative anatomy, not average more Q1 tails.
+- Do not repeat: public-testing Q1 action-health consensus files that are p90-negative but below selector resolution.

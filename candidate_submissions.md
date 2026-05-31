@@ -3662,3 +3662,38 @@ Next submission rule:
 - do not spend a public slot on Q1 row-censored scalar actions;
 - train an action-health latent or generator that targets selector visibility, p90 safety, and row/subject/dateblock null rarity jointly;
 - only materialize a candidate after it clears movement-null dominance, not merely Q1 OOF label loss.
+
+## Update After E335 Q1 Action-Health Latent Generator
+
+No E335 file should be submitted.
+
+Closest local probes:
+
+- `analysis_outputs/submission_e335_q1health_weightedavg_top2_badproj075_s0_45_d485b72f.csv`
+- `analysis_outputs/submission_e335_q1health_weightedavg_top2_s0_45_cab4254e.csv`
+- `analysis_outputs/submission_e335_q1health_weightedavg_top3_s0_45_f9a47ffd.csv`
+
+Why blocked:
+
+- The action-health latent is strongly predictable inside the Q1 archive:
+  - leave-family trees Spearman `0.938198`;
+  - top20 overlap `0.891304`.
+- But `55` generated files produce `0` selector-promoted candidates.
+- The best probes are healthy in the wrong way: they are p90-negative and movement-null dominant, but below selector resolution.
+- Example `weightedavg_top2_badproj075_s0.45`:
+  - mean `-0.000135`;
+  - p90 `-0.000012`;
+  - beats `0.930556`;
+  - movement-null p90 dominance `0.933333`;
+  - decision `too_small_to_submit`.
+
+Current best public frontier remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+- public LB `0.5761589494`
+
+Next submission rule:
+
+- do not submit Q1-only action-health consensus files;
+- require selector promotion, not only negative mean/p90;
+- search for a new independent visible/null-rare axis or explicitly train against E323-public-negative anatomy before spending a public slot.

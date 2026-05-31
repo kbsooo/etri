@@ -4311,3 +4311,38 @@ Stress conclusion:
 - Row-censoring confirms the Q1 lifestyle latent is not random: many masks beat matched local nulls.
 - It does not create a submission-grade action: every materialized file is below selector resolution or p90/null-risky.
 - The next validator should stop optimizing Q1 label loss and instead use a JEPA-style action-health target: predict the hidden representation of `selector-visible + p90-safe + null-rare` movement.
+
+## E335 Q1 Action-Health Latent Generator
+
+Question: can action health itself be learned as a hidden lifestyle/action latent from previous Q1 candidates?
+
+Method: `analysis_outputs/e335_q1_action_health_latent_generator.py`.
+
+- Archive: `233` E332/E333/E334 Q1 candidate actions.
+- Labelled movement-null rows: `58`.
+- Health target: selector mean/p90, beats rate, movement-null dominance, E323-negative safety, and p90 penalties.
+- Context: candidate geometry plus moved-row lifestyle signatures.
+- Public LB: not used.
+
+Result:
+
+- leave-experiment health prediction:
+  - ridge Spearman `0.826518`, top20 overlap `0.673913`;
+  - trees Spearman `0.933512`, top20 overlap `0.869565`.
+- leave-family health prediction:
+  - ridge Spearman `0.830140`, top20 overlap `0.673913`;
+  - trees Spearman `0.938198`, top20 overlap `0.891304`.
+- generated candidates: `55`;
+- selector-promoted candidates: `0`;
+- selector+E323-safe candidates: `0`;
+- selector+E323+movement-null-safe candidates: `0`.
+- closest safe-invisible candidates:
+  - `submission_e335_q1health_weightedavg_top2_badproj075_s0_45_d485b72f.csv`, mean `-0.000134571`, p90 `-0.000012225`, beats `0.930556`, movement-null p90 dominance `0.933333`;
+  - `submission_e335_q1health_weightedavg_top2_s0_45_cab4254e.csv`, mean `-0.000134660`, p90 `-0.000012063`, beats `0.930556`, movement-null p90 dominance `0.933333`.
+
+Stress conclusion:
+
+- The health latent is predictable, so action outcome structure is not random.
+- The generated actions are safe but too small; none cross selector resolution.
+- E323 similarity is not the blocker because the best candidates are E323-negative or near-orthogonal.
+- The current Q1-only archive is missing visible/null-rare positives. More Q1 averaging is unlikely to break the 0.576 frontier.

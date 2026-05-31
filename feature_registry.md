@@ -3336,3 +3336,27 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - promotion requires selector visibility plus p90 safety plus movement-null dominance.
 - Failure condition:
   - if a row-censored feature improves local Q1 loss but produces no selector-promoted candidate, classify it as latent-real/action-invisible.
+
+## E335 Q1 Action-Health Latent Features
+
+- Target hypothesis tested:
+  - the missing hidden object is not Q1 label signal but action health: selector-visible, p90-safe, movement-null-rare, and E323-negative probability movement.
+- Feature/representation source:
+  - E332/E333/E334 Q1 candidate geometry;
+  - moved-row lifestyle signatures over social, bedtime, routine, cashflow, diary-state, and JEPA residual feature families;
+  - E323 anatomy and movement-null stress summaries;
+  - action-health score as a same-level own latent target.
+- Validation result:
+  - archive rows `233`, movement-null-labelled rows `58`;
+  - leave-experiment trees Spearman `0.933512`, top20 overlap `0.869565`;
+  - leave-family trees Spearman `0.938198`, top20 overlap `0.891304`;
+  - generated candidates `55`, selector-promoted candidates `0`.
+- Updated registry status:
+  - approved as a diagnostic/ranking latent;
+  - rejected as a current Q1-only submission generator;
+  - keep action-health features for blocking unsafe candidates and for training a broader cross-target generator.
+- Adopt rule for future features:
+  - action-health score may rank candidates, but it cannot certify a file without selector promotion and fresh movement-null dominance;
+  - future generators need visible/null-rare positive examples, not only safe-invisible Q1 averages.
+- Failure condition:
+  - if an action-health feature predicts prior health but all generated candidates remain below selector resolution, classify it as ranker-only, not a probability-moving representation.

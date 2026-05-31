@@ -5242,3 +5242,31 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     - `submission_e334_q1rowcensor_pos_q75_const_dateblock_drop_id05_b5_s0p25_159137ce.csv`: mean `-0.000236`, p90 `+0.000046`, beats `0.833333`, but movement-null mean dominance `0.458333`.
 - Interpretation: row placement helps local label/null stress but does not solve public-visible action health. The Q1 lifestyle state remains real, yet row censoring still maps to either too-small movements or p90-positive/null-common movements.
 - Decision: do not submit E334 candidates. The next useful experiment should train the target as action health itself: predict visibility/null-rarity/p90 safety from latent state and candidate geometry before materializing probabilities.
+
+## E335. Q1 Action-Health Latent Generator
+
+- Observe: E332-E334 all point to the same split: Q1 hidden lifestyle state is easy to find locally, but scalar probability actions become either too small, p90-risky, or movement-null common.
+- Wonder: can the missing object be learned directly as an action-health latent, rather than as another Q1 label-loss latent?
+- Hypothesis: if action health is recoverable from previous candidate geometry plus moved-row lifestyle signatures, then leave-experiment/family stress should rank healthy Q1 actions, and generated consensus/projection variants should produce at least one E247-safe file.
+- Method: `analysis_outputs/e335_q1_action_health_latent_generator.py`.
+  - Archive: E332/E333/E334 Q1 candidate tensors.
+  - Context: candidate geometry, E323 anatomy, movement-null stats, and moved-row lifestyle signatures from social/bedtime/routine/cashflow/diary/JEPA residual views.
+  - Target: `action_health_score`, combining selector mean/p90, beats rate, movement-null dominance, E323-negative safety, and p90 penalties.
+  - Stress: leave-experiment and leave-family health prediction, E272 public-free selector, E323 anatomy, and movement-null shuffles.
+- Result:
+  - archive rows: `233`;
+  - ready proxy rows: `5`;
+  - movement-null-labelled rows: `58`;
+  - action-health predictability:
+    - leave-experiment trees Spearman `0.933512`, top20 overlap `0.869565`;
+    - leave-family trees Spearman `0.938198`, top20 overlap `0.891304`;
+    - ridge baselines remain high around Spearman `0.826-0.830`.
+  - generated candidates: `55`;
+  - selector-promoted candidates: `0`;
+  - selector+E323-safe candidates: `0`;
+  - selector+E323+movement-null-safe candidates: `0`.
+  - closest safe-but-small probes:
+    - `submission_e335_q1health_weightedavg_top2_badproj075_s0_45_d485b72f.csv`: mean `-0.000134571`, p90 `-0.000012225`, beats `0.930556`, movement-null p90 dominance `0.933333`, E323 cosine `-0.012059`, but `too_small_to_submit`;
+    - `submission_e335_q1health_weightedavg_top2_s0_45_cab4254e.csv`: mean `-0.000134660`, p90 `-0.000012063`, beats `0.930556`, movement-null p90 dominance `0.933333`, but `too_small_to_submit`.
+- Interpretation: action-health is a learnable latent, but the current Q1 archive contains mostly safe-invisible and visible-unsafe examples. The learned generator regresses toward the safe-invisible region instead of discovering a new visible/null-rare action.
+- Decision: do not submit E335 candidates. The next useful experiment needs new positive support for visible/null-rare action geometry, probably from cross-target or public-negative/E323-negative action states, not more Q1-only averaging.

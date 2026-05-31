@@ -3852,3 +3852,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: reject row-censor scalar action because no candidate clears selector/E323/movement-null gates. Keep the representation evidence because local row-mask gates are abundant and consistent.
 - public LB 관측 반응: no public LB should be spent. A submission would mostly test local selector noise rather than a new public-transfer hypothesis.
 - 제출 전략: none. Next strategy is a JEPA-style action-health target: learn or construct a latent representation of visible, p90-safe, null-rare movement before probability materialization.
+
+### H335: Q1 action-health latent can generate a submission-grade tensor
+
+- 상태: 반증됨 as current generator; 지지됨 as action-health diagnostic latent.
+- 왜 그럴듯한가: E332-E334 showed repeated local Q1 lifestyle signal but no public-free action. If the missing variable is outcome health, a same-level latent trained on candidate geometry and moved-row lifestyle signatures should identify safe visible actions better than hand-coded scales/masks.
+- 맞다면: leave-experiment/family health prediction should rank prior candidates, and generated consensus/projection actions should clear selector visibility, E323-negative anatomy, and movement-null dominance.
+- 틀리다면: health ranking may be predictable inside the archive, but generated actions should regress to safe-invisible movements or visible-null-common movements, with zero selector-promoted candidates.
+- 최소 실험: `analysis_outputs/e335_q1_action_health_latent_generator.py`.
+- 관측: archive `233`, movement-null-labelled `58`, ready proxy `5`; leave-family trees Spearman `0.938198`, top20 overlap `0.891304`; generated `55`, selector-promoted `0`, selector+E323+movement-null-safe `0`. Best generated files have negative p90 and high movement-null p90 dominance but are `too_small_to_submit`.
+- 성공/폐기 기준: reject generator if no candidate clears selector+E323+movement-null gates; keep diagnostic if leave-experiment/family rank transfer is high. This is the observed split.
+- public LB 관측 반응: no public LB should be spent. Expected reaction is low-information because candidates are below selector resolution.
+- 제출 전략: none from E335. The next strategy needs new positive support for visible/null-rare action geometry, likely via cross-target action states or E323/public-negative movement anatomy.

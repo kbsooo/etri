@@ -1237,3 +1237,25 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - the next useful public-free experiment should learn an action-health latent directly.
 - expected public reaction if submitted anyway:
   - likely low-information or worse than E247 because no file is selector-promoted and all visible-ish files retain positive p90 or weak movement-null dominance.
+
+## Public-Free Observation: E335 Q1 Action-Health Latent Generator
+
+- submission files: generated locally, but none promoted.
+- public LB: not submitted.
+- reason not submitted: action-health rank transfer is high, but every generated file remains below selector resolution.
+- local observation:
+  - archive rows: `233`;
+  - movement-null-labelled rows: `58`;
+  - leave-family trees Spearman `0.938198`, top20 overlap `0.891304`;
+  - generated candidates: `55`;
+  - selector-promoted candidates: `0`;
+  - selector+E323+movement-null-safe candidates: `0`.
+- closest local candidates:
+  - `submission_e335_q1health_weightedavg_top2_badproj075_s0_45_d485b72f.csv`, mean `-0.000135`, p90 `-0.000012`, beats `0.930556`, movement-null p90 dominance `0.933333`;
+  - `submission_e335_q1health_weightedavg_top2_s0_45_cab4254e.csv`, mean `-0.000135`, p90 `-0.000012`, beats `0.930556`, movement-null p90 dominance `0.933333`.
+- interpretation:
+  - action-health is a real latent/ranking target;
+  - the current Q1 archive lacks a visible/null-rare positive region;
+  - public testing a safe-invisible file would waste a sensor reading.
+- expected public reaction if submitted anyway:
+  - likely tiny/noisy movement around E247 rather than a breakthrough, because local selector promotion is exactly zero.
