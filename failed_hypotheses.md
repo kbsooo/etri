@@ -2637,3 +2637,12 @@
 - Implementation issue possible: medium. The successful counter source is still hand-selected and the bad-axis margin is narrow, so public LB must decide transferability.
 - Bottleneck implication: the current best route is hidden lifestyle-state plus learned counter-axis selection, not raw projection cleanup.
 - Do not repeat: treating E342 as dead because E343 failed. The correct next question is whether E344's counter-axis transfers publicly.
+
+## FH293. E344 is only a one-point threshold accident
+
+- Failed hypothesis: the E344 counter-axis success is a narrow knife-edge caused by one lucky E342/E315 composition and should disappear under small changes to counter weight, veto strength, or target scope.
+- Observed result: E345 generated `6588` neighborhood candidates and found `278` selector-promoted rows, `6029` information sensors, and `40` movement-null-safe promoted rows. The selected refinement has p90 `-0.000051888`, bad-axis `0.014655826`, and null strict promote rate `0.000000`.
+- Why discard: strict and null-safe candidates persist across nearby variants, so the local geometry is a basin rather than a single accidental threshold crossing.
+- Implementation issue possible: low for rejecting the knife-edge claim, because E345 reuses E344 scoring and expands the local grid. Medium for public transfer, because all checks are still local public-free proxies.
+- Bottleneck implication: the next uncertainty is not local stability. It is public transfer of the E315 counter-axis and the tradeoff between p90 margin and bad-axis margin.
+- Do not repeat: another fine grid around the same E344 point unless public feedback distinguishes E344 from E345.

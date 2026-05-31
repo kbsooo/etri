@@ -1473,3 +1473,22 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment after public result:
   - if improved, build a learned counter-source selector around E315/E342 interaction;
   - if worse, audit why E315 local counter geometry fails public transfer before increasing weight or adding more counters.
+
+## Public-Free Observation: E345 Counter-Axis Margin Refinement
+
+- submission file available for public test: `analysis_outputs/submission_e345_counterrefine_lifestyle_61d91c4c_uploadsafe.csv`.
+- public LB: pending.
+- changed point: E345 stays inside the E344 hidden lifestyle-state world model but refines the counter-axis margin with local sweeps over E315 counter weight, veto strength, and target scope.
+- expected LB reaction:
+  - improve if the E342+E315 basin transfers and the public subset prefers wider bad-axis margin;
+  - underperform E344 if p90 margin is the dominant public sensor;
+  - worsen if local movement-null safety still misses the public hidden subset.
+- local evidence:
+  - `6588` candidates;
+  - `278` selector-promoted;
+  - `40` movement-null-safe promoted;
+  - selected file mean `-0.000246580`, p90 `-0.000051888`, beats `0.972222`, bad-axis `0.014655826`, null strict rate `0.000000`.
+- interpretation before submission:
+  - E345 strengthens the claim that E344 is a stable local basin, not a one-off;
+  - E344 remains first because p90 is stronger;
+  - E345 is the bad-axis-margin follow-up if public feedback suggests risk margin matters more.

@@ -3960,3 +3960,40 @@ Interpretation rule:
 
 - If public LB improves, the hidden lifestyle-state + counter-axis hypothesis becomes the strongest current world model.
 - If public LB worsens, the next fix is not more counter weight; it is learning which counter sources are public-transferable rather than locally anti-bad.
+
+## Update After E345 Counter-Axis Margin Refinement
+
+Refined candidate:
+
+- `analysis_outputs/submission_e345_counterrefine_lifestyle_61d91c4c_uploadsafe.csv`
+
+What changed:
+
+- E345 does not introduce a new broad model.
+- It tests the neighborhood around E344 by changing counter weights, veto strength, and target scopes.
+- The selected file uses a Q1/Q2/S1 counter variant with weight `0.105` and veto `0.35`.
+
+Local evidence:
+
+- generated candidates: `6588`;
+- selector-promoted: `278`;
+- movement-null-safe promoted: `40`;
+- selected candidate mean `-0.000246580`;
+- selected candidate p90 `-0.000051888`;
+- bad-axis `0.014655826`;
+- null strict promote rate `0.000000`.
+
+Priority:
+
+1. `analysis_outputs/submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv`
+2. `analysis_outputs/submission_e345_counterrefine_lifestyle_61d91c4c_uploadsafe.csv`
+
+Why E344 stays first:
+
+- E344 has stronger p90: `-0.000053606` versus E345 `-0.000051888`.
+- E344 already passed movement-null stress with null strict rate `0.000000`.
+
+Why E345 is still useful:
+
+- E345 has a wider bad-axis margin: bad-axis `0.014655826` versus E344 `0.014849687`.
+- If E344 fails publicly in a way that looks like bad-axis transfer risk, E345 is the next most informative public sensor.

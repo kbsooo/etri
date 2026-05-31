@@ -4659,3 +4659,34 @@ Stress conclusion:
 - The separable-counter route succeeds where projection cleanup failed.
 - The useful E342 energy is not cleanly removable from bad-axis by projection, but it can be locally stabilized with a small E315-derived counter-axis.
 - This is the current best local submission candidate; public LB is needed as the next sensor.
+
+## E345 Counter-Axis Margin Stress
+
+Question: is the E344 counter-axis success a stable basin or a narrow threshold artifact?
+
+Method:
+
+- `analysis_outputs/e345_counteraxis_margin_refine.py`
+- Reuses E344 scoring and movement-null stress.
+- Holds the E342 sign-transfer family fixed and refines around the E315 human-ready composition counter source.
+- Sweeps counter weight, veto strength, and target-scope variants.
+
+Result:
+
+- generated candidates: `6588`;
+- selector-promoted: `278`;
+- information sensors: `6029`;
+- movement-null-safe promoted: `40`;
+- selected upload-safe file:
+  - `submission_e345_counterrefine_lifestyle_61d91c4c_uploadsafe.csv`;
+  - mean `-0.000246580`;
+  - p90 `-0.000051888`;
+  - beats `0.972222`;
+  - incremental bad-axis `0.014655826`;
+  - null strict promote rate `0.000000`.
+
+Stress conclusion:
+
+- The E342+E315 hidden lifestyle/counter-axis state is not a one-off.
+- E345 widens the bad-axis margin versus E344 but gives up p90 margin.
+- Current ranking remains E344 first for public testing, E345 second as the safer-margin follow-up.

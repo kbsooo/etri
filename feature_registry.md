@@ -3556,3 +3556,22 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - best file `submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv` with p90 `-0.000053606`, bad-axis `0.014849687`, and null strict rate `0.000000`.
 - Leakage/stability condition: keep only candidates that clear E272 selector, bad-axis cap, and movement nulls. Do not treat the counter source itself as public-safe unless it passes independently.
 - Public interpretation: improvement supports hidden lifestyle-state + counter-axis composition; deterioration means local anti-bad geometry is not public-transferable enough.
+
+### E345 counter-axis margin refinement
+
+- Target hidden structure: stability of the E342+E315 hidden lifestyle/counter-state composition.
+- Why needed: E344's strict candidate had strong p90 but narrow bad-axis margin. E345 tests whether the state survives local perturbations rather than relying on a threshold accident.
+- Feature/action form:
+  - E342 sign-transfer delta as the primary lifestyle-state representation;
+  - E315 human-ready composition as the counter-axis;
+  - counter weights `0.075-0.160`;
+  - veto strengths `0.15-0.45`;
+  - joint, centered, additive-veto, bad-cell, source-row-only, Q2-preserving, Q1/Q2/S1, and Q1/S1 target scopes.
+- Current evidence:
+  - `6588` candidates;
+  - `278` selector-promoted;
+  - `6029` information sensors;
+  - `40` movement-null-safe promoted;
+  - selected file `submission_e345_counterrefine_lifestyle_61d91c4c_uploadsafe.csv` with p90 `-0.000051888`, bad-axis `0.014655826`, and null strict rate `0.000000`.
+- Registry status: approved as a robustness and bad-axis-margin feature; second submission priority behind E344.
+- Failure condition: if E344 and E345 both fail publicly, stop treating local E315 counter-axis safety as transferable and learn a counter-source selector before another public test.

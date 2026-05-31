@@ -5487,3 +5487,23 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - movement-null mean/p90 dominance `0.928571/1.000000`, null strict promote rate `0.000000`.
 - Interpretation: this is the first current hidden lifestyle-state branch that clears the full local submission rule. Projection cleanup could not separate the E342 signal, but small counter-axis composition can make it locally safe.
 - Decision: E344 produces a real submission candidate. Submit `analysis_outputs/submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv` if we want the next public sensor to test whether the local counter-axis safety translates to public LB.
+
+## E345. Counter-Axis Margin Refinement
+
+- Observe: E344 passed all local gates, but the bad-axis margin was narrow. The next question is whether the E342+E315 composition is a stable hidden lifestyle-state basin or a single lucky knife-edge.
+- Wonder: if the counter-axis theory is real, nearby weights, veto strengths, and target scopes should continue to pass selector and movement-null stress. If it is a knife-edge, strict candidates should vanish or be dominated by null variants.
+- Hypothesis: the E344 state is stable if a local grid around the E342 sign-transfer source and E315 counter source produces multiple strict, movement-null-safe variants while preserving p90 below `-0.00005`.
+- Method: `analysis_outputs/e345_counteraxis_margin_refine.py`.
+  - Reuse the E344 source-selection and scoring code.
+  - Restrict counter sources to the E315 human-ready composition family that generated the E344 strict rows.
+  - Sweep counter weights `0.075-0.160`, veto strengths `0.15-0.45`, and variants including joint cell-veto, centered counter, counter-veto add, bad-cell patch, source-row-only, Q2-preserving, Q1/Q2/S1 counter, and Q1/S1 counter.
+  - Stress promoted rows with the same movement-null modes used in E344.
+- Result:
+  - generated candidates: `6588`;
+  - selector-promoted candidates: `278`;
+  - information-sensor candidates: `6029`;
+  - movement-null-safe promoted candidates: `40`;
+  - upload-safe candidate: `analysis_outputs/submission_e345_counterrefine_lifestyle_61d91c4c_uploadsafe.csv`;
+  - selected local metrics: mean `-0.000246580`, p90 `-0.000051888`, beats `0.972222`, bad-axis `0.014655826`, null strict promote rate `0.000000`.
+- Interpretation: E344 is not a one-point accident. The hidden lifestyle-state plus E315 counter-axis has a real local basin. However, the best E345 refinement trades away some p90 margin for a wider bad-axis margin.
+- Decision: keep E344 as the first score-seeking public candidate because it has stronger p90 (`-0.000053606`). Keep E345 as the safer-margin follow-up or diagnostic backup if E344's public result indicates bad-axis transfer risk.

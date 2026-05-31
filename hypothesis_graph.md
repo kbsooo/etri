@@ -3972,3 +3972,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept locally if strict selector plus movement-null gates pass; require public LB before treating the counter-axis as generally valid. Local acceptance is observed.
 - public LB 관측 반응: if public improves, this strongly supports the hidden lifestyle-state + counter-axis world model. If public worsens, the local selector is likely accepting an E315/E342 interaction that is still public-subset-specific or private-risky.
 - 제출 전략: submit `analysis_outputs/submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv` as the next high-information candidate.
+
+### H345: the E342+E315 counter-axis state is a stable basin, not a knife-edge
+
+- 상태: 지지됨 locally; public LB 미확인.
+- 왜 그럴듯한가: E344's strict candidate had a narrow bad-axis margin, so it could have been a single threshold artifact. A real hidden lifestyle-state plus counter-state should survive nearby counter weights, veto strengths, and target scopes.
+- 맞다면: a local grid around the E344 composition should produce many strict candidates, multiple movement-null-safe rows, and no strict promotion under matched movement nulls.
+- 틀리다면: nearby variants should lose p90, exceed bad-axis, or become movement-null-common.
+- 최소 실험: `analysis_outputs/e345_counteraxis_margin_refine.py`.
+- 관측: `6588` candidates, `278` selector-promoted, `6029` information sensors, and `40` movement-null-safe promoted. The selected refinement `submission_e345_counterrefine_lifestyle_61d91c4c_uploadsafe.csv` has mean `-0.000246580`, p90 `-0.000051888`, bad-axis `0.014655826`, and null strict promote rate `0.000000`.
+- 성공/폐기 기준: accept the stability claim if many nearby variants survive strict selector plus movement-null stress. This is observed. Do not upgrade E345 above E344 unless public feedback or a revised survival score values bad-axis margin over p90 margin.
+- public LB 관측 반응: if E344 improves and E345 also improves, the counter-axis basin becomes the strongest current world model. If E344 worsens but E345 improves, bad-axis margin matters more than p90. If both worsen, the local counter-axis safety is not public-transferable.
+- 제출 전략: keep E344 as first public sensor; use `analysis_outputs/submission_e345_counterrefine_lifestyle_61d91c4c_uploadsafe.csv` as the refined bad-axis-margin follow-up.
