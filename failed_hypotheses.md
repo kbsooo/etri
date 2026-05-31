@@ -2520,3 +2520,12 @@
 - Implementation issue possible: medium. E331 uses simple quantile gates and fixed logit scales, so a learned or block-adaptive translator may still work. Low for rejecting current E331 submission files because selector, E323 anatomy, and movement-null checks agree they are not submission-grade.
 - Bottleneck implication: the hidden lifestyle residual state is real and local, but the missing object is a visibility-preserving, null-rare translator. The next branch should focus on Q1 positive-tail action health, not more broad state discovery.
 - Do not repeat: submitting E331 Q1/Q2/S2 files as currently scaled, or combining multiple localized gates before the single clean Q1 tail has passed high-repetition movement-null stress.
+
+## FH280. Q1 positive-tail direct translators are submission-grade
+
+- Failed hypothesis: the clean E331 Q1 `jepa_resid/dateblock` positive-tail latent only needs an OOF-trained constant/rank/softplus logit translator to become a public-worthy E247 edit.
+- Observed result: E332 found `33` local translator gates and the best Q1 `pos_q83/const` improves local CV by `-0.015385658` with dominance `1.000000`, but `77` generated probes produced `0` actual-direction selector-promoted candidates and `0` selector+E323+movement-null-safe candidates.
+- Why discard: the latent direction is real, but the action layer is not healthy. Small Q1 edits are below selector resolution, while larger edits improve mean at the cost of positive p90 or weak movement-null dominance.
+- Implementation issue possible: medium. The translator family is still simple and scalar; a learned placement/shape translator may work. Low for rejecting the current generated files because signflip, selector, E323 anatomy, and movement-null checks agree.
+- Bottleneck implication: the frontier is not blocked by missing Q1-tail sign or amplitude alone. It is blocked by action visibility and p90 calibration.
+- Do not repeat: public-testing direct Q1-tail scalar shifts, or increasing scale on the same tail, unless a new checker first shows negative p90 and movement-null dominance.

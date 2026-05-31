@@ -3816,3 +3816,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept localization if label-null dominance survives; reject current translator if no candidate clears selector/E323/movement-null gates. This is the observed split.
 - public LB 관측 반응: no public LB should be spent yet. A public test would mainly measure noise because the best edge is below selector resolution.
 - 제출 전략: none from current E331. Continue only with a Q1 positive-tail translator and stronger movement-null stress.
+
+### H332: Q1 positive-tail latent has correct direction, but direct translators fail visibility
+
+- 상태: 지지됨 as hidden lifestyle-state latent; 반증됨 as direct scalar translator.
+- 왜 그럴듯한가: E331 identified Q1 `jepa_resid/dateblock` positive tails as the cleanest localized residual state. If the only missing piece was amplitude, an OOF-trained constant/rank/softplus translator should produce a selector-grade E247 edit.
+- 맞다면: Q1-tail translators should improve blocked Q1 logloss versus row/subject/dateblock nulls, reject signflip controls, stay E323-negative, and produce at least one actual-direction candidate with negative p90 and movement-null dominance.
+- 틀리다면: label/null stress may remain strong, but materialized candidates should be below selector resolution or lose p90/movement-null health when scaled.
+- 최소 실험: `analysis_outputs/e332_q1_tail_translator_stress.py`.
+- 관측: `33` local translator gates, `77` probes, `0` actual-direction selector-promoted candidates, `0` selector+E323+movement-null-safe candidates. Best local Q1 `pos_q83/const` delta `-0.015385658`, dominance `1.000000`. Signflip controls are rejected with beats rate `0.000000`.
+- 성공/폐기 기준: accept the latent direction because label/null and signflip stress agree; reject direct translation because no materialized candidate clears selector and movement-null checks.
+- public LB 관측 반응: no public LB should be spent. If submitted anyway, expected reaction is low-information or worse because p90 remains positive on the closest visible moves.
+- 제출 전략: none from direct E332. The next strategy should predict visibility-safe placement/action shape for Q1-tail rows, not increase the same scalar shift.

@@ -4203,3 +4203,43 @@ Stress conclusion:
 - The Q1 positive residual tail is the current cleanest hidden lifestyle-state object.
 - It is still not a submission candidate because the current action is below selector resolution and composition increases null risk.
 - The next validator should focus on high-repetition Q1 positive-tail movement-null stress before scaling or composing it.
+
+## E332 Q1 Tail Translator Stress
+
+Question: can the clean E331 Q1 positive-tail state be translated into a visible E247 edit without becoming p90-unsafe or null-common?
+
+Method: `analysis_outputs/e332_q1_tail_translator_stress.py`.
+
+- Fixed latent: Q1 `jepa_resid/dateblock` positive residual tail.
+- Translator policies: positive quantiles `q75` to `q95`, plus band policies.
+- Translator styles: constant, rank, softplus.
+- Label/null stress: OOF Q1 logloss versus row/subject/dateblock nulls.
+- Submission stress: E272 selector, E323 movement anatomy, signflip controls, and movement-null shuffles.
+- Public LB: not used.
+
+Result:
+
+- local translator gates: `33`;
+- generated E247 probes: `77`;
+- actual-direction selector-promoted candidates: `0`;
+- selector+E323-safe actual candidates: `0`;
+- selector+E323+movement-null-safe candidates: `0`.
+- strongest local translators:
+  - Q1 `pos_q83/const`: delta `-0.015385658`, dominance `1.000000`, train rows `77`;
+  - Q1 `pos_q75/const`: delta `-0.015204136`, dominance `1.000000`, train rows `113`;
+  - Q1 `pos_q80/const`: delta `-0.014687417`, dominance `1.000000`, train rows `90`;
+  - Q1 `pos_q90/const`: delta `-0.010597068`, dominance `1.000000`, train rows `45`.
+- signflip controls:
+  - all checked signflip probes are `block_or_reject`;
+  - beats rate is `0.000000`, confirming that the negative Q1 correction direction is not arbitrary.
+- movement-null stress:
+  - best p90-like actuals still have positive p90;
+  - example `pos_q85_softplus_actual_s0p35`: mean `-0.000113208`, p90 `0.000018913`, beats `0.875000`, p90 dominance `0.566667`;
+  - example `pos_q75_softplus_actual_s0p35`: mean `-0.000238803`, p90 `0.000057727`, beats `0.833333`, p90 dominance `0.833333`, mean dominance `0.366667`.
+
+Stress conclusion:
+
+- Q1 positive-tail hidden lifestyle state is label-real and directional.
+- Direct amplitude/rank/softplus translators are not submission-grade.
+- The blocker is action visibility and p90 calibration, not E323 similarity or wrong sign.
+- Next stress should learn visibility-safe placement, not increase the same Q1 shift.

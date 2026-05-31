@@ -3265,3 +3265,29 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - require high-repetition movement-null safety before public submission.
 - Failure condition:
   - if a localized residual-tail action is only selector-visible after widening the gate or composing multiple targets, classify it as null-risky and do not submit.
+
+## E332 Q1 Tail Translator Features
+
+- Target hypothesis tested:
+  - the clean E331 Q1 positive residual-tail latent may only need a better localized logit translator to become submission-visible.
+- Feature/representation source:
+  - fixed Q1 `jepa_resid/dateblock` residual-state score;
+  - positive quantile tail gates and band gates;
+  - constant, rank, and softplus OOF-trained logit-shift translators;
+  - signflip and movement-null controls.
+- Validation result:
+  - `33` local translator gates pass label/null checks;
+  - best local translator Q1 `pos_q83/const` has delta `-0.015385658`, dominance `1.000000`;
+  - `77` generated probes produce `0` selector-promoted actual-direction candidates;
+  - signflip controls fail, confirming the negative Q1 correction direction;
+  - closest actual probes remain p90-positive or weak under movement-null dominance.
+- Updated registry status:
+  - approved as a directional Q1 hidden lifestyle-state diagnostic;
+  - rejected as a direct scalar submission feature;
+  - keep the learned sign and Q1-tail gate as inputs to an action-health translator.
+- Adopt rule for future features:
+  - do not scale Q1-tail shifts blindly;
+  - optimize for p90-safe visibility and movement-null dominance;
+  - test placement/shape changes before target amplitude changes.
+- Failure condition:
+  - if a Q1-tail feature only improves mean while p90 stays positive, classify it as action-visible but calibration-unsafe.

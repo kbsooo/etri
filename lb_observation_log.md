@@ -1170,3 +1170,23 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - Q1 positive-tail residual state is now the most promising single object, but not yet a public candidate.
 - expected public reaction if submitted anyway:
   - likely low-information or small-noise movement because the best p90 remains too close to zero.
+
+## Public-Free Observation: E332 Q1 Tail Translator Stress
+
+- submission files: generated locally, but none promoted.
+- public LB: not submitted.
+- reason not submitted: direct Q1-tail translators preserve local label/null signal but fail selector visibility and movement-null/p90 stress.
+- local observation:
+  - local translator gates: `33`;
+  - generated candidates: `77`;
+  - actual-direction selector-promoted candidates: `0`;
+  - selector+E323+movement-null-safe candidates: `0`;
+  - strongest local translator: Q1 `pos_q83/const`, delta `-0.015385658`, dominance `1.000000`;
+  - signflip controls are rejected with beats rate `0.000000`;
+  - E323 cosine is mostly negative or near zero, so E323 public-bad similarity is not the blocker.
+- interpretation:
+  - Q1 positive-tail hidden lifestyle state is a real directional latent;
+  - direct scalar translation cannot make it public-visible without p90 risk;
+  - the next public-worthy branch needs an action-health or placement-shape translator.
+- expected public reaction if submitted anyway:
+  - likely noisy or worse than E247 because the candidate family has no selector-promoted actual-direction file and the closest mean-positive edges still have positive p90.

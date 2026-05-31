@@ -5162,3 +5162,32 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     - `submission_e331_localresid_Q1_jepa_resid_dateblock_pos_q90_s1p0_02a5d855.csv`: mean `-0.000065115`, p90 `-0.000005876`, beats rate `0.944444`, decision `too_small_to_submit`.
 - Interpretation: localization is the right direction. The residual state becomes sharper and produces real label-null wins, especially for Q1 positive JEPA-residual dateblock tails. But the materialized movement is still below submission-grade resolution, and multi-target composition reintroduces null-common risk.
 - Decision: do not submit E331 candidates yet. The next useful experiment should stay on the Q1 positive-tail residual state and test a stronger but still localized translator, preferably with higher-repetition movement-null stress before any public slot.
+
+## E332. Q1 Tail Translator Stress
+
+- Observe: E331 made the hidden lifestyle-state object much sharper: Q1 `jepa_resid/dateblock` positive tails beat row/subject/dateblock feature nulls, but the E247 action was still too small.
+- Wonder: is the remaining bottleneck only translator amplitude, or does a direct Q1-tail translator become null/common or p90-unsafe once it is made visible?
+- Hypothesis: if Q1 tail state is submission-ready, an OOF-trained localized logit translator should keep the E331 label/null edge, reject signflip controls, remain E323-negative, and produce at least one selector-grade actual-direction candidate.
+- Method: `analysis_outputs/e332_q1_tail_translator_stress.py`.
+  - Fixed target: Q1 `jepa_resid/dateblock` positive residual tail.
+  - Policies: positive quantiles `q75` through `q95` plus narrow bands.
+  - Translator styles: constant, rank, and softplus logit shifts with OOF scale search.
+  - Stress: label/null translator grid, E272-style selector, signflip control, E323 movement anatomy, and movement-null shuffles.
+- Result:
+  - local translator gates: `33`;
+  - generated candidates: `77`;
+  - actual-direction selector-promoted candidates: `0`;
+  - selector+E323-safe actual candidates: `0`;
+  - selector+E323+movement-null-safe candidates: `0`.
+  - strongest local translators:
+    - Q1 `pos_q83/const`: cv delta `-0.015385658`, dominance `1.000000`, train rows `77`, learned shift `-0.55`;
+    - Q1 `pos_q75/const`: cv delta `-0.015204136`, dominance `1.000000`, train rows `113`;
+    - Q1 `pos_q80/const`: cv delta `-0.014687417`, dominance `1.000000`, train rows `90`;
+    - Q1 `pos_q90/const`: cv delta `-0.010597068`, dominance `1.000000`, train rows `45`.
+  - closest actual probes remain too weak or p90-risky:
+    - `submission_e332_q1tail_pos_q85_softplus_actual_s0p35_a134c161.csv`: mean `-0.000113208`, p90 `0.000018913`, beats `0.875000`, movement-null p90 dominance `0.566667`;
+    - `submission_e332_q1tail_pos_q75_softplus_actual_s0p35_bae47ccd.csv`: mean `-0.000238803`, p90 `0.000057727`, beats `0.833333`, movement-null p90 dominance `0.833333`, mean dominance `0.366667`.
+  - signflip controls are rejected with positive mean/p90 deltas and beats rate `0.000000`, so the negative Q1 direction is not arbitrary.
+  - E323 anatomy is mostly negative/orthogonal, so E323 similarity is not the blocker.
+- Interpretation: the hidden lifestyle-state latent is real and directional. Positive Q1 residual-tail episodes locally want Q1 probability lowered on the current E247 scale. The failure is not discovery or sign; it is action visibility. Scaling the same translator makes the mean look better but pushes p90 above zero and loses movement-null dominance.
+- Decision: do not submit E332 candidates. The next useful target is an action-visibility/health translator that predicts where Q1-tail movement stays visible and p90-safe, not a larger scalar shift on the same tail.

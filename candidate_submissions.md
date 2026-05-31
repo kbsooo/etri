@@ -3573,3 +3573,33 @@ Next submission rule:
 - do not spend a public slot on E331 as currently scaled;
 - if this branch is continued, start from Q1 `jepa_resid/dateblock/pos_q90`, not from Q2/S2 or a combo;
 - require a stronger high-repetition movement-null check before any public test.
+
+## Update After E332 Q1 Tail Translator Stress
+
+No E332 file should be submitted.
+
+Closest local probes:
+
+- `analysis_outputs/submission_e332_q1tail_pos_q85_softplus_actual_s0p35_a134c161.csv`
+- `analysis_outputs/submission_e332_q1tail_pos_q75_softplus_actual_s0p35_bae47ccd.csv`
+- `analysis_outputs/submission_e332_q1tail_pos_q83_softplus_actual_s0p35_2bcfa364.csv`
+
+Why blocked:
+
+- `77` Q1-tail translator probes produced `0` actual-direction selector-promoted candidates.
+- The sign is locally correct, but the edit is still not public-grade:
+  - small moves are too close to zero;
+  - larger moves improve mean but make p90 positive or movement-null dominance weak.
+- E323 similarity is not the blocker because actual probes are mostly E323-negative or nearly orthogonal.
+- Signflip controls are clearly bad, so the branch should not be inverted.
+
+Current best public frontier remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+- public LB `0.5761589494`
+
+Next submission rule:
+
+- do not submit direct Q1-tail scalar translators;
+- learn or search for a visibility-safe action translator that keeps Q1-tail direction but changes placement/shape;
+- require negative or near-zero p90 plus movement-null dominance before public testing.
