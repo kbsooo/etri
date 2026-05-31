@@ -4116,3 +4116,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept representation if transfer stability is learnable across at least random and threshold holdouts. Accept submission only as a probe if the selected row remains in E351-compatible plateau and passes local gates. This is observed with caveats.
 - public LB 관측 반응: if E356 improves publicly, learned transfer-latent ranking beats raw E352 stability. If E356 fails but E351 improves, raw robust-center stability is preferable. If both fail, the compact lifestyle-state basin is not enough for public subset transfer.
 - 제출 전략: `analysis_outputs/submission_e356_transferstable_selected_compact_t45_s1_005_s3a0_50_0ace76e5_uploadsafe.csv` is the information-rich E356 probe; E351 remains the conservative reference.
+
+### H357: known-public survival is a learnable contrast latent, but it must be gated by transfer stability
+
+- 상태: public-survival representation은 지지됨 locally; selected probe는 public LB 미확인.
+- 왜 그럴듯한가: E247 is the current known public best, while E216/E267/E323 show specific ways that plausible lifestyle/social actions can die publicly. If known public files are treated as scarce observations, their movement anatomy should reveal a public-survival contrast that is distinct from local p90 or E352 stability alone.
+- 맞다면: leave-one-public-file-out models should rank public deltas above permutation baselines, and the selected compact candidate should avoid known public-bad projections while retaining E352/E356 transfer support.
+- 틀리다면: LOO diagnostics should collapse to permutation, or the public-survival ranker should select no-tail/E247-preserving points that fail E352/E356 stability and cannot survive stricter gates.
+- 최소 실험: `analysis_outputs/e357_public_survival_contrast_latent.py`.
+- 관측: `17` public observations, `13` available local files, `181` compact candidates. LOO Spearman reaches ExtraTrees `0.829670`, Ridge10 `0.659341`, Ridge1 `0.620879`, KNN3 `0.472527`; Ridge10/Ridge1/KNN3 beat permutation p95. Pure public-preservation prefers weak-transfer no-tail candidates, so final selection requires E352 top3 `>=0.18`, E356 survival `>=3.0`, strict p90 visibility, and bounded predicted public loss. The selected probe is `compact_t45_s1.000_s3a1.00`.
+- 성공/폐기 기준: accept the representation if LOO public-delta ranking beats permutation and chosen candidates remain interpretable under public-good/bad axes. Accept submission only as a high-information probe because the public label count is tiny. This is observed.
+- public LB 관측 반응: if E357 improves, the compact basin needs full S3-tail support but not micro-amplification. If E356 improves more, learned transfer-stability matters more than public-survival preservation. If E351/E356/E357 all fail, abandon the compact-basin tuning branch and search for a different hidden public subset/lifestyle-state axis.
+- 제출 전략: `analysis_outputs/submission_e357_publicsurvival_selected_compact_t45_s1_000_s3a1_00_a08a4957_uploadsafe.csv` is the next compact-basin calibration probe; it is not a proven replacement for E247.

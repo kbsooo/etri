@@ -202,6 +202,10 @@ analysis_outputs/*
 !analysis_outputs/e356_transfer_stability_*.md
 !analysis_outputs/e356_transfer_stability_*.py
 !analysis_outputs/submission_e356_transferstable_*_uploadsafe.csv
+!analysis_outputs/e357_public_survival_contrast_*.csv
+!analysis_outputs/e357_public_survival_contrast_*.md
+!analysis_outputs/e357_public_survival_contrast_*.py
+!analysis_outputs/submission_e357_publicsurvival_*_uploadsafe.csv
 
 !analysis_outputs/bridge_scan_candidates/
 analysis_outputs/bridge_scan_candidates/*

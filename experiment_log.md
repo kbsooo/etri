@@ -5774,3 +5774,27 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - The selected E356 file is an information-rich probe, not a proven replacement: it tests whether learned transfer-latent ranking beats raw E352 selector-stability center.
   - The bottleneck has sharpened: the compact lifestyle-state basin is real, but candidate choice inside that basin is dominated by very small calibration geometry.
 - Decision: keep E356 as the next high-information candidate from the hidden lifestyle-state latent branch. Treat E351 as the more conservative raw-stability reference.
+
+## E357. Public-Survival Contrast Latent
+
+- Observe: E356 selected a transfer-stable point, but it still lacked a direct check against known public-survival anatomy. E247 is public-positive, while E323/E216/E267/E256 and older broad corrections are public-negative or same-family-loss anchors.
+- Wonder: do known public observations see E351/E356 as E247-preserving and public-bad-axis avoiding, or do they prefer another point inside the compact lifestyle-state basin?
+- Hypothesis: if public-survival anatomy is partially encoded in output movement geometry, known public deltas versus E247 should be predictable from logit-space movement features and public-good/bad axis projections. A useful probe should then satisfy both public-survival contrast and E352/E356 transfer stability.
+- Method: `analysis_outputs/e357_public_survival_contrast_latent.py`.
+  - Public observations: `17`, available files: `13`.
+  - Anchor: E247 public-best `0.5761589494`.
+  - Context representation: movement anatomy relative to E247 plus projections to E95/E101/mixmin/E176/E216/E256/E267/E323/broad public axes.
+  - Target representation: known public `delta_vs_e247`.
+  - Anti-collapse: leave-one-public-file-out models plus permutation Spearman checks.
+  - Candidate pool: `181` compact lifestyle-state variants.
+- Result:
+  - LOO Spearman: ExtraTrees `0.829670`, Ridge10 `0.659341`, Ridge1 `0.620879`, KNN3 `0.472527`;
+  - permutation p95 is beaten by Ridge10/Ridge1/KNN3, so the public-survival sensor is not pure noise, though it is still very small-label and diagnostic only;
+  - pure public-preservation ranking prefers no-S3-tail candidates, but after requiring E352/E356 transfer support the selected probe is `compact_t45_s1.000_s3a1.00`;
+  - selected upload-safe file: `analysis_outputs/submission_e357_publicsurvival_selected_compact_t45_s1_000_s3a1_00_a08a4957_uploadsafe.csv`;
+  - E357 selected probe vs E247 mean abs movement: Q1 `0.001610`, Q2 `0.000966`, Q3 `0.000214`, S1 `0.000738`, S3 `0.000023`;
+  - E357 vs E356 is tiny: mean abs Q1 `0.000008`, Q2 `0.000005`, Q3 `0.000001`, S1 `0.000004`, S3 `0.000011`.
+- Interpretation:
+  - Known public anatomy does not simply endorse E356. It says S3-tail and micro-amplification are the key calibration tradeoff inside the compact basin.
+  - The highest information next probe is now E357: remove the `1.005` amplification while keeping full S3-tail, and test whether public-survival contrast beats E351/E356's raw stability preferences.
+- Decision: E357 becomes the top information-rich compact-basin probe. E356 remains the learned transfer-latent probe; E351 remains the conservative raw-stability reference.

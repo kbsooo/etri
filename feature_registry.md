@@ -3765,3 +3765,23 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - raw E352 still favors E351 over E356.
 - Registry status: approved as a diagnostic latent and approved as an information-rich public-transfer probe. Not approved as a proven replacement for E351.
 - Failure condition: if E356 public LB is worse than E247/E351, do not keep increasing learned selector complexity inside the same tiny plateau. The next target must model public subset/calibration state directly.
+
+### E357 public-survival contrast latent gate
+
+- Target hidden structure: public-survival movement anatomy around the current E247 public-best anchor.
+- Why needed: E356 learned transfer stability without directly using the known public failure/success anatomy. E357 asks whether E247-preserving and E216/E267/E323-avoiding movement patterns form a learnable contrast latent.
+- Feature/action form:
+  - source action: candidate minus E247 in logit space;
+  - context features: targetwise mean/absolute/tail movement, E247 preservation, projections onto known public-good and public-bad axes, and compact-basin descriptors;
+  - same-level target: known public `delta_vs_e247` for locally available submission files;
+  - anti-collapse checks: leave-one-public-file-out predictors and permutation baselines.
+- Current evidence:
+  - public observations: `17`;
+  - available local public files: `13`;
+  - candidate pool: `181`;
+  - ExtraTrees LOO Spearman `0.829670`;
+  - Ridge10 LOO Spearman `0.659341`, beating permutation p95;
+  - selected probe `compact_t45_s1.000_s3a1.00`;
+  - selected file `analysis_outputs/submission_e357_publicsurvival_selected_compact_t45_s1_000_s3a1_00_a08a4957_uploadsafe.csv`.
+- Registry status: approved as a public-survival diagnostic latent and information-rich compact-basin probe. Not approved as a standalone public optimizer because the known public target set is small.
+- Failure condition: if E357 public LB is worse than E247/E351/E356, stop tuning compact-basin S3-tail/amplification details and move to a different lifestyle-state/public-subset latent.

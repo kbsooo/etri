@@ -5090,3 +5090,31 @@ Stress conclusion:
 - Transfer-stability is not pure noise; it can be predicted from candidate lifestyle-state context.
 - The proof is not strong enough to say E356 is strictly safer than E351, because raw E352 still favors E351 and scale holdout is weak.
 - E356 is a high-information public-transfer probe: if it beats E247/E351 publicly, learned transfer-latent ranking matters more than raw selector-stability. If it fails, the E352 raw robust center remains the safer local rule.
+
+## E357 Public-Survival Contrast Latent
+
+Question: when known public observations are treated as fixed same-level targets, which compact lifestyle-state point best balances public-survival anatomy and transfer stability?
+
+Stress setup:
+
+- script: `analysis_outputs/e357_public_survival_contrast_latent.py`;
+- public observations: `17`, available local files: `13`;
+- anchor: E247 public-best;
+- context: logit movement anatomy relative to E247 plus projections onto known public-good/bad axes;
+- target: public `delta_vs_e247`;
+- anti-collapse: leave-one-public-file-out prediction and permutation checks;
+- candidate pool: `181` compact lifestyle-state candidates.
+
+Stress result:
+
+- LOO Spearman: ExtraTrees `0.829670`, Ridge10 `0.659341`, Ridge1 `0.620879`, KNN3 `0.472527`;
+- Ridge10/Ridge1/KNN3 beat permutation p95; public-survival sensor has signal despite tiny label count;
+- pure public-preservation ranking prefers no-S3-tail variants with weak E352 stability;
+- after requiring E352 top3 `>=0.18`, E356 survival `>=3.0`, strict p90 visibility, and bounded predicted public loss, selected `compact_t45_s1.000_s3a1.00`;
+- selected upload-safe file: `analysis_outputs/submission_e357_publicsurvival_selected_compact_t45_s1_000_s3a1_00_a08a4957_uploadsafe.csv`;
+- E351 global E357 rank `70`; E356 rank `50`; selected by gated public-survival plus transfer support, not raw global rank.
+
+Stress conclusion:
+
+- E357 does not prove breakthrough beyond E247; it proves the next compact-basin uncertainty is full S3-tail versus micro-amplification.
+- E357 is information-rich because it tests public-survival contrast preferring less amplification while E352/E356 requires enough S3-tail support.

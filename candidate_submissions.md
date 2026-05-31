@@ -4372,3 +4372,38 @@ Expected public interpretation:
 - If E356 beats E247/E351: learned transfer-stability latent is a better selector than raw E352 perturbation count.
 - If E356 is worse but E351 later improves: raw robust-center selection matters more than learned latent extrapolation.
 - If both E351/E356 fail: the compact lifestyle-state basin is likely a local/public-free calibration basin, not the missing public subset state.
+
+## Update After E357 Public-Survival Contrast Latent
+
+New upload-safe probe:
+
+`analysis_outputs/submission_e357_publicsurvival_selected_compact_t45_s1_000_s3a1_00_a08a4957_uploadsafe.csv`
+
+What changed:
+
+- E357 treats the known public LB observations as scarce same-level targets, not as a direct optimization table.
+- It learns which movement anatomy tends to preserve E247 and avoid known public-bad directions.
+- It selects `compact_t45_s1.000_s3a1.00`, a nearby point in the same compact lifestyle-state basin.
+- Compared with E356, it removes the `1.005` micro-amplification but keeps full S3-tail support.
+
+Evidence:
+
+- available public-observation files: `13`;
+- LOO Spearman: ExtraTrees `0.829670`, Ridge10 `0.659341`, Ridge1 `0.620879`, KNN3 `0.472527`;
+- Ridge10/Ridge1/KNN3 beat permutation p95 despite the tiny public label set;
+- selected candidate has E357 public-survival score `1.302855`;
+- selected candidate has E247 preservation score `0.631676` and predicted public loss mean `0.000194`;
+- E352 top3 rate is `0.201252`, so it keeps enough selector-stability support.
+
+Submission priority interpretation:
+
+1. If the next public test should maximize information about compact-basin calibration, submit `analysis_outputs/submission_e357_publicsurvival_selected_compact_t45_s1_000_s3a1_00_a08a4957_uploadsafe.csv`.
+2. If the next test should isolate learned transfer-stability versus raw E352 stability, submit `analysis_outputs/submission_e356_transferstable_selected_compact_t45_s1_005_s3a0_50_0ace76e5_uploadsafe.csv`.
+3. If the next test should be the most conservative raw-stability representative, use `analysis_outputs/submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv`.
+4. Current known public best remains `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+
+Expected public interpretation:
+
+- If E357 beats E247/E351/E356: public likely likes full S3-tail support but not extra micro-amplification.
+- If E357 fails while E356 works: the learned transfer-stability latent and half-tail/micro-scale choice matter more than public-preservation contrast.
+- If E351/E356/E357 all fail: the compact lifestyle-state basin is not the missing public subset state, and the next search should move away from this basin rather than tune it further.
