@@ -1101,3 +1101,23 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - add an E323-negative stress slice to future promotion checks;
   - block direct siblings of E323/E324/E326/E327;
   - do not spend another public slot until the new candidate explains why the E323 movement should be avoided or orthogonalized.
+
+## Public-Free Observation: E328 Own-Latent Lifestyle State
+
+- submission files: generated locally, but none promoted.
+- public LB: not submitted.
+- reason not submitted: all E328 candidates are below selector resolution and the broad latent fails blocked label stress.
+- local observation:
+  - best teacher prediction view: `family_jepa_story/dateblock`, OOF R2 `0.972508`;
+  - subject label delta `+0.035211637`;
+  - dateblock label delta `+0.022631387`;
+  - targets improved `0`;
+  - strongest E247/E256 boundary signal `1.477419`;
+  - strongest E323 top20 signal `0.545557`;
+  - strict promoted candidates `0`.
+- interpretation:
+  - hidden lifestyle state is observable and human-interpretable;
+  - broad lifestyle state does not transfer to labels or public-risk gating;
+  - the next public candidate should not come from broad lifestyle PCA/KMeans, but from target-specific or action-health latent objectives.
+- expected public reaction if submitted anyway:
+  - likely flat/noisy or worse, because the local checker sees no label benefit and no strong E323-negative axis.

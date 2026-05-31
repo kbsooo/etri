@@ -5094,3 +5094,22 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - block E326 and E327 same-family rescue files;
   - keep E247 as the public frontier;
   - add an E323-negative stress slice before any future public promotion.
+
+## E329. Own-Latent Lifestyle State With E323 Negative Anchor
+
+- Observe: the user asked for a hidden lifestyle-state latent, not another feature stack. E247 remains public-best, while E323 is now a public-bad negative anchor despite strong local null health.
+- Wonder: can a learned same-level lifestyle latent capture human/social state strongly enough to help labels and identify E323-adverse movement before public LB?
+- Hypothesis: if broad lifestyle state is the missing hidden law, masked context views should predict an own latent representation, that representation should improve blocked label CV, and its energy should separate E323-bad test rows.
+- Method: `analysis_outputs/e328_ownlatent_lifestyle_state_experiment.py`.
+  - Teacher: PCA latent from all lifestyle context views, fitted on train rows.
+  - Students: masked context views (`family`, `jepa_resid`, `story_bundle`, `raw_day`, `family_story`, `family_jepa_story`) predict teacher PCs under subject/dateblock OOF splits.
+  - State: PCA + kmeans over student predictions and residual energies.
+  - Public-free checks: label CV, row/subject/dateblock shuffled nulls, E247/E256 boundary, E323-bad tail alignment, and tiny anti-E323 candidate probes.
+- Result:
+  - best teacher predictability: `family_jepa_story/dateblock` OOF R2 `0.972508`;
+  - label stress failed: subject mean delta `+0.035211637`, dateblock mean delta `+0.022631387`, targets improved `0`;
+  - E247/E256 boundary is visible: top signal `ownlife_k8_0` Cohen-style separation `-1.477419`;
+  - E323 top20 separation is weak: best `ownlife_k8_3` separation `0.545557`;
+  - all generated E328 anti-E323 submissions are `below_selector_resolution`.
+- Interpretation: the latent is real and interpretable as a human lifestyle atlas, but it is too broad to be a direct predictive or submission latent. It mostly reconstructs lifestyle/context geometry, not label-useful hidden state.
+- Decision: do not submit E328 candidates. Keep the latent features as diagnostics. The next useful JEPA target should be target-specific or outcome-health-specific: Q3/S4 block states, Q/S pair states, or an E323-negative action-health latent.

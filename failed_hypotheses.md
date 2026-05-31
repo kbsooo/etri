@@ -2493,3 +2493,12 @@
 - Implementation issue possible: low. The upload-safe file matches sample schema, has no NaN/Inf, values are strictly in `(0,1)`, and differs from the original tensor by `<5e-11`. This is model evidence, not a packaging artifact.
 - Bottleneck implication: row/subject/dateblock null rarity is necessary but insufficient. The validation design needs an E323-negative slice or an independent public/private subset calibration axis.
 - Do not repeat: submitting E323 direct siblings, E326 semantic-censor siblings, or E327 nullfail-censor siblings as rescue files. Same-family refinements are blocked until a new checker explains and removes the E323 public-adverse movement.
+
+## FH277. Broad own-latent lifestyle state is enough as a direct predictive/submission latent
+
+- Failed hypothesis: a broad hidden lifestyle-state latent learned from human/social/raw/residual context views should improve labels and provide a safe E323-negative gate.
+- Observed result: E328 learned a highly predictable same-level latent, with `family_jepa_story/dateblock` OOF teacher R2 `0.972508`, but label transfer was adverse: subject mean delta `+0.035211637`, dateblock mean delta `+0.022631387`, and targets improved `0`. E323-bad-tail separation was weak at best (`0.545557`), and all anti-E323 candidates were below selector resolution.
+- Why discard: high latent predictability mostly means the lifestyle atlas can reconstruct itself. It does not mean the latent is invariant, label-useful, or public-safe.
+- Implementation issue possible: medium. The broad-latent construction is PCA/KMeans/Ridge-based and may miss nonlinear target-specific state. Low for rejecting the generated E328 candidates because the stress failure is direct and multi-view.
+- Bottleneck implication: the hidden lifestyle state exists, but it must be made target-specific or action-health-specific. The broad human/social state is too mixed with subject/routine/calendar shortcuts.
+- Do not repeat: adding broad ownlife PCs/clusters to a candidate or using lifestyle-state energy as a global gate without label stress and E323-negative evidence.

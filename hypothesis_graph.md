@@ -3780,3 +3780,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: keep if censor variants beat anti-controls; reject as replacement if no file beats E324 priority. This is exactly the observed split.
 - public LB 관측 반응: E324 priority resolved public-negative, so E327 same-family nullfail siblings are blocked.
 - 제출 전략: none. Do not use E327 as rescue.
+
+### H328: broad own-latent lifestyle state is the hidden law behind E247 and E323
+
+- 상태: 반증됨 as direct predictive/submission latent; 지지됨 as diagnostic lifestyle atlas.
+- 왜 그럴듯한가: human/social story states, payday/calendar signals, and JEPA residual views have repeatedly shown interpretable structure, while E323 showed local null-rare but public-bad behavior. A same-level own latent might capture the missing lifestyle world state and avoid E323-like moves.
+- 맞다면: masked context views should predict the latent under subject/dateblock OOF, the latent should improve blocked label CV, and E323-bad rows should be strongly separable by latent energy or cluster state.
+- 틀리다면: latent predictability may be high but label CV should worsen or match shuffled nulls, and E323 separation should be too weak to gate public-risk movement.
+- 최소 실험: `analysis_outputs/e328_ownlatent_lifestyle_state_experiment.py`.
+- 관측: `family_jepa_story/dateblock` teacher R2 `0.972508`, but subject label delta `+0.035211637`, dateblock label delta `+0.022631387`, targets improved `0`, and best E323 top20 separation only `0.545557`. Anti-E323 candidates are all below selector resolution.
+- 성공/폐기 기준: reject direct use because label stress fails and E323-negative separation is weak. Keep diagnostic use because clusters are coherent and E247/E256 boundary is visible.
+- public LB 관측 반응: no public LB should be spent. The local stress says E328 would be an information-poor public test.
+- 제출 전략: none from E328. Redesign the latent target around Q3/S4, Q/S pair state, or action-health/E323-negative objectives.

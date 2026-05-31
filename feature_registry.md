@@ -3190,3 +3190,30 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - same-family descendants require stronger independent evidence than ordinary candidates.
 - Failure condition:
   - if a candidate is E323-similar and only passes row/subject/dateblock nulls, do not public-test it.
+
+## E328 Own-Latent Lifestyle-State Features
+
+- Target hypothesis tested:
+  - hidden lifestyle state can be learned as a same-level latent from human/social, raw-day, residual, and story context views, then used as a JEPA-style representation for labels and E323-negative gating.
+- Feature/representation source:
+  - teacher PCA from lifestyle context views;
+  - masked-context student predictions under subject/dateblock OOF;
+  - residual energy features;
+  - ownlife PCs, k8 clusters, cluster distance, global distance, and student residual summaries.
+- Validation result:
+  - best teacher R2 `0.972508` for `family_jepa_story/dateblock`;
+  - subject label delta `+0.035211637`, dateblock label delta `+0.022631387`;
+  - targets improved `0`;
+  - E247/E256 boundary separation up to `1.477419`;
+  - E323 top20 separation only `0.545557`;
+  - generated anti-E323 files all below selector resolution.
+- Updated registry status:
+  - approved as a diagnostic and clustering feature;
+  - rejected as a direct label feature or submission gate;
+  - do not use broad ownlife PCs/clusters as standalone probability movement.
+- Adopt rule for future features:
+  - split broad lifestyle state into target/noise regimes before materialization;
+  - require label stress improvement, not only high latent reconstruction R2;
+  - include E323-negative alignment before any candidate promotion.
+- Failure condition:
+  - if a lifestyle latent is easy to predict but worsens blocked label CV, classify it as lifestyle atlas or subject/routine shortcut, not a submission representation.

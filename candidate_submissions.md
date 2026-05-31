@@ -3489,3 +3489,35 @@ Next submission policy:
 
 - Public slot is closed until a candidate is independent of the E323 residual family or explicitly fixes the E323 failure mode.
 - Any next candidate must be compared against E247 and must include an E323-negative stress slice: it should not only beat row/subject/dateblock nulls, it must also avoid the movement anatomy that made `5508f966` public-worse.
+
+## Update After E328 Own-Latent Lifestyle State
+
+No E328 file should be submitted.
+
+Generated local candidates:
+
+- `analysis_outputs/submission_e328_ownlatent_anti_e323_softtail_w0p015_aa16c169.csv`
+- `analysis_outputs/submission_e328_ownlatent_anti_e323_softtail_w0p025_1f459c14.csv`
+- `analysis_outputs/submission_e328_ownlatent_anti_e323_softtail_w0p04_a1bc4a8f.csv`
+- `analysis_outputs/submission_e328_ownlatent_anti_e323_softtail_w0p06_53129290.csv`
+- `analysis_outputs/submission_e328_ownlatent_anti_e323_hardtop20_w0p015_b877c668.csv`
+- `analysis_outputs/submission_e328_ownlatent_anti_e323_hardtop20_w0p025_bc134b7e.csv`
+- `analysis_outputs/submission_e328_ownlatent_anti_e323_hardtop20_w0p04_e0a74913.csv`
+- `analysis_outputs/submission_e328_ownlatent_anti_e323_hardtop20_w0p06_c116957c.csv`
+
+Why blocked:
+
+- every candidate is `below_selector_resolution`;
+- label stress is adverse on both subject and dateblock splits;
+- E323-bad-tail separation is weak, so the gate does not actually solve the last public failure;
+- the best hardtop20 candidate only moves E247 by mean predicted delta `+0.000001219`, which is too small and not directionally justified.
+
+Current public frontier remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+- public LB `0.5761589494`
+
+Next candidate rule:
+
+- do not submit a broad lifestyle-state latent;
+- require a target-specific or action-health latent that improves blocked label stress and is explicitly E323-negative before creating another public file.

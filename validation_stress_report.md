@@ -4103,3 +4103,37 @@ Validator change:
 - Future promotion checks must include an E323-negative slice.
 - Passing fresh matched nulls is necessary but no longer sufficient.
 - A candidate from the same residual family is blocked unless it explicitly removes the E323 public-adverse movement and proves that removal under an independent stress view.
+
+## E328 Own-Latent Lifestyle-State Stress
+
+Question: can a broad learned lifestyle state become a public-free predictive latent and an E323-negative gate?
+
+Method: `analysis_outputs/e328_ownlatent_lifestyle_state_experiment.py`.
+
+- Teacher: PCA over human/social/raw/JEPAlike lifestyle context views.
+- Student views: family, story bundle, raw day, JEPA residuals, and combined family+story contexts.
+- Splits: subject and dateblock OOF.
+- Stress checks: label CV delta versus baseline, shuffled nulls, E247/E256 boundary, E323 top20 movement tail, and tiny anti-E323 candidate scoring.
+
+Result:
+
+- representation predictability is high:
+  - `family_jepa_story/dateblock` OOF R2 `0.972508`;
+  - `family_story/dateblock` OOF R2 `0.968609`;
+  - `family/dateblock` OOF R2 `0.916472`.
+- label transfer fails:
+  - subject mean delta `+0.035211637`;
+  - dateblock mean delta `+0.022631387`;
+  - targets improved `0`.
+- public-sensor geometry:
+  - strongest E247/E256 separation `1.477419`;
+  - strongest E323 top20 separation only `0.545557`.
+- candidate probes:
+  - all E328 anti-E323 candidates are below selector resolution;
+  - no public submission promoted.
+
+Stress conclusion:
+
+- broad hidden lifestyle state is real and interpretable, but not a healthy direct predictive latent.
+- It should be used to name clusters and diagnose action failures, not to move probabilities.
+- Future stress must demand target-specific label benefit and E323-negative action anatomy before candidate generation.
