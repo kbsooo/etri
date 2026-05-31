@@ -1,0 +1,135 @@
+feature,source,family,human_story
+e280__commute_workday,human_social,mobility_context,Morning/evening movement and WiFi variety consistent with commute.
+e280__bright_light_late,human_social,bedtime_phone,Phone/wearable light exposure near sleep.
+e280__vehicle_noise_day,human_social,mobility_context,Vehicle ambience and GPS speed.
+e280__single_app_monotony,human_social,routine_calendar,One dominant app or ritual dominates the day.
+e280__app_entropy_scattered_day,human_social,routine_calendar,Attention spread across many apps during the day.
+e280__heart_stress_late,human_social,physiology_activity,High late/presleep heart rate and variance.
+e280__outdoor_nature_day,human_social,mobility_context,Outdoor/nature ambience and movement.
+e280__morning_after_badnight,human_social,diary_global,High morning heart/mobility after a possibly fragmented night.
+e280__quiet_dark_bedtime,human_social,routine_calendar,Low late light/screen/mobility with charging.
+e280__media_binge_late,human_social,media_game,Late video/music/game consumption.
+e280__night_out_mobility,human_social,mobility_context,"Late/deepnight movement, public ambience, weak charging."
+e280__weekday_routine_pressure,human_social,routine_calendar,Weekday plus commute/work/study signal.
+e280__phone_in_bed,human_social,bedtime_phone,Screen use while phone is charging at presleep.
+e280__paymonth_start_post7_spend_outing,cashflow,cognitive_money,First week after anchor month_start: broader spending/social state.
+e280__monthstart_spending_reset,cashflow,cognitive_money,Month-start spending reset: finance/shopping/social usage after new month starts.
+e280__paymonth_start_post3_late_shopping,cashflow,cognitive_money,After anchor month_start: late shopping or finance phone use.
+e280__weekend_ritual_rest,human_social,routine_calendar,Weekend routine/religion/charge and low mobility.
+e280__low_hr_recovery,human_social,physiology_activity,Low presleep heart rate and quiet charging.
+e280__ritual_anchor,human_social,routine_calendar,Religious/routine app use and charging before sleep.
+e280__sedentary_screen_day,human_social,media_game,Low movement but high screen/media/social day.
+e280__afterwork_recovery,human_social,mobility_context,Commute signal followed by quiet/charging at night.
+e280__screen_fragmentation,human_social,bedtime_phone,Many short screen sessions late.
+e280__charge_bed_anchor,human_social,routine_calendar,Phone is on charger near bedtime with low mobility.
+e280__overtraining_arousal,human_social,physiology_activity,Physical load plus high evening/presleep heart rate.
+e280__deepnight_phone_awake,human_social,bedtime_phone,Phone activity after midnight when the day should be winding down.
+e280__payeom_post3_late_shopping,cashflow,cognitive_money,After anchor eom: late shopping or finance phone use.
+e280__pay20_post3_relief_home,cashflow,routine_calendar,After anchor 20: money available but quiet home/charging routine.
+e280__pay25_pre3_cash_stress,cashflow,cognitive_money,Last 3 days before anchor 25: finance/checking stress.
+episode__commute_pressure,episode,commute_pressure,"weekday commute, vehicle exposure, routine pressure, less home stability"
+episode__bedtime_arousal,episode,bedtime_arousal,"bright screen, messages, search spiral, media/game and phone-in-bed before sleep"
+episode__routine_fragmentation,episode,routine_fragmentation,"scattered app attention, fragmented screen use, broken routine, sensor sparse/noisy day"
+episode__routine_anchor_recovery,episode,routine_anchor_recovery,"stable home/charging/ritual routine, quiet bedtime, lower arousal recovery"
+episode__cashflow_stress,episode,cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal"
+episode__cashflow_relief_spend,episode,cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy"
+episode__physiology_strain,episode,physiology_strain,"late heart stress, fatigue, overtraining, sedentary screen load"
+episode__home_recovery,episode,home_recovery,"home stability, afterwork recovery, low HR recovery, quiet/dark bedtime"
+episode__social_overload,episode,social_overload,"late communication, public social evening, night-out mobility, less isolation"
+episode__measurement_wear_confidence,episode,measurement_wear_confidence,high sensor wear and dense measurement versus sparse sensor day
+episode__badnight_aftereffect,episode,badnight_aftereffect,morning-after bad-night trace and recovery debt visible in next-day diary
+hstory__late_msg_call,human_social,social_overstim,Late Kakao/message/call load before sleep.
+hstory__presleep_msg_drag,human_social,social_overstim,Presleep messaging plus repeated phone checks.
+hstory__deepnight_phone_awake,human_social,sleep_fragment,Phone activity after midnight when the day should be winding down.
+hstory__late_search_spiral,human_social,cognitive_load,"Late searching, browsing, work, finance, and shopping loops."
+hstory__finance_shopping_stress,human_social,cognitive_load,Money or shopping attention late in the day.
+hstory__media_binge_late,human_social,media_binge,Late video/music/game consumption.
+hstory__game_dopamine_late,human_social,media_binge,Late games with screen exposure.
+hstory__ritual_anchor,human_social,routine_anchor,Religious/routine app use and charging before sleep.
+hstory__charge_bed_anchor,human_social,routine_anchor,Phone is on charger near bedtime with low mobility.
+hstory__app_entropy_scattered_day,human_social,routine_break,Attention spread across many apps during the day.
+hstory__single_app_monotony,human_social,routine_anchor,One dominant app or ritual dominates the day.
+hstory__commute_workday,human_social,workday_commute,Morning/evening movement and WiFi variety consistent with commute.
+hstory__afterwork_recovery,human_social,workday_commute,Commute signal followed by quiet/charging at night.
+hstory__night_out_mobility,human_social,nightlife_mobility,"Late/deepnight movement, public ambience, weak charging."
+hstory__public_social_evening,human_social,social_outing,Evening speech/public ambience/BLE density.
+hstory__music_ambient_late,human_social,media_binge,Music ambience late or deepnight.
+hstory__bright_light_late,human_social,sleep_fragment,Phone/wearable light exposure near sleep.
+hstory__phone_in_bed,human_social,sleep_fragment,Screen use while phone is charging at presleep.
+hstory__screen_fragmentation,human_social,sleep_fragment,Many short screen sessions late.
+hstory__physical_fatigue,human_social,physical_fatigue,High steps/distance/calories and heart activity.
+hstory__overtraining_arousal,human_social,physical_fatigue,Physical load plus high evening/presleep heart rate.
+hstory__sedentary_screen_day,human_social,sedentary_screen,Low movement but high screen/media/social day.
+hstory__heart_stress_late,human_social,physiology_stress,High late/presleep heart rate and variance.
+hstory__low_hr_recovery,human_social,physiology_recovery,Low presleep heart rate and quiet charging.
+hstory__home_stability,human_social,routine_anchor,"Low GPS range, stable WiFi, charge, and low public ambience."
+hstory__sensor_sparse_day,human_social,measurement_state,Sparse sensor counts that may encode phone/watch availability.
+hstory__high_sensor_wear_day,human_social,measurement_state,Dense wearable and phone sensing.
+hstory__social_isolation_media,human_social,social_isolation,Low direct social signal but high passive media/home utility.
+hstory__weekday_routine_pressure,human_social,calendar_social,Weekday plus commute/work/study signal.
+hstory__weekend_social_jetlag,human_social,calendar_social,Weekend late social/media/deepnight phone.
+hstory__weekend_ritual_rest,human_social,calendar_social,Weekend routine/religion/charge and low mobility.
+hstory__morning_after_badnight,human_social,nextday_echo,High morning heart/mobility after a possibly fragmented night.
+hstory__quiet_dark_bedtime,human_social,routine_anchor,Low late light/screen/mobility with charging.
+hstory__outdoor_nature_day,human_social,environment,Outdoor/nature ambience and movement.
+hstory__vehicle_noise_day,human_social,environment,Vehicle ambience and GPS speed.
+cash__pay10_post3_spend_outing,cashflow,post_pay_spend,First 3 days after anchor 10: spending/social outing state.
+cash__pay10_post7_spend_outing,cashflow,post_pay_spend,First week after anchor 10: broader spending/social state.
+cash__pay10_pre3_cash_stress,cashflow,pre_pay_stress,Last 3 days before anchor 10: finance/checking stress.
+cash__pay10_pre7_budget_squeeze,cashflow,pre_pay_stress,Week before anchor 10: budget squeeze and late money rumination.
+cash__pay10_near3_money_rumination,cashflow,cashflow_transition,Near anchor 10: finance/shopping/search rumination.
+cash__pay10_near7_calendar_only,cashflow,calendar_only,Near anchor 10: pure monthly-cycle calendar state.
+cash__pay10_post3_relief_home,cashflow,post_pay_relief,After anchor 10: money available but quiet home/charging routine.
+cash__pay10_post3_late_shopping,cashflow,post_pay_spend,After anchor 10: late shopping or finance phone use.
+cash__pay15_post3_spend_outing,cashflow,post_pay_spend,First 3 days after anchor 15: spending/social outing state.
+cash__pay15_post7_spend_outing,cashflow,post_pay_spend,First week after anchor 15: broader spending/social state.
+cash__pay15_pre3_cash_stress,cashflow,pre_pay_stress,Last 3 days before anchor 15: finance/checking stress.
+cash__pay15_pre7_budget_squeeze,cashflow,pre_pay_stress,Week before anchor 15: budget squeeze and late money rumination.
+cash__pay15_near3_money_rumination,cashflow,cashflow_transition,Near anchor 15: finance/shopping/search rumination.
+cash__pay15_near7_calendar_only,cashflow,calendar_only,Near anchor 15: pure monthly-cycle calendar state.
+cash__pay15_post3_relief_home,cashflow,post_pay_relief,After anchor 15: money available but quiet home/charging routine.
+cash__pay15_post3_late_shopping,cashflow,post_pay_spend,After anchor 15: late shopping or finance phone use.
+cash__pay20_post3_spend_outing,cashflow,post_pay_spend,First 3 days after anchor 20: spending/social outing state.
+cash__pay20_post7_spend_outing,cashflow,post_pay_spend,First week after anchor 20: broader spending/social state.
+cash__pay20_pre3_cash_stress,cashflow,pre_pay_stress,Last 3 days before anchor 20: finance/checking stress.
+cash__pay20_pre7_budget_squeeze,cashflow,pre_pay_stress,Week before anchor 20: budget squeeze and late money rumination.
+cash__pay20_near3_money_rumination,cashflow,cashflow_transition,Near anchor 20: finance/shopping/search rumination.
+cash__pay20_near7_calendar_only,cashflow,calendar_only,Near anchor 20: pure monthly-cycle calendar state.
+cash__pay20_post3_relief_home,cashflow,post_pay_relief,After anchor 20: money available but quiet home/charging routine.
+cash__pay20_post3_late_shopping,cashflow,post_pay_spend,After anchor 20: late shopping or finance phone use.
+cash__pay25_post3_spend_outing,cashflow,post_pay_spend,First 3 days after anchor 25: spending/social outing state.
+cash__pay25_post7_spend_outing,cashflow,post_pay_spend,First week after anchor 25: broader spending/social state.
+cash__pay25_pre3_cash_stress,cashflow,pre_pay_stress,Last 3 days before anchor 25: finance/checking stress.
+cash__pay25_pre7_budget_squeeze,cashflow,pre_pay_stress,Week before anchor 25: budget squeeze and late money rumination.
+cash__pay25_near3_money_rumination,cashflow,cashflow_transition,Near anchor 25: finance/shopping/search rumination.
+cash__pay25_near7_calendar_only,cashflow,calendar_only,Near anchor 25: pure monthly-cycle calendar state.
+cash__pay25_post3_relief_home,cashflow,post_pay_relief,After anchor 25: money available but quiet home/charging routine.
+cash__pay25_post3_late_shopping,cashflow,post_pay_spend,After anchor 25: late shopping or finance phone use.
+cash__payeom_post3_spend_outing,cashflow,post_pay_spend,First 3 days after anchor eom: spending/social outing state.
+cash__payeom_post7_spend_outing,cashflow,post_pay_spend,First week after anchor eom: broader spending/social state.
+cash__payeom_pre3_cash_stress,cashflow,pre_pay_stress,Last 3 days before anchor eom: finance/checking stress.
+cash__payeom_pre7_budget_squeeze,cashflow,pre_pay_stress,Week before anchor eom: budget squeeze and late money rumination.
+cash__payeom_near3_money_rumination,cashflow,cashflow_transition,Near anchor eom: finance/shopping/search rumination.
+cash__payeom_near7_calendar_only,cashflow,calendar_only,Near anchor eom: pure monthly-cycle calendar state.
+cash__payeom_post3_relief_home,cashflow,post_pay_relief,After anchor eom: money available but quiet home/charging routine.
+cash__payeom_post3_late_shopping,cashflow,post_pay_spend,After anchor eom: late shopping or finance phone use.
+cash__paymonth_start_post3_spend_outing,cashflow,post_pay_spend,First 3 days after anchor month_start: spending/social outing state.
+cash__paymonth_start_post7_spend_outing,cashflow,post_pay_spend,First week after anchor month_start: broader spending/social state.
+cash__paymonth_start_pre3_cash_stress,cashflow,pre_pay_stress,Last 3 days before anchor month_start: finance/checking stress.
+cash__paymonth_start_pre7_budget_squeeze,cashflow,pre_pay_stress,Week before anchor month_start: budget squeeze and late money rumination.
+cash__paymonth_start_near3_money_rumination,cashflow,cashflow_transition,Near anchor month_start: finance/shopping/search rumination.
+cash__paymonth_start_near7_calendar_only,cashflow,calendar_only,Near anchor month_start: pure monthly-cycle calendar state.
+cash__paymonth_start_post3_relief_home,cashflow,post_pay_relief,After anchor month_start: money available but quiet home/charging routine.
+cash__paymonth_start_post3_late_shopping,cashflow,post_pay_spend,After anchor month_start: late shopping or finance phone use.
+cash__eom_bill_anxiety,cashflow,bill_cycle,End-of-month bill/card anxiety: late finance/search near month end.
+cash__monthstart_reset_relief,cashflow,bill_cycle,Month-start reset: quiet home after monthly cycle rolls over.
+cash__monthstart_spending_reset,cashflow,bill_cycle,Month-start spending reset: finance/shopping/social usage after new month starts.
+calendar__weekday,calendar,calendar,weekday
+calendar__is_weekend,calendar,calendar,is_weekend
+calendar__lifelog_dom,calendar,calendar,lifelog_dom
+calendar__lifelog_month,calendar,calendar,lifelog_month
+calendar__subject_order,calendar,calendar,subject_order
+calendar__pre25_cash_window,calendar,cashflow_calendar,pre25 cash window
+calendar__post25_relief_window,calendar,cashflow_calendar,post25 relief window
+calendar__month_end_bill_window,calendar,cashflow_calendar,month end bill window
+calendar__month_start_reset,calendar,cashflow_calendar,month start reset

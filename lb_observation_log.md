@@ -1007,3 +1007,21 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - improves versus E247: confirms the null-common residual world and makes residualization the next generator family;
   - flat/slightly worse: signal exists locally but is below public readability or public subset differs;
   - clearly worse: local matched nulls are missing a public/private calibration axis, and E323 should become a diagnostic rather than a generator.
+
+## Public-Free Observation: E325
+
+- submission files: none generated.
+- public LB: not submitted.
+- reason not submitted: E325 is a semantic attribution check on the already selected E324-ready files, not a new probability tensor.
+- local observation:
+  - tested E324 ready files: `3`;
+  - semantic null modes: row, subject, dateblock;
+  - reps per mode: `128`;
+  - priority `5508f966` best signed semantic z `2.871546`;
+  - priority best abs semantic z `2.316330`;
+  - priority signed semantic z>=2 hits `9`;
+  - strongest priority axes: Q1 night-out mobility, S1 phone-in-bed/bedtime arousal, S3 social-isolation/media.
+- interpretation: the E324 priority file is lifestyle-interpretable but only moderately so. This supports its worldview without creating a stronger semantic-gated sibling.
+- expected public reaction:
+  - improves versus E247: E325 becomes explanatory evidence that the residual action found a real lifestyle-aware placement component;
+  - worsens: semantic attribution alone is insufficient, and future public-free gates must add public/private calibration or subset diagnostics before another submission.

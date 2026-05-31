@@ -3378,3 +3378,25 @@ Alternates:
 - `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_de5d9c5d.csv`: middle p90 `-0.000075609`, null strict `0.081395`; useful if priority 1 improves and a same-family follow-up is needed.
 
 Current best public file remains `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` at public LB `0.5761589494`.
+
+## Update After E325 Semantic Null Attribution
+
+Current next submission candidate remains unchanged:
+
+- `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_5508f966.csv`
+
+Why E325 does not change the ordering:
+
+- E325 confirms the priority file has real human/social coloring under matched semantic nulls:
+  - Q1 night-out mobility signed semantic z `2.871546`;
+  - S1 phone-in-bed/bedtime arousal signed semantic z `2.683822` / `2.536066`;
+  - S3 social-isolation/media signed semantic z `2.122491`.
+- But the stronger semantic sibling `51ed84b0` is still riskier by the actual promotion gate:
+  - `51ed84b0` semantic z `3.214537`, E324 null strict `0.093023`;
+  - `5508f966` semantic z `2.871546`, E324 null strict `0.050388`.
+
+Submission interpretation:
+
+- If `5508f966` improves public LB, strengthen the world model that null-common residualization found a real lifestyle-aware hidden placement component.
+- If it worsens, the likely failure is not "human stories are useless"; it is that semantic attribution plus local matched nulls still misses a public/private calibration or subset axis.
+- Do not submit a semantic-gated sibling before building a generator that improves both semantic z and high-rep null strictness.

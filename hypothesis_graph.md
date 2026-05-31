@@ -3737,3 +3737,22 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: support if at least one residual candidate survives high-rep null stress. This criterion is met.
 - public LB 관측 반응: if the priority file improves public LB, strengthen the null-common residual hidden-placement world. If it worsens, local matched nulls are still missing public/private subset structure or the edge is below public readability.
 - 제출 전략: priority candidate `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_5508f966.csv`.
+
+### H325: E323's residual action is lifestyle-interpretable, not only numeric residualization
+
+- 상태: 부분 지지됨; semantic support is real but moderate.
+- 왜 그럴듯한가: E323 was generated from human-regime-only family-consensus candidates. If it is genuinely part of the user-requested human/social hidden-state route, the moved rows should align with interpretable diary states more than matched row/subject/dateblock placements do.
+- 맞다면: target-specific delta-weighted story means should be extreme against semantic nulls, and the top stories should match earlier robust human theories such as bedtime arousal, mobility/night-out, social isolation, or cash-flow stress.
+- 틀리다면: top semantic z-scores should be near null, or the strongest alignments should be random calendar/payday artifacts with no relation to prior robust episode states.
+- 최소 실험: `analysis_outputs/e325_e323_semantic_null_attribution.py`.
+- 관측:
+  - priority `5508f966` best signed semantic z `2.871546`, best abs semantic z `2.316330`;
+  - Q1 aligns with night-out mobility;
+  - S1 aligns with phone-in-bed/bedtime arousal;
+  - S3 aligns with social-isolation/media;
+  - higher semantic z sibling `51ed84b0` remains riskier by high-rep null strict.
+- 성공/폐기 기준:
+  - support if signed semantic z clears `2.0` on repeated prior story axes while high-rep null stress remains healthy;
+  - reject semantic-sibling expansion unless semantic z improves without worsening high-rep null strictness.
+- public LB 관측 반응: if the E324 priority improves public, semantic attribution becomes an explanatory layer for the residual law. If it worsens, do not discard human stories; instead mark semantic-null attribution as insufficient for public subset/calibration transfer.
+- 제출 전략: no new file. Preserve E324 priority order.

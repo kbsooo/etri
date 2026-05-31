@@ -3950,3 +3950,42 @@ Decision:
 - E323/E324 passes the current public-free promotion rule.
 - This is not a broad breakthrough to 0.54, but it is the first post-E247 candidate that converts a human/social hidden-placement idea into a high-rep null-surviving submission file.
 - If one public slot is used, submit the E324 priority file as a worldview test: "null-common residualization recovered a real hidden placement component."
+
+## E325 Semantic Null Attribution
+
+Question: does the E324 priority file also pass a human/social semantic null check?
+
+Method: `analysis_outputs/e325_e323_semantic_null_attribution.py`.
+
+- Semantic features:
+  - E280 story states;
+  - E295 episode states;
+  - full E268 human/social story atlas;
+  - E270 payday/cash-flow story atlas;
+  - calendar/payday windows.
+- Null modes:
+  - row shuffle `128`;
+  - subject shuffle `128`;
+  - dateblock shuffle `128`.
+- Public LB: not used.
+
+Result:
+
+- E324 priority `5508f966`:
+  - best signed semantic z `2.871546`;
+  - best abs semantic z `2.316330`;
+  - signed z>=2 hits `9`;
+  - abs z>=2 hits `2`.
+- Main semantic axes:
+  - Q1: night-out/deepnight mobility, public ambience, weak charging;
+  - S1: phone-in-bed, bedtime arousal, game/media/screen stimulation;
+  - S3: social isolation plus passive media/home utility.
+- Contrast:
+  - `51ed84b0` has stronger top semantic z `3.214537`, but E324 null strict is worse at `0.093023`.
+  - `de5d9c5d` has weaker semantic z `2.634592` and worse null strict `0.081395`.
+
+Stress implication:
+
+- E323/E324 is lifestyle-interpretable, not purely arbitrary action geometry.
+- The semantic support is moderate, not decisive. It should support the existing priority file, not justify a new semantic sibling sweep.
+- Future human/social materializers should optimize two gates jointly: high-rep placement-null rarity and semantic actual-vs-null attribution. Passing only one is insufficient.

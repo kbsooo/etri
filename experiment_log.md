@@ -5026,3 +5026,19 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - priority high-rep p90 `-0.000053747`, mean `-0.000952`, null strict `0.050388`, p90 dominance `0.926357`, mean dominance `0.914729`, worst-mode dominance `0.859375`.
 - Interpretation: the hidden-placement bottleneck is not solved globally, but one narrow law survived: human-regime-only family-consensus movement contains an S-heavy component that becomes local-null-rare after subtracting placement-null-common movement.
 - Decision: E324 promotes a single risk-adjusted public candidate. The expected edge is frontier-scale, not a 0.54 breakthrough, but it is the highest-information next submission because it tests a new world model rather than another blend tweak.
+
+## E325. E323 Semantic Null Attribution
+
+- Observe: E324 says the E323 priority file is action-null-rare, but that does not prove it is the human/social hidden state the user is asking for.
+- Wonder: do the rows touched by the E323 residual action have a coherent human diary meaning, or would row/subject/dateblock placements produce similar story alignment?
+- Hypothesis: if E323 recovered a lifestyle-aware hidden placement residual, its target-specific delta-weighted rows should be semantically extreme against matched semantic nulls, especially on the Q/S stories already found in E296/E309.
+- Method: `analysis_outputs/e325_e323_semantic_null_attribution.py` built a semantic matrix from E280 story states, E295 episode states, full E268 human/social stories, E270 cash-flow stories, and calendar/payday windows. For each of the `3` E324-ready files, it compared actual target/story weighted means against `128` row, `128` subject, and `128` dateblock shuffled placements. Public LB was not used and no submission was created.
+- Result:
+  - priority file `5508f966`: best signed semantic z `2.871546`, best abs semantic z `2.316330`, signed z>=2 hits `9`, abs z>=2 hits `2`;
+  - top priority semantics:
+    - Q1 aligned with low/negative night-out mobility (`signed_z_worst_abs=2.871546`);
+    - S1 aligned with phone-in-bed and bedtime arousal (`2.683822`, `2.536066`);
+    - S3 aligned with social-isolation/media (`2.122491`);
+  - higher-risk `51ed84b0` has stronger top semantic z `3.214537` but worse E324 null strict `0.093023`.
+- Interpretation: E323 is not just numeric residue. It has a small human/lifestyle signature: night-out/mobility, phone-in-bed arousal, and isolation/media states. But the semantic evidence is not strong enough to call it a broad social breakthrough; it is a narrow action-geometry residual with interpretable lifestyle coloring.
+- Decision: keep the E324 priority submission order unchanged. Do not create a semantic-gated sibling until a new local materializer can improve both high-rep null strictness and semantic z; otherwise this would become another post-hoc story overlay.

@@ -3088,3 +3088,28 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - use E324 priority as the next public sensor if a submission slot is intentionally spent.
 - Failure condition:
   - if public LB worsens materially, treat the local null governor as missing a public/private subset or calibration axis; do not blindly expand residualization to more parents.
+
+## E325 Semantic Null Attribution Features
+
+- Target hypothesis tested:
+  - an action that survives placement nulls should also have a coherent human/social diary explanation; otherwise it may be a numeric residual with no lifestyle structure.
+- Feature/representation source:
+  - E280 top transfer stories;
+  - E295 episode states;
+  - full E268 human/social story atlas;
+  - E270 payday/cash-flow story atlas;
+  - calendar/payday windows;
+  - target-specific delta-weighted semantic means compared against row/subject/dateblock shuffled delta placements.
+- Validation result:
+  - E324 priority `5508f966` best signed semantic z `2.871546`;
+  - top axes: Q1 night-out mobility, S1 phone-in-bed/bedtime arousal, S3 social-isolation/media;
+  - semantic support is moderate; it does not outrank high-rep placement-null safety.
+- Updated registry status:
+  - approved as an interpretation and local checker feature;
+  - not approved as a standalone submission selector;
+  - use it to prevent post-hoc storytelling by requiring actual-vs-null semantic rarity.
+- Adopt rule for future features:
+  - a future human/social materializer should report both high-rep placement-null metrics and semantic-null attribution;
+  - semantic z alone cannot promote a candidate if null strict or worst-mode dominance worsens.
+- Failure condition:
+  - if semantic-gated candidates raise story z but fail matched nulls, classify them as story overfit and do not spend public LB.
