@@ -4032,3 +4032,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept locally if a meaningfully different ablation passes strict selector, bad-axis cap, public-analog risk, hard-veto axes, and Q1 specificity. This is observed for the Q1/Q2/Q3/S1 cell-pruned variants.
 - public LB 관측 반응: if E349 improves, the hidden state should be treated as a compact coupled subjective/objective episode state. If E349 worsens while E347 survives, the small S3/tail cells removed by E349 were useful calibration rather than noise.
 - 제출 전략: use `analysis_outputs/submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv` as the next high-information sensor after E347.
+
+### H350: the compact Q1/Q2/Q3/S1 lifestyle-state action is a local plateau, not a threshold accident
+
+- 상태: 강하게 지지됨 locally; public LB 미확인.
+- 왜 그럴듯한가: E349 passed by pruning E347 to Q1/Q2/Q3/S1 high-magnitude cells, but the selected p90 margin was close to the strict threshold. A true hidden lifestyle-state action should survive nearby cell thresholds, tiny amplitude changes, and partial S3-tail restoration.
+- 맞다면: local gate survivors should appear across neighboring thresholds, S3-tail alphas, and micro scales, while preserving E272 visibility, E346 hard-veto neutrality, and Q1 dateblock latent specificity.
+- 틀리다면: only the exact E349 `top65/s1.00/S3=0` point should survive, or neighbors should become public-bad/S3-risky.
+- 최소 실험: `analysis_outputs/e350_compact_state_plateau_stress.py`.
+- 관측: `311` candidates, `187` local gates, `176` plateau gates. The selected file `submission_e350_compactplateau_selected_compact_t45_s1_005_s3a1_00_ef54727b_uploadsafe.csv` has p90 `-0.000050233`, bad-axis `0.014742869`, public-analog risk `0.044770778`, direct E323/E216/E267/E256 positive alignment `0`, Q1 specificity margin `0.317370`, and plateau support score `37`.
+- 성공/폐기 기준: accept the plateau claim if multiple adjacent thresholds, micro scales, and S3 alphas pass local/public-analog/specificity gates while remaining meaningfully different from E347/E349. This is observed. Do not claim large-scale robustness because coarse `0.96/1.04` scaling was unstable.
+- public LB 관측 반응: if E350 improves, the compact lifestyle-state basin and small S3-tail restoration become the strongest current world model. If E350 worsens but E349/E347 survive, micro-amplified S3 restoration was over-aggressive and the safer compact-pruned state should remain preferred.
+- 제출 전략: submit `analysis_outputs/submission_e350_compactplateau_selected_compact_t45_s1_005_s3a1_00_ef54727b_uploadsafe.csv` only as a high-information sensor; treat it as more ambitious than E349, not strictly lower-risk.

@@ -4138,3 +4138,48 @@ Risk:
 
 - Its p90 margin is barely over the strict threshold (`-0.000050035`), weaker than E344 and close to selector resolution.
 - If the pruned S3/low-magnitude cells were useful public calibration, E347 can beat E349.
+
+## Update After E350 Compact Lifestyle-State Plateau Stress
+
+New candidate:
+
+- `analysis_outputs/submission_e350_compactplateau_selected_compact_t45_s1_005_s3a1_00_ef54727b_uploadsafe.csv`
+
+What changed:
+
+- E350 tests whether E349 is a one-threshold accident.
+- It scans nearby Q1/Q2/Q3/S1 cell thresholds, micro scales, and S3-tail restoration.
+- The selected file keeps the compact hidden lifestyle-state structure, but restores S3-tail movement and applies a tiny `1.005` scale.
+
+Evidence:
+
+- candidates tested: `311`;
+- local gate passes: `187`;
+- plateau gate passes: `176`;
+- selected p90 `-0.000050233`;
+- selected bad-axis `0.014742869`;
+- public-analog survival `0.502551020`;
+- public-analog risk `0.044770778`;
+- direct E323/E216/E267/E256 positive alignment `0`;
+- Q1 specificity margin `0.317370`;
+- plateau support score `37`;
+- changed cells vs E349 `480`, so this is not a near duplicate.
+
+Updated priority:
+
+1. `analysis_outputs/submission_e350_compactplateau_selected_compact_t45_s1_005_s3a1_00_ef54727b_uploadsafe.csv`
+2. `analysis_outputs/submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv`
+3. `analysis_outputs/submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv`
+4. `analysis_outputs/submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv`
+5. `analysis_outputs/submission_e345_counterrefine_lifestyle_61d91c4c_uploadsafe.csv`
+
+Why E350 moves first:
+
+- It is backed by a local plateau rather than a single selected threshold.
+- It keeps E349's hidden compact-state thesis while directly testing whether S3-tail restoration was useful calibration.
+- It is the most informative next public sensor: improvement supports a compact Q/S/S3-tail episode basin; deterioration specifically tells us the S3 restoration or micro-amplification was too aggressive.
+
+Risk:
+
+- It is farther from E349 than E349 was from E347: probability L1 delta vs E349 is `0.011439`.
+- The action is not robust to coarse scaling, so this is a narrow calibration basin, not a free amplitude knob.

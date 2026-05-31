@@ -4842,3 +4842,36 @@ Stress conclusion:
 - Single-target Q1 specificity is not enough. The Q1-only row masks look semantically strong but fail submission-grade selector stress.
 - The locally surviving state is compact and coupled: Q1/Q2/Q3/S1 with low-magnitude cells pruned.
 - E349 is the highest-information follow-up file from this branch because it is meaningfully different from E347 while keeping the E347 latent and public-bad-axis constraints.
+
+## E350 Compact Lifestyle-State Plateau Stress
+
+Question: does the E349 compact state survive local perturbation, or was it selected by a single threshold?
+
+Stress setup:
+
+- script: `analysis_outputs/e350_compact_state_plateau_stress.py`;
+- candidate count: `311`;
+- E272 public-free selector;
+- E346 public-analog axes and hard-veto positive cosine;
+- Q1 dateblock latent specificity controls;
+- plateau support over cell threshold, micro scale, and S3-tail alpha.
+
+Stress result:
+
+- local gate passes: `187`;
+- plateau gate passes: `176`;
+- selected upload-safe:
+  - `analysis_outputs/submission_e350_compactplateau_selected_compact_t45_s1_005_s3a1_00_ef54727b_uploadsafe.csv`;
+  - p90 `-0.000050233`;
+  - bad-axis `0.014742869`;
+  - public-analog survival `0.502551020`;
+  - public-analog risk `0.044770778`;
+  - direct E323/E216/E267/E256 positive alignment `0`;
+  - Q1 specificity margin `0.317370`;
+  - plateau support score `37`.
+
+Stress conclusion:
+
+- The compact Q1/Q2/Q3/S1 state is not a one-threshold accident.
+- It is not robust to large amplitude changes; only micro-scale perturbations produce a stable plateau.
+- E350 is more information-rich but also more aggressive than E349 because it changes `480` cells versus E349 and restores S3-tail movement.

@@ -44,6 +44,10 @@ analysis_outputs/*
 !analysis_outputs/e349_e347_target_cell_ablation_scores.csv
 !analysis_outputs/e349_e347_target_cell_ablation_public_analog.csv
 !analysis_outputs/submission_e349_lifestate_*_uploadsafe.csv
+!analysis_outputs/e350_compact_state_plateau_candidates.csv
+!analysis_outputs/e350_compact_state_plateau_scores.csv
+!analysis_outputs/e350_compact_state_plateau_public_analog.csv
+!analysis_outputs/submission_e350_compactplateau_*_uploadsafe.csv
 !analysis_outputs/e325_e323_semantic_null_attribution.csv
 !analysis_outputs/e325_e323_semantic_feature_meta.csv
 !analysis_outputs/e276_q_sleep_story_ablation_placebo_*.csv

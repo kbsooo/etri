@@ -2664,3 +2664,12 @@
 - Implementation issue possible: medium. A different nonlinear Q1 translator may still work, but direct E347 slicing rejects the current Q1-only route.
 - Bottleneck implication: the hidden lifestyle state is a coupled subjective/objective episode state. Q1 is the clearest sensor, not the whole mechanism.
 - Do not repeat: public-testing Q1-only E347 slices or ranking candidates by Q1-state correlation alone.
+
+## FH296. E349 is only a single threshold accident
+
+- Failed hypothesis: the E349 compact Q1/Q2/Q3/S1 candidate is probably just one lucky cell threshold and should disappear under nearby threshold, scale, or S3-tail perturbations.
+- Observed result: E350 generated `311` compact-state variants and found `187` local gates plus `176` plateau gates. Plateau survivors span thresholds `35-90`, S3-tail alphas `0-1`, and micro scales around `1.0`. The selected file has p90 `-0.000050233`, public-analog risk `0.044770778`, direct public-bad positive cosine sum `0`, Q1 specificity margin `0.317370`, and plateau support score `37`.
+- Why discard: the local basin is broad in threshold and S3-tail dimensions. E349 is therefore not just a single threshold artifact.
+- Implementation issue possible: low for rejecting the one-threshold claim, because the same gates survive across a large local grid. Medium for public transfer, because all evidence is still public-free proxy stress.
+- Bottleneck implication: the bottleneck is not "find the exact E349 cell cutoff." The remaining uncertainty is calibration/public transfer of a narrow compact-state action, especially S3-tail restoration and tiny scale amplification.
+- Do not repeat: another exact top-k threshold search around E349 unless it changes the latent view or adds a stronger public-transfer proxy.

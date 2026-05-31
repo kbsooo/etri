@@ -1579,3 +1579,25 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - improvement would support the compact Q1/Q2/Q3/S1 hidden lifestyle-state story;
   - deterioration while E347 remains strong would mean the removed low-magnitude/S3 cells were calibration support rather than noise;
   - a large deterioration would demote target/cell pruning and move the next question back to public-subset/calibration transfer.
+
+## Public-Free Observation: E350 Compact Lifestyle-State Plateau
+
+- submission file recommended for public test: `analysis_outputs/submission_e350_compactplateau_selected_compact_t45_s1_005_s3a1_00_ef54727b_uploadsafe.csv`.
+- public LB: pending.
+- changed point: E350 keeps the E349 compact lifestyle-state thesis but tests it as a local basin, restoring S3-tail movement and using a tiny `1.005` amplification.
+- local observation:
+  - `311` variants tested;
+  - local gate passes `187`;
+  - plateau gate passes `176`;
+  - selected p90 `-0.000050233`;
+  - selected bad-axis `0.014742869`;
+  - public-analog survival `0.502551020`;
+  - public-analog risk `0.044770778`;
+  - direct E323/E216/E267/E256 positive alignment `0`;
+  - Q1 specificity margin `0.317370`;
+  - plateau support score `37`;
+  - changed cells vs E349 `480`.
+- interpretation before submission:
+  - improvement would support a compact Q1/Q2/Q3/S1 plus calibrated S3-tail hidden lifestyle-state basin;
+  - deterioration while E349 is better would mean S3-tail restoration or tiny amplification overstepped public calibration;
+  - deterioration of both E349/E350 would demote compact target/cell editing and return priority to E347/E344 or a new public-subset calibration latent.

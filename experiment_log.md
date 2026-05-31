@@ -5597,3 +5597,31 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - S-only and isolated S targets fail badly; S3 alone is especially public-analog risky.
   - The surviving structure is not "Q1만 맞추자". It is a compact Q1/Q2/Q3/S1 movement with small cells removed, meaning the hidden lifestyle state appears as a coupled subjective/objective episode state.
 - Decision: E349 creates a more informative follow-up than E347, not a guaranteed improvement. If only one new file is tested from this branch, use `submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv`; if public rejects it, downgrade target/cell pruning and return to canonical E347/E344.
+
+## E350. Compact Lifestyle-State Plateau Stress
+
+- Observe: E349 selected a compact Q1/Q2/Q3/S1 cell-pruned movement, but one exact threshold can be a selector accident.
+- Wonder: does the same hidden lifestyle-state action survive nearby cell thresholds, tiny scales, and S3-tail restoration, or is E349 only a one-point prune?
+- Hypothesis: if the compact lifestyle-state manifold is real, many neighboring Q1/Q2/Q3/S1+S3-tail variants should keep E272 visibility, E346 public-bad-axis neutrality, Q1 dateblock specificity, and meaningful distance from E347/E349.
+- Method: `analysis_outputs/e350_compact_state_plateau_stress.py`.
+  - Base: E247.
+  - Action: logit(E347) - logit(E247).
+  - Variants: cell thresholds `35-90`, micro scales `0.990/0.995/1.000/1.005/1.010`, S3-tail alpha `0/0.25/0.50/0.75/1.00`, plus all/nos3/qonly controls.
+  - Stress: E272 selector, E346 public-analog axes, Q1 dateblock specificity, and local threshold/scale/alpha plateau support.
+- Result:
+  - candidates tested: `311`;
+  - local gate passes: `187`;
+  - plateau gate passes: `176`;
+  - selected file: `analysis_outputs/submission_e350_compactplateau_selected_compact_t45_s1_005_s3a1_00_ef54727b_uploadsafe.csv`;
+  - selected local mean `-0.000250164`, p90 `-0.000050233`, beats `0.972222`;
+  - bad-axis `0.014742869`;
+  - public-analog survival `0.502551020`, risk `0.044770778`;
+  - direct E323/E216/E267/E256 positive alignment `0`;
+  - Q1 specificity margin `0.317370`;
+  - plateau support score `37`, including scale support `3`, near-threshold support `17`, alpha support `5`;
+  - changed cells vs E347 `579`, changed cells vs E349 `480`, probability L1 delta vs E349 `0.011439`.
+- Interpretation:
+  - Coarse scale `0.96/1.04` initially failed scale support, so the action is not robust to large amplitude moves.
+  - Under micro-scale perturbations, the compact state becomes a broad basin: thresholds `35-90` all have plateau survivors, and S3 alpha `0.25-1.00` all survive in many variants.
+  - This strengthens the world model: E349 was not a single threshold accident. The state is a compact subjective/objective episode manifold with S3-tail calibration tolerated when amplitude is very small.
+- Decision: E350 is the current highest-information public-free candidate from the lifestyle-state branch. It is riskier than E349 because it moves farther from E247/E349 and uses S3 restoration plus mild amplification, but it has stronger plateau evidence.

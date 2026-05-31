@@ -3642,3 +3642,23 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - changed cells vs E347 `347`, so this is not a near-duplicate.
 - Registry status: approved as the current compact-lifestyle-state candidate and as evidence that the useful latent is Q1/Q2/Q3/S1-coupled, not Q1-only.
 - Failure condition: if public rejects E349 while E347 is better, restore the low-magnitude/S3 cells as calibration support and stop pruning the state by target/cell without a stronger public-transfer proxy.
+
+### E350 compact lifestyle-state plateau gate
+
+- Target hidden structure: stability of the compact Q1/Q2/Q3/S1 lifestyle-state action under local threshold, micro-scale, and S3-tail perturbations.
+- Why needed: E349 could have been a one-threshold selector artifact. A usable hidden state should survive a local neighborhood, not just one cell cutoff.
+- Feature/action form:
+  - E247 baseline plus masked logit(E347)-logit(E247) action;
+  - primary targets Q1/Q2/Q3/S1;
+  - optional S3-tail restoration alpha `0-1`;
+  - cell thresholds `35-90`;
+  - micro scales `0.990-1.010`;
+  - plateau support features over neighboring thresholds/scales/alphas.
+- Current evidence:
+  - `311` variants;
+  - `187` local gate passes;
+  - `176` plateau gate passes;
+  - selected file `submission_e350_compactplateau_selected_compact_t45_s1_005_s3a1_00_ef54727b_uploadsafe.csv`;
+  - selected p90 `-0.000050233`, bad-axis `0.014742869`, public-analog risk `0.044770778`, direct bad positive cosine sum `0`, Q1 specificity margin `0.317370`, plateau support score `37`.
+- Registry status: approved as the current highest-information compact-state public sensor. Use it as a plateau/gating feature family, not as a general amplitude-scaling recipe.
+- Failure condition: if public rejects E350 while E349 is better, downgrade S3-tail restoration and micro-amplification; keep the compact Q1/Q2/Q3/S1 state but return to the lower-risk E349/E347 action.
