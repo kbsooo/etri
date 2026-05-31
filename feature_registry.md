@@ -3662,3 +3662,19 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - selected p90 `-0.000050233`, bad-axis `0.014742869`, public-analog risk `0.044770778`, direct bad positive cosine sum `0`, Q1 specificity margin `0.317370`, plateau support score `37`.
 - Registry status: approved as the current highest-information compact-state public sensor. Use it as a plateau/gating feature family, not as a general amplitude-scaling recipe.
 - Failure condition: if public rejects E350 while E349 is better, downgrade S3-tail restoration and micro-amplification; keep the compact Q1/Q2/Q3/S1 state but return to the lower-risk E349/E347 action.
+
+### E351 robust plateau selector
+
+- Target hidden structure: action selection inside the compact lifestyle-state plateau.
+- Why needed: E350 proved the plateau exists, but a plateau still contains aggressive and conservative points. The goal is not only to find a latent, but to choose a public-safe probability action from it.
+- Feature/action form:
+  - reuse E350 score table;
+  - rank axes: p90 visibility, public-analog risk, bad-axis margin, Q1 specificity, plateau support, E349 compatibility, and micro-scale size;
+  - maximin robust score plus a conservative compatibility gate.
+- Current evidence:
+  - `176` plateau candidates;
+  - `36` compatibility candidates;
+  - selected file `submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv`;
+  - selected p90 `-0.000050191`, risk `0.044765398`, bad-axis `0.014741236`, Q1 specificity margin `0.324251`, support `35`, distance vs E349 `0.006241`.
+- Registry status: approved as the practical selector for scarce public submissions from the E350 plateau.
+- Failure condition: if E351 underperforms E350 publicly, relax the E349-distance penalty and allow stronger S3-tail restoration; if both fail, the E350 plateau is local-only and needs a new public-transfer latent.

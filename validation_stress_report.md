@@ -4875,3 +4875,33 @@ Stress conclusion:
 - The compact Q1/Q2/Q3/S1 state is not a one-threshold accident.
 - It is not robust to large amplitude changes; only micro-scale perturbations produce a stable plateau.
 - E350 is more information-rich but also more aggressive than E349 because it changes `480` cells versus E349 and restores S3-tail movement.
+
+## E351 Robust Plateau Selector
+
+Question: inside the E350 plateau, which candidate is least likely to be a selector artifact when public tests are scarce?
+
+Stress setup:
+
+- script: `analysis_outputs/e351_robust_plateau_selector.py`;
+- input: E350 score table only;
+- axes: p90 visibility, public-analog risk, bad-axis margin, Q1 specificity, plateau support, E349 compatibility, and micro-scale size;
+- compatibility gate requires p90 improvement versus E349, bounded risk, bad-axis margin, Q1 specificity, plateau support, moderate distance from E349, and scale delta `<= 0.0051`.
+
+Stress result:
+
+- E350 plateau candidates: `176`;
+- E351 compatibility candidates: `36`;
+- selected upload-safe:
+  - `analysis_outputs/submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv`;
+  - p90 `-0.000050191`;
+  - public-analog risk `0.044765398`;
+  - bad-axis `0.014741236`;
+  - Q1 specificity margin `0.324251`;
+  - plateau support score `35`;
+  - probability L1 delta vs E349 `0.006241`.
+
+Stress conclusion:
+
+- The original E350 rank winner is a stronger sensor but fails the E351 conservative compatibility gate because it moves too far from E349.
+- E351 is the lower-regret candidate if only one plateau-family file is submitted.
+- The robust S3-tail setting is small (`alpha=0.25`), not full restoration.

@@ -5625,3 +5625,30 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - Under micro-scale perturbations, the compact state becomes a broad basin: thresholds `35-90` all have plateau survivors, and S3 alpha `0.25-1.00` all survive in many variants.
   - This strengthens the world model: E349 was not a single threshold accident. The state is a compact subjective/objective episode manifold with S3-tail calibration tolerated when amplitude is very small.
 - Decision: E350 is the current highest-information public-free candidate from the lifestyle-state branch. It is riskier than E349 because it moves farther from E247/E349 and uses S3 restoration plus mild amplification, but it has stronger plateau evidence.
+
+## E351. Robust Plateau Selector
+
+- Observe: E350 proved a broad compact-state plateau, but its rank winner was selected by a score-seeking ranker and moved relatively far from E349.
+- Wonder: if public slots are scarce, is there a lower-regret point inside the E350 plateau that preserves p90 improvement while reducing over-aggressive movement?
+- Hypothesis: a better next public sensor should not simply maximize E350 rank. It should maximin-rank p90 visibility, public-analog risk, bad-axis margin, Q1 specificity, plateau support, E349 compatibility, and micro-scale size.
+- Method: `analysis_outputs/e351_robust_plateau_selector.py`.
+  - Input: E350 scores only; no public LB tuning.
+  - Compatibility gate: p90 improvement versus E349, bounded risk, bad-axis margin, Q1 specificity, plateau support, probability L1 distance vs E349 between `0.001` and `0.009`, and scale delta `<= 0.0051`.
+  - Profiles compared: E350 rank winner, E351 robust, low-risk, p90-strong, and E349-nearest.
+- Result:
+  - E350 plateau candidates: `176`;
+  - E351 compatibility candidates: `36`;
+  - selected file: `analysis_outputs/submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv`;
+  - selected variant: `compact_t75_s1.005_s3a0.25`;
+  - p90 `-0.000050191`, p90 gain vs E349 `0.000000156`;
+  - public-analog risk `0.044765398`, risk delta vs E349 `0.000029189`;
+  - bad-axis `0.014741236`, bad-axis margin `0.000258764`;
+  - Q1 specificity margin `0.324251`, delta vs E349 `0.002645`;
+  - plateau support score `35`;
+  - probability L1 distance vs E349 `0.006241`, vs E347 `0.009438`;
+  - E350 rank winner fails the E351 compatibility gate because it is farther from E349 (`0.011439`) and has worse maximin balance.
+- Interpretation:
+  - E350's basin finding remains valid.
+  - But for scarce public tests, E351 is a more conservative representative of that basin than the original E350 rank winner.
+  - The S3-tail story is softened: robust selection uses only S3 alpha `0.25`, not full S3 restoration.
+- Decision: promote E351 above E350 for a single practical submission slot. Keep E350 as the more aggressive/high-information stress candidate.

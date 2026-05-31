@@ -2673,3 +2673,12 @@
 - Implementation issue possible: low for rejecting the one-threshold claim, because the same gates survive across a large local grid. Medium for public transfer, because all evidence is still public-free proxy stress.
 - Bottleneck implication: the bottleneck is not "find the exact E349 cell cutoff." The remaining uncertainty is calibration/public transfer of a narrow compact-state action, especially S3-tail restoration and tiny scale amplification.
 - Do not repeat: another exact top-k threshold search around E349 unless it changes the latent view or adds a stronger public-transfer proxy.
+
+## FH297. The E350 rank winner is also the robust plateau representative
+
+- Failed hypothesis: once the E350 plateau is established, the original E350 rank winner is the natural best public-free candidate and no separate conservative selector is needed.
+- Observed result: E351 found `36` conservative compatibility candidates and selected `compact_t75_s1.005_s3a0.25`, not the original `compact_t45_s1.005_s3a1.00`. The original E350 rank winner fails the E351 compatibility gate because its probability L1 distance versus E349 is `0.011439`, above the conservative cap. The E351 robust file keeps p90 improvement (`-0.000050191`) with support `35`, Q1 specificity margin `0.324251`, and distance versus E349 `0.006241`.
+- Why discard: the score-seeking plateau winner and the lower-regret plateau representative are different. E350 remains a valid information sensor, but it should not automatically be the first practical submission when public slots are scarce.
+- Implementation issue possible: medium. The E351 selector is hand-weighted/maximin and could be too conservative. Low for rejecting the "same candidate" claim because the compatibility gate and maximin score both choose a different point.
+- Bottleneck implication: after finding a hidden state, candidate selection is its own modeling problem. The next gain may come from better public-transfer selection, not another latent.
+- Do not repeat: ranking plateau candidates only by E350 rank score without a distance/risk/specificity robustness check.

@@ -1601,3 +1601,25 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - improvement would support a compact Q1/Q2/Q3/S1 plus calibrated S3-tail hidden lifestyle-state basin;
   - deterioration while E349 is better would mean S3-tail restoration or tiny amplification overstepped public calibration;
   - deterioration of both E349/E350 would demote compact target/cell editing and return priority to E347/E344 or a new public-subset calibration latent.
+
+## Public-Free Observation: E351 Robust Plateau Selector
+
+- submission file recommended for scarce public test: `analysis_outputs/submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv`.
+- public LB: pending.
+- changed point: E351 chooses a conservative representative from the E350 plateau instead of the original score-seeking rank winner.
+- local observation:
+  - E350 plateau candidates `176`;
+  - E351 compatibility candidates `36`;
+  - selected p90 `-0.000050191`;
+  - p90 gain vs E349 `0.000000156`;
+  - public-analog risk `0.044765398`;
+  - risk delta vs E349 `0.000029189`;
+  - bad-axis `0.014741236`;
+  - Q1 specificity margin `0.324251`;
+  - plateau support score `35`;
+  - probability L1 delta vs E349 `0.006241`;
+  - S3-tail alpha `0.25`.
+- interpretation before submission:
+  - improvement would support robust plateau selection and small S3-tail calibration;
+  - underperforming E350 but beating E349 would mean stronger S3 restoration has upside but robust selection is safer;
+  - underperforming E349 would mean even small S3-tail/micro-scale restoration is too aggressive and E349/E347 should regain priority.

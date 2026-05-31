@@ -4183,3 +4183,49 @@ Risk:
 
 - It is farther from E349 than E349 was from E347: probability L1 delta vs E349 is `0.011439`.
 - The action is not robust to coarse scaling, so this is a narrow calibration basin, not a free amplitude knob.
+
+## Update After E351 Robust Plateau Selector
+
+New candidate:
+
+- `analysis_outputs/submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv`
+
+What changed:
+
+- E351 does not create a new latent or model.
+- It re-ranks the E350 plateau candidates with a conservative maximin selector.
+- It asks which plateau point is least brittle across p90, risk, bad-axis, specificity, support, and distance from E349.
+
+Evidence:
+
+- E350 plateau candidates: `176`;
+- E351 compatibility candidates: `36`;
+- selected variant `compact_t75_s1.005_s3a0.25`;
+- selected p90 `-0.000050191`;
+- p90 gain vs E349 `0.000000156`;
+- public-analog risk `0.044765398`;
+- risk delta vs E349 `0.000029189`;
+- bad-axis `0.014741236`;
+- Q1 specificity margin `0.324251`;
+- plateau support score `35`;
+- probability L1 delta vs E349 `0.006241`;
+- E350 rank winner fails E351 compatibility because its distance vs E349 is `0.011439`.
+
+Updated priority for practical public slots:
+
+1. `analysis_outputs/submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv`
+2. `analysis_outputs/submission_e350_compactplateau_selected_compact_t45_s1_005_s3a1_00_ef54727b_uploadsafe.csv`
+3. `analysis_outputs/submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv`
+4. `analysis_outputs/submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv`
+5. `analysis_outputs/submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv`
+
+Why E351 moves first:
+
+- It represents the same E350 plateau with lower movement distance and better worst-axis balance.
+- It keeps a small S3-tail restoration (`alpha=0.25`) instead of full restoration.
+- It is a better choice when public submissions are scarce and we want the next file to be robust rather than maximally informative.
+
+Risk:
+
+- It gives up some p90 edge versus E350 rank winner.
+- If public prefers stronger S3 restoration, E350 can beat E351.

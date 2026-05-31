@@ -4044,3 +4044,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept the plateau claim if multiple adjacent thresholds, micro scales, and S3 alphas pass local/public-analog/specificity gates while remaining meaningfully different from E347/E349. This is observed. Do not claim large-scale robustness because coarse `0.96/1.04` scaling was unstable.
 - public LB 관측 반응: if E350 improves, the compact lifestyle-state basin and small S3-tail restoration become the strongest current world model. If E350 worsens but E349/E347 survive, micro-amplified S3 restoration was over-aggressive and the safer compact-pruned state should remain preferred.
 - 제출 전략: submit `analysis_outputs/submission_e350_compactplateau_selected_compact_t45_s1_005_s3a1_00_ef54727b_uploadsafe.csv` only as a high-information sensor; treat it as more ambitious than E349, not strictly lower-risk.
+
+### H351: the E350 basin needs a robust selector, not the score-seeking rank winner
+
+- 상태: 지지됨 locally; public LB 미확인.
+- 왜 그럴듯한가: E350 showed many plateau survivors, but the original rank winner used full S3 restoration and moved farther from E349. If public slots are scarce, a lower-regret representative of the same basin may be more useful than the most aggressive rank winner.
+- 맞다면: a maximin selector over p90, public-analog risk, bad-axis margin, Q1 specificity, plateau support, E349 compatibility, and micro-scale size should choose a different candidate that still improves E349 p90 and remains inside the compact-state plateau.
+- 틀리다면: the E350 rank winner should also be the robust maximin winner, or no candidate should pass the compatibility gate.
+- 최소 실험: `analysis_outputs/e351_robust_plateau_selector.py`.
+- 관측: `176` E350 plateau candidates, `36` E351 compatibility candidates. E350 rank winner fails compatibility due to distance from E349 (`0.011439`). The robust selected candidate `submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv` has p90 `-0.000050191`, public-analog risk `0.044765398`, bad-axis `0.014741236`, Q1 specificity margin `0.324251`, plateau support `35`, and probability L1 distance vs E349 `0.006241`.
+- 성공/폐기 기준: accept if a candidate inside the E350 basin keeps p90 improvement, bounded risk, and better maximin balance than the original rank winner. This is observed.
+- public LB 관측 반응: if E351 improves, robust plateau selection matters more than maximum E350 rank/S3 restoration. If E350 improves more than E351, public prefers stronger S3-tail restoration and p90 edge. If both fail, the local plateau is not public-transferable enough.
+- 제출 전략: use E351 as the practical first submission from the plateau branch; keep E350 as the aggressive information sensor.
