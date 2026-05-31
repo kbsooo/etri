@@ -2691,3 +2691,12 @@
 - Implementation issue possible: medium. The perturbation family is still built from our public-free metrics, so it cannot prove public transfer. Low for rejecting the artifact claim because the selector was deliberately varied across risk, p90, support, compatibility, and S3 preference.
 - Bottleneck implication: the current uncertainty is not whether E351 was hand-picked. It is whether the E350/E351 compact-state basin transfers to the hidden public subset.
 - Do not repeat: replacing E351 with E350 solely because E350 has a stronger original rank score. Public testing should distinguish robust-center stability from aggressive S3-tail pressure.
+
+## FH299. E351 can be improved by simple known-public-bad tangent projection
+
+- Failed hypothesis: E351 still contains a removable component aligned with observed public-bad movements, and subtracting that component should reduce public-transfer risk without losing local visibility.
+- Observed result: E353 generated `48` neutralized candidates across sequential/span projection methods and alphas `0.01-1.00`. Gate passes were `0`. Risk-reducing variants all failed strict promotion; strong cleanup lowered public-analog risk but degraded p90 visibility to around `-0.000032` to `-0.000048`.
+- Why discard: the E351 p90 signal and the known public-bad tangent are not separable by linear positive-projection removal. Tiny cleanup is too weak to create a new candidate; stronger cleanup removes the action.
+- Implementation issue possible: medium. The known public-bad axis set is incomplete and the cleanup is linear in logit space. Low for rejecting the immediate E353 submission route because the tradeoff is monotone across several axis sets and alphas.
+- Bottleneck implication: E351 is near the known-bad-tangent-neutral center. A breakthrough needs a new independent support/visibility latent or a different public-subset model.
+- Do not repeat: more alpha sweeps over the same E323/E216/E256/E267/broad-failure axes unless new public observations add a genuinely new direction.

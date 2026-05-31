@@ -3695,3 +3695,21 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - E351 wins every deterministic profile except p90_hungry.
 - Registry status: approved as a selection-stability validator. It does not create a new feature family or submission file.
 - Failure condition: if public later prefers E350 over E351, reduce the weight of selector stability and restore stronger S3-tail/p90 pressure in the next candidate ranking.
+
+### E353 public-bad tangent neutralization gate
+
+- Target hidden structure: whether E351 still contains a removable component aligned with already observed public failures.
+- Why needed: E323 showed local null-health can be a public-transfer shortcut. Before trusting E351, test whether known public-bad tangent removal improves it without destroying the hidden lifestyle-state action.
+- Feature/action form:
+  - source action: E351 minus E247 in logit space;
+  - target representation: public-adverse axis sets from E346 public observations;
+  - transformation: sequential or span removal of positive projections only;
+  - alphas `0.01-1.00`.
+- Current evidence:
+  - `52` candidates;
+  - `48` neutralized candidates;
+  - `0` E353 local gate passes;
+  - no generated risk-improver remains strict-promoted;
+  - strong cleanup lowers risk but kills p90 visibility.
+- Registry status: rejected as a submission-generating feature family. Keep as a negative diagnostic.
+- Failure condition: if future new public-bad axes appear, this may be rerun once; do not keep sweeping alphas on the current axis set.

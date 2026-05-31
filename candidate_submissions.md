@@ -4259,3 +4259,29 @@ Why E351 remains first:
 - It is now supported by two independent public-free checks: maximin robust selection and selector-sensitivity stability.
 - It keeps the compact lifestyle-state basin while avoiding the full-S3 restoration that makes E350 more aggressive.
 - If it loses publicly while E350 wins, the diagnosis becomes clear: public prefers p90/S3-tail pressure over robust center stability.
+
+## Update After E353 Public-Bad Tangent Neutralization
+
+No new upload-safe file is needed.
+
+E353 tests whether E351 can be improved by subtracting positive projection onto known public-bad movements.
+
+Evidence:
+
+- candidates tested: `52`;
+- generated neutralized candidates: `48`;
+- E353 local gate passes: `0`;
+- all risk-improving generated variants fail strict promotion;
+- strong cleanup reduces public-analog risk but weakens p90 visibility;
+- tiny cleanup keeps E351 geometry but still does not pass the E353 strict gate.
+
+Submission priority is unchanged:
+
+1. `analysis_outputs/submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv`
+2. `analysis_outputs/submission_e350_compactplateau_selected_compact_t45_s1_005_s3a1_00_ef54727b_uploadsafe.csv`
+3. `analysis_outputs/submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv`
+
+Meaning:
+
+- E351 is not improved by simple public-bad-axis projection cleanup.
+- If E351 fails publicly, the next route is a new support/visibility latent, not a cleaned E351 sibling.

@@ -4068,3 +4068,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept if E351 remains rank 1 under random perturbations and wins the public-skeptic/state-specific/e349-conservative profiles. This is observed.
 - public LB 관측 반응: if E351 improves, the public-transfer story should emphasize robust plateau-center selection rather than full S3-tail restoration. If E351 fails but E350 improves, public values the aggressive p90/S3 edge more than selector stability. If both fail, the compact plateau is local-only.
 - 제출 전략: no new E352 upload is necessary; keep `analysis_outputs/submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv` as the first practical public test.
+
+### H353: E351 contains a removable known-public-bad tangent
+
+- 상태: 반증됨 for linear/sequential projection cleanup.
+- 왜 그럴듯한가: E323 proved that local null-health can fail publicly. If E351 still points partly toward the same public-adverse movements, subtracting that component might lower transfer risk while keeping the compact lifestyle-state action.
+- 맞다면: small positive-projection removal against known public-bad axes should reduce public-analog risk and keep strict p90 visibility, bad-axis safety, and Q1 lifestyle-state specificity.
+- 틀리다면: risk-reducing neutralization should immediately destroy p90 visibility or lifestyle specificity, or strict candidates should show no risk improvement.
+- 최소 실험: `analysis_outputs/e353_public_tangent_neutralization.py`.
+- 관측: `52` candidates, `48` generated neutralizations, `0` E353 local gate passes. Strong cleanup lowers public-analog risk but p90 degrades to around `-0.000032`; tiny cleanup keeps the action nearly unchanged but still loses `strict_promote_gate` when it improves risk. No generated risk-improver is strict-promoted.
+- 성공/폐기 기준: accept if at least one generated candidate improves E351 public-analog risk by `1e-5`, preserves strict p90 `< -0.00005`, bad-axis `<=0.015`, Q1 specificity within `0.03`, and direct public-bad positive cosine `0`. This is not observed.
+- public LB 관측 반응: E353 creates no file. If E351 fails publicly, the fix is unlikely to be a simple known-bad-axis projection; it should be a new support axis or public-subset latent.
+- 제출 전략: keep E351. Do not submit E353 neutralized variants.

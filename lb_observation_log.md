@@ -1623,3 +1623,19 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - improvement would support robust plateau selection and small S3-tail calibration;
   - underperforming E350 but beating E349 would mean stronger S3 restoration has upside but robust selection is safer;
   - underperforming E349 would mean even small S3-tail/micro-scale restoration is too aggressive and E349/E347 should regain priority.
+
+## Public-Free Observation: E353 Public-Bad Tangent Neutralization
+
+- submission file: none.
+- public LB: not submitted.
+- changed point: E353 tries to improve E351 by removing positive projection onto known public-bad movement axes.
+- local observation:
+  - candidates tested `52`;
+  - generated neutralized candidates `48`;
+  - E353 local gate passes `0`;
+  - no generated risk-improver remains strict-promoted;
+  - strong cleanup reduces public-analog risk but destroys p90 visibility.
+- interpretation:
+  - this rejects simple public-bad-axis projection as the next score route;
+  - E351 remains the practical public sensor;
+  - if E351 fails, the next hypothesis should be a new support/visibility latent rather than a cleaned E351 sibling.

@@ -5675,3 +5675,27 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - The robust center of the compact lifestyle-state basin is a high-threshold, small-S3-tail point, not the full-S3 E350 rank winner.
   - The strongest practical file remains `analysis_outputs/submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv`.
 - Decision: no new submission file is needed from E352 because it confirms the existing E351 upload-safe file. E350 stays as an aggressive sensor; E351 is the lower-regret first public test.
+
+## E353. Public-Bad Tangent Neutralization
+
+- Observe: E352 made E351 the stable local representative, but it did not prove that E351 avoids every known public-adverse tangent.
+- Wonder: can E351 be improved by subtracting positive projection onto known public-bad movements, especially E323/E216/E256/E267 and broad residual failures?
+- Hypothesis: if E351 still contains removable public-bad tangent, a small projection cleanup should reduce public-analog risk while preserving E272 p90 visibility, bad-axis safety, and Q1 lifestyle-state specificity.
+- Method: `analysis_outputs/e353_public_tangent_neutralization.py`.
+  - Base: E247.
+  - Source action: logit(E351) - logit(E247).
+  - Target representation: known public-adverse tangent axes from fixed public observations.
+  - Operation: remove only positive projection, using sequential and span methods with alpha `0.01-1.00`.
+  - Stress: E272 selector, E346 public-analog nulls, Q1 dateblock lifestyle specificity, E351 deltas.
+- Result:
+  - candidates tested: `52`;
+  - generated neutralized candidates: `48`;
+  - E353 local gate passes: `0`;
+  - selected file: none;
+  - strong neutralization can reduce public-analog risk by up to `-0.044765`, but p90 degrades to about `-0.000032` or worse;
+  - tiny neutralization keeps the action almost identical but still fails strict promotion once risk improves; no generated risk-improver remains `strict_promote_gate=True`.
+- Interpretation:
+  - E351 is already close to the known-public-bad-tangent-neutral center.
+  - The E351 visibility signal and public-bad tangent are not separable by simple projection cleanup.
+  - The next breakthrough requires a new independent support/visibility axis or a richer latent generator, not another public-bad projection.
+- Decision: keep E351 as the practical submission candidate. Do not create an E353 submission.

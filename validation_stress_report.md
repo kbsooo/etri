@@ -4944,3 +4944,33 @@ Stress conclusion:
 - E351 is not merely a hand-weighted winner.
 - The stable basin center keeps small S3-tail restoration (`alpha=0.25`) rather than full restoration.
 - Public submission priority remains E351 first, E350 second as an aggressive S3-tail sensor.
+
+## E353 Public-Bad Tangent Neutralization
+
+Question: can E351 be made safer by removing positive projection onto known public-bad movement tangents?
+
+Stress setup:
+
+- script: `analysis_outputs/e353_public_tangent_neutralization.py`;
+- base: E247;
+- source action: E351 minus E247 in logit space;
+- known public-bad axes: existing public observations from E346, including E323, E216, E256, E267, and broad residual failures;
+- neutralization methods: sequential positive-projection removal and positive span removal;
+- alpha values: `0.01, 0.02, 0.05, 0.10, 0.25, 0.50, 0.75, 1.00`;
+- gates: E272 strict selector, E346 public-analog nulls, Q1 lifestyle specificity, E351 p90/risk/specificity deltas.
+
+Stress result:
+
+- candidates tested: `52`;
+- generated candidates: `48`;
+- E353 local gate passes: `0`;
+- selected upload-safe file: none;
+- all generated risk-improvers fail strict promotion;
+- strong span/sequential cleanup can reduce public-analog risk sharply, but p90 weakens to about `-0.000032` to `-0.000048` depending on alpha;
+- smallest alpha variants preserve high cosine with E351 but the p90 margin still drops below strict visibility.
+
+Stress conclusion:
+
+- Known public-bad tangent removal is not the missing easy fix.
+- E351 should not be replaced by an E353 projection-cleaned file.
+- If E351 fails publicly, the next repair should search for a new independent lifestyle/support state instead of projecting against the same public-bad axes harder.
