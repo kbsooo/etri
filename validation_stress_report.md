@@ -4718,3 +4718,42 @@ Stress conclusion:
 - No hard veto: E344/E345 are anti-aligned or neutral to the strongest known public-bad axes.
 - No certification: the public-analog dominance is not stronger than matched movement nulls by enough margin.
 - This keeps E344/E345 eligible but does not upgrade confidence beyond the E344/E345 local evidence.
+
+## E347 Lifestyle-State Candidate Re-Audit
+
+Question: among E344/E345 neighborhood candidates, can lower public-analog risk be kept without losing the hidden lifestyle-state explanation?
+
+Method:
+
+- `analysis_outputs/e347_lifestyle_state_candidate_reaudit.py`
+- Candidate universe: E346 upload and null-safe neighborhood candidates.
+- Teacher state: E328 own-latent lifestyle-state features and E337 target-residual lifestyle-state matrix.
+- Stress:
+  - candidate logit movement relative to E247;
+  - row movement correlation/enrichment against hidden lifestyle-state features;
+  - `96` row-shuffle nulls per candidate;
+  - inherited E346 public-analog risk and E344/E345 local p90/bad-axis metrics.
+
+Result:
+
+- candidates audited: `16`;
+- E347 gate passes: `3`;
+- selected upload-safe file:
+  - `submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv`;
+  - local mean `-0.000249`;
+  - local p90 `-0.000050116`;
+  - incremental bad-axis `0.014671133`;
+  - public-analog survival `0.528061224`;
+  - public-analog risk `0.044818570`.
+- statefulness:
+  - lifestyle-state score `1.000000`;
+  - state correlation `0.432330`;
+  - state enrichment `0.852584`;
+  - state/null dominance `1.000000/1.000000/1.000000`;
+  - dominant state axis `rs01_Q1_jepa_resid_dateblock`.
+
+Stress conclusion:
+
+- E347 upgrades the E344 family from "locally safe but public-analog uncertified" to a more balanced candidate: slightly weaker p90 than E344, but lower public-analog risk and stronger public-analog survival.
+- The movement remains tied to the Q1 JEPA-residual dateblock lifestyle state, so this is not just a broad dilution trick.
+- Current public-test ranking becomes E347 first for evidence balance, E344 second for score-seeking p90, and E345 third as bad-axis-margin backup.

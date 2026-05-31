@@ -3996,3 +3996,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept as hard-veto pass but reject as certification. This is observed.
 - public LB 관측 반응: if E344 improves, E346 was sufficient as a veto but overly conservative as a certifier. If E344 worsens, the missing factor is not simple E323/E216/E267/E256 cosine; it is a public subset or calibration state not captured by current public analog axes.
 - 제출 전략: no new file. Keep E344 first, E345 second.
+
+### H347: the safer E344 neighborhood still lies on the hidden lifestyle-state manifold
+
+- 상태: 지지됨 locally; public LB 미확인.
+- 왜 그럴듯한가: E346 revealed E344 neighborhood rows with lower public-analog risk than the upload-safe E344/E345 files. If these are just diluted output moves, they should lose connection to the hidden lifestyle-state teacher. If they remain on-manifold, row movement should be non-randomly explained by E328/E337 lifestyle-state features.
+- 맞다면: selected neighborhood candidates should preserve local p90/bad-axis gates, reduce public-analog risk, and show row-movement correlation/enrichment against lifestyle-state features above row-shuffle nulls.
+- 틀리다면: lower-risk candidates should be weakly state-aligned, or only E344/E345 uploads should retain the hidden-state signature.
+- 최소 실험: `analysis_outputs/e347_lifestyle_state_candidate_reaudit.py`.
+- 관측: `16` candidates audited, `3` E347 gate passes. Best file `submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv` has p90 `-0.000050116`, bad-axis `0.014671133`, public-analog survival `0.528061224`, risk `0.044818570`, and dominant state axis `rs01_Q1_jepa_resid_dateblock` with state corr/enrichment dominance `1.000000/1.000000`.
+- 성공/폐기 기준: accept locally if a lower-risk candidate remains p90-visible, bad-axis-safe, E323/E216/E267/E256-neutral, and lifestyle-state-aligned versus nulls. This is observed.
+- public LB 관측 반응: if E347 improves, public-transfer prefers stateful public-analog risk over maximum p90 margin. If E344 beats E347, p90 margin is the stronger sensor. If both fail, the missing state is not captured by Q1 dateblock residual lifestyle alignment.
+- 제출 전략: submit `analysis_outputs/submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv` first as the most evidence-balanced sensor.

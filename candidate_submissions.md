@@ -4022,3 +4022,44 @@ Decision:
 - Current submission priority remains:
   1. `analysis_outputs/submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv`
   2. `analysis_outputs/submission_e345_counterrefine_lifestyle_61d91c4c_uploadsafe.csv`
+
+## Update After E347 Lifestyle-State Re-Audit
+
+New candidate:
+
+- `analysis_outputs/submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv`
+
+What changed:
+
+- E347 did not invent a new model.
+- It re-audited E344/E345's strict neighborhood using the hidden lifestyle-state teacher from E328/E337.
+- It selected the E344 `top5` neighborhood file because it preserves the Q1 JEPA-residual dateblock lifestyle-state alignment while lowering public-analog risk.
+
+Evidence:
+
+- E347 gate passes: `3`;
+- selected local mean `-0.000249`;
+- selected p90 `-0.000050116`;
+- bad-axis `0.014671133`;
+- public-analog survival `0.528061224`;
+- public-analog risk `0.044818570`;
+- direct positive E323/E216/E267/E256 alignment `0`;
+- dominant latent axis `rs01_Q1_jepa_resid_dateblock`;
+- state correlation/enrichment null dominance `1.000000/1.000000`.
+
+Updated priority:
+
+1. `analysis_outputs/submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv`
+2. `analysis_outputs/submission_e344_counteraxis_lifestyle_9d09e4d2_uploadsafe.csv`
+3. `analysis_outputs/submission_e345_counterrefine_lifestyle_61d91c4c_uploadsafe.csv`
+
+Why E347 moves first:
+
+- It keeps the hidden lifestyle-state explanation that made E344 interesting.
+- It has lower public-analog risk than E344/E345.
+- Its public-analog survival is the best among the audited upload/neighborhood rows.
+
+Risk:
+
+- Its p90 is weaker than E344 (`-0.000050116` versus `-0.000053606`).
+- If public LB rewards pure p90 margin more than public-analog/lifestyle-state safety, E344 may still beat E347.

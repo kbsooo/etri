@@ -1510,3 +1510,27 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment after public result:
   - if E344 improves, treat public-analog hard-veto as sufficient and learn a counter-source selector;
   - if E344 worsens, search for a public subset/calibration state not represented by the E323/E216/E267/E256 axes.
+
+## Public-Free Observation: E347 Lifestyle-State Candidate Re-Audit
+
+- submission file recommended for public test: `analysis_outputs/submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv`.
+- public LB: pending.
+- changed point: E347 chooses the lower public-analog-risk E344 neighborhood row only after requiring hidden lifestyle-state alignment against E328/E337 teacher features.
+- local observation:
+  - E347 gate passes `3/16`;
+  - selected local mean `-0.000249`;
+  - selected p90 `-0.000050116`;
+  - bad-axis `0.014671133`;
+  - public-analog survival `0.528061224`;
+  - public-analog risk `0.044818570`;
+  - direct positive E323/E216/E267/E256 alignment `0`;
+  - dominant state axis `rs01_Q1_jepa_resid_dateblock`;
+  - state corr/enrichment dominance `1.000000/1.000000`.
+- interpretation before submission:
+  - E347 is the most evidence-balanced public sensor in the E342/E344 branch;
+  - it sacrifices some E344 p90 margin for lower public-analog risk and better statefulness/risk explanation;
+  - E344 remains the more aggressive p90 backup and E345 remains the margin backup.
+- expected LB reaction:
+  - improve if the public subset rewards the Q1 dateblock residual lifestyle-state plus lower public-analog risk;
+  - underperform E344 if pure p90 margin matters more than public-analog/lifestyle-state balance;
+  - worsen if the missing public state is outside E328/E337's hidden lifestyle teacher.

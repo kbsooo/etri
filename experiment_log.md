@@ -5522,3 +5522,25 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - certification-grade public-analog dominance: `False`.
 - Interpretation: E346 does not veto E344/E345 because neither candidate directly aligns with the strongest public-bad axes. But it also does not certify them, because their public-analog null dominance is only middle-of-pack.
 - Decision: no new submission from E346. Keep E344 first because it has slightly lower public-analog risk and stronger local p90; keep E345 as the bad-axis-margin backup.
+
+## E347. Lifestyle-State Candidate Re-Audit
+
+- Observe: E346 found that some E344 neighborhood candidates have lower public-analog risk than the upload-safe E344/E345 files. The key question is whether those safer variants are still hidden lifestyle-state actions or merely diluted output-space movements.
+- Wonder: if the E342/E315 counter-axis state is real, the safer neighborhood candidates should still align with the learned lifestyle-state teacher from E328/E337. If they are just broad calibration dilution, row movement should not be unusually correlated with the lifestyle-state latent versus row-shuffle nulls.
+- Hypothesis: a candidate can replace E344 only if it simultaneously keeps strict local visibility, lowers public-analog risk, avoids direct E323/E216/E267/E256 positive alignment, and has non-random action alignment to the E328/E337 hidden lifestyle-state teacher.
+- Method: `analysis_outputs/e347_lifestyle_state_candidate_reaudit.py`.
+  - Candidate universe: E346 E344/E345 uploads and strict/null-safe neighborhood rows.
+  - Teacher state: E328 own-latent lifestyle PCs/energy/clusters plus E337 target-residual lifestyle states.
+  - Action view: logit movement relative to E247.
+  - Stress: row-movement correlation/enrichment with lifestyle-state features against `96` row-shuffle nulls per candidate.
+- Result:
+  - E347 gate pass count: `3`;
+  - selected file: `analysis_outputs/submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv`;
+  - selected role: `e344_nullsafe_top5`;
+  - local mean `-0.000249`, p90 `-0.000050116`, bad-axis `0.014671133`;
+  - public-analog survival `0.528061224`, risk `0.044818570`;
+  - direct positive E323/E216/E267/E256 alignment remains `0`;
+  - lifestyle-state score `1.000000`, state corr `0.432330`, state enrichment `0.852584`, all dominated row-shuffle nulls at `1.000000`;
+  - dominant state: `rs01_Q1_jepa_resid_dateblock`.
+- Interpretation: the public-analog safer E344 neighborhood is not merely a diluted move. It is still anchored on the Q1 JEPA-residual dateblock lifestyle state that has survived since E331/E342. The tradeoff is lower p90 margin than E344 upload, but better public-analog risk and better survival.
+- Decision: promote E347 as the most evidence-balanced public sensor. Keep E344 as the more aggressive p90 candidate and E345 as the bad-axis-margin backup.

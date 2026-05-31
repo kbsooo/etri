@@ -3590,3 +3590,21 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - direct positive E323/E216/E267/E256 alignment `0.000000000` for both.
 - Registry status: approved as a veto diagnostic; not approved as a certification gate.
 - Failure condition: if a future candidate has positive hard-veto alignment or public-analog survival below current E344/E345 while claiming to be safer, block it before public submission.
+
+### E347 lifestyle-state action re-audit gate
+
+- Target hidden structure: whether a safer counter-axis candidate still lies on the human/social hidden lifestyle-state manifold rather than becoming an output-space dilution.
+- Why needed: E346 found lower-risk E344 neighborhood candidates, but lower public-analog risk alone is not enough. The goal requires a hidden lifestyle-state latent, not just a safer-looking movement vector.
+- Feature/action form:
+  - teacher state from E328 own-latent lifestyle features and E337 target-residual lifestyle states;
+  - action view from candidate logit movement relative to E247;
+  - row movement correlation/enrichment against lifestyle-state features;
+  - row-shuffle null dominance as the anti-collapse check.
+- Current evidence:
+  - `16` candidates audited;
+  - `3` gate passes;
+  - selected file `submission_e347_stateful_counteraxis_lifestyle_e344_nullsafe_top5_e131968c_uploadsafe.csv`;
+  - p90 `-0.000050116`, bad-axis `0.014671133`, public-analog survival `0.528061224`, risk `0.044818570`;
+  - dominant state `rs01_Q1_jepa_resid_dateblock`, state/null dominance `1.000000`.
+- Registry status: approved as the current evidence-balanced submission gate.
+- Failure condition: if public LB rejects E347 while E344/E345 remain better, downgrade lifestyle-state alignment below raw p90/bad-axis margin for this branch.
