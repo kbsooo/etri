@@ -1025,3 +1025,23 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - expected public reaction:
   - improves versus E247: E325 becomes explanatory evidence that the residual action found a real lifestyle-aware placement component;
   - worsens: semantic attribution alone is insufficient, and future public-free gates must add public/private calibration or subset diagnostics before another submission.
+
+## Public-Free Observation: E326
+
+- submission files: generated locally, but none promoted above the existing E324 priority.
+- public LB: not submitted.
+- reason not submitted: E326 found semantic-censored candidates that pass local readiness, but none beat the already selected E324 priority under the replacement gate.
+- local observation:
+  - generated candidates: `252`;
+  - prefilter strict candidates: `141`;
+  - null-evaluated candidates: `36`;
+  - null rows: `6984`;
+  - public-free ready: `2`;
+  - beats E324 priority locally: `0`;
+  - semantic selected ready: `2/24`;
+  - anti-control selected ready: `0/12`.
+- interpretation: semantic/social axes are useful enough to reject anti-semantic controls, but not enough to replace placement-null residualization as the main action law.
+- expected public reaction:
+  - do not spend a public slot on E326 before E324 priority;
+  - if E324 later improves public, E326 can become a follow-up contrast for whether semantic pruning adds value;
+  - if E324 worsens, E326 should be blocked because the issue would likely be public/private subset or calibration mismatch, not insufficient semantic pruning.

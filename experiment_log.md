@@ -5042,3 +5042,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - higher-risk `51ed84b0` has stronger top semantic z `3.214537` but worse E324 null strict `0.093023`.
 - Interpretation: E323 is not just numeric residue. It has a small human/lifestyle signature: night-out/mobility, phone-in-bed arousal, and isolation/media states. But the semantic evidence is not strong enough to call it a broad social breakthrough; it is a narrow action-geometry residual with interpretable lifestyle coloring.
 - Decision: keep the E324 priority submission order unchanged. Do not create a semantic-gated sibling until a new local materializer can improve both high-rep null strictness and semantic z; otherwise this would become another post-hoc story overlay.
+
+## E326. Semantic Residual Censor
+
+- Observe: E325 found coherent lifestyle axes inside E323, but attribution alone is not a submission rule.
+- Wonder: if those axes are useful rather than post-hoc explanations, can they censor or damp E323 residual cells and improve local action health without public LB?
+- Hypothesis: semantic-censored variants should beat anti-semantic controls and should either dominate or at least match the E324 priority under row/subject/dateblock/target/sign/QS null stress.
+- Method: `analysis_outputs/e326_semantic_residual_censor.py` built semantic support from E325 signed z>=`1.75` and dominance>=`0.95` axes, generated `252` variants from the `3` E324-ready parents, and evaluated `36` selected candidates against `6984` null rows. Public LB was not used.
+- Result:
+  - generated candidates: `252`;
+  - prefilter strict candidates: `141`;
+  - null-evaluated candidates: `36`;
+  - public-free ready candidates: `2`;
+  - beats E324 priority locally: `0`;
+  - semantic-censor rows: `24`, ready `2`, best p90 `-0.000430608`, best null strict `0.051546`;
+  - anti-control rows: `12`, ready `0`, best p90 `-0.000281184`, best null strict `0.056701`;
+  - best ready candidate: `submission_e326_semcensor_null_common_residual__src_human_regime_only__recipe_fami__keep_l1__q0_70__s1_25_1af7dabf.csv` with p90 `-0.000081631`, null strict `0.061856`, worst-mode dominance `0.875000`.
+- Interpretation: the semantic axes are not fake; semantic-censored variants are healthier than anti-controls. But the censor is still weaker than the original E324 null-common residual priority because it either loses too much selector margin or becomes null-common when aggressive.
+- Decision: no new E326 submission replaces E323/E324 priority. Keep `5508f966` as the public-free next candidate. Use E326 as a diagnostic: human/social semantics help explain and prune actions, but the primary breakthrough remains placement-null residualization, not semantic gating.

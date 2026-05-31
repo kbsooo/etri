@@ -3113,3 +3113,31 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - semantic z alone cannot promote a candidate if null strict or worst-mode dominance worsens.
 - Failure condition:
   - if semantic-gated candidates raise story z but fail matched nulls, classify them as story overfit and do not spend public LB.
+
+## E326 Semantic Residual Censor Features
+
+- Target hypothesis tested:
+  - E325 semantic axes can be converted from attribution into an action-level gate for E323 residual candidates.
+- Feature/representation source:
+  - per-target semantic support from E325 rows with signed z>=`1.75` and signed dominance>=`0.95`;
+  - Q1 night-out mobility, S1 phone-in-bed/bedtime arousal, S3 social-isolation/media, plus related human/social/cash/calendar axes when they pass the null filter;
+  - cell alignment score `sign(delta) * semantic_support`;
+  - semantic censor policies and anti-semantic controls.
+- Validation result:
+  - generated `252` variants;
+  - prefilter strict `141`;
+  - selected for null stress `36`;
+  - null rows `6984`;
+  - semantic selected ready `2/24`;
+  - anti-control ready `0/12`;
+  - beats E324 priority locally `0`.
+- Updated registry status:
+  - approved as a diagnostic/censoring feature;
+  - not approved as a replacement submission selector;
+  - semantic support should be treated as an auxiliary gate behind placement-null residualization, not as the primary generator.
+- Adopt rule for future features:
+  - include anti-semantic controls whenever a human-story feature is used for action pruning;
+  - require dominance over the current residual priority before changing submission order;
+  - keep semantic z, null strict rate, p90 dominance, mean dominance, and worst-mode dominance in the same table.
+- Failure condition:
+  - if semantic pruning increases p90 edge but raises null strict rate above priority, mark it as semantic over-pruning or null-common scaling, not a public candidate.

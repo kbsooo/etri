@@ -3989,3 +3989,44 @@ Stress implication:
 - E323/E324 is lifestyle-interpretable, not purely arbitrary action geometry.
 - The semantic support is moderate, not decisive. It should support the existing priority file, not justify a new semantic sibling sweep.
 - Future human/social materializers should optimize two gates jointly: high-rep placement-null rarity and semantic actual-vs-null attribution. Passing only one is insufficient.
+
+## E326 Semantic Residual Censor Stress
+
+Question: can E325 semantic axes become a public-free action rule rather than an attribution layer?
+
+Method: `analysis_outputs/e326_semantic_residual_censor.py`.
+
+- Parents: the `3` E324 high-rep ready E323 files.
+- Candidate generation:
+  - semantic support from E325 target/story signed z>=`1.75` and dominance>=`0.95`;
+  - policies: keep, damp25, damp50, boost125_damp25, keep_l1;
+  - anti-controls: anti_keep, anti_damp25.
+- Candidates generated: `252`.
+- Old public-free selector strict: `141`.
+- Null-evaluated: `36`.
+- Null rows: `6984` across row, subject, dateblock, target-permutation, sign-flip, and Q/S-swap.
+- Public LB: not used.
+
+Result:
+
+- ready candidates: `2`;
+- candidates beating E324 priority locally: `0`;
+- semantic-censor selected rows: `24`, ready `2`;
+- anti-control selected rows: `12`, ready `0`;
+- best semantic ready:
+  - `submission_e326_semcensor_null_common_residual__src_human_regime_only__recipe_fami__keep_l1__q0_70__s1_25_1af7dabf.csv`;
+  - p90 `-0.000081631`;
+  - null strict `0.061856`;
+  - p90 dominance `0.943299`;
+  - mean dominance `0.938144`;
+  - worst-mode p90 dominance `0.875000`.
+- E324 priority for comparison:
+  - p90 `-0.000053747`;
+  - null strict `0.050388`;
+  - worst-mode p90 dominance `0.859375`.
+
+Decision:
+
+- E326 passes the semantic-vs-anti sanity check but fails the replacement gate.
+- Do not public-test E326 before E323/E324 priority.
+- The local checker is working as intended: public LB is blocked unless a new candidate beats both the public-free selector and matched-null stress relative to the current priority.

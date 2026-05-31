@@ -2466,3 +2466,12 @@
 - Implementation issue possible: medium. E322 uses Ridge on only `47` governed rows and post-hoc features. A generator that optimizes the same health target directly may still work.
 - Bottleneck implication: public-LB scarcity is handled by local governance; the current pool cannot justify another public test. Breakthrough requires changing generation, not re-ranking E319.
 - Do not repeat: public-testing an unevaluated E319 file because the preselector ranks it high while fresh null governance says ready `0`.
+
+## FH274. Semantic attribution is enough to improve the E323 residual action
+
+- Failed hypothesis: because E325 found real human/social alignment in E323, keeping or boosting semantically aligned cells should create a stronger submission candidate than the original E324 priority.
+- Observed result: E326 generated `252` semantic/anti-semantic variants and stress-tested `36` selected files against `6984` null rows. Semantic variants beat anti-controls (`2/24` ready vs `0/12`), but `0` candidates beat the E324 priority locally. The most aggressive p90 variants became null-common; the two ready variants did not dominate `5508f966`.
+- Why discard: semantic support is not false, but it is not the primary action law. It explains and lightly regularizes the residual; it does not solve row/subject/dateblock placement health by itself.
+- Implementation issue possible: medium. E326 uses linear signed semantic support and simple censor policies. A learned joint semantic+placement-health generator may still work. Low for rejecting current E326 files as priority replacements.
+- Bottleneck implication: the breakthrough remains placement-null-common residualization plus high-rep null health. Human/social semantics should be auxiliary constraints, not a public submission shortcut.
+- Do not repeat: public-testing semantic-gated siblings that do not locally beat the current residual priority across null strict, p90/mean dominance, and worst-mode dominance.

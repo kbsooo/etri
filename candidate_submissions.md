@@ -3400,3 +3400,33 @@ Submission interpretation:
 - If `5508f966` improves public LB, strengthen the world model that null-common residualization found a real lifestyle-aware hidden placement component.
 - If it worsens, the likely failure is not "human stories are useless"; it is that semantic attribution plus local matched nulls still misses a public/private calibration or subset axis.
 - Do not submit a semantic-gated sibling before building a generator that improves both semantic z and high-rep null strictness.
+
+## Update After E326 Semantic Residual Censor
+
+Current next submission candidate remains unchanged:
+
+- `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_5508f966.csv`
+
+Why E326 does not replace it:
+
+- E326 generated `252` semantic/anti-semantic variants from the E324-ready parents and stress-tested `36` selected files against `6984` null rows.
+- Semantic censoring is real enough to beat anti-controls:
+  - semantic selected rows `24`, ready `2`;
+  - anti-control selected rows `12`, ready `0`.
+- But no E326 file beats the E324 priority under the local replacement gate.
+- Best E326 ready file:
+  - `analysis_outputs/submission_e326_semcensor_null_common_residual__src_human_regime_only__recipe_fami__keep_l1__q0_70__s1_25_1af7dabf.csv`;
+  - p90 `-0.000081631`;
+  - null strict `0.061856`;
+  - worst-mode p90 dominance `0.875000`.
+- E324 priority is still lower-risk:
+  - null strict `0.050388`;
+  - p90 dominance `0.926357`;
+  - mean dominance `0.914729`;
+  - worst-mode p90 dominance `0.859375`.
+
+Submission policy:
+
+- Do not spend public LB on E326 yet.
+- If exactly one public-free file must be tested next, keep E324 priority `5508f966`.
+- E326 becomes a follow-up only if E324 improves public and we need a same-world semantic-censor contrast. If E324 worsens, E326 should not be used as rescue; the failure would point to missing public/private calibration rather than missing semantic pruning.
