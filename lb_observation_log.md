@@ -1213,3 +1213,27 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - Q1 branch needs action-health/placement supervision, not more local-Q1 compensation.
 - expected public reaction if submitted anyway:
   - likely worse than E247 because selector mean and p90 are already adverse.
+
+## Public-Free Observation: E334 Q1 Tail Row-Censor Action-Health
+
+- submission files: generated locally, but none promoted.
+- public LB: not submitted.
+- reason not submitted: row-censored Q1-tail actions preserve local label/null gains but fail selector visibility and movement-null health.
+- local observation:
+  - row-censor variants: `532`;
+  - local row-censor gates: `510`;
+  - generated candidates: `72`;
+  - selector-promoted candidates: `0`;
+  - selector+E323-safe candidates: `0`;
+  - selector+E323+movement-null-safe candidates: `0`.
+- strongest local gate:
+  - Q1 `pos_q78/const/latent_top80`, delta `-0.016399822`, dominance `1.000000`, test rows `34`.
+- closest local probes:
+  - `submission_e334_q1rowcensor_pos_q75_const_latent_top65_s0p25_1adff771.csv`, mean `-0.000112`, p90 `+0.000018`, beats `0.861111`;
+  - `submission_e334_q1rowcensor_pos_q75_const_dateblock_drop_id05_b5_s0p25_159137ce.csv`, mean `-0.000236`, p90 `+0.000046`, beats `0.833333`.
+- interpretation:
+  - the Q1 hidden lifestyle-state latent remains real and row-local;
+  - row censoring alone does not solve public-visible action health;
+  - the next useful public-free experiment should learn an action-health latent directly.
+- expected public reaction if submitted anyway:
+  - likely low-information or worse than E247 because no file is selector-promoted and all visible-ish files retain positive p90 or weak movement-null dominance.

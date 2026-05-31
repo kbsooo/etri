@@ -4279,3 +4279,35 @@ Stress conclusion:
 - contrastive background features improve local Q1 logloss, but fail public-free action stress.
 - broad non-tail compensation is a validation shortcut, not a public-safe hidden lifestyle action.
 - Do not continue by adding larger background correction. The next validator must target action visibility/placement directly.
+
+## E334 Q1 Tail Row-Censor Action-Health Audit
+
+Question: can the same Q1 positive-tail hidden lifestyle action become public-free healthy if applied only to the right row/subject/dateblock subset?
+
+Method: `analysis_outputs/e334_q1_tail_row_censor_action_health.py`.
+
+- Fixed latent/action source: E332 Q1 positive-tail translators.
+- Censor families: all-tail, latent quantile, tail-weight quantile, base-Q1 quantile, calendar keep/drop, subject keep/drop, dateblock keep/drop.
+- Local stress: Q1 OOF logloss versus row/subject/dateblock feature/action nulls.
+- Submission stress: E272 selector, E323 movement anatomy, and movement-null shuffles.
+- Public LB: not used.
+
+Result:
+
+- row-censor variants tested: `532`;
+- local row-censor gates: `510`;
+- generated E247 probes: `72`;
+- selector-promoted candidates: `0`;
+- selector+E323-safe candidates: `0`;
+- selector+E323+movement-null-safe candidates: `0`.
+- strongest local gate:
+  - Q1 `pos_q78/const/latent_top80`, delta `-0.016399822`, dominance `1.000000`, test rows `34`.
+- closest local probes:
+  - `submission_e334_q1rowcensor_pos_q75_const_latent_top65_s0p25_1adff771.csv`, mean `-0.000112`, p90 `+0.000018`, beats `0.861111`, movement-null p90 dominance `0.666667`;
+  - `submission_e334_q1rowcensor_pos_q75_const_dateblock_drop_id05_b5_s0p25_159137ce.csv`, mean `-0.000236`, p90 `+0.000046`, beats `0.833333`, movement-null mean dominance `0.458333`.
+
+Stress conclusion:
+
+- Row-censoring confirms the Q1 lifestyle latent is not random: many masks beat matched local nulls.
+- It does not create a submission-grade action: every materialized file is below selector resolution or p90/null-risky.
+- The next validator should stop optimizing Q1 label loss and instead use a JEPA-style action-health target: predict the hidden representation of `selector-visible + p90-safe + null-rare` movement.

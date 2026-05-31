@@ -2538,3 +2538,12 @@
 - Implementation issue possible: medium. The background family is simple and scalar-tied to the tail. Low for rejecting current files because selector and movement-null stress agree that no candidate is public-grade.
 - Bottleneck implication: local Q1 label improvement is not enough to certify public-visible action. The missing translator target is action-health/placement, not a broader Q1 contrast.
 - Do not repeat: generating broad non-tail Q1 compensation files from local Q1 loss alone.
+
+## FH282. Q1-tail row-censoring is enough to make the action submission-grade
+
+- Failed hypothesis: the Q1 positive-tail hidden lifestyle action failed only because it was applied to the wrong rows; censoring by latent score, subject, dateblock, calendar, tail weight, or base-Q1 should produce a public-free healthy E247 edit.
+- Observed result: E334 tested `532` row-censor variants, with `510` local gates and a best Q1 `pos_q78/const/latent_top80` delta `-0.016399822`, dominance `1.000000`. But `72` generated candidates produced `0` selector-promoted files and `0` selector+E323+movement-null-safe files.
+- Why discard: row placement preserves local label signal, but it does not cross the action-health frontier. Small files are below selector resolution; larger or broader files keep positive p90 or lose movement-null mean dominance.
+- Implementation issue possible: medium. The censor families are hand-designed and the translator is still scalar. A learned action-health generator may work. Low for rejecting current E334 files because selector, E323 anatomy, and movement-null stress agree.
+- Bottleneck implication: the hidden lifestyle state is now easier to find than to use. The next JEPA target must be action outcome health itself, not another row mask around the same Q1 scalar action.
+- Do not repeat: submitting Q1 row-censored scalar files, or treating local Q1 row-mask dominance as sufficient without selector visibility and movement-null dominance.

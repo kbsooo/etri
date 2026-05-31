@@ -5216,3 +5216,29 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     - many broader background variants have positive mean and large positive p90.
 - Interpretation: contrastive background compensation is a validation shortcut. It improves local Q1 label/null stress, but it destroys E247 public-free action geometry. This is a stronger warning than E332: the missing object is not "add a background correction"; it is a visibility/placement rule that current train Q1 logloss cannot certify.
 - Decision: do not submit E333 candidates. Do not continue with broad non-tail compensation. Future Q1 work should either learn action-health directly from candidate geometry or move to a different latent axis with independent public-free visibility.
+
+## E334. Q1 Tail Row-Censor Action-Health Audit
+
+- Observe: E332/E333 showed the Q1 positive-tail hidden lifestyle state is real, but direct scalar shifts and broad background compensation both fail as E247 submission actions. The smallest remaining question is whether the same Q1 action becomes healthy if placed only on the right row/subject/dateblock subset.
+- Wonder: is the public-free failure caused by wrong row placement, or is the Q1-tail action itself below the visibility/null-rarity frontier?
+- Hypothesis: if Q1-tail placement is the missing law, row/subject/dateblock censoring should preserve strong local Q1 label/null gains and produce at least one E247 candidate that is selector-promoted, E323-negative, and movement-null safe.
+- Method: `analysis_outputs/e334_q1_tail_row_censor_action_health.py`.
+  - Fixed latent: E332 Q1 positive-tail state.
+  - Row masks: all-tail, latent quantile, tail-weight quantile, base-Q1 quantile, calendar keep/drop, subject keep/drop, dateblock keep/drop.
+  - Stress: Q1 OOF logloss versus row/subject/dateblock feature/action nulls, E272 public-free selector, E323 anatomy, and movement-null shuffles.
+- Result:
+  - row-censor rows tested: `532`;
+  - local row-censor gates: `510`;
+  - generated candidates: `72`;
+  - selector-promoted candidates: `0`;
+  - selector+E323-safe candidates: `0`;
+  - selector+E323+movement-null-safe candidates: `0`.
+  - strongest local gate:
+    - Q1 `pos_q78/const/latent_top80`: delta `-0.016399822`, dominance `1.000000`, test rows `34`;
+  - strongest families by gated count:
+    - subject-drop `100`, dateblock-drop `92`, base-Q1 `77`, latent `75`.
+  - closest public-free probes:
+    - `submission_e334_q1rowcensor_pos_q75_const_latent_top65_s0p25_1adff771.csv`: mean `-0.000112`, p90 `+0.000018`, beats `0.861111`, `too_small_to_submit`;
+    - `submission_e334_q1rowcensor_pos_q75_const_dateblock_drop_id05_b5_s0p25_159137ce.csv`: mean `-0.000236`, p90 `+0.000046`, beats `0.833333`, but movement-null mean dominance `0.458333`.
+- Interpretation: row placement helps local label/null stress but does not solve public-visible action health. The Q1 lifestyle state remains real, yet row censoring still maps to either too-small movements or p90-positive/null-common movements.
+- Decision: do not submit E334 candidates. The next useful experiment should train the target as action health itself: predict visibility/null-rarity/p90 safety from latent state and candidate geometry before materializing probabilities.

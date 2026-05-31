@@ -3632,3 +3632,33 @@ Next submission rule:
 - do not submit broad Q1 contrastive/background compensation files;
 - do not treat local Q1 OOF improvement as sufficient evidence;
 - only revisit Q1 if the translator is trained against action-health/visibility, not just Q1 logloss.
+
+## Update After E334 Q1 Tail Row-Censor Action-Health Audit
+
+No E334 file should be submitted.
+
+Closest local probes:
+
+- `analysis_outputs/submission_e334_q1rowcensor_pos_q75_const_latent_top65_s0p25_1adff771.csv`
+- `analysis_outputs/submission_e334_q1rowcensor_pos_q75_const_dateblock_drop_id05_b5_s0p25_159137ce.csv`
+- `analysis_outputs/submission_e334_q1rowcensor_pos_q83_const_all_tail_s0p35_f6874f7a.csv`
+
+Why blocked:
+
+- `510/532` row-censor variants pass local Q1 label/null stress, so the latent is real.
+- But `72` materialized candidates produce `0` selector-promoted files.
+- The best files are either:
+  - too small, such as `latent_top65_s0p25` with mean `-0.000112` and p90 `+0.000018`; or
+  - more visible but not movement-null dominant, such as `dateblock_drop_id05_b5_s0p25` with mean `-0.000236`, p90 `+0.000046`, and movement-null mean dominance `0.458333`.
+- E323 similarity is not the main blocker because candidate cosine with the E323 public-bad delta is negative or near-zero.
+
+Current best public frontier remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+- public LB `0.5761589494`
+
+Next submission rule:
+
+- do not spend a public slot on Q1 row-censored scalar actions;
+- train an action-health latent or generator that targets selector visibility, p90 safety, and row/subject/dateblock null rarity jointly;
+- only materialize a candidate after it clears movement-null dominance, not merely Q1 OOF label loss.

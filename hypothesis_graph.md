@@ -3840,3 +3840,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: reject as action latent because no candidate clears selector/E323/movement-null gates and the best materialization is worse than E247 by selector mean/p90.
 - public LB 관측 반응: no public LB should be spent. The local public-free sensor already reads the family as adverse.
 - 제출 전략: none. Do not use broad non-tail Q1 compensation unless a future action-health model independently flips the selector/p90 read.
+
+### H334: Q1 tail needs row-censor placement before scalar action can work
+
+- 상태: 반증됨 as submission/action latent; 지지됨 as further evidence that Q1 lifestyle state is real.
+- 왜 그럴듯한가: E332 showed direct Q1-tail shifts were too small or p90-risky, and E333 showed broad background compensation was a shortcut. A natural hidden-world explanation is wrong row placement: only specific latent, subject, dateblock, calendar, or base-Q1 rows should receive the Q1 correction.
+- 맞다면: row-censored Q1-tail variants should retain local Q1 label/null gains and at least one materialized E247 file should become selector-promoted, E323-negative, and movement-null safe.
+- 틀리다면: many row masks may pass local label/null stress, but all materialized files should remain below selector resolution or lose p90/movement-null health.
+- 최소 실험: `analysis_outputs/e334_q1_tail_row_censor_action_health.py`.
+- 관측: `532` row-censor variants, `510` local gates, `72` generated candidates, `0` selector-promoted, `0` selector+E323-safe, `0` selector+E323+movement-null-safe. Best local gate Q1 `pos_q78/const/latent_top80` delta `-0.016399822`, dominance `1.000000`. Closest files remain too small or movement-null dominated.
+- 성공/폐기 기준: reject row-censor scalar action because no candidate clears selector/E323/movement-null gates. Keep the representation evidence because local row-mask gates are abundant and consistent.
+- public LB 관측 반응: no public LB should be spent. A submission would mostly test local selector noise rather than a new public-transfer hypothesis.
+- 제출 전략: none. Next strategy is a JEPA-style action-health target: learn or construct a latent representation of visible, p90-safe, null-rare movement before probability materialization.

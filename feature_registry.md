@@ -3314,3 +3314,25 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - prefer row/block placement-health targets over global non-tail compensation.
 - Failure condition:
   - if a contrastive feature improves train Q1 loss but selector mean/p90 turn positive, classify it as validation shortcut.
+
+## E334 Q1 Tail Row-Censor Features
+
+- Target hypothesis tested:
+  - Q1-tail hidden lifestyle action may become healthy if it is applied only to the right latent/subject/dateblock/calendar/base-Q1 rows.
+- Feature/representation source:
+  - E332 Q1 positive-tail residual latent and translators;
+  - row censor masks from latent quantiles, tail-weight quantiles, base-Q1 quantiles, calendar keep/drop, subject keep/drop, dateblock keep/drop, and all-tail controls.
+- Validation result:
+  - `510/532` row-censor variants pass local Q1 label/null gates;
+  - strongest gate Q1 `pos_q78/const/latent_top80` has delta `-0.016399822`, dominance `1.000000`;
+  - `72` generated E247 probes produce `0` selector-promoted candidates;
+  - closest files are either `too_small_to_submit` or fail movement-null dominance.
+- Updated registry status:
+  - approved as evidence that Q1 hidden lifestyle state has many row-level masks;
+  - rejected as a direct submission feature;
+  - do not use these row masks without an action-health target.
+- Adopt rule for future features:
+  - row/subject/dateblock masks should become inputs to an action-health model, not final action rules;
+  - promotion requires selector visibility plus p90 safety plus movement-null dominance.
+- Failure condition:
+  - if a row-censored feature improves local Q1 loss but produces no selector-promoted candidate, classify it as latent-real/action-invisible.
