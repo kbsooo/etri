@@ -2610,3 +2610,21 @@
 - Implementation issue possible: medium. The experiment uses hand-designed top-k tail masks and linear logit movement. A learned sign-transfer/action translator could still use the residual states.
 - Bottleneck implication: E330 residual states are local information, not direct public action. The missing layer is a public-geometry sign/visibility translator or a new positive support axis.
 - Do not repeat: broad E330 residual materialization or sparse top-k residual tails without first learning which residual signs should invert under E247 geometry.
+
+## FH290. Raw Q2+Q1/Q3 sign-transfer is already submission-grade
+
+- Failed hypothesis: combining E341 Q2 inverse residual tails with E340 Q1/Q3 microstate coalitions should produce a clean selector-visible, movement-null-rare hidden lifestyle-state action.
+- Observed result: E342 generated `1314` candidates and found `1097` information sensors, but `0` selector-promoted files. The best near-miss crossed p90 visibility (`-0.000055`) and had beats `0.986111`, but incremental bad-axis was `0.017962`, above the strict `0.015` cap.
+- Why discard as submission: movement-null rarity is good, but the visible edge carries too much known public-bad geometry. This is the exact failure mode that hurt E323-style public transfer.
+- Implementation issue possible: medium. The sign-transfer transforms are hand-coded and may not find the clean subspace. Low for rejecting current files because the bad-axis gate and E343 cleanup agree.
+- Bottleneck implication: the hidden lifestyle state exists more strongly than in E340/E341 alone, but translating it into public-safe probability movement is still unresolved.
+- Do not repeat: public-testing E342 near-misses unless the explicit experiment is to measure bad-axis tolerance rather than to seek the best score.
+
+## FH291. Bad-axis projection cleanup cleanly separates the E342 signal
+
+- Failed hypothesis: E342's visible edge can be made submission-grade by removing projection on Q2-bad, residual-bad, LeJEPA-bad, and ordinal reference axes.
+- Observed result: E343 generated `1512` cleaned candidates and found `845` information sensors, but `0` selector-promoted files. Best cleaned p90 is `-0.000046`, while the best bad-axis is still `0.015414`; variants below the bad-axis cap lose even more p90.
+- Why discard: the current E342 p90 edge and bad-axis component are entangled. Linear projection removal is not enough to keep the useful latent while removing public-bad movement.
+- Implementation issue possible: medium. The projection cleanup is linear in logit space and may not match the true nonlinear public-bad manifold. Low for rejecting current cleaned files because the tradeoff is monotone across many variants.
+- Bottleneck implication: the next breakthrough must add independent visible support or learn a generator that never enters the bad-axis subspace, rather than cleaning it afterward.
+- Do not repeat: further fine grids of the same projection-removal alphas unless a new target/axis changes the tradeoff.

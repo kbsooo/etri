@@ -3892,3 +3892,41 @@ Next submission rule:
 - do not submit sparse E330 residual-tail files;
 - treat Q2 inverse residual tail as a sign-transfer clue, not a candidate;
 - the next candidate must either learn residual-state sign transfer or introduce a new positive support axis that pushes p90 closer to `-0.00005`.
+
+## Update After E342/E343 Hidden Lifestyle Sign-Transfer
+
+No E342/E343 file is recommended for public submission.
+
+Most informative non-submission file:
+
+- `analysis_outputs/submission_e342_signtransfer_q2_submission_e341_sp__micro_submission_e340_q1__w0_75_1_00_sum_bad_veto_07fbe22a.csv`
+
+Why it is interesting:
+
+- It is the first current-branch file to cross E272 strict p90 visibility:
+  - mean `-0.000248`;
+  - p90 `-0.000055`;
+  - beats current `0.986111`.
+- It also survives movement-null shape checks well:
+  - p90 dominance `0.964286`;
+  - null strict promote rate `0.000000`.
+
+Why it is not recommended:
+
+- incremental bad-axis is `0.017962`, above the strict `0.015` cap;
+- the E343 cleanup attempt shows that removing this bad-axis load weakens p90 above the submission threshold;
+- therefore the local evidence says the visible edge is still entangled with public-bad geometry.
+
+Best cleaned probe:
+
+- `analysis_outputs/submission_e343_badneutral_submission_e342_signtransfer_q2_submission_e34__q2resid_a0_20_proj_cellveto_ca0898be.csv`
+- mean `-0.000237`;
+- p90 `-0.000046`;
+- beats current `0.986111`;
+- incremental bad-axis `0.015414`;
+- decision `too_small_to_submit`.
+
+Submission decision:
+
+- do not spend a public LB slot unless the explicit purpose is information gain about bad-axis tolerance;
+- for score-seeking, the next candidate must either clear both p90 and bad-axis locally or add an independent support axis that makes E342's p90 edge survive cleanup.

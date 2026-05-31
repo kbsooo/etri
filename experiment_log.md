@@ -5429,3 +5429,40 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     - still below submission resolution.
 - Interpretation: sparse tailing fixes part of E330's broad-movement problem, but the public-free edge is still too weak. The strongest pattern is a sign-transfer surprise: the best visible sensor is `Q2/jepa_resid/subject/posdelta` with the movement inverted, not the direct local-CV direction. This means the train residual latent is not useless, but direct label-residual action does not transfer as-is to E247 public geometry.
 - Decision: do not submit E341 candidates. Keep E341 as evidence that rare lifestyle tails are real information sensors and that the next experiment should target sign-transfer/visibility mapping, not more broad residual materialization.
+
+## E342. Sign-Transfer Hidden Lifestyle-State Latent
+
+- Observe: E340 Q1/Q3 lifestyle microstate coalitions are clean but p90-limited, while E341 Q2 inverse residual tails are independent but also too small. A shared hidden lifestyle state should show up when Q2 "intervention/rough-night" tail context gates or supports Q1/Q3 human-social microstate movement.
+- Wonder: are the Q2 sparse residual tail and Q1/Q3 microstate coalition two projections of the same latent life-state, or just two unrelated safe-invisible sensors?
+- Hypothesis: if they share a latent state, combining them should cross selector p90 `-0.00005` and stay stronger than row/target/sign/subject/dateblock movement nulls. If not, the combination should remain below resolution or align with known public-bad axes.
+- Method: `analysis_outputs/e342_signtransfer_lifestyle_latent.py`.
+  - Select top Q2 sparse inverse residual-tail sources from E341 and top Q1/Q3 microstate sources from E340.
+  - Generate sign-transfer variants: direct sum, E323/E216 bad-veto sum, centered sum, and Q2-tail row-gated microstate variants.
+  - Score `1314` candidates with E272 and stress the top `32` with movement nulls.
+- Result:
+  - selector-promoted candidates: `0`;
+  - information-sensor candidates: `1097`;
+  - movement-null-safe promoted candidates: `0`.
+  - The best file, `submission_e342_signtransfer_q2_submission_e341_sp__micro_submission_e340_q1__w0_75_1_00_sum_bad_veto_07fbe22a.csv`, has mean `-0.000248`, p90 `-0.000055`, beats `0.986111`, and movement-null p90 dominance `0.964286`.
+  - It misses strict promotion only because incremental bad-axis is `0.017962`, above the `0.015` cap.
+- Interpretation: this is the strongest hidden lifestyle-state evidence in this branch. The shared Q2+Q1/Q3 state is visible enough to cross p90, but the visible part is partly entangled with public-bad movement geometry. This is not a submission yet, but it is not another safe-invisible null result.
+- Decision: do not submit raw E342 files. Run a minimal bad-axis-neutralization test before deciding whether the sign-transfer latent is separable.
+
+## E343. Bad-Axis Neutralized Sign-Transfer Latent
+
+- Observe: E342 near-misses failed only on incremental bad-axis load. The smallest falsification is to keep the same sign-transfer latent and remove projection on Q2-bad, residual-bad, LeJEPA-bad, and ordinal reference axes.
+- Wonder: is the useful E342 edge separable from known public-bad axes, or is that bad-axis load part of the same visible energy?
+- Hypothesis: if separable, projection removal should bring incremental bad-axis under `0.015` while preserving p90 below `-0.00005` and movement-null dominance. If entangled, p90 should collapse as soon as the bad-axis is reduced.
+- Method: `analysis_outputs/e343_badaxis_neutralized_signtransfer.py`.
+  - Select `28` E342 near-miss sources with p90 below about `-0.000045`, high beats rate, and bad-axis between `0.015` and `0.025`.
+  - Project out bad reference axes with alpha `0.20-1.10`, plus cell-veto and centered variants.
+  - Score `1512` generated candidates and stress the top `24` movement-null candidates.
+- Result:
+  - selector-promoted candidates: `0`;
+  - information-sensor candidates: `845`;
+  - movement-null-safe promoted candidates: `0`.
+  - Best cleaned file: `submission_e343_badneutral_submission_e342_signtransfer_q2_submission_e34__q2resid_a0_20_proj_cellveto_ca0898be.csv`;
+    mean `-0.000237`, p90 `-0.000046`, beats `0.986111`, bad-axis `0.015414`.
+  - Some variants reduce bad-axis below `0.015`, but their p90 moves above the strict threshold.
+- Interpretation: E342's visible energy and bad-axis load are currently entangled. The hidden lifestyle-state sign-transfer is real as an information sensor, but not yet a clean public-safe submission tensor.
+- Decision: no E343 submission. Next useful question is not "more projection cleanup"; it is to find a new support axis or learn a generator that produces visibility without borrowing the bad-axis component.

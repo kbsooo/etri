@@ -3513,3 +3513,28 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - require p90 near `-0.00005` before public submission.
 - Failure condition:
   - if sparse tails remain below strict promotion and only inverse directions survive, classify residual states as local CV features needing a separate public-geometry translator.
+
+## E342/E343 Sign-Transfer Lifestyle-State Features
+
+- Target hypothesis tested:
+  - Q2 intervention/rough-night residual tails and Q1/Q3 human-social microstate coalitions are different projections of one hidden lifestyle state.
+- Feature/representation source:
+  - E341 Q2 sparse inverse residual-tail candidates;
+  - E340 Q1/Q3 microstate coalition candidates;
+  - Q2-tail row gates, full-sum sign-transfer, E323/E216 bad-veto transforms, and target-centered variants;
+  - E343 projection cleanup against Q2-bad, residual-bad, LeJEPA-bad, and ordinal public-bad reference axes.
+- Validation result:
+  - E342: `1314` candidates, `1097` information sensors, `0` selector-promoted;
+  - best E342 p90 `-0.000055`, mean `-0.000248`, beats `0.986111`, but bad-axis `0.017962`;
+  - E343: `1512` candidates, `845` information sensors, `0` selector-promoted;
+  - best cleaned p90 `-0.000046`, bad-axis `0.015414`.
+- Updated registry status:
+  - approved as the strongest current hidden lifestyle-state sign-transfer diagnostic;
+  - rejected as a current submission feature because visible energy and bad-axis load are entangled;
+  - keep E342 top near-misses as support-axis sensors for future generator training.
+- Adopt rule for future features:
+  - cross-target sign-transfer is more promising than more Q1/Q3 summing;
+  - require bad-axis-safe p90 visibility, not just p90 visibility;
+  - if a cleanup step kills p90, treat the feature as diagnostic only.
+- Failure condition:
+  - if a sign-transfer feature crosses p90 only by increasing public-bad-axis load, do not submit it; use it to identify the missing action-health target.

@@ -1420,3 +1420,39 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - p90 remains too weak for a public slot.
 - expected public reaction if submitted anyway:
   - likely too small/noisy to justify a submission; could provide information about Q2 inverse residual tails, but score upside is weak.
+
+## Public-Free Observation: E342/E343 Sign-Transfer Lifestyle Latent
+
+- submission files: generated locally, but none recommended for public testing.
+- public LB: not submitted.
+- reason not submitted:
+  - E342 crosses p90 visibility but exceeds public-bad-axis cap;
+  - E343 reduces bad-axis but loses p90 visibility.
+- local observation:
+  - E342 candidates: `1314`;
+  - E342 selector-promoted candidates: `0`;
+  - E342 information-sensor candidates: `1097`;
+  - E343 candidates: `1512`;
+  - E343 selector-promoted candidates: `0`;
+  - E343 information-sensor candidates: `845`.
+- closest E342 near-miss:
+  - `submission_e342_signtransfer_q2_submission_e341_sp__micro_submission_e340_q1__w0_75_1_00_sum_bad_veto_07fbe22a.csv`;
+  - mean `-0.000248`;
+  - p90 `-0.000055`;
+  - beats `0.986111`;
+  - incremental bad-axis `0.017962`;
+  - movement-null p90 dominance `0.964286`.
+- closest E343 cleaned probe:
+  - `submission_e343_badneutral_submission_e342_signtransfer_q2_submission_e34__q2resid_a0_20_proj_cellveto_ca0898be.csv`;
+  - mean `-0.000237`;
+  - p90 `-0.000046`;
+  - beats `0.986111`;
+  - incremental bad-axis `0.015414`.
+- interpretation:
+  - public-free local evidence says the sign-transfer hidden lifestyle state is real as a sensor;
+  - the current action translator still borrows public-bad geometry;
+  - spending a public slot now would mostly test bad-axis tolerance, not a clean score-improvement hypothesis.
+- expected public reaction if submitted anyway:
+  - uncertain and not worth a scarce slot for score-seeking;
+  - if the public LB improved, it would imply the E272 bad-axis cap is too conservative for this branch;
+  - if it worsened, it would confirm that E323-like bad-axis entanglement remains the active bottleneck.

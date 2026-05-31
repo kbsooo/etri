@@ -4578,3 +4578,49 @@ Stress conclusion:
 - Sparse tails are better shaped than E330 broad residual movement, but still below submission resolution.
 - The best Q2 sensor is inverse-direction, so local train residual sign does not transfer directly to E247 public geometry.
 - Do not submit E341. Use it as a sign-transfer and rare-tail placement diagnostic.
+
+## E342/E343 Sign-Transfer Lifestyle Latent
+
+Question: can the Q2 inverse residual tail and Q1/Q3 human-social microstate coalition form one selector-visible hidden lifestyle state, and can that state be separated from public-bad axes?
+
+Methods:
+
+- `analysis_outputs/e342_signtransfer_lifestyle_latent.py`
+- `analysis_outputs/e343_badaxis_neutralized_signtransfer.py`
+
+Stress used:
+
+- E272 public-free selector;
+- E323/E216 bad-axis anatomy;
+- Q2 tail row-gates and cross-target microstate coalitions;
+- projection removal against Q2-bad, residual-bad, LeJEPA-bad, and ordinal reference axes;
+- fresh movement nulls: row, target, sign, row-sign, cell, subject, and dateblock.
+
+Result:
+
+- E342 generated candidates: `1314`;
+- E342 selector-promoted: `0`;
+- E342 information sensors: `1097`;
+- E342 best near-miss:
+  - `submission_e342_signtransfer_q2_submission_e341_sp__micro_submission_e340_q1__w0_75_1_00_sum_bad_veto_07fbe22a.csv`;
+  - mean `-0.000248`;
+  - p90 `-0.000055`;
+  - beats `0.986111`;
+  - incremental bad-axis `0.017962`;
+  - movement-null p90 dominance `0.964286`.
+- E343 generated candidates: `1512`;
+- E343 selector-promoted: `0`;
+- E343 information sensors: `845`;
+- E343 best cleaned probe:
+  - `submission_e343_badneutral_submission_e342_signtransfer_q2_submission_e34__q2resid_a0_20_proj_cellveto_ca0898be.csv`;
+  - mean `-0.000237`;
+  - p90 `-0.000046`;
+  - beats `0.986111`;
+  - incremental bad-axis `0.015414`.
+
+Stress conclusion:
+
+- Sign-transfer is the first hidden lifestyle-state branch here that reaches strict p90 visibility.
+- The blocker is not movement-null rarity; it is bad-axis entanglement.
+- Projection cleanup lowers bad-axis but also removes the p90 edge, so E342/E343 are not submission-safe.
+- Next validation should search for an independent visible support axis or train a generator that creates visibility without borrowing E323/E216-like movement.

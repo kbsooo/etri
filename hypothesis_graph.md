@@ -3936,3 +3936,27 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: reject as a submission generator because strict promotion is zero and p90 remains about 3x weaker than the gate. Keep as a clue because inverse Q2 residual-tail movement is consistently better than direct broad E330.
 - public LB 관측 반응: no public LB should be spent. Expected public response is too small/noisy.
 - 제출 전략: none from E341. Next strategy should learn sign-transfer/visibility mapping from residual states to E247 action geometry, or find a new support axis outside E330 residual tails.
+
+### H342: Q2 residual tail and Q1/Q3 microstate coalition are projections of one hidden lifestyle state
+
+- 상태: 강하게 지지됨 as information sensor; 보류/거절 as submission generator.
+- 왜 그럴듯한가: E340 and E341 fail in complementary ways. Q1/Q3 microstates are movement-null healthy but p90-small; Q2 inverse residual tails are a separate sparse support axis. A real life-state such as intervention/rough-night/social-recovery could appear across Q2 and Q1/Q3 rather than inside one target.
+- 맞다면: combined Q2+Q1/Q3 sign-transfer should improve p90 beyond either source, beat movement nulls, and ideally cross strict promotion without increasing known public-bad axes.
+- 틀리다면: combinations should remain near E340/E341 p90, or only become visible by moving along public-bad axes.
+- 최소 실험: `analysis_outputs/e342_signtransfer_lifestyle_latent.py`.
+- 관측: `1314` candidates, `0` selector-promoted, `1097` information sensors. Best p90 crosses visibility (`-0.000055`) with beats `0.986111` and movement-null p90 dominance up to `1.000000` on several near-misses, but incremental bad-axis is `0.017962+`, above the `0.015` cap.
+- 성공/폐기 기준: accept as representation if cross-target combination beats both sources and movement nulls; reject as submission if bad-axis prevents strict promotion. This split is observed.
+- public LB 관측 반응: no public LB should be spent on raw E342. Expected upside exists but downside risk is E323/E216-like public-bad geometry.
+- 제출 전략: none directly. Use as the strongest current sign-transfer clue; next experiment must separate useful visibility from bad-axis load.
+
+### H343: E342 sign-transfer edge can be cleaned by removing known bad-axis projection
+
+- 상태: 반증됨 as current submission route.
+- 왜 그럴듯한가: E342 missed strict promotion narrowly because of bad-axis load. If the hidden lifestyle-state signal is separable, projection cleanup should keep p90 visibility while lowering public-bad risk.
+- 맞다면: projection-removed candidates should have p90 `< -0.00005`, beats `>=0.75`, bad-axis `<=0.015`, and survive movement-null stress.
+- 틀리다면: reducing bad-axis should also destroy p90 visibility, showing that the current visible energy is entangled with public-bad geometry.
+- 최소 실험: `analysis_outputs/e343_badaxis_neutralized_signtransfer.py`.
+- 관측: `1512` candidates, `0` selector-promoted, `845` information sensors. Best cleaned candidate has mean `-0.000237`, p90 `-0.000046`, beats `0.986111`, bad-axis `0.015414`. Variants that reduce bad-axis below `0.015` lose p90 visibility.
+- 성공/폐기 기준: reject cleanup route because no file simultaneously clears p90 and bad-axis. Keep E342 as a latent clue, not a candidate.
+- public LB 관측 반응: do not submit. If submitted anyway, expected reaction is uncertain and likely not worth a public slot because the strict local safety condition is not met.
+- 제출 전략: none from E343. Need a new support axis or a generator trained to produce visible/null-rare movement without borrowing the bad-axis component.
