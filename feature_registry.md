@@ -3385,3 +3385,53 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - public-negative axes should regularize or censor hidden-state actions, not define the action by themselves.
 - Failure condition:
   - if away-from-bad or orthogonalized-good movement fails selector promotion, classify it as output-space reversal failure rather than hidden-state discovery.
+
+## E337 Residual Lifestyle-Cluster Features
+
+- Target hypothesis tested:
+  - target-residual lifestyle latents may contain repeated hidden episode states that are not visible through broad subject/day summaries.
+- Feature/representation source:
+  - E330 target-residual latent matrix;
+  - masked context views: family, jepa_resid, raw_day, story_bundle, family_story, family_jepa_story;
+  - k-means residual clusters k `4/6/8/10/12`;
+  - E323/E216 public-bad anatomy as veto diagnostics.
+- Validation result:
+  - `family/dateblock` predicts latent coordinates with R2 `0.169277`;
+  - `jepa_resid/dateblock` R2 `0.107508`;
+  - k4-k8 clusters are non-collapsed on train/test;
+  - `3` cluster-target rows pass label/null stress;
+  - `64` global materialized candidates produce `0` selector-promoted files.
+- Updated registry status:
+  - approved as a hidden lifestyle-state representation;
+  - rejected as a direct global target-calibration feature;
+  - keep cluster IDs and episode scores as candidate gates.
+- Adopt rule for future features:
+  - cluster features must be used locally at row/episode level;
+  - global cluster priors should be treated as action smear unless they pass selector and movement-null dominance.
+- Failure condition:
+  - if cluster labels improve label CV but global target movement fails selector promotion, classify the feature as representation-only.
+
+## E338 Cluster-Local Episode Features
+
+- Target hypothesis tested:
+  - E337's hidden residual clusters become useful only when translated through cluster-local episode rows.
+- Feature/representation source:
+  - E337 gated cluster-target rows;
+  - cluster residual mean, median, sign agreement, support, and strength;
+  - E323/E216 vetoed and target-centered local deltas.
+- Validation result:
+  - `10` episode-gated rows;
+  - strongest states are Q3/dateblock positive/negative episodes;
+  - `75` materialized candidates;
+  - `4` information-sensor candidates;
+  - `0` selector-promoted and `0` movement-null-safe promoted candidates;
+  - best local sensor has movement-null mean/p90 dominance `1.000000/1.000000` but is `too_small_to_submit`.
+- Updated registry status:
+  - approved as a Q3 episode-placement energy/gate;
+  - rejected as a standalone submission feature at current scale;
+  - carry forward as a gating feature for constrained Q3 amplification.
+- Adopt rule for future features:
+  - prefer episode-local row placement over all-row target shifts;
+  - any amplification must preserve negative p90 and movement-null dominance.
+- Failure condition:
+  - if amplification turns the E338 safe-invisible movement into p90-positive or null-common movement, classify it as visibility-overfit.

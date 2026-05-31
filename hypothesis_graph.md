@@ -3876,3 +3876,27 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: reject direct inversion if no candidate clears selector plus public-bad plus movement-null gates; keep the axes as risk diagnostics if they are target-specific and explain prior public failures. This is the observed split.
 - public LB 관측 반응: no public LB should be spent. Expected reaction is low-information for tiny good_mixmin moves or adverse/noisy for away-from-bad moves.
 - 제출 전략: none from E336. Use E323/E216 axes as an anti-public risk coordinate in future hidden lifestyle-state/action-health training.
+
+### H337: target-residual lifestyle states form repeated hidden clusters
+
+- 상태: 지지됨 as representation; 반증됨 as global probability materializer.
+- 왜 그럴듯한가: E330-E336 repeatedly showed target-specific residual states, but diffuse target-level translators failed. A hidden lifestyle-state should appear as repeated residual episodes before output movement.
+- 맞다면: residual latent clusters should be non-collapsed, predictable from meaningful context views, and improve label CV beyond shuffled cluster nulls for specific target/split pairs.
+- 틀리다면: cluster entropy should collapse, context prediction should be null-like, or label gains should vanish under row/subject/dateblock cluster shuffles.
+- 최소 실험: `analysis_outputs/e337_residual_lifestyle_cluster_state.py`.
+- 관측: dateblock contexts predict residual latent better than subject contexts (`family/dateblock` R2 `0.169277`, `jepa_resid/dateblock` R2 `0.107508`). k4-k8 clusters have train entropy `0.958303-0.981673` and test entropy `0.824252-0.936542`. Three cluster-target rows pass label/null gates: `Q3/dateblock/k6`, `Q2/dateblock/k8`, and `S3/subject/k4`.
+- 성공/폐기 기준: accept representation if clusters survive label/null stress; reject materializer if generated E247 candidates fail selector/movement-null gates. This split is observed.
+- public LB 관측 반응: no public LB should be spent. Global cluster shifts are expected to be low-information or worse because selector-promoted count is `0`.
+- 제출 전략: none from E337. Use cluster labels as hidden episode state and localize the action to cluster rows.
+
+### H338: cluster-local episode action fixes the E337 global-smear failure
+
+- 상태: 부분 지지됨 as action-shape improvement; 반증됨 as current submission candidate.
+- 왜 그럴듯한가: E337's representation survived but its action moved all rows for each target. If wrong placement is the issue, moving only cluster-local episode rows should retain signal and become movement-null dominant.
+- 맞다면: local episode variants should improve selector mean/p90 versus E247, beat movement-null shuffles, and at least one file should clear selector promotion.
+- 틀리다면: local actions should remain below selector resolution, or amplification should become p90-positive/null-common.
+- 최소 실험: `analysis_outputs/e338_cluster_local_episode_action.py`.
+- 관측: `10` episode-gated rows and `75` candidates. The best file, `submission_e338_local_veto_centered_top2_s0_20_28122ea1.csv`, has mean `-0.000034`, p90 `-0.00000036`, beats `0.902778`, and movement-null dominance `1.000000/1.000000`, but is `too_small_to_submit`. Selector-promoted count is `0`.
+- 성공/폐기 기준: accept localization if movement-null dominance improves; reject as submission if selector promotion remains zero. This is observed.
+- public LB 관측 반응: do not submit yet. Expected public effect is too small/noisy despite healthy local movement.
+- 제출 전략: none directly. The next strategy is constrained Q3 episode amplification or E338 episode-gated blend with an independent Q3 direction.

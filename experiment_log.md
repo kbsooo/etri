@@ -5293,3 +5293,51 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     - `submission_e336_good_mixmin_topall_s0_20_509bebff.csv`: mean `-0.000017725`, p90 `+0.000021884`, beats `0.750000`, movement-null p90 dominance `1.000000`, but not promoted.
 - Interpretation: the public-bad anatomy is real and target-specific, but its opposite is not a submission-grade action. The latent is useful as a veto/diagnostic, not as a direct probability movement generator.
 - Decision: do not submit E336 candidates. The next hidden lifestyle-state experiment should leave output-space reversal and learn the state before materialization: row/block latent episodes, target-pair dependency state, or action-health positive support from multiple public-surviving directions.
+
+## E337. Residual Lifestyle-Cluster State
+
+- Observe: E330-E336 repeatedly found target-specific residual states, but the probability translator collapsed when the state was spread across all test rows. The next question is whether those residual states form repeated hidden lifestyle episodes before materialization.
+- Wonder: are there non-collapsed residual lifestyle clusters that survive subject/dateblock label stress, and can E323/E216 public-bad axes act as vetoes rather than generators?
+- Hypothesis: if hidden lifestyle-state clusters are real, their cluster labels should improve target logloss under subject/dateblock stress beyond shuffled cluster nulls. If the remaining problem is the action layer, E247 edits from those clusters will still fail selector promotion.
+- Method: `analysis_outputs/e337_residual_lifestyle_cluster_state.py`.
+  - Context/latent source: top E330 target-residual lifestyle rows.
+  - JEPA-style diagnostic: predict same-level residual latent matrix from masked feature-family views.
+  - Clustering: k `4/6/8/10/12` over train/test residual latents.
+  - Stress: subject/dateblock label CV, row/subject/dateblock shuffled-cluster nulls, E272 selector, E323/E216 anatomy, movement-null checks.
+- Result:
+  - masked-context latent R2 is positive for dateblock views: `family/dateblock` `0.169277`, `jepa_resid/dateblock` `0.107508`, `family_story/dateblock` `0.049919`; subject views are mostly negative.
+  - cluster geometry is non-collapsed: train entropy `0.958-0.982`; test entropy `0.824-0.937` for k `4/6/8`.
+  - gated cluster-target rows: `3`:
+    - `k=6/Q3/dateblock`, delta `-0.003932`, dominance `0.833333`;
+    - `k=8/Q2/dateblock`, delta `-0.003512`, dominance `0.916667`;
+    - `k=4/S3/subject`, delta `-0.003509`, dominance `0.875000`.
+  - generated candidates: `64`;
+  - selector-promoted candidates: `0`;
+  - movement-null-safe promoted candidates: `0`.
+- Interpretation: hidden residual lifestyle-state clusters exist and are most visible through dateblock context. But the global cluster-prior materializer smears the state into all-row target shifts, so it is rejected by the public-free selector.
+- Decision: do not submit E337 candidates. Keep the cluster labels as a representation and move to cluster-local episode actions.
+
+## E338. Cluster-Local Episode Action
+
+- Observe: E337 found real cluster-target states but failed because the action was applied globally. The smallest next test is to move only the rows inside the active cluster episodes.
+- Wonder: does cluster-local placement turn the hidden lifestyle-state latent into a healthy E247 action?
+- Hypothesis: if wrong row placement caused E337 failure, local episode rows should preserve negative selector movement while becoming movement-null dominant.
+- Method: `analysis_outputs/e338_cluster_local_episode_action.py`.
+  - Build episode table from E337 gated cluster-target rows.
+  - Select cluster/target cells by residual mean, sign agreement, test support, and strength.
+  - Materialize local-only variants: raw, E323/E216-vetoed, target-centered, veto+centered.
+  - Stress: E272 selector, public-bad anatomy, movement-null shuffles.
+- Result:
+  - episode-gated rows: `10`;
+  - strongest episodes:
+    - `k=6 cluster=3 Q3/dateblock`: train `74`, test `38`, mean residual `0.085483`, strength `3.676759`;
+    - `k=6 cluster=0 Q3/dateblock`: train `39`, test `11`, mean residual `-0.168430`, strength `3.488573`;
+    - `k=4 cluster=2 S3/subject`: train `58`, test `10`, mean residual `0.097720`, strength `2.353398`.
+  - generated candidates: `75`;
+  - selector-promoted candidates: `0`;
+  - information-sensor candidates: `4`;
+  - movement-null-safe promoted candidates: `0`.
+  - best local sensor:
+    - `submission_e338_local_veto_centered_top2_s0_20_28122ea1.csv`, mean `-0.000034`, p90 `-0.00000036`, beats `0.902778`, movement-null mean/p90 dominance `1.000000/1.000000`, but `too_small_to_submit`.
+- Interpretation: localizing the hidden lifestyle-state action helps. E338 improves over E337's global smear by producing safe-invisible Q3 episode sensors. It still does not produce a submission-grade tensor because the useful movement is below selector resolution.
+- Decision: do not submit E338 candidates. The next useful experiment should either amplify this Q3 episode path under a monotone/null-safe constraint or use the episode score as a gate for an existing stronger Q3 direction.

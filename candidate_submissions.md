@@ -3727,3 +3727,68 @@ Next submission rule:
 - do not submit away-from-bad or bad-axis-orthogonalized candidates unless a new validator shows selector promotion;
 - use E323/E216 anatomy as a veto/risk feature, not a direct generator;
 - next candidate should come from hidden lifestyle-state discovery before probability movement, not from output-space reversal.
+
+## Update After E337 Residual Lifestyle-Cluster State
+
+No E337 file should be submitted.
+
+Closest local probes:
+
+- `analysis_outputs/submission_e337_veto_centered_top1_s0_20_faae05af.csv`
+- `analysis_outputs/submission_e337_target_centered_top1_s0_80_a518932a.csv`
+
+Why blocked:
+
+- Hidden residual lifestyle clusters are real enough to pass label/null gates for Q3, Q2, and S3.
+- But the global materializer applies cluster priors too broadly:
+  - generated candidates: `64`;
+  - selector-promoted candidates: `0`;
+  - information-sensor candidates: `0`;
+  - movement-null-safe promoted candidates: `0`.
+- The best files are either below selector resolution or look like broad target movement rather than episode placement.
+
+Current best public frontier remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+- public LB `0.5761589494`
+
+Next submission rule:
+
+- do not submit global residual-cluster target shifts;
+- use the clusters as hidden state labels and materialize only cluster-local episode rows;
+- keep E323/E216 axes as veto diagnostics.
+
+## Update After E338 Cluster-Local Episode Action
+
+No E338 file should be submitted yet.
+
+Closest local probes:
+
+- `analysis_outputs/submission_e338_local_veto_centered_top2_s0_20_28122ea1.csv`
+- `analysis_outputs/submission_e338_local_veto_centered_top1_s0_20_0534e35a.csv`
+- `analysis_outputs/submission_e338_local_centered_top2_s0_20_de2bf8b4.csv`
+
+Why blocked:
+
+- Local episode placement improves E337's global smear:
+  - generated candidates: `75`;
+  - information-sensor candidates: `4`;
+  - movement-null-safe promoted candidates: `0`.
+- The best Q3 local sensor is unusually clean but too small:
+  - mean `-0.000034`;
+  - p90 `-0.00000036`;
+  - beats `0.902778`;
+  - movement-null mean/p90 dominance `1.000000/1.000000`;
+  - decision `too_small_to_submit`.
+- This is the right kind of movement shape, but not enough movement amplitude for a public slot.
+
+Current best public frontier remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+- public LB `0.5761589494`
+
+Next submission rule:
+
+- do not public-test safe-invisible E338 probes;
+- next candidate must keep the E338 top2 Q3 episode placement but add an independently justified amplification or use it as a gate for a stronger Q3 direction;
+- reject any amplified file if p90 dominance or movement-null rarity collapses.

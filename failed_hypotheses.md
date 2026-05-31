@@ -2565,3 +2565,21 @@
 - Implementation issue possible: medium. The experiment uses linear logit-space axes and top-k/scale grids, so a nonlinear state model could still use the same information. Low for rejecting the generated files because selector and movement-null stress agree.
 - Bottleneck implication: future work should learn hidden lifestyle state before action materialization, with E323/E216 used as anti-public regularizers. Do not treat "opposite of a bad file" as a breakthrough route.
 - Do not repeat: submitting away-from-E323/E216 or bad-axis-orthogonalized variants without a new independent selector-promotion signal.
+
+## FH285. Residual lifestyle clusters are submission-grade as global target priors
+
+- Failed hypothesis: once target-residual lifestyle clusters survive label/null stress, applying their cluster-level target priors broadly to E247 should produce a useful candidate.
+- Observed result: E337 found real cluster-target signals (`Q3/dateblock/k6`, `Q2/dateblock/k8`, `S3/subject/k4`) but `64` materialized candidates produced `0` selector-promoted files and `0` movement-null-safe promoted files.
+- Why discard: the representation is episode-like, while the materializer was all-row target movement. The action smears local structure into broad Q2/Q3/S3 shifts.
+- Implementation issue possible: medium. The cluster representation is simple k-means over residual latents, but the rejection is aimed at the global materializer, not the representation.
+- Bottleneck implication: hidden lifestyle state is not the hard part anymore; translating it at the correct row/episode resolution is the hard part.
+- Do not repeat: public-testing global residual-cluster target shifts or increasing their scale without local episode placement.
+
+## FH286. Cluster-local episode action is already submission-grade
+
+- Failed hypothesis: restricting E337 to cluster-local episode rows is enough to cross the public-free selector while preserving movement-null rarity.
+- Observed result: E338 generated `75` local candidates and found `4` information sensors, but `0` selector-promoted files and `0` movement-null-safe promoted files. The best sensor has mean `-0.000034`, p90 `-0.00000036`, beats `0.902778`, and movement-null dominance `1.000000/1.000000`, but remains `too_small_to_submit`.
+- Why discard: local placement fixes the smear but leaves the action below resolution. This is not a public-slot candidate until it can be amplified without becoming null-common.
+- Implementation issue possible: medium. Episode action uses simple residual means and fixed caps; a learned monotone amplifier or gated blend may still work.
+- Bottleneck implication: the next bottleneck is visibility under null-safe local placement, especially for Q3 dateblock episodes.
+- Do not repeat: submitting E338 safe-invisible files as-is. Use them as gates/sensors for a stronger Q3 action.

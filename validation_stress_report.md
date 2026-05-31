@@ -4391,3 +4391,72 @@ Stress conclusion:
 - Public-bad anatomy is informative and target-specific.
 - Away-from-bad output moves are not enough; they are either invisible or selector-adverse.
 - The current action layer cannot obtain a breakthrough by simple vector reversal, bad-axis projection removal, or old-frontier extrapolation.
+
+## E337 Residual Lifestyle-Cluster State
+
+Question: can residual lifestyle clusters survive label/null stress before any probability movement?
+
+Method: `analysis_outputs/e337_residual_lifestyle_cluster_state.py`.
+
+Stress used:
+
+- masked-context JEPA diagnostic by subject/dateblock split;
+- k-means cluster entropy and train/test support;
+- label CV with cluster augmentation;
+- row/subject/dateblock shuffled-cluster nulls;
+- E272 public-free selector;
+- E323/E216 public-bad anatomy;
+- movement-null shuffles.
+
+Result:
+
+- Dateblock context has positive latent predictability:
+  - `family/dateblock` R2 `0.169277`;
+  - `jepa_resid/dateblock` R2 `0.107508`.
+- Three label/null gates survive:
+  - `k=6/Q3/dateblock`: delta `-0.003932`, dominance `0.833333`;
+  - `k=8/Q2/dateblock`: delta `-0.003512`, dominance `0.916667`;
+  - `k=4/S3/subject`: delta `-0.003509`, dominance `0.875000`.
+- Generated candidates: `64`.
+- Selector-promoted candidates: `0`.
+- Movement-null-safe promoted candidates: `0`.
+
+Stress conclusion:
+
+- E337 passes representation stress and fails action stress.
+- The hidden state is most likely dateblock/episode-like, not a broad subject prior.
+- Global cluster-prior materialization is rejected; future action must be row/cluster-local.
+
+## E338 Cluster-Local Episode Action
+
+Question: does localizing E337 to episode rows solve the action-health problem?
+
+Method: `analysis_outputs/e338_cluster_local_episode_action.py`.
+
+Stress used:
+
+- episode gate from cluster residual strength, sign agreement, and test support;
+- E272 public-free selector;
+- E323/E216 public-bad anatomy;
+- movement-null shuffles.
+
+Result:
+
+- episode-gated rows: `10`;
+- generated candidates: `75`;
+- selector-promoted candidates: `0`;
+- information-sensor candidates: `4`;
+- movement-null-safe promoted candidates: `0`.
+- best sensor:
+  - `submission_e338_local_veto_centered_top2_s0_20_28122ea1.csv`;
+  - selector mean `-0.000034`;
+  - p90 `-0.00000036`;
+  - beats `0.902778`;
+  - movement-null mean/p90 dominance `1.000000/1.000000`;
+  - decision `too_small_to_submit`.
+
+Stress conclusion:
+
+- Local episode placement is healthier than E337 global action.
+- It is still below public-slot resolution.
+- The next stress should test constrained amplification or use the Q3 episode state as a gate for an independently stronger Q3 direction.

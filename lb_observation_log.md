@@ -1284,3 +1284,52 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - expected public reaction if submitted anyway:
   - low-information for tiny good-mixmin continuations;
   - likely noisy or worse for away-from-bad vectors because no file is selector-promoted.
+
+## Public-Free Observation: E337 Residual Lifestyle-Cluster State
+
+- submission files: generated locally, but none promoted.
+- public LB: not submitted.
+- reason not submitted: cluster-level residual states are label-useful but their global E247 materialization fails selector visibility.
+- local observation:
+  - dateblock latent prediction:
+    - `family/dateblock` R2 `0.169277`;
+    - `jepa_resid/dateblock` R2 `0.107508`;
+  - label/null gated cluster-target rows: `3`;
+  - generated candidates: `64`;
+  - selector-promoted candidates: `0`;
+  - movement-null-safe promoted candidates: `0`.
+- strongest local states:
+  - `Q3/dateblock/k6`, delta `-0.003932`, dominance `0.833333`;
+  - `Q2/dateblock/k8`, delta `-0.003512`, dominance `0.916667`;
+  - `S3/subject/k4`, delta `-0.003509`, dominance `0.875000`.
+- interpretation:
+  - public-free evidence supports hidden residual lifestyle clusters;
+  - global cluster-prior movement is too diffuse;
+  - E323/E216 are better used as veto axes than action generators.
+- expected public reaction if submitted anyway:
+  - likely low-information or worse than E247 because selector-promoted count is zero and the movement is broad target-level calibration.
+
+## Public-Free Observation: E338 Cluster-Local Episode Action
+
+- submission files: generated locally, but none promoted for public testing.
+- public LB: not submitted.
+- reason not submitted: the best local episode action is clean but below selector resolution.
+- local observation:
+  - episode-gated rows: `10`;
+  - generated candidates: `75`;
+  - information-sensor candidates: `4`;
+  - selector-promoted candidates: `0`;
+  - movement-null-safe promoted candidates: `0`.
+- closest local candidate:
+  - `submission_e338_local_veto_centered_top2_s0_20_28122ea1.csv`;
+  - mean `-0.000034`;
+  - p90 `-0.00000036`;
+  - beats `0.902778`;
+  - movement-null mean/p90 dominance `1.000000/1.000000`;
+  - decision `too_small_to_submit`.
+- interpretation:
+  - E337's hidden state becomes healthier when used locally;
+  - the current action is a useful Q3 episode sensor, not a submission tensor;
+  - the next public-free experiment should test constrained amplification or an E338-gated Q3 blend.
+- expected public reaction if submitted anyway:
+  - likely tiny/noisy public effect because the candidate is explicitly below selector resolution.
