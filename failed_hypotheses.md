@@ -2322,3 +2322,21 @@
 - Implementation issue possible: medium. Mean subtraction is a crude residualizer; learned nonlinear outcome-health prediction could still be useful. Low for rejecting these exact residualized files.
 - Bottleneck implication: the next target must be candidate outcome health, not an algebraic cleanup of pair deltas.
 - Do not repeat: submitting `submission_e311_pairmicro_resid_*` files or tuning null-subtraction lambda/top-k grids without a new validation target.
+
+## FH258. Human/social semantic labels are enough to decide action health
+
+- Failed hypothesis: if the social theory is right, semantic descriptors such as story, episode, target pair, or family should be strong enough to tell which candidate actions are public-free healthy.
+- Observed result: E312's `semantic_only` block predicts null-common behavior with AUC `0.713484`, clearly below `geometry_only` AUC `0.984890` and `full_safe` AUC `0.982065`.
+- Why discard: semantic labels carry signal, but the dominant failure mode is action-layer geometry. The same story can become safe-but-invisible or visible-null-common depending on materialization.
+- Implementation issue possible: medium. Semantic features are coarse and do not include full raw lifelog embeddings. But the gap is large enough to reject story labels alone as a submission governor.
+- Bottleneck implication: creative human/social hypotheses are still useful for finding latent states, but every story needs an action-health translator.
+- Do not repeat: recommending a public submission because a story is plausible or pair-logloss-positive without matched-null action checks.
+
+## FH259. E312 action-health model can certify a ready submission by itself
+
+- Failed hypothesis: once candidate health is modeled directly, high predicted hope/readiness should be enough to select a public submission without spending more local null budget.
+- Observed result: the archive has only `2` visible/null-rare rows and `1` strict-health row. `full_safe` readiness-distance OOF Spearman is only `0.102712`, and the E310/E311 top predicted-hope rows remain actual too-small or null-common candidates.
+- Why discard: E312 is good at identifying null-common geometry but poor at ranking true submission readiness. The positive class is too sparse and partly superseded by later large-null stress.
+- Implementation issue possible: medium. A richer synthetic-control dataset could create more positive examples. Low for using the current E312 model as a certifier.
+- Bottleneck implication: action-health modeling is a blocker/gate now, not a generator.
+- Do not repeat: submitting a file only because E312 ranks it high. It must still pass direct row/subject/dateblock/wrong-control governance.

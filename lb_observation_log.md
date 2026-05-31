@@ -787,3 +787,21 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - visible microstacks are null-common, with best microstack null strict rate `0.611111`.
 - interpretation: public LB should not be used on E311. The pair-action safety cliff survives stacking and mean-null residualization.
 - next experiment: stop direct pair-delta materialization unless a learned action-health target or a new hidden-state objective changes the visible/null-rare tradeoff.
+
+## Public-Free Observation: E312
+
+- submission files: none.
+- public LB: not submitted.
+- reason not submitted: E312 is a local checker/governor model, not a probability tensor.
+- local observation:
+  - governed rows: `1383`;
+  - experiments: `20`;
+  - selector-visible rows: `418`;
+  - null-rare rows: `930`;
+  - visible/null-rare rows: `2`;
+  - strict-health rows: `1`;
+  - `geometry_only` null-common OOF AUC: `0.984890`;
+  - `semantic_only` null-common OOF AUC: `0.713484`;
+  - `full_safe` readiness-distance OOF Spearman: `0.102712`.
+- interpretation: public LB should not be used to test E310/E311 descendants. The archive says their failure is predictable action geometry: many candidates are visible or safe, but almost none are both.
+- next experiment: generate a new action class or train a richer row/block action-health objective. The governor may veto submissions, but it cannot certify a ready file by itself.

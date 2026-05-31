@@ -4,12 +4,12 @@ This repository snapshot is rooted at the former local `cl2/` workspace.
 
 Current public frontier:
 
-- `analysis_outputs/submission_e95_hardtail_541e3973.csv`
-- Public LB: `0.5762913298`
-- Previous frontier: `analysis_outputs/submission_mixmin_0c916bb4.csv`
-- Improvement over previous frontier: `0.0000153107`
-- Latest resolved sensor: `analysis_outputs/submission_e176_abl_q2_to0p75_91e49725.csv` public LB `0.576311831`
-- Latest diagnostic: E206 applies the E205 decoder and classifies E176 as `branch_loss`. Same-family broad partial-reopen expected-score follow-ups are weakened; the coherent existing follow-up is E154 body-exit counter-world, or non-collinear latent search.
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+- Public LB: `0.5761589494`
+- Previous frontier: `analysis_outputs/submission_e95_hardtail_541e3973.csv`
+- Improvement over previous frontier: `0.0001323804`
+- Latest resolved public sensor: `analysis_outputs/submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv` public LB `0.5762805676`, which rejects the amplitude-constrained E247 follow-up while keeping feature-NN1 Q3 smoothing positive versus E95.
+- Latest public-free diagnostic: E312 action-health world model. It uses no public LB and shows that current post-E309/E311 failures are mostly action-geometry/null-common failures, not lack of human/social story hypotheses.
 
 Primary working notes:
 

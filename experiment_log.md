@@ -4788,3 +4788,20 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - residualized-visible has null-safe too-small rows, but visible residuals remain null-common.
 - Interpretation: the visibility/null-rarity cliff is structural for the current pair translator. Stacking small safe actions makes them visible but also makes matched nulls visible. Subtracting average null motion reduces some unsafe geometry, but the remaining visible Q1-S1 residual is still reproducible by controls.
 - Decision: no E311 public submission. The next useful target is not another hand-built pair delta. It should predict action outcome health directly or use pair state only as a censor/energy in a larger locally governed translator.
+
+## E312. Action-Health World Model
+
+- Observe: the user explicitly warned that public LB cannot be used as the checker. E310/E311 also showed the same shape repeatedly: human/social pair stories can create visible local movement, but matched nulls often create similar movement.
+- Wonder: can the governed archive itself predict which candidate actions are null-common or safe before public LB is spent, and is the bottleneck human/social semantics or action geometry?
+- Method: `analysis_outputs/e312_action_health_world_model.py` aggregates `20` governor files from E279-E311 into `1383` governed rows. It builds three feature views: `semantic_only`, `geometry_only`, and `full_safe`, excludes derived outcome labels and experiment-number leakage, and evaluates leave-experiment-out classification/regression for null/common/rare/visibility/readiness outcomes. No public LB and no submission file.
+- Result:
+  - selector-visible rows: `418`;
+  - null-rare rows: `930`;
+  - visible/null-rare rows: `2`;
+  - strict-health rows: `1`;
+  - `geometry_only` null-common OOF AUC: `0.984890`;
+  - `semantic_only` null-common OOF AUC: `0.713484`;
+  - `full_safe` null-common OOF AUC: `0.982065`;
+  - `full_safe` readiness-distance OOF Spearman: `0.102712`.
+- Interpretation: the current failure is not that we lack enough human stories. The stronger signal is that action recipes themselves fall into predictable geometry classes: safe-but-invisible or visible-but-null-common. E312 is therefore a local blocker/gate, not a generator. It can stop bad public tests, but it cannot yet rank a ready submission because visible/null-rare positives are almost absent.
+- Decision: no E312 public submission. The next useful experiment must create a genuinely new action class or train richer row/block action-health from synthetic controls before materializing probabilities.

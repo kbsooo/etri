@@ -1,0 +1,4 @@
+feature_block,numeric_cols,categorical_cols,sample_numeric,sample_categorical
+semantic_only,4,15,"mean_app_story, story_episode_mean_pred, story_episode_p90_pred, story_episode_strict_prob","target_norm, family, target_kind, rule_family, target_task, target, episode, source_target"
+geometry_only,122,8,"old_strict_promote, actual_mean, actual_p10, actual_p90, actual_beats_current_rate, incremental_bad_axis_vs_current, train_gate_splits, train_actual_delta_mean","split, policy, action, view_id, delta_mode, rule, recipe, rules"
+full_safe,126,50,"old_strict_promote, actual_mean, actual_p10, actual_p90, actual_beats_current_rate, incremental_bad_axis_vs_current, train_gate_splits, train_actual_delta_mean","train_policy_id, train_support_gate, experiment, target_norm, family, view, model, split"

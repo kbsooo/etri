@@ -2781,3 +2781,30 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - future pair features must train or validate against `visible_null_rare`, not only pair-logloss or old strict p90.
 - Failure condition:
   - if a candidate becomes visible only by increasing null strict rate, classify it as an action-layer cliff, not a hidden-state breakthrough.
+
+## E312 Action-Health Governor Features
+
+- Target hypothesis tested:
+  - candidate action outcome itself can be treated as the hidden JEPA target, allowing local checks to replace public LB as the first-line evaluator.
+- Feature/representation source:
+  - `20` previous governor files from E279-E311;
+  - semantic labels: family, target, pair, episode, story;
+  - action geometry: recipe/action/split/movement statistics/current-anchor deltas;
+  - derived labels: selector visibility, null rarity/commonness, action cliff, safe-invisible, strict health.
+- Validation result:
+  - governed rows `1383`;
+  - visible/null-rare rows `2`;
+  - strict-health rows `1`;
+  - `geometry_only` null-common AUC `0.984890`;
+  - `semantic_only` null-common AUC `0.713484`;
+  - `full_safe` readiness-distance Spearman `0.102712`.
+- Updated registry status:
+  - approved as a veto/governor feature family;
+  - not approved as a direct submission selector or generator;
+  - action geometry is now a mandatory feature block for future public-free candidate audits.
+- Adopt rule for future features:
+  - public submission requires direct matched-null passage, not only high predicted action-health;
+  - E312 predictions can block candidates predicted null-common;
+  - semantic story improvements must still prove that their translated action has different geometry from wrong-row/wrong-pair controls.
+- Failure condition:
+  - if a feature only raises semantic plausibility while leaving action geometry in the null-common region, reject it before public LB.

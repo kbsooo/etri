@@ -3542,6 +3542,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E311 files.
 - 제출 전략: none. Treat E310/E311 as evidence that pair states need a learned outcome-health translator or should remain diagnostic.
 
+### H312: candidate action-health is mostly encoded in action geometry, not story semantics
+
+- 상태: 지지됨 as a public-free blocker; 반증됨 as a submission generator.
+- 왜 그럴듯한가: E279-E311 repeatedly split into safe-but-invisible and visible-but-null-common candidates. If this is a structural action-layer bottleneck, past governor outcomes should be predictable before public LB.
+- 맞다면: leave-experiment-out models should predict null-common and action-cliff labels from non-leaking action metadata. Geometry features should be much stronger than story-only labels. However, if positive visible/null-rare rows are too sparse, readiness ranking should remain weak.
+- 틀리다면: null-common prediction should be near chance under experiment leave-out, or semantic story labels should dominate geometry, suggesting the missing piece is more creative human theory rather than the materializer.
+- 최소 실험: `analysis_outputs/e312_action_health_world_model.py`.
+- 관측: governed rows `1383`, experiments `20`, visible/null-rare `2`, strict-health `1`. `geometry_only` null-common AUC `0.984890`, `semantic_only` AUC `0.713484`, `full_safe` AUC `0.982065`. `full_safe` readiness-distance Spearman is only `0.102712`.
+- 성공/폐기 기준: keep E312 as a veto if geometry can identify null-common behavior across held-out experiment families. Reject it as a generator unless it can rank visible/null-rare readiness with enough positives.
+- public LB 관측 반응: no public LB should be spent on candidates blocked by E312 geometry/null checks. A future public-positive file that E312 predicts null-common would mean the governor is too conservative or missing a new action class.
+- 제출 전략: none from E312 alone. Use it to block public tests; create new action classes or richer row/block synthetic controls before selecting a submission.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.

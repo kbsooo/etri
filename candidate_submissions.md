@@ -22,9 +22,13 @@ submission_survival_score =
 
 Current public frontier: `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` with public LB `0.5761589494`.
 
-Current best next submission candidate depends on the public question:
+Current next submission candidate: **none selected after E312**.
 
-- score plus information after E247: `analysis_outputs/submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv`.
+Public LB budget is now treated as scarce. A file is not submission-worthy unless it passes public-free governance: selector visibility, matched-null rarity, mode-wise dominance, wrong-direction or wrong-pair controls where applicable, and leave-experiment-out action-health sanity. E312 specifically blocks E310/E311 descendants because their apparent edges are predictable null-common action geometry.
+
+Resolved or historical sensors after E247:
+
+- E256 amplitude-constrained E247 follow-up: public `0.5762805676`, worse than E247 but still slightly better than E95. Broad feature-NN1 Q3 smoothing remains live; high-amplitude refinement is rejected.
 - clean E224 body attribution: `analysis_outputs/submission_e224_e224_q3s0p625_s4closer_e154_a0p5_10aed60b.csv`.
 - OOF-vs-materialization conflict sensor: `analysis_outputs/submission_e252_e237_e250_union_q3top31_67707aef.csv`.
 - learned Q3 decisive-cell contrast: `analysis_outputs/submission_e237_cell_decisive_all3_latent_no_targetid_hgb_shallow_subject5_risk_q0p10_drop_q3_top25_426424f2.csv`.

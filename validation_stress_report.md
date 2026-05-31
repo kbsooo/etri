@@ -3578,3 +3578,33 @@ Decision:
 - No E311 file should be submitted.
 - The E310/E311 pair branch is now locally falsified as direct probability movement.
 - The next target should be a learned action-health representation, not scale, stacking, or average-null subtraction.
+
+## E312 Action-Health Leave-Experiment-Out Stress
+
+Question: can local governors replace public LB as the checker for new candidate actions?
+
+Method: `analysis_outputs/e312_action_health_world_model.py`.
+
+- Inputs: `20` governed experiment families from E279-E311.
+- Rows: `1383` candidate/action summaries.
+- Feature views:
+  - `semantic_only`: story, target, episode, family labels and human/social summary columns;
+  - `geometry_only`: action recipe, movement, current-anchor, and materializer geometry;
+  - `full_safe`: all non-outcome, non-leaking safe fields.
+- Split: leave-one-experiment-family-out.
+- Public LB: not used.
+
+Result:
+
+- visible/null-rare rows: `2`.
+- strict-health rows: `1`.
+- `geometry_only` predicts null-common with AUC `0.984890`.
+- `semantic_only` predicts null-common with AUC `0.713484`.
+- `full_safe` predicts null-common with AUC `0.982065`.
+- `full_safe` readiness-distance Spearman is only `0.102712`.
+
+Decision:
+
+- E312 is strong enough as a public-free blocker: if a new action is predicted as null-common by geometry, it should not be submitted.
+- E312 is not yet a submission selector: the archive has too few visible/null-rare positives and readiness ranking does not transfer well.
+- Promotion rule update: a future file must pass matched-null governance directly; action-health predictions can veto but cannot certify by themselves.
