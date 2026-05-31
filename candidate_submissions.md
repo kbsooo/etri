@@ -3154,3 +3154,38 @@ Meaning:
 Current best public file remains:
 
 - `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` public LB `0.5761589494`.
+
+## Update After E312/E313 Public-Free Checkers
+
+Current submission policy remains: **no new public submission.**
+
+Why:
+
+- E312 showed that action geometry predicts null-common behavior with leave-experiment-out AUC `0.984890`.
+- E313 showed that raw human/lifestyle signatures are real, especially for readiness distance: human-readiness Spearman `0.700161`.
+- But neither E312 nor E313 certifies a file. E312 is a blocker, and E313 mostly finds safe-but-too-small seeds.
+
+Promotion rule now:
+
+- public LB is not the checker;
+- old strict promotion is only a visibility prefilter;
+- a file needs direct row/subject/dateblock plus relevant target/sign null passage before submission;
+- human/social plausibility can guide candidate construction, but cannot override a null-common governor result.
+
+## Update After E314 Human-Readiness Lift Materializer
+
+Current submission policy remains: **no new public submission.**
+
+Why:
+
+- E314 generated `360` human-readiness lift candidates from `180` safe seeds.
+- `33` passed old strict, so visibility can be forced.
+- `40` were null-evaluated and `0` were public-free ready.
+- Best actual p90 was `-0.000087616`, but visible rows were null-common and null-rare rows were too small.
+- The first E314 run only exercised individual scalar lifts; consensus/orthogonal stacks still need a separately quota-controlled run.
+
+Meaning:
+
+- Do not submit `analysis_outputs/submission_e314_humanready_single_*.csv`.
+- The current best public file remains `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` at public LB `0.5761589494`.
+- The next submission-worthy path is an offline-certified E314b-style non-single materializer or a new target-level action layer. Until it passes null governance locally, no public slot should be spent.

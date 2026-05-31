@@ -2836,3 +2836,31 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - future materializers should treat human-readiness distance as a regression/energy target rather than a binary null-common label.
 - Failure condition:
   - if a candidate is human-ready but remains below selector resolution, do not submit it; use it as a seed for a new action class.
+
+## E314 Human-Readiness Lift Features
+
+- Target hypothesis tested:
+  - E313 human-ready, safe-but-too-small actions can be scaled or sparsified into public-free visible candidates.
+- Feature/representation source:
+  - E313 human-readiness distance and predictions;
+  - previous candidate logit deltas versus E247;
+  - seed action shape: touched rows, touched cells, target shares, delta magnitude;
+  - matched null modes: row, subject, dateblock, target permutation, Q/S swap, sign flip.
+- Validation result:
+  - safe seeds loaded `180`;
+  - generated candidates `360`;
+  - old strict candidates `33`;
+  - null-evaluated candidates `40`;
+  - public-free ready `0`;
+  - best actual p90 `-0.000087616`;
+  - old-strict lifts become null-common, while null-rare lifts are too small.
+- Updated registry status:
+  - individual human-ready scalar lift is not approved as a submission feature;
+  - human-readiness remains approved as an energy/seed-ranking feature;
+  - consensus or orthogonal human-ready stacks remain untested in E314 because the single-lift family exhausted the candidate budget.
+- Adopt rule for future features:
+  - public LB is not a checker; a file needs matched-null passage before submission;
+  - do not spend more amplitude on the same seed if visibility comes with high null strict rate;
+  - reserve generation quota for non-single recipes when testing whether multiple weak human-ready signals compose safely.
+- Failure condition:
+  - if a feature only converts safe seeds into visible null-common moves, classify it as action geometry overfit rather than hidden human-state recovery.

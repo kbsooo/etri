@@ -2358,3 +2358,21 @@
 - Implementation issue possible: medium. The existing archive may simply lack the right action class. This does not reject human-readiness energy as a target for generating new actions.
 - Bottleneck implication: the next step is a materializer problem: amplify or reshape human-aligned safe actions without entering the null-common geometry region.
 - Do not repeat: submitting top E313 human-readiness rows directly.
+
+## FH262. Individual human-ready safe seeds can be made submission-ready by scalar lift
+
+- Failed hypothesis: E313 top safe-but-too-small seeds are close enough that amplifying or sparsifying one seed at a time should cross selector visibility while keeping matched-null rarity.
+- Observed result: E314 generated `360` individual human-ready lift candidates. `33` passed the old strict selector and `40` were null-evaluated, but public-free ready remained `0`. The best actual p90 was `-0.000087616`. Null-rare examples exist only below submission resolution; old-strict examples have null strict rates starting at `0.346154` and weak mean dominance.
+- Why discard: the lift changes amplitude, not the hidden action geometry. Once the candidate is visible, matched row/subject/dateblock/target/sign controls can imitate it.
+- Implementation issue possible: medium. E314 did not fairly test consensus or negative-stack recipes because single-lift candidates saturated the generation budget. Low for rejecting the generated `submission_e314_humanready_single_*` files.
+- Bottleneck implication: human-readiness energy is a seed finder, not a materializer. The next action must alter target/row geometry, not only scale.
+- Do not repeat: submitting individual E314 single-lift files or expanding their scalar amplitude grid without a different null-resistant action design.
+
+## FH263. Old-strict human-ready lifts are safe because their source seeds were null-rare
+
+- Failed hypothesis: if a lifted candidate inherits from a null-rare E313/E286/E310 seed, old strict promotion should be meaningful and not mostly matched-null geometry.
+- Observed result: E314's old-strict lifted rows are still null-common. The top visible candidate has actual p90 `-0.000054758` but null strict rate `0.346154`, and stronger visible variants reach null strict rates around `0.69` to `0.81`. Conversely, rows with null strict rate `0.000000` are classified as too small.
+- Why discard: null-rarity does not compose through amplitude. Safe seed identity is lost when the action enters selector-visible scale.
+- Implementation issue possible: low for this scalar-lift family because the matched nulls directly use the same delta shape under alternative placements/signs. Medium for a future composition method that changes geometry.
+- Bottleneck implication: public-free checking must remain mandatory even for semantically plausible, previously safe seeds.
+- Do not repeat: using old strict promotion or source-seed null rarity as a substitute for direct matched-null governance.

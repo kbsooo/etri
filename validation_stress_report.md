@@ -3640,3 +3640,32 @@ Decision:
 - Human diary row placement is a real diagnostic, especially for readiness distance.
 - It does not improve the global null-common blocker over action geometry and therefore cannot certify a submission.
 - Promotion rule update: human-readiness energy can rank or guide new materializers, but every resulting file still needs direct matched-null passage.
+
+## E314 Human-Readiness Lift Materializer Stress
+
+Question: can E313 human-ready safe-but-too-small seeds be made visible without becoming null-common?
+
+Method: `analysis_outputs/e314_human_ready_lift_materializer.py`.
+
+- Inputs: E313 readiness readout, E247 current frontier, candidate submission files from previous governed experiments.
+- Candidate actions: individual human-ready seed lifts with scale and sparsity variants.
+- Null stress: row, subject, dateblock, target permutation, Q/S swap, and sign flip.
+- Public LB: not used.
+
+Result:
+
+- safe human-ready seeds: `180`.
+- generated candidates: `360`.
+- old strict candidates: `33`.
+- info candidates: `134`.
+- null-evaluated candidates: `40`.
+- public-free ready candidates: `0`.
+- best actual p90: `-0.000087616`.
+- visible candidates are null-common; null-rare candidates are below submission resolution.
+- The first E314 run did not test consensus/negative-stack candidates because the single-lift family saturated the generation budget.
+
+Decision:
+
+- No E314 file should be submitted.
+- This is the local check the user asked for: public LB is not the checker; matched null governance blocks these files.
+- The remaining live path is not more scalar amplitude. It is either an E314b materializer with quota-reserved consensus/orthogonal stacks, or a new target-level action layer that changes the geometry before visibility.

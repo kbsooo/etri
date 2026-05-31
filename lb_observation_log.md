@@ -821,3 +821,21 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - `geometry_only` readiness-distance Spearman: `0.031522`.
 - interpretation: human/lifestyle row placement is real but not sufficient for public submission selection. It explains readiness distance and some selector-visible rare cases, while geometry remains the stronger global null-common checker.
 - next experiment: use human-readiness energy to create a new materializer that starts from safe-but-too-small human-aligned rows and tries to become visible without entering the geometry null-common region.
+
+## Public-Free Observation: E314
+
+- submission files: `analysis_outputs/submission_e314_humanready_*.csv`.
+- public LB: not submitted.
+- reason not submitted: no E314 candidate passed the local row/subject/dateblock/target-permutation/QS-swap/sign governor.
+- local observation:
+  - safe human-ready seeds loaded: `180`;
+  - generated candidates: `360`;
+  - old strict candidates: `33`;
+  - info candidates: `134`;
+  - null-evaluated candidates: `40`;
+  - public-free ready files: `0`;
+  - best actual p90: `-0.000087616`;
+  - best null strict rate: `0.000000`, but only below submission resolution;
+  - old-strict lifted rows become null-common, with the top visible row null strict rate `0.346154`.
+- interpretation: human-readiness energy identifies plausible seeds, but individual scalar lift is not a public-free action layer. It still falls into safe-but-invisible versus visible-but-null-common behavior.
+- next experiment: do not public-test E314 files. Reserve a new local run for non-single consensus/orthogonal-stack materialization, or move to a target-level materializer that changes the action geometry rather than the amplitude.

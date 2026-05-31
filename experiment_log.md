@@ -4823,3 +4823,21 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - within selector-visible rows, `human_signature` null-common AUC is `0.745343` versus geometry-only `0.537255`, but this slice is extremely imbalanced.
 - Interpretation: raw human row placement is real, but it is not the main global null-common blocker. Its strongest role is ranking how close a candidate is to readiness and distinguishing the rare safe cases inside already-visible rows. The top human-ready rows are mostly `safe_but_too_small_or_wrong_sign`, so the missing piece is still a materializer that can make those human-aligned rows visible without crossing into null-common geometry.
 - Decision: no E313 public submission. Next useful branch: use human-readiness energy as a target for a new action class, not as a direct submission selector.
+
+## E314. Human-Readiness Lift Materializer
+
+- Observe: the user explicitly warned that public LB cannot be used as a repeated checker. E313 also found a live human-readiness energy, but its top rows were mostly safe and too small.
+- Wonder: if human-readiness really points to near-ready actions, can individual safe seeds be amplified or sparsified into selector-visible files while staying rare under matched row/subject/dateblock/target/sign controls?
+- Method: `analysis_outputs/e314_human_ready_lift_materializer.py` loads `180` E313-ranked safe human-ready seeds, generates scalar/sparse lifts against current E247, and runs row, subject, dateblock, target-permutation, Q/S-swap, and sign-flip null submissions. No public LB was used.
+- Result:
+  - generated candidates: `360`;
+  - old strict candidates: `33`;
+  - info candidates: `134`;
+  - null-evaluated candidates: `40`;
+  - public-free ready candidates: `0`;
+  - best actual p90: `-0.000087616`;
+  - best null strict rate: `0.000000`, but only on too-small rows;
+  - old-strict examples have null strict rates from `0.346154` upward and weak mean dominance.
+- Important limitation: this first materializer filled its candidate budget with `single_human_ready_lift` rows, so consensus/negative-stack recipes were not actually exercised. E314 is therefore a rejection of individual scalar lifts, not a rejection of all human-ready combination strategies.
+- Interpretation: human-readiness is a useful energy for finding seeds, but scalar individual amplification crosses the same visibility/null-rarity cliff. Once the move is visible, matched nulls can often imitate it; when it is null-rare, it is below submission resolution.
+- Decision: no E314 public submission. The next public-free branch should not spend LB. It should test a different target-level materializer or an E314b consensus/orthogonal-stack design with a fixed quota reserved for non-single recipes.

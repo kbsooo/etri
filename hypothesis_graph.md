@@ -3566,6 +3566,18 @@ target co-occurrence
 - public LB 관측 반응: no public LB should be spent on E313-ranked files directly. A future public-positive action generated from human-readiness seeds would strengthen H313 only if it also passes matched-null geometry controls.
 - 제출 전략: none from E313 alone. Next strategy is a new materializer: start from safe-but-too-small human-ready rows and reshape/amplify them while preserving geometry-plus-shape null rarity.
 
+### H314: human-readiness safe seeds can be made public-free by individual scalar lift
+
+- 상태: 반증됨 for individual-lift materialization; H313 human-readiness energy remains alive.
+- 왜 그럴듯한가: E313 found that human diary signatures strongly rank readiness distance, and top rows are often null-rare but too small. If those rows are genuinely near the frontier, modest lift or sparsity should make them visible without changing their hidden state.
+- 맞다면: lifted human-ready seeds should become old-strict and still beat row/subject/dateblock/target-permutation/QS-swap/sign nulls. Null-rare seed identity should survive amplitude.
+- 틀리다면: lifted candidates should split into too-small null-rare rows and visible null-common rows, repeating the E298/E311 action-layer cliff.
+- 최소 실험: `analysis_outputs/e314_human_ready_lift_materializer.py`.
+- 관측: safe seeds `180`, generated candidates `360`, old strict `33`, null-evaluated `40`, public-free ready `0`, best actual p90 `-0.000087616`. Null strict rate `0.000000` appears only below submission resolution; old-strict rows become null-common with weak mean dominance. The run only tested single-lift recipes because they saturated the candidate budget.
+- 성공/폐기 기준: reject generated E314 single-lift submissions. Do not reject all human-ready combination strategies until a quota-reserved consensus/orthogonal-stack run is tested.
+- public LB 관측 반응: no public LB should be spent on `submission_e314_humanready_single_*`. A future public-positive result from this branch must first pass direct matched-null governance; public LB is not the checker.
+- 제출 전략: none from E314. Next strategy is E314b with reserved non-single recipes, or a target-level materializer that changes geometry rather than amplitude.
+
 ## 우선 실험 5개
 
 1. E05 selector-only falsification: 기존 submissions/anchors만으로 LOO/L2O selector가 `a2c8 < raw05 < bad JEPA` order를 안정적으로 복원하는지 확인.
