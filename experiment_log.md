@@ -5699,3 +5699,27 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - The E351 visibility signal and public-bad tangent are not separable by simple projection cleanup.
   - The next breakthrough requires a new independent support/visibility axis or a richer latent generator, not another public-bad projection.
 - Decision: keep E351 as the practical submission candidate. Do not create an E353 submission.
+
+## E354. E247 Support-Latent Lifestyle Graft
+
+- Observe: E353 showed that simple public-bad tangent cleanup cannot improve E351. The next plausible route was an independent support latent: E286/E285 had found E247/E256 Q3 support-body structure that looked related to human/social lifestyle states.
+- Wonder: can the E286 E247-preserve latent add a real action-safe direction on top of E351, or can E351 be improved by guarding Q3 cells where it interferes with E247's public-positive body?
+- Hypothesis: if the E247 support latent is a missing lifestyle-state component, a tiny graft or Q3 support guard should preserve E351 visibility, reduce public-analog risk, keep Q1 lifestyle specificity, and avoid E247 support interference.
+- Method: `analysis_outputs/e354_e247_support_lifestyle_graft.py`.
+  - Base/current anchor: E247.
+  - Source state: E351 compact hidden lifestyle-state action.
+  - Support target: E247/E256 Q3 body from E285/E286 preserve-avoid latent.
+  - Candidate families: Q3 support guards plus E286 micro-action grafts with optional severe-public-bad cleanup.
+  - Stress: E272 selector, E346 public-analog axes, E347/E349 lifestyle specificity, support-source transfer AUC, and E247 support-interference anatomy.
+- Result:
+  - candidates tested: `132`;
+  - generated candidates: `129`;
+  - E354 local gate passes: `0`;
+  - selected upload-safe file: none;
+  - canonical E351 already has `e247_body_alignment_ratio=1.000000` and `e247_body_q3_opposite_abs=0.000000`;
+  - best grafts can reduce public-analog risk, but they either lose strict p90 visibility, reduce Q1 lifestyle specificity, or rely on weak transfer/collapsed support sources.
+- Interpretation:
+  - E351 is not fighting the E247 Q3 support body. It already moves in the same support direction where that body exists.
+  - The E286 support latent separates E247 cell identity, but the current E247/E256 boundary is not a new action-safe improvement axis on top of E351.
+  - The useful latent is still the compact coupled Q1/Q2/Q3/S1 lifestyle-state plateau; the missing breakthrough is not a direct E247-support graft.
+- Decision: no E354 submission. Keep E351 as the practical candidate. The next latent target should be richer than E247/E256 cell identity, likely predicting lifestyle-state action health or public-transfer stability directly.

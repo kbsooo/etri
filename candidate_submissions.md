@@ -4285,3 +4285,29 @@ Meaning:
 
 - E351 is not improved by simple public-bad-axis projection cleanup.
 - If E351 fails publicly, the next route is a new support/visibility latent, not a cleaned E351 sibling.
+
+## Update After E354 E247 Support-Latent Graft
+
+No new upload-safe file is selected.
+
+E354 tests the route suggested by E353: add a new positive support latent rather than removing public-bad tangent from E351.
+
+Evidence:
+
+- candidates tested: `132`;
+- generated candidates: `129`;
+- E354 local gate passes: `0`;
+- canonical E351 already aligns perfectly with the E247 Q3 support body;
+- Q3 guards have no opposite-sign interference to fix;
+- E286 grafts can lower public-analog risk but fail strict p90, Q1 lifestyle specificity, or support-source transfer health.
+
+Submission priority is unchanged:
+
+1. `analysis_outputs/submission_e351_robustplateau_selected_compact_t75_s1_005_s3a0_25_58e03127_uploadsafe.csv`
+2. `analysis_outputs/submission_e350_compactplateau_selected_compact_t45_s1_005_s3a1_00_ef54727b_uploadsafe.csv`
+3. `analysis_outputs/submission_e349_lifestate_ablate_selected_cell_abs_top65_q1q2q3s1_93c55c92_uploadsafe.csv`
+
+Meaning:
+
+- The current E247/E256 support boundary is not the missing independent lifestyle-state axis.
+- A bigger jump likely needs a latent trained to predict action health/public-transfer stability directly, not a graft from E286 support identity.

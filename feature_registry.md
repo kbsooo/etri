@@ -3713,3 +3713,20 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - strong cleanup lowers risk but kills p90 visibility.
 - Registry status: rejected as a submission-generating feature family. Keep as a negative diagnostic.
 - Failure condition: if future new public-bad axes appear, this may be rerun once; do not keep sweeping alphas on the current axis set.
+
+### E354 E247 support-latent graft gate
+
+- Target hidden structure: whether E247's public-positive Q3 support body represents an independent hidden lifestyle/support state missing from E351.
+- Why needed: E353 rejected simple public-bad cleanup, so the next breakthrough route had to be a new positive support axis rather than another projection. E286/E285 had a plausible E247/E256 preserve-avoid support latent.
+- Feature/action form:
+  - support anatomy metrics over E247 body/common/only Q3 cells;
+  - `support_interference_l1`, `support_alignment_score`, and E247-body opposite-mass diagnostics;
+  - support-source transfer AUC filter for E286 graft sources;
+  - Q3 support guard and micro-graft actions on top of E351.
+- Current evidence:
+  - `132` candidates;
+  - `0` E354 local gate passes;
+  - E351 already has `e247_body_alignment_ratio=1.000000` and no opposite support movement;
+  - grafts trade public-analog risk against strict p90 and Q1 lifestyle specificity.
+- Registry status: rejected as a submission-generating feature family for the current E247/E256 boundary. Keep the support anatomy metrics as diagnostics.
+- Failure condition: revive this only if a richer support target is learned, such as action-health/public-transfer labels or a non-E247/E256 social-state boundary.

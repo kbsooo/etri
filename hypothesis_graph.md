@@ -4080,3 +4080,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept if at least one generated candidate improves E351 public-analog risk by `1e-5`, preserves strict p90 `< -0.00005`, bad-axis `<=0.015`, Q1 specificity within `0.03`, and direct public-bad positive cosine `0`. This is not observed.
 - public LB 관측 반응: E353 creates no file. If E351 fails publicly, the fix is unlikely to be a simple known-bad-axis projection; it should be a new support axis or public-subset latent.
 - 제출 전략: keep E351. Do not submit E353 neutralized variants.
+
+### H354: E286 E247 support latent adds an independent action-safe component to E351
+
+- 상태: 반증됨 for current E247/E256 support-boundary graft.
+- 왜 그럴듯한가: E247 is the known public-best anchor, E256 worsened publicly despite nearby structure, and E286 could separate E247 support/body cell identity. If this boundary encoded a missing human/social lifestyle support state, E351 might improve by adding or protecting that direction.
+- 맞다면: E286 support grafts or Q3 guards should keep E351 p90 visibility, reduce public-analog risk, preserve Q1 lifestyle specificity, pass support-source transfer, and lower E247 support interference.
+- 틀리다면: E351 should already align with the E247 support body, or grafts should trade risk against p90/Q1 specificity without passing the local gate.
+- 최소 실험: `analysis_outputs/e354_e247_support_lifestyle_graft.py`.
+- 관측: `132` candidates, `129` generated, `0` E354 local gate passes. Canonical E351/E350/E349 all have E247 body Q3 alignment ratio `1.000000`, opposite support movement `0.000000`, and support interference `0.000000`. The strongest grafts reduce public-analog risk only by sacrificing strict p90 or Q1 specificity, and early human-social support sources fail transfer-health checks.
+- 성공/폐기 기준: accept only if at least one graft/guard improves support/risk while preserving strict p90 and Q1 specificity with healthy source transfer. This is not observed.
+- public LB 관측 반응: no E354 file should be submitted. If E351 later fails, do not assume the missing component is the current E247/E256 support boundary; learn a richer support/action-health latent instead.
+- 제출 전략: none from E354. Keep E351 priority unchanged.

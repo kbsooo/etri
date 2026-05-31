@@ -2700,3 +2700,12 @@
 - Implementation issue possible: medium. The known public-bad axis set is incomplete and the cleanup is linear in logit space. Low for rejecting the immediate E353 submission route because the tradeoff is monotone across several axis sets and alphas.
 - Bottleneck implication: E351 is near the known-bad-tangent-neutral center. A breakthrough needs a new independent support/visibility latent or a different public-subset model.
 - Do not repeat: more alpha sweeps over the same E323/E216/E256/E267/broad-failure axes unless new public observations add a genuinely new direction.
+
+## FH300. The current E247/E256 support latent can be grafted onto E351
+
+- Failed hypothesis: E286's E247-preserve support latent is the missing independent support axis, so a small Q3 guard or graft should improve E351 while preserving local visibility and lifestyle specificity.
+- Observed result: E354 tested `132` candidates and selected none. E351/E350/E349 already have E247-body Q3 alignment ratio `1.000000`, opposite support movement `0.000000`, and support interference `0.000000`. The best graft families reduce public-analog risk only by weakening strict p90 visibility, Q1 lifestyle specificity, or support-source transfer health.
+- Why discard: there is no Q3 support conflict to guard, and the current E247/E256 support-boundary representation is not action-healthy on top of E351.
+- Implementation issue possible: medium. E286 support sources are derived from a narrow E247/E256 cell boundary; a richer support target could still work. Low for rejecting current generated files because strict gate pass count is `0` and the anatomy shows E351 is already aligned with the support body.
+- Bottleneck implication: the missing breakthrough is not "add E247 support back." It is learning a latent that predicts submission action health or public-transfer stability, then using it to choose movement inside or near the E351 compact-state basin.
+- Do not repeat: E247/E256 support graft sweeps or Q3 support guards on E351 unless the support target itself changes.

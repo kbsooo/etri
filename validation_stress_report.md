@@ -4974,3 +4974,37 @@ Stress conclusion:
 - Known public-bad tangent removal is not the missing easy fix.
 - E351 should not be replaced by an E353 projection-cleaned file.
 - If E351 fails publicly, the next repair should search for a new independent lifestyle/support state instead of projecting against the same public-bad axes harder.
+
+## E354 E247 Support-Latent Lifestyle Graft
+
+Question: can an E247/E256 support latent add a new action-safe lifestyle component to E351?
+
+Stress setup:
+
+- script: `analysis_outputs/e354_e247_support_lifestyle_graft.py`;
+- base/current anchor: E247;
+- source action: E351 minus E247 in logit space;
+- support latent sources: E285/E286 E247/E256 Q3 support-body and preserve-avoid candidates;
+- candidate families: Q3 support guards and E286 support grafts, with raw and severe-clean variants;
+- gates: E272 strict selector, E346 public-analog risk, direct public-bad positive-cosine veto, Q1 lifestyle specificity, support-source transfer AUC, and E247 support-interference anatomy.
+
+Stress result:
+
+- candidates tested: `132`;
+- generated candidates: `129`;
+- E354 local gate passes: `0`;
+- selected upload-safe file: none;
+- E351 reference p90: `-0.000050191`;
+- E351 public-analog risk: `0.044765398`;
+- E351 support interference: `0.000000`;
+- canonical E349/E350/E351 all have E247 support-body Q3 opposite movement `0.000000`;
+- best family p90/risk tradeoff:
+  - `e286_support_graft/graft_raw`: best p90 delta `-0.000002938`, best risk delta `-0.009433933`, but no full gate pass;
+  - `e286_support_graft/graft_severe_clean`: best p90 delta `-0.000000838`, best risk delta `-0.024882001`, but Q1 specificity/support health breaks;
+  - `e351_q3_guard`: best p90 delta `-0.000003522`, but public-analog risk increases.
+
+Stress conclusion:
+
+- E351 already preserves the E247 Q3 support body, so a guard has little real work to do.
+- The current E286 support latent is useful for explaining E247/E256 cell identity but not for creating a new submission-safe movement.
+- No E354 candidate should be public-tested under the current gate.
