@@ -4991,3 +4991,38 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - preselector OOF Spearman: worst-placement dominance `0.492946`, null strict rate `0.564957`, adversarial health `0.423243`.
 - Interpretation: the E321 preselector is informative, especially for dateblock/subject-style health, but it did not reveal a skipped submission candidate. The closest files still fail because matched nulls promote too often; the best null strict rate is above the `0.10` promotion threshold.
 - Decision: no E322 public submission. This weakens "we missed a good E319 file" and strengthens "action-health must be part of generation, not post-hoc selection."
+
+## E323. Null-Common Residual Generator
+
+- Observe: E322 near misses were visible and often dominated p90/mean nulls, but matched nulls still promoted too often.
+- Wonder: is there a real hidden placement signal inside those near misses after removing the movement that row/subject/dateblock nulls can imitate?
+- Hypothesis: if the hidden law is partly present, subtracting or censoring placement-null-common logit movement should lower null strict rate while keeping enough selector-visible edge.
+- Method: `analysis_outputs/e323_null_common_residual_generator.py` took the top E322 near misses, generated placement-null stacks, built residual/orthogonal/unique-cell variants, scored `420` candidates, selected `44` old-strict candidates, and ran fresh null governance. Public LB was not used.
+- Result:
+  - generated candidates: `420`;
+  - old strict after prefilter: `291`;
+  - selected for fresh null: `44`;
+  - fresh public-free ready: `3`;
+  - best fresh p90: `-0.001121598`;
+  - best fresh null strict: `0.000000`;
+  - ready files:
+    - `submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_5508f966.csv`;
+    - `submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_de5d9c5d.csv`;
+    - `submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____orth_nullmean__kall__51ed84b0.csv`.
+- Interpretation: this is the first constructive evidence that the E322 near miss had recoverable hidden-placement signal. Generic near-miss movement was null-common, but its null-common residual can become visible and null-rare.
+- Decision: do not submit yet from E323 alone. Run high-repetition null stress before using a public slot.
+
+## E324. E323 Ready High-Rep Stress
+
+- Observe: E323 produced `3` public-free ready files, but the first governor used only small null samples.
+- Wonder: are those ready files stable, or did they pass due to low null repetition?
+- Hypothesis: a real null-common residual law should survive many more row/subject/dateblock/target nulls.
+- Method: `analysis_outputs/e324_e323_ready_highrep_stress.py` rechecked the `3` E323 ready files with `774` null rows: `64` reps each for row, subject, dateblock, and target permutation, plus sign/QS controls. Public LB was not used.
+- Result:
+  - high-rep ready: `3/3`;
+  - best high-rep null strict: `0.050388`;
+  - best high-rep worst-mode p90 dominance: `0.859375`;
+  - priority file: `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_5508f966.csv`;
+  - priority high-rep p90 `-0.000053747`, mean `-0.000952`, null strict `0.050388`, p90 dominance `0.926357`, mean dominance `0.914729`, worst-mode dominance `0.859375`.
+- Interpretation: the hidden-placement bottleneck is not solved globally, but one narrow law survived: human-regime-only family-consensus movement contains an S-heavy component that becomes local-null-rare after subtracting placement-null-common movement.
+- Decision: E324 promotes a single risk-adjusted public candidate. The expected edge is frontier-scale, not a 0.54 breakthrough, but it is the highest-information next submission because it tests a new world model rather than another blend tweak.

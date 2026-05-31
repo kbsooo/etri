@@ -986,3 +986,24 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - best worst-mode p90 dominance: `1.000000`.
 - interpretation: the E321 health target is useful as a checker but did not rescue a skipped candidate. The selected files are visible, but matched nulls still imitate them too often.
 - next experiment: build a new generator that uses adversarial health before materialization; do not spend public LB on E319/E322-selected files.
+
+## Public-Free Observation: E323/E324
+
+- submission files:
+  - priority: `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_5508f966.csv`;
+  - alternate high-upside: `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____orth_nullmean__kall__51ed84b0.csv`;
+  - alternate middle: `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_de5d9c5d.csv`.
+- public LB: not submitted.
+- local observation:
+  - E323 generated `420` residual candidates;
+  - E323 fresh ready `3`;
+  - E324 high-rep ready `3/3`;
+  - E324 null rows `774`;
+  - priority high-rep p90 `-0.000053747`;
+  - priority high-rep null strict `0.050388`;
+  - priority worst-mode p90 dominance `0.859375`.
+- interpretation: E323/E324 is the first local evidence that null-common residualization can extract a submission-grade hidden-placement component from human/social route near misses.
+- expected public reaction:
+  - improves versus E247: confirms the null-common residual world and makes residualization the next generator family;
+  - flat/slightly worse: signal exists locally but is below public readability or public subset differs;
+  - clearly worse: local matched nulls are missing a public/private calibration axis, and E323 should become a diagnostic rather than a generator.

@@ -1,0 +1,5 @@
+slice,rows,old_strict,best_p90,best_null_strict,ready,best_pred_null_strict,best_pred_health,best_worst_mode
+generated,420,,,,,,,
+prefilter,420,291.0,-0.001121598077169703,,,0.1624384028765704,0.6890352464351804,
+selected,44,44.0,-0.001121598077169703,,,0.1624384028765704,0.6890352464351804,
+fresh_governor,44,44.0,-0.001121598077169703,0.0,3.0,,,1.0

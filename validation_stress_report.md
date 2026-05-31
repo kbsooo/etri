@@ -3909,3 +3909,44 @@ Decision:
 - E322 passes the "public-free checker is informative" test, but fails the "there is a skipped E319 submission candidate" test.
 - No E322-selected file should be submitted.
 - Promotion rule update: post-hoc preselection is not enough. The action-health target must shape the candidate before materialization, and any resulting file must still pass the same fresh null governor.
+
+## E323/E324 Null-Common Residual Stress
+
+Question: if E322 near misses are visible but null-common, can subtracting row/subject/dateblock-common movement create a visible and null-rare action?
+
+Methods:
+
+- `analysis_outputs/e323_null_common_residual_generator.py`
+- `analysis_outputs/e324_e323_ready_highrep_stress.py`
+
+E323 generated residual/censored variants from E322 near misses. E324 re-tested the E323 ready files with high-repetition nulls.
+
+E323 result:
+
+- generated candidates: `420`;
+- old strict after prefilter: `291`;
+- selected for fresh null: `44`;
+- fresh public-free ready: `3`;
+- best fresh p90: `-0.001121598`;
+- best fresh null strict: `0.000000`;
+- best fresh worst-mode p90 dominance: `1.000000`.
+
+E324 high-rep result:
+
+- E323 ready files tested: `3`;
+- null rows: `774`;
+- high-rep ready: `3`;
+- best high-rep null strict: `0.050388`;
+- best high-rep worst-mode p90 dominance: `0.859375`;
+- priority candidate:
+  - `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_5508f966.csv`;
+  - high-rep p90 `-0.000053747`;
+  - high-rep mean `-0.000952`;
+  - null strict `0.050388`;
+  - row/subject/dateblock null strict `0.062500` / `0.031250` / `0.015625`.
+
+Decision:
+
+- E323/E324 passes the current public-free promotion rule.
+- This is not a broad breakthrough to 0.54, but it is the first post-E247 candidate that converts a human/social hidden-placement idea into a high-rep null-surviving submission file.
+- If one public slot is used, submit the E324 priority file as a worldview test: "null-common residualization recovered a real hidden placement component."

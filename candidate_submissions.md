@@ -3350,3 +3350,31 @@ Meaning:
 - The useful object is not a candidate file; it is the local health target.
 - The next submission-worthy path is a new generator that optimizes row/subject/dateblock health before materialization, then passes fresh null governance.
 - Current best public file remains `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` at public LB `0.5761589494`.
+
+## Update After E323/E324 Null-Common Residual Branch
+
+Current next submission candidate: **selected, public-free but not yet publicly tested.**
+
+Priority 1:
+
+- file: `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_5508f966.csv`
+- world hypothesis: E322 near misses were not false; they contained a row/subject/dateblock-null-common component. Subtracting that component reveals a real hidden-placement residual.
+- E323 small-governor: ready.
+- E324 high-rep stress:
+  - null rows `774`;
+  - high-rep p90 `-0.000053747`;
+  - high-rep mean `-0.000952`;
+  - null strict `0.050388`;
+  - p90 dominance `0.926357`;
+  - mean dominance `0.914729`;
+  - worst-mode p90 dominance `0.859375`;
+  - row/subject/dateblock null strict `0.062500` / `0.031250` / `0.015625`.
+- expected public reaction: small frontier-scale improvement if the local null-common residual law overlaps public. This is not a 0.54 breakthrough; it is the first stress-surviving test of a new action-layer world model.
+- failure interpretation: if public worsens, matched-null local governance is missing a public/private subset or calibration axis; do not expand E323 mechanically.
+
+Alternates:
+
+- `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____orth_nullmean__kall__51ed84b0.csv`: higher local p90 edge `-0.000109221`, but null strict `0.093023` and dateblock null strict `0.109375`; use only as a higher-risk contrast.
+- `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_de5d9c5d.csv`: middle p90 `-0.000075609`, null strict `0.081395`; useful if priority 1 improves and a same-family follow-up is needed.
+
+Current best public file remains `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` at public LB `0.5761589494`.

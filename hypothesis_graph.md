@@ -3725,3 +3725,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept only if at least one candidate passes fresh governance. Since ready count is `0`, reject as a rescue path.
 - public LB 관측 반응: no public LB should be spent. A public test would only ask the leaderboard to decide a branch already blocked locally.
 - 제출 전략: none. Use the E321/E322 health target before materialization in a new generator.
+
+### H323: E322 near misses contain recoverable signal after removing placement-null-common movement
+
+- 상태: 지지됨 by E323/E324 local stress; public unresolved.
+- 왜 그럴듯한가: E322 near misses were not target/sign wrong. They were visible but null-common. If the true hidden placement component is entangled with null-common movement, subtracting the row/subject/dateblock-common part should reveal a rarer residual.
+- 맞다면: residualized or null-orthogonal variants should keep old-selector visibility while sharply reducing null strict rate, and should survive more than the small E323 governor.
+- 틀리다면: residualized candidates should either become invisible or remain null-common under larger null samples.
+- 최소 실험: `analysis_outputs/e323_null_common_residual_generator.py`, followed by `analysis_outputs/e324_e323_ready_highrep_stress.py`.
+- 관측: E323 generated `420`, old-strict `291`, fresh ready `3`; E324 retested those `3` with `774` null rows and kept high-rep ready `3/3`. Priority file high-rep p90 `-0.000053747`, null strict `0.050388`, worst-mode dominance `0.859375`.
+- 성공/폐기 기준: support if at least one residual candidate survives high-rep null stress. This criterion is met.
+- public LB 관측 반응: if the priority file improves public LB, strengthen the null-common residual hidden-placement world. If it worsens, local matched nulls are still missing public/private subset structure or the edge is below public readability.
+- 제출 전략: priority candidate `analysis_outputs/submission_e323_healthresid_null_common_residual__src_human_regime_only__recipe_family_consensus____meanresid_l1_50__kal_5508f966.csv`.

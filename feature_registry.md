@@ -3060,3 +3060,31 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - public LB should not be used when ready count is `0`.
 - Failure condition:
   - if preselected candidates remain old-strict but null strict rate stays above `0.10`, classify the branch as null-common action geometry, not a candidate-selection miss.
+
+## E323/E324 Null-Common Residual Features
+
+- Target hypothesis tested:
+  - E322 near misses fail because they contain a large placement-null-common component, not because all their movement is false. Removing that component should reveal a null-rare hidden placement residual.
+- Feature/representation source:
+  - E322 high-ranked near-miss logit deltas;
+  - row/subject/dateblock null stacks with `8` reference reps for residual construction;
+  - mean-null residual, median-null residual, projection-out-null-mean, and unique-cell masks;
+  - E321/E322 health predictions used only for prefiltering, followed by fresh null governance.
+- Validation result:
+  - E323 generated candidates `420`;
+  - old strict `291`;
+  - selected for fresh null `44`;
+  - E323 ready `3`;
+  - E324 high-rep ready `3/3`;
+  - E324 null rows `774`;
+  - priority file high-rep p90 `-0.000053747`, mean `-0.000952`, null strict `0.050388`, worst-mode dominance `0.859375`.
+- Updated registry status:
+  - approved as the first public-free submission-grade action representation after E247;
+  - narrow scope: human-regime-only family-consensus S-heavy residual;
+  - not yet approved as a general generator for all human/social states.
+- Adopt rule for future features:
+  - construct residuals against matched placement-null representations before increasing amplitude;
+  - prefer candidates that survive high-rep nulls even if their local p90 edge is smaller;
+  - use E324 priority as the next public sensor if a submission slot is intentionally spent.
+- Failure condition:
+  - if public LB worsens materially, treat the local null governor as missing a public/private subset or calibration axis; do not blindly expand residualization to more parents.
