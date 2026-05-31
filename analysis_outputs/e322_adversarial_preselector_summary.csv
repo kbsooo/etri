@@ -1,0 +1,4 @@
+slice,rows,old_strict,previously_null_evaluated,best_pred_ready,best_pred_health,ready,best_fresh_p90,best_null_strict,best_worst_mode
+all_non_oracle_e319,450,357,47.0,1.0495987456887905,1.1986717644840044,,,,
+selected_for_fresh_null,36,36,0.0,0.8183628673924321,0.8446998791254874,,,,
+fresh_governor,36,36,,,,0.0,-0.0014525875960670165,0.13636363636363635,1.0

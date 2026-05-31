@@ -968,3 +968,21 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - ready-like candidates: `0`.
 - interpretation: placement health is locally learnable and should become a JEPA-style action target. The current E319 candidate pool still has no public candidate.
 - next experiment: use E321 as a pre-materialization health model or a public-free preselector for additional null evaluation.
+
+## Public-Free Observation: E322
+
+- submission files: none.
+- public LB: not submitted.
+- reason not submitted: E322 selected unevaluated E319 candidates for fresh public-free null governance, and none passed. Public LB should not be used to override a ready count of `0`.
+- local observation:
+  - non-oracle E319 candidates scored: `450`;
+  - old strict in universe: `357`;
+  - previously null-evaluated: `47`;
+  - selected for fresh null: `36`;
+  - selected old strict: `36`;
+  - fresh public-free ready: `0`;
+  - best fresh p90: `-0.001452588`;
+  - best null strict rate: `0.136364`;
+  - best worst-mode p90 dominance: `1.000000`.
+- interpretation: the E321 health target is useful as a checker but did not rescue a skipped candidate. The selected files are visible, but matched nulls still imitate them too often.
+- next experiment: build a new generator that uses adversarial health before materialization; do not spend public LB on E319/E322-selected files.

@@ -3875,3 +3875,37 @@ Decision:
 - Positive: row/subject/dateblock action health is locally learnable, so E320's blocker is not random noise.
 - Negative: the current E319 pool still has no submission candidate.
 - Promotion rule update: a future generator should use adversarial health as a pre-materialization target or local preselector before expensive null evaluation; public LB remains blocked.
+
+## E322 E321-Guided Preselector Fresh Null Stress
+
+Question: can the E321 action-health target rescue unevaluated E319 candidates without using public LB?
+
+Method: `analysis_outputs/e322_adversarial_preselector_nullcheck.py`.
+
+- Candidate universe: `450` non-oracle E319 candidates.
+- Preselector training set: `47` governed non-oracle E319 rows.
+- Selection: top unevaluated old-strict candidates by predicted ready score and diversity over policy/recipe/base variant.
+- Fresh governor: row, subject, dateblock, target-permutation, sign-flip, and Q/S-swap nulls.
+- Public LB: not used.
+
+Result:
+
+- selected for fresh null: `36`;
+- selected old strict: `36`;
+- fresh public-free ready: `0`;
+- best fresh p90: `-0.001452588`;
+- best null strict rate: `0.136364`;
+- best worst-mode p90 dominance: `1.000000`;
+- preselector OOF Spearman:
+  - worst-placement dominance `0.492946`;
+  - null strict rate `0.564957`;
+  - adversarial health `0.423243`;
+  - dateblock p90 dominance `0.721851`;
+  - subject p90 dominance `0.589744`;
+  - row p90 dominance `0.208598`.
+
+Decision:
+
+- E322 passes the "public-free checker is informative" test, but fails the "there is a skipped E319 submission candidate" test.
+- No E322-selected file should be submitted.
+- Promotion rule update: post-hoc preselection is not enough. The action-health target must shape the candidate before materialization, and any resulting file must still pass the same fresh null governor.

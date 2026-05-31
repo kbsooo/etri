@@ -3713,3 +3713,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: keep the action-health learner if OOF AUC/Spearman are useful; reject direct submission use if predicted top candidates still do not pass ready-like local gates.
 - public LB 관측 반응: no public LB should be spent from E321 alone. A future public-positive file must first show that E321-guided generation survives fresh matched nulls.
 - 제출 전략: none directly. Use E321 as pre-materialization target or preselector for public-free null evaluation.
+
+### H322: E321 can rescue a skipped unevaluated E319 candidate by preselection
+
+- 상태: 반증됨 as a submission rescue; 지지됨 as an informative checker.
+- 왜 그럴듯한가: E319 generated `540` candidates but null-evaluated only `54`. E321 showed action-health is learnable, so the unevaluated pool might contain a good file that the original budget skipped.
+- 맞다면: E321-guided preselection should find at least one old-strict unevaluated candidate whose fresh null strict rate, p90 dominance, mean dominance, and worst-mode dominance pass promotion thresholds.
+- 틀리다면: selected candidates should remain visible but null-common, especially with null strict rate above `0.10` or weak row/subject/dateblock dominance.
+- 최소 실험: `analysis_outputs/e322_adversarial_preselector_nullcheck.py`.
+- 관측: non-oracle universe `450`, selected `36`, selected old-strict `36`, fresh public-free ready `0`, best fresh p90 `-0.001452588`, best null strict rate `0.136364`, best worst-mode p90 dominance `1.000000`.
+- 성공/폐기 기준: accept only if at least one candidate passes fresh governance. Since ready count is `0`, reject as a rescue path.
+- public LB 관측 반응: no public LB should be spent. A public test would only ask the leaderboard to decide a branch already blocked locally.
+- 제출 전략: none. Use the E321/E322 health target before materialization in a new generator.

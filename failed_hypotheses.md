@@ -2457,3 +2457,12 @@
 - Implementation issue possible: medium. E321 only ranks the governed E319 pool and uses linear models; a future generator or broader preselection may benefit from the same target. Low for promoting current E319 files.
 - Bottleneck implication: action health is learnable but must be used before materialization, not as a post-hoc rescue of average-consensus tensors.
 - Do not repeat: submitting E319 files because E321 ranks them high unless they pass fresh matched-null governance.
+
+## FH273. E321-guided preselection can rescue a skipped unevaluated E319 candidate
+
+- Failed hypothesis: E319 only missed a public-free file because its null-eval budget was small; using E321 action-health predictions over the unevaluated pool should find one.
+- Observed result: E322 scored `450` non-oracle E319 candidates, selected `36` unevaluated old-strict files, and ran fresh matched null governance. Public-free ready remained `0`. Best fresh p90 was `-0.001452588`, but best null strict rate was only `0.136364`, above the `0.10` threshold.
+- Why discard: the selected files are locally visible but still too null-common. The failure is not just candidate selection budget; the generated action geometry itself is reproducible by matched controls.
+- Implementation issue possible: medium. E322 uses Ridge on only `47` governed rows and post-hoc features. A generator that optimizes the same health target directly may still work.
+- Bottleneck implication: public-LB scarcity is handled by local governance; the current pool cannot justify another public test. Breakthrough requires changing generation, not re-ranking E319.
+- Do not repeat: public-testing an unevaluated E319 file because the preselector ranks it high while fresh null governance says ready `0`.

@@ -3330,3 +3330,23 @@ Meaning:
 - Do not submit E319 or E321-ranked E319 files.
 - The next candidate must be generated with this adversarial health objective built into the action layer, or must pass fresh local null evaluation after E321 preselection.
 - Current best public file remains `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` at public LB `0.5761589494`.
+
+## Update After E322 Adversarial Preselector Fresh Null Check
+
+Current submission policy remains: **no new public submission.**
+
+Why:
+
+- E322 used E321 health predictions exactly as the requested public-free checker.
+- It selected `36` unevaluated E319 candidates, all already old-strict locally.
+- Fresh matched-null governance still produced `0` public-free ready files.
+- The closest near misses are still blocked by null strict rate:
+  - `analysis_outputs/submission_e319_modespec_human_regime_only__recipe_family_consensus__selected_row2__c128__w8_00_b0dfdc5e.csv`: null strict `0.136364`, above the `0.10` gate.
+  - `analysis_outputs/submission_e319_modespec_human_regime_only__recipe_family_consensus__selected_vote2__c128__w8_00_b6aa3bb6.csv`: null strict `0.181818`, also above gate.
+
+Meaning:
+
+- Do not submit E322-selected E319 files.
+- The useful object is not a candidate file; it is the local health target.
+- The next submission-worthy path is a new generator that optimizes row/subject/dateblock health before materialization, then passes fresh null governance.
+- Current best public file remains `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` at public LB `0.5761589494`.

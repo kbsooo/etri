@@ -3032,3 +3032,31 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - require fresh null governance after any E321-guided generation.
 - Failure condition:
   - if an E321-guided candidate improves predicted health but still has `ready_like_actual = 0` under fresh nulls, classify it as checker overfit, not a public candidate.
+
+## E322 Adversarial Preselector Features
+
+- Target hypothesis tested:
+  - E321 health predictions can preselect unevaluated E319 candidates worth fresh null governance, reducing public LB dependence.
+- Feature/representation source:
+  - full actual public-free selector features for all non-oracle E319 candidates;
+  - E319 route metadata and mode mix features;
+  - Ridge predictions for worst-placement dominance, null strict rate, adversarial health, and mode-specific p90 dominance.
+- Validation result:
+  - candidate universe `450`;
+  - governed training rows `47`;
+  - selected unevaluated candidates `36`;
+  - selected old strict `36`;
+  - fresh public-free ready `0`;
+  - best fresh p90 `-0.001452588`;
+  - best null strict rate `0.136364`;
+  - preselector OOF Spearman: null strict rate `0.564957`, dateblock p90 dominance `0.721851`, subject p90 dominance `0.589744`, row p90 dominance `0.208598`.
+- Updated registry status:
+  - approved as a public-free preselection/checking feature;
+  - not approved as a submission selector;
+  - not enough to rescue E319 after materialization.
+- Adopt rule for future features:
+  - use E322-style predictions upstream while creating candidate deltas;
+  - fresh null governance remains mandatory after any preselected file;
+  - public LB should not be used when ready count is `0`.
+- Failure condition:
+  - if preselected candidates remain old-strict but null strict rate stays above `0.10`, classify the branch as null-common action geometry, not a candidate-selection miss.

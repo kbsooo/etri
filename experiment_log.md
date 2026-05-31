@@ -4972,3 +4972,22 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - ready-like candidates: `0`.
 - Interpretation: placement health is not pure noise. It is learnable enough to become a local JEPA-style action target. But the current E319 candidate pool still contains no submission candidate, even after adversarial ranking.
 - Decision: no E321 public submission. Next branch should use this health model before materialization, or use it to preselect candidates for additional local null evaluation. Do not spend public LB.
+
+## E322. E321-Guided Adversarial Preselector Fresh Null Check
+
+- Observe: E321 learned placement health, but it only ranked the originally governed E319 pool. E319 left many old-strict candidates unevaluated by the expensive null governor.
+- Wonder: did E319 simply miss a good unevaluated candidate because the null-eval budget was limited?
+- Hypothesis: if E321's actual-geometry health target is useful as a public-free checker, it should preselect unevaluated E319 candidates that survive fresh row/subject/dateblock/target/sign/QS nulls.
+- Method: `analysis_outputs/e322_adversarial_preselector_nullcheck.py` recomputed public-free selector features for `450` non-oracle E319 candidates, trained Ridge preselectors on `47` governed E319 rows, selected `36` unevaluated old-strict candidates, and ran fresh matched null governance. Public LB was not used.
+- Result:
+  - all non-oracle E319 candidates: `450`;
+  - old strict in universe: `357`;
+  - selected for fresh null: `36`;
+  - selected old strict: `36`;
+  - fresh public-free ready: `0`;
+  - best fresh p90: `-0.001452588`;
+  - best null strict rate: `0.136364`;
+  - best worst-mode p90 dominance: `1.000000`;
+  - preselector OOF Spearman: worst-placement dominance `0.492946`, null strict rate `0.564957`, adversarial health `0.423243`.
+- Interpretation: the E321 preselector is informative, especially for dateblock/subject-style health, but it did not reveal a skipped submission candidate. The closest files still fail because matched nulls promote too often; the best null strict rate is above the `0.10` promotion threshold.
+- Decision: no E322 public submission. This weakens "we missed a good E319 file" and strengthens "action-health must be part of generation, not post-hoc selection."
