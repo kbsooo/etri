@@ -5175,3 +5175,58 @@ Stress conclusion:
 - The simple "right action, wrong rows" explanation is weakened.
 - Row-state gating can reduce bad-minus-good exposure, but doing so either leaves row-state risk high or makes the action too small for public-free submission confidence.
 - Next stress should train a row-action-health latent/generator, using E359 failures as negative examples, rather than manually gating the same compact movement.
+
+## E360 Learned Row-Action-Health Generator
+
+Question: can row-action health be learned and used to generate nonlinear row placements that pass actual E272/E358 stress?
+
+Stress setup:
+
+- script: `analysis_outputs/e360_learned_row_action_health_generator.py`;
+- training rows: `124` E359 candidates;
+- generated pool: `1800`;
+- materialized shortlist: `140`;
+- target: E272 visibility plus E358 row-state health composite;
+- stress: actual E272 selector and actual E358 row-state public-survival.
+
+Stress result:
+
+- surrogate random5 health Spearman: ExtraTrees `0.972450`, RandomForest `0.953114`;
+- surrogate leave-source health Spearman: ExtraTrees `0.639068`, RandomForest `0.600806`;
+- visibility Spearman is weak: `0.118049-0.221986`;
+- rowloss Spearman is stronger: `0.463119-0.789205`;
+- strict output candidates: `1`;
+- submission-gate candidates: `0`;
+- best actual candidate: `e351_robust_center__learned_story_nonmonotone_s1_counter_1273`;
+- best actual row-state loss `0.000592192`, but p90 only `-0.000035678`.
+
+Stress conclusion:
+
+- Learned row placement can make row-state risk much healthier than E359 hand gates.
+- It cannot recover public-free p90 visibility inside the same compact action family.
+- The next bottleneck is visible cell/target action, not row placement alone.
+
+## E361 Row-Action Amplitude Restore Stress
+
+Question: if E360 found healthy row placements, can amplitude restoration recover visibility?
+
+Stress setup:
+
+- script: `analysis_outputs/e361_rowaction_amplitude_restore_stress.py`;
+- source rows: top E360 rows by actual score, rowloss, p90, and balanced score;
+- candidate pool: `1120` global/target-rebalanced scale variants;
+- stress: actual E272 selector and E358 row-state public-survival.
+
+Stress result:
+
+- strict output candidates: `16`;
+- visibility-restored candidates: `16`;
+- submission-gate candidates: `0`;
+- best overall row remains too small: p90 `-0.000035399`, row-state loss `0.000592919`;
+- best strict-visible family restores p90 near `-0.000052`, but row-state bad-minus-good exposure is around `0.1496`, above the health gate.
+
+Stress conclusion:
+
+- The E360 failure is not a simple missing-scale issue.
+- Scaling can restore visibility, but it does not preserve the row-state health condition.
+- A future generator must alter row x target cell geometry or leave the compact source-action family.

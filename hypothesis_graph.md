@@ -4152,3 +4152,27 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept only if a generated row-gated candidate passes strict p90, bad-axis, low row-state loss, low row-state variance, and low bad-minus-good exposure. This is not observed.
 - public LB 관측 반응: no E359 file should be submitted. If E357/E356/E351 still improve publicly, E358/E359 are too pessimistic for this compact region. If they fail, H359 strengthens the case that a new row-action-health generator is needed.
 - 제출 전략: none. Use E359 failures as negative rows for learning row-action health directly.
+
+### H360: learned row-action health can rescue the compact action family
+
+- 상태: representation은 부분 지지됨; submission generation은 반증됨 for row-only placement.
+- 왜 그럴듯한가: E359 hand gates may be too crude. If row-action health is the hidden lifestyle law, a surrogate trained on E359 actual outcomes could generate non-monotone row placements using ownlife PCs and human/social story axes.
+- 맞다면: surrogate diagnostics should survive leave-source stress, and generated candidates should pass actual E272/E358 gates.
+- 틀리다면: surrogate may learn rowloss but not visibility, and generated candidates should become healthy-but-too-small.
+- 최소 실험: `analysis_outputs/e360_learned_row_action_health_generator.py`.
+- 관측: health surrogate Spearman random5 `0.972450`, leave-source `0.639068`, but visibility Spearman only `0.118049-0.221986`. Generated `1800`, verified `140`, submission gate `0`. Best candidate row-state loss `0.000592192`, p90 only `-0.000035678`.
+- 성공/폐기 기준: accept representation if leave-source health Spearman stays positive; accept submission only if actual strict p90 and row-state health gates pass. Representation accepted, submission rejected.
+- public LB 관측 반응: no E360 submission. If a compact file succeeds publicly, local row-state health was over-conservative. If compact files fail, H360 supports moving from row placement to row x target cell-action generation.
+- 제출 전략: none from E360.
+
+### H361: E360 only lacks amplitude
+
+- 상태: 반증됨.
+- 왜 그럴듯한가: E360 found row-state-healthy placements but p90 was too weak. If the placement is correct, scaling or target-rebalancing should restore visibility without destroying row-state health.
+- 맞다면: amplitude-restored variants should pass strict visibility and keep row-state loss/exposure inside gates.
+- 틀리다면: p90 restoration should increase bad-axis/exposure or fail row-state gates; healthiest variants should remain too small.
+- 최소 실험: `analysis_outputs/e361_rowaction_amplitude_restore_stress.py`.
+- 관측: `1120` amplitude variants; strict output candidates `16`; submission gate `0`. Best strict-visible family reaches p90 around `-0.000052` but row-state bad-minus-good exposure around `0.1496`, above the health gate. Best healthy rows remain p90-weak.
+- 성공/폐기 기준: accept if a scaled candidate passes strict p90, bad-axis, rowloss, rowstate variance, and exposure gates. Not observed.
+- public LB 관측 반응: no E361 submission. If compact files fail publicly, H361 says the next branch must change cell/target action geometry, not merely scale healthy row placements.
+- 제출 전략: none.

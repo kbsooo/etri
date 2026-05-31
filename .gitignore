@@ -214,6 +214,14 @@ analysis_outputs/*
 !analysis_outputs/e359_rowplacement_action_health_*.md
 !analysis_outputs/e359_rowplacement_action_health_*.py
 !analysis_outputs/submission_e359_rowplacement_*_uploadsafe.csv
+!analysis_outputs/e360_learned_row_action_health_*.csv
+!analysis_outputs/e360_learned_row_action_health_*.md
+!analysis_outputs/e360_learned_row_action_health_*.py
+!analysis_outputs/submission_e360_rowaction_*_uploadsafe.csv
+!analysis_outputs/e361_rowaction_amplitude_restore_*.csv
+!analysis_outputs/e361_rowaction_amplitude_restore_*.md
+!analysis_outputs/e361_rowaction_amplitude_restore_*.py
+!analysis_outputs/submission_e361_rowaction_amprestore_*_uploadsafe.csv
 
 !analysis_outputs/bridge_scan_candidates/
 analysis_outputs/bridge_scan_candidates/*

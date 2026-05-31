@@ -5844,3 +5844,45 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - The useful signal is now sharper: output-space visibility and row-state health are entangled. When the action remains visible, row-state public-risk stays too high; when risky rows are suppressed, visibility drops below submission resolution.
   - The next JEPA target should learn row-action health directly from candidate/row-state context, instead of applying hand-shaped gates to the same compact delta.
 - Decision: no E359 submission. Keep the generated scores as a negative-control dataset for a learned row-action-health generator.
+
+## E360. Learned Row-Action-Health Generator
+
+- Observe: E359 showed that hand row gates over compact deltas cannot jointly satisfy output visibility and row-state health.
+- Wonder: can row-action health be learned as its own JEPA-style target, then used to generate nonlinear row placements over lifestyle/story state?
+- Hypothesis: if the missing law is row-action health, an E359-trained surrogate should identify row placements that actual E272/E358 stress certifies as both visible and row-state healthy.
+- Method: `analysis_outputs/e360_learned_row_action_health_generator.py`.
+  - Training rows: `124` E359 outcomes.
+  - Target representation: composite of p90 visibility, mean visibility, beat rate, bad-axis margin, row-state predicted public loss, row-state variance, bad-minus-good exposure, and movement size.
+  - Context: source compact action, movement geometry, E328 own-latent row state, and E268 story-tail exposures.
+  - Generator: `1800` nonlinear policies over risk/good clusters, ownlife PCs, and human/social story axes; `140` shortlisted by surrogate and verified by actual E272/E358.
+- Result:
+  - surrogate health is learnable inside E359: random5 Spearman `0.972450` ExtraTrees, `0.953114` RandomForest; leave-source Spearman `0.639068`/`0.600806`;
+  - visibility itself is not well learned: random5 visibility Spearman only `0.118049-0.131323`, leave-source `0.180223-0.221986`;
+  - actual stress selects no submission: `0/140` E360 submission-gate candidates;
+  - strict output candidates: `1`;
+  - best actual candidate `e351_robust_center__learned_story_nonmonotone_s1_counter_1273` has row-state loss `0.000592192` but p90 only `-0.000035678`.
+- Interpretation:
+  - E360 does find healthier row placements. That is a real gain over E359: row-state predicted public loss drops from about `0.000895-0.001153` to as low as `0.000527`.
+  - The bottleneck moves: row-state health is generatable, but public-free visibility collapses. The surrogate can learn rowloss much better than visibility.
+  - This weakens "row placement alone" and points to cell/target action geometry as the next missing layer.
+- Decision: no E360 submission. Use the healthy-but-small placements as inputs to an amplitude restoration stress.
+
+## E361. Row-Action Amplitude Restore Stress
+
+- Observe: E360 produced row-state-healthy candidates that were too small or not p90-visible.
+- Wonder: is E360 only missing amplitude, or does increasing amplitude reintroduce the same row-state/public-risk problem?
+- Hypothesis: if E360 found the right row placement, simple scale/target rebalance should restore p90 visibility while keeping row-state loss low.
+- Method: `analysis_outputs/e361_rowaction_amplitude_restore_stress.py`.
+  - Source rows: top E360 candidates by actual score, rowloss, p90, and balanced score.
+  - Candidate generation: `1120` amplitude-restored variants across global, no-S3, Q-heavy, S1-heavy, and Q1/S1 policies with scales `1.05-1.72`.
+  - Stress: actual E272 selector plus E358 row-state public-survival.
+- Result:
+  - strict output candidates: `16`;
+  - visibility-restored candidates: `16`;
+  - submission-gate candidates: `0`;
+  - best overall remains the barely scaled healthy placement, `e351_robust_center__learned_story_nonmonotone_s1_counter_1273__amp1.05_global`, with p90 `-0.000035399` and row-state loss `0.000592919`;
+  - the best strict-visible family is `e356_halfs3_amp__learned_free_mixture_random_compact_0151` after Q1/S1 or S1-heavy scaling, with p90 around `-0.000052` but row-state bad-minus-good exposure about `0.1496`, above the E361 health gate.
+- Interpretation:
+  - E361 kills the simple amplitude explanation. Increasing scale can restore p90 visibility, but it does not satisfy the row-state exposure/health constraint.
+  - The hidden state now looks like a cell/target-action problem: the model must change which target cells move on healthy rows, not only which rows are touched or how strongly.
+- Decision: no E361 submission. Next branch should learn a lower-level row x target cell-action generator or import a new source action family outside the compact delta.

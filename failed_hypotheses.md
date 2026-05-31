@@ -2736,3 +2736,21 @@
 - Implementation issue possible: medium. The row-state public-loss model has only `13` known public files and the gates are hand-shaped. However, the failure is consistent across E349/E351/E356/E357 sources and multiple gate families.
 - Bottleneck implication: the next branch should learn row-action health directly, using candidate/row-state context as the JEPA target, instead of applying manual row gates to the same compact delta.
 - Do not repeat: risk-top, smooth-risk, goodboost, or cluster-suppression sweeps over the same compact deltas without changing the generator or target representation.
+
+## FH304. Learned row placement alone can rescue the compact action
+
+- Failed hypothesis: E359 failed because the gates were hand-shaped, but a learned nonlinear row-action-health generator over ownlife/story state can find a compact-family row placement that passes both output visibility and row-state health.
+- Observed result: E360 learned the composite row-action-health representation well inside E359 (`0.972450` random5 Spearman, `0.639068` leave-source Spearman), and it produced much healthier row-state candidates. But `140` verified candidates produced `0` submission-gate passes. The best balanced candidate had row-state loss `0.000592192` but p90 only `-0.000035678`.
+- Why discard as submission route: the generator learned row-state health better than visibility. It created healthy row placements, not visible healthy actions.
+- Implementation issue possible: medium. Training labels come from only `124` E359 rows, and the generator still uses compact source deltas. But the result is diagnostic because rowloss improved while p90 collapsed.
+- Bottleneck implication: the missing structure is not just row selection. It is row x target cell-action geometry.
+- Do not repeat: using E360 surrogate rank as a submit criterion without a stronger visible-action target.
+
+## FH305. Healthy E360 placements only need amplitude
+
+- Failed hypothesis: E360 found the right healthy row placements, and simple scale or target rebalance can restore E272 visibility.
+- Observed result: E361 generated `1120` amplitude-restored candidates. It restored strict visibility for `16` candidates but selected none. The best strict-visible family had p90 around `-0.000052`, but row-state bad-minus-good exposure around `0.1496`; the healthiest scaled rows remained p90-weak.
+- Why discard as submission route: scaling reintroduces the same health/visibility tradeoff. It does not create a joint solution.
+- Implementation issue possible: low-medium. The tested scale policies are simple, but they cover the natural scalar and target-balance fixes. The failure is enough to reject amplitude-only repair.
+- Bottleneck implication: the next candidate must change the cell/target action pattern or use a new source action family outside the compact basin.
+- Do not repeat: global/no-S3/Q-heavy/S1-heavy/Q1-S1 amplitude sweeps over E360 rows without changing the source cell geometry.

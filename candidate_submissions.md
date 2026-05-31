@@ -4472,3 +4472,29 @@ Expected public interpretation:
 
 - If a compact-basin file still improves publicly, output-space calibration dominates row-state health in this local region.
 - If compact-basin files fail, E358/E359 together strongly argue that the breakthrough must leave the current compact action family.
+
+## Update After E360/E361 Learned Row-Action Experiments
+
+No new upload-safe file is selected.
+
+What changed:
+
+- E360 replaced hand row gates with a learned row-action-health surrogate trained on E359.
+- E361 then tested whether E360's healthier row placements only needed more amplitude.
+
+Evidence:
+
+- E360 generated `1800` nonlinear row-action policies and verified `140`;
+- E360 surrogate health is learnable, with leave-source Spearman up to `0.639068`;
+- E360 row-state loss improved strongly, down to `0.000527` in the verified pool;
+- E360 selected no file because the best healthy candidates had weak p90, e.g. `-0.000035678`;
+- E361 generated `1120` amplitude/target-rebalanced variants;
+- E361 restored strict visibility for `16` candidates but selected `0`;
+- the strict-visible E361 candidates still violate row-state exposure/health, with bad-minus-good exposure around `0.1496` for the best restored family.
+
+Submission priority interpretation:
+
+1. Do not submit E360 or E361.
+2. The current compact source-action family is now blocked by a stronger local contradiction: healthy row placement loses visibility; restored visibility loses row-state health.
+3. E357/E356/E351 are still only information probes if a public slot is intentionally used to test whether output-space calibration dominates row-state diagnostics.
+4. The next score-seeking route should learn row x target cell-action health or bring in a source action outside the compact E349/E351/E356/E357 family.

@@ -3823,3 +3823,38 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - top non-passing row-balanced variant `e357_fulls3_noamp__goodboost20_riskdamp80` has p90 `-0.000046486` and row-state predicted public loss `0.000965778`.
 - Registry status: rejected as a hand-engineered submission feature. Approved as a negative-control dataset for a learned row-action-health latent.
 - Failure condition: do not reuse these monotone row gates unless a future learned generator identifies a different source action or a non-monotone row placement rule.
+
+### E360 learned row-action-health surrogate
+
+- Target hidden structure: candidate row-action health over E328 own-latent lifestyle states and E268 human/social story axes.
+- Why needed: E359 showed hand gates fail. The next representation should predict the hidden stress outcome directly rather than hard-code risk/good row rules.
+- Feature/action form:
+  - training rows: E359 candidates and actual E272/E358 outcomes;
+  - target: composite of p90 visibility, mean visibility, beat rate, bad-axis margin, row-state loss, row-state variance, exposure, and movement size;
+  - generator: nonlinear row policies over risk/good clusters, ownlife PCs, story axes, and cluster biases;
+  - verification: materialized shortlist scored by actual E272/E358.
+- Current evidence:
+  - health target random5 Spearman `0.972450`, leave-source `0.639068`;
+  - visibility target remains weak, `0.118049-0.221986`;
+  - verified candidates: `140`;
+  - submission-gate passes: `0`;
+  - best row-state loss around `0.000527`, but p90 too weak.
+- Registry status: approved as a diagnostic/generator for healthy row placement; rejected as a submission feature without cell-action visibility support.
+- Failure condition: do not use E360 surrogate rank alone for submissions. It needs a visible cell-action target or source family change.
+
+### E361 row-action amplitude restore
+
+- Target hidden structure: whether E360's healthy row placements are correct but under-scaled.
+- Why needed: E360 could have failed only because its row actions were too small.
+- Feature/action form:
+  - source rows: top E360 healthy/balanced candidates;
+  - scale policies: global, no-S3, Q-heavy, S1-heavy, Q1/S1;
+  - amplitudes: `1.05-1.72`;
+  - verification: actual E272/E358.
+- Current evidence:
+  - candidates: `1120`;
+  - strict output candidates: `16`;
+  - submission-gate passes: `0`;
+  - strict-visible candidates fail row-state exposure/health, while healthiest candidates stay too weak.
+- Registry status: rejected as a submission feature family. Keep as evidence that row placement plus amplitude is insufficient.
+- Failure condition: do not repeat scalar scale sweeps on E360 rows unless the underlying row x target cell pattern changes.
