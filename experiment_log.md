@@ -5270,3 +5270,26 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     - `submission_e335_q1health_weightedavg_top2_s0_45_cab4254e.csv`: mean `-0.000134660`, p90 `-0.000012063`, beats `0.930556`, movement-null p90 dominance `0.933333`, but `too_small_to_submit`.
 - Interpretation: action-health is a learnable latent, but the current Q1 archive contains mostly safe-invisible and visible-unsafe examples. The learned generator regresses toward the safe-invisible region instead of discovering a new visible/null-rare action.
 - Decision: do not submit E335 candidates. The next useful experiment needs new positive support for visible/null-rare action geometry, probably from cross-target or public-negative/E323-negative action states, not more Q1-only averaging.
+
+## E336. Public-Negative Action Latent
+
+- Observe: E323 upload-safe failed publicly by a large margin, while E216 also looked public-adverse locally. If those failures expose a hidden public-negative lifestyle/action state, then moving E247 away from that anatomy might produce a safer visible action.
+- Wonder: is the missing hidden lifestyle-state latent simply the opposite of known public-bad movement, or is public failure not linearly reversible in output space?
+- Hypothesis: if public-bad anatomy is a usable same-level action latent, then away-from-E323/E216 moves or E247-vs-old-frontier extrapolations should be selector-visible, E323/E216-safe, and movement-null rare.
+- Method: `analysis_outputs/e336_public_negative_action_latent.py`.
+  - Axes: `e323_bad`, `e216_bad`, `bad_combo`, `away_e323`, `away_e216`, `away_bad_combo`, `e247_minus_e95`, `e247_minus_mixmin`, `e247_minus_mildavg`, and bad-projection-orthogonalized good axes.
+  - Generated `162` E247-centered candidates over top-k and scale grids.
+  - Stress: E272 public-free selector, public-bad movement anatomy, lifestyle signatures, and movement-null shuffles.
+- Result:
+  - E323 bad axis is not generic: it concentrates on Q1/S1/S3 with shares Q1 `0.258564`, S1 `0.263325`, S3 `0.478111`.
+  - E216 bad axis is different and S2-heavy, with S2 share `0.645902`.
+  - E247's good-ish old-frontier directions are almost orthogonal to E323 but anti-correlated with E216.
+  - generated candidates: `162`;
+  - selector-promoted candidates: `0`;
+  - selector+public-bad-safe candidates: `0`;
+  - selector+public-bad+movement-null-safe candidates: `0`.
+  - closest probes are `good_mixmin_topall` tiny shifts:
+    - `submission_e336_good_mixmin_topall_s0_14_3fb3ae73.csv`: mean `-0.000012951`, p90 `+0.000013885`, beats `0.750000`, movement-null p90 dominance `1.000000`, but not promoted;
+    - `submission_e336_good_mixmin_topall_s0_20_509bebff.csv`: mean `-0.000017725`, p90 `+0.000021884`, beats `0.750000`, movement-null p90 dominance `1.000000`, but not promoted.
+- Interpretation: the public-bad anatomy is real and target-specific, but its opposite is not a submission-grade action. The latent is useful as a veto/diagnostic, not as a direct probability movement generator.
+- Decision: do not submit E336 candidates. The next hidden lifestyle-state experiment should leave output-space reversal and learn the state before materialization: row/block latent episodes, target-pair dependency state, or action-health positive support from multiple public-surviving directions.

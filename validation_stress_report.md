@@ -4346,3 +4346,48 @@ Stress conclusion:
 - The generated actions are safe but too small; none cross selector resolution.
 - E323 similarity is not the blocker because the best candidates are E323-negative or near-orthogonal.
 - The current Q1-only archive is missing visible/null-rare positives. More Q1 averaging is unlikely to break the 0.576 frontier.
+
+## E336 Public-Negative Action Latent
+
+Question: can known public-bad anatomy be inverted or orthogonalized into a safe E247 action?
+
+Method: `analysis_outputs/e336_public_negative_action_latent.py`.
+
+- Public-bad axes:
+  - `e323_bad = logit(E323 upload-safe) - logit(E247)`;
+  - `e216_bad = logit(E216) - logit(E247)`;
+  - `bad_combo = 0.55 * e323_bad + 0.45 * e216_bad`.
+- Candidate families:
+  - away from E323/E216/bad-combo;
+  - E247 minus E95/mixmin/mildavg good-ish axes;
+  - bad-projection-orthogonalized good axes.
+- Stress:
+  - E272 public-free selector;
+  - public-bad movement anatomy;
+  - lifestyle moved-row signatures;
+  - movement-null shuffles.
+- Public LB: not used.
+
+Result:
+
+- generated candidates: `162`;
+- selector-promoted candidates: `0`;
+- selector+public-bad-safe candidates: `0`;
+- selector+public-bad+movement-null-safe candidates: `0`.
+- E323 bad axis target shares:
+  - Q1 `0.258564`;
+  - S1 `0.263325`;
+  - S3 `0.478111`.
+- E216 bad axis target shares:
+  - Q3 `0.183828`;
+  - S2 `0.645902`;
+  - S4 `0.170270`.
+- closest movement-null candidates:
+  - `submission_e336_good_mixmin_topall_s0_14_3fb3ae73.csv`: actual mean `-0.000012951`, actual p90 `+0.000013885`, beats `0.750000`, p90 dominance `1.000000`;
+  - `submission_e336_good_mixmin_topall_s0_20_509bebff.csv`: actual mean `-0.000017725`, actual p90 `+0.000021884`, beats `0.750000`, p90 dominance `1.000000`.
+
+Stress conclusion:
+
+- Public-bad anatomy is informative and target-specific.
+- Away-from-bad output moves are not enough; they are either invisible or selector-adverse.
+- The current action layer cannot obtain a breakthrough by simple vector reversal, bad-axis projection removal, or old-frontier extrapolation.

@@ -2556,3 +2556,12 @@
 - Implementation issue possible: medium. The health model is tree/ridge over hand-engineered signatures, and generated tensors are consensus/projection variants. A broader generator with cross-target positives may still work. Low for rejecting current E335 files because selector, E323 anatomy, and movement-null stress agree.
 - Bottleneck implication: action-health is learnable, but Q1-only materialization lacks enough visible/null-rare support. The next branch should add an independent action axis or train against E323/public-negative anatomy, not average more Q1 tails.
 - Do not repeat: public-testing Q1 action-health consensus files that are p90-negative but below selector resolution.
+
+## FH284. Public-bad movement can be directly inverted into a public-grade action
+
+- Failed hypothesis: E323/E216 public-negative movement anatomy is a same-level action latent, so moving E247 opposite that anatomy or removing the bad projection from old-frontier-good axes should create a selector-visible, null-rare candidate.
+- Observed result: E336 generated `162` candidates and found `0` selector-promoted files, `0` selector+public-bad-safe files, and `0` selector+public-bad+movement-null-safe files. E323 bad movement is real and target-specific, concentrated in Q1/S1/S3, while E216 is S2-heavy. The best probes are tiny `good_mixmin_topall` continuations, not inverted bad-axis actions.
+- Why discard: public-bad anatomy is a diagnostic coordinate, not a reversible probability movement. The output vector that failed publicly does not contain enough information to identify the correct hidden public subset or calibration state by simple negation.
+- Implementation issue possible: medium. The experiment uses linear logit-space axes and top-k/scale grids, so a nonlinear state model could still use the same information. Low for rejecting the generated files because selector and movement-null stress agree.
+- Bottleneck implication: future work should learn hidden lifestyle state before action materialization, with E323/E216 used as anti-public regularizers. Do not treat "opposite of a bad file" as a breakthrough route.
+- Do not repeat: submitting away-from-E323/E216 or bad-axis-orthogonalized variants without a new independent selector-promotion signal.

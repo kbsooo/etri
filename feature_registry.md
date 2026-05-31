@@ -3360,3 +3360,28 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - future generators need visible/null-rare positive examples, not only safe-invisible Q1 averages.
 - Failure condition:
   - if an action-health feature predicts prior health but all generated candidates remain below selector resolution, classify it as ranker-only, not a probability-moving representation.
+
+## E336 Public-Negative Action Latent Features
+
+- Target hypothesis tested:
+  - public-bad movement anatomy can serve as a same-level action latent whose inverse or orthogonal complement yields a safer E247 submission.
+- Feature/representation source:
+  - logit-space E323 upload-safe minus E247 axis;
+  - logit-space E216 minus E247 axis;
+  - E247 minus old-frontier axes (`E95`, `mixmin`, `mildavg`, `E256`, `E267`);
+  - bad-combo and bad-projection-orthogonalized good axes;
+  - moved-row lifestyle signatures over cognitive-money, bedtime-phone, mobility, and diary-state energies.
+- Validation result:
+  - E323 bad axis is target-specific: Q1/S1/S3 shares `0.258564/0.263325/0.478111`;
+  - E216 bad axis is S2-heavy with share `0.645902`;
+  - `162` materialized candidates produce `0` selector-promoted candidates;
+  - movement-null stress finds only tiny safe-invisible `good_mixmin_topall` probes.
+- Updated registry status:
+  - approved as a veto/risk diagnostic;
+  - rejected as a direct submission feature or generator;
+  - retain E323/E216 axes for future action-health targets.
+- Adopt rule for future features:
+  - a feature that merely moves opposite a public-bad output vector is insufficient;
+  - public-negative axes should regularize or censor hidden-state actions, not define the action by themselves.
+- Failure condition:
+  - if away-from-bad or orthogonalized-good movement fails selector promotion, classify it as output-space reversal failure rather than hidden-state discovery.

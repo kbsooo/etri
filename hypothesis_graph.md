@@ -3864,3 +3864,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: reject generator if no candidate clears selector+E323+movement-null gates; keep diagnostic if leave-experiment/family rank transfer is high. This is the observed split.
 - public LB 관측 반응: no public LB should be spent. Expected reaction is low-information because candidates are below selector resolution.
 - 제출 전략: none from E335. The next strategy needs new positive support for visible/null-rare action geometry, likely via cross-target action states or E323/public-negative movement anatomy.
+
+### H336: public-bad anatomy can be directly inverted into a safe lifestyle action
+
+- 상태: 반증됨 as direct generator; 지지됨 as veto/diagnostic latent.
+- 왜 그럴듯한가: E323 upload-safe was semantically and locally plausible but publicly bad. If its failure encodes a public-negative lifestyle/action state, the opposite direction or bad-axis-orthogonalized good direction might preserve E247 while removing the public-adverse component.
+- 맞다면: away-from-E323/E216/bad-combo moves should improve E272 selector mean/p90, avoid public-bad anatomy, and beat movement-null shuffles. Old-frontier-good axes with bad projection removed should become visible and safer than raw good axes.
+- 틀리다면: public-bad anatomy may be target-specific, but reversed/orthogonalized output moves should remain below selector resolution, p90-positive, or null-common.
+- 최소 실험: `analysis_outputs/e336_public_negative_action_latent.py`.
+- 관측: E323 bad is Q1/S1/S3-heavy, E216 bad is S2-heavy, so the anatomy is real. But `162` generated candidates yield `0` selector-promoted, `0` selector+public-bad-safe, and `0` selector+public-bad+movement-null-safe rows. Best probes are tiny `good_mixmin_topall` continuations and are not promoted.
+- 성공/폐기 기준: reject direct inversion if no candidate clears selector plus public-bad plus movement-null gates; keep the axes as risk diagnostics if they are target-specific and explain prior public failures. This is the observed split.
+- public LB 관측 반응: no public LB should be spent. Expected reaction is low-information for tiny good_mixmin moves or adverse/noisy for away-from-bad moves.
+- 제출 전략: none from E336. Use E323/E216 axes as an anti-public risk coordinate in future hidden lifestyle-state/action-health training.

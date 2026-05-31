@@ -1259,3 +1259,28 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - public testing a safe-invisible file would waste a sensor reading.
 - expected public reaction if submitted anyway:
   - likely tiny/noisy movement around E247 rather than a breakthrough, because local selector promotion is exactly zero.
+
+## Public-Free Observation: E336 Public-Negative Action Latent
+
+- submission files: generated locally, but none promoted.
+- public LB: not submitted.
+- reason not submitted: direct inversion or orthogonalization of public-bad movement fails public-free selector and movement-null gates.
+- local observation:
+  - generated candidates: `162`;
+  - selector-promoted candidates: `0`;
+  - selector+public-bad-safe candidates: `0`;
+  - selector+public-bad+movement-null-safe candidates: `0`.
+- public-bad anatomy observation:
+  - E323 bad axis is Q1/S1/S3-heavy, with shares Q1 `0.258564`, S1 `0.263325`, S3 `0.478111`;
+  - E216 bad axis is S2-heavy, with S2 share `0.645902`;
+  - old-frontier-good axes are not simply the negative of E323.
+- closest local candidates:
+  - `submission_e336_good_mixmin_topall_s0_14_3fb3ae73.csv`, mean `-0.000012951`, p90 `+0.000013885`, beats `0.750000`;
+  - `submission_e336_good_mixmin_topall_s0_20_509bebff.csv`, mean `-0.000017725`, p90 `+0.000021884`, beats `0.750000`.
+- interpretation:
+  - public-bad movement anatomy is informative but not directly reversible;
+  - E323/E216 axes should be used as risk sensors, not as action generators;
+  - the hidden lifestyle-state latent must be discovered upstream of probability movement.
+- expected public reaction if submitted anyway:
+  - low-information for tiny good-mixmin continuations;
+  - likely noisy or worse for away-from-bad vectors because no file is selector-promoted.

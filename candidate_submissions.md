@@ -3697,3 +3697,33 @@ Next submission rule:
 - do not submit Q1-only action-health consensus files;
 - require selector promotion, not only negative mean/p90;
 - search for a new independent visible/null-rare axis or explicitly train against E323-public-negative anatomy before spending a public slot.
+
+## Update After E336 Public-Negative Action Latent
+
+No E336 file should be submitted.
+
+Closest local probes:
+
+- `analysis_outputs/submission_e336_good_mixmin_topall_s0_14_3fb3ae73.csv`
+- `analysis_outputs/submission_e336_good_mixmin_topall_s0_20_509bebff.csv`
+- `analysis_outputs/submission_e336_good_mixmin_topall_s0_04_13240e87.csv`
+
+Why blocked:
+
+- `162` generated candidates produce `0` selector-promoted files.
+- The best family is just a tiny `E247 - mixmin` continuation:
+  - `s0.14`: mean `-0.000012951`, p90 `+0.000013885`, beats `0.750000`;
+  - `s0.20`: mean `-0.000017725`, p90 `+0.000021884`, beats `0.750000`.
+- Away-from-E323/E216 candidates are target-specific and human-interpretable, but the selector reads them as too weak or adverse.
+- E323-bad anatomy is real but cannot be inverted directly into a useful submission.
+
+Current best public frontier remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+- public LB `0.5761589494`
+
+Next submission rule:
+
+- do not submit away-from-bad or bad-axis-orthogonalized candidates unless a new validator shows selector promotion;
+- use E323/E216 anatomy as a veto/risk feature, not a direct generator;
+- next candidate should come from hidden lifestyle-state discovery before probability movement, not from output-space reversal.
