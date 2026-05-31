@@ -3828,3 +3828,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept the latent direction because label/null and signflip stress agree; reject direct translation because no materialized candidate clears selector and movement-null checks.
 - public LB 관측 반응: no public LB should be spent. If submitted anyway, expected reaction is low-information or worse because p90 remains positive on the closest visible moves.
 - 제출 전략: none from direct E332. The next strategy should predict visibility-safe placement/action shape for Q1-tail rows, not increase the same scalar shift.
+
+### H333: Q1 tail needs broad contrastive background compensation
+
+- 상태: 반증됨 as submission/action latent; 지지됨 only as a local-validation shortcut.
+- 왜 그럴듯한가: E332's one-sided Q1-tail shift was directional but below public-free visibility. A calibrated human-state action might require lowering tail rows while raising or reshaping non-tail/background rows.
+- 맞다면: contrastive actions should improve local Q1 logloss, keep E323-negative anatomy, and turn E332's p90-positive edge into a selector-promoted E247 candidate.
+- 틀리다면: train label/null gains should grow, but public-free selector scores should turn positive or p90-worse after materialization.
+- 최소 실험: `analysis_outputs/e333_q1_contrastive_action_translator.py`.
+- 관측: `510` local translator gates, `84` materialized candidates, `0` selector-promoted candidates. Best local delta `-0.020200`, but best-ish public-free probe has selector mean `+0.000034`, p90 `+0.000299`, beats `0.583333`.
+- 성공/폐기 기준: reject as action latent because no candidate clears selector/E323/movement-null gates and the best materialization is worse than E247 by selector mean/p90.
+- public LB 관측 반응: no public LB should be spent. The local public-free sensor already reads the family as adverse.
+- 제출 전략: none. Do not use broad non-tail Q1 compensation unless a future action-health model independently flips the selector/p90 read.

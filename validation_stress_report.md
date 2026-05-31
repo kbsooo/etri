@@ -4243,3 +4243,39 @@ Stress conclusion:
 - Direct amplitude/rank/softplus translators are not submission-grade.
 - The blocker is action visibility and p90 calibration, not E323 similarity or wrong sign.
 - Next stress should learn visibility-safe placement, not increase the same Q1 shift.
+
+## E333 Q1 Contrastive Action Translator Stress
+
+Question: does Q1-tail movement need a contrastive non-tail/background component to become p90-safe and selector-visible?
+
+Method: `analysis_outputs/e333_q1_contrastive_action_translator.py`.
+
+- Fixed latent: E332 Q1 `jepa_resid/dateblock` positive tail.
+- Action shapes: `tail + rho * background`.
+- Backgrounds: none, all non-tail, low residual quantiles, mid bands, ring bands.
+- Ratios: same-direction, opposite-direction, and mass-neutral variants.
+- Public LB: not used.
+
+Result:
+
+- local translator gates: `510`;
+- generated candidates: `84`;
+- selector-promoted candidates: `0`;
+- selector+E323-safe candidates: `0`;
+- selector+E323+movement-null-safe candidates: `0`.
+- best local shape:
+  - Q1 `pos_q75/softplus + nontail_all/opp050`;
+  - cv delta `-0.020200`;
+  - dominance `1.000000`.
+- best public-free shape is still adverse:
+  - `submission_e333_q1contrast_pos_q75_softplus_low_q25_opp050_s0p25_911ccf1d.csv`;
+  - selector mean `+0.000034`;
+  - selector p90 `+0.000299`;
+  - beats rate `0.583333`;
+  - movement-null p90 dominance `0.833333`, but actual p90 remains positive.
+
+Stress conclusion:
+
+- contrastive background features improve local Q1 logloss, but fail public-free action stress.
+- broad non-tail compensation is a validation shortcut, not a public-safe hidden lifestyle action.
+- Do not continue by adding larger background correction. The next validator must target action visibility/placement directly.

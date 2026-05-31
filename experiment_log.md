@@ -5191,3 +5191,28 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E323 anatomy is mostly negative/orthogonal, so E323 similarity is not the blocker.
 - Interpretation: the hidden lifestyle-state latent is real and directional. Positive Q1 residual-tail episodes locally want Q1 probability lowered on the current E247 scale. The failure is not discovery or sign; it is action visibility. Scaling the same translator makes the mean look better but pushes p90 above zero and loses movement-null dominance.
 - Decision: do not submit E332 candidates. The next useful target is an action-visibility/health translator that predicts where Q1-tail movement stays visible and p90-safe, not a larger scalar shift on the same tail.
+
+## E333. Q1 Contrastive Action Translator
+
+- Observe: E332 rejected direct scalar Q1-tail shifts. The next smallest action hypothesis is that tail movement needs a contrastive background component to preserve calibration geometry.
+- Wonder: can `tail + rho * background` represent a hidden lifestyle contrast that is strong locally and public-free visible on E247?
+- Hypothesis: if the Q1 hidden state is missing a calibration background, a tail/background translator should improve local Q1 logloss, stay E323-negative, and produce selector-visible candidates with better p90 than direct E332 shifts.
+- Method: `analysis_outputs/e333_q1_contrastive_action_translator.py`.
+  - Fixed latent: E332 Q1 `jepa_resid/dateblock` positive tail.
+  - Background components: no background, all non-tail, low residual quantiles, middle bands, and ring bands.
+  - Contrast ratios: same-direction, opposite-direction, and mass-neutral variants.
+  - Stress: local Q1 OOF logloss versus row/subject/dateblock shuffled action-shape nulls, E272 selector, E323 anatomy, movement-null shuffles.
+- Result:
+  - local translator gates: `510`;
+  - generated candidates: `84`;
+  - selector-promoted candidates: `0`;
+  - selector+E323-safe candidates: `0`;
+  - selector+E323+movement-null-safe candidates: `0`.
+  - strongest local translator:
+    - Q1 `pos_q75/softplus + nontail_all/opp050`: cv delta `-0.020200`, dominance `1.000000`;
+    - this is locally stronger than E332 direct Q1-tail delta around `-0.0154`.
+  - public-free selector reads the best materialized probes as worse than E247:
+    - best-ish `pos_q75_softplus_low_q25_opp050_s0p25`: mean `+0.000034`, p90 `+0.000299`, beats `0.583333`;
+    - many broader background variants have positive mean and large positive p90.
+- Interpretation: contrastive background compensation is a validation shortcut. It improves local Q1 label/null stress, but it destroys E247 public-free action geometry. This is a stronger warning than E332: the missing object is not "add a background correction"; it is a visibility/placement rule that current train Q1 logloss cannot certify.
+- Decision: do not submit E333 candidates. Do not continue with broad non-tail compensation. Future Q1 work should either learn action-health directly from candidate geometry or move to a different latent axis with independent public-free visibility.

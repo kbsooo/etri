@@ -3291,3 +3291,26 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - test placement/shape changes before target amplitude changes.
 - Failure condition:
   - if a Q1-tail feature only improves mean while p90 stays positive, classify it as action-visible but calibration-unsafe.
+
+## E333 Q1 Contrastive Action Features
+
+- Target hypothesis tested:
+  - Q1-tail movement may need a non-tail/background counter-component to become calibration-preserving and public-visible.
+- Feature/representation source:
+  - E332 Q1 positive-tail residual latent;
+  - background masks from non-tail, low residual, mid-band, and ring-band rows;
+  - contrast ratios including opposite-direction and mass-neutral action shapes.
+- Validation result:
+  - `510` local translator gates pass label/null checks;
+  - strongest local shape Q1 `pos_q75/softplus + nontail_all/opp050` has delta `-0.020200`;
+  - `84` generated probes produce `0` selector-promoted candidates;
+  - best selector probe has positive mean and p90 versus E247.
+- Updated registry status:
+  - rejected as a direct submission feature;
+  - approved only as evidence that local Q1 logloss is too permissive for background compensation;
+  - do not include broad non-tail Q1 compensation in candidate generation.
+- Adopt rule for future features:
+  - require public-free action visibility before trusting any Q1 background feature;
+  - prefer row/block placement-health targets over global non-tail compensation.
+- Failure condition:
+  - if a contrastive feature improves train Q1 loss but selector mean/p90 turn positive, classify it as validation shortcut.

@@ -1190,3 +1190,26 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - the next public-worthy branch needs an action-health or placement-shape translator.
 - expected public reaction if submitted anyway:
   - likely noisy or worse than E247 because the candidate family has no selector-promoted actual-direction file and the closest mean-positive edges still have positive p90.
+
+## Public-Free Observation: E333 Q1 Contrastive Action Translator
+
+- submission files: generated locally, but none promoted.
+- public LB: not submitted.
+- reason not submitted: contrastive Q1 background compensation improves local label/null stress but fails public-free selector stress.
+- local observation:
+  - local translator gates: `510`;
+  - generated candidates: `84`;
+  - selector-promoted candidates: `0`;
+  - selector+E323+movement-null-safe candidates: `0`;
+  - strongest local translator: Q1 `pos_q75/softplus + nontail_all/opp050`, delta `-0.020200`, dominance `1.000000`.
+- public-free selector observation:
+  - best-ish probe `submission_e333_q1contrast_pos_q75_softplus_low_q25_opp050_s0p25_911ccf1d.csv`;
+  - mean `+0.000034`;
+  - p90 `+0.000299`;
+  - beats rate `0.583333`.
+- interpretation:
+  - local Q1 contrast is real but not public-safe;
+  - broad background compensation worsens E247 action geometry;
+  - Q1 branch needs action-health/placement supervision, not more local-Q1 compensation.
+- expected public reaction if submitted anyway:
+  - likely worse than E247 because selector mean and p90 are already adverse.

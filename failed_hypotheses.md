@@ -2529,3 +2529,12 @@
 - Implementation issue possible: medium. The translator family is still simple and scalar; a learned placement/shape translator may work. Low for rejecting the current generated files because signflip, selector, E323 anatomy, and movement-null checks agree.
 - Bottleneck implication: the frontier is not blocked by missing Q1-tail sign or amplitude alone. It is blocked by action visibility and p90 calibration.
 - Do not repeat: public-testing direct Q1-tail scalar shifts, or increasing scale on the same tail, unless a new checker first shows negative p90 and movement-null dominance.
+
+## FH281. Q1-tail action becomes submission-grade with broad background compensation
+
+- Failed hypothesis: adding a contrastive non-tail/background component to the Q1-tail translator should preserve calibration and make the latent selector-visible.
+- Observed result: E333 produced `510` local translator gates and a stronger local Q1 delta (`-0.020200`) than E332, but `84` materialized candidates produced `0` selector-promoted files. The best public-free probe had selector mean `+0.000034`, p90 `+0.000299`, and beats rate `0.583333`.
+- Why discard: background compensation is a local-validation shortcut. It reduces train Q1 logloss but moves the E247 tensor in a direction the public-free selector sees as worse.
+- Implementation issue possible: medium. The background family is simple and scalar-tied to the tail. Low for rejecting current files because selector and movement-null stress agree that no candidate is public-grade.
+- Bottleneck implication: local Q1 label improvement is not enough to certify public-visible action. The missing translator target is action-health/placement, not a broader Q1 contrast.
+- Do not repeat: generating broad non-tail Q1 compensation files from local Q1 loss alone.

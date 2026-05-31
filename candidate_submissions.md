@@ -3603,3 +3603,32 @@ Next submission rule:
 - do not submit direct Q1-tail scalar translators;
 - learn or search for a visibility-safe action translator that keeps Q1-tail direction but changes placement/shape;
 - require negative or near-zero p90 plus movement-null dominance before public testing.
+
+## Update After E333 Q1 Contrastive Action Translator
+
+No E333 file should be submitted.
+
+Closest local probe:
+
+- `analysis_outputs/submission_e333_q1contrast_pos_q75_softplus_low_q25_opp050_s0p25_911ccf1d.csv`
+
+Why blocked:
+
+- `510` contrastive translators pass train label/null stress, so local Q1 signal is abundant.
+- But `84` materialized candidates produce `0` selector-promoted files.
+- The best public-free probe is already adverse versus E247:
+  - selector mean `+0.000034`;
+  - selector p90 `+0.000299`;
+  - beats rate `0.583333`.
+- E323 similarity is not the primary blocker; many moves are E323-negative. The blocker is that background compensation creates broad Q1 movement that the public-free selector reads as worse than E247.
+
+Current best public frontier remains:
+
+- `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+- public LB `0.5761589494`
+
+Next submission rule:
+
+- do not submit broad Q1 contrastive/background compensation files;
+- do not treat local Q1 OOF improvement as sufficient evidence;
+- only revisit Q1 if the translator is trained against action-health/visibility, not just Q1 logloss.
