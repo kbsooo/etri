@@ -5230,3 +5230,35 @@ Stress conclusion:
 - The E360 failure is not a simple missing-scale issue.
 - Scaling can restore visibility, but it does not preserve the row-state health condition.
 - A future generator must alter row x target cell geometry or leave the compact source-action family.
+
+## E362 Row x Target Cell-Action Stress
+
+Question: can target-specific cell actions resolve the E360/E361 visibility-versus-row-health contradiction?
+
+Stress setup:
+
+- script: `analysis_outputs/e362_row_target_cell_action_generator.py`;
+- source actions: compact basin plus selected E360/E361 healthy/visible rows;
+- generated pool: `1550`;
+- action forms: independent Q1/Q2/Q3/S1/S3 cell gates over ownlife PCs, row-state clusters, and human/social story axes;
+- stress: actual E272 public-free selector plus actual E358 row-state public-survival.
+
+Stress result:
+
+- strict output candidates: `11`;
+- near-miss candidates: `2`;
+- combined submission-gate candidates: `1`;
+- selected variant: `e360_e351_robust_center__learned_story_nonmonotone_s1_counter_1273__cellaction_q_story_s_recovery_1013`;
+- selected upload-safe file: `analysis_outputs/submission_e362_cellaction_selected_e360_e351_robust_center__learned_story_nonmonotone_s1_counter_1273__cell_e019daf5_uploadsafe.csv`;
+- p90 delta versus current: `-0.000052285`;
+- beat rate: `0.986111111`;
+- incremental bad-axis versus current: `0.011603420`;
+- row-state predicted public loss mean/std: `0.000729697` / `0.000373364`;
+- row-state bad-minus-good exposure: `0.134846798`;
+- movement shares: Q1 `0.571868`, Q2 `0.238509`, Q3 `0.050188`, S1 `0.139435`, S3 `0.000000`.
+
+Stress conclusion:
+
+- E362 is the first post-E358 candidate to pass the combined local output and row-state health gate.
+- The positive structure is target-specific: Q1/Q2 carry most of the story-counter action, S1 carries a sparse recovery action, and S3 must be suppressed.
+- The public-risk caveat remains: the E358 row-state sensor is based on few known public files. E362 is therefore the next information-dense public probe, not a certified replacement.

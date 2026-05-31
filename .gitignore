@@ -222,6 +222,10 @@ analysis_outputs/*
 !analysis_outputs/e361_rowaction_amplitude_restore_*.md
 !analysis_outputs/e361_rowaction_amplitude_restore_*.py
 !analysis_outputs/submission_e361_rowaction_amprestore_*_uploadsafe.csv
+!analysis_outputs/e362_row_target_cell_action_*.csv
+!analysis_outputs/e362_row_target_cell_action_*.md
+!analysis_outputs/e362_row_target_cell_action_*.py
+!analysis_outputs/submission_e362_cellaction_*_uploadsafe.csv
 
 !analysis_outputs/bridge_scan_candidates/
 analysis_outputs/bridge_scan_candidates/*

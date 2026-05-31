@@ -5886,3 +5886,32 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E361 kills the simple amplitude explanation. Increasing scale can restore p90 visibility, but it does not satisfy the row-state exposure/health constraint.
   - The hidden state now looks like a cell/target-action problem: the model must change which target cells move on healthy rows, not only which rows are touched or how strongly.
 - Decision: no E361 submission. Next branch should learn a lower-level row x target cell-action generator or import a new source action family outside the compact delta.
+
+## E362. Row x Target Cell-Action Generator
+
+- Observe: E359-E361 created a sharp contradiction. Row placement can be made healthier, and visibility can be restored with amplitude, but not at the same time. That implies the missing action law is below row level: the same lifestyle row may need different movement by target cell.
+- Wonder: can a target-specific row-cell action keep the E272 output signal while reducing the E358 row-state public-survival risk?
+- Hypothesis: if the hidden lifestyle state is expressed as row x target cell geometry, a generator should find a non-broad movement where Q targets and S targets react differently to the same human/social row state. A valid candidate should pass actual E272 public-free visibility and E358 row-state stress at the same time.
+- Method: `analysis_outputs/e362_row_target_cell_action_generator.py`.
+  - Source actions: compact basin plus selected E360/E361 healthy/visible rows.
+  - Context: ownlife PCs, E328 row-state risk/good clusters, E268 human/social story axes, target movement shares, and source-action anatomy.
+  - Action families: free cell movement, split Q/S movement, anti-bad-all, PC-all with S suppression, and Q-story plus S-recovery.
+  - Candidate count: `1550`.
+  - Stress: actual E272 public-free selector and actual E358 row-state public-survival sensor.
+- Result:
+  - strict output candidates: `11`;
+  - near-miss candidates: `2`;
+  - submission-gate candidates: `1`;
+  - selected variant: `e360_e351_robust_center__learned_story_nonmonotone_s1_counter_1273__cellaction_q_story_s_recovery_1013`;
+  - selected upload-safe file: `analysis_outputs/submission_e362_cellaction_selected_e360_e351_robust_center__learned_story_nonmonotone_s1_counter_1273__cell_e019daf5_uploadsafe.csv`;
+  - p90 delta versus current: `-0.000052285`;
+  - beat rate: `0.986111111`;
+  - row-state predicted public loss mean/std: `0.000729697` / `0.000373364`;
+  - bad-minus-good row-state exposure: `0.134846798`;
+  - movement L1: `2.295885385`;
+  - target movement shares: Q1 `0.571868`, Q2 `0.238509`, Q3 `0.050188`, S1 `0.139435`, S3 `0.000000`.
+- Interpretation:
+  - This is the first candidate after E358 that satisfies the combined local output-visibility and row-state-health gate.
+  - The learned structure is not "move a lifestyle row globally." It is target-specific: strong Q1/Q2 story-counter movement, small Q3 social-lowrisk movement, sparse S1 recovery movement, and full S3 suppression.
+  - The result supports a hidden lifestyle-state action law where subjective Q targets and objective S recovery targets should not be moved with the same scalar gate.
+- Decision: E362 is the next single public-test candidate if a slot is used. It is still a probe, not a guaranteed score improvement, because the row-state public model is trained from few known public observations.

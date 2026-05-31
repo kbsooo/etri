@@ -3858,3 +3858,21 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - strict-visible candidates fail row-state exposure/health, while healthiest candidates stay too weak.
 - Registry status: rejected as a submission feature family. Keep as evidence that row placement plus amplitude is insufficient.
 - Failure condition: do not repeat scalar scale sweeps on E360 rows unless the underlying row x target cell pattern changes.
+
+### E362 row x target cell-action latent
+
+- Target hidden structure: a hidden lifestyle state whose correct probability action differs by target cell, especially between subjective Q targets and objective S recovery/stage targets.
+- Why needed: E359-E361 show that row placement and amplitude are not enough. Healthy row movement loses visibility, while visible amplitude violates row-state health. The missing representation must decide which target cells move on each lifestyle row.
+- Feature/action form:
+  - context views from E328 ownlife PCs, row-state risk/good clusters, E268 human/social story axes, source-action movement anatomy, and target shares;
+  - action families with independent Q1/Q2/Q3/S1/S3 row gates;
+  - verification by actual E272 output selector and E358 row-state public-survival stress.
+- Current evidence:
+  - generated candidates: `1550`;
+  - strict output candidates: `11`;
+  - submission-gate candidates: `1`;
+  - selected recipe: `q_story_s_recovery`;
+  - selected file: `analysis_outputs/submission_e362_cellaction_selected_e360_e351_robust_center__learned_story_nonmonotone_s1_counter_1273__cell_e019daf5_uploadsafe.csv`;
+  - selected target movement shares: Q1 `0.571868`, Q2 `0.238509`, Q3 `0.050188`, S1 `0.139435`, S3 `0.000000`.
+- Registry status: approved as the current top submission probe and as the strongest local evidence for row x target hidden lifestyle-action geometry.
+- Failure condition: if public LB is clearly worse, do not keep generating E362 variants by small parameter tweaks. First recalibrate the row-state public-survival target or bring in an independent public-like subset/calibration latent.

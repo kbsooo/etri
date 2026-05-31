@@ -4498,3 +4498,39 @@ Submission priority interpretation:
 2. The current compact source-action family is now blocked by a stronger local contradiction: healthy row placement loses visibility; restored visibility loses row-state health.
 3. E357/E356/E351 are still only information probes if a public slot is intentionally used to test whether output-space calibration dominates row-state diagnostics.
 4. The next score-seeking route should learn row x target cell-action health or bring in a source action outside the compact E349/E351/E356/E357 family.
+
+## Update After E362 Row x Target Cell-Action Generator
+
+Selected upload-safe file:
+
+`analysis_outputs/submission_e362_cellaction_selected_e360_e351_robust_center__learned_story_nonmonotone_s1_counter_1273__cell_e019daf5_uploadsafe.csv`
+
+Why this is the next single candidate:
+
+- E362 is the first branch after E358 to pass both actual output visibility and row-state public-survival gates.
+- It directly attacks the E360/E361 contradiction by changing target-cell geometry, not just row placement or amplitude.
+- The selected action is interpretable: Q1/Q2 story-counter dominates, Q3 is small, S1 is sparse recovery, and S3 is suppressed.
+- It is not a broad public-prior tweak; changed cells are distributed through a target-specific lifestyle-state gate.
+
+Evidence:
+
+- generated candidates: `1550`;
+- strict output candidates: `11`;
+- submission-gate candidates: `1`;
+- p90 delta versus current: `-0.000052285`;
+- beat rate: `0.986111111`;
+- row-state predicted public loss mean/std: `0.000729697` / `0.000373364`;
+- bad-minus-good row-state exposure: `0.134846798`;
+- incremental bad-axis versus current: `0.011603420`.
+
+Submission priority interpretation:
+
+1. If one public slot is used now, E362 is the highest-information candidate.
+2. E357/E356/E351 remain compact-basin probes, but E362 is the only current file that answers the row-state/cell-action bottleneck directly.
+3. Do not submit the near-miss E362 rows before this selected file; their row-state exposure or gate margins are weaker.
+
+Expected public interpretation:
+
+- If E362 improves over E247/E95/E247-derived bests, the hidden lifestyle-state law is likely row x target specific: subjective Q story movement plus sparse S recovery, with S3 suppression.
+- If E362 worsens but compact-basin files improve, E358/E362 row-state health is too pessimistic and output-space calibration dominates this public slice.
+- If E362 worsens and compact-basin files also fail, the next target should leave the compact source family and learn public-like subset/calibration state more directly.

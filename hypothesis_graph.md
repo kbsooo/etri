@@ -4176,3 +4176,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept if a scaled candidate passes strict p90, bad-axis, rowloss, rowstate variance, and exposure gates. Not observed.
 - public LB 관측 반응: no E361 submission. If compact files fail publicly, H361 says the next branch must change cell/target action geometry, not merely scale healthy row placements.
 - 제출 전략: none.
+
+### H362: hidden lifestyle-state action is row x target specific
+
+- 상태: locally supported; public LB pending.
+- 왜 그럴듯한가: E359 showed row gating alone fails, E360 learned healthy-but-small row placement, and E361 showed amplitude restoration reintroduces row-state risk. The remaining plausible layer is target-cell action geometry: the same lifestyle state should move Q and S targets differently.
+- 맞다면: a generator with target-specific cell gates should produce at least one candidate that keeps E272 strict output visibility while satisfying E358 row-state public-survival gates. The passing action should not be broad across all targets.
+- 틀리다면: generated cell-action candidates should either be visible-but-row-risky like E361, or row-healthy-but-too-small like E360.
+- 최소 실험: `analysis_outputs/e362_row_target_cell_action_generator.py`.
+- 관측: `1550` candidates, `11` strict output candidates, `2` near-misses, and `1` combined submission-gate candidate. The selected file has p90 delta `-0.000052285`, row-state predicted public loss `0.000729697`, bad-minus-good exposure `0.134846798`, and target movement shares Q1 `0.571868`, Q2 `0.238509`, Q3 `0.050188`, S1 `0.139435`, S3 `0.000000`.
+- 성공/폐기 기준: accept locally if one candidate passes strict p90, beat-rate, bad-axis, row-state loss, row-state variance, and exposure gates. This is observed. Accept publicly only if the selected upload improves or meaningfully competes with the known public frontier.
+- public LB 관측 반응: if E362 improves, it supports the row x target lifestyle-action law: Q-story/S-recovery movement with S3 suppression. If E362 fails, the local row-state/action-health sensors are still incomplete or overfit to known public observations.
+- 제출 전략: `analysis_outputs/submission_e362_cellaction_selected_e360_e351_robust_center__learned_story_nonmonotone_s1_counter_1273__cell_e019daf5_uploadsafe.csv` is the next single high-information probe.
