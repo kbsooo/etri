@@ -5039,3 +5039,43 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Failure condition: if H047 loses materially to H042, do not keep expanding
   Q2 support by posterior-tail selection without an independent public-subset
   assignment signal.
+
+### H048 Q2 public-subset support-world features
+
+- Target hidden structure: public-subset row assignment conditioned on H047
+  Q2 support identity. This treats support identity as a public-world prior,
+  not just as a Q2 action mask.
+- Why needed: H047 proves a support posterior can create a local Q2 candidate,
+  but it does not prove those rows are truly public-sensitive. H048 asks
+  whether the same support posterior helps explain known public LB equations.
+- Feature/action form:
+  - H047 support posterior inserted into world-sampler row priors:
+    `h048_support_identity`, `h048_support_public`,
+    `h048_support_public_not_private`, `h048_core_tail_prior`;
+  - Q2-specific q sources:
+    `h048_q2_support_phase_q`, `h048_q2_coretail_q`,
+    `h048_q2_public_soft_q`;
+  - joint support/world score combining row posterior, support posterior,
+    public route, private route, Q2 regime, and H042/H047 support indicators;
+  - Q2-only action families:
+    world-support top-k, H042-core plus world tail, and H047/H045 world-sieve.
+- Current evidence:
+  - support-prior LOFO MAE `0.000145480` vs uniform `0.000184123`;
+  - generated/scored candidates `206` / `206`;
+  - promotable candidates `83`;
+  - selected `h048_world_support_top53_a0.66_c53_39c01d65`;
+  - root file
+    `submission_h048_q2_public_subset_support_39c01d65_uploadsafe.csv`;
+  - changed cells/rows vs H012 `53` / `53`, Q2 only;
+  - changed cells vs H047 `16`, Q2 only;
+  - full-known conditional margin/support
+    `-0.000184398` / `0.583333333`;
+  - pre-H042 conditional margin/support
+    `-0.000463494` / `0.583333333`;
+  - route-equation delta `-0.000165760`;
+  - H048 world delta `-0.000065847`;
+  - H024 margin `+0.000522791`;
+  - H025 score `-1.063509870`.
+- Registry status: approved as a public-ready support-world sensor.
+- Failure condition: if H048 loses while H047 survives, keep H047 support
+  identity but reject the current public-subset assignment layer.

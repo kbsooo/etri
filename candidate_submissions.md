@@ -26,13 +26,15 @@ Previous public frontier: `submission_h012_public_equation_top_all_k1200_a0.7_up
 
 H042 improves over H012 by `0.0002186583`. H012 remains the base public-equation anchor, but H042 is now the reference public frontier unless private-risk considerations dominate final selection.
 
-Current next high-risk submission candidate: `submission_h047_q2_support_identity_98737e9b_uploadsafe.csv`.
+Current next high-risk submission candidate: `submission_h048_q2_public_subset_support_39c01d65_uploadsafe.csv`.
 
-Reason: H047 is the cleanest post-H046 support-identity sensor. It keeps the
-H042 `45`-cell Q2 core, adds only `14` posterior-selected tail rows, and
-avoids the private-tail amplitude/sign bifurcation that H046 rejected. The
-older `submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv`
-and H021 bridge file are now historical architecture sensors, not current
+Reason: H047 is the cleanest support-identity sensor, but H048 is the larger
+HS-JEPA claim. H048 tests whether that support identity is also hidden
+public-subset assignment. It changes only `53` Q2 cells, differs from H047 on
+`16` Q2 cells, and adds public-world LOFO evidence (`0.000145480` vs uniform
+`0.000184123`). The older
+`submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv` and
+H021 bridge file are now historical architecture sensors, not current
 recommendations, unless the user explicitly wants to spend a public slot on a
 resolved posterior-completion question.
 
@@ -5997,3 +5999,48 @@ Submission meaning:
   correction and the next bet should move away from Q2 support expansion.
 - If H047 is close to H042, the direction is real but support size and
   amplitude remain under-identified.
+
+## H048 Submission Decision
+
+Current bigger-worldview public sensor:
+
+`submission_h048_q2_public_subset_support_39c01d65_uploadsafe.csv`
+
+What this file tests:
+
+- H047 asks which rows belong to Q2 support.
+- H048 asks whether those same rows are public-subset rows in the hidden
+  public-world equation.
+- This is more HS-JEPA-complete: context is known public equations plus human
+  support/route state, target is public-subset row assignment, action is a
+  Q2-only phase move.
+
+Local profile:
+
+- best H048 support-prior LOFO MAE: `0.000145480`;
+- best uniform LOFO MAE: `0.000184123`;
+- changed cells/rows vs H012: `53` / `53`, Q2 only;
+- changed cells vs H047: `16`, Q2 only;
+- full-known conditional margin/support:
+  `-0.000184398` / `0.583333333`;
+- pre-H042 conditional margin/support:
+  `-0.000463494` / `0.583333333`;
+- route-equation delta:
+  `-0.000165760`;
+- H048 world delta:
+  `-0.000065847`;
+- H024 margin:
+  `+0.000522791`;
+- H025 score:
+  `-1.063509870`;
+- H042/H047/H045 Jaccard:
+  `0.781818182` / `0.898305085` / `0.706666667`.
+
+Submission meaning:
+
+- If H048 beats H042/H047, Q2 support identity is also public-subset
+  assignment.
+- If H048 loses while H047 survives, public-world assignment is overfit and
+  support-only H047 is the better theory.
+- If both H047 and H048 lose, exact H042 support is likely the only public-safe
+  Q2 correction found so far.

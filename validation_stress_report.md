@@ -7071,3 +7071,58 @@ Stress conclusion:
   override class as H042/H043/H045.
 - This is the next clean public test of whether H042 was exact-support-only or
   whether a contrastively learned Q2 support posterior can safely expand it.
+
+## H048 Q2 Public-Subset Support-World Stress
+
+Stress target:
+
+- test whether H047 support identity is also a hidden public-subset row prior;
+- promote only if the support prior improves public-world LOFO fit and the
+  materialized candidate remains Q2-only, conditional-decoder positive,
+  route-positive, H025-healthy, and inside the known Q2-local H024 warning
+  range.
+
+Public-world stress:
+
+- best H048 support-prior LOFO MAE: `0.000145480`;
+- best uniform LOFO MAE: `0.000184123`;
+- support LOFO gain vs uniform: `0.000038643`;
+- top config:
+  `h041_route_public_q + h048_support_public_not_private + subset_size 190`.
+
+Action stress result:
+
+- generated/scored candidates: `206` / `206`;
+- promotable candidates: `83`;
+- selected candidate:
+  `h048_world_support_top53_a0.66_c53_39c01d65`;
+- promoted root file:
+  `submission_h048_q2_public_subset_support_39c01d65_uploadsafe.csv`;
+- changed cells/rows vs H012: `53` / `53`, all Q2;
+- changed cells vs H047: `16`, all Q2;
+- full-known conditional margin/support:
+  `-0.000184398` / `0.583333333`;
+- pre-H042 conditional margin/support:
+  `-0.000463494` / `0.583333333`;
+- route-equation delta:
+  `-0.000165760`;
+- H048 world delta:
+  `-0.000065847`;
+- H024 margin:
+  `+0.000522791`;
+- H025 score:
+  `-1.063509870`;
+- H042/H047/H045 Jaccard:
+  `0.781818182` / `0.898305085` / `0.706666667`;
+- promoted root file validation:
+  shape `(250, 10)`, required columns OK, no NaN, probability range
+  `0.0000329401` to `0.999980303`.
+
+Stress conclusion:
+
+- H048 passes the support-world public-sensor gate.
+- It is a higher-level HS-JEPA claim than H047, but remains in the Q2-local
+  H024-warning class rather than becoming a general action translator.
+- Public feedback should be interpreted against H047: H048 winning means
+  support identity is public-subset assignment; H047 winning while H048 loses
+  means the world assignment layer overfit known public equations.

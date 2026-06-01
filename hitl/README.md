@@ -17,6 +17,10 @@ search.
 - Current H047 question: did H042 expose a discrete Q2 support identity that
   can safely expand from `45` to `59` cells, or was the exact H042 support the
   public-specific correction?
+- Current larger-world promoted sensor:
+  `submission_h048_q2_public_subset_support_39c01d65_uploadsafe.csv`.
+- Current H048 question: is that Q2 support identity also a hidden
+  public-subset prior?
 
 ## H041: Route-Prior Public/Private Equation Solver HS-JEPA
 
@@ -1411,3 +1415,49 @@ then means the action should stay one-directional while the support expands
 discretely. If H047 loses, the safest interpretation is that H042's exact
 support is unusually public-specific and support expansion remains the
 bottleneck.
+
+## H048: Q2 Public-Subset Support-World HS-JEPA
+
+- Script: `hitl/h048_q2_public_subset_support_world_jepa.py`
+- Report: `hitl/h048_q2_public_subset_support_world_jepa/h048_report.md`
+- Decision: promote one public sensor:
+  `submission_h048_q2_public_subset_support_39c01d65_uploadsafe.csv`.
+
+### Question
+
+Is H047's support identity also a prior over the hidden public subset, rather
+than only a row support for Q2 action?
+
+### Main Finding
+
+The H047-derived support prior improves public-world equation fit and produces
+a Q2-only candidate.
+
+- Best H048 support-prior LOFO MAE: `0.000145480`.
+- Best uniform LOFO MAE: `0.000184123`.
+- Support LOFO gain vs uniform: `0.000038643`.
+- Generated/scored candidates: `206` / `206`.
+- Promotable candidates: `83`.
+- Selected candidate:
+  `h048_world_support_top53_a0.66_c53_39c01d65`.
+- Root upload-safe file:
+  `submission_h048_q2_public_subset_support_39c01d65_uploadsafe.csv`.
+- Changed cells/rows vs H012: `53` / `53`, Q2 only.
+- Changed cells vs H047: `16`, Q2 only.
+- Full-known conditional margin/support:
+  `-0.000184398` / `0.583333333`.
+- Pre-H042 conditional margin/support:
+  `-0.000463494` / `0.583333333`.
+- Route-equation delta: `-0.000165760`.
+- H048 world delta: `-0.000065847`.
+- H024 margin: `+0.000522791`.
+- H025 score: `-1.063509870`.
+- H042/H047/H045 Jaccard:
+  `0.781818182` / `0.898305085` / `0.706666667`.
+
+### Interpretation
+
+H048 is a bigger bet than H047, not necessarily a safer one. If H048 improves,
+the support identity is also public-subset assignment. If H048 loses while
+H047 holds up, public-world assignment overfit local equations and the cleaner
+support-only representation should remain the active theory.

@@ -1073,3 +1073,19 @@ same as H042-H045: H024 margin is positive (`+0.000552020`), so this is a
 Q2-local public sensor, not a general-purpose action translator. Public
 feedback will decide whether support identity is real or whether exact H042
 support is still the hidden invariant.
+
+H048 tests whether the H047 representation is a public-world latent rather
+than only an action-support latent. It inserts H047-derived support priors into
+the public-world sampler and asks whether known public LB equations are better
+explained. The answer is locally positive: best H048 support-prior LOFO MAE is
+`0.000145480` versus uniform `0.000184123`. The selected action,
+`submission_h048_q2_public_subset_support_39c01d65_uploadsafe.csv`, changes
+`53` Q2 cells, differs from H047 on only `16` Q2 cells, and has H047 Jaccard
+`0.898305085`. This means H048 is not a new arbitrary support; it is a
+public-subset reinterpretation of the same support latent. It passes
+conditional action stress (`-0.000184398` margin, `0.583333333` support),
+pre-H042 stress (`-0.000463494`), route equation (`-0.000165760`), H048 world
+delta (`-0.000065847`), and H025 (`-1.063509870`). The persistent H024 margin
+`+0.000522791` keeps the LeJEPA warning active: this is still a specialized
+Q2-public sensor, not a universal action decoder. The decisive comparison is
+H047 vs H048 public feedback.

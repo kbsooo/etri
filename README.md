@@ -19,14 +19,17 @@ Current post-H012 status:
 
 - H042 Q2 tiny phase is the active public frontier, while H012 remains the base
   public-equation anchor.
-- H043, H045, and H047 are the current high-information post-H042 sensors:
+- H043, H045, H047, and H048 are the current high-information post-H042 sensors:
   - H043 tests whether the Q2 phase branch can expand from `45` to `105`
     cells;
   - H045 tests whether human-state route context can prune that expansion to a
     `75`-cell route-conditioned support;
   - H047 tests whether support identity is the missing variable by keeping the
     H042 core and adding only `14` posterior-selected tail rows, producing a
-    `59`-cell Q2-only support.
+    `59`-cell Q2-only support;
+  - H048 tests the larger claim that H047 support identity is also a hidden
+    public-subset prior, producing a `53`-cell Q2-only support selected by
+    joint support/world assignment.
 - No H015-H041 file is currently promoted as the next upload.
 - The historical post-H012 sensors below are kept because they define falsified or partially supported HS-JEPA routes, not because they are current submission recommendations.
 
@@ -275,6 +278,17 @@ Public LB operating rule:
   the cleanest next support-identity sensor: a win means H042 was not just a
   narrow accident; a loss means exact H042 support is still the safer public
   structure.
+- H048 raises the H047 claim one level: support identity is tested as a
+  public-subset row prior inside the world sampler. The best support prior has
+  LOFO MAE `0.000145480` versus uniform `0.000184123`, a gain of
+  `0.000038643`, so the support prior is not only an action-support heuristic.
+  It promotes `submission_h048_q2_public_subset_support_39c01d65_uploadsafe.csv`,
+  a Q2-only `53`-cell candidate with full-known conditional margin/support
+  `-0.000184398` / `0.583333333`, pre-H042 margin `-0.000463494`,
+  route delta `-0.000165760`, H048 world delta `-0.000065847`, and H025 score
+  `-1.063509870`. This is the bigger-worldview follow-up to H047: a win means
+  Q2 support identity is also public-subset assignment; a loss means the world
+  prior overfit local equations and H047 remains the cleaner support sensor.
 
 Primary working notes:
 

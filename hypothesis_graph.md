@@ -5360,3 +5360,53 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - public LB 관측 반응: pending.
 - 제출 전략: submit H047 when the next slot should test exact H042 support
   versus small contrastive support expansion.
+
+### H048: Q2 support identity is also hidden public-subset assignment
+
+- 상태: public-ready; one promoted support-world sensor.
+- 왜 그럴듯한가: H047 support identity is a row-level latent. If it is truly
+  public-relevant, the same rows should improve hidden public-subset equation
+  inference, not only Q2 action selection.
+- 맞다면:
+  - H048 support priors should improve public-world LOFO over uniform;
+  - materialized Q2 actions should stay close to H047 while improving
+    support/world alignment;
+  - public LB should beat or at least track H047 if public-subset assignment is
+    the missing layer.
+- 틀리다면:
+  - H048 may improve public-world fit locally but lose on public LB, meaning
+    support-world assignment overfit known equations;
+  - H047 should remain the cleaner support-only theory.
+- 최소 실험: `hitl/h048_q2_public_subset_support_world_jepa.py`, inserting
+  H047 support priors into the public-world sampler and materializing Q2-only
+  phase actions from joint support/world row scores.
+- 관측:
+  - best H048 support-prior LOFO MAE `0.000145480`;
+  - best uniform LOFO MAE `0.000184123`;
+  - support LOFO gain vs uniform `0.000038643`;
+  - generated/scored candidates `206` / `206`;
+  - promotable candidates `83`;
+  - selected `h048_world_support_top53_a0.66_c53_39c01d65`;
+  - root file
+    `submission_h048_q2_public_subset_support_39c01d65_uploadsafe.csv`;
+  - changed cells/rows vs H012 `53` / `53`, Q2 only;
+  - changed cells vs H047 `16`, Q2 only;
+  - full-known conditional margin/support
+    `-0.000184398` / `0.583333333`;
+  - pre-H042 conditional margin/support
+    `-0.000463494` / `0.583333333`;
+  - route-equation delta `-0.000165760`;
+  - H048 world delta `-0.000065847`;
+  - H024 margin `+0.000522791`;
+  - H025 score `-1.063509870`;
+  - H042/H047/H045 Jaccard
+    `0.781818182` / `0.898305085` / `0.706666667`.
+- 성공/폐기 기준:
+  - accept support-world assignment if H048 beats H042/H047 or if H047/H048
+    together show public stability;
+  - reject the public-world assignment layer if H047 is good but H048 loses
+    materially.
+- public LB 관측 반응: pending.
+- 제출 전략: submit H048 when the next public slot should test the larger
+  HS-JEPA claim that support identity and public-subset assignment are the same
+  hidden state.

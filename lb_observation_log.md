@@ -2842,3 +2842,43 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - public-test H047 if the next slot should distinguish exact H042 support
     from a small, contrastively inferred support expansion.
+
+## Public-Free Observation: H048 Q2 Public-Subset Support-World JEPA
+
+- submission file prepared:
+  `submission_h048_q2_public_subset_support_39c01d65_uploadsafe.csv`
+- public LB: pending
+- current public frontier:
+  `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
+  scored `0.5679048248`.
+- changed point:
+  - inserts H047 support identity into the public-world sampler as a row prior;
+  - tests whether Q2 support rows are also likely public-subset rows;
+  - materializes only Q2-local phase movement on the joint support/world
+    selected rows.
+- expected LB reaction:
+  - better than H042/H047 means support identity is also public-subset
+    assignment;
+  - worse than H047 means world assignment overfit known public equations and
+    H047 support-only representation is cleaner;
+  - worse than H042 means Q2 support expansion remains local-sensor overfit.
+- local/public-free observation:
+  - support-prior LOFO MAE `0.000145480` vs uniform `0.000184123`;
+  - selected `h048_world_support_top53_a0.66_c53_39c01d65`;
+  - changed cells/rows vs H012 `53` / `53`, Q2 only;
+  - changed cells vs H047 `16`, Q2 only;
+  - full-known conditional margin/support
+    `-0.000184398` / `0.583333333`;
+  - pre-H042 conditional margin/support
+    `-0.000463494` / `0.583333333`;
+  - route-equation delta `-0.000165760`;
+  - H048 world delta `-0.000065847`;
+  - H024 margin `+0.000522791`;
+  - H025 score `-1.063509870`.
+- interpretation:
+  - H048 is a bigger worldview sensor than H047 because it tests public-subset
+    assignment, not only support identity.
+- next experiment:
+  - public-test H048 after or instead of H047 depending on whether the next
+    slot should prioritize a clean support test or a larger HS-JEPA
+    public-subset claim.

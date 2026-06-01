@@ -7529,3 +7529,57 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - if H047 beats H042, continue support-posterior decomposition;
   - if H047 loses, narrow back to exact H042 support and search public-subset
     assignment outside Q2 amplitude/support expansion.
+
+## H048. Q2 Public-Subset Support-World HS-JEPA
+
+- Observe: H047 produces a support-identity posterior, but it still treats
+  support as an action mask. The larger HS-JEPA question is whether that same
+  support is a prior over the hidden public subset.
+- Wonder: if support identity is inserted into the public-world sampler as a
+  row prior, does it explain known public LB equations better than uniform and
+  produce a cleaner Q2-local action?
+- Hypothesis: if H047 support identity is a public-subset prior, then H048
+  support-prior configs should improve LOFO public-equation fit and selected
+  Q2 actions should stay positive under conditional decoder, route, H025, and
+  bounded H024 stress.
+- Method: `hitl/h048_q2_public_subset_support_world_jepa.py`.
+  - context: known public LB equations, H047 support posterior, H041 route
+    priors, H042/H047 Q2 supports, and Q2 phase direction;
+  - target representation: hidden public-subset row assignment;
+  - action form: Q2-only phase moves from rows selected by joint support/world
+    assignment;
+  - stress: public-world LOFO, H042 route equation, H024, H025, and post-H042
+    conditional route-to-action decoder.
+- Result:
+  - best H048 support-prior LOFO MAE `0.000145480`;
+  - best uniform LOFO MAE `0.000184123`;
+  - support LOFO gain vs uniform `0.000038643`;
+  - generated/scored candidates `206` / `206`;
+  - promotable candidates `83`;
+  - selected candidate `h048_world_support_top53_a0.66_c53_39c01d65`;
+  - promoted file
+    `submission_h048_q2_public_subset_support_39c01d65_uploadsafe.csv`;
+  - changed cells/rows vs H012 `53` / `53`, Q2 only;
+  - changed cells vs H047 `16`, Q2 only;
+  - full-known conditional margin/support
+    `-0.000184398` / `0.583333333`;
+  - pre-H042 conditional margin/support
+    `-0.000463494` / `0.583333333`;
+  - route-equation delta `-0.000165760`;
+  - H048 world delta `-0.000065847`;
+  - H024 margin `+0.000522791`;
+  - H025 score `-1.063509870`;
+  - H042/H047/H045 Jaccard
+    `0.781818182` / `0.898305085` / `0.706666667`.
+- Interpretation:
+  - H048 validates support identity as a public-world prior locally;
+  - it remains in the Q2-local H024-warning class, so it is a public sensor,
+    not a general translator;
+  - it is less clean than H047 as a support-only test, but more informative
+    about HS-JEPA's public-subset layer.
+- Decision:
+  - promote H048 as the next bigger-worldview public sensor after H047;
+  - if H048 beats H047/H042, support identity and public-subset assignment are
+    the same hidden variable;
+  - if H048 loses while H047 is close or positive, public-world assignment is
+    overfitting and support-only H047 remains the active branch.
