@@ -5819,3 +5819,37 @@ Stress conclusion:
 - The learned public weighting is diffuse, not a concentrated pseudo-public subset. That changes the interpretation: public LB may behave like a broad but non-uniform cell-weight/gain field rather than a small hidden holdout slice.
 - The promoted H016 file is a lower-amplitude alternative to H015: `submission_h016_public_subset_gain_all_k1000_a0.75_uploadsafe.csv`, predicted subset-weight delta `-0.000296297` versus H012.
 - H016 should be treated as a structural sensor, not a private-safety proof. Public feedback is needed to decide whether the diffuse weight field can materialize a better submission.
+
+## H017 Joint Label x Public-Weight Stress
+
+Question: are H012's hidden label posterior and H016's public cell weights mutually compatible parts of one hidden public world?
+
+Stress setup:
+
+- script: `hitl/h017_joint_label_weight_jepa.py`;
+- current anchor: H012;
+- target equation: `public_delta = sum_cell w[cell] * loss_delta(pred, q[cell])`;
+- fitted variables: public label posterior `q` and public cell weights `w`;
+- priors: H012/H015/H016 predictions, H012/H015 public posteriors, top-public priors, H016 weight fields;
+- null stress: permute known public deltas `300` times with the submission loss-delta tensor fixed.
+
+Stress result:
+
+- selected config: `q=h012_public_posterior`, `w=h016_mean_weight`, ridge `0.1`, cap `8`;
+- real LOO MAE: `0.000001044`;
+- real LOO p90 abs: `0.000002071`;
+- real LOO Spearman: `1.000000`;
+- uniform-prior MAE: `0.000885430`;
+- permutation null median LOO MAE: `0.001672425`;
+- permutation null p90 LOO MAE: `0.001949831`;
+- permutation null max Spearman: `0.200902`;
+- real one-sided permutation p-value for MAE/Spearman: `0.003322`;
+- q/w movement from priors is nearly zero: `q_prior_abs_move=0.000000677`, `w_prior_l1_move=0.000000293`.
+
+Stress conclusion:
+
+- H017 passes the public-delta permutation stress, but the exact reading is important: it did not learn a substantially new joint state.
+- The result says H012 public posterior and H016 diffuse weights are already compatible enough to explain known public deltas.
+- The promoted file `submission_h017_joint_label_weight_oracle_gain_all_k1650_a1_uploadsafe.csv` tests posterior-completion: move H012 further toward its original H012 public posterior under the H016 public-weight field.
+- Predicted joint delta is `-0.000574501` versus H012. Under the same joint sensor, H015 is predicted harmful (`+0.000164654`) and H016 beneficial but weaker (`-0.000296289`).
+- Public feedback will decide whether this compatibility is action-safe or only an explanatory fit.

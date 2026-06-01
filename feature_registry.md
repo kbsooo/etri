@@ -4232,3 +4232,23 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - full H015 predicted subset-weight delta vs H012 `+0.000164649`.
 - Registry status: approved as a high-information structural feature/action layer. Not yet public-validated.
 - Failure condition: if H016 public LB worsens, do not discard the weight diagnostic entirely; discard the direct materialization. The weight field may still be useful as a risk sensor for later candidates.
+
+### H017 joint label-weight posterior completion
+
+- Target hidden structure: joint public label posterior and diffuse public cell-weight field satisfying known public LB deltas.
+- Why needed: H012 and H016 separately solve labels and weights. H017 tests whether these are compatible pieces of the same public equation, and whether H012 should be moved closer to its own posterior.
+- Feature/action form:
+  - context: known submission loss-delta tensors versus H012;
+  - latent: `(q, w)` represented as `[w, w*q]`;
+  - priors: H012 public posterior and H016 mean weight are the selected compatible state;
+  - action: move H012 toward the joint `q` on high joint public-weighted gain cells.
+- Current evidence:
+  - selected config `q=h012_public_posterior`, `w=h016_mean_weight`;
+  - LOO MAE `0.000001044`, Spearman `1.000000`;
+  - permutation-null median LOO MAE `0.001672425`, max null Spearman `0.200902`;
+  - `q_prior_abs_move=0.000000677`, `w_prior_l1_move=0.000000293`, so this is compatibility evidence rather than a new latent discovery;
+  - selected file `submission_h017_joint_label_weight_oracle_gain_all_k1650_a1_uploadsafe.csv`;
+  - selected predicted joint delta vs H012 `-0.000574501`;
+  - changed cells `1650`, max probability delta vs H012 `0.107121`.
+- Registry status: approved as a high-information public sensor for posterior-completion. Not approved as independent human-state/private-safe evidence.
+- Failure condition: if public LB worsens, do not continue pushing H012 to the original posterior; use the H012 posterior only as an explanatory latent unless an independent private/public risk sensor appears.

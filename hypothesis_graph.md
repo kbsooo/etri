@@ -4415,3 +4415,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept as a structural sensor if real public deltas beat permutation null on LOO MAE/Spearman and the weight field is not a single-cell/small-subset collapse. Observed.
 - public LB 관측 반응: if `submission_h016_public_subset_gain_all_k1000_a0.75_uploadsafe.csv` improves, public feedback is better understood as a diffuse cell-weight/gain field and H015-style broad sharpening should be constrained. If it worsens, the weight field may predict old public submissions but fail to materialize a new safe action.
 - 제출 전략: H016 is the main alternative to H015. H015 tests recursive public-label sharpening; H016 tests public cell-weight selection.
+
+### H017: H012 public posterior and H016 public weights are one compatible latent world
+
+- 상태: strongly supported as a compatibility/posterior-completion sensor; public LB pending.
+- 왜 그럴듯한가: H012 solved public labels under uniform weights, while H016 solved public weights under H012-like label proxies. If both are projections of the same hidden public world, the joint equation `sum w * loss_delta(pred, q)` should hold with almost no additional movement.
+- 맞다면: joint `(q,w)` fitting should produce excellent leave-one-public prediction, beat public-delta permutation nulls, and select an action that moves H012 further toward H012 public posterior under H016 weights. The fitted state should not need large q/w distortion.
+- 틀리다면: the joint fit should require unstable q/w changes, fail permutation null, or rank H015/H016/posterior-completion actions inconsistently.
+- 최소 실험: `hitl/h017_joint_label_weight_jepa.py`.
+- 관측: selected `q=h012_public_posterior`, `w=h016_mean_weight`, ridge `0.1`, cap `8`. LOO MAE `0.000001044`, Spearman `1.000000`, permutation-null median MAE `0.001672425`, max null Spearman `0.200902`. The solver barely moves priors (`q_prior_abs_move=0.000000677`, `w_prior_l1_move=0.000000293`), so this is compatibility, not a new latent discovery. Primary file `submission_h017_joint_label_weight_oracle_gain_all_k1650_a1_uploadsafe.csv` has predicted joint delta `-0.000574501` vs H012.
+- 성공/폐기 기준: accept as a public sensor if real beats permutation null and the primary action beats both H015 and H016 under the same joint sensor. Observed locally. Reject as an architecture claim if described as independent raw-human-state validation; it is public-equation action-layer evidence only.
+- public LB 관측 반응: if H017 improves, H012 was under-moved toward its own posterior and H016 weights identify where continuation is healthy. If H017 worsens, posterior-completion is too aggressive and H012's exact public posterior should remain a diagnostic rather than an action target.
+- 제출 전략: H017 is now the strongest posterior-completion candidate. H015 tests recursive self-feedback; H016 tests weighted H015 slicing; H017 tests continuing H012 toward its original posterior under H016 weights.

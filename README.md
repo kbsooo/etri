@@ -21,6 +21,10 @@ Current high-risk next sensors:
 - Public LB: not submitted
 - Interpretation: H016 treats known public LB observations as a diffuse public cell-weight/gain field. It survived a `300`-permutation null stress and predicts `-0.000296` versus H012 by applying H015 movement only on inferred public-weight-compatible cells. It is lower-upside than H015, but it tests a different world model.
 
+- `submission_h017_joint_label_weight_oracle_gain_all_k1650_a1_uploadsafe.csv`
+- Public LB: not submitted
+- Interpretation: H017 tests whether H012's public posterior and H016's diffuse weights are compatible parts of one hidden public equation. It predicts `-0.000575` versus H012 by moving H012 further toward the original H012 posterior under H016 weights. It is a posterior-completion test, not independent private-safety evidence.
+
 Public LB operating rule:
 
 - Public LB is not an iteration loop. A file is promotable only when it beats the current priority under public-free stress, including fresh nulls that were not used to build the candidate.

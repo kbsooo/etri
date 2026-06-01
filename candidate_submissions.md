@@ -5019,3 +5019,45 @@ Submission interpretation:
 4. If H016 improves, public-equation HS-JEPA should move from global posterior sharpening to public-cell-weighted action selection.
 5. If H016 worsens while H015 improves, the diffuse weight field is a diagnostic fit but not an action layer.
 6. If both H015 and H016 worsen, H012 is likely the practical fixed point and the next breakthrough needs an independent private/public risk sensor.
+
+## Update After H017
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+New high-information posterior-completion file:
+
+`submission_h017_joint_label_weight_oracle_gain_all_k1650_a1_uploadsafe.csv`
+
+What it bets:
+
+- H012's public posterior and H016's diffuse public weights are not separate lucky artifacts.
+- They form one compatible hidden public world.
+- H012 did not move far enough toward its own original public posterior.
+
+Why this is different from H015/H016:
+
+- H015 says: after seeing H012's LB, solve a new sharper posterior and broadly sharpen H012.
+- H016 says: use H015 only on cells that the inferred public-weight field likes.
+- H017 says: ignore H015 self-feedback as an action target; instead complete H012 toward the original H012 posterior under H016 weights.
+
+Local evidence:
+
+- joint LOO MAE `0.000001044`, Spearman `1.000000`;
+- permutation-null median LOO MAE `0.001672425`;
+- permutation-null max Spearman `0.200902`;
+- q/w movement from priors is almost zero, so this is compatibility/posterior-completion rather than a newly learned joint state;
+- predicted joint delta vs H012 `-0.000574501`;
+- under the same joint sensor H015 is `+0.000164654`, H016 is `-0.000296289`.
+
+Submission interpretation:
+
+1. Highest self-feedback upside remains H015.
+2. Best weight-field alternative is H016.
+3. Best posterior-completion test is H017.
+4. If only one next worldview-changing file is desired and we want to test whether H012 should have gone further toward its own posterior, submit H017.
+5. If H017 improves, future HS-JEPA public-equation actions should use H012-posterior completion under diffuse weights.
+6. If H017 worsens, H012's posterior is explanatory but too aggressive as an action target; H012 remains the practical fixed point.

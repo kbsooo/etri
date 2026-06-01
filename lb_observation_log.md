@@ -1865,3 +1865,31 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - if the next public slot should test recursive amplification, use H015;
   - if it should test public cell-weight action selection, use H016;
   - use the result to decide whether HS-JEPA's public-equation branch should be label-posterior-first or weight/gate-first.
+
+## Public-Free Observation: H017 Joint Label x Public-Weight HS-JEPA
+
+- submission file prepared: `submission_h017_joint_label_weight_oracle_gain_all_k1650_a1_uploadsafe.csv`
+- public LB: not submitted
+- changed point:
+  - models public LB deltas as a joint hidden label and public cell-weight equation;
+  - selected joint state is almost exactly `H012 public posterior + H016 mean public weights`;
+  - moves H012 further toward the original H012 public posterior on `1650` high joint-gain cells.
+- expected LB reaction:
+  - improvement would mean H012 was an under-moved posterior step and H016 weights identify where posterior-completion is public-healthy;
+  - worsening would mean the original H012 posterior explains old public deltas but is too aggressive as a new action target.
+- local/public-free observation:
+  - joint LOO MAE `0.000001044`;
+  - joint LOO Spearman `1.000000`;
+  - permutation-null median LOO MAE `0.001672425`;
+  - permutation-null max Spearman `0.200902`;
+  - q/w movement from priors is almost zero;
+  - predicted joint delta vs H012 `-0.000574501`;
+  - H015 under same joint sensor `+0.000164654`;
+  - H016 under same joint sensor `-0.000296289`;
+  - changed cells `1650`, max probability delta `0.107121`.
+- interpretation:
+  - H017 is not a newly discovered independent latent. It is a compatibility and posterior-completion test.
+  - It is more aggressive than H016 and less dependent on post-H012 self-feedback than H015.
+- next experiment:
+  - public feedback on H017 would decide whether H012's public posterior should be treated as an action target or only as an explanatory latent;
+  - if H017 fails, stop posterior-completion and look for a private/public risk sensor before moving further from H012.
