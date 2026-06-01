@@ -6827,3 +6827,51 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - H030 is diagnostic-only;
   - do not submit generated H030 variants;
   - next big-bet should model the translation law from a valid row-target identity posterior to exact H012-like support/amplitude, possibly as a latent route mixture rather than a direct top-k movement.
+
+## H035. Basin-Boundary Solver HS-JEPA
+
+- Observe: H032-H034 showed that H012 is visible to the phase/action
+  representation, and that neighboring failures are learnable at both
+  independent-cell and row-route levels. The remaining question was whether the
+  exact H012 support is locally editable if swaps preserve target, row, or
+  support-count structure.
+- Wonder: is H012 a locked fixed point, or only a high-quality support mask with
+  weak cells that can be replaced by better public-equation cells?
+- Hypothesis: if H012 is an editable basin, constrained support swaps should
+  improve q-loss while staying near the H012 route/pre-state manifold. If it is
+  locked, q-improving swaps will be rejected by route/action-health stress.
+- Method: `hitl/h035_basin_boundary_solver_jepa.py`.
+  - context: H012 public posterior, H032 cell phase state, H033 phase-lock
+    coefficients, H034 row-route state, H024 public action-health decoder, and
+    H025 row-placement stress;
+  - action: swap or soften H012 support cells while preserving target, row, or
+    support-count structure;
+  - stress: q-loss delta versus H012, H034-style route margin, H024 pre-state
+    margin, public-score permutation stress, and H025 row-permutation stress.
+- Result:
+  - generated candidates: `585`;
+  - q-improving swaps versus H012: `55`;
+  - best q-loss delta: `-0.000286222`;
+  - route-safe count: `0`;
+  - pre-state-better count: `0`;
+  - strict gate count: `0`;
+  - best q candidate route/pre-state margins:
+    `0.019320985` / `0.015982303`;
+  - selected combined-score diagnostic:
+    `swap_support_count_drop_memory_conflict_to_add_no_h012_k7_a0.58`;
+  - selected q-loss delta `+0.000512108`, route margin `+0.017292336`,
+    pre-state margin `+0.012214437`;
+  - public-score permutation p `0.660666667`;
+  - H025 row-permutation p `0.610000000`;
+  - no root upload-safe file was promoted.
+- Interpretation:
+  - q alone says there are local directions, but the route/pre-state manifold
+    says every local support swap leaves the H012 basin;
+  - this falsifies local support replacement as the next breakthrough route;
+  - H012 is better understood as a locked public-equation fixed point under the
+    currently known HS-JEPA action-health views.
+- Decision:
+  - H035 is diagnostic-only;
+  - do not submit generated H035 variants;
+  - next big-bet should solve hidden public labels/subset or private/public
+    split jointly, rather than making local swaps around H012.

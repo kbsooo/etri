@@ -3060,3 +3060,31 @@
 - Implementation issue possible: medium. The H031 translator is still a structured top-k/amplitude family, not a learned neural action head. But it covers the obvious high-upside operations implied by the V106/H014 contrast and fails public-free stress consistently.
 - Bottleneck implication: same-subject memory is a contrastive representation, not a probability action layer. The breakthrough object is the exact operation that produced H012's probabilities on memory-conflict row-target cells.
 - Do not repeat: memory-conflict amplification, memory-agree rollback, or core-only reconstruction from E247 as submission candidates unless a new translator predicts the exact H012 probability values rather than only the cell identities.
+
+## FH335. Local constrained support swaps can improve H012
+
+- Failed hypothesis: H012 may be an editable row-target identity basin. If weak
+  H012 support cells are replaced with strong outside cells while preserving
+  target, row, or support-count structure, at least one candidate should improve
+  q-loss and remain route/pre-state safe.
+- Observed result: H035 generated `585` constrained swap/soften candidates. `55`
+  improve q-loss versus H012, and the best q delta is `-0.000286222`. But every
+  q-improving direction fails action-health. Route-safe count is `0`,
+  pre-state-better count is `0`, and strict gate count is `0`. The best
+  q-improving candidate still has route margin `0.019320985` and pre-state
+  margin `0.015982303`. The selected combined-score diagnostic is q-worse
+  (`+0.000512108`) and also route/pre-state bad.
+- Why discard as a submission route: q-loss improvement alone is not a safe
+  action criterion around H012. Local support replacement breaks the
+  route/pre-state basin even when target/row/support-count structure is
+  preserved.
+- Implementation issue possible: medium. H035 uses hand-designed swap metrics
+  and known H024/H034/H025 stress sensors. A learned global fixed-point
+  translator might recover a valid nonlocal edit. But this exact local
+  support-swap family is rejected.
+- Bottleneck implication: H012 is locally locked under the current HS-JEPA
+  action-health geometry. The next breakthrough should infer hidden public
+  labels/subset or private/public split jointly, not keep editing H012 cells.
+- Do not repeat: target/row/support-count-preserving H012 support swaps or
+  support-tail softening as submission candidates without a new global
+  public/private fixed-point certificate.

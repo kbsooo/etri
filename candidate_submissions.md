@@ -5399,3 +5399,49 @@ Submission interpretation:
    the H012 basin and returns to 0.572-style action health.
 4. The next candidate must model the identity-to-action translator, not only a
    stronger identity score.
+
+## Update After H035
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+H035 promoted submission:
+
+None.
+
+What H035 tested:
+
+- Whether H012 can be improved by local constrained support swaps.
+- Whether preserving target, row, or support-count structure is enough to keep
+  the edited file inside the H012 basin.
+
+Local evidence:
+
+- generated candidates: `585`;
+- q-improving candidates: `55`;
+- best q-loss delta versus H012: `-0.000286222`;
+- route-safe count: `0`;
+- pre-state-better count: `0`;
+- strict gate count: `0`;
+- best q-improving candidate:
+  `swap_row_drop_memory_conflict_to_add_public_vector_k28_a0.82`;
+- best q candidate route/pre-state margins:
+  `0.019320985` / `0.015982303`;
+- selected combined-score diagnostic:
+  `hitl/h035_basin_boundary_solver_jepa/submission_h035_swap_support_count_drop_memory_conflict_to_add_no_h012_k7_a0.58_63c6a3d9.csv`;
+- selected q-loss delta: `+0.000512108`;
+- selected route/pre-state margins: `+0.017292336` / `+0.012214437`;
+- public-score permutation p: `0.660666667`;
+- H025 row-permutation p: `0.610000000`.
+
+Submission interpretation:
+
+1. No H035 file should be submitted.
+2. q-only improvement around H012 is not enough; action-health rejects all local
+   support swaps.
+3. H012 is currently a locked basin under known HS-JEPA sensors.
+4. The next candidate should be a global hidden-public-label/subset or
+   private/public split solver, not a local replacement of H012 support cells.

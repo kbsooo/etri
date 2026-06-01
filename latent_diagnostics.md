@@ -847,3 +847,19 @@ translator. The best H031 materialization is still priced above H012 by H024
 0.800666667`). The useful latent is therefore "memory conflict marks part of
 the public-equation core"; the unsafe latent is "amplify or swap those cells
 mechanically."
+
+H035 stress-tests that warning at the basin boundary. The context is the
+H012/H032-H034 phase state: public posterior q, cell phase scores, phase-lock
+operation costs, and row-route state. The target representation is not a raw
+label; it is whether a candidate action remains inside the H012 route/pre-state
+basin after local support replacement. The diagnostic is sharp because q and
+action-health disagree. Among `585` constrained swap/soften candidates, `55`
+improve q-loss versus H012, with best q delta `-0.000286222`. Yet route-safe
+count is `0`, pre-state-better count is `0`, and strict gate count is `0`. The
+best q-improving candidate still has route margin `0.019320985` and pre-state
+margin `0.015982303`. LeJEPA read: the q latent is not collapsed, but it is not
+the same geometry as the public-safe action basin. H012 is visible and locally
+suggestible under posterior q, but not locally editable under the current
+action-health latent. The next HS-JEPA target should therefore predict the
+global hidden public label/subset or private/public split directly, rather than
+ranking local swaps around H012.

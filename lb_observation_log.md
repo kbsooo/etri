@@ -2326,3 +2326,38 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - learn the amplitude/route/calibration law for memory-conflict public-core
     cells instead of amplifying them mechanically.
+
+## Public-Free Observation: H035 Basin-Boundary Support-Swap JEPA
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - tests local support replacement around H012 instead of another posterior
+    continuation;
+  - swaps or softens H012 support cells under target/row/support-count
+    constraints;
+  - scores candidates with q-loss, route margin, H024 pre-state margin,
+    public-score permutation, and H025 row-placement stress.
+- expected LB reaction:
+  - if a candidate had passed and improved, it would mean H012 is an editable
+    row-target identity basin;
+  - because no candidate passed, submitting H035 would mostly test a known
+    action-health failure.
+- local/public-free observation:
+  - generated candidates `585`;
+  - q-improving candidates `55`;
+  - best q-loss delta `-0.000286222`;
+  - route-safe count `0`;
+  - pre-state-better count `0`;
+  - strict gate count `0`;
+  - selected diagnostic q-loss delta `+0.000512108`;
+  - selected route/pre-state margins `+0.017292336` / `+0.012214437`;
+  - public-score permutation p `0.660666667`;
+  - H025 row-permutation p `0.610000000`.
+- interpretation:
+  - q posterior still suggests local moves, but route/pre-state action-health
+    rejects all of them;
+  - H012 is locally locked under support-swap operations.
+- next experiment:
+  - infer a global hidden public label/subset or private/public split, rather
+    than editing H012 support locally.

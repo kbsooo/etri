@@ -9,7 +9,50 @@ search.
 - Public best: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
 - Public LB: `0.5681234831`
 - Current promoted post-H012 sensor: none.
-- Current H034 conclusion: H032 sibling failures are learnable at row-vector route level, but first-order row-route edits still do not produce an H012-beating action.
+- Current H035 conclusion: H012 has posterior-improving local swaps, but every constrained support-swap action fails route/pre-state action-health gates. H012 is currently a locked basin, not a smooth editable support.
+
+## H035: Basin-Boundary Solver HS-JEPA
+
+- Script: `hitl/h035_basin_boundary_solver_jepa.py`
+- Report: `hitl/h035_basin_boundary_solver_jepa/h035_report.md`
+- Decision: diagnostic only, no submission promoted.
+
+### Question
+
+H034 killed first-order row-route edits. Is H012 nevertheless editable as a
+constrained row-target identity basin if we swap support cells while preserving
+target, row, or support-count structure?
+
+### Main Finding
+
+The public-equation posterior still has local directions, but the action-health
+geometry rejects them all.
+
+- Generated basin candidates: `585`.
+- q-improving candidates versus H012: `55`.
+- Best q-loss delta versus H012: `-0.000286222`.
+- Route-safe candidates: `0`.
+- Pre-state-better candidates: `0`.
+- Strict gate survivors: `0`.
+- Best q-improving candidate:
+  `swap_row_drop_memory_conflict_to_add_public_vector_k28_a0.82`, with route
+  margin `0.019320985` and pre-state margin `0.015982303`.
+- Selected combined-score diagnostic:
+  `swap_support_count_drop_memory_conflict_to_add_no_h012_k7_a0.58`.
+- Selected q-loss delta: `+0.000512108`.
+- Selected route margin prediction: `+0.017292336`.
+- Selected pre-state margin vs H012: `+0.012214437`.
+- Public-score permutation p(lower margin): `0.660666667`.
+- H025 row-permutation p(higher top1200 gain): `0.610000000`.
+
+### Interpretation
+
+H035 kills the local support-swap worldview. H012 is not just an over-constrained
+top-1200 mask with a few replaceable weak cells. q alone can suggest local
+improvements, but every such move leaves the H012 route/pre-state basin. The
+next useful route is not another local swap; it is joint hidden public
+label/subset inference, private/public split constraints, or a translator that
+models the exact H012 probability action as a fixed point.
 
 ## H034: Row-Vector Route Translator HS-JEPA
 

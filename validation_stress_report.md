@@ -6469,3 +6469,53 @@ Stress conclusion:
   suggests the cells are already partly known. The missing object is the
   translator that maps those cells to the exact H012 probability amplitude and
   target route without leaving the basin.
+
+## H035 Basin-Boundary Support-Swap Stress
+
+Question: if H012 is a narrow basin, can it still be locally edited by replacing
+weak support cells with stronger outside cells while preserving target, row, or
+support-count structure?
+
+Stress setup:
+
+- script: `hitl/h035_basin_boundary_solver_jepa.py`;
+- candidate families:
+  - constrained support swaps by target;
+  - constrained support swaps by row;
+  - constrained support swaps by support-count bucket;
+  - support-tail softening variants;
+- stresses:
+  - public-equation q-loss delta versus H012;
+  - H034-style row-route margin;
+  - H024 pre-H012 public action-health margin;
+  - H024 public-score permutation stress;
+  - H025 row-permutation placement stress.
+
+Stress result:
+
+- generated candidates: `585`;
+- q-improving candidates versus H012: `55`;
+- best q-loss delta: `-0.000286222`;
+- route-safe count: `0`;
+- pre-state-better count: `0`;
+- strict gate count: `0`;
+- best q candidate:
+  `swap_row_drop_memory_conflict_to_add_public_vector_k28_a0.82`;
+- best q candidate route/pre-state margins:
+  `0.019320985` / `0.015982303`;
+- selected combined-score diagnostic:
+  `swap_support_count_drop_memory_conflict_to_add_no_h012_k7_a0.58`;
+- selected q-loss delta: `+0.000512108`;
+- selected route/pre-state margins: `+0.017292336` / `+0.012214437`;
+- public-score permutation p(lower margin): `0.660666667`;
+- H025 row-permutation p(higher top1200 gain): `0.610000000`;
+- promoted root file: none.
+
+Stress conclusion:
+
+- q-loss alone still finds local posterior directions around H012.
+- Every q-improving direction leaves the route/pre-state basin.
+- H012 should be treated as locally locked under support-swap operations.
+- The next stress should not be a local edit around H012. It should solve a
+  global hidden object: public labels/subset, private/public split, or an exact
+  fixed-point action translator.

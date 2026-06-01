@@ -4597,3 +4597,34 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Failure condition: do not submit memory-conflict variants unless a new
   translator explains the exact H012 amplitude/route. Re-enter by learning
   probability action health on conflict cells, not by increasing their weight.
+
+### H035 basin-boundary support-swap features
+
+- Target hidden structure: whether H012 is an editable row-target identity basin
+  or a locked fixed point under local support replacement.
+- Why needed: H032-H034 showed the H012 phase is recognizable, but first-order
+  cell and row-route edits fail. H035 tests the remaining local route:
+  structure-preserving combinatorial swaps.
+- Feature/action form:
+  - cell state: H032 phase scores, H033 phase-lock costs, H034 row-route state,
+    H012 posterior gain, memory conflict, public-row/vector scores, and
+    support-count buckets;
+  - candidate families: support swaps preserving target, row, or support-count,
+    plus support-tail softening;
+  - anti-collapse checks: q-loss delta, route margin, H024 pre-state margin,
+    H024 public permutation, and H025 row-placement permutation.
+- Current evidence:
+  - generated candidates `585`;
+  - q-improving candidates `55`;
+  - best q-loss delta `-0.000286222`;
+  - route-safe count `0`;
+  - pre-state-better count `0`;
+  - strict gate count `0`;
+  - selected diagnostic q delta `+0.000512108`, route margin `+0.017292336`,
+    pre-state margin `+0.012214437`;
+  - no root upload-safe H035 file promoted.
+- Registry status: approved as a basin-lock diagnostic. Rejected as a local
+  support-swap materializer.
+- Failure condition: do not submit H035 support swaps unless a new global
+  public/private or fixed-point translator certifies that the swap remains
+  inside the H012 action basin.

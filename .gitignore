@@ -314,3 +314,4 @@ hitl/h033_phase_lock_contrast_jepa/submission_h033_*.csv
 
 # H034 materialized row-vector route sweep files are reproducible from the script; only summaries are tracked.
 hitl/h034_rowvector_route_translator_jepa/submission_h034_*.csv
+hitl/h035_basin_boundary_solver_jepa/submission_h035_*.csv

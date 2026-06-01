@@ -4772,3 +4772,51 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   - keep explanatory route if memory-conflict concentration remains strong. Observed.
 - public LB 관측 반응: no H031 file should be submitted. If a conflict-core file wins public despite stress, H024 is underpricing memory-conflict actions; otherwise memory-conflict is a diagnostic view of H012, not a translator.
 - 제출 전략: none. Next branch should not ask "which H012 cells are memory-conflict?" anymore. It should ask "what operation produced the exact H012 probabilities on those conflict cells?"
+
+### H035: H012 is not locally editable by constrained support swaps
+
+- 상태: supported as a negative action result; H012 locked-basin view strengthened.
+- 왜 그럴듯한가: H032 recovered H012 as a phase point, H033 learned sibling
+  failures at cell-operation level, and H034 learned them at row-route level.
+  The remaining local escape was a combinatorial support swap: preserve target,
+  row, or support-count structure while replacing weak H012 cells with stronger
+  outside cells.
+- 맞다면:
+  - some support swaps should improve the public-equation q-loss versus H012;
+  - at least one q-improving swap should also stay close to the H012 route and
+    pre-state action-health manifold;
+  - public-score and row-placement nulls should not reject the selected action.
+- 틀리다면:
+  - q-improving swaps may exist, but every one will be route/pre-state bad;
+  - selected combined-score actions will either be q-worse or fail public-free
+    stress;
+  - no local support-swap candidate should be promoted.
+- 최소 실험: `hitl/h035_basin_boundary_solver_jepa.py`, generating constrained
+  swap/soften actions from H012 using H032/H033/H034 state maps, then scoring
+  with q-loss, H034 route margin, H024 pre-state margin, public-score
+  permutation stress, and H025 row-permutation stress.
+- 관측:
+  - generated candidates `585`;
+  - q-improving candidates `55`;
+  - best q-loss delta `-0.000286222`;
+  - route-safe count `0`;
+  - pre-state-better count `0`;
+  - strict gate count `0`;
+  - best q candidate still has route margin `0.019320985` and pre-state margin
+    `0.015982303`;
+  - selected combined-score candidate has q delta `+0.000512108`, route margin
+    `+0.017292336`, pre-state margin `+0.012214437`, public permutation p
+    `0.660666667`, and H025 row-permutation p `0.610000000`;
+  - no promoted upload-safe file.
+- 성공/폐기 기준:
+  - accept local swap route only if q-loss improves and route/pre-state gates
+    both clear. Not observed.
+  - accept locked-basin update if q-improving directions exist but every one is
+    rejected by route/pre-state stress. Observed.
+- public LB 관측 반응: no H035 file should be submitted. If a H035 swap
+  unexpectedly wins public, the current H024/H034/H025 action-health views are
+  over-conservative around H012. Otherwise H012 should be treated as a fixed
+  point under local support replacement.
+- 제출 전략: none. The next high-information submission route should solve a
+  new global object: hidden public labels/subset, private/public split, or an
+  exact fixed-point translator for H012 probability action.
