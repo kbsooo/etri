@@ -66,3 +66,48 @@ H002 should build an action-benefit selector:
   action-health, public-free row states, and bad-axis avoidance.
 - The pass condition should be action-specific, not inherited wholesale from
   broad E363 submission gates.
+
+## H002: E247-Locked Q2/S1 Action-Benefit Selector
+
+- Script: `hitl/h002_e247locked_q2s1_action_benefit_selector.py`
+- Report: `hitl/h002_e247locked_q2s1_action_benefit_selector/h002_report.md`
+- Decision: diagnostic only, no submission promoted.
+
+### Question
+
+If H001's failure was caused by applying Q2/S1 action to the wrong rows, can an
+action-benefit latent select safer rows while keeping the E247 public-best body
+fixed?
+
+### Main Finding
+
+Row selection works as a risk filter but not as a submission signal.
+
+- Generated `289` E247-locked candidates.
+- `99` candidates passed the local action-context sanity check.
+- `0` candidates passed the conservative stress-ready gate.
+- No `_uploadsafe.csv` was created.
+- The top diagnostic candidate is
+  `h002_e368_minus_e365_benefit_top25_q20p25_s11p0`.
+
+Top diagnostic movement:
+
+- Q2 movement is very small: `l1_Q2 = 0.003477`.
+- S1 movement is moderate-small: `l1_S1 = 0.042622`.
+- Q2 E323-axis exposure in the E247 frame is favorable:
+  `q2_cos_e323_bad_vs_e247 = -0.068400`.
+- Action is concentrated on the intended latent rows:
+  `q2_benefit_minus_danger = 0.440324`,
+  `s1_benefit_minus_danger = 0.402223`.
+
+### Interpretation
+
+H002 weakens the specific hypothesis that the current Q2/S1 hidden lifestyle
+state can beat E247 by row selection alone. The selector can identify
+high-benefit / low-risk rows, but the resulting safe edits are too small and do
+not activate the existing local stress sensors.
+
+The useful next question is not "which Q2/S1 rows?" anymore. It is whether the
+hidden lifestyle state must be translated through a broader target interaction
+or calibration layer, especially Q2 with S1/S3 or Q-group priors, while keeping
+the E247 body protected.
