@@ -4,6 +4,16 @@
 
 실험은 `Observe -> Wonder -> Hypothesize -> Falsify -> Build -> Stress -> Decide` 형식으로 기록한다. public LB는 최적화 대상이 아니라 hidden-DGP sensor로 사용한다.
 
+## H032. H012 Phase-Translator HS-JEPA
+
+- Observe: H012 is a large public-equation win (`0.5681234831`), but H028-H031 failed to improve it by gradient descent, invariant breaking, row-target identity priors, or V106 memory-conflict amplification.
+- Wonder: maybe H012 is not just a cell set but a phase point. If the HS-JEPA state/action view is real, can it recover H012 when H012's own public LB is withheld, and does the same phase map contain a stronger sibling?
+- Hypothesis: a public-free state/action decoder trained on pre-H012 observations should rank the true H012 action near the bottom if H012 is state-visible. If H012 is not a narrow singular basin, nearby phase variants should be priced as equal or better.
+- Method: `hitl/h032_h012_phase_translator_jepa.py` generated `4263` E247-to-H012-posterior phase candidates over target routes, top-k support, alpha, and phase curves. It then scored them with pre-H012 H024-style decoders that did not use H012's public score, plus phase-loss and public-score permutation stress.
+- Result: the true H012 anchor was selected as the best phase point. The best pre-H012 decoder was `geometry` alpha `10.0` with LOO MAE `0.000295413`, Spearman `0.950877193`, and pairwise accuracy `0.923976608`. H012 had pre-state prediction `0.563377063`; the best non-anchor sibling `identity_phase_score_all_k120_a0.7_uniform` was priced at `0.573188862`, `+0.009811799` worse, with `1080` cells changed away from H012.
+- Interpretation: positive architecture evidence: H012 is not arbitrary under the HS-JEPA state/action view, because a public-free decoder can recover it. Negative submission evidence: dense phase continuation does not reveal a stronger sibling. H012 behaves like a singular recoverable phase rather than a smooth local basin.
+- Decision: no H032 submission. Next question should explain why the exact H012 phase is visible to the decoder while nearby phase variants die; this points to a discrete row-target translation law or H012-vs-sibling discriminator, not more alpha/k/top-k sweeps.
+
 ## H031. Memory-Conflict Public-Core HS-JEPA
 
 - Observe: attached V106 memory note reports public `0.5703952266`, proving same-subject sleep-state/sensor-quality memory is a real hidden-world view. H014 then showed H012's gain mostly lives where this memory disagrees: `714/1200` H012 cells and `72.03%` of posterior gain.

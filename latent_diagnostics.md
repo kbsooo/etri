@@ -4,6 +4,26 @@
 
 이 문서는 I-JEPA/LeJEPA 아이디어를 그대로 복제하지 않고, 이 대회 데이터의 hidden-DGP 탐색에 맞춰 변형한 latent diagnostic 기록이다.
 
+## H032 Phase-Translator Diagnostic
+
+H032 is the clearest current HS-JEPA architecture evidence after H012. The
+experiment treated each submission action as a latent phase move from E247
+toward a public-equation posterior, then asked a pre-H012 state/action decoder
+to rank the real H012 anchor against generated siblings without using H012's
+public LB as supervision.
+
+- Phase candidates including anchor: `4263`.
+- Best pre-H012 decoder: `geometry` alpha `10.0`, LOO MAE `0.000295413`,
+  Spearman `0.950877193`, pairwise `0.923976608`.
+- Real H012 anchor: pre-state prediction `0.563377063`.
+- Best non-anchor sibling: pre-state prediction `0.573188862`, margin
+  `+0.009811799` versus H012, with `1080` cells changed.
+
+Diagnosis: the latent/action geometry is not collapsed noise, because it
+recovers H012 itself. But it is not a smooth reusable local descent surface,
+because nearby phase siblings are strongly worse. Use this latent as an
+H012-vs-sibling discriminator target, not as a direct probability generator.
+
 ## JEPA Translation For This Competition
 
 ### I-JEPA-style target

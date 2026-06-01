@@ -305,3 +305,6 @@ hitl/h030_rowtarget_identity_equation_jepa/h030_h024_prediction_samples.csv
 # H031 materialized memory-conflict public-core sweep files are reproducible from the script; only summaries are tracked.
 hitl/h031_memory_conflict_public_core_jepa/submission_h031_*.csv
 hitl/h031_memory_conflict_public_core_jepa/h031_h024_prediction_samples.csv
+
+# H032 materialized phase-translator sweep files are reproducible from the script; only summaries are tracked.
+hitl/h032_h012_phase_translator_jepa/submission_h032_*.csv

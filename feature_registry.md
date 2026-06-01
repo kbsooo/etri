@@ -4,6 +4,28 @@
 
 Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature family는 어떤 숨은 구조를 겨냥하는지, label signal인지 split signal인지, 폐기 조건이 무엇인지 함께 관리한다.
 
+## H032 Feature Update
+
+### F-H032. H012 phase-translation features
+
+- Hidden structure: exact row-target action phase that made H012 public-positive.
+- Candidates: E247-to-H012 logit phase, top-k support rank, target-route support,
+  memory-conflict overlap, identity-prior score, phase-loss margin, H024-style
+  state/action decoder features, H012-vs-sibling movement anatomy.
+- Label vs split test: H012 public score must be withheld from the decoder, and
+  the real H012 anchor must still rank above generated siblings. Generated
+  siblings must pass independent stress before promotion.
+- Adopt if: the features separate H012 from near-siblings under pre-H012 LOO and
+  also identify a new action that survives H024/H025-style public-free stress.
+- Drop if: they only re-rank H012 after using H012 public feedback, or if they
+  produce smooth alpha/k/top-k variants that are priced above H012.
+- Current evidence: H032 recovered real H012 as the best phase point with
+  pre-H012 `geometry` LOO MAE `0.000295413`, Spearman `0.950877193`, pairwise
+  `0.923976608`. Best non-anchor sibling was `+0.009811799` worse by pre-state
+  prediction and changed `1080` cells.
+- Policy: use as a discriminator/translator target. Do not submit dense phase
+  siblings from this family.
+
 ## Registry
 
 ### F01. Subject-like fingerprint

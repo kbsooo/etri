@@ -24,7 +24,8 @@ E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해
 - H026-H027은 train action-health, public-bad veto, memory/private-safety birth constraints가 기존 posterior-completion targets를 H012-beating action으로 만들지 못함을 보였다.
 - H028은 known public intervention response 자체를 cell-level action-gradient로 배웠지만, 그 gradient를 H012 밖으로 extrapolate하면 독립 stress가 모두 0.576대 위험으로 본다.
 - H029는 H012의 support/amplitude/target/subject/memory/row-identity invariant를 깨보며, target-wise row permutation이 0.581대 위험으로 붕괴한다는 것을 보였다.
-- 0.54 진입을 막는 핵심 병목은 이제 hidden state 발견 자체보다, H012 같은 singular public-equation basin의 정확한 row-target identity를 private-safe/invariant hidden state로 재구성하는 문제다. 단순 posterior-completion, scalar gate, train-action health, smooth public-gradient, target-level calibration은 현재 반증되었다.
+- H032는 H012의 public score를 decoder 학습에서 빼도 H012 자체가 state/action phase point로 복원된다는 것을 보였다. 다만 주변 phase sibling은 모두 H012보다 훨씬 약하게 pricing되었다.
+- 0.54 진입을 막는 핵심 병목은 이제 hidden state 발견 자체보다, H012 같은 singular public-equation basin의 정확한 row-target identity를 private-safe/invariant hidden state로 재구성하고 그 exact phase를 확장 가능한 action law로 번역하는 문제다. 단순 posterior-completion, scalar gate, train-action health, smooth public-gradient, target-level calibration, dense phase sweep은 현재 반증되었다.
 
 ## 관계 그래프
 
@@ -57,6 +58,8 @@ known public interventions
   -> local H012 extrapolation unsafe
   -> needle-basin / phase-change hypothesis
   -> exact row-target placement invariant
+  -> H012 phase recoverable without H012 LB
+  -> stronger sibling not found in dense phase map
 ```
 
 ## 가설 목록
@@ -211,6 +214,16 @@ known public interventions
 - 최소 실험: selector-only falsification and pairwise ordering stress.
 - 제출 전략: selector가 a2c8 edge보다 작은 오차를 달성하기 전까지 micro-refine submit은 정보량 낮음.
 - 최근 증거: E11에서 7240 gated 후보 중 50개가 control-better-than-a2c8 gate를 통과했지만 strict submit gate는 0개였다. E12 targetwise gate는 best p90 `-0.000005997`, E13 combo는 `-0.000035162`, E14 focused scan은 `-0.000065217`로 strict pairwise gate를 처음 통과했다. 하지만 E15에서 그 61개 pair-submit 후보가 old hidden-subset selector survival 0개를 기록했고, pairwise p90와 old-selector p90의 correlation은 `-0.881`이었다. E16 decomposition showed focused files have old hidden-subset better_rate `0.285714` and pairwise full-fit better_rate only `0.500000`; the apparent edge depends on a favorable scenario tail. E17 found no independent S4/Q3 positive anchor in the existing candidate universe. E18-E19 found local OOF Q3/S4 strength is also not an anchor: top 399 OOF candidates had pair p90 negative 0, old-majority 0, and submit/control/probe 0.
+
+### H16B. H012 is a recoverable phase point, not a smooth local basin
+
+- 상태: 강한 증거 있음 for recoverability; stronger-sibling 가설은 반증.
+- 왜 그럴듯한가: H012 produced a large public jump, while H028-H031 failed to improve it by smooth gradient, invariant breaking, identity prior materialization, or memory-conflict amplification.
+- 맞다면: H012 should be selected by a state/action decoder that did not train on H012's own public LB, but nearby phase variants should rapidly degrade if the basin is narrow.
+- 틀리다면: H012 should look arbitrary to pre-H012 decoders, or dense phase siblings should tie/beat H012 under public-free stress.
+- 최소 실험: build an E247-to-H012-posterior phase diagram, withhold H012 public score from H024-style state/action decoders, and rank real H012 against generated siblings.
+- 관측: H032 generated `4263` candidates. The true H012 anchor was selected. Best pre-H012 `geometry` decoder LOO MAE was `0.000295413`, Spearman `0.950877193`, pairwise `0.923976608`. Best non-anchor sibling was priced `+0.009811799` worse than H012 and changed `1080` cells.
+- 제출 전략: no dense phase-sweep submission. Use H012-vs-sibling contrast as a training/diagnostic target for a discrete row-target translation law.
 
 ### H17. The useful public-positive label-flow correction is S4-dominant with Q3 support
 

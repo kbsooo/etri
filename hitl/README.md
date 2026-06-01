@@ -8,8 +8,41 @@ search.
 
 - Public best: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
 - Public LB: `0.5681234831`
-- Current high-risk post-H012 sensor: `submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv`
-- H020 question: whether the public-equation posterior should be completed as a row-level 7-target hidden state rather than independent cells.
+- Current promoted post-H012 sensor: none.
+- Current H032 conclusion: the HS-JEPA state/action decoder can recover H012 itself when H012 public feedback is withheld, but no stronger phase sibling is promoted.
+
+## H032: H012 Phase-Translator HS-JEPA
+
+- Script: `hitl/h032_h012_phase_translator_jepa.py`
+- Report: `hitl/h032_h012_phase_translator_jepa/h032_report.md`
+- Decision: diagnostic only, no submission promoted.
+
+### Question
+
+H012 may be a phase point, not only a set of public-core cells. Can a public-free
+state/action decoder recover H012 from a dense E247-to-public-posterior phase
+diagram, and does that diagram contain a stronger sibling?
+
+### Main Finding
+
+The decoder recovered the existing H012 anchor as the best point.
+
+- Generated phase candidates including anchor: `4263`.
+- Best pre-H012 decoder: `geometry` alpha `10.0`, LOO MAE `0.000295413`,
+  Spearman `0.950877193`, pairwise `0.923976608`.
+- H012 pre-state prediction: `0.563377063`.
+- Best non-anchor sibling: `identity_phase_score_all_k120_a0.7_uniform`,
+  pre-state prediction `0.573188862`, `+0.009811799` worse than H012 prediction.
+- Best non-anchor changed `1080` cells away from H012.
+
+### Interpretation
+
+This is good HS-JEPA evidence but not a new upload. H012 is visible to the
+state/action representation without using its public LB as a training label,
+so it is unlikely to be arbitrary leaderboard luck. But the phase map did not
+find a stronger local continuation. The next useful experiment is a
+H012-vs-sibling discriminator or discrete row-target translation law, not
+another dense alpha/k/top-k sweep.
 
 ## H001: E247-Locked Q2/S1 Transplant
 

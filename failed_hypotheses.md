@@ -4,6 +4,24 @@
 
 실패한 실험은 폐기물이 아니라 hidden structure를 좁히는 증거로 남긴다.
 
+## FH-H032. Dense phase sweep around H012 contains a stronger sibling
+
+- Failed hypothesis: once H012 is represented as an E247-to-public-posterior
+  phase action, a nearby top-k/alpha/target-route sibling should be safer or
+  stronger than the exact H012 file.
+- Observed result: H032 generated `4263` phase candidates and selected the real
+  H012 anchor. Best non-anchor sibling was `+0.009811799` worse than H012 by
+  pre-H012 state prediction and changed `1080` cells.
+- Why discard: H012 is recoverable, but the surrounding smooth phase map does
+  not contain a public-free stress survivor.
+- Implementation issue possible: medium. The phase grid may miss a discrete
+  translator, but it covered the obvious alpha/k/top-k/target-route variants.
+- Bottleneck implication: the missing object is a discrete row-target
+  translation law or H012-vs-sibling discriminator, not more smooth phase
+  continuation.
+- Do not repeat: submitting or re-sweeping dense H012 phase siblings without a
+  new independent discriminator.
+
 ## FH01. Boundary copy solves hidden rows
 
 - Failed hypothesis: nearby train labels can be copied/smoothed into hidden rows.

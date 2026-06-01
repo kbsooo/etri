@@ -6,6 +6,22 @@ Public LB는 최적화 target이 아니라 hidden public subset과 calibration s
 
 현재 public best는 `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv` = `0.5681234831`다. 아래 초기 표의 delta는 기존 E95 frontier anchor 기준이며, H012 이후 관측은 별도 섹션에 기록한다.
 
+## Public-Free Post-H012 Observation
+
+H032 is not a submitted public LB observation, but it is the strongest
+public-free sensor after H012. It withheld H012's public score from the decoder,
+then ranked the real H012 anchor against `4263` generated phase siblings.
+
+- Selected point: real `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`.
+- Best pre-H012 decoder: `geometry` alpha `10.0`, LOO MAE `0.000295413`,
+  Spearman `0.950877193`, pairwise `0.923976608`.
+- Best non-anchor sibling: `identity_phase_score_all_k120_a0.7_uniform`,
+  predicted `+0.009811799` worse than H012 by pre-state score.
+
+Signal: H012 is not just an LB-fitted artifact; it is visible from pre-H012
+state/action geometry. Unresolved: that geometry recovers H012 but does not yet
+produce a better post-H012 action.
+
 ## Known Observations
 
 | submission | public LB | delta vs E95 anchor | changed point | expected reaction | observed signal | unresolved |

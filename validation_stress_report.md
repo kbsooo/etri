@@ -4,6 +4,29 @@
 
 현재 목표는 CV 평균이 아니라 hidden-public transfer 가능성을 stress로 판정하는 것이다.
 
+## H032 Update: Phase-Translator Stress
+
+H032 adds a public-free post-H012 stress. It withheld H012's public score from
+the H024-style state/action decoder, generated `4263` E247-to-public-posterior
+phase candidates, and asked whether the decoder could recover H012 or find a
+stronger sibling.
+
+- Best pre-H012 decoder: `geometry` alpha `10.0`, LOO MAE `0.000295413`,
+  Spearman `0.950877193`, pairwise `0.923976608`.
+- Selected phase point: real `anchor_h012_actual`.
+- H012 pre-state prediction: `0.563377063`.
+- Best non-anchor: `identity_phase_score_all_k120_a0.7_uniform`, pre-state
+  prediction `0.573188862`, margin `+0.009811799` versus H012 prediction.
+- Public-score permutation stress on the selected point gives no promoted
+  alternative; H025 row-permutation stress is skipped because the selected point
+  is the existing H012 anchor.
+
+Interpretation: H012 is recoverable under a public-free state/action view, so
+the HS-JEPA architecture claim is stronger. The same stress rejects dense
+phase-sweep continuation as a submission route. Future stress should compare
+H012 against near-siblings as a classification/translation problem, not keep
+searching alpha/k/top-k variants.
+
 ## Stress Families
 
 | stress | current evidence | interpretation | status |
