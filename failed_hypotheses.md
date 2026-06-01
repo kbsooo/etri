@@ -4,6 +4,27 @@
 
 실패한 실험은 폐기물이 아니라 hidden structure를 좁히는 증거로 남긴다.
 
+## FH-H033. First-order phase-lock coefficients contain a safe H012 improvement
+
+- Failed hypothesis: H032 sibling failures can be converted into independent
+  cell-level rollback/add costs, and the negative-cost cells will produce a safe
+  post-H012 action.
+- Observed result: H033 predicted sibling margins well (`0.000814682` all-OOF
+  MAE, `0.954416119` Spearman, `0.912785497` pairwise), but the best generated
+  edit `negative_add_add_k10_a0.1` was `+0.016275125` worse than H012 by
+  pre-state prediction. It also failed public-score permutation stress
+  (`p=0.861333333`) and H025 row-placement stress (`p=0.710000000`).
+- Why discard: the contrastive representation is real, but the materialized
+  action leaves the H012 basin. Negative coefficient does not mean safe
+  probability edit.
+- Implementation issue possible: medium. The H033 translator is linear and
+  cellwise; it may miss nonlinear row-vector/route dependencies. That is the
+  point to test next, not a reason to submit H033 files.
+- Bottleneck implication: H012 needs a discrete route translator or
+  H012-vs-sibling classifier before materialization.
+- Do not repeat: direct rollback/add top-k edits from independent phase-lock
+  coefficients without a nonlinear or row-vector action-health proof.
+
 ## FH-H032. Dense phase sweep around H012 contains a stronger sibling
 
 - Failed hypothesis: once H012 is represented as an E247-to-public-posterior

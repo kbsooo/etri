@@ -4,6 +4,16 @@
 
 실험은 `Observe -> Wonder -> Hypothesize -> Falsify -> Build -> Stress -> Decide` 형식으로 기록한다. public LB는 최적화 대상이 아니라 hidden-DGP sensor로 사용한다.
 
+## H033. Phase-Lock Contrastive HS-JEPA
+
+- Observe: H032 recovered H012 as a public-free phase point, but every smooth phase sibling was much worse. The missing object may be the law that makes those siblings fail.
+- Wonder: if sibling failure is structured, can we learn which row-target operations break H012 and then find a negative-cost operation that safely moves away from H012?
+- Hypothesis: a contrastive phase-lock model trained on H032 sibling interventions should predict sibling margins, and its negative-cost rollback/add cells should produce a post-H012 action that passes H024/H025 stress.
+- Method: `hitl/h033_phase_lock_contrast_jepa.py` converted H032 siblings into break interventions: rollback H012-support cells toward E247, over-amplify H012-support cells, and add outside-support cells toward the H012 posterior. It learned cell-level phase-lock costs with ridge, generated `83` negative-cost candidate edits, and scored them with pre-H012 H024-style decoders plus H025 row-placement stress.
+- Result: the contrastive signal is learnable. Best all-OOF alpha `100.0` gives MAE `0.000814682`, Spearman `0.954416119`, pairwise `0.912785497`. It found `538/1200` support cells with negative rollback cost and `247/550` outside-support cells with negative add cost. But the best generated diagnostic `negative_add_add_k10_a0.1` is still `+0.016275125` worse than H012 by pre-state prediction, with public-score permutation p `0.861333333` and H025 row-permutation p `0.710000000`.
+- Interpretation: H032 sibling failures are real phase-lock structure, not noise. But first-order independent-cell coefficients are not the action translator. H012 behaves like a discrete row-target route, not an editable smooth surface.
+- Decision: no H033 submission. Next question should learn the H012-vs-sibling route/classification law before materializing probabilities, preferably at row-vector or target-route level rather than independent cells.
+
 ## H032. H012 Phase-Translator HS-JEPA
 
 - Observe: H012 is a large public-equation win (`0.5681234831`), but H028-H031 failed to improve it by gradient descent, invariant breaking, row-target identity priors, or V106 memory-conflict amplification.

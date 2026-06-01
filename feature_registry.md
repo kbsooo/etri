@@ -4,6 +4,31 @@
 
 Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature family는 어떤 숨은 구조를 겨냥하는지, label signal인지 split signal인지, 폐기 조건이 무엇인지 함께 관리한다.
 
+## H033 Feature Update
+
+### F-H033. Phase-lock contrast features
+
+- Hidden structure: operations that break or preserve the exact H012 row-target
+  phase.
+- Candidates: rollback cost on H012-support cells, add cost on outside-support
+  cells, over-amplification cost, memory-disagreement support, target-route
+  family, H032 phase score source, and H024-style pre-H012 state/action
+  features.
+- Label vs split test: sibling margins must be predicted without using H012
+  public LB in the action decoder, and generated edits must pass fresh
+  public-score and row-placement permutation stress.
+- Adopt if: the contrast separates H012-like from sibling-like actions and a
+  materialized action clears H024/H025 stress below H012.
+- Drop if: coefficients only rank known generated failures or if negative-cost
+  cells produce worse H012-relative action health.
+- Current evidence: H033 contrast is healthy as a diagnostic (`0.000814682`
+  all-OOF MAE, `0.954416119` Spearman, `0.912785497` pairwise), but generated
+  edits are not action-safe. Best candidate `negative_add_add_k10_a0.1` is
+  `+0.016275125` worse than H012 by pre-state prediction despite changing only
+  `10` tiny cells.
+- Policy: use these as discriminator/route features. Do not use first-order
+  independent-cell phase-lock coefficients as direct submission edits.
+
 ## H032 Feature Update
 
 ### F-H032. H012 phase-translation features

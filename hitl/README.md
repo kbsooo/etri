@@ -9,7 +9,47 @@ search.
 - Public best: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
 - Public LB: `0.5681234831`
 - Current promoted post-H012 sensor: none.
-- Current H032 conclusion: the HS-JEPA state/action decoder can recover H012 itself when H012 public feedback is withheld, but no stronger phase sibling is promoted.
+- Current H033 conclusion: H032 sibling failures are learnable as phase-lock contrast, but the first independent-cell negative-cost translator does not produce an H012-beating action.
+
+## H033: Phase-Lock Contrastive HS-JEPA
+
+- Script: `hitl/h033_phase_lock_contrast_jepa.py`
+- Report: `hitl/h033_phase_lock_contrast_jepa/h033_report.md`
+- Decision: diagnostic only, no submission promoted.
+
+### Question
+
+H032 found that H012 is recoverable as a phase point but nearby siblings fail.
+Which row-target operations make those siblings fail, and can the learned
+phase-lock law reveal a negative-cost move away from H012?
+
+### Main Finding
+
+The phase-lock contrast is learnable, but it is not directly actionable.
+
+- Phase siblings used as contrastive interventions: `4262`.
+- Best all-OOF alpha: `100.0`.
+- All-OOF MAE/Spearman/pairwise accuracy: `0.000814682` / `0.954416119` /
+  `0.912785497`.
+- H012-support cells with negative rollback cost: `538/1200`.
+- Outside-support cells with negative add cost: `247/550`.
+- Generated candidate actions: `83`.
+- Best diagnostic candidate: `negative_add_add_k10_a0.1`.
+- Best diagnostic pre-state margin versus H012 prediction: `+0.016275125`.
+- Public-score permutation p(lower margin): `0.861333333`.
+- H025 row-permutation p(higher top1200 gain): `0.710000000`.
+
+### Interpretation
+
+H033 is useful because it separates two claims. The H012-vs-sibling difference
+is not random: the contrastive model can predict which generated phase actions
+are bad. But the first-order cell coefficients do not translate into safe
+probability edits. Even a tiny 10-cell outside-support action is priced much
+worse than H012 by the public-free state decoder.
+
+The next high-upside direction should therefore model the translator at the
+row-vector/route level, or learn an H012-vs-sibling classifier before
+materialization. Do not submit H033 variants.
 
 ## H032: H012 Phase-Translator HS-JEPA
 

@@ -8,6 +8,23 @@ Public LB는 최적화 target이 아니라 hidden public subset과 calibration s
 
 ## Public-Free Post-H012 Observation
 
+H033 is also not a public LB observation. It follows H032 by using the failed
+phase siblings as contrastive supervision for a phase-lock decoder.
+
+- Contrastive siblings: `4262`.
+- Best all-OOF alpha: `100.0`, MAE `0.000814682`, Spearman `0.954416119`,
+  pairwise `0.912785497`.
+- Generated negative-cost actions: `83`.
+- Selected diagnostic: `negative_add_add_k10_a0.1`.
+- Selected pre-state margin versus H012 prediction: `+0.016275125`.
+- Public-score permutation p(lower margin): `0.861333333`.
+- H025 row-permutation p(higher top1200 gain): `0.710000000`.
+
+Signal: H012's neighborhood has a learnable phase-lock structure. Unresolved:
+the first-order independent-cell translation of that structure is action-bad,
+so a future public candidate must use a nonlinear row-vector or route-level
+translator rather than H033 cell coefficients directly.
+
 H032 is not a submitted public LB observation, but it is the strongest
 public-free sensor after H012. It withheld H012's public score from the decoder,
 then ranked the real H012 anchor against `4263` generated phase siblings.

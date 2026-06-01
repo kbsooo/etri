@@ -4,6 +4,30 @@
 
 이 문서는 I-JEPA/LeJEPA 아이디어를 그대로 복제하지 않고, 이 대회 데이터의 hidden-DGP 탐색에 맞춰 변형한 latent diagnostic 기록이다.
 
+## H033 Phase-Lock Contrast Diagnostic
+
+H033 treats H032's failed siblings as contrastive examples. The context is a
+row-target action operation around H012; the target representation is how much
+that operation breaks the H012 phase under a public-free state/action decoder.
+
+- Contrastive siblings: `4262`.
+- Best all-OOF alpha: `100.0`.
+- All-OOF MAE: `0.000814682`.
+- Spearman: `0.954416119`.
+- Pairwise accuracy: `0.912785497`.
+- Negative rollback-cost H012-support cells: `538/1200`.
+- Negative add-cost outside-support cells: `247/550`.
+- Best generated action: `negative_add_add_k10_a0.1`.
+- Best generated action pre-state margin versus H012: `+0.016275125`.
+- Public-score permutation p(lower margin): `0.861333333`.
+- H025 row-placement p(higher top1200 gain): `0.710000000`.
+
+LeJEPA diagnosis: the representation is not collapsed, because it ranks sibling
+failure with high Spearman and pairwise accuracy. But it is not action-healthy:
+the first-order cell coefficients produce edits that the public-free decoder
+prices far outside the H012 basin. Use this latent as a discriminator or route
+constraint, not as an independent-cell probability generator.
+
 ## H032 Phase-Translator Diagnostic
 
 H032 is the clearest current HS-JEPA architecture evidence after H012. The

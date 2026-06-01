@@ -4,6 +4,29 @@
 
 현재 목표는 CV 평균이 아니라 hidden-public transfer 가능성을 stress로 판정하는 것이다.
 
+## H033 Update: Phase-Lock Contrast Stress
+
+H033 asks whether H032 sibling failures define a usable phase-lock law. It
+learned the margin of `4262` phase siblings from row-target intervention
+features and then generated negative-cost edits from H012.
+
+- Best all-OOF alpha: `100.0`.
+- All-OOF MAE/Spearman/pairwise accuracy: `0.000814682` / `0.954416119` /
+  `0.912785497`.
+- Generated candidate actions: `83`.
+- Selected diagnostic: `negative_add_add_k10_a0.1`.
+- Changed cells versus H012: `10`.
+- Max absolute probability delta versus H012: `0.000070989`.
+- Pre-state margin versus H012 prediction: `+0.016275125`.
+- Pre-H012 public-score permutation p(lower margin): `0.861333333`.
+- H025 row-permutation p(higher top1200 gain): `0.710000000`.
+
+Interpretation: the phase-lock stress separates representation health from
+action health. The H012-vs-sibling contrast is highly learnable, but even the
+smallest learned edit fails public-free action stress. This blocks first-order
+cellwise phase-lock editing and redirects the next stress to nonlinear
+row-vector/route translators.
+
 ## H032 Update: Phase-Translator Stress
 
 H032 adds a public-free post-H012 stress. It withheld H012's public score from
