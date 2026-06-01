@@ -4656,3 +4656,32 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Failure condition: do not move H012 directly toward `world_q_cond` unless a
   separate translator or stress gate proves the action stays inside the H012
   support/amplitude/calibration basin.
+
+### H037 fixed-point ray translator features
+
+- Target hidden structure: H012-compatible amplitude translator on the original
+  E247-to-H012 ray.
+- Why needed: H036 proved a global public-world latent but direct `q_cond`
+  movement failed. H037 tests whether the missing translator is simply "keep
+  H012 support fixed and adjust ray amplitude."
+- Feature/action form:
+  - support mask: cells changed by H012 from E247;
+  - alignment state: whether H036 `world_q_cond` pushes further along or
+    against the H012 ray;
+  - cell pressure: H036 `cell_world_score` and row public probability;
+  - candidate families: aligned amplification, conflict damping, dual
+    amplify/damp, target ray scaling, row-public ray scaling, and support-only
+    q-pulls.
+- Current evidence:
+  - H036 pressure strongly overlaps H012 support: `903/1200` aligned support
+    cells hold `244.595425` score versus conflict score `20.929529`;
+  - generated candidates `253`;
+  - `44` candidates have `world_cell_delta < -0.0002`;
+  - `4` candidates have negative H024 margin;
+  - `0` candidates satisfy both;
+  - no candidate has H024 support >= `0.6`.
+- Registry status: approved as an overlap/negative-translator diagnostic.
+  Rejected as a direct submission materializer.
+- Failure condition: do not use support-preserving scalar ray amplitude as the
+  next submission route unless paired with a new route/calibration/private-
+  public translator.

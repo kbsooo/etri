@@ -2399,3 +2399,42 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - train a world-to-action translator from H012/H030/H035/H036 positives and
     failures, or separate public-safe versus public-overfit components before
     moving probabilities.
+
+## Public-Free Observation: H037 Fixed-Point Translator JEPA
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - keeps H012 support fixed and translates H036 world pressure only through the
+    original E247-to-H012 ray;
+  - tests aligned-support amplification, conflict damping, dual amplitude
+    actions, target-wise ray scaling, row-public ray scaling, and support-only
+    small q-pulls.
+- expected LB reaction:
+  - if a candidate had passed and improved, it would mean H012 is a reusable
+    fixed-point action ray;
+  - because no candidate passed, submitting H037 would mainly test a known
+    H024/H036 disagreement.
+- local/public-free observation:
+  - H012 support `1200`;
+  - H036-aligned support `903`, score sum `244.595425`;
+  - H036-conflict support `297`, score sum `20.929529`;
+  - generated candidates `253`;
+  - world-cell gain candidates `44`;
+  - negative-H024-margin candidates `4`;
+  - candidates satisfying both `0`;
+  - H024 support >= `0.6` candidates `0`;
+  - selected diagnostic `h037_support_qpull_k180_a0.03_c176_6b9ae6d4`;
+  - selected world row/cell deltas
+    `-0.000042258` / `-0.000062846`;
+  - selected H024 margin/support
+    `+0.000479900` / `0.250000000`;
+  - selected H025 row-permutation p `0.106666667`.
+- interpretation:
+  - H036 pressure is mostly inside H012 support, but scalar ray translation is
+    not enough;
+  - public-world gain and H024-safe movement are still not aligned under this
+    action family.
+- next experiment:
+  - learn route/calibration/private-public transfer jointly, using H036 as
+    teacher and H037 as negative support-preserving examples.

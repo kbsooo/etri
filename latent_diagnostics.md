@@ -887,3 +887,18 @@ support is only `0.250000000`, and H025 row-permutation p is `0.590000000`.
 Therefore the current latent health diagnosis is precise: HS-JEPA has learned a
 non-collapsed hidden public-world representation, but not the decoder that maps
 that world into H012-compatible support, amplitude, and calibration.
+
+H037 tests the first obvious decoder: preserve H012 support and stay on the
+E247-to-H012 ray. The latent overlap is encouraging. H012 changed `1200` cells;
+`903` of them align with H036 world pressure and carry cell-score sum
+`244.595425`, while the `297` conflict cells carry only `20.929529`. So the
+public-world representation is not asking for a totally different support set.
+But the LeJEPA action check rejects amplitude-only translation. Among `253`
+support-preserving candidates, `44` have meaningful H036 world-cell gain, `4`
+have negative H024 pre-H012 margin, and their intersection is `0`. No candidate
+reaches H024 support `0.6`. The selected diagnostic has only tiny world gain
+(`-0.000062846` cell-weighted), positive H024 margin (`+0.000479900`), and
+support `0.250000000`, although H025 row placement is moderately non-random
+(`p=0.106666667`). The latent diagnosis after H037 is sharper: H012 support is
+probably close to the right support, but the reusable law is not a scalar
+amplitude/ray law. It must include route, calibration, or public/private split.

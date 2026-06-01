@@ -5495,3 +5495,52 @@ Submission interpretation:
 4. The next candidate should use H036 as a teacher latent, not as the final
    probability target: learn a world-to-action translator that predicts exact
    H012-compatible support, amplitude, and calibration.
+
+## Update After H037
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+H037 promoted submission:
+
+None.
+
+What H037 tested:
+
+- Whether H036's hidden public-world pressure can be translated through H012's
+  original E247-to-H012 support/ray.
+- Whether fixed support plus scalar amplitude changes are enough to make a
+  post-H012 action.
+
+Local evidence:
+
+- H012 support cells: `1200`;
+- H036-aligned support cells: `903`;
+- aligned support score sum: `244.595425`;
+- conflict support cells: `297`;
+- conflict support score sum: `20.929529`;
+- generated candidates: `253`;
+- candidates with meaningful H036 world-cell gain: `44`;
+- candidates with negative H024 margin: `4`;
+- candidates satisfying both: `0`;
+- candidates with H024 support >= `0.6`: `0`;
+- selected diagnostic:
+  `hitl/h037_fixed_point_translator_jepa/submission_h037_support_qpull_k180_a0.03_c176_6b9ae6d4.csv`;
+- selected H036 row/cell deltas:
+  `-0.000042258` / `-0.000062846`;
+- selected H024 margin/support:
+  `+0.000479900` / `0.250000000`;
+- selected H025 row-permutation p: `0.106666667`.
+
+Submission interpretation:
+
+1. No H037 file should be submitted.
+2. H037 supports the idea that H012 support is meaningful: H036 pressure mostly
+   lives inside it.
+3. H037 rejects the idea that support-preserving amplitude/ray changes are the
+   missing translator.
+4. The next candidate must model route/calibration/private-public transfer, not
+   just support, ray, or scalar amplitude.

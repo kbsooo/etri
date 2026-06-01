@@ -4867,3 +4867,48 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 제출 전략: none. Next route should train or infer a translator from global
   public-world posterior to H012-compatible support/amplitude/calibration,
   rather than moving directly toward `q_cond`.
+
+### H037: H012 support-preserving ray amplitude is not enough as the translator
+
+- 상태: rejected as a direct translator; supported as a useful overlap
+  diagnostic.
+- 왜 그럴듯한가: H036 direct `q_cond` movement opened or moved too many cells and
+  failed H024/H025. H012's original success came from a specific E247-to-H012
+  ray on exactly `1200` support cells, so a safer translator might keep support
+  fixed and only alter amplitudes on that ray.
+- 맞다면:
+  - most H036 pressure should lie inside H012 support;
+  - support/ray-preserving candidates should gain under H036 world proxy;
+  - at least one should also have non-positive H024 pre-H012 margin and decent
+    H024 support.
+- 틀리다면:
+  - H036 world gain and H024 action-health should prefer disjoint amplitude
+    changes;
+  - negative-H024 candidates may be world-worse;
+  - no candidate should satisfy both world and action-health gates.
+- 최소 실험: `hitl/h037_fixed_point_translator_jepa.py`, generating `253`
+  support-preserving ray-amplitude candidates.
+- 관측:
+  - H012 support `1200`;
+  - H036-aligned support `903`, score sum `244.595425`;
+  - H036-conflict support `297`, score sum `20.929529`;
+  - world-gain candidates (`world_cell_delta < -0.0002`): `44`;
+  - negative-H024-margin candidates: `4`;
+  - intersection of the two: `0`;
+  - H024 support >= `0.6`: `0`;
+  - selected diagnostic has world row/cell deltas
+    `-0.000042258` / `-0.000062846`, H024 margin/support
+    `+0.000479900` / `0.250000000`, and H025 rowperm p `0.106666667`;
+  - no promoted upload-safe file.
+- 성공/폐기 기준:
+  - accept support/ray translator if a candidate has meaningful H036 world gain,
+    H024 margin <= 0, H024 support >= 0.6, and H025 rowperm p <= 0.35. Not
+    observed.
+  - keep overlap evidence if H036 pressure mostly lies inside H012 support.
+    Observed.
+- public LB 관측 반응: no H037 file should be submitted. If an H037 file wins,
+  H024 is over-conservative around tiny ray moves. Otherwise H037 says the
+  missing translator is not support or amplitude alone.
+- 제출 전략: none. Next action should model row-route/calibration/private-public
+  transfer jointly, possibly with H036 as teacher latent and H037 as negative
+  examples.

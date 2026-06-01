@@ -3117,3 +3117,30 @@
 - Do not repeat: direct moves from H036 `world_q_cond` to H012 probability
   tensors unless paired with a new translator that passes H024/H025 or an
   equally strong public-free stress.
+
+## FH337. H012 support-preserving ray amplitude is the missing translator
+
+- Failed hypothesis: because H036 pressure overlaps strongly with H012 support,
+  we can beat H012 by keeping support fixed and changing only amplitudes along
+  the original E247-to-H012 ray.
+- Observed result: H037 generated `253` support-preserving candidates. The
+  overlap premise is true: `903/1200` H012 support cells align with H036 world
+  pressure and hold score sum `244.595425`, while `297` conflict cells hold only
+  `20.929529`. But the translator fails. `44` candidates have
+  `world_cell_delta < -0.0002`, `4` candidates have negative H024 pre-H012
+  margin, and `0` candidates satisfy both. No candidate has H024 support >=
+  `0.6`. The selected diagnostic has world row/cell deltas
+  `-0.000042258` / `-0.000062846`, H024 margin/support
+  `+0.000479900` / `0.250000000`, and H025 row-permutation p `0.106666667`.
+- Why discard as a submission route: preserving support and ray amplitude is
+  not enough to align the hidden public-world gain with H024 action-health.
+  H024-safe moves are mostly tiny S1/Q1 rollbacks that H036 sees as
+  world-worse; H036-gain moves are H024-positive.
+- Implementation issue possible: medium. H037 is still hand-designed and does
+  not learn nonlinear route mixtures. But it covers the natural scalar
+  fixed-point translator and fails all declared gates.
+- Bottleneck implication: the missing translator must model route,
+  calibration, or public/private split jointly, not only support or scalar
+  amplitude.
+- Do not repeat: H012-support-only scalar amplification/damping/q-pull sweeps as
+  submission candidates without a richer translator objective.

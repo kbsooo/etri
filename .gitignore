@@ -321,3 +321,7 @@ hitl/h036_global_public_world_solver_jepa/submission_h036_*.csv
 hitl/h036_global_public_world_solver_jepa/h036_world_particles.csv
 hitl/h036_global_public_world_solver_jepa/h036_world_predicted_deltas.csv
 hitl/h036_global_public_world_solver_jepa/h036_h025_top_cells.csv
+
+# H037 materialized fixed-point translator sweep files are reproducible from the script.
+hitl/h037_fixed_point_translator_jepa/submission_h037_*.csv
+hitl/h037_fixed_point_translator_jepa/h037_h025_top_cells.csv

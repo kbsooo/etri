@@ -6933,3 +6933,53 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - next big-bet should learn the world-to-action translator explicitly, or
     split the public-world posterior into public-safe versus public-overfit
     components before materialization.
+
+## H037. Fixed-Point Translator HS-JEPA
+
+- Observe: H036 proved a hidden public-world representation, but direct
+  `q_cond` materialization failed H024/H025. The next simplest translator is
+  not a new support search, but a fixed-point action on the already successful
+  E247-to-H012 ray.
+- Wonder: if H012's support is the correct manifold, can H036's world pressure
+  be translated by only changing amplitudes on the existing 1200 H012 support
+  cells?
+- Hypothesis: if H012 is a reusable fixed-point ray, support-preserving
+  amplitude changes should create candidates with negative H036 world gain and
+  non-positive H024 pre-H012 margin. If not, H012 requires a richer route,
+  calibration, or private/public translator.
+- Method: `hitl/h037_fixed_point_translator_jepa.py`.
+  - context: H012/E247 ray, H036 `world_q_cond`, H036 cell score and row public
+    probability;
+  - target representation: H036 world pressure restricted to H012 support;
+  - action families: aligned-support amplification, conflict-support damping,
+    dual amplify/damp, target-wise ray scaling, row-public ray scaling, and
+    support-only small q-pulls;
+  - stress: H036 world proxy, H024 pre-H012 decoder, and H025 row-permutation.
+- Result:
+  - H012 support cells `1200`;
+  - H036-aligned support cells `903`, carrying cell-score sum `244.595425`;
+  - H036-conflict support cells `297`, carrying only `20.929529`;
+  - generated candidates `253`;
+  - candidates with `world_cell_delta < -0.0002`: `44`;
+  - candidates with negative H024 pre-H012 margin: `4`;
+  - candidates satisfying both: `0`;
+  - candidates with H024 support >= `0.6`: `0`;
+  - selected diagnostic `h037_support_qpull_k180_a0.03_c176_6b9ae6d4`;
+  - selected world row/cell deltas:
+    `-0.000042258` / `-0.000062846`;
+  - selected H024 pre-H012 margin/support:
+    `+0.000479900` / `0.250000000`;
+  - selected H025 row-permutation p `0.106666667`;
+  - no root upload-safe file was promoted.
+- Interpretation:
+  - positive: H036 pressure overlaps strongly with H012 support; the public
+    world is not demanding many new high-score outside-support cells;
+  - negative: support preservation and ray-preserving amplitude are still not
+    enough. The action-health decoder and world-gain proxy choose disjoint
+    regions: H024 likes tiny S1/Q1 rollbacks that H036 considers world-worse,
+    while H036-gain moves are H024-positive.
+- Decision:
+  - H037 is diagnostic-only;
+  - do not submit generated H037 variants;
+  - next big-bet should model route/calibration/private-public split jointly,
+    not only support or amplitude on the H012 ray.

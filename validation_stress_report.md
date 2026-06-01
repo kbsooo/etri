@@ -6566,3 +6566,53 @@ Stress conclusion:
   H012 and H025 says selected row placement is not special enough.
 - H036 strengthens the current bottleneck diagnosis: hidden public-state
   discovery is ahead of world-to-action translation.
+
+## H037 Fixed-Point Translator Stress
+
+Question: can H036's hidden public-world pressure be translated through the
+successful E247-to-H012 ray while keeping H012 support fixed?
+
+Stress setup:
+
+- script: `hitl/h037_fixed_point_translator_jepa.py`;
+- support constraint: only cells moved by H012 from E247 can be changed;
+- action families:
+  - aligned-support amplification;
+  - conflict-support damping;
+  - dual amplify/damp;
+  - target-wise and row-public ray scaling;
+  - support-only small q-pulls;
+- stresses:
+  - H036 row/cell world proxy deltas;
+  - H024 pre-H012 public action decoder;
+  - H025 row-permutation placement stress.
+
+Stress result:
+
+- H012 support cells: `1200`;
+- H036-aligned support cells: `903`;
+- aligned support cell-score sum: `244.595425`;
+- conflict support cells: `297`;
+- conflict support cell-score sum: `20.929529`;
+- generated candidates: `253`;
+- candidates with `world_cell_delta < -0.0002`: `44`;
+- candidates with negative H024 pre-H012 margin: `4`;
+- candidates satisfying both: `0`;
+- candidates with H024 support >= `0.6`: `0`;
+- selected diagnostic:
+  `h037_support_qpull_k180_a0.03_c176_6b9ae6d4`;
+- selected world row/cell deltas:
+  `-0.000042258` / `-0.000062846`;
+- selected H024 margin/support:
+  `+0.000479900` / `0.250000000`;
+- H025 row-permutation p: `0.106666667`;
+- promoted root file: none.
+
+Stress conclusion:
+
+- H036's public-world pressure is mostly inside H012 support, so the public
+  world is not simply asking for a different large support set.
+- However, fixed-support ray amplitude is not the missing translator. H036-gain
+  and H024-safe moves are disjoint under this action family.
+- Next stress should model route/calibration/private-public transfer jointly,
+  with H037 candidates as negative examples.

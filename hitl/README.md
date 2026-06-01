@@ -897,3 +897,45 @@ public-world representation. It also proves that this representation is not
 itself the probability action. The next HS-JEPA layer should learn a
 world-to-action translator that preserves H012-compatible support, amplitude,
 and calibration.
+
+## H037: Fixed-Point Translator HS-JEPA
+
+- Script: `hitl/h037_fixed_point_translator_jepa.py`
+- Report: `hitl/h037_fixed_point_translator_jepa/h037_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+Can H036's hidden public-world pressure be translated through H012's successful
+E247-to-H012 ray while keeping H012 support fixed?
+
+### Main Finding
+
+H012 support overlaps H036 pressure, but support-preserving scalar amplitude is
+not the missing translator.
+
+- H012 support cells: `1200`.
+- H036-aligned support cells: `903`.
+- Aligned support cell-score sum: `244.595425`.
+- H036-conflict support cells: `297`.
+- Conflict support cell-score sum: `20.929529`.
+- Generated H037 candidates: `253`.
+- Candidates with `world_cell_delta < -0.0002`: `44`.
+- Candidates with negative H024 pre-H012 margin: `4`.
+- Candidates satisfying both: `0`.
+- Candidates with H024 support >= `0.6`: `0`.
+- Selected diagnostic:
+  `hitl/h037_fixed_point_translator_jepa/submission_h037_support_qpull_k180_a0.03_c176_6b9ae6d4.csv`.
+- Selected world row/cell deltas:
+  `-0.000042258` / `-0.000062846`.
+- Selected H024 margin/support:
+  `+0.000479900` / `0.250000000`.
+- H025 row-permutation p: `0.106666667`.
+
+### Interpretation
+
+H037 narrows the bottleneck. H036's world posterior mostly agrees with H012's
+support, so support discovery is not the main missing piece. But scalar
+amplitude on the H012 ray cannot satisfy both H036 world gain and H024
+action-health. The next translator must model route, calibration, or
+public/private split jointly.
