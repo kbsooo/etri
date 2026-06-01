@@ -182,3 +182,46 @@ The next useful test is H004: keep E247 fixed and materialize only sparse,
 route-specific actions, especially S3-only routes from
 `home_recovery`, `bedtime_arousal`, and `social_overload`, with optional
 separate Q2/Q3 micro-routes.
+
+## H004: HS-JEPA Sparse Routes
+
+- Script: `hitl/h004_hsjepa_sparse_routes.py`
+- Report: `hitl/h004_hsjepa_sparse_routes/h004_report.md`
+- Decision: information sensor only, no submission promoted.
+
+### Question
+
+After H003 showed that broad all-target HS-JEPA translation loses public score,
+can we keep E247 fixed and translate only the strongest sparse
+human-state-to-target routes?
+
+### Main Finding
+
+Sparse routing fixed the H003 shape problem but did not yet produce a strict
+submission candidate.
+
+- H003 broad move: `1750` changed cells, public LB `0.5763763885`.
+- H004 candidates: at most `48` changed cells and at most `2` active targets.
+- Best selected file:
+  `submission_h004_s3_q3_micro_e221f794.csv`.
+- Selector decision: `information_sensor_only`.
+- Strict promote count: `0`.
+- Information sensor count: `4`.
+
+Strongest bundle stress:
+
+- `q3_badnight -> Q3`: subject5 delta `-0.011851961`, dominance `0.933333`.
+- `s3_core -> S3`: subject5 delta `-0.003676805`, dominance `1.000000`.
+
+### Interpretation
+
+H004 supports the sparse-route version of HS-JEPA more than the monolithic
+latent version. The best candidate combines `S3` and `Q3` micro-actions and is
+locally mean-favorable, but its selector p90 is only `-0.000002924`, far weaker
+than the strict public-free threshold. It is not a score submission yet.
+
+The next useful test is not to enlarge all routes. It is to improve the
+row/action translator for the two surviving routes:
+
+- `badnight_aftereffect -> Q3`
+- `home_recovery + bedtime_arousal + social_overload -> S3`

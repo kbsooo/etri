@@ -1,0 +1,2 @@
+decision,selected_uploadsafe_file,selected_basename,reason,strict_promote_count,info_sensor_count
+information_sensor_only,none,submission_h004_s3_q3_micro_e221f794.csv,"candidate is sparse and mean-favorable, but not strict enough for scarce public LB",0,4

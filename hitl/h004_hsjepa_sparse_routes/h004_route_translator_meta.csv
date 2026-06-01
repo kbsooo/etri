@@ -1,0 +1,8 @@
+bundle,target,episodes,train_rate,oof_subject5_loss,test_pred_mean,test_pred_std
+s3_core,S3,"home_recovery,bedtime_arousal,social_overload",0.6622222222222223,0.6591805370764897,0.6491829749636986,0.2128363909693303
+s3_core_plus,S3,"home_recovery,bedtime_arousal,social_overload,cashflow_stress,routine_fragmentation",0.6622222222222223,0.6635208938805768,0.6484364890709724,0.2116161176878882
+q2_anchor_home,Q2,"routine_anchor_recovery,home_recovery",0.5622222222222222,0.7049771103447162,0.5878753835533054,0.13114147777320964
+q3_badnight,Q3,badnight_aftereffect,0.6,0.6729880384097965,0.6702784389096125,0.12243440587534118
+s2_anchor_badnight,S2,"routine_anchor_recovery,badnight_aftereffect",0.6511111111111111,0.6851820823651473,0.6014581586600246,0.20236774741157576
+s4_home_commute,S4,"home_recovery,commute_pressure",0.56,0.7140232072083023,0.5175394516809528,0.18815049240997386
+s1_fragment_arousal,S1,"routine_fragmentation,bedtime_arousal,routine_anchor_recovery",0.6822222222222222,0.6527191107519824,0.6857356445990016,0.17026092922253233
