@@ -6632,3 +6632,30 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - keep `q_hs` as proposal, diagnostic, and paper-level representation evidence;
   - do not submit H023 diagnostic files;
   - next large experiment should learn a public/private action-health or calibration target that decides when a human-state-compatible world is also action-safe.
+
+## H024. Public-Sensor Action-Health Decoder HS-JEPA
+
+- Observe: H012/H015-H023 can keep generating attractive hidden posterior moves, but H023 showed human-state alignment alone is not an action selector.
+- Wonder: can the known public outcomes themselves be used as fixed sensors to learn a candidate action-health representation that separates H012-style successful movement from H010/E323/E216-style public-bad movement?
+- Hypothesis: if the action-health decoder is real, it should rank known public files correctly under leave-one-out, then select a post-H012 candidate with narrow uncertainty, high support below H012, and a selected-vs-H012 margin that beats public-label permutation nulls.
+- Method: `hitl/h024_action_health_decoder_jepa.py`.
+  - context: known public files, movement anatomy relative to H012/E247, good/bad public axes, target-wise shifts, H012/H015/H021/H023 cell-state summaries;
+  - target representation: public action health, measured as public LB under leave-one-public-out sensors;
+  - candidate pool: top H015-H023 diagnostic files plus known public anchors;
+  - stress: leave-one-public-out decoder metrics and public-LB permutation stress for the selected unknown candidate.
+- Result:
+  - known public sensors used: `20`;
+  - candidate feature rows scored: `407`;
+  - best LOO decoder `geometry` alpha `100`: MAE `0.000773`, Spearman `0.969925`, pairwise `0.947368`;
+  - best unknown diagnostic: `submission_h015_top_all_k100_a0.7_a3e35d5c.csv`;
+  - predicted public median/p10/p90: `0.570054` / `0.559653` / `0.580761`;
+  - support better than H012: `0.15`;
+  - selected-vs-H012 permutation p: `0.841`;
+  - no root upload-safe H024 file promoted.
+- Interpretation:
+  - the known public score manifold is learnable, but that does not imply transfer to unseen post-H012 actions;
+  - H015-style self-feedback candidates are still too unstable after H012;
+  - the missing component is a calibrated action-health decoder, not another posterior-completion sampler.
+- Decision:
+  - keep H024 as a negative materialization result and a positive bottleneck diagnosis;
+  - the next big-bet route should create new supervision for action health, not rank the same posterior-completion files with another public-axis model.

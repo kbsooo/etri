@@ -2916,3 +2916,12 @@
 - Implementation issue possible: medium. H023 inherits KNN-style `q_hs` from H021/H022 and uses finite sampled vector worlds. A stronger neural HS-JEPA prior could improve the geometry term. But this does not rescue the current Pareto materializer.
 - Bottleneck implication: the remaining bottleneck is not simply discovering a human-state latent. It is learning an action-health/public-private calibration target that translates a human-state-compatible latent into safe probability shifts.
 - Do not repeat: submitting H023 diagnostic files or using `q_hs` Pareto energy alone as a final action selector. Re-enter only with a new action-health target that passes row-permuted public-fit stress.
+
+## FH324. Known public-axis action-health decoder can safely choose the next post-H012 submission
+
+- Failed hypothesis: known public outcomes, public-good/public-bad movement axes, and H015-H023 latent sensor features should be enough to rank unseen post-H012 candidates and promote a safe H024 submission.
+- Observed result: H024 learns known public ordering well under leave-one-public-out (`geometry` alpha `100`, MAE `0.000773`, Spearman `0.969925`, pairwise `0.947368`). But the selected unknown candidate is only an H015 `k100` diagnostic with predicted public median `0.570054`, p10/p90 `0.559653-0.580761`, support below H012 `0.15`, and selected-vs-H012 permutation p `0.841`.
+- Why discard as a submission route: the decoder explains known anchors but does not transfer stably to unseen post-H012 actions. It is too easy for a public-axis model to over-interpret H012 and assign huge uncertainty to H015/H020/H023-derived moves.
+- Implementation issue possible: medium. The public sensor set is small (`20`) and H012 is a large outlier. More independent public/private or train-side action-health supervision could make this route viable.
+- Bottleneck implication: the current limitation is no longer posterior generation. It is unseen-candidate action-health transfer.
+- Do not repeat: ranking H015-H023 candidates by another direct public-LB regression unless it adds independent supervision or passes the H024 unseen-candidate gates.

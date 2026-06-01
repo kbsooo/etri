@@ -5257,3 +5257,45 @@ Submission interpretation:
 2. H023 is not a submission candidate because q_hs-Pareto selection is not public-fit-safe.
 3. The next candidate should not be "more q_hs prior." It should be an action-health/public-private calibration layer that uses H023 energy as one input.
 4. If a future candidate uses H023 energy and passes row-permuted public-fit stress, then it becomes the first true HS-JEPA materializer rather than only representation evidence.
+
+## Update After H024
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+H024 promoted submission:
+
+None.
+
+What H024 tested:
+
+- Whether known public outcomes can be used as an action-health decoder over
+  H015-H023 candidate movement tensors.
+- Whether public-good/public-bad axes plus H012/H015/H021/H023 latent sensors
+  can safely choose one unseen post-H012 action.
+
+Local evidence:
+
+- known public files used: `20`;
+- candidate rows scored: `407`;
+- best leave-one-public-out decoder: `geometry` alpha `100`, MAE `0.000773`,
+  Spearman `0.969925`, pairwise `0.947368`;
+- top unknown diagnostic:
+  `hitl/h015_public_equation_self_feedback/submission_h015_top_all_k100_a0.7_a3e35d5c.csv`;
+- predicted public median/p10/p90:
+  `0.570054` / `0.559653` / `0.580761`;
+- support better than H012: `0.15`;
+- selected-vs-H012 permutation p: `0.841`.
+
+Submission interpretation:
+
+1. H024 is not a submission candidate.
+2. The known public-action manifold is learnable, but it is not yet a
+   transferable selector for unseen H015-H023 actions.
+3. H015-H023 posterior-completion candidates remain risky because the action
+   decoder has wide intervals and low support below H012.
+4. The next big-bet submission should change the hidden-state/action-health
+   target itself, not just rerank the same posterior-completion pool.

@@ -2056,3 +2056,27 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - learn an action-health or public/private calibration target using H023 energy as one feature;
   - do not submit q_hs-Pareto candidates until public-fit row-permutation stress improves.
+
+## Public-Free Observation: H024 Action-Health Decoder
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - treats known public LB results as fixed sensors for action health;
+  - scores known/public and H015-H023 candidates by movement geometry, public-good/public-bad axes, and H012/H015/H021/H023 latent cell-state features;
+  - promotes only if an unseen candidate beats H012 under aggregated decoder scenarios and public-score permutation stress.
+- expected LB reaction:
+  - if a candidate had passed and improved, it would validate action-health decoding as the missing HS-JEPA materializer;
+  - because no candidate passed, submitting H024-selected diagnostics would only test an unstable ranker.
+- local/public-free observation:
+  - known sensors `20`, candidate rows `407`;
+  - best LOO decoder MAE `0.000773`, Spearman `0.969925`, pairwise `0.947368`;
+  - top unknown H015 `k100` candidate predicted median `0.570054`, p10/p90 `0.559653-0.580761`;
+  - support better than H012 only `0.15`;
+  - selected-vs-H012 permutation p `0.841`.
+- interpretation:
+  - public-score geometry is real on known anchors;
+  - it is not enough to safely choose a new post-H012 action.
+- next experiment:
+  - create independent action-health supervision or a new hidden-state target;
+  - do not spend public attempts on H015-H023 candidates selected only by this decoder.

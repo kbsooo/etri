@@ -4368,3 +4368,19 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - no root upload-safe H023 candidate promoted.
 - Registry status: approved as representation/alignment diagnostic and proposal energy. Rejected as direct action selector.
 - Failure condition: do not use H023 energy to materialize submissions unless a new action-health target lowers row-permutation public-fit p and preserves public-only posterior compatibility.
+
+### H024 public-sensor action-health decoder
+
+- Target hidden structure: action health of a proposed probability movement, using known public outcomes as sensors rather than labels to optimize directly.
+- Why needed: H015-H023 produce many public-equation-attractive posterior moves, but H023 proved human-state geometry alone cannot choose the final action. H024 asks whether good/bad public movement axes and latent cell-state features can decode safe post-H012 actions.
+- Feature/action form:
+  - context: candidate output tensor geometry relative to H012/E247 and public-bad anchors H010/E323/E216/E267;
+  - latent features: H012 posterior score, H015 self-feedback score, H021 human-state gate agreement, H023 Pareto/human-state cell energy;
+  - anti-collapse checks: leave-one-public-out public score reconstruction and public-score permutation for the top unknown candidate;
+  - action rule: promote only if the top unknown candidate has high support below H012, narrow prediction interval, low bad-axis load, and null p below `0.05`.
+- Current evidence:
+  - known public LOO is strong: best decoder MAE `0.000773`, Spearman `0.969925`, pairwise `0.947368`;
+  - unknown transfer fails: top H015 `k100` candidate has predicted median `0.570054`, p10/p90 `0.559653-0.580761`, H012-beating support `0.15`, and permutation p `0.841`;
+  - no H024 upload-safe candidate promoted.
+- Registry status: approved as a bottleneck diagnostic and known-score latent; rejected as current submission selector.
+- Failure condition: do not submit files selected only by this decoder. A future action-health decoder must show unseen-candidate stability, not just known-score reconstruction.

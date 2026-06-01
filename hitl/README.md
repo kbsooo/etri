@@ -329,3 +329,40 @@ The public-equation vector-world manifold is coupled to human-state geometry,
 but the current q_hs energy is not an action-health decoder. The next HS-JEPA
 step should learn public/private action health or calibration, using H023
 energy as an input rather than as the final selector.
+
+## H024: Action-Health Decoder over Public Sensors
+
+- Script: `hitl/h024_action_health_decoder_jepa.py`
+- Report: `hitl/h024_action_health_decoder_jepa/h024_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+Can known public outcomes, good/bad movement axes, and H015-H023 latent sensors
+decode which post-H012 action is healthy enough to submit?
+
+### Main Finding
+
+Known public ordering is learnable, but unknown post-H012 actions are not
+stable enough to promote.
+
+- Known public sensors used: `20`.
+- Best leave-one-out decoder: `geometry`, alpha `100`, MAE `0.000773`,
+  Spearman `0.969925`, pairwise accuracy `0.947368`.
+- State-only decoder predicts H012 more conservatively:
+  `0.567631` vs actual `0.568123`.
+- Top unknown diagnostic file:
+  `hitl/h015_public_equation_self_feedback/submission_h015_top_all_k100_a0.7_a3e35d5c.csv`.
+- Its predicted public median/p10/p90:
+  `0.570054` / `0.559653` / `0.580761`.
+- Support below H012: `0.15`.
+- Permutation p for selected-vs-H012 margin: `0.841`.
+
+### Interpretation
+
+H024 rejects the tempting claim that H015-H023 posterior-completion candidates
+can be promoted by a simple public-axis/action-health decoder. The decoder is
+good enough to explain known scores, but not stable enough to select a new
+post-H012 file. The architecture diagnosis becomes sharper: HS-JEPA already
+has public-state posterior generators and human-state geometry; it lacks a
+calibrated action-health decoder that transfers to unseen candidate actions.

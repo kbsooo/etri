@@ -4517,3 +4517,25 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   - accept action claim only if Pareto public fit also beats row-permuted controls. Not observed.
 - public LB 관측 반응: H023 should not consume a public slot unless a future action-health layer changes the `rowperm_public_p` result. Submitting H023 diagnostic files would test an unproven action selector.
 - 제출 전략: no submission. Use H023 as architecture evidence that public-equation hidden worlds and human-state latent geometry are coupled, while the materializer still needs a public/private action-health target.
+
+### H024: known public sensors can decode post-H012 action health
+
+- 상태: partially supported for known-score reconstruction; rejected as an unseen post-H012 submission selector.
+- 왜 그럴듯한가: H010/E323/E216/E267 provide public-bad movement axes, while H012/E247/E95/Mixmin provide successful or near-successful axes. H015-H023 candidates expose internal public-equation and human-state sensor scores. If action health is a stable latent, these views should identify which unseen post-H012 move is safe.
+- 맞다면:
+  - leave-one-public-out ranking should recover known public outcomes;
+  - H012 should not be ranked only by in-sample leakage;
+  - the top unknown candidate should have narrow predicted LB intervals, high support below H012, and a selected-vs-H012 permutation p below `0.05`.
+- 틀리다면:
+  - known-score ordering may be learnable, but unknown candidates will have wide intervals, low H012-beating support, or no advantage over permuted public scores.
+- 최소 실험: `hitl/h024_action_health_decoder_jepa.py`.
+- 관측:
+  - known public sensors `20`, candidate rows `407`;
+  - best LOO decoder `geometry` alpha `100`, MAE `0.000773`, Spearman `0.969925`, pairwise `0.947368`;
+  - state decoder predicts H012 close to actual (`0.567631` vs `0.568123`), but the top unknown H015 `k100` candidate has median `0.570054`, p10/p90 `0.559653-0.580761`, support below H012 `0.15`;
+  - permutation p for selected-vs-H012 margin `0.841`.
+- 성공/폐기 기준:
+  - accept known-score reconstruction. Observed.
+  - reject as a submission selector unless the top unknown candidate beats H012 in >=`0.70` model scenarios and passes permutation stress. Not observed.
+- public LB 관측 반응: no H024 file should be submitted from this decoder. If a similar future decoder promotes a candidate, it must first pass the same unseen-candidate and permutation gates.
+- 제출 전략: none. H024 demotes simple public-axis ranking and pushes the next experiment toward new action-health supervision.

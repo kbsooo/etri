@@ -6063,3 +6063,41 @@ Stress conclusion:
 - H023 passes the representation-alignment stress: the public-equation vector-world manifold is meaningfully closer to human-state geometry than random row assignments.
 - H023 fails the action-selection stress: the Pareto posterior is more human-plausible but not more public-fit-plausible than row-permuted controls.
 - Keep H023 as HS-JEPA evidence, not as a submission route. The missing component is an action-health or public/private calibration latent that can translate human-state-aligned worlds into safe probability moves.
+
+## H024 Public-Sensor Action-Health Decoder Stress
+
+Question: can known public outcomes decode which H015-H023 post-H012 candidate action is safe?
+
+Stress setup:
+
+- script: `hitl/h024_action_health_decoder_jepa.py`;
+- known public sensors: `20` local files with public LB observations;
+- candidate pool: `407` known and unknown candidate movement tensors;
+- context: movement geometry versus H012/E247, projections onto good/bad public axes, target-wise movement anatomy, and H012/H015/H021/H023 cell-state features;
+- target: public LB as an action-health representation;
+- stress:
+  - leave-one-public-out prediction over known public files;
+  - model-family/alpha aggregation;
+  - selected unknown candidate compared to H012 under permuted public scores.
+
+Stress result:
+
+- best LOO decoder: `geometry`, alpha `100`;
+- LOO MAE/RMSE: `0.000773` / `0.001651`;
+- LOO Spearman/pairwise: `0.969925` / `0.947368`;
+- H012 LOO predictions:
+  - geometry alpha `100`: `0.561120` vs actual `0.568123`;
+  - state alpha `100`: `0.567631` vs actual `0.568123`;
+- top unknown diagnostic:
+  `hitl/h015_public_equation_self_feedback/submission_h015_top_all_k100_a0.7_a3e35d5c.csv`;
+- predicted public median/p10/p90:
+  `0.570054` / `0.559653` / `0.580761`;
+- support better than H012: `0.15`;
+- selected-vs-H012 permutation p: `0.841`.
+
+Stress conclusion:
+
+- Known public-score geometry is learnable, but the decoder is not stable enough for unseen post-H012 action selection.
+- H024 promotes no root upload-safe file.
+- This falsifies the easy next step: "rank H015-H023 by public-axis/action-health regression and submit the top one."
+- The next stress target should be independent action-health supervision or a new hidden state that changes the candidate distribution, not another ranker over the same posterior-completion pool.
