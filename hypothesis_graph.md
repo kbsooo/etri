@@ -4296,3 +4296,25 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept only if Q2 risk drops materially while top10 and transfer remain near E368. Not observed.
 - public LB 관측 반응: no E371 file should be submitted. If E368 fails, the next correction should not be another row-wise Q2 damp gate; it needs a new calibration target.
 - 제출 전략: keep E368; do not upload E371 files.
+
+### H372: Q2 calibration-residual lifestyle latent can provide a safer E368 replacement
+
+- 상태: 반증됨 as a submission translator; supported as a local diagnostic latent.
+- 왜 그럴듯한가: H370/H371 showed Q2 risk is not separable by projection or row-wise trust. The next plausible hidden target is Q2 residual calibration after subject/calendar prior, predicted from lifestyle/JEPA context.
+- 맞다면: Q2 calibration-residual latents should beat blocked/null stress locally, and at least one replacement/blend should preserve E368 scenario support while lowering Q2 bad-axis cosine and positive Q2 bad contribution.
+- 틀리다면: local residual latents may exist, but their action either follows E368's risky Q2 anatomy or loses scenario/action-health support.
+- 최소 실험: `analysis_outputs/e372_q2_calibration_residual_latent.py`.
+- 관측: `12` residual latents tested; `4` pass local/null gates. Best local latent `Q2_jepa_resid_subject` has logloss delta `-0.030211` and dominance `1.000000`. However `241` materialized candidates produce `0` safer eligible replacements. The strongest scenario candidate has top1/top10 `0.948980/0.989796`, but Q2 bad-axis cosine worsens from E368's `0.591735` to `0.609289`.
+- 성공/폐기 기준: accept only if a candidate lowers Q2 risk while preserving scenario support, local residual validity, and E363 row/action health. Not observed.
+- public LB 관측 반응: no E372 file should be submitted as a safer E368 derivative.
+- 제출 전략: none. Keep E372 as evidence that Q2 hidden state exists but does not translate into a safe Q2 action under current geometry.
+
+### H373: E368 target-specific Q2/S1 lifestyle state is public-frontier actionable
+
+- 상태: partially falsified by public LB; still alive as a diagnostic hidden-state model.
+- 왜 그럴듯한가: H368 learned Q2/S1 row validity from lifestyle context, beat direct-public and null masks, and H369 recovered the same action from public-free train residual states.
+- 맞다면: E368 should beat E247 or at least materially approach it while improving over older frontier files.
+- 틀리다면: E368 should remain in the older E95-level band, implying the Q2/S1 state is real but not sufficient to beat the E247 calibration/manifold.
+- 관측: public LB for `submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv` is `0.576290429`. This is worse than E247 by `+0.000131480`, but slightly better than E95 by `-0.000000901`.
+- 해석: E368 validates "not dead" public relevance of target-specific Q2/S1 lifestyle state, but falsifies it as the current public-frontier replacement. The public bottleneck is now action calibration/subset selection, not discovery of the Q2/S1 state.
+- 제출 전략: final default returns to E247. Future Q2/S1 work must create a public-safe veto/calibration target before another submission.

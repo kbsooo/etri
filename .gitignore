@@ -261,6 +261,10 @@ analysis_outputs/*
 !analysis_outputs/e371_q2_rowwise_safety_*.md
 !analysis_outputs/e371_q2_rowwise_safety_*.py
 !analysis_outputs/submission_e371_q2rowsafe_selected_*_uploadsafe.csv
+!analysis_outputs/e372_q2_calibration_residual_*.csv
+!analysis_outputs/e372_q2_calibration_residual_*.md
+!analysis_outputs/e372_q2_calibration_residual_*.py
+!analysis_outputs/submission_e372_q2calib_selected_*_uploadsafe.csv
 
 !analysis_outputs/bridge_scan_candidates/
 analysis_outputs/bridge_scan_candidates/*

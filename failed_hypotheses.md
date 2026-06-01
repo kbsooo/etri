@@ -2835,3 +2835,21 @@
 - Implementation issue possible: medium. The row-wise target is hand-built from E369/E368 scores and E323 contribution, not learned from new public labels. But it is enough to reject this specific row-damping route.
 - Bottleneck implication: Q2 risk is an action-calibration/prior problem, not just a row-mask problem.
 - Do not repeat: transfer-floor, hard-trust, or weak-transfer bad-tail damping around E368 Q2 unless a new Q2 calibration target is introduced.
+
+## FH315. Q2 calibration residual is a safe E368 replacement target
+
+- Failed hypothesis: after projection and row-wise damping fail, a train-side Q2 calibration-residual latent should provide a safer replacement or blend for E368's risky Q2 movement.
+- Observed result: E372 found real local Q2 residual latents, including `Q2_jepa_resid_subject` with logloss delta `-0.030211` and null dominance `1.000000`. But `241` materialized candidates produced `0` safer eligible replacements. The best scenario candidate reached top1/top10 `0.948980/0.989796`, while worsening Q2 bad-axis cosine from `0.591735` to `0.609289`.
+- Why discard as a submission route: the residual state is real, but direct materialization follows the same risky Q2 action anatomy. Lower-risk replacements lose scenario/action-health support.
+- Implementation issue possible: medium. The residual teacher is small and subject/dateblock folds are limited, but the failure is not a weak-local-signal failure; it is a translation/action-health failure.
+- Bottleneck implication: the hidden Q2 state is not enough. The next target must be Q2 action-health, public-safe veto, or public/private calibration state.
+- Do not repeat: Q2 residual-score direct replacement/blend around E368 without an independent veto/calibration layer.
+
+## FH316. E368 Q2/S1 hidden lifestyle-state action is public-frontier actionable
+
+- Failed hypothesis: E368's strong local target-specific Q2/S1 row-mask validity and E369 public-free transfer support should be enough to beat E247 publicly.
+- Observed result: E368 public LB is `0.576290429`, worse than E247 `0.5761589494` by `+0.000131480`, though slightly better than E95 by `-0.000000901`.
+- Why discard as a final-submission route: E368 validates public relevance but not public superiority. It sits in the E95-level band rather than the E247 frontier.
+- Implementation issue possible: low for the conclusion, because this is a direct public observation.
+- Bottleneck implication: target-specific Q2/S1 hidden state discovery is not the main remaining bottleneck. Public-safe action calibration, especially for Q2, is.
+- Do not repeat: E368 derivative submissions that only alter Q2/S1 amplitude, row gates, or calibration residuals without a new independent public-safe veto target.

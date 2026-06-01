@@ -4044,3 +4044,20 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - risk-reducing candidates around Q2 cosine `0.539628` have top10 `0.0`.
 - Registry status: rejected as a submission feature; keep as evidence that Q2 risk is not separable by current row-wise lifestyle trust.
 - Failure condition: do not repeat row-wise Q2 damping based only on transfer/gate/risk ranks. A future row-wise Q2 feature needs a new target label, not a reweighted version of these scores.
+
+### E372 Q2 calibration-residual latent
+
+- Target hidden structure: Q2 residual calibration/prior state after subject/calendar base correction.
+- Why needed: E370 and E371 showed that Q2 risk is not linearly removable and not a simple wrong-row issue. E372 tests whether the hidden Q2 state should be learned directly as a calibration residual.
+- Feature/action form:
+  - teacher: Q2 train residual after subject/calendar base;
+  - context views: family, JEPA residual, story bundle, raw day, family-story, family-JEPA-story;
+  - generated features: test-side Q2 residual score and Q2 calibration logit delta;
+  - action families: Q2 replacement, Q2/E368 blend, Q2 agreement gate, with E368 S1 retained.
+- Current evidence:
+  - `4/12` local residual latents pass null gates;
+  - best latent `Q2_jepa_resid_subject` improves blocked local Q2 logloss by `-0.030211`;
+  - `241` materialized candidates yield `0` safer eligible replacements;
+  - strongest local scenario candidate worsens Q2 bad-axis cosine to `0.609289`.
+- Registry status: approved as a diagnostic feature; rejected as a submission feature.
+- Failure condition: do not use Q2 residual score directly as a probability move. It needs an action-health/veto layer before any public-facing materialization.

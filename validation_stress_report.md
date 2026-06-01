@@ -5532,3 +5532,47 @@ Stress conclusion:
 - Row-wise Q2 trust does not currently solve the E368 risk. The transfer-preserving gates keep the risk; the risk-reducing gates lose the support.
 - This is a stronger negative than E370 because it rules out the simplest "right signal, wrong rows" explanation.
 - Keep E368. The next Q2 safety target must be a different latent, probably calibration/prior residual rather than E323 movement similarity.
+
+## E372 Q2 Calibration-Residual Latent Stress
+
+Question: can train-side Q2 residual calibration provide a safer E368 Q2 action than projection or row-wise damping?
+
+Stress setup:
+
+- script: `analysis_outputs/e372_q2_calibration_residual_latent.py`;
+- residual latents: `12`;
+- candidate actions: `241`;
+- scenarios: `98`;
+- local teacher: Q2 residual after subject/calendar base model;
+- context views: family, JEPA residual, story bundle, raw day, family-story, family-JEPA-story;
+- materialization: Q2 calibration replacement, E368-Q2/calibration blend, and agreement gates while preserving E368 S1.
+
+Stress result:
+
+- local/null gated latents: `4`;
+- best local latent: `Q2_jepa_resid_subject`;
+- best local logloss delta: `-0.030211`;
+- best local dominance: `1.000000`;
+- safer eligible replacements: `0`;
+- best scenario candidate: `e372_agreegate_Q2_jepa_resid_subject_floor0p65_amp1p08_s11p06`;
+- best scenario top1/top10: `0.948980` / `0.989796`;
+- best scenario Q2 bad-axis cosine: `0.609289`, worse than E368 baseline `0.591735`;
+- best scenario Q2 bad-positive share: `0.954307`, worse than E368 baseline `0.931391`.
+
+Stress conclusion:
+
+- Q2 calibration residual exists, but it does not provide a public-safe action translator.
+- The high-support candidates preserve E368-like risky Q2 anatomy.
+- The risk-lowering candidates lose support and fail action-health gates.
+- Do not submit E372 as a safer E368 descendant.
+
+## E368 Public Feedback Stress Read
+
+- Public LB: `0.576290429`.
+- E247 reference: `0.5761589494`.
+- E95 reference: `0.5762913298`.
+- Result: E368 is worse than E247 by `+0.000131480`, but better than E95 by `-0.000000901`.
+- Stress conclusion:
+  - E368 did not collapse publicly, so the Q2/S1 hidden lifestyle-state signal is not imaginary.
+  - E368 failed to challenge E247, so local scenario stress overvalued this Q2/S1 movement.
+  - The public bottleneck is action calibration, especially Q2, not another row-mask or residual-state discovery.

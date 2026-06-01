@@ -1639,3 +1639,26 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - this rejects simple public-bad-axis projection as the next score route;
   - E351 remains the practical public sensor;
   - if E351 fails, the next hypothesis should be a new support/visibility latent rather than a cleaned E351 sibling.
+
+## Public Observation: E368 Q2/S1 Row-Mask Cell-Action Latent
+
+- submission file: `submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv`
+- public LB: `0.576290429`
+- current public best reference: E247 `0.5761589494`
+- delta vs E247: `+0.0001314796` worse
+- delta vs E95 `0.5762913298`: `-0.0000009008` better
+- changed point:
+  - E365-style backbone with only Q2/S1 target-cell movement;
+  - learned Q2/S1 lifestyle row validity beat direct-public and null masks locally;
+  - E369 public-free residual audit supported the same Q2/S1 state.
+- expected LB reaction before feedback:
+  - improvement would promote target-specific Q2 intervention validity plus S1 recovery validity as the live hidden law;
+  - neutral/worse would mean the latent is real but not public-calibrated, especially around Q2.
+- actual interpretation:
+  - E368 is not catastrophic and almost ties E95, so the Q2/S1 hidden lifestyle-state signal is not pure noise;
+  - it fails to beat E247 by a material margin, so it is not the current final-submission candidate;
+  - the local jackknife/transfer evidence overestimated public value, likely because Q2 action health and Q2 public-risk anatomy are entangled.
+- next experiment implication:
+  - do not upload E370/E371/E372 derivatives as safer variants;
+  - keep E247 as public-best default;
+  - use E368 as a diagnostic anchor for Q2/S1 target-specific hidden lifestyle state, not as a frontier replacement.

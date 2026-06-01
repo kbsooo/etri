@@ -4764,3 +4764,28 @@ Submission interpretation:
 1. E368 remains the only current Q2/S1 candidate with coherent evidence from both known-public stress and public-free transfer.
 2. E371 S1-amplified/transfer-floor files should not be uploaded as "safer" variants.
 3. If E368 public LB is bad, the next file should not be another E368 row gate. It should target Q2 calibration/prior shift directly.
+
+## Update After E372 and E368 Public Feedback
+
+Current public-best final-score candidate remains:
+
+`analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+
+Known public LB: `0.5761589494`.
+
+E368 public observation:
+
+`submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv` scored `0.576290429`.
+
+What changed:
+
+- E368 no longer should be described as the next likely public-best replacement.
+- It is still useful as a high-information diagnostic because it nearly matches E95 and is much better than public-bad E323/E216 style JEPA failures.
+- E372 tried the natural correction, Q2 calibration-residual replacement/blend, and selected no safer candidate.
+
+Submission interpretation:
+
+1. If deadline pressure requires a safe final file, keep E247.
+2. If one extra diagnostic slot is available, E368 has already served its purpose: it validated that Q2/S1 hidden lifestyle state is public-relevant but insufficient.
+3. Do not submit E370/E371/E372 top local files now. Their local support either leaves Q2 risk intact or worsens it.
+4. Any remaining breakthrough attempt should not be "another E368 variant"; it needs a new target that decides when Q2 action should be vetoed or left unchanged.

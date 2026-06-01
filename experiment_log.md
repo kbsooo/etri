@@ -6127,3 +6127,45 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - The Q2 risk is not just "wrong rows." The rows with transferable Q2 signal are still partly the rows carrying the bad-axis anatomy.
   - The local stress likes S1 amplification and mild Q2 transfer gating, but that does not solve the Q2 safety question.
 - Decision: no E371 submission. Keep E368, and stop trying to fix Q2 by row-wise damping alone. The next useful Q2 experiment needs a different target, likely Q2 outcome/calibration residual or public-private prior state rather than E323-similarity suppression.
+
+## E372. Q2 Calibration-Residual Hidden Lifestyle Latent
+
+- Observe: E370/E371 both showed that E368's Q2 risk cannot be removed by vector projection or row-wise trust damping without losing the useful Q2 signal.
+- Wonder: is the missing state a Q2 calibration/prior residual rather than an E323-similarity state?
+- Hypothesis: if Q2 calibration residual is the right hidden lifestyle target, then train-side Q2 residuals after a subject/calendar base should produce a local/null-healthy latent whose test action can replace or reshape E368 Q2 while keeping E368 scenario support and lowering Q2 bad-axis exposure.
+- Method: `analysis_outputs/e372_q2_calibration_residual_latent.py`.
+  - target: Q2 only;
+  - teacher: train Q2 residual after subject/calendar base calibration;
+  - context views: family, JEPA residual, story bundle, raw day, family-story, family-JEPA-story;
+  - local stress: subject/dateblock blocked logloss plus row/subject/dateblock shuffled residual nulls;
+  - action families: Q2 calibration replacement, E368-Q2/calibration blend, and calibration agreement gates with E368 S1 preserved;
+  - candidate stress: `98` E368 public/view jackknife scenarios, E363/E358 row/action health, Q2 bad-axis cosine, and positive Q2 bad-contribution share.
+- Result:
+  - residual latents tested: `12`;
+  - local/null gated latents: `4`;
+  - strongest local latent: `Q2_jepa_resid_subject`, logloss delta `-0.030211`, dominance `1.000000`, placebo-adjusted delta `-0.030765`;
+  - generated candidates: `241`;
+  - scenario count: `98`;
+  - eligible safer replacements: `0`;
+  - best scenario candidate `e372_agreegate_Q2_jepa_resid_subject_floor0p65_amp1p08_s11p06` has top1/top10 `0.948980/0.989796` and public-like score `8.337641`, but worsens Q2 bad-axis cosine from E368's `0.591735` to `0.609289` and positive bad-contribution share from `0.931391` to `0.954307`;
+  - candidate variants that lower Q2 bad-axis exposure are mostly direct calibration/blend rows with weak or zero scenario support and do not pass E363 submission gates.
+- Interpretation:
+  - Q2 calibration residual is real as a local hidden lifestyle state, especially through JEPA residual context.
+  - But the locally useful calibration residual points in almost the same risky Q2 anatomy as E368. It does not give an independent safe translator.
+  - This strengthens the bottleneck diagnosis: the problem is not absence of Q2 hidden state; it is that visible Q2 action health and Q2 public-risk anatomy are entangled.
+- Decision: no E372 submission. Keep E368 as the information-rich Q2/S1 candidate, and do not submit E372 top scenario files unless deliberately testing the Q2 bad-axis warning rather than seeking a safer public probe.
+
+## Public Feedback After E368
+
+- Public result: `submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv` scored `0.576290429`.
+- Reference:
+  - E247 public best: `0.5761589494`;
+  - E95: `0.5762913298`.
+- Interpretation:
+  - E368 is `+0.000131480` worse than E247, so it does not replace the current public frontier.
+  - E368 is `0.000000901` better than E95, so the Q2/S1 lifestyle-state action is not a dead branch.
+  - The public result matches the E370/E371/E372 warning: the hidden Q2/S1 state is real locally, but the public-calibrated output movement is not safe enough.
+- Decision update:
+  - E247 remains the final-score baseline.
+  - E368 remains a diagnostic anchor for target-specific Q2/S1 hidden lifestyle state.
+  - No E370/E371/E372 derivative should be submitted as a "safer E368" without a new independent public-safe Q2 veto/calibration target.
