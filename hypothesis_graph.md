@@ -4680,3 +4680,30 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   - accept the needle-basin explanation if invariant-breaking variants all degrade and row permutation collapses. Observed.
 - public LB 관측 반응: no H029 file should be submitted. If a row-permuted or memory-pruned H012 variant were to win public, it would refute the exact row-target basin interpretation and point back to target-level calibration or memory. Current stress says not to spend that slot.
 - 제출 전략: none. The next branch should rebuild the inverse public-equation solver with row/subset identity or row-vector constraints as first-class unknowns instead of post-hoc ablations.
+
+### H030: row-target identity priors can reconstruct H012 only if the translator is correct
+
+- 상태: partially supported as a latent diagnosis; rejected as a direct submission route.
+- 왜 그럴듯한가: H029 showed exact row-target placement matters. H016/H019/H020 independently found public cell weights, row subset state, and joint row-vector state. If these are the right invariants, they should improve the public-equation solver itself, not only post-hoc action scoring.
+- 맞다면:
+  - an H012-held-out public-equation solver with row-target allowance priors should predict most of H012's large E247-relative public gain;
+  - true held-out configs that exclude H012 as equation and exclude direct H012 priors should still be near the observed H012 delta;
+  - materialized candidates should pass H024/H025 stress below H012 if the same latent also contains the action translation law.
+- 틀리다면:
+  - H012-held-out prediction will degrade to ordinary 0.576-level uncertainty;
+  - only self-feedback configs using H012 prior will look good;
+  - generated candidates will be priced above H012 with low support below H012.
+- 최소 실험: `hitl/h030_rowtarget_identity_equation_jepa.py`, adding cell-wise allowance priors to public-equation fitting from H012/H016/H019/H020/H014 state maps, then materializing e247-pre, e247-post, and h012-residual candidates.
+- 관측:
+  - fit configs tested `6528`; generated candidates `756`;
+  - true independent H012-held-out best: `pre_h012_good_soft + identity_combo`, predicted H012 delta `-0.007550142` vs actual `-0.008035466`, error `0.000485324`;
+  - self-feedback `h012` prior control has error `0.000181687`, but this is not independent evidence;
+  - selected diagnostic `submission_h030_e247_post_h012_joint_vector_cell_h012_k1200_a0.55_05a1cf87.csv`;
+  - H024 predicted public median `0.572160346`, support below H012 `0.100000000`;
+  - H024 public-score permutation p `0.923333333`, H025 row-permutation p `0.670000000`;
+  - no promoted upload-safe file.
+- 성공/폐기 기준:
+  - accept latent if true held-out H012 prediction is close to observed H012. Partially observed.
+  - accept submission route only if materialized candidates are below H012 under H024/H025 stress. Not observed.
+- public LB 관측 반응: no H030 file should be submitted. If an H030 file unexpectedly wins public, the H024/H025 action-health decoders are too conservative around row-target identity priors. Otherwise the evidence says identity discovery is ahead of identity-to-action translation.
+- 제출 전략: none. Next branch should learn the route/translator from identity posterior to probability action, rather than increasing allowance-prior complexity.

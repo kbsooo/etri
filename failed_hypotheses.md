@@ -2979,3 +2979,12 @@
 - Implementation issue possible: medium. H024 is conservative around duplicated H012 controls because it includes H012-drop stress. But the row-permutation collapse and failure of all ablation families are too consistent to treat as a scoring artifact.
 - Bottleneck implication: the next solver must infer row/subset identity directly. Post-hoc pruning or target-level calibration is unlikely to produce the next jump.
 - Do not repeat: target-only H012 rollbacks, memory-compatible H012 pruning, target-count-matched outside-support swaps, or target-wise row-shuffled H012 variants as submission candidates.
+
+## FH330. Row-target identity allowance priors are enough to produce a post-H012 submission
+
+- Failed hypothesis: if H016/H019/H020/H014 identity signals are moved inside the public-equation solver as cell-wise allowance priors, the resulting posterior should both anticipate H012 and generate an H012-beating action.
+- Observed result: H030 partially supports the latent but rejects the action. True held-out configs, excluding H012 as an equation and excluding direct H012/H012-containing priors, predict most of H012's E247-relative public jump (`-0.007550142` predicted vs `-0.008035466` actual, error `0.000485324`). But generated candidates fail independent action stress: the selected diagnostic has H024 median `0.572160346`, support below H012 `0.100000000`, public-score permutation p `0.923333333`, and H025 row-permutation p `0.670000000`.
+- Why discard as a submission route: identity priors are informative about H012, but direct top-k materialization breaks the H012 basin. The public equation can say roughly which hidden state matters; it still does not say exactly how to translate that state into a probability tensor that beats H012.
+- Implementation issue possible: medium. H030's action materializer is still top-k/alpha based and may be too crude. However, the negative stress is broad enough to reject "allowance prior alone" as the next submission route.
+- Bottleneck implication: the current missing representation is an identity-to-action translation law, likely route/mixture/calibration-specific, not another stronger row-target identity score.
+- Do not repeat: direct H030-style allowance-prior posterior materialization unless paired with a new translator and fresh public-free stress.

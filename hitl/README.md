@@ -569,3 +569,49 @@ state depends on exact row-target placement.
 The next useful big experiment should reconstruct the row-target basin directly,
 for example by solving public equations with row identity/subject-state
 constraints as first-class variables rather than by continuing or pruning H012.
+
+## H030: Row-Target Identity Public-Equation HS-JEPA
+
+- Script: `hitl/h030_rowtarget_identity_equation_jepa.py`
+- Report: `hitl/h030_rowtarget_identity_equation_jepa/h030_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+Can the row-target identity signals found by H016/H019/H020/H029 be moved inside
+the public-equation solver itself, as cell-wise allowance priors, instead of
+being used as post-hoc gates?
+
+### Main Finding
+
+The row-target identity latent is real enough to anticipate much of H012, but it
+is not yet an action-safe translator.
+
+- Fit configs tested: `6528`.
+- Generated candidates: `756`.
+- Independent H012 held-out check, excluding H012 as equation and excluding
+  direct H012/H012-containing priors:
+  best `identity_combo` prior predicts H012's E247-relative public delta as
+  `-0.007550142` versus actual `-0.008035466`, error `0.000485324`.
+- The stronger self-feedback controls using `h012` prior reach about
+  `0.000181687` error, but those are not independent evidence.
+- Best generated diagnostic by H024:
+  `hitl/h030_rowtarget_identity_equation_jepa/submission_h030_e247_post_h012_joint_vector_cell_h012_k1200_a0.55_05a1cf87.csv`.
+- H024 predicted public median/p10/p90:
+  `0.572160346` / `0.568130288` / `0.575654672`.
+- Support better than H012: `0.100000000`.
+- H024 public-score permutation p: `0.923333333`.
+- H025 row-permutation p: `0.670000000`.
+
+### Interpretation
+
+H030 is the first positive answer to "could we have known H012 was coming?" from
+row-target identity priors. The answer is partially yes: exact support, public
+cell weights, row subset, and joint-vector state together forecast most of the
+H012 public jump.
+
+But the action layer still fails. When those priors are materialized as new
+probability moves, H024/H025 price them far above real H012. The bottleneck is
+therefore not latent discovery alone. It is the translation law that turns a
+valid row-target identity posterior into the exact probability action without
+breaking the H012 basin.

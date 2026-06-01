@@ -4481,3 +4481,19 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - memory-only/rollback variants do not recover H012.
 - Registry status: approved as the current bottleneck diagnostic. Rejected as a submission generator.
 - Failure condition: do not submit target rollback, memory pruning, outside-support matched, or row-permuted H012 variants. Re-enter by solving row/subset identity as a first-class latent rather than ablation.
+
+### H030 row-target identity allowance features
+
+- Target hidden structure: public-equation row-target identity, represented as per-cell movement allowance inside the inverse solver.
+- Why needed: H029 showed exact row-target placement matters, while H016/H019/H020 separately found public cell weights, row subset state, and joint-vector state. H030 tests whether those signals should shape the solver itself.
+- Feature/action form:
+  - cell identity scores: H012 support/posterior, H016 public cell weight, H019 row public-subset score, H020 joint-vector cell/row score, H014 memory/private-safety score;
+  - solver: weighted public-equation posterior `q = prior + D A^T (A D A^T + lambda I)^-1 residual`;
+  - candidate families: e247-pre-H012 identity equation, e247-post-H012 identity equation, exact H012 support retarget, and H012 residual identity moves;
+  - anti-collapse checks: independent H012-held-out without direct H012 prior, H024 decoder, H024 public-score permutation, and H025 row-permutation.
+- Current evidence:
+  - true held-out H012 prediction error `0.000485324` using `pre_h012_good_soft + identity_combo`;
+  - generated candidates fail action health: best H024 median `0.572160346`, support below H012 `0.100000000`, public-score permutation p `0.923333333`, H025 row-permutation p `0.670000000`;
+  - no root upload-safe H030 file promoted.
+- Registry status: approved as a row-target identity latent feature. Rejected as a direct action/materialization feature.
+- Failure condition: do not use allowance-prior top-k materialization as a submission route. Re-enter only with a learned translator that maps identity posterior to support/amplitude/calibration action.

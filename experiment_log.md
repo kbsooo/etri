@@ -6761,3 +6761,29 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - H027 is diagnostic-only;
   - do not submit generated H027 variants;
   - next big-bet must change the target representation itself: learn or infer the public/private calibration state before H015/H020/H023 propose cells, or create a new generator not derived from those posterior targets.
+
+## H030. Row-Target Identity Public-Equation HS-JEPA
+
+- Observe: H029 showed that H012 collapses when exact row-target placement is broken. H016/H019/H020 already provided cell-weight, row-subset, and joint-vector state sensors, but they had only been used as post-hoc gates or diagnostics.
+- Wonder: if row-target identity is the real invariant, can we put it inside the H012-style public-equation solver as a cell-wise allowance prior and recover H012 without seeing H012?
+- Hypothesis: a real identity prior should predict H012's E247-relative public delta when H012 is held out, and a materialized identity-posterior action should survive H024/H025 stress below H012.
+- Method: `hitl/h030_rowtarget_identity_equation_jepa.py`.
+  - context: H012 cell posterior, H016 public cell weights, H019 row public-subset posterior, H020 joint row-vector/cell posterior, and H014 same-subject memory state;
+  - target representation: hidden public labels solved by public equations with per-cell movement allowance, not uniform ridge;
+  - equation sets: `e247_pre_h012`, `e247_post_h012`, and `h012_residual`;
+  - anti-collapse checks: true H012 held-out without H012 prior, H024 public decoder, H024 public-score permutation, and H025 row-permutation stress.
+- Result:
+  - fit configs tested `6528`, generated candidates `756`;
+  - independent H012 held-out best excludes H012 as equation and excludes direct H012/H012-containing priors: `pre_h012_good_soft + identity_combo` predicts H012 delta `-0.007550142` versus actual `-0.008035466`, error `0.000485324`;
+  - self-feedback controls using `h012` prior are stronger (`0.000181687` error) but not independent evidence;
+  - best materialized diagnostic is `submission_h030_e247_post_h012_joint_vector_cell_h012_k1200_a0.55_05a1cf87.csv`;
+  - H024 predicted public median/p10/p90 `0.572160346` / `0.568130288` / `0.575654672`;
+  - support better than H012 `0.100000000`, H024 public-score permutation p `0.923333333`, H025 row-permutation p `0.670000000`;
+  - no root upload-safe file was promoted.
+- Interpretation:
+  - positive: H012 was not pure luck. Row-target identity priors can anticipate most of H012's large public movement even when H012 is held out.
+  - negative: the same latent does not translate into an action-safe probability tensor. The missing object is now the identity-to-action translator, not another identity sensor.
+- Decision:
+  - H030 is diagnostic-only;
+  - do not submit generated H030 variants;
+  - next big-bet should model the translation law from a valid row-target identity posterior to exact H012-like support/amplitude, possibly as a latent route mixture rather than a direct top-k movement.

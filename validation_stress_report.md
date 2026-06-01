@@ -6298,3 +6298,51 @@ Stress conclusion:
 - H029 fails to find a safer H012 ablation or continuation.
 - The strongest diagnostic is negative: target-wise row permutation breaks H012 badly, so the relevant invariant is exact row-target placement rather than target-level movement distribution.
 - Same-subject sleep-state memory remains a real human-world signal, but it is not sufficient to explain or regularize H012's public-equation gain.
+
+## H030 Row-Target Identity Solver Stress
+
+Question: can row-target identity be put inside the public-equation solver as a
+cell-wise allowance prior, and does that produce a safer post-H012 action?
+
+Stress setup:
+
+- script: `hitl/h030_rowtarget_identity_equation_jepa.py`;
+- known public sensors: `20`;
+- identity maps: H012 cell posterior, H016 public cell weights, H019 row public-subset posterior, H020 joint row-vector/cell posterior, and H014 same-subject memory state;
+- equation sets:
+  - `e247_pre_h012`: H012 excluded as an equation;
+  - `e247_post_h012`: H012 included as a known public sensor;
+  - `h012_residual`: H012 as anchor, testing residual moves;
+- stresses:
+  - true H012-held-out with no direct H012/H012-containing prior;
+  - H024 action-health decoder;
+  - H024 public-score permutation stress;
+  - H025 row-permutation placement stress.
+
+Stress result:
+
+- fit configs tested: `6528`;
+- generated candidates: `756`;
+- best true independent H012-held-out prediction:
+  `-0.007550142` vs actual `-0.008035466`, absolute error `0.000485324`;
+- best self-feedback control using `h012` prior:
+  absolute error `0.000181687`;
+- selected diagnostic:
+  `hitl/h030_rowtarget_identity_equation_jepa/submission_h030_e247_post_h012_joint_vector_cell_h012_k1200_a0.55_05a1cf87.csv`;
+- H024 predicted public median/p10/p90:
+  `0.572160346` / `0.568130288` / `0.575654672`;
+- support better than H012: `0.100000000`;
+- H024 public-score permutation p(lower margin): `0.923333333`;
+- H025 row-permutation p(higher top1200 gain): `0.670000000`;
+- promoted root file: none.
+
+Stress conclusion:
+
+- H030 passes the latent discovery check more than expected: row-target identity
+  priors can anticipate most of H012 even without seeing H012 as a public
+  equation.
+- H030 fails the action check. The same identity latent cannot be translated by
+  a direct top-k/alpha solver into an H012-beating probability tensor.
+- The next stress should target the translator: route mixture, support/amplitude
+  compatibility, or calibration constraints that explain why H012's exact
+  probability action worked while nearby identity-prior materializations do not.

@@ -5348,3 +5348,46 @@ Submission interpretation:
    term, especially for Q2/residual movement.
 4. H012 remains the final public frontier until a post-H012 candidate can beat
    both public-free stress and known-public-bad anchor sanity.
+
+## Update After H030
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+H030 promoted submission:
+
+None.
+
+What H030 tested:
+
+- Whether H016/H019/H020/H014 row-target identity signals can be made first-class
+  inside the public-equation solver.
+- Whether an identity-aware solver can independently anticipate H012 and then
+  generate a post-H012 candidate.
+
+Local evidence:
+
+- fit configs tested: `6528`;
+- generated candidates: `756`;
+- true H012-held-out, no direct H012 prior:
+  predicted H012 delta `-0.007550142` vs actual `-0.008035466`;
+- best generated diagnostic:
+  `hitl/h030_rowtarget_identity_equation_jepa/submission_h030_e247_post_h012_joint_vector_cell_h012_k1200_a0.55_05a1cf87.csv`;
+- H024 predicted public median/p10/p90:
+  `0.572160346` / `0.568130288` / `0.575654672`;
+- support better than H012: `0.100000000`;
+- public-score permutation p: `0.923333333`;
+- H025 row-permutation p: `0.670000000`.
+
+Submission interpretation:
+
+1. H030 should not be submitted.
+2. The good news is architectural: row-target identity priors can explain most
+   of the H012 jump without directly seeing H012.
+3. The bad news is practical: direct identity-posterior materialization breaks
+   the H012 basin and returns to 0.572-style action health.
+4. The next candidate must model the identity-to-action translator, not only a
+   stronger identity score.

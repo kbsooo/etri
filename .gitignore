@@ -297,3 +297,7 @@ hitl/h028_public_private_gradient_jepa/h028_h024_prediction_samples.csv
 # H029 materialized needle-basin sweep files are reproducible from the script; only summaries are tracked.
 hitl/h029_h012_needle_basin_invariant_jepa/submission_h029_*.csv
 hitl/h029_h012_needle_basin_invariant_jepa/h029_h024_prediction_samples.csv
+
+# H030 materialized row-target identity sweep files are reproducible from the script; only summaries are tracked.
+hitl/h030_rowtarget_identity_equation_jepa/submission_h030_*.csv
+hitl/h030_rowtarget_identity_equation_jepa/h030_h024_prediction_samples.csv

@@ -750,3 +750,17 @@ H027 tests the obvious stronger version of that conclusion: put public/private c
 H028 tries exactly that new latent: the target is not a posterior probability, but the public LB response to a whole submission intervention from H012. This is closer to an action-gradient JEPA: context is cell-state plus movement tensor, target is hidden public/private action response. The anti-collapse check is partly positive: selected fit `all` alpha `100` reaches LOO MAE `0.001204883` and beats the shuffled-public-delta null with p `0.000000`. But the geometry health check fails where it matters. The learned gradient predicts its top generated move should improve H012 by `-0.004909`, while H024 independently prices that same file at public `0.576388`, support below H012 `0.083333`, H025 row-permutation p `0.710000`, and public-score permutation p `0.918000`. LeJEPA interpretation: known public interventions contain a real coarse response geometry, but the geometry mostly says "H012 is isolated" rather than "follow this local descent direction." The next HS-JEPA target should model the invariant/constraint that created H012's needle basin, not a smooth gradient around it.
 
 H029 models that invariant question directly. The context is H012's public-equation posterior plus H014 same-subject memory and row/target/subject identity; the target representation is not another probability posterior but the constraint that keeps H012 inside its public basin. The anti-collapse result is mostly negative but useful. Support-ray scaling, posterior top-k variants, target/subject rollback, memory-compatible pruning, outside-support target-count matching, and target-wise row permutation all fail to produce an action-safe candidate. The selected diagnostic, `rollback_target_S1`, is still priced above real H012 by H024 (`0.570495`, margin `+0.002371`) and fails both public-score permutation (`p=0.858000`) and H025 row-permutation (`p=0.613333`). The strongest representation clue is the row-permutation collapse: preserving target-wise movement distributions while permuting rows gives a best median around `0.581150`. LeJEPA interpretation: H012's latent is not a simple target-level calibration, memory-continuity state, or smooth amplitude. It is an exact row-target basin. The next HS-JEPA target should infer row/subset identity or row-vector public state directly.
+
+H030 performs that direct inference attempt by changing the public-equation
+solver geometry. Instead of a uniform posterior ridge, each row-target cell gets
+an allowance prior from H012 support, H016 public weights, H019 row subset,
+H020 joint-vector state, and H014 memory. The LeJEPA anti-collapse read is
+split. The latent is not empty: with H012 excluded as an equation and without a
+direct H012 prior, `identity_combo` predicts H012's public delta as
+`-0.007550142` versus actual `-0.008035466`. That is a meaningful
+row-target identity representation. But the representation is not yet healthy
+as an action latent. Generated candidates are priced around `0.572+` by H024
+and fail public-score/row-permutation stress. The architecture lesson is sharp:
+HS-JEPA has moved from "find a hidden state" to "learn the hidden-state
+translator." A valid row-target latent can still collapse at materialization if
+the route, support, and calibration action are not modeled jointly.
