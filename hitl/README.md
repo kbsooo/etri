@@ -443,3 +443,41 @@ H025's known-anchor sanity problem, but post-H012 action generation still moves
 in a public-bad region. The next large experiment should not be another
 H025-style cutter. It should define a richer public/private calibration target
 or generate actions that are public/private-aware before scoring.
+
+## H027: Born Public/Private-Aware Generator HS-JEPA
+
+- Script: `hitl/h027_public_private_aware_generator_jepa.py`
+- Report: `hitl/h027_public_private_aware_generator_jepa/h027_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+Can we repair H026 by making the generator public/private-aware before it
+creates candidate cells, using public posterior targets, same-subject
+sleep-state memory, human-state agreement, train-action health, and
+public-good/bad axes together?
+
+### Main Finding
+
+No. H027 is a stronger negative result than H026.
+
+- Generated variants: `1648`.
+- Best diagnostic file:
+  `hitl/h027_public_private_aware_generator_jepa/submission_h027_h015_public_feedback_bad_axis_escape_S1S2S3_k80_a0p25.csv`.
+- H024 predicted public median: `0.569712`.
+- Support below H012: `0.150000`.
+- H025 row-permutation p: `0.383333`.
+- H024 public-score permutation p: `0.822000`.
+- Promoted root submission: none.
+
+### Interpretation
+
+The external V106 memory document supports the repeated-subject hidden-state
+story, but H014 and H027 show it is not the main carrier of H012's large public
+gain. H027 also rejects the idea that existing H015/H020/H023 posterior targets
+can be made H012-beating by adding memory/private-safety constraints at cell
+birth.
+
+The next HS-JEPA target should change what is predicted. We need a public/private
+calibration representation or a new proposal generator, not another scalar gate
+around the same posterior-completion cells.

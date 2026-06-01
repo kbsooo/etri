@@ -2131,3 +2131,29 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - do not submit H026 variants;
   - define a richer public/private calibration target or generate candidates whose action geometry is public/private-aware before vetoing.
+
+## Public-Free Observation: H027 Born Public/Private-Aware Generator
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - uses the external V106 memory idea as an independent view: same-subject temporal memory conditioned by sleep-state and sensor-quality similarity;
+  - generates candidate cells only after combining H015/H020/H023 posterior targets, H021/H023 human-state agreement, H014 memory safety, H026 public-good/bad energy, and H025 train-action predicted gain;
+  - tests whether public/private calibration must happen at birth rather than after generation.
+- expected LB reaction:
+  - if a variant had passed and improved, it would validate birth-time public/private action generation as the missing HS-JEPA materializer;
+  - because no file passed, uploading H027 diagnostics would test a failed local stress result rather than a live public hypothesis.
+- local/public-free observation:
+  - generated variants `1648`;
+  - selected diagnostic:
+    `hitl/h027_public_private_aware_generator_jepa/submission_h027_h015_public_feedback_bad_axis_escape_S1S2S3_k80_a0p25.csv`;
+  - H024 predicted public median/p10/p90 `0.569712461` / `0.560020747` / `0.583215022`;
+  - support below H012 `0.150000`;
+  - H025 row-permutation p `0.383333333`;
+  - H024 public-score permutation p `0.822000000`.
+- interpretation:
+  - V106-style same-subject memory supports the repeated-subject world model, but it does not explain most of H012 and does not rescue H015/H020/H023 materialization;
+  - public/private-aware generation over existing posterior cells is still not enough.
+- next experiment:
+  - stop adding scalar wrappers over H015/H020/H023;
+  - define a new calibration target or a new generator whose proposals are not inherited from the same posterior-completion pool.

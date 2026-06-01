@@ -6713,3 +6713,31 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - H026 is diagnostic-only;
   - do not submit generated H026 variants;
   - next HS-JEPA experiment should make public/private calibration part of the latent target before action generation.
+
+## H027. Born Public/Private-Aware Generator HS-JEPA
+
+- Observe: the external V106 note reports `submission_v106_sleep_state_conditioned_memory.csv` public `0.5703952266`, based on same-subject temporal memory conditioned by sleep-state and sensor-quality similarity. H014 showed that this memory explains only a minority of H012's `1200` moved cells, while H026 showed that after-the-fact public-bad veto is not enough.
+- Wonder: can we stop generating public-only actions and instead make the generator itself public/private-aware from birth, combining public-equation posterior targets, human-state agreement, same-subject memory, train action-health, and public-good/bad axes before materializing cells?
+- Hypothesis: if the missing piece is a birth-time public/private gate, H027 variants should be predicted below H012 by H024 with nontrivial support, pass H025 row-placement stress, and beat public-score permutation stress.
+- Method: `hitl/h027_public_private_aware_generator_jepa.py`.
+  - context: H015 self-feedback posterior, H020 joint-vector posterior, H023 Pareto posterior, H021/H023 human-state agreement, H014 same-subject sleep-state memory, H026 public-good/bad energy, and H025 train-action predicted gain;
+  - target representation: cell-level action-health state that is public-readable and private-aware before candidate construction;
+  - generated `1648` variants over source, style, target subset, top-k, and alpha;
+  - stress: H024 public action decoder, H025 row-permutation placement, and public-score permutation against H012.
+- Result:
+  - best diagnostic:
+    `hitl/h027_public_private_aware_generator_jepa/submission_h027_h015_public_feedback_bad_axis_escape_S1S2S3_k80_a0p25.csv`;
+  - H024 predicted public median/p10/p90 `0.569712461` / `0.560020747` / `0.583215022`;
+  - support below H012 `0.150000`;
+  - H025 row-permutation p `0.383333333`, real top1200 H025 gain `1.540283092`;
+  - H024 public-score permutation p `0.822000000`;
+  - selected predicted public margin versus H012 `+0.001588978`;
+  - promoted root submission: none.
+- Interpretation:
+  - H027 kills a stronger repair than H026. It is not enough to combine existing H015/H020/H023 posterior targets with memory, human-state agreement, train action-health, and public/private axis constraints at cell birth.
+  - The failure does not kill same-subject memory or HS-JEPA. It says those views do not currently supply the missing calibration target.
+  - The missing object is still public/private calibration, but it likely needs a different target, not another wrapper over existing posterior-completion cells.
+- Decision:
+  - H027 is diagnostic-only;
+  - do not submit generated H027 variants;
+  - next big-bet must change the target representation itself: learn or infer the public/private calibration state before H015/H020/H023 propose cells, or create a new generator not derived from those posterior targets.

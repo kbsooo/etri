@@ -6179,3 +6179,37 @@ Stress conclusion:
 - H026 passes known-source shortcut sanity but fails public-transfer materialization.
 - This falsifies the simple "train action-health plus scalar public-bad veto" route.
 - The next stress should change the target/generator itself: public/private calibration must be learned as a first-class latent, not applied as an after-the-fact penalty.
+
+## H027 Born Public/Private-Aware Generator Stress
+
+Question: can existing H015/H020/H023 posterior targets become public-safe if the generator uses public/private, memory, and human-state constraints before cells are materialized?
+
+Stress setup:
+
+- script: `hitl/h027_public_private_aware_generator_jepa.py`;
+- generated variants: `1648`;
+- context: H015 public self-feedback, H020 joint vector posterior, H023 human-state Pareto posterior, H021/H023 human-state agreement, H014 same-subject memory, H026 public-good/bad axes, and H025 train-action predicted gain;
+- target representation: cell-level public/private-aware action health at generation time;
+- stresses:
+  - H024 public action decoder on the generated pool;
+  - H025 row-permutation placement stress for selected cells;
+  - H024 public-score permutation stress versus H012.
+
+Stress result:
+
+- selected diagnostic:
+  `hitl/h027_public_private_aware_generator_jepa/submission_h027_h015_public_feedback_bad_axis_escape_S1S2S3_k80_a0p25.csv`;
+- H024 predicted public median/p10/p90:
+  `0.569712461` / `0.560020747` / `0.583215022`;
+- support better than H012: `0.150000000`;
+- H025 row-permutation p(higher top1200 gain): `0.383333333`;
+- real top1200 H025 gain: `1.540283092`;
+- H024 public-score permutation p(lower margin): `0.822000000`;
+- selected predicted public margin versus H012: `+0.001588978`;
+- promoted root file: none.
+
+Stress conclusion:
+
+- H027 fails the born-public/private generator test.
+- Same-subject memory and human-state agreement are useful views, but they do not repair the existing posterior-completion target family when used as scalar cell constraints.
+- The next stress should not add another wrapper over H015/H020/H023. It should change what is being predicted: public/private calibration state, row x target action health, or a non-posterior candidate generator.

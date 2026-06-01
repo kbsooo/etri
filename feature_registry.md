@@ -4420,3 +4420,22 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - no H026 root upload-safe file promoted.
 - Registry status: approved as a diagnostic public/private energy feature. Rejected as a complete action selector or materializer.
 - Failure condition: do not submit variants selected by this scalar veto. Re-enter only if the public/private calibration target is learned before candidate generation or if a future variant passes H024/H025 stresses simultaneously.
+
+### H027 born public/private-aware generator features
+
+- Target hidden structure: cell-level action health that is public-readable and private-aware before candidate materialization.
+- Why needed: H026 showed that after-the-fact scalar veto is too late. The external V106 note and H014 say same-subject sleep-state memory is real but not enough. H027 tests whether the generator can combine public posterior targets, memory, human-state agreement, train-action health, and public-bad energy before deciding which cells are actionable.
+- Feature/action form:
+  - context sources: H015 public-feedback posterior, H020 joint-vector posterior, H023 human-state Pareto posterior, H021/H023 human-state agreement, H014 same-subject memory/private safety, H026 good/bad public axes, and H025 train-action predicted gain;
+  - styles: public-memory bridge, bad-axis escape, train-private consensus, human-state agreement, and wild-equation high-upside variants;
+  - action rule: materialize top cells only if source posterior strength, private safety, human agreement, train gain, and public-bad energy jointly pass the style score;
+  - anti-collapse checks: H024 public decoder, H025 row-permutation placement, and H024 public-score permutation stress.
+- Current evidence:
+  - generated `1648` variants;
+  - best diagnostic is H015-derived `S1S2S3_k80_a0p25`;
+  - H024 predicted public median `0.569712461` with support below H012 `0.150000`;
+  - H025 row-permutation p `0.383333333`;
+  - H024 public-score permutation p `0.822000000`;
+  - no root upload-safe H027 file promoted.
+- Registry status: approved as a negative generator-boundary diagnostic. Rejected as a submission selector.
+- Failure condition: do not continue by adding more scalar weights to the same H015/H020/H023 source cells. Re-enter only with a new public/private calibration target or a proposal generator not dominated by existing posterior-completion cells.

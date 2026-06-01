@@ -2943,3 +2943,12 @@
 - Implementation issue possible: medium. H026 uses finite known-bad anchors and scalar penalties; a richer learned calibration model may still work. But this exact post-H025 veto/materializer is rejected.
 - Bottleneck implication: the missing object is not just "bad-axis penalty." It is a public/private calibration target or generator that prevents public-bad action geometry before candidate construction.
 - Do not repeat: H025-selected action trimming by veto weight sweeps. Future attempts must change the target representation or candidate generator, not only adjust penalty coefficients.
+
+## FH327. Existing H015/H020/H023 posterior targets can be made H012-beating by birth-time public/private constraints
+
+- Failed hypothesis: if post-H012 candidates are generated with public-equation strength, same-subject sleep-state memory, human-state agreement, train action-health, and public-good/bad axis constraints before materialization, then existing H015/H020/H023 posterior targets should become public-safe enough to beat H012.
+- Observed result: H027 generated `1648` variants and promoted none. The best diagnostic was `submission_h027_h015_public_feedback_bad_axis_escape_S1S2S3_k80_a0p25.csv`, with H024 predicted public median `0.569712461`, support below H012 `0.150000`, H025 row-permutation p `0.383333333`, H024 public-score permutation p `0.822000000`, and predicted margin versus H012 `+0.001588978`.
+- Why discard as a submission route: the generator changed the birth constraints, but the public/private stress remained worse than H012. The selected file is still a small H015-style S1/S2/S3 escape, not a new hidden-state action.
+- Implementation issue possible: medium. H027 inherits finite H014/H021/H023/H025/H026 sensors and H024's public decoder. A stronger neural generator might improve the result. But this exact architecture family failed the predeclared public-free promotion tests.
+- Bottleneck implication: the bottleneck is not merely "generate cells before vetoing." The source posterior targets themselves are missing the decisive public/private calibration state.
+- Do not repeat: wrapping H015/H020/H023 cells with more scalar memory, human-agreement, or public-bad penalties. Re-enter only with a genuinely new calibration target or a generator whose proposals are not dominated by the existing posterior-completion pool.

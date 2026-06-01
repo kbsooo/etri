@@ -285,3 +285,7 @@ hitl/h025_train_counterfactual_action_health_jepa/h025_top_candidate_cells.csv
 # H026 materialized sweep files are reproducible from the script; only summaries are tracked.
 hitl/h026_public_private_calibration_veto_jepa/submission_h026_*.csv
 hitl/h026_public_private_calibration_veto_jepa/h026_h024_prediction_samples.csv
+
+# H027 materialized sweep files are reproducible from the script; only summaries are tracked.
+hitl/h027_public_private_aware_generator_jepa/submission_h027_*.csv
+hitl/h027_public_private_aware_generator_jepa/h027_h024_prediction_samples.csv

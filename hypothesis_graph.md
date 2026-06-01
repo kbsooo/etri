@@ -4591,3 +4591,32 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   - keep diagnostic if it separates source-level shortcut ranking from action-level public transfer. Observed.
 - public LB 관측 반응: no H026 file should be submitted. If a future public/private-veto variant wins public, it must differ from H026 by changing the calibration target or generator, not just veto weights.
 - 제출 전략: none. H026 says "scalar veto is insufficient"; the next branch must create public/private-aware actions directly.
+
+### H027: existing posterior targets become public-safe if generated with memory/private constraints from birth
+
+- 상태: 반증됨 as a submission route; useful as a generator-boundary diagnosis.
+- 왜 그럴듯한가: H012 proved a public-equation posterior, V106/H014 showed same-subject sleep-state memory is real but incomplete, H021-H023 showed human-state geometry is coupled to public-compatible vector worlds, and H026 showed after-the-fact scalar veto is too late. The natural next step was to require public posterior strength, private memory safety, human-state agreement, train action-health, and public-good/bad energy before cells are materialized.
+- 맞다면:
+  - generated variants should have H024 median predicted public below H012;
+  - support below H012 should be materially higher than the H024/H026 `0.15-0.17` band;
+  - selected cells should beat H025 row-permutation placement and H024 public-score permutation stress;
+  - the best variants should not be only tiny H015 S-target moves.
+- 틀리다면:
+  - H024 will still price generated variants above H012;
+  - H025 row-placement and public-score permutation stresses will disagree;
+  - memory/human-state/private-safety constraints will prune or reshape cells but not create an H012-beating action.
+- 최소 실험: `hitl/h027_public_private_aware_generator_jepa.py`.
+- 관측:
+  - generated variants `1648`;
+  - selected diagnostic `submission_h027_h015_public_feedback_bad_axis_escape_S1S2S3_k80_a0p25.csv`;
+  - H024 predicted public median `0.569712461`, p10/p90 `0.560020747-0.583215022`;
+  - support below H012 `0.150000`;
+  - H025 row-permutation p `0.383333333`;
+  - H024 public-score permutation p `0.822000000`;
+  - selected predicted public margin versus H012 `+0.001588978`;
+  - no root upload-safe file promoted.
+- 성공/폐기 기준:
+  - accept only if selected variant has median below H012, support below H012 above `0.50`, and passes both row-placement and public-score permutation stress. Not observed.
+  - keep diagnostic if it identifies whether the problem is post-hoc veto or source posterior target. Observed: source posterior target is the bottleneck too.
+- public LB 관측 반응: no H027 file should be submitted. If a future born-public/private generator wins public, it must change the calibration target or source proposal distribution, not only rescore H015/H020/H023 cells.
+- 제출 전략: none. H027 says the missing piece is not a cell-level wrapper over existing public-equation posterior completions; it is a different public/private calibration representation.
