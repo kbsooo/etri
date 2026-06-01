@@ -5274,3 +5274,44 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 제출 전략: submit as the next HS-JEPA route-decoder sensor after or instead
   of H043 depending on public-test budget. It is more theory-rich than H043,
   but H043 is the purer manifold-width test.
+
+### H046: Q2 phase is public/private bifurcated in action amplitude
+
+- 상태: rejected as a submission hypothesis; retained as a negative boundary.
+- 왜 그럴듯한가: H045 prunes support with route context but still moves all
+  selected Q2 cells in one direction. A more human-state explanation would
+  give H042-core rows a strong move, public-regime tail rows a weak extension,
+  and private-routine tail rows a veto or small opposite correction.
+- 맞다면:
+  - bifurcated candidates should keep route-equation gain, H024/H025 health,
+    and post-H042 conditional decoder gain;
+  - full-known conditional decoder should prefer some dual/tri-regime action
+    over H045's single-support pruning.
+- 틀리다면:
+  - pre-H042 sensors may like bifurcation, but adding H042 public feedback
+    should reject the movement;
+  - full-known conditional margin/support should fail across the candidate
+    family while route/H024/H025 remain acceptable.
+- 최소 실험: `hitl/h046_q2_bifurcated_regime_decoder_jepa.py`, generating
+  `5224` dual/tri-regime Q2 candidates and scoring `240` through route,
+  H024, H025, and H045 conditional decoder stress.
+- 관측:
+  - promotable candidates `0`;
+  - selected diagnostic
+    `h046_dual_public_phase_pub45_priv8_a0.58_0.44_-0.03_c88_fd07485d`;
+  - full-known conditional margin/support
+    `+0.000015538` / `0.416666667`;
+  - pre-H042 conditional margin/support
+    `-0.000411481` / `0.583333333`;
+  - route-equation delta `-0.000163227`;
+  - H024 margin `+0.000497445`;
+  - H025 score `-2.040387092`;
+  - `0/240` candidates pass full-known conditional margin `< -0.00011`;
+  - `0/240` candidates pass full-known support `>= 0.58`;
+  - `224/240` pass route delta, `240/240` pass H024/H025 bounds.
+- 성공/폐기 기준:
+  - accept only if at least one bifurcated candidate passes post-H042
+    full-known conditional action response and support. Not observed.
+- public LB 관측 반응: none; no H046 file promoted.
+- 제출 전략: do not submit H046. Treat private-tail rollback/opposite Q2
+  amplitude as rejected by the post-H042 action-response representation.

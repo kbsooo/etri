@@ -5911,3 +5911,40 @@ Current recommendation:
   combines the human-route hypothesis with the public-positive Q2 phase branch.
 - If the goal is pure scientific sequencing, submit H043 first as the wider
   manifold test, then H045 as the conditional pruning test.
+
+## H046 Submission Decision
+
+No H046 file is currently recommended for public submission.
+
+What H046 tested:
+
+- Whether Q2 should be moved with different amplitudes by hidden human-state
+  regime: H042-core strong move, public tail weak move, private-routine tail
+  veto or small opposite move.
+
+Best diagnostic:
+
+`hitl/h046_q2_bifurcated_regime_decoder_jepa/submission_h046_dual_public_phase_pub45_priv8_a0.58_0.44_-0.03_c88_fd07485d.csv`
+
+Local profile:
+
+- changed cells/rows: `88` / `88`, Q2 only;
+- full-known conditional margin/support:
+  `+0.000015538` / `0.416666667`;
+- pre-H042 conditional margin/support:
+  `-0.000411481` / `0.583333333`;
+- route-equation delta:
+  `-0.000163227`;
+- H024 margin:
+  `+0.000497445`;
+- H025 score:
+  `-2.040387092`.
+
+Decision:
+
+- Do not submit H046.
+- The important failure is specific: route/H024/H025 mostly accept these
+  candidates, but the post-H042 conditional decoder rejects all `240` scored
+  bifurcated candidates.
+- This strengthens H043/H045 sequencing: test wider support or route-pruned
+  support, not private-tail opposite-amplitude moves.

@@ -4969,3 +4969,36 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   route-conditioned pruning until a new independent route assignment signal is
   found. If H043 wins and H045 loses, the route context is over-pruning Q2
   support.
+
+### H046 bifurcated Q2 regime action features
+
+- Target hidden structure: route-specific Q2 action amplitude. H042-core rows,
+  public-regime tail rows, neutral tail rows, and private-routine tail rows may
+  need different movement strengths or signs.
+- Why needed: H045 uses route context to choose support but still applies one
+  phase direction. A stronger HS-JEPA theory should ask whether the action
+  itself is conditional on human state.
+- Feature/action form:
+  - dual-regime candidates: H042 core + public tail + private veto/opposite
+    tail;
+  - H045 split candidates: H045 support with non-uniform route amplitude;
+  - tri-regime candidates: public tail, neutral tail, private tail;
+  - bifurcation strength feature from public/private signed action separation
+    and row-level alpha dispersion.
+- Current evidence:
+  - generated/scored candidates `5224` / `240`;
+  - promotable candidates `0`;
+  - selected diagnostic
+    `h046_dual_public_phase_pub45_priv8_a0.58_0.44_-0.03_c88_fd07485d`;
+  - full-known conditional margin/support
+    `+0.000015538` / `0.416666667`;
+  - pre-H042 conditional margin/support
+    `-0.000411481` / `0.583333333`;
+  - route-equation delta `-0.000163227`;
+  - H024 margin `+0.000497445`;
+  - H025 score `-2.040387092`.
+- Registry status: rejected as a public submission feature family for now.
+  Retain only as a negative boundary for Q2 route modeling.
+- Failure condition observed: post-H042 conditional decoder rejected all
+  bifurcated candidates (`0/240` pass full-known margin and support), even
+  though route/H024/H025 stress was mostly healthy.

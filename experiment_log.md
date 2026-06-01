@@ -7424,3 +7424,58 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - if H045 beats H042/H043, route-conditioned Q2 support is real;
   - if H043 beats H045, route pruning was too conservative;
   - if both lose, H042 was likely a narrow support-specific correction.
+
+## H046. Q2 Bifurcated Regime Decoder HS-JEPA
+
+- Observe: H045 uses route context to prune support, but it still applies one
+  Q2 phase direction. A more human-state model would allow H042-core,
+  public-regime tail, and private-routine tail to receive different action
+  amplitudes, including private-tail rollback.
+- Wonder: is Q2 phase a single support/alpha action, or is the real hidden
+  state a bifurcated public/private action route?
+- Hypothesis: if Q2 phase is human-state bifurcated, then candidates with
+  strong H042-core movement, weak public-tail extension, and private-tail veto
+  or small opposite correction should pass conditional action decoding better
+  than H045's single-support pruning.
+- Method: `hitl/h046_q2_bifurcated_regime_decoder_jepa.py`.
+  - generated dual/tri-regime Q2 candidates;
+  - regimes: `q2regime`, `public_not_private`, `h042like_phase`,
+    `public_phase`;
+  - action forms: H042 core + public tail + private negative/veto, H045 split
+    tail, and three-level public/neutral/private tails;
+  - stress: route-equation, H024, H025, H045 conditional decoder, and a
+    stricter H046 bifurcation gate.
+- Result:
+  - generated candidates `5224`;
+  - scored candidates `240`;
+  - promotable candidates `0`;
+  - selected diagnostic:
+    `h046_dual_public_phase_pub45_priv8_a0.58_0.44_-0.03_c88_fd07485d`;
+  - changed cells/rows `88` / `88`, Q2 only;
+  - full-known conditional margin/support:
+    `+0.000015538` / `0.416666667`;
+  - pre-H042 conditional margin/support:
+    `-0.000411481` / `0.583333333`;
+  - route-equation delta:
+    `-0.000163227`;
+  - H024 margin:
+    `+0.000497445`;
+  - H025 score:
+    `-2.040387092`;
+  - gate audit across all `240` scored candidates:
+    `0` passed full-known conditional margin `< -0.00011`,
+    `0` passed full-known support `>= 0.58`,
+    while all `240` passed H025 and H024 bounds and `224` passed route delta.
+- Interpretation:
+  - pre-H042 sensors like bifurcation, but H042's public-positive action
+    reverses that belief;
+  - the failure is not H024/H025 or route equation. It is specifically the
+    full post-H042 conditional action decoder rejecting bifurcated Q2
+    amplitudes;
+  - current evidence favors Q2 support pruning around H042/H045 over
+    public/private opposite-amplitude action.
+- Decision:
+  - no H046 upload-safe file promoted;
+  - do not submit bifurcated private-tail rollback candidates now;
+  - next high-upside search should model support identity or public-subset
+    equation more discretely, not add opposite-sign Q2 regime amplitudes.

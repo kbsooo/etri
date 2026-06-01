@@ -6983,3 +6983,46 @@ Stress conclusion:
 - H045 is the sharper HS-JEPA submission: it tests whether route context
   predicts action response. H043 remains the sharper pure manifold-width
   submission.
+
+## H046 Q2 Bifurcated Regime Decoder Stress
+
+Stress target:
+
+- test a stronger human-state claim than H045: Q2 action amplitude may split
+  by H042 core, public-regime tail, neutral tail, and private-routine tail;
+- promote only if a bifurcated action survives route-equation, H024, H025, and
+  post-H042 conditional decoder stress.
+
+Stress result:
+
+- generated/scored candidates: `5224` / `240`;
+- promotable candidates: `0`;
+- selected diagnostic:
+  `h046_dual_public_phase_pub45_priv8_a0.58_0.44_-0.03_c88_fd07485d`;
+- changed cells/rows: `88` / `88`, Q2 only;
+- full-known conditional margin/support:
+  `+0.000015538` / `0.416666667`;
+- pre-H042 conditional margin/support:
+  `-0.000411481` / `0.583333333`;
+- route-equation delta:
+  `-0.000163227`;
+- H024 margin:
+  `+0.000497445`;
+- H025 score:
+  `-2.040387092`.
+
+Gate audit:
+
+- `240/240` candidates pass H025 `< 0`;
+- `240/240` candidates pass H024 margin `< 0.00090`;
+- `224/240` candidates pass route delta `< -0.00016`;
+- `0/240` candidates pass full-known conditional margin `< -0.00011`;
+- `0/240` candidates pass full-known support `>= 0.58`.
+
+Stress conclusion:
+
+- The bifurcated/private-tail action family fails specifically at the
+  post-H042 conditional action-response layer, not at route/H024/H025.
+- This rejects the current opposite-amplitude public/private Q2 route story.
+- Current Q2 evidence favors support selection/pruning around H042/H045 over
+  regime-specific sign or amplitude bifurcation.

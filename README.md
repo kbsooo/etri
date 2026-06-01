@@ -249,6 +249,16 @@ Public LB operating rule:
   explicit HS-JEPA route-decoder public sensor so far: a win means human-state
   route is useful as action-response context; a loss to H043 means the route
   context over-pruned the Q2 phase manifold.
+- H046 tests a larger human-state story and rejects it: Q2 action amplitude is
+  not currently helped by splitting H042-core/public-tail/private-tail into
+  different signs or strengths. It generates `5224` bifurcated Q2 candidates
+  but promotes none. The best diagnostic looks good to pre-H042 sensors
+  (`-0.000411481` margin, `0.583333333` support), route equation
+  (`-0.000163227`), H024 (`+0.000497445`), and H025 (`-2.040387092`), but
+  fails the post-H042 conditional decoder (`+0.000015538` margin,
+  `0.416666667` support). This narrows the next big bet: support identity and
+  public-subset assignment remain alive; private-tail opposite-amplitude Q2
+  moves are not public-ready.
 
 Primary working notes:
 

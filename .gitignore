@@ -355,3 +355,7 @@ hitl/h044_q2_human_route_split_jepa/h042_h025_top_cells.csv
 # H045 may promote a copied candidate, but intermediate regenerated submissions stay local.
 hitl/h045_conditional_route_action_decoder_jepa/submission_h045_*.csv
 hitl/h045_conditional_route_action_decoder_jepa/h042_h025_top_cells.csv
+
+# H046 materialized bifurcated Q2 regime sweep files are reproducible from the script.
+hitl/h046_q2_bifurcated_regime_decoder_jepa/submission_h046_*.csv
+hitl/h046_q2_bifurcated_regime_decoder_jepa/h042_h025_top_cells.csv

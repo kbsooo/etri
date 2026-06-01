@@ -1321,3 +1321,42 @@ add a human-story feature; it asks visible human-state route context to predict
 the hidden public action response. A public win would validate route-conditioned
 Q2 support. A loss against H043 would mean the route context over-pruned the
 Q2 phase manifold.
+
+## H046: Q2 Bifurcated Regime Decoder HS-JEPA
+
+- Script: `hitl/h046_q2_bifurcated_regime_decoder_jepa.py`
+- Report: `hitl/h046_q2_bifurcated_regime_decoder_jepa/h046_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+Does Q2 route state control action amplitude/sign, not just support identity?
+
+### Main Finding
+
+The bifurcated public/private amplitude story fails after H042 public feedback
+is included.
+
+- Generated/scored H046 candidates: `5224` / `240`.
+- Promotable candidates: `0`.
+- Best diagnostic:
+  `h046_dual_public_phase_pub45_priv8_a0.58_0.44_-0.03_c88_fd07485d`.
+- Changed cells/rows:
+  `88` / `88`, Q2 only.
+- Full-known conditional margin/support:
+  `+0.000015538` / `0.416666667`.
+- Pre-H042 conditional margin/support:
+  `-0.000411481` / `0.583333333`.
+- Route-equation delta:
+  `-0.000163227`.
+- H024 margin:
+  `+0.000497445`.
+- H025 score:
+  `-2.040387092`.
+
+### Interpretation
+
+H046 is useful because it fails in a localized way. Route/H024/H025 do not kill
+the family; the post-H042 conditional decoder does. That means the H042 public
+win argues against private-tail opposite-amplitude Q2 actions. Keep exploring
+Q2 support identity and route-conditioned pruning, not bifurcated sign changes.

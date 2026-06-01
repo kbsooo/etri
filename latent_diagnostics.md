@@ -1042,3 +1042,18 @@ plausible Q2-local public sensor, not yet a general safe translator. If public
 LB rewards H045, the route latent is not just interpretable; it is an action
 decoder context. If H043 beats H045, the route latent is over-pruning real Q2
 phase support.
+
+H046 tests the more aggressive interpretation and rejects it. It asks whether
+Q2 route state should change action amplitude or sign: strong H042 core, weak
+public tail, and private-tail veto/opposite movement. This is a real HS-JEPA
+question because the context is route state and the target is hidden action
+geometry. The answer is negative under current evidence. H046 generated `5224`
+candidates and scored `240`; none were promotable. The best diagnostic stayed
+healthy under pre-H042 conditional decoding (`-0.000411481` margin,
+`0.583333333` support), route equation (`-0.000163227`), H024
+(`+0.000497445`), and H025 (`-2.040387092`), but failed after H042 public
+feedback entered the conditional decoder: full-known margin/support were
+`+0.000015538` / `0.416666667`. Across the scored set, `0/240` passed the
+post-H042 full-known margin and support gates. The latent read is precise:
+human route may still help choose Q2 support, but current evidence rejects
+route-specific opposite/amplitude bifurcation as the missing action translator.

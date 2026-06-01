@@ -3323,3 +3323,39 @@
 - Do not repeat: hand-thresholded public-route or private-veto top-k Q2 phase
   candidates as public submissions unless H043 public feedback specifically
   points to over-wide support.
+## H046: Q2 public/private bifurcated action amplitude
+
+- Failed hypothesis: Q2 phase should be translated as different action
+  amplitudes for H042-core, public-regime tail, neutral tail, and
+  private-routine tail, including small private-tail rollback/opposite moves.
+- Why it was plausible: H045 proved route context can select a `75`-cell Q2
+  pruning, but it still uses one movement direction. Human-state theory
+  suggests public/transition days and private-routine days might interpret Q2
+  differently.
+- Minimum experiment: `hitl/h046_q2_bifurcated_regime_decoder_jepa.py`.
+- Observed result:
+  - generated candidates `5224`;
+  - scored candidates `240`;
+  - promotable candidates `0`;
+  - best diagnostic full-known conditional margin/support:
+    `+0.000015538` / `0.416666667`;
+  - pre-H042 conditional margin/support:
+    `-0.000411481` / `0.583333333`;
+  - route-equation delta `-0.000163227`;
+  - H024 margin `+0.000497445`;
+  - H025 score `-2.040387092`.
+- Why reject:
+  - every scored candidate failed the post-H042 full-known conditional decoder
+    gate: `0/240` passed margin `< -0.00011` and `0/240` passed support
+    `>= 0.58`;
+  - this failure is not explained by route/H024/H025, because those stresses
+    were mostly healthy.
+- Bottleneck category weakened:
+  - weakens the idea that a larger public/private opposite-amplitude Q2 action
+    is the missing breakthrough.
+- Next not to do:
+  - do not submit private-tail rollback or opposite-sign Q2 bifurcation files
+    without a new public-observation reason.
+- Still open:
+  - support identity may still be route-conditioned; H046 only rejects
+    bifurcated amplitude/sign translation under current route features.

@@ -2765,3 +2765,38 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - public-test H045 if the next slot should prioritize the HS-JEPA claim;
     otherwise public-test H043 first to isolate support-width before route
     pruning.
+
+## Public-Free Observation: H046 Q2 Bifurcated Regime Decoder JEPA
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - tests whether Q2 phase action should split into H042-core, public-tail,
+    neutral-tail, and private-tail amplitudes;
+  - includes private-tail veto/opposite corrections rather than simple support
+    pruning.
+- expected LB reaction if submitted:
+  - improvement would mean Q2 route state controls action amplitude/sign, not
+    just support identity;
+  - loss would mean H042/H045's Q2 signal is a narrower support/pruning effect.
+- local/public-free observation:
+  - generated/scored candidates `5224` / `240`;
+  - promotable candidates `0`;
+  - selected diagnostic
+    `h046_dual_public_phase_pub45_priv8_a0.58_0.44_-0.03_c88_fd07485d`;
+  - full-known conditional margin/support
+    `+0.000015538` / `0.416666667`;
+  - pre-H042 conditional margin/support
+    `-0.000411481` / `0.583333333`;
+  - route-equation delta `-0.000163227`;
+  - H024 margin `+0.000497445`;
+  - H025 score `-2.040387092`;
+  - `0/240` scored candidates pass the post-H042 full-known conditional
+    margin/support gates.
+- interpretation:
+  - H042 public feedback kills the bifurcated amplitude story even though older
+    sensors like it. H046 should not consume a public slot.
+- next experiment:
+  - keep H043/H045 as the public-ready sensors. Future big bets should model
+    support identity or public-subset assignment, not opposite-sign private
+    Q2 tails.
