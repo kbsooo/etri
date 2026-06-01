@@ -6685,3 +6685,31 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
 - Decision:
   - H025 is diagnostic-only;
   - future big-bet HS-JEPA should model "train action-health minus public-bad/domain-shift energy" rather than direct train counterfactual gain.
+
+## H026. Public/Private Calibration-Veto HS-JEPA
+
+- Observe: H025's train-counterfactual decoder learned some local action-health structure, but it ranked known public-bad Q2/residual files too highly.
+- Wonder: is the failure just a missing public-bad veto, or is post-H012 action health a deeper public/private calibration problem?
+- Hypothesis: if a public/private calibration veto is enough, a combined score should demote known public-bad anchors and produce a post-H012 variant that passes both train-action row-permutation stress and public-score permutation stress.
+- Method: `hitl/h026_public_private_calibration_veto_jepa.py`.
+  - context: H025 train action-health, H024 public decoder features, known good/bad public movement axes, source OOD/load features, and explicit Q2/residual shortcut penalties;
+  - target representation: action health after subtracting public-bad shortcut energy;
+  - action: apply top cell-level vetoed moves from post-H012 source candidates onto H012;
+  - stress: known-source sanity, H025 row-permutation stress, H024 public-score permutation stress, support below H012, Q2 share, and public-bad energy.
+- Result:
+  - source sanity improves: H012 ranks first (`9.777520`), while known public-bad JEPA/Q2/residual anchors are demoted;
+  - generated variants: `272`;
+  - selected diagnostic:
+    `hitl/h026_public_private_calibration_veto_jepa/submission_h026_veto_03_k240_a0p35_v0p35_h015_direct_all_a0.1_35c68bc9.csv`;
+  - selected H025 row-permutation p `0.000000`, real top1200 H025 gain `9.470154134`;
+  - selected H024 predicted public median `0.574388293`, support below H012 `0.166667`;
+  - H024 public-score permutation p `0.898000`;
+  - promoted root submission: none.
+- Interpretation:
+  - H026 falsifies the easy repair: "H025 plus scalar public-bad veto is enough."
+  - The veto is useful diagnostically because it fixes known-bad source ranking, but post-H012 action materialization remains public-bad.
+  - The bottleneck is a richer public/private calibration target or a new candidate generator, not another scalar trim of H025-selected moves.
+- Decision:
+  - H026 is diagnostic-only;
+  - do not submit generated H026 variants;
+  - next HS-JEPA experiment should make public/private calibration part of the latent target before action generation.

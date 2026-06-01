@@ -6138,3 +6138,44 @@ Stress conclusion:
 - H025 falsifies direct transfer from train counterfactual action health to public-safe post-H012 action health.
 - It does not falsify action-health JEPA generally. It says the action-health target is missing a public/private calibration term.
 - The next stress should explicitly subtract or veto public-bad Q2/residual shortcut anatomy before any train-action-health selected candidate can be promoted.
+
+## H026 Public/Private Calibration-Veto Stress
+
+Question: can H025 train action-health become public-safe if known public-bad Q2/residual shortcut energy is explicitly vetoed?
+
+Stress setup:
+
+- script: `hitl/h026_public_private_calibration_veto_jepa.py`;
+- inputs: H025 train counterfactual action-health predictions, H024 public action decoder, known public good/bad anchors, and H015-H023 post-H012 candidate pool;
+- source-level veto: penalize bad-to-good load ratio, explicit known-bad shortcut membership, OOD, max delta, and Q2/residual public-bad energy;
+- cell-level veto: apply H025 gain only where public-bad energy and Q2 shortcut exposure are low enough;
+- stresses:
+  - known-source sanity over public anchors;
+  - H025 row-permutation stress for selected cells;
+  - H024 public-score permutation stress versus H012;
+  - support below H012 and Q2-share checks.
+
+Stress result:
+
+- H026 source score ranks H012 first at `9.777519626`;
+- known public-bad anchors are demoted:
+  - E216 `-4.679053329`;
+  - JEPA Q2 `-5.856040126`;
+  - hybrid strict `-7.595414361`;
+  - JEPA residual `-9.029535817`;
+- generated variants: `272`;
+- selected diagnostic:
+  `hitl/h026_public_private_calibration_veto_jepa/submission_h026_veto_03_k240_a0p35_v0p35_h015_direct_all_a0.1_35c68bc9.csv`;
+- selected H025 row-permutation p `0.000000000`;
+- real top1200 H025 gain `9.470154134`;
+- selected H024 predicted public median/p10/p90:
+  `0.574388293` / `0.561070999` / `0.597525659`;
+- support better than H012: `0.166666667`;
+- H024 public-score permutation p `0.898000000`;
+- promoted root file: none.
+
+Stress conclusion:
+
+- H026 passes known-source shortcut sanity but fails public-transfer materialization.
+- This falsifies the simple "train action-health plus scalar public-bad veto" route.
+- The next stress should change the target/generator itself: public/private calibration must be learned as a first-class latent, not applied as an after-the-fact penalty.

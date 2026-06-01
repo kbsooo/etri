@@ -2104,3 +2104,30 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - model train action-health and public-bad/domain-shift energy jointly;
   - reject any decoder that ranks known public-bad Q2/residual probes above H012-compatible candidates.
+
+## Public-Free Observation: H026 Public/Private Calibration-Veto Decoder
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - combines H025 train-counterfactual action-health with H024 public decoder features;
+  - adds explicit public-bad veto energy for known public-bad Q2/residual shortcut axes;
+  - materializes only diagnostic post-H012 variants when both source and cell scores look favorable.
+- expected LB reaction:
+  - if a variant had passed and improved, it would validate scalar public/private shortcut veto as the missing HS-JEPA action-health bridge;
+  - because no variant passed, submitting the selected diagnostic would mainly test a public-stress failure.
+- local/public-free observation:
+  - source sanity succeeds: H012 ranks first, while known public-bad JEPA/Q2/residual anchors are demoted;
+  - generated variants `272`;
+  - selected diagnostic file:
+    `hitl/h026_public_private_calibration_veto_jepa/submission_h026_veto_03_k240_a0p35_v0p35_h015_direct_all_a0.1_35c68bc9.csv`;
+  - selected H025 row-permutation p `0.000000`;
+  - selected H024 predicted public median/p10/p90 `0.574388293` / `0.561070999` / `0.597525659`;
+  - support below H012 `0.166667`;
+  - H024 public-score permutation p `0.898000`.
+- interpretation:
+  - public-bad veto is real enough to fix known-anchor ranking;
+  - it is not enough to create a public-safe post-H012 action.
+- next experiment:
+  - do not submit H026 variants;
+  - define a richer public/private calibration target or generate candidates whose action geometry is public/private-aware before vetoing.

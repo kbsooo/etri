@@ -4567,3 +4567,27 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   - keep as diagnostic if it reveals what train-side action health confuses with public-safe action health. Observed.
 - public LB 관측 반응: no H025 file should be submitted. If a train-action-health future variant wins public, it must include a public/private shortcut veto not present here.
 - 제출 전략: none. H025 redirects the graph toward a public/private calibration latent: train action-health must be discounted by public-bad Q2/residual/domain-shift energy before materialization.
+
+### H026: scalar public/private shortcut veto is enough to repair H025
+
+- 상태: 반증됨 as a submission route; supported as a known-anchor diagnostic.
+- 왜 그럴듯한가: H025's most visible error was ranking known public-bad Q2/residual probes highly. If that was the main defect, a public-bad shortcut veto should preserve train-action health while removing the public-transfer failure.
+- 맞다면:
+  - H026 source scoring should rank H012 and known good anchors above known public-bad JEPA/Q2/residual files;
+  - generated post-H012 variants should keep H025 train-action gain;
+  - the selected variant should have public prediction support below H012 and beat public-score permutation stress.
+- 틀리다면:
+  - known-bad anchors may be demoted, but variants still look public-bad under H024 or fail public-score permutation;
+  - the train-action stress and public-transfer stress will disagree.
+- 최소 실험: `hitl/h026_public_private_calibration_veto_jepa.py`.
+- 관측:
+  - source sanity succeeds: H012 source score `9.777520`; E216 `-4.679053`; JEPA Q2 `-5.856040`; hybrid strict `-7.595414`; JEPA residual `-9.029536`;
+  - generated variants `272`;
+  - selected diagnostic has H025 row-permutation p `0.000000` and real top1200 gain `9.470154134`;
+  - but H024 predicted public median is `0.574388293`, support below H012 only `0.166667`, and public-score permutation p `0.898000`;
+  - no root upload-safe file promoted.
+- 성공/폐기 기준:
+  - accept only if known-bad anchors are demoted and selected unknown variant passes both row-placement and public-score permutation stress. Not observed.
+  - keep diagnostic if it separates source-level shortcut ranking from action-level public transfer. Observed.
+- public LB 관측 반응: no H026 file should be submitted. If a future public/private-veto variant wins public, it must differ from H026 by changing the calibration target or generator, not just veto weights.
+- 제출 전략: none. H026 says "scalar veto is insufficient"; the next branch must create public/private-aware actions directly.

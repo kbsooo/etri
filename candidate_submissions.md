@@ -26,15 +26,17 @@ Previous public frontier: `analysis_outputs/submission_e247_featnn1_nn_smooth_su
 
 H012 improves over E247 by `0.0080354663`. This is now the reference submission unless private-risk considerations dominate final selection.
 
-Current next high-risk submission candidate: `submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv`.
+Current next high-risk submission candidate: no H026-derived file is promoted. If a public slot is used from the older post-H012 tree, `submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv` remains the pure row-vector posterior-completion sensor, while H021 remains the human-state bridge sensor.
 
-Reason: after H014-H019 decomposition, H020 is the largest predeclared post-H012 worldview test. It asks whether the validated public-equation posterior should be completed as a row-level 7-target hidden state, not independent cells. Conservative default remains H012; H020 is not a private-safe replacement until public feedback exists.
+Reason: after H014-H019 decomposition, H020 is the largest predeclared post-H012 worldview test. It asks whether the validated public-equation posterior should be completed as a row-level 7-target hidden state, not independent cells. Conservative default remains H012; H020 is not a private-safe replacement until public feedback exists. H026 adds no submission candidate because the public/private veto repaired known-anchor ranking but failed public-transfer stress on generated variants.
 
 Update after H021-H022: H021 is the human-state bridge candidate, while H020 remains the pure posterior-completion candidate. H022 does not produce a promoted submission. It shows that H021's q_hs improves vector-world proposal/search but the final posterior still selects `none_b0`; therefore H022 diagnostic files should not be uploaded as HS-JEPA proof. Use H021 if the next public question is "can raw human-state context gate H020?", and H020 if the question is "does row-level vector-world posterior-completion beat H012?"
 
 Public LB budget is now treated as scarce. A file is not submission-worthy unless it passes public-free governance: selector visibility, matched-null rarity, mode-wise dominance, wrong-direction or wrong-pair controls where applicable, and leave-experiment-out action-health sanity. E312 specifically blocks E310/E311 descendants because their apparent edges are predictable null-common action geometry.
 
 Update after H012: this governance rule needs one amendment. H012 shows that a deliberately broad hidden-public-state reconstruction can beat all conservative local gates when the public-equation latent is strong enough. Therefore "submission-worthy" can mean either (a) public-free stress survival, or (b) a predeclared inverse-world experiment with leave-public diagnostics strong enough that a win/loss changes the world model. H012 is the first clear success of type (b).
+
+Update after H026: do not spend a public slot on H026 variants. The best H026 diagnostic has strong train-action row-placement evidence, but H024 predicts it around `0.574388`, with support below H012 only `0.166667` and public-score permutation p `0.898000`. H026's useful contribution is negative: scalar public-bad veto is a feature, not a submission materializer.
 
 External reference after H012: an attached document reports `submission_v106_sleep_state_conditioned_memory.csv` public LB `0.5703952266`. It uses same-subject temporal memory conditioned by sleep-state and sensor-quality similarity. This supports the subject/time-memory worldview, but it is still worse than H012 by `0.0022717435`, so it should guide H012 posterior regularization rather than replace H012 as the current final candidate.
 

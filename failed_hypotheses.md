@@ -2934,3 +2934,12 @@
 - Implementation issue possible: medium. H025 uses ExtraTrees and finite proposal families, so a stronger neural decoder might improve local action-health prediction. But the known-public-bad ranking and row-permutation failure are enough to reject this materializer.
 - Bottleneck implication: the live bottleneck is public/private calibration of action health. The missing representation is not "which train action reduces logloss?" but "which train-healthy action survives public/private domain shift and Q2/residual shortcut veto?"
 - Do not repeat: direct train-counterfactual action-health rankers unless they include an explicit public-bad/domain-shift energy and pass known-public-bad anchor checks before selecting unknown candidates.
+
+## FH326. Scalar public-bad shortcut veto is enough to repair H025
+
+- Failed hypothesis: H025's main problem is missing a scalar public-bad veto. If we penalize Q2/residual shortcut energy and known public-bad axes, train-counterfactual action health should become public-safe.
+- Observed result: H026 fixed the known-anchor ranking problem but not action materialization. H012 ranked first by source score (`9.777520`) and known public-bad anchors were demoted, including E216 (`-4.679053`), JEPA Q2 (`-5.856040`), hybrid strict (`-7.595414`), and JEPA residual (`-9.029536`). But the selected diagnostic still failed public-transfer stress: H024 predicted public median `0.574388293`, support below H012 only `0.166667`, and public-score permutation p `0.898000`, despite H025 row-permutation p `0.000000`.
+- Why discard as a submission route: the scalar veto repairs a diagnostic symptom but does not produce a public-safe post-H012 action. The train-health and public-transfer sensors disagree sharply.
+- Implementation issue possible: medium. H026 uses finite known-bad anchors and scalar penalties; a richer learned calibration model may still work. But this exact post-H025 veto/materializer is rejected.
+- Bottleneck implication: the missing object is not just "bad-axis penalty." It is a public/private calibration target or generator that prevents public-bad action geometry before candidate construction.
+- Do not repeat: H025-selected action trimming by veto weight sweeps. Future attempts must change the target representation or candidate generator, not only adjust penalty coefficients.

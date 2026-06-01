@@ -4403,3 +4403,20 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - no H025 root upload-safe file promoted.
 - Registry status: approved as a diagnostic representation and a failure map for train-vs-public action health. Rejected as a submission selector.
 - Failure condition: do not use train counterfactual gain alone to select public submissions. Re-enter only if a public/private calibration or bad-axis veto term removes the known public-bad Q2/residual preference and passes row/time plus row-permutation stress.
+
+### H026 public/private calibration-veto energy
+
+- Target hidden structure: public-safe action health after discounting train-health moves that resemble known public-bad Q2/residual shortcut anatomy.
+- Why needed: H025 learned some train-visible action health but confused it with public-bad shortcuts. H026 asks whether an explicit public/private veto is enough to separate those two states.
+- Feature/action form:
+  - context: H025 predicted gain, H024 public decoder score, public-good/public-bad source axes, OOD/load features, Q2 shortcut exposure, and candidate movement anatomy;
+  - latent feature: source-level and cell-level public-bad energy;
+  - anti-collapse checks: known-source sanity, H025 row-permutation placement stress, and H024 public-score permutation stress;
+  - action rule: promote only if known-bad anchors are demoted and the selected unknown variant passes both train-health and public-transfer stresses.
+- Current evidence:
+  - source-level sanity passes: H012 ranks first and known public-bad JEPA/Q2/residual anchors are demoted;
+  - selected diagnostic keeps strong H025 row-placement signal with row-permutation p `0.000000`;
+  - public-transfer check fails: H024 median `0.574388293`, support below H012 `0.166667`, public-score permutation p `0.898000`;
+  - no H026 root upload-safe file promoted.
+- Registry status: approved as a diagnostic public/private energy feature. Rejected as a complete action selector or materializer.
+- Failure condition: do not submit variants selected by this scalar veto. Re-enter only if the public/private calibration target is learned before candidate generation or if a future variant passes H024/H025 stresses simultaneously.

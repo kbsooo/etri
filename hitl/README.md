@@ -406,3 +406,40 @@ LB has already punished.
 The next HS-JEPA target should be public/private calibration of action health:
 train action-health evidence must be combined with a veto or domain-shift term
 that recognizes public-bad Q2/residual shortcuts before materialization.
+
+## H026: Public/Private Calibration-Veto HS-JEPA
+
+- Script: `hitl/h026_public_private_calibration_veto_jepa.py`
+- Report: `hitl/h026_public_private_calibration_veto_jepa/h026_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+Can we keep the train-side action-health signal from H025 while vetoing the
+public-bad Q2/residual shortcut axes that caused H025 to rank known bad files
+too highly?
+
+### Main Finding
+
+The veto fixes source-level known-bad ranking, but it does not make a safe
+post-H012 action.
+
+- H012 ranks first under the H026 source score: `9.777520`.
+- Known public-bad anchors are demoted: E216 `-4.679053`, JEPA Q2
+  `-5.856040`, hybrid strict `-7.595414`, JEPA residual `-9.029536`.
+- Generated variants: `272`.
+- Best diagnostic file:
+  `hitl/h026_public_private_calibration_veto_jepa/submission_h026_veto_03_k240_a0p35_v0p35_h015_direct_all_a0.1_35c68bc9.csv`.
+- It passes the train-action placement stress strongly:
+  H025 row-permutation p `0.000000`.
+- It fails the public-transfer stress:
+  predicted public median `0.574388`, support below H012 `0.166667`,
+  and public-score permutation p `0.898000`.
+
+### Interpretation
+
+H026 is a useful negative result. A scalar public-bad shortcut veto can repair
+H025's known-anchor sanity problem, but post-H012 action generation still moves
+in a public-bad region. The next large experiment should not be another
+H025-style cutter. It should define a richer public/private calibration target
+or generate actions that are public/private-aware before scoring.
