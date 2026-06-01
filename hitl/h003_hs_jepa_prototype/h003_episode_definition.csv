@@ -1,0 +1,116 @@
+episode,human_story,source,feature_col,weight
+commute_pressure,"weekday commute, vehicle exposure, routine pressure, less home stability",human_social,commute_workday_subj_z,1.0
+commute_pressure,"weekday commute, vehicle exposure, routine pressure, less home stability",human_social,vehicle_noise_day_subj_z,0.8
+commute_pressure,"weekday commute, vehicle exposure, routine pressure, less home stability",human_social,weekday_routine_pressure_subj_z,0.7
+commute_pressure,"weekday commute, vehicle exposure, routine pressure, less home stability",human_social,afterwork_recovery_subj_z,-0.35
+commute_pressure,"weekday commute, vehicle exposure, routine pressure, less home stability",human_social,home_stability_subj_z,-0.55
+bedtime_arousal,"bright screen, messages, search spiral, media/game and phone-in-bed before sleep",human_social,bright_light_late_subj_z,1.0
+bedtime_arousal,"bright screen, messages, search spiral, media/game and phone-in-bed before sleep",human_social,phone_in_bed_subj_z,0.9
+bedtime_arousal,"bright screen, messages, search spiral, media/game and phone-in-bed before sleep",human_social,deepnight_phone_awake_subj_z,0.9
+bedtime_arousal,"bright screen, messages, search spiral, media/game and phone-in-bed before sleep",human_social,presleep_msg_drag_subj_z,0.75
+bedtime_arousal,"bright screen, messages, search spiral, media/game and phone-in-bed before sleep",human_social,late_msg_call_subj_z,0.7
+bedtime_arousal,"bright screen, messages, search spiral, media/game and phone-in-bed before sleep",human_social,late_search_spiral_subj_z,0.75
+bedtime_arousal,"bright screen, messages, search spiral, media/game and phone-in-bed before sleep",human_social,media_binge_late_subj_z,0.55
+bedtime_arousal,"bright screen, messages, search spiral, media/game and phone-in-bed before sleep",human_social,game_dopamine_late_subj_z,0.55
+bedtime_arousal,"bright screen, messages, search spiral, media/game and phone-in-bed before sleep",human_social,screen_fragmentation_subj_z,0.75
+bedtime_arousal,"bright screen, messages, search spiral, media/game and phone-in-bed before sleep",human_social,quiet_dark_bedtime_subj_z,-0.65
+routine_fragmentation,"scattered app attention, fragmented screen use, broken routine, sensor sparse/noisy day",human_social,app_entropy_scattered_day_subj_z,1.0
+routine_fragmentation,"scattered app attention, fragmented screen use, broken routine, sensor sparse/noisy day",human_social,screen_fragmentation_subj_z,0.85
+routine_fragmentation,"scattered app attention, fragmented screen use, broken routine, sensor sparse/noisy day",human_social,single_app_monotony_subj_z,0.55
+routine_fragmentation,"scattered app attention, fragmented screen use, broken routine, sensor sparse/noisy day",human_social,weekend_social_jetlag_subj_z,0.65
+routine_fragmentation,"scattered app attention, fragmented screen use, broken routine, sensor sparse/noisy day",human_social,sensor_sparse_day_subj_z,0.45
+routine_fragmentation,"scattered app attention, fragmented screen use, broken routine, sensor sparse/noisy day",human_social,ritual_anchor_subj_z,-0.75
+routine_fragmentation,"scattered app attention, fragmented screen use, broken routine, sensor sparse/noisy day",human_social,charge_bed_anchor_subj_z,-0.55
+routine_fragmentation,"scattered app attention, fragmented screen use, broken routine, sensor sparse/noisy day",human_social,quiet_dark_bedtime_subj_z,-0.7
+routine_anchor_recovery,"stable home/charging/ritual routine, quiet bedtime, lower arousal recovery",human_social,ritual_anchor_subj_z,1.0
+routine_anchor_recovery,"stable home/charging/ritual routine, quiet bedtime, lower arousal recovery",human_social,charge_bed_anchor_subj_z,0.85
+routine_anchor_recovery,"stable home/charging/ritual routine, quiet bedtime, lower arousal recovery",human_social,quiet_dark_bedtime_subj_z,1.0
+routine_anchor_recovery,"stable home/charging/ritual routine, quiet bedtime, lower arousal recovery",human_social,weekend_ritual_rest_subj_z,0.65
+routine_anchor_recovery,"stable home/charging/ritual routine, quiet bedtime, lower arousal recovery",human_social,home_stability_subj_z,0.65
+routine_anchor_recovery,"stable home/charging/ritual routine, quiet bedtime, lower arousal recovery",human_social,low_hr_recovery_subj_z,0.55
+routine_anchor_recovery,"stable home/charging/ritual routine, quiet bedtime, lower arousal recovery",human_social,app_entropy_scattered_day_subj_z,-0.75
+routine_anchor_recovery,"stable home/charging/ritual routine, quiet bedtime, lower arousal recovery",human_social,deepnight_phone_awake_subj_z,-0.65
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",human_social,finance_shopping_stress_subj_z,0.8
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay10_pre3_cash_stress_subj_z,0.9
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay15_pre3_cash_stress_subj_z,0.9
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay20_pre3_cash_stress_subj_z,0.9
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay25_pre3_cash_stress_subj_z,0.9
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,payeom_pre3_cash_stress_subj_z,0.9
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,paymonth_start_pre3_cash_stress_subj_z,0.9
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay10_pre7_budget_squeeze_subj_z,0.8
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay15_pre7_budget_squeeze_subj_z,0.8
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay20_pre7_budget_squeeze_subj_z,0.8
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay25_pre7_budget_squeeze_subj_z,0.8
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,payeom_pre7_budget_squeeze_subj_z,0.8
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,paymonth_start_pre7_budget_squeeze_subj_z,0.8
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay10_near3_money_rumination_subj_z,0.7
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay15_near3_money_rumination_subj_z,0.7
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay20_near3_money_rumination_subj_z,0.7
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay25_near3_money_rumination_subj_z,0.7
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,payeom_near3_money_rumination_subj_z,0.7
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,paymonth_start_near3_money_rumination_subj_z,0.7
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay10_post3_late_shopping_subj_z,0.5
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay15_post3_late_shopping_subj_z,0.5
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay20_post3_late_shopping_subj_z,0.5
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay25_post3_late_shopping_subj_z,0.5
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,payeom_post3_late_shopping_subj_z,0.5
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,paymonth_start_post3_late_shopping_subj_z,0.5
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,eom_bill_anxiety_subj_z,0.8
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay10_post3_relief_home_subj_z,-0.35
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay15_post3_relief_home_subj_z,-0.35
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay20_post3_relief_home_subj_z,-0.35
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,pay25_post3_relief_home_subj_z,-0.35
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,payeom_post3_relief_home_subj_z,-0.35
+cashflow_stress,"money rumination, budget squeeze, bill anxiety, late shopping/finance arousal",cashflow,paymonth_start_post3_relief_home_subj_z,-0.35
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,pay10_post3_spend_outing_subj_z,0.9
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,pay10_post7_spend_outing_subj_z,0.9
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,pay15_post3_spend_outing_subj_z,0.9
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,pay15_post7_spend_outing_subj_z,0.9
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,pay20_post3_spend_outing_subj_z,0.9
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,pay20_post7_spend_outing_subj_z,0.9
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,pay25_post3_spend_outing_subj_z,0.9
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,pay25_post7_spend_outing_subj_z,0.9
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,payeom_post3_spend_outing_subj_z,0.9
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,payeom_post7_spend_outing_subj_z,0.9
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,paymonth_start_post3_spend_outing_subj_z,0.9
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,paymonth_start_post7_spend_outing_subj_z,0.9
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,pay10_post3_relief_home_subj_z,0.7
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,pay15_post3_relief_home_subj_z,0.7
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,pay20_post3_relief_home_subj_z,0.7
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,pay25_post3_relief_home_subj_z,0.7
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,payeom_post3_relief_home_subj_z,0.7
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,paymonth_start_post3_relief_home_subj_z,0.7
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,monthstart_reset_relief_subj_z,0.8
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,monthstart_spending_reset_subj_z,0.75
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,pay10_pre3_cash_stress_subj_z,-0.45
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,pay15_pre3_cash_stress_subj_z,-0.45
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,pay20_pre3_cash_stress_subj_z,-0.45
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,pay25_pre3_cash_stress_subj_z,-0.45
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,payeom_pre3_cash_stress_subj_z,-0.45
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,paymonth_start_pre3_cash_stress_subj_z,-0.45
+cashflow_relief_spend,"payday/month-start relief, spending/outings, reset energy",cashflow,eom_bill_anxiety_subj_z,-0.35
+physiology_strain,"late heart stress, fatigue, overtraining, sedentary screen load",human_social,heart_stress_late_subj_z,1.0
+physiology_strain,"late heart stress, fatigue, overtraining, sedentary screen load",human_social,physical_fatigue_subj_z,0.8
+physiology_strain,"late heart stress, fatigue, overtraining, sedentary screen load",human_social,overtraining_arousal_subj_z,0.8
+physiology_strain,"late heart stress, fatigue, overtraining, sedentary screen load",human_social,sedentary_screen_day_subj_z,0.55
+physiology_strain,"late heart stress, fatigue, overtraining, sedentary screen load",human_social,low_hr_recovery_subj_z,-0.75
+physiology_strain,"late heart stress, fatigue, overtraining, sedentary screen load",human_social,outdoor_nature_day_subj_z,-0.35
+home_recovery,"home stability, afterwork recovery, low HR recovery, quiet/dark bedtime",human_social,home_stability_subj_z,1.0
+home_recovery,"home stability, afterwork recovery, low HR recovery, quiet/dark bedtime",human_social,afterwork_recovery_subj_z,0.8
+home_recovery,"home stability, afterwork recovery, low HR recovery, quiet/dark bedtime",human_social,low_hr_recovery_subj_z,0.75
+home_recovery,"home stability, afterwork recovery, low HR recovery, quiet/dark bedtime",human_social,quiet_dark_bedtime_subj_z,0.75
+home_recovery,"home stability, afterwork recovery, low HR recovery, quiet/dark bedtime",human_social,outdoor_nature_day_subj_z,0.35
+home_recovery,"home stability, afterwork recovery, low HR recovery, quiet/dark bedtime",human_social,night_out_mobility_subj_z,-0.65
+home_recovery,"home stability, afterwork recovery, low HR recovery, quiet/dark bedtime",human_social,vehicle_noise_day_subj_z,-0.45
+social_overload,"late communication, public social evening, night-out mobility, less isolation",human_social,late_msg_call_subj_z,0.85
+social_overload,"late communication, public social evening, night-out mobility, less isolation",human_social,presleep_msg_drag_subj_z,0.8
+social_overload,"late communication, public social evening, night-out mobility, less isolation",human_social,public_social_evening_subj_z,0.75
+social_overload,"late communication, public social evening, night-out mobility, less isolation",human_social,night_out_mobility_subj_z,0.75
+social_overload,"late communication, public social evening, night-out mobility, less isolation",human_social,social_isolation_media_subj_z,-0.45
+social_overload,"late communication, public social evening, night-out mobility, less isolation",human_social,home_stability_subj_z,-0.35
+measurement_wear_confidence,high sensor wear and dense measurement versus sparse sensor day,human_social,high_sensor_wear_day_subj_z,1.0
+measurement_wear_confidence,high sensor wear and dense measurement versus sparse sensor day,human_social,sensor_sparse_day_subj_z,-1.0
+badnight_aftereffect,morning-after bad-night trace and recovery debt visible in next-day diary,human_social,morning_after_badnight_subj_z,1.0
+badnight_aftereffect,morning-after bad-night trace and recovery debt visible in next-day diary,human_social,physical_fatigue_subj_z,0.55
+badnight_aftereffect,morning-after bad-night trace and recovery debt visible in next-day diary,human_social,sedentary_screen_day_subj_z,0.45
+badnight_aftereffect,morning-after bad-night trace and recovery debt visible in next-day diary,human_social,low_hr_recovery_subj_z,-0.35

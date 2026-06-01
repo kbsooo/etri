@@ -111,3 +111,66 @@ The useful next question is not "which Q2/S1 rows?" anymore. It is whether the
 hidden lifestyle state must be translated through a broader target interaction
 or calibration layer, especially Q2 with S1/S3 or Q-group priors, while keeping
 the E247 body protected.
+
+## H003: HS-JEPA Prototype
+
+- Script: `hitl/h003_hs_jepa_prototype.py`
+- Report: `hitl/h003_hs_jepa_prototype/h003_report.md`
+- Decision: diagnostic only, no submission promoted.
+
+### Question
+
+Can HS-JEPA, Human-State Joint Embedding Predictive Architecture, turn the
+human/social lifestyle stories into a context-predictable hidden state and then
+translate that state safely on top of the E247 public-best body?
+
+### Main Finding
+
+HS-JEPA produced a meaningful hidden-state representation, but the first
+probability translator is not safe enough to submit.
+
+- Context views reconstruct several human-state targets strongly:
+  `measurement_wear_confidence` R2 `0.694487`,
+  `social_overload` R2 `0.625023`,
+  `badnight_aftereffect` R2 `0.624071`,
+  `commute_pressure` R2 `0.621365`.
+- The latent is alive but not clean: 8 PCA dims explain `0.758982` variance,
+  participation ratio is `5.344604`, anisotropy is `2.681719`, and projection
+  kurtosis is high.
+- Full-latent target translation failed the gate: `target_gate_count = 0`.
+- Sparse episode-to-target routes did survive: `route_gate_count = 20`.
+
+Strongest gated routes:
+
+- `home_recovery -> S3`: subject5 delta `-0.013044173`
+- `bedtime_arousal -> S3`: subject5 delta `-0.010444948`
+- `social_overload -> S3`: subject5 delta `-0.009121835`
+- `routine_anchor_recovery -> S2`: dateblock5 delta `-0.005921853`
+- `badnight_aftereffect -> Q3`: subject5 delta `-0.004585621`
+- `routine_anchor_recovery -> Q2`: subject5 delta `-0.003137053`
+
+### Submission Decision
+
+No H003 file was promoted.
+
+Generated diagnostic candidates:
+
+- `submission_h003_semantic_tiny_11e7aa3b.csv`
+- `submission_h003_semantic_micro_ebeebefd.csv`
+- `submission_h003_semantic_tail_micro_fbdd9c4f.csv`
+
+The best diagnostic candidate was `submission_h003_semantic_tiny_11e7aa3b.csv`,
+but the selector marked it `below_selector_resolution`. It moved all 7 labels
+across `1750` cells, so it is too broad for a safe HITL submission.
+
+### Interpretation
+
+H003 supports the core HS-JEPA idea: human/social episode states can be learned
+as a latent world model, and some episode-to-target routes contain real signal
+beyond matched nulls. It rejects the first naive materialization: using one
+monolithic latent translator over all targets.
+
+The next useful test is H004: keep E247 fixed and materialize only sparse,
+route-specific actions, especially S3-only routes from
+`home_recovery`, `bedtime_arousal`, and `social_overload`, with optional
+separate Q2/Q3 micro-routes.

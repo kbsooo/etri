@@ -1,0 +1,4 @@
+candidate_id,file,basename,selected_targets,strict_route_count,weight,cap,changed_cells,mean_abs_logit_move,max_abs_logit_move,tail_top20_move_share
+semantic_tiny,hitl/h003_hs_jepa_prototype/submission_h003_semantic_tiny_11e7aa3b.csv,submission_h003_semantic_tiny_11e7aa3b.csv,"S3,S2,S4,Q3,Q2,Q1,S1",20,0.015,0.018,1750,0.007737850986267999,0.018,0.20969386931470274
+semantic_micro,hitl/h003_hs_jepa_prototype/submission_h003_semantic_micro_ebeebefd.csv,submission_h003_semantic_micro_ebeebefd.csv,"S3,S2,S4,Q3,Q2,Q1,S1",20,0.025,0.03,1750,0.012896418310446665,0.03,0.20969386931470896
+semantic_tail_micro,hitl/h003_hs_jepa_prototype/submission_h003_semantic_tail_micro_fbdd9c4f.csv,submission_h003_semantic_tail_micro_fbdd9c4f.csv,"S3,S2,S4,Q3,Q2,Q1,S1",20,0.035,0.035,1750,0.012425949521275218,0.035,0.2765233431435774

@@ -1,0 +1,2 @@
+latent,dims,explained_var_sum,participation_ratio,anisotropy,train_energy_mean,test_energy_mean,train_surprise_mean,test_surprise_mean,slice_abs_skew_mean,slice_abs_excess_kurt_mean,slice_gaussian_penalty
+hsjepa,8,0.7589821402036987,5.344604050505366,2.681718921345721,2.444567742600707,1.8149224782905768,0.7533633455220238,0.7321054380670929,0.9294958596504361,8.604939104423144,5.231965411862008
