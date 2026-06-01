@@ -7200,3 +7200,62 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - next big-bet should make action variables first-class in the equation
     solver, or fit hidden public/private equations directly from candidate
     action families instead of posterior cell pulls.
+
+## H042. Action-Coupled Public/Private Equation Solver HS-JEPA
+
+- Observe: H041 proved that route priors improve public-sensor equation fit,
+  but the posterior-first upload action still left the H012 basin. The missing
+  decoder may be the action itself, not the hidden public posterior.
+- Wonder: can known public LB action responses learn which upload action
+  coefficients are safe, if public/private/phase/route atoms are represented as
+  first-class variables?
+- Hypothesis: if post-H012 translation is an action-coupled equation, then a
+  ridge decoder over human-state action atoms should beat permutation nulls and
+  identify at least one candidate with action-decoder gain, route-world gain,
+  H024 agreement, and H025 row/action-health together.
+- Method: `hitl/h042_action_coupled_equation_solver_jepa.py`.
+  - context: H012, H041 route-conditioned public worlds, H036/H012 posterior
+    pressure, H038 memory/private routes, H024 pre-H012 action decoder, and H025
+    train-side action-health;
+  - target representation: known public LB deltas as responses to upload-action
+    coordinates;
+  - action atoms: public cells, phase support, exception world, private memory,
+    private rollback, route rows, and target-specific Q2/S1/S3/S4 phase atoms;
+  - stress: leave-one-public-file-out action decoder, permutation null, route
+    equation delta, H024, H025, and selected row-permutation.
+- Result:
+  - known public sensors used `21`;
+  - action atoms `36`;
+  - best action-decoder LOO MAE `0.000665647`;
+  - best decoder Spearman / pairwise accuracy
+    `0.924675325` / `0.904761905`;
+  - action-decoder permutation p `0.000000000`;
+  - generated candidates `490`, scored candidates `240`;
+  - selected diagnostic:
+    `h042_joint_public_private_public_cell_k240_private_rollback_k260_0.24_0.1_c380_3a0a9b30`;
+  - selected action margin/support:
+    `+0.000793299` / `0.333333333`;
+  - selected route-equation delta:
+    `-0.000537053`;
+  - selected H024 margin/support:
+    `+0.002010668` / `0.250000000`;
+  - selected H025 score / row-permutation p:
+    `-5.144375790` / `0.146666667`;
+  - candidates with action-decoder gain and route-world gain together: `15`;
+  - candidates with action-decoder gain, route-world gain, and H024 gain
+    together: `0`;
+  - candidates with route-world gain and H024 gain together: `0`;
+  - no root upload-safe file was promoted.
+- Interpretation:
+  - positive: public action response is a real non-collapsed latent; it is
+    learnable from known public sensors and beats permutation nulls decisively;
+  - negative: action-decoder-supported route moves exist, but H024 rejects all
+    of them. H012 is close to a narrow action basin boundary;
+  - the current obstacle is not only hidden-state discovery. It is unsupported
+    extrapolation from hidden states into uploadable probability actions.
+- Decision:
+  - H042 is diagnostic-only;
+  - do not submit generated H042 variants;
+  - next big-bet should infer multiple public/private sensor worlds or search
+    the H012 action manifold itself, rather than trust route posterior or action
+    ridge extrapolation alone.

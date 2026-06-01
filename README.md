@@ -163,6 +163,20 @@ Current post-H012 status:
   a public-subset prior and rejects posterior-first top-cell/row pulls as the
   missing decoder.
 
+- H042 produced no promoted root submission.
+- Interpretation: H042 made upload-action coefficients first-class variables
+  and fit known public LB deltas from `36` public/private/phase/route/target
+  action atoms. This worked as representation learning: best action-decoder
+  LOFO MAE was `0.000665647`, Spearman `0.924675325`, pairwise accuracy
+  `0.904761905`, and permutation p `0.000000000`. But it failed as a public
+  action solver. The selected diagnostic had route-equation delta
+  `-0.000537053`, yet action margin/support
+  `+0.000793299` / `0.333333333` and H024 margin/support
+  `+0.002010668` / `0.250000000`. Across `240` scored candidates, `15` had
+  action gain plus route gain, but none also had H024 gain, and none had route
+  gain plus H024 gain. H042 validates public action-response geometry and
+  rejects single-ridge action-atom extrapolation as the missing decoder.
+
 Public LB operating rule:
 
 - Public LB is not an iteration loop. A file is promotable only when it beats the current priority under public-free stress, including fresh nulls that were not used to build the candidate.
@@ -186,6 +200,12 @@ Public LB operating rule:
   sharper again: infer upload action and public/private hidden world jointly,
   instead of first estimating a public posterior and then translating it into
   probability edits.
+- H042 tests that sharper bet and narrows it further: known public action
+  response is learnable and non-random, but the generated action-atom family has
+  no safe intersection across action decoder, route-world gain, and H024. The
+  next big-bet should split hidden public sensors into multiple regimes or
+  search the H012 action manifold directly, not continue posterior-first or
+  single-ridge action extrapolation.
 
 Primary working notes:
 

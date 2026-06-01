@@ -6799,3 +6799,47 @@ Stress conclusion:
 - The next stress should make action variables first-class inside the equation
   solver. Posterior-first top-cell pulls have now failed even when the posterior
   is route-conditioned.
+
+## H042 Action-Coupled Equation Solver Stress
+
+Stress target:
+
+- treat upload action coefficients as hidden variables;
+- fit known public LB deltas from public/private/phase/route/target action
+  coordinates;
+- require a candidate to survive action decoder, route-equation, H024, H025,
+  and row-permutation stress before promotion.
+
+Stress result:
+
+- known public sensors used: `21`;
+- action atoms: `36`;
+- best action-decoder LOFO MAE: `0.000665647`;
+- best action-decoder Spearman / pairwise accuracy:
+  `0.924675325` / `0.904761905`;
+- action-decoder permutation p: `0.000000000`;
+- generated/scored candidates: `490` / `240`;
+- selected diagnostic:
+  `h042_joint_public_private_public_cell_k240_private_rollback_k260_0.24_0.1_c380_3a0a9b30`;
+- selected route-equation delta:
+  `-0.000537053`;
+- selected action margin/support:
+  `+0.000793299` / `0.333333333`;
+- selected H024 margin/support:
+  `+0.002010668` / `0.250000000`;
+- selected H025 score/gain:
+  `-5.144375790` / `+5.144390075`;
+- selected H025 row-permutation p: `0.146666667`;
+- candidates with action-decoder gain and route gain: `15`;
+- candidates with action-decoder gain, route gain, and H024 gain: `0`;
+- candidates with route gain and H024 gain: `0`;
+- promoted root file: none.
+
+Stress conclusion:
+
+- Known public action response is learnable and strongly non-random.
+- The generated action family still has no safe intersection across public
+  action response, route-world gain, and H024 health.
+- The next stress should stop treating H012 as a point to move away from by
+  generic atoms. It should infer public/private sensor regimes or search the
+  H012-compatible action manifold itself.

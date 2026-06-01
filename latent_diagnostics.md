@@ -973,3 +973,22 @@ the posterior-first decoder collapsed into the same action failure mode as
 H036-H040. The next HS-JEPA variant should put upload action variables inside
 the equation model itself, instead of sampling a public world and then pulling
 H012 toward its posterior.
+
+H042 tests exactly that next layer: public/private/phase/route action atoms are
+made into the representation, and known public LB deltas become the target. The
+latent is again healthy by LeJEPA standards. The best action decoder has LOFO
+MAE `0.000665647`, Spearman `0.924675325`, pairwise accuracy `0.904761905`, and
+permutation p `0.000000000`. This means known public submissions are not random
+points; they lie on a learnable action-response geometry.
+
+The health check still blocks submission. The selected H042 action has a useful
+route-equation delta (`-0.000537053`) and healthy H025 score/rowperm
+(`-5.144375790` / `0.146666667`), but its action-decoder margin is positive
+(`+0.000793299`) and H024 margin/support are
+`+0.002010668` / `0.250000000`. Across the generated pool, `15` candidates have
+action-decoder gain plus route gain, but none of them also pass H024, and no
+candidate has route gain plus H024 gain. The current latent diagnosis is now
+precise: hidden public world, route, memory-transition, failure geometry, and
+action response are all real representations. The unsolved part is not
+representation discovery alone; it is out-of-support action translation around
+the H012 fixed point.

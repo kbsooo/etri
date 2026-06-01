@@ -5735,3 +5735,58 @@ Submission interpretation:
    world jointly. The current posterior-first workflow has now failed at local
    cell, support swap, ray amplitude, memory-transition, row-route, and
    route-prior equation levels.
+
+## Update After H042
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+H042 promoted submission:
+
+None.
+
+What H042 tested:
+
+- Whether known public LB deltas can be treated as responses to latent upload
+  actions.
+- Whether public/private/phase/route/target action atoms can solve the missing
+  H012 action decoder directly.
+
+Local evidence:
+
+- known public sensors: `21`;
+- action atoms: `36`;
+- best action-decoder LOFO MAE: `0.000665647`;
+- decoder Spearman / pairwise accuracy:
+  `0.924675325` / `0.904761905`;
+- decoder permutation p: `0.000000000`;
+- generated/scored candidates: `490` / `240`;
+- selected diagnostic:
+  `hitl/h042_action_coupled_equation_solver_jepa/submission_h042_joint_public_private_public_cell_k240_private_rollback_k260_0.24_0.1_c380_3a0a9b30.csv`;
+- selected route-equation delta:
+  `-0.000537053`;
+- selected action margin/support:
+  `+0.000793299` / `0.333333333`;
+- selected H024 margin/support:
+  `+0.002010668` / `0.250000000`;
+- selected H025 score / row-permutation p:
+  `-5.144375790` / `0.146666667`;
+- candidates with action-decoder gain and route gain: `15`;
+- candidates with action-decoder gain, route gain, and H024 gain: `0`;
+- candidates with route gain and H024 gain: `0`.
+
+Submission interpretation:
+
+1. No H042 file should be submitted.
+2. The public action-response representation is real: LOFO ranking is strong
+   and permutation p is zero.
+3. It is not enough as a direct upload solver. The generated action family has
+   no intersection between learned public-action gain, route-world gain, and
+   H024 action health.
+4. H012 is likely sitting on a narrow action-support manifold. The next
+   high-upside public candidate should infer hidden public-sensor regimes or
+   search the H012 manifold itself, not extrapolate with a single ridge action
+   decoder.

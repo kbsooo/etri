@@ -1113,3 +1113,85 @@ materializing those routes after H012 breaks the H012 action manifold. The
 missing HS-JEPA decoder is not a simple row-level public/private switch. The
 next big-bet should put route priors inside the public-equation solver itself,
 or infer hidden public/private subset equations directly.
+
+## H041: Route-Prior Equation Solver HS-JEPA
+
+- Script: `hitl/h041_route_prior_equation_solver_jepa.py`
+- Report: `hitl/h041_route_prior_equation_solver_jepa/h041_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+Can route state become actionable if it is used inside hidden public-subset
+equation inference instead of as a post-H012 row edit?
+
+### Main Finding
+
+Route priors improve hidden public-world fit, but posterior-first
+materialization still fails action health.
+
+- Known public sensors: `21`.
+- Best route-prior LOFO MAE: `0.000132093`.
+- Best uniform LOFO MAE: `0.000187170`.
+- Route LOFO gain vs uniform: `0.000055077`.
+- Generated/scored H041 candidates: `96`.
+- Selected diagnostic:
+  `h041_route_celltop_k420_a0.18_c420_c5275704`.
+- Selected route-equation / H012-posterior / H036-world deltas:
+  `-0.001074309` / `-0.000205969` / `-0.000487601`.
+- Selected H024 margin/support:
+  `+0.004066028` / `0.250000000`.
+- Selected H025 score / row-permutation p:
+  `-3.847057412` / `0.290000000`.
+
+### Interpretation
+
+H041 validates route state as a public-subset prior. It rejects the idea that a
+better route-conditioned posterior can simply be pulled into H012 probabilities.
+The missing decoder must solve the upload action together with the hidden
+public/private world.
+
+## H042: Action-Coupled Equation Solver HS-JEPA
+
+- Script: `hitl/h042_action_coupled_equation_solver_jepa.py`
+- Report: `hitl/h042_action_coupled_equation_solver_jepa/h042_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+Can the missing decoder be learned by treating upload-action coefficients as
+latent variables and fitting known public LB deltas directly?
+
+### Main Finding
+
+The action-response latent is real, but it still does not yield a safe H012
+beating action.
+
+- Known public sensors: `21`.
+- Action atoms: `36`.
+- Best action-decoder LOFO MAE: `0.000665647`.
+- Decoder Spearman / pairwise accuracy:
+  `0.924675325` / `0.904761905`.
+- Decoder permutation p: `0.000000000`.
+- Generated/scored H042 candidates: `490` / `240`.
+- Selected diagnostic:
+  `h042_joint_public_private_public_cell_k240_private_rollback_k260_0.24_0.1_c380_3a0a9b30`.
+- Selected route-equation delta:
+  `-0.000537053`.
+- Selected action margin/support:
+  `+0.000793299` / `0.333333333`.
+- Selected H024 margin/support:
+  `+0.002010668` / `0.250000000`.
+- Selected H025 score / row-permutation p:
+  `-5.144375790` / `0.146666667`.
+- Candidates with action gain and route gain: `15`.
+- Candidates with action gain, route gain, and H024 gain: `0`.
+- Candidates with route gain and H024 gain: `0`.
+
+### Interpretation
+
+H042 gives strong HS-JEPA evidence: known public action response is learnable
+and non-random. But the generated action family has no intersection between
+public-action gain, route-world gain, and H024 action health. The next big-bet
+should not be another posterior or ridge-action extrapolation; it should split
+hidden public/private regimes or search the H012 action manifold directly.

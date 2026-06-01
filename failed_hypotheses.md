@@ -3256,3 +3256,34 @@
 - Do not repeat: route-conditioned posterior top-k cell/row pulls as public
   submissions unless the upload action is part of the equation solver or passes
   a new independent action-health stress.
+
+## FH342. A single ridge action-response decoder can directly find a H012-beating upload action
+
+- Failed hypothesis: after H041, the missing decoder is not the public-world
+  posterior but the upload action coefficients. Known public LB deltas should
+  train a ridge action-response model over public/private/phase/route atoms,
+  and the resulting candidate ranking should expose a safe H012-beating action.
+- Observed result: H042 validates the action-response geometry but rejects it
+  as a direct solver. The best action decoder reaches LOFO MAE `0.000665647`,
+  Spearman `0.924675325`, pairwise accuracy `0.904761905`, and permutation p
+  `0.000000000`. But the selected candidate has action margin/support
+  `+0.000793299` / `0.333333333`, H024 margin/support
+  `+0.002010668` / `0.250000000`, route-equation delta `-0.000537053`, and
+  H025 row-permutation p `0.146666667`. Across the generated pool, `15`
+  candidates have action-decoder gain plus route gain, but `0` also have H024
+  gain, and `0` have route gain plus H024 gain.
+- Why discard as a submission route: the known-public action manifold is
+  learnable, but the generated atoms extrapolate outside the H012-safe action
+  support. Public-action response, route-world gain, and H024 health do not
+  intersect.
+- Implementation issue possible: medium. H042 uses ridge and a hand-built atom
+  dictionary. A nonlinear model or different atom basis could improve ranking,
+  but the empty intersection across independent stress views is strong enough
+  to reject the current family as a public submission.
+- Bottleneck implication: the competition bottleneck is now out-of-support
+  action translation, not only hidden-state discovery. H012 behaves like a
+  coupled fixed point of hidden public world plus uploadable action support.
+- Do not repeat: single-decoder ridge extrapolation over the same
+  public/private/phase/route atoms unless the candidate family is redesigned to
+  stay on the H012 action manifold or to split public sensors into separate
+  regimes.

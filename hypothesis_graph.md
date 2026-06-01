@@ -5096,3 +5096,48 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 제출 전략: none. Next strategy should make the upload action itself part of
   the hidden equation variable, rather than sampling a public world and then
   applying top-cell posterior pulls.
+
+### H042: Upload action coefficients can be learned as the missing public-equation decoder
+
+- 상태: accepted as a public-action latent; rejected as a direct candidate
+  selector.
+- 왜 그럴듯한가: H041 showed hidden-world inference improves when route priors
+  are used early, but posterior materialization fails. If the true hidden
+  variable is the upload action, known public LB deltas should define an
+  action-response equation.
+- 맞다면:
+  - action-coordinate features should predict held-out public LB deltas better
+    than permutation nulls;
+  - selected candidates should have action-decoder gain, route-equation gain,
+    H024 margin/support, and H025/rowperm health at the same time.
+- 틀리다면:
+  - action response may be learnable for known submissions but fail to identify
+    any H012-beating action in the generated candidate pool;
+  - action-decoder-supported route moves should still be rejected by H024.
+- 최소 실험: `hitl/h042_action_coupled_equation_solver_jepa.py`, representing
+  public/private/phase/route/target moves as `36` action atoms, fitting public
+  LB response by LOFO ridge, then scoring `240` generated action mixtures.
+- 관측:
+  - best action-decoder LOO MAE `0.000665647`;
+  - LOO Spearman / pairwise accuracy `0.924675325` / `0.904761905`;
+  - permutation p `0.000000000`;
+  - selected diagnostic
+    `h042_joint_public_private_public_cell_k240_private_rollback_k260_0.24_0.1_c380_3a0a9b30`;
+  - selected route-equation delta `-0.000537053`;
+  - selected action margin/support `+0.000793299` / `0.333333333`;
+  - selected H024 margin/support `+0.002010668` / `0.250000000`;
+  - selected H025 score / rowperm p `-5.144375790` / `0.146666667`;
+  - `15` candidates satisfy action gain plus route gain;
+  - `0` candidates satisfy action gain plus route gain plus H024 gain;
+  - `0` candidates satisfy route gain plus H024 gain.
+- 성공/폐기 기준:
+  - accept action-response latent if LOFO beats permutation null. Observed.
+  - accept direct action-coupled solver if one candidate has action gain,
+    route gain, H024 support >= `0.55`, and healthy H025/rowperm. Not observed.
+- public LB 관측 반응: no H042 file should be submitted. If a H042 file wins,
+  H024 and the action decoder are too conservative for route/private mixtures.
+  Otherwise H042 says the known-public action equation is real but not enough
+  for safe extrapolation outside H012.
+- 제출 전략: none. Next strategy should split hidden public sensors into
+  multiple regimes or search the already-successful H012 action manifold, not
+  force a single ridge action decoder to extrapolate.

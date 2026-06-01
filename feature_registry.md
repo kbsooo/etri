@@ -4818,3 +4818,42 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Failure condition: do not submit route-conditioned posterior top-cell/row
   pulls unless the action itself is jointly solved or independently passes
   H024 support/margin, not just LOFO equation fit.
+
+### H042 action-coupled public/private equation features
+
+- Target hidden structure: upload-action response geometry conditioned on
+  public/private route, phase support, memory rollback, exception worlds, and
+  target-specific Q2/S1/S3/S4 action routes.
+- Why needed: H041 proves route-conditioned hidden-world inference can improve
+  public-sensor fit, but posterior-first materialization fails. The missing
+  object may be the action coefficients that known public submissions already
+  reveal.
+- Feature/action form:
+  - `36` action atoms: public cell tops, phase support, exception world,
+    private memory, private rollback, route rows, and target-specific phase
+    atoms;
+  - known-action features: coordinates and cosines to atoms, route/H012/H036
+    posterior deltas, targetwise movement, and public/private/transition
+    weighted magnitudes;
+  - candidate families: single atoms, public-private pairs,
+    public-exception pairs, phase-exception-private triples, and target-route
+    pairs;
+  - stress features: action-decoder LOFO prediction, route-equation delta,
+    H024 pre-H012 margin/support, H025 action-health, and row-permutation.
+- Current evidence:
+  - best action-decoder LOFO MAE `0.000665647`;
+  - decoder Spearman / pairwise accuracy
+    `0.924675325` / `0.904761905`;
+  - permutation p `0.000000000`;
+  - selected route-equation delta `-0.000537053`;
+  - selected action margin/support `+0.000793299` / `0.333333333`;
+  - selected H024 margin/support `+0.002010668` / `0.250000000`;
+  - selected H025 row-permutation p `0.146666667`;
+  - `15` candidates have action gain plus route gain;
+  - no candidate has action gain plus route gain plus H024 gain;
+  - no candidate has route gain plus H024 gain.
+- Registry status: approved as a non-collapsed action-response representation.
+  Rejected as a direct ridge/action-atom submission solver.
+- Failure condition: do not submit action-atom mixtures unless a new search
+  finds intersection across action decoder, route equation, H024, and H025.
+  A strong LOFO action decoder alone is not enough.
