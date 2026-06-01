@@ -5602,3 +5602,33 @@ Public feedback:
 - delta vs E247: `+0.0020128681` worse.
 
 Updated interpretation: the route-level objective sleep-stage latent was locally coherent but public-invalid. This is a stress-test failure: subject/dateblock route logloss, reverse-control behavior, and selector tolerance were not enough to protect against public S1/S4 route damage. H010 siblings should not be submitted.
+
+## H011 Public-Inversion Action-Health Stress
+
+Question: can H010's public failure become a public-negative action-health target?
+
+Stress setup:
+
+- script: `hitl/h011_h010_public_inversion_jackpot.py`;
+- base: E247;
+- public-bad teacher: H010 S1/S4 logit delta;
+- candidate family: mirror-all, S1-only, S4-only, top-absolute cells, row-top/row-bottom H010-active rows, and known-public-bad agreement masks;
+- public-free selector: E272 pairwise selector recalibrated after adding E368 and H010 to `analysis_outputs/public_probe_observations.csv`.
+
+Stress result:
+
+- generated candidates: `63`;
+- jackpot/high-risk candidates: `33`;
+- selected file: `submission_h011_public_inversion_rowtop_all_k50_a1_uploadsafe.csv`;
+- changed cells: `100` total, `S1=50`, `S4=50`;
+- H010-axis coefficient: `-0.545892`;
+- H010-axis linear public estimate: `-0.001098809`;
+- selector mean/p90 delta vs E247: `+0.000200937` / `+0.000573326`;
+- selector beats-current rate: `0.256250`;
+- max probability delta: `0.098996`.
+
+Stress conclusion:
+
+- H011 is not selector-safe. It is a high-information contradiction test.
+- The selector says "probably slightly worse", while the H010 public-failure axis says "potentially much better if public is anti-H010 on those rows."
+- Therefore the submission reads cleanly: a win validates failed-action inversion as an HS-JEPA action-health target; a loss rejects the anti-H010 world and forces action-health learning upstream.

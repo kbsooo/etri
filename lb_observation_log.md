@@ -1686,3 +1686,27 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - do not submit S1/S4 route-rank variants;
   - do not use local S4/S1 route logloss as a standalone selector;
   - if mobility latent is reused, it needs a public-calibrated action-health target or a much smaller model-integrated feature, not output-space rank reassignment.
+
+## Public-Free Observation: H011 H010 Public-Inversion Action-Health
+
+- submission file prepared: `submission_h011_public_inversion_rowtop_all_k50_a1_uploadsafe.csv`
+- public LB: not submitted yet
+- changed point:
+  - treats H010's failed S1/S4 movement as a public-negative action-health teacher;
+  - inverts only the top `50` H010-active rows on S1 and S4;
+  - changed cells: `S1=50`, `S4=50`, all other targets unchanged.
+- expected LB reaction:
+  - improvement would mean H010 exposed a reversible public-negative action axis and HS-JEPA can use failed actions as target representations;
+  - worsening would reject anti-H010 route inversion and imply H010 was not a reversible route law but a local rank/materialization artifact.
+- local/public-free observation:
+  - generated candidates: `63`;
+  - selected H010-axis coefficient: `-0.545892`;
+  - linear H010-axis public delta estimate: `-0.001098809`;
+  - selector mean/p90 delta vs E247: `+0.000200937` / `+0.000573326`;
+  - selector beats-current rate: `0.256250`.
+- interpretation:
+  - this is intentionally not a safe selector-promoted candidate;
+  - it is a high-information public sensor for whether H010's failure can be inverted into action health.
+- next experiment:
+  - submit H011 only if spending a slot on a world-changing sensor is acceptable;
+  - after feedback, either promote failed-action inversion as an HS-JEPA primitive or kill the anti-H010 branch.

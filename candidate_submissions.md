@@ -4836,3 +4836,35 @@ Current submission policy:
 3. H010 should be treated as a failed public sensor, not as a candidate family to tune.
 4. The result kills the direct objective mobility-stage route materializer. It does not necessarily kill the mobility latent itself.
 5. Any next high-risk submission needs a new hidden target, not a bigger or smaller H010. The target should explain why blocked local S1/S4 route stress was confidently wrong on public.
+
+## Update After H011 Public-Inversion Build
+
+Current safe public-best remains:
+
+`analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+
+Known public LB: `0.5761589494`.
+
+Current highest-information big-bet file:
+
+`submission_h011_public_inversion_rowtop_all_k50_a1_uploadsafe.csv`
+
+What it bets:
+
+- H010's public failure was not random local overfit only.
+- The failed H010 S1/S4 movement is a public-negative action-health axis.
+- The harm is concentrated in the strongest H010-action rows, not spread evenly across all `455` H010-changed cells.
+
+Why this is a "한탕" and not insurance:
+
+- It changes only `100` cells, but it moves them opposite to the action that produced a `+0.0020128681` public loss.
+- H010-axis coefficient is `-0.545892`, so the action is a meaningful counter-world, not a tiny blend.
+- The selector is skeptical: mean/p90 predicted delta vs E247 is `+0.000200937` / `+0.000573326`.
+- Therefore an improvement would genuinely change the world model: public is not merely rejecting output-space route rank; it may prefer the inverse route on a localized public-like subset.
+
+Submission interpretation:
+
+1. If deadline safety matters, keep E247.
+2. If one big information-gain submission is allowed, submit H011.
+3. If H011 improves materially, promote "failed-action inversion" into HS-JEPA action-health training: context is proposed action anatomy, target is public-valid action representation.
+4. If H011 worsens, reject anti-H010 route inversion and move upstream to a learned action-health latent before probability materialization.

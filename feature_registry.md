@@ -4097,3 +4097,22 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - reverse controls fail locally.
 - Registry status: approved as current high-information big-bet candidate.
 - Failure condition: if public LB worsens materially, route rank materialization is rejected and the next representation should learn objective route action-health rather than amplify mobility rank.
+
+Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. Registry status is now rejected as a public translator; retain only as a public-negative action-health teacher.
+
+### H011 H010 public-inversion action-health representation
+
+- Target hidden structure: public action-health of a proposed S1/S4 objective route.
+- Why needed: H010 showed that a locally coherent HS-JEPA mobility route can be strongly public-invalid. The new target is not "predict S1/S4 labels" but "predict whether an S1/S4 action should be trusted in the public/test world."
+- Feature/action form:
+  - context: H010 S1/S4 logit delta, row-level H010 action magnitude, target subset, known-public-bad agreement score;
+  - target representation: negative projection onto H010's public-bad action axis;
+  - selected action: invert the strongest `50` H010-active rows on both S1 and S4.
+- Current evidence:
+  - `63` materialized candidates;
+  - selected file `submission_h011_public_inversion_rowtop_all_k50_a1_uploadsafe.csv`;
+  - changed cells `100` (`S1=50`, `S4=50`);
+  - H010-axis coefficient `-0.545892`;
+  - selector mean/p90 `+0.000200937` / `+0.000573326`, so this is not selector-safe.
+- Registry status: approved as a high-information public sensor, not as a safe final feature.
+- Failure condition: if public LB does not improve meaningfully, stop using output-space failed-action inversion. Future HS-JEPA action-health must be learned before materialization from row/target/candidate context.

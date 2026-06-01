@@ -6235,3 +6235,30 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E247 remains the public-best and final safe default.
   - H010 route variants are blocked from further submission.
   - Future "한탕" work should not be a larger route-rank edit. It needs a new public-transfer target: route action-health, public/private subset energy, or a model-integrated latent that does not directly reorder hundreds of S1/S4 cells.
+
+## H011. H010 Public-Inversion Action-Health Jackpot
+
+- Observe: H010 was not a small miss. It was a clean local S1/S4 route jackpot and then lost public by `+0.0020128681` versus E247.
+- Wonder: what if H010 did not merely overfit, but exposed a public-negative action axis? In HS-JEPA terms, can a failed action become a target representation for action-health?
+- Hypothesis: if the public subset wants the opposite of H010's objective route on a localized set of rows, then candidates with negative projection onto the H010 S1/S4 action axis should move public LB meaningfully below E247. If they do not, the anti-H010 route worldview is dead.
+- Method: `hitl/h011_h010_public_inversion_jackpot.py`.
+  - public observations updated with E368 and H010 in `analysis_outputs/public_probe_observations.csv`;
+  - base: E247;
+  - teacher: H010 logit delta on S1/S4;
+  - actions: mirror-all, target-specific S1/S4 mirrors, top-absolute cell inversions, row-top/row-bottom inversions, and known-public-bad agreement inversions;
+  - selector: E272 pairwise public-free selector recalibrated with H010 as a known public-bad anchor.
+- Result:
+  - generated `63` candidates;
+  - jackpot/high-risk candidates: `33`;
+  - selected upload-safe file: `submission_h011_public_inversion_rowtop_all_k50_a1_uploadsafe.csv`;
+  - selected action changes only `100` cells: `S1=50`, `S4=50`;
+  - H010-axis coefficient: `-0.545892`;
+  - linear H010-axis public delta estimate: `-0.001098809`;
+  - selector mean/p90 delta vs E247: `+0.000200937` / `+0.000573326`;
+  - max probability delta: `0.098996`.
+- Interpretation:
+  - This is not a safe score candidate. The public-free selector still thinks the file is slightly worse than E247.
+  - It is a deliberately sharp world-model test: H010 harm might be localized in the highest H010-action rows, and reflecting those rows may reveal whether public is anti-H010 or whether H010 was just a local-output mirage.
+  - If H011 improves materially, HS-JEPA gains a new action-health primitive: failed submissions can become public-negative target representations.
+  - If H011 fails, anti-H010 inversion is rejected and the next big bet must learn action-health before output materialization, not after.
+- Decision: H011 is the current highest-information "한탕" file, while E247 remains the safe final default.

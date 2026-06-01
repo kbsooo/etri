@@ -4342,3 +4342,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept as next public sensor if one route candidate passes local robustness plus jackpot selector tolerance and matched reverse controls fail. Observed.
 - public LB 관측 반응: H010 worsened sharply, so objective mobility-stage routing is not a valid public materializer. The local mobility latent and local reverse-control evidence are insufficient for public transfer.
 - 제출 전략: do not submit H010 siblings or S1/S4 route-rank variants. Future work must learn why local S1/S4 route stress is anti-public, likely via route action-health or public/private subset energy.
+
+### H011: H010 failure defines a public-negative action-health target representation
+
+- 상태: submission candidate generated; public LB pending.
+- 왜 그럴듯한가: H010 is a rare clean contradiction: local subject/dateblock route stress and reverse controls strongly favored S1/S4 route movement, while public LB rejected it by `+0.0020128681`. A contradiction this large can be used as a JEPA target: proposed action anatomy -> public action health.
+- 맞다면: reflecting the H010 S1/S4 action axis, especially on the most H010-active rows, should improve public LB meaningfully. The gain should be larger than ordinary frontier noise because the H010 fail scale is large.
+- 틀리다면: anti-H010 candidates should still fail or stay worse than E247, implying H010 was not a reversible public-negative route but a local rank rewrite that damaged true calibration/marginals.
+- 최소 실험: `hitl/h011_h010_public_inversion_jackpot.py`.
+- 관측: `63` candidates generated. Selected upload-safe file is `submission_h011_public_inversion_rowtop_all_k50_a1_uploadsafe.csv`, changing only `S1=50` and `S4=50` cells. H010-axis coefficient `-0.545892`; linear H010-axis public estimate `-0.001098809`; selector mean/p90 `+0.000200937` / `+0.000573326`.
+- 성공/폐기 기준: success if public LB beats E247 or at least moves below the E95/E368 band with a readable margin. Failure if it worsens beyond E95/E368 or approaches H010-style loss, which kills the anti-H010 route worldview.
+- public LB 관측 반응: improvement promotes failed-action inversion as an HS-JEPA action-health primitive. Failure pushes the architecture upstream: learn action health before output-space route materialization rather than inverting failed outputs.
+- 제출 전략: H011 is the current highest-information "한탕" file; E247 remains the safe default.
