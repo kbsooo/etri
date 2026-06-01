@@ -359,3 +359,7 @@ hitl/h045_conditional_route_action_decoder_jepa/h042_h025_top_cells.csv
 # H046 materialized bifurcated Q2 regime sweep files are reproducible from the script.
 hitl/h046_q2_bifurcated_regime_decoder_jepa/submission_h046_*.csv
 hitl/h046_q2_bifurcated_regime_decoder_jepa/h042_h025_top_cells.csv
+
+# H047 materialized support-identity Q2 sweep files are reproducible from the script.
+hitl/h047_q2_support_identity_jepa/submission_h047_*.csv
+hitl/h047_q2_support_identity_jepa/h042_h025_top_cells.csv

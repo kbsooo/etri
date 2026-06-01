@@ -7479,3 +7479,53 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - do not submit bifurcated private-tail rollback candidates now;
   - next high-upside search should model support identity or public-subset
     equation more discretely, not add opposite-sign Q2 regime amplitudes.
+
+## H047. Q2 Support-Identity Posterior HS-JEPA
+
+- Observe: H046 killed route-specific Q2 amplitude/sign bifurcation after
+  H042 public feedback entered the conditional decoder. The remaining live
+  explanation is discrete support identity: which rows belong to the
+  public-positive Q2 phase support?
+- Wonder: can good H045-style supports and bad H046 bifurcated supports be
+  used as contrastive observations to infer row-level Q2 support membership?
+- Hypothesis: if Q2 support identity is the missing hidden state, then a
+  posterior support should select a candidate between H042's `45` cells and
+  H045/H043's wider supports while staying positive under full-known
+  conditional action decoding.
+- Method: `hitl/h047_q2_support_identity_jepa.py`.
+  - context: H045 candidate scores, H046 candidate scores, H042/H043/H045
+    supports, H044 route scores, and Q2 phase direction;
+  - target representation: row-level Q2 support identity posterior;
+  - action form: one-direction Q2 phase movement only, no private-tail
+    opposite amplitude;
+  - stress: H042 route equation, H024, H025, and post-H042 conditional decoder.
+- Result:
+  - support observations `720`;
+  - generated/scored candidates `262` / `240`;
+  - promotable candidates `74`;
+  - selected candidate
+    `h047_h042core_support_tail14_a0.66_0.44_c59_98737e9b`;
+  - promoted file
+    `submission_h047_q2_support_identity_98737e9b_uploadsafe.csv`;
+  - changed cells/rows vs H012 `59` / `59`, Q2 only;
+  - changed cells vs H042 `59`, Q2 only;
+  - changed cells vs H045 `34`, Q2 only;
+  - H045 Jaccard `0.740259740`;
+  - full-known conditional margin/support
+    `-0.000211862` / `0.583333333`;
+  - pre-H042 conditional margin/support
+    `-0.000383048` / `0.583333333`;
+  - route-equation delta `-0.000178002`;
+  - H024 margin `+0.000552020`;
+  - H025 score `-1.154530177`.
+- Interpretation:
+  - H047 is not a wider/amplitude bet. It is a support-identity bet;
+  - it keeps the H042 core and adds a small posterior tail, making it a cleaner
+    falsification of "H042 was exact-support-only" than H043/H045;
+  - H024 still warns, so this remains a Q2-local public sensor rather than a
+    general translator.
+- Decision:
+  - promote H047 as the next support-identity public sensor;
+  - if H047 beats H042, continue support-posterior decomposition;
+  - if H047 loses, narrow back to exact H042 support and search public-subset
+    assignment outside Q2 amplitude/support expansion.

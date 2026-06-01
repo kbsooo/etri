@@ -2800,3 +2800,45 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - keep H043/H045 as the public-ready sensors. Future big bets should model
     support identity or public-subset assignment, not opposite-sign private
     Q2 tails.
+
+## Public-Free Observation: H047 Q2 Support-Identity Posterior JEPA
+
+- submission file prepared:
+  `submission_h047_q2_support_identity_98737e9b_uploadsafe.csv`
+- public LB: pending
+- current public frontier:
+  `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
+  scored `0.5679048248`.
+- changed point:
+  - treats candidate support masks themselves as observations;
+  - learns a row-level Q2 support posterior from good H045-style support
+    evidence and bad H046 bifurcated support evidence;
+  - keeps the movement one-directional in Q2, adding only `14`
+    posterior-selected tail rows to H042's `45` core cells.
+- expected LB reaction:
+  - better than H042 means Q2 phase support identity is expandable and H046
+    failed because amplitude/sign bifurcation was the wrong translator;
+  - worse than H042 means the exact H042 support is still the safer public
+    correction and support expansion is overfitting local sensors;
+  - close to H042 means the support posterior is directionally real but public
+    subset size/amplitude is still unresolved.
+- local/public-free observation:
+  - support observations `720`;
+  - generated/scored candidates `262` / `240`;
+  - promotable candidates `74`;
+  - selected
+    `h047_h042core_support_tail14_a0.66_0.44_c59_98737e9b`;
+  - changed cells/rows vs H012 `59` / `59`, Q2 only;
+  - full-known conditional margin/support
+    `-0.000211862` / `0.583333333`;
+  - pre-H042 conditional margin/support
+    `-0.000383048` / `0.583333333`;
+  - route-equation delta `-0.000178002`;
+  - H024 margin `+0.000552020`;
+  - H025 score `-1.154530177`.
+- interpretation:
+  - H047 is the cleanest current test of support identity after H046 killed
+    amplitude bifurcation.
+- next experiment:
+  - public-test H047 if the next slot should distinguish exact H042 support
+    from a small, contrastively inferred support expansion.

@@ -5315,3 +5315,48 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - public LB 관측 반응: none; no H046 file promoted.
 - 제출 전략: do not submit H046. Treat private-tail rollback/opposite Q2
   amplitude as rejected by the post-H042 action-response representation.
+
+### H047: Q2 phase is governed by discrete support identity
+
+- 상태: public-ready; one promoted support-identity sensor.
+- 왜 그럴듯한가: H046 rejected action amplitude/sign bifurcation while leaving
+  the support-selection story alive. H042's winning rows may be the visible
+  part of a discrete support identity, not the whole hidden support.
+- 맞다면:
+  - good and bad candidate support masks should contain row-level contrastive
+    evidence;
+  - a posterior support should keep H042 core, add a small tail, and pass the
+    post-H042 conditional decoder better than broad bifurcated actions;
+  - public LB should improve over or stay very close to H042 if the selected
+    tail rows are real public-positive Q2 support.
+- 틀리다면:
+  - H047 should lose to H042, implying the exact H042 support is unusually
+    public-specific;
+  - support-posterior tail rows should look locally healthy but fail public,
+    making support expansion a local-sensor overfit.
+- 최소 실험: `hitl/h047_q2_support_identity_jepa.py`, using H045/H046
+  candidate support masks as contrastive support observations and generating
+  one-direction Q2 phase candidates.
+- 관측:
+  - support observations `720`;
+  - generated/scored candidates `262` / `240`;
+  - promotable candidates `74`;
+  - selected `h047_h042core_support_tail14_a0.66_0.44_c59_98737e9b`;
+  - root file
+    `submission_h047_q2_support_identity_98737e9b_uploadsafe.csv`;
+  - changed cells/rows vs H012 `59` / `59`, Q2 only;
+  - full-known conditional margin/support
+    `-0.000211862` / `0.583333333`;
+  - pre-H042 conditional margin/support
+    `-0.000383048` / `0.583333333`;
+  - route-equation delta `-0.000178002`;
+  - H024 margin `+0.000552020`;
+  - H025 score `-1.154530177`;
+  - H045 Jaccard `0.740259740`.
+- 성공/폐기 기준:
+  - accept support identity expansion if H047 beats H042 or remains near it
+    while providing evidence that H043/H045 support expansion was too broad;
+  - reject posterior-tail support expansion if H047 loses materially to H042.
+- public LB 관측 반응: pending.
+- 제출 전략: submit H047 when the next slot should test exact H042 support
+  versus small contrastive support expansion.

@@ -5002,3 +5002,40 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Failure condition observed: post-H042 conditional decoder rejected all
   bifurcated candidates (`0/240` pass full-known margin and support), even
   though route/H024/H025 stress was mostly healthy.
+
+### H047 Q2 support-identity posterior features
+
+- Target hidden structure: row-level membership in the public-positive Q2
+  phase support. This is a discrete support identity latent, not an amplitude
+  or sign latent.
+- Why needed: H046 rejected route-specific Q2 amplitude/sign bifurcation while
+  leaving support selection alive. H047 asks the JEPA-style question directly:
+  can observed candidate supports predict which unseen rows should join the
+  H042 Q2 phase support?
+- Feature/action form:
+  - support observations from H045 and H046 candidate masks;
+  - contrastive support quality from full-known conditional margin/support,
+    pre-H042 margin, route-equation delta, H024, and H025;
+  - row-level `h047_direct_support_contrast`,
+    `h047_feature_support_prior`, and `h047_support_posterior`;
+  - one-direction Q2 phase actions only: posterior top-k, H042-core plus
+    posterior tail, and H043/H045 support-sieve candidates.
+- Current evidence:
+  - support observations `720`;
+  - generated/scored candidates `262` / `240`;
+  - promotable candidates `74`;
+  - selected `h047_h042core_support_tail14_a0.66_0.44_c59_98737e9b`;
+  - root file
+    `submission_h047_q2_support_identity_98737e9b_uploadsafe.csv`;
+  - changed cells/rows vs H012 `59` / `59`, Q2 only;
+  - full-known conditional margin/support
+    `-0.000211862` / `0.583333333`;
+  - pre-H042 conditional margin/support
+    `-0.000383048` / `0.583333333`;
+  - route-equation delta `-0.000178002`;
+  - H024 margin `+0.000552020`;
+  - H025 score `-1.154530177`.
+- Registry status: approved as a public-ready support-identity sensor.
+- Failure condition: if H047 loses materially to H042, do not keep expanding
+  Q2 support by posterior-tail selection without an independent public-subset
+  assignment signal.

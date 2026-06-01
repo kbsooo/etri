@@ -19,11 +19,14 @@ Current post-H012 status:
 
 - H042 Q2 tiny phase is the active public frontier, while H012 remains the base
   public-equation anchor.
-- H043 and H045 are the current high-information post-H042 sensors:
+- H043, H045, and H047 are the current high-information post-H042 sensors:
   - H043 tests whether the Q2 phase branch can expand from `45` to `105`
     cells;
   - H045 tests whether human-state route context can prune that expansion to a
-    `75`-cell route-conditioned support.
+    `75`-cell route-conditioned support;
+  - H047 tests whether support identity is the missing variable by keeping the
+    H042 core and adding only `14` posterior-selected tail rows, producing a
+    `59`-cell Q2-only support.
 - No H015-H041 file is currently promoted as the next upload.
 - The historical post-H012 sensors below are kept because they define falsified or partially supported HS-JEPA routes, not because they are current submission recommendations.
 
@@ -259,6 +262,19 @@ Public LB operating rule:
   `0.416666667` support). This narrows the next big bet: support identity and
   public-subset assignment remain alive; private-tail opposite-amplitude Q2
   moves are not public-ready.
+- H047 follows that negative result by moving from amplitude/sign to support
+  identity. It treats H045's stronger supports and H046's rejected bifurcated
+  supports as contrastive observations, then infers a row-level Q2 support
+  posterior. It promotes
+  `submission_h047_q2_support_identity_98737e9b_uploadsafe.csv`, a Q2-only
+  `59`-cell action that keeps all `45` H042 core cells and adds `14`
+  posterior-tail rows. Local stress is full-known conditional positive
+  (`-0.000211862` margin, `0.583333333` support), pre-H042 positive
+  (`-0.000383048` margin), route-positive (`-0.000178002`), and H025-healthy
+  (`-1.154530177`), with the same H024 warning zone (`+0.000552020`). This is
+  the cleanest next support-identity sensor: a win means H042 was not just a
+  narrow accident; a loss means exact H042 support is still the safer public
+  structure.
 
 Primary working notes:
 

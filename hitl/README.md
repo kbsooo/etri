@@ -13,6 +13,10 @@ search.
   Q2 phase move can beat H012 even when H024 rejects it. H012 remains the base
   public-equation/action fixed point, but Q2-local phase has a live descent
   direction.
+- Current next promoted sensor: `submission_h047_q2_support_identity_98737e9b_uploadsafe.csv`.
+- Current H047 question: did H042 expose a discrete Q2 support identity that
+  can safely expand from `45` to `59` cells, or was the exact H042 support the
+  public-specific correction?
 
 ## H041: Route-Prior Public/Private Equation Solver HS-JEPA
 
@@ -1360,3 +1364,50 @@ H046 is useful because it fails in a localized way. Route/H024/H025 do not kill
 the family; the post-H042 conditional decoder does. That means the H042 public
 win argues against private-tail opposite-amplitude Q2 actions. Keep exploring
 Q2 support identity and route-conditioned pruning, not bifurcated sign changes.
+
+## H047: Q2 Support-Identity Posterior HS-JEPA
+
+- Script: `hitl/h047_q2_support_identity_jepa.py`
+- Report: `hitl/h047_q2_support_identity_jepa/h047_report.md`
+- Decision: promote one public sensor:
+  `submission_h047_q2_support_identity_98737e9b_uploadsafe.csv`.
+
+### Question
+
+After H046 rejected public/private Q2 amplitude bifurcation, is the missing
+hidden variable a discrete Q2 support identity rather than a route-specific
+movement strength?
+
+### Main Finding
+
+H047 promotes a narrow H042-core-plus-tail candidate. It keeps all `45` H042
+core Q2 cells and adds `14` posterior-selected rows, producing a `59`-cell
+Q2-only move.
+
+- Support observations used: `720`.
+- Generated/scored candidates: `262` / `240`.
+- Promotable candidates: `74`.
+- Selected candidate:
+  `h047_h042core_support_tail14_a0.66_0.44_c59_98737e9b`.
+- Root upload-safe file:
+  `submission_h047_q2_support_identity_98737e9b_uploadsafe.csv`.
+- Changed cells/rows vs H012: `59` / `59`, Q2 only.
+- Changed cells vs H042: `59`, Q2 only.
+- Changed cells vs H045: `34`, Q2 only.
+- H045 Jaccard: `0.740259740`.
+- Full-known conditional margin/support:
+  `-0.000211862` / `0.583333333`.
+- Pre-H042 conditional margin/support:
+  `-0.000383048` / `0.583333333`.
+- Route-equation delta: `-0.000178002`.
+- H024 margin: `+0.000552020`.
+- H025 score: `-1.154530177`.
+
+### Interpretation
+
+This is a direct support-identity test. If H047 improves over H042, the Q2
+phase branch is not merely the exact H042 45-cell correction; H046's failure
+then means the action should stay one-directional while the support expands
+discretely. If H047 loses, the safest interpretation is that H042's exact
+support is unusually public-specific and support expansion remains the
+bottleneck.

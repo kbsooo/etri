@@ -1057,3 +1057,19 @@ feedback entered the conditional decoder: full-known margin/support were
 post-H042 full-known margin and support gates. The latent read is precise:
 human route may still help choose Q2 support, but current evidence rejects
 route-specific opposite/amplitude bifurcation as the missing action translator.
+
+H047 takes that conclusion literally. It stops changing amplitude/sign and
+predicts the hidden target representation as row-level Q2 support identity.
+The context is H045/H046 support-mask behavior, H042/H043/H045 support overlap,
+H044 route scores, and Q2 phase direction; the target is not raw Q2 values but
+"which rows belong to the public-positive phase support." This representation
+does not collapse to H042 or H045: the selected candidate keeps H042's core,
+adds `14` posterior-tail rows, changes `59` Q2 cells vs H012, and differs from
+H045 on `34` Q2 cells with H045 Jaccard `0.740259740`. It passes the
+post-H042 conditional gate with margin/support `-0.000211862` / `0.583333333`,
+pre-H042 margin/support `-0.000383048` / `0.583333333`, route-equation delta
+`-0.000178002`, and H025 score `-1.154530177`. The LeJEPA warning remains the
+same as H042-H045: H024 margin is positive (`+0.000552020`), so this is a
+Q2-local public sensor, not a general-purpose action translator. Public
+feedback will decide whether support identity is real or whether exact H042
+support is still the hidden invariant.

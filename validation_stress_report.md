@@ -7026,3 +7026,48 @@ Stress conclusion:
 - This rejects the current opposite-amplitude public/private Q2 route story.
 - Current Q2 evidence favors support selection/pruning around H042/H045 over
   regime-specific sign or amplitude bifurcation.
+
+## H047 Q2 Support-Identity Posterior Stress
+
+Stress target:
+
+- test the post-H046 alternative that Q2 phase needs a better support
+  identity posterior, not different action signs or amplitudes;
+- promote only if a one-direction Q2 candidate keeps H042 core, adds a small
+  posterior tail, and survives post-H042 conditional decoder, route, H024, and
+  H025 stress.
+
+Stress result:
+
+- support observations: `720`;
+- generated/scored candidates: `262` / `240`;
+- promotable candidates: `74`;
+- selected candidate:
+  `h047_h042core_support_tail14_a0.66_0.44_c59_98737e9b`;
+- promoted root file:
+  `submission_h047_q2_support_identity_98737e9b_uploadsafe.csv`;
+- changed cells/rows vs H012: `59` / `59`, all Q2;
+- changed cells vs H042: `59`, all Q2;
+- changed cells vs H045: `34`, all Q2;
+- H045 Jaccard: `0.740259740`;
+- full-known conditional margin/support:
+  `-0.000211862` / `0.583333333`;
+- pre-H042 conditional margin/support:
+  `-0.000383048` / `0.583333333`;
+- route-equation delta:
+  `-0.000178002`;
+- H024 margin:
+  `+0.000552020`;
+- H025 score:
+  `-1.154530177`;
+- promoted root file validation:
+  shape `(250, 10)`, required columns OK, no NaN, probability range
+  `0.0000329401` to `0.999980303`.
+
+Stress conclusion:
+
+- H047 passes the local support-identity public-sensor gate.
+- The persistent positive H024 margin keeps the candidate in the same Q2-local
+  override class as H042/H043/H045.
+- This is the next clean public test of whether H042 was exact-support-only or
+  whether a contrastively learned Q2 support posterior can safely expand it.

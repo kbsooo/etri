@@ -26,7 +26,15 @@ Previous public frontier: `submission_h012_public_equation_top_all_k1200_a0.7_up
 
 H042 improves over H012 by `0.0002186583`. H012 remains the base public-equation anchor, but H042 is now the reference public frontier unless private-risk considerations dominate final selection.
 
-Current next high-risk submission candidate: none yet. The next work should extend or falsify the H042 Q2 phase manifold, not spend public slots on resolved H015-H041 posterior-completion or route-pull questions. The older `submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv` and H021 bridge file are now historical architecture sensors, not current recommendations, unless the user explicitly wants to spend a public slot on a resolved posterior-completion question.
+Current next high-risk submission candidate: `submission_h047_q2_support_identity_98737e9b_uploadsafe.csv`.
+
+Reason: H047 is the cleanest post-H046 support-identity sensor. It keeps the
+H042 `45`-cell Q2 core, adds only `14` posterior-selected tail rows, and
+avoids the private-tail amplitude/sign bifurcation that H046 rejected. The
+older `submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv`
+and H021 bridge file are now historical architecture sensors, not current
+recommendations, unless the user explicitly wants to spend a public slot on a
+resolved posterior-completion question.
 
 Reason: after H014-H019 decomposition, H020 is the largest predeclared post-H012 worldview test. It asks whether the validated public-equation posterior should be completed as a row-level 7-target hidden state, not independent cells. Conservative default remains H012; H020 is not a private-safe replacement until public feedback exists. H026 adds no submission candidate because the public/private veto repaired known-anchor ranking but failed public-transfer stress on generated variants.
 
@@ -5948,3 +5956,44 @@ Decision:
   bifurcated candidates.
 - This strengthens H043/H045 sequencing: test wider support or route-pruned
   support, not private-tail opposite-amplitude moves.
+
+## H047 Submission Decision
+
+Current recommended public sensor:
+
+`submission_h047_q2_support_identity_98737e9b_uploadsafe.csv`
+
+What this file tests:
+
+- H042 proved a tiny `45`-cell Q2 phase move can beat H012.
+- H046 rejected the stronger idea that Q2 action should split by
+  public/private route amplitude or sign.
+- H047 asks the narrower question: is the missing state the identity of rows in
+  the Q2 support?
+
+Local profile:
+
+- changed cells/rows vs H012: `59` / `59`, Q2 only;
+- keeps H042 core and adds `14` support-posterior tail rows;
+- changed cells vs H045: `34`, Q2 only;
+- full-known conditional margin/support:
+  `-0.000211862` / `0.583333333`;
+- pre-H042 conditional margin/support:
+  `-0.000383048` / `0.583333333`;
+- route-equation delta:
+  `-0.000178002`;
+- H024 margin:
+  `+0.000552020`;
+- H025 score:
+  `-1.154530177`;
+- H045 Jaccard:
+  `0.740259740`.
+
+Submission meaning:
+
+- If H047 beats H042 (`0.5679048248`), Q2 support identity is expandable and
+  the right translator is support selection, not amplitude bifurcation.
+- If H047 loses materially, H042 was likely a narrow support-specific public
+  correction and the next bet should move away from Q2 support expansion.
+- If H047 is close to H042, the direction is real but support size and
+  amplitude remain under-identified.
