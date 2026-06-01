@@ -2,11 +2,11 @@
 
 작성일: 2026-05-29
 
-이 문서는 수면 기반 생활습관 로그 예측 대회를 "예측 표"가 아니라 숨은 데이터 생성 과정의 관측 로그로 다루기 위한 가설 그래프다. 현재 best public LB는 `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`의 `0.5761589494`이다.
+이 문서는 수면 기반 생활습관 로그 예측 대회를 "예측 표"가 아니라 숨은 데이터 생성 과정의 관측 로그로 다루기 위한 가설 그래프다. 현재 best public LB는 `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`의 `0.5681234831`이다.
 
 ## 현재 병목 요약
 
-E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해 previous best `a2c8`를 `0.0011326805` 낮췄고, E97에서 `submission_e95_hardtail_541e3973.csv`가 public `0.5762913298`로 mixmin을 `0.0000153107` 더 낮췄다. E255에서 `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`가 public `0.5761589494`로 E95를 `0.0001323804` 더 낮췄다. Mixmin의 큰 점프는 anchor-loss/binary-world movement가 public-relevant였다는 증거이고, E95의 작은 추가 개선은 E72-adverse hard-label tail localization이 public-real이라는 증거이며, E247의 큰 추가 개선은 feature-NN1 Q3 smoothing geometry가 public-real이라는 증거다. 따라서 현재 병목은 "a2c8/E95 근처 micro edge를 더 찾는 문제"가 아니라, E247이 포착한 test-side feature-neighbor Q3 law와 아직 설명되지 않은 E224-body/calibration/block-rate structure를 분리하는 문제다.
+E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해 previous best `a2c8`를 `0.0011326805` 낮췄고, E97에서 `submission_e95_hardtail_541e3973.csv`가 public `0.5762913298`로 mixmin을 `0.0000153107` 더 낮췄다. E255에서 `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`가 public `0.5761589494`로 E95를 `0.0001323804` 더 낮췄다. H012에서 `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`가 public `0.5681234831`로 E247을 `0.0080354663` 낮췄다. Mixmin의 큰 점프는 anchor-loss/binary-world movement가 public-relevant였다는 증거이고, E95의 작은 추가 개선은 E72-adverse hard-label tail localization이 public-real이라는 증거이며, E247의 추가 개선은 feature-NN1 Q3 smoothing geometry가 public-real이라는 증거다. H012의 훨씬 큰 점프는 known public LB observations를 hidden public label/subset state의 equation으로 쓰는 HS-JEPA branch가 action-grade임을 검증했다. 따라서 현재 병목은 E247 근처 micro edge가 아니라, H012의 public-equation posterior가 private-safe hidden state인지, 아니면 public-subset-specific posterior인지 분해하는 문제다.
 
 가장 강한 현재 설명:
 
@@ -19,7 +19,9 @@ E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해
 - Mixmin은 anchor-loss/cancellation geometry와 binary actual-anchor worldview가 public-relevant였다는 첫 강한 관측이다.
 - E95는 E72-adverse hard-label tail localization이 public-positive라는 첫 강한 관측이다.
 - E247은 feature-NN1 Q3 smoothing을 실제 public-positive JEPA mechanism으로 승격시킨 첫 강한 관측이다.
-- 0.54 진입을 막는 핵심 병목은 여전히 hidden block-rate state inference와 selector calibration이지만, E247 이후에는 OOF smoothing veto도 hard gate로 쓸 수 없다.
+- H012는 public-equation hidden-state posterior를 직접 materialize한 첫 대형 성공이다.
+- H014는 H012가 단순 same-subject memory가 아니라는 것을 보였고, H015-H020은 H012 이후의 public-equation posterior-completion을 cell-weight, binary world, row-subset, joint target-vector world로 분해하고 있다.
+- 0.54 진입을 막는 핵심 병목은 이제 hidden state 발견 자체보다, public-equation posterior를 private-safe action으로 번역하는 action-health/calibration 문제다.
 
 ## 관계 그래프
 
@@ -4451,3 +4453,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept row-subset structure if real beats permutation null and inclusion posterior does not collapse. Observed. Accept row-exclusion action only if it beats H018 under the row posterior. Not observed.
 - public LB 관측 반응: if H019 improves more than H018/H012, public row identity is actionable. If H019 loses while H018 wins, row-subset is explanatory but not useful for excluding rows from the hard-world action.
 - 제출 전략: H019 is lower priority than H018 as a score candidate, but higher information if the next question is whether public-equation state can be forced into realistic row-level public/private masks.
+
+### H020: public-equation latent should be constrained as a row-level 7-target vector world
+
+- 상태: strongly supported as a high-risk posterior-completion worldview; train co-occurrence prior itself remains weak.
+- 왜 그럴듯한가: H018 samples binary labels cell by cell, but real labels are emitted as one Q1/Q2/Q3/S1/S2/S3/S4 vector per row. Train target vectors are highly non-uniform, so independent marginals can create implausible Q/S combinations.
+- 맞다면: sampled row-level target-vector worlds should match known public LB deltas far better than permuted public deltas. The posterior should produce a coherent H012-to-vector-world movement larger than H018 without relying on arbitrary cellwise weights.
+- 틀리다면: vector-world errors should be no better than public-delta permutations, or train-vector priors should force a posterior that loses H018 consistency and produces no coherent action.
+- 최소 실험: `hitl/h020_joint_vector_world_jepa.py`, sampling joint 7-bit label-vector worlds from H018 marginals with optional global/subject train-vector priors, then fitting public-delta posteriors and materializing the selected vector posterior.
+- 관측: best sampled config by config score was `global_b0.15` with best world MAE `0.000175369`, top100 MAE `0.000260939`, and Spearman `0.921804511`. The selected posterior was `none_b0_soft_t0.00012_p2` with posterior MAE `0.000012623`, p90 abs `0.000023274`, Spearman `0.995488722`, ESS `977.953487`, and mean/max shift vs H018 `0.010608997` / `0.044670350`. Real vector-world metrics beat all `300` public-delta permutation nulls. Primary file `submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv` changes all `1750` cells and has rowweighted delta vs H012 `-0.001105455`, stronger than H018 `-0.000636475` and H019 `-0.000631235` under the same report.
+- 성공/폐기 기준: accept the row-vector world if real beats permutation null and the selected posterior makes a coherent row-level movement. Observed. Do not claim train co-occurrence as the action prior unless a beta-positive posterior is selected or public feedback rewards a beta-positive variant. Not observed.
+- public LB 관측 반응: if H020 improves meaningfully, public-equation HS-JEPA should move from independent cell posterior-completion to row-level hidden target-state completion. If H020 worsens while H018 is preferred, joint-vector projection is too aggressive or the chosen beta-zero posterior overfits old public equations.
+- 제출 전략: H020 is the highest-upside post-H012 posterior-completion sensor. H018 remains the cleaner binary-hardworld baseline; H019 remains the row-subset diagnostic.

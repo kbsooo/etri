@@ -5926,3 +5926,43 @@ Stress conclusion:
 - The row posterior is broad, not a tiny pseudo-public subset. Top20 inclusion mean is `0.663883`, bottom20 mean is `0.404771`.
 - The materialized row-exclusion action is not internally better than H018: H019 primary row-posterior delta is `-0.000611233`, while H018 under the same row posterior is `-0.000615495`.
 - Therefore H019 is strongest as architecture evidence and a diagnostic public sensor, not as the default replacement for H018.
+
+## H020 Joint Target-Vector Hardworld Stress
+
+Question: does the public-equation latent still work when every row must choose one coherent 7-target Q/S label vector?
+
+Stress setup:
+
+- script: `hitl/h020_joint_vector_world_jepa.py`;
+- anchor: H012;
+- base marginal prior: H018 hard-world posterior;
+- optional vector priors: train global and subject-conditioned 7-bit target-vector frequencies;
+- sampled vector worlds: `70,000` per config;
+- world score: known-submission public delta MAE versus H012 under each joint-vector world;
+- posterior: soft/top-k/elite reweighting of sampled vector worlds by equation error;
+- null stress: permute known public deltas `300` times while keeping sampled vector-world predictions fixed.
+
+Stress result:
+
+- best sampled config by config score: `global_b0.15`;
+- best sampled vector-world MAE: `0.000175369`;
+- top100 sampled vector-world MAE: `0.000260939`;
+- median sampled vector-world MAE: `0.001408386`;
+- best sampled vector-world Spearman: `0.921804511`;
+- selected posterior: `none_b0_soft_t0.00012_p2`;
+- posterior MAE: `0.000012623`;
+- posterior p90 abs: `0.000023274`;
+- posterior Spearman: `0.995488722`;
+- ESS: `977.953487`;
+- mean/max probability shift vs H018: `0.010608997` / `0.044670350`;
+- null median best-world MAE: `0.001008927`;
+- null median top100 MAE: `0.001157434`;
+- all real vector-world error metrics beat all `300` permutations.
+
+Stress conclusion:
+
+- H020 passes the joint-vector null stress: real public deltas are much more compatible with row-level Q/S vector worlds than permuted deltas.
+- The action is materially stronger than H018/H019 under the H020 report: selected rowweighted delta vs H012 is `-0.001105455`, while H018 is `-0.000636475` and H019 is `-0.000631235`.
+- The train co-occurrence prior is not independently proven as the final action prior. The selected posterior is `beta=0`, meaning the final posterior is driven by H018-induced vector marginals and public-equation fit rather than empirical train-vector frequency.
+- Primary file: `submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv`.
+- Submission risk: high. It is the biggest post-H012 posterior-completion bet, not a conservative final-file refinement.

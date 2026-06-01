@@ -26,7 +26,9 @@ Previous public frontier: `analysis_outputs/submission_e247_featnn1_nn_smooth_su
 
 H012 improves over E247 by `0.0080354663`. This is now the reference submission unless private-risk considerations dominate final selection.
 
-Current next submission candidate: **none selected after H012 feedback**. The next file should be chosen only after decomposing whether H012's public-equation posterior is robust under leave-H012-out, target/subject/dateblock stability, and same-subject sleep-state memory compatibility.
+Current next high-risk submission candidate: `submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv`.
+
+Reason: after H014-H019 decomposition, H020 is the largest predeclared post-H012 worldview test. It asks whether the validated public-equation posterior should be completed as a row-level 7-target hidden state, not independent cells. Conservative default remains H012; H020 is not a private-safe replacement until public feedback exists.
 
 Public LB budget is now treated as scarce. A file is not submission-worthy unless it passes public-free governance: selector visibility, matched-null rarity, mode-wise dominance, wrong-direction or wrong-pair controls where applicable, and leave-experiment-out action-health sanity. E312 specifically blocks E310/E311 descendants because their apparent edges are predictable null-common action geometry.
 
@@ -34,7 +36,7 @@ Update after H012: this governance rule needs one amendment. H012 shows that a d
 
 External reference after H012: an attached document reports `submission_v106_sleep_state_conditioned_memory.csv` public LB `0.5703952266`. It uses same-subject temporal memory conditioned by sleep-state and sensor-quality similarity. This supports the subject/time-memory worldview, but it is still worse than H012 by `0.0022717435`, so it should guide H012 posterior regularization rather than replace H012 as the current final candidate.
 
-Update after E313: this remains **none selected**. Raw human-diary action signatures are real diagnostics, especially for readiness distance (`0.700161` Spearman), but they do not beat the geometry/null-common blocker and their top-ranked rows are mostly safe-but-too-small. Do not submit E313-ranked files directly.
+Update after E313: raw human-diary action signatures were real diagnostics, especially for readiness distance (`0.700161` Spearman), but they did not beat the geometry/null-common blocker and their top-ranked rows were mostly safe-but-too-small. Do not submit E313-ranked files directly. The current selected high-risk lane is no longer that human-diary row gate; it is the H012 public-equation posterior-completion lane, currently H020.
 
 Resolved or historical sensors after E247:
 
@@ -5136,3 +5138,45 @@ Submission interpretation:
 3. If H019 beats H018, the next architecture should infer row inclusion before materializing public-equation moves.
 4. If H019 loses while H018 wins, row-subset structure is real but too broad to justify pruning rows.
 5. If both fail, public-equation row/label posterior explains old observations but should not be pushed beyond H012.
+
+## Update After H020
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+New whole-row target-vector posterior-completion file:
+
+`submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv`
+
+What it bets:
+
+- H012/H018 should not be interpreted as `1750` independent cell decisions.
+- Each test row has one hidden 7-target Q/S state, and public-equation posterior-completion should respect that joint vector.
+- If the current breakthrough is a real hidden world and not only a cellwise public equation fit, H020 should move public LB meaningfully.
+
+Local evidence:
+
+- best sampled joint-vector config `global_b0.15`: best world MAE `0.000175369`, top100 MAE `0.000260939`;
+- selected posterior `none_b0_soft_t0.00012_p2`: posterior MAE `0.000012623`, p90 abs `0.000023274`, Spearman `0.995488722`;
+- all `300` public-delta permutation nulls are worse on the tracked joint-vector metrics;
+- selected file changes all `1750` cells, mean abs delta vs H012 `0.015251317`, max abs delta `0.123283706`;
+- rowweighted delta vs H012 is `-0.001105455`, compared with H018 `-0.000636475` and H019 `-0.000631235` under the same report;
+- upload-safe validation passed: shape `(250, 10)`, required columns present, no NaN, probabilities within `[0.000001, 0.999999]`.
+
+Important caveat:
+
+- The selected posterior has `beta=0`.
+- Weak train vector priors improve some sampled-world metrics, but they are not selected by the final posterior score.
+- Therefore H020 proves joint row-vector consistency is a strong candidate worldview; it does not yet prove empirical train co-occurrence should directly regularize the final action.
+
+Submission interpretation:
+
+1. Highest-upside posterior-completion sensor: H020.
+2. Cleaner binary-world baseline: H018.
+3. Realistic public row-subset diagnostic: H019.
+4. Conservative final/public frontier remains H012 until a post-H012 candidate is publicly validated.
+5. If H020 improves meaningfully, HS-JEPA should be described as public-equation posterior-completion over row-level human target states, not independent cells.
+6. If H020 worsens while H018 would be preferred, the joint-vector constraint is too aggressive or under-regularized; return to H018/H017-style binary/continuous posterior-completion.

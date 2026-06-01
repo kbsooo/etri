@@ -4,7 +4,7 @@
 
 Public LB는 최적화 target이 아니라 hidden public subset과 calibration sensitivity를 관측하는 sensor로 취급한다.
 
-현재 public best는 `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` = `0.5761589494`다. 아래 표의 delta는 기존 E95 frontier anchor 기준이다.
+현재 public best는 `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv` = `0.5681234831`다. 아래 초기 표의 delta는 기존 E95 frontier anchor 기준이며, H012 이후 관측은 별도 섹션에 기록한다.
 
 ## Known Observations
 
@@ -1950,3 +1950,37 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - prioritize H018 if the goal is strongest posterior-completion action;
   - use H019 if the next public slot is meant to test row-level public/private subset actionability.
+
+## Public-Free Observation: H020 Joint Target-Vector Hardworld HS-JEPA
+
+- submission file prepared: `submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv`
+- public LB: not submitted
+- changed point:
+  - keeps H012 as anchor;
+  - replaces independent row-target hard labels with sampled row-level 7-bit target vectors;
+  - uses H018 marginal probabilities plus optional train global/subject target-vector priors;
+  - moves H012 toward the selected joint-vector posterior on all `1750` cells.
+- expected LB reaction:
+  - improvement would mean the public-equation posterior is closer to a coherent row-level hidden Q/S state than to independent cell marginals;
+  - worsening would mean joint-vector consistency is explanatory under old public equations but too aggressive as a new action materializer.
+- local/public-free observation:
+  - sampled joint-vector worlds: `70000` per config;
+  - best sampled config by config score: `global_b0.15`;
+  - best sampled world MAE `0.000175369`;
+  - top100 sampled world MAE `0.000260939`;
+  - selected posterior: `none_b0_soft_t0.00012_p2`;
+  - posterior MAE `0.000012623`;
+  - posterior p90 abs `0.000023274`;
+  - posterior Spearman `0.995488722`;
+  - ESS `977.953487`;
+  - mean/max shift vs H018 `0.010608997` / `0.044670350`;
+  - all `300` public-delta permutation nulls are worse on tracked joint-vector world metrics;
+  - selected rowweighted delta vs H012 `-0.001105455`;
+  - H018 under the same report is `-0.000636475`, H019 is `-0.000631235`.
+- interpretation:
+  - row-level target-vector consistency is now the strongest high-risk posterior-completion worldview;
+  - train target co-occurrence is not yet the action driver, because the selected posterior has `beta=0`;
+  - the useful constraint is currently "one row should choose one coherent 7-label hidden state", not "copy train vector frequencies."
+- next experiment:
+  - if one public slot is reserved for the biggest worldview-changing posterior-completion test, H020 is more informative than another H018/H019 sibling;
+  - if the goal is cleaner attribution and lower action novelty, H018 remains the baseline binary-world test.

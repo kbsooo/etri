@@ -4294,3 +4294,23 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - selected row-posterior delta vs H012 `-0.000611233`, but H018 is slightly stronger under the same row posterior at `-0.000615495`.
 - Registry status: approved as a realistic public-row-subset diagnostic. Not approved as a stronger action than H018 unless public feedback specifically rewards row exclusion.
 - Failure condition: if public LB worsens relative to H018/H012, keep the row-subset posterior as explanatory evidence but stop pruning low-inclusion rows from H018-style actions.
+
+### H020 joint target-vector hardworld posterior
+
+- Target hidden structure: row-level 7-target Q/S hidden state, represented as one 7-bit target vector per test row.
+- Why needed: independent cellwise public posteriors can fit known LB equations while producing implausible target combinations. A stronger HS-JEPA target should predict the hidden row state vector, not seven unrelated label cells.
+- Feature/action form:
+  - context: H018 hard-world marginal posterior, known public submission loss deltas, and train target-vector frequencies;
+  - latent: sampled joint target-vector worlds with optional global/subject empirical vector priors;
+  - anti-collapse check: public-delta permutation null while keeping the same sampled vector worlds;
+  - action: move H012 toward the selected joint-vector posterior on all cells.
+- Current evidence:
+  - best sampled config `global_b0.15`, best/top100 world MAE `0.000175369` / `0.000260939`;
+  - selected posterior `none_b0_soft_t0.00012_p2`;
+  - posterior MAE `0.000012623`, p90 abs `0.000023274`, Spearman `0.995488722`;
+  - real vector-world errors beat all `300` public-delta permutation nulls;
+  - selected file `submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv`;
+  - selected rowweighted delta vs H012 `-0.001105455`, stronger than H018/H019 in the same report;
+  - upload-safe validation passed with no NaN and probabilities clipped to `[0.000001, 0.999999]`.
+- Registry status: approved as a high-upside posterior-completion public sensor and architecture evidence for row-level target-state HS-JEPA. Not approved as private-safe final evidence.
+- Failure condition: if public LB worsens, do not discard joint-vector representation entirely; discard the aggressive beta-zero materializer. A beta-positive/train-prior or private-risk-gated vector posterior would need separate evidence.

@@ -6522,3 +6522,35 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - Keep H019 as a high-information row-subset sensor.
   - If submitted and it beats H018/H012, row-level public/private subset identity matters and future HS-JEPA should explicitly infer public rows.
   - If H019 loses while H018 wins, the public row-subset representation is explanatory but the best action is still broad hard-world posterior-completion.
+
+## H020. Joint Target-Vector Hardworld HS-JEPA
+
+- Observe: H018/H019 still let each row-target cell behave mostly independently. Real labels are generated as a 7-target vector per row, and train target co-occurrence is highly structured (`1111111`, `0111111`, `0001111`, etc. are frequent).
+- Wonder: does the H012/H018 public-equation latent survive when every row must choose one coherent 7-bit Q/S target vector, rather than seven independent binary labels?
+- Hypothesis: if the public-equation latent is close to a real hidden row state, sampled row-level target vectors should match known public deltas far better than permuted public deltas. The resulting vector posterior should improve over H018 by enforcing Q/S route consistency.
+- Method: `hitl/h020_joint_vector_world_jepa.py`.
+  - anchor: H012;
+  - base marginal prior: H018 hard-world posterior;
+  - vector prior: train 7-bit target-vector frequency, with global and subject-conditioned beta variants;
+  - sample: `70000` joint vector worlds per config;
+  - posterior: soft/top-k/elite reweighting by known public-delta fit;
+  - null: permute known public deltas while keeping sampled joint-vector predictions fixed;
+  - action: move H012 toward the selected joint-vector posterior.
+- Result:
+  - best sampled config by config score: `global_b0.15`, best world MAE `0.000175369`, top100 MAE `0.000260939`, Spearman `0.921804511`;
+  - selected posterior by posterior score: `none_b0_soft_t0.00012_p2`;
+  - posterior MAE `0.000012623`, p90 abs `0.000023274`, Spearman `0.995488722`;
+  - ESS `977.953487`;
+  - mean abs shift vs H018 `0.010608997`, max shift `0.044670350`, Spearman vs H018 `0.997836163`;
+  - real joint-vector errors beat all `300` public-delta permutation nulls on best/top100/p01/median/p90 world errors and Spearman;
+  - primary file: `submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv`;
+  - primary changes all `1750` cells, mean abs delta vs H012 `0.015251317`, max abs delta `0.123283706`;
+  - rowweighted delta vs H012 `-0.001105455`, compared with H018 `-0.000636475` and H019 `-0.000631235` under the same H020 report.
+- Interpretation:
+  - the row-level joint-vector constraint is public-equation compatible and not a permuted-score artifact;
+  - this is a larger and more coherent action than H018/H019 under the H020 sensor;
+  - caveat: the selected posterior uses `beta=0`, so train co-occurrence prior is not independently proven as the final action prior. Weak global/subject priors improve some sampled hard-world metrics, but the posterior materializer still trusts H018-induced row-vector marginals more than empirical train-vector frequencies.
+- Decision:
+  - H020 becomes the highest-upside posterior-completion sensor if the next public slot is meant to test a whole-row hidden target-vector world;
+  - H018 remains the cleaner binary hard-world baseline;
+  - do not claim "train target co-occurrence solved it" unless a beta-positive H020 variant wins public or survives a stronger private-risk stress.

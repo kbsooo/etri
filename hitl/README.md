@@ -6,8 +6,10 @@ search.
 
 ## Current Baseline
 
-- Public best: `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
-- Public LB: `0.5761589494`
+- Public best: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+- Public LB: `0.5681234831`
+- Current high-risk post-H012 sensor: `submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv`
+- H020 question: whether the public-equation posterior should be completed as a row-level 7-target hidden state rather than independent cells.
 
 ## H001: E247-Locked Q2/S1 Transplant
 

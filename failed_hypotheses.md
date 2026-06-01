@@ -2880,3 +2880,12 @@
 - Implementation issue possible: medium. The external V106 prediction file is unavailable, so H014 reconstructed the idea from local same-subject train memory and H013 raw-state features. Still, the disagreement/gain concentration is strong enough to reject simple memory regularization.
 - Bottleneck implication: H012's breakthrough is public-equation/subset geometry more than plain within-person continuity. Q3 memory remains useful as a diagnostic, but S1/S2/S4 public-gain cells are mostly memory-disagree.
 - Do not repeat: memory-compatible H012 pruning or conflict reversion as a default submission. Use subject-time memory only as a target-specific diagnostic or as one view inside a richer private-risk model.
+
+## FH320. Empirical train target-vector frequency is enough to choose the H020 action prior
+
+- Failed hypothesis: once H018 is constrained to row-level 7-target vectors, the train global or subject target-vector frequency prior should become the selected action prior.
+- Observed result: H020's sampled-world config score favored weak positive priors in several places, led by `global_b0.15` with best/top100 world MAE `0.000175369` / `0.000260939`. But the selected posterior by action score was `none_b0_soft_t0.00012_p2`, with posterior MAE `0.000012623`, p90 abs `0.000023274`, and Spearman `0.995488722`.
+- Why discard as a complete action rule: target-vector co-occurrence is useful as a world-search constraint, but empirical train-vector frequency was not selected as the final materializer. The stronger source remains H018-induced marginals plus public-equation fit.
+- Implementation issue possible: medium. The prior grid is simple and may underuse subject/dateblock context. A richer conditional vector prior could still be useful.
+- Bottleneck implication: the live H020 signal is row-level joint-vector consistency, not naive train co-occurrence transfer.
+- Do not repeat: submitting a beta-positive train-vector-prior variant just because it sounds more human-state-like. It needs a separate posterior or private-risk advantage over `none_b0`.
