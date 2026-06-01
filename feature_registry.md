@@ -4750,3 +4750,37 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   direct linear translator.
 - Failure condition: do not continue linear nullspace/survivor-cone projection
   around H012 unless a new target proves nonlocal route assignment separately.
+
+### H040 discrete route-state features
+
+- Target hidden structure: row-level assignment to public-equation,
+  transition-exception, private-memory, rollback, uncertainty, or hold routes.
+- Why needed: H039 rejects local linear projection, while H038 validates
+  memory-transition state. A row should perhaps choose a route before its
+  probabilities are decoded.
+- Feature/action form:
+  - `public_route_score`: row public probability, H036 world score, support
+    count, posterior gain, transition exception, conflict core, and memory
+    disagreement;
+  - `private_memory_route_score`: private safety, memory agreement,
+    same-subject memory reliability, transition repair, rollback cost, and low
+    public probability;
+  - `transition_exception_route_score`: transition exception, memory
+    disagreement, world-opposes-memory, high world score, and local subject
+    score jumps;
+  - `route_uncertainty_score`: public probability near boundary plus conflict
+    and support density;
+  - action families: whole-row route moves to `world`, `posterior`,
+    `posterior_world`, `memory`, `memory_state`, or `e247`.
+- Current evidence:
+  - generated/scored candidates `328`;
+  - selected world/posterior deltas
+    `-0.001426068` / `-0.001708677`;
+  - `198/328` candidates have `world_cell_delta < -0.0005`;
+  - `181/328` candidates have `h025_score < 0`;
+  - `0/328` candidates have negative H024 margin;
+  - `0/328` candidates have H024 support >= `0.55`.
+- Registry status: approved as a row-state latent and proposal prior. Rejected
+  as a direct post-H012 route materializer.
+- Failure condition: do not submit row-route public/world/posterior moves unless
+  H024 support and margin both turn positive under a genuinely new decoder.

@@ -3199,3 +3199,31 @@
   separation, or nonlocal row-vector action composition.
 - Do not repeat: SVD/nullspace/projection sweeps on failed H036-H038 action
   directions as public submissions without a new nonlocal route objective.
+
+## FH340. Simple discrete row-route assignment is directly actionable
+
+- Failed hypothesis: after H039 rejects linear projection, the missing decoder
+  is a row-level route switch. Rows should be assigned to public-equation,
+  transition-exception, memory/private, rollback, or hold routes, then moved
+  toward the corresponding probability representation.
+- Observed result: H040 validates route state as a latent but rejects it as a
+  materializer. It generated and scored `328` route candidates. The selected
+  diagnostic has large world/posterior gains
+  `-0.001426068` / `-0.001708677`, H025 score/gain
+  `-3.854202503` / `+3.854816788`, and row-permutation p `0.280000000`. But
+  H024 prices it far worse than H012 with margin/support
+  `+0.007548586` / `0.250000000`. Across all candidates, `198/328` have
+  `world_cell_delta < -0.0005`, `181/328` have `h025_score < 0`, but `0/328`
+  have negative H024 margin and `0/328` reach H024 support `0.55`.
+- Why discard as a submission route: row-route edits improve the hidden
+  public-world proxy while leaving the H012-compatible public action manifold.
+  H024's complete rejection means public/world gain is not enough.
+- Implementation issue possible: medium. H040 uses hand-built route scores and
+  route moves. A future solver could use the same route state inside public
+  subset equation inference rather than as a post-hoc edit.
+- Bottleneck implication: the hidden route is real, but the decoder must solve
+  public/private subset and label equations jointly. H012 should not be edited
+  after the posterior is fixed.
+- Do not repeat: whole-row public-route, transition-exception, memory/private,
+  or rollback top-k materializations as public submissions without a new
+  equation-level solver.

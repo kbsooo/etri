@@ -135,6 +135,21 @@ Current post-H012 status:
   `0.55`. H039 therefore validates compact action-failure geometry and rejects
   local linear nullspace/survivor-cone projection as the missing translator.
 
+- H040 produced no promoted root submission.
+- Interpretation: H040 tested the next natural nonlinear claim: maybe the
+  missing decoder is a discrete public/private row route assignment rather than
+  a smooth cell/vector projection. It absorbed the external V106
+  sleep-state-conditioned memory note as a repeated-subject memory signal, then
+  generated `328` whole-row/route candidates using H036 public-world, H012
+  posterior, H014/H038 memory, private-safety, and transition-exception route
+  scores. The best route candidate has strong internal public-world and
+  posterior gains (`-0.001426068` / `-0.001708677`) and H025 row-permutation p
+  `0.280000`, but H024 rejects it: pre-H012 margin `+0.007548586` and support
+  better than H012 only `0.250000`. Across all H040 candidates, `198/328` have
+  `world_cell_delta < -0.0005`, `181/328` have `h025_score < 0`, but `0/328`
+  have negative H024 margin and `0/328` reach H024 support `0.55`. This kills
+  the simple row-route translator.
+
 Public LB operating rule:
 
 - Public LB is not an iteration loop. A file is promotable only when it beats the current priority under public-free stress, including fresh nulls that were not used to build the candidate.
@@ -146,6 +161,12 @@ Public LB operating rule:
   removable without killing the public-world signal. The next breakthrough
   should model discrete route/calibration/private-public transfer or public
   subset assignment directly, not continue local linear projection around H012.
+- H040 then tests that discrete row-route idea directly and rejects the simple
+  version: route assignment can create large public-world proxy gains, but H024
+  sees every candidate as worse than H012. The live big-bet is now narrower:
+  infer hidden public/private subset and label equations directly, with route
+  state as a prior inside the equation solver, instead of editing H012
+  probabilities by row or cell after the posterior is already built.
 
 Primary working notes:
 

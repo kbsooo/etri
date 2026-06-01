@@ -939,3 +939,19 @@ positive H024 margin (`+0.000238744`). The HS-JEPA interpretation is now more
 precise: the hidden public world, memory-transition route, and failure geometry
 are real latent objects, but the decoder is not a local linear nullspace around
 H012. It likely requires discrete route/private-public assignment.
+
+H040 tests that discrete assignment directly. The route latent is healthy as a
+representation: public-route rows have coherent high row public probability,
+support count, transition-exception, and memory-disagreement structure. Route
+materialization also produces large H036/H012-posterior proxy gains:
+`198/328` candidates have `world_cell_delta < -0.0005`, and the selected
+candidate has world/posterior deltas `-0.001426068` / `-0.001708677`.
+
+The LeJEPA-style action check is decisive: H024 rejects every candidate. The
+selected route move has H024 margin/support `+0.007548586` / `0.250000000`, and
+the full H040 set has `0` negative-H024-margin candidates and `0` candidates
+with H024 support above `0.55`. H025 is less negative (`181/328` candidates have
+`h025_score < 0`, selected row-permutation p `0.280000000`), but this is not
+enough. The latent is not collapsed; the action decoder is wrong. Simple
+row-route assignment joins local gradient, support swap, memory repair, and
+linear nullspace as rejected post-H012 materializers.

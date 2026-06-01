@@ -7096,3 +7096,55 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - do not submit generated H039 variants;
   - next big-bet should model discrete route/private-public assignment or
     public-subset equations directly, not local linear post-H012 projection.
+
+## H040. Discrete Route-Assignment HS-JEPA
+
+- Observe: H012 beats the external V106 same-subject sleep-state memory note by
+  `0.0022717435`, but H038 showed memory-transition exceptions explain much of
+  H012's anatomy. H039 then rejected local linear projection. The remaining
+  natural claim is that the decoder is discrete route assignment.
+- Wonder: if each row has a hidden route, can we choose public-equation,
+  memory/private, rollback, or hold routes at the whole-row level and preserve
+  H012's public-world gains while passing action-health stress?
+- Hypothesis: if post-H012 translation is a discrete row-route law, then
+  whole-row route moves should improve H036/H012 posterior proxies and at least
+  some should lower H024 pre-H012 margin with nontrivial H024 support.
+- Method: `hitl/h040_discrete_route_assignment_jepa.py`.
+  - context: H012, H036 `world_q_cond`, H012 posterior, H014/H038 memory,
+    private-safety, transition-exception, and row public probability;
+  - target representation: per-row public route, private-memory route,
+    transition-exception route, and uncertainty route scores;
+  - action: materialize whole-row route moves toward `world`, `posterior`,
+    `posterior_world`, `memory`, `memory_state`, or `e247`, under all/support/
+    exception/world-high masks;
+  - stress: H036 world/posterior proxy, H024 pre-H012 decoder, H025
+    action-health, and selected row-permutation.
+- Result:
+  - generated/scored candidates `328`;
+  - best diagnostic:
+    `h040_public_route_world_p140_world_high_a0.45_h012_v0_support_b0_all_0985acf7`;
+  - selected world/posterior deltas:
+    `-0.001426068` / `-0.001708677`;
+  - selected route delta: `-0.000686116`;
+  - selected changed cells/rows: `334` / `130`;
+  - selected H024 margin/support:
+    `+0.007548586` / `0.250000000`;
+  - selected H025 score / gain:
+    `-3.854202503` / `+3.854816788`;
+  - selected row-permutation p `0.280000000`;
+  - candidates with `world_cell_delta < -0.0005`: `198`;
+  - candidates with `h025_score < 0`: `181`;
+  - candidates with negative H024 margin: `0`;
+  - candidates with H024 support >= `0.55`: `0`;
+  - no root upload-safe file was promoted.
+- Interpretation:
+  - positive: route state strongly aligns with H036/H012 posterior and H025 on
+    many candidates;
+  - negative: H024 rejects every route materialization. Row-route gains are
+    still not H012-compatible public actions.
+- Decision:
+  - H040 is diagnostic-only;
+  - do not submit generated H040 variants;
+  - next big-bet should move route state into the public-equation solver itself
+    or infer public/private subset equations directly, not edit H012 rows after
+    the posterior is fixed.

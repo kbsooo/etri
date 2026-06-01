@@ -6724,3 +6724,40 @@ Stress conclusion:
   removes nearly all public-world signal, leaving low-gain residuals that still
   do not pass H024/H025.
 - The next stress should model discrete route/private-public state directly.
+
+## H040 Discrete Route-Assignment Stress
+
+Stress target:
+
+- treat post-H012 translation as a discrete row-route problem;
+- routes: public-equation, posterior/world, memory/private, rollback, and hold;
+- use external V106 same-subject sleep-state memory as supporting evidence for
+  the memory route, not as the final action.
+
+Stress result:
+
+- generated/scored candidates: `328`;
+- selected diagnostic:
+  `h040_public_route_world_p140_world_high_a0.45_h012_v0_support_b0_all_0985acf7`;
+- selected world/posterior deltas:
+  `-0.001426068` / `-0.001708677`;
+- selected H024 margin/support:
+  `+0.007548586` / `0.250000000`;
+- selected H025 score/gain:
+  `-3.854202503` / `+3.854816788`;
+- selected H025 row-permutation p: `0.280000000`;
+- candidates with `world_cell_delta < -0.0005`: `198`;
+- candidates with `h025_score < 0`: `181`;
+- candidates with negative H024 margin: `0`;
+- candidates with H024 support >= `0.55`: `0`;
+- promoted root file: none.
+
+Stress conclusion:
+
+- H040 route latent is strong enough to move public-world proxies by a large
+  amount.
+- H024 rejects all route materializations, so the simple row-route translator is
+  not action-safe.
+- The next stress should not be another route top-k materialization. Route
+  state must be used while solving hidden public/private subset equations
+  directly.

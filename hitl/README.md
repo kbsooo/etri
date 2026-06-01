@@ -1029,3 +1029,46 @@ contains most of the usable H036 public-world signal, so a local linear
 projection cannot decode it safely. The next HS-JEPA step should leave local
 linear post-H012 editing and model discrete route/private-public assignment or
 public subset equations more directly.
+
+## H040: Discrete Route-Assignment HS-JEPA
+
+- Script: `hitl/h040_discrete_route_assignment_jepa.py`
+- Report:
+  `hitl/h040_discrete_route_assignment_jepa/h040_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+Can post-H012 translation be solved by assigning whole rows to public-equation,
+memory/private, rollback, or hold routes instead of applying smooth local cell
+projections?
+
+### Main Finding
+
+Simple row-route assignment is not enough. It creates large public-world proxy
+gains, but H024 rejects every candidate versus H012.
+
+- External observation absorbed:
+  `submission_v106_sleep_state_conditioned_memory.csv` public LB
+  `0.5703952266`.
+- Generated/scored H040 candidates: `328`.
+- Best diagnostic:
+  `h040_public_route_world_p140_world_high_a0.45_h012_v0_support_b0_all_0985acf7`.
+- Selected world/posterior deltas:
+  `-0.001426068` / `-0.001708677`.
+- Selected H024 margin/support:
+  `+0.007548586` / `0.250000000`.
+- Selected H025 row-permutation p: `0.280000000`.
+- Candidates with `world_cell_delta < -0.0005`: `198`.
+- Candidates with `h025_score < 0`: `181`.
+- Candidates with negative H024 margin: `0`.
+- Candidates with H024 support >= `0.55`: `0`.
+
+### Interpretation
+
+H040 is a clean negative result. The route state is meaningful: high public
+rows are coherent and route moves have large H036/H012-posterior gains. But
+materializing those routes after H012 breaks the H012 action manifold. The
+missing HS-JEPA decoder is not a simple row-level public/private switch. The
+next big-bet should put route priors inside the public-equation solver itself,
+or infer hidden public/private subset equations directly.

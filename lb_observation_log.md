@@ -2518,3 +2518,44 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - move from local projection to discrete route/private-public assignment, or
     infer the public subset/label equations more directly.
+
+## Public-Free Observation: H040 Discrete Route-Assignment JEPA
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- external reference:
+  - attached V106 document reports
+    `submission_v106_sleep_state_conditioned_memory.csv` public LB
+    `0.5703952266`;
+  - this supports same-subject human-state memory, but H012 remains better by
+    `0.0022717435`.
+- changed point:
+  - treats public/private/memory/rollback as discrete row routes;
+  - moves whole rows or row-supported cells toward H036 world, H012 posterior,
+    H014/H038 memory, or E247 rollback;
+  - uses H024/H025 stress before any public submission.
+- expected LB reaction:
+  - if a candidate had passed and improved, it would mean the post-H012
+    bottleneck is a row-route decoder;
+  - because no candidate passed, H040 files should not spend a public slot.
+- local/public-free observation:
+  - generated/scored candidates `328`;
+  - selected diagnostic
+    `h040_public_route_world_p140_world_high_a0.45_h012_v0_support_b0_all_0985acf7`;
+  - selected world/posterior deltas
+    `-0.001426068` / `-0.001708677`;
+  - selected H024 margin/support
+    `+0.007548586` / `0.250000000`;
+  - selected H025 row-permutation p `0.280000000`;
+  - candidates with `world_cell_delta < -0.0005`: `198`;
+  - candidates with `h025_score < 0`: `181`;
+  - candidates with negative H024 margin: `0`;
+  - candidates with H024 support >= `0.55`: `0`.
+- interpretation:
+  - simple row-route assignment is a useful latent state but a bad direct
+    action;
+  - the hidden route should become a prior inside public-subset equation
+    inference, not a post-H012 edit.
+- next experiment:
+  - infer public/private subset equations directly with route priors and
+    H012-phase constraints.

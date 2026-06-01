@@ -333,3 +333,5 @@ hitl/h038_memory_transition_world_translator_jepa/h038_h025_top_cells.csv
 # H039 materialized nullspace translator sweep files are reproducible from the script.
 hitl/h039_failed_translator_nullspace_jepa/submission_h039_*.csv
 hitl/h039_failed_translator_nullspace_jepa/h039_h025_top_cells.csv
+hitl/h040_discrete_route_assignment_jepa/submission_h040_*.csv
+hitl/h040_discrete_route_assignment_jepa/h040_h025_top_cells.csv

@@ -5642,3 +5642,49 @@ Submission interpretation:
    projection leaves too little signal.
 4. The next public candidate should attack discrete route/private-public
    assignment or public subset inference directly.
+
+## Update After H040
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+H040 promoted submission:
+
+None.
+
+What H040 tested:
+
+- Whether the post-H012 decoder is a discrete row-route assignment.
+- Whether public-route, transition-exception, memory/private, rollback, and
+  hold routes can be materialized as whole-row probability moves.
+
+Local evidence:
+
+- generated/scored candidates: `328`;
+- selected diagnostic:
+  `hitl/h040_discrete_route_assignment_jepa/submission_h040_public_route_world_p140_world_high_a0.45_h012_v0_support_b0_all_0985acf7.csv`;
+- selected world/posterior deltas:
+  `-0.001426068` / `-0.001708677`;
+- selected H024 margin/support:
+  `+0.007548586` / `0.250000000`;
+- selected H025 row-permutation p: `0.280000000`;
+- candidates with `world_cell_delta < -0.0005`: `198`;
+- candidates with `h025_score < 0`: `181`;
+- candidates with negative H024 margin: `0`;
+- candidates with H024 support >= `0.55`: `0`.
+
+Submission interpretation:
+
+1. No H040 file should be submitted.
+2. Discrete route state is useful as a latent/prior, but direct row-route
+   materialization is not public-safe.
+3. The next high-upside public candidate should solve public/private subset
+   equations with route priors inside the inference loop, not after H012.
+- Bottleneck implication: H012 is not only a set of cells or rows. It is a
+  phase-consistent public-equation solution; post-hoc route assignment breaks
+  that phase.
+- Do not repeat: public-route top-row pushes, whole-row world/posterior pulls,
+  or memory/private row switches as standalone submissions.

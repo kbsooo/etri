@@ -5003,3 +5003,47 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   says the missing decoder is nonlinear/discrete rather than linear nullspace.
 - 제출 전략: none. Next action should solve route/private-public assignment or
   public subset equations directly.
+
+### H040: Simple discrete row-route assignment is the missing post-H012 decoder
+
+- 상태: rejected as a direct translator; accepted as a route-state diagnostic.
+- 왜 그럴듯한가: H036 validates a hidden public-world posterior, H038 validates
+  memory-transition exceptions, and H039 rejects local linear projection. A
+  nonlinear route switch is the next natural decoder unit.
+- 맞다면:
+  - whole-row route moves should preserve strong world/posterior gains;
+  - at least some route candidates should have negative H024 margin or H024
+    support above `0.55`;
+  - H025 row-permutation should not reject selected row placement.
+- 틀리다면:
+  - many route moves can improve world/posterior proxies but still look worse
+    than H012 to H024;
+  - H024 support should remain low across the route family.
+- 최소 실험: `hitl/h040_discrete_route_assignment_jepa.py`, using public,
+  private-memory, transition-exception, and uncertainty row scores to generate
+  `328` row-route candidates.
+- 관측:
+  - selected diagnostic:
+    `h040_public_route_world_p140_world_high_a0.45_h012_v0_support_b0_all_0985acf7`;
+  - selected world/posterior deltas:
+    `-0.001426068` / `-0.001708677`;
+  - selected H024 margin/support:
+    `+0.007548586` / `0.250000000`;
+  - selected H025 row-permutation p `0.280000000`;
+  - `198/328` candidates have `world_cell_delta < -0.0005`;
+  - `181/328` candidates have `h025_score < 0`;
+  - `0/328` candidates have negative H024 margin;
+  - `0/328` candidates have H024 support >= `0.55`;
+  - no promoted upload-safe file.
+- 성공/폐기 기준:
+  - accept row-route translator only if world/posterior gain coexists with
+    H024 margin <= -0.00010, support >= 0.55, H025 score < 0, and rowperm p <=
+    0.35. Not observed.
+  - keep route state as a useful latent if route scores produce large
+    H036/posterior gains. Observed.
+- public LB 관측 반응: no H040 file should be submitted. If a H040 file wins,
+  H024 is over-penalizing row-route public-world moves. Otherwise H040 says the
+  route decoder must be inside public-equation inference, not a post-hoc
+  probability materializer.
+- 제출 전략: none. Next action should resample hidden public/private subset and
+  label equations with route priors as first-class variables.
