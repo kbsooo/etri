@@ -4318,3 +4318,27 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 관측: public LB for `submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv` is `0.576290429`. This is worse than E247 by `+0.000131480`, but slightly better than E95 by `-0.000000901`.
 - 해석: E368 validates "not dead" public relevance of target-specific Q2/S1 lifestyle state, but falsifies it as the current public-frontier replacement. The public bottleneck is now action calibration/subset selection, not discovery of the Q2/S1 state.
 - 제출 전략: final default returns to E247. Future Q2/S1 work must create a public-safe veto/calibration target before another submission.
+
+### H009: S4 mobility hidden state is a rank-ordering law, not a tiny logit correction
+
+- 상태: supported as a local hidden law; not accepted as S4-only submission translator.
+- 왜 그럴듯한가: H005/H007/H008 repeatedly found mobility/errand/obligation state pointing toward S4-up, but small S4 edits stayed below public resolution.
+- 맞다면: preserving E247 S4 marginal distribution while reassigning S4 ranks by mobility latent should improve blocked S4 logloss, and reverse reassignment should fail.
+- 틀리다면: rank rewrites should behave like random shuffles, or reverse controls should look similar to forward controls.
+- 최소 실험: `hitl/h009_s4_mobility_rank_jackpot.py`.
+- 관측: `88` candidates tested. Best forward local probe `qrank_delta_pos_subject_s0.35` has worst delta `-0.008027` and mean delta `-0.015993`; reverse controls have positive worst deltas, best reverse `+0.026745`. No candidate clears jackpot gate because selector p90 remains too risky.
+- 성공/폐기 기준: local hidden law accepted if both subject/dateblock improve and reverse controls fail. S4-only submission accepted only if selector/jackpot gate passes. First condition observed; second not observed.
+- public LB 관측 반응: no H009 upload by default. If uploaded and improved, S4 row ordering would be the missing public law. If bad, S4-only materialization is dead but the mobility latent remains useful.
+- 제출 전략: do not default-submit H009. Use it as bridge to H010 route-level translation.
+
+### H010: hidden mobility state materializes as objective stage route S1 down / S4 up
+
+- 상태: live high-information jackpot candidate.
+- 왜 그럴듯한가: S4-only rank rewrite is locally real but too risky. Human mobility/obligation state should change objective sleep-stage allocation, so S1/S4 route movement may be the safer target representation.
+- 맞다면: `S1↓/S4↑` route rewrite should improve both subject/dateblock local route logloss, pass selector tolerance better than Q2-heavy routes, and reverse controls should fail.
+- 틀리다면: Q2/S1/S4 route rewrites should be no healthier than S4-only, or reverse controls should survive similarly.
+- 최소 실험: `hitl/h010_mobility_route_triad_jackpot.py`.
+- 관측: `98` candidates tested. Exactly `1` jackpot candidate survives: `submission_h010_objective_mobility_s1down_s4up_target_delta_pos_subject_s0_25_uploadsafe.csv`. It changes `455` cells (`S1=213`, `S4=242`), has local worst delta `-0.004319`, selector mean `-0.001259`, selector p90 `0.000702`. Q2-heavy routes are locally strong but selector-risky. Reverse controls are locally bad (`+0.019796` to `+0.086478` worst deltas).
+- 성공/폐기 기준: accept as next public sensor if one route candidate passes local robustness plus jackpot selector tolerance and matched reverse controls fail. Observed.
+- public LB 관측 반응: if H010 improves, the central hidden law becomes objective mobility-stage routing, not Q2 intervention calibration. If H010 worsens, mobility latent exists but current rank/route materializer is not public-calibrated.
+- 제출 전략: one-file big-bet candidate is `hitl/h010_mobility_route_triad_jackpot/submission_h010_objective_mobility_s1down_s4up_target_delta_pos_subject_s0_25_uploadsafe.csv`.

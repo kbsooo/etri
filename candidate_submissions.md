@@ -4789,3 +4789,30 @@ Submission interpretation:
 2. If one extra diagnostic slot is available, E368 has already served its purpose: it validated that Q2/S1 hidden lifestyle state is public-relevant but insufficient.
 3. Do not submit E370/E371/E372 top local files now. Their local support either leaves Q2 risk intact or worsens it.
 4. Any remaining breakthrough attempt should not be "another E368 variant"; it needs a new target that decides when Q2 action should be vetoed or left unchanged.
+
+## Update After H009/H010 Jackpot Route Tests
+
+Current safe public-best remains:
+
+`analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+
+Known public LB: `0.5761589494`.
+
+One high-information big-bet candidate now exists:
+
+`hitl/h010_mobility_route_triad_jackpot/submission_h010_objective_mobility_s1down_s4up_target_delta_pos_subject_s0_25_uploadsafe.csv`
+
+Why this is not just another tiny insurance variant:
+
+- H009 first tested the aggressive S4-only idea: preserve E247 S4 prior but rewrite S4 rank by HS-JEPA mobility state.
+- H009 proved the direction is real locally: best S4 rank rewrite has worst local delta `-0.008027`, while reverse controls are strongly bad.
+- But H009 did not clear jackpot selection because S4-only rank rewrite is too public-risky.
+- H010 then tested the bigger human-state route: hidden mobility should alter objective stage allocation as `S1 down + S4 up`.
+- H010 produced exactly one jackpot candidate: local worst delta `-0.004319`, selector mean `-0.001259`, selector p90 `0.000702`, with only S1/S4 changed.
+
+Submission interpretation:
+
+1. If we need the safest final answer, submit E247.
+2. If we want the most informative "한탕" submission, submit H010 uploadsafe.
+3. If H010 improves public LB, the live world model becomes objective mobility-stage routing: hidden mobility/obligation state reallocates S1/S4, while Q2 should remain mostly untouched.
+4. If H010 worsens, the S4 mobility latent is real locally but cannot be directly materialized by rank/route reassignment; the next big bet should learn a route action-health target rather than amplify mobility state.

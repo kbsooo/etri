@@ -6169,3 +6169,48 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E247 remains the final-score baseline.
   - E368 remains a diagnostic anchor for target-specific Q2/S1 hidden lifestyle state.
   - No E370/E371/E372 derivative should be submitted as a "safer E368" without a new independent public-safe Q2 veto/calibration target.
+
+## H009. S4 Mobility Rank Jackpot
+
+- Observe: H007/H008 repeatedly found a real S4 mobility latent, but tiny S4 logit edits were below public resolution.
+- Wonder: what if E247's S4 marginal prior is fine, but its row ordering is wrong for hidden mobility state?
+- Hypothesis: preserving E247's S4 distribution while reassigning S4 ranks by HS-JEPA mobility state should improve blocked S4 logloss; reverse rank controls should fail.
+- Method: `hitl/h009_s4_mobility_rank_jackpot.py`.
+  - candidate families: global/subject/dateblock quantile rewrites, tail swaps, model-blend rewrites, and matched reverse controls.
+  - stress: subject5 and dateblock5 local S4 logloss, public-free selector anatomy, movement size gates.
+- Result:
+  - generated `88` candidates;
+  - jackpot candidates: `0`;
+  - local-only high-risk candidates: `26`;
+  - best local family: subject-level quantile rank rewrite;
+  - best local probe `qrank_delta_pos_subject_s0.35` has worst local delta `-0.008027`, mean delta `-0.015993`, selector mean `-0.000718`, p90 `0.000942`;
+  - reverse controls are locally bad: best reverse control worst delta `+0.026745`.
+- Interpretation:
+  - The S4 mobility direction is real. Reverse controls failing confirms this is not arbitrary row shuffling.
+  - S4-only rank rewriting is still too public-risky as a standalone submission. The discovery needs to be translated as a route/state, not a single-target S4 postprocess.
+- Decision: no H009 upload by default. Use H009 as proof that the next big bet should move from S4-only to a multi-target objective mobility route.
+
+## H010. Mobility Route Triad Jackpot
+
+- Observe: H009 validated S4 mobility ordering but rejected S4-only materialization. H005's stronger human story was not S4 alone: mobility/obligation state should express as a route across sleep-stage labels.
+- Wonder: does the hidden mobility state become safer and more meaningful if translated as an objective route, especially `S1 down + S4 up`, instead of a one-target S4 edit?
+- Hypothesis: rows with high HS-JEPA mobility target-delta should receive a coupled objective-stage rewrite while preserving each target's E247 marginal distribution.
+- Method: `hitl/h010_mobility_route_triad_jackpot.py`.
+  - routes tested: `S1↓/S4↑`, `Q2↑/S4↑`, `Q2↑/S1↓/S4↑`, `Q1↓/S1↓/S4↑`, `Q1↓/Q2↑/S4↑`;
+  - signals tested: human-state rank, teacher rank, low-energy score, target plus-prob, target positive-delta, target abs-delta;
+  - stress: subject5/dateblock5 blocked route logloss, reverse controls, public-free selector, movement anatomy.
+- Result:
+  - generated `98` candidates;
+  - jackpot candidates: `1`;
+  - selected candidate: `submission_h010_objective_mobility_s1down_s4up_target_delta_pos_subject_s0_25_uploadsafe.csv`;
+  - route: `S1↓/S4↑`;
+  - local worst delta `-0.004319`;
+  - selector mean `-0.001259`;
+  - selector p90 `0.000702`;
+  - changed cells: `455` total, `S1=213`, `S4=242`, all other targets unchanged;
+  - reverse controls are locally bad, with worst deltas from `+0.019796` to `+0.086478`.
+- Interpretation:
+  - This is the first current human-state "한탕" candidate that is not just an E247 micro-adjustment.
+  - The strongest route is not Q2-heavy. It is objective-stage mobility: `S1↓ + S4↑`.
+  - Q2 route variants are locally strong but selector-risky, matching the earlier E368/E372 diagnosis that Q2 hidden state is real but action-health is entangled with public-risk anatomy.
+- Decision: H010 primary is the next high-information public sensor if one big-bet file is allowed. It bets that the hidden mobility state changes objective stage allocation, not subjective/Q2 intervention calibration.

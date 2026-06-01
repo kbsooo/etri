@@ -5576,3 +5576,23 @@ Stress conclusion:
   - E368 did not collapse publicly, so the Q2/S1 hidden lifestyle-state signal is not imaginary.
   - E368 failed to challenge E247, so local scenario stress overvalued this Q2/S1 movement.
   - The public bottleneck is action calibration, especially Q2, not another row-mask or residual-state discovery.
+
+## H009/H010 Jackpot Stress Addendum
+
+H009 tested the risky S4-only rank law. It generated `88` candidates and found `26` local-only high-risk candidates but `0` jackpot candidates. The important stress result is directional: forward S4 mobility rank rewrites improve subject/dateblock local loss, while reverse controls fail. This validates the hidden S4 mobility state but rejects direct S4-only rank reassignment as the next safe public move.
+
+H010 then tested route-level materialization. It generated `98` candidates and found `1` jackpot candidate:
+
+`hitl/h010_mobility_route_triad_jackpot/submission_h010_objective_mobility_s1down_s4up_target_delta_pos_subject_s0_25_uploadsafe.csv`
+
+Stress summary:
+
+- route: `S1 down + S4 up`;
+- local worst delta: `-0.004319`;
+- selector mean: `-0.001259`;
+- selector p90: `0.000702`;
+- changed cells: `455`;
+- changed target cells: `S1=213`, `S4=242`;
+- reverse controls: locally bad with positive worst deltas.
+
+Interpretation: the route-level objective sleep-stage latent is currently healthier than Q2-heavy human-state translation. This is the first post-E368 big-bet candidate with both local route evidence and selector tolerance, but it remains a public sensor rather than a guaranteed final replacement.

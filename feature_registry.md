@@ -4061,3 +4061,39 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - strongest local scenario candidate worsens Q2 bad-axis cosine to `0.609289`.
 - Registry status: approved as a diagnostic feature; rejected as a submission feature.
 - Failure condition: do not use Q2 residual score directly as a probability move. It needs an action-health/veto layer before any public-facing materialization.
+
+### H009 S4 mobility rank-rewrite representation
+
+- Target hidden structure: mobility/obligation/errand state as S4 row-ordering law.
+- Why needed: H007/H008 showed that mobility latent improves S4 locally but tiny logit edits are too small. H009 tests whether the hidden state should reorder S4 probability mass instead of nudging logits.
+- Feature/action form:
+  - context: H007 `mobility_jepa` latent;
+  - target representation: S4 rank assignment under E247 marginal distribution;
+  - actions: global/subject/dateblock quantile rewrite, tail swap, model-blend rewrite, and reverse controls.
+- Current evidence:
+  - `88` materialized candidates;
+  - `26` local-only high-risk candidates;
+  - best forward rewrite worst delta `-0.008027`;
+  - best reverse control worst delta `+0.026745`;
+  - `0` jackpot candidates.
+- Registry status: approved as a diagnostic representation; rejected as S4-only public translator.
+- Failure condition: do not submit S4-only rank rewrite unless an additional route/action-health layer reduces selector p90 risk.
+
+### H010 objective mobility route representation
+
+- Target hidden structure: mobility/obligation state as objective sleep-stage route, especially `S1 down + S4 up`.
+- Why needed: H009 proves S4 ordering but rejects S4-only materialization. The hidden human state may be multi-target and objective-stage based.
+- Feature/action form:
+  - context: H007 `mobility_jepa` latent plus target-specific positive delta;
+  - target representation: coupled route rewrite preserving E247 marginals per target;
+  - selected action: subject-level quantile rewrite on `S1/S4` with strength `0.25`.
+- Current evidence:
+  - `98` candidates;
+  - `1` jackpot candidate;
+  - selected file changes `S1=213` and `S4=242` cells;
+  - local worst delta `-0.004319`;
+  - selector mean `-0.001259`;
+  - selector p90 `0.000702`;
+  - reverse controls fail locally.
+- Registry status: approved as current high-information big-bet candidate.
+- Failure condition: if public LB worsens materially, route rank materialization is rejected and the next representation should learn objective route action-health rather than amplify mobility rank.
