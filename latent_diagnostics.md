@@ -863,3 +863,27 @@ suggestible under posterior q, but not locally editable under the current
 action-health latent. The next HS-JEPA target should therefore predict the
 global hidden public label/subset or private/public split directly, rather than
 ranking local swaps around H012.
+
+H036 performs that direct global test. The context is no longer a local cell
+swap; it is all known public submissions and their LB deltas relative to H012.
+The target representation is a sampled public row mask plus row/target binary
+label world. This is the cleanest post-H012 JEPA target so far: visible public
+responses predict an invisible evaluation-world representation. The
+anti-collapse result is strong. Across `55488` sampled worlds, the best world
+fits the 20 non-H012 public deltas with MAE `0.000202825` and Spearman
+`0.969924812`; `300` shuffled-public nulls have best-MAE mean `0.000957`, and
+none beat the real best (`p=0.000000`). The geometry is also not purely a
+posterior-only artifact: top configs include H019 row-weight, H035 public-row
+and route priors, and H013 `late_social_phone` priors. That gives HS-JEPA a
+stronger paper story: human-state context can help propose the public-world
+geometry, even when it is not calibrated as the final label probability.
+
+The LeJEPA read is still negative for direct action. Moving H012 aggressively
+toward the top-world conditional labels gives large internal expected gain
+(`-0.002238821` for `celltop_k1600_a1`), but H024/H025 reject the action. The
+best combined diagnostic becomes a smaller Q2-only move with expected delta
+`-0.000235201`, yet H024 pre-H012 margin is still positive (`+0.001430749`),
+support is only `0.250000000`, and H025 row-permutation p is `0.590000000`.
+Therefore the current latent health diagnosis is precise: HS-JEPA has learned a
+non-collapsed hidden public-world representation, but not the decoder that maps
+that world into H012-compatible support, amplitude, and calibration.

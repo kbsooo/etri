@@ -4628,3 +4628,31 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Failure condition: do not submit H035 support swaps unless a new global
   public/private or fixed-point translator certifies that the swap remains
   inside the H012 action basin.
+
+### H036 global public-world posterior features
+
+- Target hidden structure: latent public row subset plus row/target binary label
+  world that explains all known public LB deltas around H012.
+- Why needed: H035 rejected local edits; a breakthrough now requires a global
+  hidden object rather than another H012 support tweak.
+- Feature/action form:
+  - q sources: H012 posterior, H015 feedback posterior, H017 joint q, H018 hard
+    labels, H020 row-vector q, and mixtures;
+  - row priors: H019 inclusion/row weights, H030 identity scores, H035 route and
+    public-row scores, plus H013 human-social/calendar priors;
+  - sampled world state: row mask, binary label tensor, predicted public deltas;
+  - posterior features: `world_public_prob`, `world_q_cond`, `cell_world_score`;
+  - candidate families: top cells, target-specific cells, row-world all-target
+    moves, and needle-world moves.
+- Current evidence:
+  - best world MAE `0.000202825`, Spearman `0.969924812`;
+  - permutation-null p `0.000000`;
+  - top configs include both equation priors and H013 `late_social_phone`;
+  - generated candidates fail action translation: selected diagnostic has H024
+    pre-H012 margin `+0.001430749`, support `0.250000000`, and H025
+    row-permutation p `0.590000000`.
+- Registry status: approved as a non-collapsed hidden-public-world feature set.
+  Rejected as a direct materialization/action feature.
+- Failure condition: do not move H012 directly toward `world_q_cond` unless a
+  separate translator or stress gate proves the action stays inside the H012
+  support/amplitude/calibration basin.

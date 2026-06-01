@@ -3088,3 +3088,32 @@
 - Do not repeat: target/row/support-count-preserving H012 support swaps or
   support-tail softening as submission candidates without a new global
   public/private fixed-point certificate.
+
+## FH336. A fitted global public world can be directly materialized into a post-H012 winner
+
+- Failed hypothesis: if a sampled public row-subset and binary label world fits
+  all known public deltas around H012 far better than nulls, then moving H012
+  toward the top-world conditional label posterior should produce a safe
+  H012-beating submission.
+- Observed result: H036 strongly supports the latent world but rejects direct
+  materialization. The best sampled world reaches MAE `0.000202825`, RMSE
+  `0.000249943`, Spearman `0.969924812`, and public-delta permutation p
+  `0.000000`. However, generated actions do not pass independent stress. The
+  strongest internal action `h036_celltop_k1600_a1_c1600_51a1eddc` has expected
+  delta `-0.002238821` but is action-health bad. The selected combined
+  diagnostic `h036_target_Q2_k140_a1_c140_9ef667d6` has expected delta only
+  `-0.000235201`, H024 pre-H012 margin `+0.001430749`, support below H012
+  `0.250000000`, and H025 row-permutation p `0.590000000`.
+- Why discard as a submission route: fitting hidden public-world equations is
+  not enough. The direct `q_cond` translator changes support/amplitude in a way
+  the action-health decoders price above H012.
+- Implementation issue possible: medium. H036 uses sampled worlds and
+  hand-built materializers. A learned translator could still use the H036
+  posterior. But direct top-cell/row/target moves from the posterior are
+  rejected.
+- Bottleneck implication: the latent discovery problem has advanced; the
+  current bottleneck is world-to-action translation, especially preserving the
+  H012 support/amplitude/calibration basin.
+- Do not repeat: direct moves from H036 `world_q_cond` to H012 probability
+  tensors unless paired with a new translator that passes H024/H025 or an
+  equally strong public-free stress.

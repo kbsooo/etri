@@ -5445,3 +5445,53 @@ Submission interpretation:
 3. H012 is currently a locked basin under known HS-JEPA sensors.
 4. The next candidate should be a global hidden-public-label/subset or
    private/public split solver, not a local replacement of H012 support cells.
+
+## Update After H036
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+H036 promoted submission:
+
+None.
+
+What H036 tested:
+
+- Whether all known public LB observations can be explained by a sampled hidden
+  public row subset and binary label world.
+- Whether that posterior can be translated into a nonlocal post-H012 action.
+
+Local evidence:
+
+- sampled worlds: `55488`;
+- best world MAE/RMSE/Spearman:
+  `0.000202825` / `0.000249943` / `0.969924812`;
+- permutation-null p: `0.000000`;
+- best config:
+  `h018hard + h019_row_weight + subset155 + sample`;
+- human-social prior also appears in top configs:
+  `joint_hard_mid + h013_late_social_phone + subset230`;
+- generated candidates: `104`;
+- strongest internal world candidate:
+  `hitl/h036_global_public_world_solver_jepa/submission_h036_celltop_k1600_a1_c1600_51a1eddc.csv`;
+- strongest internal expected delta: `-0.002238821`;
+- selected combined diagnostic:
+  `hitl/h036_global_public_world_solver_jepa/submission_h036_target_Q2_k140_a1_c140_9ef667d6.csv`;
+- selected expected delta: `-0.000235201`;
+- H024 pre-H012 margin/support:
+  `+0.001430749` / `0.250000000`;
+- H025 row-permutation p: `0.590000000`.
+
+Submission interpretation:
+
+1. No H036 file should be submitted.
+2. The good news is structural: a hidden public-world representation explains
+   the public sensor set far better than shuffled-score nulls.
+3. The bad news is practical: direct top-cell or target-specific movement from
+   that world leaves the H012 action basin.
+4. The next candidate should use H036 as a teacher latent, not as the final
+   probability target: learn a world-to-action translator that predicts exact
+   H012-compatible support, amplitude, and calibration.

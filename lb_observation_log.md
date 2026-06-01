@@ -2361,3 +2361,41 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - infer a global hidden public label/subset or private/public split, rather
     than editing H012 support locally.
+
+## Public-Free Observation: H036 Global Public-World Solver JEPA
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - treats all known public LB scores as sensors for a sampled hidden public row
+    subset and row/target binary label world;
+  - uses H012/H015/H017/H018/H020 q priors, H019/H030/H035 row priors, and H013
+    human-social/calendar row priors;
+  - materializes top-world posterior actions only after world-null, H024, and
+    H025 stress.
+- expected LB reaction:
+  - if a candidate had passed and improved, it would mean the global public
+    world can be translated directly into a post-H012 action;
+  - because no candidate passed, submitting H036 would mostly test a known
+    translation failure.
+- local/public-free observation:
+  - sampled worlds `55488`;
+  - best world MAE `0.000202825`;
+  - best world RMSE/Spearman `0.000249943` / `0.969924812`;
+  - permutation-null p `0.000000`;
+  - null best-MAE mean/median `0.000957` / `0.000964`;
+  - strongest internal candidate expected delta `-0.002238821`;
+  - selected diagnostic `h036_target_Q2_k140_a1_c140_9ef667d6`;
+  - selected expected delta `-0.000235201`;
+  - selected H024 pre-H012 margin/support
+    `+0.001430749` / `0.250000000`;
+  - selected H025 row-permutation p `0.590000000`.
+- interpretation:
+  - global hidden public-world geometry is real and non-random;
+  - direct posterior materialization is still not action-safe;
+  - human-social row priors are useful as proposal context but not as final
+    probability labels.
+- next experiment:
+  - train a world-to-action translator from H012/H030/H035/H036 positives and
+    failures, or separate public-safe versus public-overfit components before
+    moving probabilities.

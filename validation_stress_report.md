@@ -6519,3 +6519,50 @@ Stress conclusion:
 - The next stress should not be a local edit around H012. It should solve a
   global hidden object: public labels/subset, private/public split, or an exact
   fixed-point action translator.
+
+## H036 Global Public-World Solver Stress
+
+Question: can all known public scores around H012 be explained by a coherent
+hidden public row subset plus row/target binary label world, and can that world
+be translated into a safe post-H012 action?
+
+Stress setup:
+
+- script: `hitl/h036_global_public_world_solver_jepa.py`;
+- sampled worlds: `55488`;
+- public sensors: `21`, with H012 as anchor;
+- world priors:
+  - q priors from H012/H015/H017/H018/H020;
+  - row priors from H019/H030/H035 plus H013 human-social/calendar state;
+- stresses:
+  - public-delta equation fit versus all known public observations;
+  - `300` shuffled-public permutation nulls;
+  - H024 full-known and pre-H012 public action decoder;
+  - H025 row-permutation placement stress.
+
+Stress result:
+
+- best world MAE/RMSE/Spearman:
+  `0.000202825` / `0.000249943` / `0.969924812`;
+- permutation-null p(best-null MAE <= real-best MAE): `0.000000`;
+- null best-MAE mean/median:
+  `0.000957` / `0.000964`;
+- best config:
+  `h018hard + h019_row_weight + subset155 + sample`;
+- strongest internal world candidate:
+  `h036_celltop_k1600_a1_c1600_51a1eddc`, expected delta `-0.002238821`;
+- selected combined diagnostic:
+  `h036_target_Q2_k140_a1_c140_9ef667d6`;
+- selected expected delta: `-0.000235201`;
+- selected H024 pre-H012 margin/support:
+  `+0.001430749` / `0.250000000`;
+- selected H025 row-permutation p: `0.590000000`;
+- promoted root file: none.
+
+Stress conclusion:
+
+- The global public-world latent is real enough to beat shuffled-score nulls.
+- Direct posterior materialization remains unsafe: H024 prices candidates above
+  H012 and H025 says selected row placement is not special enough.
+- H036 strengthens the current bottleneck diagnosis: hidden public-state
+  discovery is ahead of world-to-action translation.

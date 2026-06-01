@@ -6875,3 +6875,61 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - do not submit generated H035 variants;
   - next big-bet should solve hidden public labels/subset or private/public
     split jointly, rather than making local swaps around H012.
+
+## H036. Global Public-World Solver HS-JEPA
+
+- Observe: H035 killed the local-support-swap route, but did not kill the
+  larger H012 idea. The remaining high-upside question is whether the known
+  public LB observations can be explained by a coherent hidden public subset and
+  binary label world, instead of only by cell-wise posterior equations.
+- Wonder: can we reconstruct a latent public world from all known submissions,
+  and then use that world as a nonlocal target for a post-H012 action?
+- Hypothesis: if hidden public-world structure is real, sampled worlds should
+  fit the 20 public deltas around H012 far better than permutation nulls, and
+  the induced posterior should identify a candidate that survives H024/H025.
+- Method: `hitl/h036_global_public_world_solver_jepa.py`.
+  - context: 21 known public sensors, H012 anchor, H012/H015/H017/H018/H020
+    label priors, H019/H030/H035 row priors, and H013 human-social row priors;
+  - target representation: sampled public row mask plus row/target binary label
+    world;
+  - action: move H012 toward the posterior conditional label cells from top
+    worlds;
+  - stress: public-delta permutation null, H024 pre-H012 action decoder, and
+    H025 row-permutation placement stress.
+- Result:
+  - sampled worlds: `55488`;
+  - best world MAE against known public deltas: `0.000202825`;
+  - best world RMSE/Spearman: `0.000249943` / `0.969924812`;
+  - permutation-null p(best-null MAE <= real-best MAE): `0.000000`;
+  - best config: `h018hard + h019_row_weight + subset155 + sample`;
+  - notable human-state configs also survived near the top:
+    `joint_hard_mid + h013_late_social_phone + subset230` and
+    `h012posterior + h013_late_social_phone + subset230`;
+  - generated candidates: `104`;
+  - strongest internal world move:
+    `h036_celltop_k1600_a1_c1600_51a1eddc`, expected delta `-0.002238821`,
+    but H024/H025 route rejected it;
+  - selected combined diagnostic:
+    `h036_target_Q2_k140_a1_c140_9ef667d6`;
+  - selected expected delta `-0.000235201`;
+  - H024 pre-H012 margin/support:
+    `+0.001430749` / `0.250000000`;
+  - H025 row-permutation p `0.590000000`;
+  - no root upload-safe file was promoted.
+- Interpretation:
+  - positive: a global public-world representation is not random. It explains
+    public deltas much better than shuffled-score worlds and repeatedly selects
+    row-prior views that overlap with previous H019/H035 and H013
+    human-social/late-phone state;
+  - negative: posterior-world gain is still not a safe action criterion.
+    Aggressive world moves leave the action-health basin, while the least risky
+    H024/H025 candidate has too small expected gain.
+  - current bottleneck is not "find any hidden public world"; it is "translate
+    a real hidden public world into a calibrated probability action that stays
+    inside the H012 basin."
+- Decision:
+  - H036 is diagnostic-only;
+  - do not submit generated H036 variants;
+  - next big-bet should learn the world-to-action translator explicitly, or
+    split the public-world posterior into public-safe versus public-overfit
+    components before materialization.

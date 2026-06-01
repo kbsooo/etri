@@ -818,3 +818,82 @@ something non-obvious. It is not yet a submission-level result. The current
 translator from memory-conflict core to probability action leaves the H012
 basin, so the next work should learn the action translator rather than push the
 same conflict cells harder.
+
+## H035: Basin-Boundary Solver HS-JEPA
+
+- Script: `hitl/h035_basin_boundary_solver_jepa.py`
+- Report: `hitl/h035_basin_boundary_solver_jepa/h035_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+If H012 is a narrow row-target basin, can it still be locally improved by
+swapping weak H012 support cells for stronger outside cells while preserving
+target, row, or support-count structure?
+
+### Main Finding
+
+H012 is locally locked under support-swap operations.
+
+- Generated candidates: `585`.
+- q-improving candidates versus H012: `55`.
+- Best q-loss delta: `-0.000286222`.
+- Route-safe count: `0`.
+- Pre-state-better count: `0`.
+- Strict gate count: `0`.
+- Best q-improving candidate route/pre-state margins:
+  `0.019320985` / `0.015982303`.
+- Selected combined-score diagnostic:
+  `swap_support_count_drop_memory_conflict_to_add_no_h012_k7_a0.58`.
+- Selected q delta/route margin/pre-state margin:
+  `+0.000512108` / `+0.017292336` / `+0.012214437`.
+- Public-score permutation p: `0.660666667`.
+- H025 row-permutation p: `0.610000000`.
+
+### Interpretation
+
+The public-equation posterior still suggests local improvements, but every
+q-improving local support replacement leaves the H012 route/pre-state basin.
+This rejects local support-swap editing as the next breakthrough route.
+
+## H036: Global Public-World Solver HS-JEPA
+
+- Script: `hitl/h036_global_public_world_solver_jepa.py`
+- Report: `hitl/h036_global_public_world_solver_jepa/h036_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+Can all known public LB observations around H012 be explained by a hidden public
+row subset plus row/target binary label world, and can that world be translated
+into a safe post-H012 action?
+
+### Main Finding
+
+The hidden public-world latent is real, but direct world-to-action translation
+still fails.
+
+- Sampled worlds: `55488`.
+- Best world MAE/RMSE/Spearman:
+  `0.000202825` / `0.000249943` / `0.969924812`.
+- Permutation-null p: `0.000000`.
+- Best config:
+  `h018hard + h019_row_weight + subset155 + sample`.
+- Human-state row prior also appears in strong configs:
+  `joint_hard_mid + h013_late_social_phone + subset230`.
+- Generated candidates: `104`.
+- Strongest internal world candidate expected delta: `-0.002238821`.
+- Selected combined diagnostic:
+  `h036_target_Q2_k140_a1_c140_9ef667d6`.
+- Selected expected delta: `-0.000235201`.
+- H024 pre-H012 margin/support:
+  `+0.001430749` / `0.250000000`.
+- H025 row-permutation p: `0.590000000`.
+
+### Interpretation
+
+H036 proves that the public sensor set is not random under a sampled
+public-world representation. It also proves that this representation is not
+itself the probability action. The next HS-JEPA layer should learn a
+world-to-action translator that preserves H012-compatible support, amplitude,
+and calibration.

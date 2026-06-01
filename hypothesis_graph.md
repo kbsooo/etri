@@ -4820,3 +4820,50 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 제출 전략: none. The next high-information submission route should solve a
   new global object: hidden public labels/subset, private/public split, or an
   exact fixed-point translator for H012 probability action.
+
+### H036: A global hidden public row/label world is real, but not directly actionable
+
+- 상태: supported as a latent-world explanation; rejected as a direct
+  submission route.
+- 왜 그럴듯한가: H012's public jump is far too large for ordinary blending, and
+  H016-H020 showed non-random public cell/row/vector equation geometry. H035
+  then showed local edits are locked, so the next object must be global rather
+  than local.
+- 맞다면:
+  - sampled public row-mask + binary label worlds should fit all known public
+    deltas around H012 better than shuffled-public nulls;
+  - top worlds should repeatedly use prior families already implicated in H012
+    identity, row-subset, or human-state structure;
+  - a candidate can only be promoted if the posterior action also passes
+    H024/H025, not merely the world equation.
+- 틀리다면:
+  - best world MAE should be similar to permutation-null best MAE;
+  - top worlds should be dominated by arbitrary priors and unstable subset
+    sizes;
+  - no coherent row/cell posterior should emerge.
+- 최소 실험: `hitl/h036_global_public_world_solver_jepa.py`, sampling `55488`
+  worlds from H012/H015/H017/H018/H020 q priors and H019/H030/H035/H013 row
+  priors, then translating the top-world posterior into `104` candidate actions.
+- 관측:
+  - best world MAE `0.000202825`, RMSE `0.000249943`, Spearman `0.969924812`;
+  - permutation-null p `0.000000` with null best-MAE mean `0.000957`;
+  - best config `h018hard + h019_row_weight + subset155 + sample`;
+  - human-social row prior appears in strong configs:
+    `joint_hard_mid + h013_late_social_phone + subset230`;
+  - strongest internal action expected delta `-0.002238821`, but action
+    decoders reject it;
+  - selected combined diagnostic `h036_target_Q2_k140_a1_c140_9ef667d6` has
+    expected delta `-0.000235201`, H024 pre-H012 margin `+0.001430749`, support
+    `0.250000000`, and H025 row-permutation p `0.590000000`;
+  - no promoted upload-safe file.
+- 성공/폐기 기준:
+  - accept global latent if world fit beats permutation null. Observed.
+  - accept submission route only if world gain and H024/H025 agree. Not
+    observed.
+- public LB 관측 반응: no H036 file should be submitted. If an H036 file
+  unexpectedly wins public, H024/H025 are over-conservative around global
+  public-world moves. Otherwise H036 narrows the bottleneck to world-to-action
+  translation.
+- 제출 전략: none. Next route should train or infer a translator from global
+  public-world posterior to H012-compatible support/amplitude/calibration,
+  rather than moving directly toward `q_cond`.
