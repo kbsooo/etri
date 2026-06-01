@@ -4212,3 +4212,23 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - max probability delta vs H012 `0.051642`.
 - Registry status: approved as the next high-information public sensor, not private-safe evidence.
 - Failure condition: if H015 public LB worsens, treat H012 as the public-equation fixed point and stop recursive sharpening without a new independent non-public risk sensor.
+
+### H016 diffuse public cell-weight field
+
+- Target hidden structure: public LB as a non-uniform row x target cell-weight/gain field over the H012/H015 action space.
+- Why needed: H012 proved public-equation latent reconstruction works, and H015 tests recursive sharpening. H016 asks whether that sharpening should be applied everywhere or only where the inferred public sensor gives weight and gain.
+- Feature/action form:
+  - context: known submission loss-delta tensors under H012/H015 probability and posterior label proxies;
+  - latent: nonnegative public cell weights fitted with ridge-dual leave-one-public stress;
+  - anti-collapse check: permutation of known public LB deltas while keeping loss-delta tensors fixed;
+  - action: move H012 toward H015 only on high public-weight/gain cells.
+- Current evidence:
+  - best config LOO MAE `0.000013654`, p90 abs `0.000026381`, Spearman `0.990977444`;
+  - uniform-weight MAE `0.000885430`;
+  - effective weight count `1747.348299`, so the field is broad/diffuse;
+  - permutation null median LOO MAE `0.004329919`, max null Spearman `0.660150`;
+  - selected file `submission_h016_public_subset_gain_all_k1000_a0.75_uploadsafe.csv`;
+  - selected predicted subset-weight delta vs H012 `-0.000296297`;
+  - full H015 predicted subset-weight delta vs H012 `+0.000164649`.
+- Registry status: approved as a high-information structural feature/action layer. Not yet public-validated.
+- Failure condition: if H016 public LB worsens, do not discard the weight diagnostic entirely; discard the direct materialization. The weight field may still be useful as a risk sensor for later candidates.

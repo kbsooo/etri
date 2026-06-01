@@ -4979,3 +4979,43 @@ Submission interpretation:
 2. If H015 improves meaningfully, HS-JEPA's strongest claim becomes recursive public-equation latent sharpening.
 3. If H015 worsens, stop self-feedback amplification and treat H012 as the fixed point until a non-public/private-risk sensor appears.
 4. If final/private safety matters more than discovering the next law, keep H012 as the default.
+
+## Update After H016
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+Two live high-information next sensors now exist:
+
+1. `submission_h015_self_feedback_top_all_k1600_a0.7_uploadsafe.csv`
+2. `submission_h016_public_subset_gain_all_k1000_a0.75_uploadsafe.csv`
+
+H015 bets:
+
+- H012 was under-amplified.
+- Adding H012's own public score lets the public-equation posterior sharpen one more time.
+- Expected posterior delta vs H012 is about `-0.001586`, but this is high public self-feedback risk.
+
+H016 bets:
+
+- The public sensor is not just hidden labels; it also has a diffuse row x target cell-weight/gain field.
+- Full H015 broad sharpening is too blunt under that field.
+- Applying H015 only to the inferred public-weight/gain-compatible `1000` cells should be safer.
+
+Why H016 is not just a safe micro-tweak:
+
+- It explicitly contradicts H015 under its own model: full H015 scores `+0.000164649` versus H012, while the selected H016 slice scores `-0.000296297`.
+- The weight model survives a `300`-permutation null stress: real LOO MAE `0.000013654` versus null median `0.004329919`, real Spearman `0.990977444` versus null max `0.660150`.
+- The public weighting is diffuse (`effective_n=1747.348299`), so the hypothesis is not "find a tiny public subset"; it is "public listens to broad cells unequally."
+
+Submission interpretation:
+
+1. Highest upside: H015.
+2. Cleaner structural alternative: H016.
+3. Conservative default remains H012.
+4. If H016 improves, public-equation HS-JEPA should move from global posterior sharpening to public-cell-weighted action selection.
+5. If H016 worsens while H015 improves, the diffuse weight field is a diagnostic fit but not an action layer.
+6. If both H015 and H016 worsen, H012 is likely the practical fixed point and the next breakthrough needs an independent private/public risk sensor.

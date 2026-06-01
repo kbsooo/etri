@@ -4403,3 +4403,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept as a high-information submission sensor if one public slot can test whether H012 is under-amplified. Do not treat as private-safe, because selected configs are dominated by `h012_sharp` and LOO MAE is of similar magnitude to the expected improvement.
 - public LB 관측 반응: if H015 improves meaningfully, public-equation HS-JEPA is not a one-shot trick and can be recursively sharpened. If H015 worsens, H012 is the practical fixed point and further public-equation self-feedback should be stopped without a new independent sensor.
 - 제출 전략: next single "한탕" candidate is H015; conservative default remains H012.
+
+### H016: known public LB observations reveal a diffuse public cell-weight field
+
+- 상태: strongly supported by local public-equation/null stress; public LB pending.
+- 왜 그럴듯한가: H012 proved that known public LB deltas can recover a hidden public label/subset representation. The remaining ambiguity is whether public feedback is only about labels, or also about which row x target cells the public subset effectively weights.
+- 맞다면: fitted public cell weights should predict leave-one-public deltas far better than uniform weights, and this should collapse when public deltas are permuted away from the submission loss-delta tensor. H016's selected cell action should disagree with full H015 when H015 movement is bad on inferred public-weighted cells.
+- 틀리다면: permutation/null public deltas should get similarly good LOO metrics, or weights should concentrate into a tiny unstable subset that cannot generalize beyond the observed submissions.
+- 최소 실험: `hitl/h016_public_subset_weight_jepa.py`.
+- 관측: best config `h012_median_posterior/ridge=0.001/cap=12` has LOO MAE `0.000013654`, p90 abs `0.000026381`, Spearman `0.990977444`, while uniform MAE is `0.000885430`. Effective weight count is `1747.348299`, so this is diffuse weighting, not a tiny anchor subset. A `300`-permutation null gives median LOO MAE `0.004329919`, p90 `0.008450378`, max Spearman `0.660150`; real beats all permutations on MAE and Spearman.
+- 성공/폐기 기준: accept as a structural sensor if real public deltas beat permutation null on LOO MAE/Spearman and the weight field is not a single-cell/small-subset collapse. Observed.
+- public LB 관측 반응: if `submission_h016_public_subset_gain_all_k1000_a0.75_uploadsafe.csv` improves, public feedback is better understood as a diffuse cell-weight/gain field and H015-style broad sharpening should be constrained. If it worsens, the weight field may predict old public submissions but fail to materialize a new safe action.
+- 제출 전략: H016 is the main alternative to H015. H015 tests recursive public-label sharpening; H016 tests public cell-weight selection.

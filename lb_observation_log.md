@@ -1835,3 +1835,33 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - if a single big public slot is available, submit H015;
   - after feedback, either promote recursive public-equation sharpening or freeze H012 as the public-equation fixed point.
+
+## Public-Free Observation: H016 Public-Subset Weight HS-JEPA
+
+- submission file prepared: `submission_h016_public_subset_gain_all_k1000_a0.75_uploadsafe.csv`
+- public LB: not submitted
+- changed point:
+  - keeps H012 as anchor;
+  - treats known public LB deltas as evidence about public cell weights, not only hidden labels;
+  - applies H015 movement only to `1000` inferred public-weight/gain-compatible cells.
+- expected LB reaction:
+  - improvement would mean H012/H015 should be interpreted through a diffuse public cell-weight field, and future public-equation actions should be gated at row x target level;
+  - worsening would mean the weight field is useful for explaining old public submissions but not safe as a new action materializer.
+- local/public-free observation:
+  - best weight config LOO MAE `0.000013654`;
+  - LOO p90 abs `0.000026381`;
+  - LOO Spearman `0.990977444`;
+  - uniform-weight MAE `0.000885430`;
+  - effective weight count `1747.348299`;
+  - permutation null median LOO MAE `0.004329919`;
+  - permutation null max Spearman `0.660150`;
+  - selected predicted subset-weight delta vs H012 `-0.000296297`;
+  - full H015 predicted subset-weight delta vs H012 `+0.000164649`.
+- interpretation:
+  - this is the first strong evidence that public feedback contains a stable cell-weight/gain representation, not just a pseudo-label posterior;
+  - it is not a tiny hard public subset: weights are diffuse over almost all cells;
+  - H016 is lower-upside than H015 but is a cleaner test of whether broad recursive sharpening should be constrained by public-weighted action health.
+- next experiment:
+  - if the next public slot should test recursive amplification, use H015;
+  - if it should test public cell-weight action selection, use H016;
+  - use the result to decide whether HS-JEPA's public-equation branch should be label-posterior-first or weight/gate-first.

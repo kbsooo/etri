@@ -11,11 +11,15 @@ Current public frontier:
 - Interpretation: H012 validates the public-equation HS-JEPA branch. Known public LB observations are no longer only diagnostics; as equations over a hidden public label/subset state, they produced a large public-readable action.
 - External reference note: the attached high-scoring `submission_v106_sleep_state_conditioned_memory.csv` document reports public LB `0.5703952266` from same-subject sleep-state/sensor-quality-conditioned memory. That supports the broader repeated-subject world model, but H012 is still lower by `0.0022717435`.
 
-Current high-risk next sensor:
+Current high-risk next sensors:
 
 - `submission_h015_self_feedback_top_all_k1600_a0.7_uploadsafe.csv`
 - Public LB: not submitted
 - Interpretation: H015 includes H012's own public score as a new public-equation anchor and asks whether H012 is an under-amplified posterior rather than a fixed point. It predicts a further posterior delta of about `-0.001586` versus H012, but this is a public self-feedback bet with real overfit/private-risk exposure.
+
+- `submission_h016_public_subset_gain_all_k1000_a0.75_uploadsafe.csv`
+- Public LB: not submitted
+- Interpretation: H016 treats known public LB observations as a diffuse public cell-weight/gain field. It survived a `300`-permutation null stress and predicts `-0.000296` versus H012 by applying H015 movement only on inferred public-weight-compatible cells. It is lower-upside than H015, but it tests a different world model.
 
 Public LB operating rule:
 

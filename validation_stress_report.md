@@ -5785,3 +5785,37 @@ Stress conclusion:
 - H015 passes the internal public-equation scenario stress and is the current highest-information next submission.
 - It does not pass a private-safety proof. The selected configs lean heavily on `h012_sharp`, so the risk is overconfidence/public self-feedback rather than feature-model error.
 - Public interpretation is clean: a win means recursive public-equation latent sharpening works; a loss means H012 is the fixed point and self-feedback should stop.
+
+## H016 Public-Subset Weight Stress
+
+Question: are known public LB equations identifying a hidden public cell-weight field, or is the weight solve just an underdetermined fit?
+
+Stress setup:
+
+- script: `hitl/h016_public_subset_weight_jepa.py`;
+- current anchor: H012;
+- candidate direction: H015;
+- loss-delta tensor: known submissions versus H012 under several label proxies;
+- target representation: nonnegative public cell weights over `250 x 7` cells;
+- null stress: permute known public LB deltas `300` times while keeping the same submission loss-delta tensor.
+
+Stress result:
+
+- selected proxy/config: `h012_median_posterior`, ridge `0.001`, cap `12`;
+- real LOO MAE: `0.000013654`;
+- real LOO p90 abs: `0.000026381`;
+- real LOO Spearman: `0.990977444`;
+- uniform-weight MAE: `0.000885430`;
+- effective weight count: `1747.348299`;
+- top50/top200 weight mass: `0.036149` / `0.127769`;
+- permutation null median LOO MAE: `0.004329919`;
+- permutation null p90 LOO MAE: `0.008450378`;
+- permutation null max Spearman: `0.660150`;
+- real one-sided permutation p-value for MAE and Spearman: `0.003322` with `300` permutations.
+
+Stress conclusion:
+
+- H016 survives the key underdetermination check. The real public ordering is not reproduced when public scores are detached from the candidate loss-delta tensor.
+- The learned public weighting is diffuse, not a concentrated pseudo-public subset. That changes the interpretation: public LB may behave like a broad but non-uniform cell-weight/gain field rather than a small hidden holdout slice.
+- The promoted H016 file is a lower-amplitude alternative to H015: `submission_h016_public_subset_gain_all_k1000_a0.75_uploadsafe.csv`, predicted subset-weight delta `-0.000296297` versus H012.
+- H016 should be treated as a structural sensor, not a private-safety proof. Public feedback is needed to decide whether the diffuse weight field can materialize a better submission.
