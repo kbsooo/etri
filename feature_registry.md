@@ -118,6 +118,16 @@ Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature fami
 - Label vs split test: selector must preserve known public anchor order before its favored candidate zone can define the next sensor.
 - Adopt if: reliability features separate pair-only/old-only zones in a way that predicts known LB anchors and yields a single information-rich public sensor.
 - Drop if: they merely restate historical LB outcomes or are used for direct leaderboard prior tweaking.
+
+### F14. Public action-gradient features
+
+- Hidden structure: public/private response field over row-target actions from H012.
+- Candidates: aggregate known-submission logit movement through H012/H015/H016/H020/H021/H023/H014/H027 cell states, target/subject/date identities, and learned low-rank public-delta gradients.
+- Label vs split test: leave-one-public-out public-delta prediction, shuffled-public-delta null, H024 public decoder, H025 row-permutation action-health stress.
+- Adopt if: gradient fit beats permutation null and gradient-generated candidates also pass independent H024/H025 stress below H012.
+- Drop if: gradient only separates H012 from the rest or self-scores candidates that independent public/action-health sensors price as 0.576-level.
+- Current evidence: H028 selected `all` alpha `100` with LOO MAE `0.001204883` and permutation p `0.000000`, but its top generated file had H024 predicted public `0.576388`, support below H012 `0.083333`, row-permutation p `0.710000`, and public-score permutation p `0.918000`.
+- Policy: keep as diagnostic of public response geometry. Do not use as a materializer unless an independent H024/H025-like stress also validates the generated move.
 - Current evidence: E22 found pairwise selector pass `33/36` and raw05 direction correct `0.916667`; old hidden-subset selector pass `0/7` and raw05 direction correct `0.0`. This does not make pair-only S4/Q3 a submit-safe improvement, but it makes `analysis_outputs/submission_label_flow_focused_1bbfb735.csv` the most informative diagnostic sensor if a public slot is used.
 - Policy: use as submission triage metadata only. Do not build a public-LB overfit prior from it.
 

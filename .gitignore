@@ -289,3 +289,7 @@ hitl/h026_public_private_calibration_veto_jepa/h026_h024_prediction_samples.csv
 # H027 materialized sweep files are reproducible from the script; only summaries are tracked.
 hitl/h027_public_private_aware_generator_jepa/submission_h027_*.csv
 hitl/h027_public_private_aware_generator_jepa/h027_h024_prediction_samples.csv
+
+# H028 materialized public-gradient sweep files are reproducible from the script; only summaries are tracked.
+hitl/h028_public_private_gradient_jepa/submission_h028_*.csv
+hitl/h028_public_private_gradient_jepa/h028_h024_prediction_samples.csv

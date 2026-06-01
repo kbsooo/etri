@@ -6213,3 +6213,45 @@ Stress conclusion:
 - H027 fails the born-public/private generator test.
 - Same-subject memory and human-state agreement are useful views, but they do not repair the existing posterior-completion target family when used as scalar cell constraints.
 - The next stress should not add another wrapper over H015/H020/H023. It should change what is being predicted: public/private calibration state, row x target action health, or a non-posterior candidate generator.
+
+## H028 Public/Private Action-Gradient Stress
+
+Question: can known public interventions define a reusable local action-gradient that improves H012?
+
+Stress setup:
+
+- script: `hitl/h028_public_private_gradient_jepa.py`;
+- known public sensors: `20`;
+- context: H012/H015/H016/H020/H021/H023/H014/H027 cell-state features, target/subject/date identity, and each known submission's logit movement from H012;
+- target representation: public LB delta versus H012;
+- generator modes: gradient descent, rollback toward E247, H012-direction amplification, and hybrid moves;
+- stresses:
+  - leave-one-public-out public-delta prediction;
+  - shuffled-public-delta permutation null;
+  - H024 public decoder over generated variants;
+  - H025 row-permutation placement stress;
+  - H024 public-score permutation stress versus H012.
+
+Stress result:
+
+- selected gradient fit: `all`, alpha `100.0`, `88` features;
+- LOO MAE/RMSE: `0.001204883` / `0.001485628`;
+- LOO Spearman/pairwise: `0.440601504` / `0.657894737`;
+- selected-fit shuffled-public-delta p: `0.000000000`;
+- generated variants: `820`;
+- selected diagnostic:
+  `hitl/h028_public_private_gradient_jepa/submission_h028_pubgrad_descent_all_k1200_a0p36_all_3a28ff89.csv`;
+- gradient-predicted delta versus H012: `-0.004909201`;
+- H024 predicted public median/p10/p90:
+  `0.576388429` / `0.572259856` / `0.601884165`;
+- support better than H012: `0.083333333`;
+- H025 row-permutation p(higher top1200 gain): `0.710000000`;
+- real top1200 H025 gain: `-2.508311740`;
+- H024 public-score permutation p(lower margin): `0.918000000`;
+- promoted root file: none.
+
+Stress conclusion:
+
+- H028 passes the weak "public response is not random" test but fails the stronger "response field extrapolates from H012" test.
+- The learned gradient mostly describes H012 as a singular outlier against all other public sensors, not a smooth descent direction.
+- This blocks gradient descent, rollback, and H012-direction amplification as next submission routes. The next stress should search for the invariant that made the original H012 public-equation move special.

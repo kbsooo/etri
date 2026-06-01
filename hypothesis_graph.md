@@ -21,7 +21,9 @@ E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해
 - E247은 feature-NN1 Q3 smoothing을 실제 public-positive JEPA mechanism으로 승격시킨 첫 강한 관측이다.
 - H012는 public-equation hidden-state posterior를 직접 materialize한 첫 대형 성공이다.
 - H014는 H012가 단순 same-subject memory가 아니라는 것을 보였고, H015-H020은 H012 이후의 public-equation posterior-completion을 cell-weight, binary world, row-subset, joint target-vector world로 분해하고 있다.
-- 0.54 진입을 막는 핵심 병목은 이제 hidden state 발견 자체보다, public-equation posterior를 private-safe action으로 번역하는 action-health/calibration 문제다.
+- H026-H027은 train action-health, public-bad veto, memory/private-safety birth constraints가 기존 posterior-completion targets를 H012-beating action으로 만들지 못함을 보였다.
+- H028은 known public intervention response 자체를 cell-level action-gradient로 배웠지만, 그 gradient를 H012 밖으로 extrapolate하면 독립 stress가 모두 0.576대 위험으로 본다.
+- 0.54 진입을 막는 핵심 병목은 이제 hidden state 발견 자체보다, H012 같은 singular public-equation basin을 private-safe/invariant hidden state로 해석하는 문제다. 단순 posterior-completion, scalar gate, train-action health, smooth public-gradient는 현재 반증되었다.
 
 ## 관계 그래프
 
@@ -47,6 +49,12 @@ target co-occurrence
   -> Q/S dependency manifold
   -> calibration constraints
   -> unsafe if applied as hard prior
+
+known public interventions
+  -> H012-vs-rest action-response geometry
+  -> coarse public-gradient learnable
+  -> local H012 extrapolation unsafe
+  -> needle-basin / phase-change hypothesis
 ```
 
 ## 가설 목록
@@ -4620,3 +4628,29 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   - keep diagnostic if it identifies whether the problem is post-hoc veto or source posterior target. Observed: source posterior target is the bottleneck too.
 - public LB 관측 반응: no H027 file should be submitted. If a future born-public/private generator wins public, it must change the calibration target or source proposal distribution, not only rescore H015/H020/H023 cells.
 - 제출 전략: none. H027 says the missing piece is not a cell-level wrapper over existing public-equation posterior completions; it is a different public/private calibration representation.
+
+### H028: known public interventions define a reusable local action-gradient around H012
+
+- 상태: 반증됨 as a submission route; supported only as coarse public-response geometry.
+- 왜 그럴듯한가: H024 showed known public scores are reconstructable, while H026-H027 showed posterior/gate variants are not enough. A natural HS-JEPA target is therefore not a hidden probability posterior but the hidden public/private response field: how public LB changes when a submission moves each row-target cell from H012.
+- 맞다면:
+  - known public intervention tensors should predict their public LB deltas under leave-one-public-out;
+  - the learned cell-level gradient should beat permuted public-delta nulls;
+  - moving H012 along the negative gradient should produce a candidate that H024/H025 also see as below H012 or at least public-readable.
+- 틀리다면:
+  - the response fit may only distinguish the singular H012 point from the rest;
+  - H012 LOO prediction will be unstable;
+  - gradient-generated candidates will be priced as ordinary 0.576-level submissions by independent public/action-health stress.
+- 최소 실험: `hitl/h028_public_private_gradient_jepa.py`, treating 20 known public submissions as interventions from H012, aggregating logit movements through cell-state features, fitting a low-rank ridge public-gradient, generating gradient descent / rollback / H012 amplification / hybrid variants, then applying H024/H025 stresses.
+- 관측:
+  - selected gradient fit `all` alpha `100.0`, 88 features, LOO MAE `0.001204883`, Spearman `0.440601504`, pairwise `0.657894737`;
+  - selected-fit permutation p for LOO MAE `0.000000000`, so the response is not random;
+  - H012 leave-one-out delta prediction is unstable (`+0.002941`), showing the model does not truly understand the singular best point;
+  - generated variants `820`;
+  - best diagnostic `submission_h028_pubgrad_descent_all_k1200_a0p36_all_3a28ff89.csv` has gradient-predicted delta `-0.004909201`, but H024 predicted public median `0.576388429`, support below H012 `0.083333333`, H025 row-permutation p `0.710000000`, and public-score permutation p `0.918000000`;
+  - no root upload-safe file promoted.
+- 성공/폐기 기준:
+  - accept only if gradient fit beats nulls and at least one generated candidate passes independent H024/H025 stress below H012. First condition observed, second not observed.
+  - reject smooth local-gradient interpretation if independent stress prices all top gradient moves far above H012. Observed.
+- public LB 관측 반응: no H028 file should be submitted. If a future gradient file wins public despite this stress, H024/H025 are missing the decisive invariant; otherwise H012 should be treated as a narrow public-equation basin rather than a smooth local optimum.
+- 제출 전략: none. The next branch should search for the invariant/constraint that made H012 special, not continue H012 by local gradient descent.

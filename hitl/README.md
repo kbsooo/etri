@@ -481,3 +481,46 @@ birth.
 The next HS-JEPA target should change what is predicted. We need a public/private
 calibration representation or a new proposal generator, not another scalar gate
 around the same posterior-completion cells.
+
+## H028: Public/Private Action-Gradient HS-JEPA
+
+- Script: `hitl/h028_public_private_gradient_jepa.py`
+- Report: `hitl/h028_public_private_gradient_jepa/h028_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+Can HS-JEPA stop predicting posterior probabilities and instead predict the
+hidden public/private response field itself: which row-target cell movement from
+H012 should lower public LogLoss?
+
+### Main Finding
+
+The response field is learnable on known public interventions, but it does not
+extrapolate into a safe H012-improving action.
+
+- Known public sensors used: `20`.
+- Selected public-gradient fit: `all`, alpha `100.0`, `88` features.
+- LOO MAE: `0.001204883`.
+- Permutation p for selected LOO MAE: `0.000000`.
+- Generated variants: `820`.
+- Best diagnostic file:
+  `hitl/h028_public_private_gradient_jepa/submission_h028_pubgrad_descent_all_k1200_a0p36_all_3a28ff89.csv`.
+- Gradient model expected this move to improve H012 by `-0.004909`.
+- H024 predicted public median: `0.576388`, far worse than H012 `0.568123`.
+- Support below H012: `0.083333`.
+- H025 row-permutation p: `0.710000`.
+- H024 public-score permutation p: `0.918000`.
+
+### Interpretation
+
+H028 kills the smooth-gradient version of the post-H012 story. Public outcomes
+are not random; the known interventions contain a real coarse geometry. But the
+geometry mostly separates the singular H012 point from the rest of the
+submission cloud. Moving away from H012 along the learned gradient looks
+attractive to the public-gradient model itself, yet the independent H024/H025
+stress sees it as ordinary 0.576-level movement.
+
+The next HS-JEPA target should treat H012 as a narrow basin or phase-change
+solution. A useful next experiment should ask which invariant made the original
+H012 public-equation move special, not how to continue it by a local gradient.

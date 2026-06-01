@@ -4,6 +4,16 @@
 
 실험은 `Observe -> Wonder -> Hypothesize -> Falsify -> Build -> Stress -> Decide` 형식으로 기록한다. public LB는 최적화 대상이 아니라 hidden-DGP sensor로 사용한다.
 
+## H028. Public/Private Action-Gradient HS-JEPA
+
+- Observe: H012 alone is public `0.5681234831`, while most nearby or post-H012 candidates remain around `0.576+`. H026/H027 showed that adding better gates around H015/H020/H023 posterior-completion targets does not recover H012-beating transfer.
+- Wonder: H012 이후의 병목은 posterior target이 아니라 "어느 cell movement가 public/private action으로 건강한가"라는 response field 자체가 아닐까?
+- Hypothesis: known public submissions can be treated as interventions from H012. If their logit movement tensors predict public LB deltas through cell-level latent features, the resulting action-gradient should generate a new H012-improving candidate.
+- Method: `hitl/h028_public_private_gradient_jepa.py` built a low-rank public action-gradient from 20 known public sensors, H012/H015/H016/H020/H021/H023/H014/H027 cell-state features, target/subject/date identities, then generated 820 gradient/descent/rollback/amplify/hybrid variants and stress-tested them with H024/H025.
+- Result: selected gradient fit `all` alpha `100`, LOO MAE `0.001204883`, Spearman `0.440602`, pairwise `0.657895`, permutation p `0.000000`. The learned response is not random. But the best generated file, `hitl/h028_public_private_gradient_jepa/submission_h028_pubgrad_descent_all_k1200_a0p36_all_3a28ff89.csv`, had H024 predicted public `0.576388`, support below H012 `0.083333`, H025 row-permutation p `0.710000`, public-score permutation p `0.918000`.
+- Interpretation: H028 falsifies the smooth local-gradient story. Public response can be learned as a coarse geometry, but extrapolating it away from H012 is unsafe. H012 behaves more like a needle-like public-equation basin than a point on a reusable local descent surface.
+- Decision: no H028 submission. Next large experiment should identify the invariant that made H012 special, not continue H012 by posterior completion or gradient descent.
+
 ## E00. File and Artifact Inventory
 
 - Observe: train target table은 450 rows, submission sample은 250 rows, subject는 10명이다. raw log parquet는 phone/watch sensor별로 분리되어 있고, JEPA/analysis outputs에 다수의 submission과 report가 있다.

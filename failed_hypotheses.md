@@ -139,6 +139,15 @@
 - Bottleneck implication: validation mismatch is stronger than expected. The missing anchor is not in existing OOF validation either.
 - Do not repeat: selecting public submissions from OOF-local Q3/S4 improvement without pairwise and old selector agreement.
 
+## FH16. Post-H012 public response defines a reusable local action-gradient
+
+- Failed hypothesis: known public submissions can be used as interventions from H012 to learn a cell-level public/private gradient, and moving H012 down that gradient will produce a better submission.
+- Observed result: H028's selected gradient fit is not random (`all`, alpha `100`, LOO MAE `0.001204883`, shuffled-public-delta p `0.000000`), but the top generated gradient-descent file is independently unsafe: H024 predicted public `0.576388`, support below H012 `0.083333`, H025 row-permutation p `0.710000`, and H024 public-score permutation p `0.918000`.
+- Why discard: the fit learns coarse H012-vs-rest public-response geometry, not a smooth extrapolatable descent surface. H012 leave-one-out itself is unstable (`+0.002941` delta predicted for a zero-move anchor).
+- Implementation issue possible: medium. The low-rank gradient may be too crude, but the failure is cross-stress consistent across H024/H025 and many generated modes.
+- Bottleneck implication: H012 should be treated as a narrow public-equation basin or phase-change solution. The next breakthrough needs the invariant that made H012 special, not another local continuation from H012.
+- Do not repeat: gradient-descent, rollback, or H012-amplification candidates selected only by public-gradient self-score.
+
 ## FH16. Existing block/measurement candidates contain the missing large safe branch
 
 - Failed hypothesis: block-scale JEPA, hidden-block sequence/rateprobe, raw05-blockcount, public-block, or pre-sleep measurement candidates already contain a larger low-bad-axis movement that can beat a2c8 once rescored correctly.
