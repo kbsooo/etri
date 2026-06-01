@@ -1,0 +1,3 @@
+submission,public_lb,delta_vs_e247,role,local_decision_before_submit,interpretation,next_action
+submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv,0.5761589494,0.0,current_public_best_anchor,anchor,E247 remains the public best anchor for H003 translation tests.,Keep as protected body.
+submission_h003_semantic_tiny_11e7aa3b.csv,0.5763763885,0.0002174390999999387,submitted_diagnostic_hs_jepa_translator,below_selector_resolution,"Public loss confirms that the first HS-JEPA probability translator was too broad; route signal exists, but all-target materialization is unsafe.","Build H004 with sparse route-specific actions, especially S3-only and small Q2/Q3 routes."

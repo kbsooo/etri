@@ -83,6 +83,9 @@ E256 = OUT / "submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv"
 E323 = OUT / "submission_e323_5508f966_uploadsafe.csv"
 E368 = OUT / "submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv"
 
+E247_PUBLIC_LB = 0.5761589494
+H003_TINY_PUBLIC_LB = 0.5763763885
+
 DEFINITION_OUT = H003 / "h003_episode_definition.csv"
 RECON_OUT = H003 / "h003_context_target_reconstruction.csv"
 FEATURES_OUT = H003 / "h003_hs_jepa_features.parquet"
@@ -98,6 +101,7 @@ CANDIDATE_OUT = H003 / "h003_candidates.csv"
 SCORE_OUT = H003 / "h003_selector_scores.csv"
 ANATOMY_OUT = H003 / "h003_candidate_anatomy.csv"
 SELECTION_OUT = H003 / "h003_selection.csv"
+PUBLIC_LB_OUT = H003 / "h003_public_lb_observations.csv"
 REPORT_OUT = H003 / "h003_report.md"
 
 
@@ -648,6 +652,32 @@ def candidate_anatomy(paths: list[Path]) -> pd.DataFrame:
     return anatomy
 
 
+def public_lb_observations() -> pd.DataFrame:
+    rows = [
+        {
+            "submission": CURRENT,
+            "public_lb": E247_PUBLIC_LB,
+            "delta_vs_e247": 0.0,
+            "role": "current_public_best_anchor",
+            "local_decision_before_submit": "anchor",
+            "interpretation": "E247 remains the public best anchor for H003 translation tests.",
+            "next_action": "Keep as protected body.",
+        },
+        {
+            "submission": "submission_h003_semantic_tiny_11e7aa3b.csv",
+            "public_lb": H003_TINY_PUBLIC_LB,
+            "delta_vs_e247": H003_TINY_PUBLIC_LB - E247_PUBLIC_LB,
+            "role": "submitted_diagnostic_hs_jepa_translator",
+            "local_decision_before_submit": "below_selector_resolution",
+            "interpretation": "Public loss confirms that the first HS-JEPA probability translator was too broad; route signal exists, but all-target materialization is unsafe.",
+            "next_action": "Build H004 with sparse route-specific actions, especially S3-only and small Q2/Q3 routes.",
+        },
+    ]
+    obs = pd.DataFrame(rows)
+    obs.to_csv(PUBLIC_LB_OUT, index=False)
+    return obs
+
+
 def cluster_story_read(features: pd.DataFrame, story_state: pd.DataFrame) -> pd.DataFrame:
     train_mask = features["split"].eq("train").to_numpy()
     train = features.loc[train_mask].reset_index(drop=True)
@@ -687,6 +717,7 @@ def write_report(
     scores: pd.DataFrame,
     anatomy: pd.DataFrame,
     selection: pd.DataFrame,
+    public_obs: pd.DataFrame,
 ) -> None:
     non_current = scores[~scores["basename"].eq(CURRENT)].copy() if not scores.empty and "basename" in scores.columns else pd.DataFrame()
     promoted = non_current[non_current.get("promotion_decision", pd.Series(dtype=str)).eq("promote_candidate")] if not non_current.empty else pd.DataFrame()
@@ -755,6 +786,10 @@ def write_report(
         "",
         md_table(anatomy, n=10, floatfmt=".9f"),
         "",
+        "## Public LB Observation",
+        "",
+        md_table(public_obs, n=10, floatfmt=".9f"),
+        "",
         "## Selection",
         "",
         md_table(selection, n=5, floatfmt=".9f"),
@@ -783,6 +818,7 @@ def write_report(
             f"- `{rel(BOUNDARY_OUT)}`",
             f"- `{rel(CANDIDATE_OUT)}`",
             f"- `{rel(SCORE_OUT)}`",
+            f"- `{rel(PUBLIC_LB_OUT)}`",
         ]
     )
     REPORT_OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -807,6 +843,7 @@ def main() -> None:
         scores = pd.DataFrame({"error": [f"{type(exc).__name__}: {exc}"]})
         scores.to_csv(SCORE_OUT, index=False)
     anatomy = candidate_anatomy(paths)
+    public_obs = public_lb_observations()
 
     if not scores.empty and "promotion_decision" in scores.columns:
         non_current = scores[~scores["basename"].eq(CURRENT)].copy()
@@ -854,7 +891,7 @@ def main() -> None:
     candidates.to_csv(CANDIDATE_OUT, index=False)
     anatomy.to_csv(ANATOMY_OUT, index=False)
     selection.to_csv(SELECTION_OUT, index=False)
-    write_report(definitions, recon, geometry, pairs, target_stress, route_stress, boundary, clusters, candidates, label_meta, scores, anatomy, selection)
+    write_report(definitions, recon, geometry, pairs, target_stress, route_stress, boundary, clusters, candidates, label_meta, scores, anatomy, selection, public_obs)
 
     print(f"report={rel(REPORT_OUT)}")
     print(selection.to_string(index=False))

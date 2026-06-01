@@ -296,6 +296,13 @@ This is the sparse HS-JEPA translation test: one human episode should only affec
 | submission_h003_semantic_tail_micro_fbdd9c4f.csv | 0.014936591 | 0.489231036 | 250 | 1750 | 0.012425950 | 0.008748728 |
 | submission_h003_semantic_micro_ebeebefd.csv | 0.016012297 | 0.507754203 | 250 | 1750 | 0.012896418 | 0.007499859 |
 
+## Public LB Observation
+
+| submission | public_lb | delta_vs_e247 | role | local_decision_before_submit | interpretation | next_action |
+| --- | --- | --- | --- | --- | --- | --- |
+| submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv | 0.576158949 | 0.000000000 | current_public_best_anchor | anchor | E247 remains the public best anchor for H003 translation tests. | Keep as protected body. |
+| submission_h003_semantic_tiny_11e7aa3b.csv | 0.576376388 | 0.000217439 | submitted_diagnostic_hs_jepa_translator | below_selector_resolution | Public loss confirms that the first HS-JEPA probability translator was too broad; route signal exists, but all-target materialization is unsafe. | Build H004 with sparse route-specific actions, especially S3-only and small Q2/Q3 routes. |
+
 ## Selection
 
 | decision | selected_uploadsafe_file | strict_promote_count | target_gate_count | route_gate_count | best_diagnostic_basename |
@@ -317,3 +324,4 @@ HS-JEPA produced a usable representation prototype, but its current probability 
 - `hitl/h003_hs_jepa_prototype/h003_public_sensor_alignment.csv`
 - `hitl/h003_hs_jepa_prototype/h003_candidates.csv`
 - `hitl/h003_hs_jepa_prototype/h003_selector_scores.csv`
+- `hitl/h003_hs_jepa_prototype/h003_public_lb_observations.csv`

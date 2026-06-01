@@ -163,6 +163,14 @@ The best diagnostic candidate was `submission_h003_semantic_tiny_11e7aa3b.csv`,
 but the selector marked it `below_selector_resolution`. It moved all 7 labels
 across `1750` cells, so it is too broad for a safe HITL submission.
 
+The diagnostic file was still submitted as a public sensor:
+
+- `submission_h003_semantic_tiny_11e7aa3b.csv`: public LB `0.5763763885`
+- Delta versus E247 best `0.5761589494`: `+0.0002174391`
+
+This confirms the local decision. HS-JEPA found state signal, but the first
+all-target translator was too broad and lost public score.
+
 ### Interpretation
 
 H003 supports the core HS-JEPA idea: human/social episode states can be learned
