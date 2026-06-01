@@ -2,11 +2,11 @@
 
 작성일: 2026-05-29
 
-이 문서는 수면 기반 생활습관 로그 예측 대회를 "예측 표"가 아니라 숨은 데이터 생성 과정의 관측 로그로 다루기 위한 가설 그래프다. 현재 best public LB는 `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`의 `0.5681234831`이다.
+이 문서는 수면 기반 생활습관 로그 예측 대회를 "예측 표"가 아니라 숨은 데이터 생성 과정의 관측 로그로 다루기 위한 가설 그래프다. 현재 best public LB는 `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`의 `0.5679048248`이다.
 
 ## 현재 병목 요약
 
-E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해 previous best `a2c8`를 `0.0011326805` 낮췄고, E97에서 `submission_e95_hardtail_541e3973.csv`가 public `0.5762913298`로 mixmin을 `0.0000153107` 더 낮췄다. E255에서 `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`가 public `0.5761589494`로 E95를 `0.0001323804` 더 낮췄다. H012에서 `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`가 public `0.5681234831`로 E247을 `0.0080354663` 낮췄다. Mixmin의 큰 점프는 anchor-loss/binary-world movement가 public-relevant였다는 증거이고, E95의 작은 추가 개선은 E72-adverse hard-label tail localization이 public-real이라는 증거이며, E247의 추가 개선은 feature-NN1 Q3 smoothing geometry가 public-real이라는 증거다. H012의 훨씬 큰 점프는 known public LB observations를 hidden public label/subset state의 equation으로 쓰는 HS-JEPA branch가 action-grade임을 검증했다. 따라서 현재 병목은 E247 근처 micro edge가 아니라, H012의 public-equation posterior가 private-safe hidden state인지, 아니면 public-subset-specific posterior인지 분해하는 문제다.
+E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해 previous best `a2c8`를 `0.0011326805` 낮췄고, E97에서 `submission_e95_hardtail_541e3973.csv`가 public `0.5762913298`로 mixmin을 `0.0000153107` 더 낮췄다. E255에서 `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`가 public `0.5761589494`로 E95를 `0.0001323804` 더 낮췄다. H012에서 `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`가 public `0.5681234831`로 E247을 `0.0080354663` 낮췄고, H042에서 `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`가 public `0.5679048248`로 H012를 `0.0002186583` 더 낮췄다. Mixmin의 큰 점프는 anchor-loss/binary-world movement가 public-relevant였다는 증거이고, E95의 작은 추가 개선은 E72-adverse hard-label tail localization이 public-real이라는 증거이며, E247의 추가 개선은 feature-NN1 Q3 smoothing geometry가 public-real이라는 증거다. H012의 훨씬 큰 점프는 known public LB observations를 hidden public label/subset state의 equation으로 쓰는 HS-JEPA branch가 action-grade임을 검증했다. H042의 작은 추가 개선은 그 public-equation fixed point 주변에 H024가 놓친 Q2-local phase descent가 있음을 보였다. 따라서 현재 병목은 E247 근처 micro edge가 아니라, H012/H042의 public-equation posterior와 Q2-local phase action을 private-safe hidden state로 확장할 수 있는지 분해하는 문제다.
 
 가장 강한 현재 설명:
 
@@ -27,7 +27,8 @@ E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해
 - H032는 H012의 public score를 decoder 학습에서 빼도 H012 자체가 state/action phase point로 복원된다는 것을 보였다. 다만 주변 phase sibling은 모두 H012보다 훨씬 약하게 pricing되었다.
 - H033은 그 주변 phase sibling 실패가 learnable contrast임을 보였지만, 독립 cell coefficient로 음수 비용 편집을 적용하는 것은 action-safe하지 않음을 보였다.
 - H034는 row-vector route abstraction에서 sibling failure를 더 잘 학습했지만, first-order row-route edit도 action-safe하지 않음을 보였다.
-- 0.54 진입을 막는 핵심 병목은 이제 hidden state 발견 자체보다, H012 같은 singular public-equation basin의 정확한 row-target identity를 private-safe/invariant hidden state로 재구성하고 그 exact phase를 확장 가능한 action law로 번역하는 문제다. 단순 posterior-completion, scalar gate, train-action health, smooth public-gradient, target-level calibration, dense phase sweep, first-order cellwise phase-lock edit, first-order row-route top-k edit은 현재 반증되었다.
+- H042는 H024가 막은 작은 Q2 phase move가 public-positive일 수 있음을 보였다.
+- 0.54 진입을 막는 핵심 병목은 이제 hidden state 발견 자체보다, H012 같은 singular public-equation basin의 정확한 row-target identity를 private-safe/invariant hidden state로 재구성하고 그 exact phase를 확장 가능한 action law로 번역하는 문제다. 단순 posterior-completion, scalar gate, train-action health, smooth public-gradient, target-level calibration, dense phase sweep, first-order cellwise phase-lock edit, first-order row-route top-k edit은 현재 반증되었지만, target-isolated tiny Q2 phase branch는 아직 살아 있다.
 
 ## 관계 그래프
 
@@ -5099,8 +5100,8 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 
 ### H042: Upload action coefficients can be learned as the missing public-equation decoder
 
-- 상태: accepted as a public-action latent; rejected as a direct candidate
-  selector.
+- 상태: accepted as a public-action latent and tiny Q2 phase action; rejected
+  as a broad direct candidate selector.
 - 왜 그럴듯한가: H041 showed hidden-world inference improves when route priors
   are used early, but posterior materialization fails. If the true hidden
   variable is the upload action, known public LB deltas should define an
@@ -5130,14 +5131,21 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   - `15` candidates satisfy action gain plus route gain;
   - `0` candidates satisfy action gain plus route gain plus H024 gain;
   - `0` candidates satisfy route gain plus H024 gain.
+  - public feedback:
+    `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
+    scored `0.5679048248`, improving H012 by `0.0002186583`;
+  - this submitted file had action margin/support
+    `-0.000052` / `0.500000`, route delta `-0.000141`, H025 score
+    `-0.918544`, and H024 margin/support `+0.000410` / `0.250000`.
 - 성공/폐기 기준:
   - accept action-response latent if LOFO beats permutation null. Observed.
   - accept direct action-coupled solver if one candidate has action gain,
     route gain, H024 support >= `0.55`, and healthy H025/rowperm. Not observed.
-- public LB 관측 반응: no H042 file should be submitted. If a H042 file wins,
-  H024 and the action decoder are too conservative for route/private mixtures.
-  Otherwise H042 says the known-public action equation is real but not enough
-  for safe extrapolation outside H012.
-- 제출 전략: none. Next strategy should split hidden public sensors into
-  multiple regimes or search the already-successful H012 action manifold, not
-  force a single ridge action decoder to extrapolate.
+  - accept tiny Q2 phase branch if an H024-rejected but action/route/H025-good
+    candidate improves public. Observed.
+- public LB 관측 반응: actual public feedback says H024 and the automatic
+  intersection gate were too conservative for small Q2-local moves. It does not
+  license large route/private extrapolation.
+- 제출 전략: prioritize Q2-local phase manifold mapping and public-regime split.
+  Avoid large single-ridge action-atom mixtures unless a new independent stress
+  explains why H024 is wrong for that family too.

@@ -91,3 +91,21 @@ Top action atoms:
   a stable route-action equation at this granularity.
 - Promotion requires action-equation gain, route-world gain, H024 agreement,
   and H025 row/action-health agreement together.
+
+## Public Feedback
+
+HITL submitted
+`submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`.
+
+- public LB: `0.5679048248`
+- delta vs H012: `-0.0002186583`
+- local profile:
+  - changed cells: `45`
+  - action margin/support: `-0.000052` / `0.500000`
+  - route-equation delta: `-0.000141`
+  - H024 margin/support: `+0.000410` / `0.250000`
+  - H025 score: `-0.918544`
+
+Interpretation: H024 was too conservative for this small Q2-local phase move.
+The broad H042 action-atom solver remains unpromoted, but Q2-local phase is now
+a validated post-H012 branch.

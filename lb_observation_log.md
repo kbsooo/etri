@@ -4,7 +4,7 @@
 
 Public LB는 최적화 target이 아니라 hidden public subset과 calibration sensitivity를 관측하는 sensor로 취급한다.
 
-현재 public best는 `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv` = `0.5681234831`다. 아래 초기 표의 delta는 기존 E95 frontier anchor 기준이며, H012 이후 관측은 별도 섹션에 기록한다.
+현재 public best는 `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv` = `0.5679048248`다. 아래 초기 표의 delta는 기존 E95 frontier anchor 기준이며, H012 이후 관측은 별도 섹션에 기록한다.
 
 ## Public-Free Post-H012 Observation
 
@@ -2600,22 +2600,23 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
     or infer private/public action families directly from known LB deltas rather
     than first estimating `q_cond`.
 
-## Public-Free Observation: H042 Action-Coupled Equation Solver JEPA
+## Public Observation: H042 Tiny Q2 Phase Action-Coupled JEPA
 
-- submission file prepared: none promoted
-- public LB: not submitted
+- submission file:
+  `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
+- public LB: `0.5679048248`
+- delta vs H012: `-0.0002186583`
 - changed point:
   - treats known public LB deltas as observations of latent upload-action
     response;
   - fits action-response coordinates using public/private/phase/route/target
     action atoms;
-  - promotes only if action decoder, route equation, H024, H025, and
-    row-permutation agree.
+  - user selected the smallest Q2 phase candidate where action decoder,
+    route-equation, and H025 agreed while H024 disagreed.
 - expected LB reaction:
-  - if a candidate had passed and improved, it would mean the missing H012
-    decoder is an action-coupled public/private equation;
-  - because no candidate passes the intersection gate, H042 files should not
-    spend a public slot.
+  - improvement would mean H024 is over-conservative for small Q2 phase moves
+    and that the action-response branch has public-real signal;
+  - loss would mean the H042 action-response branch is diagnostic only.
 - local/public-free observation:
   - known public sensors `21`;
   - action atoms `36`;
@@ -2636,12 +2637,20 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - candidates with action gain plus route gain: `15`;
   - candidates with action gain plus route gain plus H024 gain: `0`;
   - candidates with route gain plus H024 gain: `0`.
+- submitted candidate local profile:
+  - candidate `h042_target_Q2_phase_k45_s0.5_c45_50fc6607`;
+  - changed cells `45`;
+  - action margin/support `-0.000052` / `0.500000`;
+  - route-equation delta `-0.000141`;
+  - H024 margin/support `+0.000410` / `0.250000`;
+  - H025 score `-0.918544`.
 - interpretation:
   - public action response is a real learnable sensor;
-  - the current action-atom family does not contain a safe H012-beating move;
-  - the next public experiment should split public/private sensor regimes or
-    search the H012-compatible action manifold, not rely on one ridge decoder.
+  - H024's rejection of all action-route candidates was too conservative for
+    tiny Q2 phase moves;
+  - the current action-atom family still does not justify large extrapolation;
+  - the next public experiment should map the Q2 phase manifold or split
+    public/private sensor regimes.
 - next experiment:
-  - infer whether known LB sensors are a mixture of multiple public regimes,
-    or generate nonlocal candidates constrained to preserve H012's successful
-    action support.
+  - generate Q2-local phase neighbors around the successful `45`-cell move,
+    with target-isolated stress and a separate H024 override audit.

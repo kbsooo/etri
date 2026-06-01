@@ -20,13 +20,13 @@ submission_survival_score =
 
 ## Current Public Frontier
 
-Current public frontier: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv` with public LB `0.5681234831`.
+Current public frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv` with public LB `0.5679048248`.
 
-Previous public frontier: `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` with public LB `0.5761589494`.
+Previous public frontier: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv` with public LB `0.5681234831`.
 
-H012 improves over E247 by `0.0080354663`. This is now the reference submission unless private-risk considerations dominate final selection.
+H042 improves over H012 by `0.0002186583`. H012 remains the base public-equation anchor, but H042 is now the reference public frontier unless private-risk considerations dominate final selection.
 
-Current next high-risk submission candidate: none from H015-H034. H012 remains the active anchor. The older `submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv` and H021 bridge file are now historical architecture sensors, not current recommendations, unless the user explicitly wants to spend a public slot on a resolved posterior-completion question.
+Current next high-risk submission candidate: none yet. The next work should extend or falsify the H042 Q2 phase manifold, not spend public slots on resolved H015-H041 posterior-completion or route-pull questions. The older `submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv` and H021 bridge file are now historical architecture sensors, not current recommendations, unless the user explicitly wants to spend a public slot on a resolved posterior-completion question.
 
 Reason: after H014-H019 decomposition, H020 is the largest predeclared post-H012 worldview test. It asks whether the validated public-equation posterior should be completed as a row-level 7-target hidden state, not independent cells. Conservative default remains H012; H020 is not a private-safe replacement until public feedback exists. H026 adds no submission candidate because the public/private veto repaired known-anchor ranking but failed public-transfer stress on generated variants.
 
@@ -5738,15 +5738,19 @@ Submission interpretation:
 
 ## Update After H042
 
-Current public-best:
+Current public-best before this HITL submission:
 
 `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
 
 Known public LB: `0.5681234831`.
 
-H042 promoted submission:
+H042 promoted HITL submission:
 
-None.
+`submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
+
+Known public LB: `0.5679048248`.
+
+Improvement over H012: `0.0002186583`.
 
 What H042 tested:
 
@@ -5780,13 +5784,14 @@ Local evidence:
 
 Submission interpretation:
 
-1. No H042 file should be submitted.
+1. The broad H042 auto-selected diagnostic should not be submitted, but the
+   small Q2 phase sensor is now public-positive.
 2. The public action-response representation is real: LOFO ranking is strong
    and permutation p is zero.
-3. It is not enough as a direct upload solver. The generated action family has
-   no intersection between learned public-action gain, route-world gain, and
-   H024 action health.
-4. H012 is likely sitting on a narrow action-support manifold. The next
-   high-upside public candidate should infer hidden public-sensor regimes or
-   search the H012 manifold itself, not extrapolate with a single ridge action
-   decoder.
+3. H024 is too conservative for at least one small Q2 phase move: the winning
+   candidate had action margin `-0.000052`, route delta `-0.000141`, H025 score
+   `-0.918544`, but H024 margin `+0.000410`.
+4. H012 is likely sitting on a narrow action-support manifold with a small
+   Q2-local descent direction. The next high-upside public candidate should
+   map that Q2 manifold or split hidden public-sensor regimes, not extrapolate
+   with large action atoms.

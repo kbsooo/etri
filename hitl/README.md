@@ -6,13 +6,13 @@ search.
 
 ## Current Baseline
 
-- Public best: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
-- Public LB: `0.5681234831`
-- Current promoted post-H012 sensor: none.
-- Current H041 conclusion: route state improves hidden public-equation LOFO fit,
-  but route-conditioned posterior pulls still fail H024. H012 is currently a
-  coupled public-equation/action fixed point, not a posterior that can be
-  safely edited after inference.
+- Public best: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
+- Public LB: `0.5679048248`
+- Current promoted post-H012 sensor: tiny Q2 phase action-coupled move.
+- Current H042 conclusion: known public action response is real, and a small
+  Q2 phase move can beat H012 even when H024 rejects it. H012 remains the base
+  public-equation/action fixed point, but Q2-local phase has a live descent
+  direction.
 
 ## H041: Route-Prior Public/Private Equation Solver HS-JEPA
 
@@ -466,7 +466,8 @@ action-health gate. It is not yet a standalone probability target.
 
 - Script: `hitl/h022_hs_conditioned_vector_world_jepa.py`
 - Report: `hitl/h022_hs_conditioned_vector_world_jepa/h022_report.md`
-- Decision: diagnostic only, no root upload-safe submission promoted.
+- Decision: broad H042 auto-selection remains diagnostic only, but HITL
+  promoted the tiny Q2 phase sensor and public validated it.
 
 ### Question
 
@@ -1191,7 +1192,9 @@ beating action.
 ### Interpretation
 
 H042 gives strong HS-JEPA evidence: known public action response is learnable
-and non-random. But the generated action family has no intersection between
-public-action gain, route-world gain, and H024 action health. The next big-bet
-should not be another posterior or ridge-action extrapolation; it should split
-hidden public/private regimes or search the H012 action manifold directly.
+and non-random. The broad generated action family has no intersection between
+public-action gain, route-world gain, and H024 action health, but the tiny Q2
+phase candidate
+`submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv` scored
+`0.5679048248`, improving H012 by `0.0002186583`. The next big-bet should map
+the Q2-local phase manifold and audit where H024 is too conservative.

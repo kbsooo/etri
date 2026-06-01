@@ -4,16 +4,22 @@ This repository snapshot is rooted at the former local `cl2/` workspace.
 
 Current public frontier:
 
-- `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
-- Public LB: `0.5681234831`
-- Previous frontier: `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
-- Improvement over previous frontier: `0.0080354663`
-- Interpretation: H012 validates the public-equation HS-JEPA branch. Known public LB observations are no longer only diagnostics; as equations over a hidden public label/subset state, they produced a large public-readable action.
-- External reference note: the attached high-scoring `submission_v106_sleep_state_conditioned_memory.csv` document reports public LB `0.5703952266` from same-subject sleep-state/sensor-quality-conditioned memory. That supports the broader repeated-subject world model, but H012 is still lower by `0.0022717435`.
+- `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
+- Public LB: `0.5679048248`
+- Previous frontier: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+- Improvement over previous frontier: `0.0002186583`
+- Interpretation: H012 validates the public-equation HS-JEPA branch, and H042
+  adds the first post-H012 public-positive action-translation evidence. The
+  winning H042 move is not the large action-coupled solver output; it is a tiny
+  Q2 phase move that H024 rejected but action-response, route-equation, and H025
+  supported.
+- External reference note: the attached high-scoring `submission_v106_sleep_state_conditioned_memory.csv` document reports public LB `0.5703952266` from same-subject sleep-state/sensor-quality-conditioned memory. That supports the broader repeated-subject world model, but H042 is lower by `0.0024904018`.
 
 Current post-H012 status:
 
-- No H015-H035 file is currently promoted as the next upload. H012 remains the active submission anchor.
+- H042 Q2 tiny phase is the active public frontier, while H012 remains the base
+  public-equation anchor.
+- No H015-H041 file is currently promoted as the next upload.
 - The historical post-H012 sensors below are kept because they define falsified or partially supported HS-JEPA routes, not because they are current submission recommendations.
 
 - `submission_h015_self_feedback_top_all_k1600_a0.7_uploadsafe.csv`
@@ -163,19 +169,24 @@ Current post-H012 status:
   a public-subset prior and rejects posterior-first top-cell/row pulls as the
   missing decoder.
 
-- H042 produced no promoted root submission.
+- H042 produced a promoted HITL public sensor after the initial local
+  do-not-promote decision.
 - Interpretation: H042 made upload-action coefficients first-class variables
   and fit known public LB deltas from `36` public/private/phase/route/target
   action atoms. This worked as representation learning: best action-decoder
   LOFO MAE was `0.000665647`, Spearman `0.924675325`, pairwise accuracy
-  `0.904761905`, and permutation p `0.000000000`. But it failed as a public
-  action solver. The selected diagnostic had route-equation delta
+  `0.904761905`, and permutation p `0.000000000`. The broad automatic selector
+  still failed as a public action solver. The selected diagnostic had route-equation delta
   `-0.000537053`, yet action margin/support
   `+0.000793299` / `0.333333333` and H024 margin/support
   `+0.002010668` / `0.250000000`. Across `240` scored candidates, `15` had
   action gain plus route gain, but none also had H024 gain, and none had route
-  gain plus H024 gain. H042 validates public action-response geometry and
-  rejects single-ridge action-atom extrapolation as the missing decoder.
+  gain plus H024 gain. The submitted tiny Q2 phase sensor
+  `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
+  scored `0.5679048248`, improving H012 by `0.0002186583`. H042 therefore
+  validates public action-response geometry and shows H024 is too conservative
+  for at least small Q2 phase moves, while still rejecting large single-ridge
+  action-atom extrapolation as the missing decoder.
 
 Public LB operating rule:
 
@@ -201,11 +212,12 @@ Public LB operating rule:
   instead of first estimating a public posterior and then translating it into
   probability edits.
 - H042 tests that sharper bet and narrows it further: known public action
-  response is learnable and non-random, but the generated action-atom family has
-  no safe intersection across action decoder, route-world gain, and H024. The
-  next big-bet should split hidden public sensors into multiple regimes or
-  search the H012 action manifold directly, not continue posterior-first or
-  single-ridge action extrapolation.
+  response is learnable and non-random. Public feedback on the tiny Q2 phase
+  sensor proves one H024-rejected local branch is real, but the generated
+  action-atom family still has no robust intersection across action decoder,
+  route-world gain, and H024. The next big-bet should explore the Q2 phase
+  manifold and split hidden public sensors into multiple regimes, not continue
+  posterior-first or large single-ridge action extrapolation.
 
 Primary working notes:
 

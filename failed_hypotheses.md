@@ -2941,7 +2941,7 @@
 - Observed result: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv` scored `0.5681234831`, improving over E247 by `0.0080354663`.
 - Why discard: the gain is much larger than recent frontier noise and larger than the H012 posterior mean forecast by `0.0015890693`. A pure overfit/noise explanation no longer fits the public observation.
 - Implementation issue possible: low for public result validity; the file was upload-safe and scored successfully. Private generalization remains unknown, but that is a different hypothesis.
-- Bottleneck implication: the strongest current bottleneck is no longer latent discovery. It is posterior decomposition and private-risk control: separating public-subset-specific cells from hidden-state cells that should generalize.
+- Bottleneck implication: the strongest current bottleneck is no longer latent discovery. H012 proved public-equation materialization; H042 then proved a small Q2-local phase action can improve it. The remaining problem is posterior decomposition, target-specific action translation, and private-risk control.
 - Do not repeat: treating public LB observations only as after-the-fact diagnostics. They are now a validated HS-JEPA target source, but future use must include leave-H012-out and subject-time memory stress.
 
 ## FH319. Same-subject sleep-state memory can safely regularize most of H012
@@ -3257,12 +3257,13 @@
   submissions unless the upload action is part of the equation solver or passes
   a new independent action-health stress.
 
-## FH342. A single ridge action-response decoder can directly find a H012-beating upload action
+## FH342. A single broad ridge action-response decoder can directly find a robust H012-beating upload action
 
 - Failed hypothesis: after H041, the missing decoder is not the public-world
   posterior but the upload action coefficients. Known public LB deltas should
   train a ridge action-response model over public/private/phase/route atoms,
-  and the resulting candidate ranking should expose a safe H012-beating action.
+  and the resulting broad candidate ranking should expose a robust H012-beating
+  action that passes action decoder, route equation, H024, and H025 together.
 - Observed result: H042 validates the action-response geometry but rejects it
   as a direct solver. The best action decoder reaches LOFO MAE `0.000665647`,
   Spearman `0.924675325`, pairwise accuracy `0.904761905`, and permutation p
@@ -3272,18 +3273,24 @@
   H025 row-permutation p `0.146666667`. Across the generated pool, `15`
   candidates have action-decoder gain plus route gain, but `0` also have H024
   gain, and `0` have route gain plus H024 gain.
-- Why discard as a submission route: the known-public action manifold is
-  learnable, but the generated atoms extrapolate outside the H012-safe action
-  support. Public-action response, route-world gain, and H024 health do not
-  intersect.
+- Public correction: HITL submitted
+  `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`, a
+  small `45`-cell Q2 phase candidate with action margin `-0.000052`, route
+  delta `-0.000141`, H025 score `-0.918544`, and H024 margin `+0.000410`. It
+  scored public `0.5679048248`, improving H012 by `0.0002186583`.
+- Why discard as a broad submission route: the known-public action manifold is
+  learnable, and one tiny Q2 branch is public-real, but the generated large
+  atoms extrapolate outside the H012-safe action support. Public-action
+  response, route-world gain, and H024 health still do not intersect for broad
+  route/private mixtures.
 - Implementation issue possible: medium. H042 uses ridge and a hand-built atom
   dictionary. A nonlinear model or different atom basis could improve ranking,
   but the empty intersection across independent stress views is strong enough
   to reject the current family as a public submission.
-- Bottleneck implication: the competition bottleneck is now out-of-support
+- Bottleneck implication: the competition bottleneck is now target-specific
   action translation, not only hidden-state discovery. H012 behaves like a
-  coupled fixed point of hidden public world plus uploadable action support.
-- Do not repeat: single-decoder ridge extrapolation over the same
-  public/private/phase/route atoms unless the candidate family is redesigned to
-  stay on the H012 action manifold or to split public sensors into separate
-  regimes.
+  coupled fixed point, but Q2-local phase has a small public-valid descent
+  direction that H024 can miss.
+- Do not repeat: broad single-decoder ridge extrapolation over the same
+  public/private/phase/route atoms. Do repeat target-isolated Q2 phase mapping
+  with an explicit H024 override audit.

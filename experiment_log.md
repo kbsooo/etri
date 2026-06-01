@@ -7254,8 +7254,24 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - the current obstacle is not only hidden-state discovery. It is unsupported
     extrapolation from hidden states into uploadable probability actions.
 - Decision:
-  - H042 is diagnostic-only;
-  - do not submit generated H042 variants;
-  - next big-bet should infer multiple public/private sensor worlds or search
-    the H012 action manifold itself, rather than trust route posterior or action
-    ridge extrapolation alone.
+  - initial automatic H042 decision was diagnostic-only;
+  - HITL then selected the smallest Q2 phase candidate as a public sensor.
+- Public feedback:
+  - submitted file:
+    `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`;
+  - public LB `0.5679048248`;
+  - improvement over H012 `0.0002186583`;
+  - submitted local profile: changed cells `45`, action margin/support
+    `-0.000052` / `0.500000`, route delta `-0.000141`, H025 score
+    `-0.918544`, H024 margin/support `+0.000410` / `0.250000`.
+- Updated interpretation:
+  - H024 was too conservative for tiny Q2-local phase moves;
+  - the action-response branch is not only diagnostic: it produced a real
+    post-H012 public improvement when constrained to a small target-isolated
+    action;
+  - broad route/private action mixtures remain unsafe until a new stress
+    explains why H024 should be overridden for them too.
+- Next:
+  - map the Q2 phase manifold around the winning `45`-cell move;
+  - test whether the effect is target-isolated Q2 calibration, hidden public
+    Q2 prior, or a public-subset/regime split.

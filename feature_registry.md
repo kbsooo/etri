@@ -4852,8 +4852,17 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - `15` candidates have action gain plus route gain;
   - no candidate has action gain plus route gain plus H024 gain;
   - no candidate has route gain plus H024 gain.
-- Registry status: approved as a non-collapsed action-response representation.
-  Rejected as a direct ridge/action-atom submission solver.
+- Public feedback:
+  - `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
+    scored `0.5679048248`;
+  - delta vs H012 `-0.0002186583`;
+  - winning file is a `45`-cell Q2-local phase move with action margin
+    `-0.000052`, route delta `-0.000141`, H025 score `-0.918544`, and H024
+    margin `+0.000410`.
+- Registry status: approved as a non-collapsed action-response representation
+  and as a tiny Q2 phase materializer. Rejected as a broad large-atom
+  submission solver.
 - Failure condition: do not submit action-atom mixtures unless a new search
   finds intersection across action decoder, route equation, H024, and H025.
-  A strong LOFO action decoder alone is not enough.
+  A strong LOFO action decoder alone is not enough outside the validated
+  Q2-local phase branch.

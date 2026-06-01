@@ -255,7 +255,7 @@ E94 adds a final post-E72 gate separation: soft-health metrics and hard-label Lo
 3. Conservative same-hypothesis fallback: `analysis_outputs/submission_e85_inverse_conflict_pruned_58b23ed1.csv` should be used if the goal is to isolate lower-amplitude `S1,S2,S3` target-prune without E86's Q2 add-back and shrink `1.25` overstep, or to test pure downside floor.
 4. E95-relative row-coherent structure test: `analysis_outputs/submission_e90_e72pareto_28925de5.csv` should be used only if the explicit question is whether public accepts more retained E86 row-level hidden/world/block structure than E95 after the worst E72 rows are removed. E99/E101 make it a weak expected-improvement file.
 5. E95-relative max-upside structure test: `analysis_outputs/submission_e86_e85_consensus_a3f7c96f.csv` remains the highest-upside file, but E99 makes it high-risk as an E95-beat bet. It tests whether public accepts a source-stable `Q2,S1,S2,S3` structural consensus despite higher hard-tail exposure than E95.
-6. Historical post-E247 anchor: `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` became the active anchor with public `0.5761589494` at this stage. After H012 public feedback, the current public frontier is `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv` with public `0.5681234831`. Future stress should compare against H012 for final-candidate decisions and against E247 only for historical attribution/body attribution.
+6. Historical post-E247 anchor: `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` became the active anchor with public `0.5761589494` at this stage. After H012 public feedback, the public-equation anchor is `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv` with public `0.5681234831`; after H042 public feedback, the current public frontier is `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv` with public `0.5679048248`. Future stress should compare against H042 for final-candidate decisions, against H012 for public-equation anchor attribution, and against E247 only for historical attribution/body attribution.
 7. E95-updated selector sanity: E98 rejected the proxy-ranked path, E99 keeps E95 best after conditioning tail worlds on E95, E101 shows that a small rollback can be better than full E89, E102 rejects a strong block/subject-local interpretation of that rollback, E103 rejects direct edge-only replacement, E104 rejects fine-grid higher-alpha replacement before public feedback, E106 rejects subject-prior-gated replacement before public feedback, E107 maps the post-E101 branch rather than creating a new file, E109 closes same-line rescue after a tie/loss, E110 closes simple non-active-tail rescue after a tie/loss, E111 shows the frontier movement is S-heavy target-axis surgery rather than broad all-target movement, E112 explains why Q temporal signal should not be blindly copied into test, E113 shows visible raw context does not safely replace that missing Q temporal context, E114 shows raw context does not pre-validate E101 active-cell support labels, E115 shows E101 remains the highest-actionability sensor among pending controls, E116 pre-registers the exact public LB decoder, E117 shows the documented submission universe has no untested lower-tail E95-like replacement, E118 shows visible train flanks support but do not certify the E101 transition-state world, and E119 shows flank/support gates cannot replace the full E101 active-set rollback before public feedback. Do not use predicted LB from the known-LB movement regression, unconditioned E96 tail means, handcrafted active-cell block/edge/subject-prior/flank masks, active-restored/non-active grafts, broad Q/Q3/S4 movement, direct Q1/Q3 temporal propagation, raw-coverage heads, E101 raw-support scores, E101 flank-support scores without negative expected delta, loss-heavy raw split information, old-submission universe search, conditional E108 files, or post-hoc reinterpretation outside the E116 bands to choose E90/E86/E85 before E101.
 8. E87 contrast queue after E86 feedback: `analysis_outputs/submission_e87_noq2_source_consensus_a85c4e39.csv`, `analysis_outputs/submission_e87_q2_nooverstep_consensus_acd7add0.csv`, or `analysis_outputs/submission_e87_inverse_top_prior_consensus_5445ec28.csv`, chosen by which risk axis needs falsification.
 9. Public sensor for E72/E75 sparse-magnitude Q2/S3 consensus is now resolved negatively for the submitted combined file: `analysis_outputs/submission_e72_topabs50_q2s3_gate_4e48cba2.csv` scored `0.5764077772`, worse than mixmin by `+0.0001011367`. E80 shows that file moved all targets, E81 shows the isolated E73 Q2/S3 graft is only loose/sub-margin, and E82 shows the broader pure Q2/S3 source universe is still margin-limited. Do not submit E75/E74 or pure Q2/S3 grafts as direct follow-ups.
@@ -5781,7 +5781,7 @@ Stress conclusion:
 
 - H012 passed public feedback decisively. This validates the leave-one-public diagnostics as meaningful at least for the current public subset.
 - This does not certify private generalization. It changes the next stress target: leave-H012-out posterior reconstruction, posterior scenario variance, target/cell concentration, and agreement with subject-time sleep-state memory now matter more than E272-style E247 micro-movement selectors.
-- The old "safe default is E247" statement is no longer correct for public performance. E247 is now the previous baseline and H012 is the current public frontier.
+- The old "safe default is E247" statement is no longer correct for public performance. E247 is now historical, H012 is the public-equation anchor, and H042 is the current public frontier after the tiny Q2 phase improvement.
 
 ## External Sleep-State Conditioned Memory Stress
 
@@ -6843,3 +6843,22 @@ Stress conclusion:
 - The next stress should stop treating H012 as a point to move away from by
   generic atoms. It should infer public/private sensor regimes or search the
   H012-compatible action manifold itself.
+
+Public follow-up:
+
+- HITL submitted:
+  `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`;
+- public LB: `0.5679048248`;
+- delta vs H012: `-0.0002186583`;
+- local stress profile:
+  action margin/support `-0.000052` / `0.500000`,
+  route delta `-0.000141`, H025 score `-0.918544`,
+  H024 margin/support `+0.000410` / `0.250000`.
+
+Updated stress conclusion:
+
+- H024 is too conservative for at least one tiny Q2-local phase move.
+- H042's action-response stress should not be discarded; it should be combined
+  with a target-isolated Q2 override rule.
+- This public win does not validate large action-atom mixtures, because those
+  still fail the independent H024/H025 intersection tests.

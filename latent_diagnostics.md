@@ -992,3 +992,13 @@ precise: hidden public world, route, memory-transition, failure geometry, and
 action response are all real representations. The unsolved part is not
 representation discovery alone; it is out-of-support action translation around
 the H012 fixed point.
+
+Public feedback on
+`submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv` changes
+the diagnosis. That tiny Q2 phase move scored `0.5679048248`, beating H012 by
+`0.0002186583`. Its local profile was action-positive and route-positive
+(`-0.000052` / `-0.000141`) with healthy H025 (`-0.918544`), but H024 rejected
+it (`+0.000410`, support `0.250000`). The LeJEPA read is now more nuanced:
+H024 is a useful large-action guardrail, but it can suppress a real
+target-isolated Q2 phase descent. The next latent should separate "Q2-local
+phase calibration" from broad route/private action extrapolation.
