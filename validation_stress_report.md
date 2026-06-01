@@ -6616,3 +6616,60 @@ Stress conclusion:
   and H024-safe moves are disjoint under this action family.
 - Next stress should model route/calibration/private-public transfer jointly,
   with H037 candidates as negative examples.
+
+## H038 Memory-Transition World Translator Stress
+
+Question: can H012's apparent subject-memory exceptions become the missing
+world-to-action translator?
+
+Stress setup:
+
+- script: `hitl/h038_memory_transition_world_translator_jepa.py`;
+- memory context: H014/V106-style same-subject sleep-state memory probability,
+  agreement, disagreement, and reliability;
+- public-world context: H036 `world_q_cond`, `cell_world_score`, and row public
+  probability;
+- action families:
+  - memory-exception q-pulls;
+  - memory-exception posterior pulls;
+  - memory-repair rollbacks;
+  - row-transition vector moves;
+  - world-exception veto moves;
+- stresses:
+  - H036 row/cell world proxy deltas;
+  - H012 posterior proxy deltas;
+  - memory proxy deltas;
+  - H024 pre-H012 public action decoder;
+  - H025 row-permutation placement stress.
+
+Stress result:
+
+- H012 support cells: `1200`;
+- memory-exception support cells: `523`;
+- memory-exception posterior gain sum: `8.133135268`;
+- memory-exception cell-world score sum: `200.501588821`;
+- broad-world memory-exception cells: `245`;
+- broad-world memory-exception score sum: `183.788898304`;
+- generated candidates: `459`;
+- candidates with `world_cell_delta < -0.0002`: `42`;
+- candidates with `posterior_delta < -0.0001`: `2`;
+- candidates with negative H024 pre-H012 margin: `0`;
+- candidates with H024 support >= `0.55`: `0`;
+- selected diagnostic:
+  `h038_memory_repair_all_k140_a0.38_4edd633f`;
+- selected world/posterior deltas:
+  `+0.000443266` / `+0.000266868`;
+- selected memory delta: `-0.002958880`;
+- selected H024 margin/support:
+  `+0.002193776` / `0.250000000`;
+- H025 row-permutation p: `0.836666667`;
+- promoted root file: none.
+
+Stress conclusion:
+
+- Memory conflict is a real explanatory slice of H012 and overlaps H036 public
+  pressure heavily.
+- It is not a safe direct action route. Exception amplification and posterior
+  pulls fail H024 support, while memory repair moves opposite to H012/H036.
+- The next stress should treat memory-transition as a route feature inside a
+  learned translator, not as a standalone probability target.

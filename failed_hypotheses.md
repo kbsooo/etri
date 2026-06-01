@@ -3144,3 +3144,31 @@
   amplitude.
 - Do not repeat: H012-support-only scalar amplification/damping/q-pull sweeps as
   submission candidates without a richer translator objective.
+
+## FH338. Same-subject memory-transition exceptions are directly actionable
+
+- Failed hypothesis: because H012 gain concentrates in cells where V106-style
+  subject memory disagrees, moving those exception cells further toward H036
+  world/posterior targets or repairing the memory-consistent tail should beat
+  H012.
+- Observed result: H038 confirms the explanatory part but rejects the action
+  part. Memory-exception cells are `523/1200` H012 support cells and carry
+  posterior gain sum `8.133135268` plus H036 cell-world score sum
+  `200.501588821`. However, among `459` candidates, only `42` have meaningful
+  world-cell gain and only `2` have posterior gain; `0` have negative H024
+  pre-H012 margin and `0` reach H024 support `0.55`. The selected diagnostic is
+  a memory-repair move that improves the memory proxy but worsens world and
+  posterior proxies, with H024 margin/support `+0.002193776` / `0.250000000`
+  and H025 row-permutation p `0.836666667`.
+- Why discard as a submission route: memory conflict is a state descriptor, not
+  a probability action. Amplifying exception cells is H024-positive, and
+  repairing memory conflict moves against H012/H036.
+- Implementation issue possible: medium. H038 uses hand-built exception scores
+  and action families. A learned nonlinear route translator could still use
+  memory conflict as an input feature.
+- Bottleneck implication: subject memory helps locate the hidden state, but the
+  remaining gap is the action decoder: route/calibration/private-public transfer
+  from hidden state into uploadable probabilities.
+- Do not repeat: direct memory-conflict amplification, posterior-pull, or
+  memory-repair sweeps as public submissions without a separate action-health
+  translator.

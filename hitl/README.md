@@ -939,3 +939,46 @@ support, so support discovery is not the main missing piece. But scalar
 amplitude on the H012 ray cannot satisfy both H036 world gain and H024
 action-health. The next translator must model route, calibration, or
 public/private split jointly.
+
+## H038: Memory-Transition World Translator HS-JEPA
+
+- Script: `hitl/h038_memory_transition_world_translator_jepa.py`
+- Report:
+  `hitl/h038_memory_transition_world_translator_jepa/h038_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+Can H012's advantage over V106-style same-subject memory be explained and
+extended by within-subject transition exceptions where memory is misleading?
+
+### Main Finding
+
+Memory-transition explains H012's anatomy, but it is not directly actionable.
+
+- H012 support cells: `1200`.
+- Memory-exception support cells: `523`.
+- Memory-exception posterior gain sum: `8.133135268`.
+- Memory-exception H036 cell-score sum: `200.501588821`.
+- Broad-world memory-exception cells: `245`.
+- Broad-world memory-exception score sum: `183.788898304`.
+- Generated H038 candidates: `459`.
+- Candidates with `world_cell_delta < -0.0002`: `42`.
+- Candidates with `posterior_delta < -0.0001`: `2`.
+- Candidates with negative H024 pre-H012 margin: `0`.
+- Candidates with H024 support >= `0.55`: `0`.
+- Selected diagnostic:
+  `hitl/h038_memory_transition_world_translator_jepa/submission_h038_memory_repair_all_k140_a0.38_4edd633f.csv`.
+- Selected world/posterior deltas:
+  `+0.000443266` / `+0.000266868`.
+- Selected H024 margin/support:
+  `+0.002193776` / `0.250000000`.
+- H025 row-permutation p: `0.836666667`.
+
+### Interpretation
+
+H038 gives a useful human-state story for H012: public-equation success often
+appears where stable subject memory should not be trusted. But as with H036 and
+H037, the explanatory latent is not the uploadable probability action. The next
+translator should use memory conflict as one route feature together with
+public-world, support, calibration, and private/public state.

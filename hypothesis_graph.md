@@ -4912,3 +4912,52 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 제출 전략: none. Next action should model row-route/calibration/private-public
   transfer jointly, possibly with H036 as teacher latent and H037 as negative
   examples.
+
+### H038: Same-subject memory-transition exceptions explain H012, but do not directly translate it
+
+- 상태: accepted as an explanatory latent; rejected as a direct post-H012
+  translator.
+- 왜 그럴듯한가: the attached V106 method makes subject/time/sleep-state memory
+  a strong outside reference, but H012 is much better publicly. H014/H031
+  showed that H012's gain is concentrated in cells where that memory disagrees,
+  suggesting H012 may encode transition/exception states rather than stable
+  subject continuity.
+- 맞다면:
+  - memory-exception cells should carry a large share of H012 posterior gain and
+    H036 hidden-world pressure;
+  - candidates that move only exception cells should show both world/posterior
+    gain and H024/H025 action-health;
+  - memory-repair candidates should be rejected if H012 really won by breaking
+    memory.
+- 틀리다면:
+  - memory-exception regions should have weak H012/H036 concentration;
+  - exception moves should behave like arbitrary support edits;
+  - memory-repair should not be systematically world/posterior-worse.
+- 최소 실험: `hitl/h038_memory_transition_world_translator_jepa.py`, generating
+  `459` candidates over exception q-pulls, posterior pulls, memory repair, row
+  transitions, and world-exception vetoes.
+- 관측:
+  - H012 support `1200`;
+  - memory-exception support `523`;
+  - memory-exception posterior gain sum `8.133135268`;
+  - memory-exception H036 cell-score sum `200.501588821`;
+  - broad-world exception cells `245`, score sum `183.788898304`;
+  - world-gain candidates `42`;
+  - posterior-gain candidates `2`;
+  - negative-H024-margin candidates `0`;
+  - H024 support >= `0.55` candidates `0`;
+  - selected diagnostic is a memory-repair action with world/posterior deltas
+    `+0.000443266` / `+0.000266868`, H024 margin/support
+    `+0.002193776` / `0.250000000`, and H025 rowperm p `0.836666667`;
+  - no promoted upload-safe file.
+- 성공/폐기 기준:
+  - accept memory-transition translator only if exception moves have meaningful
+    H036/H012 gain, H024 margin <= 0, H024 support >= 0.55, and H025 rowperm p
+    <= 0.35. Not observed.
+  - keep memory-transition as a latent if exception regions concentrate H012 and
+    H036 pressure. Observed.
+- public LB 관측 반응: no H038 file should be submitted. If an H038 file wins,
+  H024/H025 are missing a genuine transition route. Otherwise H038 says memory
+  conflict is a feature for the translator, not the translator itself.
+- 제출 전략: none. Next action should use memory-exception as one route channel
+  inside a learned/private-public/calibration translator.

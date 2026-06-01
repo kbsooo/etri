@@ -2438,3 +2438,43 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - learn route/calibration/private-public transfer jointly, using H036 as
     teacher and H037 as negative support-preserving examples.
+
+## Public-Free Observation: H038 Memory-Transition Translator JEPA
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - uses V106/H014 same-subject sleep-state memory as a contrastive context;
+  - tests whether cells where H012 breaks subject memory are the missing
+    world-to-action translator;
+  - generates exception q-pulls, exception posterior pulls, memory-repair
+    rollbacks, row-transition vector moves, and world-exception veto moves.
+- expected LB reaction:
+  - if a candidate had passed and improved, it would mean H012's post-best
+    route is a memory-transition exception law;
+  - because no candidate passed, submitting H038 would mostly test a known
+    H024/H025 rejection.
+- local/public-free observation:
+  - H012 support `1200`;
+  - memory-exception support `523`;
+  - memory-exception posterior gain sum `8.133135268`;
+  - memory-exception H036 cell-score sum `200.501588821`;
+  - broad-world exception cells `245`, score sum `183.788898304`;
+  - generated candidates `459`;
+  - world-cell gain candidates `42`;
+  - posterior-gain candidates `2`;
+  - negative-H024-margin candidates `0`;
+  - H024 support >= `0.55` candidates `0`;
+  - selected diagnostic `h038_memory_repair_all_k140_a0.38_4edd633f`;
+  - selected world/posterior deltas
+    `+0.000443266` / `+0.000266868`;
+  - selected H024 margin/support
+    `+0.002193776` / `0.250000000`;
+  - selected H025 row-permutation p `0.836666667`.
+- interpretation:
+  - memory-transition is a real explanation for H012's anatomy;
+  - memory-transition is not a direct action route;
+  - use memory conflict as a translator feature, not as a target to amplify.
+- next experiment:
+  - train or search a route/calibration/private-public translator with
+    H036/H037/H038 candidates as positive/negative action examples.

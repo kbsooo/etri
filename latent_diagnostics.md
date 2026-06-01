@@ -902,3 +902,21 @@ support `0.250000000`, although H025 row placement is moderately non-random
 (`p=0.106666667`). The latent diagnosis after H037 is sharper: H012 support is
 probably close to the right support, but the reusable law is not a scalar
 amplitude/ray law. It must include route, calibration, or public/private split.
+
+H038 adds same-subject memory-transition as a contrastive latent route. This is
+the clearest synthesis of the V106 note with the HS-JEPA worldview: subject
+memory is used as a context representation, and H012/H036 pressure is the
+hidden target representation. The latent is not collapsed. H012's `1200`
+support cells include `523` memory-exception cells, and those cells carry
+posterior gain sum `8.133135268` plus H036 cell-world score sum
+`200.501588821`. The smaller broad-world exception core has only `245` cells
+but carries score sum `183.788898304`, so memory conflict is not random noise.
+
+The LeJEPA check is again negative for direct action. H038 generated `459`
+candidates. `42` gained under the H036 world-cell proxy and `2` gained under
+the H012 posterior proxy, but no candidate had negative H024 pre-H012 margin and
+none reached H024 support `0.55`. The selected memory-repair diagnostic improved
+the memory proxy (`-0.002958880`) but moved against H012/H036 and had H025
+row-permutation p `0.836666667`. The latent diagnosis is now sharper:
+memory-transition is a healthy human-state feature for route inference, but
+mechanically repairing or amplifying memory conflict is another shortcut.

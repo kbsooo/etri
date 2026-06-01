@@ -5544,3 +5544,53 @@ Submission interpretation:
    missing translator.
 4. The next candidate must model route/calibration/private-public transfer, not
    just support, ray, or scalar amplitude.
+
+## Update After H038
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+H038 promoted submission:
+
+None.
+
+What H038 tested:
+
+- Whether H012's advantage over V106-style same-subject memory comes from
+  within-person transition states where subject memory is misleading.
+- Whether those memory-exception cells can translate H036 hidden public-world
+  pressure into a safe post-H012 action.
+
+Local evidence:
+
+- H012 support cells: `1200`;
+- memory-exception support cells: `523`;
+- memory-exception posterior gain sum: `8.133135268`;
+- memory-exception H036 cell-score sum: `200.501588821`;
+- broad-world memory-exception cells: `245`;
+- broad-world memory-exception score sum: `183.788898304`;
+- generated candidates: `459`;
+- candidates with meaningful world-cell gain: `42`;
+- candidates with posterior gain: `2`;
+- candidates with negative H024 margin: `0`;
+- candidates with H024 support >= `0.55`: `0`;
+- selected diagnostic:
+  `hitl/h038_memory_transition_world_translator_jepa/submission_h038_memory_repair_all_k140_a0.38_4edd633f.csv`;
+- selected world/posterior deltas:
+  `+0.000443266` / `+0.000266868`;
+- selected H024 margin/support:
+  `+0.002193776` / `0.250000000`;
+- selected H025 row-permutation p: `0.836666667`.
+
+Submission interpretation:
+
+1. No H038 file should be submitted.
+2. Memory-exception is real and helps explain H012, especially against the
+   V106 subject-memory reference.
+3. Direct memory-conflict amplification or repair is not public-safe under the
+   current stress suite.
+4. The next high-upside candidate should use memory conflict as a route feature
+   inside a learned action translator, not as the action itself.

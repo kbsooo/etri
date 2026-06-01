@@ -4685,3 +4685,36 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Failure condition: do not use support-preserving scalar ray amplitude as the
   next submission route unless paired with a new route/calibration/private-
   public translator.
+
+### H038 memory-transition translator features
+
+- Target hidden structure: within-subject lifestyle/sleep-state transition where
+  same-subject memory becomes misleading and H012 public-equation movement
+  overrides continuity.
+- Why needed: V106-style subject memory is externally validated, but H012 is
+  much stronger. The useful question is not whether memory is true, but where
+  H012 breaks it.
+- Feature/action form:
+  - memory probability and reliability from H014;
+  - memory agreement/disagreement with H012 direction;
+  - H031 memory-conflict core scores;
+  - H036 world pressure and row public probability;
+  - transition-exception score, repair score, and row-transition score;
+  - candidate families: exception q-pull, exception posterior-pull,
+    memory-repair rollback, row-transition vector move, and world-exception
+    veto.
+- Current evidence:
+  - memory-exception support cells: `523/1200`;
+  - memory-exception posterior gain sum: `8.133135268`;
+  - memory-exception H036 cell-score sum: `200.501588821`;
+  - broad-world exception cells: `245`, score sum `183.788898304`;
+  - generated candidates `459`;
+  - world-gain candidates `42`;
+  - posterior-gain candidates `2`;
+  - negative-H024-margin candidates `0`;
+  - H024 support >= `0.55` candidates `0`.
+- Registry status: approved as a human-state route feature. Rejected as a
+  direct action translator or submission materializer.
+- Failure condition: do not submit memory-conflict amplification/repair files
+  unless a learned translator also passes H024/H025 and shows public-free
+  action-health.

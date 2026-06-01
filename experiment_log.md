@@ -6983,3 +6983,60 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - do not submit generated H037 variants;
   - next big-bet should model route/calibration/private-public split jointly,
     not only support or amplitude on the H012 ray.
+
+## H038. Memory-Transition World Translator HS-JEPA
+
+- Observe: H012 beat the V106-style same-subject memory worldview by a large
+  margin, but H031/H014 showed that subject memory is still informative as a
+  contrastive state. H012's public gain concentrates where same-subject memory
+  is misleading, so the next big test is whether those memory-transition cells
+  can translate H036's hidden public-world posterior into a new action.
+- Wonder: did H012 win because it detected within-person state transitions
+  where "same person, similar sleep state" memory breaks, and can we safely
+  move only those exception cells?
+- Hypothesis: if memory-transition exceptions are the missing translator, then
+  H036 world gain, H012 posterior gain, H024 action-health, and H025 row
+  placement should agree on a subset of memory-exception cells or rows.
+- Method: `hitl/h038_memory_transition_world_translator_jepa.py`.
+  - context: H014 subject-state memory, H031 memory-conflict anatomy, H036
+    hidden public-world posterior, H012 support/ray;
+  - target representation: memory-exception cells/rows where public-world
+    pressure opposes subject memory;
+  - action families: exception q-pulls, exception posterior pulls,
+    memory-repair rollbacks, row-transition vector moves, and
+    world-exception-veto moves;
+  - stress: H036 world proxy, H012 posterior proxy, memory proxy, H024
+    pre-H012 public action decoder, and H025 row-permutation stress.
+- Result:
+  - H012 support cells `1200`;
+  - memory-exception support cells `523`;
+  - memory-exception posterior gain sum `8.133135268`;
+  - memory-exception H036 cell-score sum `200.501588821`;
+  - broad-world memory-exception cells `245`, with score sum `183.788898304`;
+  - generated candidates `459`;
+  - candidates with `world_cell_delta < -0.0002`: `42`;
+  - candidates with `posterior_delta < -0.0001`: `2`;
+  - candidates with negative H024 pre-H012 margin: `0`;
+  - candidates with H024 support >= `0.55`: `0`;
+  - selected diagnostic `h038_memory_repair_all_k140_a0.38_4edd633f`;
+  - selected world/posterior deltas:
+    `+0.000443266` / `+0.000266868`;
+  - selected memory delta `-0.002958880`;
+  - selected H024 margin/support:
+    `+0.002193776` / `0.250000000`;
+  - selected H025 row-permutation p `0.836666667`;
+  - no root upload-safe file was promoted.
+- Interpretation:
+  - positive: memory-exception is a strong explanatory representation for H012.
+    `523/1200` H012 cells carry roughly two thirds of H012 posterior gain and a
+    large share of H036 world pressure;
+  - negative: memory-transition is not yet an action translator. The world-gain
+    candidates are H024-positive and support-poor, while memory-repair
+    candidates improve the memory proxy but move against H012/H036.
+  - current bottleneck remains world-to-action translation, not hidden-state
+    discovery.
+- Decision:
+  - H038 is diagnostic-only;
+  - do not submit generated H038 variants;
+  - next big-bet should learn an action translator that treats memory conflict
+    as a route feature, not as a direct probability target.
