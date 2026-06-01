@@ -3172,3 +3172,30 @@
 - Do not repeat: direct memory-conflict amplification, posterior-pull, or
   memory-repair sweeps as public submissions without a separate action-health
   translator.
+
+## FH339. H036 world pressure can be made safe by linear nullspace projection
+
+- Failed hypothesis: H036/H037/H038 failures define a compact unhealthy-action
+  subspace, and removing that subspace from H036 hidden-world pressure reveals a
+  safe residual action.
+- Observed result: H039 confirms compact failure geometry but rejects the
+  translator. The all-bad direction basis has PC1 energy `0.651576382` and PC8
+  cumulative energy `0.895838636`. But the world signal is entangled with this
+  basis: removing world-bad PC8 leaves only `0.210274586` of raw world norm,
+  and PC24 leaves `0.068574652`. Among `520` projected residual candidates,
+  `0` reach `world_cell_delta < -0.00018`, `0` reach
+  `posterior_delta < -0.00006`, `0` have negative H024 margin, and `0` reach
+  H024 support `0.55`. The selected diagnostic has world/posterior deltas
+  `-0.000018978` / `-0.000009471`, H024 margin/support
+  `+0.000238744` / `0.250000000`, and H025 row-permutation p `0.510000000`.
+- Why discard as a submission route: projection removes most of the public
+  signal before producing an action-health-safe move. The remaining residual is
+  too weak and still not H024/H025-safe.
+- Implementation issue possible: low-medium. The basis is linear and local
+  around H012; a nonlinear or discrete route model could still use the same
+  failure geometry. But linear nullspace/survivor-cone translation is rejected.
+- Bottleneck implication: the missing decoder is not a smooth local projection.
+  It likely depends on discrete route assignment, public/private subset
+  separation, or nonlocal row-vector action composition.
+- Do not repeat: SVD/nullspace/projection sweeps on failed H036-H038 action
+  directions as public submissions without a new nonlocal route objective.

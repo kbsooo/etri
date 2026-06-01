@@ -920,3 +920,22 @@ the memory proxy (`-0.002958880`) but moved against H012/H036 and had H025
 row-permutation p `0.836666667`. The latent diagnosis is now sharper:
 memory-transition is a healthy human-state feature for route inference, but
 mechanically repairing or amplifying memory conflict is another shortcut.
+
+H039 asks whether failed translators can define the decoder by linear
+exclusion. The answer is useful but negative. The failure geometry is very
+non-random: across materialized H036/H037/H038 candidate directions, the
+all-bad basis has PC1 energy `0.651576382` and PC8 cumulative energy
+`0.895838636`. This is a strong LeJEPA-style anti-collapse signal: action
+failure is not noise; it has compact geometry. The problem is that H036's world
+signal lives in that same geometry. Removing the world-good/action-bad PC8
+leaves only `0.210274586` of the raw world vector norm, and PC24 leaves
+`0.068574652`.
+
+The materialized residual confirms the diagnosis. H039 scored `520` projected
+residual candidates, but `0` reached meaningful world gain, `0` reached
+posterior gain, `0` had negative H024 margin, and `0` reached H024 support
+`0.55`. The selected residual has small world gain (`-0.000018978`) and still
+positive H024 margin (`+0.000238744`). The HS-JEPA interpretation is now more
+precise: the hidden public world, memory-transition route, and failure geometry
+are real latent objects, but the decoder is not a local linear nullspace around
+H012. It likely requires discrete route/private-public assignment.

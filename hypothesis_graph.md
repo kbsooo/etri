@@ -4961,3 +4961,45 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   conflict is a feature for the translator, not the translator itself.
 - 제출 전략: none. Next action should use memory-exception as one route channel
   inside a learned/private-public/calibration translator.
+
+### H039: Failed translator directions form a compact bad-action space, but linear nullspace projection kills the signal
+
+- 상태: accepted as a failure-geometry diagnostic; rejected as a direct
+  translator.
+- 왜 그럴듯한가: H036/H037/H038 all failed after moving around H012, but those
+  failures may share a small set of unhealthy action directions. If so, H036
+  world pressure could be made safe by removing those directions.
+- 맞다면:
+  - failure directions should have concentrated singular spectrum;
+  - projected residual actions should keep H036/posterior gain;
+  - at least one candidate should lower H024 pre-H012 margin and pass H025.
+- 틀리다면:
+  - failure PCs may be concentrated but overlap the world signal;
+  - removing them should erase most world gain;
+  - no candidate should satisfy world gain and H024/H025 action health.
+- 최소 실험: `hitl/h039_failed_translator_nullspace_jepa.py`, using `816`
+  materialized H036/H037/H038 directions to build all-bad, world-bad, and
+  survivor bases, then scoring `520` projected residual candidates.
+- 관측:
+  - all-bad PC1 energy `0.651576382`, PC8 cumulative energy `0.895838636`;
+  - removing world-bad PC8 leaves raw world norm ratio `0.210274586`, and PC24
+    leaves `0.068574652`;
+  - `0/520` candidates have `world_cell_delta < -0.00018`;
+  - `0/520` candidates have `posterior_delta < -0.00006`;
+  - `0/520` candidates have negative H024 margin;
+  - `0/520` candidates have H024 support >= `0.55`;
+  - selected diagnostic has world/posterior deltas
+    `-0.000018978` / `-0.000009471`, H024 margin/support
+    `+0.000238744` / `0.250000000`, and H025 rowperm p `0.510000000`;
+  - no promoted upload-safe file.
+- 성공/폐기 기준:
+  - accept nullspace translator if projected residual keeps meaningful world
+    gain, H024 margin <= -0.00010, support >= 0.55, and rowperm p <= 0.35.
+    Not observed.
+  - accept failure-geometry evidence if failure spectrum is concentrated.
+    Observed strongly.
+- public LB 관측 반응: no H039 file should be submitted. If a H039 file wins,
+  H024/H025 are too conservative around low-gain residual moves. Otherwise H039
+  says the missing decoder is nonlinear/discrete rather than linear nullspace.
+- 제출 전략: none. Next action should solve route/private-public assignment or
+  public subset equations directly.

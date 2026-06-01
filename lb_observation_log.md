@@ -2478,3 +2478,43 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - train or search a route/calibration/private-public translator with
     H036/H037/H038 candidates as positive/negative action examples.
+
+## Public-Free Observation: H039 Failed-Translator Nullspace JEPA
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - uses all materialized H036/H037/H038 failed candidate directions as
+    negative action supervision;
+  - removes all-bad or world-good/action-bad principal directions from H036
+    world pressure;
+  - optionally projects the residual through candidates least disliked by H024.
+- expected LB reaction:
+  - if a candidate had passed and improved, it would mean post-H012 translation
+    is approximately a failed-direction nullspace law;
+  - because no candidate passed, submitting H039 would mainly test a known
+    low-gain residual failure.
+- local/public-free observation:
+  - source candidates `816`;
+  - all-bad PC1 energy `0.651576382`;
+  - all-bad PC8 cumulative energy `0.895838636`;
+  - world-bad PC8 removal leaves raw world norm ratio `0.210274586`;
+  - generated/scored candidates `520`;
+  - world-cell gain candidates below threshold `0`;
+  - posterior-gain candidates below threshold `0`;
+  - negative-H024-margin candidates `0`;
+  - H024 support >= `0.55` candidates `0`;
+  - selected diagnostic
+    `h039_transition_world_allow_cone_world_bad_pc8_exception_k238_cap0.022_583e2255`;
+  - selected world/posterior deltas
+    `-0.000018978` / `-0.000009471`;
+  - selected H024 margin/support
+    `+0.000238744` / `0.250000000`;
+  - selected H025 row-permutation p `0.510000000`.
+- interpretation:
+  - failure directions are structured, but linear removal also removes most
+    public-world signal;
+  - post-H012 decoder is unlikely to be a local linear nullspace.
+- next experiment:
+  - move from local projection to discrete route/private-public assignment, or
+    infer the public subset/label equations more directly.

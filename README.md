@@ -124,6 +124,17 @@ Current post-H012 status:
   validates memory conflict as a human-state route feature and rejects direct
   memory-conflict amplification/repair as a submission route.
 
+- H039 produced no promoted root submission.
+- Interpretation: H039 used the failed H036/H037/H038 translators as negative
+  action supervision. The failure geometry is highly concentrated: all-bad PC1
+  energy `0.651576`, PC8 cumulative energy `0.895839`. But this does not
+  produce a safe decoder. Removing world-good/action-bad PCs also removes most
+  of the H036 world vector (`0.210275` norm left after PC8, `0.068575` after
+  PC24). Among `520` projected residual candidates, none reach meaningful
+  world gain, none have negative H024 margin, and none reach H024 support
+  `0.55`. H039 therefore validates compact action-failure geometry and rejects
+  local linear nullspace/survivor-cone projection as the missing translator.
+
 Public LB operating rule:
 
 - Public LB is not an iteration loop. A file is promotable only when it beats the current priority under public-free stress, including fresh nulls that were not used to build the candidate.
@@ -131,6 +142,10 @@ Public LB operating rule:
 - The next public slot should answer a predeclared worldview question, not rescue a local tweak after the fact.
 - After H012, the main public question is no longer "can we find a tiny E247-safe movement?" It is "which parts of the public-equation posterior are real hidden-state signal versus public-subset overfit, and how do subject/time memory, raw human-state context, and phase/action geometry explain them?"
 - H014 says same-subject sleep-state memory does not explain most of H012's gain. H015 says the public-equation system itself still wants to sharpen H012. H016/H017/H018 split that question into cell weights, continuous posterior-completion, and binary hard-world posterior-completion. H019 adds the stricter row-subset constraint and finds broad row-level compatibility, but not a better action than H018. H020 raises the constraint again from independent cells to whole-row 7-label vectors. H021 adds the missing human-state bridge: raw lifestyle context can gate the H020 vector action, but is not yet calibrated enough to replace public-equation probabilities. H022 confirms that split by rejecting q_hs as final posterior prior while keeping it alive as proposal/search/gate signal. H023 shows the bridge is not imaginary: public-compatible worlds are human-state-aligned. H024 then confirms that public-axis action-health is learnable but unstable on unseen candidates. H025 adds the sharper falsification: train-side action-health is also not enough, because it transfers weakly across row/time folds and prefers known public-bad Q2/residual anatomy. H026 shows that a scalar public-bad veto can fix known-anchor ranking but still cannot make post-H012 actions public-safe. H027 shows that even born-public/private cell constraints over the existing posterior targets do not recover H012-beating public transfer. H028 shows that known public scores can learn a coarse action-gradient, but not one that extrapolates safely from H012. H029 shows that breaking H012's exact row-target arrangement causes stress degradation even when target/support moments are partially preserved. H030 shows that row-target identity priors can partially anticipate H012 independently, but still cannot be safely materialized. H031 adds the V106 contrast: memory-disagree cells explain H012's public core better than memory-agree cells, but amplifying that core is still not a safe action. H032 then shows the current translator can recover H012 itself when H012 public feedback is withheld, yet cannot find a better neighboring phase point. H033 shows the neighboring failures are learnable as phase-lock contrast, but first-order independent-cell negative-cost edits still leave the H012 basin. H034 lifts the unit to row-vector routes and learns sibling failure even more sharply, but first-order row-route edits still fail action stress and reveal an H024 false-positive rollback mode. H035 then tests the promised combinatorial phase solver and still fails every route/pre-state gate despite 55 q-improving local swaps. H036 solves a global public-world posterior that beats permutation nulls decisively, but direct world-to-probability materialization still fails H024/H025. H037 shows that even support-preserving ray amplitude cannot align H036 world gain with H024 action-health. H038 shows memory-transition exceptions strongly explain H012 but cannot be amplified or repaired directly. The missing piece is now very sharp: hidden public-state discovery works; support discovery is mostly right; memory/state explanation works; world-to-action translation still does not. The next breakthrough should learn route/calibration/private-public transfer jointly, not continue H012 by smooth gradient, scalar gate, target-level calibration, same-subject memory regularizer, cellwise edit, row-route top-k edit, local support swap, direct `q_cond` movement, scalar ray amplitude, or direct memory-conflict action.
+- H039 adds that failed translator directions are compact but not linearly
+  removable without killing the public-world signal. The next breakthrough
+  should model discrete route/calibration/private-public transfer or public
+  subset assignment directly, not continue local linear projection around H012.
 
 Primary working notes:
 

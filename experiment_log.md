@@ -7040,3 +7040,59 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - do not submit generated H038 variants;
   - next big-bet should learn an action translator that treats memory conflict
     as a route feature, not as a direct probability target.
+
+## H039. Failed-Translator Nullspace HS-JEPA
+
+- Observe: H036 found a strong hidden public-world latent, while H037/H038
+  showed that obvious translators fail. Those failures can be used as negative
+  action supervision instead of discarded.
+- Wonder: if H036/H037/H038 failures share a low-dimensional bad-action axis,
+  can H036 world pressure become safe after projecting away that axis and
+  optionally passing through the small H024 survivor cone?
+- Hypothesis: if the missing translator is approximately a linear
+  nullspace/survivor-cone law, projected residual actions should keep
+  world/posterior gain while lowering H024 margin and improving H025 placement.
+- Method: `hitl/h039_failed_translator_nullspace_jepa.py`.
+  - context: H036 public-world q/score, H038 memory-transition state, and
+    materialized H036/H037/H038 candidate directions;
+  - negative target: world-good/action-bad candidate directions;
+  - positive hint: candidates least disliked by H024;
+  - action: remove failure PCs, optionally project through the survivor basis,
+    then materialize sparse residual moves under support/exception/world-high
+    masks;
+  - stress: H036 world/posterior proxy, H024 pre-H012 decoder, and H025
+    row-permutation.
+- Result:
+  - source candidates: H036 `104`, H037 `253`, H038 `459`;
+  - world-good/action-bad candidates:
+    H036 `98`, H037 `107`, H038 `283`;
+  - survivor-hint candidates:
+    H036 `0`, H037 `87`, H038 `35`;
+  - all-bad PC1 energy `0.651576382`;
+  - all-bad PC8 cumulative energy `0.895838636`;
+  - removing world-bad PC8 leaves raw world norm ratio `0.210274586`;
+  - removing world-bad PC24 leaves raw world norm ratio `0.068574652`;
+  - generated/scored candidates `520`;
+  - candidates with `world_cell_delta < -0.00018`: `0`;
+  - candidates with `posterior_delta < -0.00006`: `0`;
+  - candidates with negative H024 margin: `0`;
+  - candidates with H024 support >= `0.55`: `0`;
+  - selected diagnostic
+    `h039_transition_world_allow_cone_world_bad_pc8_exception_k238_cap0.022_583e2255`;
+  - selected world/posterior deltas:
+    `-0.000018978` / `-0.000009471`;
+  - selected H024 margin/support:
+    `+0.000238744` / `0.250000000`;
+  - selected H025 row-permutation p `0.510000000`;
+  - no root upload-safe file was promoted.
+- Interpretation:
+  - positive: failed translators collapse onto a strong low-dimensional
+    bad-action geometry;
+  - negative: H036 world signal is entangled with that geometry. Linear
+    nullspace projection removes most useful signal before it becomes
+    action-safe.
+- Decision:
+  - H039 is diagnostic-only;
+  - do not submit generated H039 variants;
+  - next big-bet should model discrete route/private-public assignment or
+    public-subset equations directly, not local linear post-H012 projection.

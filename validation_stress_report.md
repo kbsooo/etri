@@ -6673,3 +6673,54 @@ Stress conclusion:
   pulls fail H024 support, while memory repair moves opposite to H012/H036.
 - The next stress should treat memory-transition as a route feature inside a
   learned translator, not as a standalone probability target.
+
+## H039 Failed-Translator Nullspace Stress
+
+Question: can H036 hidden public-world pressure become action-safe after
+removing principal directions learned from failed H036/H037/H038 translators?
+
+Stress setup:
+
+- script: `hitl/h039_failed_translator_nullspace_jepa.py`;
+- negative direction pool: materialized H036/H037/H038 candidate logit deltas
+  from H012;
+- bad basis: all failed directions and the world-good/action-bad subset;
+- survivor basis: candidates least disliked by H024;
+- action families: failure-PC removal, survivor-cone projection, and double
+  nullspace residual under support/exception/world-high route masks;
+- stresses: H036 world/posterior proxy, H024 pre-H012 decoder, and H025
+  row-permutation placement.
+
+Stress result:
+
+- source candidates: H036 `104`, H037 `253`, H038 `459`;
+- world-good/action-bad candidates:
+  H036 `98`, H037 `107`, H038 `283`;
+- survivor-hint candidates:
+  H036 `0`, H037 `87`, H038 `35`;
+- all-bad PC1 energy: `0.651576382`;
+- all-bad PC8 cumulative energy: `0.895838636`;
+- raw world vector norm left after removing world-bad PC8: `0.210274586`;
+- raw world vector norm left after removing world-bad PC24: `0.068574652`;
+- generated/scored candidates: `520`;
+- candidates with `world_cell_delta < -0.00018`: `0`;
+- candidates with `posterior_delta < -0.00006`: `0`;
+- candidates with negative H024 pre-H012 margin: `0`;
+- candidates with H024 support >= `0.55`: `0`;
+- selected diagnostic:
+  `h039_transition_world_allow_cone_world_bad_pc8_exception_k238_cap0.022_583e2255`;
+- selected world/posterior deltas:
+  `-0.000018978` / `-0.000009471`;
+- selected H024 margin/support:
+  `+0.000238744` / `0.250000000`;
+- H025 row-permutation p: `0.510000000`;
+- promoted root file: none.
+
+Stress conclusion:
+
+- Failed translators are highly structured: a single PC explains about `65%`
+  of failure-direction energy.
+- Linear projection is not the missing decoder. Removing bad-action axes also
+  removes nearly all public-world signal, leaving low-gain residuals that still
+  do not pass H024/H025.
+- The next stress should model discrete route/private-public state directly.

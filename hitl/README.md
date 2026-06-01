@@ -982,3 +982,50 @@ appears where stable subject memory should not be trusted. But as with H036 and
 H037, the explanatory latent is not the uploadable probability action. The next
 translator should use memory conflict as one route feature together with
 public-world, support, calibration, and private/public state.
+
+## H039: Failed-Translator Nullspace HS-JEPA
+
+- Script: `hitl/h039_failed_translator_nullspace_jepa.py`
+- Report:
+  `hitl/h039_failed_translator_nullspace_jepa/h039_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+Can H036 hidden public-world pressure become action-safe if the principal
+directions of failed H036/H037/H038 translators are removed?
+
+### Main Finding
+
+Failure geometry is compact, but linear nullspace projection kills the signal.
+
+- Source candidate directions: `816`.
+- World-good/action-bad candidates:
+  H036 `98`, H037 `107`, H038 `283`.
+- Survivor-hint candidates:
+  H036 `0`, H037 `87`, H038 `35`.
+- All-bad PC1 energy: `0.651576382`.
+- All-bad PC8 cumulative energy: `0.895838636`.
+- Raw world vector norm left after removing world-bad PC8: `0.210274586`.
+- Raw world vector norm left after removing world-bad PC24: `0.068574652`.
+- Generated/scored H039 candidates: `520`.
+- Candidates with `world_cell_delta < -0.00018`: `0`.
+- Candidates with `posterior_delta < -0.00006`: `0`.
+- Candidates with negative H024 margin: `0`.
+- Candidates with H024 support >= `0.55`: `0`.
+- Selected diagnostic:
+  `hitl/h039_failed_translator_nullspace_jepa/submission_h039_transition_world_allow_cone_world_bad_pc8_exception_k238_cap0.022_583e2255.csv`.
+- Selected world/posterior deltas:
+  `-0.000018978` / `-0.000009471`.
+- Selected H024 margin/support:
+  `+0.000238744` / `0.250000000`.
+- H025 row-permutation p: `0.510000000`.
+
+### Interpretation
+
+H039 gives strong architecture evidence: failed actions around H012 are not
+random. They occupy a compact low-dimensional geometry. But that same geometry
+contains most of the usable H036 public-world signal, so a local linear
+projection cannot decode it safely. The next HS-JEPA step should leave local
+linear post-H012 editing and model discrete route/private-public assignment or
+public subset equations more directly.

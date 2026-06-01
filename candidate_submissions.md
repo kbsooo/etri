@@ -5594,3 +5594,51 @@ Submission interpretation:
    current stress suite.
 4. The next high-upside candidate should use memory conflict as a route feature
    inside a learned action translator, not as the action itself.
+
+## Update After H039
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+H039 promoted submission:
+
+None.
+
+What H039 tested:
+
+- Whether H036/H037/H038 failed translators define a low-dimensional
+  bad-action subspace.
+- Whether removing that subspace from H036 world pressure reveals an
+  action-safe residual candidate.
+
+Local evidence:
+
+- Source candidate directions: `816`;
+- all-bad PC1 energy: `0.651576382`;
+- all-bad PC8 cumulative energy: `0.895838636`;
+- world-bad PC8 removal leaves raw world norm ratio: `0.210274586`;
+- generated/scored residual candidates: `520`;
+- candidates with meaningful world-cell gain: `0`;
+- candidates with posterior gain threshold: `0`;
+- candidates with negative H024 margin: `0`;
+- candidates with H024 support >= `0.55`: `0`;
+- selected diagnostic:
+  `hitl/h039_failed_translator_nullspace_jepa/submission_h039_transition_world_allow_cone_world_bad_pc8_exception_k238_cap0.022_583e2255.csv`;
+- selected world/posterior deltas:
+  `-0.000018978` / `-0.000009471`;
+- selected H024 margin/support:
+  `+0.000238744` / `0.250000000`;
+- selected H025 row-permutation p: `0.510000000`.
+
+Submission interpretation:
+
+1. No H039 file should be submitted.
+2. Failed translators are highly structured, so HS-JEPA has learned a real
+   action-failure geometry.
+3. But the public-world signal is entangled with that failure geometry; linear
+   projection leaves too little signal.
+4. The next public candidate should attack discrete route/private-public
+   assignment or public subset inference directly.

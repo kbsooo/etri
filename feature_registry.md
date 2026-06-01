@@ -4718,3 +4718,35 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Failure condition: do not submit memory-conflict amplification/repair files
   unless a learned translator also passes H024/H025 and shows public-free
   action-health.
+
+### H039 failed-translator nullspace features
+
+- Target hidden structure: compact bad-action geometry spanning failed
+  H036/H037/H038 translators, plus a possible survivor cone of less-bad H024
+  actions.
+- Why needed: H036/H037/H038 created many negative examples. If action failure
+  is low-dimensional, it can be used as a JEPA target: predict and remove the
+  unhealthy action component from H036 world pressure.
+- Feature/action form:
+  - logit-delta direction vectors from materialized H036/H037/H038 candidates;
+  - `all_bad`, `world_bad`, and `survivor` SVD bases;
+  - projection diagnostics: removed norm ratio, cosine to world, cosine to
+    H012 ray;
+  - candidate families: failure-PC removal, survivor-cone projection, and
+    double-nullspace residual;
+  - route masks: support, memory exception, world-high support, and
+    transition-high support.
+- Current evidence:
+  - source candidate directions `816`;
+  - all-bad PC1 energy `0.651576382`;
+  - all-bad PC8 cumulative energy `0.895838636`;
+  - world-bad PC8 removal leaves raw world norm ratio `0.210274586`;
+  - world-bad PC24 removal leaves raw world norm ratio `0.068574652`;
+  - generated/scored candidates `520`;
+  - world-gain candidates under promotion threshold `0`;
+  - negative-H024-margin candidates `0`;
+  - H024 support >= `0.55` candidates `0`.
+- Registry status: approved as a failure-geometry diagnostic. Rejected as a
+  direct linear translator.
+- Failure condition: do not continue linear nullspace/survivor-cone projection
+  around H012 unless a new target proves nonlocal route assignment separately.
