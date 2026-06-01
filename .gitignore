@@ -276,3 +276,8 @@ analysis_outputs/paper_notes/*
 
 # H013 generated local candidate submissions are reproducible from the script.
 hitl/h013_raw_human_state_jepa_gate/submission_h013_*.csv
+
+# H025 heavy generated action-level dumps are reproducible from the script.
+hitl/h025_train_counterfactual_action_health_jepa/h025_train_counterfactual_actions.csv
+hitl/h025_train_counterfactual_action_health_jepa/h025_action_health_oof_predictions.csv
+hitl/h025_train_counterfactual_action_health_jepa/h025_top_candidate_cells.csv

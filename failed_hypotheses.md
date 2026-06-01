@@ -2925,3 +2925,12 @@
 - Implementation issue possible: medium. The public sensor set is small (`20`) and H012 is a large outlier. More independent public/private or train-side action-health supervision could make this route viable.
 - Bottleneck implication: the current limitation is no longer posterior generation. It is unseen-candidate action-health transfer.
 - Do not repeat: ranking H015-H023 candidates by another direct public-LB regression unless it adds independent supervision or passes the H024 unseen-candidate gates.
+
+## FH325. Train-counterfactual action health transfers directly to public-safe action selection
+
+- Failed hypothesis: generating many train-label counterfactual probability moves should provide enough independent action-health supervision to choose a safe post-H012 public submission without relying on public-LB regression.
+- Observed result: H025's row/time OOF transfer is weak: Spearman `0.021090879`, top10 lift `0.004425758`, and fold-level lift is unstable. Leave-proposal-family metrics are much stronger, but the selected ranking exposes the problem: known public-bad Q2/residual probes are ranked at the top. The best unknown H023 diagnostic fails row-permutation placement stress with p `0.576666667`.
+- Why discard as a submission route: train-visible counterfactual gain is not equivalent to public-safe action health. It rewards Q2/residual shortcut anatomy that public observations already mark as dangerous.
+- Implementation issue possible: medium. H025 uses ExtraTrees and finite proposal families, so a stronger neural decoder might improve local action-health prediction. But the known-public-bad ranking and row-permutation failure are enough to reject this materializer.
+- Bottleneck implication: the live bottleneck is public/private calibration of action health. The missing representation is not "which train action reduces logloss?" but "which train-healthy action survives public/private domain shift and Q2/residual shortcut veto?"
+- Do not repeat: direct train-counterfactual action-health rankers unless they include an explicit public-bad/domain-shift energy and pass known-public-bad anchor checks before selecting unknown candidates.

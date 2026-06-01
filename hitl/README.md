@@ -366,3 +366,43 @@ good enough to explain known scores, but not stable enough to select a new
 post-H012 file. The architecture diagnosis becomes sharper: HS-JEPA already
 has public-state posterior generators and human-state geometry; it lacks a
 calibrated action-health decoder that transfers to unseen candidate actions.
+
+## H025: Train-Counterfactual Action-Health HS-JEPA
+
+- Script: `hitl/h025_train_counterfactual_action_health_jepa.py`
+- Report: `hitl/h025_train_counterfactual_action_health_jepa/h025_report.md`
+- Decision: diagnostic only, no submission promoted.
+
+### Question
+
+Can HS-JEPA learn action health without public-LB regression by generating many
+train-label counterfactual probability moves, then use that independent
+supervision to choose post-H012 test actions?
+
+### Main Finding
+
+Train-side action health exists, but it is not the missing public-safe decoder.
+
+- Row/time OOF action-health Spearman: `0.021090879`.
+- Row/time OOF top10 lift: `0.004425758`.
+- Leave-proposal-family stress looks strong, but this mostly says the model can
+  distinguish proposal families.
+- The top H025-ranked files include known public-bad anchors:
+  `submission_jepa_latent_q2_w0p45.csv` and
+  `submission_jepa_latent_residual_probe.csv`.
+- Best unknown selected diagnostic:
+  `hitl/h023_hs_pareto_proposal_vector_jepa/submission_h023_gain_all_k1750_a1.2_a639be88.csv`.
+- That selected diagnostic fails row-placement stress:
+  real top1200 gain `19.183437103`, row-permutation p `0.576666667`.
+
+### Interpretation
+
+H025 is an important negative materialization. It rejects the tempting idea that
+we can solve action health purely from train labels and then transfer it to the
+public-equation world. Train counterfactual supervision learns some local action
+geometry, but it also rewards the same Q2/residual shortcut anatomy that public
+LB has already punished.
+
+The next HS-JEPA target should be public/private calibration of action health:
+train action-health evidence must be combined with a veto or domain-shift term
+that recognizes public-bad Q2/residual shortcuts before materialization.

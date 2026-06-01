@@ -6659,3 +6659,29 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
 - Decision:
   - keep H024 as a negative materialization result and a positive bottleneck diagnosis;
   - the next big-bet route should create new supervision for action health, not rank the same posterior-completion files with another public-axis model.
+
+## H025. Train-Counterfactual Action-Health HS-JEPA
+
+- Observe: H024 can reconstruct known public ordering, but it cannot safely rank unseen post-H012 actions. The obvious escape is to stop learning action health from public LB and instead create independent supervision from train labels.
+- Wonder: if we generate many counterfactual probability actions on train rows, can a JEPA-style action-health decoder learn which context-to-target moves reduce logloss and transfer that rule to test candidates?
+- Hypothesis: if action health is a real transferable latent, train-counterfactual gain should be predictable across row/time folds and proposal families, and the selected test candidate should beat row-permuted placement controls.
+- Method: `hitl/h025_train_counterfactual_action_health_jepa.py`.
+  - context: H013 raw human-state rows, row PCA, target id, base probability, proposal probability, delta geometry, and proposal-family counterfactuals;
+  - target representation: per-cell logloss gain from replacing OOF base predictions with subject/time/KNN/global proposal actions at several amplitudes;
+  - proposals: global prior, subject prior, subject time decay, all/sleep/social/quality/body-calendar KNN, and subject-restricted KNN;
+  - stress: row/time OOF folds, leave-proposal-family-out, public-bad known-anchor check, and selected-candidate row-permutation stress.
+- Result:
+  - row/time OOF overall Spearman `0.021090879`;
+  - row/time OOF top10 gain mean `0.004574032`, all gain mean `0.000148274`, top10 lift `0.004425758`;
+  - fold instability remains: fold0 top10 lift `-0.005201581`, fold3 `-0.000749000`, while fold4 is `0.028618250`;
+  - leave-family median Spearman is high (`0.389968`) and median top10 lift is high (`0.100806`), but this is not enough because row/time transfer is weak;
+  - H025's top-ranked known files include public-bad `submission_jepa_latent_q2_w0p45.csv` and `submission_jepa_latent_residual_probe.csv`;
+  - best unknown diagnostic is `hitl/h023_hs_pareto_proposal_vector_jepa/submission_h023_gain_all_k1750_a1.2_a639be88.csv`, but it has predicted moved-cell gain sum `-6.287184` and row-permutation p `0.576667`;
+  - no root upload-safe H025 submission was promoted.
+- Interpretation:
+  - train-side action health is learnable as a local representation, but it does not transfer into public-safe action selection;
+  - the failure mode is meaningful: the decoder prefers Q2/residual shortcuts that public anchors already mark as bad;
+  - the live bottleneck is public/private calibration or shortcut veto, not another posterior generator or another train-only action ranker.
+- Decision:
+  - H025 is diagnostic-only;
+  - future big-bet HS-JEPA should model "train action-health minus public-bad/domain-shift energy" rather than direct train counterfactual gain.

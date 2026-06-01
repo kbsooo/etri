@@ -5299,3 +5299,44 @@ Submission interpretation:
    decoder has wide intervals and low support below H012.
 4. The next big-bet submission should change the hidden-state/action-health
    target itself, not just rerank the same posterior-completion pool.
+
+## Update After H025
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+H025 promoted submission:
+
+None.
+
+What H025 tested:
+
+- Whether action health can be learned independently from train-label
+  counterfactuals instead of public-LB regression.
+- Whether subject/time/KNN/human-state proposal moves that reduce train logloss
+  can identify safe post-H012 test actions.
+
+Local evidence:
+
+- row/time OOF Spearman: `0.021090879`;
+- row/time top10 lift: `0.004425758`;
+- leave-family metrics are strong but appear proposal-family-shaped;
+- known public-bad anchors rank too high:
+  `submission_jepa_latent_q2_w0p45.csv` and
+  `submission_jepa_latent_residual_probe.csv`;
+- best unknown selected diagnostic:
+  `hitl/h023_hs_pareto_proposal_vector_jepa/submission_h023_gain_all_k1750_a1.2_a639be88.csv`;
+- selected diagnostic row-permutation p: `0.576666667`;
+- promoted upload-safe H025 file: none.
+
+Submission interpretation:
+
+1. H025 should not be submitted.
+2. The useful result is negative: train action-health is not public action-health.
+3. The next candidate must include a public/private calibration or shortcut-veto
+   term, especially for Q2/residual movement.
+4. H012 remains the final public frontier until a post-H012 candidate can beat
+   both public-free stress and known-public-bad anchor sanity.

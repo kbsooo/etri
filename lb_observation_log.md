@@ -2080,3 +2080,27 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - create independent action-health supervision or a new hidden-state target;
   - do not spend public attempts on H015-H023 candidates selected only by this decoder.
+
+## Public-Free Observation: H025 Train-Counterfactual Action-Health Decoder
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - creates independent action-health supervision from train labels by measuring counterfactual logloss gain for many subject/time/KNN/global proposal actions;
+  - ranks known and unknown post-H012 candidates without using public LB as the direct training target;
+  - promotes only if row/time transfer, known-public-bad anchor sanity, and row-permutation placement stress all pass.
+- expected LB reaction:
+  - if promoted and improved, it would validate train-counterfactual action health as the missing HS-JEPA materializer;
+  - because no file passed, submitting the selected diagnostic would test a failed row-placement stress rather than a live public hypothesis.
+- local/public-free observation:
+  - row/time OOF Spearman `0.021090879`;
+  - row/time top10 lift `0.004425758`;
+  - selected unknown diagnostic `hitl/h023_hs_pareto_proposal_vector_jepa/submission_h023_gain_all_k1750_a1.2_a639be88.csv`;
+  - selected row-permutation p `0.576666667`;
+  - top ranked known files include public-bad Q2/residual probes.
+- interpretation:
+  - train-side action-health is a real but incomplete representation;
+  - public-safe action health requires public/private calibration and shortcut veto.
+- next experiment:
+  - model train action-health and public-bad/domain-shift energy jointly;
+  - reject any decoder that ranks known public-bad Q2/residual probes above H012-compatible candidates.

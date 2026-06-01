@@ -6101,3 +6101,40 @@ Stress conclusion:
 - H024 promotes no root upload-safe file.
 - This falsifies the easy next step: "rank H015-H023 by public-axis/action-health regression and submit the top one."
 - The next stress target should be independent action-health supervision or a new hidden state that changes the candidate distribution, not another ranker over the same posterior-completion pool.
+
+## H025 Train-Counterfactual Action-Health Stress
+
+Question: can independent train-label counterfactual action supervision become a public-safe HS-JEPA action decoder?
+
+Stress setup:
+
+- script: `hitl/h025_train_counterfactual_action_health_jepa.py`;
+- context: H013 human-state features, row PCA, target id, base probability, proposal probability, and action delta geometry;
+- target representation: logloss gain of counterfactual probability moves on OOF train rows;
+- proposal families: global prior, subject prior, subject time decay, global KNN, sleep/social/quality/body-calendar KNN, and subject-restricted KNN;
+- stress:
+  - row/time OOF folds;
+  - leave-proposal-family-out;
+  - known public-anchor sanity;
+  - selected candidate row-permutation placement null.
+
+Stress result:
+
+- row/time OOF overall Spearman `0.021090879`;
+- row/time OOF top10 lift `0.004425758`;
+- fold0 top10 lift `-0.005201581`, fold3 top10 lift `-0.000749000`, fold4 top10 lift `0.028618250`;
+- leave-family median Spearman `0.389968` and median top10 lift `0.100806`, which is stronger than row/time transfer and therefore suspect as proposal-family geometry;
+- top ranked known candidates are public-bad:
+  `submission_jepa_latent_q2_w0p45.csv` and
+  `submission_jepa_latent_residual_probe.csv`;
+- selected unknown diagnostic:
+  `hitl/h023_hs_pareto_proposal_vector_jepa/submission_h023_gain_all_k1750_a1.2_a639be88.csv`;
+- selected real top1200 predicted gain `19.183437103`;
+- row-permutation p for higher top1200 gain `0.576666667`;
+- no root H025 upload-safe file promoted.
+
+Stress conclusion:
+
+- H025 falsifies direct transfer from train counterfactual action health to public-safe post-H012 action health.
+- It does not falsify action-health JEPA generally. It says the action-health target is missing a public/private calibration term.
+- The next stress should explicitly subtract or veto public-bad Q2/residual shortcut anatomy before any train-action-health selected candidate can be promoted.

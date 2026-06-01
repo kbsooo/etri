@@ -4539,3 +4539,31 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   - reject as a submission selector unless the top unknown candidate beats H012 in >=`0.70` model scenarios and passes permutation stress. Not observed.
 - public LB 관측 반응: no H024 file should be submitted from this decoder. If a similar future decoder promotes a candidate, it must first pass the same unseen-candidate and permutation gates.
 - 제출 전략: none. H024 demotes simple public-axis ranking and pushes the next experiment toward new action-health supervision.
+
+### H025: train-counterfactual action health transfers to public-safe post-H012 actions
+
+- 상태: 반증됨 as a submission selector; supported only as a weak local representation.
+- 왜 그럴듯한가: H024 failed because known public sensors are scarce and may overfit H012. Train labels provide thousands of counterfactual action outcomes, so they could create independent action-health supervision.
+- 맞다면:
+  - train counterfactual gain should be predictable across row/time folds;
+  - leave-proposal-family performance should not be the only strong result;
+  - selected test candidates should not be known-public-bad anchors;
+  - the selected unknown candidate should beat row-permuted test-state placement controls.
+- 틀리다면:
+  - row/time OOF transfer should be near zero or fold-unstable;
+  - the decoder may prefer proposal-family shortcuts or known public-bad Q2/residual anatomy;
+  - selected test actions should not be significant against row permutation.
+- 최소 실험: `hitl/h025_train_counterfactual_action_health_jepa.py`.
+- 관측:
+  - row/time OOF Spearman `0.021090879`;
+  - top10 lift `0.004425758`;
+  - row folds are unstable, including negative top10 lift in fold0 and fold3;
+  - leave-family metrics are high but likely family-geometry-driven;
+  - top ranked known anchors are public-bad `submission_jepa_latent_q2_w0p45.csv` and `submission_jepa_latent_residual_probe.csv`;
+  - selected unknown H023 diagnostic has row-permutation p `0.576666667`;
+  - no upload-safe H025 file is promoted.
+- 성공/폐기 기준:
+  - accept only if row/time Spearman is materially positive, selected known anchors are not public-bad, and selected unknown placement beats row-permutation p <= `0.05`. Not observed.
+  - keep as diagnostic if it reveals what train-side action health confuses with public-safe action health. Observed.
+- public LB 관측 반응: no H025 file should be submitted. If a train-action-health future variant wins public, it must include a public/private shortcut veto not present here.
+- 제출 전략: none. H025 redirects the graph toward a public/private calibration latent: train action-health must be discounted by public-bad Q2/residual/domain-shift energy before materialization.

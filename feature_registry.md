@@ -4384,3 +4384,22 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - no H024 upload-safe candidate promoted.
 - Registry status: approved as a bottleneck diagnostic and known-score latent; rejected as current submission selector.
 - Failure condition: do not submit files selected only by this decoder. A future action-health decoder must show unseen-candidate stability, not just known-score reconstruction.
+
+### H025 train-counterfactual action-health decoder
+
+- Target hidden structure: action health learned from train-label counterfactuals rather than public-LB regression.
+- Why needed: H024 showed public-axis action-health is under-supervised and unstable on unseen candidates. H025 asks whether train rows can supply dense action-health supervision by simulating probability moves and measuring logloss gain.
+- Feature/action form:
+  - context: H013 human-state row embeddings, target one-hot-like geometry, base prediction, proposal prediction, logit/probability deltas, and row latent PCs;
+  - target: per-cell gain `loss(base) - loss(counterfactual_action)`;
+  - proposal generators: global, subject, subject-time, feature-family KNN, and subject-restricted KNN memory views;
+  - anti-collapse checks: row/time OOF transfer, leave-proposal-family-out transfer, known-public-bad anchor ranking, and row-permuted test placement stress.
+- Current evidence:
+  - row/time OOF Spearman `0.021090879`;
+  - row/time top10 lift `0.004425758`;
+  - leave-family metrics are much stronger but likely proposal-family-shaped;
+  - H025 ranks known public-bad Q2/residual probes above safer unknowns;
+  - selected unknown H023 diagnostic fails row-permutation placement stress with p `0.576666667`;
+  - no H025 root upload-safe file promoted.
+- Registry status: approved as a diagnostic representation and a failure map for train-vs-public action health. Rejected as a submission selector.
+- Failure condition: do not use train counterfactual gain alone to select public submissions. Re-enter only if a public/private calibration or bad-axis veto term removes the known public-bad Q2/residual preference and passes row/time plus row-permutation stress.
