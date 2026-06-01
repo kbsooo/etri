@@ -4333,3 +4333,21 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - row-permuted q_hs null median is worse by `0.005549353`.
 - Registry status: approved as a human-state action gate over H020. Not approved as direct probability replacement.
 - Failure condition: if public LB worsens, keep the human-state vector prior as diagnostic evidence but stop using it to gate public-equation moves until a stronger action-health target is learned.
+
+### H022 human-state conditioned vector-world prior
+
+- Target hidden structure: row-level 7-target vector world with a conditional human-state proposal prior.
+- Why needed: H020's final posterior used `beta=0`; H021 proved q_hs is locally predictive but only used it as a post-hoc gate. H022 tests whether q_hs belongs inside the generative vector-world posterior itself.
+- Feature/action form:
+  - context: H018/H020 public-equation marginals plus H021 `q_hs`;
+  - latent: sampled 7-bit vector worlds under none, `q_hs`, confidence-weighted `q_hs`, and marginal `q_hs` priors;
+  - anti-collapse checks: public-delta permutation and q_hs row-permutation null;
+  - action: promote only if a beta-positive human-state posterior wins the public-equation posterior selection.
+- Current evidence:
+  - weak q_hs prior helps sampled-world search: `hs_b0.1` config score `0.000277410` vs `none_b0` `0.000310758`;
+  - final posterior rejects q_hs: selected `none_b0_top250_t0.0005`, MAE `0.000014073`;
+  - best positive q_hs posterior is weaker: `hs_b0.1_top250_t0.00012`, MAE `0.000024950`;
+  - public-delta null passes strongly, while q_hs row-permutation null only supports top100 world search, not best/median world quality;
+  - no H022 upload-safe candidate promoted.
+- Registry status: approved as a proposal/search feature and diagnostic prior. Rejected as a final action probability prior.
+- Failure condition: if future variants need positive q_hs beta to be selected, require both posterior/action dominance and row-permutation-null dominance. Otherwise keep q_hs as gate/proposal only.

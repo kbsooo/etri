@@ -4477,3 +4477,19 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept the gate if it preserves meaningful H020 gain and beats row-permuted human-prior nulls. Observed for the 1200-cell H020-agreement candidate. Reject direct q_hs replacement if it worsens H020 compatibility. Observed.
 - public LB 관측 반응: if H021 improves, HS-JEPA has its first validated bridge from raw human-state context to public-equation row-vector action. If it fails, human-state vector priors remain diagnostic/local but not public-actionable.
 - 제출 전략: submit H021 only as a high-information architecture test. It is not safer than H012 by public evidence; it is more explanatory than pure H020 if it wins.
+
+### H022: human-state vector prior can become the H020 posterior prior
+
+- 상태: 반증됨 as final posterior/action prior; supported as proposal/search/gate signal.
+- 왜 그럴듯한가: H021's `q_hs` beats the global target-vector prior in train-only validation and selects H020 cells better than row-permuted `q_hs`; H020's beta-zero posterior leaves a gap for a richer conditional vector prior.
+- 맞다면: positive `q_hs` beta should win both vector-world config search and posterior/action selection, and row-permuting `q_hs` should degrade all major world-fit metrics.
+- 틀리다면: `q_hs` may help sampled-world search but the best posterior should revert to `beta=0`, or row-permutation should not consistently hurt.
+- 최소 실험: `hitl/h022_hs_conditioned_vector_world_jepa.py`, injecting H021's human-state vector distribution into H020 vector-world sampling and posterior reweighting.
+- 관측:
+  - config search: weak human prior `hs_b0.1` is best by config score `0.000277410`, ahead of `none_b0` `0.000310758`;
+  - posterior/action: selected posterior is `none_b0_top250_t0.0005`, with MAE `0.000014073`, p90 abs `0.000026312`, Spearman `0.990977444`;
+  - best positive human-state posterior is weaker, e.g. `hs_b0.1_top250_t0.00012` MAE `0.000024950`, p90 abs `0.000043720`;
+  - public-delta permutation null is strongly passed, but `q_hs` row-permutation null is mixed: real top100 world MAE improves, best-world/median do not.
+- 성공/폐기 기준: accept as final action prior only if a beta-positive posterior wins action selection and row-permutation null degrades consistently. Not observed.
+- public LB 관측 반응: no H022 candidate should be submitted as an HS-JEPA proof. A diagnostic `none_b0` H022 file would test public-equation posterior sharpening, not human-state conditioning.
+- 제출 전략: use `q_hs` as proposal distribution, gate, or Pareto constraint. Do not force beta-positive q_hs priors for story cleanliness.

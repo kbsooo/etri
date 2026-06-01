@@ -2008,3 +2008,26 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - submit H021 only if the next public slot should test the human-state bridge of HS-JEPA;
   - if public budget prioritizes the pure biggest posterior-completion test, H020 remains the more direct bet.
+
+## Public-Free Observation: H022 Human-State Conditioned Vector-World Posterior
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - injects H021's `q_hs` into the H020 row-level target-vector world sampler/posterior;
+  - tests whether human-state context should be the vector-world posterior prior instead of a post-hoc H020 gate.
+- expected LB reaction:
+  - if a beta-positive posterior had won and then improved public LB, HS-JEPA's human-state prior would become part of the final probability generator;
+  - because no beta-positive posterior won, submitting H022 diagnostic files would mostly test public-equation posterior sharpening, not the human-state prior.
+- local/public-free observation:
+  - best config score is weak human prior `hs_b0.1`, with top100 world MAE `0.000260035`;
+  - selected posterior is `none_b0_top250_t0.0005`, with MAE `0.000014073`, p90 abs `0.000026312`, Spearman `0.990977444`;
+  - best positive human-state posterior is weaker: `hs_b0.1_top250_t0.00012`, MAE `0.000024950`, p90 abs `0.000043720`;
+  - public-delta permutation null passes strongly for `hs_b0.1`;
+  - q_hs row-permutation null is mixed: top100 world search benefits from real q_hs, but best/median world metrics do not.
+- interpretation:
+  - q_hs is useful as a proposal/search/gate latent, not as the final posterior density;
+  - no H022 upload-safe candidate should be submitted by default.
+- next experiment:
+  - turn q_hs into a proposal/Pareto constraint or action-health feature before materialization;
+  - do not force q_hs beta unless it wins posterior selection and row-permutation stress.

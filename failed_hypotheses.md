@@ -2898,3 +2898,12 @@
 - Implementation issue possible: medium. H021 uses KNN vector priors and may underfit richer human-state structure. But the failure is directionally clear: direct q_hs action hurts the strongest validated public-equation sensor.
 - Bottleneck implication: the human-state latent should be used as a gate/action-health view, not as the main probability target.
 - Do not repeat: broad human-state-prior replacement or regularization unless a future model proves public-equation compatibility and row-permuted null advantage simultaneously.
+
+## FH322. Human-state vector prior is the H020 final posterior prior
+
+- Failed hypothesis: H021's `q_hs` should be injected into H020 as the selected row-vector posterior prior, not only used as a gate.
+- Observed result: H022's weak human-state prior `hs_b0.1` improved sampled-world config search, but the selected posterior/action was `none_b0_top250_t0.0005`. The selected posterior has MAE `0.000014073`, while `hs_b0.1_top250_t0.00012` has worse MAE `0.000024950`. Row-permutation null only favored real q_hs on top100 world MAE, not on best-world or median-world metrics.
+- Why discard as a submission route: forcing beta-positive q_hs would make the architecture story cleaner but would choose a worse posterior by the same public-equation/action-health criterion. H022 correctly promoted no upload-safe file.
+- Implementation issue possible: medium. H022 uses KNN-style q_hs inherited from H021; a stronger neural human-state prior could still help. The current claim that q_hs itself should be the final posterior density is rejected.
+- Bottleneck implication: HS-JEPA needs role separation. Public-equation posterior supplies calibrated label probabilities; human-state context supplies proposal/search/gating/action-health evidence.
+- Do not repeat: beta-positive q_hs posterior submission solely because it is more semantically human-state-like. Re-enter only with posterior dominance plus q_hs row-permutation dominance.

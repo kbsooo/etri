@@ -5998,3 +5998,37 @@ Stress conclusion:
 - H021 rejects direct q_hs replacement: candidates that move broadly toward q_hs are diagnostic only because they improve q_hs fit while damaging H020/public-equation compatibility.
 - Primary file: `submission_h021_agree_h020_k1200_a1_e1546ba9_uploadsafe.csv`.
 - Submission risk: high but informative. It tests whether HS-JEPA can combine human-state context with the public-equation row-vector posterior, not whether another public-equation-only posterior can be sharpened.
+
+## H022 Human-State Conditioned Vector-World Posterior Stress
+
+Question: can H021's row-conditioned human-state vector prior become the actual H020 vector-world posterior prior?
+
+Stress setup:
+
+- script: `hitl/h022_hs_conditioned_vector_world_jepa.py`;
+- context: H018 public-equation marginals plus H021 `q_hs`;
+- target representation: sampled row-level 7-bit Q/S vector worlds;
+- prior variants: none, human-state `q_hs`, confidence-weighted `q_hs`, and marginal `q_hs`;
+- nulls:
+  - public-delta permutation while sampled worlds stay fixed;
+  - `q_hs` row permutation while aggregate vector frequencies stay similar.
+
+Stress result:
+
+- best config by config score: `hs_b0.1`;
+- `hs_b0.1` best/top100 world MAE: `0.000131515` / `0.000260035`;
+- `none_b0` best/top100 world MAE: `0.000147817` / `0.000263354`;
+- selected posterior: `none_b0_top250_t0.0005`;
+- selected posterior MAE/p90 abs/Spearman: `0.000014073` / `0.000026312` / `0.990977444`;
+- best positive human-state posterior in the top set: `hs_b0.1_top250_t0.00012`, MAE `0.000024950`, p90 abs `0.000043720`;
+- public-delta null for `hs_b0.1`: real top100 world MAE `0.000260035` versus null median `0.001154045`, one-sided p `0.003322259`;
+- `q_hs` row-permutation null is mixed:
+  - top100 real `0.000316914` versus null median `0.000343451`, p `0.012345679`;
+  - best-world real `0.000232019` versus null median `0.000211764`, not favorable;
+  - median real `0.001410395` versus null median `0.001410831`, essentially tied.
+
+Stress conclusion:
+
+- H022 passes the "human-state prior helps proposal search" check but fails the "human-state prior is the final posterior/action density" check.
+- No upload-safe H022 candidate was promoted; all `92` generated files are diagnostic-only because the selected prior kind is `none`.
+- The next healthy HS-JEPA route is not beta forcing. It is using q_hs as a proposal/gate/Pareto constraint or learning a separate action-health posterior that can choose when q_hs should override the public-equation posterior.

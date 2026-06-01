@@ -261,3 +261,36 @@ public-equation posterior.
 This is the first clean HS-JEPA bridge from raw human-state context into the
 validated public-equation row-vector branch. The latent is useful as an
 action-health gate. It is not yet a standalone probability target.
+
+## H022: Human-State Conditioned Vector-World Posterior
+
+- Script: `hitl/h022_hs_conditioned_vector_world_jepa.py`
+- Report: `hitl/h022_hs_conditioned_vector_world_jepa/h022_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+Can the H021 human-state vector prior `q_hs` become the actual H020
+row-vector posterior prior, rather than only gating H020 after the fact?
+
+### Main Finding
+
+Human-state conditioning helps proposal/search, but not final posterior
+selection.
+
+- Best sampled-world config: `hs_b0.1`, config score `0.000277410`.
+- `none_b0` config score: `0.000310758`.
+- Selected posterior/action: `none_b0_top250_t0.0005`.
+- Selected posterior MAE/p90/Spearman:
+  `0.000014073` / `0.000026312` / `0.990977444`.
+- Best positive human-state posterior in the top group:
+  `hs_b0.1_top250_t0.00012`, MAE `0.000024950`.
+- All `92` materialized files are `diagnostic_only`.
+
+### Interpretation
+
+H022 rejects the clean but too-strong claim that q_hs is the calibrated
+posterior prior. The current HS-JEPA role split is:
+
+- public-equation posterior: calibrated probability/action target;
+- human-state q_hs: proposal distribution, gate, and action-health diagnostic.

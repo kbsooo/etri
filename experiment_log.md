@@ -6581,3 +6581,28 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - H021 is the first H020 successor that connects raw human-state context to the row-vector posterior branch;
   - it is a high-information submission candidate if the next question is whether human-state context can make H020 less public-equation-only;
   - if it fails publicly, discard direct human-state vector gating as an action translator and keep it as a paper/diagnostic representation.
+
+## H022. Human-State Conditioned Vector-World Posterior HS-JEPA
+
+- Observe: H020's selected vector-world posterior used `beta=0`, while H021 proved raw human-state context predicts row-level Q/S vectors and can gate H020 actions.
+- Wonder: can H021's `q_hs` become the actual row-vector prior inside H020's public-equation vector-world posterior, rather than only a post-hoc gate?
+- Hypothesis: if HS-JEPA's human-state context is the missing prior, then a positive human-state beta should survive both sampled-world search and posterior/action selection, and it should beat row-permuted `q_hs` nulls.
+- Method: `hitl/h022_hs_conditioned_vector_world_jepa.py`.
+  - context: H018 public-equation marginals plus H021 human-state vector distribution;
+  - target: hidden row-level 7-bit Q/S vector world;
+  - priors tested: none, `q_hs`, confidence-weighted `q_hs`, and marginal `q_hs`;
+  - stress: public-delta permutation null and `q_hs` row-permutation null.
+- Result:
+  - config-level search favored a weak human-state prior: `hs_b0.1` had config score `0.000277410`, ahead of `none_b0` at `0.000310758`;
+  - the selected posterior/action reverted to `none_b0_top250_t0.0005`, with posterior MAE `0.000014073`, p90 abs `0.000026312`, and Spearman `0.990977444`;
+  - the best positive human-state posterior in the top set, `hs_b0.1_top250_t0.00012`, was worse: posterior MAE `0.000024950`, p90 abs `0.000043720`;
+  - public-delta permutation null strongly passed for the best human-state config: real top100 world MAE `0.000260035` versus null median `0.001154045`;
+  - row-permuting `q_hs` gave a mixed result: real top100 world MAE was better than the row-permutation null, but best-world and median metrics were not better;
+  - all `92` materialized files are `diagnostic_only`; no H022 root upload-safe candidate was promoted.
+- Interpretation:
+  - H022 strengthens the H021 split: human-state context is useful as a proposal/search/gate signal, but not yet as the final posterior density or probability prior.
+  - Forcing a positive `q_hs` beta would make the HS-JEPA story cleaner but the action less honest.
+  - The next architecture should use `q_hs` as a proposal/Pareto constraint/action-health feature, not as a direct replacement for the public-equation posterior.
+- Decision:
+  - no H022 submission by default;
+  - record H022 as a partial failure that constrains HS-JEPA's role separation: public-equation posterior decides labels, human-state context proposes or gates where that posterior is plausible.
