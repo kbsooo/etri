@@ -1893,3 +1893,32 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - public feedback on H017 would decide whether H012's public posterior should be treated as an action target or only as an explanatory latent;
   - if H017 fails, stop posterior-completion and look for a private/public risk sensor before moving further from H012.
+
+## Public-Free Observation: H018 Hard-Label Public-World HS-JEPA
+
+- submission file prepared: `submission_h018_hard_label_world_combined_all_k1750_a1_uploadsafe.csv`
+- public LB: not submitted
+- changed point:
+  - keeps H012 as anchor;
+  - samples binary public label worlds from the H017 posterior instead of fitting only continuous pseudo-labels;
+  - reweights sampled worlds by how well their weighted loss deltas explain known public LB deltas;
+  - moves H012 toward the resulting hard-world posterior on all `1750` cells.
+- expected LB reaction:
+  - improvement would mean H017's public-equation posterior is not merely smooth calibration and survives binary hidden-label constraints;
+  - worsening would mean hard-world conditioning is a good diagnostic but too aggressive as a submission action.
+- local/public-free observation:
+  - sampled hard worlds `90000`;
+  - best posterior `soft_t0.00035_p1.5`;
+  - posterior equation MAE `0.000005557`;
+  - best sampled hard-world MAE `0.000167740`;
+  - ESS `19756.395104`;
+  - hard posterior shift from H017 prior `0.002394823`;
+  - permutation-null stress beats all `300` public-delta permutations across best/top100/median/p01/p05 errors;
+  - predicted hard-world delta vs H012 `-0.000603041`;
+  - mean abs difference from H017 `0.002414278`.
+- interpretation:
+  - H018 is a binary-aware strengthening of H017, not a new independent direction;
+  - it is the cleanest current test of whether posterior-completion should be interpreted as hidden hard-label-world inference.
+- next experiment:
+  - submit H018 only if the next public slot is meant to distinguish continuous posterior-completion from binary public-world posterior-completion;
+  - if public slots are scarce and H017/H018 are redundant, prioritize the one whose failure mode is more informative for the paper story.

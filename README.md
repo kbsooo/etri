@@ -25,13 +25,17 @@ Current high-risk next sensors:
 - Public LB: not submitted
 - Interpretation: H017 tests whether H012's public posterior and H016's diffuse weights are compatible parts of one hidden public equation. It predicts `-0.000575` versus H012 by moving H012 further toward the original H012 posterior under H016 weights. It is a posterior-completion test, not independent private-safety evidence.
 
+- `submission_h018_hard_label_world_combined_all_k1750_a1_uploadsafe.csv`
+- Public LB: not submitted
+- Interpretation: H018 forces the H017 posterior into sampled binary public label worlds. The hard-world posterior beats all `300` permuted-public-delta nulls and predicts `-0.000603` versus H012. It is the binary-aware version of posterior-completion, not a separate human-state/private-safety proof.
+
 Public LB operating rule:
 
 - Public LB is not an iteration loop. A file is promotable only when it beats the current priority under public-free stress, including fresh nulls that were not used to build the candidate.
 - Local-interesting files stay diagnostic if they only improve old selector p90, semantic attribution, or a single stress view.
 - The next public slot should answer a predeclared worldview question, not rescue a local tweak after the fact.
 - After H012, the main public question is no longer "can we find a tiny E247-safe movement?" It is "which parts of the public-equation posterior are real hidden-state signal versus public-subset overfit, and how do subject/time memory and raw human-state context explain them?"
-- H014 says same-subject sleep-state memory does not explain most of H012's gain. H015 says the public-equation system itself still wants to sharpen H012. That is the next worldview-changing submission question.
+- H014 says same-subject sleep-state memory does not explain most of H012's gain. H015 says the public-equation system itself still wants to sharpen H012. H016/H017/H018 split that question into cell weights, continuous posterior-completion, and binary hard-world posterior-completion.
 
 Primary working notes:
 

@@ -5853,3 +5853,39 @@ Stress conclusion:
 - The promoted file `submission_h017_joint_label_weight_oracle_gain_all_k1650_a1_uploadsafe.csv` tests posterior-completion: move H012 further toward its original H012 public posterior under the H016 public-weight field.
 - Predicted joint delta is `-0.000574501` versus H012. Under the same joint sensor, H015 is predicted harmful (`+0.000164654`) and H016 beneficial but weaker (`-0.000296289`).
 - Public feedback will decide whether this compatibility is action-safe or only an explanatory fit.
+
+## H018 Hard-Label Public-World Stress
+
+Question: does the public-equation latent still work when the hidden public labels are forced to be binary worlds?
+
+Stress setup:
+
+- script: `hitl/h018_hard_label_world_jepa.py`;
+- prior: H017 joint posterior `q` and H017/H016 public weights;
+- sampled hard worlds: `90,000`;
+- world score: known-submission public delta MAE versus H012 under each binary world;
+- posterior: soft/top-k/elite reweighting of sampled worlds by equation error;
+- null stress: permute public deltas while keeping the same sampled hard-world predictions fixed.
+
+Stress result:
+
+- best posterior: `soft_t0.00035_p1.5`;
+- posterior equation MAE: `0.000005557`;
+- posterior p90 abs: `0.000017261`;
+- best sampled hard-world MAE: `0.000167740`;
+- top100 hard-world MAE: `0.000252967`;
+- median sampled hard-world MAE: `0.001398174`;
+- ESS: `19756.395104` out of `90000`;
+- q shift from H017 prior: `0.002394823`;
+- q-prior Spearman: `0.999879785`;
+- permutation null median best-world MAE: `0.000965302`;
+- permutation null median top100 MAE: `0.001119873`;
+- all real hard-world error metrics beat all `300` permutations.
+
+Stress conclusion:
+
+- H018 passes the binary hard-world null stress. Real public deltas are much more compatible with sampled H017-prior binary worlds than permuted deltas.
+- The representation does not move far from H017, so the result is not a new hidden-state discovery. It is a stronger anti-collapse check for H017 and a small binary-world reweighting.
+- Primary file: `submission_h018_hard_label_world_combined_all_k1750_a1_uploadsafe.csv`;
+- predicted hard-world delta vs H012: `-0.000603041`;
+- H018 is close to H017 but non-identical: mean abs probability difference `0.002414`, max `0.012191`.

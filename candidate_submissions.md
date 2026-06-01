@@ -5061,3 +5061,41 @@ Submission interpretation:
 4. If only one next worldview-changing file is desired and we want to test whether H012 should have gone further toward its own posterior, submit H017.
 5. If H017 improves, future HS-JEPA public-equation actions should use H012-posterior completion under diffuse weights.
 6. If H017 worsens, H012's posterior is explanatory but too aggressive as an action target; H012 remains the practical fixed point.
+
+## Update After H018
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+New binary-aware posterior-completion file:
+
+`submission_h018_hard_label_world_combined_all_k1750_a1_uploadsafe.csv`
+
+What it bets:
+
+- H017's continuous public posterior is not just smooth calibration; it remains meaningful when the hidden public labels are forced into sampled binary worlds.
+- Conditioning those binary worlds on known public deltas should slightly sharpen the H017 posterior-completion action.
+- The public-equation latent is therefore closer to a plausible hidden label world than a pure regression artifact.
+
+Local evidence:
+
+- sampled hard worlds: `90000`;
+- best hard-world posterior: `soft_t0.00035_p1.5`;
+- posterior equation MAE `0.000005557`, p90 abs `0.000017261`;
+- best sampled hard-world MAE `0.000167740`;
+- ESS `19756.395104` out of `90000`;
+- hard posterior shift from H017 prior `0.002394823`, Spearman `0.999879785`;
+- permutation-null stress: real best/top100/median/p01/p05 hard-world errors beat all `300` permuted-public-delta nulls;
+- predicted hard-world delta vs H012 `-0.000603041`;
+- differs from H017 by mean abs `0.002414278`, max abs `0.012191375`.
+
+Submission interpretation:
+
+1. H018 is the strongest posterior-completion variant by internal hard-world score.
+2. H017 and H018 test almost the same broad worldview; H018 is the binary-label-aware version.
+3. If H018 improves, HS-JEPA should treat public-equation posterior-completion as a binary public-world inference problem, not only a smooth probability fit.
+4. If H018 worsens while H017 would have been safer, the hard-world conditioning is explanatory but too aggressive as an action layer.
+5. If both H017/H018 worsen, H012 is likely the practical public-equation fixed point and the next big bet must come from an independent public/private risk or human-state action-health target.

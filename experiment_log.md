@@ -6461,3 +6461,34 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
 - Decision:
   - H017 is a credible high-information candidate if the next test should ask whether H012 should be pushed closer to its own public posterior.
   - Do not describe it as independent human-state validation; it is a public-equation action-layer test.
+
+## H018. Hard-Label Public-World HS-JEPA
+
+- Observe: H012/H017 treat the hidden public target as continuous probabilities, but the real public labels are binary. A smooth posterior can explain LB equations while still being impossible as a binary world.
+- Wonder: do sampled hard-label worlds from the H017 prior contain unusually many worlds that match known public deltas, and does conditioning on those worlds change the posterior enough to justify a new action?
+- Hypothesis: if the public-equation latent is more than smooth calibration, hard worlds sampled from its prior should match real public deltas much better than permuted public deltas. The resulting hard-world posterior should produce a meaningful posterior-completion candidate.
+- Method: `hitl/h018_hard_label_world_jepa.py`.
+  - prior: H017 joint `q` and public weights;
+  - sample: `90,000` binary public label worlds;
+  - score: weighted log-loss deltas of known submissions versus H012 under each hard world;
+  - posterior: soft/top-k/elite weighting of worlds by equation error;
+  - null: permute public deltas while keeping sampled hard-world predictions fixed.
+- Result:
+  - best hard-world posterior: `soft_t0.00035_p1.5`;
+  - posterior equation MAE `0.000005557`, p90 abs `0.000017261`;
+  - best sampled hard world MAE `0.000167740`;
+  - top100 hard-world MAE `0.000252967`;
+  - ESS `19756.395104` out of `90000`;
+  - hard posterior shift from H017 prior `0.002394823`, Spearman `0.999879785`;
+  - null stress: real best/top100/median/p01/p05 world errors beat all `300` public-delta permutations;
+  - primary file: `submission_h018_hard_label_world_combined_all_k1750_a1_uploadsafe.csv`;
+  - primary changes all `1750` cells, max probability delta `0.112988`, mean abs delta vs H012 `0.011226`;
+  - hard-world predicted delta vs H012 `-0.000603041`;
+  - H018 differs from H017 by mean abs `0.002414` and max abs `0.012191`, so it is a binary-world reweighting of H017 rather than a separate direction.
+- Interpretation:
+  - H018 strengthens the public-equation branch: the H017 prior generates hard binary worlds that match real public deltas far better than permuted deltas.
+  - It does not reveal a radically different hidden label posterior. The hard-world posterior remains very close to H017.
+  - The action is slightly sharper than H017 and tests whether binary-world conditioning improves posterior-completion.
+- Decision:
+  - H018 is the strongest posterior-completion variant by internal hard-world score.
+  - If public slots are scarce, H017 and H018 answer nearly the same broad question; H018 is the more binary-aware version, H017 is the cleaner continuous equation version.

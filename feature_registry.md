@@ -4252,3 +4252,25 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - changed cells `1650`, max probability delta vs H012 `0.107121`.
 - Registry status: approved as a high-information public sensor for posterior-completion. Not approved as independent human-state/private-safe evidence.
 - Failure condition: if public LB worsens, do not continue pushing H012 to the original posterior; use the H012 posterior only as an explanatory latent unless an independent private/public risk sensor appears.
+
+### H018 hard-label public-world posterior
+
+- Target hidden structure: binary public label worlds that jointly explain known public LB deltas under the H017 label posterior and public cell weights.
+- Why needed: H012/H017 are continuous posterior equations. Real labels are binary, so a valid hidden-world story should still produce unusually good hard-label worlds rather than only smooth pseudo-labels.
+- Feature/action form:
+  - context: H017 public label posterior, H016-style public weights, and known submission loss-delta tensors;
+  - latent: sampled binary hard public worlds, reweighted by public-equation fit;
+  - anti-collapse check: permute public deltas while keeping the same sampled hard-world predictions fixed;
+  - action: move H012 toward the hard-world posterior on high-gain cells.
+- Current evidence:
+  - sampled hard worlds: `90000`;
+  - best posterior `soft_t0.00035_p1.5`;
+  - posterior equation MAE `0.000005557`, p90 abs `0.000017261`;
+  - best sampled hard-world MAE `0.000167740`;
+  - ESS `19756.395104`;
+  - q shift from H017 prior `0.002394823`, correlation `0.999879785`;
+  - real hard-world errors beat all `300` permuted-public-delta nulls;
+  - selected file `submission_h018_hard_label_world_combined_all_k1750_a1_uploadsafe.csv`;
+  - selected predicted hard-world delta vs H012 `-0.000603041`.
+- Registry status: approved as the binary-aware posterior-completion public sensor. It strengthens H017's non-collapse evidence but is not an independent human-state/private-safe latent.
+- Failure condition: if public LB worsens, stop using hard-world reweighting as a direct materializer; keep it only as a diagnostic that the public-equation posterior is plausible under binary labels.

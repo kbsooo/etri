@@ -4427,3 +4427,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept as a public sensor if real beats permutation null and the primary action beats both H015 and H016 under the same joint sensor. Observed locally. Reject as an architecture claim if described as independent raw-human-state validation; it is public-equation action-layer evidence only.
 - public LB 관측 반응: if H017 improves, H012 was under-moved toward its own posterior and H016 weights identify where continuation is healthy. If H017 worsens, posterior-completion is too aggressive and H012's exact public posterior should remain a diagnostic rather than an action target.
 - 제출 전략: H017 is now the strongest posterior-completion candidate. H015 tests recursive self-feedback; H016 tests weighted H015 slicing; H017 tests continuing H012 toward its original posterior under H016 weights.
+
+### H018: H017 public-equation latent survives binary hard-label world conditioning
+
+- 상태: supported as a hard-label posterior-completion variant; public LB pending.
+- 왜 그럴듯한가: actual evaluation labels are binary, while H012/H017 use continuous label posteriors. If the public-equation state is real, sampled binary worlds from the H017 prior should fit real public deltas far better than permuted deltas.
+- 맞다면: best/top/median hard-world equation errors should be far lower for real public deltas than for public-delta permutations, and the hard-world posterior should yield a coherent action close to but sharper than H017.
+- 틀리다면: real hard worlds should not beat permutation null, or hard-world conditioning should collapse into a tiny ESS/unstable posterior unrelated to H017.
+- 최소 실험: `hitl/h018_hard_label_world_jepa.py`.
+- 관측: `90,000` hard worlds sampled. Best world MAE `0.000167740`, top100 MAE `0.000252967`, median world MAE `0.001398174`. All beat `300` public-delta permutations; null median best-world MAE is `0.000965302`. Best posterior `soft_t0.00035_p1.5` has posterior MAE `0.000005557`, ESS `19756.395104`, and q shift from H017 prior `0.002394823`. Primary file `submission_h018_hard_label_world_combined_all_k1750_a1_uploadsafe.csv` has predicted hard-world delta `-0.000603041`.
+- 성공/폐기 기준: accept as a public sensor if real hard-world errors beat permutation null and ESS does not collapse. Observed. Treat as incremental to H017 if q shift remains tiny. Observed.
+- public LB 관측 반응: if H018 improves over H017/H012, binary-world conditioning is useful and HS-JEPA should include hard public-world posterior sampling. If it worsens, the binary hard-world posterior is explanatory but does not improve action safety beyond continuous H017.
+- 제출 전략: H018 is the binary-aware posterior-completion candidate; H017 remains the cleaner continuous counterpart.
