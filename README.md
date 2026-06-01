@@ -218,6 +218,15 @@ Public LB operating rule:
   route-world gain, and H024. The next big-bet should explore the Q2 phase
   manifold and split hidden public sensors into multiple regimes, not continue
   posterior-first or large single-ridge action extrapolation.
+- H043 explores that Q2 phase manifold directly. After adding H042 public
+  feedback as a new action-response sensor, it promotes
+  `submission_h043_q2_top120_a0.66_c105_ca1478b7_uploadsafe.csv`: a Q2-only
+  move expanding from H042's `45` cells to `105` cells. Local stress is
+  action-positive (`-0.000128164` margin, `0.583333333` support), route-positive
+  (`-0.000194493`), and H025-healthy (`-2.323117949`), while H024 still warns
+  (`+0.000619918`). This is the next high-information public sensor: a win
+  means Q2 phase is an expandable hidden action manifold; a loss means H042 was
+  a narrow support-specific correction.
 
 Primary working notes:
 

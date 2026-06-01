@@ -4866,3 +4866,34 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   finds intersection across action decoder, route equation, H024, and H025.
   A strong LOFO action decoder alone is not enough outside the validated
   Q2-local phase branch.
+
+### H043 Q2-local phase manifold features
+
+- Target hidden structure: an H012-compatible Q2-only phase action manifold
+  around the public-positive H042 movement.
+- Why needed: H042 proved that small target-isolated Q2 phase can beat H012,
+  while broad route/private action mixtures remain unsafe. The next question is
+  whether that Q2 move is expandable or merely a `45`-cell accident.
+- Feature/action form:
+  - H042 public win appended as an observed action-response sensor;
+  - Q2 phase direction from route-world `q_cond`, H012 public posterior, and
+    H036 world posterior;
+  - E247/H012 support mask to avoid unsupported cell invention;
+  - H042 support overlap, H042 tangent distance, and tangent expected delta;
+  - candidate families: Q2 top-k surface, H042-core amplitude, H042-core
+    pruning, H042-core plus tail, and stronger-core/weak-tail.
+- Current evidence:
+  - generated/scored candidates `251` / `240`;
+  - promotable candidates `67`;
+  - selected `h043_q2_top120_a0.66_c105_ca1478b7`;
+  - changed cells/rows `105` / `105`, Q2 only;
+  - action margin/support `-0.000128164` / `0.583333333`;
+  - route-equation delta `-0.000194493`;
+  - H024 margin/support `+0.000619918` / `0.250000000`;
+  - H025 score `-2.323117949`;
+  - H042 Jaccard/distance L2 `0.428571429` / `0.026442709`.
+- Registry status: public-ready as the next Q2 phase sensor. Not yet validated
+  as an expandable manifold until public LB returns.
+- Failure condition: if the promoted file loses materially to H042, do not
+  widen Q2 support further. Fall back to pruning/scaling around exact H042
+  support or a different public-regime split.

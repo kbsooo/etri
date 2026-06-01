@@ -5795,3 +5795,37 @@ Submission interpretation:
    Q2-local descent direction. The next high-upside public candidate should
    map that Q2 manifold or split hidden public-sensor regimes, not extrapolate
    with large action atoms.
+
+## Current Priority After H043
+
+Priority 1 submission:
+
+`submission_h043_q2_top120_a0.66_c105_ca1478b7_uploadsafe.csv`
+
+Why this is the next high-information file:
+
+- It directly tests whether H042's public-positive `45`-cell Q2 branch is an
+  extendable Q2 phase manifold or a narrow accident.
+- It changes only Q2, so a public reaction is easier to interpret than broad
+  multi-target action mixtures.
+- It extends H042 from `45` to `105` Q2 cells with larger phase strength while
+  staying close to the H042 tangent.
+- It passes the H043 target-isolated override gate:
+  action margin/support `-0.000128164` / `0.583333333`,
+  route-equation delta `-0.000194493`,
+  H025 score `-2.323117949`,
+  H042 Jaccard/distance L2 `0.428571429` / `0.026442709`.
+- H024 still warns against it with margin/support
+  `+0.000619918` / `0.250000000`; this is intentional. H042 already proved
+  H024 can be over-conservative for small Q2-local moves.
+
+Expected public reaction:
+
+- If H043 beats H042 (`0.5679048248`), Q2-local phase is a real expandable
+  hidden-state/action manifold. Next step should search a regime split inside
+  the `105`-cell support and test target-specific Q2 calibration more boldly.
+- If H043 loses but stays near H042, the direction is real but amplitude/support
+  is too aggressive. Next step should prune or temperature-scale the same Q2
+  support.
+- If H043 degrades materially, H042 is probably a narrow support-specific
+  correction and H024 becomes valid again for expanded Q2 moves.

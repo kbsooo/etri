@@ -1198,3 +1198,44 @@ phase candidate
 `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv` scored
 `0.5679048248`, improving H012 by `0.0002186583`. The next big-bet should map
 the Q2-local phase manifold and audit where H024 is too conservative.
+
+## H043: Q2-Local Phase Manifold HS-JEPA
+
+- Script: `hitl/h043_q2_phase_manifold_jepa.py`
+- Report: `hitl/h043_q2_phase_manifold_jepa/h043_report.md`
+- Decision: promote one root upload-safe public sensor.
+
+### Question
+
+Was H042's public-positive Q2 move a narrow `45`-cell accident, or does it
+reveal an expandable Q2 phase manifold?
+
+### Main Finding
+
+The Q2 phase branch has a nearby public-free candidate that survives the
+target-isolated override gate.
+
+- Generated/scored H043 candidates: `251` / `240`.
+- Promotable candidates: `67`.
+- Selected:
+  `h043_q2_top120_a0.66_c105_ca1478b7`.
+- Root upload-safe:
+  `submission_h043_q2_top120_a0.66_c105_ca1478b7_uploadsafe.csv`.
+- Changed cells/rows: `105` / `105`, Q2 only.
+- Action margin/support:
+  `-0.000128164` / `0.583333333`.
+- Route-equation delta:
+  `-0.000194493`.
+- H024 margin/support:
+  `+0.000619918` / `0.250000000`.
+- H025 score:
+  `-2.323117949`.
+- H042 Jaccard / distance L2:
+  `0.428571429` / `0.026442709`.
+
+### Interpretation
+
+H043 should be submitted as a public sensor before broader route/private action
+experiments. If it beats H042, Q2-local phase is an expandable hidden action
+manifold. If it loses, the H042 improvement is likely tied to a much narrower
+support and H024's warning becomes valid again for wider Q2 moves.

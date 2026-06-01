@@ -7275,3 +7275,50 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - map the Q2 phase manifold around the winning `45`-cell move;
   - test whether the effect is target-isolated Q2 calibration, hidden public
     Q2 prior, or a public-subset/regime split.
+
+## H043. Q2-Local Phase Manifold HS-JEPA
+
+- Observe: H042's public win moved only `45` Q2 cells. The broad action solver
+  was unsafe, but that tiny Q2 branch survived public LB despite H024 rejection.
+- Wonder: was H042 a narrow accident, or does it expose a wider Q2-local phase
+  manifold around H012?
+- Hypothesis: if the Q2 phase branch is real, then adding H042 as a public
+  action sensor should make nearby Q2-only candidates rank well under the
+  action decoder, route equation, H025, and a target-isolated H024 override.
+- Method: `hitl/h043_q2_phase_manifold_jepa.py`.
+  - context: H012, H042 public feedback, H042/H041 route-world equations,
+    H012/H036 posterior pressure, E247 phase support, and Q2-only phase
+    direction;
+  - target representation: local Q2 phase action around the H042 movement;
+  - candidate families: Q2 top-k phase surface, H042-core amplitude, H042-core
+    pruning, H042-core plus outside tail, and stronger-core/weak-tail moves;
+  - stress: action decoder refit with H042 public feedback, route equation,
+    H025, H042 tangent distance, H042 support overlap, and a bounded H024
+    warning gate.
+- Result:
+  - generated candidates `251`;
+  - scored candidates `240`;
+  - promotable candidates `67`;
+  - selected candidate:
+    `h043_q2_top120_a0.66_c105_ca1478b7`;
+  - root upload-safe file:
+    `submission_h043_q2_top120_a0.66_c105_ca1478b7_uploadsafe.csv`;
+  - changed cells/rows `105` / `105`, all on Q2;
+  - action margin/support `-0.000128164` / `0.583333333`;
+  - route-equation delta `-0.000194493`;
+  - H024 margin/support `+0.000619918` / `0.250000000`;
+  - H025 score `-2.323117949`;
+  - H042 Jaccard / distance L2 `0.428571429` / `0.026442709`;
+  - tangent expected delta `-0.000246069`;
+  - selected q2_k/core_alpha/tail_k:
+    `120` / `0.66` / `0`.
+- Interpretation:
+  - H043 keeps the bet target-isolated: only Q2 changes, avoiding the broad
+    route/private mixtures that H042 rejected;
+  - local sensors say the H042 phase branch can be extended from `45` to `105`
+    cells, but H024 still warns against it;
+  - the public test is information-rich: if it beats H042, Q2 phase manifold is
+    real; if it loses, H042 is likely a much narrower support-specific move.
+- Decision:
+  - promote exactly one upload-safe public sensor:
+    `submission_h043_q2_top120_a0.66_c105_ca1478b7_uploadsafe.csv`.

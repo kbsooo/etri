@@ -2654,3 +2654,41 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - generate Q2-local phase neighbors around the successful `45`-cell move,
     with target-isolated stress and a separate H024 override audit.
+
+## Public-Free Observation: H043 Q2-Local Phase Manifold JEPA
+
+- submission file prepared:
+  `submission_h043_q2_top120_a0.66_c105_ca1478b7_uploadsafe.csv`
+- public LB: pending
+- public anchor:
+  `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
+  scored `0.5679048248`
+- changed point:
+  - refits the H042 action decoder after adding H042's public win as an
+    observed action response;
+  - maps Q2-only phase neighbors around the H042 movement;
+  - promotes a `105`-cell Q2-only move with core alpha `0.66`.
+- expected LB reaction:
+  - if the score improves over H042, the H042 branch is an expandable Q2 phase
+    manifold;
+  - if it loses slightly, Q2 phase is real but support/amplitude should be
+    pruned;
+  - if it loses materially, H042 was a narrow support-specific correction and
+    H024's warning becomes valid for expanded Q2 moves.
+- local/public-free observation:
+  - generated/scored candidates `251` / `240`;
+  - promotable candidates `67`;
+  - selected candidate `h043_q2_top120_a0.66_c105_ca1478b7`;
+  - changed cells/rows `105` / `105`, Q2 only;
+  - action margin/support `-0.000128164` / `0.583333333`;
+  - route-equation delta `-0.000194493`;
+  - H024 margin/support `+0.000619918` / `0.250000000`;
+  - H025 score `-2.323117949`;
+  - H042 Jaccard/distance L2 `0.428571429` / `0.026442709`;
+  - tangent expected delta `-0.000246069`.
+- interpretation:
+  - this is not a safety blend. It is a public sensor for whether Q2 phase
+    can leave the exact H042 support while remaining H012-compatible.
+- next experiment:
+  - wait for public result. Branch into Q2 support pruning if weak, or Q2
+    regime split if strong.

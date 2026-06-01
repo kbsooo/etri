@@ -6862,3 +6862,43 @@ Updated stress conclusion:
   with a target-isolated Q2 override rule.
 - This public win does not validate large action-atom mixtures, because those
   still fail the independent H024/H025 intersection tests.
+
+## H043 Q2-Local Phase Manifold Stress
+
+Stress target:
+
+- add H042 public feedback as a new observed action response;
+- search only Q2-local phase neighbors around H042;
+- promote only candidates that preserve action-decoder gain, route-equation
+  gain, H025 health, bounded H042 tangent distance, and limited H024 warning.
+
+Stress result:
+
+- generated/scored candidates: `251` / `240`;
+- promotable candidates: `67`;
+- selected candidate:
+  `h043_q2_top120_a0.66_c105_ca1478b7`;
+- promoted root file:
+  `submission_h043_q2_top120_a0.66_c105_ca1478b7_uploadsafe.csv`;
+- changed cells/rows: `105` / `105`, all Q2;
+- action margin/support:
+  `-0.000128164` / `0.583333333`;
+- route-equation delta:
+  `-0.000194493`;
+- H024 margin/support:
+  `+0.000619918` / `0.250000000`;
+- H025 score:
+  `-2.323117949`;
+- H042 Jaccard / distance L2:
+  `0.428571429` / `0.026442709`;
+- tangent expected delta:
+  `-0.000246069`.
+
+Stress conclusion:
+
+- The H042 Q2 branch is not isolated under local public-free sensors; nearby
+  Q2-only candidates survive action decoder, route equation, and H025.
+- H024 remains a warning rather than a veto for this narrow target-isolated
+  branch.
+- The public result of H043 will decide whether the branch is an expandable
+  manifold or a narrow H042 support correction.

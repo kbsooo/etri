@@ -343,3 +343,7 @@ hitl/h042_action_coupled_equation_solver_jepa/submission_h042_*.csv
 hitl/h042_action_coupled_equation_solver_jepa/h042_h025_top_cells.csv
 hitl/h042_action_coupled_equation_solver_jepa/h042_world_particles.csv
 hitl/h042_action_coupled_equation_solver_jepa/h042_world_predicted_deltas.csv
+
+# H043 materialized Q2 phase manifold sweep files are reproducible from the script.
+hitl/h043_q2_phase_manifold_jepa/submission_h043_*.csv
+hitl/h043_q2_phase_manifold_jepa/h042_h025_top_cells.csv

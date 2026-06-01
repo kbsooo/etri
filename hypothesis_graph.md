@@ -5149,3 +5149,43 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 제출 전략: prioritize Q2-local phase manifold mapping and public-regime split.
   Avoid large single-ridge action-atom mixtures unless a new independent stress
   explains why H024 is wrong for that family too.
+
+### H043: H042 exposes an extendable Q2-local phase manifold
+
+- 상태: public-ready; one promoted sensor, not yet public-scored.
+- 왜 그럴듯한가: H042 proved a tiny Q2-only phase move can beat H012 while
+  H024 rejects it. That suggests H024 may be a large-action guardrail, not a
+  final judge for target-isolated Q2 calibration.
+- 맞다면:
+  - adding H042 as a public action sensor should favor nearby Q2-only phase
+    candidates;
+  - the best neighbor should keep action-decoder gain, route-equation gain,
+    H025 health, and small H042-tangent distance;
+  - public LB should improve over H042 or at least remain close while moving a
+    larger Q2 support.
+- 틀리다면:
+  - only the exact `45`-cell H042 support should be safe;
+  - larger Q2 support should degrade public despite action/route/H025 support;
+  - H024's positive margin would be a valid warning once the Q2 move expands.
+- 최소 실험: `hitl/h043_q2_phase_manifold_jepa.py`, mapping Q2 phase neighbors
+  around H042 after refitting the action decoder with H042 public feedback.
+- 관측:
+  - generated/scored candidates `251` / `240`;
+  - promotable candidates `67`;
+  - selected `h043_q2_top120_a0.66_c105_ca1478b7`;
+  - changed cells/rows `105` / `105`, Q2 only;
+  - action margin/support `-0.000128164` / `0.583333333`;
+  - route-equation delta `-0.000194493`;
+  - H024 margin/support `+0.000619918` / `0.250000000`;
+  - H025 score `-2.323117949`;
+  - H042 Jaccard/distance L2 `0.428571429` / `0.026442709`;
+  - tangent expected delta `-0.000246069`.
+- 성공/폐기 기준:
+  - accept extendable Q2 phase manifold if the promoted file beats or clearly
+    matches H042 public LB with larger Q2 support.
+  - reject wide Q2 extension if it loses materially; then H042 becomes a
+    narrow support-specific correction, not a manifold.
+- public LB 관측 반응: pending for
+  `submission_h043_q2_top120_a0.66_c105_ca1478b7_uploadsafe.csv`.
+- 제출 전략: submit H043 as the next high-information public sensor before
+  trying broader Q/S or route/private action mixtures.

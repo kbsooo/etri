@@ -1002,3 +1002,18 @@ it (`+0.000410`, support `0.250000`). The LeJEPA read is now more nuanced:
 H024 is a useful large-action guardrail, but it can suppress a real
 target-isolated Q2 phase descent. The next latent should separate "Q2-local
 phase calibration" from broad route/private action extrapolation.
+
+H043 performs that separation. It adds the H042 public win as an observed
+action response and restricts materialization to Q2-only phase neighbors. The
+latent remains non-collapsed under the same public-action geometry: after
+refit, `67/240` candidates pass the Q2 override gate, and the selected candidate
+has action margin/support `-0.000128164` / `0.583333333`, route-equation delta
+`-0.000194493`, and H025 score `-2.323117949`. It is also not just H042 copied
+again: it expands from `45` to `105` Q2 cells, with H042 Jaccard `0.428571429`
+and H042 distance L2 `0.026442709`.
+
+The remaining LeJEPA warning is H024. The selected candidate still has positive
+H024 margin `+0.000619918` and H024 support `0.250000000`. Therefore H043 is a
+clean public sensor, not a proven general decoder. If it scores well, Q2-local
+phase is a real expandable action manifold. If it scores poorly, H042's
+improvement came from a much narrower support-specific correction.
