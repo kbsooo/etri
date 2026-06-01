@@ -4366,3 +4366,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: success if public LB moves below E247 by a clearly readable margin. Failure if it worsens materially, especially if it enters H010/E323-like fail bands, which would reject direct public-equation pseudo-label materialization.
 - public LB 관측 반응: improvement would make public-equation latent reconstruction the strongest HS-JEPA architecture component. Failure would demote known-public equations to diagnostic/action-health features only.
 - 제출 전략: highest-upside "한탕" candidate; use only if willing to risk a broad inverse-public materialization.
+
+### H013: raw human-state context can gate public-equation action health
+
+- 상태: partially falsified as a submission selector; supported as a diagnostic HS-JEPA component.
+- 왜 그럴듯한가: H012 may be overfit because it materializes public equations directly. HS-JEPA should instead use raw human lifelog context as the context view and public-equation/action-health as the target representation.
+- 맞다면: raw app/screen/charging/activity/mobility/HR/light/calendar/payday features should identify rows where H012 posterior movement keeps large posterior gain while reducing known public-bad selector risk.
+- 틀리다면: route-agreeing human-state slices may exist, but every visible H012-gated action should remain selector-high-risk or lose posterior visibility when made safe.
+- 최소 실험: `hitl/h013_raw_human_state_jepa_gate.py`.
+- 관측: `1190` candidates generated from raw human-state PCA, KNN label-route prior, known-public action-health row scores, and H012 posterior cells. Jackpot-gated candidates `0`; high-risk candidates `168`. Selected diagnostic file `submission_h013_raw_hs_jepa_health_top_route_r140_c260_a0.75_4a91266c_uploadsafe.csv` changes `260` cells on `126` rows, posterior delta `-0.001233534`, selector mean/p90 `+0.000486533` / `+0.001506255`, route agreement `1.000000`, consistency `0.991453`.
+- 성공/폐기 기준: accept as a submission translator only if a candidate keeps posterior delta below `-0.001` and passes selector survival. Not observed. Accept as diagnostic if it forms coherent route-agreeing slices. Observed.
+- public LB 관측 반응: no default H013 submission. If submitted and it wins, raw human-state row gating becomes the missing HS-JEPA bridge. If it loses, simple row gating is rejected and the next architecture must learn row x target action-health.
+- 제출 전략: do not rank above H012 or E247. Keep as architecture evidence and as input features for the next joint action-health model.

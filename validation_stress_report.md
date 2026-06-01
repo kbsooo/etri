@@ -5665,3 +5665,34 @@ Stress conclusion:
 - H012 is not a calibrated LB prediction. It is a high-risk inverse problem with surprisingly strong leave-one-public ranking evidence.
 - A public win would be a true breakthrough: public observations can train a same-level hidden-state target for HS-JEPA.
 - A public loss would be equally useful: known public equations are underidentified for direct pseudo-label materialization and should only be used as action-health diagnostics.
+
+## H013 Raw Human-State Gate Stress
+
+Question: can raw human-state context make the H012 public-equation action safer?
+
+Stress setup:
+
+- script: `hitl/h013_raw_human_state_jepa_gate.py`;
+- base: E247;
+- context: raw daily lifelog features from all data item parquet files;
+- latent: PCA human-state embedding, KNN train-label route prior, and known-public action-health row score;
+- action: move E247 toward H012 posterior cells only on raw-state healthy rows, optionally requiring KNN route agreement;
+- selector: same E272 public-free selector used for post-E247 candidate promotion.
+
+Stress result:
+
+- generated candidates: `1190`;
+- jackpot-gated candidates: `0`;
+- high-risk candidates: `168`;
+- selected diagnostic file: `submission_h013_raw_hs_jepa_health_top_route_r140_c260_a0.75_4a91266c_uploadsafe.csv`;
+- changed rows/cells: `126` / `260`;
+- posterior delta: `-0.001233534`;
+- selector mean/p90 delta vs E247: `+0.000486533` / `+0.001506255`;
+- route-agree rate on changed cells: `1.000000`;
+- H012 consistency on changed cells: `0.991453`.
+
+Stress conclusion:
+
+- H013 validates raw human-state context as a representation source, but rejects simple row gating as a safe translator.
+- The issue is not that no human-state structure exists; the issue is that visible H012 movement remains public-risky after row gating.
+- The next big experiment should predict row x target cell-action health directly, or build a model where the human latent changes probability geometry before output materialization.

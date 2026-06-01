@@ -4135,3 +4135,23 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - max probability delta `0.294110`.
 - Registry status: approved as highest-upside public sensor, rejected as a safe calibrated feature.
 - Failure condition: if public LB fails materially, do not use public-equation posteriors as direct probability targets. Keep them only as action-health diagnostics or constraints inside a stronger generative model.
+
+### H013 raw human-state action-health gate
+
+- Target hidden structure: human day-state controls where a public-equation target representation should be trusted.
+- Why needed: H012 is too broad and may overfit public equations. HS-JEPA needs a raw-context gate so hidden public-state action is applied only on rows whose lifelog context supports the target route.
+- Feature/action form:
+  - raw context: app usage categories, time-of-day usage, screen status, charging, activity, pedometer, GPS, heart rate, phone/watch light, BLE/Wifi/Ambience counts, calendar and payday/weekend proxies;
+  - latent: standardized PCA human-state embedding plus KNN train-label route prior;
+  - action-health target: known-public bad/survivor action alignment smoothed over human-state neighbors;
+  - action: H012 posterior movement on high-health or anti-bad rows with optional KNN route agreement.
+- Current evidence:
+  - `1190` candidates generated;
+  - `0` full jackpot-gated candidates;
+  - `168` high-risk candidates;
+  - selected diagnostic `submission_h013_raw_hs_jepa_health_top_route_r140_c260_a0.75_4a91266c_uploadsafe.csv`;
+  - changed cells `260`;
+  - posterior delta `-0.001233534`;
+  - selector p90 `+0.001506255`.
+- Registry status: approved as diagnostic representation and HS-JEPA architecture evidence; rejected as current default submission feature.
+- Failure condition: do not use scalar raw human-state row health alone to materialize H012. Future use requires row x target action-health or a joint model that reduces public-bad selector risk while keeping visible posterior gain.

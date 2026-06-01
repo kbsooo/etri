@@ -1737,3 +1737,28 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - it is a direct test of whether the hidden public world can be reconstructed from old public observations.
 - next experiment:
   - after public feedback, either promote public-equation latent reconstruction into HS-JEPA, or restrict public equations to diagnostic/action-health use only.
+
+## Public-Free Observation: H013 Raw Human-State JEPA Gate
+
+- submission file prepared: `submission_h013_raw_hs_jepa_health_top_route_r140_c260_a0.75_4a91266c_uploadsafe.csv`
+- public LB: not submitted
+- changed point:
+  - does not directly submit all of H012;
+  - builds raw human-state context from app/screen/charging/activity/mobility/HR/light/calendar/payday features;
+  - applies H012 posterior movement only on rows/cells where raw-state action-health and KNN target-route agreement support the move.
+- expected LB reaction:
+  - improvement would mean raw human-state context is a real HS-JEPA gate for public-equation action;
+  - worsening would reject scalar row-gating and imply the missing target is row x target action-health or public/private subset calibration.
+- local/public-free observation:
+  - generated candidates: `1190`;
+  - full jackpot-gated candidates: `0`;
+  - high-risk candidates: `168`;
+  - selected file changes `260` cells on `126` rows;
+  - posterior delta `-0.001233534`;
+  - selector mean/p90 delta `+0.000486533` / `+0.001506255`;
+  - route agreement `1.000000`, consistency `0.991453`.
+- interpretation:
+  - raw human-state creates coherent H012 slices but does not pass public-free action-health;
+  - H013 should not supersede H012 as the current highest-upside public sensor.
+- next experiment:
+  - learn action health at row x target level instead of applying a scalar row gate to H012.

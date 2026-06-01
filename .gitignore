@@ -273,3 +273,6 @@ analysis_outputs/bridge_scan_candidates/*
 !analysis_outputs/paper_notes/
 analysis_outputs/paper_notes/*
 !analysis_outputs/paper_notes/*.md
+
+# H013 generated local candidate submissions are reproducible from the script.
+hitl/h013_raw_human_state_jepa_gate/submission_h013_*.csv

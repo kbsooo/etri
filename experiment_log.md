@@ -6294,3 +6294,32 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - E247 remains the safe final default.
   - H011 remains the cleaner one-axis H010 inversion sensor.
   - H012 is the highest-upside "한탕" candidate: submit only if the goal is to test whether known-public equations reconstruct the hidden public state.
+
+## H013. Raw Human-State JEPA Gate Over H012
+
+- Observe: H012 gives a huge hidden public-equation direction, but it is exposed to direct pseudo-label overfit. The natural HS-JEPA fix is to let raw human lifelog context decide where that action is healthy.
+- Wonder: can app/category rhythm, screen/charging, activity, mobility, HR, light, calendar, and payday/weekend proxies gate H012 into a healthier action?
+- Hypothesis: if public-equation cells are only valid on specific human-state rows, then raw-state gate + KNN target-route agreement should keep posterior gain while reducing public-bad selector risk. If it cannot, raw human-state context is not yet a sufficient action-health translator.
+- Method: `hitl/h013_raw_human_state_jepa_gate.py`.
+  - context: raw daily human-state features from all parquet lifelog sources;
+  - latent: PCA human-state embedding plus train-label KNN route prior;
+  - target/action-health: row-level alignment against known public-bad/good-ish action axes and H012 posterior direction;
+  - actions: H012 posterior movement gated by high-health rows, anti-bad rows, target subsets, and label-route agreement.
+- Result:
+  - generated `1190` candidates;
+  - jackpot-gated candidates: `0`;
+  - high-risk candidates: `168`;
+  - selected upload-safe diagnostic file: `submission_h013_raw_hs_jepa_health_top_route_r140_c260_a0.75_4a91266c_uploadsafe.csv`;
+  - selected action changes `260` cells across `126` rows;
+  - posterior delta vs E247: `-0.001233534`;
+  - selector mean/p90 delta vs E247: `+0.000486533` / `+0.001506255`;
+  - route agreement on changed cells: `1.000000`;
+  - mean consistency on changed cells: `0.991453`.
+- Interpretation:
+  - Raw human-state context is useful enough to produce coherent, route-agreeing H012 slices.
+  - It did not solve the public-transfer problem: every candidate that kept meaningful posterior visibility remained selector-high-risk.
+  - This is a partial falsification of the simple HS-JEPA gate story. The problem is not only "which human rows"; the row x target action geometry is still entangled with public-bad axes.
+- Decision:
+  - Do not rank H013 above H012 or E247.
+  - Keep H013 as evidence for the paper architecture: raw human-state context can define action-health features, but the current translator is insufficient.
+  - Next big experiment should learn action-health jointly at row x target level, not merely gate H012 by row health.

@@ -4901,3 +4901,31 @@ Submission interpretation:
 3. If we want the highest-upside world-changing sensor, submit H012.
 4. If H012 wins meaningfully, HS-JEPA's strongest paper idea becomes public-equation latent reconstruction: old public responses define a hidden target representation.
 5. If H012 fails hard, reject direct public-equation materialization and keep public LB only as an action-health diagnostic, not as a pseudo-label solver.
+
+## Update After H013 Raw Human-State Gate
+
+H013 candidate prepared:
+
+`submission_h013_raw_hs_jepa_health_top_route_r140_c260_a0.75_4a91266c_uploadsafe.csv`
+
+What it bets:
+
+- H012's public-equation action should not be applied everywhere.
+- Raw human-state context can identify the rows where H012-like movement is more plausible.
+- KNN train-label route agreement can filter H012 cells into a more human-consistent target route.
+
+What happened locally:
+
+- `1190` candidates were generated.
+- `0` candidates passed the full jackpot gate.
+- `168` candidates were high-risk only.
+- The selected H013 file changes `260` cells on `126` rows.
+- It has posterior delta `-0.001233534`, but selector mean/p90 is `+0.000486533` / `+0.001506255`.
+
+Submission interpretation:
+
+1. Safe final remains E247.
+2. Highest-upside sensor remains H012, not H013.
+3. H013 is useful as HS-JEPA evidence, but not the next best submission unless we specifically want to test raw-state gating despite selector rejection.
+4. If H013 were submitted and somehow won, the world model would shift toward raw human-state row gating as the missing bridge.
+5. If H013 loses, the simple row-gate version of HS-JEPA is weakened; the next architecture should learn row x target action-health directly.
