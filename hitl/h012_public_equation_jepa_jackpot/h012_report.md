@@ -102,7 +102,17 @@ HS-JEPA's target representation is not a label column or a feature reconstructio
 
 ## Decision Rule
 
-This is a high-risk inverse-public experiment. A public win would validate public-equation latent reconstruction as an HS-JEPA target. A loss would show that the old public equations are too underidentified or too subset-mismatched to materialize directly.
+This was designed as a high-risk inverse-public experiment. Public feedback validated it.
+
+## Public Feedback
+
+- submitted upload-safe file: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+- public LB: `0.5681234831`
+- previous frontier E247: `0.5761589494`
+- delta vs E247: `-0.0080354663`
+- delta vs posterior mean forecast: `-0.0015890693` stronger than expected
+
+Interpretation: public-equation latent reconstruction is now the strongest HS-JEPA component. The remaining question is not whether this target representation exists; it is how much of the H012 posterior is private-safe versus public-subset-specific.
 
 ## Files
 

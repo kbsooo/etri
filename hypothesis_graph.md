@@ -4357,15 +4357,16 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 
 ### H012: known public LB observations define a solvable hidden public-state equation system
 
-- 상태: submission candidate generated; public LB pending.
+- 상태: strongly supported by public LB; current public frontier.
 - 왜 그럴듯한가: for fixed prediction tensors, each public LB delta relative to E247 is a linear constraint on hidden public labels under the public subset. We now have `19` non-E247 public deltas, including strong positive and negative anchors, so these observations may identify a coarse pseudo-public label/subset representation.
 - 맞다면: a posterior `q` fitted from known-public equations should predict held-out public deltas/ranking, and candidates moving E247 toward stable high-score posterior cells should show large robust predicted improvements.
 - 틀리다면: leave-one-public diagnostics should be weak, or public feedback on the materialized candidate should fail hard because the equation system is underidentified and overfits the observed submissions.
 - 최소 실험: `hitl/h012_public_equation_jepa_jackpot.py`.
 - 관측: `20` known public observations, `19` equations vs E247, `85` posterior configs. Best config LOO MAE `0.000320737`, LOO p90 abs `0.000911893`, Spearman `0.935088`. Generated `238` candidates. Selected file `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv` changes `1200` cells with posterior mean/p90 `-0.006446397` / `-0.004693170`.
-- 성공/폐기 기준: success if public LB moves below E247 by a clearly readable margin. Failure if it worsens materially, especially if it enters H010/E323-like fail bands, which would reject direct public-equation pseudo-label materialization.
-- public LB 관측 반응: improvement would make public-equation latent reconstruction the strongest HS-JEPA architecture component. Failure would demote known-public equations to diagnostic/action-health features only.
-- 제출 전략: highest-upside "한탕" candidate; use only if willing to risk a broad inverse-public materialization.
+- 추가 관측: public LB `0.5681234831`; delta vs E247 `-0.0080354663`. Realized gain is stronger than posterior mean by `-0.0015890693`.
+- 성공/폐기 기준: success was defined as a clearly readable public gain over E247. This is observed.
+- public LB 관측 반응: public-equation latent reconstruction is now the strongest HS-JEPA architecture component. The remaining hypothesis is not whether the branch exists, but how much of it is private-safe and how it relates to subject-time memory.
+- 제출 전략: current frontier/default. Next submissions should be H012 decompositions or regularized variants, not unrelated E247 micro-edits.
 
 ### H013: raw human-state context can gate public-equation action health
 
@@ -4378,3 +4379,14 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept as a submission translator only if a candidate keeps posterior delta below `-0.001` and passes selector survival. Not observed. Accept as diagnostic if it forms coherent route-agreeing slices. Observed.
 - public LB 관측 반응: no default H013 submission. If submitted and it wins, raw human-state row gating becomes the missing HS-JEPA bridge. If it loses, simple row gating is rejected and the next architecture must learn row x target action-health.
 - 제출 전략: do not rank above H012 or E247. Keep as architecture evidence and as input features for the next joint action-health model.
+
+### H014: same-subject sleep-state memory can regularize H012 posterior overfit
+
+- 상태: newly proposed from external document plus H012 feedback.
+- 왜 그럴듯한가: the external `submission_v106_sleep_state_conditioned_memory.csv` report scored `0.5703952266` by weighting same-subject past labels by date, sleep-state similarity, and sensor-quality similarity. H012 scored even better by reconstructing hidden public labels directly. A stable hidden world should show overlap between H012 high-posterior cells and within-subject state-continuity memory.
+- 맞다면: H012 posterior confidence should be higher, more stable, or more private-safe on rows/cells whose same-subject sleep-state-conditioned memory agrees with it. Leave-public/H012-out posterior variants should preserve those cells more often.
+- 틀리다면: H012 gain should concentrate in cells unrelated or opposite to subject-time memory, implying H012 is mostly public-subset equation fitting rather than human continuity.
+- 최소 실험: build memory features without using external predictions: subject/date distance, sleep-state similarity, sensor-quality similarity, effective neighbor count, and target-specific memory agreement with H012 posterior. Audit posterior stability and produce a regularized H012 variant only if the memory-compatible subset keeps most posterior gain.
+- 성공/폐기 기준: accept as a submission regularizer only if it preserves a large fraction of H012 posterior delta while improving leave-public/H012-out stability and not collapsing to E247. Reject if memory-compatible cells are low-gain or target-skewed in a way that sacrifices H012's public edge.
+- public LB 관측 반응: a successful regularized variant would reduce private risk and prove H012 is not pure public-equation overfit. A worse result would mean the public subset is less same-subject-memory-like than expected, and the final should remain the unregularized H012 or a different posterior-risk control.
+- 제출 전략: no file yet. First run a decomposition/audit; only materialize if it changes the private-risk story, not as a tiny blend.

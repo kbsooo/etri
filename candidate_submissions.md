@@ -20,11 +20,19 @@ submission_survival_score =
 
 ## Current Public Frontier
 
-Current public frontier: `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` with public LB `0.5761589494`.
+Current public frontier: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv` with public LB `0.5681234831`.
 
-Current next submission candidate: **none selected after E312**.
+Previous public frontier: `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` with public LB `0.5761589494`.
+
+H012 improves over E247 by `0.0080354663`. This is now the reference submission unless private-risk considerations dominate final selection.
+
+Current next submission candidate: **none selected after H012 feedback**. The next file should be chosen only after decomposing whether H012's public-equation posterior is robust under leave-H012-out, target/subject/dateblock stability, and same-subject sleep-state memory compatibility.
 
 Public LB budget is now treated as scarce. A file is not submission-worthy unless it passes public-free governance: selector visibility, matched-null rarity, mode-wise dominance, wrong-direction or wrong-pair controls where applicable, and leave-experiment-out action-health sanity. E312 specifically blocks E310/E311 descendants because their apparent edges are predictable null-common action geometry.
+
+Update after H012: this governance rule needs one amendment. H012 shows that a deliberately broad hidden-public-state reconstruction can beat all conservative local gates when the public-equation latent is strong enough. Therefore "submission-worthy" can mean either (a) public-free stress survival, or (b) a predeclared inverse-world experiment with leave-public diagnostics strong enough that a win/loss changes the world model. H012 is the first clear success of type (b).
+
+External reference after H012: an attached document reports `submission_v106_sleep_state_conditioned_memory.csv` public LB `0.5703952266`. It uses same-subject temporal memory conditioned by sleep-state and sensor-quality similarity. This supports the subject/time-memory worldview, but it is still worse than H012 by `0.0022717435`, so it should guide H012 posterior regularization rather than replace H012 as the current final candidate.
 
 Update after E313: this remains **none selected**. Raw human-diary action signatures are real diagnostics, especially for readiness distance (`0.700161` Spearman), but they do not beat the geometry/null-common blocker and their top-ranked rows are mostly safe-but-too-small. Do not submit E313-ranked files directly.
 

@@ -3990,8 +3990,9 @@ E49 makes the next feature policy narrower: start from subject-calendar mask con
   - best direct-public top1 `19/98`;
   - best null top1 `4/98`;
   - selected file: `analysis_outputs/submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv`.
-- Registry status: approved as the current highest-information local submission candidate, public LB pending.
-- Failure condition: if public LB worsens clearly, do not keep sweeping Q2/S1 masks from the same known-public target. Treat the target as locally valid but public-transfer overfit, and build a public-free Q2/S1 calibration proxy.
+- Public feedback: `0.576290429`, worse than E247 by `+0.000131480` but slightly better than E95 by `-0.000000901`.
+- Registry status: approved as a diagnostic Q2/S1 lifestyle-state representation; rejected as a current frontier submission feature.
+- Failure condition: do not keep sweeping Q2/S1 masks from the same known-public target. Treat the target as locally valid but public-transfer undercalibrated, and build a public-free Q2/S1 calibration proxy before any new materialization.
 
 ### E369 public-free Q2/S1 lifestyle residual transfer
 
@@ -4133,8 +4134,25 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - changed cells `1200`;
   - posterior mean/p90 delta `-0.006446397` / `-0.004693170`;
   - max probability delta `0.294110`.
-- Registry status: approved as highest-upside public sensor, rejected as a safe calibrated feature.
-- Failure condition: if public LB fails materially, do not use public-equation posteriors as direct probability targets. Keep them only as action-health diagnostics or constraints inside a stronger generative model.
+- Public feedback: LB `0.5681234831`, improving over E247 by `0.0080354663`.
+- Registry status: promoted to core HS-JEPA feature/target representation and current public frontier. Still not automatically private-safe.
+- Failure condition: no longer "if public LB fails"; it passed. The active discard condition is now private-risk evidence: if leave-H012-out posterior, subject-time memory compatibility, or target-wise stability show the gain is carried by brittle public-only cells, use H012 as final/public anchor but avoid amplifying it further.
+
+### H014 subject-time sleep-state conditioned memory prior
+
+- Target hidden structure: within-subject temporal continuity conditioned on sleep-state and sensor-quality similarity.
+- Why needed: an external high-scoring note reports `submission_v106_sleep_state_conditioned_memory.csv` public LB `0.5703952266`. This is a strong non-equation view of the same repeated-subject world and can regularize H012's public-equation posterior.
+- Feature/action form:
+  - date-distance memory within subject;
+  - sleep episode similarity;
+  - sensor coverage / missingness / quality similarity;
+  - effective neighbor count and memory reliability;
+  - target-wise agreement between memory posterior and H012 posterior.
+- Current evidence:
+  - external public score is worse than H012 by `0.0022717435` but much stronger than most pre-H012 local semantic experiments;
+  - no prediction file is available, so it cannot be used as an equation anchor.
+- Registry status: approved as a next diagnostic prior, not yet a submission feature.
+- Failure condition: reject as an H012 regularizer if memory-compatible cells lose most of H012's posterior delta or if agreement is driven only by low-impact cells.
 
 ### H013 raw human-state action-health gate
 

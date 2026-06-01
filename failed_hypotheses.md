@@ -2862,3 +2862,12 @@
 - Implementation issue possible: low for the public conclusion. The v2 file was rebuilt from `data/ch2026_submission_sample.csv`, passed key/order/probability checks, and uploaded successfully. The score is a valid public observation.
 - Bottleneck implication: the bottleneck is not simply finding a human-interpretable mobility state. It is translating that state into public-valid action. Current subject/dateblock route logloss and selector tolerance can be confidently wrong for S1/S4 route edits.
 - Do not repeat: H010 siblings, S1/S4 rank-route rewrites, or larger/smaller objective mobility route edits. If mobility latent is reused, it must be inside a new action-health/public-private energy target rather than direct probability mass reassignment.
+
+## FH318. H012 public-equation direct materialization is only overfit/noise
+
+- Failed hypothesis: the public-equation posterior is too underidentified to materialize directly, so a broad `1200`-cell H012 move should fail publicly like H010/E323.
+- Observed result: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv` scored `0.5681234831`, improving over E247 by `0.0080354663`.
+- Why discard: the gain is much larger than recent frontier noise and larger than the H012 posterior mean forecast by `0.0015890693`. A pure overfit/noise explanation no longer fits the public observation.
+- Implementation issue possible: low for public result validity; the file was upload-safe and scored successfully. Private generalization remains unknown, but that is a different hypothesis.
+- Bottleneck implication: the strongest current bottleneck is no longer latent discovery. It is posterior decomposition and private-risk control: separating public-subset-specific cells from hidden-state cells that should generalize.
+- Do not repeat: treating public LB observations only as after-the-fact diagnostics. They are now a validated HS-JEPA target source, but future use must include leave-H012-out and subject-time memory stress.

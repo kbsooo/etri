@@ -6287,13 +6287,14 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - max probability delta: `0.294110`;
   - public-bad cosine positive sum: `0.000000`.
 - Interpretation:
-  - This is the biggest current world-model bet. The predicted gain is far beyond normal frontier noise, but it is also the most exposed to inverse-public overfitting.
-  - The LOO ranking evidence is surprisingly strong, so the posterior is not merely fitting all observations in-sample.
-  - However, the action moves `1200/1750` cells and produces near-extreme probabilities, so a bad public result would cleanly reject direct public-equation materialization.
+  - Before feedback, this was the biggest current world-model bet. The predicted gain was far beyond normal frontier noise, but it was also the most exposed to inverse-public overfitting.
+  - The LOO ranking evidence was surprisingly strong, so the posterior was not merely fitting all observations in-sample.
+  - Public feedback validated the bet: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv` scored `0.5681234831`, improving over E247 by `0.0080354663`.
+  - The realized public gain was stronger than the posterior mean forecast by `0.0015890693`, so the posterior was conservative on the winning public slice rather than only memorizing old anchors.
 - Decision:
-  - E247 remains the safe final default.
-  - H011 remains the cleaner one-axis H010 inversion sensor.
-  - H012 is the highest-upside "한탕" candidate: submit only if the goal is to test whether known-public equations reconstruct the hidden public state.
+  - H012 is now the current public frontier and the strongest evidence for HS-JEPA so far.
+  - E247 becomes the previous safe baseline rather than the final default.
+  - The next big experiment should not be another tiny E247 tweak. It should decompose the H012 posterior: which targets/cells/subject-time states carried the public gain, and which parts are private-risk overfit.
 
 ## H013. Raw Human-State JEPA Gate Over H012
 
@@ -6323,3 +6324,26 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - Do not rank H013 above H012 or E247.
   - Keep H013 as evidence for the paper architecture: raw human-state context can define action-health features, but the current translator is insufficient.
   - Next big experiment should learn action-health jointly at row x target level, not merely gate H012 by row health.
+
+## Public Feedback After H012 and External Sleep-State Memory Note
+
+- New observation: the user submitted `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv` and received public LB `0.5681234831`.
+- Scale:
+  - delta vs E247 `0.5761589494`: `-0.0080354663`;
+  - delta vs E95 `0.5762913298`: `-0.0081678467`;
+  - delta vs H010 `0.5781718175`: `-0.0100483344`.
+- Why this matters:
+  - This is not frontier noise. It is roughly two orders of magnitude larger than the E95/E101/E368 boundary effects that dominated recent work.
+  - The H012 latent target was "hidden public state implied by public equations", not raw feature reconstruction. This is the first public result that strongly validates the HS-JEPA framing at the target/action layer.
+  - The previous bottleneck diagnosis shifts. We were not merely failing to discover human-state latents; we were failing to translate them into the public subset/label geometry. H012 bypassed that by reconstructing the public geometry directly.
+- External document read:
+  - Attached note describes `submission_v106_sleep_state_conditioned_memory.csv`, public LB `0.5703952266`.
+  - Core idea: same-subject temporal label memory is strong, and memory retrieval should weight not only date distance but also sleep-state similarity and sensor-quality similarity.
+  - This supports the repeated-subject/within-person continuity world model, but it does not supersede H012: H012 is better by `0.0022717435`.
+- Synthesis:
+  - External V106 says the data world has subject-time memory.
+  - H012 says public observations can recover a hidden public label/subset posterior.
+  - The next high-upside route is to fuse them: use subject-time conditioned memory as a prior/regularizer for H012 posterior cells, especially to distinguish real within-person state continuity from public-subset overfit.
+- Next action:
+  - build an H014 posterior decomposition / memory-conditioned posterior audit before generating another submission;
+  - add H012 to known-public observation tables so future public-equation models can test leave-one-out with H012 as the new strongest anchor.

@@ -1711,10 +1711,14 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - submit H011 only if spending a slot on a world-changing sensor is acceptable;
   - after feedback, either promote failed-action inversion as an HS-JEPA primitive or kill the anti-H010 branch.
 
-## Public-Free Observation: H012 Public-Equation HS-JEPA
+## Public Observation: H012 Public-Equation HS-JEPA
 
-- submission file prepared: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
-- public LB: not submitted yet
+- submission file: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+- public LB: `0.5681234831`
+- previous public best reference: E247 `0.5761589494`
+- delta vs E247: `-0.0080354663`
+- delta vs E95 `0.5762913298`: `-0.0081678467`
+- delta vs H010 `0.5781718175`: `-0.0100483344`
 - changed point:
   - treats known public LB deltas as equations over hidden public labels/subset;
   - solves a continuous pseudo-public posterior `q`;
@@ -1731,12 +1735,30 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - selected posterior mean/p90 delta vs E247: `-0.006446397` / `-0.004693170`;
   - changed cells: `1200`;
   - max probability delta: `0.294110`.
-- interpretation:
-  - this is the strongest upside candidate and the strongest overfit-risk candidate at the same time;
-  - it should not be described as safe or calibrated;
-  - it is a direct test of whether the hidden public world can be reconstructed from old public observations.
+- actual interpretation:
+  - this is a decisive public validation of the public-equation HS-JEPA branch;
+  - the realized gain is larger than the posterior mean forecast by `0.0015890693`, so the model was not merely optimistic on paper;
+  - the private-risk question remains open, but the public bottleneck is no longer "no usable latent"; H012 found a public-readable hidden-state posterior.
 - next experiment:
-  - after public feedback, either promote public-equation latent reconstruction into HS-JEPA, or restrict public equations to diagnostic/action-health use only.
+  - promote public-equation latent reconstruction into the core HS-JEPA architecture;
+  - decompose H012 by target, row, subject/dateblock, posterior scenario stability, and same-subject memory compatibility before another broad materialization.
+
+## External Public Observation: Sleep-State Conditioned Same-Subject Memory
+
+- source: attached text document from another high-scoring participant;
+- reported submission file: `submission_v106_sleep_state_conditioned_memory.csv`;
+- reported public LB: `0.5703952266`;
+- delta vs H012: `+0.0022717435` worse;
+- changed point:
+  - extends same-subject temporal label memory;
+  - weights past labels by date distance, sleep-state similarity, and sensor-quality similarity;
+  - argues that GroupKFold is a cold-subject stress rather than a fair validation for same-subject memory.
+- interpretation:
+  - this independently supports the within-subject temporal continuity hypothesis;
+  - it also warns that raw feature similarity is useful mainly when it conditions memory retrieval, not when it is materialized as a broad output edit;
+  - because the actual prediction file is unavailable, it cannot be added as an equation anchor yet.
+- next experiment:
+  - use this as an H014 design prior: H012 posterior cells should be audited against subject/date proximity, sleep-state similarity, and sensor-quality similarity to separate stable human-state signal from public-equation overfit.
 
 ## Public-Free Observation: H013 Raw Human-State JEPA Gate
 
