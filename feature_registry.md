@@ -4314,3 +4314,22 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - upload-safe validation passed with no NaN and probabilities clipped to `[0.000001, 0.999999]`.
 - Registry status: approved as a high-upside posterior-completion public sensor and architecture evidence for row-level target-state HS-JEPA. Not approved as private-safe final evidence.
 - Failure condition: if public LB worsens, do not discard joint-vector representation entirely; discard the aggressive beta-zero materializer. A beta-positive/train-prior or private-risk-gated vector posterior would need separate evidence.
+
+### H021 human-state conditional vector prior gate
+
+- Target hidden structure: human lifestyle context as a predictor of the row-level 7-bit Q/S hidden target vector.
+- Why needed: H020 proves joint row-vector consistency but not human-state grounding. H021 asks whether raw human-state features can identify which H020 moves are compatible with a plausible lifestyle-state vector.
+- Feature/action form:
+  - context: H013 human-state features from calendar/payday/weekend, app usage, screen/charging/light, activity, HR, GPS, BLE/Wifi/Ambience and sensor-quality counts;
+  - latent: KNN distribution over 128 train target-vector codes;
+  - anti-collapse check: train-only global-prior comparison plus row-permuted q_hs action null;
+  - action: move H012 toward H020 only on cells where q_hs and H020 agree.
+- Current evidence:
+  - best human-state vector prior `subject_all_k10` marginal BCE `0.617584875` vs global vector prior `0.664614445`;
+  - selected ensemble combines subject and hybrid social/sleep/state views;
+  - selected file `submission_h021_agree_h020_k1200_a1_e1546ba9_uploadsafe.csv`;
+  - H020-equation delta vs H012 `-0.000684129`;
+  - H020 gain retained `0.618866184`;
+  - row-permuted q_hs null median is worse by `0.005549353`.
+- Registry status: approved as a human-state action gate over H020. Not approved as direct probability replacement.
+- Failure condition: if public LB worsens, keep the human-state vector prior as diagnostic evidence but stop using it to gate public-equation moves until a stronger action-health target is learned.

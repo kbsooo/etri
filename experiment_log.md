@@ -6554,3 +6554,30 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - H020 becomes the highest-upside posterior-completion sensor if the next public slot is meant to test a whole-row hidden target-vector world;
   - H018 remains the cleaner binary hard-world baseline;
   - do not claim "train target co-occurrence solved it" unless a beta-positive H020 variant wins public or survives a stronger private-risk stress.
+
+## H021. Human-State Conditional Vector-Prior HS-JEPA
+
+- Observe: H020 proved row-level target-vector consistency, but its selected action still uses `beta=0`; empirical train-vector priors were not selected. The missing HS-JEPA bridge is whether raw human-state context can predict a row-level Q/S vector prior and use it to filter H020 actions.
+- Wonder: does human lifestyle context point to the same H020 target-vector action on specific cells, or does direct human-state regularization pull away from the public-equation posterior?
+- Hypothesis: if HS-JEPA is more than public-equation fitting, a human-state conditional vector prior should beat a global train-vector prior in train-only validation and should select H020 cells better than a row-permuted human-prior null.
+- Method: `hitl/h021_human_state_vector_prior_jepa.py`.
+  - context: H013 raw human-state features across calendar, app usage, screen/charging/light, HR, activity, mobility, and sensor-quality groups;
+  - target representation: one 7-bit Q/S label vector per train row;
+  - predictor: KNN vector distribution under subject, hybrid subject/global, and feature-family views;
+  - action: move H012 toward H020 only where the human-state vector prior agrees with the H020 direction and survives row-permuted null stress.
+- Result:
+  - best train-public-free prior: `subject_all_k10`, marginal BCE `0.617584875` vs global vector prior `0.664614445` (`-0.047029570`);
+  - selected prior ensemble: `subject_all_k10`, `hybrid_social_sleep_k36_boost4`, `hybrid_state_k36_boost4`, `subject_state_k10`;
+  - direct human-state regularization toward `q_hs` improved only against its own prior but worsened H020/public-equation compatibility, so it is `diagnostic_only`;
+  - selected upload-safe candidate: `submission_h021_agree_h020_k1200_a1_e1546ba9_uploadsafe.csv`;
+  - candidate changes `1200` cells on `248` rows, mean abs delta vs H012 `0.010015858`, max delta `0.123283706`;
+  - H020-public-equation delta vs H012 `-0.000684129`, retaining `0.618866184` of full H020 gain;
+  - human-state null advantage `0.005549353`: the unpermuted human prior selects the 1200-cell action better than row-permuted human priors.
+- Interpretation:
+  - human-state context really predicts row-level target vectors in train-only validation;
+  - but q_hs itself is not calibrated enough to replace the public-equation posterior;
+  - the actionable role is as a gate/filter over H020, not as a standalone probability target.
+- Decision:
+  - H021 is the first H020 successor that connects raw human-state context to the row-vector posterior branch;
+  - it is a high-information submission candidate if the next question is whether human-state context can make H020 less public-equation-only;
+  - if it fails publicly, discard direct human-state vector gating as an action translator and keep it as a paper/diagnostic representation.

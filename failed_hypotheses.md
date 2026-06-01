@@ -2889,3 +2889,12 @@
 - Implementation issue possible: medium. The prior grid is simple and may underuse subject/dateblock context. A richer conditional vector prior could still be useful.
 - Bottleneck implication: the live H020 signal is row-level joint-vector consistency, not naive train co-occurrence transfer.
 - Do not repeat: submitting a beta-positive train-vector-prior variant just because it sounds more human-state-like. It needs a separate posterior or private-risk advantage over `none_b0`.
+
+## FH321. Direct human-state vector prior can replace the public-equation posterior
+
+- Failed hypothesis: after learning q_hs from raw human-state context, directly regularizing H020/H012 toward q_hs should produce a stronger HS-JEPA submission route than gating H020.
+- Observed result: H021's broad q_hs regularization candidates improve against their own human-state prior but worsen H020/public-equation compatibility. `hs_regularize_all_a1_m0.25` has H020 delta `+0.001985261` versus H012 and is labeled `diagnostic_only`; `agree_joint_hs` variants also have positive H020 deltas.
+- Why discard as a submission route: q_hs is a real train-predictive latent, but it is not calibrated to public-equation probabilities. It pulls too far toward subject-history/vector-frequency patterns that do not match the validated H012/H020 public state.
+- Implementation issue possible: medium. H021 uses KNN vector priors and may underfit richer human-state structure. But the failure is directionally clear: direct q_hs action hurts the strongest validated public-equation sensor.
+- Bottleneck implication: the human-state latent should be used as a gate/action-health view, not as the main probability target.
+- Do not repeat: broad human-state-prior replacement or regularization unless a future model proves public-equation compatibility and row-permuted null advantage simultaneously.

@@ -5966,3 +5966,35 @@ Stress conclusion:
 - The train co-occurrence prior is not independently proven as the final action prior. The selected posterior is `beta=0`, meaning the final posterior is driven by H018-induced vector marginals and public-equation fit rather than empirical train-vector frequency.
 - Primary file: `submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv`.
 - Submission risk: high. It is the biggest post-H012 posterior-completion bet, not a conservative final-file refinement.
+
+## H021 Human-State Vector-Prior Gate Stress
+
+Question: can raw human-state context predict a row-level target-vector prior and use it to choose H020 cells better than a row-permuted human prior?
+
+Stress setup:
+
+- script: `hitl/h021_human_state_vector_prior_jepa.py`;
+- context table: `hitl/h013_raw_human_state_jepa_gate/h013_human_state_features.csv`;
+- target: train 7-bit Q/S vector code;
+- train-only validation: KNN vector distributions under subject, hybrid, and feature-family views;
+- action stress: compare H020-cell selection under real q_hs versus row-permuted q_hs.
+
+Stress result:
+
+- global vector prior marginal BCE: `0.664614445`;
+- best human-state prior: `subject_all_k10`, marginal BCE `0.617584875`;
+- selected ensemble: `subject_all_k10`, `hybrid_social_sleep_k36_boost4`, `hybrid_state_k36_boost4`, `subject_state_k10`;
+- selected candidate: `submission_h021_agree_h020_k1200_a1_e1546ba9_uploadsafe.csv`;
+- changed cells/rows: `1200` / `248`;
+- H020-equation delta vs H012: `-0.000684129`;
+- H020 gain retained: `0.618866184`;
+- real human-prior delta against q_hs: `0.013058704`;
+- row-permuted null median against q_hs: `0.018608057`;
+- null advantage: `0.005549353`.
+
+Stress conclusion:
+
+- H021 passes the minimum human-state gate stress: human-state vector priors are predictive in train-only validation, and the selected H020 agreement action is better than row-permuted q_hs under the action null.
+- H021 rejects direct q_hs replacement: candidates that move broadly toward q_hs are diagnostic only because they improve q_hs fit while damaging H020/public-equation compatibility.
+- Primary file: `submission_h021_agree_h020_k1200_a1_e1546ba9_uploadsafe.csv`.
+- Submission risk: high but informative. It tests whether HS-JEPA can combine human-state context with the public-equation row-vector posterior, not whether another public-equation-only posterior can be sharpened.

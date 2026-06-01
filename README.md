@@ -37,13 +37,17 @@ Current high-risk next sensors:
 - Public LB: not submitted
 - Interpretation: H020 forces each row to live as one 7-target label vector, instead of treating every row-target cell independently. Its joint-vector world beats `300` permuted-public-delta nulls and predicts a larger internal move than H018/H019 (`-0.001105` vs H012 under its rowweighted sensor). The caveat is important: weak train co-occurrence priors help sampled world search, but the selected posterior uses `beta=0`, so the proven part is row-level joint-vector consistency, not yet train co-occurrence as an action prior.
 
+- `submission_h021_agree_h020_k1200_a1_e1546ba9_uploadsafe.csv`
+- Public LB: not submitted
+- Interpretation: H021 is the first post-H012 candidate that directly bridges raw human-state context to the H020 row-vector branch. Human-state vector priors beat the global train-vector prior in train-only validation (`0.617585` vs `0.664614` BCE), but direct q_hs replacement is rejected. The promoted action uses q_hs only as a gate, applying H020 on `1200` agreement cells and retaining `0.618866` of H020's internal gain while beating a row-permuted q_hs null by `0.005549`.
+
 Public LB operating rule:
 
 - Public LB is not an iteration loop. A file is promotable only when it beats the current priority under public-free stress, including fresh nulls that were not used to build the candidate.
 - Local-interesting files stay diagnostic if they only improve old selector p90, semantic attribution, or a single stress view.
 - The next public slot should answer a predeclared worldview question, not rescue a local tweak after the fact.
 - After H012, the main public question is no longer "can we find a tiny E247-safe movement?" It is "which parts of the public-equation posterior are real hidden-state signal versus public-subset overfit, and how do subject/time memory and raw human-state context explain them?"
-- H014 says same-subject sleep-state memory does not explain most of H012's gain. H015 says the public-equation system itself still wants to sharpen H012. H016/H017/H018 split that question into cell weights, continuous posterior-completion, and binary hard-world posterior-completion. H019 adds the stricter row-subset constraint and finds broad row-level compatibility, but not a better action than H018. H020 raises the constraint again from independent cells to whole-row 7-label vectors; it is now the biggest high-risk posterior-completion test, while H018 remains the cleaner binary-world baseline.
+- H014 says same-subject sleep-state memory does not explain most of H012's gain. H015 says the public-equation system itself still wants to sharpen H012. H016/H017/H018 split that question into cell weights, continuous posterior-completion, and binary hard-world posterior-completion. H019 adds the stricter row-subset constraint and finds broad row-level compatibility, but not a better action than H018. H020 raises the constraint again from independent cells to whole-row 7-label vectors. H021 adds the missing human-state bridge: raw lifestyle context can gate the H020 vector action, but is not yet calibrated enough to replace public-equation probabilities.
 
 Primary working notes:
 

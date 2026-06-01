@@ -5180,3 +5180,39 @@ Submission interpretation:
 4. Conservative final/public frontier remains H012 until a post-H012 candidate is publicly validated.
 5. If H020 improves meaningfully, HS-JEPA should be described as public-equation posterior-completion over row-level human target states, not independent cells.
 6. If H020 worsens while H018 would be preferred, the joint-vector constraint is too aggressive or under-regularized; return to H018/H017-style binary/continuous posterior-completion.
+
+## Update After H021
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+New human-state-gated row-vector candidate:
+
+`submission_h021_agree_h020_k1200_a1_e1546ba9_uploadsafe.csv`
+
+What it bets:
+
+- H020's row-level target-vector posterior is too public-equation-only if applied to every cell.
+- Raw human-state context can predict a row-level Q/S vector prior well enough to identify where H020's direction is lifestyle-compatible.
+- The right role for human-state JEPA here is not direct replacement probabilities; it is action gating over H020.
+
+Local evidence:
+
+- train-only vector prior validation: best human-state prior BCE `0.617584875` versus global vector prior BCE `0.664614445`;
+- selected prior ensemble uses subject all-feature and hybrid social/sleep/state views;
+- selected file changes `1200` cells across `248` rows;
+- H020-public-equation delta vs H012: `-0.000684129`;
+- retained fraction of full H020 gain: `0.618866184`;
+- row-permuted human-prior null median is worse by `0.005549353` on the selected action;
+- direct q_hs regularization is rejected because it improves only against its own prior and worsens H020 compatibility.
+
+Submission interpretation:
+
+1. H021 is the best current test of whether HS-JEPA can connect raw human-state context to the validated public-equation branch.
+2. H020 is the bigger pure posterior-completion bet.
+3. H021 is the more architecture-meaningful bet because it tests human-state gating rather than another public-equation materializer.
+4. If H021 beats H012/H020, the paper story becomes stronger: human-state context predicts which public-equation row-vector actions are healthy.
+5. If H021 loses, the human-state vector prior is locally real but not calibrated/action-safe enough; use it as latent evidence, not as a final submission route.

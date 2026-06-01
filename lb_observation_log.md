@@ -1984,3 +1984,27 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - if one public slot is reserved for the biggest worldview-changing posterior-completion test, H020 is more informative than another H018/H019 sibling;
   - if the goal is cleaner attribution and lower action novelty, H018 remains the baseline binary-world test.
+
+## Public-Free Observation: H021 Human-State Conditional Vector-Prior Gate
+
+- submission file prepared: `submission_h021_agree_h020_k1200_a1_e1546ba9_uploadsafe.csv`
+- public LB: not submitted
+- changed point:
+  - learns a row-level 7-bit target-vector prior from raw human-state context;
+  - rejects direct q_hs replacement;
+  - applies the H020 direction only to `1200` cells where the human-state vector prior and H020 direction agree strongly enough to beat a row-permuted human-prior null.
+- expected LB reaction:
+  - improvement would mean the human-state part of HS-JEPA can ground the public-equation row-vector posterior and reduce public-equation-only overfit;
+  - worsening would mean q_hs is locally predictive but not public-action-calibrated, and H020/H012 should remain public-equation-first.
+- local/public-free observation:
+  - best human-state train prior `subject_all_k10` marginal BCE `0.617584875` versus global vector prior `0.664614445`;
+  - selected candidate changes `1200` cells across `248` rows;
+  - H020-equation delta vs H012 `-0.000684129`;
+  - H020 gain retained `0.618866184`;
+  - row-permuted q_hs null median is worse by `0.005549353`.
+- interpretation:
+  - q_hs is a valid human-state latent view;
+  - its safe action is gating H020, not replacing H020 probabilities.
+- next experiment:
+  - submit H021 only if the next public slot should test the human-state bridge of HS-JEPA;
+  - if public budget prioritizes the pure biggest posterior-completion test, H020 remains the more direct bet.

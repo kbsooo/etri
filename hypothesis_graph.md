@@ -4465,3 +4465,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept the row-vector world if real beats permutation null and the selected posterior makes a coherent row-level movement. Observed. Do not claim train co-occurrence as the action prior unless a beta-positive posterior is selected or public feedback rewards a beta-positive variant. Not observed.
 - public LB 관측 반응: if H020 improves meaningfully, public-equation HS-JEPA should move from independent cell posterior-completion to row-level hidden target-state completion. If H020 worsens while H018 is preferred, joint-vector projection is too aggressive or the chosen beta-zero posterior overfits old public equations.
 - 제출 전략: H020 is the highest-upside post-H012 posterior-completion sensor. H018 remains the cleaner binary-hardworld baseline; H019 remains the row-subset diagnostic.
+
+### H021: raw human-state context can gate the H020 row-vector action
+
+- 상태: supported as a human-state gate over H020; direct human-state probability replacement rejected.
+- 왜 그럴듯한가: H020 validated row-level target-vector consistency, but its selected posterior used `beta=0`, leaving the human-state part of HS-JEPA unproven. If human-state context predicts target vectors, it should help choose which H020 cells to trust.
+- 맞다면: human-state KNN vector priors should beat global vector priors in train-only validation, and H020 cells selected by human/H020 directional agreement should beat row-permuted human-prior nulls.
+- 틀리다면: human-state vector priors should be no better than global priors, or row-permuted human-state priors should select H020 cells just as well.
+- 최소 실험: `hitl/h021_human_state_vector_prior_jepa.py`.
+- 관측: best human-state prior `subject_all_k10` reaches marginal BCE `0.617584875` vs global vector prior `0.664614445`. Selected candidate `submission_h021_agree_h020_k1200_a1_e1546ba9_uploadsafe.csv` changes `1200` cells, has H020-equation delta `-0.000684129` vs H012, and row-permuted human-prior null median is worse by `0.005549353`.
+- 성공/폐기 기준: accept the gate if it preserves meaningful H020 gain and beats row-permuted human-prior nulls. Observed for the 1200-cell H020-agreement candidate. Reject direct q_hs replacement if it worsens H020 compatibility. Observed.
+- public LB 관측 반응: if H021 improves, HS-JEPA has its first validated bridge from raw human-state context to public-equation row-vector action. If it fails, human-state vector priors remain diagnostic/local but not public-actionable.
+- 제출 전략: submit H021 only as a high-information architecture test. It is not safer than H012 by public evidence; it is more explanatory than pure H020 if it wins.

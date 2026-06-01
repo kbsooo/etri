@@ -227,3 +227,37 @@ row/action translator for the two surviving routes:
 
 - `badnight_aftereffect -> Q3`
 - `home_recovery + bedtime_arousal + social_overload -> S3`
+
+## H021: Human-State Conditional Vector-Prior Gate
+
+- Script: `hitl/h021_human_state_vector_prior_jepa.py`
+- Report: `hitl/h021_human_state_vector_prior_jepa/h021_report.md`
+- Selected upload-safe file:
+  `submission_h021_agree_h020_k1200_a1_e1546ba9_uploadsafe.csv`
+
+### Question
+
+Can raw human-state context predict the hidden row-level 7-target vector and
+use that prior to decide where H020's public-equation vector action is healthy?
+
+### Main Finding
+
+Human-state context is predictive, but not calibrated enough to replace the
+public-equation posterior.
+
+- Best train-only human-state vector prior:
+  `subject_all_k10`, marginal BCE `0.617584875`.
+- Global vector prior marginal BCE: `0.664614445`.
+- Direct q_hs regularization is diagnostic-only because it worsens H020
+  compatibility.
+- The selected H021 action gates H020 by human/H020 direction agreement:
+  `1200` changed cells on `248` rows.
+- H020-equation delta vs H012: `-0.000684129`.
+- H020 gain retained: `0.618866184`.
+- Row-permuted human-prior null median is worse by `0.005549353`.
+
+### Interpretation
+
+This is the first clean HS-JEPA bridge from raw human-state context into the
+validated public-equation row-vector branch. The latent is useful as an
+action-health gate. It is not yet a standalone probability target.
