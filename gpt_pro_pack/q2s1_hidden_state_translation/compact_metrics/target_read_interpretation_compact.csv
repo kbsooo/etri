@@ -1,0 +1,5 @@
+target,current_read,supporting_evidence,failure_or_risk
+Q2,strongest local signal; high risk,"E330/E372 Q2 jepa_resid subject delta -0.030211, dominance 1.0",Q2 movement increases/aligns with E323-like public-bad anatomy; E370/E371/E372 failed to decouple
+S1,secondary/support signal,E369 S1 local delta -0.009128; E368 validity Spearman beats null,"useful as companion/recovery axis, but not enough to beat E247"
+Q3,public-proven best axis,E247 public best from Q3 feature-neighbor smoothing/rollback,broad/high-amplitude Q3 followup E256 worsened
+S2,local signal but public-dangerous,E330 S2 local residual gain exists,E216 S2 JEPA public miss +0.001 vs E95; translator collapse risk

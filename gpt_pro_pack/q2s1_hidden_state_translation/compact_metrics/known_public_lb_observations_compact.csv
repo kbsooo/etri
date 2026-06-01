@@ -1,0 +1,10 @@
+id,file,public_lb,hypothesis_tested,interpretation
+E247_current_best,submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv,0.5761589494,Q3 feature-neighbor smoothing rollback / protected public-best body,best current anchor
+E368_Q2S1_rowmask,submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv,0.576290429,Q2 damp + S1 recover using hidden lifestyle rowmask,local strong Q2/S1 state but public below E247
+E95_hardtail,submission_e95_hardtail_541e3973.csv,0.5762913298,older hardtail anchor,"E368 is nearly tied with this, but not with E247"
+E101_Q2S3tail,submission_e101_q2s3tail_177569bc.csv,0.576300366,Q2/S3 rollback from E95,small loss vs E95; Q2/S3 boundary not solved
+E176_Q2_to_0p75_ablation,submission_e176_abl_q2_to0p75_91e49725.csv,0.576311831,Q2 under-open ablation/control,Q2 simple scalar correction did not help
+E216_S2_JEPA_bad,submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv,0.5772865088,S2 masked-family JEPA rank translator,large public miss; local JEPA translator can collapse
+E256_Q3_broad_featureNN,submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv,0.5762805676,broader/high-amplitude Q3 feature-neighbor followup,worse than E247; broad Q3 amplification overdoes it
+E267_humansocial_balanced_bad,submission_e267_humansocial_tail_balanced_2936100f.csv,0.5763294974,human/social tail balanced gate,direct human/social materialization not safe
+E323_social_bad,submission_e323_5508f966_uploadsafe.csv,0.5770355016,human/social direct gate bad anchor,public-bad direction/axis for safety diagnostics
