@@ -5889,3 +5889,40 @@ Stress conclusion:
 - Primary file: `submission_h018_hard_label_world_combined_all_k1750_a1_uploadsafe.csv`;
 - predicted hard-world delta vs H012: `-0.000603041`;
 - H018 is close to H017 but non-identical: mean abs probability difference `0.002414`, max `0.012191`.
+
+## H019 Hard Public Row-Subset Stress
+
+Question: can the public-equation latent be explained by a hidden row-level public subset rather than arbitrary cell weights?
+
+Stress setup:
+
+- script: `hitl/h019_row_subset_hardworld_jepa.py`;
+- anchor: H012;
+- label proxies: H018 hard posterior, H018 submission, H017 joint posterior, H012 public posterior, H015 public posterior;
+- sampled row masks: `18,000` masks for each subset size `40/60/80/100/125/150/180/210/240`;
+- row delta: mean target log-loss delta for each row;
+- null stress: permute known public deltas `300` times while keeping sampled row-mask predictions fixed.
+
+Stress result:
+
+- best sampled config: `h017_joint`, subset size `150`;
+- best mask MAE: `0.000045707`;
+- top100 mask MAE: `0.000074821`;
+- median mask MAE: `0.000888347`;
+- best mask Spearman: `0.972932`;
+- best posterior: `h018_hard_k125_soft_t4e-05_p2`;
+- posterior MAE: `0.000027461`;
+- posterior p90 abs: `0.000052606`;
+- posterior Spearman: `0.998496`;
+- inclusion prior: `0.500000`;
+- inclusion range: `0.370519` to `0.786440`;
+- null median best-mask MAE: `0.001440662`;
+- null median top100 MAE: `0.001485619`;
+- real beats all `300` permutations on all tracked metrics.
+
+Stress conclusion:
+
+- H019 strongly supports a realistic row-subset reading of the public-equation latent. This is stricter than H016's free cell-weight field.
+- The row posterior is broad, not a tiny pseudo-public subset. Top20 inclusion mean is `0.663883`, bottom20 mean is `0.404771`.
+- The materialized row-exclusion action is not internally better than H018: H019 primary row-posterior delta is `-0.000611233`, while H018 under the same row posterior is `-0.000615495`.
+- Therefore H019 is strongest as architecture evidence and a diagnostic public sensor, not as the default replacement for H018.

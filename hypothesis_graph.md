@@ -4439,3 +4439,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept as a public sensor if real hard-world errors beat permutation null and ESS does not collapse. Observed. Treat as incremental to H017 if q shift remains tiny. Observed.
 - public LB 관측 반응: if H018 improves over H017/H012, binary-world conditioning is useful and HS-JEPA should include hard public-world posterior sampling. If it worsens, the binary hard-world posterior is explanatory but does not improve action safety beyond continuous H017.
 - 제출 전략: H018 is the binary-aware posterior-completion candidate; H017 remains the cleaner continuous counterpart.
+
+### H019: public-equation latent is compatible with a hidden row-level public subset
+
+- 상태: strongly supported as row-subset structure; action does not internally beat H018.
+- 왜 그럴듯한가: actual public LB normally evaluates a subset of rows, not arbitrary row x target cell weights. H016's cell-weight solution may be too free, so H019 enforces a stricter hidden row mask.
+- 맞다면: sampled row masks under H018/H017 label proxies should match known public deltas far better than public-delta permutations. Row inclusion posterior should be broad enough to avoid tiny-subset collapse and should identify rows where H018 action is more public-like.
+- 틀리다면: real row-mask errors should look like permuted public deltas, or posterior inclusion should collapse to a tiny unstable set.
+- 최소 실험: `hitl/h019_row_subset_hardworld_jepa.py`.
+- 관측: best sampled row-mask config uses `h017_joint` with subset size `150`, top100 MAE `0.000074821`, best MAE `0.000045707`. Best posterior uses `h018_hard`, subset size `125`, posterior MAE `0.000027461`, p90 abs `0.000052606`, Spearman `0.998496`, inclusion range `0.370519-0.786440`. Real row-mask metrics beat all `300` public-delta permutations. Primary `submission_h019_row_subset_hardworld_gain_all_r240_a1_uploadsafe.csv` has row-posterior delta `-0.000611233`, but H018 itself is slightly stronger under the same row posterior at `-0.000615495`.
+- 성공/폐기 기준: accept row-subset structure if real beats permutation null and inclusion posterior does not collapse. Observed. Accept row-exclusion action only if it beats H018 under the row posterior. Not observed.
+- public LB 관측 반응: if H019 improves more than H018/H012, public row identity is actionable. If H019 loses while H018 wins, row-subset is explanatory but not useful for excluding rows from the hard-world action.
+- 제출 전략: H019 is lower priority than H018 as a score candidate, but higher information if the next question is whether public-equation state can be forced into realistic row-level public/private masks.

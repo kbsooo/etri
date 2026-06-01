@@ -29,13 +29,17 @@ Current high-risk next sensors:
 - Public LB: not submitted
 - Interpretation: H018 forces the H017 posterior into sampled binary public label worlds. The hard-world posterior beats all `300` permuted-public-delta nulls and predicts `-0.000603` versus H012. It is the binary-aware version of posterior-completion, not a separate human-state/private-safety proof.
 
+- `submission_h019_row_subset_hardworld_gain_all_r240_a1_uploadsafe.csv`
+- Public LB: not submitted
+- Interpretation: H019 forces the public-equation latent into sampled row-level public masks. It beats `300` permuted-public-delta nulls and supports a broad row-subset interpretation, but the row-exclusion action is internally slightly weaker than H018.
+
 Public LB operating rule:
 
 - Public LB is not an iteration loop. A file is promotable only when it beats the current priority under public-free stress, including fresh nulls that were not used to build the candidate.
 - Local-interesting files stay diagnostic if they only improve old selector p90, semantic attribution, or a single stress view.
 - The next public slot should answer a predeclared worldview question, not rescue a local tweak after the fact.
 - After H012, the main public question is no longer "can we find a tiny E247-safe movement?" It is "which parts of the public-equation posterior are real hidden-state signal versus public-subset overfit, and how do subject/time memory and raw human-state context explain them?"
-- H014 says same-subject sleep-state memory does not explain most of H012's gain. H015 says the public-equation system itself still wants to sharpen H012. H016/H017/H018 split that question into cell weights, continuous posterior-completion, and binary hard-world posterior-completion.
+- H014 says same-subject sleep-state memory does not explain most of H012's gain. H015 says the public-equation system itself still wants to sharpen H012. H016/H017/H018 split that question into cell weights, continuous posterior-completion, and binary hard-world posterior-completion. H019 adds the stricter row-subset constraint and finds broad row-level compatibility, but not a better action than H018.
 
 Primary working notes:
 

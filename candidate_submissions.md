@@ -5099,3 +5099,40 @@ Submission interpretation:
 3. If H018 improves, HS-JEPA should treat public-equation posterior-completion as a binary public-world inference problem, not only a smooth probability fit.
 4. If H018 worsens while H017 would have been safer, the hard-world conditioning is explanatory but too aggressive as an action layer.
 5. If both H017/H018 worsen, H012 is likely the practical public-equation fixed point and the next big bet must come from an independent public/private risk or human-state action-health target.
+
+## Update After H019
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+New row-subset diagnostic file:
+
+`submission_h019_row_subset_hardworld_gain_all_r240_a1_uploadsafe.csv`
+
+What it bets:
+
+- The public-equation latent can be interpreted as a realistic hidden public row subset, not only as free row x target cell weights.
+- Rows with low inferred public inclusion should be excluded from the H018 hard-world action.
+
+Local evidence:
+
+- sampled `18,000` row masks for each subset size;
+- best sampled config: `h017_joint`, subset size `150`, top100 MAE `0.000074821`;
+- best posterior: `h018_hard_k125_soft_t4e-05_p2`;
+- posterior MAE `0.000027461`, p90 abs `0.000052606`, Spearman `0.998496`;
+- inclusion range `0.370519` to `0.786440`;
+- all `300` public-delta permutation nulls are worse;
+- primary file changes `1680` cells on `240` rows and differs from H018 on only `70` cells;
+- primary row-posterior delta vs H012 `-0.000611233`;
+- H018 under the same row posterior is slightly stronger at `-0.000615495`.
+
+Submission interpretation:
+
+1. H018 remains the stronger posterior-completion action by internal score.
+2. H019 is the cleaner test of row-level public/private subset actionability.
+3. If H019 beats H018, the next architecture should infer row inclusion before materializing public-equation moves.
+4. If H019 loses while H018 wins, row-subset structure is real but too broad to justify pruning rows.
+5. If both fail, public-equation row/label posterior explains old observations but should not be pushed beyond H012.

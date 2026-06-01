@@ -4274,3 +4274,23 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - selected predicted hard-world delta vs H012 `-0.000603041`.
 - Registry status: approved as the binary-aware posterior-completion public sensor. It strengthens H017's non-collapse evidence but is not an independent human-state/private-safe latent.
 - Failure condition: if public LB worsens, stop using hard-world reweighting as a direct materializer; keep it only as a diagnostic that the public-equation posterior is plausible under binary labels.
+
+### H019 hard public row-subset posterior
+
+- Target hidden structure: row-level public/private subset identity under the H018/H017 public label posterior.
+- Why needed: H016's cell weights are too flexible relative to how public LB is likely computed. A realistic public split should be representable as selected rows evaluated over targets.
+- Feature/action form:
+  - context: known submission row-wise loss-delta tensors versus H012;
+  - target representation: sampled binary row masks of fixed public subset sizes;
+  - anti-collapse check: permute public deltas while keeping row-mask predictions fixed;
+  - action: apply H018 hard-world posterior-completion only on rows with high inferred public inclusion/gain.
+- Current evidence:
+  - best sampled config `h017_joint/subset_size=150`, top100 MAE `0.000074821`;
+  - best posterior `h018_hard_k125_soft_t4e-05_p2`;
+  - posterior MAE `0.000027461`, p90 abs `0.000052606`, Spearman `0.998496`;
+  - inclusion probability range `0.370519-0.786440`;
+  - all `300` permuted-public-delta nulls are worse on tracked row-mask metrics;
+  - selected file `submission_h019_row_subset_hardworld_gain_all_r240_a1_uploadsafe.csv`;
+  - selected row-posterior delta vs H012 `-0.000611233`, but H018 is slightly stronger under the same row posterior at `-0.000615495`.
+- Registry status: approved as a realistic public-row-subset diagnostic. Not approved as a stronger action than H018 unless public feedback specifically rewards row exclusion.
+- Failure condition: if public LB worsens relative to H018/H012, keep the row-subset posterior as explanatory evidence but stop pruning low-inclusion rows from H018-style actions.

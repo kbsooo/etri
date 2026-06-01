@@ -1922,3 +1922,31 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - submit H018 only if the next public slot is meant to distinguish continuous posterior-completion from binary public-world posterior-completion;
   - if public slots are scarce and H017/H018 are redundant, prioritize the one whose failure mode is more informative for the paper story.
+
+## Public-Free Observation: H019 Hard Public Row-Subset HS-JEPA
+
+- submission file prepared: `submission_h019_row_subset_hardworld_gain_all_r240_a1_uploadsafe.csv`
+- public LB: not submitted
+- changed point:
+  - forces public-equation latent into sampled row-level public masks;
+  - uses H018/H017 label proxies but removes the free cell-weight assumption;
+  - materializes a row-exclusion variant of H018 by leaving the lowest posterior-inclusion rows unchanged.
+- expected LB reaction:
+  - improvement over H018/H012 would mean public row identity is actionable and HS-JEPA should infer public/private row masks;
+  - worsening while H018 improves would mean row-subset structure is explanatory but row exclusion is not the right action.
+- local/public-free observation:
+  - best row-mask sampled config `h017_joint`, subset size `150`;
+  - top100 mask MAE `0.000074821`;
+  - best posterior `h018_hard_k125_soft_t4e-05_p2`;
+  - posterior MAE `0.000027461`;
+  - posterior Spearman `0.998496`;
+  - inclusion range `0.370519-0.786440`;
+  - all `300` public-delta permutations lose to real row masks;
+  - primary H019 row-posterior delta vs H012 `-0.000611233`;
+  - H018 under the same row posterior is slightly stronger at `-0.000615495`.
+- interpretation:
+  - public-equation latent is compatible with a realistic broad row-subset split;
+  - H019 does not prove low-inclusion rows should be removed from H018.
+- next experiment:
+  - prioritize H018 if the goal is strongest posterior-completion action;
+  - use H019 if the next public slot is meant to test row-level public/private subset actionability.

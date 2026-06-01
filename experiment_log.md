@@ -6492,3 +6492,33 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
 - Decision:
   - H018 is the strongest posterior-completion variant by internal hard-world score.
   - If public slots are scarce, H017 and H018 answer nearly the same broad question; H018 is the more binary-aware version, H017 is the cleaner continuous equation version.
+
+## H019. Hard Public Row-Subset HS-JEPA
+
+- Observe: H016's public cell-weight field is very flexible, while actual public LB is more likely a hidden subset of rows evaluated across all targets. H018 also still uses cell weights inherited from H016/H017.
+- Wonder: can known public deltas be explained by sampled row-level public masks under the H018/H017 label posterior, and does that imply some rows should be excluded from the H018 action?
+- Hypothesis: if public is a recoverable row subset, sampled binary row masks should match real public deltas far better than permuted public deltas. A row-inclusion posterior should then identify rows where H018 posterior-completion should be applied.
+- Method: `hitl/h019_row_subset_hardworld_jepa.py`.
+  - anchor: H012;
+  - label proxies: H018 hard posterior, H018 submission, H017 joint posterior, H012 public posterior, H015 public posterior;
+  - target representation: binary row masks of sizes `40/60/80/100/125/150/180/210/240`;
+  - score: mean target log-loss delta per selected row;
+  - posterior: soft/top-k/elite reweighting over sampled row masks;
+  - null: permute known public deltas while keeping row-mask predictions fixed.
+- Result:
+  - best sampled row-mask config: `h017_joint`, subset size `150`, top100 MAE `0.000074821`, best MAE `0.000045707`;
+  - best posterior: `h018_hard_k125_soft_t4e-05_p2`;
+  - posterior MAE `0.000027461`, p90 abs `0.000052606`, Spearman `0.998496`;
+  - inclusion prior `0.500000`, inclusion range `0.370519` to `0.786440`;
+  - null stress: real best/top100/p01/median/p90/spearman metrics beat all `300` public-delta permutations;
+  - primary file: `submission_h019_row_subset_hardworld_gain_all_r240_a1_uploadsafe.csv`;
+  - primary changes `1680` cells on `240` rows and differs from H018 on only `70` cells;
+  - primary row-posterior delta vs H012 `-0.000611233`;
+  - H018 under the same row posterior is slightly stronger at `-0.000615495`.
+- Interpretation:
+  - H019 strengthens the public-equation world model under a realistic row-subset constraint. Public does not look like a tiny magic row subset; the posterior inclusion is broad, roughly half to most rows depending on view.
+  - The action conclusion is conservative: excluding low-inclusion rows does not beat H018 internally. H019 is therefore a structural validation and diagnostic submission, not the new top-ranked public slot over H018.
+- Decision:
+  - Keep H019 as a high-information row-subset sensor.
+  - If submitted and it beats H018/H012, row-level public/private subset identity matters and future HS-JEPA should explicitly infer public rows.
+  - If H019 loses while H018 wins, the public row-subset representation is explanatory but the best action is still broad hard-world posterior-completion.
