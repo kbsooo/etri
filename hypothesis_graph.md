@@ -4333,12 +4333,12 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 
 ### H010: hidden mobility state materializes as objective stage route S1 down / S4 up
 
-- 상태: live high-information jackpot candidate.
+- 상태: 반증됨 as a public submission route; mobility latent remains local-only diagnostic.
 - 왜 그럴듯한가: S4-only rank rewrite is locally real but too risky. Human mobility/obligation state should change objective sleep-stage allocation, so S1/S4 route movement may be the safer target representation.
 - 맞다면: `S1↓/S4↑` route rewrite should improve both subject/dateblock local route logloss, pass selector tolerance better than Q2-heavy routes, and reverse controls should fail.
 - 틀리다면: Q2/S1/S4 route rewrites should be no healthier than S4-only, or reverse controls should survive similarly.
 - 최소 실험: `hitl/h010_mobility_route_triad_jackpot.py`.
-- 관측: `98` candidates tested. Exactly `1` jackpot candidate survives: `submission_h010_objective_mobility_s1down_s4up_target_delta_pos_subject_s0_25_uploadsafe.csv`. It changes `455` cells (`S1=213`, `S4=242`), has local worst delta `-0.004319`, selector mean `-0.001259`, selector p90 `0.000702`. Q2-heavy routes are locally strong but selector-risky. Reverse controls are locally bad (`+0.019796` to `+0.086478` worst deltas).
+- 관측: `98` candidates tested. Exactly `1` jackpot candidate survives: `submission_h010_objective_mobility_s1down_s4up_target_delta_pos_subject_s0_25_uploadsafe.csv`. It changes `455` cells (`S1=213`, `S4=242`), has local worst delta `-0.004319`, selector mean `-0.001259`, selector p90 `0.000702`. Q2-heavy routes are locally strong but selector-risky. Reverse controls are locally bad (`+0.019796` to `+0.086478` worst deltas). Public LB for parser-safe mirror `submission_h010_objective_s1s4_v2_uploadsafe.csv` is `0.5781718175`, worse than E247 by `+0.0020128681`.
 - 성공/폐기 기준: accept as next public sensor if one route candidate passes local robustness plus jackpot selector tolerance and matched reverse controls fail. Observed.
-- public LB 관측 반응: if H010 improves, the central hidden law becomes objective mobility-stage routing, not Q2 intervention calibration. If H010 worsens, mobility latent exists but current rank/route materializer is not public-calibrated.
-- 제출 전략: one-file big-bet candidate is `hitl/h010_mobility_route_triad_jackpot/submission_h010_objective_mobility_s1down_s4up_target_delta_pos_subject_s0_25_uploadsafe.csv`.
+- public LB 관측 반응: H010 worsened sharply, so objective mobility-stage routing is not a valid public materializer. The local mobility latent and local reverse-control evidence are insufficient for public transfer.
+- 제출 전략: do not submit H010 siblings or S1/S4 route-rank variants. Future work must learn why local S1/S4 route stress is anti-public, likely via route action-health or public/private subset energy.

@@ -6214,3 +6214,24 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - The strongest route is not Q2-heavy. It is objective-stage mobility: `S1↓ + S4↑`.
   - Q2 route variants are locally strong but selector-risky, matching the earlier E368/E372 diagnosis that Q2 hidden state is real but action-health is entangled with public-risk anatomy.
 - Decision: H010 primary is the next high-information public sensor if one big-bet file is allowed. It bets that the hidden mobility state changes objective stage allocation, not subjective/Q2 intervention calibration.
+
+## Public Feedback After H010
+
+- Public result: `submission_h010_objective_s1s4_v2_uploadsafe.csv` scored `0.5781718175`.
+- Reference:
+  - E247 public best: `0.5761589494`;
+  - E95: `0.5762913298`;
+  - E368: `0.576290429`.
+- Delta:
+  - vs E247: `+0.0020128681` worse;
+  - vs E95: `+0.0018804877` worse;
+  - vs E368: `+0.0018813885` worse.
+- Interpretation:
+  - H010 is not a near miss. It is a direct public falsification of S1/S4 objective-route rank reassignment.
+  - The local evidence was real but not public-transferable: forward route rewrites beat blocked train stress and reverse controls failed, yet public LB strongly rejected the output action.
+  - The hidden mobility state may still exist, but output-space redistribution of E247 S1/S4 probability mass is the wrong materializer.
+  - This also exposes a weak spot in the current selector: it tolerated a route movement whose public loss was far outside the acceptable band.
+- Decision update:
+  - E247 remains the public-best and final safe default.
+  - H010 route variants are blocked from further submission.
+  - Future "한탕" work should not be a larger route-rank edit. It needs a new public-transfer target: route action-health, public/private subset energy, or a model-integrated latent that does not directly reorder hundreds of S1/S4 cells.

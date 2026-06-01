@@ -1662,3 +1662,27 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - do not upload E370/E371/E372 derivatives as safer variants;
   - keep E247 as public-best default;
   - use E368 as a diagnostic anchor for Q2/S1 target-specific hidden lifestyle state, not as a frontier replacement.
+
+## Public Observation: H010 Objective Mobility S1/S4 Route Jackpot
+
+- submission file: `submission_h010_objective_s1s4_v2_uploadsafe.csv`
+- public LB: `0.5781718175`
+- current public best reference: E247 `0.5761589494`
+- delta vs E247: `+0.0020128681` worse
+- delta vs E95 `0.5762913298`: `+0.0018804877` worse
+- delta vs E368 `0.576290429`: `+0.0018813885` worse
+- changed point:
+  - H010 preserved E247 marginals and changed only objective-stage route cells;
+  - changed cells: `S1=213`, `S4=242`, all other targets unchanged;
+  - local subject/dateblock route stress selected `S1↓/S4↑` as the only jackpot candidate.
+- expected LB reaction before feedback:
+  - improvement would support objective mobility-stage routing as a real public-hidden law;
+  - worsening would mean S4 mobility latent exists locally but direct S1/S4 route reassignment is public-miscalibrated.
+- actual interpretation:
+  - this is a strong public falsification of H010 as a submission route;
+  - the damage is much larger than E368's miss, so the public subset does not tolerate the S1/S4 rank/route reassignment;
+  - H009/H010 local route stress is now known to be anti-transfer for public, despite clean reverse-control behavior locally.
+- next experiment implication:
+  - do not submit S1/S4 route-rank variants;
+  - do not use local S4/S1 route logloss as a standalone selector;
+  - if mobility latent is reused, it needs a public-calibrated action-health target or a much smaller model-integrated feature, not output-space rank reassignment.

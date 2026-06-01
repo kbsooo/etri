@@ -5595,4 +5595,10 @@ Stress summary:
 - changed target cells: `S1=213`, `S4=242`;
 - reverse controls: locally bad with positive worst deltas.
 
-Interpretation: the route-level objective sleep-stage latent is currently healthier than Q2-heavy human-state translation. This is the first post-E368 big-bet candidate with both local route evidence and selector tolerance, but it remains a public sensor rather than a guaranteed final replacement.
+Public feedback:
+
+- parser-safe submission: `submission_h010_objective_s1s4_v2_uploadsafe.csv`;
+- public LB: `0.5781718175`;
+- delta vs E247: `+0.0020128681` worse.
+
+Updated interpretation: the route-level objective sleep-stage latent was locally coherent but public-invalid. This is a stress-test failure: subject/dateblock route logloss, reverse-control behavior, and selector tolerance were not enough to protect against public S1/S4 route damage. H010 siblings should not be submitted.

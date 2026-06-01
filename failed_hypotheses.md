@@ -2853,3 +2853,12 @@
 - Implementation issue possible: low for the conclusion, because this is a direct public observation.
 - Bottleneck implication: target-specific Q2/S1 hidden state discovery is not the main remaining bottleneck. Public-safe action calibration, especially for Q2, is.
 - Do not repeat: E368 derivative submissions that only alter Q2/S1 amplitude, row gates, or calibration residuals without a new independent public-safe veto target.
+
+## FH317. H010 objective mobility S1/S4 route rank-reassignment is public-actionable
+
+- Failed hypothesis: the locally valid HS-JEPA mobility state can be materialized by preserving E247 target marginals and reassigning `S1↓/S4↑` objective-stage ranks on high-mobility rows.
+- Observed result: H010 produced one local jackpot candidate with local worst delta `-0.004319`, selector mean `-0.001259`, selector p90 `0.000702`, and reverse controls that failed locally. But the parser-safe public submission `submission_h010_objective_s1s4_v2_uploadsafe.csv` scored `0.5781718175`, worse than E247 `0.5761589494` by `+0.0020128681`.
+- Why discard as a submission route: the public miss is too large to treat as noise. The output-space S1/S4 rank reassignment is public-miscalibrated even though the local hidden direction and reverse controls looked coherent.
+- Implementation issue possible: low for the public conclusion. The v2 file was rebuilt from `data/ch2026_submission_sample.csv`, passed key/order/probability checks, and uploaded successfully. The score is a valid public observation.
+- Bottleneck implication: the bottleneck is not simply finding a human-interpretable mobility state. It is translating that state into public-valid action. Current subject/dateblock route logloss and selector tolerance can be confidently wrong for S1/S4 route edits.
+- Do not repeat: H010 siblings, S1/S4 rank-route rewrites, or larger/smaller objective mobility route edits. If mobility latent is reused, it must be inside a new action-health/public-private energy target rather than direct probability mass reassignment.

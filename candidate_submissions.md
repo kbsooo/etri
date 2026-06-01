@@ -4820,3 +4820,19 @@ Submission interpretation:
 2. If we want the most informative "한탕" submission, submit H010 uploadsafe.
 3. If H010 improves public LB, the live world model becomes objective mobility-stage routing: hidden mobility/obligation state reallocates S1/S4, while Q2 should remain mostly untouched.
 4. If H010 worsens, the S4 mobility latent is real locally but cannot be directly materialized by rank/route reassignment; the next big bet should learn a route action-health target rather than amplify mobility state.
+
+## Update After H010 Public Feedback
+
+H010 public result:
+
+`submission_h010_objective_s1s4_v2_uploadsafe.csv` scored `0.5781718175`.
+
+This is worse than E247 by `+0.0020128681`.
+
+Current submission policy:
+
+1. Safe public-best remains `analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`.
+2. Do not submit H010 siblings or S1/S4 rank-route variants.
+3. H010 should be treated as a failed public sensor, not as a candidate family to tune.
+4. The result kills the direct objective mobility-stage route materializer. It does not necessarily kill the mobility latent itself.
+5. Any next high-risk submission needs a new hidden target, not a bigger or smaller H010. The target should explain why blocked local S1/S4 route stress was confidently wrong on public.
