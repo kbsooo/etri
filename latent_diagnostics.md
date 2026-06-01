@@ -1027,3 +1027,18 @@ interpretable while losing too much action/route strength. The LeJEPA
 interpretation is that human-state route is not collapsed, but a scalar
 route-threshold decoder is too weak. HS-JEPA needs conditional route-to-action
 translation rather than hand-built public/transition/private gates.
+
+H045 implements that conditional translation. Instead of asking route features
+to choose rows directly, it asks whether route-masked movement features help
+predict known public action response and then score the H043/H044 candidate
+pool. The selected candidate is a `75`-cell Q2-only pruning of H043:
+`submission_h045_condroute_q2regime75_a0.66_5988dfb9_uploadsafe.csv`. It keeps
+conditional action evidence alive with full-known margin/support
+`-0.000126787` / `0.583333333`, pre-H042 margin/support
+`-0.000665132` / `0.583333333`, route-equation delta `-0.000171330`, and H025
+score `-1.693362091`. The H024 margin is still positive (`+0.000547357`), so
+the latent diagnosis stays bounded: route-conditioned action decoding is a
+plausible Q2-local public sensor, not yet a general safe translator. If public
+LB rewards H045, the route latent is not just interpretable; it is an action
+decoder context. If H043 beats H045, the route latent is over-pruning real Q2
+phase support.

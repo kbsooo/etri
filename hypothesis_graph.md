@@ -5227,3 +5227,50 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 제출 전략: do not submit H044 now. Keep H043 as priority. If H043 fails,
   revisit the `91`-cell private-veto diagnostic as a pruning direction, not as
   an independent world-changing submission.
+
+### H045: Q2 phase action needs conditional route-to-action decoding
+
+- 상태: public-ready; one promoted sensor.
+- 왜 그럴듯한가: H044 falsified scalar route thresholds but did not falsify
+  the route latent itself. H042's winning rows and H043's wider support differ
+  in public/private/transition route context, so the missing object may be a
+  conditional action decoder: route context should price movement, not select
+  rows by a single threshold.
+- 맞다면:
+  - conditional route-masked action features should select a pruned H043
+    support that keeps Q2-only action gain, route-equation gain, and H025
+    health;
+  - the promoted file should sit between H042's `45` cells and H043's `105`
+    cells, not collapse to either extreme;
+  - public LB should improve if the route context identifies which H043 tail
+    rows are real public Q2 phase rows.
+- 틀리다면:
+  - H043's full support should beat the pruned route-conditioned variant;
+  - or both H043 and H045 should lose to H042, implying the Q2 phase branch is
+    narrow and support-specific.
+- 최소 실험: `hitl/h045_conditional_route_action_decoder_jepa.py`, refitting
+  known public action response with route-conditional movement features and
+  scoring the combined H043/H044 candidate pool.
+- 관측:
+  - selected `h044_h043support_q2regime_top75_a0.66_c75_5988dfb9`;
+  - root file
+    `submission_h045_condroute_q2regime75_a0.66_5988dfb9_uploadsafe.csv`;
+  - changed cells/rows vs H012 `75` / `75`, Q2 only;
+  - changed cells/rows vs H043 `30` / `30`, Q2 only;
+  - full known conditional margin/support
+    `-0.000126787` / `0.583333333`;
+  - pre-H042 conditional margin/support
+    `-0.000665132` / `0.583333333`;
+  - route-equation delta `-0.000171330`;
+  - H024 margin `+0.000547357`;
+  - H025 score `-1.693362091`.
+- 성공/폐기 기준:
+  - accept route-conditioned Q2 action decoding if H045 beats H042 and is
+    competitive with or better than H043;
+  - reject the conditional route pruning if H043 wins and H045 loses;
+  - reject broad Q2 expansion if both H043 and H045 lose materially to H042.
+- public LB 관측 반응: pending for
+  `submission_h045_condroute_q2regime75_a0.66_5988dfb9_uploadsafe.csv`.
+- 제출 전략: submit as the next HS-JEPA route-decoder sensor after or instead
+  of H043 depending on public-test budget. It is more theory-rich than H043,
+  but H043 is the purer manifold-width test.

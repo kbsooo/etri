@@ -6939,3 +6939,47 @@ Stress conclusion:
   action support.
 - H043 remains the next public sensor; H044 becomes a conditional pruning
   branch if H043's support proves too wide.
+
+## H045 Conditional Route-to-Action Decoder Stress
+
+Stress target:
+
+- convert the H044 route latent from a scalar support selector into context for
+  action-response prediction;
+- score both H043 and H044 candidate pools under conditional route-masked
+  action features;
+- promote only if the candidate remains Q2-only, support-bounded, action/route
+  positive, and H025 healthy despite H024's known Q2-local conservatism.
+
+Stress result:
+
+- selected candidate:
+  `h044_h043support_q2regime_top75_a0.66_c75_5988dfb9`;
+- promoted root file:
+  `submission_h045_condroute_q2regime75_a0.66_5988dfb9_uploadsafe.csv`;
+- changed cells/rows vs H012: `75` / `75`, all Q2;
+- changed cells/rows vs H043: `30` / `30`, all Q2;
+- full known conditional margin/support:
+  `-0.000126787` / `0.583333333`;
+- pre-H042 conditional margin/support:
+  `-0.000665132` / `0.583333333`;
+- pre-H012 action margin:
+  `-0.000052181`;
+- route-equation delta:
+  `-0.000171330`;
+- H024 margin:
+  `+0.000547357`;
+- H025 score:
+  `-1.693362091`;
+- promoted root file validation:
+  shape `(250, 10)`, required columns OK, no NaN, probability range
+  `0.0000329401` to `0.999980303`.
+
+Stress conclusion:
+
+- H045 passes the local route-conditioned public-sensor gate.
+- The positive H024 margin keeps this in the Q2-local override zone, not the
+  general safe-action zone.
+- H045 is the sharper HS-JEPA submission: it tests whether route context
+  predicts action response. H043 remains the sharper pure manifold-width
+  submission.

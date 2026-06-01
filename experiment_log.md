@@ -7372,3 +7372,55 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - keep H043 as the priority public sensor;
   - next route-aware breakthrough should learn a nonlinear route assignment or
     conditional decoder, not hand-threshold route scores.
+
+## H045. Conditional Route-to-Action Decoder HS-JEPA
+
+- Observe: H044 found route signal, but scalar public/transition/private
+  thresholds did not produce a stronger candidate than H043. The failure may
+  be in the decoder, not in the human-state route latent.
+- Wonder: can route context price Q2 actions conditionally, instead of acting
+  as a hard support selector?
+- Hypothesis: if Q2 phase action is route-conditioned, then an action decoder
+  using route-masked movement features should prefer a pruned H043 support
+  over both the full H043 expansion and route-threshold-only H044 variants.
+- Method: `hitl/h045_conditional_route_action_decoder_jepa.py`.
+  - context: H042 public win, H043 Q2 phase manifold, H044 route scores,
+    H042 route-world posterior rows, and known public LB action responses;
+  - target representation: known public delta under conditional route/action
+    movement features;
+  - candidate pool: H043 candidates plus H044 route-split/pruned candidates;
+  - stress: conditional decoder LOO, pre-H042 decoder margin, H012-era action
+    margin, route-equation delta, H024 warning, H025 action health, and support
+    size.
+- Result:
+  - selected candidate:
+    `h044_h043support_q2regime_top75_a0.66_c75_5988dfb9`;
+  - promoted root upload-safe file:
+    `submission_h045_condroute_q2regime75_a0.66_5988dfb9_uploadsafe.csv`;
+  - changed cells/rows vs H012 `75` / `75`, all Q2;
+  - changed cells/rows vs H043 `30` / `30`, all Q2;
+  - full known conditional margin/support vs H012 median:
+    `-0.000126787` / `0.583333333`;
+  - pre-H042 conditional margin/support:
+    `-0.000665132` / `0.583333333`;
+  - pre-H012 action margin:
+    `-0.000052181`;
+  - route-equation delta:
+    `-0.000171330`;
+  - H024 margin:
+    `+0.000547357`;
+  - H025 score:
+    `-1.693362091`.
+- Interpretation:
+  - H045 keeps the successful Q2-only phase story but rejects the full H043
+    `105`-cell expansion as the only next move;
+  - the human route latent is not strong enough as a threshold selector, but it
+    is useful as conditional context for pricing candidate actions;
+  - H045 is a cleaner HS-JEPA claim than H044: context predicts action response
+    representation, then the decoder chooses a support.
+- Decision:
+  - promote one H045 public sensor:
+    `submission_h045_condroute_q2regime75_a0.66_5988dfb9_uploadsafe.csv`;
+  - if H045 beats H042/H043, route-conditioned Q2 support is real;
+  - if H043 beats H045, route pruning was too conservative;
+  - if both lose, H042 was likely a narrow support-specific correction.

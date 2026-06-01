@@ -351,3 +351,7 @@ hitl/h043_q2_phase_manifold_jepa/h042_h025_top_cells.csv
 # H044 materialized route-split Q2 sweep files are reproducible from the script.
 hitl/h044_q2_human_route_split_jepa/submission_h044_*.csv
 hitl/h044_q2_human_route_split_jepa/h042_h025_top_cells.csv
+
+# H045 may promote a copied candidate, but intermediate regenerated submissions stay local.
+hitl/h045_conditional_route_action_decoder_jepa/submission_h045_*.csv
+hitl/h045_conditional_route_action_decoder_jepa/h042_h025_top_cells.csv

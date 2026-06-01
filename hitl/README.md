@@ -1278,3 +1278,46 @@ H044 should not be submitted before H043. If H043 later proves too wide, H044's
 `91`-cell private-veto candidate is a plausible pruning branch. For now, this
 falsifies the simple version of the human-social hypothesis: hand-built
 public/transition/private route thresholds do not solve Q2 action support.
+
+## H045: Conditional Route-to-Action Decoder HS-JEPA
+
+- Script: `hitl/h045_conditional_route_action_decoder_jepa.py`
+- Report: `hitl/h045_conditional_route_action_decoder_jepa/h045_report.md`
+- Decision: promote one root upload-safe public sensor.
+
+### Question
+
+If scalar route thresholds fail, can human-state route still help by becoming
+context for the action decoder?
+
+### Main Finding
+
+The conditional route-to-action decoder selects a Q2-only `75`-cell pruning of
+H043.
+
+- Selected:
+  `h044_h043support_q2regime_top75_a0.66_c75_5988dfb9`.
+- Root upload-safe:
+  `submission_h045_condroute_q2regime75_a0.66_5988dfb9_uploadsafe.csv`.
+- Changed cells/rows vs H012:
+  `75` / `75`, Q2 only.
+- Changed cells/rows vs H043:
+  `30` / `30`, Q2 only.
+- Full known conditional margin/support:
+  `-0.000126787` / `0.583333333`.
+- Pre-H042 conditional margin/support:
+  `-0.000665132` / `0.583333333`.
+- Route-equation delta:
+  `-0.000171330`.
+- H024 margin:
+  `+0.000547357`.
+- H025 score:
+  `-1.693362091`.
+
+### Interpretation
+
+H045 is the most direct HS-JEPA route-decoder sensor so far. It does not merely
+add a human-story feature; it asks visible human-state route context to predict
+the hidden public action response. A public win would validate route-conditioned
+Q2 support. A loss against H043 would mean the route context over-pruned the
+Q2 phase manifold.

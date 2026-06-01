@@ -5862,3 +5862,52 @@ Decision:
   possible pruning experiment.
 - If H043 wins, H044 is mostly a negative control: hand-built human route
   thresholds are not the right way to extend the Q2 phase manifold.
+
+## H045 Conditional Route-to-Action Candidate
+
+Priority candidate:
+
+`submission_h045_condroute_q2regime75_a0.66_5988dfb9_uploadsafe.csv`
+
+What this file tests:
+
+- H043 says the H042 Q2 branch may expand from `45` to `105` cells.
+- H044 says scalar human-route thresholds are not strong enough as the final
+  support selector.
+- H045 combines those lessons: keep Q2-only phase movement, but let route
+  context price the action and prune H043 down to `75` cells.
+
+Local profile:
+
+- changed cells/rows vs H012: `75` / `75`, Q2 only;
+- changed cells/rows vs H043: `30` / `30`, Q2 only;
+- full known conditional margin/support:
+  `-0.000126787` / `0.583333333`;
+- pre-H042 conditional margin/support:
+  `-0.000665132` / `0.583333333`;
+- pre-H012 action margin:
+  `-0.000052181`;
+- route-equation delta:
+  `-0.000171330`;
+- H024 margin:
+  `+0.000547357`;
+- H025 score:
+  `-1.693362091`.
+
+Submission meaning:
+
+- If H045 beats H042 (`0.5679048248`), Q2 phase is not just a 45-cell accident
+  and human-state route context is useful as an action decoder.
+- If H045 beats H043 too, the missing support variable is route-conditioned
+  pruning rather than wider Q2 expansion.
+- If H043 beats H045, the route-conditioned pruning was too conservative or
+  the selected q2-regime route is wrong.
+- If both H043 and H045 lose materially, stop widening Q2 support and treat
+  H042 as a narrow support-specific correction.
+
+Current recommendation:
+
+- If only one file can be tested for the HS-JEPA claim, submit H045 because it
+  combines the human-route hypothesis with the public-positive Q2 phase branch.
+- If the goal is pure scientific sequencing, submit H043 first as the wider
+  manifold test, then H045 as the conditional pruning test.

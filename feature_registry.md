@@ -4929,3 +4929,43 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Failure condition: do not use scalar human-route thresholds as the primary
   Q2 support selector unless H043 public feedback specifically says the wider
   support was too aggressive.
+
+### H045 conditional route-to-action movement features
+
+- Target hidden structure: Q2 phase action response conditioned on human-state
+  route context. The route latent is treated as context for action pricing,
+  not as a direct row selector.
+- Why needed: H044 showed route features are real but too weak as scalar gates.
+  H045 tests the JEPA-style alternative: use visible route/context features to
+  predict the hidden action-response representation.
+- Feature/action form:
+  - route context masks:
+    `h045_public_high`, `h045_private_high`, `h045_private_low`,
+    `h045_q2regime_high`, `h045_h042like_high`, `h045_phase_high`,
+    `h045_public_not_private`, `h045_q2_public_context`;
+  - movement summaries inside each route mask for target/cell probability
+    changes, absolute movement, positive/negative movement, and public/private
+    weighted movement;
+  - known-action conditional decoder features fitted against public LB deltas;
+  - candidate score combining full-known conditional margin, pre-H042 margin,
+    pre-H012 action margin, route-equation delta, H024 warning, H025 health,
+    and support size.
+- Current evidence:
+  - selected `h044_h043support_q2regime_top75_a0.66_c75_5988dfb9`;
+  - root file
+    `submission_h045_condroute_q2regime75_a0.66_5988dfb9_uploadsafe.csv`;
+  - changed cells/rows vs H012 `75` / `75`, Q2 only;
+  - changed cells/rows vs H043 `30` / `30`, Q2 only;
+  - full known conditional margin/support
+    `-0.000126787` / `0.583333333`;
+  - pre-H042 conditional margin/support
+    `-0.000665132` / `0.583333333`;
+  - route-equation delta `-0.000171330`;
+  - H024 margin `+0.000547357`;
+  - H025 score `-1.693362091`.
+- Registry status: approved as a public-ready Q2-local route-conditioned
+  action sensor. Not yet approved as a general multi-target decoder.
+- Failure condition: if H045 loses to both H042 and H043, do not continue
+  route-conditioned pruning until a new independent route assignment signal is
+  found. If H043 wins and H045 loses, the route context is over-pruning Q2
+  support.

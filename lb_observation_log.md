@@ -2724,3 +2724,44 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - wait for H043 public result; if H043 loses, revisit H044's private-veto
     candidate as a support-pruning follow-up.
+
+## Public-Free Observation: H045 Conditional Route-to-Action Decoder JEPA
+
+- submission file prepared:
+  `submission_h045_condroute_q2regime75_a0.66_5988dfb9_uploadsafe.csv`
+- public LB: pending
+- public anchors:
+  - `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+    scored `0.5681234831`;
+  - `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
+    scored `0.5679048248`.
+- changed point:
+  - keeps the public-positive Q2 phase direction;
+  - uses H044-style human route scores as conditional action-decoder context,
+    not as scalar row-thresholds;
+  - prunes the H043 `105`-cell Q2 expansion to `75` cells.
+- expected LB reaction:
+  - improvement over H042 means Q2 phase support is route-conditioned and
+    expandable;
+  - better than H043 means route-conditioned pruning found the right support;
+  - worse than H043 means pruning removed real Q2 phase rows;
+  - worse than H042 means the H042 support was narrow and the route decoder is
+    not yet reliable.
+- local/public-free observation:
+  - selected `h044_h043support_q2regime_top75_a0.66_c75_5988dfb9`;
+  - changed cells/rows vs H012 `75` / `75`, Q2 only;
+  - changed cells/rows vs H043 `30` / `30`, Q2 only;
+  - full known conditional margin/support
+    `-0.000126787` / `0.583333333`;
+  - pre-H042 conditional margin/support
+    `-0.000665132` / `0.583333333`;
+  - route-equation delta `-0.000171330`;
+  - H024 margin `+0.000547357`;
+  - H025 score `-1.693362091`.
+- interpretation:
+  - H045 is not a micro-blend. It tests whether human-state route belongs
+    inside the action-response representation.
+- next experiment:
+  - public-test H045 if the next slot should prioritize the HS-JEPA claim;
+    otherwise public-test H043 first to isolate support-width before route
+    pruning.

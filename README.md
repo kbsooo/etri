@@ -19,6 +19,11 @@ Current post-H012 status:
 
 - H042 Q2 tiny phase is the active public frontier, while H012 remains the base
   public-equation anchor.
+- H043 and H045 are the current high-information post-H042 sensors:
+  - H043 tests whether the Q2 phase branch can expand from `45` to `105`
+    cells;
+  - H045 tests whether human-state route context can prune that expansion to a
+    `75`-cell route-conditioned support.
 - No H015-H041 file is currently promoted as the next upload.
 - The historical post-H012 sensors below are kept because they define falsified or partially supported HS-JEPA routes, not because they are current submission recommendations.
 
@@ -235,6 +240,15 @@ Public LB operating rule:
   but it does not beat H043's public-free profile enough to justify a public
   slot. The conclusion is precise: human-state route is a useful latent, but
   scalar route thresholds are not the missing Q2 support decoder.
+- H045 turns that negative result into a conditional decoder: route context is
+  used to price Q2 actions rather than threshold rows directly. It promotes
+  `submission_h045_condroute_q2regime75_a0.66_5988dfb9_uploadsafe.csv`, a
+  Q2-only `75`-cell pruning of H043 with conditional margin/support
+  `-0.000126787` / `0.583333333`, route delta `-0.000171330`, H025 score
+  `-1.693362091`, and positive H024 margin `+0.000547357`. This is the most
+  explicit HS-JEPA route-decoder public sensor so far: a win means human-state
+  route is useful as action-response context; a loss to H043 means the route
+  context over-pruned the Q2 phase manifold.
 
 Primary working notes:
 
