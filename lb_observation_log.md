@@ -1784,3 +1784,54 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - H013 should not supersede H012 as the current highest-upside public sensor.
 - next experiment:
   - learn action health at row x target level instead of applying a scalar row gate to H012.
+
+## Public-Free Observation: H014 Sleep-State Memory Audit
+
+- submission files prepared: `submission_h014_*_uploadsafe.csv`
+- public LB: not submitted
+- changed point:
+  - tests whether V106-style same-subject sleep-state/sensor-quality memory explains H012;
+  - builds memory agreement and reliability for H012 changed cells;
+  - generates memory-compatible keep-H012 candidates and memory-conflict revert candidates.
+- expected LB reaction:
+  - if memory-compatible cells kept most of H012's posterior gain, a memory-regularized H012 file could be a safer final;
+  - if gain concentrated in memory-disagree cells, H012 is not reducible to same-subject memory and should not be pruned this way.
+- local/public-free observation:
+  - H012 changed cells audited: `1200`;
+  - memory-agree rate: `0.405000`;
+  - memory-agree gain share: `0.279671`;
+  - high-alignment/high-reliability gain share: `0.101482`;
+  - best kept-gain candidate: `0.358133`;
+  - all H014 candidates: `diagnostic_only`.
+- interpretation:
+  - subject-time memory is real but insufficient as the H012 regularizer;
+  - Q3 is the main memory-compatible target, while the larger S-target gain is mostly memory-disagree.
+- next experiment:
+  - use memory as a diagnostic/private-risk feature only;
+  - test H012 self-feedback directly because H012 is driven by public-equation geometry more than subject-memory geometry.
+
+## Public-Free Observation: H015 H012 Self-Feedback Public Equation
+
+- submission file prepared: `submission_h015_self_feedback_top_all_k1600_a0.7_uploadsafe.csv`
+- public LB: not submitted
+- changed point:
+  - adds H012's actual public LB as the new strongest public-equation anchor;
+  - re-solves hidden public-state posterior with H012 as the current prediction tensor;
+  - moves H012 toward the new posterior on `1600` high-consistency cells.
+- expected LB reaction:
+  - improvement would mean H012 was under-amplified and public-equation HS-JEPA can recursively sharpen;
+  - worsening would mean H012 is the practical fixed point and self-feedback should stop.
+- local/public-free observation:
+  - known public observations: `21`;
+  - equations vs H012: `20`;
+  - best LOO Spearman: `0.986466`;
+  - best LOO MAE: `0.001312381`;
+  - posterior mean/p90 delta vs H012: `-0.001586219` / `-0.001149849`;
+  - posterior beats-H012 rate: `0.966667`;
+  - max probability delta vs H012: `0.051642`.
+- interpretation:
+  - this is the current highest-information next submission sensor;
+  - the main risk is public self-feedback overconfidence because selected configs are dominated by `h012_sharp`.
+- next experiment:
+  - if a single big public slot is available, submit H015;
+  - after feedback, either promote recursive public-equation sharpening or freeze H012 as the public-equation fixed point.

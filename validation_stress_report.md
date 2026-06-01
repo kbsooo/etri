@@ -5729,3 +5729,59 @@ Stress conclusion:
 - This is a strong independent argument that the data has repeated-subject temporal continuity.
 - It is not directly usable as a public-equation anchor because the prediction file is not available.
 - It should be used as a private-risk stress for H012: public-equation posterior cells that also agree with subject-state memory are more credible; cells that strongly disagree are likely public-subset-specific or equation-overfit candidates.
+
+## H014 Sleep-State Memory Posterior Audit
+
+Question: does same-subject sleep-state/sensor-quality memory preserve enough of H012 to be a safer regularizer?
+
+Stress setup:
+
+- script: `hitl/h014_sleep_state_memory_posterior_audit.py`;
+- base comparison: H012 posterior cells versus E247/H012 probabilities;
+- memory views: same-subject date-distance memory, sleep-state similarity memory, and sensor-quality similarity memory;
+- stress target: H012 changed cells and their posterior gain.
+
+Stress result:
+
+- changed H012 cells audited: `1200`;
+- memory-agree cell rate: `0.405000`;
+- memory-disagree cell rate: `0.595000`;
+- memory-agree posterior-gain share: `0.279671`;
+- high-alignment/high-reliability gain share: `0.101482`;
+- best generated candidate kept H012 posterior-gain rate: `0.358133`;
+- all generated candidates: `diagnostic_only`.
+
+Stress conclusion:
+
+- Subject-time memory is real but not the main carrier of H012's public gain.
+- Q3 is the only target where memory agreement is favorable enough to matter as a diagnostic.
+- H012 should not be pruned by simple same-subject memory. The public-equation latent is doing something broader or more public-subset-specific than V106-style continuity.
+
+## H015 H012 Self-Feedback Public-Equation Stress
+
+Question: after H012 public feedback is added, does public-equation HS-JEPA point beyond H012?
+
+Stress setup:
+
+- script: `hitl/h015_public_equation_self_feedback.py`;
+- current anchor: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`;
+- known observations: `21`;
+- equations vs H012: `20`;
+- priors: H012 current, H012-sharp, top-public wide soft, top-public median, neutral, E247.
+
+Stress result:
+
+- posterior configs tested: `119`;
+- best LOO Spearman: `0.986466`;
+- best LOO MAE: `0.001312381`;
+- selected upload-safe file: `submission_h015_self_feedback_top_all_k1600_a0.7_uploadsafe.csv`;
+- changed rows/cells: `250` / `1600`;
+- posterior delta mean/p90 vs H012: `-0.001586219` / `-0.001149849`;
+- posterior beats-H012 rate: `0.966667`;
+- max probability delta vs H012: `0.051642`.
+
+Stress conclusion:
+
+- H015 passes the internal public-equation scenario stress and is the current highest-information next submission.
+- It does not pass a private-safety proof. The selected configs lean heavily on `h012_sharp`, so the risk is overconfidence/public self-feedback rather than feature-model error.
+- Public interpretation is clean: a win means recursive public-equation latent sharpening works; a loss means H012 is the fixed point and self-feedback should stop.

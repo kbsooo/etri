@@ -4937,3 +4937,45 @@ Submission interpretation:
 3. H013 is useful as HS-JEPA evidence, but not the next best submission unless we specifically want to test raw-state gating despite selector rejection.
 4. If H013 were submitted and somehow won, the world model would shift toward raw human-state row gating as the missing bridge.
 5. If H013 loses, the simple row-gate version of HS-JEPA is weakened; the next architecture should learn row x target action-health directly.
+
+## Update After H014/H015
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+Rejected/diagnostic regularizer:
+
+`submission_h014_memory_conflict_revert_q35_k300_1cd8ff27_uploadsafe.csv`
+
+Why not submit H014 by default:
+
+- H014 tests whether same-subject sleep-state memory explains H012.
+- It does not. Memory agrees with only `40.5%` of H012 changed cells and carries only `27.97%` of H012 posterior gain.
+- The best H014 variant keeps only `35.81%` of H012's posterior gain. It is useful evidence, not a frontier candidate.
+
+Current highest-upside "한탕" file:
+
+`submission_h015_self_feedback_top_all_k1600_a0.7_uploadsafe.csv`
+
+What it bets:
+
+- H012 was not the public-equation fixed point.
+- H012's public score gives a new equation that sharpens the hidden public-state posterior.
+- The correct next action is not a social-memory pruning of H012, but a low-amplitude broad sharpening of H012.
+
+Why this is a world-model submission:
+
+- It uses H012 as the current anchor and re-solves `20` known-public equations versus H012.
+- It changes `1600` cells, but max probability delta vs H012 is only `0.051642`.
+- Posterior scenario delta vs H012 is mean `-0.001586219`, p90 `-0.001149849`, beats-H012 rate `0.966667`.
+- It is explicitly high-risk: the top posterior configs are `h012_sharp`, so this can be public self-feedback overfit.
+
+Submission interpretation:
+
+1. If one high-information public slot is available, submit H015.
+2. If H015 improves meaningfully, HS-JEPA's strongest claim becomes recursive public-equation latent sharpening.
+3. If H015 worsens, stop self-feedback amplification and treat H012 as the fixed point until a non-public/private-risk sensor appears.
+4. If final/private safety matters more than discovering the next law, keep H012 as the default.

@@ -4382,11 +4382,24 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 
 ### H014: same-subject sleep-state memory can regularize H012 posterior overfit
 
-- 상태: newly proposed from external document plus H012 feedback.
+- 상태: partially falsified as an H012 submission regularizer; retained as diagnostic memory evidence.
 - 왜 그럴듯한가: the external `submission_v106_sleep_state_conditioned_memory.csv` report scored `0.5703952266` by weighting same-subject past labels by date, sleep-state similarity, and sensor-quality similarity. H012 scored even better by reconstructing hidden public labels directly. A stable hidden world should show overlap between H012 high-posterior cells and within-subject state-continuity memory.
 - 맞다면: H012 posterior confidence should be higher, more stable, or more private-safe on rows/cells whose same-subject sleep-state-conditioned memory agrees with it. Leave-public/H012-out posterior variants should preserve those cells more often.
 - 틀리다면: H012 gain should concentrate in cells unrelated or opposite to subject-time memory, implying H012 is mostly public-subset equation fitting rather than human continuity.
 - 최소 실험: build memory features without using external predictions: subject/date distance, sleep-state similarity, sensor-quality similarity, effective neighbor count, and target-specific memory agreement with H012 posterior. Audit posterior stability and produce a regularized H012 variant only if the memory-compatible subset keeps most posterior gain.
-- 성공/폐기 기준: accept as a submission regularizer only if it preserves a large fraction of H012 posterior delta while improving leave-public/H012-out stability and not collapsing to E247. Reject if memory-compatible cells are low-gain or target-skewed in a way that sacrifices H012's public edge.
+- 관측: `hitl/h014_sleep_state_memory_posterior_audit.py` audits `1200` H012-changed cells. Memory agrees on `0.405000` of cells and disagrees on `0.595000`; memory-agree cells carry only `0.279671` of H012 posterior gain, and high-alignment/high-reliability cells carry only `0.101482`. Q3 is the only target where memory-agree gain is a majority (`0.549864`).
+- 성공/폐기 기준: accept as a submission regularizer only if it preserves a large fraction of H012 posterior delta while improving leave-public/H012-out stability and not collapsing to E247. Not observed: best generated H014 candidate keeps only `0.358133` of H012 posterior gain and all candidates are `diagnostic_only`.
 - public LB 관측 반응: a successful regularized variant would reduce private risk and prove H012 is not pure public-equation overfit. A worse result would mean the public subset is less same-subject-memory-like than expected, and the final should remain the unregularized H012 or a different posterior-risk control.
-- 제출 전략: no file yet. First run a decomposition/audit; only materialize if it changes the private-risk story, not as a tiny blend.
+- 제출 전략: do not submit H014 by default. Keep H012 unregularized unless a new non-public risk sensor supports pruning.
+
+### H015: H012 public score makes the public-equation posterior sharpen again
+
+- 상태: live high-risk public self-feedback candidate.
+- 왜 그럴듯한가: H012's realized public gain was `0.0015890693` stronger than its own posterior mean forecast, so the first public-equation action may have been under-amplified. Adding H012 as a known public anchor should reveal whether H012 is a fixed point or a step toward a sharper hidden public-state posterior.
+- 맞다면: a posterior solved with H012 as the current anchor should keep high leave-one-public ranking, produce a coherent low-amplitude movement beyond H012, and not simply demand a huge destructive probability change.
+- 틀리다면: the system should collapse to H012/no movement, or only promote extreme overconfident moves whose predicted improvement is within noise or fails scenario stability.
+- 최소 실험: `hitl/h015_public_equation_self_feedback.py`.
+- 관측: `21` known public observations, `20` equations vs H012, `119` posterior configs, best LOO Spearman `0.986466`, best LOO MAE `0.001312381`. Generated `280` candidates. Primary file `submission_h015_self_feedback_top_all_k1600_a0.7_uploadsafe.csv` changes `1600` cells, max probability delta vs H012 `0.051642`, posterior mean/p90 delta vs H012 `-0.001586219` / `-0.001149849`, beats-H012 rate `0.966667`.
+- 성공/폐기 기준: accept as a high-information submission sensor if one public slot can test whether H012 is under-amplified. Do not treat as private-safe, because selected configs are dominated by `h012_sharp` and LOO MAE is of similar magnitude to the expected improvement.
+- public LB 관측 반응: if H015 improves meaningfully, public-equation HS-JEPA is not a one-shot trick and can be recursively sharpened. If H015 worsens, H012 is the practical fixed point and further public-equation self-feedback should be stopped without a new independent sensor.
+- 제출 전략: next single "한탕" candidate is H015; conservative default remains H012.

@@ -6347,3 +6347,58 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
 - Next action:
   - build an H014 posterior decomposition / memory-conditioned posterior audit before generating another submission;
   - add H012 to known-public observation tables so future public-equation models can test leave-one-out with H012 as the new strongest anchor.
+
+## H014. Sleep-State Memory Audit of H012
+
+- Observe: external V106 says same-subject temporal memory, conditioned by sleep-state and sensor quality, reaches public `0.5703952266`. If H012 is a private-safer hidden-state posterior, its high-impact cells should overlap with that memory view.
+- Wonder: is H012's `0.5681234831` gain mostly a subject-time continuity signal, or mostly a public-equation/subset signal?
+- Hypothesis: same-subject date/sleep-state/sensor-quality memory can regularize H012 by selecting posterior cells that keep most of the H012 gain while lowering overfit risk.
+- Method: `hitl/h014_sleep_state_memory_posterior_audit.py`.
+  - context: H013 human-state features plus same-subject train labels;
+  - memory views: date distance, sleep-state feature distance, sensor-quality distance;
+  - target/action: H012 changed cells and posterior gain from the H012 public-equation latent;
+  - candidates: keep H012 only on memory-compatible cells, or revert memory-conflict cells toward E247.
+- Result:
+  - H012 changed cells audited: `1200`;
+  - memory agrees with H012 direction on `0.405000` of changed cells;
+  - memory disagrees on `0.595000`;
+  - memory-agree cells carry only `0.279671` of H012 posterior gain;
+  - high-alignment + high-reliability cells carry only `0.101482` of gain;
+  - all generated candidates are `diagnostic_only`.
+- Interpretation:
+  - subject-time memory is real, but it is not the main source of H012's public-equation gain.
+  - Q3 is the exception: within-target memory-agree gain share is `0.549864`, so Q3 memory may be useful as a paper/diagnostic axis.
+  - S1/S2/S4 carry most of the memory-disagree gain, so regularizing H012 by this memory would throw away the public breakthrough.
+- Decision:
+  - no H014 file is promoted above H012;
+  - keep H012 as the public frontier;
+  - use H014 as evidence that H012 is not simply the V106 same-subject-memory mechanism.
+
+## H015. H012 Self-Feedback Public-Equation Posterior
+
+- Observe: H012's realized public gain was stronger than its posterior mean forecast by `0.0015890693`. That could mean H012 was under-amplified rather than already optimal.
+- Wonder: after adding H012's own public score as a public-equation anchor, does the posterior collapse back to H012 or point to another coherent movement?
+- Hypothesis: if public-equation HS-JEPA has found a stable hidden public-state representation, then re-solving the system with H012 as the current anchor should produce a small but coherent post-H012 sharpening direction.
+- Method: `hitl/h015_public_equation_self_feedback.py`.
+  - current anchor: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`;
+  - known public observations: `21`;
+  - equations vs H012: `20`;
+  - priors: H012 current, H012-sharp, top-public wide soft priors, top-public median, neutral, E247;
+  - action: move H012 toward the new posterior on high-consistency cells.
+- Result:
+  - posterior configs tested: `119`;
+  - best LOO Spearman: `0.986466`;
+  - best LOO MAE: `0.001312381`;
+  - generated candidates: `280`;
+  - primary upload-safe file: `submission_h015_self_feedback_top_all_k1600_a0.7_uploadsafe.csv`;
+  - primary changes `1600` cells across `250` rows;
+  - posterior mean/p90 delta vs H012: `-0.001586219` / `-0.001149849`;
+  - posterior beats-H012 rate: `0.966667`;
+  - max probability delta vs H012: `0.051642`.
+- Interpretation:
+  - H015 is not a safe blend. It is a public self-feedback bet.
+  - The positive read is strong: the system does not collapse to H012; it predicts another broad but modest sharpening move with small per-cell amplitude.
+  - The risk is also clear: the top configs are dominated by `h012_sharp`, and LOO MAE is similar scale to the predicted improvement. This can overfit the public subset or make H012 overconfident.
+- Decision:
+  - if one high-information big bet is allowed, H015 is now the next candidate to test;
+  - if private safety dominates, keep H012 and do not amplify without a new non-public risk sensor.

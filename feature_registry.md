@@ -4173,3 +4173,42 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - selector p90 `+0.001506255`.
 - Registry status: approved as diagnostic representation and HS-JEPA architecture evidence; rejected as current default submission feature.
 - Failure condition: do not use scalar raw human-state row health alone to materialize H012. Future use requires row x target action-health or a joint model that reduces public-bad selector risk while keeping visible posterior gain.
+
+### H014 sleep-state memory compatibility prior
+
+- Target hidden structure: same-subject temporal continuity conditioned by sleep-state and sensor-quality similarity.
+- Why needed: external V106 reports public `0.5703952266` from sleep-state-conditioned same-subject memory, so H012 should be tested against this independent human-state view.
+- Feature/action form:
+  - same-subject train-label memory weighted by date gap;
+  - sleep-state similarity from H013 raw human-state features;
+  - sensor-quality similarity from coverage/missingness/count features;
+  - target-wise agreement between memory posterior and H012 posterior direction;
+  - H012 posterior-gain preservation under memory-compatible masks.
+- Current evidence:
+  - H012 changed cells audited: `1200`;
+  - memory-agree rate: `0.405000`;
+  - memory-agree posterior-gain share: `0.279671`;
+  - high-alignment/high-reliability gain share: `0.101482`;
+  - best H014 candidate kept H012 gain rate: `0.358133`;
+  - all candidates are `diagnostic_only`.
+- Registry status: keep as diagnostic/private-risk prior. Reject as a direct H012 regularizer.
+- Failure condition: do not prune or revert H012 based on this memory score unless a new public-free/private-risk target proves that memory-disagree H012 cells are harmful.
+
+### H015 H012 self-feedback public-equation posterior
+
+- Target hidden structure: recursive public-equation hidden-state posterior after H012's own public score is added.
+- Why needed: H012's public win was larger than forecast, so the next worldview question is whether H012 is a fixed point or an under-amplified posterior step.
+- Feature/action form:
+  - current anchor: H012 probability tensor;
+  - equations: known public log-loss deltas versus H012;
+  - priors: H012 current, H012-sharp, wide top-public soft priors, top-public median, neutral, E247;
+  - action: move H012 toward high-consistency posterior cells with small per-cell amplitude.
+- Current evidence:
+  - `21` known public observations and `20` equations vs H012;
+  - best config LOO Spearman `0.986466`, LOO MAE `0.001312381`;
+  - selected file `submission_h015_self_feedback_top_all_k1600_a0.7_uploadsafe.csv`;
+  - changed cells `1600`;
+  - posterior mean/p90 delta vs H012 `-0.001586219` / `-0.001149849`;
+  - max probability delta vs H012 `0.051642`.
+- Registry status: approved as the next high-information public sensor, not private-safe evidence.
+- Failure condition: if H015 public LB worsens, treat H012 as the public-equation fixed point and stop recursive sharpening without a new independent non-public risk sensor.

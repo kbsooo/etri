@@ -2871,3 +2871,12 @@
 - Implementation issue possible: low for public result validity; the file was upload-safe and scored successfully. Private generalization remains unknown, but that is a different hypothesis.
 - Bottleneck implication: the strongest current bottleneck is no longer latent discovery. It is posterior decomposition and private-risk control: separating public-subset-specific cells from hidden-state cells that should generalize.
 - Do not repeat: treating public LB observations only as after-the-fact diagnostics. They are now a validated HS-JEPA target source, but future use must include leave-H012-out and subject-time memory stress.
+
+## FH319. Same-subject sleep-state memory can safely regularize most of H012
+
+- Failed hypothesis: the H012 public-equation posterior is mostly the same hidden state as V106-style same-subject sleep-state/sensor-quality memory, so keeping memory-compatible H012 cells should preserve most of H012's gain while reducing overfit risk.
+- Observed result: H014 audited `1200` H012-changed cells. Memory agrees with H012 on `0.405000` and disagrees on `0.595000`; memory-agree cells carry only `0.279671` of H012 posterior gain. High-alignment/high-reliability cells carry only `0.101482` of gain. The best generated H014 candidate keeps only `0.358133` of H012 gain and all candidates are `diagnostic_only`.
+- Why discard as a submission route: pruning H012 by memory compatibility destroys too much of the public-equation signal. Subject-time memory is real, but it is not the main public-gain carrier.
+- Implementation issue possible: medium. The external V106 prediction file is unavailable, so H014 reconstructed the idea from local same-subject train memory and H013 raw-state features. Still, the disagreement/gain concentration is strong enough to reject simple memory regularization.
+- Bottleneck implication: H012's breakthrough is public-equation/subset geometry more than plain within-person continuity. Q3 memory remains useful as a diagnostic, but S1/S2/S4 public-gain cells are mostly memory-disagree.
+- Do not repeat: memory-compatible H012 pruning or conflict reversion as a default submission. Use subject-time memory only as a target-specific diagnostic or as one view inside a richer private-risk model.
