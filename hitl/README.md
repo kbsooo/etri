@@ -524,3 +524,48 @@ stress sees it as ordinary 0.576-level movement.
 The next HS-JEPA target should treat H012 as a narrow basin or phase-change
 solution. A useful next experiment should ask which invariant made the original
 H012 public-equation move special, not how to continue it by a local gradient.
+
+## H029: H012 Needle-Basin Invariant HS-JEPA
+
+- Script: `hitl/h029_h012_needle_basin_invariant_jepa.py`
+- Report: `hitl/h029_h012_needle_basin_invariant_jepa/h029_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+If H012 is a narrow basin rather than a smooth local optimum, which invariant is
+doing the work: exact support, movement amplitude, target/subject block,
+same-subject memory agreement, or exact row-target placement?
+
+### Main Finding
+
+H029 strengthens the needle-basin interpretation.
+
+- Generated variants: `102`.
+- Best H024 decoder in this pool: `geometry`, alpha `100.0`, MAE `0.000772855`,
+  Spearman `0.969924812`, pairwise `0.947368421`.
+- Best diagnostic by the local selector:
+  `hitl/h029_h012_needle_basin_invariant_jepa/submission_h029_rollback_target_S1_d403217e.csv`.
+- H024 predicted public median/p10/p90:
+  `0.570494744` / `0.567600462` / `0.573561727`.
+- Margin versus real H012: `+0.002371261`.
+- Support better than H012: `0.116666667`.
+- H024 public-score permutation p: `0.858000000`.
+- H025 row-permutation p: `0.613333333`.
+- Target-wise row permutation collapses hard: best target-wise row-permuted
+  median `0.581149687`.
+
+### Interpretation
+
+The attached V106 document supports same-subject state-conditioned memory as a
+real signal, but H029 confirms it is not the main H012 carrier. Memory rollback
+and memory-only variants remain far above H012 under stress.
+
+The strongest new clue is row identity. Preserving target-level move
+distributions while permuting rows destroys the action. That means H012 is not
+just "move S targets this much" or "apply a target prior"; its public-equation
+state depends on exact row-target placement.
+
+The next useful big experiment should reconstruct the row-target basin directly,
+for example by solving public equations with row identity/subject-state
+constraints as first-class variables rather than by continuing or pruning H012.

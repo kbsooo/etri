@@ -4449,3 +4449,35 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - no root upload-safe H027 file promoted.
 - Registry status: approved as a negative generator-boundary diagnostic. Rejected as a submission selector.
 - Failure condition: do not continue by adding more scalar weights to the same H015/H020/H023 source cells. Re-enter only with a new public/private calibration target or a proposal generator not dominated by existing posterior-completion cells.
+
+### H028 public/private action-gradient features
+
+- Target hidden structure: public LB response field for interventions from H012.
+- Why needed: H026-H027 showed that better gates around existing posterior targets do not create H012-beating actions. H028 asked whether the response field itself could be learned.
+- Feature/action form:
+  - context: known submissions' logit movement from H012 plus H012/H015/H016/H020/H021/H023/H014/H027 cell-state features;
+  - target: public LB delta versus H012;
+  - action rule: generate gradient descent, rollback, amplification, and hybrid movement families from the learned cell-level response;
+  - anti-collapse checks: leave-one-public-out, shuffled-public-delta null, H024 decoder, H025 row-permutation, and H024 public-score permutation.
+- Current evidence:
+  - public response is learnable above null: selected fit LOO MAE `0.001204883`, permutation p `0.000000`;
+  - extrapolation fails: top generated file has H024 median `0.576388429`, support below H012 `0.083333333`, H025 row-permutation p `0.710000000`;
+  - no root upload-safe H028 file promoted.
+- Registry status: approved as coarse public-response diagnostic. Rejected as local descent/action feature.
+- Failure condition: do not use this gradient directly for submissions unless a new invariant explains H012 and independent H024/H025 stresses reverse.
+
+### H029 H012 needle-basin invariant features
+
+- Target hidden structure: exact row-target placement invariant behind the H012 public-equation basin.
+- Why needed: H028 showed H012 is not a smooth local optimum. H029 asks whether the basin is explained by support, amplitude, target/subject blocks, same-subject memory agreement, or row identity.
+- Feature/action form:
+  - context: H012 cell posterior, H014 memory agreement/private-safety cells, target/subject identity, and H012-vs-E247 movement anatomy;
+  - variant families: support-ray scales, posterior top-k alternatives, target/group/subject rollback, memory-agree/disagree/private-safe only/rollback, outside-support target-count matched moves, and target-wise row permutations;
+  - anti-collapse checks: H024 public decoder, duplicated-H012 control, H024 public-score permutation, and H025 row-permutation stress.
+- Current evidence:
+  - generated `102` variants;
+  - selected diagnostic `rollback_target_S1` still has H024 median `0.570494744`, support below H012 `0.116666667`, public-score permutation p `0.858000000`, and H025 row-permutation p `0.613333333`;
+  - target-wise row permutation collapses to median `0.581149687`;
+  - memory-only/rollback variants do not recover H012.
+- Registry status: approved as the current bottleneck diagnostic. Rejected as a submission generator.
+- Failure condition: do not submit target rollback, memory pruning, outside-support matched, or row-permuted H012 variants. Re-enter by solving row/subset identity as a first-class latent rather than ablation.

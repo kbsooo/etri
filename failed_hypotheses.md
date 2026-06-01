@@ -2961,3 +2961,21 @@
 - Implementation issue possible: medium. H027 inherits finite H014/H021/H023/H025/H026 sensors and H024's public decoder. A stronger neural generator might improve the result. But this exact architecture family failed the predeclared public-free promotion tests.
 - Bottleneck implication: the bottleneck is not merely "generate cells before vetoing." The source posterior targets themselves are missing the decisive public/private calibration state.
 - Do not repeat: wrapping H015/H020/H023 cells with more scalar memory, human-agreement, or public-bad penalties. Re-enter only with a genuinely new calibration target or a generator whose proposals are not dominated by the existing posterior-completion pool.
+
+## FH328. H012 can be improved by smooth public-response gradient descent
+
+- Failed hypothesis: known public submissions define a reusable local cell-level action-gradient around H012, so moving H012 along the learned negative gradient should lower public LogLoss.
+- Observed result: H028's gradient fit was non-random (`all` alpha `100`, LOO MAE `0.001204883`, shuffled-public-delta p `0.000000`), but its best generated descent file was independently priced as public-bad: H024 median `0.576388429`, support below H012 `0.083333333`, H025 row-permutation p `0.710000000`, and public-score permutation p `0.918000000`.
+- Why discard as a submission route: the learned response mostly separates H012 from the old submission cloud. It does not provide a safe local descent field from H012.
+- Implementation issue possible: medium. More known public interventions would make gradient fitting less underdetermined. With the current observations, extrapolation is too unstable.
+- Bottleneck implication: H012 is a singular basin/phase point, not a point on a smooth optimization surface.
+- Do not repeat: public-gradient descent, rollback, or H012-direction amplification without a new invariant that explains H012's row-target identity.
+
+## FH329. H012's gain can be preserved by target-level, memory-level, or support-moment ablations
+
+- Failed hypothesis: H012's action is mostly a target-level calibration or a memory-compatible subset, so preserving coarse target/support moments while rolling back or permuting cells should remain near H012 or reveal a safer H012-beating variant.
+- Observed result: H029 generated `102` invariant-breaking variants. The selected diagnostic `rollback_target_S1` was still above real H012 by H024 (`0.570494744`, margin `+0.002371261`), had support below H012 only `0.116666667`, public-score permutation p `0.858000000`, and H025 row-permutation p `0.613333333`. Target-wise row permutation collapsed to median `0.581149687`.
+- Why discard as a submission route: H012 cannot be explained by target-wise average movement, simple target rollback, subject rollback, same-subject memory compatibility, or outside-support matched target counts. Exact row-target placement is part of the action.
+- Implementation issue possible: medium. H024 is conservative around duplicated H012 controls because it includes H012-drop stress. But the row-permutation collapse and failure of all ablation families are too consistent to treat as a scoring artifact.
+- Bottleneck implication: the next solver must infer row/subset identity directly. Post-hoc pruning or target-level calibration is unlikely to produce the next jump.
+- Do not repeat: target-only H012 rollbacks, memory-compatible H012 pruning, target-count-matched outside-support swaps, or target-wise row-shuffled H012 variants as submission candidates.

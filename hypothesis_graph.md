@@ -23,7 +23,8 @@ E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해
 - H014는 H012가 단순 same-subject memory가 아니라는 것을 보였고, H015-H020은 H012 이후의 public-equation posterior-completion을 cell-weight, binary world, row-subset, joint target-vector world로 분해하고 있다.
 - H026-H027은 train action-health, public-bad veto, memory/private-safety birth constraints가 기존 posterior-completion targets를 H012-beating action으로 만들지 못함을 보였다.
 - H028은 known public intervention response 자체를 cell-level action-gradient로 배웠지만, 그 gradient를 H012 밖으로 extrapolate하면 독립 stress가 모두 0.576대 위험으로 본다.
-- 0.54 진입을 막는 핵심 병목은 이제 hidden state 발견 자체보다, H012 같은 singular public-equation basin을 private-safe/invariant hidden state로 해석하는 문제다. 단순 posterior-completion, scalar gate, train-action health, smooth public-gradient는 현재 반증되었다.
+- H029는 H012의 support/amplitude/target/subject/memory/row-identity invariant를 깨보며, target-wise row permutation이 0.581대 위험으로 붕괴한다는 것을 보였다.
+- 0.54 진입을 막는 핵심 병목은 이제 hidden state 발견 자체보다, H012 같은 singular public-equation basin의 정확한 row-target identity를 private-safe/invariant hidden state로 재구성하는 문제다. 단순 posterior-completion, scalar gate, train-action health, smooth public-gradient, target-level calibration은 현재 반증되었다.
 
 ## 관계 그래프
 
@@ -55,6 +56,7 @@ known public interventions
   -> coarse public-gradient learnable
   -> local H012 extrapolation unsafe
   -> needle-basin / phase-change hypothesis
+  -> exact row-target placement invariant
 ```
 
 ## 가설 목록
@@ -4654,3 +4656,27 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   - reject smooth local-gradient interpretation if independent stress prices all top gradient moves far above H012. Observed.
 - public LB 관측 반응: no H028 file should be submitted. If a future gradient file wins public despite this stress, H024/H025 are missing the decisive invariant; otherwise H012 should be treated as a narrow public-equation basin rather than a smooth local optimum.
 - 제출 전략: none. The next branch should search for the invariant/constraint that made H012 special, not continue H012 by local gradient descent.
+
+### H029: H012's public-equation gain is carried by an exact row-target needle basin
+
+- 상태: supported as the current bottleneck explanation; no submission route promoted.
+- 왜 그럴듯한가: H012 is a large outlier public success, while H028 rejected smooth local continuation. If H012 is a phase-change basin, preserving target-level movement statistics or memory-compatible slices should not be enough; exact row-target placement should matter.
+- 맞다면:
+  - H012-like duplicate controls and local ablations will be hard for H024 to rank below the real H012;
+  - target/subject/memory rollbacks should mostly be priced worse than H012;
+  - target-wise row permutation should collapse because row identity is not exchangeable.
+- 틀리다면:
+  - one ablation family, such as memory-compatible pruning or target rollback, should pass public-free stress below H012;
+  - target-wise row permutation should retain much of H012's action-health if the invariant is only target-level calibration.
+- 최소 실험: `hitl/h029_h012_needle_basin_invariant_jepa.py`, generating support-ray scales, posterior top-k alternatives, target/group/subject rollbacks, H014 memory-agree/disagree/private-safe only/rollback variants, outside-support target-count matched variants, and target-wise row-permuted H012 moves.
+- 관측:
+  - generated variants `102`;
+  - best H024 decoder `geometry` alpha `100.0`, MAE `0.000772855`, Spearman `0.969924812`, pairwise `0.947368421`;
+  - selected diagnostic `rollback_target_S1` has H024 predicted median `0.570494744`, margin versus real H012 `+0.002371261`, support below H012 `0.116666667`, public-score permutation p `0.858000000`, and H025 row-permutation p `0.613333333`;
+  - best target-wise row-permuted variant has median `0.581149687`, far outside the H012 basin;
+  - memory-only and memory-rollback families remain far above H012, so V106/H014-style same-subject memory is not the main H012 carrier.
+- 성공/폐기 기준:
+  - accept a variant only if it is below H012 by independent H024/H025 stress and beats public-score permutation. Not observed.
+  - accept the needle-basin explanation if invariant-breaking variants all degrade and row permutation collapses. Observed.
+- public LB 관측 반응: no H029 file should be submitted. If a row-permuted or memory-pruned H012 variant were to win public, it would refute the exact row-target basin interpretation and point back to target-level calibration or memory. Current stress says not to spend that slot.
+- 제출 전략: none. The next branch should rebuild the inverse public-equation solver with row/subset identity or row-vector constraints as first-class unknowns instead of post-hoc ablations.

@@ -6255,3 +6255,46 @@ Stress conclusion:
 - H028 passes the weak "public response is not random" test but fails the stronger "response field extrapolates from H012" test.
 - The learned gradient mostly describes H012 as a singular outlier against all other public sensors, not a smooth descent direction.
 - This blocks gradient descent, rollback, and H012-direction amplification as next submission routes. The next stress should search for the invariant that made the original H012 public-equation move special.
+
+## H029 H012 Needle-Basin Invariant Stress
+
+Question: which invariant makes H012 special: exact support, amplitude, target/subject block, same-subject memory agreement, or row identity?
+
+Stress setup:
+
+- script: `hitl/h029_h012_needle_basin_invariant_jepa.py`;
+- generated variants: `102`;
+- context: H012 cell posterior, H014 same-subject sleep-state memory cells, H024 public decoder, and H025 action-health row-permutation stress;
+- variant families:
+  - support-ray scale around E247 -> H012;
+  - posterior top-k alternatives;
+  - target/group/subject rollback and only variants;
+  - memory-agree/disagree/private-safe only and rollback variants;
+  - outside-support target-count matched move;
+  - target-wise row-permuted H012 moves;
+- stresses:
+  - H024 public action decoder;
+  - duplicated-H012 control comparison;
+  - H024 public-score permutation stress;
+  - H025 row-permutation placement stress.
+
+Stress result:
+
+- best H024 decoder: `geometry`, alpha `100.0`, MAE `0.000772855`, Spearman `0.969924812`, pairwise `0.947368421`;
+- selected diagnostic:
+  `hitl/h029_h012_needle_basin_invariant_jepa/submission_h029_rollback_target_S1_d403217e.csv`;
+- H024 predicted public median/p10/p90:
+  `0.570494744` / `0.567600462` / `0.573561727`;
+- margin versus real H012: `+0.002371261`;
+- support better than H012: `0.116666667`;
+- H024 public-score permutation p(lower margin): `0.858000000`;
+- H025 row-permutation p(higher top1200 gain): `0.613333333`;
+- real H025 top1200 gain: `-1.367449827`;
+- best target-wise row-permuted median: `0.581149687`;
+- promoted root file: none.
+
+Stress conclusion:
+
+- H029 fails to find a safer H012 ablation or continuation.
+- The strongest diagnostic is negative: target-wise row permutation breaks H012 badly, so the relevant invariant is exact row-target placement rather than target-level movement distribution.
+- Same-subject sleep-state memory remains a real human-world signal, but it is not sufficient to explain or regularize H012's public-equation gain.

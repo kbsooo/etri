@@ -4,6 +4,16 @@
 
 실험은 `Observe -> Wonder -> Hypothesize -> Falsify -> Build -> Stress -> Decide` 형식으로 기록한다. public LB는 최적화 대상이 아니라 hidden-DGP sensor로 사용한다.
 
+## H029. H012 Needle-Basin Invariant HS-JEPA
+
+- Observe: H012 is public `0.5681234831`, but H028 showed that a learned public-gradient cannot safely extrapolate away from it. The attached V106 note says same-subject sleep-state/sensor-quality memory is real, so H012 should be tested against support, amplitude, target/subject, memory, and row-identity invariants.
+- Wonder: is H012 special because of the exact 1200-cell support, the movement amplitude, a target/subject block, the same-subject memory-compatible subset, or exact row-target placement?
+- Hypothesis: if H012 is a narrow public-equation basin, breaking major invariants should be priced worse than H012, and target-wise row permutation should collapse even when target-level movement distributions are preserved.
+- Method: `hitl/h029_h012_needle_basin_invariant_jepa.py` generated `102` variants: support-ray scales, posterior top-k alternatives, target/group/subject rollbacks, memory-agree/disagree/private-safe only/rollback variants, outside-support target-count matched moves, and target-wise row-permuted H012 moves. It stressed them with H024, duplicated-H012 controls, H024 public-score permutation, and H025 row-permutation.
+- Result: best H024 decoder was `geometry` alpha `100`, MAE `0.000772855`, Spearman `0.969924812`, pairwise `0.947368421`. The selected diagnostic was `rollback_target_S1`, with H024 predicted public median/p10/p90 `0.570494744` / `0.567600462` / `0.573561727`, margin vs real H012 `+0.002371261`, support below H012 `0.116666667`, public-score permutation p `0.858000000`, and H025 row-permutation p `0.613333333`. Best target-wise row permutation was much worse at median `0.581149687`.
+- Interpretation: H029 does not create a submission candidate. It strengthens the claim that H012 is a row-target needle basin, not a target-level prior correction, smooth amplitude setting, or simple same-subject memory regularizer.
+- Decision: no H029 submission. The next high-upside route should reconstruct public-equation row identity directly, likely by making row/subset weights or row-vector constraints first-class in the inverse problem.
+
 ## H028. Public/Private Action-Gradient HS-JEPA
 
 - Observe: H012 alone is public `0.5681234831`, while most nearby or post-H012 candidates remain around `0.576+`. H026/H027 showed that adding better gates around H015/H020/H023 posterior-completion targets does not recover H012-beating transfer.
