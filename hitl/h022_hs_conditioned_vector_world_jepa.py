@@ -642,6 +642,7 @@ def build_state_tables(
     h012_prob: np.ndarray,
     row_weight: np.ndarray,
     selected: pd.Series,
+    write_outputs: bool = True,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     vecs = vector_table()
     max_idx = post_dist.argmax(axis=1)
@@ -708,9 +709,11 @@ def build_state_tables(
         + 0.16 * cell_df["row_score_rank"]
         + 0.12 * cell_df["hs_agree_score"]
     )
-    row_df.to_csv(ROW_OUT, index=False)
-    cell_df.sort_values("combined_score", ascending=False).to_csv(CELL_OUT, index=False)
-    return row_df, cell_df.sort_values("combined_score", ascending=False).reset_index(drop=True)
+    sorted_cells = cell_df.sort_values("combined_score", ascending=False).reset_index(drop=True)
+    if write_outputs:
+        row_df.to_csv(ROW_OUT, index=False)
+        sorted_cells.to_csv(CELL_OUT, index=False)
+    return row_df, sorted_cells
 
 
 def candidate_specs() -> list[CandidateSpec]:

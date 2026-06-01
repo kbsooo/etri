@@ -4351,3 +4351,20 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - no H022 upload-safe candidate promoted.
 - Registry status: approved as a proposal/search feature and diagnostic prior. Rejected as a final action probability prior.
 - Failure condition: if future variants need positive q_hs beta to be selected, require both posterior/action dominance and row-permutation-null dominance. Otherwise keep q_hs as gate/proposal only.
+
+### H023 human-state Pareto proposal energy
+
+- Target hidden structure: public-compatible row-level vector worlds that are also close to raw human-state geometry.
+- Why needed: H022 showed `q_hs` should not be the final posterior prior, but it may still identify which public-compatible hidden worlds are human-plausible. This is the JEPA role split: public equations define the target posterior, human-state context constrains the latent geometry.
+- Feature/action form:
+  - context: sampled H020/H022 row-vector worlds and known public-delta fit;
+  - latent feature: `q_hs` energy of each sampled world plus row-vector KL from the H021 human-state prior;
+  - anti-collapse checks: row-permuted `q_hs` energy for public-error top-k worlds and row-permuted `q_hs` controls for the selected Pareto posterior;
+  - action rule: promote only if the Pareto posterior beats row-permuted controls on public fit and human-state geometry.
+- Current evidence:
+  - public-error top1000 worlds have real human-state energy `4.877889323` vs row-permutation null median `5.234522555`, p `0.012345679`;
+  - selected Pareto posterior `pareto_top1000_lam0.2_t0.00012` improves human-state geometry (`rowperm_hs_kl_p=0.016393443`);
+  - the same posterior does not improve public fit against row-permuted controls (`rowperm_public_p=0.754098361`);
+  - no root upload-safe H023 candidate promoted.
+- Registry status: approved as representation/alignment diagnostic and proposal energy. Rejected as direct action selector.
+- Failure condition: do not use H023 energy to materialize submissions unless a new action-health target lowers row-permutation public-fit p and preserves public-only posterior compatibility.

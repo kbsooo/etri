@@ -294,3 +294,38 @@ posterior prior. The current HS-JEPA role split is:
 
 - public-equation posterior: calibrated probability/action target;
 - human-state q_hs: proposal distribution, gate, and action-health diagnostic.
+
+## H023: Human-State Proposal/Pareto Vector-World Posterior
+
+- Script: `hitl/h023_hs_pareto_proposal_vector_jepa.py`
+- Report: `hitl/h023_hs_pareto_proposal_vector_jepa/h023_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+Can q_hs choose among public-compatible vector worlds as a proposal/Pareto
+energy, after H022 rejected q_hs as the final posterior prior?
+
+### Main Finding
+
+Public-compatible worlds are human-state-aligned, but q_hs still cannot safely
+select the final action posterior.
+
+- Public-error top1000 worlds:
+  real human-state energy `4.877889323`, row-permutation null median
+  `5.234522555`, p `0.012345679`.
+- Selected Pareto posterior:
+  `pareto_top1000_lam0.2_t0.00012`.
+- Posterior MAE/p90/Spearman:
+  `0.000031100` / `0.000059357` / `0.989473684`.
+- Human-state KL row-permutation p: `0.016393443`.
+- Public-fit row-permutation p: `0.754098361`.
+- Root upload-safe H023 files: none.
+
+### Interpretation
+
+H023 is positive representation evidence and negative materialization evidence.
+The public-equation vector-world manifold is coupled to human-state geometry,
+but the current q_hs energy is not an action-health decoder. The next HS-JEPA
+step should learn public/private action health or calibration, using H023
+energy as an input rather than as the final selector.

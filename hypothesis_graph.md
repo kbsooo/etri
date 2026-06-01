@@ -4493,3 +4493,27 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: accept as final action prior only if a beta-positive posterior wins action selection and row-permutation null degrades consistently. Not observed.
 - public LB 관측 반응: no H022 candidate should be submitted as an HS-JEPA proof. A diagnostic `none_b0` H022 file would test public-equation posterior sharpening, not human-state conditioning.
 - 제출 전략: use `q_hs` as proposal distribution, gate, or Pareto constraint. Do not force beta-positive q_hs priors for story cleanliness.
+
+### H023: human-state energy can choose among public-compatible vector worlds
+
+- 상태: partially supported as representation geometry; rejected as a direct action selector.
+- 왜 그럴듯한가: H022 showed that `q_hs` helps proposal/search but fails as the final prior. A weaker claim remains: after public-compatible vector worlds are found, `q_hs` may identify the more human-plausible world without forcing the posterior density.
+- 맞다면:
+  - public-error top-k vector worlds should have lower human-state energy than row-permuted `q_hs` controls;
+  - a Pareto posterior using public error and `q_hs` energy should keep public fit while improving human-state geometry;
+  - row-permuted `q_hs` should fail both geometry and public-posterior checks.
+- 틀리다면:
+  - public-compatible worlds should look no more human-state-aligned than row-permuted controls;
+  - or `q_hs` may improve geometry but not public/action posterior fit.
+- 최소 실험: `hitl/h023_hs_pareto_proposal_vector_jepa.py`.
+- 관측:
+  - public-compatible worlds are strongly human-state-aligned: top1000 real energy `4.877889323` vs row-permutation null median `5.234522555`, p `0.012345679`;
+  - selected Pareto posterior `pareto_top1000_lam0.2_t0.00012` has MAE `0.000031100`, p90 `0.000059357`, Spearman `0.989473684`;
+  - real `q_hs` improves row-vector KL vs row-permuted controls (`rowperm_hs_kl_p=0.016393443`);
+  - but public posterior fit does not beat row-permuted controls (`rowperm_public_p=0.754098361`);
+  - no root upload-safe H023 candidate promoted.
+- 성공/폐기 기준:
+  - accept representation claim if real public-compatible worlds have much lower `q_hs` energy than row-permuted controls. Observed.
+  - accept action claim only if Pareto public fit also beats row-permuted controls. Not observed.
+- public LB 관측 반응: H023 should not consume a public slot unless a future action-health layer changes the `rowperm_public_p` result. Submitting H023 diagnostic files would test an unproven action selector.
+- 제출 전략: no submission. Use H023 as architecture evidence that public-equation hidden worlds and human-state latent geometry are coupled, while the materializer still needs a public/private action-health target.

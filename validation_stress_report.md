@@ -6032,3 +6032,34 @@ Stress conclusion:
 - H022 passes the "human-state prior helps proposal search" check but fails the "human-state prior is the final posterior/action density" check.
 - No upload-safe H022 candidate was promoted; all `92` generated files are diagnostic-only because the selected prior kind is `none`.
 - The next healthy HS-JEPA route is not beta forcing. It is using q_hs as a proposal/gate/Pareto constraint or learning a separate action-health posterior that can choose when q_hs should override the public-equation posterior.
+
+## H023 Human-State Proposal/Pareto Vector-World Stress
+
+Question: can `q_hs` choose among public-compatible vector worlds as a proposal/Pareto constraint without becoming the final posterior prior?
+
+Stress setup:
+
+- script: `hitl/h023_hs_pareto_proposal_vector_jepa.py`;
+- source pool: `none_b0`, `hs_b0.1`, `hsconf_b0.2`, `hs_b0.18`;
+- context: public-equation vector-world fit plus H021 human-state vector prior;
+- first null: compare public-error top-k world `q_hs` energy against row-permuted `q_hs` energy;
+- second null: compare selected Pareto posterior public fit and human-state KL against row-permuted `q_hs` controls.
+
+Stress result:
+
+- public-compatible worlds are human-state aligned:
+  - top100 real energy `4.902593225` vs null median `5.252189419`, p `0.012345679`;
+  - top1000 real energy `4.877889323` vs null median `5.234522555`, p `0.012345679`;
+  - top10000 real energy `4.868860614` vs null median `5.225123140`, p `0.012345679`;
+- selected Pareto posterior: `pareto_top1000_lam0.2_t0.00012`;
+- selected posterior MAE/p90/Spearman: `0.000031100` / `0.000059357` / `0.989473684`;
+- selected posterior gains human-state energy over public-only by `0.029673436`;
+- row-permuted controls confirm the geometry term (`rowperm_hs_kl_p=0.016393443`);
+- row-permuted controls reject action/public-fit dominance (`rowperm_public_p=0.754098361`);
+- no root `submission_h023*_uploadsafe.csv` was generated; all materialized H023 files remain diagnostic under `hitl/h023_hs_pareto_proposal_vector_jepa/`.
+
+Stress conclusion:
+
+- H023 passes the representation-alignment stress: the public-equation vector-world manifold is meaningfully closer to human-state geometry than random row assignments.
+- H023 fails the action-selection stress: the Pareto posterior is more human-plausible but not more public-fit-plausible than row-permuted controls.
+- Keep H023 as HS-JEPA evidence, not as a submission route. The missing component is an action-health or public/private calibration latent that can translate human-state-aligned worlds into safe probability moves.

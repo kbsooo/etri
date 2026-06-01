@@ -44,13 +44,16 @@ Current high-risk next sensors:
 - H022 produced no promoted root submission.
 - Interpretation: H022 injected H021's `q_hs` into the H020 vector-world posterior. Weak human-state prior helped sampled-world search (`hs_b0.1` best config), but final posterior selection reverted to `none_b0`. This records a useful architecture boundary: human-state context is a proposal/gate/action-health latent, not yet a calibrated final probability prior.
 
+- H023 produced no promoted root submission.
+- Interpretation: H023 tested the weaker and more useful role for `q_hs`: proposal/Pareto energy after public-compatible vector worlds are found. Public-error top1000 worlds are strongly human-state-aligned (`4.877889` real energy vs `5.234523` row-permutation null median), but q_hs-Pareto posterior selection does not improve public fit against row-permuted controls (`rowperm_public_p=0.754098`). This is architecture evidence, not an upload candidate.
+
 Public LB operating rule:
 
 - Public LB is not an iteration loop. A file is promotable only when it beats the current priority under public-free stress, including fresh nulls that were not used to build the candidate.
 - Local-interesting files stay diagnostic if they only improve old selector p90, semantic attribution, or a single stress view.
 - The next public slot should answer a predeclared worldview question, not rescue a local tweak after the fact.
 - After H012, the main public question is no longer "can we find a tiny E247-safe movement?" It is "which parts of the public-equation posterior are real hidden-state signal versus public-subset overfit, and how do subject/time memory and raw human-state context explain them?"
-- H014 says same-subject sleep-state memory does not explain most of H012's gain. H015 says the public-equation system itself still wants to sharpen H012. H016/H017/H018 split that question into cell weights, continuous posterior-completion, and binary hard-world posterior-completion. H019 adds the stricter row-subset constraint and finds broad row-level compatibility, but not a better action than H018. H020 raises the constraint again from independent cells to whole-row 7-label vectors. H021 adds the missing human-state bridge: raw lifestyle context can gate the H020 vector action, but is not yet calibrated enough to replace public-equation probabilities. H022 confirms that split by rejecting q_hs as final posterior prior while keeping it alive as proposal/search/gate signal.
+- H014 says same-subject sleep-state memory does not explain most of H012's gain. H015 says the public-equation system itself still wants to sharpen H012. H016/H017/H018 split that question into cell weights, continuous posterior-completion, and binary hard-world posterior-completion. H019 adds the stricter row-subset constraint and finds broad row-level compatibility, but not a better action than H018. H020 raises the constraint again from independent cells to whole-row 7-label vectors. H021 adds the missing human-state bridge: raw lifestyle context can gate the H020 vector action, but is not yet calibrated enough to replace public-equation probabilities. H022 confirms that split by rejecting q_hs as final posterior prior while keeping it alive as proposal/search/gate signal. H023 shows the bridge is not imaginary: public-compatible worlds are human-state-aligned, but the remaining missing piece is an action-health/public-private calibration decoder.
 
 Primary working notes:
 
