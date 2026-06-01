@@ -2988,3 +2988,12 @@
 - Implementation issue possible: medium. H030's action materializer is still top-k/alpha based and may be too crude. However, the negative stress is broad enough to reject "allowance prior alone" as the next submission route.
 - Bottleneck implication: the current missing representation is an identity-to-action translation law, likely route/mixture/calibration-specific, not another stronger row-target identity score.
 - Do not repeat: direct H030-style allowance-prior posterior materialization unless paired with a new translator and fresh public-free stress.
+
+## FH331. Memory-conflict public-core amplification can beat H012
+
+- Failed hypothesis: because V106-style same-subject memory is strong but H014 found that H012's gain mostly lives in memory-disagree cells, those conflict cells are the public-equation core and can be amplified or protected by rolling back low-gain memory-agree cells.
+- Observed result: H031 generated `482` variants from conflict-core amplification, conflict-core plus agree-cost rollback, agree-cost rollback, and core-only E247 reconstruction. The best diagnostic `conflict_swap_S124_core120_a0.28_rb60_r0.35_h012` has H024 median `0.569809630`, margin `+0.001686147` versus H012, support below H012 `0.150000000`, risk width `0.020011835`, H024 permutation p `0.800666667`, and H025 row-permutation p `0.183333333`.
+- Why discard as a submission route: the explanatory signal is real but the action translation is wrong. Amplifying conflict cells or trading them against agree-cost cells moves out of the H012 basin instead of lowering LogLoss.
+- Implementation issue possible: medium. The H031 translator is still a structured top-k/amplitude family, not a learned neural action head. But it covers the obvious high-upside operations implied by the V106/H014 contrast and fails public-free stress consistently.
+- Bottleneck implication: same-subject memory is a contrastive representation, not a probability action layer. The breakthrough object is the exact operation that produced H012's probabilities on memory-conflict row-target cells.
+- Do not repeat: memory-conflict amplification, memory-agree rollback, or core-only reconstruction from E247 as submission candidates unless a new translator predicts the exact H012 probability values rather than only the cell identities.

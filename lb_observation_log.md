@@ -2157,3 +2157,119 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - stop adding scalar wrappers over H015/H020/H023;
   - define a new calibration target or a new generator whose proposals are not inherited from the same posterior-completion pool.
+
+## Public-Free Observation: H028 Public/Private Action-Gradient JEPA
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - learns public response to whole-submission interventions from H012;
+  - treats known public deltas as an action-gradient target rather than a cell posterior;
+  - generates rollback/amplification/descent variants only as diagnostics.
+- expected LB reaction:
+  - if a variant had passed and improved, it would validate smooth public-gradient continuation from H012;
+  - because no variant passed, uploading the diagnostic would mainly test a failed extrapolation.
+- local/public-free observation:
+  - selected public-gradient fit has LOO MAE `0.001204883`;
+  - shuffled-public-delta null is beaten with p `0.000000`;
+  - top generated file is priced by H024 at `0.576388429`;
+  - support below H012 only `0.083333333`;
+  - H025 row-permutation p `0.710000000`;
+  - H024 public-score permutation p `0.918000000`.
+- interpretation:
+  - known public interventions contain real coarse response geometry;
+  - around H012 that geometry says "the basin is isolated" more than "continue descending."
+- next experiment:
+  - model H012 as a needle basin/invariant, not as a smooth optimum.
+
+## Public-Free Observation: H029 H012 Needle-Basin Invariant
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - tests whether H012 is explained by support, amplitude, target/subject block,
+    same-subject memory agreement, or exact row-target placement;
+  - creates support-ray, rollback, memory-only, outside-support, and target-wise
+    row-permuted H012 variants.
+- expected LB reaction:
+  - if a variant had passed, H012 could be simplified into an interpretable
+    invariant such as target rollback or memory-compatible support;
+  - because no variant passed, uploading the diagnostic would test a known basin break.
+- local/public-free observation:
+  - generated variants `102`;
+  - best diagnostic `rollback_target_S1`;
+  - H024 predicted median `0.570494744`;
+  - support below H012 `0.116666667`;
+  - H024 public-score permutation p `0.858000000`;
+  - H025 row-permutation p `0.613333333`;
+  - target-wise row permutation collapses to best median about `0.581149687`.
+- interpretation:
+  - H012 is not target-level calibration, memory pruning, or smooth amplitude;
+  - exact row-target placement is part of the hidden basin.
+- next experiment:
+  - infer row/subset identity directly inside the public-equation solver.
+
+## Public-Free Observation: H030 Row-Target Identity Public Equation
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - gives each row-target cell an allowance prior from H012 support, H016 public
+    weights, H019 row subset, H020 joint-vector state, and H014 memory;
+  - tests whether row-target identity can anticipate H012 without directly
+    seeing H012 as an equation.
+- expected LB reaction:
+  - if an action had passed, it would validate row-target identity priors as the
+    missing public-equation translator;
+  - because no action passed, H030 remains a latent discovery rather than a
+    submission route.
+- local/public-free observation:
+  - independent held-out H012 prediction `-0.007550142` versus actual
+    `-0.008035466`, error `0.000485324`;
+  - generated candidates `756`;
+  - best diagnostic H024 median `0.572160346`;
+  - support below H012 `0.100000000`;
+  - H024 public-score permutation p `0.923333333`;
+  - H025 row-permutation p `0.670000000`.
+- interpretation:
+  - row-target identity is real enough to explain much of H012;
+  - direct allowance-prior materialization does not preserve the H012 action basin.
+- next experiment:
+  - use external memory as a contrastive view of the H012 public core, then test
+    whether that core is action-safe.
+
+## Public-Free Observation: H031 Memory-Conflict Public-Core JEPA
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - reads the V106 same-subject sleep-state memory document as an independent
+    contrastive world model;
+  - tests whether H012 gain is concentrated in memory-agree or memory-disagree
+    cells;
+  - generates conflict-core amplification, conflict-core swap, memory-agree
+    rollback, and core-reconstruction variants.
+- expected LB reaction:
+  - if a variant had passed and improved, it would mean memory-conflict cells are
+    an amplifiable public core;
+  - because no variant passed, the result says memory conflict is explanatory
+    but not yet an action.
+- local/public-free observation:
+  - H012 changed cells audited `1200`;
+  - memory-disagree cells `714`;
+  - memory-disagree gain share `0.720328567`;
+  - memory-agree gain share `0.279671433`;
+  - generated candidates `482`;
+  - best diagnostic H024 median/p10/p90
+    `0.569809630` / `0.561924630` / `0.581936465`;
+  - support below H012 `0.150000000`;
+  - H024 public-score permutation p `0.800666667`;
+  - H025 row-permutation p `0.183333333`.
+- interpretation:
+  - V106-style memory is real, but H012's public jump is mostly in cells that
+    memory would not choose;
+  - the live bottleneck is now the probability-action translator for an already
+    partially identified row-target core.
+- next experiment:
+  - learn the amplitude/route/calibration law for memory-conflict public-core
+    cells instead of amplifying them mechanically.

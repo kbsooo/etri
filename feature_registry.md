@@ -4497,3 +4497,32 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - no root upload-safe H030 file promoted.
 - Registry status: approved as a row-target identity latent feature. Rejected as a direct action/materialization feature.
 - Failure condition: do not use allowance-prior top-k materialization as a submission route. Re-enter only with a learned translator that maps identity posterior to support/amplitude/calibration action.
+
+### H031 memory-conflict public-core contrast features
+
+- Target hidden structure: cells where H012's public-equation action conflicts
+  with V106/H014 same-subject sleep-state memory.
+- Why needed: V106 is a strong human-world model, but H014 showed H012 gain is
+  concentrated where that model disagrees. H031 tests whether this conflict is
+  an actionable public core or only a diagnostic contrast.
+- Feature/action form:
+  - cell state: memory agreement, memory reliability, H012 posterior gain,
+    target conflict group, and E247-to-H012 movement amplitude;
+  - candidate families: conflict-core amplification, conflict-core plus
+    memory-agree rollback, memory-agree rollback, and core reconstruction from
+    E247;
+  - anti-collapse checks: H024 action-health decoder, H024 public-score
+    permutation stress, and H025 row-permutation stress.
+- Current evidence:
+  - H012 changed cells audited `1200`;
+  - memory-disagree cells `714` hold `0.720328567` of H012 posterior gain;
+  - generated candidates `482`;
+  - best diagnostic H024 median `0.569809630`, support below H012 `0.150000000`;
+  - H024 public-score permutation p `0.800666667`;
+  - H025 row-permutation p `0.183333333`;
+  - no root upload-safe H031 file promoted.
+- Registry status: approved as an explanatory contrast feature. Rejected as a
+  direct amplification, swap, or rollback materializer.
+- Failure condition: do not submit memory-conflict variants unless a new
+  translator explains the exact H012 amplitude/route. Re-enter by learning
+  probability action health on conflict cells, not by increasing their weight.

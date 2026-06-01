@@ -6346,3 +6346,57 @@ Stress conclusion:
 - The next stress should target the translator: route mixture, support/amplitude
   compatibility, or calibration constraints that explain why H012's exact
   probability action worked while nearby identity-prior materializations do not.
+
+## H031 Memory-Conflict Public-Core Stress
+
+Question: the attached V106 write-up makes same-subject sleep-state memory a
+strong independent world model. H014 then showed that most H012 gain sits in
+cells where this memory disagrees with H012. Are those memory-conflict cells an
+amplifiable public core, or only an explanation of why H012 was unusual?
+
+Stress setup:
+
+- script: `hitl/h031_memory_conflict_public_core_jepa.py`;
+- context: H012 posterior action, H014/V106-style same-subject memory
+  agreement, memory reliability, target conflict anatomy, and E247/H012
+  movement geometry;
+- candidate families:
+  - conflict-core amplification on top of H012;
+  - conflict-core amplification plus memory-agree rollback;
+  - memory-agree cost rollback;
+  - conflict-core reconstruction from E247;
+- stresses:
+  - H024 action-health decoder;
+  - H024 public-score permutation stress;
+  - H025 row-permutation placement stress.
+
+Stress result:
+
+- H012 changed cells audited: `1200`;
+- memory-disagree cells: `714`;
+- H012 posterior gain share in memory-disagree cells: `0.720328567`;
+- memory-agree gain share: `0.279671433`;
+- generated candidates: `482`;
+- selected diagnostic:
+  `hitl/h031_memory_conflict_public_core_jepa/submission_h031_conflict_swap_S124_core120_a0.28_rb60_r0.35_h012_07347231.csv`;
+- H024 predicted public median/p10/p90:
+  `0.569809630` / `0.561924630` / `0.581936465`;
+- margin versus real H012: `+0.001686147`;
+- support better than H012: `0.150000000`;
+- changed cells versus H012: `180`;
+- H024 public-score permutation p(lower margin): `0.800666667`;
+- H025 row-permutation p(higher top1200 gain): `0.183333333`;
+- promoted root file: none.
+
+Stress conclusion:
+
+- V106-style memory is a real contrastive view, but H012 is not reducible to
+  memory continuity. H012's public-equation jump is mostly in cells that the
+  memory model would not naturally choose.
+- Memory conflict is explanatory but not action-safe. Amplifying conflict cells
+  or paying for them by rolling back memory-agree cells remains priced above
+  H012 by H024 and fails the public-score permutation stress.
+- The next useful stress is no longer "which cells are public core?" H031
+  suggests the cells are already partly known. The missing object is the
+  translator that maps those cells to the exact H012 probability amplitude and
+  target route without leaving the basin.

@@ -764,3 +764,18 @@ and fail public-score/row-permutation stress. The architecture lesson is sharp:
 HS-JEPA has moved from "find a hidden state" to "learn the hidden-state
 translator." A valid row-target latent can still collapse at materialization if
 the route, support, and calibration action are not modeled jointly.
+
+H031 uses the V106 same-subject sleep-state memory as a contrastive JEPA view
+rather than as a direct prior. The context is memory agreement/reliability and
+H012 movement anatomy; the target representation is the H012 public-equation
+gain distribution. This gives a useful inversion of the intuitive story. H012's
+posterior gain is concentrated in memory-disagree cells: `714/1200` changed
+cells hold `0.720328567` of the H012 gain, while memory-agree cells hold only
+`0.279671433`. That means subject memory is real, but H012's public jump is not
+just a cleaner version of subject continuity. LeJEPA diagnosis: the memory view
+is non-collapsed as an explanatory contrast, but it collapses as an action
+translator. The best H031 materialization is still priced above H012 by H024
+(`0.569809630` median) and fails public-score permutation stress (`p =
+0.800666667`). The useful latent is therefore "memory conflict marks part of
+the public-equation core"; the unsafe latent is "amplify or swap those cells
+mechanically."

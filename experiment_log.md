@@ -4,6 +4,16 @@
 
 실험은 `Observe -> Wonder -> Hypothesize -> Falsify -> Build -> Stress -> Decide` 형식으로 기록한다. public LB는 최적화 대상이 아니라 hidden-DGP sensor로 사용한다.
 
+## H031. Memory-Conflict Public-Core HS-JEPA
+
+- Observe: attached V106 memory note reports public `0.5703952266`, proving same-subject sleep-state/sensor-quality memory is a real hidden-world view. H014 then showed H012's gain mostly lives where this memory disagrees: `714/1200` H012 cells and `72.03%` of posterior gain.
+- Wonder: what if memory disagreement is not a private-risk warning but the exact public-equation event core? Maybe H012 wins because it overrides within-person continuity on public-sensitive row-target events.
+- Hypothesis: memory-disagree high-gain cells should be preserved or amplified, and low-gain memory-agree cells can pay budget without breaking H012.
+- Method: `hitl/h031_memory_conflict_public_core_jepa.py` generated `482` candidates: conflict-core amplification, conflict-core plus agree-cost rollback, agree-cost rollback alone, and core-only reconstruction from E247. It scored candidates with H024 action-health, H024 public-score permutation, and H025 row-permutation stress.
+- Result: best diagnostic `conflict_swap_S124_core120_a0.28_rb60_r0.35_h012` has H024 predicted public `0.569809630`, margin `+0.001686147` versus H012, support below H012 `0.150000000`, risk width `0.020011835`, H024 permutation p `0.800666667`, and H025 row-permutation p `0.183333333`.
+- Interpretation: memory-disagree cells are likely explanatory for H012, especially S1/S2/S4, but they are not a safe post-H012 action by simple amplification or budget exchange. V106 memory should be used as a contrastive diagnostic view, not as a regularizer or translator.
+- Decision: no H031 submission. Next question should move from "which cells conflict with memory?" to "what exact probability operation created the H012 basin on those conflict cells?"
+
 ## H029. H012 Needle-Basin Invariant HS-JEPA
 
 - Observe: H012 is public `0.5681234831`, but H028 showed that a learned public-gradient cannot safely extrapolate away from it. The attached V106 note says same-subject sleep-state/sensor-quality memory is real, so H012 should be tested against support, amplitude, target/subject, memory, and row-identity invariants.

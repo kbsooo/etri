@@ -615,3 +615,47 @@ probability moves, H024/H025 price them far above real H012. The bottleneck is
 therefore not latent discovery alone. It is the translation law that turns a
 valid row-target identity posterior into the exact probability action without
 breaking the H012 basin.
+
+## H031: Memory-Conflict Public-Core HS-JEPA
+
+- Script: `hitl/h031_memory_conflict_public_core_jepa.py`
+- Report: `hitl/h031_memory_conflict_public_core_jepa/h031_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+The V106 document argues for same-subject sleep-state conditioned memory. H014
+showed that H012's gain is mostly in cells where that memory disagrees. Does
+that conflict identify an amplifiable public core, or only explain why H012 is
+hard to reproduce?
+
+### Main Finding
+
+Memory conflict explains H012 better than memory agreement, but it is not a
+safe action by itself.
+
+- H012 changed cells audited: `1200`.
+- Memory-disagree cells: `714`.
+- H012 gain share in memory-disagree cells: `0.720328567`.
+- H012 gain share in memory-agree cells: `0.279671433`.
+- Generated H031 candidates: `482`.
+- Best diagnostic:
+  `hitl/h031_memory_conflict_public_core_jepa/submission_h031_conflict_swap_S124_core120_a0.28_rb60_r0.35_h012_07347231.csv`.
+- H024 predicted public median/p10/p90:
+  `0.569809630` / `0.561924630` / `0.581936465`.
+- Support better than H012: `0.150000000`.
+- H024 public-score permutation p: `0.800666667`.
+- H025 row-permutation p: `0.183333333`.
+
+### Interpretation
+
+V106-style memory is a real human-state signal, but H012 is not simply
+same-subject continuity. H012's public-equation move lives mostly in cells that
+the memory route would not choose.
+
+That is a useful paper-level result: HS-JEPA benefits from a contrastive human
+memory view because it reveals where the public-equation posterior is doing
+something non-obvious. It is not yet a submission-level result. The current
+translator from memory-conflict core to probability action leaves the H012
+basin, so the next work should learn the action translator rather than push the
+same conflict cells harder.

@@ -4707,3 +4707,29 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   - accept submission route only if materialized candidates are below H012 under H024/H025 stress. Not observed.
 - public LB 관측 반응: no H030 file should be submitted. If an H030 file unexpectedly wins public, the H024/H025 action-health decoders are too conservative around row-target identity priors. Otherwise the evidence says identity discovery is ahead of identity-to-action translation.
 - 제출 전략: none. Next branch should learn the route/translator from identity posterior to probability action, rather than increasing allowance-prior complexity.
+
+### H031: V106 memory-disagreement cells are H012's public core, but not an amplifiable action
+
+- 상태: supported as an explanation, rejected as a direct submission route.
+- 왜 그럴듯한가: the attached V106 note shows same-subject sleep-state/sensor-quality memory is a strong independent world model (`0.5703952266` public). H014 then showed the surprising contrast: H012's largest gain is not memory-compatible. Memory-disagree cells are `714/1200` H012 cells and carry `72.03%` of posterior gain, especially S2/S1/S4.
+- 맞다면:
+  - memory-disagree high-gain cells should identify the public-equation core better than memory-agree cells;
+  - a post-H012 action that amplifies conflict-core cells or pays budget with agree-cost rollbacks should be priced below H012 by H024/H025;
+  - core-only reconstruction from E247 should preserve a large part of H012's public signature.
+- 틀리다면:
+  - conflict-core routes may still be explanatory but H024 will price their materialized probabilities above H012;
+  - agree-cost rollback will degrade the needle basin;
+  - core-only reconstruction will behave like an incomplete H012 and stay far above H012.
+- 최소 실험: `hitl/h031_memory_conflict_public_core_jepa.py`, generating `482` candidates from conflict-core amplification, conflict-core plus agree-cost rollback, agree-cost rollback, and core-only E247 reconstruction.
+- 관측:
+  - memory-disagree gain share `0.720328567`; memory-agree gain share `0.279671433`;
+  - target disagree gain share: S2 `0.798765`, S1 `0.782523`, S4 `0.840262`, S3 `0.682140`, Q1 `0.739922`, Q2 `0.665969`, Q3 `0.450136`;
+  - best diagnostic `conflict_swap_S124_core120_a0.28_rb60_r0.35_h012`;
+  - H024 predicted median `0.569809630`, margin versus H012 `+0.001686147`, support below H012 `0.150000000`, risk width `0.020011835`;
+  - H024 public-score permutation p `0.800666667`;
+  - H025 row-permutation p `0.183333333`, so row placement is not random enough to ignore, but public-score transfer is not healthy.
+- 성공/폐기 기준:
+  - accept action route only if a conflict-core candidate is below H012 under H024, has meaningful support below H012, and passes public-score permutation. Not observed.
+  - keep explanatory route if memory-conflict concentration remains strong. Observed.
+- public LB 관측 반응: no H031 file should be submitted. If a conflict-core file wins public despite stress, H024 is underpricing memory-conflict actions; otherwise memory-conflict is a diagnostic view of H012, not a translator.
+- 제출 전략: none. Next branch should not ask "which H012 cells are memory-conflict?" anymore. It should ask "what operation produced the exact H012 probabilities on those conflict cells?"
