@@ -4897,3 +4897,35 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Failure condition: if the promoted file loses materially to H042, do not
   widen Q2 support further. Fall back to pruning/scaling around exact H042
   support or a different public-regime split.
+
+### H044 human-route Q2 support features
+
+- Target hidden structure: Q2 phase action support selected by a human-state
+  route, especially public-route, transition-exception, memory-disagreement,
+  low private-memory, and H042-like row geometry.
+- Why needed: H042's winning `45` rows look more public/transition-like than
+  H043's wider `105` rows. A human social/state explanation should become
+  actionable if it can choose which H043 tail rows to keep.
+- Feature/action form:
+  - row-level route scores:
+    `h044_public_transition_score`, `h044_private_routine_score`,
+    `h044_phase_energy_score`, `h044_h042_like_score`,
+    `h044_public_q2_regime_score`;
+  - candidate families: public-transition top-k, H042-like top-k, Q2-regime
+    top-k, phase-energy top-k, H043-support route-pruned top-k, H042-core plus
+    route tail, and H043 private-routine veto.
+- Current evidence:
+  - generated/scored candidates `768` / `240`;
+  - promotable candidates `0`;
+  - selected diagnostic
+    `h044_h043_privateveto_q0.78_a0.66_c91_826ae253`;
+  - changed cells/rows `91` / `91`, Q2 only;
+  - action margin/support `-0.000095671` / `0.583333333`;
+  - route-equation delta `-0.000184347`;
+  - H024 margin/support `+0.000582704` / `0.250000000`;
+  - H025 score `-1.987702538`.
+- Registry status: approved as a diagnostic human-state latent and pruning
+  clue. Rejected as a direct public submission selector.
+- Failure condition: do not use scalar human-route thresholds as the primary
+  Q2 support selector unless H043 public feedback specifically says the wider
+  support was too aggressive.

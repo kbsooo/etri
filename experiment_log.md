@@ -7322,3 +7322,53 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
 - Decision:
   - promote exactly one upload-safe public sensor:
     `submission_h043_q2_top120_a0.66_c105_ca1478b7_uploadsafe.csv`.
+
+## H044. Q2 Human-Route Split HS-JEPA
+
+- Observe: H042's public-positive `45` rows have higher
+  public-route/transition/memory-disagreement structure than the broader H043
+  `105` rows. This suggests the Q2 phase move may be tied to a human-state
+  route, not just a Q2 score surface.
+- Wonder: can we split H043's Q2 manifold by public/transition/private route
+  and get a cleaner public-ready candidate?
+- Hypothesis: if Q2 phase is human-route-conditioned, then candidates that
+  keep public/transition rows and veto private-routine rows should pass
+  action-decoder, route-equation, H025, and bounded H024 stress more strongly
+  than generic H043 top-k phase.
+- Method: `hitl/h044_q2_human_route_split_jepa.py`.
+  - context: H042/H043 Q2 phase supports, H042 route-world rows, public-route,
+    private-memory route, transition exception, route uncertainty, memory
+    disagreement, and phase energy;
+  - target representation: Q2 phase action support under a hidden
+    public/transition/private human-state route;
+  - candidate families: public-transition top-k, H042-like top-k, Q2-regime
+    top-k, phase-energy top-k, H043-support route-pruned top-k, H042-core plus
+    route tail, and H043 private-routine veto.
+- Result:
+  - generated candidates `768`;
+  - scored candidates `240`;
+  - promotable candidates `0`;
+  - selected diagnostic:
+    `h044_h043_privateveto_q0.78_a0.66_c91_826ae253`;
+  - changed cells/rows `91` / `91`, Q2 only;
+  - action margin/support `-0.000095671` / `0.583333333`;
+  - route-equation delta `-0.000184347`;
+  - H024 margin/support `+0.000582704` / `0.250000000`;
+  - H025 score `-1.987702538`;
+  - H042/H043 Jaccard `0.478260870` / `0.866666667`;
+  - H042/H043 distance L2 `0.024195164` / `0.014002951`;
+  - route public/private/transition means:
+    `0.623142` / `0.484741` / `0.585956`.
+- Interpretation:
+  - human-route features are informative enough to produce a plausible
+    private-veto variant, but not strong enough to replace H043 as the next
+    public sensor;
+  - route-pure candidates tend to sacrifice action/route strength, while
+    H043-like candidates remain stronger under the public-free scorer;
+  - the current human social/state route is a diagnostic latent, not yet an
+    action support selector.
+- Decision:
+  - no H044 root upload-safe file promoted;
+  - keep H043 as the priority public sensor;
+  - next route-aware breakthrough should learn a nonlinear route assignment or
+    conditional decoder, not hand-threshold route scores.

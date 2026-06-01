@@ -6902,3 +6902,40 @@ Stress conclusion:
   branch.
 - The public result of H043 will decide whether the branch is an expandable
   manifold or a narrow H042 support correction.
+
+## H044 Q2 Human-Route Split Stress
+
+Stress target:
+
+- test whether Q2 phase support can be selected by human-state route features;
+- require route-selected candidates to survive action decoder, route-equation,
+  H024 warning, and H025 action-health;
+- do not promote merely interpretable human-route candidates.
+
+Stress result:
+
+- generated/scored candidates: `768` / `240`;
+- promotable candidates: `0`;
+- selected diagnostic:
+  `h044_h043_privateveto_q0.78_a0.66_c91_826ae253`;
+- changed cells/rows: `91` / `91`, Q2 only;
+- action margin/support:
+  `-0.000095671` / `0.583333333`;
+- route-equation delta:
+  `-0.000184347`;
+- H024 margin/support:
+  `+0.000582704` / `0.250000000`;
+- H025 score:
+  `-1.987702538`;
+- H042/H043 Jaccard:
+  `0.478260870` / `0.866666667`;
+- promoted root file: none.
+
+Stress conclusion:
+
+- Human-route splitting provides a plausible private-veto pruning candidate,
+  but it does not dominate H043 under public-free stress.
+- Scalar public/transition/private route thresholds are not enough to solve Q2
+  action support.
+- H043 remains the next public sensor; H044 becomes a conditional pruning
+  branch if H043's support proves too wide.

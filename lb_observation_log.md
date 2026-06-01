@@ -2692,3 +2692,35 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - wait for public result. Branch into Q2 support pruning if weak, or Q2
     regime split if strong.
+
+## Public-Free Observation: H044 Q2 Human-Route Split JEPA
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - uses H042/H043 Q2 phase supports as anchors;
+  - constructs human-state route scores from public-route, private-memory,
+    transition-exception, memory-disagreement, route uncertainty, and phase
+    energy;
+  - tests route-selected and private-vetoed Q2-only phase candidates.
+- expected LB reaction if submitted:
+  - improvement would mean Q2 phase support is directly governed by a human
+    public/transition route;
+  - loss would mean hand-built human route thresholds are not the missing
+    support selector.
+- local/public-free observation:
+  - generated/scored candidates `768` / `240`;
+  - promotable candidates `0`;
+  - selected diagnostic
+    `h044_h043_privateveto_q0.78_a0.66_c91_826ae253`;
+  - changed cells/rows `91` / `91`, Q2 only;
+  - action margin/support `-0.000095671` / `0.583333333`;
+  - route-equation delta `-0.000184347`;
+  - H024 margin/support `+0.000582704` / `0.250000000`;
+  - H025 score `-1.987702538`.
+- interpretation:
+  - human route is useful for diagnosis and pruning, but current scalar route
+    thresholds do not produce a stronger submission candidate than H043.
+- next experiment:
+  - wait for H043 public result; if H043 loses, revisit H044's private-veto
+    candidate as a support-pruning follow-up.

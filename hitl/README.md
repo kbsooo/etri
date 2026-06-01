@@ -1239,3 +1239,42 @@ H043 should be submitted as a public sensor before broader route/private action
 experiments. If it beats H042, Q2-local phase is an expandable hidden action
 manifold. If it loses, the H042 improvement is likely tied to a much narrower
 support and H024's warning becomes valid again for wider Q2 moves.
+
+## H044: Q2 Human-Route Split HS-JEPA
+
+- Script: `hitl/h044_q2_human_route_split_jepa.py`
+- Report: `hitl/h044_q2_human_route_split_jepa/h044_report.md`
+- Decision: diagnostic only, no root upload-safe submission promoted.
+
+### Question
+
+Can H043's Q2 phase support be selected by human-state route features such as
+public-route, transition-exception, memory-disagreement, low private-memory,
+and H042-like row geometry?
+
+### Main Finding
+
+The route latent is useful but not sufficient as a scalar support selector.
+
+- Generated/scored H044 candidates: `768` / `240`.
+- Promotable candidates: `0`.
+- Selected diagnostic:
+  `h044_h043_privateveto_q0.78_a0.66_c91_826ae253`.
+- Changed cells/rows: `91` / `91`, Q2 only.
+- Action margin/support:
+  `-0.000095671` / `0.583333333`.
+- Route-equation delta:
+  `-0.000184347`.
+- H024 margin/support:
+  `+0.000582704` / `0.250000000`.
+- H025 score:
+  `-1.987702538`.
+- H042/H043 Jaccard:
+  `0.478260870` / `0.866666667`.
+
+### Interpretation
+
+H044 should not be submitted before H043. If H043 later proves too wide, H044's
+`91`-cell private-veto candidate is a plausible pruning branch. For now, this
+falsifies the simple version of the human-social hypothesis: hand-built
+public/transition/private route thresholds do not solve Q2 action support.

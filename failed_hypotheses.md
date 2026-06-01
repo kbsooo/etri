@@ -3294,3 +3294,32 @@
 - Do not repeat: broad single-decoder ridge extrapolation over the same
   public/private/phase/route atoms. Do repeat target-isolated Q2 phase mapping
   with an explicit H024 override audit.
+
+## FH344. Hand-built human public/transition route directly selects the safe Q2 phase support
+
+- Failed hypothesis: H042's Q2 public win is caused by a human-state route
+  visible in public-route, transition-exception, memory-disagreement, low
+  private-memory, and route-uncertainty features. Therefore route-selected or
+  private-vetoed Q2 phase candidates should beat generic H043-style Q2 top-k
+  support under public-free stress.
+- Observed result: H044 generated `768` Q2-only route-split candidates and
+  scored `240`, but promoted `0`. The selected diagnostic
+  `h044_h043_privateveto_q0.78_a0.66_c91_826ae253` is plausible but not strong
+  enough: action margin/support `-0.000095671` / `0.583333333`,
+  route-equation delta `-0.000184347`, H024 margin/support
+  `+0.000582704` / `0.250000000`, H025 score `-1.987702538`, and
+  H042/H043 Jaccard `0.478260870` / `0.866666667`.
+- Why discard as a submission route: route splitting prunes H043 into a
+  coherent `91`-cell private-veto candidate, but does not outperform H043's
+  public-free profile enough to justify a public slot. Route-pure candidates
+  often improve interpretability while weakening action/route strength.
+- Implementation issue possible: medium. The current route score is hand-built
+  from row-level human-state columns. A nonlinear conditional decoder could use
+  the same latent differently.
+- Bottleneck implication: human-state route is a real explanatory latent, but
+  safe Q2 action support is not selected by a simple public/transition/private
+  threshold. HS-JEPA needs conditional route-to-action translation, not a
+  scalar route gate.
+- Do not repeat: hand-thresholded public-route or private-veto top-k Q2 phase
+  candidates as public submissions unless H043 public feedback specifically
+  points to over-wide support.

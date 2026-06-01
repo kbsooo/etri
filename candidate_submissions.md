@@ -5829,3 +5829,36 @@ Expected public reaction:
   support.
 - If H043 degrades materially, H042 is probably a narrow support-specific
   correction and H024 becomes valid again for expanded Q2 moves.
+
+## H044 Submission Decision
+
+No H044 file is currently recommended for public submission.
+
+What H044 tested:
+
+- Whether H043's Q2 phase support can be selected by human-state route features:
+  public-route, transition-exception, memory-disagreement, low private-memory,
+  route uncertainty, and H042-like row geometry.
+- Whether a private-routine veto can prune H043's `105` Q2 cells into a more
+  credible support.
+
+Best diagnostic candidate:
+
+`hitl/h044_q2_human_route_split_jepa/submission_h044_h043_privateveto_q0.78_a0.66_c91_826ae253.csv`
+
+Local profile:
+
+- changed cells/rows: `91` / `91`, Q2 only;
+- action margin/support: `-0.000095671` / `0.583333333`;
+- route-equation delta: `-0.000184347`;
+- H024 margin/support: `+0.000582704` / `0.250000000`;
+- H025 score: `-1.987702538`;
+- H042/H043 Jaccard: `0.478260870` / `0.866666667`.
+
+Decision:
+
+- Do not submit H044 before H043.
+- If H043 loses materially, this `91`-cell private-veto direction becomes a
+  possible pruning experiment.
+- If H043 wins, H044 is mostly a negative control: hand-built human route
+  thresholds are not the right way to extend the Q2 phase manifold.

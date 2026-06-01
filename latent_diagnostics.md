@@ -1017,3 +1017,13 @@ H024 margin `+0.000619918` and H024 support `0.250000000`. Therefore H043 is a
 clean public sensor, not a proven general decoder. If it scores well, Q2-local
 phase is a real expandable action manifold. If it scores poorly, H042's
 improvement came from a much narrower support-specific correction.
+
+H044 adds a negative but useful latent diagnostic. The human-route geometry is
+visible: the best diagnostic is a `91`-cell private-veto pruning of H043, with
+Q2-only action margin/support `-0.000095671` / `0.583333333`, route-equation
+delta `-0.000184347`, and H025 score `-1.987702538`. But no route-split
+candidate is strong enough to promote. Route-pure rows become more
+interpretable while losing too much action/route strength. The LeJEPA
+interpretation is that human-state route is not collapsed, but a scalar
+route-threshold decoder is too weak. HS-JEPA needs conditional route-to-action
+translation rather than hand-built public/transition/private gates.

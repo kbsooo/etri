@@ -5189,3 +5189,41 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   `submission_h043_q2_top120_a0.66_c105_ca1478b7_uploadsafe.csv`.
 - 제출 전략: submit H043 as the next high-information public sensor before
   trying broader Q/S or route/private action mixtures.
+
+### H044: Q2 phase support is directly selectable by human public/transition route
+
+- 상태: rejected as a public submission selector; retained as a diagnostic
+  human-state latent.
+- 왜 그럴듯한가: H042's winning rows are more public-route/transition/memory
+  disagreement heavy than H043's wider `105` rows. A human-state route might
+  decide which Q2 phase rows are safe.
+- 맞다면:
+  - public/transition route top-k or H043 private-veto candidates should pass
+    action decoder, route equation, H025, and bounded H024 stress;
+  - route-pure candidates should dominate generic Q2 top-k phase candidates.
+- 틀리다면:
+  - route-pure candidates should lose action or route strength;
+  - the best route split should collapse back toward H043 support without
+    producing a stronger public-ready candidate.
+- 최소 실험: `hitl/h044_q2_human_route_split_jepa.py`, generating `768`
+  route-split Q2-only phase candidates and scoring the top `240`.
+- 관측:
+  - promotable candidates `0`;
+  - selected diagnostic
+    `h044_h043_privateveto_q0.78_a0.66_c91_826ae253`;
+  - changed cells/rows `91` / `91`, Q2 only;
+  - action margin/support `-0.000095671` / `0.583333333`;
+  - route-equation delta `-0.000184347`;
+  - H024 margin/support `+0.000582704` / `0.250000000`;
+  - H025 score `-1.987702538`;
+  - H042/H043 Jaccard `0.478260870` / `0.866666667`;
+  - route public/private/transition means
+    `0.623142` / `0.484741` / `0.585956`.
+- 성공/폐기 기준:
+  - accept as a public selector only if at least one route-split candidate is
+    stronger than H043 under action/route/H025 with a bounded H024 warning.
+    Not observed.
+- public LB 관측 반응: none; no H044 file promoted.
+- 제출 전략: do not submit H044 now. Keep H043 as priority. If H043 fails,
+  revisit the `91`-cell private-veto diagnostic as a pruning direction, not as
+  an independent world-changing submission.

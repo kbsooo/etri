@@ -227,6 +227,14 @@ Public LB operating rule:
   (`+0.000619918`). This is the next high-information public sensor: a win
   means Q2 phase is an expandable hidden action manifold; a loss means H042 was
   a narrow support-specific correction.
+- H044 tests the human-social version of that story: maybe Q2 phase support is
+  chosen by public-route/transition/memory-disagreement and private-routine
+  state. It generates `768` route-split Q2 candidates but promotes none. The
+  best diagnostic is a `91`-cell H043 private-veto candidate with action margin
+  `-0.000095671`, route delta `-0.000184347`, and H025 score `-1.987702538`,
+  but it does not beat H043's public-free profile enough to justify a public
+  slot. The conclusion is precise: human-state route is a useful latent, but
+  scalar route thresholds are not the missing Q2 support decoder.
 
 Primary working notes:
 
