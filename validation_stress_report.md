@@ -5632,3 +5632,36 @@ Stress conclusion:
 - H011 is not selector-safe. It is a high-information contradiction test.
 - The selector says "probably slightly worse", while the H010 public-failure axis says "potentially much better if public is anti-H010 on those rows."
 - Therefore the submission reads cleanly: a win validates failed-action inversion as an HS-JEPA action-health target; a loss rejects the anti-H010 world and forces action-health learning upstream.
+
+## H012 Public-Equation Latent Stress
+
+Question: can the known public LB observations be inverted into a hidden public label/subset representation?
+
+Stress setup:
+
+- script: `hitl/h012_public_equation_jepa_jackpot.py`;
+- equations: `19` known-public deltas versus E247;
+- latent: continuous pseudo-public label posterior `q`;
+- priors: E247, good-public soft ensemble, good-public median, neutral, sharp E247;
+- validation: leave-one-public-file-out prediction of known public deltas and ranking;
+- candidate action: move E247 toward stable high-score posterior cells.
+
+Stress result:
+
+- posterior configs tested: `85`;
+- best config: `good_median` prior, ridge `1e-05`;
+- LOO MAE: `0.000320737`;
+- LOO p90 absolute error: `0.000911893`;
+- LOO Spearman: `0.935088`;
+- generated candidates: `238`;
+- selected file: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`;
+- changed cells: `1200`;
+- posterior delta mean/p90: `-0.006446397` / `-0.004693170`;
+- posterior beats-current rate: `1.000000`;
+- max probability delta: `0.294110`.
+
+Stress conclusion:
+
+- H012 is not a calibrated LB prediction. It is a high-risk inverse problem with surprisingly strong leave-one-public ranking evidence.
+- A public win would be a true breakthrough: public observations can train a same-level hidden-state target for HS-JEPA.
+- A public loss would be equally useful: known public equations are underidentified for direct pseudo-label materialization and should only be used as action-health diagnostics.

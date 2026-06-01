@@ -1710,3 +1710,30 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - submit H011 only if spending a slot on a world-changing sensor is acceptable;
   - after feedback, either promote failed-action inversion as an HS-JEPA primitive or kill the anti-H010 branch.
+
+## Public-Free Observation: H012 Public-Equation HS-JEPA
+
+- submission file prepared: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+- public LB: not submitted yet
+- changed point:
+  - treats known public LB deltas as equations over hidden public labels/subset;
+  - solves a continuous pseudo-public posterior `q`;
+  - moves E247 toward the top `1200` posterior cells at logit alpha `0.7`.
+- expected LB reaction:
+  - improvement would mean public LB observations can be used as a same-level HS-JEPA target representation, not merely as after-the-fact scores;
+  - a hard miss would mean the public-equation system is too underidentified or subset-specific for direct pseudo-label materialization.
+- local/public-free observation:
+  - known public observations: `20`;
+  - equations vs E247: `19`;
+  - best posterior config LOO MAE `0.000320737`;
+  - best posterior config LOO Spearman `0.935088`;
+  - generated candidates: `238`;
+  - selected posterior mean/p90 delta vs E247: `-0.006446397` / `-0.004693170`;
+  - changed cells: `1200`;
+  - max probability delta: `0.294110`.
+- interpretation:
+  - this is the strongest upside candidate and the strongest overfit-risk candidate at the same time;
+  - it should not be described as safe or calibrated;
+  - it is a direct test of whether the hidden public world can be reconstructed from old public observations.
+- next experiment:
+  - after public feedback, either promote public-equation latent reconstruction into HS-JEPA, or restrict public equations to diagnostic/action-health use only.

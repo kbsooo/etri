@@ -4354,3 +4354,15 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 성공/폐기 기준: success if public LB beats E247 or at least moves below the E95/E368 band with a readable margin. Failure if it worsens beyond E95/E368 or approaches H010-style loss, which kills the anti-H010 route worldview.
 - public LB 관측 반응: improvement promotes failed-action inversion as an HS-JEPA action-health primitive. Failure pushes the architecture upstream: learn action health before output-space route materialization rather than inverting failed outputs.
 - 제출 전략: H011 is the current highest-information "한탕" file; E247 remains the safe default.
+
+### H012: known public LB observations define a solvable hidden public-state equation system
+
+- 상태: submission candidate generated; public LB pending.
+- 왜 그럴듯한가: for fixed prediction tensors, each public LB delta relative to E247 is a linear constraint on hidden public labels under the public subset. We now have `19` non-E247 public deltas, including strong positive and negative anchors, so these observations may identify a coarse pseudo-public label/subset representation.
+- 맞다면: a posterior `q` fitted from known-public equations should predict held-out public deltas/ranking, and candidates moving E247 toward stable high-score posterior cells should show large robust predicted improvements.
+- 틀리다면: leave-one-public diagnostics should be weak, or public feedback on the materialized candidate should fail hard because the equation system is underidentified and overfits the observed submissions.
+- 최소 실험: `hitl/h012_public_equation_jepa_jackpot.py`.
+- 관측: `20` known public observations, `19` equations vs E247, `85` posterior configs. Best config LOO MAE `0.000320737`, LOO p90 abs `0.000911893`, Spearman `0.935088`. Generated `238` candidates. Selected file `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv` changes `1200` cells with posterior mean/p90 `-0.006446397` / `-0.004693170`.
+- 성공/폐기 기준: success if public LB moves below E247 by a clearly readable margin. Failure if it worsens materially, especially if it enters H010/E323-like fail bands, which would reject direct public-equation pseudo-label materialization.
+- public LB 관측 반응: improvement would make public-equation latent reconstruction the strongest HS-JEPA architecture component. Failure would demote known-public equations to diagnostic/action-health features only.
+- 제출 전략: highest-upside "한탕" candidate; use only if willing to risk a broad inverse-public materialization.

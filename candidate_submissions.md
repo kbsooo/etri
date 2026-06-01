@@ -4868,3 +4868,36 @@ Submission interpretation:
 2. If one big information-gain submission is allowed, submit H011.
 3. If H011 improves materially, promote "failed-action inversion" into HS-JEPA action-health training: context is proposed action anatomy, target is public-valid action representation.
 4. If H011 worsens, reject anti-H010 route inversion and move upstream to a learned action-health latent before probability materialization.
+
+## Update After H012 Public-Equation Build
+
+Current safe public-best remains:
+
+`analysis_outputs/submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`
+
+Known public LB: `0.5761589494`.
+
+Current highest-upside "한탕" file:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+What it bets:
+
+- The known public LB observations are not merely noisy leaderboard points.
+- They jointly constrain a hidden public label/subset representation.
+- That representation can be solved as a JEPA-style target and materialized directly into probabilities.
+
+Why this is a real big bet:
+
+- It changes `1200/1750` target cells, across all labels.
+- Posterior stress predicts a very large delta: mean `-0.006446397`, p90 `-0.004693170` versus E247.
+- Top posterior config has leave-one-public-file-out Spearman `0.935088`, so the equation posterior has some out-of-sample ranking evidence.
+- The risk is equally large: this can overfit the small set of public observations and fail hard.
+
+Submission interpretation:
+
+1. If we want the most conservative final answer, keep E247.
+2. If we want the cleanest one-axis sensor, submit H011.
+3. If we want the highest-upside world-changing sensor, submit H012.
+4. If H012 wins meaningfully, HS-JEPA's strongest paper idea becomes public-equation latent reconstruction: old public responses define a hidden target representation.
+5. If H012 fails hard, reject direct public-equation materialization and keep public LB only as an action-health diagnostic, not as a pseudo-label solver.

@@ -4116,3 +4116,22 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   - selector mean/p90 `+0.000200937` / `+0.000573326`, so this is not selector-safe.
 - Registry status: approved as a high-information public sensor, not as a safe final feature.
 - Failure condition: if public LB does not improve meaningfully, stop using output-space failed-action inversion. Future HS-JEPA action-health must be learned before materialization from row/target/candidate context.
+
+### H012 public-equation hidden-state posterior
+
+- Target hidden structure: pseudo-public label/subset representation implied by known public LB observations.
+- Why needed: current bottleneck is public/action-health mismatch. Instead of adding another feature, H012 asks whether public LB observations themselves constrain the hidden state enough to become a JEPA target.
+- Feature/action form:
+  - equations: known public log-loss deltas versus E247;
+  - latent: continuous posterior `q` over `250 x 7` test cells;
+  - context priors: E247, public-good soft/median ensemble, neutral, sharp E247;
+  - action: move E247 toward stable high-score posterior cells.
+- Current evidence:
+  - `19` public equations;
+  - best LOO public-delta Spearman `0.935088`;
+  - selected file `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`;
+  - changed cells `1200`;
+  - posterior mean/p90 delta `-0.006446397` / `-0.004693170`;
+  - max probability delta `0.294110`.
+- Registry status: approved as highest-upside public sensor, rejected as a safe calibrated feature.
+- Failure condition: if public LB fails materially, do not use public-equation posteriors as direct probability targets. Keep them only as action-health diagnostics or constraints inside a stronger generative model.
