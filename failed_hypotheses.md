@@ -3227,3 +3227,32 @@
 - Do not repeat: whole-row public-route, transition-exception, memory/private,
   or rollback top-k materializations as public submissions without a new
   equation-level solver.
+
+## FH341. Route-conditioned public-world posterior is directly actionable
+
+- Failed hypothesis: H040 failed because route was applied too late. If route
+  scores are used as priors inside the hidden public-subset equation sampler,
+  the resulting posterior should be safe to materialize as a route-conditioned
+  H012 update.
+- Observed result: H041 validates the first half and rejects the second.
+  Route priors improve leave-one-public-file-out public-equation fit:
+  best route-prior LOFO MAE `0.000132093` versus best uniform LOFO MAE
+  `0.000187170`. The selected diagnostic also has useful internal deltas:
+  route-equation `-0.001074309`, H012-posterior `-0.000205969`, and H036-world
+  `-0.000487601`. But action-health still fails. H024 margin/support are
+  `+0.004066028` / `0.250000000`, while H025 row-permutation p is only
+  `0.290000000`.
+- Why discard as a submission route: the public-world posterior can be better
+  calibrated to known public sensors and still point to an upload action that
+  H024 considers outside the H012 basin. Better hidden-world inference is not
+  sufficient unless the action variable is modeled jointly.
+- Implementation issue possible: medium. H041 still materializes posterior via
+  top-cell/row pulls. A solver that includes action variables directly could
+  use the same route-prior evidence.
+- Bottleneck implication: H012 is a coupled equation/action fixed point. The
+  model can now explain hidden public subset better than before, but it cannot
+  translate that explanation into a safe probability tensor by posterior-first
+  editing.
+- Do not repeat: route-conditioned posterior top-k cell/row pulls as public
+  submissions unless the upload action is part of the equation solver or passes
+  a new independent action-health stress.

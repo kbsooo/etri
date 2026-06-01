@@ -150,6 +150,19 @@ Current post-H012 status:
   have negative H024 margin and `0/328` reach H024 support `0.55`. This kills
   the simple row-route translator.
 
+- H041 produced no promoted root submission.
+- Interpretation: H041 moved the H040 route latent inside the public-equation
+  solver instead of using it as a post-hoc row edit. This worked as hidden
+  public-world inference: route-prior leave-one-public-file-out MAE improved to
+  `0.000132093` versus best uniform `0.000187170`. But it still failed as an
+  upload action. The selected diagnostic
+  `h041_route_celltop_k420_a0.18_c420_c5275704` had route-equation /
+  H012-posterior / H036-world deltas
+  `-0.001074309` / `-0.000205969` / `-0.000487601`, yet H024 margin/support
+  were `+0.004066028` / `0.250000000`. H041 therefore validates route state as
+  a public-subset prior and rejects posterior-first top-cell/row pulls as the
+  missing decoder.
+
 Public LB operating rule:
 
 - Public LB is not an iteration loop. A file is promotable only when it beats the current priority under public-free stress, including fresh nulls that were not used to build the candidate.
@@ -167,6 +180,12 @@ Public LB operating rule:
   infer hidden public/private subset and label equations directly, with route
   state as a prior inside the equation solver, instead of editing H012
   probabilities by row or cell after the posterior is already built.
+- H041 tests that narrower big-bet and partially rejects it: route priors inside
+  equation inference improve public-sensor LOFO fit, but posterior-first
+  materialization still leaves the H012 action basin. The live big-bet is now
+  sharper again: infer upload action and public/private hidden world jointly,
+  instead of first estimating a public posterior and then translating it into
+  probability edits.
 
 Primary working notes:
 

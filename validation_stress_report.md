@@ -6761,3 +6761,41 @@ Stress conclusion:
 - The next stress should not be another route top-k materialization. Route
   state must be used while solving hidden public/private subset equations
   directly.
+
+## H041 Route-Prior Equation Solver Stress
+
+Stress target:
+
+- move H040 route state into hidden public-subset equation inference;
+- compare route-prior public-world fit against uniform priors by
+  leave-one-public-file-out public-sensor prediction;
+- only then test whether the route posterior can be materialized as a
+  submission action.
+
+Stress result:
+
+- known public sensors used: `21`;
+- best route-prior LOFO MAE: `0.000132093`;
+- best uniform LOFO MAE: `0.000187170`;
+- route LOFO gain vs uniform: `0.000055077`;
+- generated/scored candidates: `96`;
+- selected diagnostic:
+  `h041_route_celltop_k420_a0.18_c420_c5275704`;
+- selected route-equation / H012-posterior / H036-world deltas:
+  `-0.001074309` / `-0.000205969` / `-0.000487601`;
+- selected H024 margin/support:
+  `+0.004066028` / `0.250000000`;
+- selected H025 score/gain:
+  `-3.847057412` / `+3.847143127`;
+- selected H025 row-permutation p: `0.290000000`;
+- promoted root file: none.
+
+Stress conclusion:
+
+- Route state improves public-equation fit, so it is a useful public-subset
+  prior.
+- Route-conditioned posterior materialization is still not action-safe under
+  H024.
+- The next stress should make action variables first-class inside the equation
+  solver. Posterior-first top-cell pulls have now failed even when the posterior
+  is route-conditioned.

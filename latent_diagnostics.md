@@ -955,3 +955,21 @@ with H024 support above `0.55`. H025 is less negative (`181/328` candidates have
 enough. The latent is not collapsed; the action decoder is wrong. Simple
 row-route assignment joins local gradient, support swap, memory repair, and
 linear nullspace as rejected post-H012 materializers.
+
+H041 moves that route latent one layer earlier, into hidden public-subset
+equation inference. This is a cleaner HS-JEPA target: context is known public
+LB equations plus H040 human-state route scores; target representation is the
+unobserved public row subset and row-target label world. The latent is again
+healthy. Route priors improve leave-one-public-file-out public-sensor fit:
+best route LOFO MAE is `0.000132093` versus best uniform LOFO MAE
+`0.000187170`.
+
+The LeJEPA action check remains negative. The selected H041 posterior action
+has strong internal route-equation/H012-posterior/H036-world deltas
+`-0.001074309` / `-0.000205969` / `-0.000487601`, and H025 row-permutation p
+`0.290000000`. But H024 prices it worse than H012 with margin/support
+`+0.004066028` / `0.250000000`. The representation therefore did not collapse;
+the posterior-first decoder collapsed into the same action failure mode as
+H036-H040. The next HS-JEPA variant should put upload action variables inside
+the equation model itself, instead of sampling a public world and then pulling
+H012 toward its posterior.

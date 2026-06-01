@@ -4784,3 +4784,37 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   as a direct post-H012 route materializer.
 - Failure condition: do not submit row-route public/world/posterior moves unless
   H024 support and margin both turn positive under a genuinely new decoder.
+
+### H041 route-prior public-world features
+
+- Target hidden structure: route-conditioned public/private subset equation,
+  where H040 row routes affect which hidden rows belong to the public sensor
+  world before posterior probabilities are formed.
+- Why needed: H040 rejected direct route materialization but left open the
+  possibility that route should be used inside inference rather than after it.
+- Feature/action form:
+  - route q sources:
+    `h041_route_public_q`, `h041_route_transition_q`,
+    `h041_route_private_tempered_q`, `h041_route_public_hardmix`,
+    `h041_route_memory_contrast_q`, and `h041_e247_phase_q`;
+  - route row priors:
+    public route, transition exception, public-not-private, uncertain-public,
+    support-public, memory-disagree-public, world-public, reliable-transition,
+    and private-inverse priors;
+  - public-world selection by known LB equation fit plus
+    leave-one-public-file-out consistency;
+  - candidate families: route cell-top posterior pulls, route row pulls, and
+    phase-preserving support pulls.
+- Current evidence:
+  - best route-prior LOFO MAE `0.000132093`;
+  - best uniform LOFO MAE `0.000187170`;
+  - route LOFO gain vs uniform `0.000055077`;
+  - selected route-equation/H012-posterior/H036-world deltas
+    `-0.001074309` / `-0.000205969` / `-0.000487601`;
+  - selected H024 margin/support `+0.004066028` / `0.250000000`;
+  - selected H025 row-permutation p `0.290000000`.
+- Registry status: approved as a route-conditioned public-world inference
+  feature. Rejected as a posterior-first submission materializer.
+- Failure condition: do not submit route-conditioned posterior top-cell/row
+  pulls unless the action itself is jointly solved or independently passes
+  H024 support/margin, not just LOFO equation fit.

@@ -9,7 +9,48 @@ search.
 - Public best: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
 - Public LB: `0.5681234831`
 - Current promoted post-H012 sensor: none.
-- Current H035 conclusion: H012 has posterior-improving local swaps, but every constrained support-swap action fails route/pre-state action-health gates. H012 is currently a locked basin, not a smooth editable support.
+- Current H041 conclusion: route state improves hidden public-equation LOFO fit,
+  but route-conditioned posterior pulls still fail H024. H012 is currently a
+  coupled public-equation/action fixed point, not a posterior that can be
+  safely edited after inference.
+
+## H041: Route-Prior Public/Private Equation Solver HS-JEPA
+
+- Script: `hitl/h041_route_prior_equation_solver_jepa.py`
+- Report: `hitl/h041_route_prior_equation_solver_jepa/h041_report.md`
+- Decision: diagnostic only, no submission promoted.
+
+### Question
+
+H040 killed post-hoc row-route materialization. Does the same route state help
+if used inside hidden public-subset equation inference before the posterior is
+formed?
+
+### Main Finding
+
+Route state is a real public-subset prior, but it still does not provide a safe
+posterior-to-upload decoder.
+
+- Known public sensors used: `21`.
+- Best route-prior LOFO MAE: `0.000132093`.
+- Best uniform LOFO MAE: `0.000187170`.
+- Route LOFO gain versus uniform: `0.000055077`.
+- Generated/scored candidates: `96`.
+- Selected diagnostic:
+  `h041_route_celltop_k420_a0.18_c420_c5275704`.
+- Selected route-equation / H012-posterior / H036-world deltas:
+  `-0.001074309` / `-0.000205969` / `-0.000487601`.
+- Selected H024 margin/support:
+  `+0.004066028` / `0.250000000`.
+- Selected H025 score / row-permutation p:
+  `-3.847057412` / `0.290000000`.
+
+### Interpretation
+
+H041 partially validates the H040 route latent: it improves public-sensor
+equation generalization over uniform priors. But H024 still rejects the
+materialized action. The remaining high-upside route is no longer "put route
+earlier"; it is to solve hidden public/private world and upload action jointly.
 
 ## H035: Basin-Boundary Solver HS-JEPA
 

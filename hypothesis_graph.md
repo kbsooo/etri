@@ -5047,3 +5047,52 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   probability materializer.
 - 제출 전략: none. Next action should resample hidden public/private subset and
   label equations with route priors as first-class variables.
+
+### H041: Route state becomes actionable once it is used inside public-equation inference
+
+- 상태: accepted as a public-subset prior; rejected as an actionable posterior
+  materializer.
+- 왜 그럴듯한가: H040 showed route state aligns with H036/H012 posterior and
+  H025, but post-hoc row-route edits leave the H012 basin. If route is part of
+  the hidden evaluation world, it should help before posterior formation.
+- 맞다면:
+  - route-prior world samplers should improve leave-one-public-file-out public
+    equation fit versus uniform priors;
+  - selected route-conditioned posterior candidates should preserve H012/H036
+    proxy gains;
+  - at least one candidate should have negative H024 margin or H024 support
+    above `0.55`.
+- 틀리다면:
+  - route priors may improve public-equation fit but action materialization
+    should still be H024-positive and support-poor;
+  - row-permutation/H025 can look acceptable while H024 says the upload action
+    is outside the H012 phase.
+- 최소 실험: `hitl/h041_route_prior_equation_solver_jepa.py`, sampling
+  route-conditioned hidden public worlds and materializing `96` route posterior
+  candidates.
+- 관측:
+  - known public sensors used `21`;
+  - best route-prior LOFO MAE `0.000132093`;
+  - best uniform LOFO MAE `0.000187170`;
+  - route LOFO gain vs uniform `0.000055077`;
+  - selected diagnostic
+    `h041_route_celltop_k420_a0.18_c420_c5275704`;
+  - selected route-equation / H012-posterior / H036-world deltas
+    `-0.001074309` / `-0.000205969` / `-0.000487601`;
+  - selected H024 margin/support
+    `+0.004066028` / `0.250000000`;
+  - selected H025 score / row-permutation p
+    `-3.847057412` / `0.290000000`;
+  - no promoted upload-safe file.
+- 성공/폐기 기준:
+  - accept route-prior equation solver as a latent if it improves LOFO equation
+    fit. Observed.
+  - accept it as a submission translator only if proxy gains coexist with H024
+    margin <= `-0.00010`, H024 support >= `0.55`, and H025 rowperm p <= `0.35`.
+    Not observed.
+- public LB 관측 반응: no H041 file should be submitted. If a H041 file wins,
+  H024 is missing a route-conditioned posterior action. Otherwise H041 says
+  posterior-first materialization is still the wrong decoder.
+- 제출 전략: none. Next strategy should make the upload action itself part of
+  the hidden equation variable, rather than sampling a public world and then
+  applying top-cell posterior pulls.

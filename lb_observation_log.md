@@ -2559,3 +2559,43 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - infer public/private subset equations directly with route priors and
     H012-phase constraints.
+
+## Public-Free Observation: H041 Route-Prior Equation Solver JEPA
+
+- submission file prepared: none promoted
+- public LB: not submitted
+- changed point:
+  - uses H040 route scores as priors while sampling hidden public row subsets
+    and row-target label worlds;
+  - scores route-prior worlds with leave-one-public-file-out public-sensor
+    prediction;
+  - materializes only the best posterior families after equation-level fit.
+- expected LB reaction:
+  - if a candidate had passed and improved, it would mean route state was
+    previously applied at the wrong layer and becomes actionable inside public
+    equation inference;
+  - because candidates fail H024 support/margin, spending a public slot would
+    mainly test a known posterior-materialization failure.
+- local/public-free observation:
+  - known public sensors `21`;
+  - best route-prior LOFO MAE `0.000132093`;
+  - best uniform LOFO MAE `0.000187170`;
+  - route LOFO gain vs uniform `0.000055077`;
+  - generated/scored candidates `96`;
+  - selected diagnostic
+    `h041_route_celltop_k420_a0.18_c420_c5275704`;
+  - selected route-equation / H012-posterior / H036-world deltas
+    `-0.001074309` / `-0.000205969` / `-0.000487601`;
+  - selected H024 margin/support
+    `+0.004066028` / `0.250000000`;
+  - selected H025 score / row-permutation p
+    `-3.847057412` / `0.290000000`.
+- interpretation:
+  - route state is a genuine public-subset prior;
+  - route-conditioned posterior is still not an H012-compatible upload action;
+  - the remaining gap is an action-coupled equation solver, not another
+    posterior top-k pull.
+- next experiment:
+  - make the submission action itself a latent variable in the public equation,
+    or infer private/public action families directly from known LB deltas rather
+    than first estimating `q_cond`.

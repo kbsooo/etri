@@ -5688,3 +5688,50 @@ Submission interpretation:
   that phase.
 - Do not repeat: public-route top-row pushes, whole-row world/posterior pulls,
   or memory/private row switches as standalone submissions.
+
+## Update After H041
+
+Current public-best:
+
+`submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
+
+Known public LB: `0.5681234831`.
+
+H041 promoted submission:
+
+None.
+
+What H041 tested:
+
+- Whether H040 route state becomes useful when moved inside the hidden
+  public-subset equation solver.
+- Whether route-conditioned public-world posterior can produce an uploadable
+  H012-compatible probability action.
+
+Local evidence:
+
+- known public sensors: `21`;
+- best route-prior LOFO MAE: `0.000132093`;
+- best uniform LOFO MAE: `0.000187170`;
+- route LOFO gain vs uniform: `0.000055077`;
+- generated/scored candidates: `96`;
+- selected diagnostic:
+  `hitl/h041_route_prior_equation_solver_jepa/submission_h041_route_celltop_k420_a0.18_c420_c5275704.csv`;
+- selected route-equation / H012-posterior / H036-world deltas:
+  `-0.001074309` / `-0.000205969` / `-0.000487601`;
+- selected H024 margin/support:
+  `+0.004066028` / `0.250000000`;
+- selected H025 score / row-permutation p:
+  `-3.847057412` / `0.290000000`.
+
+Submission interpretation:
+
+1. No H041 file should be submitted.
+2. Route state is a real public-subset prior because it improves LOFO equation
+   fit over uniform.
+3. The upload action is still wrong: posterior cell pulls are H024-positive
+   even when H025/route-equation proxies look promising.
+4. The next high-upside candidate should solve for action and public/private
+   world jointly. The current posterior-first workflow has now failed at local
+   cell, support swap, ray amplitude, memory-transition, row-route, and
+   route-prior equation levels.

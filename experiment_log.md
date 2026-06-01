@@ -7148,3 +7148,55 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - next big-bet should move route state into the public-equation solver itself
     or infer public/private subset equations directly, not edit H012 rows after
     the posterior is fixed.
+
+## H041. Route-Prior Public/Private Equation Solver HS-JEPA
+
+- Observe: H040 made large public-world proxy gains but failed as a post-hoc
+  row-route materializer. The remaining high-upside claim is that route state
+  should enter before posterior formation, as a prior over the hidden public
+  subset and label world.
+- Wonder: if route state is a genuine part of the evaluation world, does it
+  improve leave-one-public-file-out equation fit versus uniform priors, and can
+  that route-conditioned posterior produce an H012-compatible action?
+- Hypothesis: if H040 failed only because route was applied too late, then a
+  route-prior world sampler should improve public-equation LOFO fit and its
+  candidates should survive H024/H025 action-health better than post-hoc route
+  edits.
+- Method: `hitl/h041_route_prior_equation_solver_jepa.py`.
+  - context: known public LB deltas, H012 posterior, H036 hidden public-world
+    posterior, H038 subject-memory transition state, and H040 row-route scores;
+  - target representation: hidden public row subset plus row-target binary
+    label world;
+  - action: sample route-conditioned public worlds, form a posterior, then
+    materialize route cell-top, route row, and phase-preserving support moves;
+  - stress: leave-one-public-file-out equation fit, H012/H036 posterior proxies,
+    H024 pre-H012 action decoder, H025 action-health, and row-permutation.
+- Result:
+  - known public sensors used `21`;
+  - best route-prior LOFO MAE `0.000132093`;
+  - best uniform LOFO MAE `0.000187170`;
+  - route LOFO gain vs uniform `0.000055077`;
+  - generated/scored candidates `96`;
+  - selected diagnostic:
+    `h041_route_celltop_k420_a0.18_c420_c5275704`;
+  - selected route-equation / H012-posterior / H036-world deltas:
+    `-0.001074309` / `-0.000205969` / `-0.000487601`;
+  - selected H024 margin/support:
+    `+0.004066028` / `0.250000000`;
+  - selected H025 score / row-permutation p:
+    `-3.847057412` / `0.290000000`;
+  - no root upload-safe file was promoted.
+- Interpretation:
+  - positive: route state is a real prior for public-subset equation inference;
+    it improves LOFO public-sensor fit over uniform priors;
+  - negative: even route-conditioned posterior actions leave the H012 action
+    basin under H024, so the bottleneck is not just "put route priors earlier";
+  - the missing decoder likely needs to infer the uploadable action jointly with
+    public/private subset equations, not form a posterior first and then move
+    H012 toward it.
+- Decision:
+  - H041 is diagnostic-only;
+  - do not submit generated H041 variants;
+  - next big-bet should make action variables first-class in the equation
+    solver, or fit hidden public/private equations directly from candidate
+    action families instead of posterior cell pulls.
