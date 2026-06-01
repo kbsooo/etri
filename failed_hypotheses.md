@@ -4,6 +4,30 @@
 
 실패한 실험은 폐기물이 아니라 hidden structure를 좁히는 증거로 남긴다.
 
+## FH-H034. Row-vector route top-k edits can safely improve H012
+
+- Failed hypothesis: H033 failed because the atom was too small. If the action
+  atom is a row's full 7-target route, route-level costs should produce a safe
+  H012 improvement.
+- Observed result: H034 learned H032 sibling margins very well at route level
+  (`0.000388962` all-OOF MAE, `0.985479984` Spearman, `0.956022161` pairwise),
+  but generated `349` row-route actions did not clear stress. The best
+  H024-looking action rolled back all `7` changed targets in row `144` by
+  alpha `0.08`; H024 pre-state margin was `-0.003998719`, but route margin was
+  `+0.032224275`, public-score permutation p was `0.305333333`, and H025
+  row-placement p was `0.940000000`.
+- Why discard: row-route representation is real, but first-order row-route
+  materialization leaves the H012 basin. H024-only post-H012 positives can be
+  hallucinations.
+- Implementation issue possible: medium. H034 tests top-k row rollback/add and
+  whole-q actions, not a combinatorial solver. That leaves a nonlinear solver
+  alive but closes direct row-route edits.
+- Bottleneck implication: the missing translator is not just "use rows instead
+  of cells"; it must classify or solve H012-like route structures before
+  probabilities are changed.
+- Do not repeat: submitting row 144 rollback or any H024-only row-route
+  positive without route/action-health agreement.
+
 ## FH-H033. First-order phase-lock coefficients contain a safe H012 improvement
 
 - Failed hypothesis: H032 sibling failures can be converted into independent

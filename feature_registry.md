@@ -4,6 +4,30 @@
 
 Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature family는 어떤 숨은 구조를 겨냥하는지, label signal인지 split signal인지, 폐기 조건이 무엇인지 함께 관리한다.
 
+## H034 Feature Update
+
+### F-H034. Row-vector route features
+
+- Hidden structure: H012 phase may be locked by whole-row 7-target action
+  routes rather than independent row-target cells.
+- Candidates: row support code, row rollback/add/over aggregates, route mask
+  counts, memory-conflict rows, public row-subset mean, joint-vector mean,
+  H033 row-level cost sums, and row-route x target-group interaction features.
+- Label vs split test: predict H032 sibling margins under score-name,
+  target-group, curve, and random folds; then require generated row-route
+  actions to pass H024 pre-H012 permutation and H025 row-placement stress.
+- Adopt if: route features predict sibling margins and identify a generated
+  row-route action with negative H012-relative stress.
+- Drop if: the features only classify known bad siblings or if H024-only
+  positives fail route/action-health agreement.
+- Current evidence: route representation is strong (`et_route` all-OOF MAE
+  `0.000388962`, Spearman `0.985479984`, pairwise `0.956022161`), but action
+  translation fails. Best row 144 rollback has H024 pre-state margin
+  `-0.003998719`, yet route margin `+0.032224275` and H025 row-permutation p
+  `0.940000000`.
+- Policy: use row-route features as a discriminator/veto for H024
+  hallucinations. Do not use first-order row-route top-k edits as submissions.
+
 ## H033 Feature Update
 
 ### F-H033. Phase-lock contrast features

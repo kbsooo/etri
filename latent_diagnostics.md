@@ -4,6 +4,30 @@
 
 이 문서는 I-JEPA/LeJEPA 아이디어를 그대로 복제하지 않고, 이 대회 데이터의 hidden-DGP 탐색에 맞춰 변형한 latent diagnostic 기록이다.
 
+## H034 Row-Vector Route Diagnostic
+
+H034 lifts H033's phase-lock representation from cell level to row-vector route
+level. The context is a row-level 7-target action pattern around H012; the
+target representation is the H032 sibling margin under a public-free state
+decoder.
+
+- Route training rows: `4262`.
+- Generated row-route actions: `349`.
+- Best route model: `et_route`.
+- All-OOF MAE/Spearman/pairwise accuracy: `0.000388962` / `0.985479984` /
+  `0.956022161`.
+- Selected local-looking action: rollback all `7` changed targets in row `144`
+  by alpha `0.08`.
+- H024 pre-state margin vs H012: `-0.003998719`.
+- H034 route mean margin prediction: `+0.032224275`.
+- H025 row-permutation p: `0.940000000`.
+
+LeJEPA diagnosis: the route latent is very healthy as a failure representation,
+but not as a direct action generator. It also identifies a false-positive mode
+in H024: a tiny single-row rollback can look excellent to public-free state
+regression while being rejected by route geometry and train-action row-placement
+stress. Use H034 as a route discriminator, not as a top-k row edit generator.
+
 ## H033 Phase-Lock Contrast Diagnostic
 
 H033 treats H032's failed siblings as contrastive examples. The context is a

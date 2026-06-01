@@ -4,6 +4,16 @@
 
 실험은 `Observe -> Wonder -> Hypothesize -> Falsify -> Build -> Stress -> Decide` 형식으로 기록한다. public LB는 최적화 대상이 아니라 hidden-DGP sensor로 사용한다.
 
+## H034. Row-Vector Route Translator HS-JEPA
+
+- Observe: H033 learned H012-vs-sibling failure at cell level, but direct negative-cost cell edits were action-bad. The likely next abstraction is a row's entire 7-target route pattern.
+- Wonder: if H012 is a row-vector phase, can row-route features predict sibling failure and produce safer edits than cellwise H033?
+- Hypothesis: row-vector route features should predict H032 sibling margins, and row-level rollback/add/whole-q edits should clear H024/H025 stress if the missing translator is just "use rows as atoms."
+- Method: `hitl/h034_rowvector_route_translator_jepa.py` built row-route features from H032 sibling actions, H033 phase-lock costs, H012 support masks, memory conflict, public row-subset scores, and row-vector state. It trained ridge/ExtraTrees route models, generated `349` row-route actions from H012, and stressed the selected file with pre-H012 H024 permutation and H025 row-placement permutation.
+- Result: representation-level success, action-level failure. Best route model `et_route` has all-OOF MAE `0.000388962`, Spearman `0.985479984`, pairwise `0.956022161`. The best local-looking action rolls back all `7` changed targets in row `144` by alpha `0.08`; H024 pre-state margin is `-0.003998719` versus H012, but route mean margin is `+0.032224275`, public-score permutation p is `0.305333333`, and H025 row-permutation p is `0.940000000`.
+- Interpretation: H012 sibling failure is even more learnable at row-route level than at cell level, but first-order row-route materialization still leaves the safe basin. H024 alone can hallucinate a tiny row rollback as public-good.
+- Decision: no H034 submission. The next high-upside experiment should be a direct H012-vs-sibling classifier or combinatorial route solver, not row top-k rollback/add edits.
+
 ## H033. Phase-Lock Contrastive HS-JEPA
 
 - Observe: H032 recovered H012 as a public-free phase point, but every smooth phase sibling was much worse. The missing object may be the law that makes those siblings fail.

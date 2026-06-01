@@ -4,6 +4,29 @@
 
 현재 목표는 CV 평균이 아니라 hidden-public transfer 가능성을 stress로 판정하는 것이다.
 
+## H034 Update: Row-Vector Route Stress
+
+H034 tests the next abstraction after H033: use a whole row's 7-target route as
+the action atom.
+
+- Route training rows: `4262`.
+- Generated row-route candidates: `349`.
+- Best route model: `et_route`, all-OOF MAE `0.000388962`, Spearman
+  `0.985479984`, pairwise `0.956022161`.
+- Selected diagnostic:
+  `row_rollback_support_rollback_memory_conflict_changed_r1_a0.08`.
+- Action: rollback all `7` H012-changed targets in row `144`, alpha `0.08`.
+- H024 pre-state margin vs H012: `-0.003998719`.
+- H034 route mean margin prediction: `+0.032224275`.
+- Pre-H012 public-score permutation p(lower margin): `0.305333333`.
+- H025 row-permutation p(higher top1200 gain): `0.940000000`.
+
+Interpretation: row-route stress finds a serious decoder conflict. H024 alone
+would make the single-row rollback look tempting, but route geometry and H025
+row-placement stress reject it. This blocks first-order row-route edits and
+makes a direct H012-vs-sibling classifier/combinatorial route solver the next
+stress target.
+
 ## H033 Update: Phase-Lock Contrast Stress
 
 H033 asks whether H032 sibling failures define a usable phase-lock law. It

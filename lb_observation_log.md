@@ -8,6 +8,26 @@ Public LB는 최적화 target이 아니라 hidden public subset과 calibration s
 
 ## Public-Free Post-H012 Observation
 
+H034 is a public-free row-route observation. It tests whether the failed H032
+siblings become actionable when the atomic unit is a row's full 7-target route
+instead of an independent cell.
+
+- Route training rows: `4262`.
+- Best route model: `et_route`, all-OOF MAE `0.000388962`, Spearman
+  `0.985479984`, pairwise `0.956022161`.
+- Generated row-route actions: `349`.
+- Selected diagnostic: `row_rollback_support_rollback_memory_conflict_changed_r1_a0.08`.
+- H024 pre-state margin vs H012: `-0.003998719`.
+- H034 route mean margin prediction: `+0.032224275`.
+- Public-score permutation p(lower margin): `0.305333333`.
+- H025 row-permutation p(higher top1200 gain): `0.940000000`.
+
+Signal: route-level sibling failure is highly learnable, but H024 can
+over-encourage a tiny single-row rollback that route/action-health stress
+rejects. Unresolved: a nonlinear H012-vs-sibling classifier or combinatorial
+solver may still recover an action, but direct row-route top-k editing should
+not be submitted.
+
 H033 is also not a public LB observation. It follows H032 by using the failed
 phase siblings as contrastive supervision for a phase-lock decoder.
 

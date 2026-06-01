@@ -9,7 +9,50 @@ search.
 - Public best: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
 - Public LB: `0.5681234831`
 - Current promoted post-H012 sensor: none.
-- Current H033 conclusion: H032 sibling failures are learnable as phase-lock contrast, but the first independent-cell negative-cost translator does not produce an H012-beating action.
+- Current H034 conclusion: H032 sibling failures are learnable at row-vector route level, but first-order row-route edits still do not produce an H012-beating action.
+
+## H034: Row-Vector Route Translator HS-JEPA
+
+- Script: `hitl/h034_rowvector_route_translator_jepa.py`
+- Report: `hitl/h034_rowvector_route_translator_jepa/h034_report.md`
+- Decision: diagnostic only, no submission promoted.
+
+### Question
+
+H033 killed independent-cell phase-lock editing. Is H012 instead locked at the
+row-vector route level, where one row's 7-target action pattern is the atomic
+state?
+
+### Main Finding
+
+The row-route representation is strong, but row-route editing is still not
+action-safe.
+
+- Route training rows: `4262`.
+- Generated row-route candidates: `349`.
+- Best route model: `et_route`.
+- Best route all-OOF MAE/Spearman/pairwise: `0.000388962` / `0.985479984` /
+  `0.956022161`.
+- Best local-looking candidate:
+  `row_rollback_support_rollback_memory_conflict_changed_r1_a0.08`.
+- Candidate action: rollback all `7` H012-changed targets in row `144` by
+  alpha `0.08`.
+- H024 pre-state margin vs H012: `-0.003998719`.
+- H034 route mean margin prediction: `+0.032224275`.
+- Public-score permutation p(lower margin): `0.305333333`.
+- H025 row-permutation p(higher top1200 gain): `0.940000000`.
+
+### Interpretation
+
+This is a useful contradiction. The public-free H024 state decoder likes a tiny
+single-row rollback, but both the row-route sibling-failure model and H025
+row-placement stress reject it. The lesson is not "submit row 144"; it is that
+H024 can hallucinate post-H012 improvements when the action is outside the
+validated H012 route manifold.
+
+H034 therefore blocks first-order row-route top-k edits. The next useful route
+is a direct H012-vs-sibling classifier or a combinatorial phase solver that
+selects whole route structures before probability materialization.
 
 ## H033: Phase-Lock Contrastive HS-JEPA
 

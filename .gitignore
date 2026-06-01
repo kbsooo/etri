@@ -311,3 +311,6 @@ hitl/h032_h012_phase_translator_jepa/submission_h032_*.csv
 
 # H033 materialized phase-lock sweep files are reproducible from the script; only summaries are tracked.
 hitl/h033_phase_lock_contrast_jepa/submission_h033_*.csv
+
+# H034 materialized row-vector route sweep files are reproducible from the script; only summaries are tracked.
+hitl/h034_rowvector_route_translator_jepa/submission_h034_*.csv

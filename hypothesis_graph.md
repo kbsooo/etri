@@ -26,7 +26,8 @@ E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해
 - H029는 H012의 support/amplitude/target/subject/memory/row-identity invariant를 깨보며, target-wise row permutation이 0.581대 위험으로 붕괴한다는 것을 보였다.
 - H032는 H012의 public score를 decoder 학습에서 빼도 H012 자체가 state/action phase point로 복원된다는 것을 보였다. 다만 주변 phase sibling은 모두 H012보다 훨씬 약하게 pricing되었다.
 - H033은 그 주변 phase sibling 실패가 learnable contrast임을 보였지만, 독립 cell coefficient로 음수 비용 편집을 적용하는 것은 action-safe하지 않음을 보였다.
-- 0.54 진입을 막는 핵심 병목은 이제 hidden state 발견 자체보다, H012 같은 singular public-equation basin의 정확한 row-target identity를 private-safe/invariant hidden state로 재구성하고 그 exact phase를 확장 가능한 action law로 번역하는 문제다. 단순 posterior-completion, scalar gate, train-action health, smooth public-gradient, target-level calibration, dense phase sweep, first-order cellwise phase-lock edit은 현재 반증되었다.
+- H034는 row-vector route abstraction에서 sibling failure를 더 잘 학습했지만, first-order row-route edit도 action-safe하지 않음을 보였다.
+- 0.54 진입을 막는 핵심 병목은 이제 hidden state 발견 자체보다, H012 같은 singular public-equation basin의 정확한 row-target identity를 private-safe/invariant hidden state로 재구성하고 그 exact phase를 확장 가능한 action law로 번역하는 문제다. 단순 posterior-completion, scalar gate, train-action health, smooth public-gradient, target-level calibration, dense phase sweep, first-order cellwise phase-lock edit, first-order row-route top-k edit은 현재 반증되었다.
 
 ## 관계 그래프
 
@@ -63,6 +64,8 @@ known public interventions
   -> stronger sibling not found in dense phase map
   -> sibling failures learnable as phase-lock contrast
   -> first-order cell edit not action-safe
+  -> row-vector route failures highly learnable
+  -> first-order row-route edit not action-safe
 ```
 
 ## 가설 목록
@@ -237,6 +240,16 @@ known public interventions
 - 최소 실험: convert H032 siblings into rollback/amplify/add interventions, learn cell-level phase-lock costs, generate negative-cost candidate edits, then score with pre-H012 H024-style decoder and H025 row-permutation stress.
 - 관측: H033 best all-OOF alpha `100.0`, MAE `0.000814682`, Spearman `0.954416119`, pairwise `0.912785497`. It found `538/1200` H012-support cells with negative rollback cost and `247/550` outside-support cells with negative add cost. But the best generated edit `negative_add_add_k10_a0.1` was still `+0.016275125` worse than H012 by pre-state prediction, with public-score permutation p `0.861333333` and H025 row-permutation p `0.710000000`.
 - 제출 전략: no H033 submission. Use the contrast as an H012-vs-sibling discriminator target. The next action model should operate at row-vector/target-route level or through a nonlinear discrete translator before probability materialization.
+
+### H16D. Row-vector route failure is learnable but first-order row-route editing is not enough
+
+- 상태: 증거 있음 for route representation; direct row-route action은 반증.
+- 왜 그럴듯한가: H029 showed exact row-target placement is part of H012's invariant, and H033 killed independent-cell editing. A row's 7-target route may be the correct atomic unit.
+- 맞다면: row-route features should predict H032 sibling margins better than cellwise features, and row-level actions should clear stress if the missing translator is only atomic-unit mismatch.
+- 틀리다면: route features may still predict sibling failure, but generated row-route edits will fail H024/H025 stress or expose decoder hallucinations.
+- 최소 실험: train route-level ridge/ExtraTrees on H032 sibling margins using H033 costs, H012 row masks, memory conflict, row-vector state, and target-route aggregates; generate row rollback/add/whole-q actions from H012; stress against H024 pre-H012 permutation and H025 row permutation.
+- 관측: H034 `et_route` all-OOF MAE `0.000388962`, Spearman `0.985479984`, pairwise `0.956022161`. Generated `349` candidates. The best local-looking row 144 rollback has H024 pre-state margin `-0.003998719`, but route mean margin `+0.032224275`, public-score permutation p `0.305333333`, and H025 row-permutation p `0.940000000`.
+- 제출 전략: no H034 submission. H024-only row rollback positives are treated as hallucination unless route/action-health views agree. Move to a direct H012-vs-sibling classifier or combinatorial route solver.
 
 ### H17. The useful public-positive label-flow correction is S4-dominant with Q3 support
 
