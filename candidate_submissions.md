@@ -4802,6 +4802,10 @@ One high-information big-bet candidate now exists:
 
 `hitl/h010_mobility_route_triad_jackpot/submission_h010_objective_mobility_s1down_s4up_target_delta_pos_subject_s0_25_uploadsafe.csv`
 
+Upload parser-safe mirror:
+
+`submission_h010_objective_s1s4_v2_uploadsafe.csv`
+
 Why this is not just another tiny insurance variant:
 
 - H009 first tested the aggressive S4-only idea: preserve E247 S4 prior but rewrite S4 rank by HS-JEPA mobility state.
