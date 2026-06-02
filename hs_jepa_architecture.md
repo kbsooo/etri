@@ -899,3 +899,57 @@ This updates the architecture boundary:
 2. raw logs are stronger and less hand-wavy than story features;
 3. the current blocker is not finding a context representation, but translating
    that representation into low-overlap, private-safe row-target actions.
+
+## H093 Masked Low-Overlap Support Target
+
+H093 changed the JEPA target instead of the context:
+
+```text
+context = raw day-block logs + row/route/value-law structure
+target = action-grade route support outside H087/H088/H091/H092 root supports
+decoder = route-conditioned value law with explicit novelty gates
+```
+
+This is the first HS-JEPA module where novelty is inside the target
+representation, not just a post-selection bonus.
+
+Promoted diagnostic file:
+`submission_h093_masked_lowoverlap_5f023312_uploadsafe.csv`.
+
+Subject-group OOF masked latent diagnostics:
+
+- white head Spearman: `0.586722`;
+- white-private Spearman: `0.591539`;
+- white-public Spearman: `0.700088`;
+- white-objective Spearman: `0.704811`;
+- white-Q2 Spearman: `0.658097`;
+- overall Spearman: `0.512311`.
+
+Candidate diagnostics:
+
+- changed cells / rows versus H057: `21` / `3`;
+- Q2 changed cells: `3`;
+- posterior delta versus H057: `-0.000008`;
+- hard-world delta versus H057: `+0.000000123`;
+- max selected-cell known overlap: `0.476190`;
+- selected-cell overlap with H091/H092 roots: `0.000000` / `0.000000`;
+- upload-safe validation passed.
+
+The key stress result is scale:
+
+```text
+top 5000 route actions with max-known-overlap <= 0.88 and latent score >= 0.55:
+only 14 actions
+
+top 5000 route actions with max-known-overlap <= 0.78 and latent score >= 0.55:
+only 2 actions
+```
+
+Architectural implication:
+
+```text
+Masked low-overlap support is learnable, so the latent does not collapse. But
+it is too sparse to create a public-readable submission under the current value
+law. The next HS-JEPA bottleneck is value-law/public-equation inversion, not
+more support discovery or another context encoder.
+```

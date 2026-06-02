@@ -5753,3 +5753,39 @@ target is route/action/value-head quality, not labels.
   explicitly rewards low-overlap support and private safety.
 - If H092 public improves by `>=0.001`, upgrade raw context to action-grade.
   Otherwise treat it as representation evidence, not a jackpot submission.
+
+## H093 Feature/Action Registry: Masked Low-Overlap Support Latent
+
+### Feature / Action
+
+`masked_lowoverlap_support_latent`
+
+### Hidden Structure Targeted
+
+The feature targets row-target support outside the known H087/H088/H091/H092
+root selected-cell basin. It asks whether raw human-state context can predict
+new support, not merely score old route actions.
+
+### Label Signal vs Split Signal
+
+- label signal evidence: pseudo targets combine low known-root overlap with
+  H085/H018/H082/H071 action-quality agreement;
+- context evidence: model input uses raw day-block context and route structure,
+  not direct known-overlap columns;
+- leakage risk: the target is still public-sensor-derived, so this is an
+  HS-JEPA diagnostic latent, not a normal supervised feature.
+
+### Materialization
+
+- base: H057;
+- model: subject-group OOF ExtraTrees/RandomForest multi-output regression;
+- diagnostic file:
+  `submission_h093_masked_lowoverlap_5f023312_uploadsafe.csv`.
+
+### Keep / Kill Criteria
+
+- Keep as architecture evidence that masked support targets are learnable.
+- Do not use as the next public submission unless a future solver scales it
+  beyond `~200` changed cells while preserving novelty.
+- H093 currently kills the idea that low-overlap support alone can generate a
+  0.53-scale public move under the existing decoder.

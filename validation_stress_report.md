@@ -7796,3 +7796,41 @@ Decision:
 Raw context is a valid HS-JEPA input view, but the next big bet must alter the
 target/solver. Context improvement alone is not the current bottleneck.
 ```
+
+## H093 Masked Low-Overlap Support Stress
+
+Date: 2026-06-02
+
+H093 tested whether changing the target to low-overlap support could overcome
+the H092 high-overlap failure.
+
+| Candidate | Changed cells | Posterior delta | Hard-world delta | Max known selected-cell overlap | H091 overlap | H092 overlap | Upload safe |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `submission_h093_masked_lowoverlap_5f023312_uploadsafe.csv` | `21` | `-0.000008` | `+0.000000123` | `0.476190` | `0.000000` | `0.000000` | yes |
+| H093 bridge branch | `14` | `-0.000005` | `-0.000000322` | `0.857143` | `0.428571` | `0.428571` | yes |
+
+OOF representation checks:
+
+| Head | Spearman OOF | Top-10 AUC |
+| --- | --- | --- |
+| white | `0.586722` | `0.787279` |
+| white_public | `0.700088` | `0.851464` |
+| white_objective | `0.704811` | `0.891220` |
+| white_q2 | `0.658097` | `0.919361` |
+| overall | `0.512311` | `0.731614` |
+
+Scale stress:
+
+- top route actions with `max_known_overlap <= 0.88` and latent score
+  `>= 0.55`: `14`;
+- top route actions with `max_known_overlap <= 0.78` and latent score
+  `>= 0.55`: `2`;
+- root diagnostic changed only `21` cells.
+
+Decision:
+
+```text
+H093 passes representation-health and upload-safety stress, but fails
+submission-scale stress. Low-overlap support exists but is not a large enough
+action field under the current decoder.
+```

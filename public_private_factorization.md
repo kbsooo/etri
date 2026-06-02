@@ -649,3 +649,38 @@ The factorization problem is now sharper:
 - public/private head prediction: partially alive, especially public/Q2;
 - private head from raw context: weak;
 - low-overlap action discovery: not action-grade yet.
+
+## H093 Masked Low-Overlap Factorization
+
+H093 asked whether the public/private factorization can escape the known
+H087/H088/H091/H092 support basin by changing the latent target itself:
+
+```text
+raw context -> masked low-overlap support heads -> route value-law decoder
+```
+
+Observed factorization:
+
+- white-public OOF Spearman: `0.700088`;
+- white-objective OOF Spearman: `0.704811`;
+- white-Q2 OOF Spearman: `0.658097`;
+- selected cells / rows: `21` / `3`;
+- posterior delta vs H057: `-0.000008`;
+- hard-world delta vs H057: `+0.000000123`;
+- max selected-cell overlap with known roots: `0.476190`;
+- selected-cell overlap with H091/H092 roots: `0.000000` / `0.000000`.
+
+Current rule:
+
+```text
+The low-overlap factor is learnable but too sparse. Public/private state is not
+blocked because the encoder cannot see it; it is blocked because the decoder
+cannot scale a new support region safely.
+```
+
+Updated hierarchy:
+
+1. action-grade support: still concentrated in H057/H087/H088/H091/H092 basin;
+2. context-to-head prediction: healthy, especially public/objective/Q2;
+3. low-overlap support: visible but too small;
+4. next live factor: value-law inversion over the known support basin.

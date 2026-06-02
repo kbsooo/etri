@@ -3542,3 +3542,40 @@ Next direction:
 - global row-target assignment solver;
 - value-law discovery that does not train only on H087/H088-compatible action
   quality.
+
+## Weak/Falsified: Masked Low-Overlap Support Can Scale Directly
+
+Date: 2026-06-02
+
+Related experiment: H093 masked low-overlap support HS-JEPA.
+
+Hypothesis:
+
+```text
+If the JEPA target explicitly rewards action-grade low-overlap support, raw
+context will discover enough new row-target routes to create a 0.53-scale
+submission.
+```
+
+Observed result:
+
+- the masked latent is not random: white-public Spearman `0.700088`,
+  white-objective Spearman `0.704811`, white-Q2 Spearman `0.658097`;
+- strict low-overlap route actions are too rare:
+  - overlap `<=0.88` and latent score `>=0.55`: `14` actions;
+  - overlap `<=0.78` and latent score `>=0.55`: `2` actions;
+- promoted diagnostic changed only `21` cells on `3` rows;
+- H091/H092 selected-cell overlap was `0`, so novelty was real but tiny.
+
+Decision:
+
+This weakens the direct low-overlap support expansion worldview. It does not
+kill low-overlap latent learning, but it kills it as a standalone 0.53-scale
+action generator under the current decoder.
+
+Next direction:
+
+- value-law/public-equation inversion over known support;
+- whole-row route value law;
+- use low-overlap latent only as a diagnostic or veto, not as the main support
+  source.

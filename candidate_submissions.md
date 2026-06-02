@@ -7321,3 +7321,48 @@ Priority: medium-low as a scarce public submission. It is useful paper
 evidence for HS-JEPA's raw context encoder, but it is not the next best 0.53
 jackpot candidate because the low-overlap branch was too small and the promoted
 file still heavily overlaps known action support.
+
+## H093 Masked Low-Overlap Support Diagnostic
+
+Generated file:
+
+`submission_h093_masked_lowoverlap_5f023312_uploadsafe.csv`
+
+Worldview: the next HS-JEPA jump comes from changing the target representation
+to low-overlap route support. Raw context should predict row-target actions
+outside the known H087/H088/H091/H092 selected-cell basin.
+
+Evidence:
+
+- selected internal candidate:
+  `h093_masked_extreme_white_c420_r140_q80_5f023312`;
+- changed cells / rows vs H057: `21` / `3`;
+- Q2 changed cells: `3`;
+- posterior delta vs H057: `-0.000008`;
+- hard-world delta vs H057: `+0.000000123`;
+- max selected-cell known overlap: `0.476190`;
+- selected-cell overlap with H091/H092: `0.000000` / `0.000000`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- large win: low-overlap hidden support exists and even a tiny diagnostic is
+  enough to expose it;
+- neutral: the latent is real but too small for public resolution;
+- loss: low-overlap support discovery is not the 0.53 route under the current
+  decoder.
+
+Priority: not recommended as the next public submission. It is too small
+(`21` cells) to be an efficient scarce public slot. Keep it as a paper/diagnostic
+artifact showing that masked support can be learned but not scaled.
+
+Next higher-information submission family:
+
+```text
+H094-style value-law/public-equation inversion over the known H057/H087/H088
+support basin.
+```
+
+Reason: H093 makes the support-expansion path less plausible. A meaningful
+next file should bet that the support is mostly right but the probability
+translation law is still wrong.

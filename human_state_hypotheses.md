@@ -751,3 +751,40 @@ Practical change:
 - stop expecting social-story or raw-context features alone to create 0.53;
 - design the next target as a route-support or assignment problem with
   low-overlap/private-safety constraints.
+
+## H093 Human-State Reading
+
+H093 tested that next target directly.
+
+In human terms:
+
+```text
+Do not ask whether a day looks like weekend, payday, stress, or recovery.
+Ask whether the raw day context predicts a row-target route that the current
+best systems did not already touch.
+```
+
+The answer is mixed:
+
+- the masked low-overlap heads are learnable;
+- white-public, white-objective, and white-Q2 heads have meaningful
+  subject-held-out signal;
+- but the actionable region is tiny: only `21` changed cells on `3` rows in
+  the promoted diagnostic file.
+
+Human-state implication:
+
+```text
+There probably are hidden human states outside the known H057/H087/H088 basin,
+but they are not dense enough to explain a 0.53 jump through support expansion.
+The large remaining human-state question is not "which other days belong to
+the state?" It is "what value law should be applied to the state we already
+found?"
+```
+
+Practical change:
+
+- keep human/social/raw contexts as HS-JEPA context encoders;
+- stop using them as direct action generators for now;
+- move the next big bet to public/private value-law or public-equation
+  inversion over known row-target support.

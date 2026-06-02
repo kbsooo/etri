@@ -9972,3 +9972,87 @@ idea that simply replacing semantic stories with raw logs opens a new
 action-grade support region. The next breakthrough should change the target or
 solver: masked low-overlap route-support prediction, global row-target
 assignment, or value-law discovery.
+
+## H093. Masked Low-Overlap Support HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h093_masked_lowoverlap_support_hsjepa.py`
+- Report: `hitl/h093_masked_lowoverlap_support_hsjepa/h093_report.md`
+- Diagnostic candidate:
+  `submission_h093_masked_lowoverlap_5f023312_uploadsafe.csv`
+
+### Observe
+
+H092 showed that raw day-block context can predict hidden route-action quality,
+but its promoted file still overlapped H088/H087 action support by
+`0.888748` / `0.922882`. The low-overlap H092 branch changed only `32` cells.
+
+### Hypothesis
+
+H093-H: the target representation is the bottleneck. If the JEPA target is
+explicitly masked toward low-overlap action support, raw context should find a
+new support region outside H087/H088/H091/H092 roots.
+
+### Method
+
+H093 used H092 raw day-block context but replaced the target heads with:
+
+- low-overlap white support;
+- white-private support;
+- white-public support;
+- white-objective support;
+- white-Q2 support;
+- overall masked support.
+
+The model did not receive direct known-overlap columns as input. Overlap was
+used to form the target and later to gate the decoder. Stress used subject
+GroupKFold OOF predictions.
+
+### Result
+
+Selected `h093_masked_extreme_white_c420_r140_q80_5f023312`.
+
+- changed cells / rows versus H057: `21` / `3`;
+- Q2 changed cells: `3`;
+- posterior delta versus H057: `-0.000008`;
+- hard-world delta versus H057: `+0.000000123`;
+- source-proxy delta versus H057: `+0.000000001`;
+- max selected-cell known overlap: `0.476190`;
+- selected-cell overlap with H091/H092 roots: `0.000000` / `0.000000`;
+- upload-safe validation passed.
+
+OOF masked latent diagnostics:
+
+- white Spearman `0.586722`;
+- white-private Spearman `0.591539`;
+- white-public Spearman `0.700088`;
+- white-objective Spearman `0.704811`;
+- white-Q2 Spearman `0.658097`;
+- overall Spearman `0.512311`.
+
+Scale stress:
+
+- `max_known_overlap <= 0.88` and latent score `>= 0.55`: only `14` actions;
+- `max_known_overlap <= 0.78` and latent score `>= 0.55`: only `2` actions;
+- the bridge candidate selected only `14` cells.
+
+### Interpretation
+
+H093 does not collapse: masked low-overlap support is partially predictable
+from raw context. But it cannot scale into a public-readable candidate under
+the current route/value-law decoder.
+
+This weakens the world model:
+
+```text
+0.53 is available by finding many more low-overlap rows/routes from raw human
+context.
+```
+
+It strengthens the world model:
+
+```text
+The support basin is already mostly known; the unsolved HS-JEPA problem is how
+to translate that hidden state into probabilities through a better value law or
+public/private equation inversion.
+```

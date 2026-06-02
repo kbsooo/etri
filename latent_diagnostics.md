@@ -1718,3 +1718,41 @@ and Q2 heads. The private head is much weaker than H091, and action decoding
 still overlaps H087/H088. The representation is healthy but not yet a
 low-overlap support finder.
 ```
+
+## H093 Masked Low-Overlap Latent Diagnostics
+
+Date: 2026-06-02
+
+H093 changed the target from generic action quality to masked low-overlap
+support outside H087/H088/H091/H092 root selected cells.
+
+Context:
+
+- H092 raw day-block logs and transition/novelty coordinates;
+- route structure and value-law identity;
+- no direct known-overlap columns in the model input.
+
+Target representation:
+
+- low-overlap white support;
+- white-private, white-public, white-objective, and white-Q2 support;
+- overall masked support.
+
+OOF geometry:
+
+| Head | Target mean | Prediction std | Spearman OOF | Top-25 AUC | Top-10 AUC |
+| --- | --- | --- | --- | --- | --- |
+| white | `0.312225` | `0.100480` | `0.586722` | `0.814679` | `0.787279` |
+| white_private | `0.369685` | `0.127234` | `0.591539` | `0.817038` | `0.782858` |
+| white_public | `0.371653` | `0.111311` | `0.700088` | `0.846262` | `0.851464` |
+| white_objective | `0.390596` | `0.090769` | `0.704811` | `0.881769` | `0.891220` |
+| white_q2 | `0.354059` | `0.117032` | `0.658097` | `0.866260` | `0.919361` |
+| overall | `0.358526` | `0.079230` | `0.512311` | `0.757114` | `0.731614` |
+
+Diagnostic conclusion:
+
+```text
+The masked low-overlap latent is learnable and not collapsed, but it is sparse.
+The best low-overlap route support moves only 21 cells. This shifts the
+architecture bottleneck from representation discovery to value-law translation.
+```

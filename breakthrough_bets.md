@@ -769,3 +769,42 @@ Next jackpot direction:
   the existing H087/H088 action-quality target;
 - value-law discovery from public/private equations rather than another
   context feature family.
+
+### H093 Update
+
+H093 executed the masked route-support target:
+
+```text
+context = raw day-block logs + route/value-law structure
+target = low-overlap action support outside H087/H088/H091/H092 roots
+```
+
+| Experiment | File | Core claim | Changed vs H057 | Posterior delta | Hard-world delta | Known-root overlap | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| H093 | `submission_h093_masked_lowoverlap_5f023312_uploadsafe.csv` | raw context can predict new low-overlap route support | `21` cells / `3` rows | `-0.000008` | `+0.000000123` | max selected overlap `0.476190` | latent real but support too sparse |
+
+OOF evidence is not collapse: white-public Spearman `0.700088`,
+white-objective Spearman `0.704811`, and white-Q2 Spearman `0.658097`.
+
+The scale test is the decisive negative:
+
+- only `14` top route actions satisfy
+  `max_known_overlap <= 0.88` and `masked_latent_score >= 0.55`;
+- only `2` top route actions satisfy
+  `max_known_overlap <= 0.78` and `masked_latent_score >= 0.55`;
+- the promoted root file moves only `21` cells.
+
+Breakthrough reading:
+
+```text
+Low-overlap support discovery is not the next 0.53 mechanism under the current
+decoder. The search should move from "new support" to "new value law": infer
+how the known public/private row-target basin should be translated into
+probabilities.
+```
+
+Next 0.53-scale big bet:
+
+- public-equation/value-law inversion from the H057 base;
+- whole-row or route-level value law, not cell top-k;
+- use H093/H092 only as a diagnostic gate, not as the main action support.

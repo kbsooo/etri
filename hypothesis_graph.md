@@ -5891,3 +5891,46 @@ H092 changed `629` cells with posterior delta `-0.000501`, hard-world delta
 `0.888748`. The low-overlap branch changed only `32` cells. Local transition:
 raw context encoder survives, but "better context alone" is weakened as the
 0.53 breakthrough hypothesis.
+
+## H093 Update: Masked Low-Overlap Support
+
+### New Hypothesis Node
+
+H093-H: raw day-block context can predict action-grade route support outside
+the H087/H088/H091/H092 root selected-cell basin if the target itself is masked
+toward low overlap.
+
+### Evidence Entering H093
+
+- H091/H092 learned healthy action-quality latents.
+- H091/H092 selected mostly known support.
+- H090 direct white-space action was too unsafe.
+
+### Experiment Edge
+
+H093 masks the target representation toward low-overlap support while keeping
+route/value-law context and subject-group OOF prediction. Known-overlap
+features are not given directly to the predictor.
+
+### State Transition Rules
+
+- If H093 changes hundreds of low-overlap cells safely: promote support
+  discovery as the next 0.53 route.
+- If H093 latent is healthy but tiny: demote support discovery and promote
+  value-law inversion.
+- If H093 latent collapses: return to H091/H092 known-support latents.
+
+### Local Result
+
+H093 latent did not collapse: white-public Spearman `0.700088`,
+white-objective Spearman `0.704811`, and white-Q2 Spearman `0.658097`.
+However, the selected diagnostic changed only `21` cells on `3` rows. Only
+`14` top actions had `max_known_overlap <= 0.88` and latent score `>=0.55`.
+
+Local transition:
+
+```text
+Low-overlap support discovery survives as a tiny latent, but dies as the next
+large action generator. The strongest live edge moves to value-law/public-
+equation inversion over known support.
+```
