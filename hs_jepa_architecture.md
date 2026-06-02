@@ -1220,3 +1220,53 @@ route-action basis equation    = H100
 The next public result should decide whether the final decoder should be local
 cell toxicity or route-action equation space. H100 is riskier but more
 architecture-defining than H099.
+
+## HS-JEPA v2.4: Disagreement-Toxicity Gate
+
+H101 adds a safety gate between the route-action equation and the final
+assignment:
+
+```text
+route-action basis equation
+  -> candidate route actions
+  -> stability across route-basis models
+  -> H098 cell-equation toxicity check
+  -> small safe-assignment field
+```
+
+This version makes the active goal explicit. HS-JEPA is no longer only a
+hidden-state representation model. It is an equation solver that asks whether a
+row-target action is safe under two public/private views:
+
+```text
+route-level view: does this action overlap with routes that public feedback
+                  rewards?
+cell-level view:  does this action look like a locally toxic H088-style move?
+```
+
+H101 evidence:
+
+- candidate: `submission_h101_disagreement_toxicity_9e088156_uploadsafe.csv`;
+- selected actions / cells / rows: `5` / `6` / `5`;
+- route-basis predicted delta vs H057: `-0.000641`;
+- H098 cell-equation predicted delta vs H057: `-0.000014`;
+- anti-H088 direction rate: `0.833333`;
+- H057-positive alignment rate: `0.833333`;
+- selected conflict rate: `1.000000`.
+
+Architectural implication:
+
+The current HS-JEPA decoder stack is:
+
+```text
+H098 = sparse signed cell equation
+H099 = route-constrained assignment
+H100 = route-action basis equation
+H101 = route-basis stability + H098 toxicity gate
+```
+
+H101 does not replace H100 yet. It exposes the next architectural problem:
+the model can detect route-basis public response, but it cannot yet determine
+which broad route actions are private-safe. The next HS-JEPA step should learn
+a larger public/private action-toxicity field instead of only pruning route
+actions by stability.

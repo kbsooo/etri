@@ -10481,3 +10481,61 @@ Public interpretation:
   too aggressive;
 - large loss: route-basis regression is a diagnostic only, and the actionable
   field remains H098-style sparse signed cells.
+
+## H101 Disagreement-Toxicity Arbitrage HS-JEPA
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h101_disagreement_toxicity_9e088156_uploadsafe.csv`
+
+Worldview:
+
+```text
+The safe assignment field is not every action that the route-basis equation
+likes. It is the smaller region where route-basis models keep predicting
+benefit while the H098 cell equation does not identify strong toxicity.
+```
+
+Method:
+
+- reuse H100 route-action basis models as an equation ensemble;
+- keep only route actions whose public-response sign is stable across the
+  route-basis model family;
+- compare that route benefit against the H098 sparse cell equation;
+- decode the H057-positive / H088-opposite conflict region only when the
+  route-basis equation and cell-equation toxicity boundary do not strongly
+  conflict.
+
+Observed result:
+
+- selected candidate: `h101_conflict_stable_c72_r30_amp100_9e088156`;
+- selected route-basis actions / cells / rows: `5` / `6` / `5`;
+- route-basis predicted delta vs H057: `-0.000641`;
+- H098 cell-equation predicted delta vs H057: `-0.000014`;
+- posterior delta vs H057: `+0.000003`;
+- hard diagnostic delta vs H057: `+0.000003`;
+- anti-H088 direction rate: `0.833333`;
+- H057-positive alignment rate: `0.833333`;
+- selected conflict rate: `1.000000`;
+- mean route negative-rate across stability models: `0.550000`;
+- cosine with H088 direction: `-0.012012`;
+- upload-safe validation passed.
+
+Interpretation:
+
+H101 is mostly a diagnostic, not the strongest breakthrough candidate. Its
+stability filter collapses H100's broad support from `24` actions / `28` cells
+to `5` actions / `6` cells. That means the route-basis equation has a strong
+public-sensor fit, but the stable safe-assignment region is currently tiny.
+The broad H100 field may still be correct, but H101 shows it is not stable
+under route-basis model perturbation.
+
+Public interpretation:
+
+- if H101 beats H100, the missing module is a disagreement-toxicity boundary:
+  route-basis benefit must be filtered through H098-style cell caution;
+- if H100 beats H101, the cell-equation caution diluted the real route-basis
+  signal and should not be used as an action gate;
+- if both lose, route-basis decoding is explanatory but not action-grade.

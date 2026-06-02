@@ -7624,3 +7624,39 @@ Public interpretation:
 Priority: very high information value, higher risk than H099. It is the first
 candidate that explicitly asks whether the hidden public/private equation lives
 in route-action overlap space.
+
+## H101 Disagreement-Toxicity Arbitrage
+
+Generated file:
+
+`submission_h101_disagreement_toxicity_9e088156_uploadsafe.csv`
+
+Worldview: H100 route-basis actions are safe only when they survive a
+disagreement/toxicity filter against H098's cell-equation decoder.
+
+Evidence:
+
+- selected candidate:
+  `h101_conflict_stable_c72_r30_amp100_9e088156`;
+- selected actions / cells / rows: `5` / `6` / `5`;
+- route-basis predicted delta vs H057: `-0.000641`;
+- H098 cell-equation predicted delta vs H057: `-0.000014`;
+- posterior delta vs H057: `+0.000003`;
+- anti-H088 direction rate: `0.833333`;
+- H057-positive alignment rate: `0.833333`;
+- selected conflict rate: `1.000000`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H100: action toxicity must be gated by decoder disagreement, and
+  H100 was too broad;
+- loss while H100 wins: the route-basis equation should be trusted more than
+  H098 cell-level caution;
+- loss with H100: route-basis public-response fitting is a diagnostic, not a
+  reliable decoder.
+
+Priority: medium information value, lower than H100 if only one slot is
+available. H101 is the cleanest test of the new toxicity-boundary idea, but its
+actual action support is very small and its local stress deltas are nearly
+neutral.

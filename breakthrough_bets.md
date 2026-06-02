@@ -996,3 +996,39 @@ Decision rule:
   response is overfit.
 - H098 wins over both: route templates are too rigid; sparse signed cells are
   the live representation.
+
+### H101 Update
+
+H101 asks whether H100 needs a disagreement-toxicity gate.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H101 | `submission_h101_disagreement_toxicity_9e088156_uploadsafe.csv` | safe route-basis actions are only the subset that survive H098 cell-equation caution | `5` actions / `6` cells / `5` rows | route-basis delta `-0.000641`, cell-equation delta `-0.000014`, H057/H088 alignment `0.833333` | diagnostic toxicity-boundary bet |
+
+Breakthrough reading:
+
+```text
+The broad H100 route-basis action field is not stable across equation variants.
+The stable public/private disagreement field is tiny. That is useful evidence:
+the next 0.53-scale breakthrough probably needs to discover a larger safe
+assignment law, not just prune H100 harder.
+```
+
+Current high-information submission order:
+
+1. `submission_h100_route_basis_6c8e0c6b_uploadsafe.csv`
+   - best one-slot test if we want a world-changing route-equation bet.
+
+2. `submission_h099_route_equation_1cbff4af_uploadsafe.csv`
+   - best cleaner test if we want assignment discreteness with less H100-style
+     regression risk.
+
+3. `submission_h101_disagreement_toxicity_9e088156_uploadsafe.csv`
+   - best diagnostic test if we specifically want to know whether H100 must be
+     filtered through H098 toxicity caution.
+
+Decision rule:
+
+- H101 better than H100: toxicity-boundary/gating is real.
+- H100 better than H101: H101 over-pruned the useful route-basis field.
+- both weak: route-basis is a sensor space, not yet an action decoder.

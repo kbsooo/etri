@@ -933,3 +933,38 @@ route-basis predicted delta (`-0.001031`) and H098 cell predicted delta
 If H100 wins, the public/private factorization should move toward route-action
 basis equations. If it loses, route basis remains explanatory but not
 action-grade.
+
+## H101 Disagreement-Toxicity Boundary
+
+H101 tests whether the route-action basis equation needs a toxicity boundary:
+
+```text
+route-basis public response says action is useful
++ H098 sparse cell equation says action is not clearly toxic
+-> stable safe-assignment field
+```
+
+Observed H101 factorization:
+
+- selected file: `submission_h101_disagreement_toxicity_9e088156_uploadsafe.csv`;
+- selected actions / cells / rows: `5` / `6` / `5`;
+- route-basis predicted delta vs H057: `-0.000641`;
+- H098 cell-equation predicted delta vs H057: `-0.000014`;
+- posterior delta vs H057: `+0.000003`;
+- anti-H088 direction rate: `0.833333`;
+- H057-positive alignment rate: `0.833333`;
+- selected conflict rate: `1.000000`.
+
+Interpretation:
+
+The stable disagreement-filtered field is much smaller than H100's full
+route-basis field. This weakens the claim that every H100 route action is
+safe, but it does not kill the route-basis worldview. It separates two claims:
+
+1. route-basis coordinates explain public observations;
+2. route-basis coordinates alone are sufficient to choose safe actions.
+
+H101 says claim 1 is still alive, while claim 2 needs public validation. If
+H101 improves and H100 does not, the public/private factorization should add a
+toxicity gate. If H100 improves and H101 does not, the toxicity gate is too
+conservative.
