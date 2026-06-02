@@ -788,3 +788,41 @@ Practical change:
 - stop using them as direct action generators for now;
 - move the next big bet to public/private value-law or public-equation
   inversion over known row-target support.
+
+## H094 Human-State Reading
+
+H094 reframed H057 as a human-state event:
+
+```text
+Some Q2-seed rows behave like a full-row sleep-state correction event. Can
+raw daily behavior and human/social context recognize the same state elsewhere?
+```
+
+The answer is partly yes and mostly no.
+
+Yes:
+
+- the H057 event is recognizable from context;
+- H057 echo has subject-held-out Spearman `0.778954`;
+- known public/private/Q2 value heads are very stable.
+
+No:
+
+- when direct H057 cell replay is forbidden, transfer is weak;
+- promoted candidate mean transfer score is only `0.011098`;
+- only `134` cells can be moved under the non-replay gate.
+
+Human-state implication:
+
+```text
+The Q2-seed full-row state is probably real, but it is not a broad social or
+routine archetype that appears densely across the test set. It behaves like a
+specific row-target assignment state.
+```
+
+Practical change:
+
+- keep H057 echo as a teacher/diagnostic head;
+- stop expecting H057-like human stories to scale by similarity search alone;
+- next human-state bet should ask "which row-target assignments satisfy the
+  hidden public/private equations?" rather than "which days look like H057?".

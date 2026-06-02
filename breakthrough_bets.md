@@ -808,3 +808,44 @@ Next 0.53-scale big bet:
 - public-equation/value-law inversion from the H057 base;
 - whole-row or route-level value law, not cell top-k;
 - use H093/H092 only as a diagnostic gate, not as the main action support.
+
+### H094 Update
+
+H094 tested the next value-law idea directly:
+
+```text
+context = raw day-block + human/social state + route/action metadata
+target = sparse H057-vs-H042 value-law teacher
+decoder = transfer to non-H057 cells inside known public/private support
+```
+
+| Experiment | File | Core claim | Changed vs H057 | Posterior delta | Hard-world delta | H057 overlap | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| H094 | `submission_h094_value_law_transfer_73f40c93_uploadsafe.csv` | H057 is a transferable sparse value-law teacher | `134` cells / `23` rows | `-0.000053` | `-0.000014` | selected mean `0.000000` | teacher learnable, transfer weak |
+
+OOF diagnostics look strong:
+
+- H057 echo Spearman `0.778954`, top-10 AUC `0.998971`;
+- known-public/private/Q2 heads all exceed Spearman `0.98`;
+- overall head Spearman `0.978088`.
+
+The decisive negative result is transfer scale:
+
+- forbidding direct H057 cell replay leaves only a weak transfer tail;
+- promoted mean H057 transfer score is only `0.011098`;
+- the candidate moves only `134` cells despite using the known support basin.
+
+Breakthrough reading:
+
+```text
+H057 is very easy to recognize but hard to generalize. It behaves more like a
+local row-target assignment event than a broad value law.
+```
+
+Updated 0.53 big-bet priority:
+
+1. global row-target assignment solver with public/private constraints;
+2. direct public-equation inversion at row/route level, not H057 echo transfer;
+3. multi-world private/public factorization that can explain H057 without
+   replaying it;
+4. only after that, another context encoder.

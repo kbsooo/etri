@@ -10056,3 +10056,88 @@ The support basin is already mostly known; the unsolved HS-JEPA problem is how
 to translate that hidden state into probabilities through a better value law or
 public/private equation inversion.
 ```
+
+## H094 H057 Value-Law Transfer HS-JEPA
+
+Date: 2026-06-03
+
+- Script: `hitl/h094_h057_value_law_transfer_hsjepa.py`
+- Report: `hitl/h094_h057_value_law_transfer_hsjepa/h094_report.md`
+- Generated diagnostic candidate:
+  `submission_h094_value_law_transfer_73f40c93_uploadsafe.csv`
+
+### Observe
+
+H057 improved the public frontier by turning H042's Q2 phase rows into a
+full-vector row-state correction. H093 then showed that low-overlap support
+does not scale. That leaves a sharper question:
+
+```text
+Was H057 a sparse teacher for a generalizable value law, or just a local
+row-target event?
+```
+
+### Hypothesis
+
+H094-H: H057 vs H042 reveals a hidden value law. Raw day-block context,
+human/social state, and route metadata should predict that value law, then
+transfer it to non-H057 cells inside the known H087/H088/H091/H092 support
+basin.
+
+### Method
+
+H094 used H057-vs-H042 changed cells as a sparse teacher target:
+
+- context: raw day-block features, human/social state, route/action metadata;
+- target representation: H057 echo, known-public, known-private,
+  known-objective, known-Q2, overall value heads;
+- stress split: subject GroupKFold OOF;
+- decoder: route-conditioned value law, explicitly avoiding direct H057 cell
+  replay by requiring mean H057 cell overlap `0.0` for the promoted candidate.
+
+### Result
+
+OOF value latent diagnostics:
+
+- H057 echo Spearman `0.778954`, top-10 AUC `0.998971`;
+- known-public Spearman `0.984925`;
+- known-private Spearman `0.984580`;
+- known-objective Spearman `0.973522`;
+- known-Q2 Spearman `0.981512`;
+- overall Spearman `0.978088`.
+
+Promoted diagnostic candidate:
+`h094_h057_q2_seed_reopen_c540_r160_q145_73f40c93`.
+
+- changed cells / rows versus H057: `134` / `23`;
+- Q2 changed cells: `22`;
+- posterior delta versus H057: `-0.000053`;
+- hard-world delta versus H057: `-0.000014`;
+- source-proxy delta versus H057: `-0.000000169`;
+- mean H057 transfer score: `0.011098`;
+- mean known-basin score: `0.830202`;
+- mean H057 cell overlap: `0.000000`;
+- selected-cell overlap with H087/H088/H091/H092: `0.904412` /
+  `0.889706` / `0.823529` / `0.433824`;
+- upload-safe validation passed.
+
+### Interpretation
+
+The H057 sparse teacher is very learnable, but it is not strongly transferable.
+When direct H057 cell replay is forbidden, the transfer score collapses to a
+weak tail and the candidate can only move `134` cells.
+
+This weakens the world model:
+
+```text
+H057 is a broad hidden value law that can be generalized to many new rows and
+open a 0.53 path by value transfer alone.
+```
+
+It strengthens the world model:
+
+```text
+H057 is a local row-target assignment event. The next 0.53-scale bet should
+solve global row-target assignment or infer public/private value equations
+directly, not merely transfer the H057 event.
+```

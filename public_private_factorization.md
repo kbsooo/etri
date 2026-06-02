@@ -684,3 +684,39 @@ Updated hierarchy:
 2. context-to-head prediction: healthy, especially public/objective/Q2;
 3. low-overlap support: visible but too small;
 4. next live factor: value-law inversion over the known support basin.
+
+## H094 H057 Teacher Factorization
+
+H094 asked whether H057 is a public/private value law that can be transferred,
+or a local assignment event:
+
+```text
+H057-vs-H042 event -> sparse teacher heads -> context-predicted value law ->
+non-H057 known-basin transfer
+```
+
+Observed factorization:
+
+- H057 echo OOF Spearman: `0.778954`;
+- known-public OOF Spearman: `0.984925`;
+- known-private OOF Spearman: `0.984580`;
+- known-Q2 OOF Spearman: `0.981512`;
+- selected candidate overlap with H057 cells: `0.000000`;
+- selected overlap with H087/H088/H091/H092 roots: `0.904412` /
+  `0.889706` / `0.823529` / `0.433824`;
+- selected cells / rows: `134` / `23`.
+
+Current rule:
+
+```text
+Public/private heads can recognize the H057 event, but recognition does not
+equal scalable transfer. The H057 event should be modeled as a local sensor in
+the public/private factorization, not as a broad public head by itself.
+```
+
+Updated hierarchy:
+
+1. public/private known support: still the dense action basin;
+2. H057 echo: highly recognizable, weakly transferable;
+3. low-overlap support: learnable, too sparse;
+4. next live factor: global assignment/equation solver across known support.

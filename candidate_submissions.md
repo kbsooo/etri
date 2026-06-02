@@ -7366,3 +7366,43 @@ support basin.
 Reason: H093 makes the support-expansion path less plausible. A meaningful
 next file should bet that the support is mostly right but the probability
 translation law is still wrong.
+
+## H094 H057 Value-Law Transfer Diagnostic
+
+Generated file:
+
+`submission_h094_value_law_transfer_73f40c93_uploadsafe.csv`
+
+Worldview: H057 is not just the current best submission. It may be a sparse
+teacher showing a hidden value law: Q2 seed rows should trigger a full-vector
+row-state correction. HS-JEPA should predict that hidden value state from
+raw/human/route context and transfer it to non-H057 cells.
+
+Evidence:
+
+- selected internal candidate:
+  `h094_h057_q2_seed_reopen_c540_r160_q145_73f40c93`;
+- changed cells / rows vs H057: `134` / `23`;
+- Q2 changed cells: `22`;
+- posterior delta vs H057: `-0.000053`;
+- hard-world delta vs H057: `-0.000014`;
+- source-proxy delta vs H057: `-0.000000169`;
+- mean H057 transfer score: `0.011098`;
+- mean known-basin score: `0.830202`;
+- mean H057 cell overlap: `0.000000`;
+- overlap with H087/H088/H091/H092 roots: `0.904412` / `0.889706` /
+  `0.823529` / `0.433824`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- large win: H057 is a sparse public teacher and can be transferred through
+  HS-JEPA value-law heads;
+- small movement: H057 echo is real but too local to scale;
+- loss: H057 was a local row-target assignment event, not a transferable value
+  law.
+
+Priority: low as a scarce public submission. It is upload-safe and coherent,
+but it moves only `134` cells and the mean transfer score is weak. Its main
+value is as a falsification artifact: it makes "H057-transfer alone opens
+0.53" unlikely.

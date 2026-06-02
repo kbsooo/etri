@@ -953,3 +953,39 @@ it is too sparse to create a public-readable submission under the current value
 law. The next HS-JEPA bottleneck is value-law/public-equation inversion, not
 more support discovery or another context encoder.
 ```
+
+## H094 H057 Value-Law Teacher Target
+
+H094 added a new HS-JEPA target type: public-feedback-as-teacher.
+
+```text
+context = raw day-block + human/social state + route/action metadata
+teacher = H057-vs-H042 sparse row-target value event
+target representation = H057 echo + known public/private/objective/Q2 heads
+decoder = route-conditioned value law transferred to non-H057 cells
+```
+
+This makes HS-JEPA more precise:
+
+- labels are not the only supervision;
+- public LB observations can define a sparse hidden-state teacher;
+- the model must predict that teacher from context, then decode it under
+  anti-replay gates.
+
+H094 diagnostic result:
+
+- H057 echo is learnable: subject-held-out Spearman `0.778954`, top-10 AUC
+  `0.998971`;
+- known public/private/Q2 value heads are very learnable;
+- direct replay is not allowed in the promoted candidate;
+- transfer scale is weak: only `134` changed cells, mean H057 transfer score
+  `0.011098`.
+
+Architectural implication:
+
+```text
+HS-JEPA v1 should include public-feedback teacher heads, but H057 echo should
+be treated as a diagnostic representation, not as the main decoder target.
+The next decoder should solve row-target assignment and public/private value
+equations directly.
+```
