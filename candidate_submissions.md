@@ -8587,3 +8587,42 @@ Public interpretation:
 - H123 wins more: public rewards route completion more than H098 caution;
 - H122 wins more: all refill is unsafe;
 - H121 wins more: row-regime replacement is the missing variable.
+
+## H125 Row-Bundle Equation Solver
+
+Generated file:
+
+`submission_h125_rowbundle_f3990392_uploadsafe.csv`
+
+Worldview: H124 may leave a subject-target bundle incomplete.  The specific
+claim is narrow: id04 has an S1 hidden episode, and row `101` should close the
+bundle after H124's rows `97` and `103`.
+
+Evidence:
+
+- selected candidate: `h125_id04_s1_bundle_closure_f3990392`;
+- selected cells / rows: `28` / `23`;
+- added cells: `1`;
+- added target mix: S1 `1`;
+- final target route: Q1 `8`, Q2 `0`, Q3 `5`, S1 `9`, S2 `4`,
+  S3 `0`, S4 `2`;
+- model predicted delta vs H057: `-0.0000311`;
+- route-basis predicted delta vs H057: `-0.0007022`;
+- H088-axis cosine: `-0.054369`;
+- good-bad margin: `0.154855`;
+- upload-safe: `True`.
+
+Submission priority:
+
+Medium information value.  H125 is not as strong an architecture fork as H122,
+H123, or H124.  It tests a narrow row-bundle closure.  The useful part is that
+other candidate bundles failed the cumulative constraints, so this is not a
+general "add more margin cells" rule.
+
+Public interpretation:
+
+- win over H124: subject-target bundle closure matters after dual-sensor
+  refill;
+- H124 wins more: cell-level dual-sensor envelope is safer than bundle closure;
+- H123 wins more: route completion dominates bundle/H098 caution;
+- H122 wins more: all refill is unsafe.

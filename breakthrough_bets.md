@@ -1885,3 +1885,38 @@ Decision rule:
 - H123 wins more: route-basis completion matters more than H098 caution;
 - H122 wins more: no refill is safe;
 - H121 wins more: row-regime replacement is the right second stage.
+
+### H125 Update
+
+H125 asks whether H124's refill should be closed at a subject-target bundle
+level.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H125 | `submission_h125_rowbundle_f3990392_uploadsafe.csv` | id04/S1 is a hidden row bundle; H124 left one safe S1 closure cell | `28` cells / `23` rows; `1` bundle-closure cell | route-basis delta `-0.000702`, model delta `-0.000031`, H088 cosine `-0.054369`, good-bad margin `0.154855` | narrow bundle-closure bet |
+
+Breakthrough reading:
+
+```text
+Subject-target bundle completion is not broadly supported.  Only id04/S1
+survived.  This weakens the idea that the next 0.53 jump is a generic row-bundle
+solver, but it keeps a small bundle-closure stage alive after H124.
+```
+
+Updated high-information submission order:
+
+1. `submission_h124_dualsensor_b8e822c0_uploadsafe.csv`
+   - tests the main dual-sensor refill architecture.
+
+2. `submission_h123_refilleq_8958f688_uploadsafe.csv`
+   - tests route-first refill.
+
+3. `submission_h125_rowbundle_f3990392_uploadsafe.csv`
+   - tests narrow id04/S1 bundle closure.
+
+Decision rule:
+
+- H125 wins: add a subject-target closure phase after H124;
+- H124 wins more: bundle closure is over-completion;
+- H123 wins more: route completion matters more than bundle/H098 caution;
+- H122 wins more: no refill stage is safe.

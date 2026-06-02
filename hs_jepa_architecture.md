@@ -2294,3 +2294,40 @@ The H123/H124 fork is now the cleanest architecture test:
 H123 = route-first refill.
 H124 = route refill only when H098/model caution agrees.
 ```
+
+## HS-JEPA v5.8: Optional Subject-Target Bundle Closure
+
+H125 tests whether the dual-sensor refill cells should be closed as a
+subject-target episode.
+
+```text
+context encoder
+  -> action proposal
+  -> toxicity prune
+  -> dual-sensor refill
+  -> optional subject-target bundle closure
+       only if a remaining cell improves H098/margin
+       and stays within H088/bad-axis constraints
+  -> calibrated submission
+```
+
+H125 evidence:
+
+- candidate: `submission_h125_rowbundle_f3990392_uploadsafe.csv`;
+- selected solver: `h125_id04_s1_bundle_closure_f3990392`;
+- start from H124 cells: `27`;
+- added cells: `1`;
+- added target: S1 `1`;
+- final cells / rows: `28` / `23`;
+- route-basis predicted delta vs H057: `-0.0007022`;
+- model predicted delta vs H057: `-0.0000311`;
+- H088-axis cosine: `-0.054369`;
+- good-bad margin: `0.154855`.
+
+The evidence is narrow.  HS-JEPA should not promote generic row-bundle
+generation yet.  The safer architecture is:
+
+```text
+bundle closure is optional and only after prune/refill safety has already been
+established.
+```

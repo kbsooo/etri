@@ -12014,3 +12014,65 @@ Public interpretation:
   core is safer;
 - if H121 improves more, replacement should be row-regime based, not
   route/H098 envelope based.
+
+## H125 Row-Bundle Equation Solver HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h125_row_bundle_equation_solver_hsjepa/h125_report.md`
+- `hitl/h125_row_bundle_equation_solver_hsjepa/h125_decision.csv`
+- `hitl/h125_row_bundle_equation_solver_hsjepa/h125_selected_cells.csv`
+- `hitl/h125_row_bundle_equation_solver_hsjepa/h125_added_cells.csv`
+- `submission_h125_rowbundle_f3990392_uploadsafe.csv`
+
+Worldview:
+
+```text
+H124's safe refill cells may be incomplete at the row/subject episode level.
+The safe unit could be a subject-target bundle, not an isolated cell.
+```
+
+Observed result:
+
+- promoted candidate: `h125_id04_s1_bundle_closure_f3990392`;
+- root file: `submission_h125_rowbundle_f3990392_uploadsafe.csv`;
+- selected cells / rows: `28` / `23`;
+- H124 start cells: `27`;
+- added cells: `1`;
+- added target: S1 `1`;
+- added row: `101` (`id04`, `2024-10-24`);
+- final target changes: Q1 `8`, Q2 `0`, Q3 `5`, S1 `9`, S2 `4`,
+  S3 `0`, S4 `2`;
+- route delta from H124: `+0.00000124`;
+- H098/model delta from H124: `-0.000000332`;
+- H088 delta from H124: `+0.006573`;
+- good-bad margin delta from H124: `+0.009981`;
+- model predicted delta vs H057: `-0.0000311`;
+- route-basis predicted delta vs H057: `-0.0007022`;
+- H088-axis cosine: `-0.054369`;
+- good-bad margin: `0.154855`;
+- upload-safe validation passed.
+
+Negative findings:
+
+- `id06_s2_margin_bundle`: no cells survived cumulative constraints;
+- `id06_stage_margin_bundle`: no cells survived cumulative constraints;
+- `route_tail_plus_margin_bundle`: no cells survived cumulative constraints.
+
+Important diagnostic:
+
+H125 does not support a broad row-bundle completion story.  It only supports a
+narrow id04/S1 closure: H124 added id04 rows `97` and `103`, and H125 adds row
+`101` as the one remaining cell that improves H098 and margin enough to pass.
+
+Public interpretation:
+
+- if H125 improves over H124, HS-JEPA should consider subject-target bundle
+  closure after dual-sensor refill;
+- if H124 improves more, H125 over-completed the id04 S1 bundle and cell-level
+  envelope is safer;
+- if H123 improves more, route completion matters more than H098/bundle
+  conservation;
+- if H122 improves more, all refill/bundle completion is overfit.

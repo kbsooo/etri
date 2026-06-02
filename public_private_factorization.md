@@ -1994,3 +1994,42 @@ Failure interpretation:
 - H122 improves more: refill itself is unsafe;
 - H121 improves more: refill should be gated by row-regime rather than
   dual-sensor cell agreement.
+
+## H125 Subject-Target Bundle Factorization
+
+H125 tests whether H124's refill cells are isolated or part of a row/subject
+episode.
+
+Observed H125 factorization:
+
+- selected file: `submission_h125_rowbundle_f3990392_uploadsafe.csv`;
+- selected candidate: `h125_id04_s1_bundle_closure_f3990392`;
+- start from H124 cells: `27`;
+- added cells: `1`;
+- added target: S1 `1`;
+- final selected cells / rows: `28` / `23`;
+- Q2 cells: `0`;
+- route-basis predicted delta vs H057: `-0.0007022`;
+- model predicted delta vs H057: `-0.0000311`;
+- bad-axis positive projection: `0.000000`;
+- H088-axis cosine: `-0.054369`;
+- good-bad margin: `0.154855`.
+
+Interpretation:
+
+The row-bundle hypothesis is only weakly alive:
+
+```text
+id04/S1 has a plausible closure cell, but id06 and route-tail bundles failed.
+```
+
+This suggests subject-target bundles can be useful as a final closure check,
+but they are not the main public-private assignment field.
+
+Failure interpretation:
+
+- H125 improves: add a bundle-closure phase after dual-sensor refill;
+- H124 improves more: bundle closure is over-completion and cell-level refill
+  is safer;
+- H123 improves more: route completion dominates bundle conservation;
+- H122 improves more: refill and bundle completion are unsafe.
