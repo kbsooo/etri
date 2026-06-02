@@ -1274,3 +1274,49 @@ Decision rule:
   toxicity vetoes.
 - H107 loses badly: public toxicity is not sign-symmetric, so antipode
   decoding is a dead branch.
+
+### H108 Update
+
+H108 tests whether independent HS-JEPA decoders agree on the action-grade
+row-target field.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H108 | `submission_h108_jury_610a26a0_uploadsafe.csv` | safe assignment is the signed intersection of H103-H107 decoder families | `19` source candidates / `47` cells / `27` rows | route-basis delta `-0.001528`, bad-axis positive projection `0.0`, mean family count `3.85` | decoder-jury bet |
+
+Breakthrough reading:
+
+```text
+H108 is the first solver that treats previous HS-JEPA branches as witnesses
+rather than as mutually exclusive submissions. The promoted field is non-Q2,
+bad-axis silent, and has perfect family sign consensus. It tests whether public
+safety comes from decoder-family agreement instead of branch-specific score.
+```
+
+Current high-information submission order:
+
+1. `submission_h108_jury_610a26a0_uploadsafe.csv`
+   - best test of the system-level row-target assignment equation.
+
+2. `submission_h103_shadowcancel_89496ed5_uploadsafe.csv`
+   - broad discrete portfolio-solver branch.
+
+3. `submission_h104_toxicresid_52f826e6_uploadsafe.csv`
+   - broad residual transport branch.
+
+4. `submission_h105_signedcoef_8f0e502e_uploadsafe.csv`
+   - tiny route-consensus kernel branch.
+
+5. `submission_h106_routeconsensus_f315d99a_uploadsafe.csv`
+   - kernel expansion/transfer branch.
+
+6. `submission_h107_antipode_a0ea1eec_uploadsafe.csv`
+   - negative-sensor antipode branch.
+
+Decision rule:
+
+- H108 wins: build HS-JEPA v3 around decoder-family jury intersection.
+- H108 loses to one branch: action-grade structure is branch-specific, not
+  consensus-based.
+- H108 and all branches lose: H103-H108 are diagnostics, and a new public
+  sensor/factor must be found.

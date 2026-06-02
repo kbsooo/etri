@@ -10941,3 +10941,70 @@ Public interpretation:
   only, not a source of corrective action;
 - if H107 loses badly, public toxicity is not sign-symmetric and antidote
   decoding should be killed.
+
+## H108 Decoder-Jury Assignment Solver HS-JEPA
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h108_jury_610a26a0_uploadsafe.csv`
+
+Worldview:
+
+```text
+No single HS-JEPA decoder should be trusted alone.  The action-grade
+row-target assignment is the intersection of independent decoder families:
+portfolio, residual transport, sparse kernel, kernel expansion, and H088
+antipode.  Cells where several families agree on sign are safer than the cells
+chosen by any one branch.
+```
+
+Method:
+
+- collect all H103-H107 candidate submissions as source action witnesses
+  (`19` candidates across `5` families);
+- convert each candidate into a logit move vector relative to H057;
+- weight candidates by internal family score, route-basis stress, H098
+  cell-equation stress, and Q2 risk;
+- aggregate per-cell signed votes and family-level agreement;
+- select cells with at least `3` independent decoder families, perfect family
+  sign consensus, no Q2, and H102 bad-axis silence;
+- validate with H098 cell-equation and H100 route-basis predictors.
+
+Observed result:
+
+- selected candidate: `h108_strict_intersection_c48_a085_610a26a0`;
+- generated root file: `submission_h108_jury_610a26a0_uploadsafe.csv`;
+- source candidates / families: `19` / `5`;
+- submitted cells / rows: `47` / `27`;
+- changed target cells: Q1 `5`, Q2 `0`, Q3 `14`, S1 `10`, S2 `7`,
+  S3 `2`, S4 `9`;
+- H098 cell-equation predicted delta vs H057: `-0.000050`;
+- route-basis predicted delta vs H057: `-0.001528`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative bad-axis max positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.009025`;
+- cumulative good-minus-bad margin: `+0.107886`;
+- anti-H088 direction rate: `0.914894`;
+- H057-positive alignment rate: `0.914894`;
+- selected mean decoder-family count: `3.851064`;
+- selected mean family consensus: `1.000000`;
+- selected mean vote weight: `11.552750`;
+- upload-safe validation passed.
+
+Important diagnostic:
+
+H108 has a stronger route-basis prediction than H106/H107 and a cleaner
+multi-decoder explanation than H103/H104.  It is not a blend of probabilities;
+it is a sparse row-target assignment produced by agreement among independent
+decoder families.  Q2 was completely excluded by the winning spec.
+
+Public interpretation:
+
+- if H108 improves over H103-H107, decoder-family intersection is closer to the
+  hidden public/private assignment law than any single decoder branch;
+- if one branch beats H108, the action equation is branch-specific and
+  consensus averaging removes useful structure;
+- if all H103-H108 lose, this whole solver basis is diagnostic only and the
+  next breakthrough must discover a new public subset sensor.

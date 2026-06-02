@@ -1526,3 +1526,53 @@ antipode view:
 H107 is the first direct test of the antipode view.  If it fails, H088 should
 remain a veto/stress diagnostic.  If it works, HS-JEPA should learn signed
 sensor equations from both positive and negative public observations.
+
+## HS-JEPA v3.1: Decoder-Jury Assignment Solver
+
+H108 changes HS-JEPA from choosing one decoder to asking for agreement among
+decoders:
+
+```text
+H103 portfolio decoder
+H104 residual transport decoder
+H105 sparse kernel decoder
+H106 kernel expansion decoder
+H107 negative-sensor antipode decoder
+  -> signed row-target witness field
+  -> decoder-family consensus
+  -> bad-axis constrained assignment
+```
+
+This is not probability blending.  The candidate is built by converting every
+source decoder into logit action vectors, aggregating signed row-target votes,
+and selecting only cells with independent family agreement.
+
+H108 evidence:
+
+- candidate: `submission_h108_jury_610a26a0_uploadsafe.csv`;
+- source candidates / families: `19` / `5`;
+- submitted cells / rows: `47` / `27`;
+- Q2 cells: `0`;
+- H098 cell-equation predicted delta vs H057: `-0.000050`;
+- route-basis predicted delta vs H057: `-0.001528`;
+- bad-axis positive projection: `0.000000`;
+- H088-axis cosine: `-0.009025`;
+- mean decoder-family count: `3.851064`;
+- mean family consensus: `1.000000`.
+
+Architectural implication:
+
+HS-JEPA now has a meta-decoder:
+
+```text
+single branch view:
+  one decoder family is the true action law.
+
+jury view:
+  the true action law is the intersection where independent decoder families
+  agree and public toxicity constraints remain silent.
+```
+
+If H108 works, the paper architecture should present HS-JEPA as a
+multi-decoder predictive system with an assignment jury, not as a single latent
+encoder plus one decoder.

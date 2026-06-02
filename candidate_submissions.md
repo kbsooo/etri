@@ -7889,3 +7889,45 @@ Priority: high information value, medium submission priority.  It is a new
 decoder class, but internal expected gain is weaker than H103/H104/H105.  Use
 it when the next slot should test whether negative public sensors can generate
 actions.
+
+## H108 Decoder-Jury Assignment Solver
+
+Generated file:
+
+`submission_h108_jury_610a26a0_uploadsafe.csv`
+
+Worldview: the safest action is not produced by one decoder.  It is the
+row-target intersection where H103 portfolio, H104 residual transport, H105
+sparse kernel, H106 kernel expansion, and H107 antipode families independently
+agree on the same signed move.
+
+Evidence:
+
+- selected candidate: `h108_strict_intersection_c48_a085_610a26a0`;
+- source candidates / families: `19` / `5`;
+- submitted cells / rows: `47` / `27`;
+- target changes: Q1 `5`, Q2 `0`, Q3 `14`, S1 `10`, S2 `7`, S3 `2`,
+  S4 `9`;
+- H098 cell-equation predicted delta vs H057: `-0.000050`;
+- route-basis predicted delta vs H057: `-0.001528`;
+- bad-axis weighted positive projection: `0.000000`;
+- bad-axis max positive projection: `0.000000`;
+- H088-axis cosine: `-0.009025`;
+- good-minus-bad margin: `+0.107886`;
+- mean decoder-family count: `3.851064`;
+- mean family consensus: `1.000000`;
+- anti-H088 / H057-align rates: `0.914894` / `0.914894`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H103-H107: HS-JEPA's action-grade decoder should be a
+  decoder-jury intersection solver;
+- loss to H103/H104: broad branch-specific portfolio/residual structure is
+  better than consensus;
+- loss to H105/H106: sparse kernel structure is sharper than jury intersection;
+- loss to H107: negative-sensor antipode is the live branch.
+
+Priority: very high information value.  This is currently the cleanest
+"system-level" HS-JEPA solver because it tests whether independent decoder
+agreement is the missing public/private safety law.

@@ -1208,3 +1208,49 @@ Failure interpretation:
   not generate action;
 - if H107 loses badly, the public/private action equation is not sign-symmetric
   around bad public sensors.
+
+## H108 Decoder-Jury Factorization
+
+H108 treats previous HS-JEPA decoders as independent witnesses of the hidden
+public/private equation.
+
+The factorization is:
+
+```text
+H103-H107 candidate action vectors
+  -> per-cell signed family votes
+  -> decoder-family intersection field
+  -> H102 bad-axis constrained assignment
+```
+
+Observed H108 factorization:
+
+- selected file: `submission_h108_jury_610a26a0_uploadsafe.csv`;
+- source candidates / families: `19` / `5`;
+- submitted cells / rows: `47` / `27`;
+- Q2 cells: `0`;
+- H098 cell-equation predicted delta vs H057: `-0.000050`;
+- route-basis predicted delta vs H057: `-0.001528`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.009025`;
+- cumulative good-minus-bad margin: `+0.107886`;
+- mean decoder-family count: `3.851064`;
+- mean family consensus: `1.000000`;
+- anti-H088 / H057-align rates: `0.914894` / `0.914894`.
+
+Interpretation:
+
+H108 is the strongest current statement that row-target action safety is an
+agreement property.  It keeps the assignment sparse, excludes Q2, and requires
+multiple decoder families to point in the same direction before a cell is
+trusted.
+
+Failure interpretation:
+
+- if H108 improves, public/private safety should be modeled as decoder-family
+  consensus;
+- if H108 loses to H103/H104, broad branch-specific action fields are more
+  faithful than intersection;
+- if H108 loses to H105/H106, the true assignment is a sharper kernel than the
+  jury can represent;
+- if H108 loses to H107, negative-sensor antipode carries the live information.
