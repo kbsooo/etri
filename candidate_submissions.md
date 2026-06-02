@@ -106,6 +106,33 @@ strong when route context is included (`story_route_to_h068_health` Spearman
 `C_human -> z_action_health -> z_assignment`; a loss would mostly say the bridge
 is diagnostic rather than materialization-grade.
 
+Current generated anti-shortcut state inversion sensor:
+`submission_h074_antishortcut_inversion_816703df_uploadsafe.csv`.
+
+Reason: H074 treats public-bad submissions as contrastive target
+representations. It does not merely reject bad-anchor overlap; it searches for
+row-target cells where known bad worlds move opposite to H061 `q061`, then
+materializes a broad route assignment on that negative-space state. The
+promoted upload-safe file changes `597` cells on `152` rows, with `519` cells
+outside H069, `278` outside H070, `57` H071 route overlaps, `42` Q2 cells, and
+zero H050-null selected cells. Public-action predicted delta versus H057 is
+`-0.000840`, posterior delta is `-0.000686`, and responsibility-weighted delta
+is `-0.000949`; no tracked bad-anchor cosine is positive.
+
+Why it matters: target-stratified bad-axis shuffles strongly validate the
+representation. For top-520 cells, bad-opposition rank has z `9.270846`, bad
+same-direction rank has z `-10.261358`, shortcut energy has z `-12.247887`,
+and cell gain has z `3.050342`. This means failed public worlds carry a real
+inverse state. The candidate is not a top-k refine; it is a claim that public
+failures can become JEPA target representations.
+
+Risk: H074 still misses the `0.001` big-bet action gate. Submit it if the next
+public slot should test the "bad worlds are positive contrastive targets"
+worldview. If it wins by `>=0.001`, anti-shortcut inversion becomes a core
+HS-JEPA layer. If it is neutral, bad worlds remain useful representation/veto
+signals but not direct action generators. If it loses badly, the negative
+latent is real locally but public/private extrapolation is wrong.
+
 Current generated full HS-JEPA diagnostic: `submission_h070_full_hsjepa_9e4a9602_uploadsafe.csv`.
 
 Reason: H070 is the first full HS-JEPA v1 joint decoder. It does not select

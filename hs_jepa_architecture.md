@@ -73,6 +73,7 @@ HS-JEPA currently has these target representations:
 | Discrete route assignment `z_assignment` | H071 assigns row-target route templates before materializing cells | Implemented, first near-0.001 big bet |
 | Human-social route prior `z_human_social` | H072 maps 1000 stories to route priors and E268 row-family latents | Implemented as sensor; action-health useful, route proof failed null |
 | Human action-health bridge `z_human_action` | H073 predicts H068 action-health/shortcut from story+route context | Implemented; continuous health works, hard cell generalization weak |
+| Anti-shortcut inverse `z_anti_shortcut` | H074 uses known public-bad movements as contrastive targets and inverts their row-target direction | Implemented; negative latent is real under null, action still below 0.001 gate |
 
 ## Objective
 
@@ -289,6 +290,45 @@ not hard row-target assignment labels.
 The next version should use `z_human_action` as a regularized target
 representation in the assignment solver, or build an anti-shortcut contrastive
 view from known failed story/route combinations.
+
+## H074 Anti-Shortcut State Inversion
+
+H074 tests the negative side of HS-JEPA:
+
+```text
+known public-bad submissions
+  -> z_shortcut
+  -> cells where bad worlds move opposite to q061
+  -> z_anti_shortcut
+  -> row-route assignment
+  -> correction field toward H061 q061
+```
+
+The promoted sensor,
+`submission_h074_antishortcut_inversion_816703df_uploadsafe.csv`, changes
+`597` cells on `152` rows, with `519` cells outside H069 and `278` outside
+H070. It moves `42` Q2 cells, selects all `10` subjects, selects zero
+H050-null cells, and keeps every tracked bad-anchor cosine non-positive.
+
+Key diagnostics:
+
+- target-stratified top-520 bad-axis shuffle:
+  - `mean_true_opp_rank` z `9.270846`;
+  - `mean_true_same_rank` z `-10.261358`;
+  - `mean_shortcut_energy` z `-12.247887`;
+  - `mean_cell_gain` z `3.050342`;
+- public-action predicted delta versus H057: `-0.000840`;
+- responsibility-weighted delta versus H057: `-0.000949`;
+- route mix:
+  `s_stage:46`, `recovery_route:23`, `q2_hardtail:23`,
+  `nonq2_full:20`, `q3_s_stage:20`, `full_state:15`.
+
+This is useful architecture evidence. Failed submissions are not only
+"do-not-copy" examples; their opposite row-target direction is a structured
+latent target. The limitation is just as important: the selected action does
+not clear the `0.001` expected-movement gate. HS-JEPA should keep
+`z_anti_shortcut` as a target representation, but the next 0.53-grade decoder
+still needs a sharper public/private or route-assignment solver.
 
 ## What Would Prove HS-JEPA
 

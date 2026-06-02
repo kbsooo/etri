@@ -340,23 +340,52 @@ Build H074:
 - bad anchors are not separable from good anchors;
 - public result is neutral or worse without clear falsification value.
 
+### H074 Update
+
+H074 was built and generated
+`submission_h074_antishortcut_inversion_816703df_uploadsafe.csv`.
+
+Result:
+
+- promoted candidate:
+  `h074_row_broad_outside_h069_c1100_r250_q290_816703df`;
+- changed cells / rows versus H057: `597` / `152`;
+- cells outside H070 / H069: `278` / `519`;
+- Q2 changed cells: `42`;
+- route mix: `s_stage:46`, `recovery_route:23`, `q2_hardtail:23`,
+  `nonq2_full:20`, `q3_s_stage:20`, `full_state:15`,
+  `q2_s3_tail:4`, `q_subjective:1`;
+- public-action predicted delta versus H057: `-0.000840`;
+- responsibility-weighted delta versus H057: `-0.000949`;
+- bad-anchor positive cosine: `0.0`;
+- top-520 bad-opposition null z: `9.270846`.
+
+The hypothesis survives the representation test. Target-stratified bad-axis
+nulls show that cells selected by H074 are genuinely opposite to known bad
+worlds and have lower shortcut energy than shuffled controls. The action claim
+is weaker: the best broad sensor still misses the `0.001` movement gate. Bet 5
+therefore stays alive as a target-representation layer, but it is not yet a
+standalone 0.53 breakthrough decoder.
+
 ## Priority
 
 Current order:
 
 1. Submit or observe H071 if a public slot is available for the row-target
    assignment claim.
-2. H072 Human-Social State Engine.
-3. H074 Anti-Shortcut State Inversion.
-4. H070 follow-up only if public feedback supports smooth joint latent scoring.
-5. H069 follow-up only if public feedback specifically supports strict factorization.
+2. Submit H074 only if the next public slot is meant to test whether failed
+   public worlds are positive contrastive target representations.
+3. H072/H073 are now architecture evidence unless the next public question is
+   specifically about human-social action-health.
+4. Build the next solver that combines H071 assignment with H074
+   anti-shortcut targets, rather than another threshold sweep.
+5. H070/H069 follow-ups only if public feedback specifically supports smooth
+   latent scoring or strict factorization.
 
-H069 has now answered the first public-free factorization question: the factors
+H069 has answered the first public-free factorization question: the factors
 are useful, but the standalone gated variant is unlikely to be the whole 0.53
-route. H070 has answered the next question: smooth joint latent scoring is
-useful but still not enough. H071 now materializes exact assignment; the next
-new experiment after H071/H072/H073 should not be another assignment threshold
-sweep unless public feedback validates it. H073 specifically says the
-human-social layer should move upstream into continuous action-health/shortcut
-prediction; H074 should now test the opposite space, meaning known
-story/route/public-bad shortcuts as negative target representations.
+route. H070 says smooth joint latent scoring is useful but not enough. H071
+materializes exact assignment. H073 says human-social context is better as
+continuous health/shortcut representation than direct assignment. H074 now says
+known bad worlds carry a real inverse target representation, but also that this
+inverse layer still needs a stronger action solver.

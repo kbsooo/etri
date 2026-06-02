@@ -62,6 +62,22 @@ Current public frontier:
   but story+route context can predict continuous action-health. HS-JEPA should
   use human-social context as an action-health/shortcut view before assignment,
   not as a direct route selector.
+- Latest generated anti-shortcut state inversion sensor:
+  `submission_h074_antishortcut_inversion_816703df_uploadsafe.csv`. H074 treats
+  known public-bad submissions as contrastive target representations instead
+  of simple vetoes:
+  `bad submissions -> z_shortcut -> z_anti_shortcut -> route assignment`. The
+  selected broad sensor changes `597` cells on `152` rows, with `519` cells
+  outside H069, `278` outside H070, `42` Q2 cells, and zero H050-null cells.
+  Public-action predicted delta versus H057 is `-0.000840`,
+  responsibility-weighted delta is `-0.000949`, and no tracked bad-anchor
+  cosine is positive. The important discovery is the null result in the good
+  direction: target-stratified bad-axis shuffles give top-520
+  bad-opposition z `9.270846`, same-direction z `-10.261358`, and
+  shortcut-energy z `-12.247887`. Interpretation: failed public submissions do
+  expose a real negative latent boundary. H074 is coherent as a high-information
+  sensor, but still misses the `0.001` expected-action gate, so it is not a
+  safer first upload than a stronger row-target assignment/public sensor.
 - Latest generated full HS-JEPA diagnostic:
   `submission_h070_full_hsjepa_9e4a9602_uploadsafe.csv`. H070 is the first
   joint HS-JEPA correction-field decoder. It predicts public/private/action

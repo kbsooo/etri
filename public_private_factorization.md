@@ -81,6 +81,7 @@ Where:
 | Sequence/episode invariant | H065/H066 pending | Unconfirmed |
 | Action-health field | H068 pending | Promising but high-risk |
 | Shortcut state | H010, E216, E323, bad JEPA, H050-null | Strong negatives |
+| Anti-shortcut inverse | H074 bad-opposition null z `9.270846` | Real representation, action not solved |
 | Private-safe state | Needed for 0.53 | Not solved |
 | Human-social state | H072 story families recover H068 rows but not H071 routes | Context/action-health layer, not direct route layer |
 | Human-action bridge | H073 story+route context predicts continuous health/shortcut | Useful representation, not yet 0.001 action solver |
@@ -198,6 +199,40 @@ This weakens another direct human-story route sweep. It strengthens H074-style
 anti-shortcut inversion or a future assignment solver that treats human context
 as a regularized bridge between public listener state and private-safe action
 state.
+
+## H074 Anti-Shortcut Factor Use
+
+H074 tests whether shortcut state can be inverted into a positive target, not
+just subtracted as a veto:
+
+```text
+public-bad movement vectors
+  -> same-direction shortcut energy
+  -> opposite-direction anti-shortcut energy
+  -> row-target route assignment
+```
+
+The selected candidate,
+`submission_h074_antishortcut_inversion_816703df_uploadsafe.csv`, changes
+`597` cells on `152` rows. It is deliberately broader than the top pure
+negative-space candidate because the goal is to test a world model, not preserve
+a local threshold. The cleanest evidence is not the file score estimate but the
+negative-control result:
+
+- top-520 `mean_true_opp_rank`: real `0.724689`, null `0.650047`, z
+  `9.270846`;
+- top-520 `mean_true_same_rank`: real `0.279030`, null `0.360904`, z
+  `-10.261358`;
+- top-520 `mean_shortcut_energy`: real `0.188419`, null `0.250843`, z
+  `-12.247887`;
+- top-520 `mean_cell_gain`: real `0.002331`, null `0.001996`, z `3.050342`.
+
+Interpretation: bad submissions expose a real public/private boundary. They
+are not merely "files to avoid"; they define a contrastive HS-JEPA target
+representation. The unsolved part is action translation. H074's broad sensor
+has public-action predicted delta `-0.000840`, below the `0.001` gate, so
+`z_anti_shortcut` should feed the next assignment solver rather than be treated
+as a finished public/private solution.
 
 ## H069 Candidate Design
 

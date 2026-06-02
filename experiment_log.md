@@ -8971,3 +8971,74 @@ This is the first high-amplitude H057-base episode sensor. A public win would
 upgrade HS-JEPA from row-state to temporal episode-state. A public loss would
 kill broad episode spread and force the next branch to keep H057's row support
 precise.
+
+## H074. Anti-Shortcut State Inversion HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h074_anti_shortcut_state_inversion_jepa.py`
+- Report: `hitl/h074_anti_shortcut_state_inversion_jepa/h074_report.md`
+- Promoted submission:
+  `submission_h074_antishortcut_inversion_816703df_uploadsafe.csv`
+
+### Observe
+
+H073 showed that human/social context is too weak for hard selected-cell
+assignment but useful for continuous action-health and shortcut risk. Known
+public-bad submissions also keep appearing as strong negative axes. The
+unanswered question is whether these bad worlds only tell us what to avoid, or
+whether their opposite direction defines a useful hidden state.
+
+### Wonder
+
+Can failed public submissions be used as JEPA target representations? In other
+words, if bad submissions move with a shortcut direction, are the cells where
+they move opposite to H061 `q061` a real anti-shortcut state?
+
+### Hypothesis
+
+H074-H: public-bad submissions encode a structured `z_shortcut`. The inverse
+row-target direction, `z_anti_shortcut`, should select clean route assignments
+that are different from H069/H070 but still low-risk against bad anchors.
+
+### Falsification Design
+
+Use H071/H073 route and bridge context, then compute bad-anchor same-direction
+and opposite-direction ranks per row-target cell. Stress the representation by
+target-stratified shuffling of bad-axis features. Materialize a broad route
+assignment only if the selected cells are outside H069/H070 enough to test a
+new support basin, while keeping H050-null and positive bad-anchor cosines at
+zero.
+
+### Result
+
+Selected `h074_row_broad_outside_h069_c1100_r250_q290_816703df`.
+
+- changed cells / rows versus H057: `597` / `152`;
+- cells outside H070 / H069: `278` / `519`;
+- H071 route overlap: `57`;
+- Q2 changed cells: `42`;
+- selected subjects: `10`;
+- zero H050-null cells;
+- public-action predicted delta versus H057: `-0.000840`;
+- posterior delta versus H057: `-0.000686`;
+- responsibility-weighted delta versus H057: `-0.000949`;
+- max positive bad-anchor cosine: `0.0`;
+- route mix: `s_stage:46`, `recovery_route:23`, `q2_hardtail:23`,
+  `nonq2_full:20`, `q3_s_stage:20`, `full_state:15`,
+  `q2_s3_tail:4`, `q_subjective:1`.
+
+Null stress at top-520 cells:
+
+- `mean_true_opp_rank`: real `0.724689`, null `0.650047`, z `9.270846`;
+- `mean_true_same_rank`: real `0.279030`, null `0.360904`, z `-10.261358`;
+- `mean_shortcut_energy`: real `0.188419`, null `0.250843`, z `-12.247887`;
+- `mean_cell_gain`: real `0.002331`, null `0.001996`, z `3.050342`.
+
+### Interpretation
+
+The representation hypothesis survives. Known public-bad files carry a real
+negative latent boundary, and the opposite direction is not a target-shuffle
+artifact. The action hypothesis is not fully proven: the selected broad sensor
+still misses the `0.001` expected-movement gate. H074 should be treated as a
+high-information public sensor or as an input to the next solver, not as a
+safe H057 replacement.
