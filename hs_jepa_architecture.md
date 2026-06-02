@@ -1678,3 +1678,56 @@ If H110 works, the paper-level contribution is not just "JEPA for tabular
 sleep logs."  It is a human-state JEPA with an action-toxicity head that checks
 whether a predicted intervention is safe under hidden public/private
 observation equations.
+
+## HS-JEPA v3.4: Global Boundary Assignment Solver
+
+H111 adds a final layer above the toxicity head:
+
+```text
+benefit representation
+toxicity representation
+shortcut / bad-pressure diagnostics
+decoder-family witness field
+  -> global boundary solver
+  -> public/private safe row-target action
+```
+
+The trigger was an architectural contradiction in H110.  The H108 cells that
+H110 rejected had better local benefit-toxicity gap than many cells H110 kept.
+So the local toxicity head is not the final decoder.  It is an input to a
+global assignment layer.
+
+H111 evidence:
+
+- candidate: `submission_h111_boundary_7cbf5e9d_uploadsafe.csv`;
+- selected cells / rows: `53` / `28`;
+- selected H108 kept / rejected / H110-added cells: `27` / `14` / `5`;
+- H098 cell-equation predicted delta vs H057: `-0.000020`;
+- route-basis predicted delta vs H057: `-0.000680`;
+- bad-axis positive projection: `0.000000`;
+- H088-axis cosine: `-0.015318`;
+- H111/H108 cosine: `0.923553`;
+- H111/H110 cosine: `0.691689`.
+
+Architectural implication:
+
+HS-JEPA now has a cleaner paper-level structure:
+
+```text
+1. Human-state encoder:
+   learns row/subject/sequence/social/state context.
+
+2. JEPA witness decoders:
+   produce candidate row-target action fields from hidden representations.
+
+3. Toxicity head:
+   estimates whether an action direction is public/private unsafe.
+
+4. Global boundary assignment solver:
+   chooses a sparse action set whose cumulative public bad-axis projection is
+   safe.
+```
+
+If H111 works, the architecture's novelty is the last two stages: predicted
+human-state actions are not used directly; they must pass through a
+public/private toxicity field and a global boundary solver.

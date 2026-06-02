@@ -1356,3 +1356,49 @@ Failure interpretation:
 - if H109 improves more, assignment is sharper than the local toxicity model;
 - if all fail, toxicity/benefit features are still diagnostic but not
   action-grade without a new public subset sensor.
+
+## H111 Global Boundary Factorization
+
+H111 adds a boundary solver above H110's benefit/toxicity fields.
+
+The factorization is:
+
+```text
+H110 benefit field + H110 toxicity field
+  -> H108 kept/rejected/added boundary audit
+  -> global beam/knapsack assignment
+  -> cumulative public bad-axis safe action
+```
+
+Observed H111 factorization:
+
+- selected file: `submission_h111_boundary_7cbf5e9d_uploadsafe.csv`;
+- selected candidate: `h111_boundary_broad_null_c150_a048_7cbf5e9d`;
+- submitted cells / rows: `53` / `28`;
+- Q2 cells: `0`;
+- H098 cell-equation predicted delta vs H057: `-0.000020`;
+- route-basis predicted delta vs H057: `-0.000680`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.015318`;
+- cumulative good-minus-bad margin: `+0.132168`;
+- selected H108 kept / rejected / H110-added cells: `27` / `14` / `5`;
+- selected H109 cells: `3`;
+- H111/H108 cosine: `0.923553`;
+- H111/H110 cosine: `0.691689`.
+
+Interpretation:
+
+H111 shows that toxicity is not purely local.  H108-rejected cells had higher
+local gap than H108-kept cells, but also higher shortcut and bad-pressure
+scores.  The action-grade solver must therefore handle both local benefit and
+global interaction constraints.
+
+Failure interpretation:
+
+- if H111 improves, public/private safety is a global boundary over
+  benefit/toxicity representations;
+- if H110 improves more, global rescue adds cells whose shortcut/bad-pressure
+  risk is real;
+- if H108 improves more, family consensus already captured the safe boundary;
+- if H109 improves more, global boundary solvers are too broad and the kernel
+  view survives.

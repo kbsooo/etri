@@ -11149,3 +11149,73 @@ Public interpretation:
   kernel;
 - if all H108-H110 lose, H103-H109 are useful diagnostics but not an
   action-grade public/private equation.
+
+## H111 Global Boundary Assignment Solver HS-JEPA
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h111_boundary_7cbf5e9d_uploadsafe.csv`
+
+Worldview:
+
+```text
+H110 found a useful benefit/toxicity representation, but its greedy assignment
+boundary was not the real solver.  The H108 cells rejected by H110 are not
+locally worse; they have higher benefit-toxicity gap.  The missing module is
+global assignment over the toxicity field, including shortcut/bad-pressure
+interactions and cumulative public bad-axis constraints.
+```
+
+Boundary audit:
+
+- H108 cells: `47`;
+- H110 cells: `37`;
+- H108 kept by H110: `29`;
+- H108 rejected by H110: `18`;
+- H110-added cells outside H108: `8`;
+- H108-kept mean boundary score / gap:
+  `0.400024` / `0.408382`;
+- H108-rejected mean boundary score / gap:
+  `0.456159` / `0.468639`;
+- H108-rejected mean shortcut / bad-pressure:
+  `0.721970` / `0.638222`;
+- H108-kept mean shortcut / bad-pressure:
+  `0.619537` / `0.553685`.
+
+Observed result:
+
+- selected candidate: `h111_boundary_broad_null_c150_a048_7cbf5e9d`;
+- generated root file: `submission_h111_boundary_7cbf5e9d_uploadsafe.csv`;
+- submitted cells / rows: `53` / `28`;
+- changed target cells: Q1 `6`, Q2 `0`, Q3 `15`, S1 `10`, S2 `10`,
+  S3 `4`, S4 `8`;
+- H098 cell-equation predicted delta vs H057: `-0.000020`;
+- route-basis predicted delta vs H057: `-0.000680`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.015318`;
+- cumulative good-minus-bad margin: `+0.132168`;
+- selected H108 kept / rejected / H110-added cells: `27` / `14` / `5`;
+- selected H109 cells: `3`;
+- H111/H108 active-cell overlap: `41` of `53`;
+- H111/H110 active-cell overlap: `32` of `53`;
+- upload-safe validation passed.
+
+Important diagnostic:
+
+H111 partially rescues H108 cells that H110 rejected.  This changes the
+interpretation of H110: local benefit-toxicity separation is useful, but the
+assignment layer must solve a global boundary.  H111 is much more H108-like
+than H110 (`cos 0.924` vs H108, `0.692` vs H110) while staying bad-axis silent.
+
+Public interpretation:
+
+- if H111 improves over H110, HS-JEPA's missing module is global assignment
+  over the benefit/toxicity field;
+- if H110 beats H111, greedy local toxicity-gap filtering was safer than
+  rescuing high-gap H108 cells;
+- if H108 beats both, explicit toxicity modeling overfit the public bad-axis
+  diagnostics;
+- if H109 beats H111, the public-safe field is still a tiny kernel, not a
+  boundary optimization problem.

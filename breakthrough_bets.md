@@ -1409,3 +1409,42 @@ Decision rule:
 - H109 wins: public-safe action is much sharper than H110's release field.
 - Broad H103/H104 win: the action unit is not sparse cell assignment; return to
   portfolio/residual public/private transport.
+
+### H111 Update
+
+H111 tests whether H110's local benefit/toxicity representation needs a global
+boundary solver.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H111 | `submission_h111_boundary_7cbf5e9d_uploadsafe.csv` | safe assignment is a global beam/knapsack boundary over H110 benefit/toxicity cells | `53` cells / `28` rows / `14` rescued H108-rejected cells | route-basis delta `-0.000680`, H098 delta `-0.000020`, bad-axis positive projection `0.0`, H088 cosine `-0.015318` | global-boundary bet |
+
+Breakthrough reading:
+
+```text
+The surprise is that H108-rejected cells had better local gap than H108-kept
+cells.  H110's problem was not the benefit/toxicity representation itself; it
+was the greedy assignment boundary.  H111 promotes a broader H108-like field
+while keeping H102 bad-axis silence.
+```
+
+Current high-information submission order:
+
+1. `submission_h111_boundary_7cbf5e9d_uploadsafe.csv`
+   - direct test of global assignment over the toxicity field.
+
+2. `submission_h110_toxgap_7b02f196_uploadsafe.csv`
+   - local benefit-toxicity gap solver.
+
+3. `submission_h108_jury_610a26a0_uploadsafe.csv`
+   - family-intersection baseline for H111.
+
+4. `submission_h109_coeff_54147083_uploadsafe.csv`
+   - tiny coefficient-kernel counter-world.
+
+Decision rule:
+
+- H111 wins: build HS-JEPA v3 around a global action-boundary solver.
+- H110 wins: local toxicity-gap filtering is enough; H111 over-rescued H108.
+- H108 wins: explicit toxicity modeling is unnecessary or harmful.
+- H109 wins: the real assignment is a small kernel, not a broad boundary.

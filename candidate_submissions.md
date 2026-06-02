@@ -8018,3 +8018,44 @@ Public interpretation:
 Priority: very high information value.  H110 is the cleanest current test of
 the active goal: distinguish public-punished row-target action toxicity from
 safe assignment.
+
+## H111 Global Boundary Assignment Solver
+
+Generated file:
+
+`submission_h111_boundary_7cbf5e9d_uploadsafe.csv`
+
+Worldview: H110's local benefit/toxicity representation is not enough.  H108
+cells rejected by H110 had higher mean gap and lower local toxicity, so the
+real problem is global assignment under cumulative bad-axis, shortcut, and
+bad-pressure interactions.
+
+Evidence:
+
+- selected candidate: `h111_boundary_broad_null_c150_a048_7cbf5e9d`;
+- submitted cells / rows: `53` / `28`;
+- target changes: Q1 `6`, Q2 `0`, Q3 `15`, S1 `10`, S2 `10`, S3 `4`,
+  S4 `8`;
+- H098 cell-equation predicted delta vs H057: `-0.000020`;
+- route-basis predicted delta vs H057: `-0.000680`;
+- bad-axis weighted positive projection: `0.000000`;
+- H088-axis cosine: `-0.015318`;
+- good-minus-bad margin: `+0.132168`;
+- selected H108 kept / rejected / H110-added cells: `27` / `14` / `5`;
+- selected H109 cells: `3`;
+- H108 overlap: `41` cells, cosine `0.923553`;
+- H110 overlap: `32` cells, cosine `0.691689`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H110: global boundary optimization is the action-grade assignment
+  layer;
+- loss to H110: H111 rescued too many high-shortcut/high-pressure H108 cells;
+- loss to H108: toxicity modeling is not action-grade and family consensus is
+  sufficient;
+- loss to H109/H105: the public-safe action is a tiny kernel.
+
+Priority: very high information value.  H111 is the best current test of
+whether the breakthrough is "toxicity features" or "global assignment over
+toxicity features."
