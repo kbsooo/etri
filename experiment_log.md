@@ -10278,3 +10278,84 @@ world model: public may reward extending the H057-positive direction even where
 the refit equation is uncertain. If public improves, H088 should be used as a
 signed counterfactual sensor. If public loses, the H057/H088 conflict is not a
 reusable correction field and H088 remains only a broad collapse diagnostic.
+
+## H097 Signed Public Action-Equation
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h097_signed_equation_062bff8e_uploadsafe.csv`
+
+Worldview:
+
+```text
+All known public submissions can be treated as signed action-response
+supervision from the H057 base.
+```
+
+Observed result:
+
+- selected response model: `state_context`, ridge `10.0`;
+- LOO MAE: `0.000423`;
+- LOO Spearman: `0.978474`;
+- LOO pair accuracy: `0.952727`;
+- permutation p: `0.0`;
+- selected candidate: `h097_positive_bridge_c260_a045_062bff8e`;
+- changed cells / rows: `9` / `5`;
+- model-predicted delta vs H057: `-0.000499`;
+- upload-safe validation passed.
+
+Critical stress failure:
+
+```text
+H097 predicts broad public ranking well, but it predicts H088 in the wrong
+direction under LOO.
+```
+
+H088 actual delta vs H057 was `+0.000747`, but H097 LOO predicted `-0.000642`.
+This means H097 mostly learned "old bad submissions vs frontier submissions",
+not the frontier signed action equation we need.
+
+## H098 Frontier-Weighted Signed Action Equation
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h098_frontier_equation_a748e477_uploadsafe.csv`
+
+Worldview:
+
+```text
+The signed action equation must be fitted around the H057 frontier. H088 is a
+first-class training sensor, not one point among many older bad submissions.
+```
+
+Observed result:
+
+- selected response model: `state_core`, ridge `0.1`;
+- weighted LOO MAE: `0.000417`;
+- LOO Spearman: `0.921070`;
+- H088 actual delta vs H057: `+0.000747`;
+- H088 LOO prediction: `+0.000757`;
+- H088 LOO error: `+0.000010`;
+- selected candidate: `h098_frontier_conflict_c83_a052_a748e477`;
+- changed cells / rows: `46` / `20`;
+- model-predicted delta vs H057: `-0.000134`;
+- anti-H088 direction rate: `1.000000`;
+- H057-positive alignment rate: `1.000000`;
+- cosine with H088 direction: `-0.078471`;
+- cosine with H057-vs-H042 direction: `0.351986`;
+- upload-safe validation passed.
+
+Interpretation:
+
+H098 is the cleanest current solver version. It keeps H096's signed conflict
+idea but lowers the amplitude and filters it through a frontier-weighted public
+response equation that correctly predicts H088's failure direction.
+
+If H098 improves, HS-JEPA v2 should use public submissions as weighted signed
+action-equation supervision. If it loses while H096 wins, the H088 signal is
+local and should not be globally smoothed. If both lose, cell-level gradients
+are insufficient and the solver must move to row/route constrained assignment.

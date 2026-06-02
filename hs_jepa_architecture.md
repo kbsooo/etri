@@ -1079,3 +1079,60 @@ not discarded; they become counterfactual supervision for the action decoder.
 - H096 cosine with H057-vs-H042 direction: `0.527502`;
 - H096 conclusion before public check: the next architectural test is signed
   failed-action inversion.
+
+## HS-JEPA v2.1: Frontier-Weighted Public Feedback
+
+H097/H098 refine the signed action-equation decoder.
+
+H097 showed that a public-response predictor can fit the overall submission
+landscape:
+
+```text
+all public submissions -> action-response latent
+LOO Spearman = 0.978474
+```
+
+But it failed the key frontier diagnostic:
+
+```text
+H088 actual public delta = +0.000747
+H097 H088 LOO prediction = -0.000642
+```
+
+So HS-JEPA v2 cannot treat all public observations equally. Old bad
+submissions mostly teach a coarse "far from frontier" direction.
+
+H098 adds the current architectural rule:
+
+```text
+Public feedback is weighted by frontier relevance.
+H057/H042/H050/H012/H088 define the local action equation.
+Older bad submissions are background constraints.
+```
+
+H098 evidence:
+
+- selected response model: `state_core`, ridge `0.1`;
+- weighted LOO MAE: `0.000417`;
+- H088 LOO prediction: `+0.000757`;
+- H088 LOO error: `+0.000010`;
+- candidate: `submission_h098_frontier_equation_a748e477_uploadsafe.csv`;
+- changed cells / rows: `46` / `20`;
+- anti-H088 direction rate: `1.000000`.
+
+Current architecture:
+
+```text
+context encoder
+  -> human-state / route-state representation
+  -> frontier-weighted signed action equation
+  -> row-target assignment decoder
+  -> submission action
+```
+
+Open architectural gap:
+
+The current signed equation is still cell-level. If H098 loses, the missing
+module is probably a row/route-constrained assignment decoder that keeps the
+frontier-weighted response model but selects coherent route actions instead of
+independent cells.

@@ -7490,3 +7490,66 @@ Public interpretation:
 Priority: high as an information-rich big bet if one public slot is available.
 It is not locally "safe" because posterior worsens slightly, but it directly
 tests the newest hidden-world hypothesis.
+
+## H097 Signed Public Action Equation
+
+Generated file:
+
+`submission_h097_signed_equation_062bff8e_uploadsafe.csv`
+
+Worldview: known public submissions are signed action-response supervision from
+the H057 base.
+
+Evidence:
+
+- response model LOO MAE: `0.000423`;
+- response model LOO Spearman: `0.978474`;
+- response model pair accuracy: `0.952727`;
+- selected cells / rows: `9` / `5`;
+- model-predicted delta vs H057: `-0.000499`;
+- upload-safe: `True`.
+
+Critical weakness:
+
+- H088 actual delta vs H057: `+0.000747`;
+- H097 H088 LOO prediction: `-0.000642`.
+
+Priority: low. H097 proves broad public-response modeling is possible, but it
+fails the exact H088 frontier sensor this goal cares about.
+
+## H098 Frontier-Weighted Action Equation
+
+Generated file:
+
+`submission_h098_frontier_equation_a748e477_uploadsafe.csv`
+
+Worldview: the signed action equation should be fitted around the H057 frontier
+with H088 as a high-weight negative sensor.
+
+Evidence:
+
+- selected model: `state_core`, ridge `0.1`;
+- weighted LOO MAE: `0.000417`;
+- H088 LOO prediction: `+0.000757`;
+- H088 LOO error: `+0.000010`;
+- selected candidate:
+  `h098_frontier_conflict_c83_a052_a748e477`;
+- changed cells / rows: `46` / `20`;
+- model-predicted delta vs H057: `-0.000134`;
+- anti-H088 direction rate: `1.000000`;
+- H057-positive alignment rate: `1.000000`;
+- cosine with H088 direction: `-0.078471`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win: HS-JEPA v2 should train a frontier-weighted signed action-equation
+  decoder from public feedback;
+- small loss: signed conflict exists but the low-amplitude global smoothing is
+  underpowered;
+- large loss: H088 can only be used as a local diagnostic; cell-level signed
+  gradients are not action-grade.
+
+Priority: highest current information-value candidate. Compared with H096, H098
+is less radical but better aligned with the newest evidence because it fixes
+H097's H088 LOO failure.

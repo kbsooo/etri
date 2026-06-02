@@ -893,3 +893,35 @@ Failure interpretation:
 If H096 loses, the signed conflict field is not reusable and the solver must
 move from cell-level inversion to row/route-level constrained assignment.
 ```
+
+### H097/H098 Update
+
+H097 generalized the idea from H088-only to all public observations:
+
+| Experiment | File | Core claim | Model stress | Candidate scale | Status |
+| --- | --- | --- | --- | --- | --- |
+| H097 | `submission_h097_signed_equation_062bff8e_uploadsafe.csv` | all public submissions train a signed action-response equation | global LOO MAE `0.000423`, Spearman `0.978474`, but H088 LOO wrong-sign | `9` cells / `5` rows | broad response alive, frontier law failed |
+| H098 | `submission_h098_frontier_equation_a748e477_uploadsafe.csv` | frontier-weighted public response with H088 as high-weight sensor trains the signed equation | H088 LOO `+0.000757` vs actual `+0.000747` | `46` cells / `20` rows | current best information-value candidate |
+
+Breakthrough reading:
+
+```text
+The action-equation idea is real enough to fit public response, but the
+equation must be frontier-weighted. Old 0.576-0.581 submissions dominate a
+global fit and hide the H057/H088 law.
+```
+
+Current submission priority:
+
+1. `submission_h098_frontier_equation_a748e477_uploadsafe.csv`
+   - best current test of HS-JEPA v2 as a signed public action-equation decoder;
+   - fixes H097's H088 LOO failure;
+   - lower amplitude than H096, so it is the cleaner equation-solver bet.
+
+2. `submission_h096_conflict_inversion_af7e60fd_uploadsafe.csv`
+   - more radical local counterfactual bet;
+   - useful if we want to test the unsmoothed H057/H088 conflict field.
+
+If H098 loses, the next big bet should not be another cell gradient. It should
+be a row/route assignment solver that preserves H098's frontier weighting but
+chooses whole route templates under constraints.

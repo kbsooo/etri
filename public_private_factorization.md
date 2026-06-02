@@ -806,3 +806,54 @@ Current factorization hierarchy:
 3. H088 as signed counterfactual sensor: live and now represented by H096;
 4. next 0.53 route: learn a signed public/private action equation, not just a
    better context encoder.
+
+## H097/H098 Signed Public-Response Factorization
+
+H097 tested the broadest version:
+
+```text
+all known public submissions -> signed action-response equation -> candidate
+```
+
+It fit the global leaderboard response well:
+
+- LOO MAE: `0.000423`;
+- LOO Spearman: `0.978474`;
+- pair accuracy: `0.952727`;
+- permutation p: `0.0`.
+
+But it failed the important factorization stress:
+
+```text
+H088 actual delta = +0.000747
+H097 H088 LOO prediction = -0.000642
+```
+
+So H097 learned the old-public-vs-frontier separation, not the H057/H088
+frontier action law.
+
+H098 changed the factorization weights:
+
+```text
+frontier public observations + high-weight H088
+-> signed action equation
+-> low-amplitude H096-style conflict decoder
+```
+
+Observed H098 factorization:
+
+- weighted LOO MAE: `0.000417`;
+- H088 LOO prediction: `+0.000757`;
+- H088 LOO error: `+0.000010`;
+- selected candidate: `submission_h098_frontier_equation_a748e477_uploadsafe.csv`;
+- changed cells / rows: `46` / `20`;
+- model-predicted delta: `-0.000134`;
+- anti-H088 direction rate: `1.000000`.
+
+Updated hierarchy:
+
+1. broad public-response model: alive, but not sufficient;
+2. frontier-weighted signed response model: alive and better aligned with H088;
+3. H096 raw conflict inversion: still useful as the unsmoothed local sensor;
+4. next if H098 fails: row/route-constrained signed assignment, not more
+   cell-level gradient smoothing.
