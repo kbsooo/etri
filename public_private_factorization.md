@@ -412,3 +412,24 @@ intersection.
 This does not prove H082 will win public LB. It does show that the 0.001
 movement bottleneck was not action capacity; it was the gate being too
 conservative.
+
+## H083-H084 Route Factorization
+
+H083/H084 test whether the public/private factor should be represented at the
+route level rather than at the individual cell level.
+
+| Factor form | File | New claim | Evidence | Risk |
+| --- | --- | --- | --- | --- |
+| Route-action transport | `submission_h083_route_action_ef73ae51_uploadsafe.csv` | H082 cells are row-route fragments | `731` changed cells, `-0.005530` public-action delta vs H057 | high H082 overlap, route over-structure |
+| Dark route completion | `submission_h084_dark_route_58b9e6de_uploadsafe.csv` | H082 misses route companion cells | H082 + `68` dark cells, `-0.000357` public-action delta vs H082 | conditional on H082 being real |
+
+Public/private reading:
+
+- H083 asks whether private-safe structure lives in the route assignment, not
+  the public-action cell score.
+- H084 asks whether H082 is a partial public view of a larger route state.
+
+The main caution is that H083 still has high support overlap with H082
+(`0.793103` Jaccard). It is a different decoder, but not yet independent
+evidence for a new public/private subset. H084 is more orthogonal in support
+because it only adds cells outside H082, but its expected delta is smaller.

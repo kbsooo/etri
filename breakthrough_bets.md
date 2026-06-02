@@ -532,3 +532,25 @@ H082 is now the strongest post-H079 public sensor. A win promotes action-field
 decoding as HS-JEPA's main module. A loss means the public-action sensor is too
 broad and must be constrained by H080-style consensus or new hidden-state
 evidence.
+
+### H083-H084 Update
+
+H083 and H084 split the route question into two falsifiable claims.
+
+| Experiment | File | Core claim | Changed vs H057 | Extra relation | Public-action delta |
+| --- | --- | --- | --- | --- | --- |
+| H083 | `submission_h083_route_action_ef73ae51_uploadsafe.csv` | H082 cells are row-route fragments | 731 cells / 146 rows | 87 H083-only cells, 81 H082-only cells | -0.005530 vs H057 |
+| H084 | `submission_h084_dark_route_58b9e6de_uploadsafe.csv` | H082 needs dark route completion | 793 cells / 149 rows | H082 + 68 new dark cells | -0.000357 vs H082 |
+
+H083 is the larger 0.53-style bet because it changes the decoder unit from
+cell action to route transport. H084 is conditional: it becomes strong only if
+H082/H083 public feedback says the visible source-action route is real.
+
+Current route-action decision tree:
+
+1. H082 wins: broad source-action field is real.
+2. H083 beats H082: action field should be decoded as row-route transport.
+3. H084 beats H082 after H082 wins: visible route fragments need dark
+   completion.
+4. H083/H084 both fail while H082 wins: route structure is over-imposed and
+   HS-JEPA should keep the action field cell-local.

@@ -9396,3 +9396,95 @@ the ensemble of prior latent views. If public improves materially, HS-JEPA
 should prioritize action-field decoding over consensus filtering. If it fails,
 the public-action sensor is over-broad and H080's safe core is the upper limit
 without new hidden-state evidence.
+
+## H083. Route-Action Transport HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h083_route_action_transport_jepa.py`
+- Report: `hitl/h083_route_action_transport_jepa/h083_report.md`
+- Promoted candidate:
+  `submission_h083_route_action_ef73ae51_uploadsafe.csv`
+
+### Observe
+
+H082 selected a broad source-action field, but it still acts like independent
+row-target cells. H071 had a discrete row-route assignment solver, but it was
+built before H082 exposed the stronger source-action view. H083 asks whether
+H082's cells are fragments of row-level route states.
+
+### Hypothesis
+
+H083-H: the hidden correction target is not independent cell top-k. It is
+route-action transport: each selected row carries a route template, and the
+route targets should be materialized coherently from source-action moves.
+
+### Result
+
+Selected `h083_outside_h069_route_c760_ef73ae51`.
+
+- changed cells / rows versus H057: `731` / `146`;
+- probability-different cells / rows versus H082: `807` / `148`;
+- changed-cell set delta versus H082 includes `87` H083-only and `81`
+  H082-only cells;
+- H082/H083 changed-cell Jaccard: `0.793103`;
+- target mix: `Q1:88`, `Q2:71`, `Q3:97`, `S1:110`, `S2:120`,
+  `S3:124`, `S4:121`;
+- route mix: `full_state:46`, `nonq2_full:28`, `q2_hardtail:18`,
+  `q2_s3_tail:4`, `q3_s_stage:20`, `q_subjective:3`,
+  `recovery_route:11`, `s14_edge:1`, `s_stage:15`;
+- public-action predicted delta versus H057: `-0.005530`;
+- posterior delta versus H057: `-0.000610`;
+- responsibility-weighted delta versus H057: `-0.000887`;
+- max positive bad-anchor cosine: `0.0`;
+- upload-safe root file validated.
+
+### Interpretation
+
+H083 gives HS-JEPA a cleaner route-action decoder, but it still overlaps H082
+heavily. A public win over H082 would mean the action field should be decoded
+through row routes. A public loss while H082 wins would mean route completion is
+over-structured and independent cell action is closer to the hidden law.
+
+## H084. Dark Route Completion HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h084_dark_route_completion_jepa.py`
+- Report: `hitl/h084_dark_route_completion_jepa/h084_report.md`
+- Promoted candidate:
+  `submission_h084_dark_route_58b9e6de_uploadsafe.csv`
+
+### Observe
+
+H083's promoted route transport candidate is still close to H082. The sharper
+test is the complement: if H082 found visible fragments of row routes, then the
+missing cells inside those same routes may be dark companion cells.
+
+### Hypothesis
+
+H084-H: H082 is incomplete. On rows/routes where H082 has visible support,
+unchanged route companion cells should move too. The base is H082; only
+H082-unchanged dark cells are modified.
+
+### Result
+
+Selected `h084_dark_sourceonly_c240_58b9e6de`.
+
+- changed cells / rows versus H082: `68` / `36`;
+- changed cells / rows versus H057: `793` / `149`;
+- H084 contains all `725` H082 changed cells plus `68` new dark cells;
+- target mix for new dark cells: `Q1:9`, `Q2:3`, `Q3:5`, `S1:11`,
+  `S2:12`, `S3:15`, `S4:13`;
+- route mix: `full_state:23`, `nonq2_full:6`, `q2_hardtail:1`,
+  `q3_s_stage:3`, `recovery_route:1`, `s_stage:2`;
+- public-action predicted delta versus H082: `-0.000357`;
+- posterior delta versus H082: `-0.000025`;
+- public-action predicted delta versus H057: `-0.005435`;
+- max positive bad-anchor cosine: `0.0`;
+- upload-safe root file validated.
+
+### Interpretation
+
+H084 is not another broad search; it is a falsification of route completion. If
+H082 wins and H084 wins further, HS-JEPA should treat H082 cells as visible
+fragments and learn a dark-companion completion head. If H082 wins but H084
+loses, route completion is overreach and H082 should stay cell-local.

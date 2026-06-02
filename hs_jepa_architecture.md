@@ -524,3 +524,46 @@ not only hidden state support.
 If H082 wins publicly, this becomes the main HS-JEPA v1 decoder head. If it
 fails badly, the action-field head is over-broad and must be regularized by
 H080-style consensus or new private-safe context.
+
+## H083-H084 Route-Action Decoder
+
+H083/H084 add a route layer above the H082 source-action field.
+
+```text
+context(row, target, source views)
+  -> source-action cell field
+  -> row route assignment
+  -> route-action transport or dark-route completion
+  -> probability correction field
+```
+
+The architectural distinction is important:
+
+- H082 decoder: independent row-target action cells.
+- H083 decoder: one hidden route per row, then coherent route target
+  materialization.
+- H084 decoder: H082-visible route fragments are preserved, and only the
+  missing dark route companion cells are completed.
+
+This gives HS-JEPA two new target representations:
+
+1. `z_route_action`: a route-level state that predicts which target subset
+   should move together.
+2. `z_dark_route`: a completion state that predicts cells not directly visible
+   in H082 but implied by the same row route.
+
+Diagnostics from the first implementation:
+
+- H083 changes `731` cells / `146` rows versus H057 and differs from H082 on
+  `807` probability cells. Its support Jaccard with H082 is `0.793103`, so it
+  is a route reinterpretation of the action field rather than a totally new
+  public equation.
+- H084 preserves all `725` H082 cells and adds `68` dark companion cells on
+  `36` rows. It is a conditional completion head, not a replacement head.
+
+Decision rule:
+
+- H083 public win: promote route-action transport as the main HS-JEPA v1
+  decoder.
+- H082 win but H083 loss: source-action should stay cell-local.
+- H084 win after H082/H083: add dark-route completion as a second-stage head.

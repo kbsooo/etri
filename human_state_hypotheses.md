@@ -484,3 +484,40 @@ If H082 wins, the human-social layer should learn actionability rather than
 direct sleep labels or direct story routes. If it loses, broad source-action
 materialization should be paused and narrower episode/state hypotheses should
 return to priority.
+
+## H083-H084 Route Human-State Reading
+
+H083/H084 translate the source-action field into human-state language.
+
+H083 says a row is not merely a bag of independent target corrections. A row
+may be in a human route such as:
+
+- full-state disruption;
+- non-Q2 recovery;
+- Q2 hard-tail intervention;
+- Q3 plus sleep-stage route;
+- stage-only rhythm route.
+
+In that reading, the social/lifestyle story is not attached directly to Q2 or
+S3. It first assigns the row to a route, then the route determines which
+targets should move together.
+
+H084 adds a more specific human hypothesis: visible symptoms are incomplete.
+If H082 sees part of a human state, the same route may imply dark companion
+signals that were not selected by the cell-level action field.
+
+Current evidence:
+
+- H083 changes `731` cells and uses broad route templates, but still overlaps
+  H082 strongly. This means the human route story is plausible but not yet
+  independent from the source-action cell detector.
+- H084 adds only `68` cells outside H082. This is a cleaner test of hidden
+  human route completion, but the expected move is smaller.
+
+Human-state implication:
+
+- If H083 wins: model named stories as route priors, not target priors.
+- If H084 wins after H082: model human states as partially observed symptoms
+  with dark companion completion.
+- If both fail: human stories should keep acting as weak context gates, while
+  the action field remains target-local.

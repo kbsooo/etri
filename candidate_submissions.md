@@ -6968,3 +6968,64 @@ Public interpretation:
   restored.
 
 If one file from H080-H082 is submitted, H082 is the highest-information bet.
+
+## H083 Route-Action Transport Candidate
+
+Promoted file:
+
+`submission_h083_route_action_ef73ae51_uploadsafe.csv`
+
+Worldview: H082 source-action cells are fragments of row-level route states.
+The action unit should be a row route, not independent cells.
+
+- changed cells / rows vs H057: `731` / `146`;
+- probability-different cells / rows vs H082: `807` / `148`;
+- changed-cell support overlap with H082: Jaccard `0.793103`;
+- H083-only changed cells: `87`; H082-only changed cells: `81`;
+- public-action predicted delta vs H057: `-0.005530`;
+- posterior delta vs H057: `-0.000610`;
+- responsibility-weighted delta vs H057: `-0.000887`;
+- max positive bad-anchor cosine: `0.0`;
+- route templates: `full_state:46`, `nonq2_full:28`, `q2_hardtail:18`,
+  `q2_s3_tail:4`, `q3_s_stage:20`, `q_subjective:3`,
+  `recovery_route:11`, `s14_edge:1`, `s_stage:15`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H082: HS-JEPA should decode action through row-route transport;
+- H082 wins but H083 loses: source-action is real but route materialization
+  over-structures it;
+- both lose: H080/H081 evidence was public-action sensor over-breadth.
+
+H083 is a better "one-shot alternative to H082" than H084 because it is a full
+route-action worldview, not just a completion layer.
+
+## H084 Dark Route Completion Candidate
+
+Promoted file:
+
+`submission_h084_dark_route_58b9e6de_uploadsafe.csv`
+
+Worldview: H082 is not wrong; it is incomplete. It found visible fragments of
+hidden routes, and the missing route companion cells should be filled.
+
+- base: H082;
+- changed cells / rows vs H082: `68` / `36`;
+- changed cells / rows vs H057: `793` / `149`;
+- support relation: all `725` H082 changed cells are preserved, plus `68`
+  dark companion cells;
+- public-action predicted delta vs H082: `-0.000357`;
+- posterior delta vs H082: `-0.000025`;
+- public-action predicted delta vs H057: `-0.005435`;
+- target templates for new dark cells: `Q1:9`, `Q2:3`, `Q3:5`, `S1:11`,
+  `S2:12`, `S3:15`, `S4:13`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- H082 good and H084 better: add a dark-route completion head to HS-JEPA;
+- H082 good and H084 worse: H082 should stay cell-local;
+- H082 bad and H084 bad: route completion is not the missing 0.53 mechanism.
+
+H084 should be interpreted after H082/H083, not as the first standalone slot.
