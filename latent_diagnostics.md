@@ -1172,3 +1172,18 @@ decide whether this route signal is real or an action-decoder shortcut.
   - improvement after H051/H052 fail means row-support identity is the latent;
   - failure means H047/H036 support posterior is not yet a stable public
     support geometry and exact H042 support remains the better anchor.
+
+## H054 Latent Diagnostic: Objective Target Route
+
+- H054 treats the hidden human-state latent as target-routed: Q2 is the anchor
+  route, but S2/S4 may be the objective downstream representation.
+- Geometry checks:
+  - Q2 latent is frozen exactly as H042;
+  - subjective Q1/Q3 movement from H050 is removed;
+  - downstream target movement is constrained to S2/S4;
+  - S24 action has strong H025 action-health energy (`-4.518126464`) and
+    negative route gain vs H042 (`-0.000313524`).
+- Collapse check:
+  - improvement means target-route geometry matters and non-Q2 translation is
+    not dead;
+  - failure means the H050-derived non-Q2 route surface is a local shortcut.

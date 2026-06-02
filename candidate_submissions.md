@@ -6250,3 +6250,37 @@ Submission meaning:
   identity / public-subset assignment rather than exact-support amplitude.
 - If H053 also fails, H042 is probably a narrow local Q2 correction and the
   next large bet should infer public subset directly instead of modifying Q2.
+
+## H054 Branch Submission Decision
+
+Objective S2/S4 route-inversion sensor:
+
+`submission_h054_objective_s24_route_inversion_e8680162_uploadsafe.csv`
+
+What this file tests:
+
+- H050 tied H042 while changing subjective Q1/Q3, so that route is public-null
+  under current translation.
+- H054 flips the target-route hypothesis: the hidden post-Q2 state may route
+  into objective S2/S4 instead of subjective Q targets.
+- It keeps H042 Q2 exactly fixed and changes only S2/S4 versus H042.
+
+Local profile:
+
+- changed cells vs H042: `150`, all non-Q2;
+- per-target changes vs H042: S2 `83`, S4 `67`;
+- changed cells vs H012: `195`: Q2 `45`, S2 `83`, S4 `67`;
+- changed cells vs H050: `246`: Q1 `52` reverted, Q3 `44` reverted, S2/S4
+  added;
+- route delta gain vs H042: `-0.000313524`;
+- H025 action-health score: `-4.518126464`;
+- full-known action support: `0.500000000`;
+- upload validation passed: shape `(250, 10)`, required columns OK, no NaN,
+  no duplicate keys, probabilities in `[0.0000169575, 0.999986013]`.
+
+Submission meaning:
+
+- If H054 improves, HS-JEPA needs a target-route decoder where Q2 is the anchor
+  but objective S2/S4 is the downstream public route.
+- If H054 fails, S24 action-health is not public-sufficient and the H050
+  non-Q2 candidate surface should be killed.

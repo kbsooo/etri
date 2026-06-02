@@ -7279,3 +7279,21 @@ Stress interpretation:
 - Failure interpretation:
   - if H053 loses after amplitude/edge also fail, the active H042 discovery is
     likely a narrow exact-support correction, not a broad support posterior.
+
+## H054 Stress Note: Objective S24 Route Inversion
+
+- Stress invariant:
+  - Q2 must remain exactly equal to H042;
+  - H050's Q1/Q3 route must be removed;
+  - the only post-H042 changes should be S2/S4.
+- Validation result:
+  - upload shape `(250, 10)`;
+  - required columns OK;
+  - no NaN;
+  - no duplicate key rows;
+  - probability range `[0.0000169575, 0.999986013]`;
+  - changed cells vs H042: S2 `83`, S4 `67`, every other target `0`;
+  - changed cells vs H050: Q1 `52`, Q3 `44`, S2 `83`, S4 `67`.
+- Failure interpretation:
+  - if H054 fails, the failure is not Q2 support or upload format; it falsifies
+    objective S24 route translation from the current H050 surface.

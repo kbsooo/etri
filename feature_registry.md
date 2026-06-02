@@ -5226,3 +5226,26 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Discard condition:
   if H053 loses after H051/H052 fail, stop local Q2 support swaps and move to a
   direct public-subset/world-equation inference.
+
+## H054 Feature/Action Registry: Objective S24 Route Inversion
+
+- Feature/action name:
+  `h054_objective_s24_route_inversion`
+- Hidden structure targeted:
+  target-route family: Q2 anchor with objective S2/S4 downstream state.
+- Why needed:
+  H050's subjective Q1/Q3 route tied H042, so HS-JEPA needs to test whether the
+  hidden route is objective instead of subjective.
+- Construction:
+  - start from H042;
+  - freeze Q2 exactly;
+  - select an S24 candidate from the H050 surface with strong route gain and
+    H025 action-health;
+  - move S2 `83` cells and S4 `67` cells, leaving all other targets unchanged
+    versus H042.
+- Leakage/safety distinction:
+  this uses H050's public-null result as a falsifiable route-family constraint,
+  not as a leaderboard tweak.
+- Discard condition:
+  if H054 fails, retire the current H050 non-Q2 candidate surface instead of
+  trying adjacent S/Q target groups from the same decoder.

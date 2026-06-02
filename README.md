@@ -356,3 +356,18 @@ and adds `14` new H047/H036 public-world rows. The promoted upload file is
 
 If H051/H052 fail but H053 improves, H042 was mainly a support/public-subset
 identity discovery rather than an under-amplified Q2 phase.
+
+## Latest H054 Branch Note
+
+H054 uses the H050 public-null feedback more aggressively. H050 tried to
+translate the Q2 hidden state into subjective Q1/Q3 cells and tied H042. H054
+therefore rejects that subjective route and tests whether the downstream route
+is objective S2/S4 instead.
+
+The promoted upload file is
+`submission_h054_objective_s24_route_inversion_e8680162_uploadsafe.csv`. It
+keeps H042's Q2 cells fixed and changes `150` non-Q2 cells versus H042:
+S2 `83`, S4 `67`. If it improves, HS-JEPA's target-route decoder should treat
+Q2 as the public-visible anchor and S2/S4 as the hidden objective route. If it
+fails, the current H050 non-Q2 candidate surface should be retired rather than
+recycled.

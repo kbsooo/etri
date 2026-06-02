@@ -3059,3 +3059,27 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - interpretation:
   - H053 is the amplitude-failure branch, not the immediate successor if H051
     validates exact-support amplitude.
+
+## Public-Free Observation: H054 Objective S24 Route-Inversion HS-JEPA
+
+- submission file prepared:
+  `submission_h054_objective_s24_route_inversion_e8680162_uploadsafe.csv`
+- public LB: pending
+- public anchors:
+  - H042 `0.5679048248`;
+  - H050 `0.5679048248`.
+- changed point:
+  - starts from H042;
+  - keeps Q2 exactly frozen;
+  - rejects H050's public-neutral Q1/Q3 route;
+  - changes S2 `83` cells and S4 `67` cells.
+- expected LB reaction:
+  - better than H042 means hidden Q2 state routes into objective S2/S4;
+  - worse than H042 means S24 action-health is not enough for public and the
+    current H050 non-Q2 candidate surface should be retired.
+- local/public-free observation:
+  - changed cells vs H042 `150`, all S2/S4;
+  - changed cells vs H012 `195`: Q2 `45`, S2 `83`, S4 `67`;
+  - route delta gain vs H042 `-0.000313524`;
+  - H025 score `-4.518126464`;
+  - full-known action support `0.500000000`.

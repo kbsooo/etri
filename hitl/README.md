@@ -1601,3 +1601,16 @@ candidates had strong H025 health but weaker action-margin evidence.
   improvement after H051/H052 fail means Q2 should be modeled as support /
   public-subset identity. Failure means exact H042 support remains safer than
   local reassignment.
+
+## H054 Objective S24 Route Inversion
+
+- script: `h054_objective_s24_route_inversion_jepa.py`
+- report: `h054_objective_s24_route_inversion_jepa/h054_report.md`
+- promoted root file:
+  `submission_h054_objective_s24_route_inversion_e8680162_uploadsafe.csv`
+- purpose:
+  H050's subjective Q1/Q3 route tied H042. H054 tests the target-family
+  inversion: keep H042 Q2 fixed and translate the hidden state through S2/S4.
+- public reading:
+  improvement means objective S2/S4 is the downstream route. Failure kills the
+  current H050 non-Q2 route surface.

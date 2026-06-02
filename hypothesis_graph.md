@@ -5552,3 +5552,22 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   - H050 keeps the live branch Q2-local;
   - H051/H052 test amplitude/edge on exact support;
   - H053 is the support-reassignment alternative branch.
+
+## H054 Update: Subjective-Q Route Null Versus Objective-S Route
+
+- New route-family node:
+  - H054: H050's public-null Q1/Q3 route may mean the post-Q2 hidden state
+    belongs to objective S2/S4, not subjective Q.
+- Evidence if true:
+  - `submission_h054_objective_s24_route_inversion_e8680162_uploadsafe.csv`
+    improves over H042/H050;
+  - then HS-JEPA should model Q2 as the anchor and S2/S4 as the downstream
+    objective route.
+- Evidence if false:
+  - H054 loses against H042/H050;
+  - then H050's non-Q2 candidate surface should be retired, not recycled into
+    more Q/S variants.
+- Relation:
+  - H051/H052/H053 are Q2-local branches;
+  - H054 is the cleanest non-Q2 target-route family inversion after H050's
+    neutral public result.
