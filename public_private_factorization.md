@@ -999,3 +999,32 @@ action axis, and older bad submissions as a broader toxic subspace. The
 selected action is small, so H102 does not yet prove a 0.53-scale mechanism.
 It does prove that HS-JEPA can express "safe action" as an assignment equation
 rather than only as a latent representation or blend.
+
+## H103 Toxic-Shadow Cancellation Factorization
+
+H103 keeps H102's factorization but changes the unit of safety:
+
+```text
+single route safety -> portfolio safety
+```
+
+Observed H103 factorization:
+
+- selected file: `submission_h103_shadowcancel_89496ed5_uploadsafe.csv`;
+- selected actions / cells / rows: `23` / `28` / `23`;
+- route-basis predicted delta vs H057: `-0.002438`;
+- H098 cell-equation predicted delta vs H057: `-0.000063`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative bad-axis max positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.008946`;
+- cumulative good-minus-bad margin: `+0.036728`;
+- selected conflict rate: `1.000000`.
+
+Interpretation:
+
+H103 strengthens the current public/private equation hypothesis. H102 proved a
+small safe nullspace exists; H103 shows a denser 28-cell conflict portfolio can
+remain in that nullspace while increasing route-basis predicted gain. If public
+confirms this direction, the hidden factor is not simply public-like rows or
+target-wise calibration. It is a constrained action equation over the whole
+submission vector.

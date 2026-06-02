@@ -1074,3 +1074,42 @@ Decision rule:
   old bad-axis geometry.
 - H102 moves little: 7-cell nullspace is too small; test the broader
   `h102_strict_null_conflict` alternate or learn a denser safe route family.
+
+### H103 Update
+
+H103 tests whether the safe nullspace can be expanded by toxic-shadow
+cancellation.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H103 | `submission_h103_shadowcancel_89496ed5_uploadsafe.csv` | dense conflict route-actions can cancel toxic bad-axis shadows while keeping route-basis gain | `23` actions / `28` cells / `23` rows | route-basis delta `-0.002438`, bad-axis positive projection `0.0`, H088-axis cosine `-0.008946` | strongest current equation-solver bet |
+
+Breakthrough reading:
+
+```text
+H103 is the first candidate that is both larger than the tiny H102 nullspace
+and safer than H100 under bad-axis geometry. If public confirms it, the
+action-grade HS-JEPA decoder is not a gate but a constrained portfolio solver.
+```
+
+Current high-information submission order:
+
+1. `submission_h103_shadowcancel_89496ed5_uploadsafe.csv`
+   - strongest current direct test of public/private row-target equation
+     solving; dense enough to matter, still bad-axis safe.
+
+2. `submission_h100_route_basis_6c8e0c6b_uploadsafe.csv`
+   - biggest unconstrained route-equation worldview bet.
+
+3. `submission_h102_badnull_e775939d_uploadsafe.csv`
+   - smaller strict bad-axis nullspace bet.
+
+4. `submission_h099_route_equation_1cbff4af_uploadsafe.csv`
+   - route assignment discreteness test.
+
+Decision rule:
+
+- H103 wins: pursue HS-JEPA v3 as a toxic-shadow cancellation portfolio solver.
+- H102 wins but H103 loses: the nullspace is real but must stay sparse.
+- H100 wins while H102/H103 lose: bad-axis constraints are over-constraining
+  the true positive route-basis law.

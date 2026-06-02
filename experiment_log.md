@@ -10611,3 +10611,68 @@ Public interpretation:
   the true route-basis action;
 - both lose: route-basis remains a sensor, and the next decoder needs a new
   route family rather than another safety filter.
+
+## H103 Toxic-Shadow Cancellation HS-JEPA
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h103_shadowcancel_89496ed5_uploadsafe.csv`
+
+Worldview:
+
+```text
+Safe action is not only a strict per-action nullspace. Several H100
+route-actions can be assigned together so their toxic shadows cancel in the
+public bad-axis space while their H057-positive route-basis gain remains.
+```
+
+Method:
+
+- start from the H102 bad-axis / good-anchor factorization;
+- score each H100 route-action by route-basis gain, H057 anchor margin,
+  H088-opposite geometry, and bad-axis positive/negative projection;
+- attempt two-stage portfolio selection:
+  counter-shadow reserves first, then high-gain route-actions;
+- enforce cumulative constraints on the full submission action vector:
+  bad-axis weighted positive projection, bad-axis max projection, H088 cosine,
+  H057 good-minus-bad margin, H098 cell-equation delta, route-basis predicted
+  delta, row budget, subject budget, and Q2 budget.
+
+Observed result:
+
+- selected candidate: `h103_dense_nullplus_conflict_c132_r45_amp100_89496ed5`;
+- selected route-basis actions / cells / rows: `23` / `28` / `23`;
+- route-basis predicted delta vs H057: `-0.002438`;
+- H098 cell-equation predicted delta vs H057: `-0.000063`;
+- posterior delta vs H057: `+0.000034`;
+- hard diagnostic delta vs H057: `+0.000051`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative bad-axis max positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.008946`;
+- cumulative good-minus-bad margin: `+0.036728`;
+- anti-H088 direction rate: `0.964286`;
+- H057-positive alignment rate: `0.964286`;
+- selected conflict rate: `1.000000`;
+- selected target changes: Q1 `4`, Q2 `0`, Q3 `11`, S1 `4`, S2 `1`, S3 `1`,
+  S4 `7`;
+- upload-safe validation passed.
+
+Interpretation:
+
+H103 is stronger than H102 as an equation-solver candidate. It keeps the exact
+bad-axis nullspace condition (`0.0` positive projection) while expanding from
+H102's `7` cells to `28` cells and increasing route-basis predicted gain from
+`-0.001162` to `-0.002438`. The surprising part is that the selected candidate
+did not need explicit reserve actions: the dense conflict route portfolio
+itself forms the cancellation/nullspace.
+
+Public interpretation:
+
+- if H103 improves over H102/H100, HS-JEPA's decoder should become a toxic
+  shadow portfolio solver;
+- if H102 improves but H103 loses, dense conflict cancellation is too
+  aggressive and safe action must remain close to the tiny nullspace;
+- if H100 improves but H102/H103 lose, bad public axes overlap the true
+  route-basis law too much to be used as hard constraints.

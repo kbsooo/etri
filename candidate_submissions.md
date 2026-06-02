@@ -7700,3 +7700,41 @@ Priority: high information value but not automatically the best single-slot
 submission. H102 is sharper than H100 and safer by bad-axis geometry, but it
 changes only `7` cells. H100 remains the biggest route-equation bet; H102 is
 the best test of whether public toxicity is a bad-axis/nullspace phenomenon.
+
+## H103 Toxic-Shadow Cancellation Portfolio
+
+Generated file:
+
+`submission_h103_shadowcancel_89496ed5_uploadsafe.csv`
+
+Worldview: safe route-action assignment is a portfolio problem. Dense conflict
+routes can cancel their toxic shadows in the bad public-axis space while
+preserving route-basis public gain.
+
+Evidence:
+
+- selected candidate:
+  `h103_dense_nullplus_conflict_c132_r45_amp100_89496ed5`;
+- selected actions / cells / rows: `23` / `28` / `23`;
+- route-basis predicted delta vs H057: `-0.002438`;
+- H098 cell-equation predicted delta vs H057: `-0.000063`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.008946`;
+- cumulative good-minus-bad margin: `+0.036728`;
+- anti-H088 direction rate: `0.964286`;
+- H057-positive alignment rate: `0.964286`;
+- selected conflict rate: `1.000000`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H102/H100: action-grade HS-JEPA should solve a toxic-shadow
+  cancellation portfolio, not a scalar gate;
+- H102 wins but H103 loses: the 28-cell dense nullspace overshoots and the
+  smaller 7-cell nullspace is safer;
+- H100 wins while H102/H103 lose: old bad public axes are not reliable
+  constraints for the route-basis decoder.
+
+Priority: highest current HS-JEPA equation-solver submission. It is a bigger
+test than H102 because it keeps the same bad-axis safety invariant while
+expanding the action field and route-basis predicted gain.

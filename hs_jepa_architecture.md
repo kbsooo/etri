@@ -1314,3 +1314,45 @@ subspace or field, not a scalar per cell. The remaining problem is density: the
 current nullspace solver finds a very sharp 7-cell action. A 0.53-scale
 breakthrough would require discovering a much larger safe nullspace with the
 same public/private constraints.
+
+## HS-JEPA v2.6: Toxic-Shadow Cancellation Portfolio
+
+H103 expands the H102 nullspace into a portfolio solver:
+
+```text
+route-action candidates
+  -> bad-axis and good-anchor projections
+  -> cumulative toxic-shadow constraints
+  -> dense route-action portfolio whose combined vector is bad-axis safe
+```
+
+This changes the decoder again. H102 asks whether each chosen assignment stays
+near the bad-axis nullspace. H103 asks whether several assignments can be safe
+as a group even if individual routes cast small toxic shadows.
+
+H103 evidence:
+
+- candidate: `submission_h103_shadowcancel_89496ed5_uploadsafe.csv`;
+- selected actions / cells / rows: `23` / `28` / `23`;
+- route-basis predicted delta vs H057: `-0.002438`;
+- H098 cell-equation predicted delta vs H057: `-0.000063`;
+- cumulative bad-axis positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.008946`;
+- cumulative H057-positive anchor margin: `+0.036728`.
+
+Architectural implication:
+
+The latest HS-JEPA decoder stack is:
+
+```text
+context / human-state representation
+  -> route-action basis equation
+  -> bad public-axis toxicity field
+  -> toxic-shadow cancellation portfolio
+  -> row-target action assignment
+```
+
+The key distinction is that action safety is now evaluated on the combined
+submission vector, not on individual cells or routes. This is closer to the
+goal of reconstructing a public/private row-target equation rather than adding
+another latent context encoder.
