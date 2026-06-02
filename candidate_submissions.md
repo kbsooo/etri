@@ -9435,3 +9435,48 @@ Public interpretation:
 - H139 > H143: full row207 is correct.
 - H140 > H143/H139: row135 is the active branch.
 - H141 > H143/H139/H140: optional branch activation is not safe.
+
+## H144 Target-Split XOR Assignment
+
+Generated file:
+
+`submission_h144_targetxor_def80b88_uploadsafe.csv`
+
+Worldview: H142's co-activation barrier may not be row135-level.  The route
+toxic part may be row135 S2, while row135 Q3 remains a safe repair atom.  H144
+keeps row207 and row135 Q3, but vetoes row135 S2.
+
+Evidence:
+
+- selected candidate: `h144_a1p0_q1p0_s0p0_def80b88`;
+- alpha row207 branch: `1.00`;
+- beta row135 Q3: `1.00`;
+- beta row135 S2: `0.00`;
+- changed cells vs H136: `4`;
+- actions:
+  - row `70` Q3 margin repair;
+  - row `131` S2 toxicity relief;
+  - row `207` S2 full toxicity relief `-0.0137500000`;
+  - row `135` Q3 repair `-0.0095836413`;
+  - row `135` S2 off;
+- route delta vs H136: `+0.000002420`;
+- H098/model delta vs H136: `+0.000002113`;
+- H088 delta vs H136: `-0.002642643`;
+- margin delta vs H136: `+0.000506952`;
+- target-split pass: `True`;
+- upload-safe: `True`.
+
+Submission priority:
+
+Very high-information big bet.  This is not a small amplitude tweak.  It
+changes the decoder from row-level branch choice to target-level branch routing.
+If it wins, HS-JEPA's action decoder should split row branches into target
+components and learn veto masks.
+
+Public interpretation:
+
+- H144 > H139/H143: row135 Q3 is a safe repair atom and row135 S2 was the
+  toxic component.
+- H139 > H144: row135 Q3 over-repairs; full row207 only is cleaner.
+- H140 > H144: row135 Q3/S2 must stay together, or row207 is wrong.
+- H142 > H144: S2 was not toxic; additive branch interaction is still alive.

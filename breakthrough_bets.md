@@ -2404,3 +2404,34 @@ H139 > H143:
 H140 > H143/H139:
   row135 branch is the right hidden world.
 ```
+
+### H144 Update
+
+H144 is the target-split XOR assignment bet.
+
+| Bet | File | Worldview | Local evidence | Risk |
+| --- | --- | --- | --- | --- |
+| H144 | `submission_h144_targetxor_def80b88_uploadsafe.csv` | H142's route barrier is not row135-level; row135 Q3 is safe repair while row135 S2 is toxic and should be vetoed | H088 delta `-0.002642643`, margin delta `+0.000506952`, route delta `+0.000002420`, target-split pass `True` | H098 delta rises to `+0.000002113`; row135 Q3 may over-repair public |
+
+This is the strongest structural bet after H142:
+
+```text
+H143:
+  choose row207, reject row135.
+
+H144:
+  choose row207 and row135 Q3, reject row135 S2.
+```
+
+The public result decides whether HS-JEPA should operate at row-level branch
+assignment or target-level branch routing:
+
+```text
+H144 > H139/H143:
+  target-level routing is real;
+  build row-target veto masks.
+
+H139/H143 > H144:
+  row135 Q3 is not safe with row207;
+  keep row-level XOR.
+```

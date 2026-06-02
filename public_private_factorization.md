@@ -2847,3 +2847,61 @@ Can branches mix?   H142 says probably no
 
 This moves HS-JEPA from a correction-vector search toward a branch assignment
 decoder with branch-specific amplitude calibration.
+
+## H144 Public/Private Factorization Update
+
+H144 splits the H140 row135 branch by target.
+
+Previous branch view:
+
+```text
+row207 branch = row207 S2
+row135 branch = row135 Q3 + row135 S2
+```
+
+H144 target-level view:
+
+```text
+row207 S2 = toxicity relief
+row135 Q3 = repair
+row135 S2 = route-toxic candidate, vetoed
+```
+
+Observed H144 factorization:
+
+- selected file: `submission_h144_targetxor_def80b88_uploadsafe.csv`;
+- selected candidate: `h144_a1p0_q1p0_s0p0_def80b88`;
+- selected atoms:
+  - row `70` Q3 margin repair;
+  - row `131` S2 toxicity relief;
+  - row `207` S2 full toxicity relief;
+  - row `135` Q3 repair;
+- deliberately absent:
+  - row `135` S2;
+- delta vs H136:
+  - route `+0.000002420`;
+  - H098/model `+0.000002113`;
+  - H088 `-0.002642643`;
+  - margin `+0.000506952`.
+
+Key diagnostic:
+
+```text
+row207 + row135 Q3      -> route remains near endpoint scale
+row207 + row135 Q3 + S2 -> route jumps toward the H142 barrier
+```
+
+Interpretation:
+
+This is a sharper factorization than H143.  The public/private equation may be:
+
+```text
+common core
++ row207 S2 toxicity relief
++ row135 Q3 repair
+- row135 S2 veto
+```
+
+If public validates H144, HS-JEPA's action solver must operate at row-target
+granularity.  The relevant hidden state is not just "row135 branch on/off"; it
+is "which target of row135 belongs to the safe assignment field."

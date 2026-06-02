@@ -3100,3 +3100,44 @@ HS-JEPA decoder
 H143 is important because it gives HS-JEPA a concrete next decoder form:
 assignment first, amplitude second.  This is different from both a tabular
 model and a linear blend.
+
+### H144: Target-Split XOR Assignment
+
+H144 refines the H143 decoder.
+
+H143 asks which row-level branch should be active.  H144 asks whether a row
+branch should be split into target-level components:
+
+```text
+row135 branch
+  -> row135 Q3 repair
+  -> row135 S2 route-toxic component
+```
+
+H144 evidence:
+
+- candidate: `submission_h144_targetxor_def80b88_uploadsafe.csv`;
+- row `207` S2: full branch on;
+- row `135` Q3: on;
+- row `135` S2: off;
+- changed cells vs H136: `4`;
+- H088 delta vs H136: `-0.002642643`;
+- margin delta vs H136: `+0.000506952`;
+- route delta vs H136: `+0.000002420`;
+- H098/model delta vs H136: `+0.000002113`;
+- target-split pass: `True`.
+
+Architecture implication:
+
+```text
+HS-JEPA decoder
+  -> common action core
+  -> row branch proposal
+  -> target component splitter
+  -> target-level veto mask
+  -> public/private equation check
+```
+
+This is a more specific architecture than H143.  A "human-state" does not just
+choose a row branch; it may select which target routes inside that row are safe
+actions.

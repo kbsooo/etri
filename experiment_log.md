@@ -13273,3 +13273,78 @@ H141 = no optional branch
 - H139 > H143: full row207 is the correct branch assignment.
 - H140 > H143/H139: row135 is the correct branch.
 - H141 > optional branches: common core only.
+
+## H144 Target-Split XOR Assignment HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h144_target_split_xor_assignment_hsjepa/h144_report.md`
+- `hitl/h144_target_split_xor_assignment_hsjepa/h144_decision.csv`
+- `hitl/h144_target_split_xor_assignment_hsjepa/h144_target_split_scores.csv`
+- `hitl/h144_target_split_xor_assignment_hsjepa/h144_selected_cells.csv`
+- `submission_h144_targetxor_def80b88_uploadsafe.csv`
+
+Worldview:
+
+```text
+H142 showed row207 + full row135 is route-toxic.  But row135 may not be toxic
+as a row; the toxic part may be one target inside row135.  Split row135 into Q3
+and S2, then let the assignment solver veto only the toxic target.
+```
+
+Observed result:
+
+- promoted candidate: `h144_a1p0_q1p0_s0p0_def80b88`;
+- root file: `submission_h144_targetxor_def80b88_uploadsafe.csv`;
+- start field: H141 common core;
+- alpha row207 branch: `1.00`;
+- beta row135 Q3: `1.00`;
+- beta row135 S2: `0.00`;
+- changed cells vs H136: `4`;
+- selected actions:
+  - row `70` Q3 margin repair, inherited from H141;
+  - row `131` S2 toxicity relief, inherited from H141;
+  - row `207` S2 full toxicity-relief branch;
+  - row `135` Q3 repair branch;
+  - row `135` S2 deliberately vetoed;
+- delta vs H136:
+  - route: `+0.000002420`;
+  - H098/model: `+0.000002113`;
+  - H088: `-0.002642643`;
+  - margin: `+0.000506952`;
+- delta vs H141:
+  - route: `+0.000001227`;
+  - H098/model: `+0.000001113`;
+  - H088: `-0.001216704`;
+  - margin: `+0.000240789`;
+- target-split pass: `True`;
+- S2 route-toxic flag: `False` for selected candidate because S2 is off;
+- upload-safe validation passed.
+
+Important finding:
+
+The top target-split candidates all keep row135 S2 off.  Adding S2 back causes
+the route barrier to reappear around `3.6e-6`.  This suggests the decoder should
+not choose branches only at row level.  It needs target-level assignment:
+
+```text
+safe:   row207 S2 + row135 Q3
+toxic:  row207 S2 + row135 Q3 + row135 S2
+```
+
+Interpretation:
+
+H144 is the strongest row-target assignment hypothesis so far.  It says H143's
+global XOR rule was too coarse:
+
+- H143: choose row207, reject row135.
+- H144: choose row207 and row135 Q3, reject row135 S2.
+
+Public reading:
+
+- H144 > H139/H143: target-level routing is real; row135 Q3 is a safe repair
+  atom when row135 S2 is vetoed.
+- H139 > H144: row135 Q3 over-repairs; keep full row207 only.
+- H140 > H144: row135 Q3 must stay paired with row135 S2, or row207 is wrong.
