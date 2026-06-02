@@ -11470,3 +11470,102 @@ Public interpretation:
   nonlinear row-target curvature view;
 - if H115 loses badly, Q2 remains a diagnostic target and should not be
   reintroduced without a stronger private-safe assignment proof.
+
+## H116 Companion-Conservation Row-Target Equation HS-JEPA
+
+Date: 2026-06-03
+
+Generated diagnostic files:
+
+- `hitl/h116_companion_conservation_equation_hsjepa/h116_report.md`
+- `hitl/h116_companion_conservation_equation_hsjepa/h116_no_candidate_audit.csv`
+- `hitl/h116_companion_conservation_equation_hsjepa/h116_top_forbidden_bundles.csv`
+
+Worldview:
+
+```text
+If H115's Q2 companion route is real, then Q2-only actions should be more
+public-toxic than Q2 plus the correct same-row companion targets.  H116 tests
+that as a row-level conservation equation, then tries to add non-Q2 anti-H088
+guards if the core bundle is H088-positive.
+```
+
+Observed result:
+
+No upload-safe candidate was promoted.
+
+- strict spec: `26/26` positive-rescue bundles were H088-positive;
+- balanced spec: `123/123` positive-rescue bundles were H088-positive;
+- micro spec: `18/18` positive-rescue bundles were H088-positive;
+- antidote spec: `97/97` positive-rescue bundles were H088-positive;
+- `rescue_and_h088_nonpositive_bundles`: `0` for every spec;
+- maximum Q2 rescue marginal reached `0.000050772`;
+- minimum full curvature marginal reached `-0.000053340`;
+- available anti-H088 guard cells could reach H088 cosine `-0.176681`, but
+  strong guards created too much bad-axis pressure for final assignment.
+
+Important diagnostic:
+
+H116 does not say "there is no Q2 companion structure."  It says the opposite:
+the Q2 companion-rescue structure is very real, but every high-rescue bundle
+lives in the H088-positive toxic sector.  Under the current public/private
+equation, Q2 companion conservation is therefore a toxic representation, not a
+safe assignment field.
+
+Public interpretation:
+
+- if H115 later wins publicly, H116 was too strict and H088-positive curvature
+  can still be privately safe in a very narrow Q2 route;
+- if H115 loses, H116 already explains why: Q2 companion rescue is tied to the
+  H088 toxic action field;
+- the next action-grade decoder should use H116 bundles as forbidden target
+  representations, not as direct submission actions.
+
+## H117 Forbidden Companion-Sector Inversion HS-JEPA
+
+Date: 2026-06-03
+
+Generated diagnostic files:
+
+- `hitl/h117_forbidden_companion_sector_hsjepa/h117_report.md`
+- `hitl/h117_forbidden_companion_sector_hsjepa/h117_forbidden_axes.csv`
+- `hitl/h117_forbidden_companion_sector_hsjepa/h117_positive_antipode_cells.csv`
+- `hitl/h117_forbidden_companion_sector_hsjepa/h117_scored_proposals.csv`
+
+Worldview:
+
+```text
+If H116's Q2 companion sector is public-toxic, perhaps it can still be useful
+as a contrastive target representation: move non-Q2 cells opposite that
+forbidden sector while preserving H057-positive row-state support.
+```
+
+Observed result:
+
+No upload-safe candidate was promoted.
+
+- forbidden axes created from H116 positive-rescue / H088-positive bundles:
+  `264`;
+- scored proposal cells: `2192`;
+- cells with positive forbidden-antipode gap: only `4`;
+- none of the four cells passed H102/H112/H115 stress as a submission
+  candidate;
+- the strongest antipode cell was row `38`, subject `id02`, target `S3`, from
+  H114 novelty, with forbidden gap `0.001881808`.
+
+Important diagnostic:
+
+H117 kills the simple "just invert the forbidden Q2 sector" idea.  The toxic
+Q2 companion representation is not practically invertible in the current
+proposal space.  That means H116's sector is better used as a veto/diagnostic
+field than as an action generator.
+
+Public interpretation:
+
+- H115 is now a very high-risk public sensor: it tests a narrow Q2 route that
+  local H116/H117 diagnostics distrust;
+- H112/H114-style non-Q2 residual/nullspace branches remain more structurally
+  defensible as action decoders;
+- the next breakthrough should not be more Q2 reopening. It should separate
+  public-toxic sectors from safe non-Q2 assignment before any Q2 is allowed
+  back in.

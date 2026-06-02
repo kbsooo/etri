@@ -3579,3 +3579,50 @@ Next direction:
 - whole-row route value law;
 - use low-overlap latent only as a diagnostic or veto, not as the main support
   source.
+## FH-H116. Q2 companion conservation is a safe action field
+
+Date: 2026-06-03
+
+Hypothesis:
+
+```text
+Q2-only is toxic, but Q2 plus the correct same-row companion targets is a safe
+row-target conservation action.
+```
+
+Result:
+
+- H116 found positive Q2-rescue bundles in every spec;
+- every positive-rescue bundle was H088-positive;
+- `rescue_and_h088_nonpositive_bundles` was `0` for all specs;
+- anti-H088 guards either cancelled too little H088 or created too much
+  bad-axis pressure;
+- no upload-safe candidate was promoted.
+
+Decision:
+
+Reject as an action generator.  Keep Q2 companion curvature as a latent
+structure and toxicity diagnostic.
+
+## FH-H117. Forbidden Q2 companion sector can be inverted into safe non-Q2 action
+
+Date: 2026-06-03
+
+Hypothesis:
+
+```text
+The H116 positive-rescue/H088-positive sector can become useful if we move
+non-Q2 cells opposite that forbidden representation.
+```
+
+Result:
+
+- forbidden axes: `264`;
+- scored proposal cells: `2192`;
+- positive forbidden-antipode cells: `4`;
+- no candidate survived H102/H112/H115 stress.
+
+Decision:
+
+Reject direct forbidden-sector inversion.  The sector is useful as a veto or
+diagnostic representation, not as a current action decoder.

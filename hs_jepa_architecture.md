@@ -1936,3 +1936,52 @@ emphasize "human-state predictive representation plus row-target
 action-equation solver."  If H115 fails, second-order curvature remains a
 diagnostic and the architecture should keep H112/H114 toxicity/nullspace as
 the live decoder branch.
+
+## HS-JEPA v5.1: Forbidden Sector Diagnostics
+
+H116 and H117 add a negative layer to the v5 action-equation solver.
+
+```text
+candidate Q2 companion route
+  -> Q2-only / companion-only / full-route ablation
+  -> H088 toxicity check
+  -> optional anti-H088 guard field
+  -> promote only if the full assignment is safe
+```
+
+H116 result:
+
+- Q2 companion rescue exists;
+- all positive-rescue Q2 companion bundles are H088-positive;
+- guard cells cannot neutralize the H088 direction without introducing
+  unacceptable bad-axis pressure;
+- no candidate is promoted.
+
+H117 then tries:
+
+```text
+forbidden Q2 companion sector
+  -> contrastive target representation
+  -> non-Q2 antipode assignment
+```
+
+H117 result:
+
+- only `4/2192` proposal cells point opposite the forbidden sector;
+- none become an upload-safe candidate.
+
+Architecture implication:
+
+HS-JEPA should distinguish three objects:
+
+```text
+latent structure:      Q2 companion curvature exists.
+toxic action sector:   that curvature is H088-positive.
+safe assignment field: not found by direct companion or antipode decoding.
+```
+
+This is important for the paper framing.  HS-JEPA is not just a model that
+predicts hidden human state.  It is a model that refuses to act when a real
+hidden state lives in a public-toxic action sector.  H116/H117 therefore
+strengthen the row-target action-equation story even though they produce no
+submission.

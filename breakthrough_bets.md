@@ -1613,3 +1613,42 @@ Decision rule:
   keep residual toxicity as selector and leave Q2 mostly blocked.
 - H115 loses badly: H088-like negative sensors predict real Q2/action toxicity
   and curvature should remain diagnostic only.
+
+### H116-H117 Update
+
+H116 and H117 are negative breakthrough probes.  They did not produce a
+submission, but they substantially changed the live worldview.
+
+| Experiment | Core claim | Result | Status |
+| --- | --- | --- | --- |
+| H116 | Q2 companion rescue is safe if same-row companions cancel curvature toxicity | rescue exists, but every positive-rescue bundle is H088-positive | Q2 companion safety mostly rejected |
+| H117 | the forbidden Q2 companion sector can be inverted into non-Q2 safe assignments | only `4/2192` proposal cells have positive antipode gap; no candidate survives stress | simple forbidden-sector inversion rejected |
+
+Breakthrough reading:
+
+```text
+The Q2 companion sector is real but toxic.  It is not a safe assignment field
+under current equations, and its opposite direction is nearly absent from the
+current proposal space.
+```
+
+Updated high-information submission order:
+
+1. `submission_h115_curvature_23748467_uploadsafe.csv`
+   - high-risk sensor only: tests whether public contradicts the H116/H117
+     local toxicity diagnosis.
+
+2. `submission_h114_nullspace_73fe7866_uploadsafe.csv`
+   - tests toxic-subspace null decoding, now more attractive because Q2
+     companion conservation failed as safe action.
+
+3. `submission_h112_residualtox_68b26f11_uploadsafe.csv`
+   - tests non-Q2 residual toxicity assignment.
+
+Decision rule:
+
+- H115 wins: public accepts a narrow Q2 exception that local H116/H117 could
+  not certify.
+- H115 loses: lock Q2 companion sector as toxic/veto representation.
+- H114 or H112 wins: proceed with non-Q2 toxicity/nullspace decoders as the
+  main HS-JEPA action layer.

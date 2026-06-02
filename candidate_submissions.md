@@ -8245,3 +8245,44 @@ positive row-state and H088 negative action signal without treating H018/H088
 as private action heads.  It is not a 0.53 proof yet, but it can decide whether
 the next HS-JEPA decoder should be nonlinear row-target equations or the
 H112-H114 toxicity/nullspace branch.
+
+## H116/H117 Negative Submission Decision
+
+No H116 or H117 submission file was promoted.
+
+H116 tested the strongest version of the H115 Q2 companion story:
+
+```text
+Q2-only is toxic, but Q2 plus same-row companions is safe.
+```
+
+The first half was supported, but the second half failed.  Across all H116
+specs, every positive-rescue Q2 companion bundle was H088-positive:
+
+- strict: `26/26`;
+- balanced: `123/123`;
+- micro: `18/18`;
+- antidote: `97/97`.
+
+H117 then tried to invert that forbidden Q2 companion sector.  That also
+failed as an action generator: only `4/2192` proposal cells had positive
+forbidden-antipode gap, and none survived the stress gates.
+
+Submission consequence:
+
+- Do not upload an H116/H117 file; none exists because the assignment solver
+  correctly refused to materialize an unsafe action.
+- Treat `submission_h115_curvature_23748467_uploadsafe.csv` as a high-risk
+  sensor, not as a now-validated Q2 strategy.
+- If only one current public slot is available, H115 is still informative, but
+  H112/H114 are more structurally defensible if the goal is private-safe
+  action decoding.
+
+Decision rule:
+
+- H115 wins: Q2 companion is a narrow exception that survived despite H116's
+  H088-positive warning.
+- H115 loses: H116/H117 explain the loss; Q2 companion rescue is a toxic
+  sector and should be demoted to a veto representation.
+- H112/H114 win while H115 loses: continue with non-Q2 residual/nullspace
+  assignment, not Q2 reopening.

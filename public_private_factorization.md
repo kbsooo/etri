@@ -1611,3 +1611,56 @@ Failure interpretation:
   pre-assignment transformation;
 - if H115 loses badly, H088-like negative sensors should continue to veto Q2
   companion reopening.
+
+## H116-H117 Forbidden Companion-Sector Factorization
+
+H116/H117 update the Q2 factorization.
+
+H116 factorization:
+
+```text
+Q2-only action
+Q2 + same-row companions
+  -> second-order curvature comparison
+  -> H088 toxicity stress
+  -> anti-H088 guard attempt
+```
+
+Observed H116 result:
+
+- positive Q2-rescue bundles exist in every spec;
+- every positive-rescue bundle is H088-positive;
+- anti-H088 guards cannot make the final action safe without adding bad-axis
+  pressure;
+- no upload-safe assignment was promoted.
+
+H117 factorization:
+
+```text
+H116 positive-rescue / H088-positive bundles
+  -> forbidden companion-sector representation
+proposal cell action
+  -> same-sector toxicity / opposite-sector antidote score
+  -> H102/H112/H115 stress
+```
+
+Observed H117 result:
+
+- forbidden axes: `264`;
+- scored proposal cells: `2192`;
+- positive forbidden-antipode cells: `4`;
+- no upload-safe assignment was promoted.
+
+Interpretation:
+
+The public/private factorization now has a sharper rule:
+
+```text
+Q2 companion curvature may be a real latent structure,
+but it is not yet a safe action structure.
+```
+
+H116 says the Q2 companion structure belongs to the H088-positive toxic sector.
+H117 says that sector is not easily inverted into a safe non-Q2 action.  So Q2
+should remain behind a hard veto unless public evidence from H115 contradicts
+the local equation diagnostics.
