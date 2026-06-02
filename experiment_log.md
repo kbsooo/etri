@@ -11569,3 +11569,68 @@ Public interpretation:
 - the next breakthrough should not be more Q2 reopening. It should separate
   public-toxic sectors from safe non-Q2 assignment before any Q2 is allowed
   back in.
+
+## H118 Forbidden-Sector Veto Assignment HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h118_forbidden_veto_assignment_hsjepa/h118_report.md`
+- `hitl/h118_forbidden_veto_assignment_hsjepa/h118_decision.csv`
+- `hitl/h118_forbidden_veto_assignment_hsjepa/h118_selected_cells.csv`
+- `submission_h118_forbiddenveto_e81167a8_uploadsafe.csv`
+
+Worldview:
+
+```text
+H116/H117 did not fail because the Q2 companion sector was imaginary.  They
+failed because that sector is real but action-toxic.  H118 therefore uses the
+forbidden Q2 companion representation as a veto, while the actual assignment
+comes from non-Q2 residual/nullspace/antidote proposals.
+```
+
+Observed result:
+
+- promoted candidate: `h118_veto_antidote_c52_a046_e81167a8`;
+- selected cells / rows: `52` / `34`;
+- target changes: Q1 `8`, Q2 `0`, Q3 `7`, S1 `8`, S2 `11`,
+  S3 `8`, S4 `10`;
+- forbidden axes used as veto: `264`;
+- forbidden same-sector exposure: mean `0.000000`, max `0.000000`;
+- forbidden pressure: mean `0.000000`;
+- H102 bad-axis weighted positive projection: `0.000000`;
+- H102 H088-axis cosine: `-0.003628`;
+- model predicted delta vs H057: `-0.000009`;
+- route-basis predicted delta vs H057: `-0.000568`;
+- curvature marginal vs zero: `+0.000047`;
+- residual toxicity / safety / gap:
+  `0.397824` / `0.648287` / `0.250463`;
+- overlap/cosine: H115 `9` cells / `0.146018`, H114 `2` cells /
+  `0.096800`, H113 `17` cells / `0.414814`, H112 `21` cells /
+  `0.417966`;
+- upload-safe validation passed.
+
+Important diagnostic:
+
+H118 is the first implementation of the current goal's core split:
+
+```text
+hidden toxic representation != safe assignment field
+```
+
+It turns the H116/H117 negative discovery into an action decoder rule.  Q2 is
+not reopened.  The Q2 companion sector is kept as a forbidden-state detector,
+and only non-Q2 actions with zero same-direction exposure are allowed through.
+
+Public interpretation:
+
+- if H118 improves, the forbidden-sector veto is a useful HS-JEPA action
+  decoder layer and Q2 companion structure should remain a veto until proven
+  safe;
+- if H118 loses while H112/H114 improve, the veto is directionally right but
+  this antidote assignment is too broad or underidentified;
+- if H115 wins while H118 loses, Q2 companion is a narrow public-safe exception
+  despite local toxicity warnings;
+- if all H112/H114/H115/H118 lose, the current public/private equation still
+  lacks the true private-safe assignment variable.

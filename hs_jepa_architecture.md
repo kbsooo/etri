@@ -1985,3 +1985,55 @@ predicts hidden human state.  It is a model that refuses to act when a real
 hidden state lives in a public-toxic action sector.  H116/H117 therefore
 strengthen the row-target action-equation story even though they produce no
 submission.
+
+## HS-JEPA v5.2: Forbidden-Sector Veto Assignment
+
+H118 turns the v5.1 negative diagnostics into an explicit decoder layer.
+
+```text
+context encoder
+  -> hidden human-state proposals
+  -> forbidden-sector recognizer
+  -> veto public-toxic action sectors
+  -> residual/nullspace/antidote proposal scoring
+  -> row-target safe assignment
+```
+
+The key architectural distinction is:
+
+```text
+representation quality != action safety
+```
+
+H116/H117 found a real Q2 companion representation, but H088-style public
+response says that representation is action-toxic.  H118 keeps the
+representation, but changes its role from action target to veto target.
+
+H118 evidence:
+
+- candidate: `submission_h118_forbiddenveto_e81167a8_uploadsafe.csv`;
+- selected cells / rows: `52` / `34`;
+- target route: Q1 `8`, Q2 `0`, Q3 `7`, S1 `8`, S2 `11`,
+  S3 `8`, S4 `10`;
+- forbidden axes: `264`;
+- forbidden same-sector exposure / pressure: `0.000000` / `0.000000`;
+- H102 bad-axis weighted positive projection: `0.000000`;
+- H088-axis cosine: `-0.003628`;
+- route-basis predicted delta vs H057: `-0.000568`;
+- residual toxicity / safety / gap:
+  `0.397824` / `0.648287` / `0.250463`.
+
+Architecture implication:
+
+HS-JEPA should now be written as a two-stage system:
+
+```text
+Stage A: Predict hidden human-state representations.
+Stage B: Solve whether acting on each row-target representation is safe under
+         the public/private observation equation.
+```
+
+This is the cleanest distinction from a normal tabular/blend approach.  A
+standard model asks which probability is better.  HS-JEPA asks whether a
+candidate correction belongs to a safe assignment field or a public-toxic
+action field.  H118 is the first concrete prototype of that distinction.

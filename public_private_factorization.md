@@ -1664,3 +1664,61 @@ H116 says the Q2 companion structure belongs to the H088-positive toxic sector.
 H117 says that sector is not easily inverted into a safe non-Q2 action.  So Q2
 should remain behind a hard veto unless public evidence from H115 contradicts
 the local equation diagnostics.
+
+## H118 Forbidden-Sector Veto Assignment Factorization
+
+H118 changes the role of H116/H117 from failed action generator to decoder
+constraint.
+
+The factorization is:
+
+```text
+H116 positive-rescue / H088-positive Q2 bundles
+  -> forbidden companion-sector representation
+candidate non-Q2 residual/nullspace/antidote action
+  -> same-sector exposure veto
+  -> residual safety/toxicity scoring
+  -> H102/H115 public-response stress
+  -> sparse safe assignment
+```
+
+Observed H118 factorization:
+
+- selected file: `submission_h118_forbiddenveto_e81167a8_uploadsafe.csv`;
+- selected candidate: `h118_veto_antidote_c52_a046_e81167a8`;
+- forbidden axes: `264`;
+- selected cells / rows: `52` / `34`;
+- Q2 cells: `0`;
+- forbidden same-sector exposure: mean `0.000000`, max `0.000000`;
+- forbidden pressure: mean `0.000000`;
+- H102 bad-axis weighted positive projection: `0.000000`;
+- H102 H088-axis cosine: `-0.003628`;
+- route-basis predicted delta vs H057: `-0.000568`;
+- model predicted delta vs H057: `-0.000009`;
+- curvature marginal vs zero: `+0.000047`;
+- residual toxicity / safety / gap:
+  `0.397824` / `0.648287` / `0.250463`.
+
+Interpretation:
+
+H118 directly implements the current public/private equation hypothesis:
+
+```text
+real hidden state can be public-toxic when materialized as an action.
+```
+
+The safe object is therefore not the strongest hidden representation.  The
+safe object is the row-target assignment that avoids the toxic sector while
+still carrying residual human-state signal.  This makes H118 more than a
+candidate submission: it is the current architecture test for whether HS-JEPA
+needs an action-to-observation equation solver.
+
+Failure interpretation:
+
+- if H118 improves, forbidden-sector veto is promoted into the decoder;
+- if H118 loses while H112/H114 improve, the veto is useful but this branch
+  picked the wrong safe assignment;
+- if H115 improves while H118 loses, Q2 companion is not globally forbidden
+  and needs a narrower exception solver;
+- if H118 loses badly, the forbidden sector is only diagnostic and should not
+  constrain public/private assignment directly.

@@ -1,0 +1,5 @@
+spec_name,prefilter_rows,forbidden_same_pass,residual_safety_pass,residual_toxicity_pass
+veto_h112_core_c44_a050,1857,1741,634,1192
+veto_h114_null_c36_a055,157,149,157,134
+veto_antidote_c52_a046,733,660,573,711
+veto_stage_balance_c48_a042,1633,1527,761,1248

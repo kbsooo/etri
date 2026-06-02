@@ -8286,3 +8286,49 @@ Decision rule:
   sector and should be demoted to a veto representation.
 - H112/H114 win while H115 loses: continue with non-Q2 residual/nullspace
   assignment, not Q2 reopening.
+
+## H118 Forbidden-Sector Veto Assignment
+
+Generated file:
+
+`submission_h118_forbiddenveto_e81167a8_uploadsafe.csv`
+
+Worldview: the Q2 companion sector found by H116/H117 is a real hidden
+human-state representation, but it is not a safe action field.  H118 uses that
+sector as a hard veto and lets non-Q2 residual/nullspace/antidote proposals
+form the actual row-target assignment.
+
+Evidence:
+
+- selected candidate: `h118_veto_antidote_c52_a046_e81167a8`;
+- selected cells / rows: `52` / `34`;
+- target route: Q1 `8`, Q2 `0`, Q3 `7`, S1 `8`, S2 `11`,
+  S3 `8`, S4 `10`;
+- forbidden-sector same exposure / pressure: `0.000000` / `0.000000`;
+- H102 bad-axis weighted positive projection: `0.000000`;
+- H088-axis cosine: `-0.003628`;
+- route-basis predicted delta vs H057: `-0.000568`;
+- H098/model predicted delta vs H057: `-0.000009`;
+- curvature marginal vs zero: `+0.000047`;
+- residual toxicity / safety / gap:
+  `0.397824` / `0.648287` / `0.250463`;
+- upload-safe: `True`.
+
+Submission priority:
+
+Very high information value, medium-high practical priority.  H118 is more
+structurally aligned with the current goal than H115 because it uses H088/H116
+as negative sensors instead of trying to act through the Q2 companion sector.
+It is not a direct proof of the 0.53 path, but it cleanly tests whether
+HS-JEPA's next decoder should be a forbidden-sector veto plus non-Q2
+assignment layer.
+
+Public interpretation:
+
+- win over H057/H115: promote forbidden-sector veto assignment as HS-JEPA v5.2;
+- loss but H112/H114 win: the veto is too restrictive or the antidote branch is
+  too broad; keep non-Q2 residual/nullspace decoders;
+- loss but H115 wins: Q2 companion is a rare safe route that the veto wrongly
+  blocks;
+- broad loss: current action-to-public equation is still missing the private
+  observation variable.

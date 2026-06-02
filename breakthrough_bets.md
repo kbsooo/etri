@@ -1652,3 +1652,46 @@ Decision rule:
 - H115 loses: lock Q2 companion sector as toxic/veto representation.
 - H114 or H112 wins: proceed with non-Q2 toxicity/nullspace decoders as the
   main HS-JEPA action layer.
+
+### H118 Update
+
+H118 is the first big bet after the goal moved from hidden-state discovery to
+row-target action toxicity and safe assignment.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H118 | `submission_h118_forbiddenveto_e81167a8_uploadsafe.csv` | H116/H117's Q2 companion sector is useful as a veto, not as an action target; safe assignment is non-Q2 residual/nullspace/antidote under that veto | `52` cells / `34` rows / `0` Q2 cells | forbidden exposure `0`, bad-axis positive projection `0`, H088 cosine `-0.003628`, route-basis delta `-0.000568` | forbidden-sector veto bet |
+
+Breakthrough reading:
+
+```text
+The important move is not another encoder or another blend.  H118 separates
+three objects: a real hidden representation, a public-toxic action sector, and
+a safe assignment field.  This is the action-grade version of HS-JEPA.
+```
+
+Updated high-information submission order:
+
+1. `submission_h118_forbiddenveto_e81167a8_uploadsafe.csv`
+   - tests forbidden-sector veto plus non-Q2 safe assignment.
+
+2. `submission_h115_curvature_23748467_uploadsafe.csv`
+   - high-risk sensor for the narrow Q2 companion exception.
+
+3. `submission_h114_nullspace_73fe7866_uploadsafe.csv`
+   - tests toxic-subspace null decoding.
+
+4. `submission_h112_residualtox_68b26f11_uploadsafe.csv`
+   - tests cell-level residual public-toxicity assignment.
+
+Decision rule:
+
+- H118 wins: HS-JEPA v5.2 should make toxic hidden sectors first-class veto
+  representations before row-target assignment;
+- H118 loses but H114/H112 win: the forbidden sector diagnosis is right, but
+  H118's selected antidote assignment is too broad or the veto removed useful
+  cells;
+- H115 wins while H118 loses: Q2 companion remains a narrow public-safe
+  exception and cannot be globally vetoed;
+- all lose: the public/private equation is not captured by current toxicity,
+  nullspace, curvature, or forbidden-sector variables.
