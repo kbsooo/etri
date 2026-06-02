@@ -464,3 +464,37 @@ Factorization reading:
   equation-refit module whenever a new informative public observation arrives;
 - if H085 loses, H057's public state is already close enough and further
   inversion from sparse public readings is underdetermined.
+
+## H086 Responsibility Factorization
+
+H086 separated two possible hidden factors:
+
+1. label/action posterior: what the hidden label state should be;
+2. row-target responsibility: which cells public LB effectively listens to.
+
+The experiment fit nonnegative responsibility weights from known public
+submission deltas under the H085 posterior. If public/private factorization
+were strongly subset-weighted, the fitted field should be concentrated by row,
+target, subject, H082 support, or human-state prior.
+
+Observed factorization:
+
+- the best field is `uniform__ridge_0.0001`;
+- effective cell count is `1733.49 / 1750`;
+- top-200 cells explain only `0.131502` of mass;
+- target mass is essentially flat, with Q2 only slightly highest at `0.1458`;
+- non-uniform H082/source-action priors concentrate more mass, but lose LOO
+  fit and produce weaker candidate deltas.
+
+Current conclusion:
+
+```text
+public/private factorization is not currently a sharply concentrated
+responsibility mask. It is more likely a diffuse public label/action posterior
+plus a value decoder problem.
+```
+
+This downgrades "public subset localization" as the main 0.53 route. It does
+not downgrade public/private factorization overall; it redirects it toward
+private-safe value translation, target-route assignment, and action-health
+decoding.

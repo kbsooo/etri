@@ -3392,3 +3392,41 @@
 - Still open:
   - `z_anti_shortcut` remains useful as a constraint inside a different value
     decoder, especially a route-specific public-action or label-world solver.
+
+## FH086. Public LB is dominated by a sharply concentrated row-target responsibility field
+
+- Failed/weak hypothesis: known public LB responses can be explained by a
+  hidden public listener that gives much larger responsibility to a small set
+  of row-target cells.
+- Why it was plausible: H012/H085 showed that public LB observations can be
+  inverted as equations. If the public subset were structurally biased, the
+  next large jump might come from estimating responsibility weights instead of
+  only estimating labels.
+- Minimum experiment: `hitl/h086_public_responsibility_hsjepa.py`.
+- Observed result:
+  - best responsibility config: `uniform__ridge_0.0001`;
+  - LOO MAE: `0.000034734`;
+  - effective cells: `1733.49 / 1750`;
+  - top-50 / top-200 mass: `0.038317` / `0.131502`;
+  - max responsibility weight: `0.001207`;
+  - target mass nearly flat, with Q2 only slightly highest;
+  - forced H082/source-action non-uniform priors had worse LOO fit and weaker
+    candidate deltas;
+  - promoted diagnostic `submission_h086_public_resp_df95467d_uploadsafe.csv`
+    has responsibility-weighted delta only `-0.000628` versus H057.
+- Why reject as a breakthrough route:
+  - the public equations prefer a diffuse listener, not a concentrated hidden
+    subset;
+  - the result does not reach the 0.001-scale big-bet threshold;
+  - non-uniform priors look like over-structure under the current sensor set.
+- Bottleneck category weakened:
+  - weakens "0.53 comes from finding the public rows/cells";
+  - strengthens "0.53 requires a better hidden value/route/action decoder."
+- Next not to do:
+  - do not run top-k row responsibility or public-subset localization sweeps
+    without new public feedback.
+- Still open:
+  - responsibility can remain a diagnostic regularizer;
+  - a future candidate could revive this only if a new sensor creates real
+    concentration or if private/public split evidence appears outside LB
+    equations.

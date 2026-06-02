@@ -9542,3 +9542,93 @@ If H085 beats H057, HS-JEPA should add an iterative public-posterior refit
 module. If it loses while H057 survives, post-H012 public equations are too
 few/noisy and the stronger route/action work should wait for new public
 observations.
+
+## H086. Public-Subset Responsibility HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h086_public_responsibility_hsjepa.py`
+- Report: `hitl/h086_public_responsibility_hsjepa/h086_report.md`
+- Diagnostic candidate:
+  `submission_h086_public_resp_df95467d_uploadsafe.csv`
+
+### Observe
+
+H012/H085 treat public LB observations as equations over hidden labels or
+row-target action values. A stronger 0.53-scale alternative is that public LB
+is not only label-posterior biased, but also responsibility biased: some
+row-target cells may carry much more effective public weight than others.
+
+### Hypothesis
+
+H086-H: the public/private gap is a hidden row-target responsibility vector.
+If true, known public submissions should identify a non-uniform responsibility
+field, and moving high-responsibility cells should create a much larger
+expected response than broad posterior refit.
+
+### Method
+
+Using H085's hidden label posterior `q`, each known public submission was
+converted into an expected per-cell loss-delta signature. H086 then fit
+nonnegative responsibility weights over all `250 x 7` row-target cells by
+ridge projection around several priors:
+
+- uniform responsibility;
+- H067 row-public responsibility;
+- human/private state prior;
+- H082 bridge/source-action prior;
+- hybrid responsibility prior.
+
+The fitted responsibility fields were stressed with leave-one-submission-out
+equation fit, concentration diagnostics, target mass, bad-anchor cosine, H082
+support ratio, and source-action agreement.
+
+### Result
+
+The selected diagnostic is `h086_resp_cell_all_c760_a090_df95467d`.
+
+- changed cells / rows versus H057: `251` / `136`;
+- Q2 changed cells: `46`;
+- responsibility-weighted delta versus H057: `-0.000628`;
+- posterior delta versus H057: `-0.000494`;
+- top selected responsibility mass: `0.154746`;
+- source-agree rate: `1.0`;
+- H082 ratio: `0.916335`;
+- max positive bad-anchor cosine: `0.0`;
+- upload-safe validation passed.
+
+The important diagnostic is the responsibility fit, not the candidate itself:
+
+- best responsibility config: `uniform__ridge_0.0001`;
+- LOO MAE: `0.000034734`;
+- top-50 responsibility mass: `0.038317`;
+- top-200 responsibility mass: `0.131502`;
+- effective cells: `1733.49` out of `1750`;
+- max cell weight: `0.001207`;
+- target responsibility mass is nearly flat:
+  Q2 `0.1458`, S1 `0.1440`, S3 `0.1434`, Q3 `0.1434`,
+  S2 `0.1424`, S4 `0.1411`, Q1 `0.1400`.
+
+Forced non-uniform priors were weaker. The best H082-bridge/source-action
+responsibility variants had LOO MAE around `0.000097..0.000111`, top-200 mass
+around `0.208..0.225`, and candidate expected deltas only around
+`-0.00046..-0.00050`.
+
+### Interpretation
+
+This weakly refutes the simplest public-subset-responsibility jackpot:
+
+```text
+known public response is not currently explained by a sharply concentrated
+row-target listener; it is better explained by a diffuse, almost-uniform
+responsibility layer plus label/action posterior differences.
+```
+
+That does not mean public/private structure is false. It means the next 0.53
+route is unlikely to be "find the public rows and weight them harder" using the
+current sensors. The still-live route is a hidden value law: target-route,
+action-health, or label-world decoding that changes the posterior itself, not
+only the responsibility weights over cells.
+
+Decision: keep H086 as an upload-safe diagnostic, but do not prioritize it
+above H082/H083/H085 unless the user wants to falsify this exact worldview on
+public LB.

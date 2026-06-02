@@ -584,3 +584,40 @@ loop itself:
 - win: HS-JEPA should learn an iterative public-posterior refit stage;
 - loss: the next big jump will not come from simply adding public equations;
   it needs a new hidden-state unit or a private-safe decoder.
+
+### H086 Update
+
+H086 tested the stronger inversion:
+
+```text
+public LB is not just a label/action posterior sensor; it has a hidden
+row-target responsibility vector that decides which cells matter.
+```
+
+The result is a useful negative/weak signal. The best responsibility field was
+almost uniform:
+
+- best config: `uniform__ridge_0.0001`;
+- LOO MAE: `0.000034734`;
+- effective cells: `1733.49 / 1750`;
+- top-50 / top-200 mass: `0.038317` / `0.131502`;
+- max weight: `0.001207`;
+- target mass nearly flat across Q/S labels.
+
+The promoted diagnostic file,
+`submission_h086_public_resp_df95467d_uploadsafe.csv`, is upload-safe and moves
+`251` cells, but its expected edge is only `-0.000628` responsibility-weighted
+and `-0.000494` posterior-weighted versus H057. Forced H082/source-action
+non-uniform priors were weaker than the uniform fit.
+
+Breakthrough reading:
+
+```text
+The next 0.53-scale bet should not be "find the public subset and weight it
+harder" under the current sensor set. It should change the hidden value law:
+target route, action-health, hard label world, or private-safe posterior
+translation.
+```
+
+H086 therefore downgrades public-subset responsibility as a jackpot route and
+raises the priority of row-target assignment/value-law solvers.

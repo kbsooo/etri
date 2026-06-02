@@ -7065,3 +7065,49 @@ Public interpretation:
 Priority: submit after H082/H083 if we want to resolve the public-equation
 refit question; submit earlier if the goal is to test whether post-H057 sensor
 feedback can produce another H012-like jump.
+
+## H086 Public-Subset Responsibility Diagnostic
+
+Promoted file:
+
+`submission_h086_public_resp_df95467d_uploadsafe.csv`
+
+Worldview: public LB may be listening to a non-uniform row-target responsibility
+field, not merely to a hidden label/action posterior. H086 fits that
+responsibility field from known public equations under the H085 posterior, then
+moves the highest-responsibility cells.
+
+Evidence:
+
+- selected internal candidate:
+  `h086_resp_cell_all_c760_a090_df95467d`;
+- changed cells / rows vs H057: `251` / `136`;
+- target changes vs H057: Q1 `20`, Q2 `46`, Q3 `42`, S1 `42`, S2 `38`,
+  S3 `39`, S4 `24`;
+- responsibility-weighted delta vs H057: `-0.000628`;
+- posterior delta vs H057: `-0.000494`;
+- source-agree rate: `1.0`;
+- H082 ratio: `0.916335`;
+- max positive bad-anchor cosine: `0.0`;
+- upload-safe: `True`.
+
+Critical caution:
+
+The best responsibility posterior was `uniform__ridge_0.0001`, not a
+human-state, H082, row-public, or hybrid non-uniform prior. It has effective
+cell count `1733.49 / 1750`, top-200 mass only `0.131502`, and nearly flat
+target mass. This makes H086 a low-priority diagnostic rather than a preferred
+next submission.
+
+Public interpretation:
+
+- win: the weakly non-uniform responsibility layer still matters, and HS-JEPA
+  should keep a responsibility head;
+- small loss or no movement: public-sensor inversion is mostly label/action
+  posterior, not cell-responsibility;
+- large loss: do not submit responsibility-weighted variants without new
+  public observations.
+
+Priority: below H082/H083/H085 as a leaderboard move; useful only if we need a
+clean public test of whether responsibility weighting is part of the hidden
+world.

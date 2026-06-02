@@ -553,3 +553,37 @@ Human-state implication:
 - loss: public feedback is too sparse/noisy to identify human states directly,
   so social hypotheses must be grounded in row/route/action evidence before
   public inversion is applied.
+
+## H086 Human-State Reading
+
+H086 tested whether the public sensor is listening to a small set of human
+episodes or row-target symptoms more than the rest of the table.
+
+In human language, the failed/weak story is:
+
+```text
+"There are a few special lifestyle episodes, and public LB mostly reflects
+those episodes."
+```
+
+The fitted responsibility field did not support that cleanly. The best fit was
+almost uniform over all row-target cells, and target mass was nearly flat. Even
+the strongest rows, such as id06 July/August rhythm rows, had only modest
+responsibility lift rather than a decisive public-listener identity.
+
+Human-state implication:
+
+- human/social states may still exist, but they are probably not enough as a
+  public subset selector by themselves;
+- the useful human-state variable is more likely "what action/value should be
+  applied to this row-target" than "is this row in the public subset";
+- future social hypotheses should be translated into route/action/value fields,
+  not only into row importance weights.
+
+Practical rule:
+
+```text
+Do not over-invest in stories whose only output is "these rows matter more".
+Keep stories that imply a different correction direction, target route, or
+action-health value.
+```

@@ -603,3 +603,41 @@ cell-action-first unless public feedback proves row/route prototypes.
 If H085 wins publicly, this branch becomes an iterative update step in HS-JEPA
 v1. If it loses, public-equation refit remains a diagnostic tool and not a
 submission decoder until more sensor observations are available.
+
+## H086 Responsibility Head
+
+H086 adds a responsibility head to HS-JEPA:
+
+```text
+known public LB equations + hidden posterior q
+  -> row-target loss-delta signatures
+  -> nonnegative responsibility weights w(row, target)
+  -> responsibility-aware correction decoder
+```
+
+This head asks a different JEPA question from H085. H085 predicts hidden label
+or action representations. H086 predicts which row-target cells are likely to
+be heard by the public sensor.
+
+Current diagnostic result:
+
+- the best `w(row, target)` is almost uniform;
+- concentrated priors based on H082, source-action, row-public, and
+  human-private state do not beat the uniform responsibility fit;
+- the promoted diagnostic changes `251` cells but remains below the
+  0.001-scale big-bet threshold internally.
+
+Architectural implication:
+
+```text
+Keep responsibility as a diagnostic head, not the main HS-JEPA decoder.
+HS-JEPA v1 should prioritize predicting the hidden correction/value field,
+while responsibility weights act as a collapse/shortcut check.
+```
+
+Failure mode guarded by H086:
+
+- if a future candidate claims public-subset localization, it must beat the
+  uniform-responsibility baseline and show meaningful concentration;
+- otherwise it is likely re-labeling a diffuse public-posterior effect as a
+  subset story.
