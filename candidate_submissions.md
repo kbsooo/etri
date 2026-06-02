@@ -8059,3 +8059,50 @@ Public interpretation:
 Priority: very high information value.  H111 is the best current test of
 whether the breakthrough is "toxicity features" or "global assignment over
 toxicity features."
+
+## H112 Public-Residual Toxicity Solver
+
+Generated file:
+
+`submission_h112_residualtox_68b26f11_uploadsafe.csv`
+
+Worldview: H111's global boundary is plausible but still not action-grade.
+Use known public LB leave-one-out residuals as a separate toxicity field:
+directions shared with unexpectedly bad public residuals are unsafe, while
+directions opposite to those residuals are possible antidotes.
+
+Evidence:
+
+- selected candidate: `h112_residual_h111_pruned_boundary_c86_a056_68b26f11`;
+- known public observations: `24`;
+- largest bad residual source: `submission_h010_objective_s1s4_v2_uploadsafe.csv`
+  at `+0.001450`;
+- next bad residual sources: LeJEPA strict `+0.001350`, E216 masked-family
+  `+0.000974`;
+- submitted cells / rows: `40` / `23`;
+- target changes: Q1 `4`, Q2 `0`, Q3 `14`, S1 `7`, S2 `4`, S3 `4`,
+  S4 `7`;
+- H098 cell-equation predicted delta vs H057: `-0.000018`;
+- route-basis predicted delta vs H057: `-0.000980`;
+- bad-axis weighted positive projection: `0.000000`;
+- H088-axis cosine: `-0.011878`;
+- good-minus-bad margin: `+0.118414`;
+- selected residual toxicity / safety / gap:
+  `0.489754` / `0.681667` / `0.191912`;
+- selected H111 cells / H108-rejected cells: `37` / `14`;
+- H111 overlap: `37` cells, cosine `0.855260`;
+- H110 overlap: `23` cells, cosine `0.633342`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H111/H110: public-residual toxicity projection is the missing
+  action-grade decoder;
+- loss to H111: residual projection over-pruned a correct global boundary;
+- loss to H110: LOO public residuals are underidentified and local
+  benefit-toxicity is cleaner;
+- loss to H109: public-safe action is a tiny coefficient kernel.
+
+Priority: very high information value after H111.  H112 is the cleanest test
+of whether known public LB residuals can become a row-target toxicity field
+rather than just a post-hoc explanation.

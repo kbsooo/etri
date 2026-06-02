@@ -1402,3 +1402,58 @@ Failure interpretation:
 - if H108 improves more, family consensus already captured the safe boundary;
 - if H109 improves more, global boundary solvers are too broad and the kernel
   view survives.
+
+## H112 Public-Residual Toxicity Factorization
+
+H112 adds an observed-public residual layer above the H111 boundary solver.
+
+The factorization is:
+
+```text
+known public submissions
+  -> H098 leave-one-out public equation
+  -> actual minus predicted LB residual
+  -> signed residual projection onto row-target actions
+  -> residual toxicity / residual safety fields
+  -> H111 boundary pruning
+  -> public/private safe action
+```
+
+Observed H112 factorization:
+
+- selected file: `submission_h112_residualtox_68b26f11_uploadsafe.csv`;
+- selected candidate: `h112_residual_h111_pruned_boundary_c86_a056_68b26f11`;
+- known public observations: `24`;
+- largest effective bad residual: H010 objective S1/S4 `+0.001450`;
+- other bad residuals: LeJEPA strict `+0.001350`, E216 masked-family
+  `+0.000974`;
+- selected cells / rows: `40` / `23`;
+- Q2 cells: `0`;
+- H098 cell-equation predicted delta vs H057: `-0.000018`;
+- route-basis predicted delta vs H057: `-0.000980`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.011878`;
+- cumulative good-minus-bad margin: `+0.118414`;
+- selected residual toxicity / safety / gap:
+  `0.489754` / `0.681667` / `0.191912`;
+- H112/H111 cosine: `0.855260`;
+- H112/H110 cosine: `0.633342`.
+
+Interpretation:
+
+H112 keeps H111's global-boundary state but tests whether known public
+residuals can be used as an action toxicity sensor.  The key structural claim
+is that H088 is not the only negative sensor.  H010, LeJEPA strict, and E216
+are residual-bad directions after H098 already explains the broad public
+response.  HS-JEPA should therefore distinguish first-order public response
+from unexplained public residual toxicity.
+
+Failure interpretation:
+
+- if H112 improves, public/private safety is a residual-toxicity factorization
+  over the boundary field;
+- if H111 improves more, public residual projection is too noisy or
+  underidentified;
+- if H110 improves more, local toxicity-gap is cleaner than LOO residual
+  toxicity;
+- if H109 improves more, residual and boundary fields are both too broad.

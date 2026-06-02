@@ -1731,3 +1731,62 @@ HS-JEPA now has a cleaner paper-level structure:
 If H111 works, the architecture's novelty is the last two stages: predicted
 human-state actions are not used directly; they must pass through a
 public/private toxicity field and a global boundary solver.
+
+## HS-JEPA v3.5: Public-Residual Toxicity Solver
+
+H112 adds one more action-grade check after H111:
+
+```text
+known public submissions
+  -> leave-one-out public response equation
+  -> residual public loss field
+  -> signed row-target residual toxicity / safety projection
+  -> boundary-pruned assignment
+```
+
+The architectural distinction is important.  H098/H100 estimate first-order
+public response.  H102-H111 estimate bad-axis, benefit/toxicity, and global
+boundary safety.  H112 asks whether the remaining public residual itself is a
+learnable representation.
+
+H112 evidence:
+
+- candidate: `submission_h112_residualtox_68b26f11_uploadsafe.csv`;
+- selected cells / rows: `40` / `23`;
+- selected H111-overlap cells: `37`;
+- selected H108-rejected cells: `14`;
+- H098 cell-equation predicted delta vs H057: `-0.000018`;
+- route-basis predicted delta vs H057: `-0.000980`;
+- bad-axis positive projection: `0.000000`;
+- H088-axis cosine: `-0.011878`;
+- residual toxicity / safety / gap:
+  `0.489754` / `0.681667` / `0.191912`;
+- H112/H111 cosine: `0.855260`;
+- H112/H110 cosine: `0.633342`.
+
+Updated HS-JEPA decoder stack:
+
+```text
+1. Human-state context encoder
+   row order, subject-like blocks, social/lifestyle hypotheses, target routes.
+
+2. Witness decoders
+   propose row-target action fields from hidden state representations.
+
+3. Public response equation
+   predicts first-order public action response from signed action features.
+
+4. Toxicity and bad-axis diagnostics
+   detect H088-like, H010/E216/LeJEPA-like, shortcut, and collapse directions.
+
+5. Global boundary assignment solver
+   chooses a sparse action set under cumulative public/private constraints.
+
+6. Public-residual toxicity solver
+   uses LOO public-response residuals as a final action-safety field.
+```
+
+If H112 works, HS-JEPA should be written as a predictive architecture for
+hidden human state plus action safety, not merely hidden human state.  The
+final output is a row-target assignment whose action is safe under both the
+first-order public equation and the residual public toxicity equation.

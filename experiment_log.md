@@ -11219,3 +11219,75 @@ Public interpretation:
   diagnostics;
 - if H109 beats H111, the public-safe field is still a tiny kernel, not a
   boundary optimization problem.
+
+## H112 Public-Residual Toxicity Solver HS-JEPA
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h112_residualtox_68b26f11_uploadsafe.csv`
+
+Worldview:
+
+```text
+H111 may be directionally right, but a broad global boundary is not yet an
+action-grade decoder.  Known public submissions leave LOO residuals after the
+H098 public equation.  Those residuals can be projected back to signed
+row-target cells: same direction as unexpectedly bad residuals is toxic;
+opposite direction to bad residuals or same direction as unexpectedly good
+residuals is safe.
+```
+
+Residual sensor:
+
+- known public observations used: `24`;
+- residual fit: H098 `state_core`, alpha `0.1`;
+- largest effective bad residual:
+  `submission_h010_objective_s1s4_v2_uploadsafe.csv`, `+0.001450`;
+- next bad residuals: LeJEPA strict `+0.001350`, E216 masked-family
+  `+0.000974`;
+- largest good residual:
+  `submission_hybrid_0p578_logit_after_subject_final9_strict.csv`,
+  `+0.000931` good residual;
+- zero-action H057 LOO residual is excluded from toxicity mass.
+
+Observed result:
+
+- selected candidate: `h112_residual_h111_pruned_boundary_c86_a056_68b26f11`;
+- generated root file: `submission_h112_residualtox_68b26f11_uploadsafe.csv`;
+- submitted cells / rows: `40` / `23`;
+- changed target cells: Q1 `4`, Q2 `0`, Q3 `14`, S1 `7`, S2 `4`,
+  S3 `4`, S4 `7`;
+- H098 cell-equation predicted delta vs H057: `-0.000018`;
+- route-basis predicted delta vs H057: `-0.000980`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.011878`;
+- cumulative good-minus-bad margin: `+0.118414`;
+- selected mean residual toxicity / safety / gap:
+  `0.489754` / `0.681667` / `0.191912`;
+- selected mean antidote score: `0.728514`;
+- selected H111 cells: `37`;
+- selected H108-rejected cells: `14`;
+- H112/H111 active-cell overlap: `37` of `40`, cosine `0.855260`;
+- H112/H110 active-cell overlap: `23` of `40`, cosine `0.633342`;
+- upload-safe validation passed.
+
+Important diagnostic:
+
+H112 is not a safer top-k variant of H111.  It keeps most of H111's boundary
+claim but prunes it through an independent sensor: the public-equation LOO
+residual.  If this wins, HS-JEPA's action decoder must include a residual
+toxicity projection layer.  If it loses while H111 wins, the residual
+projection is too underidentified and harms the correct global boundary.
+
+Public interpretation:
+
+- if H112 improves over H111/H110, the missing module is public-residual
+  toxicity assignment;
+- if H111 improves more, global boundary is real but residual projection
+  over-pruned useful cells;
+- if H110 improves more, local benefit-toxicity is cleaner than LOO residual
+  projection;
+- if H109 improves more, the public-safe action remains a tiny coefficient
+  kernel.

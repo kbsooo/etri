@@ -1448,3 +1448,46 @@ Decision rule:
 - H110 wins: local toxicity-gap filtering is enough; H111 over-rescued H108.
 - H108 wins: explicit toxicity modeling is unnecessary or harmful.
 - H109 wins: the real assignment is a small kernel, not a broad boundary.
+
+### H112 Update
+
+H112 tests whether the global boundary must be filtered by a public-residual
+toxicity field.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H112 | `submission_h112_residualtox_68b26f11_uploadsafe.csv` | safe assignment is H111 global boundary pruned by H098 LOO public-residual toxicity | `40` cells / `23` rows / `37` H111-overlap cells | route-basis delta `-0.000980`, H098 delta `-0.000018`, bad-axis positive projection `0.0`, H088 cosine `-0.011878` | residual-toxicity assignment bet |
+
+Breakthrough reading:
+
+```text
+H112 turns known public LB residuals into a row-target action toxicity field.
+The strongest effective bad residual sources are H010, LeJEPA strict, and
+E216.  H112 keeps the H111 worldview but prunes the boundary from 53 cells to
+40 cells using this residual field.  This is a different claim from H110/H111:
+the action-grade decoder is not local toxicity or global boundary alone, but
+public-residual toxicity over that boundary.
+```
+
+Current high-information submission order:
+
+1. `submission_h112_residualtox_68b26f11_uploadsafe.csv`
+   - tests public-residual toxicity projection over H111.
+
+2. `submission_h111_boundary_7cbf5e9d_uploadsafe.csv`
+   - tests global boundary without residual projection.
+
+3. `submission_h110_toxgap_7b02f196_uploadsafe.csv`
+   - local benefit-toxicity gap solver.
+
+4. `submission_h109_coeff_54147083_uploadsafe.csv`
+   - tiny coefficient-kernel counter-world.
+
+Decision rule:
+
+- H112 wins: HS-JEPA needs a residual-toxicity projection layer before final
+  assignment.
+- H111 wins: global boundary is the right layer and H112 over-pruned it.
+- H110 wins: LOO residuals are too underidentified; local benefit/toxicity is
+  safer.
+- H109 wins: all broad assignment solvers are too diffuse.
