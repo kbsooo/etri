@@ -7686,3 +7686,53 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - promote H050 as the next high-information target-route public sensor;
   - keep S2/S4 objective-route candidates as the next alternate branch if Q
     route fails.
+
+- Public feedback:
+  - `submission_h050_target_route_phase_b140216b_uploadsafe.csv`
+    scored `0.5679048248`;
+  - this ties H042 exactly while moving `96` Q1/Q3 cells and freezing Q2.
+- Updated interpretation:
+  - H050 does not validate a new non-Q2 subjective route gain;
+  - the public-positive action remains Q2-local under current translation;
+  - the next sharp test is whether H042's exact Q2 phase is under-amplified.
+
+## H051. Q2 Phase Amplifier HS-JEPA
+
+- Observe: H042's public win changed only `45` Q2 cells, with `23` upward and
+  `22` downward moves, so it is not a simple Q2 prevalence correction. H050
+  then tied H042 after changing `96` non-Q2 Q1/Q3 cells, which leaves Q2 as the
+  only public-positive translated target route.
+- Wonder: was H042's `s=0.5` phase a half-step toward a hidden Q2 label state,
+  or was it already a tiny local optimum?
+- Hypothesis: if H042 recovered the correct hidden Q2 label direction but
+  under-amplified it, then doubling the H012->H042 Q2 logit move on the exact
+  same `45` cells should improve public LB materially. If it fails, Q2 phase
+  amplitude continuation is dead and the remaining live variable is support /
+  public-subset identity.
+- Method: `hitl/h051_q2_phase_amplifier_jepa.py`.
+  - base: H042 current public best;
+  - context: H012/H042 public delta and H050's non-Q2 neutral feedback;
+  - target representation: exact-support hidden Q2 label phase;
+  - action: freeze all non-Q2 targets and amplify only H042's `45` Q2 cells in
+    logit space by factor `2.0`;
+  - stress: upload validation, exact-support invariance, sign consistency, and
+    public-response extrapolation from H012->H042.
+- Result:
+  - generated amplitude/edge alternatives and selected
+    `h051_fullsupport_logitline_f2p0_5ab4e605`;
+  - promoted file
+    `submission_h051_q2_phase_amp_f2p0_5ab4e605_uploadsafe.csv`;
+  - changed cells vs H042 `45`, all Q2;
+  - changed cells vs H012 `45`, all Q2;
+  - mean/max extra probability move vs H042
+    `0.018088685` / `0.033284941`;
+  - linear public-response expected LB `0.5676861665`;
+  - root file validation passed.
+- Interpretation:
+  - H051 is the cleanest amplitude sensor after H050's neutral non-Q2 result;
+  - public improvement would turn Q2 phase into a true recoverable hidden-label
+    route;
+  - public failure would kill amplitude continuation and push HS-JEPA back to
+    support identity / public-subset route assignment.
+- Decision:
+  - promote H051 as the next high-information public sensor.

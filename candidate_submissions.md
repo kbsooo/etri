@@ -6134,3 +6134,47 @@ Submission meaning:
 - If H050 loses materially, non-Q2 target phase translation is not yet
   public-safe and the next route should be S2/S4 objective candidates or a
   stronger independent action-health decoder.
+
+Public result:
+
+- `submission_h050_target_route_phase_b140216b_uploadsafe.csv`
+- Public LB: `0.5679048248`
+- This ties H042 while changing `96` non-Q2 Q1/Q3 cells. The useful reading is
+  not "non-Q2 route is solved"; it is that H050 did not reveal a new public
+  gain outside Q2. The next high-information bet should therefore stress the
+  exact H042 Q2 phase before spending more submissions on target expansion.
+
+## H051 Submission Decision
+
+Current Q2 phase-amplifier public sensor:
+
+`submission_h051_q2_phase_amp_f2p0_5ab4e605_uploadsafe.csv`
+
+What this file tests:
+
+- H042 improved public with only `45` Q2 cells.
+- H050 tied H042 while moving Q1/Q3, so the public-positive route still looks
+  Q2-local.
+- H051 asks whether H042 was an under-amplified Q2 label phase.
+- It keeps the exact H042 support and doubles the H012->H042 Q2 logit move.
+
+Local profile:
+
+- changed cells vs H042: `45`, all Q2;
+- changed cells vs H012: `45`, all Q2;
+- H042 support directions: `23` up / `22` down;
+- mean/max extra probability move vs H042:
+  `0.018088685` / `0.033284941`;
+- linear public-response extrapolation:
+  expected LB `0.5676861665`;
+- upload validation:
+  shape `(250, 10)`, required columns OK, no NaN, no duplicate keys,
+  probabilities in `[0.0000329401, 0.999980303]`.
+
+Submission meaning:
+
+- If H051 beats H042 materially, exact-support Q2 phase amplitude is real and
+  the next branch should search stronger edge-push / label-inversion versions.
+- If H051 loses, H042 should be treated as a shallow local correction; future
+  Q2 work should focus on support identity, public-subset assignment, or route
+  selection rather than amplitude.

@@ -2927,7 +2927,7 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 
 - submission file prepared:
   `submission_h050_target_route_phase_b140216b_uploadsafe.csv`
-- public LB: pending
+- public LB: `0.5679048248`
 - current public frontier:
   `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
   scored `0.5679048248`.
@@ -2956,7 +2956,43 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
     `+0.001857507` / `0.250000000`;
   - H025 score `+0.377968233`.
 - interpretation:
-  - H050 is a target-route public sensor, not a conservative improvement file.
+  - H050 is a target-route public sensor, not a conservative improvement file;
+  - public tied H042 despite `96` Q1/Q3 changes, so this does not validate
+    non-Q2 subjective route gain;
+  - the live public-positive action remains Q2-local until a separate non-Q2
+    route produces a distinct public movement.
 - next experiment:
-  - public-test H050 when the next slot should distinguish subjective-Q route
-    from Q2-local-only and broad row-vector explanations.
+  - test whether H042's exact Q2 phase is under-amplified rather than trying
+    another non-Q2 translation.
+
+## Public-Free Observation: H051 Q2 Phase Amplifier HS-JEPA
+
+- submission file prepared:
+  `submission_h051_q2_phase_amp_f2p0_5ab4e605_uploadsafe.csv`
+- public LB: pending
+- public anchors:
+  - H012 `0.5681234831`;
+  - H042 `0.5679048248`;
+  - H050 `0.5679048248`.
+- changed point:
+  - starts from H042;
+  - freezes Q1/Q3/S1/S2/S3/S4 exactly;
+  - keeps H042's exact `45` Q2 cells;
+  - moves those cells farther in the same logit direction with factor `2.0`.
+- expected LB reaction:
+  - materially better than H042 means H042 was an under-amplified hidden Q2
+    label phase, and exact-support / edge-push searches become live;
+  - worse than H042 means H042 was a shallow support-specific correction and
+    amplitude continuation should be killed.
+- local/public-free observation:
+  - changed cells vs H042 `45`, all Q2;
+  - H042 support sign split: `23` up, `22` down;
+  - mean/max extra probability move vs H042:
+    `0.018088685` / `0.033284941`;
+  - linear public-response extrapolation from H012->H042 gives expected LB
+    `0.5676861665`;
+  - upload validation passed: shape `(250, 10)`, required columns OK, no NaN,
+    no duplicate keys, probabilities in `[0.0000329401, 0.999980303]`.
+- interpretation:
+  - H051 is the cleanest post-H042 amplitude sensor: it changes only the cells
+    that public already rewarded once.

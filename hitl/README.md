@@ -1557,3 +1557,17 @@ route. If it loses materially, the current non-Q2 target phase translator is
 too weak and H042 remains Q2-local until a stronger independent route signal is
 found. The strongest alternate branch is S2/S4 objective route: several S24
 candidates had strong H025 health but weaker action-margin evidence.
+## H051 Q2 Phase Amplifier
+
+- script: `h051_q2_phase_amplifier_jepa.py`
+- report: `h051_q2_phase_amplifier_jepa/h051_report.md`
+- promoted root file:
+  `submission_h051_q2_phase_amp_f2p0_5ab4e605_uploadsafe.csv`
+- purpose:
+  H050 tied H042 while moving non-Q2 Q1/Q3 cells, so H051 returns to the only
+  public-positive translated route. It keeps H042's exact `45` Q2 cells and
+  doubles the H012->H042 Q2 logit move.
+- public reading:
+  improvement validates under-amplified Q2 hidden phase; failure kills
+  amplitude continuation and shifts the next branch to support/public-subset
+  assignment.

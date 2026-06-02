@@ -7216,3 +7216,23 @@ Stress interpretation:
   experiment, not a conservative final blend.
 - Strong S24 alternatives with negative H025 remain the next branch if H050
   public feedback rejects subjective Q.
+## H051 Stress Note: Exact-Support Q2 Phase Amplifier
+
+- Public-feedback premise:
+  - H042 `0.5679048248` improved H012 by changing `45` Q2 cells.
+  - H050 `0.5679048248` tied H042 while changing `96` non-Q2 Q1/Q3 cells.
+- Stress invariant:
+  - H051 must not change target route, row support, or non-Q2 probabilities.
+  - It changes exactly H042's `45` Q2 cells and preserves the same direction on
+    all `45` cells.
+- Validation result:
+  - upload shape `(250, 10)`;
+  - required columns OK;
+  - no NaN;
+  - no duplicate key rows;
+  - probability range `[0.0000329401, 0.999980303]`;
+  - changed cells vs H042: Q2 `45`, every other target `0`.
+- Failure interpretation:
+  - if public LB worsens, the failure is not target expansion, row support, or
+    upload format; it specifically falsifies amplitude continuation on H042's
+    exact Q2 phase support.

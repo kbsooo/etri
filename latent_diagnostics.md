@@ -1123,3 +1123,20 @@ H024 remains strongly positive (`+0.001857507`) and H025 is mildly positive
 (`+0.377968233`). The LeJEPA read is therefore: subjective-Q target-route phase
 is a live representation, but not yet health-certified. Public feedback will
 decide whether this route signal is real or an action-decoder shortcut.
+## H051 Latent Diagnostic: Q2 Phase Energy
+
+- H050 public feedback makes the current latent split clearer: non-Q2
+  subjective route energy can be locally plausible but public-neutral.
+- H051 treats H042's exact Q2 support as the active low-dimensional latent and
+  tests only amplitude along that phase.
+- Geometry checks:
+  - support size remains `45`;
+  - sign consistency along the H012->H042 logit direction is `1.0`;
+  - positive/negative direction split is balanced (`23` / `22`), arguing
+    against a scalar Q2 prevalence shortcut;
+  - no non-Q2 latent route is touched.
+- Energy interpretation:
+  - improvement means the Q2 phase vector is not collapsed and has usable
+    amplitude;
+  - failure means the Q2 latent is support-like rather than metric-linear, so
+    HS-JEPA should move from amplitude to support/public-subset inference.

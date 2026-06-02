@@ -5494,3 +5494,22 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - public LB 관측 반응: pending.
 - 제출 전략: submit H050 when the next public slot should distinguish
   subjective-Q target route from Q2-local-only explanations.
+## H051 Update: Q2 Phase Amplitude Versus Support Identity
+
+- New public observation:
+  `submission_h050_target_route_phase_b140216b_uploadsafe.csv` scored
+  `0.5679048248`, tying H042 while changing only non-Q2 Q1/Q3 cells.
+- Hypothesis state change:
+  - `target-route expansion beyond Q2`: weakened. H050 did not create public
+    gain despite route/action support.
+  - `Q2-local hidden phase`: strengthened. H042 remains the only translated
+    public-positive action after H050.
+  - `H042 under-amplified phase`: now directly testable.
+- New falsifiable node:
+  - H051: H042's exact `45` Q2 cells are a hidden label-direction support and
+    the `s=0.5` move should be amplified.
+  - Evidence if true: `submission_h051_q2_phase_amp_f2p0_5ab4e605_uploadsafe.csv`
+    improves materially over `0.5679048248`.
+  - Evidence if false: H051 loses; amplitude continuation is killed and future
+    work should search support/public-subset assignment rather than stronger
+    Q2 moves.

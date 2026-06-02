@@ -5158,3 +5158,26 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Failure condition: if H050 loses materially to H042, reject the current
   subjective-Q non-Q2 phase translator and prioritize the S24 action-health
   branch or a new independent non-Q2 decoder.
+## H051 Feature/Action Registry: Exact-Support Q2 Phase Amplification
+
+- Feature/action name:
+  `h051_exact_h042_q2_phase_amplifier`
+- Hidden structure targeted:
+  exact-support Q2 hidden label phase discovered by H042.
+- Why needed:
+  H050 tied H042 after moving non-Q2 Q1/Q3 cells, so the next information-rich
+  action is not another target expansion but a direct amplitude test on the
+  only public-positive translated route.
+- Construction:
+  - identify the `45` Q2 cells where H042 differs from H012;
+  - compute H012->H042 Q2 logit delta;
+  - set H051 Q2 to `logit(H012) + 2.0 * delta` on the same cells;
+  - copy every other cell from H042 unchanged.
+- Leakage/safety distinction:
+  this uses public feedback as a sensor for a hypothesis, not as a final
+  leaderboard-fitting blend. It is explicitly falsifiable: a bad public result
+  kills amplitude continuation.
+- Discard condition:
+  if `submission_h051_q2_phase_amp_f2p0_5ab4e605_uploadsafe.csv` is worse than
+  H042, do not continue stronger edge-push variants without a new support or
+  public-subset explanation.

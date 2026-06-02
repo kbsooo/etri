@@ -13,13 +13,17 @@ Current public frontier:
   winning H042 move is not the large action-coupled solver output; it is a tiny
   Q2 phase move that H024 rejected but action-response, route-equation, and H025
   supported.
+- Latest public observation: `submission_h050_target_route_phase_b140216b_uploadsafe.csv`
+  also scored `0.5679048248`. Since H050 froze Q2 and moved only Q1/Q3, this
+  is strong evidence that the currently useful public action is still Q2-local;
+  non-Q2 subjective route translation did not create a new public gain.
 - External reference note: the attached high-scoring `submission_v106_sleep_state_conditioned_memory.csv` document reports public LB `0.5703952266` from same-subject sleep-state/sensor-quality-conditioned memory. That supports the broader repeated-subject world model, but H042 is lower by `0.0024904018`.
 
 Current post-H012 status:
 
 - H042 Q2 tiny phase is the active public frontier, while H012 remains the base
   public-equation anchor.
-- H043, H045, H047, H048, H049, and H050 are the current high-information post-H042 sensors:
+- H043, H045, H047, H048, H049, H050, and H051 are the current high-information post-H042 sensors:
   - H043 tests whether the Q2 phase branch can expand from `45` to `105`
     cells;
   - H045 tests whether human-state route context can prune that expansion to a
@@ -34,6 +38,10 @@ Current post-H012 status:
     adding a `160`-cell non-Q2 Q3/S echo on Q2-support/public rows.
   - H050 freezes H042 Q2 and tests whether a separate non-Q2 subjective
     Q1/Q3 target-route phase exists.
+  - H051 freezes every non-Q2 target and amplifies the exact 45-cell H042 Q2
+    support in logit space by factor `2.0`, testing whether H042 was an
+    under-amplified hidden Q2 label phase rather than a shallow local
+    correction.
 - No H015-H041 file is currently promoted as the next upload.
 - The historical post-H012 sensors below are kept because they define falsified or partially supported HS-JEPA routes, not because they are current submission recommendations.
 
