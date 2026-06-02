@@ -10876,3 +10876,68 @@ Public interpretation:
   expansion should be killed;
 - if H103/H104 beat both, action safety is portfolio/residual-field level
   rather than vote-consensus cell level.
+
+## H107 H088 Antipode Toxicity Solver HS-JEPA
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h107_antipode_a0ea1eec_uploadsafe.csv`
+
+Worldview:
+
+```text
+H088 is not merely a failed submission.  It is a negative public sensor whose
+action vector marks a toxic direction.  The constrained antipode of the toxic
+cells may be a safe row-target assignment field.
+```
+
+Method:
+
+- start from H057;
+- load H088's logit move as a public-toxic action vector;
+- invert only H088-active cells;
+- require independent support from H106 route-consensus and/or H057-positive
+  anchors;
+- enforce H102 bad-axis silence, negative H088-axis cosine, and positive
+  good-minus-bad margin;
+- stress the resulting candidate with H098 cell-equation and H100 route-basis
+  predictors.
+
+Observed result:
+
+- selected candidate: `h107_strict_antitoxic_core_c44_a045_a0ea1eec`;
+- generated root file: `submission_h107_antipode_a0ea1eec_uploadsafe.csv`;
+- submitted cells / rows: `26` / `19`;
+- changed target cells: Q1 `4`, Q2 `0`, Q3 `7`, S1 `4`, S2 `3`,
+  S3 `1`, S4 `7`;
+- H098 cell-equation predicted delta vs H057: `+0.000004`;
+- route-basis predicted delta vs H057: `-0.000079`;
+- posterior / hard diagnostic deltas vs H057: `+0.000001` / `+0.000003`;
+- cumulative bad-axis weighted positive projection: `0.000808`;
+- cumulative bad-axis max positive projection: `0.005226`;
+- cumulative H088-axis cosine: `-0.022682`;
+- cumulative good-minus-bad margin: `+0.034484`;
+- anti-H088 direction rate: `1.000000`;
+- H106 alignment rate: `1.000000`;
+- H057-positive alignment rate: `0.961538`;
+- selected conflict rate: `0.961538`;
+- selected toxic mean: `0.679869`;
+- upload-safe validation passed.
+
+Important diagnostic:
+
+The broad H088 antipode candidate was not promoted because its route-basis
+prediction turned positive.  The Q2 micro candidate did not survive the
+constraints.  The surviving action is therefore a narrow non-Q2 antipode core,
+not a blanket reversal of H088.
+
+Public interpretation:
+
+- if H107 improves, H088 contains action-grade information and HS-JEPA should
+  use negative public sensors as antipode decoders;
+- if H107 loses while H103/H104/H105/H106 improve, H088 is a toxicity veto
+  only, not a source of corrective action;
+- if H107 loses badly, public toxicity is not sign-symmetric and antidote
+  decoding should be killed.

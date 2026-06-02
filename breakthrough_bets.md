@@ -1231,3 +1231,46 @@ Decision rule:
 - H105 beats H106: keep the kernel sharp; do not spread it by route votes.
 - H103/H104 beat both: route-consensus cells are subordinate diagnostics, and
   the action-grade decoder should stay portfolio/residual based.
+
+### H107 Update
+
+H107 tests whether the H088 negative public sensor can be inverted into an
+action field.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H107 | `submission_h107_antipode_a0ea1eec_uploadsafe.csv` | H088's toxic action vector has a constrained safe antipode | `26` cells / `19` rows | H088-axis cosine `-0.022682`, H106 alignment `1.0`, route-basis delta `-0.000079` | antipode-decoder bet |
+
+Breakthrough reading:
+
+```text
+H107 does not merely avoid H088. It asks whether H088's failure defines a
+signed toxic field whose opposite direction becomes useful when H106 consensus
+and H057-positive support agree. The surviving candidate is small and non-Q2;
+blanket H088 reversal did not survive internal stress.
+```
+
+Current high-information submission order:
+
+1. `submission_h103_shadowcancel_89496ed5_uploadsafe.csv`
+   - broad discrete portfolio-solver test.
+
+2. `submission_h104_toxicresid_52f826e6_uploadsafe.csv`
+   - broad residual transport decoder test.
+
+3. `submission_h105_signedcoef_8f0e502e_uploadsafe.csv`
+   - tiny route-consensus kernel test.
+
+4. `submission_h106_routeconsensus_f315d99a_uploadsafe.csv`
+   - kernel expansion/transfer test.
+
+5. `submission_h107_antipode_a0ea1eec_uploadsafe.csv`
+   - negative-sensor antipode decoder test.
+
+Decision rule:
+
+- H107 wins: negative public sensors are action-generating signed constraints.
+- H107 loses while H103/H104/H105/H106 win: negative sensors should stay as
+  toxicity vetoes.
+- H107 loses badly: public toxicity is not sign-symmetric, so antipode
+  decoding is a dead branch.

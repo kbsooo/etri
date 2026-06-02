@@ -7849,3 +7849,43 @@ Public interpretation:
 Priority: high information value.  Use it when the next question is
 "can the H105 kernel expand?" rather than "which current broad decoder is most
 likely to beat best."
+
+## H107 H088 Antipode Toxicity Solver
+
+Generated file:
+
+`submission_h107_antipode_a0ea1eec_uploadsafe.csv`
+
+Worldview: H088 is a negative public sensor.  If its action vector is toxic,
+then the safe assignment may live on the constrained antipode of H088-active
+cells, but only where H106 route-consensus or H057-positive anchors agree.
+
+Evidence:
+
+- selected candidate: `h107_strict_antitoxic_core_c44_a045_a0ea1eec`;
+- submitted cells / rows: `26` / `19`;
+- target changes: Q1 `4`, Q2 `0`, Q3 `7`, S1 `4`, S2 `3`, S3 `1`,
+  S4 `7`;
+- H098 cell-equation predicted delta vs H057: `+0.000004`;
+- route-basis predicted delta vs H057: `-0.000079`;
+- bad-axis weighted positive projection: `0.000808`;
+- bad-axis max positive projection: `0.005226`;
+- H088-axis cosine: `-0.022682`;
+- good-minus-bad margin: `+0.034484`;
+- anti-H088 / H106-align / H057-align / conflict rates:
+  `1.000000` / `1.000000` / `0.961538` / `0.961538`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win or strong movement toward H057: failed public submissions can be used as
+  signed antidote sensors, not just bad axes;
+- loss while H103/H104/H105/H106 win: H088 should be a veto/constraint, not an
+  action source;
+- large loss: public toxicity is not sign-symmetric and H088-antipode decoding
+  should be retired.
+
+Priority: high information value, medium submission priority.  It is a new
+decoder class, but internal expected gain is weaker than H103/H104/H105.  Use
+it when the next slot should test whether negative public sensors can generate
+actions.

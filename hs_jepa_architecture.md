@@ -1482,3 +1482,47 @@ H105 as seed kernel:
 If H106 beats H105, HS-JEPA needs an explicit kernel propagation step.  If H105
 beats H106, the architecture should keep the route-consensus kernel sharp and
 use expansion only as a diagnostic.
+
+## HS-JEPA v3.0: Negative-Sensor Antipode Decoder
+
+H107 adds a new decoder class:
+
+```text
+negative public sensor action
+  -> toxic cell field
+  -> constrained antipode proposal
+  -> consensus/anchor-supported row-target assignment
+```
+
+This is different from H102-H106.  Those decoders use H088 as an axis to avoid.
+H107 asks whether H088 can also generate corrective action by reversing only
+the toxic cells that have independent H106 route-consensus or H057-positive
+support.
+
+H107 evidence:
+
+- candidate: `submission_h107_antipode_a0ea1eec_uploadsafe.csv`;
+- submitted cells / rows: `26` / `19`;
+- target changes: Q1 `4`, Q2 `0`, Q3 `7`, S1 `4`, S2 `3`, S3 `1`,
+  S4 `7`;
+- H088-axis cosine: `-0.022682`;
+- H106 alignment rate: `1.000000`;
+- H057-positive alignment rate: `0.961538`;
+- route-basis predicted delta vs H057: `-0.000079`.
+
+Architectural implication:
+
+HS-JEPA now has two interpretations of negative public sensors:
+
+```text
+veto view:
+  negative sensors define forbidden directions only.
+
+antipode view:
+  negative sensors define a signed toxic field whose constrained opposite may
+  be action-grade.
+```
+
+H107 is the first direct test of the antipode view.  If it fails, H088 should
+remain a veto/stress diagnostic.  If it works, HS-JEPA should learn signed
+sensor equations from both positive and negative public observations.

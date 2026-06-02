@@ -1166,3 +1166,45 @@ Failure interpretation:
   representation and expansion creates toxic or noisy cells;
 - if both lose, route-consensus is still a diagnostic but needs a stronger
   public subset equation before becoming action-grade.
+
+## H107 Negative-Sensor Antipode Factorization
+
+H107 treats H088 as a signed negative observation instead of only a bad axis.
+
+The factorization is:
+
+```text
+H088 failed action
+  -> H088-active toxic cells
+  -> antipode move
+  -> H106/H057-supported subset
+  -> bad-axis constrained assignment
+```
+
+Observed H107 factorization:
+
+- selected file: `submission_h107_antipode_a0ea1eec_uploadsafe.csv`;
+- submitted cells / rows: `26` / `19`;
+- Q2 cells: `0`;
+- H098 cell-equation predicted delta vs H057: `+0.000004`;
+- route-basis predicted delta vs H057: `-0.000079`;
+- cumulative bad-axis weighted positive projection: `0.000808`;
+- cumulative H088-axis cosine: `-0.022682`;
+- cumulative good-minus-bad margin: `+0.034484`;
+- anti-H088 / H106-align / H057-align / conflict rates:
+  `1.000000` / `1.000000` / `0.961538` / `0.961538`.
+
+Interpretation:
+
+H107 is intentionally not a blanket reversal of H088.  Broad reversal did not
+survive internal stress; the surviving field is a narrow non-Q2 core where
+H088 toxicity, H106 consensus, and H057-positive direction agree.
+
+Failure interpretation:
+
+- if H107 improves, negative public sensors can be converted into signed
+  antidote actions;
+- if H107 loses while H103-H106 improve, H088 is only a toxic veto and should
+  not generate action;
+- if H107 loses badly, the public/private action equation is not sign-symmetric
+  around bad public sensors.
