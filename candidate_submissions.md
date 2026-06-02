@@ -8667,3 +8667,44 @@ Public interpretation:
 - H125 wins more: full bundle closure is correct and H126 over-damped it;
 - H124 wins more: closure is over-completion even at half amplitude;
 - H123/H122 win more: S1 margin/closure is not the public-safe route.
+
+## H127 Residual Basis Discovery
+
+Generated file:
+
+`submission_h127_residbasis_9b7f8d9a_uploadsafe.csv`
+
+Worldview: H126's basis is too small, but the next surviving component may not
+be another route-improving cell.  It may be an episode-neighbor residual that
+keeps route nearly unchanged while improving public/private margin and H098.
+
+Evidence:
+
+- selected candidate: `h127_episode_neighbor_residual_newbasis_9b7f8d9a`;
+- added cell: row `144`, `S2`, subject `id06`, sleep date `2024-08-14`;
+- selected cells / rows: `29` / `24`;
+- target route: Q1 `8`, Q2 `0`, Q3 `5`, S1 `9`, S2 `5`, S3 `0`, S4 `2`;
+- route delta from H126: `+0.000001`;
+- H098/model delta from H126: `-0.000000360`;
+- H088 delta from H126: `+0.006511`;
+- margin delta from H126: `+0.010523`;
+- model predicted delta vs H057: `-0.000031`;
+- route-basis predicted delta vs H057: `-0.000701`;
+- H088-axis cosine: `-0.051158`;
+- good-bad margin: `0.160434`;
+- upload-safe: `True`.
+
+Submission priority:
+
+Medium as a diagnostic, not a 0.53 breakthrough slot.  H127 is useful if the
+next public question is whether H126 needs a tiny episode-neighbor
+toxicity-margin residual.  It is weaker as a broad submission because it adds
+only one cell and does not create a new route-support basin.
+
+Public interpretation:
+
+- win over H126/H125/H124: add residual margin-basis decoding after coefficient
+  solving;
+- H126/H125/H124 win more: row `144` S2 was a local stress artifact;
+- H122/H123 win more: the whole S1/S2 margin/closure/residual branch is less
+  public-safe than prune/refill.

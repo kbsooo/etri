@@ -1958,3 +1958,24 @@ Public interpretation:
 - H124 win more: closure is toxic even when softened;
 - H122/H123 win more: the later S1 margin/closure branch is the wrong action
   family.
+
+### H127 Update
+
+H127 asks whether H126 failed because the component coefficients were wrong, or
+because the component basis itself was missing a residual action.
+
+| Experiment | File | Core claim | Support | Equation diagnostics | Status |
+| --- | --- | --- | --- | --- | --- |
+| H127 | `submission_h127_residbasis_9b7f8d9a_uploadsafe.csv` | a single episode-neighbor S2 residual stabilizes public/private margin after H126 | `29` cells / `24` rows; added row `144` S2 | route delta from H126 `+0.000001`, H098 delta `-0.000000360`, H088 `-0.051158`, margin `0.160434` | narrow residual-margin bet |
+
+The key diagnostic is that objective/Q/anti-H088/null-antidote residual pools
+did not promote a component.  Only the episode-neighbor residual pool survived,
+and only by adding one S2 cell.  H127 therefore does not open the 0.53 basin.
+It says the known basis is still almost closed, with one possible margin
+stabilizer.
+
+Next big-bet implication:
+
+Do not keep sweeping residual pools.  If H127 does not win publicly, the next
+large move must change the proposal generator or the public/private equation
+itself, not add one more residual cell.

@@ -2373,3 +2373,43 @@ standalone breakthrough.  Its value is architectural: after HS-JEPA predicts a
 row-target action representation, a final equation solver should be allowed to
 attenuate components that look structurally real but public/private
 amplitude-sensitive.
+
+## HS-JEPA v5.10: Residual Margin Basis Probe
+
+H127 adds a narrow residual-basis probe after coefficient solving.
+
+```text
+context encoder
+  -> hidden human/public state
+  -> action proposal
+  -> toxicity prune
+  -> dual-sensor refill
+  -> coefficient solver
+  -> residual basis probe
+       search outside active support
+       exclude previously pruned toxic cells
+       allow only route-preserving margin/toxicity improvements
+  -> calibrated submission
+```
+
+H127 evidence:
+
+- candidate: `submission_h127_residbasis_9b7f8d9a_uploadsafe.csv`;
+- selected solver: `h127_episode_neighbor_residual_newbasis_9b7f8d9a`;
+- added component: row `144` S2, `id06`;
+- final cells / rows: `29` / `24`;
+- route-basis predicted delta vs H057: `-0.000701`;
+- model predicted delta vs H057: `-0.000031`;
+- H088-axis cosine: `-0.051158`;
+- good-bad margin: `0.160434`.
+
+The architecture claim is:
+
+```text
+new residual components should be admitted only as toxicity/margin stabilizers
+after the route equation is already preserved.
+```
+
+H127 is not a broad new HS-JEPA decoder.  It is a guardrail: residual mining
+should not be allowed to chase route-basis unless the cell also survives
+public/private toxicity stress.

@@ -1,0 +1,6 @@
+spec_name,condition,pool_rows,added_cells,component_gain
+objective_residual_newbasis,objective,25,,
+subjective_q_residual_newbasis,q_subjective,13,,
+anti_h088_residual_newbasis,anti_h088,6,,
+null_antidote_residual_newbasis,null_antidote,28,,
+episode_neighbor_residual_newbasis,episode_neighbor,7,1.0,0.0007019421318064302

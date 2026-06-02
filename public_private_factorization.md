@@ -241,6 +241,38 @@ The unresolved private-safe object is not a better context encoder.  It is the
 assignment/coefficient field deciding which representation-generated actions are
 safe enough to materialize.
 
+## H127 Residual Margin Basis
+
+H127 tested whether the H122-H126 basis was merely amplitude-incomplete or
+structurally incomplete.  It searched outside active H126 support and outside
+the H122-pruned toxic sector.
+
+Result:
+
+- only one residual component was promoted:
+  `submission_h127_residbasis_9b7f8d9a_uploadsafe.csv`;
+- added cell: row `144`, target `S2`, subject `id06`;
+- route changed only `+0.000001` from H126;
+- H098/model improved `-0.000000360`;
+- H088 cosine became less negative by `+0.006511`, but remained safe at
+  `-0.051158`;
+- good-bad margin improved by `+0.010523` to `0.160434`.
+
+Interpretation:
+
+This is a public/private factorization clue, not a new broad route decoder.
+The residual signal that survives after H122 pruning and H126 coefficient
+solving is a margin/toxicity stabilizer:
+
+```text
+safe residual basis = preserve route + improve H098/margin + stay H088-negative
+```
+
+That strengthens the current active objective: the action-grade HS-JEPA decoder
+must judge action toxicity and assignment safety separately from representation
+quality.  It also weakens "just mine more residual cells" as a 0.53 path,
+because H127 found only one promoted cell.
+
 ## H074 Anti-Shortcut Factor Use
 
 H074 tests whether shortcut state can be inverted into a positive target, not

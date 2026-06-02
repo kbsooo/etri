@@ -12152,3 +12152,71 @@ Public interpretation:
   closure should remain diagnostic only;
 - if H122/H123 improve more, the dual-sensor S1 margin/closure path is not the
   public-safe action route.
+
+## H127 Residual Basis Discovery HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h127_residual_basis_discovery_hsjepa/h127_report.md`
+- `hitl/h127_residual_basis_discovery_hsjepa/h127_decision.csv`
+- `hitl/h127_residual_basis_discovery_hsjepa/h127_added_cells.csv`
+- `hitl/h127_residual_basis_discovery_hsjepa/h127_residual_pool.csv`
+- `submission_h127_residbasis_9b7f8d9a_uploadsafe.csv`
+
+Worldview:
+
+```text
+H126's component basis is too small.  If 0.53 needs another breakthrough, a new
+safe residual action basis must exist outside the current support and outside
+the H122-pruned toxic sector.
+```
+
+Observed result:
+
+- promoted candidate: `h127_episode_neighbor_residual_newbasis_9b7f8d9a`;
+- root file: `submission_h127_residbasis_9b7f8d9a_uploadsafe.csv`;
+- start field: H126 soft closure;
+- added cells: `1`;
+- added cell: row `144`, target `S2`, subject `id06`, sleep date
+  `2024-08-14`;
+- selected cells / rows: `29` / `24`;
+- final target route: Q1 `8`, Q2 `0`, Q3 `5`, S1 `9`, S2 `5`,
+  S3 `0`, S4 `2`;
+- route delta from H126: `+0.000001`;
+- H098/model delta from H126: `-0.000000360`;
+- H088 delta from H126: `+0.006511`;
+- good-bad margin delta from H126: `+0.010523`;
+- model predicted delta vs H057: `-0.000031`;
+- route-basis predicted delta vs H057: `-0.000701`;
+- H088-axis cosine: `-0.051158`;
+- good-bad margin: `0.160434`;
+- upload-safe validation passed.
+
+Negative findings:
+
+- objective, Q-subjective, anti-H088, and null-antidote residual pools did not
+  produce a promoted component under the final cumulative gates;
+- the first strict H127 run killed every candidate because route-basis caps
+  were too strict; the surviving interpretation is not "new route basis" but
+  "toxicity/margin residual basis while route is preserved."
+
+Interpretation:
+
+H127 is not a large new basin.  It finds one episode-neighbor S2 residual that
+acts like a margin/toxicity stabilizer.  The important distinction is:
+
+```text
+route-basis completion was already mostly solved by H123/H124.
+the residual basis, if real, is about public/private margin and toxicity field.
+```
+
+Public interpretation:
+
+- if H127 improves over H126/H125/H124, HS-JEPA should add a residual
+  episode-neighbor margin basis after coefficient solving;
+- if H126/H125/H124 improve more, row `144` S2 is local stress overfit and the
+  current residual pool is diagnostic only;
+- if H122/H123 improve more, the later margin/closure/residual branch should be
+  demoted and the prune/refill route is the stronger action equation.
