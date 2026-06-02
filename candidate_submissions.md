@@ -8854,3 +8854,60 @@ Public interpretation:
   not be mixed yet;
 - H122 wins more: local lattice sensors are overfitting and the sparse core is
   the best public-safe equation.
+
+## H131 Sensor-Dropout Lattice
+
+Generated file:
+
+`submission_h131_dropout_18a917f0_uploadsafe.csv`
+
+Worldview: H130's full row-target lattice may be partly real and partly
+H088/margin overfit.  A safer HS-JEPA action decoder should only promote cell
+state changes that survive multiple stress views: route/H098, no-H088,
+no-route, and bad-axis/margin views.
+
+Evidence:
+
+- selected candidate: `h131_h122_dropout_robust_lattice_18a917f0`;
+- start field: H122;
+- operations: `5`;
+- off operations: `0`;
+- damp operations: `0`;
+- add operations: `5`;
+- operated targets: S1 `3`, Q3 `1`, S2 `1`;
+- selected cells / rows: `29` / `24`;
+- target route: Q1 `8`, Q2 `0`, Q3 `5`, S1 `9`, S2 `5`, S3 `0`,
+  S4 `2`;
+- mean dropout passes: `3.8` / `4`;
+- route delta from H122: `-0.000096`;
+- H098/model delta from H122: `-0.0000026`;
+- H088 delta from H122: `+0.013343`;
+- margin delta from H122: `+0.035298`;
+- model predicted delta vs H057: `-0.000031`;
+- route-basis predicted delta vs H057: `-0.000701`;
+- H088-axis cosine: `-0.052815`;
+- good-bad margin: `0.161152`;
+- upload-safe: `True`.
+
+Submission priority:
+
+High as a public sensor, but with a different meaning than H130.  H131 is not
+trying to maximize local H088/margin diagnostics.  It asks whether the
+H130-style lattice survives after deleting the parts that look like H088-only
+shortcut.  This makes it the cleanest current test of:
+
+```text
+route/H098-safe value addition > H088/margin-driven erasure
+```
+
+Public interpretation:
+
+- H131 wins over H130/H129: add sensor-dropout action validation to HS-JEPA and
+  demote H088-only erasure;
+- H130 wins more: the dropout gate threw away real public-specific H088/margin
+  information;
+- H129 wins more: core toxicity erasure is the useful branch, while the H131
+  value additions are too optimistic;
+- all lose to H057/H012: the H122-H131 row-target action-equation family is a
+  local public-sensor artifact and the next 0.53 bet needs a larger hidden
+  public/private subset inversion.

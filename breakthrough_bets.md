@@ -2066,3 +2066,35 @@ Decision rule:
   destructive;
 - H122 win more: the current lattice score is over-optimistic and support
   assignment should stay sparse/core-first.
+
+### H131 Update
+
+H131 stress-tests the H130 lattice by applying sensor dropout to each proposed
+cell-state transition.
+
+| Experiment | File | Core claim | Support | Equation diagnostics | Status |
+| --- | --- | --- | --- | --- | --- |
+| H131 | `submission_h131_dropout_18a917f0_uploadsafe.csv` | H130's safe part is the value-add subset that survives without H088/margin as the main reward | `29` cells / `24` rows; add `5`, off/damp `0` | route delta from H122 `-0.000096`, H098 delta `-0.0000026`, H088 `-0.052815`, margin `0.161152`, mean dropout passes `3.8/4` | sensor-dropout value-add bet |
+
+Why this matters:
+
+```text
+H130 says off/damp/add are all parts of one lattice.
+H131 says only the add states are robust when H088/margin is not trusted.
+```
+
+That is not a small tune.  It separates the row-target equation into a
+dropout-robust value field and an H088-dependent eraser field.  The 0.53 path
+now has a sharper branch:
+
+```text
+If H131 wins: build HS-JEPA action decoder with sensor-dropout validation.
+If H130 wins: public-specific H088/margin information is real, not shortcut.
+If H129 wins: toxicity erasure is real but needs a better non-H088 proof.
+```
+
+Next big-bet implication:
+
+The next experiment should not keep sweeping H131 thresholds.  It should build
+a larger action-toxicity field that predicts erase/damp safety from held-out
+sensor families, then compare that with the H131 value-add-only branch.

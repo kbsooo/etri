@@ -2231,3 +2231,47 @@ suggests H129's core toxicity and H128's value regeneration are not mutually
 exclusive; they may be two terms of the same row-target public/private
 equation.  If public confirms H130, the architecture should move from
 component sequence to lattice assignment.
+
+## H131 Public/Private Factorization Update
+
+H131 stress-tests H130 by weakening the very sensors that made H130 look
+strong: H088 alignment and good-bad margin.  It asks whether each row-target
+state change survives several partial observation equations:
+
+```text
+route/H098 view
+no-H088 view
+no-route view
+bad-axis/margin view
+```
+
+Observed H131 factorization:
+
+- selected file: `submission_h131_dropout_18a917f0_uploadsafe.csv`;
+- selected candidate: `h131_h122_dropout_robust_lattice_18a917f0`;
+- start from H122 cells: `24`;
+- operations: `5`;
+- all operations are additions: S1 `3`, Q3 `1`, S2 `1`;
+- final selected cells / rows: `29` / `24`;
+- Q2 cells: `0`;
+- mean dropout passes per operation: `3.8` / `4`;
+- route-basis predicted delta vs H057: `-0.000701`;
+- model predicted delta vs H057: `-0.000031`;
+- H088-axis cosine: `-0.052815`;
+- good-bad margin: `0.161152`.
+
+Interpretation:
+
+H131 narrows H130's factorization:
+
+```text
+support field: still H122-like
+value field: survives as a small route/H098-safe add field
+toxicity/amplitude field: not yet robust under sensor dropout
+```
+
+This is a meaningful negative sensor against the broad H130 lattice.  H130's
+erase/damp actions may still be public-useful, but H131 says they currently
+look more H088/margin-dependent than route/residual/forbidden-invariant.  The
+next architecture step should treat action toxicity as a separate field that
+requires stronger evidence than H088 improvement alone.

@@ -12446,3 +12446,70 @@ Public interpretation:
   value regeneration;
 - if H122 improves more, the lattice overfit local sensors and H122's sparse
   core is the safer public equation.
+
+## H131 Sensor-Dropout Row-Target Lattice HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h131_sensor_dropout_lattice_hsjepa/h131_report.md`
+- `hitl/h131_sensor_dropout_lattice_hsjepa/h131_decision.csv`
+- `hitl/h131_sensor_dropout_lattice_hsjepa/h131_operations.csv`
+- `hitl/h131_sensor_dropout_lattice_hsjepa/h131_catalog.csv`
+- `submission_h131_dropout_18a917f0_uploadsafe.csv`
+
+Worldview:
+
+```text
+H130 may be right about row-target lattice structure, but wrong about which
+sensor is trustworthy.  A real action should survive route/H098, residual
+safety, forbidden-sector, and bad-axis stress even when H088/margin is weakened.
+```
+
+Observed result:
+
+- promoted candidate: `h131_h122_dropout_robust_lattice_18a917f0`;
+- root file: `submission_h131_dropout_18a917f0_uploadsafe.csv`;
+- start field: H122;
+- lattice support: all discovered H122-H130 cells;
+- operations: `5`;
+- off/damp operations: `0`;
+- add operations: `5`;
+- operated targets: S1 `3`, Q3 `1`, S2 `1`;
+- selected cells / rows: `29` / `24`;
+- final target route: Q1 `8`, Q2 `0`, Q3 `5`, S1 `9`, S2 `5`,
+  S3 `0`, S4 `2`;
+- mean sensor-dropout passes per operation: `3.8` / `4`;
+- route delta from H122: `-0.000096`;
+- H098/model delta from H122: `-0.0000026`;
+- H088 delta from H122: `+0.013343`;
+- good-bad margin delta from H122: `+0.035298`;
+- model predicted delta vs H057: `-0.000031`;
+- route-basis predicted delta vs H057: `-0.000701`;
+- H088-axis cosine: `-0.052815`;
+- good-bad margin: `0.161152`;
+- upload-safe validation passed.
+
+Important negative/positive findings:
+
+- H130's delete/damp branch mostly fails the dropout gate.
+- The surviving structure is H122 plus route/H098-safe value additions,
+  especially S1/S2 and one Q3 cell.
+- H131 deliberately gives up H130's very strong H088/margin improvement.  That
+  means H131 is not a leaderboard-safe refine; it is a sensor-overfit test.
+
+Interpretation:
+
+H131 splits H130 into two parts:
+
+```text
+H130 value-add subset: survives sensor dropout
+H130 erase/damp subset: probably H088/margin-shaped unless public proves it
+```
+
+If H131 improves publicly, HS-JEPA should include a sensor-dropout action
+decoder and should distrust H088-only erasure.  If H130 improves more, the
+dropout gate was too conservative and H088/margin are carrying real
+public-specific information.  If H129 improves more, additive value is still
+less reliable than core erasure.

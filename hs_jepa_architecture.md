@@ -2538,3 +2538,47 @@ This is the cleanest current formulation of HS-JEPA as an action-grade solver.
 The latent representation does not directly output labels.  It defines a
 structured action lattice, and the decoder chooses which row-target actions are
 safe under public/private stress equations.
+
+## HS-JEPA v5.14: Sensor-Dropout Action Decoder
+
+H131 adds a LeJEPA-style health check to the lattice decoder.  Instead of
+trusting the full sensor bundle, each candidate row-target transition must
+survive several partial observation equations:
+
+```text
+candidate row-target transition
+  -> route/H098 view
+  -> no-H088 view
+  -> no-route view
+  -> bad-axis/margin view
+  -> accept only if multiple views agree
+```
+
+H131 evidence:
+
+- candidate: `submission_h131_dropout_18a917f0_uploadsafe.csv`;
+- selected solver: `h131_h122_dropout_robust_lattice_18a917f0`;
+- start field: H122;
+- operations: add `5`, off `0`, damp `0`;
+- added targets: S1 `3`, Q3 `1`, S2 `1`;
+- final cells / rows: `29` / `24`;
+- mean dropout passes: `3.8` / `4`;
+- route-basis predicted delta vs H057: `-0.000701`;
+- model predicted delta vs H057: `-0.000031`;
+- H088-axis cosine: `-0.052815`;
+- good-bad margin: `0.161152`.
+
+Architecture implication:
+
+```text
+HS-JEPA should distinguish:
+
+1. representation that proposes action,
+2. lattice state that materializes action,
+3. sensor-dropout validator that decides whether the action is robust.
+```
+
+This reframes H088 and H018 again.  They are not action heads.  They are stress
+sensors inside a dropout validator.  The current H131 result says that value
+addition can be made robust under this validator, while the H130 delete/damp
+toxicity field still needs a stronger non-H088 proof.
