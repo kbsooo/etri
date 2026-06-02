@@ -339,3 +339,25 @@ If it loses badly:
   latent without seeing public LB?
 - Is the key hidden variable row membership, target route, or exact
   row-target assignment?
+
+## H076-H077 Update: Value Decoder Split
+
+H076 and H077 sharpen the public/private interpretation.
+
+H076 cleared a `-0.001009` public-action predicted delta while keeping
+bad-anchor positive cosine at `0.0`, but the winning value policy was plain
+q061. This suggests the safer public/private factorization is currently in the
+support and route assignment layer, not in handcrafted route-specific values.
+
+H077 then exposed the opposite extreme: only `16` hard-tail conflict cells
+produce a public-action predicted delta of `-0.004677`, but they violate q061
+posterior (`+0.000105`) and have small positive bad-anchor cosine (`0.003282`).
+
+Current factorization rule:
+
+- q061-compatible route support is public/private-safe enough to test;
+- sparse hard-tail conflicts are high-information sensors, not safe evidence;
+- if H077 wins publicly, the private/public split must include a hard-tail
+  route latent;
+- if H077 loses, public-action spikes without q061 support should be treated as
+  sensor overfit.

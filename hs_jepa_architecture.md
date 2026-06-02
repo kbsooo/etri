@@ -393,3 +393,67 @@ The current HS-JEPA route weakens if:
 
 In that case, H012/H057 remain useful contest discoveries, but HS-JEPA as a
 general human-state architecture would need a new target representation.
+
+## H076 Route-Specific Value Decoder
+
+H076 separated support and value explicitly:
+
+```text
+z_anti_shortcut / z_action_health -> route support
+route_name + human-state policy -> value decoder
+```
+
+The strongest promoted sensor was
+`submission_h076_route_value_decoder_a91b64c7_uploadsafe.csv`.
+
+- changed cells / rows versus H057: `471` / `153`;
+- outside H069 cells: `411`;
+- Q2 changed cells: `58`;
+- public-action predicted delta versus H057: `-0.001009`;
+- responsibility-weighted delta: `-0.001002`;
+- max positive bad-anchor cosine: `0.0`;
+- selected policy: `anti_shortcut_q061_baseline`;
+- decoder templates: `q061:471`.
+
+This is a useful architectural result, but not the one originally hoped for.
+Route-specific semantic value policies did not beat the simple q061 decoder.
+The current best interpretation is:
+
+```text
+support discovery is improving,
+but route-specific values are not yet learned;
+q061 remains the best safe value target once support is chosen.
+```
+
+HS-JEPA should therefore keep route-specific decoders as a research direction,
+but the immediate breakthrough path is still support/assignment or a sharper
+public/private factor, not handcrafted route value laws.
+
+## H077 Hard-Tail Conflict Route
+
+H077 tested the contradiction exposed by H076: some tiny route cells have huge
+positive public-action gain only when they overshoot q061. This creates a new
+latent target question:
+
+```text
+Is q061 too soft for a sparse public hard-tail route,
+or is the public-action sensor overfitting a sparse conflict?
+```
+
+The promoted diagnostic is
+`submission_h077_hardtail_conflict_123f6665_uploadsafe.csv`.
+
+- changed cells / rows versus H057: `16` / `15`;
+- Q2 changed cells: `7`;
+- route mix: `q2_hardtail:7`, `q2_s3_tail:3`, `recovery_route:3`,
+  `s_stage:2`;
+- public-action predicted delta versus H057: `-0.004677`;
+- posterior delta versus H057: `+0.000105`;
+- responsibility-weighted delta: `+0.000069`;
+- q061 value gain sum: `-0.182922`;
+- max positive bad-anchor cosine: `0.003282`.
+
+This is not safe. It is a high-information contradiction test. A public win
+would mean HS-JEPA needs a hard-tail route decoder beyond q061. A public loss
+would strengthen q061/posterior and bad-anchor cosine as guardrails, killing
+the sparse monster-route sensor.

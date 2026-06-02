@@ -9103,3 +9103,90 @@ action scale. H075 should not be prioritized as a public upload. The next
 decoder should keep `z_anti_shortcut` as a constraint and search for a
 different value source, such as route-specific public-action response or
 label-world constraints.
+
+## H076. Route-Specific Value Decoder HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h076_route_specific_value_decoder_jepa.py`
+- Report: `hitl/h076_route_specific_value_decoder_jepa/h076_report.md`
+- Promoted diagnostic:
+  `submission_h076_route_value_decoder_a91b64c7_uploadsafe.csv`
+
+### Observe
+
+H074/H075 showed that anti-shortcut support is real, but inverse-bad value
+transport is weak. The unresolved question was whether values should be decoded
+by target route, not by a single q061 movement.
+
+### Hypothesis
+
+H076-H: the missing decoder is route-specific. Q2 hardtail, S-stage, recovery,
+and full-state routes need different probability translations. If this is
+true, route-specific policies should beat plain q061 materialization under the
+public-action sensor.
+
+### Result
+
+Selected
+`h076_route_value_big_anti_shortcut_q061_baseline_outside_h069_c1040_r250_q295_a91b64c7`.
+
+- changed cells / rows versus H057: `471` / `153`;
+- outside H069 cells: `411`;
+- Q2 changed cells: `58`;
+- public-action predicted delta: `-0.001009`;
+- posterior delta: `-0.000688`;
+- responsibility-weighted delta: `-0.001002`;
+- max positive bad-anchor cosine: `0.0`;
+- winning policy: `anti_shortcut_q061_baseline`;
+- route mix: `q2_hardtail:34`, `s_stage:39`, `recovery_route:24`,
+  `q2_s3_tail:15`, `q3_s_stage:16`, `full_state:9`.
+
+### Interpretation
+
+The route-specific value hypothesis is weakened. The best value decoder was
+still plain q061. The support/assignment layer did improve enough to clear the
+`0.001` sensor threshold, so H076 says the next breakthrough should focus on
+support/assignment or public/private factorization, not manual route-specific
+value laws.
+
+## H077. Hard-Tail Conflict Route HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h077_hardtail_conflict_route_jepa.py`
+- Report: `hitl/h077_hardtail_conflict_route_jepa/h077_report.md`
+- Promoted diagnostic:
+  `submission_h077_hardtail_conflict_123f6665_uploadsafe.csv`
+
+### Observe
+
+H076's route table exposed a contradiction: the largest route-level
+public-action gains came from soft-edge movements that overshoot q061. q061
+posterior punishes them, but the public-action sensor strongly likes them.
+
+### Hypothesis
+
+H077-H: a sparse hard-tail route exists where q061 is too soft. Public-like
+labels may require more extreme Q2/S-stage tail moves than the q061 latent
+allows.
+
+### Result
+
+Selected `h077_conflict_cell_top16_123f6665`.
+
+- changed cells / rows versus H057: `16` / `15`;
+- Q2 changed cells: `7`;
+- public-action predicted delta: `-0.004677`;
+- posterior delta: `+0.000105`;
+- responsibility-weighted delta: `+0.000069`;
+- q061 value gain sum: `-0.182922`;
+- max positive bad-anchor cosine: `0.003282`;
+- route mix: `q2_hardtail:7`, `q2_s3_tail:3`, `recovery_route:3`,
+  `s_stage:2`.
+
+### Interpretation
+
+This is a deliberate contradiction sensor, not a safe candidate. If public LB
+improves, q061 is too soft and HS-JEPA needs a hard-tail target representation.
+If public LB worsens, sparse monster-route action is public-sensor overfit and
+future decoders must keep q061/posterior and bad-anchor cosine as hard
+guardrails.

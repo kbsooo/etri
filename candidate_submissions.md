@@ -6760,3 +6760,72 @@ should be killed.
 - Better than H057: promote same-subject temporal episode-state HS-JEPA.
 - Worse than H057: keep the compact H057 row-state support and require stronger
   gates before touching nearby rows.
+
+## H076 Route-Specific Value Decoder Candidate
+
+Promoted file:
+
+`submission_h076_route_value_decoder_a91b64c7_uploadsafe.csv`
+
+### Worldview Bet
+
+Anti-shortcut/action-health support is now strong enough that the next move can
+be selected at route level. The probability values, however, should remain
+q061 unless a route-specific decoder proves otherwise.
+
+### Candidate Anatomy
+
+- base: H057;
+- support source: H074/H075 route assignment plus H076 value-action support;
+- value decoder: `q061`;
+- changed cells vs H057: `471`;
+- changed rows vs H057: `153`;
+- outside H069 cells: `411`;
+- Q2 changed vs H057: `58`;
+- public-action predicted delta vs H057: `-0.001009`;
+- posterior delta vs H057: `-0.000688`;
+- responsibility-weighted delta vs H057: `-0.001002`;
+- max positive bad-anchor cosine: `0.0`;
+- upload-safe: `True`.
+
+### Public Interpretation
+
+- Better than H057: route support/assignment is the active HS-JEPA decoder
+  layer; q061 is still the safest value materializer.
+- Worse than H057: H076's public-action support score is overfitting known
+  public observations; fall back to H074/H071 support diagnostics.
+
+## H077 Hard-Tail Conflict Candidate
+
+Promoted file:
+
+`submission_h077_hardtail_conflict_123f6665_uploadsafe.csv`
+
+### Worldview Bet
+
+This is not a safety candidate. It bets that q061 is too soft on a tiny
+hard-tail route. The public-action sensor wants 16 cells moved more extremely,
+while q061 posterior and bad-anchor geometry both object.
+
+### Candidate Anatomy
+
+- base: H057;
+- changed cells vs H057: `16`;
+- changed rows vs H057: `15`;
+- Q2 changed vs H057: `7`;
+- route mix: `q2_hardtail:7`, `q2_s3_tail:3`, `recovery_route:3`,
+  `s_stage:2`;
+- public-action predicted delta vs H057: `-0.004677`;
+- posterior delta vs H057: `+0.000105`;
+- q061 value gain sum: `-0.182922`;
+- max positive bad-anchor cosine: `0.003282`;
+- max abs probability move vs H057: `0.096190`;
+- upload-safe: `True`.
+
+### Public Interpretation
+
+- Big win: q061-soft-world is false for a sparse tail route; HS-JEPA needs a
+  hard-tail route target representation.
+- Small loss or large loss: kill sparse monster-route conflicts. Keep q061 and
+  bad-anchor cosine as guardrails, and do not chase public-action single-route
+  spikes.

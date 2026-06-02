@@ -413,3 +413,6 @@ hitl/h063_human_context_seed_jepa/submission_h063_*.csv
 
 # H064 materialized contrastive state-graph sweep files are reproducible from the script.
 hitl/h064_contrastive_state_graph_jepa/submission_h064_*.csv
+
+# H076 full route-policy cell table is reproducible and exceeds GitHub's regular file limit.
+hitl/h076_route_specific_value_decoder_jepa/h076_policy_cell_scores.csv

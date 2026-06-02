@@ -427,3 +427,57 @@ continuous health/shortcut representation than direct assignment. H074 now says
 known bad worlds carry a real inverse target representation, but also that this
 inverse layer still needs a stronger action solver. H075 says the missing
 solver is not simply "move by the inverse bad vector".
+
+### H076 Update
+
+H076 tested Bet 5's next version:
+
+```text
+anti-shortcut/action-health support is known,
+but values must be decoded by route-specific human-state laws
+```
+
+Result:
+
+- promoted sensor:
+  `submission_h076_route_value_decoder_a91b64c7_uploadsafe.csv`;
+- selected candidate:
+  `h076_route_value_big_anti_shortcut_q061_baseline_outside_h069_c1040_r250_q295_a91b64c7`;
+- changed cells / rows: `471` / `153`;
+- outside H069 cells: `411`;
+- Q2 changed cells: `58`;
+- public-action predicted delta: `-0.001009`;
+- responsibility-weighted delta: `-0.001002`;
+- max positive bad-anchor cosine: `0.0`;
+- winning value policy: plain `q061`, not a handcrafted route-specific policy.
+
+This partly revives Bet 5 as an action solver: support selection cleared the
+`0.001` sensor threshold. But it weakens the handcrafted value-decoder
+subclaim. The data currently says "find better support; q061 is still the
+safest value materializer."
+
+### H077 Update
+
+H077 is a new big-bet contradiction, not a safety improvement:
+
+```text
+public-action sensor says some sparse tail cells should overshoot q061;
+q061 posterior and bad-anchor geometry say that overshoot is dangerous.
+```
+
+Promoted diagnostic:
+`submission_h077_hardtail_conflict_123f6665_uploadsafe.csv`.
+
+- changed cells / rows: `16` / `15`;
+- Q2 changed cells: `7`;
+- public-action predicted delta: `-0.004677`;
+- posterior delta: `+0.000105`;
+- q061 value gain sum: `-0.182922`;
+- max positive bad-anchor cosine: `0.003282`;
+- route mix: `q2_hardtail:7`, `q2_s3_tail:3`, `recovery_route:3`,
+  `s_stage:2`.
+
+This is a true high-upside / high-falsification sensor. If it wins, q061 is too
+soft on a sparse hard-tail route and HS-JEPA needs an explicit tail-law target
+representation. If it loses, do not keep chasing monster-route conflicts; use
+q061 and bad-anchor cosine as hard guardrails.

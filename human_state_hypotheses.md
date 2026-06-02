@@ -399,3 +399,31 @@ The next human-state experiment should therefore avoid another direct
 story-route selector. The useful direction is a stronger assignment solver that
 uses `z_human_action` as a regularized energy term, or an anti-shortcut model
 that learns which story/route combinations are public-bad.
+
+## H076-H077 Human-State Update
+
+H076 weakens the idea that handcrafted social/lifestyle route stories directly
+define probability values. The best H076 value decoder was still q061, while
+the useful layer was route support and assignment.
+
+H077 adds a new human-state hypothesis:
+
+```text
+hard-tail conflict state = a sparse day/state where normal q061 sleep-quality
+posterior is too soft, and the public-like label requires a more extreme Q2 or
+stage-tail move.
+```
+
+Possible human interpretation:
+
+- intervention/behavior day: Q2 changes more sharply than the smooth latent
+  expects;
+- acute fatigue or recovery day: S-stage tail becomes more binary than the
+  average state;
+- routine break day: the same row has a small number of targets that should be
+  hard-edged, not globally recalibrated.
+
+Current evidence is contradictory. The public-action sensor strongly likes the
+hard-tail state (`-0.004677` predicted delta for 16 cells), but q061 posterior
+and bad-anchor geometry reject it. Treat this as a sensor hypothesis until
+public feedback decides it.
