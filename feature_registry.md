@@ -5306,3 +5306,39 @@ objective S-stage output rather than subjective Q1/Q3.
 - Keep if public improves over H042: row-state route is validated.
 - Kill if public worsens materially: H042 support is Q2-local and should not be
   translated into other target families without new evidence.
+
+## H057 Feature/Action Registry: Q2-Row Full-Vector State
+
+### Feature / Action
+
+`h042_q2_support_full_nonq2_vector`
+
+### Hidden Structure Targeted
+
+The action treats the H042 Q2 support rows as complete hidden human-state
+vectors. It decodes the same row latent into Q1/Q3 and S1-S4 while keeping Q2
+frozen at H042.
+
+### Label Signal vs Split Signal
+
+- label signal evidence: H050's Q1/Q3 direction agrees with H055 posterior on
+  `88.5%` of changed cells;
+- split/public-subset evidence: H050 touched many rows outside H042 support,
+  so H057 isolates the target route to public-positive rows;
+- leakage risk: this is public-feedback hypothesis testing, not a train-label
+  feature; use only as a public sensor.
+
+### Materialization
+
+- base: H042;
+- row mask: rows where H042 changed Q2 versus H012;
+- target mask: Q1/Q3/S1/S2/S3/S4;
+- target representation: H055 post-feedback posterior;
+- promoted file: `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv`.
+
+### Keep / Kill Criteria
+
+- Keep if public improves over H042/H056: full row-vector HS-JEPA route is
+  validated.
+- Demote subjective-Q route if H056 improves but H057 fails.
+- Kill broad row-state translation if both H056 and H057 fail.

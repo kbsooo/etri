@@ -1641,3 +1641,17 @@ candidates had strong H025 health but weaker action-margin evidence.
 - public reading:
   improvement means HS-JEPA should route hidden human state through row-level
   objective targets. Failure means H042 remains Q2-local under current evidence.
+
+## H057 Q2-Row Full-Vector State
+
+- script: `h057_q2row_fullvector_state_jepa.py`
+- report: `h057_q2row_fullvector_state_jepa/h057_report.md`
+- promoted root file:
+  `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv`
+- purpose:
+  test whether H042's `45` public-positive Q2 rows encode a complete hidden
+  human-state vector. H057 freezes Q2 and moves Q1/Q3/S1-S4 on exactly those
+  rows, `270` cells total.
+- public reading:
+  improvement validates full row-vector HS-JEPA routing. If H056 improves but
+  H057 fails, only objective S routing is live; if both fail, H042 is Q2-local.

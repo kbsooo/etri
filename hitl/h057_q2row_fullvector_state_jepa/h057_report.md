@@ -1,0 +1,58 @@
+# H057 Q2-Row Full-Vector State HS-JEPA
+
+Question: did H050 tie H042 because subjective Q targets are dead, or because
+H050 put the target route on the wrong rows?
+
+Design:
+
+- base submission: H042;
+- Q2 is frozen exactly;
+- allowed rows are only the `45` rows where H042 changed Q2 versus H012;
+- allowed promoted route moves the complete non-Q2 vector on those rows:
+  Q1/Q3/S1/S2/S3/S4;
+- target representation is the H055 post-feedback public-listener posterior.
+
+Row overlap sensors:
+
+- H042 Q2 support rows: `45`;
+- H050 Q1/Q3 route rows: `86`;
+- overlap: `20`.
+
+Decision:
+
+| decision | selected_candidate_id | selected_file | selected_resolved_path | root_uploadsafe_path | worldview | h042_q2_support_rows | h050_q13_route_rows | h042_h050_row_overlap | selected_rows_in_h042_q2_support | candidate_id | file | resolved_path | family | alpha | mode | changed_cells_vs_h042 | changed_rows_vs_h042 | q2_changed_vs_h042 | q13_changed_vs_h042 | s_changed_vs_h042 | h050_overlap_cells | h056_overlap_cells | pred_delta_vs_h042 | pred_delta_vs_h050 | pred_delta_vs_h056 | mean_gain_selected | mean_aux_selected | mean_row_strength_selected | Q1_changed_vs_h042 | Q2_changed_vs_h042 | Q3_changed_vs_h042 | S1_changed_vs_h042 | S2_changed_vs_h042 | S3_changed_vs_h042 | S4_changed_vs_h042 | h057_score |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| promote_q2row_fullvector_state_sensor | h057_full_nonq2_a1p15_logit_7cde1a77 | submission_h057_full_nonq2_a1p15_logit_7cde1a77.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_full_nonq2_a1p15_logit_7cde1a77.csv | /Users/kbsoo/Downloads/cl2/submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv | H042 support rows encode a complete hidden human-state vector, not only Q2 or S-stage route | 45 | 86 | 20 | 45 | h057_full_nonq2_a1p15_logit_7cde1a77 | submission_h057_full_nonq2_a1p15_logit_7cde1a77.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_full_nonq2_a1p15_logit_7cde1a77.csv | full_nonq2 | 1.150000000 | logit | 270 | 45 | 0 | 90 | 180 | 23 | 180 | -0.000194129 | -0.000131445 | -0.000058332 | 0.001258241 | 0.544357354 | 0.912000000 | 45 | 0 | 45 | 45 | 45 | 45 | 45 | 0.771250000 |
+
+Top candidates:
+
+| candidate_id | file | resolved_path | family | alpha | mode | changed_cells_vs_h042 | changed_rows_vs_h042 | q2_changed_vs_h042 | q13_changed_vs_h042 | s_changed_vs_h042 | h050_overlap_cells | h056_overlap_cells | pred_delta_vs_h042 | pred_delta_vs_h050 | pred_delta_vs_h056 | mean_gain_selected | mean_aux_selected | mean_row_strength_selected | Q1_changed_vs_h042 | Q2_changed_vs_h042 | Q3_changed_vs_h042 | S1_changed_vs_h042 | S2_changed_vs_h042 | S3_changed_vs_h042 | S4_changed_vs_h042 | h057_score |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| h057_full_nonq2_a1p15_logit_7cde1a77 | submission_h057_full_nonq2_a1p15_logit_7cde1a77.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_full_nonq2_a1p15_logit_7cde1a77.csv | full_nonq2 | 1.150000000 | logit | 270 | 45 | 0 | 90 | 180 | 23 | 180 | -0.000194129 | -0.000131445 | -0.000058332 | 0.001258241 | 0.544357354 | 0.912000000 | 45 | 0 | 45 | 45 | 45 | 45 | 45 | 0.771250000 |
+| h057_full_nonq2_a0p85_logit_81c240d4 | submission_h057_full_nonq2_a0p85_logit_81c240d4.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_full_nonq2_a0p85_logit_81c240d4.csv | full_nonq2 | 0.850000000 | logit | 270 | 45 | 0 | 90 | 180 | 23 | 180 | -0.000190155 | -0.000127472 | -0.000054359 | 0.001232489 | 0.544357354 | 0.912000000 | 45 | 0 | 45 | 45 | 45 | 45 | 45 | 0.738750000 |
+| h057_full_nonq2_a1p45_logit_7781cc7d | submission_h057_full_nonq2_a1p45_logit_7781cc7d.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_full_nonq2_a1p45_logit_7781cc7d.csv | full_nonq2 | 1.450000000 | logit | 270 | 45 | 0 | 90 | 180 | 23 | 180 | -0.000168597 | -0.000105914 | -0.000032801 | 0.001092760 | 0.544357354 | 0.912000000 | 45 | 0 | 45 | 45 | 45 | 45 | 45 | 0.641250000 |
+| h057_full_nonq2_a0p55_logit_2b37bd98 | submission_h057_full_nonq2_a0p55_logit_2b37bd98.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_full_nonq2_a0p55_logit_2b37bd98.csv | full_nonq2 | 0.550000000 | logit | 270 | 45 | 0 | 90 | 180 | 23 | 180 | -0.000154923 | -0.000092240 | -0.000019127 | 0.001004132 | 0.544357354 | 0.912000000 | 45 | 0 | 45 | 45 | 45 | 45 | 45 | 0.608750000 |
+| h057_q1_s_all_a1p15_logit_fe3d6207 | submission_h057_q1_s_all_a1p15_logit_fe3d6207.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_q1_s_all_a1p15_logit_fe3d6207.csv | q1_s_all | 1.150000000 | logit | 225 | 45 | 0 | 45 | 180 | 17 | 180 | -0.000176662 | -0.000113978 | -0.000040865 | 0.001374035 | 0.573613333 | 0.912000000 | 45 | 0 | 0 | 45 | 45 | 45 | 45 | 0.541250000 |
+| h057_q1_s_all_a0p85_logit_ff4909a3 | submission_h057_q1_s_all_a0p85_logit_ff4909a3.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_q1_s_all_a0p85_logit_ff4909a3.csv | q1_s_all | 0.850000000 | logit | 225 | 45 | 0 | 45 | 180 | 17 | 180 | -0.000172690 | -0.000110006 | -0.000036893 | 0.001343142 | 0.573613333 | 0.912000000 | 45 | 0 | 0 | 45 | 45 | 45 | 45 | 0.508750000 |
+| h057_q1_s_all_a1p45_logit_a6da2390 | submission_h057_q1_s_all_a1p45_logit_a6da2390.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_q1_s_all_a1p45_logit_a6da2390.csv | q1_s_all | 1.450000000 | logit | 225 | 45 | 0 | 45 | 180 | 17 | 180 | -0.000154297 | -0.000091614 | -0.000018501 | 0.001200088 | 0.573613333 | 0.912000000 | 45 | 0 | 0 | 45 | 45 | 45 | 45 | 0.411250000 |
+| h057_q3_s_all_a1p15_logit_9ed60a63 | submission_h057_q3_s_all_a1p15_logit_9ed60a63.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_q3_s_all_a1p15_logit_9ed60a63.csv | q3_s_all | 1.150000000 | logit | 225 | 45 | 0 | 45 | 180 | 6 | 180 | -0.000153824 | -0.000091141 | -0.000018028 | 0.001196409 | 0.547720254 | 0.912000000 | 0 | 0 | 45 | 45 | 45 | 45 | 45 | 0.378750000 |
+| h057_q3_s_all_a0p85_logit_f7ec5e8b | submission_h057_q3_s_all_a0p85_logit_f7ec5e8b.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_q3_s_all_a0p85_logit_f7ec5e8b.csv | q3_s_all | 0.850000000 | logit | 225 | 45 | 0 | 45 | 180 | 6 | 180 | -0.000150876 | -0.000088193 | -0.000015080 | 0.001173480 | 0.547720254 | 0.912000000 | 0 | 0 | 45 | 45 | 45 | 45 | 45 | 0.346250000 |
+| h057_q1_s_all_a0p55_logit_46f690bf | submission_h057_q1_s_all_a0p55_logit_46f690bf.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_q1_s_all_a0p55_logit_46f690bf.csv | q1_s_all | 0.550000000 | logit | 225 | 45 | 0 | 45 | 180 | 17 | 180 | -0.000140657 | -0.000077973 | -0.000004860 | 0.001093997 | 0.573613333 | 0.912000000 | 45 | 0 | 0 | 45 | 45 | 45 | 45 | 0.313750000 |
+| h057_q3_s_all_a1p45_logit_94d96b9b | submission_h057_q3_s_all_a1p45_logit_94d96b9b.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_q3_s_all_a1p45_logit_94d96b9b.csv | q3_s_all | 1.450000000 | logit | 225 | 45 | 0 | 45 | 180 | 6 | 180 | -0.000133356 | -0.000070672 | 0.000002441 | 0.001037211 | 0.547720254 | 0.912000000 | 0 | 0 | 45 | 45 | 45 | 45 | 45 | 0.216250000 |
+| h057_q3_s_all_a0p55_logit_a0ae834e | submission_h057_q3_s_all_a0p55_logit_a0ae834e.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_q3_s_all_a0p55_logit_a0ae834e.csv | q3_s_all | 0.550000000 | logit | 225 | 45 | 0 | 45 | 180 | 6 | 180 | -0.000123058 | -0.000060374 | 0.000012738 | 0.000957117 | 0.547720254 | 0.912000000 | 0 | 0 | 45 | 45 | 45 | 45 | 45 | 0.183750000 |
+| h057_s_all_a1p15_logit_04a56dcb | submission_h057_s_all_a1p15_logit_04a56dcb.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_s_all_a1p15_logit_04a56dcb.csv | s_all | 1.150000000 | logit | 180 | 45 | 0 | 0 | 180 | 0 | 180 | -0.000136357 | -0.000073674 | -0.000000561 | 0.001325693 | 0.585130952 | 0.912000000 | 0 | 0 | 0 | 45 | 45 | 45 | 45 | 0.116250000 |
+| h057_s_all_a0p85_logit_f0b906f2 | submission_h057_s_all_a0p85_logit_f0b906f2.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_s_all_a0p85_logit_f0b906f2.csv | s_all | 0.850000000 | logit | 180 | 45 | 0 | 0 | 180 | 0 | 180 | -0.000133410 | -0.000070727 | 0.000002386 | 0.001297043 | 0.585130952 | 0.912000000 | 0 | 0 | 0 | 45 | 45 | 45 | 45 | 0.083750000 |
+| h057_s_all_a1p45_logit_8159ef09 | submission_h057_s_all_a1p45_logit_8159ef09.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_s_all_a1p45_logit_8159ef09.csv | s_all | 1.450000000 | logit | 180 | 45 | 0 | 0 | 180 | 0 | 180 | -0.000119056 | -0.000056372 | 0.000016741 | 0.001157484 | 0.585130952 | 0.912000000 | 0 | 0 | 0 | 45 | 45 | 45 | 45 | -0.013750000 |
+| h057_full_nonq2_a0p55_edge_66936c56 | submission_h057_full_nonq2_a0p55_edge_66936c56.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_full_nonq2_a0p55_edge_66936c56.csv | full_nonq2 | 0.550000000 | edge | 270 | 45 | 0 | 90 | 180 | 23 | 180 | 0.005502472 | 0.005565155 | 0.005638268 | -0.035664169 | 0.544357354 | 0.912000000 | 45 | 0 | 45 | 45 | 45 | 45 | 45 | -0.041250000 |
+| h057_s_all_a0p55_logit_03de77b5 | submission_h057_s_all_a0p55_logit_03de77b5.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_s_all_a0p55_logit_03de77b5.csv | s_all | 0.550000000 | logit | 180 | 45 | 0 | 0 | 180 | 0 | 180 | -0.000108791 | -0.000046108 | 0.000027005 | 0.001057695 | 0.585130952 | 0.912000000 | 0 | 0 | 0 | 45 | 45 | 45 | 45 | -0.046250000 |
+| h057_q1_s_all_a0p55_edge_be7fb90a | submission_h057_q1_s_all_a0p55_edge_be7fb90a.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_q1_s_all_a0p55_edge_be7fb90a.csv | q1_s_all | 0.550000000 | edge | 225 | 45 | 0 | 45 | 180 | 17 | 180 | 0.004395221 | 0.004457904 | 0.004531017 | -0.034185050 | 0.573613333 | 0.912000000 | 45 | 0 | 0 | 45 | 45 | 45 | 45 | -0.108750000 |
+| h057_q3_s_all_a0p55_edge_333e4469 | submission_h057_q3_s_all_a0p55_edge_333e4469.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_q3_s_all_a0p55_edge_333e4469.csv | q3_s_all | 0.550000000 | edge | 225 | 45 | 0 | 45 | 180 | 6 | 180 | 0.004637837 | 0.004700521 | 0.004773633 | -0.036072067 | 0.547720254 | 0.912000000 | 0 | 0 | 45 | 45 | 45 | 45 | 45 | -0.173750000 |
+| h057_full_nonq2_a0p85_edge_e0ccf178 | submission_h057_full_nonq2_a0p85_edge_e0ccf178.csv | /Users/kbsoo/Downloads/cl2/hitl/h057_q2row_fullvector_state_jepa/submission_h057_full_nonq2_a0p85_edge_e0ccf178.csv | full_nonq2 | 0.850000000 | edge | 270 | 45 | 0 | 90 | 180 | 23 | 180 | 0.012728940 | 0.012791623 | 0.012864736 | -0.082502387 | 0.544357354 | 0.912000000 | 45 | 0 | 45 | 45 | 45 | 45 | 45 | -0.236250000 |
+
+Interpretation rule:
+
+- If H057 improves over H042/H056, HS-JEPA should represent H042 support rows
+  as full hidden human-state vectors and route all target families together.
+- If H056 improves but H057 fails, the row state is objective-S but not
+  subjective-Q.
+- If both H056 and H057 fail, H042 should be narrowed to Q2-local support.

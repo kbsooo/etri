@@ -7345,3 +7345,29 @@ Public-free interpretation stress:
   cells.
 - It deliberately does not pass a conservative risk filter: moving all four S
   targets on all H042 rows is a high-information row-state test.
+
+## H057 Stress Note: Q2-Row Full-Vector Sensor
+
+Upload and structural checks:
+
+- file: `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv`;
+- shape: `(250, 10)`;
+- required columns: OK;
+- NaN: `0`;
+- duplicate keys: `0`;
+- probability range: `[0.0000049393, 0.9999967515]`.
+
+Structural stress:
+
+- vs H042: `270` changed cells on `45` rows;
+- all changed rows are inside H042's Q2 support;
+- Q2 changed vs H042: `0`;
+- Q1/Q3 changed vs H042: `45` / `45`;
+- S1/S2/S3/S4 changed vs H042: `45` each;
+- vs H056: `108` changed cells on the same row support.
+
+Public-free interpretation stress:
+
+- H057 intentionally violates the H050 broad subjective-route null by restricting
+  subjective Q changes to H042's public-positive rows.
+- It is a high-information row-vector test, not a conservative submission.

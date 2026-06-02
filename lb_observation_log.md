@@ -3138,3 +3138,32 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - Q1/Q2/Q3 changed vs H042 `0` / `0` / `0`;
   - all changed rows are within the H042 Q2 support;
   - H055-posterior predicted delta vs H042 `-0.000135796`.
+
+## Public-Free Observation: H057 Q2-Row Full-Vector State HS-JEPA
+
+- submission file prepared:
+  `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv`
+- public LB: pending
+- public anchors:
+  - H012 `0.5681234831`;
+  - H042 `0.5679048248`;
+  - H050 `0.5679048248`.
+- changed point:
+  - starts from H042;
+  - freezes Q2 exactly;
+  - changes Q1/Q3/S1/S2/S3/S4 on the same `45` rows where H042 changed Q2;
+  - total changed cells versus H042: `270`.
+- expected LB reaction:
+  - better than H042/H056 means H042 support rows encode a complete hidden
+    human-state vector;
+  - H056 better but H057 worse means objective S-route is live but subjective Q
+    route is still public-negative or neutral;
+  - both H056 and H057 worse means H042 should be narrowed to Q2-local support.
+- local/public-free observation:
+  - changed rows vs H042 `45`;
+  - per-target changes vs H042: Q1 `45`, Q2 `0`, Q3 `45`, S1 `45`, S2 `45`,
+    S3 `45`, S4 `45`;
+  - all changed rows are within the H042 Q2 support;
+  - H050 Q1/Q3 route rows `86`, overlap with H042 support rows `20`;
+  - H055-posterior predicted delta vs H042 `-0.000194129`;
+  - H055-posterior predicted delta vs H056 `-0.000058332`.

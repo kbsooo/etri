@@ -399,3 +399,18 @@ H042, freezes Q2, avoids Q1/Q3 entirely, and changes S1-S4 on exactly the `45`
 rows where H042 changed Q2: `180` cells total. If it improves, H042's Q2 support
 is a reusable public-visible human-state row marker. If it fails, H042 should be
 treated as a Q2-local correction rather than a row-state route.
+
+## Latest H057 Branch Note
+
+H057 tests the larger version of the same row-state idea. H050's Q1/Q3 direction
+agrees with the H055 posterior on `88.5%` of changed cells, so the cleaner
+negative hypothesis is not "H050 had the wrong sign"; it is "H050 put a
+potentially valid subjective route on many public-irrelevant rows."
+
+The promoted upload file is
+`submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv`. It starts
+from H042, freezes Q2, and moves the complete non-Q2 vector on exactly the `45`
+H042 Q2-support rows: Q1 `45`, Q3 `45`, and S1-S4 `45` each, `270` cells total.
+If H057 improves, HS-JEPA should represent H042 support rows as complete hidden
+human-state vectors. If H056 improves but H057 fails, the row-state route is
+objective-S but not subjective-Q. If both fail, H042 remains Q2-local.

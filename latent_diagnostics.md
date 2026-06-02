@@ -1224,3 +1224,27 @@ Diagnostic facts:
 Interpretation: H056 is a latent route test, not a new latent discovery. It asks
 whether a compact row-state latent can survive when translated only through
 objective sleep-stage labels.
+
+## H057 Latent Diagnostic: Q2-Row Full-Vector State
+
+H057 keeps the same compact row latent as H056 but changes the decoded target
+space from S-only to full non-Q2 vector.
+
+Diagnostic facts:
+
+- H042 Q2 support rows: `45`;
+- H050 Q1/Q3 route rows: `86`;
+- H042/H050 row overlap: `20`;
+- H050 direction agreement with H055 posterior: `0.885416667`;
+- H057 selected rows: `45`, all inside H042 Q2 support;
+- H057 selected cells: `270`;
+- selected target distribution: Q1 `45`, Q3 `45`, S1 `45`, S2 `45`, S3 `45`,
+  S4 `45`, Q2 `0`;
+- selected cells overlapping H056: `180`;
+- mean selected H055 aux score: `0.544357354`;
+- H055-posterior predicted delta vs H042: `-0.000194129`;
+- H055-posterior predicted delta vs H056: `-0.000058332`.
+
+Interpretation: H057 is the high-amplitude row-vector decoder. It is expected
+to be more informative but riskier than H056 because it reintroduces subjective
+Q targets only on the public-positive row support.

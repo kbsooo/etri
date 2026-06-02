@@ -391,3 +391,6 @@ hitl/h055_postfeedback_public_listener_jepa/submission_h055_*.csv
 # H056 materialized Q2-row objective-state sweep files are reproducible from the script.
 hitl/h056_q2row_objective_state_jepa/submission_h056_*.csv
 hitl/h056_q2row_objective_state_jepa/h056_cell_actions.csv
+
+# H057 materialized Q2-row full-vector sweep files are reproducible from the script.
+hitl/h057_q2row_fullvector_state_jepa/submission_h057_*.csv

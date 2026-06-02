@@ -5618,3 +5618,31 @@ exactly the `45` H042 Q2 support rows.
 - If H056 fails: demote row-state translation and keep H042 as Q2-local.
 - If H056 ties: S-route is public-neutral on H042 rows; further route discovery
   needs a new non-Q2 public sensor rather than another broad translation.
+
+## H057 Update: Q2-Row Full-Vector State Route
+
+### New Hypothesis Node
+
+H057-H: H042's Q2 support rows encode a complete hidden human-state vector. Q2
+was the first visible component, but Q1/Q3/S1-S4 should also move on the same
+rows when decoded through the H055 post-feedback posterior.
+
+### Evidence Entering H057
+
+- H050 tied H042, but its Q1/Q3 route touched `86` rows and only `20` overlap
+  H042's Q2 support rows.
+- H050's Q1/Q3 direction agrees with H055 posterior on `88.5%` of changed cells,
+  weakening the "wrong sign" explanation.
+- H056 tests objective S-only on H042 rows; H057 tests the full non-Q2 vector.
+
+### Experiment Edge
+
+H057 starts from H042, freezes Q2, and changes Q1/Q3/S1/S2/S3/S4 on exactly the
+`45` H042 Q2-support rows.
+
+### State Transition Rules
+
+- H057 improves: promote full row-vector hidden human-state routing.
+- H056 improves but H057 fails: promote objective-S route and demote subjective
+  Q route.
+- H056/H057 both fail: H042 is Q2-local under current evidence.

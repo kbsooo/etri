@@ -7947,3 +7947,55 @@ This is not a safe blend. It is a direct row-state sensor. If public improves,
 HS-JEPA should model H042 support as a reusable public-visible row-state and
 route it into objective sleep-stage targets. If it fails, H042 remains a
 Q2-local correction under current evidence.
+
+## H057. Q2-Row Full-Vector State HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h057_q2row_fullvector_state_jepa.py`
+- Report: `hitl/h057_q2row_fullvector_state_jepa/h057_report.md`
+- Promoted submission:
+  `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv`
+
+### Observe
+
+H050 tied H042 despite changing Q1/Q3, but H050's Q1/Q3 direction agrees with
+the H055 post-feedback posterior on `88.5%` of changed cells. Therefore the
+stronger negative reading is not "the sign was wrong"; it is "H050 mixed a
+possibly valid subjective route with the wrong row support."
+
+### Wonder
+
+If H042's `45` Q2-support rows are public-visible rows, should the complete
+non-Q2 target vector move on those rows?
+
+### Hypothesis
+
+H057-H: H042 support rows encode a complete hidden human-state vector. Q2 was
+only the first public-visible component; the same rows should carry Q1/Q3 and
+objective S-stage labels when translated through the H055 posterior.
+
+### Falsification Design
+
+Start from H042. Freeze Q2. Allow changes only on the `45` H042 Q2-support rows
+and only on Q1/Q3/S1/S2/S3/S4. Compare H057 with H056: H056 tests objective-S
+only, H057 tests the full non-Q2 row vector.
+
+### Result
+
+Selected `h057_full_nonq2_a1p15_logit_7cde1a77`.
+
+- changed cells vs H042: `270`;
+- changed rows vs H042: `45`;
+- changed targets vs H042: Q1 `45`, Q3 `45`, S1 `45`, S2 `45`, S3 `45`,
+  S4 `45`;
+- Q2 changed vs H042: `0`;
+- all changed rows are exactly the H042 Q2 support rows;
+- H055-posterior predicted delta vs H042: `-0.000194129`;
+- H055-posterior predicted delta vs H056: `-0.000058332`;
+- upload validation passed.
+
+### Interpretation
+
+If H057 improves over H042/H056, HS-JEPA should model row-level hidden state as
+a full target vector. If H056 improves but H057 fails, the row state is
+objective-S but not subjective-Q. If both fail, H042 remains Q2-local.
