@@ -2371,3 +2371,36 @@ If H142 is bad:
   build an assignment solver that activates one branch per hidden row-target
   state instead of blending them.
 ```
+
+### H143 Update
+
+H143 is the XOR branch calibration bet.
+
+| Bet | File | Worldview | Local evidence | Risk |
+| --- | --- | --- | --- | --- |
+| H143 | `submission_h143_xorbranch_4894032a_uploadsafe.csv` | H142's route barrier is real, so the solver should choose one branch; row207 is active but should be softened to gamma `0.80` | H088 delta `-0.002229244`, margin delta `+0.000172037`, H098 delta `+0.000001533`, route delta `+0.000002418`, XOR pass `True` | raw XOR score still prefers known H139 full row207; H143 may under-activate the branch |
+
+This is the direct follow-up to the H142 negative finding:
+
+```text
+H142 says:
+  do not co-activate row207 and row135.
+
+H143 says:
+  choose row207, but test whether full H139 amplitude is too strong.
+```
+
+The public result splits the next 0.53 path:
+
+```text
+H143 > H139:
+  branch identity is right, amplitude is wrong;
+  build calibrated XOR amplitude solver.
+
+H139 > H143:
+  full row207 endpoint is right;
+  search larger row207-like XOR atoms.
+
+H140 > H143/H139:
+  row135 branch is the right hidden world.
+```

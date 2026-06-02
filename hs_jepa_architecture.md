@@ -3054,3 +3054,49 @@ HS-JEPA decoder vNext
 The key update is that "safe action" may not mean "blend the best actions."
 The decoder may need to infer which hidden world a row-target belongs to and
 activate only that branch.
+
+### H143: XOR Branch Assignment Decoder
+
+H143 implements the architecture implied by H142.
+
+The decoder no longer assumes optional branches are additive.  It evaluates
+branch-exclusive paths:
+
+```text
+common core + gamma * row207 branch
+common core + gamma * row135 branch
+```
+
+Known endpoints are references:
+
+```text
+H139 = row207 gamma 1.00
+H140 = row135 gamma 1.00
+```
+
+H143 evidence:
+
+- candidate: `submission_h143_xorbranch_4894032a_uploadsafe.csv`;
+- selected branch: row `207`;
+- gamma: `0.80`;
+- row `135`: absent by design;
+- changed cells vs H136: `3`;
+- H088 delta vs H136: `-0.002229244`;
+- margin delta vs H136: `+0.000172037`;
+- route delta vs H136: `+0.000002418`;
+- H098/model delta vs H136: `+0.000001533`;
+- XOR branch pass: `True`.
+
+Architecture implication:
+
+```text
+HS-JEPA decoder
+  -> common action core
+  -> branch classifier: none / row207 / row135
+  -> branch amplitude predictor
+  -> co-activation veto
+```
+
+H143 is important because it gives HS-JEPA a concrete next decoder form:
+assignment first, amplitude second.  This is different from both a tabular
+model and a linear blend.

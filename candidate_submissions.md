@@ -9394,3 +9394,44 @@ Public interpretation:
 - H139 > H142: row207 is the active branch and row135 should be off.
 - H140 > H142: row135 is the active branch and row207 should be off.
 - H141 > H142: both optional branches are over-corrections.
+
+## H143 XOR Branch Assignment
+
+Generated file:
+
+`submission_h143_xorbranch_4894032a_uploadsafe.csv`
+
+Worldview: If H142's co-activation barrier is real, row207 and row135 are
+mutually exclusive branches.  H143 keeps only row207, but softens it to test
+whether H139's full row207 endpoint is over-amplified.
+
+Evidence:
+
+- selected candidate: `h143_row207_g0p8_4894032a`;
+- branch: row `207`;
+- gamma: `0.80`;
+- changed cells vs H136: `3`;
+- actions:
+  - row `70` Q3 margin repair;
+  - row `131` S2 toxicity relief;
+  - row `207` S2 softened toxicity relief `-0.0110000000`;
+- route delta vs H136: `+0.000002418`;
+- H098/model delta vs H136: `+0.000001533`;
+- H088 delta vs H136: `-0.002229244`;
+- margin delta vs H136: `+0.000172037`;
+- XOR branch pass: `True`;
+- upload-safe: `True`.
+
+Submission priority:
+
+High-information branch calibration candidate.  H139 is still the top raw XOR
+endpoint, but it already exists.  H143 asks whether the public equation prefers
+a softened row207 branch.  It is more action-grade than H142 because it obeys
+the XOR rule and does not co-activate row135.
+
+Public interpretation:
+
+- H143 > H139: row207 is real but too strong at full amplitude.
+- H139 > H143: full row207 is correct.
+- H140 > H143/H139: row135 is the active branch.
+- H141 > H143/H139/H140: optional branch activation is not safe.

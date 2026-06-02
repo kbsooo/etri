@@ -13209,3 +13209,67 @@ probe.
   additive branch equations are still alive.
 - If H142 is bad publicly, row207 and row135 should be treated as mutually
   exclusive public/private branches.
+
+## H143 XOR Branch Assignment HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h143_xor_branch_assignment_hsjepa/h143_report.md`
+- `hitl/h143_xor_branch_assignment_hsjepa/h143_decision.csv`
+- `hitl/h143_xor_branch_assignment_hsjepa/h143_xor_branch_scores.csv`
+- `hitl/h143_xor_branch_assignment_hsjepa/h143_selected_cells.csv`
+- `submission_h143_xorbranch_4894032a_uploadsafe.csv`
+
+Worldview:
+
+```text
+If H142's co-activation route barrier is real, row207 and row135 should be
+treated as XOR branches.  The decoder should activate one optional branch after
+the H141 common core, not blend both.
+```
+
+Observed result:
+
+- promoted candidate: `h143_row207_g0p8_4894032a`;
+- root file: `submission_h143_xorbranch_4894032a_uploadsafe.csv`;
+- start field: H141 common core;
+- selected branch: row `207`;
+- gamma: `0.80`;
+- known endpoint excluded: full row207 gamma `1.00` is H139;
+- changed cells vs H136: `3`;
+- selected actions:
+  - row `70` Q3 margin repair, inherited from H141;
+  - row `131` S2 toxicity relief, inherited from H141;
+  - row `207` S2 softened toxicity-relief branch: `-0.0110000000`;
+- delta vs H136:
+  - route: `+0.000002418`;
+  - H098/model: `+0.000001533`;
+  - H088: `-0.002229244`;
+  - margin: `+0.000172037`;
+- delta vs H141:
+  - route: `+0.000001225`;
+  - H098/model: `+0.000000532`;
+  - H088: `-0.000803305`;
+  - margin: `-0.000094125`;
+- XOR branch pass: `True`;
+- upload-safe validation passed.
+
+Interpretation:
+
+The raw XOR score still ranks the known H139 endpoint first, but H143 promotes
+the best novel non-endpoint.  That makes it a direct public sensor:
+
+```text
+H139 = full row207 branch
+H143 = softened row207 branch
+H140 = row135 branch
+H141 = no optional branch
+```
+
+- H143 > H139: row207 is real but over-amplified; learn calibrated XOR branch
+  amplitudes.
+- H139 > H143: full row207 is the correct branch assignment.
+- H140 > H143/H139: row135 is the correct branch.
+- H141 > optional branches: common core only.

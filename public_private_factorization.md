@@ -2790,3 +2790,60 @@ If public accepts H142 anyway, the route diagnostic is too conservative and the
 next solver should search additive branch interactions.  If public rejects it,
 the next solver should become an XOR/assignment selector rather than a linear
 combiner.
+
+## H143 Public/Private Factorization Update
+
+H143 implements the XOR branch rule implied by H142.
+
+Instead of:
+
+```text
+H141 + alpha * row207_branch + beta * row135_branch
+```
+
+it searches:
+
+```text
+H141 + gamma * row207_branch
+H141 + gamma * row135_branch
+```
+
+Known endpoints are kept as references but not promoted as new files.
+
+Observed H143 factorization:
+
+- selected file: `submission_h143_xorbranch_4894032a_uploadsafe.csv`;
+- selected candidate: `h143_row207_g0p8_4894032a`;
+- selected branch: row `207`;
+- gamma: `0.80`;
+- selected atoms:
+  - row `70` Q3 margin repair;
+  - row `131` S2 toxicity relief;
+  - row `207` S2 softened toxicity relief;
+- deliberately absent:
+  - row `135` Q3/S2 repair branch;
+- delta vs H136:
+  - route `+0.000002418`;
+  - H098/model `+0.000001533`;
+  - H088 `-0.002229244`;
+  - margin `+0.000172037`.
+
+Key diagnostic:
+
+```text
+raw XOR score: H139 full row207 is strongest, but already known
+best novel XOR: H143 row207 gamma 0.80
+```
+
+Interpretation:
+
+The current factorization now separates three questions:
+
+```text
+Which branch?       row207 vs row135 vs none
+How much branch?    gamma 0.80 vs gamma 1.00
+Can branches mix?   H142 says probably no
+```
+
+This moves HS-JEPA from a correction-vector search toward a branch assignment
+decoder with branch-specific amplitude calibration.
