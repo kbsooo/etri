@@ -71,6 +71,21 @@ Build H069:
 - null anchors score as healthy;
 - public result is worse than H057 by more than `0.001`.
 
+### H069 Update
+
+H069 was built and generated
+`submission_h069_public_private_factor_4ffd6cd6_uploadsafe.csv`. It selects
+`268` cells on `97` rows, has public-action predicted delta `-0.000586` versus
+H057, and overlaps H068 on `250/268` cells. The experiment supports the
+existence of a factorized public/private/action-health field, but it also shows
+that strict private-safe filtering does not preserve H068's full expected
+movement.
+
+This weakens the narrow "H068 plus cleaner thresholds" route. Bet 1 remains
+alive as an architecture component, but the next `0.001`-scale attempt should
+feed the factors into Bet 2 or Bet 3: a joint HS-JEPA correction-field decoder
+or a discrete row-target assignment solver.
+
 ## Bet 2: Full HS-JEPA v1 Correction-Field Model
 
 ### Hypothesis
@@ -223,13 +238,13 @@ Build H073:
 
 Current order:
 
-1. H069 Public/Private Hidden-State Factorization
-2. H070 Full HS-JEPA v1 Correction-Field Model
-3. H071 Discrete Row-Target Assignment Solver
-4. H072 Human-Social State Engine
-5. H073 Anti-Shortcut State Inversion
+1. H070 Full HS-JEPA v1 Correction-Field Model
+2. H071 Discrete Row-Target Assignment Solver
+3. H072 Human-Social State Engine
+4. H073 Anti-Shortcut State Inversion
+5. H069 follow-up only if public feedback specifically supports strict factorization
 
-H068 public feedback should be read before choosing whether H069 or H070 starts
-from row-state, action-health, or both. Without H068 feedback, H069 is still the
-largest 0.53-capable bet because it attacks the public/private bottleneck
-directly.
+H069 has now answered the first public-free factorization question: the factors
+are useful, but the standalone gated variant is unlikely to be the whole 0.53
+route. H068/H069 feedback should decide whether H070 starts from row-state,
+action-health, or both.

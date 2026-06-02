@@ -46,6 +46,22 @@ Previous public frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607
 
 H057 improves over H042/H050 by `0.0001572309` and over H012 by `0.0003758892`. H012 remains the base public-equation anchor, H042 remains the Q2 row anchor, and H057 is now the reference public frontier unless private-risk considerations dominate final selection.
 
+Current generated factorization diagnostic: `submission_h069_public_private_factor_4ffd6cd6_uploadsafe.csv`.
+
+Reason: H069 is the first explicit public/private hidden-state factorization
+candidate. It decomposes each H057-relative row-target action into
+`public_score`, `invariant_score`, and `shortcut_score`, using H068
+action-health, H063/H064/H067 context and row-state evidence, and `8` known bad
+anchors. The selected file changes `268` cells on `97` rows, including `36` Q2
+cells, with public-action predicted delta `-0.000586` and posterior delta
+`-0.000488` versus H057. It overlaps H068 on `250/268` changed cells and adds
+only `18` outside-H068 cells. This is useful architecture evidence, but not yet
+the first public slot if the criterion is `0.001`-scale upside: strict
+private-safe filtering cuts down the broader H068 movement. Submit it only if
+the next public question is whether private-safe factorization beats broad
+action-health. Otherwise the next big bet should be H070 full HS-JEPA or H071
+row-target assignment.
+
 Current pending high-risk sensor: `submission_h068_action_health_3cb4f94c_uploadsafe.csv`.
 
 Reason: H068 asks a bigger post-H057 question than H067. It tests whether public

@@ -77,6 +77,86 @@ fields. H012/H057 prove that hidden state exists; they do not yet prove that we
 can separate public-only state from invariant human state. The next high-value
 work is H069/H070, not another local H057 sibling.
 
+## H069. Public/Private Hidden-State Factorization HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h069_public_private_factorization_jepa.py`
+- Report: `hitl/h069_public_private_factorization_jepa/h069_report.md`
+- Generated submission:
+  `submission_h069_public_private_factor_4ffd6cd6_uploadsafe.csv`
+
+### Observe
+
+H068 can learn a strong public action-health field with LOO MAE `0.000331247`
+and pairwise sign accuracy `0.928571`, but its promoted candidate changes
+`700` cells and relies heavily on public-response geometry. The 0.53 goal
+requires knowing which part of that public-readable state is invariant human
+state and which part is public-only shortcut.
+
+### Wonder
+
+Can the H068 public action-health signal be filtered through H063/H064/H067
+human/context/row-state evidence and known-bad anchor negatives without losing
+the H068-scale upside?
+
+### Hypothesis
+
+H069-H: a private-safe HS-JEPA action should have all three properties:
+
+```text
+public_score high
+invariant_score high
+shortcut_score low
+```
+
+If this is the right decomposition, the selected candidate should retain an
+H068-scale predicted move while reducing bad-anchor and H050-null exposure.
+
+### Falsification Design
+
+Build a per-cell factor table:
+
+- `public_score`: H068 action rank, action-health, public row weight, q061 gain;
+- `invariant_score`: H063 human context, H064 contrastive graph, H067
+  row-state responsibility/context overlap;
+- `shortcut_score`: H050-null membership and alignment with known bad anchors
+  including H010, E216, E323, JEPA latent failures, LeJEPA strict, and ordinal
+  Q constraint failure.
+
+Then generate public/private-core, anti-shortcut, invariant-heavy, and
+assignment-balanced candidates from H057 toward H061 `q061`.
+
+### Result
+
+Selected
+`h069_anti_shortcut_all_k360_a1p0_logit_mp0p54_mi0p48_xs0p72_4ffd6cd6`.
+
+- bad anchors used: `8`;
+- changed cells / rows vs H057: `268` / `97`;
+- Q2 changed vs H057: `36`;
+- H069 cells overlapping H068 changed cells: `250/268` (`0.932836`);
+- H069 extra cells outside H068: `18`;
+- target changes: Q1 `31`, Q2 `36`, Q3 `16`, S1 `42`, S2 `45`,
+  S3 `45`, S4 `53`;
+- public-action predicted delta vs H057: `-0.000586`;
+- posterior delta vs H057: `-0.000488`;
+- mean invariant score: `0.654291`;
+- mean shortcut score: `0.108668`;
+- upload validation passed.
+
+### Interpretation
+
+H069 is not the 0.53-grade breakthrough yet. It proves the factorization layer
+can be implemented, but it also shows a bottleneck: once H068 is forced through
+invariant-human/context support and shortcut avoidance, its expected move drops
+from roughly `-0.000984` to `-0.000586`. So strict public/private filtering is
+not enough by itself.
+
+This weakens "just make H068 safer" as the next route. The next big-bet should
+not be more H069 threshold tuning. It should be H070 full HS-JEPA joint decoder
+or H071 discrete row-target assignment, because the missing object is now the
+translator from factor scores to exact row-target actions.
+
 ## H068. Action-Health Decoder HS-JEPA
 
 - Date: 2026-06-02

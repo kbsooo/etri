@@ -83,6 +83,45 @@ Where:
 | Shortcut state | H010, E216, E323, bad JEPA, H050-null | Strong negatives |
 | Private-safe state | Needed for 0.53 | Not solved |
 
+## H069 Result
+
+H069 materialized the first explicit public/private factorization layer:
+
+```text
+action_score =
+  public_score
+  + invariant_score
+  - shortcut_score
+```
+
+It used H068 as the public/action-health view, H063/H064/H067 as invariant
+context and row-state views, and `8` known bad anchors as shortcut views. The
+selected file is:
+
+```text
+submission_h069_public_private_factor_4ffd6cd6_uploadsafe.csv
+```
+
+Observed public-free facts:
+
+- selected profile: `anti_shortcut_all_k360_a1p0_logit_mp0p54_mi0p48_xs0p72`;
+- changed cells versus H057: `268`;
+- changed rows versus H057: `97`;
+- Q2 changed cells: `36`;
+- public-action predicted delta versus H057: `-0.000586`;
+- posterior delta versus H057: `-0.000488`;
+- mean invariant score: `0.654291`;
+- mean shortcut score: `0.108668`;
+- overlap with H068 changed cells: `250/268`;
+- new cells outside H068: `18`.
+
+Interpretation: public/private factorization is implementable and produces a
+cleaner action field, but the strict invariant-plus-anti-shortcut gate prunes
+the H068-scale movement. This does not kill public/private factorization. It
+does kill the simpler sub-hypothesis that "filter H068 harder and keep
+`0.001`-scale upside" is enough. The next route should use these factors inside
+a joint decoder or assignment solver instead of another H069 threshold sweep.
+
 ## H069 Candidate Design
 
 The next public/private factorization experiment should not produce another

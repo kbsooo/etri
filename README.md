@@ -22,6 +22,16 @@ Current public frontier:
   - `breakthrough_bets.md`
   - `public_private_factorization.md`
   - `human_state_hypotheses.md`
+- Latest generated public/private factorization diagnostic:
+  `submission_h069_public_private_factor_4ffd6cd6_uploadsafe.csv`. H069 is the
+  first explicit factorized HS-JEPA action field: each row-target action gets a
+  public/action-health score, invariant/context score, and shortcut score. The
+  selected file changes `268` cells on `97` rows, including `36` Q2 cells, with
+  public-action predicted delta `-0.000586` and posterior delta `-0.000488`
+  versus H057. It overlaps H068 on `250/268` changed cells. Interpretation:
+  factorization is real enough to keep, but strict private-safe filtering cuts
+  the broader H068 movement; the next big-bet route is H070 full HS-JEPA or H071
+  row-target assignment rather than more H069 threshold tuning.
 - Latest generated public-free diagnostic:
   `submission_h068_action_health_3cb4f94c_uploadsafe.csv`. H068 asks whether
   the post-H057 bottleneck is cell-level action health rather than row
