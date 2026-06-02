@@ -7111,3 +7111,74 @@ Public interpretation:
 Priority: below H082/H083/H085 as a leaderboard move; useful only if we need a
 clean public test of whether responsibility weighting is part of the hidden
 world.
+
+## H087 Route-Conditioned Value-Law Candidate
+
+Promoted file:
+
+`submission_h087_route_value_law_f5aa327b_uploadsafe.csv`
+
+Worldview: row-target route support is not enough. Each hidden human-state
+route needs its own value law: H085 posterior, H082 source-action, H018
+hard-world, or a bridge among them.
+
+Evidence:
+
+- selected internal candidate:
+  `h087_route_value_all_c980_r180_q95_f5aa327b`;
+- changed cells / rows vs H057: `866` / `139`;
+- target changes vs H057: Q1 `121`, Q2 `95`, Q3 `127`, S1 `129`, S2 `131`,
+  S3 `132`, S4 `131`;
+- posterior delta vs H057: `-0.000693`;
+- hard-world delta vs H057: `+0.000044`;
+- responsibility-weighted delta vs H057: `-0.000810`;
+- source-agree rate: `0.862587`;
+- H082 ratio: `0.804850`;
+- max positive bad-anchor cosine: `0.0`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win by `>=0.001`: route-conditioned value-law decoding is real, and the
+  hard-world conflict is not fatal for public action;
+- small win/loss: value-law support is plausible but not H012-scale;
+- large loss: posterior-friendly route decoding is overfitting the public
+  equation head and should be gated by a private/hard head.
+
+Priority: medium. It is a strong diagnostic but less clean than H088 because
+it improves posterior while hurting hard-world.
+
+## H088 Dual-State Value Gate Candidate
+
+Promoted file:
+
+`submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv`
+
+Worldview: H085 posterior and H018 hard-world are separate public/private
+latent heads. Decode only route-actions that are Pareto-safe across both.
+
+Evidence:
+
+- selected internal candidate:
+  `h088_dual_pareto_all_c980_r180_q95_c31cc15b`;
+- changed cells / rows vs H057: `980` / `168`;
+- target changes vs H057: Q1 `140`, Q2 `95`, Q3 `144`, S1 `148`, S2 `149`,
+  S3 `149`, S4 `155`;
+- posterior delta vs H057: `-0.000540`;
+- hard-world delta vs H057: `-0.000187`;
+- responsibility-weighted delta vs H057: `-0.000565`;
+- source-agree rate: `0.802041`;
+- H082 ratio: `0.707143`;
+- max positive bad-anchor cosine: `0.0`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win by `>=0.001`: HS-JEPA needs explicit public/private dual-head value
+  gating; this is paper-level evidence;
+- small win/loss: the dual gate is conceptually right but too conservative;
+- large loss: H018 hard-world is not action-grade and should remain a
+  diagnostic health check.
+
+Priority: high as a research/big-bet submission. It is not the largest internal
+posterior move, but it is the cleanest current "HS-JEPA architecture" claim.

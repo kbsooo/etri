@@ -3430,3 +3430,36 @@
   - a future candidate could revive this only if a new sensor creates real
     concentration or if private/public split evidence appears outside LB
     equations.
+## Weak/Falsified: Sharp Public Responsibility Mask
+
+Date: 2026-06-02
+
+Related experiment: H086 public-subset responsibility HS-JEPA.
+
+Hypothesis:
+
+```text
+Known public LB deltas are primarily explained by a concentrated row-target
+responsibility vector. Find the public listener cells and move them.
+```
+
+Observed result:
+
+- best responsibility posterior was `uniform__ridge_0.0001`;
+- LOO MAE `0.000034734`;
+- effective cells `1733.49 / 1750`;
+- top-50 / top-200 mass only `0.038317` / `0.131502`;
+- target mass nearly flat;
+- non-uniform H082/source/human priors fit public observations worse.
+
+Decision:
+
+This does not kill public/private structure, but it weakly kills the simple
+"small public subset listener" jackpot under current sensors. Future public
+subset claims must show stronger concentration than H086.
+
+Next direction:
+
+H087/H088 redirected the live hypothesis toward value-law factorization:
+public/private is more likely a difference in route-to-probability translation
+than a difference in which rows are heard.

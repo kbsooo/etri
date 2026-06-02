@@ -75,6 +75,8 @@ HS-JEPA currently has these target representations:
 | Human action-health bridge `z_human_action` | H073 predicts H068 action-health/shortcut from story+route context | Implemented; continuous health works, hard cell generalization weak |
 | Anti-shortcut inverse `z_anti_shortcut` | H074 uses known public-bad movements as contrastive targets and inverts their row-target direction | Implemented; negative latent is real under null, action still below 0.001 gate |
 | Anti-bad value transport `z_bad_transport` | H075 uses inverse bad-anchor movement as the probability transport field | Tested; support survives, value decoder weak |
+| Route-conditioned value law `z_route_value` | H087 decodes each H071 route with H085/H082/H018 value laws | Implemented; posterior and hard-world heads conflict |
+| Dual public/private value gate `z_dual_value` | H088 accepts only route-actions that improve H085 posterior and H018 hard-world simultaneously | Implemented; cleaner dual-head decoder, lower posterior edge |
 
 ## Objective
 
@@ -641,3 +643,89 @@ Failure mode guarded by H086:
   uniform-responsibility baseline and show meaningful concentration;
 - otherwise it is likely re-labeling a diffuse public-posterior effect as a
   subset story.
+
+## H087 Route-Conditioned Value-Law Decoder
+
+H087 adds a value-law layer above route assignment:
+
+```text
+H071 row-target route
+  + H085 posterior q_public
+  + H082 source-action movement
+  + H018 hard-world q_hard
+  -> route-specific value law
+  -> correction field
+```
+
+The key architectural shift is that a route is no longer decoded with one
+global movement target. Each route can choose a value law:
+
+- posterior law: move toward H085 public posterior;
+- source-action law: move along H082 action-health direction;
+- hard-world law: move toward H018 binary public-world posterior;
+- bridge laws: combine these only when their signs agree.
+
+The promoted H087 candidate is
+`submission_h087_route_value_law_f5aa327b_uploadsafe.csv`.
+
+Diagnostics:
+
+- changed cells / rows versus H057: `866` / `139`;
+- posterior delta versus H057: `-0.000693`;
+- hard-world delta versus H057: `+0.000044`;
+- responsibility-weighted delta: `-0.000810`;
+- source-agree rate: `0.862587`;
+- H082 support ratio: `0.804850`;
+- max positive bad-anchor cosine: `0.0`;
+- upload-safe validation passed.
+
+Architectural implication:
+
+```text
+Route support is not enough. HS-JEPA needs a value-law decoder, but H087 shows
+that posterior-friendly decoding can damage the hard-world head.
+```
+
+H087 therefore turns `z_route_value` into a live module but not a solved one.
+It exposes the next bottleneck: public-posterior and hard-world targets are
+not always the same hidden state.
+
+## H088 Dual Public/Private Value Gate
+
+H088 reacts to H087's conflict by adding a dual-head gate:
+
+```text
+route-action candidate
+  -> evaluate under q_public and q_hard
+  -> accept only Pareto-safe actions
+  -> decode correction field
+```
+
+This changes HS-JEPA from a single hidden-state decoder to a public/private
+dual-head decoder. The promoted H088 file is
+`submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv`.
+
+Diagnostics:
+
+- changed cells / rows versus H057: `980` / `168`;
+- posterior delta versus H057: `-0.000540`;
+- hard-world delta versus H057: `-0.000187`;
+- responsibility-weighted delta: `-0.000565`;
+- source-agree rate: `0.802041`;
+- H082 support ratio: `0.707143`;
+- max positive bad-anchor cosine: `0.0`;
+- upload-safe validation passed.
+
+Architectural implication:
+
+```text
+HS-JEPA v1 should include two value heads:
+q_public for public-equation actionability and q_hard/private for binary-state
+stability. The decoder should know when an action is Pareto-safe across both.
+```
+
+H088 is less aggressive than H087 on posterior score, but it is more coherent
+as a research claim. If H088 wins public LB, the paper-level architecture
+should present dual-state value gating as a central HS-JEPA contribution. If it
+loses while H087/H071 survive, hard-world should remain a diagnostic health
+check rather than an action-grade private target.

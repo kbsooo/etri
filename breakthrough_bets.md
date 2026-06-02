@@ -621,3 +621,42 @@ translation.
 
 H086 therefore downgrades public-subset responsibility as a jackpot route and
 raises the priority of row-target assignment/value-law solvers.
+
+### H087-H088 Update
+
+H087/H088 moved the next big bet from "which rows matter" to "which hidden
+value law should decode a route."
+
+| Experiment | File | Core claim | Changed vs H057 | Posterior delta | Hard-world delta | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| H087 | `submission_h087_route_value_law_f5aa327b_uploadsafe.csv` | each row-target route needs a route-conditioned value law | `866` cells / `139` rows | `-0.000693` | `+0.000044` | posterior-friendly, hard-world conflict |
+| H088 | `submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv` | public posterior and hard-world are dual latent heads, decode only Pareto-safe actions | `980` cells / `168` rows | `-0.000540` | `-0.000187` | cleaner research bet |
+
+Breakthrough reading:
+
+```text
+The 0.53 path is unlikely to be a sharper public subset mask. The live big bet
+is a hidden value-law problem: a row route can be correct while its probability
+translation is wrong.
+```
+
+H087 is the stronger public-posterior move, but it damages the hard-world head.
+H088 is the stronger HS-JEPA architecture claim because it treats H085 and H018
+as separate latent heads and only accepts Pareto-safe route-actions.
+
+Submission interpretation:
+
+- H087 win: route-conditioned value-law decoding is enough; hard-world conflict
+  is not a public action blocker.
+- H088 win: HS-JEPA needs explicit public/private dual-head gating.
+- both lose: the route/value support is plausible internally but not yet
+  public-action grade; the next big bet must recover a stronger private-state
+  target, not just combine H085/H018/H082.
+
+Current big-bet priority:
+
+1. H088 if the goal is to test the paper-level HS-JEPA dual-state contribution.
+2. H087 if the goal is to maximize public-posterior movement and accept
+   hard-world conflict risk.
+3. H082/H071 remain the older broad-action and assignment sensors for comparing
+   whether value-law gating added anything beyond support selection.

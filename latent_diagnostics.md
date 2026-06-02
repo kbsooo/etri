@@ -1544,3 +1544,43 @@ Diagnostic facts:
 Interpretation: if public accepts this, the HS-JEPA latent is not a point state
 but a same-subject episode state. If public rejects it, H057's latent is sharply
 localized and temporal spread needs a stricter gate.
+## H087-H088 Value-Head Diagnostics
+
+Date: 2026-06-02
+
+H087 route-conditioned value law created a useful latent conflict diagnostic:
+
+- `q_public` head: H085 posterior;
+- `q_hard` head: H018 hard-world posterior;
+- action head: H082 source-action movement;
+- route head: H071 assignment route.
+
+H087 selected a broad route-value decoder with:
+
+- posterior delta `-0.000693`;
+- hard-world delta `+0.000044`;
+- H082 support ratio `0.804850`;
+- max positive bad-anchor cosine `0.0`.
+
+This means the latent did not collapse into a bad-anchor shortcut, but it did
+collapse partially into a public-posterior-only value interpretation.
+
+H088 added a dual-head Pareto gate and selected:
+
+- posterior delta `-0.000540`;
+- hard-world delta `-0.000187`;
+- H082 support ratio `0.707143`;
+- max positive bad-anchor cosine `0.0`.
+
+Diagnostic conclusion:
+
+```text
+The current HS-JEPA latent is healthier when decoded as two value heads
+instead of one. H088 reduces posterior edge but avoids hard-world conflict.
+```
+
+Open risk:
+
+H018 hard-world may be a strong diagnostic head but a weak action head. Public
+feedback is needed to decide whether H088's dual-head discipline is valuable
+or overly conservative.

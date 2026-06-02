@@ -7664,3 +7664,32 @@ Public-free interpretation stress:
   a small safe extension of H057.
 - If it fails, treat broad temporal spillover as killed unless a new gate can
   separate true episode neighbors from same-subject noise.
+## H087-H088 Route Value-Law Stress
+
+Date: 2026-06-02
+
+H087 and H088 were evaluated against the same local stress sensors used after
+H085/H086:
+
+| Candidate | Changed cells | Posterior delta | Hard-world delta | Resp-weighted delta | Source agree | H082 ratio | Max positive bad cosine | Upload safe |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `submission_h087_route_value_law_f5aa327b_uploadsafe.csv` | `866` | `-0.000693` | `+0.000044` | `-0.000810` | `0.862587` | `0.804850` | `0.0` | yes |
+| `submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv` | `980` | `-0.000540` | `-0.000187` | `-0.000565` | `0.802041` | `0.707143` | `0.0` | yes |
+
+Stress interpretation:
+
+- H087 passes public-posterior, responsibility, H082 overlap, and bad-anchor
+  checks, but fails the hard-world consistency check.
+- H088 passes the dual-head consistency check and bad-anchor check, but its
+  posterior edge is smaller.
+
+Decision:
+
+```text
+H087 is the more aggressive public-posterior decoder.
+H088 is the cleaner public/private HS-JEPA decoder.
+```
+
+For a paper-level big bet, H088 has higher information value. For a direct
+public-posterior probe, H087 has higher expected movement but more private-head
+risk.

@@ -9632,3 +9632,109 @@ only the responsibility weights over cells.
 Decision: keep H086 as an upload-safe diagnostic, but do not prioritize it
 above H082/H083/H085 unless the user wants to falsify this exact worldview on
 public LB.
+
+## H087. Route-Conditioned Value-Law HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h087_route_value_law_hsjepa.py`
+- Report: `hitl/h087_route_value_law_hsjepa/h087_report.md`
+- Candidate: `submission_h087_route_value_law_f5aa327b_uploadsafe.csv`
+
+### Observe
+
+H086 weakened the sharp public-responsibility/subset hypothesis. H071 and H082
+still show that route support and source-action fields are plausible. The open
+question is whether a route should always be translated with one global value
+law.
+
+### Hypothesis
+
+H087-H: the hidden state is a route-conditioned value law. The same row-target
+route may need a different decoder depending on whether H085 posterior, H082
+source-action, or H018 hard-world is the correct latent target.
+
+### Method
+
+For each H071 route, H087 tested value laws:
+
+- H085 posterior movement;
+- H082 source-action movement;
+- H018 hard-world movement;
+- q/source, hard/source, h085/hard, and triad bridge movements.
+
+Candidates were selected by route-level posterior gain, source-action proxy,
+hard-world gain, responsibility-weighted gain, bad-anchor avoidance, H082
+overlap, and route assignment score.
+
+### Result
+
+Selected `h087_route_value_all_c980_r180_q95_f5aa327b`.
+
+- changed cells / rows versus H057: `866` / `139`;
+- Q2 changed cells: `95`;
+- posterior delta versus H057: `-0.000693`;
+- hard-world delta versus H057: `+0.000044`;
+- responsibility-weighted delta: `-0.000810`;
+- source-agree rate: `0.862587`;
+- H082 ratio: `0.804850`;
+- max positive bad-anchor cosine: `0.0`;
+- upload-safe validation passed.
+
+### Interpretation
+
+H087 did not prove the full value-law decoder. It showed a real conflict:
+posterior-friendly route decoding can damage the hard-world head. This means
+the next architecture question is not "more route support"; it is whether
+HS-JEPA needs separate public and private value heads.
+
+## H088. Public/Private Dual-State Value Gate HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h088_dual_state_value_gate_hsjepa.py`
+- Report: `hitl/h088_dual_state_value_gate_hsjepa/h088_report.md`
+- Candidate: `submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv`
+
+### Observe
+
+H087 exposed a conflict between H085 posterior and H018 hard-world targets.
+This suggests they may be separate latent heads rather than two estimates of
+one hidden label state.
+
+### Hypothesis
+
+H088-H: public/private factorization is a dual value-head problem. Only
+route-actions that improve both public posterior and hard/private hard-world
+should be decoded into a submission.
+
+### Method
+
+H088 reused H087 route-actions but added a Pareto gate:
+
+- reject actions with positive posterior delta;
+- reject actions with positive hard-world delta;
+- reject source-action-positive or bad-anchor-heavy actions;
+- greedily select broad row routes under target/subject/cell caps.
+
+### Result
+
+Selected `h088_dual_pareto_all_c980_r180_q95_c31cc15b`.
+
+- changed cells / rows versus H057: `980` / `168`;
+- Q2 changed cells: `95`;
+- posterior delta versus H057: `-0.000540`;
+- hard-world delta versus H057: `-0.000187`;
+- responsibility-weighted delta: `-0.000565`;
+- source-agree rate: `0.802041`;
+- H082 ratio: `0.707143`;
+- max positive bad-anchor cosine: `0.0`;
+- upload-safe validation passed.
+
+### Interpretation
+
+H088 is weaker than H087 on public-posterior gain but stronger as a hidden
+world claim. It is the cleanest current test of HS-JEPA as a dual-head
+public/private value decoder.
+
+Decision: prioritize H088 over H087 if the next submission should validate the
+paper-level architecture. Prioritize H087 only if the immediate goal is the
+larger posterior movement and we are willing to accept hard-world conflict.

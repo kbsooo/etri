@@ -587,3 +587,52 @@ Do not over-invest in stories whose only output is "these rows matter more".
 Keep stories that imply a different correction direction, target route, or
 action-health value.
 ```
+
+## H087-H088 Human-State Reading
+
+H087/H088 translate the human-social story into a value-law question.
+
+In human terms, the live story is no longer:
+
+```text
+"Which day/person is public?"
+```
+
+It is:
+
+```text
+"Given this hidden lifestyle state, which target route should move, and should
+the movement follow subjective posterior, objective action signal, or a harder
+binary sleep-state interpretation?"
+```
+
+H087 allowed each row route to choose a value law from H085 posterior, H082
+source-action, H018 hard-world, or bridges. This found a useful but conflicted
+state: public posterior improved, while hard-world became slightly worse. That
+is plausible for human logs: a row can look public-healthy under a smooth
+subjective/action posterior but still disagree with a binary "good/bad state"
+interpretation.
+
+H088 treated that conflict as the hidden state itself. It only accepted
+route-actions that improve both smooth posterior and hard-world heads. This
+turns human-state hypotheses into a dual-head gate:
+
+- public/smooth head: "what public feedback says should move";
+- hard/private head: "what binary lifestyle state says must not be violated";
+- route context: "which Q/S symptoms belong together on this row";
+- action-health context: "whether the move follows known healthy action
+  direction."
+
+Human-state implication:
+
+```text
+The strongest current social/lifestyle hypothesis is not a named story like
+weekend or payday by itself. It is a hidden state in which the same day has two
+readings: smooth public-action response and hard private-state stability.
+HS-JEPA should learn when both readings agree.
+```
+
+If H088 wins, this becomes the core human-state story for the paper. If it
+loses, human-social states are still useful as route/action context, but the
+H018 hard-world head should be treated as a diagnostic rather than a decoder
+target.

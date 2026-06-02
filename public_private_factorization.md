@@ -498,3 +498,47 @@ This downgrades "public subset localization" as the main 0.53 route. It does
 not downgrade public/private factorization overall; it redirects it toward
 private-safe value translation, target-route assignment, and action-health
 decoding.
+
+## H087-H088 Value-Law Factorization
+
+H087/H088 tested a stronger public/private interpretation:
+
+```text
+public/private is not mainly a row-weight mask.
+It is a value-law split: the same row-target route can require different
+translation under public-posterior and hard/private heads.
+```
+
+H087 used H071 routes and let each route choose among H085 posterior, H082
+source-action, H018 hard-world, or bridge value laws. The promoted H087 file
+changed `866` cells and had:
+
+- posterior delta vs H057: `-0.000693`;
+- hard-world delta vs H057: `+0.000044`;
+- responsibility-weighted delta: `-0.000810`;
+- max positive bad-anchor cosine: `0.0`.
+
+This means H087 is public-posterior friendly but not hard/private friendly.
+
+H088 then imposed a dual-head Pareto gate. It accepts only route-actions that
+improve both H085 posterior and H018 hard-world locally. The promoted H088 file
+changed `980` cells and had:
+
+- posterior delta vs H057: `-0.000540`;
+- hard-world delta vs H057: `-0.000187`;
+- responsibility-weighted delta: `-0.000565`;
+- max positive bad-anchor cosine: `0.0`.
+
+Current factorization rule:
+
+```text
+public/private hidden state is better modeled as two value heads than as a
+concentrated listener subset. H088 is the cleanest current test of that rule.
+```
+
+Important caution:
+
+H088 is more coherent but less aggressive on public-posterior gain than H087.
+So this factorization is not yet proven as a leaderboard move. It is a
+paper-level hypothesis: public and private state may share route support but
+disagree on the value law used to move probabilities.
