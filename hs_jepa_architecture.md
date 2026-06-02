@@ -2718,3 +2718,47 @@ This is useful for the paper because it turns public LB tweaking into a
 testable representation claim: HS-JEPA actions are not just probability
 corrections; they are route assignments whose safety depends on whether hidden
 human-state mass is conserved or destroyed.
+
+### H135: Atomic Row-Vector Action Decoder
+
+H135 extends H134 by changing the action unit.
+
+```text
+H134 action unit:
+  one row-target cell
+
+H135 action unit:
+  one same-row target vector bundle
+```
+
+The architectural claim is that HS-JEPA should not decode human-state residue
+into independent target probabilities.  It should predict an assignment field
+over row-target vectors, then check whether the whole vector is safe under
+public/private observation equations.
+
+H135 evidence:
+
+- candidate: `submission_h135_rowvector_c86ff9aa_uploadsafe.csv`;
+- selected solver: `h135_h132_rowvector_route_heavy_c86ff9aa`;
+- selected bundles:
+  - row `164` S1/S4;
+  - row `135` S4/Q3;
+  - row `207` Q3;
+- route-basis predicted delta vs H057: `-0.000760260`;
+- H088-axis cosine: `-0.059761952`;
+- good-bad margin: `0.157167089`.
+
+Architecture implication:
+
+```text
+HS-JEPA context encoder
+  -> hidden human-state residue
+  -> row-vector assignment proposal
+  -> equation solver chooses atomic bundles
+  -> H088/H018 remain stress diagnostics
+```
+
+This is the first version where the "action" is no longer a cell correction.
+It is a row-target vector route.  That is closer to the active thesis: the
+breakthrough is not a better context encoder, but a decoder that separates
+public-punished action toxicity from safe assignment fields.

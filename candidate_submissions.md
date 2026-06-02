@@ -9061,3 +9061,51 @@ Public interpretation:
   only the small Q1 witness eraser.
 - H133 wins more: the route conversion story is wrong, and the Q1-only
   toxicity signature should be expanded instead.
+
+## H135 Row-Vector Conservation
+
+Generated file:
+
+`submission_h135_rowvector_c86ff9aa_uploadsafe.csv`
+
+Worldview: H134's companion-conservation decoder was still too local.  Public
+safety may be attached to row-target vectors: the same row's Q3/S cells must
+move together for the hidden human-state residue to become safe.
+
+Evidence:
+
+- selected candidate: `h135_h132_rowvector_route_heavy_c86ff9aa`;
+- start field: H132;
+- selected branch: route-heavy;
+- selected bundles: `3`;
+- selected cell operations: `5`;
+- operation targets: S4 `2`, Q3 `2`, S1 `1`;
+- operated rows/cells:
+  - row `164` S1/S4 at frac `0.60`;
+  - row `135` S4/Q3 at frac `0.35`;
+  - row `207` Q3 at frac `0.35`;
+- selected cells / rows: `28` / `22`;
+- route delta from H132: `-0.000054829`;
+- H098/model delta from H132: `+0.000002452`;
+- H088 delta from H132: `+0.009874008`;
+- margin delta from H132: `-0.018908754`;
+- model predicted delta vs H057: `-0.000029633`;
+- route-basis predicted delta vs H057: `-0.000760260`;
+- H088-axis cosine: `-0.059761952`;
+- good-bad margin: `0.157167089`;
+- upload-safe: `True`.
+
+Submission priority:
+
+High-information, high-risk big bet.  This is more aligned with the current
+goal than H134 if we want to test a world-changing hypothesis: row-target
+assignment may be vector-valued, and the public equation may reward coherent
+route improvement even when margin worsens.  It is not a defensive submission.
+
+Public interpretation:
+
+- H135 wins over H134/H132: build HS-JEPA v2 around atomic row-vector action
+  bundles.
+- H134 wins more: vector completion overfits route sensors; keep conservation
+  sparse/cell-level.
+- H132 wins more: companion conservation itself is not action-grade.

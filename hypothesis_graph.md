@@ -6010,3 +6010,40 @@ Falsifier:
   this scale.
 - If H134 wins, future HS-JEPA should build a larger row-target assignment
   solver around conservation of hidden human-state mass.
+
+## H135 Update: Atomic Row-Vector Conservation
+
+H135-H: H134's companion conservation is incomplete because safe assignment is
+not cell-wise.  A row's Q3/S companion targets must be decoded as an atomic
+vector.
+
+Status: live, public-unconfirmed, high-risk.
+
+Evidence:
+
+- promoted file: `submission_h135_rowvector_c86ff9aa_uploadsafe.csv`;
+- selected branch: `h132_rowvector_route_heavy`;
+- selected bundles:
+  - row `164` S1/S4 at frac `0.60`;
+  - row `135` S4/Q3 at frac `0.35`;
+  - row `207` Q3 at frac `0.35`;
+- route delta from H132: `-0.000054829`;
+- margin delta from H132: `-0.018908754`;
+- route-basis predicted delta vs H057: `-0.000760260`;
+- H088-axis cosine: `-0.059761952`;
+- good-bad margin: `0.157167089`.
+
+Graph implication:
+
+```text
+H132 Q1 witness
+  -> H134 sparse conservation
+  -> H135 row-vector route-heavy conservation
+```
+
+Falsifier:
+
+- If H135 loses while H134 wins, row-vector completion overfits route sensors.
+- If H132 beats both, companion conservation is not action-grade.
+- If H135 wins, HS-JEPA should promote row-vector bundles to first-class action
+  units.

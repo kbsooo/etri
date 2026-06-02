@@ -2198,3 +2198,15 @@ future big-bet search spaces:
   over Q1 -> Q3/S objective companions.
 - If H132/H133 improve more, stop using companion conversion as an action
   decoder and return to target-specific toxicity assignment.
+
+### H135 Update
+
+H135 is the current strongest big-bet version of route conservation.
+
+| Bet | File | Worldview | Local evidence | Risk |
+| --- | --- | --- | --- | --- |
+| H135 | `submission_h135_rowvector_c86ff9aa_uploadsafe.csv` | Public rewards coherent row-vector route improvement more than it punishes margin loss | row `164` S1/S4 vector, row `135` S4/Q3 vector, route delta `-0.000054829`, route-basis `-0.000760260` | good-bad margin falls to `0.157167089`; H088 stress weakens to `-0.059761952` |
+
+This is exactly the kind of submission that changes the world model if public
+confirms it.  It is not a small safety tweak.  It decides whether the next
+HS-JEPA decoder should operate on atomic row-target vectors rather than cells.

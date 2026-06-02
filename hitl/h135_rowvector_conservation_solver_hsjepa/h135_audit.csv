@@ -1,0 +1,4 @@
+spec_name,start_name,target_mode,max_bundle_size,cell_pool,bundle_pool,mean_bundle_score,max_bundle_score,bundles,component_gain
+h132_rowvector_margin_guard,h132,q3s_companion,2,11,20,0.6158990201339406,0.7245132605491345,2,0.0037074510163969663
+h132_rowvector_route_heavy,h132,q3s_companion,2,11,20,0.6158990201339406,0.7245132605491345,3,0.007354229725230527
+h134_rowvector_completion,h134,q3s_companion,2,11,24,0.5910681682669175,0.7245132605491345,3,0.0013829184061940776

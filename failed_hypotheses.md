@@ -3718,3 +3718,26 @@ Decision:
 
 Reject S1/S2-only companion rescue as the current action field.  The live
 companion branch uses S4 and Q3, not narrow S1/S2.
+
+## FH-H135A. H134-completion is the best row-vector continuation
+
+Date: 2026-06-03
+
+Hypothesis:
+
+```text
+Once H134 has sparse companion seeds, the safest next action is to complete
+missing vector components from H134 itself.
+```
+
+Result:
+
+- H135 `h134_rowvector_completion` promoted a candidate, but ranked below the
+  H132 route-heavy branch;
+- component gain was `0.001383` versus route-heavy `0.007354`;
+- route delta was only `-0.000012786` versus route-heavy `-0.000054829`.
+
+Decision:
+
+Reject H134-completion as the leading big-bet branch.  Keep it as a safer
+fallback if public rejects route-heavy row-vector conservation.

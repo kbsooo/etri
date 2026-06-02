@@ -2428,3 +2428,47 @@ branch B: H134 = H132 witness + companion conservation
 A public check can separate these branches cleanly.  If H134 wins, future
 HS-JEPA action decoding should include a route-conservation loss.  If H133 or
 H132 wins, companion conversion is diagnostic only.
+
+## H135 Public/Private Factorization Update
+
+H135 upgrades H134 from cell-wise conservation to row-vector conservation:
+
+```text
+Q1 subjective residue
+  -> same-row Q3/S vector bundle
+  -> public/private stress check
+```
+
+Observed H135 factorization:
+
+- selected file: `submission_h135_rowvector_c86ff9aa_uploadsafe.csv`;
+- selected candidate: `h135_h132_rowvector_route_heavy_c86ff9aa`;
+- start field: H132;
+- selected branch: route-heavy rather than margin-guard;
+- selected bundles:
+  - row `164`: S1/S4 vector;
+  - row `135`: S4/Q3 vector;
+  - row `207`: Q3 single-cell residue;
+- final selected cells / rows: `28` / `22`;
+- Q2/S3 cells: `0`;
+- route-basis predicted delta vs H057: `-0.000760260`;
+- model predicted delta vs H057: `-0.000029633`;
+- H088-axis cosine: `-0.059761952`;
+- good-bad margin: `0.157167089`.
+
+Interpretation:
+
+The row-vector branch is a stronger and riskier equation than H134:
+
+```text
+H134:
+  sparse companion cells, margin still moderate
+
+H135:
+  coherent row-vector bundles, route much stronger, margin much weaker
+```
+
+This cleanly turns public LB into a sensor.  If H135 wins, public is rewarding
+route-vector conservation despite margin loss.  If H134/H132 win, the route
+sensor is over-dominant locally and row-vector bundles need stricter safety
+regularization.

@@ -12711,3 +12711,64 @@ If H134 improves publicly, HS-JEPA needs a conservation-style decoder: a toxic
 Q1 route can be public-safe only after the same row's hidden state is
 reassigned into companion targets.  If H132/H133 beat it, this companion field
 is another action-tail hallucination and should remain diagnostic.
+
+## H135 Row-Vector Conservation HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h135_rowvector_conservation_solver_hsjepa/h135_report.md`
+- `hitl/h135_rowvector_conservation_solver_hsjepa/h135_decision.csv`
+- `hitl/h135_rowvector_conservation_solver_hsjepa/h135_bundle_operations.csv`
+- `hitl/h135_rowvector_conservation_solver_hsjepa/h135_operations.csv`
+- `submission_h135_rowvector_c86ff9aa_uploadsafe.csv`
+
+Worldview:
+
+```text
+H134 was still cell-greedy.  Q1 residue may become public-safe only when the
+same row's Q3/S companion vector is moved as a coherent bundle.  Public/private
+safety is therefore assigned to row-target vectors, not independent cells.
+```
+
+Observed result:
+
+- promoted candidate: `h135_h132_rowvector_route_heavy_c86ff9aa`;
+- root file: `submission_h135_rowvector_c86ff9aa_uploadsafe.csv`;
+- start field: H132;
+- selected branch: route-heavy, not margin-guard;
+- selected bundles: `3`;
+- selected cells: `5`;
+- bundle/cell actions:
+  - row `164` S1/S4 vector at frac `0.60`;
+  - row `135` S4/Q3 vector at frac `0.35`;
+  - row `207` Q3 add at frac `0.35`;
+- selected cells / rows: `28` / `22`;
+- target route: Q1 `5`, Q2 `0`, Q3 `6`, S1 `9`, S2 `5`,
+  S3 `0`, S4 `3`;
+- route delta from H132: `-0.000054829`;
+- H098/model delta from H132: `+0.000002452`;
+- H088 delta from H132: `+0.009874008`;
+- good-bad margin delta from H132: `-0.018908754`;
+- model predicted delta vs H057: `-0.000029633`;
+- route-basis predicted delta vs H057: `-0.000760260`;
+- H088-axis cosine: `-0.059761952`;
+- good-bad margin: `0.157167089`;
+- upload-safe validation passed.
+
+Interpretation:
+
+H135 is deliberately not a safe micro-improvement.  It asks whether the public
+equation rewards a coherent route-vector improvement more than it punishes the
+loss in margin/H088 stress.  The key discovered structure is row `164`: moving
+S1 and S4 together creates much stronger route signal than moving either alone.
+
+```text
+H134 = sparse companion conservation
+H135 = row-vector conservation, route-heavy
+```
+
+If H135 improves publicly, HS-JEPA needs an atomic row-vector decoder.  If H134
+or H132 wins more, H135 overfit the route sensor and the conservation decoder
+must remain sparse or be constrained by margin.
