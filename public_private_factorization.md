@@ -542,3 +542,44 @@ H088 is more coherent but less aggressive on public-posterior gain than H087.
 So this factorization is not yet proven as a leaderboard move. It is a
 paper-level hypothesis: public and private state may share route support but
 disagree on the value law used to move probabilities.
+
+## H089-H090 Lifestyle Context Factorization
+
+H089 asked whether the public/private value-head split is controlled by
+human lifestyle transition state.
+
+Observed H089 factorization:
+
+- posterior delta vs H057: `-0.000605`;
+- hard-world delta vs H057: `+0.000035`;
+- selected route cells: `895`;
+- H088 root-cell overlap: `0.917318`.
+
+This means lifestyle context can reconstruct much of the H088 action geometry,
+but it did not cleanly improve the private/hard head. It mostly explains the
+existing public/private support rather than discovering new support.
+
+H090 forced the opposite test: act only in low-overlap lifestyle-supported
+white space.
+
+Observed H090 factorization:
+
+- selected route cells: `76`;
+- posterior delta vs H057: `-0.000079`;
+- hard-world delta vs H057: `+0.000141`;
+- mean H088 action overlap: `0.099160`.
+
+Current factorization rule:
+
+```text
+Lifestyle context is a useful explanatory factor for public/private decoder
+choice, but direct lifestyle white-space actions are not private-safe under
+current proxies.
+```
+
+So public/private factorization currently has this hierarchy:
+
+1. action-grade: H085/H018/H082 value heads and route assignment;
+2. explanatory/gating: H072/H089 lifestyle transition state;
+3. not action-grade yet: lifestyle white-space generation without posterior
+   support.

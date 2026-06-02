@@ -1584,3 +1584,53 @@ Open risk:
 H018 hard-world may be a strong diagnostic head but a weak action head. Public
 feedback is needed to decide whether H088's dual-head discipline is valuable
 or overly conservative.
+
+## H089-H090 Lifestyle Latent Diagnostics
+
+Date: 2026-06-02
+
+H089 built a lifestyle-transition latent from H072 human/social story features:
+
+- within-subject previous/next state deltas;
+- subject-median novelty;
+- social/arousal, recovery/routine, objective/body, and calendar/Q2 heads;
+- human route support from the 1000-story route table.
+
+Diagnostic facts for H089:
+
+- selected route cells: `895`;
+- changed cells vs H057: `888`;
+- posterior delta: `-0.000605`;
+- hard-world delta: `+0.000035`;
+- H088 root-cell overlap: `0.917318`;
+- decoder head mix:
+  `calendar_q2:35;objective_body:36;private_stable:71;public_transition:14`.
+
+Interpretation:
+
+```text
+The lifestyle latent is aligned with existing H088 support, but its geometry is
+not independent enough to create a new state. It behaves like an explanatory
+coordinate system for H088 rather than a new action-grade latent.
+```
+
+H090 then constrained the latent to low-overlap white space.
+
+Diagnostic facts for H090:
+
+- selected route cells: `76`;
+- changed cells vs H057: `49`;
+- posterior delta: `-0.000079`;
+- hard-world delta: `+0.000141`;
+- mean H088 action overlap: `0.099160`;
+- decoder head mix:
+  `calendar_q2:2;private_stable:5;public_transition:10`.
+
+Interpretation:
+
+```text
+When the lifestyle latent is forced away from H087/H088 support, it loses
+private-head health. That is a LeJEPA-style warning: the representation may be
+semantically meaningful, but action decoding collapses into unsafe shortcuts
+without value-head confirmation.
+```

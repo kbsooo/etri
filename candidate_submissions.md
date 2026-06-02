@@ -7182,3 +7182,68 @@ Public interpretation:
 
 Priority: high as a research/big-bet submission. It is not the largest internal
 posterior move, but it is the cleanest current "HS-JEPA architecture" claim.
+
+## H089 Lifestyle-Transition Gate Candidate
+
+Promoted file:
+
+`submission_h089_lifestyle_transition_gate_a9598fc3_uploadsafe.csv`
+
+Worldview: human lifestyle transition state decides which public/private
+decoder head should translate each route.
+
+Evidence:
+
+- selected internal candidate:
+  `h089_lifestyle_transition_switch_c1120_r190_q125_a9598fc3`;
+- changed cells / rows vs H057: `888` / `156`;
+- Q2 changed cells: `54`;
+- posterior delta vs H057: `-0.000605`;
+- hard-world delta vs H057: `+0.000035`;
+- responsibility-weighted delta vs H057: `-0.000696`;
+- H088 root-cell overlap: `0.917318`;
+- H087 root-cell overlap: `0.845810`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win by `>=0.001`: lifestyle transition is action-grade and should become a
+  central HS-JEPA decoder gate;
+- small win/loss: lifestyle context explains H088 but does not improve it;
+- large loss: human story gates are too noisy without a learned latent target.
+
+Priority: medium-low. It is a good architecture diagnostic, but its high H088
+overlap means it is not the highest information submission if only one public
+test is available.
+
+## H090 Lifestyle White-Space Candidate
+
+Promoted file:
+
+`submission_h090_lifestyle_white_space_6748b5dc_uploadsafe.csv`
+
+Worldview: hidden human-state support exists outside H087/H088, and lifestyle
+context can open that white space.
+
+Evidence:
+
+- selected internal candidate:
+  `h090_white_mixed_c760_r175_q105_6748b5dc`;
+- changed cells / rows vs H057: `49` / `17`;
+- Q2 changed cells: `15`;
+- posterior delta vs H057: `-0.000079`;
+- hard-world delta vs H057: `+0.000141`;
+- responsibility-weighted delta vs H057: `-0.000103`;
+- mean H088 action overlap: `0.099160`;
+- mean H087 action overlap: `0.071148`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win by `>=0.001`: lifestyle state found a genuinely new support region;
+- small win: white-space support exists but needs stronger scale;
+- loss: hand-scored lifestyle state should not authorize new actions.
+
+Priority: low for leaderboard, high only as a falsification experiment. It is
+not currently recommended over H088/H089 because the hard-world proxy worsens
+substantially for the amount of novelty it introduces.

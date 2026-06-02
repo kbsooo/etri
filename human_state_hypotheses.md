@@ -636,3 +636,50 @@ If H088 wins, this becomes the core human-state story for the paper. If it
 loses, human-social states are still useful as route/action context, but the
 H018 hard-world head should be treated as a diagnostic rather than a decoder
 target.
+
+## H089-H090 Lifestyle Transition Reading
+
+H089 turned human/social hypotheses into a transition-state context:
+
+- volatile social/arousal rows;
+- routine/recovery rows;
+- objective body/sensor rows;
+- calendar/cashflow/Q2 rows.
+
+The important constraint was that these stories did not directly change Q/S
+labels. They only chose which decoder head should translate an already
+available route.
+
+Observed reading:
+
+```text
+Human stories are good at naming the same state that H088 already sees, but
+they are not yet strong enough to create safe new row-target support.
+```
+
+H089's promoted candidate changed `888` cells but had `0.917318` overlap with
+H088's root cells. In human terms, this says:
+
+```text
+"The lifestyle story describes why these rows look like public/private dual
+states, but it did not independently find a new hidden episode."
+```
+
+H090 then asked the more aggressive human question:
+
+```text
+"Are there lifestyle-supported days that H087/H088 missed completely?"
+```
+
+The answer is weak/negative under current local sensors. The low-overlap
+candidate changed `49` cells on `17` rows, but hard-world delta worsened to
+`+0.000141`.
+
+Human-state implication:
+
+- keep lifestyle state as context for HS-JEPA;
+- do not let hand-scored social stories override public/private value-head
+  safety;
+- the next human-state breakthrough should train a latent target from
+  lifestyle context and route/action agreement, rather than manually declaring
+  that a payday/weekend/social state should move a target.

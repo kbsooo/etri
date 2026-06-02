@@ -1,0 +1,94 @@
+# H090 Lifestyle White-Space HS-JEPA
+
+Question: can lifestyle-state context safely open row-target action space that
+H087/H088 did not touch?
+
+Worldview:
+
+- H089 mostly re-explained H088, so transition state alone did not yet create a
+  new frontier.
+- H090 forbids high overlap with H087/H088 root actions and searches only the
+  lifestyle-supported white space.
+- A win means HS-JEPA has found a new private/public state beyond the current
+  public-equation support. A loss means direct lifestyle state is explanatory
+  but not strong enough to authorize new actions.
+
+Decision:
+
+| decision | selected_candidate_id | root_uploadsafe_path | worldview |
+| --- | --- | --- | --- |
+| promote_lifestyle_white_space_bigbet | h090_white_mixed_c760_r175_q105_6748b5dc | /Users/kbsoo/Downloads/cl2/submission_h090_lifestyle_white_space_6748b5dc_uploadsafe.csv | hidden human state exists outside current H087/H088 action support |
+
+Candidates:
+
+| candidate_id | spec_name | target_group | value_modes | novelty_bonus | alpha | cap | selected_routes | selected_cells | changed_cells_vs_h057 | changed_rows_vs_h057 | q2_cells | posterior_delta_vs_h057 | hard_delta_vs_h057 | source_proxy_delta_vs_h057 | responsibility_weighted_delta_vs_h057 | max_positive_bad_cosine | source_agree_rate | h082_ratio | mean_bad_same_rank | mean_abs_prob_move_vs_h057 | max_abs_prob_move_vs_h057 | selected_subjects | selected_rows | route_templates | h087_score | file | resolved_path | Q1_changed_vs_h057 | Q2_changed_vs_h057 | Q3_changed_vs_h057 | S1_changed_vs_h057 | S2_changed_vs_h057 | S3_changed_vs_h057 | S4_changed_vs_h057 | path | rows | keys_match | duplicate_keys | nan_cells | min_prob | max_prob | changed_cells_vs_h057_validation | upload_safe | profile | h090_novelty | h090_score | mean_white_state_score | mean_decoder_head_score | mean_action_h088_overlap | mean_action_h087_overlap | decoder_head_mix |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| h090_white_objective_body_c500_r140_bbad0767 | white_objective_body_c500_r140 | objective | h085_hard_bridge | unseen_sensor_body_objective_head | 1.200000000 | 2.000000000 | 1 | 2 | 2 | 1 | 0 | -0.000000272 | -0.000000349 | -0.000000002 | -0.000000271 | 0.000000000 | 1.000000000 | 1.000000000 | 0.486285714 | 0.000013160 | 0.017935903 | 1 | 87 | s14_edge:1 | 0.290408641 | submission_h090_white_objective_body_c500_r140_bbad0767.csv | /Users/kbsoo/Downloads/cl2/hitl/h090_lifestyle_white_space_hsjepa/submission_h090_white_objective_body_c500_r140_bbad0767.csv | 0 | 0 | 0 | 1 | 0 | 0 | 1 | /Users/kbsoo/Downloads/cl2/hitl/h090_lifestyle_white_space_hsjepa/submission_h090_white_objective_body_c500_r140_bbad0767.csv | 250 | True | 0 | 0 | 0.000004939 | 0.999996751 | 2 | True | objective_body | unseen_sensor_body_objective_head | 0.418123076 | 0.589441771 | 0.646473348 | 0.000000000 | 0.000000000 | objective_body:1 |
+| h090_white_private_stable_c580_r150_q55_6e704606 | white_private_stable_c580_r150_q55 | all | h085_hard_bridge,hard_binary_edge,triad_consensus | unseen_routine_rows_private_head | 1.160000000 | 2.050000000 | 6 | 29 | 29 | 6 | 4 | -0.000011462 | -0.000007279 | -0.000000054 | -0.000016574 | 0.000000000 | 0.482758621 | 0.310344828 | 0.593389163 | 0.000134338 | 0.027403964 | 4 | 56,87,103,104,158,205 | full_state:2;q2_s3_tail:1;q3_s_stage:2;q_subjective:1 | 0.123963135 | submission_h090_white_private_stable_c580_r150_q55_6e704606.csv | /Users/kbsoo/Downloads/cl2/hitl/h090_lifestyle_white_space_hsjepa/submission_h090_white_private_stable_c580_r150_q55_6e704606.csv | 3 | 4 | 5 | 4 | 4 | 5 | 4 | /Users/kbsoo/Downloads/cl2/hitl/h090_lifestyle_white_space_hsjepa/submission_h090_white_private_stable_c580_r150_q55_6e704606.csv | 250 | True | 0 | 0 | 0.000004939 | 0.999999000 | 29 | True | private_stable | unseen_routine_rows_private_head | 0.408863588 | 0.673474803 | 0.706630069 | 0.138095238 | 0.066666667 | private_stable:6 |
+| h090_white_public_transition_c520_r145_q85_39fde12a | white_public_transition_c520_r145_q85 | all | h085_q,source_mean | unseen_volatile_rows_public_head | 1.260000000 | 2.250000000 | 5 | 21 | 8 | 5 | 5 | -0.000021234 | 0.000048495 | -0.000000031 | -0.000024415 | 0.000000000 | 0.380952381 | 0.142857143 | 0.666258503 | 0.000223750 | 0.099427412 | 3 | 44,50,56,121,194 | full_state:2;q2_hardtail:1;q_subjective:2 | 0.072113747 | submission_h090_white_public_transition_c520_r145_q85_39fde12a.csv | /Users/kbsoo/Downloads/cl2/hitl/h090_lifestyle_white_space_hsjepa/submission_h090_white_public_transition_c520_r145_q85_39fde12a.csv | 1 | 5 | 1 | 0 | 0 | 1 | 0 | /Users/kbsoo/Downloads/cl2/hitl/h090_lifestyle_white_space_hsjepa/submission_h090_white_public_transition_c520_r145_q85_39fde12a.csv | 250 | True | 0 | 0 | 0.000004939 | 0.999996751 | 8 | True | public_transition | unseen_volatile_rows_public_head | 0.400126339 | 0.635970099 | 0.736324248 | 0.028571429 | 0.066666667 | public_transition:5 |
+| h090_white_mixed_c760_r175_q105_6748b5dc | white_mixed_c760_r175_q105 | all | h085_hard_bridge,h085_q,hard_binary_edge,source_mean,triad_consensus | new_lifestyle_supported_action_space | 1.220000000 | 2.200000000 | 17 | 76 | 49 | 17 | 15 | -0.000078501 | 0.000140973 | -0.000000119 | -0.000103365 | 0.000000000 | 0.407894737 | 0.315789474 | 0.628184211 | 0.000692018 | 0.123769255 | 7 | 10,44,50,56,87,91,102,103,104,110,121,136,150,158,168,203,226 | full_state:6;q2_hardtail:1;q2_s3_tail:1;q3_s_stage:2;q_subjective:7 | 0.122573622 | submission_h090_white_mixed_c760_r175_q105_6748b5dc.csv | /Users/kbsoo/Downloads/cl2/hitl/h090_lifestyle_white_space_hsjepa/submission_h090_white_mixed_c760_r175_q105_6748b5dc.csv | 5 | 15 | 7 | 5 | 5 | 6 | 6 | /Users/kbsoo/Downloads/cl2/hitl/h090_lifestyle_white_space_hsjepa/submission_h090_white_mixed_c760_r175_q105_6748b5dc.csv | 250 | True | 0 | 0 | 0.000004939 | 0.999999000 | 49 | True | mixed | new_lifestyle_supported_action_space | 0.398230882 | 0.661523864 | 0.706129423 | 0.099159664 | 0.071148459 | calendar_q2:2;private_stable:5;public_transition:10 |
+| h090_white_calendar_q2_c420_r135_q120_3cc69248 | white_calendar_q2_c420_r135_q120 | all | h085_hard_bridge,h085_q,q061,q_source_bridge,source_mean | unseen_calendar_cashflow_q2_head | 1.280000000 | 2.300000000 | 19 | 68 | 66 | 19 | 19 | -0.000093997 | 0.000194096 | -0.000000097 | -0.000120486 | 0.000000000 | 0.338235294 | 0.294117647 | 0.634689076 | 0.000892026 | 0.129375364 | 7 | 10,27,31,44,50,56,91,98,102,103,110,149,150,152,158,168,203,225,226 | full_state:5;q2_hardtail:4;q2_s3_tail:1;q_subjective:9 | 0.105239695 | submission_h090_white_calendar_q2_c420_r135_q120_3cc69248.csv | /Users/kbsoo/Downloads/cl2/hitl/h090_lifestyle_white_space_hsjepa/submission_h090_white_calendar_q2_c420_r135_q120_3cc69248.csv | 13 | 19 | 13 | 5 | 5 | 6 | 5 | /Users/kbsoo/Downloads/cl2/hitl/h090_lifestyle_white_space_hsjepa/submission_h090_white_calendar_q2_c420_r135_q120_3cc69248.csv | 250 | True | 0 | 0 | 0.000004939 | 0.999999000 | 66 | True | calendar_q2 | unseen_calendar_cashflow_q2_head | 0.386591971 | 0.627727303 | 0.656990700 | 0.052631579 | 0.042606516 | calendar_q2:19 |
+
+Top White-Space Route Actions:
+
+| route_id | row | subject_id | route_name | targets | value_mode | decoder_head | white_state_score | h088_cell_overlap_ratio | h087_cell_overlap_ratio | decoder_head_score | human_route_support_rank | posterior_delta_sum | hard_delta_sum | source_proxy_sum |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| r087_q3_s_stage | 87 | id04 | q3_s_stage | Q3,S1,S2,S3,S4 | hard_binary_edge | private_stable | 0.819355679 | 0.200000000 | 0.200000000 | 0.758766116 | 0.922099221 | -0.010281435 | -0.008585113 | -0.000001651 |
+| r087_q3_s_stage | 87 | id04 | q3_s_stage | Q3,S1,S2,S3,S4 | hard_q | private_stable | 0.818526855 | 0.200000000 | 0.200000000 | 0.759642500 | 0.922099221 | -0.031766984 | -0.023710420 | -0.000001265 |
+| r205_nonq2_full | 205 | id09 | nonq2_full | Q1,Q3,S1,S2,S3,S4 | triad_consensus | private_stable | 0.814138724 | 0.666666667 | 0.666666667 | 0.851978492 | 0.846402214 | -0.015896389 | -0.006302396 | -0.000003985 |
+| r205_q3_s_stage | 205 | id09 | q3_s_stage | Q3,S1,S2,S3,S4 | h085_q | public_transition | 0.814067621 | 0.800000000 | 0.800000000 | 0.758558102 | 0.926199262 | -0.013631106 | -0.004843313 | -0.000005216 |
+| r205_q3_s_stage | 205 | id09 | q3_s_stage | Q3,S1,S2,S3,S4 | q_source_bridge | public_transition | 0.813945809 | 0.800000000 | 0.800000000 | 0.758314150 | 0.926199262 | -0.013627783 | -0.004920902 | -0.000005172 |
+| r205_q3_s_stage | 205 | id09 | q3_s_stage | Q3,S1,S2,S3,S4 | source_mean | public_transition | 0.813716268 | 0.800000000 | 0.800000000 | 0.757947196 | 0.926199262 | -0.013620117 | -0.005015828 | -0.000005118 |
+| r205_q3_s_stage | 205 | id09 | q3_s_stage | Q3,S1,S2,S3,S4 | triad_consensus | private_stable | 0.812427244 | 0.800000000 | 0.800000000 | 0.777891777 | 0.926199262 | -0.013408222 | -0.005943192 | -0.000003985 |
+| r213_nonq2_full | 213 | id09 | nonq2_full | Q1,Q3,S1,S2,S3,S4 | triad_consensus | private_stable | 0.811283335 | 0.833333333 | 0.833333333 | 0.885281545 | 0.912925379 | -0.005543055 | -0.004224350 | -0.000004045 |
+| r205_nonq2_full | 205 | id09 | nonq2_full | Q1,Q3,S1,S2,S3,S4 | h085_hard_bridge | private_stable | 0.811138027 | 0.666666667 | 0.666666667 | 0.851941592 | 0.846402214 | -0.016233976 | -0.006278962 | -0.000003542 |
+| r213_nonq2_full | 213 | id09 | nonq2_full | Q1,Q3,S1,S2,S3,S4 | h085_hard_bridge | private_stable | 0.809717693 | 0.833333333 | 0.833333333 | 0.885862726 | 0.912925379 | -0.005439651 | -0.004409348 | -0.000003804 |
+| r205_q3_s_stage | 205 | id09 | q3_s_stage | Q3,S1,S2,S3,S4 | h085_hard_bridge | private_stable | 0.809534952 | 0.800000000 | 0.800000000 | 0.778297681 | 0.926199262 | -0.013232129 | -0.006260669 | -0.000003542 |
+| r213_nonq2_full | 213 | id09 | nonq2_full | Q1,Q3,S1,S2,S3,S4 | hard_source_bridge | private_stable | 0.807723474 | 0.833333333 | 0.833333333 | 0.887818445 | 0.912925379 | -0.005050053 | -0.005047868 | -0.000003557 |
+| r205_nonq2_full | 205 | id09 | nonq2_full | Q1,Q3,S1,S2,S3,S4 | hard_source_bridge | private_stable | 0.806462627 | 0.666666667 | 0.666666667 | 0.852531998 | 0.846402214 | -0.013557304 | -0.006774768 | -0.000002955 |
+| r205_q3_s_stage | 205 | id09 | q3_s_stage | Q3,S1,S2,S3,S4 | hard_source_bridge | private_stable | 0.805435444 | 0.800000000 | 0.800000000 | 0.778722035 | 0.926199262 | -0.012885116 | -0.006552425 | -0.000002955 |
+| r228_q3_s_stage | 228 | id10 | q3_s_stage | Q3,S1,S2,S3,S4 | h085_hard_bridge | objective_body | 0.804405878 | 1.000000000 | 0.800000000 | 0.745213058 | 0.949928249 | -0.012817805 | -0.008161313 | -0.000003897 |
+| r228_q3_s_stage | 228 | id10 | q3_s_stage | Q3,S1,S2,S3,S4 | triad_consensus | objective_body | 0.803946448 | 1.000000000 | 0.800000000 | 0.744696453 | 0.949928249 | -0.012901022 | -0.008006646 | -0.000003838 |
+| r228_q3_s_stage | 228 | id10 | q3_s_stage | Q3,S1,S2,S3,S4 | h085_q | public_transition | 0.803294685 | 1.000000000 | 0.800000000 | 0.734857149 | 0.949928249 | -0.013090336 | -0.007164906 | -0.000004026 |
+| r228_q3_s_stage | 228 | id10 | q3_s_stage | Q3,S1,S2,S3,S4 | q_source_bridge | public_transition | 0.803077628 | 1.000000000 | 0.800000000 | 0.734619347 | 0.949928249 | -0.013089587 | -0.007207844 | -0.000003996 |
+| r228_q3_s_stage | 228 | id10 | q3_s_stage | Q3,S1,S2,S3,S4 | hard_source_bridge | objective_body | 0.802895034 | 1.000000000 | 0.800000000 | 0.743792394 | 0.949928249 | -0.012505119 | -0.008423288 | -0.000003743 |
+| r228_q3_s_stage | 228 | id10 | q3_s_stage | Q3,S1,S2,S3,S4 | source_mean | public_transition | 0.802753971 | 1.000000000 | 0.800000000 | 0.734279043 | 0.949928249 | -0.013086636 | -0.007258289 | -0.000003959 |
+| r228_q3_s_stage | 228 | id10 | q3_s_stage | Q3,S1,S2,S3,S4 | hard_q | objective_body | 0.802265103 | 1.000000000 | 0.800000000 | 0.743441840 | 0.949928249 | -0.011659492 | -0.008626308 | -0.000003701 |
+| r249_full_state | 249 | id10 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | hard_source_bridge | calendar_q2 | 0.801746394 | 0.857142857 | 0.857142857 | 0.824736241 | 0.859471095 | -0.015375919 | -0.002253616 | -0.000008115 |
+| r205_nonq2_full | 205 | id09 | nonq2_full | Q1,Q3,S1,S2,S3,S4 | q_source_bridge | public_transition | 0.801356223 | 0.666666667 | 0.666666667 | 0.753004597 | 0.846402214 | -0.015531421 | -0.005355312 | -0.000005172 |
+| r236_full_state | 236 | id10 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | hard_source_bridge | calendar_q2 | 0.801354357 | 1.000000000 | 0.857142857 | 0.803495913 | 0.900984010 | -0.008185144 | -0.001776508 | -0.000004096 |
+| r228_q3_s_stage | 228 | id10 | q3_s_stage | Q3,S1,S2,S3,S4 | hard_binary_edge | objective_body | 0.800566395 | 1.000000000 | 0.800000000 | 0.742230278 | 0.949928249 | -0.011606623 | -0.006925575 | -0.000003548 |
+| r205_nonq2_full | 205 | id09 | nonq2_full | Q1,Q3,S1,S2,S3,S4 | source_mean | public_transition | 0.799916514 | 0.666666667 | 0.666666667 | 0.751563432 | 0.846402214 | -0.013620117 | -0.005015828 | -0.000005118 |
+| r205_nonq2_full | 205 | id09 | nonq2_full | Q1,Q3,S1,S2,S3,S4 | h085_q | public_transition | 0.799498618 | 0.666666667 | 0.666666667 | 0.753674954 | 0.846402214 | -0.016900092 | -0.003914509 | -0.000005216 |
+| r249_full_state | 249 | id10 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | hard_q | calendar_q2 | 0.799119631 | 0.857142857 | 0.857142857 | 0.823473940 | 0.859471095 | -0.011125570 | -0.003508580 | -0.000005329 |
+| r246_nonq2_full | 246 | id10 | nonq2_full | Q1,Q3,S1,S2,S3,S4 | hard_source_bridge | private_stable | 0.798967152 | 0.666666667 | 1.000000000 | 0.836937119 | 0.912002870 | -0.009230238 | -0.002152498 | -0.000003566 |
+| r031_full_state | 31 | id02 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | q_source_bridge | calendar_q2 | 0.798708607 | 0.571428571 | 0.571428571 | 0.803118973 | 0.775010250 | -0.011247417 | -0.004221702 | -0.000004076 |
+| r205_full_state | 205 | id09 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | q_source_bridge | public_transition | 0.797941360 | 0.571428571 | 0.571428571 | 0.742725794 | 0.714124641 | -0.016151361 | -0.005676987 | -0.000005172 |
+| r031_q3_s_stage | 31 | id02 | q3_s_stage | Q3,S1,S2,S3,S4 | triad_consensus | private_stable | 0.797605412 | 0.800000000 | 0.800000000 | 0.773110225 | 0.948544485 | -0.008736415 | -0.004078888 | -0.000003609 |
+| r205_full_state | 205 | id09 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | h085_q | public_transition | 0.796353968 | 0.571428571 | 0.571428571 | 0.743379751 | 0.714124641 | -0.017973757 | -0.004135986 | -0.000005216 |
+| r031_full_state | 31 | id02 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | triad_consensus | calendar_q2 | 0.796290013 | 0.571428571 | 0.571428571 | 0.801600933 | 0.775010250 | -0.011893742 | -0.004607829 | -0.000003609 |
+| r228_q3_s_stage | 228 | id10 | q3_s_stage | Q3,S1,S2,S3,S4 | q061 | objective_body | 0.796213627 | 1.000000000 | 0.800000000 | 0.696061767 | 0.949928249 | -0.013090125 | -0.007187696 | -0.000004010 |
+| r205_full_state | 205 | id09 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | triad_consensus | private_stable | 0.796200840 | 0.571428571 | 0.571428571 | 0.761839091 | 0.714124641 | -0.016781476 | -0.006692384 | -0.000003985 |
+| r031_q3_s_stage | 31 | id02 | q3_s_stage | Q3,S1,S2,S3,S4 | h085_hard_bridge | private_stable | 0.796115703 | 0.800000000 | 0.800000000 | 0.773313177 | 0.948544485 | -0.008694399 | -0.004119858 | -0.000003396 |
+| r205_q3_s_stage | 205 | id09 | q3_s_stage | Q3,S1,S2,S3,S4 | q061 | public_transition | 0.796059196 | 0.800000000 | 0.800000000 | 0.658451501 | 0.926199262 | -0.013630059 | -0.004909477 | -0.000005197 |
+| r205_full_state | 205 | id09 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | source_mean | public_transition | 0.795958622 | 0.571428571 | 0.571428571 | 0.740981227 | 0.714124641 | -0.013620117 | -0.005015828 | -0.000005118 |
+| r236_full_state | 236 | id10 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | h085_hard_bridge | public_transition | 0.795779684 | 1.000000000 | 0.857142857 | 0.804952848 | 0.900984010 | -0.008953123 | -0.001024872 | -0.000004730 |
+| r246_full_state | 246 | id10 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | hard_source_bridge | calendar_q2 | 0.795528109 | 0.571428571 | 1.000000000 | 0.809067485 | 0.906929069 | -0.009149882 | -0.002226851 | -0.000003224 |
+| r213_nonq2_full | 213 | id09 | nonq2_full | Q1,Q3,S1,S2,S3,S4 | hard_q | private_stable | 0.795467632 | 0.833333333 | 0.833333333 | 0.889063833 | 0.912925379 | -0.003415261 | -0.005632822 | -0.000002873 |
+| r030_full_state | 30 | id02 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | h085_q | calendar_q2 | 0.794989988 | 0.857142857 | 0.857142857 | 0.813987590 | 0.801865519 | -0.008073258 | -0.004375245 | -0.000004760 |
+| r031_q3_s_stage | 31 | id02 | q3_s_stage | Q3,S1,S2,S3,S4 | hard_source_bridge | private_stable | 0.794980443 | 0.800000000 | 0.800000000 | 0.775038269 | 0.948544485 | -0.008283671 | -0.004605907 | -0.000003151 |
+| r030_full_state | 30 | id02 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | q_source_bridge | calendar_q2 | 0.794966352 | 0.857142857 | 0.857142857 | 0.813970165 | 0.801865519 | -0.008072215 | -0.004378084 | -0.000004755 |
+| r030_full_state | 30 | id02 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | source_mean | calendar_q2 | 0.794900992 | 0.857142857 | 0.857142857 | 0.813901746 | 0.801865519 | -0.008070771 | -0.004377863 | -0.000004750 |
+| r030_full_state | 30 | id02 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | q061 | calendar_q2 | 0.794892500 | 0.857142857 | 0.857142857 | 0.813921477 | 0.801865519 | -0.008073071 | -0.004392537 | -0.000004736 |
+| r205_full_state | 205 | id09 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | q061 | calendar_q2 | 0.794782261 | 0.571428571 | 0.571428571 | 0.734408875 | 0.714124641 | -0.017972711 | -0.004201480 | -0.000005197 |
+| r205_nonq2_full | 205 | id09 | nonq2_full | Q1,Q3,S1,S2,S3,S4 | q061 | private_stable | 0.794694977 | 0.666666667 | 0.666666667 | 0.726185135 | 0.846402214 | -0.016899046 | -0.003979860 | -0.000005197 |
+| r062_full_state | 62 | id03 | full_state | Q1,Q2,Q3,S1,S2,S3,S4 | hard_source_bridge | calendar_q2 | 0.794541117 | 0.857142857 | 0.857142857 | 0.784604422 | 0.873001230 | -0.009301644 | -0.001680018 | -0.000005150 |
+
+Interpretation rule:
+
+- If H090 improves by >= 0.001, the next HS-JEPA paper claim is that lifestyle
+  context discovers new action support, not just decoder-head choice.
+- If H090 loses mildly, lifestyle state is a good explanation layer but should
+  remain subordinate to public/private posterior support.
+- If H090 loses badly, H087/H088 support is close to the safe frontier and
+  white-space actions need a learned latent target instead of direct stories.

@@ -3463,3 +3463,43 @@ Next direction:
 H087/H088 redirected the live hypothesis toward value-law factorization:
 public/private is more likely a difference in route-to-probability translation
 than a difference in which rows are heard.
+
+## Weak/Falsified: Direct Lifestyle White-Space Action
+
+Date: 2026-06-02
+
+Related experiments: H089 lifestyle-transition gate and H090 lifestyle
+white-space HS-JEPA.
+
+Hypothesis:
+
+```text
+Human/social lifestyle transition context can safely identify new row-target
+action support outside H087/H088.
+```
+
+Observed result:
+
+- H089 changed `888` cells but overlapped H088 root support by `0.917318`;
+- H089 posterior delta was `-0.000605`, but hard-world delta was `+0.000035`;
+- H090 forced low overlap, with mean H088 overlap `0.099160` and mean H087
+  overlap `0.071148`;
+- H090 changed only `49` cells on `17` rows and hard-world delta worsened to
+  `+0.000141`;
+- both files passed upload safety checks.
+
+Decision:
+
+This weakens the jackpot version of direct human-story action generation.
+Lifestyle state is still useful, but current hand-scored state should not open
+new support without posterior/value-head confirmation.
+
+Next direction:
+
+Train or infer a stronger latent target:
+
+- context: raw human/social state, row order, subject delta;
+- target representation: route/action/value-head agreement from H071/H082/H085
+  and H018;
+- decoder: only act when learned lifestyle latent and public/private heads
+  agree.

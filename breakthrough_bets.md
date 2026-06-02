@@ -660,3 +660,37 @@ Current big-bet priority:
    hard-world conflict risk.
 3. H082/H071 remain the older broad-action and assignment sensors for comparing
    whether value-law gating added anything beyond support selection.
+
+### H089-H090 Update
+
+H089/H090 tested the next assumption:
+
+```text
+Maybe the missing factor is not another public/private equation, but the
+human lifestyle transition state that decides which value head to trust.
+```
+
+| Experiment | File | Core claim | Changed vs H057 | Posterior delta | Hard-world delta | H088 overlap | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| H089 | `submission_h089_lifestyle_transition_gate_a9598fc3_uploadsafe.csv` | lifestyle transition chooses public/private decoder head | `888` cells / `156` rows | `-0.000605` | `+0.000035` | `0.917318` root-cell overlap | explains H088 but mostly rediscovered it |
+| H090 | `submission_h090_lifestyle_white_space_6748b5dc_uploadsafe.csv` | lifestyle context opens new action space outside H087/H088 | `49` cells / `17` rows | `-0.000079` | `+0.000141` | `0.099160` action overlap | white-space action is locally unsafe |
+
+Breakthrough reading:
+
+```text
+Human/social state is real enough to organize decoder heads, but current direct
+lifestyle features are not enough to create the next H012-scale action support.
+The next 0.53-scale bet needs a learned latent target for lifestyle state,
+not a hand-scored story gate.
+```
+
+The big-bet queue changes:
+
+1. Keep H088 as the clean architecture probe.
+2. Treat H089 as a "does lifestyle context explain decoder choice?" probe, not
+   a likely best submission.
+3. Do not submit H090 unless we explicitly want a high-risk falsification of
+   unseen lifestyle white-space actions.
+4. Next jackpot attempt should learn a latent target from lifestyle context:
+   predict route/action/value-head assignment under a masked context objective,
+   then decode only where the learned state agrees with public/private heads.

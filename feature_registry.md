@@ -5612,3 +5612,73 @@ move on nearby rows with distance decay.
 - Keep if public improves over H057: human-state latent is episode-level.
 - Kill broad spread if public worsens: H057 row support is precise and future
   episode experiments need a sharper gate.
+
+## H089 Feature/Action Registry: Lifestyle Transition Gate
+
+### Feature / Action
+
+`lifestyle_transition_decoder_head_gate`
+
+### Hidden Structure Targeted
+
+The feature targets the hidden state that decides whether a route should be
+decoded by public-transition, private-stable, objective-body, or calendar-Q2
+value heads.
+
+### Label Signal vs Split Signal
+
+- label signal evidence: route-action heads are evaluated against H085/H018/H082
+  hidden targets, not directly against public LB;
+- human-state evidence: the context comes from raw-log story features and
+  within-subject temporal deltas;
+- leakage risk: public-feedback-derived posterior heads remain part of the
+  target representation, so this is an HS-JEPA decoder feature, not a normal
+  train-label feature.
+
+### Materialization
+
+- base: H057;
+- context: H072 family state plus within-subject transition deltas;
+- target representation: decoder-head compatibility;
+- promoted file:
+  `submission_h089_lifestyle_transition_gate_a9598fc3_uploadsafe.csv`.
+
+### Keep / Kill Criteria
+
+- Keep if public validates H089: lifestyle transition is action-grade context.
+- If H089 loses or ties, keep the feature as an explanation/regularizer but do
+  not let it override public/private value-head safety.
+
+## H090 Feature/Action Registry: Lifestyle White Space
+
+### Feature / Action
+
+`lifestyle_supported_white_space_action`
+
+### Hidden Structure Targeted
+
+The action targets row-target support outside H087/H088 that is strongly
+supported by lifestyle-state context.
+
+### Label Signal vs Split Signal
+
+- label signal evidence: low; actions intentionally avoid known H087/H088
+  support;
+- split signal evidence: high novelty, low overlap with current public/private
+  action support;
+- leakage risk: high if treated as a direct submission rule, because the
+  lifestyle context is hand-scored and not yet trained to an action-grade
+  latent target.
+
+### Materialization
+
+- base: H057;
+- overlap cap: low H087/H088 cell overlap;
+- promoted file:
+  `submission_h090_lifestyle_white_space_6748b5dc_uploadsafe.csv`.
+
+### Keep / Kill Criteria
+
+- Keep only if public shows a large surprise improvement.
+- Under current local stress, treat it as weak/falsified for normal submission
+  priority because hard-world delta worsens while scale remains small.

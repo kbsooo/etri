@@ -9738,3 +9738,101 @@ public/private value decoder.
 Decision: prioritize H088 over H087 if the next submission should validate the
 paper-level architecture. Prioritize H087 only if the immediate goal is the
 larger posterior movement and we are willing to accept hard-world conflict.
+
+## H089. Lifestyle-Transition Gate HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h089_lifestyle_transition_gate_hsjepa.py`
+- Report: `hitl/h089_lifestyle_transition_gate_hsjepa/h089_report.md`
+- Candidate: `submission_h089_lifestyle_transition_gate_a9598fc3_uploadsafe.csv`
+
+### Observe
+
+H087/H088 disagree on how much the decoder should trust public posterior versus
+hard/private state. The missing context may be human lifestyle transition:
+volatile social rows, routine/recovery rows, objective body rows, and
+calendar-Q2 rows may require different decoder heads.
+
+### Hypothesis
+
+H089-H: row-level lifestyle transition state predicts the hidden decoder head
+used by HS-JEPA. Human/social stories should choose the value law, not directly
+predict labels.
+
+### Method
+
+H089 built transition state from H072 human/social family features:
+
+- within-subject previous/next deltas;
+- subject-median novelty;
+- arousal, recovery, objective, calendar/cashflow heads;
+- human route support from the 1000 hypothesis route table.
+
+It then selected route-actions whose decoder head matched that lifestyle state.
+
+### Result
+
+Selected `h089_lifestyle_transition_switch_c1120_r190_q125_a9598fc3`.
+
+- selected route cells: `895`;
+- changed cells / rows versus H057: `888` / `156`;
+- Q2 changed cells: `54`;
+- posterior delta versus H057: `-0.000605`;
+- hard-world delta versus H057: `+0.000035`;
+- responsibility-weighted delta: `-0.000696`;
+- H088 root-cell overlap: `0.917318`;
+- H087 root-cell overlap: `0.845810`;
+- upload-safe validation passed.
+
+### Interpretation
+
+H089 is not a clean new frontier. It shows that lifestyle transition context
+can largely recover H088-like action support, but it does not solve the
+hard-world conflict and does not open much new support. Lifestyle context is
+useful as an explanatory gate, not yet as an independent action generator.
+
+## H090. Lifestyle White-Space HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h090_lifestyle_white_space_hsjepa.py`
+- Report: `hitl/h090_lifestyle_white_space_hsjepa/h090_report.md`
+- Candidate: `submission_h090_lifestyle_white_space_6748b5dc_uploadsafe.csv`
+
+### Observe
+
+H089's best candidate overlapped H088 by more than 90%, so it may have simply
+renamed the existing H088 support. The sharper test is whether lifestyle state
+can find safe action space outside H087/H088.
+
+### Hypothesis
+
+H090-H: the next H012-scale jump may come from lifestyle-supported row-target
+white space that public/private value gates currently miss.
+
+### Method
+
+H090 reused H089 lifestyle states but forced low overlap with H087/H088 root
+actions. It selected only lifestyle-supported routes whose cell overlap with
+H088/H087 was below profile-specific caps.
+
+### Result
+
+Selected `h090_white_mixed_c760_r175_q105_6748b5dc`.
+
+- selected route cells: `76`;
+- changed cells / rows versus H057: `49` / `17`;
+- Q2 changed cells: `15`;
+- posterior delta versus H057: `-0.000079`;
+- hard-world delta versus H057: `+0.000141`;
+- responsibility-weighted delta: `-0.000103`;
+- mean H088 action overlap: `0.099160`;
+- mean H087 action overlap: `0.071148`;
+- upload-safe validation passed.
+
+### Interpretation
+
+H090 is a useful negative result. It achieved the intended low-overlap
+condition, but the local hard/private proxy worsened sharply relative to its
+scale. This weakens the idea that hand-scored lifestyle context can safely open
+new action support. The next big bet should learn a hidden lifestyle target
+before allowing white-space actions.

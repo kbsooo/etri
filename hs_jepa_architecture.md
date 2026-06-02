@@ -729,3 +729,71 @@ as a research claim. If H088 wins public LB, the paper-level architecture
 should present dual-state value gating as a central HS-JEPA contribution. If it
 loses while H087/H071 survive, hard-world should remain a diagnostic health
 check rather than an action-grade private target.
+
+## H089-H090 Lifestyle-State Context Gate
+
+H089/H090 added the missing human-state context layer:
+
+```text
+raw-log-derived human/social story features
+  -> within-subject lifestyle transition energy
+  -> decoder-head assignment
+  -> route-specific value law
+  -> correction field
+```
+
+The context is not used as a direct label rule. It predicts which hidden
+decoder head should be trusted:
+
+- public-transition head for volatile social/arousal rows;
+- private-stable head for recovery/routine rows;
+- objective-body head for sensor/body rows;
+- calendar-Q2 head for cashflow/month-boundary/routine-pressure rows.
+
+H089 promoted
+`submission_h089_lifestyle_transition_gate_a9598fc3_uploadsafe.csv`.
+
+Diagnostics:
+
+- changed cells / rows versus H057: `888` / `156`;
+- selected route cells: `895`;
+- posterior delta versus H057: `-0.000605`;
+- hard-world delta versus H057: `+0.000035`;
+- responsibility-weighted delta: `-0.000696`;
+- H088 root cell overlap: `0.917318`;
+- upload-safe validation passed.
+
+Architectural implication:
+
+```text
+Lifestyle-state context can explain the H088 decoder choice, but H089 mostly
+rediscovered H088 support instead of opening a new action space.
+```
+
+H090 then forced a white-space test outside H087/H088 support and promoted
+`submission_h090_lifestyle_white_space_6748b5dc_uploadsafe.csv`.
+
+Diagnostics:
+
+- changed cells / rows versus H057: `49` / `17`;
+- selected route cells: `76`;
+- posterior delta versus H057: `-0.000079`;
+- hard-world delta versus H057: `+0.000141`;
+- mean H088 action overlap: `0.099160`;
+- upload-safe validation passed.
+
+Architectural implication:
+
+```text
+Direct lifestyle context is not yet strong enough to authorize new row-target
+white-space actions. It should be a context/gate feature under public/private
+value heads, not an independent action generator.
+```
+
+HS-JEPA v1 should therefore separate three levels:
+
+1. route support from row-target assignment;
+2. value-head safety from public/private posterior and hard-world targets;
+3. human lifestyle context as a gate/regularizer that explains or prioritizes
+   value-head choice, but does not override action-grade posterior support
+   without an additional learned latent target.

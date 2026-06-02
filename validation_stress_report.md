@@ -7693,3 +7693,31 @@ H088 is the cleaner public/private HS-JEPA decoder.
 For a paper-level big bet, H088 has higher information value. For a direct
 public-posterior probe, H087 has higher expected movement but more private-head
 risk.
+
+## H089-H090 Lifestyle-State Stress
+
+Date: 2026-06-02
+
+H089 and H090 were evaluated against the same public-free sensors, plus overlap
+with H087/H088 root support.
+
+| Candidate | Changed cells | Posterior delta | Hard-world delta | Resp-weighted delta | H088 overlap | H087 overlap | Upload safe |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `submission_h089_lifestyle_transition_gate_a9598fc3_uploadsafe.csv` | `888` | `-0.000605` | `+0.000035` | `-0.000696` | `0.917318` root-cell | `0.845810` root-cell | yes |
+| `submission_h090_lifestyle_white_space_6748b5dc_uploadsafe.csv` | `49` | `-0.000079` | `+0.000141` | `-0.000103` | `0.099160` action | `0.071148` action | yes |
+
+Stress interpretation:
+
+- H089 has useful posterior/responsibility movement, but high H088 overlap
+  means the lifestyle state mostly explains an existing action region.
+- H090 succeeds at novelty/low-overlap but fails hard/private safety: the
+  hard-world delta worsens more than the posterior proxy improves.
+
+Decision:
+
+```text
+Lifestyle state is useful context, not yet independent action support.
+For submission priority, H088 remains cleaner than H089/H090.
+For architecture, H089/H090 justify adding a lifestyle context encoder but
+also justify a safety gate before it can open white-space actions.
+```

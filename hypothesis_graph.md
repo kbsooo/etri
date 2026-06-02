@@ -5749,3 +5749,69 @@ moves Q1/Q3/S1-S4 on same-subject neighbor rows within radius `3`.
 - If H059 improves: promote temporal episode-state HS-JEPA.
 - If H059 fails: demote broad episode spread and keep H057 row support exact
   until a stronger episode gate is found.
+
+## H089 Update: Lifestyle Transition Decoder-Head Gate
+
+### New Hypothesis Node
+
+H089-H: raw-log-derived human/social lifestyle transition state controls which
+public/private value head should decode each row-target route.
+
+### Evidence Entering H089
+
+- H087 showed route-conditioned value-law decoding improves public posterior
+  but can hurt hard-world.
+- H088 showed dual-head Pareto gating is locally coherent but may be
+  conservative.
+- H072 provides human/social family states and route support from the 1000
+  hypothesis table.
+
+### Experiment Edge
+
+H089 starts from H057, builds lifestyle transition heads, and selects actions
+where the row's lifestyle head matches the route-action decoder head.
+
+### State Transition Rules
+
+- If H089 improves by `>=0.001`: promote lifestyle transition as action-grade
+  HS-JEPA context.
+- If H089 ties or only mildly moves: keep lifestyle state as explanation/gate,
+  not as a new support generator.
+- If H089 loses badly: demote direct social-story gating.
+
+### Local Result
+
+H089 changed `888` cells and had posterior delta `-0.000605`, but hard-world
+delta `+0.000035` and H088 root overlap `0.917318`. Local state transition:
+promote lifestyle context as explanatory, but do not promote it as independent
+action support.
+
+## H090 Update: Lifestyle White-Space Action
+
+### New Hypothesis Node
+
+H090-H: lifestyle state can find safe new row-target action support outside
+H087/H088.
+
+### Evidence Entering H090
+
+H089's high H088 overlap made the sharper question necessary: does lifestyle
+state only rename H088, or can it open new support?
+
+### Experiment Edge
+
+H090 forces low H087/H088 overlap and selects only lifestyle-supported route
+actions in that white space.
+
+### State Transition Rules
+
+- If H090 improves: promote lifestyle white-space support as the next jackpot
+  branch.
+- If H090 fails local/public: kill direct hand-scored lifestyle support and
+  require a learned latent target before white-space decoding.
+
+### Local Result
+
+H090 root candidate changed `49` cells with mean H088 action overlap `0.099160`,
+but hard-world delta worsened to `+0.000141`. Local state transition: direct
+lifestyle white-space action is weak/falsified under current proxies.
