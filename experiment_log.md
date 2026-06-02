@@ -11406,3 +11406,67 @@ Public interpretation:
   local cell signal;
 - if H110/H111 beat H112-H114, public-bad axes are useful as stress tests but
   not as projection-space decoders.
+
+## H115 Second-Order Action-Equation HS-JEPA
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h115_curvature_23748467_uploadsafe.csv`
+
+Worldview:
+
+```text
+H098-style public equations and H112-H114 toxicity solvers are mostly linear:
+they ask whether a signed row-target action points with or against known good
+or bad directions.  H088's public failure suggests a stronger possibility:
+some actions are only toxic after row and target interactions are combined.
+H115 therefore fits a small second-order public action equation and uses it as
+an assignment decoder.
+```
+
+Observed result:
+
+- selected candidate: `h115_curv_q2_companion_c22_a035_23748467`;
+- generated root file: `submission_h115_curvature_23748467_uploadsafe.csv`;
+- submitted cells / rows: `20` / `16`;
+- changed target cells: Q1 `3`, Q2 `8`, Q3 `4`, S1 `4`, S2 `0`,
+  S3 `1`, S4 `0`;
+- selected curvature model: `route_curvature`, alpha `30`, `27` features;
+- weighted LOO MAE / RMSE: `0.000433509` / `0.000627976`;
+- LOO Spearman / pair accuracy: `0.927593` / `0.894545`;
+- H088 LOO prediction / abs error / sign ok:
+  `+0.000658162` / `0.000088446` / `1.0`;
+- H115 curvature predicted delta vs H057: `-0.000251384`;
+- H098 cell-equation predicted delta vs H057: `-0.000001`;
+- route-basis predicted delta vs H057: `-0.000032`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.003903`;
+- selected residual toxicity / safety / gap:
+  `0.405449` / `0.589193` / `0.183744`;
+- H115/H114 active-cell overlap: `1`, cosine `0.015212`;
+- H115/H113 active-cell overlap: `9`, cosine `0.249918`;
+- H115/H112 active-cell overlap: `11`, cosine `0.247554`;
+- H115/H111 active-cell overlap: `11`, cosine `0.230177`;
+- upload-safe validation passed.
+
+Important diagnostic:
+
+H115 reopens Q2 after H110-H114 mostly shut it down.  This is not a return to
+the earlier broad Q2 prior.  The selected route is only `8` Q2 cells and the
+worldview is narrower: Q2 may be public-safe only as a low-curvature companion
+inside a row-target bundle with Q1/Q3/S1/S3 support.  This directly tests the
+new goal's claim that the missing object is a row-target action equation, not
+another context encoder.
+
+Public interpretation:
+
+- if H115 improves over H112-H114, HS-JEPA needs a second-order action
+  equation and Q2 should be decoded as a companion route, not globally banned;
+- if H115 loses while H112/H113 improve, residual toxicity is the cleaner
+  action field and the curvature fit overfit public observations;
+- if H115 loses while H114 improves, the nullspace view is stronger than the
+  nonlinear row-target curvature view;
+- if H115 loses badly, Q2 remains a diagnostic target and should not be
+  reintroduced without a stronger private-safe assignment proof.

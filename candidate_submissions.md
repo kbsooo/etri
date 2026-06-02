@@ -8192,3 +8192,56 @@ Priority: very high information value, high downside risk.  This is not a
 frontier-safe candidate because local H098/route-basis proxies mildly predict
 worse public loss.  It is a direct test of whether the current local proxy
 equations are the plateau.
+
+## H115 Second-Order Action-Equation Candidate
+
+Generated file:
+
+`submission_h115_curvature_23748467_uploadsafe.csv`
+
+Worldview: public/private safety is not fully linear.  H088 is a negative
+sensor showing that a dual-head action can look plausible but be punished once
+row and target interactions are combined.  H115 fits a compact second-order
+public action equation, then selects a sparse action whose row-target
+curvature is predicted safe.
+
+Evidence:
+
+- selected candidate: `h115_curv_q2_companion_c22_a035_23748467`;
+- selected cells / rows: `20` / `16`;
+- target changes: Q1 `3`, Q2 `8`, Q3 `4`, S1 `4`, S2 `0`, S3 `1`,
+  S4 `0`;
+- curvature model: `route_curvature`, alpha `30`, `27` features;
+- weighted LOO MAE / RMSE: `0.000433509` / `0.000627976`;
+- LOO Spearman / pair accuracy: `0.927593` / `0.894545`;
+- H088 LOO pred / abs error: `+0.000658162` / `0.000088446`;
+- H115 curvature predicted delta vs H057: `-0.000251384`;
+- H098 cell-equation predicted delta vs H057: `-0.000001`;
+- route-basis predicted delta vs H057: `-0.000032`;
+- bad-axis weighted positive projection: `0.000000`;
+- H088-axis cosine: `-0.003903`;
+- residual toxicity / safety / gap:
+  `0.405449` / `0.589193` / `0.183744`;
+- H114 overlap: `1` cell, cosine `0.015212`;
+- H112 overlap: `11` cells, cosine `0.247554`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H112-H114: promote second-order row-target action equations into
+  HS-JEPA's decoder stack;
+- neutral result: curvature is useful for ranking but too weak for direct
+  action materialization;
+- loss to H112/H113: cell/route residual toxicity remains cleaner than the
+  second-order fit;
+- loss to H114: toxic nullspace projection is the better break from the
+  current plateau;
+- large loss: Q2 companion reopening is unsafe and Q2 should remain blocked
+  unless a stronger assignment solver proves otherwise.
+
+Priority: very high information value, medium-high submission priority.  H115
+is the sharpest current test of the revised goal because it explains both H057
+positive row-state and H088 negative action signal without treating H018/H088
+as private action heads.  It is not a 0.53 proof yet, but it can decide whether
+the next HS-JEPA decoder should be nonlinear row-target equations or the
+H112-H114 toxicity/nullspace branch.

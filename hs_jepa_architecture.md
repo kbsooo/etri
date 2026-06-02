@@ -1876,3 +1876,63 @@ representation -> proposed action -> toxic-subspace null action -> assignment
 
 If H114 fails, the toxic-subspace layer should remain a diagnostic for collapse
 and public overfit, not the action decoder.
+
+## HS-JEPA v5: Second-Order Row-Target Equation Solver
+
+H115 adds a nonlinear action decoder above the previous public/private layers:
+
+```text
+known public action observations
+  -> signed row-target action features
+  -> first-order public response equation
+  -> second-order route/target curvature equation
+  -> curvature-safe sparse assignment
+```
+
+The architectural reason is H088.  H088's public failure shows that a
+representation can be plausible as a latent state and still fail as an
+action-grade decoder.  H115 therefore treats H088 as a negative action sensor,
+not as a teacher for private action.
+
+H115 evidence:
+
+- candidate: `submission_h115_curvature_23748467_uploadsafe.csv`;
+- selected cells / rows: `20` / `16`;
+- target route: Q1 `3`, Q2 `8`, Q3 `4`, S1 `4`, S2 `0`, S3 `1`,
+  S4 `0`;
+- selected curvature model: `route_curvature`, alpha `30`;
+- weighted LOO MAE / RMSE: `0.000433509` / `0.000627976`;
+- LOO Spearman / pair accuracy: `0.927593` / `0.894545`;
+- H088 LOO prediction / abs error: `+0.000658162` / `0.000088446`;
+- curvature predicted delta vs H057: `-0.000251384`;
+- H098 predicted delta vs H057: `-0.000001`;
+- route-basis predicted delta vs H057: `-0.000032`;
+- H088-axis cosine: `-0.003903`;
+- H112 cosine: `0.247554`;
+- H114 cosine: `0.015212`.
+
+Architecture interpretation:
+
+HS-JEPA has now moved from representation learning to action-equation solving.
+The final object is no longer:
+
+```text
+hidden human state -> label probability
+```
+
+It is:
+
+```text
+hidden human state
+  -> proposed row-target action
+  -> public/private toxicity and curvature equations
+  -> safe assignment field
+```
+
+H115's key structural claim is that Q2 is not a global yes/no target.  Q2 may
+only be action-safe as a companion inside a low-curvature row-target route.
+If the public result supports H115, the paper-level HS-JEPA contribution should
+emphasize "human-state predictive representation plus row-target
+action-equation solver."  If H115 fails, second-order curvature remains a
+diagnostic and the architecture should keep H112/H114 toxicity/nullspace as
+the live decoder branch.

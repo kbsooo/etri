@@ -1560,3 +1560,54 @@ Failure interpretation:
 - if H114 fails mildly, a named residual-bad-axis version may still survive;
 - if H114 fails badly, toxic vectors are not a stable projection space and the
   model should return to H112/H113 selectors.
+
+## H115 Second-Order Action-Equation Factorization
+
+H115 adds a nonlinear public/private action-equation layer.
+
+The factorization is:
+
+```text
+known public submissions
+  -> signed action features
+  -> first-order target/route features
+  -> second-order row-target curvature features
+  -> LOO public response equation
+  -> sparse assignment under curvature, residual-toxicity, and H088 stress
+```
+
+Observed H115 factorization:
+
+- selected file: `submission_h115_curvature_23748467_uploadsafe.csv`;
+- selected candidate: `h115_curv_q2_companion_c22_a035_23748467`;
+- selected cells / rows: `20` / `16`;
+- Q2 cells: `8`;
+- curvature model: `route_curvature`, alpha `30`;
+- weighted LOO MAE / RMSE: `0.000433509` / `0.000627976`;
+- H088 LOO prediction / abs error: `+0.000658162` / `0.000088446`;
+- H115 curvature predicted delta vs H057: `-0.000251384`;
+- H098 cell-equation predicted delta vs H057: `-0.000001`;
+- route-basis predicted delta vs H057: `-0.000032`;
+- H088-axis cosine: `-0.003903`;
+- bad-axis weighted positive projection: `0.000000`;
+- H115/H114 cosine: `0.015212`;
+- H115/H112 cosine: `0.247554`.
+
+Interpretation:
+
+H115 makes H088 a negative sensor, not a private-action teacher.  The dual-head
+Pareto gate is treated as evidence that an action can be punished by row-target
+interaction even when simpler axes look acceptable.  H115's selected action is
+therefore a test of nonlinear toxicity: Q2 is reopened only as a small
+companion route, not as a broad Q2 correction.
+
+Failure interpretation:
+
+- if H115 improves, public/private safety is partly second-order and HS-JEPA
+  needs a row-target equation solver;
+- if H115 loses while H112/H113 improve, residual toxicity is more stable than
+  the curvature fit;
+- if H115 loses while H114 improves, nullspace projection is a better
+  pre-assignment transformation;
+- if H115 loses badly, H088-like negative sensors should continue to veto Q2
+  companion reopening.

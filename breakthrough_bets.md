@@ -1571,3 +1571,45 @@ Decision rule:
 - H114 fails badly: public bad vectors do not define a stable linear subspace.
 - Safer H114 sibling wins if tested: nullspace is real but must be anchored to
   named residual-bad axes, not novelty.
+
+### H115 Update
+
+H115 tests whether the public/private action equation is nonlinear in
+row-target space.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H115 | `submission_h115_curvature_23748467_uploadsafe.csv` | safe assignment requires a second-order row-target curvature equation; Q2 can re-enter only as a companion route | `20` cells / `16` rows / `8` Q2 cells | curvature delta `-0.000251`, H088 LOO sign ok, H088 cosine `-0.003903`, H112 cosine `0.247554` | nonlinear action-equation bet |
+
+Breakthrough reading:
+
+```text
+H115 is not a safer H112/H113/H114 sibling.  It uses known public actions to
+learn which row-target interactions are punished after first-order public
+response is accounted for.  Its most important claim is that Q2 is not always
+toxic; Q2 may be safe only when assigned as a low-curvature companion route.
+```
+
+Current high-information submission order:
+
+1. `submission_h115_curvature_23748467_uploadsafe.csv`
+   - tests second-order row-target action equation and Q2 companion reopening.
+
+2. `submission_h114_nullspace_73fe7866_uploadsafe.csv`
+   - tests toxic-subspace null decoding as a stronger break from linear
+     public equations.
+
+3. `submission_h112_residualtox_68b26f11_uploadsafe.csv`
+   - tests cell-level public-residual toxicity.
+
+4. `submission_h113_rowroute_04369be5_uploadsafe.csv`
+   - tests row-route compression of residual toxicity.
+
+Decision rule:
+
+- H115 wins: build HS-JEPA v5 around nonlinear row-target equation decoding.
+- H115 loses but H114 wins: toxic nullspace is the stronger plateau breaker.
+- H115 loses but H112/H113 win: second-order public fit over-reintroduced Q2;
+  keep residual toxicity as selector and leave Q2 mostly blocked.
+- H115 loses badly: H088-like negative sensors predict real Q2/action toxicity
+  and curvature should remain diagnostic only.
