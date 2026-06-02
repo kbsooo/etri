@@ -7975,3 +7975,46 @@ Public interpretation:
 Priority: high information value, medium submission priority.  H109 is not a
 new broad breakthrough candidate; it is the sharpest test of whether the
 id06/id07 H105 kernel is the actual action unit.
+
+## H110 Toxicity-Gap Assignment Solver
+
+Generated file:
+
+`submission_h110_toxgap_7b02f196_uploadsafe.csv`
+
+Worldview: row-target action safety is not raw decoder agreement.  Each cell
+has a benefit field and a toxicity field.  HS-JEPA should assign only cells
+whose benefit-toxicity gap remains positive under global bad-axis constraints.
+
+Evidence:
+
+- selected candidate: `h110_toxgap_kernel_release_c64_a085_7b02f196`;
+- source candidates / families: `21` / `7`;
+- submitted cells / rows: `37` / `23`;
+- target changes: Q1 `5`, Q2 `0`, Q3 `14`, S1 `4`, S2 `6`, S3 `4`,
+  S4 `4`;
+- H098 cell-equation predicted delta vs H057: `-0.000037`;
+- route-basis predicted delta vs H057: `-0.001037`;
+- bad-axis weighted positive projection: `0.000000`;
+- H088-axis cosine: `-0.008961`;
+- good-minus-bad margin: `+0.066098`;
+- selected mean benefit / toxicity / gap:
+  `0.918943` / `0.517838` / `0.401106`;
+- mean decoder-family count: `4.324324`;
+- H108 overlap: `29` cells;
+- H109 overlap: `1` cell;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H108: local benefit-toxicity factorization is the action-grade
+  decoder;
+- loss to H108: toxicity-gap scoring is too conservative and removes real
+  public-safe family-agreement cells;
+- loss to H109/H105: the true field is a sharper kernel than H110 permits;
+- loss to broad H103/H104: toxicity-gap assignment is too narrow and the broad
+  portfolio/residual field remains the live branch.
+
+Priority: very high information value.  H110 is the cleanest current test of
+the active goal: distinguish public-punished row-target action toxicity from
+safe assignment.

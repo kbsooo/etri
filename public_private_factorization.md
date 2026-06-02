@@ -1304,3 +1304,55 @@ Failure interpretation:
 - if H105 improves more, coefficient decoding over-pruned the original kernel;
 - if broad branches improve more, the kernel view is too narrow and public
   rewards a wider action field.
+
+## H110 Benefit/Toxicity Factorization
+
+H110 explicitly separates two hidden fields that previous solvers mixed:
+
+```text
+benefit field:
+  decoder-family support, H057 alignment, H088 opposition, H098 frontier score
+
+toxicity field:
+  H102 bad-axis local projection, H088 local same-direction pressure,
+  shortcut/null/bad-pressure indicators
+
+assignment field:
+  cells where benefit - toxicity survives cumulative public/private stress
+```
+
+Observed H110 factorization:
+
+- selected file: `submission_h110_toxgap_7b02f196_uploadsafe.csv`;
+- selected candidate: `h110_toxgap_kernel_release_c64_a085_7b02f196`;
+- source candidates / families: `21` / `7`;
+- submitted cells / rows: `37` / `23`;
+- Q2 cells: `0`;
+- H098 cell-equation predicted delta vs H057: `-0.000037`;
+- route-basis predicted delta vs H057: `-0.001037`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.008961`;
+- cumulative good-minus-bad margin: `+0.066098`;
+- selected mean benefit: `0.918943`;
+- selected mean toxicity: `0.517838`;
+- selected mean benefit-toxicity gap: `0.401106`;
+- selected mean family count: `4.324324`;
+- H108/H109 overlap: `29` / `1` cells.
+
+Interpretation:
+
+H110 is a middle path between H108 and H109.  It accepts H108's premise that
+independent decoder families matter, but it rejects raw family agreement as an
+action rule unless the local toxicity field is lower than the benefit field.
+It also rejects H109's four-cell collapse by releasing nearby H105/H106 kernel
+support when the toxicity gap stays positive.
+
+Failure interpretation:
+
+- if H110 improves, public/private safety is a benefit-toxicity factorization
+  problem and HS-JEPA needs an explicit toxicity head;
+- if H108 improves more, toxicity was already handled by family consensus and
+  H110 over-filtered;
+- if H109 improves more, assignment is sharper than the local toxicity model;
+- if all fail, toxicity/benefit features are still diagnostic but not
+  action-grade without a new public subset sensor.

@@ -1365,3 +1365,47 @@ Decision rule:
 - H105 beats H109: coefficient decoding removed useful H105 cells.
 - Broad branches beat H108/H109/H105: kernel solvers are too narrow, and the
   next big bet must return to public/private portfolio or residual transport.
+
+### H110 Update
+
+H110 tests whether row-target assignment should be performed after separating
+benefit from public toxicity.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H110 | `submission_h110_toxgap_7b02f196_uploadsafe.csv` | safe assignment is positive benefit-toxicity gap under H102 bad-axis stress | `21` source candidates / `37` cells / `23` rows | route-basis delta `-0.001037`, H098 delta `-0.000037`, bad-axis positive projection `0.0`, H088 cosine `-0.008961` | benefit-toxicity solver bet |
+
+Breakthrough reading:
+
+```text
+H110 is the first explicit action-toxicity factorization after H088. It
+explains H108 as too broad and H109 as too sharp. The promoted field keeps 29
+H108 cells but only 1 H109 cell, so it is a new low-toxicity kernel-release
+assignment rather than a H109 replay.
+```
+
+Current high-information submission order:
+
+1. `submission_h110_toxgap_7b02f196_uploadsafe.csv`
+   - direct test of the active goal: benefit-toxicity factorization.
+
+2. `submission_h108_jury_610a26a0_uploadsafe.csv`
+   - decoder-family intersection without explicit local toxicity separation.
+
+3. `submission_h109_coeff_54147083_uploadsafe.csv`
+   - coefficient-decoded micro-kernel.
+
+4. `submission_h103_shadowcancel_89496ed5_uploadsafe.csv`
+   - broad toxic-shadow portfolio.
+
+5. `submission_h104_toxicresid_52f826e6_uploadsafe.csv`
+   - broad residual transport.
+
+Decision rule:
+
+- H110 wins: prioritize explicit toxicity field and assignment field
+  factorization in HS-JEPA v3.
+- H108 wins: family agreement is more robust than local toxicity scoring.
+- H109 wins: public-safe action is much sharper than H110's release field.
+- Broad H103/H104 win: the action unit is not sparse cell assignment; return to
+  portfolio/residual public/private transport.

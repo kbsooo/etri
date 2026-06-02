@@ -1626,3 +1626,55 @@ If H109 works, HS-JEPA v3 should include coefficient solving as a kernel
 sharpening module.  If H108 works better, the architecture should keep the jury
 intersection as the action decoder and use coefficient fields only as
 diagnostics.
+
+## HS-JEPA v3.3: Toxicity-Gap Assignment Solver
+
+H110 adds the first explicit public-action toxicity head:
+
+```text
+context and decoder witnesses
+  -> benefit representation
+  -> toxicity representation
+  -> benefit-toxicity gap
+  -> sparse row-target assignment
+```
+
+This is closer to the current goal than H108/H109.  H108 had assignment but no
+local toxicity decomposition.  H109 had coefficient solving but collapsed into
+a tiny kernel.  H110 keeps the assignment view while making toxicity a separate
+representation.
+
+H110 evidence:
+
+- candidate: `submission_h110_toxgap_7b02f196_uploadsafe.csv`;
+- source candidates / families: `21` / `7`;
+- selected cells / rows: `37` / `23`;
+- Q2 cells: `0`;
+- H098 cell-equation predicted delta vs H057: `-0.000037`;
+- route-basis predicted delta vs H057: `-0.001037`;
+- bad-axis positive projection: `0.000000`;
+- H088-axis cosine: `-0.008961`;
+- selected mean benefit / toxicity / gap:
+  `0.918943` / `0.517838` / `0.401106`;
+- H108/H109 overlap: `29` / `1` cells.
+
+Architectural implication:
+
+HS-JEPA should now be described as a predictive architecture with three
+decoder layers:
+
+```text
+representation decoder:
+  predicts hidden human/public state.
+
+witness decoder:
+  converts latent state into candidate row-target action witnesses.
+
+toxicity-gap assignment decoder:
+  separates benefit and public-action toxicity, then assigns only safe cells.
+```
+
+If H110 works, the paper-level contribution is not just "JEPA for tabular
+sleep logs."  It is a human-state JEPA with an action-toxicity head that checks
+whether a predicted intervention is safe under hidden public/private
+observation equations.

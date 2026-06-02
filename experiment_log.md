@@ -11078,3 +11078,74 @@ Public interpretation:
   cells;
 - if H103/H104 beat H109, broad portfolio/residual fields still carry the live
   public/private structure.
+
+## H110 Toxicity-Gap Assignment Solver HS-JEPA
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h110_toxgap_7b02f196_uploadsafe.csv`
+
+Worldview:
+
+```text
+H108 was broad because it trusted decoder-family agreement without explicitly
+separating public toxicity.  H109 was too sharp because coefficient solving
+collapsed into the H105 kernel.  The missing action decoder is a two-field
+solver: estimate row-target benefit and row-target toxicity separately, then
+assign only cells whose benefit-toxicity gap survives global bad-axis stress.
+```
+
+Method:
+
+- collect H103-H109 as source action witnesses (`21` candidates across `7`
+  families);
+- rebuild a dynamic row-target vote field including H108 and H109 as source
+  families;
+- compute signed local toxicity for each cell from H102 bad axes, H088 local
+  direction, bad-pressure rank, shortcut energy, and null-cell indicators;
+- compute signed benefit from decoder-family support, H108 jury score, H098
+  frontier score, H057 alignment, H088 opposition, and H095 safe-cell score;
+- greedily select high benefit-toxicity gap cells under cumulative H102
+  bad-axis, H088-axis, H098 cell-equation, and H100 route-basis constraints.
+
+Observed result:
+
+- selected candidate: `h110_toxgap_kernel_release_c64_a085_7b02f196`;
+- generated root file: `submission_h110_toxgap_7b02f196_uploadsafe.csv`;
+- source candidates / families: `21` / `7`;
+- submitted cells / rows: `37` / `23`;
+- changed target cells: Q1 `5`, Q2 `0`, Q3 `14`, S1 `4`, S2 `6`,
+  S3 `4`, S4 `4`;
+- H098 cell-equation predicted delta vs H057: `-0.000037`;
+- route-basis predicted delta vs H057: `-0.001037`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.008961`;
+- cumulative good-minus-bad margin: `+0.066098`;
+- selected mean benefit: `0.918943`;
+- selected mean toxicity: `0.517838`;
+- selected mean benefit-toxicity gap: `0.401106`;
+- selected mean decoder-family count: `4.324324`;
+- H110/H108 active-cell overlap: `29` of `37`;
+- H110/H109 active-cell overlap: `1` of `37`;
+- upload-safe validation passed.
+
+Important diagnostic:
+
+H110 sits between H108 and H109.  It keeps H108's multi-decoder family support
+but applies a local toxicity-gap filter, producing `37` cells instead of H108's
+`47`.  It does not merely replay H109: only one H109 cell survives.  The
+selected field is therefore a kernel-release bet around H105/H106 support, not
+a coefficient micro-kernel bet.
+
+Public interpretation:
+
+- if H110 improves over H108, the missing HS-JEPA action decoder is
+  benefit-toxicity factorization before assignment;
+- if H108 beats H110, local toxicity scoring over-pruned useful decoder-family
+  agreement;
+- if H109 beats H110, the true public-safe action remains a tiny coefficient
+  kernel;
+- if all H108-H110 lose, H103-H109 are useful diagnostics but not an
+  action-grade public/private equation.
