@@ -18,6 +18,26 @@ submission_survival_score =
   + expected upside/downside ratio
 ```
 
+## 0.53 Big-Bet Submission Rule
+
+The active goal is no longer a `0.0001` H057-neighborhood improvement. The
+current frontier is `0.5677475939`, and target `0.53` needs `0.0377475939`
+more. That gap is too large for local alpha/top-k/damp tuning.
+
+A next submission is worth a scarce public slot only if it tests one of these
+large hidden-state claims:
+
+1. public/private hidden-state factorization;
+2. full HS-JEPA correction-field decoding;
+3. discrete row-target assignment;
+4. human-social state latent recovery;
+5. anti-shortcut state inversion.
+
+The expected public move should plausibly be `0.001` or larger if the claim is
+right. A smaller candidate can still be kept as a diagnostic file, but it is
+not a priority upload unless it is the materialization of one of the claims
+above.
+
 ## Current Public Frontier
 
 Current public frontier: `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv` with public LB `0.5677475939`.

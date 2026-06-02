@@ -4,6 +4,79 @@
 
 실험은 `Observe -> Wonder -> Hypothesize -> Falsify -> Build -> Stress -> Decide` 형식으로 기록한다. public LB는 최적화 대상이 아니라 hidden-DGP sensor로 사용한다.
 
+## Goal Reset. HS-JEPA v1 and 0.53 Breakthrough Track
+
+- Date: 2026-06-02
+- New architecture docs:
+  - `hs_jepa_architecture.md`
+  - `breakthrough_bets.md`
+  - `public_private_factorization.md`
+  - `human_state_hypotheses.md`
+- Current frontier:
+  `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv`,
+  public LB `0.5677475939`
+- Target: `0.53`
+- Required improvement from H057: `0.0377475939`
+
+### Observe
+
+H012 produced the first large move by treating public LB as a hidden-state
+sensor, not by ordinary model improvement. H057 later confirmed that the H042
+Q2-support rows can carry a full non-Q2 row-state vector. This is a real
+architecture signal, but H057-neighborhood refinements are too small for the
+new target: reaching `0.53` requires about `4.70` H012-sized breakthroughs.
+
+### Wonder
+
+Is the current bottleneck still local action selection around H057, or is the
+unresolved object the larger hidden data-generating state: public/private
+factorization, row-target assignment, action-health, and human-social context?
+
+### Hypothesis
+
+GoalReset-H: HS-JEPA must stop being a collection of successful sensors and
+become an explicit architecture:
+
+```text
+human/social/log context
+  -> hidden human-state representation
+  -> row-target route/action-health/public-private decoder
+  -> correction field
+```
+
+The next public-relevant experiments should be big bets that can move public by
+`0.001` or more if right. Pure top-k, alpha, damping, and smoothing around H057
+are no longer primary work unless they are part of a hidden-state bet.
+
+### Falsification Design
+
+The big-bet queue is:
+
+1. H069 public/private hidden-state factorization.
+2. H070 full HS-JEPA v1 correction-field model.
+3. H071 discrete row-target assignment solver.
+4. H072 human-social state engine.
+5. H073 anti-shortcut state inversion.
+
+Each experiment must kill or preserve a named world model. Submission files are
+to be interpreted as claims about data generation, not as small hoped-for LB
+improvements.
+
+### Result
+
+Architecture and bet registry documents were created. They define context
+views, target representations, decoder/loss structure, LeJEPA-style health
+checks, public/private decomposition, and the human-state hypothesis layer
+based on `hitl/human_state_route_hypotheses_1000.csv`.
+
+### Interpretation
+
+The active bottleneck is not "one more blend." It is translation from
+public-confirmed hidden states into private-safe, action-safe correction
+fields. H012/H057 prove that hidden state exists; they do not yet prove that we
+can separate public-only state from invariant human state. The next high-value
+work is H069/H070, not another local H057 sibling.
+
 ## H068. Action-Health Decoder HS-JEPA
 
 - Date: 2026-06-02

@@ -17,21 +17,26 @@ Current public frontier:
   scored `0.5677475939`. Since H057 froze Q2 and moved Q1/Q3/S1-S4 only on the
   `45` H042 Q2-support rows, this is direct evidence for a compact row-state
   latent rather than a broad non-Q2 route.
+- Active HS-JEPA/0.53 track:
+  - `hs_jepa_architecture.md`
+  - `breakthrough_bets.md`
+  - `public_private_factorization.md`
+  - `human_state_hypotheses.md`
 - Latest generated public-free diagnostic:
-  `submission_h061_h057feedback_support_69e9c079_uploadsafe.csv`. H061 adds
-  H057 feedback to the public-equation posterior and asks whether H057's `270`
-  non-Q2 support cells can be split into supported core and rollback tail. It
-  finds `265/270` cells still positive under the updated posterior, so the
-  internal cut story is weak and H057's support should mostly be preserved.
-- Latest generated high-risk sensor:
-  `submission_h064_contrastive_state_graph_d09a5363_uploadsafe.csv`. H064 asks
-  whether the H057 state can be propagated through a feature graph after using
-  H050's non-seed public-null route rows as hard negatives. It freezes Q2 and
-  moves full non-Q2 vectors on `36` rows, changing `216` cells versus H057. The
-  selected rows have zero H050-null overlap, `24/36` H062 overlap, and `29/36`
-  H063 overlap. This is the current contrastive HS-JEPA bet: a win means H050
-  failure was a useful negative boundary for row-state discovery; a loss means
-  the negative-anchor graph is too strict or H057 remains compact.
+  `submission_h068_action_health_3cb4f94c_uploadsafe.csv`. H068 asks whether
+  the post-H057 bottleneck is cell-level action health rather than row
+  membership. It uses `24` known public observations and `23` H057-relative
+  equations, fits an origin-constrained action-health decoder with LOO MAE /
+  p90 `0.000331247` / `0.000924782`, changes `700` cells on `174` rows, allows
+  `33` Q2 cells to move, and selects zero H050-null rows/cells. This is a
+  high-risk sensor, not a safe refine: a public win would make action-health a
+  core HS-JEPA target, while a loss would push the architecture back toward
+  row-responsibility or sequence-state decoding.
+- Previous generated high-risk sensor:
+  `submission_h067_rowresp_public_state_b10ea6b8_uploadsafe.csv`. H067 asks
+  whether H057 should be read as a public-responsibility weighted row-state. It
+  freezes Q2 and changes `336` non-Q2 cells on `78` rows: `12` H057 seed rows
+  plus `66` high-responsibility expansion rows.
 - Previous generated high-risk sensor:
   `submission_h063_humancontext_seed_2c748a8e_uploadsafe.csv`. H063 asks
   whether the H057 full-vector row-state can be rediscovered from label-free
@@ -48,14 +53,15 @@ Current public frontier:
   still the cleaner posterior-gain expansion control: a win means H057 was a
   seed set, not a closed correction; a loss means the validated H057 state is
   compact/public-specific.
-- External reference note: the attached high-scoring `submission_v106_sleep_state_conditioned_memory.csv` document reports public LB `0.5703952266` from same-subject sleep-state/sensor-quality-conditioned memory. That supports the broader repeated-subject world model, but H042 is lower by `0.0024904018`.
+- External reference note: the attached high-scoring `submission_v106_sleep_state_conditioned_memory.csv` document reports public LB `0.5703952266` from same-subject sleep-state/sensor-quality-conditioned memory. That supports the broader repeated-subject world model, but H057 is lower by `0.0026476327`.
 
 Current post-H012 status:
 
 - H057 full-vector row-state translation is the active public frontier. H042 is
   still the public-confirmed Q2 row anchor, and H012 remains the base
   public-equation anchor.
-- H043, H045, H047, H048, H049, H050, H051, and H052 are the current high-information post-H042 sensors:
+- H043, H045, H047, H048, H049, H050, H051, and H052 are historical
+  high-information post-H042 sensors, not current upload priorities:
   - H043 tests whether the Q2 phase branch can expand from `45` to `105`
     cells;
   - H045 tests whether human-state route context can prune that expansion to a
