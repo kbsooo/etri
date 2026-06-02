@@ -1844,3 +1844,59 @@ Failure interpretation:
 - H120 improves more: high-sensor rows need a more aggressive replacement rule;
 - all lose: the row-sensor partition is a diagnostic but still not the hidden
   private-safe assignment variable.
+
+## H122 Subtractive Action-Safety Factorization
+
+H122 tests whether H121's row-regime improvement came from replacement or from
+deletion.  The result favors a subtractive interpretation:
+
+```text
+H118 forbidden-veto assignment
+  -> H085/H120 row/context sensor
+  -> identify public-toxic objective Q/S stage actions
+  -> remove unsafe row-target cells
+  -> submit sparse residual assignment
+```
+
+Observed H122 factorization:
+
+- selected file: `submission_h122_pruneeq_0a9edcce_uploadsafe.csv`;
+- selected candidate: `h122_prune_stage_public_toxic_0a9edcce`;
+- remaining selected cells / rows: `24` / `19`;
+- removed H118 cells / rows: `28` / `22`;
+- removed targets: S4 `8`, S3 `8`, S2 `7`, Q3 `3`, S1 `2`;
+- Q2 cells: `0`;
+- route-basis predicted delta vs H057: `-0.0006052`;
+- model predicted delta vs H057: `-0.0000287`;
+- bad-axis positive projection: `0.000000`;
+- H088-axis cosine: `-0.066158`;
+- good-bad margin: `0.125854`;
+- residual toxicity / safety / gap:
+  `0.412932` / `0.674085` / `0.261153`.
+
+Interpretation:
+
+H122 suggests that the public/private hidden state is not just a selector among
+multiple action heads.  It also acts as an equation over existing actions:
+
+```text
+some locally plausible row-target corrections become toxic only after the
+public/private observation equation sees the full action vector.
+```
+
+The action decoder should therefore run in two phases:
+
+1. prune public-toxic actions from a candidate field;
+2. only then consider whether missing cells need replacement.
+
+Failure interpretation:
+
+- H122 improves: public/private safety is primarily a toxicity-pruning
+  equation, and HS-JEPA should separate representation, proposal, prune, and
+  optional replacement stages;
+- H121 improves more: pruning alone is insufficient and high-sensor rows need
+  positive replacement actions;
+- H118 improves more: the apparent toxic stage sector was a local diagnostic
+  artifact;
+- all lose: the current row-target action proposal family is not the real
+  public/private assignment field.

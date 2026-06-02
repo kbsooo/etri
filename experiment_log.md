@@ -11805,3 +11805,76 @@ Public interpretation:
   actions;
 - if H120 improves more, high-sensor stage bridge should replace more of H118;
 - if all lose, row-sensor partitioning is diagnostic but not action-grade.
+
+## H122 Action-Prune Equation Solver HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h122_action_prune_equation_solver_hsjepa/h122_report.md`
+- `hitl/h122_action_prune_equation_solver_hsjepa/h122_decision.csv`
+- `hitl/h122_action_prune_equation_solver_hsjepa/h122_selected_cells.csv`
+- `hitl/h122_action_prune_equation_solver_hsjepa/h122_removed_cells.csv`
+- `submission_h122_pruneeq_0a9edcce_uploadsafe.csv`
+
+Worldview:
+
+```text
+H121 may have improved not because high-sensor rows need H120 replacement,
+but because H118 contains objective Q/S stage cells that are public-toxic.
+The safe assignment field is therefore subtractive: remove toxic H118 actions
+before asking whether a replacement action is needed.
+```
+
+Observed result:
+
+- promoted candidate: `h122_prune_stage_public_toxic_0a9edcce`;
+- root file: `submission_h122_pruneeq_0a9edcce_uploadsafe.csv`;
+- remaining selected cells / rows: `24` / `19`;
+- removed H118 cells / rows: `28` / `22`;
+- removed targets: S4 `8`, S3 `8`, S2 `7`, Q3 `3`, S1 `2`;
+- final target changes: Q1 `8`, Q2 `0`, Q3 `4`, S1 `6`, S2 `4`,
+  S3 `0`, S4 `2`;
+- model predicted delta vs H057: `-0.0000287`;
+- route-basis predicted delta vs H057: `-0.0006052`;
+- H118 curvature marginal vs zero: `0.0000413`;
+- H088-axis cosine: `-0.066158`;
+- good-bad margin: `0.125854`;
+- residual toxicity / safety / gap:
+  `0.412932` / `0.674085` / `0.261153`;
+- upload-safe validation passed.
+
+Comparison:
+
+Relative to H121, H122 uses fewer actions (`44 -> 24` cells), improves the
+route-basis sensor (`-0.000580 -> -0.000605`), moves farther from the H088
+toxic axis (`-0.039209 -> -0.066158`), and improves good-bad margin
+(`0.113396 -> 0.125854`).  It gives back some H098/model delta
+(`-0.0000378 -> -0.0000287`), so it is a cleaner toxicity-equation test rather
+than a universally dominant local model candidate.
+
+Important diagnostic:
+
+H122 changes the interpretation of H121.  H085/H120 remain useful, but the
+first-order action-grade operation may be:
+
+```text
+H085/H120 row sensor -> identify toxic H118 action sector -> delete unsafe
+row-target actions -> keep only the sparse residual assignment
+```
+
+The surprising part is that the selected branch did not need to add H120
+replacement cells.  The best local equation was a subtraction-only solver over
+objective Q/S stage cells.
+
+Public interpretation:
+
+- if H122 improves over H121/H118, HS-JEPA's action decoder should become a
+  toxic-action pruning equation before any replacement/generation stage;
+- if H121 improves more, high-sensor rows still need replacement actions after
+  toxic H118 cells are removed;
+- if H118 improves more, the pruning equation overfit local public-response
+  stress axes and removed useful H118 cells;
+- if all lose, the H118/H120/H121/H122 family is diagnostic but not yet the
+  real public-private assignment field.

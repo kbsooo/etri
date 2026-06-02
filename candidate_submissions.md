@@ -8445,3 +8445,53 @@ Public interpretation:
 - H118 wins more: H085 partition removed useful H118 actions;
 - H120 wins more: high-sensor rows need more aggressive stage replacement;
 - all lose: current row-sensor partition is still only diagnostic.
+
+## H122 Action-Prune Equation Solver
+
+Generated file:
+
+`submission_h122_pruneeq_0a9edcce_uploadsafe.csv`
+
+Worldview: H121's strongest clue may not be "replace high-sensor rows with
+H120".  It may be "H118 contains public-toxic objective Q/S stage actions, and
+the safe row-target assignment is the sparse residue after pruning them."  H085
+and H120 are therefore sensors for toxicity, not necessarily replacement action
+generators.
+
+Evidence:
+
+- selected candidate: `h122_prune_stage_public_toxic_0a9edcce`;
+- remaining selected cells / rows: `24` / `19`;
+- removed H118 cells / rows: `28` / `22`;
+- removed target mix: S4 `8`, S3 `8`, S2 `7`, Q3 `3`, S1 `2`;
+- final target route: Q1 `8`, Q2 `0`, Q3 `4`, S1 `6`, S2 `4`,
+  S3 `0`, S4 `2`;
+- model predicted delta vs H057: `-0.0000287`;
+- route-basis predicted delta vs H057: `-0.0006052`;
+- H088-axis cosine: `-0.066158`;
+- good-bad margin: `0.125854`;
+- residual toxicity / safety / gap:
+  `0.412932` / `0.674085` / `0.261153`;
+- upload-safe: `True`.
+
+Submission priority:
+
+Very high information value.  This is a more falsifiable claim than H121:
+public-safe assignment may be subtractive, not generative.  It is not simply a
+blend or a parameter tweak; it changes the action decoder from
+"choose replacement branch" to "delete toxic row-target actions first".
+
+Practical priority:
+
+High, but not risk-free.  H122 is locally stronger than H121 on route-basis,
+H088-axis, and good-bad margin, but slightly weaker on the H098/model sensor.
+That means it is an excellent sensor submission for deciding whether action
+toxicity is the real bottleneck.
+
+Public interpretation:
+
+- win over H121/H118: promote HS-JEPA v5.5 as action-prune equation solver;
+- H121 wins more: replacement after row-sensor partition is still necessary;
+- H118 wins more: subtractive pruning removed useful H118 action;
+- all lose: current H118-derived action field is not the hidden public-safe
+  assignment field.

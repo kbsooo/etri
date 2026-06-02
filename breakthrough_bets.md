@@ -1776,3 +1776,42 @@ Decision rule:
 - H120 wins more: high-sensor rows should dominate more aggressively;
 - all three lose: the H085 row sensor is a coherent local diagnostic but not a
   public-safe assignment variable.
+
+### H122 Update
+
+H122 asks whether H121's improvement is caused by adding H120 replacement cells
+or by deleting public-toxic H118 cells.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H122 | `submission_h122_pruneeq_0a9edcce_uploadsafe.csv` | safe assignment is the sparse residue after pruning public-toxic objective Q/S stage actions from H118 | `24` remaining cells / `19` rows; `28` H118 cells removed | route-basis delta `-0.000605`, model delta `-0.000029`, H088 cosine `-0.066158`, good-bad margin `0.125854` | subtractive action-equation bet |
+
+Breakthrough reading:
+
+```text
+The next 0.53-scale object may not be a better hidden-state encoder or a
+replacement branch. It may be an action-toxicity equation that knows which
+locally plausible row-target corrections must be deleted before public/private
+observation.
+```
+
+Updated high-information submission order:
+
+1. `submission_h122_pruneeq_0a9edcce_uploadsafe.csv`
+   - tests subtractive action-toxicity pruning.
+
+2. `submission_h121_rowsensorpart_d03abb5b_uploadsafe.csv`
+   - tests row-sensor partition with replacement.
+
+3. `submission_h118_forbiddenveto_e81167a8_uploadsafe.csv`
+   - tests the unpruned forbidden-sector action field.
+
+Decision rule:
+
+- H122 wins: promote HS-JEPA v5.5, where action safety starts with pruning
+  public-toxic row-target cells before replacement/generation;
+- H121 wins more: pruning must be followed by positive replacement in
+  high-sensor rows;
+- H118 wins more: pruning overfit stress axes and deleted useful cells;
+- all lose: H118-derived action support is a diagnostic family, not the hidden
+  assignment field.

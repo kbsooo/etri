@@ -2158,3 +2158,58 @@ Infer the row regime.
 Select the action solver for that regime.
 Materialize only actions that survive the public/private toxicity equation.
 ```
+
+## HS-JEPA v5.5: Action-Prune Equation Solver
+
+H122 refines v5.4.  The row-regime branch is useful, but the first action-grade
+operation may be deletion rather than replacement.
+
+```text
+context encoder
+  -> hidden human/public state representations
+  -> row/action toxicity sensor
+  -> generate candidate action field
+       H118 forbidden-veto residual assignment
+  -> prune public-toxic row-target actions
+       objective Q/S stage toxicity sector
+  -> optional replacement branch
+       only if pruning leaves missing safe support
+  -> public/private stress equation
+  -> sparse row-target action
+```
+
+The architecture claim is:
+
+```text
+HS-JEPA should predict not only a hidden state and an action proposal, but also
+an action-toxicity field that can veto locally plausible corrections.
+```
+
+H122 evidence:
+
+- candidate: `submission_h122_pruneeq_0a9edcce_uploadsafe.csv`;
+- selected solver: `h122_prune_stage_public_toxic_0a9edcce`;
+- remaining cells / rows: `24` / `19`;
+- removed H118 cells / rows: `28` / `22`;
+- removed target sector: S4 `8`, S3 `8`, S2 `7`, Q3 `3`, S1 `2`;
+- route-basis predicted delta vs H057: `-0.0006052`;
+- model predicted delta vs H057: `-0.0000287`;
+- H088-axis cosine: `-0.066158`;
+- good-bad margin: `0.125854`.
+
+Compared with v5.4 H121, v5.5 is sparser and more anti-toxic.  It improves the
+route-basis equation, H088-axis stress, and good-bad margin, while accepting a
+slightly weaker H098/model delta.  That tradeoff makes it a clean test of
+whether public LB is punishing action toxicity more than missing replacement
+signal.
+
+The current HS-JEPA stack is therefore:
+
+```text
+context -> hidden human state
+        -> row/action sensor
+        -> proposal field
+        -> toxicity-prune equation
+        -> optional replacement
+        -> calibrated submission
+```
