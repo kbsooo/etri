@@ -71,6 +71,7 @@ HS-JEPA currently has these target representations:
 | Private-safe invariant `z_private` | H069 factorized public/invariant/shortcut scores | Implemented, weak standalone upside |
 | Joint correction-field latent `z_hsjepa` | H070 masked-view decoder predicts public/private/action representations | Implemented v1, not yet 0.001-grade |
 | Discrete route assignment `z_assignment` | H071 assigns row-target route templates before materializing cells | Implemented, first near-0.001 big bet |
+| Human-social route prior `z_human_social` | H072 maps 1000 stories to route priors and E268 row-family latents | Implemented as sensor; action-health useful, route proof failed null |
 
 ## Objective
 
@@ -203,6 +204,54 @@ is not yet proof. Its role is to test whether assignment is the missing
 decoder. A win means HS-JEPA should be written as context-to-state-to-route
 prediction. A bad loss means the current route dictionary or action-health
 translation is not valid, even if representation prediction remains useful.
+
+## H072 Human-Social State Engine
+
+H072 adds the first explicit human-social route-prior layer:
+
+```text
+1000 human stories + E268 story features
+  -> story-family row latents
+  -> route-template support
+  -> H071 assignment candidate rescoring
+  -> correction field toward H061 q061
+```
+
+This layer preserves the main HS-JEPA rule: stories do not directly push labels.
+They only decide whether a row is eligible for a route such as `full_state`,
+`q3_s_stage`, `q_subjective`, `s_stage`, or `recovery_route`.
+
+Key diagnostics:
+
+- promoted file:
+  `submission_h072_humansocial_route_bae1edae_uploadsafe.csv`;
+- changed cells / rows: `704` / `148`;
+- route mix: `full_state:117`, `q3_s_stage:25`, plus small other routes;
+- public-action predicted delta versus H057: `-0.000922`;
+- responsibility-weighted delta versus H057: `-0.000935`;
+- no positive bad-anchor cosine.
+
+The important LeJEPA-style finding is negative: subject-preserving null
+permutation did not validate story priors as H071-route rediscovery. Mean
+H071-route support was `0.776796` real versus `0.783463` null. Therefore H072
+is not paper-grade proof that human stories solve route assignment.
+
+What it does prove is more specific: human-social families are not useless.
+Bedtime arousal, cashflow stress, nocturnal awake, and bad-night aftereffect
+showed strong row-level AUC against H068 action-health rows (`~0.697-0.720`).
+So the next architecture version should route:
+
+```text
+C_human -> z_action_health / z_shortcut
+```
+
+before routing:
+
+```text
+z_action_health -> z_assignment
+```
+
+Direct `C_human -> z_assignment` is currently too weak.
 
 ## What Would Prove HS-JEPA
 

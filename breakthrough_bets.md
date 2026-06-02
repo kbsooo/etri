@@ -253,6 +253,36 @@ Build H072:
 - direct story rules beat latent version locally but fail controls;
 - all high-priority stories collapse into the same row mask.
 
+### H072 Update
+
+H072 was built and generated
+`submission_h072_humansocial_route_bae1edae_uploadsafe.csv`.
+
+Result:
+
+- promoted candidate:
+  `h072_fullvector_social_state_outside_h069_c980_r220_q290_bae1edae`;
+- changed cells / rows versus H057: `704` / `148`;
+- cells outside H070 / H069: `383` / `613`;
+- selected routes outside H071 promoted route set: `97/148`;
+- Q2 changed cells: `75`;
+- route mix: `full_state:117`, `q3_s_stage:25`, `nonq2_full:3`,
+  `q_subjective:2`, `s_stage:1`;
+- human family mix: `routine_pressure:66`, `weekend_rhythm:45`,
+  `social_load:19`, `bedtime_arousal:10`, `badnight_aftereffect:8`;
+- public-action predicted delta versus H057: `-0.000922`;
+- responsibility-weighted delta versus H057: `-0.000935`;
+- bad-anchor positive cosine: `0.0`.
+
+The architecture caveat is decisive: subject-preserving null stress did not
+show that story-family route support rediscovered H071 routes. Mean H071-route
+support was `0.776796` real versus `0.783463` null, z `-1.326523`, p
+`0.903333`. H072 therefore keeps Bet 4 alive only in a narrower form:
+human-social stories look useful as action-health/context views, but direct
+story-to-route assignment is not yet validated. The next large follow-up should
+either move story families upstream into action-health prediction or invert
+known bad story/route shortcuts, not merely strengthen the same route prior.
+
 ## Bet 5: Anti-Shortcut State Inversion
 
 ### Hypothesis

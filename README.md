@@ -34,6 +34,19 @@ Current public frontier:
   close to the `0.001` big-bet gate. A public win would make exact row-target
   assignment the main HS-JEPA decoder; a loss would say the current route
   templates or action-health translation are wrong, not merely under-tuned.
+- Latest generated human-social state engine sensor:
+  `submission_h072_humansocial_route_bae1edae_uploadsafe.csv`. H072 converts
+  the `1000` human-state hypotheses into story-family latents and uses them as
+  route priors over H071 assignments, not as direct label rules. The promoted
+  file changes `704` cells on `148` rows, with `613` cells outside H069 and
+  `97/148` selected routes outside the H071 promoted route set. It has
+  public-action predicted delta `-0.000922`, posterior delta `-0.000696`,
+  responsibility-weighted delta `-0.000935`, and no positive bad-anchor cosine.
+  The important caveat is that subject-preserving null stress did not validate
+  story priors as H071 route rediscovery: H071-route support real/null was
+  `0.776796/0.783463` with z `-1.326523`. Interpretation: human-social stories
+  are useful action-health context candidates, but H072 is a sensor, not yet
+  paper-grade proof that story latents solve route assignment.
 - Latest generated full HS-JEPA diagnostic:
   `submission_h070_full_hsjepa_9e4a9602_uploadsafe.csv`. H070 is the first
   joint HS-JEPA correction-field decoder. It predicts public/private/action

@@ -61,6 +61,30 @@ by `~0.001` makes assignment the main route. A bad loss kills the present route
 templates/action-health translator and pushes the next big bet to H072
 human-social state recovery or H073 anti-shortcut inversion.
 
+Current generated human-social state sensor:
+`submission_h072_humansocial_route_bae1edae_uploadsafe.csv`.
+
+Reason: H072 is the first candidate that uses the `1000` human-state stories as
+row-level latent families and then routes H071-style assignments through those
+families. It is not a direct story rule. The promoted file changes `704` cells
+on `148` rows, including `75` Q2 cells, with `613` cells outside H069 and
+`97/148` selected routes outside the H071 promoted route set. Public-action
+predicted delta versus H057 is `-0.000922`, posterior delta is `-0.000696`, and
+responsibility-weighted delta is `-0.000935`; no tracked bad-anchor cosine is
+positive. The route mix is heavily full-vector social/routine state:
+`full_state:117`, `q3_s_stage:25`, plus small non-Q2/Q-subjective/S-stage
+routes.
+
+Risk: H072 did not pass the strict story-prior route-null test. H071-route
+support was weaker than subject-preserving row permutations
+(`0.776796` real vs `0.783463` null, z `-1.326523`, p `0.903333`). So H072 is
+not the cleanest proof of HS-JEPA human-story route recovery. Submit it only if
+the next public slot is meant to test a large human-social full-vector state
+claim. If it wins, the null stress was too conservative and human-social route
+priors become action-grade. If it loses, use the result to demote direct
+story-to-route assignment and move stories upstream into action-health
+prediction.
+
 Current generated full HS-JEPA diagnostic: `submission_h070_full_hsjepa_9e4a9602_uploadsafe.csv`.
 
 Reason: H070 is the first full HS-JEPA v1 joint decoder. It does not select

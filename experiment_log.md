@@ -326,6 +326,96 @@ decoder. If it is neutral, smooth latent and route assignment are both below the
 required scale. If it loses badly, the current route templates/action-health
 translation are wrong even though H070 representation prediction is real.
 
+## H072. Human-Social State Engine HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h072_human_social_state_engine_jepa.py`
+- Report: `hitl/h072_human_social_state_engine_jepa/h072_report.md`
+- Generated submission:
+  `submission_h072_humansocial_route_bae1edae_uploadsafe.csv`
+
+### Observe
+
+H071 made the decoder discrete, but its route templates were still mostly
+engineered from action-health and target structure. The `1000` human-state
+hypotheses contain richer stories: bad-night aftereffect, nocturnal awake
+trace, bedtime/social arousal, routine pressure, weekend rhythm, recovery,
+cashflow stress, body fatigue, and measurement confidence. The risk is that
+these stories are plausible but not action-grade.
+
+### Wonder
+
+Can human-social stories become a route prior that recovers or extends
+H057/H068/H071 hidden states, without becoming a direct hand-written label
+rule?
+
+### Hypothesis
+
+H072-H: story text should be encoded as row-level human-state family latents,
+then used to choose row-target route templates:
+
+```text
+human/social context -> story-family latent -> route prior
+                     -> H071 row-target assignment -> correction field
+```
+
+If this is right, story-family route support should rediscover H071 selected
+routes above subject-preserving row-permutation nulls, and materialized
+candidates should keep action-health and bad-anchor diagnostics clean.
+
+### Falsification Design
+
+H072 compresses the 1000 hypotheses into route priors and builds row-level
+family scores from E268 human/social story features. It then rescored H071
+route candidates by `human_route_support`, generated story-family route
+submissions, and ran `300` subject-preserving null permutations.
+
+### Result
+
+Promoted sensor candidate:
+`h072_fullvector_social_state_outside_h069_c980_r220_q290_bae1edae`.
+
+- changed cells / rows vs H057: `704` / `148`;
+- selected route count: `148`;
+- selected routes outside H071 promoted route set: `97`;
+- cells outside H070 / H069: `383` / `613`;
+- Q2 changed vs H057: `75`;
+- route mix: `full_state:117`, `q3_s_stage:25`, `nonq2_full:3`,
+  `q_subjective:2`, `s_stage:1`;
+- human family mix: `routine_pressure:66`, `weekend_rhythm:45`,
+  `social_load:19`, `bedtime_arousal:10`, `badnight_aftereffect:8`;
+- public-action predicted delta vs H057: `-0.000922`;
+- posterior delta vs H057: `-0.000696`;
+- responsibility-weighted delta vs H057: `-0.000935`;
+- bad-anchor positive cosine: `0.0`;
+- upload validation passed.
+
+Null stress did not support the strong architecture claim:
+
+- H071-route support real/null mean: `0.776796` / `0.783463`;
+- z versus null: `-1.326523`;
+- p(null >= real): `0.903333`;
+- H071-route AUC real/null mean: `0.769787` / `0.777508`;
+- AUC z versus null: `-2.447290`.
+
+Story-family row diagnostics were mixed. Bedtime arousal, cashflow stress,
+nocturnal awake, and bad-night aftereffect had strong AUC against H068
+action-health rows (`~0.697-0.720`), but they did not recover H071 selected
+rows. Weekend rhythm had the best H071 row AUC (`0.572303`), still too weak for
+route assignment proof.
+
+### Interpretation
+
+H072 is a useful negative-positive split. It keeps the human-social layer alive
+as action-health context because several story families recover H068 rows well.
+But it weakens the stronger claim that story priors can directly solve H071
+route assignment. The generated submission is therefore a high-information
+sensor, not a paper-grade HS-JEPA proof yet. A public win would mean the null
+stress was too conservative and full-vector social/routine state is action
+grade. A public loss would push the next big bet toward H073 anti-shortcut
+state inversion or a two-stage model where stories predict action health first,
+not route templates.
+
 ## H068. Action-Health Decoder HS-JEPA
 
 - Date: 2026-06-02

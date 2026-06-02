@@ -82,6 +82,7 @@ Where:
 | Action-health field | H068 pending | Promising but high-risk |
 | Shortcut state | H010, E216, E323, bad JEPA, H050-null | Strong negatives |
 | Private-safe state | Needed for 0.53 | Not solved |
+| Human-social state | H072 story families recover H068 rows but not H071 routes | Context/action-health layer, not direct route layer |
 
 ## H069 Result
 
@@ -132,6 +133,32 @@ Interpretation: H069's public/private/shortcut scores are useful as energy
 terms, but if H071 wins, the factorization layer should be subordinated to a
 route-assignment decoder. If H071 loses badly, the H069 factors may be
 descriptive but not action-grade outside the strict H069 support.
+
+## H072 Human-Social Factor Use
+
+H072 tested whether human-social story families can act as a direct route prior
+for H071 assignments. The answer is currently mixed:
+
+- positive: bedtime arousal, cashflow stress, nocturnal awake, and bad-night
+  aftereffect recover H068 action-health rows with AUC around `0.697-0.720`;
+- negative: story-family route support does not rediscover H071 routes above
+  subject-preserving nulls (`0.776796` real vs `0.783463` null, z
+  `-1.326523`).
+
+This narrows the factorization:
+
+```text
+human-social state -> action-health / shortcut risk -> assignment
+```
+
+is more defensible than:
+
+```text
+human-social state -> assignment
+```
+
+The next private-safe route should therefore use stories as an intermediate
+health/shortcut view, not as a direct public/private row-route separator.
 
 ## H069 Candidate Design
 

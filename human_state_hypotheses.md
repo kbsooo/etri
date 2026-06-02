@@ -258,3 +258,74 @@ H072 should not create another direct story submission. It should produce:
 
 Success requires a story family to explain an already public-confirmed latent
 state. A nice story with no latent recovery is not evidence.
+
+## H072 Result
+
+H072 was implemented as `hitl/h072_human_social_state_engine_jepa.py`.
+
+Generated artifacts:
+
+- `hitl/h072_human_social_state_engine_jepa/h072_story_family_features.csv`
+- `hitl/h072_human_social_state_engine_jepa/h072_hypothesis_family_routes.csv`
+- `hitl/h072_human_social_state_engine_jepa/h072_story_route_preferences.csv`
+- `hitl/h072_human_social_state_engine_jepa/h072_story_route_diagnostics.csv`
+- `hitl/h072_human_social_state_engine_jepa/h072_story_family_null_stress.csv`
+- `hitl/h072_human_social_state_engine_jepa/h072_candidate_scores.csv`
+- `submission_h072_humansocial_route_bae1edae_uploadsafe.csv`
+
+The promoted file is a sensor, not a clean architecture proof:
+
+| Item | Value |
+| --- | ---: |
+| Changed cells vs H057 | 704 |
+| Changed rows vs H057 | 148 |
+| Cells outside H069 | 613 |
+| Routes outside H071 promoted set | 97 |
+| Q2 changed cells | 75 |
+| Public-action predicted delta vs H057 | -0.000922 |
+| Responsibility-weighted delta vs H057 | -0.000935 |
+| Bad-anchor positive cosine | 0.0 |
+
+Route/family anatomy:
+
+- route mix: `full_state:117`, `q3_s_stage:25`, `nonq2_full:3`,
+  `q_subjective:2`, `s_stage:1`;
+- family mix: `routine_pressure:66`, `weekend_rhythm:45`,
+  `social_load:19`, `bedtime_arousal:10`, `badnight_aftereffect:8`.
+
+### What Survived
+
+Story families do recover action-health-like rows:
+
+| Family | H068 row AUC |
+| --- | ---: |
+| bedtime_arousal | 0.719577 |
+| cashflow_stress | 0.715461 |
+| nocturnal_awake | 0.713110 |
+| badnight_aftereffect | 0.697237 |
+
+This supports the weaker but useful hypothesis:
+
+```text
+human story -> action-health / calibration-risk context
+```
+
+### What Failed
+
+Story-family route support did not beat subject-preserving nulls for H071
+route rediscovery:
+
+| Metric | Real | Null mean | z | p(null >= real) |
+| --- | ---: | ---: | ---: | ---: |
+| mean H071-route support | 0.776796 | 0.783463 | -1.326523 | 0.903333 |
+| H071-route AUC | 0.769787 | 0.777508 | -2.447290 | 0.986667 |
+
+So the stronger route is weakened:
+
+```text
+human story -> route assignment
+```
+
+The next human-state experiment should not just add more stories. It should
+make stories predict `z_action_health` or `z_shortcut` first, then let a
+separate assignment decoder write row-target routes.
