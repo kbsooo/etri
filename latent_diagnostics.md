@@ -4,6 +4,37 @@
 
 이 문서는 I-JEPA/LeJEPA 아이디어를 그대로 복제하지 않고, 이 대회 데이터의 hidden-DGP 탐색에 맞춰 변형한 latent diagnostic 기록이다.
 
+## H065 State-Transition Phase Diagnostic
+
+H065 treats H057's seed-neighbor rows as transition phases. The context is the
+H064 contrastive state graph plus H062/H063 expansion agreement; the target
+representation is a phase-specific non-Q2 route learned from q061 gains.
+
+- Seed rows: `45`.
+- Candidate rows outside seed/null: `139`.
+- Near transition rows: `87`.
+- Promoted rows: `24`.
+- Changed cells vs H057: `96`, all non-Q2.
+- Q2 changed vs H057: `0`.
+- H050-null rows selected: `0`.
+- H062/H063/H064 overlap: `14/24` / `21/24` / `24/24`.
+- H061 posterior delta vs H057: `-0.000111158`.
+- Promoted file:
+  `submission_h065_state_transition_phase_75d5575d_uploadsafe.csv`.
+
+Phase route health:
+
+- Pre-phase top-4 route: `Q3`, `S4`, `S2`, `S3`.
+- Post-phase top-4 route: `S4`, `S2`, `S3`, `Q1`.
+- Phase balance: `10` pre rows and `14` post rows.
+- Episode-near rate: `1.000000000`.
+- Mean promoted H065/H064 row score: `0.985963333` / `0.662616702`.
+
+Interpretation: H065 adds a JEPA-style target decoder on top of the state graph.
+It does not ask "which nearby rows copy H057?" but "which hidden transition
+phase predicts which target representation?" A win would make directional
+state-transition routing a core HS-JEPA component.
+
 ## H064 Contrastive State-Graph Diagnostic
 
 H064 adds LeJEPA-style negative geometry to H063. H057 rows are positive state

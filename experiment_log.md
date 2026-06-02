@@ -4,6 +4,38 @@
 
 실험은 `Observe -> Wonder -> Hypothesize -> Falsify -> Build -> Stress -> Decide` 형식으로 기록한다. public LB는 최적화 대상이 아니라 hidden-DGP sensor로 사용한다.
 
+## H065. State-Transition Phase HS-JEPA
+
+- Observe: H057 public `0.5677475939` validates a compact `45`-row
+  full-vector state, and H064 finds a sharper contrastive boundary around that
+  state. But H062/H063/H064 still treat nearby rows mostly as copies of the
+  same full-vector state.
+- Wonder: are same-subject rows near H057 seeds copies of the seed state, or
+  transition phases before/after that need different target routes?
+- Hypothesis: if seed-neighbor rows are transition phases, pre rows and post
+  rows should prefer different non-Q2 target routes while Q2 stays frozen.
+- Method: `hitl/h065_state_transition_phase_jepa.py` combined H064 row scores,
+  H062/H063 expansion agreement, distance to H057 seed rows, and H061 q061
+  posterior gains. It learned separate pre/post target weights from near
+  non-seed rows and generated phase-specific top-4 target movements.
+- Result: promoted
+  `submission_h065_state_transition_phase_75d5575d_uploadsafe.csv`. It changes
+  `96` non-Q2 cells on `24` seed-near rows, freezes Q2, selects `0` H050-null
+  rows, covers all `10` subjects, has posterior delta `-0.000111158` versus
+  H057, and passes upload validation. Selected-row overlaps with H062/H063/H064
+  are `14/24`, `21/24`, and `24/24`.
+- Latent diagnostic: pre-phase top-4 route is `Q3/S4/S2/S3`, while post-phase
+  top-4 route is `S4/S2/S3/Q1`. This rejects all-target neighbor copying as the
+  chosen H065 action.
+- Interpretation: H065 is a sharper HS-JEPA transition decoder. A public win
+  means broad episode-copy was the wrong abstraction and the validated H057
+  state has directional pre/post phases. A public loss, if H062-H064 improve,
+  says the phase route is too sparse or incorrectly learned. If all fail, H057
+  remains compact/public-specific.
+- Decision: promote as the next high-information HITL sensor after H064 if the
+  user wants to test state-transition routing rather than another row-state
+  expansion.
+
 ## H064. Contrastive State-Graph HS-JEPA
 
 - Observe: H057 public `0.5677475939` validates the compact `45`-row

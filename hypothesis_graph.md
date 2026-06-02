@@ -33,6 +33,7 @@ E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해
 - H062는 H057의 `45` rows를 larger hidden human-state class의 seed로 보고, Q2를 freeze한 채 `48` new rows의 full non-Q2 vector를 움직이는 posterior-gain 확장 센서다.
 - H063은 같은 seed-state 확장을 label-free human/social/lifestyle/raw context로 시도한다. E268 story와 deep raw view만 seed-cohesion stress에서 살아남았고, 선택 후보는 Q2를 freeze한 채 `72` new rows / `432` non-Q2 cells를 움직인다. 현재 가장 직접적인 nearest-context HS-JEPA architecture sensor다.
 - H064는 H050의 public-null non-seed route rows를 hard negative로 사용해 H057 state boundary를 contrastive graph로 찾는다. 선택 후보는 Q2를 freeze한 채 `36` rows / `216` non-Q2 cells를 움직이고, H050-null overlap은 `0`, H062/H063 overlap은 `24/36` / `29/36`이다. H063보다 더 좁고 해석 가능한 state-boundary sensor다.
+- H065는 H057/H064 주변 row를 같은 state copy로 보지 않고 seed 전/후 transition phase로 본다. 선택 후보는 Q2를 freeze한 채 `24` rows / `96` non-Q2 cells만 움직이고, pre route는 `Q3/S4/S2/S3`, post route는 `S4/S2/S3/Q1`이다. H064 selected row와는 `24/24` 겹치지만 target route를 좁혀서, broad episode-copy가 아니라 directional state-transition decoder를 검증한다.
 - H060은 그 H057 support가 균일한 하나의 state인지, route-core와 marker-only row가 섞인 이질 support인지를 가르는 센서다. H060은 top `8` route-core row를 amplify하고 bottom `22` marker row를 rollback하며, Q2는 freeze한다.
 - 0.54 진입을 막는 핵심 병목은 이제 hidden state 발견 자체보다, H012 같은 singular public-equation basin의 정확한 row-target identity를 private-safe/invariant hidden state로 재구성하고 그 exact phase를 확장 가능한 action law로 번역하는 문제다. 단순 posterior-completion, scalar gate, train-action health, smooth public-gradient, target-level calibration, dense phase sweep, first-order cellwise phase-lock edit, first-order row-route top-k edit은 현재 반증되었지만, target-isolated tiny Q2 phase branch는 아직 살아 있다.
 
@@ -83,6 +84,10 @@ H042/H057 Q2-row support
   -> uses H050-null route rows as hard negatives
   -> if public-positive: HS-JEPA needs positive/null state boundary learning
   -> if public-negative while H063-positive: hard negative boundary too strict
+  -> H065 state-transition phase route
+  -> uses H064 boundary but predicts pre/post target routes instead of copying state
+  -> if public-positive: HS-JEPA needs directional transition decoder
+  -> if public-negative while H064-positive: phase route is too sparse/wrong
   -> H060 route-core split
   -> if public-positive: hidden state needs route-core classifier
   -> if public-negative: uniform H057 full-vector state is stronger than rank split

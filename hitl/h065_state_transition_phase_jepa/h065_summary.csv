@@ -1,0 +1,2 @@
+h057_seed_rows,candidate_rows,near_transition_rows,pre_near_rows,post_near_rows,promoted_file,promoted_candidate,promoted_changed_cells,promoted_selected_rows,promoted_posterior_delta
+45,139,87,61,76,submission_h065_state_transition_phase_75d5575d_uploadsafe.csv,h065_phase_h064_core_r24_phase_top4_a1p0_prob_75d5575d,96,24,-0.00011115849412673493

@@ -4,6 +4,29 @@
 
 현재 목표는 CV 평균이 아니라 hidden-public transfer 가능성을 stress로 판정하는 것이다.
 
+## H065 Update: State-Transition Phase Stress
+
+H065 tests whether the H057/H064 state boundary should be translated as
+directional pre/post phases rather than copied to every nearby row.
+
+- Base: H057 public frontier `0.5677475939`.
+- Promoted file: `submission_h065_state_transition_phase_75d5575d_uploadsafe.csv`.
+- Positive seeds: `45`; candidate rows outside seed/null: `139`.
+- Selected transition rows: `24`.
+- Changed cells vs H057: `96`; changed rows vs H057: `24`.
+- Q2 changed vs H057: `0`.
+- H050-null rows selected: `0`.
+- H062/H063/H064 overlap: `14/24` / `21/24` / `24/24`.
+- Phase balance: `10` pre / `14` post.
+- Posterior delta vs H057: `-0.000111158`.
+- Upload validation: `True`.
+
+Stress read: H065 passes upload safety, preserves the H057 Q2-freeze invariant,
+avoids H050-null rows, and narrows H064's broad full-vector move into a
+phase-specific top-4 target route. It is deliberately less aggressive than H064
+and more interpretable. A public win validates state-transition routing; a loss
+means the current phase route is wrong or H057 is too compact to expand.
+
 ## H064 Update: Contrastive State-Graph Stress
 
 H064 tests whether H057 row-state expansion becomes cleaner when H050's

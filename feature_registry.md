@@ -4,6 +4,27 @@
 
 Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature family는 어떤 숨은 구조를 겨냥하는지, label signal인지 split signal인지, 폐기 조건이 무엇인지 함께 관리한다.
 
+## H065 Feature Update
+
+### F-H065. State-transition phase route score
+
+- Hidden structure: rows near the validated H057 state may be pre/post
+  transition phases, not simple copies of the seed full-vector state.
+- Candidates: signed distance to nearest H057 seed, pre/post phase flag, H064
+  contrastive row score, H062/H063 agreement flags, q061 per-target gain,
+  phase-specific target route gain, and max-per-subject diversity.
+- Label vs split test: Q2 is frozen, H050-null rows are excluded, and only
+  phase-specific top-4 non-Q2 target routes are moved. Public gain would support
+  directional hidden-state transition, not generic row-order smoothing.
+- Adopt if: H065 improves public over H057/H064. Then promote phase-route
+  decoding into HS-JEPA and learn richer human-state transition features.
+- Drop if: H065 worsens while H062-H064 improve. Then the current pre/post
+  target route is too sparse or wrong; broad state expansion remains the better
+  test.
+- Current evidence: selected `24` rows across all `10` subjects, changed `96`
+  non-Q2 cells, selected zero H050-null rows, posterior delta `-0.000111158`,
+  H062/H063/H064 overlap `14/24` / `21/24` / `24/24`, upload-safe.
+
 ## H064 Feature Update
 
 ### F-H064. Contrastive state-graph score

@@ -8,6 +8,29 @@ Public LB는 최적화 target이 아니라 hidden public subset과 calibration s
 
 ## Public-Free Post-H012 Observation
 
+H065 is a public-free state-transition phase observation after H057/H064. It
+tests whether H057 seed-neighbor rows should be decoded as pre/post transition
+phases instead of copied as the same full-vector state.
+
+- Base: H057 public frontier `0.5677475939`.
+- Promoted file: `submission_h065_state_transition_phase_75d5575d_uploadsafe.csv`.
+- Selected candidate: `h065_phase_h064_core_r24_phase_top4_a1p0_prob_75d5575d`.
+- Positive seeds: `45` H057 row-state rows.
+- Candidate rows outside seed/null: `139`; near transition rows: `87`.
+- Selected rows: `24`; selected subjects: `10`.
+- Changed cells vs H057: `96`; changed rows vs H057: `24`.
+- Q2 changed vs H057: `0`.
+- H050-null rows selected: `0`.
+- Posterior delta vs H057: `-0.000111158`.
+- H062/H063/H064 selected-row overlap: `14/24` / `21/24` / `24/24`.
+- Phase balance: `10` pre / `14` post; episode-near rate: `1.000000000`.
+- Upload validation: `True`.
+
+Signal: if public improves, HS-JEPA should model H057-adjacent rows as
+directional transition phases with target-specific routes. If H065 fails while
+H062-H064 improve, the phase route is too sparse or wrong. If all expansion
+files fail, H057 is likely a compact public-specific row-state.
+
 H064 is a public-free contrastive state-graph observation after H057. It tests
 whether H050's public-null non-seed route rows can serve as hard negatives for
 finding a sharper H057 row-state boundary.

@@ -26,7 +26,20 @@ Previous public frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607
 
 H057 improves over H042/H050 by `0.0001572309` and over H012 by `0.0003758892`. H012 remains the base public-equation anchor, H042 remains the Q2 row anchor, and H057 is now the reference public frontier unless private-risk considerations dominate final selection.
 
-Current pending high-risk sensor: `submission_h064_contrastive_state_graph_d09a5363_uploadsafe.csv`.
+Current pending high-risk sensor: `submission_h065_state_transition_phase_75d5575d_uploadsafe.csv`.
+
+Reason: H065 is the first post-H057 candidate that treats seed-neighbor rows as
+directional transition phases rather than copies of the full H057 state. It
+uses H064 contrastive state-graph rows as the boundary, learns separate pre/post
+target routes from q061 gains, freezes Q2, and moves only phase-specific top-4
+non-Q2 targets on `24` rows. It changes `96` cells versus H057, selects zero
+H050-null rows, spans all `10` subjects, has posterior delta `-0.000111158`,
+and overlaps H062/H063/H064 on `14/24`, `21/24`, and `24/24` rows. A public
+win would mean HS-JEPA needs a state-transition route decoder, not broader
+episode copying; a public loss would weaken the current pre/post route but
+still leave H062-H064 expansion questions separable.
+
+Previous pending high-risk sensor: `submission_h064_contrastive_state_graph_d09a5363_uploadsafe.csv`.
 
 Reason: H064 is the first post-H057 expansion that uses a hard negative state
 boundary. It treats H057's `45` full-vector row-state rows as positive seeds
