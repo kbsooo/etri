@@ -742,3 +742,67 @@ Updated hierarchy:
 2. H057 echo: highly recognizable, weakly transferable;
 3. low-overlap support: learnable, too sparse;
 4. next live factor: global assignment/equation solver across known support.
+
+## H095/H096 Assignment Equation Factorization
+
+H095 executed the next factorization target:
+
+```text
+H057 base + updated public equations + H088 negative sensor
+-> row-target toxicity field
+-> safe assignment solver
+```
+
+The direct toxic-veto solver was coherent but small:
+
+- H095 selected `48` cells / `32` rows;
+- posterior delta vs H057: `-0.000248`;
+- H088 selected-cell overlap: `2`;
+- the surviving actions were mostly Q2 hardtail.
+
+This means:
+
+```text
+Avoiding H088-toxic directions is not enough to recover a broad public/private
+action field. The veto collapses the field to a small Q2 repair basin.
+```
+
+The stronger factorization signal came from the conflict table:
+
+- H057-positive cells: `343`;
+- H088-toxic cells: `980`;
+- overlap: `105`;
+- same-direction conflict: `22`;
+- opposite-direction conflict: `83`.
+
+Updated rule:
+
+```text
+H088 toxicity is signed. Many H088-toxic cells are not bad support; they are
+bad because H088 moved against the H057-positive direction.
+```
+
+H096 tests that signed factorization:
+
+```text
+context/teacher = H057-positive route event
+negative sensor = H088 toxic action
+target = conflict cells where positive and toxic directions are opposite
+decoder = move further along H057-positive direction
+```
+
+Observed H096 candidate:
+
+- file: `submission_h096_conflict_inversion_af7e60fd_uploadsafe.csv`;
+- changed cells / rows: `83` / `28`;
+- anti-H088 direction rate: `1.000000`;
+- cosine with H057-vs-H042 direction: `0.527502`;
+- cosine with H088 direction: `-0.086648`.
+
+Current factorization hierarchy:
+
+1. H088 hard/Pareto head as action target: rejected by public;
+2. H088 as unsigned toxic veto: partially alive but too small;
+3. H088 as signed counterfactual sensor: live and now represented by H096;
+4. next 0.53 route: learn a signed public/private action equation, not just a
+   better context encoder.

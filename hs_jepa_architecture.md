@@ -1013,3 +1013,69 @@ be treated as a diagnostic representation, not as the main decoder target.
 The next decoder should solve row-target assignment and public/private value
 equations directly.
 ```
+
+## HS-JEPA v2: Signed Action-Equation Decoder
+
+H088 changed the architecture boundary. The failed dual-head gate showed:
+
+```text
+public-equation posterior + hard-world posterior Pareto safety
+!= action-grade safety
+```
+
+HS-JEPA v2 therefore adds a signed action-equation decoder.
+
+### Context
+
+- H057 current-best row-state event;
+- H042/H050 pre-H057 public observations;
+- H088 failed public action;
+- H085/H095 public-equation posterior;
+- route/action metadata from H071/H087;
+- H018 hard-world only as a stress diagnostic.
+
+### Target Representation
+
+The target is no longer only a hidden human-state probability. It is a signed
+row-target action field:
+
+```text
+safe_action(row, target)
+toxic_action(row, target)
+counterfactual_direction(row, target)
+assignment_route(row)
+```
+
+H095 estimated the unsigned toxic-veto version. H096 estimated the signed
+counterfactual version.
+
+### New Decoder Rule
+
+```text
+If a failed public action moved against a previously positive public event,
+do not simply avoid the cell. Treat that failed action as a signed sensor and
+test the opposite direction.
+```
+
+This is the current HS-JEPA v2 proposition:
+
+```text
+HS-JEPA learns hidden human-state representations, but the final action layer
+must solve a signed public/private row-target equation. Public LB failures are
+not discarded; they become counterfactual supervision for the action decoder.
+```
+
+### Current Evidence
+
+- H095 toxic-veto candidate:
+  `submission_h095_assignment_solver_948e8840_uploadsafe.csv`;
+- H095 changed cells / rows: `48` / `32`;
+- H095 conclusion: unsigned veto is too small.
+
+- H096 conflict-inversion candidate:
+  `submission_h096_conflict_inversion_af7e60fd_uploadsafe.csv`;
+- H096 changed cells / rows: `83` / `28`;
+- H096 anti-H088 direction rate: `1.000000`;
+- H096 cosine with H057-vs-H042 direction: `0.527502`;
+- H096 conclusion before public check: the next architectural test is signed
+  failed-action inversion.

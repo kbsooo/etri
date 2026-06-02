@@ -7423,3 +7423,70 @@ Priority: low as a scarce public submission. It is upload-safe and coherent,
 but it moves only `134` cells and the mean transfer score is weak. Its main
 value is as a falsification artifact: it makes "H057-transfer alone opens
 0.53" unlikely.
+
+## H095 Public/Private Assignment Solver
+
+Generated file:
+
+`submission_h095_assignment_solver_948e8840_uploadsafe.csv`
+
+Worldview: H088 is a toxic action sensor. A safe public/private assignment
+solver should keep H057-positive row-state support but veto H088-like toxic
+directions.
+
+Evidence:
+
+- changed cells / rows vs H057: `48` / `32`;
+- Q2 changed cells: `28`;
+- posterior delta vs H057: `-0.000248`;
+- hard diagnostic delta vs H057: `+0.000295`;
+- H088 overlap: `2` cells;
+- H012 direction cosine: `-0.285012`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win: H088 toxicity can be localized and the Q2 hardtail-safe basin is
+  underused;
+- neutral: toxic-veto repair is too small for public resolution;
+- loss: the refit equation is overreacting to H088 and reopening Q2 hardtail in
+  the wrong direction.
+
+Priority: medium-low. It is clean and upload-safe, but too small and too
+Q2-heavy to be the best scarce-slot big bet.
+
+## H096 Positive/Toxic Conflict Inversion
+
+Generated file:
+
+`submission_h096_conflict_inversion_af7e60fd_uploadsafe.csv`
+
+Worldview: H088 failed because it reversed H057-positive conflict cells. The
+right use of H088 is signed inversion, not avoidance.
+
+Evidence:
+
+- H057-positive/H088-toxic overlap: `105` cells;
+- opposite-direction overlap: `83` cells;
+- selected candidate:
+  `h096_broad_lowcap_conflict_k145_a035_af7e60fd`;
+- changed cells / rows vs H057: `83` / `28`;
+- posterior delta vs H057: `+0.000011`;
+- hard diagnostic delta vs H057: `+0.000028`;
+- anti-H088 direction rate: `1.000000`;
+- cosine with H057-vs-H042 direction: `0.527502`;
+- cosine with H088 direction: `-0.086648`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- meaningful win: H088 is a signed counterfactual sensor. HS-JEPA v2 should use
+  public-failed actions to infer opposite-direction correction fields;
+- small loss: conflict exists but the effect is too weak or already saturated
+  in H057;
+- large loss: H057/H088 conflict is not reusable; H088 is only a broad collapse
+  diagnostic.
+
+Priority: high as an information-rich big bet if one public slot is available.
+It is not locally "safe" because posterior worsens slightly, but it directly
+tests the newest hidden-world hypothesis.

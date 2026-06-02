@@ -849,3 +849,47 @@ Updated 0.53 big-bet priority:
 3. multi-world private/public factorization that can explain H057 without
    replaying it;
 4. only after that, another context encoder.
+
+### H095/H096 Update
+
+H095 and H096 executed the first solver version of that priority.
+
+| Experiment | File | Core claim | Changed vs H057 | Posterior delta | H088 relation | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| H095 | `submission_h095_assignment_solver_948e8840_uploadsafe.csv` | H088-toxic directions can be vetoed to reveal safe assignment | `48` cells / `32` rows | `-0.000248` | only `2` cell overlap with H088 | too small; mostly Q2 hardtail repair |
+| H096 | `submission_h096_conflict_inversion_af7e60fd_uploadsafe.csv` | H088 failed by reversing H057-positive conflict cells; use H088 as a signed inverse sensor | `83` cells / `28` rows | `+0.000011` | anti-H088 direction rate `1.000000` | high-information big bet |
+
+The major discovery is the H057/H088 conflict geometry:
+
+```text
+H057-positive cells = 343
+H088-toxic cells = 980
+overlap = 105
+opposite-direction overlap = 83
+```
+
+Breakthrough reading:
+
+```text
+The missing 0.53 mechanism is probably not "find a better public/private head".
+It is "infer the signed action equation from failed public actions". H088 is
+useful because it tells us which direction public punished.
+```
+
+Current top big bet:
+
+`submission_h096_conflict_inversion_af7e60fd_uploadsafe.csv`
+
+Why it is worth a scarce public slot:
+
+- it is not a micro-blend;
+- it tests a new signed counterfactual use of public LB failures;
+- if it wins, HS-JEPA v2 has a publishable decoder idea:
+  failed-action inversion as a row-target assignment equation.
+
+Failure interpretation:
+
+```text
+If H096 loses, the signed conflict field is not reusable and the solver must
+move from cell-level inversion to row/route-level constrained assignment.
+```

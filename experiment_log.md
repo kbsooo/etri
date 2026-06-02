@@ -10192,3 +10192,89 @@ problem rather than a local Pareto gate.
 Do not spend scarce public slots on H089/H091/H092 merely because they overlap
 or explain the H088 basin. The next big bet should directly solve the
 row-target assignment/equation system implied by H057 + H088 failure.
+
+## H095 Public/Private Assignment Equation Solver
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h095_assignment_solver_948e8840_uploadsafe.csv`
+
+Worldview:
+
+```text
+H057-positive row-state signal and H088-negative action signal can be separated
+by a public/private row-target equation. H088 should become a toxicity field,
+not a private action head.
+```
+
+Observed result:
+
+- selected candidate: `h095_equation_safe_all_c860_r180_q85_948e8840`;
+- changed cells / rows vs H057: `48` / `32`;
+- Q2 changed cells: `28`;
+- posterior delta vs H057: `-0.000248`;
+- hard diagnostic delta vs H057: `+0.000295`;
+- H088 overlap: only `2` cells;
+- cosine vs H088 direction: `0.068773`;
+- cosine vs H012 direction: `-0.285012`;
+- upload-safe validation passed.
+
+Interpretation:
+
+```text
+Toxic-veto assignment is locally coherent, but it collapses the safe action
+field to mostly Q2 hardtail rows. This is not yet a 0.53-scale public/private
+solver.
+```
+
+The important discovery was not the promoted H095 file. It was the cell-level
+conflict:
+
+- H057-positive cells: `343`;
+- H088-toxic cells: `980`;
+- overlap: `105`;
+- among overlapping cells, H057-positive and H088 directions are opposite on
+  `83` cells.
+
+This changes the next question from "avoid H088 toxic cells" to:
+
+```text
+Did H088 fail because it moved opposite the H057-positive field?
+```
+
+## H096 Positive/Toxic Conflict Inversion
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h096_conflict_inversion_af7e60fd_uploadsafe.csv`
+
+Worldview:
+
+```text
+H088 is a negative action sensor whose useful instruction is often "move the
+opposite way on H057-positive conflict cells", not "avoid those cells".
+```
+
+Observed result:
+
+- selected candidate: `h096_broad_lowcap_conflict_k145_a035_af7e60fd`;
+- changed cells / rows vs H057: `83` / `28`;
+- posterior delta vs H057: `+0.000011`;
+- hard diagnostic delta vs H057: `+0.000028`;
+- anti-H088 direction rate: `1.000000`;
+- cosine with H057-vs-H042 direction: `0.527502`;
+- cosine with H057-vs-H050 direction: `0.484476`;
+- cosine with H088 direction: `-0.086648`;
+- upload-safe validation passed.
+
+Interpretation:
+
+H096 intentionally violates the H095 posterior because it is testing a sharper
+world model: public may reward extending the H057-positive direction even where
+the refit equation is uncertain. If public improves, H088 should be used as a
+signed counterfactual sensor. If public loses, the H057/H088 conflict is not a
+reusable correction field and H088 remains only a broad collapse diagnostic.
