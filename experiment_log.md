@@ -9042,3 +9042,64 @@ artifact. The action hypothesis is not fully proven: the selected broad sensor
 still misses the `0.001` expected-movement gate. H074 should be treated as a
 high-information public sensor or as an input to the next solver, not as a
 safe H057 replacement.
+
+## H075. Anti-Bad Transport Decoder HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h075_antibad_transport_decoder_jepa.py`
+- Report: `hitl/h075_antibad_transport_decoder_jepa/h075_report.md`
+- Promoted diagnostic:
+  `submission_h075_antibad_transport_f6863945_uploadsafe.csv`
+
+### Observe
+
+H074 proved that bad-opposition is a real latent target, but H074 still used
+q061 as the value decoder. That leaves an important ambiguity: maybe failed
+public submissions are not just support negatives, but also tell us exactly
+how to move values when inverted.
+
+### Wonder
+
+If bad submissions move in a shortcut direction, is the inverse of that movement
+the missing value-transport field?
+
+### Hypothesis
+
+H075-H: public-bad worlds define both `z_anti_shortcut` support and
+`z_bad_transport` value movement. A route assignment using inverse-bad movement
+should produce a larger action than H074's q061-value materialization.
+
+### Falsification Design
+
+Start from H074/H071 routes and H073 action-health context. For each row-target
+cell, compute the consensus public-bad movement vector, invert it in logit
+space, and materialize probabilities using mirror, hybrid, conservative, and
+edge transport modes. Require H050-null avoidance and non-positive bad-anchor
+cosines.
+
+### Result
+
+Selected `h075_transport_broad_conservative_outside_h069_c1120_r250_q295_f6863945`.
+
+- changed cells / rows versus H057: `524` / `152`;
+- cells outside H070 / H069: `220` / `458`;
+- H071 route overlap: `44`;
+- Q2 changed cells: `46`;
+- transport: `conservative`;
+- selected subjects: `10`;
+- zero H050-null cells;
+- public-action predicted delta versus H057: `-0.000766`;
+- posterior delta versus H057: `-0.000615`;
+- responsibility-weighted delta versus H057: `-0.000912`;
+- max positive bad-anchor cosine: `0.0`;
+- generated candidates with public-action delta `<= -0.000800`: `0`;
+- generated candidates with public-action delta `<= -0.001000`: `0`.
+
+### Interpretation
+
+The value-transport hypothesis is weakened. Anti-shortcut is real as a support
+and energy representation, but direct inverse-bad movement does not improve the
+action scale. H075 should not be prioritized as a public upload. The next
+decoder should keep `z_anti_shortcut` as a constraint and search for a
+different value source, such as route-specific public-action response or
+label-world constraints.

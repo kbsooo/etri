@@ -78,6 +78,16 @@ Current public frontier:
   expose a real negative latent boundary. H074 is coherent as a high-information
   sensor, but still misses the `0.001` expected-action gate, so it is not a
   safer first upload than a stronger row-target assignment/public sensor.
+- Latest generated anti-bad transport decoder diagnostic:
+  `submission_h075_antibad_transport_f6863945_uploadsafe.csv`. H075 asks the
+  sharper follow-up: if bad submissions define `z_anti_shortcut`, can their
+  inverse movement vector define the actual value decoder? The answer is
+  currently no. The selected file changes `524` cells on `152` rows, with
+  `458` cells outside H069 and `46` Q2 cells, but public-action predicted delta
+  is only `-0.000766` and no generated candidate reaches `-0.000800`, let alone
+  the `0.001` gate. Interpretation: anti-bad latent is useful as support and
+  energy, but direct inverse-bad value transport is not the missing 0.53
+  decoder under the current q061/action-health geometry.
 - Latest generated full HS-JEPA diagnostic:
   `submission_h070_full_hsjepa_9e4a9602_uploadsafe.csv`. H070 is the first
   joint HS-JEPA correction-field decoder. It predicts public/private/action

@@ -74,6 +74,7 @@ HS-JEPA currently has these target representations:
 | Human-social route prior `z_human_social` | H072 maps 1000 stories to route priors and E268 row-family latents | Implemented as sensor; action-health useful, route proof failed null |
 | Human action-health bridge `z_human_action` | H073 predicts H068 action-health/shortcut from story+route context | Implemented; continuous health works, hard cell generalization weak |
 | Anti-shortcut inverse `z_anti_shortcut` | H074 uses known public-bad movements as contrastive targets and inverts their row-target direction | Implemented; negative latent is real under null, action still below 0.001 gate |
+| Anti-bad value transport `z_bad_transport` | H075 uses inverse bad-anchor movement as the probability transport field | Tested; support survives, value decoder weak |
 
 ## Objective
 
@@ -329,6 +330,44 @@ latent target. The limitation is just as important: the selected action does
 not clear the `0.001` expected-movement gate. HS-JEPA should keep
 `z_anti_shortcut` as a target representation, but the next 0.53-grade decoder
 still needs a sharper public/private or route-assignment solver.
+
+## H075 Anti-Bad Transport Decoder
+
+H075 tests whether the H074 negative representation can also define values:
+
+```text
+known public-bad submission movement
+  -> inverse movement vector
+  -> z_bad_transport
+  -> row-route assignment
+  -> probabilities by anti-bad transport, not q061 movement
+```
+
+This is the direct follow-up to H074. H074 chose support from bad-opposition
+but still moved selected cells toward q061. H075 asks whether the movement
+itself should be the inverse of the bad-anchor vector.
+
+The promoted diagnostic,
+`submission_h075_antibad_transport_f6863945_uploadsafe.csv`, changes `524`
+cells on `152` rows, with `458` cells outside H069 and `220` outside H070. It
+moves `46` Q2 cells, selects all `10` subjects, selects zero H050-null cells,
+and keeps every tracked bad-anchor cosine non-positive.
+
+Key diagnostics:
+
+- best selected candidate public-action predicted delta: `-0.000766`;
+- responsibility-weighted delta: `-0.000912`;
+- generated H075 candidates with public-action delta `<= -0.000800`: `0`;
+- generated H075 candidates with public-action delta `<= -0.001000`: `0`;
+- the top action candidate has transport alignment `0.711857` and transport
+  gain rank `0.592239`, but still loses action scale versus H074.
+
+Interpretation: `z_anti_shortcut` is a real support/energy representation, but
+direct inverse-bad movement is not the value decoder under the current
+geometry. HS-JEPA should not materialize bad-anchor inverse vectors directly.
+The next decoder should use anti-shortcut as a constraint or energy term, then
+learn values from public/private action response or route-specific label
+worlds.
 
 ## What Would Prove HS-JEPA
 

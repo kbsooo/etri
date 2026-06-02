@@ -367,6 +367,40 @@ is weaker: the best broad sensor still misses the `0.001` movement gate. Bet 5
 therefore stays alive as a target-representation layer, but it is not yet a
 standalone 0.53 breakthrough decoder.
 
+### H075 Update
+
+H075 tested the natural follow-up and generated
+`submission_h075_antibad_transport_f6863945_uploadsafe.csv`.
+
+Hypothesis:
+
+```text
+bad submissions define not only support, but the value transport field itself
+```
+
+Result:
+
+- promoted diagnostic:
+  `h075_transport_broad_conservative_outside_h069_c1120_r250_q295_f6863945`;
+- changed cells / rows versus H057: `524` / `152`;
+- cells outside H070 / H069: `220` / `458`;
+- Q2 changed cells: `46`;
+- transport mode: `conservative` inverse-bad/q061 hybrid;
+- route mix: `s_stage:41`, `recovery_route:27`, `q2_hardtail:27`,
+  `q3_s_stage:20`, `nonq2_full:15`, `full_state:10`,
+  `q2_s3_tail:9`, `q_subjective:3`;
+- public-action predicted delta versus H057: `-0.000766`;
+- responsibility-weighted delta versus H057: `-0.000912`;
+- generated candidates at `<= -0.000800` public-action delta: `0`;
+- generated candidates at `<= -0.001000` public-action delta: `0`;
+- bad-anchor positive cosine: `0.0`.
+
+This weakens the value-transport version of Bet 5. The negative representation
+is real, but directly reflecting bad-anchor movements does not create a
+larger action than H074. Bet 5 remains alive as a support/energy layer and is
+weaker as a standalone decoder. The next big bet should not be another
+anti-bad amplitude sweep; it needs a different value source.
+
 ## Priority
 
 Current order:
@@ -375,11 +409,14 @@ Current order:
    assignment claim.
 2. Submit H074 only if the next public slot is meant to test whether failed
    public worlds are positive contrastive target representations.
-3. H072/H073 are now architecture evidence unless the next public question is
+3. Do not prioritize H075 as a public slot unless the goal is specifically to
+   falsify inverse-bad value transport; it is weaker than H074 internally.
+4. H072/H073 are now architecture evidence unless the next public question is
    specifically about human-social action-health.
-4. Build the next solver that combines H071 assignment with H074
-   anti-shortcut targets, rather than another threshold sweep.
-5. H070/H069 follow-ups only if public feedback specifically supports smooth
+5. Build the next solver that combines H071 assignment with H074
+   anti-shortcut targets, but uses a new value source rather than inverse-bad
+   transport.
+6. H070/H069 follow-ups only if public feedback specifically supports smooth
    latent scoring or strict factorization.
 
 H069 has answered the first public-free factorization question: the factors
@@ -388,4 +425,5 @@ route. H070 says smooth joint latent scoring is useful but not enough. H071
 materializes exact assignment. H073 says human-social context is better as
 continuous health/shortcut representation than direct assignment. H074 now says
 known bad worlds carry a real inverse target representation, but also that this
-inverse layer still needs a stronger action solver.
+inverse layer still needs a stronger action solver. H075 says the missing
+solver is not simply "move by the inverse bad vector".

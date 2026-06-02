@@ -133,6 +133,32 @@ HS-JEPA layer. If it is neutral, bad worlds remain useful representation/veto
 signals but not direct action generators. If it loses badly, the negative
 latent is real locally but public/private extrapolation is wrong.
 
+Current generated anti-bad transport diagnostic:
+`submission_h075_antibad_transport_f6863945_uploadsafe.csv`.
+
+Reason: H075 is the direct H074 follow-up. H074 used bad-opposition to choose
+support but still moved probabilities toward H061 `q061`. H075 instead uses
+the inverse of known public-bad movement as the logit transport field. That
+tests whether public failures are not only contrastive support targets, but
+also value targets.
+
+Candidate anatomy:
+
+- changed cells / rows versus H057: `524` / `152`;
+- cells outside H070 / H069: `220` / `458`;
+- Q2 changed cells: `46`;
+- transport mode: conservative inverse-bad/q061 hybrid;
+- public-action predicted delta versus H057: `-0.000766`;
+- responsibility-weighted delta versus H057: `-0.000912`;
+- max positive bad-anchor cosine: `0.0`;
+- upload-safe: yes.
+
+Decision: H075 is not a priority public submission. It is weaker than H074 and
+no generated H075 candidate reached the `0.001` gate. Submit it only if the
+intended public question is explicitly "does inverse-bad value transport work
+despite weaker public-free action scoring?" Otherwise use H075 as a failed
+sub-hypothesis: anti-shortcut is support/energy, not direct value movement.
+
 Current generated full HS-JEPA diagnostic: `submission_h070_full_hsjepa_9e4a9602_uploadsafe.csv`.
 
 Reason: H070 is the first full HS-JEPA v1 joint decoder. It does not select

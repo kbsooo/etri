@@ -82,6 +82,7 @@ Where:
 | Action-health field | H068 pending | Promising but high-risk |
 | Shortcut state | H010, E216, E323, bad JEPA, H050-null | Strong negatives |
 | Anti-shortcut inverse | H074 bad-opposition null z `9.270846` | Real representation, action not solved |
+| Anti-bad value transport | H075 inverse movement field | Weak as direct decoder |
 | Private-safe state | Needed for 0.53 | Not solved |
 | Human-social state | H072 story families recover H068 rows but not H071 routes | Context/action-health layer, not direct route layer |
 | Human-action bridge | H073 story+route context predicts continuous health/shortcut | Useful representation, not yet 0.001 action solver |
@@ -233,6 +234,34 @@ representation. The unsolved part is action translation. H074's broad sensor
 has public-action predicted delta `-0.000840`, below the `0.001` gate, so
 `z_anti_shortcut` should feed the next assignment solver rather than be treated
 as a finished public/private solution.
+
+## H075 Anti-Bad Value-Transport Result
+
+H075 tested a stronger claim:
+
+```text
+if a bad submission moves in a shortcut direction,
+then the inverse of that movement is the correct probability transport field
+```
+
+This is not supported by the current evidence. The selected diagnostic,
+`submission_h075_antibad_transport_f6863945_uploadsafe.csv`, is upload-safe
+and broad enough to be a real sensor (`524` changed cells on `152` rows), but
+its public-action predicted delta is only `-0.000766`. Across all generated
+H075 candidates, none reached `-0.000800` predicted public-action delta.
+
+Interpretation: bad-anchor geometry is useful for separating public/private
+support, but not for assigning final values. The factorization should be:
+
+```text
+bad worlds -> shortcut / anti-shortcut energy
+not
+bad worlds -> final probability movement
+```
+
+This narrows the next private-safe route. Keep `z_anti_shortcut` as a support
+constraint or energy term; find the value decoder from route-specific
+public-action response, label-world constraints, or another latent target.
 
 ## H069 Candidate Design
 

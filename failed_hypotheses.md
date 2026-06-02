@@ -3359,3 +3359,36 @@
 - Still open:
   - support identity may still be route-conditioned; H046 only rejects
     bifurcated amplitude/sign translation under current route features.
+
+## FH075. Public-bad inverse movement is the final value transport decoder
+
+- Failed hypothesis: known public-bad submissions define not only the
+  anti-shortcut support representation, but also the correct probability
+  transport field when their movement vectors are inverted.
+- Why it was plausible: H074's target-stratified null stress strongly validated
+  bad-opposition as a real latent representation. If the bad direction marks a
+  shortcut, the inverse direction might be an action-grade correction.
+- Minimum experiment: `hitl/h075_antibad_transport_decoder_jepa.py`.
+- Observed result:
+  - selected diagnostic:
+    `submission_h075_antibad_transport_f6863945_uploadsafe.csv`;
+  - changed cells / rows versus H057: `524` / `152`;
+  - public-action predicted delta versus H057: `-0.000766`;
+  - responsibility-weighted delta versus H057: `-0.000912`;
+  - generated candidates with public-action delta `<= -0.000800`: `0`;
+  - generated candidates with public-action delta `<= -0.001000`: `0`;
+  - max positive bad-anchor cosine: `0.0`.
+- Why reject as a breakthrough submission route:
+  - direct inverse-bad movement is weaker than H074's q061-value
+    materialization under the current action-health geometry;
+  - the support remains clean, but value transport does not reach the big-bet
+    scale.
+- Bottleneck category weakened:
+  - weakens "failed public worlds directly encode final probability values";
+  - strengthens "failed public worlds encode support/energy constraints only."
+- Next not to do:
+  - do not spend more runs on inverse-bad alpha/mirror/edge amplitude sweeps
+    unless new public feedback specifically validates H075.
+- Still open:
+  - `z_anti_shortcut` remains useful as a constraint inside a different value
+    decoder, especially a route-specific public-action or label-world solver.
