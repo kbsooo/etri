@@ -1948,3 +1948,49 @@ Failure interpretation:
 - H121 improves more: refill must be controlled by row-regime sensor rather
   than route complement;
 - H118 improves more: the whole prune/refill layer is overfitting stress axes.
+
+## H124 Dual-Sensor Refill Factorization
+
+H124 tightens H123's refill rule.  The refill stage is no longer allowed to
+follow route-basis alone:
+
+```text
+proposal field
+  -> toxicity prune
+  -> sparse core
+  -> refill only if route-basis and H098/frontier both improve
+```
+
+Observed H124 factorization:
+
+- selected file: `submission_h124_dualsensor_b8e822c0_uploadsafe.csv`;
+- selected candidate: `h124_strict_route_h098_refill_b8e822c0`;
+- start from H122 cells: `24`;
+- added cells: `3`;
+- added targets: S1 `2`, Q3 `1`;
+- final selected cells / rows: `27` / `22`;
+- Q2 cells: `0`;
+- route-basis predicted delta vs H057: `-0.0007035`;
+- model predicted delta vs H057: `-0.0000308`;
+- bad-axis positive projection: `0.000000`;
+- H088-axis cosine: `-0.060942`;
+- good-bad margin: `0.144874`.
+
+Interpretation:
+
+The H123/H124 split defines a useful public/private sensor pair:
+
+```text
+route-only residue: may reveal hidden structure, but can be overfit;
+dual-sensor residue: smaller route gain, stronger model/H098 and margin.
+```
+
+Failure interpretation:
+
+- H124 improves: public/private action safety needs agreement between route and
+  H098 caution before refill;
+- H123 improves more: H098 caution is over-conservative and route completion is
+  closer to the public equation;
+- H122 improves more: refill itself is unsafe;
+- H121 improves more: refill should be gated by row-regime rather than
+  dual-sensor cell agreement.

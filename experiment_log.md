@@ -11945,3 +11945,72 @@ Public interpretation:
   route-complement based;
 - if H118 improves more, both pruning and refill are artifacts of local
   public-response stress axes.
+
+## H124 Dual-Sensor Refill Envelope HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h124_dual_sensor_refill_envelope_hsjepa/h124_report.md`
+- `hitl/h124_dual_sensor_refill_envelope_hsjepa/h124_decision.csv`
+- `hitl/h124_dual_sensor_refill_envelope_hsjepa/h124_selected_cells.csv`
+- `hitl/h124_dual_sensor_refill_envelope_hsjepa/h124_added_cells.csv`
+- `submission_h124_dualsensor_b8e822c0_uploadsafe.csv`
+
+Worldview:
+
+```text
+H123 may over-trust route-basis.  A refill cell should be action-grade only if
+it improves the route equation and the H098/frontier caution equation from the
+H122 pruned core.
+```
+
+Observed result:
+
+- promoted candidate: `h124_strict_route_h098_refill_b8e822c0`;
+- root file: `submission_h124_dualsensor_b8e822c0_uploadsafe.csv`;
+- selected cells / rows: `27` / `22`;
+- H122 start cells: `24`;
+- added cells: `3`;
+- added targets: S1 `2`, Q3 `1`;
+- added rows: `149`, `103`, `97`;
+- final target changes: Q1 `8`, Q2 `0`, Q3 `5`, S1 `8`, S2 `4`,
+  S3 `0`, S4 `2`;
+- route delta from H122: `-0.0000982`;
+- H098/model delta from H122: `-0.00000216`;
+- model predicted delta vs H057: `-0.0000308`;
+- route-basis predicted delta vs H057: `-0.0007035`;
+- H118 curvature marginal vs zero: `0.0000444`;
+- H088-axis cosine: `-0.060942`;
+- good-bad margin: `0.144874`;
+- upload-safe validation passed.
+
+Comparison:
+
+H124 is the dual-sensor version of H123.  It is less route-aggressive than the
+H123 selected candidate (`-0.000703` vs `-0.000732`), but it is better on the
+H098/model caution axis (`-0.0000308` vs `-0.0000266`) and much stronger on
+good-bad margin (`0.144874` vs `0.124697`).  It also rejects H123's S3
+route-only refill and instead adds two S1 cells that preserve the H098
+improvement.
+
+Important diagnostic:
+
+H124 separates two incompatible public-equation stories:
+
+```text
+H123: public rewards route completion even if H098/model caution weakens.
+H124: public rewards only refills that improve route and H098 together.
+```
+
+Public interpretation:
+
+- if H124 improves over H123, the H123 S3 refill was route overfit and
+  HS-JEPA should require dual-sensor-safe refill;
+- if H123 improves more, route-basis is the stronger public equation and
+  H098/model caution is too conservative;
+- if H122 improves more than both, any refill is overfit and the sparse pruned
+  core is safer;
+- if H121 improves more, replacement should be row-regime based, not
+  route/H098 envelope based.

@@ -1851,3 +1851,37 @@ Decision rule:
 - H121 wins more: replacement should be controlled by row regime, not route
   complement;
 - all lose: H118-derived proposal support is the wrong action family.
+
+### H124 Update
+
+H124 separates route-only refill from dual-sensor-safe refill.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H124 | `submission_h124_dualsensor_b8e822c0_uploadsafe.csv` | refill only cells that improve both route-basis and H098/frontier caution from H122 | `27` cells / `22` rows; `3` refill cells | route-basis delta `-0.000703`, model delta `-0.000031`, H088 cosine `-0.060942`, good-bad margin `0.144874` | dual-sensor refill bet |
+
+Breakthrough reading:
+
+```text
+H123 and H124 are now a clean architecture fork.  H123 asks whether route
+completion is the hidden public equation.  H124 asks whether route completion
+must be certified by H098/model caution before the action is safe.
+```
+
+Updated high-information submission order:
+
+1. `submission_h124_dualsensor_b8e822c0_uploadsafe.csv`
+   - tests dual-sensor-safe refill.
+
+2. `submission_h123_refilleq_8958f688_uploadsafe.csv`
+   - tests route-first refill.
+
+3. `submission_h122_pruneeq_0a9edcce_uploadsafe.csv`
+   - tests prune-only sparse core.
+
+Decision rule:
+
+- H124 wins: HS-JEPA v5.7 should require route/H098 agreement before refill;
+- H123 wins more: route-basis completion matters more than H098 caution;
+- H122 wins more: no refill is safe;
+- H121 wins more: row-regime replacement is the right second stage.

@@ -8541,3 +8541,49 @@ Public interpretation:
 - H121 wins more: high-sensor row-regime replacement matters more than route
   complement;
 - all lose: the H118-derived field is not the true public-safe assignment.
+
+## H124 Dual-Sensor Refill Envelope
+
+Generated file:
+
+`submission_h124_dualsensor_b8e822c0_uploadsafe.csv`
+
+Worldview: H123 may overfit the route-basis sensor.  A refill cell is safer if
+it improves both the route equation and the H098/frontier caution equation
+from the H122 pruned core.
+
+Evidence:
+
+- selected candidate: `h124_strict_route_h098_refill_b8e822c0`;
+- selected cells / rows: `27` / `22`;
+- added cells: `3`;
+- added target mix: S1 `2`, Q3 `1`;
+- final target route: Q1 `8`, Q2 `0`, Q3 `5`, S1 `8`, S2 `4`,
+  S3 `0`, S4 `2`;
+- route delta from H122: `-0.0000982`;
+- H098/model delta from H122: `-0.00000216`;
+- model predicted delta vs H057: `-0.0000308`;
+- route-basis predicted delta vs H057: `-0.0007035`;
+- H088-axis cosine: `-0.060942`;
+- good-bad margin: `0.144874`;
+- upload-safe: `True`.
+
+Submission priority:
+
+Very high information value.  H124 tests the strictest current action equation:
+prune toxic cells, then refill only when both route and H098 agree.  It is the
+main counterpoint to H123.
+
+Practical priority:
+
+High as a safer H123 alternative.  It gives up some route strength versus H123
+but improves H098/model caution and good-bad margin.  If slots are limited, the
+choice between H123 and H124 depends on whether we want to test route-first or
+dual-sensor safety first.
+
+Public interpretation:
+
+- win over H123: route-only refill is toxic overfit; use dual-sensor envelope;
+- H123 wins more: public rewards route completion more than H098 caution;
+- H122 wins more: all refill is unsafe;
+- H121 wins more: row-regime replacement is the missing variable.

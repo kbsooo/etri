@@ -2257,3 +2257,40 @@ The H122/H123 public comparison is now a direct architecture test:
 - H122 win: action safety is mostly subtractive;
 - H123 win: action safety is subtractive first, then constructive only at the
   route-complement residue.
+
+## HS-JEPA v5.7: Dual-Sensor Refill Envelope
+
+H124 adds a stricter safety rule to the refill module.
+
+```text
+context encoder
+  -> hidden human/public state representations
+  -> action proposal
+  -> toxicity prune
+  -> sparse core
+  -> dual-sensor refill envelope
+       route-basis must improve
+       H098/frontier caution must also improve
+       H088 and bad-axis constraints must remain safe
+  -> calibrated submission
+```
+
+H124 evidence:
+
+- candidate: `submission_h124_dualsensor_b8e822c0_uploadsafe.csv`;
+- selected solver: `h124_strict_route_h098_refill_b8e822c0`;
+- start from H122 cells: `24`;
+- added cells: `3`;
+- added targets: S1 `2`, Q3 `1`;
+- final cells / rows: `27` / `22`;
+- route-basis predicted delta vs H057: `-0.0007035`;
+- model predicted delta vs H057: `-0.0000308`;
+- H088-axis cosine: `-0.060942`;
+- good-bad margin: `0.144874`.
+
+The H123/H124 fork is now the cleanest architecture test:
+
+```text
+H123 = route-first refill.
+H124 = route refill only when H098/model caution agrees.
+```
