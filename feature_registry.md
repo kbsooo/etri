@@ -4,6 +4,27 @@
 
 Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature family는 어떤 숨은 구조를 겨냥하는지, label signal인지 split signal인지, 폐기 조건이 무엇인지 함께 관리한다.
 
+## H064 Feature Update
+
+### F-H064. Contrastive state-graph score
+
+- Hidden structure: H057's `45` full-vector rows may define a state manifold,
+  but H050's public-null non-seed route rows define the boundary of that
+  manifold.
+- Candidates: positive seed graph propagation, H050-null distance, seed-vs-null
+  contrast rank, H061 non-Q2 row gain, H062/H063 agreement flags, episode-near
+  flag, and max-per-subject diversity.
+- Label vs split test: H064 uses public outcomes only as positive/null action
+  anchors, freezes Q2, excludes H050-null rows in the selected candidate, and
+  moves only Q1/Q3/S1/S2/S3/S4 on non-seed rows.
+- Adopt if: H064 improves public over H057/H063. Then promote contrastive
+  positive/null state boundaries into the HS-JEPA latent gate.
+- Drop if: H064 worsens while H063 improves. Then H050-null rows are too crude
+  as hard negatives; use soft contrast or context-only expansion instead.
+- Current evidence: selected `36` rows across all `10` subjects, changed `216`
+  non-Q2 cells, selected zero H050-null rows, posterior delta `-0.000238380`,
+  H062/H063 overlap `24/36` / `29/36`, upload-safe.
+
 ## H063 Feature Update
 
 ### F-H063. Human-context seed-state score

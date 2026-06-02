@@ -410,3 +410,6 @@ hitl/h062_h057_seed_rowstate_expansion_jepa/submission_h062_*.csv
 
 # H063 materialized human-context seed-state sweep files are reproducible from the script.
 hitl/h063_human_context_seed_jepa/submission_h063_*.csv
+
+# H064 materialized contrastive state-graph sweep files are reproducible from the script.
+hitl/h064_contrastive_state_graph_jepa/submission_h064_*.csv

@@ -19,15 +19,56 @@ search.
   cells are still positive under q061, so internal support cutting is weak as
   the primary next bet.
 - Current high-risk expansion sensor:
+  `submission_h064_contrastive_state_graph_d09a5363_uploadsafe.csv`.
+- Current H064 question: can H057's row-state be propagated through human/raw
+  feature graphs if H050's non-seed route rows are treated as hard negatives?
+  It freezes Q2 and moves full non-Q2 vectors on `36` rows.
+- Previous high-risk expansion sensor:
   `submission_h063_humancontext_seed_2c748a8e_uploadsafe.csv`.
 - Current H063 question: can the `45` H057 row-state seeds be rediscovered from
   label-free human/social/lifestyle/raw context? It freezes Q2 and moves full
   non-Q2 vectors on `72` new rows.
-- Previous high-risk expansion sensor:
+- Earlier high-risk expansion sensor:
   `submission_h062_h057seed_rowstate_expand_23beb8eb_uploadsafe.csv`.
 - Current H062 question: are the `45` H057 rows seed examples of a larger
   hidden human-state class? It freezes Q2 and moves full non-Q2 vectors on `48`
   new rows.
+
+## H064: Contrastive State-Graph HS-JEPA
+
+- Script: `hitl/h064_contrastive_state_graph_jepa.py`
+- Report: `hitl/h064_contrastive_state_graph_jepa/h064_report.md`
+- Promoted root file:
+  `submission_h064_contrastive_state_graph_d09a5363_uploadsafe.csv`
+
+### Question
+
+Can H057's compact full-vector row-state be propagated through human/raw
+feature graphs if H050's public-null non-seed route rows are used as hard
+negatives?
+
+### Main Finding
+
+- H057 positive seed rows: `45`;
+- H050 null rows: `66`;
+- selected rows outside H057 seed: `36`;
+- changed cells vs H057: `216`;
+- Q2 changed vs H057: `0`;
+- H050-null rows selected: `0`;
+- posterior delta vs H057: `-0.000238380`;
+- selected subjects: `10`;
+- episode-near rate: `0.694444444`;
+- H062 overlap: `24/36`;
+- H063 overlap: `29/36`;
+- upload validation: `True`.
+
+### Interpretation
+
+H064 is a contrastive HS-JEPA boundary test. If public improves, H050 did not
+kill row-state propagation; it supplied the negative route needed to separate
+real H057 state from public-null action rows. If public fails while H063
+improves, the negative anchor is too strict. If both fail, H057 likely remains
+compact/public-specific until a stronger target-side state translator exists.
 
 ## H063: Human-Context Seed-State HS-JEPA
 

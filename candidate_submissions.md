@@ -26,7 +26,20 @@ Previous public frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607
 
 H057 improves over H042/H050 by `0.0001572309` and over H012 by `0.0003758892`. H012 remains the base public-equation anchor, H042 remains the Q2 row anchor, and H057 is now the reference public frontier unless private-risk considerations dominate final selection.
 
-Current pending high-risk sensor: `submission_h063_humancontext_seed_2c748a8e_uploadsafe.csv`.
+Current pending high-risk sensor: `submission_h064_contrastive_state_graph_d09a5363_uploadsafe.csv`.
+
+Reason: H064 is the first post-H057 expansion that uses a hard negative state
+boundary. It treats H057's `45` full-vector row-state rows as positive seeds
+and H050's non-seed route rows, which tied H042 rather than improving it, as
+public-null negatives. It freezes Q2 and moves Q1/Q3/S1/S2/S3/S4 on `36`
+contrastive graph-selected rows toward the H061 posterior. It changes `216`
+cells versus H057, selects zero H050-null rows, spans all `10` subjects, has
+posterior delta `-0.000238380`, overlaps H062 on `24/36` rows, and overlaps
+H063 on `29/36` rows. A public win would mean HS-JEPA needs contrastive
+positive/null state boundaries, not only nearest-context expansion; a public
+loss would weaken the H050-null boundary story.
+
+Previous pending high-risk sensor: `submission_h063_humancontext_seed_2c748a8e_uploadsafe.csv`.
 
 Reason: H063 is the first post-H057 expansion that asks whether the validated
 H057 row-state can be rediscovered from label-free human/social/lifestyle/raw

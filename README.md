@@ -24,6 +24,15 @@ Current public frontier:
   finds `265/270` cells still positive under the updated posterior, so the
   internal cut story is weak and H057's support should mostly be preserved.
 - Latest generated high-risk sensor:
+  `submission_h064_contrastive_state_graph_d09a5363_uploadsafe.csv`. H064 asks
+  whether the H057 state can be propagated through a feature graph after using
+  H050's non-seed public-null route rows as hard negatives. It freezes Q2 and
+  moves full non-Q2 vectors on `36` rows, changing `216` cells versus H057. The
+  selected rows have zero H050-null overlap, `24/36` H062 overlap, and `29/36`
+  H063 overlap. This is the current contrastive HS-JEPA bet: a win means H050
+  failure was a useful negative boundary for row-state discovery; a loss means
+  the negative-anchor graph is too strict or H057 remains compact.
+- Previous generated high-risk sensor:
   `submission_h063_humancontext_seed_2c748a8e_uploadsafe.csv`. H063 asks
   whether the H057 full-vector row-state can be rediscovered from label-free
   human/social/lifestyle/raw context. It freezes Q2 and moves full non-Q2
@@ -32,7 +41,7 @@ Current public frontier:
   raw aggregates. This is the current HS-JEPA architecture bet: a win means
   H057 was context-discoverable human state, not just public-equation gain; a
   loss means nearest-context state translation is not enough.
-- Previous generated high-risk sensor:
+- Earlier generated high-risk sensor:
   `submission_h062_h057seed_rowstate_expand_23beb8eb_uploadsafe.csv`. H062
   treats the `45` H057 rows as seed examples of a larger hidden human-state
   class, freezes Q2, and moves full non-Q2 vectors on `48` new rows. This is

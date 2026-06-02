@@ -8,6 +8,29 @@ Public LB는 최적화 target이 아니라 hidden public subset과 calibration s
 
 ## Public-Free Post-H012 Observation
 
+H064 is a public-free contrastive state-graph observation after H057. It tests
+whether H050's public-null non-seed route rows can serve as hard negatives for
+finding a sharper H057 row-state boundary.
+
+- Base: H057 public frontier `0.5677475939`.
+- Promoted file: `submission_h064_contrastive_state_graph_d09a5363_uploadsafe.csv`.
+- Selected candidate: `h064_h062_h063_intersection_r36_a1p0_logit_mps10_d09a5363`.
+- Positive seeds: `45` H057 row-state rows.
+- Hard negatives: `66` H050 non-seed null-route rows.
+- New rows outside H057 seed: `36`.
+- Changed cells vs H057: `216`; changed rows vs H057: `36`.
+- Q2 changed vs H057: `0`.
+- H050-null rows selected: `0`.
+- Posterior delta vs H057: `-0.000238380`.
+- H062/H063 selected-row overlap: `24/36` / `29/36`.
+- Selected subjects: `10`; episode-near rate: `0.694444444`.
+- Upload validation: `True`.
+
+Signal: if public improves, H050's failure becomes useful negative evidence for
+HS-JEPA state-boundary learning. If H064 fails while H063 improves, the H050
+hard negative was too strict. If both fail, broad row-state expansion beyond
+H057 is likely blocked.
+
 H063 is a public-free high-risk human-context seed-state observation after
 H057. It tests whether the `45` H057 rows are discoverable from label-free
 human/social/lifestyle/raw context, rather than only from public-equation

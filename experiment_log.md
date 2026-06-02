@@ -4,6 +4,39 @@
 
 실험은 `Observe -> Wonder -> Hypothesize -> Falsify -> Build -> Stress -> Decide` 형식으로 기록한다. public LB는 최적화 대상이 아니라 hidden-DGP sensor로 사용한다.
 
+## H064. Contrastive State-Graph HS-JEPA
+
+- Observe: H057 public `0.5677475939` validates the compact `45`-row
+  full-vector state, while H063 expands it by nearest human/raw context. But
+  H050 already showed that some broad non-Q2 route rows can look plausible and
+  still produce no public gain over H042.
+- Wonder: can failed H050 non-seed route rows become useful as negative/null
+  anchors for discovering the H057 state boundary?
+- Hypothesis: if H057 is a real row-state latent and H050 was a wrong-route
+  expansion, then rows close to H057 seeds and far from H050-null rows in a
+  human/raw feature graph should accept the full non-Q2 H061 translation with
+  Q2 frozen.
+- Method: `hitl/h064_contrastive_state_graph_jepa.py` used H057 rows as
+  positive seeds and H050 non-seed route rows as hard negatives. It built graph
+  propagation and contrastive seed-vs-null scores over H013 raw human, E262
+  social-day, E268 story, E328 own-life, and deep raw feature views.
+- Result: promoted
+  `submission_h064_contrastive_state_graph_d09a5363_uploadsafe.csv`. It changes
+  `216` non-Q2 cells on `36` rows, freezes Q2, covers all `10` subjects, selects
+  `0` H050-null rows, has H061 posterior delta `-0.000238380` versus H057, and
+  passes upload validation. Selected rows overlap H062 on `24/36` and H063 on
+  `29/36`.
+- Latent diagnostic: the top 60 non-seed/non-null contrastive rows have
+  H062/H063 overlap rates `0.483333333` / `0.633333333`, episode-near rate
+  `0.650000000`, mean graph score `0.603912274`, and mean contrast score
+  `0.599054119`.
+- Interpretation: H064 is a direct contrastive HS-JEPA boundary test. A public
+  win means H050's failure becomes useful evidence for the hidden-state
+  boundary. If H064 fails while H063 wins, the negative anchor was too strict.
+  If both fail, H057 remains compact/public-specific.
+- Decision: promote as the next high-information public sensor after H063 if
+  the user wants to test a stricter state-boundary hypothesis.
+
 ## H063. Human-Context Seed-State HS-JEPA
 
 - Observe: H057 public `0.5677475939` proved the `45` H042 Q2-support rows can

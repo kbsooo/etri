@@ -4,6 +4,36 @@
 
 이 문서는 I-JEPA/LeJEPA 아이디어를 그대로 복제하지 않고, 이 대회 데이터의 hidden-DGP 탐색에 맞춰 변형한 latent diagnostic 기록이다.
 
+## H064 Contrastive State-Graph Diagnostic
+
+H064 adds LeJEPA-style negative geometry to H063. H057 rows are positive state
+seeds, while H050 non-seed route rows are hard negatives because H050 tied H042
+instead of improving it.
+
+- Positive seed rows: `45`.
+- H050-null rows: `66`.
+- Candidate rows outside seed/null: `139`.
+- Promoted rows: `36`.
+- Changed cells vs H057: `216`, all non-Q2.
+- Q2 changed vs H057: `0`.
+- H050-null rows selected: `0`.
+- H062/H063 overlap: `24/36` / `29/36`.
+- H061 posterior delta vs H057: `-0.000238380`.
+- Promoted file:
+  `submission_h064_contrastive_state_graph_d09a5363_uploadsafe.csv`.
+
+View health:
+
+- Top-45 graph propagation never selects H050-null rows in any view.
+- Top-60 non-seed/non-null rows have H062/H063 overlap `0.483333333` /
+  `0.633333333` and episode-near rate `0.650000000`.
+- Mean promoted graph/contrast consensus: `0.621294642` / `0.621075398`.
+
+Interpretation: H064 is not just a context-nearest expansion. It tests whether
+the representation becomes healthier when a failed route is explicitly used as
+negative geometry. A win would make HS-JEPA contrastive positive/null state
+boundaries a central architectural component.
+
 ## H063 Human-Context Seed-State Diagnostic
 
 H063 treats the H057 `45` support rows as a target representation and asks which

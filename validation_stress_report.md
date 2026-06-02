@@ -4,6 +4,28 @@
 
 현재 목표는 CV 평균이 아니라 hidden-public transfer 가능성을 stress로 판정하는 것이다.
 
+## H064 Update: Contrastive State-Graph Stress
+
+H064 tests whether H057 row-state expansion becomes cleaner when H050's
+public-null non-seed route rows are used as hard negatives.
+
+- Base: H057 public frontier `0.5677475939`.
+- Promoted file: `submission_h064_contrastive_state_graph_d09a5363_uploadsafe.csv`.
+- Positive seeds: `45`; H050-null negatives: `66`.
+- Selected new rows: `36`.
+- Changed cells vs H057: `216`; changed rows vs H057: `36`.
+- Q2 changed vs H057: `0`.
+- H050-null rows selected: `0`.
+- H062/H063 overlap: `24/36` / `29/36`.
+- Posterior delta vs H057: `-0.000238380`.
+- Upload validation: `True`.
+
+Stress read: H064 preserves H057's Q2-freeze invariant and adds a contrastive
+boundary against H050's failed broad route. This is stricter than H063:
+selection must agree with posterior/context expansion while avoiding public-null
+route rows. A public win validates contrastive state-boundary learning; a loss
+means the H050-negative graph may be too narrow or H057 is compact.
+
 ## H063 Update: Human-Context Seed-State Stress
 
 H063 tests the central HS-JEPA question after H057: whether the validated
