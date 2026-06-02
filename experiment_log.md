@@ -10806,3 +10806,73 @@ Public interpretation:
   law needs portfolio or residual-field density;
 - if H105 is close but not better, use it as a diagnostic seed for a kernel
   expansion experiment rather than a final decoder.
+
+## H106 Route-Consensus Kernel Expansion HS-JEPA
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h106_routeconsensus_f315d99a_uploadsafe.csv`
+
+Worldview:
+
+```text
+The H105 tiny id06/id07 kernel is not merely four public-sensitive rows.  It is
+the visible tip of a larger route-consensus field where many route-actions vote
+the same safe row-target direction.
+```
+
+Method:
+
+- build the H100 route-action basis and H102 bad-axis/good-anchor geometry;
+- score route-actions with the H105 seed priority;
+- aggregate route-action votes per row-target cell:
+  weighted signed move, absolute vote mass, vote consensus, seed-row/neighbor
+  relation, H057/H088 anti-conflict, and H098 frontier score;
+- greedily select high-consensus cells under cumulative bad-axis, H088, and
+  good-anchor constraints;
+- validate the final field with route-basis and H098 cell-equation predictors.
+
+Observed result:
+
+- selected candidate: `h106_broad_conflict_consensus_c96_a065_f315d99a`;
+- generated root file: `submission_h106_routeconsensus_f315d99a_uploadsafe.csv`;
+- source route-actions: `220`;
+- submitted cells / rows: `48` / `22`;
+- H105 seed-row cells: `10`;
+- H105 seed-neighbor cells: `15`;
+- changed target cells: Q1 `6`, Q2 `0`, Q3 `15`, S1 `9`, S2 `5`,
+  S3 `4`, S4 `9`;
+- route-basis predicted delta vs H057: `-0.000796`;
+- H098 cell-equation predicted delta vs H057: `-0.000040`;
+- posterior / hard diagnostic deltas vs H057: `+0.000030` / `+0.000052`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative bad-axis max positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.016900`;
+- cumulative good-minus-bad margin: `+0.064203`;
+- selected mean vote weight: `6.391596`;
+- selected mean vote consensus: `1.000000`;
+- anti-H088 direction rate: `0.979167`;
+- H057-positive alignment rate: `0.979167`;
+- selected conflict rate: `0.958333`;
+- upload-safe validation passed.
+
+Interpretation:
+
+H106 confirms that the H105 kernel is not isolated in the route-action
+representation: there are at least `50` high-consensus cells under this
+definition, and the promoted candidate can expand to `48` cells while keeping
+bad-axis positive projection at zero.  The cost is lower route-basis predicted
+gain than H105 (`-0.000796` vs `-0.002727`).  So H106 is not "better H105";
+it is the direct test of whether the tiny kernel should be expanded or kept
+sharp.
+
+Public interpretation:
+
+- if H106 beats H105, the H105 kernel is a seed of a transferable
+  route-consensus field;
+- if H105 beats H106, the public-sensitive equation is sharply localized and
+  expansion should be killed;
+- if H103/H104 beat both, action safety is portfolio/residual-field level
+  rather than vote-consensus cell level.

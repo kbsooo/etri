@@ -1120,3 +1120,49 @@ Failure interpretation:
   by nearest-route motifs rather than broaden all actions;
 - if all H100-H105 lose, route-action equations remain diagnostic but are not
   action-grade without a new public subset sensor.
+
+## H106 Route-Consensus Expansion Factorization
+
+H106 tests whether the sparse H105 kernel is an isolated public-safe object or
+the seed of a transferable assignment field.
+
+The factorization is:
+
+```text
+many route-action basis functions
+  -> per-cell signed vote consensus
+  -> H105-seed and seed-neighbor expansion
+  -> bad-axis silent row-target assignment
+```
+
+Observed H106 factorization:
+
+- selected file: `submission_h106_routeconsensus_f315d99a_uploadsafe.csv`;
+- source route-actions: `220`;
+- submitted cells / rows: `48` / `22`;
+- H105 seed-row cells: `10`;
+- H105 seed-neighbor cells: `15`;
+- H105 seed-subject cells: `20`;
+- route-basis predicted delta vs H057: `-0.000796`;
+- H098 cell-equation predicted delta vs H057: `-0.000040`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.016900`;
+- cumulative good-minus-bad margin: `+0.064203`;
+- anti-H088 / H057-align / conflict rates: `0.979167` / `0.979167` /
+  `0.958333`.
+
+Interpretation:
+
+H106 deliberately gives up much of H105's route-basis gain in exchange for
+transfer.  It is therefore not a safe-score maximizer.  It is a public/private
+sensor for whether the hidden assignment is a tiny cell kernel or an expandable
+route-consensus field.
+
+Failure interpretation:
+
+- if H106 beats H105, route-consensus transfer is real and HS-JEPA should build
+  kernel propagation around row/subject neighborhoods;
+- if H105 beats H106, the safe public action is sharper than the route
+  representation and expansion creates toxic or noisy cells;
+- if both lose, route-consensus is still a diagnostic but needs a stronger
+  public subset equation before becoming action-grade.

@@ -1193,3 +1193,41 @@ Decision rule:
   portfolio/residual-field level.
 - H105 loses badly: route-basis predicted gain can be overconcentrated, and the
   decoder needs diversity constraints.
+
+### H106 Update
+
+H106 tests whether the H105 tiny kernel is expandable by route-consensus votes.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H106 | `submission_h106_routeconsensus_f315d99a_uploadsafe.csv` | H105's tiny id06/id07 kernel is a seed of a broader route-consensus field | `220` source actions / `48` cells / `22` rows | route-basis delta `-0.000796`, bad-axis positive projection `0.0`, mean vote consensus `1.0` | kernel-transfer bet |
+
+Breakthrough reading:
+
+```text
+H106 is the cleanest expansion test after H105. It gives up some route-basis
+predicted gain versus H105 but expands from 8 cells to 48 cells while preserving
+bad-axis silence. The decisive question is whether public rewards the density
+or punishes leaving the exact id06/id07 kernel.
+```
+
+Current high-information submission order:
+
+1. `submission_h103_shadowcancel_89496ed5_uploadsafe.csv`
+   - broad discrete portfolio-solver test.
+
+2. `submission_h104_toxicresid_52f826e6_uploadsafe.csv`
+   - broad residual transport decoder test.
+
+3. `submission_h105_signedcoef_8f0e502e_uploadsafe.csv`
+   - tiny route-consensus kernel test.
+
+4. `submission_h106_routeconsensus_f315d99a_uploadsafe.csv`
+   - kernel expansion/transfer test.
+
+Decision rule:
+
+- H106 beats H105: expand the kernel by consensus-vote fields.
+- H105 beats H106: keep the kernel sharp; do not spread it by route votes.
+- H103/H104 beat both: route-consensus cells are subordinate diagnostics, and
+  the action-grade decoder should stay portfolio/residual based.

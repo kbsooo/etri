@@ -1438,3 +1438,47 @@ This kernel is different from H103/H104.  H103 is a broad route-action
 portfolio; H104 is a residualized field.  H105 is a tiny consensus object.  If
 public confirms it, the next architecture should include a kernel expansion or
 kernel-transfer module.
+
+## HS-JEPA v2.9: Route-Consensus Kernel Expansion
+
+H106 adds the kernel-transfer module implied by H105:
+
+```text
+route-action basis
+  -> per-cell consensus vote field
+  -> bad-axis constrained expansion around the H105 kernel
+  -> public-safe row-target assignment
+```
+
+The question changes from "which route-action is good?" to "which row-target
+cells are repeatedly named by independent route-actions while staying silent on
+known bad public axes?"  This is closer to a row-target equation solver than a
+context encoder or feature model.
+
+H106 evidence:
+
+- candidate: `submission_h106_routeconsensus_f315d99a_uploadsafe.csv`;
+- source route-actions / submitted cells / rows: `220` / `48` / `22`;
+- H105 seed-row cells / seed-neighbor cells / seed-subject cells: `10` / `15` /
+  `20`;
+- route-basis predicted delta vs H057: `-0.000796`;
+- H098 cell-equation predicted delta vs H057: `-0.000040`;
+- cumulative bad-axis positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.016900`;
+- cumulative good-minus-bad margin: `+0.064203`.
+
+Architectural implication:
+
+H106 separates two possible meanings of H105:
+
+```text
+H105 as sharp kernel:
+  the safe assignment is very sparse and should not be expanded.
+
+H105 as seed kernel:
+  the safe assignment can be transferred to nearby route-consensus cells.
+```
+
+If H106 beats H105, HS-JEPA needs an explicit kernel propagation step.  If H105
+beats H106, the architecture should keep the route-consensus kernel sharp and
+use expansion only as a diagnostic.

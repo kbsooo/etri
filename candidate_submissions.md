@@ -7809,3 +7809,43 @@ Public interpretation:
 Priority: high information value, but not the biggest public slot unless we
 want to test the "tiny id06/id07 route-consensus kernel" directly.  H103/H104
 remain better one-slot tests of broad action-grade HS-JEPA decoders.
+
+## H106 Route-Consensus Kernel Expansion
+
+Generated file:
+
+`submission_h106_routeconsensus_f315d99a_uploadsafe.csv`
+
+Worldview: the H105 tiny kernel is expandable because many route-actions vote
+the same public-safe direction on a broader set of row-target cells.
+
+Evidence:
+
+- selected candidate:
+  `h106_broad_conflict_consensus_c96_a065_f315d99a`;
+- source route-actions: `220`;
+- submitted cells / rows: `48` / `22`;
+- H105 seed-row cells / seed-neighbor cells: `10` / `15`;
+- route-basis predicted delta vs H057: `-0.000796`;
+- H098 cell-equation predicted delta vs H057: `-0.000040`;
+- bad-axis weighted positive projection: `0.000000`;
+- H088-axis cosine: `-0.016900`;
+- good-minus-bad margin: `+0.064203`;
+- mean vote consensus: `1.000000`;
+- anti-H088 / H057-positive / conflict rates:
+  `0.979167` / `0.979167` / `0.958333`;
+- target changes: Q1 `6`, Q2 `0`, Q3 `15`, S1 `9`, S2 `5`, S3 `4`,
+  S4 `9`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H105: route-consensus kernel is transferable and should be expanded;
+- loss to H105: the public-sensitive kernel is sharp and expansion adds toxic
+  or irrelevant cells;
+- loss to H103/H104: action-grade structure is not per-cell route consensus but
+  portfolio/residual-field safety.
+
+Priority: high information value.  Use it when the next question is
+"can the H105 kernel expand?" rather than "which current broad decoder is most
+likely to beat best."
