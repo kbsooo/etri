@@ -1399,3 +1399,42 @@ Public LB will decide which representation is action-grade.  If H104 wins, the
 paper-worthy HS-JEPA contribution is not only human-state representation; it is
 an action-safety operator that maps latent route intent into a public-safe
 correction field.
+
+## HS-JEPA v2.8: Signed Route-Coefficient Solver
+
+H105 opens the route-action decoder into signed coefficients:
+
+```text
+route-action basis
+  -> positive and counter-route coefficient terms
+  -> greedy public/private Lagrangian solver
+  -> sparse row-target kernel
+```
+
+The intended test was broad: can HS-JEPA solve a signed coefficient equation
+instead of selecting route-actions?  The observed result was narrower and more
+interesting.  The promoted candidate used no counter terms:
+
+- `29` selected coefficient terms;
+- `29` positive terms, `0` counter terms;
+- `8` submitted cells on `4` rows;
+- rows: `144,146,151,164`;
+- route-basis predicted delta vs H057: `-0.002727`;
+- bad-axis positive projection: `0.000000`;
+- H088-axis cosine: `-0.007302`.
+
+Architectural implication:
+
+H105 does not prove that signed coefficient mixing is the final decoder.  It
+suggests a new object inside HS-JEPA:
+
+```text
+route-consensus kernel =
+  a small row-target set where many route-action basis functions agree under
+  public/private toxicity constraints
+```
+
+This kernel is different from H103/H104.  H103 is a broad route-action
+portfolio; H104 is a residualized field.  H105 is a tiny consensus object.  If
+public confirms it, the next architecture should include a kernel expansion or
+kernel-transfer module.

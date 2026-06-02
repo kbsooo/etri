@@ -7773,3 +7773,39 @@ Public interpretation:
 Priority: very high information value, high risk.  H103 is the cleaner
 equation-solver candidate; H104 is the stronger "worldview change" candidate
 because it directly tests whether toxic public action can be projected away.
+
+## H105 Signed Route-Coefficient Solver
+
+Generated file:
+
+`submission_h105_signedcoef_8f0e502e_uploadsafe.csv`
+
+Worldview: route-actions are basis functions of a public/private equation, but
+the promoted solution shows the basis collapses into a sparse plus-only
+row-target kernel.
+
+Evidence:
+
+- selected candidate: `h105_discrete_plus_only_c90_s30_8f0e502e`;
+- coefficient terms: `29`;
+- plus terms / counter terms: `29` / `0`;
+- submitted cells / rows: `8` / `4`;
+- selected rows: `144,146,151,164`;
+- route-basis predicted delta vs H057: `-0.002727`;
+- H098 cell-equation predicted delta vs H057: `-0.000018`;
+- bad-axis weighted positive projection: `0.000000`;
+- H088-axis cosine: `-0.007302`;
+- good-minus-bad margin: `+0.025287`;
+- anti-H088 / H057-positive / conflict rates: `1.0` / `1.0` / `1.0`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H103/H104: sparse route-consensus kernel is the live action unit;
+- loss to H103/H104: coefficient collapse is too narrow and the safe field must
+  stay portfolio/residual-field based;
+- loss to H100: even the clean kernel overfits the route-basis public equation.
+
+Priority: high information value, but not the biggest public slot unless we
+want to test the "tiny id06/id07 route-consensus kernel" directly.  H103/H104
+remain better one-slot tests of broad action-grade HS-JEPA decoders.

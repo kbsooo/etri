@@ -1153,3 +1153,43 @@ Decision rule:
   discrete and solve constrained portfolios.
 - H100 beats both: bad-axis constraints are over-constraining the real route
   law and should become soft diagnostics only.
+
+### H105 Update
+
+H105 tests whether route-actions should be solved as signed coefficient basis
+functions.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H105 | `submission_h105_signedcoef_8f0e502e_uploadsafe.csv` | route-action coefficients collapse into a tiny safe id06/id07 row-target kernel | `29` coefficient terms / `8` cells / `4` rows | route-basis delta `-0.002727`, bad-axis positive projection `0.0`, H088-axis cosine `-0.007302` | sparse kernel bet |
+
+Breakthrough reading:
+
+```text
+The expected signed coefficient solution did not use counter terms. The
+selected H105 candidate used 29 positive route terms but decoded to only 8
+cells on rows 144, 146, 151, and 164. This suggests a route-consensus kernel:
+many semantic route-actions agree on the same small public/private assignment.
+```
+
+Current high-information submission order:
+
+1. `submission_h103_shadowcancel_89496ed5_uploadsafe.csv`
+   - cleanest broad discrete portfolio-solver test.
+
+2. `submission_h104_toxicresid_52f826e6_uploadsafe.csv`
+   - broad residual transport decoder test.
+
+3. `submission_h105_signedcoef_8f0e502e_uploadsafe.csv`
+   - tiny route-consensus kernel test.
+
+4. `submission_h100_route_basis_6c8e0c6b_uploadsafe.csv`
+   - unconstrained route-equation stress test.
+
+Decision rule:
+
+- H105 wins: exploit and expand the id06/id07 route-consensus kernel.
+- H103/H104 win over H105: the kernel is real but too narrow; action safety is
+  portfolio/residual-field level.
+- H105 loses badly: route-basis predicted gain can be overconcentrated, and the
+  decoder needs diversity constraints.

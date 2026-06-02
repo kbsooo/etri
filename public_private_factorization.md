@@ -1071,3 +1071,52 @@ Failure interpretation:
   because they overlap the positive route-basis law;
 - if H104 beats H103/H100, public/private factorization should be modeled as a
   route-intent plus toxic-axis residual equation.
+
+## H105 Sparse Route-Consensus Kernel Factorization
+
+H105 starts with a signed coefficient factorization:
+
+```text
+route-action basis functions
+  -> positive/counter coefficient search
+  -> public/private constrained coefficient field
+```
+
+The observed factorization collapses:
+
+```text
+29 positive coefficient terms
+  -> 8 row-target cells
+  -> rows 144,146,151,164
+```
+
+Observed H105 factorization:
+
+- selected file: `submission_h105_signedcoef_8f0e502e_uploadsafe.csv`;
+- selected terms: `29`;
+- positive terms / counter terms: `29` / `0`;
+- submitted cells / rows: `8` / `4`;
+- route-basis predicted delta vs H057: `-0.002727`;
+- H098 cell-equation predicted delta vs H057: `-0.000018`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.007302`;
+- cumulative good-minus-bad margin: `+0.025287`;
+- anti-H088, H057-positive, and conflict rates: all `1.000000`.
+
+Interpretation:
+
+This weakens the hypothesis that broad signed counter-coefficients are
+necessary.  It strengthens a sparse route-consensus kernel hypothesis: many
+route-action routes, including subjective and objective route variants, point
+to the same small hidden assignment.  The active public/private state may be
+localized in a few row-target cells rather than spread as a smooth latent
+field.
+
+Failure interpretation:
+
+- if H105 loses while H103/H104 improve, the kernel is a route-basis overfit and
+  needs diversity or density;
+- if H105 improves, the next factorization should expand the id06/id07 kernel
+  by nearest-route motifs rather than broaden all actions;
+- if all H100-H105 lose, route-action equations remain diagnostic but are not
+  action-grade without a new public subset sensor.

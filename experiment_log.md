@@ -10741,3 +10741,68 @@ Public interpretation:
   assignments because vector residualization destroys human-state semantics;
 - if H100 wins while H103/H104 lose, the known bad axes overlap the true
   positive route law and should be diagnostics rather than constraints.
+
+## H105 Signed Route-Coefficient Solver HS-JEPA
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h105_signedcoef_8f0e502e_uploadsafe.csv`
+
+Worldview:
+
+```text
+Route-actions may be basis functions of a hidden public/private equation.
+The safe row-target action might be a signed coefficient solution over those
+basis functions, rather than a selected subset of route-actions.
+```
+
+Method:
+
+- build H100 route-action basis actions;
+- create positive and counter-route coefficient terms;
+- greedily solve a signed coefficient Lagrangian under bad-axis, H088,
+  good-anchor, H098 cell-equation, route-basis, row, subject, and Q2
+  constraints;
+- decode the resulting coefficient field into row-target cells.
+
+Observed result:
+
+- selected candidate: `h105_discrete_plus_only_c90_s30_8f0e502e`;
+- generated root file: `submission_h105_signedcoef_8f0e502e_uploadsafe.csv`;
+- selected coefficient terms: `29`;
+- positive terms / counter terms: `29` / `0`;
+- submitted cells / rows: `8` / `4`;
+- changed rows: `144,146,151,164`;
+- changed target cells: Q1 `2`, Q2 `0`, Q3 `3`, S1 `2`, S2 `0`,
+  S3 `0`, S4 `1`;
+- route-basis predicted delta vs H057: `-0.002727`;
+- H098 cell-equation predicted delta vs H057: `-0.000018`;
+- posterior / hard diagnostic deltas vs H057: `+0.000035` / `+0.000048`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative bad-axis max positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.007302`;
+- cumulative good-minus-bad margin: `+0.025287`;
+- anti-H088 direction rate: `1.000000`;
+- H057-positive alignment rate: `1.000000`;
+- selected conflict rate: `1.000000`;
+- upload-safe validation passed.
+
+Important diagnostic:
+
+The signed coefficient solver did not use counter terms in the promoted
+candidate.  The best solution collapsed to a very small plus-only kernel over
+id06/id07 rows.  This weakens the broad "signed counter-coefficient" story and
+strengthens a different story: many route-actions agree on a small hidden
+row-target kernel, and that kernel may be the actual public/private assignment
+unit.
+
+Public interpretation:
+
+- if H105 beats H103/H104, the active equation is a sparse route-consensus
+  kernel rather than broad residual transport;
+- if H103/H104 beat H105, the 8-cell kernel is too narrow and the action-grade
+  law needs portfolio or residual-field density;
+- if H105 is close but not better, use it as a diagnostic seed for a kernel
+  expansion experiment rather than a final decoder.
