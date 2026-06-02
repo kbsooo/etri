@@ -8,6 +8,33 @@ Public LB는 최적화 target이 아니라 hidden public subset과 calibration s
 
 ## Public-Free Post-H012 Observation
 
+H067 is a public-free row-responsibility public-state observation after H057/H066.
+It tests whether H057's validated row-state is uniformly valid or public-weighted
+by a smaller responsibility map over seed and state-neighbor rows.
+
+- Base: H057 public frontier `0.5677475939`.
+- Promoted file: `submission_h067_rowresp_public_state_b10ea6b8_uploadsafe.csv`.
+- Selected candidate:
+  `h067_hybrid_st12_sb0_er66_sa1p0_ea1p0_bk1p0_r4_logit_b10ea6b8`.
+- Public row-equation count: `23`.
+- Row-equation LOO MAE / p90: `0.000742712` / `0.002475800`.
+- Selected seed rows / expansion rows: `12` / `66`.
+- Changed cells vs H057: `336`; changed rows vs H057: `78`.
+- Q2 changed vs H057: `0`.
+- Target changes vs H057: Q1 `51`, Q3 `51`, S1 `51`, S2 `59`, S3 `60`,
+  S4 `64`.
+- H050-null rows selected: `0`.
+- H064/H065/H066 selected-row overlap: `34/78` / `24/78` / `53/78`.
+- Posterior delta vs H057: `-0.000353309`.
+- Responsibility-weighted delta vs H057: `-0.000323777`.
+- Upload validation: `True`.
+
+Signal: if public improves over H057/H066, HS-JEPA needs a row-responsibility
+public-state gate rather than a uniform H057 row copier. If H067 fails while
+H066 improves, sequence/episode decoding is the stronger abstraction. If H067,
+H064, H065, and H066 all fail, expansion outside H057 is likely blocked and the
+compact public-specific row-state explanation becomes stronger.
+
 H066 is a public-free state-sequence episode-route observation after H057/H065.
 It tests whether H057's validated row-state is generated as subject-level
 episodes with pre/bridge/post routes, rather than as independent selected rows

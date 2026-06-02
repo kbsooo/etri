@@ -1,0 +1,2 @@
+total_rows,h057_seed_rows,h050_null_rows,h064_rows,h065_rows,h066_rows,public_equation_count,public_equation_loo_mae,public_equation_loo_p90,seed_public_weight_sum,nonseed_public_weight_sum
+250,45,66,36,24,63,23,0.0007427120255978517,0.0024758004214216413,0.4196575863845332,0.5803424136154667

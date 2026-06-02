@@ -4,6 +4,33 @@
 
 이 문서는 I-JEPA/LeJEPA 아이디어를 그대로 복제하지 않고, 이 대회 데이터의 hidden-DGP 탐색에 맞춰 변형한 latent diagnostic 기록이다.
 
+## H067 Row-Responsibility Public-State Diagnostic
+
+H067 treats rows, not cells, as the latent responsibility unit. The context is
+known public action response plus H061/H064/H065/H066 row-state evidence; the
+target representation is q061 with a learned row-responsibility weight.
+
+Diagnostic facts:
+
+- public row-equation count: `23`;
+- row-equation LOO MAE / p90: `0.000742712` / `0.002475800`;
+- inferred public weight mass: H057 seed rows `0.419657586`, non-seed rows
+  `0.580342414`;
+- promoted file: `submission_h067_rowresp_public_state_b10ea6b8_uploadsafe.csv`;
+- selected seed / expansion rows: `12` / `66`;
+- changed rows / cells vs H057: `78` / `336`;
+- Q2 changed vs H057: `0`;
+- H050-null rows selected: `0`;
+- H064/H065/H066 overlap: `34/78` / `24/78` / `53/78`;
+- posterior delta vs H057: `-0.000353309`;
+- responsibility-weighted delta vs H057: `-0.000323777`.
+
+LeJEPA-style read: the latent is useful as a sensor, but the row-equation LOO
+error is not tight enough to treat H067 as a safe calibrated optimizer. A public
+win would validate row-responsibility gating. A loss would not kill H057; it
+would say the current responsibility map over-expanded outside the compact
+public-specific row-state.
+
 ## H066 State-Sequence Episode-Route Diagnostic
 
 H066 treats H057 seed rows as sequence context tokens rather than isolated row

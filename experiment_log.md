@@ -4,6 +4,71 @@
 
 실험은 `Observe -> Wonder -> Hypothesize -> Falsify -> Build -> Stress -> Decide` 형식으로 기록한다. public LB는 최적화 대상이 아니라 hidden-DGP sensor로 사용한다.
 
+## H067. Row-Responsibility Public-State HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h067_row_responsibility_public_state_jepa.py`
+- Report: `hitl/h067_row_responsibility_public_state_jepa/h067_report.md`
+- Promoted submission:
+  `submission_h067_rowresp_public_state_b10ea6b8_uploadsafe.csv`
+
+### Observe
+
+H057 validated `45` Q2-support rows as full non-Q2 hidden-state rows, but H061
+could not safely split the `270` support cells because `265` remained positive
+after H057 feedback. H064-H066 then expanded outside H057 with graph, phase, and
+episode decoders, but all are still public-free.
+
+### Wonder
+
+Is H057 a uniformly valid `45`-row law, or does public listen to a smaller
+responsibility-weighted subset of rows and their state-neighbor rows?
+
+### Hypothesis
+
+H067-H: public response is row-responsibility weighted. The right HS-JEPA target
+is not a cell posterior alone, but a row-level public-state responsibility that
+decides which H057 seeds to trust and which H065/H066 rows to expand.
+
+### Falsification Design
+
+Fit a ridge row-responsibility sensor from known public action responses against
+the H061 q061 target representation. Combine that with H061 seed support and
+H064/H065/H066 row-state maps. Start from H057, freeze Q2 exactly, then allow:
+
+- high-responsibility H057 seed rows to move toward q061;
+- low-responsibility seed rows to roll back, if selected;
+- non-seed expansion rows only when public responsibility and state scores agree.
+
+### Result
+
+Selected
+`h067_hybrid_st12_sb0_er66_sa1p0_ea1p0_bk1p0_r4_logit_b10ea6b8`.
+
+- public row-equation count: `23`;
+- row-equation LOO MAE / p90: `0.000742712` / `0.002475800`;
+- inferred public weight: H057 seed rows `0.419657586`, non-seed rows
+  `0.580342414`;
+- selected seed rows / expansion rows: `12` / `66`;
+- changed cells / rows vs H057: `336` / `78`;
+- Q2 changed vs H057: `0`;
+- target changes vs H057: Q1 `51`, Q3 `51`, S1 `51`, S2 `59`, S3 `60`,
+  S4 `64`;
+- H064/H065/H066 overlap: `34/78` / `24/78` / `53/78`;
+- H050-null rows selected: `0`;
+- posterior delta vs H057: `-0.000353309`;
+- responsibility-weighted delta vs H057: `-0.000323777`;
+- upload validation passed.
+
+### Interpretation
+
+H067 is a bigger worldview sensor than H065/H066 because it directly asks
+whether H057 should be reinterpreted as a public-responsibility weighted
+row-state. If public improves, HS-JEPA should promote row-responsibility
+decoding as a core latent gate. If public loses while H066 improves, the
+sequence decoder is the better object. If H067, H064-H066 all lose, H057 is
+likely compact/public-specific and outside-row expansion is currently blocked.
+
 ## H066. State-Sequence Episode-Route HS-JEPA
 
 - Date: 2026-06-02

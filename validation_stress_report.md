@@ -4,6 +4,42 @@
 
 현재 목표는 CV 평균이 아니라 hidden-public transfer 가능성을 stress로 판정하는 것이다.
 
+## H067 Update: Row-Responsibility Public-State Stress
+
+H067 tests whether H057 row-state should be decoded through public
+responsibility weights rather than copied uniformly or expanded only by
+sequence proximity.
+
+Upload and structural checks:
+
+- file: `submission_h067_rowresp_public_state_b10ea6b8_uploadsafe.csv`;
+- shape: `(250, 10)`;
+- required columns: OK;
+- NaN: `0`;
+- duplicate keys: `0`;
+- probability range: `[0.000004939, 0.999999]`;
+- Q2 changed vs H057: `0`;
+- upload validation: `True`.
+
+Structural stress:
+
+- public row-equation count: `23`;
+- row-equation LOO MAE / p90: `0.000742712` / `0.002475800`;
+- selected seed rows / expansion rows: `12` / `66`;
+- changed rows / cells vs H057: `78` / `336`;
+- target changes vs H057: Q1 `51`, Q3 `51`, S1 `51`, S2 `59`, S3 `60`,
+  S4 `64`;
+- H050-null selected rows: `0`;
+- H064/H065/H066 overlap: `34/78` / `24/78` / `53/78`;
+- posterior delta vs H057: `-0.000353309`;
+- responsibility-weighted delta vs H057: `-0.000323777`.
+
+Stress read: H067 preserves the Q2-freeze and H050-null-veto invariants, but it
+is wider than H066 and relies on a noisy row-equation. This is acceptable as a
+worldview sensor, not as a low-risk final optimizer. A win validates
+public-responsibility state gating; a loss points back to compact H057 or
+sequence/phase decoding.
+
 ## H066 Update: State-Sequence Episode-Route Stress
 
 H066 tests whether H057 row-state expansion should be sequence-constrained

@@ -4,6 +4,27 @@
 
 Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature family는 어떤 숨은 구조를 겨냥하는지, label signal인지 split signal인지, 폐기 조건이 무엇인지 함께 관리한다.
 
+## H067 Feature Update
+
+### F-H067. Row-responsibility public-state score
+
+- Hidden structure: H057's validated row-state may be public-responsibility
+  weighted; some rows carry more public listener mass than others, and
+  expansion should happen only through high-responsibility state-neighbor rows.
+- Candidates: ridge row-responsibility from `23` known public action responses,
+  H061 seed support/gain, q061 per-row target gain, H064 contrastive boundary,
+  H065 phase score, H066 episode emission, and H050-null veto.
+- Label vs split test: Q2 is frozen, H050-null rows are excluded, and the
+  selected action changes a row only when public responsibility and state-map
+  evidence agree. Public success would support a row-responsibility latent gate;
+  failure would demote this responsibility map, not the original H057 state.
+- Adopt if: H067 improves public over H057/H066. Then promote
+  row-responsibility public-state decoding into HS-JEPA.
+- Drop if: H067 worsens while H066 or H065 improves. Then responsibility
+  fitting is the wrong abstraction and sequence/phase routing is stronger.
+- Current materialization: `78` rows, `336` non-Q2 cells, H050-null selected
+  `0`, H064/H065/H066 overlap `34/78` / `24/78` / `53/78`, upload-safe.
+
 ## H066 Feature Update
 
 ### F-H066. Subject episode-sequence route score

@@ -26,7 +26,21 @@ Previous public frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607
 
 H057 improves over H042/H050 by `0.0001572309` and over H012 by `0.0003758892`. H012 remains the base public-equation anchor, H042 remains the Q2 row anchor, and H057 is now the reference public frontier unless private-risk considerations dominate final selection.
 
-Current pending high-risk sensor: `submission_h066_state_sequence_episode_route_8ca9b9b6_uploadsafe.csv`.
+Current pending high-risk sensor: `submission_h067_rowresp_public_state_b10ea6b8_uploadsafe.csv`.
+
+Reason: H067 directly tests whether H057's validated `45` rows are a uniform
+law or a public-responsibility weighted row-state. It starts from H057, freezes
+Q2, fits a row-responsibility sensor from `23` known public observations against
+q061, then changes `336` non-Q2 cells on `78` rows: `12` H057 seed rows plus
+`66` high-responsibility expansion rows. It selects zero H050-null rows,
+overlaps H064/H065/H066 on `34/78`, `24/78`, and `53/78` rows, and has q061
+posterior delta `-0.000353309` plus responsibility-weighted delta
+`-0.000323777` versus H057. A public win would mean HS-JEPA needs a
+row-responsibility public-state gate. A public loss while H066 wins would mean
+sequence/episode decoding is the better object. A broad loss across H064-H067
+would strengthen the compact-H057/public-specific-state interpretation.
+
+Previous pending high-risk sensor: `submission_h066_state_sequence_episode_route_8ca9b9b6_uploadsafe.csv`.
 
 Reason: H066 is the first post-H057 candidate that explicitly decodes
 subject-level episode sequences. It keeps H057 as the base, freezes Q2, clusters
