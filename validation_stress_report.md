@@ -7371,3 +7371,30 @@ Public-free interpretation stress:
 - H057 intentionally violates the H050 broad subjective-route null by restricting
   subjective Q changes to H042's public-positive rows.
 - It is a high-information row-vector test, not a conservative submission.
+
+## H058 Stress Note: Private-Tail Ejection Sensor
+
+Upload and structural checks:
+
+- file: `submission_h058_private_tail_eject_138bba8f_uploadsafe.csv`;
+- shape: `(250, 10)`;
+- required columns: OK;
+- NaN: `0`;
+- duplicate keys: `0`;
+- probability range: `[0.0000329401, 0.9999803026]`.
+
+Structural stress:
+
+- vs H042: `500` changed cells on `197` rows;
+- protected H042 Q2-support row changes: `0`;
+- selected from H042-vs-E247 support outside protected rows;
+- per-target changes: Q1 `83`, Q2 `42`, Q3 `76`, S1 `66`, S2 `69`, S3 `85`,
+  S4 `79`;
+- eligible unprotected tail cells: `943`.
+
+Public-free interpretation stress:
+
+- H058 deliberately chooses the `500`-cell rollback, not the locally safer
+  `120`-cell rollback, because the public question is whether broad tail
+  ejection changes the world model.
+- If it fails, do not recycle H055 low-listener rollback as a safe selector.

@@ -1248,3 +1248,26 @@ Diagnostic facts:
 Interpretation: H057 is the high-amplitude row-vector decoder. It is expected
 to be more informative but riskier than H056 because it reintroduces subjective
 Q targets only on the public-positive row support.
+
+## H058 Latent Diagnostic: Private-Tail Ejection
+
+H058 treats H012/H042-vs-E247 support as a latent action field and uses the H055
+posterior as a listener energy score. Unlike H056/H057, it does not decode a
+row state into target routes; it removes low-listener tail cells outside the
+public-confirmed H042 row state.
+
+Diagnostic facts:
+
+- H042/E247 support cells: `1200`;
+- eligible unprotected tail cells: `943`;
+- protected H042 Q2-support rows: `45`;
+- selected rollback cells: `500`;
+- selected rollback rows: `197`;
+- protected-row changed cells: `0`;
+- selected target distribution: Q1 `83`, Q2 `42`, Q3 `76`, S1 `66`, S2 `69`,
+  S3 `85`, S4 `79`;
+- H055-posterior predicted delta vs H042: `+0.000175884`.
+
+Interpretation: H058 is a geometry/energy test. A public win means the listener
+energy can separate public tail from private tail. A public loss means the
+energy is locally coherent but not safe enough to cut broad H012/H042 support.

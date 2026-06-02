@@ -3167,3 +3167,33 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - H050 Q1/Q3 route rows `86`, overlap with H042 support rows `20`;
   - H055-posterior predicted delta vs H042 `-0.000194129`;
   - H055-posterior predicted delta vs H056 `-0.000058332`.
+
+## Public-Free Observation: H058 Private-Tail Ejection HS-JEPA
+
+- submission file prepared:
+  `submission_h058_private_tail_eject_138bba8f_uploadsafe.csv`
+- public LB: pending
+- public anchors:
+  - H012 `0.5681234831`;
+  - H042 `0.5679048248`;
+  - H050 `0.5679048248`.
+- changed point:
+  - starts from H042;
+  - protects all targets on the `45` H042 Q2-support rows;
+  - rolls back `500` low-listener unprotected H042-vs-E247 cells toward E247
+    with logit alpha `0.55`;
+  - total changed rows versus H042: `197`.
+- expected LB reaction:
+  - better than H042/H050 means the broad H012/H042 posterior mixes public
+    signal with private/noisy tail cells;
+  - worse than H042/H050 means the broad posterior outside H042 rows should not
+    be collapsed using H055 low-listener score alone.
+- local/public-free observation:
+  - H042/E247 support cells `1200`;
+  - eligible unprotected tail cells `943`;
+  - selected rollback cells `500`;
+  - protected-row changed cells `0`;
+  - per-target rollback cells: Q1 `83`, Q2 `42`, Q3 `76`, S1 `66`, S2 `69`,
+    S3 `85`, S4 `79`;
+  - H055-posterior predicted delta vs H042 `+0.000175884`;
+  - upload validation passed.

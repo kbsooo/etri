@@ -7999,3 +7999,55 @@ Selected `h057_full_nonq2_a1p15_logit_7cde1a77`.
 If H057 improves over H042/H056, HS-JEPA should model row-level hidden state as
 a full target vector. If H056 improves but H057 fails, the row state is
 objective-S but not subjective-Q. If both fail, H042 remains Q2-local.
+
+## H058. Private-Tail Ejection HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h058_private_tail_ejection_jepa.py`
+- Report: `hitl/h058_private_tail_ejection_jepa/h058_report.md`
+- Promoted submission:
+  `submission_h058_private_tail_eject_138bba8f_uploadsafe.csv`
+
+### Observe
+
+H012/H042's broad public-equation posterior changed `1200` cells versus E247.
+H042's public improvement was concentrated in `45` Q2 support rows, and H050's
+non-Q2 route tied H042. This leaves a live possibility that H012/H042 contain a
+mixture of public signal and private/noisy tail outside the proven Q2-support
+rows.
+
+### Wonder
+
+Can HS-JEPA separate the public-confirmed H042 row state from broad posterior
+tail cells that should be ejected back toward E247?
+
+### Hypothesis
+
+H058-H: the active bottleneck is public/private tail separation inside the
+H012/H042 posterior, not another target-route decoder. Low-listener cells
+outside H042 Q2-support rows should be partly rolled back toward E247.
+
+### Falsification Design
+
+Start from H042. Protect all targets on the `45` H042 Q2-support rows. Rank all
+other H042-vs-E247 support cells by H055 low-listener score. Roll back the
+lowest `500` cells toward E247 in logit space with alpha `0.55`.
+
+### Result
+
+Selected `h058_private_tail_eject_k500_a0p55_138bba8f`.
+
+- changed cells vs H042: `500`;
+- changed rows vs H042: `197`;
+- protected H042 Q2-support row changes: `0`;
+- per-target changes: Q1 `83`, Q2 `42`, Q3 `76`, S1 `66`, S2 `69`, S3 `85`,
+  S4 `79`;
+- H055-posterior predicted delta vs H042: `+0.000175884`;
+- upload validation passed.
+
+### Interpretation
+
+This is intentionally higher-risk than the `120`-cell rollback that H055 likes
+locally. A public win would change the world model toward public/private tail
+splitting. A public loss would kill the current low-listener ejection rule and
+preserve the broad H012/H042 posterior as necessary public signal.

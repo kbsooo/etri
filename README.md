@@ -414,3 +414,18 @@ H042 Q2-support rows: Q1 `45`, Q3 `45`, and S1-S4 `45` each, `270` cells total.
 If H057 improves, HS-JEPA should represent H042 support rows as complete hidden
 human-state vectors. If H056 improves but H057 fails, the row-state route is
 objective-S but not subjective-Q. If both fail, H042 remains Q2-local.
+
+## Latest H058 Branch Note
+
+H058 changes the question from target routing to public/private tail separation.
+H012/H042 differ from E247 on `1200` cells, but only H042's `45` Q2-support
+rows have clear post-H012 public evidence. H058 protects all targets on those
+rows and rolls back `500` low-listener cells outside that protected state toward
+E247 with logit alpha `0.55`.
+
+The promoted upload file is
+`submission_h058_private_tail_eject_138bba8f_uploadsafe.csv`. It changes `500`
+cells across `197` rows versus H042, with `0` protected-row changes. If it
+improves, the next HS-JEPA object is a public/private tail splitter inside the
+broad H012/H042 posterior. If it fails, the broad H012/H042 posterior outside
+H042 rows should not be collapsed using H055 low-listener score alone.

@@ -5342,3 +5342,39 @@ frozen at H042.
   validated.
 - Demote subjective-Q route if H056 improves but H057 fails.
 - Kill broad row-state translation if both H056 and H057 fail.
+
+## H058 Feature/Action Registry: Private-Tail Ejection
+
+### Feature / Action
+
+`h012_h042_public_posterior_private_tail_ejection`
+
+### Hidden Structure Targeted
+
+The action targets a public/private split inside the broad H012/H042
+public-equation posterior. H042's Q2-support rows are treated as protected
+public-visible state, while low-listener H042-vs-E247 cells outside those rows
+are treated as possible private/noisy tail.
+
+### Label Signal vs Split Signal
+
+- label signal evidence: H012/H042 broad posterior gave the large public jump;
+- split signal evidence: H042's public gain was tiny and Q2-local, while H050
+  non-Q2 routing was public-neutral;
+- leakage risk: this uses public-feedback-derived action geometry, so it should
+  be interpreted as a public sensor, not as a general train-label feature.
+
+### Materialization
+
+- base: H042;
+- rollback anchor: E247;
+- protected mask: all targets on H042 Q2-support rows;
+- rollback mask: lowest `500` H055 low-listener cells outside protected rows;
+- promoted file: `submission_h058_private_tail_eject_138bba8f_uploadsafe.csv`.
+
+### Keep / Kill Criteria
+
+- Keep if public improves over H042/H050: add a public/private tail splitter to
+  HS-JEPA.
+- Kill this selector if public worsens: do not use H055 low-listener score alone
+  to collapse broad H012/H042 posterior support.

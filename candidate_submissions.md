@@ -6408,3 +6408,39 @@ vector with Q2 fixed because Q2 was already corrected.
 - H056 better but H057 worse: objective-S route is live, subjective-Q on those
   rows is harmful or public-neutral.
 - Both worse: H042 remains Q2-local and row-state translation should stop.
+
+## H058 Branch Submission Decision
+
+Promoted file:
+
+`submission_h058_private_tail_eject_138bba8f_uploadsafe.csv`
+
+### Worldview Bet
+
+The broad H012/H042 public-equation posterior is not uniformly good. It may
+contain a public-confirmed core plus private/noisy tail cells. H058 protects the
+H042 Q2-support rows and ejects a large low-listener tail back toward E247.
+
+### Candidate Anatomy
+
+- base: H042;
+- rollback anchor: E247;
+- changed cells vs H042: `500`;
+- changed rows vs H042: `197`;
+- protected H042 Q2-support row changes: `0`;
+- per-target changes: Q1 `83`, Q2 `42`, Q3 `76`, S1 `66`, S2 `69`, S3 `85`,
+  S4 `79`;
+- H055-posterior predicted delta vs H042: `+0.000175884`.
+
+### Why It Is Worth A Public Sensor
+
+This is the first post-H042 experiment that attacks the broad posterior itself.
+It is not trying to route Q2 into other targets; it asks whether the big H012
+win still contains removable private tail.
+
+### Public Interpretation
+
+- Better than H042/H050: public/private tail splitter is the next HS-JEPA
+  module.
+- Worse than H042/H050: H012/H042 broad posterior outside H042 rows is
+  necessary or the H055 low-listener score is miscalibrated.

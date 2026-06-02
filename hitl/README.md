@@ -1655,3 +1655,23 @@ candidates had strong H025 health but weaker action-margin evidence.
 - public reading:
   improvement validates full row-vector HS-JEPA routing. If H056 improves but
   H057 fails, only objective S routing is live; if both fail, H042 is Q2-local.
+
+## H058 Private-Tail Ejection
+
+- script: `h058_private_tail_ejection_jepa.py`
+- report: `h058_private_tail_ejection_jepa/h058_report.md`
+- promoted root file:
+  `submission_h058_private_tail_eject_138bba8f_uploadsafe.csv`
+- purpose:
+  test whether H012/H042's broad `1200`-cell public-equation posterior contains
+  private/noisy tail outside the H042 Q2-support rows. H058 protects all targets
+  on the `45` H042 Q2-support rows and rolls back `500` low-listener cells
+  toward E247.
+- anatomy:
+  changed cells vs H042 `500`, changed rows `197`, protected-row changes `0`;
+  per-target changes Q1 `83`, Q2 `42`, Q3 `76`, S1 `66`, S2 `69`, S3 `85`,
+  S4 `79`.
+- public reading:
+  improvement validates public/private tail splitting as the next HS-JEPA
+  module. Failure means H055 low-listener score is not enough to safely collapse
+  the broad H012/H042 posterior.

@@ -5646,3 +5646,32 @@ H057 starts from H042, freezes Q2, and changes Q1/Q3/S1/S2/S3/S4 on exactly the
 - H056 improves but H057 fails: promote objective-S route and demote subjective
   Q route.
 - H056/H057 both fail: H042 is Q2-local under current evidence.
+
+## H058 Update: Public/Private Tail Ejection
+
+### New Hypothesis Node
+
+H058-H: H012/H042's broad public-equation posterior contains a public-confirmed
+core plus removable private/noisy tail. The H042 Q2-support rows are protected
+public state; low-listener support cells outside those rows should be rolled
+back toward E247.
+
+### Evidence Entering H058
+
+- H012/H042 differ from E247 on `1200` cells.
+- H042 improved public LB with only `45` Q2 cells.
+- H050 tied H042 while changing non-Q2 Q1/Q3 cells, leaving broad non-Q2 route
+  evidence weak.
+- H055 gives a post-feedback public-listener posterior, but its broad `700`-cell
+  materialization remains unproven.
+
+### Experiment Edge
+
+H058 starts from H042, protects all targets on H042's `45` Q2-support rows, and
+rolls back `500` low-listener unprotected cells toward E247.
+
+### State Transition Rules
+
+- If H058 improves: promote a public/private tail-splitter node in HS-JEPA.
+- If H058 fails: demote H055 low-listener rollback as a public selector and keep
+  broad H012/H042 posterior cells alive until a better splitter exists.
