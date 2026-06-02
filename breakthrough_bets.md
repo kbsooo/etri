@@ -2343,3 +2343,31 @@ H141 = common core only
 This is the current cleanest next public observation.  It can tell us whether
 the 0.53 path should scale the shared assignment field, keep the row207 H088
 tail, or keep the row135 repair branch.
+
+### H142 Update
+
+H142 is the additive-branch falsification bet.
+
+| Bet | File | Worldview | Local evidence | Risk |
+| --- | --- | --- | --- | --- |
+| H142 | `submission_h142_branchbarrier_338bb491_uploadsafe.csv` | H139 and H140 are not alternatives; partial row207 + partial row135 may form an interior branch equation | alpha `0.50`, beta `0.50`, H088 delta `-0.001999657`, margin delta `+0.000361794`, H098 delta `+0.000001727` | route delta jumps to `+0.000003610`; this may be a public-toxic co-activation |
+
+The key finding is more important than the file itself:
+
+```text
+The grid did not find a clean route-safe saddle.
+Co-activation creates a route barrier even at partial weights.
+```
+
+This creates a new 0.53 fork:
+
+```text
+If H142 is good:
+  local route toxicity is false;
+  expand additive branch-interaction search.
+
+If H142 is bad:
+  row207 and row135 are XOR branches;
+  build an assignment solver that activates one branch per hidden row-target
+  state instead of blending them.
+```

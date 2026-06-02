@@ -3007,3 +3007,50 @@ This makes the HS-JEPA decoder less like a single learned correction vector and
 more like an assignment/equation solver.  The representation proposes row-target
 actions; the solver separates the common action-grade field from optional
 branches that may be public-sensor shortcuts.
+
+### H142: Branch Co-Activation Barrier Probe
+
+H142 changes the decoder question again.
+
+After H141, the row-target equation has three pieces:
+
+```text
+common core = row70 Q3 + row131 S2
+row207 branch = H139 - H141
+row135 branch = H140 - H141
+```
+
+The natural JEPA-style question is whether hidden human state predicts an
+additive action field or a branch assignment:
+
+```text
+additive: H141 + alpha * row207 + beta * row135
+assignment: choose row207 branch or row135 branch, but not both
+```
+
+H142 evidence:
+
+- candidate: `submission_h142_branchbarrier_338bb491_uploadsafe.csv`;
+- alpha row207 branch: `0.50`;
+- beta row135 branch: `0.50`;
+- changed cells vs H136: `5`;
+- H088 delta vs H136: `-0.001999657`;
+- margin delta vs H136: `+0.000361794`;
+- route delta vs H136: `+0.000003610`;
+- H098/model delta vs H136: `+0.000001727`;
+- balanced barrier probe pass: `True`;
+- clean saddle pass: `False`.
+
+Architecture implication:
+
+```text
+HS-JEPA decoder vNext
+  -> common action core predictor
+  -> optional branch predictors
+  -> co-activation toxicity detector
+  -> XOR-style assignment solver if branch co-activation is public-toxic
+```
+
+The key update is that "safe action" may not mean "blend the best actions."
+The decoder may need to infer which hidden world a row-target belongs to and
+activate only that branch.

@@ -2734,3 +2734,59 @@ role atoms diagnostic only?     -> H136 should beat all three
 This gives HS-JEPA a sharper decoder target.  The solver should not merely
 score candidates; it should identify which part of the role equation is core
 and which part is an optional sensor-specific branch.
+
+## H142 Public/Private Factorization Update
+
+H142 tests whether the optional branches are additive or mutually exclusive.
+It decomposes:
+
+```text
+row207 branch = H139 - H141
+row135 branch = H140 - H141
+```
+
+and searches:
+
+```text
+H142 = H141 + alpha * row207_branch + beta * row135_branch
+```
+
+Observed H142 factorization:
+
+- selected file: `submission_h142_branchbarrier_338bb491_uploadsafe.csv`;
+- selected candidate: `h142_a0p5_b0p5_338bb491`;
+- alpha row207 branch: `0.50`;
+- beta row135 branch: `0.50`;
+- selected atoms:
+  - row `70` Q3 margin repair;
+  - row `131` S2 toxicity relief;
+  - row `207` S2 half toxicity relief;
+  - row `135` Q3/S2 half repair;
+- delta vs H136:
+  - route `+0.000003610`;
+  - H098/model `+0.000001727`;
+  - H088 `-0.001999657`;
+  - margin `+0.000361794`.
+
+Key diagnostic:
+
+```text
+co-activating row207 and row135 gives strong H088/margin movement,
+but route cost jumps to ~3.6e-6 even at partial branch weights.
+```
+
+Interpretation:
+
+This is the strongest evidence so far that the public/private action equation
+may be branch-exclusive:
+
+```text
+common core + row207 = one world
+common core + row135 = another world
+common core + both   = route-toxic world
+```
+
+If public accepts H142 anyway, the route diagnostic is too conservative and the
+next solver should search additive branch interactions.  If public rejects it,
+the next solver should become an XOR/assignment selector rather than a linear
+combiner.

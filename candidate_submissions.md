@@ -9349,3 +9349,48 @@ Public interpretation:
 - H139 > H141: row207 H088 relief is required.
 - H140 > H141: row135 repair is required.
 - H136 > H141: shared atoms are still diagnostics, not safe actions.
+
+## H142 Branch-Interaction Route-Barrier Probe
+
+Generated file:
+
+`submission_h142_branchbarrier_338bb491_uploadsafe.csv`
+
+Worldview: H139 and H140 may not be alternatives.  The true equation may be
+H141 common core plus partial row207 and partial row135 branches.  H142 tests
+that additive branch worldview directly.
+
+Evidence:
+
+- selected candidate: `h142_a0p5_b0p5_338bb491`;
+- alpha row207 branch: `0.50`;
+- beta row135 branch: `0.50`;
+- changed cells vs H136: `5`;
+- actions:
+  - row `70` Q3 margin repair;
+  - row `131` S2 toxicity relief;
+  - row `207` S2 half toxicity-relief branch;
+  - row `135` Q3/S2 half repair branch;
+- route delta vs H136: `+0.000003610`;
+- H098/model delta vs H136: `+0.000001727`;
+- H088 delta vs H136: `-0.001999657`;
+- margin delta vs H136: `+0.000361794`;
+- clean saddle pass: `False`;
+- balanced barrier probe pass: `True`;
+- co-activation route barrier: `True`;
+- upload-safe: `True`.
+
+Submission priority:
+
+High-risk, high-information.  This is not the safest candidate in the H139-H142
+family.  It should be used only if we want to spend a slot to falsify the
+route-barrier/XOR hypothesis.  If it wins, the 0.53 path reopens as an additive
+branch-equation search.  If it loses, do not co-activate row207 and row135.
+
+Public interpretation:
+
+- H142 > H139/H140/H141: local route toxicity is false; additive branch
+  interactions are a breakthrough direction.
+- H139 > H142: row207 is the active branch and row135 should be off.
+- H140 > H142: row135 is the active branch and row207 should be off.
+- H141 > H142: both optional branches are over-corrections.

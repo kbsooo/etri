@@ -13140,3 +13140,72 @@ equation needs one of the optional branches:
   core assignment field.
 - H139 > H141: row207 S2 H088 relief is real action signal.
 - H140 > H141: row135 repair is required for public/private safety.
+
+## H142 Branch-Interaction Route-Barrier HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h142_branch_interaction_saddle_hsjepa/h142_report.md`
+- `hitl/h142_branch_interaction_saddle_hsjepa/h142_decision.csv`
+- `hitl/h142_branch_interaction_saddle_hsjepa/h142_branch_grid_scores.csv`
+- `hitl/h142_branch_interaction_saddle_hsjepa/h142_selected_cells.csv`
+- `submission_h142_branchbarrier_338bb491_uploadsafe.csv`
+
+Worldview:
+
+```text
+H139 and H140 might be endpoints of a 2D equation.  If so, an interior mixture
+of row207 toxicity relief and row135 margin repair might beat both endpoints.
+```
+
+Observed result:
+
+- promoted candidate: `h142_a0p5_b0p5_338bb491`;
+- root file: `submission_h142_branchbarrier_338bb491_uploadsafe.csv`;
+- start field: H141 common core;
+- alpha row207 branch: `0.50`;
+- beta row135 branch: `0.50`;
+- changed cells vs H136: `5`;
+- selected actions:
+  - row `70` Q3 margin repair, inherited from H141;
+  - row `131` S2 toxicity relief, inherited from H141;
+  - row `207` S2 half toxicity-relief branch;
+  - row `135` Q3/S2 half repair branch;
+- delta vs H136:
+  - route: `+0.000003610`;
+  - H098/model: `+0.000001727`;
+  - H088: `-0.001999657`;
+  - margin: `+0.000361794`;
+- delta vs H141:
+  - route: `+0.000002418`;
+  - H098/model: `+0.000000727`;
+  - H088: `-0.000573718`;
+  - margin: `+0.000095632`;
+- clean saddle pass: `False`;
+- balanced barrier probe pass: `True`;
+- co-activation route barrier: `True`;
+- upload-safe validation passed.
+
+Important negative finding:
+
+The grid did not find a clean route-safe interior saddle.  Even small
+co-activation of row207 and row135 raises the route cost to roughly
+`3.6e-6`.  This suggests the action equation may be XOR-like:
+
+```text
+safe = common core + row207 branch
+safe = common core + row135 branch
+unsafe = common core + row207 branch + row135 branch
+```
+
+Interpretation:
+
+H142 is not a normal safety candidate.  It is a route-barrier falsification
+probe.
+
+- If H142 is good publicly, the local route barrier is a false diagnostic and
+  additive branch equations are still alive.
+- If H142 is bad publicly, row207 and row135 should be treated as mutually
+  exclusive public/private branches.
