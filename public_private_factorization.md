@@ -583,3 +583,33 @@ So public/private factorization currently has this hierarchy:
 2. explanatory/gating: H072/H089 lifestyle transition state;
 3. not action-grade yet: lifestyle white-space generation without posterior
    support.
+
+## H091 Learned Factorization
+
+H091 converted the explanatory lifestyle factor into a learned latent target.
+This is the current public/private factorization stack:
+
+```text
+lifestyle context -> learned action-quality heads -> public/private value gate
+```
+
+Observed H091 factorization:
+
+- selected route cells: `820`;
+- posterior delta vs H057: `-0.000552`;
+- hard-world delta vs H057: `-0.000108`;
+- H088 action overlap: `0.929972`;
+- OOF overall latent Spearman: `0.977807`.
+
+Current rule:
+
+```text
+The learned lifestyle factor can predict public/private value-head quality,
+but public/private action support is still dominated by the H087/H088 basin.
+```
+
+So the factorization problem has moved again:
+
+- solved enough: context can learn known value-head quality;
+- unsolved: context does not yet find low-overlap, private-safe support;
+- next target: raw sequence/block JEPA or masked route-support prediction.

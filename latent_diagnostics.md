@@ -1634,3 +1634,44 @@ private-head health. That is a LeJEPA-style warning: the representation may be
 semantically meaningful, but action decoding collapses into unsafe shortcuts
 without value-head confirmation.
 ```
+
+## H091 Learned Lifestyle-Action Latent Diagnostics
+
+Date: 2026-06-02
+
+H091 is the first prototype where HS-JEPA explicitly learns a hidden target
+representation instead of hand-scoring a decoder gate.
+
+Context:
+
+- H072/H089 lifestyle state and within-subject transition features;
+- route structure and value-law identity;
+- no direct action delta/rank columns as model inputs;
+- subject-group OOF prediction to reduce subject shortcut.
+
+Target representation:
+
+- public action quality from H085/H082/H086 agreement;
+- private action quality from H018/H088 agreement;
+- objective/body action quality;
+- Q2/calendar action quality;
+- overall action-grade quality.
+
+OOF geometry:
+
+| Head | Target mean | Prediction std | Spearman OOF | Top-25 AUC | Top-10 AUC |
+| --- | --- | --- | --- | --- | --- |
+| public | `0.516343` | `0.243557` | `0.944619` | `0.970010` | `0.965643` |
+| private | `0.464136` | `0.316343` | `0.961465` | `0.971541` | `0.966319` |
+| objective | `0.530399` | `0.154816` | `0.939852` | `0.965837` | `0.970713` |
+| q2 | `0.489074` | `0.188789` | `0.968847` | `0.980830` | `0.983730` |
+| overall | `0.489147` | `0.197694` | `0.977807` | `0.990766` | `0.990365` |
+
+Diagnostic conclusion:
+
+```text
+The learned latent is geometrically healthy and predictive, but it mostly
+maps to the existing H087/H088 support. The next latent target must be harder:
+it should mask route/action support and force discovery in lower-overlap
+regions while preserving hard-world safety.
+```

@@ -5682,3 +5682,37 @@ supported by lifestyle-state context.
 - Keep only if public shows a large surprise improvement.
 - Under current local stress, treat it as weak/falsified for normal submission
   priority because hard-world delta worsens while scale remains small.
+
+## H091 Feature/Action Registry: Learned Lifestyle-Action Latent
+
+### Feature / Action
+
+`learned_lifestyle_action_quality_latent`
+
+### Hidden Structure Targeted
+
+The feature targets the hidden representation that maps human lifestyle context
+to public/private/objective/Q2 action quality before probability decoding.
+
+### Label Signal vs Split Signal
+
+- label signal evidence: pseudo target comes from H085/H018/H082/H071
+  agreement, not final labels;
+- context evidence: inputs are lifestyle state, transition, route structure,
+  and value-law identity;
+- leakage risk: the target is public-feedback-derived, so H091 is an HS-JEPA
+  public-sensor latent, not a normal supervised feature.
+
+### Materialization
+
+- base: H057;
+- model: subject-group OOF ExtraTrees/RandomForest multi-output regression;
+- promoted file:
+  `submission_h091_learned_lifestyle_latent_452b5828_uploadsafe.csv`.
+
+### Keep / Kill Criteria
+
+- Keep as an architecture component if public validates or even ties while
+  H089/H090 fail: learned latent is cleaner than hand story gates.
+- Do not treat it as a 0.53 support breakthrough unless it beats H088 with
+  lower overlap or creates a clear public gain.

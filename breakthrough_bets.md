@@ -694,3 +694,35 @@ The big-bet queue changes:
 4. Next jackpot attempt should learn a latent target from lifestyle context:
    predict route/action/value-head assignment under a masked context objective,
    then decode only where the learned state agrees with public/private heads.
+
+### H091 Update
+
+H091 executed that next attempt:
+
+```text
+context = lifestyle state + row/route structure
+target = action/value-head quality inferred from H085/H018/H082/H071 agreement
+prediction = subject-held-out learned latent, not direct labels
+```
+
+| Experiment | File | Core claim | Changed vs H057 | Posterior delta | Hard-world delta | H088 overlap | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| H091 | `submission_h091_learned_lifestyle_latent_452b5828_uploadsafe.csv` | lifestyle context can learn hidden action/value-head quality before decoding | `820` cells / `119` rows | `-0.000552` | `-0.000108` | `0.929972` action overlap | learned latent is healthy but support is not novel |
+
+OOF latent diagnostics were strong, with overall Spearman `0.977807` and
+top-10 AUC `0.990365`. The caution is that the target is a pseudo hidden
+action target derived from existing route/value sensors; this proves
+representation alignment, not true label discovery.
+
+Breakthrough reading:
+
+```text
+The learned-latent HS-JEPA module is now real, but the 0.53 path still requires
+new support, not just a better predictor of the H087/H088 basin.
+```
+
+Next jackpot candidate:
+
+- learn context from raw sequence/log blocks rather than H072 story aggregates;
+- mask full row/subject/date blocks and predict action-grade route support;
+- require the latent to improve low-overlap support without hard-world damage.

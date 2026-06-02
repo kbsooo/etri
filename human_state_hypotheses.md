@@ -683,3 +683,31 @@ Human-state implication:
 - the next human-state breakthrough should train a latent target from
   lifestyle context and route/action agreement, rather than manually declaring
   that a payday/weekend/social state should move a target.
+
+## H091 Human-State Reading
+
+H091 did exactly that next step: it trained a hidden action-quality latent from
+lifestyle context and route/action agreement.
+
+In human terms:
+
+```text
+"Do not say payday or weekend directly changes Q2/S1. First ask whether the
+whole lifestyle context predicts a safe action route learned from other
+subjects."
+```
+
+The subject-held-out latent was strong, but the selected actions still mostly
+belonged to the same H087/H088 support basin. That changes the human story:
+
+```text
+Human lifestyle state is not fake. It is predictive of the known hidden action
+state. But the current story features are not yet rich enough to uncover a new
+episode outside the known public-equation basin.
+```
+
+The next human-state hypothesis should be more raw and less semantic:
+
+- not "cashflow stress row";
+- but "masked raw-log block whose context predicts a route/action latent that
+  current public equations did not already select."

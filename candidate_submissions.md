@@ -7247,3 +7247,39 @@ Public interpretation:
 Priority: low for leaderboard, high only as a falsification experiment. It is
 not currently recommended over H088/H089 because the hard-world proxy worsens
 substantially for the amount of novelty it introduces.
+
+## H091 Learned Lifestyle-Action Latent Candidate
+
+Promoted file:
+
+`submission_h091_learned_lifestyle_latent_452b5828_uploadsafe.csv`
+
+Worldview: lifestyle context should not hand-select labels or route actions.
+It should first predict a hidden action/value-head quality representation under
+subject-held-out stress, then decode only agreement-safe actions.
+
+Evidence:
+
+- selected internal candidate:
+  `h091_learned_public_transition_c820_r175_q115_452b5828`;
+- changed cells / rows vs H057: `820` / `119`;
+- Q2 changed cells: `115`;
+- posterior delta vs H057: `-0.000552`;
+- hard-world delta vs H057: `-0.000108`;
+- responsibility-weighted delta vs H057: `-0.000576`;
+- mean H088 action overlap: `0.929972`;
+- mean H087 action overlap: `0.914366`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win by `>=0.001`: learned lifestyle-action latent is action-grade and should
+  become a central HS-JEPA module;
+- small win/loss: learned latent explains the H087/H088 basin but does not
+  discover new support;
+- large loss: pseudo action-target learning is overfitting public-equation
+  geometry and needs raw-log sequence pretraining.
+
+Priority: medium. H091 is cleaner than H089 as an architecture claim because
+it uses a learned subject-held-out latent. It is still not a 0.53-scale
+jackpot candidate by itself because overlap with H088 remains high.

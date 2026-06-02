@@ -797,3 +797,55 @@ HS-JEPA v1 should therefore separate three levels:
 3. human lifestyle context as a gate/regularizer that explains or prioritizes
    value-head choice, but does not override action-grade posterior support
    without an additional learned latent target.
+
+## H091 Learned Lifestyle-Action Latent
+
+H091 implemented that additional learned latent target:
+
+```text
+human/social lifestyle context + row/route structure
+  -> subject-held-out predictor
+  -> hidden action/value-head quality representation
+  -> route-action selection
+  -> probability decoder
+```
+
+The target representation is not the final Q/S label. It is a five-head
+action-quality latent inferred from H085/H018/H082/H071 agreement:
+
+- public action quality;
+- private/hard action quality;
+- objective/body action quality;
+- Q2/calendar action quality;
+- overall action-grade quality.
+
+Subject-group OOF diagnostics:
+
+- public head Spearman: `0.944619`;
+- private head Spearman: `0.961465`;
+- objective head Spearman: `0.939852`;
+- Q2 head Spearman: `0.968847`;
+- overall head Spearman: `0.977807`.
+
+Promoted H091 file:
+`submission_h091_learned_lifestyle_latent_452b5828_uploadsafe.csv`.
+
+Diagnostics:
+
+- changed cells / rows versus H057: `820` / `119`;
+- posterior delta versus H057: `-0.000552`;
+- hard-world delta versus H057: `-0.000108`;
+- responsibility-weighted delta: `-0.000576`;
+- H088 action overlap: `0.929972`;
+- H087 action overlap: `0.914366`;
+- upload-safe validation passed.
+
+Architectural implication:
+
+```text
+HS-JEPA can learn a stable context-to-hidden-action representation, but the
+current learned latent still chooses the known H087/H088 support basin. The
+next architecture step is not another hand story; it is a raw sequence/block
+context encoder that can produce action-grade support outside the public
+equation basin.
+```

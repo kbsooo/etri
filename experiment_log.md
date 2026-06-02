@@ -9836,3 +9836,67 @@ condition, but the local hard/private proxy worsened sharply relative to its
 scale. This weakens the idea that hand-scored lifestyle context can safely open
 new action support. The next big bet should learn a hidden lifestyle target
 before allowing white-space actions.
+
+## H091. Learned Lifestyle-Action Latent HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h091_learned_lifestyle_action_latent_hsjepa.py`
+- Report: `hitl/h091_learned_lifestyle_action_latent_hsjepa/h091_report.md`
+- Candidate: `submission_h091_learned_lifestyle_latent_452b5828_uploadsafe.csv`
+
+### Observe
+
+H089 explained H088 but had high overlap. H090 reduced overlap but damaged the
+hard-world head. This suggests the problem is not "more human stories"; it is
+whether lifestyle context can learn an action-grade latent target.
+
+### Hypothesis
+
+H091-H: lifestyle context plus row/route structure can predict hidden
+route/action/value-head quality under subject-held-out stress. If true,
+HS-JEPA should include a learned context-to-action latent before decoding
+probabilities.
+
+### Method
+
+H091 used context features only from human/social state, temporal transition,
+route structure, route type, and value-law type. It excluded direct action
+delta/rank columns from input. The target was a pseudo hidden representation
+from H085 posterior, H018 hard-world, H082 source-action, and H071 assignment.
+
+Models:
+
+- ExtraTrees and RandomForest multi-output regressors;
+- GroupKFold by subject for OOF latent predictions;
+- candidate selection based on learned latent score plus value-head safety.
+
+### Result
+
+Selected `h091_learned_public_transition_c820_r175_q115_452b5828`.
+
+- selected route cells: `820`;
+- changed cells / rows versus H057: `820` / `119`;
+- Q2 changed cells: `115`;
+- posterior delta versus H057: `-0.000552`;
+- hard-world delta versus H057: `-0.000108`;
+- responsibility-weighted delta: `-0.000576`;
+- mean H088 action overlap: `0.929972`;
+- mean H087 action overlap: `0.914366`;
+- upload-safe validation passed.
+
+OOF latent diagnostics:
+
+- public Spearman `0.944619`;
+- private Spearman `0.961465`;
+- objective Spearman `0.939852`;
+- Q2 Spearman `0.968847`;
+- overall Spearman `0.977807`.
+
+### Interpretation
+
+H091 validates the learned-latent HS-JEPA module as an architecture piece, but
+it does not yet create a 0.53-scale new support discovery. The latent learns
+the existing H087/H088 action basin very well. The next breakthrough must
+replace hand story aggregates with raw sequence/block context or create a
+harder masked target that forces low-overlap support discovery without
+hard-world damage.

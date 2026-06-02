@@ -5815,3 +5815,40 @@ actions in that white space.
 H090 root candidate changed `49` cells with mean H088 action overlap `0.099160`,
 but hard-world delta worsened to `+0.000141`. Local state transition: direct
 lifestyle white-space action is weak/falsified under current proxies.
+
+## H091 Update: Learned Lifestyle-Action Latent
+
+### New Hypothesis Node
+
+H091-H: lifestyle context can predict a hidden action/value-head representation
+under subject-held-out stress, and this learned latent can safely decode
+probability actions.
+
+### Evidence Entering H091
+
+- H089 showed lifestyle state explains existing H088 support.
+- H090 showed direct lifestyle white-space actions hurt hard-world safety.
+- Therefore the missing step is a learned target representation, not a stronger
+  hand-written story gate.
+
+### Experiment Edge
+
+H091 trains multi-output ExtraTrees/RandomForest predictors from lifestyle
+context and row/route structure to five hidden targets: public, private,
+objective, Q2, and overall action quality. It uses GroupKFold by subject.
+
+### State Transition Rules
+
+- If H091 improves by `>=0.001`: promote learned lifestyle-action latent as a
+  core HS-JEPA decoder stage.
+- If H091 is locally strong but high-overlap: keep it as architecture evidence
+  but continue searching for new support.
+- If H091 fails: move from semantic story aggregates to raw-log sequence
+  masking.
+
+### Local Result
+
+H091 changed `820` cells with posterior delta `-0.000552`, hard-world delta
+`-0.000108`, and OOF overall Spearman `0.977807`. But H088 action overlap is
+`0.929972`. Local transition: learned latent is promoted as an HS-JEPA module,
+but not as a 0.53-scale support breakthrough.

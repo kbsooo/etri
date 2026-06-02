@@ -7721,3 +7721,38 @@ For submission priority, H088 remains cleaner than H089/H090.
 For architecture, H089/H090 justify adding a lifestyle context encoder but
 also justify a safety gate before it can open white-space actions.
 ```
+
+## H091 Learned Latent Stress
+
+Date: 2026-06-02
+
+H091 tested whether the lifestyle context can learn the hidden action/value
+target under subject-group OOF stress.
+
+| Candidate | Changed cells | Posterior delta | Hard-world delta | Resp-weighted delta | H088 overlap | H087 overlap | Upload safe |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `submission_h091_learned_lifestyle_latent_452b5828_uploadsafe.csv` | `820` | `-0.000552` | `-0.000108` | `-0.000576` | `0.929972` action | `0.914366` action | yes |
+
+OOF representation checks:
+
+| Head | Spearman OOF | Top-10 AUC |
+| --- | --- | --- |
+| public | `0.944619` | `0.965643` |
+| private | `0.961465` | `0.966319` |
+| objective | `0.939852` | `0.970713` |
+| q2 | `0.968847` | `0.983730` |
+| overall | `0.977807` | `0.990365` |
+
+Stress interpretation:
+
+- H091 passes representation-health stress: OOF latent is not collapsed.
+- H091 passes local public/private proxy stress.
+- H091 fails novelty stress: the selected support remains very close to
+  H087/H088.
+
+Decision:
+
+```text
+Learned lifestyle-action latent is architecture-valid but not yet a
+breakthrough support finder.
+```
