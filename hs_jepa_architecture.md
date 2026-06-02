@@ -2967,3 +2967,43 @@ uncertainty:
 ```text
 Is row207 H088 relief action-grade, or is robust H088-dropout survival safer?
 ```
+
+### H141: Common-Core Equation Probe
+
+H141 adds a third point to the H139/H140 public sensor pair.
+
+Instead of choosing the H088-heavy branch or the sensor-dropout branch, H141
+keeps only their overlap:
+
+```text
+row70 Q3  -> margin repair
+row131 S2 -> toxicity relief
+```
+
+H141 evidence:
+
+- candidate: `submission_h141_commoncore_0999d3ae_uploadsafe.csv`;
+- selected source: `h139_0999d3ae`;
+- row `207`: absent by design;
+- row `135`: absent by design;
+- changed cells vs H136: `2`;
+- H088 delta vs H136: `-0.001425939`;
+- margin delta vs H136: `+0.000266163`;
+- route delta vs H136: `+0.000001193`;
+- H098/model delta vs H136: `+0.000001000`.
+
+Architecture implication:
+
+```text
+role atom solver
+  -> branch decomposition:
+       common core
+       H088-heavy optional tail
+       sensor-dropout repair add-on
+  -> public/private equation sensor submissions
+```
+
+This makes the HS-JEPA decoder less like a single learned correction vector and
+more like an assignment/equation solver.  The representation proposes row-target
+actions; the solver separates the common action-grade field from optional
+branches that may be public-sensor shortcuts.

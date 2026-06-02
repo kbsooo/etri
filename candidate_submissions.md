@@ -9307,3 +9307,45 @@ Public interpretation:
   is the right decoder objective.
 - H139 > H140: row207 H088 relief is a real public action atom.
 - H136 > both: role frontier still has not become action-grade.
+
+## H141 Common-Core Public/Private Equation
+
+Generated file:
+
+`submission_h141_commoncore_0999d3ae_uploadsafe.csv`
+
+Worldview: H139 and H140 disagree on optional atoms, but the overlapping
+assignment row70 Q3 + row131 S2 may be the real action-grade core.
+
+Evidence:
+
+- selected source candidate: `h139_0999d3ae`;
+- changed cells vs H136: `2`;
+- actions:
+  - row `70` Q3 margin repair;
+  - row `131` S2 toxicity relief;
+- excluded by design:
+  - row `207` S2 H088-heavy tail;
+  - row `135` Q3/S2 repair add-on;
+- route delta vs H136: `+0.000001193`;
+- H098/model delta vs H136: `+0.000001000`;
+- H088 delta vs H136: `-0.001425939`;
+- margin delta vs H136: `+0.000266163`;
+- common-core pass: `True`;
+- H098-tight pass: `True`;
+- upload-safe: `True`.
+
+Submission priority:
+
+High-information isolation probe.  H139 tests the H088-heavy branch, H140 tests
+the row207-dropout repair branch, and H141 tests the shared two-cell core.  It
+is the cleanest submission if the goal is to learn whether the equation core is
+real without paying for either optional add-on.
+
+Public interpretation:
+
+- H141 > H139/H140: common row70+row131 assignment is action-grade; optional
+  row207/row135 branches are over-corrections.
+- H139 > H141: row207 H088 relief is required.
+- H140 > H141: row135 repair is required.
+- H136 > H141: shared atoms are still diagnostics, not safe actions.

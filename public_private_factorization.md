@@ -2690,3 +2690,47 @@ H140 selector = H088-dropout robustness equation
 ```
 
 This is exactly the public/private ambiguity the HS-JEPA decoder must resolve.
+
+## H141 Public/Private Factorization Update
+
+H141 isolates the agreement between H139 and H140.  It removes both optional
+branches and promotes only the shared two-cell role equation.
+
+Observed H141 factorization:
+
+- selected file: `submission_h141_commoncore_0999d3ae_uploadsafe.csv`;
+- source candidate: `h139_0999d3ae`;
+- selected atoms:
+  - row `70` Q3 margin repair;
+  - row `131` S2 toxicity relief;
+- deliberately absent:
+  - row `207` S2 H088-heavy tail;
+  - row `135` Q3/S2 repair add-on;
+- delta vs H136:
+  - route `+0.000001193`;
+  - H098/model `+0.000001000`;
+  - H088 `-0.001425939`;
+  - margin `+0.000266163`.
+
+Key diagnostic:
+
+```text
+H139 = common core + row207 H088 relief
+H140 = common core + row135 repair
+H141 = common core only
+```
+
+Interpretation:
+
+The current public/private equation fork is now clean:
+
+```text
+core action-grade field?        -> H141 should survive
+row207 toxic-relief needed?     -> H139 should beat H141
+row135 repair needed?           -> H140 should beat H141
+role atoms diagnostic only?     -> H136 should beat all three
+```
+
+This gives HS-JEPA a sharper decoder target.  The solver should not merely
+score candidates; it should identify which part of the role equation is core
+and which part is an optional sensor-specific branch.

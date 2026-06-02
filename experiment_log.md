@@ -13071,3 +13071,72 @@ H140 is a direct negative-control pair for H139.  If H140 wins publicly, the
 row207 H088-heavy atom was over-selected by the diagnostic and the real
 public/private equation rewards robust margin/H098/route survival.  If H139
 wins, row207 H088 relief is action-grade and should be scaled.
+
+## H141 Common-Core Public/Private Equation HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h141_common_core_equation_hsjepa/h141_report.md`
+- `hitl/h141_common_core_equation_hsjepa/h141_decision.csv`
+- `hitl/h141_common_core_equation_hsjepa/h141_common_core_ranked.csv`
+- `hitl/h141_common_core_equation_hsjepa/h141_all_scored_candidates.csv`
+- `submission_h141_commoncore_0999d3ae_uploadsafe.csv`
+
+Worldview:
+
+```text
+H139 and H140 disagree about row207 and row135, but they agree on row70 Q3 +
+row131 S2.  If the action-grade equation core is real, the shared two-cell
+assignment should survive without either optional add-on.
+```
+
+Observed result:
+
+- promoted candidate: `h139_0999d3ae`;
+- root file: `submission_h141_commoncore_0999d3ae_uploadsafe.csv`;
+- source file: `hitl/h139_role_atom_assignment_equation_hsjepa/submission_h139_0999d3ae.csv`;
+- start field: H136;
+- changed cells vs H136: `2`;
+- selected role atoms:
+  - row `70` Q3 margin repair;
+  - row `131` S2 toxicity relief;
+- deliberately held out:
+  - row `207` S2 H088-heavy optional tail;
+  - row `135` Q3/S2 sensor-dropout repair add-on;
+- delta vs H136:
+  - route: `+0.000001193`;
+  - H098/model: `+0.000001000`;
+  - H088: `-0.001425939`;
+  - margin: `+0.000266163`;
+- common-core pass: `True`;
+- H098-tight pass: `True`;
+- upload-safe validation passed.
+
+Comparison:
+
+```text
+H139:
+  row207 + row131 toxicity relief, row70 repair
+  H088 delta -0.002418, margin delta +0.000119
+
+H140:
+  row207 absent, row135 + row70 repair, row131 relief
+  H088 delta -0.001530, margin delta +0.000483
+
+H141:
+  row207 absent, row135 absent, row70 repair, row131 relief
+  H088 delta -0.001426, margin delta +0.000266
+```
+
+Interpretation:
+
+H141 is the minimal shared-equation probe.  It asks whether H139/H140's common
+row70+row131 core is already action-grade, or whether the public/private
+equation needs one of the optional branches:
+
+- H141 > H139/H140: row207 and row135 were over-corrections; scale the common
+  core assignment field.
+- H139 > H141: row207 S2 H088 relief is real action signal.
+- H140 > H141: row135 repair is required for public/private safety.

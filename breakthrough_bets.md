@@ -2323,3 +2323,23 @@ H140 = row207-dropout, maximize robust public/private safety
 This is a better information experiment than another small coefficient sweep.
 The public result will tell us whether the next 0.53 branch should scale H088
 relief atoms or build sensor-dropout robust assignment equations.
+
+### H141 Update
+
+H141 is the common-core isolation bet.
+
+| Bet | File | Worldview | Local evidence | Risk |
+| --- | --- | --- | --- | --- |
+| H141 | `submission_h141_commoncore_0999d3ae_uploadsafe.csv` | The true action-grade field is the overlap of H139 and H140: row70 Q3 repair + row131 S2 relief | two cells vs H136, H088 delta `-0.001425939`, margin delta `+0.000266163`, H098 delta `+0.000001000`, row207/row135 both absent | may underfit if either row207 or row135 is genuinely required by public/private equation |
+
+H141 turns the H139/H140 disagreement into a three-way sensor:
+
+```text
+H139 = common core + row207 H088 tail
+H140 = common core + row135 repair
+H141 = common core only
+```
+
+This is the current cleanest next public observation.  It can tell us whether
+the 0.53 path should scale the shared assignment field, keep the row207 H088
+tail, or keep the row135 repair branch.
