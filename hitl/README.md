@@ -13,18 +13,72 @@ search.
 - Current H057 conclusion: H042's `45` Q2-support rows are not merely Q2-local.
   They can carry a compact hidden human-state vector when Q2 is frozen and
   Q1/Q3/S1-S4 are decoded only on those rows.
-- Current next promoted sensor: `submission_h047_q2_support_identity_98737e9b_uploadsafe.csv`.
-- Current H047 question: did H042 expose a discrete Q2 support identity that
-  can safely expand from `45` to `59` cells, or was the exact H042 support the
-  public-specific correction?
-- Current larger-world promoted sensor:
-  `submission_h048_q2_public_subset_support_39c01d65_uploadsafe.csv`.
-- Current H048 question: is that Q2 support identity also a hidden
-  public-subset prior?
-- Current row-vector echo promoted sensor:
-  `submission_h049_rowvector_echo_7635f5ed_uploadsafe.csv`.
-- Current H049 question: if H042's Q2 support marks a hidden human-state row,
-  can the same rows carry a non-Q2 Q3/S target-route echo?
+- Current diagnostic sensor:
+  `submission_h061_h057feedback_support_69e9c079_uploadsafe.csv`.
+- Current H061 conclusion: after adding H057 feedback, `265/270` H057 support
+  cells are still positive under q061, so internal support cutting is weak as
+  the primary next bet.
+- Current high-risk expansion sensor:
+  `submission_h062_h057seed_rowstate_expand_23beb8eb_uploadsafe.csv`.
+- Current H062 question: are the `45` H057 rows seed examples of a larger
+  hidden human-state class? It freezes Q2 and moves full non-Q2 vectors on `48`
+  new rows.
+
+## H062: H057-Seed Row-State Expansion HS-JEPA
+
+- Script: `hitl/h062_h057_seed_rowstate_expansion_jepa.py`
+- Report: `hitl/h062_h057_seed_rowstate_expansion_jepa/h062_report.md`
+- Promoted root file:
+  `submission_h062_h057seed_rowstate_expand_23beb8eb_uploadsafe.csv`
+
+### Question
+
+Are H057's `45` rows a closed correction, or seed examples of a broader hidden
+human-state class?
+
+### Main Finding
+
+- selected new rows outside H057 seed: `48`;
+- changed cells vs H057: `288`;
+- Q2 changed vs H057: `0`;
+- changed cells vs H042: `558`;
+- posterior delta vs H057: `-0.000388888`;
+- selected subjects: `10`;
+- episode-near rate: `0.562500000`;
+- upload validation: `True`.
+
+### Interpretation
+
+H062 is the current larger HS-JEPA sensor. If public improves, the architecture
+needs a seed-row human-state classifier. If public fails, broad expansion is
+blocked and H057 remains compact/public-specific.
+
+## H061: H057-Feedback Support Translator HS-JEPA
+
+- Script: `hitl/h061_h057_feedback_support_translator_jepa.py`
+- Report: `hitl/h061_h057_feedback_support_translator_jepa/h061_report.md`
+- Promoted root file:
+  `submission_h061_h057feedback_support_69e9c079_uploadsafe.csv`
+
+### Question
+
+Can H057's support be decomposed into public-supported core cells and rollback
+tail after adding H057 feedback?
+
+### Main Finding
+
+- H057 support cells: `270`;
+- positive q061 gain cells: `265`;
+- negative q061 gain cells: `5`;
+- positive direction agreement: `266`;
+- changed cells vs H057: `270`;
+- Q2 changed vs H057: `0`;
+- upload validation: `True`.
+
+### Interpretation
+
+H061 weakens the internal-cut story. Most H057 cells remain positive, so q061
+is more useful as the teacher for H062 expansion than as a rollback selector.
 
 ## H060: Route-Core State Split HS-JEPA
 

@@ -4,6 +4,43 @@
 
 Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature family는 어떤 숨은 구조를 겨냥하는지, label signal인지 split signal인지, 폐기 조건이 무엇인지 함께 관리한다.
 
+## H062 Feature Update
+
+### F-H062. H057 seed row-state expansion score
+
+- Hidden structure: H057's `45` rows may be seed examples of a larger hidden
+  human-state class rather than the whole class.
+- Candidates: q061 non-Q2 row gain, positive target count, nearest H057 seed
+  distance, episode-near flag, same-subject seed availability, and
+  max-per-subject diversity.
+- Label vs split test: Q2 is frozen and only newly selected non-seed rows are
+  moved on Q1/Q3/S1/S2/S3/S4. Improvement would support row-state
+  generalization, not Q2 calibration.
+- Adopt if: H062 improves public meaningfully over H057. Then promote this
+  family into a seed-row classifier and search richer social/context features
+  for non-seed state membership.
+- Drop if: H062 worsens materially. Then broad row expansion is blocked and
+  H057 remains compact/public-specific until an independent classifier appears.
+- Current evidence: selected `48` rows across all `10` subjects, changed `288`
+  non-Q2 cells, posterior delta `-0.000388888`, upload-safe.
+
+## H061 Feature Update
+
+### F-H061. H057 feedback support score
+
+- Hidden structure: H057 support may contain public-supported core cells and
+  weak rollback-tail cells.
+- Candidates: q061 gain, q055 gain, feedback lift, direction agreement, support
+  rank, and H057-vs-H042 movement size.
+- Label vs split test: H061 uses H057 feedback but freezes Q2; it must find a
+  meaningful negative support tail to justify internal cutting.
+- Adopt if: a support split improves public over H057, proving H057 support is
+  heterogeneous at cell level.
+- Drop if: support remains broadly positive or public rejects the split.
+- Current evidence: `265/270` H057 support cells remain positive under q061, so
+  this is currently a diagnostic teacher feature rather than a primary
+  submission translator.
+
 ## H060 Feature Update
 
 ### F-H060. Route-core consensus latent

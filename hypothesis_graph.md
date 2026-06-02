@@ -2,11 +2,11 @@
 
 작성일: 2026-05-29
 
-이 문서는 수면 기반 생활습관 로그 예측 대회를 "예측 표"가 아니라 숨은 데이터 생성 과정의 관측 로그로 다루기 위한 가설 그래프다. 현재 best public LB는 `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`의 `0.5679048248`이다.
+이 문서는 수면 기반 생활습관 로그 예측 대회를 "예측 표"가 아니라 숨은 데이터 생성 과정의 관측 로그로 다루기 위한 가설 그래프다. 현재 best public LB는 `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv`의 `0.5677475939`이다.
 
 ## 현재 병목 요약
 
-E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해 previous best `a2c8`를 `0.0011326805` 낮췄고, E97에서 `submission_e95_hardtail_541e3973.csv`가 public `0.5762913298`로 mixmin을 `0.0000153107` 더 낮췄다. E255에서 `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`가 public `0.5761589494`로 E95를 `0.0001323804` 더 낮췄다. H012에서 `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`가 public `0.5681234831`로 E247을 `0.0080354663` 낮췄고, H042에서 `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`가 public `0.5679048248`로 H012를 `0.0002186583` 더 낮췄다. Mixmin의 큰 점프는 anchor-loss/binary-world movement가 public-relevant였다는 증거이고, E95의 작은 추가 개선은 E72-adverse hard-label tail localization이 public-real이라는 증거이며, E247의 추가 개선은 feature-NN1 Q3 smoothing geometry가 public-real이라는 증거다. H012의 훨씬 큰 점프는 known public LB observations를 hidden public label/subset state의 equation으로 쓰는 HS-JEPA branch가 action-grade임을 검증했다. H042의 작은 추가 개선은 그 public-equation fixed point 주변에 H024가 놓친 Q2-local phase descent가 있음을 보였다. 따라서 현재 병목은 E247 근처 micro edge가 아니라, H012/H042의 public-equation posterior와 Q2-local phase action을 private-safe hidden state로 확장할 수 있는지 분해하는 문제다.
+E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해 previous best `a2c8`를 `0.0011326805` 낮췄고, E97에서 `submission_e95_hardtail_541e3973.csv`가 public `0.5762913298`로 mixmin을 `0.0000153107` 더 낮췄다. E255에서 `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv`가 public `0.5761589494`로 E95를 `0.0001323804` 더 낮췄다. H012에서 `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`가 public `0.5681234831`로 E247을 `0.0080354663` 낮췄고, H042에서 `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`가 public `0.5679048248`로 H012를 `0.0002186583` 더 낮췄다. H057에서 `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv`가 public `0.5677475939`로 H042/H050을 `0.0001572309` 더 낮췄다. Mixmin의 큰 점프는 anchor-loss/binary-world movement가 public-relevant였다는 증거이고, E95의 작은 추가 개선은 E72-adverse hard-label tail localization이 public-real이라는 증거이며, E247의 추가 개선은 feature-NN1 Q3 smoothing geometry가 public-real이라는 증거다. H012의 훨씬 큰 점프는 known public LB observations를 hidden public label/subset state의 equation으로 쓰는 HS-JEPA branch가 action-grade임을 검증했다. H042의 작은 추가 개선은 그 public-equation fixed point 주변에 H024가 놓친 Q2-local phase descent가 있음을 보였고, H057은 그 Q2 rows가 full non-Q2 human-state vector를 운반할 수 있음을 보였다. 따라서 현재 병목은 E247 근처 micro edge가 아니라, H012/H042/H057의 public-equation posterior와 row-state action을 private-safe hidden state로 확장할 수 있는지 분해하는 문제다.
 
 가장 강한 현재 설명:
 
@@ -29,6 +29,8 @@ E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해
 - H034는 row-vector route abstraction에서 sibling failure를 더 잘 학습했지만, first-order row-route edit도 action-safe하지 않음을 보였다.
 - H042는 H024가 막은 작은 Q2 phase move가 public-positive일 수 있음을 보였다.
 - H057은 H042의 Q2-support row가 Q2만이 아니라 full non-Q2 hidden human-state vector를 운반할 수 있음을 보였다.
+- H061은 H057 public feedback을 추가해도 H057 support `270` cells 중 `265` cells가 positive로 남는다는 것을 보였다. 따라서 H057 내부 support cutting은 현재 주된 돌파구가 아니다.
+- H062는 H057의 `45` rows를 larger hidden human-state class의 seed로 보고, Q2를 freeze한 채 `48` new rows의 full non-Q2 vector를 움직이는 현재 가장 큰 post-H057 센서다.
 - H060은 그 H057 support가 균일한 하나의 state인지, route-core와 marker-only row가 섞인 이질 support인지를 가르는 센서다. H060은 top `8` route-core row를 amplify하고 bottom `22` marker row를 rollback하며, Q2는 freeze한다.
 - 0.54 진입을 막는 핵심 병목은 이제 hidden state 발견 자체보다, H012 같은 singular public-equation basin의 정확한 row-target identity를 private-safe/invariant hidden state로 재구성하고 그 exact phase를 확장 가능한 action law로 번역하는 문제다. 단순 posterior-completion, scalar gate, train-action health, smooth public-gradient, target-level calibration, dense phase sweep, first-order cellwise phase-lock edit, first-order row-route top-k edit은 현재 반증되었지만, target-isolated tiny Q2 phase branch는 아직 살아 있다.
 

@@ -4,6 +4,46 @@
 
 현재 목표는 CV 평균이 아니라 hidden-public transfer 가능성을 stress로 판정하는 것이다.
 
+## H062 Update: H057-Seed Row-State Expansion Stress
+
+H062 tests the broadest current post-H057 question: whether H057's rows are
+seed examples of a larger hidden human-state class.
+
+- Base: H057 public frontier `0.5677475939`.
+- Promoted file: `submission_h062_h057seed_rowstate_expand_23beb8eb_uploadsafe.csv`.
+- Selected candidate: `h062_latent_all_r48_a1p0_logit_nb0p0_mps8_23beb8eb`.
+- New rows outside H057 seed: `48`.
+- Changed cells vs H057: `288`; changed rows vs H057: `48`.
+- Q2 changed vs H057: `0`.
+- Changed cells vs H042: `558`; changed rows vs H042: `93`.
+- Mean/max abs move vs H057: `0.0230241301` / `0.1230853358`.
+- Posterior delta vs H057: `-0.000388888`.
+- Upload validation: `True`.
+
+Stress interpretation: H062 passes upload/key/probability checks and preserves
+the key H057 invariant that Q2 stays frozen. It fails the conservative compact
+state assumption by design. Public feedback will decide whether row-state
+generalization beyond the H057 support is real.
+
+## H061 Update: H057-Feedback Support Stress
+
+H061 tests whether adding H057 feedback exposes a support tail inside H057.
+
+- Base: H057 public frontier `0.5677475939`.
+- Promoted file: `submission_h061_h057feedback_support_69e9c079_uploadsafe.csv`.
+- H057 support cells audited: `270`.
+- Positive q061 gain cells: `265`.
+- Negative q061 gain cells: `5`.
+- Positive direction agreement: `266`.
+- Changed cells vs H057: `270`; changed rows vs H057: `45`.
+- Q2 changed vs H057: `0`.
+- Mean/max abs move vs H057: `0.0014259095` / `0.0062422204`.
+- Upload validation: `True`.
+
+Stress interpretation: H061 passes upload stress, but it does not create a
+strong falsifier against H057. The updated posterior mostly supports H057's
+cells, so H061 is diagnostic rather than the next primary broad bet.
+
 ## H060 Update: Route-Core Split Stress
 
 H060 is not a random CV improvement claim. It is a conflict stress between the

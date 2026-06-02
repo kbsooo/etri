@@ -403,3 +403,7 @@ hitl/h059_episode_spread_fullvector_jepa/submission_h059_*.csv
 
 # H060 materialized route-core split sweep files are reproducible from the script.
 hitl/h060_routecore_state_split_jepa/submission_h060_*.csv
+
+# H061/H062 materialized sweep files are reproducible from the scripts.
+hitl/h061_h057_feedback_support_translator_jepa/submission_h061_*.csv
+hitl/h062_h057_seed_rowstate_expansion_jepa/submission_h062_*.csv

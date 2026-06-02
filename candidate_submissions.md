@@ -26,17 +26,32 @@ Previous public frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607
 
 H057 improves over H042/H050 by `0.0001572309` and over H012 by `0.0003758892`. H012 remains the base public-equation anchor, H042 remains the Q2 row anchor, and H057 is now the reference public frontier unless private-risk considerations dominate final selection.
 
-Current pending high-risk sensor: `submission_h060_routecore_state_split_16c7766d_uploadsafe.csv`.
+Current pending high-risk sensor: `submission_h062_h057seed_rowstate_expand_23beb8eb_uploadsafe.csv`.
 
-Reason: H060 is the first route-split challenge to the H057 law. It does not
-ask for a small improvement. It asks whether the public-positive H057 row-state
-support is a homogeneous `45`-row state or a heterogeneous mixture of a compact
-route core plus Q2 marker-only rows. It freezes Q2, amplifies the top `8`
-route-core rows, rolls back the bottom `22` non-Q2 marker rows to H042, and
-damps the middle `15`. A public win would upgrade HS-JEPA from "row-state
-translator" to "route-core classifier + action translator"; a public loss would
-kill the simple route-consensus split and strengthen H057's uniform full-vector
-state law.
+Reason: H062 is the first post-H057 expansion that treats the `45` validated
+rows as seed examples of a larger hidden human-state class. It freezes Q2 and
+moves Q1/Q3/S1/S2/S3/S4 on `48` new rows toward the H061 posterior. It changes
+`288` cells versus H057, spans all `10` subjects, and has posterior delta
+`-0.000388888` versus H057. This is not a safe micro-refine: a public win would
+upgrade HS-JEPA from compact row-state translation to seed-row state discovery;
+a public loss would say H057 is a compact/public-specific state and broad row
+expansion needs a stronger classifier.
+
+Current diagnostic sensor: `submission_h061_h057feedback_support_69e9c079_uploadsafe.csv`.
+
+Reason: H061 asks whether H057's `270` non-Q2 support cells should be internally
+split after adding H057 public feedback. The updated posterior keeps `265/270`
+cells positive and only `5` negative, with Q2 frozen. This weakens the
+support-core/rollback-tail cut as the next primary bet, but it provides the
+q061 posterior used by H062.
+
+Previous pending high-risk sensor: `submission_h060_routecore_state_split_16c7766d_uploadsafe.csv`.
+
+Reason: H060 is the first route-split challenge to the H057 law. It freezes Q2,
+amplifies the top `8` route-core rows, rolls back the bottom `22` non-Q2 marker
+rows to H042, and damps the middle `15`. H061's feedback makes this less
+attractive as the first next test because H057 support cells remain broadly
+positive under the updated posterior.
 
 Previous pending episode-spread sensor: `submission_h059_episode_r3_fullvector_cb67de4b_uploadsafe.csv`.
 

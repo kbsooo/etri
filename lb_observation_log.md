@@ -4,9 +4,48 @@
 
 Public LB는 최적화 target이 아니라 hidden public subset과 calibration sensitivity를 관측하는 sensor로 취급한다.
 
-현재 public best는 `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv` = `0.5679048248`다. 아래 초기 표의 delta는 기존 E95 frontier anchor 기준이며, H012 이후 관측은 별도 섹션에 기록한다.
+현재 public best는 `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv` = `0.5677475939`다. 아래 초기 표의 delta는 기존 E95 frontier anchor 기준이며, H012 이후 관측은 별도 섹션에 기록한다.
 
 ## Public-Free Post-H012 Observation
+
+H062 is a public-free high-risk row-state expansion after H057. It tests
+whether the `45` H057 rows are seed examples of a larger hidden human-state
+class.
+
+- Base: H057 public frontier `0.5677475939`.
+- Promoted file: `submission_h062_h057seed_rowstate_expand_23beb8eb_uploadsafe.csv`.
+- Selected candidate: `h062_latent_all_r48_a1p0_logit_nb0p0_mps8_23beb8eb`.
+- New rows outside H057 seed: `48`.
+- Changed cells vs H057: `288`; changed rows vs H057: `48`.
+- Q2 changed vs H057: `0`.
+- Changed cells vs H042: `558`; changed rows vs H042: `93`.
+- Mean/max abs move vs H057: `0.0230241301` / `0.1230853358`.
+- Posterior delta vs H057: `-0.000388888`.
+- Selected subjects: `10`; episode-near rate: `0.562500000`.
+- Upload validation: `True`.
+
+Signal: if public improves, H057 was not a closed `45`-row correction; it was a
+seed set for a larger human-state class. If public fails, broad expansion is
+blocked and HS-JEPA needs a better row-state classifier before moving outside
+H057.
+
+H061 is a public-free H057 feedback diagnostic. It tests whether H057's support
+can be decomposed into public-supported core cells and rollback-tail cells.
+
+- Base: H057 public frontier `0.5677475939`.
+- Promoted file: `submission_h061_h057feedback_support_69e9c079_uploadsafe.csv`.
+- H057 non-Q2 support cells: `270`.
+- Positive gain under q061: `265`; negative gain: `5`.
+- Positive direction agreement: `266`.
+- Changed cells vs H057: `270`; changed rows vs H057: `45`.
+- Q2 changed vs H057: `0`.
+- Mean/max abs move vs H057: `0.0014259095` / `0.0062422204`.
+- Posterior delta vs H057: `-0.000001834`.
+- Upload validation: `True`.
+
+Signal: H057 feedback does not strongly support cutting H057 internally. Most
+support cells remain positive, so the next larger question is row-state
+expansion rather than support rollback.
 
 H060 is a public-free route-core split observation after H057. It tests whether
 H057's validated full-vector row-state support is homogeneous or a mixture of

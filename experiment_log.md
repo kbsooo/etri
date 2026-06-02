@@ -4,6 +4,50 @@
 
 실험은 `Observe -> Wonder -> Hypothesize -> Falsify -> Build -> Stress -> Decide` 형식으로 기록한다. public LB는 최적화 대상이 아니라 hidden-DGP sensor로 사용한다.
 
+## H062. H057-Seed Row-State Expansion HS-JEPA
+
+- Observe: H061 says H057's internal support is mostly still positive after
+  H057 feedback (`265/270` cells), so cutting H057 is less interesting than
+  asking whether H057's rows are seed examples of a larger state.
+- Wonder: are the `45` H057 rows a closed public-specific correction, or can
+  their full-vector human-state be discovered on nearby/non-seed rows?
+- Hypothesis: if H057 rows are seed examples of a larger hidden human-state
+  class, rows outside the seed with high q061 non-Q2 gain should accept the same
+  full-vector translation while Q2 stays frozen.
+- Method: `hitl/h062_h057_seed_rowstate_expansion_jepa.py` scored non-seed
+  rows by non-Q2 gain toward q061, seed proximity, episode-near features, and
+  subject coverage. It generated full non-Q2 row-state translations from H057.
+- Result: promoted `submission_h062_h057seed_rowstate_expand_23beb8eb_uploadsafe.csv`.
+  It changes `288` non-Q2 cells on `48` new rows, freezes Q2, covers all `10`
+  subjects, has posterior delta `-0.000388888` versus H057, and passes upload
+  validation.
+- Interpretation: H062 is the current larger HS-JEPA bet. A win validates
+  seed-row state expansion; a loss says H057's row-state is compact and
+  public-specific until a stronger row classifier exists.
+- Decision: promote as high-risk HITL sensor over H061/H060 for the next
+  worldview-changing submission question.
+
+## H061. H057-Feedback Support Translator HS-JEPA
+
+- Observe: H057 public `0.5677475939` validates full-vector translation on the
+  H042 Q2-support rows, but it is unclear whether all `270` non-Q2 moved cells
+  are still supported after seeing H057 feedback.
+- Wonder: can H057 be improved by decomposing its support into core cells and
+  rollback-tail cells?
+- Hypothesis: if H057 contains weak tail cells, adding H057 as a public-equation
+  observation should mark a meaningful rollback subset.
+- Method: `hitl/h061_h057_feedback_support_translator_jepa.py` added H042,
+  H050, and H057 as manual public sensors, fitted q061, and generated
+  split-tail/middle translators with Q2 frozen.
+- Result: q061 keeps `265/270` H057 support cells positive, with only `5`
+  negative cells and `266` direction agreements. The promoted diagnostic
+  changes all `270` support cells gently, mean/max abs `0.0014259095` /
+  `0.0062422204`, and has posterior delta `-0.000001834` versus H057.
+- Interpretation: H057 feedback does not strongly justify internal support
+  cutting. The support-core/rollback-tail story is weak as a primary next bet.
+- Decision: keep H061 as diagnostic and q061 teacher; use it to drive H062
+  expansion rather than submit it first.
+
 ## H060. Route-Core State Split HS-JEPA
 
 - Observe: H057 public `0.5677475939` validates that H042's `45` Q2-support rows can carry a full non-Q2 vector, but row-level route evidence is not uniform. Top route rows cluster strongly around id06 2024-08-20..25, while low rows have weak H055 gain and weak public-world/human-state support.

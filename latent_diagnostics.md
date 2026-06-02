@@ -4,6 +4,47 @@
 
 이 문서는 I-JEPA/LeJEPA 아이디어를 그대로 복제하지 않고, 이 대회 데이터의 hidden-DGP 탐색에 맞춰 변형한 latent diagnostic 기록이다.
 
+## H062 H057-Seed Row-State Expansion Diagnostic
+
+H062 reframes H057's public-positive rows as seed examples in a larger
+human-state latent class. The context is q061 plus row proximity to H057 seed
+rows; the target representation is a full non-Q2 row vector while Q2 is frozen.
+
+- Seed rows: `45`.
+- New selected rows: `48`.
+- Changed cells vs H057: `288`.
+- Q2 changed vs H057: `0`.
+- Mean selected row gain: `0.014178223`.
+- Mean nearest seed distance: `3.750000000`.
+- Episode-near rate: `0.562500000`.
+- Selected subjects: `10`.
+- Promoted file:
+  `submission_h062_h057seed_rowstate_expand_23beb8eb_uploadsafe.csv`.
+
+LeJEPA diagnosis: this is intentionally broad and high-risk. The latent is not
+being judged by local CV; it is judged by whether the H057 seed state can
+generalize to non-seed rows without changing Q2. A public win validates a
+seed-row classifier; a loss marks H057 as compact/public-specific.
+
+## H061 H057-Feedback Support Diagnostic
+
+H061 adds H057 public feedback to the public-equation posterior and asks
+whether the H057 full-vector support should be cut internally.
+
+- H057 non-Q2 support cells: `270`.
+- Positive q061 gain cells: `265`.
+- Negative q061 gain cells: `5`.
+- Positive direction agreement: `266`.
+- Mean feedback lift vs H055: `-0.000042306`.
+- Changed cells vs H057 in the promoted diagnostic: `270`.
+- Q2 changed vs H057: `0`.
+- Promoted file:
+  `submission_h061_h057feedback_support_69e9c079_uploadsafe.csv`.
+
+LeJEPA diagnosis: H057 feedback does not reveal a collapsed or obviously
+overfit tail inside the support. The healthier use of q061 is as a teacher for
+row-state expansion, not as an aggressive support rollback.
+
 ## H060 Route-Core Split Diagnostic
 
 H060 turns H057's public-positive row-state support into a latent route

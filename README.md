@@ -17,14 +17,18 @@ Current public frontier:
   scored `0.5677475939`. Since H057 froze Q2 and moved Q1/Q3/S1-S4 only on the
   `45` H042 Q2-support rows, this is direct evidence for a compact row-state
   latent rather than a broad non-Q2 route.
-- Latest generated public-free sensor: `submission_h060_routecore_state_split_16c7766d_uploadsafe.csv`.
-  H060 does not assume H057's `45` rows are homogeneous. It scores those rows
-  with H055/H036/H020/H019/H021 route evidence, amplifies the top `8` route-core
-  rows, rolls back the bottom `22` marker-only rows to H042 for non-Q2 targets,
-  damps the middle `15`, and freezes Q2. This is a high-risk HS-JEPA translator
-  test: a win means the row-state latent needs a route-core classifier; a loss
-  means H057's uniform full-vector action is stronger than the current rank
-  split.
+- Latest generated public-free diagnostic:
+  `submission_h061_h057feedback_support_69e9c079_uploadsafe.csv`. H061 adds
+  H057 feedback to the public-equation posterior and asks whether H057's `270`
+  non-Q2 support cells can be split into supported core and rollback tail. It
+  finds `265/270` cells still positive under the updated posterior, so the
+  internal cut story is weak and H057's support should mostly be preserved.
+- Latest generated high-risk sensor:
+  `submission_h062_h057seed_rowstate_expand_23beb8eb_uploadsafe.csv`. H062
+  treats the `45` H057 rows as seed examples of a larger hidden human-state
+  class, freezes Q2, and moves full non-Q2 vectors on `48` new rows. This is
+  the current bigger HS-JEPA bet: a win means H057 was a seed set, not a closed
+  correction; a loss means the validated H057 state is compact/public-specific.
 - External reference note: the attached high-scoring `submission_v106_sleep_state_conditioned_memory.csv` document reports public LB `0.5703952266` from same-subject sleep-state/sensor-quality-conditioned memory. That supports the broader repeated-subject world model, but H042 is lower by `0.0024904018`.
 
 Current post-H012 status:
