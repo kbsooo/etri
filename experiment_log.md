@@ -12578,3 +12578,73 @@ broad Q1/Q3 or Q/S bundle erasure = not action-grade yet
 If H132 improves publicly, HS-JEPA should add a witness-rescued Q1 toxicity
 field after sensor-dropout value assignment.  If H131 improves more, even this
 Q1 eraser is H088-shaped shortcut and robust value-add should stay separate.
+
+## H133 Target-Split Assignment HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h133_targetsplit_assignment_hsjepa/h133_report.md`
+- `hitl/h133_targetsplit_assignment_hsjepa/h133_decision.csv`
+- `hitl/h133_targetsplit_assignment_hsjepa/h133_operations.csv`
+- `hitl/h133_targetsplit_assignment_hsjepa/h133_cell_pool.csv`
+- `submission_h133_targetsplit_0cb376b8_uploadsafe.csv`
+
+Worldview:
+
+```text
+H132's broad row-bundle eraser may have failed because a human-state row is not
+toxic as a whole.  The same row can contain a toxic Q1 route and safe or
+valuable Q3/S routes.  The action decoder must therefore solve target-level
+assignment inside the row bundle.
+```
+
+Observed result:
+
+- promoted candidate: `h133_h132_q1_only_signature_0cb376b8`;
+- root file: `submission_h133_targetsplit_0cb376b8_uploadsafe.csv`;
+- start field: H132;
+- operations: `4`;
+- operations by target: Q1 `4`;
+- operations by state: off `3`, half `1`;
+- edited rows: Q1 off on rows `70`, `59`, `79`; Q1 half on row `135`;
+- selected cells / rows: `23` / `19`;
+- final target route: Q1 `2`, Q2 `0`, Q3 `5`, S1 `9`, S2 `5`,
+  S3 `0`, S4 `2`;
+- mean non-H088 passes: `3.0` / `3`;
+- route delta from H132: `-0.000003459`;
+- H098/model delta from H132: `+0.000000815`;
+- H088 delta from H132: `-0.002609933`;
+- good-bad margin delta from H132: `-0.011733078`;
+- model predicted delta vs H057: `-0.000031271`;
+- route-basis predicted delta vs H057: `-0.000708890`;
+- H088-axis cosine: `-0.072245892`;
+- good-bad margin: `0.164342764`;
+- upload-safe validation passed.
+
+Important negative/positive findings:
+
+- The non-H088 Q1/Q3 target-split branch found `6` operations but component
+  gain was only `0.000022`, so it was rejected.  Broad Q1/Q3 target splitting
+  is not action-grade.
+- The H088-shadow branch had the highest local score, but it was marked
+  diagnostic-only because H088/H018 are not action heads in the current goal.
+- The promoted branch is narrower: Q1-only toxicity after H132.
+
+Interpretation:
+
+H133 turns H132's row-bundle lesson into a target-specific law:
+
+```text
+safe assignment field = H131/H132 non-Q2 value support
+toxic action field = Q1 subjective-state residue
+not supported yet = broad Q1/Q3 bundle toxicity
+diagnostic only = H088/margin target-split shadow
+```
+
+If H133 improves publicly, HS-JEPA should add an intra-row target assignment
+decoder and treat Q1 as the first action-toxicity route.  If H132 improves
+more, the extra Q1 signature expansion is over-completion and the toxicity
+field remains only the three witness rows.  If H131 improves more, even Q1
+toxicity erasure is still public-sensor shortcut.

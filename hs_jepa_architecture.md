@@ -2621,3 +2621,48 @@ This makes the HS-JEPA decoder more target-specific.  Q1 toxicity cannot yet be
 generalized to all Q/S row bundles.  The next architecture question is why
 these Q1 witness rows are toxic: row-state, subject block, target dependency,
 or public-specific calibration.
+
+## HS-JEPA v5.16: Intra-Row Target Assignment Decoder
+
+H133 extends H132 by splitting a human-state row into target routes before
+applying toxicity.  The core idea is:
+
+```text
+same row / same human-state context
+  -> Q1 can be toxic
+  -> Q3/S routes can remain safe or valuable
+  -> action decoder must assign per target, not erase the row bundle
+```
+
+H133 evidence:
+
+- candidate: `submission_h133_targetsplit_0cb376b8_uploadsafe.csv`;
+- selected solver: `h133_h132_q1_only_signature_0cb376b8`;
+- start field: H132;
+- operations: Q1 off on rows `70`, `59`, `79`; Q1 half on row `135`;
+- final cells / rows: `23` / `19`;
+- route-basis predicted delta vs H057: `-0.000709`;
+- model predicted delta vs H057: `-0.000031`;
+- H088-axis cosine: `-0.072246`;
+- good-bad margin: `0.164343`.
+
+Rejected architecture variants:
+
+```text
+broad Q1/Q3 target split -> rejected by weak component gain
+H088-shadow target split -> diagnostic only, not promoted
+```
+
+Architecture implication:
+
+```text
+context encoder
+  -> safe value assignment field
+  -> Q1 toxicity signature field
+  -> per-row-target state assignment: keep / half / off
+  -> H088/H018 stress diagnostics, never direct action heads
+```
+
+This moves HS-JEPA closer to the active objective: the hidden representation is
+not enough.  The architecture must decide whether the action created from that
+representation is public/private safe for each row-target route.

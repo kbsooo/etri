@@ -2136,3 +2136,43 @@ If H132 wins publicly, expand from Q1 witness rows by learning their row-state
 signature.  If H131 wins more, keep Q1 erasure as diagnostic only.  If H130
 wins more, H132 was too conservative and public-specific H088/margin erasure
 is real.
+
+### H133 Update
+
+H133 executes the next branch from H132: instead of expanding a whole
+row-bundle eraser, split the row into target routes and test whether Q1 alone
+is toxic.
+
+| Experiment | File | Core claim | Support | Equation diagnostics | Status |
+| --- | --- | --- | --- | --- | --- |
+| H133 | `submission_h133_targetsplit_0cb376b8_uploadsafe.csv` | H132's Q1 witness can generalize into a Q1-only toxicity signature, while Q3/S routes stay assigned | `23` cells / `19` rows; Q1 ops `4` | route delta from H132 `-0.000003459`, H098 delta `+0.000000815`, H088 delta `-0.002610`, margin delta `-0.011733`, non-H088 passes `3/3` | intra-row target-assignment bet |
+
+Negative result:
+
+```text
+broad Q1/Q3 target split promoted operations but failed component-gain.
+H088-shadow target split looked locally best but is diagnostic-only.
+```
+
+Positive result:
+
+```text
+Q1-only target signature survives as a promoted non-diagnostic candidate.
+```
+
+0.53 implication:
+
+The big-bet path is not another global blend and not a broad row eraser.  It is
+a typed action-toxicity equation:
+
+```text
+human-state row
+  -> target route
+  -> Q1 subjective-state toxicity
+  -> per-target keep/half/off assignment
+```
+
+If H133 wins publicly, scale the architecture by learning Q1 toxicity from
+human-state context and then search for analogous typed routes for Q2/S1.  If
+H132 wins more, the Q1 signature expansion over-generalized and H132's three
+witness rows are the current limit.

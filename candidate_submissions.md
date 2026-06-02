@@ -8960,3 +8960,54 @@ Public interpretation:
 - H130 wins more: broad lattice erasure/damping carries real public-specific
   signal beyond H132's small Q1 witness;
 - H129 wins more: value additions are less reliable than core toxicity erasure.
+
+## H133 Target-Split Assignment
+
+Generated file:
+
+`submission_h133_targetsplit_0cb376b8_uploadsafe.csv`
+
+Worldview: H132 was still too coarse.  It asked whether a row-bundle is toxic,
+but the hidden equation may assign toxicity per target inside a mixed human
+state row.  The promoted claim is narrow: after H132, the remaining toxic
+field is a Q1 subjective-state signature, not a broad Q1/Q3 bundle law.
+
+Evidence:
+
+- selected candidate: `h133_h132_q1_only_signature_0cb376b8`;
+- start field: H132;
+- operations: `4`;
+- operation targets: Q1 `4`;
+- operation states: off `3`, half `1`;
+- operated rows: Q1 off on `70`, `59`, `79`; Q1 half on `135`;
+- selected cells / rows: `23` / `19`;
+- target route: Q1 `2`, Q2 `0`, Q3 `5`, S1 `9`, S2 `5`, S3 `0`,
+  S4 `2`;
+- route delta from H132: `-0.000003459`;
+- H098/model delta from H132: `+0.000000815`;
+- H088 delta from H132: `-0.002609933`;
+- margin delta from H132: `-0.011733078`;
+- model predicted delta vs H057: `-0.000031271`;
+- route-basis predicted delta vs H057: `-0.000708890`;
+- H088-axis cosine: `-0.072245892`;
+- good-bad margin: `0.164342764`;
+- upload-safe: `True`.
+
+Submission priority:
+
+High-information, medium-risk.  This is the cleanest current slot if we want to
+know whether H132's three Q1 witness erasures can generalize into a target
+signature.  It is not a conservative score defense because it weakens the
+H132 margin substantially, but it is aligned with the active goal: distinguish
+safe row-target assignment from toxic row-target action.
+
+Public interpretation:
+
+- H133 wins over H132: HS-JEPA needs intra-row target assignment, and Q1 is the
+  first real toxicity route.
+- H132 wins more: Q1 toxicity exists but only as the original three witness
+  rows; H133 over-generalized.
+- H131 wins more: Q1 erasure is still public-sensor shortcut and robust
+  value-add should remain separate.
+- H088-shadow diagnostic wins locally but public loses: keep H088/H018 as
+  stress diagnostics only.

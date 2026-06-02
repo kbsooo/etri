@@ -5934,3 +5934,44 @@ Low-overlap support discovery survives as a tiny latent, but dies as the next
 large action generator. The strongest live edge moves to value-law/public-
 equation inversion over known support.
 ```
+
+## H133 Update: Intra-Row Target Assignment
+
+### New Hypothesis Node
+
+H133-H: H132's bundle-toxicity branch failed because human-state rows are mixed
+objects.  A row can contain a toxic Q1 subjective route while Q3/S routes remain
+safe or valuable.  The hidden public/private equation therefore assigns action
+toxicity at the row-target level, not the row-bundle level.
+
+### Evidence Entering H133
+
+- H131 separated H130 into a dropout-robust value-add field and a suspect
+  erase/damp field.
+- H132 rejected broad row-bundle erasure but promoted a small Q1 witness
+  eraser.
+- H088 public failure means H088/H018 should remain stress diagnostics, not
+  action heads.
+
+### Experiment Edge
+
+H133 starts from H132 and solves target-level `keep/half/off` assignments
+inside the H132 bundle rows.  It evaluates Q1-only, Q1/Q3, from-scratch H131,
+and H088-shadow branches, but promotes only non-diagnostic branches.
+
+### Local Result
+
+Promoted candidate: `submission_h133_targetsplit_0cb376b8_uploadsafe.csv`.
+
+- Q1-only branch promoted: Q1 off rows `70`, `59`, `79`; Q1 half row `135`.
+- Broad Q1/Q3 non-H088 branch rejected by component gain `0.000022`.
+- H088-shadow branch had the best local score but was marked diagnostic-only.
+
+### State Transition Rules
+
+- If H133 improves publicly: promote intra-row target assignment and Q1
+  toxicity signature as HS-JEPA decoder components.
+- If H132 improves more: freeze Q1 toxicity at the original three witness rows.
+- If H131 improves more: demote Q1 erasure back to diagnostic shortcut.
+- If H088-shadow looks good locally but fails publicly: reinforce H088/H018 as
+  stress-only sensors.

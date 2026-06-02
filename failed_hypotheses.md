@@ -3626,3 +3626,49 @@ Decision:
 
 Reject direct forbidden-sector inversion.  The sector is useful as a veto or
 diagnostic representation, not as a current action decoder.
+
+## FH-H133A. Broad Q1/Q3 target splitting is action-grade
+
+Date: 2026-06-03
+
+Hypothesis:
+
+```text
+H132 failed broad row-bundle erasure because it did not split targets inside
+the row.  If we split Q1 and Q3 separately, broad Q1/Q3 toxicity assignment
+should become action-grade.
+```
+
+Result:
+
+- H133 `h132_nonh088_targetsplit` found `6` operations;
+- component gain was only `0.000022`;
+- the branch was rejected despite passing local non-H088 views;
+- promoted non-diagnostic candidate narrowed to Q1-only, not Q1/Q3.
+
+Decision:
+
+Reject broad Q1/Q3 target splitting as the current action field.  Keep the
+narrower Q1 toxicity-signature branch alive.
+
+## FH-H133B. H088-shadow target split can be promoted as an action decoder
+
+Date: 2026-06-03
+
+Hypothesis:
+
+```text
+The H088/margin target-split branch can directly decode public-safe actions.
+```
+
+Result:
+
+- H133 `h132_h088_shadow_targetsplit` had the highest local `h133_score`;
+- it had H098 delta `+0.000004340`, so the route/model view weakened;
+- it was explicitly marked diagnostic-only and not promoted to the root
+  upload-safe file.
+
+Decision:
+
+Reject H088-shadow target split as an action decoder under the current goal.
+H088/H018 remain stress diagnostics, not private/public action heads.

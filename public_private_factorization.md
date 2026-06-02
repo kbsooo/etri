@@ -2317,3 +2317,60 @@ negative sensors.  It is not pure H088 either, because the selected Q1 erasures
 pass route/H098/no-H088 views.  The next private-safe toxicity model should
 learn why these Q1 witness rows are special instead of expanding erasure to all
 high-contradiction Q/S bundles.
+
+## H133 Public/Private Factorization Update
+
+H133 tests whether H132 failed because it treated a mixed human-state row as an
+indivisible bundle.  The proposed factorization is:
+
+```text
+row human-state bundle
+  -> target-specific route assignment
+  -> Q1 toxic residue / Q3-S value routes can coexist
+```
+
+Observed H133 factorization:
+
+- selected file: `submission_h133_targetsplit_0cb376b8_uploadsafe.csv`;
+- selected candidate: `h133_h132_q1_only_signature_0cb376b8`;
+- start from H132 cells: `26`;
+- operations: Q1 `4`;
+- Q1 off rows: `70`, `59`, `79`;
+- Q1 half row: `135`;
+- final selected cells / rows: `23` / `19`;
+- Q2 cells: `0`;
+- route-basis predicted delta vs H057: `-0.000708890`;
+- model predicted delta vs H057: `-0.000031271`;
+- H088-axis cosine: `-0.072245892`;
+- good-bad margin: `0.164342764`.
+
+Rejected branches:
+
+- `h132_nonh088_targetsplit`: six Q1/Q3 operations, but component gain only
+  `0.000022`, so broad target splitting is not action-grade.
+- `h132_h088_shadow_targetsplit`: highest local score, but diagnostic-only
+  because it leans on H088/margin and contradicts the current H088-as-stress
+  framing.
+
+Interpretation:
+
+The live public/private equation is now:
+
+```text
+safe assignment field:
+  H131 sensor-dropout value additions
+
+first toxicity field:
+  H132 witness Q1 erasures
+  + H133 Q1-only signature expansion
+
+not yet live:
+  broad row-bundle erasure
+  broad Q1/Q3 target split
+  H088/margin as an action decoder
+```
+
+This is a sharper architecture claim than H132.  If public confirms H133, the
+next solver should learn a Q1 toxicity route from human-state context rather
+than expanding all Q/S bundles.  If public rejects it, H132's witness field
+should be frozen as a tiny residue, not generalized.
