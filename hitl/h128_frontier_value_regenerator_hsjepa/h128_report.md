@@ -1,0 +1,44 @@
+# H128 Frontier-Value Regenerator HS-JEPA
+
+Question: can the proposal generator be changed by using H098 frontier value
+directions while keeping H127's public/private toxicity gate?
+
+Audit:
+
+| spec_name | move_mode | condition | pool_rows | added_cells | component_gain |
+| --- | --- | --- | --- | --- | --- |
+| frontier_descent_margin | descent | nonq2 | 105 |  |  |
+| counter_h088_margin | counter_h088 | h088_toxic | 84 | 1.000000000 | 0.000475031 |
+| conflict_bridge_margin | conflict | anti_conflict_or_neighbor | 16 | 3.000000000 | 0.007806605 |
+| hybrid_frontier_counter | hybrid | nonq2 | 105 | 1.000000000 | 0.000512640 |
+| episode_s2_margin_regen | hybrid | episode_s_stage | 13 | 1.000000000 | 0.000645145 |
+
+Start metrics:
+
+| baseline | route | h098 | curv_marg | badw | badmax | h088 | margin |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| h127 | -0.000701198 | -0.000031310 | 0.000045493 | 0.000000000 | 0.000000000 | -0.051158429 | 0.160433912 |
+
+Candidates:
+
+| candidate_id | spec_name | selected_cells | changed_rows_vs_h057 | Q1_changed_vs_h057 | Q2_changed_vs_h057 | Q3_changed_vs_h057 | S1_changed_vs_h057 | S2_changed_vs_h057 | S3_changed_vs_h057 | S4_changed_vs_h057 | h128_added_cells | h128_added_targets | h128_delta_start_route | h128_delta_start_h098 | h128_delta_start_h088 | h128_delta_start_margin | model_pred_delta_vs_h057 | route_basis_pred_delta_vs_h057 | h102_cum_h088_axis_cos | h102_cum_good_bad_margin | h128_component_gain | h128_score | file |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| h128_conflict_bridge_margin_a6a6e648 | conflict_bridge_margin | 32 | 27 | 8 | 0 | 5 | 11 | 5 | 0 | 3 | 3 | S1:2;S4:1 | 0.000003934 | -0.000000258 | 0.004797923 | 0.039544592 | -0.000031568 | -0.000697264 | -0.046360506 | 0.199978504 | 0.007806605 | 0.294769856 | submission_h128_conflict_bridge_margin_a6a6e648.csv |
+| h128_episode_s2_margin_regen_a2deaa06 | episode_s2_margin_regen | 30 | 25 | 8 | 0 | 5 | 10 | 5 | 0 | 2 | 1 | S1:1 | 0.000001224 | 0.000000218 | -0.005847627 | -0.000088749 | -0.000031092 | -0.000699974 | -0.057006056 | 0.160345164 | 0.000645145 | 0.278445358 | submission_h128_episode_s2_margin_regen_a2deaa06.csv |
+| h128_hybrid_frontier_counter_1cab618c | hybrid_frontier_counter | 30 | 25 | 8 | 0 | 5 | 10 | 5 | 0 | 2 | 1 | S1:1 | 0.000001218 | 0.000000175 | -0.004761749 | -0.000058737 | -0.000031136 | -0.000699980 | -0.055920177 | 0.160375175 | 0.000512640 | 0.277600485 | submission_h128_hybrid_frontier_counter_1cab618c.csv |
+| h128_counter_h088_margin_af73d036 | counter_h088_margin | 30 | 25 | 8 | 0 | 5 | 9 | 5 | 0 | 3 | 1 | S4:1 | 0.000001216 | 0.000000233 | -0.000110371 | 0.002805403 | -0.000031077 | -0.000699982 | -0.051268799 | 0.163239315 | 0.000475031 | 0.277447853 | submission_h128_counter_h088_margin_af73d036.csv |
+
+Decision:
+
+| decision | selected_candidate_id | root_uploadsafe_path | worldview | candidate_id | spec_name | mode | target_group | fit_feature_set | fit_alpha | k | alpha | cap | selected_cells | changed_cells_vs_h057 | changed_rows_vs_h057 | model_pred_delta_vs_h057 | posterior_delta_vs_h057 | hard_diag_delta_vs_h057 | anti_h088_direction_rate | h057_positive_align_rate | selected_toxic_mean | selected_conflict_rate | selected_safe_cell_mean | mean_bad_same_rank | cos_h088_direction | cos_h057_vs_h042_direction | cos_h057_vs_h050_direction | max_positive_bad_cosine | mean_abs_prob_move_vs_h057 | max_abs_prob_move_vs_h057 | selected_subjects | selected_rows | h097_score | file | resolved_path | Q1_changed_vs_h057 | Q2_changed_vs_h057 | Q3_changed_vs_h057 | S1_changed_vs_h057 | S2_changed_vs_h057 | S3_changed_vs_h057 | S4_changed_vs_h057 | bad_cos_submission_h010_objectiv | bad_cos_submission_e216_maskfam | bad_cos_submission_e323_5508f966 | bad_cos_submission_jepa_latent_q | bad_cos_submission_jepa_latent_r | bad_cos_submission_lejepa_target | bad_cos_submission_ordinal_q_con | path | rows | keys_match | duplicate_keys | nan_cells | min_prob | max_prob | changed_cells_vs_h057_validation | upload_safe | h102_cum_bad_max_pos | h102_cum_bad_weighted_pos | h102_cum_h088_axis_cos | h102_cum_good_max_cos | h102_cum_good_mean_cos | h102_cum_good_bad_margin | route_basis_pred_delta_vs_h057 | selected_mean_residual_toxicity | selected_mean_residual_safety | selected_mean_residual_gap | selected_mean_antidote_score | selected_same_bad_residual | selected_opp_bad_residual | selected_same_good_residual | selected_opp_good_residual | selected_h111_cells | selected_h108_rejected_cells | selected_h109_cells | selected_mean_family_count | h112_information_mass | h112_score | h118_h127_overlap_cells | h118_h127_cosine | h118_h126_overlap_cells | h118_h126_cosine | h118_h125_overlap_cells | h118_h125_cosine | h118_h124_overlap_cells | h118_h124_cosine | h118_h088_overlap_cells | h118_h088_cosine | h118_zero_curv | h118_curv_pred_delta_vs_h057 | h118_curv_marginal_vs_zero | h118_mean_forbidden_same | h118_max_forbidden_same | h118_mean_forbidden_pressure | h118_mean_veto_score | h118_selected_rows | h128_start_field | h128_start_cells | h128_added_cells | h128_added_rows | h128_added_targets | h128_component_gain | h128_delta_start_route | h128_delta_start_h098 | h128_delta_start_h088 | h128_delta_start_margin | h118_score | h128_worldview | h128_fit_feature_set | h128_fit_alpha | h128_fit_score | h128_score | root_path | root_rows | root_keys_match | root_duplicate_keys | root_nan_cells | root_min_prob | root_max_prob | root_changed_cells_vs_h057_validation | root_upload_safe |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| promote_h128_frontier_value_regenerator | h128_conflict_bridge_margin_a6a6e648 | /Users/kbsoo/Downloads/cl2/submission_h128_frontiervalue_a6a6e648_uploadsafe.csv | H057/H088 conflict geometry supplies regenerated value only near already safe episode rows | h128_conflict_bridge_margin_a6a6e648 | conflict_bridge_margin | public_residual_toxicity_solver | forbidden_veto_conflict_bridge | state_core | 0.100000000 | 48 | 1.000000000 | 0.060000000 | 32 | 32 | 27 | -0.000031568 | -0.000007791 | -0.000003639 | 0.500000000 | 0.625000000 | 0.474688393 | 0.343750000 | 0.266410461 | 0.415107143 | -0.010475488 | 0.165392503 | 0.078328011 | 0.000000000 | 0.000100638 | 0.037061466 | 8 | 53,55,59,70,79,93,97,101,102,103,110,131,135,136,137,143,144,145,148,149,150,151,164,188,196,205,207 | 0.226638942 | submission_h128_conflict_bridge_margin_a6a6e648.csv | /Users/kbsoo/Downloads/cl2/hitl/h128_frontier_value_regenerator_hsjepa/submission_h128_conflict_bridge_margin_a6a6e648.csv | 8 | 0 | 5 | 11 | 5 | 0 | 3 | -0.172818604 | -0.185058434 | -0.184751475 | -0.151703307 | -0.168733945 | -0.194801688 | -0.175431823 | /Users/kbsoo/Downloads/cl2/hitl/h128_frontier_value_regenerator_hsjepa/submission_h128_conflict_bridge_margin_a6a6e648.csv | 250 | True | 0 | 0 | 0.000004939 | 0.999996754 | 32 | True | 0.000000000 | 0.000000000 | -0.046360506 | 0.199978504 | 0.190360395 | 0.199978504 | -0.000697264 | 0.412784429 | 0.675791237 | 0.263006809 | 0.811861429 | 0.001267029 | 5.277908707 | 0.051793096 | 5.183667995 | 14 | 6 | 3 | 2.625000000 | 0.764375000 | 0.462806059 | 29 | 0.978178619 | 28 | 0.976924986 | 28 | 0.976644581 | 27 | 0.976643936 | 25 | -0.046360506 | -0.000261663 | -0.000210324 | 0.000051340 | 0.000000000 | 0.000000000 | 0.000000000 | 1.000000000 | 27 | h127 | 29 | 3 | 3 | S1:2;S4:1 | 0.007806605 | 0.000003934 | -0.000000258 | 0.004797923 | 0.039544592 | 0.389916150 | H057/H088 conflict geometry supplies regenerated value only near already safe episode rows | route_curvature | 30.000000000 | 0.001054773 | 0.294769856 | /Users/kbsoo/Downloads/cl2/submission_h128_frontiervalue_a6a6e648_uploadsafe.csv | 250 | True | 0 | 0 | 0.000004939 | 0.999996754 | 32 | True |
+
+Interpretation rule:
+
+- If H128 improves, the missing object after H127 is value regeneration, not
+  support mining.
+- If H127/H126 remain better, H098 frontier value is not action-grade even
+  under H127 toxicity gates.
+- If H128 loses badly, H098 should stay a diagnostic response equation rather
+  than a proposal generator.

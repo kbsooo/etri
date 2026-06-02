@@ -2413,3 +2413,43 @@ after the route equation is already preserved.
 H127 is not a broad new HS-JEPA decoder.  It is a guardrail: residual mining
 should not be allowed to chase route-basis unless the cell also survives
 public/private toxicity stress.
+
+## HS-JEPA v5.11: Frontier-Value Regenerator
+
+H128 changes the proposal generator instead of mining one more residual cell.
+
+```text
+context encoder
+  -> hidden human/public state
+  -> H057 positive row-state sensor
+  -> H088 toxicity/collapse sensor
+  -> H098 frontier response equation
+  -> regenerated value field
+  -> H127 toxicity/margin assignment gate
+  -> sparse row-target action field
+  -> calibrated submission
+```
+
+H128 evidence:
+
+- candidate: `submission_h128_frontiervalue_a6a6e648_uploadsafe.csv`;
+- selected solver: `h128_conflict_bridge_margin_a6a6e648`;
+- start field: H127;
+- added component: S1 `2`, S4 `1`;
+- final cells / rows: `32` / `27`;
+- route-basis predicted delta vs H057: `-0.000697`;
+- model predicted delta vs H057: `-0.000032`;
+- H088-axis cosine: `-0.046361`;
+- good-bad margin: `0.199979`.
+
+The architecture claim is:
+
+```text
+HS-JEPA should not decode action directly from one latent head.
+It should split the decoder into value generation and toxicity-aware assignment.
+```
+
+H088 remains a negative stress sensor, not a private action head.  H098 remains
+dangerous as a direct proposal generator.  H128's only multi-cell survivor is a
+conflict bridge, which means value appears where positive row-state and
+negative action-state disagree, but it still needs a row-target safety gate.

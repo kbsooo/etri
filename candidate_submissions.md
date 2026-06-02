@@ -8708,3 +8708,49 @@ Public interpretation:
 - H126/H125/H124 win more: row `144` S2 was a local stress artifact;
 - H122/H123 win more: the whole S1/S2 margin/closure/residual branch is less
   public-safe than prune/refill.
+
+## H128 Frontier-Value Regenerator
+
+Generated file:
+
+`submission_h128_frontiervalue_a6a6e648_uploadsafe.csv`
+
+Worldview: H127 closed most of the residual support, but H098 may still contain
+usable value directions when restricted to H057/H088 conflict regions and
+passed through H127's toxicity/margin gate.
+
+Evidence:
+
+- selected candidate: `h128_conflict_bridge_margin_a6a6e648`;
+- start field: H127;
+- added cells: `3`;
+- added targets: S1 `2`, S4 `1`;
+- selected cells / rows: `32` / `27`;
+- target route: Q1 `8`, Q2 `0`, Q3 `5`, S1 `11`, S2 `5`, S3 `0`,
+  S4 `3`;
+- route delta from H127: `+0.000004`;
+- H098/model delta from H127: `-0.000000258`;
+- H088 delta from H127: `+0.004798`;
+- margin delta from H127: `+0.039545`;
+- model predicted delta vs H057: `-0.000032`;
+- route-basis predicted delta vs H057: `-0.000697`;
+- H088-axis cosine: `-0.046361`;
+- good-bad margin: `0.199979`;
+- upload-safe: `True`.
+
+Submission priority:
+
+Medium-high as an information slot, not as a conservative best-defense slot.
+H128 is the cleanest current test of whether a regenerated action-value field
+exists beyond H126/H127.  It is riskier than H126/H127 because it adds S1/S4
+over H127, but it is more informative for the current goal.
+
+Public interpretation:
+
+- H128 wins: the next HS-JEPA decoder should become conflict-value
+  regenerator plus toxicity assignment gate;
+- H127/H126 win more: value regeneration is too aggressive and H098 should
+  remain diagnostic;
+- H128 loses badly: S1/S4 conflict-bridge is public-toxic over-completion, and
+  the solver should focus on assignment deletion/toxicity fields rather than
+  adding regenerated cells.

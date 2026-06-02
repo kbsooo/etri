@@ -12220,3 +12220,75 @@ Public interpretation:
   current residual pool is diagnostic only;
 - if H122/H123 improve more, the later margin/closure/residual branch should be
   demoted and the prune/refill route is the stronger action equation.
+
+## H128 Frontier-Value Regenerator HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h128_frontier_value_regenerator_hsjepa/h128_report.md`
+- `hitl/h128_frontier_value_regenerator_hsjepa/h128_decision.csv`
+- `hitl/h128_frontier_value_regenerator_hsjepa/h128_added_cells.csv`
+- `hitl/h128_frontier_value_regenerator_hsjepa/h128_value_pool.csv`
+- `submission_h128_frontiervalue_a6a6e648_uploadsafe.csv`
+
+Worldview:
+
+```text
+H127 says the old residual support is almost closed.  If another action-space
+breakthrough exists, it may come from regenerating value directions with H098's
+frontier equation, while H127 supplies the public/private toxicity gate.
+```
+
+Observed result:
+
+- promoted candidate: `h128_conflict_bridge_margin_a6a6e648`;
+- root file: `submission_h128_frontiervalue_a6a6e648_uploadsafe.csv`;
+- start field: H127;
+- added cells: `3`;
+- added targets: S1 `2`, S4 `1`;
+- added rows: `136` S1, `110` S1, `143` S4;
+- selected cells / rows: `32` / `27`;
+- final target route: Q1 `8`, Q2 `0`, Q3 `5`, S1 `11`, S2 `5`,
+  S3 `0`, S4 `3`;
+- route delta from H127: `+0.000004`;
+- H098/model delta from H127: `-0.000000258`;
+- H088 delta from H127: `+0.004798`;
+- good-bad margin delta from H127: `+0.039545`;
+- model predicted delta vs H057: `-0.000032`;
+- route-basis predicted delta vs H057: `-0.000697`;
+- H088-axis cosine: `-0.046361`;
+- good-bad margin: `0.199979`;
+- upload-safe validation passed.
+
+Negative findings:
+
+- pure `frontier_descent_margin` generated no accepted component;
+- broad counter-H088 and hybrid variants survived only as one-cell candidates;
+- the only multi-cell survivor is a conflict-bridge around already safe
+  H057/H088 geometry, not generic H098 descent.
+
+Interpretation:
+
+H128 partially revives the proposal-generator bet.  The useful object is not:
+
+```text
+H098 frontier value direction -> direct action decoder
+```
+
+It is narrower:
+
+```text
+H098/H057/H088 conflict geometry -> candidate value
+H127 toxicity/margin gate -> admissible row-target assignment
+```
+
+Public interpretation:
+
+- if H128 improves over H127/H126, the next solver should regenerate value from
+  conflict geometry, then gate it by toxicity and margin;
+- if H127/H126 improve more, H098 remains a diagnostic response equation and
+  should not be used as a proposal generator;
+- if H128 loses badly, S1/S4 conflict-bridge is another public-unsafe
+  over-completion and H127 should remain the terminal residual branch.

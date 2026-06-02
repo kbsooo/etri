@@ -1,0 +1,6 @@
+spec_name,move_mode,condition,pool_rows,added_cells,component_gain
+frontier_descent_margin,descent,nonq2,105,,
+counter_h088_margin,counter_h088,h088_toxic,84,1.0,0.00047503098932989306
+conflict_bridge_margin,conflict,anti_conflict_or_neighbor,16,3.0,0.007806604902608274
+hybrid_frontier_counter,hybrid,nonq2,105,1.0,0.0005126400374473789
+episode_s2_margin_regen,hybrid,episode_s_stage,13,1.0,0.0006451449661963324

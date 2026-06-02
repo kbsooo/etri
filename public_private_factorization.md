@@ -2105,3 +2105,48 @@ Failure interpretation:
   is safer;
 - H123 improves more: route completion dominates bundle conservation;
 - H122 improves more: refill and bundle completion are unsafe.
+
+## H128 Public/Private Factorization Update
+
+H128 tests whether the public/private equation can be factored into two
+separate objects:
+
+```text
+value direction = H098 frontier response around H057/H088 conflict geometry
+safe assignment = H127 toxicity/margin gate
+```
+
+Observed H128 factorization:
+
+- selected file: `submission_h128_frontiervalue_a6a6e648_uploadsafe.csv`;
+- selected candidate: `h128_conflict_bridge_margin_a6a6e648`;
+- start from H127 cells: `29`;
+- added cells: `3`;
+- added targets: S1 `2`, S4 `1`;
+- final selected cells / rows: `32` / `27`;
+- Q2 cells: `0`;
+- route-basis predicted delta vs H057: `-0.000697`;
+- model predicted delta vs H057: `-0.000032`;
+- H088-axis cosine: `-0.046361`;
+- good-bad margin: `0.199979`.
+
+Interpretation:
+
+The public/private split is not:
+
+```text
+public head predicts action, private head predicts hard-world action
+```
+
+H088 already falsified that framing.  The stronger current split is:
+
+```text
+H088/H018 = toxicity and collapse stress sensors
+H057/H098 = positive/conflict value sensors
+H127/H128 = sparse assignment gates over row-target cells
+```
+
+The new evidence is that H098 can propose extra value only in a narrow conflict
+bridge.  Pure frontier descent did not produce an accepted multi-cell action.
+This keeps value regeneration alive, but only after public/private toxicity
+assignment has already selected the admissible support.

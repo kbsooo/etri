@@ -1979,3 +1979,32 @@ Next big-bet implication:
 Do not keep sweeping residual pools.  If H127 does not win publicly, the next
 large move must change the proposal generator or the public/private equation
 itself, not add one more residual cell.
+
+### H128 Update
+
+H128 executes that next proposal-generator bet.
+
+| Experiment | File | Core claim | Support | Equation diagnostics | Status |
+| --- | --- | --- | --- | --- | --- |
+| H128 | `submission_h128_frontiervalue_a6a6e648_uploadsafe.csv` | H098 frontier value can regenerate action only inside H057/H088 conflict regions admitted by H127 toxicity gates | `32` cells / `27` rows; added S1 `2`, S4 `1` | route delta from H127 `+0.000004`, H098 delta `-0.000000258`, H088 `-0.046361`, margin `0.199979` | conflict-value regenerator bet |
+
+Important negative result:
+
+```text
+pure H098 frontier descent did not produce an accepted multi-cell candidate.
+```
+
+So the next 0.53-scale hypothesis is not "make H098 a stronger action head".
+It is:
+
+```text
+separate value regeneration from action assignment.
+value may be visible in H057/H088/H098 conflict geometry,
+but public safety is decided by a sparse row-target toxicity equation.
+```
+
+If H128 wins publicly, the next breakthrough path is to build a larger
+row-target assignment/equation solver around conflict-value proposals.  If it
+loses, H128 kills the current value-regenerator branch and pushes the search
+toward deleting toxic actions or solving public subset equations instead of
+adding cells.
