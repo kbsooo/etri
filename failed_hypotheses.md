@@ -3672,3 +3672,49 @@ Decision:
 
 Reject H088-shadow target split as an action decoder under the current goal.
 H088/H018 remain stress diagnostics, not private/public action heads.
+
+## FH-H134A. Companion repair after H133 extra Q1 deletion is action-grade
+
+Date: 2026-06-03
+
+Hypothesis:
+
+```text
+If H133 deleted too much Q1, adding companion routes after H133 should repair
+the action field.
+```
+
+Result:
+
+- `h133_s_companion_margin_repair`: `2` pool cells but `0` operations survived;
+- `h133_q3s_companion_assignment`: `1` operation survived, but component gain
+  was `-0.000014`;
+- `h133_highconviction_s1s2`: `1` operation survived, but component gain was
+  `-0.000160`;
+- the only promoted H134 branch starts from H132, not H133.
+
+Decision:
+
+Reject "repair after H133" as the current action decoder.  If companion
+conservation exists, it must happen before H133's extra Q1 deletion.
+
+## FH-H134B. High-conviction S1/S2-only companion rescue is enough
+
+Date: 2026-06-03
+
+Hypothesis:
+
+```text
+The safest Q1 companion conservation route is a narrow S1/S2-only rescue.
+```
+
+Result:
+
+- H134 `h133_highconviction_s1s2` had `5` pool cells;
+- it found only `1` operation;
+- component gain was `-0.000160`, so it was rejected.
+
+Decision:
+
+Reject S1/S2-only companion rescue as the current action field.  The live
+companion branch uses S4 and Q3, not narrow S1/S2.

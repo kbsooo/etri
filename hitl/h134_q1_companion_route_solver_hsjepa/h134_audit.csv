@@ -1,0 +1,5 @@
+spec_name,start_name,row_source,target_mode,pool_cells,mean_companion_score,max_companion_score,ops,component_gain,rejected_component_gain
+h133_s_companion_margin_repair,h133,h133_q1_changed_rows,s_companion,2,0.35074235516081526,0.3874841669598248,0,,
+h133_q3s_companion_assignment,h133,all_q1_bundle_rows,q3s_companion,11,0.40070287658624265,0.5643384192401271,1,-1.4341617579333129e-05,-1.4341617579333129e-05
+h132_precompanion_q1state,h132,all_q1_bundle_rows,q3s_companion,11,0.40070287658624265,0.5643384192401271,3,0.0018774148484353213,
+h133_highconviction_s1s2,h133,all_q1_bundle_rows,s1s2_companion,5,0.43187127940863357,0.5643384192401271,1,-0.00016032800262771537,-0.00016032800262771537

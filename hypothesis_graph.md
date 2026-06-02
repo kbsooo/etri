@@ -5975,3 +5975,38 @@ Promoted candidate: `submission_h133_targetsplit_0cb376b8_uploadsafe.csv`.
 - If H131 improves more: demote Q1 erasure back to diagnostic shortcut.
 - If H088-shadow looks good locally but fails publicly: reinforce H088/H018 as
   stress-only sensors.
+
+## H134 Update: Q1 Companion-Route Conservation
+
+H134-H: H133's extra Q1 deletion damaged good-bad margin because the hidden
+human-state equation should conserve Q1 subjective residue by moving it into
+companion Q3/S routes.
+
+Status: live, public-unconfirmed.
+
+Evidence:
+
+- promoted file: `submission_h134_q1companion_ac53dd2e_uploadsafe.csv`;
+- selected branch: `h134_h132_precompanion_q1state_ac53dd2e`;
+- starts from H132, not H133;
+- H133-start companion branches failed component-gain promotion;
+- operations: row `164` S4 stronger negative move, row `207` Q3 positive add,
+  row `135` S4 negative add;
+- route-basis predicted delta vs H057: `-0.000721183`;
+- H088-axis cosine: `-0.065490160`;
+- good-bad margin: `0.170049532`.
+
+Graph implication:
+
+```text
+H132 Q1 witness
+  -> H133: Q1-only toxicity expansion
+  -> H134: companion conservation before extra Q1 expansion
+```
+
+Falsifier:
+
+- If H134 public loses to H132/H133, route conservation is not action-grade at
+  this scale.
+- If H134 wins, future HS-JEPA should build a larger row-target assignment
+  solver around conservation of hidden human-state mass.

@@ -2374,3 +2374,57 @@ This is a sharper architecture claim than H132.  If public confirms H133, the
 next solver should learn a Q1 toxicity route from human-state context rather
 than expanding all Q/S bundles.  If public rejects it, H132's witness field
 should be frozen as a tiny residue, not generalized.
+
+## H134 Public/Private Factorization Update
+
+H134 tests a conservation variant of H133:
+
+```text
+Q1 subjective residue
+  -> not only delete/off
+  -> optionally reassign into companion Q3/S routes
+```
+
+Observed H134 factorization:
+
+- selected file: `submission_h134_q1companion_ac53dd2e_uploadsafe.csv`;
+- selected candidate: `h134_h132_precompanion_q1state_ac53dd2e`;
+- start field: H132;
+- H133-start companion branches failed component-gain promotion;
+- operations: S4 `2`, Q3 `1`;
+- conversion cells:
+  - row `164` S4 stronger negative move;
+  - row `207` Q3 added positive move;
+  - row `135` S4 added negative move;
+- final selected cells / rows: `28` / `22`;
+- Q2/S3 cells: `0`;
+- route-basis predicted delta vs H057: `-0.000721183`;
+- model predicted delta vs H057: `-0.000031557`;
+- H088-axis cosine: `-0.065490160`;
+- good-bad margin: `0.170049532`.
+
+Interpretation:
+
+H134 weakens the idea that H133's extra Q1 deletions are the natural next
+action.  The only promoted conservation branch starts before H133 and says:
+
+```text
+safe assignment field:
+  H132 Q1 witness field
+  + small Q3/S4 companion conversion
+
+not supported:
+  companion repair after H133 extra Q1 deletion
+  high-conviction S1/S2-only rescue
+```
+
+The current public/private equation is therefore a fork:
+
+```text
+branch A: H133 = Q1 toxicity signature expansion
+branch B: H134 = H132 witness + companion conservation
+```
+
+A public check can separate these branches cleanly.  If H134 wins, future
+HS-JEPA action decoding should include a route-conservation loss.  If H133 or
+H132 wins, companion conversion is diagnostic only.

@@ -9011,3 +9011,53 @@ Public interpretation:
   value-add should remain separate.
 - H088-shadow diagnostic wins locally but public loses: keep H088/H018 as
   stress diagnostics only.
+
+## H134 Q1 Companion-Route Assignment
+
+Generated file:
+
+`submission_h134_q1companion_ac53dd2e_uploadsafe.csv`
+
+Worldview: H133's Q1-only branch may have been directionally right but too
+erasive.  The hidden human-state equation may conserve Q1 subjective residue
+by moving it into companion Q3/S routes before any extra Q1 signature expansion.
+
+Evidence:
+
+- selected candidate: `h134_h132_precompanion_q1state_ac53dd2e`;
+- start field: H132;
+- H133-start branches:
+  - `h133_s_companion_margin_repair`: no operation survived;
+  - `h133_q3s_companion_assignment`: `1` op but component gain `-0.000014`;
+  - `h133_highconviction_s1s2`: `1` op but component gain `-0.000160`;
+- promoted operations: `3`;
+- operation targets: S4 `2`, Q3 `1`;
+- operated rows/cells: row `164` S4, row `207` Q3, row `135` S4;
+- selected cells / rows: `28` / `22`;
+- route delta from H132: `-0.000015752`;
+- H098/model delta from H132: `+0.000000529`;
+- H088 delta from H132: `+0.004145800`;
+- margin delta from H132: `-0.006026311`;
+- model predicted delta vs H057: `-0.000031557`;
+- route-basis predicted delta vs H057: `-0.000721183`;
+- H088-axis cosine: `-0.065490160`;
+- good-bad margin: `0.170049532`;
+- upload-safe: `True`.
+
+Submission priority:
+
+High-information, medium-risk.  This is not a broad 0.53 bet by itself because
+it changes only three H132 cells, but it is a clean sensor for the next
+architecture choice: "Q1 residue deletion" versus "Q1 residue route
+conversion."  It is more informative than another H057/H133 micro-tune because
+it directly tests whether HS-JEPA needs a conservation-style row-target
+assignment decoder.
+
+Public interpretation:
+
+- H134 wins over H132/H133: freeze H133 extra Q1 deletion and build the next
+  solver around Q1-to-Q3/S companion conservation.
+- H132 wins more: companion routes are local action-tail hallucination; keep
+  only the small Q1 witness eraser.
+- H133 wins more: the route conversion story is wrong, and the Q1-only
+  toxicity signature should be expanded instead.

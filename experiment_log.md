@@ -12648,3 +12648,66 @@ decoder and treat Q1 as the first action-toxicity route.  If H132 improves
 more, the extra Q1 signature expansion is over-completion and the toxicity
 field remains only the three witness rows.  If H131 improves more, even Q1
 toxicity erasure is still public-sensor shortcut.
+
+## H134 Q1 Companion-Route Assignment HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h134_q1_companion_route_solver_hsjepa/h134_report.md`
+- `hitl/h134_q1_companion_route_solver_hsjepa/h134_decision.csv`
+- `hitl/h134_q1_companion_route_solver_hsjepa/h134_operations.csv`
+- `hitl/h134_q1_companion_route_solver_hsjepa/h134_cell_pool.csv`
+- `submission_h134_q1companion_ac53dd2e_uploadsafe.csv`
+
+Worldview:
+
+```text
+H133 may have over-completed Q1 deletion.  The hidden equation may conserve the
+subjective Q1 state by moving it into companion Q3/S routes rather than
+removing it.  H088/H018 are still stress diagnostics, not action heads.
+```
+
+Observed result:
+
+- promoted candidate: `h134_h132_precompanion_q1state_ac53dd2e`;
+- root file: `submission_h134_q1companion_ac53dd2e_uploadsafe.csv`;
+- start field: H132, not H133;
+- H133-start companion branches were rejected by component gain;
+- operations: `3`;
+- operation targets: S4 `2`, Q3 `1`;
+- operated cells:
+  - row `164` S4 from `-0.075747647` to `-0.106870049`;
+  - row `207` Q3 from `0` to `0.031402613`;
+  - row `135` S4 from `0` to `-0.045000000`;
+- selected cells / rows: `28` / `22`;
+- target route: Q1 `5`, Q2 `0`, Q3 `6`, S1 `9`, S2 `5`,
+  S3 `0`, S4 `3`;
+- route delta from H132: `-0.000015752`;
+- H098/model delta from H132: `+0.000000529`;
+- H088 delta from H132: `+0.004145800`;
+- good-bad margin delta from H132: `-0.006026311`;
+- model predicted delta vs H057: `-0.000031557`;
+- route-basis predicted delta vs H057: `-0.000721183`;
+- H088-axis cosine: `-0.065490160`;
+- good-bad margin: `0.170049532`;
+- H134 differs from H132 by only `3` cells / `3` rows;
+- H134 differs from H133 by `7` cells / `6` rows;
+- upload-safe validation passed.
+
+Interpretation:
+
+H134 did not support "add companion routes after H133's extra Q1 deletion".
+The live branch is narrower:
+
+```text
+H132 Q1 witness field
+  + small Q3/S4 companion conservation
+  - no H133 extra Q1 signature expansion yet
+```
+
+If H134 improves publicly, HS-JEPA needs a conservation-style decoder: a toxic
+Q1 route can be public-safe only after the same row's hidden state is
+reassigned into companion targets.  If H132/H133 beat it, this companion field
+is another action-tail hallucination and should remain diagnostic.

@@ -2176,3 +2176,25 @@ If H133 wins publicly, scale the architecture by learning Q1 toxicity from
 human-state context and then search for analogous typed routes for Q2/S1.  If
 H132 wins more, the Q1 signature expansion over-generalized and H132's three
 witness rows are the current limit.
+
+### H134 Update
+
+H134 tests a bigger architectural fork than another targetsplit tweak:
+
+```text
+Maybe Q1 subjective residue should not be deleted.  Maybe it should be
+conserved by moving into companion Q3/S routes.
+```
+
+| Bet | File | Worldview | Local evidence | Why it matters |
+| --- | --- | --- | --- | --- |
+| H134 | `submission_h134_q1companion_ac53dd2e_uploadsafe.csv` | H132 only needed companion conversion before extra Q1 deletion | H132 start; S4/S4/Q3 operations; route delta `-0.000015752`; margin `0.170049532`; H133-start branches rejected | Decides whether HS-JEPA needs a conservation decoder or a toxicity deletion decoder |
+
+This is not yet a 0.53-scale move by magnitude because it changes only three
+H132 cells.  It is still a high-information slot because it chooses between two
+future big-bet search spaces:
+
+- If H134 improves publicly, search for a full route-conservation equation
+  over Q1 -> Q3/S objective companions.
+- If H132/H133 improve more, stop using companion conversion as an action
+  decoder and return to target-specific toxicity assignment.

@@ -2666,3 +2666,55 @@ context encoder
 This moves HS-JEPA closer to the active objective: the hidden representation is
 not enough.  The architecture must decide whether the action created from that
 representation is public/private safe for each row-target route.
+
+### H134: Companion-Route Conservation Decoder
+
+H134 adds a conservation hypothesis to the row-target equation.  A Q1
+subjective residue may be toxic if simply deleted or expanded, but safe if the
+same row-state mass is reassigned into a companion Q3/S route.
+
+Architecture role:
+
+```text
+context:
+  H132/H133 Q1 witness rows
+  row conversion pressure
+  residual safety/toxicity
+  route/H098/curvature equation
+
+target representation:
+  companion route assignment field over Q3/S1/S2/S4
+
+decoder:
+  propose add/toward-proposal states for companion cells
+  reject actions by public/private stress sensors
+  do not use H088/H018 as action heads
+```
+
+H134 evidence:
+
+- candidate: `submission_h134_q1companion_ac53dd2e_uploadsafe.csv`;
+- selected solver: `h134_h132_precompanion_q1state_ac53dd2e`;
+- start field: H132, not H133;
+- promoted operations: row `164` S4, row `207` Q3, row `135` S4;
+- route-basis predicted delta vs H057: `-0.000721183`;
+- H088-axis cosine: `-0.065490160`;
+- good-bad margin: `0.170049532`;
+- H133-start companion branches were rejected.
+
+Architectural implication:
+
+H134 splits the next HS-JEPA branch into two competing decoders:
+
+```text
+toxicity decoder:
+  Q1-only target deletion/half-off after H132
+
+conservation decoder:
+  keep H132 Q1 witness field, then reassign hidden state into Q3/S4 companions
+```
+
+This is useful for the paper because it turns public LB tweaking into a
+testable representation claim: HS-JEPA actions are not just probability
+corrections; they are route assignments whose safety depends on whether hidden
+human-state mass is conserved or destroyed.
