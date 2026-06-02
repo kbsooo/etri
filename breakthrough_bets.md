@@ -958,3 +958,41 @@ Decision rule:
   row-route solver.
 - H098 better than H099: the useful hidden law is sparse signed toxicity, and
   H071 route templates are too rigid.
+
+### H100 Update
+
+H100 turns the row-route idea into an explicit public equation basis.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H100 | `submission_h100_route_basis_6c8e0c6b_uploadsafe.csv` | known public submissions are best explained by signed overlap with route-action basis vectors | `24` actions / `28` cells / `24` rows | route-basis delta `-0.001031`, H098 cell delta only `-0.000045` | high-risk equation-space bet |
+
+Breakthrough reading:
+
+```text
+H100 is the strongest current "worldview-changing" submission candidate. It
+does not merely constrain H098; it claims the public/private equation has a
+different coordinate system: route-action overlap. The main evidence is
+frontier-weighted route-basis LOO MAE 0.000217 and correct H088 sign, but the
+main risk is disagreement with H098's cell-equation decoder.
+```
+
+Current high-information submission order:
+
+1. `submission_h100_route_basis_6c8e0c6b_uploadsafe.csv`
+   - biggest equation-space bet; if it wins, HS-JEPA's decoder becomes
+     route-action basis public/private equation.
+
+2. `submission_h099_route_equation_1cbff4af_uploadsafe.csv`
+   - cleaner assignment-discreteness test with lower model disagreement.
+
+3. `submission_h098_frontier_equation_a748e477_uploadsafe.csv`
+   - safest H088-weighted sparse signed cell-equation test.
+
+Decision rule:
+
+- H100 wins materially: pursue route-basis equation and interaction decoding.
+- H099 wins but H100 loses: assignment constraints help, direct route-basis
+  response is overfit.
+- H098 wins over both: route templates are too rigid; sparse signed cells are
+  the live representation.

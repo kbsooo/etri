@@ -1179,3 +1179,44 @@ route assignment decides which row-target actions are legal
 
 The unresolved point is whether the correct assignment basis is H071-style route
 templates or a new route system learned directly from H057/H088 public sensors.
+
+## HS-JEPA v2.3: Route-Action Basis Public Equation
+
+H100 adds an explicit equation-space layer:
+
+```text
+known public actions
+  -> projection into route-action basis
+  -> frontier-weighted public response equation
+  -> route assignment decoder
+```
+
+This is different from H099. H099 asks whether a cell action is legal inside a
+route. H100 asks whether the public/private observation equation itself is
+written in route-action coordinates.
+
+H100 evidence:
+
+- candidate: `submission_h100_route_basis_6c8e0c6b_uploadsafe.csv`;
+- selected route-basis model: `signed_meta`, `k_basis=40`, ridge `0.1`;
+- weighted LOO MAE: `0.000217`;
+- H088 LOO prediction: `+0.000853`;
+- selected actions / cells / rows: `24` / `28` / `24`;
+- route-basis predicted delta vs H057: `-0.001031`;
+- H098 cell-equation predicted delta vs H057: `-0.000045`;
+- H057/H088 conflict geometry preserved exactly:
+  anti-H088 `1.0`, H057-align `1.0`, conflict-rate `1.0`.
+
+Architectural implication:
+
+HS-JEPA now has two competing action decoders:
+
+```text
+sparse signed cell decoder     = H098
+route-constrained cell decoder = H099
+route-action basis equation    = H100
+```
+
+The next public result should decide whether the final decoder should be local
+cell toxicity or route-action equation space. H100 is riskier but more
+architecture-defining than H099.

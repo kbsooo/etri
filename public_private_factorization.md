@@ -897,3 +897,39 @@ Current hierarchy:
 3. H098 frontier-weighted cell equation: alive;
 4. H099 route-constrained equation: live sensor for whether assignment should be
    discrete route-level or sparse cell-level.
+
+## H100 Route-Action Basis Equation
+
+H100 moves from route constraints to route equation space:
+
+```text
+known public submission action vectors
+-> signed overlap with route-action basis
+-> frontier-weighted route-basis public response
+-> route assignment decoder
+```
+
+Observed H100 factorization:
+
+- selected file: `submission_h100_route_basis_6c8e0c6b_uploadsafe.csv`;
+- selected route-basis model: `signed_meta`, `k_basis=40`, ridge `0.1`;
+- weighted LOO MAE: `0.000217`;
+- H088 LOO prediction: `+0.000853`;
+- selected actions / cells / rows: `24` / `28` / `24`;
+- route-basis predicted delta vs H057: `-0.001031`;
+- H098 cell-equation predicted delta vs H057: `-0.000045`;
+- anti-H088 direction rate: `1.000000`;
+- H057-positive alignment rate: `1.000000`;
+- selected conflict rate: `1.000000`.
+
+Interpretation:
+
+H100 creates a new split in the world model. H098 and H099 ask whether signed
+cells and route constraints are safe. H100 asks whether public feedback itself
+is best represented in route-action coordinates. The huge gap between
+route-basis predicted delta (`-0.001031`) and H098 cell predicted delta
+(`-0.000045`) is not a bug to smooth away; it is the sensor.
+
+If H100 wins, the public/private factorization should move toward route-action
+basis equations. If it loses, route basis remains explanatory but not
+action-grade.

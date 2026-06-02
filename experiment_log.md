@@ -10416,3 +10416,68 @@ Public interpretation:
   useful signed field is sparse/cell-local;
 - if H098 and H099 both lose, H088 remains a useful toxicity sensor but H071
   route templates are not the right assignment basis.
+
+## H100 Route-Action Basis Equation
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h100_route_basis_6c8e0c6b_uploadsafe.csv`
+
+Worldview:
+
+```text
+The public/private action equation should be fitted in route-action basis
+space, not in cell-feature space. Known public submissions reveal which
+route-actions are toxic or safe by their signed overlap with those routes.
+```
+
+Method:
+
+- build a dictionary of H071 route-actions using H099 modes:
+  conflict inversion, tail hybrid, objective descent, Q2 counter-H088,
+  full-state descent, and non-Q2 positive bridge;
+- represent every known public submission by signed/absolute overlap with this
+  route-action dictionary;
+- fit a frontier-weighted ridge response model in route-basis space;
+- decode route assignments whose route-basis equation predicts public loss
+  reduction, while preserving H057-positive/H088-opposite conflict geometry.
+
+Observed result:
+
+- selected route-basis model: `signed_meta`, `k_basis=40`, ridge `0.1`;
+- weighted LOO MAE: `0.000217`;
+- LOO MAE: `0.000477`;
+- H088 actual delta vs H057: `+0.000747`;
+- H088 LOO prediction: `+0.000853`;
+- H088 LOO error: `+0.000106`;
+- selected candidate: `h100_routebasis_conflict_c80_r30_amp100_6c8e0c6b`;
+- selected basis actions / cells / rows: `24` / `28` / `24`;
+- route-basis predicted delta vs H057: `-0.001031`;
+- H098 cell-equation predicted delta vs H057: `-0.000045`;
+- posterior delta vs H057: `+0.000023`;
+- hard diagnostic delta vs H057: `+0.000040`;
+- anti-H088 direction rate: `1.000000`;
+- H057-positive alignment rate: `1.000000`;
+- selected conflict rate: `1.000000`;
+- cosine with H088 direction: `-0.053927`;
+- upload-safe validation passed.
+
+Interpretation:
+
+H100 is the first experiment where route-basis response and H098 cell-feature
+response strongly disagree. That disagreement is the point. H100 is not a
+safer H099; it is a bigger equation-space bet. If public improves, the hidden
+law is likely route-action overlap/interactions rather than sparse local cell
+gradients. If public loses badly, route-basis response is overfitting the
+frontier sensors and H098/H099 should remain the safer representation.
+
+Public interpretation:
+
+- meaningful win: HS-JEPA's action decoder should become a route-action basis
+  public/private equation solver;
+- small win/loss: route basis has some signal but the selected interaction is
+  too aggressive;
+- large loss: route-basis regression is a diagnostic only, and the actionable
+  field remains H098-style sparse signed cells.

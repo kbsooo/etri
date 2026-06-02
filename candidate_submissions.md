@@ -7588,3 +7588,39 @@ Public interpretation:
 Priority: high information value. It is the cleanest direct test of the current
 goal, but not automatically higher priority than H098 because it intentionally
 throws away part of H098's cell support.
+
+## H100 Route-Action Basis Equation
+
+Generated file:
+
+`submission_h100_route_basis_6c8e0c6b_uploadsafe.csv`
+
+Worldview: known public submissions should be projected into route-action basis
+space; the public/private equation is a function of signed route-action overlap,
+not only cell-local features.
+
+Evidence:
+
+- selected route-basis model: `signed_meta`, `k_basis=40`, ridge `0.1`;
+- weighted LOO MAE: `0.000217`;
+- H088 LOO prediction: `+0.000853` vs actual `+0.000747`;
+- selected actions / cells / rows: `24` / `28` / `24`;
+- route-basis predicted delta vs H057: `-0.001031`;
+- H098 cell-equation predicted delta vs H057: `-0.000045`;
+- anti-H088 direction rate: `1.000000`;
+- H057-positive alignment rate: `1.000000`;
+- selected conflict rate: `1.000000`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win: route-action basis is a real HS-JEPA decoder space and can exceed
+  H098/H099 cell-local thinking;
+- loss: route-basis LOO is overfitting frontier observations and should be used
+  as a diagnostic, not a decoder;
+- worse than H099 but not catastrophic: route constraints matter, but the direct
+  route-basis regression is too unstable.
+
+Priority: very high information value, higher risk than H099. It is the first
+candidate that explicitly asks whether the hidden public/private equation lives
+in route-action overlap space.
