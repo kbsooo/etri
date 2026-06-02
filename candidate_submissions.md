@@ -7738,3 +7738,38 @@ Public interpretation:
 Priority: highest current HS-JEPA equation-solver submission. It is a bigger
 test than H102 because it keeps the same bad-axis safety invariant while
 expanding the action field and route-basis predicted gain.
+
+## H104 Toxic-Axis Residual Transport
+
+Generated file:
+
+`submission_h104_toxicresid_52f826e6_uploadsafe.csv`
+
+Worldview: the H100/H103 route-action signal is real, but the action sent to
+the leaderboard must be the bad-axis residual part of that signal.
+
+Evidence:
+
+- selected candidate: `h104_broad_route_resid_c160_a085_52f826e6`;
+- source route-actions / submitted cells / submitted rows: `47` / `87` / `64`;
+- route-basis predicted delta vs H057: `-0.001758`;
+- H098 cell-equation predicted delta vs H057: `-0.000086`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative bad-axis max positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.033173`;
+- cumulative good-minus-bad margin: `+0.191825`;
+- target changes: Q1 `9`, Q2 `4`, Q3 `18`, S1 `26`, S2 `16`, S3 `5`,
+  S4 `9`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H103/H100: public toxicity is a removable linear axis component,
+  and HS-JEPA should become a residual route-field decoder;
+- loss to H103: safety is a discrete row-target assignment property, not a
+  vector projection property;
+- loss to H100: bad-axis constraints are removing the real positive route law.
+
+Priority: very high information value, high risk.  H103 is the cleaner
+equation-solver candidate; H104 is the stronger "worldview change" candidate
+because it directly tests whether toxic public action can be projected away.

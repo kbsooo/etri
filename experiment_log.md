@@ -10676,3 +10676,68 @@ Public interpretation:
   aggressive and safe action must remain close to the tiny nullspace;
 - if H100 improves but H102/H103 lose, bad public axes overlap the true
   route-basis law too much to be used as hard constraints.
+
+## H104 Toxic-Axis Residual Transport HS-JEPA
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h104_toxicresid_52f826e6_uploadsafe.csv`
+
+Worldview:
+
+```text
+The H100/H103 route-action law is useful, but the submitted action should not
+be the raw route action.  The safe action is the residual field left after
+projecting out the positive component along known bad public axes.
+```
+
+Method:
+
+- build a desired broad route-action field from H100 scored route actions;
+- represent H088 and older bad public submissions as toxic axes;
+- remove positive projection onto those toxic axes with a weighted ridge
+  residualization step;
+- optionally add a small H057-positive anchor component and residualize again;
+- decode the remaining residual vector back into sparse row-target cells.
+
+Observed result:
+
+- selected candidate: `h104_broad_route_resid_c160_a085_52f826e6`;
+- generated root file:
+  `submission_h104_toxicresid_52f826e6_uploadsafe.csv`;
+- source route-actions / submitted cells / submitted rows: `47` / `87` / `64`;
+- route-basis predicted delta vs H057: `-0.001758`;
+- desired route-basis predicted delta vs H057 before residualization:
+  `-0.001800`;
+- residual-vector route-basis predicted delta before sparsifying:
+  `+0.000220`;
+- H098 cell-equation predicted delta vs H057: `-0.000086`;
+- posterior / hard diagnostic deltas vs H057: `+0.000078` / `+0.000074`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative bad-axis max positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.033173`;
+- cumulative good-minus-bad margin: `+0.191825`;
+- changed target cells: Q1 `9`, Q2 `4`, Q3 `18`, S1 `26`, S2 `16`,
+  S3 `5`, S4 `9`;
+- upload-safe validation passed.
+
+Interpretation:
+
+H104 is more aggressive than H103.  H103 says "choose route-actions whose toxic
+shadows cancel."  H104 says "the route-action signal should be transported
+through a bad-axis residualizer before submission."  The useful surprise is
+that the submitted sparse field has strong bad-axis safety and H098 predicted
+gain, while the full residual vector itself is not route-basis-positive before
+sparsifying.  That means the decoder is doing real row-target assignment work;
+it is not just a linear projection trick.
+
+Public interpretation:
+
+- if H104 improves over H103/H100, action toxicity is a removable public-axis
+  component and HS-JEPA should decode residualized route fields;
+- if H103 wins and H104 loses, row-target route-actions must remain discrete
+  assignments because vector residualization destroys human-state semantics;
+- if H100 wins while H103/H104 lose, the known bad axes overlap the true
+  positive route law and should be diagnostics rather than constraints.

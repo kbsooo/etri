@@ -1356,3 +1356,46 @@ The key distinction is that action safety is now evaluated on the combined
 submission vector, not on individual cells or routes. This is closer to the
 goal of reconstructing a public/private row-target equation rather than adding
 another latent context encoder.
+
+## HS-JEPA v2.7: Toxic-Axis Residual Transport Decoder
+
+H104 changes the decoder class again:
+
+```text
+route-action basis equation
+  -> desired route field
+  -> remove positive toxic-axis component
+  -> add small H057-positive anchor component
+  -> residualize again
+  -> sparsify residual into row-target action assignment
+```
+
+This asks a sharper question than H103.  H103 assumes the route-action units
+must remain discrete and safe as a portfolio.  H104 assumes the route-action
+field may be correct in representation space but contaminated in action space;
+the submitted action is therefore the residual field after projecting away
+known toxic public directions.
+
+H104 evidence:
+
+- candidate: `submission_h104_toxicresid_52f826e6_uploadsafe.csv`;
+- source route-actions / submitted cells / rows: `47` / `87` / `64`;
+- route-basis predicted delta vs H057: `-0.001758`;
+- H098 cell-equation predicted delta vs H057: `-0.000086`;
+- cumulative bad-axis positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.033173`;
+- cumulative H057-positive anchor margin: `+0.191825`.
+
+Architectural implication:
+
+The HS-JEPA decoder now has two live forms:
+
+```text
+Discrete solver: route-action portfolio with toxic-shadow cancellation.
+Residual solver: route-field transport through a bad-axis projection operator.
+```
+
+Public LB will decide which representation is action-grade.  If H104 wins, the
+paper-worthy HS-JEPA contribution is not only human-state representation; it is
+an action-safety operator that maps latent route intent into a public-safe
+correction field.

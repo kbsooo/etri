@@ -1113,3 +1113,43 @@ Decision rule:
 - H102 wins but H103 loses: the nullspace is real but must stay sparse.
 - H100 wins while H102/H103 lose: bad-axis constraints are over-constraining
   the true positive route-basis law.
+
+### H104 Update
+
+H104 tests whether the route-action law should be residualized before
+submission.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H104 | `submission_h104_toxicresid_52f826e6_uploadsafe.csv` | raw route-actions contain a toxic public-axis component; safe action is the residual transported back to row-target cells | `47` source actions / `87` cells / `64` rows | route-basis delta `-0.001758`, bad-axis positive projection `0.0`, H088-axis cosine `-0.033173` | high-risk residual-decoder bet |
+
+Breakthrough reading:
+
+```text
+H104 changes the decoder class. H103 chooses route-actions that are safe as a
+portfolio; H104 first creates a desired route field, projects away the positive
+component along bad public axes, then decodes the residual vector. If public
+confirms H104, HS-JEPA should become a residual route-field transport model
+rather than a discrete route-action selector.
+```
+
+Current high-information submission order:
+
+1. `submission_h103_shadowcancel_89496ed5_uploadsafe.csv`
+   - cleanest current equation-solver candidate.
+
+2. `submission_h104_toxicresid_52f826e6_uploadsafe.csv`
+   - bigger worldview test: toxic action might be a removable public-axis
+     component.
+
+3. `submission_h100_route_basis_6c8e0c6b_uploadsafe.csv`
+   - unconstrained route-equation stress test.
+
+Decision rule:
+
+- H104 beats H103/H100: decode residualized route fields; toxic action is a
+  removable public-axis component.
+- H103 beats H104: projection destroys row-target semantics; keep route-actions
+  discrete and solve constrained portfolios.
+- H100 beats both: bad-axis constraints are over-constraining the real route
+  law and should become soft diagnostics only.

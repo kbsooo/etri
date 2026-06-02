@@ -1028,3 +1028,46 @@ remain in that nullspace while increasing route-basis predicted gain. If public
 confirms this direction, the hidden factor is not simply public-like rows or
 target-wise calibration. It is a constrained action equation over the whole
 submission vector.
+
+## H104 Toxic-Axis Residual Transport Factorization
+
+H104 changes the factorization from selection to transport:
+
+```text
+H100 route-basis desired field
+  = useful human-state route intent + toxic public-axis component
+
+safe submitted field
+  = desired field - positive projection onto bad public axes
+```
+
+Observed H104 factorization:
+
+- selected file: `submission_h104_toxicresid_52f826e6_uploadsafe.csv`;
+- source route-actions / submitted cells / rows: `47` / `87` / `64`;
+- route-basis predicted delta vs H057: `-0.001758`;
+- desired route-basis predicted delta before residualization: `-0.001800`;
+- residual vector route-basis prediction before sparsifying: `+0.000220`;
+- H098 cell-equation predicted delta vs H057: `-0.000086`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative bad-axis max positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.033173`;
+- cumulative good-minus-bad margin: `+0.191825`.
+
+Interpretation:
+
+H104 is not just a wider H103.  It separates route intent from action toxicity.
+The surprising diagnostic is that the full residual vector loses route-basis
+score, but the sparsified row-target assignment regains a strong route-basis
+prediction while staying bad-axis silent.  If public confirms this, the hidden
+public/private law is not "which route is good" but "which part of a route
+intent survives toxic-axis transport."
+
+Failure interpretation:
+
+- if H103 beats H104, row-target semantics are discrete and projection damages
+  the human-state route meaning;
+- if H100 beats H103/H104, bad public axes are not a reliable constraint
+  because they overlap the positive route-basis law;
+- if H104 beats H103/H100, public/private factorization should be modeled as a
+  route-intent plus toxic-axis residual equation.
