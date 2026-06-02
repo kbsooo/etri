@@ -11738,3 +11738,70 @@ Public interpretation:
   the safer branch is pure residual/nullspace assignment;
 - if both H118 and H120 lose, the current action-to-public equation still lacks
   the real private-safe assignment variable.
+
+## H121 Row-Sensor Partition Solver HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h121_row_sensor_partition_solver_hsjepa/h121_report.md`
+- `hitl/h121_row_sensor_partition_solver_hsjepa/h121_decision.csv`
+- `hitl/h121_row_sensor_partition_solver_hsjepa/h121_selected_cells.csv`
+- `submission_h121_rowsensorpart_d03abb5b_uploadsafe.csv`
+
+Worldview:
+
+```text
+H085 toxic-posterior row sensor is a regime partition variable.  Low-sensor
+rows keep H118 forbidden-veto assignment; high-sensor rows drop H118 actions
+and use H120 residual stage actions instead.
+```
+
+Observed result:
+
+- promoted candidate: `h121_partition_sensor_ge070_d03abb5b`;
+- root file: `submission_h121_rowsensorpart_d03abb5b_uploadsafe.csv`;
+- selected cells / rows: `44` / `31`;
+- target changes: Q1 `6`, Q2 `0`, Q3 `11`, S1 `6`, S2 `4`,
+  S3 `9`, S4 `8`;
+- partition threshold: H120 row sensor rank `>= 0.70`;
+- partition rows: `76`;
+- active H118 rows removed: `15`;
+- H118 cells removed: `20`;
+- H118 cells kept / H120 cells used: `32` / `18`;
+- model predicted delta vs H057: `-0.0000378`;
+- route-basis predicted delta vs H057: `-0.0005801`;
+- H102 bad-axis weighted positive projection: `0.000000`;
+- H088-axis cosine: `-0.039209`;
+- H102 good-bad margin: `0.113396`;
+- residual toxicity / safety / gap:
+  `0.425874` / `0.652365` / `0.226491`;
+- upload-safe validation passed.
+
+Comparison:
+
+Relative to H118, H121 slightly improves the route equation
+(`-0.000568 -> -0.000580`), strongly improves the H098/model sensor
+(`-0.000009 -> -0.000038`), pushes much farther away from H088 toxicity
+(`-0.003628 -> -0.039209`), and improves good-bad margin
+(`0.086711 -> 0.113396`) while reducing cells from `52` to `44`.
+
+Important diagnostic:
+
+H121 is stronger than H120 as an architecture claim.  H120 said H085 can locate
+public-sensitive rows.  H121 says the row sensor changes which action solver is
+allowed to act:
+
+```text
+H085 row sensor -> choose decoder regime -> materialize action
+```
+
+Public interpretation:
+
+- if H121 improves, HS-JEPA should use human-state/posterior representations as
+  partition variables over action solvers;
+- if H118 improves more, H120/H085 row-sensor overrides removed useful H118
+  actions;
+- if H120 improves more, high-sensor stage bridge should replace more of H118;
+- if all lose, row-sensor partitioning is diagnostic but not action-grade.

@@ -1739,3 +1739,40 @@ Decision rule:
   not yet action-grade;
 - H120 loses badly while direct posterior candidates win: H119's action veto
   was too strict and H085 posterior needs a softer decoder.
+
+### H121 Update
+
+H121 is the first row-regime partition solver after H120.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H121 | `submission_h121_rowsensorpart_d03abb5b_uploadsafe.csv` | H085 toxic-posterior row sensor selects decoder regime: high-sensor rows override H118 with H120 stage actions | `44` cells / `31` rows / `0` Q2 cells | route-basis delta `-0.000580`, model delta `-0.000038`, H088 cosine `-0.039209`, good-bad margin `0.113396` | row-regime partition bet |
+
+Breakthrough reading:
+
+```text
+The live 0.53 path is not "better H118" or "better H120" separately.  It is a
+row-target equation that decides which decoder is allowed to act in which
+hidden regime.
+```
+
+Updated high-information submission order:
+
+1. `submission_h121_rowsensorpart_d03abb5b_uploadsafe.csv`
+   - tests regime-partitioned action decoding.
+
+2. `submission_h118_forbiddenveto_e81167a8_uploadsafe.csv`
+   - tests the same forbidden-veto action field without H085 partition.
+
+3. `submission_h120_toxrow_0b84c821_uploadsafe.csv`
+   - tests the H085 row sensor as a standalone stage-action branch.
+
+Decision rule:
+
+- H121 wins: HS-JEPA's action decoder should be a mixture of solvers gated by
+  hidden row-state/posterior sensors;
+- H118 wins more: H085 toxic-posterior row partition is over-removing good
+  H118 action;
+- H120 wins more: high-sensor rows should dominate more aggressively;
+- all three lose: the H085 row sensor is a coherent local diagnostic but not a
+  public-safe assignment variable.

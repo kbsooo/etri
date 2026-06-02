@@ -1790,3 +1790,57 @@ Failure interpretation:
   public posterior and should not constrain action selection;
 - H120 and H118 both lose: the current public-private toxicity equation is
   diagnostic but still not the safe assignment field.
+
+## H121 Row-Regime Assignment Factorization
+
+H121 uses the H120 row sensor as a partition over H118's assignment field:
+
+```text
+H085 toxic-posterior row sensor
+  -> low-sensor row regime: keep H118 forbidden-veto action
+  -> high-sensor row regime: remove H118 action, use H120 stage bridge
+  -> public/private stress equation
+  -> row-target assignment
+```
+
+Observed H121 factorization:
+
+- selected file: `submission_h121_rowsensorpart_d03abb5b_uploadsafe.csv`;
+- selected candidate: `h121_partition_sensor_ge070_d03abb5b`;
+- selected cells / rows: `44` / `31`;
+- Q2 cells: `0`;
+- threshold: H120 row sensor rank `>= 0.70`;
+- active H118 rows/cells removed: `15` / `20`;
+- H118 cells kept / H120 cells used: `32` / `18`;
+- route-basis predicted delta vs H057: `-0.0005801`;
+- model predicted delta vs H057: `-0.0000378`;
+- bad-axis positive projection: `0.000000`;
+- H088-axis cosine: `-0.039209`;
+- good-bad margin: `0.113396`;
+- residual toxicity / safety / gap:
+  `0.425874` / `0.652365` / `0.226491`.
+
+Interpretation:
+
+H121 turns the posterior/action split into a public-private equation:
+
+```text
+same action proposal can be safe or unsafe depending on hidden row regime.
+```
+
+The factorization no longer treats H118, H120, or H085 as globally right.
+Instead:
+
+- H118 supplies a default forbidden-veto residual assignment;
+- H085/H120 identifies a high-sensitivity row regime;
+- H120 stage bridge overrides H118 only in that regime.
+
+Failure interpretation:
+
+- H121 improves: public/private safety is regime-partitioned and HS-JEPA needs
+  a mixture-of-action-solvers decoder;
+- H118 improves more: H085 row sensor should not override the default
+  forbidden-veto solver;
+- H120 improves more: high-sensor rows need a more aggressive replacement rule;
+- all lose: the row-sensor partition is a diagnostic but still not the hidden
+  private-safe assignment variable.

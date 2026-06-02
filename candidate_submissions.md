@@ -8404,3 +8404,44 @@ Public interpretation:
   suggested;
 - broad loss: public/private observation equation still needs a different
   hidden assignment variable.
+
+## H121 Row-Sensor Partition Solver
+
+Generated file:
+
+`submission_h121_rowsensorpart_d03abb5b_uploadsafe.csv`
+
+Worldview: H085 toxic-posterior row sensor partitions the action solver.  Rows
+with sensor rank `>= 0.70` should not receive the default H118 action; they are
+routed to H120 stage-bridge actions.  Other rows keep H118 forbidden-veto
+assignment.
+
+Evidence:
+
+- selected candidate: `h121_partition_sensor_ge070_d03abb5b`;
+- selected cells / rows: `44` / `31`;
+- target route: Q1 `6`, Q2 `0`, Q3 `11`, S1 `6`, S2 `4`,
+  S3 `9`, S4 `8`;
+- active H118 rows/cells removed: `15` / `20`;
+- H118 cells kept / H120 cells used: `32` / `18`;
+- model predicted delta vs H057: `-0.0000378`;
+- route-basis predicted delta vs H057: `-0.0005801`;
+- H088-axis cosine: `-0.039209`;
+- good-bad margin: `0.113396`;
+- residual toxicity / safety / gap:
+  `0.425874` / `0.652365` / `0.226491`;
+- upload-safe: `True`.
+
+Submission priority:
+
+Very high information value, high practical priority among post-H118 files.
+This is the cleanest current test of the public/private row-target equation:
+H118 is not globally right or wrong; it is safe in one row regime and should be
+overridden in high H085 toxic-posterior rows.
+
+Public interpretation:
+
+- win over H118/H120: promote row-sensor partition solver as HS-JEPA v5.4;
+- H118 wins more: H085 partition removed useful H118 actions;
+- H120 wins more: high-sensor rows need more aggressive stage replacement;
+- all lose: current row-sensor partition is still only diagnostic.

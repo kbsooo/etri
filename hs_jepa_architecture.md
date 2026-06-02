@@ -2106,3 +2106,55 @@ context -> latent human/public state -> action safety equation -> label action
 This is the paper-level contribution that distinguishes HS-JEPA from a normal
 stacked tabular model or blend.  The model predicts hidden state, but it also
 learns when predicted hidden state should not be acted on directly.
+
+## HS-JEPA v5.4: Row-Regime Mixture Of Action Solvers
+
+H121 extends v5.3 from "posterior sensor plus action solver" to a partitioned
+decoder.
+
+```text
+context encoder
+  -> hidden human/public state representations
+  -> row-regime sensor
+  -> choose action solver
+       low toxic-posterior regime: H118 forbidden-veto residual assignment
+       high toxic-posterior regime: H120 stage-bridge assignment
+  -> public/private stress equation
+  -> sparse row-target action
+```
+
+The architecture claim is:
+
+```text
+action safety is conditional on hidden row regime.
+```
+
+This is stronger than a gate over final probabilities.  The gate decides which
+decoder is allowed to create the row-target action in the first place.
+
+H121 evidence:
+
+- candidate: `submission_h121_rowsensorpart_d03abb5b_uploadsafe.csv`;
+- selected cells / rows: `44` / `31`;
+- target route: Q1 `6`, Q2 `0`, Q3 `11`, S1 `6`, S2 `4`,
+  S3 `9`, S4 `8`;
+- active H118 rows/cells removed: `15` / `20`;
+- H118 cells kept / H120 cells used: `32` / `18`;
+- route-basis predicted delta vs H057: `-0.0005801`;
+- model predicted delta vs H057: `-0.0000378`;
+- H088-axis cosine: `-0.039209`;
+- good-bad margin: `0.113396`.
+
+Compared with v5.2 H118, v5.4 keeps the strong forbidden-sector veto but
+removes H118 actions in high H085 toxic-posterior rows.  Compared with v5.3
+H120, it does not throw away the larger H118 assignment field.  It composes
+both through a regime equation.
+
+This is the current cleanest HS-JEPA formulation:
+
+```text
+Predict hidden human state.
+Infer the row regime.
+Select the action solver for that regime.
+Materialize only actions that survive the public/private toxicity equation.
+```
