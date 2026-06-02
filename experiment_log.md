@@ -9900,3 +9900,75 @@ the existing H087/H088 action basin very well. The next breakthrough must
 replace hand story aggregates with raw sequence/block context or create a
 harder masked target that forces low-overlap support discovery without
 hard-world damage.
+
+## H092. Raw Day-Block Action Latent HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h092_raw_dayblock_action_latent_hsjepa.py`
+- Report: `hitl/h092_raw_dayblock_action_latent_hsjepa/h092_report.md`
+- Candidate: `submission_h092_raw_dayblock_latent_67a84cd8_uploadsafe.csv`
+
+### Observe
+
+H091 learned hidden action quality but mostly rediscovered H087/H088. The
+remaining question was whether the hand-built story layer was the bottleneck.
+Raw logs contain more direct human-state evidence: app usage, screen/charging,
+activity, GPS, Wi-Fi/BLE, ambience count, phone/watch light, heart rate, and
+pedometer data.
+
+### Hypothesis
+
+H092-H: raw day-block context plus within-subject transition/novelty can
+predict hidden route/action/value-head quality under subject-held-out stress
+and can open lower-overlap support than H091.
+
+### Method
+
+H092 built raw daily context from the original parquet logs and merged it into
+H091's route-action table. It trained ExtraTrees/RandomForest multi-output
+regressors with GroupKFold by subject. Inputs were raw day state, route
+structure, route type, and value-law type. Direct action delta/rank columns
+were excluded from the model input.
+
+Target representation:
+
+- public action quality;
+- private/hard action quality;
+- objective/body action quality;
+- Q2 action quality;
+- overall action-grade quality.
+
+### Result
+
+Selected `h092_raw_switch_c1160_r205_q125_67a84cd8`.
+
+- selected route cells: `629`;
+- changed cells / rows versus H057: `629` / `113`;
+- Q2 changed cells: `68`;
+- posterior delta versus H057: `-0.000501`;
+- hard-world delta versus H057: `-0.000045`;
+- responsibility-weighted delta: `-0.000546`;
+- mean H088 action overlap: `0.888748`;
+- mean H087 action overlap: `0.922882`;
+- direct selected-cell overlap with H091/H088/H087:
+  `590/629`, `588/629`, `597/629`;
+- upload-safe validation passed.
+
+OOF latent diagnostics:
+
+- public Spearman `0.873401`;
+- private Spearman `0.650449`;
+- objective Spearman `0.828828`;
+- Q2 Spearman `0.886433`;
+- overall Spearman `0.849724`.
+
+The low-overlap white-space branch had only `32` changed cells and posterior
+delta `-0.000021`, so it did not meet the big-bet scale requirement.
+
+### Interpretation
+
+H092 validates raw day-block context as an HS-JEPA encoder, but falsifies the
+idea that simply replacing semantic stories with raw logs opens a new
+action-grade support region. The next breakthrough should change the target or
+solver: masked low-overlap route-support prediction, global row-target
+assignment, or value-law discovery.

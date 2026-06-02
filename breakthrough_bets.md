@@ -726,3 +726,46 @@ Next jackpot candidate:
 - learn context from raw sequence/log blocks rather than H072 story aggregates;
 - mask full row/subject/date blocks and predict action-grade route support;
 - require the latent to improve low-overlap support without hard-world damage.
+
+### H092 Update
+
+H092 executed the raw sequence/log-block version of the H091 idea:
+
+```text
+context = raw day-block logs + within-subject transition/novelty
+target = action/value-head quality inferred from H085/H018/H082/H071
+prediction = subject-held-out raw latent, not direct labels
+```
+
+| Experiment | File | Core claim | Changed vs H057 | Posterior delta | Hard-world delta | H088 overlap | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| H092 | `submission_h092_raw_dayblock_latent_67a84cd8_uploadsafe.csv` | raw daily behavior can predict hidden action/value-head quality before decoding | `629` cells / `113` rows | `-0.000501` | `-0.000045` | `0.888748` action overlap | raw latent is real, but new support remains too small |
+
+OOF diagnostics were meaningful but weaker than H091:
+
+- overall Spearman `0.849724`, top-10 AUC `0.959135`;
+- Q2 Spearman `0.886433`;
+- private Spearman only `0.650449`.
+
+The decisive negative result is the low-overlap branch:
+
+- `raw_transition_white` had H088 overlap `0.547619` and H087 overlap
+  `0.452381`;
+- it changed only `32` cells and only `6` rows;
+- posterior delta was only `-0.000021`.
+
+Breakthrough reading:
+
+```text
+Raw day-block context is not the missing jackpot by itself. It can learn known
+action quality, but low-overlap action support does not scale. The next 0.53
+bet must change the target or solver, not merely improve the context encoder.
+```
+
+Next jackpot direction:
+
+- global row-target assignment with constraints over the full 250x7 grid;
+- masked route-support prediction where the target is low-overlap support, not
+  the existing H087/H088 action-quality target;
+- value-law discovery from public/private equations rather than another
+  context feature family.

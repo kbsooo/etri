@@ -7283,3 +7283,41 @@ Public interpretation:
 Priority: medium. H091 is cleaner than H089 as an architecture claim because
 it uses a learned subject-held-out latent. It is still not a 0.53-scale
 jackpot candidate by itself because overlap with H088 remains high.
+
+## H092 Raw Day-Block Action Latent Candidate
+
+Promoted file:
+
+`submission_h092_raw_dayblock_latent_67a84cd8_uploadsafe.csv`
+
+Worldview: raw human day-block behavior should be the HS-JEPA context, not a
+hand-named story feature. App/screen/charge/activity/GPS/Wi-Fi/BLE/light/heart
+and pedometer logs should predict hidden route/action/value-head quality before
+probability decoding.
+
+Evidence:
+
+- selected internal candidate:
+  `h092_raw_switch_c1160_r205_q125_67a84cd8`;
+- changed cells / rows vs H057: `629` / `113`;
+- Q2 changed cells: `68`;
+- posterior delta vs H057: `-0.000501`;
+- hard-world delta vs H057: `-0.000045`;
+- responsibility-weighted delta vs H057: `-0.000546`;
+- mean H088 action overlap: `0.888748`;
+- mean H087 action overlap: `0.922882`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win by `>=0.001`: raw day-block context is action-grade and should replace
+  hand story features in HS-JEPA v1;
+- small win/loss: raw context predicts known action quality but remains trapped
+  in the H087/H088 basin;
+- large loss: pseudo action-target learning from raw context is overfitting the
+  public-equation/value-law sensors.
+
+Priority: medium-low as a scarce public submission. It is useful paper
+evidence for HS-JEPA's raw context encoder, but it is not the next best 0.53
+jackpot candidate because the low-overlap branch was too small and the promoted
+file still heavily overlaps known action support.

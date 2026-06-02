@@ -5716,3 +5716,40 @@ to public/private/objective/Q2 action quality before probability decoding.
   H089/H090 fail: learned latent is cleaner than hand story gates.
 - Do not treat it as a 0.53 support breakthrough unless it beats H088 with
   lower overlap or creates a clear public gain.
+
+## H092 Feature/Action Registry: Raw Day-Block Action Latent
+
+### Feature / Action
+
+`raw_dayblock_action_quality_latent`
+
+### Hidden Structure Targeted
+
+The feature targets hidden human life state directly from raw logs: phone
+usage, screen/charging rhythm, movement, environment density, light exposure,
+heart-rate load, pedometer load, subject-level transition, and novelty. The
+target is route/action/value-head quality, not labels.
+
+### Label Signal vs Split Signal
+
+- label signal evidence: pseudo target comes from H085/H018/H082/H071
+  agreement, not final labels;
+- context evidence: inputs come from raw parquet logs and within-subject
+  temporal structure;
+- leakage risk: public-feedback-derived targets are still used, so H092 is a
+  public-sensor HS-JEPA latent rather than a normal supervised feature.
+
+### Materialization
+
+- base: H057;
+- model: subject-group OOF ExtraTrees/RandomForest multi-output regression;
+- promoted file:
+  `submission_h092_raw_dayblock_latent_67a84cd8_uploadsafe.csv`.
+
+### Keep / Kill Criteria
+
+- Keep raw day-block context as a central HS-JEPA input view.
+- Do not use it alone to authorize new low-overlap actions until a target
+  explicitly rewards low-overlap support and private safety.
+- If H092 public improves by `>=0.001`, upgrade raw context to action-grade.
+  Otherwise treat it as representation evidence, not a jackpot submission.

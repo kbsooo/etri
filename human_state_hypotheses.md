@@ -711,3 +711,43 @@ The next human-state hypothesis should be more raw and less semantic:
 - not "cashflow stress row";
 - but "masked raw-log block whose context predicts a route/action latent that
   current public equations did not already select."
+
+## H092 Raw Human-State Reading
+
+H092 tested that exact raw version.
+
+In human terms:
+
+```text
+Instead of naming a day "payday stress" or "weekend rhythm", let the raw day
+say what kind of human state it is: screen/call/app pressure, movement, body
+load, light exposure, charging/home anchoring, and subject-level transition.
+```
+
+The raw state was predictive:
+
+- public action-quality Spearman `0.873401`;
+- Q2 action-quality Spearman `0.886433`;
+- overall action-quality Spearman `0.849724`.
+
+But the selected candidate still mostly chose known rows/routes:
+
+- H088 overlap `0.888748`;
+- H087 overlap `0.922882`;
+- low-overlap raw-transition branch changed only `32` cells.
+
+Human-state implication:
+
+```text
+The data contains raw human-state signals, but current HS-JEPA targets teach
+the raw encoder to imitate the known public-equation/action basin. To get a
+breakthrough, the next human-state target must reward discovering a new route
+support, not only predicting whether an old action is safe.
+```
+
+Practical change:
+
+- keep raw day-block context in HS-JEPA v1;
+- stop expecting social-story or raw-context features alone to create 0.53;
+- design the next target as a route-support or assignment problem with
+  low-overlap/private-safety constraints.

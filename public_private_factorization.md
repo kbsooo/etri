@@ -613,3 +613,39 @@ So the factorization problem has moved again:
 - solved enough: context can learn known value-head quality;
 - unsolved: context does not yet find low-overlap, private-safe support;
 - next target: raw sequence/block JEPA or masked route-support prediction.
+
+## H092 Raw Context Factorization
+
+H092 replaced semantic story aggregates with raw day-block context. The
+factorization question became:
+
+```text
+Can raw phone/body/mobility/environment behavior predict public/private
+value-head quality, and can it find support outside H087/H088?
+```
+
+Observed H092 factorization:
+
+- selected route cells: `629`;
+- posterior delta vs H057: `-0.000501`;
+- hard-world delta vs H057: `-0.000045`;
+- H088 action overlap: `0.888748`;
+- H087 action overlap: `0.922882`;
+- OOF overall latent Spearman: `0.849724`;
+- OOF private latent Spearman: `0.650449`.
+
+Current rule:
+
+```text
+Raw behavior context improves the legitimacy of the context encoder, but the
+public/private action split is still controlled by known value-law support.
+Private-safe low-overlap actions do not emerge just by replacing story
+features with raw logs.
+```
+
+The factorization problem is now sharper:
+
+- context learning: alive;
+- public/private head prediction: partially alive, especially public/Q2;
+- private head from raw context: weak;
+- low-overlap action discovery: not action-grade yet.

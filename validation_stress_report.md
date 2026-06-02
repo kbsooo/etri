@@ -7756,3 +7756,43 @@ Decision:
 Learned lifestyle-action latent is architecture-valid but not yet a
 breakthrough support finder.
 ```
+
+## H092 Raw Day-Block Latent Stress
+
+Date: 2026-06-02
+
+H092 tested whether raw day-block context could improve on H091 and open a
+lower-overlap action basin.
+
+| Candidate | Changed cells | Posterior delta | Hard-world delta | Resp-weighted delta | H088 overlap | H087 overlap | Upload safe |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `submission_h092_raw_dayblock_latent_67a84cd8_uploadsafe.csv` | `629` | `-0.000501` | `-0.000045` | `-0.000546` | `0.888748` action | `0.922882` action | yes |
+| H092 low-overlap branch | `32` | `-0.000021` | `-0.000006` | `-0.000021` | `0.547619` action | `0.452381` action | yes |
+
+OOF representation checks:
+
+| Head | Spearman OOF | Top-10 AUC |
+| --- | --- | --- |
+| public | `0.873401` | `0.947561` |
+| private | `0.650449` | `0.871634` |
+| objective | `0.828828` | `0.939412` |
+| q2 | `0.886433` | `0.940823` |
+| overall | `0.849724` | `0.959135` |
+
+Stress interpretation:
+
+- H092 passes upload safety and representation-health stress.
+- H092 is weaker than H091 on latent geometry, especially private head.
+- H092 still fails novelty stress: the selected support heavily overlaps
+  H087/H088.
+- Direct selected-cell overlap confirms this: H092 overlaps H091 by `590/629`,
+  H088 by `588/629`, and H087 by `597/629`.
+- The branch that passes novelty stress is too small to be a big-bet
+  submission.
+
+Decision:
+
+```text
+Raw context is a valid HS-JEPA input view, but the next big bet must alter the
+target/solver. Context improvement alone is not the current bottleneck.
+```

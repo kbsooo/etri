@@ -849,3 +849,53 @@ next architecture step is not another hand story; it is a raw sequence/block
 context encoder that can produce action-grade support outside the public
 equation basin.
 ```
+
+## H092 Raw Day-Block Action Latent
+
+H092 replaced the H072/H089 hand-story context with raw day-block context:
+
+```text
+raw app/screen/charge/activity/GPS/Wi-Fi/BLE/light/heart/pedometer day state
+  -> within-subject transition and novelty coordinates
+  -> subject-held-out predictor
+  -> hidden action/value-head quality representation
+  -> route-action selection
+```
+
+Promoted H092 file:
+`submission_h092_raw_dayblock_latent_67a84cd8_uploadsafe.csv`.
+
+Subject-group OOF diagnostics:
+
+- public head Spearman: `0.873401`;
+- private head Spearman: `0.650449`;
+- objective head Spearman: `0.828828`;
+- Q2 head Spearman: `0.886433`;
+- overall head Spearman: `0.849724`.
+
+Candidate diagnostics:
+
+- changed cells / rows versus H057: `629` / `113`;
+- Q2 changed cells: `68`;
+- posterior delta versus H057: `-0.000501`;
+- hard-world delta versus H057: `-0.000045`;
+- responsibility-weighted delta: `-0.000546`;
+- H088 action overlap: `0.888748`;
+- H087 action overlap: `0.922882`;
+- upload-safe validation passed.
+
+Architectural implication:
+
+```text
+Raw day-block context is a valid HS-JEPA context encoder, but it still mostly
+predicts the known H087/H088 action basin. The low-overlap raw-transition
+candidate had only 32 changed cells, so raw context alone did not yet open a
+new action-grade support region.
+```
+
+This updates the architecture boundary:
+
+1. learned context-to-action latent is real;
+2. raw logs are stronger and less hand-wavy than story features;
+3. the current blocker is not finding a context representation, but translating
+   that representation into low-overlap, private-safe row-target actions.

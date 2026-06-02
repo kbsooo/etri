@@ -1675,3 +1675,46 @@ maps to the existing H087/H088 support. The next latent target must be harder:
 it should mask route/action support and force discovery in lower-overlap
 regions while preserving hard-world safety.
 ```
+
+## H092 Raw Day-Block Latent Diagnostics
+
+Date: 2026-06-02
+
+H092 moved the context encoder from semantic lifestyle stories to raw day-block
+logs.
+
+Context:
+
+- app usage category totals and shares;
+- screen and charging rhythm;
+- phone/watch light exposure;
+- activity, GPS mobility, Wi-Fi/BLE density, ambience count;
+- heart-rate and pedometer summaries;
+- within-subject previous/next deltas, acceleration, novelty, and edge
+  proximity;
+- route structure and value-law identity.
+
+Target representation:
+
+- same five action-quality heads as H091;
+- no direct Q/S label loss;
+- subject-group OOF prediction.
+
+OOF geometry:
+
+| Head | Target mean | Prediction std | Spearman OOF | Top-25 AUC | Top-10 AUC |
+| --- | --- | --- | --- | --- | --- |
+| public | `0.516343` | `0.228183` | `0.873401` | `0.938693` | `0.947561` |
+| private | `0.464136` | `0.206291` | `0.650449` | `0.853833` | `0.871634` |
+| objective | `0.530399` | `0.136704` | `0.828828` | `0.932954` | `0.939412` |
+| q2 | `0.489074` | `0.176333` | `0.886433` | `0.934845` | `0.940823` |
+| overall | `0.489147` | `0.175360` | `0.849724` | `0.932639` | `0.959135` |
+
+Diagnostic conclusion:
+
+```text
+Raw day-block latent is non-collapsed and predictive, especially for public
+and Q2 heads. The private head is much weaker than H091, and action decoding
+still overlaps H087/H088. The representation is healthy but not yet a
+low-overlap support finder.
+```

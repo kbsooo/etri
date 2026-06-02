@@ -5852,3 +5852,42 @@ H091 changed `820` cells with posterior delta `-0.000552`, hard-world delta
 `-0.000108`, and OOF overall Spearman `0.977807`. But H088 action overlap is
 `0.929972`. Local transition: learned latent is promoted as an HS-JEPA module,
 but not as a 0.53-scale support breakthrough.
+
+## H092 Update: Raw Day-Block Action Latent
+
+### New Hypothesis Node
+
+H092-H: raw day-block sensor/app/activity context can predict hidden
+route/action/value-head quality and open lower-overlap support than hand-built
+lifestyle stories.
+
+### Evidence Entering H092
+
+- H091 validated learned context-to-action latent but mostly copied H087/H088.
+- H090 showed hand-scored lifestyle white-space actions are unsafe.
+- Therefore the sharper test was raw logs as context, not semantic story
+  aggregates.
+
+### Experiment Edge
+
+H092 builds raw daily features from app usage, screen, charging, activity, GPS,
+Wi-Fi/BLE, ambience count, light, heart, pedometer, and subject-level temporal
+deltas. It predicts five hidden action-quality heads with subject-group OOF
+models, then decodes route-conditioned value laws.
+
+### State Transition Rules
+
+- If H092 improves by `>=0.001`: promote raw day-block encoder as action-grade
+  HS-JEPA context.
+- If H092 is predictive but high-overlap: keep raw context, but shift the
+  breakthrough search to target/solver design.
+- If H092 fails representation health: demote raw context and return to
+  public/private equations.
+
+### Local Result
+
+H092 changed `629` cells with posterior delta `-0.000501`, hard-world delta
+`-0.000045`, OOF overall Spearman `0.849724`, and H088 action overlap
+`0.888748`. The low-overlap branch changed only `32` cells. Local transition:
+raw context encoder survives, but "better context alone" is weakened as the
+0.53 breakthrough hypothesis.

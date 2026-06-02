@@ -3503,3 +3503,42 @@ Train or infer a stronger latent target:
   and H018;
 - decoder: only act when learned lifestyle latent and public/private heads
   agree.
+
+## Weak/Falsified: Raw Context Alone Opens New Support
+
+Date: 2026-06-02
+
+Related experiments: H091 learned lifestyle-action latent and H092 raw
+day-block action latent.
+
+Hypothesis:
+
+```text
+The missing 0.53-scale factor is the context encoder. If semantic stories are
+replaced by raw day-block logs, HS-JEPA will discover new low-overlap,
+private-safe support outside H087/H088.
+```
+
+Observed result:
+
+- H092 raw latent was predictive: overall Spearman `0.849724`, Q2 Spearman
+  `0.886433`;
+- promoted H092 changed `629` cells but still had H088 overlap `0.888748` and
+  H087 overlap `0.922882`;
+- low-overlap H092 branch changed only `32` cells on `6` rows;
+- low-overlap branch posterior delta was only `-0.000021`;
+- all candidates were upload-safe, so this was not a formatting failure.
+
+Decision:
+
+This weakens the idea that the next breakthrough comes from a better context
+view alone. Raw human state is useful, but the current pseudo action target
+teaches it to imitate known support. The next attempt must change the target
+or solve assignment globally.
+
+Next direction:
+
+- masked low-overlap route-support target;
+- global row-target assignment solver;
+- value-law discovery that does not train only on H087/H088-compatible action
+  quality.
