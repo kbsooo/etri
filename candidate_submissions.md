@@ -20,22 +20,19 @@ submission_survival_score =
 
 ## Current Public Frontier
 
-Current public frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv` with public LB `0.5679048248`.
+Current public frontier: `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv` with public LB `0.5677475939`.
 
-Previous public frontier: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv` with public LB `0.5681234831`.
+Previous public frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv` with public LB `0.5679048248`.
 
-H042 improves over H012 by `0.0002186583`. H012 remains the base public-equation anchor, but H042 is now the reference public frontier unless private-risk considerations dominate final selection.
+H057 improves over H042/H050 by `0.0001572309` and over H012 by `0.0003758892`. H012 remains the base public-equation anchor, H042 remains the Q2 row anchor, and H057 is now the reference public frontier unless private-risk considerations dominate final selection.
 
-Current next high-risk submission candidate: `submission_h048_q2_public_subset_support_39c01d65_uploadsafe.csv`.
+Current pending high-risk sensor: `submission_h058_private_tail_eject_138bba8f_uploadsafe.csv`.
 
-Reason: H047 is the cleanest support-identity sensor, but H048 is the larger
-HS-JEPA claim. H048 tests whether that support identity is also hidden
-public-subset assignment. It changes only `53` Q2 cells, differs from H047 on
-`16` Q2 cells, and adds public-world LOFO evidence (`0.000145480` vs uniform
-`0.000184123`). The older
-`submission_h020_joint_vector_world_combined_all_k1750_a1_uploadsafe.csv` and
-H021 bridge file are now historical architecture sensors, not current
-recommendations, unless the user explicitly wants to spend a public slot on a
+Reason: H058 is not the safest next best candidate after H057; it is a
+public/private tail-splitter sensor from the older H042 base. The next frontier
+candidate to build should use H057 as the base and extend the compact
+row-state support. H047/H048 are now historical support-identity sensors unless
+the user explicitly wants to spend a public slot on a
 resolved posterior-completion question.
 
 Reason: after H014-H019 decomposition, H020 is the largest predeclared post-H012 worldview test. It asks whether the validated public-equation posterior should be completed as a row-level 7-target hidden state, not independent cells. Conservative default remains H012; H020 is not a private-safe replacement until public feedback exists. H026 adds no submission candidate because the public/private veto repaired known-anchor ranking but failed public-transfer stress on generated variants.
@@ -6409,6 +6406,12 @@ vector with Q2 fixed because Q2 was already corrected.
   rows is harmful or public-neutral.
 - Both worse: H042 remains Q2-local and row-state translation should stop.
 
+### Public Result
+
+H057 scored `0.5677475939`, improving over H042/H050 by `0.0001572309`. The
+full row-vector HS-JEPA route is now validated enough to become the active
+frontier branch.
+
 ## H058 Branch Submission Decision
 
 Promoted file:
@@ -6444,3 +6447,8 @@ win still contains removable private tail.
   module.
 - Worse than H042/H050: H012/H042 broad posterior outside H042 rows is
   necessary or the H055 low-listener score is miscalibrated.
+
+After H057's public result, the practical benchmark is stricter: H058 needs to
+beat `0.5677475939` to become a frontier candidate. Otherwise it remains a
+tail-splitter sensor and the next frontier work should build on H057 row-state
+support.

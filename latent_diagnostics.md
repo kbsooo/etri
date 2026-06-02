@@ -1249,6 +1249,11 @@ Interpretation: H057 is the high-amplitude row-vector decoder. It is expected
 to be more informative but riskier than H056 because it reintroduces subjective
 Q targets only on the public-positive row support.
 
+Public feedback: H057 scored `0.5677475939`, improving over H042/H050 by
+`0.0001572309`. This turns the compact row latent from a diagnostic route into
+the active HS-JEPA latent: Q2 identifies the public-positive rows, and the
+non-Q2 target vector is useful only when decoded on that row support.
+
 ## H058 Latent Diagnostic: Private-Tail Ejection
 
 H058 treats H012/H042-vs-E247 support as a latent action field and uses the H055

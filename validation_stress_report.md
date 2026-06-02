@@ -7371,6 +7371,9 @@ Public-free interpretation stress:
 - H057 intentionally violates the H050 broad subjective-route null by restricting
   subjective Q changes to H042's public-positive rows.
 - It is a high-information row-vector test, not a conservative submission.
+- Public result: `0.5677475939`, improving H042/H050 by `0.0001572309`. The
+  structural stress is now public-supported: row support mattered more than
+  target family alone.
 
 ## H058 Stress Note: Private-Tail Ejection Sensor
 

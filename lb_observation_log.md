@@ -3143,7 +3143,7 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 
 - submission file prepared:
   `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv`
-- public LB: pending
+- public LB: `0.5677475939`
 - public anchors:
   - H012 `0.5681234831`;
   - H042 `0.5679048248`;
@@ -3167,6 +3167,14 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - H050 Q1/Q3 route rows `86`, overlap with H042 support rows `20`;
   - H055-posterior predicted delta vs H042 `-0.000194129`;
   - H055-posterior predicted delta vs H056 `-0.000058332`.
+- actual public reaction:
+  - improved over H042/H050 by `0.0001572309`;
+  - improved over H012 by `0.0003758892`.
+- interpretation:
+  - H042's Q2 support rows are not Q2-only under public feedback;
+  - the broad H050 subjective route was public-neutral because it put route
+    action on many rows outside the public-positive support;
+  - compact full-vector row-state HS-JEPA is now the active public branch.
 
 ## Public-Free Observation: H058 Private-Tail Ejection HS-JEPA
 

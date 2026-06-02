@@ -6,13 +6,13 @@ search.
 
 ## Current Baseline
 
-- Public best: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
-- Public LB: `0.5679048248`
-- Current promoted post-H012 sensor: tiny Q2 phase action-coupled move.
-- Current H042 conclusion: known public action response is real, and a small
-  Q2 phase move can beat H012 even when H024 rejects it. H012 remains the base
-  public-equation/action fixed point, but Q2-local phase has a live descent
-  direction.
+- Public best: `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv`
+- Public LB: `0.5677475939`
+- Current promoted post-H012 sensor: full-vector row-state translation on H042
+  Q2-support rows.
+- Current H057 conclusion: H042's `45` Q2-support rows are not merely Q2-local.
+  They can carry a compact hidden human-state vector when Q2 is frozen and
+  Q1/Q3/S1-S4 are decoded only on those rows.
 - Current next promoted sensor: `submission_h047_q2_support_identity_98737e9b_uploadsafe.csv`.
 - Current H047 question: did H042 expose a discrete Q2 support identity that
   can safely expand from `45` to `59` cells, or was the exact H042 support the
@@ -1655,6 +1655,9 @@ candidates had strong H025 health but weaker action-margin evidence.
 - public reading:
   improvement validates full row-vector HS-JEPA routing. If H056 improves but
   H057 fails, only objective S routing is live; if both fail, H042 is Q2-local.
+- public result:
+  `0.5677475939`, improving H042/H050 by `0.0001572309`. Full row-vector
+  HS-JEPA routing is now the active public branch.
 
 ## H058 Private-Tail Ejection
 

@@ -5647,6 +5647,16 @@ H057 starts from H042, freezes Q2, and changes Q1/Q3/S1/S2/S3/S4 on exactly the
   Q route.
 - H056/H057 both fail: H042 is Q2-local under current evidence.
 
+### Public State Update
+
+Observed public LB: `0.5677475939`.
+
+State transition: H057 improves over H042/H050 by `0.0001572309`, so promote
+`H042 Q2-support row -> full hidden human-state vector` from live hypothesis to
+active frontier. The Q2-local interpretation is demoted but not fully killed:
+Q2 remains the anchor that identifies the rows, while Q1/Q3/S targets are
+decoded only inside that compact row support.
+
 ## H058 Update: Public/Private Tail Ejection
 
 ### New Hypothesis Node

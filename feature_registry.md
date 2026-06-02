@@ -5343,6 +5343,13 @@ frozen at H042.
 - Demote subjective-Q route if H056 improves but H057 fails.
 - Kill broad row-state translation if both H056 and H057 fail.
 
+### Public Result
+
+H057 scored `0.5677475939`, improving over H042/H050 by `0.0001572309`.
+`h042_q2_support_full_nonq2_vector` is now a kept action family. Future
+materializations should start from this compact row-state support rather than
+broad non-Q2 route masks.
+
 ## H058 Feature/Action Registry: Private-Tail Ejection
 
 ### Feature / Action

@@ -4,24 +4,25 @@ This repository snapshot is rooted at the former local `cl2/` workspace.
 
 Current public frontier:
 
-- `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
-- Public LB: `0.5679048248`
-- Previous frontier: `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv`
-- Improvement over previous frontier: `0.0002186583`
-- Interpretation: H012 validates the public-equation HS-JEPA branch, and H042
-  adds the first post-H012 public-positive action-translation evidence. The
-  winning H042 move is not the large action-coupled solver output; it is a tiny
-  Q2 phase move that H024 rejected but action-response, route-equation, and H025
-  supported.
-- Latest public observation: `submission_h050_target_route_phase_b140216b_uploadsafe.csv`
-  also scored `0.5679048248`. Since H050 froze Q2 and moved only Q1/Q3, this
-  is strong evidence that the currently useful public action is still Q2-local;
-  non-Q2 subjective route translation did not create a new public gain.
+- `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv`
+- Public LB: `0.5677475939`
+- Previous frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
+- Improvement over previous frontier: `0.0001572309`
+- Interpretation: H012 validates the public-equation HS-JEPA branch, H042 adds
+  the first post-H012 Q2 phase action, and H057 now validates the stronger
+  row-level hidden human-state translation. The active state is no longer
+  Q2-only: the H042 Q2-support rows can carry a full non-Q2 target vector when
+  decoded carefully.
+- Latest public observation: `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv`
+  scored `0.5677475939`. Since H057 froze Q2 and moved Q1/Q3/S1-S4 only on the
+  `45` H042 Q2-support rows, this is direct evidence for a compact row-state
+  latent rather than a broad non-Q2 route.
 - External reference note: the attached high-scoring `submission_v106_sleep_state_conditioned_memory.csv` document reports public LB `0.5703952266` from same-subject sleep-state/sensor-quality-conditioned memory. That supports the broader repeated-subject world model, but H042 is lower by `0.0024904018`.
 
 Current post-H012 status:
 
-- H042 Q2 tiny phase is the active public frontier, while H012 remains the base
+- H057 full-vector row-state translation is the active public frontier. H042 is
+  still the public-confirmed Q2 row anchor, and H012 remains the base
   public-equation anchor.
 - H043, H045, H047, H048, H049, H050, H051, and H052 are the current high-information post-H042 sensors:
   - H043 tests whether the Q2 phase branch can expand from `45` to `105`
@@ -415,6 +416,10 @@ If H057 improves, HS-JEPA should represent H042 support rows as complete hidden
 human-state vectors. If H056 improves but H057 fails, the row-state route is
 objective-S but not subjective-Q. If both fail, H042 remains Q2-local.
 
+Public feedback: H057 scored `0.5677475939`, improving over H042/H050 by
+`0.0001572309`. This validates the full row-vector branch and weakens the old
+"H042 is Q2-local" interpretation.
+
 ## Latest H058 Branch Note
 
 H058 changes the question from target routing to public/private tail separation.
@@ -429,3 +434,8 @@ cells across `197` rows versus H042, with `0` protected-row changes. If it
 improves, the next HS-JEPA object is a public/private tail splitter inside the
 broad H012/H042 posterior. If it fails, the broad H012/H042 posterior outside
 H042 rows should not be collapsed using H055 low-listener score alone.
+
+After H057's public win, H058 should be interpreted against the new H057
+frontier: a win over H057 would validate private-tail ejection; a loss mainly
+says the next large bet should extend the compact H057 row-state latent rather
+than roll back H012/H042 tail cells from the older H042 base.
