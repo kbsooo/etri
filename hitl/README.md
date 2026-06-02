@@ -1506,3 +1506,54 @@ H048 is a bigger bet than H047, not necessarily a safer one. If H048 improves,
 the support identity is also public-subset assignment. If H048 loses while
 H047 holds up, public-world assignment overfit local equations and the cleaner
 support-only representation should remain the active theory.
+
+## H050: Target-Route Phase Residual HS-JEPA
+
+- Script: `hitl/h050_target_route_phase_jepa.py`
+- Report: `hitl/h050_target_route_phase_jepa/h050_report.md`
+- Decision: promote one public sensor:
+  `submission_h050_target_route_phase_b140216b_uploadsafe.csv`.
+
+### Question
+
+After H042's Q2 public win, are there separate non-Q2 target-route phases, or
+was Q2 the only public-real phase action?
+
+### Main Finding
+
+The post-H042 action decoder selected a subjective Q route, not another Q2
+move and not a row-vector Q3/S echo.
+
+- Generated/scored candidates: `360` / `240`.
+- Promotable candidates: `85`.
+- Selected candidate:
+  `h050_target_phase_route_world_mid_Q_k96_a0.3_agree_b140216b`.
+- Root upload-safe file:
+  `submission_h050_target_route_phase_b140216b_uploadsafe.csv`.
+- Changed cells vs H012: `141`.
+- Changed cells vs H042: `96`, all non-Q2.
+- Per-target changes vs H042:
+  Q1 `52`, Q2 `0`, Q3 `44`, S1/S2/S3/S4 `0`.
+- Route-equation delta vs H012:
+  `-0.000444205`.
+- Route gain vs H042:
+  `-0.000303538`.
+- H036-world delta:
+  `-0.000166506`.
+- Full-known action margin/support:
+  `-0.000050859` / `0.583333333`.
+- Pre-H012 action margin:
+  `+0.000036495`.
+- H024 margin/support:
+  `+0.001857507` / `0.250000000`.
+- H025 score:
+  `+0.377968233`.
+
+### Interpretation
+
+H050 is not a safety submission. It is a target-route sensor. If it improves
+over H042, HS-JEPA should model subjective Q1/Q3 as a distinct post-Q2 action
+route. If it loses materially, the current non-Q2 target phase translator is
+too weak and H042 remains Q2-local until a stronger independent route signal is
+found. The strongest alternate branch is S2/S4 objective route: several S24
+candidates had strong H025 health but weaker action-margin evidence.

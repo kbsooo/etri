@@ -1107,3 +1107,19 @@ not be treated as a safe final ensemble component, but it is a clean public
 sensor for the row-level HS-JEPA claim. If public improves over H042, Q2 support
 is not merely Q2-local calibration; if public fails, the current Q3/S echo
 translation should be rejected while keeping the Q2 support latent alive.
+
+H050 changes the representation question from row-vector echo to target-route
+phase. It freezes H042's Q2 values and asks which non-Q2 target route carries
+residual public-world/action energy. The selected representation is subjective
+Q, not objective S: `96` cells move versus H042, split into Q1 `52` and Q3
+`44`, with all S targets unchanged. This is a clean diagnostic because it does
+not depend on Q2 changing further.
+
+The latent geometry is sharper than H049 on route/action but weaker on
+action-health. Route gain versus H042 is `-0.000303538`, route-equation delta
+versus H012 is `-0.000444205`, H036-world delta is `-0.000166506`, and the
+full-known action margin/support are `-0.000050859` / `0.583333333`. However,
+H024 remains strongly positive (`+0.001857507`) and H025 is mildly positive
+(`+0.377968233`). The LeJEPA read is therefore: subjective-Q target-route phase
+is a live representation, but not yet health-certified. Public feedback will
+decide whether this route signal is real or an action-decoder shortcut.

@@ -19,7 +19,7 @@ Current post-H012 status:
 
 - H042 Q2 tiny phase is the active public frontier, while H012 remains the base
   public-equation anchor.
-- H043, H045, H047, H048, and H049 are the current high-information post-H042 sensors:
+- H043, H045, H047, H048, H049, and H050 are the current high-information post-H042 sensors:
   - H043 tests whether the Q2 phase branch can expand from `45` to `105`
     cells;
   - H045 tests whether human-state route context can prune that expansion to a
@@ -32,6 +32,8 @@ Current post-H012 status:
     joint support/world assignment;
   - H049 tests the bigger row-vector claim by keeping H042 Q2 unchanged and
     adding a `160`-cell non-Q2 Q3/S echo on Q2-support/public rows.
+  - H050 freezes H042 Q2 and tests whether a separate non-Q2 subjective
+    Q1/Q3 target-route phase exists.
 - No H015-H041 file is currently promoted as the next upload.
 - The historical post-H012 sensors below are kept because they define falsified or partially supported HS-JEPA routes, not because they are current submission recommendations.
 
@@ -301,6 +303,17 @@ Public LB operating rule:
   H025 strongly healthy (`-4.814111661`), while H024 remains positive
   (`+0.001194754`). If public improves, Q2 support is a row-level hidden
   human-state marker; if public rejects it, H042 should be treated as Q2-local.
+- H050 asks a sharper target-route question. It starts from H042, freezes Q2
+  exactly, and lets the action decoder choose among Q1/Q3/S target-phase
+  residuals. It promotes
+  `submission_h050_target_route_phase_b140216b_uploadsafe.csv`, which changes
+  `96` non-Q2 cells versus H042: Q1 `52`, Q3 `44`, every S target `0`. Local
+  sensors are route-positive versus H042 (`-0.000303538`), route-equation
+  positive versus H012 (`-0.000444205`), H036-world-positive (`-0.000166506`),
+  and full-known action-positive (`-0.000050859`, support `0.583333333`), while
+  H024 and H025 remain warnings (`+0.001857507`, `+0.377968233`). If public
+  improves, HS-JEPA needs target-specific subjective Q routes beyond Q2; if it
+  fails, non-Q2 moves should require independent action-health evidence.
 
 Primary working notes:
 

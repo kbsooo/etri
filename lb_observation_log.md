@@ -2922,3 +2922,41 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - next experiment:
   - use public feedback to decide whether HS-JEPA should expand from Q2 support
     into target-vector route translation, or stay Q2-local.
+
+## Public-Free Observation: H050 Target-Route Phase Residual HS-JEPA
+
+- submission file prepared:
+  `submission_h050_target_route_phase_b140216b_uploadsafe.csv`
+- public LB: pending
+- current public frontier:
+  `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
+  scored `0.5679048248`.
+- changed point:
+  - starts from H042 and freezes Q2 exactly;
+  - searches non-Q2 target-route phase actions;
+  - selected subjective Q route: Q1 and Q3 only.
+- expected LB reaction:
+  - better than H042 means Q1/Q3 have a separate post-Q2 target-route phase;
+  - worse than H042 means non-Q2 phase translation is not currently public-safe;
+  - if H049 fails but H050 survives, row-vector echo is wrong but target-route
+    phase is real.
+- local/public-free observation:
+  - generated/scored candidates `360` / `240`;
+  - promotable candidates `85`;
+  - selected
+    `h050_target_phase_route_world_mid_Q_k96_a0.3_agree_b140216b`;
+  - changed cells vs H042 `96`, all non-Q2:
+    Q1 `52`, Q3 `44`;
+  - route-equation delta vs H012 `-0.000444205`;
+  - route gain vs H042 `-0.000303538`;
+  - H036-world delta `-0.000166506`;
+  - full-known action margin/support
+    `-0.000050859` / `0.583333333`;
+  - H024 margin/support
+    `+0.001857507` / `0.250000000`;
+  - H025 score `+0.377968233`.
+- interpretation:
+  - H050 is a target-route public sensor, not a conservative improvement file.
+- next experiment:
+  - public-test H050 when the next slot should distinguish subjective-Q route
+    from Q2-local-only and broad row-vector explanations.

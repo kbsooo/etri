@@ -5455,3 +5455,42 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - public LB 관측 반응: pending.
 - 제출 전략: submit H049 when the next public slot should test whether Q2
   support is row-level human state rather than Q2-only calibration.
+
+### H050: H042 exposes target-specific non-Q2 phase routes
+
+- 상태: live, promoted as public sensor.
+- 왜 그럴듯한가: H042 proved target-isolated phase can beat the H012 public
+  equation even when H024 objects. H049's row-vector echo was broad and only
+  weakly action-positive. A sharper HS-JEPA target is not "same rows, all
+  targets" but "which target route has residual phase after Q2 is frozen?"
+- 맞다면:
+  - a non-Q2 target route should remain route-equation positive after H042;
+  - the H042 action decoder with H042 feedback should support the move;
+  - public LB should improve over or stay near H042 while Q2 is unchanged.
+- 틀리다면:
+  - public LB should degrade materially despite local route/action evidence;
+  - H042 should remain Q2-local, and non-Q2 phase moves should require a new
+    independent action-health signal.
+- 최소 실험: `hitl/h050_target_route_phase_jepa.py`, starting from H042,
+  freezing Q2, and searching Q1/Q3/S target-phase residuals.
+- 관측:
+  - generated/scored candidates `360` / `240`;
+  - promotable candidates `85`;
+  - selected
+    `h050_target_phase_route_world_mid_Q_k96_a0.3_agree_b140216b`;
+  - root file `submission_h050_target_route_phase_b140216b_uploadsafe.csv`;
+  - changed cells vs H042 `96`, all non-Q2:
+    Q1 `52`, Q3 `44`;
+  - route-equation delta vs H012 `-0.000444205`;
+  - route gain vs H042 `-0.000303538`;
+  - full-known action margin/support
+    `-0.000050859` / `0.583333333`;
+  - H024 and H025 warnings:
+    `+0.001857507` / `+0.377968233`.
+- 성공/폐기 기준:
+  - accept subjective-Q target-route phase if H050 beats H042 or is very close
+    while H049 fails;
+  - reject current non-Q2 target-phase translator if H050 loses materially.
+- public LB 관측 반응: pending.
+- 제출 전략: submit H050 when the next public slot should distinguish
+  subjective-Q target route from Q2-local-only explanations.

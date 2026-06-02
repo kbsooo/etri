@@ -7636,3 +7636,53 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
   - promote H049 as a high-information public sensor, not as a conservative
     incremental improvement;
   - read public feedback as a branch decision for row-vector HS-JEPA.
+
+## H050. Target-Route Phase Residual HS-JEPA
+
+- Observe: H042 showed that H024 could falsely reject a public-real Q2 phase.
+  H049 tested row-vector echo from Q2 support, but action/conditional evidence
+  stayed weak. The next sharper question is whether non-Q2 targets have their
+  own phase route after Q2 is frozen.
+- Wonder: if H042's Q2 phase is one target route, can a post-H042 action
+  decoder choose a separate Q1/Q3/S route without touching Q2?
+- Hypothesis: if HS-JEPA should model target-specific hidden action routes,
+  then freezing H042 Q2 and materializing a non-Q2 target phase should be
+  route-positive, action-positive, and public-informative. If public rejects
+  it, current non-Q2 phase translation is dead or underfit.
+- Method: `hitl/h050_target_route_phase_jepa.py`.
+  - base: H042 current public best;
+  - context: H042 route-world posterior, H041/H036 world state, H012 posterior,
+    E247 ray, and target-specific action atoms;
+  - target representation: non-Q2 target-route phase residual;
+  - action: freeze Q2 exactly and move Q1/Q3/S target groups only;
+  - stress: H042 action decoder with H042 public feedback, route-world
+    equation, H036-world delta, H024, and H025.
+- Result:
+  - generated/scored candidates `360` / `240`;
+  - promotable candidates `85`;
+  - selected candidate
+    `h050_target_phase_route_world_mid_Q_k96_a0.3_agree_b140216b`;
+  - promoted file
+    `submission_h050_target_route_phase_b140216b_uploadsafe.csv`;
+  - changed cells vs H012 `141`;
+  - changed cells vs H042 `96`, all non-Q2;
+  - per-target changes vs H042:
+    Q1 `52`, Q2 `0`, Q3 `44`, S1/S2/S3/S4 `0`;
+  - route-equation delta vs H012 `-0.000444205`;
+  - route gain vs H042 `-0.000303538`;
+  - H036-world delta `-0.000166506`;
+  - full-known action margin/support
+    `-0.000050859` / `0.583333333`;
+  - pre-H012 action margin `+0.000036495`;
+  - H024 margin/support `+0.001857507` / `0.250000000`;
+  - H025 score `+0.377968233`.
+- Interpretation:
+  - H050 is a bigger target-route claim than H049 because it lets the action
+    decoder choose a target group and it chose Q1/Q3;
+  - H024 and H025 warnings mean this is not a conservative final component;
+  - public improvement would validate subjective-Q target-route phase after
+    Q2; public failure would kill the current non-Q2 phase translator.
+- Decision:
+  - promote H050 as the next high-information target-route public sensor;
+  - keep S2/S4 objective-route candidates as the next alternate branch if Q
+    route fails.

@@ -5119,3 +5119,42 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Failure condition: if H049 loses materially to H042, reject the current Q3/S
   echo translator and treat H042's support as Q2-local until an independent
   non-Q2 route signal is found.
+
+### H050 target-route phase residual features
+
+- Target hidden structure: target-specific non-Q2 action phase after the H042
+  Q2 phase is frozen. This treats Q1/Q3/S routes as separate hidden channels,
+  not as one shared row-vector echo.
+- Why needed: H049 tests row-level translation from Q2 support to Q3/S. H050
+  asks a different HS-JEPA question: context is H042 plus route/world posterior,
+  target is the missing non-Q2 target-route representation.
+- Feature/action form:
+  - base prediction is H042;
+  - Q2 is frozen exactly;
+  - route/world/posterior phase sources:
+    `route_phase`, `world_phase`, `route_world_mid`, `posterior_mid`;
+  - target groups include single Q/S targets, Q, S, S13, S24, Q3S3, Q3S, and
+    all non-Q2;
+  - candidates are ranked by H042 action decoder with H042 feedback, route
+    gain, H036-world delta, H024, and H025.
+- Current evidence:
+  - generated/scored candidates `360` / `240`;
+  - promotable candidates `85`;
+  - selected
+    `h050_target_phase_route_world_mid_Q_k96_a0.3_agree_b140216b`;
+  - root file
+    `submission_h050_target_route_phase_b140216b_uploadsafe.csv`;
+  - changed cells vs H042 `96`, all non-Q2:
+    Q1 `52`, Q3 `44`;
+  - route-equation delta vs H012 `-0.000444205`;
+  - route gain vs H042 `-0.000303538`;
+  - H036-world delta `-0.000166506`;
+  - full-known action margin/support
+    `-0.000050859` / `0.583333333`;
+  - H024 margin/support
+    `+0.001857507` / `0.250000000`;
+  - H025 score `+0.377968233`.
+- Registry status: approved as a high-information target-route public sensor.
+- Failure condition: if H050 loses materially to H042, reject the current
+  subjective-Q non-Q2 phase translator and prioritize the S24 action-health
+  branch or a new independent non-Q2 decoder.
