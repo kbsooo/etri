@@ -108,6 +108,19 @@ delta `-0.000826` versus H057. The next human-state step should therefore be
 assignment-aware: story families should constrain which row-target route can
 exist, not merely add a continuous score.
 
+## H071 Route-Assignment Use
+
+H071 is the first assignment-aware decoder. It still does not let stories push
+labels directly. Instead, H070's story-route priors are one part of the latent
+context used to choose a row route such as `full_state`, `nonq2_full`,
+`q3_s_stage`, `s_stage`, `q2_hardtail`, or `recovery_route`.
+
+The promoted H071 candidate is intentionally broad: `736` changed cells on
+`158` rows, with most changes outside H069. That means the next human-social
+work should focus on route dictionary quality. The key question is no longer
+"which story changes Q3?" but "which story makes a row eligible for a
+full-state, objective-stage, subjective-Q, or recovery route?"
+
 ### 1. Bad-Night Aftereffect
 
 Story:

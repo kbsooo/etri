@@ -46,6 +46,21 @@ Previous public frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607
 
 H057 improves over H042/H050 by `0.0001572309` and over H012 by `0.0003758892`. H012 remains the base public-equation anchor, H042 remains the Q2 row anchor, and H057 is now the reference public frontier unless private-risk considerations dominate final selection.
 
+Current generated row-target assignment big bet: `submission_h071_rowtarget_assignment_a52b6b57_uploadsafe.csv`.
+
+Reason: H071 is the first discrete row-target assignment solver after H070. It
+does not simply rank cells by a smooth latent. It chooses one route template per
+row, then materializes that row-target support toward H061 `q061`. The promoted
+file changes `736` cells on `158` rows, with `385` cells outside H070 and `642`
+outside H069, so it is a real support-basin test. Public-action predicted delta
+versus H057 is `-0.000983`, posterior delta is `-0.000744`, and
+responsibility-weighted delta is `-0.000976`; no tracked bad-anchor cosine is
+positive. This is the current highest-information H071 public slot if the next
+question is "is exact row-target assignment the missing HS-JEPA decoder?" A win
+by `~0.001` makes assignment the main route. A bad loss kills the present route
+templates/action-health translator and pushes the next big bet to H072
+human-social state recovery or H073 anti-shortcut inversion.
+
 Current generated full HS-JEPA diagnostic: `submission_h070_full_hsjepa_9e4a9602_uploadsafe.csv`.
 
 Reason: H070 is the first full HS-JEPA v1 joint decoder. It does not select

@@ -70,6 +70,7 @@ HS-JEPA currently has these target representations:
 | Cell action-health `z_action_health` | H068 fits H057-relative public actions with LOO MAE `0.000331247` | Public-free, high-risk |
 | Private-safe invariant `z_private` | H069 factorized public/invariant/shortcut scores | Implemented, weak standalone upside |
 | Joint correction-field latent `z_hsjepa` | H070 masked-view decoder predicts public/private/action representations | Implemented v1, not yet 0.001-grade |
+| Discrete route assignment `z_assignment` | H071 assigns row-target route templates before materializing cells | Implemented, first near-0.001 big bet |
 
 ## Objective
 
@@ -149,6 +150,7 @@ two independent checks:
 | Action-health decoder | Medium | H068 has strong LOO sign, public pending |
 | Private-safe factorization | Weak-medium | H069 works, but strict filtering shrinks expected movement |
 | End-to-end HS-JEPA v1 | Prototype | H070 builds a joint latent decoder, but not yet a decisive action solver |
+| Row-target assignment decoder | Prototype | H071 converts H070/H069/H068 energies into route templates and support |
 
 ## H070 v1 Implementation
 
@@ -179,6 +181,28 @@ Interpretation: HS-JEPA can now predict hidden action representations from
 visible context/route/story views, but this latent is not yet an action solver.
 The next missing component is exact row-target assignment, not another smooth
 latent score threshold.
+
+## H071 Assignment Decoder
+
+H071 adds the first discrete decoder:
+
+```text
+H070 latent + H069 factors + H068 action-health
+  -> row-route template assignment
+  -> row-target support
+  -> logit correction toward H061 q061
+```
+
+It treats the action unit as a route on a row, not an independent cell. Route
+templates include `full_state`, `nonq2_full`, `q3_s_stage`, `s_stage`,
+`q2_hardtail`, `q2_s3_tail`, Q-only routes, and `recovery_route`.
+
+The promoted H071 file changes `736` cells on `158` rows, with `642` cells
+outside H069 and public-action predicted delta `-0.000983` versus H057. This
+is not yet proof. Its role is to test whether assignment is the missing
+decoder. A win means HS-JEPA should be written as context-to-state-to-route
+prediction. A bad loss means the current route dictionary or action-health
+translation is not valid, even if representation prediction remains useful.
 
 ## What Would Prove HS-JEPA
 

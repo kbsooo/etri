@@ -252,6 +252,80 @@ This moves the next big-bet from "build a latent score" to "solve discrete
 row-target assignment." H071 should use H070 as one energy term, but should not
 trust continuous top-score selection by itself.
 
+## H071. Discrete Row-Target Assignment Solver HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h071_rowtarget_assignment_solver_jepa.py`
+- Report: `hitl/h071_rowtarget_assignment_solver_jepa/h071_report.md`
+- Generated submission:
+  `submission_h071_rowtarget_assignment_a52b6b57_uploadsafe.csv`
+
+### Observe
+
+H070 could predict public/private/action representations from context, route,
+story priors, and shortcut views, but smooth `latent_hsjepa_score` thresholding
+stopped at public-action predicted delta `-0.000826`. Its selected-cell AUC
+against H068/H069 was weak, which suggests the missing object may not be a
+better scalar score. The hidden state may be a row-target route assignment.
+
+### Wonder
+
+Is the current post-H057 bottleneck exact placement? In other words, should
+HS-JEPA choose a route per row first, then write target actions, instead of
+ranking independent cells?
+
+### Hypothesis
+
+H071-H: the action-grade target representation is a discrete route:
+
+```text
+row context + public/private/action latent
+  -> route template assignment
+  -> row-target support
+  -> logit move toward H061 q061
+```
+
+If this is right, a route-level assignment solver should create a broader,
+non-H069 support basin while preserving bad-anchor health.
+
+### Falsification Design
+
+H071 builds route templates such as `full_state`, `nonq2_full`, `q3_s_stage`,
+`s_stage`, `q2_hardtail`, `q2_s3_tail`, `recovery_route`, and Q-only routes.
+Each row-route candidate is scored by H070 latent score, H069 public/private
+factors, H068 action-health, H050-null avoidance, H069/H070 novelty, target
+quotas, and bad-anchor cosine. Selection is greedy but constrained to one route
+per row.
+
+### Result
+
+Promoted candidate:
+`h071_assignment_big_outside_h069_c820_r185_q272_a52b6b57`.
+
+- changed cells / rows vs H057: `736` / `158`;
+- selected route count: `158`;
+- cells outside H070 / H069: `385` / `642`;
+- Q2 changed vs H057: `72`;
+- route mix: `full_state:63`, `nonq2_full:47`, `q3_s_stage:13`,
+  `s_stage:16`, `q2_hardtail:8`, `q2_s3_tail:2`, `q_subjective:2`,
+  `recovery_route:7`;
+- public-action predicted delta vs H057: `-0.000983`;
+- posterior delta vs H057: `-0.000744`;
+- responsibility-weighted delta vs H057: `-0.000976`;
+- mean assignment route score: `0.774312`;
+- bad-anchor positive cosine: `0.0`;
+- upload validation passed.
+
+### Interpretation
+
+H071 is the strongest post-H070 big-bet file so far by expected movement. It is
+not a safe micro-refine: it deliberately leaves H069/H070 supports and bets
+that a broad row-target assignment field is the hidden state. If public improves
+by around `0.001` or more, exact row-target assignment becomes the main HS-JEPA
+decoder. If it is neutral, smooth latent and route assignment are both below the
+required scale. If it loses badly, the current route templates/action-health
+translation are wrong even though H070 representation prediction is real.
+
 ## H068. Action-Health Decoder HS-JEPA
 
 - Date: 2026-06-02

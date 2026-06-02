@@ -122,6 +122,17 @@ does kill the simpler sub-hypothesis that "filter H068 harder and keep
 `0.001`-scale upside" is enough. The next route should use these factors inside
 a joint decoder or assignment solver instead of another H069 threshold sweep.
 
+## H071 Factorization Use
+
+H071 used H069 as a factor view rather than as a hard gate. This matters
+because the promoted H071 candidate changes `642` cells outside H069 while
+still keeping bad-anchor positive cosine at `0.0`.
+
+Interpretation: H069's public/private/shortcut scores are useful as energy
+terms, but if H071 wins, the factorization layer should be subordinated to a
+route-assignment decoder. If H071 loses badly, the H069 factors may be
+descriptive but not action-grade outside the strict H069 support.
+
 ## H069 Candidate Design
 
 The next public/private factorization experiment should not produce another

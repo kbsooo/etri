@@ -186,6 +186,33 @@ Build H071:
 - assignment energy prefers known public-bad files;
 - row/target permutation controls look equally good.
 
+### H071 Update
+
+H071 was built and generated
+`submission_h071_rowtarget_assignment_a52b6b57_uploadsafe.csv`.
+
+Result:
+
+- promoted candidate:
+  `h071_assignment_big_outside_h069_c820_r185_q272_a52b6b57`;
+- changed cells / rows versus H057: `736` / `158`;
+- cells outside H070 / H069: `385` / `642`;
+- Q2 changed cells: `72`;
+- selected route mix: `full_state:63`, `nonq2_full:47`, `q3_s_stage:13`,
+  `s_stage:16`, `q2_hardtail:8`, `q2_s3_tail:2`, `q_subjective:2`,
+  `recovery_route:7`;
+- public-action predicted delta versus H057: `-0.000983`;
+- posterior delta versus H057: `-0.000744`;
+- responsibility-weighted delta versus H057: `-0.000976`;
+- bad-anchor positive cosine: `0.0`.
+
+This is the first post-H070 file that nearly reaches the `0.001` big-bet gate
+while changing the hidden-state assumption itself. It does not prove H071 until
+public feedback arrives, but it gives a clean falsification rule: if the file
+wins meaningfully, exact route assignment becomes the main decoder; if it loses
+badly, H070's smooth representation is real but the current route templates are
+not action-grade.
+
 ## Bet 4: Human-Social State Engine
 
 ### Hypothesis
@@ -261,13 +288,16 @@ Build H073:
 
 Current order:
 
-1. H071 Discrete Row-Target Assignment Solver
-2. H072 Human-Social State Engine
-3. H073 Anti-Shortcut State Inversion
-4. H070 follow-up only if public feedback supports smooth joint latent scoring
-5. H069 follow-up only if public feedback specifically supports strict factorization
+1. Submit or observe H071 if a public slot is available for the row-target
+   assignment claim.
+2. H072 Human-Social State Engine.
+3. H073 Anti-Shortcut State Inversion.
+4. H070 follow-up only if public feedback supports smooth joint latent scoring.
+5. H069 follow-up only if public feedback specifically supports strict factorization.
 
 H069 has now answered the first public-free factorization question: the factors
 are useful, but the standalone gated variant is unlikely to be the whole 0.53
 route. H070 has answered the next question: smooth joint latent scoring is
-useful but still not enough. The next large bet is exact assignment.
+useful but still not enough. H071 now materializes exact assignment; the next
+new experiment after H071 should not be another assignment threshold sweep
+unless public feedback validates it.

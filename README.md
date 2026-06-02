@@ -22,6 +22,18 @@ Current public frontier:
   - `breakthrough_bets.md`
   - `public_private_factorization.md`
   - `human_state_hypotheses.md`
+- Latest generated row-target assignment big bet:
+  `submission_h071_rowtarget_assignment_a52b6b57_uploadsafe.csv`. H071 turns
+  H070's smooth latent into a discrete row-target route assignment problem. The
+  promoted candidate changes `736` cells on `158` rows, with `385` cells
+  outside H070 and `642` cells outside H069. It moves `72` Q2 cells and uses a
+  broad route mix: `full_state:63`, `nonq2_full:47`, `q3_s_stage:13`,
+  `s_stage:16`, plus smaller Q-route/recovery routes. Public-action predicted
+  delta versus H057 is `-0.000983`, posterior delta is `-0.000744`, and bad
+  anchor positive cosine is `0.0`. Interpretation: this is the first H071 file
+  close to the `0.001` big-bet gate. A public win would make exact row-target
+  assignment the main HS-JEPA decoder; a loss would say the current route
+  templates or action-health translation are wrong, not merely under-tuned.
 - Latest generated full HS-JEPA diagnostic:
   `submission_h070_full_hsjepa_9e4a9602_uploadsafe.csv`. H070 is the first
   joint HS-JEPA correction-field decoder. It predicts public/private/action
