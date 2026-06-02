@@ -4,6 +4,38 @@
 
 이 문서는 I-JEPA/LeJEPA 아이디어를 그대로 복제하지 않고, 이 대회 데이터의 hidden-DGP 탐색에 맞춰 변형한 latent diagnostic 기록이다.
 
+## H068 Action-Health Decoder Diagnostic
+
+H068 changes the latent unit from row membership to cell-level action health.
+The context is a set of known public submissions represented as H057-relative
+counterfactual actions. The target representation is actual public delta versus
+H057. The predicted object is not raw labels, but whether moving a row-target
+cell toward q061 is healthy under the public listener.
+
+Diagnostic facts:
+
+- public observations / H057-relative equations: `24` / `23`;
+- selected ridge multiplier: `0.000030000`;
+- action model LOO MAE / p90: `0.000331247` / `0.000924782`;
+- pairwise sign accuracy: `0.928571`;
+- promoted file: `submission_h068_action_health_3cb4f94c_uploadsafe.csv`;
+- changed rows / cells vs H057: `174` / `700`;
+- Q2 changed vs H057: `33`;
+- target changes vs H057: Q1 `92`, Q2 `33`, Q3 `87`, S1 `115`,
+  S2 `125`, S3 `128`, S4 `120`;
+- H050-null rows / cells selected: `0` / `0`;
+- max positive bad-anchor cosine: `0.0`;
+- public-action predicted delta vs H057: `-0.000984369`;
+- posterior delta vs H057: `-0.000728590`;
+- responsibility-weighted delta vs H057: `-0.001005326`.
+
+LeJEPA-style read: the model fit is much tighter than H067's row-equation, but
+the materialized action is much wider and reopens Q2. That makes H068 a true
+architecture sensor, not a conservative candidate. A win validates cell-level
+action-health as the next HS-JEPA representation. A loss means the action field
+was overfit to public anchors and H057/H067 row-state structure should remain
+the trusted abstraction.
+
 ## H067 Row-Responsibility Public-State Diagnostic
 
 H067 treats rows, not cells, as the latent responsibility unit. The context is

@@ -4,6 +4,43 @@
 
 현재 목표는 CV 평균이 아니라 hidden-public transfer 가능성을 stress로 판정하는 것이다.
 
+## H068 Update: Action-Health Decoder Stress
+
+H068 tests whether the post-H057 hidden target should be a cell-level
+action-health field rather than row responsibility alone.
+
+Upload and structural checks:
+
+- file: `submission_h068_action_health_3cb4f94c_uploadsafe.csv`;
+- shape: `(250, 10)`;
+- required columns: OK;
+- NaN: `0`;
+- duplicate keys: `0`;
+- probability range: `[0.000004939, 0.999999]`;
+- changed cells vs H057: `700`;
+- Q2 changed vs H057: `33`;
+- upload validation: `True`.
+
+Structural stress:
+
+- public observations / H057-relative equations: `24` / `23`;
+- action model LOO MAE / p90: `0.000331247` / `0.000924782`;
+- pairwise sign accuracy: `0.928571`;
+- selected rows / cells: `174` / `700`;
+- target changes vs H057: Q1 `92`, Q2 `33`, Q3 `87`, S1 `115`,
+  S2 `125`, S3 `128`, S4 `120`;
+- H050-null selected rows / cells: `0` / `0`;
+- max positive bad-anchor cosine: `0.0`;
+- public-action predicted delta vs H057: `-0.000984369`;
+- posterior delta vs H057: `-0.000728590`;
+- responsibility-weighted delta vs H057: `-0.001005326`.
+
+Stress read: H068 passes upload safety, H050-null avoidance, and bad-anchor
+cosine checks, and its known-action LOO error is materially smaller than H067's
+row-equation error. The risk is width: `700` cells and `33` Q2 cells reopen
+more of the public-action surface. This is a high-information sensor for
+action-health decoding, not a low-risk final blend.
+
 ## H067 Update: Row-Responsibility Public-State Stress
 
 H067 tests whether H057 row-state should be decoded through public

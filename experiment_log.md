@@ -4,6 +4,71 @@
 
 실험은 `Observe -> Wonder -> Hypothesize -> Falsify -> Build -> Stress -> Decide` 형식으로 기록한다. public LB는 최적화 대상이 아니라 hidden-DGP sensor로 사용한다.
 
+## H068. Action-Health Decoder HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h068_action_health_decoder_jepa.py`
+- Report: `hitl/h068_action_health_decoder_jepa/h068_report.md`
+- Promoted submission:
+  `submission_h068_action_health_3cb4f94c_uploadsafe.csv`
+
+### Observe
+
+H057 validated a compact full-vector row state, and H067 then asked whether
+that row state should be expanded by public row responsibility. But H067 still
+treats selected rows as the main latent unit. Known public feedback may instead
+be judging the health of each row-target action under the public listener.
+
+### Wonder
+
+After H057, is the missing HS-JEPA target row membership, or cell-level action
+health: which concrete probability edits are healthy under public feedback?
+
+### Hypothesis
+
+H068-H: the post-H057 bottleneck is a public action-health field over cells.
+The right target representation is not only `which row belongs to the hidden
+state`, but `which row-target move toward q061 is public-healthy`.
+
+### Falsification Design
+
+Use known public submissions as H057-relative counterfactual actions. Fit an
+origin-constrained ridge action-health decoder from action features to actual
+public deltas. Score H061 posterior cells by predicted action-health, H067 row
+responsibility, H050-null avoidance, and bad-anchor cosine stress. Start from
+H057 and materialize only high-health cells.
+
+### Result
+
+Selected
+`h068_cell_top_all_k700_a1p0_logit_null1_r0_3cb4f94c`.
+
+- public observations: `24`;
+- fit equations vs H057: `23`;
+- selected ridge multiplier: `0.000030000`;
+- known-action LOO MAE / p90: `0.000331247` / `0.000924782`;
+- pairwise sign accuracy: `0.928571`;
+- changed cells / rows vs H057: `700` / `174`;
+- Q2 changed vs H057: `33`;
+- target changes vs H057: Q1 `92`, Q2 `33`, Q3 `87`, S1 `115`,
+  S2 `125`, S3 `128`, S4 `120`;
+- H050-null rows / cells selected: `0` / `0`;
+- max positive bad-anchor cosine: `0.0`;
+- public-action predicted delta vs H057: `-0.000984369`;
+- posterior delta vs H057: `-0.000728590`;
+- responsibility-weighted delta vs H057: `-0.001005326`;
+- upload validation passed.
+
+### Interpretation
+
+H068 is deliberately wider than H067 and reopens Q2 on `33` cells. It is not a
+safe refine. It asks whether HS-JEPA should learn a cell-level action-health
+decoder over the public listener. A public win would promote action-health as
+the next core HS-JEPA target. A loss while H067 or H066 wins would say the
+cell-level decoder overfit public anchors and row/sequence state remains the
+right abstraction. If H067 and H068 both fail, H057 is likely still the compact
+public-specific row-state frontier.
+
 ## H067. Row-Responsibility Public-State HS-JEPA
 
 - Date: 2026-06-02

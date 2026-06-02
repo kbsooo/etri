@@ -8,6 +8,35 @@ Public LB는 최적화 target이 아니라 hidden public subset과 calibration s
 
 ## Public-Free Post-H012 Observation
 
+H068 is a public-free action-health decoder observation after H057/H067. It
+tests whether the post-H057 bottleneck is cell-level action health under the
+public listener, rather than row membership or row-responsibility alone.
+
+- Base: H057 public frontier `0.5677475939`.
+- Promoted file: `submission_h068_action_health_3cb4f94c_uploadsafe.csv`.
+- Selected candidate:
+  `h068_cell_top_all_k700_a1p0_logit_null1_r0_3cb4f94c`.
+- Public observations / H057-relative equations: `24` / `23`.
+- Selected ridge multiplier: `0.000030000`.
+- Action model LOO MAE / p90: `0.000331247` / `0.000924782`.
+- Pairwise sign accuracy: `0.928571`.
+- Changed cells vs H057: `700`; changed rows vs H057: `174`.
+- Q2 changed vs H057: `33`.
+- Target changes vs H057: Q1 `92`, Q2 `33`, Q3 `87`, S1 `115`,
+  S2 `125`, S3 `128`, S4 `120`.
+- H050-null rows / cells selected: `0` / `0`.
+- Max positive bad-anchor cosine: `0.0`.
+- Public-action predicted delta vs H057: `-0.000984369`.
+- Posterior delta vs H057: `-0.000728590`.
+- Responsibility-weighted delta vs H057: `-0.001005326`.
+- Upload validation: `True`.
+
+Signal: if public improves over H057/H067, HS-JEPA should promote cell-level
+action-health as the next target representation. If public loses while H067 or
+H066 improves, the action-health decoder overfit known public anchors and the
+row/sequence hidden-state interpretation remains stronger. If H067 and H068
+both fail, the compact H057 public-specific row-state explanation gains weight.
+
 H067 is a public-free row-responsibility public-state observation after H057/H066.
 It tests whether H057's validated row-state is uniformly valid or public-weighted
 by a smaller responsibility map over seed and state-neighbor rows.

@@ -4,6 +4,28 @@
 
 Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature family는 어떤 숨은 구조를 겨냥하는지, label signal인지 split signal인지, 폐기 조건이 무엇인지 함께 관리한다.
 
+## H068 Feature Update
+
+### F-H068. Cell-level public action-health score
+
+- Hidden structure: after H057, public may be judging the health of individual
+  row-target probability moves rather than only whether a row belongs to the
+  H057 hidden state.
+- Candidates: H057-relative action vectors from known public submissions,
+  origin-constrained ridge coefficients, H061 q061 posterior cell gain, H067
+  row responsibility, source consensus, H050-null veto, and bad-anchor cosine
+  avoidance.
+- Label vs split test: the score is trained on public action response, but the
+  materializer must avoid H050-null cells and tracked bad-anchor directions. It
+  intentionally allows Q2 to reopen because a cell-level decoder should decide
+  action health target by target.
+- Adopt if: H068 improves public over H057/H067. Then make action-health a core
+  HS-JEPA latent target and learn richer nonlinear action decoders.
+- Drop if: H068 worsens while H067/H066 improves. Then the current cell-health
+  decoder overfits anchor deltas and row/sequence state should remain primary.
+- Current materialization: `174` rows, `700` cells, Q2 changed `33`, H050-null
+  rows/cells `0` / `0`, max positive bad-anchor cosine `0.0`, upload-safe.
+
 ## H067 Feature Update
 
 ### F-H067. Row-responsibility public-state score

@@ -36,6 +36,7 @@ E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해
 - H065는 H057/H064 주변 row를 같은 state copy로 보지 않고 seed 전/후 transition phase로 본다. 선택 후보는 Q2를 freeze한 채 `24` rows / `96` non-Q2 cells만 움직이고, pre route는 `Q3/S4/S2/S3`, post route는 `S4/S2/S3/Q1`이다. H064 selected row와는 `24/24` 겹치지만 target route를 좁혀서, broad episode-copy가 아니라 directional state-transition decoder를 검증한다.
 - H066은 H065의 transition rows를 포함하되, subject-level seed cluster 주변을 pre/bridge/post episode sequence로 확장한다. 선택 후보는 Q2를 freeze한 채 `63` rows / `252` non-Q2 cells를 움직이고, H064/H065 overlap은 `34/63` / `24/63`, H065 밖 새 row는 `39`개다. 이 노드는 compact transition decoder와 broader sequence decoder 중 무엇이 맞는지 가른다.
 - H067은 H057의 `45` rows를 균일한 법칙이 아니라 public-responsibility weighted row-state로 본다. 알려진 public action `23`개를 q061 row-loss 방정식으로 맞추고, H061 seed support와 H064-H066 row maps를 결합했다. 선택 후보는 Q2를 freeze한 채 H057 seed `12` rows와 expansion `66` rows, 총 `78` rows / `336` non-Q2 cells를 움직이며 H050-null overlap은 `0`, H064/H065/H066 overlap은 `34/78` / `24/78` / `53/78`이다. 이 노드는 H057 compact state, sequence episode state, public-responsibility state 중 어느 세계관이 맞는지 가른다.
+- H068은 row membership 자체보다 cell-level public action-health가 병목일 수 있다고 본다. H057-relative public action `23`개를 origin-constrained ridge로 맞추고, H061 q061 cell gain, H067 row responsibility, H050-null veto, bad-anchor cosine avoidance를 결합했다. 선택 후보는 `174` rows / `700` cells를 움직이며 Q2도 `33` cells 재개방하고, H050-null rows/cells는 `0` / `0`, known-action LOO MAE/p90은 `0.000331247` / `0.000924782`다. 이 노드는 HS-JEPA의 다음 hidden target이 row-state인지, 아니면 action-health field인지 가른다.
 - H060은 그 H057 support가 균일한 하나의 state인지, route-core와 marker-only row가 섞인 이질 support인지를 가르는 센서다. H060은 top `8` route-core row를 amplify하고 bottom `22` marker row를 rollback하며, Q2는 freeze한다.
 - 0.54 진입을 막는 핵심 병목은 이제 hidden state 발견 자체보다, H012 같은 singular public-equation basin의 정확한 row-target identity를 private-safe/invariant hidden state로 재구성하고 그 exact phase를 확장 가능한 action law로 번역하는 문제다. 단순 posterior-completion, scalar gate, train-action health, smooth public-gradient, target-level calibration, dense phase sweep, first-order cellwise phase-lock edit, first-order row-route top-k edit은 현재 반증되었지만, target-isolated tiny Q2 phase branch는 아직 살아 있다.
 
@@ -94,6 +95,10 @@ H042/H057 Q2-row support
   -> includes H065 rows but expands into pre/bridge/post sequence rows
   -> if public-positive: HS-JEPA needs a subject-level latent sequence decoder
   -> if public-negative while H065-positive: sequence expansion is too broad
+  -> H068 cell-level action-health field
+  -> uses known public actions as context and H061/q061 cells as targets
+  -> if public-positive: HS-JEPA needs an action-health decoder, not only row-state membership
+  -> if public-negative while H067/H066-positive: cell-level public decoder overfit anchor deltas
   -> H060 route-core split
   -> if public-positive: hidden state needs route-core classifier
   -> if public-negative: uniform H057 full-vector state is stronger than rank split

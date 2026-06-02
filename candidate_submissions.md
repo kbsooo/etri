@@ -26,7 +26,22 @@ Previous public frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607
 
 H057 improves over H042/H050 by `0.0001572309` and over H012 by `0.0003758892`. H012 remains the base public-equation anchor, H042 remains the Q2 row anchor, and H057 is now the reference public frontier unless private-risk considerations dominate final selection.
 
-Current pending high-risk sensor: `submission_h067_rowresp_public_state_b10ea6b8_uploadsafe.csv`.
+Current pending high-risk sensor: `submission_h068_action_health_3cb4f94c_uploadsafe.csv`.
+
+Reason: H068 asks a bigger post-H057 question than H067. It tests whether public
+is judging cell-level action health rather than row membership alone. It starts
+from H057, uses `24` known public observations and `23` H057-relative equations,
+fits an origin-constrained action-health decoder with LOO MAE / p90
+`0.000331247` / `0.000924782`, and selects `700` H061-posterior cells on `174`
+rows. Unlike H067, it allows `33` Q2 cells to move. It selects zero H050-null
+rows/cells, keeps all tracked bad-anchor cosines non-positive, and has
+public-action predicted delta `-0.000984369`, posterior delta `-0.000728590`,
+and responsibility-weighted delta `-0.001005326` versus H057. A public win
+would make action-health the next core HS-JEPA target. A public loss while
+H067/H066 wins would push the architecture back toward row-responsibility or
+sequence-state decoding.
+
+Previous pending high-risk sensor: `submission_h067_rowresp_public_state_b10ea6b8_uploadsafe.csv`.
 
 Reason: H067 directly tests whether H057's validated `45` rows are a uniform
 law or a public-responsibility weighted row-state. It starts from H057, freezes
