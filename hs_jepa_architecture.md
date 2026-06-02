@@ -2213,3 +2213,47 @@ context -> hidden human state
         -> optional replacement
         -> calibrated submission
 ```
+
+## HS-JEPA v5.6: Prune-Then-Route-Refill Decoder
+
+H123 turns the optional replacement branch into a falsifiable route-complement
+module.
+
+```text
+context encoder
+  -> hidden human/public state representations
+  -> candidate action proposal
+  -> public-toxic action pruning
+  -> sparse safe core
+  -> route-complement refill
+       add only cells that improve route equation
+       while staying outside H088 toxicity
+  -> calibrated submission
+```
+
+H123 evidence:
+
+- candidate: `submission_h123_refilleq_8958f688_uploadsafe.csv`;
+- selected solver: `h123_sparse_route_refill_8958f688`;
+- start from H122 cells: `24`;
+- added cells: `2`;
+- added targets: Q3 `1`, S3 `1`;
+- final cells / rows: `26` / `20`;
+- route-basis predicted delta vs H057: `-0.0007325`;
+- model predicted delta vs H057: `-0.0000266`;
+- H088-axis cosine: `-0.065510`;
+- good-bad margin: `0.124697`.
+
+The architectural distinction is:
+
+```text
+v5.5 asks whether unsafe proposal cells should be deleted.
+v5.6 asks whether the deleted field leaves a missing route equation that a tiny
+safe complement can repair.
+```
+
+The H122/H123 public comparison is now a direct architecture test:
+
+- H122 win: action safety is mostly subtractive;
+- H123 win: action safety is subtractive first, then constructive only at the
+  route-complement residue.

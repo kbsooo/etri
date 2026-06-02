@@ -11878,3 +11878,70 @@ Public interpretation:
   stress axes and removed useful H118 cells;
 - if all lose, the H118/H120/H121/H122 family is diagnostic but not yet the
   real public-private assignment field.
+
+## H123 Prune-Refill Equation Solver HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h123_prune_refill_equation_solver_hsjepa/h123_report.md`
+- `hitl/h123_prune_refill_equation_solver_hsjepa/h123_decision.csv`
+- `hitl/h123_prune_refill_equation_solver_hsjepa/h123_selected_cells.csv`
+- `hitl/h123_prune_refill_equation_solver_hsjepa/h123_added_cells.csv`
+- `submission_h123_refilleq_8958f688_uploadsafe.csv`
+
+Worldview:
+
+```text
+H122's sparse core is not necessarily complete.  After public-toxic H118 stage
+actions are deleted, a tiny route-safe complement may need to be refilled.
+```
+
+Observed result:
+
+- promoted candidate: `h123_sparse_route_refill_8958f688`;
+- root file: `submission_h123_refilleq_8958f688_uploadsafe.csv`;
+- selected cells / rows: `26` / `20`;
+- H122 start cells: `24`;
+- added cells: `2`;
+- added targets: Q3 `1`, S3 `1`;
+- added rows: `149`, `164`;
+- final target changes: Q1 `8`, Q2 `0`, Q3 `5`, S1 `6`, S2 `4`,
+  S3 `1`, S4 `2`;
+- model predicted delta vs H057: `-0.0000266`;
+- route-basis predicted delta vs H057: `-0.0007325`;
+- H118 curvature marginal vs zero: `0.0000418`;
+- H088-axis cosine: `-0.065510`;
+- good-bad margin: `0.124697`;
+- residual toxicity / safety / gap:
+  `0.414871` / `0.665769` / `0.250899`;
+- upload-safe validation passed.
+
+Comparison:
+
+Relative to H122, H123 adds only two cells but makes the route equation much
+stronger (`-0.000605 -> -0.000732`).  The tradeoff is that H098/model delta is
+slightly weaker (`-0.0000287 -> -0.0000266`), H088 moves a little less
+anti-toxic (`-0.066158 -> -0.065510`), and good-bad margin falls slightly
+(`0.125854 -> 0.124697`).  The important point is scale: the refill is not a
+new broad branch; it is a two-cell route complement.
+
+Important diagnostic:
+
+The first added cell, row `149` Q3, accounts for most of the route improvement:
+single Q3 refill reaches route `-0.000706` while staying H088-negative.  The
+second row `164` S3 pushes route to `-0.000732` but gives back some H098
+delta.  H123 is therefore testing whether public LB rewards the route equation
+more than the model/H098 caution axis.
+
+Public interpretation:
+
+- if H123 improves over H122, HS-JEPA should use a prune-then-refill decoder:
+  delete toxic actions first, then refill only route-safe complements;
+- if H122 improves more, the sparse pruned core is complete and refill cells
+  are local-stress overfit;
+- if H121 improves more, replacement must be row-regime based rather than
+  route-complement based;
+- if H118 improves more, both pruning and refill are artifacts of local
+  public-response stress axes.

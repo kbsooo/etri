@@ -1,0 +1,5 @@
+spec_name,add_pool_rows,condition
+single_route_q3_refill,35,q3
+sparse_route_refill,175,all_safe
+margin_stage_refill,112,stage_margin
+removed_row_complement,15,removed_row_complement

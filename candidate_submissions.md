@@ -8495,3 +8495,49 @@ Public interpretation:
 - H118 wins more: subtractive pruning removed useful H118 action;
 - all lose: current H118-derived action field is not the hidden public-safe
   assignment field.
+
+## H123 Prune-Refill Equation Solver
+
+Generated file:
+
+`submission_h123_refilleq_8958f688_uploadsafe.csv`
+
+Worldview: H122's prune-only field may be too sparse.  After public-toxic H118
+stage actions are removed, the route equation points to a tiny safe complement:
+one Q3 cell and one S3 cell.
+
+Evidence:
+
+- selected candidate: `h123_sparse_route_refill_8958f688`;
+- selected cells / rows: `26` / `20`;
+- added cells: `2`;
+- added target mix: Q3 `1`, S3 `1`;
+- final target route: Q1 `8`, Q2 `0`, Q3 `5`, S1 `6`, S2 `4`,
+  S3 `1`, S4 `2`;
+- model predicted delta vs H057: `-0.0000266`;
+- route-basis predicted delta vs H057: `-0.0007325`;
+- H088-axis cosine: `-0.065510`;
+- good-bad margin: `0.124697`;
+- residual toxicity / safety / gap:
+  `0.414871` / `0.665769` / `0.250899`;
+- upload-safe: `True`.
+
+Submission priority:
+
+Very high information value.  H123 is the cleanest current test of whether the
+decoder should stop after pruning or add a very small route complement.  It is
+not a safety blend; the whole candidate changes only two cells beyond H122.
+
+Practical priority:
+
+High as a sensor, medium as a safe-best candidate.  It dominates H122 on the
+route-basis sensor, but H122 is cleaner on H088/good-margin and slightly better
+on the H098/model caution axis.
+
+Public interpretation:
+
+- win over H122: promote HS-JEPA v5.6 as prune-then-route-refill decoder;
+- H122 wins more: refill cells are local route overfit and sparse core is safer;
+- H121 wins more: high-sensor row-regime replacement matters more than route
+  complement;
+- all lose: the H118-derived field is not the true public-safe assignment.

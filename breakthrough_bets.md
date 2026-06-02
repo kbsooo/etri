@@ -1815,3 +1815,39 @@ Decision rule:
 - H118 wins more: pruning overfit stress axes and deleted useful cells;
 - all lose: H118-derived action support is a diagnostic family, not the hidden
   assignment field.
+
+### H123 Update
+
+H123 tests whether H122 should stop after pruning or refill a tiny route-safe
+complement.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H123 | `submission_h123_refilleq_8958f688_uploadsafe.csv` | H122 prune core is incomplete; refill only the route-safe complement | `26` cells / `20` rows; `2` refill cells | route-basis delta `-0.000732`, model delta `-0.000027`, H088 cosine `-0.065510`, good-bad margin `0.124697` | prune-then-refill bet |
+
+Breakthrough reading:
+
+```text
+The current most precise HS-JEPA decoder is not "generate actions" but
+"propose, prune public-toxic cells, then refill only a tiny route-complement
+if the public/private equation remains stable."
+```
+
+Updated high-information submission order:
+
+1. `submission_h123_refilleq_8958f688_uploadsafe.csv`
+   - tests prune-then-route-refill.
+
+2. `submission_h122_pruneeq_0a9edcce_uploadsafe.csv`
+   - tests prune-only sparse core.
+
+3. `submission_h121_rowsensorpart_d03abb5b_uploadsafe.csv`
+   - tests row-sensor partition with replacement.
+
+Decision rule:
+
+- H123 wins: HS-JEPA v5.6 needs a route-complement refill stage after pruning;
+- H122 wins more: pruning is enough and refill overfits route stress;
+- H121 wins more: replacement should be controlled by row regime, not route
+  complement;
+- all lose: H118-derived proposal support is the wrong action family.

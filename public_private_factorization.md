@@ -1900,3 +1900,51 @@ Failure interpretation:
   artifact;
 - all lose: the current row-target action proposal family is not the real
   public/private assignment field.
+
+## H123 Prune-Then-Refill Factorization
+
+H123 tests the second phase that H122 left open:
+
+```text
+proposal field -> toxicity prune -> sparse core -> route-safe refill
+```
+
+Observed H123 factorization:
+
+- selected file: `submission_h123_refilleq_8958f688_uploadsafe.csv`;
+- selected candidate: `h123_sparse_route_refill_8958f688`;
+- start from H122 cells: `24`;
+- added cells: `2`;
+- added targets: Q3 `1`, S3 `1`;
+- final selected cells / rows: `26` / `20`;
+- Q2 cells: `0`;
+- route-basis predicted delta vs H057: `-0.0007325`;
+- model predicted delta vs H057: `-0.0000266`;
+- bad-axis positive projection: `0.000000`;
+- H088-axis cosine: `-0.065510`;
+- good-bad margin: `0.124697`;
+- residual toxicity / safety / gap:
+  `0.414871` / `0.665769` / `0.250899`.
+
+Interpretation:
+
+The public/private equation may have three separate variables:
+
+```text
+toxicity field: which proposal cells must be removed?
+core assignment: what remains safely active after pruning?
+route complement: which tiny cells restore missing route structure?
+```
+
+The key tension is H123 versus H122.  H123 is more route-consistent, but H122
+is slightly more anti-toxic and more conservative under H098/model caution.
+Their public LB comparison will say whether the hidden public equation rewards
+route completion or punishes refill risk more.
+
+Failure interpretation:
+
+- H123 improves: prune-only was incomplete and HS-JEPA needs a refill stage;
+- H122 improves more: sparse pruned core is the safer public-private action;
+- H121 improves more: refill must be controlled by row-regime sensor rather
+  than route complement;
+- H118 improves more: the whole prune/refill layer is overfitting stress axes.
