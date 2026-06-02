@@ -10359,3 +10359,60 @@ If H098 improves, HS-JEPA v2 should use public submissions as weighted signed
 action-equation supervision. If it loses while H096 wins, the H088 signal is
 local and should not be globally smoothed. If both lose, cell-level gradients
 are insufficient and the solver must move to row/route constrained assignment.
+
+## H099 Route-Constrained Signed Assignment Equation
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h099_route_equation_1cbff4af_uploadsafe.csv`
+
+Worldview:
+
+```text
+H098's signed conflict cells are not independent safe actions. They are safe
+only when they sit inside coherent row-target route templates.
+```
+
+Method:
+
+- reuse H098's frontier-weighted response model;
+- use H071 route candidates as hard row-target templates;
+- select route actions, then materialize only cells whose signed action is
+  H088-opposite and H057-positive aligned;
+- treat H018 hard-world only as a stress diagnostic.
+
+Observed result:
+
+- selected response model: `state_core`, ridge `0.1`;
+- selected candidate: `h099_route_conflict_c72_r28_a052_1cbff4af`;
+- selected routes / cells / rows: `15` / `26` / `15`;
+- model-predicted delta vs H057: `-0.000244`;
+- posterior delta vs H057: `+0.000079`;
+- hard diagnostic delta vs H057: `+0.000109`;
+- anti-H088 direction rate: `1.000000`;
+- H057-positive alignment rate: `1.000000`;
+- selected conflict rate: `1.000000`;
+- cosine with H088 direction: `-0.042448`;
+- cosine with H057-vs-H042 direction: `0.250350`;
+- mean assignment route score: `0.439801`;
+- upload-safe validation passed.
+
+Interpretation:
+
+H099 is cleaner than H098 in route semantics and has a larger frontier-response
+predicted improvement (`-0.000244` vs H098's `-0.000134`) while changing fewer
+cells (`26` vs `46`). The caveat is important: its mean H071 assignment score
+is only moderate, so the selected route templates are mostly a coherence
+constraint around the conflict field, not proof that H071's high-assignment
+full-state route law is the hidden public/private law.
+
+Public interpretation:
+
+- if H099 improves over H098/H057, HS-JEPA's action decoder should be
+  row-route constrained, not cell-gradient local;
+- if H099 loses while H098 improves, route constraints are too rigid and the
+  useful signed field is sparse/cell-local;
+- if H098 and H099 both lose, H088 remains a useful toxicity sensor but H071
+  route templates are not the right assignment basis.

@@ -7553,3 +7553,38 @@ Public interpretation:
 Priority: highest current information-value candidate. Compared with H096, H098
 is less radical but better aligned with the newest evidence because it fixes
 H097's H088 LOO failure.
+
+## H099 Route-Constrained Signed Assignment Equation
+
+Generated file:
+
+`submission_h099_route_equation_1cbff4af_uploadsafe.csv`
+
+Worldview: H098's signed conflict field should be decoded as row-target route
+assignment, not as independent cells.
+
+Evidence:
+
+- selected model: H098 `state_core`, ridge `0.1`;
+- selected routes / cells / rows: `15` / `26` / `15`;
+- model-predicted delta vs H057: `-0.000244`;
+- anti-H088 direction rate: `1.000000`;
+- H057-positive alignment rate: `1.000000`;
+- selected conflict rate: `1.000000`;
+- cosine with H088 direction: `-0.042448`;
+- route coherence score: `0.590639`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H098/H057: route-constrained assignment is the missing HS-JEPA action
+  decoder;
+- win over H057 but not H098: route constraints reduce toxicity but underpower
+  the cell-level field;
+- loss while H098 wins: H098's useful object is sparse signed cells, not H071
+  route templates;
+- large loss: H071-style routes should become diagnostics only.
+
+Priority: high information value. It is the cleanest direct test of the current
+goal, but not automatically higher priority than H098 because it intentionally
+throws away part of H098's cell support.

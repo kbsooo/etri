@@ -1136,3 +1136,46 @@ The current signed equation is still cell-level. If H098 loses, the missing
 module is probably a row/route-constrained assignment decoder that keeps the
 frontier-weighted response model but selects coherent route actions instead of
 independent cells.
+
+## HS-JEPA v2.2: Route-Constrained Action Assignment
+
+H099 adds the missing discrete decoder:
+
+```text
+context encoder
+  -> human-state / route-state representation
+  -> frontier-weighted signed action equation
+  -> H071 route-template assignment
+  -> H057-positive / H088-opposite route action
+```
+
+The important architectural change is not another encoder. It is an action
+validity layer:
+
+```text
+cell action score + signed toxicity direction + route membership
+-> action is safe only if the route assignment is coherent
+```
+
+H099 evidence:
+
+- candidate: `submission_h099_route_equation_1cbff4af_uploadsafe.csv`;
+- selected routes / cells / rows: `15` / `26` / `15`;
+- model-predicted delta vs H057: `-0.000244`;
+- anti-H088 direction rate: `1.000000`;
+- H057-positive alignment rate: `1.000000`;
+- selected conflict rate: `1.000000`;
+- mean assignment route score: `0.439801`.
+
+Architectural implication:
+
+H099 turns HS-JEPA's final stage into an equation/assignment solver:
+
+```text
+representation predicts candidate action field
+public/private equation estimates action toxicity
+route assignment decides which row-target actions are legal
+```
+
+The unresolved point is whether the correct assignment basis is H071-style route
+templates or a new route system learned directly from H057/H088 public sensors.

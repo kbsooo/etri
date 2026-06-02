@@ -857,3 +857,43 @@ Updated hierarchy:
 3. H096 raw conflict inversion: still useful as the unsmoothed local sensor;
 4. next if H098 fails: row/route-constrained signed assignment, not more
    cell-level gradient smoothing.
+
+## H099 Route-Constrained Signed Assignment
+
+H099 implements the next branch:
+
+```text
+frontier-weighted signed action equation
++ H071 row-target route templates
+-> route-constrained action assignment
+-> low-amplitude H057-positive / H088-opposite conflict decoder
+```
+
+Observed H099 factorization:
+
+- selected file: `submission_h099_route_equation_1cbff4af_uploadsafe.csv`;
+- selected routes / cells / rows: `15` / `26` / `15`;
+- model-predicted delta vs H057: `-0.000244`;
+- posterior delta vs H057: `+0.000079`;
+- hard diagnostic delta vs H057: `+0.000109`;
+- anti-H088 direction rate: `1.000000`;
+- H057-positive alignment rate: `1.000000`;
+- selected conflict rate: `1.000000`;
+- cosine with H088 direction: `-0.042448`;
+- mean assignment route score: `0.439801`.
+
+Interpretation:
+
+The H057/H088 conflict field can be represented as route actions, but the best
+route-constrained candidate does not rely on the highest H071 full-state routes.
+It selects conflict-heavy route fragments. This keeps the signed public/private
+factor alive, but weakens the claim that H071 assignment score alone identifies
+the hidden public/private law.
+
+Current hierarchy:
+
+1. H088 as private/action target: rejected;
+2. H088 as signed negative sensor: alive;
+3. H098 frontier-weighted cell equation: alive;
+4. H099 route-constrained equation: live sensor for whether assignment should be
+   discrete route-level or sparse cell-level.

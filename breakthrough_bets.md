@@ -925,3 +925,36 @@ Current submission priority:
 If H098 loses, the next big bet should not be another cell gradient. It should
 be a row/route assignment solver that preserves H098's frontier weighting but
 chooses whole route templates under constraints.
+
+### H099 Update
+
+H099 executed that next bet.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H099 | `submission_h099_route_equation_1cbff4af_uploadsafe.csv` | H098 signed conflict cells are safe only as coherent row-route assignments | `15` routes / `26` cells / `15` rows | H088-opposite `1.0`, H057-align `1.0`, model delta `-0.000244` | clean route-assignment sensor |
+
+Breakthrough reading:
+
+```text
+The route-constrained solver can make the H098 conflict field cleaner and more
+interpretable, but it does not yet reveal a high-assignment H071 law. It is a
+test of assignment discreteness, not a proven 0.53 mechanism.
+```
+
+Current high-information submission order:
+
+1. `submission_h099_route_equation_1cbff4af_uploadsafe.csv`
+   - if we want to test the new active goal directly: row-target assignment
+     equation vs sparse cell equation.
+
+2. `submission_h098_frontier_equation_a748e477_uploadsafe.csv`
+   - if we want the cleaner H088-weighted cell-equation test with slightly
+     broader support.
+
+Decision rule:
+
+- H099 better than H098: assignment constraints matter; build HS-JEPA v3 around
+  row-route solver.
+- H098 better than H099: the useful hidden law is sparse signed toxicity, and
+  H071 route templates are too rigid.
