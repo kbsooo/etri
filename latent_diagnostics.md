@@ -1203,3 +1203,24 @@ decide whether this route signal is real or an action-decoder shortcut.
     after H042/H050 feedback;
   - failure means the refit posterior is an overconfident public-equation
     hallucination.
+## H056 Latent Diagnostic: Q2-Row Objective-State Route
+
+H056 uses the H055 post-feedback posterior as the target representation, but
+does not use its broad `700`-cell action mask. Instead, it intersects that
+posterior with the H042 Q2 support rows.
+
+Diagnostic facts:
+
+- H042 Q2 support rows: `45`;
+- H050 Q1/Q3 route rows: `86`;
+- H042/H050 row overlap: `20`;
+- H056 selected rows: `45`, all inside H042 Q2 support;
+- H056 selected cells: `180`, all S1-S4;
+- selected cells overlapping H055's broad non-Q2 action: `92`;
+- mean selected H055 aux score: `0.585130952`;
+- mean selected row-strength score: `0.912000000`;
+- H055-posterior predicted delta vs H042: `-0.000135796`.
+
+Interpretation: H056 is a latent route test, not a new latent discovery. It asks
+whether a compact row-state latent can survive when translated only through
+objective sleep-stage labels.

@@ -5271,3 +5271,38 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Discard condition:
   if H055 fails, stop broad augmented-equation masks until new public feedback
   is available.
+## H056 Feature/Action Registry: Q2-Row Objective-State
+
+### Feature / Action
+
+`h042_q2_support_row_state`
+
+### Hidden Structure Targeted
+
+The action treats H042's Q2 support rows as a compact hidden human-state marker:
+the row, not the target cell, is the latent object. The target route is
+objective S-stage output rather than subjective Q1/Q3.
+
+### Label Signal vs Split Signal
+
+- label signal evidence: H042 improved public with this exact row support on
+  Q2;
+- split/public-subset evidence: H050's Q1/Q3 route tied H042, so row selection
+  and target route must be separated;
+- leakage risk: no target labels are used; the public observations are treated
+  as sensors, so this remains a public-feedback hypothesis test rather than a
+  local CV feature.
+
+### Materialization
+
+- base: H042;
+- row mask: rows where H042 changed Q2 versus H012;
+- target mask: S1-S4 only;
+- target representation: H055 post-feedback posterior;
+- promoted file: `submission_h056_q2row_objective_state_a4620b89_uploadsafe.csv`.
+
+### Keep / Kill Criteria
+
+- Keep if public improves over H042: row-state route is validated.
+- Kill if public worsens materially: H042 support is Q2-local and should not be
+  translated into other target families without new evidence.

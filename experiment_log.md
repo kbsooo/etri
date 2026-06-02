@@ -7895,3 +7895,55 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     arrive.
 - Decision:
   - promote H055 as a high-risk, high-information public-listener sensor.
+## H056. Q2-Row Objective-State HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h056_q2row_objective_state_jepa.py`
+- Report: `hitl/h056_q2row_objective_state_jepa/h056_report.md`
+- Promoted submission:
+  `submission_h056_q2row_objective_state_a4620b89_uploadsafe.csv`
+
+### Observe
+
+H042 improved public LB by changing only `45` Q2 cells. H050 preserved that Q2
+move, changed `96` Q1/Q3 cells, and tied H042 at `0.5679048248`. This makes the
+subjective-Q target route suspect, but it does not decide whether H042's support
+was target-local or row-level.
+
+### Wonder
+
+Are the H042 Q2 support rows public-visible human-state rows whose hidden state
+should also route into objective S-stage labels?
+
+### Hypothesis
+
+H056-H: H042's Q2 support is a row-level hidden human-state marker. Q2 was the
+first target where the state became visible, but the same rows should carry an
+objective S1-S4 route if translated with the post-feedback public-listener
+posterior.
+
+### Falsification Design
+
+Start from H042. Freeze Q2 and avoid Q1/Q3 entirely. Allow changes only on the
+`45` H042 Q2 support rows and only for S1-S4. Use the H055 posterior as the
+target representation and select a high-information candidate over S-stage
+cells.
+
+### Result
+
+Selected `h056_q2row_s_all_k180_a1p15_logit_a4620b89`.
+
+- changed cells vs H042: `180`;
+- changed rows vs H042: `45`;
+- changed targets vs H042: S1 `45`, S2 `45`, S3 `45`, S4 `45`;
+- Q1/Q2/Q3 changed vs H042: `0` / `0` / `0`;
+- all changed rows are exactly the H042 Q2 support rows;
+- H055-posterior predicted delta vs H042: `-0.000135796`;
+- upload validation passed.
+
+### Interpretation
+
+This is not a safe blend. It is a direct row-state sensor. If public improves,
+HS-JEPA should model H042 support as a reusable public-visible row-state and
+route it into objective sleep-stage targets. If it fails, H042 remains a
+Q2-local correction under current evidence.

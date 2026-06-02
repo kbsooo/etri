@@ -386,3 +386,16 @@ improves, the post-H042 bottleneck is a hidden public-listener subset that only
 became identifiable after adding H042/H050 feedback. If it fails, this
 augmented public-equation posterior should be paused until new public sensors
 arrive.
+
+## Latest H056 Branch Note
+
+H056 tests the clean row-level interpretation of H042. H042 improved public LB
+by moving `45` Q2 cells. H050 kept those Q2 cells and added `96` Q1/Q3 cells,
+but tied H042, so the subjective-Q route is not currently public-informative.
+
+The promoted upload file is
+`submission_h056_q2row_objective_state_a4620b89_uploadsafe.csv`. It starts from
+H042, freezes Q2, avoids Q1/Q3 entirely, and changes S1-S4 on exactly the `45`
+rows where H042 changed Q2: `180` cells total. If it improves, H042's Q2 support
+is a reusable public-visible human-state row marker. If it fails, H042 should be
+treated as a Q2-local correction rather than a row-state route.
