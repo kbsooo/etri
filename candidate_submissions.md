@@ -7029,3 +7029,39 @@ Public interpretation:
 - H082 bad and H084 bad: route completion is not the missing 0.53 mechanism.
 
 H084 should be interpreted after H082/H083, not as the first standalone slot.
+
+## H085 Augmented Public-Equation Candidate
+
+Promoted file:
+
+`submission_h085_aug_public_equation_f154e2bb_uploadsafe.csv`
+
+Worldview: H042/H050/H057 are not just scores; they are new public-sensor
+constraints. Refit the hidden public-state posterior from the H057 base, then
+decode only row-target cells where the updated posterior agrees with the
+source-action field.
+
+- selected internal candidate:
+  `h085_eqv2_cell_sourceagree_c900_a075_f154e2bb`;
+- changed cells / rows vs H057: `299` / `134`;
+- changed cells / rows vs H082: `732` / `150`;
+- target changes vs H057: Q1 `29`, Q2 `47`, Q3 `24`, S1 `50`, S2 `55`,
+  S3 `44`, S4 `50`;
+- posterior delta vs H057: `-0.000607`;
+- source-agree rate: `1.0`;
+- H082 action-field ratio: `0.986622`;
+- bad-anchor max positive cosine: `0.0`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H057: the HS-JEPA target representation should be periodically
+  refit from public sensor equations; H057 was not the final hidden posterior;
+- small loss: posterior refit is real but decoder is too cell-local or too
+  sparse;
+- large loss: post-H012 public sensor equations are too noisy to invert, and
+  H082/H083/H084 should be judged first.
+
+Priority: submit after H082/H083 if we want to resolve the public-equation
+refit question; submit earlier if the goal is to test whether post-H057 sensor
+feedback can produce another H012-like jump.

@@ -9488,3 +9488,57 @@ H084 is not another broad search; it is a falsification of route completion. If
 H082 wins and H084 wins further, HS-JEPA should treat H082 cells as visible
 fragments and learn a dark-companion completion head. If H082 wins but H084
 loses, route completion is overreach and H082 should stay cell-local.
+
+## H085. Augmented Public-Equation Human-State Prototype HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h085_augmented_public_equation_jepa.py`
+- Report: `hitl/h085_augmented_public_equation_jepa/h085_report.md`
+- Promoted candidate:
+  `submission_h085_aug_public_equation_f154e2bb_uploadsafe.csv`
+
+### Observe
+
+H012 produced the first major public-equation jump, but H042/H050/H057 later
+became new public sensor readings. If those readings are real observations of
+a hidden public-state equation, HS-JEPA should refit its target representation
+from the current H057 base rather than keep decoding the old H012 posterior.
+
+### Hypothesis
+
+H085-H: post-H012 public observations change the hidden public-state posterior.
+The right target is not a fixed top-k delta; it is an updated row-target action
+field inferred from all known public sensors, then decoded through human-state
+prototypes.
+
+### Result
+
+Selected `h085_eqv2_cell_sourceagree_c900_a075_f154e2bb`.
+
+- upload-safe root file:
+  `submission_h085_aug_public_equation_f154e2bb_uploadsafe.csv`;
+- selected posterior: `h061_h057_feedback__ridge_1`;
+- changed cells / rows versus H057: `299` / `134`;
+- target mix: `Q1:29`, `Q2:47`, `Q3:24`, `S1:50`, `S2:55`,
+  `S3:44`, `S4:50`;
+- posterior delta versus H057: `-0.000607`;
+- mean selected HS-JEPA cell score: `0.730115`;
+- source-agree rate: `1.0`;
+- H082 ratio: `0.986622`;
+- bad-anchor max positive cosine: `0.0`;
+- mean / max absolute probability move versus H057: `0.004028` /
+  `0.111126`;
+- validation: `250` rows, matching keys, no duplicates, no NaNs, upload-safe.
+
+### Interpretation
+
+H085 is a real public-sensor inversion test, not a top-k polish. It asks
+whether the hidden public equation should be updated after H057. The selected
+candidate is still a cell-action decoder, not the row/route prototype winner.
+That matters: the refit posterior looks useful, but the current row/route
+decoder was not trusted enough by the internal score.
+
+If H085 beats H057, HS-JEPA should add an iterative public-posterior refit
+module. If it loses while H057 survives, post-H012 public equations are too
+few/noisy and the stronger route/action work should wait for new public
+observations.

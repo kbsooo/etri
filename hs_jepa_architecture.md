@@ -567,3 +567,39 @@ Decision rule:
   decoder.
 - H082 win but H083 loss: source-action should stay cell-local.
 - H084 win after H082/H083: add dark-route completion as a second-stage head.
+
+## H085 Public-Equation Refit Module
+
+H085 adds a sensor-inversion branch to HS-JEPA:
+
+```text
+known public LB observations
+  -> public-equation posterior fit
+  -> updated hidden public-state representation
+  -> source-agree / row-prototype / route-prototype decoders
+  -> correction field
+```
+
+The module treats submitted files and their public LB values as context. The
+target representation is not a raw label and not a hand-written feature; it is
+the posterior row-target action field implied by the public sensor equations.
+
+The first H085 run tested nine decoders. The promoted file used the
+source-agree cell decoder:
+
+- `299` cells / `134` rows changed versus H057;
+- `source_agree_rate = 1.0`;
+- `h082_ratio = 0.986622`;
+- `posterior_delta_vs_h057 = -0.000607`;
+- bad-anchor max positive cosine `0.0`.
+
+Architectural implication:
+
+```text
+HS-JEPA needs a public-posterior memory, but the stable decoder is still
+cell-action-first unless public feedback proves row/route prototypes.
+```
+
+If H085 wins publicly, this branch becomes an iterative update step in HS-JEPA
+v1. If it loses, public-equation refit remains a diagnostic tool and not a
+submission decoder until more sensor observations are available.

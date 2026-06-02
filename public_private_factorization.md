@@ -433,3 +433,34 @@ The main caution is that H083 still has high support overlap with H082
 (`0.793103` Jaccard). It is a different decoder, but not yet independent
 evidence for a new public/private subset. H084 is more orthogonal in support
 because it only adds cells outside H082, but its expected delta is smaller.
+
+## H085 Posterior-Refit Factorization
+
+H085 reframes public/private factorization as an iterative estimation problem:
+
+```text
+public LB observations -> hidden public equation -> updated row-target
+posterior -> private-safe action gate
+```
+
+Unlike H083/H084, H085 does not mainly ask whether the action unit is route or
+cell. It asks whether the hidden public posterior changes after the H057 sensor
+reading is included. The promoted candidate stayed cell-local because the row
+and route prototype variants scored lower internally.
+
+Evidence from H085:
+
+- selected posterior: `h061_h057_feedback__ridge_1`;
+- changed cells / rows vs H057: `299` / `134`;
+- posterior delta vs H057: `-0.000607`;
+- source-agree rate: `1.0`;
+- H082 action-field ratio: `0.986622`;
+- all tracked bad-anchor cosines are negative, with max positive cosine `0.0`;
+- upload-safe validation passed.
+
+Factorization reading:
+
+- if H085 improves public LB, public/private state should be updated by an
+  equation-refit module whenever a new informative public observation arrives;
+- if H085 loses, H057's public state is already close enough and further
+  inversion from sparse public readings is underdetermined.

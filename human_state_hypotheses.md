@@ -521,3 +521,35 @@ Human-state implication:
   with dark companion completion.
 - If both fail: human stories should keep acting as weak context gates, while
   the action field remains target-local.
+
+## H085 Human-State Reading
+
+H085 treats public feedback itself as part of the human-state context. The
+human interpretation is:
+
+```text
+after we observe which interventions worked publicly, the inferred lifestyle
+state posterior should move; rows/targets that agree with that posterior and
+with source-action evidence become actionable.
+```
+
+This is different from assigning stories like weekend, fatigue, or social
+activity directly to labels. H085 asks whether public feedback reveals which
+human-state stories are active enough to move the current H057 prediction.
+
+Current H085 evidence:
+
+- selected `299` source-agree cells across `134` rows;
+- Q2 remains important (`47` cells), but S-stage targets carry more total
+  support (`199` S cells);
+- the selected cells align almost completely with H082 actionability
+  (`h082_ratio = 0.986622`);
+- bad-anchor directions are avoided.
+
+Human-state implication:
+
+- win: the human-state engine should have a feedback loop; public response
+  updates which lifestyle states are believed active;
+- loss: public feedback is too sparse/noisy to identify human states directly,
+  so social hypotheses must be grounded in row/route/action evidence before
+  public inversion is applied.

@@ -554,3 +554,33 @@ Current route-action decision tree:
    completion.
 4. H083/H084 both fail while H082 wins: route structure is over-imposed and
    HS-JEPA should keep the action field cell-local.
+
+### H085 Update
+
+H085 tests a different 0.53 route: public-sensor inversion after the frontier
+has moved.
+
+```text
+Known public submissions are equations over the hidden public subset.
+After H057 becomes the base, H042/H050/H057 should refit the public posterior
+rather than merely confirm the old H012 direction.
+```
+
+The promoted file,
+`submission_h085_aug_public_equation_f154e2bb_uploadsafe.csv`, changes `299`
+cells on `134` rows versus H057. It uses the `h061_h057_feedback__ridge_1`
+posterior and selects only source-agree cells:
+
+- posterior delta versus H057: `-0.000607`;
+- source-agree rate: `1.0`;
+- H082 ratio: `0.986622`;
+- max positive bad-anchor cosine: `0.0`;
+- target mix: Q1 `29`, Q2 `47`, Q3 `24`, S1 `50`, S2 `55`, S3 `44`,
+  S4 `50`.
+
+This is a high-information bet because it can falsify the core public sensor
+loop itself:
+
+- win: HS-JEPA should learn an iterative public-posterior refit stage;
+- loss: the next big jump will not come from simply adding public equations;
+  it needs a new hidden-state unit or a private-safe decoder.
