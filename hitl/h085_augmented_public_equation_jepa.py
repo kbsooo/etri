@@ -55,6 +55,10 @@ MANUAL_PUBLIC = {
         BASE_LB,
         "current public frontier used as H085 base",
     ),
+    "submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv": (
+        0.5684942019,
+        "post-H094 public observation; dual public/private Pareto gate worsened vs H057",
+    ),
 }
 
 BAD_ANCHORS = [

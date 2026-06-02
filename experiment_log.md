@@ -10141,3 +10141,54 @@ H057 is a local row-target assignment event. The next 0.53-scale bet should
 solve global row-target assignment or infer public/private value equations
 directly, not merely transfer the H057 event.
 ```
+
+## H088 Public LB Observation Update
+
+Date: 2026-06-03
+
+- Submission: `submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv`
+- Public LB: `0.5684942019`
+- Current best anchor: H057 `0.5677475939`
+- Delta vs H057: `+0.0007466080`
+
+### What It Kills
+
+H088 was the cleanest test of this claim:
+
+```text
+If a route-action improves both the public-equation posterior and the
+hard/private posterior, it should be action-safe.
+```
+
+The public result rejects that as an action rule. H088 was locally coherent:
+
+- changed `980` cells / `168` rows;
+- posterior delta vs H057 `-0.000540`;
+- hard-world delta vs H057 `-0.000187`;
+- max positive bad-anchor cosine `0.0`.
+
+But public LB worsened by `0.0007466080`. The local proxy-to-public gap is
+about `0.0012866` if we compare the expected posterior improvement to the
+actual public loss.
+
+### What Survives
+
+H088 does not kill HS-JEPA. It kills a specific decoder assumption:
+
+```text
+H018 hard-world can be used as an action-grade private value head.
+```
+
+The surviving interpretation is:
+
+```text
+H018/hard-world is a stress diagnostic. Public/private factorization still
+matters, but it must be solved as a public-equation/row-target assignment
+problem rather than a local Pareto gate.
+```
+
+### Next Action
+
+Do not spend scarce public slots on H089/H091/H092 merely because they overlap
+or explain the H088 basin. The next big bet should directly solve the
+row-target assignment/equation system implied by H057 + H088 failure.

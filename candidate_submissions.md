@@ -7180,8 +7180,25 @@ Public interpretation:
 - large loss: H018 hard-world is not action-grade and should remain a
   diagnostic health check.
 
-Priority: high as a research/big-bet submission. It is not the largest internal
-posterior move, but it is the cleanest current "HS-JEPA architecture" claim.
+Actual public LB: `0.5684942019`.
+
+Public result:
+
+- worse than H057 by `0.0007466080`;
+- worse than H012 by `0.0003707188`;
+- worse than H042/H050 by `0.0005893771`.
+
+Updated interpretation:
+
+```text
+The dual-head Pareto gate is not action-grade. H018 hard-world is useful as a
+stress diagnostic, but treating it as a private value head for selecting
+actions makes public loss worse.
+```
+
+Updated priority: do not submit neighboring H088-overlap candidates as
+leaderboard attempts. Use H088 as a negative public sensor and move the next
+big bet toward direct row-target assignment/public-equation solving.
 
 ## H089 Lifestyle-Transition Gate Candidate
 

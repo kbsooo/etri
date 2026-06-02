@@ -730,6 +730,30 @@ should present dual-state value gating as a central HS-JEPA contribution. If it
 loses while H087/H071 survive, hard-world should remain a diagnostic health
 check rather than an action-grade private target.
 
+Public LB update: H088 scored `0.5684942019`, worse than H057 by
+`0.0007466080`.
+
+Architectural correction:
+
+```text
+Dual-head representations remain useful, but local Pareto gating is not a
+valid decoder. The hard-world head should be retained as a LeJEPA-style
+geometry/stress diagnostic, not as an action-grade private target.
+```
+
+This moves HS-JEPA v1 away from:
+
+```text
+accept action if q_public and q_hard both improve
+```
+
+and toward:
+
+```text
+infer the row-target assignment/equation field directly, then use hard/private
+heads only to detect collapse, shortcut, and overconfident action tails.
+```
+
 ## H089-H090 Lifestyle-State Context Gate
 
 H089/H090 added the missing human-state context layer:

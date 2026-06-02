@@ -3450,3 +3450,35 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - distance rows d1 `62`, d2 `43`, d3 `32`;
   - H055-posterior predicted delta vs H057 `-0.000456867`;
   - upload validation passed.
+
+## Public Observation: H088 Dual-State Value Gate HS-JEPA
+
+- submission file:
+  `submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv`
+- public LB: `0.5684942019`
+- public anchors:
+  - H057 `0.5677475939`;
+  - H012 `0.5681234831`;
+  - H042/H050 `0.5679048248`.
+- changed point:
+  - starts from H057;
+  - accepts only route-actions that locally improve both H085 public posterior
+    and H018 hard-world posterior;
+  - changed cells / rows vs H057: `980` / `168`;
+  - Q2 changed cells: `95`.
+- expected LB reaction:
+  - win by `>=0.001`: public/private dual-head Pareto gate is an action-grade
+    HS-JEPA decoder;
+  - small movement: dual-head is diagnostic but not enough;
+  - loss: H018 hard-world is not an action-grade private head.
+- actual public reaction:
+  - worse than H057 by `0.0007466080`;
+  - worse than H012 by `0.0003707188`;
+  - worse than H042/H050 by `0.0005893771`.
+- interpretation:
+  - local Pareto safety under H085/H018 does not imply public action safety;
+  - H018 hard-world should be demoted from decoder gate to stress diagnostic;
+  - H089/H091/H092 are less attractive as public submissions because they
+    largely re-explain or overlap the H088 basin;
+  - next high-information bet should solve public/private row-target equations
+    directly instead of adding a dual-head acceptance gate.

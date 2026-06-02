@@ -543,6 +543,28 @@ So this factorization is not yet proven as a leaderboard move. It is a
 paper-level hypothesis: public and private state may share route support but
 disagree on the value law used to move probabilities.
 
+Public LB update:
+
+- H088 public LB: `0.5684942019`;
+- delta vs H057: `+0.0007466080`;
+- delta vs H012: `+0.0003707188`.
+
+Updated factorization rule:
+
+```text
+Public/private factorization is real as a diagnostic geometry, but H018
+hard-world is not the private head that should select public actions.
+```
+
+What changed:
+
+- `q_hard` can still veto collapse or identify unstable tails;
+- `q_hard` should not be given equal action authority with `q_public`;
+- H089/H091/H092's high overlap with H088 now becomes a liability for public
+  submission priority;
+- the next factorization should be equation-level: which row-target cells
+  satisfy the public observations, not which routes are locally Pareto-safe.
+
 ## H089-H090 Lifestyle Context Factorization
 
 H089 asked whether the public/private value-head split is controlled by
