@@ -4,6 +4,31 @@
 
 Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature family는 어떤 숨은 구조를 겨냥하는지, label signal인지 split signal인지, 폐기 조건이 무엇인지 함께 관리한다.
 
+## H063 Feature Update
+
+### F-H063. Human-context seed-state score
+
+- Hidden structure: H057's `45` full-vector rows may be a human-state latent
+  recoverable from label-free context, not merely a public-equation artifact.
+- Candidates: H013 raw human/calendar features, E262 social-day usage, E268
+  story features, E328 own-life latent, deep raw aggregate features, seed-nearest
+  context rank, context consensus, H061 non-Q2 row gain, episode-near flag, and
+  max-per-subject diversity.
+- Label vs split test: H063 uses only label-free context similarity to H057
+  seed rows plus the H061 target representation; Q2 is frozen and only non-Q2
+  target vectors move on non-seed rows.
+- Adopt if: H063 improves public meaningfully over H057. Then promote
+  story/deep-context seed-state features into a learned HS-JEPA row-state
+  classifier.
+- Drop if: H063 worsens materially, especially together with H062. Then nearest
+  context is not enough; H057 remains compact/public-specific until a stronger
+  supervised latent classifier is built.
+- Current evidence: selected `72` new rows across all `10` subjects, changed
+  `432` non-Q2 cells, posterior delta `-0.000394278`, H062 overlap `30/72`,
+  upload-safe. View diagnostics are selective: E268 story and deep raw views
+  show seed-cohesion p near `0.09`, while broad raw-human/social-day/ownlife are
+  weak.
+
 ## H062 Feature Update
 
 ### F-H062. H057 seed row-state expansion score

@@ -8,6 +8,29 @@ Public LB는 최적화 target이 아니라 hidden public subset과 calibration s
 
 ## Public-Free Post-H012 Observation
 
+H063 is a public-free high-risk human-context seed-state observation after
+H057. It tests whether the `45` H057 rows are discoverable from label-free
+human/social/lifestyle/raw context, rather than only from public-equation
+posterior gain.
+
+- Base: H057 public frontier `0.5677475939`.
+- Promoted file: `submission_h063_humancontext_seed_2c748a8e_uploadsafe.csv`.
+- Selected candidate: `h063_mixed_context_gain_r72_a1p0_logit_mps16_2c748a8e`.
+- New rows outside H057 seed: `72`.
+- Changed cells vs H057: `432`; changed rows vs H057: `72`.
+- Q2 changed vs H057: `0`.
+- Mean/max abs move vs H057: `0.0045166926` / `0.0684307328`.
+- Posterior delta vs H057: `-0.000394278`.
+- Selected subjects: `10`; episode-near rate: `0.722222222`.
+- H062 selected-row overlap: `30/72` (`0.416666667`).
+- Upload validation: `True`.
+
+Signal: if public improves, H057's row-state is recoverable from human context
+and HS-JEPA has a stronger architecture claim. If public fails, especially if
+H062 also fails, the validated H057 latent should be treated as compact or
+public-specific until a learned seed-state classifier replaces nearest-context
+similarity.
+
 H062 is a public-free high-risk row-state expansion after H057. It tests
 whether the `45` H057 rows are seed examples of a larger hidden human-state
 class.

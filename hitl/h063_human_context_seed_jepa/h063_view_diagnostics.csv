@@ -1,0 +1,6 @@
+view,path,rows,features_used,seed_internal_loo_distance_mean,seed_internal_loo_distance_median,nonseed_distance_mean,top45_seed_hit_rate,seed_cohesion_perm_p,context_weight
+h013_raw_human,/Users/kbsoo/Downloads/cl2/hitl/h013_raw_human_state_jepa_gate/h013_human_state_features.csv,700,300,0.9316643735476027,0.9501529367815601,0.9153158439918235,0.13333333333333333,0.5382059800664452,0.05
+e262_social_day,/Users/kbsoo/Downloads/cl2/analysis_outputs/e262_human_social_day_features.parquet,700,789,0.968742092446578,0.9856148132412046,0.9548421960059963,0.2222222222222222,0.6478405315614618,0.05
+e268_story,/Users/kbsoo/Downloads/cl2/analysis_outputs/e268_human_social_story_features.parquet,700,143,0.9727290442558357,0.9792860279664631,1.0191904971846497,0.3111111111111111,0.08637873754152824,0.8272425249169435
+e328_ownlife,/Users/kbsoo/Downloads/cl2/analysis_outputs/e328_ownlatent_lifestyle_state_features.parquet,700,37,0.7495021238131712,0.7770062400974067,0.7241715190110993,0.08888888888888889,0.7209302325581395,0.05
+deep_raw_top500,/Users/kbsoo/Downloads/cl2/analysis_outputs/all_keys_deep_features.parquet,700,500,0.8837371023553425,0.8503095849235811,0.9361658264121472,0.24444444444444444,0.09634551495016612,0.8073089700996677

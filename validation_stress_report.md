@@ -4,6 +4,30 @@
 
 현재 목표는 CV 평균이 아니라 hidden-public transfer 가능성을 stress로 판정하는 것이다.
 
+## H063 Update: Human-Context Seed-State Stress
+
+H063 tests the central HS-JEPA question after H057: whether the validated
+full-vector row-state can be found from label-free human/social/lifestyle/raw
+context.
+
+- Base: H057 public frontier `0.5677475939`.
+- Promoted file: `submission_h063_humancontext_seed_2c748a8e_uploadsafe.csv`.
+- New rows outside H057 seed: `72`.
+- Changed cells vs H057: `432`; changed rows vs H057: `72`.
+- Q2 changed vs H057: `0`.
+- Posterior delta vs H057: `-0.000394278`.
+- Mean selected context score: `0.684606715`.
+- H062 overlap: `30/72`.
+- Selected subjects: `10`; episode-near rate: `0.722222222`.
+
+Stress read: H063 passes upload safety and preserves the main H057 invariant
+that Q2 stays frozen. Its context evidence is selective rather than broad:
+`e268_story` and `deep_raw_top500` are the only strong seed-cohesion views
+(`p=0.086379` and `p=0.096346`), while raw-human/social-day/ownlife are weak.
+This makes H063 a true worldview sensor, not a safety-certified refinement. A
+public win validates context-discovered HS-JEPA row-state; a loss rejects the
+nearest-context translator or says H057 is compact/public-specific.
+
 ## H062 Update: H057-Seed Row-State Expansion Stress
 
 H062 tests the broadest current post-H057 question: whether H057's rows are

@@ -4,6 +4,39 @@
 
 실험은 `Observe -> Wonder -> Hypothesize -> Falsify -> Build -> Stress -> Decide` 형식으로 기록한다. public LB는 최적화 대상이 아니라 hidden-DGP sensor로 사용한다.
 
+## H063. Human-Context Seed-State HS-JEPA
+
+- Observe: H057 public `0.5677475939` proved the `45` H042 Q2-support rows can
+  carry a full non-Q2 vector, while H062 expanded that state using mostly
+  posterior gain and row/order proximity.
+- Wonder: can the H057 row-state be rediscovered from label-free
+  human/social/lifestyle/raw context, or is it only visible through the
+  public-equation posterior?
+- Hypothesis: if H057 is a real human-state latent, the seed rows should be
+  nearest-neighbor coherent in at least one human-context view, and non-seed
+  rows with similar context should accept the same full non-Q2 vector with Q2
+  frozen.
+- Method: `hitl/h063_human_context_seed_jepa.py` built five context views:
+  H013 raw human/calendar, E262 social-day app usage, E268 story features, E328
+  own-life latent, and deep raw aggregates. It scored non-seed rows by
+  context-to-H057-seed similarity plus H061 non-Q2 posterior gain.
+- Result: promoted
+  `submission_h063_humancontext_seed_2c748a8e_uploadsafe.csv`. It changes `432`
+  non-Q2 cells on `72` new rows, freezes Q2, covers all `10` subjects, has
+  H061 posterior delta `-0.000394278` versus H057, and passes upload
+  validation. The selected rows overlap H062 expansion on `30/72` rows.
+- Latent diagnostic: not every human view works. `e268_story` and
+  `deep_raw_top500` are the only strong seed-cohesion views
+  (`p=0.086379` and `p=0.096346`); broad raw-human, social-day, and ownlife
+  views are weak under the same test.
+- Interpretation: H063 is the current direct HS-JEPA claim: H057's compact
+  row-state may be recoverable from story/raw context, not merely from
+  public-equation gain. A public win would upgrade HS-JEPA from posterior
+  listener to context-discovered human-state architecture. A public loss,
+  especially if H062 also fails, says H057 is compact/public-specific or the
+  current nearest-context translator is too weak.
+- Decision: promote as a high-risk worldview sensor, not as a safe micro-refine.
+
 ## H062. H057-Seed Row-State Expansion HS-JEPA
 
 - Observe: H061 says H057's internal support is mostly still positive after

@@ -24,11 +24,21 @@ Current public frontier:
   finds `265/270` cells still positive under the updated posterior, so the
   internal cut story is weak and H057's support should mostly be preserved.
 - Latest generated high-risk sensor:
+  `submission_h063_humancontext_seed_2c748a8e_uploadsafe.csv`. H063 asks
+  whether the H057 full-vector row-state can be rediscovered from label-free
+  human/social/lifestyle/raw context. It freezes Q2 and moves full non-Q2
+  vectors on `72` new rows, changing `432` cells versus H057. It overlaps H062
+  on `30/72` rows; the strongest context views are E268 story features and deep
+  raw aggregates. This is the current HS-JEPA architecture bet: a win means
+  H057 was context-discoverable human state, not just public-equation gain; a
+  loss means nearest-context state translation is not enough.
+- Previous generated high-risk sensor:
   `submission_h062_h057seed_rowstate_expand_23beb8eb_uploadsafe.csv`. H062
   treats the `45` H057 rows as seed examples of a larger hidden human-state
   class, freezes Q2, and moves full non-Q2 vectors on `48` new rows. This is
-  the current bigger HS-JEPA bet: a win means H057 was a seed set, not a closed
-  correction; a loss means the validated H057 state is compact/public-specific.
+  still the cleaner posterior-gain expansion control: a win means H057 was a
+  seed set, not a closed correction; a loss means the validated H057 state is
+  compact/public-specific.
 - External reference note: the attached high-scoring `submission_v106_sleep_state_conditioned_memory.csv` document reports public LB `0.5703952266` from same-subject sleep-state/sensor-quality-conditioned memory. That supports the broader repeated-subject world model, but H042 is lower by `0.0024904018`.
 
 Current post-H012 status:

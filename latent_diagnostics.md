@@ -4,6 +4,36 @@
 
 이 문서는 I-JEPA/LeJEPA 아이디어를 그대로 복제하지 않고, 이 대회 데이터의 hidden-DGP 탐색에 맞춰 변형한 latent diagnostic 기록이다.
 
+## H063 Human-Context Seed-State Diagnostic
+
+H063 treats the H057 `45` support rows as a target representation and asks which
+label-free context views can recover that state.
+
+- Seed rows: `45`.
+- Candidate non-seed rows: `205`.
+- Promoted rows: `72`.
+- Changed cells vs H057: `432`, all non-Q2.
+- Q2 changed vs H057: `0`.
+- H062 overlap: `30/72`.
+- H061 posterior delta vs H057: `-0.000394278`.
+- Promoted file:
+  `submission_h063_humancontext_seed_2c748a8e_uploadsafe.csv`.
+
+View health:
+
+- `e268_story`: seed-cohesion permutation p `0.086379`, context weight
+  `0.827243`.
+- `deep_raw_top500`: seed-cohesion permutation p `0.096346`, context weight
+  `0.807309`.
+- `h013_raw_human`, `e262_social_day`, and `e328_ownlife` are weak by the same
+  seed-cohesion stress (`p=0.538206`, `0.647841`, `0.720930`).
+
+Interpretation: H063 does not say every human/social feature sees the state.
+It says the most coherent route is narrower: social story features and deep raw
+measurement context are the views that align with H057. This supports an
+HS-JEPA design where context views are geometry-gated before target-route
+translation.
+
 ## H062 H057-Seed Row-State Expansion Diagnostic
 
 H062 reframes H057's public-positive rows as seed examples in a larger

@@ -19,10 +19,49 @@ search.
   cells are still positive under q061, so internal support cutting is weak as
   the primary next bet.
 - Current high-risk expansion sensor:
+  `submission_h063_humancontext_seed_2c748a8e_uploadsafe.csv`.
+- Current H063 question: can the `45` H057 row-state seeds be rediscovered from
+  label-free human/social/lifestyle/raw context? It freezes Q2 and moves full
+  non-Q2 vectors on `72` new rows.
+- Previous high-risk expansion sensor:
   `submission_h062_h057seed_rowstate_expand_23beb8eb_uploadsafe.csv`.
 - Current H062 question: are the `45` H057 rows seed examples of a larger
   hidden human-state class? It freezes Q2 and moves full non-Q2 vectors on `48`
   new rows.
+
+## H063: Human-Context Seed-State HS-JEPA
+
+- Script: `hitl/h063_human_context_seed_jepa.py`
+- Report: `hitl/h063_human_context_seed_jepa/h063_report.md`
+- Promoted root file:
+  `submission_h063_humancontext_seed_2c748a8e_uploadsafe.csv`
+
+### Question
+
+Can H057's compact full-vector row-state be found from human/social/lifestyle
+context, or is it only visible through public-equation posterior gain?
+
+### Main Finding
+
+- selected new rows outside H057 seed: `72`;
+- changed cells vs H057: `432`;
+- Q2 changed vs H057: `0`;
+- posterior delta vs H057: `-0.000394278`;
+- selected subjects: `10`;
+- episode-near rate: `0.722222222`;
+- H062 overlap: `30/72`;
+- upload validation: `True`.
+
+View diagnostics are selective. E268 story features and deep raw aggregates
+show the best seed-cohesion stress (`p=0.086379` and `p=0.096346`), while broad
+raw-human, social-day, and ownlife views are weak.
+
+### Interpretation
+
+H063 is the current direct HS-JEPA architecture sensor. If public improves,
+H057's row-state is context-discoverable. If public fails, nearest-context
+translation is not enough and H057 should remain compact/public-specific until
+a stronger learned seed-state classifier exists.
 
 ## H062: H057-Seed Row-State Expansion HS-JEPA
 
