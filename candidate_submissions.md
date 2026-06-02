@@ -46,6 +46,21 @@ Previous public frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607
 
 H057 improves over H042/H050 by `0.0001572309` and over H012 by `0.0003758892`. H012 remains the base public-equation anchor, H042 remains the Q2 row anchor, and H057 is now the reference public frontier unless private-risk considerations dominate final selection.
 
+Current generated full HS-JEPA diagnostic: `submission_h070_full_hsjepa_9e4a9602_uploadsafe.csv`.
+
+Reason: H070 is the first full HS-JEPA v1 joint decoder. It does not select
+cells by H069 thresholds. It learns masked-view predictions from human/context,
+route, story-prior, public/action, and shortcut views, then decodes a
+`latent_hsjepa_score` into a row-target correction field. The selected file
+changes `360` cells on `144` rows, with `323` cells outside H069, `42` Q2
+cells, public-action predicted delta `-0.000826`, posterior delta `-0.000637`,
+and no positive bad-anchor cosine. This is a real big-bet sensor because it
+tests a new support basin beyond H069. It is not a safe first upload if the
+criterion is `0.001` expected movement, because it stops short of that gate and
+its masked-view latent does not recover H068/H069 selected cells by AUC.
+Prefer H071 next unless the next public slot is deliberately meant to test
+smooth HS-JEPA latent scoring.
+
 Current generated factorization diagnostic: `submission_h069_public_private_factor_4ffd6cd6_uploadsafe.csv`.
 
 Reason: H069 is the first explicit public/private hidden-state factorization

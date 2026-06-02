@@ -125,6 +125,29 @@ Build H070:
 - action decoder ranks known bad anchors as healthy;
 - generated candidates are H057 clones or broad all-target moves.
 
+### H070 Update
+
+H070 was built as the first full HS-JEPA v1 joint decoder and generated
+`submission_h070_full_hsjepa_9e4a9602_uploadsafe.csv`.
+
+Result:
+
+- masked context-to-public OOF Spearman: `0.819270`;
+- context-to-private OOF Spearman: `0.941669`;
+- context-to-action OOF Spearman: `0.928469`;
+- selected candidate changes `360` cells on `144` rows;
+- `323/360` changed cells are outside H069;
+- public-action predicted delta versus H057: `-0.000826`;
+- posterior delta versus H057: `-0.000637`;
+- bad-anchor positive cosine: `0.0`.
+
+This keeps Bet 2 alive as architecture evidence: visible context/route/story
+views can predict the hidden action representations. But it misses the
+`0.001` expected-movement gate and its H068/H069 selection AUC is weak, so it
+does not prove that smooth latent scoring solves the action problem. H071 is
+now the sharper next bet: use H070 as one energy term inside a discrete
+row-target assignment solver, not as a plain top-score selector.
+
 ## Bet 3: Discrete Row-Target Assignment Solver
 
 ### Hypothesis
@@ -238,13 +261,13 @@ Build H073:
 
 Current order:
 
-1. H070 Full HS-JEPA v1 Correction-Field Model
-2. H071 Discrete Row-Target Assignment Solver
-3. H072 Human-Social State Engine
-4. H073 Anti-Shortcut State Inversion
+1. H071 Discrete Row-Target Assignment Solver
+2. H072 Human-Social State Engine
+3. H073 Anti-Shortcut State Inversion
+4. H070 follow-up only if public feedback supports smooth joint latent scoring
 5. H069 follow-up only if public feedback specifically supports strict factorization
 
 H069 has now answered the first public-free factorization question: the factors
 are useful, but the standalone gated variant is unlikely to be the whole 0.53
-route. H068/H069 feedback should decide whether H070 starts from row-state,
-action-health, or both.
+route. H070 has answered the next question: smooth joint latent scoring is
+useful but still not enough. The next large bet is exact assignment.

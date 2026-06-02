@@ -86,6 +86,28 @@ contexts and latent states, not global probability shifts.
 
 ## Story Families to Encode
 
+## H070 Story-Route Encoding
+
+H070 used the 1000 hypotheses for the first time inside the full HS-JEPA
+decoder. The stories were still not used as direct label rules. They were
+compressed into target-route priors:
+
+```text
+story_route_up[target]
+story_route_down[target]
+story_route_no_direct[target]
+story_route_direct[target]
+story_route_balance[target]
+```
+
+These priors were merged into each row-target cell and used as one masked view
+inside the joint decoder. The result is useful but incomplete: context/story
+views can predict public/private/action representations with high rank
+correlation, but smooth latent scoring still stops at public-action predicted
+delta `-0.000826` versus H057. The next human-state step should therefore be
+assignment-aware: story families should constrain which row-target route can
+exist, not merely add a continuous score.
+
 ### 1. Bad-Night Aftereffect
 
 Story:

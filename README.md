@@ -22,6 +22,16 @@ Current public frontier:
   - `breakthrough_bets.md`
   - `public_private_factorization.md`
   - `human_state_hypotheses.md`
+- Latest generated full HS-JEPA diagnostic:
+  `submission_h070_full_hsjepa_9e4a9602_uploadsafe.csv`. H070 is the first
+  joint HS-JEPA correction-field decoder. It predicts public/private/action
+  representations from human/context, route, 1000-story target priors, and
+  shortcut views, then decodes a `latent_hsjepa_score` toward H061 `q061`. The
+  selected candidate changes `360` cells on `144` rows, with `323` cells
+  outside H069, `42` Q2 cells, public-action predicted delta `-0.000826`, and
+  no positive bad-anchor cosine. Interpretation: smooth HS-JEPA latent scoring
+  is real but not yet a `0.001`-scale solver; the next big bet is H071
+  row-target assignment.
 - Latest generated public/private factorization diagnostic:
   `submission_h069_public_private_factor_4ffd6cd6_uploadsafe.csv`. H069 is the
   first explicit factorized HS-JEPA action field: each row-target action gets a

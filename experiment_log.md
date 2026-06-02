@@ -157,6 +157,101 @@ not be more H069 threshold tuning. It should be H070 full HS-JEPA joint decoder
 or H071 discrete row-target assignment, because the missing object is now the
 translator from factor scores to exact row-target actions.
 
+## H070. Full HS-JEPA Joint Correction-Field Decoder
+
+- Date: 2026-06-02
+- Script: `hitl/h070_full_hsjepa_joint_decoder.py`
+- Report: `hitl/h070_full_hsjepa_joint_decoder/h070_report.md`
+- Generated submission:
+  `submission_h070_full_hsjepa_9e4a9602_uploadsafe.csv`
+
+### Observe
+
+H069 proved that public/private factorization can be made explicit, but the
+standalone threshold gate shrank H068's expected public-action movement from
+about `-0.000984` to `-0.000586`. This suggests the bottleneck is not the
+existence of factors. It is the translator from factorized latent state to exact
+row-target actions.
+
+### Wonder
+
+Can visible human/context/route/story information predict the hidden
+public/action representation well enough to create a new correction-field
+support outside the H069 threshold basin?
+
+### Hypothesis
+
+H070-H: HS-JEPA should learn a joint latent correction field:
+
+```text
+context / route / story / shortcut views
+  -> predict public_score, private_safe_score, factor_action_score,
+     invariant_score, shortcut_score
+  -> latent_hsjepa_score
+  -> row-target correction field toward H061 q061
+```
+
+If this hypothesis is right, the context-to-action latent should not merely
+copy H068/H069 selected cells. It should find a new row-target support basin
+with clean shortcut diagnostics and expected movement near or beyond `0.001`.
+
+### Falsification Design
+
+H070 uses subject-group OOF masked-view decoders:
+
+- context/route/shortcut view -> `public_score`;
+- context/route/shortcut view -> `private_safe_score`;
+- context/route/shortcut view -> `factor_action_score`;
+- route/shortcut view -> `private_safe_score`;
+- public/route/shortcut view -> `invariant_score`;
+- context/route/public view -> `shortcut_score`;
+- ridge linear controls for public/private representation prediction.
+
+The 1000 human-state hypotheses are compressed into target-route priors and
+used as a view, not as direct label rules. Candidates are materialized from
+H057 toward H061 `q061` using the learned `latent_hsjepa_score`.
+
+### Result
+
+Masked-view diagnostics:
+
+- `ctx_to_public` OOF Spearman: `0.819270`;
+- `ctx_to_private` OOF Spearman: `0.941669`;
+- `ctx_to_action` OOF Spearman: `0.928469`;
+- `linear_ctx_private` OOF Spearman: `0.964882`;
+- selected-cell AUC against H069/H068 is weak, around `0.43-0.47`;
+- latent anisotropy: `5.491119`;
+- top-200 latent cells are `90.0%` outside H069 and `30.5%` overlapping H068.
+
+Selected candidate:
+`h070_joint_decoder_all_k360_a1p00_mp4_q242_out323_9e4a9602`.
+
+- changed cells / rows vs H057: `360` / `144`;
+- outside H069 cells: `323`;
+- outside H068 cells: `250`;
+- H069 / H068 overlap cells: `37` / `110`;
+- Q2 changed vs H057: `42`;
+- target changes: Q1 `45`, Q2 `42`, Q3 `27`, S1 `60`, S2 `67`,
+  S3 `58`, S4 `61`;
+- public-action predicted delta vs H057: `-0.000826`;
+- posterior delta vs H057: `-0.000637`;
+- responsibility-weighted delta vs H057: `-0.000921`;
+- bad-anchor positive cosine: `0.0`;
+- upload validation passed.
+
+### Interpretation
+
+H070 is real HS-JEPA architecture progress. Context/route/story views can
+predict hidden action representations with strong rank correlation, and the
+selected support is genuinely outside H069. However, H070 is still not the
+0.53-grade breakthrough: it misses the `0.001` expected-movement gate and its
+weak H068/H069 selected-cell AUC means smooth latent scoring is not enough to
+solve exact support placement.
+
+This moves the next big-bet from "build a latent score" to "solve discrete
+row-target assignment." H071 should use H070 as one energy term, but should not
+trust continuous top-score selection by itself.
+
 ## H068. Action-Health Decoder HS-JEPA
 
 - Date: 2026-06-02
