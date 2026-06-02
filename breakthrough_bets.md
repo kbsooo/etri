@@ -481,3 +481,31 @@ This is a true high-upside / high-falsification sensor. If it wins, q061 is too
 soft on a sparse hard-tail route and HS-JEPA needs an explicit tail-law target
 representation. If it loses, do not keep chasing monster-route conflicts; use
 q061 and bad-anchor cosine as hard guardrails.
+
+### H078-H079 Update
+
+H078 asked whether H077 hard-tail cells naturally expand into same-row route
+companions. They mostly did not: the promoted H078 file changed only `14` cells
+on `13` rows and found just `1` companion cell. That weakens the passive
+same-row cascade story.
+
+H079 therefore turns the question into a real big bet:
+
+```text
+H077 hard-tail anchors are visible cells of an acute same-subject episode.
+Force a full row plus adjacent-day correction field and let public LB decide
+whether the hidden state is episode-level or cell-local.
+```
+
+The promoted H079 file,
+`submission_h079_forced_episode_8a546735_uploadsafe.csv`, changes `294` cells
+on `42` rows, moves all seven targets on the selected episode rows, has
+public-action predicted delta `-0.004704`, and keeps max positive bad-anchor
+cosine at `0.0`.
+
+This is currently the sharpest 0.53-style bet because it can change the
+worldview by more than local tuning:
+
+- win: HS-JEPA needs an episode-state target representation;
+- neutral: episode support exists but the decoder is too broad;
+- loss: H077 hard-tail state is cell-local or public-sensor overfit.

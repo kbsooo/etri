@@ -457,3 +457,39 @@ This is not safe. It is a high-information contradiction test. A public win
 would mean HS-JEPA needs a hard-tail route decoder beyond q061. A public loss
 would strengthen q061/posterior and bad-anchor cosine as guardrails, killing
 the sparse monster-route sensor.
+
+## H078-H079 Episode-State Decoder
+
+H078 and H079 add a new decoder branch:
+
+```text
+z_hardtail_cell
+  -> z_row_episode
+  -> full row / adjacent-day correction field
+```
+
+H078 tried the conservative version: use H077 hard-tail cells as context and
+let route evidence select same-row companions. This produced only `14` changed
+cells and `1` companion cell, so it did not prove a row-state cascade.
+
+H079 implements the forced version. It treats the H077 seeds as episode
+anchors, then decodes:
+
+- seed hard-tail cells are preserved;
+- same-row companions move toward q061-style values;
+- adjacent same-subject days receive a damped all-target field;
+- bad-anchor cosine is checked as a LeJEPA-style shortcut/collapse guard.
+
+The promoted H079 candidate changes `294` cells on `42` rows with all seven
+targets moved on each selected episode row. It is the first post-H057 branch
+that directly tests this architectural claim:
+
+```text
+HS-JEPA should predict hidden human episodes,
+not only isolated row-target corrections.
+```
+
+If H079 wins publicly, `z_row_episode` becomes a first-class HS-JEPA target
+representation. If it loses badly, the architecture should keep hard-tail
+state as a sparse cell-level route and avoid forced temporal propagation from
+public-action spikes.

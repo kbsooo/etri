@@ -6829,3 +6829,78 @@ while q061 posterior and bad-anchor geometry both object.
 - Small loss or large loss: kill sparse monster-route conflicts. Keep q061 and
   bad-anchor cosine as guardrails, and do not chase public-action single-route
   spikes.
+
+## H078 Hard-Tail Row-State Cascade Candidate
+
+Promoted file:
+
+`submission_h078_hardtail_rowstate_d02ba5ca_uploadsafe.csv`
+
+### Worldview Bet
+
+H077 hard-tail cells are same-row state anchors, but the companion expansion
+must be selected by route evidence rather than forced blindly.
+
+### Candidate Anatomy
+
+- base: H057;
+- source: H077 hard-tail conflict cells;
+- changed cells vs H057: `14`;
+- changed rows vs H057: `13`;
+- seed rows: `14`;
+- companion cells: `1`;
+- target mix: `Q2:5`, `S1:3`, `S2:3`, `S3:3`;
+- public-action predicted delta vs H057: `-0.003597`;
+- posterior delta vs H057: `+0.000081`;
+- responsibility-weighted delta vs H057: `+0.000061`;
+- max positive bad-anchor cosine: `0.002681`;
+- upload-safe: `True`.
+
+### Public Interpretation
+
+- Better than H057: sparse H077 hard-tail cells are real enough, but the
+  same-row state is still narrow.
+- Worse than H057: the hard-tail sensor is probably public-action overfit or
+  too sparse to trust without posterior support.
+
+This is lower priority than H079 because it does not really test the desired
+episode-state worldview; it mostly remains a sparse diagnostic.
+
+## H079 Forced Episode-State Candidate
+
+Promoted file:
+
+`submission_h079_forced_episode_8a546735_uploadsafe.csv`
+
+### Worldview Bet
+
+H077 hard-tail cells are not isolated anomalies. They are visible anchors of an
+acute human episode. Once the episode is detected, the full row and adjacent
+same-subject days should receive a coherent all-target correction field.
+
+### Candidate Anatomy
+
+- base: H057;
+- seed source: H077 hard-tail conflict cells;
+- value materializer: q061-style companion and neighbor field;
+- changed cells vs H057: `294`;
+- changed rows vs H057: `42`;
+- seed rows / neighbor rows: `15` / `27`;
+- changed targets: all seven targets on all selected rows;
+- public-action predicted delta vs H057: `-0.004704`;
+- posterior delta vs H057: `+0.000058`;
+- responsibility-weighted delta vs H057: `+0.000028`;
+- max positive bad-anchor cosine: `0.0`;
+- max absolute probability move vs H057: `0.096190`;
+- upload-safe: `True`.
+
+### Public Interpretation
+
+- Meaningful win: HS-JEPA needs an episode-state propagation module. H077 seeds
+  are not just cells; they identify whole human-state episodes.
+- Small loss: hard-tail seeds may be real but full all-target propagation is
+  too broad. Try non-Q2 or stage-only episode variants from the H079 report.
+- Large loss: kill forced episode propagation from H077. Future hard-tail work
+  must stay cell-local or require stronger context evidence.
+
+If only one new public slot is available, H079 is more informative than H078.

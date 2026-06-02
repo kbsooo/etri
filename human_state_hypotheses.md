@@ -427,3 +427,36 @@ Current evidence is contradictory. The public-action sensor strongly likes the
 hard-tail state (`-0.004677` predicted delta for 16 cells), but q061 posterior
 and bad-anchor geometry reject it. Treat this as a sensor hypothesis until
 public feedback decides it.
+
+## H078-H079 Human Episode Hypothesis
+
+H078 tested the mild human story:
+
+```text
+an acute hard-tail day should have same-row companion targets
+```
+
+The gate found almost no companions: `14` changed cells on `13` rows and only
+`1` companion cell. That weakens the passive same-row story.
+
+H079 tests the stronger human story:
+
+```text
+some hard-tail days are not target glitches;
+they are short human episodes spanning the whole row and adjacent subject-days.
+```
+
+Human interpretations that fit this route:
+
+- acute intervention or behavior-change day where Q2 and objective stage ratios
+  move together;
+- recovery/fatigue episode where one abnormal stage target reveals a broader
+  sleep-state transition;
+- routine disruption that affects the surrounding days rather than one target;
+- short subject-specific episode where social/lifestyle context is hidden from
+  direct features but visible through prediction disagreement.
+
+H079 deliberately does not encode one social story directly. It uses H077
+hard-tail anchors as context and decodes an episode-level latent field. Public
+feedback should decide whether the human-state unit is cell-local, row-local,
+or short-episode-local.

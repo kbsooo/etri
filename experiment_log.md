@@ -9190,3 +9190,95 @@ improves, q061 is too soft and HS-JEPA needs a hard-tail target representation.
 If public LB worsens, sparse monster-route action is public-sensor overfit and
 future decoders must keep q061/posterior and bad-anchor cosine as hard
 guardrails.
+
+## H078. Hard-Tail Row-State Cascade HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h078_hardtail_rowstate_cascade_jepa.py`
+- Report: `hitl/h078_hardtail_rowstate_cascade_jepa/h078_report.md`
+- Promoted diagnostic:
+  `submission_h078_hardtail_rowstate_d02ba5ca_uploadsafe.csv`
+
+### Observe
+
+H077 found only `16` sparse hard-tail conflict cells. The key question was
+whether those cells are isolated row-target exceptions, or visible anchors of a
+larger same-row human state.
+
+### Hypothesis
+
+H078-H: H077 hard-tail cells are context tokens. From those tokens, HS-JEPA
+should predict a same-row correction representation: Q2/S-stage/recovery
+companions on the same row should move with the seed cell if the hidden state is
+row-level rather than cell-local.
+
+### Result
+
+Selected `h078_route_cascade_soft_d02ba5ca`.
+
+- changed cells / rows versus H057: `14` / `13`;
+- seed rows: `14`;
+- companion cells: `1`;
+- target mix: `Q2:5`, `S1:3`, `S2:3`, `S3:3`;
+- public-action predicted delta versus H057: `-0.003597`;
+- posterior delta versus H057: `+0.000081`;
+- responsibility-weighted delta versus H057: `+0.000061`;
+- max positive bad-anchor cosine: `0.002681`;
+- upload-safe root file validated with matching keys, no NaN, no duplicates.
+
+### Interpretation
+
+H078 weakens the simple same-row cascade claim. The public-action-positive
+companions almost disappear; the promoted file remains basically a sparse
+hard-tail sensor. That does not kill episode-state, but it says the same-row
+companion detector is too local. If the human state exists, it may need to be
+forced at row/day/episode level and judged as a larger falsification test.
+
+## H079. Forced Episode-State HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h079_forced_episode_state_jepa.py`
+- Report: `hitl/h079_forced_episode_state_jepa/h079_report.md`
+- Promoted diagnostic:
+  `submission_h079_forced_episode_8a546735_uploadsafe.csv`
+
+### Observe
+
+H078 did not naturally expand H077 hard-tail seeds. The remaining big-bet
+question is whether the detector is too conservative. H057 already proved that
+some Q2-support rows can carry a full non-Q2 row vector. H079 asks whether the
+new H077 hard-tail rows are a smaller, sharper version of the same phenomenon,
+possibly extending to adjacent same-subject days.
+
+### Hypothesis
+
+H079-H: H077 hard-tail anchors are visible cells of an acute human episode.
+When such an episode is active, the whole row and its nearest same-subject
+neighbor days should receive a coherent q061-style correction field, not only
+the seed target.
+
+### Result
+
+Selected `h079_top16_episode_all_n012_8a546735`.
+
+- changed cells / rows versus H057: `294` / `42`;
+- seed rows / neighbor rows: `15` / `27`;
+- changed seed rows: `15`;
+- selected subjects: `6`;
+- role mix: `seed_hardtail:16`, `seed_q061_companion:89`,
+  `episode_neighbor_q061:189`;
+- target mix: all seven targets changed on all `42` selected rows;
+- public-action predicted delta versus H057: `-0.004704`;
+- posterior delta versus H057: `+0.000058`;
+- responsibility-weighted delta versus H057: `+0.000028`;
+- max positive bad-anchor cosine: `0.0`;
+- mean / max absolute probability move versus H057: `0.001186` / `0.096190`;
+- upload-safe root file validated with matching keys, no NaN, no duplicates.
+
+### Interpretation
+
+H079 is the clean next big-bet. It deliberately turns a sparse conflict signal
+into an episode-level HS-JEPA target representation. A public win would upgrade
+HS-JEPA from row-target hard-tail detection to episode-state propagation. A
+public loss would kill broad forced propagation from H077 seeds and imply that
+H077, if real at all, is cell-local rather than an episode state.

@@ -361,3 +361,29 @@ Current factorization rule:
   route latent;
 - if H077 loses, public-action spikes without q061 support should be treated as
   sensor overfit.
+
+## H078-H079 Episode-State Factorization
+
+H078 weakens passive row-state factorization from H077: same-row companion cells
+did not naturally survive the gate. The promoted H078 candidate changed only
+`14` cells on `13` rows, with `1` companion cell. This says H077 support is not
+obviously a broad row factor under the current local gate.
+
+H079 tests the opposite possibility: the local gate is too conservative, and
+the true hidden variable is an episode factor. The promoted H079 file changes
+`294` cells on `42` rows:
+
+- `15` seed rows from H077 hard-tail anchors;
+- `27` adjacent same-subject neighbor rows;
+- all `7` targets moved on each selected row;
+- public-action predicted delta versus H057: `-0.004704`;
+- max positive bad-anchor cosine: `0.0`.
+
+Factorization reading:
+
+- if H079 improves, public/private state is not only a cell assignment problem;
+  it includes episode-level human-state membership;
+- if H079 is neutral, episode membership may exist but target decoding should
+  be narrower than all-target q061 propagation;
+- if H079 loses badly, the safe public/private factor remains row-target local,
+  and H077-style hard-tail spikes should not be propagated across rows.
