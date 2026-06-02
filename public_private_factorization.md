@@ -2595,3 +2595,48 @@ toxicity-relief head != margin-repair head
 This is a concrete HS-JEPA architecture update.  The representation should
 predict not only hidden row state, but also which row-target action role is
 safe under the observation equation.
+
+## H139 Public/Private Factorization Update
+
+H139 removes the hand-built role pair from H138.  It builds action atoms around
+H136, locks the row `164` route core, classifies atoms by role, and solves small
+role-compatible assignments.
+
+Observed H139 factorization:
+
+- selected file: `submission_h139_roleatoms_bf2b3e77_uploadsafe.csv`;
+- selected candidate: `h139_bf2b3e77`;
+- locked core: row `164` remains untouched;
+- toxicity-relief atoms:
+  - row `207` S2 `-0.0137500000`;
+  - row `131` S2 `+0.0176632181`;
+- margin-repair atom:
+  - row `70` Q3 `-0.0170390335`;
+- changed cells vs H136: `3`;
+- delta vs H136:
+  - route `+0.000002427`;
+  - H098/model `+0.000001653`;
+  - H088 `-0.002418045`;
+  - margin `+0.000119165`.
+
+Key diagnostic:
+
+```text
+H138 repair:
+  row135 Q3/S2, hand-built, moderate relief
+
+H139 repair:
+  row70 Q3, discovered automatically, stronger relief after pairing
+```
+
+Interpretation:
+
+The public/private equation now looks less like a row-specific patch and more
+like a small role algebra:
+
+```text
+safe assignment = locked route core + toxicity relief atoms + repair atom
+```
+
+This strengthens the HS-JEPA thesis.  The decoder should predict action roles,
+not just action amplitudes.

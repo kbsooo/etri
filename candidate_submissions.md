@@ -9227,3 +9227,42 @@ Public interpretation:
   solver with toxicity-relief and margin-repair heads.
 - H137 > H138: row135 repair is false; the counterfield should remain local.
 - H136 > both: H088 counterfields are stress diagnostics only, not action-grade.
+
+## H139 Automatic Role-Atom Assignment
+
+Generated file:
+
+`submission_h139_roleatoms_bf2b3e77_uploadsafe.csv`
+
+Worldview: H138 was a hand-built pair.  H139 asks whether the same idea can be
+found automatically from role atoms while locking the H136 row164 route core.
+
+Evidence:
+
+- selected candidate: `h139_bf2b3e77`;
+- start field: H136;
+- changed cells vs H136: `3`;
+- actions:
+  - row `207` S2 toxicity relief `-0.0137500000`;
+  - row `131` S2 toxicity relief `+0.0176632181`;
+  - row `70` Q3 margin repair `-0.0170390335`;
+- route delta vs H136: `+0.000002427`;
+- H098/model delta vs H136: `+0.000001653`;
+- H088 delta vs H136: `-0.002418045`;
+- margin delta vs H136: `+0.000119165`;
+- H088-axis cosine: `-0.064550709`;
+- good-bad margin: `0.159560215`;
+- upload-safe: `True`.
+
+Submission priority:
+
+High-information, high-risk.  H139 is currently the strongest role-aware branch
+test because it improves H138's H088 and margin movement without touching the
+locked row164 route core.
+
+Public interpretation:
+
+- H139 > H138: the decoder should search for multi-relief + repair role
+  equations; row70/row131 are real action atoms.
+- H138 > H139: row70/row131 are local equation artifacts; keep row135 repair.
+- H136 > H138/H139: counterfield roles are diagnostic only, not action-grade.

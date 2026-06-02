@@ -2280,3 +2280,27 @@ H138:
 If H138 wins publicly, the next 0.53-oriented branch should search for a full
 toxicity-relief / margin-repair / route-benefit assignment equation rather than
 another context encoder or blend.
+
+### H139 Update
+
+H139 is the first automatic role-atom version of the assignment solver.
+
+| Bet | File | Worldview | Local evidence | Risk |
+| --- | --- | --- | --- | --- |
+| H139 | `submission_h139_roleatoms_bf2b3e77_uploadsafe.csv` | H138's hand-built pair is a local slice of a broader role equation | solver selects row207 S2 + row131 S2 toxicity relief and row70 Q3 repair, H088 delta `-0.002418045`, margin delta `+0.000119165`, upload-safe | row131/row70 may be local sensor artifacts; H098 cost is higher than H138 |
+
+This is the best current 0.53-oriented branch test because it is not a small
+alpha tweak.  It changes the world model from:
+
+```text
+one relief + one repair
+```
+
+to:
+
+```text
+locked route core + multiple toxicity-relief atoms + one repair atom
+```
+
+If H139 wins, the next big bet should scale this role algebra rather than add
+more tabular features.

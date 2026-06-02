@@ -12949,3 +12949,65 @@ If H138 beats H136/H137 publicly, the next HS-JEPA branch should explicitly
 learn a row-target toxicity field plus a repair/assignment field.  If H136
 still wins, counterfields remain stress diagnostics rather than action-grade
 submissions.
+
+## H139 Role-Atom Assignment Equation HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h139_role_atom_assignment_equation_hsjepa/h139_report.md`
+- `hitl/h139_role_atom_assignment_equation_hsjepa/h139_decision.csv`
+- `hitl/h139_role_atom_assignment_equation_hsjepa/h139_atom_metrics.csv`
+- `hitl/h139_role_atom_assignment_equation_hsjepa/h139_candidates.csv`
+- `submission_h139_roleatoms_bf2b3e77_uploadsafe.csv`
+
+Worldview:
+
+```text
+H138's hand-built toxicity-relief + repair pair is only a local slice.  A real
+HS-JEPA action decoder should discover role atoms automatically while locking
+the H136 row164 route core.
+```
+
+Observed result:
+
+- promoted candidate: `h139_bf2b3e77`;
+- root file: `submission_h139_roleatoms_bf2b3e77_uploadsafe.csv`;
+- start field: H136;
+- changed cells vs H136: `3`;
+- selected role atoms:
+  - row `207` S2 toxicity relief: `-0.0137500000`;
+  - row `131` S2 toxicity relief: `+0.0176632181`;
+  - row `70` Q3 margin repair: `-0.0170390335`;
+- delta vs H136:
+  - route: `+0.000002427`;
+  - H098/model: `+0.000001653`;
+  - H088: `-0.002418045`;
+  - margin: `+0.000119165`;
+- final H088-axis cosine: `-0.064550709`;
+- final good-bad margin: `0.159560215`;
+- upload-safe validation passed.
+
+Comparison to H138:
+
+```text
+H138:
+  row207 S2 relief + row135 Q3/S2 repair
+  H088 delta -0.001088, margin delta +0.000064
+
+H139:
+  row207 S2 relief + row131 S2 relief + row70 Q3 repair
+  H088 delta -0.002418, margin delta +0.000119
+```
+
+Interpretation:
+
+This is the first automatic role-aware HS-JEPA decoder result.  It says the
+repair role does not have to be row135; row70 Q3 is a stronger boundary repair
+atom, and row131 S2 can act as a second toxicity-relief atom when isolated from
+its larger stress-decoy bundle.
+
+If H139 beats H138 publicly, the next solver should search for a larger
+toxicity-relief/repair role equation.  If H138 beats H139, row70/row131 are
+local sensor artifacts and the smaller row135 repair pair is safer.

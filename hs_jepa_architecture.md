@@ -2884,3 +2884,43 @@ The important update is that "safe action" is not a scalar.  H138 makes it a
 small equation over roles.  This is closer to the intended HS-JEPA formulation:
 predict hidden human-state representation, then solve which row-target action
 roles are compatible under the observation equation.
+
+### H139: Automatic Role-Atom Solver
+
+H139 turns H138's hand-built role pair into an automatic solver.
+
+The decoder builds candidate atoms around H136, classifies them, and searches
+for role-compatible combinations.  The row `164` H136 core is locked so the
+solver cannot fake margin repair by undoing the positive route-state signal.
+
+H139 evidence:
+
+- candidate: `submission_h139_roleatoms_bf2b3e77_uploadsafe.csv`;
+- selected solver: `h139_bf2b3e77`;
+- locked core: row `164`;
+- toxicity-relief atoms: row `207` S2 and row `131` S2;
+- margin-repair atom: row `70` Q3;
+- changed cells vs H136: `3`;
+- H088 delta vs H136: `-0.002418045`;
+- margin delta vs H136: `+0.000119165`;
+- route delta vs H136: `+0.000002427`;
+- H098/model delta vs H136: `+0.000001653`.
+
+Architecture implication:
+
+```text
+context/state encoder
+  -> H136 route core
+  -> atom generator
+  -> role classifier
+       locked_core_unwind
+       toxicity_relief
+       margin_repair
+       stress_decoy
+  -> constrained role equation solver
+  -> submission action field
+```
+
+This is the current strongest HS-JEPA formulation.  The main learnable object is
+no longer a better feature embedding; it is the row-target action-role equation
+that decides which representation-induced actions are public/private safe.
