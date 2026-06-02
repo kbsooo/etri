@@ -416,6 +416,107 @@ grade. A public loss would push the next big bet toward H073 anti-shortcut
 state inversion or a two-stage model where stories predict action health first,
 not route templates.
 
+## H073. Human-Social Action-Health Bridge HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h073_human_action_health_bridge_jepa.py`
+- Report: `hitl/h073_human_action_health_bridge_jepa/h073_report.md`
+- Generated submission:
+  `submission_h073_humanaction_bridge_7a2cbf07_uploadsafe.csv`
+
+### Observe
+
+H072 weakened direct `story -> route assignment`: subject-preserving nulls were
+stronger than the real H071-route story support. But the same H072 diagnostics
+showed several story families recover H068 action-health rows with AUC around
+`0.697-0.720`. This suggests the human layer may be targeting the wrong hidden
+representation.
+
+### Wonder
+
+Can human-social context become useful if it predicts action-health and
+shortcut energy first, then lets the route assignment decoder materialize
+probability moves?
+
+### Hypothesis
+
+H073-H: the correct human layer is:
+
+```text
+C_human + C_route -> z_action_health / z_shortcut
+                  -> z_assignment
+                  -> correction field
+```
+
+The failure mode would be clear: if story models only work in full fit but fail
+subject-group OOF, then the human-social layer is still subject/date placement
+memory rather than private-safe state.
+
+### Falsification Design
+
+H073 trains subject-group OOF ExtraTrees decoders from H072 story-family
+features, target context, and route context to predict:
+
+- H068 continuous `h068_cell_health`;
+- H068 selected-cell indicator;
+- H070/H071 shortcut energy.
+
+It then uses the predicted action-health/shortcut bridge to rescore H071 route
+candidates and materialize candidates from H057 toward H061 `q061`. A
+subject-preserving story-feature shuffle tests whether full-fit story placement
+is meaningful or just memorized.
+
+### Result
+
+Promoted diagnostic candidate:
+`h073_fullvector_action_state_outside_h069_c980_r225_q288_7a2cbf07`.
+
+- changed cells / rows vs H057: `657` / `141`;
+- selected route count: `141`;
+- cells outside H070 / H069: `343` / `557`;
+- Q2 changed vs H057: `17`;
+- route mix: `s_stage:55`, `nonq2_full:34`, `q3_s_stage:21`,
+  `full_state:15`, `recovery_route:14`, `q_subjective:2`;
+- public-action predicted delta vs H057: `-0.000618`;
+- posterior delta vs H057: `-0.000599`;
+- responsibility-weighted delta vs H057: `-0.000628`;
+- bad-anchor positive cosine: `0.0`;
+- upload validation passed.
+
+Model diagnostics split sharply:
+
+- `story_to_h068_selected` OOF AUC against H068 selected cells: `0.513105`;
+- `story_route_to_h068_selected` OOF AUC: `0.531970`;
+- `story_route_to_h068_health` OOF Spearman against continuous H068 health:
+  `0.890901`;
+- `story_route_to_h068_health` OOF AUC against H071 selected cells: `0.860064`.
+
+Full-fit story placement looks much stronger than OOF: `story_to_h068_selected`
+full AUC is `0.878094` and its story-shuffle z is `23.279893`. This is not
+adoption evidence by itself; it is a warning that full-fit story placement can
+memorize row state.
+
+### Interpretation
+
+H073 does not produce a `0.001`-scale public-action candidate. It weakens the
+claim that human stories alone can recover hard action cells across subject
+splits. But it strengthens a more precise HS-JEPA design rule:
+
+```text
+human-social context + route context -> continuous action-health
+```
+
+is much more credible than:
+
+```text
+human-social context -> hard selected cell
+```
+
+The next big bet should not be more story-route thresholding. It should either
+use continuous action-health as the target representation in a stronger
+assignment solver, or invert shortcuts/known bad anchors to learn which
+human-route combinations are impossible.
+
 ## H068. Action-Health Decoder HS-JEPA
 
 - Date: 2026-06-02

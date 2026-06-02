@@ -283,6 +283,32 @@ story-to-route assignment is not yet validated. The next large follow-up should
 either move story families upstream into action-health prediction or invert
 known bad story/route shortcuts, not merely strengthen the same route prior.
 
+### H073 Update
+
+H073 tested the narrower follow-up and generated
+`submission_h073_humanaction_bridge_7a2cbf07_uploadsafe.csv`.
+
+Result:
+
+- promoted candidate:
+  `h073_fullvector_action_state_outside_h069_c980_r225_q288_7a2cbf07`;
+- changed cells / rows versus H057: `657` / `141`;
+- cells outside H070 / H069: `343` / `557`;
+- Q2 changed cells: `17`;
+- route mix: `s_stage:55`, `nonq2_full:34`, `q3_s_stage:21`,
+  `full_state:15`, `recovery_route:14`, `q_subjective:2`;
+- public-action predicted delta versus H057: `-0.000618`;
+- responsibility-weighted delta versus H057: `-0.000628`;
+- bad-anchor positive cosine: `0.0`.
+
+H073 does not meet the `0.001` movement gate. The architecture finding is more
+important than the file: hard selected-cell prediction is weak under
+subject-group OOF (`story_to_h068_selected` AUC `0.513105`), but continuous
+action-health with route context is strong (`story_route_to_h068_health` OOF
+Spearman `0.890901`, H071-selected-cell AUC `0.860064`). This keeps Bet 4 alive
+only as a continuous action-health/shortcut view. It weakens any further
+attempt to use human stories as direct hard row-target assignment labels.
+
 ## Bet 5: Anti-Shortcut State Inversion
 
 ### Hypothesis
@@ -294,7 +320,7 @@ posterior extension.
 
 ### Minimal Experiment
 
-Build H073:
+Build H074:
 
 - treat known bad submissions as negative action worlds;
 - learn null/shortcut state directions at row-target level;
@@ -321,7 +347,7 @@ Current order:
 1. Submit or observe H071 if a public slot is available for the row-target
    assignment claim.
 2. H072 Human-Social State Engine.
-3. H073 Anti-Shortcut State Inversion.
+3. H074 Anti-Shortcut State Inversion.
 4. H070 follow-up only if public feedback supports smooth joint latent scoring.
 5. H069 follow-up only if public feedback specifically supports strict factorization.
 
@@ -329,5 +355,8 @@ H069 has now answered the first public-free factorization question: the factors
 are useful, but the standalone gated variant is unlikely to be the whole 0.53
 route. H070 has answered the next question: smooth joint latent scoring is
 useful but still not enough. H071 now materializes exact assignment; the next
-new experiment after H071 should not be another assignment threshold sweep
-unless public feedback validates it.
+new experiment after H071/H072/H073 should not be another assignment threshold
+sweep unless public feedback validates it. H073 specifically says the
+human-social layer should move upstream into continuous action-health/shortcut
+prediction; H074 should now test the opposite space, meaning known
+story/route/public-bad shortcuts as negative target representations.

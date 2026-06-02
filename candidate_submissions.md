@@ -85,6 +85,27 @@ priors become action-grade. If it loses, use the result to demote direct
 story-to-route assignment and move stories upstream into action-health
 prediction.
 
+Current generated human-social action-health bridge:
+`submission_h073_humanaction_bridge_7a2cbf07_uploadsafe.csv`.
+
+Reason: H073 is the follow-up to H072's null failure. It does not ask stories to
+select routes directly. It trains story and story+route context to predict H068
+action-health and shortcut representations first, then uses that bridge to
+rescore H071 assignments. The promoted file changes `657` cells on `141` rows,
+with `557` cells outside H069, only `17` Q2 cells, public-action predicted
+delta `-0.000618`, posterior delta `-0.000599`, and no positive bad-anchor
+cosine. This is upload-safe but below the `0.001` big-bet movement gate, so it
+is not the next scarce public slot unless the intended question is specifically
+"does a continuous human-action-health bridge beat direct story routing?"
+
+Interpretation: H073 is stronger as architecture evidence than as a submission.
+Hard selected-cell prediction is weak under subject-group OOF
+(`story_to_h068_selected` AUC `0.513105`), but continuous action-health is
+strong when route context is included (`story_route_to_h068_health` Spearman
+`0.890901`, H071 selected-cell AUC `0.860064`). A public win would support
+`C_human -> z_action_health -> z_assignment`; a loss would mostly say the bridge
+is diagnostic rather than materialization-grade.
+
 Current generated full HS-JEPA diagnostic: `submission_h070_full_hsjepa_9e4a9602_uploadsafe.csv`.
 
 Reason: H070 is the first full HS-JEPA v1 joint decoder. It does not select

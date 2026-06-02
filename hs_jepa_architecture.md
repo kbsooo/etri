@@ -72,6 +72,7 @@ HS-JEPA currently has these target representations:
 | Joint correction-field latent `z_hsjepa` | H070 masked-view decoder predicts public/private/action representations | Implemented v1, not yet 0.001-grade |
 | Discrete route assignment `z_assignment` | H071 assigns row-target route templates before materializing cells | Implemented, first near-0.001 big bet |
 | Human-social route prior `z_human_social` | H072 maps 1000 stories to route priors and E268 row-family latents | Implemented as sensor; action-health useful, route proof failed null |
+| Human action-health bridge `z_human_action` | H073 predicts H068 action-health/shortcut from story+route context | Implemented; continuous health works, hard cell generalization weak |
 
 ## Objective
 
@@ -252,6 +253,42 @@ z_action_health -> z_assignment
 ```
 
 Direct `C_human -> z_assignment` is currently too weak.
+
+## H073 Human Action-Health Bridge
+
+H073 changes the human target representation:
+
+```text
+C_human + C_route
+  -> z_action_health / z_shortcut
+  -> z_assignment
+  -> correction field toward H061 q061
+```
+
+The promoted file,
+`submission_h073_humanaction_bridge_7a2cbf07_uploadsafe.csv`, changes `657`
+cells on `141` rows, with `557` cells outside H069, only `17` Q2 cells, and
+public-action predicted delta `-0.000618` versus H057. It is a valid sensor but
+not a `0.001`-scale public candidate.
+
+The architecture result is the useful part:
+
+- hard selected-cell prediction from stories is weak under subject-group OOF:
+  `story_to_h068_selected` AUC `0.513105`;
+- adding route context makes continuous action-health predictable:
+  `story_route_to_h068_health` OOF Spearman `0.890901`;
+- the same continuous health score has H071 selected-cell AUC `0.860064`.
+
+This refines HS-JEPA:
+
+```text
+stories should predict continuous action-health / shortcut risk,
+not hard row-target assignment labels.
+```
+
+The next version should use `z_human_action` as a regularized target
+representation in the assignment solver, or build an anti-shortcut contrastive
+view from known failed story/route combinations.
 
 ## What Would Prove HS-JEPA
 

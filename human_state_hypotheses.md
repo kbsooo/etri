@@ -329,3 +329,73 @@ human story -> route assignment
 The next human-state experiment should not just add more stories. It should
 make stories predict `z_action_health` or `z_shortcut` first, then let a
 separate assignment decoder write row-target routes.
+
+## H073 Result
+
+H073 was implemented as `hitl/h073_human_action_health_bridge_jepa.py`.
+
+Generated artifacts:
+
+- `hitl/h073_human_action_health_bridge_jepa/h073_cell_scores.csv`
+- `hitl/h073_human_action_health_bridge_jepa/h073_route_candidates.csv`
+- `hitl/h073_human_action_health_bridge_jepa/h073_model_metrics.csv`
+- `hitl/h073_human_action_health_bridge_jepa/h073_story_action_null_stress.csv`
+- `hitl/h073_human_action_health_bridge_jepa/h073_story_action_null_summary.csv`
+- `hitl/h073_human_action_health_bridge_jepa/h073_candidate_scores.csv`
+- `submission_h073_humanaction_bridge_7a2cbf07_uploadsafe.csv`
+
+H073 tested the narrower claim suggested by H072:
+
+```text
+human story -> action-health / shortcut representation -> assignment
+```
+
+instead of:
+
+```text
+human story -> hard row-target assignment
+```
+
+The promoted file is again a sensor rather than the strongest public slot:
+
+| Item | Value |
+| --- | ---: |
+| Changed cells vs H057 | 657 |
+| Changed rows vs H057 | 141 |
+| Cells outside H069 | 557 |
+| Cells outside H070 | 343 |
+| Q2 changed cells | 17 |
+| Public-action predicted delta vs H057 | -0.000618 |
+| Responsibility-weighted delta vs H057 | -0.000628 |
+| Bad-anchor positive cosine | 0.0 |
+
+### What Survived
+
+Human-social context becomes much more useful when route context is included
+and the target is continuous action-health:
+
+| Bridge target | Subject-group OOF metric | Value |
+| --- | --- | ---: |
+| `story_to_h068_selected` | AUC on H068 selected cells | 0.513105 |
+| `story_route_to_h068_health` | Spearman on H068 cell health | 0.890901 |
+| `story_route_to_h068_health` | AUC on H071 selected cells | 0.860064 |
+| `story_route_to_shortcut` | Spearman on shortcut energy | 0.801446 |
+
+This supports the current HS-JEPA human layer:
+
+```text
+C_human + C_route -> z_human_action / z_shortcut
+```
+
+### What Still Fails
+
+Hard selected-cell prediction does not generalize cleanly across subjects.
+The story-only hard selector has subject-group OOF AUC `0.513105`, even though
+the full-fit null-placement diagnostic is very strong. That means the model can
+memorize story placement in the observed table, but this is not enough evidence
+for a private-safe hard assignment rule.
+
+The next human-state experiment should therefore avoid another direct
+story-route selector. The useful direction is a stronger assignment solver that
+uses `z_human_action` as a regularized energy term, or an anti-shortcut model
+that learns which story/route combinations are public-bad.

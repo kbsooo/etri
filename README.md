@@ -47,6 +47,21 @@ Current public frontier:
   `0.776796/0.783463` with z `-1.326523`. Interpretation: human-social stories
   are useful action-health context candidates, but H072 is a sensor, not yet
   paper-grade proof that story latents solve route assignment.
+- Latest generated human-social action-health bridge:
+  `submission_h073_humanaction_bridge_7a2cbf07_uploadsafe.csv`. H073 changes
+  the human layer target from direct route assignment to intermediate
+  action-health/shortcut prediction:
+  `C_human -> z_action_health/z_shortcut -> z_assignment`. The promoted file
+  changes `657` cells on `141` rows, with `557` cells outside H069, only `17`
+  Q2 cells, public-action predicted delta `-0.000618`, and no positive
+  bad-anchor cosine. It is upload-safe but not a `0.001`-scale first choice.
+  The diagnostic split is the useful part: `story_to_h068_selected` has weak
+  subject-group OOF AUC `0.513105`, while `story_route_to_h068_health` has OOF
+  Spearman `0.890901` and H071-selected-cell AUC `0.860064`. Interpretation:
+  human stories do not robustly predict hard selected cells across subjects,
+  but story+route context can predict continuous action-health. HS-JEPA should
+  use human-social context as an action-health/shortcut view before assignment,
+  not as a direct route selector.
 - Latest generated full HS-JEPA diagnostic:
   `submission_h070_full_hsjepa_9e4a9602_uploadsafe.csv`. H070 is the first
   joint HS-JEPA correction-field decoder. It predicts public/private/action

@@ -83,6 +83,7 @@ Where:
 | Shortcut state | H010, E216, E323, bad JEPA, H050-null | Strong negatives |
 | Private-safe state | Needed for 0.53 | Not solved |
 | Human-social state | H072 story families recover H068 rows but not H071 routes | Context/action-health layer, not direct route layer |
+| Human-action bridge | H073 story+route context predicts continuous health/shortcut | Useful representation, not yet 0.001 action solver |
 
 ## H069 Result
 
@@ -159,6 +160,44 @@ human-social state -> assignment
 
 The next private-safe route should therefore use stories as an intermediate
 health/shortcut view, not as a direct public/private row-route separator.
+
+## H073 Human-Action Bridge Factor Use
+
+H073 implemented the H072 follow-up by making the human-social layer predict an
+intermediate action-health representation before assignment:
+
+```text
+C_human + C_route
+  -> z_action_health / z_shortcut
+  -> z_assignment
+  -> correction field
+```
+
+The selected candidate,
+`submission_h073_humanaction_bridge_7a2cbf07_uploadsafe.csv`, is upload-safe
+and changes `657` cells on `141` rows, but its predicted public-action movement
+is only `-0.000618` versus H057. That is below the current `0.001` big-bet
+threshold.
+
+The factorization evidence is still useful:
+
+- story-only hard selected-cell prediction is weak under subject-group OOF
+  (`0.513105` AUC on H068 selected cells);
+- story plus route context predicts continuous H068 action-health with OOF
+  Spearman `0.890901`;
+- the same continuous bridge scores H071 selected cells at AUC `0.860064`;
+- story plus route context also predicts shortcut energy with OOF Spearman
+  `0.801446`.
+
+Interpretation: the human-social factor is not a reliable public/private
+separator by itself. It is better modeled as a continuous action-health and
+shortcut-risk view. In HS-JEPA terms, this means `z_human_action` should feed
+the assignment solver as an energy term, not replace the assignment solver.
+
+This weakens another direct human-story route sweep. It strengthens H074-style
+anti-shortcut inversion or a future assignment solver that treats human context
+as a regularized bridge between public listener state and private-safe action
+state.
 
 ## H069 Candidate Design
 
