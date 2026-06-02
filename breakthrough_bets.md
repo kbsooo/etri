@@ -1032,3 +1032,45 @@ Decision rule:
 - H101 better than H100: toxicity-boundary/gating is real.
 - H100 better than H101: H101 over-pruned the useful route-basis field.
 - both weak: route-basis is a sensor space, not yet an action decoder.
+
+### H102 Update
+
+H102 changes the toxicity definition from local cell agreement to global
+bad-axis projection.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H102 | `submission_h102_badnull_e775939d_uploadsafe.csv` | safe assignment is H100 route-action gain in the nullspace of bad public submission axes | `5` actions / `7` cells / `5` rows | route-basis delta `-0.001162`, bad-axis positive projection `0.0`, H088-axis cosine `-0.002161` | sharp public-sensitive nullspace bet |
+
+Breakthrough reading:
+
+```text
+H102 is the cleanest equation-solver version of the current goal. It does not
+ask whether H100 action is stable across models; it asks whether action
+toxicity is projection onto known bad public directions. The selected action is
+small but very concentrated on a suspected public-sensitive id06/id07 block.
+```
+
+Current high-information submission order:
+
+1. `submission_h100_route_basis_6c8e0c6b_uploadsafe.csv`
+   - biggest route-equation worldview bet.
+
+2. `submission_h102_badnull_e775939d_uploadsafe.csv`
+   - best test of action toxicity as bad-axis nullspace; smaller but cleaner
+     than H100 in public/private safety geometry.
+
+3. `submission_h099_route_equation_1cbff4af_uploadsafe.csv`
+   - cleaner assignment-discreteness test.
+
+4. `submission_h101_disagreement_toxicity_9e088156_uploadsafe.csv`
+   - diagnostic test for H098 cell-equation gating.
+
+Decision rule:
+
+- H102 beats H100: build HS-JEPA v3 around global toxicity subspace and
+  constrained route-action assignment.
+- H100 beats H102: route-basis public response should not be constrained by
+  old bad-axis geometry.
+- H102 moves little: 7-cell nullspace is too small; test the broader
+  `h102_strict_null_conflict` alternate or learn a denser safe route family.

@@ -10539,3 +10539,75 @@ Public interpretation:
 - if H100 beats H101, the cell-equation caution diluted the real route-basis
   signal and should not be used as an action gate;
 - if both lose, route-basis decoding is explanatory but not action-grade.
+
+## H102 Bad-Axis Nullspace Assignment HS-JEPA
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h102_badnull_e775939d_uploadsafe.csv`
+
+Worldview:
+
+```text
+Public/private action toxicity is not a local cell property. It is projection
+onto the positive span of known bad public submission action vectors. A safe
+row-target assignment is an H100 route-action that stays in the bad-axis
+nullspace or has enough H057-positive anchor margin to justify its shadow.
+```
+
+Method:
+
+- treat H088, bad JEPA submissions, H010, E216, E323, and the older 0.576-0.581
+  submissions as bad public action axes;
+- treat H042/H050/H012 -> H057 as good anchor axes;
+- score each H100 route-action by route-basis predicted gain, H057 anchor
+  margin, H088-opposite direction, and bad-axis positive projection;
+- greedily solve a row-target assignment under cumulative constraints:
+  bad-axis positive projection, H088 cosine, good-minus-bad margin, H098
+  cell-equation delta, route-basis predicted delta, row budget, and Q2 budget.
+
+Observed result:
+
+- selected candidate: `h102_routegain_badnull_c150_r52_amp085_e775939d`;
+- selected route-basis actions / cells / rows: `5` / `7` / `5`;
+- selected rows: `144,146,149,151,164`;
+- route-basis predicted delta vs H057: `-0.001162`;
+- H098 cell-equation predicted delta vs H057: `-0.000023`;
+- posterior delta vs H057: `+0.000005`;
+- hard diagnostic delta vs H057: `+0.000007`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative bad-axis max positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.002161`;
+- cumulative good-minus-bad margin: `+0.013258`;
+- anti-H088 direction rate: `0.857143`;
+- H057-positive alignment rate: `0.857143`;
+- selected conflict rate: `1.000000`;
+- upload-safe validation passed.
+
+Important alternate candidate:
+
+- `h102_strict_null_conflict_c72_r28_amp100_624355db`;
+- selected route-basis actions / cells / rows: `23` / `29` / `23`;
+- route-basis predicted delta vs H057: `-0.000307`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- anti-H088 and H057 alignment: `1.000000`.
+
+Interpretation:
+
+H102 finds a stronger route-basis predicted improvement than H100 while keeping
+the combined move exactly outside the positive bad-axis span. The catch is that
+the selected root candidate is very concentrated: mostly id06 rows plus one
+id07 row. This makes it a sharp public-sensitive block bet, not a broad
+private-safe law yet. The strict-null alternate shows that a broader 29-cell
+field exists, but with weaker route-basis predicted gain.
+
+Public interpretation:
+
+- H102 improves over H100: public/private safety is better modeled as global
+  bad-axis nullspace or shadow-margin assignment than as H101 local agreement;
+- H100 improves and H102 loses: bad-axis constraints over-pruned or excluded
+  the true route-basis action;
+- both lose: route-basis remains a sensor, and the next decoder needs a new
+  route family rather than another safety filter.

@@ -1,0 +1,4 @@
+axis_name,axis_type,weight,delta_vs_h057
+submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv,h057_positive_anchor,1.0,0.0
+submission_h050_target_route_phase_b140216b_uploadsafe.csv,h057_positive_anchor,1.0,0.0
+submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv,h057_positive_anchor,1.0,0.0

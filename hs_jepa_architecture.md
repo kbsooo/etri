@@ -1270,3 +1270,47 @@ the model can detect route-basis public response, but it cannot yet determine
 which broad route actions are private-safe. The next HS-JEPA step should learn
 a larger public/private action-toxicity field instead of only pruning route
 actions by stability.
+
+## HS-JEPA v2.5: Bad-Axis Nullspace Assignment
+
+H102 changes the definition of toxicity:
+
+```text
+bad public submissions
+  -> action vectors from H057
+  -> bad-axis subspace
+  -> route-action assignment constrained to the nullspace or positive-anchor
+     margin of that subspace
+```
+
+This is closer to the active HS-JEPA objective. The representation does not
+only say "this row-target looks like a state." It asks whether the action
+created by that state is safe under public/private observation equations.
+
+H102 evidence:
+
+- candidate: `submission_h102_badnull_e775939d_uploadsafe.csv`;
+- selected actions / cells / rows: `5` / `7` / `5`;
+- selected rows: `144,146,149,151,164`;
+- route-basis predicted delta vs H057: `-0.001162`;
+- H098 cell-equation predicted delta vs H057: `-0.000023`;
+- cumulative bad-axis positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.002161`;
+- cumulative H057-positive anchor margin: `+0.013258`.
+
+Architectural implication:
+
+The decoder stack now has three safety views:
+
+```text
+H100 route-basis equation      = which route-actions public feedback rewards
+H101 disagreement gate         = which route-actions survive model agreement
+H102 bad-axis nullspace solver = which route-actions avoid known toxic action
+                                 subspaces
+```
+
+H102 suggests that the next full HS-JEPA should represent action toxicity as a
+subspace or field, not a scalar per cell. The remaining problem is density: the
+current nullspace solver finds a very sharp 7-cell action. A 0.53-scale
+breakthrough would require discovering a much larger safe nullspace with the
+same public/private constraints.

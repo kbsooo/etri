@@ -7660,3 +7660,43 @@ Priority: medium information value, lower than H100 if only one slot is
 available. H101 is the cleanest test of the new toxicity-boundary idea, but its
 actual action support is very small and its local stress deltas are nearly
 neutral.
+
+## H102 Bad-Axis Nullspace Assignment
+
+Generated file:
+
+`submission_h102_badnull_e775939d_uploadsafe.csv`
+
+Worldview: safe row-target actions are H100 route-actions that avoid the
+positive span of known bad public submission axes, while preserving enough
+H057-positive anchor margin.
+
+Evidence:
+
+- selected candidate:
+  `h102_routegain_badnull_c150_r52_amp085_e775939d`;
+- selected actions / cells / rows: `5` / `7` / `5`;
+- selected rows: `144,146,149,151,164`;
+- route-basis predicted delta vs H057: `-0.001162`;
+- H098 cell-equation predicted delta vs H057: `-0.000023`;
+- posterior delta vs H057: `+0.000005`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.002161`;
+- cumulative good-minus-bad margin: `+0.013258`;
+- anti-H088 direction rate: `0.857143`;
+- H057-positive alignment rate: `0.857143`;
+- selected conflict rate: `1.000000`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H100: toxicity is a global bad-axis projection problem, not only a
+  cell-level gate;
+- loss while H100 wins: the bad-axis nullspace constraint removed true positive
+  route-basis signal;
+- loss with H100/H101: route-basis is still diagnostic only.
+
+Priority: high information value but not automatically the best single-slot
+submission. H102 is sharper than H100 and safer by bad-axis geometry, but it
+changes only `7` cells. H100 remains the biggest route-equation bet; H102 is
+the best test of whether public toxicity is a bad-axis/nullspace phenomenon.

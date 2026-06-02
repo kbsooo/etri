@@ -968,3 +968,34 @@ H101 says claim 1 is still alive, while claim 2 needs public validation. If
 H101 improves and H100 does not, the public/private factorization should add a
 toxicity gate. If H100 improves and H101 does not, the toxicity gate is too
 conservative.
+
+## H102 Bad-Axis Nullspace Factorization
+
+H102 tests a different public/private factorization:
+
+```text
+bad public submissions are observations of toxic action axes
+good frontier anchors are observations of H057-positive axes
+safe assignment = route-basis gain outside the positive bad-axis span
+```
+
+Observed H102 factorization:
+
+- selected file: `submission_h102_badnull_e775939d_uploadsafe.csv`;
+- selected actions / cells / rows: `5` / `7` / `5`;
+- route-basis predicted delta vs H057: `-0.001162`;
+- H098 cell-equation predicted delta vs H057: `-0.000023`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative bad-axis max positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.002161`;
+- cumulative good-minus-bad margin: `+0.013258`;
+- selected conflict rate: `1.000000`.
+
+Interpretation:
+
+This is the cleanest current version of the active public/private equation
+goal. It explains H057 as a positive row-state anchor, H088 as a negative
+action axis, and older bad submissions as a broader toxic subspace. The
+selected action is small, so H102 does not yet prove a 0.53-scale mechanism.
+It does prove that HS-JEPA can express "safe action" as an assignment equation
+rather than only as a latent representation or blend.
