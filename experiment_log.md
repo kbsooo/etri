@@ -4,6 +4,16 @@
 
 실험은 `Observe -> Wonder -> Hypothesize -> Falsify -> Build -> Stress -> Decide` 형식으로 기록한다. public LB는 최적화 대상이 아니라 hidden-DGP sensor로 사용한다.
 
+## H060. Route-Core State Split HS-JEPA
+
+- Observe: H057 public `0.5677475939` validates that H042's `45` Q2-support rows can carry a full non-Q2 vector, but row-level route evidence is not uniform. Top route rows cluster strongly around id06 2024-08-20..25, while low rows have weak H055 gain and weak public-world/human-state support.
+- Wonder: did H057 win because all `45` rows share one hidden state, or because a compact route core was strong enough to hide marker-only rows inside the average?
+- Hypothesis: if H057's support is heterogeneous, amplifying the top route-core rows and rolling back the weakest marker rows should improve public even though it worsens the uniform H055 listener. If public worsens, the simple route-consensus split is false.
+- Method: `hitl/h060_routecore_state_split_jepa.py` scored H057 support rows using H055 posterior gain, H036 public-world score/sign agreement, H020 joint-vector score, H019 row-public score, and H021 raw human-state score/confidence. It generated route-split translators from H042 with Q2 frozen.
+- Result: promoted `submission_h060_routecore_state_split_16c7766d_uploadsafe.csv`. It amplifies `8` route-core rows, rolls back `22` marker rows, damps `15` middle rows, changes `270` cells vs H057 and `138` cells vs H042, freezes Q2, and passes upload validation. H055 posterior delta vs H057 is `+0.000111180`, so this is a deliberate cross-view route bet rather than a posterior-listener continuation.
+- Interpretation: H060 is a large worldview sensor. A win upgrades HS-JEPA from uniform row-state translation to route-core classification. A loss kills the simple rank-based core/eject translator and strengthens H057's uniform full-vector state law.
+- Decision: promoted as high-risk HITL sensor, not as a safe expected-CV improvement.
+
 ## H034. Row-Vector Route Translator HS-JEPA
 
 - Observe: H033 learned H012-vs-sibling failure at cell level, but direct negative-cost cell edits were action-bad. The likely next abstraction is a row's entire 7-target route pattern.

@@ -26,6 +26,46 @@ search.
 - Current H049 question: if H042's Q2 support marks a hidden human-state row,
   can the same rows carry a non-Q2 Q3/S target-route echo?
 
+## H060: Route-Core State Split HS-JEPA
+
+- Script: `hitl/h060_routecore_state_split_jepa.py`
+- Report: `hitl/h060_routecore_state_split_jepa/h060_report.md`
+- Promoted root file:
+  `submission_h060_routecore_state_split_16c7766d_uploadsafe.csv`
+
+### Question
+
+H057 improved by moving all `45` H042 Q2-support rows with one uniform
+full-vector rule. Is that because all `45` rows really share one hidden state,
+or because the true route-core rows were strong enough to carry weak marker
+rows along for the ride?
+
+### Main Finding
+
+H060 finds a sharp route split inside H057's support:
+
+- route-core amplified rows: `8`;
+- marker rollback rows: `22`;
+- middle damped rows: `15`;
+- changed cells vs H057: `270`;
+- changed cells vs H042: `138`;
+- Q2 changed vs H057: `0`;
+- route-core rows: `150,148,146,151,149,35,70,158`;
+- marker rollback rows:
+  `44,10,216,152,194,174,98,168,203,0,61,56,136,3,196,110,27,225,78,242,97,50`;
+- upload validation: `True`.
+
+### Interpretation
+
+This is a high-risk sensor, not a safe tweak. It deliberately worsens the H055
+posterior listener by `+0.000111180` versus H057 because it is testing a
+different law: H057's public gain may come from a compact route core, while
+weak rows are only Q2 public markers and should reject non-Q2 translation.
+
+If public improves, HS-JEPA needs a row-state route classifier. If public
+fails, the simple route-consensus split is killed and H057's uniform full-vector
+state becomes the stronger law.
+
 ## H049: Q2 Row-Vector Echo HS-JEPA
 
 - Script: `hitl/h049_q2_rowvector_echo_jepa.py`

@@ -17,6 +17,14 @@ Current public frontier:
   scored `0.5677475939`. Since H057 froze Q2 and moved Q1/Q3/S1-S4 only on the
   `45` H042 Q2-support rows, this is direct evidence for a compact row-state
   latent rather than a broad non-Q2 route.
+- Latest generated public-free sensor: `submission_h060_routecore_state_split_16c7766d_uploadsafe.csv`.
+  H060 does not assume H057's `45` rows are homogeneous. It scores those rows
+  with H055/H036/H020/H019/H021 route evidence, amplifies the top `8` route-core
+  rows, rolls back the bottom `22` marker-only rows to H042 for non-Q2 targets,
+  damps the middle `15`, and freezes Q2. This is a high-risk HS-JEPA translator
+  test: a win means the row-state latent needs a route-core classifier; a loss
+  means H057's uniform full-vector action is stronger than the current rank
+  split.
 - External reference note: the attached high-scoring `submission_v106_sleep_state_conditioned_memory.csv` document reports public LB `0.5703952266` from same-subject sleep-state/sensor-quality-conditioned memory. That supports the broader repeated-subject world model, but H042 is lower by `0.0024904018`.
 
 Current post-H012 status:

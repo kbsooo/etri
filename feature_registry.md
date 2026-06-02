@@ -4,6 +4,32 @@
 
 Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature family는 어떤 숨은 구조를 겨냥하는지, label signal인지 split signal인지, 폐기 조건이 무엇인지 함께 관리한다.
 
+## H060 Feature Update
+
+### F-H060. Route-core consensus latent
+
+- Hidden structure: H057's `45` public-positive Q2-support rows may be a
+  heterogeneous set: a compact full-state route core, weak Q2 marker-only rows,
+  and middle rows.
+- Candidates: H055 posterior gain, H036 public-world score and sign agreement,
+  H020 joint-vector world score, H019 row-public score, H021 raw human-state
+  score/confidence, plus route rank splits over the H057 support.
+- Label vs split test: Q2 is frozen and only non-Q2 translation changes. The
+  public question is whether cross-view route evidence beats the uniform H057
+  posterior-listener action.
+- Adopt if: H060 improves over H057 or H059 in public feedback, especially with
+  Q2 unchanged. That would prove H057 support needs a route-core classifier.
+- Drop if: H060 worsens materially. That would mean current route ranks are not
+  action-safe and H057's uniform full-vector state is the stronger translator.
+- Current evidence: route consensus sharply separates rows. The top `8` rows
+  include the id06 2024-08-20..25 cluster plus id02/id03/id07 high-evidence
+  rows; the bottom `22` rows have weak H055/H036/H020/H019/H021 agreement.
+  Promoted H060 changes `270` cells vs H057, freezes Q2, and passes upload
+  validation.
+- Policy: use this latent as a high-information public sensor. Do not treat it
+  as a safe local-CV feature until public feedback resolves the H057-vs-H060
+  conflict.
+
 ## H034 Feature Update
 
 ### F-H034. Row-vector route features

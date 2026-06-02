@@ -400,3 +400,6 @@ hitl/h058_private_tail_ejection_jepa/submission_h058_*.csv
 
 # H059 materialized episode-spread sweep files are reproducible from the script.
 hitl/h059_episode_spread_fullvector_jepa/submission_h059_*.csv
+
+# H060 materialized route-core split sweep files are reproducible from the script.
+hitl/h060_routecore_state_split_jepa/submission_h060_*.csv

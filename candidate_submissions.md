@@ -26,7 +26,19 @@ Previous public frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607
 
 H057 improves over H042/H050 by `0.0001572309` and over H012 by `0.0003758892`. H012 remains the base public-equation anchor, H042 remains the Q2 row anchor, and H057 is now the reference public frontier unless private-risk considerations dominate final selection.
 
-Current pending high-risk sensor: `submission_h059_episode_r3_fullvector_cb67de4b_uploadsafe.csv`.
+Current pending high-risk sensor: `submission_h060_routecore_state_split_16c7766d_uploadsafe.csv`.
+
+Reason: H060 is the first route-split challenge to the H057 law. It does not
+ask for a small improvement. It asks whether the public-positive H057 row-state
+support is a homogeneous `45`-row state or a heterogeneous mixture of a compact
+route core plus Q2 marker-only rows. It freezes Q2, amplifies the top `8`
+route-core rows, rolls back the bottom `22` non-Q2 marker rows to H042, and
+damps the middle `15`. A public win would upgrade HS-JEPA from "row-state
+translator" to "route-core classifier + action translator"; a public loss would
+kill the simple route-consensus split and strengthen H057's uniform full-vector
+state law.
+
+Previous pending episode-spread sensor: `submission_h059_episode_r3_fullvector_cb67de4b_uploadsafe.csv`.
 
 Reason: H059 is the first H057-base expansion and directly tests whether the
 validated compact row-state is actually a same-subject temporal episode. H058

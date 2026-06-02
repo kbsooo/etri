@@ -4,6 +4,28 @@
 
 현재 목표는 CV 평균이 아니라 hidden-public transfer 가능성을 stress로 판정하는 것이다.
 
+## H060 Update: Route-Core Split Stress
+
+H060 is not a random CV improvement claim. It is a conflict stress between the
+H057 uniform posterior-listener law and a multi-view route-consensus law.
+
+- Base: H057 public frontier `0.5677475939`.
+- Promoted file: `submission_h060_routecore_state_split_16c7766d_uploadsafe.csv`.
+- Route-core amplified rows: `8`.
+- Marker rollback rows: `22`.
+- Middle damped rows: `15`.
+- Changed cells vs H057: `270`; changed rows vs H057: `45`.
+- Changed cells vs H042: `138`.
+- Q2 changed vs H057: `0`.
+- H055 listener delta vs H057: `+0.000111180`.
+- Upload validation: `True`.
+
+Stress interpretation: H060 passes shape/key/probability upload stress and
+multi-view route separation, but it fails the simple H055 continuation stress
+by design. A public win would mean the H055 listener was over-smoothing H057's
+support; a public loss would mean rank-based route splitting is not an
+action-safe translator.
+
 ## H034 Update: Row-Vector Route Stress
 
 H034 tests the next abstraction after H033: use a whole row's 7-target route as

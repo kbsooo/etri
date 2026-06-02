@@ -28,6 +28,8 @@ E48에서 `submission_mixmin_0c916bb4.csv`가 public `0.5763066405`를 기록해
 - H033은 그 주변 phase sibling 실패가 learnable contrast임을 보였지만, 독립 cell coefficient로 음수 비용 편집을 적용하는 것은 action-safe하지 않음을 보였다.
 - H034는 row-vector route abstraction에서 sibling failure를 더 잘 학습했지만, first-order row-route edit도 action-safe하지 않음을 보였다.
 - H042는 H024가 막은 작은 Q2 phase move가 public-positive일 수 있음을 보였다.
+- H057은 H042의 Q2-support row가 Q2만이 아니라 full non-Q2 hidden human-state vector를 운반할 수 있음을 보였다.
+- H060은 그 H057 support가 균일한 하나의 state인지, route-core와 marker-only row가 섞인 이질 support인지를 가르는 센서다. H060은 top `8` route-core row를 amplify하고 bottom `22` marker row를 rollback하며, Q2는 freeze한다.
 - 0.54 진입을 막는 핵심 병목은 이제 hidden state 발견 자체보다, H012 같은 singular public-equation basin의 정확한 row-target identity를 private-safe/invariant hidden state로 재구성하고 그 exact phase를 확장 가능한 action law로 번역하는 문제다. 단순 posterior-completion, scalar gate, train-action health, smooth public-gradient, target-level calibration, dense phase sweep, first-order cellwise phase-lock edit, first-order row-route top-k edit은 현재 반증되었지만, target-isolated tiny Q2 phase branch는 아직 살아 있다.
 
 ## 관계 그래프
@@ -67,6 +69,12 @@ known public interventions
   -> first-order cell edit not action-safe
   -> row-vector route failures highly learnable
   -> first-order row-route edit not action-safe
+
+H042/H057 Q2-row support
+  -> compact full-vector row-state validated
+  -> H060 route-core split
+  -> if public-positive: hidden state needs route-core classifier
+  -> if public-negative: uniform H057 full-vector state is stronger than rank split
 ```
 
 ## 가설 목록

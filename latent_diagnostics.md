@@ -4,6 +4,32 @@
 
 이 문서는 I-JEPA/LeJEPA 아이디어를 그대로 복제하지 않고, 이 대회 데이터의 hidden-DGP 탐색에 맞춰 변형한 latent diagnostic 기록이다.
 
+## H060 Route-Core Split Diagnostic
+
+H060 turns H057's public-positive row-state support into a latent route
+classification problem. The context is the `45` H042/H057 Q2-support rows; the
+target representation is whether a row should carry full non-Q2 state
+translation, only Q2 marker identity, or a damped middle action.
+
+- Route evidence views: H055 posterior gain, H036 public-world cell score/sign
+  agreement, H020 joint-vector world score, H019 row-public score, H021 raw
+  human-state prior score/confidence.
+- Promoted route-core rows: `8`.
+- Marker rollback rows: `22`.
+- Middle damped rows: `15`.
+- Changed cells vs H057: `270`.
+- Changed cells vs H042: `138`.
+- Q2 changed vs H057: `0`.
+- H055 posterior listener delta vs H057: `+0.000111180`.
+- Promoted file:
+  `submission_h060_routecore_state_split_16c7766d_uploadsafe.csv`.
+
+LeJEPA diagnosis: H060 deliberately separates representation health from
+action health. The route-consensus latent is multi-view and non-collapsed, but
+it contradicts the H055 uniform listener. Public feedback will decide whether
+cross-view route geometry is a better action translator than the single
+posterior listener on H057's support.
+
 ## H034 Row-Vector Route Diagnostic
 
 H034 lifts H033's phase-lock representation from cell level to row-vector route

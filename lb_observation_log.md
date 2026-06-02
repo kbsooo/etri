@@ -8,6 +8,30 @@ Public LB는 최적화 target이 아니라 hidden public subset과 calibration s
 
 ## Public-Free Post-H012 Observation
 
+H060 is a public-free route-core split observation after H057. It tests whether
+H057's validated full-vector row-state support is homogeneous or a mixture of
+true route-core rows and weak Q2 marker rows.
+
+- Base: H057 public frontier `0.5677475939`.
+- Promoted file: `submission_h060_routecore_state_split_16c7766d_uploadsafe.csv`.
+- Route evidence used: H055 posterior gain, H036 public-world score/sign
+  agreement, H020 joint-vector score, H019 row-public score, H021 raw
+  human-state prior score/confidence.
+- Route-core amplified rows: `8`.
+- Marker rollback rows: `22`.
+- Middle damped rows: `15`.
+- Changed cells vs H057: `270`; changed rows vs H057: `45`.
+- Changed cells vs H042: `138`.
+- Q2 changed vs H057: `0`.
+- H055 posterior delta vs H057: `+0.000111180`.
+- Upload validation: `True`.
+
+Signal: H060 intentionally rejects the H055-uniform listener where it conflicts
+with cross-view route evidence. If public improves, H057's support is
+heterogeneous and HS-JEPA needs a route-core classifier. If public fails, the
+simple route-consensus split is false and H057's uniform full-vector action is
+the stronger public law.
+
 H034 is a public-free row-route observation. It tests whether the failed H032
 siblings become actionable when the atomic unit is a row's full 7-target route
 instead of an independent cell.
