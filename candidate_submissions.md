@@ -9187,3 +9187,43 @@ Its value is that it separates three worlds:
 - H137 > H136: tail toxicity is directional; build a counterfield decoder.
 - H136 > H137: tail toxicity is one-sided/nonlinear; prune, do not invert.
 - H135 > both: completion tail was real route signal.
+
+## H138 One-Sided Toxicity Boundary Assignment
+
+Generated file:
+
+`submission_h138_boundary_52b26210_uploadsafe.csv`
+
+Worldview: H088 relief is not action-grade by itself.  It becomes public/private
+safe only if the decoder pairs a toxicity-relief action with a separate
+margin-repair action.
+
+Evidence:
+
+- selected candidate: `h138_boundary_pair_g025_52b26210`;
+- start field: H136;
+- changed cells vs H136: `3`;
+- actions:
+  - row `207` S2 toxicity relief `-0.0137500000`;
+  - row `135` Q3 margin repair `-0.0095836413`;
+  - row `135` S2 margin repair `+0.0059310198`;
+- route delta vs H136: `+0.000002453`;
+- H098/model delta vs H136: `+0.000001352`;
+- H088 delta vs H136: `-0.001088214`;
+- margin delta vs H136: `+0.000064141`;
+- H088-axis cosine: `-0.063220879`;
+- good-bad margin: `0.159505191`;
+- upload-safe: `True`.
+
+Submission priority:
+
+This is a stronger counterfield branch test than H137 because it fixes H137's
+main weakness: H137 improves H088 but loses margin.  H138 improves H088 while
+keeping the margin delta positive.
+
+Public interpretation:
+
+- H138 > H136/H137: HS-JEPA should become a role-aware row-target equation
+  solver with toxicity-relief and margin-repair heads.
+- H137 > H138: row135 repair is false; the counterfield should remain local.
+- H136 > both: H088 counterfields are stress diagnostics only, not action-grade.

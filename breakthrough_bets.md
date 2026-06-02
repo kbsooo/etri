@@ -2257,3 +2257,26 @@ H137 says:
 
 This is not the next first-choice public score candidate unless H136 has already
 been checked.  It is a prepared diagnostic for the next branch.
+
+### H138 Update
+
+H138 upgrades the counterfield branch from diagnostic to a small role-aware
+assignment solver.
+
+| Bet | File | Worldview | Local evidence | Risk |
+| --- | --- | --- | --- | --- |
+| H138 | `submission_h138_boundary_52b26210_uploadsafe.csv` | H088 relief is safe only when paired with row135 margin repair | row207 S2 + row135 Q3/S2, H088 delta `-0.001088214`, margin delta `+0.000064141`, route/H098 costs stay under the one-sided caps | public may still treat H088 relief as diagnostic noise, not action signal |
+
+This is a bigger architectural bet than H137:
+
+```text
+H137:
+  counterfield direction exists, but it loses margin.
+
+H138:
+  counterfield direction needs a second role head that repairs the boundary.
+```
+
+If H138 wins publicly, the next 0.53-oriented branch should search for a full
+toxicity-relief / margin-repair / route-benefit assignment equation rather than
+another context encoder or blend.

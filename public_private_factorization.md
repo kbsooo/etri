@@ -2548,3 +2548,50 @@ Interpretation:
 This keeps H088 in its intended role.  H137 is not saying "follow H088 as an
 action head."  It says H088 can identify a narrow counterfield candidate; the
 candidate still needs margin and route constraints to remain action-grade.
+
+## H138 Public/Private Factorization Update
+
+H138 tests the missing decoder layer after H137: an H088-relief action can be
+real but still unsafe unless paired with a repair action.
+
+Observed H138 factorization:
+
+- selected file: `submission_h138_boundary_52b26210_uploadsafe.csv`;
+- selected candidate: `h138_boundary_pair_g025_52b26210`;
+- start field: H136;
+- toxicity-relief atom: row `207` S2 `-0.0137500000`;
+- margin-repair atoms:
+  - row `135` Q3 `-0.0095836413`;
+  - row `135` S2 `+0.0059310198`;
+- changed cells vs H136: `3`;
+- delta vs H136:
+  - route `+0.000002453`;
+  - H098/model `+0.000001352`;
+  - H088 `-0.001088214`;
+  - margin `+0.000064141`.
+
+Key diagnostic:
+
+```text
+row207 S2 alone:
+  H088 improves, margin worsens
+
+row135 Q3/S2 alone:
+  margin improves, H088 only slightly improves
+
+row207 S2 + row135 Q3/S2:
+  H088 improves and margin stays positive
+```
+
+Interpretation:
+
+The public/private equation is unlikely to be a single scalar "good action"
+head.  The current evidence favors a role-aware assignment field:
+
+```text
+toxicity-relief head != margin-repair head
+```
+
+This is a concrete HS-JEPA architecture update.  The representation should
+predict not only hidden row state, but also which row-target action role is
+safe under the observation equation.

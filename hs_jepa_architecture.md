@@ -2845,3 +2845,42 @@ HS-JEPA action decoder
 
 This clarifies the decoder hierarchy: counterfields are subordinate diagnostic
 actions, not primary H088-driven heads.
+
+### H138: Role-Aware Boundary Decoder
+
+H138 adds the missing role assignment layer.  A counterfield is not accepted
+because it improves H088; it is accepted only when another action repairs the
+public/private boundary it damages.
+
+H138 evidence:
+
+- candidate: `submission_h138_boundary_52b26210_uploadsafe.csv`;
+- selected solver: `h138_boundary_pair_g025_52b26210`;
+- start field: H136;
+- toxicity-relief role: row `207` S2;
+- margin-repair role: row `135` Q3/S2;
+- changed cells vs H136: `3`;
+- H088 delta vs H136: `-0.001088214`;
+- margin delta vs H136: `+0.000064141`;
+- route delta vs H136: `+0.000002453`;
+- H098/model delta vs H136: `+0.000001352`.
+
+Architecture implication:
+
+```text
+HS-JEPA context encoder
+  -> hidden human-state residue
+  -> row-target action atoms
+  -> role classifier:
+       route-benefit
+       toxicity-relief
+       margin-repair
+       stress-decoy
+  -> public/private equation solver
+  -> emit only role-compatible assignments
+```
+
+The important update is that "safe action" is not a scalar.  H138 makes it a
+small equation over roles.  This is closer to the intended HS-JEPA formulation:
+predict hidden human-state representation, then solve which row-target action
+roles are compatible under the observation equation.

@@ -12889,3 +12889,63 @@ H137 = prune tail + tiny row207 S2 counterfield
 If H137 beats H136 publicly, HS-JEPA needs a counterfield decoder.  If H136
 beats H137, tail toxicity is one-sided/nonlinear and pruning is the right
 translation.
+
+## H138 One-Sided Toxicity Boundary HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h138_one_sided_toxicity_boundary_hsjepa/h138_report.md`
+- `hitl/h138_one_sided_toxicity_boundary_hsjepa/h138_decision.csv`
+- `hitl/h138_one_sided_toxicity_boundary_hsjepa/h138_action_metrics.csv`
+- `hitl/h138_one_sided_toxicity_boundary_hsjepa/h138_candidates.csv`
+- `submission_h138_boundary_52b26210_uploadsafe.csv`
+
+Worldview:
+
+```text
+H088 relief is not action-grade by itself.  A public/private-safe assignment may
+need one row-target action that relieves toxicity and another row-target action
+that repairs margin.
+```
+
+Observed result:
+
+- promoted candidate: `h138_boundary_pair_g025_52b26210`;
+- root file: `submission_h138_boundary_52b26210_uploadsafe.csv`;
+- start field: H136;
+- changed cells vs H136: `3`;
+- selected actions:
+  - row `207` S2 toxicity relief: `-0.0137500000` logit move vs H136;
+  - row `135` Q3 margin repair: `-0.0095836413` logit move vs H136;
+  - row `135` S2 margin repair: `+0.0059310198` logit move vs H136;
+- delta vs H136:
+  - route: `+0.000002453`;
+  - H098/model: `+0.000001352`;
+  - H088: `-0.001088214`;
+  - margin: `+0.000064141`;
+- final H088-axis cosine: `-0.063220879`;
+- final good-bad margin: `0.159505191`;
+- upload-safe validation passed.
+
+Negative controls:
+
+- H137's `row207` S2 relief alone improves H088 but loses margin.
+- stronger row135 repair has better margin but misses the H098 cap.
+- `row131` stress-decoy pair fails the one-sided boundary score.
+
+Interpretation:
+
+H138 is the first local evidence that the decoder should not choose between
+"prune" and "invert."  It should assign roles:
+
+```text
+row207 S2 = toxicity relief
+row135 Q3/S2 = margin repair
+```
+
+If H138 beats H136/H137 publicly, the next HS-JEPA branch should explicitly
+learn a row-target toxicity field plus a repair/assignment field.  If H136
+still wins, counterfields remain stress diagnostics rather than action-grade
+submissions.
