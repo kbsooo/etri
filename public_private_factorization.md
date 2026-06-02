@@ -2640,3 +2640,53 @@ safe assignment = locked route core + toxicity relief atoms + repair atom
 
 This strengthens the HS-JEPA thesis.  The decoder should predict action roles,
 not just action amplitudes.
+
+## H140 Public/Private Factorization Update
+
+H140 stress-tests H139 by dropping out the row `207` H088-heavy atom.  It asks
+whether row207 is an action-grade toxicity relief atom or a diagnostic shortcut.
+
+Observed H140 factorization:
+
+- selected file: `submission_h140_roledrop_a5d0258f_uploadsafe.csv`;
+- source candidate: `h139_a5d0258f`;
+- selected under five views:
+  - H088-heavy stress;
+  - no-H088 margin/H098;
+  - H098-tight;
+  - route-tight;
+  - simplicity / row207 dropout;
+- selected atoms:
+  - row `131` S2 toxicity relief;
+  - row `70` Q3 margin repair;
+  - row `135` Q3/S2 margin repair;
+- deliberately absent:
+  - row `207`;
+- delta vs H136:
+  - route `+0.000002412`;
+  - H098/model `+0.000001699`;
+  - H088 `-0.001529738`;
+  - margin `+0.000482990`.
+
+Key diagnostic:
+
+```text
+H139:
+  max H088 relief with row207 present
+
+H140:
+  sensor-dropout robust margin frontier with row207 absent
+```
+
+Interpretation:
+
+H139 and H140 form a public sensor pair.  The question is no longer whether
+role atoms exist; the question is which observation equation should select
+them:
+
+```text
+H139 selector = H088-heavy action equation
+H140 selector = H088-dropout robustness equation
+```
+
+This is exactly the public/private ambiguity the HS-JEPA decoder must resolve.

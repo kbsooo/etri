@@ -9266,3 +9266,44 @@ Public interpretation:
   equations; row70/row131 are real action atoms.
 - H138 > H139: row70/row131 are local equation artifacts; keep row135 repair.
 - H136 > H138/H139: counterfield roles are diagnostic only, not action-grade.
+
+## H140 Sensor-Dropout Role Frontier
+
+Generated file:
+
+`submission_h140_roledrop_a5d0258f_uploadsafe.csv`
+
+Worldview: H139 may be too H088-heavy because it keeps row207.  H140 drops the
+row207 atom and selects the H139 candidate that survives five sensor-dropout
+views: H088-heavy, no-H088, H098-tight, route-tight, and simplicity/dropout.
+
+Evidence:
+
+- selected source candidate: `h139_a5d0258f`;
+- changed cells vs H136: `4`;
+- actions:
+  - row `135` Q3/S2 margin repair;
+  - row `70` Q3 margin repair;
+  - row `131` S2 toxicity relief;
+  - row `207` deliberately absent;
+- route delta vs H136: `+0.000002412`;
+- H098/model delta vs H136: `+0.000001699`;
+- H088 delta vs H136: `-0.001529738`;
+- margin delta vs H136: `+0.000482990`;
+- sensor-dropout survival score: `37.132910`;
+- mean view rank: `1.8`;
+- max view rank: `2.0`;
+- upload-safe: `True`.
+
+Submission priority:
+
+High-information counter-submission to H139.  H139 tests whether row207 H088
+relief is action-grade.  H140 tests whether row207 is over-selected and a
+margin/H098/route-robust frontier is safer.
+
+Public interpretation:
+
+- H140 > H139: H088-heavy row207 was a diagnostic shortcut; robust role survival
+  is the right decoder objective.
+- H139 > H140: row207 H088 relief is a real public action atom.
+- H136 > both: role frontier still has not become action-grade.

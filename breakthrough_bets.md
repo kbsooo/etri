@@ -2304,3 +2304,22 @@ locked route core + multiple toxicity-relief atoms + one repair atom
 
 If H139 wins, the next big bet should scale this role algebra rather than add
 more tabular features.
+
+### H140 Update
+
+H140 is the sensor-dropout counter-bet to H139.
+
+| Bet | File | Worldview | Local evidence | Risk |
+| --- | --- | --- | --- | --- |
+| H140 | `submission_h140_roledrop_a5d0258f_uploadsafe.csv` | H139's row207 H088-heavy atom may be a diagnostic shortcut; robust role frontier should survive without it | selected across H088-heavy, no-H088, H098-tight, route-tight, and simplicity/dropout views; row207 absent; margin delta `+0.000482990`, H088 delta `-0.001529738` | gives up the strongest H088 relief from H139; if row207 is real public action, H140 will underperform |
+
+H139/H140 form a clean public sensor pair:
+
+```text
+H139 = row207-heavy, maximize H088 relief
+H140 = row207-dropout, maximize robust public/private safety
+```
+
+This is a better information experiment than another small coefficient sweep.
+The public result will tell us whether the next 0.53 branch should scale H088
+relief atoms or build sensor-dropout robust assignment equations.

@@ -13011,3 +13011,63 @@ its larger stress-decoy bundle.
 If H139 beats H138 publicly, the next solver should search for a larger
 toxicity-relief/repair role equation.  If H138 beats H139, row70/row131 are
 local sensor artifacts and the smaller row135 repair pair is safer.
+
+## H140 Sensor-Dropout Role Frontier HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h140_sensor_dropout_role_frontier_hsjepa/h140_report.md`
+- `hitl/h140_sensor_dropout_role_frontier_hsjepa/h140_decision.csv`
+- `hitl/h140_sensor_dropout_role_frontier_hsjepa/h140_sensor_dropout_scores.csv`
+- `submission_h140_roledrop_a5d0258f_uploadsafe.csv`
+
+Worldview:
+
+```text
+H139 may have over-selected the H088 stress diagnostic through row207.  If H088
+is only a diagnostic, a safer action-grade frontier should survive after
+dropping out row207 and reranking by margin, H098, route, and simplicity views.
+```
+
+Observed result:
+
+- promoted candidate: `h139_a5d0258f`;
+- root file: `submission_h140_roledrop_a5d0258f_uploadsafe.csv`;
+- source file: `hitl/h139_role_atom_assignment_equation_hsjepa/submission_h139_a5d0258f.csv`;
+- start field: H136;
+- changed cells vs H136: `4`;
+- selected role atoms:
+  - row `135` Q3/S2 margin repair;
+  - row `70` Q3 margin repair;
+  - row `131` S2 toxicity relief;
+  - row `207` deliberately dropped out;
+- delta vs H136:
+  - route: `+0.000002412`;
+  - H098/model: `+0.000001699`;
+  - H088: `-0.001529738`;
+  - margin: `+0.000482990`;
+- sensor-dropout survival score: `37.132910`;
+- mean view rank: `1.8`;
+- max view rank: `2.0`;
+- upload-safe validation passed.
+
+Comparison:
+
+```text
+H139:
+  row207 + row131 toxicity relief, row70 repair
+  H088 delta -0.002418, margin delta +0.000119
+
+H140:
+  row207 dropped, row135 + row70 repair, row131 relief
+  H088 delta -0.001530, margin delta +0.000483
+```
+
+Interpretation:
+
+H140 is a direct negative-control pair for H139.  If H140 wins publicly, the
+row207 H088-heavy atom was over-selected by the diagnostic and the real
+public/private equation rewards robust margin/H098/route survival.  If H139
+wins, row207 H088 relief is action-grade and should be scaled.

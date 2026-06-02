@@ -2924,3 +2924,46 @@ context/state encoder
 This is the current strongest HS-JEPA formulation.  The main learnable object is
 no longer a better feature embedding; it is the row-target action-role equation
 that decides which representation-induced actions are public/private safe.
+
+### H140: Sensor-Dropout Selector
+
+H140 adds a validation layer to the H139 role-atom solver.
+
+Since H088 is only a stress diagnostic, a role equation that wins only by
+maximizing H088 relief may be a shortcut.  H140 reranks the H139 candidate
+frontier under multiple sensor-dropout views and promotes the candidate that
+survives without row `207`.
+
+H140 evidence:
+
+- candidate: `submission_h140_roledrop_a5d0258f_uploadsafe.csv`;
+- selected source: `h139_a5d0258f`;
+- row `207`: absent by design;
+- toxicity-relief atom: row `131` S2;
+- margin-repair atoms: row `70` Q3 and row `135` Q3/S2;
+- changed cells vs H136: `4`;
+- H088 delta vs H136: `-0.001529738`;
+- margin delta vs H136: `+0.000482990`;
+- route delta vs H136: `+0.000002412`;
+- H098/model delta vs H136: `+0.000001699`.
+
+Architecture implication:
+
+```text
+role atom solver
+  -> candidate frontier
+  -> sensor-dropout selector:
+       H088-heavy view
+       no-H088 view
+       H098-tight view
+       route-tight view
+       simplicity / row207 dropout view
+  -> public sensor submission pair
+```
+
+H140 does not replace H139.  Together they define the decoder's next critical
+uncertainty:
+
+```text
+Is row207 H088 relief action-grade, or is robust H088-dropout survival safer?
+```
