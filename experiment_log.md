@@ -11008,3 +11008,73 @@ Public interpretation:
   consensus averaging removes useful structure;
 - if all H103-H108 lose, this whole solver basis is diagnostic only and the
   next breakthrough must discover a new public subset sensor.
+
+## H109 Decoder-Coefficient Equation Solver HS-JEPA
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h109_coeff_54147083_uploadsafe.csv`
+
+Worldview:
+
+```text
+Complete HS-JEPA decoder submissions can be treated as coefficient basis
+vectors of one public/private row-target action equation.  The safe action is
+not necessarily the cell-wise jury intersection; it may be a sparse coefficient
+composition that cancels toxic branch components and preserves only the
+assignment kernel.
+```
+
+Method:
+
+- collect H103-H107 source candidate actions plus H108 as a meta-decoder
+  witness (`20` candidates across `6` families);
+- use the H108 jury table as the row-target support manifold;
+- fit coefficient-style field moves under H098 cell-equation, H100
+  route-basis, H102 bad-axis, and H088 toxicity constraints;
+- decode the dense coefficient field back into sparse row-target assignments;
+- promote the candidate with the best H109 score and upload-safe validation.
+
+Observed result:
+
+- selected candidate: `h109_kernel_coeff_focus_c48_t7_54147083`;
+- generated root file: `submission_h109_coeff_54147083_uploadsafe.csv`;
+- source candidates / families: `20` / `6`;
+- selected coefficient terms: `4`;
+- selected term families: `h105`;
+- selected coefficient sum: `2.100000`;
+- submitted cells / rows: `4` / `2`;
+- selected rows: `146,164`;
+- changed target cells: Q1 `1`, Q2 `0`, Q3 `0`, S1 `2`, S2 `0`,
+  S3 `0`, S4 `1`;
+- H098 cell-equation predicted delta vs H057: `+0.000015`;
+- route-basis predicted delta vs H057: `-0.001862`;
+- full field H098 predicted delta vs H057: `-0.000029`;
+- full field route-basis predicted delta vs H057: `-0.004404`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.005077`;
+- cumulative good-minus-bad margin: `+0.021017`;
+- selected mean decoder-family count: `4.250000`;
+- selected mean family consensus: `1.000000`;
+- upload-safe validation passed.
+
+Important diagnostic:
+
+H109 did not discover a broad coefficient composition.  Under public/private
+stress it collapsed almost completely into the H105-derived id06/id07 kernel:
+only four row-target cells survived.  That is meaningful.  It says the current
+action-grade signal may be extremely sharp, and coefficient solving is useful
+only if it sharpens the kernel rather than spreading it.
+
+Public interpretation:
+
+- if H109 improves over H108, coefficient-decoded sparse kernels are closer to
+  the hidden action equation than decoder-family intersection;
+- if H108 beats H109, family-level cell intersection is safer than coefficient
+  collapse;
+- if H105 beats H109, H109 over-sharpened the H105 kernel and removed useful
+  cells;
+- if H103/H104 beat H109, broad portfolio/residual fields still carry the live
+  public/private structure.

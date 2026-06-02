@@ -1576,3 +1576,53 @@ jury view:
 If H108 works, the paper architecture should present HS-JEPA as a
 multi-decoder predictive system with an assignment jury, not as a single latent
 encoder plus one decoder.
+
+## HS-JEPA v3.2: Decoder-Coefficient Equation Solver
+
+H109 adds one more level above the decoder jury:
+
+```text
+H103-H108 decoder submissions
+  -> coefficient basis vectors
+  -> public/private action field
+  -> sparse row-target assignment decoder
+```
+
+This asks whether previous HS-JEPA branches are not alternatives or voters, but
+terms in one equation.  In that view, a safe action can be produced by mixing
+whole decoder vectors and then decoding only the cells that remain public-safe.
+
+H109 evidence:
+
+- candidate: `submission_h109_coeff_54147083_uploadsafe.csv`;
+- source candidates / families: `20` / `6`;
+- selected coefficient terms: `4`;
+- selected term families: `h105`;
+- submitted cells / rows: `4` / `2`;
+- target changes: Q1 `1`, Q2 `0`, Q3 `0`, S1 `2`, S2 `0`, S3 `0`,
+  S4 `1`;
+- route-basis predicted delta vs H057: `-0.001862`;
+- full field route-basis predicted delta vs H057: `-0.004404`;
+- H098 cell-equation predicted delta vs H057: `+0.000015`;
+- bad-axis positive projection: `0.000000`;
+- H088-axis cosine: `-0.005077`;
+- mean decoder-family count: `4.250000`.
+
+Architectural implication:
+
+H109 did not produce a broad coefficient-composed field.  The solver collapsed
+to an H105-derived id06/id07 micro-kernel.  That means HS-JEPA should separate
+two objects:
+
+```text
+latent coefficient field:
+  useful for scoring where action might exist.
+
+action-grade assignment:
+  a much sharper sparse kernel that must survive toxicity constraints.
+```
+
+If H109 works, HS-JEPA v3 should include coefficient solving as a kernel
+sharpening module.  If H108 works better, the architecture should keep the jury
+intersection as the action decoder and use coefficient fields only as
+diagnostics.

@@ -1320,3 +1320,48 @@ Decision rule:
   consensus-based.
 - H108 and all branches lose: H103-H108 are diagnostics, and a new public
   sensor/factor must be found.
+
+### H109 Update
+
+H109 tests whether whole HS-JEPA decoder submissions form a coefficient basis
+for the hidden public/private equation.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H109 | `submission_h109_coeff_54147083_uploadsafe.csv` | safe assignment is a coefficient-decoded kernel from H103-H108 decoder basis vectors | `20` source candidates / `4` cells / `2` rows | route-basis delta `-0.001862`, full-field route delta `-0.004404`, bad-axis positive projection `0.0` | coefficient-kernel bet |
+
+Breakthrough reading:
+
+```text
+H109 is a negative/positive hybrid.  It failed to produce a broad
+coefficient-composed action field, but that failure is informative: the solver
+collapsed to H105-derived id06/id07 cells under public/private stress.  The
+live question is whether the hidden action unit is this tiny coefficient kernel
+or whether the collapse is too sharp for public.
+```
+
+Current high-information submission order:
+
+1. `submission_h108_jury_610a26a0_uploadsafe.csv`
+   - best test of decoder-family intersection as the action equation.
+
+2. `submission_h109_coeff_54147083_uploadsafe.csv`
+   - sharpest test of coefficient-decoded id06/id07 kernel.
+
+3. `submission_h103_shadowcancel_89496ed5_uploadsafe.csv`
+   - broad discrete portfolio-solver branch.
+
+4. `submission_h104_toxicresid_52f826e6_uploadsafe.csv`
+   - broad residual transport branch.
+
+5. `submission_h105_signedcoef_8f0e502e_uploadsafe.csv`
+   - original tiny route-consensus kernel branch.
+
+Decision rule:
+
+- H109 beats H108/H105: build HS-JEPA v3 around coefficient-decoded sparse
+  kernels.
+- H108 beats H109: decoder-family intersection is the safer assignment law.
+- H105 beats H109: coefficient decoding removed useful H105 cells.
+- Broad branches beat H108/H109/H105: kernel solvers are too narrow, and the
+  next big bet must return to public/private portfolio or residual transport.

@@ -7931,3 +7931,47 @@ Public interpretation:
 Priority: very high information value.  This is currently the cleanest
 "system-level" HS-JEPA solver because it tests whether independent decoder
 agreement is the missing public/private safety law.
+
+## H109 Decoder-Coefficient Equation Solver
+
+Generated file:
+
+`submission_h109_coeff_54147083_uploadsafe.csv`
+
+Worldview: complete decoder submissions are coefficient basis vectors of one
+public/private action equation.  The solver should mix H103-H108 branches,
+cancel toxic directions, and decode the remaining field into sparse safe
+row-target assignments.
+
+Evidence:
+
+- selected candidate: `h109_kernel_coeff_focus_c48_t7_54147083`;
+- source candidates / families: `20` / `6`;
+- selected coefficient terms: `4`;
+- selected term families: `h105`;
+- submitted cells / rows: `4` / `2`;
+- target changes: Q1 `1`, Q2 `0`, Q3 `0`, S1 `2`, S2 `0`, S3 `0`,
+  S4 `1`;
+- H098 cell-equation predicted delta vs H057: `+0.000015`;
+- route-basis predicted delta vs H057: `-0.001862`;
+- full field H098 predicted delta vs H057: `-0.000029`;
+- full field route-basis predicted delta vs H057: `-0.004404`;
+- bad-axis weighted positive projection: `0.000000`;
+- H088-axis cosine: `-0.005077`;
+- good-minus-bad margin: `+0.021017`;
+- mean decoder-family count: `4.250000`;
+- mean family consensus: `1.000000`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H108: coefficient decoding beats cell-wise jury intersection; the
+  real action object is a tiny coefficient-recovered kernel;
+- loss to H108: family intersection is safer than coefficient collapse;
+- loss to H105: H109 over-sharpened the H105 kernel;
+- loss to H103/H104: broad portfolio/residual action fields are still more
+  public-faithful than kernel solvers.
+
+Priority: high information value, medium submission priority.  H109 is not a
+new broad breakthrough candidate; it is the sharpest test of whether the
+id06/id07 H105 kernel is the actual action unit.

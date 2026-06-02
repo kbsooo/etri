@@ -1254,3 +1254,53 @@ Failure interpretation:
 - if H108 loses to H105/H106, the true assignment is a sharper kernel than the
   jury can represent;
 - if H108 loses to H107, negative-sensor antipode carries the live information.
+
+## H109 Decoder-Coefficient Factorization
+
+H109 treats entire decoder submissions as coefficient terms in the hidden
+public/private row-target equation.
+
+The factorization is:
+
+```text
+H103-H108 decoder action vectors
+  -> coefficient-composed field
+  -> H108 support manifold
+  -> bad-axis constrained sparse assignment
+```
+
+Observed H109 factorization:
+
+- selected file: `submission_h109_coeff_54147083_uploadsafe.csv`;
+- selected candidate: `h109_kernel_coeff_focus_c48_t7_54147083`;
+- source candidates / families: `20` / `6`;
+- selected coefficient terms: `4`;
+- selected term families: `h105`;
+- submitted cells / rows: `4` / `2`;
+- Q2 cells: `0`;
+- H098 cell-equation predicted delta vs H057: `+0.000015`;
+- route-basis predicted delta vs H057: `-0.001862`;
+- full field H098 predicted delta vs H057: `-0.000029`;
+- full field route-basis predicted delta vs H057: `-0.004404`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.005077`;
+- cumulative good-minus-bad margin: `+0.021017`;
+- mean decoder-family count: `4.250000`;
+- mean family consensus: `1.000000`.
+
+Interpretation:
+
+The coefficient field can look strong before decoding, but the action-grade
+assignment survives only as a very small H105-derived kernel.  This strengthens
+the view that public/private safety is not just a smooth latent direction.  It
+may be a sparse row-target assignment object with hard toxicity boundaries.
+
+Failure interpretation:
+
+- if H109 improves, coefficient-decoded sparse kernels are the right
+  public/private action unit;
+- if H108 improves more, agreement across decoder families matters more than
+  coefficient composition;
+- if H105 improves more, coefficient decoding over-pruned the original kernel;
+- if broad branches improve more, the kernel view is too narrow and public
+  rewards a wider action field.
