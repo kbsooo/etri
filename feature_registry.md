@@ -5385,3 +5385,37 @@ are treated as possible private/noisy tail.
   HS-JEPA.
 - Kill this selector if public worsens: do not use H055 low-listener score alone
   to collapse broad H012/H042 posterior support.
+
+## H059 Feature/Action Registry: Episode-Spread Full Vector
+
+### Feature / Action
+
+`h057_anchor_episode_spread_full_nonq2`
+
+### Hidden Structure Targeted
+
+The action targets same-subject temporal episodes around H042/H057 anchor rows.
+It assumes Q2 identified an episode center and that Q1/Q3/S1-S4 should also
+move on nearby rows with distance decay.
+
+### Label Signal vs Split Signal
+
+- label signal evidence: H057 public win validated the anchor row-state vector;
+- sequence signal evidence: same-subject radius `3` gives a coherent neighbor
+  set across all subjects and H055 posterior likes full non-Q2 propagation;
+- leakage risk: this is public-feedback-derived representation testing, not a
+  general train-label feature.
+
+### Materialization
+
+- base: H057;
+- anchor: H042 Q2-support rows;
+- neighbor mask: same-subject position radius `3`, excluding anchors;
+- target mask: Q1/Q3/S1/S2/S3/S4, Q2 frozen;
+- promoted file: `submission_h059_episode_r3_fullvector_cb67de4b_uploadsafe.csv`.
+
+### Keep / Kill Criteria
+
+- Keep if public improves over H057: human-state latent is episode-level.
+- Kill broad spread if public worsens: H057 row support is precise and future
+  episode experiments need a sharper gate.

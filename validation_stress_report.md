@@ -7401,3 +7401,31 @@ Public-free interpretation stress:
   `120`-cell rollback, because the public question is whether broad tail
   ejection changes the world model.
 - If it fails, do not recycle H055 low-listener rollback as a safe selector.
+
+## H059 Stress Note: Episode-Spread Full-Vector Sensor
+
+Upload and structural checks:
+
+- file: `submission_h059_episode_r3_fullvector_cb67de4b_uploadsafe.csv`;
+- shape: `(250, 10)`;
+- required columns: OK;
+- NaN: `0`;
+- duplicate keys: `0`;
+- probability range: `[0.0000049393, 0.9999967515]`.
+
+Structural stress:
+
+- vs H057: `822` changed cells on `137` rows;
+- vs H042: `1092` changed cells on `182` rows;
+- Q2 changed vs H057: `0`;
+- H057 anchor rows remain unchanged;
+- selected target distribution vs H057: Q1 `137`, Q2 `0`, Q3 `137`,
+  S1 `137`, S2 `137`, S3 `137`, S4 `137`;
+- same-subject distance rows: d1 `62`, d2 `43`, d3 `32`.
+
+Public-free interpretation stress:
+
+- H059 is deliberately high-amplitude. It tests episode-level hidden state, not
+  a small safe extension of H057.
+- If it fails, treat broad temporal spillover as killed unless a new gate can
+  separate true episode neighbors from same-subject noise.

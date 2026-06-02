@@ -3205,3 +3205,31 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
     S3 `85`, S4 `79`;
   - H055-posterior predicted delta vs H042 `+0.000175884`;
   - upload validation passed.
+
+## Public-Free Observation: H059 Episode-Spread Full-Vector HS-JEPA
+
+- submission file prepared:
+  `submission_h059_episode_r3_fullvector_cb67de4b_uploadsafe.csv`
+- public LB: pending
+- public anchors:
+  - H012 `0.5681234831`;
+  - H042/H050 `0.5679048248`;
+  - H057 `0.5677475939`.
+- changed point:
+  - starts from H057;
+  - leaves H057's `45` anchor rows unchanged;
+  - freezes Q2 everywhere;
+  - moves Q1/Q3/S1-S4 on same-subject neighbor rows within position radius `3`;
+  - uses alpha `1.10` with distance decay `1.0/0.55/0.35`.
+- expected LB reaction:
+  - better than H057 means hidden human state is episode-level, not single-row;
+  - worse than H057 means H057's exact row support is sharp and episode spread
+    should be killed or heavily gated.
+- local/public-free observation:
+  - changed cells vs H057 `822`;
+  - changed rows vs H057 `137`;
+  - changed cells vs H042 `1092`;
+  - Q2 changed vs H057 `0`;
+  - distance rows d1 `62`, d2 `43`, d3 `32`;
+  - H055-posterior predicted delta vs H057 `-0.000456867`;
+  - upload validation passed.

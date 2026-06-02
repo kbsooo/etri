@@ -439,3 +439,18 @@ After H057's public win, H058 should be interpreted against the new H057
 frontier: a win over H057 would validate private-tail ejection; a loss mainly
 says the next large bet should extend the compact H057 row-state latent rather
 than roll back H012/H042 tail cells from the older H042 base.
+
+## Latest H059 Branch Note
+
+H059 is the first H057-base expansion. It asks whether the `45` H042/H057
+public-positive rows are isolated events or same-subject lifestyle episode
+markers. It keeps H057's anchor rows unchanged, freezes Q2 everywhere, and
+propagates Q1/Q3/S1-S4 to same-subject neighbor rows within position radius
+`3`, using distance-decayed logit movement toward the H055 posterior.
+
+The promoted upload file is
+`submission_h059_episode_r3_fullvector_cb67de4b_uploadsafe.csv`. It adds `822`
+cells on `137` rows versus H057 and changes `1092` cells versus H042, with Q2
+unchanged. If it improves over H057, HS-JEPA should model human state as a
+temporal episode. If it fails, H057's exact row support is likely much sharper
+than the local posterior suggests.

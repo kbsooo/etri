@@ -26,13 +26,14 @@ Previous public frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607
 
 H057 improves over H042/H050 by `0.0001572309` and over H012 by `0.0003758892`. H012 remains the base public-equation anchor, H042 remains the Q2 row anchor, and H057 is now the reference public frontier unless private-risk considerations dominate final selection.
 
-Current pending high-risk sensor: `submission_h058_private_tail_eject_138bba8f_uploadsafe.csv`.
+Current pending high-risk sensor: `submission_h059_episode_r3_fullvector_cb67de4b_uploadsafe.csv`.
 
-Reason: H058 is not the safest next best candidate after H057; it is a
-public/private tail-splitter sensor from the older H042 base. The next frontier
-candidate to build should use H057 as the base and extend the compact
-row-state support. H047/H048 are now historical support-identity sensors unless
-the user explicitly wants to spend a public slot on a
+Reason: H059 is the first H057-base expansion and directly tests whether the
+validated compact row-state is actually a same-subject temporal episode. H058
+remains a public/private tail-splitter sensor from the older H042 base, but H059
+is now the more aligned next worldview test. H047/H048 are historical
+support-identity sensors unless the user explicitly wants to spend a public slot
+on a
 resolved posterior-completion question.
 
 Reason: after H014-H019 decomposition, H020 is the largest predeclared post-H012 worldview test. It asks whether the validated public-equation posterior should be completed as a row-level 7-target hidden state, not independent cells. Conservative default remains H012; H020 is not a private-safe replacement until public feedback exists. H026 adds no submission candidate because the public/private veto repaired known-anchor ranking but failed public-transfer stress on generated variants.
@@ -6452,3 +6453,40 @@ After H057's public result, the practical benchmark is stricter: H058 needs to
 beat `0.5677475939` to become a frontier candidate. Otherwise it remains a
 tail-splitter sensor and the next frontier work should build on H057 row-state
 support.
+
+## H059 Branch Submission Decision
+
+Promoted file:
+
+`submission_h059_episode_r3_fullvector_cb67de4b_uploadsafe.csv`
+
+### Worldview Bet
+
+H057's `45` public-positive rows are not isolated row events. They may be
+visible centers of same-subject lifestyle episodes, so the non-Q2 human-state
+vector should spill into nearby rows with distance decay.
+
+### Candidate Anatomy
+
+- base: H057;
+- anchor rows: H042's `45` Q2-support rows;
+- action: keep anchor rows unchanged, freeze Q2, move Q1/Q3/S1-S4 on
+  same-subject neighbors within position radius `3`;
+- changed cells vs H057: `822`;
+- changed rows vs H057: `137`;
+- changed cells vs H042: `1092`;
+- Q2 changed vs H057: `0`;
+- distance rows: d1 `62`, d2 `43`, d3 `32`;
+- H055-posterior predicted delta vs H057: `-0.000456867`.
+
+### Why It Is Worth A Public Sensor
+
+This is a clean world-model split. A win means HS-JEPA's human state should be
+episode-level. A loss means H057's support is precise and broad episode spread
+should be killed.
+
+### Public Interpretation
+
+- Better than H057: promote same-subject temporal episode-state HS-JEPA.
+- Worse than H057: keep the compact H057 row-state support and require stronger
+  gates before touching nearby rows.

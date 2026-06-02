@@ -397,3 +397,6 @@ hitl/h057_q2row_fullvector_state_jepa/submission_h057_*.csv
 
 # H058 materialized private-tail ejection sweep files are reproducible from the script.
 hitl/h058_private_tail_ejection_jepa/submission_h058_*.csv
+
+# H059 materialized episode-spread sweep files are reproducible from the script.
+hitl/h059_episode_spread_fullvector_jepa/submission_h059_*.csv

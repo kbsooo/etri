@@ -8063,3 +8063,54 @@ This is intentionally higher-risk than the `120`-cell rollback that H055 likes
 locally. A public win would change the world model toward public/private tail
 splitting. A public loss would kill the current low-listener ejection rule and
 preserve the broad H012/H042 posterior as necessary public signal.
+
+## H059. Episode-Spread Full-Vector HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h059_episode_spread_fullvector_jepa.py`
+- Report: `hitl/h059_episode_spread_fullvector_jepa/h059_report.md`
+- Promoted submission:
+  `submission_h059_episode_r3_fullvector_cb67de4b_uploadsafe.csv`
+
+### Observe
+
+H057 improved public LB by decoding Q1/Q3/S1-S4 only on H042's `45` Q2-support
+rows. Those anchors cover all `10` subjects, and same-subject position radius
+`3` creates `137` neighboring rows. This creates a sharp next question: row
+state may be an episode, not an isolated point.
+
+### Wonder
+
+If Q2 marked a hidden human-state episode, should nearby same-subject days carry
+the same non-Q2 target vector?
+
+### Hypothesis
+
+H059-H: H057 found the visible center of same-subject lifestyle episodes. The
+full non-Q2 vector should propagate to neighboring rows with distance decay.
+
+### Falsification Design
+
+Start from H057. Keep H057 anchor rows unchanged and freeze Q2 everywhere. Move
+Q1/Q3/S1-S4 on same-subject neighbor rows with position distance `1`, `2`, or
+`3` from an H042 anchor row. Use H055 posterior as target representation and
+distance-decayed logit movement.
+
+### Result
+
+Selected `h059_episode_pos_r3_full_nonq2_a1p1_cb67de4b`.
+
+- changed cells vs H057: `822`;
+- changed rows vs H057: `137`;
+- changed cells vs H042: `1092`;
+- Q2 changed vs H057: `0`;
+- distance rows: d1 `62`, d2 `43`, d3 `32`;
+- H055-posterior predicted delta vs H057: `-0.000456867`;
+- upload validation passed.
+
+### Interpretation
+
+This is the first high-amplitude H057-base episode sensor. A public win would
+upgrade HS-JEPA from row-state to temporal episode-state. A public loss would
+kill broad episode spread and force the next branch to keep H057's row support
+precise.

@@ -5685,3 +5685,32 @@ rolls back `500` low-listener unprotected cells toward E247.
 - If H058 improves: promote a public/private tail-splitter node in HS-JEPA.
 - If H058 fails: demote H055 low-listener rollback as a public selector and keep
   broad H012/H042 posterior cells alive until a better splitter exists.
+
+## H059 Update: Same-Subject Episode Spread
+
+### New Hypothesis Node
+
+H059-H: H057's public-positive rows are visible centers of same-subject hidden
+human-state episodes. The full non-Q2 vector should propagate to neighboring
+rows with distance decay while Q2 remains frozen as the anchor.
+
+### Evidence Entering H059
+
+- H057 improved public LB by moving Q1/Q3/S1-S4 on exactly H042's `45`
+  Q2-support rows.
+- The anchor rows appear in all `10` subjects.
+- Same-subject position radius `3` around those anchors yields `137` non-anchor
+  neighbor rows.
+- H055 posterior ranks `pos_r3/full_nonq2/a1.10` as the strongest local
+  episode action with predicted delta `-0.000456867` versus H057.
+
+### Experiment Edge
+
+H059 starts from H057, keeps anchor rows unchanged, freezes Q2 everywhere, and
+moves Q1/Q3/S1-S4 on same-subject neighbor rows within radius `3`.
+
+### State Transition Rules
+
+- If H059 improves: promote temporal episode-state HS-JEPA.
+- If H059 fails: demote broad episode spread and keep H057 row support exact
+  until a stronger episode gate is found.

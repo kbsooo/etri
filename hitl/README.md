@@ -1678,3 +1678,21 @@ candidates had strong H025 health but weaker action-margin evidence.
   improvement validates public/private tail splitting as the next HS-JEPA
   module. Failure means H055 low-listener score is not enough to safely collapse
   the broad H012/H042 posterior.
+
+## H059 Episode-Spread Full-Vector State
+
+- script: `h059_episode_spread_fullvector_jepa.py`
+- report: `h059_episode_spread_fullvector_jepa/h059_report.md`
+- promoted root file:
+  `submission_h059_episode_r3_fullvector_cb67de4b_uploadsafe.csv`
+- purpose:
+  test whether H057's compact row-state is a same-subject temporal episode.
+  H059 starts from H057, freezes Q2, keeps the H057 anchor rows unchanged, and
+  decodes Q1/Q3/S1-S4 on same-subject neighbors within position radius `3`.
+- anatomy:
+  changed cells vs H057 `822`, changed rows `137`, changed cells vs H042
+  `1092`, Q2 changes `0`; distance rows d1 `62`, d2 `43`, d3 `32`.
+- public reading:
+  improvement means the hidden human-state latent is episode-level. Failure
+  means H057's `45` rows are a precise support and broad episode spread should
+  be killed or made much more selective.

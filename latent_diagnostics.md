@@ -1276,3 +1276,26 @@ Diagnostic facts:
 Interpretation: H058 is a geometry/energy test. A public win means the listener
 energy can separate public tail from private tail. A public loss means the
 energy is locally coherent but not safe enough to cut broad H012/H042 support.
+
+## H059 Latent Diagnostic: Episode-Spread Full Vector
+
+H059 treats the H057 row-state latent as a context token and predicts target
+representations for neighboring rows in the same subject sequence. This is the
+closest current translation of JEPA: context is the anchor hidden state, target
+is the masked temporal neighborhood representation, and the prediction is in
+latent/target-vector space rather than raw feature reconstruction.
+
+Diagnostic facts:
+
+- anchor rows: `45`;
+- selected neighbor rows: `137`;
+- selected cells vs H057: `822`;
+- selected target distribution: Q1 `137`, Q2 `0`, Q3 `137`, S1 `137`,
+  S2 `137`, S3 `137`, S4 `137`;
+- distance rows: d1 `62`, d2 `43`, d3 `32`;
+- total changed cells vs H042: `1092`;
+- H055-posterior predicted delta vs H057: `-0.000456867`.
+
+Interpretation: if public accepts this, the HS-JEPA latent is not a point state
+but a same-subject episode state. If public rejects it, H057's latent is sharply
+localized and temporal spread needs a stricter gate.
