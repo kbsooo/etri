@@ -1187,3 +1187,19 @@ decide whether this route signal is real or an action-decoder shortcut.
   - improvement means target-route geometry matters and non-Q2 translation is
     not dead;
   - failure means the H050-derived non-Q2 route surface is a local shortcut.
+
+## H055 Latent Diagnostic: Post-Feedback Listener Posterior
+
+- H055 treats H042/H050 as representation supervision for a new public-listener
+  latent.
+- Geometry checks:
+  - posterior is refit with H042/H050 included;
+  - selected prior is `h020_joint_vector`, not the raw H012 posterior;
+  - Q2 is frozen, so the latent is not Q2 amplitude;
+  - H050-null overlap is `0`, so the latent does not reuse the known
+    public-neutral Q1/Q3 route.
+- Energy interpretation:
+  - improvement means the latent public-listener subset became identifiable
+    after H042/H050 feedback;
+  - failure means the refit posterior is an overconfident public-equation
+    hallucination.

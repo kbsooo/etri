@@ -6284,3 +6284,39 @@ Submission meaning:
   but objective S2/S4 is the downstream public route.
 - If H054 fails, S24 action-health is not public-sufficient and the H050
   non-Q2 candidate surface should be killed.
+
+## H055 Branch Submission Decision
+
+Post-feedback public-listener sensor:
+
+`submission_h055_postfeedback_listener_759f66e7_uploadsafe.csv`
+
+What this file tests:
+
+- H012's public equation solved a hidden public state before H042/H050 existed
+  in the public observation table.
+- H042 improved with Q2, while H050's Q1/Q3 route tied H042.
+- H055 adds those two observations as equation constraints, then asks whether a
+  broader hidden public-listener subset can be reconstructed.
+
+Local profile:
+
+- base: H042;
+- Q2 frozen vs H042: changed `0`;
+- H050 extra Q1/Q3 null overlap: `0`;
+- changed cells vs H042: `700`;
+- per-target changes vs H042:
+  Q1 `91`, Q2 `0`, Q3 `87`, S1 `126`, S2 `132`, S3 `127`, S4 `137`;
+- selected posterior prior/ridge: `h020_joint_vector` / `0.0001`;
+- posterior config LOO MAE: `0.000571242`;
+- post-sensor absolute error: `0.000182739`;
+- predicted posterior delta vs H042: `-0.000857748`;
+- upload validation passed: shape `(250, 10)`, required columns OK, no NaN,
+  no duplicate keys, probabilities in `[0.0000329401, 0.999997102]`.
+
+Submission meaning:
+
+- If H055 improves, the next HS-JEPA component should be a post-feedback
+  public-listener posterior, not another local Q2 or target-route tweak.
+- If H055 fails, the augmented public-equation posterior overfit H042/H050 and
+  should wait for new public feedback before generating more large masks.

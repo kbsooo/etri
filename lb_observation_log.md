@@ -3083,3 +3083,30 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - route delta gain vs H042 `-0.000313524`;
   - H025 score `-4.518126464`;
   - full-known action support `0.500000000`.
+
+## Public-Free Observation: H055 Post-Feedback Public-Listener HS-JEPA
+
+- submission file prepared:
+  `submission_h055_postfeedback_listener_759f66e7_uploadsafe.csv`
+- public LB: pending
+- public anchors:
+  - H012 `0.5681234831`;
+  - H042 `0.5679048248`;
+  - H050 `0.5679048248`.
+- changed point:
+  - adds H042/H050 manual public observations to the equation system;
+  - uses H042 as base;
+  - freezes Q2 exactly;
+  - vetoes all H050 extra Q1/Q3 null cells;
+  - changes `700` non-Q2 cells selected by the post-feedback listener
+    posterior.
+- expected LB reaction:
+  - better than H042 means H042/H050 exposed a hidden public-listener subset;
+  - worse than H042 means the augmented equation posterior overfit and should
+    be paused until more public feedback exists.
+- local/public-free observation:
+  - changed cells vs H042 `700`;
+  - Q2 changed vs H042 `0`;
+  - H050 null overlap `0`;
+  - predicted posterior delta vs H042 `-0.000857748`;
+  - selected config LOO MAE `0.000571242`.

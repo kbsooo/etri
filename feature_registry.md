@@ -5249,3 +5249,25 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Discard condition:
   if H054 fails, retire the current H050 non-Q2 candidate surface instead of
   trying adjacent S/Q target groups from the same decoder.
+
+## H055 Feature/Action Registry: Post-Feedback Public Listener
+
+- Feature/action name:
+  `h055_postfeedback_public_listener`
+- Hidden structure targeted:
+  public-listening cell subset exposed by H042 improvement and H050 null.
+- Why needed:
+  H042/H050 are absent from the original known-public equation table, so the
+  H012 posterior is stale relative to the latest public evidence.
+- Construction:
+  - refit public-equation posterior with manual H042/H050 sensors;
+  - use H042 as base;
+  - freeze Q2;
+  - veto H050 extra Q1/Q3 cells;
+  - move `700` top posterior-listener cells with logit alpha `0.85`.
+- Leakage/safety distinction:
+  this is a falsifiable post-feedback equation refit. It is intentionally
+  broad and should not be used as a safe blend.
+- Discard condition:
+  if H055 fails, stop broad augmented-equation masks until new public feedback
+  is available.

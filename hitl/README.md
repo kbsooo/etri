@@ -1614,3 +1614,16 @@ candidates had strong H025 health but weaker action-margin evidence.
 - public reading:
   improvement means objective S2/S4 is the downstream route. Failure kills the
   current H050 non-Q2 route surface.
+
+## H055 Post-Feedback Public Listener
+
+- script: `h055_postfeedback_public_listener_jepa.py`
+- report: `h055_postfeedback_public_listener_jepa/h055_report.md`
+- promoted root file:
+  `submission_h055_postfeedback_listener_759f66e7_uploadsafe.csv`
+- purpose:
+  add H042/H050 to the public-equation system, refit a hidden public-listener
+  posterior, freeze H042 Q2, and veto H050-null Q1/Q3 cells.
+- public reading:
+  improvement validates post-feedback public-listener inference. Failure means
+  broad equation refits should pause until new public sensors arrive.

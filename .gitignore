@@ -384,3 +384,6 @@ hitl/h052_q2_binary_edge_jepa/submission_h052_*.csv
 
 # H053 materialized Q2 support-reassignment sweep files are reproducible from the script.
 hitl/h053_q2_support_reassignment_jepa/submission_h053_*.csv
+
+# H055 materialized post-feedback public-listener sweep files are reproducible from the script.
+hitl/h055_postfeedback_public_listener_jepa/submission_h055_*.csv

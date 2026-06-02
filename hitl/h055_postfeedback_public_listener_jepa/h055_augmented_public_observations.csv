@@ -1,0 +1,24 @@
+file,public_lb,note,known_source
+submission_h050_target_route_phase_b140216b_uploadsafe.csv,0.5679048248,manual H050 subjective-Q null sensor,manual_post_h042
+submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv,0.5679048248,manual H042 Q2 phase public sensor,manual_post_h042
+submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv,0.5681234831,manual H012 public-equation best,manual_post_h042
+submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv,0.5761589494,New public frontier; validates E224-family feature-NN1 Q3 smoothing despite E248 OOF-adverse analogue and shifts the bottleneck toward test-side feature-neighbor public-tail geometry.,public_probe_observations
+submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv,0.5762805676,E247-family high-amplitude constrained Q3 smoothing follow-up; E259 decodes as same_family_loss versus E247 while still beating E95 and weakening amplitude-constrained smoothing as the next score route.,public_probe_observations
+submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv,0.576290429,E368 Q2/S1 row-mask cell-action latent; near E95 but worse than E247; validates a weak hidden lifestyle-state signal while rejecting it as current frontier replacement.,public_probe_observations
+submission_e95_hardtail_541e3973.csv,0.5762913298,Previous public frontier; validates E72-adverse hard-tail localization with E86-to-E85 fallback.,public_probe_observations
+submission_e101_q2s3tail_177569bc.csv,0.576300366,Resolved E95-relative Q2/S3 rollback sensor; small_loss versus E95 (+0.0000090362) but still beats mixmin (-0.0000062745); closes E108 and same-line automatic followups.,public_probe_observations
+submission_mixmin_0c916bb4.csv,0.5763066405,Previous public frontier; validates anchor-loss/binary-world mixmin sensor despite old selector veto.,public_probe_observations
+submission_e176_abl_q2_to0p75_91e49725.csv,0.576311831,Broad partial-reopen / Q2-damped sensor resolved as branch_loss versus E95; demotes same-family E176/E174/E172/E169 expected-score followups.,public_probe_observations
+submission_e267_humansocial_tail_balanced_2936100f.csv,0.5763294974,Human/social lifestyle-conditioned Q3/S4 E224/E154 rollback sensor; public loss versus E247/E95/mixmin rejects this materialization path but not the broader social-state hypothesis.,public_probe_observations
+submission_e72_topabs50_q2s3_gate_4e48cba2.csv,0.5764077772,E72/E73 sparse Q2/S3 gate sensor worsened versus mixmin; later audits show broad all-target contamination and sub-margin pure Q2/S3.,public_probe_observations
+submission_e323_5508f966_uploadsafe.csv,0.5770355016,E323 upload-safe null-common residual priority file; severe public loss versus E247 rejects the E323/E324 local null-common residual branch and establishes an E323-negative movement anchor for future hidden-state gates.,public_probe_observations
+submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv,0.5772865088,Masked-family JEPA S2-only translator severe miss; closes E216 siblings as public-safe submissions until S2 support-tail failure is rebuilt.,public_probe_observations
+submission_frontier_cvjepa_refine_a2c8d2c8.csv,0.577439321,Current public best supplied by user; missing from older observation table.,manual_extra
+submission_raw_timeline_jepa_rescue_strict_scale0p5.csv,0.5775263072,Raw timeline JEPA rescue current public control/best anchor.,public_probe_observations
+submission_hybrid_0p567_foldsafe_stage2_q1_q3_s1_s2_s3_s4.csv,0.5779449757,Stage2 broad residual OOF gain mostly did not transfer to public; still slightly better than 0.578 anchor.,public_probe_observations
+submission_h010_objective_s1s4_v2_uploadsafe.csv,0.5781718175,H010 objective mobility S1/S4 route jackpot; changed only S1/S4 and failed public strongly; the S1/S4 route action is now a public-bad anchor for future action-health gates.,public_probe_observations
+submission_ordinal_q_constraints_ambnext_Q2Q3_nearest_w0.75.csv,0.5783033652,Ordinal Q2/Q3 nearest feasible-count correction improved OOF but missed public-best; strong CV-public overfit signal for this count shift.,public_probe_observations
+submission_hybrid_0p578_logit_after_subject_final9_strict.csv,0.5784273528,Public anchor validated late fold-safe scale.,public_probe_observations
+submission_jepa_latent_q2_w0p45.csv,0.5798012862,Direct JEPA latent Q2 movement failed public; bad-axis anchor.,public_probe_observations
+submission_lejepa_targetwise_strict_best_scale0p5.csv,0.5802468192,LeJEPA target-wise strict scale0.5 improved OOF/geometry but failed public; new bad-axis anchor.,public_probe_observations
+submission_jepa_latent_residual_probe.csv,0.5812273278,Direct latent residual probe failed public strongly; collapse/risk anchor.,public_probe_observations

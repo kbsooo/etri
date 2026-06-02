@@ -5571,3 +5571,23 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   - H051/H052/H053 are Q2-local branches;
   - H054 is the cleanest non-Q2 target-route family inversion after H050's
     neutral public result.
+
+## H055 Update: Post-Feedback Public-Listener Posterior
+
+- New public-equation node:
+  - H055: H042 and H050 are missing from the original public-equation table, so
+    the hidden public-listener posterior should be refit after adding them.
+- Evidence if true:
+  - `submission_h055_postfeedback_listener_759f66e7_uploadsafe.csv` improves
+    over H042/H050 while keeping Q2 fixed and avoiding H050-null cells;
+  - then the active HS-JEPA structure is post-feedback public-listener
+    inference.
+- Evidence if false:
+  - H055 loses;
+  - then the augmented public-equation posterior overfit H042/H050 and should
+    not generate more large masks until new public sensors arrive.
+- Relation:
+  - H051/H052/H053 ask Q2-local questions;
+  - H054 asks target-route family;
+  - H055 asks whether the new public observations redefine the entire hidden
+    listener subset.

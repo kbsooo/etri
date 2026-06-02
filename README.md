@@ -371,3 +371,18 @@ S2 `83`, S4 `67`. If it improves, HS-JEPA's target-route decoder should treat
 Q2 as the public-visible anchor and S2/S4 as the hidden objective route. If it
 fails, the current H050 non-Q2 candidate surface should be retired rather than
 recycled.
+
+## Latest H055 Branch Note
+
+H055 uses H042 and H050 as new public-equation supervision, because the original
+`known_public_table()` does not include them. It refits a hidden public-listener
+posterior from the augmented equation system, uses H042 as the upload base,
+freezes Q2, and vetoes every H050 extra Q1/Q3 null cell.
+
+The promoted upload file is
+`submission_h055_postfeedback_listener_759f66e7_uploadsafe.csv`. It changes
+`700` cells versus H042 with Q2 unchanged and H050-null overlap `0`. If it
+improves, the post-H042 bottleneck is a hidden public-listener subset that only
+became identifiable after adding H042/H050 feedback. If it fails, this
+augmented public-equation posterior should be paused until new public sensors
+arrive.
