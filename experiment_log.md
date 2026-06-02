@@ -9282,3 +9282,117 @@ into an episode-level HS-JEPA target representation. A public win would upgrade
 HS-JEPA from row-target hard-tail detection to episode-state propagation. A
 public loss would kill broad forced propagation from H077 seeds and imply that
 H077, if real at all, is cell-local rather than an episode state.
+
+## H080. Invariant Action-Core HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h080_invariant_action_core_jepa.py`
+- Report: `hitl/h080_invariant_action_core_jepa/h080_report.md`
+- Promoted diagnostic:
+  `submission_h080_invariant_core_dc4f2613_uploadsafe.csv`
+
+### Observe
+
+H071/H074/H076/H079 expose different views of the hidden correction field. The
+question was whether their intersection is the private-safe action core.
+
+### Hypothesis
+
+H080-H: row-target cells where assignment, anti-shortcut, route-value, and
+episode views agree are the true public/private invariant correction field.
+
+### Result
+
+Selected `h080_allfamily_source_core_c900_dc4f2613`.
+
+- changed cells / rows versus H057: `392` / `116`;
+- public-action predicted delta versus H057: `-0.000656`;
+- posterior delta versus H057: `-0.000457`;
+- responsibility-weighted delta versus H057: `-0.000457`;
+- max positive bad-anchor cosine: `0.0`;
+- mean source count / family count: `18.33` / `3.10`;
+- upload-safe root file validated.
+
+### Interpretation
+
+The invariant intersection is real and safe, but too weak for a breakthrough.
+This weakens the idea that high-consensus private-safe cells alone are the next
+0.53 mechanism.
+
+## H081. Conflict-Ridge HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h081_conflict_ridge_jepa.py`
+- Report: `hitl/h081_conflict_ridge_jepa/h081_report.md`
+- Promoted diagnostic:
+  `submission_h081_conflict_ridge_3ace5fca_uploadsafe.csv`
+
+### Observe
+
+H080 revealed that the largest source-action cells are exactly where q061
+posterior objects. That suggested a possible public/private ridge where q061 is
+too smooth.
+
+### Hypothesis
+
+H081-H: cells with negative source-action contribution but positive q061
+posterior conflict are the hidden public-tail state.
+
+### Result
+
+Selected `h081_top80_h079_tail_3ace5fca`.
+
+- changed cells / rows versus H057: `16` / `15`;
+- target mix: `Q2:7`, `S1:3`, `S2:3`, `S3:3`;
+- public-action predicted delta versus H057: `-0.004365`;
+- posterior delta versus H057: `+0.000099`;
+- max positive bad-anchor cosine: `0.003283`;
+- upload-safe root file validated.
+
+### Interpretation
+
+The conflict ridge is not broad. It collapses back to the H077 hard-tail cells.
+This means the public-action-versus-q061 contradiction exists, but it is sparse.
+
+## H082. Source-Action Field HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h082_source_action_field_jepa.py`
+- Report: `hitl/h082_source_action_field_jepa/h082_report.md`
+- Promoted candidate:
+  `submission_h082_source_action_0e565967_uploadsafe.csv`
+
+### Observe
+
+H080's high-consensus core was safe but weak. H081's q061-conflict subset was
+strong but only `16` cells. The remaining possibility is that consensus and
+posterior filters were over-pruning the broad source-action field.
+
+### Hypothesis
+
+H082-H: the hidden correction target is the broad source-action field implied
+by prior HS-JEPA views. Public/private action should be selected by negative
+source-action contribution first, not by consensus score first.
+
+### Result
+
+Selected `h082_all_action_c880_a100_0e565967`.
+
+- changed cells / rows versus H057: `725` / `144`;
+- target mix: `Q1:97`, `Q2:96`, `Q3:96`, `S1:111`, `S2:116`, `S3:101`,
+  `S4:108`;
+- public-action predicted delta versus H057: `-0.005078`;
+- posterior delta versus H057: `-0.000616`;
+- responsibility-weighted delta versus H057: `-0.000903`;
+- max positive bad-anchor cosine: `0.0`;
+- mean / max absolute probability move versus H057: `0.008056` / `0.158243`;
+- upload-safe root file validated.
+
+### Interpretation
+
+H082 is the strongest new big-bet after H079. It says the missing HS-JEPA layer
+is not a smaller invariant intersection, but a broad action field decoded from
+the ensemble of prior latent views. If public improves materially, HS-JEPA
+should prioritize action-field decoding over consensus filtering. If it fails,
+the public-action sensor is over-broad and H080's safe core is the upper limit
+without new hidden-state evidence.

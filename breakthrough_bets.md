@@ -509,3 +509,26 @@ worldview by more than local tuning:
 - win: HS-JEPA needs an episode-state target representation;
 - neutral: episode support exists but the decoder is too broad;
 - loss: H077 hard-tail state is cell-local or public-sensor overfit.
+
+### H080-H082 Update
+
+These experiments tested whether the next hidden state is an intersection or an
+action field.
+
+| Experiment | File | Cells | Public-action | Posterior | Bad cosine | Reading |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| H080 | `submission_h080_invariant_core_dc4f2613_uploadsafe.csv` | 392 | -0.000656 | -0.000457 | 0.0 | safe but weak |
+| H081 | `submission_h081_conflict_ridge_3ace5fca_uploadsafe.csv` | 16 | -0.004365 | +0.000099 | 0.003283 | real but sparse |
+| H082 | `submission_h082_source_action_0e565967_uploadsafe.csv` | 725 | -0.005078 | -0.000616 | 0.0 | broad, strongest |
+
+Current best big-bet reading:
+
+```text
+The hidden correction target is the broad source-action field,
+not the high-consensus intersection.
+```
+
+H082 is now the strongest post-H079 public sensor. A win promotes action-field
+decoding as HS-JEPA's main module. A loss means the public-action sensor is too
+broad and must be constrained by H080-style consensus or new hidden-state
+evidence.

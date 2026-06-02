@@ -460,3 +460,27 @@ H079 deliberately does not encode one social story directly. It uses H077
 hard-tail anchors as context and decodes an episode-level latent field. Public
 feedback should decide whether the human-state unit is cell-local, row-local,
 or short-episode-local.
+
+## H080-H082 Human-State Reading
+
+H080-H082 shift the human interpretation from "which named story is true?" to
+"which rows/targets are actionable under many hidden-state views?"
+
+- H080 says the safest human-state core is too small/weak.
+- H081 says the dramatic hard-tail state is very sparse.
+- H082 says a broader human action field may exist across many rows and
+  targets: `725` cells on `144` rows move with good posterior and bad-anchor
+  diagnostics.
+
+Human story:
+
+```text
+The hidden state may be an actionability field:
+many row-target states where prior HS-JEPA views agree that the current
+prediction is movable.
+```
+
+If H082 wins, the human-social layer should learn actionability rather than
+direct sleep labels or direct story routes. If it loses, broad source-action
+materialization should be paused and narrower episode/state hypotheses should
+return to priority.

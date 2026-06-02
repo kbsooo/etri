@@ -6904,3 +6904,67 @@ same-subject days should receive a coherent all-target correction field.
   must stay cell-local or require stronger context evidence.
 
 If only one new public slot is available, H079 is more informative than H078.
+
+## H080 Invariant Action-Core Candidate
+
+Promoted file:
+
+`submission_h080_invariant_core_dc4f2613_uploadsafe.csv`
+
+Worldview: the private-safe correction field is the intersection of H071,
+H074, H076, and H079 views.
+
+- changed cells / rows vs H057: `392` / `116`;
+- public-action predicted delta vs H057: `-0.000656`;
+- posterior delta vs H057: `-0.000457`;
+- max positive bad-anchor cosine: `0.0`;
+- upload-safe: `True`.
+
+Interpretation: useful diagnostic, but too weak to be the first public slot.
+
+## H081 Conflict-Ridge Candidate
+
+Promoted file:
+
+`submission_h081_conflict_ridge_3ace5fca_uploadsafe.csv`
+
+Worldview: q061 is wrong on a sparse public-tail route.
+
+- changed cells / rows vs H057: `16` / `15`;
+- target mix: `Q2:7`, `S1:3`, `S2:3`, `S3:3`;
+- public-action predicted delta vs H057: `-0.004365`;
+- posterior delta vs H057: `+0.000099`;
+- max positive bad-anchor cosine: `0.003283`;
+- upload-safe: `True`.
+
+Interpretation: mostly revalidates H077, so lower priority unless we want a
+pure sparse-tail falsification.
+
+## H082 Source-Action Field Candidate
+
+Promoted file:
+
+`submission_h082_source_action_0e565967_uploadsafe.csv`
+
+Worldview: the hidden correction target is the broad source-action field
+implied by prior HS-JEPA views. Consensus/posterior filters were over-pruning
+the useful action.
+
+- changed cells / rows vs H057: `725` / `144`;
+- per-target changes: Q1 `97`, Q2 `96`, Q3 `96`, S1 `111`, S2 `116`,
+  S3 `101`, S4 `108`;
+- public-action predicted delta vs H057: `-0.005078`;
+- posterior delta vs H057: `-0.000616`;
+- responsibility-weighted delta vs H057: `-0.000903`;
+- max positive bad-anchor cosine: `0.0`;
+- max absolute probability move vs H057: `0.158243`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win: HS-JEPA's next module is broad action-field decoding;
+- small loss: gate the same field by family/target variants;
+- large loss: source-action is over-broad and H080-style consensus must be
+  restored.
+
+If one file from H080-H082 is submitted, H082 is the highest-information bet.

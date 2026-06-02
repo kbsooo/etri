@@ -387,3 +387,28 @@ Factorization reading:
   be narrower than all-target q061 propagation;
 - if H079 loses badly, the safe public/private factor remains row-target local,
   and H077-style hard-tail spikes should not be propagated across rows.
+
+## H080-H082 Source-Action Factorization
+
+H080-H082 tested three public/private factor forms:
+
+- intersection factor: cells where all source views agree;
+- conflict factor: cells where public-action and q061 posterior disagree;
+- action-field factor: all cells with negative source-action contribution.
+
+| Experiment | Cells | Public-action delta | Posterior delta | Bad cosine | Reading |
+| --- | ---: | ---: | ---: | ---: | --- |
+| H080 invariant core | 392 | -0.000656 | -0.000457 | 0.0 | safe but weak |
+| H081 conflict ridge | 16 | -0.004365 | +0.000099 | 0.003283 | real but sparse |
+| H082 source-action field | 725 | -0.005078 | -0.000616 | 0.0 | broad, strongest |
+
+Current factorization rule:
+
+```text
+public/private factor is more likely an action field than a strict consensus
+intersection.
+```
+
+This does not prove H082 will win public LB. It does show that the 0.001
+movement bottleneck was not action capacity; it was the gate being too
+conservative.

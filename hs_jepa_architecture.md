@@ -493,3 +493,34 @@ If H079 wins publicly, `z_row_episode` becomes a first-class HS-JEPA target
 representation. If it loses badly, the architecture should keep hard-tail
 state as a sparse cell-level route and avoid forced temporal propagation from
 public-action spikes.
+
+## H080-H082 Action-Field Decoder
+
+H080-H082 add another decoder branch:
+
+```text
+{assignment, anti-shortcut, route-value, episode} views
+  -> source-action field
+  -> consensus / conflict / broad-field decoder
+```
+
+Findings:
+
+1. `z_invariant_core` is safe but weak. H080 changed `392` cells with
+   `-0.000656` predicted public-action delta.
+2. `z_conflict_ridge` is sparse. H081 changed only `16` cells, essentially the
+   H077 hard-tail state.
+3. `z_source_action_field` is the strongest decoder. H082 changed `725` cells
+   with predicted public-action delta `-0.005078`, posterior delta `-0.000616`,
+   and max positive bad-anchor cosine `0.0`.
+
+Architectural implication:
+
+```text
+HS-JEPA should predict an action field over row-target cells,
+not only hidden state support.
+```
+
+If H082 wins publicly, this becomes the main HS-JEPA v1 decoder head. If it
+fails badly, the action-field head is over-broad and must be regularized by
+H080-style consensus or new private-safe context.
