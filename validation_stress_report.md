@@ -7236,3 +7236,23 @@ Stress interpretation:
   - if public LB worsens, the failure is not target expansion, row support, or
     upload format; it specifically falsifies amplitude continuation on H042's
     exact Q2 phase support.
+
+## H052 Stress Note: Conditional Q2 Binary Edge
+
+- Dependency:
+  - H052 is valid as a public sensor only if H051 first improves.
+- Stress invariant:
+  - H052 must keep the same exact `45` Q2 cells as H042/H051.
+  - It must move every selected cell farther in H042's direction.
+- Validation result:
+  - upload shape `(250, 10)`;
+  - required columns OK;
+  - no NaN;
+  - no duplicate key rows;
+  - probability range `[0.0000329401, 0.999980303]`;
+  - changed cells vs H042: Q2 `45`, every other target `0`;
+  - extra direction agreement with H042: `1.0`.
+- Failure interpretation:
+  - if H051 is positive but H052 fails, the falsified object is binary edge,
+    not Q2 phase itself.
+  - if H051 is negative, H052 should be skipped rather than interpreted.

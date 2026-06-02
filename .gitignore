@@ -378,3 +378,6 @@ hitl/h050_target_route_phase_jepa/h042_h025_top_cells.csv
 
 # H051 materialized Q2 phase-amplifier sweep files are reproducible from the script.
 hitl/h051_q2_phase_amplifier_jepa/submission_h051_*.csv
+
+# H052 materialized Q2 binary-edge sweep files are reproducible from the script.
+hitl/h052_q2_binary_edge_jepa/submission_h052_*.csv

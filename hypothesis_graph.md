@@ -5513,3 +5513,22 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   - Evidence if false: H051 loses; amplitude continuation is killed and future
     work should search support/public-subset assignment rather than stronger
     Q2 moves.
+
+## H052 Update: Q2 Smooth Phase Versus Binary Edge
+
+- New conditional node:
+  - H052: if H051 confirms amplitude continuation, the same Q2 support may
+    represent a binary hidden action-label edge.
+- Evidence if true:
+  - `submission_h052_q2_binary_edge_0p88m35_582a0694_uploadsafe.csv` improves
+    materially after H051 is positive.
+  - Then Q2 should be modeled as an edge-seeking target route, not only a
+    calibration vector.
+- Evidence if false:
+  - If H051 is positive but H052 is worse, Q2 is smooth/amplitude-like but not
+    binary-edge-like.
+  - If H051 is worse, H052 is not tested; the amplitude/edge subtree is killed.
+- Relation to prior hypotheses:
+  - H050 weakened non-Q2 target-route expansion.
+  - H051 tests Q2 amplitude.
+  - H052 tests whether that amplitude has a label-edge attractor.

@@ -1571,3 +1571,18 @@ candidates had strong H025 health but weaker action-margin evidence.
   improvement validates under-amplified Q2 hidden phase; failure kills
   amplitude continuation and shifts the next branch to support/public-subset
   assignment.
+
+## H052 Q2 Binary Edge
+
+- script: `h052_q2_binary_edge_jepa.py`
+- report: `h052_q2_binary_edge_jepa/h052_report.md`
+- promoted conditional root file:
+  `submission_h052_q2_binary_edge_0p88m35_582a0694_uploadsafe.csv`
+- purpose:
+  if H051 confirms Q2 amplitude, H052 asks whether the same exact support is a
+  hidden binary label edge. It pulls H042-up Q2 cells toward `0.88` and
+  H042-down cells toward `0.12`, with mix `0.35`.
+- public reading:
+  submit only after positive H051 feedback. Positive H052 feedback means Q2 is
+  an edge-seeking action-label route; negative H052 after positive H051 means
+  Q2 is smooth phase, not binary edge.

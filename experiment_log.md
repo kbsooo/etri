@@ -7736,3 +7736,46 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     support identity / public-subset route assignment.
 - Decision:
   - promote H051 as the next high-information public sensor.
+
+## H052. Q2 Binary-Edge HS-JEPA
+
+- Observe: H051's selected file tests a smooth logit factor `2.0` on the exact
+  H042 Q2 support. But if H042's `45` cells are truly a hidden label route,
+  Log Loss may reward moving farther toward class edges, not just continuing
+  a small calibration vector.
+- Wonder: is Q2 phase a smooth calibration direction, or is it a partially
+  observed binary action-label edge?
+- Hypothesis: if Q2 is a hidden binary edge, then H042-up cells should be
+  pulled toward high probability and H042-down cells toward low probability on
+  the exact same support. If this works after H051, HS-JEPA's Q2 target route
+  should be modeled as an action-label edge. If it fails after H051 succeeds,
+  Q2 is amplitude-linear but not edge-like.
+- Method: `hitl/h052_q2_binary_edge_jepa.py`.
+  - base: H042 current public best;
+  - dependency: only submit if H051 is public-positive;
+  - context: H012/H042/H050/H051 plus H047 support posterior;
+  - target representation: exact-support Q2 binary edge;
+  - action: freeze all non-Q2 targets, keep H042's `45` Q2 support, and pull
+    cells toward `0.88` or `0.12` with mix `0.35`;
+  - stress: exact-support invariance, H042 extra-direction agreement, upload
+    validation, and public-response extrapolation.
+- Result:
+  - selected
+    `h052_exact45_edge0p88_mix0p35_582a0694`;
+  - promoted conditional file
+    `submission_h052_q2_binary_edge_0p88m35_582a0694_uploadsafe.csv`;
+  - changed cells vs H042 `45`, all Q2;
+  - extra direction agreement with H042 `1.0`;
+  - mean/max extra probability move vs H042
+    `0.116709818` / `0.231928732`;
+  - linear public-response expected LB `0.5668496169`;
+  - root file validation passed.
+- Interpretation:
+  - H052 is a high-upside conditional branch, not a safe next upload;
+  - H051 positive + H052 positive would turn HS-JEPA's Q2 branch into a hidden
+    binary label-edge model;
+  - H051 positive + H052 negative would keep amplitude but kill edge;
+  - H051 negative kills H052 before submission.
+- Decision:
+  - keep H052 as the immediate follow-up only if H051 public feedback is
+    positive.

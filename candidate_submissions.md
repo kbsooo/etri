@@ -6178,3 +6178,40 @@ Submission meaning:
 - If H051 loses, H042 should be treated as a shallow local correction; future
   Q2 work should focus on support identity, public-subset assignment, or route
   selection rather than amplitude.
+
+## H052 Conditional Submission Decision
+
+Conditional Q2 binary-edge public sensor:
+
+`submission_h052_q2_binary_edge_0p88m35_582a0694_uploadsafe.csv`
+
+What this file tests:
+
+- H051 tests linear amplitude on H042's exact Q2 support.
+- H052 tests the stronger claim: the same Q2 support is not just
+  under-amplified, but is pointing toward a hidden binary label edge.
+- It pulls upward H042 cells toward `0.88` and downward H042 cells toward
+  `0.12`, with mix `0.35`.
+
+Local profile:
+
+- changed cells vs H042: `45`, all Q2;
+- changed cells vs H012: `45`, all Q2;
+- extra direction agreement with H042: `1.0`;
+- H042 support directions: `23` up / `22` down;
+- mean/max extra probability move vs H042:
+  `0.116709818` / `0.231928732`;
+- linear public-response extrapolation:
+  expected LB `0.5668496169`;
+- upload validation:
+  shape `(250, 10)`, required columns OK, no NaN, no duplicate keys,
+  probabilities in `[0.0000329401, 0.999980303]`.
+
+Submission meaning:
+
+- Submit H052 only if H051 improves materially. Then H052 is the next
+  world-changing test.
+- If H051 improves and H052 improves too, HS-JEPA should model Q2 as a hidden
+  action-label edge.
+- If H051 improves but H052 fails, Q2 is amplitude-linear but not binary-edge.
+- If H051 fails, do not submit H052; the amplitude/edge branch is killed.

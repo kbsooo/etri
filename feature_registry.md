@@ -5181,3 +5181,25 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
   if `submission_h051_q2_phase_amp_f2p0_5ab4e605_uploadsafe.csv` is worse than
   H042, do not continue stronger edge-push variants without a new support or
   public-subset explanation.
+
+## H052 Feature/Action Registry: Q2 Binary-Edge Action
+
+- Feature/action name:
+  `h052_exact_h042_q2_binary_edge`
+- Hidden structure targeted:
+  Q2 hidden action-label edge on H042's exact support.
+- Why needed:
+  H051 tests smooth amplitude. H052 tests the more radical alternative that
+  the same latent should be pulled toward class-edge states.
+- Construction:
+  - identify the exact `45` H042 Q2 cells;
+  - preserve all non-Q2 targets;
+  - if H042 moved a Q2 cell up, pull it toward `0.88`;
+  - if H042 moved a Q2 cell down, pull it toward `0.12`;
+  - mix this edge target with H042 using weight `0.35`.
+- Leakage/safety distinction:
+  H052 is explicitly conditional on H051. It should not be used as a generic
+  calibration tweak.
+- Discard condition:
+  if H051 fails, discard H052 without submission. If H051 succeeds but H052
+  fails, discard binary-edge continuation while preserving smooth Q2 phase.

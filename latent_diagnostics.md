@@ -1140,3 +1140,19 @@ decide whether this route signal is real or an action-decoder shortcut.
     amplitude;
   - failure means the Q2 latent is support-like rather than metric-linear, so
     HS-JEPA should move from amplitude to support/public-subset inference.
+
+## H052 Latent Diagnostic: Q2 Edge Attractor
+
+- H052 treats the H042/H051 Q2 direction as an attractor toward class-edge
+  states, not a local Euclidean latent.
+- Geometry checks:
+  - selected support remains exactly `45`;
+  - final H012->H052 direction agrees with H042 on all selected cells;
+  - additional H042->H052 direction also agrees with H042 on all selected cells;
+  - support is balanced (`23` up / `22` down), so the edge move is not a scalar
+    prevalence correction.
+- Collapse check:
+  - if public rewards H052 only after H051, Q2 latent has non-linear edge
+    geometry;
+  - if H052 fails while H051 succeeds, the latent should be modeled as smooth
+    phase amplitude, not binary edge.

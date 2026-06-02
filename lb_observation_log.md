@@ -2996,3 +2996,35 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - interpretation:
   - H051 is the cleanest post-H042 amplitude sensor: it changes only the cells
     that public already rewarded once.
+
+## Public-Free Observation: H052 Q2 Binary-Edge HS-JEPA
+
+- submission file prepared:
+  `submission_h052_q2_binary_edge_0p88m35_582a0694_uploadsafe.csv`
+- public LB: pending
+- dependency:
+  submit only after H051 improves; if H051 fails, this branch should be killed.
+- changed point:
+  - starts from H042;
+  - freezes Q1/Q3/S1/S2/S3/S4 exactly;
+  - keeps H042's exact `45` Q2 cells;
+  - pulls H042-up cells toward `0.88` and H042-down cells toward `0.12`;
+  - uses mix `0.35`.
+- expected LB reaction:
+  - better than H051/H042 means Q2 is not merely calibrated; it is a hidden
+    binary action-label edge;
+  - worse after a positive H051 means the Q2 route is amplitude-linear but not
+    edge-like;
+  - if H051 itself fails, H052 should not be tested.
+- local/public-free observation:
+  - changed cells vs H042 `45`, all Q2;
+  - extra direction agreement with H042 `1.0`;
+  - H042 support sign split `23` up / `22` down;
+  - mean/max extra probability move vs H042
+    `0.116709818` / `0.231928732`;
+  - linear public-response expected LB `0.5668496169`;
+  - upload validation passed: shape `(250, 10)`, required columns OK, no NaN,
+    no duplicate keys, probabilities in `[0.0000329401, 0.999980303]`.
+- interpretation:
+  - H052 is not a safe improvement candidate; it is the clean binary-edge
+    successor to H051.

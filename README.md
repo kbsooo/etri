@@ -23,7 +23,7 @@ Current post-H012 status:
 
 - H042 Q2 tiny phase is the active public frontier, while H012 remains the base
   public-equation anchor.
-- H043, H045, H047, H048, H049, H050, and H051 are the current high-information post-H042 sensors:
+- H043, H045, H047, H048, H049, H050, H051, and H052 are the current high-information post-H042 sensors:
   - H043 tests whether the Q2 phase branch can expand from `45` to `105`
     cells;
   - H045 tests whether human-state route context can prune that expansion to a
@@ -42,6 +42,10 @@ Current post-H012 status:
     support in logit space by factor `2.0`, testing whether H042 was an
     under-amplified hidden Q2 label phase rather than a shallow local
     correction.
+  - H052 is conditional on H051 being positive: it keeps the exact H042 Q2
+    support but pulls those cells toward a binary edge (`0.88`/`0.12`) with
+    mix `0.35`, testing whether Q2 is a hidden action-label edge rather than a
+    smooth calibration vector.
 - No H015-H041 file is currently promoted as the next upload.
 - The historical post-H012 sensors below are kept because they define falsified or partially supported HS-JEPA routes, not because they are current submission recommendations.
 
