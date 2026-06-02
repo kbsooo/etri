@@ -2435,3 +2435,31 @@ H139/H143 > H144:
   row135 Q3 is not safe with row207;
   keep row-level XOR.
 ```
+
+### H145 Update
+
+H145 is the Q3 repair-only veto bet.
+
+| Bet | File | Worldview | Local evidence | Risk |
+| --- | --- | --- | --- | --- |
+| H145 | `submission_h145_q3repair_2d818e46_uploadsafe.csv` | H088 relief may still be a toxic shortcut; keep only the H141 common core plus row135 Q3 repair | margin delta `+0.000702228`, route delta `+0.000001185`, H098 delta `+0.000001530`, Q3 repair pass `True` | gives up much of H144/H139's H088 relief; may under-correct toxicity |
+
+This is not a safety tweak.  It flips the H144 interpretation:
+
+```text
+H144:
+  row207 S2 is needed, row135 S2 is toxic.
+
+H145:
+  row207 S2 may also be toxic; row135 Q3 repair is the main safe action.
+```
+
+The public result is high information:
+
+```text
+H145 > H144:
+  move HS-JEPA toward repair-first target routing and H088 veto.
+
+H144 > H145:
+  row207 S2 relief is action-grade after all.
+```

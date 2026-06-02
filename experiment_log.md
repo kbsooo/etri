@@ -13348,3 +13348,66 @@ Public reading:
   atom when row135 S2 is vetoed.
 - H139 > H144: row135 Q3 over-repairs; keep full row207 only.
 - H140 > H144: row135 Q3 must stay paired with row135 S2, or row207 is wrong.
+
+## H145 Q3 Repair-Only Veto HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h145_q3_repair_only_veto_hsjepa/h145_report.md`
+- `hitl/h145_q3_repair_only_veto_hsjepa/h145_decision.csv`
+- `hitl/h145_q3_repair_only_veto_hsjepa/h145_q3_repair_scores.csv`
+- `hitl/h145_q3_repair_only_veto_hsjepa/h145_selected_cells.csv`
+- `submission_h145_q3repair_2d818e46_uploadsafe.csv`
+
+Worldview:
+
+```text
+H144 says row135 Q3 can be safe when row135 S2 is vetoed.  H145 asks whether
+row207 H088 relief is actually necessary, or whether it is still a public-toxic
+shortcut.  Keep only H141 common core + row135 Q3 repair.
+```
+
+Observed result:
+
+- promoted candidate: `h145_q3_g1p15_2d818e46`;
+- root file: `submission_h145_q3repair_2d818e46_uploadsafe.csv`;
+- start field: H141 common core;
+- beta row135 Q3: `1.15`;
+- row207 S2: off;
+- row135 S2: off;
+- changed cells vs H136: `3`;
+- selected actions:
+  - row `70` Q3 margin repair, inherited from H141;
+  - row `131` S2 toxicity relief, inherited from H141;
+  - row `135` Q3 repair, amplified to `1.15`;
+- delta vs H136:
+  - route: `+0.000001185`;
+  - H098/model: `+0.000001530`;
+  - H088: `-0.001674775`;
+  - margin: `+0.000702228`;
+- delta vs H141:
+  - route: `-0.000000008`;
+  - H098/model: `+0.000000530`;
+  - H088: `-0.000248836`;
+  - margin: `+0.000436065`;
+- Q3 repair pass: `True`;
+- upload-safe validation passed.
+
+Interpretation:
+
+H145 is the cleanest anti-H088-relief sensor in the H139-H145 family.  It tests
+whether public rewards repair/margin more than H088 relief:
+
+```text
+H144 = common core + row207 S2 + row135 Q3, row135 S2 vetoed
+H145 = common core + row135 Q3 only, row207 S2 and row135 S2 vetoed
+```
+
+Public reading:
+
+- H145 > H144/H139/H143: row207 H088 relief was still a toxic shortcut; Q3
+  repair is the action-grade target.
+- H144 > H145: row207 S2 is needed after row135 S2 is vetoed.
+- H141 > H145: row135 Q3 itself is over-repair.

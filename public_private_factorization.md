@@ -2905,3 +2905,58 @@ common core
 If public validates H144, HS-JEPA's action solver must operate at row-target
 granularity.  The relevant hidden state is not just "row135 branch on/off"; it
 is "which target of row135 belongs to the safe assignment field."
+
+## H145 Public/Private Factorization Update
+
+H145 is the anti-H088-relief counterpart to H144.
+
+H144 factorization:
+
+```text
+common core + row207 S2 + row135 Q3 - row135 S2
+```
+
+H145 factorization:
+
+```text
+common core + row135 Q3 - row207 S2 - row135 S2
+```
+
+Observed H145 factorization:
+
+- selected file: `submission_h145_q3repair_2d818e46_uploadsafe.csv`;
+- selected candidate: `h145_q3_g1p15_2d818e46`;
+- selected atoms:
+  - row `70` Q3 margin repair;
+  - row `131` S2 toxicity relief;
+  - row `135` Q3 repair, amplitude `1.15`;
+- deliberately absent:
+  - row `207` S2;
+  - row `135` S2;
+- delta vs H136:
+  - route `+0.000001185`;
+  - H098/model `+0.000001530`;
+  - H088 `-0.001674775`;
+  - margin `+0.000702228`.
+
+Key diagnostic:
+
+```text
+H145 gives the largest margin movement in the H141-H145 branch without route
+barrier, but gives up much of H144/H139's H088 relief.
+```
+
+Interpretation:
+
+This separates two possible public equations:
+
+```text
+H088-relief equation:
+  row207 S2 must be on.
+
+repair-margin equation:
+  row207 S2 is optional/toxic; row135 Q3 is the main action.
+```
+
+The public result decides whether the next decoder should model H088-relief
+as action-grade or treat it as a stress diagnostic that often needs vetoing.

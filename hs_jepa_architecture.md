@@ -3141,3 +3141,43 @@ HS-JEPA decoder
 This is a more specific architecture than H143.  A "human-state" does not just
 choose a row branch; it may select which target routes inside that row are safe
 actions.
+
+### H145: Q3 Repair-Only Veto Decoder
+
+H145 adds a counterfactual decoder path to H144.
+
+H144 keeps row207 S2 and row135 Q3.  H145 vetoes row207 S2 as well:
+
+```text
+H144 decoder:
+  common core + row207 S2 + row135 Q3 - row135 S2
+
+H145 decoder:
+  common core + row135 Q3 - row207 S2 - row135 S2
+```
+
+H145 evidence:
+
+- candidate: `submission_h145_q3repair_2d818e46_uploadsafe.csv`;
+- row `135` Q3 amplitude: `1.15`;
+- row `207` S2: off;
+- row `135` S2: off;
+- changed cells vs H136: `3`;
+- H088 delta vs H136: `-0.001674775`;
+- margin delta vs H136: `+0.000702228`;
+- route delta vs H136: `+0.000001185`;
+- H098/model delta vs H136: `+0.000001530`;
+- Q3 repair pass: `True`.
+
+Architecture implication:
+
+```text
+HS-JEPA decoder
+  -> target-level action proposals
+  -> stress-diagnostic veto for H088-heavy components
+  -> repair-first branch when route/H098 are stable
+```
+
+This is a deliberate challenge to the current H088-relief branch.  It tests
+whether "action-grade" should be defined by repair/margin stability rather than
+H088-axis movement.

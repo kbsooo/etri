@@ -9480,3 +9480,44 @@ Public interpretation:
 - H139 > H144: row135 Q3 over-repairs; full row207 only is cleaner.
 - H140 > H144: row135 Q3/S2 must stay together, or row207 is wrong.
 - H142 > H144: S2 was not toxic; additive branch interaction is still alive.
+
+## H145 Q3 Repair-Only Veto
+
+Generated file:
+
+`submission_h145_q3repair_2d818e46_uploadsafe.csv`
+
+Worldview: H144 showed row135 Q3 is a plausible safe repair atom, but it still
+keeps row207 S2.  H145 tests the stronger anti-H088 claim: row207 S2 may be a
+public-toxic shortcut, and the safe action may be Q3 repair only.
+
+Evidence:
+
+- selected candidate: `h145_q3_g1p15_2d818e46`;
+- beta row135 Q3: `1.15`;
+- row207 S2: off;
+- row135 S2: off;
+- changed cells vs H136: `3`;
+- actions:
+  - row `70` Q3 margin repair;
+  - row `131` S2 toxicity relief;
+  - row `135` Q3 repair `-0.0110211875`;
+- route delta vs H136: `+0.000001185`;
+- H098/model delta vs H136: `+0.000001530`;
+- H088 delta vs H136: `-0.001674775`;
+- margin delta vs H136: `+0.000702228`;
+- Q3 repair pass: `True`;
+- upload-safe: `True`.
+
+Submission priority:
+
+High-information counter-sensor to H144.  This is a real world-model fork:
+H144 says row207 relief is still needed; H145 says H088 relief may be the toxic
+shortcut and Q3 repair is the safer action-grade target.
+
+Public interpretation:
+
+- H145 > H144/H139/H143: H088 relief is toxic; prioritize Q3 repair and margin.
+- H144 > H145: row207 relief is necessary once row135 S2 is vetoed.
+- H141 > H145: row135 Q3 is over-repair.
+- H140 > H145: row135 Q3 and S2 must stay paired.
