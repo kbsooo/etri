@@ -12513,3 +12513,68 @@ decoder and should distrust H088-only erasure.  If H130 improves more, the
 dropout gate was too conservative and H088/margin are carrying real
 public-specific information.  If H129 improves more, additive value is still
 less reliable than core erasure.
+
+## H132 Bundle-Toxicity Field HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h132_bundle_toxicity_field_hsjepa/h132_report.md`
+- `hitl/h132_bundle_toxicity_field_hsjepa/h132_decision.csv`
+- `hitl/h132_bundle_toxicity_field_hsjepa/h132_operations.csv`
+- `hitl/h132_bundle_toxicity_field_hsjepa/h132_bundles.csv`
+- `submission_h132_bundletox_ee252845_uploadsafe.csv`
+
+Worldview:
+
+```text
+H131 rejected most erase/damp actions because it treated toxicity as a
+cell-level scalar.  The missing toxicity field may instead be a row-level Q
+bundle or repeated Q1 witness that H129/H130 saw but H131 filtered out.
+```
+
+Observed result:
+
+- promoted candidate: `h132_h131_plus_witness_q1_eraser_ee252845`;
+- root file: `submission_h132_bundletox_ee252845_uploadsafe.csv`;
+- start field: H131;
+- operations: `3`;
+- all operations: Q1 off;
+- erased rows: `207`, `131`, `196`;
+- selected cells / rows: `26` / `21`;
+- target route: Q1 `5`, Q2 `0`, Q3 `5`, S1 `9`, S2 `5`, S3 `0`,
+  S4 `2`;
+- mean non-H088 passes: `3.0` / `3`;
+- route delta from H131: `-0.000004`;
+- H098/model delta from H131: `-0.0000008`;
+- H088 delta from H131: `-0.016821`;
+- good-bad margin delta from H131: `+0.014924`;
+- model predicted delta vs H057: `-0.000032`;
+- route-basis predicted delta vs H057: `-0.000705`;
+- H088-axis cosine: `-0.069636`;
+- good-bad margin: `0.176076`;
+- upload-safe validation passed.
+
+Important negative/positive findings:
+
+- Pure `H131 + qbundle` and `H131 + mixed non-Q2 bundle` promoted no candidate.
+- H122 bundle-toxicity alone also promoted no candidate.
+- The only H131-compatible eraser is a small Q1 witness branch from H129/H130.
+- H130 de-overfit also promoted a weaker candidate, but it is almost identical
+  to H130 and has much smaller component gain.
+
+Interpretation:
+
+H132 does not prove a broad row-bundle toxicity law.  It narrows the eraser
+claim:
+
+```text
+robust value field = H131 S1/Q3/S2 additions
+residual toxic field = small public-specific Q1 witness, rows 207/131/196
+broad Q1/Q3 or Q/S bundle erasure = not action-grade yet
+```
+
+If H132 improves publicly, HS-JEPA should add a witness-rescued Q1 toxicity
+field after sensor-dropout value assignment.  If H131 improves more, even this
+Q1 eraser is H088-shaped shortcut and robust value-add should stay separate.

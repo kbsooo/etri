@@ -2582,3 +2582,42 @@ This reframes H088 and H018 again.  They are not action heads.  They are stress
 sensors inside a dropout validator.  The current H131 result says that value
 addition can be made robust under this validator, while the H130 delete/damp
 toxicity field still needs a stronger non-H088 proof.
+
+## HS-JEPA v5.15: Witness-Rescued Q1 Toxicity Field
+
+H132 adds a narrower toxicity layer after H131.  The original hypothesis was
+that erase/damp toxicity might be a row-bundle contradiction.  The experiment
+partly rejects that:
+
+```text
+broad row bundle toxicity -> not action-grade
+mixed Q/S bundle toxicity -> not action-grade
+H122-only bundle toxicity -> not action-grade
+small Q1 witness toxicity -> action-grade candidate
+```
+
+H132 evidence:
+
+- candidate: `submission_h132_bundletox_ee252845_uploadsafe.csv`;
+- selected solver: `h132_h131_plus_witness_q1_eraser_ee252845`;
+- start field: H131;
+- operations: Q1 off on rows `207`, `131`, `196`;
+- final cells / rows: `26` / `21`;
+- route-basis predicted delta vs H057: `-0.000705`;
+- model predicted delta vs H057: `-0.000032`;
+- H088-axis cosine: `-0.069636`;
+- good-bad margin: `0.176076`.
+
+Architecture implication:
+
+```text
+context/representation
+  -> sensor-dropout safe value assignment
+  -> witness-rescued target-specific toxicity eraser
+  -> calibrated action field
+```
+
+This makes the HS-JEPA decoder more target-specific.  Q1 toxicity cannot yet be
+generalized to all Q/S row bundles.  The next architecture question is why
+these Q1 witness rows are toxic: row-state, subject block, target dependency,
+or public-specific calibration.

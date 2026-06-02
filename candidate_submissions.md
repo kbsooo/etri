@@ -8911,3 +8911,52 @@ Public interpretation:
 - all lose to H057/H012: the H122-H131 row-target action-equation family is a
   local public-sensor artifact and the next 0.53 bet needs a larger hidden
   public/private subset inversion.
+
+## H132 Bundle-Toxicity Field
+
+Generated file:
+
+`submission_h132_bundletox_ee252845_uploadsafe.csv`
+
+Worldview: H131's robust value additions may still need a small Q1 toxicity
+eraser.  The broad row-bundle eraser did not survive, so the promoted claim is
+more specific: H129/H130 repeatedly identified a Q1 public-toxicity witness
+that should be erased after H131, even though pure non-H088 contradiction is
+not strong enough.
+
+Evidence:
+
+- selected candidate: `h132_h131_plus_witness_q1_eraser_ee252845`;
+- start field: H131;
+- operations: `3`;
+- all operations: Q1 off;
+- erased rows: `207`, `131`, `196`;
+- selected cells / rows: `26` / `21`;
+- target route: Q1 `5`, Q2 `0`, Q3 `5`, S1 `9`, S2 `5`, S3 `0`,
+  S4 `2`;
+- route delta from H131: `-0.000004`;
+- H098/model delta from H131: `-0.0000008`;
+- H088 delta from H131: `-0.016821`;
+- margin delta from H131: `+0.014924`;
+- model predicted delta vs H057: `-0.000032`;
+- route-basis predicted delta vs H057: `-0.000705`;
+- H088-axis cosine: `-0.069636`;
+- good-bad margin: `0.176076`;
+- upload-safe: `True`.
+
+Submission priority:
+
+High-information, medium-risk.  H132 is the cleanest current file for testing
+whether H131's value-add field and a small Q1 toxicity eraser can coexist.  It
+is less pure than H131 because it reintroduces H129/H130 witness information,
+but it directly tests the active goal: separate safe assignment field from
+public-punished row-target action toxicity.
+
+Public interpretation:
+
+- H132 wins over H131: HS-JEPA needs a post-H131 Q1 witness-toxicity field;
+- H131 wins more: Q1 erasure is still H088-shaped shortcut and should be kept
+  diagnostic only;
+- H130 wins more: broad lattice erasure/damping carries real public-specific
+  signal beyond H132's small Q1 witness;
+- H129 wins more: value additions are less reliable than core toxicity erasure.

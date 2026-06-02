@@ -2275,3 +2275,45 @@ erase/damp actions may still be public-useful, but H131 says they currently
 look more H088/margin-dependent than route/residual/forbidden-invariant.  The
 next architecture step should treat action toxicity as a separate field that
 requires stronger evidence than H088 improvement alone.
+
+## H132 Public/Private Factorization Update
+
+H132 tests whether the missing toxicity field is not cell-level but row-bundle
+level.  The result is mixed and useful:
+
+- broad Q1/Q3 bundle erasure after H131: no candidate promoted;
+- mixed non-Q2 bundle erasure after H131: no candidate promoted;
+- H122 bundle-toxicity alone: no candidate promoted;
+- H131 plus small Q1 witness erasure: candidate promoted.
+
+Observed H132 factorization:
+
+- selected file: `submission_h132_bundletox_ee252845_uploadsafe.csv`;
+- selected candidate: `h132_h131_plus_witness_q1_eraser_ee252845`;
+- start from H131 cells: `29`;
+- operations: Q1 off on rows `207`, `131`, `196`;
+- final selected cells / rows: `26` / `21`;
+- Q2 cells: `0`;
+- route-basis predicted delta vs H057: `-0.000705`;
+- model predicted delta vs H057: `-0.000032`;
+- H088-axis cosine: `-0.069636`;
+- good-bad margin: `0.176076`.
+
+Interpretation:
+
+The public/private equation is now narrower:
+
+```text
+safe assignment field:
+  H131 value additions that survive sensor dropout
+
+toxic action field:
+  not broad row-bundle erasure yet
+  but a small Q1 witness repeatedly seen by H129/H130
+```
+
+This means the current eraser evidence is not fully independent of public
+negative sensors.  It is not pure H088 either, because the selected Q1 erasures
+pass route/H098/no-H088 views.  The next private-safe toxicity model should
+learn why these Q1 witness rows are special instead of expanding erasure to all
+high-contradiction Q/S bundles.

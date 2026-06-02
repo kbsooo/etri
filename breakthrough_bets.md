@@ -2098,3 +2098,41 @@ Next big-bet implication:
 The next experiment should not keep sweeping H131 thresholds.  It should build
 a larger action-toxicity field that predicts erase/damp safety from held-out
 sensor families, then compare that with the H131 value-add-only branch.
+
+### H132 Update
+
+H132 tests exactly that toxicity-field branch, but the result is narrower than
+the initial bet.
+
+| Experiment | File | Core claim | Support | Equation diagnostics | Status |
+| --- | --- | --- | --- | --- | --- |
+| H132 | `submission_h132_bundletox_ee252845_uploadsafe.csv` | H131's robust value additions need a small Q1 toxicity witness eraser from H129/H130 | `26` cells / `21` rows; Q1 off `3` | route delta from H131 `-0.000004`, H098 delta `-0.0000008`, H088 delta `-0.016821`, margin delta `+0.014924`, route-basis `-0.000705` | Q1 witness-toxicity bet |
+
+Negative result:
+
+```text
+broad row-bundle toxicity did not promote.
+H122 bundle-toxicity alone did not promote.
+H131 + broad Q/S bundle erasure did not promote.
+```
+
+Positive result:
+
+```text
+H131 + Q1 witness erasure promoted.
+```
+
+0.53 implication:
+
+The toxicity field is probably not a broad human-state bundle rule yet.  The
+alive branch is smaller and sharper:
+
+```text
+H131 safe value field
+  + Q1 witness toxicity field
+```
+
+If H132 wins publicly, expand from Q1 witness rows by learning their row-state
+signature.  If H131 wins more, keep Q1 erasure as diagnostic only.  If H130
+wins more, H132 was too conservative and public-specific H088/margin erasure
+is real.

@@ -1,0 +1,6 @@
+spec_name,start_name,bundle_mode,bundle_rows,mean_contradiction,max_contradiction,ops,component_gain
+h131_plus_witness_q1_eraser,h131,witness_q_core,7,0.45331658857142854,0.5682663885714285,3,0.003893418199009677
+h131_plus_qbundle_eraser,h131,q_core_or_h129,11,0.4000630066955267,0.5682663885714285,0,
+h131_plus_mixed_bundle_eraser,h131,mixed_nonq2,4,0.5015592961904761,0.5682663885714285,0,
+h122_bundle_toxicity_only,h122,q_core_or_h129,10,0.41079550965079364,0.5682663885714285,0,
+h130_bundle_deoverfit,h130,h130_weak_erases,4,0.50266978,0.5727966857142857,2,0.0001406752124252879
