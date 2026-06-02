@@ -2008,3 +2008,31 @@ row-target assignment/equation solver around conflict-value proposals.  If it
 loses, H128 kills the current value-regenerator branch and pushes the search
 toward deleting toxic actions or solving public subset equations instead of
 adding cells.
+
+### H129 Update
+
+H129 tests the deleting-toxic-actions branch directly.
+
+| Experiment | File | Core claim | Support | Equation diagnostics | Status |
+| --- | --- | --- | --- | --- | --- |
+| H129 | `submission_h129_toxiceraser_ce1ebc19_uploadsafe.csv` | H122's sparse core still contains Q1/Q3 toxic amplitude; public/private safety needs a post-assignment eraser | `20` cells / `17` rows; removed Q1 `2`, Q3 `2`, damped Q1 `1` | route delta from H122 `-0.000005`, H098 delta `+0.000006`, H088 `-0.077331`, margin `0.130968` | core-toxicity eraser bet |
+
+Why this is a bigger bet than H128:
+
+```text
+H128 asks whether we can add safe value after H127.
+H129 asks whether the "safe" H122 core itself still contains toxic amplitude.
+```
+
+The positive local signal is not broad score tuning.  It specifically says
+that Q1/Q3 actions inside the sparse core may be public-punished even when the
+overall support has passed H122 toxicity pruning.
+
+Decision rule:
+
+- H129 win: HS-JEPA needs a toxicity/amplitude decoder after support selection;
+- H122 win more: the eraser destroys real core signal and toxicity should be
+  handled only before support selection;
+- H128 win more: conflict-value generation is the higher-upside branch;
+- all lose to H057: the post-H057 action-equation family is probably a local
+  public-sensor overfit and the next 0.53 bet must leave this support manifold.

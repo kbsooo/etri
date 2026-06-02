@@ -2150,3 +2150,42 @@ The new evidence is that H098 can propose extra value only in a narrow conflict
 bridge.  Pure frontier descent did not produce an accepted multi-cell action.
 This keeps value regeneration alive, but only after public/private toxicity
 assignment has already selected the admissible support.
+
+## H129 Public/Private Factorization Update
+
+H129 tests the opposite side of H128:
+
+```text
+not add value to a safe support,
+but erase toxic amplitude inside an already sparse support.
+```
+
+Observed H129 factorization:
+
+- selected file: `submission_h129_toxiceraser_ce1ebc19_uploadsafe.csv`;
+- selected candidate: `h129_h122_core_toxicity_ce1ebc19`;
+- start from H122 cells: `24`;
+- operations: `5`;
+- removed cells: Q1 `2`, Q3 `2`;
+- damped cells: Q1 `1`;
+- final selected cells / rows: `20` / `17`;
+- Q2 cells: `0`;
+- route-basis predicted delta vs H057: `-0.000610`;
+- model predicted delta vs H057: `-0.000023`;
+- H088-axis cosine: `-0.077331`;
+- good-bad margin: `0.130968`.
+
+Interpretation:
+
+H129 says the public/private factorization may need three layers:
+
+```text
+support field: which row-target actions are admissible at all
+value field: which conflict regions can create new action
+toxicity/amplitude field: which selected actions must be removed or damped
+```
+
+The strongest eraser signal does not come from H128's newly added S1/S4 cells.
+It comes from H122's Q1/Q3 core.  That is a major distinction: the toxic field
+may be hidden inside the apparently safe sparse support rather than only in
+late over-completion tails.

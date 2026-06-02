@@ -2453,3 +2453,47 @@ H088 remains a negative stress sensor, not a private action head.  H098 remains
 dangerous as a direct proposal generator.  H128's only multi-cell survivor is a
 conflict bridge, which means value appears where positive row-state and
 negative action-state disagree, but it still needs a row-target safety gate.
+
+## HS-JEPA v5.12: Toxic-Action Eraser
+
+H129 adds a post-assignment eraser after support selection.
+
+```text
+context encoder
+  -> hidden human/public state
+  -> sparse support assignment
+  -> optional conflict-value regeneration
+  -> toxicity/amplitude field
+       classify active actions by local public/private toxicity
+       remove, damp, or keep each row-target action
+  -> calibrated submission
+```
+
+H129 evidence:
+
+- candidate: `submission_h129_toxiceraser_ce1ebc19_uploadsafe.csv`;
+- selected solver: `h129_h122_core_toxicity_ce1ebc19`;
+- start field: H122 sparse core;
+- operations: remove Q1 `2`, remove Q3 `2`, damp Q1 `1`;
+- final cells / rows: `20` / `17`;
+- route-basis predicted delta vs H057: `-0.000610`;
+- model predicted delta vs H057: `-0.000023`;
+- H088-axis cosine: `-0.077331`;
+- good-bad margin: `0.130968`.
+
+The architecture claim is:
+
+```text
+safe support is not identical to safe action amplitude.
+```
+
+This is the first explicit HS-JEPA eraser stage.  It treats H088/H018 not as
+action heads, but as collapse/toxicity stress sensors that help decide whether
+an already-selected action should be removed or attenuated.  If H129 wins
+publicly, HS-JEPA's decoder should be written as a row-target equation solver:
+
+```text
+support assignment + value regeneration + toxicity/amplitude erasure
+```
+
+rather than as a single latent-to-probability predictor.

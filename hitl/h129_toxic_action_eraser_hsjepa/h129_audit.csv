@@ -1,0 +1,6 @@
+spec_name,start_name,condition,eligible_cells,eligible_mean_toxic_rank,ops,component_gain
+h128_conflict_erase,h128,post_h127_or_conflict,16,0.31760714285714287,3.0,6.798096911847382e-05
+h127_tail_erase,h127,post_h122_stage_tail,5,0.2004571428571429,,
+h126_amp_erase,h126,post_h122_or_lowgap,4,0.192,,
+h124_refill_veto,h124,post_h122_stage_tail,3,0.17695238095238094,,
+h122_core_toxicity,h122,high_toxic_all,11,0.3307532467532468,5.0,0.0030755370470243945

@@ -8754,3 +8754,51 @@ Public interpretation:
 - H128 loses badly: S1/S4 conflict-bridge is public-toxic over-completion, and
   the solver should focus on assignment deletion/toxicity fields rather than
   adding regenerated cells.
+
+## H129 Toxic-Action Eraser
+
+Generated file:
+
+`submission_h129_toxiceraser_ce1ebc19_uploadsafe.csv`
+
+Worldview: the public-punished field may still exist inside H122's sparse core.
+The right operation is not another refill, but deleting or damping toxic Q1/Q3
+actions after the assignment solver has selected support.
+
+Evidence:
+
+- selected candidate: `h129_h122_core_toxicity_ce1ebc19`;
+- start field: H122;
+- operations: `5` total;
+- removed cells: `4`;
+- damped cells: `1`;
+- operated targets: Q1 `3`, Q3 `2`;
+- selected cells / rows: `20` / `17`;
+- target route: Q1 `6`, Q2 `0`, Q3 `2`, S1 `6`, S2 `4`, S3 `0`,
+  S4 `2`;
+- route delta from H122: `-0.000005`;
+- H098/model delta from H122: `+0.000006`;
+- H088 delta from H122: `-0.011173`;
+- margin delta from H122: `+0.005114`;
+- model predicted delta vs H057: `-0.000023`;
+- route-basis predicted delta vs H057: `-0.000610`;
+- H088-axis cosine: `-0.077331`;
+- good-bad margin: `0.130968`;
+- upload-safe: `True`.
+
+Submission priority:
+
+High as a world-model sensor, medium as a conservative score candidate.  H129
+is not a small H128 tweak: it directly tests whether HS-JEPA needs a
+post-assignment toxicity/amplitude decoder.  Its risk is that it weakens route
+gain and H098 slightly while improving H088 and margin strongly.
+
+Public interpretation:
+
+- H129 wins: core support is not enough; HS-JEPA needs toxic amplitude erasure
+  inside selected row-target support;
+- H122 wins more: erasing Q1/Q3 core actions destroys useful public signal;
+- H128 wins more: additive conflict-value regeneration matters more than core
+  erasure;
+- H057 wins more: the whole sparse action-equation branch is still a diagnostic
+  overfit around public sensors.

@@ -1,0 +1,45 @@
+# H129 Toxic-Action Eraser HS-JEPA
+
+Question: is the next public/private equation an additive value field, or a
+toxicity field that deletes/damps unsafe row-target actions after assignment?
+
+Audit:
+
+| spec_name | start_name | condition | eligible_cells | eligible_mean_toxic_rank | ops | component_gain |
+| --- | --- | --- | --- | --- | --- | --- |
+| h128_conflict_erase | h128 | post_h127_or_conflict | 16 | 0.317607143 | 3.000000000 | 0.000067981 |
+| h127_tail_erase | h127 | post_h122_stage_tail | 5 | 0.200457143 |  |  |
+| h126_amp_erase | h126 | post_h122_or_lowgap | 4 | 0.192000000 |  |  |
+| h124_refill_veto | h124 | post_h122_stage_tail | 3 | 0.176952381 |  |  |
+| h122_core_toxicity | h122 | high_toxic_all | 11 | 0.330753247 | 5.000000000 | 0.003075537 |
+
+Start metrics:
+
+| start_name | spec_name | route | h098 | curv_marg | badw | badmax | h088 | margin | active_cells | eligible_cells |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| h128 | h128_conflict_erase | -0.000697264 | -0.000031568 | 0.000051340 | 0.000000000 | 0.000000000 | -0.046360506 | 0.199978504 | 32 | 16 |
+| h127 | h127_tail_erase | -0.000701198 | -0.000031310 | 0.000045493 | 0.000000000 | 0.000000000 | -0.051158429 | 0.160433912 | 29 | 5 |
+| h126 | h126_amp_erase | -0.000702257 | -0.000030951 | 0.000044917 | 0.000000000 | 0.000000000 | -0.057669876 | 0.149910590 | 28 | 4 |
+| h124 | h124_refill_veto | -0.000703471 | -0.000030810 | 0.000044398 | 0.000000000 | 0.000000000 | -0.060941722 | 0.144874136 | 27 | 3 |
+| h122 | h122_core_toxicity | -0.000605227 | -0.000028654 | 0.000041326 | 0.000000000 | 0.000000000 | -0.066158219 | 0.125854365 | 24 | 11 |
+
+Candidates:
+
+| candidate_id | spec_name | h129_start_field | selected_cells | changed_rows_vs_h057 | Q1_changed_vs_h057 | Q2_changed_vs_h057 | Q3_changed_vs_h057 | S1_changed_vs_h057 | S2_changed_vs_h057 | S3_changed_vs_h057 | S4_changed_vs_h057 | h129_ops | h129_removed_cells | h129_damped_cells | h129_inverted_cells | h129_op_targets | h129_delta_start_route | h129_delta_start_h098 | h129_delta_start_h088 | h129_delta_start_margin | model_pred_delta_vs_h057 | route_basis_pred_delta_vs_h057 | h102_cum_h088_axis_cos | h102_cum_good_bad_margin | h129_component_gain | h129_score | file |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| h129_h122_core_toxicity_ce1ebc19 | h122_core_toxicity | h122 | 20 | 17 | 6 | 0 | 2 | 6 | 4 | 0 | 2 | 5 | 4 | 1 | 0 | Q1:3;Q3:2 | -0.000005093 | 0.000005568 | -0.011173119 | 0.005113958 | -0.000023086 | -0.000610321 | -0.077331338 | 0.130968323 | 0.003075537 | 0.261385734 | submission_h129_h122_core_toxicity_ce1ebc19.csv |
+
+Decision:
+
+| decision | selected_candidate_id | root_uploadsafe_path | worldview | candidate_id | spec_name | mode | target_group | fit_feature_set | fit_alpha | k | alpha | cap | selected_cells | changed_cells_vs_h057 | changed_rows_vs_h057 | model_pred_delta_vs_h057 | posterior_delta_vs_h057 | hard_diag_delta_vs_h057 | anti_h088_direction_rate | h057_positive_align_rate | selected_toxic_mean | selected_conflict_rate | selected_safe_cell_mean | mean_bad_same_rank | cos_h088_direction | cos_h057_vs_h042_direction | cos_h057_vs_h050_direction | max_positive_bad_cosine | mean_abs_prob_move_vs_h057 | max_abs_prob_move_vs_h057 | selected_subjects | selected_rows | h097_score | file | resolved_path | Q1_changed_vs_h057 | Q2_changed_vs_h057 | Q3_changed_vs_h057 | S1_changed_vs_h057 | S2_changed_vs_h057 | S3_changed_vs_h057 | S4_changed_vs_h057 | bad_cos_submission_h010_objectiv | bad_cos_submission_e216_maskfam | bad_cos_submission_e323_5508f966 | bad_cos_submission_jepa_latent_q | bad_cos_submission_jepa_latent_r | bad_cos_submission_lejepa_target | bad_cos_submission_ordinal_q_con | path | rows | keys_match | duplicate_keys | nan_cells | min_prob | max_prob | changed_cells_vs_h057_validation | upload_safe | h102_cum_bad_max_pos | h102_cum_bad_weighted_pos | h102_cum_h088_axis_cos | h102_cum_good_max_cos | h102_cum_good_mean_cos | h102_cum_good_bad_margin | route_basis_pred_delta_vs_h057 | selected_mean_residual_toxicity | selected_mean_residual_safety | selected_mean_residual_gap | selected_mean_antidote_score | selected_same_bad_residual | selected_opp_bad_residual | selected_same_good_residual | selected_opp_good_residual | selected_h111_cells | selected_h108_rejected_cells | selected_h109_cells | selected_mean_family_count | h112_information_mass | h112_score | h118_h128_overlap_cells | h118_h128_cosine | h118_h127_overlap_cells | h118_h127_cosine | h118_h126_overlap_cells | h118_h126_cosine | h118_h125_overlap_cells | h118_h125_cosine | h118_h124_overlap_cells | h118_h124_cosine | h118_h122_overlap_cells | h118_h122_cosine | h118_h088_overlap_cells | h118_h088_cosine | h118_h018_overlap_cells | h118_h018_cosine | h118_zero_curv | h118_curv_pred_delta_vs_h057 | h118_curv_marginal_vs_zero | h118_mean_forbidden_same | h118_max_forbidden_same | h118_mean_forbidden_pressure | h118_mean_veto_score | h118_selected_rows | h129_start_field | h129_start_cells | h129_component_gain | h129_delta_start_route | h129_delta_start_h098 | h129_delta_start_h088 | h129_delta_start_margin | h129_ops | h129_removed_cells | h129_damped_cells | h129_inverted_cells | h129_op_targets | h129_mean_toxic_rank | h129_mean_op_score | h118_score | h129_worldview | h129_fit_feature_set | h129_fit_alpha | h129_fit_score | h129_score | root_path | root_rows | root_keys_match | root_duplicate_keys | root_nan_cells | root_min_prob | root_max_prob | root_changed_cells_vs_h057_validation | root_upload_safe |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| promote_h129_toxic_action_eraser | h129_h122_core_toxicity_ce1ebc19 | /Users/kbsoo/Downloads/cl2/submission_h129_toxiceraser_ce1ebc19_uploadsafe.csv | even H122's pruned core may retain a small public-toxic action field; delete only the highest toxicity core cells | h129_h122_core_toxicity_ce1ebc19 | h122_core_toxicity | public_residual_toxicity_solver | forbidden_veto_h122_core_toxicity | state_core | 0.100000000 | 52 | 1.000000000 | 0.300000000 | 20 | 20 | 17 | -0.000023086 | -0.000007946 | -0.000005222 | 0.550000000 | 0.500000000 | 0.396317143 | 0.250000000 | 0.338393274 | 0.372757143 | -0.013585753 | 0.121383749 | 0.034648039 | 0.000000000 | 0.000068762 | 0.037061466 | 7 | 53,55,59,70,79,93,102,131,135,137,145,148,150,151,164,188,205 | 0.198172333 | submission_h129_h122_core_toxicity_ce1ebc19.csv | /Users/kbsoo/Downloads/cl2/hitl/h129_toxic_action_eraser_hsjepa/submission_h129_h122_core_toxicity_ce1ebc19.csv | 6 | 0 | 2 | 6 | 4 | 0 | 2 | -0.154352915 | -0.173571213 | -0.166041826 | -0.137877664 | -0.153530465 | -0.167921993 | -0.177327641 | /Users/kbsoo/Downloads/cl2/hitl/h129_toxic_action_eraser_hsjepa/submission_h129_h122_core_toxicity_ce1ebc19.csv | 250 | True | 0 | 0 | 0.000004939 | 0.999996751 | 20 | True | 0.000000000 | 0.000000000 | -0.077331338 | 0.130968323 | 0.120173364 | 0.130968323 | -0.000610321 | 0.402312357 | 0.668601949 | 0.266289592 | 0.817775429 | 0.000235243 | 5.207723519 | 0.071325767 | 5.045875925 | 9 | 6 | 3 | 2.600000000 | 0.536500000 | 0.403367611 | 20 | 0.888480569 | 20 | 0.908300950 | 20 | 0.909466521 | 20 | 0.908682717 | 20 | 0.909728240 | 20 | 0.917567590 | 13 | -0.077331338 | 20 | -0.066777968 | -0.000261663 | -0.000223986 | 0.000037678 | 0.000000000 | 0.000000000 | 0.000000000 | 1.000000000 | 17 | h122 | 24 | 0.003075537 | -0.000005093 | 0.000005568 | -0.011173119 | 0.005113958 | 5 | 4 | 1 | 0 | Q1:3;Q3:2 | 0.307885714 | 0.001107747 | 0.385494606 | even H122's pruned core may retain a small public-toxic action field; delete only the highest toxicity core cells | route_curvature | 30.000000000 | 0.001054773 | 0.261385734 | /Users/kbsoo/Downloads/cl2/submission_h129_toxiceraser_ce1ebc19_uploadsafe.csv | 250 | True | 0 | 0 | 0.000004939 | 0.999996751 | 20 | True |
+
+Interpretation rule:
+
+- If H129 improves, HS-JEPA should model a public-punished toxicity field after
+  row-target assignment; action support and action safety are separate solvers.
+- If H128 improves more, conflict-value regeneration is more important than
+  erasing assigned actions.
+- If H127/H126 improve more, the eraser is over-pruning and the known sparse
+  assignment field should stay terminal.

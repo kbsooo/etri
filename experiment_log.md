@@ -12292,3 +12292,83 @@ Public interpretation:
   should not be used as a proposal generator;
 - if H128 loses badly, S1/S4 conflict-bridge is another public-unsafe
   over-completion and H127 should remain the terminal residual branch.
+
+## H129 Toxic-Action Eraser HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h129_toxic_action_eraser_hsjepa/h129_report.md`
+- `hitl/h129_toxic_action_eraser_hsjepa/h129_decision.csv`
+- `hitl/h129_toxic_action_eraser_hsjepa/h129_operations.csv`
+- `hitl/h129_toxic_action_eraser_hsjepa/h129_toxicity_catalog.csv`
+- `submission_h129_toxiceraser_ce1ebc19_uploadsafe.csv`
+
+Worldview:
+
+```text
+The next public/private equation may not be another additive value field.
+Even the H122 sparse core can retain a small public-toxic action amplitude
+field.  HS-JEPA should erase or attenuate toxic row-target actions after
+assignment.
+```
+
+Observed result:
+
+- promoted candidate: `h129_h122_core_toxicity_ce1ebc19`;
+- root file: `submission_h129_toxiceraser_ce1ebc19_uploadsafe.csv`;
+- start field: H122;
+- operations: `5`;
+- removed cells: `4`;
+- damped cells: `1`;
+- operated targets: Q1 `3`, Q3 `2`;
+- selected cells / rows: `20` / `17`;
+- final target route: Q1 `6`, Q2 `0`, Q3 `2`, S1 `6`, S2 `4`,
+  S3 `0`, S4 `2`;
+- route delta from H122: `-0.000005`;
+- H098/model delta from H122: `+0.000006`;
+- H088 delta from H122: `-0.011173`;
+- good-bad margin delta from H122: `+0.005114`;
+- model predicted delta vs H057: `-0.000023`;
+- route-basis predicted delta vs H057: `-0.000610`;
+- H088-axis cosine: `-0.077331`;
+- good-bad margin: `0.130968`;
+- upload-safe validation passed.
+
+Important negative findings:
+
+- H128 conflict erasure had only a tiny component gain and was not promoted;
+- H127/H126/H124 post-H122 tail erasure did not survive as a stronger branch;
+- the strongest eraser signal is inside H122's already-pruned core, not in the
+  later H128/H127 additions.
+
+Interpretation:
+
+H129 moves the architecture from:
+
+```text
+find safe support -> add/refill more cells
+```
+
+to:
+
+```text
+find sparse support -> solve a second action-toxicity/amplitude field inside
+that support
+```
+
+This is a stronger 0.53-style question than another tail tweak.  If public
+improves, the current frontier is still carrying toxic Q1/Q3 amplitude in the
+core.  If it fails, the H122 core should be treated as an indivisible safe
+support and the eraser branch is too destructive.
+
+Public interpretation:
+
+- if H129 improves, prioritize a toxicity/amplitude decoder after assignment;
+- if H122 improves more, H129 over-pruned the core and the support equation is
+  already close to optimal;
+- if H128 improves more, value regeneration beats erasure and conflict-value
+  proposals should be expanded;
+- if H057 remains superior, the whole H122-H129 action-equation chain is likely
+  locally overfit despite good stress diagnostics.
