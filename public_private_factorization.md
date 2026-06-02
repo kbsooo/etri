@@ -2960,3 +2960,52 @@ repair-margin equation:
 
 The public result decides whether the next decoder should model H088-relief
 as action-grade or treat it as a stress diagnostic that often needs vetoing.
+
+## H146 Public-Tie Factorization Update
+
+Observed public result:
+
+```text
+H144 = 0.567929641
+H145 = 0.567929641
+H057 = 0.5677475939
+```
+
+H144 and H145 differ in only two cells:
+
+```text
+row135 Q3: small Q3 repair amplitude difference
+row207 S2: row207 relief on in H144, off in H145
+```
+
+This result does not validate either H144's H088-relief equation or H145's
+repair-margin equation.  It says the public sensor did not meaningfully listen
+to the branch contrast:
+
+```text
+public_listener(row135,Q3) ~= low or cancelling
+public_listener(row207,S2) ~= low or cancelling
+```
+
+Revised factorization:
+
+```text
+prediction field
+  = base state
+  + action(row,target)
+  * listener(row,target)
+  * safety(row,target)
+```
+
+Architecture consequence:
+
+The HS-JEPA decoder cannot be only an action-toxicity solver.  It needs a
+public/private listener mask first.  A locally good row-target action can be
+irrelevant if the public/private observation equation does not listen to that
+cell.
+
+Next clean sensor:
+
+H141 common core should be observed before more H144/H145 siblings are
+submitted.  It isolates whether the shared common core is already worse than
+H057, or whether the non-listened branch atoms are the harmful part.

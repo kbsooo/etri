@@ -13411,3 +13411,62 @@ Public reading:
   repair is the action-grade target.
 - H144 > H145: row207 S2 is needed after row135 S2 is vetoed.
 - H141 > H145: row135 Q3 itself is over-repair.
+
+## H146 Public-Tie Listener Mask Diagnostic
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h146_public_tie_listener_mask_hsjepa.py`
+- `hitl/h146_public_tie_listener_mask_hsjepa/h146_report.md`
+- `hitl/h146_public_tie_listener_mask_hsjepa/h146_pairwise_cell_diffs.csv`
+- `hitl/h146_public_tie_listener_mask_hsjepa/h146_pairwise_summary.csv`
+- `hitl/h146_public_tie_listener_mask_hsjepa/h146_public_tie_interpretation.csv`
+
+Observed public sensor:
+
+- H144 public LB: `0.567929641`
+- H145 public LB: `0.567929641`
+- both worse than H057 `0.5677475939` by `0.0001820471`.
+
+Exact H144-H145 difference:
+
+```text
+row135 Q3: H144 0.829783853053 vs H145 0.829580714006
+row207 S2: H144 0.808870352651 vs H145 0.810987067381
+```
+
+What changed:
+
+Before this result, H144/H145 was supposed to decide whether row207 S2 relief
+or Q3 repair-only was the safer action.  The public tie means this fork did not
+touch a public-sensitive axis at displayed precision.
+
+Interpretation:
+
+- killed: "local route/H088/margin metrics can rank these two row-target
+  actions";
+- weakened: "row207 S2 is the decisive public action after row135 S2 veto";
+- weakened: "row135 Q3 repair-only is a better public action than H144";
+- strengthened: HS-JEPA needs a public-listener/responsibility field before an
+  action can be considered action-grade.
+
+Next high-information action:
+
+Submit H141 common core if it has not been observed publicly.  H141 removes
+both row207 S2 and row135 Q3 repair:
+
+```text
+H141 = common core only
+H145 = H141 + row135 Q3 repair
+H144 = H141 + row135 Q3 repair + row207 S2 relief
+```
+
+Public reading:
+
+- H141 near H144/H145: common core/body is the public-misaligned part.
+- H141 better than H144/H145: row135 Q3/row207 branch cells are toxic or
+  low-listener noise.
+- H141 worse than H144/H145: branch cells help, but H057's broader state field
+  is still superior.

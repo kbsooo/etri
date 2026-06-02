@@ -2463,3 +2463,39 @@ H145 > H144:
 H144 > H145:
   row207 S2 relief is action-grade after all.
 ```
+
+### H146 Update: Listener Mask Becomes Mandatory
+
+Public result:
+
+```text
+H144 = 0.567929641
+H145 = 0.567929641
+```
+
+This kills the clean H144-vs-H145 fork.  The public sensor did not choose
+between row207 S2 relief and Q3 repair-only, even though the two submissions
+are different at exactly those row-target cells.
+
+New bottleneck diagnosis:
+
+```text
+The decoder is trying to decide whether an action is good before deciding
+whether the public/private equation listens to that row-target cell.
+```
+
+Big bet now:
+
+| Bet | Worldview | Success signal | Failure signal |
+| --- | --- | --- | --- |
+| Public-listener HS-JEPA | hidden state has a listener/responsibility field separate from toxicity | H141 or a listener-masked candidate separates from H144/H145 by >=0.001 | all common-core/branch variants stay in the same 0.5679 basin |
+| Common-core public sensor | H144/H145 lost because shared common core is misaligned | H141 near or worse than H144/H145 | H141 clearly beats H144/H145 |
+| Listener-masked action solver | only public-listened row-target actions should be modified | a candidate changes fewer listened cells but beats H057/H144/H145 | local listener inference fails to predict public movement |
+
+Recommended next public slot:
+
+`submission_h141_commoncore_0999d3ae_uploadsafe.csv`
+
+Reason: it is not an insurance tweak.  It directly tests whether the H144/H145
+loss comes from the shared common core or from the branch atoms that public did
+not distinguish.

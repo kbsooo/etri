@@ -3482,3 +3482,33 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
     largely re-explain or overlap the H088 basin;
   - next high-information bet should solve public/private row-target equations
     directly instead of adding a dual-head acceptance gate.
+
+## Public Observation: H144/H145 Tie Sensor
+
+- submission files:
+  - `submission_h144_targetxor_def80b88_uploadsafe.csv`
+  - `submission_h145_q3repair_2d818e46_uploadsafe.csv`
+- public LB:
+  - H144: `0.567929641`
+  - H145: `0.567929641`
+- current best anchor:
+  - H057: `0.5677475939`
+- actual public reaction:
+  - H144 and H145 are exactly tied at displayed precision;
+  - both are worse than H057 by `0.0001820471`.
+- changed point between H144 and H145:
+  - row `135` / Q3: H144 `0.829783853053`, H145 `0.829580714006`;
+  - row `207` / S2: H144 `0.808870352651`, H145 `0.810987067381`.
+- expected LB reaction:
+  - H144 > H145 would mean row207 S2 relief is action-grade;
+  - H145 > H144 would mean row207 S2 relief is still a toxic shortcut and Q3
+    repair-only is safer.
+- actual signal:
+  - public did not distinguish row207 S2 relief from Q3 repair-only;
+  - the two contrasted cells are likely public-non-listened, low-responsibility,
+    or accidentally label-cancelling at the displayed LB precision;
+  - the common H141-plus-repair body is the part that sits below H057, not the
+    H144/H145 branch distinction.
+- next experiment:
+  - H141 common core is now the cleanest public sensor if a slot is available:
+    it removes both row207 S2 and row135 Q3 repair from H144/H145.

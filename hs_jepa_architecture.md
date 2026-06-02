@@ -3181,3 +3181,57 @@ HS-JEPA decoder
 This is a deliberate challenge to the current H088-relief branch.  It tests
 whether "action-grade" should be defined by repair/margin stability rather than
 H088-axis movement.
+
+### H146: Public-Listener Responsibility Head
+
+The H144/H145 public tie changes the architecture.
+
+Observed:
+
+```text
+H144 = common core + row207 S2 + row135 Q3 - row135 S2
+H145 = common core + row135 Q3 - row207 S2 - row135 S2
+public(H144) = public(H145) = 0.567929641
+```
+
+They differ only at:
+
+```text
+row135 Q3
+row207 S2
+```
+
+Architecture implication:
+
+An HS-JEPA action decoder is incomplete if it predicts only "what action should
+move."  It must also predict whether that action is inside the observed public
+equation.
+
+Revised decoder:
+
+```text
+context encoder
+  -> human-state latent z
+  -> target-route proposal a(row,target)
+  -> listener responsibility l(row,target)
+  -> toxicity / safety s(row,target)
+  -> correction field c = a * l * s
+```
+
+Interpretation:
+
+- `a(row,target)` asks what hidden human-state route wants to change.
+- `l(row,target)` asks whether public/private evaluation listens to that cell.
+- `s(row,target)` asks whether the action is punished when listened.
+
+This separates three failure modes that were previously entangled:
+
+```text
+good action, listened, safe     -> frontier candidate
+good action, not listened       -> public tie / no movement
+good action, listened, toxic    -> H088-style negative sensor
+```
+
+H144/H145 demonstrate the second case.  The next HS-JEPA version should learn
+listener responsibility before treating route/H088/margin movement as
+action-grade.

@@ -9521,3 +9521,24 @@ Public interpretation:
 - H144 > H145: row207 relief is necessary once row135 S2 is vetoed.
 - H141 > H145: row135 Q3 is over-repair.
 - H140 > H145: row135 Q3 and S2 must stay paired.
+
+## Post-H146 Candidate Priority Update
+
+Observed:
+
+- `submission_h144_targetxor_def80b88_uploadsafe.csv`: `0.567929641`
+- `submission_h145_q3repair_2d818e46_uploadsafe.csv`: `0.567929641`
+- both are worse than H057 `0.5677475939` by `0.0001820471`.
+
+Priority change:
+
+| Candidate | Status | Reason |
+| --- | --- | --- |
+| H144 | demoted to sensor | public did not reward target-split row207+Q3 assignment |
+| H145 | demoted to sensor | public did not reward Q3 repair-only despite stronger margin |
+| H141 | next high-information public sensor | isolates common core from row207/Q3 branches |
+| H057 | current frontier | still best observed action field |
+
+Do not submit more H144/H145 amplitude siblings until H141 is observed or a
+new listener mask is learned.  The H144/H145 tie says the next issue is not
+amplitude; it is whether public listens to the proposed row-target action.

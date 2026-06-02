@@ -1,0 +1,4 @@
+finding,evidence,interpretation,hs_jepa_update
+H144/H145 public tie,displayed public LB equal=True; delta=0.000000000000,The public sensor did not distinguish the two-cell difference between H144 and H145 at displayed precision.,Add public-listener responsibility before action-grade decoding.
+Two-cell branch contrast,"H144-H145 changed_cells=2, rows=[135, 207], targets=['Q3', 'S2']","row207 S2 and the row135 Q3 amplitude distinction are probably non-listened, low-responsibility, or label-cancelling public cells.",Do not trust local route/H088/margin metrics without listener masking.
+Shared body is below frontier,H144/H145 worse than H057 by 0.0001820471,The common H141-plus-repair body is public-misaligned relative to the H057 frontier; the row207-vs-Q3 fork is not the main loss source.,Separate public-listener mask from action-toxicity field.
