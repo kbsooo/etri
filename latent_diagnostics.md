@@ -1156,3 +1156,19 @@ decide whether this route signal is real or an action-decoder shortcut.
     geometry;
   - if H052 fails while H051 succeeds, the latent should be modeled as smooth
     phase amplitude, not binary edge.
+
+## H053 Latent Diagnostic: Q2 Support Identity
+
+- H053 treats Q2 latent state as a row-support identity problem rather than an
+  amplitude problem.
+- Geometry checks:
+  - support cardinality is fixed at `45`, matching H042;
+  - `31` H042 rows survive and `14` are replaced;
+  - replacement rows have higher combined support/world evidence than removed
+    rows by support score gain `+0.239130240`;
+  - added-minus-removed support posterior gain is `+0.019460000`;
+  - public-world direction agreement is `1.0`.
+- Energy interpretation:
+  - improvement after H051/H052 fail means row-support identity is the latent;
+  - failure means H047/H036 support posterior is not yet a stable public
+    support geometry and exact H042 support remains the better anchor.

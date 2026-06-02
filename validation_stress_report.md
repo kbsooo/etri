@@ -7256,3 +7256,26 @@ Stress interpretation:
   - if H051 is positive but H052 fails, the falsified object is binary edge,
     not Q2 phase itself.
   - if H051 is negative, H052 should be skipped rather than interpreted.
+
+## H053 Stress Note: Q2 Support Reassignment
+
+- Branch dependency:
+  - H053 is most informative if H051/H052 do not validate exact-support
+    amplitude/edge continuation.
+- Stress invariant:
+  - the action must stay Q2-only;
+  - support size must remain `45`;
+  - H042 support replacement must be explicit and auditable.
+- Validation result:
+  - upload shape `(250, 10)`;
+  - required columns OK;
+  - no NaN;
+  - no duplicate key rows;
+  - probability range `[0.0000329401, 0.999980303]`;
+  - changed cells vs H012: Q2 `45`, every other target `0`;
+  - changed cells vs H042: Q2 `28`, every other target `0`;
+  - support accounting: kept `31`, removed `14`, added `14`;
+  - direction agreement with public-world target: `1.0`.
+- Failure interpretation:
+  - if H053 loses after amplitude/edge also fail, the active H042 discovery is
+    likely a narrow exact-support correction, not a broad support posterior.

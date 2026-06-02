@@ -1586,3 +1586,18 @@ candidates had strong H025 health but weaker action-margin evidence.
   submit only after positive H051 feedback. Positive H052 feedback means Q2 is
   an edge-seeking action-label route; negative H052 after positive H051 means
   Q2 is smooth phase, not binary edge.
+
+## H053 Q2 Support Reassignment
+
+- script: `h053_q2_support_reassignment_jepa.py`
+- report: `h053_q2_support_reassignment_jepa/h053_report.md`
+- promoted branch root file:
+  `submission_h053_q2_support_reassign_k31a14_447af5b3_uploadsafe.csv`
+- purpose:
+  H053 is the amplitude-failure branch. It keeps support size `45`, but swaps
+  H042 support identity: keep `31` strong H042 Q2 cells, remove `14` weak H042
+  cells, add `14` H047/H036 public-world rows.
+- public reading:
+  improvement after H051/H052 fail means Q2 should be modeled as support /
+  public-subset identity. Failure means exact H042 support remains safer than
+  local reassignment.

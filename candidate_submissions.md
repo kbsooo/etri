@@ -6215,3 +6215,38 @@ Submission meaning:
   action-label edge.
 - If H051 improves but H052 fails, Q2 is amplitude-linear but not binary-edge.
 - If H051 fails, do not submit H052; the amplitude/edge branch is killed.
+
+## H053 Branch Submission Decision
+
+Conditional Q2 support-reassignment sensor:
+
+`submission_h053_q2_support_reassign_k31a14_447af5b3_uploadsafe.csv`
+
+What this file tests:
+
+- H051/H052 ask whether the exact H042 `45` Q2 cells should be pushed harder.
+- H053 asks the opposite question: maybe the amplitude is not the issue and
+  H042's support contains misplaced rows.
+- It freezes all non-Q2 targets, keeps `31` strongest H042 Q2 rows, reverts
+  `14` weakest H042 Q2 rows to H012, and adds `14` non-H042 rows selected by
+  H047 support posterior plus H036/H042 public-world direction.
+
+Local profile:
+
+- changed cells vs H042: `28`, all Q2;
+- changed cells vs H012: `45`, all Q2;
+- support accounting: kept `31`, removed `14`, added `14`;
+- support posterior add-minus-remove gain: `+0.019460000`;
+- support score add-minus-remove gain: `+0.239130240`;
+- Q2 world delta vs H042: `-0.000386360`;
+- direction agreement with world: `1.0`;
+- upload validation passed: shape `(250, 10)`, required columns OK, no NaN,
+  no duplicate keys, probabilities in `[0.0000329401, 0.999980303]`.
+
+Submission meaning:
+
+- Submit H053 if H051/H052 do not validate amplitude/edge continuation.
+- If H053 improves while H051/H052 fail, HS-JEPA should model Q2 as support
+  identity / public-subset assignment rather than exact-support amplitude.
+- If H053 also fails, H042 is probably a narrow local Q2 correction and the
+  next large bet should infer public subset directly instead of modifying Q2.

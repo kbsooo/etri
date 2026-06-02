@@ -381,3 +381,6 @@ hitl/h051_q2_phase_amplifier_jepa/submission_h051_*.csv
 
 # H052 materialized Q2 binary-edge sweep files are reproducible from the script.
 hitl/h052_q2_binary_edge_jepa/submission_h052_*.csv
+
+# H053 materialized Q2 support-reassignment sweep files are reproducible from the script.
+hitl/h053_q2_support_reassignment_jepa/submission_h053_*.csv

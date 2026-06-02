@@ -3028,3 +3028,34 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
 - interpretation:
   - H052 is not a safe improvement candidate; it is the clean binary-edge
     successor to H051.
+
+## Public-Free Observation: H053 Q2 Support-Reassignment HS-JEPA
+
+- submission file prepared:
+  `submission_h053_q2_support_reassign_k31a14_447af5b3_uploadsafe.csv`
+- public LB: pending
+- public anchors:
+  - H012 `0.5681234831`;
+  - H042 `0.5679048248`;
+  - H050 `0.5679048248`.
+- changed point:
+  - starts from H042;
+  - freezes Q1/Q3/S1/S2/S3/S4 exactly;
+  - keeps the Q2 support size at `45`;
+  - keeps `31` strongest H042 Q2 rows, removes `14` weak H042 rows, and adds
+    `14` new H047/H036 public-world Q2 rows.
+- expected LB reaction:
+  - better than H042 after H051/H052 fail means H042's missing variable was
+    support/public-subset identity, not amplitude;
+  - worse than H042 means exact H042 support is safer than reassignment.
+- local/public-free observation:
+  - changed cells vs H042 `28`, all Q2;
+  - changed cells vs H012 `45`, all Q2;
+  - kept/removed/added support: `31` / `14` / `14`;
+  - support posterior gain add-minus-remove `+0.019460000`;
+  - support score gain add-minus-remove `+0.239130240`;
+  - Q2 world delta vs H042 `-0.000386360`;
+  - direction agreement with world `1.0`.
+- interpretation:
+  - H053 is the amplitude-failure branch, not the immediate successor if H051
+    validates exact-support amplitude.

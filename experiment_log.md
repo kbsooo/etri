@@ -7779,3 +7779,43 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
 - Decision:
   - keep H052 as the immediate follow-up only if H051 public feedback is
     positive.
+
+## H053. Q2 Support-Reassignment HS-JEPA
+
+- Observe: H050 tied H042 exactly at `0.5679048248` while freezing Q2 and
+  changing `96` non-Q2 Q1/Q3 cells. That leaves Q2 as the only public-positive
+  translated target route. H051/H052 test whether the same H042 support should
+  move farther, but there is a competing possibility: H042's `45`-cell support
+  may be partly wrong.
+- Wonder: is H042's real discovery the Q2 direction/amplitude, or the identity
+  of public-like Q2 support rows?
+- Hypothesis: if H042 found the right type of Q2 action but misplaced part of
+  the support, then replacing weak H042 rows with H047/H036-supported rows
+  should improve after amplitude continuation fails. If it loses, exact H042
+  support is the safer public subset.
+- Method: `hitl/h053_q2_support_reassignment_jepa.py`.
+  - base: H042 current public best;
+  - context: H047 row-level support posterior and H036/H042 public-world Q2
+    direction;
+  - target representation: row-level Q2 support identity;
+  - action: freeze non-Q2 targets, keep support size `45`, keep strongest
+    `31` H042 rows, remove weakest `14`, add `14` non-H042 rows;
+  - stress: support accounting, upload validation, direction agreement, and
+    public-world delta.
+- Result:
+  - selected `h053_swap_keep31_add14_a0p35_world_prob_447af5b3`;
+  - promoted root file
+    `submission_h053_q2_support_reassign_k31a14_447af5b3_uploadsafe.csv`;
+  - changed cells vs H042 `28`, all Q2;
+  - changed cells vs H012 `45`, all Q2;
+  - support accounting kept/removed/added `31` / `14` / `14`;
+  - support posterior add-minus-remove gain `+0.019460000`;
+  - Q2 world delta vs H042 `-0.000386360`;
+  - direction agreement with world `1.0`;
+  - root file validation passed.
+- Interpretation:
+  - H053 should not outrank a positive H051/H052 amplitude branch;
+  - it is the clean branch to submit if amplitude/edge continuation does not
+    survive public feedback.
+- Decision:
+  - keep H053 as the next high-information amplitude-failure sensor.

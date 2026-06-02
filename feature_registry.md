@@ -5203,3 +5203,26 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Discard condition:
   if H051 fails, discard H052 without submission. If H051 succeeds but H052
   fails, discard binary-edge continuation while preserving smooth Q2 phase.
+
+## H053 Feature/Action Registry: Q2 Support Reassignment
+
+- Feature/action name:
+  `h053_q2_support_reassignment`
+- Hidden structure targeted:
+  row-level Q2 support identity / public-subset assignment.
+- Why needed:
+  H051/H052 push the same H042 cells harder. H053 tests the opposite belief:
+  some H042 support cells are wrong and should be replaced by higher-posterior
+  public-like Q2 rows.
+- Construction:
+  - start from H042;
+  - freeze Q1/Q3/S1/S2/S3/S4;
+  - rank H042 Q2 cells with H047 support posterior and H036/H042 world score;
+  - keep `31`, revert `14` weak cells to H012;
+  - add `14` new non-H042 Q2 rows in public-world direction with alpha `0.35`.
+- Leakage/safety distinction:
+  H053 is a branch sensor for support identity, not a generic Q2 blend. It is
+  mainly useful if exact-support amplitude/edge fails.
+- Discard condition:
+  if H053 loses after H051/H052 fail, stop local Q2 support swaps and move to a
+  direct public-subset/world-equation inference.

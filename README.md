@@ -341,3 +341,18 @@ Primary working notes:
 The local `analysis_outputs/` directory contains many generated scan tables.
 Only scripts, reports, summary/audit tables, and key submission files are tracked
 in git; large generated artifacts remain local by design.
+
+## Latest H053 Branch Note
+
+H050 public feedback tied H042 exactly at `0.5679048248` despite `96` non-Q2
+Q1/Q3 changes, so the live post-H042 signal remains Q2-local under the current
+translator.
+
+H051/H052 test exact-support Q2 amplitude and edge continuation. H053 tests the
+opposite branch: keep the Q2 action size at `45` cells, but reassign the
+support. It keeps the strongest `31` H042 Q2 rows, reverts the weakest `14`,
+and adds `14` new H047/H036 public-world rows. The promoted upload file is
+`submission_h053_q2_support_reassign_k31a14_447af5b3_uploadsafe.csv`.
+
+If H051/H052 fail but H053 improves, H042 was mainly a support/public-subset
+identity discovery rather than an under-amplified Q2 phase.

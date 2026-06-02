@@ -5532,3 +5532,23 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
   - H050 weakened non-Q2 target-route expansion.
   - H051 tests Q2 amplitude.
   - H052 tests whether that amplitude has a label-edge attractor.
+
+## H053 Update: Q2 Support Identity Versus Exact-Support Amplitude
+
+- New competing node:
+  - H053: if H051/H052 do not validate exact-support amplitude/edge
+    continuation, H042's public gain may have come from row-level Q2 support
+    identity with some misplaced rows.
+- Evidence if true:
+  - `submission_h053_q2_support_reassign_k31a14_447af5b3_uploadsafe.csv`
+    improves after amplitude/edge fails;
+  - then the useful latent is not "push the same 45 cells harder", but "find
+    the correct public-like Q2 support rows".
+- Evidence if false:
+  - H053 loses against H042;
+  - then replacing support is worse than exact H042 support and future Q2 work
+    should infer public subset globally rather than swap local rows.
+- Relation to current graph:
+  - H050 keeps the live branch Q2-local;
+  - H051/H052 test amplitude/edge on exact support;
+  - H053 is the support-reassignment alternative branch.
