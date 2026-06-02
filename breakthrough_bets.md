@@ -1530,3 +1530,44 @@ Decision rule:
 - H112 wins: keep residual toxicity at cell level; row bundles are too rigid.
 - H111 wins: public residuals are not reliable enough for action decoding.
 - H110/H109 win: return to smaller local/kernel action fields.
+
+### H114 Update
+
+H114 is the first explicit toxic-subspace nullspace decoder.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H114 | `submission_h114_nullspace_73fe7866_uploadsafe.csv` | safe action is obtained by projecting candidate human-state moves into the nullspace of known toxic public directions before assignment | `27` cells / `25` rows / H112 cosine `0.033494` | toxic projection ratio `0.047395`, H088 cosine `-0.010421`, bad-axis positive projection `0.0` | high-risk nullspace bet |
+
+Breakthrough reading:
+
+```text
+H114 deliberately violates the conservative local proxy ranking: H098 and
+route-basis predict tiny worsening, but the action is almost orthogonal to
+H112/H113 and removes 95% of the restricted toxic projection.  If it works,
+the current public-equation proxies are part of the plateau rather than the
+solution.
+```
+
+Current high-information submission order:
+
+1. `submission_h114_nullspace_73fe7866_uploadsafe.csv`
+   - world-changing test of toxic-subspace null decoding.
+
+2. `hitl/h114_toxic_subspace_null_solver_hsjepa/submission_h114_null_h010_e216_antidote_c72_a060_4232eefa.csv`
+   - safer H114 sibling: named H010/E216/LeJEPA toxic-axis antidote.
+
+3. `submission_h113_rowroute_04369be5_uploadsafe.csv`
+   - row-route assignment compression of H112.
+
+4. `submission_h112_residualtox_68b26f11_uploadsafe.csv`
+   - cell-level public-residual toxicity.
+
+Decision rule:
+
+- H114 wins: promote toxic-subspace projection as HS-JEPA's action decoder.
+- H114 fails but H112/H113 survive: projection is too aggressive; keep
+  toxicity as a selector/stress field.
+- H114 fails badly: public bad vectors do not define a stable linear subspace.
+- Safer H114 sibling wins if tested: nullspace is real but must be anchored to
+  named residual-bad axes, not novelty.

@@ -1503,3 +1503,60 @@ Failure interpretation:
 - if H112 improves more, residual toxicity is cell-factored;
 - if H111 improves more, residual toxicity itself is weak;
 - if H110/H109 improve more, route and residual fields are both too broad.
+
+## H114 Toxic-Subspace Null Factorization
+
+H114 changes the order of the public/private decoder.
+
+Previous factorization:
+
+```text
+candidate row-target action
+  -> public bad-axis / residual-toxicity stress
+  -> keep or reject
+```
+
+H114 factorization:
+
+```text
+known bad public actions
+  -> toxic subspace
+candidate human-state action
+  -> projection into toxic nullspace
+  -> sparse row-target assignment
+  -> public/private stress validation
+```
+
+Observed H114 factorization:
+
+- selected file: `submission_h114_nullspace_73fe7866_uploadsafe.csv`;
+- selected candidate: `h114_null_novel_lowoverlap_c64_a058_73fe7866`;
+- selected cells / rows: `27` / `25`;
+- Q2 cells: `0`;
+- H098 cell-equation predicted delta vs H057: `+0.000005`;
+- route-basis predicted delta vs H057: `+0.000028`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.010421`;
+- selected residual toxicity / safety / gap:
+  `0.442060` / `0.602047` / `0.159986`;
+- toxic projection before / after:
+  `13.057908` / `0.618885`;
+- toxic projection ratio: `0.047395`;
+- H114/H112 cosine: `0.033494`;
+- H114/H113 cosine: `0.057487`.
+
+Interpretation:
+
+H114 is the strongest current negative/positive discriminator.  It asks whether
+public/private safety is attached to a linear toxic subspace rather than to
+locally scored cells.  Its selected vector is intentionally novel, so the
+public result should be read as a structural sensor, not as a conservative
+attempt to edge the best score.
+
+Failure interpretation:
+
+- if H114 improves, hidden public toxicity is subspace-like and should be
+  removed before assignment;
+- if H114 fails mildly, a named residual-bad-axis version may still survive;
+- if H114 fails badly, toxic vectors are not a stable projection space and the
+  model should return to H112/H113 selectors.

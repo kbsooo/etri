@@ -1830,3 +1830,49 @@ candidate action decoder layer.  If public LB improves over H112, HS-JEPA v4
 has evidence that human-state correction should be route-factored.  If not,
 the architecture should keep row-route bundles as diagnostics while the actual
 decoder remains cell-level residual toxicity.
+
+## HS-JEPA v4.5: Toxic-Subspace Null Decoder
+
+H114 adds a stronger decoder hypothesis:
+
+```text
+public-failed submissions and residual-bad moves
+  -> toxic action subspace
+human-state candidate action
+  -> nullspace projection
+  -> sparse row-target assignment
+  -> public/private stress validation
+```
+
+This is different from H102-H113.  Earlier versions selected or scored actions
+and then checked whether the resulting vector was public-safe.  H114 makes
+public safety a pre-assignment transformation.
+
+H114 evidence:
+
+- candidate: `submission_h114_nullspace_73fe7866_uploadsafe.csv`;
+- selected cells / rows: `27` / `25`;
+- target route: Q1 `1`, Q2 `0`, Q3 `6`, S1 `6`, S2 `2`, S3 `7`,
+  S4 `5`;
+- toxic projection ratio: `0.047395`;
+- H112 cosine: `0.033494`;
+- H113 cosine: `0.057487`;
+- H088-axis cosine: `-0.010421`;
+- bad-axis positive projection: `0.000000`.
+
+Architecture interpretation:
+
+If H114 works, HS-JEPA's decoder is not:
+
+```text
+representation -> action
+```
+
+It is:
+
+```text
+representation -> proposed action -> toxic-subspace null action -> assignment
+```
+
+If H114 fails, the toxic-subspace layer should remain a diagnostic for collapse
+and public overfit, not the action decoder.

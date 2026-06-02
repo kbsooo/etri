@@ -8147,3 +8147,48 @@ Priority: high information value, but less radical than H112.  H113 is the
 best test of "cell toxicity versus row-route toxicity"; it is not a completely
 new public-equation inversion because its selected direction still has H112
 cosine `0.851031`.
+
+## H114 Toxic-Subspace Null Solver
+
+Generated file:
+
+`submission_h114_nullspace_73fe7866_uploadsafe.csv`
+
+Worldview: public-bad submissions define a toxic action subspace.  Instead of
+selecting safe-looking cells and then checking bad-axis stress, H114 projects
+the candidate human-state action into the nullspace of known toxic directions
+first, then performs sparse row-target assignment.
+
+Evidence:
+
+- selected candidate: `h114_null_novel_lowoverlap_c64_a058_73fe7866`;
+- selected cells / rows: `27` / `25`;
+- target changes: Q1 `1`, Q2 `0`, Q3 `6`, S1 `6`, S2 `2`, S3 `7`,
+  S4 `5`;
+- H098 cell-equation predicted delta vs H057: `+0.000005`;
+- route-basis predicted delta vs H057: `+0.000028`;
+- bad-axis weighted positive projection: `0.000000`;
+- H088-axis cosine: `-0.010421`;
+- selected residual toxicity / safety / gap:
+  `0.442060` / `0.602047` / `0.159986`;
+- toxic projection ratio: `0.047395`;
+- null quality: `0.952605`;
+- H112 overlap: `2` cells, cosine `0.033494`;
+- H113 overlap: `6` cells, cosine `0.057487`;
+- H111 overlap: `0` cells;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H112/H113: toxic-subspace nullspace is the missing action decoder;
+- small loss: nullspace is a useful diagnostic but needs a less novel prior;
+- large loss: public-bad axes are not a projection space; they are only
+  post-selection stress tests;
+- if the safer internal H114 candidate
+  `h114_null_h010_e216_antidote_c72_a060_4232eefa` would have been better,
+  the next bet should use named residual-bad axes rather than full novelty.
+
+Priority: very high information value, high downside risk.  This is not a
+frontier-safe candidate because local H098/route-basis proxies mildly predict
+worse public loss.  It is a direct test of whether the current local proxy
+equations are the plateau.

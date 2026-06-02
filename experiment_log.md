@@ -11347,3 +11347,62 @@ Public interpretation:
 - if H111 improves more, both H112/H113 residual layers overfit
   underidentified public residuals;
 - if H110/H109 improve more, the broad row-route family is still too diffuse.
+
+## H114 Toxic-Subspace Null Solver HS-JEPA
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h114_nullspace_73fe7866_uploadsafe.csv`
+
+Worldview:
+
+```text
+H112/H113 still choose plausible cells first and stress-test them afterward.
+If 0.53 requires a true action-toxicity breakthrough, the order should be
+reversed: known bad public actions define a toxic subspace, and the candidate
+human-state action is projected into the nullspace of that subspace before
+row-target assignment.
+```
+
+Observed result:
+
+- selected candidate: `h114_null_novel_lowoverlap_c64_a058_73fe7866`;
+- generated root file: `submission_h114_nullspace_73fe7866_uploadsafe.csv`;
+- submitted cells / rows: `27` / `25`;
+- changed target cells: Q1 `1`, Q2 `0`, Q3 `6`, S1 `6`, S2 `2`,
+  S3 `7`, S4 `5`;
+- H098 cell-equation predicted delta vs H057: `+0.000005`;
+- route-basis predicted delta vs H057: `+0.000028`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.010421`;
+- selected residual toxicity / safety / gap:
+  `0.442060` / `0.602047` / `0.159986`;
+- selected H111 cells / H108-rejected cells: `0` / `3`;
+- toxic projection before / after: `13.057908` / `0.618885`;
+- toxic projection ratio / null quality: `0.047395` / `0.952605`;
+- H114/H112 active-cell overlap: `2` cells, cosine `0.033494`;
+- H114/H113 active-cell overlap: `6` cells, cosine `0.057487`;
+- upload-safe validation passed.
+
+Important diagnostic:
+
+H114 is a genuine big-bet sensor, not a safer H112 variant.  The promoted
+candidate is almost orthogonal to H112/H113 and has no H111-selected cells.
+Local H098 and route-basis equations mildly dislike it, so this is not a
+conservative expected-value candidate.  It tests whether those local equations
+are themselves trapped in the current 0.56 plateau and whether toxic-subspace
+nullspace is a missing higher-level decoder.
+
+Public interpretation:
+
+- if H114 improves meaningfully, HS-JEPA should be reformulated around
+  toxic-subspace nullspace decoding before assignment;
+- if H114 is worse but `h114_null_h010_e216_antidote_c72_a060_4232eefa`
+  looks more plausible locally, the nullspace idea may survive only when tied
+  to specific H010/E216/LeJEPA residual-bad axes;
+- if H112/H113 beat H114, explicit vector nullspace projection discarded real
+  local cell signal;
+- if H110/H111 beat H112-H114, public-bad axes are useful as stress tests but
+  not as projection-space decoders.
