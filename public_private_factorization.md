@@ -86,6 +86,7 @@ Where:
 | Private-safe state | Needed for 0.53 | Not solved |
 | Human-social state | H072 story families recover H068 rows but not H071 routes | Context/action-health layer, not direct route layer |
 | Human-action bridge | H073 story+route context predicts continuous health/shortcut | Useful representation, not yet 0.001 action solver |
+| Action toxicity equation | H122-H126 prune/refill/closure sequence | Real but narrow; coefficient-sensitive |
 
 ## H069 Result
 
@@ -200,6 +201,45 @@ This weakens another direct human-story route sweep. It strengthens H074-style
 anti-shortcut inversion or a future assignment solver that treats human context
 as a regularized bridge between public listener state and private-safe action
 state.
+
+## H122-H126 Action Toxicity Factorization
+
+The latest solver sequence reframes public/private factorization at the action
+level:
+
+```text
+proposal action
+  -> public-toxic sector pruning
+  -> route-safe refill
+  -> dual-sensor S1 margin
+  -> optional closure coefficient
+```
+
+Evidence:
+
+- H122 removed `28` H118 objective Q/S stage cells and kept a `24`-cell sparse
+  core with H088 cosine `-0.066158`;
+- H123 added a Q3/S3 route complement, but the S3 tail weakened the H098/model
+  caution axis;
+- H124 rejected the S3 tail and added two S1 margin cells that improved both
+  route and H098/model caution;
+- H125 found only a narrow id04/S1 bundle closure, not a general row-bundle
+  law;
+- H126 decomposed the resulting action into components and found the only novel
+  survivor to be half-amplitude closure:
+  `submission_h126_coeffeq_3fe3eee4_uploadsafe.csv`.
+
+Interpretation:
+
+This supports the active goal's distinction between representation and action:
+H088/H018-style hard worlds should not be used as private action heads.  They
+are better used as toxicity diagnostics.  The action-grade object is a
+row-target equation that first removes toxic proposal cells and only then
+permits small coefficient-controlled refills.
+
+The unresolved private-safe object is not a better context encoder.  It is the
+assignment/coefficient field deciding which representation-generated actions are
+safe enough to materialize.
 
 ## H074 Anti-Shortcut Factor Use
 

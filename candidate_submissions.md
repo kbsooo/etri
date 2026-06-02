@@ -8626,3 +8626,44 @@ Public interpretation:
 - H124 wins more: cell-level dual-sensor envelope is safer than bundle closure;
 - H123 wins more: route completion dominates bundle/H098 caution;
 - H122 wins more: all refill is unsafe.
+
+## H126 Component-Coefficient Equation Solver
+
+Generated file:
+
+`submission_h126_coeffeq_3fe3eee4_uploadsafe.csv`
+
+Worldview: H122-H125 may already contain the right action basis, but the public
+/ private equation may punish the wrong coefficient on the id04/S1 closure.
+H126 decomposes the field into prune core, Q3 refill, S3 route tail, S1 margin,
+and id04 closure, then solves candidate coefficients under the same safety
+sensors.
+
+Evidence:
+
+- selected candidate: `h126_h125_closure_soft_3fe3eee4`;
+- coefficient vector:
+  `core=1.0;q3=1.0;s3=0.0;s1=1.0;closure=0.5`;
+- selected cells / rows: `28` / `23`;
+- final target route: Q1 `8`, Q2 `0`, Q3 `5`, S1 `9`, S2 `4`,
+  S3 `0`, S4 `2`;
+- model predicted delta vs H057: `-0.000031`;
+- route-basis predicted delta vs H057: `-0.000702`;
+- H088-axis cosine: `-0.057670`;
+- good-bad margin: `0.149911`;
+- upload-safe: `True`.
+
+Submission priority:
+
+Medium-low as a scarce public slot, high as architecture evidence.  H126 is not
+a new large basin; it is a coefficient sensitivity test around H124/H125.  It
+is worth submitting only if the next question is specifically whether id04/S1
+closure should be softened instead of full H125 or removed as H124.
+
+Public interpretation:
+
+- win over H125: coefficient solving matters after assignment; closure should
+  be amplitude-decoded, not binary;
+- H125 wins more: full bundle closure is correct and H126 over-damped it;
+- H124 wins more: closure is over-completion even at half amplitude;
+- H123/H122 win more: S1 margin/closure is not the public-safe route.

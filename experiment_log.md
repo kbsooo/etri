@@ -12076,3 +12076,79 @@ Public interpretation:
 - if H123 improves more, route completion matters more than H098/bundle
   conservation;
 - if H122 improves more, all refill/bundle completion is overfit.
+
+## H126 Component-Coefficient Equation Solver HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h126_component_coefficient_equation_hsjepa/h126_report.md`
+- `hitl/h126_component_coefficient_equation_hsjepa/h126_decision.csv`
+- `hitl/h126_component_coefficient_equation_hsjepa/h126_component_summary.csv`
+- `hitl/h126_component_coefficient_equation_hsjepa/h126_selected_cells.csv`
+- `submission_h126_coeffeq_3fe3eee4_uploadsafe.csv`
+
+Worldview:
+
+```text
+H122-H125 may have found the right action components, but not necessarily the
+right coefficients.  Public/private safety may live in the amplitude equation
+over prune-core, route refill, S1 margin, and bundle closure components.
+```
+
+Component basis:
+
+- `core`: H122 prune core, `24` cells / `19` rows;
+- `q3_refill`: H123 single Q3 refill, `1` cell;
+- `s3_tail`: H123 selected route tail beyond Q3, `1` S3 cell;
+- `s1_margin`: H124 dual-sensor S1 margin beyond Q3, `2` S1 cells;
+- `id04_closure`: H125 bundle closure beyond H124, `2` S1 cells.
+
+Observed result:
+
+- promoted non-duplicate candidate: `h126_h125_closure_soft_3fe3eee4`;
+- root file: `submission_h126_coeffeq_3fe3eee4_uploadsafe.csv`;
+- coefficient vector:
+  `core=1.0;q3=1.0;s3=0.0;s1=1.0;closure=0.5`;
+- selected cells / rows: `28` / `23`;
+- final target route: Q1 `8`, Q2 `0`, Q3 `5`, S1 `9`, S2 `4`,
+  S3 `0`, S4 `2`;
+- model predicted delta vs H057: `-0.000031`;
+- route-basis predicted delta vs H057: `-0.000702`;
+- H118 curvature marginal vs zero: `0.000045`;
+- H088-axis cosine: `-0.057670`;
+- good-bad margin: `0.149911`;
+- margin gain vs H122: `0.024056`;
+- route gain vs H122: `-0.000097`;
+- upload-safe validation passed.
+
+Important diagnostic:
+
+The unconstrained top local score was the exact H125 replay
+(`closure=1.0`, hash `f3990392`).  H126 therefore had to reject duplicate
+baseline promotion and select the best novel coefficient equation.  The only
+novel survivor was half-amplitude closure.  Route-tail and broad coefficient
+variants failed the cumulative public/private safety gates.
+
+Interpretation:
+
+H126 does not open a new 0.53-scale basin by itself.  It says the current
+safe-action field is extremely constrained:
+
+```text
+H122 prune core + Q3 route refill + H124 S1 margin are stable.
+S3 route tail remains suspect.
+id04/S1 closure is real enough to survive, but amplitude-sensitive.
+```
+
+Public interpretation:
+
+- if H126 improves over H124/H125, HS-JEPA should solve a coefficient equation
+  after row-target assignment, especially for bundle closure amplitude;
+- if H125 improves more, closure should be full and discrete support still
+  dominates coefficient solving;
+- if H124 improves more, even half closure is over-completion and bundle
+  closure should remain diagnostic only;
+- if H122/H123 improve more, the dual-sensor S1 margin/closure path is not the
+  public-safe action route.

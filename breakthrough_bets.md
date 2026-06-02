@@ -1920,3 +1920,41 @@ Decision rule:
 - H124 wins more: bundle closure is over-completion;
 - H123 wins more: route completion matters more than bundle/H098 caution;
 - H122 wins more: no refill stage is safe.
+
+### H126 Update
+
+H126 turns H122-H125 from discrete submissions into a coefficient equation over
+action components:
+
+```text
+core = H122 prune residue
+q3_refill = H123 single Q3 complement
+s3_tail = H123 route tail beyond Q3
+s1_margin = H124 dual-sensor S1 margin
+id04_closure = H125 bundle closure
+```
+
+| Experiment | File | Core claim | Support | Equation diagnostics | Status |
+| --- | --- | --- | --- | --- | --- |
+| H126 | `submission_h126_coeffeq_3fe3eee4_uploadsafe.csv` | H125 closure is real but should be half-amplitude, not binary | `28` cells / `23` rows | route-basis `-0.000702`, model `-0.000031`, H088 cosine `-0.057670`, margin `0.149911` | coefficient-sensitive closure bet |
+
+The exact H125 replay had the highest local score, so H126 explicitly avoids
+promoting duplicate baseline hashes.  The only novel survivor is
+`closure=0.5`; S3-tail and broad coefficient variants fail the cumulative
+public/private gates.  This means coefficient solving is alive but narrow.
+
+0.53 implication:
+
+H126 is not a new 0.53-scale basin.  It strengthens the broader bet that the
+breakthrough must be an action equation, but it also shows the current H122-H125
+component basis is too small.  The next larger bet should discover a new basis
+component, not keep tuning H126 coefficients.
+
+Public interpretation:
+
+- H126 win: add coefficient decoding after row-target assignment;
+- H125 win more: full closure is correct and coefficient damping was too
+  conservative;
+- H124 win more: closure is toxic even when softened;
+- H122/H123 win more: the later S1 margin/closure branch is the wrong action
+  family.

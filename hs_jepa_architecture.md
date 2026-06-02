@@ -2331,3 +2331,45 @@ generation yet.  The safer architecture is:
 bundle closure is optional and only after prune/refill safety has already been
 established.
 ```
+
+## HS-JEPA v5.9: Component-Coefficient Action Equation
+
+H126 adds one more layer after row-target assignment: coefficient solving over
+the discovered action components.
+
+```text
+context encoder
+  -> hidden human/public state
+  -> action proposal
+  -> toxicity prune
+  -> dual-sensor refill
+  -> optional bundle closure
+  -> component coefficient solver
+       core, Q3 refill, S3 tail, S1 margin, closure
+       are scored as basis vectors, not independent cells
+  -> calibrated submission
+```
+
+H126 evidence:
+
+- candidate: `submission_h126_coeffeq_3fe3eee4_uploadsafe.csv`;
+- selected solver: `h126_h125_closure_soft_3fe3eee4`;
+- coefficient vector:
+  `core=1.0;q3=1.0;s3=0.0;s1=1.0;closure=0.5`;
+- final cells / rows: `28` / `23`;
+- route-basis predicted delta vs H057: `-0.000702`;
+- model predicted delta vs H057: `-0.000031`;
+- H088-axis cosine: `-0.057670`;
+- good-bad margin: `0.149911`.
+
+The architecture claim is limited but useful:
+
+```text
+safe action support and safe action amplitude are separate decoder problems.
+```
+
+The strongest local equation still replays H125 exactly, so v5.9 is not a
+standalone breakthrough.  Its value is architectural: after HS-JEPA predicts a
+row-target action representation, a final equation solver should be allowed to
+attenuate components that look structurally real but public/private
+amplitude-sensitive.
