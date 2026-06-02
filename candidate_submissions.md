@@ -8106,3 +8106,44 @@ Public interpretation:
 Priority: very high information value after H111.  H112 is the cleanest test
 of whether known public LB residuals can become a row-target toxicity field
 rather than just a post-hoc explanation.
+
+## H113 Row-Route Equation Solver
+
+Generated file:
+
+`submission_h113_rowroute_04369be5_uploadsafe.csv`
+
+Worldview: H112's residual-toxicity field may be a projection of a row-level
+target route equation.  The action unit is not "this cell moves" but "this row
+gets this target bundle."  H113 chooses at most one route per row and stresses
+the cumulative action under H102 bad-axis constraints.
+
+Evidence:
+
+- selected candidate: `h113_rowroute_global_state_c92_a042_04369be5`;
+- selected cells / rows / bundles: `37` / `14` / `14`;
+- mean targets per bundle: `2.642857`;
+- target changes: Q1 `7`, Q2 `0`, Q3 `9`, S1 `8`, S2 `4`, S3 `3`,
+  S4 `6`;
+- H098 cell-equation predicted delta vs H057: `-0.000019`;
+- route-basis predicted delta vs H057: `-0.000597`;
+- bad-axis weighted positive projection: `0.000000`;
+- H088-axis cosine: `-0.001766`;
+- selected residual toxicity / safety / gap:
+  `0.499907` / `0.682719` / `0.182812`;
+- H112 overlap: `27` cells, cosine `0.851031`;
+- H111 overlap: `27` cells, cosine `0.762718`;
+- H110 overlap: `17` cells, cosine `0.440345`;
+- upload-safe: `True`.
+
+Public interpretation:
+
+- win over H112: row-target route assignment is a real action decoder layer;
+- loss to H112: row-route bundling compresses away useful cell-level freedom;
+- loss to H111: residual-toxicity sensors are too underidentified;
+- loss to H110/H109: broad route assignment remains too diffuse.
+
+Priority: high information value, but less radical than H112.  H113 is the
+best test of "cell toxicity versus row-route toxicity"; it is not a completely
+new public-equation inversion because its selected direction still has H112
+cosine `0.851031`.

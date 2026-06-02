@@ -1790,3 +1790,43 @@ If H112 works, HS-JEPA should be written as a predictive architecture for
 hidden human state plus action safety, not merely hidden human state.  The
 final output is a row-target assignment whose action is safe under both the
 first-order public equation and the residual public toxicity equation.
+
+## HS-JEPA v4: Row-Route Equation Solver
+
+H113 adds a route-structured action decoder:
+
+```text
+row context / hidden human state
+  -> candidate target-route bundles inside each row
+  -> residual toxicity and safety scoring for each bundle
+  -> one-route-per-row assignment solver
+  -> cumulative public/private stress validation
+```
+
+This changes the final decoder unit:
+
+- v3.5 action unit: signed row-target cell;
+- v4 action unit: signed row-target bundle inside one row.
+
+H113 evidence:
+
+- candidate: `submission_h113_rowroute_04369be5_uploadsafe.csv`;
+- selected cells / rows / bundles: `37` / `14` / `14`;
+- mean targets per bundle: `2.642857`;
+- target route: Q1 `7`, Q2 `0`, Q3 `9`, S1 `8`, S2 `4`, S3 `3`,
+  S4 `6`;
+- H098 cell-equation predicted delta vs H057: `-0.000019`;
+- route-basis predicted delta vs H057: `-0.000597`;
+- bad-axis positive projection: `0.000000`;
+- H088-axis cosine: `-0.001766`;
+- residual toxicity / safety / gap:
+  `0.499907` / `0.682719` / `0.182812`;
+- H113/H112 cosine: `0.851031`.
+
+Architecture interpretation:
+
+H113 should not yet be presented as a new independent representation.  It is a
+candidate action decoder layer.  If public LB improves over H112, HS-JEPA v4
+has evidence that human-state correction should be route-factored.  If not,
+the architecture should keep row-route bundles as diagnostics while the actual
+decoder remains cell-level residual toxicity.

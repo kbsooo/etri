@@ -1457,3 +1457,49 @@ Failure interpretation:
 - if H110 improves more, local toxicity-gap is cleaner than LOO residual
   toxicity;
 - if H109 improves more, residual and boundary fields are both too broad.
+
+## H113 Row-Route Factorization
+
+H113 lifts H112's residual toxicity from cell assignment to row-route
+assignment.
+
+The factorization is:
+
+```text
+H112 residual toxicity / safety field
+  -> row-wise target route candidates
+  -> one-route-per-row beam assignment
+  -> cumulative public bad-axis stress test
+  -> row-route public/private safe action
+```
+
+Observed H113 factorization:
+
+- selected file: `submission_h113_rowroute_04369be5_uploadsafe.csv`;
+- selected candidate: `h113_rowroute_global_state_c92_a042_04369be5`;
+- selected cells / rows / bundles: `37` / `14` / `14`;
+- mean targets per bundle: `2.642857`;
+- Q2 cells: `0`;
+- H098 cell-equation predicted delta vs H057: `-0.000019`;
+- route-basis predicted delta vs H057: `-0.000597`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.001766`;
+- selected residual toxicity / safety / gap:
+  `0.499907` / `0.682719` / `0.182812`;
+- H113/H112 cosine: `0.851031`;
+- H113/H111 cosine: `0.762718`;
+- H113/H110 cosine: `0.440345`.
+
+Interpretation:
+
+H113 is not an independent public/private factor.  It is a route-structured
+compression of H112.  That makes the public result highly diagnostic:
+improvement means public rewards row-level target-route coherence; degradation
+means the extra route constraint discards useful cell-level assignments.
+
+Failure interpretation:
+
+- if H113 improves, action safety is row-route factored;
+- if H112 improves more, residual toxicity is cell-factored;
+- if H111 improves more, residual toxicity itself is weak;
+- if H110/H109 improve more, route and residual fields are both too broad.

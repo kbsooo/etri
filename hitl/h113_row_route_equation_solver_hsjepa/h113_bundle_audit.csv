@@ -1,0 +1,7 @@
+spec_name,group,candidate_bundles,top_bundle_score,mean_bundle_score_top20,worldview
+rowroute_h112_core_c48_a058,h112_core,30,0.8356871986275328,0.7179152424796851,"H112 was right locally, but only rows where multiple H112 cells form one route are action-grade"
+rowroute_antidote_objective_c72_a052,antidote_objective,39,0.7856871986275328,0.6953452390700419,"public punishes isolated objective-stage corrections, but Q3/S antidote routes survive as row-level assignments"
+rowroute_h108_rejected_bridge_c64_a050,h108_rejected_bridge,23,0.8254481856328237,0.6838999927587539,H108-rejected cells were not toxic alone; they need the correct row companions to become public-safe
+rowroute_quality_stage_c60_a055,quality_stage,39,0.8356871986275328,0.7331283557961292,"the hidden state is a Q1/Q3 plus selected S quality-stage route, not an S-only objective route"
+rowroute_global_state_c92_a042,global_state,63,0.7856871986275328,0.7220892840277061,"safe assignment is a broad low-amplitude row-state vector, not a sparse cell kernel"
+rowroute_q2_companion_micro_c24_a035,q2_companion,0,0.0,0.0,"Q2 is not safe as a target action, but a tiny Q2+quality companion route may explain the intervention state"

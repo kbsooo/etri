@@ -1491,3 +1491,42 @@ Decision rule:
 - H110 wins: LOO residuals are too underidentified; local benefit/toxicity is
   safer.
 - H109 wins: all broad assignment solvers are too diffuse.
+
+### H113 Update
+
+H113 tests whether the assignment unit is a row-target route bundle rather
+than an individual residual-toxic cell.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H113 | `submission_h113_rowroute_04369be5_uploadsafe.csv` | public-safe action is a row-route equation: one bundle per row under residual-toxicity and bad-axis constraints | `37` cells / `14` rows / `14` bundles | route-basis delta `-0.000597`, H098 delta `-0.000019`, bad-axis positive projection `0.0`, H088 cosine `-0.001766` | row-route assignment bet |
+
+Breakthrough reading:
+
+```text
+H113 did not create a far-away action direction.  It is H112 compressed into
+row-level target bundles: H112 cosine 0.851031, but only 14 rows and 14
+bundles.  This is still useful because it directly asks whether public safety
+is attached to row-target routes rather than isolated cells.
+```
+
+Current high-information submission order:
+
+1. `submission_h113_rowroute_04369be5_uploadsafe.csv`
+   - tests row-route action assignment over residual toxicity.
+
+2. `submission_h112_residualtox_68b26f11_uploadsafe.csv`
+   - cell-level residual-toxicity projection.
+
+3. `submission_h111_boundary_7cbf5e9d_uploadsafe.csv`
+   - global boundary without residual projection.
+
+4. `submission_h110_toxgap_7b02f196_uploadsafe.csv`
+   - local benefit-toxicity gap solver.
+
+Decision rule:
+
+- H113 wins: promote row-route equation solver as HS-JEPA's action decoder.
+- H112 wins: keep residual toxicity at cell level; row bundles are too rigid.
+- H111 wins: public residuals are not reliable enough for action decoding.
+- H110/H109 win: return to smaller local/kernel action fields.

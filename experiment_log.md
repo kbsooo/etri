@@ -11291,3 +11291,59 @@ Public interpretation:
   projection;
 - if H109 improves more, the public-safe action remains a tiny coefficient
   kernel.
+
+## H113 Row-Route Equation Solver HS-JEPA
+
+Date: 2026-06-03
+
+Generated file:
+
+`submission_h113_rowroute_04369be5_uploadsafe.csv`
+
+Worldview:
+
+```text
+H112's public-residual toxicity field may still be too local.  The hidden
+action-grade unit could be a row-target route: a row becomes public-safe only
+when the correct Q/S target bundle moves together.  H113 therefore assigns
+bundles, not individual cells, with at most one route per row.
+```
+
+Observed result:
+
+- selected candidate: `h113_rowroute_global_state_c92_a042_04369be5`;
+- generated root file: `submission_h113_rowroute_04369be5_uploadsafe.csv`;
+- submitted cells / rows: `37` / `14`;
+- selected row-route bundles: `14`;
+- mean targets per bundle: `2.642857`;
+- changed target cells: Q1 `7`, Q2 `0`, Q3 `9`, S1 `8`, S2 `4`,
+  S3 `3`, S4 `6`;
+- H098 cell-equation predicted delta vs H057: `-0.000019`;
+- route-basis predicted delta vs H057: `-0.000597`;
+- cumulative bad-axis weighted positive projection: `0.000000`;
+- cumulative H088-axis cosine: `-0.001766`;
+- selected residual toxicity / safety / gap:
+  `0.499907` / `0.682719` / `0.182812`;
+- selected H111 cells / H108-rejected cells: `27` / `13`;
+- H113/H112 active-cell overlap: `27` cells, cosine `0.851031`;
+- H113/H111 active-cell overlap: `27` cells, cosine `0.762718`;
+- H113/H110 active-cell overlap: `17` cells, cosine `0.440345`;
+- upload-safe validation passed.
+
+Important diagnostic:
+
+H113 did not discover a radically different action field.  It converts H112's
+cell-level residual toxicity into fewer row bundles, but the selected
+direction remains close to H112.  That makes it a clean sensor: if H113 wins,
+the row-route abstraction is real; if H112 wins, the row-route layer is
+currently an unnecessary compression of the cell toxicity field.
+
+Public interpretation:
+
+- if H113 improves over H112/H111, H112's cell residuals were projections of a
+  higher-level row-route equation;
+- if H112 improves more, individual residual-toxic cells are the safer action
+  unit and row-route bundling loses useful freedom;
+- if H111 improves more, both H112/H113 residual layers overfit
+  underidentified public residuals;
+- if H110/H109 improve more, the broad row-route family is still too diffuse.
