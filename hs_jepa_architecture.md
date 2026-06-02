@@ -2497,3 +2497,44 @@ support assignment + value regeneration + toxicity/amplitude erasure
 ```
 
 rather than as a single latent-to-probability predictor.
+
+## HS-JEPA v5.13: Row-Target Lattice Decoder
+
+H130 replaces the stage sequence with a lattice over action states.
+
+```text
+context encoder
+  -> hidden human/public state
+  -> candidate row-target support
+  -> value proposals from conflict/route sensors
+  -> toxicity and amplitude sensors
+  -> lattice decoder
+       each cell chooses one state:
+       off, damped, kept, or added
+  -> calibrated submission
+```
+
+H130 evidence:
+
+- candidate: `submission_h130_lattice_69da8d10_uploadsafe.csv`;
+- selected solver: `h130_h122_full_lattice_69da8d10`;
+- start field: H122;
+- lattice cells: `32`;
+- operations: off `3`, damp `5`, add `6`;
+- final cells / rows: `27` / `23`;
+- route-basis predicted delta vs H057: `-0.000640`;
+- model predicted delta vs H057: `-0.000020`;
+- H088-axis cosine: `-0.086159`;
+- good-bad margin: `0.271542`.
+
+Architecture implication:
+
+```text
+support, value, and toxicity are not sequential hacks.
+They are simultaneous coordinates in a row-target action equation.
+```
+
+This is the cleanest current formulation of HS-JEPA as an action-grade solver.
+The latent representation does not directly output labels.  It defines a
+structured action lattice, and the decoder chooses which row-target actions are
+safe under public/private stress equations.

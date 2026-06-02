@@ -2036,3 +2036,33 @@ Decision rule:
 - H128 win more: conflict-value generation is the higher-upside branch;
 - all lose to H057: the post-H057 action-equation family is probably a local
   public-sensor overfit and the next 0.53 bet must leave this support manifold.
+
+### H130 Update
+
+H130 turns the previous branch choice into a single row-target lattice problem.
+
+| Experiment | File | Core claim | Support | Equation diagnostics | Status |
+| --- | --- | --- | --- | --- | --- |
+| H130 | `submission_h130_lattice_69da8d10_uploadsafe.csv` | public/private safety is an off/damp/keep/add state assignment over discovered cells | `27` cells / `23` rows; off `3`, damp `5`, add `6` | route delta from H122 `-0.000034`, H098 delta `+0.000009`, H088 `-0.086159`, margin `0.271542` | full lattice decoder bet |
+
+Why this is a bigger bet than H129:
+
+```text
+H129 says toxic amplitude exists inside the core.
+H130 says toxicity and value are simultaneous cell-state assignments.
+```
+
+The selected H130 candidate starts from H122, removes/damps Q1/Q3 core cells,
+and adds S1/S2/S4 value cells from later branches.  That is the first candidate
+that expresses the full HS-JEPA row-target equation as a state lattice rather
+than a sequence of handcrafted stages.
+
+Decision rule:
+
+- H130 win: prioritize row-target lattice decoding as the main HS-JEPA
+  architecture;
+- H129 win more: keep the eraser, but value-addition overfit local stress;
+- H128 win more: conflict-value generation matters, but lattice erasure is too
+  destructive;
+- H122 win more: the current lattice score is over-optimistic and support
+  assignment should stay sparse/core-first.

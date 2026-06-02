@@ -1,0 +1,5 @@
+spec_name,start_name,support,lattice_cells,lattice_mean_priority,ops,component_gain
+h129_core_plus_h128_value,h129,core_plus_value,27,0.4132677248677248,6,0.012223116880080655
+h128_value_with_core_eraser,h128,core_plus_value,27,0.4132677248677248,9,0.012057016129604307
+h122_full_lattice,h122,all_known,32,0.41511517857142854,14,0.03910845093372954
+h129_core_conservative_refit,h129,core_only,24,0.40555119047619054,2,0.0034596847854036876

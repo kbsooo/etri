@@ -2189,3 +2189,45 @@ The strongest eraser signal does not come from H128's newly added S1/S4 cells.
 It comes from H122's Q1/Q3 core.  That is a major distinction: the toxic field
 may be hidden inside the apparently safe sparse support rather than only in
 late over-completion tails.
+
+## H130 Public/Private Factorization Update
+
+H130 combines the H122 support field, H128 value field, and H129 toxicity field
+inside one row-target lattice:
+
+```text
+cell state in {off, damped, kept, added}
+```
+
+Observed H130 factorization:
+
+- selected file: `submission_h130_lattice_69da8d10_uploadsafe.csv`;
+- selected candidate: `h130_h122_full_lattice_69da8d10`;
+- start from H122 cells: `24`;
+- lattice cells considered: `32`;
+- operations: `14`;
+- off operations: `3`;
+- damp operations: `5`;
+- add operations: `6`;
+- final selected cells / rows: `27` / `23`;
+- Q2 cells: `0`;
+- route-basis predicted delta vs H057: `-0.000640`;
+- model predicted delta vs H057: `-0.000020`;
+- H088-axis cosine: `-0.086159`;
+- good-bad margin: `0.271542`.
+
+Interpretation:
+
+H130 strengthens the three-factor view:
+
+```text
+support field decides which cells can exist
+value field proposes missing cells
+toxicity/amplitude field decides off/damp/keep/add state
+```
+
+The important part is the mix: H130 does both erasure and addition.  This
+suggests H129's core toxicity and H128's value regeneration are not mutually
+exclusive; they may be two terms of the same row-target public/private
+equation.  If public confirms H130, the architecture should move from
+component sequence to lattice assignment.

@@ -8802,3 +8802,55 @@ Public interpretation:
   erasure;
 - H057 wins more: the whole sparse action-equation branch is still a diagnostic
   overfit around public sensors.
+
+## H130 Row-Target Lattice Solver
+
+Generated file:
+
+`submission_h130_lattice_69da8d10_uploadsafe.csv`
+
+Worldview: H122, H128, and H129 are not competing final worlds.  They are
+different action states for the same row-target lattice.  Public/private safety
+is solved by assigning each cell to off, damped, kept, or added.
+
+Evidence:
+
+- selected candidate: `h130_h122_full_lattice_69da8d10`;
+- start field: H122;
+- lattice support: all known H122-H129 cells;
+- operations: `14`;
+- off operations: `3`;
+- damp operations: `5`;
+- add operations: `6`;
+- operated targets: S1 `4`, Q1 `4`, Q3 `3`, S4 `2`, S2 `1`;
+- selected cells / rows: `27` / `23`;
+- target route: Q1 `6`, Q2 `0`, Q3 `4`, S1 `9`, S2 `5`, S3 `0`,
+  S4 `3`;
+- route delta from H122: `-0.000034`;
+- H098/model delta from H122: `+0.000009`;
+- H088 delta from H122: `-0.020001`;
+- margin delta from H122: `+0.145688`;
+- model predicted delta vs H057: `-0.000020`;
+- route-basis predicted delta vs H057: `-0.000640`;
+- H088-axis cosine: `-0.086159`;
+- good-bad margin: `0.271542`;
+- upload-safe: `True`.
+
+Submission priority:
+
+Very high as a world-model sensor.  H130 is the cleanest current test of the
+full row-target equation-solver idea: it combines support assignment,
+value-addition, and toxicity/amplitude erasure in one lattice.  It is not a
+conservative slot because it moves farther from H057/H128 and accepts a weaker
+H098 delta, but it has the highest architecture information value.
+
+Public interpretation:
+
+- H130 wins: HS-JEPA should be framed as a row-target lattice decoder, not a
+  sequence of one-way add/delete heuristics;
+- H129 wins more: the lattice over-added value cells and the simpler eraser is
+  safer;
+- H128 wins more: conflict-value addition is useful, but core erasure should
+  not be mixed yet;
+- H122 wins more: local lattice sensors are overfitting and the sparse core is
+  the best public-safe equation.

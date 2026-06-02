@@ -12372,3 +12372,77 @@ Public interpretation:
   proposals should be expanded;
 - if H057 remains superior, the whole H122-H129 action-equation chain is likely
   locally overfit despite good stress diagnostics.
+
+## H130 Row-Target Lattice Solver HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h130_rowtarget_lattice_solver_hsjepa/h130_report.md`
+- `hitl/h130_rowtarget_lattice_solver_hsjepa/h130_decision.csv`
+- `hitl/h130_rowtarget_lattice_solver_hsjepa/h130_operations.csv`
+- `hitl/h130_rowtarget_lattice_solver_hsjepa/h130_catalog.csv`
+- `submission_h130_lattice_69da8d10_uploadsafe.csv`
+
+Worldview:
+
+```text
+H122/H128/H129 should not be treated as separate final submissions.  They are
+states in a row-target action lattice: off, damp, keep, or add.  The hidden
+public/private equation may be the assignment of each active cell to one of
+those states.
+```
+
+Observed result:
+
+- promoted candidate: `h130_h122_full_lattice_69da8d10`;
+- root file: `submission_h130_lattice_69da8d10_uploadsafe.csv`;
+- start field: H122;
+- lattice support: all discovered H122/H124/H126/H127/H128/H129 cells;
+- operations: `14`;
+- off operations: `3`;
+- damp operations: `5`;
+- add operations: `6`;
+- operated targets: S1 `4`, Q1 `4`, Q3 `3`, S4 `2`, S2 `1`;
+- selected cells / rows: `27` / `23`;
+- final target route: Q1 `6`, Q2 `0`, Q3 `4`, S1 `9`, S2 `5`,
+  S3 `0`, S4 `3`;
+- route delta from H122: `-0.000034`;
+- H098/model delta from H122: `+0.000009`;
+- H088 delta from H122: `-0.020001`;
+- good-bad margin delta from H122: `+0.145688`;
+- model predicted delta vs H057: `-0.000020`;
+- route-basis predicted delta vs H057: `-0.000640`;
+- H088-axis cosine: `-0.086159`;
+- good-bad margin: `0.271542`;
+- upload-safe validation passed.
+
+Interpretation:
+
+H130 is stronger architecture evidence than H129.  It did not merely erase
+Q1/Q3 core cells.  It simultaneously:
+
+- added H128/H124/H127-style S1/S2/S4 value cells;
+- damped high-amplitude Q/S cells;
+- removed selected Q1/Q3 actions;
+- preserved Q2 at zero.
+
+That supports this HS-JEPA decoder form:
+
+```text
+support assignment
+  -> value-state options
+  -> toxicity/amplitude state options
+  -> row-target lattice solve
+```
+
+Public interpretation:
+
+- if H130 improves, prioritize lattice decoding over separate H128/H129
+  branches;
+- if H129 improves more, H130 mixed value-addition too aggressively;
+- if H128 improves more, erasing core actions is less important than conflict
+  value regeneration;
+- if H122 improves more, the lattice overfit local sensors and H122's sparse
+  core is the safer public equation.
