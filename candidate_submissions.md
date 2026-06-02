@@ -9109,3 +9109,46 @@ Public interpretation:
 - H134 wins more: vector completion overfits route sensors; keep conservation
   sparse/cell-level.
 - H132 wins more: companion conservation itself is not action-grade.
+
+## H136 Benefit-Toxicity Factorized Row-Vector Solver
+
+Generated file:
+
+`submission_h136_factorized_dc9dd2c5_uploadsafe.csv`
+
+Worldview: H135 found a real row-vector route signal, but it may have bundled
+safe assignment and public-punished toxicity into the same action.  H136 keeps
+the row `164` S1/S4 route vector and prunes later completion tails.
+
+Evidence:
+
+- selected candidate: `h136_h132_factorized_route_pareto_dc9dd2c5`;
+- start field: H132;
+- selected operation: row `164` S1/S4 only;
+- selected cells / rows: `26` / `21`;
+- route delta from H132: `-0.000056862`;
+- H098/model delta from H132: `+0.000004728`;
+- H088 delta from H132: `+0.007503295`;
+- margin delta from H132: `-0.016634792`;
+- route benefit: `0.013011579`;
+- toxicity shadow: `0.009703689`;
+- benefit/toxicity ratio: `1.340889784`;
+- route-basis predicted delta vs H057: `-0.000762294`;
+- H088-axis cosine: `-0.062132664`;
+- good-bad margin: `0.159441050`;
+- upload-safe: `True`.
+
+Submission priority:
+
+High-information, high-risk.  H136 is not a defensive improvement.  It is the
+cleanest public sensor for the current goal: whether HS-JEPA's next decoder
+should maximize coherent route vectors or separate route benefit from toxicity
+shadow before assigning actions.
+
+Public interpretation:
+
+- H136 wins over H135: H135's row `135`/`207` tail was public-toxic; build the
+  solver around benefit-toxicity factorization.
+- H135 wins more: the route-heavy completion tail is real, and H136 pruned too
+  aggressively.
+- H132/H134 win more: row-vector conservation is diagnostic, not action-grade.

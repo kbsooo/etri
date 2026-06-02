@@ -12772,3 +12772,61 @@ H135 = row-vector conservation, route-heavy
 If H135 improves publicly, HS-JEPA needs an atomic row-vector decoder.  If H134
 or H132 wins more, H135 overfit the route sensor and the conservation decoder
 must remain sparse or be constrained by margin.
+
+## H136 Benefit-Toxicity Factorized Solver HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h136_benefit_toxicity_factorized_solver_hsjepa/h136_report.md`
+- `hitl/h136_benefit_toxicity_factorized_solver_hsjepa/h136_decision.csv`
+- `hitl/h136_benefit_toxicity_factorized_solver_hsjepa/h136_combo_scores.csv`
+- `hitl/h136_benefit_toxicity_factorized_solver_hsjepa/h136_operations.csv`
+- `submission_h136_factorized_dc9dd2c5_uploadsafe.csv`
+
+Worldview:
+
+```text
+H135 found real row-vector route benefit, but may have mixed it with
+public-punished action toxicity.  Decode row-target vectors through two fields:
+route benefit and toxicity shadow.
+```
+
+Observed result:
+
+- promoted candidate: `h136_h132_factorized_route_pareto_dc9dd2c5`;
+- root file: `submission_h136_factorized_dc9dd2c5_uploadsafe.csv`;
+- start field: H132;
+- selected action: row `164` S1/S4 vector only;
+- deliberately removed relative to H135: row `135` S4/Q3 and row `207` Q3;
+- selected cells / rows: `26` / `21`;
+- route delta from H132: `-0.000056862`;
+- H098/model delta from H132: `+0.000004728`;
+- H088 delta from H132: `+0.007503295`;
+- good-bad margin delta from H132: `-0.016634792`;
+- route benefit: `0.013011579`;
+- toxicity shadow: `0.009703689`;
+- benefit/toxicity ratio: `1.340889784`;
+- model predicted delta vs H057: `-0.000027358`;
+- route-basis predicted delta vs H057: `-0.000762294`;
+- H088-axis cosine: `-0.062132664`;
+- good-bad margin: `0.159441050`;
+- upload-safe validation passed.
+
+Interpretation:
+
+H136 is the first explicit separation of route benefit and toxicity shadow.
+The evidence says most of H135's route gain comes from row `164` S1/S4.  The
+later row `135` and row `207` completions add only small route/H098 help while
+consuming H088/margin budget.
+
+```text
+H135 = row164 benefit + row135/207 completion tail
+H136 = row164 benefit, completion tail removed
+```
+
+If H136 beats H135 publicly, HS-JEPA should decode assignment actions through a
+benefit-toxicity factorization rather than a route-heavy row-vector objective.
+If H135 wins more, the completion tail was not toxic enough to prune and route
+dominates the public equation.

@@ -2762,3 +2762,49 @@ This is the first version where the "action" is no longer a cell correction.
 It is a row-target vector route.  That is closer to the active thesis: the
 breakthrough is not a better context encoder, but a decoder that separates
 public-punished action toxicity from safe assignment fields.
+
+### H136: Benefit-Toxicity Factorized Assignment Decoder
+
+H136 turns the H135 row-vector decoder into an equation solver with two
+explicit latent fields:
+
+```text
+benefit field:
+  expected improvement under route / H098 / curvature equations
+
+toxicity shadow field:
+  expected damage under H088 / good-bad margin / forbidden-axis stress
+
+assignment field:
+  choose row-target vector actions only when benefit survives toxicity
+```
+
+The action is still a row-target vector, but the decoder no longer treats
+larger route gain as automatically action-grade.  It asks whether the route
+gain is safe under public/private observation equations.
+
+H136 evidence:
+
+- candidate: `submission_h136_factorized_dc9dd2c5_uploadsafe.csv`;
+- selected solver: `h136_h132_factorized_route_pareto_dc9dd2c5`;
+- selected bundle: row `164` S1/S4;
+- pruned H135 completion tail: row `135` S4/Q3 and row `207` Q3;
+- route-basis predicted delta vs H057: `-0.000762294`;
+- H088-axis cosine: `-0.062132664`;
+- good-bad margin: `0.159441050`;
+- benefit/toxicity ratio: `1.340889784`.
+
+Architecture implication:
+
+```text
+HS-JEPA context encoder
+  -> hidden human-state residue
+  -> row-vector route proposal
+  -> benefit/toxicity factorization
+  -> assignment solver emits only action-grade vectors
+  -> H088/H018 stay stress diagnostics, not private action heads
+```
+
+This is the current formal direction for HS-JEPA: the breakthrough component
+is not a stronger encoder, but an action decoder that can distinguish safe
+assignment from toxic completion.

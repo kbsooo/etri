@@ -1,0 +1,4 @@
+spec_name,start_name,frac_values,cell_pool,bundle_pool,max_combo_pool,max_combo_bundles,promotable_combos
+h132_factorized_shadow_clip,h132,"0.25,0.35,0.6",11,36,26,3,98
+h132_factorized_margin_knee,h132,"0.25,0.35,0.5",11,39,24,3,14
+h132_factorized_route_pareto,h132,"0.35,0.5,0.6",11,30,28,3,144

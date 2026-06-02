@@ -2472,3 +2472,47 @@ This cleanly turns public LB into a sensor.  If H135 wins, public is rewarding
 route-vector conservation despite margin loss.  If H134/H132 win, the route
 sensor is over-dominant locally and row-vector bundles need stricter safety
 regularization.
+
+## H136 Public/Private Factorization Update
+
+H136 separates the H135 row-vector into two inferred fields:
+
+```text
+route benefit field:
+  row 164 S1/S4 vector
+
+toxicity shadow field:
+  extra completion tails that worsen H088/margin faster than they improve the
+  public route equation
+```
+
+Observed H136 factorization:
+
+- selected file: `submission_h136_factorized_dc9dd2c5_uploadsafe.csv`;
+- selected candidate: `h136_h132_factorized_route_pareto_dc9dd2c5`;
+- start field: H132;
+- selected bundle: row `164` S1/S4 only;
+- pruned relative to H135: row `135` S4/Q3 and row `207` Q3;
+- final selected cells / rows: `26` / `21`;
+- route-basis predicted delta vs H057: `-0.000762294`;
+- model predicted delta vs H057: `-0.000027358`;
+- H088-axis cosine: `-0.062132664`;
+- good-bad margin: `0.159441050`;
+- benefit/toxicity ratio: `1.340889784`.
+
+Interpretation:
+
+H136 keeps nearly the same route-basis strength as H135 while removing two
+tail actions.  That makes the public/private question sharper:
+
+```text
+If H136 > H135:
+  public equation punishes completion-tail toxicity.
+
+If H135 > H136:
+  public equation wants the completed route vector despite margin stress.
+```
+
+This is a direct implementation of the current goal: H088 and H018 are not
+action heads; they are stress diagnostics used to identify when a route action
+has become toxic.

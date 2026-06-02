@@ -2210,3 +2210,26 @@ H135 is the current strongest big-bet version of route conservation.
 This is exactly the kind of submission that changes the world model if public
 confirms it.  It is not a small safety tweak.  It decides whether the next
 HS-JEPA decoder should operate on atomic row-target vectors rather than cells.
+
+### H136 Update
+
+H136 tightens the H135 bet by factorizing row-vector action into benefit and
+toxicity.
+
+| Bet | File | Worldview | Local evidence | Risk |
+| --- | --- | --- | --- | --- |
+| H136 | `submission_h136_factorized_dc9dd2c5_uploadsafe.csv` | H135's row164 S1/S4 vector is the real benefit; row135/207 are possible toxicity shadow | row `164` S1/S4 only, route delta `-0.000056862`, route-basis `-0.000762294`, benefit/toxicity ratio `1.340889784` | margin still drops to `0.159441050`; H098 delta is worse than H135 |
+
+This is the current cleanest "worldview-changing" comparison against H135:
+
+```text
+H135 says:
+  public rewards route-heavy row-vector completion.
+
+H136 says:
+  public rewards the core row-vector but punishes completion-tail toxicity.
+```
+
+The submission is not meant to be safer in a generic sense.  It is meant to
+answer whether the 0.53 path should search for larger route vectors or for a
+toxicity-clipped assignment field.
