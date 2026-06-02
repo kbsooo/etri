@@ -1722,3 +1722,71 @@ Failure interpretation:
   and needs a narrower exception solver;
 - if H118 loses badly, the forbidden sector is only diagnostic and should not
   constrain public/private assignment directly.
+
+## H119-H120 Posterior/Action Factorization
+
+H119 asks whether the H085 posterior itself can be promoted to an action-grade
+target after adding H118 forbidden-sector veto and H088/curvature stress.
+
+Observed H119 factorization:
+
+- no candidate was promoted;
+- strong local H085 pools existed:
+  - source-agree non-Q2: `190` cells after local filters;
+  - stage: `140` cells;
+  - high-gain: `95` cells;
+- direct H085-posterior actions failed cumulative action stress.
+
+Interpretation:
+
+```text
+hidden public posterior != public-safe action field
+```
+
+H119 therefore changes the role of H085.  It should be treated as a sensor over
+public-sensitive row/target context, not as a decoder target.
+
+H120 implements that split:
+
+```text
+H085 posterior gain
+  -> toxic/public-sensitive row sensor
+H118/H112 residual stage proposals
+  -> forbidden-sector veto
+  -> H088 non-positive action stress
+  -> Q/S row-target assignment
+```
+
+Observed H120 factorization:
+
+- selected file: `submission_h120_toxrow_0b84c821_uploadsafe.csv`;
+- selected candidate: `h120_toxrow_stage_bridge_c56_a046_0b84c821`;
+- selected cells / rows: `18` / `15`;
+- Q2 cells: `0`;
+- target route: Q3 `6`, S1 `1`, S2 `1`, S3 `6`, S4 `4`;
+- H085 posterior delta vs H057: `+0.0000035`;
+- model predicted delta vs H057: `-0.0000151`;
+- route-basis predicted delta vs H057: `-0.0002291`;
+- bad-axis positive projection: `0.000000`;
+- H088-axis cosine: `-0.000003`;
+- good-bad margin: `0.106932`;
+- residual toxicity / safety / gap:
+  `0.425667` / `0.603213` / `0.177546`.
+
+The important part is the sign conflict: H120 gets worse against H085's own
+posterior target, but improves under public-response route/model sensors.  The
+factorization should therefore keep two variables:
+
+```text
+representation posterior: what hidden state appears plausible?
+action safety equation: should this row-target correction be materialized?
+```
+
+Failure interpretation:
+
+- H120 improves: H085 is a useful row/context sensor and HS-JEPA needs separate
+  representation and action heads;
+- H120 loses while H118 improves: H085 row localization is contaminated by the
+  public posterior and should not constrain action selection;
+- H120 and H118 both lose: the current public-private toxicity equation is
+  diagnostic but still not the safe assignment field.

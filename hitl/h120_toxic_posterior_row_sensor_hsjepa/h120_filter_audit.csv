@@ -1,0 +1,6 @@
+spec_name,prefilter_rows,row_sensor_rank_pass,row_sensor_raw_pass,residual_safety_pass,residual_toxicity_pass,h118_score_pass
+toxrow_contra_core_c48_a052,492,107,102,488,297,491
+toxrow_stage_bridge_c56_a046,1633,744,651,745,1207,1205
+toxrow_h112_anchor_c40_a058,1857,822,720,584,1168,1262
+toxrow_h114_null_c42_a054,157,44,42,157,134,157
+toxrow_sparse_highsensor_c26_a060,1941,496,625,758,1352,1370

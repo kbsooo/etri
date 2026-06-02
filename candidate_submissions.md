@@ -8332,3 +8332,75 @@ Public interpretation:
   blocks;
 - broad loss: current action-to-public equation is still missing the private
   observation variable.
+
+## H119 Observation-Equation Veto
+
+Generated file: none. H119 intentionally refused to promote a submission.
+
+Worldview: H085 public posterior should become an action only if it also passes
+the forbidden-sector veto and H088/curvature stress.
+
+Result:
+
+- no candidate promoted;
+- local pools were nonempty: source-agree non-Q2 `190`, stage `140`,
+  high-gain `95`;
+- direct H085-posterior actions were H088-positive or good-margin unsafe.
+
+Submission consequence:
+
+Do not upload an H119 file. The experiment is a negative sensor. It says H085
+posterior is not safe as an action target.
+
+Decision rule:
+
+- H118/H120 improve later: H119 becomes the key reason HS-JEPA needs a separate
+  action solver after representation prediction;
+- H085-like direct posterior candidates improve later: H119 constraints were
+  too strict and the zero/negative-H088 veto should be relaxed;
+- H085-like direct posterior candidates lose: keep H085 behind a context-only
+  interface.
+
+## H120 Toxic-Posterior Row-Sensor
+
+Generated file:
+
+`submission_h120_toxrow_0b84c821_uploadsafe.csv`
+
+Worldview: H085 is not decoded as the action. H085 marks public-sensitive rows;
+H118/H112 residual stage-balance decides the row-target action.
+
+Evidence:
+
+- selected candidate: `h120_toxrow_stage_bridge_c56_a046_0b84c821`;
+- selected cells / rows: `18` / `15`;
+- target route: Q1 `0`, Q2 `0`, Q3 `6`, S1 `1`, S2 `1`,
+  S3 `6`, S4 `4`;
+- posterior delta vs H057: `+0.0000035`;
+- model predicted delta vs H057: `-0.0000151`;
+- route-basis predicted delta vs H057: `-0.0002291`;
+- bad-axis weighted positive projection: `0.000000`;
+- H088-axis cosine: `-0.000003`;
+- good-bad margin: `0.106932`;
+- residual toxicity / safety / gap:
+  `0.425667` / `0.603213` / `0.177546`;
+- upload-safe: `True`.
+
+Submission priority:
+
+High information value, medium practical priority. H120 is less likely than
+H057/H012-class public-equation files to create a huge score jump, but it is
+the cleanest current test of the revised HS-JEPA decoder: representation
+posterior as row sensor, not action target.
+
+Public interpretation:
+
+- win over H057/H118: promote H085 row-sensor plus residual stage-action
+  decoder as HS-JEPA v5.3;
+- loss while H118 wins: H085 row localization is contaminated; keep pure
+  residual/nullspace assignment;
+- loss while direct H085/posterior candidates win: H119/H120 over-vetoed the
+  posterior and direct public-posterior action is safer than local diagnostics
+  suggested;
+- broad loss: public/private observation equation still needs a different
+  hidden assignment variable.

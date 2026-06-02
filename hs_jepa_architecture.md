@@ -2037,3 +2037,72 @@ This is the cleanest distinction from a normal tabular/blend approach.  A
 standard model asks which probability is better.  HS-JEPA asks whether a
 candidate correction belongs to a safe assignment field or a public-toxic
 action field.  H118 is the first concrete prototype of that distinction.
+
+## HS-JEPA v5.3: Posterior Sensor / Action Solver Split
+
+H119 and H120 refine v5.2.  The previous architecture still left one ambiguity:
+if HS-JEPA predicts a hidden posterior well, should that posterior be decoded
+directly into probability actions?
+
+H119 says no for H085:
+
+```text
+H085 public posterior
+  -> direct row-target action
+  -> forbidden-sector veto
+  -> H088/curvature stress
+  -> no safe candidate
+```
+
+This is an architectural negative result.  A representation can be real and
+still unsafe as an action target.
+
+H120 introduces the v5.3 split:
+
+```text
+context encoder
+  -> hidden human-state / public-posterior representation
+  -> row-level public sensitivity sensor
+  -> action solver over residual stage proposals
+  -> forbidden-sector veto
+  -> public/private stress gates
+  -> sparse row-target assignment
+```
+
+The new distinction is:
+
+```text
+representation posterior: where does the hidden public state appear?
+action solver: which row-target correction is safe to materialize?
+```
+
+H120 evidence:
+
+- candidate: `submission_h120_toxrow_0b84c821_uploadsafe.csv`;
+- selected cells / rows: `18` / `15`;
+- target route: Q1 `0`, Q2 `0`, Q3 `6`, S1 `1`, S2 `1`,
+  S3 `6`, S4 `4`;
+- posterior delta vs H057: `+0.0000035`;
+- model predicted delta vs H057: `-0.0000151`;
+- route-basis predicted delta vs H057: `-0.0002291`;
+- bad-axis weighted positive projection: `0.000000`;
+- H088-axis cosine: `-0.000003`;
+- good-bad margin: `0.106932`.
+
+Architecture implication:
+
+HS-JEPA is no longer just:
+
+```text
+context -> latent -> label
+```
+
+It is:
+
+```text
+context -> latent human/public state -> action safety equation -> label action
+```
+
+This is the paper-level contribution that distinguishes HS-JEPA from a normal
+stacked tabular model or blend.  The model predicts hidden state, but it also
+learns when predicted hidden state should not be acted on directly.

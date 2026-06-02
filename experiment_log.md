@@ -11634,3 +11634,107 @@ Public interpretation:
   despite local toxicity warnings;
 - if all H112/H114/H115/H118 lose, the current public/private equation still
   lacks the true private-safe assignment variable.
+
+## H119 Observation-Equation Veto HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h119_observation_equation_veto_hsjepa/h119_report.md`
+- `hitl/h119_observation_equation_veto_hsjepa/h119_filter_audit.csv`
+- `hitl/h119_observation_equation_veto_hsjepa/h119_scored_proposals.csv`
+
+Worldview:
+
+```text
+H085's public posterior may be real, but it becomes action-grade only if the
+move also passes H118 forbidden-sector veto, H088 stress, and curvature stress.
+```
+
+Observed result:
+
+- no candidate was promoted;
+- source-agree non-Q2 prefilter left `190` strong posterior/action cells after
+  all local H085/residual/veto filters;
+- stage prefilter left `140` such cells;
+- high-gain prefilter left `95` such cells;
+- nevertheless every materialized H085-posterior move failed the cumulative
+  H088/good-margin action gate.
+
+Key diagnostic:
+
+H119 did not fail because H085 has no signal. It failed because high-confidence
+H085 posterior moves point into the H088-positive action sector. This kills the
+decoder assumption:
+
+```text
+H085 posterior representation == safe action target
+```
+
+Public interpretation:
+
+- H085 remains useful as a hidden public-state posterior;
+- H085 should not be decoded directly into row-target actions;
+- H018/H088-style hard-world heads should remain stress diagnostics, not private
+  action heads;
+- the next decoder should use H085 as a context or row sensor while another
+  assignment equation chooses the action direction.
+
+## H120 Toxic-Posterior Row-Sensor HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h120_toxic_posterior_row_sensor_hsjepa/h120_report.md`
+- `hitl/h120_toxic_posterior_row_sensor_hsjepa/h120_row_sensor.csv`
+- `hitl/h120_toxic_posterior_row_sensor_hsjepa/h120_decision.csv`
+- `hitl/h120_toxic_posterior_row_sensor_hsjepa/h120_selected_cells.csv`
+- `submission_h120_toxrow_0b84c821_uploadsafe.csv`
+
+Worldview:
+
+```text
+H085 posterior gain is not an action target. It is a row-level public
+sensitivity sensor. Once a row is marked public-sensitive, the safe action is
+decoded by H118/H112 residual stage-balance assignment.
+```
+
+Observed result:
+
+- promoted candidate: `h120_toxrow_stage_bridge_c56_a046_0b84c821`;
+- root file: `submission_h120_toxrow_0b84c821_uploadsafe.csv`;
+- selected cells / rows: `18` / `15`;
+- target changes: Q1 `0`, Q2 `0`, Q3 `6`, S1 `1`, S2 `1`,
+  S3 `6`, S4 `4`;
+- posterior delta vs H057: `+0.0000035`;
+- model predicted delta vs H057: `-0.0000151`;
+- route-basis predicted delta vs H057: `-0.0002291`;
+- H102 bad-axis weighted positive projection: `0.000000`;
+- H088-axis cosine: `-0.000003`;
+- H102 good-bad margin: `0.106932`;
+- residual toxicity / safety / gap:
+  `0.425667` / `0.603213` / `0.177546`;
+- H085 action align / contra rates: `0.500000` / `0.500000`;
+- upload-safe validation passed.
+
+Important diagnostic:
+
+H120 is a direct response to H119. The posterior target got worse locally
+(`posterior_delta_vs_h057 > 0`), but the public-response route/model sensors
+improved. That is the clearest current evidence for a role split:
+
+```text
+H085 = public-sensitive row/context sensor
+H118/H112 = action-grade residual stage solver
+```
+
+Public interpretation:
+
+- if H120 improves, HS-JEPA should separate representation posterior from
+  action decoder; H085 is useful, but only as context;
+- if H120 loses while H118 improves, H085 row localization is contaminated and
+  the safer branch is pure residual/nullspace assignment;
+- if both H118 and H120 lose, the current action-to-public equation still lacks
+  the real private-safe assignment variable.

@@ -1,0 +1,13 @@
+# H119 Observation-Equation Veto HS-JEPA
+
+No candidate was promoted.
+
+Filter audit:
+
+| spec_name | prefilter_rows | forbidden_same_pass | h085_gain_pass | h085_score_pass | source_agree_pass | residual_safety_pass | residual_toxicity_pass |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| obseq_sourceagree_nonq2_c64_a050 | 1941 | 1817 | 862 | 653 | 1066 | 873 | 1483 |
+| obseq_rowstate_anchor_c72_a044 | 739 | 739 | 101 | 62 | 247 | 537 | 523 |
+| obseq_stage_balance_c58_a054 | 1633 | 1527 | 743 | 576 | 902 | 711 | 1207 |
+| obseq_highgain_sparse_c34_a048 | 1941 | 1817 | 396 | 368 | 1066 | 873 | 1589 |
+| obseq_q2_exception_c10_a030 | 251 | 222 | 144 | 78 | 131 | 6 | 173 |

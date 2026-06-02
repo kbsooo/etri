@@ -1695,3 +1695,47 @@ Decision rule:
   exception and cannot be globally vetoed;
 - all lose: the public/private equation is not captured by current toxicity,
   nullspace, curvature, or forbidden-sector variables.
+
+### H119-H120 Update
+
+H119 and H120 test the next decoder split after H118.
+
+| Experiment | File | Core claim | Candidate scale | Main stress | Status |
+| --- | --- | --- | --- | --- | --- |
+| H119 | none | H085 public posterior can be action-grade only if it passes forbidden-sector, H088, and curvature stress | no promoted candidate | strong local H085 pools existed, but direct posterior actions failed cumulative H088/good-margin gates | direct H085 action rejected |
+| H120 | `submission_h120_toxrow_0b84c821_uploadsafe.csv` | H085 should be used as public-sensitive row sensor; action comes from Q/S residual stage assignment | `18` cells / `15` rows / `0` Q2 cells | bad-axis positive projection `0`, H088 cosine `-0.000003`, route-basis delta `-0.000229`, model delta `-0.000015` | row-sensor/action-solver split bet |
+
+Breakthrough reading:
+
+```text
+The next HS-JEPA object is not a stronger posterior. It is a decoder that asks
+which latent posterior signals are safe to materialize as row-target actions.
+H119 rejects direct posterior action; H120 keeps H085 as context and lets the
+stage residual solver act.
+```
+
+Updated high-information submission order:
+
+1. `submission_h120_toxrow_0b84c821_uploadsafe.csv`
+   - tests the new H085-as-row-sensor / residual-stage-action split.
+
+2. `submission_h118_forbiddenveto_e81167a8_uploadsafe.csv`
+   - tests forbidden-sector veto plus non-Q2 safe assignment without H085 row
+     localization.
+
+3. `submission_h114_nullspace_73fe7866_uploadsafe.csv`
+   - tests toxic-subspace null decoding.
+
+4. `submission_h112_residualtox_68b26f11_uploadsafe.csv`
+   - tests cell-level residual public-toxicity assignment.
+
+Decision rule:
+
+- H120 wins: promote HS-JEPA v5.3, where predicted representation and safe
+  action are separate heads;
+- H118 wins but H120 loses: H085 row sensor is contaminated; action solver
+  should stay residual/nullspace based;
+- H120 and H118 both lose: current toxic-sector/veto view is diagnostic but
+  not yet action-grade;
+- H120 loses badly while direct posterior candidates win: H119's action veto
+  was too strict and H085 posterior needs a softer decoder.
