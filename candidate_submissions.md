@@ -26,7 +26,19 @@ Previous public frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607
 
 H057 improves over H042/H050 by `0.0001572309` and over H012 by `0.0003758892`. H012 remains the base public-equation anchor, H042 remains the Q2 row anchor, and H057 is now the reference public frontier unless private-risk considerations dominate final selection.
 
-Current pending high-risk sensor: `submission_h065_state_transition_phase_75d5575d_uploadsafe.csv`.
+Current pending high-risk sensor: `submission_h066_state_sequence_episode_route_8ca9b9b6_uploadsafe.csv`.
+
+Reason: H066 is the first post-H057 candidate that explicitly decodes
+subject-level episode sequences. It keeps H057 as the base, freezes Q2, clusters
+H057 seed rows by subject, and moves only row-specific top-4 non-Q2 targets on
+pre/bridge/post episode rows. It changes `252` cells on `63` rows, spans all
+`10` subjects, selects zero H050-null rows, overlaps H064/H065 on `34/63` and
+`24/63` rows, and adds `39` rows beyond H065. A public win would mean HS-JEPA
+needs a sequence decoder rather than independent row selection. A public loss
+while H065 wins would mean episode expansion is too broad and the smaller
+transition-phase route is the better translator.
+
+Previous pending high-risk sensor: `submission_h065_state_transition_phase_75d5575d_uploadsafe.csv`.
 
 Reason: H065 is the first post-H057 candidate that treats seed-neighbor rows as
 directional transition phases rather than copies of the full H057 state. It

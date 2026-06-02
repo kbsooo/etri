@@ -4,6 +4,34 @@
 
 이 문서는 I-JEPA/LeJEPA 아이디어를 그대로 복제하지 않고, 이 대회 데이터의 hidden-DGP 탐색에 맞춰 변형한 latent diagnostic 기록이다.
 
+## H066 State-Sequence Episode-Route Diagnostic
+
+H066 treats H057 seed rows as sequence context tokens rather than isolated row
+markers. The target representation is q061, but the decoder first groups seed
+rows into subject-level episodes and then predicts non-Q2 route targets for
+pre/bridge/post rows.
+
+Diagnostic facts:
+
+- candidate count: `410`;
+- promoted file: `submission_h066_state_sequence_episode_route_8ca9b9b6_uploadsafe.csv`;
+- selected rows / episodes / subjects: `63` / `18` / `10`;
+- selected state counts: pre `17`, bridge `10`, post `36`;
+- changed cells vs H057: `252`;
+- Q2 changed vs H057: `0`;
+- target changes: Q1 `38`, Q3 `38`, S1 `37`, S2 `44`, S3 `46`, S4 `49`;
+- H064/H065 row overlap: `34/63` / `24/63`;
+- new rows vs H065: `39`;
+- H050-null rows selected: `0`;
+- posterior delta vs H057: `-0.000328325`.
+
+LeJEPA-style read: H066 is healthier than broad H059 because it does not copy
+the full vector to every neighbor. It also differs from H065 because it expands
+the state as a sequence and lets each row choose its own top-4 target route.
+The risk is that the selected row set now contains `39` H065-new rows, so public
+feedback must decide whether the sequence decoder is true structure or
+over-expanded geometry.
+
 ## H065 State-Transition Phase Diagnostic
 
 H065 treats H057's seed-neighbor rows as transition phases. The context is the

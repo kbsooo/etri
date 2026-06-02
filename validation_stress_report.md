@@ -4,6 +4,37 @@
 
 현재 목표는 CV 평균이 아니라 hidden-public transfer 가능성을 stress로 판정하는 것이다.
 
+## H066 Update: State-Sequence Episode-Route Stress
+
+H066 tests whether H057 row-state expansion should be sequence-constrained
+instead of row-independent.
+
+Upload and structural checks:
+
+- file: `submission_h066_state_sequence_episode_route_8ca9b9b6_uploadsafe.csv`;
+- shape: `(250, 10)`;
+- required columns: OK;
+- NaN: `0`;
+- duplicate keys: `0`;
+- probability range: `[0.000004939, 0.999999]`;
+- Q2 changed vs H057: `0`.
+
+Structural stress:
+
+- selected rows / episodes / subjects: `63` / `18` / `10`;
+- changed cells vs H057: `252`;
+- target changes vs H057: Q1 `38`, Q3 `38`, S1 `37`, S2 `44`, S3 `46`,
+  S4 `49`;
+- H064/H065 overlap: `34/63` / `24/63`;
+- new rows vs H065: `39`;
+- H050-null selected rows: `0`;
+- state counts: pre `17`, bridge `10`, post `36`;
+- posterior delta vs H057: `-0.000328325`.
+
+Stress read: H066 preserves the critical Q2-freeze and H050-null-veto
+invariants, but it is materially broader than H065. This makes it a clean
+worldview sensor: sequence decoder versus compact transition decoder.
+
 ## H065 Update: State-Transition Phase Stress
 
 H065 tests whether the H057/H064 state boundary should be translated as

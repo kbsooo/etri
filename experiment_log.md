@@ -4,6 +4,68 @@
 
 실험은 `Observe -> Wonder -> Hypothesize -> Falsify -> Build -> Stress -> Decide` 형식으로 기록한다. public LB는 최적화 대상이 아니라 hidden-DGP sensor로 사용한다.
 
+## H066. State-Sequence Episode-Route HS-JEPA
+
+- Date: 2026-06-02
+- Script: `hitl/h066_state_sequence_episode_route_jepa.py`
+- Report: `hitl/h066_state_sequence_episode_route_jepa/h066_report.md`
+- Promoted submission:
+  `submission_h066_state_sequence_episode_route_8ca9b9b6_uploadsafe.csv`
+
+### Observe
+
+H057 validated a compact `45`-row full-vector hidden state. H064 and H065 then
+found that nearby non-seed rows have a sharper boundary and transition-phase
+structure. The unresolved question is whether those rows are independent
+state-neighbor points or parts of subject-level episodes.
+
+### Wonder
+
+If H057 is a human-state center, should the model decode a sequence of
+pre/bridge/post episode rows around each subject's seed clusters?
+
+### Hypothesis
+
+H066-H: H057's hidden human state is generated as subject-level episode
+sequences. The right JEPA context is a seed cluster, and the target is a
+state-route representation for pre/bridge/post rows, with Q2 frozen as the
+anchor.
+
+### Falsification Design
+
+Start from H057. Cluster H057 seed rows within subject by row gap, score
+candidate rows within an episode radius using H064/H065 graph evidence,
+H062/H063 agreement, distance to seed, and q061 target gains. Freeze Q2 and
+move only row-specific top-4 non-Q2 targets toward q061.
+
+### Result
+
+Selected
+`h066_seq_gap4_r8_e0p56_m18_row_top4_a1p0_logit_8ca9b9b6`.
+
+- generated candidates: `410`;
+- persisted candidate files: `120`;
+- selected rows / episodes / subjects: `63` / `18` / `10`;
+- changed cells vs H057: `252`;
+- changed rows vs H057: `63`;
+- Q2 changed vs H057: `0`;
+- target changes vs H057: Q1 `38`, Q3 `38`, S1 `37`, S2 `44`, S3 `46`,
+  S4 `49`;
+- H064/H065 selected-row overlap: `34/63` / `24/63`;
+- new rows vs H065: `39`;
+- sequence state rows: pre `17`, bridge `10`, post `36`;
+- H050-null rows selected: `0`;
+- posterior delta vs H057: `-0.000328325`;
+- upload validation passed.
+
+### Interpretation
+
+H066 is a larger worldview test than H065. It keeps every H065 selected row but
+adds `39` sequence-compatible rows and lets each row choose its own non-Q2
+top-4 route. If public improves, HS-JEPA should promote a subject-level latent
+sequence decoder. If H066 loses while H065 wins, H065's transition boundary is
+the right abstraction and episode expansion is too broad.
+
 ## H065. State-Transition Phase HS-JEPA
 
 - Observe: H057 public `0.5677475939` validates a compact `45`-row

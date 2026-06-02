@@ -8,6 +8,35 @@ Public LB는 최적화 target이 아니라 hidden public subset과 calibration s
 
 ## Public-Free Post-H012 Observation
 
+H066 is a public-free state-sequence episode-route observation after H057/H065.
+It tests whether H057's validated row-state is generated as subject-level
+episodes with pre/bridge/post routes, rather than as independent selected rows
+or a small transition-only boundary.
+
+- Base: H057 public frontier `0.5677475939`.
+- Promoted file: `submission_h066_state_sequence_episode_route_8ca9b9b6_uploadsafe.csv`.
+- Selected candidate:
+  `h066_seq_gap4_r8_e0p56_m18_row_top4_a1p0_logit_8ca9b9b6`.
+- Candidate count: `410`; persisted candidate files: `120`.
+- Selected rows: `63`; selected episodes: `18`; selected subjects: `10`.
+- Changed cells vs H057: `252`; changed rows vs H057: `63`.
+- Q2 changed vs H057: `0`.
+- Target changes vs H057: Q1 `38`, Q3 `38`, S1 `37`, S2 `44`, S3 `46`,
+  S4 `49`.
+- H050-null rows selected: `0`.
+- H064/H065 selected-row overlap: `34/63` / `24/63`.
+- New rows vs H065: `39`; new rows vs H064: `29`.
+- Sequence state rows: pre `17`, bridge `10`, post `36`.
+- Posterior delta vs H057: `-0.000328325`.
+- Upload validation: `True`.
+
+Signal: if public improves over H057/H065, HS-JEPA needs a subject-level
+sequence decoder. The H057 state is not just a compact point or a small
+transition boundary. If H066 fails while H065 improves, broad episode expansion
+is too aggressive and the smaller transition-phase decoder is the better
+translator. If H066 and H065 both fail, expansion outside H057 should move back
+to exact row-target identity or public-subset reconstruction.
+
 H065 is a public-free state-transition phase observation after H057/H064. It
 tests whether H057 seed-neighbor rows should be decoded as pre/post transition
 phases instead of copied as the same full-vector state.

@@ -4,6 +4,26 @@
 
 Feature는 "좋아 보이기 때문에 추가"하지 않는다. 각 feature family는 어떤 숨은 구조를 겨냥하는지, label signal인지 split signal인지, 폐기 조건이 무엇인지 함께 관리한다.
 
+## H066 Feature Update
+
+### F-H066. Subject episode-sequence route score
+
+- Hidden structure: H057 seed rows may form subject-level episodes with
+  pre/bridge/post states, not independent row-state copies.
+- Candidates: H057 seed clusters by subject, episode radius, h066 emission
+  from H064/H065 graph ranks, H062/H063 agreement, seed distance, q061 row gain,
+  and H050-null veto.
+- Label vs split test: Q2 is frozen, H050-null rows are excluded, and the
+  materialized target route is row-specific top-4 non-Q2 targets. Public
+  success would support sequence structure; failure would demote episode
+  expansion rather than the original H057 compact row-state.
+- Adopt if: H066 improves public over H057/H065. Then promote a
+  subject-sequence decoder in HS-JEPA.
+- Drop if: H066 worsens while H065 improves. Then transition-phase boundaries
+  are useful but broad episode expansion is too wide.
+- Current materialization: `63` rows, `18` episodes, `252` non-Q2 cells,
+  H064/H065 overlap `34/63` / `24/63`, `39` new rows vs H065, upload-safe.
+
 ## H065 Feature Update
 
 ### F-H065. State-transition phase route score
