@@ -5079,3 +5079,43 @@ Public update: H010 scored `0.5781718175`, worse than E247 by `+0.0020128681`. R
 - Registry status: approved as a public-ready support-world sensor.
 - Failure condition: if H048 loses while H047 survives, keep H047 support
   identity but reject the current public-subset assignment layer.
+
+### H049 row-vector echo HS-JEPA features
+
+- Target hidden structure: row-level human-state membership that should affect
+  Q3/S targets, not only Q2. This is the first promoted attempt to translate
+  the Q2 support/public-world latent into a non-Q2 target route.
+- Why needed: H042 through H048 all keep the best evidence inside Q2. That can
+  mean either the hidden state is genuinely Q2-local, or we have not yet
+  translated the row state into the right Q3/S representation. H049 tests that
+  distinction directly while keeping H042's Q2 values fixed.
+- Feature/action form:
+  - base prediction is the current public best H042;
+  - row context combines Q2 support posterior, H048 public-world posterior,
+    H045 route context, and H020 joint-vector posterior;
+  - action targets only Q3/S cells and leaves Q1/Q2 unchanged;
+  - candidate families use support/public row masks, joint-world soft targets,
+    bounded top-k support, and low-amplitude echo strength.
+- Current evidence:
+  - generated/scored candidates `180`;
+  - strict promotable candidates `16`;
+  - selected
+    `h049_public_rows_joint_world_soft_support_or_public_Q3S_k160_a0.085_t1_7635f5ed`;
+  - root file
+    `submission_h049_rowvector_echo_7635f5ed_uploadsafe.csv`;
+  - changed cells vs H042 `160`, all non-Q2;
+  - per-target changed cells vs H042:
+    Q1 `0`, Q2 `0`, Q3 `14`, S1 `47`, S2 `39`, S3 `36`, S4 `24`;
+  - route-equation delta vs H012 `-0.000185510`;
+  - H036-world delta vs H012 `-0.000131061`;
+  - full-known action margin/support
+    `+0.000051201` / `0.416666667`;
+  - full-known conditional margin/support
+    `+0.000208025` / `0.500000000`;
+  - H024 margin `+0.001194754`;
+  - H025 score `-4.814111661`.
+- Registry status: approved as a high-information public sensor, not as a
+  conservative improvement candidate.
+- Failure condition: if H049 loses materially to H042, reject the current Q3/S
+  echo translator and treat H042's support as Q2-local until an independent
+  non-Q2 route signal is found.

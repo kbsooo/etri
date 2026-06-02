@@ -367,3 +367,7 @@ hitl/h047_q2_support_identity_jepa/h042_h025_top_cells.csv
 # H048 materialized public-subset support-world Q2 sweep files are reproducible from the script.
 hitl/h048_q2_public_subset_support_world_jepa/submission_h048_*.csv
 hitl/h048_q2_public_subset_support_world_jepa/h042_h025_top_cells.csv
+
+# H049 materialized row-vector echo sweep files are reproducible from the script.
+hitl/h049_q2_rowvector_echo_jepa/submission_h049_*.csv
+hitl/h049_q2_rowvector_echo_jepa/h042_h025_top_cells.csv

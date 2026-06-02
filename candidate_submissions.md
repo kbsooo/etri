@@ -6044,3 +6044,49 @@ Submission meaning:
   support-only H047 is the better theory.
 - If both H047 and H048 lose, exact H042 support is likely the only public-safe
   Q2 correction found so far.
+
+## H049 Submission Decision
+
+Current row-vector echo public sensor:
+
+`submission_h049_rowvector_echo_7635f5ed_uploadsafe.csv`
+
+What this file tests:
+
+- H042/H047/H048 say Q2 support matters.
+- H049 asks whether Q2 support is merely a Q2-local phase or a row-level hidden
+  human-state marker.
+- It keeps H042 Q2 exactly unchanged and adds a weak Q3/S echo on public/support
+  rows using H020 joint-vector plus H048 public-world targets.
+
+Local profile:
+
+- scored candidates: `180`;
+- strict promotable candidates: `16`;
+- selected candidate:
+  `h049_public_rows_joint_world_soft_support_or_public_Q3S_k160_a0.085_t1_7635f5ed`;
+- changed cells vs H042: `160`, all non-Q2;
+- per-target changes vs H042:
+  Q3 `14`, S1 `47`, S2 `39`, S3 `36`, S4 `24`, Q1/Q2 `0`;
+- route-equation delta vs H012:
+  `-0.000185510`;
+- H036-world delta vs H012:
+  `-0.000131061`;
+- full-known action margin/support:
+  `+0.000051201` / `0.416666667`;
+- full-known conditional margin/support:
+  `+0.000208025` / `0.500000000`;
+- H024 margin:
+  `+0.001194754`;
+- H025 score:
+  `-4.814111661`.
+
+Submission meaning:
+
+- If H049 beats H042 (`0.5679048248`), Q2 support is a row-level hidden
+  human-state/public-subset marker and HS-JEPA should move toward vector-route
+  action translation.
+- If H049 loses materially, current evidence says H042's positive public signal
+  is Q2-local, and non-Q2 target echoes should not be inferred from Q2 support.
+- If H049 is close but slightly worse, the row-level state may exist but
+  current Q3/S translation amplitude or target route is miscalibrated.

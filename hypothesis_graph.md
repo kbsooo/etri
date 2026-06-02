@@ -5410,3 +5410,48 @@ E67은 H64를 절반만 살렸다. First-order anchor-tail gate는 Q2/S3 add-bac
 - 제출 전략: submit H048 when the next public slot should test the larger
   HS-JEPA claim that support identity and public-subset assignment are the same
   hidden state.
+
+### H049: H042 Q2 support is a row-level human-state marker with non-Q2 echo
+
+- 상태: public-ready; one promoted row-vector echo sensor.
+- 왜 그럴듯한가: H042 proved a Q2 support/phase move is public-positive, and
+  H047/H048 suggest the support rows carry hidden support/public-subset
+  identity. If that identity is a human-state row marker, it should not be
+  completely confined to Q2.
+- 맞다면:
+  - Q3/S echoes on the same public/support rows should be route/world-positive;
+  - H025 should prefer the row placement even though old H024 may remain
+    conservative;
+  - public LB should improve or remain close enough to show row-vector transfer.
+- 틀리다면:
+  - H049 should lose materially to H042, showing that Q2 phase is local
+    calibration rather than a general row-state marker;
+  - future post-H042 work should avoid non-Q2 echoes derived from Q2 support.
+- 최소 실험: `hitl/h049_q2_rowvector_echo_jepa.py`, starting from H042,
+  keeping Q2 fixed, and adding non-Q2 Q3/S movement toward H020 joint-vector
+  and H048 public-world hidden targets.
+- 관측:
+  - scored candidates `180`;
+  - strict promotable candidates `16`;
+  - selected
+    `h049_public_rows_joint_world_soft_support_or_public_Q3S_k160_a0.085_t1_7635f5ed`;
+  - root file `submission_h049_rowvector_echo_7635f5ed_uploadsafe.csv`;
+  - changed cells vs H042 `160`, all non-Q2;
+  - per-target changes vs H042:
+    Q3 `14`, S1 `47`, S2 `39`, S3 `36`, S4 `24`, Q1/Q2 `0`;
+  - route-equation delta `-0.000185510`;
+  - H036-world delta `-0.000131061`;
+  - full-known action margin/support
+    `+0.000051201` / `0.416666667`;
+  - full-known conditional margin/support
+    `+0.000208025` / `0.500000000`;
+  - H024 margin `+0.001194754`;
+  - H025 score `-4.814111661`.
+- 성공/폐기 기준:
+  - accept row-level marker translation if H049 beats H042 or is close enough
+    to show non-Q2 echo is not catastrophic;
+  - reject current non-Q2 echo if H049 loses materially, narrowing H042 back to
+    Q2-local phase.
+- public LB 관측 반응: pending.
+- 제출 전략: submit H049 when the next public slot should test whether Q2
+  support is row-level human state rather than Q2-only calibration.

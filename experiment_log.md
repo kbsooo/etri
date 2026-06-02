@@ -7583,3 +7583,56 @@ E101-E114는 그 질문을 더 좁혔다. E101은 full E89 대신 E95의 Q2/S3 e
     the same hidden variable;
   - if H048 loses while H047 is close or positive, public-world assignment is
     overfitting and support-only H047 remains the active branch.
+
+## H049. Q2 Row-Vector Echo HS-JEPA
+
+- Observe: H042/H047/H048 all improve the hidden-state story but remain Q2-only.
+  If Q2 support is a human-state marker rather than a Q2-local calibration
+  phase, the same support/public rows should tolerate a weak non-Q2 echo.
+- Wonder: can H020 joint-vector posterior and H048 public-world posterior be
+  used as the hidden target representation for Q3/S targets while keeping H042
+  Q2 exactly fixed?
+- Hypothesis: if H042 Q2 support identifies row-level hidden human state, then
+  a Q3/S echo on those rows should remain route/world/H025-positive and not be
+  catastrophically rejected by action/conditional sensors.
+- Method: `hitl/h049_q2_rowvector_echo_jepa.py`.
+  - base: H042 current public best;
+  - context: Q2 support posterior, H048 public-row posterior, H045 route
+    context, and H020 row-vector posterior;
+  - target representation: non-Q2 Q3/S joint-world target;
+  - action: keep Q2 unchanged and add a weak non-Q2 echo;
+  - stress: H042 action decoder, H045 conditional decoder, H024, H025,
+    H036-world delta, and route-equation delta.
+- Result:
+  - generated/scored candidates after reduction: `180`;
+  - strict promotable candidates: `16`;
+  - selected candidate:
+    `h049_public_rows_joint_world_soft_support_or_public_Q3S_k160_a0.085_t1_7635f5ed`;
+  - promoted file:
+    `submission_h049_rowvector_echo_7635f5ed_uploadsafe.csv`;
+  - changed cells vs H042: `160`, all non-Q2;
+  - per-target changed cells vs H042:
+    Q1 `0`, Q2 `0`, Q3 `14`, S1 `47`, S2 `39`, S3 `36`, S4 `24`;
+  - changed cells/rows vs H012 `205` / `114`;
+  - route-equation delta vs H012 `-0.000185510`;
+  - H036-world delta vs H012 `-0.000131061`;
+  - full-known action margin/support
+    `+0.000051201` / `0.416666667`;
+  - full-known conditional margin/support
+    `+0.000208025` / `0.500000000`;
+  - H024 margin `+0.001194754`;
+  - H025 score `-4.814111661`;
+  - root file validation:
+    shape `(250, 10)`, required columns OK, no NaN, probability range
+    `0.0000267561` to `0.999983503`.
+- Interpretation:
+  - H049 is the first promoted post-H042 non-Q2 row-vector translation sensor;
+  - it is not safe in the old H024 sense, but it is route/world/H025-positive
+    and action/conditional only mildly positive;
+  - public improvement would be strong evidence that Q2 support is a row-level
+    human-state marker; public failure would narrow H042 back to Q2-local
+    calibration/phase.
+- Decision:
+  - promote H049 as a high-information public sensor, not as a conservative
+    incremental improvement;
+  - read public feedback as a branch decision for row-vector HS-JEPA.

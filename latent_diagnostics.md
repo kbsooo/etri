@@ -1089,3 +1089,21 @@ delta (`-0.000065847`), and H025 (`-1.063509870`). The persistent H024 margin
 `+0.000522791` keeps the LeJEPA warning active: this is still a specialized
 Q2-public sensor, not a universal action decoder. The decisive comparison is
 H047 vs H048 public feedback.
+
+H049 is the first post-H042 test that translates the Q2 support/public-world
+latent into a non-Q2 row-vector action. It keeps the public-best H042 Q2 values
+unchanged and asks whether rows selected by Q2 support plus H048 public-world
+posterior carry a weak Q3/S echo. The selected candidate changes `160` cells
+relative to H042, all outside Q2: Q3 `14`, S1 `47`, S2 `39`, S3 `36`, and S4
+`24`. This is not a conservative blend; it is a geometry test of whether the
+Q2 phase support is a row-level human-state marker.
+
+The latent health profile is mixed but informative. H049 is route-positive
+(`-0.000185510`), H036-world-positive (`-0.000131061`), and strongly healthy
+under H025 (`-4.814111661`). Its action and conditional margins are only mildly
+positive (`+0.000051201` and `+0.000208025`), and H024 rejects the broad
+non-Q2 echo (`+0.001194754`). The LeJEPA read is therefore precise: H049 should
+not be treated as a safe final ensemble component, but it is a clean public
+sensor for the row-level HS-JEPA claim. If public improves over H042, Q2 support
+is not merely Q2-local calibration; if public fails, the current Q3/S echo
+translation should be rejected while keeping the Q2 support latent alive.

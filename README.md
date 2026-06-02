@@ -19,7 +19,7 @@ Current post-H012 status:
 
 - H042 Q2 tiny phase is the active public frontier, while H012 remains the base
   public-equation anchor.
-- H043, H045, H047, and H048 are the current high-information post-H042 sensors:
+- H043, H045, H047, H048, and H049 are the current high-information post-H042 sensors:
   - H043 tests whether the Q2 phase branch can expand from `45` to `105`
     cells;
   - H045 tests whether human-state route context can prune that expansion to a
@@ -29,7 +29,9 @@ Current post-H012 status:
     `59`-cell Q2-only support;
   - H048 tests the larger claim that H047 support identity is also a hidden
     public-subset prior, producing a `53`-cell Q2-only support selected by
-    joint support/world assignment.
+    joint support/world assignment;
+  - H049 tests the bigger row-vector claim by keeping H042 Q2 unchanged and
+    adding a `160`-cell non-Q2 Q3/S echo on Q2-support/public rows.
 - No H015-H041 file is currently promoted as the next upload.
 - The historical post-H012 sensors below are kept because they define falsified or partially supported HS-JEPA routes, not because they are current submission recommendations.
 
@@ -289,6 +291,16 @@ Public LB operating rule:
   `-1.063509870`. This is the bigger-worldview follow-up to H047: a win means
   Q2 support identity is also public-subset assignment; a loss means the world
   prior overfit local equations and H047 remains the cleaner support sensor.
+- H049 asks the first post-H042 non-Q2 translation question. It starts from the
+  H042 public best, keeps Q2 exactly unchanged, and adds a `160`-cell Q3/S echo
+  on rows selected by Q2 support/public-row posterior using H020 joint-vector
+  and H048 public-world targets. It promotes
+  `submission_h049_rowvector_echo_7635f5ed_uploadsafe.csv`. Local sensors are
+  route-positive (`-0.000185510`), H036-world-positive (`-0.000131061`),
+  action/conditional mildly positive (`+0.000051201` / `+0.000208025`), and
+  H025 strongly healthy (`-4.814111661`), while H024 remains positive
+  (`+0.001194754`). If public improves, Q2 support is a row-level hidden
+  human-state marker; if public rejects it, H042 should be treated as Q2-local.
 
 Primary working notes:
 

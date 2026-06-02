@@ -2882,3 +2882,43 @@ Public decoding addition: if E256 is worse than E247, do not immediately conclud
   - public-test H048 after or instead of H047 depending on whether the next
     slot should prioritize a clean support test or a larger HS-JEPA
     public-subset claim.
+
+## Public-Free Observation: H049 Q2 Row-Vector Echo HS-JEPA
+
+- submission file prepared:
+  `submission_h049_rowvector_echo_7635f5ed_uploadsafe.csv`
+- public LB: pending
+- current public frontier:
+  `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
+  scored `0.5679048248`.
+- changed point:
+  - keeps H042's Q2 values exactly unchanged;
+  - translates Q2 support/public-world row state into a weak Q3/S echo;
+  - tests whether H042's Q2 support is a row-level hidden human-state marker
+    rather than only Q2-local calibration.
+- expected LB reaction:
+  - better than H042 means Q2 support is a reusable row-state representation;
+  - worse than H042 means current evidence should narrow back to Q2-local
+    phase/support and reject this non-Q2 echo translator;
+  - close to H042 means the row-state may exist but Q3/S amplitude or route
+    translation is still underfit.
+- local/public-free observation:
+  - generated/scored candidates `180`;
+  - strict promotable candidates `16`;
+  - selected
+    `h049_public_rows_joint_world_soft_support_or_public_Q3S_k160_a0.085_t1_7635f5ed`;
+  - changed cells vs H042 `160`, all non-Q2:
+    Q3 `14`, S1 `47`, S2 `39`, S3 `36`, S4 `24`;
+  - route-equation delta `-0.000185510`;
+  - H036-world delta `-0.000131061`;
+  - full-known action margin/support
+    `+0.000051201` / `0.416666667`;
+  - full-known conditional margin/support
+    `+0.000208025` / `0.500000000`;
+  - H024 margin `+0.001194754`;
+  - H025 score `-4.814111661`.
+- interpretation:
+  - H049 is the first promoted post-H042 non-Q2 row-vector translation sensor.
+- next experiment:
+  - use public feedback to decide whether HS-JEPA should expand from Q2 support
+    into target-vector route translation, or stay Q2-local.

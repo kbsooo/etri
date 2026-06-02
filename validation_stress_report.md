@@ -7126,3 +7126,50 @@ Stress conclusion:
 - Public feedback should be interpreted against H047: H048 winning means
   support identity is public-subset assignment; H047 winning while H048 loses
   means the world assignment layer overfit known public equations.
+
+## H049 Q2 Row-Vector Echo Stress
+
+Stress target:
+
+- test whether H042's Q2 support is a row-level hidden human-state marker;
+- keep H042 Q2 fixed and move only non-Q2 Q3/S cells;
+- require route/world/H025 support and only bounded action/conditional/H024
+  warnings.
+
+Action stress result:
+
+- scored candidates: `180`;
+- strict promotable candidates: `16`;
+- selected candidate:
+  `h049_public_rows_joint_world_soft_support_or_public_Q3S_k160_a0.085_t1_7635f5ed`;
+- promoted root file:
+  `submission_h049_rowvector_echo_7635f5ed_uploadsafe.csv`;
+- changed cells vs H042: `160`, all non-Q2;
+- per-target changes vs H042:
+  Q1 `0`, Q2 `0`, Q3 `14`, S1 `47`, S2 `39`, S3 `36`, S4 `24`;
+- changed cells/rows vs H012: `205` / `114`;
+- route-equation delta vs H012:
+  `-0.000185510`;
+- H036-world delta vs H012:
+  `-0.000131061`;
+- full-known action margin/support:
+  `+0.000051201` / `0.416666667`;
+- full-known conditional margin/support:
+  `+0.000208025` / `0.500000000`;
+- H024 margin:
+  `+0.001194754`;
+- H025 score:
+  `-4.814111661`;
+- promoted root file validation:
+  shape `(250, 10)`, required columns OK, no NaN, probability range
+  `0.0000267561` to `0.999983503`.
+
+Stress conclusion:
+
+- H049 passes a high-information row-vector echo gate, not a conservative H024
+  gate.
+- The strong H025 and route/world agreement mean the selected rows are not
+  random under existing hidden-state sensors.
+- The positive H024/action/conditional margins mean this is a public sensor:
+  public improvement would change the worldview toward row-vector HS-JEPA;
+  public failure would kill the current Q2-to-Q3/S echo translator.

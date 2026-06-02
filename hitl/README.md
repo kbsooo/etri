@@ -21,6 +21,51 @@ search.
   `submission_h048_q2_public_subset_support_39c01d65_uploadsafe.csv`.
 - Current H048 question: is that Q2 support identity also a hidden
   public-subset prior?
+- Current row-vector echo promoted sensor:
+  `submission_h049_rowvector_echo_7635f5ed_uploadsafe.csv`.
+- Current H049 question: if H042's Q2 support marks a hidden human-state row,
+  can the same rows carry a non-Q2 Q3/S target-route echo?
+
+## H049: Q2 Row-Vector Echo HS-JEPA
+
+- Script: `hitl/h049_q2_rowvector_echo_jepa.py`
+- Report: `hitl/h049_q2_rowvector_echo_jepa/h049_report.md`
+- Promoted root file:
+  `submission_h049_rowvector_echo_7635f5ed_uploadsafe.csv`
+
+### Question
+
+H042/H047/H048 are all Q2-only. Is that because the hidden state is genuinely
+Q2-local, or because Q2 is only the easiest visible marker of a row-level human
+state that should also affect Q3/S targets?
+
+### Main Finding
+
+H049 found a public-ready row-vector echo candidate after a stricter gate:
+
+- scored candidates: `180`;
+- strict promotable candidates: `16`;
+- selected:
+  `h049_public_rows_joint_world_soft_support_or_public_Q3S_k160_a0.085_t1_7635f5ed`;
+- changed cells vs H042: `160`, all non-Q2;
+- per-target changes vs H042:
+  Q3 `14`, S1 `47`, S2 `39`, S3 `36`, S4 `24`, Q1/Q2 `0`;
+- route-equation delta vs H012: `-0.000185510`;
+- H036-world delta vs H012: `-0.000131061`;
+- full-known action margin/support:
+  `+0.000051201` / `0.416666667`;
+- full-known conditional margin/support:
+  `+0.000208025` / `0.500000000`;
+- H024 margin: `+0.001194754`;
+- H025 score: `-4.814111661`.
+
+### Interpretation
+
+This is not a small Q2 support expansion. It is a direct bet that Q2 support is
+a hidden row-level state marker and that the target route can echo into Q3/S.
+The gate is intentionally not H024-strict because H042 already showed H024 can
+miss Q2-positive local moves. If public improves, HS-JEPA should move toward
+row-vector route translation. If public rejects it, Q2 phase remains Q2-local.
 
 ## H041: Route-Prior Public/Private Equation Solver HS-JEPA
 
