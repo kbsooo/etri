@@ -9152,3 +9152,38 @@ Public interpretation:
 - H135 wins more: the route-heavy completion tail is real, and H136 pruned too
   aggressively.
 - H132/H134 win more: row-vector conservation is diagnostic, not action-grade.
+
+## H137 Tail-Toxicity Counterfield Diagnostic
+
+Generated file:
+
+`submission_h137_tailtox_2bea533f_uploadsafe.csv`
+
+Worldview: H136 removed H135's tail.  H137 asks whether a tiny
+opposite-direction counterfield, not a full anti-tail inversion, is needed to
+make the row164 core safer under the public/private equation.
+
+Evidence:
+
+- selected candidate: `h137_counter_r207_S2_f0p25_g0p25_2bea533f`;
+- start field: H136;
+- changed cells vs H136: `1`;
+- changed action: row `207` S2 `-0.0021167147`;
+- route delta vs H136: `+0.000001234`;
+- H098/model delta vs H136: `+0.000000653`;
+- H088 delta vs H136: `-0.000988686`;
+- margin delta vs H136: `-0.000145272`;
+- route-basis predicted delta vs H057: `-0.000761060`;
+- H088-axis cosine: `-0.063121350`;
+- good-bad margin: `0.159295778`;
+- upload-safe: `True`.
+
+Submission priority:
+
+Diagnostic, below H136 unless we specifically want to spend a slot on
+counterfield directionality.  It is intentionally not a general score-max file.
+Its value is that it separates three worlds:
+
+- H137 > H136: tail toxicity is directional; build a counterfield decoder.
+- H136 > H137: tail toxicity is one-sided/nonlinear; prune, do not invert.
+- H135 > both: completion tail was real route signal.

@@ -2516,3 +2516,35 @@ If H135 > H136:
 This is a direct implementation of the current goal: H088 and H018 are not
 action heads; they are stress diagnostics used to identify when a route action
 has become toxic.
+
+## H137 Public/Private Factorization Update
+
+H137 asks whether a public-punished tail can be counteracted, not just removed.
+
+Observed H137 factorization:
+
+- selected file: `submission_h137_tailtox_2bea533f_uploadsafe.csv`;
+- selected candidate: `h137_counter_r207_S2_f0p25_g0p25_2bea533f`;
+- start field: H136;
+- action: row `207` S2 counterfield, `-0.0021167147`;
+- changed cells vs H136: `1`;
+- route-basis predicted delta vs H057: `-0.000761060`;
+- model predicted delta vs H057: `-0.000026705`;
+- H088-axis cosine: `-0.063121350`;
+- good-bad margin: `0.159295778`.
+
+Key diagnostic:
+
+```text
+full anti-tail:
+  unstable, hurts route/H098 and often margin
+
+small row207 S2 counterfield:
+  survives as a diagnostic with tiny margin loss
+```
+
+Interpretation:
+
+This keeps H088 in its intended role.  H137 is not saying "follow H088 as an
+action head."  It says H088 can identify a narrow counterfield candidate; the
+candidate still needs margin and route constraints to remain action-grade.

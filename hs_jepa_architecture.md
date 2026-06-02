@@ -2808,3 +2808,40 @@ HS-JEPA context encoder
 This is the current formal direction for HS-JEPA: the breakthrough component
 is not a stronger encoder, but an action decoder that can distinguish safe
 assignment from toxic completion.
+
+### H137: Counterfield Diagnostic Decoder
+
+H137 adds a diagnostic branch after H136:
+
+```text
+if a completion tail is toxic:
+  first test pruning
+  then test whether a tiny opposite-direction counterfield is needed
+```
+
+The full anti-tail vector failed the local stability check, so HS-JEPA should
+not model toxicity as a simple reversible vector.  The only promoted
+counterfield is a tiny row `207` S2 move from the H136 field.
+
+H137 evidence:
+
+- candidate: `submission_h137_tailtox_2bea533f_uploadsafe.csv`;
+- selected solver: `h137_counter_r207_S2_f0p25_g0p25_2bea533f`;
+- start field: H136;
+- changed action: row `207` S2 `-0.0021167147`;
+- H088 delta vs H136: `-0.000988686`;
+- margin delta vs H136: `-0.000145272`;
+- route-basis predicted delta vs H057: `-0.000761060`.
+
+Architecture implication:
+
+```text
+HS-JEPA action decoder
+  -> row-vector proposal
+  -> benefit/toxicity factorization
+  -> prune toxic completion
+  -> optional tiny counterfield only if route/margin gates survive
+```
+
+This clarifies the decoder hierarchy: counterfields are subordinate diagnostic
+actions, not primary H088-driven heads.

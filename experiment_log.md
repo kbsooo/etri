@@ -12830,3 +12830,62 @@ If H136 beats H135 publicly, HS-JEPA should decode assignment actions through a
 benefit-toxicity factorization rather than a route-heavy row-vector objective.
 If H135 wins more, the completion tail was not toxic enough to prune and route
 dominates the public equation.
+
+## H137 Tail-Toxicity Counterfield HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h137_tail_toxicity_counterfield_hsjepa/h137_report.md`
+- `hitl/h137_tail_toxicity_counterfield_hsjepa/h137_decision.csv`
+- `hitl/h137_tail_toxicity_counterfield_hsjepa/h137_linear_antitail_sweep.csv`
+- `hitl/h137_tail_toxicity_counterfield_hsjepa/h137_bundle_counterfield_sweep.csv`
+- `submission_h137_tailtox_2bea533f_uploadsafe.csv`
+
+Worldview:
+
+```text
+H136 pruned H135's completion tail.  H137 asks whether the tail is merely
+unnecessary, or whether a small opposite-direction counterfield is needed.
+```
+
+Observed result:
+
+- promoted diagnostic: `h137_counter_r207_S2_f0p25_g0p25_2bea533f`;
+- root file: `submission_h137_tailtox_2bea533f_uploadsafe.csv`;
+- start field: H136;
+- selected action: row `207` S2 anti-bundle, gamma `0.25`;
+- changed cells vs H136: `1`;
+- delta vs H136:
+  - S2 row `207`: `-0.0021167147`;
+  - route: `+0.000001234`;
+  - H098/model: `+0.000000653`;
+  - H088: `-0.000988686`;
+  - margin: `-0.000145272`;
+- final route-basis predicted delta vs H057: `-0.000761060`;
+- final model predicted delta vs H057: `-0.000026705`;
+- H088-axis cosine: `-0.063121350`;
+- good-bad margin: `0.159295778`;
+- upload-safe validation passed.
+
+Negative finding:
+
+The full linear anti-tail direction is not stable.  It improves H088 only
+slightly while worsening route/H098 and often worsening margin.  Therefore the
+H135 tail is not a simple reversible vector.
+
+Interpretation:
+
+H137 is lower priority than H136 as a score-seeking file, but higher value as a
+diagnostic.  It tests whether tail toxicity has a small directional
+counterfield around row `207` S2.
+
+```text
+H136 = prune toxic completion tail
+H137 = prune tail + tiny row207 S2 counterfield
+```
+
+If H137 beats H136 publicly, HS-JEPA needs a counterfield decoder.  If H136
+beats H137, tail toxicity is one-sided/nonlinear and pruning is the right
+translation.

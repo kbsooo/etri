@@ -2233,3 +2233,27 @@ H136 says:
 The submission is not meant to be safer in a generic sense.  It is meant to
 answer whether the 0.53 path should search for larger route vectors or for a
 toxicity-clipped assignment field.
+
+### H137 Update
+
+H137 tests the next fork after H136: if the H135 completion tail is toxic, can
+the model learn a counterfield rather than merely pruning it?
+
+| Bet | File | Worldview | Local evidence | Risk |
+| --- | --- | --- | --- | --- |
+| H137 | `submission_h137_tailtox_2bea533f_uploadsafe.csv` | H136 core plus tiny row207 S2 counterfield | one cell vs H136, H088 delta `-0.000988686`, route-basis `-0.000761060`, margin `0.159295778` | lower score priority than H136; may be H088-diagnostic overfitting |
+
+The important negative finding is that full linear anti-tail inversion is not
+stable.  The viable branch is only a tiny row207 S2 counterfield.
+
+```text
+H136 says:
+  prune the completion tail.
+
+H137 says:
+  prune the tail, then add a tiny counterfield if public rewards directional
+  toxicity cancellation.
+```
+
+This is not the next first-choice public score candidate unless H136 has already
+been checked.  It is a prepared diagnostic for the next branch.
