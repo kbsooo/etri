@@ -9542,3 +9542,20 @@ Priority change:
 Do not submit more H144/H145 amplitude siblings until H141 is observed or a
 new listener mask is learned.  The H144/H145 tie says the next issue is not
 amplitude; it is whether public listens to the proposed row-target action.
+
+## Slot-Exhausted Selection Note
+
+If final selection must be made from already submitted files, H057 remains the
+best observed public choice:
+
+```text
+H057 = 0.5677475939
+H144/H145 = 0.5679296410
+H042/H050 = 0.5679048248
+H012 = 0.5681234831
+H088 = 0.5684942019
+```
+
+H144/H145 should not be selected over H057 unless there is an external reason
+to prefer lower public-specialization risk over observed public score.  Their
+value is diagnostic, not frontier selection.

@@ -2499,3 +2499,31 @@ Recommended next public slot:
 Reason: it is not an insurance tweak.  It directly tests whether the H144/H145
 loss comes from the shared common core or from the branch atoms that public did
 not distinguish.
+
+### Slot-Exhausted Update
+
+The next breakthrough cannot rely on another public probe.  H144/H145 should be
+used as an equality constraint:
+
+```text
+public(H144) - public(H145) = 0
+```
+
+Together with the frontier gap:
+
+```text
+public(H144) - public(H057) = +0.0001820471
+```
+
+the constraint says:
+
+```text
+action quality is not enough;
+listener responsibility must be inferred offline.
+```
+
+New offline big bet:
+
+Fit a public/private listener field using all known public observations, then
+LOO-test whether it predicts which submitted action fields were heard by public.
+This is now more important than creating more low-listener branch variants.

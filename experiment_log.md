@@ -13470,3 +13470,39 @@ Public reading:
   low-listener noise.
 - H141 worse than H144/H145: branch cells help, but H057's broader state field
   is still superior.
+
+## H147 Submission Slot Postmortem
+
+Date: 2026-06-03
+
+Generated file:
+
+- `hitl/h147_submission_slot_postmortem_hsjepa.md`
+
+Reason:
+
+The latest submission slots were exhausted after the H144/H145 fork.  Since no
+more public probes are available, the public results must be treated as hard
+constraints rather than as candidate-ranking feedback.
+
+Main result:
+
+```text
+H144 = 0.567929641
+H145 = 0.567929641
+H057 = 0.5677475939
+```
+
+H144/H145 differ in only row135 Q3 and row207 S2, but public did not distinguish
+them.  Both are also worse than H057 by `0.0001820471`.
+
+Postmortem conclusion:
+
+```text
+We are no longer missing plausible actions; we are missing the hidden
+public/private listener field that tells which row-target actions the metric
+actually hears.
+```
+
+This turns H144/H145 from failed frontier submissions into a listener-mask
+constraint for HS-JEPA.
