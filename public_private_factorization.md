@@ -3183,3 +3183,51 @@ separating these two fields:
 ```text
 listener benefit field  !=  action toxicity field
 ```
+
+## H153 Gemini Semantic Factorization Update
+
+H153 adds a language-model semantic state to the factorization:
+
+```text
+row metadata / date / target profile / source disagreement
+  -> human-state narrative
+  -> Gemini Embedding 2 latent
+  -> semantic support mask
+```
+
+This tests whether public/private safety is better explained by human-readable
+state routes than by numeric bundle masks alone.
+
+Result:
+
+- H153 balanced:
+  - selected cells `340`;
+  - effective changed cells `72`;
+  - changed rows `69`;
+  - semantic robust mean predicted delta `-0.003871403`;
+  - base robust mean predicted delta `-0.004371780`;
+  - H088 cosine `0.002272083`.
+
+Compared with H149/H152:
+
+```text
+H149 H088 cosine = 0.121063141
+H152 H088 cosine = 0.214751899
+H153 H088 cosine = 0.002272083
+```
+
+This supports a refined factorization:
+
+```text
+prediction field
+  = base state
+  + source_action(row,target)
+  * listener(bundle)
+  * semantic_safe_support(gemini_state)
+  - action_toxicity(row,target)
+```
+
+The semantic latent should not yet be treated as the listener itself.  It is
+more convincing as a safety/support factor that selects where an existing
+listener-beneficial correction can be applied without following H088-like toxic
+directions.

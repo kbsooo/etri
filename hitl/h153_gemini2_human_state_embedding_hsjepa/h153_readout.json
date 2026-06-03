@@ -1,0 +1,11 @@
+{
+  "embedding_source": "gemini-embedding-2",
+  "gemini_embedding_used": true,
+  "n_semantic_features": 567,
+  "best_spec": "semantic_listener_balanced",
+  "best_root_path": "/Users/kbsoo/Downloads/cl2/submission_h153_gemini2_semantic_listener_balanced_8ff9281e_uploadsafe.csv",
+  "best_upload_safe": true,
+  "best_semantic_robust_mean_delta": -0.0038714032371447217,
+  "best_base_robust_mean_delta": -0.004371779758602366,
+  "best_h088_move_cosine": 0.002272083115244816
+}

@@ -1,0 +1,7 @@
+{
+  "embedding_source": "gemini-embedding-2",
+  "output_dim": 768,
+  "n_rows": 250,
+  "combined_narrative_hash": "d59f4bd28a48351053343506a5b7e89ebc7e1d72",
+  "api_key_stored": false
+}

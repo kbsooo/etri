@@ -13775,3 +13775,78 @@ Do not rank H152 above H149 for a scarce public slot.  Keep it as architecture
 evidence and use its failure mode to define the next big bet: learn a
 row-target toxicity field that can keep H149-level listener benefit while
 reducing H088/action-tail alignment.
+
+## H153 Gemini Embedding 2 Human-State Narrative HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h153_gemini2_human_state_embedding_hsjepa.py`
+- `hitl/h153_gemini2_human_state_embedding_hsjepa/h153_report.md`
+- `hitl/h153_gemini2_human_state_embedding_hsjepa/h153_row_narratives.csv`
+- `hitl/h153_gemini2_human_state_embedding_hsjepa/h153_semantic_row_latent.csv`
+- `hitl/h153_gemini2_human_state_embedding_hsjepa/h153_listener_model_comparison.csv`
+- `hitl/h153_gemini2_human_state_embedding_hsjepa/h153_decision.csv`
+- `submission_h153_gemini2_semantic_listener_balanced_8ff9281e_uploadsafe.csv`
+
+Question:
+
+Can a modern embedding model act as the HS-JEPA human-state context encoder if
+the row is translated into a meaningful human/social/action narrative first?
+
+Method:
+
+Each row was converted into a structured narrative containing:
+
+```text
+subject/date/calendar state/base target profile/source action disagreement
+-> latent human-state route/listener/action-health/anti-shortcut tendency
+```
+
+Those narratives were embedded with `gemini-embedding-2` into 768-dimensional
+row vectors.  PCA/cluster/bin features from that latent were added as semantic
+bundle features to the public/private listener equation.
+
+Embedding safety:
+
+- API key was read only from `GEMINI_API_KEY`;
+- key was not written to repo files;
+- metadata records `api_key_stored: false`.
+
+Result:
+
+| Candidate | Selected cells | Changed cells | Changed rows | Semantic robust delta | Base robust delta | H088 cosine |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| H153 balanced | `340` | `72` | `69` | `-0.003871403` | `-0.004371780` | `0.002272083` |
+| H153 safe | `260` | `50` | `52` | `-0.002645403` | `-0.003145990` | `-0.001014048` |
+| H149 reference | `349` | `349` | `154` | `-0.002276318` under semantic listener | n/a | `0.121063141` |
+| H152 reference | `363` | `363` | `159` | `-0.002374244` under semantic listener | n/a | `0.214751899` |
+
+Important listener model comparison:
+
+- base all-full LOO Spearman: `0.858471532`;
+- Gemini semantic all-full LOO Spearman: `0.691116071`;
+- base no-bad LOO MAE: `0.000288111`;
+- Gemini semantic no-bad LOO MAE: `0.000255699`.
+
+Interpretation:
+
+Gemini Embedding 2 did not simply dominate the existing listener equation.
+The all-full listener got less rank-stable after adding many semantic features.
+But the semantic latent was useful as a safe correction selector: it selected a
+much smaller effective support with H149/H152-level predicted benefit and almost
+zero H088 alignment.
+
+The big finding is therefore:
+
+```text
+LLM embedding is not yet the best listener model,
+but it may be a strong toxicity-aware correction selector.
+```
+
+Decision:
+
+H153 is a plausible future public probe if a slot returns.  It is not an
+insurance tweak: it tests whether language-model human-state semantics can
+separate listener benefit from H088-like toxicity.

@@ -3423,3 +3423,64 @@ HS-JEPA v3 = human-state encoder
            + anti-shortcut toxicity field
            + safe correction decoder
 ```
+
+### H153: Language-Model Narrative Encoder
+
+H153 adds a foundation-model semantic encoder to HS-JEPA:
+
+```text
+row metadata + base target profile + source-action disagreement
+  -> human-readable narrative
+  -> Gemini Embedding 2 row vector
+  -> semantic bundle features
+  -> listener / toxicity / correction selector
+```
+
+This is not a raw-tabular embedding.  The numeric row is first translated into a
+structured human-state description:
+
+```text
+subject/date/calendar state/base target profile/source action disagreement
+-> latent human-state route/listener/action-health/anti-shortcut tendency
+```
+
+The resulting semantic latent is used as context, not as the label predictor.
+This matches the JEPA view:
+
+```text
+context representation predicts hidden human-state/correction representation,
+not raw feature reconstruction.
+```
+
+Observed H153 result:
+
+```text
+H153 semantic robust mean delta = -0.003871403
+H153 base robust mean delta     = -0.004371780
+H153 H088 cosine                =  0.002272083
+effective changed cells         = 72
+```
+
+Architecture implication:
+
+Gemini Embedding 2 did not simply replace the listener equation.  The all-full
+LOO rank metric was weaker than the base bundle listener.  But the semantic
+latent produced a much cleaner safe-correction support with almost no H088
+alignment.
+
+Therefore the current HS-JEPA v3 decomposition is:
+
+```text
+human narrative encoder E_text(C)
+  -> semantic state z_sem
+  -> listener candidate field r_sem
+  -> toxicity-clean support mask m_safe
+  -> correction decoder c(row,target)
+```
+
+The important distinction:
+
+```text
+Gemini semantic latent is not yet the full listener;
+it is a candidate safe-support selector for the correction field.
+```

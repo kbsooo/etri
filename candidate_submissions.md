@@ -9750,3 +9750,63 @@ next high-information submission should explicitly solve:
 keep H149/H152 listener benefit
 while suppressing H088-like toxic action direction.
 ```
+
+## Post-H153 Candidate Priority Update
+
+H153 tested a new context encoder axis: Gemini Embedding 2 over row-level
+human-state narratives.
+
+Candidate generated:
+
+```text
+submission_h153_gemini2_semantic_listener_balanced_8ff9281e_uploadsafe.csv
+```
+
+H153 anatomy:
+
+- narratives embedded with `gemini-embedding-2`;
+- selected cells: `340`;
+- effective changed cells vs H057: `72`;
+- changed rows vs H057: `69`;
+- selected target mix:
+  - Q2 `78`;
+  - S2 `66`;
+  - S4 `55`;
+  - Q3 `46`;
+  - S3 `35`;
+  - Q1 `34`;
+  - S1 `26`;
+- semantic robust mean predicted delta: `-0.003871403`;
+- base robust mean predicted delta: `-0.004371780`;
+- H088 cosine: `0.002272083`;
+- upload-safe: passed.
+
+Readout:
+
+H153 is structurally different from H149/H152.  It changes only `72` effective
+cells, but those cells are selected by semantic human-state bundles and have
+near-zero H088 toxicity alignment.  This directly targets the post-H152
+bottleneck:
+
+```text
+benefit without H088-like action-tail toxicity
+```
+
+Updated future-slot priority:
+
+| Priority | File | Role | Why |
+| --- | --- | --- | --- |
+| 1 | `submission_h153_gemini2_semantic_listener_balanced_8ff9281e_uploadsafe.csv` | Gemini semantic toxicity-aware probe | strongest new-world bet; H149-level predicted benefit with near-zero H088 cosine |
+| 2 | `submission_h149_bundle_listener_route_d8e1d789_uploadsafe.csv` | high-upside bundle-listener probe | strongest pre-Gemini structural candidate |
+| 3 | `submission_h150_robust_bundle_listener_5e12f9bd_uploadsafe.csv` | robust consensus fallback | lower upside but broad stress survival |
+| 4 | `submission_h152_source_route_route_responsibility_upside_1e8b9fcc_uploadsafe.csv` | source-responsibility diagnostic | route responsibility works but H088 cosine is high |
+| 5 | `submission_h151_h088_hardveto_bundle_efaa9c93_uploadsafe.csv` | H088 hard-veto counterfactual | safer but too conservative |
+
+Failure interpretation:
+
+- If H153 beats H057/H149, Gemini semantic human-state latent is a real HS-JEPA
+  context encoder and the paper story becomes much stronger.
+- If H153 is neutral, semantic latent is probably a good safety selector but
+  underpowered due to too few effective cells.
+- If H153 loses badly, narrative embeddings are organizing hypotheses but not
+  aligned with public/private correction safety.

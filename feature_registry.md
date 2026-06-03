@@ -5789,3 +5789,54 @@ new support, not merely score old route actions.
   beyond `~200` changed cells while preserving novelty.
 - H093 currently kills the idea that low-overlap support alone can generate a
   0.53-scale public move under the existing decoder.
+
+## H153 Feature/Action Registry: Gemini Semantic Human-State Latent
+
+### Feature / Action
+
+`gemini2_human_state_narrative_latent`
+
+### Hidden Structure Targeted
+
+This latent targets human-social state that may be hard to express with numeric
+rules alone:
+
+```text
+calendar/social routine + target profile + source action disagreement
+-> human-state route / listener responsibility / action-health / anti-shortcut
+```
+
+The row is first translated into a structured narrative, then embedded with
+`gemini-embedding-2`.  PCA bins and semantic clusters become bundle features for
+the HS-JEPA listener/toxicity solver.
+
+### Label Signal vs Split Signal
+
+- label signal evidence: the latent is not trained on labels; it is evaluated
+  only through public-observation listener equations and H088 toxicity stress;
+- split signal risk: the narrative includes subject/date/row-order, so it may
+  encode public/private sampling structure;
+- leakage control: API key is read only from `GEMINI_API_KEY`; the embedding
+  cache stores vectors and metadata only, not secrets;
+- shortcut check: the candidate is judged by H088 cosine, base-listener support,
+  and semantic-listener support rather than semantic score alone.
+
+### Materialization
+
+- base: H057;
+- embedding model: `gemini-embedding-2`;
+- output dimension: `768`;
+- semantic bundle features: `567`;
+- promoted file:
+  `submission_h153_gemini2_semantic_listener_balanced_8ff9281e_uploadsafe.csv`;
+- effective changed cells: `72`;
+- H088 cosine: `0.002272083`.
+
+### Keep / Kill Criteria
+
+- Keep if H153 public is competitive with H149/H057 or if it reveals a new
+  low-toxicity support basin.
+- Kill the "Gemini replaces listener" interpretation unless LOO improves; H153
+  currently supports Gemini as a safe-support selector, not the full listener.
+- If H153 loses badly, keep the narrative generation interface but use the
+  embeddings only for hypothesis grouping, not correction authorization.

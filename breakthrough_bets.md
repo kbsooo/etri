@@ -2649,3 +2649,53 @@ New breakthrough candidates to build:
 | Listener-toxicity two-head solver | listener and toxicity are separate hidden fields, not one gate | candidate keeps all-full/no-pre-H benefit while frontier-only improves | all heads choose the same cells as H149/H152 |
 | Assignment with negative responsibility | some source routes should be inverted or damped only where listener is high but toxicity is high | produces nontrivial corrections outside H149's selected support | degenerates into amplitude shrinkage |
 | Public/private equation residual model | H088/H144/H145 residuals reveal an unmodeled public/private action-tail field | residual-aware candidate beats H149 offline in both robust delta and H088 cosine | residual model only memorizes known bad anchors |
+
+### H153 Update: Gemini Semantic Encoder Becomes the First Toxicity-Clean Big Bet
+
+H153 tested whether a modern embedding model can encode human-state narratives
+well enough to help HS-JEPA.
+
+Worldview:
+
+```text
+The row is not just numeric state.
+It can be translated into a human lifestyle/action-health narrative,
+and an embedding model can cluster that narrative into safe correction support.
+```
+
+Result:
+
+| Bet | File | Offline signal | Interpretation |
+| --- | --- | --- | --- |
+| Gemini semantic safe support | `submission_h153_gemini2_semantic_listener_balanced_8ff9281e_uploadsafe.csv` | semantic robust delta `-0.003871403`, base robust delta `-0.004371780`, H088 cosine `0.002272083` | first candidate that keeps H149-level benefit while nearly eliminating H088 toxicity alignment |
+
+Important caveat:
+
+Gemini semantic features did not beat base listener LOO in all-full rank:
+
+```text
+base all-full Spearman    = 0.858471532
+Gemini all-full Spearman  = 0.691116071
+```
+
+So the bet is not:
+
+```text
+Gemini embedding replaces the public listener.
+```
+
+The bet is:
+
+```text
+Gemini embedding finds a toxicity-clean support mask that the existing listener
+can score as beneficial.
+```
+
+This is a real big-bet candidate because success would change the HS-JEPA paper
+story:
+
+```text
+human-state narratives + foundation embedding
+-> semantic support mask
+-> listener/toxicity aware correction
+```
