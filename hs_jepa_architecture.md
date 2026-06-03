@@ -3374,3 +3374,52 @@ context C
   -> stress-gated responsibility r(row,target)
   -> correction c(row,target)
 ```
+
+### H152: Source Responsibility Is a Decoder Axis, Not the Whole Decoder
+
+H152 adds a row-route assignment layer:
+
+```text
+context C
+  -> row chooses source-action route i
+  -> route chooses target subset T_i(row)
+  -> correction c(row,T_i)
+```
+
+This is closer to a true HS-JEPA decoder because it does not treat each
+row-target cell as independent.  A row is interpreted as having a latent
+action route, and targets are modified only inside that route.
+
+Observed result:
+
+```text
+H149 robust mean delta = -0.003753061, H088 cosine = 0.121063141
+H152 robust mean delta = -0.003673007, H088 cosine = 0.214751899
+```
+
+Architecture implication:
+
+Source responsibility is real because it can reproduce most of the H149
+listener benefit.  But it is not sufficient because it increases alignment with
+the H088 toxicity direction.
+
+The decoder must therefore factor action proposal from action safety:
+
+```text
+z_human_state
+  -> source/action route proposal a_i
+  -> listener responsibility r
+  -> toxicity field e_toxic
+  -> safe correction c = gate(a_i, r, e_toxic)
+```
+
+This is the next HS-JEPA formulation:
+
+```text
+HS-JEPA v3 = human-state encoder
+           + source/action proposal heads
+           + bundle listener equation
+           + row-route assignment solver
+           + anti-shortcut toxicity field
+           + safe correction decoder
+```

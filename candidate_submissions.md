@@ -9704,3 +9704,49 @@ If there is exactly one future public slot and the goal is a true breakthrough,
 submit H149.  If the goal is to reduce old-anchor dependence before the slot,
 submit H150.  H151 should be used only if we specifically want to test whether
 H088 must be a hard veto; offline evidence says soft toxicity energy is better.
+
+## Post-H152 Candidate Priority Update
+
+H152 tested whether source responsibility should replace H149's mostly
+cell-level translation.
+
+Candidate generated:
+
+```text
+submission_h152_source_route_route_responsibility_upside_1e8b9fcc_uploadsafe.csv
+```
+
+H152 anatomy:
+
+- changed cells: `363`;
+- changed rows: `159`;
+- robust mean predicted delta: `-0.003673007`;
+- all-full predicted delta: `-0.004841317`;
+- no-pre-H predicted delta: `-0.002474268`;
+- frontier-only predicted delta: `-0.000381632`;
+- H088 cosine: `0.214751899`;
+- upload-safe: passed.
+
+Readout:
+
+H152 is close to H149 in listener benefit, but worse on H088/action-tail
+alignment.  That means row-source responsibility is not enough to make a safe
+correction translator.  It is useful architecture evidence, not the next best
+public slot.
+
+Updated future-slot priority:
+
+| Priority | File | Role | Why |
+| --- | --- | --- | --- |
+| 1 | `submission_h149_bundle_listener_route_d8e1d789_uploadsafe.csv` | high-upside bundle-listener probe | best robust mean delta with lower H088 cosine than H150/H152 |
+| 2 | `submission_h150_robust_bundle_listener_5e12f9bd_uploadsafe.csv` | robust consensus fallback | broad stress survival, lower upside |
+| 3 | `submission_h152_source_route_route_responsibility_upside_1e8b9fcc_uploadsafe.csv` | source-responsibility diagnostic | tests row-route decoder, but H088 cosine is high |
+| 4 | `submission_h151_h088_hardveto_bundle_efaa9c93_uploadsafe.csv` | H088 hard-veto counterfactual | safer but too conservative |
+
+Next candidate family should not be another H149/H152 amplitude variant.  The
+next high-information submission should explicitly solve:
+
+```text
+keep H149/H152 listener benefit
+while suppressing H088-like toxic action direction.
+```

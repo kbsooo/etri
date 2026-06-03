@@ -2602,3 +2602,50 @@ The hidden state is not just "which cells to move"; it is a human-state bundle
 listener that decides which source actions the public/private equation hears,
 with H088 acting as a soft anti-shortcut energy.
 ```
+
+### H152 Update: Source Responsibility Is Not the Breakthrough by Itself
+
+H152 tested the next natural bet:
+
+```text
+maybe the missing decoder is not cell selection,
+but row-level source-action responsibility.
+```
+
+It generated:
+
+```text
+submission_h152_source_route_route_responsibility_upside_1e8b9fcc_uploadsafe.csv
+```
+
+Offline result:
+
+| Candidate | Robust mean delta | H088 cosine | Meaning |
+| --- | ---: | ---: | --- |
+| H149 | `-0.003753061` | `0.121063141` | best listener benefit / safer toxicity |
+| H152 upside | `-0.003673007` | `0.214751899` | route responsibility works, but imports toxic action direction |
+| H152 frontier guard | `-0.002061545` | `0.146953658` | safer, but loses too much upside |
+
+Worldview update:
+
+```text
+row-source responsibility is a real latent axis,
+but 0.53-scale improvement will not come from route assignment alone.
+```
+
+The next big bet must target the unresolved equation:
+
+```text
+high listener benefit
+minus H088-like toxic action direction
+= safe row-target correction field
+```
+
+New breakthrough candidates to build:
+
+| Bet | Worldview | Success signal | Failure signal |
+| --- | --- | --- | --- |
+| Toxicity-subspace projection | H088 represents an action-toxicity direction that can be projected out without killing H149 benefit | H149-level robust delta with H151-level H088 cosine | robust delta collapses like H151 |
+| Listener-toxicity two-head solver | listener and toxicity are separate hidden fields, not one gate | candidate keeps all-full/no-pre-H benefit while frontier-only improves | all heads choose the same cells as H149/H152 |
+| Assignment with negative responsibility | some source routes should be inverted or damped only where listener is high but toxicity is high | produces nontrivial corrections outside H149's selected support | degenerates into amplitude shrinkage |
+| Public/private equation residual model | H088/H144/H145 residuals reveal an unmodeled public/private action-tail field | residual-aware candidate beats H149 offline in both robust delta and H088 cosine | residual model only memorizes known bad anchors |

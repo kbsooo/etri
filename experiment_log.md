@@ -13721,3 +13721,57 @@ conservative.  The current best HS-JEPA formulation is:
 H088 = explicit soft toxicity energy / stress diagnostic,
 not a full hard exclusion rule.
 ```
+
+## H152 Source-Responsibility Row-Route HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h152_source_responsibility_route_hsjepa.py`
+- `hitl/h152_source_responsibility_route_hsjepa/h152_report.md`
+- `hitl/h152_source_responsibility_route_hsjepa/h152_decision.csv`
+- `hitl/h152_source_responsibility_route_hsjepa/h152_candidate_scores.csv`
+- `submission_h152_source_route_route_responsibility_upside_1e8b9fcc_uploadsafe.csv`
+
+Question:
+
+H149/H150 translate source actions mostly at cell level.  H152 asks whether the
+missing decoder layer is source responsibility:
+
+```text
+row context -> source-action route -> target subset -> correction field
+```
+
+Result:
+
+| Candidate | Changed cells | Changed rows | Robust mean delta | H088 cosine |
+| --- | ---: | ---: | ---: | ---: |
+| H149 reference | `349` | `154` | `-0.003753061` | `0.121063141` |
+| H152 upside | `363` | `159` | `-0.003673007` | `0.214751899` |
+| H152 consensus | `328` | `138` | `-0.003008253` | `0.212655989` |
+| H152 frontier guard | `182` | `84` | `-0.002061545` | `0.146953658` |
+| H150 reference | `364` | `157` | `-0.002941128` | `0.188791860` |
+| H151 reference | `97` | `75` | `-0.001231296` | `0.092965834` |
+
+Interpretation:
+
+H152 proves that row-source route assignment can preserve most of H149's
+offline listener gain.  That means source responsibility is a real decoder
+axis, not just naming.
+
+But it does not beat H149 offline, and its H088 cosine is much higher than H149.
+So the bottleneck is not simply "choose one source per row."  The missing piece
+is a toxicity-aware translator:
+
+```text
+source responsibility is useful,
+but public-safe correction requires action-toxicity separation.
+```
+
+Decision:
+
+Do not rank H152 above H149 for a scarce public slot.  Keep it as architecture
+evidence and use its failure mode to define the next big bet: learn a
+row-target toxicity field that can keep H149-level listener benefit while
+reducing H088/action-tail alignment.

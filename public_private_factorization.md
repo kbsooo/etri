@@ -3134,3 +3134,52 @@ Conclusion:
 H088 should be a soft toxicity / anti-shortcut energy,
 not a universal hard public/private mask.
 ```
+
+## H152 Source-Responsibility Factorization Update
+
+H152 tested whether public/private response can be explained by adding one more
+factor:
+
+```text
+prediction field
+  = base state
+  + source_action(row,target)
+  * source_responsibility(row)
+  * listener(bundle(row,target))
+  * safety(row,target)
+```
+
+The result was mixed:
+
+- H152 route-responsibility upside:
+  - robust mean predicted delta `-0.003673007`;
+  - all-full predicted delta `-0.004841317`;
+  - frontier-only predicted delta `-0.000381632`;
+  - H088 cosine `0.214751899`.
+- H149 reference:
+  - robust mean predicted delta `-0.003753061`;
+  - H088 cosine `0.121063141`.
+
+This means source responsibility is a plausible latent factor: it can recover
+almost the same listener benefit as H149 while enforcing row-route structure.
+
+But it also increases H088/action-tail alignment.  So source responsibility is
+not the same as public safety.
+
+Revised factorization:
+
+```text
+prediction field
+  = base state
+  + source_action(row,target)
+  * source_responsibility(row)
+  * listener(bundle(row,target))
+  - action_toxicity(row,target)
+```
+
+The next factorization problem is not finding more listened cells.  It is
+separating these two fields:
+
+```text
+listener benefit field  !=  action toxicity field
+```
