@@ -3235,3 +3235,81 @@ good action, listened, toxic    -> H088-style negative sensor
 H144/H145 demonstrate the second case.  The next HS-JEPA version should learn
 listener responsibility before treating route/H088/margin movement as
 action-grade.
+
+### H148-H149: Listener Translation Becomes a Bundle Decoder
+
+H148 implemented the first explicit listener-responsibility equation:
+
+```text
+full cell movement vs H057 -> public LB delta vs H057
+```
+
+It learned a cell-level listener that respected the H144/H145 equality, but the
+decoder collapsed to a tiny `22`-cell mostly-Q2 action.  That result changes the
+architecture: listener responsibility should not be treated as an independent
+parameter for every row-target cell.  There are too few public observations for
+that, and the fitted field becomes unstable.
+
+H149 moves the listener head to human-state bundles:
+
+```text
+context bundles:
+  target / Q-S group
+  subject-target route
+  row-order regime
+  weekday/weekend/friday/monday
+  pay-window / month-start / month-end
+  H057 base-probability regime
+
+bundle listener:
+  signed movement over bundle -> public response
+
+row-target translator:
+  source action proposals
+  -> bundle listener gradient
+  -> anti-H088 penalty
+  -> selected correction field
+```
+
+This gives the current HS-JEPA v2 decoder:
+
+```text
+human/social/context C
+  -> hidden human-state z
+  -> action proposal a(row,target) from assignment/action-health/anti-shortcut
+  -> bundle listener l(bundle)
+  -> projected row-target responsibility l(row,target)
+  -> toxicity/safety s(row,target)
+  -> correction c(row,target)
+```
+
+The important architectural distinction is:
+
+```text
+cell listener      = too many degrees of freedom, collapses to tiny action
+bundle listener    = lower-dimensional human-state equation, can translate broad proposals
+```
+
+Current prototype evidence:
+
+- H148 cell listener:
+  - selected `22` cells;
+  - H071/H073/H074 raw assignments predicted public-toxic;
+  - useful as a diagnostic, not as the final decoder.
+- H149 bundle listener:
+  - `317` context-bundle features;
+  - LOO Spearman `0.858471532` on `19` public observations;
+  - generated `349`-cell candidate;
+  - predicted delta under bundle-all: `-0.004994063`;
+  - predicted delta under frontier-only bundle model: `-0.000168047`.
+
+Therefore HS-JEPA should be described as a listener-aware assignment system,
+not just a hidden-state encoder:
+
+```text
+HS-JEPA = context-to-human-state representation
+        + action proposal heads
+        + listener-responsibility equation
+        + anti-shortcut safety projection
+        + row-target correction assignment solver
+```

@@ -2527,3 +2527,38 @@ New offline big bet:
 Fit a public/private listener field using all known public observations, then
 LOO-test whether it predicts which submitted action fields were heard by public.
 This is now more important than creating more low-listener branch variants.
+
+### H148-H149 Update: Bundle Listener Is the Next Big Bet
+
+H148 tested the literal cell-level version of the listener bet.  It was useful
+but too small:
+
+| Bet | Result | Interpretation |
+| --- | --- | --- |
+| H148 cell listener | `22` selected cells, mostly Q2 | full cell listener is underdetermined and collapses |
+| H148 raw H071/H073/H074 stress | predicted public-toxic under frontier cell listener | broad assignment proposals cannot be trusted without listener translation |
+
+H149 then lifted the listener to human-state bundles:
+
+| Bet | File | Worldview | Offline evidence | Risk |
+| --- | --- | --- | --- | --- |
+| H149 bundle listener route | `submission_h149_bundle_listener_route_d8e1d789_uploadsafe.csv` | public/private listener is a subject/order/date/target bundle field; broad source actions become safe only after bundle translation | `349` cells, `154` rows; `bundle_all` predicted delta `-0.004994063`; `bundle_plus_bad` `-0.003198392`; `bundle_frontier` `-0.000168047`; LOO Spearman `0.858471532` | old pre-H anchors may dominate the all-observed equation; needs public slot when available |
+
+This is now the highest-information offline candidate family.  It is not a
+minor H057 tweak.  It directly tests whether HS-JEPA's missing decoder is:
+
+```text
+human-social / row-order / subject context
+  -> bundle listener
+  -> row-target correction translator
+```
+
+Public interpretation when slots return:
+
+- H149 wins by `>=0.001`: HS-JEPA v2 should center on bundle listener
+  translation; H073/H075 become useful source-action heads.
+- H149 is neutral: bundle listener is real but amplitude/source mixing is too
+  aggressive; move to row-bundle coefficient solver.
+- H149 loses badly: public-equation inversion is overfitting old anchors; stop
+  using supervised LB equations as decoders and return to discrete assignment
+  constraints.

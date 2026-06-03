@@ -13506,3 +13506,105 @@ actually hears.
 
 This turns H144/H145 from failed frontier submissions into a listener-mask
 constraint for HS-JEPA.
+
+## H148 Listener-Responsibility Equation HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h148_listener_responsibility_equation_hsjepa.py`
+- `hitl/h148_listener_responsibility_equation_hsjepa/h148_report.md`
+- `hitl/h148_listener_responsibility_equation_hsjepa/h148_model_scores.csv`
+- `hitl/h148_listener_responsibility_equation_hsjepa/h148_candidate_scores.csv`
+- `submission_h148_listeneraware_assignment_d8d2e3b6_uploadsafe.csv`
+
+Question:
+
+Can public LB deltas recover a row-target listener field that says which H057
+relative corrections the public sensor actually hears?
+
+Result:
+
+- best local listener model: `h_frontier`;
+- LOO MAE: `0.000278925`;
+- H144/H145 predicted gap: `0.000000008`;
+- H071 predicted delta under this cell-level frontier listener: `+0.001226392`;
+- H073 predicted delta: `+0.001228502`;
+- generated H148 candidate changes only `22` cells on `19` rows;
+- H148 candidate predicted delta:
+  - frontier cell listener: `-0.000036025`;
+  - plus-bad listener: `-0.000489131`;
+  - all-observed listener: `-0.000078777`.
+
+Interpretation:
+
+Cell-level listener recovery is too underdetermined.  It can explain the
+H144/H145 equality and H088 penalty, but it collapses broad assignment proposals
+into a tiny mostly-Q2 action.  This kills the simple idea that H071/H073/H074
+only need a cell-wise public listener mask.  The listener should be learned at
+row/route/human-state bundle level instead.
+
+## H149 Bundle-Listener Route HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h149_bundle_listener_route_hsjepa.py`
+- `hitl/h149_bundle_listener_route_hsjepa/h149_report.md`
+- `hitl/h149_bundle_listener_route_hsjepa/h149_model_scores.csv`
+- `hitl/h149_bundle_listener_route_hsjepa/h149_candidate_scores.csv`
+- `hitl/h149_bundle_listener_route_hsjepa/h149_bundle_coefficients.csv`
+- `submission_h149_bundle_listener_route_d8e1d789_uploadsafe.csv`
+
+Question:
+
+Is public/private listener responsibility a human-state bundle field rather
+than an individual cell field?
+
+Bundle context:
+
+- target and Q/S group;
+- subject-target route;
+- row-order decile/quintile;
+- weekend/friday/monday;
+- pay-window candidates around day 10 and day 25;
+- month start/end;
+- H057 base-probability regime.
+
+Result:
+
+- best bundle model: `bundle_all`;
+- observations used: `19`;
+- features: `317`;
+- LOO MAE: `0.000450715`;
+- LOO Spearman: `0.858471532`;
+- H144/H145 predicted gap: `0.000000922`;
+- observed-fit errors are mostly below `0.00005` on known public rows;
+- H073 predicted delta: `-0.001089918`;
+- H075 predicted delta: `-0.000990332`;
+- H071 predicted delta: `-0.000124451`;
+- H074 predicted delta: `-0.000111866`;
+- generated H149 candidate changes `349` cells on `154` rows;
+- H149 candidate predicted delta:
+  - bundle frontier: `-0.000168047`;
+  - bundle plus-bad: `-0.003198392`;
+  - bundle all: `-0.004994063`.
+
+Interpretation:
+
+This is the strongest post-H057 offline breakthrough candidate so far.  It says
+the missing object is not more action proposals, but a bundle-level listener
+translator that uses human-social/date/subject/route context to decide which
+proposal becomes a safe correction.  The result also reinterprets H073/H075:
+they may be bad as raw proposals under the cell listener, but useful as source
+actions after bundle-level listener translation.
+
+Risk:
+
+The upside is partly learned from old pre-H public worlds.  The safety signal is
+that the generated H149 candidate is still weakly positive under the
+frontier-only bundle model.  If H149 fails publicly, bundle listener inversion
+is overfitting and the next decoder must become a discrete row-target equation
+solver rather than a supervised public-equation solver.

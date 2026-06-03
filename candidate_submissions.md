@@ -9559,3 +9559,89 @@ H088 = 0.5684942019
 H144/H145 should not be selected over H057 unless there is an external reason
 to prefer lower public-specialization risk over observed public score.  Their
 value is diagnostic, not frontier selection.
+
+## Post-H149 Candidate Priority Update
+
+Current highest-information offline candidate:
+
+```text
+submission_h149_bundle_listener_route_d8e1d789_uploadsafe.csv
+```
+
+Why this moved to the top:
+
+H148 showed that a full cell-level listener equation collapses into a tiny
+`22`-cell Q2-heavy action.  That means the listener field is not safely
+recoverable at individual row-target resolution from the current public
+observations.
+
+H149 changes the object:
+
+```text
+cell listener -> human-state bundle listener
+```
+
+It uses target, subject, row-order, weekend/friday/monday, pay-window, month
+boundary, and H057 base-probability regimes as listener bundles.  It then
+translates multiple source actions from H071/H073/H074/H075/H126 into a new
+row-target correction field.
+
+Candidate anatomy:
+
+- file: `submission_h149_bundle_listener_route_d8e1d789_uploadsafe.csv`;
+- changed cells vs H057: `349`;
+- changed rows vs H057: `154`;
+- source mix:
+  - H075 anti-bad transport: `144` cells;
+  - H074 anti-shortcut inversion: `89`;
+  - H073 human-action bridge: `64`;
+  - H071 row-target assignment: `38`;
+  - H126 coefficient equation: `14`;
+- target mix:
+  - S3 `86`;
+  - S4 `59`;
+  - S1 `48`;
+  - S2 `45`;
+  - Q2 `40`;
+  - Q1 `37`;
+  - Q3 `34`;
+- upload-safe validation: passed.
+
+Offline public-equation signals:
+
+- `bundle_all` predicted delta: `-0.004994063`;
+- `bundle_plus_bad` predicted delta: `-0.003198392`;
+- `bundle_frontier` predicted delta: `-0.000168047`;
+- model LOO Spearman on known public observations: `0.858471532`;
+- H144/H145 predicted gap: `0.000000922`.
+
+Why it is worth a future scarce slot:
+
+This is not an H057 neighborhood amplitude tweak.  It tests a specific
+HS-JEPA-v2 world model:
+
+```text
+public/private response is a bundle-level listener field,
+and hidden-state actions only help after listener-aware translation.
+```
+
+Failure interpretation:
+
+- If H149 loses badly, supervised public-equation listener inversion is
+  overfitting old pre-H worlds.  The next decoder must use discrete assignment
+  constraints or new public sensors, not more bundle regression.
+- If H149 is neutral, the bundle listener is probably directionally right but
+  source mixing/amplitude is too broad.
+- If H149 wins by `>=0.001`, bundle-listener HS-JEPA becomes the main paper
+  contribution and next experiments should refine source-action responsibility
+  rather than search for new raw features.
+
+H148 diagnostic file:
+
+```text
+submission_h148_listeneraware_assignment_d8d2e3b6_uploadsafe.csv
+```
+
+Keep H148 as a diagnostic, not the next submission.  It is too small to be the
+0.53-scale breakthrough family, but it proved why the listener must be learned
+as a structured human-state bundle rather than an unconstrained cell map.

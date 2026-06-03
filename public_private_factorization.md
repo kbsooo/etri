@@ -3009,3 +3009,74 @@ Next clean sensor:
 H141 common core should be observed before more H144/H145 siblings are
 submitted.  It isolates whether the shared common core is already worse than
 H057, or whether the non-listened branch atoms are the harmful part.
+
+## H148-H149 Listener Factorization Update
+
+H148 and H149 turn the post-H146 listener idea into two concrete factorization
+tests.
+
+### H148: Cell-Level Listener
+
+H148 fits:
+
+```text
+cell movement vs H057 -> public delta vs H057
+```
+
+It explains the H144/H145 tie, but only produces a `22`-cell mostly-Q2
+candidate.  It also marks broad H071/H073/H074 assignments as public-toxic under
+the frontier-only cell listener.
+
+Conclusion:
+
+```text
+public_listener(row,target) is not safely identifiable at full cell resolution.
+```
+
+This is not a failure of the listener concept.  It means the listener has to be
+regularized by the human-state structure that generated the rows.
+
+### H149: Bundle-Level Listener
+
+H149 fits public response over bundles:
+
+```text
+target / subject / row-order / date-social / base-probability bundles
+  -> public delta
+```
+
+This gives a stronger factorization:
+
+```text
+public/private response
+  = bundle listener
+  + action toxicity
+  + source proposal quality
+```
+
+Key H149 evidence:
+
+- `bundle_all` LOO Spearman: `0.858471532`;
+- H144/H145 predicted public gap: `0.000000922`;
+- H073 predicted public delta: `-0.001089918`;
+- H075 predicted public delta: `-0.000990332`;
+- promoted H149 candidate:
+  - `349` changed cells;
+  - `154` changed rows;
+  - bundle-all predicted delta `-0.004994063`;
+  - frontier-only bundle predicted delta `-0.000168047`.
+
+Revised factorization:
+
+```text
+prediction field
+  = base state
+  + source_action(row,target)
+  * listener(bundle(row,target))
+  * safety(row,target)
+```
+
+The current most promising hypothesis is that public/private difference is not
+a pure subset mask and not a pure target prior.  It is a bundle-level listener:
+some subject/order/date/target regimes are heard strongly, and broad action
+proposals only become useful when routed through those regimes.
