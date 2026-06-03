@@ -3313,3 +3313,64 @@ HS-JEPA = context-to-human-state representation
         + anti-shortcut safety projection
         + row-target correction assignment solver
 ```
+
+### H150-H151: Stress-Gated Listener and H088 Toxicity
+
+H150 adds a validation layer to the H149 bundle listener.  The architecture now
+needs a stress gate before a listener field is trusted:
+
+```text
+candidate listener l(bundle)
+  -> role-holdout stress
+  -> feature-family ablation stress
+  -> null/permutation stress
+  -> random feature-dropout stability
+  -> source-action responsibility
+```
+
+The strongest H150 finding is that human-social/date bundles are not merely
+decorative.  A `human_social_only` listener using date/social/pay/month plus
+target features reached LOO Spearman `0.901859985`.  This supports the original
+HS-JEPA idea that human lifestyle state should enter as a latent listener/action
+prior, not as a direct label rule.
+
+H150 also shows that H088 has a special role:
+
+```text
+hold out H088:
+  actual H088 delta    = +0.000746608
+  predicted H088 delta = -0.002727492
+```
+
+So H088 is not inferable from the other public observations.  It must remain an
+explicit anti-shortcut/toxicity representation.
+
+H151 tested the hard-veto version:
+
+```text
+soft H088 energy:
+  H149 robust mean delta = -0.003753061
+  H150 robust mean delta = -0.002941128
+
+hard H088 veto:
+  H151 robust mean delta = -0.001231296
+```
+
+Architecture decision:
+
+```text
+H088 should be a soft toxicity energy and stress diagnostic,
+not a universal hard exclusion rule.
+```
+
+The current HS-JEPA v2 decoder is therefore:
+
+```text
+context C
+  -> human-state bundle z_h
+  -> source action proposals a_i(row,target)
+  -> bundle listener l(bundle)
+  -> H088 soft toxicity e_088(row,target)
+  -> stress-gated responsibility r(row,target)
+  -> correction c(row,target)
+```

@@ -1,0 +1,2 @@
+real_loo_mae,real_loo_spearman,real_h149_pred_delta,null_spearman_ge_real_frac,null_mae_le_real_frac,null_h149_pred_le_real_frac,null_h149_pred_mean,null_h149_pred_p05,null_h149_pred_p50,null_h149_pred_p95
+0.0004507154491782551,0.8584715324643559,-0.004994062639042698,0.0,0.0,0.64,-0.008288505975561451,-0.0260094095799464,-0.007929061326287356,0.010387052204937701

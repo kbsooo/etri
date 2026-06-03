@@ -3080,3 +3080,57 @@ The current most promising hypothesis is that public/private difference is not
 a pure subset mask and not a pure target prior.  It is a bundle-level listener:
 some subject/order/date/target regimes are heard strongly, and broad action
 proposals only become useful when routed through those regimes.
+
+## H150-H151 Stress Factorization Update
+
+H150 gives a stronger public/private factorization test than H149 alone.
+
+The bundle listener survives:
+
+- H149 is improvement-direction across all `10` listener variants;
+- H149 dropout negative fraction is `1.000000`;
+- H073/H075 source actions are also stable under dropout
+  (`0.994444` and `0.983333` negative fraction);
+- real LOO Spearman and MAE beat null permutations with fraction `0.0`.
+
+But exact public delta magnitude is not calibrated:
+
+```text
+real H149 predicted delta = -0.004994063
+null_h149_pred_le_real_frac = 0.64
+```
+
+This means the factorization should be used for ranking and routing, not for
+literal LB-delta prediction.
+
+H088 factorization:
+
+Holding out H088 makes the model predict H088 as beneficial:
+
+```text
+actual H088 delta    = +0.000746608
+predicted without it = -0.002727492
+```
+
+Therefore H088 is not just another public-negative sample.  It represents a
+specific toxicity axis that must be carried as an explicit energy term:
+
+```text
+prediction field
+  = base state
+  + source_action(row,target)
+  * listener(bundle(row,target))
+  * safety(row,target)
+  - soft_toxicity_088(row,target)
+```
+
+H151 tested a hard H088 veto.  It reduced H088 cosine to `0.092965834`, but
+reduced robust mean predicted delta to `-0.001231296`, compared with H149
+`-0.003753061` and H150 `-0.002941128`.
+
+Conclusion:
+
+```text
+H088 should be a soft toxicity / anti-shortcut energy,
+not a universal hard public/private mask.
+```

@@ -9645,3 +9645,62 @@ submission_h148_listeneraware_assignment_d8d2e3b6_uploadsafe.csv
 Keep H148 as a diagnostic, not the next submission.  It is too small to be the
 0.53-scale breakthrough family, but it proved why the listener must be learned
 as a structured human-state bundle rather than an unconstrained cell map.
+
+## Post-H150/H151 Candidate Priority Update
+
+The H149 bundle-listener candidate survived the first serious offline stress
+audit.
+
+Stress evidence:
+
+- H149 is predicted improvement-direction in all `10` H150 listener variants;
+- H149 dropout negative fraction: `1.000000`;
+- H149 robust mean predicted delta: `-0.003753061`;
+- real bundle-equation LOO Spearman beats null permutations with fraction
+  `0.0`;
+- real LOO MAE beats null permutations with fraction `0.0`.
+
+Important caveat:
+
+The absolute H149 predicted delta is not significant under label permutation:
+
+```text
+real H149 pred: -0.004994063
+null_h149_pred_le_real_frac: 0.64
+```
+
+So the ranking/direction evidence is strong, but the exact `-0.00499` expected
+improvement should not be trusted literally.
+
+Current future-slot priority:
+
+| Priority | File | Role | Why |
+| --- | --- | --- | --- |
+| 1 | `submission_h149_bundle_listener_route_d8e1d789_uploadsafe.csv` | high-upside bundle-listener probe | biggest structural bet; survives variant/dropout stress |
+| 2 | `submission_h150_robust_bundle_listener_5e12f9bd_uploadsafe.csv` | robust consensus fallback | lower upside but less dependent on one listener world |
+| 3 | `submission_h151_h088_hardveto_bundle_efaa9c93_uploadsafe.csv` | H088 hard-veto counterfactual | useful diagnostic, likely too conservative |
+
+H150 anatomy:
+
+- changed cells: `364`;
+- changed rows: `157`;
+- robust mean predicted delta: `-0.002941128`;
+- all-full predicted delta: `-0.003842840`;
+- no-pre-H predicted delta: `-0.002360980`;
+- frontier-only predicted delta: `-0.000161581`;
+- upload-safe: passed.
+
+H151 anatomy:
+
+- changed cells: `97`;
+- changed rows: `75`;
+- H088 cosine: `0.092965834`;
+- robust mean predicted delta: `-0.001231296`;
+- upload-safe: passed.
+
+Decision:
+
+If there is exactly one future public slot and the goal is a true breakthrough,
+submit H149.  If the goal is to reduce old-anchor dependence before the slot,
+submit H150.  H151 should be used only if we specifically want to test whether
+H088 must be a hard veto; offline evidence says soft toxicity energy is better.

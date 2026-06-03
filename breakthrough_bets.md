@@ -2562,3 +2562,43 @@ Public interpretation when slots return:
 - H149 loses badly: public-equation inversion is overfitting old anchors; stop
   using supervised LB equations as decoders and return to discrete assignment
   constraints.
+
+### H150-H151 Update: H149 Survives Stress, H088 Becomes Soft Toxicity
+
+H150 stress-tested H149 against the main failure mode: old-anchor memorization.
+
+| Bet | File | Worldview | Stress result | Decision |
+| --- | --- | --- | --- | --- |
+| H149 | `submission_h149_bundle_listener_route_d8e1d789_uploadsafe.csv` | high-upside bundle listener | improvement-direction in all `10` listener variants; dropout negative fraction `1.0`; robust mean delta `-0.003753061` | still top future-slot probe |
+| H150 | `submission_h150_robust_bundle_listener_5e12f9bd_uploadsafe.csv` | consensus listener across variants | robust mean delta `-0.002941128`; no-pre-H delta `-0.002360980`; frontier-only delta `-0.000161581` | robust fallback |
+| H151 | `submission_h151_h088_hardveto_bundle_efaa9c93_uploadsafe.csv` | H088 hard veto | H088 cosine reduced to `0.092965834`, but robust mean delta shrinks to `-0.001231296` | diagnostic, not top upside |
+
+Important caveat:
+
+H150's null permutation says the real model ranking is not random:
+
+```text
+null_spearman_ge_real_frac = 0.0
+null_mae_le_real_frac      = 0.0
+```
+
+But the exact H149 predicted delta is not significant by permutation:
+
+```text
+null_h149_pred_le_real_frac = 0.64
+```
+
+Therefore the big bet should be stated carefully:
+
+```text
+direction/ranking of bundle listener is meaningful;
+exact expected LB gain is not calibrated.
+```
+
+New one-sentence frontier worldview:
+
+```text
+The hidden state is not just "which cells to move"; it is a human-state bundle
+listener that decides which source actions the public/private equation hears,
+with H088 acting as a soft anti-shortcut energy.
+```

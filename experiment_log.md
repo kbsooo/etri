@@ -13608,3 +13608,116 @@ that the generated H149 candidate is still weakly positive under the
 frontier-only bundle model.  If H149 fails publicly, bundle listener inversion
 is overfitting and the next decoder must become a discrete row-target equation
 solver rather than a supervised public-equation solver.
+
+## H150 Bundle-Listener Stress HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h150_bundle_listener_stress_hsjepa.py`
+- `hitl/h150_bundle_listener_stress_hsjepa/h150_report.md`
+- `hitl/h150_bundle_listener_stress_hsjepa/h150_variant_scores.csv`
+- `hitl/h150_bundle_listener_stress_hsjepa/h150_role_holdout.csv`
+- `hitl/h150_bundle_listener_stress_hsjepa/h150_null_summary.csv`
+- `hitl/h150_bundle_listener_stress_hsjepa/h150_dropout_summary.csv`
+- `submission_h150_robust_bundle_listener_5e12f9bd_uploadsafe.csv`
+
+Question:
+
+Is H149's large offline improvement a real bundle-listener signal, or an
+old-anchor shortcut?
+
+Stress results:
+
+- H149 candidate is improvement-direction in all `10` listener variants;
+- H149 robust mean predicted delta: `-0.003753061`;
+- H149 dropout negative fraction: `1.000000`;
+- H073 dropout negative fraction: `0.994444`;
+- H075 dropout negative fraction: `0.983333`;
+- real null stress:
+  - real LOO Spearman `0.858471532`;
+  - null Spearman >= real fraction `0.0`;
+  - real LOO MAE `0.000450715`;
+  - null MAE <= real fraction `0.0`;
+- H149 predicted delta under random label permutations is not itself
+  significant (`null_h149_pred_le_real_frac = 0.64`), so the model ranking is
+  real but the absolute H149 delta magnitude should not be overtrusted.
+
+Important role-holdout result:
+
+When H088 is held out, the model predicts H088 in the wrong direction:
+
+```text
+actual H088 delta: +0.000746608
+predicted without H088: -0.002727492
+```
+
+Interpretation:
+
+H088 is not an ordinary bad anchor.  It is a non-substitutable toxicity sensor.
+The architecture must keep H088 as an explicit anti-shortcut energy or veto
+signal.  A model trained only on other public observations does not infer that
+toxicity axis by itself.
+
+Promoted H150 candidate:
+
+- file: `submission_h150_robust_bundle_listener_5e12f9bd_uploadsafe.csv`;
+- changed cells: `364`;
+- changed rows: `157`;
+- all-full predicted delta: `-0.003842840`;
+- no-pre-H predicted delta: `-0.002360980`;
+- frontier-only predicted delta: `-0.000161581`;
+- human-social-only predicted delta: `-0.002869942`;
+- upload-safe validation passed.
+
+Decision:
+
+H149 remains the highest-upside next public probe.  H150 is the robust fallback
+and the stronger architecture proof that bundle listener translation is not
+just a single model artifact.
+
+## H151 H088-Hard-Veto Bundle HS-JEPA
+
+Date: 2026-06-03
+
+Generated files:
+
+- `hitl/h151_h088_hardveto_bundle_hsjepa.py`
+- `hitl/h151_h088_hardveto_bundle_hsjepa/h151_report.md`
+- `submission_h151_h088_hardveto_bundle_efaa9c93_uploadsafe.csv`
+
+Question:
+
+If H088 is non-substitutable, should it become a hard veto rather than a soft
+toxicity energy?
+
+Result:
+
+- H151 changed cells: `97`;
+- changed rows: `75`;
+- H088 cosine: `0.092965834`;
+- robust positive variant count: `10`;
+- robust mean predicted delta: `-0.001231296`;
+- all-full predicted delta: `-0.001567595`;
+- no-pre-H predicted delta: `-0.000865554`;
+- frontier-only predicted delta: `-0.000298888`;
+- upload-safe validation passed.
+
+Comparison:
+
+```text
+H149 robust mean delta: -0.003753061, H088 cosine 0.121063141
+H150 robust mean delta: -0.002941128, H088 cosine 0.188791860
+H151 robust mean delta: -0.001231296, H088 cosine 0.092965834
+```
+
+Interpretation:
+
+H151 confirms H088 should not be ignored, but hard veto is probably too
+conservative.  The current best HS-JEPA formulation is:
+
+```text
+H088 = explicit soft toxicity energy / stress diagnostic,
+not a full hard exclusion rule.
+```
