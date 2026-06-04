@@ -1,0 +1,8 @@
+target,positive_rate,positives,negatives,rows,interpretation
+Q1,0.4955555555555556,223,227,450,subjective satisfaction
+Q2,0.5622222222222222,253,197,450,sleep intervention/friction
+Q3,0.6,270,180,450,subjective quality
+S1,0.6822222222222222,307,143,450,objective stage ratio
+S2,0.6511111111111111,293,157,450,objective stage ratio
+S3,0.6622222222222223,298,152,450,objective stage ratio
+S4,0.56,252,198,450,objective stage ratio
