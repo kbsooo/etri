@@ -6,6 +6,12 @@ Current public frontier:
 
 - `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv`
 - Public LB: `0.5677475939`
+- End-to-end HS-JEPA reproduction script:
+  `python3 hs_jepa_end_to_end.py`
+- Reproduced upload-safe file:
+  `submission_hsjepa_end_to_end_h057_7cde1a77_uploadsafe.csv`
+- Explanation/report:
+  `hs_jepa_end_to_end/hs_jepa_end_to_end_report.md`
 - Previous frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
 - Improvement over previous frontier: `0.0001572309`
 - Interpretation: H012 validates the public-equation HS-JEPA branch, H042 adds

@@ -1,0 +1,10 @@
+{
+  "expected_hash": "7cde1a77",
+  "produced_hash": "7cde1a77",
+  "hash_matches_expected": true,
+  "max_abs_diff_vs_known_h057": 1.1102230246251565e-16,
+  "mean_abs_diff_vs_known_h057": 2.3512937628668494e-18,
+  "numeric_exact_vs_known_h057": false,
+  "numeric_match_within_float_tolerance": true,
+  "known_public_lb": 0.5677475939
+}
