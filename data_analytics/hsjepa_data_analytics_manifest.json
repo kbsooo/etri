@@ -1,0 +1,277 @@
+{
+  "version": 1,
+  "surface": "report",
+  "title": "HS-JEPA 데이터·점수 분석 리포트",
+  "generatedAt": "2026-06-07T00:00:00+09:00",
+  "description": "수면 생활습관 예측 대회 HS-JEPA 실험의 public LB, 데이터 범위, action-decoder 병목을 한국어로 정리한 Data Analytics 리포트",
+  "sources": [
+    {
+      "id": "repo_sources",
+      "label": "Local repo analysis sources",
+      "path": "/Users/kbsoo/Downloads/cl2",
+      "query": {
+        "engine": "local_python",
+        "language": "python",
+        "description": "Read local CSV/Markdown/parquet experiment artifacts and summarize score/data/experiment inventory.",
+        "sql": "python3 data_analytics/build_hsjepa_audit.py",
+        "tables_used": [
+          "analysis_outputs/public_probe_observations.csv",
+          "lb_observation_log.md",
+          "README.md",
+          "hitl/*/*_decision.csv",
+          "data/ch2026_metrics_train.csv",
+          "data/ch2026_submission_sample.csv",
+          "data/ch2025_data_items/*.parquet"
+        ],
+        "filters": [
+          "Public LB observations explicitly recorded in repo or user-provided late observations",
+          "HITL decision files under hitl/"
+        ],
+        "metric_definitions": [
+          "public_lb: competition public leaderboard log loss; lower is better",
+          "delta_vs_previous_best: current public_lb minus previous best in curated observation order",
+          "best_so_far: cumulative minimum public_lb"
+        ]
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "id": "title",
+      "type": "markdown",
+      "body": "# HS-JEPA 데이터·점수 분석 리포트"
+    },
+    {
+      "id": "summary",
+      "type": "markdown",
+      "body": "## Executive Summary\n\n- **가장 중요한 성과는 H012/H057의 구조 발견이다.** E247 0.5761589494에서 H012 0.5681234831로 크게 내려왔고, H057은 0.5677475939로 현재 best다.\n- **현재 병목은 latent 발견보다 action 안전성이다.** H088은 로컬 proxy가 좋아 보여도 0.5684942019로 후퇴해, hard-world/Pareto head가 action-grade decoder가 아님을 보여줬다.\n- **H144/H145 tie는 micro branch가 아니라 common action body가 문제였다는 증거다.** 두 파일이 0.567929641로 같아 row135 Q3 vs row207 S2 선택만으로는 H057을 넘지 못한다.\n- **오늘 기준 산출물은 재현성 쪽이 강하다.** hs_jepa_end_to_end.py가 H057 hash 7cde1a77을 재현하며, HS-JEPA를 코드로 설명할 수 있게 됐다."
+    },
+    {
+      "id": "score_chart_intro",
+      "type": "markdown",
+      "body": "## Public LB는 H012에서 세계관을 바꾸고 H057에서 row-state를 확정했다\n\n아래 chart는 기록된 public LB 관측값의 흐름이다. 낮을수록 좋다. H012 이전의 0.576대 plateau가 H012에서 0.568대로 내려왔고, H057에서 한 번 더 개선됐다."
+    },
+    {
+      "id": "score_chart_block",
+      "type": "chart",
+      "chartId": "score_timeline"
+    },
+    {
+      "id": "best_table_intro",
+      "type": "markdown",
+      "body": "## Best 관측값과 negative sensor\n\nH057은 현재 best지만, H088/H144/H145 같은 실패도 의미가 크다. 이 실패들은 어떤 action family가 public-toxic인지 알려주는 stress sensor다."
+    },
+    {
+      "id": "best_table_block",
+      "type": "table",
+      "tableId": "best_scores"
+    },
+    {
+      "id": "target_chart_intro",
+      "type": "markdown",
+      "body": "## 원본 target은 7개지만 HS-JEPA의 실제 단위는 row-target action이다\n\ntrain target 분포는 label 예측 문제의 기본 배경이다. 하지만 H057 이후 핵심 단위는 label 자체가 아니라 특정 row-target cell을 움직여도 되는지 여부로 바뀌었다."
+    },
+    {
+      "id": "target_chart_block",
+      "type": "chart",
+      "chartId": "target_prevalence"
+    },
+    {
+      "id": "daily",
+      "type": "markdown",
+      "body": "## 날짜별 정리\n\n### 2026-06-04\nH012/H042/H057 public sensor를 정리했다. 결론은 Q2 support row가 단순 Q2 보정이 아니라 hidden human-state marker라는 것.\n\n### 2026-06-05\nH088/H144/H145 negative sensor를 기준으로 병목을 재정의했다. 결론은 context encoder보다 safe row-target assignment decoder가 병목이라는 것.\n\n### 2026-06-07\nH057 재현 가능한 end-to-end HS-JEPA 코드를 만들었고, Data Analytics report로 점수/데이터/실험을 정리했다."
+    },
+    {
+      "id": "day_activity_block",
+      "type": "chart",
+      "chartId": "day_activity"
+    },
+    {
+      "id": "next_steps",
+      "type": "markdown",
+      "body": "## Recommended Next Steps\n\n1. H057 45개 row를 seed로 유지하고, V131C cohort-relative outlier를 context view로 추가한다.\n2. cohort outlier를 직접 Q2/Q3/S2에 꽂지 말고, action-health와 toxicity gate 입력으로 사용한다.\n3. H088-positive 방향을 forbidden/toxic diagnostic으로 쓰고, H057-positive 방향과 동시에 만족하는 assignment field를 찾는다.\n4. Gemini embedding은 논문/오픈소스 재현성 경로에서 제외하고, TF-IDF/SVD 또는 공개 sentence-transformer 계열로 semantic context encoder를 대체한다."
+    },
+    {
+      "id": "caveats",
+      "type": "markdown",
+      "body": "## Caveats and Assumptions\n\n- 이 리포트는 local repo에 남아 있는 파일과 사용자가 알려준 public LB 관측값만 사용한다.\n- private LB는 관측 불가하므로 public/private factorization은 가설로 남긴다.\n- H153 Gemini 실험은 기록에는 남기지만, 오픈소스 재현 가능한 HS-JEPA 핵심 경로로 보지는 않는다."
+    }
+  ],
+  "charts": [
+    {
+      "id": "score_timeline",
+      "type": "line",
+      "title": "Public LB trajectory",
+      "dataset": "score_ledger",
+      "encodings": {
+        "x": {
+          "field": "sequence"
+        },
+        "y": {
+          "field": "public_lb"
+        },
+        "color": {
+          "field": "family"
+        }
+      },
+      "options": {
+        "showLegend": true
+      },
+      "sourceId": "repo_sources",
+      "source": {
+        "label": "hsjepa_public_score_ledger.csv",
+        "path": "/Users/kbsoo/Downloads/cl2/data_analytics/hsjepa_public_score_ledger.csv",
+        "query": {
+          "engine": "duckdb",
+          "language": "sql",
+          "description": "Curated public LB sensor ledger with exact public log-loss values and HS-JEPA interpretation fields.",
+          "sql": "SELECT * FROM read_csv_auto('/Users/kbsoo/Downloads/cl2/data_analytics/hsjepa_public_score_ledger.csv');",
+          "tables_used": [
+            "/Users/kbsoo/Downloads/cl2/data_analytics/hsjepa_public_score_ledger.csv"
+          ],
+          "filters": [
+            "Generated from local repo artifacts by python3 data_analytics/build_hsjepa_audit.py"
+          ],
+          "metric_definitions": [
+            "public_lb: competition public leaderboard log loss; lower is better",
+            "best_so_far: cumulative minimum public_lb in curated observation order",
+            "delta_vs_previous_best: current public_lb minus previous best before the observation"
+          ]
+        }
+      }
+    },
+    {
+      "id": "target_prevalence",
+      "type": "bar",
+      "title": "Train target positive rate",
+      "dataset": "target_inventory",
+      "encodings": {
+        "x": {
+          "field": "target"
+        },
+        "y": {
+          "field": "positive_rate"
+        }
+      },
+      "options": {
+        "orientation": "vertical"
+      },
+      "sourceId": "repo_sources",
+      "source": {
+        "label": "hsjepa_target_inventory.csv",
+        "path": "/Users/kbsoo/Downloads/cl2/data_analytics/hsjepa_target_inventory.csv",
+        "query": {
+          "engine": "duckdb",
+          "language": "sql",
+          "description": "Target prevalence summary computed from data/ch2026_metrics_train.csv.",
+          "sql": "SELECT * FROM read_csv_auto('/Users/kbsoo/Downloads/cl2/data_analytics/hsjepa_target_inventory.csv');",
+          "tables_used": [
+            "/Users/kbsoo/Downloads/cl2/data_analytics/hsjepa_target_inventory.csv"
+          ],
+          "filters": [
+            "Generated from local repo artifacts by python3 data_analytics/build_hsjepa_audit.py"
+          ],
+          "metric_definitions": [
+            "positive_rate: mean of binary target over 450 training rows",
+            "positives: count of rows where target equals 1",
+            "negatives: count of rows where target equals 0"
+          ]
+        }
+      }
+    },
+    {
+      "id": "day_activity",
+      "type": "bar",
+      "title": "Repo artifact activity by file date",
+      "dataset": "day_file_inventory",
+      "encodings": {
+        "x": {
+          "field": "date"
+        },
+        "y": {
+          "field": "count"
+        },
+        "color": {
+          "field": "file_type"
+        }
+      },
+      "options": {
+        "grouping": "stacked"
+      },
+      "sourceId": "repo_sources",
+      "source": {
+        "label": "hsjepa_day_file_inventory.csv",
+        "path": "/Users/kbsoo/Downloads/cl2/data_analytics/hsjepa_day_file_inventory.csv",
+        "query": {
+          "engine": "duckdb",
+          "language": "sql",
+          "description": "Local artifact activity grouped by filesystem modification date and artifact type.",
+          "sql": "SELECT * FROM read_csv_auto('/Users/kbsoo/Downloads/cl2/data_analytics/hsjepa_day_file_inventory.csv');",
+          "tables_used": [
+            "/Users/kbsoo/Downloads/cl2/data_analytics/hsjepa_day_file_inventory.csv"
+          ],
+          "filters": [
+            "Generated from local repo artifacts by python3 data_analytics/build_hsjepa_audit.py"
+          ],
+          "metric_definitions": [
+            "count: number of matching root submission files or HITL report files for each local file date"
+          ]
+        }
+      }
+    }
+  ],
+  "tables": [
+    {
+      "id": "best_scores",
+      "title": "Top public observations and sensors",
+      "dataset": "best_scores",
+      "columns": [
+        {
+          "field": "score_rank",
+          "label": "rank"
+        },
+        {
+          "field": "observed_stage",
+          "label": "stage"
+        },
+        {
+          "field": "public_lb",
+          "label": "public LB"
+        },
+        {
+          "field": "family",
+          "label": "family"
+        },
+        {
+          "field": "file",
+          "label": "file"
+        },
+        {
+          "field": "note",
+          "label": "interpretation"
+        }
+      ],
+      "sourceId": "repo_sources",
+      "source": {
+        "label": "hsjepa_public_score_ledger.csv",
+        "path": "/Users/kbsoo/Downloads/cl2/data_analytics/hsjepa_public_score_ledger.csv",
+        "query": {
+          "engine": "duckdb",
+          "language": "sql",
+          "description": "Top public LB observations selected from the curated sensor ledger.",
+          "sql": "SELECT * FROM read_csv_auto('/Users/kbsoo/Downloads/cl2/data_analytics/hsjepa_public_score_ledger.csv');",
+          "tables_used": [
+            "/Users/kbsoo/Downloads/cl2/data_analytics/hsjepa_public_score_ledger.csv"
+          ],
+          "filters": [
+            "Generated from local repo artifacts by python3 data_analytics/build_hsjepa_audit.py"
+          ],
+          "metric_definitions": [
+            "score_rank: rank of public_lb, lower public_lb is better",
+            "public_lb: competition public leaderboard log loss; lower is better"
+          ]
+        }
+      }
+    }
+  ]
+}

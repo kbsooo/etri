@@ -12,6 +12,13 @@ Current public frontier:
   `submission_hsjepa_end_to_end_h057_7cde1a77_uploadsafe.csv`
 - Explanation/report:
   `hs_jepa_end_to_end/hs_jepa_end_to_end_report.md`
+- Data Analytics audit package:
+  `data_analytics/README.md`
+  - `data_analytics/2026-06-04_hsjepa_audit.md`
+  - `data_analytics/2026-06-05_hsjepa_audit.md`
+  - `data_analytics/2026-06-07_hsjepa_audit.md`
+  - `data_analytics/hsjepa_public_score_ledger.csv`
+  - `data_analytics/hsjepa_data_analytics_manifest.json`
 - Previous frontier: `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv`
 - Improvement over previous frontier: `0.0001572309`
 - Interpretation: H012 validates the public-equation HS-JEPA branch, H042 adds

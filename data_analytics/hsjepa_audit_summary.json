@@ -1,0 +1,10 @@
+{
+  "best_public_file": "submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv",
+  "best_public_lb": 0.5677475939,
+  "public_observations": 26,
+  "hitl_decision_files": 125,
+  "root_h_submission_files": 122,
+  "data_sources_reviewed": 14,
+  "artifact_manifest": "/Users/kbsoo/Downloads/cl2/data_analytics/hsjepa_data_analytics_manifest.json",
+  "artifact_snapshot": "/Users/kbsoo/Downloads/cl2/data_analytics/hsjepa_data_analytics_snapshot.json"
+}
