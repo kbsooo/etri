@@ -14071,3 +14071,64 @@ submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploads
 
 It is risky because it changes 82 cells, but it is a real architecture bet.  If
 it improves, HS-JEPA's driver/bridge decoder becomes a central paper claim.
+
+## Subjective Shadow Bridge Solver HS-JEPA
+
+Date: 2026-06-09
+
+Generated files:
+
+- `paper_hsjepa_core/subjective_shadow_bridge_solver.py`
+- `paper_hsjepa_core/SUBJECTIVE_SHADOW_BRIDGE_SOLVER_KO.md`
+- `paper_hsjepa_core/outputs/subjective_shadow_bridge_solver/subjective_shadow_bridge_readout.json`
+- `paper_hsjepa_core/outputs/subjective_shadow_bridge_solver/subjective_shadow_q1shadow_guarded_selected.csv`
+- `paper_hsjepa_core/outputs/subjective_shadow_bridge_solver/subjective_shadow_q1shadow_jackpot_selected.csv`
+- `submission_hsjepa_subjective_shadow_bridge_q1shadow_guarded_7fab5753_uploadsafe.csv`
+- `submission_hsjepa_subjective_shadow_bridge_q1shadow_jackpot_59852a64_uploadsafe.csv`
+
+Question:
+
+If objective S-stage driver/bridge actions recover a hidden sleep-stage route,
+does that route cast a reliable subjective Q1 satisfaction shadow?
+
+Method:
+
+Use train target geometry, not public LB, to define Q1 shadow pressure:
+
+```text
+Q1 pressure =
+  S1_step * 0.631559
++ S2_step * 0.127132
+- S3_step * 0.208141
++ S4_step * 0.033168
+```
+
+Then add Q1 only on stagebridge rows where route energy, public utility, and
+H088 toxicity constraints allow it.  Finally run a null stress by shuffling
+and sign-flipping the Q1-S correlation vector 128 times.
+
+Result:
+
+| Variant | Stage cells | Q1 shadow cells | Total changed cells | Route energy | Null top-score z | p(null >= actual) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| q1shadow_guarded | `60` | `18` | `78` | `0.725130` | `-0.439` | `0.656` |
+| q1shadow_jackpot | `82` | `29` | `111` | `0.723289` | `-0.909` | `0.828` |
+
+Interpretation:
+
+The first-order result looked good: Q1 shadow lowered route energy beyond
+stagebridge alone.  The null stress killed the stronger claim.  Actual Q1-S
+target geometry was not stronger than randomized target geometry.
+
+Decision:
+
+Do not make Q1 shadow a priority public submission.  Keep it as a negative
+architecture result:
+
+```text
+S-stage bridge is action-grade.
+Q1 subjective shadow is not action-grade yet.
+```
+
+This strengthens the design requirement that HS-JEPA must separate objective
+stage conservation from subjective label decoding.

@@ -278,3 +278,25 @@ Objective-Stage Bridge Conservation Solver는 여기서 한 단계 더 나아갔
 hidden human-state action은 큰 target vector transport가 아니라,
 public-sensitive driver와 objective-stage bridge의 결합으로 번역된다.
 ```
+
+Subjective Shadow Bridge Solver는 이 결론에 중요한 제한 조건을 붙인다.
+
+S-stage bridge pressure를 Q1 subjective satisfaction으로 전이하면 route energy는 더 낮아지지만,
+Q1-S target correlation을 랜덤으로 섞은 null stress보다 강하지 않았다.
+
+따라서 HS-JEPA는 다음처럼 설계되어야 한다.
+
+```text
+Human-State Encoder
+  -> Objective-Stage Driver/Bridge Decoder
+  -> Subjective Decoder
+  -> Public/Private Action Safety Head
+```
+
+즉 하나의 latent가 Q와 S를 모두 자연스럽게 설명한다고 주장하면 안 된다.
+현재 evidence는 더 정확히 말해:
+
+```text
+S-stage에는 objective conservation bridge가 있다.
+Q1/Q3 subjective route는 그 bridge의 단순한 그림자가 아니다.
+```

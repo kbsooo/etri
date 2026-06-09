@@ -300,3 +300,35 @@ python3 paper_hsjepa_core/stage_bridge_conservation_solver.py
 자세한 설명:
 
 - `paper_hsjepa_core/STAGE_BRIDGE_CONSERVATION_SOLVER_KO.md`
+
+### 9. Subjective Shadow Bridge Solver
+
+```bash
+python3 paper_hsjepa_core/subjective_shadow_bridge_solver.py
+```
+
+이 스크립트는 objective-stage bridge가 Q1 subjective satisfaction까지
+전이되는지 테스트한다.
+
+생성된 후보:
+
+- `submission_hsjepa_subjective_shadow_bridge_q1shadow_guarded_7fab5753_uploadsafe.csv`
+- `submission_hsjepa_subjective_shadow_bridge_q1shadow_jackpot_59852a64_uploadsafe.csv`
+
+현재 결과:
+
+- guarded: stage 60 cells + Q1 shadow 18 cells, route energy `0.725130`
+- jackpot: stage 82 cells + Q1 shadow 29 cells, route energy `0.723289`
+- 둘 다 stage-only보다 route energy는 낮아짐
+- 하지만 Q1-S correlation null stress에서 실제 Q1-S 구조가 랜덤 구조보다 강하지 않음
+  - guarded top-score z `-0.439`, p(null >= actual) `0.656`
+  - jackpot top-score z `-0.909`, p(null >= actual) `0.828`
+
+해석:
+
+- S-stage bridge는 action-grade 구조지만, Q1 subjective shadow는 아직 action-grade 구조가 아니다.
+- HS-JEPA decoder는 Q와 S를 하나로 뭉개기보다, objective-stage decoder와 subjective decoder를 분리해야 한다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/SUBJECTIVE_SHADOW_BRIDGE_SOLVER_KO.md`

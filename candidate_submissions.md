@@ -9891,3 +9891,28 @@ if the next slot is meant to test a true big-bet architecture claim.
 Use `submission_hsjepa_stage_bridge_conservation_stagebridge_2cf2f795_uploadsafe.csv`
 if the next slot must be less aggressive while still testing the same S2-hub
 bridge mechanism.
+
+## Subjective Shadow Bridge Candidate Update
+
+New diagnostic candidates:
+
+| Priority | File | Role | Why |
+| --- | --- | --- | --- |
+| diagnostic only | `submission_hsjepa_subjective_shadow_bridge_q1shadow_guarded_7fab5753_uploadsafe.csv` | Q1 subjective shadow test | route energy improves to `0.725130`, but null stress fails |
+| diagnostic only | `submission_hsjepa_subjective_shadow_bridge_q1shadow_jackpot_59852a64_uploadsafe.csv` | aggressive Q1 subjective shadow test | route energy improves to `0.723289`, H088 cosine `-0.012274`, but null stress fails harder |
+
+Interpretation:
+
+These are not priority public submissions.  They answer an architecture question:
+whether objective-stage bridge pressure should be translated directly into Q1.
+The answer is currently no.  The actual Q1-S correlation route is weaker than
+randomized Q1-S routes under the null stress.
+
+Submission priority stays:
+
+1. `submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv`
+2. `submission_hsjepa_stage_bridge_conservation_stagebridge_2cf2f795_uploadsafe.csv`
+3. `submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv`
+
+The subjective-shadow files should be used only if the next public slot is
+explicitly meant to test the rejected Q/S unification hypothesis.
