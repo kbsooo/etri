@@ -1,0 +1,14 @@
+{
+  "embedding_source": "local_tfidf_svd",
+  "uses_external_embedding_api": false,
+  "base_file": "submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv",
+  "best_spec": "local_semantic_source_consensus",
+  "best_root_path": "/Users/kbsoo/Downloads/cl2/submission_h154_local_semantic_source_consensus_36eeef08_uploadsafe.csv",
+  "best_upload_safe": true,
+  "best_changed_cells_vs_h057": 95,
+  "best_base_robust_mean_delta": -0.003083789142163823,
+  "best_base_robust_max_delta": -0.0009734483945564275,
+  "best_semantic_robust_mean_delta": -0.002454048860656497,
+  "best_semantic_robust_max_delta": -2.620166081847813e-05,
+  "best_h088_move_cosine": 0.0018496703697592563
+}
