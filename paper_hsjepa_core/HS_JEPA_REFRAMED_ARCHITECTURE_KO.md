@@ -88,6 +88,23 @@ Human-State Action Distillation 결과:
 2. action support는 별도의 listener/assignment solver가 필요하다.
 3. human-state representation은 support가 주어진 뒤 방향/위험성/해석을 보조하는 쪽이 더 자연스럽다.
 
+Listener Responsibility JEPA 결과:
+
+- public score ledger 사용: `false`
+- selected cells: `118`
+- teacher cells: `94`
+- teacher overlap: `39`
+- precision vs teacher: `0.330508`
+- recall vs teacher: `0.414894`
+- sign match on overlap: `1.000000`
+- Q2 selected/teacher overlap: `31 / 19`
+
+이 결과는 support assignment가 완전히 public-loss 암묵지에만 의존하지 않는다는 증거다. 특히 Q2 route는 source/listener responsibility만으로도 상당히 복원된다.
+
+따라서 현재 HS-JEPA의 가장 강한 구조적 주장은 다음이다.
+
+> Human-state representation alone cannot solve support assignment, but listener/source responsibility can recover a meaningful subset of row-target support without reading public scores. HS-JEPA should therefore be formulated as a modular joint embedding system: human-state encoder, listener responsibility solver, and action decoder.
+
 ## 논문에서 피해야 할 주장
 
 다음 표현은 피해야 한다.
@@ -123,6 +140,10 @@ Human-State Action Distillation 결과:
    - public-loss teacher를 human-state student가 설명할 수 있는지 검증한 negative/diagnostic experiment
    - 현재 제출 우선순위는 낮지만, 아키텍처 재정의의 핵심 근거
 
+4. `Listener Responsibility JEPA`
+   - public score ledger 없이 source/listener responsibility로 support assignment를 복원하는 실험
+   - Q2 route에서 강한 overlap을 보이며, HS-JEPA core architecture의 가장 중요한 새 증거
+
 ## 다음 큰 발견 후보
 
 현재 가장 중요한 미해결 문제는 support assignment다.
@@ -131,6 +152,6 @@ Human-State Action Distillation 결과:
 
 > public LB 없이 row-target support를 찾는 Listener Responsibility JEPA
 
-여야 한다.
+였고, 첫 구현에서 teacher support 41% recall과 overlap sign 100%를 확인했다.
 
-이것이 성공하면 HS-JEPA는 대회 트릭에서 논문형 아키텍처로 넘어갈 수 있다.
+다음 단계는 이 Listener Responsibility JEPA에 public/private toxicity head를 붙여, 복원된 support 중 실제로 안전한 action과 toxic action을 분리하는 것이다. 이것이 성공하면 HS-JEPA는 대회 트릭에서 논문형 아키텍처로 넘어갈 수 있다.

@@ -1,0 +1,66 @@
+{
+  "experiment": "Listener Responsibility JEPA",
+  "submission_file": "submission_hsjepa_listener_responsibility_9990e658_uploadsafe.csv",
+  "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/listener_responsibility_jepa/submission_hsjepa_listener_responsibility_9990e658_uploadsafe.csv",
+  "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_listener_responsibility_9990e658_uploadsafe.csv",
+  "public_score_ledger_used": false,
+  "teacher_file_for_diagnostics_only": "submission_final_candidate1_public_loss_sparse_tomography_e141c792_uploadsafe.csv",
+  "config": {
+    "top_cells": 118,
+    "max_cells_per_row": 2,
+    "max_cells_per_target": 48,
+    "max_logit_step": 1.75,
+    "min_responsibility_score": 0.1,
+    "source_weight": 0.48,
+    "listener_weight": 0.32,
+    "human_state_weight": 0.2
+  },
+  "support_diagnostics_vs_teacher": {
+    "selected_cells": 118,
+    "teacher_cells": 94,
+    "teacher_overlap": 39,
+    "precision_vs_teacher": 0.3305084745762712,
+    "recall_vs_teacher": 0.4148936170212766,
+    "sign_match_on_overlap": 1.0,
+    "teacher_overlap_by_target": {
+      "Q1": 1,
+      "Q2": 19,
+      "Q3": 3,
+      "S1": 4,
+      "S2": 5,
+      "S3": 5,
+      "S4": 2
+    },
+    "selected_by_target": {
+      "Q1": 4,
+      "Q2": 31,
+      "Q3": 14,
+      "S1": 14,
+      "S2": 20,
+      "S3": 18,
+      "S4": 17
+    }
+  },
+  "listener_metrics": {
+    "base_listener_mean_delta": -0.038410414582046984,
+    "base_listener_max_delta": -0.006685280080704671,
+    "base_listener_negative_count": 10,
+    "semantic_listener_mean_delta": -0.029228029612366212,
+    "semantic_listener_max_delta": -0.004399532108048154,
+    "semantic_listener_negative_count": 10,
+    "h088_cosine": 0.042439411314606476,
+    "changed_cells": 133,
+    "changed_rows": 98
+  },
+  "validation": {
+    "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_listener_responsibility_9990e658_uploadsafe.csv",
+    "rows": 250,
+    "keys_match": true,
+    "duplicate_keys": 0,
+    "nan_cells": 0,
+    "min_prob": 4.939277944527429e-06,
+    "max_prob": 0.9999967514907456,
+    "changed_cells_vs_current_best": 118,
+    "upload_safe": true
+  }
+}
