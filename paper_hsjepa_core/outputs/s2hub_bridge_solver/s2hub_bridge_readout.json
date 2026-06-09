@@ -1,0 +1,204 @@
+{
+  "experiment": "S2-Hub Bridge Solver HS-JEPA",
+  "hypothesis": "S2 is the local objective-stage bridge/listener target for safe S-stage actions.",
+  "public_score_used": true,
+  "route_energy_public_free": true,
+  "outputs": {
+    "s2bridge_core": {
+      "submission_file": "submission_hsjepa_s2hub_bridge_s2bridge_core_2cec9d38_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/s2hub_bridge_solver/submission_hsjepa_s2hub_bridge_s2bridge_core_2cec9d38_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_s2hub_bridge_s2bridge_core_2cec9d38_uploadsafe.csv",
+      "config": {
+        "name": "s2bridge_core",
+        "base_stage_config": "stagebridge",
+        "max_bundles": 26,
+        "max_cells": 52,
+        "max_cells_per_target": 26,
+        "require_s2_bridge": true,
+        "require_s2_any": true,
+        "min_energy_gain": 0.002,
+        "min_public_utility": 4e-06,
+        "s2_bridge_bonus": 1.18,
+        "s2_driver_bonus": 1.0
+      },
+      "diagnostics": {
+        "variant": "s2bridge_core",
+        "base_stage_config": "stagebridge",
+        "raw_candidate_bundles": 391,
+        "hub_candidate_bundles": 73,
+        "selected_bundles": 21,
+        "selected_cells": 42,
+        "changed_rows": 21,
+        "target_counts": {
+          "S3": 5,
+          "S2": 21,
+          "S4": 9,
+          "S1": 7
+        },
+        "driver_counts": {
+          "S1": 7,
+          "S3": 5,
+          "S4": 9
+        },
+        "bridge_counts": {
+          "S2": 21
+        },
+        "estimated_public_delta": -0.014091053238262539,
+        "mean_route_energy": 0.7267213342204555,
+        "base_mean_route_energy": 0.7283812739064743,
+        "mean_selected_energy_delta": -0.019761186738314323,
+        "negative_energy_bundles": 21,
+        "s2_bridge_bundles": 21,
+        "s2_driver_bundles": 0,
+        "bridge_hub_contrast": {
+          "S1": {
+            "candidate_count": 101.0,
+            "top_score_sum": 0.055330394562690295,
+            "top_energy_gain_sum": 0.7930833835640673,
+            "top_public_utility_sum": 0.024533905550009515
+          },
+          "S2": {
+            "candidate_count": 88.0,
+            "top_score_sum": 0.05619054996254539,
+            "top_energy_gain_sum": 0.5919237340131286,
+            "top_public_utility_sum": 0.030652717070317404
+          },
+          "S3": {
+            "candidate_count": 86.0,
+            "top_score_sum": 0.05548832894362519,
+            "top_energy_gain_sum": 0.7854392316377369,
+            "top_public_utility_sum": 0.0255595692743813
+          },
+          "S4": {
+            "candidate_count": 94.0,
+            "top_score_sum": 0.049869768847257696,
+            "top_energy_gain_sum": 0.7056746164138703,
+            "top_public_utility_sum": 0.021953193392375763
+          }
+        }
+      },
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.0014798474572220099,
+        "base_listener_max_delta": 0.00021739928136910186,
+        "base_listener_negative_count": 9,
+        "semantic_listener_mean_delta": -0.0011849788499613545,
+        "semantic_listener_max_delta": 0.0002025461642858922,
+        "semantic_listener_negative_count": 9,
+        "h088_cosine": -0.006978811837082678,
+        "changed_cells": 57,
+        "changed_rows": 34
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_s2hub_bridge_s2bridge_core_2cec9d38_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 42,
+        "upload_safe": true
+      }
+    },
+    "s2hub_jackpot": {
+      "submission_file": "submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/s2hub_bridge_solver/submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv",
+      "config": {
+        "name": "s2hub_jackpot",
+        "base_stage_config": "stagebridge_jackpot",
+        "max_bundles": 40,
+        "max_cells": 80,
+        "max_cells_per_target": 34,
+        "require_s2_bridge": false,
+        "require_s2_any": true,
+        "min_energy_gain": 0.0004,
+        "min_public_utility": 1.5e-06,
+        "s2_bridge_bonus": 1.14,
+        "s2_driver_bonus": 1.08
+      },
+      "diagnostics": {
+        "variant": "s2hub_jackpot",
+        "base_stage_config": "stagebridge_jackpot",
+        "raw_candidate_bundles": 556,
+        "hub_candidate_bundles": 302,
+        "selected_bundles": 34,
+        "selected_cells": 68,
+        "changed_rows": 34,
+        "target_counts": {
+          "S3": 7,
+          "S2": 34,
+          "S4": 15,
+          "S1": 12
+        },
+        "driver_counts": {
+          "S1": 7,
+          "S2": 12,
+          "S3": 6,
+          "S4": 9
+        },
+        "bridge_counts": {
+          "S1": 5,
+          "S2": 22,
+          "S3": 1,
+          "S4": 6
+        },
+        "estimated_public_delta": -0.024905482116249163,
+        "mean_route_energy": 0.7247142111534399,
+        "base_mean_route_energy": 0.7283812739064743,
+        "mean_selected_energy_delta": -0.026963696713485488,
+        "negative_energy_bundles": 34,
+        "s2_bridge_bundles": 22,
+        "s2_driver_bundles": 12,
+        "bridge_hub_contrast": {
+          "S1": {
+            "candidate_count": 141.0,
+            "top_score_sum": 0.10132547274985992,
+            "top_energy_gain_sum": 1.3028526719979834,
+            "top_public_utility_sum": 0.041931664077319256
+          },
+          "S2": {
+            "candidate_count": 124.0,
+            "top_score_sum": 0.1000548361524963,
+            "top_energy_gain_sum": 1.1193607602811246,
+            "top_public_utility_sum": 0.045600961517466385
+          },
+          "S3": {
+            "candidate_count": 129.0,
+            "top_score_sum": 0.10037037029398836,
+            "top_energy_gain_sum": 1.3055875312907705,
+            "top_public_utility_sum": 0.04203734532874312
+          },
+          "S4": {
+            "candidate_count": 137.0,
+            "top_score_sum": 0.08948028389400148,
+            "top_energy_gain_sum": 1.1887540684228592,
+            "top_public_utility_sum": 0.03536564590544239
+          }
+        }
+      },
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.002447235862149699,
+        "base_listener_max_delta": 0.000555900747366936,
+        "base_listener_negative_count": 8,
+        "semantic_listener_mean_delta": -0.0024745334508736493,
+        "semantic_listener_max_delta": 0.000555900747366936,
+        "semantic_listener_negative_count": 8,
+        "h088_cosine": -0.0006963184244416381,
+        "changed_cells": 83,
+        "changed_rows": 47
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 68,
+        "upload_safe": true
+      }
+    }
+  }
+}

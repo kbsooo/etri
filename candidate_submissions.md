@@ -9946,3 +9946,33 @@ Submission priority remains unchanged:
 
 The factor experiment should be cited as a negative result: HS-JEPA needs a
 factor encoder, but the action decoder must remain row-local and bridge-based.
+
+## S2-Hub Bridge Candidate Update
+
+New candidates:
+
+| Priority | File | Role | Why |
+| --- | --- | --- | --- |
+| 2 | `submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv` | interpretable S2-hub stagebridge probe | 68 cells, route energy `0.724714`, every bundle includes S2 |
+| diagnostic | `submission_hsjepa_s2hub_bridge_s2bridge_core_2cec9d38_uploadsafe.csv` | clean S2-as-bridge diagnostic | 42 cells, all 21 bundles use S2 as bridge, route energy `0.726721` |
+
+Updated submission priority:
+
+1. `submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv`
+2. `submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv`
+3. `submission_hsjepa_stage_bridge_conservation_stagebridge_2cf2f795_uploadsafe.csv`
+4. `submission_hsjepa_s2hub_bridge_s2bridge_core_2cec9d38_uploadsafe.csv`
+5. `submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv`
+
+Interpretation:
+
+S2-hub is not as aggressive as stagebridge_jackpot, but it is cleaner as a
+paper claim.  If public LB improves, HS-JEPA's objective-stage decoder can be
+written as:
+
+```text
+hidden S-stage state -> S2 listener/hub -> local bridge correction
+```
+
+If it fails while stagebridge_jackpot succeeds, S2 is a useful recurring motif
+but not a safe hard constraint.

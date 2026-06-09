@@ -365,3 +365,32 @@ python3 paper_hsjepa_core/stage_factor_transport_solver.py
 자세한 설명:
 
 - `paper_hsjepa_core/STAGE_FACTOR_TRANSPORT_SOLVER_KO.md`
+
+### 11. S2-Hub Bridge Solver
+
+```bash
+python3 paper_hsjepa_core/s2hub_bridge_solver.py
+```
+
+이 스크립트는 S2가 objective-stage local bridge/listener hub인지 테스트한다.
+
+생성된 후보:
+
+- `submission_hsjepa_s2hub_bridge_s2bridge_core_2cec9d38_uploadsafe.csv`
+- `submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv`
+
+현재 결과:
+
+- s2bridge_core: 21 bundles, 42 cells, route energy `0.726721`, H088 cosine `-0.006979`
+- s2hub_jackpot: 34 bundles, 68 cells, route energy `0.724714`, H088 cosine `-0.000696`
+- s2hub_jackpot은 모든 bundle에 S2를 포함하면서 stagebridge보다 낮은 route energy를 얻음
+- hub contrast상 S2는 energy-gain hub라기보다 public-utility hub
+
+해석:
+
+- S2는 전체 S-stage factor가 아니라 public-sensitive S-stage listener/hub에 가깝다.
+- stagebridge_jackpot이 가장 큰 후보라면, s2hub_jackpot은 더 해석 가능한 S2-hub 후보다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/S2HUB_BRIDGE_SOLVER_KO.md`

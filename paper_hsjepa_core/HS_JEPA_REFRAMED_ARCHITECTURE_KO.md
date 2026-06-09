@@ -324,3 +324,31 @@ representation으로는 factor가 있고,
 action으로는 local bridge가 있다.
 
 이 둘을 구분하는 것이 현재 HS-JEPA의 핵심 설계 원칙이다.
+
+S2-Hub Bridge Solver는 이 local bridge를 더 구체화한다.
+
+S2를 모든 selected bundle에 포함시키면:
+
+- s2bridge_core: 21 bundles, 42 cells, route energy `0.726721`
+- s2hub_jackpot: 34 bundles, 68 cells, route energy `0.724714`
+
+가 나온다.
+
+Hub contrast에서는 S2가 energy gain 기준 최강 hub는 아니었다.
+S1/S3도 energy gain은 강하다.
+하지만 S2는 top public utility가 가장 높았다.
+
+따라서 S2의 역할은 다음처럼 해석하는 것이 가장 정확하다.
+
+```text
+S2 = public-sensitive S-stage listener / utility hub
+```
+
+최신 objective-stage HS-JEPA decoder는 다음 형태다.
+
+```text
+S-stage factor encoder
+  -> S2 listener/hub detector
+  -> row-local driver/bridge solver
+  -> route-consistent action field
+```

@@ -14192,3 +14192,63 @@ row-specific driver + local bridge = action decoder
 ```
 
 The strongest public probe remains the stagebridge jackpot file.
+
+## S2-Hub Bridge Solver HS-JEPA
+
+Date: 2026-06-09
+
+Generated files:
+
+- `paper_hsjepa_core/s2hub_bridge_solver.py`
+- `paper_hsjepa_core/S2HUB_BRIDGE_SOLVER_KO.md`
+- `paper_hsjepa_core/outputs/s2hub_bridge_solver/s2hub_bridge_readout.json`
+- `paper_hsjepa_core/outputs/s2hub_bridge_solver/s2hub_s2bridge_core_selected.csv`
+- `paper_hsjepa_core/outputs/s2hub_bridge_solver/s2hub_s2hub_jackpot_selected.csv`
+- `submission_hsjepa_s2hub_bridge_s2bridge_core_2cec9d38_uploadsafe.csv`
+- `submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv`
+
+Question:
+
+If full S-stage factor transport is too broad, is S2 the local listener/hub
+that makes objective-stage bridge actions safe?
+
+Method:
+
+Reuse stagebridge candidate generation, then require S2 to appear in each
+selected bundle.
+
+- `s2bridge_core`: S2 must be the bridge target.
+- `s2hub_jackpot`: S2 may be driver or bridge.
+
+Result:
+
+| Variant | Selected bundles | Selected cells | Route energy | H088 cosine | S2 bridge | S2 driver |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| s2bridge_core | `21` | `42` | `0.726721` | `-0.006979` | `21` | `0` |
+| s2hub_jackpot | `34` | `68` | `0.724714` | `-0.000696` | `22` | `12` |
+
+Hub contrast:
+
+S2 is not the strongest bridge if we look only at route-energy gain. S1/S3 can
+match or exceed it.  But S2 has the largest top public utility in both core and
+jackpot settings.
+
+Interpretation:
+
+The right claim is not:
+
+```text
+S2 is the whole objective factor.
+```
+
+The better claim is:
+
+```text
+S2 is a public-sensitive S-stage listener / utility hub.
+```
+
+Decision:
+
+`s2hub_jackpot` becomes the most interpretable alternative to
+`stagebridge_jackpot`. It is less aggressive, changes 68 cells instead of 82,
+and tests a sharper S2-hub mechanism.
