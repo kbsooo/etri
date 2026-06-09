@@ -1,0 +1,96 @@
+{
+  "current_public_best_file": "submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv",
+  "current_public_best_lb": 0.5677475939,
+  "no_cohort": {
+    "submission_file": "submission_final_no_cohort_equation_hsjepa_414e7077_uploadsafe.csv",
+    "hash": "414e7077",
+    "changed_rows": 104,
+    "changed_cells": 260,
+    "target_changed_cells": {
+      "Q1": 33,
+      "Q2": 0,
+      "Q3": 36,
+      "S1": 37,
+      "S2": 62,
+      "S3": 55,
+      "S4": 37
+    },
+    "soft_listener_logloss": 0.5534818697227673,
+    "soft_listener_delta_vs_current_best": -0.0003502622856930149,
+    "mean_abs_delta_vs_current_best": 0.002461610219428835,
+    "max_abs_delta_vs_current_best": 0.07690495083818283,
+    "mean_selected_known_bad_same_direction": 0.09422221479622342,
+    "mean_selected_listener_gain": 0.0016146759387063708,
+    "bad_axis_cosine": {
+      "submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv": -0.14633804795849822,
+      "submission_h050_target_route_phase_b140216b_uploadsafe.csv": -0.08692172306285556,
+      "submission_h144_targetxor_def80b88_uploadsafe.csv": 0.07714413075552452,
+      "submission_h145_q3repair_2d818e46_uploadsafe.csv": 0.07972684246292122,
+      "submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv": -0.14600012908858043,
+      "submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv": 0.011042025492000198,
+      "submission_h010_objective_s1s4_v2_uploadsafe.csv": -0.12145261484838606
+    }
+  },
+  "with_cohort": {
+    "submission_file": "submission_final_with_cohort_atlas_hsjepa_bfeccc43_uploadsafe.csv",
+    "hash": "bfeccc43",
+    "changed_rows": 96,
+    "changed_cells": 220,
+    "target_changed_cells": {
+      "Q1": 22,
+      "Q2": 0,
+      "Q3": 36,
+      "S1": 22,
+      "S2": 62,
+      "S3": 47,
+      "S4": 31
+    },
+    "soft_listener_logloss": 0.5535142204350171,
+    "soft_listener_delta_vs_current_best": -0.0003179115734431859,
+    "mean_abs_delta_vs_current_best": 0.0021247189819956673,
+    "max_abs_delta_vs_current_best": 0.07690495083818283,
+    "mean_selected_known_bad_same_direction": 0.11260151841041674,
+    "mean_selected_listener_gain": 0.001735976465388122,
+    "bad_axis_cosine": {
+      "submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv": -0.14731387713006866,
+      "submission_h050_target_route_phase_b140216b_uploadsafe.csv": -0.08939448591200462,
+      "submission_h144_targetxor_def80b88_uploadsafe.csv": 0.08013385549047354,
+      "submission_h145_q3repair_2d818e46_uploadsafe.csv": 0.08025848669159484,
+      "submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv": -0.1469737049084389,
+      "submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv": 0.02952093143231623,
+      "submission_h010_objective_s1s4_v2_uploadsafe.csv": -0.12215668456387246
+    }
+  },
+  "public_equation_proxy": {
+    "enabled": true,
+    "n_public_observed_worlds": 7,
+    "loo_mae_delta_vs_current_best": 0.0019084999430575029,
+    "all_observed_are_current_best_or_worse": true,
+    "warning": "This is a tiny sensor inversion proxy, not a leaderboard oracle."
+  },
+  "cohort_meta": {
+    "latent_dims": 8,
+    "pca_explained_variance_ratio": [
+      0.10081532298730797,
+      0.08239187843821755,
+      0.07278085460083508,
+      0.06761673878040775,
+      0.04372958583951479,
+      0.040580041862259816,
+      0.03442334480956193,
+      0.03162224150576394
+    ],
+    "peer_group_count": 4,
+    "subjects": 10,
+    "feature_count": 99,
+    "current_best_hidden_rows": 45,
+    "personal_cohort_gate_mean_selected_hidden": 0.5218377777777778,
+    "personal_cohort_gate_mean_other": 0.49764536585365854,
+    "cohort_outlier_score_mean_selected_hidden": 0.5356609523809525,
+    "cohort_outlier_score_mean_other": 0.5173199999999999,
+    "dist_to_subject_normal_mean_selected_hidden": 4.883806265013809,
+    "dist_to_subject_normal_mean_other": 4.457537872423473,
+    "dist_to_peer_normal_mean_selected_hidden": 5.791373624571934,
+    "dist_to_peer_normal_mean_other": 5.774782827843018
+  }
+}
