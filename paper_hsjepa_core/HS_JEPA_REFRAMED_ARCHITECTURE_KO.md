@@ -144,6 +144,11 @@ Listener Responsibility JEPA 결과:
    - public score ledger 없이 source/listener responsibility로 support assignment를 복원하는 실험
    - Q2 route에서 강한 overlap을 보이며, HS-JEPA core architecture의 가장 중요한 새 증거
 
+5. `Public/Private Toxicity Head HS-JEPA`
+   - Listener Responsibility가 만든 public-score-free support를 competition-specific decoder가 안전성 기준으로 증폭/감쇠/추가하는 실험
+   - public-bad anchor는 support 생성이 아니라 toxicity 판단에만 사용
+   - architecture role split을 명확히 보여주는 실험
+
 ## 다음 큰 발견 후보
 
 현재 가장 중요한 미해결 문제는 support assignment다.
@@ -155,3 +160,13 @@ Listener Responsibility JEPA 결과:
 였고, 첫 구현에서 teacher support 41% recall과 overlap sign 100%를 확인했다.
 
 다음 단계는 이 Listener Responsibility JEPA에 public/private toxicity head를 붙여, 복원된 support 중 실제로 안전한 action과 toxic action을 분리하는 것이다. 이것이 성공하면 HS-JEPA는 대회 트릭에서 논문형 아키텍처로 넘어갈 수 있다.
+
+첫 Public/Private Toxicity Head 결과:
+
+- teacher cells retained: `94`
+- LRJ extra cells added: `56`
+- changed cells: `150`
+- mean teacher amp: `1.167986`
+- upload-safe: `true`
+
+이 결과는 구조적으로는 의미 있지만 high-risk다. extra action이 많기 때문에 public LB가 나빠지면 LRJ extra support가 아직 toxic하다는 뜻이다. 그 경우 다음 방향은 extra support를 추가하지 않고, Candidate 1 teacher action만 toxicity-calibrated amplitude로 조정하는 conservative decoder다.

@@ -1,0 +1,96 @@
+{
+  "experiment": "Public/Private Toxicity Head HS-JEPA",
+  "submission_file": "submission_hsjepa_public_private_toxicity_23c62cf4_uploadsafe.csv",
+  "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/public_private_toxicity_head/submission_hsjepa_public_private_toxicity_23c62cf4_uploadsafe.csv",
+  "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_public_private_toxicity_23c62cf4_uploadsafe.csv",
+  "support_generator": "Listener Responsibility JEPA",
+  "competition_decoder": "public/private toxicity head",
+  "public_score_ledger_used_for_support": false,
+  "public_score_ledger_used_for_toxicity_decoder": true,
+  "teacher_file": "submission_final_candidate1_public_loss_sparse_tomography_e141c792_uploadsafe.csv",
+  "toxic_anchor_files": [
+    "submission_hybrid_0p578_logit_after_subject_final9_strict.csv",
+    "submission_hybrid_0p567_foldsafe_stage2_q1_q3_s1_s2_s3_s4.csv",
+    "submission_ordinal_q_constraints_ambnext_Q2Q3_nearest_w0.75.csv",
+    "submission_raw_timeline_jepa_rescue_strict_scale0p5.csv",
+    "submission_jepa_latent_q2_w0p45.csv",
+    "submission_jepa_latent_residual_probe.csv",
+    "submission_lejepa_targetwise_strict_best_scale0p5.csv",
+    "submission_mixmin_0c916bb4.csv",
+    "submission_e72_topabs50_q2s3_gate_4e48cba2.csv",
+    "submission_e95_hardtail_541e3973.csv",
+    "submission_e101_q2s3tail_177569bc.csv",
+    "submission_e176_abl_q2_to0p75_91e49725.csv",
+    "submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv",
+    "submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv",
+    "submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv",
+    "submission_e267_humansocial_tail_balanced_2936100f.csv",
+    "submission_e323_5508f966_uploadsafe.csv",
+    "submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv",
+    "submission_h010_objective_s1s4_v2_uploadsafe.csv",
+    "submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv"
+  ],
+  "config": {
+    "max_teacher_amp": 1.22,
+    "min_teacher_amp": 0.74,
+    "lrj_extra_top_cells": 56,
+    "lrj_extra_min_score": 0.68,
+    "lrj_extra_max_toxicity": 0.62,
+    "lrj_extra_max_logit_step": 0.92,
+    "max_cells_per_row": 3,
+    "max_extra_per_target": 18,
+    "q2_extra_bonus": 1.18,
+    "objective_tail_toxic_penalty": 0.18
+  },
+  "decode_diagnostics": {
+    "teacher_cells_retained": 94,
+    "lrj_extra_cells_added": 56,
+    "changed_cells": 150,
+    "changed_rows": 111,
+    "action_by_target": {
+      "lrj_extra_toxicity_safe": {
+        "Q1": 6,
+        "Q2": 15,
+        "Q3": 3,
+        "S1": 5,
+        "S2": 14,
+        "S3": 6,
+        "S4": 7
+      },
+      "teacher_toxicity_gated": {
+        "Q1": 9,
+        "Q2": 20,
+        "Q3": 11,
+        "S1": 14,
+        "S2": 14,
+        "S3": 11,
+        "S4": 15
+      }
+    },
+    "mean_teacher_amp": 1.1679855061530733,
+    "min_teacher_amp": 1.0216064601898533,
+    "max_teacher_amp": 1.22
+  },
+  "listener_metrics": {
+    "base_listener_mean_delta": -0.019670165572935827,
+    "base_listener_max_delta": -0.003372995062963938,
+    "base_listener_negative_count": 10,
+    "semantic_listener_mean_delta": -0.018912035759146364,
+    "semantic_listener_max_delta": -0.0029718378738242523,
+    "semantic_listener_negative_count": 10,
+    "h088_cosine": 0.026718832826901413,
+    "changed_cells": 164,
+    "changed_rows": 119
+  },
+  "validation": {
+    "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_public_private_toxicity_23c62cf4_uploadsafe.csv",
+    "rows": 250,
+    "keys_match": true,
+    "duplicate_keys": 0,
+    "nan_cells": 0,
+    "min_prob": 4.939277944527429e-06,
+    "max_prob": 0.9999967514907456,
+    "changed_cells_vs_current_best": 150,
+    "upload_safe": true
+  }
+}
