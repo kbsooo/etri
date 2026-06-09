@@ -332,3 +332,36 @@ python3 paper_hsjepa_core/subjective_shadow_bridge_solver.py
 자세한 설명:
 
 - `paper_hsjepa_core/SUBJECTIVE_SHADOW_BRIDGE_SOLVER_KO.md`
+
+### 10. Objective-Stage Factor Transport Solver
+
+```bash
+python3 paper_hsjepa_core/stage_factor_transport_solver.py
+```
+
+이 스크립트는 S1/S2/S3/S4가 하나의 objective sleep-state factor 방향으로
+같이 움직이는지 테스트한다.
+
+생성된 후보:
+
+- `submission_hsjepa_stage_factor_transport_factor_paircore_7cde1a77_uploadsafe.csv`
+- `submission_hsjepa_stage_factor_transport_factor_axis_jackpot_976bf3f9_uploadsafe.csv`
+
+현재 결과:
+
+- train S-stage PC1은 모든 S target에 양수 weight를 갖고, 설명분산 `46.1%`
+- factor_paircore는 selected bundle `0`, 즉 no-op
+- factor_axis_jackpot은 full S-stage 4-target bundle `2`개, changed cells `8`
+- factor null stress에서 실제 PC1이 random factor보다 압도적으로 강하지 않음
+  - top-score z `0.435`, p(null >= actual) `0.292`
+  - energy gain z `-0.016`, p(null >= actual) `0.292`
+
+해석:
+
+- S-stage common factor는 representation으로 존재한다.
+- 하지만 public-safe action은 전체 factor axis를 그대로 따라가지 않는다.
+- 현재 가장 강한 action 구조는 여전히 `row-specific driver + local bridge`다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/STAGE_FACTOR_TRANSPORT_SOLVER_KO.md`

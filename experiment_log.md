@@ -14132,3 +14132,63 @@ Q1 subjective shadow is not action-grade yet.
 
 This strengthens the design requirement that HS-JEPA must separate objective
 stage conservation from subjective label decoding.
+
+## Objective-Stage Factor Transport Solver HS-JEPA
+
+Date: 2026-06-09
+
+Generated files:
+
+- `paper_hsjepa_core/stage_factor_transport_solver.py`
+- `paper_hsjepa_core/STAGE_FACTOR_TRANSPORT_SOLVER_KO.md`
+- `paper_hsjepa_core/outputs/stage_factor_transport_solver/stage_factor_transport_readout.json`
+- `paper_hsjepa_core/outputs/stage_factor_transport_solver/stage_factor_factor_paircore_selected.csv`
+- `paper_hsjepa_core/outputs/stage_factor_transport_solver/stage_factor_factor_axis_jackpot_selected.csv`
+- `submission_hsjepa_stage_factor_transport_factor_paircore_7cde1a77_uploadsafe.csv`
+- `submission_hsjepa_stage_factor_transport_factor_axis_jackpot_976bf3f9_uploadsafe.csv`
+
+Question:
+
+Does the S-stage bridge law generalize to transport along a single shared
+objective sleep-state factor?
+
+Method:
+
+Learn PC1 from train labels on S1/S2/S3/S4 only.  The learned factor is public-free:
+
+```text
+S1 0.382789
+S2 0.651711
+S3 0.396470
+S4 0.521111
+```
+
+PC1 explains `46.1%` of S-stage variance.  Use public-sensitive S-stage driver
+actions, then create bridge steps along this factor axis.  Evaluate public
+utility, route energy, H088 toxicity, and factor residual.  Run 96 random
+factor nulls by permuting/sign-flipping the PC1 weights.
+
+Result:
+
+| Variant | Candidate bundles | Selected bundles | Selected cells | Route energy | Null top-score z | p(null >= actual) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| factor_paircore | `0` | `0` | `0` | `0.728381` | `0.000` | `1.000` |
+| factor_axis_jackpot | `2` | `2` | `8` | `0.728248` | `0.435` | `0.292` |
+
+Interpretation:
+
+There is a real S-stage common factor in the labels, but it is not an
+action-grade transport direction.  The full factor axis only found two
+4-target row bundles and did not beat random axes strongly under null stress.
+
+Decision:
+
+Do not prioritize factor-axis submissions.  This negative result narrows the
+architecture:
+
+```text
+S-stage factor = representation
+row-specific driver + local bridge = action decoder
+```
+
+The strongest public probe remains the stagebridge jackpot file.

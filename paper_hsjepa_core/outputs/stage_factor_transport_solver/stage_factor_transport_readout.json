@@ -1,0 +1,250 @@
+{
+  "experiment": "Objective-Stage Factor Transport Solver HS-JEPA",
+  "hypothesis": "S-stage actions are transported along a shared train-label objective factor.",
+  "public_score_used": true,
+  "stage_factor_public_free": true,
+  "stage_factor": {
+    "targets": [
+      "S1",
+      "S2",
+      "S3",
+      "S4"
+    ],
+    "weights": {
+      "S1": 0.3827888842338212,
+      "S2": 0.6517110295601564,
+      "S3": 0.39647047637996646,
+      "S4": 0.5211108955046995
+    },
+    "explained_variance_ratio": {
+      "pc1": 0.46105009038022937,
+      "pc2": 0.23597946456503632,
+      "pc3": 0.21142134097857718,
+      "pc4": 0.09154910407506543
+    },
+    "covariance": [
+      [
+        0.21727790150952775,
+        0.08487503093293747,
+        0.026052957188814622,
+        0.02467706013363022
+      ],
+      [
+        0.08487503093293747,
+        0.22767136847315017,
+        0.0890175699084386,
+        0.11340757238307299
+      ],
+      [
+        0.026052957188814622,
+        0.0890175699084386,
+        0.22418213313536195,
+        0.020311804008908873
+      ],
+      [
+        0.02467706013363022,
+        0.11340757238307299,
+        0.020311804008908873,
+        0.2469487750556799
+      ]
+    ],
+    "correlation": {
+      "S1": {
+        "S1": 1.0,
+        "S2": 0.3816084277893238,
+        "S3": 0.11804531301889208,
+        "S4": 0.10653252046740305
+      },
+      "S2": {
+        "S1": 0.3816084277893238,
+        "S2": 1.0,
+        "S3": 0.39402250407091105,
+        "S4": 0.4782824077147685
+      },
+      "S3": {
+        "S1": 0.11804531301889208,
+        "S2": 0.39402250407091105,
+        "S3": 1.0,
+        "S4": 0.08632658492237366
+      },
+      "S4": {
+        "S1": 0.10653252046740305,
+        "S2": 0.4782824077147685,
+        "S3": 0.08632658492237366,
+        "S4": 1.0
+      }
+    }
+  },
+  "outputs": {
+    "factor_paircore": {
+      "submission_file": "submission_hsjepa_stage_factor_transport_factor_paircore_7cde1a77_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/stage_factor_transport_solver/submission_hsjepa_stage_factor_transport_factor_paircore_7cde1a77_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_stage_factor_transport_factor_paircore_7cde1a77_uploadsafe.csv",
+      "config": {
+        "name": "factor_paircore",
+        "max_bundles": 34,
+        "max_cells": 68,
+        "max_cells_per_target": 28,
+        "min_driver_stability": 0.54,
+        "max_driver_h088": 0.68,
+        "min_public_utility": 5e-06,
+        "max_route_energy_delta": 0.0048,
+        "min_energy_gain_without_public": 0.0006,
+        "driver_amp": 1.1,
+        "driver_max_step": 1.16,
+        "bridge_max_step": 0.48,
+        "min_bridge_step": 0.055,
+        "min_targets_per_bundle": 2,
+        "max_targets_per_bundle": 2,
+        "route_bonus": 0.034,
+        "route_penalty": 0.06,
+        "public_bonus": 1.0,
+        "factor_residual_penalty": 0.012,
+        "h088_penalty": 0.5
+      },
+      "diagnostics": {
+        "variant": "factor_paircore",
+        "candidate_bundles": 0,
+        "selected_bundles": 0,
+        "selected_cells": 0,
+        "changed_rows": 0,
+        "target_counts": {},
+        "driver_counts": {},
+        "bundle_size_counts": {},
+        "estimated_public_delta": 0.0,
+        "mean_route_energy": 0.728381273906474,
+        "base_mean_route_energy": 0.7283812739064743,
+        "mean_selected_energy_delta": 0.0,
+        "negative_energy_bundles": 0,
+        "mean_factor_residual": 0.0,
+        "factor_null_stress": {
+          "repeats": 96.0,
+          "actual_candidate_count": 0.0,
+          "null_candidate_count_mean": 0.0,
+          "actual_top_score_sum": 0.0,
+          "null_top_score_sum_mean": 0.0,
+          "null_top_score_sum_std": 1e-12,
+          "actual_top_score_z": 0.0,
+          "actual_top_score_p_ge": 1.0,
+          "actual_top_energy_gain": 0.0,
+          "null_top_energy_gain_mean": 0.0,
+          "null_top_energy_gain_std": 1e-12,
+          "actual_top_energy_gain_z": 0.0,
+          "actual_top_energy_gain_p_ge": 1.0
+        }
+      },
+      "listener_metrics": {
+        "base_listener_mean_delta": 2.538256192543035e-16,
+        "base_listener_max_delta": 4.110112208448655e-16,
+        "base_listener_negative_count": 1,
+        "semantic_listener_mean_delta": 1.7255592376778465e-16,
+        "semantic_listener_max_delta": 2.9725514763290286e-16,
+        "semantic_listener_negative_count": 0,
+        "h088_cosine": 0.021878267439757394,
+        "changed_cells": 15,
+        "changed_rows": 14
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_stage_factor_transport_factor_paircore_7cde1a77_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 0,
+        "upload_safe": true
+      }
+    },
+    "factor_axis_jackpot": {
+      "submission_file": "submission_hsjepa_stage_factor_transport_factor_axis_jackpot_976bf3f9_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/stage_factor_transport_solver/submission_hsjepa_stage_factor_transport_factor_axis_jackpot_976bf3f9_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_stage_factor_transport_factor_axis_jackpot_976bf3f9_uploadsafe.csv",
+      "config": {
+        "name": "factor_axis_jackpot",
+        "max_bundles": 38,
+        "max_cells": 128,
+        "max_cells_per_target": 38,
+        "min_driver_stability": 0.48,
+        "max_driver_h088": 0.76,
+        "min_public_utility": 1.5e-06,
+        "max_route_energy_delta": 0.0084,
+        "min_energy_gain_without_public": 0.0002,
+        "driver_amp": 1.25,
+        "driver_max_step": 1.36,
+        "bridge_max_step": 0.64,
+        "min_bridge_step": 0.04,
+        "min_targets_per_bundle": 3,
+        "max_targets_per_bundle": 4,
+        "route_bonus": 0.04,
+        "route_penalty": 0.046,
+        "public_bonus": 1.0,
+        "factor_residual_penalty": 0.009,
+        "h088_penalty": 0.38
+      },
+      "diagnostics": {
+        "variant": "factor_axis_jackpot",
+        "candidate_bundles": 2,
+        "selected_bundles": 2,
+        "selected_cells": 8,
+        "changed_rows": 2,
+        "target_counts": {
+          "S3": 2,
+          "S2": 2,
+          "S4": 2,
+          "S1": 2
+        },
+        "driver_counts": {
+          "S1": 1,
+          "S3": 1
+        },
+        "bundle_size_counts": {
+          "4": 2
+        },
+        "estimated_public_delta": -0.0055118284812219545,
+        "mean_route_energy": 0.7282479970861523,
+        "base_mean_route_energy": 0.7283812739064743,
+        "mean_selected_energy_delta": -0.01665960254019938,
+        "negative_energy_bundles": 2,
+        "mean_factor_residual": 0.24228233466669752,
+        "factor_null_stress": {
+          "repeats": 96.0,
+          "actual_candidate_count": 2.0,
+          "null_candidate_count_mean": 2.375,
+          "actual_top_score_sum": 0.0026265903934592173,
+          "null_top_score_sum_mean": 0.0017717806459601393,
+          "null_top_score_sum_std": 0.0019647940299161114,
+          "actual_top_score_z": 0.4350632862700498,
+          "actual_top_score_p_ge": 0.2916666666666667,
+          "actual_top_energy_gain": 0.03331920508039876,
+          "null_top_energy_gain_mean": 0.033958300537142765,
+          "null_top_energy_gain_std": 0.040434473260979244,
+          "actual_top_energy_gain_z": -0.015805707486753726,
+          "actual_top_energy_gain_p_ge": 0.2916666666666667
+        }
+      },
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.0007503960283875744,
+        "base_listener_max_delta": -1.2946155928081544e-05,
+        "base_listener_negative_count": 10,
+        "semantic_listener_mean_delta": -0.0003827529898005875,
+        "semantic_listener_max_delta": -1.2634055800029671e-06,
+        "semantic_listener_negative_count": 10,
+        "h088_cosine": 7.196784248949729e-13,
+        "changed_cells": 23,
+        "changed_rows": 16
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_stage_factor_transport_factor_axis_jackpot_976bf3f9_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 8,
+        "upload_safe": true
+      }
+    }
+  }
+}

@@ -300,3 +300,27 @@ Human-State Encoder
 S-stage에는 objective conservation bridge가 있다.
 Q1/Q3 subjective route는 그 bridge의 단순한 그림자가 아니다.
 ```
+
+Objective-Stage Factor Transport Solver는 또 다른 과장을 막아준다.
+
+Train label에서 S1/S2/S3/S4의 PC1은 모든 target에 양수 weight를 갖고,
+설명분산도 `46.1%`다. 즉 S-stage common factor는 실제로 존재한다.
+
+하지만 이 factor를 action transport 방향으로 그대로 쓰면 거의 살아남지 않았다.
+
+- factor_paircore: selected bundle `0`
+- factor_axis_jackpot: selected bundle `2`, changed cells `8`
+- null stress에서 실제 PC1은 random S-axis보다 압도적으로 강하지 않음
+
+따라서 현재 HS-JEPA의 objective-stage 모듈은 다음처럼 정리된다.
+
+```text
+S-stage factor encoder
+  -> row-specific public-sensitive driver detector
+  -> local route-preserving bridge solver
+```
+
+representation으로는 factor가 있고,
+action으로는 local bridge가 있다.
+
+이 둘을 구분하는 것이 현재 HS-JEPA의 핵심 설계 원칙이다.

@@ -9916,3 +9916,33 @@ Submission priority stays:
 
 The subjective-shadow files should be used only if the next public slot is
 explicitly meant to test the rejected Q/S unification hypothesis.
+
+## Objective-Stage Factor Transport Candidate Update
+
+New diagnostic candidates:
+
+| Priority | File | Role | Why |
+| --- | --- | --- | --- |
+| no-op diagnostic | `submission_hsjepa_stage_factor_transport_factor_paircore_7cde1a77_uploadsafe.csv` | factor-pair test | selected no bundles and equals current best |
+| diagnostic only | `submission_hsjepa_stage_factor_transport_factor_axis_jackpot_976bf3f9_uploadsafe.csv` | full S-stage factor-axis test | only 8 cells changed; PC1 factor not stronger than null by enough |
+
+Interpretation:
+
+S-stage PC1 is real as a representation:
+
+```text
+S1 0.382789, S2 0.651711, S3 0.396470, S4 0.521111
+```
+
+and explains `46.1%` of S-stage label variance.  But it is not yet an action
+transport rule.  The solver found almost no public-safe bundles when forced to
+move along this factor.
+
+Submission priority remains unchanged:
+
+1. `submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv`
+2. `submission_hsjepa_stage_bridge_conservation_stagebridge_2cf2f795_uploadsafe.csv`
+3. `submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv`
+
+The factor experiment should be cited as a negative result: HS-JEPA needs a
+factor encoder, but the action decoder must remain row-local and bridge-based.
