@@ -189,6 +189,12 @@ Route-Consistency Energy 결과:
    - Q2+S2 bundle과 triad는 살아남지 않았고, 대부분 singleton action으로 수렴
    - 일부 `S1+S2`, `S3+S4`, `Q3+S2` objective micro-bundle만 살아남아, bundle-heavy decoder 가설을 약화
 
+10. `Objective-Stage Bridge Conservation Solver HS-JEPA`
+    - public-sensitive driver action에 route-preserving bridge action을 붙이는 decoder
+    - 모든 selected action이 driver+bridge 구조로 살아남음
+    - S2가 bridge/driver 양쪽의 objective-stage hub로 반복 선택됨
+    - HS-JEPA를 `support -> driver -> bridge -> corrected route` 구조로 확장하는 가장 강한 evidence
+
 ## 다음 큰 발견 후보
 
 현재 가장 중요한 미해결 문제는 support assignment다.
@@ -254,4 +260,21 @@ Row-Bundle Transport Solver는 이 가설을 한 번 더 찔렀다.
 Q2와 S2가 중요하지만, 둘을 같은 row에서 크게 묶어 이동시키는 구조는 약하다.
 안전한 HS-JEPA decoder는 대부분 sparse micro-action이고,
 일부 objective-stage pair만 bundle로 허용한다.
+```
+
+Objective-Stage Bridge Conservation Solver는 여기서 한 단계 더 나아갔다.
+
+이전 bundle은 “여러 public action을 함께 선택”하는 방식이라 대부분 singleton으로 무너졌다.
+반면 bridge solver는 “public-sensitive driver + route-preserving bridge”를 분리했다.
+
+- `stagebridge`: 30 bundles, 60 cells, route energy `0.725652`
+- `stagebridge_jackpot`: 41 bundles, 82 cells, route energy `0.724352`
+- 모든 selected bundle이 driver+bridge 구조
+- S2가 bridge target으로 `14/19`회 선택됨
+
+따라서 현재 가장 강한 HS-JEPA decoder 가설은:
+
+```text
+hidden human-state action은 큰 target vector transport가 아니라,
+public-sensitive driver와 objective-stage bridge의 결합으로 번역된다.
 ```

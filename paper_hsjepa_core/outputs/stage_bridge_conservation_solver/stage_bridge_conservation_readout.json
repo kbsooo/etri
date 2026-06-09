@@ -1,0 +1,164 @@
+{
+  "experiment": "Objective-Stage Bridge Conservation Solver HS-JEPA",
+  "public_score_used": true,
+  "route_energy_public_free": true,
+  "stage_driver_pool_cells": 56,
+  "outputs": {
+    "stagebridge": {
+      "submission_file": "submission_hsjepa_stage_bridge_conservation_stagebridge_2cf2f795_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/stage_bridge_conservation_solver/submission_hsjepa_stage_bridge_conservation_stagebridge_2cf2f795_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_stage_bridge_conservation_stagebridge_2cf2f795_uploadsafe.csv",
+      "config": {
+        "name": "stagebridge",
+        "max_bundles": 30,
+        "max_cells": 60,
+        "max_cells_per_target": 24,
+        "min_driver_stability": 0.54,
+        "max_driver_h088": 0.68,
+        "min_public_utility": 8e-06,
+        "max_route_energy_delta": 0.0048,
+        "driver_amp": 1.12,
+        "driver_max_step": 1.2,
+        "bridge_max_step": 0.42,
+        "bridge_grid_points": 7,
+        "energy_bonus": 0.03,
+        "energy_penalty": 0.06,
+        "bridge_bad_public_penalty": 0.65,
+        "same_direction_bonus": 1.08,
+        "require_bridge": false
+      },
+      "diagnostics": {
+        "variant": "stagebridge",
+        "candidate_actions": 391,
+        "selected_bundles": 30,
+        "selected_cells": 60,
+        "selected_bridge_bundles": 30,
+        "changed_rows": 30,
+        "target_counts": {
+          "S3": 8,
+          "S2": 24,
+          "S4": 16,
+          "S1": 12
+        },
+        "driver_counts": {
+          "S1": 5,
+          "S2": 10,
+          "S3": 6,
+          "S4": 9
+        },
+        "bridge_counts": {
+          "S1": 7,
+          "S2": 14,
+          "S3": 2,
+          "S4": 7
+        },
+        "estimated_public_delta": -0.02092781669624669,
+        "mean_route_energy": 0.7256519030144584,
+        "base_mean_route_energy": 0.7283812739064743,
+        "mean_selected_energy_delta": -0.022744757433462166,
+        "negative_energy_bundles": 29,
+        "same_direction_bridges": 22
+      },
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.0018601713804715803,
+        "base_listener_max_delta": 0.00010058587324281644,
+        "base_listener_negative_count": 9,
+        "semantic_listener_mean_delta": -0.0020592628104764347,
+        "semantic_listener_max_delta": 0.0002569602345305021,
+        "semantic_listener_negative_count": 9,
+        "h088_cosine": 0.006676041308950799,
+        "changed_cells": 75,
+        "changed_rows": 43
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_stage_bridge_conservation_stagebridge_2cf2f795_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 60,
+        "upload_safe": true
+      }
+    },
+    "stagebridge_jackpot": {
+      "submission_file": "submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/stage_bridge_conservation_solver/submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv",
+      "config": {
+        "name": "stagebridge_jackpot",
+        "max_bundles": 42,
+        "max_cells": 84,
+        "max_cells_per_target": 32,
+        "min_driver_stability": 0.48,
+        "max_driver_h088": 0.76,
+        "min_public_utility": 3e-06,
+        "max_route_energy_delta": 0.0072,
+        "driver_amp": 1.3,
+        "driver_max_step": 1.45,
+        "bridge_max_step": 0.62,
+        "bridge_grid_points": 9,
+        "energy_bonus": 0.034,
+        "energy_penalty": 0.044,
+        "bridge_bad_public_penalty": 0.48,
+        "same_direction_bonus": 1.12,
+        "require_bridge": false
+      },
+      "diagnostics": {
+        "variant": "stagebridge_jackpot",
+        "candidate_actions": 556,
+        "selected_bundles": 41,
+        "selected_cells": 82,
+        "selected_bridge_bundles": 41,
+        "changed_rows": 41,
+        "target_counts": {
+          "S3": 11,
+          "S2": 32,
+          "S1": 17,
+          "S4": 22
+        },
+        "driver_counts": {
+          "S1": 7,
+          "S2": 13,
+          "S3": 9,
+          "S4": 12
+        },
+        "bridge_counts": {
+          "S1": 10,
+          "S2": 19,
+          "S3": 2,
+          "S4": 10
+        },
+        "estimated_public_delta": -0.028717997125419125,
+        "mean_route_energy": 0.7243523763113011,
+        "base_mean_route_energy": 0.7283812739064743,
+        "mean_selected_energy_delta": -0.02456644875105378,
+        "negative_energy_bundles": 38,
+        "same_direction_bridges": 28
+      },
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.002484986014497718,
+        "base_listener_max_delta": 0.0003440687442813359,
+        "base_listener_negative_count": 8,
+        "semantic_listener_mean_delta": -0.0025473864450810597,
+        "semantic_listener_max_delta": 0.00041572437733374565,
+        "semantic_listener_negative_count": 8,
+        "h088_cosine": -0.0068875429253,
+        "changed_cells": 97,
+        "changed_rows": 54
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 82,
+        "upload_safe": true
+      }
+    }
+  }
+}

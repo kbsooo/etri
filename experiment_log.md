@@ -14013,3 +14013,61 @@ Decision:
 Do not replace the energy-utility solver with a bundle-heavy decoder.  Keep
 `paircore` as a conservative diagnostic candidate, but preserve
 `energy_utility_solver_jackpot` as the stronger public probe.
+
+## Objective-Stage Bridge Conservation Solver HS-JEPA
+
+Date: 2026-06-09
+
+Generated files:
+
+- `paper_hsjepa_core/stage_bridge_conservation_solver.py`
+- `paper_hsjepa_core/STAGE_BRIDGE_CONSERVATION_SOLVER_KO.md`
+- `paper_hsjepa_core/outputs/stage_bridge_conservation_solver/stage_bridge_conservation_readout.json`
+- `paper_hsjepa_core/outputs/stage_bridge_conservation_solver/stage_bridge_stagebridge_selected.csv`
+- `paper_hsjepa_core/outputs/stage_bridge_conservation_solver/stage_bridge_stagebridge_jackpot_selected.csv`
+- `submission_hsjepa_stage_bridge_conservation_stagebridge_2cf2f795_uploadsafe.csv`
+- `submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv`
+
+Question:
+
+If row-level target bundles are weak, can a public-sensitive S-stage driver
+action become safe when paired with a route-preserving bridge action?
+
+Method:
+
+Restrict drivers to S1/S2/S3/S4.  For each driver, search bridge actions on the
+other S-stage targets.  The bridge may have weak public utility if it lowers
+route energy enough.
+
+Result:
+
+| Variant | Selected bundles | Selected cells | Bridge bundles | Route energy | H088 cosine |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| stagebridge | `30` | `60` | `30` | `0.725652` | `0.006676` |
+| stagebridge_jackpot | `41` | `82` | `41` | `0.724352` | `-0.006888` |
+
+Interpretation:
+
+This is the first experiment where every selected action becomes a two-cell
+driver+bridge bundle.  S2 repeatedly appears as the bridge hub:
+
+- stagebridge S2 target count: `24`, S2 bridge count: `14`
+- stagebridge_jackpot S2 target count: `32`, S2 bridge count: `19`
+
+The previous bundle experiment weakened generic row-vector transport.  This
+experiment revives a more specific mechanism:
+
+```text
+public-sensitive driver + objective-stage conservation bridge
+```
+
+Decision:
+
+This is now the strongest high-information public probe:
+
+```text
+submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv
+```
+
+It is risky because it changes 82 cells, but it is a real architecture bet.  If
+it improves, HS-JEPA's driver/bridge decoder becomes a central paper claim.

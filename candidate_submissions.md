@@ -9872,3 +9872,22 @@ Submission priority remains:
 1. `submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv`
 2. `submission_hsjepa_row_bundle_transport_paircore_ea3e13e3_uploadsafe.csv`
 3. `submission_hsjepa_energy_utility_solver_balanced_fd352632_uploadsafe.csv`
+
+## Objective-Stage Bridge Conservation Candidate Update
+
+New candidates:
+
+| Priority | File | Role | Why |
+| --- | --- | --- | --- |
+| 1 | `submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv` | high-upside driver+bridge probe | 82 cells, route energy `0.724352`, H088 cosine `-0.006888`, tests S2-hub conservation bridge |
+| 2 | `submission_hsjepa_stage_bridge_conservation_stagebridge_2cf2f795_uploadsafe.csv` | smaller driver+bridge probe | 60 cells, route energy `0.725652`, same S2-hub hypothesis with less amplitude |
+| 3 | `submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv` | non-bridge sparse solver | safer prior recommendation, but weaker architecture claim |
+
+Updated recommendation:
+
+Use `submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv`
+if the next slot is meant to test a true big-bet architecture claim.
+
+Use `submission_hsjepa_stage_bridge_conservation_stagebridge_2cf2f795_uploadsafe.csv`
+if the next slot must be less aggressive while still testing the same S2-hub
+bridge mechanism.

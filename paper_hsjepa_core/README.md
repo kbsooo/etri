@@ -270,3 +270,33 @@ python3 paper_hsjepa_core/row_bundle_transport_solver.py
 자세한 설명:
 
 - `paper_hsjepa_core/ROW_BUNDLE_TRANSPORT_SOLVER_KO.md`
+
+### 8. Objective-Stage Bridge Conservation Solver
+
+```bash
+python3 paper_hsjepa_core/stage_bridge_conservation_solver.py
+```
+
+이 스크립트는 S-stage target에서 `driver action + bridge action` 구조를 테스트한다.
+
+생성된 후보:
+
+- `submission_hsjepa_stage_bridge_conservation_stagebridge_2cf2f795_uploadsafe.csv`
+- `submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv`
+
+현재 결과:
+
+- stagebridge: 30 bundles, 60 cells, route energy `0.725652`, upload-safe
+- stagebridge_jackpot: 41 bundles, 82 cells, route energy `0.724352`, upload-safe
+- 모든 selected bundle이 driver+bridge 구조
+- S2가 target count `24/32`, bridge count `14/19`로 반복적인 hub 역할
+
+해석:
+
+- 큰 Q2/S2 row bundle은 약했지만, S-stage driver action에는 S2-hub bridge가 필요하다는 강한 신호가 나왔다.
+- HS-JEPA decoder는 단순 support->action이 아니라 `driver action + route-preserving bridge` 구조로 발전할 수 있다.
+- 이 실험은 현재 가장 강한 논문형 architecture evidence이자 high-risk big-bet 후보를 제공한다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/STAGE_BRIDGE_CONSERVATION_SOLVER_KO.md`
