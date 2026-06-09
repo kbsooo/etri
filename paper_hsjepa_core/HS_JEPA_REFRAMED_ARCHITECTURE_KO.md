@@ -149,6 +149,11 @@ Listener Responsibility JEPA 결과:
    - public-bad anchor는 support 생성이 아니라 toxicity 판단에만 사용
    - architecture role split을 명확히 보여주는 실험
 
+6. `Target-Route Toxicity Head HS-JEPA`
+   - toxicity tolerance를 target-route별로 분리한 decoder
+   - Q2는 제한적 extra를 허용하고, S-tail은 teacher-only calibration으로 보수화
+   - target-agnostic decoder가 아니라 route-aware action decoder가 필요하다는 증거
+
 ## 다음 큰 발견 후보
 
 현재 가장 중요한 미해결 문제는 support assignment다.
@@ -170,3 +175,10 @@ Listener Responsibility JEPA 결과:
 - upload-safe: `true`
 
 이 결과는 구조적으로는 의미 있지만 high-risk다. extra action이 많기 때문에 public LB가 나빠지면 LRJ extra support가 아직 toxic하다는 뜻이다. 그 경우 다음 방향은 extra support를 추가하지 않고, Candidate 1 teacher action만 toxicity-calibrated amplitude로 조정하는 conservative decoder다.
+
+Target-Route Toxicity Head 결과:
+
+- `teacher_only`: teacher 94 cells 유지, extra 0, changed rows 82, upload-safe
+- `q2_extra`: teacher 94 cells + Q2 extra 14, changed rows 90, upload-safe
+
+이 결과는 decoder를 target-agnostic하게 두면 안 된다는 설계 방향을 강화한다. Q2 route는 Listener Responsibility 실험에서 teacher overlap이 강했기 때문에 extra를 제한적으로 허용할 수 있지만, S1/S3/S4 objective tail은 public-bad anchor에 민감하므로 더 보수적으로 다뤄야 한다.

@@ -148,3 +148,30 @@ python3 paper_hsjepa_core/public_private_toxicity_head.py
 - Candidate 1보다 큰 움직임을 거는 high-risk big-bet이다.
 - 좋아지면 support generator + toxicity decoder 구조가 강화된다.
 - 나빠지면 LRJ extra action이 아직 toxic하다는 뜻이고, 다음은 extra 추가 없이 teacher action만 toxicity-calibrate하는 conservative variant로 가야 한다.
+
+### 4. Target-Route Toxicity Head
+
+```bash
+python3 paper_hsjepa_core/target_route_toxicity_head.py
+```
+
+이 스크립트는 target별 toxicity tolerance를 분리한다.
+
+- Q2: listener responsibility 근거가 강하므로 제한적 extra 허용
+- S1/S3/S4: public-bad anchor에 민감하므로 teacher action만 보수적으로 calibration
+- Q1/Q3/S2: 중간 calibration
+
+생성된 후보:
+
+- `submission_hsjepa_target_route_toxicity_teacher_only_66f1f5b4_uploadsafe.csv`
+- `submission_hsjepa_target_route_toxicity_q2_extra_90b62d2d_uploadsafe.csv`
+
+현재 결과:
+
+- teacher_only: teacher 94 cells, extra 0, upload-safe
+- q2_extra: teacher 94 cells + Q2 extra 14 cells, upload-safe
+
+해석:
+
+- `teacher_only`는 Candidate 1 support는 유지하고 amplitude만 target-route별로 calibration한 안전한 ablation이다.
+- `q2_extra`는 Q2 listener route가 public/private에도 살아 있는지 확인하는 target-specific big-bet이다.

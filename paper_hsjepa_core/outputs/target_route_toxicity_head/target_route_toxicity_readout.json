@@ -1,0 +1,125 @@
+{
+  "experiment": "Target-Route Toxicity Head HS-JEPA",
+  "support_generator": "Listener Responsibility JEPA",
+  "competition_decoder": "target-route toxicity calibrated decoder",
+  "teacher_file": "submission_final_candidate1_public_loss_sparse_tomography_e141c792_uploadsafe.csv",
+  "config": {
+    "min_teacher_amp": 0.78,
+    "max_teacher_amp": 1.24,
+    "s_tail_max_amp": 1.07,
+    "q2_min_amp": 0.96,
+    "q2_max_amp": 1.28,
+    "q2_extra_top_cells": 18,
+    "q2_extra_min_selection": 0.68,
+    "q2_extra_max_toxicity": 0.56,
+    "q2_extra_min_h088_safe": 0.24,
+    "q2_extra_max_logit_step": 0.72
+  },
+  "variants": {
+    "teacher_only": {
+      "submission_file": "submission_hsjepa_target_route_toxicity_teacher_only_66f1f5b4_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/target_route_toxicity_head/submission_hsjepa_target_route_toxicity_teacher_only_66f1f5b4_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_target_route_toxicity_teacher_only_66f1f5b4_uploadsafe.csv",
+      "decode_diagnostics": {
+        "variant": "teacher_only",
+        "teacher_cells": 94,
+        "q2_extra_cells": 0,
+        "changed_cells": 94,
+        "changed_rows": 82,
+        "teacher_mean_amp": 1.1227966157622657,
+        "teacher_min_amp": 0.8805655599662376,
+        "teacher_max_amp": 1.28,
+        "target_action_counts": {
+          "teacher_target_route_calibrated": {
+            "Q1": 9,
+            "Q2": 20,
+            "Q3": 11,
+            "S1": 14,
+            "S2": 14,
+            "S3": 11,
+            "S4": 15
+          }
+        }
+      },
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.009594422486993687,
+        "base_listener_max_delta": -0.0024482030220451855,
+        "base_listener_negative_count": 10,
+        "semantic_listener_mean_delta": -0.010818601276619457,
+        "semantic_listener_max_delta": -0.0034291167454732893,
+        "semantic_listener_negative_count": 10,
+        "h088_cosine": 0.008964612158719878,
+        "changed_cells": 108,
+        "changed_rows": 91
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_target_route_toxicity_teacher_only_66f1f5b4_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 94,
+        "upload_safe": true
+      }
+    },
+    "q2_extra": {
+      "submission_file": "submission_hsjepa_target_route_toxicity_q2_extra_90b62d2d_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/target_route_toxicity_head/submission_hsjepa_target_route_toxicity_q2_extra_90b62d2d_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_target_route_toxicity_q2_extra_90b62d2d_uploadsafe.csv",
+      "decode_diagnostics": {
+        "variant": "q2_extra",
+        "teacher_cells": 94,
+        "q2_extra_cells": 14,
+        "changed_cells": 108,
+        "changed_rows": 90,
+        "teacher_mean_amp": 1.1227966157622657,
+        "teacher_min_amp": 0.8805655599662376,
+        "teacher_max_amp": 1.28,
+        "target_action_counts": {
+          "q2_lrj_extra_target_route_safe": {
+            "Q1": 0,
+            "Q2": 14,
+            "Q3": 0,
+            "S1": 0,
+            "S2": 0,
+            "S3": 0,
+            "S4": 0
+          },
+          "teacher_target_route_calibrated": {
+            "Q1": 9,
+            "Q2": 20,
+            "Q3": 11,
+            "S1": 14,
+            "S2": 14,
+            "S3": 11,
+            "S4": 15
+          }
+        }
+      },
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.012515956905024637,
+        "base_listener_max_delta": -0.0030266612112357406,
+        "base_listener_negative_count": 10,
+        "semantic_listener_mean_delta": -0.01289510657758151,
+        "semantic_listener_max_delta": -0.003385949120791197,
+        "semantic_listener_negative_count": 10,
+        "h088_cosine": 0.011160308733580603,
+        "changed_cells": 122,
+        "changed_rows": 98
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_target_route_toxicity_q2_extra_90b62d2d_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 108,
+        "upload_safe": true
+      }
+    }
+  }
+}
