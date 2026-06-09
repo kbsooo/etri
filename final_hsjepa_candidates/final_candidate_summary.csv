@@ -1,0 +1,3 @@
+candidate,submission_file,priority,current_best_public_lb,changed_cells,changed_rows,upload_safe,main_context,target_representation,primary_risk
+Public-Loss Sparse Tomography HS-JEPA,submission_final_candidate1_public_loss_sparse_tomography_e141c792_uploadsafe.csv,1,0.5677475939,94,82,true,public score ledger + source-route disagreement + semantic listener,sparse row-target correction field,public subset inversion risk
+Cohort-Relative Human-State Atlas HS-JEPA,submission_final_candidate2_cohort_relative_atlas_2f54a36a_uploadsafe.csv,2,0.5677475939,94,82,true,OG raw lifelog personal normal + peer cohort normal + Candidate 1 action,cohort-relative action-health field,cohort gate may damp useful public-loss action

@@ -1,0 +1,73 @@
+{
+  "candidate": "Public-Loss Sparse Tomography HS-JEPA",
+  "submission_file": "submission_final_candidate1_public_loss_sparse_tomography_e141c792_uploadsafe.csv",
+  "local_path": "/Users/kbsoo/Downloads/cl2/final_hsjepa_candidates/outputs/candidate_1_public_loss_sparse_tomography/submission_final_candidate1_public_loss_sparse_tomography_e141c792_uploadsafe.csv",
+  "root_path": "/Users/kbsoo/Downloads/cl2/submission_final_candidate1_public_loss_sparse_tomography_e141c792_uploadsafe.csv",
+  "hash": "e141c792",
+  "current_best_file": "submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv",
+  "current_best_public_lb": 0.5677475939,
+  "support_files": [
+    "submission_h154_local_semantic_source_consensus_36eeef08_uploadsafe.csv",
+    "submission_h155_h061_all_cap1.0_k150_a1.15_0f87a1af_uploadsafe.csv",
+    "submission_h158_sparse_lossnull_a1.8_b1.8_r1.0_k160_c7b38d35_uploadsafe.csv"
+  ],
+  "support_cells": 160,
+  "public_observation_count": 26,
+  "public_observation_files": [
+    "submission_hybrid_0p578_logit_after_subject_final9_strict.csv",
+    "submission_hybrid_0p567_foldsafe_stage2_q1_q3_s1_s2_s3_s4.csv",
+    "submission_ordinal_q_constraints_ambnext_Q2Q3_nearest_w0.75.csv",
+    "submission_raw_timeline_jepa_rescue_strict_scale0p5.csv",
+    "submission_jepa_latent_q2_w0p45.csv",
+    "submission_jepa_latent_residual_probe.csv",
+    "submission_lejepa_targetwise_strict_best_scale0p5.csv",
+    "submission_mixmin_0c916bb4.csv",
+    "submission_e72_topabs50_q2s3_gate_4e48cba2.csv",
+    "submission_e95_hardtail_541e3973.csv",
+    "submission_e101_q2s3tail_177569bc.csv",
+    "submission_e176_abl_q2_to0p75_91e49725.csv",
+    "submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv",
+    "submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv",
+    "submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv",
+    "submission_e267_humansocial_tail_balanced_2936100f.csv",
+    "submission_e323_5508f966_uploadsafe.csv",
+    "submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv",
+    "submission_h010_objective_s1s4_v2_uploadsafe.csv",
+    "submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv",
+    "submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv",
+    "submission_h050_target_route_phase_b140216b_uploadsafe.csv",
+    "submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv",
+    "submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv",
+    "submission_h144_targetxor_def80b88_uploadsafe.csv",
+    "submission_h145_q3repair_2d818e46_uploadsafe.csv"
+  ],
+  "ridge_diagnostics": {
+    "ridge_alpha": 10.0,
+    "rmse": 0.00024081951647131184,
+    "loo_rmse": 0.0010335825359842463,
+    "stable_cells_gt_0p8": 158
+  },
+  "listener_metrics": {
+    "base_listener_mean_delta": -0.008119259768387992,
+    "base_listener_max_delta": -0.0018670456056015035,
+    "base_listener_negative_count": 10,
+    "semantic_listener_mean_delta": -0.00914277571222458,
+    "semantic_listener_max_delta": -0.0025767326720526713,
+    "semantic_listener_negative_count": 10,
+    "h088_cosine": 0.00919160569884296,
+    "changed_cells": 94,
+    "changed_rows": 82
+  },
+  "predicted_public_delta_by_sensor": -0.06911751267588663,
+  "validation": {
+    "path": "/Users/kbsoo/Downloads/cl2/submission_final_candidate1_public_loss_sparse_tomography_e141c792_uploadsafe.csv",
+    "rows": 250,
+    "keys_match": true,
+    "duplicate_keys": 0,
+    "nan_cells": 0,
+    "min_prob": 4.939277944527429e-06,
+    "max_prob": 0.9999967514907456,
+    "changed_cells_vs_current_best": 94,
+    "upload_safe": true
+  }
+}

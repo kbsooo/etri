@@ -1,0 +1,74 @@
+{
+  "candidate": "Cohort-Relative Human-State Atlas HS-JEPA",
+  "submission_file": "submission_final_candidate2_cohort_relative_atlas_2f54a36a_uploadsafe.csv",
+  "local_path": "/Users/kbsoo/Downloads/cl2/final_hsjepa_candidates/outputs/candidate_2_cohort_relative_atlas/submission_final_candidate2_cohort_relative_atlas_2f54a36a_uploadsafe.csv",
+  "root_path": "/Users/kbsoo/Downloads/cl2/submission_final_candidate2_cohort_relative_atlas_2f54a36a_uploadsafe.csv",
+  "hash": "2f54a36a",
+  "current_best_file": "submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv",
+  "current_best_public_lb": 0.5677475939,
+  "candidate1_anchor_file": "submission_final_candidate1_public_loss_sparse_tomography_e141c792_uploadsafe.csv",
+  "candidate1_anchor_hash": "e141c792",
+  "changed_cells": 94,
+  "changed_rows": 82,
+  "mean_gate_on_changed_cells": 0.9848033735421279,
+  "min_gate_on_changed_cells": 0.7268048374171185,
+  "max_gate_on_changed_cells": 1.3240094787840344,
+  "target_changed_cells": {
+    "Q1": 9,
+    "Q2": 20,
+    "Q3": 11,
+    "S1": 14,
+    "S2": 14,
+    "S3": 11,
+    "S4": 15
+  },
+  "cohort_atlas_meta": {
+    "latent_dims": 8,
+    "pca_explained_variance_ratio": [
+      0.10081532298730797,
+      0.08239187843821755,
+      0.07278085460083508,
+      0.06761673878040775,
+      0.04372958583951479,
+      0.040580041862259816,
+      0.03442334480956193,
+      0.03162224150576394
+    ],
+    "peer_group_count": 4,
+    "subjects": 10,
+    "feature_count": 99,
+    "numeric_daily_feature_count": 99,
+    "cohort_atlas_columns": [
+      "peer_group",
+      "dist_to_subject_normal",
+      "dist_to_peer_normal",
+      "subject_minus_peer_dist",
+      "cohort_outlier_score",
+      "target_route_margin_q2q3s2",
+      "atlas_action_health",
+      "peer_only_toxicity"
+    ]
+  },
+  "listener_metrics": {
+    "base_listener_mean_delta": -0.008066793303491165,
+    "base_listener_max_delta": -0.002084019523244569,
+    "base_listener_negative_count": 10,
+    "semantic_listener_mean_delta": -0.00910707515649124,
+    "semantic_listener_max_delta": -0.003168231782909832,
+    "semantic_listener_negative_count": 10,
+    "h088_cosine": 0.009102103391633518,
+    "changed_cells": 94,
+    "changed_rows": 82
+  },
+  "validation": {
+    "path": "/Users/kbsoo/Downloads/cl2/submission_final_candidate2_cohort_relative_atlas_2f54a36a_uploadsafe.csv",
+    "rows": 250,
+    "keys_match": true,
+    "duplicate_keys": 0,
+    "nan_cells": 0,
+    "min_prob": 4.939277944527429e-06,
+    "max_prob": 0.9999967514907456,
+    "changed_cells_vs_current_best": 94,
+    "upload_safe": true
+  }
+}
