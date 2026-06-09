@@ -1,0 +1,158 @@
+{
+  "experiment": "OG Human-State Distillation of S2-Hub HS-JEPA",
+  "question": "Can OG cohort-relative human-state context explain S2-hub/stagebridge action support?",
+  "public_score_used_for_teacher": true,
+  "student_context_public_free": true,
+  "outputs": {
+    "s2hub_jackpot": {
+      "teacher_name": "s2hub_jackpot",
+      "teacher_file": "submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv",
+      "submission_file": "submission_hsjepa_ogdistilled_s2hub_jackpot_38d995b0_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/s2hub_human_state_distillation/submission_hsjepa_ogdistilled_s2hub_jackpot_38d995b0_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_ogdistilled_s2hub_jackpot_38d995b0_uploadsafe.csv",
+      "teacher_changed_cells": 68,
+      "teacher_changed_rows": 34,
+      "cell_oof": {
+        "all_no_order": {
+          "feature_count": 54,
+          "cells": 1750,
+          "positive_cells": 68,
+          "positive_rate": 0.038857142857142854,
+          "subject_group_oof_auc": 0.7790008393369238,
+          "subject_group_oof_ap": 0.08974527509829656,
+          "move_rmse_all": 0.142842781655106,
+          "move_rmse_action_cells": 0.6829044048102926
+        },
+        "human_target_context": {
+          "feature_count": 51,
+          "cells": 1750,
+          "positive_cells": 68,
+          "positive_rate": 0.038857142857142854,
+          "subject_group_oof_auc": 0.7750664475064699,
+          "subject_group_oof_ap": 0.09368311271420703,
+          "move_rmse_all": 0.14346516823394817,
+          "move_rmse_action_cells": 0.6871158838017001
+        },
+        "human_row_context_only": {
+          "feature_count": 35,
+          "cells": 1750,
+          "positive_cells": 68,
+          "positive_rate": 0.038857142857142854,
+          "subject_group_oof_auc": 0.5249702734839476,
+          "subject_group_oof_ap": 0.04420212300848163,
+          "move_rmse_all": 0.14402462594489024,
+          "move_rmse_action_cells": 0.7021259747539569
+        }
+      },
+      "row_oof": {
+        "feature_count": 28,
+        "rows": 250,
+        "positive_rows": 34,
+        "positive_rate": 0.136,
+        "subject_group_oof_auc": 0.545343137254902,
+        "subject_group_oof_ap": 0.168100362718141
+      },
+      "og_gated_changed_cells": 68,
+      "og_gated_action_cells": 68,
+      "og_gated_mean_amp": 0.9617493573143066,
+      "og_gated_sign_agree_rate": 0.9852941176470589,
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.0027262124459161976,
+        "base_listener_max_delta": 0.0007284518128888276,
+        "base_listener_negative_count": 8,
+        "semantic_listener_mean_delta": -0.0025715052829858687,
+        "semantic_listener_max_delta": 0.0007284518128888276,
+        "semantic_listener_negative_count": 8,
+        "h088_cosine": -0.004316529202844213,
+        "changed_cells": 83,
+        "changed_rows": 47
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_ogdistilled_s2hub_jackpot_38d995b0_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 68,
+        "upload_safe": true
+      }
+    },
+    "stagebridge_jackpot": {
+      "teacher_name": "stagebridge_jackpot",
+      "teacher_file": "submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv",
+      "submission_file": "submission_hsjepa_ogdistilled_stagebridge_jackpot_96a9fd11_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/s2hub_human_state_distillation/submission_hsjepa_ogdistilled_stagebridge_jackpot_96a9fd11_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_ogdistilled_stagebridge_jackpot_96a9fd11_uploadsafe.csv",
+      "teacher_changed_cells": 82,
+      "teacher_changed_rows": 41,
+      "cell_oof": {
+        "all_no_order": {
+          "feature_count": 54,
+          "cells": 1750,
+          "positive_cells": 82,
+          "positive_rate": 0.046857142857142854,
+          "subject_group_oof_auc": 0.713655904544657,
+          "subject_group_oof_ap": 0.08831203189552994,
+          "move_rmse_all": 0.1597534791804901,
+          "move_rmse_action_cells": 0.7011073641172575
+        },
+        "human_target_context": {
+          "feature_count": 51,
+          "cells": 1750,
+          "positive_cells": 82,
+          "positive_rate": 0.046857142857142854,
+          "subject_group_oof_auc": 0.7216690062584079,
+          "subject_group_oof_ap": 0.09417396242465276,
+          "move_rmse_all": 0.16000855308841064,
+          "move_rmse_action_cells": 0.7039909844454366
+        },
+        "human_row_context_only": {
+          "feature_count": 35,
+          "cells": 1750,
+          "positive_cells": 82,
+          "positive_rate": 0.046857142857142854,
+          "subject_group_oof_auc": 0.4908390360882027,
+          "subject_group_oof_ap": 0.04935762524992162,
+          "move_rmse_all": 0.15971617691372617,
+          "move_rmse_action_cells": 0.7139042816067589
+        }
+      },
+      "row_oof": {
+        "feature_count": 28,
+        "rows": 250,
+        "positive_rows": 41,
+        "positive_rate": 0.164,
+        "subject_group_oof_auc": 0.49270626677558643,
+        "subject_group_oof_ap": 0.1708101168148544
+      },
+      "og_gated_changed_cells": 82,
+      "og_gated_action_cells": 82,
+      "og_gated_mean_amp": 0.9538083192560808,
+      "og_gated_sign_agree_rate": 0.975609756097561,
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.0027915742330585844,
+        "base_listener_max_delta": 0.0005152265295758618,
+        "base_listener_negative_count": 8,
+        "semantic_listener_mean_delta": -0.0026610358323475537,
+        "semantic_listener_max_delta": 0.0005152265295758618,
+        "semantic_listener_negative_count": 8,
+        "h088_cosine": -0.005707544832402762,
+        "changed_cells": 97,
+        "changed_rows": 54
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_ogdistilled_stagebridge_jackpot_96a9fd11_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 82,
+        "upload_safe": true
+      }
+    }
+  }
+}

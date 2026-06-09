@@ -394,3 +394,34 @@ python3 paper_hsjepa_core/s2hub_bridge_solver.py
 자세한 설명:
 
 - `paper_hsjepa_core/S2HUB_BRIDGE_SOLVER_KO.md`
+
+### 12. OG Human-State Distillation of S2-Hub
+
+```bash
+python3 paper_hsjepa_core/s2hub_human_state_distillation.py
+```
+
+이 스크립트는 OG raw lifelog 기반 human-state context가 S2-hub/stagebridge
+action support를 설명할 수 있는지 테스트한다.
+
+생성된 후보:
+
+- `submission_hsjepa_ogdistilled_s2hub_jackpot_38d995b0_uploadsafe.csv`
+- `submission_hsjepa_ogdistilled_stagebridge_jackpot_96a9fd11_uploadsafe.csv`
+
+현재 결과:
+
+- S2-hub cell-level subject-held-out OOF AUC `0.775`, AP `0.094`
+- S2-hub row-level subject-held-out OOF AUC `0.545`, AP `0.168`
+- Stagebridge cell-level OOF AUC `0.722`, AP `0.094`
+- Stagebridge row-level OOF AUC `0.493`, AP `0.171`
+
+해석:
+
+- OG human-state는 target/cell route orientation을 설명한다.
+- 하지만 어느 row를 고칠지는 거의 설명하지 못한다.
+- 따라서 HS-JEPA 본체는 action orientation encoder이고, row assignment는 별도 listener/competition decoder가 필요하다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/S2HUB_HUMAN_STATE_DISTILLATION_KO.md`

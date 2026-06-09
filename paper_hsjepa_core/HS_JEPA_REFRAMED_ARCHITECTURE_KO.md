@@ -352,3 +352,33 @@ S-stage factor encoder
   -> row-local driver/bridge solver
   -> route-consistent action field
 ```
+
+OG Human-State Distillation of S2-Hub은 이 구조에서 어떤 부분이 OG 데이터로 설명되는지 분리했다.
+
+결과:
+
+- S2-hub cell-level OOF AUC `0.775`
+- S2-hub row-level OOF AUC `0.545`
+- Stagebridge cell-level OOF AUC `0.722`
+- Stagebridge row-level OOF AUC `0.493`
+
+즉 OG human-state context는 target/cell route orientation을 설명하지만,
+row assignment 자체는 거의 설명하지 못한다.
+
+따라서 최종 HS-JEPA 분해는 다음처럼 적는 것이 가장 정직하다.
+
+```text
+OG Human-State Encoder
+  -> action route/orientation representation
+
+Listener / Row Assignment Solver
+  -> which row-target cells should be listened to
+
+Competition-Specific Decoder
+  -> public/private action safety and amplitude
+```
+
+이 분리는 약점이 아니라 아키텍처 주장이다.
+HS-JEPA 본체와 대회용 decoder를 분리함으로써,
+논문에서는 representation의 역할을 과장하지 않고,
+대회에서는 public/private sensor가 필요한 이유를 설명할 수 있다.

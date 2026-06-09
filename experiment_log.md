@@ -14252,3 +14252,54 @@ Decision:
 `s2hub_jackpot` becomes the most interpretable alternative to
 `stagebridge_jackpot`. It is less aggressive, changes 68 cells instead of 82,
 and tests a sharper S2-hub mechanism.
+
+## OG Human-State Distillation of S2-Hub HS-JEPA
+
+Date: 2026-06-09
+
+Generated files:
+
+- `paper_hsjepa_core/s2hub_human_state_distillation.py`
+- `paper_hsjepa_core/S2HUB_HUMAN_STATE_DISTILLATION_KO.md`
+- `paper_hsjepa_core/outputs/s2hub_human_state_distillation/s2hub_human_state_distillation_readout.json`
+- `paper_hsjepa_core/outputs/s2hub_human_state_distillation/s2hub_jackpot_cell_student_frame.csv`
+- `paper_hsjepa_core/outputs/s2hub_human_state_distillation/stagebridge_jackpot_cell_student_frame.csv`
+- `submission_hsjepa_ogdistilled_s2hub_jackpot_38d995b0_uploadsafe.csv`
+- `submission_hsjepa_ogdistilled_stagebridge_jackpot_96a9fd11_uploadsafe.csv`
+
+Question:
+
+Can OG cohort-relative human-state context explain S2-hub/stagebridge action
+support, or are these actions only public-loss decoder artifacts?
+
+Method:
+
+Treat `s2hub_jackpot` and `stagebridge_jackpot` as teachers.  Build cell-level
+and row-level students from OG raw lifelog cohort atlas features.  Evaluate
+subject-held-out OOF performance, then generate OG-gated diagnostic submissions.
+
+Result:
+
+| Teacher | Cell OOF AUC | Cell OOF AP | Row OOF AUC | Row OOF AP | Changed cells |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| s2hub_jackpot | `0.775` | `0.094` | `0.545` | `0.168` | `68` |
+| stagebridge_jackpot | `0.722` | `0.094` | `0.493` | `0.171` | `82` |
+
+Interpretation:
+
+OG human-state context can explain target/cell route orientation, especially
+for S2-hub.  It does not reliably identify which rows should receive actions.
+
+Decision:
+
+This is a central architecture result:
+
+```text
+OG human-state encoder = route/orientation representation
+listener/assignment solver = row support
+competition decoder = public/private amplitude and safety
+```
+
+`submission_hsjepa_ogdistilled_s2hub_jackpot_38d995b0_uploadsafe.csv` is
+upload-safe and useful as an architecture probe, but not a higher-priority
+public slot than raw `stagebridge_jackpot` or `s2hub_jackpot`.

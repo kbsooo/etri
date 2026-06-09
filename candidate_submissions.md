@@ -9976,3 +9976,33 @@ hidden S-stage state -> S2 listener/hub -> local bridge correction
 
 If it fails while stagebridge_jackpot succeeds, S2 is a useful recurring motif
 but not a safe hard constraint.
+
+## OG-Distilled S2-Hub Candidate Update
+
+New architecture diagnostic candidates:
+
+| Priority | File | Role | Why |
+| --- | --- | --- | --- |
+| 3 | `submission_hsjepa_ogdistilled_s2hub_jackpot_38d995b0_uploadsafe.csv` | OG human-state gated S2-hub probe | same 68 teacher cells, mean amp `0.962`, sign agreement `0.985`, tests whether OG route orientation improves safety |
+| diagnostic | `submission_hsjepa_ogdistilled_stagebridge_jackpot_96a9fd11_uploadsafe.csv` | OG human-state gated stagebridge probe | same 82 teacher cells, mean amp `0.954`, sign agreement `0.976` |
+
+Updated public-slot interpretation:
+
+1. `submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv`
+   - strongest raw driver/bridge big bet
+2. `submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv`
+   - cleaner S2 listener/hub claim
+3. `submission_hsjepa_ogdistilled_s2hub_jackpot_38d995b0_uploadsafe.csv`
+   - architecture probe for OG human-state action-health gating
+
+Important diagnostic:
+
+```text
+S2-hub cell OOF AUC = 0.775
+S2-hub row OOF AUC = 0.545
+```
+
+So OG human-state explains target/cell orientation much better than row
+assignment.  If the OG-distilled file improves public LB, the action-health
+gate is useful.  If it loses, keep OG human-state as representation/diagnostic
+and leave row assignment/amplitude mostly to the competition decoder.
