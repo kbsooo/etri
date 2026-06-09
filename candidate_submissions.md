@@ -9810,3 +9810,27 @@ Failure interpretation:
   underpowered due to too few effective cells.
 - If H153 loses badly, narrative embeddings are organizing hypotheses but not
   aligned with public/private correction safety.
+
+## Route-Consistency Energy Candidate Update
+
+New route-energy veto candidates:
+
+| Priority | File | Role | Why |
+| --- | --- | --- | --- |
+| 1 | `submission_hsjepa_route_energy_veto_target_route_q2_extra_5dfa9e76_uploadsafe.csv` | route-consistent Q2-extra probe | keeps only 34 cells from the Q2-extra big bet; route energy `0.736569 -> 0.726858`, below current best route energy `0.728381` |
+| 2 | `submission_hsjepa_route_energy_veto_public_private_toxicity_e08d9849_uploadsafe.csv` | compressed toxicity-head probe | compresses 150-cell toxicity candidate to 53 cells; route energy `0.738233 -> 0.725533` |
+
+Submission interpretation:
+
+- If priority 1 improves public LB, route-consistency energy is a real action
+  safety proxy and should become the final HS-JEPA decoder verifier.
+- If priority 1 is neutral or bad, train-label target manifold consistency is
+  not enough to model public/private action safety.
+- If priority 2 improves but priority 1 does not, public/private toxicity head
+  found useful non-Q2 actions and Q2-extra was not the right expansion route.
+
+Current recommendation:
+
+Use one public slot on
+`submission_hsjepa_route_energy_veto_target_route_q2_extra_5dfa9e76_uploadsafe.csv`
+before trying another aggressive extra-action candidate.

@@ -175,3 +175,36 @@ python3 paper_hsjepa_core/target_route_toxicity_head.py
 
 - `teacher_only`는 Candidate 1 support는 유지하고 amplitude만 target-route별로 calibration한 안전한 ablation이다.
 - `q2_extra`는 Q2 listener route가 public/private에도 살아 있는지 확인하는 target-specific big-bet이다.
+
+### 5. Route-Consistency Energy
+
+```bash
+python3 paper_hsjepa_core/route_consistency_energy.py
+```
+
+이 스크립트는 train label만 사용해 Q/S target vector의 conditional route
+manifold를 학습하고, candidate correction이 이 공동 구조를 깨는지 energy로
+측정한다.
+
+생성된 후보:
+
+- `submission_hsjepa_route_energy_veto_public_private_toxicity_e08d9849_uploadsafe.csv`
+- `submission_hsjepa_route_energy_veto_target_route_q2_extra_5dfa9e76_uploadsafe.csv`
+
+현재 결과:
+
+- `public_private_toxicity`: 150 changed cells 중 53개만 유지, route energy `0.738233 -> 0.725533`
+- `target_route_q2_extra`: 108 changed cells 중 34개만 유지, route energy `0.736569 -> 0.726858`
+- current best route energy: `0.728381`
+- 두 후보 모두 upload-safe
+
+해석:
+
+- 공격적 후보일수록 Q/S 공동 label 구조를 더 많이 깨뜨린다.
+- Q2 extra는 근거가 있지만 대부분이 route-consistency veto를 통과하지 못했다.
+- S2 action은 상대적으로 많이 살아남아, target-route decoder가 Q2에만 고정되면 안 된다는 신호를 준다.
+- 논문적으로는 HS-JEPA에 LeJEPA-style energy diagnostic을 붙인 형태다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/ROUTE_CONSISTENCY_ENERGY_KO.md`

@@ -14,7 +14,7 @@
 
 수면 생활 로그 예측 문제에서 label은 직접 예측 대상이 아니라, 숨은 인간 생활 상태와 row-target listener responsibility가 결합되어 나온 관측 결과다.
 
-HS-JEPA는 raw feature에서 label을 바로 예측하지 않고, 다음 세 representation을 분리해 학습/추론한다.
+HS-JEPA는 raw feature에서 label을 바로 예측하지 않고, 다음 네 representation을 분리해 학습/추론한다.
 
 1. **Human-State Representation**
    - 오늘의 생활 상태는 어떤가?
@@ -28,6 +28,10 @@ HS-JEPA는 raw feature에서 label을 바로 예측하지 않고, 다음 세 rep
 3. **Action-Health / Correction Field**
    - 선택된 cell을 어느 방향과 강도로 움직여야 하는가?
    - 이 action은 shortcut/collapse/public-only toxicity에 빠져 있지 않은가?
+
+4. **Route-Consistency Energy**
+   - correction 이후 7-target vector가 Q/S 공동 label 구조 위에 남아 있는가?
+   - 특정 cell을 움직이면 다른 target들이 암시하는 conditional state와 충돌하지 않는가?
 
 ## 최종 구조
 
@@ -55,6 +59,11 @@ Human-state representation + support
 Action Decoder
         |
         +--> calibrated row-target correction field
+        |
+        v
+Route-Consistency Energy / Veto
+        |
+        +--> unsafe action rollback
         |
         v
 Final multi-label probability
@@ -105,6 +114,16 @@ Listener Responsibility JEPA 결과:
 
 > Human-state representation alone cannot solve support assignment, but listener/source responsibility can recover a meaningful subset of row-target support without reading public scores. HS-JEPA should therefore be formulated as a modular joint embedding system: human-state encoder, listener responsibility solver, and action decoder.
 
+Route-Consistency Energy 결과:
+
+- `public_private_toxicity`: 150 changed cells 중 53개 유지, route energy `0.738233 -> 0.725533`
+- `target_route_q2_extra`: 108 changed cells 중 34개 유지, route energy `0.736569 -> 0.726858`
+- current best route energy: `0.728381`
+
+이 결과는 HS-JEPA가 action을 생성하는 데서 끝나면 안 된다는 점을 보여준다.
+좋은 action 후보라도 7개 target의 공동 구조를 깨면 Log Loss tail이 악화될 수 있다.
+따라서 HS-JEPA의 최종 decoder는 LeJEPA식으로 representation/action의 건강 상태를 검사하는 energy head를 가져야 한다.
+
 ## 논문에서 피해야 할 주장
 
 다음 표현은 피해야 한다.
@@ -123,6 +142,7 @@ Listener Responsibility JEPA 결과:
 - human-state latent는 개인/peer 생활 상태를 표현하고, target-route correction의 방향과 안전성을 해석한다.
 - row-target assignment는 별도 listener responsibility 문제로 분리되어야 하며, public-loss tomography는 이 assignment solver의 competition-specific teacher 역할을 한다.
 - 이 분리는 단순 tabular classifier나 blend와 다르게, 왜 특정 target/row만 수정해야 하는지를 설명한다.
+- route-consistency energy는 correction이 label 공동 구조를 깨는지 검사해, unsafe action을 row-target 단위로 되돌리는 LeJEPA-style diagnostic이다.
 
 ## 대회 패키징
 
@@ -154,6 +174,11 @@ Listener Responsibility JEPA 결과:
    - Q2는 제한적 extra를 허용하고, S-tail은 teacher-only calibration으로 보수화
    - target-agnostic decoder가 아니라 route-aware action decoder가 필요하다는 증거
 
+7. `Route-Consistency Energy HS-JEPA`
+   - train label의 Q/S conditional manifold를 public-free energy로 학습
+   - action 후보가 공동 label 구조를 깨면 row-target 단위로 veto
+   - support, toxicity, route-consistency를 분리한 HS-JEPA decoder의 마지막 검증층
+
 ## 다음 큰 발견 후보
 
 현재 가장 중요한 미해결 문제는 support assignment다.
@@ -182,3 +207,11 @@ Target-Route Toxicity Head 결과:
 - `q2_extra`: teacher 94 cells + Q2 extra 14, changed rows 90, upload-safe
 
 이 결과는 decoder를 target-agnostic하게 두면 안 된다는 설계 방향을 강화한다. Q2 route는 Listener Responsibility 실험에서 teacher overlap이 강했기 때문에 extra를 제한적으로 허용할 수 있지만, S1/S3/S4 objective tail은 public-bad anchor에 민감하므로 더 보수적으로 다뤄야 한다.
+
+Route-Consistency Energy 결과는 다음 병목을 더 좁힌다.
+
+공격적인 후보가 public에서 실패하는 이유는 support가 틀려서만이 아니라,
+cell별 correction이 합쳐졌을 때 Q/S route vector의 공동 구조를 깨기 때문일 수 있다.
+따라서 다음 big bet은 더 많은 cell을 움직이는 것이 아니라,
+listener가 고른 후보 중 route-consistency energy가 낮은 action만 살아남게 하는
+row-target equation solver다.

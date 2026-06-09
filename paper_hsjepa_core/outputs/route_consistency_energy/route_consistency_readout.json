@@ -1,0 +1,122 @@
+{
+  "experiment": "Route-Consistency Energy HS-JEPA",
+  "energy_model": "train-label conditional pseudo-likelihood over Q/S route vector",
+  "public_score_used": false,
+  "candidate_energy_table": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/route_consistency_energy/route_consistency_candidate_energy.csv",
+  "veto_config": {
+    "energy_keep_tolerance": 0.0018,
+    "teacher_energy_keep_tolerance": 0.004,
+    "q2_energy_keep_tolerance": 0.0048,
+    "min_absolute_move": 1e-12
+  },
+  "veto_outputs": {
+    "public_private_toxicity": {
+      "submission_file": "submission_hsjepa_route_energy_veto_public_private_toxicity_e08d9849_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/route_consistency_energy/submission_hsjepa_route_energy_veto_public_private_toxicity_e08d9849_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_route_energy_veto_public_private_toxicity_e08d9849_uploadsafe.csv",
+      "diagnostics": {
+        "candidate_file": "submission_hsjepa_public_private_toxicity_23c62cf4_uploadsafe.csv",
+        "input_changed_cells": 150,
+        "kept_cells": 53,
+        "vetoed_cells": 97,
+        "input_mean_route_energy": 0.7382325090183289,
+        "output_mean_route_energy": 0.7255332417749937,
+        "base_mean_route_energy": 0.7283812739064743,
+        "kept_by_target": {
+          "Q1": 4,
+          "Q2": 7,
+          "Q3": 3,
+          "S1": 6,
+          "S2": 21,
+          "S3": 6,
+          "S4": 6
+        },
+        "vetoed_by_target": {
+          "Q1": 11,
+          "Q2": 28,
+          "Q3": 11,
+          "S1": 13,
+          "S2": 7,
+          "S3": 11,
+          "S4": 16
+        }
+      },
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.006900912605483636,
+        "base_listener_max_delta": 0.00039653743994862265,
+        "base_listener_negative_count": 9,
+        "semantic_listener_mean_delta": -0.005985243660528422,
+        "semantic_listener_max_delta": 0.00039653743994862265,
+        "semantic_listener_negative_count": 9,
+        "h088_cosine": 0.020348241901647416,
+        "changed_cells": 53,
+        "changed_rows": 46
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_route_energy_veto_public_private_toxicity_e08d9849_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 53,
+        "upload_safe": true
+      }
+    },
+    "target_route_q2_extra": {
+      "submission_file": "submission_hsjepa_route_energy_veto_target_route_q2_extra_5dfa9e76_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/route_consistency_energy/submission_hsjepa_route_energy_veto_target_route_q2_extra_5dfa9e76_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_route_energy_veto_target_route_q2_extra_5dfa9e76_uploadsafe.csv",
+      "diagnostics": {
+        "candidate_file": "submission_hsjepa_target_route_toxicity_q2_extra_90b62d2d_uploadsafe.csv",
+        "input_changed_cells": 108,
+        "kept_cells": 34,
+        "vetoed_cells": 74,
+        "input_mean_route_energy": 0.7365692155877528,
+        "output_mean_route_energy": 0.7268575297249942,
+        "base_mean_route_energy": 0.7283812739064743,
+        "kept_by_target": {
+          "Q1": 1,
+          "Q2": 8,
+          "Q3": 2,
+          "S1": 3,
+          "S2": 11,
+          "S3": 5,
+          "S4": 4
+        },
+        "vetoed_by_target": {
+          "Q1": 8,
+          "Q2": 26,
+          "Q3": 9,
+          "S1": 11,
+          "S2": 3,
+          "S3": 6,
+          "S4": 11
+        }
+      },
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.004180739335287016,
+        "base_listener_max_delta": 0.0005114670723434262,
+        "base_listener_negative_count": 9,
+        "semantic_listener_mean_delta": -0.003854107081445281,
+        "semantic_listener_max_delta": 0.0005114670723434262,
+        "semantic_listener_negative_count": 9,
+        "h088_cosine": 0.008877304704960455,
+        "changed_cells": 34,
+        "changed_rows": 32
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_route_energy_veto_target_route_q2_extra_5dfa9e76_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 34,
+        "upload_safe": true
+      }
+    }
+  }
+}

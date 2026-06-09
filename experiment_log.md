@@ -13850,3 +13850,68 @@ Decision:
 H153 is a plausible future public probe if a slot returns.  It is not an
 insurance tweak: it tests whether language-model human-state semantics can
 separate listener benefit from H088-like toxicity.
+
+## Route-Consistency Energy HS-JEPA
+
+Date: 2026-06-09
+
+Generated files:
+
+- `paper_hsjepa_core/route_consistency_energy.py`
+- `paper_hsjepa_core/ROUTE_CONSISTENCY_ENERGY_KO.md`
+- `paper_hsjepa_core/outputs/route_consistency_energy/route_consistency_readout.json`
+- `paper_hsjepa_core/outputs/route_consistency_energy/route_consistency_candidate_energy.csv`
+- `paper_hsjepa_core/outputs/route_consistency_energy/route_energy_veto_audit.csv`
+- `submission_hsjepa_route_energy_veto_public_private_toxicity_e08d9849_uploadsafe.csv`
+- `submission_hsjepa_route_energy_veto_target_route_q2_extra_5dfa9e76_uploadsafe.csv`
+
+Question:
+
+Do aggressive HS-JEPA action candidates fail because they select wrong cells,
+or because the combined correction breaks the Q/S target-route manifold?
+
+Method:
+
+Train a public-free conditional pseudo-likelihood model on train labels:
+
+```text
+P(target_i | all other targets)
+```
+
+Then score each candidate submission by route energy and veto individual
+row-target actions whose keep-vs-revert energy penalty is too high.
+
+Result:
+
+| Candidate | Input cells | Kept cells | Vetoed cells | Route energy before | Route energy after |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| public/private toxicity | `150` | `53` | `97` | `0.738233` | `0.725533` |
+| target-route q2 extra | `108` | `34` | `74` | `0.736569` | `0.726858` |
+
+Reference current-best route energy: `0.728381`.
+
+Interpretation:
+
+Aggressive correction fields consistently raise target-route energy.  The
+failure mode is therefore not only support assignment error.  Some actions may
+look locally plausible but create unnatural 7-target vectors.
+
+The strongest new HS-JEPA claim is:
+
+```text
+Action generation needs a LeJEPA-style energy verifier.
+The verifier rejects row-target actions that leave the learned target-route
+manifold, even when a listener or toxicity head selected them.
+```
+
+Decision:
+
+The most informative next public probe is:
+
+```text
+submission_hsjepa_route_energy_veto_target_route_q2_extra_5dfa9e76_uploadsafe.csv
+```
+
+It keeps only 34 cells from the Q2-extra big bet, lowers route energy below the
+current best, and directly tests whether train-label manifold consistency is a
+useful proxy for public/private action safety.
