@@ -1,0 +1,35 @@
+{
+  "best": {
+    "a154": 1.8,
+    "b155": 1.8,
+    "bad_remove": 1.0,
+    "keep": 160,
+    "cap": 2.2,
+    "base_mean": -0.009060216417584466,
+    "base_max": -0.0030382204979841855,
+    "base_pos": 10,
+    "sem_mean": -0.007628233177165061,
+    "sem_max": -0.00432508730213745,
+    "sem_pos": 10,
+    "h088_cos": 6.644441689230201e-05,
+    "changed": 160,
+    "rows": 117,
+    "cos_submission_h": -0.00317950784292277,
+    "cos_submission_e": -0.1166858438582345,
+    "decision": 9.140216417584467
+  },
+  "local_path": "/Users/kbsoo/Downloads/cl2/hsjepa_jackpot/outputs/submission_h158_sparse_lossnull_a1.8_b1.8_r1.0_k160_ad372c7e.csv",
+  "root_path": "/Users/kbsoo/Downloads/cl2/submission_h158_sparse_lossnull_a1.8_b1.8_r1.0_k160_ad372c7e_uploadsafe.csv",
+  "hash": "ad372c7e",
+  "validation": {
+    "path": "/Users/kbsoo/Downloads/cl2/submission_h158_sparse_lossnull_a1.8_b1.8_r1.0_k160_ad372c7e_uploadsafe.csv",
+    "rows": 250,
+    "keys_match": true,
+    "duplicate_keys": 0,
+    "nan_cells": 0,
+    "min_prob": 4.939277944527429e-06,
+    "max_prob": 0.9999967514907456,
+    "changed_cells_vs_h057_validation": 160,
+    "upload_safe": true
+  }
+}

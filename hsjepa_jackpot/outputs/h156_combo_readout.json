@@ -1,0 +1,20 @@
+{
+  "best": {
+    "a_h154": 1.3,
+    "b_h155": 1.3,
+    "base_mean": -0.006653632032695364,
+    "base_max": -0.002085099036664177,
+    "base_pos": 10,
+    "sem_mean": -0.005567832431094119,
+    "sem_max": -0.0028100046716521866,
+    "sem_pos": 10,
+    "h088_cos": 0.0026488738778391017,
+    "changed": 160,
+    "rows": 117,
+    "decision": 6.71524804620531
+  },
+  "local_path": "/Users/kbsoo/Downloads/cl2/hsjepa_jackpot/outputs/submission_h156_combo_h154_h155_a1.3_b1.3_30075624.csv",
+  "root_path": "/Users/kbsoo/Downloads/cl2/submission_h156_combo_h154_h155_a1.3_b1.3_30075624_uploadsafe.csv",
+  "hash": "30075624",
+  "cos154155": 0.6873715878479694
+}
