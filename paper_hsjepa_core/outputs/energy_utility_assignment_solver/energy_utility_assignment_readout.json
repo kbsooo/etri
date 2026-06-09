@@ -1,0 +1,138 @@
+{
+  "experiment": "Energy-Utility Assignment Solver HS-JEPA",
+  "public_score_used": true,
+  "route_energy_public_free": true,
+  "support_cells": 160,
+  "proposal_cells": 96,
+  "ridge_diagnostics": {
+    "ridge_alpha": 10.0,
+    "rmse": 0.00024081951647131184,
+    "loo_rmse": 0.0010335825359842463,
+    "stable_cells_gt_0p8": 158
+  },
+  "public_observation_count": 26,
+  "outputs": {
+    "balanced": {
+      "submission_file": "submission_hsjepa_energy_utility_solver_balanced_fd352632_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/energy_utility_assignment_solver/submission_hsjepa_energy_utility_solver_balanced_fd352632_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_energy_utility_solver_balanced_fd352632_uploadsafe.csv",
+      "config": {
+        "name": "balanced",
+        "max_cells": 84,
+        "max_cells_per_row": 2,
+        "max_cells_per_target": 32,
+        "min_stability": 0.56,
+        "max_h088_alignment": 0.66,
+        "min_listener_support": 1,
+        "action_amp": 1.15,
+        "max_logit_step": 1.25,
+        "min_public_utility": 1e-05,
+        "max_energy_delta": 0.0042,
+        "energy_penalty": 0.06,
+        "route_bonus": 0.018
+      },
+      "diagnostics": {
+        "variant": "balanced",
+        "selected_cells": 33,
+        "changed_rows": 31,
+        "target_counts": {
+          "Q1": 1,
+          "Q2": 5,
+          "Q3": 5,
+          "S1": 4,
+          "S2": 9,
+          "S3": 5,
+          "S4": 4
+        },
+        "estimated_public_delta": -0.012955267803085618,
+        "mean_route_energy": 0.7271368781807094,
+        "base_mean_route_energy": 0.7283812739064743,
+        "mean_selected_energy_delta": -0.009427240346700219,
+        "negative_energy_actions": 24
+      },
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.0022063612635682102,
+        "base_listener_max_delta": 0.0005042979505352528,
+        "base_listener_negative_count": 9,
+        "semantic_listener_mean_delta": -0.0024228118871044467,
+        "semantic_listener_max_delta": 0.0005042979505352528,
+        "semantic_listener_negative_count": 9,
+        "h088_cosine": 0.008466951468563898,
+        "changed_cells": 48,
+        "changed_rows": 43
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_energy_utility_solver_balanced_fd352632_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 33,
+        "upload_safe": true
+      }
+    },
+    "jackpot": {
+      "submission_file": "submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/energy_utility_assignment_solver/submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv",
+      "config": {
+        "name": "jackpot",
+        "max_cells": 126,
+        "max_cells_per_row": 3,
+        "max_cells_per_target": 46,
+        "min_stability": 0.48,
+        "max_h088_alignment": 0.74,
+        "min_listener_support": 1,
+        "action_amp": 1.35,
+        "max_logit_step": 1.55,
+        "min_public_utility": 4e-06,
+        "max_energy_delta": 0.0064,
+        "energy_penalty": 0.045,
+        "route_bonus": 0.022
+      },
+      "diagnostics": {
+        "variant": "jackpot",
+        "selected_cells": 36,
+        "changed_rows": 34,
+        "target_counts": {
+          "Q1": 1,
+          "Q2": 5,
+          "Q3": 5,
+          "S1": 5,
+          "S2": 10,
+          "S3": 5,
+          "S4": 5
+        },
+        "estimated_public_delta": -0.01535291748336869,
+        "mean_route_energy": 0.7270606533547509,
+        "base_mean_route_energy": 0.7283812739064743,
+        "mean_selected_energy_delta": -0.009170976053631196,
+        "negative_energy_actions": 26
+      },
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.0025558251797441578,
+        "base_listener_max_delta": 0.0005885950059434533,
+        "base_listener_negative_count": 9,
+        "semantic_listener_mean_delta": -0.0028393524899460103,
+        "semantic_listener_max_delta": 0.0005885950059434533,
+        "semantic_listener_negative_count": 9,
+        "h088_cosine": 0.008525165267479668,
+        "changed_cells": 51,
+        "changed_rows": 46
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 36,
+        "upload_safe": true
+      }
+    }
+  }
+}

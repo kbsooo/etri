@@ -208,3 +208,35 @@ manifold를 학습하고, candidate correction이 이 공동 구조를 깨는지
 자세한 설명:
 
 - `paper_hsjepa_core/ROUTE_CONSISTENCY_ENERGY_KO.md`
+
+### 6. Energy-Utility Assignment Solver
+
+```bash
+python3 paper_hsjepa_core/energy_utility_assignment_solver.py
+```
+
+이 스크립트는 route-consistency를 사후 veto가 아니라 assignment solver 내부의
+선택 기준으로 사용한다.
+
+생성된 후보:
+
+- `submission_hsjepa_energy_utility_solver_balanced_fd352632_uploadsafe.csv`
+- `submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv`
+
+현재 결과:
+
+- support cells: `160`
+- proposal cells: `96`
+- balanced: 33 selected cells, route energy `0.727137`, upload-safe
+- jackpot: 36 selected cells, route energy `0.727061`, upload-safe
+- current best route energy: `0.728381`
+
+해석:
+
+- public utility와 route consistency가 동시에 동의하는 action은 30여 개로 압축된다.
+- 반복적으로 S2 action이 많이 살아남는다.
+- 다음 큰 가설은 Q2 단독 확장이 아니라 S2/Q2 route-consistent sparse action이다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/ENERGY_UTILITY_ASSIGNMENT_SOLVER_KO.md`

@@ -13915,3 +13915,57 @@ submission_hsjepa_route_energy_veto_target_route_q2_extra_5dfa9e76_uploadsafe.cs
 It keeps only 34 cells from the Q2-extra big bet, lowers route energy below the
 current best, and directly tests whether train-label manifold consistency is a
 useful proxy for public/private action safety.
+
+## Energy-Utility Assignment Solver HS-JEPA
+
+Date: 2026-06-09
+
+Generated files:
+
+- `paper_hsjepa_core/energy_utility_assignment_solver.py`
+- `paper_hsjepa_core/ENERGY_UTILITY_ASSIGNMENT_SOLVER_KO.md`
+- `paper_hsjepa_core/outputs/energy_utility_assignment_solver/energy_utility_assignment_readout.json`
+- `paper_hsjepa_core/outputs/energy_utility_assignment_solver/energy_utility_proposal_pool.csv`
+- `paper_hsjepa_core/outputs/energy_utility_assignment_solver/energy_utility_balanced_audit.csv`
+- `paper_hsjepa_core/outputs/energy_utility_assignment_solver/energy_utility_jackpot_audit.csv`
+- `submission_hsjepa_energy_utility_solver_balanced_fd352632_uploadsafe.csv`
+- `submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv`
+
+Question:
+
+Can route consistency be used inside the row-target assignment solver instead
+of only as a post-hoc veto?
+
+Method:
+
+Build a proposal pool from public-loss sparse tomography support, score each
+cell by public utility, then accept a cell only if the route-consistency energy
+delta stays within target-aware tolerance.
+
+Result:
+
+| Variant | Selected cells | Changed rows | Route energy | Current-best route energy | H088 cosine |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| balanced | `33` | `31` | `0.727137` | `0.728381` | `0.008467` |
+| jackpot | `36` | `34` | `0.727061` | `0.728381` | `0.008525` |
+
+Interpretation:
+
+The solver repeatedly selects S2 along with a small Q2 subset.  This changes
+the working hypothesis:
+
+```text
+Q2 is public-sensitive, but the safer hidden action route may be an S2/Q2
+sparse bundle rather than Q2 expansion alone.
+```
+
+Decision:
+
+If a public slot is available, the more informative probe is:
+
+```text
+submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv
+```
+
+It is still sparse, has lower route energy than balanced, and tests whether the
+energy-utility solver can outperform pure veto candidates.

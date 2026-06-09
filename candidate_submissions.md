@@ -9834,3 +9834,20 @@ Current recommendation:
 Use one public slot on
 `submission_hsjepa_route_energy_veto_target_route_q2_extra_5dfa9e76_uploadsafe.csv`
 before trying another aggressive extra-action candidate.
+
+## Energy-Utility Assignment Solver Candidate Update
+
+New candidates:
+
+| Priority | File | Role | Why |
+| --- | --- | --- | --- |
+| 1 | `submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv` | energy-utility assignment probe | 36 cells, route energy `0.727061`, tests S2/Q2 sparse route selected by utility and energy together |
+| 2 | `submission_hsjepa_energy_utility_solver_balanced_fd352632_uploadsafe.csv` | conservative energy-utility probe | 33 cells, route energy `0.727137`, slightly safer but lower upside |
+| 3 | `submission_hsjepa_route_energy_veto_target_route_q2_extra_5dfa9e76_uploadsafe.csv` | post-hoc veto probe | useful if we want to test route energy as a filter rather than an assignment solver |
+
+Updated recommendation:
+
+Use `submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv`
+before the post-hoc veto candidates.  It is the more complete HS-JEPA claim:
+public utility and route consistency jointly choose the action field from the
+start.
