@@ -382,3 +382,55 @@ Competition-Specific Decoder
 HS-JEPA 본체와 대회용 decoder를 분리함으로써,
 논문에서는 representation의 역할을 과장하지 않고,
 대회에서는 public/private sensor가 필요한 이유를 설명할 수 있다.
+
+Target-Listener Route Lift Solver는 이 결론을 한 번 더 검증했다.
+
+S2-hub teacher에 대해 OG human-state 기반 target/cell listener posterior는
+여전히 강했다.
+
+- cell-level OOF AUC `0.775`
+- cell-level OOF AP `0.094`
+
+하지만 그 posterior를 row로 aggregate한 row-lift 진단은 약했다.
+
+- max cell posterior row AUC `0.556`
+- top2 cell posterior row AUC `0.542`
+- S2 posterior row AUC `0.561`
+
+즉 다음 단순한 설계는 부족하다.
+
+```text
+Human-State Encoder
+  -> cell posterior
+  -> row aggregate
+  -> final action
+```
+
+대신 현재 evidence가 지지하는 구조는 다음이다.
+
+```text
+Human-State Encoder
+  -> Target Listener Posterior
+  -> Row Assignment Solver
+  -> Route-Energy Lift / Veto
+  -> Competition Action Decoder
+```
+
+Target-listener posterior는 완전히 무력하지 않았다.
+`s2hub_listener_lift_jackpot`은 teacher 외부에서 route-energy를 낮추는
+extra `13` cells를 찾았고, 그중 `10`개가 S2였다.
+
+하지만 extra 규모가 작기 때문에, 이 모듈은 아직 row assignment 본체가 아니라
+route-safe S2 action을 보조적으로 발굴하는 역할에 가깝다.
+
+논문 표현은 다음이 가장 안전하다.
+
+> HS-JEPA does not collapse row assignment into a single row classifier.
+> It predicts target-listener representations from human-state context and
+> uses a separate assignment/energy module to lift them into sparse actions.
+
+한국어로는:
+
+> HS-JEPA는 row를 직접 고르는 단일 classifier가 아니라, 인간 상태에서
+> target-listener 표현을 예측하고, 별도의 assignment/energy 모듈이 이를
+> sparse row-target action으로 번역하는 구조다.

@@ -1,0 +1,294 @@
+{
+  "experiment": "Target-Listener Route Lift Solver HS-JEPA",
+  "question": "Can OG target-listener posterior be lifted into row-target actions through route energy?",
+  "public_score_used_for_teacher": true,
+  "student_context_public_free": true,
+  "route_energy_public_free": true,
+  "interpretation_rule": "If cell OOF is high but row-lift AUC remains weak, HS-JEPA needs a separate listener/assignment solver. If listener-lift submissions improve, target-listener posterior is action-grade despite weak direct row prediction.",
+  "outputs": {
+    "s2hub_listener_lift_core": {
+      "variant": "s2hub_listener_lift_core",
+      "teacher_name": "s2hub_jackpot",
+      "teacher_file": "submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv",
+      "config": {
+        "name": "s2hub_listener_lift_core",
+        "teacher_name": "s2hub_jackpot",
+        "teacher_file": "submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv",
+        "teacher_amp": 0.98,
+        "extra_cells": 24,
+        "extra_amp": 0.42,
+        "max_logit_step": 0.58,
+        "min_full_prob_quantile": 0.975,
+        "max_cells_per_row": 1,
+        "max_cells_per_target": 16,
+        "max_route_energy_increase": 0.0014,
+        "allowed_targets": [
+          "S1",
+          "S2",
+          "S3",
+          "S4"
+        ],
+        "s2_bonus": 1.35,
+        "stage_bonus": 1.12
+      },
+      "student_diagnostics": {
+        "cell_oof": {
+          "feature_count": 51,
+          "cells": 1750,
+          "positive_cells": 68,
+          "positive_rate": 0.038857142857142854,
+          "subject_group_oof_auc": 0.7750664475064699,
+          "subject_group_oof_ap": 0.09368311271420703,
+          "move_rmse_all": 0.14346516823394817,
+          "move_rmse_action_cells": 0.6871158838017001
+        },
+        "row_lift_from_oof_cell": {
+          "max_score": {
+            "auc": 0.5556917211328976,
+            "ap": 0.168471420745122
+          },
+          "mean_score": {
+            "auc": 0.5439814814814815,
+            "ap": 0.16621358170472122
+          },
+          "top2_score": {
+            "auc": 0.5418028322440087,
+            "ap": 0.16470931581842735
+          },
+          "s2_score": {
+            "auc": 0.5607979302832244,
+            "ap": 0.15721386194275977
+          }
+        }
+      },
+      "teacher_cells": 68,
+      "teacher_rows": 34,
+      "extra_pool_cells": 0,
+      "extra_selected_cells": 0,
+      "extra_selected_rows": 0,
+      "target_counts_extra": {},
+      "mean_extra_route_energy_delta": 0.0,
+      "mean_route_energy": 0.7247626907092058,
+      "base_mean_route_energy": 0.7283812739064743,
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.0023982911449066994,
+        "base_listener_max_delta": 0.0005447827324196043,
+        "base_listener_negative_count": 8,
+        "semantic_listener_mean_delta": -0.0024250427818561715,
+        "semantic_listener_max_delta": 0.0005447827324196043,
+        "semantic_listener_negative_count": 8,
+        "h088_cosine": -0.0006963184244369898,
+        "changed_cells": 83,
+        "changed_rows": 47
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_core_88b45606_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 68,
+        "upload_safe": true
+      },
+      "submission_file": "submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_core_88b45606_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/target_listener_route_lift_solver/submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_core_88b45606_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_core_88b45606_uploadsafe.csv",
+      "audit_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/target_listener_route_lift_solver/s2hub_listener_lift_core_action_audit.csv",
+      "pool_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/target_listener_route_lift_solver/s2hub_listener_lift_core_candidate_pool.csv"
+    },
+    "s2hub_listener_lift_jackpot": {
+      "variant": "s2hub_listener_lift_jackpot",
+      "teacher_name": "s2hub_jackpot",
+      "teacher_file": "submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv",
+      "config": {
+        "name": "s2hub_listener_lift_jackpot",
+        "teacher_name": "s2hub_jackpot",
+        "teacher_file": "submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv",
+        "teacher_amp": 1.03,
+        "extra_cells": 54,
+        "extra_amp": 0.56,
+        "max_logit_step": 0.82,
+        "min_full_prob_quantile": 0.955,
+        "max_cells_per_row": 2,
+        "max_cells_per_target": 28,
+        "max_route_energy_increase": 0.0032,
+        "allowed_targets": [
+          "Q2",
+          "Q3",
+          "S1",
+          "S2",
+          "S3",
+          "S4"
+        ],
+        "s2_bonus": 1.42,
+        "stage_bonus": 1.08
+      },
+      "student_diagnostics": {
+        "cell_oof": {
+          "feature_count": 51,
+          "cells": 1750,
+          "positive_cells": 68,
+          "positive_rate": 0.038857142857142854,
+          "subject_group_oof_auc": 0.7750664475064699,
+          "subject_group_oof_ap": 0.09368311271420703,
+          "move_rmse_all": 0.14346516823394817,
+          "move_rmse_action_cells": 0.6871158838017001
+        },
+        "row_lift_from_oof_cell": {
+          "max_score": {
+            "auc": 0.5556917211328976,
+            "ap": 0.168471420745122
+          },
+          "mean_score": {
+            "auc": 0.5439814814814815,
+            "ap": 0.16621358170472122
+          },
+          "top2_score": {
+            "auc": 0.5418028322440087,
+            "ap": 0.16470931581842735
+          },
+          "s2_score": {
+            "auc": 0.5607979302832244,
+            "ap": 0.15721386194275977
+          }
+        }
+      },
+      "teacher_cells": 68,
+      "teacher_rows": 34,
+      "extra_pool_cells": 13,
+      "extra_selected_cells": 13,
+      "extra_selected_rows": 12,
+      "target_counts_extra": {
+        "S2": 10,
+        "S1": 1,
+        "S4": 2
+      },
+      "mean_extra_route_energy_delta": -0.0011239647509584223,
+      "mean_route_energy": 0.7245849602949342,
+      "base_mean_route_energy": 0.7283812739064743,
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.002603331264956559,
+        "base_listener_max_delta": 0.0005914367919777792,
+        "base_listener_negative_count": 8,
+        "semantic_listener_mean_delta": -0.002615339826607027,
+        "semantic_listener_max_delta": 0.0005914367919777792,
+        "semantic_listener_negative_count": 8,
+        "h088_cosine": -0.0005321759341451684,
+        "changed_cells": 96,
+        "changed_rows": 57
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_jackpot_f2ab2816_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 81,
+        "upload_safe": true
+      },
+      "submission_file": "submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_jackpot_f2ab2816_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/target_listener_route_lift_solver/submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_jackpot_f2ab2816_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_jackpot_f2ab2816_uploadsafe.csv",
+      "audit_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/target_listener_route_lift_solver/s2hub_listener_lift_jackpot_action_audit.csv",
+      "pool_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/target_listener_route_lift_solver/s2hub_listener_lift_jackpot_candidate_pool.csv"
+    },
+    "stagebridge_listener_lift_jackpot": {
+      "variant": "stagebridge_listener_lift_jackpot",
+      "teacher_name": "stagebridge_jackpot",
+      "teacher_file": "submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv",
+      "config": {
+        "name": "stagebridge_listener_lift_jackpot",
+        "teacher_name": "stagebridge_jackpot",
+        "teacher_file": "submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv",
+        "teacher_amp": 1.0,
+        "extra_cells": 46,
+        "extra_amp": 0.5,
+        "max_logit_step": 0.74,
+        "min_full_prob_quantile": 0.962,
+        "max_cells_per_row": 2,
+        "max_cells_per_target": 24,
+        "max_route_energy_increase": 0.0026,
+        "allowed_targets": [
+          "S1",
+          "S2",
+          "S3",
+          "S4"
+        ],
+        "s2_bonus": 1.28,
+        "stage_bonus": 1.1
+      },
+      "student_diagnostics": {
+        "cell_oof": {
+          "feature_count": 51,
+          "cells": 1750,
+          "positive_cells": 82,
+          "positive_rate": 0.046857142857142854,
+          "subject_group_oof_auc": 0.7216690062584079,
+          "subject_group_oof_ap": 0.09417396242465276,
+          "move_rmse_all": 0.16000855308841064,
+          "move_rmse_action_cells": 0.7039909844454366
+        },
+        "row_lift_from_oof_cell": {
+          "max_score": {
+            "auc": 0.5006418485237484,
+            "ap": 0.1779021332792634
+          },
+          "mean_score": {
+            "auc": 0.48815497724355233,
+            "ap": 0.17283010961604844
+          },
+          "top2_score": {
+            "auc": 0.49177266892286153,
+            "ap": 0.17512378253175792
+          },
+          "s2_score": {
+            "auc": 0.5341346714902556,
+            "ap": 0.17820689293110667
+          }
+        }
+      },
+      "teacher_cells": 82,
+      "teacher_rows": 41,
+      "extra_pool_cells": 1,
+      "extra_selected_cells": 1,
+      "extra_selected_rows": 1,
+      "target_counts_extra": {
+        "S2": 1
+      },
+      "mean_extra_route_energy_delta": 6.976528236279922e-05,
+      "mean_route_energy": 0.7243526553724305,
+      "base_mean_route_energy": 0.7283812739064743,
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.0024851515082291364,
+        "base_listener_max_delta": 0.00034357541589362893,
+        "base_listener_negative_count": 8,
+        "semantic_listener_mean_delta": -0.0025476168483410397,
+        "semantic_listener_max_delta": 0.000415811538164806,
+        "semantic_listener_negative_count": 8,
+        "h088_cosine": -0.005827550562388756,
+        "changed_cells": 98,
+        "changed_rows": 54
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_target_listener_route_lift_stagebridge_listener_lift_jackpot_0365d7d9_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 83,
+        "upload_safe": true
+      },
+      "submission_file": "submission_hsjepa_target_listener_route_lift_stagebridge_listener_lift_jackpot_0365d7d9_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/target_listener_route_lift_solver/submission_hsjepa_target_listener_route_lift_stagebridge_listener_lift_jackpot_0365d7d9_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_target_listener_route_lift_stagebridge_listener_lift_jackpot_0365d7d9_uploadsafe.csv",
+      "audit_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/target_listener_route_lift_solver/stagebridge_listener_lift_jackpot_action_audit.csv",
+      "pool_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/target_listener_route_lift_solver/stagebridge_listener_lift_jackpot_candidate_pool.csv"
+    }
+  }
+}

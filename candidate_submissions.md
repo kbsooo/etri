@@ -10006,3 +10006,46 @@ So OG human-state explains target/cell orientation much better than row
 assignment.  If the OG-distilled file improves public LB, the action-health
 gate is useful.  If it loses, keep OG human-state as representation/diagnostic
 and leave row assignment/amplitude mostly to the competition decoder.
+
+## Target-Listener Route Lift Candidate Update
+
+New diagnostic candidates:
+
+| Priority | File | Role | Why |
+| --- | --- | --- | --- |
+| 4 | `submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_jackpot_f2ab2816_uploadsafe.csv` | S2 listener posterior route-lift probe | adds 13 route-safe extra cells, 10 of them S2, mean extra route-energy delta `-0.001124` |
+| diagnostic | `submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_core_88b45606_uploadsafe.csv` | conservative amplitude ablation | extra pool 0, effectively S2-hub teacher scaled by `0.98` |
+| diagnostic | `submission_hsjepa_target_listener_route_lift_stagebridge_listener_lift_jackpot_0365d7d9_uploadsafe.csv` | stagebridge listener-lift check | only 1 extra S2 cell; stagebridge already saturated the bridge support |
+
+Updated public-slot priority:
+
+1. `submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv`
+2. `submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv`
+3. `submission_hsjepa_ogdistilled_s2hub_jackpot_38d995b0_uploadsafe.csv`
+4. `submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_jackpot_f2ab2816_uploadsafe.csv`
+
+Interpretation:
+
+Target-listener posterior is useful, but not yet row-assignment-grade.
+
+```text
+S2-hub cell OOF AUC = 0.775
+S2-hub row-lift max AUC = 0.556
+```
+
+So this candidate is not a safe improvement candidate.  It is a public sensor
+for one precise claim:
+
+```text
+Can S2 listener posterior discover route-safe extra S2 cells beyond the
+stagebridge/S2hub teacher?
+```
+
+If it wins, HS-JEPA gets a new module:
+
+```text
+target listener posterior -> route-energy lift -> extra S2 action
+```
+
+If it loses, target-listener posterior remains a representation/diagnostic and
+row assignment stays with stagebridge/public-private solvers.

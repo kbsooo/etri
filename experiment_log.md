@@ -14303,3 +14303,57 @@ competition decoder = public/private amplitude and safety
 `submission_hsjepa_ogdistilled_s2hub_jackpot_38d995b0_uploadsafe.csv` is
 upload-safe and useful as an architecture probe, but not a higher-priority
 public slot than raw `stagebridge_jackpot` or `s2hub_jackpot`.
+
+## Target-Listener Route Lift Solver HS-JEPA
+
+Date: 2026-06-09
+
+Generated files:
+
+- `paper_hsjepa_core/target_listener_route_lift_solver.py`
+- `paper_hsjepa_core/TARGET_LISTENER_ROUTE_LIFT_SOLVER_KO.md`
+- `paper_hsjepa_core/outputs/target_listener_route_lift_solver/target_listener_route_lift_readout.json`
+- `submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_core_88b45606_uploadsafe.csv`
+- `submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_jackpot_f2ab2816_uploadsafe.csv`
+- `submission_hsjepa_target_listener_route_lift_stagebridge_listener_lift_jackpot_0365d7d9_uploadsafe.csv`
+
+Question:
+
+If OG human-state explains target/cell listener support but not direct row
+assignment, can target-listener posterior be lifted into sparse row-target
+actions through route-energy constraints?
+
+Result:
+
+| Variant | Extra cells | Extra rows | Extra target mix | Mean extra energy delta | Mean route energy | H088 cosine |
+| --- | ---: | ---: | --- | ---: | ---: | ---: |
+| s2hub_listener_lift_core | `0` | `0` | none | `0.000000` | `0.724763` | `-0.000696` |
+| s2hub_listener_lift_jackpot | `13` | `12` | `S2=10,S1=1,S4=2` | `-0.001124` | `0.724585` | `-0.000532` |
+| stagebridge_listener_lift_jackpot | `1` | `1` | `S2=1` | `0.000070` | `0.724353` | `-0.005828` |
+
+Row-lift stress:
+
+| Teacher | Row max AUC | Row top2 AUC | Row S2 AUC |
+| --- | ---: | ---: | ---: |
+| s2hub_jackpot | `0.556` | `0.542` | `0.561` |
+| stagebridge_jackpot | `0.501` | `0.492` | `0.534` |
+
+Interpretation:
+
+The target-listener posterior is real, but direct row lifting is weak.  The
+only non-trivial extra action came from S2-hub, adding 13 route-safe cells, 10
+of which were S2.  This supports a narrower role:
+
+```text
+target listener = route/action orientation helper
+row assignment = separate solver
+route energy = safety lift/veto
+```
+
+Decision:
+
+`submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_jackpot_f2ab2816_uploadsafe.csv`
+is the only variant worth keeping as a scarce public-slot diagnostic, and only
+if the question is whether target-listener posterior can produce public-safe
+extra S2 actions.  It is not higher priority than `stagebridge_jackpot` or raw
+`s2hub_jackpot`.

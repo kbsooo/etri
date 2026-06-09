@@ -2,6 +2,10 @@
 
 이 폴더는 대회용 best submission을 그대로 설명하는 데서 멈추지 않고, HS-JEPA를 논문형 아키텍처로 정리하기 위한 실험을 담는다.
 
+팀 공유용 최상위 설명 문서:
+
+- `paper_hsjepa_core/HS_JEPA_ARCHITECTURE_PACKAGE_KO.md`
+
 ## 핵심 질문
 
 현재 강한 후보는 public-loss sparse tomography로 만들어졌다. 하지만 이것만으로는 논문에서 “새로운 아키텍처가 문제를 해결했다”고 말하기 어렵다.
@@ -425,3 +429,37 @@ action support를 설명할 수 있는지 테스트한다.
 자세한 설명:
 
 - `paper_hsjepa_core/S2HUB_HUMAN_STATE_DISTILLATION_KO.md`
+
+### 13. Target-Listener Route Lift Solver
+
+```bash
+python3 paper_hsjepa_core/target_listener_route_lift_solver.py
+```
+
+이 스크립트는 row assignment를 직접 예측하지 않고, OG human-state가
+복원한 target/cell listener posterior를 route-energy로 들어올릴 수
+있는지 테스트한다.
+
+생성된 후보:
+
+- `submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_core_88b45606_uploadsafe.csv`
+- `submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_jackpot_f2ab2816_uploadsafe.csv`
+- `submission_hsjepa_target_listener_route_lift_stagebridge_listener_lift_jackpot_0365d7d9_uploadsafe.csv`
+
+현재 결과:
+
+- S2-hub cell OOF AUC는 `0.775`로 강하지만 row-lift AUC는 `0.556` 수준
+- core는 extra cell `0`개라 사실상 S2-hub teacher amplitude ablation
+- s2hub_listener_lift_jackpot은 extra `13` cells를 찾았고, 그중 `10`개가 S2
+- extra cell 평균 route energy delta는 `-0.001124`
+- stagebridge_listener_lift_jackpot은 extra `1` cell만 추가
+
+해석:
+
+- target/cell listener posterior는 실제 신호다.
+- 하지만 이 posterior를 row로 단순 lift하는 것만으로는 row assignment가 풀리지 않는다.
+- HS-JEPA는 `Human-State Encoder -> Target Listener -> Row Assignment Solver -> Route Energy Decoder`처럼 모듈화되어야 한다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/TARGET_LISTENER_ROUTE_LIFT_SOLVER_KO.md`
