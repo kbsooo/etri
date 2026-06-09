@@ -13969,3 +13969,47 @@ submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv
 
 It is still sparse, has lower route energy than balanced, and tests whether the
 energy-utility solver can outperform pure veto candidates.
+
+## Row-Bundle Transport Solver HS-JEPA
+
+Date: 2026-06-09
+
+Generated files:
+
+- `paper_hsjepa_core/row_bundle_transport_solver.py`
+- `paper_hsjepa_core/ROW_BUNDLE_TRANSPORT_SOLVER_KO.md`
+- `paper_hsjepa_core/outputs/row_bundle_transport_solver/row_bundle_transport_readout.json`
+- `paper_hsjepa_core/outputs/row_bundle_transport_solver/row_bundle_paircore_selected.csv`
+- `paper_hsjepa_core/outputs/row_bundle_transport_solver/row_bundle_triadjackpot_selected.csv`
+- `submission_hsjepa_row_bundle_transport_paircore_ea3e13e3_uploadsafe.csv`
+- `submission_hsjepa_row_bundle_transport_triadjackpot_294ddb94_uploadsafe.csv`
+
+Question:
+
+Are safe HS-JEPA actions actually row-level target bundles, rather than
+independent row-target micro-actions?
+
+Method:
+
+For each row, evaluate singleton, pair, and triad action bundles using public
+utility plus public-free route-consistency energy.  Accept the highest scoring
+non-overlapping bundles.
+
+Result:
+
+| Variant | Selected bundles | Selected cells | Bundle sizes | Route energy | H088 cosine | Listener max delta |
+| --- | ---: | ---: | --- | ---: | ---: | ---: |
+| paircore | `24` | `28` | `20x1 + 4x2` | `0.727442` | `0.006596` | `-0.000297` |
+| triadjackpot | `30` | `33` | `27x1 + 3x2` | `0.727385` | `0.007915` | `0.000619` |
+
+Interpretation:
+
+The bundle hypothesis mostly failed.  Q2+S2 bundles were not selected, and no
+triads survived.  The safe action field remains mostly sparse singleton
+micro-actions, with a few objective-stage pairs such as S1/S2 and S3/S4.
+
+Decision:
+
+Do not replace the energy-utility solver with a bundle-heavy decoder.  Keep
+`paircore` as a conservative diagnostic candidate, but preserve
+`energy_utility_solver_jackpot` as the stronger public probe.

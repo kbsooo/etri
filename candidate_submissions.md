@@ -9851,3 +9851,24 @@ Use `submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv`
 before the post-hoc veto candidates.  It is the more complete HS-JEPA claim:
 public utility and route consistency jointly choose the action field from the
 start.
+
+## Row-Bundle Transport Candidate Update
+
+New candidates:
+
+| Priority | File | Role | Why |
+| --- | --- | --- | --- |
+| diagnostic | `submission_hsjepa_row_bundle_transport_paircore_ea3e13e3_uploadsafe.csv` | conservative bundle diagnostic | 28 cells, route energy `0.727442`, H088 cosine `0.006596`, all listener max deltas negative |
+| lower | `submission_hsjepa_row_bundle_transport_triadjackpot_294ddb94_uploadsafe.csv` | looser bundle diagnostic | 33 cells, route energy `0.727385`, but listener max delta becomes positive |
+
+Interpretation:
+
+The bundle experiment weakens the Q2/S2 row-vector transport hypothesis.  Most
+selected actions are still singleton cells.  A few objective-stage pairs
+survive, especially S1/S2 and S3/S4.
+
+Submission priority remains:
+
+1. `submission_hsjepa_energy_utility_solver_jackpot_5254f82c_uploadsafe.csv`
+2. `submission_hsjepa_row_bundle_transport_paircore_ea3e13e3_uploadsafe.csv`
+3. `submission_hsjepa_energy_utility_solver_balanced_fd352632_uploadsafe.csv`

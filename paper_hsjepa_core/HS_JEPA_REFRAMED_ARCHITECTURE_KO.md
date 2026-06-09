@@ -184,6 +184,11 @@ Route-Consistency Energy 결과:
    - action 생성 후 사후 보정이 아니라, assignment 단계에서 energy를 직접 사용
    - Q2 단독 확장이 아니라 S2/Q2 route-consistent sparse action이 살아남는다는 새 증거
 
+9. `Row-Bundle Transport Solver HS-JEPA`
+   - 같은 row 안의 target bundle을 함께 움직이는 hidden-state transport 가설을 테스트
+   - Q2+S2 bundle과 triad는 살아남지 않았고, 대부분 singleton action으로 수렴
+   - 일부 `S1+S2`, `S3+S4`, `Q3+S2` objective micro-bundle만 살아남아, bundle-heavy decoder 가설을 약화
+
 ## 다음 큰 발견 후보
 
 현재 가장 중요한 미해결 문제는 support assignment다.
@@ -234,4 +239,19 @@ Energy-Utility Assignment Solver는 이 방향을 직접 구현한 실험이다.
 ```text
 public이 민감하게 듣는 route는 Q2지만,
 안전하게 action으로 번역되는 hidden route는 S2/Q2 sparse bundle이다.
+```
+
+Row-Bundle Transport Solver는 이 가설을 한 번 더 찔렀다.
+
+- `paircore`: 28 cells, route energy `0.727442`, H088 cosine `0.006596`
+- `triadjackpot`: 33 cells, route energy `0.727385`, H088 cosine `0.007915`
+- Q2+S2 bundle은 선택되지 않음
+- triad도 선택되지 않음
+
+따라서 현재 표현은 더 정확히 이렇게 수정해야 한다.
+
+```text
+Q2와 S2가 중요하지만, 둘을 같은 row에서 크게 묶어 이동시키는 구조는 약하다.
+안전한 HS-JEPA decoder는 대부분 sparse micro-action이고,
+일부 objective-stage pair만 bundle로 허용한다.
 ```

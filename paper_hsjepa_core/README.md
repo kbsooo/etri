@@ -240,3 +240,33 @@ python3 paper_hsjepa_core/energy_utility_assignment_solver.py
 자세한 설명:
 
 - `paper_hsjepa_core/ENERGY_UTILITY_ASSIGNMENT_SOLVER_KO.md`
+
+### 7. Row-Bundle Transport Solver
+
+```bash
+python3 paper_hsjepa_core/row_bundle_transport_solver.py
+```
+
+이 스크립트는 cell 단위가 아니라 같은 row 안의 target bundle을 함께 평가한다.
+
+생성된 후보:
+
+- `submission_hsjepa_row_bundle_transport_paircore_ea3e13e3_uploadsafe.csv`
+- `submission_hsjepa_row_bundle_transport_triadjackpot_294ddb94_uploadsafe.csv`
+
+현재 결과:
+
+- paircore: 24 bundles, 28 cells, route energy `0.727442`, upload-safe
+- triadjackpot: 30 bundles, 33 cells, route energy `0.727385`, upload-safe
+- Q2+S2 bundle은 선택되지 않았고, triad도 선택되지 않음
+- 살아남은 pair는 주로 `S1+S2`, `S3+S4`, `Q3+S2`
+
+해석:
+
+- 큰 row-level vector transport 가설은 약해졌다.
+- 안전한 action은 대부분 singleton이며, 일부 objective-stage micro-bundle만 살아남는다.
+- HS-JEPA decoder는 bundle-heavy architecture보다 sparse micro-action solver로 보는 편이 현재 증거와 맞다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/ROW_BUNDLE_TRANSPORT_SOLVER_KO.md`

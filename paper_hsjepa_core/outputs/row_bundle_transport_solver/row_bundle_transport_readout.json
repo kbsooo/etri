@@ -1,0 +1,151 @@
+{
+  "experiment": "Row-Bundle Transport Solver HS-JEPA",
+  "public_score_used": true,
+  "route_energy_public_free": true,
+  "proposal_cells": 96,
+  "outputs": {
+    "paircore": {
+      "submission_file": "submission_hsjepa_row_bundle_transport_paircore_ea3e13e3_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/row_bundle_transport_solver/submission_hsjepa_row_bundle_transport_paircore_ea3e13e3_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_row_bundle_transport_paircore_ea3e13e3_uploadsafe.csv",
+      "config": {
+        "name": "paircore",
+        "max_bundles": 24,
+        "max_cells": 54,
+        "max_bundle_size": 2,
+        "max_bundles_per_target": 18,
+        "row_candidate_limit": 5,
+        "min_stability": 0.54,
+        "max_h088_alignment": 0.68,
+        "min_public_utility": 1.2e-05,
+        "max_route_energy_delta": 0.005,
+        "action_amp": 1.16,
+        "max_logit_step": 1.22,
+        "singleton_penalty": 0.78,
+        "pair_bonus": 1.28,
+        "triple_bonus": 1.0,
+        "energy_bonus": 0.022,
+        "energy_penalty": 0.06
+      },
+      "diagnostics": {
+        "variant": "paircore",
+        "candidate_bundles": 38,
+        "selected_bundles": 24,
+        "selected_cells": 28,
+        "changed_rows": 24,
+        "bundle_size_counts": {
+          "1": 20,
+          "2": 4
+        },
+        "target_counts": {
+          "Q2": 6,
+          "Q3": 1,
+          "S1": 5,
+          "S2": 7,
+          "S3": 5,
+          "S4": 4
+        },
+        "estimated_public_delta": -0.014371395389781253,
+        "mean_route_energy": 0.7274423607661058,
+        "base_mean_route_energy": 0.7283812739064743,
+        "mean_selected_energy_delta": -0.009780345212167738,
+        "negative_energy_bundles": 20,
+        "q2s2_bundles": 0
+      },
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.0023960028563819362,
+        "base_listener_max_delta": -0.0002965226358820751,
+        "base_listener_negative_count": 10,
+        "semantic_listener_mean_delta": -0.002080996843931948,
+        "semantic_listener_max_delta": -0.0002965226358820751,
+        "semantic_listener_negative_count": 10,
+        "h088_cosine": 0.006596294605285173,
+        "changed_cells": 43,
+        "changed_rows": 37
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_row_bundle_transport_paircore_ea3e13e3_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 28,
+        "upload_safe": true
+      }
+    },
+    "triadjackpot": {
+      "submission_file": "submission_hsjepa_row_bundle_transport_triadjackpot_294ddb94_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/row_bundle_transport_solver/submission_hsjepa_row_bundle_transport_triadjackpot_294ddb94_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_row_bundle_transport_triadjackpot_294ddb94_uploadsafe.csv",
+      "config": {
+        "name": "triadjackpot",
+        "max_bundles": 30,
+        "max_cells": 72,
+        "max_bundle_size": 3,
+        "max_bundles_per_target": 24,
+        "row_candidate_limit": 6,
+        "min_stability": 0.48,
+        "max_h088_alignment": 0.76,
+        "min_public_utility": 5e-06,
+        "max_route_energy_delta": 0.0075,
+        "action_amp": 1.32,
+        "max_logit_step": 1.48,
+        "singleton_penalty": 0.62,
+        "pair_bonus": 1.33,
+        "triple_bonus": 1.46,
+        "energy_bonus": 0.025,
+        "energy_penalty": 0.045
+      },
+      "diagnostics": {
+        "variant": "triadjackpot",
+        "candidate_bundles": 43,
+        "selected_bundles": 30,
+        "selected_cells": 33,
+        "changed_rows": 30,
+        "bundle_size_counts": {
+          "1": 27,
+          "2": 3
+        },
+        "target_counts": {
+          "Q1": 1,
+          "Q2": 8,
+          "Q3": 2,
+          "S1": 5,
+          "S2": 7,
+          "S3": 5,
+          "S4": 5
+        },
+        "estimated_public_delta": -0.013917587918521502,
+        "mean_route_energy": 0.7273848406713126,
+        "base_mean_route_energy": 0.7283812739064743,
+        "mean_selected_energy_delta": -0.008303610293009862,
+        "negative_energy_bundles": 24,
+        "q2s2_bundles": 0
+      },
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.0019221231110294074,
+        "base_listener_max_delta": 0.0006194204307768715,
+        "base_listener_negative_count": 9,
+        "semantic_listener_mean_delta": -0.001995448857080322,
+        "semantic_listener_max_delta": 0.0006194204307768715,
+        "semantic_listener_negative_count": 9,
+        "h088_cosine": 0.007914869411272518,
+        "changed_cells": 48,
+        "changed_rows": 42
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_row_bundle_transport_triadjackpot_294ddb94_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 33,
+        "upload_safe": true
+      }
+    }
+  }
+}
