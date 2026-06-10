@@ -31,6 +31,7 @@ ROUTE_FRONTIER_JSON = HERE / "outputs" / "route_frontier_action_decoder" / "rout
 ROUTE_TOXICITY_FUSION_JSON = HERE / "outputs" / "route_toxicity_fusion_decoder" / "route_toxicity_fusion_decoder_readout.json"
 DECODER_ORDER_JURY_JSON = HERE / "outputs" / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout.json"
 DECODER_BOUNDARY_TOMOGRAPHY_JSON = HERE / "outputs" / "decoder_boundary_tomography_solver" / "decoder_boundary_tomography_readout.json"
+CORE_MEDIATED_RELEASE_JSON = HERE / "outputs" / "core_mediated_action_release" / "core_mediated_action_release_readout.json"
 FACTORIZED_JSON = HERE / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_readout.json"
 FACTORIZED_STRESS_JSON = HERE / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_stress_audit.json"
 LEDGER_CSV = ROOT / "data_analytics" / "hsjepa_public_score_ledger.csv"
@@ -139,6 +140,7 @@ def collect_rows() -> list[dict[str, Any]]:
     route_toxicity_fusion = read_json(ROUTE_TOXICITY_FUSION_JSON)
     decoder_order_jury = read_json(DECODER_ORDER_JURY_JSON)
     decoder_boundary_tomography = read_json(DECODER_BOUNDARY_TOMOGRAPHY_JSON)
+    core_mediated_release = read_json(CORE_MEDIATED_RELEASE_JSON)
     factorized = read_json(FACTORIZED_JSON)
     factorized_stress = read_json(FACTORIZED_STRESS_JSON)
     rows: list[dict[str, Any]] = []
@@ -391,6 +393,56 @@ def collect_rows() -> list[dict[str, Any]]:
         )
         rows.append(row)
 
+    for item in core_mediated_release.get("ranking", []):
+        if not isinstance(item, dict):
+            continue
+        variant = str(item.get("variant"))
+        submission = item.get("submission_file")
+        stress = item.get("stress", {}) if isinstance(item.get("stress"), dict) else {}
+        tests = stress.get("tests", {}) if isinstance(stress.get("tests"), dict) else {}
+        actual = stress.get("actual", {}) if isinstance(stress.get("actual"), dict) else {}
+        config = item.get("config", {}) if isinstance(item.get("config"), dict) else {}
+        include_classes = set(config.get("include_boundary_classes", []))
+        shadow_only = include_classes <= {"consensus_shadow"}
+        row = base_row(
+            family="core_mediated_release",
+            variant=variant,
+            submission_file=str(submission) if submission else None,
+            upload_safe=bool(nested(item, "validation", "upload_safe", default=False)),
+            changed_cells=int(nested(item, "validation", "changed_cells_vs_current_best", default=0)),
+            architecture_claim="real sleep-adapter actions can pass through the generic HS-JEPA core API before release",
+            decoder_order="generic_core_mediated_release",
+            core_modules=["context_encoder", "listener_responsibility", "action_health_decoder", "invariant_energy", "anti_shortcut_validation"],
+            public_lb=public_scores.get(str(submission)),
+        )
+        status = str(item.get("status", "unknown"))
+        row.update(
+            {
+                "route_z": maybe_float(nested(tests, "mean_release_score", "z")),
+                "matched_route_z": maybe_float(nested(tests, "mean_health", "z")),
+                "matched_score_z": maybe_float(nested(tests, "mean_release_score", "z")),
+                "safety_z": maybe_float(nested(tests, "mean_invariant_margin", "z")),
+                "toxicity_clear": bool(shadow_only),
+                "broad_hard_conflict_exposure": 0.0 if shadow_only else None,
+                "hardworld_top_toxic_exposure": 0.0 if shadow_only else None,
+                "route_boundary": (
+                    "core_shadow_release_supported"
+                    if status == "core_mediated_shadow_release_alive"
+                    else "core_jury_veto_supported"
+                    if status == "core_mediated_jury_veto_alive"
+                    else "core_route_rescue_sensor"
+                    if status == "core_mediated_route_rescue_sensor"
+                    else "core_boundary_diagnostic"
+                ),
+                "safety_boundary": "core_invariant_supported",
+                "module_ablation_interpretation": (
+                    f"Routes {int(actual.get('cells', 0))} real adapter cells through HS-JEPA core API. "
+                    "If this wins LB, the reusable core release rule is action-grade for this competition adapter."
+                ),
+            }
+        )
+        rows.append(row)
+
     return rows
 
 
@@ -444,12 +496,14 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
     fusion_rows = frame.loc[frame["family"].eq("route_toxicity_fusion")]
     jury_rows = frame.loc[frame["family"].eq("decoder_order_jury")]
     boundary_rows = frame.loc[frame["family"].eq("decoder_boundary_tomography")]
+    core_mediated_rows = frame.loc[frame["family"].eq("core_mediated_release")]
     best_route = route_rows.iloc[0].to_dict() if not route_rows.empty else {}
     best_support = row_support_rows.iloc[0].to_dict() if not row_support_rows.empty else {}
     best_factorized = factorized_rows.iloc[0].to_dict() if not factorized_rows.empty else {}
     best_fusion = fusion_rows.iloc[0].to_dict() if not fusion_rows.empty else {}
     best_jury = jury_rows.iloc[0].to_dict() if not jury_rows.empty else {}
     best_boundary = boundary_rows.iloc[0].to_dict() if not boundary_rows.empty else {}
+    best_core_mediated = core_mediated_rows.iloc[0].to_dict() if not core_mediated_rows.empty else {}
 
     return [
         {
@@ -515,6 +569,15 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
             "status": "alive" if best_boundary else "missing",
             "next_test": "If strict jury is positive on LB, submit consensus_shadow_plus to test whether weak cross-decoder consensus should be released.",
         },
+        {
+            "claim": "The generic HS-JEPA core can mediate real sleep-adapter actions.",
+            "evidence": (
+                f"Best core-mediated row is {best_core_mediated.get('variant')} with release_z={fmt(best_core_mediated.get('route_z'))}, "
+                f"invariant_z={fmt(best_core_mediated.get('safety_z'))}, and priority={fmt(best_core_mediated.get('lb_sensor_priority'))}."
+            ),
+            "status": "alive" if best_core_mediated else "missing",
+            "next_test": "Submit core_consensus_shadow_plus after/against strict jury to test whether generic core release improves the action boundary.",
+        },
     ]
 
 
@@ -537,6 +600,8 @@ def build_verdict(frame: pd.DataFrame, findings: list[dict[str, Any]]) -> dict[s
         status = "action_decoder_ablation_ready_decoder_jury_leads"
     elif str(top["family"]) == "decoder_boundary_tomography":
         status = "action_decoder_ablation_ready_boundary_tomography_leads"
+    elif str(top["family"]) == "core_mediated_release":
+        status = "action_decoder_ablation_ready_core_mediated_release_leads"
     elif str(top["family"]) != "route_frontier":
         status = "action_decoder_ablation_ready_non_route_leads"
     return {
@@ -611,6 +676,7 @@ def build_markdown(readout: dict[str, Any], frame: pd.DataFrame) -> str:
             "- row-support strict가 이기면, masked row-support representation이 action-grade decoder로 번역되기 시작한 것이다.",
             "- open-route가 public에서 이기면, 기존 public-selected seed 후보 공간 자체가 좁았다는 큰 발견이다.",
             "- boundary tomography가 이기면, strict cross-decoder jury가 action을 너무 보수적으로 release했다는 뜻이다.",
+            "- core-mediated release가 이기면, 범용 HS-JEPA core API가 실제 sleep adapter action release에도 쓸 수 있다는 뜻이다.",
             "",
         ]
     )
@@ -637,6 +703,7 @@ def run() -> dict[str, Any]:
             "route_toxicity_fusion": str(ROUTE_TOXICITY_FUSION_JSON.resolve()),
             "decoder_order_jury": str(DECODER_ORDER_JURY_JSON.resolve()),
             "decoder_boundary_tomography": str(DECODER_BOUNDARY_TOMOGRAPHY_JSON.resolve()),
+            "core_mediated_release": str(CORE_MEDIATED_RELEASE_JSON.resolve()),
             "factorized_toxicity": str(FACTORIZED_JSON.resolve()),
             "factorized_stress": str(FACTORIZED_STRESS_JSON.resolve()),
         },

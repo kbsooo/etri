@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 29,
-  "edge_count": 73,
+  "stage_count": 30,
+  "edge_count": 79,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -297,15 +297,39 @@
       "boundary": "This is the too-conservative-jury diagnostic; consensus-shadow cells are not safe until public LB observes them."
     },
     {
+      "id": "core_mediated_action_release",
+      "name": "Core-Mediated Action Release",
+      "role": "Converts real sleep-adapter row-target actions into the generic HS-JEPA core API before release.",
+      "inputs": [
+        "hsjepa_core_reference_run.json",
+        "decoder_order_jury_solver_readout.json",
+        "decoder_boundary_tomography_readout.json"
+      ],
+      "outputs": [
+        "core_mediated_action_release_readout_ko.md",
+        "submission_hsjepa_core_mediated_core_consensus_shadow_plus_3b0b1d0f_uploadsafe.csv",
+        "submission_hsjepa_core_mediated_core_boundary_balanced_3b003319_uploadsafe.csv",
+        "submission_hsjepa_core_mediated_core_jury_veto_a37f6054_uploadsafe.csv",
+        "submission_hsjepa_core_mediated_core_route_rescue_a37f6054_uploadsafe.csv"
+      ],
+      "evidence": [
+        "Core-mediated status: core_mediated_action_release_ready",
+        "Recommended LB sensor: {'variant': 'core_consensus_shadow_plus', 'submission_file': 'submission_hsjepa_core_mediated_core_consensus_shadow_plus_3b0b1d0f_uploadsafe.csv', 'priority': 0.8460231888716516}",
+        "Cell inventory: {'candidate_cells': 44, 'strict_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'default_core_released': 32}"
+      ],
+      "boundary": "This proves the core API can drive adapter actions mechanically; public LB still decides whether that core release equation is action-grade."
+    },
+    {
       "id": "action_decoder_ablation_suite",
       "name": "Action Decoder Ablation Suite",
-      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, and boundary-tomography alternatives as HS-JEPA module ablations.",
+      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, and core-mediated alternatives as HS-JEPA module ablations.",
       "inputs": [
         "row_support_strict_action_decoder_readout.json",
         "route_frontier_action_decoder_readout.json",
         "route_toxicity_fusion_decoder_readout.json",
         "decoder_order_jury_solver_readout.json",
         "decoder_boundary_tomography_readout.json",
+        "core_mediated_action_release_readout.json",
         "factorized_toxicity_decoder_stress_audit.json"
       ],
       "outputs": [
@@ -523,7 +547,7 @@
       ],
       "evidence": [
         "Generality status: general_architecture_separated_with_case_boundary",
-        "Portability checks: 6/7",
+        "Portability checks: 7/8",
         "Nonblocking boundaries: remaining_generality_gap"
       ],
       "boundary": "The current strongest case study still uses a public-sensor assignment teacher."
@@ -545,7 +569,7 @@
       "evidence": [
         "Adapter status: adapter_ready_with_public_sensor_boundary",
         "Adapter score delta: -0.0084113555",
-        "Big-bet count: 11"
+        "Big-bet count: 12"
       ],
       "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
     },
@@ -755,6 +779,30 @@
       "claim_readiness_and_paper_packet"
     ],
     [
+      "hsjepa_core_architecture",
+      "core_mediated_action_release"
+    ],
+    [
+      "decoder_order_jury_solver",
+      "core_mediated_action_release"
+    ],
+    [
+      "decoder_boundary_tomography_solver",
+      "core_mediated_action_release"
+    ],
+    [
+      "core_mediated_action_release",
+      "action_decoder_ablation_suite"
+    ],
+    [
+      "core_mediated_action_release",
+      "sleep_competition_adapter"
+    ],
+    [
+      "core_mediated_action_release",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
       "route_toxicity_fusion_decoder",
       "action_decoder_ablation_suite"
     ],
@@ -924,7 +972,7 @@
     "core_status": "core_ready_for_adapter",
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
     "core_adapter_boundary_status": "core_adapter_boundary_verified",
-    "big_bet_count": 11,
+    "big_bet_count": 12,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "assignment_gap_decomposition_status": "row_support_is_primary_bottleneck",
     "assignment_gap_mean_row_support_gap": 0.5832137733142038,
@@ -983,6 +1031,20 @@
       "route_only_cells": 6,
       "fusion_only_cells": 6,
       "conflict_cells": 0
+    },
+    "core_mediated_action_release_status": "core_mediated_action_release_ready",
+    "core_mediated_action_release_recommended_lb_sensor": {
+      "variant": "core_consensus_shadow_plus",
+      "submission_file": "submission_hsjepa_core_mediated_core_consensus_shadow_plus_3b0b1d0f_uploadsafe.csv",
+      "priority": 0.8460231888716516
+    },
+    "core_mediated_action_release_inventory": {
+      "candidate_cells": 44,
+      "strict_cells": 19,
+      "consensus_shadow_cells": 13,
+      "route_only_cells": 6,
+      "fusion_only_cells": 6,
+      "default_core_released": 32
     },
     "action_decoder_ablation_suite_status": "action_decoder_ablation_ready_decoder_jury_leads",
     "action_decoder_ablation_suite_recommended_lb_sensor": {

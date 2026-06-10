@@ -20,19 +20,20 @@ historical experiment version names.  It executes:
 14. Route-toxicity fusion action decoder.
 15. Decoder-order jury solver.
 16. Decoder boundary tomography solver.
-17. Listener-invariant contrastive probe.
-18. Private-safe toxicity probe.
-19. Hard-world toxicity factorization probe.
-20. Factorized toxicity decoder candidate.
-21. Factorized toxicity decoder stress audit.
-22. Action decoder ablation suite.
-23. Generality report.
-24. Sleep competition adapter report and big-bet queue.
-25. Core/adapter boundary audit.
-26. Paper method packet.
-27. Pipeline manifest.
-28. Release checklist.
-29. A compact handoff report for paper and competition discussion.
+17. Core-mediated action release.
+18. Listener-invariant contrastive probe.
+19. Private-safe toxicity probe.
+20. Hard-world toxicity factorization probe.
+21. Factorized toxicity decoder candidate.
+22. Factorized toxicity decoder stress audit.
+23. Action decoder ablation suite.
+24. Generality report.
+25. Sleep competition adapter report and big-bet queue.
+26. Core/adapter boundary audit.
+27. Paper method packet.
+28. Pipeline manifest.
+29. Release checklist.
+30. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -104,6 +105,8 @@ DECODER_ORDER_JURY_MD = ADAPTER_OUT / "decoder_order_jury_solver" / "decoder_ord
 DECODER_ORDER_JURY_JSON = ADAPTER_OUT / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout.json"
 DECODER_BOUNDARY_TOMOGRAPHY_MD = ADAPTER_OUT / "decoder_boundary_tomography_solver" / "decoder_boundary_tomography_readout_ko.md"
 DECODER_BOUNDARY_TOMOGRAPHY_JSON = ADAPTER_OUT / "decoder_boundary_tomography_solver" / "decoder_boundary_tomography_readout.json"
+CORE_MEDIATED_RELEASE_MD = ADAPTER_OUT / "core_mediated_action_release" / "core_mediated_action_release_readout_ko.md"
+CORE_MEDIATED_RELEASE_JSON = ADAPTER_OUT / "core_mediated_action_release" / "core_mediated_action_release_readout.json"
 ACTION_DECODER_ABLATION_MD = ADAPTER_OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite_ko.md"
 ACTION_DECODER_ABLATION_JSON = ADAPTER_OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_MD = ADAPTER_OUT / "listener_invariant_contrastive_probe_ko.md"
@@ -164,6 +167,7 @@ def build_handoff(
     route_toxicity_fusion_decoder: dict[str, object],
     decoder_order_jury: dict[str, object],
     decoder_boundary_tomography: dict[str, object],
+    core_mediated_release: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -184,6 +188,7 @@ def build_handoff(
     route_toxicity_fusion_verdict = route_toxicity_fusion_decoder.get("verdict", {})
     decoder_order_jury_verdict = decoder_order_jury.get("verdict", {})
     decoder_boundary_tomography_verdict = decoder_boundary_tomography.get("verdict", {})
+    core_mediated_verdict = core_mediated_release.get("verdict", {})
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -268,6 +273,7 @@ def build_handoff(
             f"- Route-toxicity fusion decoder: `{route_toxicity_fusion_verdict.get('status')}`",
             f"- Decoder-order jury solver: `{decoder_order_jury_verdict.get('status')}`",
             f"- Decoder boundary tomography: `{decoder_boundary_tomography_verdict.get('status')}`",
+            f"- Core-mediated action release: `{core_mediated_verdict.get('status')}`",
             f"- Action decoder ablation suite: `{action_ablation_verdict.get('status')}`",
             f"- Listener-invariant contrastive probe: `{contrastive_verdict.get('status')}`",
             f"- Private-safe toxicity probe: `{toxicity_verdict.get('status')}`",
@@ -297,6 +303,7 @@ def build_handoff(
             "sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/route_toxicity_fusion_decoder_readout_ko.md",
             "sleep_competition_adapter/outputs/decoder_order_jury_solver/decoder_order_jury_solver_readout_ko.md",
             "sleep_competition_adapter/outputs/decoder_boundary_tomography_solver/decoder_boundary_tomography_readout_ko.md",
+            "sleep_competition_adapter/outputs/core_mediated_action_release/core_mediated_action_release_readout_ko.md",
             "sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite_ko.md",
             "sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md",
             "sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md",
@@ -333,6 +340,7 @@ def build_handoff(
             f"- Route-toxicity fusion decoder: recommended `{route_toxicity_fusion_verdict.get('recommended_variant')}`, status `{route_toxicity_fusion_verdict.get('status')}`",
             f"- Decoder-order jury: recommended `{decoder_order_jury_verdict.get('recommended_lb_sensor')}`, status `{decoder_order_jury_verdict.get('status')}`",
             f"- Decoder boundary tomography: recommended `{decoder_boundary_tomography_verdict.get('recommended_lb_sensor')}`, status `{decoder_boundary_tomography_verdict.get('status')}`, inventory `{decoder_boundary_tomography.get('boundary_inventory')}`",
+            f"- Core-mediated action release: recommended `{core_mediated_verdict.get('recommended_lb_sensor')}`, status `{core_mediated_verdict.get('status')}`, inventory `{core_mediated_release.get('cell_inventory')}`",
             f"- Action decoder ablation: recommended `{action_ablation_verdict.get('recommended_lb_sensor')}`, big bet `{action_ablation_verdict.get('big_bet_sensor')}`",
             f"- Listener-invariant boundary: listener-route rho `{contrastive_verdict.get('mean_listener_route_spearman'):.4f}`, contrastive overlap `{contrastive_verdict.get('mean_contrastive_overlap_rate'):.4f}`",
             f"- Private-safe toxicity boundary: mean LOO AUC `{toxicity_verdict.get('mean_loo_bad_anchor_auc'):.4f}`, worst LOO AUC `{toxicity_verdict.get('worst_loo_bad_anchor_auc'):.4f}`",
@@ -340,6 +348,7 @@ def build_handoff(
             f"- Factorized decoder candidates: `{', '.join(sorted(factorized_variants))}`",
             f"- Factorized decoder stress: `{factorized_stress_statuses}`",
             f"- Boundary tomography inventory: `{decoder_boundary_tomography.get('boundary_inventory')}`",
+            f"- Core-mediated release inventory: `{core_mediated_release.get('cell_inventory')}`",
             f"- Core/adapter boundary audit: `{boundary_audit.get('status')}`",
             f"- Release checklist: `{release['status']}` (`{release['passed_checks']}/{release['total_checks']}` checks)",
             "",
@@ -470,6 +479,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "route_toxicity_fusion_decoder.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "decoder_order_jury_solver.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "decoder_boundary_tomography_solver.py")],
+        [sys.executable, str(ROOT / "sleep_competition_adapter" / "core_mediated_action_release.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "listener_invariant_contrastive_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "private_safe_toxicity_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "hardworld_toxicity_factorization_probe.py")],
@@ -509,6 +519,7 @@ def run(refresh: bool = False) -> dict[str, object]:
     route_toxicity_fusion_decoder = read_json(ROUTE_TOXICITY_FUSION_DECODER_JSON)
     decoder_order_jury = read_json(DECODER_ORDER_JURY_JSON)
     decoder_boundary_tomography = read_json(DECODER_BOUNDARY_TOMOGRAPHY_JSON)
+    core_mediated_release = read_json(CORE_MEDIATED_RELEASE_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -538,6 +549,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         route_toxicity_fusion_decoder,
         decoder_order_jury,
         decoder_boundary_tomography,
+        core_mediated_release,
         action_decoder_ablation,
         contrastive_probe,
         private_toxicity_probe,
@@ -596,6 +608,8 @@ def run(refresh: bool = False) -> dict[str, object]:
         "decoder_order_jury_solver_json": str(DECODER_ORDER_JURY_JSON.resolve()),
         "decoder_boundary_tomography_md": str(DECODER_BOUNDARY_TOMOGRAPHY_MD.resolve()),
         "decoder_boundary_tomography_json": str(DECODER_BOUNDARY_TOMOGRAPHY_JSON.resolve()),
+        "core_mediated_action_release_md": str(CORE_MEDIATED_RELEASE_MD.resolve()),
+        "core_mediated_action_release_json": str(CORE_MEDIATED_RELEASE_JSON.resolve()),
         "action_decoder_ablation_suite_md": str(ACTION_DECODER_ABLATION_MD.resolve()),
         "action_decoder_ablation_suite_json": str(ACTION_DECODER_ABLATION_JSON.resolve()),
         "listener_invariant_contrastive_probe_md": str(CONTRASTIVE_PROBE_MD.resolve()),
@@ -647,6 +661,9 @@ def run(refresh: bool = False) -> dict[str, object]:
         "decoder_boundary_tomography_status": str(decoder_boundary_tomography["verdict"]["status"]),
         "decoder_boundary_tomography_recommended_lb_sensor": decoder_boundary_tomography["verdict"]["recommended_lb_sensor"],
         "decoder_boundary_tomography_inventory": decoder_boundary_tomography["boundary_inventory"],
+        "core_mediated_action_release_status": str(core_mediated_release["verdict"]["status"]),
+        "core_mediated_action_release_recommended_lb_sensor": core_mediated_release["verdict"]["recommended_lb_sensor"],
+        "core_mediated_action_release_inventory": core_mediated_release["cell_inventory"],
         "action_decoder_ablation_suite_status": str(action_decoder_ablation["verdict"]["status"]),
         "action_decoder_ablation_suite_recommended_lb_sensor": action_decoder_ablation["verdict"]["recommended_lb_sensor"],
         "action_decoder_ablation_suite_big_bet_sensor": action_decoder_ablation["verdict"]["big_bet_sensor"],

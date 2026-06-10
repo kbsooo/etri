@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 65,
-  "total_checks": 65,
+  "passed_checks": 67,
+  "total_checks": 67,
   "required_failures": [],
   "checks": [
     {
@@ -160,6 +160,13 @@
       "evidence": "sleep_competition_adapter/outputs/decoder_boundary_tomography_solver/decoder_boundary_tomography_readout.json"
     },
     {
+      "check": "exists:core_mediated_action_release_readout.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "sleep_competition_adapter/outputs/core_mediated_action_release/core_mediated_action_release_readout.json"
+    },
+    {
       "check": "exists:hsjepa_action_decoder_ablation_suite.json",
       "status": "PASS",
       "passed": true,
@@ -276,7 +283,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=general_architecture_separated_with_case_boundary, checks=6/7, boundaries=['remaining_generality_gap']"
+      "evidence": "status=general_architecture_separated_with_case_boundary, checks=7/8, boundaries=['remaining_generality_gap']"
     },
     {
       "check": "core_adapter_separation_explicit",
@@ -311,7 +318,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=big_bet_queue_ready, count=11"
+      "evidence": "status=big_bet_queue_ready, count=12"
     },
     {
       "check": "og_only_assignment_probe_recorded",
@@ -384,6 +391,13 @@
       "evidence": "status=boundary_tomography_ready, recommended={'variant': 'consensus_shadow_plus', 'submission_file': 'submission_hsjepa_boundary_tomography_consensus_shadow_plus_04b2c855_uploadsafe.csv', 'priority': 0.6990859175252038}, inventory={'strict_jury_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'conflict_cells': 0}"
     },
     {
+      "check": "core_mediated_action_release_recorded",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=core_mediated_action_release_ready, recommended={'variant': 'core_consensus_shadow_plus', 'submission_file': 'submission_hsjepa_core_mediated_core_consensus_shadow_plus_3b0b1d0f_uploadsafe.csv', 'priority': 0.8460231888716516}, inventory={'candidate_cells': 44, 'strict_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'default_core_released': 32}"
+    },
+    {
       "check": "listener_invariant_contrastive_probe_recorded",
       "status": "PASS",
       "passed": true,
@@ -444,7 +458,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=29, edges=73"
+      "evidence": "status=pipeline_ready_with_boundary, stages=30, edges=79"
     },
     {
       "check": "method_packet_presentable",

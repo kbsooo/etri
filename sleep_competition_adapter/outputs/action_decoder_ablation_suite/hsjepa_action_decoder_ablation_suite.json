@@ -60,6 +60,12 @@
         "evidence": "Best boundary row is consensus_shadow_plus with boundary_z=1.8312, changed_cells=27, and priority=0.8323.",
         "status": "alive",
         "next_test": "If strict jury is positive on LB, submit consensus_shadow_plus to test whether weak cross-decoder consensus should be released."
+      },
+      {
+        "claim": "The generic HS-JEPA core can mediate real sleep-adapter actions.",
+        "evidence": "Best core-mediated row is core_consensus_shadow_plus with release_z=1.9671, invariant_z=2.1394, and priority=0.8398.",
+        "status": "alive",
+        "next_test": "Submit core_consensus_shadow_plus after/against strict jury to test whether generic core release improves the action boundary."
       }
     ]
   },
@@ -105,6 +111,12 @@
       "evidence": "Best boundary row is consensus_shadow_plus with boundary_z=1.8312, changed_cells=27, and priority=0.8323.",
       "status": "alive",
       "next_test": "If strict jury is positive on LB, submit consensus_shadow_plus to test whether weak cross-decoder consensus should be released."
+    },
+    {
+      "claim": "The generic HS-JEPA core can mediate real sleep-adapter actions.",
+      "evidence": "Best core-mediated row is core_consensus_shadow_plus with release_z=1.9671, invariant_z=2.1394, and priority=0.8398.",
+      "status": "alive",
+      "next_test": "Submit core_consensus_shadow_plus after/against strict jury to test whether generic core release improves the action boundary."
     }
   ],
   "ranking": [
@@ -270,6 +282,29 @@
       "ablation_rank": 7
     },
     {
+      "family": "core_mediated_release",
+      "variant": "core_consensus_shadow_plus",
+      "submission_file": "submission_hsjepa_core_mediated_core_consensus_shadow_plus_3b0b1d0f_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 29,
+      "architecture_claim": "real sleep-adapter actions can pass through the generic HS-JEPA core API before release",
+      "decoder_order": "generic_core_mediated_release",
+      "core_modules_exercised": "context_encoder,listener_responsibility,action_health_decoder,invariant_energy,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 1.9670523172577958,
+      "matched_route_z": 0.8480259734362036,
+      "matched_score_z": 1.9670523172577958,
+      "safety_z": 2.1393699525987278,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": 0.0,
+      "hardworld_top_toxic_exposure": 0.0,
+      "route_boundary": "core_shadow_release_supported",
+      "safety_boundary": "core_invariant_supported",
+      "lb_sensor_priority": 0.8397592271152313,
+      "module_ablation_interpretation": "Routes 29 real adapter cells through HS-JEPA core API. If this wins LB, the reusable core release rule is action-grade for this competition adapter.",
+      "ablation_rank": 8
+    },
+    {
       "family": "decoder_boundary_tomography",
       "variant": "consensus_shadow_plus",
       "submission_file": "submission_hsjepa_boundary_tomography_consensus_shadow_plus_04b2c855_uploadsafe.csv",
@@ -290,7 +325,30 @@
       "safety_boundary": "weak_consensus_release_boundary",
       "lb_sensor_priority": 0.8322549235648736,
       "module_ablation_interpretation": "Adds 8 cells rejected by strict jury. If this wins LB, the decoder-order jury was too conservative; if it loses, strict consensus marks the safe action frontier.",
-      "ablation_rank": 8
+      "ablation_rank": 9
+    },
+    {
+      "family": "core_mediated_release",
+      "variant": "core_boundary_balanced",
+      "submission_file": "submission_hsjepa_core_mediated_core_boundary_balanced_3b003319_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 31,
+      "architecture_claim": "real sleep-adapter actions can pass through the generic HS-JEPA core API before release",
+      "decoder_order": "generic_core_mediated_release",
+      "core_modules_exercised": "context_encoder,listener_responsibility,action_health_decoder,invariant_energy,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 1.6422456505549574,
+      "matched_route_z": 1.3307968516784154,
+      "matched_score_z": 1.6422456505549574,
+      "safety_z": 1.6459374370269537,
+      "toxicity_clear": false,
+      "broad_hard_conflict_exposure": null,
+      "hardworld_top_toxic_exposure": null,
+      "route_boundary": "core_route_rescue_sensor",
+      "safety_boundary": "core_invariant_supported",
+      "lb_sensor_priority": 0.634395482096416,
+      "module_ablation_interpretation": "Routes 31 real adapter cells through HS-JEPA core API. If this wins LB, the reusable core release rule is action-grade for this competition adapter.",
+      "ablation_rank": 10
     },
     {
       "family": "route_toxicity_fusion",
@@ -313,7 +371,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.6123790379883204,
       "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
-      "ablation_rank": 9
+      "ablation_rank": 11
     },
     {
       "family": "factorized_toxicity",
@@ -336,7 +394,7 @@
       "safety_boundary": "factorized_decoder_stress_supported",
       "lb_sensor_priority": 0.5800000000000001,
       "module_ablation_interpretation": "Keeps action-health and anti-shortcut validation, but does not prove invariant route placement.",
-      "ablation_rank": 10
+      "ablation_rank": 12
     },
     {
       "family": "factorized_toxicity",
@@ -359,7 +417,7 @@
       "safety_boundary": "factorized_decoder_alive_but_source_null_weak",
       "lb_sensor_priority": 0.5800000000000001,
       "module_ablation_interpretation": "Keeps action-health and anti-shortcut validation, but does not prove invariant route placement.",
-      "ablation_rank": 11
+      "ablation_rank": 13
     },
     {
       "family": "decoder_boundary_tomography",
@@ -382,7 +440,7 @@
       "safety_boundary": "single_decoder_boundary",
       "lb_sensor_priority": 0.5513701920816483,
       "module_ablation_interpretation": "Adds 6 cells rejected by strict jury. If this wins LB, the decoder-order jury was too conservative; if it loses, strict consensus marks the safe action frontier.",
-      "ablation_rank": 12
+      "ablation_rank": 14
     },
     {
       "family": "decoder_boundary_tomography",
@@ -405,7 +463,7 @@
       "safety_boundary": "single_decoder_boundary",
       "lb_sensor_priority": 0.4764951046155826,
       "module_ablation_interpretation": "Adds 4 cells rejected by strict jury. If this wins LB, the decoder-order jury was too conservative; if it loses, strict consensus marks the safe action frontier.",
-      "ablation_rank": 13
+      "ablation_rank": 15
     },
     {
       "family": "decoder_order_jury",
@@ -428,7 +486,7 @@
       "safety_boundary": "jury_balance_supported",
       "lb_sensor_priority": 0.45846604483788944,
       "module_ablation_interpretation": "Treats route-first and factorized action-health as independent listeners. If this wins LB, HS-JEPA action decoding is a cross-decoder responsibility jury.",
-      "ablation_rank": 14
+      "ablation_rank": 16
     },
     {
       "family": "decoder_boundary_tomography",
@@ -451,7 +509,7 @@
       "safety_boundary": "single_decoder_boundary",
       "lb_sensor_priority": 0.419812871838568,
       "module_ablation_interpretation": "Adds 4 cells rejected by strict jury. If this wins LB, the decoder-order jury was too conservative; if it loses, strict consensus marks the safe action frontier.",
-      "ablation_rank": 15
+      "ablation_rank": 17
     },
     {
       "family": "decoder_order_jury",
@@ -474,7 +532,7 @@
       "safety_boundary": "jury_balance_supported",
       "lb_sensor_priority": 0.37401450031889266,
       "module_ablation_interpretation": "Treats route-first and factorized action-health as independent listeners. If this wins LB, HS-JEPA action decoding is a cross-decoder responsibility jury.",
-      "ablation_rank": 16
+      "ablation_rank": 18
     },
     {
       "family": "route_toxicity_fusion",
@@ -497,7 +555,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.2889624187457326,
       "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
-      "ablation_rank": 17
+      "ablation_rank": 19
     },
     {
       "family": "route_toxicity_fusion",
@@ -520,7 +578,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.2880776863463137,
       "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
-      "ablation_rank": 18
+      "ablation_rank": 20
     },
     {
       "family": "route_toxicity_fusion",
@@ -543,7 +601,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.27138605091914736,
       "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
-      "ablation_rank": 19
+      "ablation_rank": 21
     },
     {
       "family": "row_support_strict",
@@ -566,7 +624,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.26354824667422216,
       "module_ablation_interpretation": "Shows row-support is real enough to select safe actions, but support-first decoding can lose route-null separation.",
-      "ablation_rank": 20
+      "ablation_rank": 22
     },
     {
       "family": "row_support_strict",
@@ -589,7 +647,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.20975399131542438,
       "module_ablation_interpretation": "Shows row-support is real enough to select safe actions, but support-first decoding can lose route-null separation.",
-      "ablation_rank": 21
+      "ablation_rank": 23
     },
     {
       "family": "decoder_boundary_tomography",
@@ -612,7 +670,53 @@
       "safety_boundary": "weak_consensus_release_boundary",
       "lb_sensor_priority": 0.17507876992837895,
       "module_ablation_interpretation": "Adds 13 cells rejected by strict jury. If this wins LB, the decoder-order jury was too conservative; if it loses, strict consensus marks the safe action frontier.",
-      "ablation_rank": 22
+      "ablation_rank": 24
+    },
+    {
+      "family": "core_mediated_release",
+      "variant": "core_jury_veto",
+      "submission_file": "submission_hsjepa_core_mediated_core_jury_veto_a37f6054_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 19,
+      "architecture_claim": "real sleep-adapter actions can pass through the generic HS-JEPA core API before release",
+      "decoder_order": "generic_core_mediated_release",
+      "core_modules_exercised": "context_encoder,listener_responsibility,action_health_decoder,invariant_energy,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": -1.6396528713302516,
+      "matched_route_z": 1.848808510780782,
+      "matched_score_z": -1.6396528713302516,
+      "safety_z": -0.999285459001295,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": 0.0,
+      "hardworld_top_toxic_exposure": 0.0,
+      "route_boundary": "core_boundary_diagnostic",
+      "safety_boundary": "core_invariant_supported",
+      "lb_sensor_priority": 0.11489949923063594,
+      "module_ablation_interpretation": "Routes 19 real adapter cells through HS-JEPA core API. If this wins LB, the reusable core release rule is action-grade for this competition adapter.",
+      "ablation_rank": 25
+    },
+    {
+      "family": "core_mediated_release",
+      "variant": "core_route_rescue",
+      "submission_file": "submission_hsjepa_core_mediated_core_route_rescue_a37f6054_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 19,
+      "architecture_claim": "real sleep-adapter actions can pass through the generic HS-JEPA core API before release",
+      "decoder_order": "generic_core_mediated_release",
+      "core_modules_exercised": "context_encoder,listener_responsibility,action_health_decoder,invariant_energy,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": -1.6396528713302516,
+      "matched_route_z": 1.848808510780782,
+      "matched_score_z": -1.6396528713302516,
+      "safety_z": -0.999285459001295,
+      "toxicity_clear": false,
+      "broad_hard_conflict_exposure": null,
+      "hardworld_top_toxic_exposure": null,
+      "route_boundary": "core_boundary_diagnostic",
+      "safety_boundary": "core_invariant_supported",
+      "lb_sensor_priority": -0.04510050076936406,
+      "module_ablation_interpretation": "Routes 19 real adapter cells through HS-JEPA core API. If this wins LB, the reusable core release rule is action-grade for this competition adapter.",
+      "ablation_rank": 26
     }
   ],
   "inputs": {
@@ -621,6 +725,7 @@
     "route_toxicity_fusion": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/route_toxicity_fusion_decoder_readout.json",
     "decoder_order_jury": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/decoder_order_jury_solver/decoder_order_jury_solver_readout.json",
     "decoder_boundary_tomography": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/decoder_boundary_tomography_solver/decoder_boundary_tomography_readout.json",
+    "core_mediated_release": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/core_mediated_action_release/core_mediated_action_release_readout.json",
     "factorized_toxicity": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_readout.json",
     "factorized_stress": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_stress_audit.json"
   },

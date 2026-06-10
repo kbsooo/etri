@@ -257,6 +257,39 @@
       "kill_criterion": "All boundary probes worsen public LB, meaning strict cross-decoder consensus is the current safe frontier."
     },
     {
+      "id": "core_mediated_action_release",
+      "name": "Core-Mediated Action Release",
+      "worldview": "A reusable HS-JEPA core should mediate real row-target actions before the sleep adapter releases them.",
+      "core_modules_exercised": [
+        "context_encoder",
+        "listener_responsibility",
+        "action_health_decoder",
+        "invariant_energy",
+        "anti_shortcut_validation"
+      ],
+      "adapter_move": "Convert decoder-order and boundary-tomography cells into ContextView/ListenerPrototype/CandidateAction objects, then let HSJEPACore release or veto them.",
+      "why_big": "If this beats the strict jury, HS-JEPA is no longer only an explanatory wrapper; its generic core release equation is action-grade for the adapter.",
+      "expected_public_lb_delta_if_true": -0.002,
+      "latest_probe_status": "core_mediated_action_release_ready",
+      "latest_probe_evidence": {
+        "recommended_lb_sensor": {
+          "variant": "core_consensus_shadow_plus",
+          "submission_file": "submission_hsjepa_core_mediated_core_consensus_shadow_plus_3b0b1d0f_uploadsafe.csv",
+          "priority": 0.8460231888716516
+        },
+        "claim": "Real sleep-adapter row-target actions can be routed through the generic HS-JEPA core. The public sensor should reveal whether generic core release sharpens the strict decoder jury.",
+        "inventory": {
+          "candidate_cells": 44,
+          "strict_cells": 19,
+          "consensus_shadow_cells": 13,
+          "route_only_cells": 6,
+          "fusion_only_cells": 6,
+          "default_core_released": 32
+        }
+      },
+      "kill_criterion": "Core-mediated candidates underperform the strict jury and boundary tomography, meaning generic core release is diagnostic but not yet the competition action equation."
+    },
+    {
       "id": "listener_invariant_contrastive_decoder",
       "name": "Listener-Invariant Contrastive Decoder",
       "worldview": "A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone.",
@@ -330,5 +363,5 @@
       "kill_criterion": "Q-S bridge actions fail null tests or replicate the already-killed subjective-shadow bridge."
     }
   ],
-  "count": 11
+  "count": 12
 }

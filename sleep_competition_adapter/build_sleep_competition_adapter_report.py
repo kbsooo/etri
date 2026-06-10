@@ -36,6 +36,7 @@ ROUTE_FRONTIER_DECODER_JSON = OUT / "route_frontier_action_decoder" / "route_fro
 ROUTE_TOXICITY_FUSION_DECODER_JSON = OUT / "route_toxicity_fusion_decoder" / "route_toxicity_fusion_decoder_readout.json"
 DECODER_ORDER_JURY_JSON = OUT / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout.json"
 DECODER_BOUNDARY_TOMOGRAPHY_JSON = OUT / "decoder_boundary_tomography_solver" / "decoder_boundary_tomography_readout.json"
+CORE_MEDIATED_RELEASE_JSON = OUT / "core_mediated_action_release" / "core_mediated_action_release_readout.json"
 ACTION_DECODER_ABLATION_JSON = OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
@@ -80,6 +81,7 @@ def require_inputs() -> None:
         ROUTE_TOXICITY_FUSION_DECODER_JSON,
         DECODER_ORDER_JURY_JSON,
         DECODER_BOUNDARY_TOMOGRAPHY_JSON,
+        CORE_MEDIATED_RELEASE_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -102,6 +104,7 @@ def build_big_bets(
     route_toxicity_fusion_decoder: dict[str, object],
     decoder_order_jury: dict[str, object],
     decoder_boundary_tomography: dict[str, object],
+    core_mediated_release: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -142,6 +145,11 @@ def build_big_bets(
     decoder_boundary_tomography_verdict = (
         decoder_boundary_tomography.get("verdict", {})
         if isinstance(decoder_boundary_tomography.get("verdict"), dict)
+        else {}
+    )
+    core_mediated_verdict = (
+        core_mediated_release.get("verdict", {})
+        if isinstance(core_mediated_release.get("verdict"), dict)
         else {}
     )
     action_ablation_verdict = (
@@ -295,6 +303,28 @@ def build_big_bets(
             "kill_criterion": "All boundary probes worsen public LB, meaning strict cross-decoder consensus is the current safe frontier.",
         },
         {
+            "id": "core_mediated_action_release",
+            "name": "Core-Mediated Action Release",
+            "worldview": "A reusable HS-JEPA core should mediate real row-target actions before the sleep adapter releases them.",
+            "core_modules_exercised": [
+                "context_encoder",
+                "listener_responsibility",
+                "action_health_decoder",
+                "invariant_energy",
+                "anti_shortcut_validation",
+            ],
+            "adapter_move": "Convert decoder-order and boundary-tomography cells into ContextView/ListenerPrototype/CandidateAction objects, then let HSJEPACore release or veto them.",
+            "why_big": "If this beats the strict jury, HS-JEPA is no longer only an explanatory wrapper; its generic core release equation is action-grade for the adapter.",
+            "expected_public_lb_delta_if_true": -0.002,
+            "latest_probe_status": core_mediated_verdict.get("status"),
+            "latest_probe_evidence": {
+                "recommended_lb_sensor": core_mediated_verdict.get("recommended_lb_sensor"),
+                "claim": core_mediated_verdict.get("claim"),
+                "inventory": core_mediated_release.get("cell_inventory"),
+            },
+            "kill_criterion": "Core-mediated candidates underperform the strict jury and boundary tomography, meaning generic core release is diagnostic but not yet the competition action equation.",
+        },
+        {
             "id": "listener_invariant_contrastive_decoder",
             "name": "Listener-Invariant Contrastive Decoder",
             "worldview": "A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone.",
@@ -373,6 +403,7 @@ def build_report() -> dict[str, object]:
     route_toxicity_fusion_decoder = read_json(ROUTE_TOXICITY_FUSION_DECODER_JSON)
     decoder_order_jury = read_json(DECODER_ORDER_JURY_JSON)
     decoder_boundary_tomography = read_json(DECODER_BOUNDARY_TOMOGRAPHY_JSON)
+    core_mediated_release = read_json(CORE_MEDIATED_RELEASE_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -392,6 +423,7 @@ def build_report() -> dict[str, object]:
     route_toxicity_fusion_verdict = route_toxicity_fusion_decoder.get("verdict", {})
     decoder_order_jury_verdict = decoder_order_jury.get("verdict", {})
     decoder_boundary_tomography_verdict = decoder_boundary_tomography.get("verdict", {})
+    core_mediated_verdict = core_mediated_release.get("verdict", {})
     action_decoder_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -567,6 +599,14 @@ def build_report() -> dict[str, object]:
             "failure_interpretation": decoder_boundary_tomography_verdict.get("failure_interpretation"),
             "boundary_inventory": decoder_boundary_tomography.get("boundary_inventory"),
             "top_ranked": decoder_boundary_tomography.get("ranking", [])[:3],
+        },
+        "core_mediated_action_release": {
+            "status": core_mediated_verdict.get("status"),
+            "recommended_lb_sensor": core_mediated_verdict.get("recommended_lb_sensor"),
+            "claim": core_mediated_verdict.get("claim"),
+            "failure_interpretation": core_mediated_verdict.get("failure_interpretation"),
+            "cell_inventory": core_mediated_release.get("cell_inventory"),
+            "top_ranked": core_mediated_release.get("ranking", [])[:3],
         },
         "action_decoder_ablation_suite": {
             "status": action_decoder_ablation_verdict.get("status"),
@@ -826,6 +866,16 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             "이 실험은 strict jury가 버린 셀을 `consensus_shadow`, `route_only`, `fusion_only`로 분리한다. public에서 consensus-shadow가 살아나면 HS-JEPA decoder의 병목은 안전한 latent가 아니라 너무 보수적인 action release였다는 뜻이다.",
             "",
+            "## Core-Mediated Action Release",
+            "",
+            f"- Status: `{report['core_mediated_action_release']['status']}`",
+            f"- Recommended LB sensor: `{report['core_mediated_action_release']['recommended_lb_sensor']}`",
+            f"- Cell inventory: `{report['core_mediated_action_release']['cell_inventory']}`",
+            "",
+            report["core_mediated_action_release"]["claim"],
+            "",
+            "이 실험은 실제 sleep-adapter row-target action을 HS-JEPA Core의 `ContextView`, `ListenerPrototype`, `CandidateAction` 인터페이스로 변환한 뒤 core release equation을 통과시킨다. public에서 살아나면 HS-JEPA Core가 논문용 설명 구조를 넘어 action-grade decoder가 됐다는 신호다.",
+            "",
             "## Action Decoder Ablation Suite",
             "",
             f"- Status: `{report['action_decoder_ablation_suite']['status']}`",
@@ -919,10 +969,11 @@ def build_big_bet_markdown(bets: list[dict[str, object]]) -> str:
             "## 우선순위",
             "",
             "1. `OG-only Human-State Assignment Teacher`: 성공하면 HS-JEPA의 범용성이 가장 크게 올라간다.",
-            "2. `Decoder Boundary Tomography Solver`: strict jury가 너무 보수적인지 직접 찌르는 다음 제출 센서다.",
-            "3. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
-            "4. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.",
-            "5. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.",
+            "2. `Core-Mediated Action Release`: generic HS-JEPA core가 실제 sleep-adapter action을 release할 수 있는지 검증한다.",
+            "3. `Decoder Boundary Tomography Solver`: strict jury가 너무 보수적인지 직접 찌르는 다음 제출 센서다.",
+            "4. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
+            "5. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.",
+            "6. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.",
             "",
         ]
     )
@@ -940,6 +991,7 @@ def run() -> dict[str, object]:
         read_json(ROUTE_TOXICITY_FUSION_DECODER_JSON),
         read_json(DECODER_ORDER_JURY_JSON),
         read_json(DECODER_BOUNDARY_TOMOGRAPHY_JSON),
+        read_json(CORE_MEDIATED_RELEASE_JSON),
         read_json(ACTION_DECODER_ABLATION_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),

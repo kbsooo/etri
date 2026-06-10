@@ -22,7 +22,7 @@ This adapter converts HS-JEPA Core into a sleep-log competition system by supply
 | `listener_responsibility` | Q/S targets are treated as listeners; S2 emerges as an objective-stage hub | S2 listener usage 1.000 vs null 0.615 | S2 hub is a sleep competition case-study claim, not a universal physiology claim. |
 | `action_health_decoder` | public-positive and public-negative sensors define toxic action diagnostics | mechanism ablation kills broad/toxic alternatives before release | public LB sensor is not portable and must be replaced for non-competition deployments. |
 | `invariant_energy` | Q/S route energy and route-conserving S2 bridge | route z-scores primary=-9.66, s2=-9.46 | other domains need their own temporal, physiological, semantic, or cohort invariant. |
-| `anti_shortcut_validation` | upload safety, feasible-bundle nulls, mechanism knockout, and release checklist | generality checks 6/7 | private LB safety is not proven. |
+| `anti_shortcut_validation` | upload safety, feasible-bundle nulls, mechanism knockout, and release checklist | generality checks 7/8 | private LB safety is not proven. |
 
 ## OG-only Assignment Probe
 
@@ -115,6 +115,16 @@ Safe row-target assignment is a cross-decoder jury: route invariant proposes the
 The next action-decoder bottleneck is whether strict cross-decoder jury is too conservative; weak consensus and route-only cells are separate hidden worlds and must be tested separately.
 
 이 실험은 strict jury가 버린 셀을 `consensus_shadow`, `route_only`, `fusion_only`로 분리한다. public에서 consensus-shadow가 살아나면 HS-JEPA decoder의 병목은 안전한 latent가 아니라 너무 보수적인 action release였다는 뜻이다.
+
+## Core-Mediated Action Release
+
+- Status: `core_mediated_action_release_ready`
+- Recommended LB sensor: `{'variant': 'core_consensus_shadow_plus', 'submission_file': 'submission_hsjepa_core_mediated_core_consensus_shadow_plus_3b0b1d0f_uploadsafe.csv', 'priority': 0.8460231888716516}`
+- Cell inventory: `{'candidate_cells': 44, 'strict_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'default_core_released': 32}`
+
+Real sleep-adapter row-target actions can be routed through the generic HS-JEPA core. The public sensor should reveal whether generic core release sharpens the strict decoder jury.
+
+이 실험은 실제 sleep-adapter row-target action을 HS-JEPA Core의 `ContextView`, `ListenerPrototype`, `CandidateAction` 인터페이스로 변환한 뒤 core release equation을 통과시킨다. public에서 살아나면 HS-JEPA Core가 논문용 설명 구조를 넘어 action-grade decoder가 됐다는 신호다.
 
 ## Action Decoder Ablation Suite
 
