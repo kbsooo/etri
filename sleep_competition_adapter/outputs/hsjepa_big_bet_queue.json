@@ -33,9 +33,37 @@
         "masked_objective_human_cell_recall": 0.27134146341463417,
         "masked_objective_prediction_cell_recall": 0.2347560975609756,
         "masked_objective_route_mask_cell_recall": 0.30559540889526543,
-        "masked_objective_group_stress_auc": 0.5584153847549592
+        "masked_objective_group_stress_auc": 0.5584153847549592,
+        "row_support_decoder_status": "row_support_action_decoder_alive_with_route_tradeoff",
+        "row_support_decoder_recommended_variant": "exploratory_route_support_gate",
+        "row_support_decoder_exploratory_changed_cells": 34,
+        "row_support_decoder_exploratory_safety_z": 3.643701769206037,
+        "row_support_decoder_exploratory_combined_z": 1.3786879713623903
       },
       "kill_criterion": "Masked row-support keeps failing subject/date/order stress or cannot be converted into safe row-target actions."
+    },
+    {
+      "id": "masked_row_support_action_decoder",
+      "name": "Masked Row-Support Action Decoder",
+      "worldview": "The masked row-support representation can choose which route-conserving S2/stage bundles are safe enough to move.",
+      "core_modules_exercised": [
+        "masked_state_predictor",
+        "action_health_decoder",
+        "invariant_energy",
+        "anti_shortcut_validation"
+      ],
+      "adapter_move": "Gate route-conserving bridge bundles by transferred row-support and factorized broad/hard-world toxicity.",
+      "why_big": "If this survives LB, HS-JEPA has a concrete path from hidden representation to action-grade row-target decoding.",
+      "expected_public_lb_delta_if_true": -0.002,
+      "latest_probe_status": "row_support_action_decoder_alive_with_route_tradeoff",
+      "latest_probe_evidence": {
+        "recommended_variant": "exploratory_route_support_gate",
+        "exploratory_changed_cells": 34,
+        "exploratory_safety_z": 3.643701769206037,
+        "exploratory_combined_z": 1.3786879713623903,
+        "exploratory_mean_route_gain": 0.022053376043313
+      },
+      "kill_criterion": "Public LB worsens or route/null stress remains weak after increasing row-support selectivity."
     },
     {
       "id": "listener_invariant_contrastive_decoder",
@@ -111,5 +139,5 @@
       "kill_criterion": "Q-S bridge actions fail null tests or replicate the already-killed subjective-shadow bridge."
     }
   ],
-  "count": 5
+  "count": 6
 }

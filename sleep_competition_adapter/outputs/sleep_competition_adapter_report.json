@@ -92,6 +92,32 @@
     "next_action": "Train a dedicated masked row-support objective, but do not promote it to a submission decoder until group-heldout stress improves.",
     "interpretation": "The row-support target is not a single-feature shortcut: human-only, prediction-only, and route-masked views all retain signal. However, row/order/subject/calendar held-out stress is much weaker than teacher-world transfer, so this is a representation objective, not yet an action-grade decoder."
   },
+  "row_support_strict_action_decoder": {
+    "status": "row_support_action_decoder_alive_with_route_tradeoff",
+    "recommended_variant": "exploratory_route_support_gate",
+    "reason": "The exploratory variant moves enough cells to be LB-informative and is strongly safer than local feasible nulls, but route-gain is not superior to null, so it is a big-bet candidate rather than a safe release candidate.",
+    "exploratory_changed_cells": 34,
+    "exploratory_safety_z": 3.643701769206037,
+    "exploratory_combined_z": 1.3786879713623903,
+    "exploratory_mean_route_gain": 0.022053376043313,
+    "strict_changed_cells": 4,
+    "variants": {
+      "strict_route_support_gate": {
+        "submission_file": "submission_hsjepa_row_support_strict_route_support_gate_5ae5c515_uploadsafe.csv",
+        "changed_cells": 4,
+        "changed_rows": 2,
+        "selected_bundles": 2,
+        "upload_safe": true
+      },
+      "exploratory_route_support_gate": {
+        "submission_file": "submission_hsjepa_row_support_exploratory_route_support_gate_97a2f8f5_uploadsafe.csv",
+        "changed_cells": 34,
+        "changed_rows": 17,
+        "selected_bundles": 17,
+        "upload_safe": true
+      }
+    }
+  },
   "listener_invariant_contrastive_probe": {
     "status": "listener_invariant_decoder_not_ready",
     "mean_listener_route_spearman": -0.03128093281938615,
@@ -178,6 +204,7 @@
     "The assignment gap decomposes into a row-support bottleneck: target route is relatively easy, but current human/social/cohort context does not find the right support rows.",
     "A teacher-transfer hidden row-support sensor is partially alive; portable row-support composite context transfers across teacher worlds better than the listener upper bound in this local diagnostic.",
     "Masked row-support behaves like a real HS-JEPA representation target under teacher-transfer and feature-family masks, but subject/date/order held-out stress remains weak.",
+    "A row-support action decoder can produce upload-safe route/S2 bundle candidates with strong local toxicity safety, but route-gain remains a tradeoff.",
     "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.",
     "The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.",
     "Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.",
@@ -188,6 +215,7 @@
     "pure OG-only assignment",
     "action-grade portable hidden row-support recovery",
     "that masked row-support is already a deployment-grade action decoder",
+    "that the row-support strict action decoder is safe without public/private LB observation",
     "private leaderboard safety",
     "S2 as a universal human-sleep factor",
     "that public LB sensors can be used outside this competition",

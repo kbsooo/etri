@@ -36,6 +36,7 @@ OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assign
 ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignment_gap_decomposition_probe.json"
 ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidden_row_support_sensor_probe.json"
 MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "masked_row_support_objective_probe.json"
+ROW_SUPPORT_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
@@ -93,6 +94,7 @@ def require_inputs() -> list[dict[str, object]]:
         ASSIGNMENT_GAP_JSON,
         ROW_SUPPORT_SENSOR_JSON,
         MASKED_ROW_SUPPORT_JSON,
+        ROW_SUPPORT_DECODER_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
@@ -143,6 +145,7 @@ def build_checklist() -> dict[str, object]:
     assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
     row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
     masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
+    row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -165,6 +168,7 @@ def build_checklist() -> dict[str, object]:
     gap_verdict = assignment_gap.get("verdict", {})
     row_support_verdict = row_support_sensor.get("verdict", {})
     masked_row_support_verdict = masked_row_support.get("verdict", {})
+    row_support_decoder_verdict = row_support_decoder.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
     hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
@@ -352,6 +356,28 @@ def build_checklist() -> dict[str, object]:
                 ),
             ),
             check(
+                "row_support_strict_action_decoder_recorded",
+                row_support_decoder.get("status") in {
+                    "row_support_action_decoder_alive_with_route_tradeoff",
+                    "row_support_action_decoder_too_conservative",
+                    "row_support_action_decoder_not_ready",
+                }
+                and row_support_decoder_verdict.get("recommended_variant") in row_support_decoder.get("variants", {})
+                and int(row_support_decoder_verdict.get("exploratory_changed_cells", 0)) >= 20
+                and float(row_support_decoder_verdict.get("exploratory_safety_z", 0.0)) >= 2.0
+                and all(
+                    isinstance(item, dict) and item.get("validation", {}).get("upload_safe") is True
+                    for item in row_support_decoder.get("variants", {}).values()
+                ),
+                (
+                    f"status={row_support_decoder_verdict.get('status')}, "
+                    f"recommended={row_support_decoder_verdict.get('recommended_variant')}, "
+                    f"changed={row_support_decoder_verdict.get('exploratory_changed_cells')}, "
+                    f"safety_z={fmt(row_support_decoder_verdict.get('exploratory_safety_z'), 2)}, "
+                    f"combined_z={fmt(row_support_decoder_verdict.get('exploratory_combined_z'), 2)}"
+                ),
+            ),
+            check(
                 "listener_invariant_contrastive_probe_recorded",
                 contrastive_probe.get("status") == "probe_ready"
                 and contrastive_verdict.get("status") in {
@@ -529,10 +555,12 @@ def build_markdown(result: dict[str, object]) -> str:
             "- hidden row-support recovery is not solved by current portable human/social/cohort context",
             "- hidden row-support transfer is partially alive but not yet an action-grade deployment decoder",
             "- masked row-support is a valid HS-JEPA representation objective candidate but group-heldout stress is still weak",
+            "- row-support strict action decoder is LB-informative but has a route-gain tradeoff against local nulls",
             "- human-state is an orientation diagnostic, not a complete row-target assignment solver",
             "- OG-only assignment replacement has a recorded probe result",
             "- Hidden row-support transfer has a recorded probe result",
             "- Masked row-support objective has a recorded stress-boundary probe result",
+            "- Row-support strict action decoder has recorded upload-safe outputs and local stress",
             "- Listener-invariant contrastive decoding has a recorded probe result",
             "- Private-safe toxicity has a recorded probe result and hard-world boundary",
             "- Hard-world toxicity factorization has a recorded probe result",

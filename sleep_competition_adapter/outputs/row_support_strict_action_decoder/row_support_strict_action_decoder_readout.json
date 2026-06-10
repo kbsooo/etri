@@ -1,0 +1,260 @@
+{
+  "experiment": "Row-Support Strict Action Decoder",
+  "architecture_role": "sleep_competition_adapter_row_target_action_solver",
+  "core_boundary": "HS-JEPA core supplies masked row-support representation; this adapter uses route, public-sensitive, and toxicity competition artifacts.",
+  "input_claim": "Masked row-support is alive as representation but needs action-health translation.",
+  "status": "row_support_action_decoder_alive_with_route_tradeoff",
+  "verdict": {
+    "status": "row_support_action_decoder_alive_with_route_tradeoff",
+    "recommended_variant": "exploratory_route_support_gate",
+    "reason": "The exploratory variant moves enough cells to be LB-informative and is strongly safer than local feasible nulls, but route-gain is not superior to null, so it is a big-bet candidate rather than a safe release candidate.",
+    "exploratory_changed_cells": 34,
+    "exploratory_safety_z": 3.643701769206037,
+    "exploratory_combined_z": 1.3786879713623903,
+    "exploratory_mean_route_gain": 0.022053376043313,
+    "strict_changed_cells": 4
+  },
+  "variants": {
+    "strict_route_support_gate": {
+      "submission_file": "submission_hsjepa_row_support_strict_route_support_gate_5ae5c515_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/row_support_strict_action_decoder/submission_hsjepa_row_support_strict_route_support_gate_5ae5c515_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_row_support_strict_route_support_gate_5ae5c515_uploadsafe.csv",
+      "config": {
+        "name": "strict_route_support_gate",
+        "min_row_support_rank": 0.66,
+        "min_driver_joint_safety": 0.54,
+        "min_bundle_joint_safety": 0.5,
+        "min_hardworld_safe": 0.58,
+        "min_broad_safe": 0.42,
+        "max_h088_alignment": 0.64,
+        "min_route_gain": 0.01,
+        "min_source_support": 4,
+        "max_bundles": 22,
+        "max_bundles_per_row": 1,
+        "base_amp": 0.54,
+        "max_amp": 0.92,
+        "min_amp": 0.5
+      },
+      "decode_diagnostics": {
+        "variant": "strict_route_support_gate",
+        "changed_cells": 4,
+        "changed_rows": 2,
+        "selected_bundles": 2,
+        "bundle_summary": {
+          "bundles": 2,
+          "rows": 2,
+          "mean_row_support_rank": 0.884,
+          "mean_route_gain": 0.02223851381943085,
+          "mean_bundle_joint_safety": 0.7949015063731171,
+          "mean_driver_joint_safety": 0.8287949015063731,
+          "mean_support_route_safety_score": 0.8026766014696352,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 1.0,
+          "selected_seed_rate": 1.0,
+          "source_counts": {
+            "s2hub_selected": 2
+          }
+        },
+        "listener_metrics": {
+          "base_listener_mean_delta": -0.00048173547403545895,
+          "base_listener_max_delta": 5.455466070864091e-05,
+          "base_listener_negative_count": 9,
+          "semantic_listener_mean_delta": -0.0004884718869715054,
+          "semantic_listener_max_delta": 8.53070341923564e-05,
+          "semantic_listener_negative_count": 9,
+          "h088_cosine": 0.0023991601930335687,
+          "changed_cells": 4,
+          "changed_rows": 2
+        },
+        "target_counts": {
+          "Q1": 0,
+          "Q2": 0,
+          "Q3": 0,
+          "S1": 0,
+          "S2": 2,
+          "S3": 1,
+          "S4": 1
+        },
+        "mean_amp": 0.858955426704143,
+        "min_amp": 0.8584995659648109,
+        "max_amp": 0.859411287443475
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_row_support_strict_route_support_gate_5ae5c515_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 4,
+        "upload_safe": true
+      }
+    },
+    "exploratory_route_support_gate": {
+      "submission_file": "submission_hsjepa_row_support_exploratory_route_support_gate_97a2f8f5_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/row_support_strict_action_decoder/submission_hsjepa_row_support_exploratory_route_support_gate_97a2f8f5_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_row_support_exploratory_route_support_gate_97a2f8f5_uploadsafe.csv",
+      "config": {
+        "name": "exploratory_route_support_gate",
+        "min_row_support_rank": 0.56,
+        "min_driver_joint_safety": 0.47,
+        "min_bundle_joint_safety": 0.44,
+        "min_hardworld_safe": 0.5,
+        "min_broad_safe": 0.35,
+        "max_h088_alignment": 0.72,
+        "min_route_gain": 0.004,
+        "min_source_support": 3,
+        "max_bundles": 36,
+        "max_bundles_per_row": 1,
+        "base_amp": 0.62,
+        "max_amp": 1.02,
+        "min_amp": 0.52
+      },
+      "decode_diagnostics": {
+        "variant": "exploratory_route_support_gate",
+        "changed_cells": 34,
+        "changed_rows": 17,
+        "selected_bundles": 17,
+        "bundle_summary": {
+          "bundles": 17,
+          "rows": 17,
+          "mean_row_support_rank": 0.8305882352941176,
+          "mean_route_gain": 0.022053376043313,
+          "mean_bundle_joint_safety": 0.593496012541749,
+          "mean_driver_joint_safety": 0.7571058550882694,
+          "mean_support_route_safety_score": 0.6379110768016147,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 0.9411764705882353,
+          "selected_seed_rate": 1.0,
+          "source_counts": {
+            "s2hub_selected": 16,
+            "stagebridge_selected": 1
+          }
+        },
+        "listener_metrics": {
+          "base_listener_mean_delta": -0.0014424437206074785,
+          "base_listener_max_delta": 0.00019804090724478442,
+          "base_listener_negative_count": 8,
+          "semantic_listener_mean_delta": -0.0011635675489542847,
+          "semantic_listener_max_delta": 0.00019804090724478442,
+          "semantic_listener_negative_count": 8,
+          "h088_cosine": -0.001731159845653071,
+          "changed_cells": 34,
+          "changed_rows": 17
+        },
+        "target_counts": {
+          "Q1": 0,
+          "Q2": 0,
+          "Q3": 0,
+          "S1": 9,
+          "S2": 16,
+          "S3": 3,
+          "S4": 6
+        },
+        "mean_amp": 0.889949642324301,
+        "min_amp": 0.8199970706861099,
+        "max_amp": 0.9444287531502864
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_row_support_exploratory_route_support_gate_97a2f8f5_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 34,
+        "upload_safe": true
+      }
+    }
+  },
+  "stress": {
+    "strict_route_support_gate": {
+      "variant": "strict_route_support_gate",
+      "status": "stress_ready",
+      "iterations": 2000,
+      "feasible_pool_size": 24,
+      "row_support_rank": {
+        "actual": 0.884,
+        "null_mean": 0.830111,
+        "null_std": 0.09707024773584205,
+        "z": 0.5551546561011498,
+        "p": 0.3465
+      },
+      "route_gain": {
+        "actual": 0.02223851381943085,
+        "null_mean": 0.025658530117175955,
+        "null_std": 0.006710124835201592,
+        "z": -0.5096799808095785,
+        "p": 0.684
+      },
+      "bundle_joint_safety": {
+        "actual": 0.7949015063731171,
+        "null_mean": 0.4952927809965238,
+        "null_std": 0.09664385959154975,
+        "z": 3.100132037769837,
+        "p": 0.0035
+      },
+      "support_route_safety_score": {
+        "actual": 0.8026766014696352,
+        "null_mean": 0.6227064363574948,
+        "null_std": 0.06697082038327999,
+        "z": 2.6872922278608464,
+        "p": 0.0035
+      }
+    },
+    "exploratory_route_support_gate": {
+      "variant": "exploratory_route_support_gate",
+      "status": "stress_ready",
+      "iterations": 2000,
+      "feasible_pool_size": 30,
+      "row_support_rank": {
+        "actual": 0.8305882352941176,
+        "null_mean": 0.8279244705882353,
+        "null_std": 0.021667783002993258,
+        "z": 0.12293665232808765,
+        "p": 0.444
+      },
+      "route_gain": {
+        "actual": 0.022053376043313,
+        "null_mean": 0.023774489899685714,
+        "null_std": 0.0016931239852824463,
+        "z": -1.016531494631841,
+        "p": 0.8435
+      },
+      "bundle_joint_safety": {
+        "actual": 0.593496012541749,
+        "null_mean": 0.5103522902324313,
+        "null_std": 0.022818476256302112,
+        "z": 3.643701769206037,
+        "p": 0.0
+      },
+      "support_route_safety_score": {
+        "actual": 0.6379110768016147,
+        "null_mean": 0.6161420936993202,
+        "null_std": 0.01578963736036969,
+        "z": 1.3786879713623903,
+        "p": 0.082
+      }
+    }
+  },
+  "row_support_summary": {
+    "rows": 250,
+    "mean_score": 0.39657145811569644,
+    "std_score": 0.24327654837533988
+  },
+  "bundle_pool_summary": {
+    "bundles": 183,
+    "selected_seed_bundles": 45,
+    "mean_route_gain": 0.015895886486395627
+  },
+  "outputs": {
+    "readout_json": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/row_support_strict_action_decoder/row_support_strict_action_decoder_readout.json",
+    "readout_md": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/row_support_strict_action_decoder/row_support_strict_action_decoder_readout_ko.md",
+    "audit_csv": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/row_support_strict_action_decoder/row_support_strict_action_decoder_audit.csv",
+    "null_csv": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/row_support_strict_action_decoder/row_support_strict_action_decoder_null_stress.csv"
+  }
+}

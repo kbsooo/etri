@@ -15,18 +15,19 @@ historical experiment version names.  It executes:
 9. Assignment-gap decomposition probe.
 10. Hidden row-support sensor transfer probe.
 11. Masked row-support objective stress probe.
-12. Listener-invariant contrastive probe.
-13. Private-safe toxicity probe.
-14. Hard-world toxicity factorization probe.
-15. Factorized toxicity decoder candidate.
-16. Factorized toxicity decoder stress audit.
-17. Generality report.
-18. Sleep competition adapter report and big-bet queue.
-19. Core/adapter boundary audit.
-20. Paper method packet.
-21. Pipeline manifest.
-22. Release checklist.
-23. A compact handoff report for paper and competition discussion.
+12. Row-support strict action decoder.
+13. Listener-invariant contrastive probe.
+14. Private-safe toxicity probe.
+15. Hard-world toxicity factorization probe.
+16. Factorized toxicity decoder candidate.
+17. Factorized toxicity decoder stress audit.
+18. Generality report.
+19. Sleep competition adapter report and big-bet queue.
+20. Core/adapter boundary audit.
+21. Paper method packet.
+22. Pipeline manifest.
+23. Release checklist.
+24. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -86,6 +87,8 @@ ROW_SUPPORT_SENSOR_MD = ADAPTER_OUT / "hidden_row_support_sensor_probe_ko.md"
 ROW_SUPPORT_SENSOR_JSON = ADAPTER_OUT / "hidden_row_support_sensor_probe.json"
 MASKED_ROW_SUPPORT_MD = ADAPTER_OUT / "masked_row_support_objective_probe_ko.md"
 MASKED_ROW_SUPPORT_JSON = ADAPTER_OUT / "masked_row_support_objective_probe.json"
+ROW_SUPPORT_DECODER_MD = ADAPTER_OUT / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout_ko.md"
+ROW_SUPPORT_DECODER_JSON = ADAPTER_OUT / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
 CONTRASTIVE_PROBE_MD = ADAPTER_OUT / "listener_invariant_contrastive_probe_ko.md"
 CONTRASTIVE_PROBE_JSON = ADAPTER_OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_MD = ADAPTER_OUT / "private_safe_toxicity_probe_ko.md"
@@ -138,6 +141,7 @@ def build_handoff(
     assignment_gap: dict[str, object],
     row_support_sensor: dict[str, object],
     masked_row_support: dict[str, object],
+    row_support_decoder: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
     hardworld_toxicity_probe: dict[str, object],
@@ -152,6 +156,7 @@ def build_handoff(
     gap_verdict = assignment_gap.get("verdict", {})
     row_support_verdict = row_support_sensor.get("verdict", {})
     masked_row_support_verdict = masked_row_support.get("verdict", {})
+    row_support_decoder_verdict = row_support_decoder.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
     hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
@@ -229,6 +234,7 @@ def build_handoff(
             f"- Assignment-gap decomposition: `{gap_verdict.get('status')}`",
             f"- Hidden row-support sensor: `{row_support_verdict.get('status')}`",
             f"- Masked row-support objective: `{masked_row_support_verdict.get('status')}`",
+            f"- Row-support strict action decoder: `{row_support_decoder_verdict.get('status')}`",
             f"- Listener-invariant contrastive probe: `{contrastive_verdict.get('status')}`",
             f"- Private-safe toxicity probe: `{toxicity_verdict.get('status')}`",
             f"- Hard-world toxicity factorization probe: `{hardworld_verdict.get('status')}`",
@@ -252,6 +258,7 @@ def build_handoff(
             "sleep_competition_adapter/outputs/assignment_gap_decomposition_probe_ko.md",
             "sleep_competition_adapter/outputs/hidden_row_support_sensor_probe_ko.md",
             "sleep_competition_adapter/outputs/masked_row_support_objective_probe_ko.md",
+            "sleep_competition_adapter/outputs/row_support_strict_action_decoder/row_support_strict_action_decoder_readout_ko.md",
             "sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md",
             "sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md",
             "sleep_competition_adapter/outputs/hardworld_toxicity_factorization_probe_ko.md",
@@ -282,6 +289,7 @@ def build_handoff(
             f"- Assignment gap: `{gap_verdict.get('status')}`, row-support gap `{gap_verdict.get('mean_row_support_gap'):.4f}`",
             f"- Hidden row-support sensor: `{row_support_verdict.get('best_portable_family')}`, row AUC `{row_support_verdict.get('best_portable_mean_row_auc'):.4f}`, cell recall `{row_support_verdict.get('best_portable_mean_cell_recall_with_stage_prior'):.4f}`",
             f"- Masked row-support objective: row AUC `{masked_row_support_verdict.get('full_composite_mean_row_auc'):.4f}`, cell recall `{masked_row_support_verdict.get('full_composite_mean_cell_recall'):.4f}`, group stress AUC `{masked_row_support_verdict.get('group_stress_full_mean_auc'):.4f}`",
+            f"- Row-support strict decoder: recommended `{row_support_decoder_verdict.get('recommended_variant')}`, changed cells `{row_support_decoder_verdict.get('exploratory_changed_cells')}`, safety z `{row_support_decoder_verdict.get('exploratory_safety_z'):.2f}`",
             f"- Listener-invariant boundary: listener-route rho `{contrastive_verdict.get('mean_listener_route_spearman'):.4f}`, contrastive overlap `{contrastive_verdict.get('mean_contrastive_overlap_rate'):.4f}`",
             f"- Private-safe toxicity boundary: mean LOO AUC `{toxicity_verdict.get('mean_loo_bad_anchor_auc'):.4f}`, worst LOO AUC `{toxicity_verdict.get('worst_loo_bad_anchor_auc'):.4f}`",
             f"- Hard-world factorization: broad->H088 AUC `{hardworld_verdict.get('broad_predicts_hardworld_auc'):.4f}`, broad/H088 rho `{hardworld_verdict.get('broad_hardworld_spearman'):.4f}`",
@@ -411,6 +419,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "assignment_gap_decomposition_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "hidden_row_support_sensor_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "masked_row_support_objective_probe.py")],
+        [sys.executable, str(ROOT / "sleep_competition_adapter" / "row_support_strict_action_decoder.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "listener_invariant_contrastive_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "private_safe_toxicity_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "hardworld_toxicity_factorization_probe.py")],
@@ -442,6 +451,7 @@ def run(refresh: bool = False) -> dict[str, object]:
     assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
     row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
     masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
+    row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -464,6 +474,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         assignment_gap,
         row_support_sensor,
         masked_row_support,
+        row_support_decoder,
         contrastive_probe,
         private_toxicity_probe,
         hardworld_toxicity_probe,
@@ -509,6 +520,8 @@ def run(refresh: bool = False) -> dict[str, object]:
         "hidden_row_support_sensor_probe_json": str(ROW_SUPPORT_SENSOR_JSON.resolve()),
         "masked_row_support_objective_probe_md": str(MASKED_ROW_SUPPORT_MD.resolve()),
         "masked_row_support_objective_probe_json": str(MASKED_ROW_SUPPORT_JSON.resolve()),
+        "row_support_strict_action_decoder_md": str(ROW_SUPPORT_DECODER_MD.resolve()),
+        "row_support_strict_action_decoder_json": str(ROW_SUPPORT_DECODER_JSON.resolve()),
         "listener_invariant_contrastive_probe_md": str(CONTRASTIVE_PROBE_MD.resolve()),
         "listener_invariant_contrastive_probe_json": str(CONTRASTIVE_PROBE_JSON.resolve()),
         "private_safe_toxicity_probe_md": str(PRIVATE_TOXICITY_PROBE_MD.resolve()),
@@ -542,6 +555,10 @@ def run(refresh: bool = False) -> dict[str, object]:
         "masked_row_support_full_row_auc": float(masked_row_support["verdict"]["full_composite_mean_row_auc"]),
         "masked_row_support_full_cell_recall": float(masked_row_support["verdict"]["full_composite_mean_cell_recall"]),
         "masked_row_support_group_stress_auc": float(masked_row_support["verdict"]["group_stress_full_mean_auc"]),
+        "row_support_strict_action_decoder_status": str(row_support_decoder["verdict"]["status"]),
+        "row_support_strict_action_decoder_recommended": str(row_support_decoder["verdict"]["recommended_variant"]),
+        "row_support_strict_action_decoder_changed_cells": int(row_support_decoder["verdict"]["exploratory_changed_cells"]),
+        "row_support_strict_action_decoder_safety_z": float(row_support_decoder["verdict"]["exploratory_safety_z"]),
         "listener_invariant_contrastive_probe_status": str(contrastive_probe["verdict"]["status"]),
         "private_safe_toxicity_probe_status": str(private_toxicity_probe["verdict"]["status"]),
         "hardworld_toxicity_factorization_probe_status": str(hardworld_toxicity_probe["verdict"]["status"]),

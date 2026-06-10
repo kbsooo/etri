@@ -23,6 +23,7 @@ OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assign
 ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignment_gap_decomposition_probe.json"
 ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidden_row_support_sensor_probe.json"
 MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "masked_row_support_objective_probe.json"
+ROW_SUPPORT_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
 
 REPORT_JSON = OUT / "hsjepa_generality_report.json"
 REPORT_MD = OUT / "hsjepa_generality_report_ko.md"
@@ -202,7 +203,15 @@ def build_markdown(report: dict[str, object]) -> str:
 
 
 def run() -> dict[str, object]:
-    for path in [READINESS_JSON, ABLATION_JSON, OG_PROBE_JSON, ASSIGNMENT_GAP_JSON, ROW_SUPPORT_SENSOR_JSON, MASKED_ROW_SUPPORT_JSON]:
+    for path in [
+        READINESS_JSON,
+        ABLATION_JSON,
+        OG_PROBE_JSON,
+        ASSIGNMENT_GAP_JSON,
+        ROW_SUPPORT_SENSOR_JSON,
+        MASKED_ROW_SUPPORT_JSON,
+        ROW_SUPPORT_DECODER_JSON,
+    ]:
         if not path.exists():
             raise FileNotFoundError(path)
 
@@ -212,10 +221,12 @@ def run() -> dict[str, object]:
     assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
     row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
     masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
+    row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
     og_verdict = og_probe.get("verdict", {})
     gap_verdict = assignment_gap.get("verdict", {})
     row_support_verdict = row_support_sensor.get("verdict", {})
     masked_row_support_verdict = masked_row_support.get("verdict", {})
+    row_support_decoder_verdict = row_support_decoder.get("verdict", {})
     portability_checks = [dict(item) for item in PORTABILITY_CHECKS]
     for item in portability_checks:
         if item["check"] == "remaining_generality_gap":
@@ -235,7 +246,12 @@ def run() -> dict[str, object]:
                 f"Masked row-support objective status {masked_row_support_verdict.get('status')}; full row AUC "
                 f"{masked_row_support_verdict.get('full_composite_mean_row_auc'):.4f}, cell recall "
                 f"{masked_row_support_verdict.get('full_composite_mean_cell_recall'):.4f}, group stress AUC "
-                f"{masked_row_support_verdict.get('group_stress_full_mean_auc'):.4f}."
+                f"{masked_row_support_verdict.get('group_stress_full_mean_auc'):.4f}. "
+                f"Row-support strict action decoder status {row_support_decoder_verdict.get('status')}; recommended "
+                f"{row_support_decoder_verdict.get('recommended_variant')}, exploratory changed cells "
+                f"{row_support_decoder_verdict.get('exploratory_changed_cells')}, safety z "
+                f"{row_support_decoder_verdict.get('exploratory_safety_z'):.4f}, combined z "
+                f"{row_support_decoder_verdict.get('exploratory_combined_z'):.4f}."
             )
     blocking = [
         item for item in portability_checks
@@ -273,6 +289,12 @@ def run() -> dict[str, object]:
             "masked_row_support_full_row_auc": masked_row_support_verdict.get("full_composite_mean_row_auc"),
             "masked_row_support_full_cell_recall": masked_row_support_verdict.get("full_composite_mean_cell_recall"),
             "masked_row_support_group_stress_auc": masked_row_support_verdict.get("group_stress_full_mean_auc"),
+            "row_support_strict_action_decoder_status": row_support_decoder_verdict.get("status"),
+            "row_support_strict_action_decoder_recommended": row_support_decoder_verdict.get("recommended_variant"),
+            "row_support_strict_action_decoder_changed_cells": row_support_decoder_verdict.get("exploratory_changed_cells"),
+            "row_support_strict_action_decoder_safety_z": row_support_decoder_verdict.get("exploratory_safety_z"),
+            "row_support_strict_action_decoder_combined_z": row_support_decoder_verdict.get("exploratory_combined_z"),
+            "row_support_strict_action_decoder_mean_route_gain": row_support_decoder_verdict.get("exploratory_mean_route_gain"),
         },
         "honest_claim": (
             "HS-JEPA is a human-understanding architecture that predicts hidden human-state and listener/action representations before "
@@ -280,8 +302,9 @@ def run() -> dict[str, object]:
         ),
         "next_breakthrough": (
             "Turn the partially alive masked row-support representation into an action-grade decoder. "
+            "The first strict decoder is alive as an LB-informative probe, but route-gain is not yet stronger than the null. "
             "The next portable objective should preserve teacher-transfer strength while lifting subject/date/order held-out stress "
-            "before allowing row-support to drive submissions."
+            "and route-gain before allowing row-support to drive safe release submissions."
         ),
     }
     REPORT_JSON.write_text(json.dumps(report, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8")

@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 22,
-  "edge_count": 44,
+  "stage_count": 23,
+  "edge_count": 47,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -158,6 +158,29 @@
         "Group stress row AUC: 0.5584"
       ],
       "boundary": "This supports HS-JEPA representation learning, but weak group-heldout stress blocks direct deployment as an action decoder."
+    },
+    {
+      "id": "row_support_strict_action_decoder",
+      "name": "Row-Support Strict Action Decoder",
+      "role": "Translates masked row-support into route-conserving, toxicity-filtered row-target action candidates.",
+      "inputs": [
+        "masked_row_support_objective_probe.json",
+        "hardworld_toxicity_factorization_sectors.csv",
+        "route bridge selected bundles"
+      ],
+      "outputs": [
+        "row_support_strict_action_decoder_readout_ko.md",
+        "submission_hsjepa_row_support_strict_route_support_gate_5ae5c515_uploadsafe.csv",
+        "submission_hsjepa_row_support_exploratory_route_support_gate_97a2f8f5_uploadsafe.csv"
+      ],
+      "evidence": [
+        "Decoder status: row_support_action_decoder_alive_with_route_tradeoff",
+        "Recommended variant: exploratory_route_support_gate",
+        "Exploratory changed cells: 34",
+        "Exploratory safety z: 3.64",
+        "Exploratory combined z: 1.38"
+      ],
+      "boundary": "This is an LB-informative big bet with a route-gain tradeoff, not a safe default submission."
     },
     {
       "id": "route_energy_model",
@@ -385,7 +408,7 @@
       "evidence": [
         "Adapter status: adapter_ready_with_public_sensor_boundary",
         "Adapter score delta: -0.0084113555",
-        "Big-bet count: 5"
+        "Big-bet count: 6"
       ],
       "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
     },
@@ -501,6 +524,18 @@
     [
       "masked_row_support_objective",
       "sleep_competition_adapter"
+    ],
+    [
+      "masked_row_support_objective",
+      "row_support_strict_action_decoder"
+    ],
+    [
+      "row_support_strict_action_decoder",
+      "sleep_competition_adapter"
+    ],
+    [
+      "row_support_strict_action_decoder",
+      "claim_readiness_and_paper_packet"
     ],
     [
       "public_lb_sensor",
@@ -648,7 +683,7 @@
     "core_status": "core_ready_for_adapter",
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
     "core_adapter_boundary_status": "core_adapter_boundary_verified",
-    "big_bet_count": 5,
+    "big_bet_count": 6,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "assignment_gap_decomposition_status": "row_support_is_primary_bottleneck",
     "assignment_gap_mean_row_support_gap": 0.5832137733142038,
@@ -660,6 +695,10 @@
     "masked_row_support_full_row_auc": 0.819329738968888,
     "masked_row_support_full_cell_recall": 0.32890961262553803,
     "masked_row_support_group_stress_auc": 0.5584153847549592,
+    "row_support_strict_action_decoder_status": "row_support_action_decoder_alive_with_route_tradeoff",
+    "row_support_strict_action_decoder_recommended": "exploratory_route_support_gate",
+    "row_support_strict_action_decoder_changed_cells": 34,
+    "row_support_strict_action_decoder_safety_z": 3.643701769206037,
     "listener_invariant_contrastive_probe_status": "listener_invariant_decoder_not_ready",
     "private_safe_toxicity_probe_status": "toxicity_field_promising_with_hardworld_gap",
     "hardworld_toxicity_factorization_probe_status": "hardworld_mixture_factorization_required",

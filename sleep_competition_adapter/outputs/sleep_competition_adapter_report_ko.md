@@ -74,6 +74,17 @@ The row-support target is not a single-feature shortcut: human-only, prediction-
 
 Next action: Train a dedicated masked row-support objective, but do not promote it to a submission decoder until group-heldout stress improves.
 
+## Row-Support Strict Action Decoder
+
+- Status: `row_support_action_decoder_alive_with_route_tradeoff`
+- Recommended variant: `exploratory_route_support_gate`
+- Exploratory changed cells: `34`
+- Exploratory safety z: `3.64`
+- Exploratory combined z: `1.38`
+- Exploratory mean route gain: `0.02205`
+
+The exploratory variant moves enough cells to be LB-informative and is strongly safer than local feasible nulls, but route-gain is not superior to null, so it is a big-bet candidate rather than a safe release candidate.
+
 ## Listener-Invariant Contrastive Probe
 
 - Status: `listener_invariant_decoder_not_ready`
@@ -144,6 +155,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - The assignment gap decomposes into a row-support bottleneck: target route is relatively easy, but current human/social/cohort context does not find the right support rows.
 - A teacher-transfer hidden row-support sensor is partially alive; portable row-support composite context transfers across teacher worlds better than the listener upper bound in this local diagnostic.
 - Masked row-support behaves like a real HS-JEPA representation target under teacher-transfer and feature-family masks, but subject/date/order held-out stress remains weak.
+- A row-support action decoder can produce upload-safe route/S2 bundle candidates with strong local toxicity safety, but route-gain remains a tradeoff.
 - A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.
 - The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.
 - Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.
@@ -155,6 +167,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - pure OG-only assignment
 - action-grade portable hidden row-support recovery
 - that masked row-support is already a deployment-grade action decoder
+- that the row-support strict action decoder is safe without public/private LB observation
 - private leaderboard safety
 - S2 as a universal human-sleep factor
 - that public LB sensors can be used outside this competition

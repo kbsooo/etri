@@ -42,7 +42,7 @@ This adapter converts HS-JEPA Core into a sleep-log competition system by supply
 - Core/adapter boundary audit: `core_adapter_boundary_verified` (`6/6` checks)
 - Core operational violations: imports `0`, strings `0`
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
-- Big-bet queue: `big_bet_queue_ready` (`5` bets)
+- Big-bet queue: `big_bet_queue_ready` (`6` bets)
 
 ## Generality
 
@@ -81,6 +81,11 @@ partial human context
 - Masked full cell recall: `0.3289`
 - Masked human-only cell recall: `0.2713`
 - Masked group stress AUC: `0.5584`
+- Row-support strict action decoder: `row_support_action_decoder_alive_with_route_tradeoff`
+- Recommended action variant: `exploratory_route_support_gate`
+- Decoder changed cells: `34`
+- Decoder safety z / combined z: `3.6437` / `1.3787`
+- Decoder mean route gain: `0.02205`
 - Listener-invariant probe: `listener_invariant_decoder_not_ready`
 - Listener-route Spearman: `-0.0313`
 - Private-safe toxicity probe: `toxicity_field_promising_with_hardworld_gap`
@@ -90,7 +95,7 @@ partial human context
 - Broad toxicity -> H088 AUC: `0.3683`
 - Broad/H088 Spearman: `-0.4276`
 
-가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer와 masked-family objective에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원하고, human-only/prediction-only/masked-route view도 신호를 유지한다. 다만 subject/date/order held-out stress는 약하므로, 이 objective는 HS-JEPA representation target으로는 의미 있지만 action-grade decoder로 바로 승격하면 안 된다.
+가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor를 안전한 row-target action으로 번역하는 것이다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer와 masked-family objective에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원하고, human-only/prediction-only/masked-route view도 신호를 유지한다. 첫 strict action decoder는 null 대비 safety는 강하지만 route-gain 우위가 약하므로, HS-JEPA representation target으로는 의미 있고 LB sensor 후보로는 쓸 수 있어도 safe release decoder로는 아직 부족하다.
 
 ## Algorithm
 
@@ -106,10 +111,11 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 3. Estimate listener responsibility: which outcomes should react to the hidden state.
 4. Estimate action-health: whether the latent signal is safe to translate into output movement.
 5. Factorize action-health when shortcut modes are anti-correlated rather than scalar.
-6. Learn an invariant energy over valid output/action manifolds.
-7. Decode bounded actions that improve listener fit while preserving the invariant.
-8. Reject shortcuts with cohort/time/group/null stress tests.
-9. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.
+6. Translate row-support through a strict route-support action gate before changing outputs.
+7. Learn an invariant energy over valid output/action manifolds.
+8. Decode bounded actions that improve listener fit while preserving the invariant.
+9. Reject shortcuts with cohort/time/group/null stress tests.
+10. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.
 ```
 
 ## Evidence Snapshot
@@ -125,6 +131,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 - Assignment gap: `row_support_is_primary_bottleneck`, row-support gap `0.5832`
 - Hidden row-support sensor: `portable_row_support_sensor_alive_partial`, family `portable_row_support_composite`, row AUC `0.8193`, cell recall `0.3289`
 - Masked row-support objective: `masked_row_support_objective_supported_with_stress_boundary`, row AUC `0.8193`, cell recall `0.3289`, group stress AUC `0.5584`
+- Row-support action decoder: `row_support_action_decoder_alive_with_route_tradeoff`, recommended `exploratory_route_support_gate`, changed cells `34`, safety z `3.6437`, combined z `1.3787`
 
 ## Role-Based Outputs
 
@@ -146,6 +153,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 다음 큰 실험은 HS-JEPA core/adaptor 경계를 바꾸는 실험이어야 한다.
 
 - `OG-only Human-State Assignment Teacher`: The public-sensor teacher can be replaced by personal/cohort/time human-state consistency. Expected LB delta if true `-0.003`. Kill: Masked row-support keeps failing subject/date/order stress or cannot be converted into safe row-target actions.
+- `Masked Row-Support Action Decoder`: The masked row-support representation can choose which route-conserving S2/stage bundles are safe enough to move. Expected LB delta if true `-0.002`. Kill: Public LB worsens or route/null stress remains weak after increasing row-support selectivity.
 - `Listener-Invariant Contrastive Decoder`: A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone. Expected LB delta if true `-0.002`. Kill: Listener gain and invariant energy remain anti-correlated on strong candidates.
 - `Private-Safe Toxicity Field`: The plateau comes from actions that help public-like rows but poison private-like rows. Expected LB delta if true `-0.0015`. Kill: Toxicity score only recovers known public failures, fails hard-world anchors, or does not separate matched local nulls.
 - `Hard-World Mixture Toxicity Decoder`: H088-like hard-world toxicity is anti-correlated with broad public-bad toxicity, so action-health must be factorized. Expected LB delta if true `-0.0025`. Kill: Broad toxicity predicts H088 well, or mixture safety does not beat matched null after target/source matching.
@@ -181,3 +189,4 @@ Generated supporting reports:
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/assignment_gap_decomposition_probe.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/hidden_row_support_sensor_probe.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/masked_row_support_objective_probe.json`
+- `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/row_support_strict_action_decoder/row_support_strict_action_decoder_readout.json`
