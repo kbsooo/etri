@@ -30,19 +30,20 @@ historical experiment version names.  It executes:
 24. Negative-tangent invariant projection solver.
 25. LB-conditioned responsibility solver.
 26. Mixture-listener responsibility solver.
-27. Listener-invariant contrastive probe.
-28. Private-safe toxicity probe.
-29. Hard-world toxicity factorization probe.
-30. Factorized toxicity decoder candidate.
-31. Factorized toxicity decoder stress audit.
-32. Action decoder ablation suite.
-33. Generality report.
-34. Sleep competition adapter report and big-bet queue.
-35. Core/adapter boundary audit.
-36. Paper method packet.
-37. Pipeline manifest.
-38. Release checklist.
-39. A compact handoff report for paper and competition discussion.
+27. Public/private subset tomography solver.
+28. Listener-invariant contrastive probe.
+29. Private-safe toxicity probe.
+30. Hard-world toxicity factorization probe.
+31. Factorized toxicity decoder candidate.
+32. Factorized toxicity decoder stress audit.
+33. Action decoder ablation suite.
+34. Generality report.
+35. Sleep competition adapter report and big-bet queue.
+36. Core/adapter boundary audit.
+37. Paper method packet.
+38. Pipeline manifest.
+39. Release checklist.
+40. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -135,6 +136,12 @@ LB_CONDITIONED_RESPONSIBILITY_MD = ADAPTER_OUT / "lb_conditioned_responsibility_
 LB_CONDITIONED_RESPONSIBILITY_JSON = ADAPTER_OUT / "lb_conditioned_responsibility_solver" / "lb_conditioned_responsibility_readout.json"
 MIXTURE_LISTENER_RESPONSIBILITY_MD = ADAPTER_OUT / "mixture_listener_responsibility_solver" / "mixture_listener_responsibility_readout_ko.md"
 MIXTURE_LISTENER_RESPONSIBILITY_JSON = ADAPTER_OUT / "mixture_listener_responsibility_solver" / "mixture_listener_responsibility_readout.json"
+PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_MD = (
+    ADAPTER_OUT / "public_private_subset_tomography_solver" / "public_private_subset_tomography_readout_ko.md"
+)
+PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON = (
+    ADAPTER_OUT / "public_private_subset_tomography_solver" / "public_private_subset_tomography_readout.json"
+)
 ACTION_DECODER_ABLATION_MD = ADAPTER_OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite_ko.md"
 ACTION_DECODER_ABLATION_JSON = ADAPTER_OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_MD = ADAPTER_OUT / "listener_invariant_contrastive_probe_ko.md"
@@ -205,6 +212,7 @@ def build_handoff(
     negative_tangent_invariant: dict[str, object],
     lb_conditioned_responsibility: dict[str, object],
     mixture_listener_responsibility: dict[str, object],
+    public_private_subset_tomography: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -243,6 +251,11 @@ def build_handoff(
     mixture_recommended_variant = mixture_listener_responsibility.get("variants", {}).get(str(mixture_recommended), {})
     mixture_recommended_metrics = mixture_recommended_variant.get("metrics", {}) if isinstance(mixture_recommended_variant, dict) else {}
     mixture_recommended_submission = mixture_recommended_variant.get("submission", {}) if isinstance(mixture_recommended_variant, dict) else {}
+    subset_tomography_verdict = public_private_subset_tomography.get("verdict", {})
+    subset_tomography_recommended = subset_tomography_verdict.get("recommended_variant")
+    subset_tomography_variant = public_private_subset_tomography.get("variants", {}).get(str(subset_tomography_recommended), {})
+    subset_tomography_metrics = subset_tomography_variant.get("metrics", {}) if isinstance(subset_tomography_variant, dict) else {}
+    subset_tomography_submission = subset_tomography_variant.get("submission", {}) if isinstance(subset_tomography_variant, dict) else {}
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -337,6 +350,7 @@ def build_handoff(
             f"- Negative-tangent invariant projection: `{negative_projection_verdict.get('status')}`",
             f"- LB-conditioned responsibility solver: `{lb_responsibility_verdict.get('status')}`",
             f"- Mixture-listener responsibility solver: `{mixture_listener_verdict.get('status')}`",
+            f"- Public/private subset tomography solver: `{subset_tomography_verdict.get('status')}`",
             f"- Action decoder ablation suite: `{action_ablation_verdict.get('status')}`",
             f"- Listener-invariant contrastive probe: `{contrastive_verdict.get('status')}`",
             f"- Private-safe toxicity probe: `{toxicity_verdict.get('status')}`",
@@ -375,6 +389,7 @@ def build_handoff(
             "sleep_competition_adapter/outputs/negative_tangent_invariant_projection_solver/negative_tangent_invariant_projection_readout.md",
             "sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/lb_conditioned_responsibility_readout_ko.md",
             "sleep_competition_adapter/outputs/mixture_listener_responsibility_solver/mixture_listener_responsibility_readout_ko.md",
+            "sleep_competition_adapter/outputs/public_private_subset_tomography_solver/public_private_subset_tomography_readout_ko.md",
             "sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite_ko.md",
             "sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md",
             "sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md",
@@ -420,6 +435,7 @@ def build_handoff(
             f"- Negative-tangent invariant projection: recommended `{negative_projection_verdict.get('recommended_variant')}`, status `{negative_projection_verdict.get('status')}`",
             f"- LB-conditioned responsibility: recommended `{lb_recommended}`, file `{lb_recommended_submission.get('submission_file')}`, LOO corr `{lb_responsibility_fit.get('loo_corr')}`, changed cells `{lb_recommended_submission.get('changed_cells')}`",
             f"- Mixture-listener responsibility: recommended `{mixture_recommended}`, file `{mixture_recommended_submission.get('submission_file')}`, mixture LOO `{mixture_listener_responsibility.get('mixture_fit', {}).get('loo_corr')}`, scalar LOO `{mixture_listener_responsibility.get('mixture_fit', {}).get('scalar_fit', {}).get('loo_corr')}`, changed cells `{mixture_recommended_submission.get('changed_cells')}`",
+            f"- Public/private subset tomography: recommended `{subset_tomography_recommended}`, file `{subset_tomography_submission.get('submission_file')}`, source LOO `{public_private_subset_tomography.get('source_fit', {}).get('loo_corr')}`, changed cells `{subset_tomography_submission.get('changed_cells')}`, predicted delta `{subset_tomography_metrics.get('sum_predicted_public_delta')}`",
             f"- Action decoder ablation: recommended `{action_ablation_verdict.get('recommended_lb_sensor')}`, big bet `{action_ablation_verdict.get('big_bet_sensor')}`",
             f"- Listener-invariant boundary: listener-route rho `{contrastive_verdict.get('mean_listener_route_spearman'):.4f}`, contrastive overlap `{contrastive_verdict.get('mean_contrastive_overlap_rate'):.4f}`",
             f"- Private-safe toxicity boundary: mean LOO AUC `{toxicity_verdict.get('mean_loo_bad_anchor_auc'):.4f}`, worst LOO AUC `{toxicity_verdict.get('worst_loo_bad_anchor_auc'):.4f}`",
@@ -568,6 +584,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "negative_tangent_invariant_projection_solver.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "lb_conditioned_responsibility_solver.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "mixture_listener_responsibility_solver.py")],
+        [sys.executable, str(ROOT / "sleep_competition_adapter" / "public_private_subset_tomography_solver.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "listener_invariant_contrastive_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "private_safe_toxicity_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "hardworld_toxicity_factorization_probe.py")],
@@ -617,6 +634,7 @@ def run(refresh: bool = False) -> dict[str, object]:
     negative_tangent_invariant = read_json(NEGATIVE_TANGENT_INVARIANT_JSON)
     lb_conditioned_responsibility = read_json(LB_CONDITIONED_RESPONSIBILITY_JSON)
     mixture_listener_responsibility = read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON)
+    public_private_subset_tomography = read_json(PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -656,6 +674,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         negative_tangent_invariant,
         lb_conditioned_responsibility,
         mixture_listener_responsibility,
+        public_private_subset_tomography,
         action_decoder_ablation,
         contrastive_probe,
         private_toxicity_probe,
@@ -680,6 +699,11 @@ def run(refresh: bool = False) -> dict[str, object]:
     mixture_recommended_variant = mixture_listener_responsibility.get("variants", {}).get(str(mixture_recommended), {})
     mixture_recommended_metrics = mixture_recommended_variant.get("metrics", {}) if isinstance(mixture_recommended_variant, dict) else {}
     mixture_recommended_submission = mixture_recommended_variant.get("submission", {}) if isinstance(mixture_recommended_variant, dict) else {}
+    subset_tomography_verdict = public_private_subset_tomography.get("verdict", {})
+    subset_tomography_recommended = subset_tomography_verdict.get("recommended_variant")
+    subset_tomography_variant = public_private_subset_tomography.get("variants", {}).get(str(subset_tomography_recommended), {})
+    subset_tomography_metrics = subset_tomography_variant.get("metrics", {}) if isinstance(subset_tomography_variant, dict) else {}
+    subset_tomography_submission = subset_tomography_variant.get("submission", {}) if isinstance(subset_tomography_variant, dict) else {}
 
     handoff = {
         "package": "Route-Conserving S2 Bridge HS-JEPA",
@@ -831,6 +855,8 @@ def run(refresh: bool = False) -> dict[str, object]:
         "lb_conditioned_responsibility_predicted_loss_delta": lb_recommended_metrics.get("sum_predicted_loss_delta"),
         "mixture_listener_responsibility_md": str(MIXTURE_LISTENER_RESPONSIBILITY_MD.resolve()),
         "mixture_listener_responsibility_json": str(MIXTURE_LISTENER_RESPONSIBILITY_JSON.resolve()),
+        "public_private_subset_tomography_md": str(PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_MD.resolve()),
+        "public_private_subset_tomography_json": str(PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON.resolve()),
         "mixture_listener_responsibility_status": str(mixture_listener_verdict.get("status")),
         "mixture_listener_responsibility_recommended": mixture_recommended,
         "mixture_listener_responsibility_recommended_file": mixture_recommended_submission.get("submission_file"),
@@ -839,6 +865,12 @@ def run(refresh: bool = False) -> dict[str, object]:
         "mixture_listener_responsibility_changed_cells": mixture_recommended_submission.get("changed_cells"),
         "mixture_listener_responsibility_scalar_delta": mixture_recommended_metrics.get("sum_predicted_scalar_delta"),
         "mixture_listener_responsibility_mode_delta": mixture_recommended_metrics.get("sum_predicted_total_mode_delta"),
+        "public_private_subset_tomography_status": str(subset_tomography_verdict.get("status")),
+        "public_private_subset_tomography_recommended": subset_tomography_recommended,
+        "public_private_subset_tomography_recommended_file": subset_tomography_submission.get("submission_file"),
+        "public_private_subset_tomography_source_loo_corr": public_private_subset_tomography.get("source_fit", {}).get("loo_corr"),
+        "public_private_subset_tomography_changed_cells": subset_tomography_submission.get("changed_cells"),
+        "public_private_subset_tomography_predicted_loss_delta": subset_tomography_metrics.get("sum_predicted_public_delta"),
         "action_decoder_ablation_suite_status": str(action_decoder_ablation["verdict"]["status"]),
         "action_decoder_ablation_suite_recommended_lb_sensor": action_decoder_ablation["verdict"]["recommended_lb_sensor"],
         "action_decoder_ablation_suite_big_bet_sensor": action_decoder_ablation["verdict"]["big_bet_sensor"],

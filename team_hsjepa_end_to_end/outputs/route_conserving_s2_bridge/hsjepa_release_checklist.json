@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 85,
-  "total_checks": 85,
+  "passed_checks": 87,
+  "total_checks": 87,
   "required_failures": [],
   "checks": [
     {
@@ -230,6 +230,13 @@
       "evidence": "sleep_competition_adapter/outputs/mixture_listener_responsibility_solver/mixture_listener_responsibility_readout.json"
     },
     {
+      "check": "exists:public_private_subset_tomography_readout.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "sleep_competition_adapter/outputs/public_private_subset_tomography_solver/public_private_subset_tomography_readout.json"
+    },
+    {
       "check": "exists:hsjepa_action_decoder_ablation_suite.json",
       "status": "PASS",
       "passed": true,
@@ -388,7 +395,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=big_bet_queue_ready, count=19"
+      "evidence": "status=big_bet_queue_ready, count=20"
     },
     {
       "check": "og_only_assignment_probe_recorded",
@@ -524,6 +531,13 @@
       "evidence": "status=candidate_ready, recommended=target_listener_split_qs, mixture_loo=0.9578, scalar_loo=0.7300, cells=575"
     },
     {
+      "check": "public_private_subset_tomography_recorded",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=candidate_ready, recommended=subset_label_direction_jackpot, source_loo=0.7300, cells=115, ranking=[{'variant': 'subset_label_direction_jackpot', 'score': 1.8275616232340088}, {'variant': 'qs_dual_subset_route', 'score': 1.6944301570490845}, {'variant': 'private_safe_subset_equation', 'score': 0.9864632231581982}, {'variant': 'public_private_boundary_probe', 'score': 0.5309774006352582}, {'variant': 'orthogonal_private_rescue', 'score': 0.33254998922867607}]"
+    },
+    {
       "check": "listener_invariant_contrastive_probe_recorded",
       "status": "PASS",
       "passed": true,
@@ -584,7 +598,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=39, edges=133"
+      "evidence": "status=pipeline_ready_with_boundary, stages=40, edges=143"
     },
     {
       "check": "method_packet_presentable",

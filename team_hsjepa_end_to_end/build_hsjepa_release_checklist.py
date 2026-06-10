@@ -76,6 +76,13 @@ MIXTURE_LISTENER_RESPONSIBILITY_JSON = (
     / "mixture_listener_responsibility_solver"
     / "mixture_listener_responsibility_readout.json"
 )
+PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "public_private_subset_tomography_solver"
+    / "public_private_subset_tomography_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -150,6 +157,7 @@ def require_inputs() -> list[dict[str, object]]:
         NEGATIVE_TANGENT_INVARIANT_JSON,
         LB_CONDITIONED_RESPONSIBILITY_JSON,
         MIXTURE_LISTENER_RESPONSIBILITY_JSON,
+        PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -217,6 +225,7 @@ def build_checklist() -> dict[str, object]:
     negative_tangent_invariant = read_json(NEGATIVE_TANGENT_INVARIANT_JSON)
     lb_conditioned_responsibility = read_json(LB_CONDITIONED_RESPONSIBILITY_JSON)
     mixture_listener_responsibility = read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON)
+    public_private_subset_tomography = read_json(PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -254,6 +263,7 @@ def build_checklist() -> dict[str, object]:
     negative_projection_verdict = negative_tangent_invariant.get("verdict", {})
     lb_responsibility_verdict = lb_conditioned_responsibility.get("verdict", {})
     mixture_listener_verdict = mixture_listener_responsibility.get("verdict", {})
+    subset_tomography_verdict = public_private_subset_tomography.get("verdict", {})
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -781,6 +791,27 @@ def build_checklist() -> dict[str, object]:
                     f"mixture_loo={fmt(mixture_listener_responsibility.get('mixture_fit', {}).get('loo_corr'), 4)}, "
                     f"scalar_loo={fmt(mixture_listener_responsibility.get('mixture_fit', {}).get('scalar_fit', {}).get('loo_corr'), 4)}, "
                     f"cells={mixture_listener_responsibility.get('cell_count')}"
+                ),
+            ),
+            check(
+                "public_private_subset_tomography_recorded",
+                public_private_subset_tomography.get("experiment") == "Public/Private Subset Tomography Solver"
+                and subset_tomography_verdict.get("status") == "candidate_ready"
+                and subset_tomography_verdict.get("recommended_variant")
+                in public_private_subset_tomography.get("variants", {})
+                and float(public_private_subset_tomography.get("source_fit", {}).get("loo_corr", 0.0)) >= 0.70
+                and int(public_private_subset_tomography.get("cell_count", 0)) >= 1
+                and all(
+                    isinstance(item, dict)
+                    and item.get("submission", {}).get("validation", {}).get("upload_safe") is True
+                    for item in public_private_subset_tomography.get("variants", {}).values()
+                ),
+                (
+                    f"status={subset_tomography_verdict.get('status')}, "
+                    f"recommended={subset_tomography_verdict.get('recommended_variant')}, "
+                    f"source_loo={fmt(public_private_subset_tomography.get('source_fit', {}).get('loo_corr'), 4)}, "
+                    f"cells={public_private_subset_tomography.get('cell_count')}, "
+                    f"ranking={subset_tomography_verdict.get('ranking')}"
                 ),
             ),
             check(

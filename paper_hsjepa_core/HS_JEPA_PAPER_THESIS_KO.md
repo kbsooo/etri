@@ -195,6 +195,46 @@ human-state action should be decoded through latent listener mixtures,
 not through one monolithic public response gradient.
 ```
 
+### Contribution 10. External Listener Subset Tomography
+
+Mixture listener routing은 public response가 여러 listener의 합성일 수 있음을 보여준다.
+하지만 scalar public feedback에는 더 근본적인 불완전성이 있다.
+
+public LB는 모든 test row-target을 균일하게 말하지 않는다. 어떤 row-target은 public listener에 포함되어 강하게 말하고, 어떤 row-target은 private 또는 unobserved listener 쪽에 가까워 public scalar에는 거의 보이지 않을 수 있다.
+
+따라서 HS-JEPA의 다음 확장은 다음이다.
+
+```text
+scalar external feedback
+  -> public subset inclusion
+  -> hidden label direction
+  -> private-safety / toxicity filter
+  -> row-target action release
+```
+
+수면 대회 adapter에서는 다음 실험으로 구현했다.
+
+```bash
+python3 sleep_competition_adapter/public_private_subset_tomography_solver.py
+```
+
+이 모듈은 LB-conditioned responsibility cell을 다시 분해한다.
+
+- inclusion score: 이 row-target이 public listener에 포함되어 말해졌을 가능성
+- label direction confidence: scalar feedback이 암시하는 hidden label 방향의 신뢰도
+- private-safety score: public listener 밖에서도 보존될 가능성
+- toxicity score: 실패한 public/action-health 축과 공선적인 위험도
+
+핵심은 다음이다.
+
+```text
+external scalar feedback is not only a gradient;
+it is a partially observed listener equation.
+```
+
+이 contribution은 HS-JEPA를 단순한 latent predictor에서 한 단계 더 밀어붙인다.
+즉 representation을 예측하는 것에서 끝나지 않고, “누가 그 representation을 듣고 있었는가”와 “그 listener가 보지 못한 공간에서도 action이 건강한가”를 동시에 추정한다.
+
 ## 이번 대회에서 얻은 핵심 증거
 
 ### 증거 1. Direct JEPA latent label prediction은 실패했다
@@ -406,6 +446,58 @@ it may be a scalar projection of multiple latent listener heads.
 - public anchors의 scalar 정보만으로는 latent listener를 식별하기 부족하다.
 - 다음에는 private/public subset factorization 또는 richer human/social invariant가 필요하다.
 
+### 증거 10. Public/private subset은 scalar response보다 더 날카로운 병목이다
+
+Public/private subset tomography solver는 public scalar feedback을 `subset inclusion × hidden label direction`으로 다시 분해했다.
+
+```text
+anchor count: 26
+source responsibility LOO correlation: 0.7300
+candidate cells: 115
+recommended variant: subset_label_direction_jackpot
+changed cells: 18
+selected rows: 16
+sum predicted loss delta: -4.92956
+mean inclusion score: 0.7610
+mean label confidence: 0.8720
+mean private safety score: 0.5850
+mean toxicity score: 0.4250
+file: submission_hsjepa_subset_tomography_subset_label_direction_jackpot_d12af8ff_uploadsafe.csv
+```
+
+동시에 더 안전한 thesis sensor도 생성했다.
+
+```text
+variant: qs_dual_subset_route
+changed cells: 37
+sum predicted loss delta: -4.57917
+mean inclusion score: 0.6340
+mean label confidence: 0.7810
+mean private safety score: 0.6310
+mean toxicity score: 0.3760
+bad tangent cosine: -0.0392
+file: submission_hsjepa_subset_tomography_qs_dual_subset_route_288f1d64_uploadsafe.csv
+```
+
+해석:
+
+```text
+0.53급 breakthrough는 더 큰 encoder가 아니라,
+public listener가 말한 subset과 private-safe action subset을 분리하는 equation에서 나올 가능성이 높다.
+```
+
+이 후보가 public에서 좋아지면:
+
+- public LB는 단순한 loss gradient가 아니라 partial listener equation이라는 주장이 강해진다.
+- HS-JEPA의 listener responsibility는 subset membership, label direction, action-health를 동시에 풀어야 한다.
+- 논문 contribution은 `latent listener mixture`에서 `external listener tomography`까지 확장된다.
+
+나빠지면:
+
+- current public anchors는 subset inclusion을 descriptive하게 설명하지만 action-grade로 release하기에는 부족하다.
+- public/private split은 real이더라도, 현재 invariant가 private safety를 충분히 대변하지 못한다.
+- 다음에는 human-social/cohort invariant를 private-safety head에 더 직접적으로 넣어야 한다.
+
 ## 논문에서 과장하면 안 되는 것
 
 - HS-JEPA core만으로 현재 최고 LB를 바로 재현한다고 말하면 안 된다.
@@ -415,6 +507,7 @@ it may be a scalar projection of multiple latent listener heads.
 - invariant projection 후보가 public에서 검증되기 전까지, negative representation을 action-grade decoder라고 단정하면 안 된다.
 - LB-conditioned responsibility 후보가 public에서 검증되기 전까지, scalar public listener inversion을 portable decoder라고 말하면 안 된다.
 - mixture-listener 후보가 public에서 검증되기 전까지, latent listener mixture routing을 action-grade decoder라고 단정하면 안 된다.
+- subset tomography 후보가 public에서 검증되기 전까지, public/private listener equation을 action-grade decoder라고 단정하면 안 된다.
 
 ## 정확한 thesis 문장
 

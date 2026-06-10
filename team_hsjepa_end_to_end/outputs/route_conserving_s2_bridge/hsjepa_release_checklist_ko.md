@@ -5,7 +5,7 @@
 ## Verdict
 
 - Status: `release_ready_with_boundary`
-- Checks: `85/85` passed
+- Checks: `87/87` passed
 
 ## Required Failures
 
@@ -47,6 +47,7 @@
 | `exists:negative_tangent_invariant_projection_readout.json` | `PASS` | sleep_competition_adapter/outputs/negative_tangent_invariant_projection_solver/negative_tangent_invariant_projection_readout.json |
 | `exists:lb_conditioned_responsibility_readout.json` | `PASS` | sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/lb_conditioned_responsibility_readout.json |
 | `exists:mixture_listener_responsibility_readout.json` | `PASS` | sleep_competition_adapter/outputs/mixture_listener_responsibility_solver/mixture_listener_responsibility_readout.json |
+| `exists:public_private_subset_tomography_readout.json` | `PASS` | sleep_competition_adapter/outputs/public_private_subset_tomography_solver/public_private_subset_tomography_readout.json |
 | `exists:hsjepa_action_decoder_ablation_suite.json` | `PASS` | sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite.json |
 | `exists:listener_invariant_contrastive_probe.json` | `PASS` | sleep_competition_adapter/outputs/listener_invariant_contrastive_probe.json |
 | `exists:private_safe_toxicity_probe.json` | `PASS` | sleep_competition_adapter/outputs/private_safe_toxicity_probe.json |
@@ -69,7 +70,7 @@
 | `core_ablation_contract_present` | `PASS` | status=ablation_contract_ready, ablations=6 |
 | `core_reference_executable` | `PASS` | status=core_reference_ready, released=1, ablations=3 |
 | `core_module_benchmark_executable` | `PASS` | status=core_module_benchmark_ready, scenarios=5, full_f1=1.0000, action_health_fp_lift=9, invariant_fp_lift=1 |
-| `big_bet_queue_high_ceiling` | `PASS` | status=big_bet_queue_ready, count=19 |
+| `big_bet_queue_high_ceiling` | `PASS` | status=big_bet_queue_ready, count=20 |
 | `og_only_assignment_probe_recorded` | `PASS` | status=og_only_assignment_replacement_not_ready, pure_recall=0.0404, distilled_recall=0.1236 |
 | `assignment_gap_decomposition_recorded` | `PASS` | status=row_support_is_primary_bottleneck, portable=0.1063, row_oracle=0.6896, row_gap=0.5832 |
 | `hidden_row_support_sensor_recorded` | `PASS` | status=portable_row_support_sensor_alive_partial, family=portable_row_support_composite, row_auc=0.8193, cell_recall=0.3289, auc_z=6.4180 |
@@ -89,6 +90,7 @@
 | `negative_tangent_invariant_projection_recorded` | `PASS` | status=candidate_ready, recommended=subject_prior_safe_projection, projected=232, ranking=[{'variant': 'subject_prior_safe_projection', 'score': 0.25449167116425153}, {'variant': 'anti_tangent_invariant_projection', 'score': 0.23870131099839245}, {'variant': 'sign_equation_projection', 'score': 0.21487727900957238}, {'variant': 'energy_descent_negative_space', 'score': 0.20411530522715116}] |
 | `lb_conditioned_responsibility_recorded` | `PASS` | status=candidate_ready, recommended=pure_lb_gradient_jackpot, loo_corr=0.7300, cells=115 |
 | `mixture_listener_responsibility_recorded` | `PASS` | status=candidate_ready, recommended=target_listener_split_qs, mixture_loo=0.9578, scalar_loo=0.7300, cells=575 |
+| `public_private_subset_tomography_recorded` | `PASS` | status=candidate_ready, recommended=subset_label_direction_jackpot, source_loo=0.7300, cells=115, ranking=[{'variant': 'subset_label_direction_jackpot', 'score': 1.8275616232340088}, {'variant': 'qs_dual_subset_route', 'score': 1.6944301570490845}, {'variant': 'private_safe_subset_equation', 'score': 0.9864632231581982}, {'variant': 'public_private_boundary_probe', 'score': 0.5309774006352582}, {'variant': 'orthogonal_private_rescue', 'score': 0.33254998922867607}] |
 | `listener_invariant_contrastive_probe_recorded` | `PASS` | status=listener_invariant_decoder_not_ready, rho=-0.0313, overlap=0.2152 |
 | `private_safe_toxicity_probe_recorded` | `PASS` | status=toxicity_field_promising_with_hardworld_gap, mean_loo_auc=0.7880, worst_loo_auc=0.3683, safety_z=8.4589 |
 | `hardworld_toxicity_factorization_probe_recorded` | `PASS` | status=hardworld_mixture_factorization_required, broad_to_h088_auc=0.3683, rho=-0.4276, joint_z=7.1884 |
@@ -97,7 +99,7 @@
 | `roles_present` | `PASS` | roles=['competition_primary', 'human_state_probe', 'interpretable_s2_hub'] |
 | `role_based_output_names` | `PASS` | role_outputs={'competition_primary': 'submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv', 'interpretable_s2_hub': 'submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv', 'human_state_probe': 'submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv'} |
 | `all_role_submissions_upload_safe` | `PASS` | upload_roles=['competition_primary', 'human_state_probe', 'interpretable_s2_hub'] |
-| `pipeline_manifest_complete` | `PASS` | status=pipeline_ready_with_boundary, stages=39, edges=133 |
+| `pipeline_manifest_complete` | `PASS` | status=pipeline_ready_with_boundary, stages=40, edges=143 |
 | `method_packet_presentable` | `PASS` | title=Human-State JEPA: General Architecture with a Route-Conserving S2 Bridge Case Study |
 | `claim_boundary_honest` | `PASS` | pure_og=False, public_sensor=True, proprietary_embedding=False |
 

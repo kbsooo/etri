@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 39,
-  "edge_count": 133,
+  "stage_count": 40,
+  "edge_count": 143,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -550,9 +550,38 @@
       "boundary": "This is the next thesis-level sensor: if public LB accepts target-split routing, HS-JEPA moves from scalar listener responsibility to latent listener mixture routing."
     },
     {
+      "id": "public_private_subset_tomography_solver",
+      "name": "Public/Private Subset Tomography Solver",
+      "role": "Decomposes scalar public feedback into public subset inclusion, hidden label direction, private safety, and action toxicity before releasing row-target actions.",
+      "inputs": [
+        "public_score_ledger.csv",
+        "lb_conditioned_responsibility_readout.json",
+        "mixture_listener_responsibility_readout.json",
+        "spectral_public_tangent_readout.json",
+        "negative_tangent_invariant_projection_readout.json",
+        "route energy and subject-prior invariants"
+      ],
+      "outputs": [
+        "public_private_subset_tomography_readout_ko.md",
+        "submission_hsjepa_subset_tomography_subset_label_direction_jackpot_d12af8ff_uploadsafe.csv",
+        "submission_hsjepa_subset_tomography_private_safe_subset_equation_50a31b06_uploadsafe.csv",
+        "submission_hsjepa_subset_tomography_public_private_boundary_probe_ef6a50e5_uploadsafe.csv",
+        "submission_hsjepa_subset_tomography_qs_dual_subset_route_288f1d64_uploadsafe.csv",
+        "submission_hsjepa_subset_tomography_orthogonal_private_rescue_3ecd2055_uploadsafe.csv"
+      ],
+      "evidence": [
+        "Tomography status: candidate_ready",
+        "Recommended variant: subset_label_direction_jackpot",
+        "Source LOO corr: 0.7300",
+        "Cell count: 115",
+        "Top ranked: [{'variant': 'subset_label_direction_jackpot', 'score': 1.8275616232340088}, {'variant': 'qs_dual_subset_route', 'score': 1.6944301570490845}]"
+      ],
+      "boundary": "This is a public/private listener-equation sensor; public LB must decide whether the inferred subset/label decomposition is action-grade."
+    },
+    {
       "id": "action_decoder_ablation_suite",
       "name": "Action Decoder Ablation Suite",
-      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, listener-dropout, spectral, invariant-projection, LB-conditioned responsibility, and mixture-listener alternatives as HS-JEPA module ablations.",
+      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, listener-dropout, spectral, invariant-projection, LB-conditioned responsibility, mixture-listener, and public/private subset-tomography alternatives as HS-JEPA module ablations.",
       "inputs": [
         "row_support_strict_action_decoder_readout.json",
         "route_frontier_action_decoder_readout.json",
@@ -568,6 +597,7 @@
         "negative_tangent_invariant_projection_readout.json",
         "lb_conditioned_responsibility_readout.json",
         "mixture_listener_responsibility_readout.json",
+        "public_private_subset_tomography_readout.json",
         "factorized_toxicity_decoder_stress_audit.json"
       ],
       "outputs": [
@@ -807,7 +837,7 @@
       "evidence": [
         "Adapter status: adapter_ready_with_public_sensor_boundary",
         "Adapter score delta: -0.0084113555",
-        "Big-bet count: 19"
+        "Big-bet count: 20"
       ],
       "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
     },
@@ -1221,6 +1251,46 @@
       "claim_readiness_and_paper_packet"
     ],
     [
+      "public_lb_sensor",
+      "public_private_subset_tomography_solver"
+    ],
+    [
+      "lb_conditioned_responsibility_solver",
+      "public_private_subset_tomography_solver"
+    ],
+    [
+      "mixture_listener_responsibility_solver",
+      "public_private_subset_tomography_solver"
+    ],
+    [
+      "spectral_public_tangent_solver",
+      "public_private_subset_tomography_solver"
+    ],
+    [
+      "negative_tangent_invariant_projection_solver",
+      "public_private_subset_tomography_solver"
+    ],
+    [
+      "route_energy_model",
+      "public_private_subset_tomography_solver"
+    ],
+    [
+      "human_state_listener_context",
+      "public_private_subset_tomography_solver"
+    ],
+    [
+      "public_private_subset_tomography_solver",
+      "action_decoder_ablation_suite"
+    ],
+    [
+      "public_private_subset_tomography_solver",
+      "sleep_competition_adapter"
+    ],
+    [
+      "public_private_subset_tomography_solver",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
       "negative_tangent_invariant_projection_solver",
       "action_decoder_ablation_suite"
     ],
@@ -1430,7 +1500,7 @@
     "core_module_benchmark_invariant_fp_lift": 1,
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
     "core_adapter_boundary_status": "core_adapter_boundary_verified",
-    "big_bet_count": 19,
+    "big_bet_count": 20,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "assignment_gap_decomposition_status": "row_support_is_primary_bottleneck",
     "assignment_gap_mean_row_support_gap": 0.5832137733142038,
@@ -1982,6 +2052,20 @@
       {
         "variant": "mixture_consensus_jackpot",
         "score": 0.9939259735616299
+      }
+    ],
+    "public_private_subset_tomography_status": "candidate_ready",
+    "public_private_subset_tomography_recommended": "subset_label_direction_jackpot",
+    "public_private_subset_tomography_source_loo_corr": 0.7300005193514604,
+    "public_private_subset_tomography_cells": 115,
+    "public_private_subset_tomography_top_ranked": [
+      {
+        "variant": "subset_label_direction_jackpot",
+        "score": 1.8275616232340088
+      },
+      {
+        "variant": "qs_dual_subset_route",
+        "score": 1.6944301570490845
       }
     ],
     "action_decoder_ablation_suite_status": "action_decoder_ablation_ready_decoder_jury_leads",

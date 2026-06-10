@@ -84,6 +84,13 @@ MIXTURE_LISTENER_RESPONSIBILITY_JSON = (
     / "mixture_listener_responsibility_solver"
     / "mixture_listener_responsibility_readout.json"
 )
+PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "public_private_subset_tomography_solver"
+    / "public_private_subset_tomography_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -147,6 +154,7 @@ def require_inputs() -> None:
         NEGATIVE_TANGENT_INVARIANT_JSON,
         LB_CONDITIONED_RESPONSIBILITY_JSON,
         MIXTURE_LISTENER_RESPONSIBILITY_JSON,
+        PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -228,6 +236,7 @@ def build_manifest() -> dict[str, object]:
     negative_tangent_invariant = read_json(NEGATIVE_TANGENT_INVARIANT_JSON)
     lb_conditioned_responsibility = read_json(LB_CONDITIONED_RESPONSIBILITY_JSON)
     mixture_listener_responsibility = read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON)
+    public_private_subset_tomography = read_json(PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -258,6 +267,7 @@ def build_manifest() -> dict[str, object]:
     negative_projection_verdict = negative_tangent_invariant["verdict"]
     lb_responsibility_verdict = lb_conditioned_responsibility["verdict"]
     mixture_listener_verdict = mixture_listener_responsibility["verdict"]
+    subset_tomography_verdict = public_private_subset_tomography["verdict"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -708,9 +718,35 @@ def build_manifest() -> dict[str, object]:
             "This is the next thesis-level sensor: if public LB accepts target-split routing, HS-JEPA moves from scalar listener responsibility to latent listener mixture routing.",
         ),
         stage(
+            "public_private_subset_tomography_solver",
+            "Public/Private Subset Tomography Solver",
+            "Decomposes scalar public feedback into public subset inclusion, hidden label direction, private safety, and action toxicity before releasing row-target actions.",
+            [
+                "public_score_ledger.csv",
+                "lb_conditioned_responsibility_readout.json",
+                "mixture_listener_responsibility_readout.json",
+                "spectral_public_tangent_readout.json",
+                "negative_tangent_invariant_projection_readout.json",
+                "route energy and subject-prior invariants",
+            ],
+            ["public_private_subset_tomography_readout_ko.md", *[
+                str(item.get("submission", {}).get("submission_file"))
+                for item in public_private_subset_tomography.get("variants", {}).values()
+                if isinstance(item, dict) and item.get("submission", {}).get("submission_file")
+            ]],
+            [
+                f"Tomography status: {subset_tomography_verdict['status']}",
+                f"Recommended variant: {subset_tomography_verdict['recommended_variant']}",
+                f"Source LOO corr: {fmt(public_private_subset_tomography['source_fit']['loo_corr'], 4)}",
+                f"Cell count: {public_private_subset_tomography['cell_count']}",
+                f"Top ranked: {subset_tomography_verdict['ranking'][:2]}",
+            ],
+            "This is a public/private listener-equation sensor; public LB must decide whether the inferred subset/label decomposition is action-grade.",
+        ),
+        stage(
             "action_decoder_ablation_suite",
             "Action Decoder Ablation Suite",
-            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, listener-dropout, spectral, invariant-projection, LB-conditioned responsibility, and mixture-listener alternatives as HS-JEPA module ablations.",
+            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, listener-dropout, spectral, invariant-projection, LB-conditioned responsibility, mixture-listener, and public/private subset-tomography alternatives as HS-JEPA module ablations.",
             [
                 "row_support_strict_action_decoder_readout.json",
                 "route_frontier_action_decoder_readout.json",
@@ -726,6 +762,7 @@ def build_manifest() -> dict[str, object]:
                 "negative_tangent_invariant_projection_readout.json",
                 "lb_conditioned_responsibility_readout.json",
                 "mixture_listener_responsibility_readout.json",
+                "public_private_subset_tomography_readout.json",
                 "factorized_toxicity_decoder_stress_audit.json",
             ],
             ["hsjepa_action_decoder_ablation_suite_ko.md", "hsjepa_action_decoder_ablation_suite.csv"],
@@ -1022,6 +1059,16 @@ def build_manifest() -> dict[str, object]:
         ["mixture_listener_responsibility_solver", "action_decoder_ablation_suite"],
         ["mixture_listener_responsibility_solver", "sleep_competition_adapter"],
         ["mixture_listener_responsibility_solver", "claim_readiness_and_paper_packet"],
+        ["public_lb_sensor", "public_private_subset_tomography_solver"],
+        ["lb_conditioned_responsibility_solver", "public_private_subset_tomography_solver"],
+        ["mixture_listener_responsibility_solver", "public_private_subset_tomography_solver"],
+        ["spectral_public_tangent_solver", "public_private_subset_tomography_solver"],
+        ["negative_tangent_invariant_projection_solver", "public_private_subset_tomography_solver"],
+        ["route_energy_model", "public_private_subset_tomography_solver"],
+        ["human_state_listener_context", "public_private_subset_tomography_solver"],
+        ["public_private_subset_tomography_solver", "action_decoder_ablation_suite"],
+        ["public_private_subset_tomography_solver", "sleep_competition_adapter"],
+        ["public_private_subset_tomography_solver", "claim_readiness_and_paper_packet"],
         ["negative_tangent_invariant_projection_solver", "action_decoder_ablation_suite"],
         ["negative_tangent_invariant_projection_solver", "sleep_competition_adapter"],
         ["negative_tangent_invariant_projection_solver", "claim_readiness_and_paper_packet"],
@@ -1165,6 +1212,11 @@ def build_manifest() -> dict[str, object]:
             "mixture_listener_scalar_loo_corr": mixture_listener_responsibility["mixture_fit"]["scalar_fit"]["loo_corr"],
             "mixture_listener_cells": mixture_listener_responsibility["cell_count"],
             "mixture_listener_top_ranked": mixture_listener_verdict["ranking"][:2],
+            "public_private_subset_tomography_status": subset_tomography_verdict["status"],
+            "public_private_subset_tomography_recommended": subset_tomography_verdict["recommended_variant"],
+            "public_private_subset_tomography_source_loo_corr": public_private_subset_tomography["source_fit"]["loo_corr"],
+            "public_private_subset_tomography_cells": public_private_subset_tomography["cell_count"],
+            "public_private_subset_tomography_top_ranked": subset_tomography_verdict["ranking"][:2],
             "action_decoder_ablation_suite_status": action_ablation_verdict["status"],
             "action_decoder_ablation_suite_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_suite_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],
@@ -1251,6 +1303,12 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    B --> MLR',
             '    MLR --> ADA',
             '    MLR --> ADAPT',
+            '    MLR --> PST["Public/private subset tomography"]',
+            '    LBR --> PST',
+            '    NTP --> PST',
+            '    B --> PST',
+            '    PST --> ADA',
+            '    PST --> ADAPT',
             '    LBR --> ADA',
             '    LBR --> ADAPT',
             '    CLD --> ADA',

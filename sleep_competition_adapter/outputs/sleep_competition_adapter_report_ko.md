@@ -241,6 +241,26 @@ HS-JEPA should not convert one scalar listener observation directly into action;
 
 이 실험은 public LB를 단일 listener가 아니라 여러 latent listener head의 scalar readout으로 본다. 추천 `target_listener_split_qs`는 Q target은 residual listener, S target은 scalar/public consensus 쪽을 듣는다는 가설을 건다. public에서 좋아지면 HS-JEPA의 논문 기여는 `listener responsibility`에서 `latent listener mixture routing`으로 확장된다.
 
+## Public/Private Subset Tomography Solver
+
+- Status: `candidate_ready`
+- Recommended variant: `subset_label_direction_jackpot`
+- Anchor count: `26`
+- Cell count: `115`
+- Source responsibility LOO correlation: `0.7300`
+
+HS-JEPA can decompose scalar external feedback into public subset inclusion, hidden label direction, private-safety, and toxicity before releasing a row-target action.
+
+| Variant | Output | Changed cells | Public incl. | Label conf. | Private safe | Toxicity | Pred delta | Bad cosine | Upload-safe |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `subset_label_direction_jackpot` | `submission_hsjepa_subset_tomography_subset_label_direction_jackpot_d12af8ff_uploadsafe.csv` | `18` | `0.7612` | `0.8720` | `0.5847` | `0.4255` | `-4.92956` | `0.0498` | `True` |
+| `private_safe_subset_equation` | `submission_hsjepa_subset_tomography_private_safe_subset_equation_50a31b06_uploadsafe.csv` | `21` | `0.6500` | `0.8017` | `0.7087` | `0.2885` | `-2.11267` | `-0.0071` | `True` |
+| `public_private_boundary_probe` | `submission_hsjepa_subset_tomography_public_private_boundary_probe_ef6a50e5_uploadsafe.csv` | `8` | `0.7943` | `0.8852` | `0.3911` | `0.6293` | `-0.56022` | `0.1144` | `True` |
+| `qs_dual_subset_route` | `submission_hsjepa_subset_tomography_qs_dual_subset_route_288f1d64_uploadsafe.csv` | `37` | `0.6336` | `0.7805` | `0.6306` | `0.3756` | `-4.57917` | `-0.0392` | `True` |
+| `orthogonal_private_rescue` | `submission_hsjepa_subset_tomography_orthogonal_private_rescue_3ecd2055_uploadsafe.csv` | `2` | `0.5492` | `0.7450` | `0.6727` | `0.2313` | `-0.03017` | `-0.0051` | `True` |
+
+이 실험은 scalar public feedback을 그대로 action truth로 쓰지 않고, public subset inclusion, hidden label direction, private-safety, toxicity를 분리한다. 추천 `subset_label_direction_jackpot`이 좋아지면 public subset과 label direction 분해가 action-grade라는 뜻이고, `qs_dual_subset_route`가 상대적으로 낫다면 Q/S listener route 분리가 더 중요한 병목이라는 뜻이다.
+
 ## Action Decoder Ablation Suite
 
 - Status: `action_decoder_ablation_ready_decoder_jury_leads`

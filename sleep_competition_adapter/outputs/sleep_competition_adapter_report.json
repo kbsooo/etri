@@ -14096,6 +14096,115 @@
       }
     }
   },
+  "public_private_subset_tomography_solver": {
+    "experiment": "Public/Private Subset Tomography Solver",
+    "architecture_role": "competition_adapter_external_listener_tomography_head",
+    "core_claim": "HS-JEPA can decompose scalar external feedback into public subset inclusion, hidden label direction, private-safety, and toxicity before releasing a row-target action.",
+    "status": "candidate_ready",
+    "recommended_variant": "subset_label_direction_jackpot",
+    "reason": "Recommended by public-inclusion, label-direction confidence, private-safety, predicted public delta, and upload-safe validation.",
+    "anchor_count": 26,
+    "cell_count": 115,
+    "source_fit": {
+      "anchor_count": 26,
+      "feature_count": 115,
+      "ridge_values": [
+        0.35,
+        0.8,
+        1.6,
+        3.2
+      ],
+      "loo_corr": 0.7300005193514604,
+      "loo_mse": 0.482924866878181,
+      "loss_delta_min": 0.00015723090000008266,
+      "loss_delta_max": 0.013479733900000013,
+      "loss_delta_mean": 0.007230148834615433
+    },
+    "ranking": [
+      {
+        "variant": "subset_label_direction_jackpot",
+        "score": 1.8275616232340088
+      },
+      {
+        "variant": "qs_dual_subset_route",
+        "score": 1.6944301570490845
+      },
+      {
+        "variant": "private_safe_subset_equation",
+        "score": 0.9864632231581982
+      },
+      {
+        "variant": "public_private_boundary_probe",
+        "score": 0.5309774006352582
+      },
+      {
+        "variant": "orthogonal_private_rescue",
+        "score": 0.33254998922867607
+      }
+    ],
+    "variants": {
+      "subset_label_direction_jackpot": {
+        "submission_file": "submission_hsjepa_subset_tomography_subset_label_direction_jackpot_d12af8ff_uploadsafe.csv",
+        "changed_cells": 18,
+        "selected_rows": 16,
+        "mean_public_inclusion": 0.7611618357487923,
+        "mean_label_confidence": 0.8720081753994798,
+        "mean_private_safety": 0.5846585778597442,
+        "mean_toxicity": 0.4254775348562607,
+        "sum_predicted_public_delta": -4.929555282376722,
+        "bad_tangent_cosine": 0.04978114125800181,
+        "upload_safe": true
+      },
+      "private_safe_subset_equation": {
+        "submission_file": "submission_hsjepa_subset_tomography_private_safe_subset_equation_50a31b06_uploadsafe.csv",
+        "changed_cells": 21,
+        "selected_rows": 16,
+        "mean_public_inclusion": 0.6500207039337476,
+        "mean_label_confidence": 0.8017353081700909,
+        "mean_private_safety": 0.7087377786336481,
+        "mean_toxicity": 0.28854688923708993,
+        "sum_predicted_public_delta": -2.112668454386072,
+        "bad_tangent_cosine": -0.007103788132034178,
+        "upload_safe": true
+      },
+      "public_private_boundary_probe": {
+        "submission_file": "submission_hsjepa_subset_tomography_public_private_boundary_probe_ef6a50e5_uploadsafe.csv",
+        "changed_cells": 8,
+        "selected_rows": 8,
+        "mean_public_inclusion": 0.794320652173913,
+        "mean_label_confidence": 0.8851739130434783,
+        "mean_private_safety": 0.3910547527727346,
+        "mean_toxicity": 0.6292673716299753,
+        "sum_predicted_public_delta": -0.5602207634182067,
+        "bad_tangent_cosine": 0.11439138208402726,
+        "upload_safe": true
+      },
+      "qs_dual_subset_route": {
+        "submission_file": "submission_hsjepa_subset_tomography_qs_dual_subset_route_288f1d64_uploadsafe.csv",
+        "changed_cells": 37,
+        "selected_rows": 26,
+        "mean_public_inclusion": 0.6335628672150411,
+        "mean_label_confidence": 0.7805040224170658,
+        "mean_private_safety": 0.6306318517016055,
+        "mean_toxicity": 0.37561726161182346,
+        "sum_predicted_public_delta": -4.579169268026241,
+        "bad_tangent_cosine": -0.03918242859509566,
+        "upload_safe": true
+      },
+      "orthogonal_private_rescue": {
+        "submission_file": "submission_hsjepa_subset_tomography_orthogonal_private_rescue_3ecd2055_uploadsafe.csv",
+        "changed_cells": 2,
+        "selected_rows": 2,
+        "mean_public_inclusion": 0.5492173913043479,
+        "mean_label_confidence": 0.7449565217391304,
+        "mean_private_safety": 0.672690721040021,
+        "mean_toxicity": 0.23131331269724778,
+        "sum_predicted_public_delta": -0.030167246955945942,
+        "bad_tangent_cosine": -0.005145914579240352,
+        "upload_safe": true
+      }
+    }
+  },
   "action_decoder_ablation_suite": {
     "status": "action_decoder_ablation_ready_decoder_jury_leads",
     "recommended_lb_sensor": {

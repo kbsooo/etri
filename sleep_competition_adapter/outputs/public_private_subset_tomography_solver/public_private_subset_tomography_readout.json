@@ -1,0 +1,936 @@
+{
+  "experiment": "Public/Private Subset Tomography Solver",
+  "architecture_role": "competition_adapter_external_listener_tomography_head",
+  "core_claim": "HS-JEPA can decompose scalar external feedback into public subset inclusion, hidden label direction, private-safety, and toxicity before releasing a row-target action.",
+  "anchor_count": 26,
+  "cell_count": 115,
+  "spectral": {
+    "anchor_count": 26,
+    "first_mode_variance": 0.9628550254007645,
+    "top5_cumulative_variance": 0.9946826859769906,
+    "singular_values": [
+      3.9248700923283506,
+      0.42736505936128066,
+      0.3891499257724587,
+      0.3356759829624167,
+      0.24990018982496587,
+      0.16724030897803246,
+      0.13288948751368476,
+      0.11300586024023068
+    ],
+    "mean_bad_tangent_coord": 0.7500068848733459,
+    "min_bad_tangent_coord": -0.7172294112358857,
+    "max_bad_tangent_coord": 0.9995708377235418
+  },
+  "source_fit": {
+    "anchor_count": 26,
+    "feature_count": 115,
+    "ridge_values": [
+      0.35,
+      0.8,
+      1.6,
+      3.2
+    ],
+    "loo_corr": 0.7300005193514604,
+    "loo_mse": 0.482924866878181,
+    "loss_delta_min": 0.00015723090000008266,
+    "loss_delta_max": 0.013479733900000013,
+    "loss_delta_mean": 0.007230148834615433
+  },
+  "variants": {
+    "subset_label_direction_jackpot": {
+      "config": {
+        "name": "subset_label_direction_jackpot",
+        "worldview": "The public listener is sparse: trust high public-inclusion cells and their inferred label direction, even when private safety is only moderate.",
+        "mode": "public_first",
+        "max_cells": 88,
+        "max_cells_per_row": 3,
+        "min_public_inclusion": 0.66,
+        "min_label_confidence": 0.6,
+        "min_private_safety": 0.24,
+        "max_toxicity": 0.8,
+        "min_gap": -0.1,
+        "max_energy_delta": 0.04,
+        "max_subject_delta": 0.08,
+        "max_predicted_delta": -0.0006,
+        "step_floor": 0.022,
+        "step_scale": 0.48,
+        "step_cap": 0.66,
+        "target_caps": [
+          [
+            "Q1",
+            10
+          ],
+          [
+            "Q2",
+            18
+          ],
+          [
+            "Q3",
+            10
+          ],
+          [
+            "S1",
+            13
+          ],
+          [
+            "S2",
+            18
+          ],
+          [
+            "S3",
+            10
+          ],
+          [
+            "S4",
+            13
+          ]
+        ]
+      },
+      "submission": {
+        "variant": "subset_label_direction_jackpot",
+        "worldview": "The public listener is sparse: trust high public-inclusion cells and their inferred label direction, even when private safety is only moderate.",
+        "submission_file": "submission_hsjepa_subset_tomography_subset_label_direction_jackpot_d12af8ff_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/public_private_subset_tomography_solver/submission_hsjepa_subset_tomography_subset_label_direction_jackpot_d12af8ff_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_subset_tomography_subset_label_direction_jackpot_d12af8ff_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_subset_tomography_subset_label_direction_jackpot_d12af8ff_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 18,
+          "upload_safe": true
+        },
+        "changed_cells": 18,
+        "selected_rows": 16
+      },
+      "metrics": {
+        "cells": 18.0,
+        "rows": 16.0,
+        "mean_public_inclusion": 0.7611618357487923,
+        "mean_label_confidence": 0.8720081753994798,
+        "mean_private_safety": 0.5846585778597442,
+        "mean_toxicity": 0.4254775348562607,
+        "mean_gap": 0.17650325788904803,
+        "sum_predicted_public_delta": -4.929555282376722,
+        "mean_energy_delta": -0.03948983583829035,
+        "mean_subject_delta": 0.0013080730398325956,
+        "bad_tangent_cosine": 0.04978114125800181,
+        "q_rate": 0.05555555555555555
+      },
+      "stress": {
+        "actual": {
+          "cells": 18.0,
+          "rows": 16.0,
+          "mean_public_inclusion": 0.7611618357487923,
+          "mean_label_confidence": 0.8720081753994798,
+          "mean_private_safety": 0.5846585778597442,
+          "mean_toxicity": 0.4254775348562607,
+          "mean_gap": 0.17650325788904803,
+          "sum_predicted_public_delta": -4.929555282376722,
+          "mean_energy_delta": -0.03948983583829035,
+          "mean_subject_delta": 0.0013080730398325956,
+          "bad_tangent_cosine": 0.04978114125800181,
+          "q_rate": 0.05555555555555555
+        },
+        "tests": {
+          "mean_public_inclusion": {
+            "actual": 0.7611618357487923,
+            "null_mean": 0.7484246480331264,
+            "null_std": 0.006859906048888976,
+            "z": 1.8567583323868992,
+            "p": 0.07714285714285714
+          },
+          "mean_label_confidence": {
+            "actual": 0.8720081753994798,
+            "null_mean": 0.8565836067314327,
+            "null_std": 0.008071013124223899,
+            "z": 1.9111068747680053,
+            "p": 0.045714285714285714
+          },
+          "mean_private_safety": {
+            "actual": 0.5846585778597442,
+            "null_mean": 0.5792194177045866,
+            "null_std": 0.009705053947483883,
+            "z": 0.5604461535803931,
+            "p": 0.3628571428571429
+          },
+          "mean_toxicity": {
+            "actual": 0.4254775348562607,
+            "null_mean": 0.42532237099730974,
+            "null_std": 0.011806049198067986,
+            "z": 0.013142742025534806,
+            "p": 0.4942857142857143
+          },
+          "mean_gap": {
+            "actual": 0.17650325788904803,
+            "null_mean": 0.1692052303285397,
+            "null_std": 0.013709322605381562,
+            "z": 0.5323404934422868,
+            "p": 0.34
+          },
+          "sum_predicted_public_delta": {
+            "actual": -4.929555282376722,
+            "null_mean": -5.610665673112773,
+            "null_std": 0.5078820810442446,
+            "z": 1.3410797824086167,
+            "p": 0.8828571428571429
+          },
+          "mean_energy_delta": {
+            "actual": -0.03948983583829035,
+            "null_mean": -0.011879843369351595,
+            "null_std": 0.002842572801834187,
+            "z": -9.713029144274948,
+            "p": 0.0
+          },
+          "mean_subject_delta": {
+            "actual": 0.0013080730398325956,
+            "null_mean": 0.0012584267760452292,
+            "null_std": 0.00031299269514780477,
+            "z": 0.15861796315700596,
+            "p": 0.5457142857142857
+          },
+          "bad_tangent_cosine": {
+            "actual": 0.04978114125800181,
+            "null_mean": 0.0051926418238841384,
+            "null_std": 0.015774082679974436,
+            "z": 2.8266936555825084,
+            "p": 0.99
+          },
+          "q_rate": {
+            "actual": 0.05555555555555555,
+            "null_mean": 0.05555555555555557,
+            "null_std": 2.0831566720210538e-17,
+            "z": -0.9992854590012948,
+            "p": 1.0
+          }
+        }
+      }
+    },
+    "private_safe_subset_equation": {
+      "config": {
+        "name": "private_safe_subset_equation",
+        "worldview": "Public inclusion is useful only when the same cell is private-safe under action-health, route energy, and subject-prior invariants.",
+        "mode": "safety_first",
+        "max_cells": 42,
+        "max_cells_per_row": 2,
+        "min_public_inclusion": 0.48,
+        "min_label_confidence": 0.56,
+        "min_private_safety": 0.58,
+        "max_toxicity": 0.46,
+        "min_gap": -0.3,
+        "max_energy_delta": 0.01,
+        "max_subject_delta": 0.02,
+        "max_predicted_delta": -0.0002,
+        "step_floor": 0.016,
+        "step_scale": 0.3,
+        "step_cap": 0.42,
+        "target_caps": [
+          [
+            "Q1",
+            6
+          ],
+          [
+            "Q2",
+            10
+          ],
+          [
+            "Q3",
+            6
+          ],
+          [
+            "S1",
+            7
+          ],
+          [
+            "S2",
+            10
+          ],
+          [
+            "S3",
+            5
+          ],
+          [
+            "S4",
+            7
+          ]
+        ]
+      },
+      "submission": {
+        "variant": "private_safe_subset_equation",
+        "worldview": "Public inclusion is useful only when the same cell is private-safe under action-health, route energy, and subject-prior invariants.",
+        "submission_file": "submission_hsjepa_subset_tomography_private_safe_subset_equation_50a31b06_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/public_private_subset_tomography_solver/submission_hsjepa_subset_tomography_private_safe_subset_equation_50a31b06_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_subset_tomography_private_safe_subset_equation_50a31b06_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_subset_tomography_private_safe_subset_equation_50a31b06_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 21,
+          "upload_safe": true
+        },
+        "changed_cells": 21,
+        "selected_rows": 16
+      },
+      "metrics": {
+        "cells": 21.0,
+        "rows": 16.0,
+        "mean_public_inclusion": 0.6500207039337476,
+        "mean_label_confidence": 0.8017353081700909,
+        "mean_private_safety": 0.7087377786336481,
+        "mean_toxicity": 0.28854688923708993,
+        "mean_gap": -0.05871707469990068,
+        "sum_predicted_public_delta": -2.112668454386072,
+        "mean_energy_delta": -0.03383637407281926,
+        "mean_subject_delta": -0.00041339071723217835,
+        "bad_tangent_cosine": -0.007103788132034178,
+        "q_rate": 0.09523809523809523
+      },
+      "stress": {
+        "actual": {
+          "cells": 21.0,
+          "rows": 16.0,
+          "mean_public_inclusion": 0.6500207039337476,
+          "mean_label_confidence": 0.8017353081700909,
+          "mean_private_safety": 0.7087377786336481,
+          "mean_toxicity": 0.28854688923708993,
+          "mean_gap": -0.05871707469990068,
+          "sum_predicted_public_delta": -2.112668454386072,
+          "mean_energy_delta": -0.03383637407281926,
+          "mean_subject_delta": -0.00041339071723217835,
+          "bad_tangent_cosine": -0.007103788132034178,
+          "q_rate": 0.09523809523809523
+        },
+        "tests": {
+          "mean_public_inclusion": {
+            "actual": 0.6500207039337476,
+            "null_mean": 0.6382114758947057,
+            "null_std": 0.007838462672675031,
+            "z": 1.5065745072957906,
+            "p": 0.06
+          },
+          "mean_label_confidence": {
+            "actual": 0.8017353081700909,
+            "null_mean": 0.7895063781766888,
+            "null_std": 0.006158732127270999,
+            "z": 1.985624596213905,
+            "p": 0.014285714285714285
+          },
+          "mean_private_safety": {
+            "actual": 0.7087377786336481,
+            "null_mean": 0.699076911324449,
+            "null_std": 0.0050313705525312415,
+            "z": 1.9201263767660113,
+            "p": 0.022857142857142857
+          },
+          "mean_toxicity": {
+            "actual": 0.28854688923708993,
+            "null_mean": 0.3031259967891208,
+            "null_std": 0.007034436591697686,
+            "z": -2.0725337931452352,
+            "p": 0.017142857142857144
+          },
+          "mean_gap": {
+            "actual": -0.05871707469990068,
+            "null_mean": -0.06086543542974334,
+            "null_std": 0.005065824183532504,
+            "z": 0.42408908244908017,
+            "p": 0.38
+          },
+          "sum_predicted_public_delta": {
+            "actual": -2.112668454386072,
+            "null_mean": -1.8547122927563702,
+            "null_std": 0.1467365598215509,
+            "z": -1.7579542681347258,
+            "p": 0.014285714285714285
+          },
+          "mean_energy_delta": {
+            "actual": -0.03383637407281926,
+            "null_mean": -0.01591594091993673,
+            "null_std": 0.0019939177318078834,
+            "z": -8.987548917895468,
+            "p": 0.0
+          },
+          "mean_subject_delta": {
+            "actual": -0.00041339071723217835,
+            "null_mean": -0.00025907902654264704,
+            "null_std": 8.933221034582087e-05,
+            "z": -1.7273913865129198,
+            "p": 0.05
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.007103788132034178,
+            "null_mean": -0.00705849637645515,
+            "null_std": 0.0004200763697256554,
+            "z": -0.10781790846413668,
+            "p": 0.49142857142857144
+          },
+          "q_rate": {
+            "actual": 0.09523809523809523,
+            "null_mean": 0.09523809523809522,
+            "null_std": 1.3887711146807023e-17,
+            "z": 0.999285459001295,
+            "p": 1.0
+          }
+        }
+      }
+    },
+    "public_private_boundary_probe": {
+      "config": {
+        "name": "public_private_boundary_probe",
+        "worldview": "The largest hidden world is the conflict region: public-visible cells that look private-toxic.  Move them softly to test whether toxicity is a false veto or a real private boundary.",
+        "mode": "gap_probe",
+        "max_cells": 34,
+        "max_cells_per_row": 2,
+        "min_public_inclusion": 0.62,
+        "min_label_confidence": 0.55,
+        "min_private_safety": 0.1,
+        "max_toxicity": 1.0,
+        "min_gap": 0.18,
+        "max_energy_delta": 0.06,
+        "max_subject_delta": 0.12,
+        "max_predicted_delta": -0.0001,
+        "step_floor": 0.014,
+        "step_scale": 0.22,
+        "step_cap": 0.34,
+        "target_caps": [
+          [
+            "Q1",
+            5
+          ],
+          [
+            "Q2",
+            9
+          ],
+          [
+            "Q3",
+            5
+          ],
+          [
+            "S1",
+            5
+          ],
+          [
+            "S2",
+            9
+          ],
+          [
+            "S3",
+            5
+          ],
+          [
+            "S4",
+            5
+          ]
+        ]
+      },
+      "submission": {
+        "variant": "public_private_boundary_probe",
+        "worldview": "The largest hidden world is the conflict region: public-visible cells that look private-toxic.  Move them softly to test whether toxicity is a false veto or a real private boundary.",
+        "submission_file": "submission_hsjepa_subset_tomography_public_private_boundary_probe_ef6a50e5_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/public_private_subset_tomography_solver/submission_hsjepa_subset_tomography_public_private_boundary_probe_ef6a50e5_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_subset_tomography_public_private_boundary_probe_ef6a50e5_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_subset_tomography_public_private_boundary_probe_ef6a50e5_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 8,
+          "upload_safe": true
+        },
+        "changed_cells": 8,
+        "selected_rows": 8
+      },
+      "metrics": {
+        "cells": 8.0,
+        "rows": 8.0,
+        "mean_public_inclusion": 0.794320652173913,
+        "mean_label_confidence": 0.8851739130434783,
+        "mean_private_safety": 0.3910547527727346,
+        "mean_toxicity": 0.6292673716299753,
+        "mean_gap": 0.4032658994011785,
+        "sum_predicted_public_delta": -0.5602207634182067,
+        "mean_energy_delta": 0.004973549538824534,
+        "mean_subject_delta": 0.0006500982356637572,
+        "bad_tangent_cosine": 0.11439138208402726,
+        "q_rate": 0.0
+      },
+      "stress": {
+        "actual": {
+          "cells": 8.0,
+          "rows": 8.0,
+          "mean_public_inclusion": 0.794320652173913,
+          "mean_label_confidence": 0.8851739130434783,
+          "mean_private_safety": 0.3910547527727346,
+          "mean_toxicity": 0.6292673716299753,
+          "mean_gap": 0.4032658994011785,
+          "sum_predicted_public_delta": -0.5602207634182067,
+          "mean_energy_delta": 0.004973549538824534,
+          "mean_subject_delta": 0.0006500982356637572,
+          "bad_tangent_cosine": 0.11439138208402726,
+          "q_rate": 0.0
+        },
+        "tests": {
+          "mean_public_inclusion": {
+            "actual": 0.794320652173913,
+            "null_mean": 0.794320652173913,
+            "null_std": 5.1086070647455733e-17,
+            "z": 0.0,
+            "p": 1.0
+          },
+          "mean_label_confidence": {
+            "actual": 0.8851739130434783,
+            "null_mean": 0.8851739130434783,
+            "null_std": 8.260895424987504e-17,
+            "z": 0.0,
+            "p": 0.4471428571428571
+          },
+          "mean_private_safety": {
+            "actual": 0.3910547527727346,
+            "null_mean": 0.3910547527727345,
+            "null_std": 9.079510799630649e-17,
+            "z": 1.222778461445654,
+            "p": 0.5571428571428572
+          },
+          "mean_toxicity": {
+            "actual": 0.6292673716299753,
+            "null_mean": 0.6292673716299754,
+            "null_std": 9.803245824647296e-17,
+            "z": -1.1325055440656568,
+            "p": 0.7785714285714286
+          },
+          "mean_gap": {
+            "actual": 0.4032658994011785,
+            "null_mean": 0.4032658994011786,
+            "null_std": 5.555084458722809e-17,
+            "z": -0.999285459001295,
+            "p": 1.0
+          },
+          "sum_predicted_public_delta": {
+            "actual": -0.5602207634182067,
+            "null_mean": -0.6947036186220417,
+            "null_std": 0.08074676064365287,
+            "z": 1.665489168009194,
+            "p": 1.0
+          },
+          "mean_energy_delta": {
+            "actual": 0.004973549538824534,
+            "null_mean": 0.021726462050939314,
+            "null_std": 3.471927786701756e-18,
+            "z": -4825247972115695.0,
+            "p": 0.0
+          },
+          "mean_subject_delta": {
+            "actual": 0.0006500982356637572,
+            "null_mean": 0.0023251746315246136,
+            "null_std": 4.339909733377195e-19,
+            "z": -3859703308984169.5,
+            "p": 0.0
+          },
+          "bad_tangent_cosine": {
+            "actual": 0.11439138208402726,
+            "null_mean": 0.09077551554769515,
+            "null_std": 0.006833029817979729,
+            "z": 3.456133979423264,
+            "p": 1.0
+          },
+          "q_rate": {
+            "actual": 0.0,
+            "null_mean": 0.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          }
+        }
+      }
+    },
+    "qs_dual_subset_route": {
+      "config": {
+        "name": "qs_dual_subset_route",
+        "worldview": "Subjective Q targets should follow public-inclusion/label-direction, while objective S targets require private-safe route conservation.",
+        "mode": "qs_split",
+        "max_cells": 64,
+        "max_cells_per_row": 3,
+        "min_public_inclusion": 0.52,
+        "min_label_confidence": 0.55,
+        "min_private_safety": 0.34,
+        "max_toxicity": 0.68,
+        "min_gap": -0.18,
+        "max_energy_delta": 0.026,
+        "max_subject_delta": 0.052,
+        "max_predicted_delta": -0.0003,
+        "step_floor": 0.018,
+        "step_scale": 0.38,
+        "step_cap": 0.54,
+        "target_caps": [
+          [
+            "Q1",
+            9
+          ],
+          [
+            "Q2",
+            14
+          ],
+          [
+            "Q3",
+            9
+          ],
+          [
+            "S1",
+            9
+          ],
+          [
+            "S2",
+            14
+          ],
+          [
+            "S3",
+            7
+          ],
+          [
+            "S4",
+            9
+          ]
+        ]
+      },
+      "submission": {
+        "variant": "qs_dual_subset_route",
+        "worldview": "Subjective Q targets should follow public-inclusion/label-direction, while objective S targets require private-safe route conservation.",
+        "submission_file": "submission_hsjepa_subset_tomography_qs_dual_subset_route_288f1d64_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/public_private_subset_tomography_solver/submission_hsjepa_subset_tomography_qs_dual_subset_route_288f1d64_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_subset_tomography_qs_dual_subset_route_288f1d64_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_subset_tomography_qs_dual_subset_route_288f1d64_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 37,
+          "upload_safe": true
+        },
+        "changed_cells": 37,
+        "selected_rows": 26
+      },
+      "metrics": {
+        "cells": 37.0,
+        "rows": 26.0,
+        "mean_public_inclusion": 0.6335628672150411,
+        "mean_label_confidence": 0.7805040224170658,
+        "mean_private_safety": 0.6306318517016055,
+        "mean_toxicity": 0.37561726161182346,
+        "mean_gap": 0.0029310155134357886,
+        "sum_predicted_public_delta": -4.579169268026241,
+        "mean_energy_delta": -0.020952118480411654,
+        "mean_subject_delta": 0.0011840902387600357,
+        "bad_tangent_cosine": -0.03918242859509566,
+        "q_rate": 0.16216216216216217
+      },
+      "stress": {
+        "actual": {
+          "cells": 37.0,
+          "rows": 26.0,
+          "mean_public_inclusion": 0.6335628672150411,
+          "mean_label_confidence": 0.7805040224170658,
+          "mean_private_safety": 0.6306318517016055,
+          "mean_toxicity": 0.37561726161182346,
+          "mean_gap": 0.0029310155134357886,
+          "sum_predicted_public_delta": -4.579169268026241,
+          "mean_energy_delta": -0.020952118480411654,
+          "mean_subject_delta": 0.0011840902387600357,
+          "bad_tangent_cosine": -0.03918242859509566,
+          "q_rate": 0.16216216216216217
+        },
+        "tests": {
+          "mean_public_inclusion": {
+            "actual": 0.6335628672150411,
+            "null_mean": 0.6265061675339937,
+            "null_std": 0.005944743202318738,
+            "z": 1.187048698469419,
+            "p": 0.12857142857142856
+          },
+          "mean_label_confidence": {
+            "actual": 0.7805040224170658,
+            "null_mean": 0.7703706785811135,
+            "null_std": 0.005131045496785926,
+            "z": 1.9749082019054063,
+            "p": 0.014285714285714285
+          },
+          "mean_private_safety": {
+            "actual": 0.6306318517016055,
+            "null_mean": 0.59514293172516,
+            "null_std": 0.009127361698434358,
+            "z": 3.8881903828280473,
+            "p": 0.0
+          },
+          "mean_toxicity": {
+            "actual": 0.37561726161182346,
+            "null_mean": 0.4132943543378745,
+            "null_std": 0.010737444220621496,
+            "z": -3.5089442098047265,
+            "p": 0.0
+          },
+          "mean_gap": {
+            "actual": 0.0029310155134357886,
+            "null_mean": 0.03136323580883376,
+            "null_std": 0.008757845974077836,
+            "z": -3.2464855376029567,
+            "p": 1.0
+          },
+          "sum_predicted_public_delta": {
+            "actual": -4.579169268026241,
+            "null_mean": -5.161840658910765,
+            "null_std": 0.49661789476970636,
+            "z": 1.173279088452346,
+            "p": 0.8514285714285714
+          },
+          "mean_energy_delta": {
+            "actual": -0.020952118480411654,
+            "null_mean": -0.0035233687727709573,
+            "null_std": 0.002157781442761288,
+            "z": -8.07716173763054,
+            "p": 0.0
+          },
+          "mean_subject_delta": {
+            "actual": 0.0011840902387600357,
+            "null_mean": 0.0008431512596133718,
+            "null_std": 0.00020040457539677737,
+            "z": 1.7012534692466226,
+            "p": 0.9542857142857143
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.03918242859509566,
+            "null_mean": -0.05045009912442913,
+            "null_std": 0.013802574144218658,
+            "z": 0.8163455897140062,
+            "p": 0.6857142857142857
+          },
+          "q_rate": {
+            "actual": 0.16216216216216217,
+            "null_mean": 0.1621621621621622,
+            "null_std": 2.7775422293614047e-17,
+            "z": -0.999285459001295,
+            "p": 1.0
+          }
+        }
+      }
+    },
+    "orthogonal_private_rescue": {
+      "config": {
+        "name": "orthogonal_private_rescue",
+        "worldview": "If public subset tomography is overfit, the useful private action should live in cells with lower public inclusion but strong private safety and near-orthogonality to known bad public axes.",
+        "mode": "private_rescue",
+        "max_cells": 38,
+        "max_cells_per_row": 2,
+        "min_public_inclusion": 0.2,
+        "min_label_confidence": 0.5,
+        "min_private_safety": 0.64,
+        "max_toxicity": 0.35,
+        "min_gap": -1.0,
+        "max_energy_delta": 0.004,
+        "max_subject_delta": 0.01,
+        "max_predicted_delta": 0.0003,
+        "step_floor": 0.012,
+        "step_scale": 0.24,
+        "step_cap": 0.34,
+        "target_caps": [
+          [
+            "Q1",
+            5
+          ],
+          [
+            "Q2",
+            8
+          ],
+          [
+            "Q3",
+            5
+          ],
+          [
+            "S1",
+            6
+          ],
+          [
+            "S2",
+            8
+          ],
+          [
+            "S3",
+            4
+          ],
+          [
+            "S4",
+            6
+          ]
+        ]
+      },
+      "submission": {
+        "variant": "orthogonal_private_rescue",
+        "worldview": "If public subset tomography is overfit, the useful private action should live in cells with lower public inclusion but strong private safety and near-orthogonality to known bad public axes.",
+        "submission_file": "submission_hsjepa_subset_tomography_orthogonal_private_rescue_3ecd2055_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/public_private_subset_tomography_solver/submission_hsjepa_subset_tomography_orthogonal_private_rescue_3ecd2055_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_subset_tomography_orthogonal_private_rescue_3ecd2055_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_subset_tomography_orthogonal_private_rescue_3ecd2055_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 2,
+          "upload_safe": true
+        },
+        "changed_cells": 2,
+        "selected_rows": 2
+      },
+      "metrics": {
+        "cells": 2.0,
+        "rows": 2.0,
+        "mean_public_inclusion": 0.5492173913043479,
+        "mean_label_confidence": 0.7449565217391304,
+        "mean_private_safety": 0.672690721040021,
+        "mean_toxicity": 0.23131331269724778,
+        "mean_gap": -0.12347332973567321,
+        "sum_predicted_public_delta": -0.030167246955945942,
+        "mean_energy_delta": -0.01612944278081832,
+        "mean_subject_delta": -0.0009368129759955365,
+        "bad_tangent_cosine": -0.005145914579240352,
+        "q_rate": 0.5
+      },
+      "stress": {
+        "actual": {
+          "cells": 2.0,
+          "rows": 2.0,
+          "mean_public_inclusion": 0.5492173913043479,
+          "mean_label_confidence": 0.7449565217391304,
+          "mean_private_safety": 0.672690721040021,
+          "mean_toxicity": 0.23131331269724778,
+          "mean_gap": -0.12347332973567321,
+          "sum_predicted_public_delta": -0.030167246955945942,
+          "mean_energy_delta": -0.01612944278081832,
+          "mean_subject_delta": -0.0009368129759955365,
+          "bad_tangent_cosine": -0.005145914579240352,
+          "q_rate": 0.5
+        },
+        "tests": {
+          "mean_public_inclusion": {
+            "actual": 0.5492173913043479,
+            "null_mean": 0.5524178881987577,
+            "null_std": 0.0033050770927723523,
+            "z": -0.9683577128681111,
+            "p": 1.0
+          },
+          "mean_label_confidence": {
+            "actual": 0.7449565217391304,
+            "null_mean": 0.7463462111801241,
+            "null_std": 0.0014350992639669052,
+            "z": -0.968357712868119,
+            "p": 1.0
+          },
+          "mean_private_safety": {
+            "actual": 0.672690721040021,
+            "null_mean": 0.6687313437104793,
+            "null_std": 0.004088754885645044,
+            "z": 0.9683577128681646,
+            "p": 0.5157142857142857
+          },
+          "mean_toxicity": {
+            "actual": 0.23131331269724778,
+            "null_mean": 0.2230857152296593,
+            "null_std": 0.008496444400922286,
+            "z": 0.9683577128681462,
+            "p": 1.0
+          },
+          "mean_gap": {
+            "actual": -0.12347332973567321,
+            "null_mean": -0.11631345551172156,
+            "null_std": 0.007393831978417396,
+            "z": -0.9683577128681483,
+            "p": 1.0
+          },
+          "sum_predicted_public_delta": {
+            "actual": -0.030167246955945942,
+            "null_mean": -0.04631804310586312,
+            "null_std": 0.01667854340941906,
+            "z": 0.9683577128681488,
+            "p": 1.0
+          },
+          "mean_energy_delta": {
+            "actual": -0.01612944278081832,
+            "null_mean": -0.008108071988434364,
+            "null_std": 0.0013132494899624676,
+            "z": -6.108032672918233,
+            "p": 0.0
+          },
+          "mean_subject_delta": {
+            "actual": -0.0009368129759955365,
+            "null_mean": -0.0010357983323498014,
+            "null_std": 0.0006343795840590256,
+            "z": 0.15603490219674984,
+            "p": 0.48428571428571426
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.005145914579240352,
+            "null_mean": -0.00440427145592804,
+            "null_std": 0.0007658772305490942,
+            "z": -0.9683577128681488,
+            "p": 0.5157142857142857
+          },
+          "q_rate": {
+            "actual": 0.5,
+            "null_mean": 0.5,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          }
+        }
+      }
+    }
+  },
+  "verdict": {
+    "status": "candidate_ready",
+    "recommended_variant": "subset_label_direction_jackpot",
+    "reason": "Recommended by public-inclusion, label-direction confidence, private-safety, predicted public delta, and upload-safe validation.",
+    "ranking": [
+      {
+        "variant": "subset_label_direction_jackpot",
+        "score": 1.8275616232340088
+      },
+      {
+        "variant": "qs_dual_subset_route",
+        "score": 1.6944301570490845
+      },
+      {
+        "variant": "private_safe_subset_equation",
+        "score": 0.9864632231581982
+      },
+      {
+        "variant": "public_private_boundary_probe",
+        "score": 0.5309774006352582
+      },
+      {
+        "variant": "orthogonal_private_rescue",
+        "score": 0.33254998922867607
+      }
+    ]
+  },
+  "outputs": {
+    "readout_json": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/public_private_subset_tomography_solver/public_private_subset_tomography_readout.json",
+    "readout_md": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/public_private_subset_tomography_solver/public_private_subset_tomography_readout_ko.md",
+    "cells": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/public_private_subset_tomography_solver/public_private_subset_tomography_cells.csv",
+    "selected_cells": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/public_private_subset_tomography_solver/public_private_subset_tomography_selected_cells.csv",
+    "null_stress": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/public_private_subset_tomography_solver/public_private_subset_tomography_null_stress.csv"
+  }
+}
