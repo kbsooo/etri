@@ -3,6 +3,215 @@
   "status": "big_bet_queue_ready",
   "bets": [
     {
+      "id": "counterfactual_listener_dropout_solver",
+      "name": "Counterfactual Listener-Dropout Solver",
+      "worldview": "A healthy HS-JEPA action should survive when one listener is masked, while failed public sensors become action-toxicity evidence rather than discarded submissions.",
+      "core_modules_exercised": [
+        "listener_responsibility",
+        "action_health_decoder",
+        "invariant_energy",
+        "anti_shortcut_validation"
+      ],
+      "adapter_move": "Score route/fusion/listener actions under counterfactual listener dropout, then compare aggressive same-direction release against toxic-direction inversion.",
+      "why_big": "This turns HS-JEPA from a set of empirical adapters into a falsifiable architecture claim: robust action health is listener-invariant, not single-head score chasing.",
+      "expected_public_lb_delta_if_true": -0.003,
+      "latest_probe_status": "counterfactual_listener_dropout_ready",
+      "latest_probe_evidence": {
+        "recommended_information_sensor": {
+          "variant": "dropout_fullfield_aggressive",
+          "submission_file": "submission_hsjepa_counterfactual_listener_dropout_dropout_fullfield_aggressive_a433fbc0_uploadsafe.csv",
+          "priority": 1.2860211183353285
+        },
+        "recommended_thesis_sensor": {
+          "variant": "invariant_survivor",
+          "submission_file": "submission_hsjepa_counterfactual_listener_dropout_invariant_survivor_7cde1a77_uploadsafe.csv",
+          "priority": 0.05
+        },
+        "claim": "HS-JEPA should release row-target actions that survive counterfactual listener dropout and avoid directions marked toxic by previous public sensors.",
+        "top_ranked": [
+          {
+            "variant": "dropout_fullfield_aggressive",
+            "worldview": "Negative public sensors may have failed because they mixed good high-health cells with toxic extras; therefore release a larger listener-dropout field with only mild toxicity damping.",
+            "submission_file": "submission_hsjepa_counterfactual_listener_dropout_dropout_fullfield_aggressive_a433fbc0_uploadsafe.csv",
+            "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_counterfactual_listener_dropout_dropout_fullfield_aggressive_a433fbc0_uploadsafe.csv",
+            "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/counterfactual_listener_dropout_solver/submission_hsjepa_counterfactual_listener_dropout_dropout_fullfield_aggressive_a433fbc0_uploadsafe.csv",
+            "validation": {
+              "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_counterfactual_listener_dropout_dropout_fullfield_aggressive_a433fbc0_uploadsafe.csv",
+              "rows": 250,
+              "keys_match": true,
+              "duplicate_keys": 0,
+              "nan_cells": 0,
+              "min_prob": 4.939277944527429e-06,
+              "max_prob": 0.9999967514907456,
+              "changed_cells_vs_current_best": 17,
+              "upload_safe": true
+            },
+            "stress": {
+              "actual": {
+                "cells": 17.0,
+                "rows": 10.0,
+                "mean_listener_dropout_health": 0.5947189515439094,
+                "mean_dropout_min_score": 0.6540889067001443,
+                "mean_survival_count": 6.0,
+                "mean_same_negative_rank": 0.6898395721925134,
+                "mean_opposite_negative_rank": 0.4144385026737968,
+                "strict_rate": 0.9411764705882353,
+                "cross_family_rate": 1.0,
+                "s2_rate": 0.5294117647058824
+              },
+              "tests": {
+                "mean_listener_dropout_health": {
+                  "actual": 0.5947189515439094,
+                  "null_mean": 0.48260083967444006,
+                  "null_std": 0.023214378817039943,
+                  "z": 4.829683910696409,
+                  "p": 0.0
+                },
+                "mean_dropout_min_score": {
+                  "actual": 0.6540889067001443,
+                  "null_mean": 0.45467398092216466,
+                  "null_std": 0.03808562810957246,
+                  "z": 5.23596263672644,
+                  "p": 0.0
+                },
+                "mean_survival_count": {
+                  "actual": 6.0,
+                  "null_mean": 3.299176470588235,
+                  "null_std": 0.4855377845721964,
+                  "z": 5.5625403732305605,
+                  "p": 0.0
+                },
+                "mean_same_negative_rank": {
+                  "actual": 0.6898395721925134,
+                  "null_mean": 0.5627192513368984,
+                  "null_std": 0.045522077055095374,
+                  "z": 2.792498257532521,
+                  "p": 0.998
+                },
+                "mean_opposite_negative_rank": {
+                  "actual": 0.4144385026737968,
+                  "null_mean": 0.49463636363636365,
+                  "null_std": 0.03962737034502465,
+                  "z": -2.023799718838421,
+                  "p": 0.99
+                }
+              }
+            },
+            "priority": 1.2860211183353285,
+            "config": {
+              "name": "dropout_fullfield_aggressive",
+              "worldview": "Negative public sensors may have failed because they mixed good high-health cells with toxic extras; therefore release a larger listener-dropout field with only mild toxicity damping.",
+              "include_boundary_classes": [
+                "strict_jury",
+                "consensus_shadow"
+              ],
+              "max_cells": 22,
+              "min_survival_count": 5,
+              "min_dropout_score": 0.5,
+              "max_same_negative": 0.96,
+              "min_same_negative": 0.0,
+              "min_opposite_negative": 0.0,
+              "shrink": 0.38,
+              "rescue_opposite_negative": false,
+              "invert_action": false,
+              "require_cross_family": true
+            },
+            "rank": 1
+          },
+          {
+            "variant": "toxic_direction_inversion",
+            "worldview": "If listener-dropout healthy cells repeatedly align with bad public sensors, the hidden action may be on the wrong side of the public/private equation; test a small opposite-direction correction.",
+            "submission_file": "submission_hsjepa_counterfactual_listener_dropout_toxic_direction_inversion_f0101750_uploadsafe.csv",
+            "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_counterfactual_listener_dropout_toxic_direction_inversion_f0101750_uploadsafe.csv",
+            "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/counterfactual_listener_dropout_solver/submission_hsjepa_counterfactual_listener_dropout_toxic_direction_inversion_f0101750_uploadsafe.csv",
+            "validation": {
+              "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_counterfactual_listener_dropout_toxic_direction_inversion_f0101750_uploadsafe.csv",
+              "rows": 250,
+              "keys_match": true,
+              "duplicate_keys": 0,
+              "nan_cells": 0,
+              "min_prob": 4.939277944527429e-06,
+              "max_prob": 0.9999967514907456,
+              "changed_cells_vs_current_best": 15,
+              "upload_safe": true
+            },
+            "stress": {
+              "actual": {
+                "cells": 15.0,
+                "rows": 8.0,
+                "mean_listener_dropout_health": 0.598363908819028,
+                "mean_dropout_min_score": 0.6622827818171059,
+                "mean_survival_count": 6.0,
+                "mean_same_negative_rank": 0.7590909090909093,
+                "mean_opposite_negative_rank": 0.4515151515151516,
+                "strict_rate": 1.0,
+                "cross_family_rate": 1.0,
+                "s2_rate": 0.5333333333333333
+              },
+              "tests": {
+                "mean_listener_dropout_health": {
+                  "actual": 0.598363908819028,
+                  "null_mean": 0.4816161994046672,
+                  "null_std": 0.025911611743423407,
+                  "z": 4.5056135670137305,
+                  "p": 0.0
+                },
+                "mean_dropout_min_score": {
+                  "actual": 0.6622827818171059,
+                  "null_mean": 0.45574181724996005,
+                  "null_std": 0.04264728089760817,
+                  "z": 4.843004295233497,
+                  "p": 0.0
+                },
+                "mean_survival_count": {
+                  "actual": 6.0,
+                  "null_mean": 3.3211999999999997,
+                  "null_std": 0.5456529532605088,
+                  "z": 4.909347569719965,
+                  "p": 0.0
+                },
+                "mean_same_negative_rank": {
+                  "actual": 0.7590909090909093,
+                  "null_mean": 0.5720999999999999,
+                  "null_std": 0.0506951127004699,
+                  "z": 3.6885391733072543,
+                  "p": 1.0
+                },
+                "mean_opposite_negative_rank": {
+                  "actual": 0.4515151515151516,
+                  "null_mean": 0.4919454545454546,
+                  "null_std": 0.04336962894056921,
+                  "z": -0.9322261688174902,
+                  "p": 0.842
+                }
+              }
+            },
+            "priority": 1.264777041081208,
+            "config": {
+              "name": "toxic_direction_inversion",
+              "worldview": "If listener-dropout healthy cells repeatedly align with bad public sensors, the hidden action may be on the wrong side of the public/private equation; test a small opposite-direction correction.",
+              "include_boundary_classes": [
+                "strict_jury",
+                "consensus_shadow"
+              ],
+              "max_cells": 16,
+              "min_survival_count": 5,
+              "min_dropout_score": 0.5,
+              "max_same_negative": 1.0,
+              "min_same_negative": 0.55,
+              "min_opposite_negative": 0.0,
+              "shrink": 0.18,
+              "rescue_opposite_negative": false,
+              "invert_action": true,
+              "require_cross_family": true
+            },
+            "rank": 2
+          }
+        ]
+      },
+      "kill_criterion": "Aggressive listener-dropout and inversion both fail public LB, meaning listener-dropout geometry is not enough to solve the public/private row-target equation."
+    },
+    {
       "id": "action_decoder_ablation_suite",
       "name": "Action Decoder Ablation Suite",
       "worldview": "The next breakthrough comes from choosing the correct action-decoder order, not from adding more latent features.",
@@ -70,29 +279,6 @@
         "row_support_decoder_exploratory_combined_z": 1.3786879713623903
       },
       "kill_criterion": "Masked row-support keeps failing subject/date/order stress or cannot be converted into safe row-target actions."
-    },
-    {
-      "id": "masked_row_support_action_decoder",
-      "name": "Masked Row-Support Action Decoder",
-      "worldview": "The masked row-support representation can choose which route-conserving S2/stage bundles are safe enough to move.",
-      "core_modules_exercised": [
-        "masked_state_predictor",
-        "action_health_decoder",
-        "invariant_energy",
-        "anti_shortcut_validation"
-      ],
-      "adapter_move": "Gate route-conserving bridge bundles by transferred row-support and factorized broad/hard-world toxicity.",
-      "why_big": "If this survives LB, HS-JEPA has a concrete path from hidden representation to action-grade row-target decoding.",
-      "expected_public_lb_delta_if_true": -0.002,
-      "latest_probe_status": "row_support_action_decoder_alive_with_route_tradeoff",
-      "latest_probe_evidence": {
-        "recommended_variant": "exploratory_route_support_gate",
-        "exploratory_changed_cells": 34,
-        "exploratory_safety_z": 3.643701769206037,
-        "exploratory_combined_z": 1.3786879713623903,
-        "exploratory_mean_route_gain": 0.022053376043313
-      },
-      "kill_criterion": "Public LB worsens or route/null stress remains weak after increasing row-support selectivity."
     },
     {
       "id": "route_frontier_action_decoder",
@@ -225,6 +411,49 @@
         "claim": "Safe row-target assignment is a cross-decoder jury: route invariant proposes the action, factorized action-health confirms it, and only same-direction consensus is released."
       },
       "kill_criterion": "Public LB worsens or underperforms route-frontier, meaning consensus is too conservative or action-health removes useful route signal."
+    },
+    {
+      "id": "hardworld_mixture_toxicity_decoder",
+      "name": "Hard-World Mixture Toxicity Decoder",
+      "worldview": "H088-like hard-world toxicity is anti-correlated with broad public-bad toxicity, so action-health must be factorized.",
+      "core_modules_exercised": [
+        "action_health_decoder",
+        "anti_shortcut_validation",
+        "listener_responsibility"
+      ],
+      "adapter_move": "Replace scalar toxicity with a two-head broad-public/hard-world safety gate before row-target assignment.",
+      "why_big": "This directly targets the observed gap where broad toxicity generalizes but misses the H088 hard-world mode.",
+      "expected_public_lb_delta_if_true": -0.0025,
+      "latest_probe_status": "hardworld_mixture_factorization_required",
+      "latest_probe_evidence": {
+        "broad_predicts_hardworld_auc": 0.36828842798992056,
+        "broad_hardworld_spearman": -0.4276176291718262,
+        "selected_joint_safety_z": 7.188448059350422
+      },
+      "kill_criterion": "Broad toxicity predicts H088 well, or mixture safety does not beat matched null after target/source matching."
+    },
+    {
+      "id": "masked_row_support_action_decoder",
+      "name": "Masked Row-Support Action Decoder",
+      "worldview": "The masked row-support representation can choose which route-conserving S2/stage bundles are safe enough to move.",
+      "core_modules_exercised": [
+        "masked_state_predictor",
+        "action_health_decoder",
+        "invariant_energy",
+        "anti_shortcut_validation"
+      ],
+      "adapter_move": "Gate route-conserving bridge bundles by transferred row-support and factorized broad/hard-world toxicity.",
+      "why_big": "If this survives LB, HS-JEPA has a concrete path from hidden representation to action-grade row-target decoding.",
+      "expected_public_lb_delta_if_true": -0.002,
+      "latest_probe_status": "row_support_action_decoder_alive_with_route_tradeoff",
+      "latest_probe_evidence": {
+        "recommended_variant": "exploratory_route_support_gate",
+        "exploratory_changed_cells": 34,
+        "exploratory_safety_z": 3.643701769206037,
+        "exploratory_combined_z": 1.3786879713623903,
+        "exploratory_mean_route_gain": 0.022053376043313
+      },
+      "kill_criterion": "Public LB worsens or route/null stress remains weak after increasing row-support selectivity."
     },
     {
       "id": "decoder_boundary_tomography_solver",
@@ -633,27 +862,7 @@
         "selected_safety_z_vs_matched_null": 8.458947387257904
       },
       "kill_criterion": "Toxicity score only recovers known public failures, fails hard-world anchors, or does not separate matched local nulls."
-    },
-    {
-      "id": "hardworld_mixture_toxicity_decoder",
-      "name": "Hard-World Mixture Toxicity Decoder",
-      "worldview": "H088-like hard-world toxicity is anti-correlated with broad public-bad toxicity, so action-health must be factorized.",
-      "core_modules_exercised": [
-        "action_health_decoder",
-        "anti_shortcut_validation",
-        "listener_responsibility"
-      ],
-      "adapter_move": "Replace scalar toxicity with a two-head broad-public/hard-world safety gate before row-target assignment.",
-      "why_big": "This directly targets the observed gap where broad toxicity generalizes but misses the H088 hard-world mode.",
-      "expected_public_lb_delta_if_true": -0.0025,
-      "latest_probe_status": "hardworld_mixture_factorization_required",
-      "latest_probe_evidence": {
-        "broad_predicts_hardworld_auc": 0.36828842798992056,
-        "broad_hardworld_spearman": -0.4276176291718262,
-        "selected_joint_safety_z": 7.188448059350422
-      },
-      "kill_criterion": "Broad toxicity predicts H088 well, or mixture safety does not beat matched null after target/source matching."
     }
   ],
-  "count": 14
+  "count": 15
 }

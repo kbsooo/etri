@@ -71,9 +71,9 @@ CORE_MODULES = [
     {
         "id": "anti_shortcut_validation",
         "name": "Anti-Shortcut Validation",
-        "purpose": "Stress-test the representation and action field against nulls, cohort shifts, time shifts, and shortcut sensors.",
-        "input_contract": ["candidate action field", "null generator", "stress split definitions"],
-        "output_contract": ["shortcut verdict", "collapse verdict", "portability warning"],
+        "purpose": "Stress-test the representation and action field against nulls, cohort shifts, time shifts, counterfactual listener dropout, and shortcut sensors.",
+        "input_contract": ["candidate action field", "null generator", "stress split definitions", "listener mask definitions"],
+        "output_contract": ["shortcut verdict", "collapse verdict", "listener-dropout survival", "portability warning"],
         "failure_if_removed": "A lucky split or public-only shortcut can be mistaken for human-state understanding.",
     },
 ]
@@ -206,6 +206,7 @@ def build_ablation_contract() -> dict[str, object]:
             "invariant-energy removal loses null separation",
             "action-health removal increases toxic action rate",
             "listener removal hurts target/outcome routing",
+            "counterfactual listener-dropout exposes at least one single-listener shortcut or validates a robust action field",
             "anti-shortcut validation rejects at least one tempting but false shortcut",
         ],
     }

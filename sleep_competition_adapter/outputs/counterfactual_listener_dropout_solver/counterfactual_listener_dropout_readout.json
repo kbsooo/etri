@@ -1,0 +1,491 @@
+{
+  "experiment": "HS-JEPA Counterfactual Listener-Dropout Solver",
+  "architecture_role": "sleep_competition_adapter_listener_dropout_action_health_sensor",
+  "core_boundary": "Adapter-specific Q/S target names and public sensors stay outside hsjepa_core.",
+  "status": "counterfactual_listener_dropout_ready",
+  "negative_sensor_files": {
+    "target_listener_lift": "submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_jackpot_f2ab2816_uploadsafe.csv",
+    "cross_listener_shadow": "submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv",
+    "dual_head_pareto": "submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv",
+    "public_private_toxicity": "submission_hsjepa_public_private_toxicity_23c62cf4_uploadsafe.csv"
+  },
+  "positive_source_files": [
+    "submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+    "submission_hsjepa_decoder_jury_route_majority_fusion_confirmed_1caf57fb_uploadsafe.csv",
+    "submission_hsjepa_s2_driver_safe_route_fusion_6adf5b73_uploadsafe.csv",
+    "submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
+    "submission_hsjepa_seed_driver_safe_route_fusion_62429a06_uploadsafe.csv",
+    "submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv",
+    "submission_hsjepa_open_driver_safe_route_fusion_e50f0669_uploadsafe.csv",
+    "submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv"
+  ],
+  "verdict": {
+    "recommended_information_sensor": {
+      "variant": "dropout_fullfield_aggressive",
+      "submission_file": "submission_hsjepa_counterfactual_listener_dropout_dropout_fullfield_aggressive_a433fbc0_uploadsafe.csv",
+      "priority": 1.2860211183353285
+    },
+    "recommended_thesis_sensor": {
+      "variant": "invariant_survivor",
+      "submission_file": "submission_hsjepa_counterfactual_listener_dropout_invariant_survivor_7cde1a77_uploadsafe.csv",
+      "priority": 0.05
+    },
+    "claim": "HS-JEPA should release row-target actions that survive counterfactual listener dropout and avoid directions marked toxic by previous public sensors.",
+    "failure_interpretation": "A public failure means listener-dropout geometry is not sufficient for the public/private equation, or negative public sensors do not transfer as cell-level toxicity labels."
+  },
+  "ranking": [
+    {
+      "variant": "dropout_fullfield_aggressive",
+      "worldview": "Negative public sensors may have failed because they mixed good high-health cells with toxic extras; therefore release a larger listener-dropout field with only mild toxicity damping.",
+      "submission_file": "submission_hsjepa_counterfactual_listener_dropout_dropout_fullfield_aggressive_a433fbc0_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_counterfactual_listener_dropout_dropout_fullfield_aggressive_a433fbc0_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/counterfactual_listener_dropout_solver/submission_hsjepa_counterfactual_listener_dropout_dropout_fullfield_aggressive_a433fbc0_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_counterfactual_listener_dropout_dropout_fullfield_aggressive_a433fbc0_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 17,
+        "upload_safe": true
+      },
+      "stress": {
+        "actual": {
+          "cells": 17.0,
+          "rows": 10.0,
+          "mean_listener_dropout_health": 0.5947189515439094,
+          "mean_dropout_min_score": 0.6540889067001443,
+          "mean_survival_count": 6.0,
+          "mean_same_negative_rank": 0.6898395721925134,
+          "mean_opposite_negative_rank": 0.4144385026737968,
+          "strict_rate": 0.9411764705882353,
+          "cross_family_rate": 1.0,
+          "s2_rate": 0.5294117647058824
+        },
+        "tests": {
+          "mean_listener_dropout_health": {
+            "actual": 0.5947189515439094,
+            "null_mean": 0.48260083967444006,
+            "null_std": 0.023214378817039943,
+            "z": 4.829683910696409,
+            "p": 0.0
+          },
+          "mean_dropout_min_score": {
+            "actual": 0.6540889067001443,
+            "null_mean": 0.45467398092216466,
+            "null_std": 0.03808562810957246,
+            "z": 5.23596263672644,
+            "p": 0.0
+          },
+          "mean_survival_count": {
+            "actual": 6.0,
+            "null_mean": 3.299176470588235,
+            "null_std": 0.4855377845721964,
+            "z": 5.5625403732305605,
+            "p": 0.0
+          },
+          "mean_same_negative_rank": {
+            "actual": 0.6898395721925134,
+            "null_mean": 0.5627192513368984,
+            "null_std": 0.045522077055095374,
+            "z": 2.792498257532521,
+            "p": 0.998
+          },
+          "mean_opposite_negative_rank": {
+            "actual": 0.4144385026737968,
+            "null_mean": 0.49463636363636365,
+            "null_std": 0.03962737034502465,
+            "z": -2.023799718838421,
+            "p": 0.99
+          }
+        }
+      },
+      "priority": 1.2860211183353285,
+      "config": {
+        "name": "dropout_fullfield_aggressive",
+        "worldview": "Negative public sensors may have failed because they mixed good high-health cells with toxic extras; therefore release a larger listener-dropout field with only mild toxicity damping.",
+        "include_boundary_classes": [
+          "strict_jury",
+          "consensus_shadow"
+        ],
+        "max_cells": 22,
+        "min_survival_count": 5,
+        "min_dropout_score": 0.5,
+        "max_same_negative": 0.96,
+        "min_same_negative": 0.0,
+        "min_opposite_negative": 0.0,
+        "shrink": 0.38,
+        "rescue_opposite_negative": false,
+        "invert_action": false,
+        "require_cross_family": true
+      },
+      "rank": 1
+    },
+    {
+      "variant": "toxic_direction_inversion",
+      "worldview": "If listener-dropout healthy cells repeatedly align with bad public sensors, the hidden action may be on the wrong side of the public/private equation; test a small opposite-direction correction.",
+      "submission_file": "submission_hsjepa_counterfactual_listener_dropout_toxic_direction_inversion_f0101750_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_counterfactual_listener_dropout_toxic_direction_inversion_f0101750_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/counterfactual_listener_dropout_solver/submission_hsjepa_counterfactual_listener_dropout_toxic_direction_inversion_f0101750_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_counterfactual_listener_dropout_toxic_direction_inversion_f0101750_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 15,
+        "upload_safe": true
+      },
+      "stress": {
+        "actual": {
+          "cells": 15.0,
+          "rows": 8.0,
+          "mean_listener_dropout_health": 0.598363908819028,
+          "mean_dropout_min_score": 0.6622827818171059,
+          "mean_survival_count": 6.0,
+          "mean_same_negative_rank": 0.7590909090909093,
+          "mean_opposite_negative_rank": 0.4515151515151516,
+          "strict_rate": 1.0,
+          "cross_family_rate": 1.0,
+          "s2_rate": 0.5333333333333333
+        },
+        "tests": {
+          "mean_listener_dropout_health": {
+            "actual": 0.598363908819028,
+            "null_mean": 0.4816161994046672,
+            "null_std": 0.025911611743423407,
+            "z": 4.5056135670137305,
+            "p": 0.0
+          },
+          "mean_dropout_min_score": {
+            "actual": 0.6622827818171059,
+            "null_mean": 0.45574181724996005,
+            "null_std": 0.04264728089760817,
+            "z": 4.843004295233497,
+            "p": 0.0
+          },
+          "mean_survival_count": {
+            "actual": 6.0,
+            "null_mean": 3.3211999999999997,
+            "null_std": 0.5456529532605088,
+            "z": 4.909347569719965,
+            "p": 0.0
+          },
+          "mean_same_negative_rank": {
+            "actual": 0.7590909090909093,
+            "null_mean": 0.5720999999999999,
+            "null_std": 0.0506951127004699,
+            "z": 3.6885391733072543,
+            "p": 1.0
+          },
+          "mean_opposite_negative_rank": {
+            "actual": 0.4515151515151516,
+            "null_mean": 0.4919454545454546,
+            "null_std": 0.04336962894056921,
+            "z": -0.9322261688174902,
+            "p": 0.842
+          }
+        }
+      },
+      "priority": 1.264777041081208,
+      "config": {
+        "name": "toxic_direction_inversion",
+        "worldview": "If listener-dropout healthy cells repeatedly align with bad public sensors, the hidden action may be on the wrong side of the public/private equation; test a small opposite-direction correction.",
+        "include_boundary_classes": [
+          "strict_jury",
+          "consensus_shadow"
+        ],
+        "max_cells": 16,
+        "min_survival_count": 5,
+        "min_dropout_score": 0.5,
+        "max_same_negative": 1.0,
+        "min_same_negative": 0.55,
+        "min_opposite_negative": 0.0,
+        "shrink": 0.18,
+        "rescue_opposite_negative": false,
+        "invert_action": true,
+        "require_cross_family": true
+      },
+      "rank": 2
+    },
+    {
+      "variant": "negative_space_rescue",
+      "worldview": "Bad public sensors may reveal the wrong side of the action manifold; cells with route support and opposite negative-sensor direction are rescue candidates.",
+      "submission_file": "submission_hsjepa_counterfactual_listener_dropout_negative_space_rescue_d2465fcd_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_counterfactual_listener_dropout_negative_space_rescue_d2465fcd_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/counterfactual_listener_dropout_solver/submission_hsjepa_counterfactual_listener_dropout_negative_space_rescue_d2465fcd_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_counterfactual_listener_dropout_negative_space_rescue_d2465fcd_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 1,
+        "upload_safe": true
+      },
+      "stress": {
+        "actual": {
+          "cells": 1.0,
+          "rows": 1.0,
+          "mean_listener_dropout_health": 0.5100825602408017,
+          "mean_dropout_min_score": 0.45333185559987904,
+          "mean_survival_count": 5.0,
+          "mean_same_negative_rank": 0.20454545454545456,
+          "mean_opposite_negative_rank": 0.38636363636363635,
+          "strict_rate": 0.0,
+          "cross_family_rate": 1.0,
+          "s2_rate": 0.0
+        },
+        "tests": {
+          "mean_listener_dropout_health": {
+            "actual": 0.5100825602408017,
+            "null_mean": 0.44171427039371547,
+            "null_std": 0.13980879725247003,
+            "z": 0.4890127888277669,
+            "p": 0.528
+          },
+          "mean_dropout_min_score": {
+            "actual": 0.45333185559987904,
+            "null_mean": 0.39702289693419857,
+            "null_std": 0.22447298410898722,
+            "z": 0.2508496017424577,
+            "p": 0.608
+          },
+          "mean_survival_count": {
+            "actual": 5.0,
+            "null_mean": 3.47,
+            "null_std": 2.8115671465642214,
+            "z": 0.5441804944511759,
+            "p": 0.608
+          },
+          "mean_same_negative_rank": {
+            "actual": 0.20454545454545456,
+            "null_mean": 0.5750909090909092,
+            "null_std": 0.28532895111547346,
+            "z": -1.2986605568654468,
+            "p": 0.098
+          },
+          "mean_opposite_negative_rank": {
+            "actual": 0.38636363636363635,
+            "null_mean": 0.4685000000000001,
+            "null_std": 0.17847543740498928,
+            "z": -0.460211023043934,
+            "p": 1.0
+          }
+        }
+      },
+      "priority": 0.1825543878343121,
+      "config": {
+        "name": "negative_space_rescue",
+        "worldview": "Bad public sensors may reveal the wrong side of the action manifold; cells with route support and opposite negative-sensor direction are rescue candidates.",
+        "include_boundary_classes": [
+          "consensus_shadow",
+          "route_only",
+          "fusion_only"
+        ],
+        "max_cells": 24,
+        "min_survival_count": 2,
+        "min_dropout_score": 0.42,
+        "max_same_negative": 0.24,
+        "min_same_negative": 0.0,
+        "min_opposite_negative": 0.3,
+        "shrink": 0.46,
+        "rescue_opposite_negative": true,
+        "invert_action": false,
+        "require_cross_family": false
+      },
+      "rank": 3
+    },
+    {
+      "variant": "invariant_survivor",
+      "worldview": "Healthy actions are those selected by route/fusion structure and still coherent after target-listener or anti-shortcut evidence is masked.",
+      "submission_file": "submission_hsjepa_counterfactual_listener_dropout_invariant_survivor_7cde1a77_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_counterfactual_listener_dropout_invariant_survivor_7cde1a77_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/counterfactual_listener_dropout_solver/submission_hsjepa_counterfactual_listener_dropout_invariant_survivor_7cde1a77_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_counterfactual_listener_dropout_invariant_survivor_7cde1a77_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 0,
+        "upload_safe": true
+      },
+      "stress": {
+        "actual": {
+          "cells": 0.0,
+          "rows": 0.0,
+          "mean_listener_dropout_health": 0.0,
+          "mean_dropout_min_score": 0.0,
+          "mean_survival_count": 0.0,
+          "mean_same_negative_rank": 0.0,
+          "mean_opposite_negative_rank": 0.0,
+          "strict_rate": 0.0,
+          "cross_family_rate": 0.0,
+          "s2_rate": 0.0
+        },
+        "tests": {
+          "mean_listener_dropout_health": {
+            "actual": 0.0,
+            "null_mean": 0.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          },
+          "mean_dropout_min_score": {
+            "actual": 0.0,
+            "null_mean": 0.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          },
+          "mean_survival_count": {
+            "actual": 0.0,
+            "null_mean": 0.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          },
+          "mean_same_negative_rank": {
+            "actual": 0.0,
+            "null_mean": 0.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          },
+          "mean_opposite_negative_rank": {
+            "actual": 0.0,
+            "null_mean": 0.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          }
+        }
+      },
+      "priority": 0.05,
+      "config": {
+        "name": "invariant_survivor",
+        "worldview": "Healthy actions are those selected by route/fusion structure and still coherent after target-listener or anti-shortcut evidence is masked.",
+        "include_boundary_classes": [
+          "strict_jury",
+          "consensus_shadow"
+        ],
+        "max_cells": 26,
+        "min_survival_count": 4,
+        "min_dropout_score": 0.54,
+        "max_same_negative": 0.18,
+        "min_same_negative": 0.0,
+        "min_opposite_negative": 0.0,
+        "shrink": 0.78,
+        "rescue_opposite_negative": false,
+        "invert_action": false,
+        "require_cross_family": true
+      },
+      "rank": 4
+    },
+    {
+      "variant": "anti_listener_toxicity_veto",
+      "worldview": "The public failure of listener-confirmed shadow actions is a toxicity label; release only route/fusion actions that are not co-linear with those negative sensors.",
+      "submission_file": "submission_hsjepa_counterfactual_listener_dropout_anti_listener_toxicity_veto_7cde1a77_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_counterfactual_listener_dropout_anti_listener_toxicity_veto_7cde1a77_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/counterfactual_listener_dropout_solver/submission_hsjepa_counterfactual_listener_dropout_anti_listener_toxicity_veto_7cde1a77_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_counterfactual_listener_dropout_anti_listener_toxicity_veto_7cde1a77_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 0,
+        "upload_safe": true
+      },
+      "stress": {
+        "actual": {
+          "cells": 0.0,
+          "rows": 0.0,
+          "mean_listener_dropout_health": 0.0,
+          "mean_dropout_min_score": 0.0,
+          "mean_survival_count": 0.0,
+          "mean_same_negative_rank": 0.0,
+          "mean_opposite_negative_rank": 0.0,
+          "strict_rate": 0.0,
+          "cross_family_rate": 0.0,
+          "s2_rate": 0.0
+        },
+        "tests": {
+          "mean_listener_dropout_health": {
+            "actual": 0.0,
+            "null_mean": 0.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          },
+          "mean_dropout_min_score": {
+            "actual": 0.0,
+            "null_mean": 0.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          },
+          "mean_survival_count": {
+            "actual": 0.0,
+            "null_mean": 0.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          },
+          "mean_same_negative_rank": {
+            "actual": 0.0,
+            "null_mean": 0.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          },
+          "mean_opposite_negative_rank": {
+            "actual": 0.0,
+            "null_mean": 0.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          }
+        }
+      },
+      "priority": 0.05,
+      "config": {
+        "name": "anti_listener_toxicity_veto",
+        "worldview": "The public failure of listener-confirmed shadow actions is a toxicity label; release only route/fusion actions that are not co-linear with those negative sensors.",
+        "include_boundary_classes": [
+          "strict_jury",
+          "consensus_shadow",
+          "route_only"
+        ],
+        "max_cells": 30,
+        "min_survival_count": 3,
+        "min_dropout_score": 0.48,
+        "max_same_negative": 0.1,
+        "min_same_negative": 0.0,
+        "min_opposite_negative": 0.0,
+        "shrink": 0.72,
+        "rescue_opposite_negative": false,
+        "invert_action": false,
+        "require_cross_family": false
+      },
+      "rank": 5
+    }
+  ],
+  "outputs": {
+    "json": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/counterfactual_listener_dropout_solver/counterfactual_listener_dropout_readout.json",
+    "markdown": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/counterfactual_listener_dropout_solver/counterfactual_listener_dropout_readout_ko.md",
+    "cells": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/counterfactual_listener_dropout_solver/counterfactual_listener_dropout_cells.csv",
+    "null_stress": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/counterfactual_listener_dropout_solver/counterfactual_listener_dropout_null_stress.csv"
+  }
+}

@@ -23,4 +23,5 @@ Make the HS-JEPA mechanism falsifiable instead of only descriptive.
 - invariant-energy removal loses null separation
 - action-health removal increases toxic action rate
 - listener removal hurts target/outcome routing
+- counterfactual listener-dropout exposes at least one single-listener shortcut or validates a robust action field
 - anti-shortcut validation rejects at least one tempting but false shortcut

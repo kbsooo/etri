@@ -83,15 +83,17 @@
     {
       "id": "anti_shortcut_validation",
       "name": "Anti-Shortcut Validation",
-      "purpose": "Stress-test the representation and action field against nulls, cohort shifts, time shifts, and shortcut sensors.",
+      "purpose": "Stress-test the representation and action field against nulls, cohort shifts, time shifts, counterfactual listener dropout, and shortcut sensors.",
       "input_contract": [
         "candidate action field",
         "null generator",
-        "stress split definitions"
+        "stress split definitions",
+        "listener mask definitions"
       ],
       "output_contract": [
         "shortcut verdict",
         "collapse verdict",
+        "listener-dropout survival",
         "portability warning"
       ],
       "failure_if_removed": "A lucky split or public-only shortcut can be mistaken for human-state understanding."

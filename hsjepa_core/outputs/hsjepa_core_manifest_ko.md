@@ -21,7 +21,7 @@ partial_human_context -> hidden_human_state -> listener_responsibility -> action
 | `Listener Responsibility` | Treat labels, sensors, surveys, or outcomes as listeners that react differently to the same human state. | listener responsibility distribution, listener-specific uncertainty | The architecture becomes a flat multi-label classifier with no explanation of which outcome should react. |
 | `Action-Health Decoder` | Decide whether a latent signal is healthy enough to translate into an output action. | action-health score, toxicity/risk flag, bounded action amplitude | Good-looking latent signals become unsafe output moves and overfit shortcut regions. |
 | `Invariant Energy` | Score whether an action preserves the behavioral, physiological, temporal, or semantic manifold of the domain. | invariant energy delta, veto decision | The model can improve a local listener while breaking the global human-state manifold. |
-| `Anti-Shortcut Validation` | Stress-test the representation and action field against nulls, cohort shifts, time shifts, and shortcut sensors. | shortcut verdict, collapse verdict, portability warning | A lucky split or public-only shortcut can be mistaken for human-state understanding. |
+| `Anti-Shortcut Validation` | Stress-test the representation and action field against nulls, cohort shifts, time shifts, counterfactual listener dropout, and shortcut sensors. | shortcut verdict, collapse verdict, listener-dropout survival, portability warning | A lucky split or public-only shortcut can be mistaken for human-state understanding. |
 
 ## Portability Gates
 

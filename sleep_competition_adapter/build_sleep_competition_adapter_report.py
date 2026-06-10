@@ -40,6 +40,9 @@ CORE_MEDIATED_RELEASE_JSON = OUT / "core_mediated_action_release" / "core_mediat
 CORE_RELEASE_ABLATION_JSON = OUT / "core_release_ablation_probe" / "core_release_ablation_probe_readout.json"
 CORE_HEALTH_CALIBRATED_JSON = OUT / "core_health_calibrated_release" / "core_health_calibrated_release_readout.json"
 CROSS_LISTENER_TRANSPORT_JSON = OUT / "cross_listener_transport_decoder" / "cross_listener_transport_readout.json"
+COUNTERFACTUAL_LISTENER_DROPOUT_JSON = (
+    OUT / "counterfactual_listener_dropout_solver" / "counterfactual_listener_dropout_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
@@ -88,6 +91,7 @@ def require_inputs() -> None:
         CORE_RELEASE_ABLATION_JSON,
         CORE_HEALTH_CALIBRATED_JSON,
         CROSS_LISTENER_TRANSPORT_JSON,
+        COUNTERFACTUAL_LISTENER_DROPOUT_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -114,6 +118,7 @@ def build_big_bets(
     core_release_ablation: dict[str, object],
     core_health_calibrated: dict[str, object],
     cross_listener_transport: dict[str, object],
+    counterfactual_listener_dropout: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -176,6 +181,11 @@ def build_big_bets(
         if isinstance(cross_listener_transport.get("verdict"), dict)
         else {}
     )
+    listener_dropout_verdict = (
+        counterfactual_listener_dropout.get("verdict", {})
+        if isinstance(counterfactual_listener_dropout.get("verdict"), dict)
+        else {}
+    )
     action_ablation_verdict = (
         action_decoder_ablation.get("verdict", {})
         if isinstance(action_decoder_ablation.get("verdict"), dict)
@@ -196,7 +206,7 @@ def build_big_bets(
         if isinstance(hardworld_toxicity_probe.get("verdict"), dict)
         else {}
     )
-    return [
+    bets = [
         {
             "id": "action_decoder_ablation_suite",
             "name": "Action Decoder Ablation Suite",
@@ -407,6 +417,28 @@ def build_big_bets(
             "kill_criterion": "Public LB says listener-confirmed transport underperforms strict jury/core-health, meaning listener posterior remains diagnostic and not action-boundary evidence.",
         },
         {
+            "id": "counterfactual_listener_dropout_solver",
+            "name": "Counterfactual Listener-Dropout Solver",
+            "worldview": "A healthy HS-JEPA action should survive when one listener is masked, while failed public sensors become action-toxicity evidence rather than discarded submissions.",
+            "core_modules_exercised": [
+                "listener_responsibility",
+                "action_health_decoder",
+                "invariant_energy",
+                "anti_shortcut_validation",
+            ],
+            "adapter_move": "Score route/fusion/listener actions under counterfactual listener dropout, then compare aggressive same-direction release against toxic-direction inversion.",
+            "why_big": "This turns HS-JEPA from a set of empirical adapters into a falsifiable architecture claim: robust action health is listener-invariant, not single-head score chasing.",
+            "expected_public_lb_delta_if_true": -0.003,
+            "latest_probe_status": counterfactual_listener_dropout.get("status"),
+            "latest_probe_evidence": {
+                "recommended_information_sensor": listener_dropout_verdict.get("recommended_information_sensor"),
+                "recommended_thesis_sensor": listener_dropout_verdict.get("recommended_thesis_sensor"),
+                "claim": listener_dropout_verdict.get("claim"),
+                "top_ranked": counterfactual_listener_dropout.get("ranking", [])[:2],
+            },
+            "kill_criterion": "Aggressive listener-dropout and inversion both fail public LB, meaning listener-dropout geometry is not enough to solve the public/private row-target equation.",
+        },
+        {
             "id": "listener_invariant_contrastive_decoder",
             "name": "Listener-Invariant Contrastive Decoder",
             "worldview": "A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone.",
@@ -455,6 +487,18 @@ def build_big_bets(
             "kill_criterion": "Broad toxicity predicts H088 well, or mixture safety does not beat matched null after target/source matching.",
         },
     ]
+    priority_order = {
+        "counterfactual_listener_dropout_solver": 0,
+        "action_decoder_ablation_suite": 1,
+        "og_only_assignment_teacher": 2,
+    }
+    return sorted(
+        bets,
+        key=lambda bet: (
+            priority_order.get(str(bet["id"]), 100),
+            float(bet.get("expected_public_lb_delta_if_true") or 0.0),
+        ),
+    )
 
 
 def build_report() -> dict[str, object]:
@@ -479,6 +523,7 @@ def build_report() -> dict[str, object]:
     core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
     core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
     cross_listener_transport = read_json(CROSS_LISTENER_TRANSPORT_JSON)
+    counterfactual_listener_dropout = read_json(COUNTERFACTUAL_LISTENER_DROPOUT_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -502,6 +547,7 @@ def build_report() -> dict[str, object]:
     core_release_ablation_verdict = core_release_ablation.get("verdict", {})
     core_health_calibrated_verdict = core_health_calibrated.get("verdict", {})
     cross_listener_verdict = cross_listener_transport.get("verdict", {})
+    listener_dropout_verdict = counterfactual_listener_dropout.get("verdict", {})
     action_decoder_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -716,6 +762,16 @@ def build_report() -> dict[str, object]:
             "failure_interpretation": cross_listener_verdict.get("failure_interpretation"),
             "top_ranked": cross_listener_transport.get("ranking", [])[:3],
         },
+        "counterfactual_listener_dropout_solver": {
+            "status": counterfactual_listener_dropout.get("status"),
+            "recommended_information_sensor": listener_dropout_verdict.get("recommended_information_sensor"),
+            "recommended_thesis_sensor": listener_dropout_verdict.get("recommended_thesis_sensor"),
+            "claim": listener_dropout_verdict.get("claim"),
+            "failure_interpretation": listener_dropout_verdict.get("failure_interpretation"),
+            "negative_sensor_files": counterfactual_listener_dropout.get("negative_sensor_files"),
+            "positive_source_files": counterfactual_listener_dropout.get("positive_source_files"),
+            "top_ranked": counterfactual_listener_dropout.get("ranking", [])[:3],
+        },
         "action_decoder_ablation_suite": {
             "status": action_decoder_ablation_verdict.get("status"),
             "recommended_lb_sensor": action_decoder_ablation_verdict.get("recommended_lb_sensor"),
@@ -809,6 +865,7 @@ def build_report() -> dict[str, object]:
             "Core release ablation now makes listener responsibility, action-health, and invariant energy falsifiable on real sleep-adapter actions rather than only synthetic core examples.",
             "Core-health calibrated release now uses dataset-free action-health false-positive lift as a real adapter release prior, connecting architecture benchmark behavior to submission candidates.",
             "Cross-listener transport now converts the failed target-listener route-lift into a safer rule: listener posterior calibrates route/fusion/core-proposed actions instead of generating actions directly.",
+            "Counterfactual listener-dropout turns public failures into toxicity labels and exposes a strong A/B sensor: either high-survival route/fusion actions were good cells mixed into bad submissions, or the public/private equation requires inverting those toxic directions.",
         ],
         "what_the_adapter_does_not_prove": [
             "pure OG-only assignment",
@@ -821,6 +878,7 @@ def build_report() -> dict[str, object]:
             "that removing a core module is beneficial before public LB observes the full-core vs ablated-core counterfactual",
             "that dataset-free action-health calibration will beat the strict decoder jury before public LB observes the guarded/pressure counterfactual",
             "that cross-listener transport will beat the strict decoder jury before public LB observes the listener-calibrated counterfactual",
+            "that listener-dropout health alone is public-safe before public LB observes the aggressive-vs-inverted counterfactual",
             "that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments",
             "private leaderboard safety",
             "S2 as a universal human-sleep factor",
@@ -1024,6 +1082,16 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             "이 실험은 target-listener route-lift가 public에서 실패한 사실을 버리지 않고, listener posterior의 역할을 `action generator`에서 `transport calibrator`로 바꾼다. public에서 살아나면 HS-JEPA의 listener responsibility가 직접 예측값을 만드는 장치가 아니라 action boundary를 보정하는 장치라는 더 일반적인 주장이 강해진다.",
             "",
+            "## Counterfactual Listener-Dropout Solver",
+            "",
+            f"- Status: `{report['counterfactual_listener_dropout_solver']['status']}`",
+            f"- Recommended information sensor: `{report['counterfactual_listener_dropout_solver']['recommended_information_sensor']}`",
+            f"- Recommended thesis sensor: `{report['counterfactual_listener_dropout_solver']['recommended_thesis_sensor']}`",
+            "",
+            report["counterfactual_listener_dropout_solver"]["claim"],
+            "",
+            "이 실험은 route/fusion/target-listener/anti-shortcut을 서로 다른 listener로 보고, 한 listener를 가려도 살아남는 action만 healthy action으로 본다. 특히 `dropout_fullfield_aggressive`와 `toxic_direction_inversion`은 같은 high-survival cell을 같은 방향으로 믿을지, public-negative sensor가 말한 반대 방향으로 뒤집을지를 가르는 A/B 센서다.",
+            "",
             "## Action Decoder Ablation Suite",
             "",
             f"- Status: `{report['action_decoder_ablation_suite']['status']}`",
@@ -1116,14 +1184,15 @@ def build_big_bet_markdown(bets: list[dict[str, object]]) -> str:
             "",
             "## 우선순위",
             "",
-            "1. `OG-only Human-State Assignment Teacher`: 성공하면 HS-JEPA의 범용성이 가장 크게 올라간다.",
-            "2. `Core-Health Calibrated Release`: dataset-free action-health failure mode가 실제 adapter release에 전이되는지 검증한다.",
-            "3. `Core-Mediated Action Release`: generic HS-JEPA core가 실제 sleep-adapter action을 release할 수 있는지 검증한다.",
-            "4. `Decoder Boundary Tomography Solver`: strict jury가 너무 보수적인지 직접 찌르는 다음 제출 센서다.",
-            "5. `Cross-Listener Transport Decoder`: 실패한 listener lift를 action generator가 아니라 transport calibrator로 재사용할 수 있는지 본다.",
-            "6. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
-            "7. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.",
-            "8. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.",
+            "1. `Counterfactual Listener-Dropout Solver`: 같은 high-survival action을 믿을지 뒤집을지 가르는 가장 정보량 높은 A/B 센서다.",
+            "2. `OG-only Human-State Assignment Teacher`: 성공하면 HS-JEPA의 범용성이 가장 크게 올라간다.",
+            "3. `Core-Health Calibrated Release`: dataset-free action-health failure mode가 실제 adapter release에 전이되는지 검증한다.",
+            "4. `Core-Mediated Action Release`: generic HS-JEPA core가 실제 sleep-adapter action을 release할 수 있는지 검증한다.",
+            "5. `Decoder Boundary Tomography Solver`: strict jury가 너무 보수적인지 직접 찌르는 다음 제출 센서다.",
+            "6. `Cross-Listener Transport Decoder`: 실패한 listener lift를 action generator가 아니라 transport calibrator로 재사용할 수 있는지 본다.",
+            "7. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
+            "8. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.",
+            "9. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.",
             "",
         ]
     )
@@ -1145,6 +1214,7 @@ def run() -> dict[str, object]:
         read_json(CORE_RELEASE_ABLATION_JSON),
         read_json(CORE_HEALTH_CALIBRATED_JSON),
         read_json(CROSS_LISTENER_TRANSPORT_JSON),
+        read_json(COUNTERFACTUAL_LISTENER_DROPOUT_JSON),
         read_json(ACTION_DECODER_ABLATION_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),

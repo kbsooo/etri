@@ -49,6 +49,13 @@ CORE_MEDIATED_RELEASE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "c
 CORE_RELEASE_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_release_ablation_probe" / "core_release_ablation_probe_readout.json"
 CORE_HEALTH_CALIBRATED_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_health_calibrated_release" / "core_health_calibrated_release_readout.json"
 CROSS_LISTENER_TRANSPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "cross_listener_transport_decoder" / "cross_listener_transport_readout.json"
+COUNTERFACTUAL_LISTENER_DROPOUT_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "counterfactual_listener_dropout_solver"
+    / "counterfactual_listener_dropout_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -107,6 +114,7 @@ def require_inputs() -> None:
         CORE_RELEASE_ABLATION_JSON,
         CORE_HEALTH_CALIBRATED_JSON,
         CROSS_LISTENER_TRANSPORT_JSON,
+        COUNTERFACTUAL_LISTENER_DROPOUT_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -183,6 +191,7 @@ def build_manifest() -> dict[str, object]:
     core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
     core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
     cross_listener_transport = read_json(CROSS_LISTENER_TRANSPORT_JSON)
+    counterfactual_listener_dropout = read_json(COUNTERFACTUAL_LISTENER_DROPOUT_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -208,6 +217,7 @@ def build_manifest() -> dict[str, object]:
     core_release_ablation_verdict = core_release_ablation["verdict"]
     core_health_calibrated_verdict = core_health_calibrated["verdict"]
     cross_listener_verdict = cross_listener_transport["verdict"]
+    listener_dropout_verdict = counterfactual_listener_dropout["verdict"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -536,9 +546,33 @@ def build_manifest() -> dict[str, object]:
             "This stage does not claim listener posterior is a direct action head; it tests whether it can safely calibrate already supported actions.",
         ),
         stage(
+            "counterfactual_listener_dropout_solver",
+            "Counterfactual Listener-Dropout Solver",
+            "Treats each listener as a removable view and releases only row-target action fields that remain coherent under listener dropout, while using failed public sensors as toxicity evidence.",
+            [
+                "decoder_order_jury_solver_readout.json",
+                "decoder_boundary_tomography_readout.json",
+                "cross_listener_transport_readout.json",
+                "public_score_ledger.csv",
+                "failed public sensor submissions",
+            ],
+            ["counterfactual_listener_dropout_readout_ko.md", *[
+                str(item.get("submission_file"))
+                for item in counterfactual_listener_dropout.get("ranking", [])
+                if isinstance(item, dict) and item.get("submission_file")
+            ]],
+            [
+                f"Dropout status: {counterfactual_listener_dropout['status']}",
+                f"Information sensor: {listener_dropout_verdict['recommended_information_sensor']}",
+                f"Thesis sensor: {listener_dropout_verdict['recommended_thesis_sensor']}",
+                f"Claim: {listener_dropout_verdict['claim']}",
+            ],
+            "This is a high-information public/private equation sensor; it can validate listener-invariant action health or kill that release geometry.",
+        ),
+        stage(
             "action_decoder_ablation_suite",
             "Action Decoder Ablation Suite",
-            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, and cross-listener transport alternatives as HS-JEPA module ablations.",
+            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, and listener-dropout alternatives as HS-JEPA module ablations.",
             [
                 "row_support_strict_action_decoder_readout.json",
                 "route_frontier_action_decoder_readout.json",
@@ -549,6 +583,7 @@ def build_manifest() -> dict[str, object]:
                 "core_release_ablation_probe_readout.json",
                 "core_health_calibrated_release_readout.json",
                 "cross_listener_transport_readout.json",
+                "counterfactual_listener_dropout_readout.json",
                 "factorized_toxicity_decoder_stress_audit.json",
             ],
             ["hsjepa_action_decoder_ablation_suite_ko.md", "hsjepa_action_decoder_ablation_suite.csv"],
@@ -820,6 +855,13 @@ def build_manifest() -> dict[str, object]:
         ["cross_listener_transport_decoder", "action_decoder_ablation_suite"],
         ["cross_listener_transport_decoder", "sleep_competition_adapter"],
         ["cross_listener_transport_decoder", "claim_readiness_and_paper_packet"],
+        ["cross_listener_transport_decoder", "counterfactual_listener_dropout_solver"],
+        ["decoder_order_jury_solver", "counterfactual_listener_dropout_solver"],
+        ["decoder_boundary_tomography_solver", "counterfactual_listener_dropout_solver"],
+        ["public_lb_sensor", "counterfactual_listener_dropout_solver"],
+        ["counterfactual_listener_dropout_solver", "action_decoder_ablation_suite"],
+        ["counterfactual_listener_dropout_solver", "sleep_competition_adapter"],
+        ["counterfactual_listener_dropout_solver", "claim_readiness_and_paper_packet"],
         ["route_toxicity_fusion_decoder", "action_decoder_ablation_suite"],
         ["route_toxicity_fusion_decoder", "sleep_competition_adapter"],
         ["route_toxicity_fusion_decoder", "claim_readiness_and_paper_packet"],
@@ -930,6 +972,10 @@ def build_manifest() -> dict[str, object]:
             "cross_listener_transport_recommended_lb_sensor": cross_listener_verdict["recommended_lb_sensor"],
             "cross_listener_transport_recommended_big_bet": cross_listener_verdict["recommended_big_bet"],
             "cross_listener_transport_negative_sensor": cross_listener_transport.get("negative_sensor"),
+            "counterfactual_listener_dropout_status": counterfactual_listener_dropout["status"],
+            "counterfactual_listener_dropout_recommended_information_sensor": listener_dropout_verdict["recommended_information_sensor"],
+            "counterfactual_listener_dropout_recommended_thesis_sensor": listener_dropout_verdict["recommended_thesis_sensor"],
+            "counterfactual_listener_dropout_top_variants": counterfactual_listener_dropout.get("ranking", [])[:2],
             "action_decoder_ablation_suite_status": action_ablation_verdict["status"],
             "action_decoder_ablation_suite_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_suite_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],
@@ -1001,6 +1047,11 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    CMA --> CRA["Core release ablation probe"]',
             '    CRA --> ADA',
             '    CRA --> ADAPT',
+            '    RFA --> CLT["Cross-listener transport decoder"]',
+            '    CLT --> CLD["Counterfactual listener-dropout solver"]',
+            '    B --> CLD',
+            '    CLD --> ADA',
+            '    CLD --> ADAPT',
             '    E --> F',
             '    F --> G["Role-based submission packager"]',
             '    G --> ADAPT["Sleep competition adapter"]',

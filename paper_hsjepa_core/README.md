@@ -4,7 +4,10 @@
 
 팀 공유용 최상위 설명 문서:
 
+- `paper_hsjepa_core/HS_JEPA_PAPER_THESIS_KO.md`
 - `paper_hsjepa_core/HS_JEPA_ARCHITECTURE_PACKAGE_KO.md`
+
+논문 방향으로는 `HS_JEPA_PAPER_THESIS_KO.md`를 먼저 읽는다. 이 문서는 HS-JEPA를 대회용 trick이 아니라 `hidden human-state -> listener responsibility -> action-health -> invariant release` 아키텍처로 정리하고, public LB를 그 주장을 검증하는 sensor로 해석한다.
 
 ## 핵심 질문
 

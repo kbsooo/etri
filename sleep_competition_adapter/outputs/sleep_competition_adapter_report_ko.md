@@ -160,6 +160,16 @@ Cross-listener evidence should calibrate route/fusion/core actions, not generate
 
 이 실험은 target-listener route-lift가 public에서 실패한 사실을 버리지 않고, listener posterior의 역할을 `action generator`에서 `transport calibrator`로 바꾼다. public에서 살아나면 HS-JEPA의 listener responsibility가 직접 예측값을 만드는 장치가 아니라 action boundary를 보정하는 장치라는 더 일반적인 주장이 강해진다.
 
+## Counterfactual Listener-Dropout Solver
+
+- Status: `counterfactual_listener_dropout_ready`
+- Recommended information sensor: `{'variant': 'dropout_fullfield_aggressive', 'submission_file': 'submission_hsjepa_counterfactual_listener_dropout_dropout_fullfield_aggressive_a433fbc0_uploadsafe.csv', 'priority': 1.2860211183353285}`
+- Recommended thesis sensor: `{'variant': 'invariant_survivor', 'submission_file': 'submission_hsjepa_counterfactual_listener_dropout_invariant_survivor_7cde1a77_uploadsafe.csv', 'priority': 0.05}`
+
+HS-JEPA should release row-target actions that survive counterfactual listener dropout and avoid directions marked toxic by previous public sensors.
+
+이 실험은 route/fusion/target-listener/anti-shortcut을 서로 다른 listener로 보고, 한 listener를 가려도 살아남는 action만 healthy action으로 본다. 특히 `dropout_fullfield_aggressive`와 `toxic_direction_inversion`은 같은 high-survival cell을 같은 방향으로 믿을지, public-negative sensor가 말한 반대 방향으로 뒤집을지를 가르는 A/B 센서다.
+
 ## Action Decoder Ablation Suite
 
 - Status: `action_decoder_ablation_ready_decoder_jury_leads`
@@ -251,6 +261,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - Core release ablation now makes listener responsibility, action-health, and invariant energy falsifiable on real sleep-adapter actions rather than only synthetic core examples.
 - Core-health calibrated release now uses dataset-free action-health false-positive lift as a real adapter release prior, connecting architecture benchmark behavior to submission candidates.
 - Cross-listener transport now converts the failed target-listener route-lift into a safer rule: listener posterior calibrates route/fusion/core-proposed actions instead of generating actions directly.
+- Counterfactual listener-dropout turns public failures into toxicity labels and exposes a strong A/B sensor: either high-survival route/fusion actions were good cells mixed into bad submissions, or the public/private equation requires inverting those toxic directions.
 
 ## 이 adapter가 아직 증명하지 못한 것
 
@@ -264,6 +275,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - that removing a core module is beneficial before public LB observes the full-core vs ablated-core counterfactual
 - that dataset-free action-health calibration will beat the strict decoder jury before public LB observes the guarded/pressure counterfactual
 - that cross-listener transport will beat the strict decoder jury before public LB observes the listener-calibrated counterfactual
+- that listener-dropout health alone is public-safe before public LB observes the aggressive-vs-inverted counterfactual
 - that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments
 - private leaderboard safety
 - S2 as a universal human-sleep factor
