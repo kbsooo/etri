@@ -154,7 +154,7 @@ row assignment는 별도 listener responsibility solver 또는 public/private de
 
 ## 제출 판단
 
-현재 제출 우선순위는 다음과 같다.
+제출 전 판단은 다음과 같았다.
 
 1. `submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv`
 2. `submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv`
@@ -177,6 +177,46 @@ route-energy-safe extra S2 action을 실제 public에서도 살릴 수 있는가
 
 - target listener posterior는 representation/diagnostic으로만 유효하다.
 - row assignment는 stagebridge/public-private solver가 계속 맡아야 한다.
+
+## Public LB 결과
+
+제출 파일:
+
+```text
+submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_jackpot_f2ab2816_uploadsafe.csv
+```
+
+Public LB:
+
+```text
+0.5680255019
+```
+
+현재 기준 best `0.5677475939` 대비 `+0.0002779080` 악화다.
+
+따라서 이 실험은 성능 breakthrough가 아니었다.
+
+이 결과가 죽인 가설:
+
+```text
+S2 target-listener posterior가 찾은 route-energy-safe extra cells는
+그 자체로 public-safe action이 될 수 있다.
+```
+
+이 결과가 남긴 가설:
+
+```text
+S2 target-listener posterior는 cell/route representation으로는 유효하다.
+하지만 row assignment와 public/private action safety는 별도 solver가
+필요하다.
+```
+
+즉 이 제출은 실패했지만 HS-JEPA 모듈 경계는 더 선명해졌다.
+
+```text
+Target Listener != Action Generator
+Target Listener = Orientation / Diagnostic Representation
+```
 
 ## 논문에서의 의미
 

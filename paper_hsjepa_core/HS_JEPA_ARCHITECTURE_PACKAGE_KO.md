@@ -188,6 +188,8 @@ Target-listener route lift:
 | S2-hub row-lift max AUC | `0.556` |
 | S2-hub listener-lift extra cells | `13` |
 | extra S2 cells | `10` |
+| listener-lift public LB | `0.5680255019` |
+| delta vs best `0.5677475939` | `+0.0002779080` |
 
 따라서 HS-JEPA는 human-state encoder 하나로 모든 것을 해결하는 모델이 아니다.
 
@@ -199,6 +201,13 @@ Assignment solver finds support.
 Energy decoder makes action safe.
 ```
 
+Public 결과까지 반영하면, target-listener route lift는 성능 breakthrough가 아니라 모듈 경계 증거다.
+
+```text
+Target listener posterior is real,
+but target listener posterior alone is not an action generator.
+```
+
 ## 현재 제출 후보 해석
 
 | 우선순위 | 파일 | 의미 |
@@ -206,7 +215,7 @@ Energy decoder makes action safe.
 | 1 | `submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv` | 가장 강한 objective-stage driver/bridge big bet |
 | 2 | `submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv` | 가장 해석 가능한 S2 listener/hub big bet |
 | 3 | `submission_hsjepa_ogdistilled_s2hub_jackpot_38d995b0_uploadsafe.csv` | OG human-state action-health gate probe |
-| 4 | `submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_jackpot_f2ab2816_uploadsafe.csv` | target-listener posterior가 extra S2 action을 살릴 수 있는지 보는 diagnostic |
+| diagnostic only | `submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_jackpot_f2ab2816_uploadsafe.csv` | public LB `0.5680255019`; extra S2 action은 public-safe하지 않았음 |
 
 ## 재현 명령
 

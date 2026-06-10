@@ -14357,3 +14357,33 @@ is the only variant worth keeping as a scarce public-slot diagnostic, and only
 if the question is whether target-listener posterior can produce public-safe
 extra S2 actions.  It is not higher priority than `stagebridge_jackpot` or raw
 `s2hub_jackpot`.
+
+Public LB observation:
+
+- File: `submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_jackpot_f2ab2816_uploadsafe.csv`
+- Public LB: `0.5680255019`
+- Current best reference: `0.5677475939`
+- Delta vs best: `+0.0002779080`
+
+Interpretation after public sensor:
+
+The big-bet did not materialize.  The 13 extra route-energy-safe cells were not
+public-safe enough to beat the H057 frontier.  This weakens the specific claim:
+
+```text
+target-listener posterior -> route-energy lift -> extra S2 action
+```
+
+The broader representation claim still survives:
+
+```text
+target-listener posterior carries real cell/route information,
+but it should not be used as an action generator without a stronger
+row-assignment/public-private safety solver.
+```
+
+Decision update:
+
+Demote target-listener route lift from submission candidate to architecture
+diagnostic.  It is useful evidence for the HS-JEPA module boundary, not a
+current performance route.
