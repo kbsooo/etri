@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 31,
-  "edge_count": 83,
+  "stage_count": 32,
+  "edge_count": 87,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -22,7 +22,8 @@
         "Core status: core_ready_for_adapter",
         "Core gates: 5/5",
         "Ablation status: ablation_contract_ready",
-        "Reference run: core_reference_ready"
+        "Reference run: core_reference_ready",
+        "Module benchmark: core_module_benchmark_ready"
       ],
       "boundary": "The core must not depend on S2, public LB sensors, submission files, or manual row ids."
     },
@@ -45,6 +46,28 @@
         "Ablations: ['remove_listener_responsibility', 'remove_action_health', 'remove_invariant_energy']"
       ],
       "boundary": "This stage is architecture-only; it must not read competition data or sensor observations."
+    },
+    {
+      "id": "hsjepa_core_module_benchmark",
+      "name": "HS-JEPA Core Module Benchmark",
+      "role": "Tests the reusable core across generic human-state worlds and compares full core against module-removal policies.",
+      "inputs": [
+        "hsjepa_core/core.py",
+        "generic human-state scenarios",
+        "listener/action/invariant expectations"
+      ],
+      "outputs": [
+        "hsjepa_core_module_benchmark_ko.md",
+        "hsjepa_core_module_benchmark_cases.csv"
+      ],
+      "evidence": [
+        "Status: core_module_benchmark_ready",
+        "Scenarios: 5",
+        "Full-core F1: 1.0000",
+        "Action-health FP lift: 9",
+        "Invariant FP lift: 1"
+      ],
+      "boundary": "This stage is core-only; it proves architecture behavior without sleep labels or public sensors."
     },
     {
       "id": "og_raw_lifestyle_context",
@@ -572,7 +595,7 @@
       ],
       "evidence": [
         "Generality status: general_architecture_separated_with_case_boundary",
-        "Portability checks: 7/8",
+        "Portability checks: 8/9",
         "Nonblocking boundaries: remaining_generality_gap"
       ],
       "boundary": "The current strongest case study still uses a public-sensor assignment teacher."
@@ -654,6 +677,22 @@
     [
       "hsjepa_core_architecture",
       "hsjepa_core_reference_run"
+    ],
+    [
+      "hsjepa_core_architecture",
+      "hsjepa_core_module_benchmark"
+    ],
+    [
+      "hsjepa_core_reference_run",
+      "hsjepa_core_module_benchmark"
+    ],
+    [
+      "hsjepa_core_module_benchmark",
+      "general_architecture_boundary"
+    ],
+    [
+      "hsjepa_core_module_benchmark",
+      "claim_readiness_and_paper_packet"
     ],
     [
       "hsjepa_core_reference_run",
@@ -1011,6 +1050,10 @@
       "remaining_generality_gap"
     ],
     "core_status": "core_ready_for_adapter",
+    "core_module_benchmark_status": "core_module_benchmark_ready",
+    "core_module_benchmark_full_core_f1": 1.0,
+    "core_module_benchmark_action_health_fp_lift": 9,
+    "core_module_benchmark_invariant_fp_lift": 1,
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
     "core_adapter_boundary_status": "core_adapter_boundary_verified",
     "big_bet_count": 13,

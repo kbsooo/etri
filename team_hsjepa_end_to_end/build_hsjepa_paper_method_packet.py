@@ -30,6 +30,7 @@ BOUNDARY_AUDIT_JSON = OUT / "hsjepa_core_adapter_boundary_audit.json"
 CORE_MANIFEST_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_manifest.json"
 CORE_ABLATION_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_ablation_contract.json"
 CORE_REFERENCE_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_reference_run.json"
+CORE_BENCHMARK_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_module_benchmark.json"
 ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_competition_adapter_report.json"
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
@@ -82,6 +83,7 @@ def require_inputs() -> None:
             CORE_MANIFEST_JSON,
             CORE_ABLATION_JSON,
             CORE_REFERENCE_JSON,
+            CORE_BENCHMARK_JSON,
             ADAPTER_REPORT_JSON,
             BIG_BET_JSON,
             OG_PROBE_JSON,
@@ -119,6 +121,7 @@ def build_packet() -> dict[str, object]:
     core = read_json(CORE_MANIFEST_JSON)
     core_ablation = read_json(CORE_ABLATION_JSON)
     core_reference = read_json(CORE_REFERENCE_JSON)
+    core_benchmark = read_json(CORE_BENCHMARK_JSON)
     adapter = read_json(ADAPTER_REPORT_JSON)
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
@@ -308,6 +311,11 @@ def build_packet() -> dict[str, object]:
             "reference_status": core_reference["status"],
             "reference_released_actions": core_reference["full_core"]["summary"]["released_actions"],
             "reference_ablation_count": len(core_reference["ablations"]),
+            "module_benchmark_status": core_benchmark["status"],
+            "module_benchmark_scenario_count": core_benchmark["scenario_count"],
+            "module_benchmark_full_core_f1": core_benchmark["verdict"]["full_core_mean_f1"],
+            "module_benchmark_action_health_fp_lift": core_benchmark["verdict"]["remove_action_health_false_positive_lift"],
+            "module_benchmark_invariant_fp_lift": core_benchmark["verdict"]["remove_invariant_false_positive_lift"],
         },
         "boundary_audit": {
             "status": boundary_audit["status"],
@@ -340,6 +348,7 @@ def build_packet() -> dict[str, object]:
             "core_manifest": str(CORE_MANIFEST_JSON.resolve()),
             "core_ablation_contract": str(CORE_ABLATION_JSON.resolve()),
             "core_reference_run": str(CORE_REFERENCE_JSON.resolve()),
+            "core_module_benchmark": str(CORE_BENCHMARK_JSON.resolve()),
             "core_adapter_boundary_audit": str(BOUNDARY_AUDIT_JSON.resolve()),
             "sleep_adapter_report": str(ADAPTER_REPORT_JSON.resolve()),
             "big_bet_queue": str(BIG_BET_JSON.resolve()),
@@ -637,6 +646,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- Core status: `{packet['core']['status']}` (`{packet['core']['passed_gates']}/{packet['core']['total_gates']}` gates)",
             f"- Core ablation contract: `{packet['core']['ablation_status']}` (`{packet['core']['ablation_count']}` ablations)",
             f"- Core reference run: `{packet['core']['reference_status']}`, released `{packet['core']['reference_released_actions']}`, ablations `{packet['core']['reference_ablation_count']}`",
+            f"- Core module benchmark: `{packet['core']['module_benchmark_status']}`, scenarios `{packet['core']['module_benchmark_scenario_count']}`, full-core F1 `{fmt(packet['core']['module_benchmark_full_core_f1'], 3)}`, action-health FP lift `{packet['core']['module_benchmark_action_health_fp_lift']}`, invariant FP lift `{packet['core']['module_benchmark_invariant_fp_lift']}`",
             f"- Core/adapter boundary audit: `{packet['boundary_audit']['status']}` (`{packet['boundary_audit']['passed_checks']}/{packet['boundary_audit']['total_checks']}` checks)",
             f"- Core operational violations: imports `{packet['boundary_audit']['core_import_violations']}`, strings `{packet['boundary_audit']['core_string_violations']}`",
             f"- Adapter status: `{packet['adapter']['status']}`",
@@ -704,6 +714,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- `{packet['outputs']['core_manifest']}`",
             f"- `{packet['outputs']['core_ablation_contract']}`",
             f"- `{packet['outputs']['core_reference_run']}`",
+            f"- `{packet['outputs']['core_module_benchmark']}`",
             f"- `{packet['outputs']['core_adapter_boundary_audit']}`",
             f"- `{packet['outputs']['sleep_adapter_report']}`",
             f"- `{packet['outputs']['big_bet_queue']}`",

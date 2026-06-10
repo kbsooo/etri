@@ -6,35 +6,36 @@ historical experiment version names.  It executes:
 
 1. HS-JEPA core architecture manifest.
 2. HS-JEPA core reference run.
-3. Route-Conserving S2 Bridge package generation.
-4. Stress audit against feasible candidate nulls.
-5. Claim/evidence validation.
-6. Reproducibility contract.
-7. Architecture readiness report.
-8. Mechanism ablation report.
-9. OG-only assignment teacher probe.
-10. Assignment-gap decomposition probe.
-11. Hidden row-support sensor transfer probe.
-12. Masked row-support objective stress probe.
-13. Row-support strict action decoder.
-14. Route-toxicity fusion action decoder.
-15. Decoder-order jury solver.
-16. Decoder boundary tomography solver.
-17. Core-mediated action release.
-18. Core release ablation probe.
-19. Listener-invariant contrastive probe.
-20. Private-safe toxicity probe.
-21. Hard-world toxicity factorization probe.
-22. Factorized toxicity decoder candidate.
-23. Factorized toxicity decoder stress audit.
-24. Action decoder ablation suite.
-25. Generality report.
-26. Sleep competition adapter report and big-bet queue.
-27. Core/adapter boundary audit.
-28. Paper method packet.
-29. Pipeline manifest.
-30. Release checklist.
-31. A compact handoff report for paper and competition discussion.
+3. HS-JEPA core module benchmark.
+4. Route-Conserving S2 Bridge package generation.
+5. Stress audit against feasible candidate nulls.
+6. Claim/evidence validation.
+7. Reproducibility contract.
+8. Architecture readiness report.
+9. Mechanism ablation report.
+10. OG-only assignment teacher probe.
+11. Assignment-gap decomposition probe.
+12. Hidden row-support sensor transfer probe.
+13. Masked row-support objective stress probe.
+14. Row-support strict action decoder.
+15. Route-toxicity fusion action decoder.
+16. Decoder-order jury solver.
+17. Decoder boundary tomography solver.
+18. Core-mediated action release.
+19. Core release ablation probe.
+20. Listener-invariant contrastive probe.
+21. Private-safe toxicity probe.
+22. Hard-world toxicity factorization probe.
+23. Factorized toxicity decoder candidate.
+24. Factorized toxicity decoder stress audit.
+25. Action decoder ablation suite.
+26. Generality report.
+27. Sleep competition adapter report and big-bet queue.
+28. Core/adapter boundary audit.
+29. Paper method packet.
+30. Pipeline manifest.
+31. Release checklist.
+32. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -83,6 +84,9 @@ CORE_ABLATION_MD = CORE_OUT / "hsjepa_core_ablation_contract_ko.md"
 CORE_ABLATION_JSON = CORE_OUT / "hsjepa_core_ablation_contract.json"
 CORE_REFERENCE_MD = CORE_OUT / "hsjepa_core_reference_run_ko.md"
 CORE_REFERENCE_JSON = CORE_OUT / "hsjepa_core_reference_run.json"
+CORE_BENCHMARK_MD = CORE_OUT / "hsjepa_core_module_benchmark_ko.md"
+CORE_BENCHMARK_JSON = CORE_OUT / "hsjepa_core_module_benchmark.json"
+CORE_BENCHMARK_CSV = CORE_OUT / "hsjepa_core_module_benchmark_cases.csv"
 ADAPTER_OUT = ROOT / "sleep_competition_adapter" / "outputs"
 ADAPTER_REPORT_MD = ADAPTER_OUT / "sleep_competition_adapter_report_ko.md"
 ADAPTER_REPORT_JSON = ADAPTER_OUT / "sleep_competition_adapter_report.json"
@@ -159,6 +163,7 @@ def build_handoff(
     generality: dict[str, object],
     core: dict[str, object],
     core_reference: dict[str, object],
+    core_benchmark: dict[str, object],
     adapter: dict[str, object],
     big_bets: dict[str, object],
     og_probe: dict[str, object],
@@ -267,6 +272,7 @@ def build_handoff(
             f"- Core status: `{core['status']}` (`{core['passed_gates']}/{core['total_gates']}` gates)",
             f"- Core ablation contract: `{len(core.get('modules', []))}` modules, `{len(big_bets.get('bets', []))}` big-bet followups",
             f"- Core reference run: `{core_reference.get('status')}`, released actions `{core_reference.get('full_core', {}).get('summary', {}).get('released_actions')}`",
+            f"- Core module benchmark: `{core_benchmark.get('status')}`, full-core F1 `{core_benchmark.get('verdict', {}).get('full_core_mean_f1')}`, action-health FP lift `{core_benchmark.get('verdict', {}).get('remove_action_health_false_positive_lift')}`",
             f"- Adapter status: `{adapter['status']}`",
             f"- Adapter score delta: `{adapter['score_evidence']['delta']}`",
             f"- OG-only assignment probe: `{og_verdict.get('status')}`",
@@ -472,6 +478,7 @@ def run(refresh: bool = False) -> dict[str, object]:
     commands = [
         [sys.executable, str(ROOT / "hsjepa_core" / "build_core_architecture_manifest.py")],
         [sys.executable, str(ROOT / "hsjepa_core" / "run_core_reference_demo.py")],
+        [sys.executable, str(ROOT / "hsjepa_core" / "run_core_module_benchmark.py")],
         [sys.executable, str(HERE / "run_route_conserving_s2_bridge.py")],
         [sys.executable, str(HERE / "audit_route_conserving_s2_bridge.py")],
         [sys.executable, str(HERE / "validate_route_conserving_s2_bridge_package.py")],
@@ -517,6 +524,7 @@ def run(refresh: bool = False) -> dict[str, object]:
     generality = read_json(GENERALITY_JSON)
     core = read_json(CORE_MANIFEST_JSON)
     core_reference = read_json(CORE_REFERENCE_JSON)
+    core_benchmark = read_json(CORE_BENCHMARK_JSON)
     adapter = read_json(ADAPTER_REPORT_JSON)
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
@@ -548,6 +556,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         generality,
         core,
         core_reference,
+        core_benchmark,
         adapter,
         big_bets,
         og_probe,
@@ -597,6 +606,9 @@ def run(refresh: bool = False) -> dict[str, object]:
         "core_ablation_json": str(CORE_ABLATION_JSON.resolve()),
         "core_reference_md": str(CORE_REFERENCE_MD.resolve()),
         "core_reference_json": str(CORE_REFERENCE_JSON.resolve()),
+        "core_module_benchmark_md": str(CORE_BENCHMARK_MD.resolve()),
+        "core_module_benchmark_json": str(CORE_BENCHMARK_JSON.resolve()),
+        "core_module_benchmark_csv": str(CORE_BENCHMARK_CSV.resolve()),
         "adapter_report_md": str(ADAPTER_REPORT_MD.resolve()),
         "adapter_report_json": str(ADAPTER_REPORT_JSON.resolve()),
         "big_bet_queue_md": str(BIG_BET_MD.resolve()),
@@ -646,6 +658,10 @@ def run(refresh: bool = False) -> dict[str, object]:
         "generality_status": str(generality["status"]),
         "core_status": str(core["status"]),
         "core_reference_status": str(core_reference["status"]),
+        "core_module_benchmark_status": str(core_benchmark["status"]),
+        "core_module_benchmark_full_core_f1": float(core_benchmark["verdict"]["full_core_mean_f1"]),
+        "core_module_benchmark_action_health_fp_lift": int(core_benchmark["verdict"]["remove_action_health_false_positive_lift"]),
+        "core_module_benchmark_invariant_fp_lift": int(core_benchmark["verdict"]["remove_invariant_false_positive_lift"]),
         "adapter_status": str(adapter["status"]),
         "big_bet_count": int(big_bets["count"]),
         "og_only_assignment_teacher_probe_status": str(og_probe["verdict"]["status"]),

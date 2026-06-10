@@ -77,6 +77,12 @@
       "meaning": "HS-JEPA is represented as executable architecture code, not only competition analysis notes."
     },
     {
+      "check": "executable_core_benchmark",
+      "passed": true,
+      "evidence": "Core module benchmark status core_module_benchmark_ready; scenarios 5; full-core F1 1.0000; action-health removal FP lift 9; invariant removal FP lift 1.",
+      "meaning": "HS-JEPA has a small architecture-level behavioral test that does not depend on sleep labels or public LB."
+    },
+    {
       "check": "adapter_uses_executable_core",
       "passed": true,
       "evidence": "Core-mediated action release status core_mediated_action_release_ready; recommended {'variant': 'core_consensus_shadow_plus', 'submission_file': 'submission_hsjepa_core_mediated_core_consensus_shadow_plus_3b0b1d0f_uploadsafe.csv', 'priority': 0.8460231888716516}; inventory {'candidate_cells': 44, 'strict_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'default_core_released': 32}. Core release ablation status core_release_ablation_ready; full-core {'variant': 'full_core_reference', 'submission_file': 'submission_hsjepa_core_ablation_full_core_reference_513175a1_uploadsafe.csv', 'priority': 0.8314097090596275}; architecture sensor {'variant': 'no_action_health', 'submission_file': 'submission_hsjepa_core_ablation_no_action_health_043b20c7_uploadsafe.csv', 'priority': 0.3281725643379389}.",
@@ -90,8 +96,8 @@
       "required_for_completion": false
     }
   ],
-  "passed_checks": 7,
-  "total_checks": 8,
+  "passed_checks": 8,
+  "total_checks": 9,
   "nonblocking_boundaries": [
     "remaining_generality_gap"
   ],
@@ -102,6 +108,10 @@
     "core_reference_released_actions": [
       "survey_small_shift"
     ],
+    "core_module_benchmark_status": "core_module_benchmark_ready",
+    "core_module_benchmark_full_core_f1": 1.0,
+    "core_module_benchmark_action_health_fp_lift": 9,
+    "core_module_benchmark_invariant_fp_lift": 1,
     "public_worldviews_killed": 5,
     "public_worldviews_survived": 2,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",

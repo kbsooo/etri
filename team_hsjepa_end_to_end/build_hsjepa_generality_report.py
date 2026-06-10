@@ -20,6 +20,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 READINESS_JSON = OUT / "hsjepa_architecture_readiness_report.json"
 ABLATION_JSON = OUT / "hsjepa_mechanism_ablation_report.json"
 CORE_REFERENCE_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_reference_run.json"
+CORE_BENCHMARK_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_module_benchmark.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
 ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignment_gap_decomposition_probe.json"
 ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidden_row_support_sensor_probe.json"
@@ -117,6 +118,12 @@ PORTABILITY_CHECKS = [
         "passed": True,
         "evidence": "A dataset-free reference run executes context, listener, action-health, invariant-energy, and module-removal behavior.",
         "meaning": "HS-JEPA is represented as executable architecture code, not only competition analysis notes.",
+    },
+    {
+        "check": "executable_core_benchmark",
+        "passed": True,
+        "evidence": "A dataset-free benchmark compares full core against listener/action-health/invariant removal across multiple human-state scenarios.",
+        "meaning": "HS-JEPA has a small architecture-level behavioral test that does not depend on sleep labels or public LB.",
     },
     {
         "check": "adapter_uses_executable_core",
@@ -227,6 +234,7 @@ def run() -> dict[str, object]:
         READINESS_JSON,
         ABLATION_JSON,
         CORE_REFERENCE_JSON,
+        CORE_BENCHMARK_JSON,
         OG_PROBE_JSON,
         ASSIGNMENT_GAP_JSON,
         ROW_SUPPORT_SENSOR_JSON,
@@ -246,6 +254,7 @@ def run() -> dict[str, object]:
     readiness = read_json(READINESS_JSON)
     ablation = read_json(ABLATION_JSON)
     core_reference = read_json(CORE_REFERENCE_JSON)
+    core_benchmark = read_json(CORE_BENCHMARK_JSON)
     og_probe = read_json(OG_PROBE_JSON)
     assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
     row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
@@ -278,6 +287,16 @@ def run() -> dict[str, object]:
                 f"Core reference status {core_reference.get('status')}; full-core released "
                 f"{core_reference.get('full_core', {}).get('summary', {}).get('released_actions')}; "
                 f"ablation cases {list(core_reference.get('ablations', {}).keys())}."
+            )
+        if item["check"] == "executable_core_benchmark":
+            item["evidence"] = (
+                f"Core module benchmark status {core_benchmark.get('status')}; scenarios "
+                f"{core_benchmark.get('scenario_count')}; full-core F1 "
+                f"{core_benchmark.get('verdict', {}).get('full_core_mean_f1'):.4f}; "
+                f"action-health removal FP lift "
+                f"{core_benchmark.get('verdict', {}).get('remove_action_health_false_positive_lift')}; "
+                f"invariant removal FP lift "
+                f"{core_benchmark.get('verdict', {}).get('remove_invariant_false_positive_lift')}."
             )
         if item["check"] == "adapter_uses_executable_core":
             item["evidence"] = (
@@ -352,6 +371,10 @@ def run() -> dict[str, object]:
             "mechanism_ablation_status": ablation.get("status"),
             "core_reference_status": core_reference.get("status"),
             "core_reference_released_actions": core_reference.get("full_core", {}).get("summary", {}).get("released_actions"),
+            "core_module_benchmark_status": core_benchmark.get("status"),
+            "core_module_benchmark_full_core_f1": core_benchmark.get("verdict", {}).get("full_core_mean_f1"),
+            "core_module_benchmark_action_health_fp_lift": core_benchmark.get("verdict", {}).get("remove_action_health_false_positive_lift"),
+            "core_module_benchmark_invariant_fp_lift": core_benchmark.get("verdict", {}).get("remove_invariant_false_positive_lift"),
             "public_worldviews_killed": ablation.get("public_worldviews_killed"),
             "public_worldviews_survived": ablation.get("public_worldviews_survived"),
             "og_only_assignment_probe_status": og_verdict.get("status"),

@@ -31,6 +31,7 @@ PIPELINE_JSON = OUT / "hsjepa_pipeline_manifest.json"
 CORE_MANIFEST_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_manifest.json"
 CORE_ABLATION_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_ablation_contract.json"
 CORE_REFERENCE_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_reference_run.json"
+CORE_BENCHMARK_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_module_benchmark.json"
 ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_competition_adapter_report.json"
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
@@ -97,6 +98,7 @@ def require_inputs() -> list[dict[str, object]]:
         CORE_MANIFEST_JSON,
         CORE_ABLATION_JSON,
         CORE_REFERENCE_JSON,
+        CORE_BENCHMARK_JSON,
         ADAPTER_REPORT_JSON,
         BIG_BET_JSON,
         OG_PROBE_JSON,
@@ -156,6 +158,7 @@ def build_checklist() -> dict[str, object]:
     core = read_json(CORE_MANIFEST_JSON)
     core_ablation = read_json(CORE_ABLATION_JSON)
     core_reference = read_json(CORE_REFERENCE_JSON)
+    core_benchmark = read_json(CORE_BENCHMARK_JSON)
     adapter = read_json(ADAPTER_REPORT_JSON)
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
@@ -322,6 +325,19 @@ def build_checklist() -> dict[str, object]:
                     f"status={core_reference.get('status')}, "
                     f"released={core_reference.get('full_core', {}).get('summary', {}).get('released_count')}, "
                     f"ablations={len(core_reference.get('ablations', {}))}"
+                ),
+            ),
+            check(
+                "core_module_benchmark_executable",
+                core_benchmark.get("status") == "core_module_benchmark_ready"
+                and float(core_benchmark.get("verdict", {}).get("full_core_mean_f1", 0.0)) >= 0.90
+                and int(core_benchmark.get("verdict", {}).get("remove_action_health_false_positive_lift", 0)) >= 1,
+                (
+                    f"status={core_benchmark.get('status')}, "
+                    f"scenarios={core_benchmark.get('scenario_count')}, "
+                    f"full_f1={fmt(core_benchmark.get('verdict', {}).get('full_core_mean_f1'), 4)}, "
+                    f"action_health_fp_lift={core_benchmark.get('verdict', {}).get('remove_action_health_false_positive_lift')}, "
+                    f"invariant_fp_lift={core_benchmark.get('verdict', {}).get('remove_invariant_false_positive_lift')}"
                 ),
             ),
             check(

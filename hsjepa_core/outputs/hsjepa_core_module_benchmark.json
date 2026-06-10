@@ -1,0 +1,561 @@
+{
+  "package": "HS-JEPA Core Module Benchmark",
+  "status": "core_module_benchmark_ready",
+  "architecture_role": "dataset_free_core_module_validation",
+  "forbidden_dependencies_checked": [
+    "no sleep target names",
+    "no public leaderboard observations",
+    "no submission files",
+    "no row ids"
+  ],
+  "scenario_count": 5,
+  "policy_summary": [
+    {
+      "policy": "full_core",
+      "mean_precision": 1.0,
+      "mean_recall": 1.0,
+      "mean_f1": 1.0,
+      "false_positive_count": 0,
+      "false_negative_count": 0
+    },
+    {
+      "policy": "remove_listener_responsibility",
+      "mean_precision": 0.7,
+      "mean_recall": 1.0,
+      "mean_f1": 0.8,
+      "false_positive_count": 3,
+      "false_negative_count": 0
+    },
+    {
+      "policy": "remove_action_health",
+      "mean_precision": 0.3333333333333333,
+      "mean_recall": 0.8,
+      "mean_f1": 0.4666666666666666,
+      "false_positive_count": 9,
+      "false_negative_count": 0
+    },
+    {
+      "policy": "remove_invariant_energy",
+      "mean_precision": 0.9,
+      "mean_recall": 1.0,
+      "mean_f1": 0.9333333333333333,
+      "false_positive_count": 1,
+      "false_negative_count": 0
+    },
+    {
+      "policy": "invariant_only",
+      "mean_precision": 0.36666666666666664,
+      "mean_recall": 0.8,
+      "mean_f1": 0.5,
+      "false_positive_count": 8,
+      "false_negative_count": 0
+    }
+  ],
+  "verdict": {
+    "status": "core_module_benchmark_ready",
+    "full_core_mean_f1": 1.0,
+    "full_core_false_positive_count": 0,
+    "remove_action_health_false_positive_lift": 9,
+    "remove_invariant_false_positive_lift": 1,
+    "claim": "The HS-JEPA core has dataset-free module behavior: full core preserves expected listener/action releases, while module removals expose failure modes.",
+    "kill_condition": "If full core cannot beat module-removal policies on generic worlds, HS-JEPA is not yet an architecture; it is only an adapter heuristic."
+  },
+  "scenarios": [
+    {
+      "name": "stable_routine_survey_state",
+      "human_story": "A stable routine day where subjective survey state should move slightly, but shortcut moves should not.",
+      "expected_release": [
+        "survey_small_state_update"
+      ],
+      "expected_failure_if_removed": {
+        "remove_action_health": "may over-release low-support shortcuts",
+        "remove_invariant_energy": "may release state moves without manifold support"
+      },
+      "results": {
+        "full_core": {
+          "released": [
+            "survey_small_state_update"
+          ],
+          "expected": [
+            "survey_small_state_update"
+          ],
+          "true_positive": [
+            "survey_small_state_update"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "remove_listener_responsibility": {
+          "released": [
+            "sensor_unrelated_update",
+            "survey_small_state_update"
+          ],
+          "expected": [
+            "survey_small_state_update"
+          ],
+          "true_positive": [
+            "survey_small_state_update"
+          ],
+          "false_positive": [
+            "sensor_unrelated_update"
+          ],
+          "false_negative": [],
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666
+        },
+        "remove_action_health": {
+          "released": [
+            "sensor_unrelated_update",
+            "survey_small_state_update",
+            "unsupported_survey_shortcut"
+          ],
+          "expected": [
+            "survey_small_state_update"
+          ],
+          "true_positive": [
+            "survey_small_state_update"
+          ],
+          "false_positive": [
+            "sensor_unrelated_update",
+            "unsupported_survey_shortcut"
+          ],
+          "false_negative": [],
+          "precision": 0.3333333333333333,
+          "recall": 1.0,
+          "f1": 0.5
+        },
+        "remove_invariant_energy": {
+          "released": [
+            "survey_small_state_update"
+          ],
+          "expected": [
+            "survey_small_state_update"
+          ],
+          "true_positive": [
+            "survey_small_state_update"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "invariant_only": {
+          "released": [
+            "sensor_unrelated_update",
+            "survey_small_state_update"
+          ],
+          "expected": [
+            "survey_small_state_update"
+          ],
+          "true_positive": [
+            "survey_small_state_update"
+          ],
+          "false_positive": [
+            "sensor_unrelated_update"
+          ],
+          "false_negative": [],
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666
+        }
+      }
+    },
+    {
+      "name": "sensor_fragmentation_state",
+      "human_story": "A fragmented sensor day where objective sensor listener should get authority over survey listener.",
+      "expected_release": [
+        "sensor_fragmentation_update"
+      ],
+      "expected_failure_if_removed": {
+        "remove_listener_responsibility": "may flatten listener authority and release subjective actions",
+        "remove_action_health": "may release weak survey/recovery moves"
+      },
+      "results": {
+        "full_core": {
+          "released": [
+            "sensor_fragmentation_update"
+          ],
+          "expected": [
+            "sensor_fragmentation_update"
+          ],
+          "true_positive": [
+            "sensor_fragmentation_update"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "remove_listener_responsibility": {
+          "released": [
+            "recovery_minor_update",
+            "sensor_fragmentation_update"
+          ],
+          "expected": [
+            "sensor_fragmentation_update"
+          ],
+          "true_positive": [
+            "sensor_fragmentation_update"
+          ],
+          "false_positive": [
+            "recovery_minor_update"
+          ],
+          "false_negative": [],
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666
+        },
+        "remove_action_health": {
+          "released": [
+            "recovery_minor_update",
+            "sensor_fragmentation_update",
+            "survey_mood_shortcut"
+          ],
+          "expected": [
+            "sensor_fragmentation_update"
+          ],
+          "true_positive": [
+            "sensor_fragmentation_update"
+          ],
+          "false_positive": [
+            "recovery_minor_update",
+            "survey_mood_shortcut"
+          ],
+          "false_negative": [],
+          "precision": 0.3333333333333333,
+          "recall": 1.0,
+          "f1": 0.5
+        },
+        "remove_invariant_energy": {
+          "released": [
+            "sensor_fragmentation_update"
+          ],
+          "expected": [
+            "sensor_fragmentation_update"
+          ],
+          "true_positive": [
+            "sensor_fragmentation_update"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "invariant_only": {
+          "released": [
+            "recovery_minor_update",
+            "sensor_fragmentation_update",
+            "survey_mood_shortcut"
+          ],
+          "expected": [
+            "sensor_fragmentation_update"
+          ],
+          "true_positive": [
+            "sensor_fragmentation_update"
+          ],
+          "false_positive": [
+            "recovery_minor_update",
+            "survey_mood_shortcut"
+          ],
+          "false_negative": [],
+          "precision": 0.3333333333333333,
+          "recall": 1.0,
+          "f1": 0.5
+        }
+      }
+    },
+    {
+      "name": "recovery_debt_state",
+      "human_story": "A recovery-debt day where the same context should route action to recovery, not social or sensor listeners.",
+      "expected_release": [
+        "recovery_debt_update"
+      ],
+      "expected_failure_if_removed": {
+        "remove_listener_responsibility": "may confuse recovery with sensor/social listeners",
+        "remove_action_health": "may release weak non-recovery moves"
+      },
+      "results": {
+        "full_core": {
+          "released": [
+            "recovery_debt_update"
+          ],
+          "expected": [
+            "recovery_debt_update"
+          ],
+          "true_positive": [
+            "recovery_debt_update"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "remove_listener_responsibility": {
+          "released": [
+            "recovery_debt_update",
+            "social_calendar_shortcut"
+          ],
+          "expected": [
+            "recovery_debt_update"
+          ],
+          "true_positive": [
+            "recovery_debt_update"
+          ],
+          "false_positive": [
+            "social_calendar_shortcut"
+          ],
+          "false_negative": [],
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666
+        },
+        "remove_action_health": {
+          "released": [
+            "recovery_debt_update",
+            "social_calendar_shortcut"
+          ],
+          "expected": [
+            "recovery_debt_update"
+          ],
+          "true_positive": [
+            "recovery_debt_update"
+          ],
+          "false_positive": [
+            "social_calendar_shortcut"
+          ],
+          "false_negative": [],
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666
+        },
+        "remove_invariant_energy": {
+          "released": [
+            "recovery_debt_update"
+          ],
+          "expected": [
+            "recovery_debt_update"
+          ],
+          "true_positive": [
+            "recovery_debt_update"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "invariant_only": {
+          "released": [
+            "recovery_debt_update",
+            "social_calendar_shortcut"
+          ],
+          "expected": [
+            "recovery_debt_update"
+          ],
+          "true_positive": [
+            "recovery_debt_update"
+          ],
+          "false_positive": [
+            "social_calendar_shortcut"
+          ],
+          "false_negative": [],
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666
+        }
+      }
+    },
+    {
+      "name": "cohort_outlier_uncertain_state",
+      "human_story": "A cohort-outlier day with high uncertainty; good architecture should resist broad action release.",
+      "expected_release": [],
+      "expected_failure_if_removed": {
+        "remove_action_health": "may release uncertain guesses because threshold is gone",
+        "remove_invariant_energy": "may ignore that all guesses leave the stable manifold"
+      },
+      "results": {
+        "full_core": {
+          "released": [],
+          "expected": [],
+          "true_positive": [],
+          "false_positive": [],
+          "false_negative": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "remove_listener_responsibility": {
+          "released": [],
+          "expected": [],
+          "true_positive": [],
+          "false_positive": [],
+          "false_negative": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "remove_action_health": {
+          "released": [
+            "sensor_outlier_guess",
+            "social_outlier_guess",
+            "survey_outlier_guess"
+          ],
+          "expected": [],
+          "true_positive": [],
+          "false_positive": [
+            "sensor_outlier_guess",
+            "social_outlier_guess",
+            "survey_outlier_guess"
+          ],
+          "false_negative": [],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "remove_invariant_energy": {
+          "released": [],
+          "expected": [],
+          "true_positive": [],
+          "false_positive": [],
+          "false_negative": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "invariant_only": {
+          "released": [
+            "sensor_outlier_guess",
+            "social_outlier_guess",
+            "survey_outlier_guess"
+          ],
+          "expected": [],
+          "true_positive": [],
+          "false_positive": [
+            "sensor_outlier_guess",
+            "social_outlier_guess",
+            "survey_outlier_guess"
+          ],
+          "false_negative": [],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    },
+    {
+      "name": "off_manifold_listener_trap",
+      "human_story": "A listener-aligned but off-manifold action should be rejected even when the listener looks plausible.",
+      "expected_release": [
+        "survey_manifold_update"
+      ],
+      "expected_failure_if_removed": {
+        "remove_invariant_energy": "may release off-manifold high-support listener action",
+        "remove_action_health": "may release weak social action"
+      },
+      "results": {
+        "full_core": {
+          "released": [
+            "survey_manifold_update"
+          ],
+          "expected": [
+            "survey_manifold_update"
+          ],
+          "true_positive": [
+            "survey_manifold_update"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "remove_listener_responsibility": {
+          "released": [
+            "survey_manifold_update"
+          ],
+          "expected": [
+            "survey_manifold_update"
+          ],
+          "true_positive": [
+            "survey_manifold_update"
+          ],
+          "false_positive": [],
+          "false_negative": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "remove_action_health": {
+          "released": [
+            "social_weak_update",
+            "survey_manifold_update"
+          ],
+          "expected": [
+            "survey_manifold_update"
+          ],
+          "true_positive": [
+            "survey_manifold_update"
+          ],
+          "false_positive": [
+            "social_weak_update"
+          ],
+          "false_negative": [],
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666
+        },
+        "remove_invariant_energy": {
+          "released": [
+            "survey_manifold_update",
+            "survey_off_manifold_trap"
+          ],
+          "expected": [
+            "survey_manifold_update"
+          ],
+          "true_positive": [
+            "survey_manifold_update"
+          ],
+          "false_positive": [
+            "survey_off_manifold_trap"
+          ],
+          "false_negative": [],
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666
+        },
+        "invariant_only": {
+          "released": [
+            "social_weak_update",
+            "survey_manifold_update"
+          ],
+          "expected": [
+            "survey_manifold_update"
+          ],
+          "true_positive": [
+            "survey_manifold_update"
+          ],
+          "false_positive": [
+            "social_weak_update"
+          ],
+          "false_negative": [],
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6666666666666666
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "json": "/Users/kbsoo/Downloads/cl2/hsjepa_core/outputs/hsjepa_core_module_benchmark.json",
+    "markdown": "/Users/kbsoo/Downloads/cl2/hsjepa_core/outputs/hsjepa_core_module_benchmark_ko.md",
+    "csv": "/Users/kbsoo/Downloads/cl2/hsjepa_core/outputs/hsjepa_core_module_benchmark_cases.csv"
+  }
+}

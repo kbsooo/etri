@@ -33,6 +33,7 @@ METHOD_PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 CORE_MANIFEST_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_manifest.json"
 CORE_ABLATION_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_ablation_contract.json"
 CORE_REFERENCE_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_reference_run.json"
+CORE_BENCHMARK_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_module_benchmark.json"
 ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_competition_adapter_report.json"
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
@@ -88,6 +89,7 @@ def require_inputs() -> None:
         CORE_MANIFEST_JSON,
         CORE_ABLATION_JSON,
         CORE_REFERENCE_JSON,
+        CORE_BENCHMARK_JSON,
         ADAPTER_REPORT_JSON,
         BIG_BET_JSON,
         OG_PROBE_JSON,
@@ -161,6 +163,7 @@ def build_manifest() -> dict[str, object]:
     core = read_json(CORE_MANIFEST_JSON)
     core_ablation = read_json(CORE_ABLATION_JSON)
     core_reference = read_json(CORE_REFERENCE_JSON)
+    core_benchmark = read_json(CORE_BENCHMARK_JSON)
     adapter = read_json(ADAPTER_REPORT_JSON)
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
@@ -233,6 +236,7 @@ def build_manifest() -> dict[str, object]:
                 f"Core gates: {core['passed_gates']}/{core['total_gates']}",
                 f"Ablation status: {core_ablation['status']}",
                 f"Reference run: {core_reference['status']}",
+                f"Module benchmark: {core_benchmark['status']}",
             ],
             "The core must not depend on S2, public LB sensors, submission files, or manual row ids.",
         ),
@@ -248,6 +252,21 @@ def build_manifest() -> dict[str, object]:
                 f"Ablations: {list(core_reference['ablations'].keys())}",
             ],
             "This stage is architecture-only; it must not read competition data or sensor observations.",
+        ),
+        stage(
+            "hsjepa_core_module_benchmark",
+            "HS-JEPA Core Module Benchmark",
+            "Tests the reusable core across generic human-state worlds and compares full core against module-removal policies.",
+            ["hsjepa_core/core.py", "generic human-state scenarios", "listener/action/invariant expectations"],
+            ["hsjepa_core_module_benchmark_ko.md", "hsjepa_core_module_benchmark_cases.csv"],
+            [
+                f"Status: {core_benchmark['status']}",
+                f"Scenarios: {core_benchmark['scenario_count']}",
+                f"Full-core F1: {fmt(core_benchmark['verdict']['full_core_mean_f1'], 4)}",
+                f"Action-health FP lift: {core_benchmark['verdict']['remove_action_health_false_positive_lift']}",
+                f"Invariant FP lift: {core_benchmark['verdict']['remove_invariant_false_positive_lift']}",
+            ],
+            "This stage is core-only; it proves architecture behavior without sleep labels or public sensors.",
         ),
         stage(
             "og_raw_lifestyle_context",
@@ -687,6 +706,10 @@ def build_manifest() -> dict[str, object]:
 
     edges = [
         ["hsjepa_core_architecture", "hsjepa_core_reference_run"],
+        ["hsjepa_core_architecture", "hsjepa_core_module_benchmark"],
+        ["hsjepa_core_reference_run", "hsjepa_core_module_benchmark"],
+        ["hsjepa_core_module_benchmark", "general_architecture_boundary"],
+        ["hsjepa_core_module_benchmark", "claim_readiness_and_paper_packet"],
         ["hsjepa_core_reference_run", "sleep_competition_adapter"],
         ["hsjepa_core_reference_run", "core_adapter_boundary_audit"],
         ["hsjepa_core_reference_run", "claim_readiness_and_paper_packet"],
@@ -800,6 +823,10 @@ def build_manifest() -> dict[str, object]:
             "generality_status": generality["status"],
             "generality_nonblocking_boundaries": generality["nonblocking_boundaries"],
             "core_status": core["status"],
+            "core_module_benchmark_status": core_benchmark["status"],
+            "core_module_benchmark_full_core_f1": core_benchmark["verdict"]["full_core_mean_f1"],
+            "core_module_benchmark_action_health_fp_lift": core_benchmark["verdict"]["remove_action_health_false_positive_lift"],
+            "core_module_benchmark_invariant_fp_lift": core_benchmark["verdict"]["remove_invariant_false_positive_lift"],
             "adapter_status": adapter["status"],
             "core_adapter_boundary_status": boundary_audit["status"],
             "big_bet_count": big_bets["count"],

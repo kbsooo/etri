@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 69,
-  "total_checks": 69,
+  "passed_checks": 71,
+  "total_checks": 71,
   "required_failures": [],
   "checks": [
     {
@@ -81,6 +81,13 @@
       "passed": true,
       "required": true,
       "evidence": "hsjepa_core/outputs/hsjepa_core_reference_run.json"
+    },
+    {
+      "check": "exists:hsjepa_core_module_benchmark.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "hsjepa_core/outputs/hsjepa_core_module_benchmark.json"
     },
     {
       "check": "exists:sleep_competition_adapter_report.json",
@@ -290,7 +297,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=general_architecture_separated_with_case_boundary, checks=7/8, boundaries=['remaining_generality_gap']"
+      "evidence": "status=general_architecture_separated_with_case_boundary, checks=8/9, boundaries=['remaining_generality_gap']"
     },
     {
       "check": "core_adapter_separation_explicit",
@@ -319,6 +326,13 @@
       "passed": true,
       "required": true,
       "evidence": "status=core_reference_ready, released=1, ablations=3"
+    },
+    {
+      "check": "core_module_benchmark_executable",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=core_module_benchmark_ready, scenarios=5, full_f1=1.0000, action_health_fp_lift=9, invariant_fp_lift=1"
     },
     {
       "check": "big_bet_queue_high_ceiling",
@@ -472,7 +486,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=31, edges=83"
+      "evidence": "status=pipeline_ready_with_boundary, stages=32, edges=87"
     },
     {
       "check": "method_packet_presentable",

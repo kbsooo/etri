@@ -39,6 +39,7 @@ public-sensitive driver action
 - Core status: `core_ready_for_adapter` (`5/5` gates)
 - Core ablation contract: `6` modules, `13` big-bet followups
 - Core reference run: `core_reference_ready`, released actions `['survey_small_shift']`
+- Core module benchmark: `core_module_benchmark_ready`, full-core F1 `1.0`, action-health FP lift `9`
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
 - Adapter score delta: `-0.00841135550000005`
 - OG-only assignment probe: `og_only_assignment_replacement_not_ready`
@@ -115,7 +116,7 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_bo
 - Package validation passed: `True`
 - Architecture readiness: `paper_ready_with_boundary` (`7/7` gates)
 - Mechanism ablation: `mechanism_ablation_ready` (`5` public worldviews killed, `2` survived)
-- Generality boundary: `general_architecture_separated_with_case_boundary` (`7/8` portability checks, nonblocking boundaries: `1`)
+- Generality boundary: `general_architecture_separated_with_case_boundary` (`8/9` portability checks, nonblocking boundaries: `1`)
 - Core/adapter boundary: core `core_ready_for_adapter`, adapter `adapter_ready_with_public_sensor_boundary`
 - OG-only assignment boundary: pure recall `0.0404`, distilled recall `0.1236`
 - Assignment gap: `row_support_is_primary_bottleneck`, row-support gap `0.5832`
@@ -137,7 +138,7 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_bo
 - Boundary tomography inventory: `{'strict_jury_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'conflict_cells': 0}`
 - Core-mediated release inventory: `{'candidate_cells': 44, 'strict_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'default_core_released': 32}`
 - Core/adapter boundary audit: `core_adapter_boundary_verified`
-- Release checklist: `release_ready_with_boundary` (`69/69` checks)
+- Release checklist: `release_ready_with_boundary` (`71/71` checks)
 
 ## Paper Claim
 

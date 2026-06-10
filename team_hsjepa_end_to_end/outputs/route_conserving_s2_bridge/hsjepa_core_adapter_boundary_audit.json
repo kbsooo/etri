@@ -45,7 +45,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "positions={'core_manifest': 27439, 'core_reference': 27532, 'sleep_adapter_report': 30087, 'boundary_audit': 30200, 'paper_packet': 30279, 'release_checklist': 30431}"
+      "evidence": "positions={'core_manifest': 27983, 'core_reference': 28076, 'sleep_adapter_report': 30717, 'boundary_audit': 30830, 'paper_packet': 30909, 'release_checklist': 31061}"
     }
   ],
   "core_import_violations": [],
@@ -54,12 +54,12 @@
   "core_manifest_violations": [],
   "adapter_missing_or_bad": [],
   "runner_positions": {
-    "core_manifest": 27439,
-    "core_reference": 27532,
-    "sleep_adapter_report": 30087,
-    "boundary_audit": 30200,
-    "paper_packet": 30279,
-    "release_checklist": 30431
+    "core_manifest": 27983,
+    "core_reference": 28076,
+    "sleep_adapter_report": 30717,
+    "boundary_audit": 30830,
+    "paper_packet": 30909,
+    "release_checklist": 31061
   },
   "boundary_claim": "HS-JEPA Core is competition-agnostic at the operational dependency layer; the sleep adapter owns public sensors, Q/S listeners, and submission packaging."
 }

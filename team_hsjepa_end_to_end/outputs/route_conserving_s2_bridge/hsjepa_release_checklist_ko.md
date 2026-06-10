@@ -5,7 +5,7 @@
 ## Verdict
 
 - Status: `release_ready_with_boundary`
-- Checks: `69/69` passed
+- Checks: `71/71` passed
 
 ## Required Failures
 
@@ -26,6 +26,7 @@
 | `exists:hsjepa_core_manifest.json` | `PASS` | hsjepa_core/outputs/hsjepa_core_manifest.json |
 | `exists:hsjepa_core_ablation_contract.json` | `PASS` | hsjepa_core/outputs/hsjepa_core_ablation_contract.json |
 | `exists:hsjepa_core_reference_run.json` | `PASS` | hsjepa_core/outputs/hsjepa_core_reference_run.json |
+| `exists:hsjepa_core_module_benchmark.json` | `PASS` | hsjepa_core/outputs/hsjepa_core_module_benchmark.json |
 | `exists:sleep_competition_adapter_report.json` | `PASS` | sleep_competition_adapter/outputs/sleep_competition_adapter_report.json |
 | `exists:hsjepa_big_bet_queue.json` | `PASS` | sleep_competition_adapter/outputs/hsjepa_big_bet_queue.json |
 | `exists:og_only_assignment_teacher_probe.json` | `PASS` | sleep_competition_adapter/outputs/og_only_assignment_teacher_probe.json |
@@ -55,11 +56,12 @@
 | `human_state_boundary` | `PASS` | cell_auc=0.775, row_auc=0.545 |
 | `mechanism_ablation_ready` | `PASS` | status=mechanism_ablation_ready, killed=5, survived=2 |
 | `mechanism_shortcuts_rejected` | `PASS` | stress_verdicts=['killed_locally', 'killed_locally'] |
-| `generality_boundary_explicit` | `PASS` | status=general_architecture_separated_with_case_boundary, checks=7/8, boundaries=['remaining_generality_gap'] |
+| `generality_boundary_explicit` | `PASS` | status=general_architecture_separated_with_case_boundary, checks=8/9, boundaries=['remaining_generality_gap'] |
 | `core_adapter_separation_explicit` | `PASS` | core=core_ready_for_adapter (5/5), adapter=adapter_ready_with_public_sensor_boundary |
 | `core_adapter_boundary_audit_verified` | `PASS` | status=core_adapter_boundary_verified, checks=6/6 |
 | `core_ablation_contract_present` | `PASS` | status=ablation_contract_ready, ablations=6 |
 | `core_reference_executable` | `PASS` | status=core_reference_ready, released=1, ablations=3 |
+| `core_module_benchmark_executable` | `PASS` | status=core_module_benchmark_ready, scenarios=5, full_f1=1.0000, action_health_fp_lift=9, invariant_fp_lift=1 |
 | `big_bet_queue_high_ceiling` | `PASS` | status=big_bet_queue_ready, count=13 |
 | `og_only_assignment_probe_recorded` | `PASS` | status=og_only_assignment_replacement_not_ready, pure_recall=0.0404, distilled_recall=0.1236 |
 | `assignment_gap_decomposition_recorded` | `PASS` | status=row_support_is_primary_bottleneck, portable=0.1063, row_oracle=0.6896, row_gap=0.5832 |
@@ -81,7 +83,7 @@
 | `roles_present` | `PASS` | roles=['competition_primary', 'human_state_probe', 'interpretable_s2_hub'] |
 | `role_based_output_names` | `PASS` | role_outputs={'competition_primary': 'submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv', 'interpretable_s2_hub': 'submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv', 'human_state_probe': 'submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv'} |
 | `all_role_submissions_upload_safe` | `PASS` | upload_roles=['competition_primary', 'human_state_probe', 'interpretable_s2_hub'] |
-| `pipeline_manifest_complete` | `PASS` | status=pipeline_ready_with_boundary, stages=31, edges=83 |
+| `pipeline_manifest_complete` | `PASS` | status=pipeline_ready_with_boundary, stages=32, edges=87 |
 | `method_packet_presentable` | `PASS` | title=Human-State JEPA: General Architecture with a Route-Conserving S2 Bridge Case Study |
 | `claim_boundary_honest` | `PASS` | pure_og=False, public_sensor=True, proprietary_embedding=False |
 
