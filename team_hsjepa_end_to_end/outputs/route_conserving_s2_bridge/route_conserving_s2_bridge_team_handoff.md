@@ -44,6 +44,7 @@ public-sensitive driver action
 - Listener-invariant contrastive probe: `listener_invariant_decoder_not_ready`
 - Private-safe toxicity probe: `toxicity_field_promising_with_hardworld_gap`
 - Hard-world toxicity factorization probe: `hardworld_mixture_factorization_required`
+- Factorized toxicity decoder variants: `2`
 
 Core 문서:
 
@@ -61,6 +62,7 @@ sleep_competition_adapter/outputs/og_only_assignment_teacher_probe_ko.md
 sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md
 sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md
 sleep_competition_adapter/outputs/hardworld_toxicity_factorization_probe_ko.md
+sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_readout_ko.md
 ```
 
 ## Generated Submission Roles
@@ -92,7 +94,8 @@ sleep_competition_adapter/outputs/hardworld_toxicity_factorization_probe_ko.md
 - Listener-invariant boundary: listener-route rho `-0.0313`, contrastive overlap `0.2152`
 - Private-safe toxicity boundary: mean LOO AUC `0.7880`, worst LOO AUC `0.3683`
 - Hard-world factorization: broad->H088 AUC `0.3683`, broad/H088 rho `-0.4276`
-- Release checklist: `release_ready_with_boundary` (`39/39` checks)
+- Factorized decoder candidates: `dual_safe_expansion, teacher_dual_head`
+- Release checklist: `release_ready_with_boundary` (`41/41` checks)
 
 ## Paper Claim
 

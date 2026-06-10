@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 39,
-  "total_checks": 39,
+  "passed_checks": 41,
+  "total_checks": 41,
   "required_failures": [],
   "checks": [
     {
@@ -109,6 +109,13 @@
       "passed": true,
       "required": true,
       "evidence": "sleep_competition_adapter/outputs/hardworld_toxicity_factorization_probe.json"
+    },
+    {
+      "check": "exists:factorized_toxicity_decoder_readout.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_readout.json"
     },
     {
       "check": "exists:hsjepa_pipeline_manifest.json",
@@ -237,6 +244,13 @@
       "evidence": "status=hardworld_mixture_factorization_required, broad_to_h088_auc=0.3683, rho=-0.4276, joint_z=7.1884"
     },
     {
+      "check": "factorized_toxicity_decoder_candidate_recorded",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "variants=['dual_safe_expansion', 'teacher_dual_head'], upload_safe=[True, True]"
+    },
+    {
       "check": "roles_present",
       "status": "PASS",
       "passed": true,
@@ -262,7 +276,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=16, edges=31"
+      "evidence": "status=pipeline_ready_with_boundary, stages=17, edges=32"
     },
     {
       "check": "method_packet_presentable",

@@ -74,7 +74,7 @@ partial human context
 - Broad toxicity -> H088 AUC: `0.3683`
 - Broad/H088 Spearman: `-0.4276`
 
-가장 중요한 남은 과제는 public-sensor row-target assignment teacher를 OG-only personal/cohort/time human-state teacher로 교체하고, scalar action-health를 broad-public/hard-world factorized decoder로 바꾸는 것이다.
+가장 중요한 남은 과제는 public-sensor row-target assignment teacher를 OG-only personal/cohort/time human-state teacher로 교체하고, 이미 생성된 broad-public/hard-world factorized decoder 후보가 실제 public/private score에서 action-grade decoder인지 검증하는 것이다.
 
 ## Algorithm
 

@@ -62,6 +62,18 @@ The toxicity field is strong on most bad anchors, but a hard-world toxicity mode
 
 H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-world mode. The adapter should keep separate broad-public and hard-world toxicity heads.
 
+## Factorized Toxicity Decoder Candidate
+
+- Architecture role: `sleep_competition_adapter_action_health_decoder`
+- Core boundary: HS-JEPA core supplies the listener/action interface; this module uses public and hard-world competition sensors.
+
+| Variant | Output | Changed cells | Joint safety | H088 top-toxic | Upload-safe |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `teacher_dual_head` | `submission_hsjepa_factorized_toxicity_decoder_teacher_dual_head_2a3c5d2d_uploadsafe.csv` | `94` | `0.6937` | `0.0000` | `True` |
+| `dual_safe_expansion` | `submission_hsjepa_factorized_toxicity_decoder_dual_safe_expansion_23b6de1e_uploadsafe.csv` | `114` | `0.6994` | `0.0000` | `True` |
+
+이 후보는 broad-public safety와 hard-world safety를 동시에 통과한 row-target action만 믿는 adapter-side decoder다. public 결과가 좋아지면 factorized action-health가 맞다는 신호이고, 나빠지면 factorization은 diagnostic으로는 유효하지만 아직 action-grade decoder는 아니라는 뜻이다.
+
 ## Role Outputs
 
 | Role | Output |
@@ -79,6 +91,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.
 - The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.
 - Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.
+- The factorized toxicity decoder now produces upload-safe candidates that remove H088 top-toxic and broad-safe/H088-toxic selected cells in local diagnostics.
 
 ## 이 adapter가 아직 증명하지 못한 것
 
@@ -88,4 +101,4 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - that public LB sensors can be used outside this competition
 - that listener responsibility alone is an action-grade decoder
 - that toxicity diagnostics prove private leaderboard safety
-- that a hard-world mixture decoder has already been translated into a better submission
+- that a hard-world mixture decoder will improve public/private LB before it is externally submitted

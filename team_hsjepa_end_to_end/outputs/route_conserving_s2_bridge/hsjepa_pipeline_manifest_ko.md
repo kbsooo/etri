@@ -27,6 +27,7 @@ flowchart TD
     B --> P3["Private-safe toxicity probe"]
     E --> P3
     P3 --> P4["Hard-world toxicity factorization probe"]
+    P4 --> P5["Factorized toxicity decoder candidate"]
     E --> F
     F --> G["Role-based submission packager"]
     G --> ADAPT["Sleep competition adapter"]
@@ -35,6 +36,7 @@ flowchart TD
     P2 --> ADAPT
     P3 --> ADAPT
     P4 --> ADAPT
+    P5 --> ADAPT
     GEN --> H["Claim readiness and paper packet"]
     ADAPT --> H["Claim readiness and paper packet"]
     G --> H["Claim readiness and paper packet"]
@@ -53,7 +55,8 @@ flowchart TD
 | `route_energy_model` | Learns a target-route manifold from train labels and scores whether an action breaks it. | Primary route z-score: -9.66<br>S2 route z-score: -9.46 | Route energy proves candidate-pool structure, not private leaderboard safety. |
 | `listener_invariant_contrastive_probe` | Tests whether listener responsibility and route-invariant action health select the same bundles. | Probe status: listener_invariant_decoder_not_ready<br>Listener-route rho: -0.0313<br>Contrastive overlap: 0.2152 | This stage is a diagnostic; it does not create a new submission. |
 | `private_safe_toxicity_probe` | Tests whether toxicity head generalizes across bad public anchors and selects safer cells than matched nulls. | Probe status: toxicity_field_promising_with_hardworld_gap<br>Mean LOO bad-anchor AUC: 0.7880<br>Worst LOO bad-anchor AUC: 0.3683<br>Safety z vs matched null: 8.4589 | This stage supports toxicity diagnostics, not a private-LB safety guarantee. |
-| `hardworld_toxicity_factorization_probe` | Tests whether the H088 hard-world toxicity mode is anti-correlated with broad public-bad toxicity. | Probe status: hardworld_mixture_factorization_required<br>Broad->H088 AUC: 0.3683<br>Broad/H088 rho: -0.4276<br>Joint safety z: 7.1884 | This stage says action-health should be factorized; it does not yet produce a better submission. |
+| `hardworld_toxicity_factorization_probe` | Tests whether the H088 hard-world toxicity mode is anti-correlated with broad public-bad toxicity. | Probe status: hardworld_mixture_factorization_required<br>Broad->H088 AUC: 0.3683<br>Broad/H088 rho: -0.4276<br>Joint safety z: 7.1884 | This diagnostic stage says action-health should be factorized; the following decoder stage is the submission translation. |
+| `factorized_toxicity_decoder_candidate` | Translates broad-public and hard-world toxicity heads into upload-safe row-target action candidates. | Decoder variants: dual_safe_expansion, teacher_dual_head<br>Upload-safe variants: 2/2 | This creates competition submissions, but their public/private score impact remains unverified until external submission. |
 | `driver_action_field` | Selects sparse row-target cells that public sensor evidence says are worth moving. | Score breakthrough delta: -0.0084113555<br>Evidence roles: competition_primary, interpretable_s2_hub, human_state_probe | This stage is deliberately separated from the OG human-state representation claim. |
 | `route_conserving_s2_bridge_decoder` | Pairs driver cells with same-row bridge cells that lower route energy and repeatedly use S2 as listener/hub. | Primary route delta vs null: -0.02457 vs -0.01090<br>S2 usage vs null: 1.000 vs 0.615 | S2 is a decoder listener/hub in this action space, not a universal sleep physiology claim. |
 | `submission_packager` | Packages three role-based outputs without requiring historical version names. | Upload-safe roles: competition_primary, human_state_probe, interpretable_s2_hub<br>Validation passed: True | Upload safety is a format guarantee, not a score guarantee. |

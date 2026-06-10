@@ -30,7 +30,7 @@ Sparse row-target correction should preserve the learned Q/S route manifold.
 | `route_conserving_mechanism` | `PASS` | selected route delta -0.02457 vs null -0.01090, rank pct 0.186 | This proves unusual bridge selection inside the candidate pool, not that every future dataset shares the same route. |
 | `s2_listener_hub` | `PASS` | S2 usage 1.000 vs null 0.615, S2-hub rank pct 0.144 | S2 is a listener/hub for this decoder, not a universal claim about sleep physiology. |
 | `human_state_orientation` | `PASS` | cell AUC 0.775, row AUC 0.545 | Human-state explains target/cell orientation, but it is not a complete row-assignment solver. |
-| `reproducibility_contract` | `PASS` | required missing 0, public ledger rows 26, raw/source records 97 | The team runner is reproducible from local artifacts, but it explicitly uses a public-LB sensor. |
+| `reproducibility_contract` | `PASS` | required missing 0, public ledger rows 26, raw/source records 100 | The team runner is reproducible from local artifacts, but it explicitly uses a public-LB sensor. |
 | `upload_safe_team_outputs` | `PASS` | validation passed True, upload-safe roles ['competition_primary', 'human_state_probe', 'interpretable_s2_hub'] | Upload safety is a format/integrity guarantee, not a score guarantee. |
 | `claim_boundary_honesty` | `PASS` | pure OG-only=False, public sensor=True, proprietary embedding=False | Paper claims should separate OG human-state representation from the competition-specific action decoder. |
 

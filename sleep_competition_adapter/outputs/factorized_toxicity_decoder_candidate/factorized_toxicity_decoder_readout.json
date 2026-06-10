@@ -1,0 +1,239 @@
+{
+  "experiment": "Factorized Toxicity Decoder Candidate",
+  "architecture_role": "sleep_competition_adapter_action_health_decoder",
+  "core_boundary": "HS-JEPA core supplies the listener/action interface; this module uses public and hard-world competition sensors.",
+  "config": {
+    "teacher_min_amp": 0.58,
+    "teacher_max_amp": 1.18,
+    "teacher_conflict_amp": 0.48,
+    "teacher_hard_top_amp": 0.52,
+    "teacher_dual_safe_bonus": 0.12,
+    "expansion_top_cells": 42,
+    "expansion_min_selection": 0.64,
+    "expansion_min_joint_safety": 0.55,
+    "expansion_min_hard_safety": 0.58,
+    "expansion_min_broad_safety": 0.5,
+    "expansion_max_cells_per_row": 2,
+    "expansion_target_caps": [
+      [
+        "Q2",
+        16
+      ],
+      [
+        "Q3",
+        8
+      ],
+      [
+        "S2",
+        10
+      ],
+      [
+        "Q1",
+        4
+      ],
+      [
+        "S1",
+        2
+      ],
+      [
+        "S3",
+        1
+      ],
+      [
+        "S4",
+        1
+      ]
+    ],
+    "expansion_max_logit_step": 0.86,
+    "expansion_objective_tail_penalty": 0.14
+  },
+  "probe_verdict": {
+    "status": "hardworld_mixture_factorization_required",
+    "broad_predicts_hardworld_auc": 0.36828842798992056,
+    "broad_hardworld_spearman": -0.4276176291718262,
+    "broad_safe_hardworld_toxic_cells": 215,
+    "selected_joint_safety_z": 7.188448059350422,
+    "selected_hardworld_top_toxic_rate": 0.03333333333333333,
+    "null_hardworld_top_toxic_rate": 0.10267866666666667,
+    "interpretation": "H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-world mode. The adapter should keep separate broad-public and hard-world toxicity heads."
+  },
+  "variants": {
+    "teacher_dual_head": {
+      "submission_file": "submission_hsjepa_factorized_toxicity_decoder_teacher_dual_head_2a3c5d2d_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/submission_hsjepa_factorized_toxicity_decoder_teacher_dual_head_2a3c5d2d_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_factorized_toxicity_decoder_teacher_dual_head_2a3c5d2d_uploadsafe.csv",
+      "decode_diagnostics": {
+        "variant": "teacher_dual_head",
+        "changed_cells": 94,
+        "changed_rows": 82,
+        "target_action_counts": {
+          "teacher_factorized_toxicity": {
+            "Q1": 9,
+            "Q2": 20,
+            "Q3": 11,
+            "S1": 14,
+            "S2": 14,
+            "S3": 11,
+            "S4": 15
+          }
+        },
+        "teacher_cells": 94,
+        "expansion_cells": 0,
+        "teacher_mean_amp": 1.0732186289930445,
+        "teacher_min_amp": 0.7588528389339513,
+        "teacher_max_amp": 1.18,
+        "selected_safety": {
+          "cells": 94,
+          "joint_safety_mean": 0.693695914795,
+          "broad_safe_mean": 0.5439215009491876,
+          "hardworld_safe_mean": 0.8403207514607628,
+          "hardworld_top_toxic_rate": 0.0,
+          "broad_safe_hardworld_toxic_rate": 0.0,
+          "dual_safe_rate": 0.39361702127659576
+        },
+        "existing_decoder_safety": {
+          "cells": 150,
+          "joint_safety_mean": 0.6372305909617613,
+          "broad_safe_mean": 0.608211664735419,
+          "hardworld_safe_mean": 0.7363383545770567,
+          "hardworld_top_toxic_rate": 0.03333333333333333,
+          "broad_safe_hardworld_toxic_rate": 0.08,
+          "dual_safe_rate": 0.32
+        },
+        "teacher_safety": {
+          "cells": 94,
+          "joint_safety_mean": 0.693695914795,
+          "broad_safe_mean": 0.5439215009491876,
+          "hardworld_safe_mean": 0.8403207514607628,
+          "hardworld_top_toxic_rate": 0.0,
+          "broad_safe_hardworld_toxic_rate": 0.0,
+          "dual_safe_rate": 0.39361702127659576
+        },
+        "expansion_safety": {
+          "cells": 0,
+          "joint_safety_mean": null,
+          "broad_safe_mean": null,
+          "hardworld_safe_mean": null,
+          "hardworld_top_toxic_rate": null,
+          "broad_safe_hardworld_toxic_rate": null,
+          "dual_safe_rate": null
+        }
+      },
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.009014154492376011,
+        "base_listener_max_delta": -0.0022015959933911694,
+        "base_listener_negative_count": 10,
+        "semantic_listener_mean_delta": -0.010156812387072115,
+        "semantic_listener_max_delta": -0.0030590158837253273,
+        "semantic_listener_negative_count": 10,
+        "h088_cosine": 0.008958297917950926,
+        "changed_cells": 108,
+        "changed_rows": 91
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_factorized_toxicity_decoder_teacher_dual_head_2a3c5d2d_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 94,
+        "upload_safe": true
+      }
+    },
+    "dual_safe_expansion": {
+      "submission_file": "submission_hsjepa_factorized_toxicity_decoder_dual_safe_expansion_23b6de1e_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/submission_hsjepa_factorized_toxicity_decoder_dual_safe_expansion_23b6de1e_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_factorized_toxicity_decoder_dual_safe_expansion_23b6de1e_uploadsafe.csv",
+      "decode_diagnostics": {
+        "variant": "dual_safe_expansion",
+        "changed_cells": 114,
+        "changed_rows": 95,
+        "target_action_counts": {
+          "dual_safe_lrj_expansion": {
+            "Q1": 2,
+            "Q2": 6,
+            "Q3": 2,
+            "S1": 2,
+            "S2": 6,
+            "S3": 1,
+            "S4": 1
+          },
+          "teacher_factorized_toxicity": {
+            "Q1": 9,
+            "Q2": 20,
+            "Q3": 11,
+            "S1": 14,
+            "S2": 14,
+            "S3": 11,
+            "S4": 15
+          }
+        },
+        "teacher_cells": 94,
+        "expansion_cells": 20,
+        "teacher_mean_amp": 1.0732186289930445,
+        "teacher_min_amp": 0.7588528389339513,
+        "teacher_max_amp": 1.18,
+        "selected_safety": {
+          "cells": 114,
+          "joint_safety_mean": 0.6993708198654226,
+          "broad_safe_mean": 0.5793031245553049,
+          "hardworld_safe_mean": 0.8204193856599785,
+          "hardworld_top_toxic_rate": 0.0,
+          "broad_safe_hardworld_toxic_rate": 0.0,
+          "dual_safe_rate": 0.40350877192982454
+        },
+        "existing_decoder_safety": {
+          "cells": 150,
+          "joint_safety_mean": 0.6372305909617613,
+          "broad_safe_mean": 0.608211664735419,
+          "hardworld_safe_mean": 0.7363383545770567,
+          "hardworld_top_toxic_rate": 0.03333333333333333,
+          "broad_safe_hardworld_toxic_rate": 0.08,
+          "dual_safe_rate": 0.32
+        },
+        "teacher_safety": {
+          "cells": 94,
+          "joint_safety_mean": 0.693695914795,
+          "broad_safe_mean": 0.5439215009491876,
+          "hardworld_safe_mean": 0.8403207514607628,
+          "hardworld_top_toxic_rate": 0.0,
+          "broad_safe_hardworld_toxic_rate": 0.0,
+          "dual_safe_rate": 0.39361702127659576
+        },
+        "expansion_safety": {
+          "cells": 20,
+          "joint_safety_mean": 0.7260428736964079,
+          "broad_safe_mean": 0.7455967555040557,
+          "hardworld_safe_mean": 0.7268829663962919,
+          "hardworld_top_toxic_rate": 0.0,
+          "broad_safe_hardworld_toxic_rate": 0.0,
+          "dual_safe_rate": 0.45
+        }
+      },
+      "listener_metrics": {
+        "base_listener_mean_delta": -0.010530773823153483,
+        "base_listener_max_delta": -0.0025294077438134856,
+        "base_listener_negative_count": 10,
+        "semantic_listener_mean_delta": -0.011611287510596712,
+        "semantic_listener_max_delta": -0.0023172525275136748,
+        "semantic_listener_negative_count": 10,
+        "h088_cosine": 0.01188273303643258,
+        "changed_cells": 128,
+        "changed_rows": 103
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_factorized_toxicity_decoder_dual_safe_expansion_23b6de1e_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 114,
+        "upload_safe": true
+      }
+    }
+  }
+}

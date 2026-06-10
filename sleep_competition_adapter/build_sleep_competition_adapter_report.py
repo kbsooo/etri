@@ -31,6 +31,7 @@ OG_PROBE_JSON = OUT / "og_only_assignment_teacher_probe.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = OUT / "hardworld_toxicity_factorization_probe.json"
+FACTORIZED_DECODER_JSON = OUT / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_readout.json"
 
 REPORT_JSON = OUT / "sleep_competition_adapter_report.json"
 REPORT_MD = OUT / "sleep_competition_adapter_report_ko.md"
@@ -64,6 +65,7 @@ def require_inputs() -> None:
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
+        FACTORIZED_DECODER_JSON,
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
     if missing:
@@ -183,6 +185,7 @@ def build_report() -> dict[str, object]:
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
+    factorized_decoder = read_json(FACTORIZED_DECODER_JSON)
 
     public = readiness["public_breakthrough"]
     human = readiness["human_state"]
@@ -191,6 +194,7 @@ def build_report() -> dict[str, object]:
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
     hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
+    factorized_variants = factorized_decoder.get("variants", {})
 
     adapter_mapping = [
         {
@@ -282,6 +286,24 @@ def build_report() -> dict[str, object]:
             "null_hardworld_top_toxic_rate": hardworld_verdict.get("null_hardworld_top_toxic_rate"),
             "interpretation": hardworld_verdict.get("interpretation"),
         },
+        "factorized_toxicity_decoder_candidate": {
+            "experiment": factorized_decoder.get("experiment"),
+            "architecture_role": factorized_decoder.get("architecture_role"),
+            "core_boundary": factorized_decoder.get("core_boundary"),
+            "variants": {
+                name: {
+                    "submission_file": item.get("submission_file"),
+                    "changed_cells": item.get("decode_diagnostics", {}).get("changed_cells"),
+                    "changed_rows": item.get("decode_diagnostics", {}).get("changed_rows"),
+                    "joint_safety_mean": item.get("decode_diagnostics", {}).get("selected_safety", {}).get("joint_safety_mean"),
+                    "hardworld_top_toxic_rate": item.get("decode_diagnostics", {}).get("selected_safety", {}).get("hardworld_top_toxic_rate"),
+                    "broad_safe_hardworld_toxic_rate": item.get("decode_diagnostics", {}).get("selected_safety", {}).get("broad_safe_hardworld_toxic_rate"),
+                    "upload_safe": item.get("validation", {}).get("upload_safe"),
+                }
+                for name, item in factorized_variants.items()
+                if isinstance(item, dict)
+            },
+        },
         "role_outputs": {
             role: item["submission_file"]
             for role, item in package["packaged_submissions"].items()
@@ -294,6 +316,7 @@ def build_report() -> dict[str, object]:
             "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.",
             "The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.",
             "Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.",
+            "The factorized toxicity decoder now produces upload-safe candidates that remove H088 top-toxic and broad-safe/H088-toxic selected cells in local diagnostics.",
         ],
         "what_the_adapter_does_not_prove": [
             "pure OG-only assignment",
@@ -302,7 +325,7 @@ def build_report() -> dict[str, object]:
             "that public LB sensors can be used outside this competition",
             "that listener responsibility alone is an action-grade decoder",
             "that toxicity diagnostics prove private leaderboard safety",
-            "that a hard-world mixture decoder has already been translated into a better submission",
+            "that a hard-world mixture decoder will improve public/private LB before it is externally submitted",
         ],
         "paper_method_title": method["title"],
     }
@@ -319,6 +342,17 @@ def build_report_markdown(report: dict[str, object]) -> str:
     roles = ["| Role | Output |", "| --- | --- |"]
     for role, name in report["role_outputs"].items():
         roles.append(f"| `{role}` | `{name}` |")
+
+    factorized_rows = [
+        "| Variant | Output | Changed cells | Joint safety | H088 top-toxic | Upload-safe |",
+        "| --- | --- | ---: | ---: | ---: | ---: |",
+    ]
+    for variant, item in report["factorized_toxicity_decoder_candidate"]["variants"].items():
+        factorized_rows.append(
+            f"| `{variant}` | `{item['submission_file']}` | `{item['changed_cells']}` | "
+            f"`{fmt(item['joint_safety_mean'], 4)}` | `{fmt(item['hardworld_top_toxic_rate'], 4)}` | "
+            f"`{item['upload_safe']}` |"
+        )
 
     return "\n".join(
         [
@@ -378,6 +412,15 @@ def build_report_markdown(report: dict[str, object]) -> str:
             f"- Selected H088 top-toxic rate: `{fmt(report['hardworld_toxicity_factorization_probe']['selected_hardworld_top_toxic_rate'], 4)}` vs null `{fmt(report['hardworld_toxicity_factorization_probe']['null_hardworld_top_toxic_rate'], 4)}`",
             "",
             report["hardworld_toxicity_factorization_probe"]["interpretation"],
+            "",
+            "## Factorized Toxicity Decoder Candidate",
+            "",
+            f"- Architecture role: `{report['factorized_toxicity_decoder_candidate']['architecture_role']}`",
+            f"- Core boundary: {report['factorized_toxicity_decoder_candidate']['core_boundary']}",
+            "",
+            *factorized_rows,
+            "",
+            "이 후보는 broad-public safety와 hard-world safety를 동시에 통과한 row-target action만 믿는 adapter-side decoder다. public 결과가 좋아지면 factorized action-health가 맞다는 신호이고, 나빠지면 factorization은 diagnostic으로는 유효하지만 아직 action-grade decoder는 아니라는 뜻이다.",
             "",
             "## Role Outputs",
             "",

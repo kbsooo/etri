@@ -34,6 +34,7 @@ OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assign
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
+FACTORIZED_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_readout.json"
 
 PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 PACKET_MD = OUT / "hsjepa_paper_method_packet_ko.md"
@@ -71,6 +72,7 @@ def require_inputs() -> None:
             CONTRASTIVE_PROBE_JSON,
             PRIVATE_TOXICITY_PROBE_JSON,
             HARDWORLD_TOXICITY_PROBE_JSON,
+            FACTORIZED_DECODER_JSON,
         ]
         if not path.exists()
     ]
@@ -93,6 +95,7 @@ def build_packet() -> dict[str, object]:
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
+    factorized_decoder = read_json(FACTORIZED_DECODER_JSON)
     stress = pd.read_csv(STRESS_CSV)
     evidence = pd.read_csv(EVIDENCE_CSV)
 
@@ -105,6 +108,7 @@ def build_packet() -> dict[str, object]:
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
     hardworld_verdict = hardworld_toxicity_probe["verdict"]
+    factorized_variants = factorized_decoder.get("variants", {})
 
     roles = []
     for row in evidence.to_dict("records"):
@@ -164,6 +168,12 @@ def build_packet() -> dict[str, object]:
             "hardworld_broad_to_h088_auc": hardworld_verdict["broad_predicts_hardworld_auc"],
             "hardworld_broad_h088_spearman": hardworld_verdict["broad_hardworld_spearman"],
             "hardworld_joint_safety_z": hardworld_verdict["selected_joint_safety_z"],
+            "factorized_decoder_variant_count": len(factorized_variants),
+            "factorized_decoder_upload_safe_count": sum(
+                1
+                for item in factorized_variants.values()
+                if isinstance(item, dict) and item.get("validation", {}).get("upload_safe")
+            ),
             "role": "orientation diagnostic, not complete row-target assignment solver",
         },
         "roles": roles,
@@ -205,6 +215,7 @@ def build_packet() -> dict[str, object]:
             "listener_invariant_contrastive_probe": str(CONTRASTIVE_PROBE_JSON.resolve()),
             "private_safe_toxicity_probe": str(PRIVATE_TOXICITY_PROBE_JSON.resolve()),
             "hardworld_toxicity_factorization_probe": str(HARDWORLD_TOXICITY_PROBE_JSON.resolve()),
+            "factorized_toxicity_decoder": str(FACTORIZED_DECODER_JSON.resolve()),
             "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
         },
         "paper_sections": {
@@ -311,7 +322,7 @@ def build_generality_text(
         f"- Broad toxicity -> H088 AUC: `{fmt(hardworld_verdict['broad_predicts_hardworld_auc'], 4)}`",
         f"- Broad/H088 Spearman: `{fmt(hardworld_verdict['broad_hardworld_spearman'], 4)}`",
         "",
-        "가장 중요한 남은 과제는 public-sensor row-target assignment teacher를 OG-only personal/cohort/time human-state teacher로 교체하고, scalar action-health를 broad-public/hard-world factorized decoder로 바꾸는 것이다.",
+        "가장 중요한 남은 과제는 public-sensor row-target assignment teacher를 OG-only personal/cohort/time human-state teacher로 교체하고, 이미 생성된 broad-public/hard-world factorized decoder 후보가 실제 public/private score에서 action-grade decoder인지 검증하는 것이다.",
     ]
     return "\n".join(rows)
 
