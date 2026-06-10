@@ -1,0 +1,77 @@
+{
+  "package": "Route-Conserving S2 Bridge HS-JEPA",
+  "current_best_file": "submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv",
+  "current_best_public_lb": 0.5677475939,
+  "mechanism": "Select public-sensitive objective-stage driver corrections, add local bridge corrections that preserve the learned Q/S route manifold, and interpret S2 as the main listener/hub.",
+  "why_this_is_not_only_trial_and_error": [
+    "The bridge is selected by a route-energy invariant learned from train labels.",
+    "S2 is a repeated listener/hub constraint, not a post-hoc file-specific tweak.",
+    "Human-state distillation is kept as an orientation diagnostic instead of being overclaimed as a row selector.",
+    "Failed target-listener route lift is recorded as evidence that listener posterior alone is not an action generator."
+  ],
+  "packaged_submissions": {
+    "competition_primary": {
+      "role": "route_conserving_objective_bridge_primary",
+      "source_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_stage_bridge_conservation_stagebridge_jackpot_89d16116_uploadsafe.csv",
+      "submission_file": "submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv",
+      "hash": "89d16116",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 82,
+        "upload_safe": true
+      }
+    },
+    "interpretable_s2_hub": {
+      "role": "s2_listener_bridge_interpretable",
+      "source_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_s2hub_bridge_s2hub_jackpot_f0866f50_uploadsafe.csv",
+      "submission_file": "submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv",
+      "hash": "f0866f50",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 68,
+        "upload_safe": true
+      }
+    },
+    "human_state_probe": {
+      "role": "human_state_gated_s2_bridge_probe",
+      "source_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_ogdistilled_s2hub_jackpot_38d995b0_uploadsafe.csv",
+      "submission_file": "submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv",
+      "hash": "38d995b0",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 68,
+        "upload_safe": true
+      }
+    }
+  },
+  "evidence_table_path": "/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/route_conserving_s2_bridge_evidence_table.csv",
+  "source_readouts": {
+    "stage_bridge": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/stage_bridge_conservation_solver/stage_bridge_conservation_readout.json",
+    "s2hub": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/s2hub_bridge_solver/s2hub_bridge_readout.json",
+    "s2_distillation": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/s2hub_human_state_distillation/s2hub_human_state_distillation_readout.json"
+  }
+}

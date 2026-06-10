@@ -14387,3 +14387,56 @@ Decision update:
 Demote target-listener route lift from submission candidate to architecture
 diagnostic.  It is useful evidence for the HS-JEPA module boundary, not a
 current performance route.
+
+## Team End-to-End Package: Route-Conserving S2 Bridge HS-JEPA
+
+Date: 2026-06-10
+
+Generated files:
+
+- `team_hsjepa_end_to_end/README.md`
+- `team_hsjepa_end_to_end/ROUTE_CONSERVING_S2_BRIDGE_KO.md`
+- `team_hsjepa_end_to_end/run_route_conserving_s2_bridge.py`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/route_conserving_s2_bridge_package.json`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/route_conserving_s2_bridge_evidence_table.csv`
+- `submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv`
+- `submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv`
+- `submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv`
+
+Question:
+
+Can we repackage the post-H057 assets as one reproducible mechanism rather
+than a sequence of leaderboard-tuned attempts?
+
+Mechanism:
+
+```text
+public-sensitive S-stage driver
+  + route-preserving bridge
+  + S2 listener/hub interpretation
+  + human-state orientation diagnostic
+```
+
+Evidence table:
+
+| Component | Role | Listener cells | Changed cells vs best | Route energy | H088 cosine |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Route-Conserving Objective Bridge | competition_primary | `97` | `82` | `0.724352` | `-0.006888` |
+| S2 Listener Bridge | interpretable_s2_hub | `83` | `68` | `0.724714` | `-0.000696` |
+| Human-State Gated S2 Probe | human_state_probe | `83` | `68` | n/a | `-0.004317` |
+
+Interpretation:
+
+This is the current best "knuckleball" packaging:
+
+```text
+Do not move sleep-stage targets independently.
+Move a public-sensitive driver with a route-conserving bridge,
+and treat S2 as the listener/hub that keeps the action interpretable.
+```
+
+It still contains a competition-specific public sensor, so it should not be
+overclaimed as a pure OG-only model.  But it is no longer just "we tried many
+submissions and nudged them"; it is a named decoder rule with a train-label
+route-energy invariant and a falsified boundary condition from the failed
+target-listener route lift.

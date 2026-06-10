@@ -5,6 +5,22 @@
 - 현재 최고 앵커: `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv`
 - public LB: `0.5677475939`
 
+## 현재 팀 발표용 진입점
+
+후보 1/2는 중요한 자산이지만, 팀 발표와 논문 설명에서는 이제 다음 패키지를 먼저 본다.
+
+```bash
+python3 team_hsjepa_end_to_end/run_route_conserving_s2_bridge.py
+```
+
+패키지 이름:
+
+```text
+Route-Conserving S2 Bridge HS-JEPA
+```
+
+이 패키지는 public-loss sparse tomography, objective-stage bridge, S2 listener/hub, human-state distillation을 하나의 end-to-end 메커니즘으로 묶는다.
+
 이번 패키지는 이 앵커 이후 발견한 구조를 두 개의 최종 후보로 정리한다.
 
 ## 후보 비교

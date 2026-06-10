@@ -219,7 +219,19 @@ but target listener posterior alone is not an action generator.
 
 ## 재현 명령
 
-최소 재현 순서:
+팀 공유용 end-to-end 재현:
+
+```bash
+python3 team_hsjepa_end_to_end/run_route_conserving_s2_bridge.py
+```
+
+전체 dependency까지 새로 실행:
+
+```bash
+python3 team_hsjepa_end_to_end/run_route_conserving_s2_bridge.py --refresh
+```
+
+내부 모듈을 개별 재현하려면:
 
 ```bash
 python3 final_hsjepa_candidates/candidate_1_public_loss_sparse_tomography.py
@@ -230,6 +242,8 @@ python3 paper_hsjepa_core/target_listener_route_lift_solver.py
 ```
 
 각 스크립트는 root에 upload-safe submission CSV를 만들고, `paper_hsjepa_core/outputs/...` 아래에 readout과 audit 파일을 남긴다.
+
+새 팀 패키지는 `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/` 아래에 evidence table과 package JSON을 만든다.
 
 ## 논문에서 주장할 수 있는 것
 

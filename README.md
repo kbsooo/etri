@@ -6,6 +6,16 @@ Current public frontier:
 
 - `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv`
 - Public LB: `0.5677475939`
+- Team-facing HS-JEPA mechanism package:
+  `team_hsjepa_end_to_end/README.md`
+- Current paper/competition mechanism:
+  `Route-Conserving S2 Bridge HS-JEPA`
+- Team end-to-end command:
+  `python3 team_hsjepa_end_to_end/run_route_conserving_s2_bridge.py`
+- Team packaged submissions:
+  - `submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv`
+  - `submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv`
+  - `submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv`
 - End-to-end HS-JEPA reproduction script:
   `python3 hs_jepa_end_to_end.py`
 - Reproduced upload-safe file:

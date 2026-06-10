@@ -10055,3 +10055,28 @@ Public result:
 So this route did lose against the current best.  Target-listener posterior
 remains a representation/diagnostic, and row assignment stays with
 stagebridge/public-private solvers.
+
+## Team End-to-End Route-Conserving S2 Bridge Package
+
+Team-facing package:
+
+- `team_hsjepa_end_to_end/README.md`
+- `team_hsjepa_end_to_end/ROUTE_CONSERVING_S2_BRIDGE_KO.md`
+- `team_hsjepa_end_to_end/run_route_conserving_s2_bridge.py`
+
+Packaged submissions:
+
+| Priority | File | Role | Why |
+| --- | --- | --- | --- |
+| 1 | `submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv` | competition primary | strongest driver+bridge mechanism; 82 changed cells vs current best, route energy `0.724352`, H088 cosine `-0.006888` |
+| 2 | `submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv` | interpretable S2-hub candidate | cleaner S2 listener/hub claim; 68 changed cells vs current best, route energy `0.724714` |
+| diagnostic | `submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv` | paper diagnostic | OG human-state gates S2-hub teacher; useful for architecture explanation, not first performance slot |
+
+This package is now the preferred team-facing entry point.  It keeps the public
+LB assets, but names the underlying mechanism:
+
+```text
+Route-Conserving S2 Bridge HS-JEPA
+```
+
+The submission filenames are role-based, not historical-version-based.

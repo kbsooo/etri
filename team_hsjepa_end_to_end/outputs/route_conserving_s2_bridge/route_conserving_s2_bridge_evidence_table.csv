@@ -1,0 +1,4 @@
+component,role,submission_file,listener_changed_cells,submission_changed_cells_vs_current_best,changed_rows,mean_route_energy,base_mean_route_energy,h088_cosine,claim
+Route-Conserving Objective Bridge,competition_primary,submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv,97,82,41,0.7243523763113011,0.7283812739064743,-0.0068875429253,Public-sensitive S-stage driver actions should be paired with route-preserving bridge actions.
+S2 Listener Bridge,interpretable_s2_hub,submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv,83,68,34,0.7247142111534399,0.7283812739064743,-0.0006963184244416381,S2 acts as a public-sensitive listener/hub inside the objective sleep-stage route.
+Human-State Gated S2 Probe,human_state_probe,submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv,83,68,47,,,-0.004316529202844213,"OG human-state explains target/cell orientation, but not row assignment."
