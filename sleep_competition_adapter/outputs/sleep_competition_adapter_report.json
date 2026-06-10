@@ -57,6 +57,16 @@
     "listener_upper_bound_row_cap2_mean_recall": 0.13558106169296988,
     "interpretation": "Human-state explains action orientation, but the safe row-target assignment still needs adapter-side evidence."
   },
+  "assignment_gap_decomposition_probe": {
+    "status": "row_support_is_primary_bottleneck",
+    "mean_best_portable_recall": 0.10634863701578193,
+    "mean_distilled_row_gated_recall": 0.12356527977044476,
+    "mean_target_oracle_recall": 0.10634863701578193,
+    "mean_row_oracle_stage_recall": 0.6895624103299857,
+    "mean_row_support_gap": 0.5832137733142038,
+    "next_action": "Stop spending submission slots on target-route tweaks; search for a hidden row-support sensor.",
+    "interpretation": "The decisive missing variable is row support, not target route.  When row support is provided by an oracle, the same fixed objective-stage prior recovers most teacher cells; current human/social/cohort context does not."
+  },
   "listener_invariant_contrastive_probe": {
     "status": "listener_invariant_decoder_not_ready",
     "mean_listener_route_spearman": -0.03128093281938615,
@@ -140,6 +150,7 @@
     "Route-conserving action selection is statistically non-random against feasible null bundles.",
     "Human-state latent explains target/cell orientation but not enough row assignment on its own.",
     "A pure OG-only assignment teacher is not ready yet; this is now a measured architecture boundary, not an informal caveat.",
+    "The assignment gap decomposes into a row-support bottleneck: target route is relatively easy, but current human/social/cohort context does not find the right support rows.",
     "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.",
     "The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.",
     "Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.",
@@ -148,6 +159,7 @@
   ],
   "what_the_adapter_does_not_prove": [
     "pure OG-only assignment",
+    "portable hidden row-support recovery",
     "private leaderboard safety",
     "S2 as a universal human-sleep factor",
     "that public LB sensors can be used outside this competition",

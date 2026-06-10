@@ -33,6 +33,7 @@ CORE_ABLATION_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_ablation_co
 ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_competition_adapter_report.json"
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
+ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignment_gap_decomposition_probe.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
@@ -87,6 +88,7 @@ def require_inputs() -> list[dict[str, object]]:
         ADAPTER_REPORT_JSON,
         BIG_BET_JSON,
         OG_PROBE_JSON,
+        ASSIGNMENT_GAP_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
@@ -134,6 +136,7 @@ def build_checklist() -> dict[str, object]:
     adapter = read_json(ADAPTER_REPORT_JSON)
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
+    assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -153,6 +156,7 @@ def build_checklist() -> dict[str, object]:
     role_outputs = pipeline.get("role_outputs", {})
     stress_ablation = ablation.get("stress_ablation", [])
     og_verdict = og_probe.get("verdict", {})
+    gap_verdict = assignment_gap.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
     hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
@@ -285,6 +289,23 @@ def build_checklist() -> dict[str, object]:
                     f"status={og_verdict.get('status')}, "
                     f"pure_recall={fmt(og_verdict.get('pure_og_row_cap2_mean_recall'), 4)}, "
                     f"distilled_recall={fmt(og_verdict.get('distilled_row_cap2_mean_recall'), 4)}"
+                ),
+            ),
+            check(
+                "assignment_gap_decomposition_recorded",
+                assignment_gap.get("status") == "probe_ready"
+                and gap_verdict.get("status") in {
+                    "portable_assignment_signal_alive",
+                    "row_support_is_primary_bottleneck",
+                    "distilled_capacity_alive_but_not_portable",
+                    "assignment_gap_not_explained_by_current_human_context",
+                }
+                and float(gap_verdict.get("mean_row_oracle_stage_recall", 0.0)) > float(gap_verdict.get("mean_best_portable_recall", 1.0)),
+                (
+                    f"status={gap_verdict.get('status')}, "
+                    f"portable={fmt(gap_verdict.get('mean_best_portable_recall'), 4)}, "
+                    f"row_oracle={fmt(gap_verdict.get('mean_row_oracle_stage_recall'), 4)}, "
+                    f"row_gap={fmt(gap_verdict.get('mean_row_support_gap'), 4)}"
                 ),
             ),
             check(
@@ -462,6 +483,7 @@ def build_markdown(result: dict[str, object]) -> str:
             "",
             "- private LB safety is not proven",
             "- pure OG-only assignment is not proven",
+            "- hidden row-support recovery is not solved by current portable human/social/cohort context",
             "- human-state is an orientation diagnostic, not a complete row-target assignment solver",
             "- OG-only assignment replacement has a recorded probe result",
             "- Listener-invariant contrastive decoding has a recorded probe result",

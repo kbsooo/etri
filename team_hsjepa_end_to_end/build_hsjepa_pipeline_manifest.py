@@ -35,6 +35,7 @@ CORE_ABLATION_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_ablation_co
 ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_competition_adapter_report.json"
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
+ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignment_gap_decomposition_probe.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
@@ -78,6 +79,7 @@ def require_inputs() -> None:
         ADAPTER_REPORT_JSON,
         BIG_BET_JSON,
         OG_PROBE_JSON,
+        ASSIGNMENT_GAP_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
@@ -139,6 +141,7 @@ def build_manifest() -> dict[str, object]:
     adapter = read_json(ADAPTER_REPORT_JSON)
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
+    assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -151,6 +154,7 @@ def build_manifest() -> dict[str, object]:
     human = readiness["human_state"]
     mechanism = validation["mechanism_evidence"]
     og_verdict = og_probe["verdict"]
+    gap_verdict = assignment_gap["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
     hardworld_verdict = hardworld_toxicity_probe["verdict"]
@@ -237,6 +241,20 @@ def build_manifest() -> dict[str, object]:
                 f"Distilled row-cap2 recall: {fmt(og_verdict['distilled_row_cap2_mean_recall'], 4)}",
             ],
             "The probe currently measures the gap; it does not prove pure OG-only deployment.",
+        ),
+        stage(
+            "assignment_gap_decomposition",
+            "Assignment Gap Decomposition",
+            "Decomposes public-sensitive row-target assignment into target-route information and hidden row-support information.",
+            ["og_only_assignment_teacher_ranked_cells.csv"],
+            ["assignment_gap_decomposition_probe_ko.md", "assignment_gap_decomposition_summary.csv"],
+            [
+                f"Gap status: {gap_verdict['status']}",
+                f"Best portable recall: {fmt(gap_verdict['mean_best_portable_recall'], 4)}",
+                f"Row oracle + stage recall: {fmt(gap_verdict['mean_row_oracle_stage_recall'], 4)}",
+                f"Row-support gap: {fmt(gap_verdict['mean_row_support_gap'], 4)}",
+            ],
+            "This is a bottleneck decomposition, not a deployable row-support sensor.",
         ),
         stage(
             "route_energy_model",
@@ -442,6 +460,8 @@ def build_manifest() -> dict[str, object]:
         ["og_raw_lifestyle_context", "route_energy_model"],
         ["human_state_listener_context", "og_only_assignment_probe"],
         ["og_only_assignment_probe", "general_architecture_boundary"],
+        ["og_only_assignment_probe", "assignment_gap_decomposition"],
+        ["assignment_gap_decomposition", "general_architecture_boundary"],
         ["public_lb_sensor", "driver_action_field"],
         ["human_state_listener_context", "driver_action_field"],
         ["route_energy_model", "route_conserving_s2_bridge_decoder"],
@@ -506,6 +526,8 @@ def build_manifest() -> dict[str, object]:
             "core_adapter_boundary_status": boundary_audit["status"],
             "big_bet_count": big_bets["count"],
             "og_only_assignment_probe_status": og_verdict["status"],
+            "assignment_gap_decomposition_status": gap_verdict["status"],
+            "assignment_gap_mean_row_support_gap": gap_verdict["mean_row_support_gap"],
             "listener_invariant_contrastive_probe_status": contrastive_verdict["status"],
             "private_safe_toxicity_probe_status": toxicity_verdict["status"],
             "hardworld_toxicity_factorization_probe_status": hardworld_verdict["status"],
@@ -551,7 +573,8 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    A["OG raw lifestyle context"] --> C["Human-state listener context"]',
             '    A --> D["Q/S route energy model"]',
             '    C --> P1["OG-only assignment probe"]',
-            '    P1 --> GEN["General architecture boundary"]',
+            '    P1 --> GAP["Assignment gap decomposition"]',
+            '    GAP --> GEN["General architecture boundary"]',
             '    B["Public LB sensor ledger"] --> E["Public-sensitive driver action field"]',
             '    C --> E',
             '    D --> F["Route-conserving S2 bridge decoder"]',

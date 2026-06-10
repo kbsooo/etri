@@ -67,6 +67,10 @@ partial human context
 - OG-only assignment probe: `og_only_assignment_replacement_not_ready`
 - Pure OG row-cap2 recall: `0.0404`
 - Distilled row-cap2 recall: `0.1236`
+- Assignment gap decomposition: `row_support_is_primary_bottleneck`
+- Best portable recall: `0.1063`
+- Row oracle + stage prior recall: `0.6896`
+- Row-support gap: `0.5832`
 - Listener-invariant probe: `listener_invariant_decoder_not_ready`
 - Listener-route Spearman: `-0.0313`
 - Private-safe toxicity probe: `toxicity_field_promising_with_hardworld_gap`
@@ -76,7 +80,7 @@ partial human context
 - Broad toxicity -> H088 AUC: `0.3683`
 - Broad/H088 Spearman: `-0.4276`
 
-가장 중요한 남은 과제는 public-sensor row-target assignment teacher를 OG-only personal/cohort/time human-state teacher로 교체하고, 이미 생성된 broad-public/hard-world factorized decoder 후보가 실제 public/private score에서 action-grade decoder인지 검증하는 것이다.
+가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor다. 현재 calendar/cohort/latent/peer-route context는 portable assignment teacher로 부족하며, public-sensor row-target assignment teacher를 OG-only personal/cohort/time human-state teacher로 교체하려면 row-support를 복원하는 새 context objective가 필요하다. 동시에 이미 생성된 broad-public/hard-world factorized decoder 후보가 실제 public/private score에서 action-grade decoder인지 검증해야 한다.
 
 ## Algorithm
 
@@ -107,6 +111,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 - Route delta vs null: `-0.02457` vs `-0.01090`
 - S2 usage vs null: `1.000` vs `0.615`
 - Human-state cell AUC / row AUC: `0.775` / `0.545`
+- Assignment gap: `row_support_is_primary_bottleneck`, row-support gap `0.5832`
 
 ## Role-Based Outputs
 
@@ -127,7 +132,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 
 다음 큰 실험은 HS-JEPA core/adaptor 경계를 바꾸는 실험이어야 한다.
 
-- `OG-only Human-State Assignment Teacher`: The public-sensor teacher can be replaced by personal/cohort/time human-state consistency. Expected LB delta if true `-0.003`. Kill: Pure OG row-target recall stays near base-rate and distillation cannot recover row assignment under subject/time stress.
+- `OG-only Human-State Assignment Teacher`: The public-sensor teacher can be replaced by personal/cohort/time human-state consistency. Expected LB delta if true `-0.003`. Kill: Portable human context cannot localize support rows; row-oracle + target prior remains far above all current OG scores.
 - `Listener-Invariant Contrastive Decoder`: A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone. Expected LB delta if true `-0.002`. Kill: Listener gain and invariant energy remain anti-correlated on strong candidates.
 - `Private-Safe Toxicity Field`: The plateau comes from actions that help public-like rows but poison private-like rows. Expected LB delta if true `-0.0015`. Kill: Toxicity score only recovers known public failures, fails hard-world anchors, or does not separate matched local nulls.
 - `Hard-World Mixture Toxicity Decoder`: H088-like hard-world toxicity is anti-correlated with broad public-bad toxicity, so action-health must be factorized. Expected LB delta if true `-0.0025`. Kill: Broad toxicity predicts H088 well, or mixture safety does not beat matched null after target/source matching.
@@ -160,3 +165,4 @@ Generated supporting reports:
 - `/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_boundary_audit.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/hsjepa_big_bet_queue.json`
+- `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/assignment_gap_decomposition_probe.json`

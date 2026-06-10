@@ -33,6 +33,18 @@ This adapter converts HS-JEPA Core into a sleep-log competition system by supply
 
 Human-state explains action orientation, but the safe row-target assignment still needs adapter-side evidence.
 
+## Assignment Gap Decomposition Probe
+
+- Status: `row_support_is_primary_bottleneck`
+- Mean best portable recall: `0.1063`
+- Mean target oracle recall: `0.1063`
+- Mean row oracle + stage prior recall: `0.6896`
+- Mean row support gap: `0.5832`
+
+The decisive missing variable is row support, not target route.  When row support is provided by an oracle, the same fixed objective-stage prior recovers most teacher cells; current human/social/cohort context does not.
+
+Next action: Stop spending submission slots on target-route tweaks; search for a hidden row-support sensor.
+
 ## Listener-Invariant Contrastive Probe
 
 - Status: `listener_invariant_decoder_not_ready`
@@ -100,6 +112,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - Route-conserving action selection is statistically non-random against feasible null bundles.
 - Human-state latent explains target/cell orientation but not enough row assignment on its own.
 - A pure OG-only assignment teacher is not ready yet; this is now a measured architecture boundary, not an informal caveat.
+- The assignment gap decomposes into a row-support bottleneck: target route is relatively easy, but current human/social/cohort context does not find the right support rows.
 - A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.
 - The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.
 - Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.
@@ -109,6 +122,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 ## 이 adapter가 아직 증명하지 못한 것
 
 - pure OG-only assignment
+- portable hidden row-support recovery
 - private leaderboard safety
 - S2 as a universal human-sleep factor
 - that public LB sensors can be used outside this competition

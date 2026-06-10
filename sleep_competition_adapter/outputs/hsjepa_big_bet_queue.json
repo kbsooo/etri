@@ -15,13 +15,16 @@
       "adapter_move": "Train a row-target support teacher from OG personal/cohort/time masks, then feed it into the existing invariant decoder.",
       "why_big": "If it works, HS-JEPA becomes a portable architecture rather than a public-sensor case study.",
       "expected_public_lb_delta_if_true": -0.003,
-      "latest_probe_status": "og_only_assignment_replacement_not_ready",
+      "latest_probe_status": "row_support_is_primary_bottleneck",
       "latest_probe_evidence": {
         "pure_og_row_cap2_mean_recall": 0.04035150645624103,
         "distilled_row_cap2_mean_recall": 0.12356527977044476,
-        "listener_upper_bound_row_cap2_mean_recall": 0.13558106169296988
+        "listener_upper_bound_row_cap2_mean_recall": 0.13558106169296988,
+        "mean_best_portable_recall": 0.10634863701578193,
+        "mean_row_oracle_stage_recall": 0.6895624103299857,
+        "mean_row_support_gap": 0.5832137733142038
       },
-      "kill_criterion": "Pure OG row-target recall stays near base-rate and distillation cannot recover row assignment under subject/time stress."
+      "kill_criterion": "Portable human context cannot localize support rows; row-oracle + target prior remains far above all current OG scores."
     },
     {
       "id": "listener_invariant_contrastive_decoder",

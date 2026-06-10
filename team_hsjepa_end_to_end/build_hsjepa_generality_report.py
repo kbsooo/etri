@@ -20,6 +20,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 READINESS_JSON = OUT / "hsjepa_architecture_readiness_report.json"
 ABLATION_JSON = OUT / "hsjepa_mechanism_ablation_report.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
+ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignment_gap_decomposition_probe.json"
 
 REPORT_JSON = OUT / "hsjepa_generality_report.json"
 REPORT_MD = OUT / "hsjepa_generality_report_ko.md"
@@ -199,14 +200,16 @@ def build_markdown(report: dict[str, object]) -> str:
 
 
 def run() -> dict[str, object]:
-    for path in [READINESS_JSON, ABLATION_JSON, OG_PROBE_JSON]:
+    for path in [READINESS_JSON, ABLATION_JSON, OG_PROBE_JSON, ASSIGNMENT_GAP_JSON]:
         if not path.exists():
             raise FileNotFoundError(path)
 
     readiness = read_json(READINESS_JSON)
     ablation = read_json(ABLATION_JSON)
     og_probe = read_json(OG_PROBE_JSON)
+    assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
     og_verdict = og_probe.get("verdict", {})
+    gap_verdict = assignment_gap.get("verdict", {})
     portability_checks = [dict(item) for item in PORTABILITY_CHECKS]
     for item in portability_checks:
         if item["check"] == "remaining_generality_gap":
@@ -214,7 +217,11 @@ def run() -> dict[str, object]:
                 "OG-only assignment probe status "
                 f"{og_verdict.get('status')}; pure row-cap2 recall "
                 f"{og_verdict.get('pure_og_row_cap2_mean_recall'):.4f}, distilled recall "
-                f"{og_verdict.get('distilled_row_cap2_mean_recall'):.4f}."
+                f"{og_verdict.get('distilled_row_cap2_mean_recall'):.4f}. "
+                f"Assignment gap status {gap_verdict.get('status')}; portable recall "
+                f"{gap_verdict.get('mean_best_portable_recall'):.4f}, row-oracle recall "
+                f"{gap_verdict.get('mean_row_oracle_stage_recall'):.4f}, row-support gap "
+                f"{gap_verdict.get('mean_row_support_gap'):.4f}."
             )
     blocking = [
         item for item in portability_checks
@@ -239,14 +246,19 @@ def run() -> dict[str, object]:
             "og_only_assignment_probe_status": og_verdict.get("status"),
             "pure_og_assignment_recall": og_verdict.get("pure_og_row_cap2_mean_recall"),
             "distilled_assignment_recall": og_verdict.get("distilled_row_cap2_mean_recall"),
+            "assignment_gap_status": gap_verdict.get("status"),
+            "assignment_gap_best_portable_recall": gap_verdict.get("mean_best_portable_recall"),
+            "assignment_gap_row_oracle_stage_recall": gap_verdict.get("mean_row_oracle_stage_recall"),
+            "assignment_gap_row_support_gap": gap_verdict.get("mean_row_support_gap"),
         },
         "honest_claim": (
             "HS-JEPA is a human-understanding architecture that predicts hidden human-state and listener/action representations before "
             "making bounded output moves.  The Route-Conserving S2 Bridge is the sleep-log competition instantiation, not the full architecture."
         ),
         "next_breakthrough": (
-            "Replace the public-sensor row-target assignment teacher with an OG-only personal/cohort/time human-state teacher while preserving "
-            "the invariant-decoder and anti-shortcut gates."
+            "Replace the public-sensor row-target assignment teacher with an OG-only hidden row-support sensor. "
+            "The current target route is much less limiting than support-row localization, so the next portable HS-JEPA objective should predict "
+            "which subject-days are actionable before choosing the listener target."
         ),
     }
     REPORT_JSON.write_text(json.dumps(report, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8")

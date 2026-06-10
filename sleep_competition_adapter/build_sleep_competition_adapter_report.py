@@ -28,6 +28,7 @@ READINESS_JSON = TEAM_OUT / "hsjepa_architecture_readiness_report.json"
 GENERALITY_JSON = TEAM_OUT / "hsjepa_generality_report.json"
 METHOD_PACKET_JSON = TEAM_OUT / "hsjepa_paper_method_packet.json"
 OG_PROBE_JSON = OUT / "og_only_assignment_teacher_probe.json"
+ASSIGNMENT_GAP_JSON = OUT / "assignment_gap_decomposition_probe.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = OUT / "hardworld_toxicity_factorization_probe.json"
@@ -63,6 +64,7 @@ def require_inputs() -> None:
         READINESS_JSON,
         GENERALITY_JSON,
         OG_PROBE_JSON,
+        ASSIGNMENT_GAP_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
@@ -76,11 +78,13 @@ def require_inputs() -> None:
 
 def build_big_bets(
     og_probe: dict[str, object],
+    assignment_gap: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
     hardworld_toxicity_probe: dict[str, object],
 ) -> list[dict[str, object]]:
     og_verdict = og_probe.get("verdict", {}) if isinstance(og_probe.get("verdict"), dict) else {}
+    gap_verdict = assignment_gap.get("verdict", {}) if isinstance(assignment_gap.get("verdict"), dict) else {}
     contrastive_verdict = (
         contrastive_probe.get("verdict", {})
         if isinstance(contrastive_probe.get("verdict"), dict)
@@ -105,13 +109,16 @@ def build_big_bets(
             "adapter_move": "Train a row-target support teacher from OG personal/cohort/time masks, then feed it into the existing invariant decoder.",
             "why_big": "If it works, HS-JEPA becomes a portable architecture rather than a public-sensor case study.",
             "expected_public_lb_delta_if_true": -0.003,
-            "latest_probe_status": og_verdict.get("status"),
+            "latest_probe_status": gap_verdict.get("status") or og_verdict.get("status"),
             "latest_probe_evidence": {
                 "pure_og_row_cap2_mean_recall": og_verdict.get("pure_og_row_cap2_mean_recall"),
                 "distilled_row_cap2_mean_recall": og_verdict.get("distilled_row_cap2_mean_recall"),
                 "listener_upper_bound_row_cap2_mean_recall": og_verdict.get("listener_upper_bound_row_cap2_mean_recall"),
+                "mean_best_portable_recall": gap_verdict.get("mean_best_portable_recall"),
+                "mean_row_oracle_stage_recall": gap_verdict.get("mean_row_oracle_stage_recall"),
+                "mean_row_support_gap": gap_verdict.get("mean_row_support_gap"),
             },
-            "kill_criterion": "Pure OG row-target recall stays near base-rate and distillation cannot recover row assignment under subject/time stress.",
+            "kill_criterion": "Portable human context cannot localize support rows; row-oracle + target prior remains far above all current OG scores.",
         },
         {
             "id": "listener_invariant_contrastive_decoder",
@@ -184,6 +191,7 @@ def build_report() -> dict[str, object]:
     generality = read_json(GENERALITY_JSON)
     method = read_json(METHOD_PACKET_JSON) if METHOD_PACKET_JSON.exists() else {"title": "HS-JEPA Method Packet Pending"}
     og_probe = read_json(OG_PROBE_JSON)
+    assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -194,6 +202,7 @@ def build_report() -> dict[str, object]:
     human = readiness["human_state"]
     mechanism = validation["mechanism_evidence"]
     og_verdict = og_probe.get("verdict", {})
+    gap_verdict = assignment_gap.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
     hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
@@ -264,6 +273,16 @@ def build_report() -> dict[str, object]:
             "listener_upper_bound_row_cap2_mean_recall": og_verdict.get("listener_upper_bound_row_cap2_mean_recall"),
             "interpretation": og_verdict.get("interpretation"),
         },
+        "assignment_gap_decomposition_probe": {
+            "status": gap_verdict.get("status"),
+            "mean_best_portable_recall": gap_verdict.get("mean_best_portable_recall"),
+            "mean_distilled_row_gated_recall": gap_verdict.get("mean_distilled_row_gated_recall"),
+            "mean_target_oracle_recall": gap_verdict.get("mean_target_oracle_recall"),
+            "mean_row_oracle_stage_recall": gap_verdict.get("mean_row_oracle_stage_recall"),
+            "mean_row_support_gap": gap_verdict.get("mean_row_support_gap"),
+            "next_action": gap_verdict.get("next_action"),
+            "interpretation": gap_verdict.get("interpretation"),
+        },
         "listener_invariant_contrastive_probe": {
             "status": contrastive_verdict.get("status"),
             "mean_listener_route_spearman": contrastive_verdict.get("mean_listener_route_spearman"),
@@ -333,6 +352,7 @@ def build_report() -> dict[str, object]:
             "Route-conserving action selection is statistically non-random against feasible null bundles.",
             "Human-state latent explains target/cell orientation but not enough row assignment on its own.",
             "A pure OG-only assignment teacher is not ready yet; this is now a measured architecture boundary, not an informal caveat.",
+            "The assignment gap decomposes into a row-support bottleneck: target route is relatively easy, but current human/social/cohort context does not find the right support rows.",
             "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.",
             "The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.",
             "Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.",
@@ -341,6 +361,7 @@ def build_report() -> dict[str, object]:
         ],
         "what_the_adapter_does_not_prove": [
             "pure OG-only assignment",
+            "portable hidden row-support recovery",
             "private leaderboard safety",
             "S2 as a universal human-sleep factor",
             "that public LB sensors can be used outside this competition",
@@ -415,6 +436,18 @@ def build_report_markdown(report: dict[str, object]) -> str:
             f"- Listener/source upper-bound row-cap2 recall: `{fmt(report['og_assignment_teacher_probe']['listener_upper_bound_row_cap2_mean_recall'], 4)}`",
             "",
             report["og_assignment_teacher_probe"]["interpretation"],
+            "",
+            "## Assignment Gap Decomposition Probe",
+            "",
+            f"- Status: `{report['assignment_gap_decomposition_probe']['status']}`",
+            f"- Mean best portable recall: `{fmt(report['assignment_gap_decomposition_probe']['mean_best_portable_recall'], 4)}`",
+            f"- Mean target oracle recall: `{fmt(report['assignment_gap_decomposition_probe']['mean_target_oracle_recall'], 4)}`",
+            f"- Mean row oracle + stage prior recall: `{fmt(report['assignment_gap_decomposition_probe']['mean_row_oracle_stage_recall'], 4)}`",
+            f"- Mean row support gap: `{fmt(report['assignment_gap_decomposition_probe']['mean_row_support_gap'], 4)}`",
+            "",
+            report["assignment_gap_decomposition_probe"]["interpretation"],
+            "",
+            f"Next action: {report['assignment_gap_decomposition_probe']['next_action']}",
             "",
             "## Listener-Invariant Contrastive Probe",
             "",
@@ -513,6 +546,7 @@ def run() -> dict[str, object]:
     report = build_report()
     bets = build_big_bets(
         read_json(OG_PROBE_JSON),
+        read_json(ASSIGNMENT_GAP_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),
         read_json(HARDWORLD_TOXICITY_PROBE_JSON),

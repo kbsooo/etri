@@ -12,18 +12,19 @@ historical experiment version names.  It executes:
 6. Architecture readiness report.
 7. Mechanism ablation report.
 8. OG-only assignment teacher probe.
-9. Listener-invariant contrastive probe.
-10. Private-safe toxicity probe.
-11. Hard-world toxicity factorization probe.
-12. Factorized toxicity decoder candidate.
-13. Factorized toxicity decoder stress audit.
-14. Generality report.
-15. Sleep competition adapter report and big-bet queue.
-16. Core/adapter boundary audit.
-17. Paper method packet.
-18. Pipeline manifest.
-19. Release checklist.
-20. A compact handoff report for paper and competition discussion.
+9. Assignment-gap decomposition probe.
+10. Listener-invariant contrastive probe.
+11. Private-safe toxicity probe.
+12. Hard-world toxicity factorization probe.
+13. Factorized toxicity decoder candidate.
+14. Factorized toxicity decoder stress audit.
+15. Generality report.
+16. Sleep competition adapter report and big-bet queue.
+17. Core/adapter boundary audit.
+18. Paper method packet.
+19. Pipeline manifest.
+20. Release checklist.
+21. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -77,6 +78,8 @@ BIG_BET_MD = ADAPTER_OUT / "hsjepa_big_bet_queue_ko.md"
 BIG_BET_JSON = ADAPTER_OUT / "hsjepa_big_bet_queue.json"
 OG_PROBE_MD = ADAPTER_OUT / "og_only_assignment_teacher_probe_ko.md"
 OG_PROBE_JSON = ADAPTER_OUT / "og_only_assignment_teacher_probe.json"
+ASSIGNMENT_GAP_MD = ADAPTER_OUT / "assignment_gap_decomposition_probe_ko.md"
+ASSIGNMENT_GAP_JSON = ADAPTER_OUT / "assignment_gap_decomposition_probe.json"
 CONTRASTIVE_PROBE_MD = ADAPTER_OUT / "listener_invariant_contrastive_probe_ko.md"
 CONTRASTIVE_PROBE_JSON = ADAPTER_OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_MD = ADAPTER_OUT / "private_safe_toxicity_probe_ko.md"
@@ -126,6 +129,7 @@ def build_handoff(
     adapter: dict[str, object],
     big_bets: dict[str, object],
     og_probe: dict[str, object],
+    assignment_gap: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
     hardworld_toxicity_probe: dict[str, object],
@@ -137,6 +141,7 @@ def build_handoff(
     packaged = package["packaged_submissions"]
     mechanism = validation["mechanism_evidence"]
     og_verdict = og_probe.get("verdict", {})
+    gap_verdict = assignment_gap.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
     hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
@@ -211,6 +216,7 @@ def build_handoff(
             f"- Adapter status: `{adapter['status']}`",
             f"- Adapter score delta: `{adapter['score_evidence']['delta']}`",
             f"- OG-only assignment probe: `{og_verdict.get('status')}`",
+            f"- Assignment-gap decomposition: `{gap_verdict.get('status')}`",
             f"- Listener-invariant contrastive probe: `{contrastive_verdict.get('status')}`",
             f"- Private-safe toxicity probe: `{toxicity_verdict.get('status')}`",
             f"- Hard-world toxicity factorization probe: `{hardworld_verdict.get('status')}`",
@@ -231,6 +237,7 @@ def build_handoff(
             "sleep_competition_adapter/outputs/sleep_competition_adapter_report_ko.md",
             "sleep_competition_adapter/outputs/hsjepa_big_bet_queue_ko.md",
             "sleep_competition_adapter/outputs/og_only_assignment_teacher_probe_ko.md",
+            "sleep_competition_adapter/outputs/assignment_gap_decomposition_probe_ko.md",
             "sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md",
             "sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md",
             "sleep_competition_adapter/outputs/hardworld_toxicity_factorization_probe_ko.md",
@@ -258,6 +265,7 @@ def build_handoff(
             f"- Generality boundary: `{generality['status']}` (`{generality['passed_checks']}/{generality['total_checks']}` portability checks, nonblocking boundaries: `{len(generality['nonblocking_boundaries'])}`)",
             f"- Core/adapter boundary: core `{core['status']}`, adapter `{adapter['status']}`",
             f"- OG-only assignment boundary: pure recall `{og_verdict.get('pure_og_row_cap2_mean_recall'):.4f}`, distilled recall `{og_verdict.get('distilled_row_cap2_mean_recall'):.4f}`",
+            f"- Assignment gap: `{gap_verdict.get('status')}`, row-support gap `{gap_verdict.get('mean_row_support_gap'):.4f}`",
             f"- Listener-invariant boundary: listener-route rho `{contrastive_verdict.get('mean_listener_route_spearman'):.4f}`, contrastive overlap `{contrastive_verdict.get('mean_contrastive_overlap_rate'):.4f}`",
             f"- Private-safe toxicity boundary: mean LOO AUC `{toxicity_verdict.get('mean_loo_bad_anchor_auc'):.4f}`, worst LOO AUC `{toxicity_verdict.get('worst_loo_bad_anchor_auc'):.4f}`",
             f"- Hard-world factorization: broad->H088 AUC `{hardworld_verdict.get('broad_predicts_hardworld_auc'):.4f}`, broad/H088 rho `{hardworld_verdict.get('broad_hardworld_spearman'):.4f}`",
@@ -384,6 +392,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(HERE / "build_hsjepa_architecture_readiness_report.py")],
         [sys.executable, str(HERE / "build_hsjepa_mechanism_ablation_report.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "og_only_assignment_teacher_probe.py")],
+        [sys.executable, str(ROOT / "sleep_competition_adapter" / "assignment_gap_decomposition_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "listener_invariant_contrastive_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "private_safe_toxicity_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "hardworld_toxicity_factorization_probe.py")],
@@ -412,6 +421,7 @@ def run(refresh: bool = False) -> dict[str, object]:
     adapter = read_json(ADAPTER_REPORT_JSON)
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
+    assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -431,6 +441,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         adapter,
         big_bets,
         og_probe,
+        assignment_gap,
         contrastive_probe,
         private_toxicity_probe,
         hardworld_toxicity_probe,
@@ -470,6 +481,8 @@ def run(refresh: bool = False) -> dict[str, object]:
         "big_bet_queue_json": str(BIG_BET_JSON.resolve()),
         "og_only_assignment_teacher_probe_md": str(OG_PROBE_MD.resolve()),
         "og_only_assignment_teacher_probe_json": str(OG_PROBE_JSON.resolve()),
+        "assignment_gap_decomposition_probe_md": str(ASSIGNMENT_GAP_MD.resolve()),
+        "assignment_gap_decomposition_probe_json": str(ASSIGNMENT_GAP_JSON.resolve()),
         "listener_invariant_contrastive_probe_md": str(CONTRASTIVE_PROBE_MD.resolve()),
         "listener_invariant_contrastive_probe_json": str(CONTRASTIVE_PROBE_JSON.resolve()),
         "private_safe_toxicity_probe_md": str(PRIVATE_TOXICITY_PROBE_MD.resolve()),
@@ -493,6 +506,8 @@ def run(refresh: bool = False) -> dict[str, object]:
         "adapter_status": str(adapter["status"]),
         "big_bet_count": int(big_bets["count"]),
         "og_only_assignment_teacher_probe_status": str(og_probe["verdict"]["status"]),
+        "assignment_gap_decomposition_probe_status": str(assignment_gap["verdict"]["status"]),
+        "assignment_gap_mean_row_support_gap": float(assignment_gap["verdict"]["mean_row_support_gap"]),
         "listener_invariant_contrastive_probe_status": str(contrastive_probe["verdict"]["status"]),
         "private_safe_toxicity_probe_status": str(private_toxicity_probe["verdict"]["status"]),
         "hardworld_toxicity_factorization_probe_status": str(hardworld_toxicity_probe["verdict"]["status"]),

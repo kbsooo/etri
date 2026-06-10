@@ -73,7 +73,7 @@
     {
       "check": "remaining_generality_gap",
       "passed": false,
-      "evidence": "OG-only assignment probe status og_only_assignment_replacement_not_ready; pure row-cap2 recall 0.0404, distilled recall 0.1236.",
+      "evidence": "OG-only assignment probe status og_only_assignment_replacement_not_ready; pure row-cap2 recall 0.0404, distilled recall 0.1236. Assignment gap status row_support_is_primary_bottleneck; portable recall 0.1063, row-oracle recall 0.6896, row-support gap 0.5832.",
       "meaning": "The architecture is reusable; the current strongest competition instantiation is not yet fully portable.",
       "required_for_completion": false
     }
@@ -90,8 +90,12 @@
     "public_worldviews_survived": 2,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "pure_og_assignment_recall": 0.04035150645624103,
-    "distilled_assignment_recall": 0.12356527977044476
+    "distilled_assignment_recall": 0.12356527977044476,
+    "assignment_gap_status": "row_support_is_primary_bottleneck",
+    "assignment_gap_best_portable_recall": 0.10634863701578193,
+    "assignment_gap_row_oracle_stage_recall": 0.6895624103299857,
+    "assignment_gap_row_support_gap": 0.5832137733142038
   },
   "honest_claim": "HS-JEPA is a human-understanding architecture that predicts hidden human-state and listener/action representations before making bounded output moves.  The Route-Conserving S2 Bridge is the sleep-log competition instantiation, not the full architecture.",
-  "next_breakthrough": "Replace the public-sensor row-target assignment teacher with an OG-only personal/cohort/time human-state teacher while preserving the invariant-decoder and anti-shortcut gates."
+  "next_breakthrough": "Replace the public-sensor row-target assignment teacher with an OG-only hidden row-support sensor. The current target route is much less limiting than support-row localization, so the next portable HS-JEPA objective should predict which subject-days are actionable before choosing the listener target."
 }

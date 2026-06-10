@@ -32,6 +32,7 @@ CORE_ABLATION_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_ablation_co
 ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_competition_adapter_report.json"
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
+ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignment_gap_decomposition_probe.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
@@ -72,6 +73,7 @@ def require_inputs() -> None:
             ADAPTER_REPORT_JSON,
             BIG_BET_JSON,
             OG_PROBE_JSON,
+            ASSIGNMENT_GAP_JSON,
             CONTRASTIVE_PROBE_JSON,
             PRIVATE_TOXICITY_PROBE_JSON,
             HARDWORLD_TOXICITY_PROBE_JSON,
@@ -97,6 +99,7 @@ def build_packet() -> dict[str, object]:
     adapter = read_json(ADAPTER_REPORT_JSON)
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
+    assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -111,6 +114,7 @@ def build_packet() -> dict[str, object]:
     s2 = readiness["mechanism"]["s2_listener"]
     boundary = contract["boundary"]
     og_verdict = og_probe["verdict"]
+    gap_verdict = assignment_gap["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
     hardworld_verdict = hardworld_toxicity_probe["verdict"]
@@ -169,6 +173,10 @@ def build_packet() -> dict[str, object]:
             "og_only_assignment_probe_status": og_verdict["status"],
             "pure_og_row_cap2_mean_recall": og_verdict["pure_og_row_cap2_mean_recall"],
             "distilled_row_cap2_mean_recall": og_verdict["distilled_row_cap2_mean_recall"],
+            "assignment_gap_status": gap_verdict["status"],
+            "assignment_gap_best_portable_recall": gap_verdict["mean_best_portable_recall"],
+            "assignment_gap_row_oracle_stage_recall": gap_verdict["mean_row_oracle_stage_recall"],
+            "assignment_gap_row_support_gap": gap_verdict["mean_row_support_gap"],
             "listener_invariant_probe_status": contrastive_verdict["status"],
             "listener_route_spearman": contrastive_verdict["mean_listener_route_spearman"],
             "contrastive_overlap_rate": contrastive_verdict["mean_contrastive_overlap_rate"],
@@ -235,6 +243,7 @@ def build_packet() -> dict[str, object]:
             "sleep_adapter_report": str(ADAPTER_REPORT_JSON.resolve()),
             "big_bet_queue": str(BIG_BET_JSON.resolve()),
             "og_only_assignment_teacher_probe": str(OG_PROBE_JSON.resolve()),
+            "assignment_gap_decomposition_probe": str(ASSIGNMENT_GAP_JSON.resolve()),
             "listener_invariant_contrastive_probe": str(CONTRASTIVE_PROBE_JSON.resolve()),
             "private_safe_toxicity_probe": str(PRIVATE_TOXICITY_PROBE_JSON.resolve()),
             "hardworld_toxicity_factorization_probe": str(HARDWORLD_TOXICITY_PROBE_JSON.resolve()),
@@ -245,7 +254,7 @@ def build_packet() -> dict[str, object]:
         "paper_sections": {
             "abstract_ko": build_abstract(public, primary, s2, human),
             "method_ko": build_method_text(core, adapter),
-            "generality_ko": build_generality_text(generality, og_verdict, contrastive_verdict, toxicity_verdict, hardworld_verdict),
+            "generality_ko": build_generality_text(generality, og_verdict, gap_verdict, contrastive_verdict, toxicity_verdict, hardworld_verdict),
             "algorithm_ko": build_algorithm_text(),
             "limitations_ko": build_limitations_text(boundary),
             "big_bets_ko": build_big_bet_text(big_bets),
@@ -311,6 +320,7 @@ def build_method_text(core: dict[str, object], adapter: dict[str, object]) -> st
 def build_generality_text(
     generality: dict[str, object],
     og_verdict: dict[str, object],
+    gap_verdict: dict[str, object],
     contrastive_verdict: dict[str, object],
     toxicity_verdict: dict[str, object],
     hardworld_verdict: dict[str, object],
@@ -337,6 +347,10 @@ def build_generality_text(
         f"- OG-only assignment probe: `{og_verdict['status']}`",
         f"- Pure OG row-cap2 recall: `{fmt(og_verdict['pure_og_row_cap2_mean_recall'], 4)}`",
         f"- Distilled row-cap2 recall: `{fmt(og_verdict['distilled_row_cap2_mean_recall'], 4)}`",
+        f"- Assignment gap decomposition: `{gap_verdict['status']}`",
+        f"- Best portable recall: `{fmt(gap_verdict['mean_best_portable_recall'], 4)}`",
+        f"- Row oracle + stage prior recall: `{fmt(gap_verdict['mean_row_oracle_stage_recall'], 4)}`",
+        f"- Row-support gap: `{fmt(gap_verdict['mean_row_support_gap'], 4)}`",
         f"- Listener-invariant probe: `{contrastive_verdict['status']}`",
         f"- Listener-route Spearman: `{fmt(contrastive_verdict['mean_listener_route_spearman'], 4)}`",
         f"- Private-safe toxicity probe: `{toxicity_verdict['status']}`",
@@ -346,7 +360,7 @@ def build_generality_text(
         f"- Broad toxicity -> H088 AUC: `{fmt(hardworld_verdict['broad_predicts_hardworld_auc'], 4)}`",
         f"- Broad/H088 Spearman: `{fmt(hardworld_verdict['broad_hardworld_spearman'], 4)}`",
         "",
-        "가장 중요한 남은 과제는 public-sensor row-target assignment teacher를 OG-only personal/cohort/time human-state teacher로 교체하고, 이미 생성된 broad-public/hard-world factorized decoder 후보가 실제 public/private score에서 action-grade decoder인지 검증하는 것이다.",
+        "가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor다. 현재 calendar/cohort/latent/peer-route context는 portable assignment teacher로 부족하며, public-sensor row-target assignment teacher를 OG-only personal/cohort/time human-state teacher로 교체하려면 row-support를 복원하는 새 context objective가 필요하다. 동시에 이미 생성된 broad-public/hard-world factorized decoder 후보가 실제 public/private score에서 action-grade decoder인지 검증해야 한다.",
     ]
     return "\n".join(rows)
 
@@ -470,6 +484,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- Route delta vs null: `{fmt(mechanism['primary_route_delta'], 5)}` vs `{fmt(mechanism['primary_null_route_delta'], 5)}`",
             f"- S2 usage vs null: `{fmt(mechanism['s2_usage'], 3)}` vs `{fmt(mechanism['s2_null_usage'], 3)}`",
             f"- Human-state cell AUC / row AUC: `{fmt(human['cell_oof_auc'], 3)}` / `{fmt(human['row_oof_auc'], 3)}`",
+            f"- Assignment gap: `{human['assignment_gap_status']}`, row-support gap `{fmt(human['assignment_gap_row_support_gap'], 4)}`",
             "",
             "## Role-Based Outputs",
             "",
@@ -502,6 +517,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- `{packet['outputs']['core_adapter_boundary_audit']}`",
             f"- `{packet['outputs']['sleep_adapter_report']}`",
             f"- `{packet['outputs']['big_bet_queue']}`",
+            f"- `{packet['outputs']['assignment_gap_decomposition_probe']}`",
             "",
         ]
     )

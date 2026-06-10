@@ -41,6 +41,7 @@ public-sensitive driver action
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
 - Adapter score delta: `-0.00841135550000005`
 - OG-only assignment probe: `og_only_assignment_replacement_not_ready`
+- Assignment-gap decomposition: `row_support_is_primary_bottleneck`
 - Listener-invariant contrastive probe: `listener_invariant_decoder_not_ready`
 - Private-safe toxicity probe: `toxicity_field_promising_with_hardworld_gap`
 - Hard-world toxicity factorization probe: `hardworld_mixture_factorization_required`
@@ -61,6 +62,7 @@ Adapter 문서:
 sleep_competition_adapter/outputs/sleep_competition_adapter_report_ko.md
 sleep_competition_adapter/outputs/hsjepa_big_bet_queue_ko.md
 sleep_competition_adapter/outputs/og_only_assignment_teacher_probe_ko.md
+sleep_competition_adapter/outputs/assignment_gap_decomposition_probe_ko.md
 sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md
 sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md
 sleep_competition_adapter/outputs/hardworld_toxicity_factorization_probe_ko.md
@@ -95,13 +97,14 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_bo
 - Generality boundary: `general_architecture_separated_with_case_boundary` (`5/6` portability checks, nonblocking boundaries: `1`)
 - Core/adapter boundary: core `core_ready_for_adapter`, adapter `adapter_ready_with_public_sensor_boundary`
 - OG-only assignment boundary: pure recall `0.0404`, distilled recall `0.1236`
+- Assignment gap: `row_support_is_primary_bottleneck`, row-support gap `0.5832`
 - Listener-invariant boundary: listener-route rho `-0.0313`, contrastive overlap `0.2152`
 - Private-safe toxicity boundary: mean LOO AUC `0.7880`, worst LOO AUC `0.3683`
 - Hard-world factorization: broad->H088 AUC `0.3683`, broad/H088 rho `-0.4276`
 - Factorized decoder candidates: `dual_safe_expansion, teacher_dual_head`
 - Factorized decoder stress: `dual_safe_expansion:factorized_decoder_stress_supported, teacher_dual_head:factorized_decoder_alive_but_source_null_weak`
 - Core/adapter boundary audit: `core_adapter_boundary_verified`
-- Release checklist: `release_ready_with_boundary` (`45/45` checks)
+- Release checklist: `release_ready_with_boundary` (`47/47` checks)
 
 ## Paper Claim
 
