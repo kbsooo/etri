@@ -42,6 +42,7 @@ ROW_SUPPORT_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "row
 ROUTE_FRONTIER_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
 ROUTE_TOXICITY_FUSION_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_toxicity_fusion_decoder" / "route_toxicity_fusion_decoder_readout.json"
 DECODER_ORDER_JURY_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout.json"
+DECODER_BOUNDARY_TOMOGRAPHY_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "decoder_boundary_tomography_solver" / "decoder_boundary_tomography_readout.json"
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -93,6 +94,7 @@ def require_inputs() -> None:
         ROUTE_FRONTIER_DECODER_JSON,
         ROUTE_TOXICITY_FUSION_DECODER_JSON,
         DECODER_ORDER_JURY_JSON,
+        DECODER_BOUNDARY_TOMOGRAPHY_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -162,6 +164,7 @@ def build_manifest() -> dict[str, object]:
     route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
     route_toxicity_fusion_decoder = read_json(ROUTE_TOXICITY_FUSION_DECODER_JSON)
     decoder_order_jury = read_json(DECODER_ORDER_JURY_JSON)
+    decoder_boundary_tomography = read_json(DECODER_BOUNDARY_TOMOGRAPHY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -182,6 +185,7 @@ def build_manifest() -> dict[str, object]:
     route_frontier_verdict = route_frontier_decoder["verdict"]
     route_toxicity_fusion_verdict = route_toxicity_fusion_decoder["verdict"]
     decoder_order_jury_verdict = decoder_order_jury["verdict"]
+    decoder_boundary_tomography_verdict = decoder_boundary_tomography["verdict"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -384,14 +388,32 @@ def build_manifest() -> dict[str, object]:
             "This tests whether HS-JEPA action decoding should be a cross-decoder listener jury rather than a single route or toxicity score.",
         ),
         stage(
+            "decoder_boundary_tomography_solver",
+            "Decoder Boundary Tomography Solver",
+            "Splits cells rejected by strict cross-decoder jury into weak-consensus, route-only, and fusion-only action worlds.",
+            ["decoder_order_jury_solver_readout.json", "route_frontier_action_decoder_readout.json", "route_toxicity_fusion_decoder_readout.json"],
+            ["decoder_boundary_tomography_readout_ko.md", *[
+                str(item.get("submission_file"))
+                for item in decoder_boundary_tomography.get("ranking", [])
+                if isinstance(item, dict) and item.get("submission_file")
+            ]],
+            [
+                f"Tomography status: {decoder_boundary_tomography_verdict['status']}",
+                f"Recommended LB sensor: {decoder_boundary_tomography_verdict['recommended_lb_sensor']}",
+                f"Boundary inventory: {decoder_boundary_tomography.get('boundary_inventory')}",
+            ],
+            "This is the too-conservative-jury diagnostic; consensus-shadow cells are not safe until public LB observes them.",
+        ),
+        stage(
             "action_decoder_ablation_suite",
             "Action Decoder Ablation Suite",
-            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, and decoder-jury alternatives as HS-JEPA module ablations.",
+            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, and boundary-tomography alternatives as HS-JEPA module ablations.",
             [
                 "row_support_strict_action_decoder_readout.json",
                 "route_frontier_action_decoder_readout.json",
                 "route_toxicity_fusion_decoder_readout.json",
                 "decoder_order_jury_solver_readout.json",
+                "decoder_boundary_tomography_readout.json",
                 "factorized_toxicity_decoder_stress_audit.json",
             ],
             ["hsjepa_action_decoder_ablation_suite_ko.md", "hsjepa_action_decoder_ablation_suite.csv"],
@@ -629,6 +651,10 @@ def build_manifest() -> dict[str, object]:
         ["decoder_order_jury_solver", "action_decoder_ablation_suite"],
         ["decoder_order_jury_solver", "sleep_competition_adapter"],
         ["decoder_order_jury_solver", "claim_readiness_and_paper_packet"],
+        ["decoder_order_jury_solver", "decoder_boundary_tomography_solver"],
+        ["decoder_boundary_tomography_solver", "action_decoder_ablation_suite"],
+        ["decoder_boundary_tomography_solver", "sleep_competition_adapter"],
+        ["decoder_boundary_tomography_solver", "claim_readiness_and_paper_packet"],
         ["route_toxicity_fusion_decoder", "action_decoder_ablation_suite"],
         ["route_toxicity_fusion_decoder", "sleep_competition_adapter"],
         ["route_toxicity_fusion_decoder", "claim_readiness_and_paper_packet"],
@@ -718,6 +744,9 @@ def build_manifest() -> dict[str, object]:
             "route_frontier_action_decoder_variant_scores": route_frontier_verdict["variant_scores"],
             "decoder_order_jury_solver_status": decoder_order_jury_verdict["status"],
             "decoder_order_jury_solver_recommended_lb_sensor": decoder_order_jury_verdict["recommended_lb_sensor"],
+            "decoder_boundary_tomography_status": decoder_boundary_tomography_verdict["status"],
+            "decoder_boundary_tomography_recommended_lb_sensor": decoder_boundary_tomography_verdict["recommended_lb_sensor"],
+            "decoder_boundary_tomography_inventory": decoder_boundary_tomography.get("boundary_inventory"),
             "action_decoder_ablation_suite_status": action_ablation_verdict["status"],
             "action_decoder_ablation_suite_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_suite_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],

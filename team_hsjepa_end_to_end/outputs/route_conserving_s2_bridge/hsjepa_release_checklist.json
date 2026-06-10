@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 61,
-  "total_checks": 61,
+  "passed_checks": 63,
+  "total_checks": 63,
   "required_failures": [],
   "checks": [
     {
@@ -144,6 +144,13 @@
       "passed": true,
       "required": true,
       "evidence": "sleep_competition_adapter/outputs/decoder_order_jury_solver/decoder_order_jury_solver_readout.json"
+    },
+    {
+      "check": "exists:decoder_boundary_tomography_readout.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "sleep_competition_adapter/outputs/decoder_boundary_tomography_solver/decoder_boundary_tomography_readout.json"
     },
     {
       "check": "exists:hsjepa_action_decoder_ablation_suite.json",
@@ -290,7 +297,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=big_bet_queue_ready, count=10"
+      "evidence": "status=big_bet_queue_ready, count=11"
     },
     {
       "check": "og_only_assignment_probe_recorded",
@@ -356,6 +363,13 @@
       "evidence": "status=decoder_order_jury_ready, recommended={'variant': 'family_supermajority', 'submission_file': 'submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv', 'priority': 1.392520579892158}"
     },
     {
+      "check": "decoder_boundary_tomography_solver_recorded",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=boundary_tomography_ready, recommended={'variant': 'consensus_shadow_plus', 'submission_file': 'submission_hsjepa_boundary_tomography_consensus_shadow_plus_04b2c855_uploadsafe.csv', 'priority': 0.6990859175252038}, inventory={'strict_jury_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'conflict_cells': 0}"
+    },
+    {
       "check": "listener_invariant_contrastive_probe_recorded",
       "status": "PASS",
       "passed": true,
@@ -416,7 +430,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=27, edges=65"
+      "evidence": "status=pipeline_ready_with_boundary, stages=28, edges=69"
     },
     {
       "check": "method_packet_presentable",

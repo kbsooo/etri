@@ -106,6 +106,16 @@ Route-first bundles survive upload safety while also passing factorized hard-wor
 
 Safe row-target assignment is a cross-decoder jury: route invariant proposes the action, factorized action-health confirms it, and only same-direction consensus is released.
 
+## Decoder Boundary Tomography Solver
+
+- Status: `boundary_tomography_ready`
+- Recommended LB sensor: `{'variant': 'consensus_shadow_plus', 'submission_file': 'submission_hsjepa_boundary_tomography_consensus_shadow_plus_04b2c855_uploadsafe.csv', 'priority': 0.6990859175252038}`
+- Boundary inventory: `{'strict_jury_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'conflict_cells': 0}`
+
+The next action-decoder bottleneck is whether strict cross-decoder jury is too conservative; weak consensus and route-only cells are separate hidden worlds and must be tested separately.
+
+이 실험은 strict jury가 버린 셀을 `consensus_shadow`, `route_only`, `fusion_only`로 분리한다. public에서 consensus-shadow가 살아나면 HS-JEPA decoder의 병목은 안전한 latent가 아니라 너무 보수적인 action release였다는 뜻이다.
+
 ## Action Decoder Ablation Suite
 
 - Status: `action_decoder_ablation_ready_decoder_jury_leads`
@@ -187,6 +197,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - A row-support action decoder can produce upload-safe route/S2 bundle candidates with strong local toxicity safety, but route-gain remains a tradeoff.
 - A route-frontier action decoder now beats broad route nulls and matched frontier-score nulls while staying upload-safe, so the next LB sensor can test action-grade route translation directly.
 - A route-toxicity fusion decoder now composes route-first selection with factorized broad-public/hard-world action-health; it is alive locally but still ranks below plain route-frontier as an LB sensor.
+- Decoder boundary tomography separates strict-jury rejects into consensus-shadow, route-only, and fusion-only cells; consensus-shadow is the safest next too-conservative-jury sensor.
 - The action-decoder ablation suite now ranks toxicity-first, support-first, route-first, and route-toxicity fusion decoders under one table; route-first currently leads the LB-sensor priority.
 - A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.
 - The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.
@@ -202,6 +213,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - that the row-support strict action decoder is safe without public/private LB observation
 - that route-frontier action decoding is private-safe without public LB observation
 - that route-toxicity fusion will beat plain route-frontier on public/private LB
+- that consensus-shadow boundary cells are safe before public LB observes them
 - that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments
 - private leaderboard safety
 - S2 as a universal human-sleep factor

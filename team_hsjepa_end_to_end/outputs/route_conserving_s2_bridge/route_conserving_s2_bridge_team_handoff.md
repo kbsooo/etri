@@ -37,7 +37,7 @@ public-sensitive driver action
 ## Core / Adapter Separation
 
 - Core status: `core_ready_for_adapter` (`5/5` gates)
-- Core ablation contract: `6` modules, `10` big-bet followups
+- Core ablation contract: `6` modules, `11` big-bet followups
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
 - Adapter score delta: `-0.00841135550000005`
 - OG-only assignment probe: `og_only_assignment_replacement_not_ready`
@@ -48,6 +48,7 @@ public-sensitive driver action
 - Route-frontier action decoder: `route_frontier_action_decoder_alive_with_matched_boundary`
 - Route-toxicity fusion decoder: `route_toxicity_fusion_decoder_alive`
 - Decoder-order jury solver: `decoder_order_jury_ready`
+- Decoder boundary tomography: `boundary_tomography_ready`
 - Action decoder ablation suite: `action_decoder_ablation_ready_decoder_jury_leads`
 - Listener-invariant contrastive probe: `listener_invariant_decoder_not_ready`
 - Private-safe toxicity probe: `toxicity_field_promising_with_hardworld_gap`
@@ -76,6 +77,7 @@ sleep_competition_adapter/outputs/row_support_strict_action_decoder/row_support_
 sleep_competition_adapter/outputs/route_frontier_action_decoder/route_frontier_action_decoder_readout_ko.md
 sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/route_toxicity_fusion_decoder_readout_ko.md
 sleep_competition_adapter/outputs/decoder_order_jury_solver/decoder_order_jury_solver_readout_ko.md
+sleep_competition_adapter/outputs/decoder_boundary_tomography_solver/decoder_boundary_tomography_readout_ko.md
 sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite_ko.md
 sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md
 sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md
@@ -118,14 +120,16 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_bo
 - Route-frontier decoder: recommended `seed_route_frontier`, status `route_frontier_action_decoder_alive_with_matched_boundary`
 - Route-toxicity fusion decoder: recommended `seed_driver_safe_route_fusion`, status `route_toxicity_fusion_decoder_alive`
 - Decoder-order jury: recommended `{'variant': 'family_supermajority', 'submission_file': 'submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv', 'priority': 1.392520579892158}`, status `decoder_order_jury_ready`
+- Decoder boundary tomography: recommended `{'variant': 'consensus_shadow_plus', 'submission_file': 'submission_hsjepa_boundary_tomography_consensus_shadow_plus_04b2c855_uploadsafe.csv', 'priority': 0.6990859175252038}`, status `boundary_tomography_ready`, inventory `{'strict_jury_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'conflict_cells': 0}`
 - Action decoder ablation: recommended `{'family': 'decoder_order_jury', 'variant': 'family_supermajority', 'submission_file': 'submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv', 'priority': 1.394366527938867}`, big bet `{'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572}`
 - Listener-invariant boundary: listener-route rho `-0.0313`, contrastive overlap `0.2152`
 - Private-safe toxicity boundary: mean LOO AUC `0.7880`, worst LOO AUC `0.3683`
 - Hard-world factorization: broad->H088 AUC `0.3683`, broad/H088 rho `-0.4276`
 - Factorized decoder candidates: `dual_safe_expansion, teacher_dual_head`
 - Factorized decoder stress: `dual_safe_expansion:factorized_decoder_stress_supported, teacher_dual_head:factorized_decoder_alive_but_source_null_weak`
+- Boundary tomography inventory: `{'strict_jury_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'conflict_cells': 0}`
 - Core/adapter boundary audit: `core_adapter_boundary_verified`
-- Release checklist: `release_ready_with_boundary` (`61/61` checks)
+- Release checklist: `release_ready_with_boundary` (`63/63` checks)
 
 ## Paper Claim
 
@@ -148,6 +152,7 @@ The current LB breakthrough is evidence for this adapter, while the reusable cla
 - `Route-Frontier Action Decoder`: The action decoder should select route-manifold frontier moves first, then check row-support and toxicity. Expected LB delta if true `-0.0025`.
 - `Route-Toxicity Fusion Decoder`: Route-frontier action ordering and factorized action-health are not alternatives; safe actions need both. Expected LB delta if true `-0.0025`.
 - `Decoder-Order Jury Solver`: Safe row-target assignment is a cross-decoder jury, not a single route or toxicity score. Expected LB delta if true `-0.0025`.
+- `Decoder Boundary Tomography Solver`: The strict cross-decoder jury may be correct but too conservative; rejected cells split into weak consensus, route-only, and fusion-only worlds. Expected LB delta if true `-0.002`.
 - `Listener-Invariant Contrastive Decoder`: A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone. Expected LB delta if true `-0.002`.
 - `Private-Safe Toxicity Field`: The plateau comes from actions that help public-like rows but poison private-like rows. Expected LB delta if true `-0.0015`.
 - `Hard-World Mixture Toxicity Decoder`: H088-like hard-world toxicity is anti-correlated with broad public-bad toxicity, so action-health must be factorized. Expected LB delta if true `-0.0025`.

@@ -30,6 +30,7 @@ ROW_SUPPORT_JSON = HERE / "outputs" / "row_support_strict_action_decoder" / "row
 ROUTE_FRONTIER_JSON = HERE / "outputs" / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
 ROUTE_TOXICITY_FUSION_JSON = HERE / "outputs" / "route_toxicity_fusion_decoder" / "route_toxicity_fusion_decoder_readout.json"
 DECODER_ORDER_JURY_JSON = HERE / "outputs" / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout.json"
+DECODER_BOUNDARY_TOMOGRAPHY_JSON = HERE / "outputs" / "decoder_boundary_tomography_solver" / "decoder_boundary_tomography_readout.json"
 FACTORIZED_JSON = HERE / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_readout.json"
 FACTORIZED_STRESS_JSON = HERE / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_stress_audit.json"
 LEDGER_CSV = ROOT / "data_analytics" / "hsjepa_public_score_ledger.csv"
@@ -137,6 +138,7 @@ def collect_rows() -> list[dict[str, Any]]:
     route_frontier = read_json(ROUTE_FRONTIER_JSON)
     route_toxicity_fusion = read_json(ROUTE_TOXICITY_FUSION_JSON)
     decoder_order_jury = read_json(DECODER_ORDER_JURY_JSON)
+    decoder_boundary_tomography = read_json(DECODER_BOUNDARY_TOMOGRAPHY_JSON)
     factorized = read_json(FACTORIZED_JSON)
     factorized_stress = read_json(FACTORIZED_STRESS_JSON)
     rows: list[dict[str, Any]] = []
@@ -335,6 +337,60 @@ def collect_rows() -> list[dict[str, Any]]:
         )
         rows.append(row)
 
+    for item in decoder_boundary_tomography.get("ranking", []):
+        if not isinstance(item, dict):
+            continue
+        variant = str(item.get("variant"))
+        submission = item.get("submission_file")
+        stress = item.get("stress", {}) if isinstance(item.get("stress"), dict) else {}
+        tests = stress.get("tests", {}) if isinstance(stress.get("tests"), dict) else {}
+        actual = stress.get("actual", {}) if isinstance(stress.get("actual"), dict) else {}
+        config = item.get("config", {}) if isinstance(item.get("config"), dict) else {}
+        include_classes = set(config.get("include_classes", []))
+        is_shadow_only = include_classes == {"consensus_shadow"}
+        row = base_row(
+            family="decoder_boundary_tomography",
+            variant=variant,
+            submission_file=str(submission) if submission else None,
+            upload_safe=bool(nested(item, "validation", "upload_safe", default=False)),
+            changed_cells=int(nested(item, "validation", "changed_cells_vs_current_best", default=0)),
+            architecture_claim="strict cross-decoder jury may be too conservative at the row-target release boundary",
+            decoder_order="cross_decoder_boundary_tomography",
+            core_modules=["invariant_energy", "action_health_decoder", "anti_shortcut_validation"],
+            public_lb=public_scores.get(str(submission)),
+        )
+        status = str(item.get("status", "unknown"))
+        row.update(
+            {
+                "route_z": maybe_float(nested(tests, "mean_boundary_score", "z")),
+                "matched_route_z": maybe_float(nested(tests, "mean_total_weight", "z")),
+                "matched_score_z": maybe_float(nested(tests, "mean_abs_delta", "z")),
+                "safety_z": maybe_float(nested(tests, "mean_family_balance", "z")),
+                "toxicity_clear": bool(is_shadow_only),
+                "broad_hard_conflict_exposure": 0.0 if is_shadow_only else None,
+                "hardworld_top_toxic_exposure": 0.0 if is_shadow_only else None,
+                "route_boundary": (
+                    "consensus_shadow_supported"
+                    if status == "consensus_shadow_alive"
+                    else "route_only_boundary"
+                    if status == "route_only_high_information"
+                    else "fusion_only_negative_control"
+                    if status == "fusion_only_negative_control"
+                    else "boundary_disagreement_probe"
+                ),
+                "safety_boundary": (
+                    "weak_consensus_release_boundary"
+                    if is_shadow_only
+                    else "single_decoder_boundary"
+                ),
+                "module_ablation_interpretation": (
+                    f"Adds {int(actual.get('extra_cells', 0))} cells rejected by strict jury. "
+                    "If this wins LB, the decoder-order jury was too conservative; if it loses, strict consensus marks the safe action frontier."
+                ),
+            }
+        )
+        rows.append(row)
+
     return rows
 
 
@@ -387,11 +443,13 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
     factorized_rows = frame.loc[frame["family"].eq("factorized_toxicity")]
     fusion_rows = frame.loc[frame["family"].eq("route_toxicity_fusion")]
     jury_rows = frame.loc[frame["family"].eq("decoder_order_jury")]
+    boundary_rows = frame.loc[frame["family"].eq("decoder_boundary_tomography")]
     best_route = route_rows.iloc[0].to_dict() if not route_rows.empty else {}
     best_support = row_support_rows.iloc[0].to_dict() if not row_support_rows.empty else {}
     best_factorized = factorized_rows.iloc[0].to_dict() if not factorized_rows.empty else {}
     best_fusion = fusion_rows.iloc[0].to_dict() if not fusion_rows.empty else {}
     best_jury = jury_rows.iloc[0].to_dict() if not jury_rows.empty else {}
+    best_boundary = boundary_rows.iloc[0].to_dict() if not boundary_rows.empty else {}
 
     return [
         {
@@ -448,6 +506,15 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
             "status": "alive" if best_jury else "missing",
             "next_test": "Submit the jury consensus candidate if it outranks plain route-frontier after public-sensor risk review.",
         },
+        {
+            "claim": "Strict decoder-order jury may be too conservative.",
+            "evidence": (
+                f"Best boundary row is {best_boundary.get('variant')} with boundary_z={fmt(best_boundary.get('route_z'))}, "
+                f"changed_cells={best_boundary.get('changed_cells')}, and priority={fmt(best_boundary.get('lb_sensor_priority'))}."
+            ),
+            "status": "alive" if best_boundary else "missing",
+            "next_test": "If strict jury is positive on LB, submit consensus_shadow_plus to test whether weak cross-decoder consensus should be released.",
+        },
     ]
 
 
@@ -468,6 +535,8 @@ def build_verdict(frame: pd.DataFrame, findings: list[dict[str, Any]]) -> dict[s
         status = "action_decoder_ablation_ready_route_toxicity_fusion_leads"
     elif str(top["family"]) == "decoder_order_jury":
         status = "action_decoder_ablation_ready_decoder_jury_leads"
+    elif str(top["family"]) == "decoder_boundary_tomography":
+        status = "action_decoder_ablation_ready_boundary_tomography_leads"
     elif str(top["family"]) != "route_frontier":
         status = "action_decoder_ablation_ready_non_route_leads"
     return {
@@ -541,6 +610,7 @@ def build_markdown(readout: dict[str, Any], frame: pd.DataFrame) -> str:
             "- factorized toxicity가 이기면, public/private toxicity field가 route보다 강한 병목이다.",
             "- row-support strict가 이기면, masked row-support representation이 action-grade decoder로 번역되기 시작한 것이다.",
             "- open-route가 public에서 이기면, 기존 public-selected seed 후보 공간 자체가 좁았다는 큰 발견이다.",
+            "- boundary tomography가 이기면, strict cross-decoder jury가 action을 너무 보수적으로 release했다는 뜻이다.",
             "",
         ]
     )
@@ -566,6 +636,7 @@ def run() -> dict[str, Any]:
             "route_frontier": str(ROUTE_FRONTIER_JSON.resolve()),
             "route_toxicity_fusion": str(ROUTE_TOXICITY_FUSION_JSON.resolve()),
             "decoder_order_jury": str(DECODER_ORDER_JURY_JSON.resolve()),
+            "decoder_boundary_tomography": str(DECODER_BOUNDARY_TOMOGRAPHY_JSON.resolve()),
             "factorized_toxicity": str(FACTORIZED_JSON.resolve()),
             "factorized_stress": str(FACTORIZED_STRESS_JSON.resolve()),
         },

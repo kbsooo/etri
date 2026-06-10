@@ -227,6 +227,36 @@
       "kill_criterion": "Public LB worsens or underperforms route-frontier, meaning consensus is too conservative or action-health removes useful route signal."
     },
     {
+      "id": "decoder_boundary_tomography_solver",
+      "name": "Decoder Boundary Tomography Solver",
+      "worldview": "The strict cross-decoder jury may be correct but too conservative; rejected cells split into weak consensus, route-only, and fusion-only worlds.",
+      "core_modules_exercised": [
+        "invariant_energy",
+        "action_health_decoder",
+        "anti_shortcut_validation"
+      ],
+      "adapter_move": "Keep the strict jury base, then add only boundary cells by class to see which action-release frontier public LB accepts.",
+      "why_big": "If consensus-shadow cells improve LB, HS-JEPA gets a sharper release rule: weak agreement can be released when disagreement is zero.",
+      "expected_public_lb_delta_if_true": -0.002,
+      "latest_probe_status": "boundary_tomography_ready",
+      "latest_probe_evidence": {
+        "recommended_lb_sensor": {
+          "variant": "consensus_shadow_plus",
+          "submission_file": "submission_hsjepa_boundary_tomography_consensus_shadow_plus_04b2c855_uploadsafe.csv",
+          "priority": 0.6990859175252038
+        },
+        "claim": "The next action-decoder bottleneck is whether strict cross-decoder jury is too conservative; weak consensus and route-only cells are separate hidden worlds and must be tested separately.",
+        "inventory": {
+          "strict_jury_cells": 19,
+          "consensus_shadow_cells": 13,
+          "route_only_cells": 6,
+          "fusion_only_cells": 6,
+          "conflict_cells": 0
+        }
+      },
+      "kill_criterion": "All boundary probes worsen public LB, meaning strict cross-decoder consensus is the current safe frontier."
+    },
+    {
       "id": "listener_invariant_contrastive_decoder",
       "name": "Listener-Invariant Contrastive Decoder",
       "worldview": "A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone.",
@@ -300,5 +330,5 @@
       "kill_criterion": "Q-S bridge actions fail null tests or replicate the already-killed subjective-shadow bridge."
     }
   ],
-  "count": 10
+  "count": 11
 }

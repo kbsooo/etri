@@ -35,6 +35,7 @@ ROW_SUPPORT_DECODER_JSON = OUT / "row_support_strict_action_decoder" / "row_supp
 ROUTE_FRONTIER_DECODER_JSON = OUT / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
 ROUTE_TOXICITY_FUSION_DECODER_JSON = OUT / "route_toxicity_fusion_decoder" / "route_toxicity_fusion_decoder_readout.json"
 DECODER_ORDER_JURY_JSON = OUT / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout.json"
+DECODER_BOUNDARY_TOMOGRAPHY_JSON = OUT / "decoder_boundary_tomography_solver" / "decoder_boundary_tomography_readout.json"
 ACTION_DECODER_ABLATION_JSON = OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
@@ -78,6 +79,7 @@ def require_inputs() -> None:
         ROUTE_FRONTIER_DECODER_JSON,
         ROUTE_TOXICITY_FUSION_DECODER_JSON,
         DECODER_ORDER_JURY_JSON,
+        DECODER_BOUNDARY_TOMOGRAPHY_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -99,6 +101,7 @@ def build_big_bets(
     route_frontier_decoder: dict[str, object],
     route_toxicity_fusion_decoder: dict[str, object],
     decoder_order_jury: dict[str, object],
+    decoder_boundary_tomography: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -134,6 +137,11 @@ def build_big_bets(
     decoder_order_jury_verdict = (
         decoder_order_jury.get("verdict", {})
         if isinstance(decoder_order_jury.get("verdict"), dict)
+        else {}
+    )
+    decoder_boundary_tomography_verdict = (
+        decoder_boundary_tomography.get("verdict", {})
+        if isinstance(decoder_boundary_tomography.get("verdict"), dict)
         else {}
     )
     action_ablation_verdict = (
@@ -271,6 +279,22 @@ def build_big_bets(
             "kill_criterion": "Public LB worsens or underperforms route-frontier, meaning consensus is too conservative or action-health removes useful route signal.",
         },
         {
+            "id": "decoder_boundary_tomography_solver",
+            "name": "Decoder Boundary Tomography Solver",
+            "worldview": "The strict cross-decoder jury may be correct but too conservative; rejected cells split into weak consensus, route-only, and fusion-only worlds.",
+            "core_modules_exercised": ["invariant_energy", "action_health_decoder", "anti_shortcut_validation"],
+            "adapter_move": "Keep the strict jury base, then add only boundary cells by class to see which action-release frontier public LB accepts.",
+            "why_big": "If consensus-shadow cells improve LB, HS-JEPA gets a sharper release rule: weak agreement can be released when disagreement is zero.",
+            "expected_public_lb_delta_if_true": -0.002,
+            "latest_probe_status": decoder_boundary_tomography_verdict.get("status"),
+            "latest_probe_evidence": {
+                "recommended_lb_sensor": decoder_boundary_tomography_verdict.get("recommended_lb_sensor"),
+                "claim": decoder_boundary_tomography_verdict.get("claim"),
+                "inventory": decoder_boundary_tomography.get("boundary_inventory"),
+            },
+            "kill_criterion": "All boundary probes worsen public LB, meaning strict cross-decoder consensus is the current safe frontier.",
+        },
+        {
             "id": "listener_invariant_contrastive_decoder",
             "name": "Listener-Invariant Contrastive Decoder",
             "worldview": "A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone.",
@@ -348,6 +372,7 @@ def build_report() -> dict[str, object]:
     route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
     route_toxicity_fusion_decoder = read_json(ROUTE_TOXICITY_FUSION_DECODER_JSON)
     decoder_order_jury = read_json(DECODER_ORDER_JURY_JSON)
+    decoder_boundary_tomography = read_json(DECODER_BOUNDARY_TOMOGRAPHY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -366,6 +391,7 @@ def build_report() -> dict[str, object]:
     route_frontier_verdict = route_frontier_decoder.get("verdict", {})
     route_toxicity_fusion_verdict = route_toxicity_fusion_decoder.get("verdict", {})
     decoder_order_jury_verdict = decoder_order_jury.get("verdict", {})
+    decoder_boundary_tomography_verdict = decoder_boundary_tomography.get("verdict", {})
     action_decoder_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -534,6 +560,14 @@ def build_report() -> dict[str, object]:
             "failure_interpretation": decoder_order_jury_verdict.get("failure_interpretation"),
             "top_ranked": decoder_order_jury.get("ranking", [])[:3],
         },
+        "decoder_boundary_tomography_solver": {
+            "status": decoder_boundary_tomography_verdict.get("status"),
+            "recommended_lb_sensor": decoder_boundary_tomography_verdict.get("recommended_lb_sensor"),
+            "claim": decoder_boundary_tomography_verdict.get("claim"),
+            "failure_interpretation": decoder_boundary_tomography_verdict.get("failure_interpretation"),
+            "boundary_inventory": decoder_boundary_tomography.get("boundary_inventory"),
+            "top_ranked": decoder_boundary_tomography.get("ranking", [])[:3],
+        },
         "action_decoder_ablation_suite": {
             "status": action_decoder_ablation_verdict.get("status"),
             "recommended_lb_sensor": action_decoder_ablation_verdict.get("recommended_lb_sensor"),
@@ -617,6 +651,7 @@ def build_report() -> dict[str, object]:
             "A row-support action decoder can produce upload-safe route/S2 bundle candidates with strong local toxicity safety, but route-gain remains a tradeoff.",
             "A route-frontier action decoder now beats broad route nulls and matched frontier-score nulls while staying upload-safe, so the next LB sensor can test action-grade route translation directly.",
             "A route-toxicity fusion decoder now composes route-first selection with factorized broad-public/hard-world action-health; it is alive locally but still ranks below plain route-frontier as an LB sensor.",
+            "Decoder boundary tomography separates strict-jury rejects into consensus-shadow, route-only, and fusion-only cells; consensus-shadow is the safest next too-conservative-jury sensor.",
             "The action-decoder ablation suite now ranks toxicity-first, support-first, route-first, and route-toxicity fusion decoders under one table; route-first currently leads the LB-sensor priority.",
             "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.",
             "The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.",
@@ -631,6 +666,7 @@ def build_report() -> dict[str, object]:
             "that the row-support strict action decoder is safe without public/private LB observation",
             "that route-frontier action decoding is private-safe without public LB observation",
             "that route-toxicity fusion will beat plain route-frontier on public/private LB",
+            "that consensus-shadow boundary cells are safe before public LB observes them",
             "that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments",
             "private leaderboard safety",
             "S2 as a universal human-sleep factor",
@@ -780,6 +816,16 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             report["decoder_order_jury_solver"]["claim"],
             "",
+            "## Decoder Boundary Tomography Solver",
+            "",
+            f"- Status: `{report['decoder_boundary_tomography_solver']['status']}`",
+            f"- Recommended LB sensor: `{report['decoder_boundary_tomography_solver']['recommended_lb_sensor']}`",
+            f"- Boundary inventory: `{report['decoder_boundary_tomography_solver']['boundary_inventory']}`",
+            "",
+            report["decoder_boundary_tomography_solver"]["claim"],
+            "",
+            "이 실험은 strict jury가 버린 셀을 `consensus_shadow`, `route_only`, `fusion_only`로 분리한다. public에서 consensus-shadow가 살아나면 HS-JEPA decoder의 병목은 안전한 latent가 아니라 너무 보수적인 action release였다는 뜻이다.",
+            "",
             "## Action Decoder Ablation Suite",
             "",
             f"- Status: `{report['action_decoder_ablation_suite']['status']}`",
@@ -873,9 +919,10 @@ def build_big_bet_markdown(bets: list[dict[str, object]]) -> str:
             "## 우선순위",
             "",
             "1. `OG-only Human-State Assignment Teacher`: 성공하면 HS-JEPA의 범용성이 가장 크게 올라간다.",
-            "2. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
-            "3. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.",
-            "4. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.",
+            "2. `Decoder Boundary Tomography Solver`: strict jury가 너무 보수적인지 직접 찌르는 다음 제출 센서다.",
+            "3. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
+            "4. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.",
+            "5. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.",
             "",
         ]
     )
@@ -892,6 +939,7 @@ def run() -> dict[str, object]:
         read_json(ROUTE_FRONTIER_DECODER_JSON),
         read_json(ROUTE_TOXICITY_FUSION_DECODER_JSON),
         read_json(DECODER_ORDER_JURY_JSON),
+        read_json(DECODER_BOUNDARY_TOMOGRAPHY_JSON),
         read_json(ACTION_DECODER_ABLATION_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),

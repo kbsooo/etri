@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 27,
-  "edge_count": 65,
+  "stage_count": 28,
+  "edge_count": 69,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -252,14 +252,39 @@
       "boundary": "This tests whether HS-JEPA action decoding should be a cross-decoder listener jury rather than a single route or toxicity score."
     },
     {
+      "id": "decoder_boundary_tomography_solver",
+      "name": "Decoder Boundary Tomography Solver",
+      "role": "Splits cells rejected by strict cross-decoder jury into weak-consensus, route-only, and fusion-only action worlds.",
+      "inputs": [
+        "decoder_order_jury_solver_readout.json",
+        "route_frontier_action_decoder_readout.json",
+        "route_toxicity_fusion_decoder_readout.json"
+      ],
+      "outputs": [
+        "decoder_boundary_tomography_readout_ko.md",
+        "submission_hsjepa_boundary_tomography_consensus_shadow_plus_04b2c855_uploadsafe.csv",
+        "submission_hsjepa_boundary_tomography_boundary_dual_probe_528728bd_uploadsafe.csv",
+        "submission_hsjepa_boundary_tomography_route_only_rescue_6c0f15eb_uploadsafe.csv",
+        "submission_hsjepa_boundary_tomography_fusion_only_probe_8ce162dc_uploadsafe.csv",
+        "submission_hsjepa_boundary_tomography_consensus_shadow_all_soft_80850159_uploadsafe.csv"
+      ],
+      "evidence": [
+        "Tomography status: boundary_tomography_ready",
+        "Recommended LB sensor: {'variant': 'consensus_shadow_plus', 'submission_file': 'submission_hsjepa_boundary_tomography_consensus_shadow_plus_04b2c855_uploadsafe.csv', 'priority': 0.6990859175252038}",
+        "Boundary inventory: {'strict_jury_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'conflict_cells': 0}"
+      ],
+      "boundary": "This is the too-conservative-jury diagnostic; consensus-shadow cells are not safe until public LB observes them."
+    },
+    {
       "id": "action_decoder_ablation_suite",
       "name": "Action Decoder Ablation Suite",
-      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, and decoder-jury alternatives as HS-JEPA module ablations.",
+      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, and boundary-tomography alternatives as HS-JEPA module ablations.",
       "inputs": [
         "row_support_strict_action_decoder_readout.json",
         "route_frontier_action_decoder_readout.json",
         "route_toxicity_fusion_decoder_readout.json",
         "decoder_order_jury_solver_readout.json",
+        "decoder_boundary_tomography_readout.json",
         "factorized_toxicity_decoder_stress_audit.json"
       ],
       "outputs": [
@@ -499,7 +524,7 @@
       "evidence": [
         "Adapter status: adapter_ready_with_public_sensor_boundary",
         "Adapter score delta: -0.0084113555",
-        "Big-bet count: 10"
+        "Big-bet count: 11"
       ],
       "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
     },
@@ -677,6 +702,22 @@
       "claim_readiness_and_paper_packet"
     ],
     [
+      "decoder_order_jury_solver",
+      "decoder_boundary_tomography_solver"
+    ],
+    [
+      "decoder_boundary_tomography_solver",
+      "action_decoder_ablation_suite"
+    ],
+    [
+      "decoder_boundary_tomography_solver",
+      "sleep_competition_adapter"
+    ],
+    [
+      "decoder_boundary_tomography_solver",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
       "route_toxicity_fusion_decoder",
       "action_decoder_ablation_suite"
     ],
@@ -846,7 +887,7 @@
     "core_status": "core_ready_for_adapter",
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
     "core_adapter_boundary_status": "core_adapter_boundary_verified",
-    "big_bet_count": 10,
+    "big_bet_count": 11,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "assignment_gap_decomposition_status": "row_support_is_primary_bottleneck",
     "assignment_gap_mean_row_support_gap": 0.5832137733142038,
@@ -892,6 +933,19 @@
       "variant": "family_supermajority",
       "submission_file": "submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
       "priority": 1.392520579892158
+    },
+    "decoder_boundary_tomography_status": "boundary_tomography_ready",
+    "decoder_boundary_tomography_recommended_lb_sensor": {
+      "variant": "consensus_shadow_plus",
+      "submission_file": "submission_hsjepa_boundary_tomography_consensus_shadow_plus_04b2c855_uploadsafe.csv",
+      "priority": 0.6990859175252038
+    },
+    "decoder_boundary_tomography_inventory": {
+      "strict_jury_cells": 19,
+      "consensus_shadow_cells": 13,
+      "route_only_cells": 6,
+      "fusion_only_cells": 6,
+      "conflict_cells": 0
     },
     "action_decoder_ablation_suite_status": "action_decoder_ablation_ready_decoder_jury_leads",
     "action_decoder_ablation_suite_recommended_lb_sensor": {

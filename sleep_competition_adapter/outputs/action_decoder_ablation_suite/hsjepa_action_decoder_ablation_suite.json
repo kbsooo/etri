@@ -54,6 +54,12 @@
         "evidence": "Best jury row is family_supermajority with consensus_z=5.3987 and cross_family_z=5.2815.",
         "status": "alive",
         "next_test": "Submit the jury consensus candidate if it outranks plain route-frontier after public-sensor risk review."
+      },
+      {
+        "claim": "Strict decoder-order jury may be too conservative.",
+        "evidence": "Best boundary row is consensus_shadow_plus with boundary_z=1.8312, changed_cells=27, and priority=0.8323.",
+        "status": "alive",
+        "next_test": "If strict jury is positive on LB, submit consensus_shadow_plus to test whether weak cross-decoder consensus should be released."
       }
     ]
   },
@@ -93,6 +99,12 @@
       "evidence": "Best jury row is family_supermajority with consensus_z=5.3987 and cross_family_z=5.2815.",
       "status": "alive",
       "next_test": "Submit the jury consensus candidate if it outranks plain route-frontier after public-sensor risk review."
+    },
+    {
+      "claim": "Strict decoder-order jury may be too conservative.",
+      "evidence": "Best boundary row is consensus_shadow_plus with boundary_z=1.8312, changed_cells=27, and priority=0.8323.",
+      "status": "alive",
+      "next_test": "If strict jury is positive on LB, submit consensus_shadow_plus to test whether weak cross-decoder consensus should be released."
     }
   ],
   "ranking": [
@@ -258,6 +270,29 @@
       "ablation_rank": 7
     },
     {
+      "family": "decoder_boundary_tomography",
+      "variant": "consensus_shadow_plus",
+      "submission_file": "submission_hsjepa_boundary_tomography_consensus_shadow_plus_04b2c855_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 27,
+      "architecture_claim": "strict cross-decoder jury may be too conservative at the row-target release boundary",
+      "decoder_order": "cross_decoder_boundary_tomography",
+      "core_modules_exercised": "invariant_energy,action_health_decoder,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 1.8312333132746805,
+      "matched_route_z": 1.3625788302056063,
+      "matched_score_z": 2.2120835047884944,
+      "safety_z": 1.3977241812719376,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": 0.0,
+      "hardworld_top_toxic_exposure": 0.0,
+      "route_boundary": "consensus_shadow_supported",
+      "safety_boundary": "weak_consensus_release_boundary",
+      "lb_sensor_priority": 0.8322549235648736,
+      "module_ablation_interpretation": "Adds 8 cells rejected by strict jury. If this wins LB, the decoder-order jury was too conservative; if it loses, strict consensus marks the safe action frontier.",
+      "ablation_rank": 8
+    },
+    {
       "family": "route_toxicity_fusion",
       "variant": "open_driver_safe_route_fusion",
       "submission_file": "submission_hsjepa_open_driver_safe_route_fusion_e50f0669_uploadsafe.csv",
@@ -278,7 +313,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.6123790379883204,
       "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
-      "ablation_rank": 8
+      "ablation_rank": 9
     },
     {
       "family": "factorized_toxicity",
@@ -301,7 +336,7 @@
       "safety_boundary": "factorized_decoder_stress_supported",
       "lb_sensor_priority": 0.5800000000000001,
       "module_ablation_interpretation": "Keeps action-health and anti-shortcut validation, but does not prove invariant route placement.",
-      "ablation_rank": 9
+      "ablation_rank": 10
     },
     {
       "family": "factorized_toxicity",
@@ -324,7 +359,53 @@
       "safety_boundary": "factorized_decoder_alive_but_source_null_weak",
       "lb_sensor_priority": 0.5800000000000001,
       "module_ablation_interpretation": "Keeps action-health and anti-shortcut validation, but does not prove invariant route placement.",
-      "ablation_rank": 10
+      "ablation_rank": 11
+    },
+    {
+      "family": "decoder_boundary_tomography",
+      "variant": "boundary_dual_probe",
+      "submission_file": "submission_hsjepa_boundary_tomography_boundary_dual_probe_528728bd_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 25,
+      "architecture_claim": "strict cross-decoder jury may be too conservative at the row-target release boundary",
+      "decoder_order": "cross_decoder_boundary_tomography",
+      "core_modules_exercised": "invariant_energy,action_health_decoder,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 1.5617239345848906,
+      "matched_route_z": 1.3904600783163108,
+      "matched_score_z": 2.064672657689285,
+      "safety_z": 0.0,
+      "toxicity_clear": false,
+      "broad_hard_conflict_exposure": null,
+      "hardworld_top_toxic_exposure": null,
+      "route_boundary": "boundary_disagreement_probe",
+      "safety_boundary": "single_decoder_boundary",
+      "lb_sensor_priority": 0.5513701920816483,
+      "module_ablation_interpretation": "Adds 6 cells rejected by strict jury. If this wins LB, the decoder-order jury was too conservative; if it loses, strict consensus marks the safe action frontier.",
+      "ablation_rank": 12
+    },
+    {
+      "family": "decoder_boundary_tomography",
+      "variant": "fusion_only_probe",
+      "submission_file": "submission_hsjepa_boundary_tomography_fusion_only_probe_8ce162dc_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 23,
+      "architecture_claim": "strict cross-decoder jury may be too conservative at the row-target release boundary",
+      "decoder_order": "cross_decoder_boundary_tomography",
+      "core_modules_exercised": "invariant_energy,action_health_decoder,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 1.36723091604457,
+      "matched_route_z": 1.366120995520789,
+      "matched_score_z": 1.328691658547155,
+      "safety_z": 0.0,
+      "toxicity_clear": false,
+      "broad_hard_conflict_exposure": null,
+      "hardworld_top_toxic_exposure": null,
+      "route_boundary": "fusion_only_negative_control",
+      "safety_boundary": "single_decoder_boundary",
+      "lb_sensor_priority": 0.4764951046155826,
+      "module_ablation_interpretation": "Adds 4 cells rejected by strict jury. If this wins LB, the decoder-order jury was too conservative; if it loses, strict consensus marks the safe action frontier.",
+      "ablation_rank": 13
     },
     {
       "family": "decoder_order_jury",
@@ -347,7 +428,30 @@
       "safety_boundary": "jury_balance_supported",
       "lb_sensor_priority": 0.45846604483788944,
       "module_ablation_interpretation": "Treats route-first and factorized action-health as independent listeners. If this wins LB, HS-JEPA action decoding is a cross-decoder responsibility jury.",
-      "ablation_rank": 11
+      "ablation_rank": 14
+    },
+    {
+      "family": "decoder_boundary_tomography",
+      "variant": "route_only_rescue",
+      "submission_file": "submission_hsjepa_boundary_tomography_route_only_rescue_6c0f15eb_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 23,
+      "architecture_claim": "strict cross-decoder jury may be too conservative at the row-target release boundary",
+      "decoder_order": "cross_decoder_boundary_tomography",
+      "core_modules_exercised": "invariant_energy,action_health_decoder,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 1.3199580673134177,
+      "matched_route_z": 0.5152116438655873,
+      "matched_score_z": 1.4328852926484463,
+      "safety_z": 0.0,
+      "toxicity_clear": false,
+      "broad_hard_conflict_exposure": null,
+      "hardworld_top_toxic_exposure": null,
+      "route_boundary": "route_only_boundary",
+      "safety_boundary": "single_decoder_boundary",
+      "lb_sensor_priority": 0.419812871838568,
+      "module_ablation_interpretation": "Adds 4 cells rejected by strict jury. If this wins LB, the decoder-order jury was too conservative; if it loses, strict consensus marks the safe action frontier.",
+      "ablation_rank": 15
     },
     {
       "family": "decoder_order_jury",
@@ -370,7 +474,7 @@
       "safety_boundary": "jury_balance_supported",
       "lb_sensor_priority": 0.37401450031889266,
       "module_ablation_interpretation": "Treats route-first and factorized action-health as independent listeners. If this wins LB, HS-JEPA action decoding is a cross-decoder responsibility jury.",
-      "ablation_rank": 12
+      "ablation_rank": 16
     },
     {
       "family": "route_toxicity_fusion",
@@ -393,7 +497,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.2889624187457326,
       "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
-      "ablation_rank": 13
+      "ablation_rank": 17
     },
     {
       "family": "route_toxicity_fusion",
@@ -416,7 +520,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.2880776863463137,
       "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
-      "ablation_rank": 14
+      "ablation_rank": 18
     },
     {
       "family": "route_toxicity_fusion",
@@ -439,7 +543,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.27138605091914736,
       "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
-      "ablation_rank": 15
+      "ablation_rank": 19
     },
     {
       "family": "row_support_strict",
@@ -462,7 +566,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.26354824667422216,
       "module_ablation_interpretation": "Shows row-support is real enough to select safe actions, but support-first decoding can lose route-null separation.",
-      "ablation_rank": 16
+      "ablation_rank": 20
     },
     {
       "family": "row_support_strict",
@@ -485,7 +589,30 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.20975399131542438,
       "module_ablation_interpretation": "Shows row-support is real enough to select safe actions, but support-first decoding can lose route-null separation.",
-      "ablation_rank": 17
+      "ablation_rank": 21
+    },
+    {
+      "family": "decoder_boundary_tomography",
+      "variant": "consensus_shadow_all_soft",
+      "submission_file": "submission_hsjepa_boundary_tomography_consensus_shadow_all_soft_80850159_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 32,
+      "architecture_claim": "strict cross-decoder jury may be too conservative at the row-target release boundary",
+      "decoder_order": "cross_decoder_boundary_tomography",
+      "core_modules_exercised": "invariant_energy,action_health_decoder,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 0.0,
+      "matched_route_z": -1.4423443218791907,
+      "matched_score_z": 0.0,
+      "safety_z": -0.999285459001295,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": 0.0,
+      "hardworld_top_toxic_exposure": 0.0,
+      "route_boundary": "boundary_disagreement_probe",
+      "safety_boundary": "weak_consensus_release_boundary",
+      "lb_sensor_priority": 0.17507876992837895,
+      "module_ablation_interpretation": "Adds 13 cells rejected by strict jury. If this wins LB, the decoder-order jury was too conservative; if it loses, strict consensus marks the safe action frontier.",
+      "ablation_rank": 22
     }
   ],
   "inputs": {
@@ -493,6 +620,7 @@
     "route_frontier": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_frontier_action_decoder/route_frontier_action_decoder_readout.json",
     "route_toxicity_fusion": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/route_toxicity_fusion_decoder_readout.json",
     "decoder_order_jury": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/decoder_order_jury_solver/decoder_order_jury_solver_readout.json",
+    "decoder_boundary_tomography": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/decoder_boundary_tomography_solver/decoder_boundary_tomography_readout.json",
     "factorized_toxicity": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_readout.json",
     "factorized_stress": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_stress_audit.json"
   },

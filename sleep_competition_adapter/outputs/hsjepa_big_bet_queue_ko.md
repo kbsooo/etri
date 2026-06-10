@@ -10,6 +10,7 @@
 | `Route-Frontier Action Decoder` | The action decoder should select route-manifold frontier moves first, then check row-support and toxicity. | Choose public-selected and open-candidate route-frontier bundles that beat broad and matched nulls. | `route_frontier_action_decoder_alive_with_matched_boundary` | `-0.0025` | Public LB worsens or matched-null frontier score fails after larger candidate pools are used. |
 | `Route-Toxicity Fusion Decoder` | Route-frontier action ordering and factorized action-health are not alternatives; safe actions need both. | Select route-frontier bundles first, then filter driver actions through hard-world/broad-public toxicity and use bridge actions as soft route support. | `route_toxicity_fusion_decoder_alive` | `-0.0025` | Public LB says plain route-frontier wins, or fusion only improves local toxicity while harming route/action response. |
 | `Decoder-Order Jury Solver` | Safe row-target assignment is a cross-decoder jury, not a single route or toxicity score. | Release only row-target cells independently selected by route-frontier and route-toxicity fusion decoders in the same direction. | `decoder_order_jury_ready` | `-0.0025` | Public LB worsens or underperforms route-frontier, meaning consensus is too conservative or action-health removes useful route signal. |
+| `Decoder Boundary Tomography Solver` | The strict cross-decoder jury may be correct but too conservative; rejected cells split into weak consensus, route-only, and fusion-only worlds. | Keep the strict jury base, then add only boundary cells by class to see which action-release frontier public LB accepts. | `boundary_tomography_ready` | `-0.002` | All boundary probes worsen public LB, meaning strict cross-decoder consensus is the current safe frontier. |
 | `Listener-Invariant Contrastive Decoder` | A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone. | Score candidate row-target actions by listener gain minus route-energy toxicity under random feasible nulls. | `listener_invariant_decoder_not_ready` | `-0.002` | Listener gain and invariant energy remain anti-correlated on strong candidates. |
 | `Private-Safe Toxicity Field` | The plateau comes from actions that help public-like rows but poison private-like rows. | Use failed public sensors, null bundles, and cohort/time stress to learn a toxicity veto before submission packaging. | `toxicity_field_promising_with_hardworld_gap` | `-0.0015` | Toxicity score only recovers known public failures, fails hard-world anchors, or does not separate matched local nulls. |
 | `Hard-World Mixture Toxicity Decoder` | H088-like hard-world toxicity is anti-correlated with broad public-bad toxicity, so action-health must be factorized. | Replace scalar toxicity with a two-head broad-public/hard-world safety gate before row-target assignment. | `hardworld_mixture_factorization_required` | `-0.0025` | Broad toxicity predicts H088 well, or mixture safety does not beat matched null after target/source matching. |
@@ -18,6 +19,7 @@
 ## 우선순위
 
 1. `OG-only Human-State Assignment Teacher`: 성공하면 HS-JEPA의 범용성이 가장 크게 올라간다.
-2. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.
-3. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.
-4. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.
+2. `Decoder Boundary Tomography Solver`: strict jury가 너무 보수적인지 직접 찌르는 다음 제출 센서다.
+3. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.
+4. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.
+5. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.
