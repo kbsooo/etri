@@ -353,7 +353,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=big_bet_queue_ready, count=16"
+      "evidence": "status=big_bet_queue_ready, count=17"
     },
     {
       "check": "og_only_assignment_probe_recorded",
@@ -514,7 +514,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=36, edges=111"
+      "evidence": "status=pipeline_ready_with_boundary, stages=37, edges=117"
     },
     {
       "check": "method_packet_presentable",

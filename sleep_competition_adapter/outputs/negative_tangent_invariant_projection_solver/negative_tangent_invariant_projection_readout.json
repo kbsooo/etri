@@ -1,0 +1,621 @@
+{
+  "experiment": "Negative Tangent Invariant Projection Solver",
+  "architecture_role": "competition_adapter_projection_head",
+  "core_claim": "HS-JEPA representations become action-grade only after projection onto invariant human-state routes.",
+  "spectral": {
+    "anchor_count": 26,
+    "first_mode_variance": 0.9628550254007645,
+    "top5_cumulative_variance": 0.9946826859769906,
+    "singular_values": [
+      3.9248700923283506,
+      0.42736505936128066,
+      0.3891499257724587,
+      0.3356759829624167,
+      0.24990018982496587,
+      0.16724030897803246,
+      0.13288948751368476,
+      0.11300586024023068
+    ],
+    "mean_bad_tangent_coord": 0.7500068848733459,
+    "min_bad_tangent_coord": -0.7172294112358857,
+    "max_bad_tangent_coord": 0.9995708377235418
+  },
+  "projected_cells": 232,
+  "variants": {
+    "anti_tangent_invariant_projection": {
+      "config": {
+        "name": "anti_tangent_invariant_projection",
+        "worldview": "The public-bad tangent is real, but release must be projected back onto the train target route and each subject prior.",
+        "sign_policy": "anti_only",
+        "max_cells": 58,
+        "max_cells_per_row": 2,
+        "min_action_health": 0.4,
+        "min_bad_abs_rank": 0.52,
+        "max_bad_dot": -1e-05,
+        "max_incremental_energy_delta": 0.01,
+        "require_energy_descent": false,
+        "require_subject_nonworse": false,
+        "step_floor": 0.028,
+        "step_scale": 0.36,
+        "step_cap": 0.46,
+        "target_caps": [
+          [
+            "Q1",
+            7
+          ],
+          [
+            "Q2",
+            14
+          ],
+          [
+            "Q3",
+            7
+          ],
+          [
+            "S1",
+            9
+          ],
+          [
+            "S2",
+            13
+          ],
+          [
+            "S3",
+            5
+          ],
+          [
+            "S4",
+            9
+          ]
+        ]
+      },
+      "submission": {
+        "variant": "anti_tangent_invariant_projection",
+        "worldview": "The public-bad tangent is real, but release must be projected back onto the train target route and each subject prior.",
+        "submission_file": "submission_hsjepa_negative_tangent_invariant_anti_tangent_invariant_projection_19dced9c_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/negative_tangent_invariant_projection_solver/submission_hsjepa_negative_tangent_invariant_anti_tangent_invariant_projection_19dced9c_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_negative_tangent_invariant_anti_tangent_invariant_projection_19dced9c_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_negative_tangent_invariant_anti_tangent_invariant_projection_19dced9c_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 28,
+          "upload_safe": true
+        },
+        "changed_cells": 28,
+        "selected_rows": 26
+      },
+      "metrics": {
+        "cells": 28.0,
+        "rows": 26.0,
+        "mean_action_health": 0.5860745088377041,
+        "mean_projection_score": 0.661776847522407,
+        "mean_incremental_energy_delta": -0.01956773693706304,
+        "mean_subject_energy_delta": 0.0018890085960319724,
+        "bad_tangent_dot": -0.1872890563622096,
+        "bad_tangent_cosine": -0.149528406314349,
+        "anti_bad_rate": 1.0
+      },
+      "stress": {
+        "actual": {
+          "cells": 28.0,
+          "rows": 26.0,
+          "mean_action_health": 0.5860745088377041,
+          "mean_projection_score": 0.661776847522407,
+          "mean_incremental_energy_delta": -0.01956773693706304,
+          "mean_subject_energy_delta": 0.0018890085960319724,
+          "bad_tangent_dot": -0.1872890563622096,
+          "bad_tangent_cosine": -0.149528406314349,
+          "anti_bad_rate": 1.0
+        },
+        "tests": {
+          "mean_action_health": {
+            "actual": 0.5860745088377041,
+            "null_mean": 0.5949647571579901,
+            "null_std": 0.015336344579819744,
+            "z": -0.5796849616944741,
+            "p": 0.72
+          },
+          "mean_projection_score": {
+            "actual": 0.661776847522407,
+            "null_mean": 0.5802278330254098,
+            "null_std": 0.012446270703634849,
+            "z": 6.552084269963798,
+            "p": 0.0
+          },
+          "mean_incremental_energy_delta": {
+            "actual": -0.01956773693706304,
+            "null_mean": 0.03517794118933721,
+            "null_std": 0.009704646264961758,
+            "z": -5.641182237013353,
+            "p": 0.0
+          },
+          "mean_subject_energy_delta": {
+            "actual": 0.0018890085960319724,
+            "null_mean": 0.007739816111803004,
+            "null_std": 0.0011285792224451242,
+            "z": -5.184224022036274,
+            "p": 0.0
+          },
+          "bad_tangent_dot": {
+            "actual": -0.1872890563622096,
+            "null_mean": -0.09458509468395433,
+            "null_std": 0.028403755789037914,
+            "z": -3.2637923789653636,
+            "p": 0.0
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.149528406314349,
+            "null_mean": -0.07551513550173049,
+            "null_std": 0.022677076915070513,
+            "z": -3.263792378965363,
+            "p": 0.0
+          },
+          "anti_bad_rate": {
+            "actual": 1.0,
+            "null_mean": 1.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          }
+        }
+      }
+    },
+    "energy_descent_negative_space": {
+      "config": {
+        "name": "energy_descent_negative_space",
+        "worldview": "Only anti-public-bad actions that also reduce target-route energy should be released.",
+        "sign_policy": "anti_only",
+        "max_cells": 42,
+        "max_cells_per_row": 2,
+        "min_action_health": 0.36,
+        "min_bad_abs_rank": 0.42,
+        "max_bad_dot": -1e-05,
+        "max_incremental_energy_delta": -0.001,
+        "require_energy_descent": true,
+        "require_subject_nonworse": false,
+        "step_floor": 0.02,
+        "step_scale": 0.3,
+        "step_cap": 0.4,
+        "target_caps": [
+          [
+            "Q1",
+            6
+          ],
+          [
+            "Q2",
+            10
+          ],
+          [
+            "Q3",
+            6
+          ],
+          [
+            "S1",
+            6
+          ],
+          [
+            "S2",
+            10
+          ],
+          [
+            "S3",
+            4
+          ],
+          [
+            "S4",
+            6
+          ]
+        ]
+      },
+      "submission": {
+        "variant": "energy_descent_negative_space",
+        "worldview": "Only anti-public-bad actions that also reduce target-route energy should be released.",
+        "submission_file": "submission_hsjepa_negative_tangent_invariant_energy_descent_negative_space_5d8eaf60_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/negative_tangent_invariant_projection_solver/submission_hsjepa_negative_tangent_invariant_energy_descent_negative_space_5d8eaf60_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_negative_tangent_invariant_energy_descent_negative_space_5d8eaf60_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_negative_tangent_invariant_energy_descent_negative_space_5d8eaf60_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 21,
+          "upload_safe": true
+        },
+        "changed_cells": 21,
+        "selected_rows": 19
+      },
+      "metrics": {
+        "cells": 21.0,
+        "rows": 19.0,
+        "mean_action_health": 0.5878759208724067,
+        "mean_projection_score": 0.6839205742689775,
+        "mean_incremental_energy_delta": -0.029538328668909614,
+        "mean_subject_energy_delta": 0.00048781641307898955,
+        "bad_tangent_dot": -0.00933530029460213,
+        "bad_tangent_cosine": -0.011511143665335788,
+        "anti_bad_rate": 1.0
+      },
+      "stress": {
+        "actual": {
+          "cells": 21.0,
+          "rows": 19.0,
+          "mean_action_health": 0.5878759208724067,
+          "mean_projection_score": 0.6839205742689775,
+          "mean_incremental_energy_delta": -0.029538328668909614,
+          "mean_subject_energy_delta": 0.00048781641307898955,
+          "bad_tangent_dot": -0.00933530029460213,
+          "bad_tangent_cosine": -0.011511143665335788,
+          "anti_bad_rate": 1.0
+        },
+        "tests": {
+          "mean_action_health": {
+            "actual": 0.5878759208724067,
+            "null_mean": 0.5884643037344712,
+            "null_std": 0.0032799918012935574,
+            "z": -0.17938546731503532,
+            "p": 0.5433333333333333
+          },
+          "mean_projection_score": {
+            "actual": 0.6839205742689775,
+            "null_mean": 0.6799541791284405,
+            "null_std": 0.0022189468995801463,
+            "z": 1.7875124191964558,
+            "p": 0.17833333333333334
+          },
+          "mean_incremental_energy_delta": {
+            "actual": -0.029538328668909614,
+            "null_mean": -0.04669810611813114,
+            "null_std": 0.001964265660628989,
+            "z": 8.735975888173238,
+            "p": 1.0
+          },
+          "mean_subject_energy_delta": {
+            "actual": 0.00048781641307898955,
+            "null_mean": 0.00264338037865583,
+            "null_std": 8.904823327724904e-05,
+            "z": -24.206701090470325,
+            "p": 0.0
+          },
+          "bad_tangent_dot": {
+            "actual": -0.00933530029460213,
+            "null_mean": -0.008548128470122254,
+            "null_std": 0.00016519435205565212,
+            "z": -4.7651255305307725,
+            "p": 0.0
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.011511143665335788,
+            "null_mean": -0.010540500228602237,
+            "null_std": 0.00020369734868777616,
+            "z": -4.76512553053077,
+            "p": 0.0
+          },
+          "anti_bad_rate": {
+            "actual": 1.0,
+            "null_mean": 1.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          }
+        }
+      }
+    },
+    "subject_prior_safe_projection": {
+      "config": {
+        "name": "subject_prior_safe_projection",
+        "worldview": "The correct anti-tangent field is the one that is safe in the personal coordinate system of each subject.",
+        "sign_policy": "anti_only",
+        "max_cells": 46,
+        "max_cells_per_row": 2,
+        "min_action_health": 0.36,
+        "min_bad_abs_rank": 0.4,
+        "max_bad_dot": -1e-05,
+        "max_incremental_energy_delta": 0.014,
+        "require_energy_descent": false,
+        "require_subject_nonworse": true,
+        "step_floor": 0.02,
+        "step_scale": 0.32,
+        "step_cap": 0.42,
+        "target_caps": [
+          [
+            "Q1",
+            6
+          ],
+          [
+            "Q2",
+            12
+          ],
+          [
+            "Q3",
+            6
+          ],
+          [
+            "S1",
+            7
+          ],
+          [
+            "S2",
+            10
+          ],
+          [
+            "S3",
+            4
+          ],
+          [
+            "S4",
+            7
+          ]
+        ]
+      },
+      "submission": {
+        "variant": "subject_prior_safe_projection",
+        "worldview": "The correct anti-tangent field is the one that is safe in the personal coordinate system of each subject.",
+        "submission_file": "submission_hsjepa_negative_tangent_invariant_subject_prior_safe_projection_ebdccca6_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/negative_tangent_invariant_projection_solver/submission_hsjepa_negative_tangent_invariant_subject_prior_safe_projection_ebdccca6_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_negative_tangent_invariant_subject_prior_safe_projection_ebdccca6_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_negative_tangent_invariant_subject_prior_safe_projection_ebdccca6_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 18,
+          "upload_safe": true
+        },
+        "changed_cells": 18,
+        "selected_rows": 17
+      },
+      "metrics": {
+        "cells": 18.0,
+        "rows": 17.0,
+        "mean_action_health": 0.4708770843797185,
+        "mean_projection_score": 0.7000769235390693,
+        "mean_incremental_energy_delta": -0.01684707007955337,
+        "mean_subject_energy_delta": -0.0010606635823056812,
+        "bad_tangent_dot": -0.1817584101814521,
+        "bad_tangent_cosine": -0.22586523936463712,
+        "anti_bad_rate": 1.0
+      },
+      "stress": {
+        "actual": {
+          "cells": 18.0,
+          "rows": 17.0,
+          "mean_action_health": 0.4708770843797185,
+          "mean_projection_score": 0.7000769235390693,
+          "mean_incremental_energy_delta": -0.01684707007955337,
+          "mean_subject_energy_delta": -0.0010606635823056812,
+          "bad_tangent_dot": -0.1817584101814521,
+          "bad_tangent_cosine": -0.22586523936463712,
+          "anti_bad_rate": 1.0
+        },
+        "tests": {
+          "mean_action_health": {
+            "actual": 0.4708770843797185,
+            "null_mean": 0.4844176909519601,
+            "null_std": 0.007692979736030155,
+            "z": -1.7601250798600208,
+            "p": 0.96
+          },
+          "mean_projection_score": {
+            "actual": 0.7000769235390693,
+            "null_mean": 0.681567502646822,
+            "null_std": 0.007213451656430424,
+            "z": 2.565958957491185,
+            "p": 0.005
+          },
+          "mean_incremental_energy_delta": {
+            "actual": -0.01684707007955337,
+            "null_mean": -0.014613674894869528,
+            "null_std": 0.006002515268309467,
+            "z": -0.37207655205396084,
+            "p": 0.37833333333333335
+          },
+          "mean_subject_energy_delta": {
+            "actual": -0.0010606635823056812,
+            "null_mean": -0.001595651096614078,
+            "null_std": 0.00013844359683908345,
+            "z": 3.8642994441283305,
+            "p": 1.0
+          },
+          "bad_tangent_dot": {
+            "actual": -0.1817584101814521,
+            "null_mean": -0.14398428289249532,
+            "null_std": 0.01180832670753659,
+            "z": -3.1989398857712583,
+            "p": 0.0
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.22586523936463712,
+            "null_mean": -0.17892456523906017,
+            "null_std": 0.014673821891548202,
+            "z": -3.1989398857712557,
+            "p": 0.0
+          },
+          "anti_bad_rate": {
+            "actual": 1.0,
+            "null_mean": 1.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          }
+        }
+      }
+    },
+    "sign_equation_projection": {
+      "config": {
+        "name": "sign_equation_projection",
+        "worldview": "Some supported cells have the wrong action sign; choose the sign that satisfies public-bad opposition and route validity jointly.",
+        "sign_policy": "choose_sign",
+        "max_cells": 36,
+        "max_cells_per_row": 1,
+        "min_action_health": 0.44,
+        "min_bad_abs_rank": 0.5,
+        "max_bad_dot": 0.0005,
+        "max_incremental_energy_delta": 0.006,
+        "require_energy_descent": false,
+        "require_subject_nonworse": false,
+        "step_floor": 0.018,
+        "step_scale": 0.26,
+        "step_cap": 0.34,
+        "target_caps": [
+          [
+            "Q1",
+            5
+          ],
+          [
+            "Q2",
+            8
+          ],
+          [
+            "Q3",
+            5
+          ],
+          [
+            "S1",
+            5
+          ],
+          [
+            "S2",
+            8
+          ],
+          [
+            "S3",
+            3
+          ],
+          [
+            "S4",
+            5
+          ]
+        ]
+      },
+      "submission": {
+        "variant": "sign_equation_projection",
+        "worldview": "Some supported cells have the wrong action sign; choose the sign that satisfies public-bad opposition and route validity jointly.",
+        "submission_file": "submission_hsjepa_negative_tangent_invariant_sign_equation_projection_59cd4b86_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/negative_tangent_invariant_projection_solver/submission_hsjepa_negative_tangent_invariant_sign_equation_projection_59cd4b86_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_negative_tangent_invariant_sign_equation_projection_59cd4b86_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_negative_tangent_invariant_sign_equation_projection_59cd4b86_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 23,
+          "upload_safe": true
+        },
+        "changed_cells": 23,
+        "selected_rows": 23
+      },
+      "metrics": {
+        "cells": 23.0,
+        "rows": 23.0,
+        "mean_action_health": 0.60548074610198,
+        "mean_projection_score": 0.6510785685517291,
+        "mean_incremental_energy_delta": -0.01866819740640819,
+        "mean_subject_energy_delta": 0.0010805281385777921,
+        "bad_tangent_dot": -0.05476861422475476,
+        "bad_tangent_cosine": -0.06905988087552674,
+        "anti_bad_rate": 0.9130434782608695
+      },
+      "stress": {
+        "actual": {
+          "cells": 23.0,
+          "rows": 23.0,
+          "mean_action_health": 0.60548074610198,
+          "mean_projection_score": 0.6510785685517291,
+          "mean_incremental_energy_delta": -0.01866819740640819,
+          "mean_subject_energy_delta": 0.0010805281385777921,
+          "bad_tangent_dot": -0.05476861422475476,
+          "bad_tangent_cosine": -0.06905988087552674,
+          "anti_bad_rate": 0.9130434782608695
+        },
+        "tests": {
+          "mean_action_health": {
+            "actual": 0.60548074610198,
+            "null_mean": 0.6267253544312197,
+            "null_std": 0.017039926972068468,
+            "z": -1.2467546582836568,
+            "p": 0.9
+          },
+          "mean_projection_score": {
+            "actual": 0.6510785685517291,
+            "null_mean": 0.563887588443128,
+            "null_std": 0.01597029797141263,
+            "z": 5.45957127817376,
+            "p": 0.0
+          },
+          "mean_incremental_energy_delta": {
+            "actual": -0.01866819740640819,
+            "null_mean": 0.03466490553658597,
+            "null_std": 0.012173292829601277,
+            "z": -4.381156659051718,
+            "p": 0.0
+          },
+          "mean_subject_energy_delta": {
+            "actual": 0.0010805281385777921,
+            "null_mean": 0.007209325107884963,
+            "null_std": 0.0013255286717679567,
+            "z": -4.623662316660972,
+            "p": 0.0
+          },
+          "bad_tangent_dot": {
+            "actual": -0.05476861422475476,
+            "null_mean": -0.0289288772913021,
+            "null_std": 0.009958762254456865,
+            "z": -2.5946735420748244,
+            "p": 0.008333333333333333
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.06905988087552674,
+            "null_mean": -0.03739773559829768,
+            "null_std": 0.012762999526412758,
+            "z": -2.480776185230198,
+            "p": 0.011666666666666667
+          },
+          "anti_bad_rate": {
+            "actual": 0.9130434782608695,
+            "null_mean": 0.8554347826086957,
+            "null_std": 0.05268749306508966,
+            "z": 1.093403620115396,
+            "p": 0.26
+          }
+        }
+      }
+    }
+  },
+  "verdict": {
+    "status": "candidate_ready",
+    "recommended_variant": "subject_prior_safe_projection",
+    "reason": "Recommended by joint anti-public-bad direction, invariant energy, subject-prior safety, and upload-safe validation.",
+    "ranking": [
+      {
+        "variant": "subject_prior_safe_projection",
+        "score": 0.25449167116425153
+      },
+      {
+        "variant": "anti_tangent_invariant_projection",
+        "score": 0.23870131099839245
+      },
+      {
+        "variant": "sign_equation_projection",
+        "score": 0.21487727900957238
+      },
+      {
+        "variant": "energy_descent_negative_space",
+        "score": 0.20411530522715116
+      }
+    ]
+  }
+}

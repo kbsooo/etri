@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 36,
-  "edge_count": 111,
+  "stage_count": 37,
+  "edge_count": 117,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -470,6 +470,31 @@
       "boundary": "This stage proves a negative representation geometry, not that the inverse direction is label-valid before public LB observes it."
     },
     {
+      "id": "negative_tangent_invariant_projection_solver",
+      "name": "Negative Tangent Invariant Projection Solver",
+      "role": "Projects the low-rank public-bad negative representation onto train target-route and subject-prior invariant coordinates before releasing row-target actions.",
+      "inputs": [
+        "spectral_public_tangent_readout.json",
+        "spectral_public_tangent_cells.csv",
+        "ch2026_metrics_train.csv",
+        "current best submission"
+      ],
+      "outputs": [
+        "negative_tangent_invariant_projection_readout.md",
+        "submission_hsjepa_negative_tangent_invariant_anti_tangent_invariant_projection_19dced9c_uploadsafe.csv",
+        "submission_hsjepa_negative_tangent_invariant_energy_descent_negative_space_5d8eaf60_uploadsafe.csv",
+        "submission_hsjepa_negative_tangent_invariant_subject_prior_safe_projection_ebdccca6_uploadsafe.csv",
+        "submission_hsjepa_negative_tangent_invariant_sign_equation_projection_59cd4b86_uploadsafe.csv"
+      ],
+      "evidence": [
+        "Projection status: candidate_ready",
+        "Recommended variant: subject_prior_safe_projection",
+        "Projected cells: 232",
+        "Core claim: HS-JEPA representations become action-grade only after projection onto invariant human-state routes."
+      ],
+      "boundary": "This stage tests whether a negative representation is action-grade only after invariant projection; public LB must still validate the generated action field."
+    },
+    {
       "id": "action_decoder_ablation_suite",
       "name": "Action Decoder Ablation Suite",
       "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, and listener-dropout alternatives as HS-JEPA module ablations.",
@@ -723,7 +748,7 @@
       "evidence": [
         "Adapter status: adapter_ready_with_public_sensor_boundary",
         "Adapter score delta: -0.0084113555",
-        "Big-bet count: 16"
+        "Big-bet count: 17"
       ],
       "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
     },
@@ -1062,6 +1087,30 @@
     ],
     [
       "spectral_public_tangent_solver",
+      "negative_tangent_invariant_projection_solver"
+    ],
+    [
+      "route_energy_model",
+      "negative_tangent_invariant_projection_solver"
+    ],
+    [
+      "human_state_listener_context",
+      "negative_tangent_invariant_projection_solver"
+    ],
+    [
+      "negative_tangent_invariant_projection_solver",
+      "action_decoder_ablation_suite"
+    ],
+    [
+      "negative_tangent_invariant_projection_solver",
+      "sleep_competition_adapter"
+    ],
+    [
+      "negative_tangent_invariant_projection_solver",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
+      "spectral_public_tangent_solver",
       "action_decoder_ablation_suite"
     ],
     [
@@ -1258,7 +1307,7 @@
     "core_module_benchmark_invariant_fp_lift": 1,
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
     "core_adapter_boundary_status": "core_adapter_boundary_verified",
-    "big_bet_count": 16,
+    "big_bet_count": 17,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "assignment_gap_decomposition_status": "row_support_is_primary_bottleneck",
     "assignment_gap_mean_row_support_gap": 0.5832137733142038,
@@ -1770,6 +1819,19 @@
       "variant": "orthogonal_private_residual",
       "submission_file": "submission_hsjepa_spectral_public_tangent_orthogonal_private_residual_57ed54c2_uploadsafe.csv"
     },
+    "negative_tangent_invariant_projection_status": "candidate_ready",
+    "negative_tangent_invariant_projection_recommended": "subject_prior_safe_projection",
+    "negative_tangent_invariant_projection_projected_cells": 232,
+    "negative_tangent_invariant_projection_top_ranked": [
+      {
+        "variant": "subject_prior_safe_projection",
+        "score": 0.25449167116425153
+      },
+      {
+        "variant": "anti_tangent_invariant_projection",
+        "score": 0.23870131099839245
+      }
+    ],
     "action_decoder_ablation_suite_status": "action_decoder_ablation_ready_decoder_jury_leads",
     "action_decoder_ablation_suite_recommended_lb_sensor": {
       "family": "decoder_order_jury",

@@ -3,6 +3,62 @@
   "status": "big_bet_queue_ready",
   "bets": [
     {
+      "id": "negative_tangent_invariant_projection_solver",
+      "name": "Negative Tangent Invariant Projection Solver",
+      "worldview": "A negative public representation is useful only when its inverse can be projected onto label-valid human-state invariants.",
+      "core_modules_exercised": [
+        "action_health_decoder",
+        "invariant_energy",
+        "listener_responsibility",
+        "anti_shortcut_validation"
+      ],
+      "adapter_move": "Take the low-rank public-bad tangent, choose anti-bad row-target actions, and greedily release only cells that preserve train target-route and subject-prior energy.",
+      "why_big": "If this wins LB, HS-JEPA gains a general contribution: failed actions define negative representations, but action-grade decoding requires invariant projection.",
+      "expected_public_lb_delta_if_true": -0.006,
+      "latest_probe_status": "candidate_ready",
+      "latest_probe_evidence": {
+        "recommended_variant": "subject_prior_safe_projection",
+        "ranking": [
+          {
+            "variant": "subject_prior_safe_projection",
+            "score": 0.25449167116425153
+          },
+          {
+            "variant": "anti_tangent_invariant_projection",
+            "score": 0.23870131099839245
+          },
+          {
+            "variant": "sign_equation_projection",
+            "score": 0.21487727900957238
+          },
+          {
+            "variant": "energy_descent_negative_space",
+            "score": 0.20411530522715116
+          }
+        ],
+        "spectral": {
+          "anchor_count": 26,
+          "first_mode_variance": 0.9628550254007645,
+          "top5_cumulative_variance": 0.9946826859769906,
+          "singular_values": [
+            3.9248700923283506,
+            0.42736505936128066,
+            0.3891499257724587,
+            0.3356759829624167,
+            0.24990018982496587,
+            0.16724030897803246,
+            0.13288948751368476,
+            0.11300586024023068
+          ],
+          "mean_bad_tangent_coord": 0.7500068848733459,
+          "min_bad_tangent_coord": -0.7172294112358857,
+          "max_bad_tangent_coord": 0.9995708377235418
+        },
+        "projected_cells": 232
+      },
+      "kill_criterion": "Projection candidates worsen public LB like naive anti-tangent probes, meaning public-bad geometry is diagnostic but not yet an invertible action equation even under target/subject invariants."
+    },
+    {
       "id": "spectral_public_tangent_solver",
       "name": "Spectral Public-Tangent Solver",
       "worldview": "Known post-H057 public failures are not independent mistakes; they collapse onto a low-rank public-bad action tangent.",
@@ -904,5 +960,5 @@
       "kill_criterion": "Toxicity score only recovers known public failures, fails hard-world anchors, or does not separate matched local nulls."
     }
   ],
-  "count": 16
+  "count": 17
 }

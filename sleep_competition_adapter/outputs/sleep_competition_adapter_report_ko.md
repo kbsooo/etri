@@ -183,6 +183,23 @@ Known public failures share a low-rank bad action tangent; HS-JEPA should either
 
 이 실험은 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 첫 번째 spectral mode가 지배적이면, 다음 큰 질문은 `나쁜 방향의 반대로 가면 좋은가`, 아니면 `나쁜 방향과 직교한 private-safe 잔차만 살아남는가`이다.
 
+## Negative Tangent Invariant Projection Solver
+
+- Status: `candidate_ready`
+- Recommended variant: `subject_prior_safe_projection`
+- Projected cells: `232`
+
+HS-JEPA representations become action-grade only after projection onto invariant human-state routes.
+
+| Variant | Output | Changed cells | Bad cosine | Energy delta | Subject delta | Upload-safe |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| `anti_tangent_invariant_projection` | `submission_hsjepa_negative_tangent_invariant_anti_tangent_invariant_projection_19dced9c_uploadsafe.csv` | `28` | `-0.1495` | `-0.01957` | `0.00189` | `True` |
+| `energy_descent_negative_space` | `submission_hsjepa_negative_tangent_invariant_energy_descent_negative_space_5d8eaf60_uploadsafe.csv` | `21` | `-0.0115` | `-0.02954` | `0.00049` | `True` |
+| `subject_prior_safe_projection` | `submission_hsjepa_negative_tangent_invariant_subject_prior_safe_projection_ebdccca6_uploadsafe.csv` | `18` | `-0.2259` | `-0.01685` | `-0.00106` | `True` |
+| `sign_equation_projection` | `submission_hsjepa_negative_tangent_invariant_sign_equation_projection_59cd4b86_uploadsafe.csv` | `23` | `-0.0691` | `-0.01867` | `0.00108` | `True` |
+
+이 실험은 spectral solver의 후속이다. 단순히 public-bad tangent 반대로 움직이는 것이 아니라, train label covariance와 subject prior로 정의한 invariant manifold를 깨지 않는 anti-bad action만 release한다. public에서 살아나면 HS-JEPA의 핵심 decoder가 `negative representation + invariant projection`이라는 논문 주장으로 올라간다.
+
 ## Action Decoder Ablation Suite
 
 - Status: `action_decoder_ablation_ready_decoder_jury_leads`
@@ -276,6 +293,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - Cross-listener transport now converts the failed target-listener route-lift into a safer rule: listener posterior calibrates route/fusion/core-proposed actions instead of generating actions directly.
 - Counterfactual listener-dropout turns public failures into toxicity labels and exposes a strong A/B sensor: either high-survival route/fusion actions were good cells mixed into bad submissions, or the public/private equation requires inverting those toxic directions.
 - Spectral public-tangent decomposition shows that post-H057 public failures are highly low-rank; HS-JEPA can now treat failed submissions as a negative representation space rather than isolated bad scores.
+- Negative tangent invariant projection turns that negative representation into an action-grade test: only anti-public-bad moves that preserve target-route and subject-prior energy are released.
 
 ## 이 adapter가 아직 증명하지 못한 것
 
@@ -291,6 +309,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - that cross-listener transport will beat the strict decoder jury before public LB observes the listener-calibrated counterfactual
 - that listener-dropout health alone is public-safe before public LB observes the aggressive-vs-inverted counterfactual
 - that the public-bad spectral tangent is invertible before public LB observes anti-tangent and orthogonal residual sensors
+- that invariant-projected anti-tangent actions improve LB before public LB observes the generated projection candidates
 - that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments
 - private leaderboard safety
 - S2 as a universal human-sleep factor

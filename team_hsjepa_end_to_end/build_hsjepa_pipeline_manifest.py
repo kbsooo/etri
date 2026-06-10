@@ -63,6 +63,13 @@ SPECTRAL_PUBLIC_TANGENT_JSON = (
     / "spectral_public_tangent_solver"
     / "spectral_public_tangent_readout.json"
 )
+NEGATIVE_TANGENT_INVARIANT_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "negative_tangent_invariant_projection_solver"
+    / "negative_tangent_invariant_projection_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -123,6 +130,7 @@ def require_inputs() -> None:
         CROSS_LISTENER_TRANSPORT_JSON,
         COUNTERFACTUAL_LISTENER_DROPOUT_JSON,
         SPECTRAL_PUBLIC_TANGENT_JSON,
+        NEGATIVE_TANGENT_INVARIANT_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -201,6 +209,7 @@ def build_manifest() -> dict[str, object]:
     cross_listener_transport = read_json(CROSS_LISTENER_TRANSPORT_JSON)
     counterfactual_listener_dropout = read_json(COUNTERFACTUAL_LISTENER_DROPOUT_JSON)
     spectral_public_tangent = read_json(SPECTRAL_PUBLIC_TANGENT_JSON)
+    negative_tangent_invariant = read_json(NEGATIVE_TANGENT_INVARIANT_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -228,6 +237,7 @@ def build_manifest() -> dict[str, object]:
     cross_listener_verdict = cross_listener_transport["verdict"]
     listener_dropout_verdict = counterfactual_listener_dropout["verdict"]
     spectral_tangent_verdict = spectral_public_tangent["verdict"]
+    negative_projection_verdict = negative_tangent_invariant["verdict"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -606,6 +616,29 @@ def build_manifest() -> dict[str, object]:
             "This stage proves a negative representation geometry, not that the inverse direction is label-valid before public LB observes it.",
         ),
         stage(
+            "negative_tangent_invariant_projection_solver",
+            "Negative Tangent Invariant Projection Solver",
+            "Projects the low-rank public-bad negative representation onto train target-route and subject-prior invariant coordinates before releasing row-target actions.",
+            [
+                "spectral_public_tangent_readout.json",
+                "spectral_public_tangent_cells.csv",
+                "ch2026_metrics_train.csv",
+                "current best submission",
+            ],
+            ["negative_tangent_invariant_projection_readout.md", *[
+                str(item.get("submission", {}).get("submission_file"))
+                for item in negative_tangent_invariant.get("variants", {}).values()
+                if isinstance(item, dict) and item.get("submission", {}).get("submission_file")
+            ]],
+            [
+                f"Projection status: {negative_projection_verdict['status']}",
+                f"Recommended variant: {negative_projection_verdict['recommended_variant']}",
+                f"Projected cells: {negative_tangent_invariant['projected_cells']}",
+                f"Core claim: {negative_tangent_invariant['core_claim']}",
+            ],
+            "This stage tests whether a negative representation is action-grade only after invariant projection; public LB must still validate the generated action field.",
+        ),
+        stage(
             "action_decoder_ablation_suite",
             "Action Decoder Ablation Suite",
             "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, and listener-dropout alternatives as HS-JEPA module ablations.",
@@ -897,6 +930,12 @@ def build_manifest() -> dict[str, object]:
         ["public_lb_sensor", "counterfactual_listener_dropout_solver"],
         ["counterfactual_listener_dropout_solver", "spectral_public_tangent_solver"],
         ["public_lb_sensor", "spectral_public_tangent_solver"],
+        ["spectral_public_tangent_solver", "negative_tangent_invariant_projection_solver"],
+        ["route_energy_model", "negative_tangent_invariant_projection_solver"],
+        ["human_state_listener_context", "negative_tangent_invariant_projection_solver"],
+        ["negative_tangent_invariant_projection_solver", "action_decoder_ablation_suite"],
+        ["negative_tangent_invariant_projection_solver", "sleep_competition_adapter"],
+        ["negative_tangent_invariant_projection_solver", "claim_readiness_and_paper_packet"],
         ["spectral_public_tangent_solver", "action_decoder_ablation_suite"],
         ["spectral_public_tangent_solver", "sleep_competition_adapter"],
         ["spectral_public_tangent_solver", "claim_readiness_and_paper_packet"],
@@ -1022,6 +1061,10 @@ def build_manifest() -> dict[str, object]:
             "spectral_public_tangent_top5_variance": spectral_public_tangent["spectral"]["top5_cumulative_variance"],
             "spectral_public_tangent_recommended_information_sensor": spectral_tangent_verdict["recommended_information_sensor"],
             "spectral_public_tangent_recommended_counter_sensor": spectral_tangent_verdict["recommended_counter_sensor"],
+            "negative_tangent_invariant_projection_status": negative_projection_verdict["status"],
+            "negative_tangent_invariant_projection_recommended": negative_projection_verdict["recommended_variant"],
+            "negative_tangent_invariant_projection_projected_cells": negative_tangent_invariant["projected_cells"],
+            "negative_tangent_invariant_projection_top_ranked": negative_projection_verdict["ranking"][:2],
             "action_decoder_ablation_suite_status": action_ablation_verdict["status"],
             "action_decoder_ablation_suite_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_suite_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],

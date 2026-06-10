@@ -105,6 +105,35 @@ python3 sleep_competition_adapter/spectral_public_tangent_solver.py
 
 따라서 이 contribution의 핵심은 “실패를 평균으로 지우지 않고, 실패 자체를 JEPA의 target representation으로 만든다”는 점이다.
 
+### Contribution 7. Invariant-Projected Negative Action
+
+Spectral negative representation만으로는 충분하지 않다.
+
+실패 방향의 반대로 움직이는 것은 여전히 public-LB sensor에 대한 반응일 뿐이고, 그 action이 human-state manifold 위에서 말이 되는지는 별도로 검증해야 한다.
+
+HS-JEPA는 따라서 negative representation을 바로 output으로 쓰지 않고, target-route invariant와 subject-prior invariant를 보존하는 feasible action으로 투영한다.
+
+수면 대회 adapter에서는 다음 실험으로 구현했다.
+
+```bash
+python3 sleep_competition_adapter/negative_tangent_invariant_projection_solver.py
+```
+
+이 모듈은 H057 이후 public-bad tangent를 읽은 뒤, train label covariance와 subject별 label prior를 이용해 각 row-target action의 invariant energy 변화를 계산한다.
+
+그리고 다음 조건을 동시에 만족하는 action만 release한다.
+
+- public-bad tangent와 반대 방향이다.
+- target-route energy를 크게 악화시키지 않는다.
+- subject-prior coordinate에서 비정상적인 방향으로 튀지 않는다.
+
+따라서 이 contribution의 핵심은 다음이다.
+
+```text
+negative representation is diagnostic;
+invariant projection makes it action-grade.
+```
+
 ## 이번 대회에서 얻은 핵심 증거
 
 ### 증거 1. Direct JEPA latent label prediction은 실패했다
@@ -210,12 +239,46 @@ submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_upl
 - public failure의 저차원 구조는 real이지만, 그 반대 방향이 label-valid action이라는 보장은 없다.
 - 다음 병목은 public-mode discovery가 아니라 label-validity/invariant constraint다.
 
+### 증거 7. Negative representation은 invariant projection이 필요하다
+
+Spectral solver 이후 새로 만든 projection solver는 public-bad tangent의 반대 방향을 그대로 쓰지 않고, target-route/subject-prior invariant를 통과한 cell만 release했다.
+
+```text
+projected cells: 232
+recommended variant: subject_prior_safe_projection
+changed cells: 18
+bad tangent cosine: -0.2259
+mean route energy delta: -0.01685
+mean subject energy delta: -0.00106
+file: submission_hsjepa_negative_tangent_invariant_subject_prior_safe_projection_ebdccca6_uploadsafe.csv
+```
+
+해석:
+
+```text
+HS-JEPA의 next thesis는 "negative public representation을 찾았다"가 아니라,
+"그 representation을 human-state invariant 위의 action으로 project할 수 있다"이다.
+```
+
+이 후보가 public에서 좋아지면:
+
+- failed action geometry는 단순 진단이 아니라 usable negative representation이다.
+- subject-prior coordinate가 action validity에 중요하다는 증거가 생긴다.
+- HS-JEPA의 decoder contribution은 `negative representation + invariant projection`으로 정리된다.
+
+나빠지면:
+
+- public-bad tangent는 real이지만 아직 invertible하지 않다.
+- invariant를 train label/subject prior로 근사한 현재 방식이 부족하다.
+- 다음에는 richer human/social/cohort invariant가 필요하다.
+
 ## 논문에서 과장하면 안 되는 것
 
 - HS-JEPA core만으로 현재 최고 LB를 바로 재현한다고 말하면 안 된다.
 - public LB sensor는 일반 기술이 아니라 competition adapter의 관측 장비다.
 - S2 hub는 이 대회의 case-study 발견이지, 모든 수면 문제에 universal하게 적용된다고 주장하면 안 된다.
 - human-state encoder 하나가 row-target assignment를 완전히 해결했다고 말하면 안 된다.
+- invariant projection 후보가 public에서 검증되기 전까지, negative representation을 action-grade decoder라고 단정하면 안 된다.
 
 ## 정확한 thesis 문장
 
@@ -241,15 +304,15 @@ action-health, invariant decoder로 통과시킨 접근이 가장 큰 public LB 
 현재 thesis 관점에서 가장 정보량이 큰 후보는 다음이다.
 
 ```text
-submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_uploadsafe.csv
+submission_hsjepa_negative_tangent_invariant_subject_prior_safe_projection_ebdccca6_uploadsafe.csv
 ```
 
 이 후보가 좋아지면:
 
-- post-H057 failure action들은 같은 bad tangent를 공유했고, 그 반대 방향이 실제로 public-good action이다.
-- HS-JEPA의 negative representation/action-health thesis가 강해진다.
+- post-H057 failure action들은 같은 bad tangent를 공유했고, 그 반대 방향 중 subject-prior invariant를 보존하는 action이 실제 public-good action이다.
+- HS-JEPA의 `negative representation + invariant projection` thesis가 강해진다.
 
-이 후보가 나빠지고 orthogonal residual이 좋아지면:
+이 후보가 나빠지고 spectral orthogonal residual이 좋아지면:
 
 - 실패들의 spectral mode는 real이지만 invertible하지 않다.
 - H057 이후 개선은 public-bad direction 반대가 아니라 private-safe residual subspace에서 찾아야 한다.

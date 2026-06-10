@@ -13721,6 +13721,89 @@
       }
     ]
   },
+  "negative_tangent_invariant_projection_solver": {
+    "experiment": "Negative Tangent Invariant Projection Solver",
+    "architecture_role": "competition_adapter_projection_head",
+    "core_claim": "HS-JEPA representations become action-grade only after projection onto invariant human-state routes.",
+    "status": "candidate_ready",
+    "recommended_variant": "subject_prior_safe_projection",
+    "reason": "Recommended by joint anti-public-bad direction, invariant energy, subject-prior safety, and upload-safe validation.",
+    "spectral": {
+      "anchor_count": 26,
+      "first_mode_variance": 0.9628550254007645,
+      "top5_cumulative_variance": 0.9946826859769906,
+      "singular_values": [
+        3.9248700923283506,
+        0.42736505936128066,
+        0.3891499257724587,
+        0.3356759829624167,
+        0.24990018982496587,
+        0.16724030897803246,
+        0.13288948751368476,
+        0.11300586024023068
+      ],
+      "mean_bad_tangent_coord": 0.7500068848733459,
+      "min_bad_tangent_coord": -0.7172294112358857,
+      "max_bad_tangent_coord": 0.9995708377235418
+    },
+    "projected_cells": 232,
+    "ranking": [
+      {
+        "variant": "subject_prior_safe_projection",
+        "score": 0.25449167116425153
+      },
+      {
+        "variant": "anti_tangent_invariant_projection",
+        "score": 0.23870131099839245
+      },
+      {
+        "variant": "sign_equation_projection",
+        "score": 0.21487727900957238
+      },
+      {
+        "variant": "energy_descent_negative_space",
+        "score": 0.20411530522715116
+      }
+    ],
+    "variants": {
+      "anti_tangent_invariant_projection": {
+        "submission_file": "submission_hsjepa_negative_tangent_invariant_anti_tangent_invariant_projection_19dced9c_uploadsafe.csv",
+        "changed_cells": 28,
+        "selected_rows": 26,
+        "bad_tangent_cosine": -0.149528406314349,
+        "mean_incremental_energy_delta": -0.01956773693706304,
+        "mean_subject_energy_delta": 0.0018890085960319724,
+        "upload_safe": true
+      },
+      "energy_descent_negative_space": {
+        "submission_file": "submission_hsjepa_negative_tangent_invariant_energy_descent_negative_space_5d8eaf60_uploadsafe.csv",
+        "changed_cells": 21,
+        "selected_rows": 19,
+        "bad_tangent_cosine": -0.011511143665335788,
+        "mean_incremental_energy_delta": -0.029538328668909614,
+        "mean_subject_energy_delta": 0.00048781641307898955,
+        "upload_safe": true
+      },
+      "subject_prior_safe_projection": {
+        "submission_file": "submission_hsjepa_negative_tangent_invariant_subject_prior_safe_projection_ebdccca6_uploadsafe.csv",
+        "changed_cells": 18,
+        "selected_rows": 17,
+        "bad_tangent_cosine": -0.22586523936463712,
+        "mean_incremental_energy_delta": -0.01684707007955337,
+        "mean_subject_energy_delta": -0.0010606635823056812,
+        "upload_safe": true
+      },
+      "sign_equation_projection": {
+        "submission_file": "submission_hsjepa_negative_tangent_invariant_sign_equation_projection_59cd4b86_uploadsafe.csv",
+        "changed_cells": 23,
+        "selected_rows": 23,
+        "bad_tangent_cosine": -0.06905988087552674,
+        "mean_incremental_energy_delta": -0.01866819740640819,
+        "mean_subject_energy_delta": 0.0010805281385777921,
+        "upload_safe": true
+      }
+    }
+  },
   "action_decoder_ablation_suite": {
     "status": "action_decoder_ablation_ready_decoder_jury_leads",
     "recommended_lb_sensor": {
@@ -13979,7 +14062,8 @@
     "Core-health calibrated release now uses dataset-free action-health false-positive lift as a real adapter release prior, connecting architecture benchmark behavior to submission candidates.",
     "Cross-listener transport now converts the failed target-listener route-lift into a safer rule: listener posterior calibrates route/fusion/core-proposed actions instead of generating actions directly.",
     "Counterfactual listener-dropout turns public failures into toxicity labels and exposes a strong A/B sensor: either high-survival route/fusion actions were good cells mixed into bad submissions, or the public/private equation requires inverting those toxic directions.",
-    "Spectral public-tangent decomposition shows that post-H057 public failures are highly low-rank; HS-JEPA can now treat failed submissions as a negative representation space rather than isolated bad scores."
+    "Spectral public-tangent decomposition shows that post-H057 public failures are highly low-rank; HS-JEPA can now treat failed submissions as a negative representation space rather than isolated bad scores.",
+    "Negative tangent invariant projection turns that negative representation into an action-grade test: only anti-public-bad moves that preserve target-route and subject-prior energy are released."
   ],
   "what_the_adapter_does_not_prove": [
     "pure OG-only assignment",
@@ -13994,6 +14078,7 @@
     "that cross-listener transport will beat the strict decoder jury before public LB observes the listener-calibrated counterfactual",
     "that listener-dropout health alone is public-safe before public LB observes the aggressive-vs-inverted counterfactual",
     "that the public-bad spectral tangent is invertible before public LB observes anti-tangent and orthogonal residual sensors",
+    "that invariant-projected anti-tangent actions improve LB before public LB observes the generated projection candidates",
     "that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments",
     "private leaderboard safety",
     "S2 as a universal human-sleep factor",
