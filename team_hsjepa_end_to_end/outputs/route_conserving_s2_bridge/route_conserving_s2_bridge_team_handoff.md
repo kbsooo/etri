@@ -37,12 +37,13 @@ public-sensitive driver action
 ## Core / Adapter Separation
 
 - Core status: `core_ready_for_adapter` (`5/5` gates)
-- Core ablation contract: `6` modules, `4` big-bet followups
+- Core ablation contract: `6` modules, `5` big-bet followups
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
 - Adapter score delta: `-0.00841135550000005`
 - OG-only assignment probe: `og_only_assignment_replacement_not_ready`
 - Listener-invariant contrastive probe: `listener_invariant_decoder_not_ready`
 - Private-safe toxicity probe: `toxicity_field_promising_with_hardworld_gap`
+- Hard-world toxicity factorization probe: `hardworld_mixture_factorization_required`
 
 Core 문서:
 
@@ -59,6 +60,7 @@ sleep_competition_adapter/outputs/hsjepa_big_bet_queue_ko.md
 sleep_competition_adapter/outputs/og_only_assignment_teacher_probe_ko.md
 sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md
 sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md
+sleep_competition_adapter/outputs/hardworld_toxicity_factorization_probe_ko.md
 ```
 
 ## Generated Submission Roles
@@ -89,7 +91,8 @@ sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md
 - OG-only assignment boundary: pure recall `0.0404`, distilled recall `0.1236`
 - Listener-invariant boundary: listener-route rho `-0.0313`, contrastive overlap `0.2152`
 - Private-safe toxicity boundary: mean LOO AUC `0.7880`, worst LOO AUC `0.3683`
-- Release checklist: `release_ready_with_boundary` (`37/37` checks)
+- Hard-world factorization: broad->H088 AUC `0.3683`, broad/H088 rho `-0.4276`
+- Release checklist: `release_ready_with_boundary` (`39/39` checks)
 
 ## Paper Claim
 
@@ -109,6 +112,7 @@ The current LB breakthrough is evidence for this adapter, while the reusable cla
 - `OG-only Human-State Assignment Teacher`: The public-sensor teacher can be replaced by personal/cohort/time human-state consistency. Expected LB delta if true `-0.003`.
 - `Listener-Invariant Contrastive Decoder`: A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone. Expected LB delta if true `-0.002`.
 - `Private-Safe Toxicity Field`: The plateau comes from actions that help public-like rows but poison private-like rows. Expected LB delta if true `-0.0015`.
+- `Hard-World Mixture Toxicity Decoder`: H088-like hard-world toxicity is anti-correlated with broad public-bad toxicity, so action-health must be factorized. Expected LB delta if true `-0.0025`.
 - `Cross-Listener Human-State Transport`: Subjective Q and objective S labels are different listeners of one human state, not separate tasks. Expected LB delta if true `-0.001`.
 
 ## Competition Use

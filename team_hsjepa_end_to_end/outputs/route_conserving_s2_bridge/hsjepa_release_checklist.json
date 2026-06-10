@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 37,
-  "total_checks": 37,
+  "passed_checks": 39,
+  "total_checks": 39,
   "required_failures": [],
   "checks": [
     {
@@ -104,6 +104,13 @@
       "evidence": "sleep_competition_adapter/outputs/private_safe_toxicity_probe.json"
     },
     {
+      "check": "exists:hardworld_toxicity_factorization_probe.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "sleep_competition_adapter/outputs/hardworld_toxicity_factorization_probe.json"
+    },
+    {
       "check": "exists:hsjepa_pipeline_manifest.json",
       "status": "PASS",
       "passed": true,
@@ -199,7 +206,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=big_bet_queue_ready, count=4"
+      "evidence": "status=big_bet_queue_ready, count=5"
     },
     {
       "check": "og_only_assignment_probe_recorded",
@@ -221,6 +228,13 @@
       "passed": true,
       "required": true,
       "evidence": "status=toxicity_field_promising_with_hardworld_gap, mean_loo_auc=0.7880, worst_loo_auc=0.3683, safety_z=8.4589"
+    },
+    {
+      "check": "hardworld_toxicity_factorization_probe_recorded",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=hardworld_mixture_factorization_required, broad_to_h088_auc=0.3683, rho=-0.4276, joint_z=7.1884"
     },
     {
       "check": "roles_present",
@@ -248,7 +262,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=15, edges=30"
+      "evidence": "status=pipeline_ready_with_boundary, stages=16, edges=31"
     },
     {
       "check": "method_packet_presentable",

@@ -30,6 +30,7 @@ METHOD_PACKET_JSON = TEAM_OUT / "hsjepa_paper_method_packet.json"
 OG_PROBE_JSON = OUT / "og_only_assignment_teacher_probe.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
+HARDWORLD_TOXICITY_PROBE_JSON = OUT / "hardworld_toxicity_factorization_probe.json"
 
 REPORT_JSON = OUT / "sleep_competition_adapter_report.json"
 REPORT_MD = OUT / "sleep_competition_adapter_report_ko.md"
@@ -62,6 +63,7 @@ def require_inputs() -> None:
         OG_PROBE_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
+        HARDWORLD_TOXICITY_PROBE_JSON,
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
     if missing:
@@ -72,6 +74,7 @@ def build_big_bets(
     og_probe: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
+    hardworld_toxicity_probe: dict[str, object],
 ) -> list[dict[str, object]]:
     og_verdict = og_probe.get("verdict", {}) if isinstance(og_probe.get("verdict"), dict) else {}
     contrastive_verdict = (
@@ -82,6 +85,11 @@ def build_big_bets(
     toxicity_verdict = (
         private_toxicity_probe.get("verdict", {})
         if isinstance(private_toxicity_probe.get("verdict"), dict)
+        else {}
+    )
+    hardworld_verdict = (
+        hardworld_toxicity_probe.get("verdict", {})
+        if isinstance(hardworld_toxicity_probe.get("verdict"), dict)
         else {}
     )
     return [
@@ -134,6 +142,22 @@ def build_big_bets(
             "kill_criterion": "Toxicity score only recovers known public failures, fails hard-world anchors, or does not separate matched local nulls.",
         },
         {
+            "id": "hardworld_mixture_toxicity_decoder",
+            "name": "Hard-World Mixture Toxicity Decoder",
+            "worldview": "H088-like hard-world toxicity is anti-correlated with broad public-bad toxicity, so action-health must be factorized.",
+            "core_modules_exercised": ["action_health_decoder", "anti_shortcut_validation", "listener_responsibility"],
+            "adapter_move": "Replace scalar toxicity with a two-head broad-public/hard-world safety gate before row-target assignment.",
+            "why_big": "This directly targets the observed gap where broad toxicity generalizes but misses the H088 hard-world mode.",
+            "expected_public_lb_delta_if_true": -0.0025,
+            "latest_probe_status": hardworld_verdict.get("status"),
+            "latest_probe_evidence": {
+                "broad_predicts_hardworld_auc": hardworld_verdict.get("broad_predicts_hardworld_auc"),
+                "broad_hardworld_spearman": hardworld_verdict.get("broad_hardworld_spearman"),
+                "selected_joint_safety_z": hardworld_verdict.get("selected_joint_safety_z"),
+            },
+            "kill_criterion": "Broad toxicity predicts H088 well, or mixture safety does not beat matched null after target/source matching.",
+        },
+        {
             "id": "cross_listener_state_transport",
             "name": "Cross-Listener Human-State Transport",
             "worldview": "Subjective Q and objective S labels are different listeners of one human state, not separate tasks.",
@@ -158,6 +182,7 @@ def build_report() -> dict[str, object]:
     og_probe = read_json(OG_PROBE_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
+    hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
 
     public = readiness["public_breakthrough"]
     human = readiness["human_state"]
@@ -165,6 +190,7 @@ def build_report() -> dict[str, object]:
     og_verdict = og_probe.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
+    hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
 
     adapter_mapping = [
         {
@@ -246,6 +272,16 @@ def build_report() -> dict[str, object]:
             "p_null_safety_ge_selected": toxicity_verdict.get("p_null_safety_ge_selected"),
             "interpretation": toxicity_verdict.get("interpretation"),
         },
+        "hardworld_toxicity_factorization_probe": {
+            "status": hardworld_verdict.get("status"),
+            "broad_predicts_hardworld_auc": hardworld_verdict.get("broad_predicts_hardworld_auc"),
+            "broad_hardworld_spearman": hardworld_verdict.get("broad_hardworld_spearman"),
+            "broad_safe_hardworld_toxic_cells": hardworld_verdict.get("broad_safe_hardworld_toxic_cells"),
+            "selected_joint_safety_z": hardworld_verdict.get("selected_joint_safety_z"),
+            "selected_hardworld_top_toxic_rate": hardworld_verdict.get("selected_hardworld_top_toxic_rate"),
+            "null_hardworld_top_toxic_rate": hardworld_verdict.get("null_hardworld_top_toxic_rate"),
+            "interpretation": hardworld_verdict.get("interpretation"),
+        },
         "role_outputs": {
             role: item["submission_file"]
             for role, item in package["packaged_submissions"].items()
@@ -257,6 +293,7 @@ def build_report() -> dict[str, object]:
             "A pure OG-only assignment teacher is not ready yet; this is now a measured architecture boundary, not an informal caveat.",
             "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.",
             "The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.",
+            "Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.",
         ],
         "what_the_adapter_does_not_prove": [
             "pure OG-only assignment",
@@ -265,6 +302,7 @@ def build_report() -> dict[str, object]:
             "that public LB sensors can be used outside this competition",
             "that listener responsibility alone is an action-grade decoder",
             "that toxicity diagnostics prove private leaderboard safety",
+            "that a hard-world mixture decoder has already been translated into a better submission",
         ],
         "paper_method_title": method["title"],
     }
@@ -330,6 +368,17 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             report["private_safe_toxicity_probe"]["interpretation"],
             "",
+            "## Hard-World Toxicity Factorization Probe",
+            "",
+            f"- Status: `{report['hardworld_toxicity_factorization_probe']['status']}`",
+            f"- Broad toxicity -> H088 AUC: `{fmt(report['hardworld_toxicity_factorization_probe']['broad_predicts_hardworld_auc'], 4)}`",
+            f"- Broad/H088 Spearman: `{fmt(report['hardworld_toxicity_factorization_probe']['broad_hardworld_spearman'], 4)}`",
+            f"- Broad-safe but H088-toxic cells: `{report['hardworld_toxicity_factorization_probe']['broad_safe_hardworld_toxic_cells']}`",
+            f"- Selected joint safety z: `{fmt(report['hardworld_toxicity_factorization_probe']['selected_joint_safety_z'], 4)}`",
+            f"- Selected H088 top-toxic rate: `{fmt(report['hardworld_toxicity_factorization_probe']['selected_hardworld_top_toxic_rate'], 4)}` vs null `{fmt(report['hardworld_toxicity_factorization_probe']['null_hardworld_top_toxic_rate'], 4)}`",
+            "",
+            report["hardworld_toxicity_factorization_probe"]["interpretation"],
+            "",
             "## Role Outputs",
             "",
             *roles,
@@ -368,8 +417,9 @@ def build_big_bet_markdown(bets: list[dict[str, object]]) -> str:
             "## 우선순위",
             "",
             "1. `OG-only Human-State Assignment Teacher`: 성공하면 HS-JEPA의 범용성이 가장 크게 올라간다.",
-            "2. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.",
-            "3. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.",
+            "2. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
+            "3. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.",
+            "4. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.",
             "",
         ]
     )
@@ -381,6 +431,7 @@ def run() -> dict[str, object]:
         read_json(OG_PROBE_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),
+        read_json(HARDWORLD_TOXICITY_PROBE_JSON),
     )
     REPORT_JSON.write_text(json.dumps(report, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8")
     REPORT_MD.write_text(build_report_markdown(report), encoding="utf-8")

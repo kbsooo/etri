@@ -33,6 +33,7 @@ BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
+HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
 
 PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 PACKET_MD = OUT / "hsjepa_paper_method_packet_ko.md"
@@ -69,6 +70,7 @@ def require_inputs() -> None:
             OG_PROBE_JSON,
             CONTRASTIVE_PROBE_JSON,
             PRIVATE_TOXICITY_PROBE_JSON,
+            HARDWORLD_TOXICITY_PROBE_JSON,
         ]
         if not path.exists()
     ]
@@ -90,6 +92,7 @@ def build_packet() -> dict[str, object]:
     og_probe = read_json(OG_PROBE_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
+    hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
     stress = pd.read_csv(STRESS_CSV)
     evidence = pd.read_csv(EVIDENCE_CSV)
 
@@ -101,6 +104,7 @@ def build_packet() -> dict[str, object]:
     og_verdict = og_probe["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
+    hardworld_verdict = hardworld_toxicity_probe["verdict"]
 
     roles = []
     for row in evidence.to_dict("records"):
@@ -156,6 +160,10 @@ def build_packet() -> dict[str, object]:
             "toxicity_mean_loo_auc": toxicity_verdict["mean_loo_bad_anchor_auc"],
             "toxicity_worst_loo_auc": toxicity_verdict["worst_loo_bad_anchor_auc"],
             "toxicity_selected_safety_z": toxicity_verdict["selected_safety_z_vs_matched_null"],
+            "hardworld_factorization_probe_status": hardworld_verdict["status"],
+            "hardworld_broad_to_h088_auc": hardworld_verdict["broad_predicts_hardworld_auc"],
+            "hardworld_broad_h088_spearman": hardworld_verdict["broad_hardworld_spearman"],
+            "hardworld_joint_safety_z": hardworld_verdict["selected_joint_safety_z"],
             "role": "orientation diagnostic, not complete row-target assignment solver",
         },
         "roles": roles,
@@ -196,12 +204,13 @@ def build_packet() -> dict[str, object]:
             "og_only_assignment_teacher_probe": str(OG_PROBE_JSON.resolve()),
             "listener_invariant_contrastive_probe": str(CONTRASTIVE_PROBE_JSON.resolve()),
             "private_safe_toxicity_probe": str(PRIVATE_TOXICITY_PROBE_JSON.resolve()),
+            "hardworld_toxicity_factorization_probe": str(HARDWORLD_TOXICITY_PROBE_JSON.resolve()),
             "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
         },
         "paper_sections": {
             "abstract_ko": build_abstract(public, primary, s2, human),
             "method_ko": build_method_text(core, adapter),
-            "generality_ko": build_generality_text(generality, og_verdict, contrastive_verdict, toxicity_verdict),
+            "generality_ko": build_generality_text(generality, og_verdict, contrastive_verdict, toxicity_verdict, hardworld_verdict),
             "algorithm_ko": build_algorithm_text(),
             "limitations_ko": build_limitations_text(boundary),
             "big_bets_ko": build_big_bet_text(big_bets),
@@ -259,7 +268,7 @@ def build_method_text(core: dict[str, object], adapter: dict[str, object]) -> st
             "",
             adapter["adapter_claim"],
             "",
-            "이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.",
+            "이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 새 hard-world probe는 broad toxicity와 H088 toxicity가 역상관될 수 있음을 보여주므로, action-health는 단일 위험 점수가 아니라 factorized energy head로 다루어야 한다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.",
         ]
     )
 
@@ -269,6 +278,7 @@ def build_generality_text(
     og_verdict: dict[str, object],
     contrastive_verdict: dict[str, object],
     toxicity_verdict: dict[str, object],
+    hardworld_verdict: dict[str, object],
 ) -> str:
     rows = [
         "HS-JEPA general architecture != Route-Conserving S2 Bridge competition case study",
@@ -297,8 +307,11 @@ def build_generality_text(
         f"- Private-safe toxicity probe: `{toxicity_verdict['status']}`",
         f"- Toxicity mean LOO AUC: `{fmt(toxicity_verdict['mean_loo_bad_anchor_auc'], 4)}`",
         f"- Toxicity worst LOO AUC: `{fmt(toxicity_verdict['worst_loo_bad_anchor_auc'], 4)}`",
+        f"- Hard-world factorization probe: `{hardworld_verdict['status']}`",
+        f"- Broad toxicity -> H088 AUC: `{fmt(hardworld_verdict['broad_predicts_hardworld_auc'], 4)}`",
+        f"- Broad/H088 Spearman: `{fmt(hardworld_verdict['broad_hardworld_spearman'], 4)}`",
         "",
-        "가장 중요한 남은 과제는 public-sensor row-target assignment teacher를 OG-only personal/cohort/time human-state teacher로 교체하는 것이다.",
+        "가장 중요한 남은 과제는 public-sensor row-target assignment teacher를 OG-only personal/cohort/time human-state teacher로 교체하고, scalar action-health를 broad-public/hard-world factorized decoder로 바꾸는 것이다.",
     ]
     return "\n".join(rows)
 
@@ -315,10 +328,11 @@ def build_algorithm_text() -> str:
             "2. Predict masked listener/action representations from partial human context.",
             "3. Estimate listener responsibility: which outcomes should react to the hidden state.",
             "4. Estimate action-health: whether the latent signal is safe to translate into output movement.",
-            "5. Learn an invariant energy over valid output/action manifolds.",
-            "6. Decode bounded actions that improve listener fit while preserving the invariant.",
-            "7. Reject shortcuts with cohort/time/group/null stress tests.",
-            "8. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.",
+            "5. Factorize action-health when shortcut modes are anti-correlated rather than scalar.",
+            "6. Learn an invariant energy over valid output/action manifolds.",
+            "7. Decode bounded actions that improve listener fit while preserving the invariant.",
+            "8. Reject shortcuts with cohort/time/group/null stress tests.",
+            "9. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.",
         ]
     )
 

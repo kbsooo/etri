@@ -1,0 +1,138 @@
+{
+  "package": "Hard-World Toxicity Factorization Probe",
+  "status": "probe_ready",
+  "uses_public_score_ledger": true,
+  "uses_private_labels": false,
+  "verdict": {
+    "status": "hardworld_mixture_factorization_required",
+    "broad_predicts_hardworld_auc": 0.36828842798992056,
+    "broad_hardworld_spearman": -0.4276176291718262,
+    "broad_safe_hardworld_toxic_cells": 215,
+    "selected_joint_safety_z": 7.188448059350422,
+    "selected_hardworld_top_toxic_rate": 0.03333333333333333,
+    "null_hardworld_top_toxic_rate": 0.10267866666666667,
+    "interpretation": "H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-world mode. The adapter should keep separate broad-public and hard-world toxicity heads."
+  },
+  "mode_separation": {
+    "hardworld_anchor_file": "submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv",
+    "hardworld_public_lb": 0.5684942019,
+    "hardworld_positive_cells": 737,
+    "hardworld_positive_rate": 0.8539976825028969,
+    "broad_predicts_hardworld_auc": 0.36828842798992056,
+    "broad_predicts_hardworld_ap": 0.7866139826938541,
+    "broad_hardworld_spearman": -0.4276176291718262,
+    "broad_hardworld_pearson": -0.14185677196114777,
+    "hardworld_active_rate_broad_top_quartile": 0.7453703703703703,
+    "hardworld_active_rate_broad_bottom_quartile": 0.8927536231884058,
+    "broad_safe_hardworld_toxic_cells": 215,
+    "broad_toxic_hardworld_safe_cells": 193,
+    "selected_hardworld_active_rate": 0.6533333333333333,
+    "all_hardworld_active_rate": 0.8539976825028969,
+    "selected_hardworld_top_toxic_rate": 0.03333333333333333,
+    "all_hardworld_top_toxic_rate": 0.25028968713789107,
+    "selected_broad_safe_hardworld_toxic_cells": 12
+  },
+  "matched_null_selection": {
+    "iterations": 5000,
+    "selected_cells": 150,
+    "candidate_cells": 863,
+    "selected_hardworld_safe_mean": 0.7363383545770567,
+    "null_hardworld_safe_mean": 0.6994808806488992,
+    "hardworld_safe_z": 2.8520942151399358,
+    "p_null_hardworld_safe_ge_selected": 0.0026,
+    "selected_joint_safety_mean": 0.6372305909617613,
+    "null_joint_safety_mean": 0.5605598903051371,
+    "joint_safety_z": 7.188448059350422,
+    "p_null_joint_safety_ge_selected": 0.0,
+    "selected_hardworld_top_toxic_rate": 0.03333333333333333,
+    "null_hardworld_top_toxic_rate": 0.10267866666666667,
+    "hardworld_top_toxic_z": -3.3752414691601933,
+    "p_null_hardworld_top_toxic_le_selected": 0.0002,
+    "selected_broad_safe_hardworld_toxic_rate": 0.08,
+    "null_broad_safe_hardworld_toxic_rate": 0.10415333333333333,
+    "broad_safe_hardworld_toxic_z": -1.1828034364859688,
+    "p_null_conflict_le_selected": 0.1534,
+    "selected_listener_score_mean": 0.7672140594824257,
+    "null_listener_score_mean": 0.6296923141599072,
+    "listener_score_z": 11.449107174463052,
+    "target_counts": {
+      "Q1": 15,
+      "Q2": 35,
+      "Q3": 14,
+      "S1": 19,
+      "S2": 28,
+      "S3": 17,
+      "S4": 22
+    }
+  },
+  "sector_summary": [
+    {
+      "sector": "broad_safe_hardworld_toxic",
+      "cells": 215,
+      "selected_cells": 12,
+      "mean_selection_score": 0.5279724056158883,
+      "mean_broad_toxic_rank": 0.20046349942062572,
+      "mean_hardworld_toxic_rank": 0.8376404645773263,
+      "target_counts": {
+        "Q1": 16,
+        "Q2": 13,
+        "Q3": 10,
+        "S1": 52,
+        "S2": 53,
+        "S3": 30,
+        "S4": 41
+      }
+    },
+    {
+      "sector": "broad_toxic_hardworld_safe",
+      "cells": 193,
+      "selected_cells": 33,
+      "mean_selection_score": 0.4832761964228892,
+      "mean_broad_toxic_rank": 0.8284631872189435,
+      "mean_hardworld_toxic_rank": 0.19252036815782994,
+      "target_counts": {
+        "Q1": 24,
+        "Q2": 12,
+        "Q3": 40,
+        "S1": 24,
+        "S2": 20,
+        "S3": 37,
+        "S4": 36
+      }
+    },
+    {
+      "sector": "dual_safe",
+      "cells": 78,
+      "selected_cells": 53,
+      "mean_selection_score": 0.6845075318655851,
+      "mean_broad_toxic_rank": 0.2004634994206257,
+      "mean_hardworld_toxic_rank": 0.19481088629408444,
+      "target_counts": {
+        "Q1": 9,
+        "Q2": 24,
+        "Q3": 5,
+        "S1": 12,
+        "S2": 13,
+        "S3": 4,
+        "S4": 11
+      }
+    },
+    {
+      "sector": "dual_toxic",
+      "cells": 80,
+      "selected_cells": 0,
+      "mean_selection_score": 0.456247392815759,
+      "mean_broad_toxic_rank": 0.7776506373117034,
+      "mean_hardworld_toxic_rank": 0.7354432213209734,
+      "target_counts": {
+        "Q1": 12,
+        "Q2": 7,
+        "Q3": 16,
+        "S1": 9,
+        "S2": 10,
+        "S3": 16,
+        "S4": 10
+      }
+    }
+  ]
+}

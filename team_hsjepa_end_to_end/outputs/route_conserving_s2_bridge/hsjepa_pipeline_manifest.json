@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 15,
-  "edge_count": 30,
+  "stage_count": 16,
+  "edge_count": 31,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -157,6 +157,27 @@
       "boundary": "This stage supports toxicity diagnostics, not a private-LB safety guarantee."
     },
     {
+      "id": "hardworld_toxicity_factorization_probe",
+      "name": "Hard-World Toxicity Factorization Probe",
+      "role": "Tests whether the H088 hard-world toxicity mode is anti-correlated with broad public-bad toxicity.",
+      "inputs": [
+        "private_safe_toxicity_probe.json",
+        "toxicity_candidate_cell_table.csv",
+        "toxicity_anchor_ledger.csv"
+      ],
+      "outputs": [
+        "hardworld_toxicity_factorization_probe_ko.md",
+        "hardworld_toxicity_factorization_sectors.csv"
+      ],
+      "evidence": [
+        "Probe status: hardworld_mixture_factorization_required",
+        "Broad->H088 AUC: 0.3683",
+        "Broad/H088 rho: -0.4276",
+        "Joint safety z: 7.1884"
+      ],
+      "boundary": "This stage says action-health should be factorized; it does not yet produce a better submission."
+    },
+    {
       "id": "driver_action_field",
       "name": "Public-Sensitive Driver Action Field",
       "role": "Selects sparse row-target cells that public sensor evidence says are worth moving.",
@@ -264,7 +285,7 @@
       "evidence": [
         "Adapter status: adapter_ready_with_public_sensor_boundary",
         "Adapter score delta: -0.0084113555",
-        "Big-bet count: 4"
+        "Big-bet count: 5"
       ],
       "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
     },
@@ -360,6 +381,10 @@
     ],
     [
       "private_safe_toxicity_probe",
+      "hardworld_toxicity_factorization_probe"
+    ],
+    [
+      "hardworld_toxicity_factorization_probe",
       "sleep_competition_adapter"
     ],
     [
@@ -447,9 +472,10 @@
     ],
     "core_status": "core_ready_for_adapter",
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
-    "big_bet_count": 4,
+    "big_bet_count": 5,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "listener_invariant_contrastive_probe_status": "listener_invariant_decoder_not_ready",
-    "private_safe_toxicity_probe_status": "toxicity_field_promising_with_hardworld_gap"
+    "private_safe_toxicity_probe_status": "toxicity_field_promising_with_hardworld_gap",
+    "hardworld_toxicity_factorization_probe_status": "hardworld_mixture_factorization_required"
   }
 }

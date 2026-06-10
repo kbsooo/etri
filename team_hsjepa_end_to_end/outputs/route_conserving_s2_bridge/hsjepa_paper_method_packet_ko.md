@@ -33,14 +33,14 @@ Sleep competition adapter:
 
 This adapter converts HS-JEPA Core into a sleep-log competition system by supplying Q/S listeners, a route invariant, public-sensor action evidence, and upload-safe sparse row-target decoding.
 
-이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.
+이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 새 hard-world probe는 broad toxicity와 H088 toxicity가 역상관될 수 있음을 보여주므로, action-health는 단일 위험 점수가 아니라 factorized energy head로 다루어야 한다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.
 
 ## Core / Adapter Evidence
 
 - Core status: `core_ready_for_adapter` (`5/5` gates)
 - Core ablation contract: `ablation_contract_ready` (`6` ablations)
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
-- Big-bet queue: `big_bet_queue_ready` (`4` bets)
+- Big-bet queue: `big_bet_queue_ready` (`5` bets)
 
 ## Generality
 
@@ -70,8 +70,11 @@ partial human context
 - Private-safe toxicity probe: `toxicity_field_promising_with_hardworld_gap`
 - Toxicity mean LOO AUC: `0.7880`
 - Toxicity worst LOO AUC: `0.3683`
+- Hard-world factorization probe: `hardworld_mixture_factorization_required`
+- Broad toxicity -> H088 AUC: `0.3683`
+- Broad/H088 Spearman: `-0.4276`
 
-가장 중요한 남은 과제는 public-sensor row-target assignment teacher를 OG-only personal/cohort/time human-state teacher로 교체하는 것이다.
+가장 중요한 남은 과제는 public-sensor row-target assignment teacher를 OG-only personal/cohort/time human-state teacher로 교체하고, scalar action-health를 broad-public/hard-world factorized decoder로 바꾸는 것이다.
 
 ## Algorithm
 
@@ -85,10 +88,11 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 2. Predict masked listener/action representations from partial human context.
 3. Estimate listener responsibility: which outcomes should react to the hidden state.
 4. Estimate action-health: whether the latent signal is safe to translate into output movement.
-5. Learn an invariant energy over valid output/action manifolds.
-6. Decode bounded actions that improve listener fit while preserving the invariant.
-7. Reject shortcuts with cohort/time/group/null stress tests.
-8. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.
+5. Factorize action-health when shortcut modes are anti-correlated rather than scalar.
+6. Learn an invariant energy over valid output/action manifolds.
+7. Decode bounded actions that improve listener fit while preserving the invariant.
+8. Reject shortcuts with cohort/time/group/null stress tests.
+9. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.
 ```
 
 ## Evidence Snapshot
@@ -124,6 +128,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 - `OG-only Human-State Assignment Teacher`: The public-sensor teacher can be replaced by personal/cohort/time human-state consistency. Expected LB delta if true `-0.003`. Kill: Pure OG row-target recall stays near base-rate and distillation cannot recover row assignment under subject/time stress.
 - `Listener-Invariant Contrastive Decoder`: A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone. Expected LB delta if true `-0.002`. Kill: Listener gain and invariant energy remain anti-correlated on strong candidates.
 - `Private-Safe Toxicity Field`: The plateau comes from actions that help public-like rows but poison private-like rows. Expected LB delta if true `-0.0015`. Kill: Toxicity score only recovers known public failures, fails hard-world anchors, or does not separate matched local nulls.
+- `Hard-World Mixture Toxicity Decoder`: H088-like hard-world toxicity is anti-correlated with broad public-bad toxicity, so action-health must be factorized. Expected LB delta if true `-0.0025`. Kill: Broad toxicity predicts H088 well, or mixture safety does not beat matched null after target/source matching.
 - `Cross-Listener Human-State Transport`: Subjective Q and objective S labels are different listeners of one human state, not separate tasks. Expected LB delta if true `-0.001`. Kill: Q-S bridge actions fail null tests or replicate the already-killed subjective-shadow bridge.
 
 ## Boundaries

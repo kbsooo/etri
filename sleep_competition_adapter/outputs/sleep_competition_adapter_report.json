@@ -73,6 +73,16 @@
     "p_null_safety_ge_selected": 0.0,
     "interpretation": "The toxicity field is strong on most bad anchors, but a hard-world toxicity mode is still not captured."
   },
+  "hardworld_toxicity_factorization_probe": {
+    "status": "hardworld_mixture_factorization_required",
+    "broad_predicts_hardworld_auc": 0.36828842798992056,
+    "broad_hardworld_spearman": -0.4276176291718262,
+    "broad_safe_hardworld_toxic_cells": 215,
+    "selected_joint_safety_z": 7.188448059350422,
+    "selected_hardworld_top_toxic_rate": 0.03333333333333333,
+    "null_hardworld_top_toxic_rate": 0.10267866666666667,
+    "interpretation": "H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-world mode. The adapter should keep separate broad-public and hard-world toxicity heads."
+  },
   "role_outputs": {
     "competition_primary": "submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv",
     "interpretable_s2_hub": "submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv",
@@ -84,7 +94,8 @@
     "Human-state latent explains target/cell orientation but not enough row assignment on its own.",
     "A pure OG-only assignment teacher is not ready yet; this is now a measured architecture boundary, not an informal caveat.",
     "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.",
-    "The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode."
+    "The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.",
+    "Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto."
   ],
   "what_the_adapter_does_not_prove": [
     "pure OG-only assignment",
@@ -92,7 +103,8 @@
     "S2 as a universal human-sleep factor",
     "that public LB sensors can be used outside this competition",
     "that listener responsibility alone is an action-grade decoder",
-    "that toxicity diagnostics prove private leaderboard safety"
+    "that toxicity diagnostics prove private leaderboard safety",
+    "that a hard-world mixture decoder has already been translated into a better submission"
   ],
   "paper_method_title": "Human-State JEPA: General Architecture with a Route-Conserving S2 Bridge Case Study"
 }

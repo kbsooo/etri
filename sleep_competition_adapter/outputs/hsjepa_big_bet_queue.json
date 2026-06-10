@@ -63,6 +63,26 @@
       "kill_criterion": "Toxicity score only recovers known public failures, fails hard-world anchors, or does not separate matched local nulls."
     },
     {
+      "id": "hardworld_mixture_toxicity_decoder",
+      "name": "Hard-World Mixture Toxicity Decoder",
+      "worldview": "H088-like hard-world toxicity is anti-correlated with broad public-bad toxicity, so action-health must be factorized.",
+      "core_modules_exercised": [
+        "action_health_decoder",
+        "anti_shortcut_validation",
+        "listener_responsibility"
+      ],
+      "adapter_move": "Replace scalar toxicity with a two-head broad-public/hard-world safety gate before row-target assignment.",
+      "why_big": "This directly targets the observed gap where broad toxicity generalizes but misses the H088 hard-world mode.",
+      "expected_public_lb_delta_if_true": -0.0025,
+      "latest_probe_status": "hardworld_mixture_factorization_required",
+      "latest_probe_evidence": {
+        "broad_predicts_hardworld_auc": 0.36828842798992056,
+        "broad_hardworld_spearman": -0.4276176291718262,
+        "selected_joint_safety_z": 7.188448059350422
+      },
+      "kill_criterion": "Broad toxicity predicts H088 well, or mixture safety does not beat matched null after target/source matching."
+    },
+    {
       "id": "cross_listener_state_transport",
       "name": "Cross-Listener Human-State Transport",
       "worldview": "Subjective Q and objective S labels are different listeners of one human state, not separate tasks.",
@@ -77,5 +97,5 @@
       "kill_criterion": "Q-S bridge actions fail null tests or replicate the already-killed subjective-shadow bridge."
     }
   ],
-  "count": 4
+  "count": 5
 }

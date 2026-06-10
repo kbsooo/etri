@@ -36,6 +36,7 @@ BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
+HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
 
 MANIFEST_JSON = OUT / "hsjepa_pipeline_manifest.json"
 MANIFEST_MD = OUT / "hsjepa_pipeline_manifest_ko.md"
@@ -75,6 +76,7 @@ def require_inputs() -> None:
         OG_PROBE_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
+        HARDWORLD_TOXICITY_PROBE_JSON,
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
     if missing:
@@ -132,6 +134,7 @@ def build_manifest() -> dict[str, object]:
     og_probe = read_json(OG_PROBE_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
+    hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
     evidence = pd.read_csv(EVIDENCE_CSV)
     stress = pd.read_csv(STRESS_CSV)
 
@@ -141,6 +144,7 @@ def build_manifest() -> dict[str, object]:
     og_verdict = og_probe["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
+    hardworld_verdict = hardworld_toxicity_probe["verdict"]
     category_summary = contract_category_summary(contract)
     packaged = package["packaged_submissions"]
 
@@ -258,6 +262,20 @@ def build_manifest() -> dict[str, object]:
             "This stage supports toxicity diagnostics, not a private-LB safety guarantee.",
         ),
         stage(
+            "hardworld_toxicity_factorization_probe",
+            "Hard-World Toxicity Factorization Probe",
+            "Tests whether the H088 hard-world toxicity mode is anti-correlated with broad public-bad toxicity.",
+            ["private_safe_toxicity_probe.json", "toxicity_candidate_cell_table.csv", "toxicity_anchor_ledger.csv"],
+            ["hardworld_toxicity_factorization_probe_ko.md", "hardworld_toxicity_factorization_sectors.csv"],
+            [
+                f"Probe status: {hardworld_verdict['status']}",
+                f"Broad->H088 AUC: {fmt(hardworld_verdict['broad_predicts_hardworld_auc'], 4)}",
+                f"Broad/H088 rho: {fmt(hardworld_verdict['broad_hardworld_spearman'], 4)}",
+                f"Joint safety z: {fmt(hardworld_verdict['selected_joint_safety_z'], 4)}",
+            ],
+            "This stage says action-health should be factorized; it does not yet produce a better submission.",
+        ),
+        stage(
             "driver_action_field",
             "Public-Sensitive Driver Action Field",
             "Selects sparse row-target cells that public sensor evidence says are worth moving.",
@@ -370,7 +388,8 @@ def build_manifest() -> dict[str, object]:
         ["listener_invariant_contrastive_probe", "sleep_competition_adapter"],
         ["public_lb_sensor", "private_safe_toxicity_probe"],
         ["driver_action_field", "private_safe_toxicity_probe"],
-        ["private_safe_toxicity_probe", "sleep_competition_adapter"],
+        ["private_safe_toxicity_probe", "hardworld_toxicity_factorization_probe"],
+        ["hardworld_toxicity_factorization_probe", "sleep_competition_adapter"],
         ["driver_action_field", "route_conserving_s2_bridge_decoder"],
         ["route_conserving_s2_bridge_decoder", "submission_packager"],
         ["hsjepa_core_architecture", "sleep_competition_adapter"],
@@ -421,6 +440,7 @@ def build_manifest() -> dict[str, object]:
             "og_only_assignment_probe_status": og_verdict["status"],
             "listener_invariant_contrastive_probe_status": contrastive_verdict["status"],
             "private_safe_toxicity_probe_status": toxicity_verdict["status"],
+            "hardworld_toxicity_factorization_probe_status": hardworld_verdict["status"],
         },
     }
     MANIFEST_JSON.write_text(json.dumps(manifest, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8")
@@ -469,6 +489,7 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    D --> P2',
             '    B --> P3["Private-safe toxicity probe"]',
             '    E --> P3',
+            '    P3 --> P4["Hard-world toxicity factorization probe"]',
             '    E --> F',
             '    F --> G["Role-based submission packager"]',
             '    G --> ADAPT["Sleep competition adapter"]',
@@ -476,6 +497,7 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    B --> ADAPT',
             '    P2 --> ADAPT',
             '    P3 --> ADAPT',
+            '    P4 --> ADAPT',
             '    GEN --> H["Claim readiness and paper packet"]',
             '    ADAPT --> H["Claim readiness and paper packet"]',
             '    G --> H["Claim readiness and paper packet"]',
@@ -503,7 +525,7 @@ def build_markdown(manifest: dict[str, object]) -> str:
             "The reusable mechanism is HS-JEPA Core: hidden state -> listener -> action-health -> invariant decoder.",
             "The sleep competition adapter supplies Q/S listeners, public-sensor actions, route energy, and upload format.",
             "The current LB breakthrough is adapter evidence; the paper claim must remain core-first.",
-            "The next jackpot is replacing public-sensor assignment with an OG-only human-state teacher.",
+            "The next jackpot is replacing scalar action-health with a factorized broad-public/hard-world decoder.",
             "```",
             "",
         ]

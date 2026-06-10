@@ -51,6 +51,17 @@ Listener responsibility and invariant safety are not sufficiently aligned; use t
 
 The toxicity field is strong on most bad anchors, but a hard-world toxicity mode is still not captured.
 
+## Hard-World Toxicity Factorization Probe
+
+- Status: `hardworld_mixture_factorization_required`
+- Broad toxicity -> H088 AUC: `0.3683`
+- Broad/H088 Spearman: `-0.4276`
+- Broad-safe but H088-toxic cells: `215`
+- Selected joint safety z: `7.1884`
+- Selected H088 top-toxic rate: `0.0333` vs null `0.1027`
+
+H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-world mode. The adapter should keep separate broad-public and hard-world toxicity heads.
+
 ## Role Outputs
 
 | Role | Output |
@@ -67,6 +78,7 @@ The toxicity field is strong on most bad anchors, but a hard-world toxicity mode
 - A pure OG-only assignment teacher is not ready yet; this is now a measured architecture boundary, not an informal caveat.
 - A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.
 - The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.
+- Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.
 
 ## 이 adapter가 아직 증명하지 못한 것
 
@@ -76,3 +88,4 @@ The toxicity field is strong on most bad anchors, but a hard-world toxicity mode
 - that public LB sensors can be used outside this competition
 - that listener responsibility alone is an action-grade decoder
 - that toxicity diagnostics prove private leaderboard safety
+- that a hard-world mixture decoder has already been translated into a better submission
