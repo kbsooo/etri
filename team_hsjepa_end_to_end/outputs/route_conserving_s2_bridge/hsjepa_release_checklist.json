@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 35,
-  "total_checks": 35,
+  "passed_checks": 37,
+  "total_checks": 37,
   "required_failures": [],
   "checks": [
     {
@@ -95,6 +95,13 @@
       "passed": true,
       "required": true,
       "evidence": "sleep_competition_adapter/outputs/listener_invariant_contrastive_probe.json"
+    },
+    {
+      "check": "exists:private_safe_toxicity_probe.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "sleep_competition_adapter/outputs/private_safe_toxicity_probe.json"
     },
     {
       "check": "exists:hsjepa_pipeline_manifest.json",
@@ -209,6 +216,13 @@
       "evidence": "status=listener_invariant_decoder_not_ready, rho=-0.0313, overlap=0.2152"
     },
     {
+      "check": "private_safe_toxicity_probe_recorded",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=toxicity_field_promising_with_hardworld_gap, mean_loo_auc=0.7880, worst_loo_auc=0.3683, safety_z=8.4589"
+    },
+    {
       "check": "roles_present",
       "status": "PASS",
       "passed": true,
@@ -234,7 +248,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=14, edges=27"
+      "evidence": "status=pipeline_ready_with_boundary, stages=15, edges=30"
     },
     {
       "check": "method_packet_presentable",

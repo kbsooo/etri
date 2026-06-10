@@ -42,6 +42,15 @@ Human-state explains action orientation, but the safe row-target assignment stil
 
 Listener responsibility and invariant safety are not sufficiently aligned; use this as a diagnostic before making new submissions.
 
+## Private-Safe Toxicity Probe
+
+- Status: `toxicity_field_promising_with_hardworld_gap`
+- Mean leave-one-bad-anchor AUC: `0.7880`
+- Worst leave-one-bad-anchor AUC: `0.3683`
+- Selected safety z vs matched null: `8.4589`
+
+The toxicity field is strong on most bad anchors, but a hard-world toxicity mode is still not captured.
+
 ## Role Outputs
 
 | Role | Output |
@@ -57,6 +66,7 @@ Listener responsibility and invariant safety are not sufficiently aligned; use t
 - Human-state latent explains target/cell orientation but not enough row assignment on its own.
 - A pure OG-only assignment teacher is not ready yet; this is now a measured architecture boundary, not an informal caveat.
 - A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.
+- The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.
 
 ## 이 adapter가 아직 증명하지 못한 것
 
@@ -65,3 +75,4 @@ Listener responsibility and invariant safety are not sufficiently aligned; use t
 - S2 as a universal human-sleep factor
 - that public LB sensors can be used outside this competition
 - that listener responsibility alone is an action-grade decoder
+- that toxicity diagnostics prove private leaderboard safety

@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 14,
-  "edge_count": 27,
+  "stage_count": 15,
+  "edge_count": 30,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -134,6 +134,27 @@
         "Contrastive overlap: 0.2152"
       ],
       "boundary": "This stage is a diagnostic; it does not create a new submission."
+    },
+    {
+      "id": "private_safe_toxicity_probe",
+      "name": "Private-Safe Toxicity Probe",
+      "role": "Tests whether toxicity head generalizes across bad public anchors and selects safer cells than matched nulls.",
+      "inputs": [
+        "toxicity_candidate_cell_table.csv",
+        "toxicity_action_audit.csv",
+        "toxicity_anchor_ledger.csv"
+      ],
+      "outputs": [
+        "private_safe_toxicity_probe_ko.md",
+        "private_safe_toxicity_loo_anchor_metrics.csv"
+      ],
+      "evidence": [
+        "Probe status: toxicity_field_promising_with_hardworld_gap",
+        "Mean LOO bad-anchor AUC: 0.7880",
+        "Worst LOO bad-anchor AUC: 0.3683",
+        "Safety z vs matched null: 8.4589"
+      ],
+      "boundary": "This stage supports toxicity diagnostics, not a private-LB safety guarantee."
     },
     {
       "id": "driver_action_field",
@@ -330,6 +351,18 @@
       "sleep_competition_adapter"
     ],
     [
+      "public_lb_sensor",
+      "private_safe_toxicity_probe"
+    ],
+    [
+      "driver_action_field",
+      "private_safe_toxicity_probe"
+    ],
+    [
+      "private_safe_toxicity_probe",
+      "sleep_competition_adapter"
+    ],
+    [
       "driver_action_field",
       "route_conserving_s2_bridge_decoder"
     ],
@@ -416,6 +449,7 @@
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
     "big_bet_count": 4,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
-    "listener_invariant_contrastive_probe_status": "listener_invariant_decoder_not_ready"
+    "listener_invariant_contrastive_probe_status": "listener_invariant_decoder_not_ready",
+    "private_safe_toxicity_probe_status": "toxicity_field_promising_with_hardworld_gap"
   }
 }

@@ -54,7 +54,13 @@
       "adapter_move": "Use failed public sensors, null bundles, and cohort/time stress to learn a toxicity veto before submission packaging.",
       "why_big": "A true toxicity field can preserve the 0.567 gain while reducing private-risk and maybe exposing larger safe moves.",
       "expected_public_lb_delta_if_true": -0.0015,
-      "kill_criterion": "Toxicity score only recovers known public failures and does not separate local nulls."
+      "latest_probe_status": "toxicity_field_promising_with_hardworld_gap",
+      "latest_probe_evidence": {
+        "mean_loo_bad_anchor_auc": 0.7879585975415828,
+        "worst_loo_bad_anchor_auc": 0.36828842798992056,
+        "selected_safety_z_vs_matched_null": 8.458947387257904
+      },
+      "kill_criterion": "Toxicity score only recovers known public failures, fails hard-world anchors, or does not separate matched local nulls."
     },
     {
       "id": "cross_listener_state_transport",

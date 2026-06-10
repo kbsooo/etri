@@ -42,6 +42,7 @@ public-sensitive driver action
 - Adapter score delta: `-0.00841135550000005`
 - OG-only assignment probe: `og_only_assignment_replacement_not_ready`
 - Listener-invariant contrastive probe: `listener_invariant_decoder_not_ready`
+- Private-safe toxicity probe: `toxicity_field_promising_with_hardworld_gap`
 
 Core 문서:
 
@@ -57,6 +58,7 @@ sleep_competition_adapter/outputs/sleep_competition_adapter_report_ko.md
 sleep_competition_adapter/outputs/hsjepa_big_bet_queue_ko.md
 sleep_competition_adapter/outputs/og_only_assignment_teacher_probe_ko.md
 sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md
+sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md
 ```
 
 ## Generated Submission Roles
@@ -86,7 +88,8 @@ sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md
 - Core/adapter boundary: core `core_ready_for_adapter`, adapter `adapter_ready_with_public_sensor_boundary`
 - OG-only assignment boundary: pure recall `0.0404`, distilled recall `0.1236`
 - Listener-invariant boundary: listener-route rho `-0.0313`, contrastive overlap `0.2152`
-- Release checklist: `release_ready_with_boundary` (`35/35` checks)
+- Private-safe toxicity boundary: mean LOO AUC `0.7880`, worst LOO AUC `0.3683`
+- Release checklist: `release_ready_with_boundary` (`37/37` checks)
 
 ## Paper Claim
 

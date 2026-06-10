@@ -33,6 +33,7 @@ ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_co
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
+PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 
 CHECKLIST_JSON = OUT / "hsjepa_release_checklist.json"
 CHECKLIST_MD = OUT / "hsjepa_release_checklist_ko.md"
@@ -82,6 +83,7 @@ def require_inputs() -> list[dict[str, object]]:
         BIG_BET_JSON,
         OG_PROBE_JSON,
         CONTRASTIVE_PROBE_JSON,
+        PRIVATE_TOXICITY_PROBE_JSON,
         PIPELINE_JSON,
     ]:
         rows.append(check(f"exists:{path.name}", path.exists(), str(path.relative_to(ROOT))))
@@ -124,6 +126,7 @@ def build_checklist() -> dict[str, object]:
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
+    private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     pipeline = read_json(PIPELINE_JSON)
 
     packaged = package.get("packaged_submissions", {})
@@ -139,6 +142,7 @@ def build_checklist() -> dict[str, object]:
     stress_ablation = ablation.get("stress_ablation", [])
     og_verdict = og_probe.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
+    toxicity_verdict = private_toxicity_probe.get("verdict", {})
 
     rows.extend(
         [
@@ -268,6 +272,22 @@ def build_checklist() -> dict[str, object]:
                     f"overlap={fmt(contrastive_verdict.get('mean_contrastive_overlap_rate'), 4)}"
                 ),
             ),
+            check(
+                "private_safe_toxicity_probe_recorded",
+                private_toxicity_probe.get("status") == "probe_ready"
+                and toxicity_verdict.get("status") in {
+                    "private_safe_toxicity_field_promising",
+                    "toxicity_field_promising_with_hardworld_gap",
+                    "toxicity_field_alive_but_public_sensor_bound",
+                    "private_safe_toxicity_field_not_ready",
+                },
+                (
+                    f"status={toxicity_verdict.get('status')}, "
+                    f"mean_loo_auc={fmt(toxicity_verdict.get('mean_loo_bad_anchor_auc'), 4)}, "
+                    f"worst_loo_auc={fmt(toxicity_verdict.get('worst_loo_bad_anchor_auc'), 4)}, "
+                    f"safety_z={fmt(toxicity_verdict.get('selected_safety_z_vs_matched_null'), 4)}"
+                ),
+            ),
             check("roles_present", role_keys == EXPECTED_ROLES, f"roles={sorted(role_keys)}"),
             check(
                 "role_based_output_names",
@@ -377,6 +397,7 @@ def build_markdown(result: dict[str, object]) -> str:
             "- human-state is an orientation diagnostic, not a complete row-target assignment solver",
             "- OG-only assignment replacement has a recorded probe result",
             "- Listener-invariant contrastive decoding has a recorded probe result",
+            "- Private-safe toxicity has a recorded probe result and hard-world boundary",
             "- HS-JEPA Core is separated from the Sleep Competition Adapter",
             "- the next big bet is replacing public-sensor assignment with an OG-only human-state teacher",
             "",

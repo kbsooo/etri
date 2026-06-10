@@ -1,0 +1,52 @@
+{
+  "package": "Private-Safe Toxicity Probe",
+  "status": "probe_ready",
+  "uses_public_score_ledger": true,
+  "uses_private_labels": false,
+  "bad_anchor_count": 20,
+  "verdict": {
+    "status": "toxicity_field_promising_with_hardworld_gap",
+    "mean_loo_bad_anchor_auc": 0.7879585975415828,
+    "median_loo_bad_anchor_auc": 0.7985701039791478,
+    "mean_loo_bad_anchor_ap": 0.6117660711745259,
+    "worst_loo_bad_anchor_auc": 0.36828842798992056,
+    "anchors_below_0p6_auc": 2,
+    "selected_safety_z_vs_matched_null": 8.458947387257904,
+    "p_null_safety_ge_selected": 0.0,
+    "interpretation": "The toxicity field is strong on most bad anchors, but a hard-world toxicity mode is still not captured."
+  },
+  "matched_null_selection": {
+    "iterations": 5000,
+    "selected_cells": 150,
+    "candidate_cells": 863,
+    "selected_toxic_safety_rank_mean": 0.7631054461181923,
+    "null_toxic_safety_rank_mean": 0.6547066697566627,
+    "null_toxic_safety_rank_std": 0.012814688564721025,
+    "selected_safety_z": 8.458947387257904,
+    "p_null_safety_ge_selected": 0.0,
+    "selected_toxic_same_rank_mean": 0.23689455388180766,
+    "null_toxic_same_rank_mean": 0.3452933302433372,
+    "p_null_toxic_le_selected": 0.0,
+    "selected_listener_score_mean": 0.7672140594824257,
+    "null_listener_score_mean": 0.6296923141599072,
+    "p_null_listener_ge_selected": 0.0,
+    "target_counts": {
+      "Q1": 15,
+      "Q2": 35,
+      "Q3": 14,
+      "S1": 19,
+      "S2": 28,
+      "S3": 17,
+      "S4": 22
+    },
+    "action_source_counts": {
+      "teacher_toxicity_gated": 94,
+      "lrj_extra_toxicity_safe": 56
+    }
+  },
+  "anchor_summary": {
+    "available_bad_anchors": 20,
+    "mean_same_active_cells": 175.15,
+    "mean_opposite_active_cells": 601.7
+  }
+}

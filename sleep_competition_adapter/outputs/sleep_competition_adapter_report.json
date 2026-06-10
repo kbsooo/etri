@@ -64,6 +64,15 @@
     "mean_high_listener_low_route_rate": 0.07194244604316546,
     "interpretation": "Listener responsibility and invariant safety are not sufficiently aligned; use this as a diagnostic before making new submissions."
   },
+  "private_safe_toxicity_probe": {
+    "status": "toxicity_field_promising_with_hardworld_gap",
+    "mean_loo_bad_anchor_auc": 0.7879585975415828,
+    "worst_loo_bad_anchor_auc": 0.36828842798992056,
+    "anchors_below_0p6_auc": 2,
+    "selected_safety_z_vs_matched_null": 8.458947387257904,
+    "p_null_safety_ge_selected": 0.0,
+    "interpretation": "The toxicity field is strong on most bad anchors, but a hard-world toxicity mode is still not captured."
+  },
   "role_outputs": {
     "competition_primary": "submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv",
     "interpretable_s2_hub": "submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv",
@@ -74,14 +83,16 @@
     "Route-conserving action selection is statistically non-random against feasible null bundles.",
     "Human-state latent explains target/cell orientation but not enough row assignment on its own.",
     "A pure OG-only assignment teacher is not ready yet; this is now a measured architecture boundary, not an informal caveat.",
-    "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates."
+    "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.",
+    "The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode."
   ],
   "what_the_adapter_does_not_prove": [
     "pure OG-only assignment",
     "private leaderboard safety",
     "S2 as a universal human-sleep factor",
     "that public LB sensors can be used outside this competition",
-    "that listener responsibility alone is an action-grade decoder"
+    "that listener responsibility alone is an action-grade decoder",
+    "that toxicity diagnostics prove private leaderboard safety"
   ],
   "paper_method_title": "Human-State JEPA: General Architecture with a Route-Conserving S2 Bridge Case Study"
 }

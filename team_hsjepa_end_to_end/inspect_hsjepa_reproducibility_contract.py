@@ -82,6 +82,7 @@ MODULES = [
     "hsjepa_core/build_core_architecture_manifest.py",
     "sleep_competition_adapter/og_only_assignment_teacher_probe.py",
     "sleep_competition_adapter/listener_invariant_contrastive_probe.py",
+    "sleep_competition_adapter/private_safe_toxicity_probe.py",
     "sleep_competition_adapter/build_sleep_competition_adapter_report.py",
 ]
 
@@ -123,6 +124,10 @@ GENERATED_OUTPUTS = [
     ("sleep_competition_adapter/outputs/listener_invariant_contrastive_probe.json", False),
     ("sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md", False),
     ("sleep_competition_adapter/outputs/listener_invariant_contrastive_scored_bundles.csv", False),
+    ("sleep_competition_adapter/outputs/private_safe_toxicity_probe.json", False),
+    ("sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md", False),
+    ("sleep_competition_adapter/outputs/private_safe_toxicity_scored_cells.csv", False),
+    ("sleep_competition_adapter/outputs/private_safe_toxicity_loo_anchor_metrics.csv", False),
 ]
 
 

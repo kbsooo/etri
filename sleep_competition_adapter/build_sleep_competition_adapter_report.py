@@ -29,6 +29,7 @@ GENERALITY_JSON = TEAM_OUT / "hsjepa_generality_report.json"
 METHOD_PACKET_JSON = TEAM_OUT / "hsjepa_paper_method_packet.json"
 OG_PROBE_JSON = OUT / "og_only_assignment_teacher_probe.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
+PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
 
 REPORT_JSON = OUT / "sleep_competition_adapter_report.json"
 REPORT_MD = OUT / "sleep_competition_adapter_report_ko.md"
@@ -60,17 +61,27 @@ def require_inputs() -> None:
         GENERALITY_JSON,
         OG_PROBE_JSON,
         CONTRASTIVE_PROBE_JSON,
+        PRIVATE_TOXICITY_PROBE_JSON,
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
     if missing:
         raise FileNotFoundError(f"Missing sleep adapter inputs: {missing}")
 
 
-def build_big_bets(og_probe: dict[str, object], contrastive_probe: dict[str, object]) -> list[dict[str, object]]:
+def build_big_bets(
+    og_probe: dict[str, object],
+    contrastive_probe: dict[str, object],
+    private_toxicity_probe: dict[str, object],
+) -> list[dict[str, object]]:
     og_verdict = og_probe.get("verdict", {}) if isinstance(og_probe.get("verdict"), dict) else {}
     contrastive_verdict = (
         contrastive_probe.get("verdict", {})
         if isinstance(contrastive_probe.get("verdict"), dict)
+        else {}
+    )
+    toxicity_verdict = (
+        private_toxicity_probe.get("verdict", {})
+        if isinstance(private_toxicity_probe.get("verdict"), dict)
         else {}
     )
     return [
@@ -114,7 +125,13 @@ def build_big_bets(og_probe: dict[str, object], contrastive_probe: dict[str, obj
             "adapter_move": "Use failed public sensors, null bundles, and cohort/time stress to learn a toxicity veto before submission packaging.",
             "why_big": "A true toxicity field can preserve the 0.567 gain while reducing private-risk and maybe exposing larger safe moves.",
             "expected_public_lb_delta_if_true": -0.0015,
-            "kill_criterion": "Toxicity score only recovers known public failures and does not separate local nulls.",
+            "latest_probe_status": toxicity_verdict.get("status"),
+            "latest_probe_evidence": {
+                "mean_loo_bad_anchor_auc": toxicity_verdict.get("mean_loo_bad_anchor_auc"),
+                "worst_loo_bad_anchor_auc": toxicity_verdict.get("worst_loo_bad_anchor_auc"),
+                "selected_safety_z_vs_matched_null": toxicity_verdict.get("selected_safety_z_vs_matched_null"),
+            },
+            "kill_criterion": "Toxicity score only recovers known public failures, fails hard-world anchors, or does not separate matched local nulls.",
         },
         {
             "id": "cross_listener_state_transport",
@@ -140,12 +157,14 @@ def build_report() -> dict[str, object]:
     method = read_json(METHOD_PACKET_JSON) if METHOD_PACKET_JSON.exists() else {"title": "HS-JEPA Method Packet Pending"}
     og_probe = read_json(OG_PROBE_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
+    private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
 
     public = readiness["public_breakthrough"]
     human = readiness["human_state"]
     mechanism = validation["mechanism_evidence"]
     og_verdict = og_probe.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
+    toxicity_verdict = private_toxicity_probe.get("verdict", {})
 
     adapter_mapping = [
         {
@@ -218,6 +237,15 @@ def build_report() -> dict[str, object]:
             "mean_high_listener_low_route_rate": contrastive_verdict.get("mean_high_listener_low_route_rate"),
             "interpretation": contrastive_verdict.get("interpretation"),
         },
+        "private_safe_toxicity_probe": {
+            "status": toxicity_verdict.get("status"),
+            "mean_loo_bad_anchor_auc": toxicity_verdict.get("mean_loo_bad_anchor_auc"),
+            "worst_loo_bad_anchor_auc": toxicity_verdict.get("worst_loo_bad_anchor_auc"),
+            "anchors_below_0p6_auc": toxicity_verdict.get("anchors_below_0p6_auc"),
+            "selected_safety_z_vs_matched_null": toxicity_verdict.get("selected_safety_z_vs_matched_null"),
+            "p_null_safety_ge_selected": toxicity_verdict.get("p_null_safety_ge_selected"),
+            "interpretation": toxicity_verdict.get("interpretation"),
+        },
         "role_outputs": {
             role: item["submission_file"]
             for role, item in package["packaged_submissions"].items()
@@ -228,6 +256,7 @@ def build_report() -> dict[str, object]:
             "Human-state latent explains target/cell orientation but not enough row assignment on its own.",
             "A pure OG-only assignment teacher is not ready yet; this is now a measured architecture boundary, not an informal caveat.",
             "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.",
+            "The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.",
         ],
         "what_the_adapter_does_not_prove": [
             "pure OG-only assignment",
@@ -235,6 +264,7 @@ def build_report() -> dict[str, object]:
             "S2 as a universal human-sleep factor",
             "that public LB sensors can be used outside this competition",
             "that listener responsibility alone is an action-grade decoder",
+            "that toxicity diagnostics prove private leaderboard safety",
         ],
         "paper_method_title": method["title"],
     }
@@ -291,6 +321,15 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             report["listener_invariant_contrastive_probe"]["interpretation"],
             "",
+            "## Private-Safe Toxicity Probe",
+            "",
+            f"- Status: `{report['private_safe_toxicity_probe']['status']}`",
+            f"- Mean leave-one-bad-anchor AUC: `{fmt(report['private_safe_toxicity_probe']['mean_loo_bad_anchor_auc'], 4)}`",
+            f"- Worst leave-one-bad-anchor AUC: `{fmt(report['private_safe_toxicity_probe']['worst_loo_bad_anchor_auc'], 4)}`",
+            f"- Selected safety z vs matched null: `{fmt(report['private_safe_toxicity_probe']['selected_safety_z_vs_matched_null'], 4)}`",
+            "",
+            report["private_safe_toxicity_probe"]["interpretation"],
+            "",
             "## Role Outputs",
             "",
             *roles,
@@ -338,7 +377,11 @@ def build_big_bet_markdown(bets: list[dict[str, object]]) -> str:
 
 def run() -> dict[str, object]:
     report = build_report()
-    bets = build_big_bets(read_json(OG_PROBE_JSON), read_json(CONTRASTIVE_PROBE_JSON))
+    bets = build_big_bets(
+        read_json(OG_PROBE_JSON),
+        read_json(CONTRASTIVE_PROBE_JSON),
+        read_json(PRIVATE_TOXICITY_PROBE_JSON),
+    )
     REPORT_JSON.write_text(json.dumps(report, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8")
     REPORT_MD.write_text(build_report_markdown(report), encoding="utf-8")
     BIG_BET_JSON.write_text(

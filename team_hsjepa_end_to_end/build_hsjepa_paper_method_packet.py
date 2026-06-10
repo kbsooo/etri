@@ -32,6 +32,7 @@ ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_co
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
+PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 
 PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 PACKET_MD = OUT / "hsjepa_paper_method_packet_ko.md"
@@ -67,6 +68,7 @@ def require_inputs() -> None:
             BIG_BET_JSON,
             OG_PROBE_JSON,
             CONTRASTIVE_PROBE_JSON,
+            PRIVATE_TOXICITY_PROBE_JSON,
         ]
         if not path.exists()
     ]
@@ -87,6 +89,7 @@ def build_packet() -> dict[str, object]:
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
+    private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     stress = pd.read_csv(STRESS_CSV)
     evidence = pd.read_csv(EVIDENCE_CSV)
 
@@ -97,6 +100,7 @@ def build_packet() -> dict[str, object]:
     boundary = contract["boundary"]
     og_verdict = og_probe["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
+    toxicity_verdict = private_toxicity_probe["verdict"]
 
     roles = []
     for row in evidence.to_dict("records"):
@@ -148,6 +152,10 @@ def build_packet() -> dict[str, object]:
             "listener_invariant_probe_status": contrastive_verdict["status"],
             "listener_route_spearman": contrastive_verdict["mean_listener_route_spearman"],
             "contrastive_overlap_rate": contrastive_verdict["mean_contrastive_overlap_rate"],
+            "private_safe_toxicity_probe_status": toxicity_verdict["status"],
+            "toxicity_mean_loo_auc": toxicity_verdict["mean_loo_bad_anchor_auc"],
+            "toxicity_worst_loo_auc": toxicity_verdict["worst_loo_bad_anchor_auc"],
+            "toxicity_selected_safety_z": toxicity_verdict["selected_safety_z_vs_matched_null"],
             "role": "orientation diagnostic, not complete row-target assignment solver",
         },
         "roles": roles,
@@ -187,12 +195,13 @@ def build_packet() -> dict[str, object]:
             "big_bet_queue": str(BIG_BET_JSON.resolve()),
             "og_only_assignment_teacher_probe": str(OG_PROBE_JSON.resolve()),
             "listener_invariant_contrastive_probe": str(CONTRASTIVE_PROBE_JSON.resolve()),
+            "private_safe_toxicity_probe": str(PRIVATE_TOXICITY_PROBE_JSON.resolve()),
             "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
         },
         "paper_sections": {
             "abstract_ko": build_abstract(public, primary, s2, human),
             "method_ko": build_method_text(core, adapter),
-            "generality_ko": build_generality_text(generality, og_verdict, contrastive_verdict),
+            "generality_ko": build_generality_text(generality, og_verdict, contrastive_verdict, toxicity_verdict),
             "algorithm_ko": build_algorithm_text(),
             "limitations_ko": build_limitations_text(boundary),
             "big_bets_ko": build_big_bet_text(big_bets),
@@ -259,6 +268,7 @@ def build_generality_text(
     generality: dict[str, object],
     og_verdict: dict[str, object],
     contrastive_verdict: dict[str, object],
+    toxicity_verdict: dict[str, object],
 ) -> str:
     rows = [
         "HS-JEPA general architecture != Route-Conserving S2 Bridge competition case study",
@@ -284,6 +294,9 @@ def build_generality_text(
         f"- Distilled row-cap2 recall: `{fmt(og_verdict['distilled_row_cap2_mean_recall'], 4)}`",
         f"- Listener-invariant probe: `{contrastive_verdict['status']}`",
         f"- Listener-route Spearman: `{fmt(contrastive_verdict['mean_listener_route_spearman'], 4)}`",
+        f"- Private-safe toxicity probe: `{toxicity_verdict['status']}`",
+        f"- Toxicity mean LOO AUC: `{fmt(toxicity_verdict['mean_loo_bad_anchor_auc'], 4)}`",
+        f"- Toxicity worst LOO AUC: `{fmt(toxicity_verdict['worst_loo_bad_anchor_auc'], 4)}`",
         "",
         "가장 중요한 남은 과제는 public-sensor row-target assignment teacher를 OG-only personal/cohort/time human-state teacher로 교체하는 것이다.",
     ]

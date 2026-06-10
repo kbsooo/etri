@@ -35,6 +35,7 @@ ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_co
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
+PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 
 MANIFEST_JSON = OUT / "hsjepa_pipeline_manifest.json"
 MANIFEST_MD = OUT / "hsjepa_pipeline_manifest_ko.md"
@@ -73,6 +74,7 @@ def require_inputs() -> None:
         BIG_BET_JSON,
         OG_PROBE_JSON,
         CONTRASTIVE_PROBE_JSON,
+        PRIVATE_TOXICITY_PROBE_JSON,
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
     if missing:
@@ -129,6 +131,7 @@ def build_manifest() -> dict[str, object]:
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
+    private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     evidence = pd.read_csv(EVIDENCE_CSV)
     stress = pd.read_csv(STRESS_CSV)
 
@@ -137,6 +140,7 @@ def build_manifest() -> dict[str, object]:
     mechanism = validation["mechanism_evidence"]
     og_verdict = og_probe["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
+    toxicity_verdict = private_toxicity_probe["verdict"]
     category_summary = contract_category_summary(contract)
     packaged = package["packaged_submissions"]
 
@@ -238,6 +242,20 @@ def build_manifest() -> dict[str, object]:
                 f"Contrastive overlap: {fmt(contrastive_verdict['mean_contrastive_overlap_rate'], 4)}",
             ],
             "This stage is a diagnostic; it does not create a new submission.",
+        ),
+        stage(
+            "private_safe_toxicity_probe",
+            "Private-Safe Toxicity Probe",
+            "Tests whether toxicity head generalizes across bad public anchors and selects safer cells than matched nulls.",
+            ["toxicity_candidate_cell_table.csv", "toxicity_action_audit.csv", "toxicity_anchor_ledger.csv"],
+            ["private_safe_toxicity_probe_ko.md", "private_safe_toxicity_loo_anchor_metrics.csv"],
+            [
+                f"Probe status: {toxicity_verdict['status']}",
+                f"Mean LOO bad-anchor AUC: {fmt(toxicity_verdict['mean_loo_bad_anchor_auc'], 4)}",
+                f"Worst LOO bad-anchor AUC: {fmt(toxicity_verdict['worst_loo_bad_anchor_auc'], 4)}",
+                f"Safety z vs matched null: {fmt(toxicity_verdict['selected_safety_z_vs_matched_null'], 4)}",
+            ],
+            "This stage supports toxicity diagnostics, not a private-LB safety guarantee.",
         ),
         stage(
             "driver_action_field",
@@ -350,6 +368,9 @@ def build_manifest() -> dict[str, object]:
         ["human_state_listener_context", "listener_invariant_contrastive_probe"],
         ["route_energy_model", "listener_invariant_contrastive_probe"],
         ["listener_invariant_contrastive_probe", "sleep_competition_adapter"],
+        ["public_lb_sensor", "private_safe_toxicity_probe"],
+        ["driver_action_field", "private_safe_toxicity_probe"],
+        ["private_safe_toxicity_probe", "sleep_competition_adapter"],
         ["driver_action_field", "route_conserving_s2_bridge_decoder"],
         ["route_conserving_s2_bridge_decoder", "submission_packager"],
         ["hsjepa_core_architecture", "sleep_competition_adapter"],
@@ -399,6 +420,7 @@ def build_manifest() -> dict[str, object]:
             "big_bet_count": big_bets["count"],
             "og_only_assignment_probe_status": og_verdict["status"],
             "listener_invariant_contrastive_probe_status": contrastive_verdict["status"],
+            "private_safe_toxicity_probe_status": toxicity_verdict["status"],
         },
     }
     MANIFEST_JSON.write_text(json.dumps(manifest, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8")
@@ -445,12 +467,15 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    D --> F["Route-conserving S2 bridge decoder"]',
             '    C --> P2["Listener-invariant contrastive probe"]',
             '    D --> P2',
+            '    B --> P3["Private-safe toxicity probe"]',
+            '    E --> P3',
             '    E --> F',
             '    F --> G["Role-based submission packager"]',
             '    G --> ADAPT["Sleep competition adapter"]',
             '    CORE --> ADAPT',
             '    B --> ADAPT',
             '    P2 --> ADAPT',
+            '    P3 --> ADAPT',
             '    GEN --> H["Claim readiness and paper packet"]',
             '    ADAPT --> H["Claim readiness and paper packet"]',
             '    G --> H["Claim readiness and paper packet"]',
