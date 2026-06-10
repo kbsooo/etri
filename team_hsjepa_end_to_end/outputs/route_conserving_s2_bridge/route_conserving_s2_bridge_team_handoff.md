@@ -47,7 +47,8 @@ public-sensitive driver action
 - S2 listener usage: `1.000` vs null `0.615`
 - Package validation passed: `True`
 - Architecture readiness: `paper_ready_with_boundary` (`7/7` gates)
-- Release checklist: `release_ready_with_boundary` (`19/19` checks)
+- Mechanism ablation: `mechanism_ablation_ready` (`5` public worldviews killed, `2` survived)
+- Release checklist: `release_ready_with_boundary` (`22/22` checks)
 
 ## Paper Claim
 
@@ -111,6 +112,14 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_architecture_re
 
 ```text
 team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_paper_method_packet_ko.md
+```
+
+## Mechanism Ablation Report
+
+대체 세계관 중 무엇이 public sensor/stress audit에서 죽었고 무엇이 살아남았는지 정리한 knockout report:
+
+```text
+team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_mechanism_ablation_report_ko.md
 ```
 
 ## Pipeline Manifest

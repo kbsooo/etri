@@ -1,0 +1,129 @@
+{
+  "package": "Route-Conserving S2 Bridge HS-JEPA",
+  "status": "mechanism_ablation_ready",
+  "public_ablation": [
+    {
+      "worldview": "Direct JEPA latent can be decoded straight into target probabilities.",
+      "sensor": "submission_jepa_latent_residual_probe.csv",
+      "public_lb": 0.5812273278,
+      "delta_vs_reference": 0.005068378399999962,
+      "reference": "submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv",
+      "verdict": "killed",
+      "interpretation": "A latent can look coherent locally and still be a toxic action head.",
+      "paper_use": "Use as the negative reason HS-JEPA needs listener/action-health/route modules."
+    },
+    {
+      "worldview": "Masked-family S2 JEPA translator is already an action-safe decoder.",
+      "sensor": "submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv",
+      "public_lb": 0.5772865088,
+      "delta_vs_reference": 0.0011275593999999778,
+      "reference": "submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv",
+      "verdict": "killed",
+      "interpretation": "S2 matters, but S2-only translation without row-target assignment is not safe.",
+      "paper_use": "Separates target listener discovery from action decoding."
+    },
+    {
+      "worldview": "Human-social latent can be directly materialized as a tail correction.",
+      "sensor": "submission_e267_humansocial_tail_balanced_2936100f.csv",
+      "public_lb": 0.5763294974,
+      "delta_vs_reference": 0.00017054799999993708,
+      "reference": "submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv",
+      "verdict": "killed_as_direct_decoder",
+      "interpretation": "Human/social context remains useful as latent context, not as direct public-safe movement.",
+      "paper_use": "Motivates HS-JEPA's encoder/decoder separation."
+    },
+    {
+      "worldview": "S1/S4 objective-stage action is a safe objective sleep correction route.",
+      "sensor": "submission_h010_objective_s1s4_v2_uploadsafe.csv",
+      "public_lb": 0.5781718175,
+      "delta_vs_reference": 0.0020128681000000093,
+      "reference": "submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv",
+      "verdict": "killed",
+      "interpretation": "Objective-stage movement is not automatically safe; route and listener constraints matter.",
+      "paper_use": "Explains why route-conserving decoder is needed."
+    },
+    {
+      "worldview": "Public-sensitive row-target support exists.",
+      "sensor": "submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv",
+      "public_lb": 0.5681234831,
+      "delta_vs_reference": -0.00803546629999996,
+      "reference": "submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv",
+      "verdict": "survived_strongly",
+      "interpretation": "The big jump came from finding hidden row-target public-state support, not from larger model capacity.",
+      "paper_use": "Defines the competition-specific teacher/sensor path."
+    },
+    {
+      "worldview": "Q2 support rows expose a broader hidden human-state vector.",
+      "sensor": "submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv",
+      "public_lb": 0.5677475939,
+      "delta_vs_reference": -0.0003758892000000902,
+      "reference": "submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv",
+      "verdict": "survived",
+      "interpretation": "Freezing Q2 support and translating the rest of the row vector improved the public sensor.",
+      "paper_use": "Supports row-target assignment as hidden-state route recovery."
+    },
+    {
+      "worldview": "Adding extra subjective target route cells should improve the Q2 route.",
+      "sensor": "submission_h050_target_route_phase_b140216b_uploadsafe.csv",
+      "public_lb": 0.5679048248,
+      "delta_vs_reference": 0.0,
+      "reference": "submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv",
+      "verdict": "not_supported",
+      "interpretation": "Target route was plausible, but row placement/support did not add public value.",
+      "paper_use": "Assignment quality dominates plausible target semantics."
+    },
+    {
+      "worldview": "Dual-state Pareto gate is a private/action-grade decoder.",
+      "sensor": "submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv",
+      "public_lb": 0.5684942019,
+      "delta_vs_reference": 0.0007466080000000375,
+      "reference": "submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv",
+      "verdict": "killed_as_decoder",
+      "interpretation": "The gate remains useful as toxicity stress, not as a broad action head.",
+      "paper_use": "Supports action-health diagnostic rather than direct correction."
+    },
+    {
+      "worldview": "Q3 repair or target-XOR split is the decisive missing axis.",
+      "sensor": "submission_h144_targetxor_def80b88_uploadsafe.csv / submission_h145_q3repair_2d818e46_uploadsafe.csv",
+      "public_lb": 0.567929641,
+      "delta_vs_reference": 0.00018204710000002677,
+      "reference": "submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv",
+      "verdict": "underidentified_or_killed",
+      "interpretation": "Both tied at public precision; the common body matters more than the branch distinction.",
+      "paper_use": "Avoid overclaiming target-specific repairs as core architecture."
+    }
+  ],
+  "stress_ablation": [
+    {
+      "worldview": "Route-conserving bridge selection is just lucky cell picking.",
+      "sensor": "random feasible bundle null",
+      "actual": -0.0245664487510537,
+      "null": -0.0108973448156142,
+      "p_value": 0.0,
+      "rank_pct": 0.1858571342054905,
+      "verdict": "killed_locally",
+      "interpretation": "Selected bridge bundles lower route energy far more than random feasible alternatives."
+    },
+    {
+      "worldview": "S2 is not special inside the objective-stage bridge decoder.",
+      "sensor": "S2 usage random feasible bundle null",
+      "actual": 1.0,
+      "null": 0.6150764705882353,
+      "p_value": 0.0,
+      "rank_pct": 0.1437744384771238,
+      "verdict": "killed_locally",
+      "interpretation": "S2 appears as listener/hub in all selected interpretable bundles, far above null."
+    }
+  ],
+  "public_worldviews_killed": 5,
+  "public_worldviews_survived": 2,
+  "readiness_status": "paper_ready_with_boundary",
+  "one_sentence": "The public sensor killed direct latent decoding and broad action heads, while preserving sparse public-sensitive row-target support; local stress then shows the surviving action should be translated through a route-conserving S2 bridge rather than independent target moves.",
+  "surviving_mechanism": "public-sensitive support -> row-target assignment -> route-conserving objective-stage bridge -> S2 listener/hub -> bounded submission",
+  "paper_safe_interpretation": "HS-JEPA's paper contribution is the modular separation of hidden human-state orientation, target listener responsibility, row-target assignment, and route-conserving action decoding.  The leaderboard-specific part is the public sensor used to identify sparse support; the reusable mechanism is the decoder invariant and the boundary checks that reject collapsed or toxic latent actions.",
+  "boundary": {
+    "uses_public_sensor": true,
+    "not_private_lb_proof": true,
+    "not_og_only_assignment_solver": true
+  }
+}

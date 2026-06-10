@@ -14845,3 +14845,59 @@ contract all agree.
 This is the current answer to the "무회전 슛" concern: the reusable technique is
 not a list of historical trial adjustments, but a gated decoder rule that can be
 rerun and rejected if its mechanism evidence disappears.
+
+## HS-JEPA Mechanism Ablation Report
+
+Date: 2026-06-10
+
+Question:
+
+Can we explain HS-JEPA as a mechanism that survived specific knockouts, rather
+than as a long sequence of historical leaderboard adjustments?
+
+Added artifacts:
+
+- `team_hsjepa_end_to_end/build_hsjepa_mechanism_ablation_report.py`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_mechanism_ablation_report_ko.md`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_mechanism_ablation_report.json`
+
+The full runner now also creates the mechanism ablation report:
+
+```bash
+python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py
+```
+
+What this report does:
+
+- reads the curated public LB sensor ledger
+- marks direct latent decoding, S2-only translation, human-social direct
+  materialization, S1/S4 objective movement, and broad dual-state action heads
+  as killed or demoted by public evidence
+- marks sparse public-sensitive support and Q2-row hidden vector translation as
+  survived public signals
+- reads local route/S2 stress audit to reject the "lucky cell picking" and
+  "S2 is not special in this decoder" alternatives
+
+Current knockout summary:
+
+```text
+public-sensitive support
+  -> row-target assignment
+  -> route-conserving objective-stage bridge
+  -> S2 listener/hub
+  -> bounded submission
+```
+
+Interpretation:
+
+This makes the paper packaging stronger.  The claim is no longer "we tried many
+things and found a good path."  It becomes:
+
+```text
+Public sensors killed direct latent/action-head decoders.
+The surviving support must be translated through a route-conserving decoder.
+S2 repeatedly appears as the listener/hub under that decoder.
+```
+
+The boundary remains strict: this is still not a private-LB proof and not an
+OG-only row assignment solution.

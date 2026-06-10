@@ -240,7 +240,7 @@ python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py
 python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py --refresh
 ```
 
-위 명령은 package 생성, stress audit, claim/evidence validation, reproducibility contract, architecture readiness gate, paper method packet, pipeline manifest, release checklist, 팀 핸드오프 리포트 생성을 한 번에 수행한다.
+위 명령은 package 생성, stress audit, claim/evidence validation, reproducibility contract, architecture readiness gate, mechanism ablation report, paper method packet, pipeline manifest, release checklist, 팀 핸드오프 리포트 생성을 한 번에 수행한다.
 
 입력 출처를 OG raw data, public-LB sensor, competition anchor, generated output으로 분리한 계약 문서:
 
@@ -265,6 +265,12 @@ paper_ready_with_boundary
 
 ```text
 team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_paper_method_packet_ko.md
+```
+
+public sensor와 local stress audit이 죽인 대체 세계관을 정리한 mechanism ablation report:
+
+```text
+team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_mechanism_ablation_report_ko.md
 ```
 
 OG 데이터부터 public sensor, latent/context, decoder, submission, paper packet까지 이어지는 pipeline manifest:

@@ -23,6 +23,7 @@ PACKAGE_JSON = OUT / "route_conserving_s2_bridge_package.json"
 VALIDATION_JSON = OUT / "route_conserving_s2_bridge_validation_report.json"
 CONTRACT_JSON = OUT / "hsjepa_reproducibility_contract.json"
 READINESS_JSON = OUT / "hsjepa_architecture_readiness_report.json"
+MECHANISM_ABLATION_JSON = OUT / "hsjepa_mechanism_ablation_report.json"
 METHOD_PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 PIPELINE_JSON = OUT / "hsjepa_pipeline_manifest.json"
 
@@ -60,7 +61,7 @@ def check(name: str, passed: bool, evidence: str, required: bool = True) -> dict
 
 def require_inputs() -> list[dict[str, object]]:
     rows = []
-    for path in [PACKAGE_JSON, VALIDATION_JSON, CONTRACT_JSON, READINESS_JSON, METHOD_PACKET_JSON, PIPELINE_JSON]:
+    for path in [PACKAGE_JSON, VALIDATION_JSON, CONTRACT_JSON, READINESS_JSON, MECHANISM_ABLATION_JSON, METHOD_PACKET_JSON, PIPELINE_JSON]:
         rows.append(check(f"exists:{path.name}", path.exists(), str(path.relative_to(ROOT))))
     return rows
 
@@ -92,6 +93,7 @@ def build_checklist() -> dict[str, object]:
     validation = read_json(VALIDATION_JSON)
     contract = read_json(CONTRACT_JSON)
     readiness = read_json(READINESS_JSON)
+    ablation = read_json(MECHANISM_ABLATION_JSON)
     method = read_json(METHOD_PACKET_JSON)
     pipeline = read_json(PIPELINE_JSON)
 
@@ -105,6 +107,7 @@ def build_checklist() -> dict[str, object]:
     s2 = mechanism.get("s2_listener", {}) if isinstance(mechanism, dict) else {}
     boundary = contract.get("boundary", {})
     role_outputs = pipeline.get("role_outputs", {})
+    stress_ablation = ablation.get("stress_ablation", [])
 
     rows.extend(
         [
@@ -153,6 +156,23 @@ def build_checklist() -> dict[str, object]:
                     f"cell_auc={fmt(human.get('cell_oof_auc_human_target_context'), 3)}, "
                     f"row_auc={fmt(human.get('row_oof_auc'), 3)}"
                 ),
+            ),
+            check(
+                "mechanism_ablation_ready",
+                ablation.get("status") == "mechanism_ablation_ready"
+                and int(ablation.get("public_worldviews_killed", 0)) >= 4
+                and int(ablation.get("public_worldviews_survived", 0)) >= 2,
+                (
+                    f"status={ablation.get('status')}, "
+                    f"killed={ablation.get('public_worldviews_killed')}, "
+                    f"survived={ablation.get('public_worldviews_survived')}"
+                ),
+            ),
+            check(
+                "mechanism_shortcuts_rejected",
+                len(stress_ablation) >= 2
+                and all(str(item.get("verdict", "")).startswith("killed") for item in stress_ablation if isinstance(item, dict)),
+                f"stress_verdicts={[item.get('verdict') for item in stress_ablation if isinstance(item, dict)]}",
             ),
             check("roles_present", role_keys == EXPECTED_ROLES, f"roles={sorted(role_keys)}"),
             check(

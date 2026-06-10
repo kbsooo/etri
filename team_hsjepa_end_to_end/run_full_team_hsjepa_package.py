@@ -9,10 +9,11 @@ historical experiment version names.  It executes:
 3. Claim/evidence validation.
 4. Reproducibility contract.
 5. Architecture readiness report.
-6. Paper method packet.
-7. Pipeline manifest.
-8. Release checklist.
-9. A compact handoff report for paper and competition discussion.
+6. Mechanism ablation report.
+7. Paper method packet.
+8. Pipeline manifest.
+9. Release checklist.
+10. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -46,6 +47,8 @@ PAPER_PACKET_MD = OUT / "hsjepa_paper_method_packet_ko.md"
 PAPER_PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 PIPELINE_MD = OUT / "hsjepa_pipeline_manifest_ko.md"
 PIPELINE_JSON = OUT / "hsjepa_pipeline_manifest.json"
+MECHANISM_ABLATION_MD = OUT / "hsjepa_mechanism_ablation_report_ko.md"
+MECHANISM_ABLATION_JSON = OUT / "hsjepa_mechanism_ablation_report.json"
 RELEASE_CHECKLIST_MD = OUT / "hsjepa_release_checklist_ko.md"
 RELEASE_CHECKLIST_JSON = OUT / "hsjepa_release_checklist.json"
 
@@ -81,6 +84,7 @@ def build_handoff(
     validation: dict[str, object],
     stress: pd.DataFrame,
     readiness: dict[str, object],
+    ablation: dict[str, object],
     release: dict[str, object],
 ) -> str:
     packaged = package["packaged_submissions"]
@@ -148,6 +152,7 @@ def build_handoff(
             f"- S2 listener usage: `{mechanism['s2_listener_s2_any_rate']:.3f}` vs null `{mechanism['s2_listener_null_s2_any_rate']:.3f}`",
             f"- Package validation passed: `{validation['passed']}`",
             f"- Architecture readiness: `{readiness['status']}` (`{readiness['passed_gates']}/{readiness['total_gates']}` gates)",
+            f"- Mechanism ablation: `{ablation['status']}` (`{ablation['public_worldviews_killed']}` public worldviews killed, `{ablation['public_worldviews_survived']}` survived)",
             f"- Release checklist: `{release['status']}` (`{release['passed_checks']}/{release['total_checks']}` checks)",
             "",
             "## Paper Claim",
@@ -214,6 +219,14 @@ def build_handoff(
             "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_paper_method_packet_ko.md",
             "```",
             "",
+            "## Mechanism Ablation Report",
+            "",
+            "대체 세계관 중 무엇이 public sensor/stress audit에서 죽었고 무엇이 살아남았는지 정리한 knockout report:",
+            "",
+            "```text",
+            "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_mechanism_ablation_report_ko.md",
+            "```",
+            "",
             "## Pipeline Manifest",
             "",
             "OG 데이터에서 public sensor, latent/context, route decoder, submission, paper packet까지 이어지는 역할 기반 pipeline:",
@@ -241,6 +254,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(HERE / "validate_route_conserving_s2_bridge_package.py")],
         [sys.executable, str(HERE / "inspect_hsjepa_reproducibility_contract.py")],
         [sys.executable, str(HERE / "build_hsjepa_architecture_readiness_report.py")],
+        [sys.executable, str(HERE / "build_hsjepa_mechanism_ablation_report.py")],
         [sys.executable, str(HERE / "build_hsjepa_paper_method_packet.py")],
         [sys.executable, str(HERE / "build_hsjepa_pipeline_manifest.py")],
         [sys.executable, str(HERE / "build_hsjepa_release_checklist.py")],
@@ -255,9 +269,10 @@ def run(refresh: bool = False) -> dict[str, object]:
     package = read_json(PACKAGE_JSON)
     validation = read_json(VALIDATION_JSON)
     readiness = read_json(READINESS_JSON)
+    ablation = read_json(MECHANISM_ABLATION_JSON)
     release = read_json(RELEASE_CHECKLIST_JSON)
     stress = pd.read_csv(STRESS_CSV)
-    handoff_md = build_handoff(package, validation, stress, readiness, release)
+    handoff_md = build_handoff(package, validation, stress, readiness, ablation, release)
 
     handoff = {
         "package": "Route-Conserving S2 Bridge HS-JEPA",
@@ -273,6 +288,8 @@ def run(refresh: bool = False) -> dict[str, object]:
         "architecture_readiness_json": str(READINESS_JSON.resolve()),
         "paper_method_packet_md": str(PAPER_PACKET_MD.resolve()),
         "paper_method_packet_json": str(PAPER_PACKET_JSON.resolve()),
+        "mechanism_ablation_md": str(MECHANISM_ABLATION_MD.resolve()),
+        "mechanism_ablation_json": str(MECHANISM_ABLATION_JSON.resolve()),
         "pipeline_manifest_md": str(PIPELINE_MD.resolve()),
         "pipeline_manifest_json": str(PIPELINE_JSON.resolve()),
         "release_checklist_md": str(RELEASE_CHECKLIST_MD.resolve()),
@@ -280,6 +297,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         "validation_passed": bool(validation["passed"]),
         "architecture_readiness_status": str(readiness["status"]),
         "architecture_readiness_gates": f"{readiness['passed_gates']}/{readiness['total_gates']}",
+        "mechanism_ablation_status": str(ablation["status"]),
         "release_status": str(release["status"]),
         "release_checks": f"{release['passed_checks']}/{release['total_checks']}",
         "mechanism_evidence": validation["mechanism_evidence"],

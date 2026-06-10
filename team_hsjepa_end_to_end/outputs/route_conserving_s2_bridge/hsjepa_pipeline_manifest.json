@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 8,
-  "edge_count": 9,
+  "stage_count": 9,
+  "edge_count": 12,
   "stages": [
     {
       "id": "og_raw_lifestyle_context",
@@ -132,17 +132,38 @@
       "boundary": "Upload safety is a format guarantee, not a score guarantee."
     },
     {
+      "id": "mechanism_ablation_knockout",
+      "name": "Mechanism Ablation Knockout",
+      "role": "Records which alternative worldviews public sensors and local stress audits killed or preserved.",
+      "inputs": [
+        "public score ledger",
+        "route-conserving stress audit",
+        "architecture readiness report"
+      ],
+      "outputs": [
+        "hsjepa_mechanism_ablation_report_ko.md"
+      ],
+      "evidence": [
+        "Public worldviews killed: 5",
+        "Public worldviews survived: 2",
+        "Ablation status: mechanism_ablation_ready"
+      ],
+      "boundary": "This explains mechanism evidence; it is not a new private-score guarantee."
+    },
+    {
       "id": "claim_readiness_and_paper_packet",
       "name": "Claim Readiness and Paper Packet",
       "role": "Converts the runnable package into paper/team-facing evidence and method text.",
       "inputs": [
         "package outputs",
         "stress audit",
-        "reproducibility contract"
+        "reproducibility contract",
+        "mechanism ablation report"
       ],
       "outputs": [
         "hsjepa_architecture_readiness_report.md",
-        "hsjepa_paper_method_packet_ko.md"
+        "hsjepa_paper_method_packet_ko.md",
+        "hsjepa_mechanism_ablation_report_ko.md"
       ],
       "evidence": [
         "Readiness status: paper_ready_with_boundary",
@@ -182,6 +203,18 @@
       "submission_packager"
     ],
     [
+      "public_lb_sensor",
+      "mechanism_ablation_knockout"
+    ],
+    [
+      "route_conserving_s2_bridge_decoder",
+      "mechanism_ablation_knockout"
+    ],
+    [
+      "mechanism_ablation_knockout",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
       "submission_packager",
       "claim_readiness_and_paper_packet"
     ],
@@ -209,6 +242,8 @@
     "s2_usage": 1.0,
     "s2_null_usage": 0.6150764705882353,
     "human_state_cell_auc": 0.7750664475064699,
-    "human_state_row_auc": 0.545343137254902
+    "human_state_row_auc": 0.545343137254902,
+    "public_worldviews_killed": 5,
+    "public_worldviews_survived": 2
   }
 }

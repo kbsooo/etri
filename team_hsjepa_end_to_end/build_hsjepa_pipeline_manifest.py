@@ -26,6 +26,7 @@ STRESS_CSV = OUT / "route_conserving_s2_bridge_stress_summary.csv"
 VALIDATION_JSON = OUT / "route_conserving_s2_bridge_validation_report.json"
 CONTRACT_JSON = OUT / "hsjepa_reproducibility_contract.json"
 READINESS_JSON = OUT / "hsjepa_architecture_readiness_report.json"
+MECHANISM_ABLATION_JSON = OUT / "hsjepa_mechanism_ablation_report.json"
 METHOD_PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 
 MANIFEST_JSON = OUT / "hsjepa_pipeline_manifest.json"
@@ -49,7 +50,16 @@ def fmt(x: object, digits: int = 6) -> str:
 
 
 def require_inputs() -> None:
-    required = [PACKAGE_JSON, EVIDENCE_CSV, STRESS_CSV, VALIDATION_JSON, CONTRACT_JSON, READINESS_JSON, METHOD_PACKET_JSON]
+    required = [
+        PACKAGE_JSON,
+        EVIDENCE_CSV,
+        STRESS_CSV,
+        VALIDATION_JSON,
+        CONTRACT_JSON,
+        READINESS_JSON,
+        MECHANISM_ABLATION_JSON,
+        METHOD_PACKET_JSON,
+    ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
     if missing:
         raise FileNotFoundError(f"Missing pipeline manifest inputs: {missing}")
@@ -96,6 +106,7 @@ def build_manifest() -> dict[str, object]:
     validation = read_json(VALIDATION_JSON)
     contract = read_json(CONTRACT_JSON)
     readiness = read_json(READINESS_JSON)
+    ablation = read_json(MECHANISM_ABLATION_JSON)
     method = read_json(METHOD_PACKET_JSON)
     evidence = pd.read_csv(EVIDENCE_CSV)
     stress = pd.read_csv(STRESS_CSV)
@@ -203,11 +214,24 @@ def build_manifest() -> dict[str, object]:
             "Upload safety is a format guarantee, not a score guarantee.",
         ),
         stage(
+            "mechanism_ablation_knockout",
+            "Mechanism Ablation Knockout",
+            "Records which alternative worldviews public sensors and local stress audits killed or preserved.",
+            ["public score ledger", "route-conserving stress audit", "architecture readiness report"],
+            ["hsjepa_mechanism_ablation_report_ko.md"],
+            [
+                f"Public worldviews killed: {ablation['public_worldviews_killed']}",
+                f"Public worldviews survived: {ablation['public_worldviews_survived']}",
+                f"Ablation status: {ablation['status']}",
+            ],
+            "This explains mechanism evidence; it is not a new private-score guarantee.",
+        ),
+        stage(
             "claim_readiness_and_paper_packet",
             "Claim Readiness and Paper Packet",
             "Converts the runnable package into paper/team-facing evidence and method text.",
-            ["package outputs", "stress audit", "reproducibility contract"],
-            ["hsjepa_architecture_readiness_report.md", "hsjepa_paper_method_packet_ko.md"],
+            ["package outputs", "stress audit", "reproducibility contract", "mechanism ablation report"],
+            ["hsjepa_architecture_readiness_report.md", "hsjepa_paper_method_packet_ko.md", "hsjepa_mechanism_ablation_report_ko.md"],
             [
                 f"Readiness status: {readiness['status']}",
                 f"Readiness gates: {readiness['passed_gates']}/{readiness['total_gates']}",
@@ -225,6 +249,9 @@ def build_manifest() -> dict[str, object]:
         ["route_energy_model", "route_conserving_s2_bridge_decoder"],
         ["driver_action_field", "route_conserving_s2_bridge_decoder"],
         ["route_conserving_s2_bridge_decoder", "submission_packager"],
+        ["public_lb_sensor", "mechanism_ablation_knockout"],
+        ["route_conserving_s2_bridge_decoder", "mechanism_ablation_knockout"],
+        ["mechanism_ablation_knockout", "claim_readiness_and_paper_packet"],
         ["submission_packager", "claim_readiness_and_paper_packet"],
         ["route_conserving_s2_bridge_decoder", "claim_readiness_and_paper_packet"],
     ]
@@ -253,6 +280,8 @@ def build_manifest() -> dict[str, object]:
             "s2_null_usage": s2["null_s2_any_rate"],
             "human_state_cell_auc": human["cell_oof_auc_human_target_context"],
             "human_state_row_auc": human["row_oof_auc"],
+            "public_worldviews_killed": ablation["public_worldviews_killed"],
+            "public_worldviews_survived": ablation["public_worldviews_survived"],
         },
     }
     MANIFEST_JSON.write_text(json.dumps(manifest, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8")

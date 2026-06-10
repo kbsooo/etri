@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 19,
-  "total_checks": 19,
+  "passed_checks": 22,
+  "total_checks": 22,
   "required_failures": [],
   "checks": [
     {
@@ -32,6 +32,13 @@
       "passed": true,
       "required": true,
       "evidence": "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_architecture_readiness_report.json"
+    },
+    {
+      "check": "exists:hsjepa_mechanism_ablation_report.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_mechanism_ablation_report.json"
     },
     {
       "check": "exists:hsjepa_paper_method_packet.json",
@@ -97,6 +104,20 @@
       "evidence": "cell_auc=0.775, row_auc=0.545"
     },
     {
+      "check": "mechanism_ablation_ready",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=mechanism_ablation_ready, killed=5, survived=2"
+    },
+    {
+      "check": "mechanism_shortcuts_rejected",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "stress_verdicts=['killed_locally', 'killed_locally']"
+    },
+    {
       "check": "roles_present",
       "status": "PASS",
       "passed": true,
@@ -122,7 +143,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=8, edges=9"
+      "evidence": "status=pipeline_ready_with_boundary, stages=9, edges=12"
     },
     {
       "check": "method_packet_presentable",
