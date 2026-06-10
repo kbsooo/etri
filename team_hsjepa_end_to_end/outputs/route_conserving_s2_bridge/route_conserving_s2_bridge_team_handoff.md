@@ -103,3 +103,11 @@ Given a public-sensitive action field, route conservation plus S2 listener usage
 ```text
 team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_architecture_readiness_report.md
 ```
+
+## Paper Method Packet
+
+논문 초안/발표에 바로 옮길 수 있는 method packet:
+
+```text
+team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_paper_method_packet_ko.md
+```

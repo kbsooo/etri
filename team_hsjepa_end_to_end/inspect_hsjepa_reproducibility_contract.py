@@ -74,6 +74,7 @@ MODULES = [
     "team_hsjepa_end_to_end/validate_route_conserving_s2_bridge_package.py",
     "team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
     "team_hsjepa_end_to_end/build_hsjepa_architecture_readiness_report.py",
+    "team_hsjepa_end_to_end/build_hsjepa_paper_method_packet.py",
 ]
 
 GENERATED_OUTPUTS = [
@@ -90,6 +91,8 @@ GENERATED_OUTPUTS = [
     ("team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_reproducibility_contract.md", False),
     ("team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_architecture_readiness_report.json", False),
     ("team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_architecture_readiness_report.md", False),
+    ("team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_paper_method_packet.json", False),
+    ("team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_paper_method_packet_ko.md", False),
 ]
 
 

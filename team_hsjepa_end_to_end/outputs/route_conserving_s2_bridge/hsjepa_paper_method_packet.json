@@ -1,0 +1,75 @@
+{
+  "title": "Human-State JEPA with Route-Conserving S2 Bridge Decoder",
+  "short_name": "HS-JEPA Route-Conserving S2 Bridge",
+  "status": "paper_ready_with_boundary",
+  "one_sentence": "HS-JEPA treats sleep-log prediction as hidden human-state oriented sparse row-target action decoding, then constrains objective-stage corrections to preserve the learned Q/S route manifold through an S2 listener bridge.",
+  "score_evidence": {
+    "pre_public_equation_best_public_lb": 0.5761589494,
+    "public_equation_breakthrough_public_lb": 0.5681234831,
+    "current_best_public_lb": 0.5677475939,
+    "current_delta_vs_pre_public_equation": -0.00841135550000005,
+    "current_best_role": "row_state_decoder_best",
+    "current_best_file": "submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv"
+  },
+  "mechanism_evidence": {
+    "primary_route_delta": -0.0245664487510537,
+    "primary_null_route_delta": -0.0108973448156142,
+    "primary_energy_rank_pct": 0.1858571342054905,
+    "s2_usage": 1.0,
+    "s2_null_usage": 0.6150764705882353,
+    "s2hub_rank_pct": 0.1437744384771238,
+    "validation_passed": true,
+    "readiness_gates": "7/7"
+  },
+  "human_state_evidence": {
+    "cell_oof_auc": 0.7750664475064699,
+    "row_oof_auc": 0.545343137254902,
+    "role": "orientation diagnostic, not complete row-target assignment solver"
+  },
+  "roles": [
+    {
+      "role": "competition_primary",
+      "component": "Route-Conserving Objective Bridge",
+      "submission_file": "submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv",
+      "changed_cells": 82,
+      "changed_rows": 41,
+      "claim": "Public-sensitive S-stage driver actions should be paired with route-preserving bridge actions."
+    },
+    {
+      "role": "interpretable_s2_hub",
+      "component": "S2 Listener Bridge",
+      "submission_file": "submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv",
+      "changed_cells": 68,
+      "changed_rows": 34,
+      "claim": "S2 acts as a public-sensitive listener/hub inside the objective sleep-stage route."
+    },
+    {
+      "role": "human_state_probe",
+      "component": "Human-State Gated S2 Probe",
+      "submission_file": "submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv",
+      "changed_cells": 68,
+      "changed_rows": 47,
+      "claim": "OG human-state explains target/cell orientation, but not row assignment."
+    }
+  ],
+  "boundary": {
+    "is_pure_og_only_model": false,
+    "uses_public_lb_sensor": true,
+    "uses_proprietary_embedding_api_in_team_runner": false,
+    "human_state_role": "orientation diagnostic, not complete row-target assignment solver",
+    "competition_decoder_role": "public-sensitive row-target action solver with route-conserving S2 bridge"
+  },
+  "outputs": {
+    "method_packet_md": "/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_paper_method_packet_ko.md",
+    "method_packet_json": "/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_paper_method_packet.json",
+    "readiness_report": "/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_architecture_readiness_report.json",
+    "reproducibility_contract": "/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_reproducibility_contract.json",
+    "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py"
+  },
+  "paper_sections": {
+    "abstract_ko": "우리는 수면 기반 생활 로그 예측을 독립적인 7개 label 분류 문제가 아니라, 숨은 인간 생활 상태가 만드는 sparse row-target action decoding 문제로 재정의한다. 제안하는 HS-JEPA는 raw label을 직접 복원하지 않고 human-state, target-listener, row-target action, route-consistency energy를 분리한다. 특히 objective sleep-stage target에서는 public-sensitive driver action을 단독으로 적용하지 않고, train label에서 학습한 Q/S route manifold를 보존하는 bridge action을 함께 선택한다. 실험적으로 이 route-conserving decoder는 기존 public-equation 이전 최고 public LB 0.5761589494에서 현재 최고 0.5677475939까지 -0.0084113555 개선된 signal을 설명하며, 선택된 bridge는 random feasible bundle 대비 route energy를 -0.02457 vs -0.01090로 낮춘다. 또한 S2는 listener/hub로 반복 등장한다 (1.000 vs null 0.615). Human-state latent는 cell-level orientation AUC 0.775를 보이지만 row assignment AUC는 0.545에 그쳐, encoder와 assignment decoder를 분리해야 함을 보여준다.",
+    "method_ko": "HS-JEPA는 다음 네 계층으로 구성된다.\n\n1. Human-State Encoder: OG 생활 로그, 개인/코호트 상태, 수면 상태의 deviation을 latent context로 변환한다.\n2. Target Listener Representation: 각 target이 현재 hidden state와 어떤 방향으로 반응하는지 cell-level orientation을 예측한다.\n3. Row-Target Assignment Solver: 실제로 움직일 sparse row-target support를 찾는다. 이 단계는 competition-specific public sensor를 사용하므로 논문 claim에서 분리한다.\n4. Route-Conserving S2 Bridge Decoder: driver target을 단독 이동하지 않고, Q/S route energy를 낮추는 bridge target을 함께 선택한다.\n\n핵심은 label probability를 크게 만드는 것이 아니라, action 이후의 7-target vector가 train label의 공동 구조를 덜 위반하도록 만드는 것이다.",
+    "algorithm_ko": "Algorithm: Route-Conserving S2 Bridge HS-JEPA\n\nInput: OG lifestyle logs, train labels, public-sensor action anchors, current best prediction.\nOutput: sparse row-target correction field and upload-safe submission.\n\n1. Learn a Q/S route energy model from train labels.\n2. Build human-state and target-listener representations from OG/context artifacts.\n3. Identify public-sensitive driver cells from the action anchor field.\n4. For each driver cell, enumerate same-row objective-stage bridge candidates.\n5. Score each driver/bridge bundle by public utility, route-energy gain, S2 listener usage, and toxicity stress.\n6. Select sparse non-overlapping bundles under target/row budget constraints.\n7. Apply bounded logit-space corrections and validate upload safety.\n8. Stress-audit the selected bundles against random feasible bundle nulls.",
+    "limitations_ko": "현재 패키지는 다음 경계를 명시한다.\n\n- Pure OG-only model: `False`\n- Uses public LB sensor: `True`\n- Uses proprietary embedding API in team runner: `False`\n- Human-state role: `orientation diagnostic, not complete row-target assignment solver`\n- Competition decoder role: `public-sensitive row-target action solver with route-conserving S2 bridge`\n\n따라서 논문에서는 HS-JEPA의 representation idea와 competition-specific action decoder를 분리해서 주장해야 한다."
+  }
+}

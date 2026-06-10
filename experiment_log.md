@@ -14700,3 +14700,50 @@ Can the public-sensitive assignment solver be replaced or distilled by an
 OG-only cohort/personal human-state listener without losing the route-conserving
 S2 bridge property?
 ```
+
+## HS-JEPA Paper Method Packet
+
+Date: 2026-06-10
+
+Question:
+
+Can a teammate who does not know the historical submission/version names explain
+HS-JEPA as a paper method from the generated package alone?
+
+Added artifacts:
+
+- `team_hsjepa_end_to_end/build_hsjepa_paper_method_packet.py`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_paper_method_packet_ko.md`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_paper_method_packet.json`
+
+The full runner now also creates the paper method packet:
+
+```bash
+python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py
+```
+
+What this adds:
+
+- one-sentence contribution
+- Korean abstract draft
+- method decomposition
+- algorithm-style pseudocode
+- evidence snapshot
+- role-based output table
+- stress evidence table
+- explicit limitation/boundary section
+
+Interpretation:
+
+This closes a different gap than the validator.  The validator says the package
+is mechanically sound; the readiness report says the claim is defensible; the
+method packet says how to present the idea without relying on private shorthand
+or historical version names.
+
+Current paper-safe mechanism:
+
+```text
+HS-JEPA treats sleep-log prediction as hidden human-state oriented sparse
+row-target action decoding, then constrains objective-stage corrections to
+preserve the learned Q/S route manifold through an S2 listener bridge.
+```
