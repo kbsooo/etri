@@ -34,6 +34,7 @@ DECODER_BOUNDARY_TOMOGRAPHY_JSON = HERE / "outputs" / "decoder_boundary_tomograp
 CORE_MEDIATED_RELEASE_JSON = HERE / "outputs" / "core_mediated_action_release" / "core_mediated_action_release_readout.json"
 CORE_RELEASE_ABLATION_JSON = HERE / "outputs" / "core_release_ablation_probe" / "core_release_ablation_probe_readout.json"
 CORE_HEALTH_CALIBRATED_JSON = HERE / "outputs" / "core_health_calibrated_release" / "core_health_calibrated_release_readout.json"
+CROSS_LISTENER_TRANSPORT_JSON = HERE / "outputs" / "cross_listener_transport_decoder" / "cross_listener_transport_readout.json"
 FACTORIZED_JSON = HERE / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_readout.json"
 FACTORIZED_STRESS_JSON = HERE / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_stress_audit.json"
 LEDGER_CSV = ROOT / "data_analytics" / "hsjepa_public_score_ledger.csv"
@@ -145,6 +146,7 @@ def collect_rows() -> list[dict[str, Any]]:
     core_mediated_release = read_json(CORE_MEDIATED_RELEASE_JSON)
     core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
     core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
+    cross_listener_transport = read_json(CROSS_LISTENER_TRANSPORT_JSON)
     factorized = read_json(FACTORIZED_JSON)
     factorized_stress = read_json(FACTORIZED_STRESS_JSON)
     rows: list[dict[str, Any]] = []
@@ -563,6 +565,55 @@ def collect_rows() -> list[dict[str, Any]]:
         )
         rows.append(row)
 
+    for item in cross_listener_transport.get("ranking", []):
+        if not isinstance(item, dict):
+            continue
+        variant = str(item.get("variant"))
+        submission = item.get("submission_file")
+        stress = item.get("stress", {}) if isinstance(item.get("stress"), dict) else {}
+        tests = stress.get("tests", {}) if isinstance(stress.get("tests"), dict) else {}
+        actual = stress.get("actual", {}) if isinstance(stress.get("actual"), dict) else {}
+        row = base_row(
+            family="cross_listener_transport",
+            variant=variant,
+            submission_file=str(submission) if submission else None,
+            upload_safe=bool(nested(item, "validation", "upload_safe", default=False)),
+            changed_cells=int(nested(item, "validation", "changed_cells_vs_current_best", default=0)),
+            architecture_claim="target-listener posterior should calibrate route/fusion/core actions rather than generate actions directly",
+            decoder_order="listener_transport_calibrated_release",
+            core_modules=[
+                "listener_responsibility",
+                "action_health_decoder",
+                "invariant_energy",
+                "anti_shortcut_validation",
+            ],
+            public_lb=public_scores.get(str(submission)),
+        )
+        extra_rate = finite(actual.get("extra_cells")) / max(1.0, finite(actual.get("cells"), 1.0))
+        row.update(
+            {
+                "route_z": maybe_float(nested(tests, "mean_transport_score", "z")),
+                "matched_route_z": maybe_float(nested(tests, "mean_row_s2_score", "z")),
+                "matched_score_z": maybe_float(nested(tests, "mean_listener_score", "z")),
+                "safety_z": maybe_float(nested(tests, "mean_action_score", "z")),
+                "toxicity_clear": True,
+                "broad_hard_conflict_exposure": None,
+                "hardworld_top_toxic_exposure": None,
+                "route_boundary": "listener_transport_confirmed",
+                "safety_boundary": (
+                    "shadow_release"
+                    if extra_rate > 0.0
+                    else "strict_recalibration"
+                ),
+                "module_ablation_interpretation": (
+                    f"Uses failed target-listener lift as a negative sensor and releases {int(actual.get('cells', 0))} "
+                    "route/fusion/core-proposed cells after listener-transport calibration. If it wins, listener posterior is "
+                    "not an action generator but a useful action boundary prior."
+                ),
+            }
+        )
+        rows.append(row)
+
     return rows
 
 
@@ -619,6 +670,7 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
     core_mediated_rows = frame.loc[frame["family"].eq("core_mediated_release")]
     core_ablation_rows = frame.loc[frame["family"].eq("core_release_ablation")]
     core_health_rows = frame.loc[frame["family"].eq("core_health_calibrated_release")]
+    cross_listener_rows = frame.loc[frame["family"].eq("cross_listener_transport")]
     best_route = route_rows.iloc[0].to_dict() if not route_rows.empty else {}
     best_support = row_support_rows.iloc[0].to_dict() if not row_support_rows.empty else {}
     best_factorized = factorized_rows.iloc[0].to_dict() if not factorized_rows.empty else {}
@@ -628,6 +680,7 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
     best_core_mediated = core_mediated_rows.iloc[0].to_dict() if not core_mediated_rows.empty else {}
     best_core_ablation = core_ablation_rows.iloc[0].to_dict() if not core_ablation_rows.empty else {}
     best_core_health = core_health_rows.iloc[0].to_dict() if not core_health_rows.empty else {}
+    best_cross_listener = cross_listener_rows.iloc[0].to_dict() if not cross_listener_rows.empty else {}
 
     return [
         {
@@ -721,6 +774,16 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
             "status": "alive" if best_core_health else "missing",
             "next_test": "Submit guarded release before route-pressure probe if the goal is LB safety; submit pressure probe if the goal is to test whether action-health is over-vetoing route-only cells.",
         },
+        {
+            "claim": "Target-listener posterior is a transport calibrator, not an action generator.",
+            "evidence": (
+                f"Best cross-listener row is {best_cross_listener.get('variant')} with transport_z={fmt(best_cross_listener.get('route_z'))}, "
+                f"listener_z={fmt(best_cross_listener.get('matched_score_z'))}, action_z={fmt(best_cross_listener.get('safety_z'))}, "
+                f"and priority={fmt(best_cross_listener.get('lb_sensor_priority'))}."
+            ),
+            "status": "alive" if best_cross_listener else "missing",
+            "next_test": "If it beats direct target-listener lift, keep listener posterior as a release/calibration prior and stop using it as a direct action generator.",
+        },
     ]
 
 
@@ -749,6 +812,8 @@ def build_verdict(frame: pd.DataFrame, findings: list[dict[str, Any]]) -> dict[s
         status = "action_decoder_ablation_ready_core_release_ablation_leads"
     elif str(top["family"]) == "core_health_calibrated_release":
         status = "action_decoder_ablation_ready_core_health_calibrated_leads"
+    elif str(top["family"]) == "cross_listener_transport":
+        status = "action_decoder_ablation_ready_cross_listener_transport_leads"
     elif str(top["family"]) != "route_frontier":
         status = "action_decoder_ablation_ready_non_route_leads"
     return {
@@ -826,6 +891,7 @@ def build_markdown(readout: dict[str, Any], frame: pd.DataFrame) -> str:
             "- core-mediated release가 이기면, 범용 HS-JEPA core API가 실제 sleep adapter action release에도 쓸 수 있다는 뜻이다.",
             "- core-release ablation이 이기면, listener/action-health/invariant 중 어떤 core module이 adapter를 과하게 제한하는지 public sensor로 볼 수 있다는 뜻이다.",
             "- core-health calibrated release가 이기면, dataset-free action-health failure mode가 실제 sleep adapter release에도 전이된다는 뜻이다.",
+            "- cross-listener transport가 이기면, target-listener posterior는 직접 action 생성기가 아니라 release/calibration prior로 쓸 때 살아난다는 뜻이다.",
             "",
         ]
     )
@@ -855,6 +921,7 @@ def run() -> dict[str, Any]:
             "core_mediated_release": str(CORE_MEDIATED_RELEASE_JSON.resolve()),
             "core_release_ablation": str(CORE_RELEASE_ABLATION_JSON.resolve()),
             "core_health_calibrated": str(CORE_HEALTH_CALIBRATED_JSON.resolve()),
+            "cross_listener_transport": str(CROSS_LISTENER_TRANSPORT_JSON.resolve()),
             "factorized_toxicity": str(FACTORIZED_JSON.resolve()),
             "factorized_stress": str(FACTORIZED_STRESS_JSON.resolve()),
         },

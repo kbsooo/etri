@@ -48,6 +48,7 @@ DECODER_BOUNDARY_TOMOGRAPHY_JSON = ROOT / "sleep_competition_adapter" / "outputs
 CORE_MEDIATED_RELEASE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_mediated_action_release" / "core_mediated_action_release_readout.json"
 CORE_RELEASE_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_release_ablation_probe" / "core_release_ablation_probe_readout.json"
 CORE_HEALTH_CALIBRATED_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_health_calibrated_release" / "core_health_calibrated_release_readout.json"
+CROSS_LISTENER_TRANSPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "cross_listener_transport_decoder" / "cross_listener_transport_readout.json"
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -105,6 +106,7 @@ def require_inputs() -> None:
         CORE_MEDIATED_RELEASE_JSON,
         CORE_RELEASE_ABLATION_JSON,
         CORE_HEALTH_CALIBRATED_JSON,
+        CROSS_LISTENER_TRANSPORT_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -180,6 +182,7 @@ def build_manifest() -> dict[str, object]:
     core_mediated_release = read_json(CORE_MEDIATED_RELEASE_JSON)
     core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
     core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
+    cross_listener_transport = read_json(CROSS_LISTENER_TRANSPORT_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -204,6 +207,7 @@ def build_manifest() -> dict[str, object]:
     core_mediated_verdict = core_mediated_release["verdict"]
     core_release_ablation_verdict = core_release_ablation["verdict"]
     core_health_calibrated_verdict = core_health_calibrated["verdict"]
+    cross_listener_verdict = cross_listener_transport["verdict"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -509,9 +513,32 @@ def build_manifest() -> dict[str, object]:
             "This is the direct bridge from generic core behavior to adapter release; public LB must still decide whether the guard is too conservative.",
         ),
         stage(
+            "cross_listener_transport_decoder",
+            "Cross-Listener Transport Decoder",
+            "Uses target-listener posterior as a transport calibrator over route/fusion/core-safe action cells instead of directly generating actions.",
+            [
+                "decoder_order_jury_solver_readout.json",
+                "decoder_boundary_tomography_readout.json",
+                "target_listener_route_lift_action_audit.csv",
+                "core_health_calibrated_release_readout.json",
+            ],
+            ["cross_listener_transport_readout_ko.md", *[
+                str(item.get("submission_file"))
+                for item in cross_listener_transport.get("ranking", [])
+                if isinstance(item, dict) and item.get("submission_file")
+            ]],
+            [
+                f"Transport status: {cross_listener_verdict['status']}",
+                f"Recommended LB sensor: {cross_listener_verdict['recommended_lb_sensor']}",
+                f"Recommended big bet: {cross_listener_verdict['recommended_big_bet']}",
+                f"Negative sensor: {cross_listener_transport.get('negative_sensor')}",
+            ],
+            "This stage does not claim listener posterior is a direct action head; it tests whether it can safely calibrate already supported actions.",
+        ),
+        stage(
             "action_decoder_ablation_suite",
             "Action Decoder Ablation Suite",
-            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, and core-health-calibrated alternatives as HS-JEPA module ablations.",
+            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, and cross-listener transport alternatives as HS-JEPA module ablations.",
             [
                 "row_support_strict_action_decoder_readout.json",
                 "route_frontier_action_decoder_readout.json",
@@ -521,6 +548,7 @@ def build_manifest() -> dict[str, object]:
                 "core_mediated_action_release_readout.json",
                 "core_release_ablation_probe_readout.json",
                 "core_health_calibrated_release_readout.json",
+                "cross_listener_transport_readout.json",
                 "factorized_toxicity_decoder_stress_audit.json",
             ],
             ["hsjepa_action_decoder_ablation_suite_ko.md", "hsjepa_action_decoder_ablation_suite.csv"],
@@ -786,6 +814,12 @@ def build_manifest() -> dict[str, object]:
         ["core_health_calibrated_release", "action_decoder_ablation_suite"],
         ["core_health_calibrated_release", "sleep_competition_adapter"],
         ["core_health_calibrated_release", "claim_readiness_and_paper_packet"],
+        ["decoder_order_jury_solver", "cross_listener_transport_decoder"],
+        ["decoder_boundary_tomography_solver", "cross_listener_transport_decoder"],
+        ["core_health_calibrated_release", "cross_listener_transport_decoder"],
+        ["cross_listener_transport_decoder", "action_decoder_ablation_suite"],
+        ["cross_listener_transport_decoder", "sleep_competition_adapter"],
+        ["cross_listener_transport_decoder", "claim_readiness_and_paper_packet"],
         ["route_toxicity_fusion_decoder", "action_decoder_ablation_suite"],
         ["route_toxicity_fusion_decoder", "sleep_competition_adapter"],
         ["route_toxicity_fusion_decoder", "claim_readiness_and_paper_packet"],
@@ -892,6 +926,10 @@ def build_manifest() -> dict[str, object]:
             "core_health_calibrated_recommended_lb_candidate": core_health_calibrated_verdict["recommended_lb_candidate"],
             "core_health_calibrated_recommended_big_bet_sensor": core_health_calibrated_verdict["recommended_big_bet_sensor"],
             "core_health_calibrated_recommended_pressure_sensor": core_health_calibrated_verdict["recommended_pressure_sensor"],
+            "cross_listener_transport_status": cross_listener_verdict["status"],
+            "cross_listener_transport_recommended_lb_sensor": cross_listener_verdict["recommended_lb_sensor"],
+            "cross_listener_transport_recommended_big_bet": cross_listener_verdict["recommended_big_bet"],
+            "cross_listener_transport_negative_sensor": cross_listener_transport.get("negative_sensor"),
             "action_decoder_ablation_suite_status": action_ablation_verdict["status"],
             "action_decoder_ablation_suite_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_suite_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],

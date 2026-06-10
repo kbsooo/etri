@@ -39,6 +39,7 @@ DECODER_BOUNDARY_TOMOGRAPHY_JSON = OUT / "decoder_boundary_tomography_solver" / 
 CORE_MEDIATED_RELEASE_JSON = OUT / "core_mediated_action_release" / "core_mediated_action_release_readout.json"
 CORE_RELEASE_ABLATION_JSON = OUT / "core_release_ablation_probe" / "core_release_ablation_probe_readout.json"
 CORE_HEALTH_CALIBRATED_JSON = OUT / "core_health_calibrated_release" / "core_health_calibrated_release_readout.json"
+CROSS_LISTENER_TRANSPORT_JSON = OUT / "cross_listener_transport_decoder" / "cross_listener_transport_readout.json"
 ACTION_DECODER_ABLATION_JSON = OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
@@ -86,6 +87,7 @@ def require_inputs() -> None:
         CORE_MEDIATED_RELEASE_JSON,
         CORE_RELEASE_ABLATION_JSON,
         CORE_HEALTH_CALIBRATED_JSON,
+        CROSS_LISTENER_TRANSPORT_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -111,6 +113,7 @@ def build_big_bets(
     core_mediated_release: dict[str, object],
     core_release_ablation: dict[str, object],
     core_health_calibrated: dict[str, object],
+    cross_listener_transport: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -166,6 +169,11 @@ def build_big_bets(
     core_health_calibrated_verdict = (
         core_health_calibrated.get("verdict", {})
         if isinstance(core_health_calibrated.get("verdict"), dict)
+        else {}
+    )
+    cross_listener_verdict = (
+        cross_listener_transport.get("verdict", {})
+        if isinstance(cross_listener_transport.get("verdict"), dict)
         else {}
     )
     action_ablation_verdict = (
@@ -382,6 +390,23 @@ def build_big_bets(
             "kill_criterion": "Guarded release loses to relaxed pressure or to strict jury, meaning the current generic action-health prior is useful diagnostically but not action-grade for this adapter.",
         },
         {
+            "id": "cross_listener_transport_decoder",
+            "name": "Cross-Listener Transport Decoder",
+            "worldview": "Target-listener posterior is not an action generator; it is a transport calibrator over route/fusion/core-safe actions.",
+            "core_modules_exercised": ["listener_responsibility", "action_health_decoder", "invariant_energy"],
+            "adapter_move": "Reuse the failed target-listener lift as a boundary prior, then only move S-stage cells that route/fusion/core decoders already expose.",
+            "why_big": "If this survives LB, HS-JEPA gains a reusable listener-as-calibrator rule instead of treating failed listener routes as dead features.",
+            "expected_public_lb_delta_if_true": -0.002,
+            "latest_probe_status": cross_listener_verdict.get("status"),
+            "latest_probe_evidence": {
+                "recommended_lb_sensor": cross_listener_verdict.get("recommended_lb_sensor"),
+                "recommended_big_bet": cross_listener_verdict.get("recommended_big_bet"),
+                "negative_sensor": cross_listener_transport.get("negative_sensor"),
+                "claim": cross_listener_verdict.get("claim"),
+            },
+            "kill_criterion": "Public LB says listener-confirmed transport underperforms strict jury/core-health, meaning listener posterior remains diagnostic and not action-boundary evidence.",
+        },
+        {
             "id": "listener_invariant_contrastive_decoder",
             "name": "Listener-Invariant Contrastive Decoder",
             "worldview": "A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone.",
@@ -429,16 +454,6 @@ def build_big_bets(
             },
             "kill_criterion": "Broad toxicity predicts H088 well, or mixture safety does not beat matched null after target/source matching.",
         },
-        {
-            "id": "cross_listener_state_transport",
-            "name": "Cross-Listener Human-State Transport",
-            "worldview": "Subjective Q and objective S labels are different listeners of one human state, not separate tasks.",
-            "core_modules_exercised": ["context_encoder", "listener_responsibility", "invariant_energy"],
-            "adapter_move": "Move actions only when Q-listener and S-listener state transitions are mutually consistent.",
-            "why_big": "This attacks the current weakness that Q and S decoders are mostly separated.",
-            "expected_public_lb_delta_if_true": -0.001,
-            "kill_criterion": "Q-S bridge actions fail null tests or replicate the already-killed subjective-shadow bridge.",
-        },
     ]
 
 
@@ -463,6 +478,7 @@ def build_report() -> dict[str, object]:
     core_mediated_release = read_json(CORE_MEDIATED_RELEASE_JSON)
     core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
     core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
+    cross_listener_transport = read_json(CROSS_LISTENER_TRANSPORT_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -485,6 +501,7 @@ def build_report() -> dict[str, object]:
     core_mediated_verdict = core_mediated_release.get("verdict", {})
     core_release_ablation_verdict = core_release_ablation.get("verdict", {})
     core_health_calibrated_verdict = core_health_calibrated.get("verdict", {})
+    cross_listener_verdict = cross_listener_transport.get("verdict", {})
     action_decoder_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -690,6 +707,15 @@ def build_report() -> dict[str, object]:
             "benchmark_calibration": core_health_calibrated.get("benchmark_calibration"),
             "top_ranked": core_health_calibrated.get("ranking", [])[:3],
         },
+        "cross_listener_transport_decoder": {
+            "status": cross_listener_verdict.get("status"),
+            "recommended_lb_sensor": cross_listener_verdict.get("recommended_lb_sensor"),
+            "recommended_big_bet": cross_listener_verdict.get("recommended_big_bet"),
+            "negative_sensor": cross_listener_transport.get("negative_sensor"),
+            "claim": cross_listener_verdict.get("claim"),
+            "failure_interpretation": cross_listener_verdict.get("failure_interpretation"),
+            "top_ranked": cross_listener_transport.get("ranking", [])[:3],
+        },
         "action_decoder_ablation_suite": {
             "status": action_decoder_ablation_verdict.get("status"),
             "recommended_lb_sensor": action_decoder_ablation_verdict.get("recommended_lb_sensor"),
@@ -782,6 +808,7 @@ def build_report() -> dict[str, object]:
             "The dual-safe expansion variant survives target-only and source-matched null stress, while the teacher-only variant is intentionally marked weaker under source-matched stress.",
             "Core release ablation now makes listener responsibility, action-health, and invariant energy falsifiable on real sleep-adapter actions rather than only synthetic core examples.",
             "Core-health calibrated release now uses dataset-free action-health false-positive lift as a real adapter release prior, connecting architecture benchmark behavior to submission candidates.",
+            "Cross-listener transport now converts the failed target-listener route-lift into a safer rule: listener posterior calibrates route/fusion/core-proposed actions instead of generating actions directly.",
         ],
         "what_the_adapter_does_not_prove": [
             "pure OG-only assignment",
@@ -793,6 +820,7 @@ def build_report() -> dict[str, object]:
             "that consensus-shadow boundary cells are safe before public LB observes them",
             "that removing a core module is beneficial before public LB observes the full-core vs ablated-core counterfactual",
             "that dataset-free action-health calibration will beat the strict decoder jury before public LB observes the guarded/pressure counterfactual",
+            "that cross-listener transport will beat the strict decoder jury before public LB observes the listener-calibrated counterfactual",
             "that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments",
             "private leaderboard safety",
             "S2 as a universal human-sleep factor",
@@ -985,6 +1013,17 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             "이 실험은 dataset-free core benchmark에서 action-health 제거가 false positive를 크게 만든다는 사실을 실제 sleep-adapter row-target release prior로 사용한다. guarded 후보가 public에서 살아나면 HS-JEPA core의 일반적인 action-health 실패 모드가 대회 adapter에도 전이된다는 강한 증거가 된다.",
             "",
+            "## Cross-Listener Transport Decoder",
+            "",
+            f"- Status: `{report['cross_listener_transport_decoder']['status']}`",
+            f"- Recommended LB sensor: `{report['cross_listener_transport_decoder']['recommended_lb_sensor']}`",
+            f"- Recommended big bet: `{report['cross_listener_transport_decoder']['recommended_big_bet']}`",
+            f"- Negative sensor: `{report['cross_listener_transport_decoder']['negative_sensor']}`",
+            "",
+            report["cross_listener_transport_decoder"]["claim"],
+            "",
+            "이 실험은 target-listener route-lift가 public에서 실패한 사실을 버리지 않고, listener posterior의 역할을 `action generator`에서 `transport calibrator`로 바꾼다. public에서 살아나면 HS-JEPA의 listener responsibility가 직접 예측값을 만드는 장치가 아니라 action boundary를 보정하는 장치라는 더 일반적인 주장이 강해진다.",
+            "",
             "## Action Decoder Ablation Suite",
             "",
             f"- Status: `{report['action_decoder_ablation_suite']['status']}`",
@@ -1081,9 +1120,10 @@ def build_big_bet_markdown(bets: list[dict[str, object]]) -> str:
             "2. `Core-Health Calibrated Release`: dataset-free action-health failure mode가 실제 adapter release에 전이되는지 검증한다.",
             "3. `Core-Mediated Action Release`: generic HS-JEPA core가 실제 sleep-adapter action을 release할 수 있는지 검증한다.",
             "4. `Decoder Boundary Tomography Solver`: strict jury가 너무 보수적인지 직접 찌르는 다음 제출 센서다.",
-            "5. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
-            "6. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.",
-            "7. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.",
+            "5. `Cross-Listener Transport Decoder`: 실패한 listener lift를 action generator가 아니라 transport calibrator로 재사용할 수 있는지 본다.",
+            "6. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
+            "7. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.",
+            "8. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.",
             "",
         ]
     )
@@ -1104,6 +1144,7 @@ def run() -> dict[str, object]:
         read_json(CORE_MEDIATED_RELEASE_JSON),
         read_json(CORE_RELEASE_ABLATION_JSON),
         read_json(CORE_HEALTH_CALIBRATED_JSON),
+        read_json(CROSS_LISTENER_TRANSPORT_JSON),
         read_json(ACTION_DECODER_ABLATION_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),

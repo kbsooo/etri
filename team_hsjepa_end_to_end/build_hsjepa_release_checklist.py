@@ -46,6 +46,7 @@ DECODER_BOUNDARY_TOMOGRAPHY_JSON = ROOT / "sleep_competition_adapter" / "outputs
 CORE_MEDIATED_RELEASE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_mediated_action_release" / "core_mediated_action_release_readout.json"
 CORE_RELEASE_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_release_ablation_probe" / "core_release_ablation_probe_readout.json"
 CORE_HEALTH_CALIBRATED_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_health_calibrated_release" / "core_health_calibrated_release_readout.json"
+CROSS_LISTENER_TRANSPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "cross_listener_transport_decoder" / "cross_listener_transport_readout.json"
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -114,6 +115,7 @@ def require_inputs() -> list[dict[str, object]]:
         CORE_MEDIATED_RELEASE_JSON,
         CORE_RELEASE_ABLATION_JSON,
         CORE_HEALTH_CALIBRATED_JSON,
+        CROSS_LISTENER_TRANSPORT_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -175,6 +177,7 @@ def build_checklist() -> dict[str, object]:
     core_mediated_release = read_json(CORE_MEDIATED_RELEASE_JSON)
     core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
     core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
+    cross_listener_transport = read_json(CROSS_LISTENER_TRANSPORT_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -206,6 +209,7 @@ def build_checklist() -> dict[str, object]:
     core_mediated_verdict = core_mediated_release.get("verdict", {})
     core_release_ablation_verdict = core_release_ablation.get("verdict", {})
     core_health_calibrated_verdict = core_health_calibrated.get("verdict", {})
+    cross_listener_verdict = cross_listener_transport.get("verdict", {})
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -476,6 +480,7 @@ def build_checklist() -> dict[str, object]:
                     "action_decoder_ablation_ready_core_mediated_release_leads",
                     "action_decoder_ablation_ready_core_release_ablation_leads",
                     "action_decoder_ablation_ready_core_health_calibrated_leads",
+                    "action_decoder_ablation_ready_cross_listener_transport_leads",
                     "action_decoder_ablation_ready_non_route_leads",
                 }
                 and isinstance(action_ablation_verdict.get("recommended_lb_sensor"), dict)
@@ -621,6 +626,27 @@ def build_checklist() -> dict[str, object]:
                     f"guarded={core_health_calibrated_verdict.get('recommended_lb_candidate')}, "
                     f"big_bet={core_health_calibrated_verdict.get('recommended_big_bet_sensor')}, "
                     f"calibration={core_health_calibrated.get('benchmark_calibration')}"
+                ),
+            ),
+            check(
+                "cross_listener_transport_recorded",
+                cross_listener_transport.get("status") == "cross_listener_transport_ready"
+                and cross_listener_verdict.get("status") == "cross_listener_transport_ready"
+                and isinstance(cross_listener_verdict.get("recommended_lb_sensor"), dict)
+                and isinstance(cross_listener_verdict.get("recommended_big_bet"), dict)
+                and cross_listener_transport.get("negative_sensor", {}).get("file")
+                == "submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_jackpot_f2ab2816_uploadsafe.csv"
+                and any(
+                    isinstance(item, dict)
+                    and item.get("validation", {}).get("upload_safe") is True
+                    and item.get("status") == "upload_safe"
+                    for item in cross_listener_transport.get("ranking", [])
+                ),
+                (
+                    f"status={cross_listener_verdict.get('status')}, "
+                    f"recommended={cross_listener_verdict.get('recommended_lb_sensor')}, "
+                    f"big_bet={cross_listener_verdict.get('recommended_big_bet')}, "
+                    f"negative={cross_listener_transport.get('negative_sensor')}"
                 ),
             ),
             check(
@@ -817,6 +843,7 @@ def build_markdown(result: dict[str, object]) -> str:
             "- HS-JEPA Core is separated from the Sleep Competition Adapter",
             "- HS-JEPA Core/Adapter boundary audit is verified",
             "- Core-health calibrated release uses dataset-free action-health false-positive lift as an adapter release prior",
+            "- Cross-listener transport uses failed listener lift as a boundary calibrator, not as a direct action generator",
             "- the next big bet is replacing public-sensor assignment with an OG-only human-state teacher",
             "",
         ]

@@ -33,6 +33,7 @@ DECODER_BOUNDARY_TOMOGRAPHY_JSON = ROOT / "sleep_competition_adapter" / "outputs
 CORE_MEDIATED_RELEASE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_mediated_action_release" / "core_mediated_action_release_readout.json"
 CORE_RELEASE_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_release_ablation_probe" / "core_release_ablation_probe_readout.json"
 CORE_HEALTH_CALIBRATED_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_health_calibrated_release" / "core_health_calibrated_release_readout.json"
+CROSS_LISTENER_TRANSPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "cross_listener_transport_decoder" / "cross_listener_transport_readout.json"
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 
 REPORT_JSON = OUT / "hsjepa_generality_report.json"
@@ -137,6 +138,12 @@ PORTABILITY_CHECKS = [
         "passed": True,
         "evidence": "The sleep adapter uses the dataset-free action-health false-positive lift as a release prior.",
         "meaning": "Core benchmark behavior is now connected to adapter action release, not only to documentation.",
+    },
+    {
+        "check": "listener_posterior_as_boundary_prior",
+        "passed": True,
+        "evidence": "Cross-listener transport uses listener posterior as a transport calibrator over route/fusion/core-safe actions.",
+        "meaning": "Listener responsibility can be reused as a general action-boundary prior rather than a dataset-specific target head.",
     },
     {
         "check": "remaining_generality_gap",
@@ -254,6 +261,7 @@ def run() -> dict[str, object]:
         CORE_MEDIATED_RELEASE_JSON,
         CORE_RELEASE_ABLATION_JSON,
         CORE_HEALTH_CALIBRATED_JSON,
+        CROSS_LISTENER_TRANSPORT_JSON,
         ACTION_DECODER_ABLATION_JSON,
     ]:
         if not path.exists():
@@ -275,6 +283,7 @@ def run() -> dict[str, object]:
     core_mediated_release = read_json(CORE_MEDIATED_RELEASE_JSON)
     core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
     core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
+    cross_listener_transport = read_json(CROSS_LISTENER_TRANSPORT_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     og_verdict = og_probe.get("verdict", {})
     gap_verdict = assignment_gap.get("verdict", {})
@@ -289,6 +298,7 @@ def run() -> dict[str, object]:
     core_mediated_verdict = core_mediated_release.get("verdict", {})
     core_release_ablation_verdict = core_release_ablation.get("verdict", {})
     core_health_calibrated_verdict = core_health_calibrated.get("verdict", {})
+    cross_listener_verdict = cross_listener_transport.get("verdict", {})
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     portability_checks = [dict(item) for item in PORTABILITY_CHECKS]
     for item in portability_checks:
@@ -323,6 +333,13 @@ def run() -> dict[str, object]:
                 f"{core_health_calibrated_verdict.get('recommended_lb_candidate')}; big-bet "
                 f"{core_health_calibrated_verdict.get('recommended_big_bet_sensor')}; calibration "
                 f"{core_health_calibrated.get('benchmark_calibration')}."
+            )
+        if item["check"] == "listener_posterior_as_boundary_prior":
+            item["evidence"] = (
+                f"Cross-listener transport status {cross_listener_verdict.get('status')}; recommended "
+                f"{cross_listener_verdict.get('recommended_lb_sensor')}; big-bet "
+                f"{cross_listener_verdict.get('recommended_big_bet')}; negative sensor "
+                f"{cross_listener_transport.get('negative_sensor')}."
             )
         if item["check"] == "remaining_generality_gap":
             item["evidence"] = (
@@ -367,6 +384,9 @@ def run() -> dict[str, object]:
                 f"Core-health calibrated release status {core_health_calibrated_verdict.get('status')}; guarded "
                 f"{core_health_calibrated_verdict.get('recommended_lb_candidate')}, pressure sensor "
                 f"{core_health_calibrated_verdict.get('recommended_pressure_sensor')}. "
+                f"Cross-listener transport status {cross_listener_verdict.get('status')}; recommended "
+                f"{cross_listener_verdict.get('recommended_lb_sensor')}, big-bet "
+                f"{cross_listener_verdict.get('recommended_big_bet')}. "
                 f"Action decoder ablation suite status {action_ablation_verdict.get('status')}; recommended "
                 f"{action_ablation_verdict.get('recommended_lb_sensor')}, open big-bet "
                 f"{action_ablation_verdict.get('big_bet_sensor')}."
@@ -441,6 +461,10 @@ def run() -> dict[str, object]:
             "core_health_calibrated_recommended_big_bet_sensor": core_health_calibrated_verdict.get("recommended_big_bet_sensor"),
             "core_health_calibrated_recommended_pressure_sensor": core_health_calibrated_verdict.get("recommended_pressure_sensor"),
             "core_health_calibrated_benchmark_calibration": core_health_calibrated.get("benchmark_calibration"),
+            "cross_listener_transport_status": cross_listener_verdict.get("status"),
+            "cross_listener_transport_recommended_lb_sensor": cross_listener_verdict.get("recommended_lb_sensor"),
+            "cross_listener_transport_recommended_big_bet": cross_listener_verdict.get("recommended_big_bet"),
+            "cross_listener_transport_negative_sensor": cross_listener_transport.get("negative_sensor"),
             "action_decoder_ablation_status": action_ablation_verdict.get("status"),
             "action_decoder_ablation_recommended_lb_sensor": action_ablation_verdict.get("recommended_lb_sensor"),
             "action_decoder_ablation_big_bet_sensor": action_ablation_verdict.get("big_bet_sensor"),
@@ -459,6 +483,7 @@ def run() -> dict[str, object]:
             "The core-mediated release module now routes those real cells through the generic HS-JEPA Core API, which is the cleanest test of whether the architecture itself can release adapter actions. "
             "The core-release ablation probe then removes listener responsibility, action-health, and invariant energy on those same real cells, turning HS-JEPA modules into falsifiable constraints rather than names. "
             "The core-health calibrated release module now uses dataset-free action-health false-positive lift as a release prior, which is the first direct bridge from generic core benchmark behavior to real adapter submission candidates. "
+            "The cross-listener transport decoder then reuses a failed direct target-listener lift as a transport calibrator over route/fusion/core-safe cells, making listener responsibility a boundary prior rather than a direct action generator. "
             "The action-decoder ablation suite ranks these alternatives against plain route-first, toxicity-first, support-first, and route-toxicity fusion alternatives. "
             "It remains an adapter-side LB sensor until public/private observation proves it. "
             "The next portable objective should preserve teacher-transfer strength while lifting subject/date/order held-out stress "
