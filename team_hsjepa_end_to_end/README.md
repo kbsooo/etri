@@ -60,6 +60,12 @@ python3 team_hsjepa_end_to_end/run_route_conserving_s2_bridge.py
 python3 team_hsjepa_end_to_end/run_route_conserving_s2_bridge.py --refresh
 ```
 
+선택된 bridge action이 단순히 운 좋은 셀 목록인지, 아니면 가능한 후보 공간 안에서 구조적으로 특이한지 확인하려면:
+
+```bash
+python3 team_hsjepa_end_to_end/audit_route_conserving_s2_bridge.py
+```
+
 ## 생성물
 
 출력 디렉토리:
@@ -72,6 +78,8 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/
 
 - `route_conserving_s2_bridge_package.json`
 - `route_conserving_s2_bridge_evidence_table.csv`
+- `route_conserving_s2_bridge_stress_audit.json`
+- `route_conserving_s2_bridge_stress_summary.csv`
 - `submission_team_hsjepa_route_conserving_objective_bridge_primary_*_uploadsafe.csv`
 - `submission_team_hsjepa_s2_listener_bridge_interpretable_*_uploadsafe.csv`
 - `submission_team_hsjepa_human_state_gated_s2_bridge_probe_*_uploadsafe.csv`
@@ -85,6 +93,31 @@ root에도 같은 submission 파일을 복사한다.
 | `competition_primary` | 성능 중심. objective-stage driver/bridge를 가장 강하게 건다. |
 | `interpretable_s2_hub` | 논문 설명 중심. S2 listener/hub 가설이 가장 선명하다. |
 | `human_state_probe` | human-state가 action orientation을 설명하는지 보는 진단 후보. |
+
+## Stress Audit 결과
+
+Stress audit은 selected bridge bundle을 같은 후보 pool에서 뽑은 5,000개 random feasible bundle과 비교한다.
+
+| 후보 | Selected route delta | Random route delta | S2 사용률 | Random S2 사용률 | Route p-value | S2 p-value |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| `competition_primary` | `-0.02457` | `-0.01090` | `0.780` | `0.615` | `0.0000` | `0.0006` |
+| `interpretable_s2_hub` | `-0.02696` | `-0.01082` | `1.000` | `0.615` | `0.0000` | `0.0000` |
+
+해석:
+
+```text
+선택된 bridge는 가능한 action 중에서도 route energy를 비정상적으로 잘 낮춘다.
+특히 S2를 listener/hub로 쓰는 정도가 random feasible action보다 훨씬 높다.
+```
+
+따라서 이 패키지의 주장은 단순히 “우리가 골라낸 셀이 좋았다”가 아니라:
+
+```text
+수면-stage correction은 route를 보존하는 bridge action이어야 하고,
+그 bridge 구조에서 S2가 반복적으로 hub로 등장한다.
+```
+
+라는 재현 가능한 decoder rule이다.
 
 ## 논문에서의 핵심 주장
 

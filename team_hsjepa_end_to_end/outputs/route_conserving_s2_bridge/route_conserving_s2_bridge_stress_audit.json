@@ -1,0 +1,92 @@
+{
+  "audit": "Route-Conserving S2 Bridge Stress Audit",
+  "iterations": 5000,
+  "seed": 20260610,
+  "summary_path": "/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/route_conserving_s2_bridge_stress_summary.csv",
+  "audits": {
+    "route_conserving_objective_bridge_primary": {
+      "name": "route_conserving_objective_bridge_primary",
+      "selected_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/stage_bridge_conservation_solver/stage_bridge_stagebridge_jackpot_selected.csv",
+      "candidate_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/stage_bridge_conservation_solver/stage_bridge_stagebridge_jackpot_candidates.csv",
+      "actual": {
+        "bundles": 41,
+        "rows": 41,
+        "cells": 82,
+        "mean_route_energy_delta": -0.024566448751053738,
+        "median_route_energy_delta": -0.0246091729814659,
+        "negative_energy_rate": 0.926829268292683,
+        "s2_any_rate": 0.7804878048780488,
+        "s2_bridge_rate": 0.4634146341463415,
+        "same_direction_rate": 0.6829268292682927,
+        "mean_public_utility": 0.0007004389542784755,
+        "mean_solver_score": 0.0018402736708920296,
+        "max_driver_h088_alignment": 0.6188571428571429
+      },
+      "random_unique_row_null": {
+        "p_null_energy_le_actual": 0.0,
+        "p_null_solver_ge_actual": 0.0,
+        "p_null_s2_any_ge_actual": 0.0006,
+        "p_null_negative_rate_ge_actual": 0.0004,
+        "p_null_utility_ge_actual": 0.0032,
+        "null_mean_route_energy_delta_mean": -0.010897344815614274,
+        "null_mean_route_energy_delta_std": 0.0014155472586532966,
+        "null_s2_any_rate_mean": 0.6149268292682926,
+        "null_negative_energy_rate_mean": 0.7821804878048779
+      },
+      "within_driver_rank": {
+        "mean_energy_rank_pct": 0.18585713420549052,
+        "median_energy_rank_pct": 0.08695652173913043,
+        "mean_solver_rank_pct": 0.17308937174525718,
+        "median_solver_rank_pct": 0.07692307692307693,
+        "mean_s2hub_rank_pct": null
+      },
+      "interpretation": {
+        "route_energy": "lower p_null_energy_le_actual means selected bundles are unusually route-conserving",
+        "s2_hub": "lower p_null_s2_any_ge_actual means selected bundles use S2 more than random feasible bundles",
+        "rank_pct": "lower rank percent means chosen bridge is near the top among feasible choices for the same driver"
+      }
+    },
+    "s2_listener_bridge_interpretable": {
+      "name": "s2_listener_bridge_interpretable",
+      "selected_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/s2hub_bridge_solver/s2hub_s2hub_jackpot_selected.csv",
+      "candidate_path": "/Users/kbsoo/Downloads/cl2/paper_hsjepa_core/outputs/s2hub_bridge_solver/s2hub_s2hub_jackpot_raw_candidates.csv",
+      "actual": {
+        "bundles": 34,
+        "rows": 34,
+        "cells": 68,
+        "mean_route_energy_delta": -0.026963696713485433,
+        "median_route_energy_delta": -0.025327361963381652,
+        "negative_energy_rate": 1.0,
+        "s2_any_rate": 1.0,
+        "s2_bridge_rate": 0.6470588235294118,
+        "same_direction_rate": 0.7941176470588235,
+        "mean_public_utility": 0.0007325141798896393,
+        "mean_solver_score": 0.0020116441042211967,
+        "max_driver_h088_alignment": 0.6188571428571429
+      },
+      "random_unique_row_null": {
+        "p_null_energy_le_actual": 0.0,
+        "p_null_solver_ge_actual": 0.0,
+        "p_null_s2_any_ge_actual": 0.0,
+        "p_null_negative_rate_ge_actual": 0.0,
+        "p_null_utility_ge_actual": 0.0848,
+        "null_mean_route_energy_delta_mean": -0.010824151968924065,
+        "null_mean_route_energy_delta_std": 0.0017063746598314175,
+        "null_s2_any_rate_mean": 0.6150764705882353,
+        "null_negative_energy_rate_mean": 0.7825294117647058
+      },
+      "within_driver_rank": {
+        "mean_energy_rank_pct": 0.1810514283244462,
+        "median_energy_rank_pct": 0.09347826086956522,
+        "mean_solver_rank_pct": 0.14927800353951248,
+        "median_solver_rank_pct": 0.07692307692307693,
+        "mean_s2hub_rank_pct": 0.14377443847712387
+      },
+      "interpretation": {
+        "route_energy": "lower p_null_energy_le_actual means selected bundles are unusually route-conserving",
+        "s2_hub": "lower p_null_s2_any_ge_actual means selected bundles use S2 more than random feasible bundles",
+        "rank_pct": "lower rank percent means chosen bridge is near the top among feasible choices for the same driver"
+      }
+    }
+  }
+}

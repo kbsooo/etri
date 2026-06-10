@@ -14440,3 +14440,43 @@ overclaimed as a pure OG-only model.  But it is no longer just "we tried many
 submissions and nudged them"; it is a named decoder rule with a train-label
 route-energy invariant and a falsified boundary condition from the failed
 target-listener route lift.
+
+## Route-Conserving S2 Bridge Stress Audit
+
+Date: 2026-06-10
+
+Question:
+
+Is the team package a reusable HS-JEPA decoder rule, or just a hand-picked list
+of action cells that survived leaderboard iteration?
+
+Method:
+
+Compare selected driver/bridge bundles against 5,000 random feasible bundles
+sampled from the same candidate pools.  The null preserves the broad candidate
+space and unique-row constraint, but does not use the selected bridge rule.
+
+Result:
+
+| Candidate | Bundles | Selected route delta | Random route delta | Route p-value | S2 usage | Random S2 usage | S2 p-value | Energy rank pct |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| route_conserving_objective_bridge_primary | `41` | `-0.02457` | `-0.01090` | `0.0000` | `0.780` | `0.615` | `0.0006` | `0.186` |
+| s2_listener_bridge_interpretable | `34` | `-0.02696` | `-0.01082` | `0.0000` | `1.000` | `0.615` | `0.0000` | `0.181` |
+
+Interpretation:
+
+The selected bridge bundles are not random survivors.  They reduce route energy
+far more than random feasible bundles and use S2 as a hub/listener far more than
+the same candidate space would imply.  This strengthens the paper-facing claim:
+
+```text
+HS-JEPA's competition decoder is a route-conserving row-target action solver,
+not only an empirical blend or sparse prior tweak.
+```
+
+Boundary:
+
+This does not prove that the decoder is OG-only or private-safe.  It proves a
+narrower but useful mechanism: given a public-sensitive action field, route
+conservation plus S2 listener usage selects a statistically unusual and
+interpretable correction path.

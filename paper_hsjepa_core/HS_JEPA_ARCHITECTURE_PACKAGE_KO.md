@@ -172,6 +172,15 @@ flowchart TD
 
 S2는 전체 objective factor가 아니라, public-sensitive S-stage listener 또는 utility hub로 보는 것이 맞다.
 
+Stress audit에서도 같은 결론이 나온다.
+
+| 후보 | Selected route delta | Random route delta | S2 사용률 | Random S2 사용률 | Route p-value | S2 p-value |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Objective Bridge Primary | `-0.02457` | `-0.01090` | `0.780` | `0.615` | `0.0000` | `0.0006` |
+| S2 Listener Bridge | `-0.02696` | `-0.01082` | `1.000` | `0.615` | `0.0000` | `0.0000` |
+
+즉 selected bridge action은 가능한 후보 공간 안에서도 route energy를 비정상적으로 잘 낮추고, S2를 hub로 쓰는 경향도 random feasible action보다 훨씬 강하다.
+
 ### 발견 5. OG human-state는 row보다 target/cell orientation을 잘 설명한다
 
 S2-hub human-state distillation:
@@ -229,6 +238,12 @@ python3 team_hsjepa_end_to_end/run_route_conserving_s2_bridge.py
 
 ```bash
 python3 team_hsjepa_end_to_end/run_route_conserving_s2_bridge.py --refresh
+```
+
+Route-Conserving S2 Bridge가 단순 셀 선택이 아니라 후보 공간 대비 특이한 decoder rule인지 검증:
+
+```bash
+python3 team_hsjepa_end_to_end/audit_route_conserving_s2_bridge.py
 ```
 
 내부 모듈을 개별 재현하려면:

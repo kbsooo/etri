@@ -1,0 +1,3 @@
+name,bundles,mean_route_energy_delta,null_mean_route_energy_delta,p_null_energy_le_actual,s2_any_rate,null_s2_any_rate,p_null_s2_any_ge_actual,negative_energy_rate,null_negative_energy_rate,mean_energy_rank_pct,mean_solver_rank_pct,mean_s2hub_rank_pct
+route_conserving_objective_bridge_primary,41,-0.024566448751053738,-0.010897344815614274,0.0,0.7804878048780488,0.6149268292682926,0.0006,0.926829268292683,0.7821804878048779,0.18585713420549052,0.17308937174525718,
+s2_listener_bridge_interpretable,34,-0.026963696713485433,-0.010824151968924065,0.0,1.0,0.6150764705882353,0.0,1.0,0.7825294117647058,0.1810514283244462,0.14927800353951248,0.14377443847712387

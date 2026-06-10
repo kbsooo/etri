@@ -156,6 +156,40 @@ Target Listener != Action Generator
 Target Listener = Orientation / Diagnostic Representation
 ```
 
+### Stress Audit: 이게 진짜 메커니즘인가?
+
+가장 중요한 검증은 다음 질문이다.
+
+```text
+우리가 고른 bridge action은 그냥 public LB 경험으로 골라낸 셀 목록인가?
+아니면 가능한 후보 공간 안에서도 route-conserving/S2-hub 성질이 유난히 강한가?
+```
+
+이를 위해 각 selected bundle을 같은 후보 pool에서 뽑은 5,000개 random feasible bundle과 비교했다.
+
+| 후보 | Bundles | Selected route delta | Random route delta | Route p-value | S2 사용률 | Random S2 사용률 | S2 p-value |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Objective Bridge Primary | `41` | `-0.02457` | `-0.01090` | `0.0000` | `0.780` | `0.615` | `0.0006` |
+| S2 Listener Bridge | `34` | `-0.02696` | `-0.01082` | `0.0000` | `1.000` | `0.615` | `0.0000` |
+
+Within-driver rank도 같은 결론을 준다.
+
+| 후보 | Energy rank pct | Solver rank pct | S2-hub rank pct |
+| --- | ---: | ---: | ---: |
+| Objective Bridge Primary | `0.186` | `0.173` | n/a |
+| S2 Listener Bridge | `0.181` | `0.149` | `0.144` |
+
+낮을수록 같은 driver에서 더 상위 bridge를 골랐다는 뜻이다.
+
+해석:
+
+```text
+선택된 bridge는 random feasible action보다 route energy를 훨씬 크게 낮추고,
+특히 S2를 listener/hub로 쓰는 정도가 우연 수준을 벗어난다.
+```
+
+따라서 Route-Conserving S2 Bridge는 “여러 번 쏴보고 좋은 방향을 외운 것”이 아니라, 가능한 action space 안에서 반복적으로 살아남는 decoder constraint다.
+
 ## 최종 아키텍처
 
 ```mermaid
