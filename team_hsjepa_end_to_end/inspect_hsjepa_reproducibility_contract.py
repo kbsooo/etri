@@ -76,6 +76,7 @@ MODULES = [
     "team_hsjepa_end_to_end/build_hsjepa_architecture_readiness_report.py",
     "team_hsjepa_end_to_end/build_hsjepa_paper_method_packet.py",
     "team_hsjepa_end_to_end/build_hsjepa_pipeline_manifest.py",
+    "team_hsjepa_end_to_end/build_hsjepa_release_checklist.py",
 ]
 
 GENERATED_OUTPUTS = [
@@ -96,6 +97,8 @@ GENERATED_OUTPUTS = [
     ("team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_paper_method_packet_ko.md", False),
     ("team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_pipeline_manifest.json", False),
     ("team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_pipeline_manifest_ko.md", False),
+    ("team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_release_checklist.json", False),
+    ("team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_release_checklist_ko.md", False),
 ]
 
 

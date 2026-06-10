@@ -47,6 +47,7 @@ public-sensitive driver action
 - S2 listener usage: `1.000` vs null `0.615`
 - Package validation passed: `True`
 - Architecture readiness: `paper_ready_with_boundary` (`7/7` gates)
+- Release checklist: `release_ready_with_boundary` (`19/19` checks)
 
 ## Paper Claim
 
@@ -118,4 +119,12 @@ OG 데이터에서 public sensor, latent/context, route decoder, submission, pap
 
 ```text
 team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_pipeline_manifest_ko.md
+```
+
+## Release Checklist
+
+팀 공유/논문 발표/제출 논의용 최종 release gate:
+
+```text
+team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_release_checklist_ko.md
 ```

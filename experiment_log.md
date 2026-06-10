@@ -14797,3 +14797,51 @@ OG raw context + public LB sensor
 The boundary is still explicit: HS-JEPA's reusable mechanism is the
 route-conserving S2 bridge decoder; the current competition package still uses
 a public-LB sensor for sparse driver action assignment.
+
+## HS-JEPA Release Checklist
+
+Date: 2026-06-10
+
+Question:
+
+Can the HS-JEPA package be released to teammates as a role-based, paper-facing
+architecture package instead of a historical-version experiment bundle?
+
+Added artifacts:
+
+- `team_hsjepa_end_to_end/build_hsjepa_release_checklist.py`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_release_checklist_ko.md`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_release_checklist.json`
+
+The full runner now also creates the release checklist:
+
+```bash
+python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py
+```
+
+What this checks:
+
+- required package reports exist
+- validation, reproducibility contract, and readiness gates pass
+- public breakthrough is large enough to justify the package historically
+- route-conserving S2 bridge evidence survives random feasible bundle stress
+- human-state is kept inside its proven boundary
+- generated submissions use role-based names rather than historical version names
+- all packaged submissions are upload-safe
+- the method packet and pipeline manifest are presentable
+- the public-sensor boundary is explicit and honest
+
+Interpretation:
+
+This does not create a new leaderboard candidate.  It locks the current
+paper-facing claim into a reproducible release gate:
+
+```text
+HS-JEPA is release-ready only when the score evidence, route-conserving
+mechanism, S2 listener/hub behavior, human-state boundary, and public-sensor
+contract all agree.
+```
+
+This is the current answer to the "무회전 슛" concern: the reusable technique is
+not a list of historical trial adjustments, but a gated decoder rule that can be
+rerun and rejected if its mechanism evidence disappears.

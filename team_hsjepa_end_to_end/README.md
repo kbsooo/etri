@@ -54,8 +54,8 @@ target correction은 route manifold를 보존해야 한다.
 python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py
 ```
 
-이 명령은 package 생성, stress audit, claim/evidence validation, reproducibility contract, architecture readiness gate, paper method packet, pipeline manifest, 팀 핸드오프 리포트 생성을 모두 수행한다.
-또한 OG raw input, public-LB sensor, generated action artifact를 분리한 뒤, 이 패키지를 논문/팀 공유용 아키텍처 주장으로 말해도 되는지 자동 판정하고 논문 초안에 붙일 수 있는 method 설명과 OG-to-submission pipeline을 만든다.
+이 명령은 package 생성, stress audit, claim/evidence validation, reproducibility contract, architecture readiness gate, paper method packet, pipeline manifest, release checklist, 팀 핸드오프 리포트 생성을 모두 수행한다.
+또한 OG raw input, public-LB sensor, generated action artifact를 분리한 뒤, 이 패키지를 논문/팀 공유용 아키텍처 주장으로 말해도 되는지 자동 판정하고 논문 초안에 붙일 수 있는 method 설명, OG-to-submission pipeline, 최종 release gate를 만든다.
 
 전체 dependency까지 재생성이 필요하면:
 
@@ -114,6 +114,8 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/
 - `hsjepa_paper_method_packet.json`
 - `hsjepa_pipeline_manifest_ko.md`
 - `hsjepa_pipeline_manifest.json`
+- `hsjepa_release_checklist_ko.md`
+- `hsjepa_release_checklist.json`
 - `submission_team_hsjepa_route_conserving_objective_bridge_primary_*_uploadsafe.csv`
 - `submission_team_hsjepa_s2_listener_bridge_interpretable_*_uploadsafe.csv`
 - `submission_team_hsjepa_human_state_gated_s2_bridge_probe_*_uploadsafe.csv`
@@ -182,6 +184,12 @@ OG 데이터부터 최종 제출/논문 산출물까지의 역할 기반 pipelin
 
 ```text
 team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_pipeline_manifest_ko.md
+```
+
+팀 공유/논문 발표/제출 논의용 최종 release checklist:
+
+```text
+team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_release_checklist_ko.md
 ```
 
 ## 논문에서의 핵심 주장

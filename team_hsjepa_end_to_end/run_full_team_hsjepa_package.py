@@ -11,7 +11,8 @@ historical experiment version names.  It executes:
 5. Architecture readiness report.
 6. Paper method packet.
 7. Pipeline manifest.
-8. A compact handoff report for paper and competition discussion.
+8. Release checklist.
+9. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -45,6 +46,8 @@ PAPER_PACKET_MD = OUT / "hsjepa_paper_method_packet_ko.md"
 PAPER_PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 PIPELINE_MD = OUT / "hsjepa_pipeline_manifest_ko.md"
 PIPELINE_JSON = OUT / "hsjepa_pipeline_manifest.json"
+RELEASE_CHECKLIST_MD = OUT / "hsjepa_release_checklist_ko.md"
+RELEASE_CHECKLIST_JSON = OUT / "hsjepa_release_checklist.json"
 
 
 def run_command(args: list[str]) -> dict[str, object]:
@@ -78,6 +81,7 @@ def build_handoff(
     validation: dict[str, object],
     stress: pd.DataFrame,
     readiness: dict[str, object],
+    release: dict[str, object],
 ) -> str:
     packaged = package["packaged_submissions"]
     mechanism = validation["mechanism_evidence"]
@@ -144,6 +148,7 @@ def build_handoff(
             f"- S2 listener usage: `{mechanism['s2_listener_s2_any_rate']:.3f}` vs null `{mechanism['s2_listener_null_s2_any_rate']:.3f}`",
             f"- Package validation passed: `{validation['passed']}`",
             f"- Architecture readiness: `{readiness['status']}` (`{readiness['passed_gates']}/{readiness['total_gates']}` gates)",
+            f"- Release checklist: `{release['status']}` (`{release['passed_checks']}/{release['total_checks']}` checks)",
             "",
             "## Paper Claim",
             "",
@@ -217,6 +222,14 @@ def build_handoff(
             "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_pipeline_manifest_ko.md",
             "```",
             "",
+            "## Release Checklist",
+            "",
+            "팀 공유/논문 발표/제출 논의용 최종 release gate:",
+            "",
+            "```text",
+            "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_release_checklist_ko.md",
+            "```",
+            "",
         ]
     )
 
@@ -230,6 +243,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(HERE / "build_hsjepa_architecture_readiness_report.py")],
         [sys.executable, str(HERE / "build_hsjepa_paper_method_packet.py")],
         [sys.executable, str(HERE / "build_hsjepa_pipeline_manifest.py")],
+        [sys.executable, str(HERE / "build_hsjepa_release_checklist.py")],
     ]
     if refresh:
         commands[0].append("--refresh")
@@ -241,8 +255,9 @@ def run(refresh: bool = False) -> dict[str, object]:
     package = read_json(PACKAGE_JSON)
     validation = read_json(VALIDATION_JSON)
     readiness = read_json(READINESS_JSON)
+    release = read_json(RELEASE_CHECKLIST_JSON)
     stress = pd.read_csv(STRESS_CSV)
-    handoff_md = build_handoff(package, validation, stress, readiness)
+    handoff_md = build_handoff(package, validation, stress, readiness, release)
 
     handoff = {
         "package": "Route-Conserving S2 Bridge HS-JEPA",
@@ -260,9 +275,13 @@ def run(refresh: bool = False) -> dict[str, object]:
         "paper_method_packet_json": str(PAPER_PACKET_JSON.resolve()),
         "pipeline_manifest_md": str(PIPELINE_MD.resolve()),
         "pipeline_manifest_json": str(PIPELINE_JSON.resolve()),
+        "release_checklist_md": str(RELEASE_CHECKLIST_MD.resolve()),
+        "release_checklist_json": str(RELEASE_CHECKLIST_JSON.resolve()),
         "validation_passed": bool(validation["passed"]),
         "architecture_readiness_status": str(readiness["status"]),
         "architecture_readiness_gates": f"{readiness['passed_gates']}/{readiness['total_gates']}",
+        "release_status": str(release["status"]),
+        "release_checks": f"{release['passed_checks']}/{release['total_checks']}",
         "mechanism_evidence": validation["mechanism_evidence"],
         "submission_files": {
             role: item["submission_file"]
