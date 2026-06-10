@@ -3,6 +3,79 @@
   "status": "big_bet_queue_ready",
   "bets": [
     {
+      "id": "frontier_trajectory_active_silence_solver",
+      "name": "Frontier-Trajectory Active-Silence Solver",
+      "worldview": "The public frontier is a noisy descent trajectory; useful HS-JEPA actions continue the positive frontier tangent while actively silencing post-frontier toxic branches.",
+      "core_modules_exercised": [
+        "listener_responsibility",
+        "action_health_decoder",
+        "public_private_equation",
+        "active_silence_policy",
+        "anti_shortcut_validation"
+      ],
+      "adapter_move": "Treat H012->H042->H057 as the positive row-target path, treat post-frontier failures as a silence/toxicity field, and release only cells aligned with the successful path and anti-aligned with the bad tangent.",
+      "why_big": "If this wins LB, HS-JEPA gains a paper-level decoder claim: silence is not abstention noise but an action-health representation learned from failed public trajectories.",
+      "expected_public_lb_delta_if_true": -0.016,
+      "latest_probe_status": "candidate_ready",
+      "latest_probe_evidence": {
+        "recommended_variant": "positive_path_overshoot_sensor",
+        "ranking": [
+          {
+            "variant": "positive_path_overshoot_sensor",
+            "score": 1.0396138721965795,
+            "cells": 38,
+            "frontier_cosine": 0.579302782235591,
+            "bad_tangent_cosine": -0.3503830116408991,
+            "upload_safe": true
+          },
+          {
+            "variant": "active_silence_inversion",
+            "score": 0.9167632419539071,
+            "cells": 36,
+            "frontier_cosine": 0.5850624557050857,
+            "bad_tangent_cosine": -0.3652112864083354,
+            "upload_safe": true
+          },
+          {
+            "variant": "frontier_continuation_gate",
+            "score": 0.8944825716175114,
+            "cells": 44,
+            "frontier_cosine": 0.5443627041327709,
+            "bad_tangent_cosine": -0.32761395434357604,
+            "upload_safe": true
+          },
+          {
+            "variant": "frontier_silence_boundary_probe",
+            "score": 0.37370071739004024,
+            "cells": 18,
+            "frontier_cosine": 0.18500199660847588,
+            "bad_tangent_cosine": 0.08027124308626875,
+            "upload_safe": true
+          }
+        ],
+        "negative_tangent": {
+          "anchor_count": 26,
+          "first_mode_variance": 0.9628550254007645,
+          "top5_cumulative_variance": 0.9946826859769906,
+          "singular_values": [
+            3.9248700923283506,
+            0.42736505936128066,
+            0.3891499257724587,
+            0.3356759829624167,
+            0.24990018982496587,
+            0.16724030897803246,
+            0.13288948751368476,
+            0.11300586024023068
+          ],
+          "mean_bad_tangent_coord": 0.7500068848733459,
+          "min_bad_tangent_coord": -0.7172294112358857,
+          "max_bad_tangent_coord": 0.9995708377235418
+        },
+        "cell_count": 3355
+      },
+      "kill_criterion": "Positive-path, anti-silence, continuation, and boundary variants all fail public LB, meaning the H012->H057 trajectory was a local leaderboard path rather than an action-grade hidden-state descent direction."
+    },
+    {
       "id": "anti_listener_toxicity_equation_solver",
       "name": "Anti-Listener Toxicity Equation Solver",
       "worldview": "Listener responsibility is not an action generator; failed listener releases define a toxic direction that must be inverted or vetoed by action-health.",
@@ -1260,5 +1333,5 @@
       "kill_criterion": "Toxicity score only recovers known public failures, fails hard-world anchors, or does not separate matched local nulls."
     }
   ],
-  "count": 21
+  "count": 22
 }

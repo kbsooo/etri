@@ -32,19 +32,20 @@ historical experiment version names.  It executes:
 26. Mixture-listener responsibility solver.
 27. Public/private subset tomography solver.
 28. Anti-listener toxicity equation solver.
-29. Listener-invariant contrastive probe.
-30. Private-safe toxicity probe.
-31. Hard-world toxicity factorization probe.
-32. Factorized toxicity decoder candidate.
-33. Factorized toxicity decoder stress audit.
-34. Action decoder ablation suite.
-35. Generality report.
-36. Sleep competition adapter report and big-bet queue.
-37. Core/adapter boundary audit.
-38. Paper method packet.
-39. Pipeline manifest.
-40. Release checklist.
-41. A compact handoff report for paper and competition discussion.
+29. Frontier-trajectory active-silence solver.
+30. Listener-invariant contrastive probe.
+31. Private-safe toxicity probe.
+32. Hard-world toxicity factorization probe.
+33. Factorized toxicity decoder candidate.
+34. Factorized toxicity decoder stress audit.
+35. Action decoder ablation suite.
+36. Generality report.
+37. Sleep competition adapter report and big-bet queue.
+38. Core/adapter boundary audit.
+39. Paper method packet.
+40. Pipeline manifest.
+41. Release checklist.
+42. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -149,6 +150,12 @@ ANTI_LISTENER_TOXICITY_MD = (
 ANTI_LISTENER_TOXICITY_JSON = (
     ADAPTER_OUT / "anti_listener_toxicity_equation_solver" / "anti_listener_toxicity_equation_readout.json"
 )
+FRONTIER_TRAJECTORY_SILENCE_MD = (
+    ADAPTER_OUT / "frontier_trajectory_silence_solver" / "frontier_trajectory_silence_readout_ko.md"
+)
+FRONTIER_TRAJECTORY_SILENCE_JSON = (
+    ADAPTER_OUT / "frontier_trajectory_silence_solver" / "frontier_trajectory_silence_readout.json"
+)
 ACTION_DECODER_ABLATION_MD = ADAPTER_OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite_ko.md"
 ACTION_DECODER_ABLATION_JSON = ADAPTER_OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_MD = ADAPTER_OUT / "listener_invariant_contrastive_probe_ko.md"
@@ -221,6 +228,7 @@ def build_handoff(
     mixture_listener_responsibility: dict[str, object],
     public_private_subset_tomography: dict[str, object],
     anti_listener_toxicity: dict[str, object],
+    frontier_trajectory_silence: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -269,6 +277,11 @@ def build_handoff(
     anti_listener_variant = anti_listener_toxicity.get("variants", {}).get(str(anti_listener_recommended), {})
     anti_listener_metrics = anti_listener_variant.get("metrics", {}) if isinstance(anti_listener_variant, dict) else {}
     anti_listener_submission = anti_listener_variant.get("submission", {}) if isinstance(anti_listener_variant, dict) else {}
+    frontier_silence_verdict = frontier_trajectory_silence.get("verdict", {})
+    frontier_silence_recommended = frontier_silence_verdict.get("recommended_variant")
+    frontier_silence_variant = frontier_trajectory_silence.get("variants", {}).get(str(frontier_silence_recommended), {})
+    frontier_silence_metrics = frontier_silence_variant.get("metrics", {}) if isinstance(frontier_silence_variant, dict) else {}
+    frontier_silence_submission = frontier_silence_variant.get("submission", {}) if isinstance(frontier_silence_variant, dict) else {}
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -365,6 +378,7 @@ def build_handoff(
             f"- Mixture-listener responsibility solver: `{mixture_listener_verdict.get('status')}`",
             f"- Public/private subset tomography solver: `{subset_tomography_verdict.get('status')}`",
             f"- Anti-listener toxicity equation solver: `{anti_listener_verdict.get('status')}`",
+            f"- Frontier-trajectory active-silence solver: `{frontier_silence_verdict.get('status')}`",
             f"- Action decoder ablation suite: `{action_ablation_verdict.get('status')}`",
             f"- Listener-invariant contrastive probe: `{contrastive_verdict.get('status')}`",
             f"- Private-safe toxicity probe: `{toxicity_verdict.get('status')}`",
@@ -405,6 +419,7 @@ def build_handoff(
             "sleep_competition_adapter/outputs/mixture_listener_responsibility_solver/mixture_listener_responsibility_readout_ko.md",
             "sleep_competition_adapter/outputs/public_private_subset_tomography_solver/public_private_subset_tomography_readout_ko.md",
             "sleep_competition_adapter/outputs/anti_listener_toxicity_equation_solver/anti_listener_toxicity_equation_readout_ko.md",
+            "sleep_competition_adapter/outputs/frontier_trajectory_silence_solver/frontier_trajectory_silence_readout_ko.md",
             "sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite_ko.md",
             "sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md",
             "sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md",
@@ -452,6 +467,7 @@ def build_handoff(
             f"- Mixture-listener responsibility: recommended `{mixture_recommended}`, file `{mixture_recommended_submission.get('submission_file')}`, mixture LOO `{mixture_listener_responsibility.get('mixture_fit', {}).get('loo_corr')}`, scalar LOO `{mixture_listener_responsibility.get('mixture_fit', {}).get('scalar_fit', {}).get('loo_corr')}`, changed cells `{mixture_recommended_submission.get('changed_cells')}`",
             f"- Public/private subset tomography: recommended `{subset_tomography_recommended}`, file `{subset_tomography_submission.get('submission_file')}`, source LOO `{public_private_subset_tomography.get('source_fit', {}).get('loo_corr')}`, changed cells `{subset_tomography_submission.get('changed_cells')}`, predicted delta `{subset_tomography_metrics.get('sum_predicted_public_delta')}`",
             f"- Anti-listener toxicity equation: recommended `{anti_listener_recommended}`, file `{anti_listener_submission.get('submission_file')}`, source LOO `{anti_listener_toxicity.get('source_fit', {}).get('loo_corr')}`, changed cells `{anti_listener_submission.get('changed_cells')}`, predicted delta `{anti_listener_metrics.get('sum_predicted_public_delta')}`",
+            f"- Frontier-trajectory active-silence: recommended `{frontier_silence_recommended}`, file `{frontier_silence_submission.get('submission_file')}`, frontier cosine `{frontier_silence_metrics.get('frontier_cosine')}`, bad-tangent cosine `{frontier_silence_metrics.get('bad_tangent_cosine')}`, changed cells `{frontier_silence_submission.get('changed_cells')}`",
             f"- Action decoder ablation: recommended `{action_ablation_verdict.get('recommended_lb_sensor')}`, big bet `{action_ablation_verdict.get('big_bet_sensor')}`",
             f"- Listener-invariant boundary: listener-route rho `{contrastive_verdict.get('mean_listener_route_spearman'):.4f}`, contrastive overlap `{contrastive_verdict.get('mean_contrastive_overlap_rate'):.4f}`",
             f"- Private-safe toxicity boundary: mean LOO AUC `{toxicity_verdict.get('mean_loo_bad_anchor_auc'):.4f}`, worst LOO AUC `{toxicity_verdict.get('worst_loo_bad_anchor_auc'):.4f}`",
@@ -602,6 +618,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "mixture_listener_responsibility_solver.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "public_private_subset_tomography_solver.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "anti_listener_toxicity_equation_solver.py")],
+        [sys.executable, str(ROOT / "sleep_competition_adapter" / "frontier_trajectory_silence_solver.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "listener_invariant_contrastive_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "private_safe_toxicity_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "hardworld_toxicity_factorization_probe.py")],
@@ -653,6 +670,7 @@ def run(refresh: bool = False) -> dict[str, object]:
     mixture_listener_responsibility = read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON)
     public_private_subset_tomography = read_json(PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON)
     anti_listener_toxicity = read_json(ANTI_LISTENER_TOXICITY_JSON)
+    frontier_trajectory_silence = read_json(FRONTIER_TRAJECTORY_SILENCE_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -694,6 +712,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         mixture_listener_responsibility,
         public_private_subset_tomography,
         anti_listener_toxicity,
+        frontier_trajectory_silence,
         action_decoder_ablation,
         contrastive_probe,
         private_toxicity_probe,
@@ -728,6 +747,11 @@ def run(refresh: bool = False) -> dict[str, object]:
     anti_listener_variant = anti_listener_toxicity.get("variants", {}).get(str(anti_listener_recommended), {})
     anti_listener_metrics = anti_listener_variant.get("metrics", {}) if isinstance(anti_listener_variant, dict) else {}
     anti_listener_submission = anti_listener_variant.get("submission", {}) if isinstance(anti_listener_variant, dict) else {}
+    frontier_silence_verdict = frontier_trajectory_silence.get("verdict", {})
+    frontier_silence_recommended = frontier_silence_verdict.get("recommended_variant")
+    frontier_silence_variant = frontier_trajectory_silence.get("variants", {}).get(str(frontier_silence_recommended), {})
+    frontier_silence_metrics = frontier_silence_variant.get("metrics", {}) if isinstance(frontier_silence_variant, dict) else {}
+    frontier_silence_submission = frontier_silence_variant.get("submission", {}) if isinstance(frontier_silence_variant, dict) else {}
 
     handoff = {
         "package": "Route-Conserving S2 Bridge HS-JEPA",
@@ -883,6 +907,8 @@ def run(refresh: bool = False) -> dict[str, object]:
         "public_private_subset_tomography_json": str(PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON.resolve()),
         "anti_listener_toxicity_md": str(ANTI_LISTENER_TOXICITY_MD.resolve()),
         "anti_listener_toxicity_json": str(ANTI_LISTENER_TOXICITY_JSON.resolve()),
+        "frontier_trajectory_silence_md": str(FRONTIER_TRAJECTORY_SILENCE_MD.resolve()),
+        "frontier_trajectory_silence_json": str(FRONTIER_TRAJECTORY_SILENCE_JSON.resolve()),
         "mixture_listener_responsibility_status": str(mixture_listener_verdict.get("status")),
         "mixture_listener_responsibility_recommended": mixture_recommended,
         "mixture_listener_responsibility_recommended_file": mixture_recommended_submission.get("submission_file"),
@@ -903,6 +929,13 @@ def run(refresh: bool = False) -> dict[str, object]:
         "anti_listener_toxicity_source_loo_corr": anti_listener_toxicity.get("source_fit", {}).get("loo_corr"),
         "anti_listener_toxicity_changed_cells": anti_listener_submission.get("changed_cells"),
         "anti_listener_toxicity_predicted_loss_delta": anti_listener_metrics.get("sum_predicted_public_delta"),
+        "frontier_trajectory_silence_status": str(frontier_silence_verdict.get("status")),
+        "frontier_trajectory_silence_recommended": frontier_silence_recommended,
+        "frontier_trajectory_silence_recommended_file": frontier_silence_submission.get("submission_file"),
+        "frontier_trajectory_silence_changed_cells": frontier_silence_submission.get("changed_cells"),
+        "frontier_trajectory_silence_frontier_cosine": frontier_silence_metrics.get("frontier_cosine"),
+        "frontier_trajectory_silence_bad_tangent_cosine": frontier_silence_metrics.get("bad_tangent_cosine"),
+        "frontier_trajectory_silence_first_bad_mode_variance": frontier_trajectory_silence.get("negative_tangent", {}).get("first_mode_variance"),
         "action_decoder_ablation_suite_status": str(action_decoder_ablation["verdict"]["status"]),
         "action_decoder_ablation_suite_recommended_lb_sensor": action_decoder_ablation["verdict"]["recommended_lb_sensor"],
         "action_decoder_ablation_suite_big_bet_sensor": action_decoder_ablation["verdict"]["big_bet_sensor"],

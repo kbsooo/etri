@@ -1,0 +1,4 @@
+from,to,from_file,to_file,public_gain,changed_cells,move_l2,role
+H012,H042,submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv,submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv,0.00021865830000000752,45,0.6101253373766967,first HS-JEPA public-equation jump -> Q2 phase route improvement
+H042,H057,submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv,submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv,0.00015723090000008266,270,8.962379122253312,Q2 phase route improvement -> current best hidden row-state vector
+H012,H057,submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv,submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv,0.0003758892000000902,315,8.983122645178073,direct positive frontier tangent

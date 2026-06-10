@@ -98,6 +98,13 @@ ANTI_LISTENER_TOXICITY_JSON = (
     / "anti_listener_toxicity_equation_solver"
     / "anti_listener_toxicity_equation_readout.json"
 )
+FRONTIER_TRAJECTORY_SILENCE_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "frontier_trajectory_silence_solver"
+    / "frontier_trajectory_silence_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -163,6 +170,7 @@ def require_inputs() -> None:
         MIXTURE_LISTENER_RESPONSIBILITY_JSON,
         PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON,
         ANTI_LISTENER_TOXICITY_JSON,
+        FRONTIER_TRAJECTORY_SILENCE_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -246,6 +254,7 @@ def build_manifest() -> dict[str, object]:
     mixture_listener_responsibility = read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON)
     public_private_subset_tomography = read_json(PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON)
     anti_listener_toxicity = read_json(ANTI_LISTENER_TOXICITY_JSON)
+    frontier_trajectory_silence = read_json(FRONTIER_TRAJECTORY_SILENCE_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -278,6 +287,7 @@ def build_manifest() -> dict[str, object]:
     mixture_listener_verdict = mixture_listener_responsibility["verdict"]
     subset_tomography_verdict = public_private_subset_tomography["verdict"]
     anti_listener_verdict = anti_listener_toxicity["verdict"]
+    frontier_silence_verdict = frontier_trajectory_silence["verdict"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -779,9 +789,34 @@ def build_manifest() -> dict[str, object]:
             "This is a negative-listener action-equation sensor; until public LB confirms it, listener failures are diagnostic evidence rather than a proven action generator.",
         ),
         stage(
+            "frontier_trajectory_active_silence_solver",
+            "Frontier-Trajectory Active-Silence Solver",
+            "Treats the successful public frontier as a positive row-target descent trajectory and post-frontier failures as an active-silence/action-toxicity field.",
+            [
+                "public_score_ledger.csv",
+                "frontier submissions H012/H042/H057",
+                "spectral_public_tangent_readout.json",
+                "route energy and subject-prior invariants",
+                "current best submission",
+            ],
+            ["frontier_trajectory_silence_readout_ko.md", *[
+                str(item.get("submission", {}).get("submission_file"))
+                for item in frontier_trajectory_silence.get("variants", {}).values()
+                if isinstance(item, dict) and item.get("submission", {}).get("submission_file")
+            ]],
+            [
+                f"Frontier-silence status: {frontier_silence_verdict['status']}",
+                f"Recommended variant: {frontier_silence_verdict['recommended_variant']}",
+                f"Bad first-mode variance: {fmt(frontier_trajectory_silence['negative_tangent']['first_mode_variance'], 4)}",
+                f"Candidate cells: {frontier_trajectory_silence['cell_count']}",
+                f"Top ranked: {frontier_silence_verdict['ranking'][:2]}",
+            ],
+            "This is a public-frontier action-health sensor; until public LB confirms it, frontier continuation and active silence are diagnostic release hypotheses.",
+        ),
+        stage(
             "action_decoder_ablation_suite",
             "Action Decoder Ablation Suite",
-            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, listener-dropout, spectral, invariant-projection, LB-conditioned responsibility, mixture-listener, public/private subset-tomography, and anti-listener toxicity alternatives as HS-JEPA module ablations.",
+            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, listener-dropout, spectral, invariant-projection, LB-conditioned responsibility, mixture-listener, public/private subset-tomography, anti-listener toxicity, and frontier active-silence alternatives as HS-JEPA module ablations.",
             [
                 "row_support_strict_action_decoder_readout.json",
                 "route_frontier_action_decoder_readout.json",
@@ -799,6 +834,7 @@ def build_manifest() -> dict[str, object]:
                 "mixture_listener_responsibility_readout.json",
                 "public_private_subset_tomography_readout.json",
                 "anti_listener_toxicity_equation_readout.json",
+                "frontier_trajectory_silence_readout.json",
                 "factorized_toxicity_decoder_stress_audit.json",
             ],
             ["hsjepa_action_decoder_ablation_suite_ko.md", "hsjepa_action_decoder_ablation_suite.csv"],
@@ -1115,6 +1151,14 @@ def build_manifest() -> dict[str, object]:
         ["anti_listener_toxicity_equation_solver", "action_decoder_ablation_suite"],
         ["anti_listener_toxicity_equation_solver", "sleep_competition_adapter"],
         ["anti_listener_toxicity_equation_solver", "claim_readiness_and_paper_packet"],
+        ["public_lb_sensor", "frontier_trajectory_active_silence_solver"],
+        ["spectral_public_tangent_solver", "frontier_trajectory_active_silence_solver"],
+        ["negative_tangent_invariant_projection_solver", "frontier_trajectory_active_silence_solver"],
+        ["route_energy_model", "frontier_trajectory_active_silence_solver"],
+        ["human_state_listener_context", "frontier_trajectory_active_silence_solver"],
+        ["frontier_trajectory_active_silence_solver", "action_decoder_ablation_suite"],
+        ["frontier_trajectory_active_silence_solver", "sleep_competition_adapter"],
+        ["frontier_trajectory_active_silence_solver", "claim_readiness_and_paper_packet"],
         ["negative_tangent_invariant_projection_solver", "action_decoder_ablation_suite"],
         ["negative_tangent_invariant_projection_solver", "sleep_competition_adapter"],
         ["negative_tangent_invariant_projection_solver", "claim_readiness_and_paper_packet"],
@@ -1268,6 +1312,11 @@ def build_manifest() -> dict[str, object]:
             "anti_listener_toxicity_source_loo_corr": anti_listener_toxicity["source_fit"]["loo_corr"],
             "anti_listener_toxicity_cells": anti_listener_toxicity["cell_count"],
             "anti_listener_toxicity_top_ranked": anti_listener_verdict["ranking"][:2],
+            "frontier_trajectory_active_silence_status": frontier_silence_verdict["status"],
+            "frontier_trajectory_active_silence_recommended": frontier_silence_verdict["recommended_variant"],
+            "frontier_trajectory_active_silence_first_bad_mode_variance": frontier_trajectory_silence["negative_tangent"]["first_mode_variance"],
+            "frontier_trajectory_active_silence_cells": frontier_trajectory_silence["cell_count"],
+            "frontier_trajectory_active_silence_top_ranked": frontier_silence_verdict["ranking"][:2],
             "action_decoder_ablation_suite_status": action_ablation_verdict["status"],
             "action_decoder_ablation_suite_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_suite_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],

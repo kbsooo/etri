@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 89,
-  "total_checks": 89,
+  "passed_checks": 91,
+  "total_checks": 91,
   "required_failures": [],
   "checks": [
     {
@@ -244,6 +244,13 @@
       "evidence": "sleep_competition_adapter/outputs/anti_listener_toxicity_equation_solver/anti_listener_toxicity_equation_readout.json"
     },
     {
+      "check": "exists:frontier_trajectory_silence_readout.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "sleep_competition_adapter/outputs/frontier_trajectory_silence_solver/frontier_trajectory_silence_readout.json"
+    },
+    {
       "check": "exists:hsjepa_action_decoder_ablation_suite.json",
       "status": "PASS",
       "passed": true,
@@ -402,7 +409,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=big_bet_queue_ready, count=21"
+      "evidence": "status=big_bet_queue_ready, count=22"
     },
     {
       "check": "og_only_assignment_probe_recorded",
@@ -552,6 +559,13 @@
       "evidence": "status=candidate_ready, recommended=private_safe_anti_listener_bridge, source_loo=0.7682, cells=938, ranking=[{'variant': 'private_safe_anti_listener_bridge', 'score': 0.4806272806005853, 'cells': 30, 'predicted_delta': -0.6907101116679806, 'upload_safe': True}, {'variant': 'q2s2_listener_toxicity_route', 'score': 0.43759649127137157, 'cells': 5, 'predicted_delta': -0.011085160395969502, 'upload_safe': True}, {'variant': 'listener_inverse_jackpot', 'score': 0.41501037732608836, 'cells': 4, 'predicted_delta': -0.11493522232837602, 'upload_safe': True}, {'variant': 'listener_toxicity_boundary_probe', 'score': 0.40036273798192173, 'cells': 7, 'predicted_delta': -0.012846207287738809, 'upload_safe': True}, {'variant': 'public_subset_veto_listener_toxicity', 'score': 0.3412695281766499, 'cells': 8, 'predicted_delta': -0.0988115310483991, 'upload_safe': True}]"
     },
     {
+      "check": "frontier_trajectory_active_silence_recorded",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=candidate_ready, recommended=positive_path_overshoot_sensor, bad_first_mode=0.9629, cells=3355, ranking=[{'variant': 'positive_path_overshoot_sensor', 'score': 1.0396138721965795, 'cells': 38, 'frontier_cosine': 0.579302782235591, 'bad_tangent_cosine': -0.3503830116408991, 'upload_safe': True}, {'variant': 'active_silence_inversion', 'score': 0.9167632419539071, 'cells': 36, 'frontier_cosine': 0.5850624557050857, 'bad_tangent_cosine': -0.3652112864083354, 'upload_safe': True}, {'variant': 'frontier_continuation_gate', 'score': 0.8944825716175114, 'cells': 44, 'frontier_cosine': 0.5443627041327709, 'bad_tangent_cosine': -0.32761395434357604, 'upload_safe': True}, {'variant': 'frontier_silence_boundary_probe', 'score': 0.37370071739004024, 'cells': 18, 'frontier_cosine': 0.18500199660847588, 'bad_tangent_cosine': 0.08027124308626875, 'upload_safe': True}]"
+    },
+    {
       "check": "listener_invariant_contrastive_probe_recorded",
       "status": "PASS",
       "passed": true,
@@ -612,7 +626,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=41, edges=153"
+      "evidence": "status=pipeline_ready_with_boundary, stages=42, edges=161"
     },
     {
       "check": "method_packet_presentable",

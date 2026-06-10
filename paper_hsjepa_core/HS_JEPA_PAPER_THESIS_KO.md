@@ -295,6 +295,79 @@ failed listeners can be negative teachers for action-health.
 - public/private subset, route invariant, toxicity field 중 하나가 여전히 action validity를 충분히 설명하지 못한다.
 - 다음에는 실패 anchor를 더 많이 모으거나, human-social/cohort invariant를 toxicity head에 직접 넣어야 한다.
 
+### Contribution 12. Frontier-Trajectory Active Silence
+
+Anti-listener toxicity는 실패한 action을 negative teacher로 사용했다.
+하지만 HS-JEPA의 action decoder가 진짜로 architecture라면, 실패만이 아니라 성공한 public frontier trajectory도 representation으로 배워야 한다.
+
+즉 public LB를 다음처럼 해석한다.
+
+```text
+public leaderboard sequence
+  -> noisy gradient-descent trajectory
+  -> positive frontier tangent
+  -> post-frontier toxic branches
+  -> active-silence field
+  -> release / abstain / continue decision
+```
+
+여기서 핵심은 “무엇을 더 움직일까”가 아니라 “어떤 row-target은 움직이지 않는 것이 action이다”라는 점이다.
+HS-JEPA는 positive frontier tangent와 negative post-frontier tangent를 동시에 보고,
+성공 경로를 계속 밀지, 실패 분기를 반대로 볼지, 아니면 boundary에서 침묵할지를 결정한다.
+
+수면 대회 adapter에서는 다음 실험으로 구현했다.
+
+```bash
+python3 sleep_competition_adapter/frontier_trajectory_silence_solver.py
+```
+
+이 모듈은 H012 → H042 → H057의 positive frontier path와 H057 이후 public에서 실패한 분기들을 contrastive target representation으로 만든다.
+그 뒤 기존 HS-JEPA 후보들이 제안한 row-target action pool 위에서 다음을 계산한다.
+
+- frontier alignment: 성공 경로를 더 밀고 있는가
+- bad-tangent alignment: 실패 경로를 따라가고 있는가
+- active-silence pressure: 이 cell은 말하면 안 되는 자리인가
+- invariant energy: target-route/subject-prior manifold를 깨지 않는가
+
+현재 local/stress readout:
+
+```text
+positive frontier edges: 3
+total frontier public gain: 0.0007518
+candidate row-target directions: 3355
+bad tangent first-mode variance: 0.9629
+recommended variant: positive_path_overshoot_sensor
+changed cells: 38
+selected rows: 29
+frontier cosine: 0.5793
+bad tangent cosine: -0.3504
+mean silence pressure: 0.1962
+mean route energy delta: -0.0325
+frontier alignment null z: 17.7670
+bad-tangent avoidance null z: -13.6676
+silence-pressure null z: -8.2996
+file: submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv
+```
+
+핵심은 다음이다.
+
+```text
+silence is also an action;
+the public frontier path is a JEPA target representation, not only a score history.
+```
+
+이 후보가 public에서 좋아지면:
+
+- H057은 성공 경로의 종착점이 아니라 과소 이동된 frontier trajectory였다는 뜻이다.
+- HS-JEPA의 action decoder는 `release`뿐 아니라 `continue the descent path`를 배울 수 있다.
+- active-silence field는 실패 방향을 피하면서 성공 tangent를 더 밀기 위한 architectural module로 정리된다.
+
+나빠지면:
+
+- H012 → H042 → H057 경로는 descriptive history일 뿐, action-grade continuation direction은 아니다.
+- post-frontier bottleneck은 continuation이 아니라 hidden row-support assignment 또는 public/private subset factorization이다.
+- 다음에는 “더 밀기”보다 “어떤 row-target이 아예 말해지면 안 되는가”를 더 직접적으로 모델링해야 한다.
+
 ## 이번 대회에서 얻은 핵심 증거
 
 ### 증거 1. Direct JEPA latent label prediction은 실패했다
@@ -569,6 +642,7 @@ public listener가 말한 subset과 private-safe action subset을 분리하는 e
 - mixture-listener 후보가 public에서 검증되기 전까지, latent listener mixture routing을 action-grade decoder라고 단정하면 안 된다.
 - subset tomography 후보가 public에서 검증되기 전까지, public/private listener equation을 action-grade decoder라고 단정하면 안 된다.
 - anti-listener toxicity 후보가 public에서 검증되기 전까지, 실패한 listener action의 반대 방향이 항상 action-grade라고 단정하면 안 된다.
+- frontier-trajectory 후보가 public에서 검증되기 전까지, H057이 positive frontier path를 과소 이동했다고 단정하면 안 된다.
 
 ## 정확한 thesis 문장
 
@@ -578,7 +652,8 @@ public listener가 말한 subset과 private-safe action subset을 분리하는 e
 HS-JEPA reframes human-understanding prediction as hidden-state and action-field recovery.
 In our sleep-log case study, the largest public-LB gains came not from direct label prediction,
 but from recovering sparse row-target action fields and filtering them through listener responsibility,
-action-health, invariant-preserving decoders, and negative-listener toxicity checks.
+action-health, invariant-preserving decoders, negative-listener toxicity checks,
+and active-silence decisions along the public frontier trajectory.
 ```
 
 한국어로는:
@@ -586,12 +661,15 @@ action-health, invariant-preserving decoders, and negative-listener toxicity che
 ```text
 HS-JEPA는 인간 이해 예측을 label 분류가 아니라 hidden human-state와 action field 복원 문제로 재정의한다.
 수면 생활 로그 대회에서는 직접 label을 맞히는 모델보다, row-target action field를 복원하고 이를 listener responsibility,
-action-health, invariant decoder, negative-listener toxicity check로 통과시킨 접근이 가장 큰 public LB 개선을 만들었다.
+action-health, invariant decoder, negative-listener toxicity check, active-silence frontier decision으로 통과시킨 접근이
+가장 큰 public LB 개선을 만들었다.
 ```
 
-## 다음으로 가장 정보량이 큰 제출 센서
+## 다음으로 가장 정보량이 큰 제출 센서들
 
-현재 thesis 관점에서 가장 정보량이 큰 후보는 다음이다.
+현재 thesis 관점에서 정보량이 큰 후보는 두 축이다.
+
+첫 번째는 anti-listener action-health 축이다.
 
 ```text
 submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv
@@ -611,3 +689,20 @@ submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72c
 
 - public failure geometry, scalar responsibility, anti-listener toxicity는 모두 real diagnostic이지만, 아직 public/private row-support assignment를 충분히 복원하지 못한다.
 - HS-JEPA는 action direction보다 hidden public/private subset factorization과 richer human/social/cohort invariant를 더 강화해야 한다.
+
+두 번째는 frontier-trajectory active-silence 축이다.
+
+```text
+submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv
+```
+
+이 후보가 좋아지면:
+
+- H012 → H042 → H057은 단순 제출 히스토리가 아니라 action-grade positive trajectory였다.
+- H057은 frontier path를 충분히 끝까지 민 것이 아니라, active-silence gate가 허용한 일부 방향을 더 밀 수 있는 상태였다.
+- HS-JEPA contribution은 `negative teacher`에서 `positive trajectory + active silence`까지 확장된다.
+
+나빠지면:
+
+- positive public trajectory는 이미 H057에서 소진됐고, 0.53 방향은 continuation이 아니라 새로운 row-support discovery에 있다.
+- 이 경우 anti-listener/subset tomography처럼 실패/부분관측에서 hidden assignment를 복원하는 계열이 더 우선이다.

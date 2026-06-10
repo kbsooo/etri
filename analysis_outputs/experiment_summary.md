@@ -1,10 +1,42 @@
 # Experiment Summary
 
-Last updated: 2026-05-26
+Last updated: 2026-06-11
 
 ## Current Best
 
-Public best remains `submission_hybrid_0p567_foldsafe_stage2_q1_q3_s1_s2_s3_s4.csv` at `0.5779449757`.
+Current public best is `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv` at `0.5677475939`.
+
+The current research direction is no longer ordinary feature/model stacking.  The active paper thesis is HS-JEPA: recover hidden human-state/action-field representations, then decide release through listener responsibility, action-health/toxicity, invariant preservation, public/private subset equations, and active-silence gates.
+
+## 2026-06-11 HS-JEPA Status
+
+### What Worked
+
+- H012 created the first large HS-JEPA jump: public-equation hidden-state materialization moved public LB to `0.5681234831`.
+- H042/H050 showed Q2-support rows were public-visible, but target route alone was not enough.
+- H057 remains the best observed public score at `0.5677475939`; it interprets the H042 Q2-support rows as a full row-state vector and freezes Q2 while moving Q1/Q3/S1-S4.
+- Post-H057 failures are highly structured rather than random.  The spectral public-bad tangent has first-mode variance about `0.9629`, so failed action fields mostly collapse onto a low-dimensional negative representation.
+- The anti-listener toxicity solver turned failed listener-derived submissions into negative teachers.  Its recommended file is `submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv`; local readout shows source responsibility LOO correlation `0.7682`, selected `30` cells, mean private safety `0.7890`, and hard-world toxicity `0.2003`.
+- The new frontier-trajectory active-silence solver treats the successful path H012 -> H042 -> H057 as a positive target representation and contrasts it with post-frontier failures.  Its recommended file is `submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv`; it selects `38` cells with frontier cosine `0.5793`, bad-tangent cosine `-0.3504`, mean silence pressure `0.1962`, and mean route-energy delta `-0.0325`.
+
+### What Failed Or Remains Unproven
+
+- Direct JEPA latent-to-label translation remains rejected; it gives plausible geometry but public punishes the action.
+- Listener responsibility is not an action generator.  Target-listener lift and cross-listener transport were coherent locally but worse publicly.
+- H088/hard-world style gates are diagnostics, not private action heads.
+- Anti-listener toxicity and frontier active-silence are not public-proven yet.  They are high-information public sensors, not confirmed best submissions.
+- If frontier-silence candidates fail, H057 likely exhausted the positive public trajectory and the remaining 0.53 path must come from row-support discovery or public/private subset factorization rather than continuing the H012-H042-H057 direction.
+
+### Next High-Information Sensors
+
+1. `submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv`  
+   Tests whether H057 was an under-stepped positive frontier trajectory.  If it improves, HS-JEPA gains a clean "public frontier path as JEPA target representation" contribution.  If it fails, positive trajectory continuation is killed and the next focus should be hidden row-support assignment.
+
+2. `submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv`  
+   Tests whether failed listener actions are invertible negative teachers.  If it improves, action-health must include anti-listener toxicity.  If it fails, listener failures are diagnostic but not action-grade.
+
+3. `submission_hsjepa_frontier_silence_active_silence_inversion_9df720c1_uploadsafe.csv`  
+   Tests whether the silence/toxicity field itself is invertible.  This is riskier than the overshoot sensor but more informative if the goal is to learn whether "silence is an action" is real or only descriptive.
 
 The OOF-best ordinal/ambnext file `submission_ordinal_q_constraints_ambnext_Q2Q3_nearest_w0.75.csv` scored public `0.5783033652`, worse than stage2 by `+0.0003583895`. Its offline/public gap is `+0.0163995480`, so aggressive q3off/ambnext count-shift candidates are now public-fragile.
 

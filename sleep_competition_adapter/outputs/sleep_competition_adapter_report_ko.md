@@ -281,6 +281,25 @@ Listener responsibility is not an action generator.  Failed listener releases de
 
 이 실험은 CrossListener/H088/target-listener 실패를 단순 폐기하지 않고, 실패한 listener action을 독성 teacher로 사용한다. 추천 `private_safe_anti_listener_bridge`가 public에서 살아나면 HS-JEPA의 action-health 모듈은 listener를 더 믿는 장치가 아니라, listener가 틀린 방향을 말할 때 그 반대 방향을 안전하게 release하는 장치라는 논문 주장이 강해진다.
 
+## Frontier-Trajectory Active-Silence Solver
+
+- Status: `candidate_ready`
+- Recommended variant: `positive_path_overshoot_sensor`
+- Total positive frontier gain: `n/a`
+- Bad tangent first-mode variance: `0.9629`
+- Candidate cells: `3355`
+
+The public frontier is a noisy gradient-descent trajectory.  HS-JEPA should learn both the positive frontier tangent and the active-silence field that blocks toxic post-frontier branches before releasing row-target actions.
+
+| Variant | Output | Changed cells | Rows | Frontier cos | Bad cos | Silence | Energy delta | Upload-safe |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `frontier_continuation_gate` | `submission_hsjepa_frontier_silence_frontier_continuation_gate_404abf8d_uploadsafe.csv` | `None` | `None` | `0.5444` | `-0.3276` | `0.2017` | `-0.03733` | `True` |
+| `positive_path_overshoot_sensor` | `submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv` | `None` | `None` | `0.5793` | `-0.3504` | `0.1962` | `-0.03251` | `True` |
+| `active_silence_inversion` | `submission_hsjepa_frontier_silence_active_silence_inversion_9df720c1_uploadsafe.csv` | `None` | `None` | `0.5851` | `-0.3652` | `0.2000` | `-0.03354` | `True` |
+| `frontier_silence_boundary_probe` | `submission_hsjepa_frontier_silence_frontier_silence_boundary_probe_aa9de021_uploadsafe.csv` | `None` | `None` | `0.1850` | `0.0803` | `0.6996` | `-0.04825` | `True` |
+
+이 실험은 H012→H042→H057의 성공 궤적을 positive target representation으로, H057 이후 실패들을 active-silence/toxicity representation으로 둔다. public에서 살아나면 HS-JEPA는 hidden state를 찾는 데서 끝나지 않고 `어떤 row-target action을 계속 밀고, 어떤 action을 침묵시킬지`를 학습하는 아키텍처라는 주장이 강해진다.
+
 ## Action Decoder Ablation Suite
 
 - Status: `action_decoder_ablation_ready_anti_listener_toxicity_leads`
@@ -377,6 +396,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - Negative tangent invariant projection turns that negative representation into an action-grade test: only anti-public-bad moves that preserve target-route and subject-prior energy are released.
 - LB-conditioned responsibility now treats public LB as an external listener and estimates which row-target actions carried scalar loss responsibility under leave-one-anchor stress.
 - Mixture-listener responsibility shows that scalar public response is better explained by latent listener heads, and raises a new Q/S target-routing hypothesis through `target_listener_split_qs`.
+- Frontier-trajectory active-silence treats the H012->H057 improvement path as a positive JEPA target representation and post-frontier failures as an action-health silence field.
 
 ## 이 adapter가 아직 증명하지 못한 것
 
@@ -395,6 +415,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - that invariant-projected anti-tangent actions improve LB before public LB observes the generated projection candidates
 - that scalar public-listener responsibility is portable or private-safe before public LB observes the LB-conditioned responsibility candidates
 - that mixture-listener responsibility is action-grade before public LB observes target-split, consensus, and residual-conflict candidates
+- that frontier continuation or active-silence is action-grade before public LB observes the generated frontier-trajectory candidates
 - that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments
 - private leaderboard safety
 - S2 as a universal human-sleep factor

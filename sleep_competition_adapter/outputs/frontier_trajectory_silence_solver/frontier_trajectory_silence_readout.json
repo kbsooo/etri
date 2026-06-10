@@ -1,0 +1,691 @@
+{
+  "experiment": "Frontier-Trajectory Active-Silence Solver",
+  "architecture_role": "competition_adapter_big_bet",
+  "thesis": "The public frontier is a noisy gradient-descent trajectory.  HS-JEPA should learn both the positive frontier tangent and the active-silence field that blocks toxic post-frontier branches before releasing row-target actions.",
+  "frontier": {
+    "edge_count": 3,
+    "total_public_gain": 0.0007517784000001804,
+    "mean_changed_cells": 210.0,
+    "mean_move_l2": 6.185209034936027
+  },
+  "negative_tangent": {
+    "anchor_count": 26,
+    "first_mode_variance": 0.9628550254007645,
+    "top5_cumulative_variance": 0.9946826859769906,
+    "singular_values": [
+      3.9248700923283506,
+      0.42736505936128066,
+      0.3891499257724587,
+      0.3356759829624167,
+      0.24990018982496587,
+      0.16724030897803246,
+      0.13288948751368476,
+      0.11300586024023068
+    ],
+    "mean_bad_tangent_coord": 0.7500068848733459,
+    "min_bad_tangent_coord": -0.7172294112358857,
+    "max_bad_tangent_coord": 0.9995708377235418
+  },
+  "cell_count": 3355,
+  "verdict": {
+    "status": "candidate_ready",
+    "recommended_variant": "positive_path_overshoot_sensor",
+    "ranking": [
+      {
+        "variant": "positive_path_overshoot_sensor",
+        "score": 1.0396138721965795,
+        "cells": 38,
+        "frontier_cosine": 0.579302782235591,
+        "bad_tangent_cosine": -0.3503830116408991,
+        "upload_safe": true
+      },
+      {
+        "variant": "active_silence_inversion",
+        "score": 0.9167632419539071,
+        "cells": 36,
+        "frontier_cosine": 0.5850624557050857,
+        "bad_tangent_cosine": -0.3652112864083354,
+        "upload_safe": true
+      },
+      {
+        "variant": "frontier_continuation_gate",
+        "score": 0.8944825716175114,
+        "cells": 44,
+        "frontier_cosine": 0.5443627041327709,
+        "bad_tangent_cosine": -0.32761395434357604,
+        "upload_safe": true
+      },
+      {
+        "variant": "frontier_silence_boundary_probe",
+        "score": 0.37370071739004024,
+        "cells": 18,
+        "frontier_cosine": 0.18500199660847588,
+        "bad_tangent_cosine": 0.08027124308626875,
+        "upload_safe": true
+      }
+    ],
+    "interpretation": "If a frontier-continuation variant wins public, HS-JEPA has learned an action-grade descent path.  If it fails while anti-listener/subset candidates win, the bottleneck is not continuation but public/private row-support assignment."
+  },
+  "variants": {
+    "frontier_continuation_gate": {
+      "worldview": "The H012->H042->H057 path is a real hidden-state descent direction. Continue only cells aligned with that path and not aligned with the post-frontier silence/toxicity field.",
+      "config": {
+        "name": "frontier_continuation_gate",
+        "worldview": "The H012->H042->H057 path is a real hidden-state descent direction. Continue only cells aligned with that path and not aligned with the post-frontier silence/toxicity field.",
+        "mode": "frontier_continue",
+        "max_cells": 44,
+        "max_cells_per_row": 2,
+        "min_frontier_rank": 0.66,
+        "min_anti_bad_rank": 0.3,
+        "max_silence_pressure": 0.58,
+        "max_energy_delta": 0.035,
+        "max_subject_delta": 0.075,
+        "require_frontier_source": false,
+        "step_floor": 0.012,
+        "step_scale": 0.24,
+        "step_cap": 0.34,
+        "target_caps": [
+          [
+            "Q1",
+            6
+          ],
+          [
+            "Q2",
+            11
+          ],
+          [
+            "Q3",
+            6
+          ],
+          [
+            "S1",
+            6
+          ],
+          [
+            "S2",
+            10
+          ],
+          [
+            "S3",
+            4
+          ],
+          [
+            "S4",
+            6
+          ]
+        ]
+      },
+      "metrics": {
+        "cell_count": 44.0,
+        "row_count": 34.0,
+        "mean_frontier_rank": 0.9654315133450754,
+        "mean_anti_bad_rank": 0.8713453461590571,
+        "mean_silence_pressure": 0.20169374068554397,
+        "mean_invariant_rank": 0.7116379894323263,
+        "mean_energy_delta": -0.037326413635263456,
+        "frontier_cosine": 0.5443627041327709,
+        "bad_tangent_cosine": -0.32761395434357604,
+        "frontier_source_rate": 0.9545454545454546,
+        "known_bad_count_mean": 2.022727272727273
+      },
+      "stress": {
+        "actual": {
+          "cell_count": 44.0,
+          "row_count": 34.0,
+          "mean_frontier_rank": 0.9654315133450754,
+          "mean_anti_bad_rank": 0.8713453461590571,
+          "mean_silence_pressure": 0.20169374068554397,
+          "mean_invariant_rank": 0.7116379894323263,
+          "mean_energy_delta": -0.037326413635263456,
+          "frontier_cosine": 0.5443627041327709,
+          "bad_tangent_cosine": -0.32761395434357604,
+          "frontier_source_rate": 0.9545454545454546,
+          "known_bad_count_mean": 2.022727272727273
+        },
+        "tests": {
+          "mean_frontier_rank": {
+            "actual": 0.9654315133450754,
+            "null_mean": 0.5006455877704015,
+            "null_std": 0.023082278022052684,
+            "z": 20.13605091883132,
+            "p": 0.0
+          },
+          "mean_anti_bad_rank": {
+            "actual": 0.8713453461590571,
+            "null_mean": 0.5012712934110102,
+            "null_std": 0.0400176914441277,
+            "z": 9.247761162453378,
+            "p": 0.0
+          },
+          "mean_silence_pressure": {
+            "actual": 0.20169374068554397,
+            "null_mean": 0.498006802714176,
+            "null_std": 0.03513314474142049,
+            "z": -8.434003395070167,
+            "p": 0.0
+          },
+          "mean_invariant_rank": {
+            "actual": 0.7116379894323263,
+            "null_mean": 0.49859912839271997,
+            "null_std": 0.043878801157947636,
+            "z": 4.855165943863058,
+            "p": 0.0
+          },
+          "mean_energy_delta": {
+            "actual": -0.037326413635263456,
+            "null_mean": 0.009139209667134196,
+            "null_std": 0.008179354042380852,
+            "z": -5.680842651099182,
+            "p": 0.0
+          },
+          "frontier_cosine": {
+            "actual": 0.5443627041327709,
+            "null_mean": -0.0007371344946612427,
+            "null_std": 0.026305501941156065,
+            "z": 20.72189460010267,
+            "p": 0.0
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.32761395434357604,
+            "null_mean": 0.0017830229556446678,
+            "null_std": 0.024664318841991273,
+            "z": -13.355202688120409,
+            "p": 0.0
+          },
+          "frontier_source_rate": {
+            "actual": 0.9545454545454546,
+            "null_mean": 0.09409090909090909,
+            "null_std": 0.0429199229545079,
+            "z": 20.047905173701423,
+            "p": 0.0
+          }
+        }
+      },
+      "submission": {
+        "variant": "frontier_continuation_gate",
+        "worldview": "The H012->H042->H057 path is a real hidden-state descent direction. Continue only cells aligned with that path and not aligned with the post-frontier silence/toxicity field.",
+        "submission_file": "submission_hsjepa_frontier_silence_frontier_continuation_gate_404abf8d_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_frontier_silence_frontier_continuation_gate_404abf8d_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/frontier_trajectory_silence_solver/submission_hsjepa_frontier_silence_frontier_continuation_gate_404abf8d_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_frontier_silence_frontier_continuation_gate_404abf8d_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 3.9255938360444415e-06,
+          "max_prob": 0.999997418199097,
+          "changed_cells_vs_current_best": 44,
+          "upload_safe": true
+        }
+      }
+    },
+    "positive_path_overshoot_sensor": {
+      "worldview": "If H057 under-stepped the successful frontier action field, then a stronger continuation of the actual positive transition cells should move public LB meaningfully.",
+      "config": {
+        "name": "positive_path_overshoot_sensor",
+        "worldview": "If H057 under-stepped the successful frontier action field, then a stronger continuation of the actual positive transition cells should move public LB meaningfully.",
+        "mode": "frontier_overshoot",
+        "max_cells": 38,
+        "max_cells_per_row": 2,
+        "min_frontier_rank": 0.58,
+        "min_anti_bad_rank": 0.18,
+        "max_silence_pressure": 0.68,
+        "max_energy_delta": 0.055,
+        "max_subject_delta": 0.12,
+        "require_frontier_source": true,
+        "step_floor": 0.018,
+        "step_scale": 0.34,
+        "step_cap": 0.52,
+        "target_caps": [
+          [
+            "Q1",
+            6
+          ],
+          [
+            "Q2",
+            10
+          ],
+          [
+            "Q3",
+            6
+          ],
+          [
+            "S1",
+            6
+          ],
+          [
+            "S2",
+            9
+          ],
+          [
+            "S3",
+            4
+          ],
+          [
+            "S4",
+            6
+          ]
+        ]
+      },
+      "metrics": {
+        "cell_count": 38.0,
+        "row_count": 29.0,
+        "mean_frontier_rank": 0.9725939289356028,
+        "mean_anti_bad_rank": 0.886642089575653,
+        "mean_silence_pressure": 0.19615342379794495,
+        "mean_invariant_rank": 0.6912306847595889,
+        "mean_energy_delta": -0.03250980643209089,
+        "frontier_cosine": 0.579302782235591,
+        "bad_tangent_cosine": -0.3503830116408991,
+        "frontier_source_rate": 1.0,
+        "known_bad_count_mean": 1.9736842105263157
+      },
+      "stress": {
+        "actual": {
+          "cell_count": 38.0,
+          "row_count": 29.0,
+          "mean_frontier_rank": 0.9725939289356028,
+          "mean_anti_bad_rank": 0.886642089575653,
+          "mean_silence_pressure": 0.19615342379794495,
+          "mean_invariant_rank": 0.6912306847595889,
+          "mean_energy_delta": -0.03250980643209089,
+          "frontier_cosine": 0.579302782235591,
+          "bad_tangent_cosine": -0.3503830116408991,
+          "frontier_source_rate": 1.0,
+          "known_bad_count_mean": 1.9736842105263157
+        },
+        "tests": {
+          "mean_frontier_rank": {
+            "actual": 0.9725939289356028,
+            "null_mean": 0.5004072999189478,
+            "null_std": 0.026576565252849325,
+            "z": 17.767029882314493,
+            "p": 0.0
+          },
+          "mean_anti_bad_rank": {
+            "actual": 0.886642089575653,
+            "null_mean": 0.49508082986900925,
+            "null_std": 0.04282075544226429,
+            "z": 9.144193176007608,
+            "p": 0.0
+          },
+          "mean_silence_pressure": {
+            "actual": 0.19615342379794495,
+            "null_mean": 0.5009098263916125,
+            "null_std": 0.036719457571659814,
+            "z": -8.299588903210799,
+            "p": 0.0
+          },
+          "mean_invariant_rank": {
+            "actual": 0.6912306847595889,
+            "null_mean": 0.5042949250921641,
+            "null_std": 0.045897490957464405,
+            "z": 4.072897140296142,
+            "p": 0.0
+          },
+          "mean_energy_delta": {
+            "actual": -0.03250980643209089,
+            "null_mean": 0.00823757144514635,
+            "null_std": 0.00853119355720485,
+            "z": -4.7762810214081775,
+            "p": 0.0
+          },
+          "frontier_cosine": {
+            "actual": 0.579302782235591,
+            "null_mean": -0.0006500231391789046,
+            "null_std": 0.026741879579304968,
+            "z": 21.687062184798123,
+            "p": 0.0
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.3503830116408991,
+            "null_mean": 0.0044879195026818735,
+            "null_std": 0.025964304381731595,
+            "z": -13.66764639353354,
+            "p": 0.0
+          },
+          "frontier_source_rate": {
+            "actual": 1.0,
+            "null_mean": 0.09491228070175438,
+            "null_std": 0.04905204504962074,
+            "z": 18.451579712582106,
+            "p": 0.0
+          }
+        }
+      },
+      "submission": {
+        "variant": "positive_path_overshoot_sensor",
+        "worldview": "If H057 under-stepped the successful frontier action field, then a stronger continuation of the actual positive transition cells should move public LB meaningfully.",
+        "submission_file": "submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/frontier_trajectory_silence_solver/submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 3.3603820262119876e-06,
+          "max_prob": 0.9999977899410004,
+          "changed_cells_vs_current_best": 38,
+          "upload_safe": true
+        }
+      }
+    },
+    "active_silence_inversion": {
+      "worldview": "The frontier path may be blocked by a silence field.  If the silence field is action-grade, moving opposite to it should expose new row-target support beyond H057.",
+      "config": {
+        "name": "active_silence_inversion",
+        "worldview": "The frontier path may be blocked by a silence field.  If the silence field is action-grade, moving opposite to it should expose new row-target support beyond H057.",
+        "mode": "anti_silence",
+        "max_cells": 36,
+        "max_cells_per_row": 2,
+        "min_frontier_rank": 0.26,
+        "min_anti_bad_rank": 0.62,
+        "max_silence_pressure": 0.74,
+        "max_energy_delta": 0.03,
+        "max_subject_delta": 0.07,
+        "require_frontier_source": false,
+        "step_floor": 0.012,
+        "step_scale": 0.3,
+        "step_cap": 0.44,
+        "target_caps": [
+          [
+            "Q1",
+            5
+          ],
+          [
+            "Q2",
+            9
+          ],
+          [
+            "Q3",
+            5
+          ],
+          [
+            "S1",
+            6
+          ],
+          [
+            "S2",
+            8
+          ],
+          [
+            "S3",
+            4
+          ],
+          [
+            "S4",
+            5
+          ]
+        ]
+      },
+      "metrics": {
+        "cell_count": 36.0,
+        "row_count": 31.0,
+        "mean_frontier_rank": 0.9179417122040072,
+        "mean_anti_bad_rank": 0.9153005464480874,
+        "mean_silence_pressure": 0.19996067229673786,
+        "mean_invariant_rank": 0.6967295909918859,
+        "mean_energy_delta": -0.03354411217180208,
+        "frontier_cosine": 0.5850624557050857,
+        "bad_tangent_cosine": -0.3652112864083354,
+        "frontier_source_rate": 0.8611111111111112,
+        "known_bad_count_mean": 1.5
+      },
+      "stress": {
+        "actual": {
+          "cell_count": 36.0,
+          "row_count": 31.0,
+          "mean_frontier_rank": 0.9179417122040072,
+          "mean_anti_bad_rank": 0.9153005464480874,
+          "mean_silence_pressure": 0.19996067229673786,
+          "mean_invariant_rank": 0.6967295909918859,
+          "mean_energy_delta": -0.03354411217180208,
+          "frontier_cosine": 0.5850624557050857,
+          "bad_tangent_cosine": -0.3652112864083354,
+          "frontier_source_rate": 0.8611111111111112,
+          "known_bad_count_mean": 1.5
+        },
+        "tests": {
+          "mean_frontier_rank": {
+            "actual": 0.9179417122040072,
+            "null_mean": 0.5018162223326157,
+            "null_std": 0.027284576172685305,
+            "z": 15.251308550212203,
+            "p": 0.0
+          },
+          "mean_anti_bad_rank": {
+            "actual": 0.9153005464480874,
+            "null_mean": 0.49925992162057736,
+            "null_std": 0.048093133078475125,
+            "z": 8.650728247391225,
+            "p": 0.0
+          },
+          "mean_silence_pressure": {
+            "actual": 0.19996067229673786,
+            "null_mean": 0.5015792123419992,
+            "null_std": 0.04148070728319815,
+            "z": -7.271296942601376,
+            "p": 0.0
+          },
+          "mean_invariant_rank": {
+            "actual": 0.6967295909918859,
+            "null_mean": 0.5001556549097533,
+            "null_std": 0.0478626540203497,
+            "z": 4.107042120952079,
+            "p": 0.0
+          },
+          "mean_energy_delta": {
+            "actual": -0.03354411217180208,
+            "null_mean": 0.008849646218241324,
+            "null_std": 0.008639879388366726,
+            "z": -4.90675349555516,
+            "p": 0.0
+          },
+          "frontier_cosine": {
+            "actual": 0.5850624557050857,
+            "null_mean": 0.0011438045392706039,
+            "null_std": 0.026573843608086633,
+            "z": 21.973435976274203,
+            "p": 0.0
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.3652112864083354,
+            "null_mean": 0.0040789025652228075,
+            "null_std": 0.02559937759015065,
+            "z": -14.425748738345984,
+            "p": 0.0
+          },
+          "frontier_source_rate": {
+            "actual": 0.8611111111111112,
+            "null_mean": 0.09606481481481481,
+            "null_std": 0.049770158642534625,
+            "z": 15.371586451855746,
+            "p": 0.0
+          }
+        }
+      },
+      "submission": {
+        "variant": "active_silence_inversion",
+        "worldview": "The frontier path may be blocked by a silence field.  If the silence field is action-grade, moving opposite to it should expose new row-target support beyond H057.",
+        "submission_file": "submission_hsjepa_frontier_silence_active_silence_inversion_9df720c1_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_frontier_silence_active_silence_inversion_9df720c1_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/frontier_trajectory_silence_solver/submission_hsjepa_frontier_silence_active_silence_inversion_9df720c1_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_frontier_silence_active_silence_inversion_9df720c1_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 3.7176517172654505e-06,
+          "max_prob": 0.9999975549638824,
+          "changed_cells_vs_current_best": 36,
+          "upload_safe": true
+        }
+      }
+    },
+    "frontier_silence_boundary_probe": {
+      "worldview": "The most informative rows are where frontier continuation and silence pressure disagree.  A small boundary action tests whether HS-JEPA should release or abstain there.",
+      "config": {
+        "name": "frontier_silence_boundary_probe",
+        "worldview": "The most informative rows are where frontier continuation and silence pressure disagree.  A small boundary action tests whether HS-JEPA should release or abstain there.",
+        "mode": "boundary_probe",
+        "max_cells": 18,
+        "max_cells_per_row": 1,
+        "min_frontier_rank": 0.55,
+        "min_anti_bad_rank": 0.05,
+        "max_silence_pressure": 0.88,
+        "max_energy_delta": 0.06,
+        "max_subject_delta": 0.12,
+        "require_frontier_source": false,
+        "step_floor": 0.008,
+        "step_scale": 0.12,
+        "step_cap": 0.18,
+        "target_caps": [
+          [
+            "Q1",
+            3
+          ],
+          [
+            "Q2",
+            5
+          ],
+          [
+            "Q3",
+            3
+          ],
+          [
+            "S1",
+            3
+          ],
+          [
+            "S2",
+            4
+          ],
+          [
+            "S3",
+            2
+          ],
+          [
+            "S4",
+            3
+          ]
+        ]
+      },
+      "metrics": {
+        "cell_count": 18.0,
+        "row_count": 18.0,
+        "mean_frontier_rank": 0.9488657062427553,
+        "mean_anti_bad_rank": 0.26095380029806253,
+        "mean_silence_pressure": 0.6995833747309157,
+        "mean_invariant_rank": 0.8195396588839212,
+        "mean_energy_delta": -0.0482456966869408,
+        "frontier_cosine": 0.18500199660847588,
+        "bad_tangent_cosine": 0.08027124308626875,
+        "frontier_source_rate": 0.9444444444444444,
+        "known_bad_count_mean": 18.72222222222222
+      },
+      "stress": {
+        "actual": {
+          "cell_count": 18.0,
+          "row_count": 18.0,
+          "mean_frontier_rank": 0.9488657062427553,
+          "mean_anti_bad_rank": 0.26095380029806253,
+          "mean_silence_pressure": 0.6995833747309157,
+          "mean_invariant_rank": 0.8195396588839212,
+          "mean_energy_delta": -0.0482456966869408,
+          "frontier_cosine": 0.18500199660847588,
+          "bad_tangent_cosine": 0.08027124308626875,
+          "frontier_source_rate": 0.9444444444444444,
+          "known_bad_count_mean": 18.72222222222222
+        },
+        "tests": {
+          "mean_frontier_rank": {
+            "actual": 0.9488657062427553,
+            "null_mean": 0.5034085113429376,
+            "null_std": 0.03759110526065412,
+            "z": 11.850069100417462,
+            "p": 0.0
+          },
+          "mean_anti_bad_rank": {
+            "actual": 0.26095380029806253,
+            "null_mean": 0.4942252994425126,
+            "null_std": 0.061121870294733066,
+            "z": -3.81649805576305,
+            "p": 1.0
+          },
+          "mean_silence_pressure": {
+            "actual": 0.6995833747309157,
+            "null_mean": 0.4957377476955346,
+            "null_std": 0.05138531322029339,
+            "z": 3.9670017415574925,
+            "p": 1.0
+          },
+          "mean_invariant_rank": {
+            "actual": 0.8195396588839212,
+            "null_mean": 0.4958124137550367,
+            "null_std": 0.06729300679152267,
+            "z": 4.810711551823042,
+            "p": 0.0
+          },
+          "mean_energy_delta": {
+            "actual": -0.0482456966869408,
+            "null_mean": 0.009475054450327945,
+            "null_std": 0.012153874520109449,
+            "z": -4.749164642251791,
+            "p": 0.0
+          },
+          "frontier_cosine": {
+            "actual": 0.18500199660847588,
+            "null_mean": -1.288626353789235e-05,
+            "null_std": 0.023537558767277186,
+            "z": 7.860410873587645,
+            "p": 0.0
+          },
+          "bad_tangent_cosine": {
+            "actual": 0.08027124308626875,
+            "null_mean": 0.0023318758190621946,
+            "null_std": 0.021572297448000915,
+            "z": 3.612937725111385,
+            "p": 0.9983333333333333
+          },
+          "frontier_source_rate": {
+            "actual": 0.9444444444444444,
+            "null_mean": 0.09907407407407408,
+            "null_std": 0.06778848593586749,
+            "z": 12.470707358328493,
+            "p": 0.0
+          }
+        }
+      },
+      "submission": {
+        "variant": "frontier_silence_boundary_probe",
+        "worldview": "The most informative rows are where frontier continuation and silence pressure disagree.  A small boundary action tests whether HS-JEPA should release or abstain there.",
+        "submission_file": "submission_hsjepa_frontier_silence_frontier_silence_boundary_probe_aa9de021_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_frontier_silence_frontier_silence_boundary_probe_aa9de021_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/frontier_trajectory_silence_solver/submission_hsjepa_frontier_silence_frontier_silence_boundary_probe_aa9de021_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_frontier_silence_frontier_silence_boundary_probe_aa9de021_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 18,
+          "upload_safe": true
+        }
+      }
+    }
+  },
+  "outputs": {
+    "readout_json": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/frontier_trajectory_silence_solver/frontier_trajectory_silence_readout.json",
+    "readout_markdown": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/frontier_trajectory_silence_solver/frontier_trajectory_silence_readout_ko.md",
+    "cells": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/frontier_trajectory_silence_solver/frontier_trajectory_silence_cells.csv",
+    "selected_cells": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/frontier_trajectory_silence_solver/frontier_trajectory_silence_selected_cells.csv",
+    "frontier_edges": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/frontier_trajectory_silence_solver/frontier_trajectory_edges.csv",
+    "null_stress": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/frontier_trajectory_silence_solver/frontier_trajectory_silence_null_stress.csv"
+  }
+}

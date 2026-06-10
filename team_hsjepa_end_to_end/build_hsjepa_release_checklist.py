@@ -90,6 +90,13 @@ ANTI_LISTENER_TOXICITY_JSON = (
     / "anti_listener_toxicity_equation_solver"
     / "anti_listener_toxicity_equation_readout.json"
 )
+FRONTIER_TRAJECTORY_SILENCE_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "frontier_trajectory_silence_solver"
+    / "frontier_trajectory_silence_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -117,6 +124,19 @@ def fmt(value: object, digits: int = 6) -> str:
     if not math.isfinite(val):
         return "n/a"
     return f"{val:.{digits}f}"
+
+
+def submission_changed_cells(item: dict[str, object]) -> int:
+    submission = item.get("submission", {})
+    if not isinstance(submission, dict):
+        return 0
+    direct = submission.get("changed_cells")
+    if direct is not None:
+        return int(direct)
+    validation = submission.get("validation", {})
+    if isinstance(validation, dict):
+        return int(validation.get("changed_cells_vs_current_best", 0))
+    return 0
 
 
 def check(name: str, passed: bool, evidence: str, required: bool = True) -> dict[str, object]:
@@ -166,6 +186,7 @@ def require_inputs() -> list[dict[str, object]]:
         MIXTURE_LISTENER_RESPONSIBILITY_JSON,
         PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON,
         ANTI_LISTENER_TOXICITY_JSON,
+        FRONTIER_TRAJECTORY_SILENCE_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -235,6 +256,7 @@ def build_checklist() -> dict[str, object]:
     mixture_listener_responsibility = read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON)
     public_private_subset_tomography = read_json(PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON)
     anti_listener_toxicity = read_json(ANTI_LISTENER_TOXICITY_JSON)
+    frontier_trajectory_silence = read_json(FRONTIER_TRAJECTORY_SILENCE_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -274,6 +296,7 @@ def build_checklist() -> dict[str, object]:
     mixture_listener_verdict = mixture_listener_responsibility.get("verdict", {})
     subset_tomography_verdict = public_private_subset_tomography.get("verdict", {})
     anti_listener_verdict = anti_listener_toxicity.get("verdict", {})
+    frontier_silence_verdict = frontier_trajectory_silence.get("verdict", {})
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -848,6 +871,29 @@ def build_checklist() -> dict[str, object]:
                 ),
             ),
             check(
+                "frontier_trajectory_active_silence_recorded",
+                frontier_trajectory_silence.get("experiment") == "Frontier-Trajectory Active-Silence Solver"
+                and frontier_silence_verdict.get("status") == "candidate_ready"
+                and frontier_silence_verdict.get("recommended_variant")
+                in frontier_trajectory_silence.get("variants", {})
+                and float(frontier_trajectory_silence.get("negative_tangent", {}).get("first_mode_variance", 0.0))
+                >= 0.80
+                and int(frontier_trajectory_silence.get("cell_count", 0)) >= 1
+                and all(
+                    isinstance(item, dict)
+                    and item.get("submission", {}).get("validation", {}).get("upload_safe") is True
+                    and submission_changed_cells(item) > 0
+                    for item in frontier_trajectory_silence.get("variants", {}).values()
+                ),
+                (
+                    f"status={frontier_silence_verdict.get('status')}, "
+                    f"recommended={frontier_silence_verdict.get('recommended_variant')}, "
+                    f"bad_first_mode={fmt(frontier_trajectory_silence.get('negative_tangent', {}).get('first_mode_variance'), 4)}, "
+                    f"cells={frontier_trajectory_silence.get('cell_count')}, "
+                    f"ranking={frontier_silence_verdict.get('ranking')}"
+                ),
+            ),
+            check(
                 "listener_invariant_contrastive_probe_recorded",
                 contrastive_probe.get("status") == "probe_ready"
                 and contrastive_verdict.get("status") in {
@@ -1043,6 +1089,7 @@ def build_markdown(result: dict[str, object]) -> str:
             "- Core-health calibrated release uses dataset-free action-health false-positive lift as an adapter release prior",
             "- Cross-listener transport uses failed listener lift as a boundary calibrator, not as a direct action generator",
             "- Counterfactual listener-dropout, spectral public tangent, negative tangent invariant projection, LB-conditioned responsibility, and mixture-listener responsibility are recorded as high-information public-sensor probes",
+            "- Frontier-trajectory active-silence is recorded as a high-information public-frontier action-health probe",
             "- the next big bet is replacing public-sensor assignment with an OG-only human-state teacher",
             "",
         ]

@@ -71,6 +71,11 @@ ANTI_LISTENER_TOXICITY_JSON = (
     / "anti_listener_toxicity_equation_solver"
     / "anti_listener_toxicity_equation_readout.json"
 )
+FRONTIER_TRAJECTORY_SILENCE_JSON = (
+    OUT
+    / "frontier_trajectory_silence_solver"
+    / "frontier_trajectory_silence_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
@@ -126,6 +131,7 @@ def require_inputs() -> None:
         MIXTURE_LISTENER_RESPONSIBILITY_JSON,
         PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON,
         ANTI_LISTENER_TOXICITY_JSON,
+        FRONTIER_TRAJECTORY_SILENCE_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -159,6 +165,7 @@ def build_big_bets(
     mixture_listener_responsibility: dict[str, object],
     public_private_subset_tomography: dict[str, object],
     anti_listener_toxicity: dict[str, object],
+    frontier_trajectory_silence: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -256,6 +263,11 @@ def build_big_bets(
         if isinstance(anti_listener_toxicity.get("verdict"), dict)
         else {}
     )
+    frontier_silence_verdict = (
+        frontier_trajectory_silence.get("verdict", {})
+        if isinstance(frontier_trajectory_silence.get("verdict"), dict)
+        else {}
+    )
     action_ablation_verdict = (
         action_decoder_ablation.get("verdict", {})
         if isinstance(action_decoder_ablation.get("verdict"), dict)
@@ -277,6 +289,29 @@ def build_big_bets(
         else {}
     )
     bets = [
+        {
+            "id": "frontier_trajectory_active_silence_solver",
+            "name": "Frontier-Trajectory Active-Silence Solver",
+            "worldview": "The public frontier is a noisy descent trajectory; useful HS-JEPA actions continue the positive frontier tangent while actively silencing post-frontier toxic branches.",
+            "core_modules_exercised": [
+                "listener_responsibility",
+                "action_health_decoder",
+                "public_private_equation",
+                "active_silence_policy",
+                "anti_shortcut_validation",
+            ],
+            "adapter_move": "Treat H012->H042->H057 as the positive row-target path, treat post-frontier failures as a silence/toxicity field, and release only cells aligned with the successful path and anti-aligned with the bad tangent.",
+            "why_big": "If this wins LB, HS-JEPA gains a paper-level decoder claim: silence is not abstention noise but an action-health representation learned from failed public trajectories.",
+            "expected_public_lb_delta_if_true": -0.016,
+            "latest_probe_status": frontier_silence_verdict.get("status"),
+            "latest_probe_evidence": {
+                "recommended_variant": frontier_silence_verdict.get("recommended_variant"),
+                "ranking": frontier_silence_verdict.get("ranking"),
+                "negative_tangent": frontier_trajectory_silence.get("negative_tangent"),
+                "cell_count": frontier_trajectory_silence.get("cell_count"),
+            },
+            "kill_criterion": "Positive-path, anti-silence, continuation, and boundary variants all fail public LB, meaning the H012->H057 trajectory was a local leaderboard path rather than an action-grade hidden-state descent direction.",
+        },
         {
             "id": "anti_listener_toxicity_equation_solver",
             "name": "Anti-Listener Toxicity Equation Solver",
@@ -694,15 +729,16 @@ def build_big_bets(
         },
     ]
     priority_order = {
-        "anti_listener_toxicity_equation_solver": 0,
-        "public_private_subset_tomography_solver": 1,
-        "mixture_listener_responsibility_solver": 2,
-        "lb_conditioned_responsibility_solver": 3,
-        "negative_tangent_invariant_projection_solver": 4,
-        "spectral_public_tangent_solver": 5,
-        "counterfactual_listener_dropout_solver": 6,
-        "action_decoder_ablation_suite": 7,
-        "og_only_assignment_teacher": 8,
+        "frontier_trajectory_active_silence_solver": 0,
+        "anti_listener_toxicity_equation_solver": 1,
+        "public_private_subset_tomography_solver": 2,
+        "mixture_listener_responsibility_solver": 3,
+        "lb_conditioned_responsibility_solver": 4,
+        "negative_tangent_invariant_projection_solver": 5,
+        "spectral_public_tangent_solver": 6,
+        "counterfactual_listener_dropout_solver": 7,
+        "action_decoder_ablation_suite": 8,
+        "og_only_assignment_teacher": 9,
     }
     return sorted(
         bets,
@@ -742,6 +778,7 @@ def build_report() -> dict[str, object]:
     mixture_listener_responsibility = read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON)
     public_private_subset_tomography = read_json(PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON)
     anti_listener_toxicity = read_json(ANTI_LISTENER_TOXICITY_JSON)
+    frontier_trajectory_silence = read_json(FRONTIER_TRAJECTORY_SILENCE_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -772,6 +809,7 @@ def build_report() -> dict[str, object]:
     mixture_listener_verdict = mixture_listener_responsibility.get("verdict", {})
     subset_tomography_verdict = public_private_subset_tomography.get("verdict", {})
     anti_listener_verdict = anti_listener_toxicity.get("verdict", {})
+    frontier_silence_verdict = frontier_trajectory_silence.get("verdict", {})
     action_decoder_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -1141,6 +1179,32 @@ def build_report() -> dict[str, object]:
                 if isinstance(item, dict)
             },
         },
+        "frontier_trajectory_active_silence_solver": {
+            "experiment": frontier_trajectory_silence.get("experiment"),
+            "architecture_role": frontier_trajectory_silence.get("architecture_role"),
+            "thesis": frontier_trajectory_silence.get("thesis"),
+            "status": frontier_silence_verdict.get("status"),
+            "recommended_variant": frontier_silence_verdict.get("recommended_variant"),
+            "interpretation": frontier_silence_verdict.get("interpretation"),
+            "frontier": frontier_trajectory_silence.get("frontier"),
+            "negative_tangent": frontier_trajectory_silence.get("negative_tangent"),
+            "cell_count": frontier_trajectory_silence.get("cell_count"),
+            "ranking": frontier_silence_verdict.get("ranking"),
+            "variants": {
+                name: {
+                    "submission_file": item.get("submission", {}).get("submission_file"),
+                    "changed_cells": item.get("submission", {}).get("changed_cells"),
+                    "changed_rows": item.get("submission", {}).get("changed_rows"),
+                    "frontier_cosine": item.get("metrics", {}).get("frontier_cosine"),
+                    "bad_tangent_cosine": item.get("metrics", {}).get("bad_tangent_cosine"),
+                    "mean_silence_pressure": item.get("metrics", {}).get("mean_silence_pressure"),
+                    "mean_energy_delta": item.get("metrics", {}).get("mean_energy_delta"),
+                    "upload_safe": item.get("submission", {}).get("validation", {}).get("upload_safe"),
+                }
+                for name, item in frontier_trajectory_silence.get("variants", {}).items()
+                if isinstance(item, dict)
+            },
+        },
         "action_decoder_ablation_suite": {
             "status": action_decoder_ablation_verdict.get("status"),
             "recommended_lb_sensor": action_decoder_ablation_verdict.get("recommended_lb_sensor"),
@@ -1239,6 +1303,7 @@ def build_report() -> dict[str, object]:
             "Negative tangent invariant projection turns that negative representation into an action-grade test: only anti-public-bad moves that preserve target-route and subject-prior energy are released.",
             "LB-conditioned responsibility now treats public LB as an external listener and estimates which row-target actions carried scalar loss responsibility under leave-one-anchor stress.",
             "Mixture-listener responsibility shows that scalar public response is better explained by latent listener heads, and raises a new Q/S target-routing hypothesis through `target_listener_split_qs`.",
+            "Frontier-trajectory active-silence treats the H012->H057 improvement path as a positive JEPA target representation and post-frontier failures as an action-health silence field.",
         ],
         "what_the_adapter_does_not_prove": [
             "pure OG-only assignment",
@@ -1256,6 +1321,7 @@ def build_report() -> dict[str, object]:
             "that invariant-projected anti-tangent actions improve LB before public LB observes the generated projection candidates",
             "that scalar public-listener responsibility is portable or private-safe before public LB observes the LB-conditioned responsibility candidates",
             "that mixture-listener responsibility is action-grade before public LB observes target-split, consensus, and residual-conflict candidates",
+            "that frontier continuation or active-silence is action-grade before public LB observes the generated frontier-trajectory candidates",
             "that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments",
             "private leaderboard safety",
             "S2 as a universal human-sleep factor",
@@ -1367,6 +1433,18 @@ def build_report_markdown(report: dict[str, object]) -> str:
             f"`{fmt(item['mean_hardworld_toxicity'], 4)}` | "
             f"`{fmt(item['mean_broad_toxicity'], 4)}` | "
             f"`{fmt(item['sum_predicted_public_delta'], 5)}` | `{item['upload_safe']}` |"
+        )
+
+    frontier_silence_rows = [
+        "| Variant | Output | Changed cells | Rows | Frontier cos | Bad cos | Silence | Energy delta | Upload-safe |",
+        "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for variant, item in report["frontier_trajectory_active_silence_solver"]["variants"].items():
+        frontier_silence_rows.append(
+            f"| `{variant}` | `{item['submission_file']}` | `{item['changed_cells']}` | "
+            f"`{item['changed_rows']}` | `{fmt(item['frontier_cosine'], 4)}` | "
+            f"`{fmt(item['bad_tangent_cosine'], 4)}` | `{fmt(item['mean_silence_pressure'], 4)}` | "
+            f"`{fmt(item['mean_energy_delta'], 5)}` | `{item['upload_safe']}` |"
         )
 
     return "\n".join(
@@ -1618,6 +1696,20 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             "이 실험은 CrossListener/H088/target-listener 실패를 단순 폐기하지 않고, 실패한 listener action을 독성 teacher로 사용한다. 추천 `private_safe_anti_listener_bridge`가 public에서 살아나면 HS-JEPA의 action-health 모듈은 listener를 더 믿는 장치가 아니라, listener가 틀린 방향을 말할 때 그 반대 방향을 안전하게 release하는 장치라는 논문 주장이 강해진다.",
             "",
+            "## Frontier-Trajectory Active-Silence Solver",
+            "",
+            f"- Status: `{report['frontier_trajectory_active_silence_solver']['status']}`",
+            f"- Recommended variant: `{report['frontier_trajectory_active_silence_solver']['recommended_variant']}`",
+            f"- Total positive frontier gain: `{fmt(report['frontier_trajectory_active_silence_solver']['frontier'].get('total_gain'), 7)}`",
+            f"- Bad tangent first-mode variance: `{fmt(report['frontier_trajectory_active_silence_solver']['negative_tangent'].get('first_mode_variance'), 4)}`",
+            f"- Candidate cells: `{report['frontier_trajectory_active_silence_solver']['cell_count']}`",
+            "",
+            report["frontier_trajectory_active_silence_solver"]["thesis"],
+            "",
+            *frontier_silence_rows,
+            "",
+            "이 실험은 H012→H042→H057의 성공 궤적을 positive target representation으로, H057 이후 실패들을 active-silence/toxicity representation으로 둔다. public에서 살아나면 HS-JEPA는 hidden state를 찾는 데서 끝나지 않고 `어떤 row-target action을 계속 밀고, 어떤 action을 침묵시킬지`를 학습하는 아키텍처라는 주장이 강해진다.",
+            "",
             "## Action Decoder Ablation Suite",
             "",
             f"- Status: `{report['action_decoder_ablation_suite']['status']}`",
@@ -1710,16 +1802,17 @@ def build_big_bet_markdown(bets: list[dict[str, object]]) -> str:
             "",
             "## 우선순위",
             "",
-            "1. `Anti-Listener Toxicity Equation Solver`: 실패한 listener release를 독성 teacher로 뒤집을 수 있는지 검증한다.",
-            "2. `Public/Private Subset Tomography Solver`: scalar public feedback을 subset inclusion과 hidden label direction으로 분해한다.",
-            "3. `Mixture-Listener Responsibility Solver`: public response가 여러 latent listener head의 합성인지 검증한다.",
-            "4. `LB-Conditioned Responsibility Solver`: public scalar listener equation이 action-grade인지 검증한다.",
-            "5. `Negative Tangent Invariant Projection Solver`: negative representation이 실제 action-grade가 되려면 invariant projection이 필요한지 검증한다.",
-            "6. `Spectral Public-Tangent Solver`: H057 이후 실패들이 공유하는 저차원 public-bad direction이 invertible action equation인지 검증한다.",
-            "7. `Counterfactual Listener-Dropout Solver`: 같은 high-survival action을 믿을지 뒤집을지 가르는 A/B 센서다.",
-            "8. `Action Decoder Ablation Suite`: action decoder order가 public sensor와 맞는지 큰 구조로 검증한다.",
-            "9. `OG-only Human-State Assignment Teacher`: 성공하면 HS-JEPA의 범용성이 가장 크게 올라간다.",
-            "10. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
+            "1. `Frontier-Trajectory Active-Silence Solver`: 성공 frontier를 계속 밀지, 실패 trajectory를 침묵시킬지 검증한다.",
+            "2. `Anti-Listener Toxicity Equation Solver`: 실패한 listener release를 독성 teacher로 뒤집을 수 있는지 검증한다.",
+            "3. `Public/Private Subset Tomography Solver`: scalar public feedback을 subset inclusion과 hidden label direction으로 분해한다.",
+            "4. `Mixture-Listener Responsibility Solver`: public response가 여러 latent listener head의 합성인지 검증한다.",
+            "5. `LB-Conditioned Responsibility Solver`: public scalar listener equation이 action-grade인지 검증한다.",
+            "6. `Negative Tangent Invariant Projection Solver`: negative representation이 실제 action-grade가 되려면 invariant projection이 필요한지 검증한다.",
+            "7. `Spectral Public-Tangent Solver`: H057 이후 실패들이 공유하는 저차원 public-bad direction이 invertible action equation인지 검증한다.",
+            "8. `Counterfactual Listener-Dropout Solver`: 같은 high-survival action을 믿을지 뒤집을지 가르는 A/B 센서다.",
+            "9. `Action Decoder Ablation Suite`: action decoder order가 public sensor와 맞는지 큰 구조로 검증한다.",
+            "10. `OG-only Human-State Assignment Teacher`: 성공하면 HS-JEPA의 범용성이 가장 크게 올라간다.",
+            "11. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
             "",
         ]
     )
@@ -1748,6 +1841,7 @@ def run() -> dict[str, object]:
         read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON),
         read_json(PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON),
         read_json(ANTI_LISTENER_TOXICITY_JSON),
+        read_json(FRONTIER_TRAJECTORY_SILENCE_JSON),
         read_json(ACTION_DECODER_ABLATION_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),
