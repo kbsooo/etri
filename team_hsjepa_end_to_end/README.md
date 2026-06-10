@@ -8,7 +8,7 @@
 
 이 폴더의 목적은 그 암묵지를 그대로 나열하는 것이 아니라, 하나의 재현 가능한 슈팅 기술로 정리하는 것이다.
 
-현재 가장 강한 기술 이름:
+현재 가장 강한 대회 구현체 이름:
 
 ```text
 Route-Conserving S2 Bridge HS-JEPA
@@ -17,6 +17,21 @@ Route-Conserving S2 Bridge HS-JEPA
 ## 한 줄 설명
 
 수면 단계 target을 하나씩 독립적으로 고치지 않고, public-sensitive driver correction을 찾은 뒤 S-stage route manifold를 보존하는 bridge correction을 함께 붙인다. 이때 S2는 objective sleep-stage route에서 가장 중요한 listener/hub로 해석한다.
+
+단, 이것은 HS-JEPA 전체가 아니라 이번 대회의 case study다.
+
+HS-JEPA 자체의 더 일반적인 구조는 다음이다.
+
+```text
+partial human context
+  -> hidden human-state representation
+  -> listener responsibility
+  -> action-health decision
+  -> invariant-preserving decoder
+  -> anti-shortcut validation
+```
+
+즉 `S2`, `Q/S route`, `public LB sensor`는 재사용 가능한 아키텍처가 아니라 이 대회에서 발견된 구현체 요소다.
 
 ## 왜 이게 단순 trial-and-error가 아닌가
 
@@ -54,8 +69,8 @@ target correction은 route manifold를 보존해야 한다.
 python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py
 ```
 
-이 명령은 package 생성, stress audit, claim/evidence validation, reproducibility contract, architecture readiness gate, mechanism ablation report, paper method packet, pipeline manifest, release checklist, 팀 핸드오프 리포트 생성을 모두 수행한다.
-또한 OG raw input, public-LB sensor, generated action artifact를 분리한 뒤, 이 패키지를 논문/팀 공유용 아키텍처 주장으로 말해도 되는지 자동 판정하고 논문 초안에 붙일 수 있는 method 설명, 대체 세계관 knockout report, OG-to-submission pipeline, 최종 release gate를 만든다.
+이 명령은 package 생성, stress audit, claim/evidence validation, reproducibility contract, architecture readiness gate, mechanism ablation report, generality report, paper method packet, pipeline manifest, release checklist, 팀 핸드오프 리포트 생성을 모두 수행한다.
+또한 OG raw input, public-LB sensor, generated action artifact를 분리한 뒤, 이 패키지를 논문/팀 공유용 아키텍처 주장으로 말해도 되는지 자동 판정하고 논문 초안에 붙일 수 있는 method 설명, 대체 세계관 knockout report, 일반 HS-JEPA와 대회 구현체의 분리 보고서, OG-to-submission pipeline, 최종 release gate를 만든다.
 
 전체 dependency까지 재생성이 필요하면:
 
@@ -112,6 +127,8 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/
 - `hsjepa_architecture_readiness_report.json`
 - `hsjepa_mechanism_ablation_report_ko.md`
 - `hsjepa_mechanism_ablation_report.json`
+- `hsjepa_generality_report_ko.md`
+- `hsjepa_generality_report.json`
 - `hsjepa_paper_method_packet_ko.md`
 - `hsjepa_paper_method_packet.json`
 - `hsjepa_pipeline_manifest_ko.md`
@@ -188,6 +205,12 @@ public sensor와 local stress audit이 죽인 대체 세계관을 정리한 mech
 team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_mechanism_ablation_report_ko.md
 ```
 
+일반 HS-JEPA와 이번 대회 구현체를 분리한 generality report:
+
+```text
+team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_generality_report_ko.md
+```
+
 OG 데이터부터 최종 제출/논문 산출물까지의 역할 기반 pipeline:
 
 ```text
@@ -213,9 +236,13 @@ Human-state representation
 
 로 문제를 분해한다.
 
-이번 패키지의 가장 중요한 기여는 `route-conserving action decoder`다.
+이번 대회 구현체의 가장 중요한 기여는 `route-conserving action decoder`다.
 
 > 수면 단계 target의 correction은 독립적인 logit move가 아니라, route manifold를 보존하는 driver/bridge action이어야 한다.
+
+더 일반적인 HS-JEPA claim은 다음이다.
+
+> 인간 이해 예측에서는 label을 바로 맞히는 것보다, hidden human-state, listener responsibility, action-health, invariant-preserving decoder를 분리해야 한다.
 
 ## 대회 측면에서의 현재 위치
 

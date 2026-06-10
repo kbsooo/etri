@@ -48,7 +48,8 @@ public-sensitive driver action
 - Package validation passed: `True`
 - Architecture readiness: `paper_ready_with_boundary` (`7/7` gates)
 - Mechanism ablation: `mechanism_ablation_ready` (`5` public worldviews killed, `2` survived)
-- Release checklist: `release_ready_with_boundary` (`22/22` checks)
+- Generality boundary: `general_architecture_separated_with_case_boundary` (`5/6` portability checks, nonblocking boundaries: `1`)
+- Release checklist: `release_ready_with_boundary` (`24/24` checks)
 
 ## Paper Claim
 
@@ -120,6 +121,14 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_paper_method_pa
 
 ```text
 team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_mechanism_ablation_report_ko.md
+```
+
+## Generality Report
+
+HS-JEPA의 범용 아키텍처와 이번 대회의 Route-Conserving S2 Bridge case study를 분리한 portability report:
+
+```text
+team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_generality_report_ko.md
 ```
 
 ## Pipeline Manifest

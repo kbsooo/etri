@@ -27,6 +27,7 @@ VALIDATION_JSON = OUT / "route_conserving_s2_bridge_validation_report.json"
 CONTRACT_JSON = OUT / "hsjepa_reproducibility_contract.json"
 READINESS_JSON = OUT / "hsjepa_architecture_readiness_report.json"
 MECHANISM_ABLATION_JSON = OUT / "hsjepa_mechanism_ablation_report.json"
+GENERALITY_JSON = OUT / "hsjepa_generality_report.json"
 METHOD_PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 
 MANIFEST_JSON = OUT / "hsjepa_pipeline_manifest.json"
@@ -58,6 +59,7 @@ def require_inputs() -> None:
         CONTRACT_JSON,
         READINESS_JSON,
         MECHANISM_ABLATION_JSON,
+        GENERALITY_JSON,
         METHOD_PACKET_JSON,
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
@@ -107,6 +109,7 @@ def build_manifest() -> dict[str, object]:
     contract = read_json(CONTRACT_JSON)
     readiness = read_json(READINESS_JSON)
     ablation = read_json(MECHANISM_ABLATION_JSON)
+    generality = read_json(GENERALITY_JSON)
     method = read_json(METHOD_PACKET_JSON)
     evidence = pd.read_csv(EVIDENCE_CSV)
     stress = pd.read_csv(STRESS_CSV)
@@ -227,11 +230,29 @@ def build_manifest() -> dict[str, object]:
             "This explains mechanism evidence; it is not a new private-score guarantee.",
         ),
         stage(
+            "general_architecture_boundary",
+            "General Architecture Boundary",
+            "Separates reusable HS-JEPA modules from the sleep-competition S2/public-sensor instantiation.",
+            ["architecture readiness report", "mechanism ablation report"],
+            ["hsjepa_generality_report_ko.md"],
+            [
+                f"Generality status: {generality['status']}",
+                f"Portability checks: {generality['passed_checks']}/{generality['total_checks']}",
+                f"Nonblocking boundaries: {', '.join(generality['nonblocking_boundaries'])}",
+            ],
+            "The current strongest case study still uses a public-sensor assignment teacher.",
+        ),
+        stage(
             "claim_readiness_and_paper_packet",
             "Claim Readiness and Paper Packet",
             "Converts the runnable package into paper/team-facing evidence and method text.",
-            ["package outputs", "stress audit", "reproducibility contract", "mechanism ablation report"],
-            ["hsjepa_architecture_readiness_report.md", "hsjepa_paper_method_packet_ko.md", "hsjepa_mechanism_ablation_report_ko.md"],
+            ["package outputs", "stress audit", "reproducibility contract", "mechanism ablation report", "generality report"],
+            [
+                "hsjepa_architecture_readiness_report.md",
+                "hsjepa_paper_method_packet_ko.md",
+                "hsjepa_mechanism_ablation_report_ko.md",
+                "hsjepa_generality_report_ko.md",
+            ],
             [
                 f"Readiness status: {readiness['status']}",
                 f"Readiness gates: {readiness['passed_gates']}/{readiness['total_gates']}",
@@ -252,6 +273,8 @@ def build_manifest() -> dict[str, object]:
         ["public_lb_sensor", "mechanism_ablation_knockout"],
         ["route_conserving_s2_bridge_decoder", "mechanism_ablation_knockout"],
         ["mechanism_ablation_knockout", "claim_readiness_and_paper_packet"],
+        ["mechanism_ablation_knockout", "general_architecture_boundary"],
+        ["general_architecture_boundary", "claim_readiness_and_paper_packet"],
         ["submission_packager", "claim_readiness_and_paper_packet"],
         ["route_conserving_s2_bridge_decoder", "claim_readiness_and_paper_packet"],
     ]
@@ -282,6 +305,8 @@ def build_manifest() -> dict[str, object]:
             "human_state_row_auc": human["row_oof_auc"],
             "public_worldviews_killed": ablation["public_worldviews_killed"],
             "public_worldviews_survived": ablation["public_worldviews_survived"],
+            "generality_status": generality["status"],
+            "generality_nonblocking_boundaries": generality["nonblocking_boundaries"],
         },
     }
     MANIFEST_JSON.write_text(json.dumps(manifest, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8")

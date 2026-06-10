@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 9,
-  "edge_count": 12,
+  "stage_count": 10,
+  "edge_count": 14,
   "stages": [
     {
       "id": "og_raw_lifestyle_context",
@@ -151,6 +151,24 @@
       "boundary": "This explains mechanism evidence; it is not a new private-score guarantee."
     },
     {
+      "id": "general_architecture_boundary",
+      "name": "General Architecture Boundary",
+      "role": "Separates reusable HS-JEPA modules from the sleep-competition S2/public-sensor instantiation.",
+      "inputs": [
+        "architecture readiness report",
+        "mechanism ablation report"
+      ],
+      "outputs": [
+        "hsjepa_generality_report_ko.md"
+      ],
+      "evidence": [
+        "Generality status: general_architecture_separated_with_case_boundary",
+        "Portability checks: 5/6",
+        "Nonblocking boundaries: remaining_generality_gap"
+      ],
+      "boundary": "The current strongest case study still uses a public-sensor assignment teacher."
+    },
+    {
       "id": "claim_readiness_and_paper_packet",
       "name": "Claim Readiness and Paper Packet",
       "role": "Converts the runnable package into paper/team-facing evidence and method text.",
@@ -158,17 +176,19 @@
         "package outputs",
         "stress audit",
         "reproducibility contract",
-        "mechanism ablation report"
+        "mechanism ablation report",
+        "generality report"
       ],
       "outputs": [
         "hsjepa_architecture_readiness_report.md",
         "hsjepa_paper_method_packet_ko.md",
-        "hsjepa_mechanism_ablation_report_ko.md"
+        "hsjepa_mechanism_ablation_report_ko.md",
+        "hsjepa_generality_report_ko.md"
       ],
       "evidence": [
         "Readiness status: paper_ready_with_boundary",
         "Readiness gates: 7/7",
-        "Method title: Human-State JEPA with Route-Conserving S2 Bridge Decoder"
+        "Method title: Human-State JEPA: General Architecture with a Route-Conserving S2 Bridge Case Study"
       ],
       "boundary": "Paper claims must keep representation, public sensor, and action decoder separated."
     }
@@ -215,6 +235,14 @@
       "claim_readiness_and_paper_packet"
     ],
     [
+      "mechanism_ablation_knockout",
+      "general_architecture_boundary"
+    ],
+    [
+      "general_architecture_boundary",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
       "submission_packager",
       "claim_readiness_and_paper_packet"
     ],
@@ -244,6 +272,10 @@
     "human_state_cell_auc": 0.7750664475064699,
     "human_state_row_auc": 0.545343137254902,
     "public_worldviews_killed": 5,
-    "public_worldviews_survived": 2
+    "public_worldviews_survived": 2,
+    "generality_status": "general_architecture_separated_with_case_boundary",
+    "generality_nonblocking_boundaries": [
+      "remaining_generality_gap"
+    ]
   }
 }

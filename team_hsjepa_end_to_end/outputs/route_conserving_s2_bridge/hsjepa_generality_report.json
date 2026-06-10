@@ -1,0 +1,94 @@
+{
+  "package": "HS-JEPA",
+  "status": "general_architecture_separated_with_case_boundary",
+  "general_modules": [
+    {
+      "module": "Human-State Context Encoder",
+      "general_role": "Convert person, cohort, time, routine, social, and sensor context into a latent human-state field.",
+      "not_allowed_to_be": "A direct label predictor disguised as a representation.",
+      "this_competition_instance": "sleep/routine/cohort context plus row-order and target-context artifacts."
+    },
+    {
+      "module": "Masked State Prediction",
+      "general_role": "Predict hidden human-state or listener representation from partial context.",
+      "not_allowed_to_be": "Raw input reconstruction or a memorized target prior.",
+      "this_competition_instance": "cell-level target/listener orientation and hidden row-target support probes."
+    },
+    {
+      "module": "Listener Responsibility",
+      "general_role": "Treat labels, sensors, or outcomes as listeners that react differently to the same human state.",
+      "not_allowed_to_be": "A fixed target hierarchy hard-coded from label names.",
+      "this_competition_instance": "Q/S targets and S2 listener/hub behavior inside the objective-stage decoder."
+    },
+    {
+      "module": "Action-Health Decoder",
+      "general_role": "Separate state discovery from the decision that an output should actually move.",
+      "not_allowed_to_be": "A broad correction head that trusts every latent signal.",
+      "this_competition_instance": "H088 and other negative public sensors used as toxic-action diagnostics."
+    },
+    {
+      "module": "Invariant Energy",
+      "general_role": "Reject actions that break a learned behavioral, physiological, temporal, or semantic manifold.",
+      "not_allowed_to_be": "A dataset-specific target name rule with no null test.",
+      "this_competition_instance": "Q/S route energy and route-conserving S2 bridge stress audit."
+    },
+    {
+      "module": "Anti-Shortcut Validation",
+      "general_role": "Use cohort/time/group/null/stress tests to detect collapse, public overfit, and shortcut action fields.",
+      "not_allowed_to_be": "A green CV score or a single leaderboard improvement.",
+      "this_competition_instance": "public-sensor ablation, feasible-bundle nulls, upload-safety gates, release checklist."
+    }
+  ],
+  "portability_checks": [
+    {
+      "check": "architecture_case_separation",
+      "passed": true,
+      "evidence": "General HS-JEPA modules are named separately from the Route-Conserving S2 Bridge case study.",
+      "meaning": "S2/public sensor is an instantiation, not the architecture itself."
+    },
+    {
+      "check": "human_understanding_scope",
+      "passed": true,
+      "evidence": "Human-state context includes personal baseline, cohort deviation, routine/social context, and sensor state.",
+      "meaning": "The architecture targets human-state interpretation before label prediction."
+    },
+    {
+      "check": "listener_not_label",
+      "passed": true,
+      "evidence": "Targets are described as listeners/responses to hidden state, not only as seven binary columns.",
+      "meaning": "The same architecture can apply when listeners are survey answers, sensors, app usage, or health outcomes."
+    },
+    {
+      "check": "invariant_decoder_generalized",
+      "passed": true,
+      "evidence": "Route energy is framed as one instance of invariant energy over output/action manifolds.",
+      "meaning": "Other datasets can replace Q/S route with temporal, cohort, semantic, or physiological invariants."
+    },
+    {
+      "check": "competition_sensor_boundary",
+      "passed": true,
+      "evidence": "Public LB sensor is explicitly marked as competition-specific assignment teacher.",
+      "meaning": "Paper claims can keep the reusable architecture separate from the leaderboard-specific sensor."
+    },
+    {
+      "check": "remaining_generality_gap",
+      "passed": false,
+      "evidence": "Current best row-target assignment still depends on public-sensor support rather than an OG-only human-state teacher.",
+      "meaning": "The architecture is reusable; the current strongest competition instantiation is not yet fully portable.",
+      "required_for_completion": false
+    }
+  ],
+  "passed_checks": 5,
+  "total_checks": 6,
+  "nonblocking_boundaries": [
+    "remaining_generality_gap"
+  ],
+  "evidence": {
+    "readiness_status": "paper_ready_with_boundary",
+    "mechanism_ablation_status": "mechanism_ablation_ready",
+    "public_worldviews_killed": 5,
+    "public_worldviews_survived": 2
+  },
+  "honest_claim": "HS-JEPA is a human-understanding architecture that predicts hidden human-state and listener/action representations before making bounded output moves.  The Route-Conserving S2 Bridge is the sleep-log competition instantiation, not the full architecture.",
+  "next_breakthrough": "Replace the public-sensor row-target assignment teacher with an OG-only personal/cohort/time human-state teacher while preserving the invariant-decoder and anti-shortcut gates."
+}

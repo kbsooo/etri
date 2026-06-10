@@ -24,6 +24,7 @@ VALIDATION_JSON = OUT / "route_conserving_s2_bridge_validation_report.json"
 CONTRACT_JSON = OUT / "hsjepa_reproducibility_contract.json"
 READINESS_JSON = OUT / "hsjepa_architecture_readiness_report.json"
 MECHANISM_ABLATION_JSON = OUT / "hsjepa_mechanism_ablation_report.json"
+GENERALITY_JSON = OUT / "hsjepa_generality_report.json"
 METHOD_PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 PIPELINE_JSON = OUT / "hsjepa_pipeline_manifest.json"
 
@@ -61,7 +62,7 @@ def check(name: str, passed: bool, evidence: str, required: bool = True) -> dict
 
 def require_inputs() -> list[dict[str, object]]:
     rows = []
-    for path in [PACKAGE_JSON, VALIDATION_JSON, CONTRACT_JSON, READINESS_JSON, MECHANISM_ABLATION_JSON, METHOD_PACKET_JSON, PIPELINE_JSON]:
+    for path in [PACKAGE_JSON, VALIDATION_JSON, CONTRACT_JSON, READINESS_JSON, MECHANISM_ABLATION_JSON, GENERALITY_JSON, METHOD_PACKET_JSON, PIPELINE_JSON]:
         rows.append(check(f"exists:{path.name}", path.exists(), str(path.relative_to(ROOT))))
     return rows
 
@@ -94,6 +95,7 @@ def build_checklist() -> dict[str, object]:
     contract = read_json(CONTRACT_JSON)
     readiness = read_json(READINESS_JSON)
     ablation = read_json(MECHANISM_ABLATION_JSON)
+    generality = read_json(GENERALITY_JSON)
     method = read_json(METHOD_PACKET_JSON)
     pipeline = read_json(PIPELINE_JSON)
 
@@ -174,6 +176,17 @@ def build_checklist() -> dict[str, object]:
                 and all(str(item.get("verdict", "")).startswith("killed") for item in stress_ablation if isinstance(item, dict)),
                 f"stress_verdicts={[item.get('verdict') for item in stress_ablation if isinstance(item, dict)]}",
             ),
+            check(
+                "generality_boundary_explicit",
+                generality.get("status") == "general_architecture_separated_with_case_boundary"
+                and int(generality.get("passed_checks", 0)) >= 5
+                and "remaining_generality_gap" in set(generality.get("nonblocking_boundaries", [])),
+                (
+                    f"status={generality.get('status')}, "
+                    f"checks={generality.get('passed_checks')}/{generality.get('total_checks')}, "
+                    f"boundaries={generality.get('nonblocking_boundaries')}"
+                ),
+            ),
             check("roles_present", role_keys == EXPECTED_ROLES, f"roles={sorted(role_keys)}"),
             check(
                 "role_based_output_names",
@@ -204,7 +217,7 @@ def build_checklist() -> dict[str, object]:
                         and "bridge" in str(method.get("one_sentence", "")).lower()
                     )
                 )
-                and {"abstract_ko", "method_ko", "algorithm_ko"}.issubset(set(method.get("paper_sections", {}))),
+                and {"abstract_ko", "method_ko", "generality_ko", "algorithm_ko"}.issubset(set(method.get("paper_sections", {}))),
                 f"title={method.get('title')}",
             ),
             check(

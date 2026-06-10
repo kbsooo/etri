@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 22,
-  "total_checks": 22,
+  "passed_checks": 24,
+  "total_checks": 24,
   "required_failures": [],
   "checks": [
     {
@@ -39,6 +39,13 @@
       "passed": true,
       "required": true,
       "evidence": "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_mechanism_ablation_report.json"
+    },
+    {
+      "check": "exists:hsjepa_generality_report.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_generality_report.json"
     },
     {
       "check": "exists:hsjepa_paper_method_packet.json",
@@ -118,6 +125,13 @@
       "evidence": "stress_verdicts=['killed_locally', 'killed_locally']"
     },
     {
+      "check": "generality_boundary_explicit",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=general_architecture_separated_with_case_boundary, checks=5/6, boundaries=['remaining_generality_gap']"
+    },
+    {
       "check": "roles_present",
       "status": "PASS",
       "passed": true,
@@ -143,14 +157,14 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=9, edges=12"
+      "evidence": "status=pipeline_ready_with_boundary, stages=10, edges=14"
     },
     {
       "check": "method_packet_presentable",
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "title=Human-State JEPA with Route-Conserving S2 Bridge Decoder"
+      "evidence": "title=Human-State JEPA: General Architecture with a Route-Conserving S2 Bridge Case Study"
     },
     {
       "check": "claim_boundary_honest",

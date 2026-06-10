@@ -14901,3 +14901,74 @@ S2 repeatedly appears as the listener/hub under that decoder.
 
 The boundary remains strict: this is still not a private-LB proof and not an
 OG-only row assignment solution.
+
+## HS-JEPA Generality Report
+
+Date: 2026-06-10
+
+Question:
+
+Is the current HS-JEPA package a general human-understanding architecture, or
+only a sleep-competition-specific S2/public-sensor decoder?
+
+User critique:
+
+```text
+The current package still feels scoped to this competition's labels.  A useful
+architecture should transfer; otherwise the "knuckleball shot" is just a shot
+that works only with one grass condition, angle, and goal corner.
+```
+
+Added artifacts:
+
+- `team_hsjepa_end_to_end/build_hsjepa_generality_report.py`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_generality_report_ko.md`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_generality_report.json`
+
+The full runner now also creates the generality report:
+
+```bash
+python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py
+```
+
+Key reframing:
+
+```text
+HS-JEPA general architecture != Route-Conserving S2 Bridge competition case study
+```
+
+General HS-JEPA:
+
+```text
+partial human context
+  -> hidden human-state representation
+  -> listener responsibility
+  -> action-health decision
+  -> invariant-preserving decoder
+  -> anti-shortcut validation
+```
+
+Competition case study:
+
+```text
+sleep-log context
+  + public-sensor assignment teacher
+  + Q/S route invariant
+  + S2 listener bridge decoder
+```
+
+Interpretation:
+
+This directly fixes the scope problem.  `S2`, `public LB sensor`, and `Q/S route`
+are no longer framed as HS-JEPA itself.  They are the sleep-competition
+instantiation.  The portable idea is the separation of human-state, listener
+responsibility, action-health, invariant decoding, and anti-shortcut validation.
+
+Remaining generality gap:
+
+```text
+The strongest row-target assignment still uses public-sensor support.
+To become fully portable, the next breakthrough must replace this with an
+OG-only personal/cohort/time human-state teacher while preserving the invariant
+decoder and shortcut gates.
+```

@@ -2,7 +2,17 @@
 
 ## 목적
 
-이 문서는 HS-JEPA를 단순한 제출 파일 조합이 아니라, 수면 기반 생활 로그에서 숨은 인간 상태와 row-target action을 분리해 복원하는 아키텍처로 설명하기 위한 팀 공유용 패키지다.
+이 문서는 HS-JEPA를 단순한 제출 파일 조합이 아니라, 인간 생활 로그에서 숨은 인간 상태와 listener/action을 분리해 복원하는 아키텍처로 설명하기 위한 팀 공유용 패키지다.
+
+중요한 분리가 있다.
+
+```text
+HS-JEPA general architecture != Route-Conserving S2 Bridge competition case study
+```
+
+HS-JEPA의 일반 기술은 `S2`나 `public LB`가 아니다. 일반 기술은 partial human context에서 hidden human-state representation을 만들고, label/sensor/outcome을 그 state를 듣는 listener로 해석한 뒤, action-health와 invariant-preserving decoder를 통과시켜 안전한 output move만 허용하는 구조다.
+
+`Route-Conserving S2 Bridge`는 이 수면 대회에서 발견된 강한 구현체다. 논문에서는 이것을 case study로 두고, 일반 아키텍처와 혼동하지 않아야 한다.
 
 핵심 목표는 두 가지다.
 
@@ -11,7 +21,7 @@
 
 ## 한 문장 정의
 
-HS-JEPA는 생활 로그를 바로 label로 매핑하지 않고, 인간 생활 상태, target listener, row-target assignment, action health, route energy를 분리해 예측하고 결합하는 joint embedding predictive architecture다.
+HS-JEPA는 생활 로그를 바로 label로 매핑하지 않고, 인간 생활 상태, listener responsibility, action health, invariant energy를 분리해 예측하고 결합하는 joint embedding predictive architecture다.
 
 ## 왜 일반 tabular 모델과 다른가
 
@@ -26,11 +36,11 @@ HS-JEPA는 문제를 다르게 본다.
 ```text
 raw lifestyle logs
   -> hidden human-state representation
-  -> target-listener representation
-  -> row-target assignment
+  -> listener responsibility representation
+  -> action assignment
   -> action-health / toxicity field
-  -> route-consistent correction
-  -> final probability
+  -> invariant-preserving decoder
+  -> final prediction/action
 ```
 
 즉 label을 직접 예측하지 않고, label이 생기는 중간 구조를 예측한다.
@@ -49,11 +59,22 @@ HS-JEPA에서는 다음처럼 번역된다.
 
 | JEPA 요소 | HS-JEPA의 대응 |
 | --- | --- |
-| context | 생활 로그, row order, subject/cohort state, target identity, submission disagreement |
-| target representation | label 자체가 아니라 human-state, target listener, support, action field |
-| mask | feature mask가 아니라 row/target/source/public-private mask |
-| predictor | context에서 hidden state/action representation을 예측 |
-| energy | collapse, shortcut, toxic action, route violation 감지 |
+| context | 생활 로그, 개인 baseline, cohort deviation, 시간/사회적 루틴, sensor state |
+| target representation | label 자체가 아니라 human-state, listener responsibility, action-health, invariant field |
+| mask | feature mask가 아니라 person/cohort/time/listener/action/source mask |
+| predictor | context에서 보이지 않는 human-state/listener/action representation을 예측 |
+| energy | collapse, shortcut, toxic action, invariant violation 감지 |
+
+## 일반 아키텍처와 이번 대회 구현체
+
+| 구분 | 일반 HS-JEPA | 이번 수면 대회 case study |
+| --- | --- | --- |
+| Human state | 개인/코호트/시간/사회적 맥락의 latent state | sleep/routine/cohort/row-order context |
+| Listener | hidden state에 반응하는 survey, sensor, behavior, health outcome | Q1/Q2/Q3/S1/S2/S3/S4 |
+| Assignment | 어떤 listener/action이 실제로 반응해야 하는지 찾는 문제 | row-target sparse support |
+| Invariant | action 후에도 깨지면 안 되는 행동/생리/시간/의미 구조 | Q/S route manifold |
+| Case-specific decoder | domain invariant를 보존하는 bounded action | Route-Conserving S2 Bridge |
+| Shortcut sensor | collapse, leakage, public-only artifact 감지 | public LB sensor, feasible bundle null |
 
 ## 전체 구조
 
@@ -240,7 +261,7 @@ python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py
 python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py --refresh
 ```
 
-위 명령은 package 생성, stress audit, claim/evidence validation, reproducibility contract, architecture readiness gate, mechanism ablation report, paper method packet, pipeline manifest, release checklist, 팀 핸드오프 리포트 생성을 한 번에 수행한다.
+위 명령은 package 생성, stress audit, claim/evidence validation, reproducibility contract, architecture readiness gate, mechanism ablation report, generality report, paper method packet, pipeline manifest, release checklist, 팀 핸드오프 리포트 생성을 한 번에 수행한다.
 
 입력 출처를 OG raw data, public-LB sensor, competition anchor, generated output으로 분리한 계약 문서:
 
@@ -271,6 +292,12 @@ public sensor와 local stress audit이 죽인 대체 세계관을 정리한 mech
 
 ```text
 team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_mechanism_ablation_report_ko.md
+```
+
+일반 HS-JEPA와 이번 대회 구현체를 분리한 generality report:
+
+```text
+team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_generality_report_ko.md
 ```
 
 OG 데이터부터 public sensor, latent/context, decoder, submission, paper packet까지 이어지는 pipeline manifest:
