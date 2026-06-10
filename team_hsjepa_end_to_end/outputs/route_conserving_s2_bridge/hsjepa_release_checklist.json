@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 43,
-  "total_checks": 43,
+  "passed_checks": 45,
+  "total_checks": 45,
   "required_failures": [],
   "checks": [
     {
@@ -46,6 +46,13 @@
       "passed": true,
       "required": true,
       "evidence": "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_generality_report.json"
+    },
+    {
+      "check": "exists:hsjepa_core_adapter_boundary_audit.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_boundary_audit.json"
     },
     {
       "check": "exists:hsjepa_paper_method_packet.json",
@@ -209,6 +216,13 @@
       "evidence": "core=core_ready_for_adapter (5/5), adapter=adapter_ready_with_public_sensor_boundary"
     },
     {
+      "check": "core_adapter_boundary_audit_verified",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=core_adapter_boundary_verified, checks=6/6"
+    },
+    {
       "check": "core_ablation_contract_present",
       "status": "PASS",
       "passed": true,
@@ -290,7 +304,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=18, edges=33"
+      "evidence": "status=pipeline_ready_with_boundary, stages=19, edges=36"
     },
     {
       "check": "method_packet_presentable",

@@ -1,0 +1,64 @@
+{
+  "package": "HS-JEPA Core/Adapter Boundary Audit",
+  "status": "core_adapter_boundary_verified",
+  "passed_checks": 6,
+  "total_checks": 6,
+  "required_failures": [],
+  "checks": [
+    {
+      "check": "required_inputs_exist",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "core manifest, core ablation, adapter report, and runner exist"
+    },
+    {
+      "check": "core_has_no_forbidden_imports",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "violations=0"
+    },
+    {
+      "check": "core_has_no_operational_competition_paths",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "violations=0, boundary_mentions=0"
+    },
+    {
+      "check": "core_manifest_is_dataset_agnostic",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "violations=[]"
+    },
+    {
+      "check": "adapter_declares_core_dependency",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "missing_or_bad=[]"
+    },
+    {
+      "check": "runner_orders_core_before_adapter_before_release",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "positions={'core_manifest': 18117, 'sleep_adapter_report': 19439, 'boundary_audit': 19552, 'paper_packet': 19631, 'release_checklist': 19783}"
+    }
+  ],
+  "core_import_violations": [],
+  "core_string_violations": [],
+  "core_boundary_mentions": [],
+  "core_manifest_violations": [],
+  "adapter_missing_or_bad": [],
+  "runner_positions": {
+    "core_manifest": 18117,
+    "sleep_adapter_report": 19439,
+    "boundary_audit": 19552,
+    "paper_packet": 19631,
+    "release_checklist": 19783
+  },
+  "boundary_claim": "HS-JEPA Core is competition-agnostic at the operational dependency layer; the sleep adapter owns public sensors, Q/S listeners, and submission packaging."
+}

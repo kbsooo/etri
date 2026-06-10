@@ -38,7 +38,10 @@ flowchart TD
     P3 --> ADAPT
     P4 --> ADAPT
     P6 --> ADAPT
+    ADAPT --> BAUD["Core/adapter boundary audit"]
+    CORE --> BAUD
     GEN --> H["Claim readiness and paper packet"]
+    BAUD --> H
     ADAPT --> H["Claim readiness and paper packet"]
     G --> H["Claim readiness and paper packet"]
     F --> H
@@ -65,6 +68,7 @@ flowchart TD
 | `mechanism_ablation_knockout` | Records which alternative worldviews public sensors and local stress audits killed or preserved. | Public worldviews killed: 5<br>Public worldviews survived: 2<br>Ablation status: mechanism_ablation_ready | This explains mechanism evidence; it is not a new private-score guarantee. |
 | `general_architecture_boundary` | Separates reusable HS-JEPA modules from the sleep-competition S2/public-sensor instantiation. | Generality status: general_architecture_separated_with_case_boundary<br>Portability checks: 5/6<br>Nonblocking boundaries: remaining_generality_gap | The current strongest case study still uses a public-sensor assignment teacher. |
 | `sleep_competition_adapter` | Maps HS-JEPA Core into Q/S listeners, route energy, public-sensor action evidence, and upload-safe sparse row-target outputs. | Adapter status: adapter_ready_with_public_sensor_boundary<br>Adapter score delta: -0.0084113555<br>Big-bet count: 5 | This adapter is a competition case study; it is not the general HS-JEPA architecture. |
+| `core_adapter_boundary_audit` | Statically verifies that HS-JEPA Core has no operational dependency on competition adapters and that the adapter depends on the core contract. | Boundary audit status: core_adapter_boundary_verified<br>Boundary audit checks: 6/6<br>Core import violations: 0 | This verifies architecture separation; it does not create a new prediction or score guarantee. |
 | `claim_readiness_and_paper_packet` | Converts the runnable package into paper/team-facing evidence and method text. | Readiness status: paper_ready_with_boundary<br>Readiness gates: 7/7<br>Method title: Human-State JEPA: General Architecture with a Route-Conserving S2 Bridge Case Study | Paper claims must keep representation, public sensor, and action decoder separated. |
 
 ## Role-Based Outputs
@@ -87,6 +91,7 @@ flowchart TD
 ```text
 The reusable mechanism is HS-JEPA Core: hidden state -> listener -> action-health -> invariant decoder.
 The sleep competition adapter supplies Q/S listeners, public-sensor actions, route energy, and upload format.
+The boundary audit verifies that this is a real dependency split, not only a naming convention.
 The current LB breakthrough is adapter evidence; the paper claim must remain core-first.
 The next jackpot is replacing scalar action-health with a factorized broad-public/hard-world decoder.
 ```

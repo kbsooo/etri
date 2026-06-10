@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 18,
-  "edge_count": 33,
+  "stage_count": 19,
+  "edge_count": 36,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -329,12 +329,34 @@
       "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
     },
     {
+      "id": "core_adapter_boundary_audit",
+      "name": "Core/Adapter Boundary Audit",
+      "role": "Statically verifies that HS-JEPA Core has no operational dependency on competition adapters and that the adapter depends on the core contract.",
+      "inputs": [
+        "hsjepa_core_manifest.json",
+        "hsjepa_core_ablation_contract.json",
+        "sleep_competition_adapter_report.json",
+        "run_full_team_hsjepa_package.py"
+      ],
+      "outputs": [
+        "hsjepa_core_adapter_boundary_audit_ko.md",
+        "hsjepa_core_adapter_boundary_audit.json"
+      ],
+      "evidence": [
+        "Boundary audit status: core_adapter_boundary_verified",
+        "Boundary audit checks: 6/6",
+        "Core import violations: 0"
+      ],
+      "boundary": "This verifies architecture separation; it does not create a new prediction or score guarantee."
+    },
+    {
       "id": "claim_readiness_and_paper_packet",
       "name": "Claim Readiness and Paper Packet",
       "role": "Converts the runnable package into paper/team-facing evidence and method text.",
       "inputs": [
         "core manifest",
         "sleep adapter report",
+        "core/adapter boundary audit",
         "package outputs",
         "stress audit",
         "reproducibility contract",
@@ -347,7 +369,8 @@
         "hsjepa_architecture_readiness_report.md",
         "hsjepa_paper_method_packet_ko.md",
         "hsjepa_mechanism_ablation_report_ko.md",
-        "hsjepa_generality_report_ko.md"
+        "hsjepa_generality_report_ko.md",
+        "hsjepa_core_adapter_boundary_audit_ko.md"
       ],
       "evidence": [
         "Readiness status: paper_ready_with_boundary",
@@ -476,6 +499,18 @@
     ],
     [
       "sleep_competition_adapter",
+      "core_adapter_boundary_audit"
+    ],
+    [
+      "hsjepa_core_architecture",
+      "core_adapter_boundary_audit"
+    ],
+    [
+      "core_adapter_boundary_audit",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
+      "sleep_competition_adapter",
       "claim_readiness_and_paper_packet"
     ],
     [
@@ -519,6 +554,7 @@
     ],
     "core_status": "core_ready_for_adapter",
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
+    "core_adapter_boundary_status": "core_adapter_boundary_verified",
     "big_bet_count": 5,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "listener_invariant_contrastive_probe_status": "listener_invariant_decoder_not_ready",

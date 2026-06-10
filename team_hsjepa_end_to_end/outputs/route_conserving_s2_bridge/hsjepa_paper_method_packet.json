@@ -88,6 +88,14 @@
     "ablation_status": "ablation_contract_ready",
     "ablation_count": 6
   },
+  "boundary_audit": {
+    "status": "core_adapter_boundary_verified",
+    "passed_checks": 6,
+    "total_checks": 6,
+    "core_import_violations": 0,
+    "core_string_violations": 0,
+    "boundary_claim": "HS-JEPA Core is competition-agnostic at the operational dependency layer; the sleep adapter owns public sensors, Q/S listeners, and submission packaging."
+  },
   "adapter": {
     "status": "adapter_ready_with_public_sensor_boundary",
     "claim": "This adapter converts HS-JEPA Core into a sleep-log competition system by supplying Q/S listeners, a route invariant, public-sensor action evidence, and upload-safe sparse row-target decoding.",
@@ -112,6 +120,7 @@
     "reproducibility_contract": "/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_reproducibility_contract.json",
     "core_manifest": "/Users/kbsoo/Downloads/cl2/hsjepa_core/outputs/hsjepa_core_manifest.json",
     "core_ablation_contract": "/Users/kbsoo/Downloads/cl2/hsjepa_core/outputs/hsjepa_core_ablation_contract.json",
+    "core_adapter_boundary_audit": "/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_boundary_audit.json",
     "sleep_adapter_report": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/sleep_competition_adapter_report.json",
     "big_bet_queue": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/hsjepa_big_bet_queue.json",
     "og_only_assignment_teacher_probe": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/og_only_assignment_teacher_probe.json",

@@ -26,6 +26,7 @@ VALIDATION_JSON = OUT / "route_conserving_s2_bridge_validation_report.json"
 CONTRACT_JSON = OUT / "hsjepa_reproducibility_contract.json"
 READINESS_JSON = OUT / "hsjepa_architecture_readiness_report.json"
 GENERALITY_JSON = OUT / "hsjepa_generality_report.json"
+BOUNDARY_AUDIT_JSON = OUT / "hsjepa_core_adapter_boundary_audit.json"
 CORE_MANIFEST_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_manifest.json"
 CORE_ABLATION_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_ablation_contract.json"
 ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_competition_adapter_report.json"
@@ -65,6 +66,7 @@ def require_inputs() -> None:
             CONTRACT_JSON,
             READINESS_JSON,
             GENERALITY_JSON,
+            BOUNDARY_AUDIT_JSON,
             CORE_MANIFEST_JSON,
             CORE_ABLATION_JSON,
             ADAPTER_REPORT_JSON,
@@ -89,6 +91,7 @@ def build_packet() -> dict[str, object]:
     contract = read_json(CONTRACT_JSON)
     readiness = read_json(READINESS_JSON)
     generality = read_json(GENERALITY_JSON)
+    boundary_audit = read_json(BOUNDARY_AUDIT_JSON)
     core = read_json(CORE_MANIFEST_JSON)
     core_ablation = read_json(CORE_ABLATION_JSON)
     adapter = read_json(ADAPTER_REPORT_JSON)
@@ -198,6 +201,14 @@ def build_packet() -> dict[str, object]:
             "ablation_status": core_ablation["status"],
             "ablation_count": len(core_ablation["ablations"]),
         },
+        "boundary_audit": {
+            "status": boundary_audit["status"],
+            "passed_checks": boundary_audit["passed_checks"],
+            "total_checks": boundary_audit["total_checks"],
+            "core_import_violations": len(boundary_audit.get("core_import_violations", [])),
+            "core_string_violations": len(boundary_audit.get("core_string_violations", [])),
+            "boundary_claim": boundary_audit.get("boundary_claim"),
+        },
         "adapter": {
             "status": adapter["status"],
             "claim": adapter["adapter_claim"],
@@ -220,6 +231,7 @@ def build_packet() -> dict[str, object]:
             "reproducibility_contract": str(CONTRACT_JSON.resolve()),
             "core_manifest": str(CORE_MANIFEST_JSON.resolve()),
             "core_ablation_contract": str(CORE_ABLATION_JSON.resolve()),
+            "core_adapter_boundary_audit": str(BOUNDARY_AUDIT_JSON.resolve()),
             "sleep_adapter_report": str(ADAPTER_REPORT_JSON.resolve()),
             "big_bet_queue": str(BIG_BET_JSON.resolve()),
             "og_only_assignment_teacher_probe": str(OG_PROBE_JSON.resolve()),
@@ -433,6 +445,8 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             "",
             f"- Core status: `{packet['core']['status']}` (`{packet['core']['passed_gates']}/{packet['core']['total_gates']}` gates)",
             f"- Core ablation contract: `{packet['core']['ablation_status']}` (`{packet['core']['ablation_count']}` ablations)",
+            f"- Core/adapter boundary audit: `{packet['boundary_audit']['status']}` (`{packet['boundary_audit']['passed_checks']}/{packet['boundary_audit']['total_checks']}` checks)",
+            f"- Core operational violations: imports `{packet['boundary_audit']['core_import_violations']}`, strings `{packet['boundary_audit']['core_string_violations']}`",
             f"- Adapter status: `{packet['adapter']['status']}`",
             f"- Big-bet queue: `{packet['adapter']['big_bet_status']}` (`{packet['adapter']['big_bet_count']}` bets)",
             "",
@@ -485,6 +499,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- `{packet['outputs']['reproducibility_contract']}`",
             f"- `{packet['outputs']['core_manifest']}`",
             f"- `{packet['outputs']['core_ablation_contract']}`",
+            f"- `{packet['outputs']['core_adapter_boundary_audit']}`",
             f"- `{packet['outputs']['sleep_adapter_report']}`",
             f"- `{packet['outputs']['big_bet_queue']}`",
             "",

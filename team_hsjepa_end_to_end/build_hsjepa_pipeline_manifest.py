@@ -28,6 +28,7 @@ CONTRACT_JSON = OUT / "hsjepa_reproducibility_contract.json"
 READINESS_JSON = OUT / "hsjepa_architecture_readiness_report.json"
 MECHANISM_ABLATION_JSON = OUT / "hsjepa_mechanism_ablation_report.json"
 GENERALITY_JSON = OUT / "hsjepa_generality_report.json"
+BOUNDARY_AUDIT_JSON = OUT / "hsjepa_core_adapter_boundary_audit.json"
 METHOD_PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 CORE_MANIFEST_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_manifest.json"
 CORE_ABLATION_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_ablation_contract.json"
@@ -70,6 +71,7 @@ def require_inputs() -> None:
         READINESS_JSON,
         MECHANISM_ABLATION_JSON,
         GENERALITY_JSON,
+        BOUNDARY_AUDIT_JSON,
         METHOD_PACKET_JSON,
         CORE_MANIFEST_JSON,
         CORE_ABLATION_JSON,
@@ -78,10 +80,10 @@ def require_inputs() -> None:
         OG_PROBE_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
-            HARDWORLD_TOXICITY_PROBE_JSON,
-            FACTORIZED_DECODER_JSON,
-            FACTORIZED_STRESS_JSON,
-        ]
+        HARDWORLD_TOXICITY_PROBE_JSON,
+        FACTORIZED_DECODER_JSON,
+        FACTORIZED_STRESS_JSON,
+    ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
     if missing:
         raise FileNotFoundError(f"Missing pipeline manifest inputs: {missing}")
@@ -130,6 +132,7 @@ def build_manifest() -> dict[str, object]:
     readiness = read_json(READINESS_JSON)
     ablation = read_json(MECHANISM_ABLATION_JSON)
     generality = read_json(GENERALITY_JSON)
+    boundary_audit = read_json(BOUNDARY_AUDIT_JSON)
     method = read_json(METHOD_PACKET_JSON)
     core = read_json(CORE_MANIFEST_JSON)
     core_ablation = read_json(CORE_ABLATION_JSON)
@@ -396,10 +399,23 @@ def build_manifest() -> dict[str, object]:
             "This adapter is a competition case study; it is not the general HS-JEPA architecture.",
         ),
         stage(
+            "core_adapter_boundary_audit",
+            "Core/Adapter Boundary Audit",
+            "Statically verifies that HS-JEPA Core has no operational dependency on competition adapters and that the adapter depends on the core contract.",
+            ["hsjepa_core_manifest.json", "hsjepa_core_ablation_contract.json", "sleep_competition_adapter_report.json", "run_full_team_hsjepa_package.py"],
+            ["hsjepa_core_adapter_boundary_audit_ko.md", "hsjepa_core_adapter_boundary_audit.json"],
+            [
+                f"Boundary audit status: {boundary_audit['status']}",
+                f"Boundary audit checks: {boundary_audit['passed_checks']}/{boundary_audit['total_checks']}",
+                f"Core import violations: {len(boundary_audit.get('core_import_violations', []))}",
+            ],
+            "This verifies architecture separation; it does not create a new prediction or score guarantee.",
+        ),
+        stage(
             "claim_readiness_and_paper_packet",
             "Claim Readiness and Paper Packet",
             "Converts the runnable package into paper/team-facing evidence and method text.",
-            ["core manifest", "sleep adapter report", "package outputs", "stress audit", "reproducibility contract", "mechanism ablation report", "generality report"],
+            ["core manifest", "sleep adapter report", "core/adapter boundary audit", "package outputs", "stress audit", "reproducibility contract", "mechanism ablation report", "generality report"],
             [
                 "hsjepa_core_manifest_ko.md",
                 "sleep_competition_adapter_report_ko.md",
@@ -407,6 +423,7 @@ def build_manifest() -> dict[str, object]:
                 "hsjepa_paper_method_packet_ko.md",
                 "hsjepa_mechanism_ablation_report_ko.md",
                 "hsjepa_generality_report_ko.md",
+                "hsjepa_core_adapter_boundary_audit_ko.md",
             ],
             [
                 f"Readiness status: {readiness['status']}",
@@ -447,6 +464,9 @@ def build_manifest() -> dict[str, object]:
         ["mechanism_ablation_knockout", "claim_readiness_and_paper_packet"],
         ["mechanism_ablation_knockout", "general_architecture_boundary"],
         ["general_architecture_boundary", "claim_readiness_and_paper_packet"],
+        ["sleep_competition_adapter", "core_adapter_boundary_audit"],
+        ["hsjepa_core_architecture", "core_adapter_boundary_audit"],
+        ["core_adapter_boundary_audit", "claim_readiness_and_paper_packet"],
         ["sleep_competition_adapter", "claim_readiness_and_paper_packet"],
         ["hsjepa_core_architecture", "claim_readiness_and_paper_packet"],
         ["submission_packager", "claim_readiness_and_paper_packet"],
@@ -483,6 +503,7 @@ def build_manifest() -> dict[str, object]:
             "generality_nonblocking_boundaries": generality["nonblocking_boundaries"],
             "core_status": core["status"],
             "adapter_status": adapter["status"],
+            "core_adapter_boundary_status": boundary_audit["status"],
             "big_bet_count": big_bets["count"],
             "og_only_assignment_probe_status": og_verdict["status"],
             "listener_invariant_contrastive_probe_status": contrastive_verdict["status"],
@@ -550,7 +571,10 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    P3 --> ADAPT',
             '    P4 --> ADAPT',
             '    P6 --> ADAPT',
+            '    ADAPT --> BAUD["Core/adapter boundary audit"]',
+            '    CORE --> BAUD',
             '    GEN --> H["Claim readiness and paper packet"]',
+            '    BAUD --> H',
             '    ADAPT --> H["Claim readiness and paper packet"]',
             '    G --> H["Claim readiness and paper packet"]',
             '    F --> H',
@@ -576,6 +600,7 @@ def build_markdown(manifest: dict[str, object]) -> str:
             "```text",
             "The reusable mechanism is HS-JEPA Core: hidden state -> listener -> action-health -> invariant decoder.",
             "The sleep competition adapter supplies Q/S listeners, public-sensor actions, route energy, and upload format.",
+            "The boundary audit verifies that this is a real dependency split, not only a naming convention.",
             "The current LB breakthrough is adapter evidence; the paper claim must remain core-first.",
             "The next jackpot is replacing scalar action-health with a factorized broad-public/hard-world decoder.",
             "```",

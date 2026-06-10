@@ -39,7 +39,7 @@ partial_human_context -> hidden_human_state -> listener_responsibility -> action
 - domain invariant definition
 - listener/output names
 - deployment metric
-- submission or serving format
+- output or serving format
 
 ## Core에 들어오면 안 되는 것
 

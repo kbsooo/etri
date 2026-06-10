@@ -46,6 +46,7 @@ public-sensitive driver action
 - Hard-world toxicity factorization probe: `hardworld_mixture_factorization_required`
 - Factorized toxicity decoder variants: `2`
 - Factorized toxicity stress audit: `stress_audit_ready`
+- Core/adapter boundary audit: `core_adapter_boundary_verified` (`6/6` checks)
 
 Core 문서:
 
@@ -65,6 +66,7 @@ sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md
 sleep_competition_adapter/outputs/hardworld_toxicity_factorization_probe_ko.md
 sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_readout_ko.md
 sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_stress_audit_ko.md
+team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_boundary_audit_ko.md
 ```
 
 ## Generated Submission Roles
@@ -98,7 +100,8 @@ sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factoriz
 - Hard-world factorization: broad->H088 AUC `0.3683`, broad/H088 rho `-0.4276`
 - Factorized decoder candidates: `dual_safe_expansion, teacher_dual_head`
 - Factorized decoder stress: `dual_safe_expansion:factorized_decoder_stress_supported, teacher_dual_head:factorized_decoder_alive_but_source_null_weak`
-- Release checklist: `release_ready_with_boundary` (`43/43` checks)
+- Core/adapter boundary audit: `core_adapter_boundary_verified`
+- Release checklist: `release_ready_with_boundary` (`45/45` checks)
 
 ## Paper Claim
 

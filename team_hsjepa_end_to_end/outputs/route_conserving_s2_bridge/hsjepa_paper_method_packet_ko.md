@@ -39,6 +39,8 @@ This adapter converts HS-JEPA Core into a sleep-log competition system by supply
 
 - Core status: `core_ready_for_adapter` (`5/5` gates)
 - Core ablation contract: `ablation_contract_ready` (`6` ablations)
+- Core/adapter boundary audit: `core_adapter_boundary_verified` (`6/6` checks)
+- Core operational violations: imports `0`, strings `0`
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
 - Big-bet queue: `big_bet_queue_ready` (`5` bets)
 
@@ -155,5 +157,6 @@ Generated supporting reports:
 - `/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_reproducibility_contract.json`
 - `/Users/kbsoo/Downloads/cl2/hsjepa_core/outputs/hsjepa_core_manifest.json`
 - `/Users/kbsoo/Downloads/cl2/hsjepa_core/outputs/hsjepa_core_ablation_contract.json`
+- `/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_boundary_audit.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/hsjepa_big_bet_queue.json`

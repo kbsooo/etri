@@ -25,6 +25,7 @@ CONTRACT_JSON = OUT / "hsjepa_reproducibility_contract.json"
 READINESS_JSON = OUT / "hsjepa_architecture_readiness_report.json"
 MECHANISM_ABLATION_JSON = OUT / "hsjepa_mechanism_ablation_report.json"
 GENERALITY_JSON = OUT / "hsjepa_generality_report.json"
+BOUNDARY_AUDIT_JSON = OUT / "hsjepa_core_adapter_boundary_audit.json"
 METHOD_PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 PIPELINE_JSON = OUT / "hsjepa_pipeline_manifest.json"
 CORE_MANIFEST_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_manifest.json"
@@ -79,6 +80,7 @@ def require_inputs() -> list[dict[str, object]]:
         READINESS_JSON,
         MECHANISM_ABLATION_JSON,
         GENERALITY_JSON,
+        BOUNDARY_AUDIT_JSON,
         METHOD_PACKET_JSON,
         CORE_MANIFEST_JSON,
         CORE_ABLATION_JSON,
@@ -125,6 +127,7 @@ def build_checklist() -> dict[str, object]:
     readiness = read_json(READINESS_JSON)
     ablation = read_json(MECHANISM_ABLATION_JSON)
     generality = read_json(GENERALITY_JSON)
+    boundary_audit = read_json(BOUNDARY_AUDIT_JSON)
     method = read_json(METHOD_PACKET_JSON)
     core = read_json(CORE_MANIFEST_JSON)
     core_ablation = read_json(CORE_ABLATION_JSON)
@@ -246,6 +249,15 @@ def build_checklist() -> dict[str, object]:
                     f"core={core.get('status')} "
                     f"({core.get('passed_gates')}/{core.get('total_gates')}), "
                     f"adapter={adapter.get('status')}"
+                ),
+            ),
+            check(
+                "core_adapter_boundary_audit_verified",
+                boundary_audit.get("status") == "core_adapter_boundary_verified"
+                and int(boundary_audit.get("passed_checks", 0)) == int(boundary_audit.get("total_checks", -1)),
+                (
+                    f"status={boundary_audit.get('status')}, "
+                    f"checks={boundary_audit.get('passed_checks')}/{boundary_audit.get('total_checks')}"
                 ),
             ),
             check(
@@ -458,6 +470,7 @@ def build_markdown(result: dict[str, object]) -> str:
             "- Factorized toxicity decoder candidates have recorded upload-safe outputs",
             "- Factorized toxicity decoder has a recorded stress audit with at least one supported variant",
             "- HS-JEPA Core is separated from the Sleep Competition Adapter",
+            "- HS-JEPA Core/Adapter boundary audit is verified",
             "- the next big bet is replacing public-sensor assignment with an OG-only human-state teacher",
             "",
         ]

@@ -165,7 +165,7 @@ def build_manifest() -> dict[str, object]:
             "domain invariant definition",
             "listener/output names",
             "deployment metric",
-            "submission or serving format",
+            "output or serving format",
         ],
         "forbidden_core_dependencies": [
             "public leaderboard observations",

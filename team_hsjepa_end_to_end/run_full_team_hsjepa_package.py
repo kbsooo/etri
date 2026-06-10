@@ -19,10 +19,11 @@ historical experiment version names.  It executes:
 13. Factorized toxicity decoder stress audit.
 14. Generality report.
 15. Sleep competition adapter report and big-bet queue.
-16. Paper method packet.
-17. Pipeline manifest.
-18. Release checklist.
-19. A compact handoff report for paper and competition discussion.
+16. Core/adapter boundary audit.
+17. Paper method packet.
+18. Pipeline manifest.
+19. Release checklist.
+20. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -60,6 +61,8 @@ MECHANISM_ABLATION_MD = OUT / "hsjepa_mechanism_ablation_report_ko.md"
 MECHANISM_ABLATION_JSON = OUT / "hsjepa_mechanism_ablation_report.json"
 GENERALITY_MD = OUT / "hsjepa_generality_report_ko.md"
 GENERALITY_JSON = OUT / "hsjepa_generality_report.json"
+BOUNDARY_AUDIT_MD = OUT / "hsjepa_core_adapter_boundary_audit_ko.md"
+BOUNDARY_AUDIT_JSON = OUT / "hsjepa_core_adapter_boundary_audit.json"
 RELEASE_CHECKLIST_MD = OUT / "hsjepa_release_checklist_ko.md"
 RELEASE_CHECKLIST_JSON = OUT / "hsjepa_release_checklist.json"
 CORE_OUT = ROOT / "hsjepa_core" / "outputs"
@@ -128,6 +131,7 @@ def build_handoff(
     hardworld_toxicity_probe: dict[str, object],
     factorized_decoder: dict[str, object],
     factorized_stress: dict[str, object],
+    boundary_audit: dict[str, object],
     release: dict[str, object],
 ) -> str:
     packaged = package["packaged_submissions"]
@@ -212,6 +216,7 @@ def build_handoff(
             f"- Hard-world toxicity factorization probe: `{hardworld_verdict.get('status')}`",
             f"- Factorized toxicity decoder variants: `{len(factorized_variants)}`",
             f"- Factorized toxicity stress audit: `{factorized_stress.get('status')}`",
+            f"- Core/adapter boundary audit: `{boundary_audit.get('status')}` (`{boundary_audit.get('passed_checks')}/{boundary_audit.get('total_checks')}` checks)",
             "",
             "Core 문서:",
             "",
@@ -231,6 +236,7 @@ def build_handoff(
             "sleep_competition_adapter/outputs/hardworld_toxicity_factorization_probe_ko.md",
             "sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_readout_ko.md",
             "sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_stress_audit_ko.md",
+            "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_boundary_audit_ko.md",
             "```",
             "",
             "## Generated Submission Roles",
@@ -257,6 +263,7 @@ def build_handoff(
             f"- Hard-world factorization: broad->H088 AUC `{hardworld_verdict.get('broad_predicts_hardworld_auc'):.4f}`, broad/H088 rho `{hardworld_verdict.get('broad_hardworld_spearman'):.4f}`",
             f"- Factorized decoder candidates: `{', '.join(sorted(factorized_variants))}`",
             f"- Factorized decoder stress: `{factorized_stress_statuses}`",
+            f"- Core/adapter boundary audit: `{boundary_audit.get('status')}`",
             f"- Release checklist: `{release['status']}` (`{release['passed_checks']}/{release['total_checks']}` checks)",
             "",
             "## Paper Claim",
@@ -384,6 +391,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "factorized_toxicity_decoder_stress_audit.py")],
         [sys.executable, str(HERE / "build_hsjepa_generality_report.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "build_sleep_competition_adapter_report.py")],
+        [sys.executable, str(HERE / "audit_hsjepa_core_adapter_boundary.py")],
         [sys.executable, str(HERE / "build_hsjepa_paper_method_packet.py")],
         [sys.executable, str(HERE / "build_hsjepa_pipeline_manifest.py")],
         [sys.executable, str(HERE / "build_hsjepa_release_checklist.py")],
@@ -409,6 +417,7 @@ def run(refresh: bool = False) -> dict[str, object]:
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
     factorized_decoder = read_json(FACTORIZED_DECODER_JSON)
     factorized_stress = read_json(FACTORIZED_STRESS_JSON)
+    boundary_audit = read_json(BOUNDARY_AUDIT_JSON)
     release = read_json(RELEASE_CHECKLIST_JSON)
     stress = pd.read_csv(STRESS_CSV)
     handoff_md = build_handoff(
@@ -427,6 +436,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         hardworld_toxicity_probe,
         factorized_decoder,
         factorized_stress,
+        boundary_audit,
         release,
     )
 
@@ -448,6 +458,8 @@ def run(refresh: bool = False) -> dict[str, object]:
         "mechanism_ablation_json": str(MECHANISM_ABLATION_JSON.resolve()),
         "generality_report_md": str(GENERALITY_MD.resolve()),
         "generality_report_json": str(GENERALITY_JSON.resolve()),
+        "core_adapter_boundary_audit_md": str(BOUNDARY_AUDIT_MD.resolve()),
+        "core_adapter_boundary_audit_json": str(BOUNDARY_AUDIT_JSON.resolve()),
         "core_manifest_md": str(CORE_MANIFEST_MD.resolve()),
         "core_manifest_json": str(CORE_MANIFEST_JSON.resolve()),
         "core_ablation_md": str(CORE_ABLATION_MD.resolve()),
@@ -491,6 +503,8 @@ def run(refresh: bool = False) -> dict[str, object]:
             for name, item in factorized_stress.get("variants", {}).items()
             if isinstance(item, dict) and item.get("verdict", {}).get("status") == "factorized_decoder_stress_supported"
         ],
+        "core_adapter_boundary_status": str(boundary_audit.get("status")),
+        "core_adapter_boundary_checks": f"{boundary_audit.get('passed_checks')}/{boundary_audit.get('total_checks')}",
         "release_status": str(release["status"]),
         "release_checks": f"{release['passed_checks']}/{release['total_checks']}",
         "mechanism_evidence": validation["mechanism_evidence"],
