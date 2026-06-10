@@ -35,6 +35,7 @@ CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "liste
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
 FACTORIZED_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_readout.json"
+FACTORIZED_STRESS_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_stress_audit.json"
 
 PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 PACKET_MD = OUT / "hsjepa_paper_method_packet_ko.md"
@@ -73,6 +74,7 @@ def require_inputs() -> None:
             PRIVATE_TOXICITY_PROBE_JSON,
             HARDWORLD_TOXICITY_PROBE_JSON,
             FACTORIZED_DECODER_JSON,
+            FACTORIZED_STRESS_JSON,
         ]
         if not path.exists()
     ]
@@ -96,6 +98,7 @@ def build_packet() -> dict[str, object]:
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
     factorized_decoder = read_json(FACTORIZED_DECODER_JSON)
+    factorized_stress = read_json(FACTORIZED_STRESS_JSON)
     stress = pd.read_csv(STRESS_CSV)
     evidence = pd.read_csv(EVIDENCE_CSV)
 
@@ -109,6 +112,12 @@ def build_packet() -> dict[str, object]:
     toxicity_verdict = private_toxicity_probe["verdict"]
     hardworld_verdict = hardworld_toxicity_probe["verdict"]
     factorized_variants = factorized_decoder.get("variants", {})
+    factorized_stress_variants = factorized_stress.get("variants", {})
+    factorized_supported = [
+        name
+        for name, item in factorized_stress_variants.items()
+        if isinstance(item, dict) and item.get("verdict", {}).get("status") == "factorized_decoder_stress_supported"
+    ]
 
     roles = []
     for row in evidence.to_dict("records"):
@@ -174,6 +183,8 @@ def build_packet() -> dict[str, object]:
                 for item in factorized_variants.values()
                 if isinstance(item, dict) and item.get("validation", {}).get("upload_safe")
             ),
+            "factorized_decoder_stress_status": factorized_stress.get("status"),
+            "factorized_decoder_stress_supported_variants": factorized_supported,
             "role": "orientation diagnostic, not complete row-target assignment solver",
         },
         "roles": roles,
@@ -216,6 +227,7 @@ def build_packet() -> dict[str, object]:
             "private_safe_toxicity_probe": str(PRIVATE_TOXICITY_PROBE_JSON.resolve()),
             "hardworld_toxicity_factorization_probe": str(HARDWORLD_TOXICITY_PROBE_JSON.resolve()),
             "factorized_toxicity_decoder": str(FACTORIZED_DECODER_JSON.resolve()),
+            "factorized_toxicity_decoder_stress_audit": str(FACTORIZED_STRESS_JSON.resolve()),
             "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
         },
         "paper_sections": {

@@ -45,6 +45,7 @@ public-sensitive driver action
 - Private-safe toxicity probe: `toxicity_field_promising_with_hardworld_gap`
 - Hard-world toxicity factorization probe: `hardworld_mixture_factorization_required`
 - Factorized toxicity decoder variants: `2`
+- Factorized toxicity stress audit: `stress_audit_ready`
 
 Core 문서:
 
@@ -63,6 +64,7 @@ sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md
 sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md
 sleep_competition_adapter/outputs/hardworld_toxicity_factorization_probe_ko.md
 sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_readout_ko.md
+sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_stress_audit_ko.md
 ```
 
 ## Generated Submission Roles
@@ -95,7 +97,8 @@ sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factoriz
 - Private-safe toxicity boundary: mean LOO AUC `0.7880`, worst LOO AUC `0.3683`
 - Hard-world factorization: broad->H088 AUC `0.3683`, broad/H088 rho `-0.4276`
 - Factorized decoder candidates: `dual_safe_expansion, teacher_dual_head`
-- Release checklist: `release_ready_with_boundary` (`41/41` checks)
+- Factorized decoder stress: `dual_safe_expansion:factorized_decoder_stress_supported, teacher_dual_head:factorized_decoder_alive_but_source_null_weak`
+- Release checklist: `release_ready_with_boundary` (`43/43` checks)
 
 ## Paper Claim
 

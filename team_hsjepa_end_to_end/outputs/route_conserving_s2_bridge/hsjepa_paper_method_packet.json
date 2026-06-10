@@ -40,6 +40,10 @@
     "hardworld_joint_safety_z": 7.188448059350422,
     "factorized_decoder_variant_count": 2,
     "factorized_decoder_upload_safe_count": 2,
+    "factorized_decoder_stress_status": "stress_audit_ready",
+    "factorized_decoder_stress_supported_variants": [
+      "dual_safe_expansion"
+    ],
     "role": "orientation diagnostic, not complete row-target assignment solver"
   },
   "roles": [
@@ -115,6 +119,7 @@
     "private_safe_toxicity_probe": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/private_safe_toxicity_probe.json",
     "hardworld_toxicity_factorization_probe": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/hardworld_toxicity_factorization_probe.json",
     "factorized_toxicity_decoder": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_readout.json",
+    "factorized_toxicity_decoder_stress_audit": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_stress_audit.json",
     "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py"
   },
   "paper_sections": {

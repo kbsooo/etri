@@ -74,6 +74,18 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 
 이 후보는 broad-public safety와 hard-world safety를 동시에 통과한 row-target action만 믿는 adapter-side decoder다. public 결과가 좋아지면 factorized action-health가 맞다는 신호이고, 나빠지면 factorization은 diagnostic으로는 유효하지만 아직 action-grade decoder는 아니라는 뜻이다.
 
+## Factorized Toxicity Decoder Stress Audit
+
+- Status: `stress_audit_ready`
+- Iterations: `1500`
+
+| Variant | Stress verdict | Target-null joint z | Source-null conflict p | Hard-toxic exposure | Conflict exposure |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `dual_safe_expansion` | `factorized_decoder_stress_supported` | `13.67` | `0.0013` | `0.0000` | `0.0000` |
+| `teacher_dual_head` | `factorized_decoder_alive_but_source_null_weak` | `12.07` | `1.0000` | `0.0000` | `0.0000` |
+
+`dual_safe_expansion`은 source-matched null까지 통과한 strict supported 후보이고, `teacher_dual_head`는 target-null에서는 강하지만 source-matched null이 약한 diagnostic 후보로 남긴다.
+
 ## Role Outputs
 
 | Role | Output |
@@ -92,6 +104,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.
 - Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.
 - The factorized toxicity decoder now produces upload-safe candidates that remove H088 top-toxic and broad-safe/H088-toxic selected cells in local diagnostics.
+- The dual-safe expansion variant survives target-only and source-matched null stress, while the teacher-only variant is intentionally marked weaker under source-matched stress.
 
 ## 이 adapter가 아직 증명하지 못한 것
 

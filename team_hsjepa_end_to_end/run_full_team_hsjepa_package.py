@@ -16,12 +16,13 @@ historical experiment version names.  It executes:
 10. Private-safe toxicity probe.
 11. Hard-world toxicity factorization probe.
 12. Factorized toxicity decoder candidate.
-13. Generality report.
-14. Sleep competition adapter report and big-bet queue.
-15. Paper method packet.
-16. Pipeline manifest.
-17. Release checklist.
-18. A compact handoff report for paper and competition discussion.
+13. Factorized toxicity decoder stress audit.
+14. Generality report.
+15. Sleep competition adapter report and big-bet queue.
+16. Paper method packet.
+17. Pipeline manifest.
+18. Release checklist.
+19. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -81,6 +82,8 @@ HARDWORLD_TOXICITY_PROBE_MD = ADAPTER_OUT / "hardworld_toxicity_factorization_pr
 HARDWORLD_TOXICITY_PROBE_JSON = ADAPTER_OUT / "hardworld_toxicity_factorization_probe.json"
 FACTORIZED_DECODER_MD = ADAPTER_OUT / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_readout_ko.md"
 FACTORIZED_DECODER_JSON = ADAPTER_OUT / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_readout.json"
+FACTORIZED_STRESS_MD = ADAPTER_OUT / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_stress_audit_ko.md"
+FACTORIZED_STRESS_JSON = ADAPTER_OUT / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_stress_audit.json"
 
 
 def run_command(args: list[str]) -> dict[str, object]:
@@ -124,6 +127,7 @@ def build_handoff(
     private_toxicity_probe: dict[str, object],
     hardworld_toxicity_probe: dict[str, object],
     factorized_decoder: dict[str, object],
+    factorized_stress: dict[str, object],
     release: dict[str, object],
 ) -> str:
     packaged = package["packaged_submissions"]
@@ -133,6 +137,12 @@ def build_handoff(
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
     hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
     factorized_variants = factorized_decoder.get("variants", {})
+    factorized_stress_variants = factorized_stress.get("variants", {})
+    factorized_stress_statuses = ", ".join(
+        f"{name}:{item.get('verdict', {}).get('status')}"
+        for name, item in sorted(factorized_stress_variants.items())
+        if isinstance(item, dict)
+    )
 
     submission_rows = ["| Role | File | Upload-safe | Changed cells |", "| --- | --- | ---: | ---: |"]
     for role in ["competition_primary", "interpretable_s2_hub", "human_state_probe"]:
@@ -201,6 +211,7 @@ def build_handoff(
             f"- Private-safe toxicity probe: `{toxicity_verdict.get('status')}`",
             f"- Hard-world toxicity factorization probe: `{hardworld_verdict.get('status')}`",
             f"- Factorized toxicity decoder variants: `{len(factorized_variants)}`",
+            f"- Factorized toxicity stress audit: `{factorized_stress.get('status')}`",
             "",
             "Core 문서:",
             "",
@@ -219,6 +230,7 @@ def build_handoff(
             "sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md",
             "sleep_competition_adapter/outputs/hardworld_toxicity_factorization_probe_ko.md",
             "sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_readout_ko.md",
+            "sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_stress_audit_ko.md",
             "```",
             "",
             "## Generated Submission Roles",
@@ -244,6 +256,7 @@ def build_handoff(
             f"- Private-safe toxicity boundary: mean LOO AUC `{toxicity_verdict.get('mean_loo_bad_anchor_auc'):.4f}`, worst LOO AUC `{toxicity_verdict.get('worst_loo_bad_anchor_auc'):.4f}`",
             f"- Hard-world factorization: broad->H088 AUC `{hardworld_verdict.get('broad_predicts_hardworld_auc'):.4f}`, broad/H088 rho `{hardworld_verdict.get('broad_hardworld_spearman'):.4f}`",
             f"- Factorized decoder candidates: `{', '.join(sorted(factorized_variants))}`",
+            f"- Factorized decoder stress: `{factorized_stress_statuses}`",
             f"- Release checklist: `{release['status']}` (`{release['passed_checks']}/{release['total_checks']}` checks)",
             "",
             "## Paper Claim",
@@ -368,6 +381,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "private_safe_toxicity_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "hardworld_toxicity_factorization_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "factorized_toxicity_decoder_candidate.py")],
+        [sys.executable, str(ROOT / "sleep_competition_adapter" / "factorized_toxicity_decoder_stress_audit.py")],
         [sys.executable, str(HERE / "build_hsjepa_generality_report.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "build_sleep_competition_adapter_report.py")],
         [sys.executable, str(HERE / "build_hsjepa_paper_method_packet.py")],
@@ -394,6 +408,7 @@ def run(refresh: bool = False) -> dict[str, object]:
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
     factorized_decoder = read_json(FACTORIZED_DECODER_JSON)
+    factorized_stress = read_json(FACTORIZED_STRESS_JSON)
     release = read_json(RELEASE_CHECKLIST_JSON)
     stress = pd.read_csv(STRESS_CSV)
     handoff_md = build_handoff(
@@ -411,6 +426,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         private_toxicity_probe,
         hardworld_toxicity_probe,
         factorized_decoder,
+        factorized_stress,
         release,
     )
 
@@ -450,6 +466,8 @@ def run(refresh: bool = False) -> dict[str, object]:
         "hardworld_toxicity_factorization_probe_json": str(HARDWORLD_TOXICITY_PROBE_JSON.resolve()),
         "factorized_toxicity_decoder_md": str(FACTORIZED_DECODER_MD.resolve()),
         "factorized_toxicity_decoder_json": str(FACTORIZED_DECODER_JSON.resolve()),
+        "factorized_toxicity_decoder_stress_md": str(FACTORIZED_STRESS_MD.resolve()),
+        "factorized_toxicity_decoder_stress_json": str(FACTORIZED_STRESS_JSON.resolve()),
         "pipeline_manifest_md": str(PIPELINE_MD.resolve()),
         "pipeline_manifest_json": str(PIPELINE_JSON.resolve()),
         "release_checklist_md": str(RELEASE_CHECKLIST_MD.resolve()),
@@ -467,6 +485,12 @@ def run(refresh: bool = False) -> dict[str, object]:
         "private_safe_toxicity_probe_status": str(private_toxicity_probe["verdict"]["status"]),
         "hardworld_toxicity_factorization_probe_status": str(hardworld_toxicity_probe["verdict"]["status"]),
         "factorized_toxicity_decoder_variant_count": int(len(factorized_decoder.get("variants", {}))),
+        "factorized_toxicity_decoder_stress_status": str(factorized_stress.get("status")),
+        "factorized_toxicity_decoder_supported_variants": [
+            name
+            for name, item in factorized_stress.get("variants", {}).items()
+            if isinstance(item, dict) and item.get("verdict", {}).get("status") == "factorized_decoder_stress_supported"
+        ],
         "release_status": str(release["status"]),
         "release_checks": f"{release['passed_checks']}/{release['total_checks']}",
         "mechanism_evidence": validation["mechanism_evidence"],

@@ -32,6 +32,7 @@ CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = OUT / "hardworld_toxicity_factorization_probe.json"
 FACTORIZED_DECODER_JSON = OUT / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_readout.json"
+FACTORIZED_STRESS_JSON = OUT / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_stress_audit.json"
 
 REPORT_JSON = OUT / "sleep_competition_adapter_report.json"
 REPORT_MD = OUT / "sleep_competition_adapter_report_ko.md"
@@ -66,6 +67,7 @@ def require_inputs() -> None:
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
         FACTORIZED_DECODER_JSON,
+        FACTORIZED_STRESS_JSON,
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
     if missing:
@@ -186,6 +188,7 @@ def build_report() -> dict[str, object]:
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
     factorized_decoder = read_json(FACTORIZED_DECODER_JSON)
+    factorized_stress = read_json(FACTORIZED_STRESS_JSON)
 
     public = readiness["public_breakthrough"]
     human = readiness["human_state"]
@@ -195,6 +198,7 @@ def build_report() -> dict[str, object]:
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
     hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
     factorized_variants = factorized_decoder.get("variants", {})
+    factorized_stress_variants = factorized_stress.get("variants", {})
 
     adapter_mapping = [
         {
@@ -304,6 +308,22 @@ def build_report() -> dict[str, object]:
                 if isinstance(item, dict)
             },
         },
+        "factorized_toxicity_decoder_stress_audit": {
+            "status": factorized_stress.get("status"),
+            "iterations": factorized_stress.get("iterations"),
+            "variants": {
+                name: {
+                    "submission_file": item.get("submission_file"),
+                    "verdict": item.get("verdict", {}).get("status"),
+                    "target_null_joint_safety_z": item.get("verdict", {}).get("target_null_joint_safety_z"),
+                    "source_null_conflict_p": item.get("verdict", {}).get("source_null_conflict_p"),
+                    "hardworld_top_toxic_exposure": item.get("actual", {}).get("hardworld_top_toxic_exposure"),
+                    "broad_safe_hardworld_toxic_exposure": item.get("actual", {}).get("broad_safe_hardworld_toxic_exposure"),
+                }
+                for name, item in factorized_stress_variants.items()
+                if isinstance(item, dict)
+            },
+        },
         "role_outputs": {
             role: item["submission_file"]
             for role, item in package["packaged_submissions"].items()
@@ -317,6 +337,7 @@ def build_report() -> dict[str, object]:
             "The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.",
             "Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.",
             "The factorized toxicity decoder now produces upload-safe candidates that remove H088 top-toxic and broad-safe/H088-toxic selected cells in local diagnostics.",
+            "The dual-safe expansion variant survives target-only and source-matched null stress, while the teacher-only variant is intentionally marked weaker under source-matched stress.",
         ],
         "what_the_adapter_does_not_prove": [
             "pure OG-only assignment",
@@ -352,6 +373,17 @@ def build_report_markdown(report: dict[str, object]) -> str:
             f"| `{variant}` | `{item['submission_file']}` | `{item['changed_cells']}` | "
             f"`{fmt(item['joint_safety_mean'], 4)}` | `{fmt(item['hardworld_top_toxic_rate'], 4)}` | "
             f"`{item['upload_safe']}` |"
+        )
+
+    factorized_stress_rows = [
+        "| Variant | Stress verdict | Target-null joint z | Source-null conflict p | Hard-toxic exposure | Conflict exposure |",
+        "| --- | --- | ---: | ---: | ---: | ---: |",
+    ]
+    for variant, item in report["factorized_toxicity_decoder_stress_audit"]["variants"].items():
+        factorized_stress_rows.append(
+            f"| `{variant}` | `{item['verdict']}` | `{fmt(item['target_null_joint_safety_z'], 2)}` | "
+            f"`{fmt(item['source_null_conflict_p'], 4)}` | `{fmt(item['hardworld_top_toxic_exposure'], 4)}` | "
+            f"`{fmt(item['broad_safe_hardworld_toxic_exposure'], 4)}` |"
         )
 
     return "\n".join(
@@ -421,6 +453,15 @@ def build_report_markdown(report: dict[str, object]) -> str:
             *factorized_rows,
             "",
             "이 후보는 broad-public safety와 hard-world safety를 동시에 통과한 row-target action만 믿는 adapter-side decoder다. public 결과가 좋아지면 factorized action-health가 맞다는 신호이고, 나빠지면 factorization은 diagnostic으로는 유효하지만 아직 action-grade decoder는 아니라는 뜻이다.",
+            "",
+            "## Factorized Toxicity Decoder Stress Audit",
+            "",
+            f"- Status: `{report['factorized_toxicity_decoder_stress_audit']['status']}`",
+            f"- Iterations: `{report['factorized_toxicity_decoder_stress_audit']['iterations']}`",
+            "",
+            *factorized_stress_rows,
+            "",
+            "`dual_safe_expansion`은 source-matched null까지 통과한 strict supported 후보이고, `teacher_dual_head`는 target-null에서는 강하지만 source-matched null이 약한 diagnostic 후보로 남긴다.",
             "",
             "## Role Outputs",
             "",

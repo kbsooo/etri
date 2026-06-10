@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 17,
-  "edge_count": 32,
+  "stage_count": 18,
+  "edge_count": 33,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -196,6 +196,25 @@
         "Upload-safe variants: 2/2"
       ],
       "boundary": "This creates competition submissions, but their public/private score impact remains unverified until external submission."
+    },
+    {
+      "id": "factorized_toxicity_decoder_stress_audit",
+      "name": "Factorized Toxicity Decoder Stress Audit",
+      "role": "Compares factorized decoder variants against target-only and source-matched feasible null action fields.",
+      "inputs": [
+        "factorized_toxicity_decoder_readout.json",
+        "hardworld_toxicity_factorization_sectors.csv"
+      ],
+      "outputs": [
+        "factorized_toxicity_decoder_stress_audit_ko.md",
+        "factorized_toxicity_decoder_stress_summary.csv"
+      ],
+      "evidence": [
+        "Stress status: stress_audit_ready",
+        "Supported variants: dual_safe_expansion",
+        "Iterations: 1500"
+      ],
+      "boundary": "This is local action-health evidence; external public/private LB remains a separate sensor."
     },
     {
       "id": "driver_action_field",
@@ -409,6 +428,10 @@
     ],
     [
       "factorized_toxicity_decoder_candidate",
+      "factorized_toxicity_decoder_stress_audit"
+    ],
+    [
+      "factorized_toxicity_decoder_stress_audit",
       "sleep_competition_adapter"
     ],
     [
@@ -501,6 +524,9 @@
     "listener_invariant_contrastive_probe_status": "listener_invariant_decoder_not_ready",
     "private_safe_toxicity_probe_status": "toxicity_field_promising_with_hardworld_gap",
     "hardworld_toxicity_factorization_probe_status": "hardworld_mixture_factorization_required",
-    "factorized_toxicity_decoder_variant_count": 2
+    "factorized_toxicity_decoder_variant_count": 2,
+    "factorized_toxicity_decoder_supported_variants": [
+      "dual_safe_expansion"
+    ]
   }
 }

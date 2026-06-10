@@ -5,7 +5,7 @@
 ## Verdict
 
 - Status: `release_ready_with_boundary`
-- Checks: `41/41` passed
+- Checks: `43/43` passed
 
 ## Required Failures
 
@@ -31,6 +31,7 @@
 | `exists:private_safe_toxicity_probe.json` | `PASS` | sleep_competition_adapter/outputs/private_safe_toxicity_probe.json |
 | `exists:hardworld_toxicity_factorization_probe.json` | `PASS` | sleep_competition_adapter/outputs/hardworld_toxicity_factorization_probe.json |
 | `exists:factorized_toxicity_decoder_readout.json` | `PASS` | sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_readout.json |
+| `exists:factorized_toxicity_decoder_stress_audit.json` | `PASS` | sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_stress_audit.json |
 | `exists:hsjepa_pipeline_manifest.json` | `PASS` | team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_pipeline_manifest.json |
 | `validation_passed` | `PASS` | passed=True |
 | `contract_passed` | `PASS` | passed=True, missing=0 |
@@ -50,10 +51,11 @@
 | `private_safe_toxicity_probe_recorded` | `PASS` | status=toxicity_field_promising_with_hardworld_gap, mean_loo_auc=0.7880, worst_loo_auc=0.3683, safety_z=8.4589 |
 | `hardworld_toxicity_factorization_probe_recorded` | `PASS` | status=hardworld_mixture_factorization_required, broad_to_h088_auc=0.3683, rho=-0.4276, joint_z=7.1884 |
 | `factorized_toxicity_decoder_candidate_recorded` | `PASS` | variants=['dual_safe_expansion', 'teacher_dual_head'], upload_safe=[True, True] |
+| `factorized_toxicity_decoder_stress_supported` | `PASS` | status=stress_audit_ready, supported=['dual_safe_expansion'], variants=[('dual_safe_expansion', 'factorized_decoder_stress_supported'), ('teacher_dual_head', 'factorized_decoder_alive_but_source_null_weak')] |
 | `roles_present` | `PASS` | roles=['competition_primary', 'human_state_probe', 'interpretable_s2_hub'] |
 | `role_based_output_names` | `PASS` | role_outputs={'competition_primary': 'submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv', 'interpretable_s2_hub': 'submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv', 'human_state_probe': 'submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv'} |
 | `all_role_submissions_upload_safe` | `PASS` | upload_roles=['competition_primary', 'human_state_probe', 'interpretable_s2_hub'] |
-| `pipeline_manifest_complete` | `PASS` | status=pipeline_ready_with_boundary, stages=17, edges=32 |
+| `pipeline_manifest_complete` | `PASS` | status=pipeline_ready_with_boundary, stages=18, edges=33 |
 | `method_packet_presentable` | `PASS` | title=Human-State JEPA: General Architecture with a Route-Conserving S2 Bridge Case Study |
 | `claim_boundary_honest` | `PASS` | pure_og=False, public_sensor=True, proprietary_embedding=False |
 
@@ -71,5 +73,6 @@ This package is ready as a team-facing and paper-facing HS-JEPA release when pre
 - Private-safe toxicity has a recorded probe result and hard-world boundary
 - Hard-world toxicity factorization has a recorded probe result
 - Factorized toxicity decoder candidates have recorded upload-safe outputs
+- Factorized toxicity decoder has a recorded stress audit with at least one supported variant
 - HS-JEPA Core is separated from the Sleep Competition Adapter
 - the next big bet is replacing public-sensor assignment with an OG-only human-state teacher

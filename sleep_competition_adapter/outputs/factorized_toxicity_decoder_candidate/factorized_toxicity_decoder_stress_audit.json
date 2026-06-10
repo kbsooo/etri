@@ -1,0 +1,328 @@
+{
+  "audit": "Factorized Toxicity Decoder Stress Audit",
+  "status": "stress_audit_ready",
+  "iterations": 1500,
+  "seed": 20260610,
+  "scalar_baseline": {
+    "cells": 150,
+    "rows": 111,
+    "abs_move_sum": 134.5992074526528,
+    "abs_move_mean": 0.897328049684352,
+    "target_counts": {
+      "Q1": 15,
+      "Q2": 35,
+      "Q3": 14,
+      "S1": 19,
+      "S2": 28,
+      "S3": 17,
+      "S4": 22
+    },
+    "source_counts": {
+      "teacher": 94,
+      "lrj_extra": 56
+    },
+    "joint_safety_mean": 0.6372305909617613,
+    "joint_safety_weighted": 0.6512970494535995,
+    "hardworld_safe_weighted": 0.7539016830872922,
+    "broad_safe_weighted": 0.6007562724626682,
+    "joint_risk_weighted": 0.34870295054640055,
+    "hardworld_toxic_weighted": 0.2460983169127075,
+    "broad_toxic_weighted": 0.3992437275373317,
+    "hardworld_top_toxic_rate": 0.03333333333333333,
+    "hardworld_top_toxic_exposure": 0.027427747015002727,
+    "broad_top_toxic_exposure": 0.10358413525778111,
+    "broad_safe_hardworld_toxic_rate": 0.08,
+    "broad_safe_hardworld_toxic_exposure": 0.06721961480458079,
+    "dual_safe_rate": 0.32,
+    "dual_safe_exposure": 0.33049271025789856
+  },
+  "variants": {
+    "dual_safe_expansion": {
+      "actual": {
+        "cells": 114,
+        "rows": 95,
+        "abs_move_sum": 96.55981434149564,
+        "abs_move_mean": 0.8470159152762775,
+        "target_counts": {
+          "Q1": 11,
+          "Q2": 26,
+          "Q3": 13,
+          "S1": 16,
+          "S2": 20,
+          "S3": 12,
+          "S4": 16
+        },
+        "source_counts": {
+          "teacher": 94,
+          "lrj_extra": 20
+        },
+        "joint_safety_mean": 0.6993708198654226,
+        "joint_safety_weighted": 0.7125130340712691,
+        "hardworld_safe_weighted": 0.8277145132078523,
+        "broad_safe_weighted": 0.5839415025025975,
+        "joint_risk_weighted": 0.2874869659287309,
+        "hardworld_toxic_weighted": 0.17228548679214745,
+        "broad_toxic_weighted": 0.41605849749740226,
+        "hardworld_top_toxic_rate": 0.0,
+        "hardworld_top_toxic_exposure": 0.0,
+        "broad_top_toxic_exposure": 0.12173520392620202,
+        "broad_safe_hardworld_toxic_rate": 0.0,
+        "broad_safe_hardworld_toxic_exposure": 0.0,
+        "dual_safe_rate": 0.40350877192982454,
+        "dual_safe_exposure": 0.4187544660409448
+      },
+      "target_only_null": {
+        "group_cols": [
+          "target"
+        ],
+        "iterations": 1500,
+        "joint_safety_weighted": {
+          "z": 13.666882031010777,
+          "p": 0.0,
+          "null_mean": 0.37696169701769533,
+          "null_std": 0.024552149954797712
+        },
+        "hardworld_safe_weighted": {
+          "z": 11.534880470719992,
+          "p": 0.0,
+          "null_mean": 0.5117292431035805,
+          "null_std": 0.027393892021233362
+        },
+        "broad_safe_weighted": {
+          "z": 2.4802255176446315,
+          "p": 0.007333333333333333,
+          "null_mean": 0.5195886617580358,
+          "null_std": 0.025946366684911275
+        },
+        "joint_risk_weighted": {
+          "z": -13.666882031010777,
+          "p": 0.0,
+          "null_mean": 0.6230383029823047,
+          "null_std": 0.024552149954797712
+        },
+        "hardworld_top_toxic_exposure": {
+          "z": -5.795363808864307,
+          "p": 0.0,
+          "null_mean": 0.2430211831072869,
+          "null_std": 0.041933723423847546
+        },
+        "broad_safe_hardworld_toxic_exposure": {
+          "z": -5.899260219544728,
+          "p": 0.0,
+          "null_mean": 0.24496069396649614,
+          "null_std": 0.04152396823402064
+        },
+        "dual_safe_exposure": {
+          "z": 11.07346948881131,
+          "p": 0.0,
+          "null_mean": 0.10528345674827273,
+          "null_std": 0.02830829213900226
+        }
+      },
+      "source_matched_null": {
+        "group_cols": [
+          "target",
+          "teacher_has_action",
+          "lrj_has_cell"
+        ],
+        "iterations": 1500,
+        "joint_safety_weighted": {
+          "z": 5.068241009815918,
+          "p": 0.0,
+          "null_mean": 0.6563914773017684,
+          "null_std": 0.01107318232415132
+        },
+        "hardworld_safe_weighted": {
+          "z": 3.9411413089709493,
+          "p": 0.0,
+          "null_mean": 0.7959296045961171,
+          "null_std": 0.008064899509044314
+        },
+        "broad_safe_weighted": {
+          "z": 3.0171915665894087,
+          "p": 0.0013333333333333333,
+          "null_mean": 0.5469836311420295,
+          "null_std": 0.012249096731808583
+        },
+        "joint_risk_weighted": {
+          "z": -5.068241009815913,
+          "p": 0.0,
+          "null_mean": 0.34360852269823156,
+          "null_std": 0.01107318232415132
+        },
+        "hardworld_top_toxic_exposure": {
+          "z": -2.9508485693216326,
+          "p": 0.0013333333333333333,
+          "null_mean": 0.0339299405125795,
+          "null_std": 0.011498367236590784
+        },
+        "broad_safe_hardworld_toxic_exposure": {
+          "z": -2.9603565129192506,
+          "p": 0.0013333333333333333,
+          "null_mean": 0.03398016856659157,
+          "null_std": 0.011478404177111382
+        },
+        "dual_safe_exposure": {
+          "z": 2.5333634220245327,
+          "p": 0.004666666666666667,
+          "null_mean": 0.36466257126377877,
+          "null_std": 0.021351810128925452
+        }
+      },
+      "verdict": {
+        "status": "factorized_decoder_stress_supported",
+        "interpretation": "Selected exposure is safer than target-matched feasible nulls; factorized action-health is action-grade locally.",
+        "hardworld_top_toxic_exposure": 0.0,
+        "broad_safe_hardworld_toxic_exposure": 0.0,
+        "target_null_joint_safety_z": 13.666882031010777,
+        "target_null_conflict_p": 0.0,
+        "target_null_hard_top_p": 0.0,
+        "source_null_conflict_p": 0.0013333333333333333
+      },
+      "submission_file": "submission_hsjepa_factorized_toxicity_decoder_dual_safe_expansion_23b6de1e_uploadsafe.csv"
+    },
+    "teacher_dual_head": {
+      "actual": {
+        "cells": 94,
+        "rows": 82,
+        "abs_move_sum": 84.67834606955199,
+        "abs_move_mean": 0.9008334688250212,
+        "target_counts": {
+          "Q1": 9,
+          "Q2": 20,
+          "Q3": 11,
+          "S1": 14,
+          "S2": 14,
+          "S3": 11,
+          "S4": 15
+        },
+        "source_counts": {
+          "teacher": 94
+        },
+        "joint_safety_mean": 0.693695914795,
+        "joint_safety_weighted": 0.709917604144276,
+        "hardworld_safe_weighted": 0.8411316763940497,
+        "broad_safe_weighted": 0.5619537538334747,
+        "joint_risk_weighted": 0.29008239585572404,
+        "hardworld_toxic_weighted": 0.1588683236059501,
+        "broad_toxic_weighted": 0.4380462461665252,
+        "hardworld_top_toxic_rate": 0.0,
+        "hardworld_top_toxic_exposure": 0.0,
+        "broad_top_toxic_exposure": 0.13881622912525043,
+        "broad_safe_hardworld_toxic_rate": 0.0,
+        "broad_safe_hardworld_toxic_exposure": 0.0,
+        "dual_safe_rate": 0.39361702127659576,
+        "dual_safe_exposure": 0.4141807406456497
+      },
+      "target_only_null": {
+        "group_cols": [
+          "target"
+        ],
+        "iterations": 1500,
+        "joint_safety_weighted": {
+          "z": 12.067193716278435,
+          "p": 0.0,
+          "null_mean": 0.37492470104295655,
+          "null_std": 0.027760630264628355
+        },
+        "hardworld_safe_weighted": {
+          "z": 10.26213224712295,
+          "p": 0.0,
+          "null_mean": 0.5109673367938294,
+          "null_std": 0.03217307394206713
+        },
+        "broad_safe_weighted": {
+          "z": 1.5041172098559437,
+          "p": 0.07066666666666667,
+          "null_mean": 0.517784059356575,
+          "null_std": 0.029365859379819136
+        },
+        "joint_risk_weighted": {
+          "z": -12.067193716278434,
+          "p": 0.0,
+          "null_mean": 0.6250752989570434,
+          "null_std": 0.027760630264628355
+        },
+        "hardworld_top_toxic_exposure": {
+          "z": -5.093770423058475,
+          "p": 0.0,
+          "null_mean": 0.24388956665423847,
+          "null_std": 0.047879968352147494
+        },
+        "broad_safe_hardworld_toxic_exposure": {
+          "z": -5.225756265539416,
+          "p": 0.0,
+          "null_mean": 0.24713164313169037,
+          "null_std": 0.047291077227643155
+        },
+        "dual_safe_exposure": {
+          "z": 9.595622914864107,
+          "p": 0.0,
+          "null_mean": 0.10436944783991853,
+          "null_std": 0.03228673068386442
+        }
+      },
+      "source_matched_null": {
+        "group_cols": [
+          "target",
+          "teacher_has_action",
+          "lrj_has_cell"
+        ],
+        "iterations": 1500,
+        "joint_safety_weighted": {
+          "z": 0.8053598838764537,
+          "p": 0.21466666666666667,
+          "null_mean": 0.7012140973193023,
+          "null_std": 0.010806978343986492
+        },
+        "hardworld_safe_weighted": {
+          "z": -0.34592020127773626,
+          "p": 0.642,
+          "null_mean": 0.8425626120015992,
+          "null_std": 0.004136606078274889
+        },
+        "broad_safe_weighted": {
+          "z": 0.9295162182166704,
+          "p": 0.17533333333333334,
+          "null_mean": 0.5514866774899327,
+          "null_std": 0.01126077860448105
+        },
+        "joint_risk_weighted": {
+          "z": -0.8053598838764486,
+          "p": 0.21466666666666667,
+          "null_mean": 0.29878590268069766,
+          "null_std": 0.010806978343986492
+        },
+        "hardworld_top_toxic_exposure": {
+          "z": 0.0,
+          "p": 1.0,
+          "null_mean": 0.0,
+          "null_std": 0.0
+        },
+        "broad_safe_hardworld_toxic_exposure": {
+          "z": 0.0,
+          "p": 1.0,
+          "null_mean": 0.0,
+          "null_std": 0.0
+        },
+        "dual_safe_exposure": {
+          "z": 0.2219599423573394,
+          "p": 0.408,
+          "null_mean": 0.4089769590876763,
+          "null_std": 0.023444687822876335
+        }
+      },
+      "verdict": {
+        "status": "factorized_decoder_alive_but_source_null_weak",
+        "interpretation": "The decoder removes hard/conflict exposure, but matched-source null separation is weaker or partly degenerate.",
+        "hardworld_top_toxic_exposure": 0.0,
+        "broad_safe_hardworld_toxic_exposure": 0.0,
+        "target_null_joint_safety_z": 12.067193716278435,
+        "target_null_conflict_p": 0.0,
+        "target_null_hard_top_p": 0.0,
+        "source_null_conflict_p": 1.0
+      },
+      "submission_file": "submission_hsjepa_factorized_toxicity_decoder_teacher_dual_head_2a3c5d2d_uploadsafe.csv"
+    }
+  }
+}

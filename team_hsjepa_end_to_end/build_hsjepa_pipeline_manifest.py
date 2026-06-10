@@ -38,6 +38,7 @@ CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "liste
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
 FACTORIZED_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_readout.json"
+FACTORIZED_STRESS_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_stress_audit.json"
 
 MANIFEST_JSON = OUT / "hsjepa_pipeline_manifest.json"
 MANIFEST_MD = OUT / "hsjepa_pipeline_manifest_ko.md"
@@ -79,6 +80,7 @@ def require_inputs() -> None:
         PRIVATE_TOXICITY_PROBE_JSON,
             HARDWORLD_TOXICITY_PROBE_JSON,
             FACTORIZED_DECODER_JSON,
+            FACTORIZED_STRESS_JSON,
         ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
     if missing:
@@ -138,6 +140,7 @@ def build_manifest() -> dict[str, object]:
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
     factorized_decoder = read_json(FACTORIZED_DECODER_JSON)
+    factorized_stress = read_json(FACTORIZED_STRESS_JSON)
     evidence = pd.read_csv(EVIDENCE_CSV)
     stress = pd.read_csv(STRESS_CSV)
 
@@ -149,6 +152,12 @@ def build_manifest() -> dict[str, object]:
     toxicity_verdict = private_toxicity_probe["verdict"]
     hardworld_verdict = hardworld_toxicity_probe["verdict"]
     factorized_variants = factorized_decoder.get("variants", {})
+    factorized_stress_variants = factorized_stress.get("variants", {})
+    factorized_supported = [
+        name
+        for name, item in factorized_stress_variants.items()
+        if isinstance(item, dict) and item.get("verdict", {}).get("status") == "factorized_decoder_stress_supported"
+    ]
     category_summary = contract_category_summary(contract)
     packaged = package["packaged_submissions"]
 
@@ -299,6 +308,19 @@ def build_manifest() -> dict[str, object]:
             "This creates competition submissions, but their public/private score impact remains unverified until external submission.",
         ),
         stage(
+            "factorized_toxicity_decoder_stress_audit",
+            "Factorized Toxicity Decoder Stress Audit",
+            "Compares factorized decoder variants against target-only and source-matched feasible null action fields.",
+            ["factorized_toxicity_decoder_readout.json", "hardworld_toxicity_factorization_sectors.csv"],
+            ["factorized_toxicity_decoder_stress_audit_ko.md", "factorized_toxicity_decoder_stress_summary.csv"],
+            [
+                f"Stress status: {factorized_stress['status']}",
+                f"Supported variants: {', '.join(factorized_supported) if factorized_supported else 'none'}",
+                f"Iterations: {factorized_stress['iterations']}",
+            ],
+            "This is local action-health evidence; external public/private LB remains a separate sensor.",
+        ),
+        stage(
             "driver_action_field",
             "Public-Sensitive Driver Action Field",
             "Selects sparse row-target cells that public sensor evidence says are worth moving.",
@@ -413,7 +435,8 @@ def build_manifest() -> dict[str, object]:
         ["driver_action_field", "private_safe_toxicity_probe"],
         ["private_safe_toxicity_probe", "hardworld_toxicity_factorization_probe"],
         ["hardworld_toxicity_factorization_probe", "factorized_toxicity_decoder_candidate"],
-        ["factorized_toxicity_decoder_candidate", "sleep_competition_adapter"],
+        ["factorized_toxicity_decoder_candidate", "factorized_toxicity_decoder_stress_audit"],
+        ["factorized_toxicity_decoder_stress_audit", "sleep_competition_adapter"],
         ["driver_action_field", "route_conserving_s2_bridge_decoder"],
         ["route_conserving_s2_bridge_decoder", "submission_packager"],
         ["hsjepa_core_architecture", "sleep_competition_adapter"],
@@ -466,6 +489,7 @@ def build_manifest() -> dict[str, object]:
             "private_safe_toxicity_probe_status": toxicity_verdict["status"],
             "hardworld_toxicity_factorization_probe_status": hardworld_verdict["status"],
             "factorized_toxicity_decoder_variant_count": len(factorized_variants),
+            "factorized_toxicity_decoder_supported_variants": factorized_supported,
         },
     }
     MANIFEST_JSON.write_text(json.dumps(manifest, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8")
@@ -516,6 +540,7 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    E --> P3',
             '    P3 --> P4["Hard-world toxicity factorization probe"]',
             '    P4 --> P5["Factorized toxicity decoder candidate"]',
+            '    P5 --> P6["Factorized toxicity decoder stress audit"]',
             '    E --> F',
             '    F --> G["Role-based submission packager"]',
             '    G --> ADAPT["Sleep competition adapter"]',
@@ -524,7 +549,7 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    P2 --> ADAPT',
             '    P3 --> ADAPT',
             '    P4 --> ADAPT',
-            '    P5 --> ADAPT',
+            '    P6 --> ADAPT',
             '    GEN --> H["Claim readiness and paper packet"]',
             '    ADAPT --> H["Claim readiness and paper packet"]',
             '    G --> H["Claim readiness and paper packet"]',

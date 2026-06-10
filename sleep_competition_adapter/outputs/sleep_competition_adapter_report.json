@@ -108,6 +108,28 @@
       }
     }
   },
+  "factorized_toxicity_decoder_stress_audit": {
+    "status": "stress_audit_ready",
+    "iterations": 1500,
+    "variants": {
+      "dual_safe_expansion": {
+        "submission_file": "submission_hsjepa_factorized_toxicity_decoder_dual_safe_expansion_23b6de1e_uploadsafe.csv",
+        "verdict": "factorized_decoder_stress_supported",
+        "target_null_joint_safety_z": 13.666882031010777,
+        "source_null_conflict_p": 0.0013333333333333333,
+        "hardworld_top_toxic_exposure": 0.0,
+        "broad_safe_hardworld_toxic_exposure": 0.0
+      },
+      "teacher_dual_head": {
+        "submission_file": "submission_hsjepa_factorized_toxicity_decoder_teacher_dual_head_2a3c5d2d_uploadsafe.csv",
+        "verdict": "factorized_decoder_alive_but_source_null_weak",
+        "target_null_joint_safety_z": 12.067193716278435,
+        "source_null_conflict_p": 1.0,
+        "hardworld_top_toxic_exposure": 0.0,
+        "broad_safe_hardworld_toxic_exposure": 0.0
+      }
+    }
+  },
   "role_outputs": {
     "competition_primary": "submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv",
     "interpretable_s2_hub": "submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv",
@@ -121,7 +143,8 @@
     "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.",
     "The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.",
     "Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.",
-    "The factorized toxicity decoder now produces upload-safe candidates that remove H088 top-toxic and broad-safe/H088-toxic selected cells in local diagnostics."
+    "The factorized toxicity decoder now produces upload-safe candidates that remove H088 top-toxic and broad-safe/H088-toxic selected cells in local diagnostics.",
+    "The dual-safe expansion variant survives target-only and source-matched null stress, while the teacher-only variant is intentionally marked weaker under source-matched stress."
   ],
   "what_the_adapter_does_not_prove": [
     "pure OG-only assignment",

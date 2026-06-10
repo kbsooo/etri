@@ -36,6 +36,7 @@ CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "liste
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
 FACTORIZED_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_readout.json"
+FACTORIZED_STRESS_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_stress_audit.json"
 
 CHECKLIST_JSON = OUT / "hsjepa_release_checklist.json"
 CHECKLIST_MD = OUT / "hsjepa_release_checklist_ko.md"
@@ -88,6 +89,7 @@ def require_inputs() -> list[dict[str, object]]:
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
         FACTORIZED_DECODER_JSON,
+        FACTORIZED_STRESS_JSON,
         PIPELINE_JSON,
     ]:
         rows.append(check(f"exists:{path.name}", path.exists(), str(path.relative_to(ROOT))))
@@ -133,6 +135,7 @@ def build_checklist() -> dict[str, object]:
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
     factorized_decoder = read_json(FACTORIZED_DECODER_JSON)
+    factorized_stress = read_json(FACTORIZED_STRESS_JSON)
     pipeline = read_json(PIPELINE_JSON)
 
     packaged = package.get("packaged_submissions", {})
@@ -151,6 +154,12 @@ def build_checklist() -> dict[str, object]:
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
     hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
     factorized_variants = factorized_decoder.get("variants", {})
+    factorized_stress_variants = factorized_stress.get("variants", {})
+    factorized_supported = [
+        name
+        for name, item in factorized_stress_variants.items()
+        if isinstance(item, dict) and item.get("verdict", {}).get("status") == "factorized_decoder_stress_supported"
+    ]
 
     rows.extend(
         [
@@ -324,6 +333,17 @@ def build_checklist() -> dict[str, object]:
                     f"upload_safe={[item.get('validation', {}).get('upload_safe') for item in factorized_variants.values() if isinstance(item, dict)]}"
                 ),
             ),
+            check(
+                "factorized_toxicity_decoder_stress_supported",
+                factorized_stress.get("status") == "stress_audit_ready"
+                and len(factorized_stress_variants) >= 2
+                and len(factorized_supported) >= 1,
+                (
+                    f"status={factorized_stress.get('status')}, "
+                    f"supported={factorized_supported}, "
+                    f"variants={[(name, item.get('verdict', {}).get('status')) for name, item in factorized_stress_variants.items() if isinstance(item, dict)]}"
+                ),
+            ),
             check("roles_present", role_keys == EXPECTED_ROLES, f"roles={sorted(role_keys)}"),
             check(
                 "role_based_output_names",
@@ -436,6 +456,7 @@ def build_markdown(result: dict[str, object]) -> str:
             "- Private-safe toxicity has a recorded probe result and hard-world boundary",
             "- Hard-world toxicity factorization has a recorded probe result",
             "- Factorized toxicity decoder candidates have recorded upload-safe outputs",
+            "- Factorized toxicity decoder has a recorded stress audit with at least one supported variant",
             "- HS-JEPA Core is separated from the Sleep Competition Adapter",
             "- the next big bet is replacing public-sensor assignment with an OG-only human-state teacher",
             "",

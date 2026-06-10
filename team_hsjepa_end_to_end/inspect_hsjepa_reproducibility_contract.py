@@ -85,6 +85,7 @@ MODULES = [
     "sleep_competition_adapter/private_safe_toxicity_probe.py",
     "sleep_competition_adapter/hardworld_toxicity_factorization_probe.py",
     "sleep_competition_adapter/factorized_toxicity_decoder_candidate.py",
+    "sleep_competition_adapter/factorized_toxicity_decoder_stress_audit.py",
     "sleep_competition_adapter/build_sleep_competition_adapter_report.py",
 ]
 
@@ -135,6 +136,9 @@ GENERATED_OUTPUTS = [
     ("sleep_competition_adapter/outputs/hardworld_toxicity_factorization_sectors.csv", False),
     ("sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_readout.json", False),
     ("sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_readout_ko.md", False),
+    ("sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_stress_audit.json", False),
+    ("sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_stress_audit_ko.md", False),
+    ("sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_stress_summary.csv", False),
 ]
 
 
