@@ -213,6 +213,7 @@ def runner_order_audit() -> tuple[bool, dict[str, int | None]]:
     text = RUNNER.read_text(encoding="utf-8")
     needles = {
         "core_manifest": "hsjepa_core\" / \"build_core_architecture_manifest.py",
+        "core_reference": "hsjepa_core\" / \"run_core_reference_demo.py",
         "sleep_adapter_report": "sleep_competition_adapter\" / \"build_sleep_competition_adapter_report.py",
         "boundary_audit": "audit_hsjepa_core_adapter_boundary.py",
         "paper_packet": "build_hsjepa_paper_method_packet.py",
@@ -224,6 +225,7 @@ def runner_order_audit() -> tuple[bool, dict[str, int | None]]:
     }
     required_order = [
         positions["core_manifest"],
+        positions["core_reference"],
         positions["sleep_adapter_report"],
         positions["boundary_audit"],
         positions["paper_packet"],

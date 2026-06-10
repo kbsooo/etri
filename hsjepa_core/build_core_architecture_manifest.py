@@ -20,6 +20,8 @@ MANIFEST_JSON = OUT / "hsjepa_core_manifest.json"
 MANIFEST_MD = OUT / "hsjepa_core_manifest_ko.md"
 ABLATION_JSON = OUT / "hsjepa_core_ablation_contract.json"
 ABLATION_MD = OUT / "hsjepa_core_ablation_contract_ko.md"
+REFERENCE_JSON = OUT / "hsjepa_core_reference_run.json"
+REFERENCE_MD = OUT / "hsjepa_core_reference_run_ko.md"
 
 
 CORE_MODULES = [
@@ -167,6 +169,15 @@ def build_manifest() -> dict[str, object]:
             "deployment metric",
             "output or serving format",
         ],
+        "reference_implementation": {
+            "core_module": "hsjepa_core/core.py",
+            "reference_runner": "hsjepa_core/run_core_reference_demo.py",
+            "reference_outputs": [
+                str(REFERENCE_JSON.relative_to(HERE.parent)),
+                str(REFERENCE_MD.relative_to(HERE.parent)),
+            ],
+            "claim": "The core can execute on synthetic context/listener/action inputs before any domain adapter is attached.",
+        },
         "forbidden_core_dependencies": [
             "public leaderboard observations",
             "dataset-specific target names",
@@ -234,6 +245,12 @@ def build_manifest_markdown(manifest: dict[str, object]) -> str:
             "## Adapter가 책임지는 것",
             "",
             *[f"- {item}" for item in manifest["requires_adapter_for"]],
+            "",
+            "## Reference Implementation",
+            "",
+            f"- Core module: `{manifest['reference_implementation']['core_module']}`",
+            f"- Reference runner: `{manifest['reference_implementation']['reference_runner']}`",
+            f"- Claim: {manifest['reference_implementation']['claim']}",
             "",
             "## Core에 들어오면 안 되는 것",
             "",

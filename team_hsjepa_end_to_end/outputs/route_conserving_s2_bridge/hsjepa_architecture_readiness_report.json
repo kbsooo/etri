@@ -36,7 +36,7 @@
       "gate": "reproducibility_contract",
       "status": "PASS",
       "passed": true,
-      "evidence": "required missing 0, public ledger rows 26, raw/source records 189",
+      "evidence": "required missing 0, public ledger rows 26, raw/source records 193",
       "boundary": "The team runner is reproducible from local artifacts, but it explicitly uses a public-LB sensor."
     },
     {

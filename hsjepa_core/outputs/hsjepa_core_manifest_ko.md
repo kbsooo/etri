@@ -41,6 +41,12 @@ partial_human_context -> hidden_human_state -> listener_responsibility -> action
 - deployment metric
 - output or serving format
 
+## Reference Implementation
+
+- Core module: `hsjepa_core/core.py`
+- Reference runner: `hsjepa_core/run_core_reference_demo.py`
+- Claim: The core can execute on synthetic context/listener/action inputs before any domain adapter is attached.
+
 ## Core에 들어오면 안 되는 것
 
 - public leaderboard observations

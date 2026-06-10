@@ -19,6 +19,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 READINESS_JSON = OUT / "hsjepa_architecture_readiness_report.json"
 ABLATION_JSON = OUT / "hsjepa_mechanism_ablation_report.json"
+CORE_REFERENCE_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_reference_run.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
 ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignment_gap_decomposition_probe.json"
 ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidden_row_support_sensor_probe.json"
@@ -108,6 +109,12 @@ PORTABILITY_CHECKS = [
         "passed": True,
         "evidence": "Public LB sensor is explicitly marked as competition-specific assignment teacher.",
         "meaning": "Paper claims can keep the reusable architecture separate from the leaderboard-specific sensor.",
+    },
+    {
+        "check": "executable_core_reference",
+        "passed": True,
+        "evidence": "A dataset-free reference run executes context, listener, action-health, invariant-energy, and module-removal behavior.",
+        "meaning": "HS-JEPA is represented as executable architecture code, not only competition analysis notes.",
     },
     {
         "check": "remaining_generality_gap",
@@ -211,6 +218,7 @@ def run() -> dict[str, object]:
     for path in [
         READINESS_JSON,
         ABLATION_JSON,
+        CORE_REFERENCE_JSON,
         OG_PROBE_JSON,
         ASSIGNMENT_GAP_JSON,
         ROW_SUPPORT_SENSOR_JSON,
@@ -227,6 +235,7 @@ def run() -> dict[str, object]:
 
     readiness = read_json(READINESS_JSON)
     ablation = read_json(ABLATION_JSON)
+    core_reference = read_json(CORE_REFERENCE_JSON)
     og_probe = read_json(OG_PROBE_JSON)
     assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
     row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
@@ -250,6 +259,12 @@ def run() -> dict[str, object]:
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     portability_checks = [dict(item) for item in PORTABILITY_CHECKS]
     for item in portability_checks:
+        if item["check"] == "executable_core_reference":
+            item["evidence"] = (
+                f"Core reference status {core_reference.get('status')}; full-core released "
+                f"{core_reference.get('full_core', {}).get('summary', {}).get('released_actions')}; "
+                f"ablation cases {list(core_reference.get('ablations', {}).keys())}."
+            )
         if item["check"] == "remaining_generality_gap":
             item["evidence"] = (
                 "OG-only assignment probe status "
@@ -306,6 +321,8 @@ def run() -> dict[str, object]:
         "evidence": {
             "readiness_status": readiness.get("status"),
             "mechanism_ablation_status": ablation.get("status"),
+            "core_reference_status": core_reference.get("status"),
+            "core_reference_released_actions": core_reference.get("full_core", {}).get("summary", {}).get("released_actions"),
             "public_worldviews_killed": ablation.get("public_worldviews_killed"),
             "public_worldviews_survived": ablation.get("public_worldviews_survived"),
             "og_only_assignment_probe_status": og_verdict.get("status"),

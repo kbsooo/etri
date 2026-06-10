@@ -32,6 +32,7 @@ BOUNDARY_AUDIT_JSON = OUT / "hsjepa_core_adapter_boundary_audit.json"
 METHOD_PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 CORE_MANIFEST_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_manifest.json"
 CORE_ABLATION_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_ablation_contract.json"
+CORE_REFERENCE_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_reference_run.json"
 ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_competition_adapter_report.json"
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
@@ -84,6 +85,7 @@ def require_inputs() -> None:
         METHOD_PACKET_JSON,
         CORE_MANIFEST_JSON,
         CORE_ABLATION_JSON,
+        CORE_REFERENCE_JSON,
         ADAPTER_REPORT_JSON,
         BIG_BET_JSON,
         OG_PROBE_JSON,
@@ -154,6 +156,7 @@ def build_manifest() -> dict[str, object]:
     method = read_json(METHOD_PACKET_JSON)
     core = read_json(CORE_MANIFEST_JSON)
     core_ablation = read_json(CORE_ABLATION_JSON)
+    core_reference = read_json(CORE_REFERENCE_JSON)
     adapter = read_json(ADAPTER_REPORT_JSON)
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
@@ -221,8 +224,22 @@ def build_manifest() -> dict[str, object]:
                 f"Core status: {core['status']}",
                 f"Core gates: {core['passed_gates']}/{core['total_gates']}",
                 f"Ablation status: {core_ablation['status']}",
+                f"Reference run: {core_reference['status']}",
             ],
             "The core must not depend on S2, public LB sensors, submission files, or manual row ids.",
+        ),
+        stage(
+            "hsjepa_core_reference_run",
+            "HS-JEPA Core Reference Run",
+            "Executes the dataset-free core on synthetic context/listener/action inputs to prove the architecture is not only a report.",
+            ["hsjepa_core/core.py", "synthetic context views", "synthetic listener prototypes", "synthetic candidate actions"],
+            ["hsjepa_core_reference_run_ko.md"],
+            [
+                f"Status: {core_reference['status']}",
+                f"Released actions: {core_reference['full_core']['summary']['released_actions']}",
+                f"Ablations: {list(core_reference['ablations'].keys())}",
+            ],
+            "This stage is architecture-only; it must not read competition data or sensor observations.",
         ),
         stage(
             "og_raw_lifestyle_context",
@@ -621,6 +638,10 @@ def build_manifest() -> dict[str, object]:
     ]
 
     edges = [
+        ["hsjepa_core_architecture", "hsjepa_core_reference_run"],
+        ["hsjepa_core_reference_run", "sleep_competition_adapter"],
+        ["hsjepa_core_reference_run", "core_adapter_boundary_audit"],
+        ["hsjepa_core_reference_run", "claim_readiness_and_paper_packet"],
         ["hsjepa_core_architecture", "og_raw_lifestyle_context"],
         ["hsjepa_core_architecture", "human_state_listener_context"],
         ["hsjepa_core_architecture", "route_energy_model"],

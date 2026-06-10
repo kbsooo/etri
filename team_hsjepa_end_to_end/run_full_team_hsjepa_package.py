@@ -5,33 +5,34 @@ This is the single command a teammate should run when they do not know any
 historical experiment version names.  It executes:
 
 1. HS-JEPA core architecture manifest.
-2. Route-Conserving S2 Bridge package generation.
-3. Stress audit against feasible candidate nulls.
-4. Claim/evidence validation.
-5. Reproducibility contract.
-6. Architecture readiness report.
-7. Mechanism ablation report.
-8. OG-only assignment teacher probe.
-9. Assignment-gap decomposition probe.
-10. Hidden row-support sensor transfer probe.
-11. Masked row-support objective stress probe.
-12. Row-support strict action decoder.
-13. Route-toxicity fusion action decoder.
-14. Decoder-order jury solver.
-15. Decoder boundary tomography solver.
-16. Listener-invariant contrastive probe.
-17. Private-safe toxicity probe.
-18. Hard-world toxicity factorization probe.
-19. Factorized toxicity decoder candidate.
-20. Factorized toxicity decoder stress audit.
-21. Action decoder ablation suite.
-22. Generality report.
-23. Sleep competition adapter report and big-bet queue.
-24. Core/adapter boundary audit.
-25. Paper method packet.
-26. Pipeline manifest.
-27. Release checklist.
-28. A compact handoff report for paper and competition discussion.
+2. HS-JEPA core reference run.
+3. Route-Conserving S2 Bridge package generation.
+4. Stress audit against feasible candidate nulls.
+5. Claim/evidence validation.
+6. Reproducibility contract.
+7. Architecture readiness report.
+8. Mechanism ablation report.
+9. OG-only assignment teacher probe.
+10. Assignment-gap decomposition probe.
+11. Hidden row-support sensor transfer probe.
+12. Masked row-support objective stress probe.
+13. Row-support strict action decoder.
+14. Route-toxicity fusion action decoder.
+15. Decoder-order jury solver.
+16. Decoder boundary tomography solver.
+17. Listener-invariant contrastive probe.
+18. Private-safe toxicity probe.
+19. Hard-world toxicity factorization probe.
+20. Factorized toxicity decoder candidate.
+21. Factorized toxicity decoder stress audit.
+22. Action decoder ablation suite.
+23. Generality report.
+24. Sleep competition adapter report and big-bet queue.
+25. Core/adapter boundary audit.
+26. Paper method packet.
+27. Pipeline manifest.
+28. Release checklist.
+29. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -78,6 +79,8 @@ CORE_MANIFEST_MD = CORE_OUT / "hsjepa_core_manifest_ko.md"
 CORE_MANIFEST_JSON = CORE_OUT / "hsjepa_core_manifest.json"
 CORE_ABLATION_MD = CORE_OUT / "hsjepa_core_ablation_contract_ko.md"
 CORE_ABLATION_JSON = CORE_OUT / "hsjepa_core_ablation_contract.json"
+CORE_REFERENCE_MD = CORE_OUT / "hsjepa_core_reference_run_ko.md"
+CORE_REFERENCE_JSON = CORE_OUT / "hsjepa_core_reference_run.json"
 ADAPTER_OUT = ROOT / "sleep_competition_adapter" / "outputs"
 ADAPTER_REPORT_MD = ADAPTER_OUT / "sleep_competition_adapter_report_ko.md"
 ADAPTER_REPORT_JSON = ADAPTER_OUT / "sleep_competition_adapter_report.json"
@@ -149,6 +152,7 @@ def build_handoff(
     ablation: dict[str, object],
     generality: dict[str, object],
     core: dict[str, object],
+    core_reference: dict[str, object],
     adapter: dict[str, object],
     big_bets: dict[str, object],
     og_probe: dict[str, object],
@@ -252,6 +256,7 @@ def build_handoff(
             "",
             f"- Core status: `{core['status']}` (`{core['passed_gates']}/{core['total_gates']}` gates)",
             f"- Core ablation contract: `{len(core.get('modules', []))}` modules, `{len(big_bets.get('bets', []))}` big-bet followups",
+            f"- Core reference run: `{core_reference.get('status')}`, released actions `{core_reference.get('full_core', {}).get('summary', {}).get('released_actions')}`",
             f"- Adapter status: `{adapter['status']}`",
             f"- Adapter score delta: `{adapter['score_evidence']['delta']}`",
             f"- OG-only assignment probe: `{og_verdict.get('status')}`",
@@ -449,6 +454,7 @@ def build_handoff(
 def run(refresh: bool = False) -> dict[str, object]:
     commands = [
         [sys.executable, str(ROOT / "hsjepa_core" / "build_core_architecture_manifest.py")],
+        [sys.executable, str(ROOT / "hsjepa_core" / "run_core_reference_demo.py")],
         [sys.executable, str(HERE / "run_route_conserving_s2_bridge.py")],
         [sys.executable, str(HERE / "audit_route_conserving_s2_bridge.py")],
         [sys.executable, str(HERE / "validate_route_conserving_s2_bridge_package.py")],
@@ -491,6 +497,7 @@ def run(refresh: bool = False) -> dict[str, object]:
     ablation = read_json(MECHANISM_ABLATION_JSON)
     generality = read_json(GENERALITY_JSON)
     core = read_json(CORE_MANIFEST_JSON)
+    core_reference = read_json(CORE_REFERENCE_JSON)
     adapter = read_json(ADAPTER_REPORT_JSON)
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
@@ -519,6 +526,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         ablation,
         generality,
         core,
+        core_reference,
         adapter,
         big_bets,
         og_probe,
@@ -564,6 +572,8 @@ def run(refresh: bool = False) -> dict[str, object]:
         "core_manifest_json": str(CORE_MANIFEST_JSON.resolve()),
         "core_ablation_md": str(CORE_ABLATION_MD.resolve()),
         "core_ablation_json": str(CORE_ABLATION_JSON.resolve()),
+        "core_reference_md": str(CORE_REFERENCE_MD.resolve()),
+        "core_reference_json": str(CORE_REFERENCE_JSON.resolve()),
         "adapter_report_md": str(ADAPTER_REPORT_MD.resolve()),
         "adapter_report_json": str(ADAPTER_REPORT_JSON.resolve()),
         "big_bet_queue_md": str(BIG_BET_MD.resolve()),
@@ -608,6 +618,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         "mechanism_ablation_status": str(ablation["status"]),
         "generality_status": str(generality["status"]),
         "core_status": str(core["status"]),
+        "core_reference_status": str(core_reference["status"]),
         "adapter_status": str(adapter["status"]),
         "big_bet_count": int(big_bets["count"]),
         "og_only_assignment_teacher_probe_status": str(og_probe["verdict"]["status"]),

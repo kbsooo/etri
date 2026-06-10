@@ -1,0 +1,155 @@
+{
+  "package": "HS-JEPA Core Reference Run",
+  "status": "core_reference_ready",
+  "claim": "The HS-JEPA mechanism executes without a domain adapter and exposes falsifiable module-removal behavior.",
+  "full_core": {
+    "summary": {
+      "released_count": 1,
+      "rejected_count": 3,
+      "released_actions": [
+        "survey_small_shift"
+      ],
+      "rejected_actions": [
+        "sensor_route_shift",
+        "recovery_minor_shift",
+        "unsupported_large_shortcut"
+      ]
+    },
+    "hidden": {
+      "state": [
+        0.9771727696737124,
+        0.20189602882754704,
+        0.06027809440615889,
+        0.02716473976747204
+      ],
+      "prediction_energy": 0.1748720000721275,
+      "context_coverage": 0.875,
+      "context_disagreement": 0.06237200007212749
+    },
+    "responsibilities": {
+      "survey_listener": 0.8132721080153977,
+      "sensor_listener": 0.0949278686304252,
+      "recovery_listener": 0.09180002335417713
+    },
+    "decisions": [
+      {
+        "action": {
+          "name": "survey_small_shift",
+          "listener": "survey_listener",
+          "delta_embedding": [
+            0.08,
+            0.03,
+            -0.01,
+            0.0
+          ],
+          "amplitude": 0.3,
+          "support": 0.95
+        },
+        "listener_responsibility": 0.8132721080153977,
+        "listener_alignment": 0.9789212425909913,
+        "invariant_energy_delta": 0.025365045767169973,
+        "health_score": 0.5041355814492349,
+        "released": true
+      },
+      {
+        "action": {
+          "name": "sensor_route_shift",
+          "listener": "sensor_listener",
+          "delta_embedding": [
+            -0.02,
+            0.01,
+            0.1,
+            0.0
+          ],
+          "amplitude": 0.35,
+          "support": 0.88
+        },
+        "listener_responsibility": 0.0949278686304252,
+        "listener_alignment": 0.9203900230262253,
+        "invariant_energy_delta": 0.05059866987833667,
+        "health_score": 0.04880204060774706,
+        "released": false
+      },
+      {
+        "action": {
+          "name": "recovery_minor_shift",
+          "listener": "recovery_listener",
+          "delta_embedding": [
+            0.0,
+            0.0,
+            0.02,
+            0.08
+          ],
+          "amplitude": 0.2,
+          "support": 0.72
+        },
+        "listener_responsibility": 0.09180002335417713,
+        "listener_alignment": 0.9539832459815241,
+        "invariant_energy_delta": 0.03616678896629473,
+        "health_score": 0.04468657641268664,
+        "released": false
+      },
+      {
+        "action": {
+          "name": "unsupported_large_shortcut",
+          "listener": "survey_listener",
+          "delta_embedding": [
+            0.6,
+            -0.5,
+            0.0,
+            0.0
+          ],
+          "amplitude": 0.8,
+          "support": 0.12
+        },
+        "listener_responsibility": 0.8132721080153977,
+        "listener_alignment": 0.576136565725118,
+        "invariant_energy_delta": 0.2798489400666716,
+        "health_score": 0.02493731925600555,
+        "released": false
+      }
+    ]
+  },
+  "ablations": {
+    "remove_listener_responsibility": {
+      "released_count": 3,
+      "rejected_count": 1,
+      "released_actions": [
+        "survey_small_shift",
+        "sensor_route_shift",
+        "recovery_minor_shift"
+      ],
+      "rejected_actions": [
+        "unsupported_large_shortcut"
+      ]
+    },
+    "remove_action_health": {
+      "released_count": 4,
+      "rejected_count": 0,
+      "released_actions": [
+        "survey_small_shift",
+        "sensor_route_shift",
+        "recovery_minor_shift",
+        "unsupported_large_shortcut"
+      ],
+      "rejected_actions": []
+    },
+    "remove_invariant_energy": {
+      "released_count": 1,
+      "rejected_count": 3,
+      "released_actions": [
+        "survey_small_shift"
+      ],
+      "rejected_actions": [
+        "sensor_route_shift",
+        "recovery_minor_shift",
+        "unsupported_large_shortcut"
+      ]
+    }
+  },
+  "interpretation": {
+    "listener_responsibility": "Changes which listener receives action authority.",
+    "action_health": "Prevents every aligned latent move from becoming an output action.",
+    "invariant_energy": "Keeps action release close to the hidden-state manifold supplied by the adapter."
+  }
+}

@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 28,
-  "edge_count": 69,
+  "stage_count": 29,
+  "edge_count": 73,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -21,9 +21,30 @@
       "evidence": [
         "Core status: core_ready_for_adapter",
         "Core gates: 5/5",
-        "Ablation status: ablation_contract_ready"
+        "Ablation status: ablation_contract_ready",
+        "Reference run: core_reference_ready"
       ],
       "boundary": "The core must not depend on S2, public LB sensors, submission files, or manual row ids."
+    },
+    {
+      "id": "hsjepa_core_reference_run",
+      "name": "HS-JEPA Core Reference Run",
+      "role": "Executes the dataset-free core on synthetic context/listener/action inputs to prove the architecture is not only a report.",
+      "inputs": [
+        "hsjepa_core/core.py",
+        "synthetic context views",
+        "synthetic listener prototypes",
+        "synthetic candidate actions"
+      ],
+      "outputs": [
+        "hsjepa_core_reference_run_ko.md"
+      ],
+      "evidence": [
+        "Status: core_reference_ready",
+        "Released actions: ['survey_small_shift']",
+        "Ablations: ['remove_listener_responsibility', 'remove_action_health', 'remove_invariant_energy']"
+      ],
+      "boundary": "This stage is architecture-only; it must not read competition data or sensor observations."
     },
     {
       "id": "og_raw_lifestyle_context",
@@ -502,7 +523,7 @@
       ],
       "evidence": [
         "Generality status: general_architecture_separated_with_case_boundary",
-        "Portability checks: 5/6",
+        "Portability checks: 6/7",
         "Nonblocking boundaries: remaining_generality_gap"
       ],
       "boundary": "The current strongest case study still uses a public-sensor assignment teacher."
@@ -581,6 +602,22 @@
     }
   ],
   "edges": [
+    [
+      "hsjepa_core_architecture",
+      "hsjepa_core_reference_run"
+    ],
+    [
+      "hsjepa_core_reference_run",
+      "sleep_competition_adapter"
+    ],
+    [
+      "hsjepa_core_reference_run",
+      "core_adapter_boundary_audit"
+    ],
+    [
+      "hsjepa_core_reference_run",
+      "claim_readiness_and_paper_packet"
+    ],
     [
       "hsjepa_core_architecture",
       "og_raw_lifestyle_context"

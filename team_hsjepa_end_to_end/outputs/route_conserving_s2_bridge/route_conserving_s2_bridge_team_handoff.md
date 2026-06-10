@@ -38,6 +38,7 @@ public-sensitive driver action
 
 - Core status: `core_ready_for_adapter` (`5/5` gates)
 - Core ablation contract: `6` modules, `11` big-bet followups
+- Core reference run: `core_reference_ready`, released actions `['survey_small_shift']`
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
 - Adapter score delta: `-0.00841135550000005`
 - OG-only assignment probe: `og_only_assignment_replacement_not_ready`
@@ -110,7 +111,7 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_bo
 - Package validation passed: `True`
 - Architecture readiness: `paper_ready_with_boundary` (`7/7` gates)
 - Mechanism ablation: `mechanism_ablation_ready` (`5` public worldviews killed, `2` survived)
-- Generality boundary: `general_architecture_separated_with_case_boundary` (`5/6` portability checks, nonblocking boundaries: `1`)
+- Generality boundary: `general_architecture_separated_with_case_boundary` (`6/7` portability checks, nonblocking boundaries: `1`)
 - Core/adapter boundary: core `core_ready_for_adapter`, adapter `adapter_ready_with_public_sensor_boundary`
 - OG-only assignment boundary: pure recall `0.0404`, distilled recall `0.1236`
 - Assignment gap: `row_support_is_primary_bottleneck`, row-support gap `0.5832`
@@ -129,7 +130,7 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_bo
 - Factorized decoder stress: `dual_safe_expansion:factorized_decoder_stress_supported, teacher_dual_head:factorized_decoder_alive_but_source_null_weak`
 - Boundary tomography inventory: `{'strict_jury_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'conflict_cells': 0}`
 - Core/adapter boundary audit: `core_adapter_boundary_verified`
-- Release checklist: `release_ready_with_boundary` (`63/63` checks)
+- Release checklist: `release_ready_with_boundary` (`65/65` checks)
 
 ## Paper Claim
 

@@ -39,6 +39,7 @@ This adapter converts HS-JEPA Core into a sleep-log competition system by supply
 
 - Core status: `core_ready_for_adapter` (`5/5` gates)
 - Core ablation contract: `ablation_contract_ready` (`6` ablations)
+- Core reference run: `core_reference_ready`, released `['survey_small_shift']`, ablations `3`
 - Core/adapter boundary audit: `core_adapter_boundary_verified` (`6/6` checks)
 - Core operational violations: imports `0`, strings `0`
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
@@ -62,7 +63,7 @@ partial human context
 이번 대회의 S2/public-sensor 구조는 이 일반 구조의 case study다.
 
 - Generality status: `general_architecture_separated_with_case_boundary`
-- Portability checks: `5/6`
+- Portability checks: `6/7`
 - Nonblocking boundaries: `remaining_generality_gap`
 - OG-only assignment probe: `og_only_assignment_replacement_not_ready`
 - Pure OG row-cap2 recall: `0.0404`
@@ -207,6 +208,7 @@ Generated supporting reports:
 - `/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_reproducibility_contract.json`
 - `/Users/kbsoo/Downloads/cl2/hsjepa_core/outputs/hsjepa_core_manifest.json`
 - `/Users/kbsoo/Downloads/cl2/hsjepa_core/outputs/hsjepa_core_ablation_contract.json`
+- `/Users/kbsoo/Downloads/cl2/hsjepa_core/outputs/hsjepa_core_reference_run.json`
 - `/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_boundary_audit.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/hsjepa_big_bet_queue.json`

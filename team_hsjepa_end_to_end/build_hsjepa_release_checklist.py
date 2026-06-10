@@ -30,6 +30,7 @@ METHOD_PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 PIPELINE_JSON = OUT / "hsjepa_pipeline_manifest.json"
 CORE_MANIFEST_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_manifest.json"
 CORE_ABLATION_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_ablation_contract.json"
+CORE_REFERENCE_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_reference_run.json"
 ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_competition_adapter_report.json"
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
@@ -93,6 +94,7 @@ def require_inputs() -> list[dict[str, object]]:
         METHOD_PACKET_JSON,
         CORE_MANIFEST_JSON,
         CORE_ABLATION_JSON,
+        CORE_REFERENCE_JSON,
         ADAPTER_REPORT_JSON,
         BIG_BET_JSON,
         OG_PROBE_JSON,
@@ -149,6 +151,7 @@ def build_checklist() -> dict[str, object]:
     method = read_json(METHOD_PACKET_JSON)
     core = read_json(CORE_MANIFEST_JSON)
     core_ablation = read_json(CORE_ABLATION_JSON)
+    core_reference = read_json(CORE_REFERENCE_JSON)
     adapter = read_json(ADAPTER_REPORT_JSON)
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
@@ -301,6 +304,17 @@ def build_checklist() -> dict[str, object]:
                 core_ablation.get("status") == "ablation_contract_ready"
                 and len(core_ablation.get("ablations", [])) >= 6,
                 f"status={core_ablation.get('status')}, ablations={len(core_ablation.get('ablations', []))}",
+            ),
+            check(
+                "core_reference_executable",
+                core_reference.get("status") == "core_reference_ready"
+                and int(core_reference.get("full_core", {}).get("summary", {}).get("released_count", 0)) >= 1
+                and len(core_reference.get("ablations", {})) >= 3,
+                (
+                    f"status={core_reference.get('status')}, "
+                    f"released={core_reference.get('full_core', {}).get('summary', {}).get('released_count')}, "
+                    f"ablations={len(core_reference.get('ablations', {}))}"
+                ),
             ),
             check(
                 "big_bet_queue_high_ceiling",
