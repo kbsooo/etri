@@ -34,6 +34,7 @@ MASKED_ROW_SUPPORT_JSON = OUT / "masked_row_support_objective_probe.json"
 ROW_SUPPORT_DECODER_JSON = OUT / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
 ROUTE_FRONTIER_DECODER_JSON = OUT / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
 ROUTE_TOXICITY_FUSION_DECODER_JSON = OUT / "route_toxicity_fusion_decoder" / "route_toxicity_fusion_decoder_readout.json"
+DECODER_ORDER_JURY_JSON = OUT / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout.json"
 ACTION_DECODER_ABLATION_JSON = OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
@@ -76,6 +77,7 @@ def require_inputs() -> None:
         ROW_SUPPORT_DECODER_JSON,
         ROUTE_FRONTIER_DECODER_JSON,
         ROUTE_TOXICITY_FUSION_DECODER_JSON,
+        DECODER_ORDER_JURY_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -96,6 +98,7 @@ def build_big_bets(
     row_support_decoder: dict[str, object],
     route_frontier_decoder: dict[str, object],
     route_toxicity_fusion_decoder: dict[str, object],
+    decoder_order_jury: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -126,6 +129,11 @@ def build_big_bets(
     route_toxicity_fusion_verdict = (
         route_toxicity_fusion_decoder.get("verdict", {})
         if isinstance(route_toxicity_fusion_decoder.get("verdict"), dict)
+        else {}
+    )
+    decoder_order_jury_verdict = (
+        decoder_order_jury.get("verdict", {})
+        if isinstance(decoder_order_jury.get("verdict"), dict)
         else {}
     )
     action_ablation_verdict = (
@@ -248,6 +256,21 @@ def build_big_bets(
             "kill_criterion": "Public LB says plain route-frontier wins, or fusion only improves local toxicity while harming route/action response.",
         },
         {
+            "id": "decoder_order_jury_solver",
+            "name": "Decoder-Order Jury Solver",
+            "worldview": "Safe row-target assignment is a cross-decoder jury, not a single route or toxicity score.",
+            "core_modules_exercised": ["invariant_energy", "action_health_decoder", "anti_shortcut_validation"],
+            "adapter_move": "Release only row-target cells independently selected by route-frontier and route-toxicity fusion decoders in the same direction.",
+            "why_big": "If this beats route-frontier, HS-JEPA gains an action-grade listener responsibility rule rather than another tuned decoder.",
+            "expected_public_lb_delta_if_true": -0.0025,
+            "latest_probe_status": decoder_order_jury_verdict.get("status"),
+            "latest_probe_evidence": {
+                "recommended_lb_sensor": decoder_order_jury_verdict.get("recommended_lb_sensor"),
+                "claim": decoder_order_jury_verdict.get("claim"),
+            },
+            "kill_criterion": "Public LB worsens or underperforms route-frontier, meaning consensus is too conservative or action-health removes useful route signal.",
+        },
+        {
             "id": "listener_invariant_contrastive_decoder",
             "name": "Listener-Invariant Contrastive Decoder",
             "worldview": "A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone.",
@@ -324,6 +347,7 @@ def build_report() -> dict[str, object]:
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
     route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
     route_toxicity_fusion_decoder = read_json(ROUTE_TOXICITY_FUSION_DECODER_JSON)
+    decoder_order_jury = read_json(DECODER_ORDER_JURY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -341,6 +365,7 @@ def build_report() -> dict[str, object]:
     row_support_decoder_verdict = row_support_decoder.get("verdict", {})
     route_frontier_verdict = route_frontier_decoder.get("verdict", {})
     route_toxicity_fusion_verdict = route_toxicity_fusion_decoder.get("verdict", {})
+    decoder_order_jury_verdict = decoder_order_jury.get("verdict", {})
     action_decoder_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -501,6 +526,13 @@ def build_report() -> dict[str, object]:
                 for name, item in route_toxicity_fusion_decoder.get("variants", {}).items()
                 if isinstance(item, dict)
             },
+        },
+        "decoder_order_jury_solver": {
+            "status": decoder_order_jury_verdict.get("status"),
+            "recommended_lb_sensor": decoder_order_jury_verdict.get("recommended_lb_sensor"),
+            "claim": decoder_order_jury_verdict.get("claim"),
+            "failure_interpretation": decoder_order_jury_verdict.get("failure_interpretation"),
+            "top_ranked": decoder_order_jury.get("ranking", [])[:3],
         },
         "action_decoder_ablation_suite": {
             "status": action_decoder_ablation_verdict.get("status"),
@@ -741,6 +773,13 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             report["route_toxicity_fusion_decoder"]["reason"],
             "",
+            "## Decoder-Order Jury Solver",
+            "",
+            f"- Status: `{report['decoder_order_jury_solver']['status']}`",
+            f"- Recommended LB sensor: `{report['decoder_order_jury_solver']['recommended_lb_sensor']}`",
+            "",
+            report["decoder_order_jury_solver"]["claim"],
+            "",
             "## Action Decoder Ablation Suite",
             "",
             f"- Status: `{report['action_decoder_ablation_suite']['status']}`",
@@ -852,6 +891,7 @@ def run() -> dict[str, object]:
         read_json(ROW_SUPPORT_DECODER_JSON),
         read_json(ROUTE_FRONTIER_DECODER_JSON),
         read_json(ROUTE_TOXICITY_FUSION_DECODER_JSON),
+        read_json(DECODER_ORDER_JURY_JSON),
         read_json(ACTION_DECODER_ABLATION_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),

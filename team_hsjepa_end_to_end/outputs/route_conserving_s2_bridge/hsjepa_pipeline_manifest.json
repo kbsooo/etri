@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 26,
-  "edge_count": 60,
+  "stage_count": 27,
+  "edge_count": 65,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -230,13 +230,36 @@
       "boundary": "This is a competition-adapter action solver; it does not prove private-LB safety or pure OG-only assignment."
     },
     {
+      "id": "decoder_order_jury_solver",
+      "name": "Decoder-Order Jury Solver",
+      "role": "Releases only row-target actions independently selected by route-frontier and route-toxicity fusion decoders.",
+      "inputs": [
+        "route_frontier_action_decoder_readout.json",
+        "route_toxicity_fusion_decoder_readout.json",
+        "action_decoder_ablation_suite.csv"
+      ],
+      "outputs": [
+        "decoder_order_jury_solver_readout_ko.md",
+        "submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+        "submission_hsjepa_decoder_jury_route_majority_fusion_confirmed_1caf57fb_uploadsafe.csv",
+        "submission_hsjepa_decoder_jury_s2_pair_consensus_a71de0a7_uploadsafe.csv",
+        "submission_hsjepa_decoder_jury_seed_pair_consensus_e8a7ce4c_uploadsafe.csv"
+      ],
+      "evidence": [
+        "Solver status: decoder_order_jury_ready",
+        "Recommended LB sensor: {'variant': 'family_supermajority', 'submission_file': 'submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv', 'priority': 1.392520579892158}"
+      ],
+      "boundary": "This tests whether HS-JEPA action decoding should be a cross-decoder listener jury rather than a single route or toxicity score."
+    },
+    {
       "id": "action_decoder_ablation_suite",
       "name": "Action Decoder Ablation Suite",
-      "role": "Ranks toxicity-first, support-first, route-first, and route-toxicity fusion decoders as HS-JEPA module ablations.",
+      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, and decoder-jury alternatives as HS-JEPA module ablations.",
       "inputs": [
         "row_support_strict_action_decoder_readout.json",
         "route_frontier_action_decoder_readout.json",
         "route_toxicity_fusion_decoder_readout.json",
+        "decoder_order_jury_solver_readout.json",
         "factorized_toxicity_decoder_stress_audit.json"
       ],
       "outputs": [
@@ -244,8 +267,8 @@
         "hsjepa_action_decoder_ablation_suite.csv"
       ],
       "evidence": [
-        "Suite status: action_decoder_ablation_ready_route_frontier_leads",
-        "Recommended LB sensor: {'family': 'route_frontier', 'variant': 's2_route_frontier', 'submission_file': 'submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv', 'priority': 1.1177646805596027}",
+        "Suite status: action_decoder_ablation_ready_decoder_jury_leads",
+        "Recommended LB sensor: {'family': 'decoder_order_jury', 'variant': 'family_supermajority', 'submission_file': 'submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv', 'priority': 1.394366527938867}",
         "Open big-bet sensor: {'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572}"
       ],
       "boundary": "This prioritizes public-sensor experiments; it is not a calibrated LB predictor."
@@ -476,7 +499,7 @@
       "evidence": [
         "Adapter status: adapter_ready_with_public_sensor_boundary",
         "Adapter score delta: -0.0084113555",
-        "Big-bet count: 9"
+        "Big-bet count: 10"
       ],
       "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
     },
@@ -632,6 +655,26 @@
     [
       "hardworld_toxicity_factorization_probe",
       "route_toxicity_fusion_decoder"
+    ],
+    [
+      "route_frontier_action_decoder",
+      "decoder_order_jury_solver"
+    ],
+    [
+      "route_toxicity_fusion_decoder",
+      "decoder_order_jury_solver"
+    ],
+    [
+      "decoder_order_jury_solver",
+      "action_decoder_ablation_suite"
+    ],
+    [
+      "decoder_order_jury_solver",
+      "sleep_competition_adapter"
+    ],
+    [
+      "decoder_order_jury_solver",
+      "claim_readiness_and_paper_packet"
     ],
     [
       "route_toxicity_fusion_decoder",
@@ -803,7 +846,7 @@
     "core_status": "core_ready_for_adapter",
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
     "core_adapter_boundary_status": "core_adapter_boundary_verified",
-    "big_bet_count": 9,
+    "big_bet_count": 10,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "assignment_gap_decomposition_status": "row_support_is_primary_bottleneck",
     "assignment_gap_mean_row_support_gap": 0.5832137733142038,
@@ -844,12 +887,18 @@
         "upload_safe": true
       }
     ],
-    "action_decoder_ablation_suite_status": "action_decoder_ablation_ready_route_frontier_leads",
+    "decoder_order_jury_solver_status": "decoder_order_jury_ready",
+    "decoder_order_jury_solver_recommended_lb_sensor": {
+      "variant": "family_supermajority",
+      "submission_file": "submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+      "priority": 1.392520579892158
+    },
+    "action_decoder_ablation_suite_status": "action_decoder_ablation_ready_decoder_jury_leads",
     "action_decoder_ablation_suite_recommended_lb_sensor": {
-      "family": "route_frontier",
-      "variant": "s2_route_frontier",
-      "submission_file": "submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
-      "priority": 1.1177646805596027
+      "family": "decoder_order_jury",
+      "variant": "family_supermajority",
+      "submission_file": "submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+      "priority": 1.394366527938867
     },
     "action_decoder_ablation_suite_big_bet_sensor": {
       "family": "route_frontier",

@@ -39,6 +39,7 @@ MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "mask
 ROW_SUPPORT_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
 ROUTE_FRONTIER_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
 ROUTE_TOXICITY_FUSION_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_toxicity_fusion_decoder" / "route_toxicity_fusion_decoder_readout.json"
+DECODER_ORDER_JURY_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout.json"
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -100,6 +101,7 @@ def require_inputs() -> list[dict[str, object]]:
         ROW_SUPPORT_DECODER_JSON,
         ROUTE_FRONTIER_DECODER_JSON,
         ROUTE_TOXICITY_FUSION_DECODER_JSON,
+        DECODER_ORDER_JURY_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -154,6 +156,7 @@ def build_checklist() -> dict[str, object]:
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
     route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
     route_toxicity_fusion_decoder = read_json(ROUTE_TOXICITY_FUSION_DECODER_JSON)
+    decoder_order_jury = read_json(DECODER_ORDER_JURY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -180,6 +183,7 @@ def build_checklist() -> dict[str, object]:
     row_support_decoder_verdict = row_support_decoder.get("verdict", {})
     route_frontier_verdict = route_frontier_decoder.get("verdict", {})
     route_toxicity_fusion_verdict = route_toxicity_fusion_decoder.get("verdict", {})
+    decoder_order_jury_verdict = decoder_order_jury.get("verdict", {})
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -421,6 +425,7 @@ def build_checklist() -> dict[str, object]:
                 in {
                     "action_decoder_ablation_ready_route_frontier_leads",
                     "action_decoder_ablation_ready_route_toxicity_fusion_leads",
+                    "action_decoder_ablation_ready_decoder_jury_leads",
                     "action_decoder_ablation_ready_non_route_leads",
                 }
                 and isinstance(action_ablation_verdict.get("recommended_lb_sensor"), dict)
@@ -462,6 +467,26 @@ def build_checklist() -> dict[str, object]:
                     f"status={route_toxicity_fusion_verdict.get('status')}, "
                     f"recommended={route_toxicity_fusion_verdict.get('recommended_variant')}, "
                     f"scores={route_toxicity_fusion_verdict.get('variant_scores')}"
+                ),
+            ),
+            check(
+                "decoder_order_jury_solver_recorded",
+                decoder_order_jury.get("status")
+                in {
+                    "decoder_order_jury_ready",
+                    "decoder_order_jury_boundary",
+                }
+                and isinstance(decoder_order_jury_verdict.get("recommended_lb_sensor"), dict)
+                and any(
+                    isinstance(item, dict)
+                    and item.get("status") == "decoder_jury_alive_cross_decoder_agreement"
+                    and item.get("validation", {}).get("upload_safe") is True
+                    and int(item.get("validation", {}).get("changed_cells_vs_current_best", 0)) >= 10
+                    for item in decoder_order_jury.get("ranking", [])
+                ),
+                (
+                    f"status={decoder_order_jury_verdict.get('status')}, "
+                    f"recommended={decoder_order_jury_verdict.get('recommended_lb_sensor')}"
                 ),
             ),
             check(

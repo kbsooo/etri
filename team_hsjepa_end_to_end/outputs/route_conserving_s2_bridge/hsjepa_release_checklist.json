@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 59,
-  "total_checks": 59,
+  "passed_checks": 61,
+  "total_checks": 61,
   "required_failures": [],
   "checks": [
     {
@@ -137,6 +137,13 @@
       "passed": true,
       "required": true,
       "evidence": "sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/route_toxicity_fusion_decoder_readout.json"
+    },
+    {
+      "check": "exists:decoder_order_jury_solver_readout.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "sleep_competition_adapter/outputs/decoder_order_jury_solver/decoder_order_jury_solver_readout.json"
     },
     {
       "check": "exists:hsjepa_action_decoder_ablation_suite.json",
@@ -283,7 +290,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=big_bet_queue_ready, count=9"
+      "evidence": "status=big_bet_queue_ready, count=10"
     },
     {
       "check": "og_only_assignment_probe_recorded",
@@ -332,7 +339,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=action_decoder_ablation_ready_route_frontier_leads, recommended={'family': 'route_frontier', 'variant': 's2_route_frontier', 'submission_file': 'submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv', 'priority': 1.1177646805596027}, big_bet={'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572}"
+      "evidence": "status=action_decoder_ablation_ready_decoder_jury_leads, recommended={'family': 'decoder_order_jury', 'variant': 'family_supermajority', 'submission_file': 'submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv', 'priority': 1.394366527938867}, big_bet={'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572}"
     },
     {
       "check": "route_toxicity_fusion_decoder_recorded",
@@ -340,6 +347,13 @@
       "passed": true,
       "required": true,
       "evidence": "status=route_toxicity_fusion_decoder_alive, recommended=seed_driver_safe_route_fusion, scores=[{'variant': 's2_route_toxicity_fusion', 'changed_cells': 8, 'broad_route_z': -0.06361725497399186, 'toxicity_matched_safety_z': 0.0, 'toxicity_matched_fusion_z': 0.00022199529973856787, 'upload_safe': True}, {'variant': 'seed_route_toxicity_fusion', 'changed_cells': 8, 'broad_route_z': -0.05413537720642773, 'toxicity_matched_safety_z': 0.0, 'toxicity_matched_fusion_z': 0.00022199529973856787, 'upload_safe': True}, {'variant': 'open_route_toxicity_fusion', 'changed_cells': 4, 'broad_route_z': -0.16743111973717828, 'toxicity_matched_safety_z': 0.00022199529973856787, 'toxicity_matched_fusion_z': 0.0, 'upload_safe': True}, {'variant': 's2_driver_safe_route_fusion', 'changed_cells': 20, 'broad_route_z': 2.5212391425980725, 'toxicity_matched_safety_z': 1.4350151378530516, 'toxicity_matched_fusion_z': 3.333896510179827, 'upload_safe': True}, {'variant': 'seed_driver_safe_route_fusion', 'changed_cells': 20, 'broad_route_z': 1.956452255410393, 'toxicity_matched_safety_z': 1.1375544203021746, 'toxicity_matched_fusion_z': 4.040831045742473, 'upload_safe': True}, {'variant': 'open_driver_safe_route_fusion', 'changed_cells': 20, 'broad_route_z': 1.2492144363720237, 'toxicity_matched_safety_z': 1.1862432357203119, 'toxicity_matched_fusion_z': 1.8706591048812475, 'upload_safe': True}]"
+    },
+    {
+      "check": "decoder_order_jury_solver_recorded",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=decoder_order_jury_ready, recommended={'variant': 'family_supermajority', 'submission_file': 'submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv', 'priority': 1.392520579892158}"
     },
     {
       "check": "listener_invariant_contrastive_probe_recorded",
@@ -402,7 +416,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=26, edges=60"
+      "evidence": "status=pipeline_ready_with_boundary, stages=27, edges=65"
     },
     {
       "check": "method_packet_presentable",

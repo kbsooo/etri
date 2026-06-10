@@ -1,0 +1,378 @@
+{
+  "experiment": "HS-JEPA Decoder-Order Jury Solver",
+  "architecture_role": "sleep_competition_adapter_cross_decoder_action_jury",
+  "core_boundary": "This module reads adapter submissions and must not be imported by HS-JEPA core.",
+  "status": "decoder_order_jury_ready",
+  "verdict": {
+    "status": "decoder_order_jury_ready",
+    "recommended_lb_sensor": {
+      "variant": "family_supermajority",
+      "submission_file": "submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+      "priority": 1.392520579892158
+    },
+    "claim": "Safe row-target assignment is a cross-decoder jury: route invariant proposes the action, factorized action-health confirms it, and only same-direction consensus is released.",
+    "failure_interpretation": "If public LB worsens, consensus is too conservative or action-health removes useful route-frontier signal."
+  },
+  "ranking": [
+    {
+      "variant": "family_supermajority",
+      "status": "decoder_jury_alive_cross_decoder_agreement",
+      "submission_file": "submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/decoder_order_jury_solver/submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 19,
+        "upload_safe": true
+      },
+      "stress": {
+        "actual": {
+          "changed_cells": 19,
+          "changed_rows": 11,
+          "mean_consensus_score": 3.3296034841557254,
+          "mean_total_weight": 4.15230941242807,
+          "mean_cross_family_weight": 1.786144056392227,
+          "mean_family_balance": 0.8515919383579941,
+          "mean_vote_coverage": 0.7017543859649122,
+          "same_direction_rate": 1.0
+        },
+        "tests": {
+          "mean_consensus_score": {
+            "actual": 3.3296034841557254,
+            "null_mean": 2.054080451943679,
+            "null_std": 0.23626563864893554,
+            "z": 5.398681922204235,
+            "p": 0.0
+          },
+          "mean_total_weight": {
+            "actual": 4.15230941242807,
+            "null_mean": 2.8369157634533084,
+            "null_std": 0.23687588926120845,
+            "z": 5.553092182903627,
+            "p": 0.0
+          },
+          "mean_cross_family_weight": {
+            "actual": 1.786144056392227,
+            "null_mean": 1.081107384896085,
+            "null_std": 0.1334921423649164,
+            "z": 5.281484430513084,
+            "p": 0.0
+          },
+          "mean_family_balance": {
+            "actual": 0.8515919383579941,
+            "null_mean": 0.6213441188847105,
+            "null_std": 0.0648230773183384,
+            "z": 3.5519421323144527,
+            "p": 0.0
+          },
+          "mean_vote_coverage": {
+            "actual": 0.7017543859649122,
+            "null_mean": 0.4902105263157895,
+            "null_std": 0.039003125262804,
+            "z": 5.423766896209858,
+            "p": 0.0
+          }
+        }
+      },
+      "priority": 1.392520579892158,
+      "config": {
+        "name": "family_supermajority",
+        "route_files": [
+          "submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
+          "submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv",
+          "submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv"
+        ],
+        "fusion_files": [
+          "submission_hsjepa_s2_driver_safe_route_fusion_6adf5b73_uploadsafe.csv",
+          "submission_hsjepa_seed_driver_safe_route_fusion_62429a06_uploadsafe.csv",
+          "submission_hsjepa_open_driver_safe_route_fusion_e50f0669_uploadsafe.csv"
+        ],
+        "min_route_votes": 1,
+        "min_fusion_votes": 1,
+        "min_total_votes": 3,
+        "max_cells": 28,
+        "shrink": 0.86
+      },
+      "rank": 1
+    },
+    {
+      "variant": "route_majority_fusion_confirmed",
+      "status": "decoder_jury_alive_cross_decoder_agreement",
+      "submission_file": "submission_hsjepa_decoder_jury_route_majority_fusion_confirmed_1caf57fb_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_decoder_jury_route_majority_fusion_confirmed_1caf57fb_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/decoder_order_jury_solver/submission_hsjepa_decoder_jury_route_majority_fusion_confirmed_1caf57fb_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_decoder_jury_route_majority_fusion_confirmed_1caf57fb_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 19,
+        "upload_safe": true
+      },
+      "stress": {
+        "actual": {
+          "changed_cells": 19,
+          "changed_rows": 11,
+          "mean_consensus_score": 3.3296034841557254,
+          "mean_total_weight": 4.15230941242807,
+          "mean_cross_family_weight": 1.786144056392227,
+          "mean_family_balance": 0.8515919383579941,
+          "mean_vote_coverage": 0.7017543859649122,
+          "same_direction_rate": 1.0
+        },
+        "tests": {
+          "mean_consensus_score": {
+            "actual": 3.3296034841557254,
+            "null_mean": 2.054080451943679,
+            "null_std": 0.23626563864893554,
+            "z": 5.398681922204235,
+            "p": 0.0
+          },
+          "mean_total_weight": {
+            "actual": 4.15230941242807,
+            "null_mean": 2.8369157634533084,
+            "null_std": 0.23687588926120845,
+            "z": 5.553092182903627,
+            "p": 0.0
+          },
+          "mean_cross_family_weight": {
+            "actual": 1.786144056392227,
+            "null_mean": 1.081107384896085,
+            "null_std": 0.1334921423649164,
+            "z": 5.281484430513084,
+            "p": 0.0
+          },
+          "mean_family_balance": {
+            "actual": 0.8515919383579941,
+            "null_mean": 0.6213441188847105,
+            "null_std": 0.0648230773183384,
+            "z": 3.5519421323144527,
+            "p": 0.0
+          },
+          "mean_vote_coverage": {
+            "actual": 0.7017543859649122,
+            "null_mean": 0.4902105263157895,
+            "null_std": 0.039003125262804,
+            "z": 5.423766896209858,
+            "p": 0.0
+          }
+        }
+      },
+      "priority": 1.392520579892158,
+      "config": {
+        "name": "route_majority_fusion_confirmed",
+        "route_files": [
+          "submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
+          "submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv",
+          "submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv"
+        ],
+        "fusion_files": [
+          "submission_hsjepa_s2_driver_safe_route_fusion_6adf5b73_uploadsafe.csv",
+          "submission_hsjepa_seed_driver_safe_route_fusion_62429a06_uploadsafe.csv",
+          "submission_hsjepa_open_driver_safe_route_fusion_e50f0669_uploadsafe.csv"
+        ],
+        "min_route_votes": 2,
+        "min_fusion_votes": 1,
+        "min_total_votes": 3,
+        "max_cells": 24,
+        "shrink": 0.88
+      },
+      "rank": 2
+    },
+    {
+      "variant": "s2_pair_consensus",
+      "status": "decoder_jury_weak",
+      "submission_file": "submission_hsjepa_decoder_jury_s2_pair_consensus_a71de0a7_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_decoder_jury_s2_pair_consensus_a71de0a7_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/decoder_order_jury_solver/submission_hsjepa_decoder_jury_s2_pair_consensus_a71de0a7_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_decoder_jury_s2_pair_consensus_a71de0a7_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 18,
+        "upload_safe": true
+      },
+      "stress": {
+        "actual": {
+          "changed_cells": 18,
+          "changed_rows": 9,
+          "mean_consensus_score": 2.0378553744642414,
+          "mean_total_weight": 2.103746703349229,
+          "mean_cross_family_weight": 0.9859820227896265,
+          "mean_family_balance": 0.9373581156133606,
+          "mean_vote_coverage": 1.0,
+          "same_direction_rate": 1.0
+        },
+        "tests": {
+          "mean_consensus_score": {
+            "actual": 2.0378553744642414,
+            "null_mean": 2.096141264288828,
+            "null_std": 0.242828417848903,
+            "z": -0.24002911331759483,
+            "p": 0.608
+          },
+          "mean_total_weight": {
+            "actual": 2.103746703349229,
+            "null_mean": 2.8845944281528677,
+            "null_std": 0.24237739739098502,
+            "z": -3.2216193968946434,
+            "p": 1.0
+          },
+          "mean_cross_family_weight": {
+            "actual": 0.9859820227896265,
+            "null_mean": 1.098923269208213,
+            "null_std": 0.13734475342132668,
+            "z": -0.8223193358695058,
+            "p": 0.788
+          },
+          "mean_family_balance": {
+            "actual": 0.9373581156133606,
+            "null_mean": 0.6204196197409376,
+            "null_std": 0.0668426934802064,
+            "z": 4.741557818376596,
+            "p": 0.0
+          },
+          "mean_vote_coverage": {
+            "actual": 1.0,
+            "null_mean": 0.496574074074074,
+            "null_std": 0.03990972378022889,
+            "z": 12.614117018151878,
+            "p": 0.0
+          }
+        }
+      },
+      "priority": 0.2597899470411598,
+      "config": {
+        "name": "s2_pair_consensus",
+        "route_files": [
+          "submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv"
+        ],
+        "fusion_files": [
+          "submission_hsjepa_s2_driver_safe_route_fusion_6adf5b73_uploadsafe.csv"
+        ],
+        "min_route_votes": 1,
+        "min_fusion_votes": 1,
+        "min_total_votes": 2,
+        "max_cells": 24,
+        "shrink": 0.92
+      },
+      "rank": 3
+    },
+    {
+      "variant": "seed_pair_consensus",
+      "status": "decoder_jury_weak",
+      "submission_file": "submission_hsjepa_decoder_jury_seed_pair_consensus_e8a7ce4c_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_decoder_jury_seed_pair_consensus_e8a7ce4c_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/decoder_order_jury_solver/submission_hsjepa_decoder_jury_seed_pair_consensus_e8a7ce4c_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_decoder_jury_seed_pair_consensus_e8a7ce4c_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 18,
+        "upload_safe": true
+      },
+      "stress": {
+        "actual": {
+          "changed_cells": 18,
+          "changed_rows": 9,
+          "mean_consensus_score": 1.8535228957363732,
+          "mean_total_weight": 1.9503294265898343,
+          "mean_cross_family_weight": 0.8783581824414558,
+          "mean_family_balance": 0.9007280210884903,
+          "mean_vote_coverage": 1.0,
+          "same_direction_rate": 1.0
+        },
+        "tests": {
+          "mean_consensus_score": {
+            "actual": 1.8535228957363732,
+            "null_mean": 1.952018583794793,
+            "null_std": 0.2599231796388687,
+            "z": -0.37894153263001573,
+            "p": 0.652
+          },
+          "mean_total_weight": {
+            "actual": 1.9503294265898343,
+            "null_mean": 2.723216032469349,
+            "null_std": 0.2606614644431592,
+            "z": -2.9650973055438086,
+            "p": 1.0
+          },
+          "mean_cross_family_weight": {
+            "actual": 0.8783581824414558,
+            "null_mean": 1.0336712773466052,
+            "null_std": 0.14589624620329464,
+            "z": -1.0645448320084478,
+            "p": 0.852
+          },
+          "mean_family_balance": {
+            "actual": 0.9007280210884903,
+            "null_mean": 0.6138127307673135,
+            "null_std": 0.06971898314543089,
+            "z": 4.115310886314614,
+            "p": 0.0
+          },
+          "mean_vote_coverage": {
+            "actual": 1.0,
+            "null_mean": 0.4740740740740741,
+            "null_std": 0.042876355245333814,
+            "z": 12.266106177090737,
+            "p": 0.0
+          }
+        }
+      },
+      "priority": 0.2018481566116464,
+      "config": {
+        "name": "seed_pair_consensus",
+        "route_files": [
+          "submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv"
+        ],
+        "fusion_files": [
+          "submission_hsjepa_seed_driver_safe_route_fusion_62429a06_uploadsafe.csv"
+        ],
+        "min_route_votes": 1,
+        "min_fusion_votes": 1,
+        "min_total_votes": 2,
+        "max_cells": 24,
+        "shrink": 0.92
+      },
+      "rank": 4
+    }
+  ],
+  "inputs": {
+    "base_submission": "/Users/kbsoo/Downloads/cl2/submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv",
+    "action_suite": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite.csv",
+    "route_files": [
+      "submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
+      "submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv",
+      "submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv"
+    ],
+    "fusion_files": [
+      "submission_hsjepa_s2_driver_safe_route_fusion_6adf5b73_uploadsafe.csv",
+      "submission_hsjepa_seed_driver_safe_route_fusion_62429a06_uploadsafe.csv",
+      "submission_hsjepa_open_driver_safe_route_fusion_e50f0669_uploadsafe.csv"
+    ]
+  },
+  "outputs": {
+    "json": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/decoder_order_jury_solver/decoder_order_jury_solver_readout.json",
+    "markdown": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/decoder_order_jury_solver/decoder_order_jury_solver_readout_ko.md",
+    "cells": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/decoder_order_jury_solver/decoder_order_jury_cells.csv",
+    "null_stress": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/decoder_order_jury_solver/decoder_order_jury_null_stress.csv"
+  }
+}

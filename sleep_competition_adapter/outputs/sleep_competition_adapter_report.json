@@ -268,13 +268,282 @@
       }
     }
   },
-  "action_decoder_ablation_suite": {
-    "status": "action_decoder_ablation_ready_route_frontier_leads",
+  "decoder_order_jury_solver": {
+    "status": "decoder_order_jury_ready",
     "recommended_lb_sensor": {
-      "family": "route_frontier",
-      "variant": "s2_route_frontier",
-      "submission_file": "submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
-      "priority": 1.1177646805596027
+      "variant": "family_supermajority",
+      "submission_file": "submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+      "priority": 1.392520579892158
+    },
+    "claim": "Safe row-target assignment is a cross-decoder jury: route invariant proposes the action, factorized action-health confirms it, and only same-direction consensus is released.",
+    "failure_interpretation": "If public LB worsens, consensus is too conservative or action-health removes useful route-frontier signal.",
+    "top_ranked": [
+      {
+        "variant": "family_supermajority",
+        "status": "decoder_jury_alive_cross_decoder_agreement",
+        "submission_file": "submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/decoder_order_jury_solver/submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 19,
+          "upload_safe": true
+        },
+        "stress": {
+          "actual": {
+            "changed_cells": 19,
+            "changed_rows": 11,
+            "mean_consensus_score": 3.3296034841557254,
+            "mean_total_weight": 4.15230941242807,
+            "mean_cross_family_weight": 1.786144056392227,
+            "mean_family_balance": 0.8515919383579941,
+            "mean_vote_coverage": 0.7017543859649122,
+            "same_direction_rate": 1.0
+          },
+          "tests": {
+            "mean_consensus_score": {
+              "actual": 3.3296034841557254,
+              "null_mean": 2.054080451943679,
+              "null_std": 0.23626563864893554,
+              "z": 5.398681922204235,
+              "p": 0.0
+            },
+            "mean_total_weight": {
+              "actual": 4.15230941242807,
+              "null_mean": 2.8369157634533084,
+              "null_std": 0.23687588926120845,
+              "z": 5.553092182903627,
+              "p": 0.0
+            },
+            "mean_cross_family_weight": {
+              "actual": 1.786144056392227,
+              "null_mean": 1.081107384896085,
+              "null_std": 0.1334921423649164,
+              "z": 5.281484430513084,
+              "p": 0.0
+            },
+            "mean_family_balance": {
+              "actual": 0.8515919383579941,
+              "null_mean": 0.6213441188847105,
+              "null_std": 0.0648230773183384,
+              "z": 3.5519421323144527,
+              "p": 0.0
+            },
+            "mean_vote_coverage": {
+              "actual": 0.7017543859649122,
+              "null_mean": 0.4902105263157895,
+              "null_std": 0.039003125262804,
+              "z": 5.423766896209858,
+              "p": 0.0
+            }
+          }
+        },
+        "priority": 1.392520579892158,
+        "config": {
+          "name": "family_supermajority",
+          "route_files": [
+            "submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
+            "submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv",
+            "submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv"
+          ],
+          "fusion_files": [
+            "submission_hsjepa_s2_driver_safe_route_fusion_6adf5b73_uploadsafe.csv",
+            "submission_hsjepa_seed_driver_safe_route_fusion_62429a06_uploadsafe.csv",
+            "submission_hsjepa_open_driver_safe_route_fusion_e50f0669_uploadsafe.csv"
+          ],
+          "min_route_votes": 1,
+          "min_fusion_votes": 1,
+          "min_total_votes": 3,
+          "max_cells": 28,
+          "shrink": 0.86
+        },
+        "rank": 1
+      },
+      {
+        "variant": "route_majority_fusion_confirmed",
+        "status": "decoder_jury_alive_cross_decoder_agreement",
+        "submission_file": "submission_hsjepa_decoder_jury_route_majority_fusion_confirmed_1caf57fb_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_decoder_jury_route_majority_fusion_confirmed_1caf57fb_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/decoder_order_jury_solver/submission_hsjepa_decoder_jury_route_majority_fusion_confirmed_1caf57fb_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_decoder_jury_route_majority_fusion_confirmed_1caf57fb_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 19,
+          "upload_safe": true
+        },
+        "stress": {
+          "actual": {
+            "changed_cells": 19,
+            "changed_rows": 11,
+            "mean_consensus_score": 3.3296034841557254,
+            "mean_total_weight": 4.15230941242807,
+            "mean_cross_family_weight": 1.786144056392227,
+            "mean_family_balance": 0.8515919383579941,
+            "mean_vote_coverage": 0.7017543859649122,
+            "same_direction_rate": 1.0
+          },
+          "tests": {
+            "mean_consensus_score": {
+              "actual": 3.3296034841557254,
+              "null_mean": 2.054080451943679,
+              "null_std": 0.23626563864893554,
+              "z": 5.398681922204235,
+              "p": 0.0
+            },
+            "mean_total_weight": {
+              "actual": 4.15230941242807,
+              "null_mean": 2.8369157634533084,
+              "null_std": 0.23687588926120845,
+              "z": 5.553092182903627,
+              "p": 0.0
+            },
+            "mean_cross_family_weight": {
+              "actual": 1.786144056392227,
+              "null_mean": 1.081107384896085,
+              "null_std": 0.1334921423649164,
+              "z": 5.281484430513084,
+              "p": 0.0
+            },
+            "mean_family_balance": {
+              "actual": 0.8515919383579941,
+              "null_mean": 0.6213441188847105,
+              "null_std": 0.0648230773183384,
+              "z": 3.5519421323144527,
+              "p": 0.0
+            },
+            "mean_vote_coverage": {
+              "actual": 0.7017543859649122,
+              "null_mean": 0.4902105263157895,
+              "null_std": 0.039003125262804,
+              "z": 5.423766896209858,
+              "p": 0.0
+            }
+          }
+        },
+        "priority": 1.392520579892158,
+        "config": {
+          "name": "route_majority_fusion_confirmed",
+          "route_files": [
+            "submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
+            "submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv",
+            "submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv"
+          ],
+          "fusion_files": [
+            "submission_hsjepa_s2_driver_safe_route_fusion_6adf5b73_uploadsafe.csv",
+            "submission_hsjepa_seed_driver_safe_route_fusion_62429a06_uploadsafe.csv",
+            "submission_hsjepa_open_driver_safe_route_fusion_e50f0669_uploadsafe.csv"
+          ],
+          "min_route_votes": 2,
+          "min_fusion_votes": 1,
+          "min_total_votes": 3,
+          "max_cells": 24,
+          "shrink": 0.88
+        },
+        "rank": 2
+      },
+      {
+        "variant": "s2_pair_consensus",
+        "status": "decoder_jury_weak",
+        "submission_file": "submission_hsjepa_decoder_jury_s2_pair_consensus_a71de0a7_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_decoder_jury_s2_pair_consensus_a71de0a7_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/decoder_order_jury_solver/submission_hsjepa_decoder_jury_s2_pair_consensus_a71de0a7_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_decoder_jury_s2_pair_consensus_a71de0a7_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 18,
+          "upload_safe": true
+        },
+        "stress": {
+          "actual": {
+            "changed_cells": 18,
+            "changed_rows": 9,
+            "mean_consensus_score": 2.0378553744642414,
+            "mean_total_weight": 2.103746703349229,
+            "mean_cross_family_weight": 0.9859820227896265,
+            "mean_family_balance": 0.9373581156133606,
+            "mean_vote_coverage": 1.0,
+            "same_direction_rate": 1.0
+          },
+          "tests": {
+            "mean_consensus_score": {
+              "actual": 2.0378553744642414,
+              "null_mean": 2.096141264288828,
+              "null_std": 0.242828417848903,
+              "z": -0.24002911331759483,
+              "p": 0.608
+            },
+            "mean_total_weight": {
+              "actual": 2.103746703349229,
+              "null_mean": 2.8845944281528677,
+              "null_std": 0.24237739739098502,
+              "z": -3.2216193968946434,
+              "p": 1.0
+            },
+            "mean_cross_family_weight": {
+              "actual": 0.9859820227896265,
+              "null_mean": 1.098923269208213,
+              "null_std": 0.13734475342132668,
+              "z": -0.8223193358695058,
+              "p": 0.788
+            },
+            "mean_family_balance": {
+              "actual": 0.9373581156133606,
+              "null_mean": 0.6204196197409376,
+              "null_std": 0.0668426934802064,
+              "z": 4.741557818376596,
+              "p": 0.0
+            },
+            "mean_vote_coverage": {
+              "actual": 1.0,
+              "null_mean": 0.496574074074074,
+              "null_std": 0.03990972378022889,
+              "z": 12.614117018151878,
+              "p": 0.0
+            }
+          }
+        },
+        "priority": 0.2597899470411598,
+        "config": {
+          "name": "s2_pair_consensus",
+          "route_files": [
+            "submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv"
+          ],
+          "fusion_files": [
+            "submission_hsjepa_s2_driver_safe_route_fusion_6adf5b73_uploadsafe.csv"
+          ],
+          "min_route_votes": 1,
+          "min_fusion_votes": 1,
+          "min_total_votes": 2,
+          "max_cells": 24,
+          "shrink": 0.92
+        },
+        "rank": 3
+      }
+    ]
+  },
+  "action_decoder_ablation_suite": {
+    "status": "action_decoder_ablation_ready_decoder_jury_leads",
+    "recommended_lb_sensor": {
+      "family": "decoder_order_jury",
+      "variant": "family_supermajority",
+      "submission_file": "submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+      "priority": 1.394366527938867
     },
     "big_bet_sensor": {
       "family": "route_frontier",
@@ -284,6 +553,52 @@
     },
     "reason": "The suite ranks action decoders by route-null survival, toxicity safety, upload safety, and action size. It is a submission-slot prioritizer, not a public-LB predictor.",
     "top_ranked": [
+      {
+        "family": "decoder_order_jury",
+        "variant": "family_supermajority",
+        "submission_file": "submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+        "upload_safe": true,
+        "changed_cells": 19,
+        "architecture_claim": "row-target actions should be released only when route-first and action-health decoders agree",
+        "decoder_order": "cross_decoder_jury",
+        "core_modules_exercised": "invariant_energy,action_health_decoder,anti_shortcut_validation",
+        "public_lb_observed": null,
+        "route_z": 5.398681922204235,
+        "matched_route_z": 5.281484430513084,
+        "matched_score_z": 5.281484430513084,
+        "safety_z": 3.5519421323144527,
+        "toxicity_clear": true,
+        "broad_hard_conflict_exposure": 0.0,
+        "hardworld_top_toxic_exposure": 0.0,
+        "route_boundary": "cross_decoder_consensus_supported",
+        "safety_boundary": "jury_balance_supported",
+        "lb_sensor_priority": 1.394366527938867,
+        "module_ablation_interpretation": "Treats route-first and factorized action-health as independent listeners. If this wins LB, HS-JEPA action decoding is a cross-decoder responsibility jury.",
+        "ablation_rank": 1
+      },
+      {
+        "family": "decoder_order_jury",
+        "variant": "route_majority_fusion_confirmed",
+        "submission_file": "submission_hsjepa_decoder_jury_route_majority_fusion_confirmed_1caf57fb_uploadsafe.csv",
+        "upload_safe": true,
+        "changed_cells": 19,
+        "architecture_claim": "row-target actions should be released only when route-first and action-health decoders agree",
+        "decoder_order": "cross_decoder_jury",
+        "core_modules_exercised": "invariant_energy,action_health_decoder,anti_shortcut_validation",
+        "public_lb_observed": null,
+        "route_z": 5.398681922204235,
+        "matched_route_z": 5.281484430513084,
+        "matched_score_z": 5.281484430513084,
+        "safety_z": 3.5519421323144527,
+        "toxicity_clear": true,
+        "broad_hard_conflict_exposure": 0.0,
+        "hardworld_top_toxic_exposure": 0.0,
+        "route_boundary": "cross_decoder_consensus_supported",
+        "safety_boundary": "jury_balance_supported",
+        "lb_sensor_priority": 1.394366527938867,
+        "module_ablation_interpretation": "Treats route-first and factorized action-health as independent listeners. If this wins LB, HS-JEPA action decoding is a cross-decoder responsibility jury.",
+        "ablation_rank": 2
+      },
       {
         "family": "route_frontier",
         "variant": "s2_route_frontier",
@@ -305,52 +620,6 @@
         "safety_boundary": "safety_supported",
         "lb_sensor_priority": 1.1177646805596027,
         "module_ablation_interpretation": "Keeps route invariant first. If this wins LB, the missing mechanism was action translation order, not more latent capacity.",
-        "ablation_rank": 1
-      },
-      {
-        "family": "route_frontier",
-        "variant": "seed_route_frontier",
-        "submission_file": "submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv",
-        "upload_safe": true,
-        "changed_cells": 20,
-        "architecture_claim": "route-frontier selection should precede row-support and toxicity gates",
-        "decoder_order": "route_first",
-        "core_modules_exercised": "action_health_decoder,invariant_energy,anti_shortcut_validation",
-        "public_lb_observed": null,
-        "route_z": 2.631665028357059,
-        "matched_route_z": 1.8796319788460747,
-        "matched_score_z": 3.6234736097578057,
-        "safety_z": 2.1295822719304636,
-        "toxicity_clear": true,
-        "broad_hard_conflict_exposure": null,
-        "hardworld_top_toxic_exposure": null,
-        "route_boundary": "route_and_matched_score_supported",
-        "safety_boundary": "safety_supported",
-        "lb_sensor_priority": 1.0719712441483786,
-        "module_ablation_interpretation": "Keeps route invariant first. If this wins LB, the missing mechanism was action translation order, not more latent capacity.",
-        "ablation_rank": 2
-      },
-      {
-        "family": "route_frontier",
-        "variant": "open_route_frontier",
-        "submission_file": "submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv",
-        "upload_safe": true,
-        "changed_cells": 20,
-        "architecture_claim": "route-frontier selection should precede row-support and toxicity gates",
-        "decoder_order": "route_first",
-        "core_modules_exercised": "action_health_decoder,invariant_energy,anti_shortcut_validation",
-        "public_lb_observed": null,
-        "route_z": 2.492261359647143,
-        "matched_route_z": 2.297244449842287,
-        "matched_score_z": 3.0831554042259524,
-        "safety_z": 2.1706909596201602,
-        "toxicity_clear": true,
-        "broad_hard_conflict_exposure": null,
-        "hardworld_top_toxic_exposure": null,
-        "route_boundary": "route_and_matched_score_supported",
-        "safety_boundary": "safety_supported",
-        "lb_sensor_priority": 1.05448050759572,
-        "module_ablation_interpretation": "Keeps route invariant first. If this wins LB, the missing mechanism was action translation order, not more latent capacity.",
         "ablation_rank": 3
       }
     ],
@@ -363,7 +632,7 @@
       },
       {
         "claim": "Invariant route energy is currently the sharper action-ordering signal.",
-        "evidence": "Top ablation row is route_frontier.s2_route_frontier with priority 1.1178 and matched_score_z=3.3124.",
+        "evidence": "Top ablation row is decoder_order_jury.family_supermajority with priority 1.3944 and matched_score_z=5.2815.",
         "status": "alive",
         "next_test": "Use route-frontier as the next LB sensor; interpret failure as public/private toxicity dominance."
       },
@@ -384,6 +653,12 @@
         "evidence": "The open-route variant is upload-safe and route-supported locally, but it is outside the selected public seed set.",
         "status": "high_information_if_submitted",
         "next_test": "If seed-route fails but open-route wins, the public-selected candidate pool was too narrow."
+      },
+      {
+        "claim": "Cross-decoder jury is the next action-grade HS-JEPA hypothesis.",
+        "evidence": "Best jury row is family_supermajority with consensus_z=5.3987 and cross_family_z=5.2815.",
+        "status": "alive",
+        "next_test": "Submit the jury consensus candidate if it outranks plain route-frontier after public-sensor risk review."
       }
     ]
   },

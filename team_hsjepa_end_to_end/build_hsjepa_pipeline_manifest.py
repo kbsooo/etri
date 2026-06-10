@@ -41,6 +41,7 @@ MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "mask
 ROW_SUPPORT_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
 ROUTE_FRONTIER_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
 ROUTE_TOXICITY_FUSION_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_toxicity_fusion_decoder" / "route_toxicity_fusion_decoder_readout.json"
+DECODER_ORDER_JURY_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout.json"
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -91,6 +92,7 @@ def require_inputs() -> None:
         ROW_SUPPORT_DECODER_JSON,
         ROUTE_FRONTIER_DECODER_JSON,
         ROUTE_TOXICITY_FUSION_DECODER_JSON,
+        DECODER_ORDER_JURY_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -159,6 +161,7 @@ def build_manifest() -> dict[str, object]:
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
     route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
     route_toxicity_fusion_decoder = read_json(ROUTE_TOXICITY_FUSION_DECODER_JSON)
+    decoder_order_jury = read_json(DECODER_ORDER_JURY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -178,6 +181,7 @@ def build_manifest() -> dict[str, object]:
     row_support_decoder_verdict = row_support_decoder["verdict"]
     route_frontier_verdict = route_frontier_decoder["verdict"]
     route_toxicity_fusion_verdict = route_toxicity_fusion_decoder["verdict"]
+    decoder_order_jury_verdict = decoder_order_jury["verdict"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -364,13 +368,30 @@ def build_manifest() -> dict[str, object]:
             "This is a competition-adapter action solver; it does not prove private-LB safety or pure OG-only assignment.",
         ),
         stage(
+            "decoder_order_jury_solver",
+            "Decoder-Order Jury Solver",
+            "Releases only row-target actions independently selected by route-frontier and route-toxicity fusion decoders.",
+            ["route_frontier_action_decoder_readout.json", "route_toxicity_fusion_decoder_readout.json", "action_decoder_ablation_suite.csv"],
+            ["decoder_order_jury_solver_readout_ko.md", *[
+                str(item.get("submission_file"))
+                for item in decoder_order_jury.get("ranking", [])
+                if isinstance(item, dict) and item.get("submission_file")
+            ]],
+            [
+                f"Solver status: {decoder_order_jury_verdict['status']}",
+                f"Recommended LB sensor: {decoder_order_jury_verdict['recommended_lb_sensor']}",
+            ],
+            "This tests whether HS-JEPA action decoding should be a cross-decoder listener jury rather than a single route or toxicity score.",
+        ),
+        stage(
             "action_decoder_ablation_suite",
             "Action Decoder Ablation Suite",
-            "Ranks toxicity-first, support-first, route-first, and route-toxicity fusion decoders as HS-JEPA module ablations.",
+            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, and decoder-jury alternatives as HS-JEPA module ablations.",
             [
                 "row_support_strict_action_decoder_readout.json",
                 "route_frontier_action_decoder_readout.json",
                 "route_toxicity_fusion_decoder_readout.json",
+                "decoder_order_jury_solver_readout.json",
                 "factorized_toxicity_decoder_stress_audit.json",
             ],
             ["hsjepa_action_decoder_ablation_suite_ko.md", "hsjepa_action_decoder_ablation_suite.csv"],
@@ -603,6 +624,11 @@ def build_manifest() -> dict[str, object]:
         ["route_frontier_action_decoder", "action_decoder_ablation_suite"],
         ["route_frontier_action_decoder", "route_toxicity_fusion_decoder"],
         ["hardworld_toxicity_factorization_probe", "route_toxicity_fusion_decoder"],
+        ["route_frontier_action_decoder", "decoder_order_jury_solver"],
+        ["route_toxicity_fusion_decoder", "decoder_order_jury_solver"],
+        ["decoder_order_jury_solver", "action_decoder_ablation_suite"],
+        ["decoder_order_jury_solver", "sleep_competition_adapter"],
+        ["decoder_order_jury_solver", "claim_readiness_and_paper_packet"],
         ["route_toxicity_fusion_decoder", "action_decoder_ablation_suite"],
         ["route_toxicity_fusion_decoder", "sleep_competition_adapter"],
         ["route_toxicity_fusion_decoder", "claim_readiness_and_paper_packet"],
@@ -690,6 +716,8 @@ def build_manifest() -> dict[str, object]:
             "route_frontier_action_decoder_status": route_frontier_verdict["status"],
             "route_frontier_action_decoder_recommended": route_frontier_verdict["recommended_variant"],
             "route_frontier_action_decoder_variant_scores": route_frontier_verdict["variant_scores"],
+            "decoder_order_jury_solver_status": decoder_order_jury_verdict["status"],
+            "decoder_order_jury_solver_recommended_lb_sensor": decoder_order_jury_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_suite_status": action_ablation_verdict["status"],
             "action_decoder_ablation_suite_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_suite_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],

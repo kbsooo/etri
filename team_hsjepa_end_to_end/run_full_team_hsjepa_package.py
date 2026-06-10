@@ -95,6 +95,8 @@ ROUTE_FRONTIER_DECODER_MD = ADAPTER_OUT / "route_frontier_action_decoder" / "rou
 ROUTE_FRONTIER_DECODER_JSON = ADAPTER_OUT / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
 ROUTE_TOXICITY_FUSION_DECODER_MD = ADAPTER_OUT / "route_toxicity_fusion_decoder" / "route_toxicity_fusion_decoder_readout_ko.md"
 ROUTE_TOXICITY_FUSION_DECODER_JSON = ADAPTER_OUT / "route_toxicity_fusion_decoder" / "route_toxicity_fusion_decoder_readout.json"
+DECODER_ORDER_JURY_MD = ADAPTER_OUT / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout_ko.md"
+DECODER_ORDER_JURY_JSON = ADAPTER_OUT / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout.json"
 ACTION_DECODER_ABLATION_MD = ADAPTER_OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite_ko.md"
 ACTION_DECODER_ABLATION_JSON = ADAPTER_OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_MD = ADAPTER_OUT / "listener_invariant_contrastive_probe_ko.md"
@@ -152,6 +154,7 @@ def build_handoff(
     row_support_decoder: dict[str, object],
     route_frontier_decoder: dict[str, object],
     route_toxicity_fusion_decoder: dict[str, object],
+    decoder_order_jury: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -170,6 +173,7 @@ def build_handoff(
     row_support_decoder_verdict = row_support_decoder.get("verdict", {})
     route_frontier_verdict = route_frontier_decoder.get("verdict", {})
     route_toxicity_fusion_verdict = route_toxicity_fusion_decoder.get("verdict", {})
+    decoder_order_jury_verdict = decoder_order_jury.get("verdict", {})
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -251,6 +255,7 @@ def build_handoff(
             f"- Row-support strict action decoder: `{row_support_decoder_verdict.get('status')}`",
             f"- Route-frontier action decoder: `{route_frontier_verdict.get('status')}`",
             f"- Route-toxicity fusion decoder: `{route_toxicity_fusion_verdict.get('status')}`",
+            f"- Decoder-order jury solver: `{decoder_order_jury_verdict.get('status')}`",
             f"- Action decoder ablation suite: `{action_ablation_verdict.get('status')}`",
             f"- Listener-invariant contrastive probe: `{contrastive_verdict.get('status')}`",
             f"- Private-safe toxicity probe: `{toxicity_verdict.get('status')}`",
@@ -278,6 +283,7 @@ def build_handoff(
             "sleep_competition_adapter/outputs/row_support_strict_action_decoder/row_support_strict_action_decoder_readout_ko.md",
             "sleep_competition_adapter/outputs/route_frontier_action_decoder/route_frontier_action_decoder_readout_ko.md",
             "sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/route_toxicity_fusion_decoder_readout_ko.md",
+            "sleep_competition_adapter/outputs/decoder_order_jury_solver/decoder_order_jury_solver_readout_ko.md",
             "sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite_ko.md",
             "sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md",
             "sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md",
@@ -312,6 +318,7 @@ def build_handoff(
             f"- Row-support strict decoder: recommended `{row_support_decoder_verdict.get('recommended_variant')}`, changed cells `{row_support_decoder_verdict.get('exploratory_changed_cells')}`, safety z `{row_support_decoder_verdict.get('exploratory_safety_z'):.2f}`",
             f"- Route-frontier decoder: recommended `{route_frontier_verdict.get('recommended_variant')}`, status `{route_frontier_verdict.get('status')}`",
             f"- Route-toxicity fusion decoder: recommended `{route_toxicity_fusion_verdict.get('recommended_variant')}`, status `{route_toxicity_fusion_verdict.get('status')}`",
+            f"- Decoder-order jury: recommended `{decoder_order_jury_verdict.get('recommended_lb_sensor')}`, status `{decoder_order_jury_verdict.get('status')}`",
             f"- Action decoder ablation: recommended `{action_ablation_verdict.get('recommended_lb_sensor')}`, big bet `{action_ablation_verdict.get('big_bet_sensor')}`",
             f"- Listener-invariant boundary: listener-route rho `{contrastive_verdict.get('mean_listener_route_spearman'):.4f}`, contrastive overlap `{contrastive_verdict.get('mean_contrastive_overlap_rate'):.4f}`",
             f"- Private-safe toxicity boundary: mean LOO AUC `{toxicity_verdict.get('mean_loo_bad_anchor_auc'):.4f}`, worst LOO AUC `{toxicity_verdict.get('worst_loo_bad_anchor_auc'):.4f}`",
@@ -445,6 +452,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "row_support_strict_action_decoder.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "route_frontier_action_decoder.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "route_toxicity_fusion_decoder.py")],
+        [sys.executable, str(ROOT / "sleep_competition_adapter" / "decoder_order_jury_solver.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "listener_invariant_contrastive_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "private_safe_toxicity_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "hardworld_toxicity_factorization_probe.py")],
@@ -481,6 +489,7 @@ def run(refresh: bool = False) -> dict[str, object]:
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
     route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
     route_toxicity_fusion_decoder = read_json(ROUTE_TOXICITY_FUSION_DECODER_JSON)
+    decoder_order_jury = read_json(DECODER_ORDER_JURY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -507,6 +516,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         row_support_decoder,
         route_frontier_decoder,
         route_toxicity_fusion_decoder,
+        decoder_order_jury,
         action_decoder_ablation,
         contrastive_probe,
         private_toxicity_probe,
@@ -559,6 +569,8 @@ def run(refresh: bool = False) -> dict[str, object]:
         "route_frontier_action_decoder_json": str(ROUTE_FRONTIER_DECODER_JSON.resolve()),
         "route_toxicity_fusion_decoder_md": str(ROUTE_TOXICITY_FUSION_DECODER_MD.resolve()),
         "route_toxicity_fusion_decoder_json": str(ROUTE_TOXICITY_FUSION_DECODER_JSON.resolve()),
+        "decoder_order_jury_solver_md": str(DECODER_ORDER_JURY_MD.resolve()),
+        "decoder_order_jury_solver_json": str(DECODER_ORDER_JURY_JSON.resolve()),
         "action_decoder_ablation_suite_md": str(ACTION_DECODER_ABLATION_MD.resolve()),
         "action_decoder_ablation_suite_json": str(ACTION_DECODER_ABLATION_JSON.resolve()),
         "listener_invariant_contrastive_probe_md": str(CONTRASTIVE_PROBE_MD.resolve()),
@@ -604,6 +616,8 @@ def run(refresh: bool = False) -> dict[str, object]:
         "route_toxicity_fusion_decoder_status": str(route_toxicity_fusion_decoder["verdict"]["status"]),
         "route_toxicity_fusion_decoder_recommended": str(route_toxicity_fusion_decoder["verdict"]["recommended_variant"]),
         "route_toxicity_fusion_decoder_variant_scores": route_toxicity_fusion_decoder["verdict"]["variant_scores"],
+        "decoder_order_jury_solver_status": str(decoder_order_jury["verdict"]["status"]),
+        "decoder_order_jury_solver_recommended_lb_sensor": decoder_order_jury["verdict"]["recommended_lb_sensor"],
         "action_decoder_ablation_suite_status": str(action_decoder_ablation["verdict"]["status"]),
         "action_decoder_ablation_suite_recommended_lb_sensor": action_decoder_ablation["verdict"]["recommended_lb_sensor"],
         "action_decoder_ablation_suite_big_bet_sensor": action_decoder_ablation["verdict"]["big_bet_sensor"],

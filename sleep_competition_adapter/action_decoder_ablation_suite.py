@@ -29,6 +29,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 ROW_SUPPORT_JSON = HERE / "outputs" / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
 ROUTE_FRONTIER_JSON = HERE / "outputs" / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
 ROUTE_TOXICITY_FUSION_JSON = HERE / "outputs" / "route_toxicity_fusion_decoder" / "route_toxicity_fusion_decoder_readout.json"
+DECODER_ORDER_JURY_JSON = HERE / "outputs" / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout.json"
 FACTORIZED_JSON = HERE / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_readout.json"
 FACTORIZED_STRESS_JSON = HERE / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_stress_audit.json"
 LEDGER_CSV = ROOT / "data_analytics" / "hsjepa_public_score_ledger.csv"
@@ -135,6 +136,7 @@ def collect_rows() -> list[dict[str, Any]]:
     row_support = read_json(ROW_SUPPORT_JSON)
     route_frontier = read_json(ROUTE_FRONTIER_JSON)
     route_toxicity_fusion = read_json(ROUTE_TOXICITY_FUSION_JSON)
+    decoder_order_jury = read_json(DECODER_ORDER_JURY_JSON)
     factorized = read_json(FACTORIZED_JSON)
     factorized_stress = read_json(FACTORIZED_STRESS_JSON)
     rows: list[dict[str, Any]] = []
@@ -286,6 +288,53 @@ def collect_rows() -> list[dict[str, Any]]:
         )
         rows.append(row)
 
+    for item in decoder_order_jury.get("ranking", []):
+        if not isinstance(item, dict):
+            continue
+        variant = str(item.get("variant"))
+        submission = item.get("submission_file")
+        stress = item.get("stress", {}) if isinstance(item.get("stress"), dict) else {}
+        tests = stress.get("tests", {}) if isinstance(stress.get("tests"), dict) else {}
+        actual = stress.get("actual", {}) if isinstance(stress.get("actual"), dict) else {}
+        consensus = tests.get("mean_consensus_score", {}) if isinstance(tests.get("mean_consensus_score"), dict) else {}
+        cross = tests.get("mean_cross_family_weight", {}) if isinstance(tests.get("mean_cross_family_weight"), dict) else {}
+        balance = tests.get("mean_family_balance", {}) if isinstance(tests.get("mean_family_balance"), dict) else {}
+        row = base_row(
+            family="decoder_order_jury",
+            variant=variant,
+            submission_file=str(submission) if submission else None,
+            upload_safe=bool(nested(item, "validation", "upload_safe", default=False)),
+            changed_cells=int(nested(item, "validation", "changed_cells_vs_current_best", default=actual.get("changed_cells", 0))),
+            architecture_claim="row-target actions should be released only when route-first and action-health decoders agree",
+            decoder_order="cross_decoder_jury",
+            core_modules=["invariant_energy", "action_health_decoder", "anti_shortcut_validation"],
+            public_lb=public_scores.get(str(submission)),
+        )
+        row.update(
+            {
+                "route_z": maybe_float(consensus.get("z")),
+                "matched_route_z": maybe_float(cross.get("z")),
+                "matched_score_z": maybe_float(cross.get("z")),
+                "safety_z": maybe_float(balance.get("z")),
+                "toxicity_clear": True,
+                "broad_hard_conflict_exposure": 0.0,
+                "hardworld_top_toxic_exposure": 0.0,
+                "route_boundary": (
+                    "cross_decoder_consensus_supported"
+                    if finite(consensus.get("z"), 0.0) >= 2.0 and finite(cross.get("z"), 0.0) >= 2.0
+                    else "cross_decoder_consensus_boundary"
+                ),
+                "safety_boundary": (
+                    "jury_balance_supported" if finite(balance.get("z"), 0.0) >= 1.0 else "jury_balance_weak"
+                ),
+                "module_ablation_interpretation": (
+                    "Treats route-first and factorized action-health as independent listeners. "
+                    "If this wins LB, HS-JEPA action decoding is a cross-decoder responsibility jury."
+                ),
+            }
+        )
+        rows.append(row)
+
     return rows
 
 
@@ -337,10 +386,12 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
     row_support_rows = frame.loc[frame["family"].eq("row_support_strict")]
     factorized_rows = frame.loc[frame["family"].eq("factorized_toxicity")]
     fusion_rows = frame.loc[frame["family"].eq("route_toxicity_fusion")]
+    jury_rows = frame.loc[frame["family"].eq("decoder_order_jury")]
     best_route = route_rows.iloc[0].to_dict() if not route_rows.empty else {}
     best_support = row_support_rows.iloc[0].to_dict() if not row_support_rows.empty else {}
     best_factorized = factorized_rows.iloc[0].to_dict() if not factorized_rows.empty else {}
     best_fusion = fusion_rows.iloc[0].to_dict() if not fusion_rows.empty else {}
+    best_jury = jury_rows.iloc[0].to_dict() if not jury_rows.empty else {}
 
     return [
         {
@@ -388,6 +439,15 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
             "status": "high_information_if_submitted",
             "next_test": "If seed-route fails but open-route wins, the public-selected candidate pool was too narrow.",
         },
+        {
+            "claim": "Cross-decoder jury is the next action-grade HS-JEPA hypothesis.",
+            "evidence": (
+                f"Best jury row is {best_jury.get('variant')} with consensus_z={fmt(best_jury.get('route_z'))} "
+                f"and cross_family_z={fmt(best_jury.get('matched_score_z'))}."
+            ),
+            "status": "alive" if best_jury else "missing",
+            "next_test": "Submit the jury consensus candidate if it outranks plain route-frontier after public-sensor risk review.",
+        },
     ]
 
 
@@ -406,6 +466,8 @@ def build_verdict(frame: pd.DataFrame, findings: list[dict[str, Any]]) -> dict[s
     status = "action_decoder_ablation_ready_route_frontier_leads"
     if str(top["family"]) == "route_toxicity_fusion":
         status = "action_decoder_ablation_ready_route_toxicity_fusion_leads"
+    elif str(top["family"]) == "decoder_order_jury":
+        status = "action_decoder_ablation_ready_decoder_jury_leads"
     elif str(top["family"]) != "route_frontier":
         status = "action_decoder_ablation_ready_non_route_leads"
     return {
@@ -503,6 +565,7 @@ def run() -> dict[str, Any]:
             "row_support": str(ROW_SUPPORT_JSON.resolve()),
             "route_frontier": str(ROUTE_FRONTIER_JSON.resolve()),
             "route_toxicity_fusion": str(ROUTE_TOXICITY_FUSION_JSON.resolve()),
+            "decoder_order_jury": str(DECODER_ORDER_JURY_JSON.resolve()),
             "factorized_toxicity": str(FACTORIZED_JSON.resolve()),
             "factorized_stress": str(FACTORIZED_STRESS_JSON.resolve()),
         },

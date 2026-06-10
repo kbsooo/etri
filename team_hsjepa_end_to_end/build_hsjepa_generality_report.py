@@ -26,6 +26,7 @@ MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "mask
 ROW_SUPPORT_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
 ROUTE_FRONTIER_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
 ROUTE_TOXICITY_FUSION_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_toxicity_fusion_decoder" / "route_toxicity_fusion_decoder_readout.json"
+DECODER_ORDER_JURY_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout.json"
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 
 REPORT_JSON = OUT / "hsjepa_generality_report.json"
@@ -216,6 +217,7 @@ def run() -> dict[str, object]:
         ROW_SUPPORT_DECODER_JSON,
         ROUTE_FRONTIER_DECODER_JSON,
         ROUTE_TOXICITY_FUSION_DECODER_JSON,
+        DECODER_ORDER_JURY_JSON,
         ACTION_DECODER_ABLATION_JSON,
     ]:
         if not path.exists():
@@ -230,6 +232,7 @@ def run() -> dict[str, object]:
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
     route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
     route_toxicity_fusion_decoder = read_json(ROUTE_TOXICITY_FUSION_DECODER_JSON)
+    decoder_order_jury = read_json(DECODER_ORDER_JURY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     og_verdict = og_probe.get("verdict", {})
     gap_verdict = assignment_gap.get("verdict", {})
@@ -238,6 +241,8 @@ def run() -> dict[str, object]:
     row_support_decoder_verdict = row_support_decoder.get("verdict", {})
     route_frontier_verdict = route_frontier_decoder.get("verdict", {})
     route_toxicity_fusion_verdict = route_toxicity_fusion_decoder.get("verdict", {})
+    decoder_order_jury_verdict = decoder_order_jury.get("verdict", {})
+    decoder_order_jury_sensor = decoder_order_jury_verdict.get("recommended_lb_sensor", {})
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     portability_checks = [dict(item) for item in PORTABILITY_CHECKS]
     for item in portability_checks:
@@ -270,6 +275,8 @@ def run() -> dict[str, object]:
                 f"Route-toxicity fusion decoder status {route_toxicity_fusion_verdict.get('status')}; recommended "
                 f"{route_toxicity_fusion_verdict.get('recommended_variant')}, scores "
                 f"{route_toxicity_fusion_verdict.get('variant_scores')}. "
+                f"Decoder-order jury status {decoder_order_jury_verdict.get('status')}; recommended "
+                f"{decoder_order_jury_sensor}. "
                 f"Action decoder ablation suite status {action_ablation_verdict.get('status')}; recommended "
                 f"{action_ablation_verdict.get('recommended_lb_sensor')}, open big-bet "
                 f"{action_ablation_verdict.get('big_bet_sensor')}."
@@ -322,6 +329,8 @@ def run() -> dict[str, object]:
             "route_toxicity_fusion_decoder_status": route_toxicity_fusion_verdict.get("status"),
             "route_toxicity_fusion_decoder_recommended": route_toxicity_fusion_verdict.get("recommended_variant"),
             "route_toxicity_fusion_decoder_variant_scores": route_toxicity_fusion_verdict.get("variant_scores"),
+            "decoder_order_jury_solver_status": decoder_order_jury_verdict.get("status"),
+            "decoder_order_jury_solver_recommended_lb_sensor": decoder_order_jury_sensor,
             "action_decoder_ablation_status": action_ablation_verdict.get("status"),
             "action_decoder_ablation_recommended_lb_sensor": action_ablation_verdict.get("recommended_lb_sensor"),
             "action_decoder_ablation_big_bet_sensor": action_ablation_verdict.get("big_bet_sensor"),
@@ -335,7 +344,8 @@ def run() -> dict[str, object]:
             "The first strict decoder is alive as an LB-informative probe, but route-gain is not yet stronger than the null. "
             "The route-frontier decoder is the next action-translation hypothesis: it beats broad and matched nulls locally. "
             "The route-toxicity fusion decoder then composes route-first selection with factorized action-health and remains alive as a stricter adapter-side sensor. "
-            "The action-decoder ablation suite currently ranks plain route-first decoding ahead of toxicity-first, support-first, and route-toxicity fusion alternatives. "
+            "The decoder-order jury solver now tests the stronger hypothesis that safe row-target assignment is the intersection of route-first and toxicity/fusion-first decoders. "
+            "The action-decoder ablation suite currently ranks this cross-decoder jury ahead of plain route-first, toxicity-first, support-first, and route-toxicity fusion alternatives. "
             "It remains an adapter-side LB sensor until public/private observation proves it. "
             "The next portable objective should preserve teacher-transfer strength while lifting subject/date/order held-out stress "
             "and route-frontier action safety before allowing row-support to drive safe release submissions."

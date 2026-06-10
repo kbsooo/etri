@@ -14,13 +14,13 @@
       "adapter_move": "Compare toxicity-first, support-first, and route-first decoders under one LB-sensor priority table.",
       "why_big": "If the suite ranking matches public LB, HS-JEPA gains a falsifiable action-decoder selection rule.",
       "expected_public_lb_delta_if_true": -0.0025,
-      "latest_probe_status": "action_decoder_ablation_ready_route_frontier_leads",
+      "latest_probe_status": "action_decoder_ablation_ready_decoder_jury_leads",
       "latest_probe_evidence": {
         "recommended_lb_sensor": {
-          "family": "route_frontier",
-          "variant": "s2_route_frontier",
-          "submission_file": "submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
-          "priority": 1.1177646805596027
+          "family": "decoder_order_jury",
+          "variant": "family_supermajority",
+          "submission_file": "submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+          "priority": 1.394366527938867
         },
         "big_bet_sensor": {
           "family": "route_frontier",
@@ -204,6 +204,29 @@
       "kill_criterion": "Public LB says plain route-frontier wins, or fusion only improves local toxicity while harming route/action response."
     },
     {
+      "id": "decoder_order_jury_solver",
+      "name": "Decoder-Order Jury Solver",
+      "worldview": "Safe row-target assignment is a cross-decoder jury, not a single route or toxicity score.",
+      "core_modules_exercised": [
+        "invariant_energy",
+        "action_health_decoder",
+        "anti_shortcut_validation"
+      ],
+      "adapter_move": "Release only row-target cells independently selected by route-frontier and route-toxicity fusion decoders in the same direction.",
+      "why_big": "If this beats route-frontier, HS-JEPA gains an action-grade listener responsibility rule rather than another tuned decoder.",
+      "expected_public_lb_delta_if_true": -0.0025,
+      "latest_probe_status": "decoder_order_jury_ready",
+      "latest_probe_evidence": {
+        "recommended_lb_sensor": {
+          "variant": "family_supermajority",
+          "submission_file": "submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
+          "priority": 1.392520579892158
+        },
+        "claim": "Safe row-target assignment is a cross-decoder jury: route invariant proposes the action, factorized action-health confirms it, and only same-direction consensus is released."
+      },
+      "kill_criterion": "Public LB worsens or underperforms route-frontier, meaning consensus is too conservative or action-health removes useful route signal."
+    },
+    {
       "id": "listener_invariant_contrastive_decoder",
       "name": "Listener-Invariant Contrastive Decoder",
       "worldview": "A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone.",
@@ -277,5 +300,5 @@
       "kill_criterion": "Q-S bridge actions fail null tests or replicate the already-killed subjective-shadow bridge."
     }
   ],
-  "count": 9
+  "count": 10
 }

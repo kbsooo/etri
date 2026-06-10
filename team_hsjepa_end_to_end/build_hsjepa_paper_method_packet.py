@@ -38,6 +38,7 @@ MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "mask
 ROW_SUPPORT_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
 ROUTE_FRONTIER_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
 ROUTE_TOXICITY_FUSION_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_toxicity_fusion_decoder" / "route_toxicity_fusion_decoder_readout.json"
+DECODER_ORDER_JURY_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout.json"
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -85,6 +86,7 @@ def require_inputs() -> None:
             ROW_SUPPORT_DECODER_JSON,
             ROUTE_FRONTIER_DECODER_JSON,
             ROUTE_TOXICITY_FUSION_DECODER_JSON,
+            DECODER_ORDER_JURY_JSON,
             ACTION_DECODER_ABLATION_JSON,
             CONTRASTIVE_PROBE_JSON,
             PRIVATE_TOXICITY_PROBE_JSON,
@@ -117,6 +119,7 @@ def build_packet() -> dict[str, object]:
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
     route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
     route_toxicity_fusion_decoder = read_json(ROUTE_TOXICITY_FUSION_DECODER_JSON)
+    decoder_order_jury = read_json(DECODER_ORDER_JURY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -138,6 +141,8 @@ def build_packet() -> dict[str, object]:
     row_support_decoder_verdict = row_support_decoder["verdict"]
     route_frontier_verdict = route_frontier_decoder["verdict"]
     route_toxicity_fusion_verdict = route_toxicity_fusion_decoder["verdict"]
+    decoder_order_jury_verdict = decoder_order_jury["verdict"]
+    decoder_order_jury_sensor = decoder_order_jury_verdict["recommended_lb_sensor"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -226,6 +231,10 @@ def build_packet() -> dict[str, object]:
             "route_toxicity_fusion_decoder_status": route_toxicity_fusion_verdict["status"],
             "route_toxicity_fusion_decoder_recommended": route_toxicity_fusion_verdict["recommended_variant"],
             "route_toxicity_fusion_decoder_variant_scores": route_toxicity_fusion_verdict["variant_scores"],
+            "decoder_order_jury_solver_status": decoder_order_jury_verdict["status"],
+            "decoder_order_jury_solver_recommended": decoder_order_jury_sensor,
+            "decoder_order_jury_solver_file": decoder_order_jury_sensor["submission_file"],
+            "decoder_order_jury_solver_priority": decoder_order_jury_sensor["priority"],
             "action_decoder_ablation_status": action_ablation_verdict["status"],
             "action_decoder_ablation_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],
@@ -301,6 +310,7 @@ def build_packet() -> dict[str, object]:
             "row_support_strict_action_decoder": str(ROW_SUPPORT_DECODER_JSON.resolve()),
             "route_frontier_action_decoder": str(ROUTE_FRONTIER_DECODER_JSON.resolve()),
             "route_toxicity_fusion_decoder": str(ROUTE_TOXICITY_FUSION_DECODER_JSON.resolve()),
+            "decoder_order_jury_solver": str(DECODER_ORDER_JURY_JSON.resolve()),
             "action_decoder_ablation_suite": str(ACTION_DECODER_ABLATION_JSON.resolve()),
             "listener_invariant_contrastive_probe": str(CONTRASTIVE_PROBE_JSON.resolve()),
             "private_safe_toxicity_probe": str(PRIVATE_TOXICITY_PROBE_JSON.resolve()),
@@ -321,6 +331,7 @@ def build_packet() -> dict[str, object]:
                 row_support_decoder_verdict,
                 route_frontier_verdict,
                 route_toxicity_fusion_verdict,
+                decoder_order_jury_verdict,
                 contrastive_verdict,
                 toxicity_verdict,
                 hardworld_verdict,
@@ -396,6 +407,7 @@ def build_generality_text(
     row_support_decoder_verdict: dict[str, object],
     route_frontier_verdict: dict[str, object],
     route_toxicity_fusion_verdict: dict[str, object],
+    decoder_order_jury_verdict: dict[str, object],
     contrastive_verdict: dict[str, object],
     toxicity_verdict: dict[str, object],
     hardworld_verdict: dict[str, object],
@@ -447,6 +459,8 @@ def build_generality_text(
         f"- Route-toxicity fusion decoder: `{route_toxicity_fusion_verdict['status']}`",
         f"- Route-toxicity fusion recommended variant: `{route_toxicity_fusion_verdict['recommended_variant']}`",
         f"- Route-toxicity fusion variant scores: `{route_toxicity_fusion_verdict['variant_scores']}`",
+        f"- Decoder-order jury solver: `{decoder_order_jury_verdict['status']}`",
+        f"- Decoder-order jury recommended LB sensor: `{decoder_order_jury_verdict['recommended_lb_sensor']}`",
         f"- Listener-invariant probe: `{contrastive_verdict['status']}`",
         f"- Listener-route Spearman: `{fmt(contrastive_verdict['mean_listener_route_spearman'], 4)}`",
         f"- Private-safe toxicity probe: `{toxicity_verdict['status']}`",
@@ -456,7 +470,7 @@ def build_generality_text(
         f"- Broad toxicity -> H088 AUC: `{fmt(hardworld_verdict['broad_predicts_hardworld_auc'], 4)}`",
         f"- Broad/H088 Spearman: `{fmt(hardworld_verdict['broad_hardworld_spearman'], 4)}`",
         "",
-        "가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor를 안전한 row-target action으로 번역하는 것이다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer와 masked-family objective에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원하고, human-only/prediction-only/masked-route view도 신호를 유지한다. 첫 strict action decoder는 null 대비 safety는 강하지만 route-gain 우위가 약했다. 새 route-frontier decoder는 반대로 route manifold frontier를 먼저 고르고 support/toxicity를 통과시키며, local broad/matched null은 이겼다. route-toxicity fusion decoder는 여기서 한 단계 더 나아가 route-first와 factorized action-health를 조합한다. 다만 이것도 아직 sleep adapter의 LB sensor이지 private-safe release claim은 아니다.",
+        "가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor를 안전한 row-target action으로 번역하는 것이다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer와 masked-family objective에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원하고, human-only/prediction-only/masked-route view도 신호를 유지한다. 첫 strict action decoder는 null 대비 safety는 강하지만 route-gain 우위가 약했다. 새 route-frontier decoder는 반대로 route manifold frontier를 먼저 고르고 support/toxicity를 통과시키며, local broad/matched null은 이겼다. route-toxicity fusion decoder는 여기서 한 단계 더 나아가 route-first와 factorized action-health를 조합한다. decoder-order jury solver는 이 둘이 같은 row-target과 방향에 합의할 때만 action을 방출한다. 다만 이것도 아직 sleep adapter의 LB sensor이지 private-safe release claim은 아니다.",
     ]
     return "\n".join(rows)
 
@@ -589,6 +603,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- Row-support action decoder: `{human['row_support_action_decoder_status']}`, recommended `{human['row_support_action_decoder_recommended']}`, changed cells `{human['row_support_action_decoder_changed_cells']}`, safety z `{fmt(human['row_support_action_decoder_safety_z'], 4)}`, combined z `{fmt(human['row_support_action_decoder_combined_z'], 4)}`",
             f"- Route-frontier action decoder: `{human['route_frontier_action_decoder_status']}`, recommended `{human['route_frontier_action_decoder_recommended']}`, scores `{human['route_frontier_action_decoder_variant_scores']}`",
             f"- Route-toxicity fusion decoder: `{human['route_toxicity_fusion_decoder_status']}`, recommended `{human['route_toxicity_fusion_decoder_recommended']}`, scores `{human['route_toxicity_fusion_decoder_variant_scores']}`",
+            f"- Decoder-order jury solver: `{human['decoder_order_jury_solver_status']}`, recommended `{human['decoder_order_jury_solver_recommended']}`, file `{human['decoder_order_jury_solver_file']}`, priority `{fmt(human['decoder_order_jury_solver_priority'], 4)}`",
             f"- Action decoder ablation: `{human['action_decoder_ablation_status']}`, recommended `{human['action_decoder_ablation_recommended_lb_sensor']}`, big bet `{human['action_decoder_ablation_big_bet_sensor']}`",
             "",
             "## Role-Based Outputs",
@@ -628,6 +643,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- `{packet['outputs']['row_support_strict_action_decoder']}`",
             f"- `{packet['outputs']['route_frontier_action_decoder']}`",
             f"- `{packet['outputs']['route_toxicity_fusion_decoder']}`",
+            f"- `{packet['outputs']['decoder_order_jury_solver']}`",
             f"- `{packet['outputs']['action_decoder_ablation_suite']}`",
             "",
         ]
