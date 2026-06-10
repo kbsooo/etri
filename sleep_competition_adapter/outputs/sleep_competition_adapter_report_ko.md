@@ -59,6 +59,21 @@ A transferable row-support sensor exists, but it is partial: the seven-target pr
 
 Next action: Promote prediction-landscape row support into a masked HS-JEPA row-support objective, then stress against subject/date splits.
 
+## Masked Row-Support Objective Probe
+
+- Status: `masked_row_support_objective_supported_with_stress_boundary`
+- Full composite row AUC: `0.8193`
+- Full composite row recall@K: `0.4132`
+- Full composite cell recall: `0.3289`
+- Human-only cell recall: `0.2713`
+- Prediction-only cell recall: `0.2348`
+- Route-masked cell recall: `0.3056`
+- Group-heldout full row AUC: `0.5584`
+
+The row-support target is not a single-feature shortcut: human-only, prediction-only, and route-masked views all retain signal. However, row/order/subject/calendar held-out stress is much weaker than teacher-world transfer, so this is a representation objective, not yet an action-grade decoder.
+
+Next action: Train a dedicated masked row-support objective, but do not promote it to a submission decoder until group-heldout stress improves.
+
 ## Listener-Invariant Contrastive Probe
 
 - Status: `listener_invariant_decoder_not_ready`
@@ -128,6 +143,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - A pure OG-only assignment teacher is not ready yet; this is now a measured architecture boundary, not an informal caveat.
 - The assignment gap decomposes into a row-support bottleneck: target route is relatively easy, but current human/social/cohort context does not find the right support rows.
 - A teacher-transfer hidden row-support sensor is partially alive; portable row-support composite context transfers across teacher worlds better than the listener upper bound in this local diagnostic.
+- Masked row-support behaves like a real HS-JEPA representation target under teacher-transfer and feature-family masks, but subject/date/order held-out stress remains weak.
 - A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.
 - The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.
 - Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.
@@ -138,6 +154,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 
 - pure OG-only assignment
 - action-grade portable hidden row-support recovery
+- that masked row-support is already a deployment-grade action decoder
 - private leaderboard safety
 - S2 as a universal human-sleep factor
 - that public LB sensors can be used outside this competition

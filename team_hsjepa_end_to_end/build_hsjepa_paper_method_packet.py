@@ -34,6 +34,7 @@ BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
 ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignment_gap_decomposition_probe.json"
 ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidden_row_support_sensor_probe.json"
+MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "masked_row_support_objective_probe.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
@@ -76,6 +77,7 @@ def require_inputs() -> None:
             OG_PROBE_JSON,
             ASSIGNMENT_GAP_JSON,
             ROW_SUPPORT_SENSOR_JSON,
+            MASKED_ROW_SUPPORT_JSON,
             CONTRASTIVE_PROBE_JSON,
             PRIVATE_TOXICITY_PROBE_JSON,
             HARDWORLD_TOXICITY_PROBE_JSON,
@@ -103,6 +105,7 @@ def build_packet() -> dict[str, object]:
     og_probe = read_json(OG_PROBE_JSON)
     assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
     row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
+    masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -119,6 +122,7 @@ def build_packet() -> dict[str, object]:
     og_verdict = og_probe["verdict"]
     gap_verdict = assignment_gap["verdict"]
     row_support_verdict = row_support_sensor["verdict"]
+    masked_row_support_verdict = masked_row_support["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
     hardworld_verdict = hardworld_toxicity_probe["verdict"]
@@ -187,6 +191,13 @@ def build_packet() -> dict[str, object]:
             "hidden_row_support_mean_row_recall_at_k": row_support_verdict["best_portable_mean_row_recall_at_k"],
             "hidden_row_support_mean_cell_recall": row_support_verdict["best_portable_mean_cell_recall_with_stage_prior"],
             "hidden_row_support_auc_z": row_support_verdict["best_portable_mean_auc_z_vs_permuted_train"],
+            "masked_row_support_objective_status": masked_row_support_verdict["status"],
+            "masked_row_support_full_row_auc": masked_row_support_verdict["full_composite_mean_row_auc"],
+            "masked_row_support_full_cell_recall": masked_row_support_verdict["full_composite_mean_cell_recall"],
+            "masked_row_support_human_cell_recall": masked_row_support_verdict["human_only_mean_cell_recall"],
+            "masked_row_support_prediction_cell_recall": masked_row_support_verdict["prediction_only_mean_cell_recall"],
+            "masked_row_support_route_mask_cell_recall": masked_row_support_verdict["route_mask_mean_cell_recall"],
+            "masked_row_support_group_stress_auc": masked_row_support_verdict["group_stress_full_mean_auc"],
             "listener_invariant_probe_status": contrastive_verdict["status"],
             "listener_route_spearman": contrastive_verdict["mean_listener_route_spearman"],
             "contrastive_overlap_rate": contrastive_verdict["mean_contrastive_overlap_rate"],
@@ -255,6 +266,7 @@ def build_packet() -> dict[str, object]:
             "og_only_assignment_teacher_probe": str(OG_PROBE_JSON.resolve()),
             "assignment_gap_decomposition_probe": str(ASSIGNMENT_GAP_JSON.resolve()),
             "hidden_row_support_sensor_probe": str(ROW_SUPPORT_SENSOR_JSON.resolve()),
+            "masked_row_support_objective_probe": str(MASKED_ROW_SUPPORT_JSON.resolve()),
             "listener_invariant_contrastive_probe": str(CONTRASTIVE_PROBE_JSON.resolve()),
             "private_safe_toxicity_probe": str(PRIVATE_TOXICITY_PROBE_JSON.resolve()),
             "hardworld_toxicity_factorization_probe": str(HARDWORLD_TOXICITY_PROBE_JSON.resolve()),
@@ -265,7 +277,16 @@ def build_packet() -> dict[str, object]:
         "paper_sections": {
             "abstract_ko": build_abstract(public, primary, s2, human),
             "method_ko": build_method_text(core, adapter),
-            "generality_ko": build_generality_text(generality, og_verdict, gap_verdict, row_support_verdict, contrastive_verdict, toxicity_verdict, hardworld_verdict),
+            "generality_ko": build_generality_text(
+                generality,
+                og_verdict,
+                gap_verdict,
+                row_support_verdict,
+                masked_row_support_verdict,
+                contrastive_verdict,
+                toxicity_verdict,
+                hardworld_verdict,
+            ),
             "algorithm_ko": build_algorithm_text(),
             "limitations_ko": build_limitations_text(boundary),
             "big_bets_ko": build_big_bet_text(big_bets),
@@ -333,6 +354,7 @@ def build_generality_text(
     og_verdict: dict[str, object],
     gap_verdict: dict[str, object],
     row_support_verdict: dict[str, object],
+    masked_row_support_verdict: dict[str, object],
     contrastive_verdict: dict[str, object],
     toxicity_verdict: dict[str, object],
     hardworld_verdict: dict[str, object],
@@ -368,6 +390,11 @@ def build_generality_text(
         f"- Row-support row AUC: `{fmt(row_support_verdict['best_portable_mean_row_auc'], 4)}`",
         f"- Row-support cell recall: `{fmt(row_support_verdict['best_portable_mean_cell_recall_with_stage_prior'], 4)}`",
         f"- Row-support AUC z: `{fmt(row_support_verdict['best_portable_mean_auc_z_vs_permuted_train'], 4)}`",
+        f"- Masked row-support objective: `{masked_row_support_verdict['status']}`",
+        f"- Masked full row AUC: `{fmt(masked_row_support_verdict['full_composite_mean_row_auc'], 4)}`",
+        f"- Masked full cell recall: `{fmt(masked_row_support_verdict['full_composite_mean_cell_recall'], 4)}`",
+        f"- Masked human-only cell recall: `{fmt(masked_row_support_verdict['human_only_mean_cell_recall'], 4)}`",
+        f"- Masked group stress AUC: `{fmt(masked_row_support_verdict['group_stress_full_mean_auc'], 4)}`",
         f"- Listener-invariant probe: `{contrastive_verdict['status']}`",
         f"- Listener-route Spearman: `{fmt(contrastive_verdict['mean_listener_route_spearman'], 4)}`",
         f"- Private-safe toxicity probe: `{toxicity_verdict['status']}`",
@@ -377,7 +404,7 @@ def build_generality_text(
         f"- Broad toxicity -> H088 AUC: `{fmt(hardworld_verdict['broad_predicts_hardworld_auc'], 4)}`",
         f"- Broad/H088 Spearman: `{fmt(hardworld_verdict['broad_hardworld_spearman'], 4)}`",
         "",
-        "가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원한다. 다음 HS-JEPA objective는 이 support를 masked representation prediction target으로 만들고, subject/date stress를 통과한 뒤에만 action-grade decoder로 승격해야 한다.",
+        "가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer와 masked-family objective에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원하고, human-only/prediction-only/masked-route view도 신호를 유지한다. 다만 subject/date/order held-out stress는 약하므로, 이 objective는 HS-JEPA representation target으로는 의미 있지만 action-grade decoder로 바로 승격하면 안 된다.",
     ]
     return "\n".join(rows)
 
@@ -392,6 +419,7 @@ def build_algorithm_text() -> str:
             "",
             "1. Encode personal, cohort, time, routine, social, and sensor context into a human-state representation.",
             "2. Predict masked listener/action representations from partial human context.",
+            "2a. Treat row-support as a hidden target representation and stress it under masked human/prediction/route views.",
             "3. Estimate listener responsibility: which outcomes should react to the hidden state.",
             "4. Estimate action-health: whether the latent signal is safe to translate into output movement.",
             "5. Factorize action-health when shortcut modes are anti-correlated rather than scalar.",
@@ -503,6 +531,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- Human-state cell AUC / row AUC: `{fmt(human['cell_oof_auc'], 3)}` / `{fmt(human['row_oof_auc'], 3)}`",
             f"- Assignment gap: `{human['assignment_gap_status']}`, row-support gap `{fmt(human['assignment_gap_row_support_gap'], 4)}`",
             f"- Hidden row-support sensor: `{human['hidden_row_support_sensor_status']}`, family `{human['hidden_row_support_best_family']}`, row AUC `{fmt(human['hidden_row_support_mean_row_auc'], 4)}`, cell recall `{fmt(human['hidden_row_support_mean_cell_recall'], 4)}`",
+            f"- Masked row-support objective: `{human['masked_row_support_objective_status']}`, row AUC `{fmt(human['masked_row_support_full_row_auc'], 4)}`, cell recall `{fmt(human['masked_row_support_full_cell_recall'], 4)}`, group stress AUC `{fmt(human['masked_row_support_group_stress_auc'], 4)}`",
             "",
             "## Role-Based Outputs",
             "",
@@ -537,6 +566,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- `{packet['outputs']['big_bet_queue']}`",
             f"- `{packet['outputs']['assignment_gap_decomposition_probe']}`",
             f"- `{packet['outputs']['hidden_row_support_sensor_probe']}`",
+            f"- `{packet['outputs']['masked_row_support_objective_probe']}`",
             "",
         ]
     )

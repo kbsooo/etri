@@ -73,7 +73,7 @@
     {
       "check": "remaining_generality_gap",
       "passed": false,
-      "evidence": "OG-only assignment probe status og_only_assignment_replacement_not_ready; pure row-cap2 recall 0.0404, distilled recall 0.1236. Assignment gap status row_support_is_primary_bottleneck; portable recall 0.1063, row-oracle recall 0.6896, row-support gap 0.5832. Hidden row-support transfer status portable_row_support_sensor_alive_partial; best family portable_row_support_composite, row AUC 0.8193, cell recall 0.3289.",
+      "evidence": "OG-only assignment probe status og_only_assignment_replacement_not_ready; pure row-cap2 recall 0.0404, distilled recall 0.1236. Assignment gap status row_support_is_primary_bottleneck; portable recall 0.1063, row-oracle recall 0.6896, row-support gap 0.5832. Hidden row-support transfer status portable_row_support_sensor_alive_partial; best family portable_row_support_composite, row AUC 0.8193, cell recall 0.3289. Masked row-support objective status masked_row_support_objective_supported_with_stress_boundary; full row AUC 0.8193, cell recall 0.3289, group stress AUC 0.5584.",
       "meaning": "The architecture is reusable; the current strongest competition instantiation is not yet fully portable or action-grade.",
       "required_for_completion": false
     }
@@ -99,8 +99,12 @@
     "hidden_row_support_best_family": "portable_row_support_composite",
     "hidden_row_support_mean_row_auc": 0.819329738968888,
     "hidden_row_support_mean_cell_recall": 0.32890961262553803,
-    "hidden_row_support_auc_z": 6.41799227766675
+    "hidden_row_support_auc_z": 6.41799227766675,
+    "masked_row_support_objective_status": "masked_row_support_objective_supported_with_stress_boundary",
+    "masked_row_support_full_row_auc": 0.819329738968888,
+    "masked_row_support_full_cell_recall": 0.32890961262553803,
+    "masked_row_support_group_stress_auc": 0.5584153847549592
   },
   "honest_claim": "HS-JEPA is a human-understanding architecture that predicts hidden human-state and listener/action representations before making bounded output moves.  The Route-Conserving S2 Bridge is the sleep-log competition instantiation, not the full architecture.",
-  "next_breakthrough": "Turn the partially alive teacher-transfer row-support signal into an action-grade masked HS-JEPA objective. The next portable objective should predict which subject-days are actionable from the seven-target prediction landscape, then stress that support sensor under subject/date splits before allowing it to drive submissions."
+  "next_breakthrough": "Turn the partially alive masked row-support representation into an action-grade decoder. The next portable objective should preserve teacher-transfer strength while lifting subject/date/order held-out stress before allowing row-support to drive submissions."
 }

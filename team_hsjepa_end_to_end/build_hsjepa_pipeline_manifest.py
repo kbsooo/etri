@@ -37,6 +37,7 @@ BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
 ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignment_gap_decomposition_probe.json"
 ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidden_row_support_sensor_probe.json"
+MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "masked_row_support_objective_probe.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
@@ -82,6 +83,7 @@ def require_inputs() -> None:
         OG_PROBE_JSON,
         ASSIGNMENT_GAP_JSON,
         ROW_SUPPORT_SENSOR_JSON,
+        MASKED_ROW_SUPPORT_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
@@ -145,6 +147,7 @@ def build_manifest() -> dict[str, object]:
     og_probe = read_json(OG_PROBE_JSON)
     assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
     row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
+    masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -159,6 +162,7 @@ def build_manifest() -> dict[str, object]:
     og_verdict = og_probe["verdict"]
     gap_verdict = assignment_gap["verdict"]
     row_support_verdict = row_support_sensor["verdict"]
+    masked_row_support_verdict = masked_row_support["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
     hardworld_verdict = hardworld_toxicity_probe["verdict"]
@@ -274,6 +278,21 @@ def build_manifest() -> dict[str, object]:
                 f"AUC z vs permuted train: {fmt(row_support_verdict['best_portable_mean_auc_z_vs_permuted_train'], 4)}",
             ],
             "This is transfer evidence for a row-support sensor, not yet an action-grade deployment decoder.",
+        ),
+        stage(
+            "masked_row_support_objective",
+            "Masked Row-Support Objective Probe",
+            "Tests whether hidden row-support can serve as a JEPA target representation predicted from masked human/context views.",
+            ["hidden_row_support_sensor_probe.json", "og_only_assignment_teacher_ranked_cells.csv"],
+            ["masked_row_support_objective_probe_ko.md", "masked_row_support_objective_transfer_metrics.csv"],
+            [
+                f"Objective status: {masked_row_support_verdict['status']}",
+                f"Full row AUC: {fmt(masked_row_support_verdict['full_composite_mean_row_auc'], 4)}",
+                f"Full cell recall: {fmt(masked_row_support_verdict['full_composite_mean_cell_recall'], 4)}",
+                f"Human-only cell recall: {fmt(masked_row_support_verdict['human_only_mean_cell_recall'], 4)}",
+                f"Group stress row AUC: {fmt(masked_row_support_verdict['group_stress_full_mean_auc'], 4)}",
+            ],
+            "This supports HS-JEPA representation learning, but weak group-heldout stress blocks direct deployment as an action decoder.",
         ),
         stage(
             "route_energy_model",
@@ -484,6 +503,9 @@ def build_manifest() -> dict[str, object]:
         ["assignment_gap_decomposition", "hidden_row_support_sensor"],
         ["hidden_row_support_sensor", "general_architecture_boundary"],
         ["hidden_row_support_sensor", "sleep_competition_adapter"],
+        ["hidden_row_support_sensor", "masked_row_support_objective"],
+        ["masked_row_support_objective", "general_architecture_boundary"],
+        ["masked_row_support_objective", "sleep_competition_adapter"],
         ["public_lb_sensor", "driver_action_field"],
         ["human_state_listener_context", "driver_action_field"],
         ["route_energy_model", "route_conserving_s2_bridge_decoder"],
@@ -554,6 +576,10 @@ def build_manifest() -> dict[str, object]:
             "hidden_row_support_best_family": row_support_verdict["best_portable_family"],
             "hidden_row_support_mean_row_auc": row_support_verdict["best_portable_mean_row_auc"],
             "hidden_row_support_mean_cell_recall": row_support_verdict["best_portable_mean_cell_recall_with_stage_prior"],
+            "masked_row_support_objective_status": masked_row_support_verdict["status"],
+            "masked_row_support_full_row_auc": masked_row_support_verdict["full_composite_mean_row_auc"],
+            "masked_row_support_full_cell_recall": masked_row_support_verdict["full_composite_mean_cell_recall"],
+            "masked_row_support_group_stress_auc": masked_row_support_verdict["group_stress_full_mean_auc"],
             "listener_invariant_contrastive_probe_status": contrastive_verdict["status"],
             "private_safe_toxicity_probe_status": toxicity_verdict["status"],
             "hardworld_toxicity_factorization_probe_status": hardworld_verdict["status"],
@@ -601,7 +627,8 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    C --> P1["OG-only assignment probe"]',
             '    P1 --> GAP["Assignment gap decomposition"]',
             '    GAP --> RSP["Hidden row-support sensor"]',
-            '    RSP --> GEN["General architecture boundary"]',
+            '    RSP --> MRO["Masked row-support objective"]',
+            '    MRO --> GEN["General architecture boundary"]',
             '    B["Public LB sensor ledger"] --> E["Public-sensitive driver action field"]',
             '    C --> E',
             '    D --> F["Route-conserving S2 bridge decoder"]',
@@ -622,6 +649,7 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    P4 --> ADAPT',
             '    P6 --> ADAPT',
             '    RSP --> ADAPT',
+            '    MRO --> ADAPT',
             '    ADAPT --> BAUD["Core/adapter boundary audit"]',
             '    CORE --> BAUD',
             '    GEN --> H["Claim readiness and paper packet"]',

@@ -30,6 +30,7 @@ METHOD_PACKET_JSON = TEAM_OUT / "hsjepa_paper_method_packet.json"
 OG_PROBE_JSON = OUT / "og_only_assignment_teacher_probe.json"
 ASSIGNMENT_GAP_JSON = OUT / "assignment_gap_decomposition_probe.json"
 ROW_SUPPORT_SENSOR_JSON = OUT / "hidden_row_support_sensor_probe.json"
+MASKED_ROW_SUPPORT_JSON = OUT / "masked_row_support_objective_probe.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = OUT / "hardworld_toxicity_factorization_probe.json"
@@ -67,6 +68,7 @@ def require_inputs() -> None:
         OG_PROBE_JSON,
         ASSIGNMENT_GAP_JSON,
         ROW_SUPPORT_SENSOR_JSON,
+        MASKED_ROW_SUPPORT_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
@@ -82,6 +84,7 @@ def build_big_bets(
     og_probe: dict[str, object],
     assignment_gap: dict[str, object],
     row_support_sensor: dict[str, object],
+    masked_row_support: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
     hardworld_toxicity_probe: dict[str, object],
@@ -91,6 +94,11 @@ def build_big_bets(
     row_support_verdict = (
         row_support_sensor.get("verdict", {})
         if isinstance(row_support_sensor.get("verdict"), dict)
+        else {}
+    )
+    masked_row_support_verdict = (
+        masked_row_support.get("verdict", {})
+        if isinstance(masked_row_support.get("verdict"), dict)
         else {}
     )
     contrastive_verdict = (
@@ -129,8 +137,15 @@ def build_big_bets(
                 "best_row_support_mean_auc": row_support_verdict.get("best_portable_mean_row_auc"),
                 "best_row_support_mean_cell_recall": row_support_verdict.get("best_portable_mean_cell_recall_with_stage_prior"),
                 "best_row_support_auc_z": row_support_verdict.get("best_portable_mean_auc_z_vs_permuted_train"),
+                "masked_objective_status": masked_row_support_verdict.get("status"),
+                "masked_objective_full_row_auc": masked_row_support_verdict.get("full_composite_mean_row_auc"),
+                "masked_objective_full_cell_recall": masked_row_support_verdict.get("full_composite_mean_cell_recall"),
+                "masked_objective_human_cell_recall": masked_row_support_verdict.get("human_only_mean_cell_recall"),
+                "masked_objective_prediction_cell_recall": masked_row_support_verdict.get("prediction_only_mean_cell_recall"),
+                "masked_objective_route_mask_cell_recall": masked_row_support_verdict.get("route_mask_mean_cell_recall"),
+                "masked_objective_group_stress_auc": masked_row_support_verdict.get("group_stress_full_mean_auc"),
             },
-            "kill_criterion": "Teacher-transfer row support fails under subject/date stress or cannot be converted into safe row-target actions.",
+            "kill_criterion": "Masked row-support keeps failing subject/date/order stress or cannot be converted into safe row-target actions.",
         },
         {
             "id": "listener_invariant_contrastive_decoder",
@@ -205,6 +220,7 @@ def build_report() -> dict[str, object]:
     og_probe = read_json(OG_PROBE_JSON)
     assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
     row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
+    masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -217,6 +233,7 @@ def build_report() -> dict[str, object]:
     og_verdict = og_probe.get("verdict", {})
     gap_verdict = assignment_gap.get("verdict", {})
     row_support_verdict = row_support_sensor.get("verdict", {})
+    masked_row_support_verdict = masked_row_support.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
     hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
@@ -308,6 +325,20 @@ def build_report() -> dict[str, object]:
             "next_action": row_support_verdict.get("next_action"),
             "interpretation": row_support_verdict.get("interpretation"),
         },
+        "masked_row_support_objective_probe": {
+            "status": masked_row_support_verdict.get("status"),
+            "full_composite_mean_row_auc": masked_row_support_verdict.get("full_composite_mean_row_auc"),
+            "full_composite_mean_row_recall_at_k": masked_row_support_verdict.get("full_composite_mean_row_recall_at_k"),
+            "full_composite_mean_cell_recall": masked_row_support_verdict.get("full_composite_mean_cell_recall"),
+            "human_only_mean_cell_recall": masked_row_support_verdict.get("human_only_mean_cell_recall"),
+            "prediction_only_mean_cell_recall": masked_row_support_verdict.get("prediction_only_mean_cell_recall"),
+            "route_mask_mean_cell_recall": masked_row_support_verdict.get("route_mask_mean_cell_recall"),
+            "robust_mask_count": masked_row_support_verdict.get("robust_mask_count"),
+            "group_stress_full_mean_auc": masked_row_support_verdict.get("group_stress_full_mean_auc"),
+            "group_stress_full_mean_recall_at_k": masked_row_support_verdict.get("group_stress_full_mean_recall_at_k"),
+            "next_action": masked_row_support_verdict.get("next_action"),
+            "interpretation": masked_row_support_verdict.get("interpretation"),
+        },
         "listener_invariant_contrastive_probe": {
             "status": contrastive_verdict.get("status"),
             "mean_listener_route_spearman": contrastive_verdict.get("mean_listener_route_spearman"),
@@ -379,6 +410,7 @@ def build_report() -> dict[str, object]:
             "A pure OG-only assignment teacher is not ready yet; this is now a measured architecture boundary, not an informal caveat.",
             "The assignment gap decomposes into a row-support bottleneck: target route is relatively easy, but current human/social/cohort context does not find the right support rows.",
             "A teacher-transfer hidden row-support sensor is partially alive; portable row-support composite context transfers across teacher worlds better than the listener upper bound in this local diagnostic.",
+            "Masked row-support behaves like a real HS-JEPA representation target under teacher-transfer and feature-family masks, but subject/date/order held-out stress remains weak.",
             "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.",
             "The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.",
             "Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.",
@@ -388,6 +420,7 @@ def build_report() -> dict[str, object]:
         "what_the_adapter_does_not_prove": [
             "pure OG-only assignment",
             "action-grade portable hidden row-support recovery",
+            "that masked row-support is already a deployment-grade action decoder",
             "private leaderboard safety",
             "S2 as a universal human-sleep factor",
             "that public LB sensors can be used outside this competition",
@@ -489,6 +522,21 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             f"Next action: {report['hidden_row_support_sensor_probe']['next_action']}",
             "",
+            "## Masked Row-Support Objective Probe",
+            "",
+            f"- Status: `{report['masked_row_support_objective_probe']['status']}`",
+            f"- Full composite row AUC: `{fmt(report['masked_row_support_objective_probe']['full_composite_mean_row_auc'], 4)}`",
+            f"- Full composite row recall@K: `{fmt(report['masked_row_support_objective_probe']['full_composite_mean_row_recall_at_k'], 4)}`",
+            f"- Full composite cell recall: `{fmt(report['masked_row_support_objective_probe']['full_composite_mean_cell_recall'], 4)}`",
+            f"- Human-only cell recall: `{fmt(report['masked_row_support_objective_probe']['human_only_mean_cell_recall'], 4)}`",
+            f"- Prediction-only cell recall: `{fmt(report['masked_row_support_objective_probe']['prediction_only_mean_cell_recall'], 4)}`",
+            f"- Route-masked cell recall: `{fmt(report['masked_row_support_objective_probe']['route_mask_mean_cell_recall'], 4)}`",
+            f"- Group-heldout full row AUC: `{fmt(report['masked_row_support_objective_probe']['group_stress_full_mean_auc'], 4)}`",
+            "",
+            report["masked_row_support_objective_probe"]["interpretation"],
+            "",
+            f"Next action: {report['masked_row_support_objective_probe']['next_action']}",
+            "",
             "## Listener-Invariant Contrastive Probe",
             "",
             f"- Status: `{report['listener_invariant_contrastive_probe']['status']}`",
@@ -588,6 +636,7 @@ def run() -> dict[str, object]:
         read_json(OG_PROBE_JSON),
         read_json(ASSIGNMENT_GAP_JSON),
         read_json(ROW_SUPPORT_SENSOR_JSON),
+        read_json(MASKED_ROW_SUPPORT_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),
         read_json(HARDWORLD_TOXICITY_PROBE_JSON),

@@ -76,6 +76,11 @@ partial human context
 - Row-support row AUC: `0.8193`
 - Row-support cell recall: `0.3289`
 - Row-support AUC z: `6.4180`
+- Masked row-support objective: `masked_row_support_objective_supported_with_stress_boundary`
+- Masked full row AUC: `0.8193`
+- Masked full cell recall: `0.3289`
+- Masked human-only cell recall: `0.2713`
+- Masked group stress AUC: `0.5584`
 - Listener-invariant probe: `listener_invariant_decoder_not_ready`
 - Listener-route Spearman: `-0.0313`
 - Private-safe toxicity probe: `toxicity_field_promising_with_hardworld_gap`
@@ -85,7 +90,7 @@ partial human context
 - Broad toxicity -> H088 AUC: `0.3683`
 - Broad/H088 Spearman: `-0.4276`
 
-가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원한다. 다음 HS-JEPA objective는 이 support를 masked representation prediction target으로 만들고, subject/date stress를 통과한 뒤에만 action-grade decoder로 승격해야 한다.
+가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer와 masked-family objective에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원하고, human-only/prediction-only/masked-route view도 신호를 유지한다. 다만 subject/date/order held-out stress는 약하므로, 이 objective는 HS-JEPA representation target으로는 의미 있지만 action-grade decoder로 바로 승격하면 안 된다.
 
 ## Algorithm
 
@@ -97,6 +102,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 
 1. Encode personal, cohort, time, routine, social, and sensor context into a human-state representation.
 2. Predict masked listener/action representations from partial human context.
+2a. Treat row-support as a hidden target representation and stress it under masked human/prediction/route views.
 3. Estimate listener responsibility: which outcomes should react to the hidden state.
 4. Estimate action-health: whether the latent signal is safe to translate into output movement.
 5. Factorize action-health when shortcut modes are anti-correlated rather than scalar.
@@ -118,6 +124,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 - Human-state cell AUC / row AUC: `0.775` / `0.545`
 - Assignment gap: `row_support_is_primary_bottleneck`, row-support gap `0.5832`
 - Hidden row-support sensor: `portable_row_support_sensor_alive_partial`, family `portable_row_support_composite`, row AUC `0.8193`, cell recall `0.3289`
+- Masked row-support objective: `masked_row_support_objective_supported_with_stress_boundary`, row AUC `0.8193`, cell recall `0.3289`, group stress AUC `0.5584`
 
 ## Role-Based Outputs
 
@@ -138,7 +145,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 
 다음 큰 실험은 HS-JEPA core/adaptor 경계를 바꾸는 실험이어야 한다.
 
-- `OG-only Human-State Assignment Teacher`: The public-sensor teacher can be replaced by personal/cohort/time human-state consistency. Expected LB delta if true `-0.003`. Kill: Teacher-transfer row support fails under subject/date stress or cannot be converted into safe row-target actions.
+- `OG-only Human-State Assignment Teacher`: The public-sensor teacher can be replaced by personal/cohort/time human-state consistency. Expected LB delta if true `-0.003`. Kill: Masked row-support keeps failing subject/date/order stress or cannot be converted into safe row-target actions.
 - `Listener-Invariant Contrastive Decoder`: A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone. Expected LB delta if true `-0.002`. Kill: Listener gain and invariant energy remain anti-correlated on strong candidates.
 - `Private-Safe Toxicity Field`: The plateau comes from actions that help public-like rows but poison private-like rows. Expected LB delta if true `-0.0015`. Kill: Toxicity score only recovers known public failures, fails hard-world anchors, or does not separate matched local nulls.
 - `Hard-World Mixture Toxicity Decoder`: H088-like hard-world toxicity is anti-correlated with broad public-bad toxicity, so action-health must be factorized. Expected LB delta if true `-0.0025`. Kill: Broad toxicity predicts H088 well, or mixture safety does not beat matched null after target/source matching.
@@ -173,3 +180,4 @@ Generated supporting reports:
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/hsjepa_big_bet_queue.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/assignment_gap_decomposition_probe.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/hidden_row_support_sensor_probe.json`
+- `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/masked_row_support_objective_probe.json`

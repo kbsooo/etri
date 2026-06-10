@@ -57,7 +57,7 @@ Human-understanding prediction should separate hidden state representation, list
 | `listener_not_label` | `PASS` | Targets are described as listeners/responses to hidden state, not only as seven binary columns. | The same architecture can apply when listeners are survey answers, sensors, app usage, or health outcomes. |
 | `invariant_decoder_generalized` | `PASS` | Route energy is framed as one instance of invariant energy over output/action manifolds. | Other datasets can replace Q/S route with temporal, cohort, semantic, or physiological invariants. |
 | `competition_sensor_boundary` | `PASS` | Public LB sensor is explicitly marked as competition-specific assignment teacher. | Paper claims can keep the reusable architecture separate from the leaderboard-specific sensor. |
-| `remaining_generality_gap` | `BOUNDARY` | OG-only assignment probe status og_only_assignment_replacement_not_ready; pure row-cap2 recall 0.0404, distilled recall 0.1236. Assignment gap status row_support_is_primary_bottleneck; portable recall 0.1063, row-oracle recall 0.6896, row-support gap 0.5832. Hidden row-support transfer status portable_row_support_sensor_alive_partial; best family portable_row_support_composite, row AUC 0.8193, cell recall 0.3289. | The architecture is reusable; the current strongest competition instantiation is not yet fully portable or action-grade. |
+| `remaining_generality_gap` | `BOUNDARY` | OG-only assignment probe status og_only_assignment_replacement_not_ready; pure row-cap2 recall 0.0404, distilled recall 0.1236. Assignment gap status row_support_is_primary_bottleneck; portable recall 0.1063, row-oracle recall 0.6896, row-support gap 0.5832. Hidden row-support transfer status portable_row_support_sensor_alive_partial; best family portable_row_support_composite, row AUC 0.8193, cell recall 0.3289. Masked row-support objective status masked_row_support_objective_supported_with_stress_boundary; full row AUC 0.8193, cell recall 0.3289, group stress AUC 0.5584. | The architecture is reusable; the current strongest competition instantiation is not yet fully portable or action-grade. |
 
 ## What Transfers
 
@@ -80,4 +80,4 @@ HS-JEPA is a human-understanding architecture that predicts hidden human-state a
 
 ## Next Generality Breakthrough
 
-Turn the partially alive teacher-transfer row-support signal into an action-grade masked HS-JEPA objective. The next portable objective should predict which subject-days are actionable from the seven-target prediction landscape, then stress that support sensor under subject/date splits before allowing it to drive submissions.
+Turn the partially alive masked row-support representation into an action-grade decoder. The next portable objective should preserve teacher-transfer strength while lifting subject/date/order held-out stress before allowing row-support to drive submissions.

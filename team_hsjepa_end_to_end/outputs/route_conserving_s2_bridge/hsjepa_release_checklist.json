@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 49,
-  "total_checks": 49,
+  "passed_checks": 51,
+  "total_checks": 51,
   "required_failures": [],
   "checks": [
     {
@@ -109,6 +109,13 @@
       "passed": true,
       "required": true,
       "evidence": "sleep_competition_adapter/outputs/hidden_row_support_sensor_probe.json"
+    },
+    {
+      "check": "exists:masked_row_support_objective_probe.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "sleep_competition_adapter/outputs/masked_row_support_objective_probe.json"
     },
     {
       "check": "exists:listener_invariant_contrastive_probe.json",
@@ -272,6 +279,13 @@
       "evidence": "status=portable_row_support_sensor_alive_partial, family=portable_row_support_composite, row_auc=0.8193, cell_recall=0.3289, auc_z=6.4180"
     },
     {
+      "check": "masked_row_support_objective_recorded",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=masked_row_support_objective_supported_with_stress_boundary, row_auc=0.8193, cell_recall=0.3289, group_stress_auc=0.5584"
+    },
+    {
       "check": "listener_invariant_contrastive_probe_recorded",
       "status": "PASS",
       "passed": true,
@@ -332,7 +346,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=21, edges=41"
+      "evidence": "status=pipeline_ready_with_boundary, stages=22, edges=44"
     },
     {
       "check": "method_packet_presentable",

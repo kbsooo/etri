@@ -35,6 +35,7 @@ BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
 ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignment_gap_decomposition_probe.json"
 ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidden_row_support_sensor_probe.json"
+MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "masked_row_support_objective_probe.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
@@ -91,6 +92,7 @@ def require_inputs() -> list[dict[str, object]]:
         OG_PROBE_JSON,
         ASSIGNMENT_GAP_JSON,
         ROW_SUPPORT_SENSOR_JSON,
+        MASKED_ROW_SUPPORT_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
@@ -140,6 +142,7 @@ def build_checklist() -> dict[str, object]:
     og_probe = read_json(OG_PROBE_JSON)
     assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
     row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
+    masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -161,6 +164,7 @@ def build_checklist() -> dict[str, object]:
     og_verdict = og_probe.get("verdict", {})
     gap_verdict = assignment_gap.get("verdict", {})
     row_support_verdict = row_support_sensor.get("verdict", {})
+    masked_row_support_verdict = masked_row_support.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
     hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
@@ -328,6 +332,23 @@ def build_checklist() -> dict[str, object]:
                     f"row_auc={fmt(row_support_verdict.get('best_portable_mean_row_auc'), 4)}, "
                     f"cell_recall={fmt(row_support_verdict.get('best_portable_mean_cell_recall_with_stage_prior'), 4)}, "
                     f"auc_z={fmt(row_support_verdict.get('best_portable_mean_auc_z_vs_permuted_train'), 4)}"
+                ),
+            ),
+            check(
+                "masked_row_support_objective_recorded",
+                masked_row_support.get("status") == "probe_ready"
+                and masked_row_support_verdict.get("status") in {
+                    "masked_row_support_objective_supported_with_stress_boundary",
+                    "masked_row_support_objective_alive_but_fragile",
+                    "masked_row_support_objective_not_supported",
+                }
+                and float(masked_row_support_verdict.get("full_composite_mean_row_auc", 0.0)) >= 0.70
+                and float(masked_row_support_verdict.get("full_composite_mean_cell_recall", 0.0)) >= 0.25,
+                (
+                    f"status={masked_row_support_verdict.get('status')}, "
+                    f"row_auc={fmt(masked_row_support_verdict.get('full_composite_mean_row_auc'), 4)}, "
+                    f"cell_recall={fmt(masked_row_support_verdict.get('full_composite_mean_cell_recall'), 4)}, "
+                    f"group_stress_auc={fmt(masked_row_support_verdict.get('group_stress_full_mean_auc'), 4)}"
                 ),
             ),
             check(
@@ -507,9 +528,11 @@ def build_markdown(result: dict[str, object]) -> str:
             "- pure OG-only assignment is not proven",
             "- hidden row-support recovery is not solved by current portable human/social/cohort context",
             "- hidden row-support transfer is partially alive but not yet an action-grade deployment decoder",
+            "- masked row-support is a valid HS-JEPA representation objective candidate but group-heldout stress is still weak",
             "- human-state is an orientation diagnostic, not a complete row-target assignment solver",
             "- OG-only assignment replacement has a recorded probe result",
             "- Hidden row-support transfer has a recorded probe result",
+            "- Masked row-support objective has a recorded stress-boundary probe result",
             "- Listener-invariant contrastive decoding has a recorded probe result",
             "- Private-safe toxicity has a recorded probe result and hard-world boundary",
             "- Hard-world toxicity factorization has a recorded probe result",

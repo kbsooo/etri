@@ -26,9 +26,16 @@
         "best_row_support_family": "portable_row_support_composite",
         "best_row_support_mean_auc": 0.819329738968888,
         "best_row_support_mean_cell_recall": 0.32890961262553803,
-        "best_row_support_auc_z": 6.41799227766675
+        "best_row_support_auc_z": 6.41799227766675,
+        "masked_objective_status": "masked_row_support_objective_supported_with_stress_boundary",
+        "masked_objective_full_row_auc": 0.819329738968888,
+        "masked_objective_full_cell_recall": 0.32890961262553803,
+        "masked_objective_human_cell_recall": 0.27134146341463417,
+        "masked_objective_prediction_cell_recall": 0.2347560975609756,
+        "masked_objective_route_mask_cell_recall": 0.30559540889526543,
+        "masked_objective_group_stress_auc": 0.5584153847549592
       },
-      "kill_criterion": "Teacher-transfer row support fails under subject/date stress or cannot be converted into safe row-target actions."
+      "kill_criterion": "Masked row-support keeps failing subject/date/order stress or cannot be converted into safe row-target actions."
     },
     {
       "id": "listener_invariant_contrastive_decoder",
