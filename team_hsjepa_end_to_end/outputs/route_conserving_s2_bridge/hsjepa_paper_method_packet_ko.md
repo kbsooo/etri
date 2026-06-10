@@ -44,7 +44,7 @@ This adapter converts HS-JEPA Core into a sleep-log competition system by supply
 - Core/adapter boundary audit: `core_adapter_boundary_verified` (`6/6` checks)
 - Core operational violations: imports `0`, strings `0`
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
-- Big-bet queue: `big_bet_queue_ready` (`18` bets)
+- Big-bet queue: `big_bet_queue_ready` (`19` bets)
 
 ## Generality
 
@@ -199,6 +199,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 - Spectral counter sensor: `{'variant': 'orthogonal_private_residual', 'submission_file': 'submission_hsjepa_spectral_public_tangent_orthogonal_private_residual_57ed54c2_uploadsafe.csv'}`, file `submission_hsjepa_spectral_public_tangent_orthogonal_private_residual_57ed54c2_uploadsafe.csv`
 - Negative tangent invariant projection: `candidate_ready`, recommended `subject_prior_safe_projection`, file `submission_hsjepa_negative_tangent_invariant_subject_prior_safe_projection_ebdccca6_uploadsafe.csv`, bad cosine `-0.2259`, energy delta `-0.01685`, subject delta `-0.00106`
 - LB-conditioned responsibility: `candidate_ready`, recommended `pure_lb_gradient_jackpot`, file `submission_hsjepa_lb_responsibility_pure_lb_gradient_jackpot_f0a8129d_uploadsafe.csv`, LOO corr `0.7300`, changed cells `24`, predicted delta `-7.11879`, energy delta `-0.03290`, bad cosine `0.0551`
+- Mixture-listener responsibility: `candidate_ready`, recommended `target_listener_split_qs`, file `submission_hsjepa_mixture_listener_target_listener_split_qs_7a383104_uploadsafe.csv`, mixture LOO corr `0.9578` vs scalar `0.7300`, changed cells `30`, scalar delta `-4.34421`, mode delta `-0.53670`, conflict `0.2003`, bad cosine `-0.0042`
 - Action decoder ablation: `action_decoder_ablation_ready_decoder_jury_leads`, recommended `{'family': 'decoder_order_jury', 'variant': 'family_supermajority', 'submission_file': 'submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv', 'priority': 1.394366527938867}`, big bet `{'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572}`
 
 ## Role-Based Outputs
@@ -220,6 +221,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 
 다음 큰 실험은 HS-JEPA core/adaptor 경계를 바꾸는 실험이어야 한다.
 
+- `Mixture-Listener Responsibility Solver`: The public LB is not one listener; it is a scalar readout of multiple latent listener heads, and Q/S actions may need different heads. Expected LB delta if true `-0.01`. Kill: Target-split, consensus, and residual-conflict variants all fail public LB, meaning public LB anchors are too scalar/noisy to identify action-grade latent listeners.
 - `LB-Conditioned Responsibility Solver`: The public LB can be treated as an external listener whose scalar observations reveal row-target action responsibility. Expected LB delta if true `-0.008`. Kill: Pure-gradient and invariant-safe variants both fail public LB, meaning scalar public listener responsibility is descriptive but not enough without a hidden public/private row-support assignment.
 - `Negative Tangent Invariant Projection Solver`: A negative public representation is useful only when its inverse can be projected onto label-valid human-state invariants. Expected LB delta if true `-0.006`. Kill: Projection candidates worsen public LB like naive anti-tangent probes, meaning public-bad geometry is diagnostic but not yet an invertible action equation even under target/subject invariants.
 - `Spectral Public-Tangent Solver`: Known post-H057 public failures are not independent mistakes; they collapse onto a low-rank public-bad action tangent. Expected LB delta if true `-0.004`. Kill: Anti-tangent and orthogonal residual sensors both worsen public LB, meaning the low-rank tangent is descriptive but not an invertible action equation.
@@ -284,4 +286,5 @@ Generated supporting reports:
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/spectral_public_tangent_solver/spectral_public_tangent_readout.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/negative_tangent_invariant_projection_solver/negative_tangent_invariant_projection_readout.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/lb_conditioned_responsibility_readout.json`
+- `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/mixture_listener_responsibility_solver/mixture_listener_responsibility_readout.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite.json`

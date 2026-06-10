@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 83,
-  "total_checks": 83,
+  "passed_checks": 85,
+  "total_checks": 85,
   "required_failures": [],
   "checks": [
     {
@@ -223,6 +223,13 @@
       "evidence": "sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/lb_conditioned_responsibility_readout.json"
     },
     {
+      "check": "exists:mixture_listener_responsibility_readout.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "sleep_competition_adapter/outputs/mixture_listener_responsibility_solver/mixture_listener_responsibility_readout.json"
+    },
+    {
       "check": "exists:hsjepa_action_decoder_ablation_suite.json",
       "status": "PASS",
       "passed": true,
@@ -381,7 +388,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=big_bet_queue_ready, count=18"
+      "evidence": "status=big_bet_queue_ready, count=19"
     },
     {
       "check": "og_only_assignment_probe_recorded",
@@ -510,6 +517,13 @@
       "evidence": "status=candidate_ready, recommended=pure_lb_gradient_jackpot, loo_corr=0.7300, cells=115"
     },
     {
+      "check": "mixture_listener_responsibility_recorded",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=candidate_ready, recommended=target_listener_split_qs, mixture_loo=0.9578, scalar_loo=0.7300, cells=575"
+    },
+    {
       "check": "listener_invariant_contrastive_probe_recorded",
       "status": "PASS",
       "passed": true,
@@ -570,7 +584,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=38, edges=125"
+      "evidence": "status=pipeline_ready_with_boundary, stages=39, edges=133"
     },
     {
       "check": "method_packet_presentable",

@@ -74,6 +74,13 @@ LB_CONDITIONED_RESPONSIBILITY_JSON = (
     / "lb_conditioned_responsibility_solver"
     / "lb_conditioned_responsibility_readout.json"
 )
+MIXTURE_LISTENER_RESPONSIBILITY_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "mixture_listener_responsibility_solver"
+    / "mixture_listener_responsibility_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -133,6 +140,7 @@ def require_inputs() -> None:
             SPECTRAL_PUBLIC_TANGENT_JSON,
             NEGATIVE_TANGENT_INVARIANT_JSON,
             LB_CONDITIONED_RESPONSIBILITY_JSON,
+            MIXTURE_LISTENER_RESPONSIBILITY_JSON,
             ACTION_DECODER_ABLATION_JSON,
             CONTRASTIVE_PROBE_JSON,
             PRIVATE_TOXICITY_PROBE_JSON,
@@ -177,6 +185,7 @@ def build_packet() -> dict[str, object]:
     spectral_public_tangent = read_json(SPECTRAL_PUBLIC_TANGENT_JSON)
     negative_tangent_invariant = read_json(NEGATIVE_TANGENT_INVARIANT_JSON)
     lb_conditioned_responsibility = read_json(LB_CONDITIONED_RESPONSIBILITY_JSON)
+    mixture_listener_responsibility = read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -228,6 +237,10 @@ def build_packet() -> dict[str, object]:
     lb_responsibility_recommended = lb_responsibility_verdict["recommended_variant"]
     lb_responsibility_item = lb_conditioned_responsibility["variants"][lb_responsibility_recommended]
     lb_responsibility_submission = lb_responsibility_item["submission"]
+    mixture_listener_verdict = mixture_listener_responsibility["verdict"]
+    mixture_listener_recommended = mixture_listener_verdict["recommended_variant"]
+    mixture_listener_item = mixture_listener_responsibility["variants"][mixture_listener_recommended]
+    mixture_listener_submission = mixture_listener_item["submission"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -390,6 +403,18 @@ def build_packet() -> dict[str, object]:
             "lb_conditioned_responsibility_predicted_delta": lb_responsibility_item["metrics"]["sum_predicted_loss_delta"],
             "lb_conditioned_responsibility_energy_delta": lb_responsibility_item["metrics"]["mean_incremental_energy_delta"],
             "lb_conditioned_responsibility_bad_cosine": lb_responsibility_item["metrics"]["bad_tangent_cosine"],
+            "mixture_listener_responsibility_status": mixture_listener_verdict["status"],
+            "mixture_listener_responsibility_recommended": mixture_listener_recommended,
+            "mixture_listener_responsibility_file": mixture_listener_submission["submission_file"],
+            "mixture_listener_anchor_count": mixture_listener_responsibility["anchor_count"],
+            "mixture_listener_cell_count": mixture_listener_responsibility["cell_count"],
+            "mixture_listener_loo_corr": mixture_listener_responsibility["mixture_fit"]["loo_corr"],
+            "mixture_listener_scalar_loo_corr": mixture_listener_responsibility["mixture_fit"]["scalar_fit"]["loo_corr"],
+            "mixture_listener_changed_cells": mixture_listener_submission["changed_cells"],
+            "mixture_listener_scalar_delta": mixture_listener_item["metrics"]["sum_predicted_scalar_delta"],
+            "mixture_listener_mode_delta": mixture_listener_item["metrics"]["sum_predicted_total_mode_delta"],
+            "mixture_listener_conflict_score": mixture_listener_item["metrics"]["mean_conflict_score"],
+            "mixture_listener_bad_cosine": mixture_listener_item["metrics"]["bad_tangent_cosine"],
             "action_decoder_ablation_status": action_ablation_verdict["status"],
             "action_decoder_ablation_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],
@@ -485,6 +510,7 @@ def build_packet() -> dict[str, object]:
             "spectral_public_tangent_solver": str(SPECTRAL_PUBLIC_TANGENT_JSON.resolve()),
             "negative_tangent_invariant_projection_solver": str(NEGATIVE_TANGENT_INVARIANT_JSON.resolve()),
             "lb_conditioned_responsibility_solver": str(LB_CONDITIONED_RESPONSIBILITY_JSON.resolve()),
+            "mixture_listener_responsibility_solver": str(MIXTURE_LISTENER_RESPONSIBILITY_JSON.resolve()),
             "action_decoder_ablation_suite": str(ACTION_DECODER_ABLATION_JSON.resolve()),
             "listener_invariant_contrastive_probe": str(CONTRASTIVE_PROBE_JSON.resolve()),
             "private_safe_toxicity_probe": str(PRIVATE_TOXICITY_PROBE_JSON.resolve()),
@@ -861,6 +887,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- Spectral counter sensor: `{human['spectral_public_tangent_counter_sensor']}`, file `{human['spectral_public_tangent_counter_sensor_file']}`",
             f"- Negative tangent invariant projection: `{human['negative_tangent_invariant_status']}`, recommended `{human['negative_tangent_invariant_recommended']}`, file `{human['negative_tangent_invariant_file']}`, bad cosine `{fmt(human['negative_tangent_invariant_bad_cosine'], 4)}`, energy delta `{fmt(human['negative_tangent_invariant_energy_delta'], 5)}`, subject delta `{fmt(human['negative_tangent_invariant_subject_delta'], 5)}`",
             f"- LB-conditioned responsibility: `{human['lb_conditioned_responsibility_status']}`, recommended `{human['lb_conditioned_responsibility_recommended']}`, file `{human['lb_conditioned_responsibility_file']}`, LOO corr `{fmt(human['lb_conditioned_responsibility_loo_corr'], 4)}`, changed cells `{human['lb_conditioned_responsibility_changed_cells']}`, predicted delta `{fmt(human['lb_conditioned_responsibility_predicted_delta'], 5)}`, energy delta `{fmt(human['lb_conditioned_responsibility_energy_delta'], 5)}`, bad cosine `{fmt(human['lb_conditioned_responsibility_bad_cosine'], 4)}`",
+            f"- Mixture-listener responsibility: `{human['mixture_listener_responsibility_status']}`, recommended `{human['mixture_listener_responsibility_recommended']}`, file `{human['mixture_listener_responsibility_file']}`, mixture LOO corr `{fmt(human['mixture_listener_loo_corr'], 4)}` vs scalar `{fmt(human['mixture_listener_scalar_loo_corr'], 4)}`, changed cells `{human['mixture_listener_changed_cells']}`, scalar delta `{fmt(human['mixture_listener_scalar_delta'], 5)}`, mode delta `{fmt(human['mixture_listener_mode_delta'], 5)}`, conflict `{fmt(human['mixture_listener_conflict_score'], 4)}`, bad cosine `{fmt(human['mixture_listener_bad_cosine'], 4)}`",
             f"- Action decoder ablation: `{human['action_decoder_ablation_status']}`, recommended `{human['action_decoder_ablation_recommended_lb_sensor']}`, big bet `{human['action_decoder_ablation_big_bet_sensor']}`",
             "",
             "## Role-Based Outputs",
@@ -912,6 +939,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- `{packet['outputs']['spectral_public_tangent_solver']}`",
             f"- `{packet['outputs']['negative_tangent_invariant_projection_solver']}`",
             f"- `{packet['outputs']['lb_conditioned_responsibility_solver']}`",
+            f"- `{packet['outputs']['mixture_listener_responsibility_solver']}`",
             f"- `{packet['outputs']['action_decoder_ablation_suite']}`",
             "",
         ]

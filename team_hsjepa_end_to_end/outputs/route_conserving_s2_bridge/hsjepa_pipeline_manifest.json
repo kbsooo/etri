@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 38,
-  "edge_count": 125,
+  "stage_count": 39,
+  "edge_count": 133,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -522,9 +522,37 @@
       "boundary": "This is a scalar-listener inversion sensor; if public LB rejects it, responsibility is diagnostic but not yet a portable action equation."
     },
     {
+      "id": "mixture_listener_responsibility_solver",
+      "name": "Mixture-Listener Responsibility Solver",
+      "role": "Factors scalar public response into latent listener heads and tests consensus, conflict, and Q/S target-specific routing as HS-JEPA action decoders.",
+      "inputs": [
+        "public_score_ledger.csv",
+        "spectral_public_tangent_readout.json",
+        "lb_conditioned_responsibility_readout.json",
+        "route energy and subject-prior invariants",
+        "candidate action pool"
+      ],
+      "outputs": [
+        "mixture_listener_responsibility_readout_ko.md",
+        "submission_hsjepa_mixture_listener_mixture_consensus_jackpot_7dd97d06_uploadsafe.csv",
+        "submission_hsjepa_mixture_listener_private_residual_rescue_jackpot_2472ad5f_uploadsafe.csv",
+        "submission_hsjepa_mixture_listener_bad_mode_inside_out_probe_ce5085e8_uploadsafe.csv",
+        "submission_hsjepa_mixture_listener_target_listener_split_qs_7a383104_uploadsafe.csv",
+        "submission_hsjepa_mixture_listener_portable_mixture_core_d2b78c96_uploadsafe.csv"
+      ],
+      "evidence": [
+        "Mixture status: candidate_ready",
+        "Recommended variant: target_listener_split_qs",
+        "Mixture LOO corr: 0.9578",
+        "Scalar LOO corr: 0.7300",
+        "Cell count: 575"
+      ],
+      "boundary": "This is the next thesis-level sensor: if public LB accepts target-split routing, HS-JEPA moves from scalar listener responsibility to latent listener mixture routing."
+    },
+    {
       "id": "action_decoder_ablation_suite",
       "name": "Action Decoder Ablation Suite",
-      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, listener-dropout, spectral, invariant-projection, and LB-conditioned responsibility alternatives as HS-JEPA module ablations.",
+      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, listener-dropout, spectral, invariant-projection, LB-conditioned responsibility, and mixture-listener alternatives as HS-JEPA module ablations.",
       "inputs": [
         "row_support_strict_action_decoder_readout.json",
         "route_frontier_action_decoder_readout.json",
@@ -539,6 +567,7 @@
         "spectral_public_tangent_readout.json",
         "negative_tangent_invariant_projection_readout.json",
         "lb_conditioned_responsibility_readout.json",
+        "mixture_listener_responsibility_readout.json",
         "factorized_toxicity_decoder_stress_audit.json"
       ],
       "outputs": [
@@ -778,7 +807,7 @@
       "evidence": [
         "Adapter status: adapter_ready_with_public_sensor_boundary",
         "Adapter score delta: -0.0084113555",
-        "Big-bet count: 18"
+        "Big-bet count: 19"
       ],
       "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
     },
@@ -1160,6 +1189,38 @@
       "claim_readiness_and_paper_packet"
     ],
     [
+      "public_lb_sensor",
+      "mixture_listener_responsibility_solver"
+    ],
+    [
+      "spectral_public_tangent_solver",
+      "mixture_listener_responsibility_solver"
+    ],
+    [
+      "lb_conditioned_responsibility_solver",
+      "mixture_listener_responsibility_solver"
+    ],
+    [
+      "route_energy_model",
+      "mixture_listener_responsibility_solver"
+    ],
+    [
+      "human_state_listener_context",
+      "mixture_listener_responsibility_solver"
+    ],
+    [
+      "mixture_listener_responsibility_solver",
+      "action_decoder_ablation_suite"
+    ],
+    [
+      "mixture_listener_responsibility_solver",
+      "sleep_competition_adapter"
+    ],
+    [
+      "mixture_listener_responsibility_solver",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
       "negative_tangent_invariant_projection_solver",
       "action_decoder_ablation_suite"
     ],
@@ -1369,7 +1430,7 @@
     "core_module_benchmark_invariant_fp_lift": 1,
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
     "core_adapter_boundary_status": "core_adapter_boundary_verified",
-    "big_bet_count": 18,
+    "big_bet_count": 19,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "assignment_gap_decomposition_status": "row_support_is_primary_bottleneck",
     "assignment_gap_mean_row_support_gap": 0.5832137733142038,
@@ -1906,6 +1967,21 @@
       {
         "variant": "jackpot_public_equation_release",
         "score": 1.65355129666629
+      }
+    ],
+    "mixture_listener_responsibility_status": "candidate_ready",
+    "mixture_listener_responsibility_recommended": "target_listener_split_qs",
+    "mixture_listener_loo_corr": 0.9578327145275477,
+    "mixture_listener_scalar_loo_corr": 0.7300005193514604,
+    "mixture_listener_cells": 575,
+    "mixture_listener_top_ranked": [
+      {
+        "variant": "target_listener_split_qs",
+        "score": 1.5918460144979518
+      },
+      {
+        "variant": "mixture_consensus_jackpot",
+        "score": 0.9939259735616299
       }
     ],
     "action_decoder_ablation_suite_status": "action_decoder_ablation_ready_decoder_jury_leads",

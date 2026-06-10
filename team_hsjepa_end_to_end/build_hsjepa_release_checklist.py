@@ -69,6 +69,13 @@ LB_CONDITIONED_RESPONSIBILITY_JSON = (
     / "lb_conditioned_responsibility_solver"
     / "lb_conditioned_responsibility_readout.json"
 )
+MIXTURE_LISTENER_RESPONSIBILITY_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "mixture_listener_responsibility_solver"
+    / "mixture_listener_responsibility_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -142,6 +149,7 @@ def require_inputs() -> list[dict[str, object]]:
         SPECTRAL_PUBLIC_TANGENT_JSON,
         NEGATIVE_TANGENT_INVARIANT_JSON,
         LB_CONDITIONED_RESPONSIBILITY_JSON,
+        MIXTURE_LISTENER_RESPONSIBILITY_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -208,6 +216,7 @@ def build_checklist() -> dict[str, object]:
     spectral_public_tangent = read_json(SPECTRAL_PUBLIC_TANGENT_JSON)
     negative_tangent_invariant = read_json(NEGATIVE_TANGENT_INVARIANT_JSON)
     lb_conditioned_responsibility = read_json(LB_CONDITIONED_RESPONSIBILITY_JSON)
+    mixture_listener_responsibility = read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -244,6 +253,7 @@ def build_checklist() -> dict[str, object]:
     spectral_tangent_verdict = spectral_public_tangent.get("verdict", {})
     negative_projection_verdict = negative_tangent_invariant.get("verdict", {})
     lb_responsibility_verdict = lb_conditioned_responsibility.get("verdict", {})
+    mixture_listener_verdict = mixture_listener_responsibility.get("verdict", {})
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -753,6 +763,27 @@ def build_checklist() -> dict[str, object]:
                 ),
             ),
             check(
+                "mixture_listener_responsibility_recorded",
+                mixture_listener_responsibility.get("experiment") == "Mixture-Listener Responsibility Solver"
+                and mixture_listener_verdict.get("status") == "candidate_ready"
+                and mixture_listener_verdict.get("recommended_variant") in mixture_listener_responsibility.get("variants", {})
+                and float(mixture_listener_responsibility.get("mixture_fit", {}).get("loo_corr", 0.0))
+                > float(mixture_listener_responsibility.get("mixture_fit", {}).get("scalar_fit", {}).get("loo_corr", 0.0))
+                and int(mixture_listener_responsibility.get("cell_count", 0)) >= 1
+                and all(
+                    isinstance(item, dict)
+                    and item.get("submission", {}).get("validation", {}).get("upload_safe") is True
+                    for item in mixture_listener_responsibility.get("variants", {}).values()
+                ),
+                (
+                    f"status={mixture_listener_verdict.get('status')}, "
+                    f"recommended={mixture_listener_verdict.get('recommended_variant')}, "
+                    f"mixture_loo={fmt(mixture_listener_responsibility.get('mixture_fit', {}).get('loo_corr'), 4)}, "
+                    f"scalar_loo={fmt(mixture_listener_responsibility.get('mixture_fit', {}).get('scalar_fit', {}).get('loo_corr'), 4)}, "
+                    f"cells={mixture_listener_responsibility.get('cell_count')}"
+                ),
+            ),
+            check(
                 "listener_invariant_contrastive_probe_recorded",
                 contrastive_probe.get("status") == "probe_ready"
                 and contrastive_verdict.get("status") in {
@@ -947,7 +978,7 @@ def build_markdown(result: dict[str, object]) -> str:
             "- HS-JEPA Core/Adapter boundary audit is verified",
             "- Core-health calibrated release uses dataset-free action-health false-positive lift as an adapter release prior",
             "- Cross-listener transport uses failed listener lift as a boundary calibrator, not as a direct action generator",
-            "- Counterfactual listener-dropout, spectral public tangent, negative tangent invariant projection, and LB-conditioned responsibility are recorded as high-information public-sensor probes",
+            "- Counterfactual listener-dropout, spectral public tangent, negative tangent invariant projection, LB-conditioned responsibility, and mixture-listener responsibility are recorded as high-information public-sensor probes",
             "- the next big bet is replacing public-sensor assignment with an OG-only human-state teacher",
             "",
         ]

@@ -160,6 +160,41 @@ responsibility is inferred before action release.
 - spectral world: 실패들이 만든 bad tangent의 반대 방향이 action-grade다.
 - scalar-listener world: public scalar 관측식에서 추정한 row-target responsibility가 더 직접적인 action equation이다.
 
+### Contribution 9. Latent Listener Mixture Routing
+
+LB-conditioned responsibility는 public LB를 하나의 scalar listener로 본다.
+하지만 인간 이해 문제에서 하나의 관측자는 실제로 여러 listener의 합성일 수 있다.
+
+예를 들어 주관적 Q label과 objective S label은 같은 human-state를 보더라도 서로 다른 방식으로 반응할 수 있다.
+또 public subset과 private subset, subjective route와 sensor route도 같은 action field를 다르게 평가할 수 있다.
+
+따라서 HS-JEPA의 다음 확장은 다음과 같다.
+
+```text
+one scalar listener
+  -> latent listener mixture
+  -> target-specific listener routing
+```
+
+수면 대회 adapter에서는 다음 실험으로 구현했다.
+
+```bash
+python3 sleep_competition_adapter/mixture_listener_responsibility_solver.py
+```
+
+이 모듈은 public 제출 action-delta를 spectral listener head로 분해한 뒤, row-target action을 세 가지 방식으로 release한다.
+
+- listener consensus: scalar, dominant public mode, residual mode가 같은 방향을 말할 때만 release
+- listener conflict: dominant public mode와 residual mode가 충돌하는 곳을 rescue
+- Q/S target split: Q target은 residual listener, S target은 scalar/public consensus를 따르게 route
+
+핵심은 다음이다.
+
+```text
+human-state action should be decoded through latent listener mixtures,
+not through one monolithic public response gradient.
+```
+
 ## 이번 대회에서 얻은 핵심 증거
 
 ### 증거 1. Direct JEPA latent label prediction은 실패했다
@@ -334,6 +369,43 @@ public LB는 단순 점수표가 아니라, row-target action responsibility를 
 - spectral tangent와 scalar listener가 충돌할 때, hidden public/private row-support assignment가 더 근본 병목이다.
 - 다음에는 public/private subset factorization 또는 richer human-state invariant가 필요하다.
 
+### 증거 9. Public response는 단일 listener보다 mixture listener로 더 잘 설명된다
+
+Mixture-listener responsibility solver는 같은 26개 public 관측을 하나의 scalar gradient가 아니라 latent listener head들의 합성으로 설명했다.
+
+```text
+anchor count: 26
+candidate cells: 575
+mixture LOO correlation: 0.9578
+scalar LOO correlation: 0.7300
+recommended variant: target_listener_split_qs
+changed cells: 30
+selected rows: 28
+sum predicted scalar delta: -4.34421
+sum predicted mode delta: -0.53670
+bad tangent cosine: -0.00420
+file: submission_hsjepa_mixture_listener_target_listener_split_qs_7a383104_uploadsafe.csv
+```
+
+해석:
+
+```text
+public LB response is not necessarily one listener;
+it may be a scalar projection of multiple latent listener heads.
+```
+
+이 후보가 public에서 좋아지면:
+
+- HS-JEPA의 listener responsibility는 단일 scalar inversion보다 latent mixture routing으로 정리된다.
+- Q/S target은 같은 hidden human-state를 보더라도 서로 다른 listener head를 통과해야 한다는 증거가 생긴다.
+- 논문 contribution은 `external listener responsibility`에서 `latent listener mixture routing`까지 확장된다.
+
+나빠지면:
+
+- mixture decomposition은 public-score reconstruction에는 좋지만 action-grade decoder는 아니다.
+- public anchors의 scalar 정보만으로는 latent listener를 식별하기 부족하다.
+- 다음에는 private/public subset factorization 또는 richer human/social invariant가 필요하다.
+
 ## 논문에서 과장하면 안 되는 것
 
 - HS-JEPA core만으로 현재 최고 LB를 바로 재현한다고 말하면 안 된다.
@@ -342,6 +414,7 @@ public LB는 단순 점수표가 아니라, row-target action responsibility를 
 - human-state encoder 하나가 row-target assignment를 완전히 해결했다고 말하면 안 된다.
 - invariant projection 후보가 public에서 검증되기 전까지, negative representation을 action-grade decoder라고 단정하면 안 된다.
 - LB-conditioned responsibility 후보가 public에서 검증되기 전까지, scalar public listener inversion을 portable decoder라고 말하면 안 된다.
+- mixture-listener 후보가 public에서 검증되기 전까지, latent listener mixture routing을 action-grade decoder라고 단정하면 안 된다.
 
 ## 정확한 thesis 문장
 

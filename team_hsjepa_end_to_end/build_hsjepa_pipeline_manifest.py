@@ -77,6 +77,13 @@ LB_CONDITIONED_RESPONSIBILITY_JSON = (
     / "lb_conditioned_responsibility_solver"
     / "lb_conditioned_responsibility_readout.json"
 )
+MIXTURE_LISTENER_RESPONSIBILITY_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "mixture_listener_responsibility_solver"
+    / "mixture_listener_responsibility_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -139,6 +146,7 @@ def require_inputs() -> None:
         SPECTRAL_PUBLIC_TANGENT_JSON,
         NEGATIVE_TANGENT_INVARIANT_JSON,
         LB_CONDITIONED_RESPONSIBILITY_JSON,
+        MIXTURE_LISTENER_RESPONSIBILITY_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -219,6 +227,7 @@ def build_manifest() -> dict[str, object]:
     spectral_public_tangent = read_json(SPECTRAL_PUBLIC_TANGENT_JSON)
     negative_tangent_invariant = read_json(NEGATIVE_TANGENT_INVARIANT_JSON)
     lb_conditioned_responsibility = read_json(LB_CONDITIONED_RESPONSIBILITY_JSON)
+    mixture_listener_responsibility = read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -248,6 +257,7 @@ def build_manifest() -> dict[str, object]:
     spectral_tangent_verdict = spectral_public_tangent["verdict"]
     negative_projection_verdict = negative_tangent_invariant["verdict"]
     lb_responsibility_verdict = lb_conditioned_responsibility["verdict"]
+    mixture_listener_verdict = mixture_listener_responsibility["verdict"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -673,9 +683,34 @@ def build_manifest() -> dict[str, object]:
             "This is a scalar-listener inversion sensor; if public LB rejects it, responsibility is diagnostic but not yet a portable action equation.",
         ),
         stage(
+            "mixture_listener_responsibility_solver",
+            "Mixture-Listener Responsibility Solver",
+            "Factors scalar public response into latent listener heads and tests consensus, conflict, and Q/S target-specific routing as HS-JEPA action decoders.",
+            [
+                "public_score_ledger.csv",
+                "spectral_public_tangent_readout.json",
+                "lb_conditioned_responsibility_readout.json",
+                "route energy and subject-prior invariants",
+                "candidate action pool",
+            ],
+            ["mixture_listener_responsibility_readout_ko.md", *[
+                str(item.get("submission", {}).get("submission_file"))
+                for item in mixture_listener_responsibility.get("variants", {}).values()
+                if isinstance(item, dict) and item.get("submission", {}).get("submission_file")
+            ]],
+            [
+                f"Mixture status: {mixture_listener_verdict['status']}",
+                f"Recommended variant: {mixture_listener_verdict['recommended_variant']}",
+                f"Mixture LOO corr: {fmt(mixture_listener_responsibility['mixture_fit']['loo_corr'], 4)}",
+                f"Scalar LOO corr: {fmt(mixture_listener_responsibility['mixture_fit']['scalar_fit']['loo_corr'], 4)}",
+                f"Cell count: {mixture_listener_responsibility['cell_count']}",
+            ],
+            "This is the next thesis-level sensor: if public LB accepts target-split routing, HS-JEPA moves from scalar listener responsibility to latent listener mixture routing.",
+        ),
+        stage(
             "action_decoder_ablation_suite",
             "Action Decoder Ablation Suite",
-            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, listener-dropout, spectral, invariant-projection, and LB-conditioned responsibility alternatives as HS-JEPA module ablations.",
+            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, listener-dropout, spectral, invariant-projection, LB-conditioned responsibility, and mixture-listener alternatives as HS-JEPA module ablations.",
             [
                 "row_support_strict_action_decoder_readout.json",
                 "route_frontier_action_decoder_readout.json",
@@ -690,6 +725,7 @@ def build_manifest() -> dict[str, object]:
                 "spectral_public_tangent_readout.json",
                 "negative_tangent_invariant_projection_readout.json",
                 "lb_conditioned_responsibility_readout.json",
+                "mixture_listener_responsibility_readout.json",
                 "factorized_toxicity_decoder_stress_audit.json",
             ],
             ["hsjepa_action_decoder_ablation_suite_ko.md", "hsjepa_action_decoder_ablation_suite.csv"],
@@ -978,6 +1014,14 @@ def build_manifest() -> dict[str, object]:
         ["lb_conditioned_responsibility_solver", "action_decoder_ablation_suite"],
         ["lb_conditioned_responsibility_solver", "sleep_competition_adapter"],
         ["lb_conditioned_responsibility_solver", "claim_readiness_and_paper_packet"],
+        ["public_lb_sensor", "mixture_listener_responsibility_solver"],
+        ["spectral_public_tangent_solver", "mixture_listener_responsibility_solver"],
+        ["lb_conditioned_responsibility_solver", "mixture_listener_responsibility_solver"],
+        ["route_energy_model", "mixture_listener_responsibility_solver"],
+        ["human_state_listener_context", "mixture_listener_responsibility_solver"],
+        ["mixture_listener_responsibility_solver", "action_decoder_ablation_suite"],
+        ["mixture_listener_responsibility_solver", "sleep_competition_adapter"],
+        ["mixture_listener_responsibility_solver", "claim_readiness_and_paper_packet"],
         ["negative_tangent_invariant_projection_solver", "action_decoder_ablation_suite"],
         ["negative_tangent_invariant_projection_solver", "sleep_competition_adapter"],
         ["negative_tangent_invariant_projection_solver", "claim_readiness_and_paper_packet"],
@@ -1115,6 +1159,12 @@ def build_manifest() -> dict[str, object]:
             "lb_conditioned_responsibility_loo_corr": lb_conditioned_responsibility["fit"]["loo_corr"],
             "lb_conditioned_responsibility_cells": lb_conditioned_responsibility["responsibility_cells"],
             "lb_conditioned_responsibility_top_ranked": lb_responsibility_verdict["ranking"][:2],
+            "mixture_listener_responsibility_status": mixture_listener_verdict["status"],
+            "mixture_listener_responsibility_recommended": mixture_listener_verdict["recommended_variant"],
+            "mixture_listener_loo_corr": mixture_listener_responsibility["mixture_fit"]["loo_corr"],
+            "mixture_listener_scalar_loo_corr": mixture_listener_responsibility["mixture_fit"]["scalar_fit"]["loo_corr"],
+            "mixture_listener_cells": mixture_listener_responsibility["cell_count"],
+            "mixture_listener_top_ranked": mixture_listener_verdict["ranking"][:2],
             "action_decoder_ablation_suite_status": action_ablation_verdict["status"],
             "action_decoder_ablation_suite_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_suite_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],
@@ -1196,6 +1246,11 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    SPT --> LBR["LB-conditioned responsibility solver"]',
             '    NTP["Negative tangent invariant projection"] --> LBR',
             '    B --> LBR',
+            '    LBR --> MLR["Mixture-listener responsibility solver"]',
+            '    SPT --> MLR',
+            '    B --> MLR',
+            '    MLR --> ADA',
+            '    MLR --> ADAPT',
             '    LBR --> ADA',
             '    LBR --> ADAPT',
             '    CLD --> ADA',

@@ -13920,6 +13920,182 @@
       }
     }
   },
+  "mixture_listener_responsibility_solver": {
+    "experiment": "Mixture-Listener Responsibility Solver",
+    "architecture_role": "competition_adapter_latent_listener_factorization_head",
+    "core_claim": "HS-JEPA should not convert one scalar listener observation directly into action; it should factor latent listener heads and release actions by consensus, conflict, or target-specific routing.",
+    "status": "candidate_ready",
+    "recommended_variant": "target_listener_split_qs",
+    "reason": "Recommended by mixture-listener predicted improvement, mode confidence, action-health, and upload-safe validation.",
+    "anchor_count": 26,
+    "cell_count": 575,
+    "spectral": {
+      "anchor_count": 26,
+      "first_mode_variance": 0.9628550254007645,
+      "top5_cumulative_variance": 0.9946826859769906,
+      "singular_values": [
+        3.9248700923283506,
+        0.42736505936128066,
+        0.3891499257724587,
+        0.3356759829624167,
+        0.24990018982496587,
+        0.16724030897803246,
+        0.13288948751368476,
+        0.11300586024023068
+      ],
+      "mean_bad_tangent_coord": 0.7500068848733459,
+      "min_bad_tangent_coord": -0.7172294112358857,
+      "max_bad_tangent_coord": 0.9995708377235418
+    },
+    "mixture_fit": {
+      "train_corr": 0.9893815585655179,
+      "loo_corr": 0.9578327145275477,
+      "modes": [
+        {
+          "mode": 0,
+          "variance": 0.4337803106665849,
+          "cumulative_variance": 0.4337803106665849,
+          "beta": -0.13533762505126734,
+          "score_loss_corr": -0.95622274112224,
+          "singular_value": 35.31456347127106
+        },
+        {
+          "mode": 1,
+          "variance": 0.1510844118024639,
+          "cumulative_variance": 0.5848647224690489,
+          "beta": 0.020228573633049498,
+          "score_loss_corr": 0.08440607417160058,
+          "singular_value": 20.84148948448944
+        },
+        {
+          "mode": 2,
+          "variance": 0.12116563327656586,
+          "cumulative_variance": 0.7060303557456147,
+          "beta": -0.021233985612034344,
+          "score_loss_corr": -0.07936533004784085,
+          "singular_value": 18.664168764510435
+        },
+        {
+          "mode": 3,
+          "variance": 0.0854083435745326,
+          "cumulative_variance": 0.7914386993201473,
+          "beta": -0.05160440661770456,
+          "score_loss_corr": -0.1620246269788332,
+          "singular_value": 15.670002800790474
+        },
+        {
+          "mode": 4,
+          "variance": 0.07130255034389653,
+          "cumulative_variance": 0.8627412496640439,
+          "beta": 0.044039727292839566,
+          "score_loss_corr": 0.1263858290728252,
+          "singular_value": 14.317640596086445
+        },
+        {
+          "mode": 5,
+          "variance": 0.059678882952469196,
+          "cumulative_variance": 0.922420132616513,
+          "beta": 0.03584715097835226,
+          "score_loss_corr": 0.09415674901758334,
+          "singular_value": 13.09873232371549
+        }
+      ],
+      "scalar_fit": {
+        "anchor_count": 26,
+        "feature_count": 115,
+        "ridge_values": [
+          0.35,
+          0.8,
+          1.6,
+          3.2
+        ],
+        "loo_corr": 0.7300005193514604,
+        "loo_mse": 0.482924866878181,
+        "loss_delta_min": 0.00015723090000008266,
+        "loss_delta_max": 0.013479733900000013,
+        "loss_delta_mean": 0.007230148834615433
+      }
+    },
+    "ranking": [
+      {
+        "variant": "target_listener_split_qs",
+        "score": 1.5918460144979518
+      },
+      {
+        "variant": "mixture_consensus_jackpot",
+        "score": 0.9939259735616299
+      },
+      {
+        "variant": "bad_mode_inside_out_probe",
+        "score": 0.8176290734902348
+      },
+      {
+        "variant": "portable_mixture_core",
+        "score": 0.5185153199460453
+      },
+      {
+        "variant": "private_residual_rescue_jackpot",
+        "score": 0.3496095185101448
+      }
+    ],
+    "variants": {
+      "mixture_consensus_jackpot": {
+        "submission_file": "submission_hsjepa_mixture_listener_mixture_consensus_jackpot_7dd97d06_uploadsafe.csv",
+        "changed_cells": 12,
+        "selected_rows": 11,
+        "sum_predicted_scalar_delta": -2.119479261546882,
+        "sum_predicted_total_mode_delta": -0.5567931050277858,
+        "mean_conflict_score": 0.0633230564569549,
+        "mean_mode_confidence": 0.5267033354289775,
+        "bad_tangent_cosine": -0.007466674012982467,
+        "upload_safe": true
+      },
+      "private_residual_rescue_jackpot": {
+        "submission_file": "submission_hsjepa_mixture_listener_private_residual_rescue_jackpot_2472ad5f_uploadsafe.csv",
+        "changed_cells": 5,
+        "selected_rows": 5,
+        "sum_predicted_scalar_delta": 0.2397380501971909,
+        "sum_predicted_total_mode_delta": 0.0008113030150420216,
+        "mean_conflict_score": 0.8122806747059675,
+        "mean_mode_confidence": 0.47279880550976144,
+        "bad_tangent_cosine": 0.001748685384134563,
+        "upload_safe": true
+      },
+      "bad_mode_inside_out_probe": {
+        "submission_file": "submission_hsjepa_mixture_listener_bad_mode_inside_out_probe_ce5085e8_uploadsafe.csv",
+        "changed_cells": 16,
+        "selected_rows": 13,
+        "sum_predicted_scalar_delta": -1.526195129775024,
+        "sum_predicted_total_mode_delta": -0.3692693941123602,
+        "mean_conflict_score": 0.5136188560522673,
+        "mean_mode_confidence": 0.5214639755061772,
+        "bad_tangent_cosine": -0.0061862100876002146,
+        "upload_safe": true
+      },
+      "target_listener_split_qs": {
+        "submission_file": "submission_hsjepa_mixture_listener_target_listener_split_qs_7a383104_uploadsafe.csv",
+        "changed_cells": 30,
+        "selected_rows": 28,
+        "sum_predicted_scalar_delta": -4.344207316771891,
+        "sum_predicted_total_mode_delta": -0.5366979094683713,
+        "mean_conflict_score": 0.20031961216906274,
+        "mean_mode_confidence": 0.4998531024681526,
+        "bad_tangent_cosine": -0.004202542071716374,
+        "upload_safe": true
+      },
+      "portable_mixture_core": {
+        "submission_file": "submission_hsjepa_mixture_listener_portable_mixture_core_d2b78c96_uploadsafe.csv",
+        "changed_cells": 11,
+        "selected_rows": 11,
+        "sum_predicted_scalar_delta": -0.5710818002716833,
+        "sum_predicted_total_mode_delta": -0.2817139975677512,
+        "mean_conflict_score": 0.2944604418481095,
+        "mean_mode_confidence": 0.4735517803237474,
+        "bad_tangent_cosine": -0.005332031299704455,
+        "upload_safe": true
+      }
+    }
+  },
   "action_decoder_ablation_suite": {
     "status": "action_decoder_ablation_ready_decoder_jury_leads",
     "recommended_lb_sensor": {
@@ -14180,7 +14356,8 @@
     "Counterfactual listener-dropout turns public failures into toxicity labels and exposes a strong A/B sensor: either high-survival route/fusion actions were good cells mixed into bad submissions, or the public/private equation requires inverting those toxic directions.",
     "Spectral public-tangent decomposition shows that post-H057 public failures are highly low-rank; HS-JEPA can now treat failed submissions as a negative representation space rather than isolated bad scores.",
     "Negative tangent invariant projection turns that negative representation into an action-grade test: only anti-public-bad moves that preserve target-route and subject-prior energy are released.",
-    "LB-conditioned responsibility now treats public LB as an external listener and estimates which row-target actions carried scalar loss responsibility under leave-one-anchor stress."
+    "LB-conditioned responsibility now treats public LB as an external listener and estimates which row-target actions carried scalar loss responsibility under leave-one-anchor stress.",
+    "Mixture-listener responsibility shows that scalar public response is better explained by latent listener heads, and raises a new Q/S target-routing hypothesis through `target_listener_split_qs`."
   ],
   "what_the_adapter_does_not_prove": [
     "pure OG-only assignment",
@@ -14197,6 +14374,7 @@
     "that the public-bad spectral tangent is invertible before public LB observes anti-tangent and orthogonal residual sensors",
     "that invariant-projected anti-tangent actions improve LB before public LB observes the generated projection candidates",
     "that scalar public-listener responsibility is portable or private-safe before public LB observes the LB-conditioned responsibility candidates",
+    "that mixture-listener responsibility is action-grade before public LB observes target-split, consensus, and residual-conflict candidates",
     "that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments",
     "private leaderboard safety",
     "S2 as a universal human-sleep factor",

@@ -220,6 +220,27 @@ HS-JEPA listener responsibility can be inferred from scalar listener observation
 
 이 실험은 public LB를 하나의 외부 listener로 보고, 여러 제출 action delta와 scalar loss 변화를 이용해 row-target responsibility를 역추정한다. 추천 `pure_lb_gradient_jackpot`은 predicted public-listener 개선과 route energy는 강하지만 spectral bad tangent와 일부 같은 방향이다. 그래서 public에서 좋아지면 scalar listener equation이 spectral anti-tangent보다 더 action-grade라는 뜻이고, 나빠지면 LB-conditioned responsibility는 아직 diagnostic에 가깝다는 뜻이다.
 
+## Mixture-Listener Responsibility Solver
+
+- Status: `candidate_ready`
+- Recommended variant: `target_listener_split_qs`
+- Anchor count: `26`
+- Cell count: `575`
+- Mixture LOO correlation: `0.9578`
+- Scalar LOO correlation: `0.7300`
+
+HS-JEPA should not convert one scalar listener observation directly into action; it should factor latent listener heads and release actions by consensus, conflict, or target-specific routing.
+
+| Variant | Output | Changed cells | Scalar delta | Mode delta | Conflict | Confidence | Bad cosine | Upload-safe |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `mixture_consensus_jackpot` | `submission_hsjepa_mixture_listener_mixture_consensus_jackpot_7dd97d06_uploadsafe.csv` | `12` | `-2.11948` | `-0.55679` | `0.0633` | `0.5267` | `-0.0075` | `True` |
+| `private_residual_rescue_jackpot` | `submission_hsjepa_mixture_listener_private_residual_rescue_jackpot_2472ad5f_uploadsafe.csv` | `5` | `0.23974` | `0.00081` | `0.8123` | `0.4728` | `0.0017` | `True` |
+| `bad_mode_inside_out_probe` | `submission_hsjepa_mixture_listener_bad_mode_inside_out_probe_ce5085e8_uploadsafe.csv` | `16` | `-1.52620` | `-0.36927` | `0.5136` | `0.5215` | `-0.0062` | `True` |
+| `target_listener_split_qs` | `submission_hsjepa_mixture_listener_target_listener_split_qs_7a383104_uploadsafe.csv` | `30` | `-4.34421` | `-0.53670` | `0.2003` | `0.4999` | `-0.0042` | `True` |
+| `portable_mixture_core` | `submission_hsjepa_mixture_listener_portable_mixture_core_d2b78c96_uploadsafe.csv` | `11` | `-0.57108` | `-0.28171` | `0.2945` | `0.4736` | `-0.0053` | `True` |
+
+이 실험은 public LB를 단일 listener가 아니라 여러 latent listener head의 scalar readout으로 본다. 추천 `target_listener_split_qs`는 Q target은 residual listener, S target은 scalar/public consensus 쪽을 듣는다는 가설을 건다. public에서 좋아지면 HS-JEPA의 논문 기여는 `listener responsibility`에서 `latent listener mixture routing`으로 확장된다.
+
 ## Action Decoder Ablation Suite
 
 - Status: `action_decoder_ablation_ready_decoder_jury_leads`
@@ -315,6 +336,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - Spectral public-tangent decomposition shows that post-H057 public failures are highly low-rank; HS-JEPA can now treat failed submissions as a negative representation space rather than isolated bad scores.
 - Negative tangent invariant projection turns that negative representation into an action-grade test: only anti-public-bad moves that preserve target-route and subject-prior energy are released.
 - LB-conditioned responsibility now treats public LB as an external listener and estimates which row-target actions carried scalar loss responsibility under leave-one-anchor stress.
+- Mixture-listener responsibility shows that scalar public response is better explained by latent listener heads, and raises a new Q/S target-routing hypothesis through `target_listener_split_qs`.
 
 ## 이 adapter가 아직 증명하지 못한 것
 
@@ -332,6 +354,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - that the public-bad spectral tangent is invertible before public LB observes anti-tangent and orthogonal residual sensors
 - that invariant-projected anti-tangent actions improve LB before public LB observes the generated projection candidates
 - that scalar public-listener responsibility is portable or private-safe before public LB observes the LB-conditioned responsibility candidates
+- that mixture-listener responsibility is action-grade before public LB observes target-split, consensus, and residual-conflict candidates
 - that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments
 - private leaderboard safety
 - S2 as a universal human-sleep factor

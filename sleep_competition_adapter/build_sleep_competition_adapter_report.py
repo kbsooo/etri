@@ -56,6 +56,11 @@ LB_CONDITIONED_RESPONSIBILITY_JSON = (
     / "lb_conditioned_responsibility_solver"
     / "lb_conditioned_responsibility_readout.json"
 )
+MIXTURE_LISTENER_RESPONSIBILITY_JSON = (
+    OUT
+    / "mixture_listener_responsibility_solver"
+    / "mixture_listener_responsibility_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
@@ -108,6 +113,7 @@ def require_inputs() -> None:
         SPECTRAL_PUBLIC_TANGENT_JSON,
         NEGATIVE_TANGENT_INVARIANT_JSON,
         LB_CONDITIONED_RESPONSIBILITY_JSON,
+        MIXTURE_LISTENER_RESPONSIBILITY_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -138,6 +144,7 @@ def build_big_bets(
     spectral_public_tangent: dict[str, object],
     negative_tangent_invariant: dict[str, object],
     lb_conditioned_responsibility: dict[str, object],
+    mixture_listener_responsibility: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -220,6 +227,11 @@ def build_big_bets(
         if isinstance(lb_conditioned_responsibility.get("verdict"), dict)
         else {}
     )
+    mixture_listener_verdict = (
+        mixture_listener_responsibility.get("verdict", {})
+        if isinstance(mixture_listener_responsibility.get("verdict"), dict)
+        else {}
+    )
     action_ablation_verdict = (
         action_decoder_ablation.get("verdict", {})
         if isinstance(action_decoder_ablation.get("verdict"), dict)
@@ -241,6 +253,29 @@ def build_big_bets(
         else {}
     )
     bets = [
+        {
+            "id": "mixture_listener_responsibility_solver",
+            "name": "Mixture-Listener Responsibility Solver",
+            "worldview": "The public LB is not one listener; it is a scalar readout of multiple latent listener heads, and Q/S actions may need different heads.",
+            "core_modules_exercised": [
+                "listener_responsibility",
+                "latent_listener_factorization",
+                "target_route_decoder",
+                "action_health_decoder",
+                "public_private_equation",
+            ],
+            "adapter_move": "Factor previous public-score action deltas into spectral listener heads, then release row-target actions by consensus, conflict, or target-specific Q/S listener routing.",
+            "why_big": "If this wins LB, HS-JEPA gains a stronger paper contribution than scalar responsibility: human-state actions should be decoded through latent listener mixtures, not a single public response gradient.",
+            "expected_public_lb_delta_if_true": -0.010,
+            "latest_probe_status": mixture_listener_verdict.get("status"),
+            "latest_probe_evidence": {
+                "recommended_variant": mixture_listener_verdict.get("recommended_variant"),
+                "ranking": mixture_listener_verdict.get("ranking"),
+                "mixture_fit": mixture_listener_responsibility.get("mixture_fit"),
+                "cell_count": mixture_listener_responsibility.get("cell_count"),
+            },
+            "kill_criterion": "Target-split, consensus, and residual-conflict variants all fail public LB, meaning public LB anchors are too scalar/noisy to identify action-grade latent listeners.",
+        },
         {
             "id": "lb_conditioned_responsibility_solver",
             "name": "LB-Conditioned Responsibility Solver",
@@ -589,12 +624,13 @@ def build_big_bets(
         },
     ]
     priority_order = {
-        "lb_conditioned_responsibility_solver": 0,
-        "negative_tangent_invariant_projection_solver": 1,
-        "spectral_public_tangent_solver": 2,
-        "counterfactual_listener_dropout_solver": 3,
-        "action_decoder_ablation_suite": 4,
-        "og_only_assignment_teacher": 5,
+        "mixture_listener_responsibility_solver": 0,
+        "lb_conditioned_responsibility_solver": 1,
+        "negative_tangent_invariant_projection_solver": 2,
+        "spectral_public_tangent_solver": 3,
+        "counterfactual_listener_dropout_solver": 4,
+        "action_decoder_ablation_suite": 5,
+        "og_only_assignment_teacher": 6,
     }
     return sorted(
         bets,
@@ -631,6 +667,7 @@ def build_report() -> dict[str, object]:
     spectral_public_tangent = read_json(SPECTRAL_PUBLIC_TANGENT_JSON)
     negative_tangent_invariant = read_json(NEGATIVE_TANGENT_INVARIANT_JSON)
     lb_conditioned_responsibility = read_json(LB_CONDITIONED_RESPONSIBILITY_JSON)
+    mixture_listener_responsibility = read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -658,6 +695,7 @@ def build_report() -> dict[str, object]:
     spectral_tangent_verdict = spectral_public_tangent.get("verdict", {})
     negative_projection_verdict = negative_tangent_invariant.get("verdict", {})
     lb_responsibility_verdict = lb_conditioned_responsibility.get("verdict", {})
+    mixture_listener_verdict = mixture_listener_responsibility.get("verdict", {})
     action_decoder_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -942,6 +980,34 @@ def build_report() -> dict[str, object]:
                 if isinstance(item, dict)
             },
         },
+        "mixture_listener_responsibility_solver": {
+            "experiment": mixture_listener_responsibility.get("experiment"),
+            "architecture_role": mixture_listener_responsibility.get("architecture_role"),
+            "core_claim": mixture_listener_responsibility.get("core_claim"),
+            "status": mixture_listener_verdict.get("status"),
+            "recommended_variant": mixture_listener_verdict.get("recommended_variant"),
+            "reason": mixture_listener_verdict.get("reason"),
+            "anchor_count": mixture_listener_responsibility.get("anchor_count"),
+            "cell_count": mixture_listener_responsibility.get("cell_count"),
+            "spectral": mixture_listener_responsibility.get("spectral"),
+            "mixture_fit": mixture_listener_responsibility.get("mixture_fit"),
+            "ranking": mixture_listener_verdict.get("ranking"),
+            "variants": {
+                name: {
+                    "submission_file": item.get("submission", {}).get("submission_file"),
+                    "changed_cells": item.get("submission", {}).get("changed_cells"),
+                    "selected_rows": item.get("submission", {}).get("selected_rows"),
+                    "sum_predicted_scalar_delta": item.get("metrics", {}).get("sum_predicted_scalar_delta"),
+                    "sum_predicted_total_mode_delta": item.get("metrics", {}).get("sum_predicted_total_mode_delta"),
+                    "mean_conflict_score": item.get("metrics", {}).get("mean_conflict_score"),
+                    "mean_mode_confidence": item.get("metrics", {}).get("mean_mode_confidence"),
+                    "bad_tangent_cosine": item.get("metrics", {}).get("bad_tangent_cosine"),
+                    "upload_safe": item.get("submission", {}).get("validation", {}).get("upload_safe"),
+                }
+                for name, item in mixture_listener_responsibility.get("variants", {}).items()
+                if isinstance(item, dict)
+            },
+        },
         "action_decoder_ablation_suite": {
             "status": action_decoder_ablation_verdict.get("status"),
             "recommended_lb_sensor": action_decoder_ablation_verdict.get("recommended_lb_sensor"),
@@ -1039,6 +1105,7 @@ def build_report() -> dict[str, object]:
             "Spectral public-tangent decomposition shows that post-H057 public failures are highly low-rank; HS-JEPA can now treat failed submissions as a negative representation space rather than isolated bad scores.",
             "Negative tangent invariant projection turns that negative representation into an action-grade test: only anti-public-bad moves that preserve target-route and subject-prior energy are released.",
             "LB-conditioned responsibility now treats public LB as an external listener and estimates which row-target actions carried scalar loss responsibility under leave-one-anchor stress.",
+            "Mixture-listener responsibility shows that scalar public response is better explained by latent listener heads, and raises a new Q/S target-routing hypothesis through `target_listener_split_qs`.",
         ],
         "what_the_adapter_does_not_prove": [
             "pure OG-only assignment",
@@ -1055,6 +1122,7 @@ def build_report() -> dict[str, object]:
             "that the public-bad spectral tangent is invertible before public LB observes anti-tangent and orthogonal residual sensors",
             "that invariant-projected anti-tangent actions improve LB before public LB observes the generated projection candidates",
             "that scalar public-listener responsibility is portable or private-safe before public LB observes the LB-conditioned responsibility candidates",
+            "that mixture-listener responsibility is action-grade before public LB observes target-split, consensus, and residual-conflict candidates",
             "that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments",
             "private leaderboard safety",
             "S2 as a universal human-sleep factor",
@@ -1122,6 +1190,20 @@ def build_report_markdown(report: dict[str, object]) -> str:
             f"`{fmt(item['sum_predicted_loss_delta'], 5)}` | `{fmt(item['mean_sign_stability'], 4)}` | "
             f"`{fmt(item['mean_incremental_energy_delta'], 5)}` | `{fmt(item['bad_tangent_cosine'], 4)}` | "
             f"`{item['upload_safe']}` |"
+        )
+
+    mixture_listener_rows = [
+        "| Variant | Output | Changed cells | Scalar delta | Mode delta | Conflict | Confidence | Bad cosine | Upload-safe |",
+        "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for variant, item in report["mixture_listener_responsibility_solver"]["variants"].items():
+        mixture_listener_rows.append(
+            f"| `{variant}` | `{item['submission_file']}` | `{item['changed_cells']}` | "
+            f"`{fmt(item['sum_predicted_scalar_delta'], 5)}` | "
+            f"`{fmt(item['sum_predicted_total_mode_delta'], 5)}` | "
+            f"`{fmt(item['mean_conflict_score'], 4)}` | "
+            f"`{fmt(item['mean_mode_confidence'], 4)}` | "
+            f"`{fmt(item['bad_tangent_cosine'], 4)}` | `{item['upload_safe']}` |"
         )
 
     return "\n".join(
@@ -1330,6 +1412,21 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             "이 실험은 public LB를 하나의 외부 listener로 보고, 여러 제출 action delta와 scalar loss 변화를 이용해 row-target responsibility를 역추정한다. 추천 `pure_lb_gradient_jackpot`은 predicted public-listener 개선과 route energy는 강하지만 spectral bad tangent와 일부 같은 방향이다. 그래서 public에서 좋아지면 scalar listener equation이 spectral anti-tangent보다 더 action-grade라는 뜻이고, 나빠지면 LB-conditioned responsibility는 아직 diagnostic에 가깝다는 뜻이다.",
             "",
+            "## Mixture-Listener Responsibility Solver",
+            "",
+            f"- Status: `{report['mixture_listener_responsibility_solver']['status']}`",
+            f"- Recommended variant: `{report['mixture_listener_responsibility_solver']['recommended_variant']}`",
+            f"- Anchor count: `{report['mixture_listener_responsibility_solver']['anchor_count']}`",
+            f"- Cell count: `{report['mixture_listener_responsibility_solver']['cell_count']}`",
+            f"- Mixture LOO correlation: `{fmt(report['mixture_listener_responsibility_solver']['mixture_fit'].get('loo_corr'), 4)}`",
+            f"- Scalar LOO correlation: `{fmt(report['mixture_listener_responsibility_solver']['mixture_fit'].get('scalar_fit', {}).get('loo_corr'), 4)}`",
+            "",
+            report["mixture_listener_responsibility_solver"]["core_claim"],
+            "",
+            *mixture_listener_rows,
+            "",
+            "이 실험은 public LB를 단일 listener가 아니라 여러 latent listener head의 scalar readout으로 본다. 추천 `target_listener_split_qs`는 Q target은 residual listener, S target은 scalar/public consensus 쪽을 듣는다는 가설을 건다. public에서 좋아지면 HS-JEPA의 논문 기여는 `listener responsibility`에서 `latent listener mixture routing`으로 확장된다.",
+            "",
             "## Action Decoder Ablation Suite",
             "",
             f"- Status: `{report['action_decoder_ablation_suite']['status']}`",
@@ -1460,6 +1557,7 @@ def run() -> dict[str, object]:
         read_json(SPECTRAL_PUBLIC_TANGENT_JSON),
         read_json(NEGATIVE_TANGENT_INVARIANT_JSON),
         read_json(LB_CONDITIONED_RESPONSIBILITY_JSON),
+        read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON),
         read_json(ACTION_DECODER_ABLATION_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),
