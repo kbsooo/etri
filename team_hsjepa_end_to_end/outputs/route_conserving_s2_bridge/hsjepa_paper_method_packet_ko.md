@@ -4,7 +4,7 @@
 
 ## One-Sentence Contribution
 
-HS-JEPA is a human-understanding architecture that predicts hidden human-state, listener responsibility, action-health, and invariant-preserving action representations before producing bounded predictions; the Route-Conserving S2 Bridge is the sleep-log competition case study.
+HS-JEPA Core is a human-understanding architecture that predicts hidden human-state, listener responsibility, action-health, and invariant-preserving action representations before producing bounded predictions; the Sleep Competition Adapter instantiates that core as a Route-Conserving S2 Bridge case study.
 
 ## Abstract Draft
 
@@ -12,15 +12,35 @@ HS-JEPA is a human-understanding architecture that predicts hidden human-state, 
 
 ## Method
 
-HS-JEPA는 일반적으로 다음 다섯 계층으로 구성된다.
+HS-JEPA는 core와 adapter를 분리한다.
 
-1. Human-State Context Encoder: 개인 baseline, cohort deviation, 시간/사회적 루틴, sensor state를 latent context로 변환한다.
-2. Masked State Predictor: partial context에서 보이지 않는 human-state 또는 listener representation을 예측한다.
-3. Listener Responsibility: label, sensor, survey, behavior outcome을 hidden state를 듣는 listener로 해석한다.
-4. Action-Health Decoder: latent가 실제 output move로 번역되어도 안전한지 판단한다.
-5. Invariant-Preserving Decoder: action 이후에도 행동/생리/시간/의미 manifold가 깨지지 않도록 bounded output을 만든다.
+Core equation:
 
-이번 수면 대회에서는 3-5번이 row-target assignment, public-sensor action teacher, Q/S route energy, S2 listener bridge로 구현되었다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 listener/action/invariant decoder를 분리한다는 점이다.
+```text
+partial_human_context -> hidden_human_state -> listener_responsibility -> action_health -> invariant_preserving_decoder -> anti_shortcut_validation
+```
+
+Core modules:
+
+1. Human-State Context Encoder: Encode partial person, cohort, time, routine, social, and sensor context into a hidden human-state field.
+2. Masked State Predictor: Predict unobserved state/listener representations from visible context without reconstructing raw inputs.
+3. Listener Responsibility: Treat labels, sensors, surveys, or outcomes as listeners that react differently to the same human state.
+4. Action-Health Decoder: Decide whether a latent signal is healthy enough to translate into an output action.
+5. Invariant Energy: Score whether an action preserves the behavioral, physiological, temporal, or semantic manifold of the domain.
+6. Anti-Shortcut Validation: Stress-test the representation and action field against nulls, cohort shifts, time shifts, and shortcut sensors.
+
+Sleep competition adapter:
+
+This adapter converts HS-JEPA Core into a sleep-log competition system by supplying Q/S listeners, a route invariant, public-sensor action evidence, and upload-safe sparse row-target decoding.
+
+이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.
+
+## Core / Adapter Evidence
+
+- Core status: `core_ready_for_adapter` (`5/5` gates)
+- Core ablation contract: `ablation_contract_ready` (`6` ablations)
+- Adapter status: `adapter_ready_with_public_sensor_boundary`
+- Big-bet queue: `big_bet_queue_ready` (`4` bets)
 
 ## Generality
 
@@ -89,6 +109,15 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 | `route_conserving_objective_bridge_primary` | `-0.02457` | `-0.01090` | `0.780` | `0.615` |
 | `s2_listener_bridge_interpretable` | `-0.02696` | `-0.01082` | `1.000` | `0.615` |
 
+## Big-Bet Queue
+
+다음 큰 실험은 HS-JEPA core/adaptor 경계를 바꾸는 실험이어야 한다.
+
+- `OG-only Human-State Assignment Teacher`: The public-sensor teacher can be replaced by personal/cohort/time human-state consistency. Expected LB delta if true `-0.003`. Kill: Cell orientation remains high but row assignment stays near random under subject/time stress.
+- `Listener-Invariant Contrastive Decoder`: A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone. Expected LB delta if true `-0.002`. Kill: Listener gain and invariant energy remain anti-correlated on strong candidates.
+- `Private-Safe Toxicity Field`: The plateau comes from actions that help public-like rows but poison private-like rows. Expected LB delta if true `-0.0015`. Kill: Toxicity score only recovers known public failures and does not separate local nulls.
+- `Cross-Listener Human-State Transport`: Subjective Q and objective S labels are different listeners of one human state, not separate tasks. Expected LB delta if true `-0.001`. Kill: Q-S bridge actions fail null tests or replicate the already-killed subjective-shadow bridge.
+
 ## Boundaries
 
 현재 패키지는 다음 경계를 명시한다.
@@ -111,3 +140,7 @@ Generated supporting reports:
 
 - `/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_architecture_readiness_report.json`
 - `/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_reproducibility_contract.json`
+- `/Users/kbsoo/Downloads/cl2/hsjepa_core/outputs/hsjepa_core_manifest.json`
+- `/Users/kbsoo/Downloads/cl2/hsjepa_core/outputs/hsjepa_core_ablation_contract.json`
+- `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
+- `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/hsjepa_big_bet_queue.json`

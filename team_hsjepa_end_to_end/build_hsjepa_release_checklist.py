@@ -27,6 +27,10 @@ MECHANISM_ABLATION_JSON = OUT / "hsjepa_mechanism_ablation_report.json"
 GENERALITY_JSON = OUT / "hsjepa_generality_report.json"
 METHOD_PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 PIPELINE_JSON = OUT / "hsjepa_pipeline_manifest.json"
+CORE_MANIFEST_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_manifest.json"
+CORE_ABLATION_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_ablation_contract.json"
+ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_competition_adapter_report.json"
+BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 
 CHECKLIST_JSON = OUT / "hsjepa_release_checklist.json"
 CHECKLIST_MD = OUT / "hsjepa_release_checklist_ko.md"
@@ -62,7 +66,20 @@ def check(name: str, passed: bool, evidence: str, required: bool = True) -> dict
 
 def require_inputs() -> list[dict[str, object]]:
     rows = []
-    for path in [PACKAGE_JSON, VALIDATION_JSON, CONTRACT_JSON, READINESS_JSON, MECHANISM_ABLATION_JSON, GENERALITY_JSON, METHOD_PACKET_JSON, PIPELINE_JSON]:
+    for path in [
+        PACKAGE_JSON,
+        VALIDATION_JSON,
+        CONTRACT_JSON,
+        READINESS_JSON,
+        MECHANISM_ABLATION_JSON,
+        GENERALITY_JSON,
+        METHOD_PACKET_JSON,
+        CORE_MANIFEST_JSON,
+        CORE_ABLATION_JSON,
+        ADAPTER_REPORT_JSON,
+        BIG_BET_JSON,
+        PIPELINE_JSON,
+    ]:
         rows.append(check(f"exists:{path.name}", path.exists(), str(path.relative_to(ROOT))))
     return rows
 
@@ -97,6 +114,10 @@ def build_checklist() -> dict[str, object]:
     ablation = read_json(MECHANISM_ABLATION_JSON)
     generality = read_json(GENERALITY_JSON)
     method = read_json(METHOD_PACKET_JSON)
+    core = read_json(CORE_MANIFEST_JSON)
+    core_ablation = read_json(CORE_ABLATION_JSON)
+    adapter = read_json(ADAPTER_REPORT_JSON)
+    big_bets = read_json(BIG_BET_JSON)
     pipeline = read_json(PIPELINE_JSON)
 
     packaged = package.get("packaged_submissions", {})
@@ -186,6 +207,30 @@ def build_checklist() -> dict[str, object]:
                     f"checks={generality.get('passed_checks')}/{generality.get('total_checks')}, "
                     f"boundaries={generality.get('nonblocking_boundaries')}"
                 ),
+            ),
+            check(
+                "core_adapter_separation_explicit",
+                core.get("status") == "core_ready_for_adapter"
+                and adapter.get("status") == "adapter_ready_with_public_sensor_boundary"
+                and int(core.get("passed_gates", 0)) == int(core.get("total_gates", -1)),
+                (
+                    f"core={core.get('status')} "
+                    f"({core.get('passed_gates')}/{core.get('total_gates')}), "
+                    f"adapter={adapter.get('status')}"
+                ),
+            ),
+            check(
+                "core_ablation_contract_present",
+                core_ablation.get("status") == "ablation_contract_ready"
+                and len(core_ablation.get("ablations", [])) >= 6,
+                f"status={core_ablation.get('status')}, ablations={len(core_ablation.get('ablations', []))}",
+            ),
+            check(
+                "big_bet_queue_high_ceiling",
+                big_bets.get("status") == "big_bet_queue_ready"
+                and len(big_bets.get("bets", [])) >= 3
+                and any(float(bet.get("expected_public_lb_delta_if_true", 0.0)) <= -0.002 for bet in big_bets.get("bets", [])),
+                f"status={big_bets.get('status')}, count={len(big_bets.get('bets', []))}",
             ),
             check("roles_present", role_keys == EXPECTED_ROLES, f"roles={sorted(role_keys)}"),
             check(
@@ -294,6 +339,8 @@ def build_markdown(result: dict[str, object]) -> str:
             "- private LB safety is not proven",
             "- pure OG-only assignment is not proven",
             "- human-state is an orientation diagnostic, not a complete row-target assignment solver",
+            "- HS-JEPA Core is separated from the Sleep Competition Adapter",
+            "- the next big bet is replacing public-sensor assignment with an OG-only human-state teacher",
             "",
         ]
     )

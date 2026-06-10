@@ -4,17 +4,19 @@
 This is the single command a teammate should run when they do not know any
 historical experiment version names.  It executes:
 
-1. Route-Conserving S2 Bridge package generation.
-2. Stress audit against feasible candidate nulls.
-3. Claim/evidence validation.
-4. Reproducibility contract.
-5. Architecture readiness report.
-6. Mechanism ablation report.
-7. Generality report.
-8. Paper method packet.
-9. Pipeline manifest.
-10. Release checklist.
-11. A compact handoff report for paper and competition discussion.
+1. HS-JEPA core architecture manifest.
+2. Route-Conserving S2 Bridge package generation.
+3. Stress audit against feasible candidate nulls.
+4. Claim/evidence validation.
+5. Reproducibility contract.
+6. Architecture readiness report.
+7. Mechanism ablation report.
+8. Generality report.
+9. Paper method packet.
+10. Sleep competition adapter report and big-bet queue.
+11. Pipeline manifest.
+12. Release checklist.
+13. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -54,6 +56,16 @@ GENERALITY_MD = OUT / "hsjepa_generality_report_ko.md"
 GENERALITY_JSON = OUT / "hsjepa_generality_report.json"
 RELEASE_CHECKLIST_MD = OUT / "hsjepa_release_checklist_ko.md"
 RELEASE_CHECKLIST_JSON = OUT / "hsjepa_release_checklist.json"
+CORE_OUT = ROOT / "hsjepa_core" / "outputs"
+CORE_MANIFEST_MD = CORE_OUT / "hsjepa_core_manifest_ko.md"
+CORE_MANIFEST_JSON = CORE_OUT / "hsjepa_core_manifest.json"
+CORE_ABLATION_MD = CORE_OUT / "hsjepa_core_ablation_contract_ko.md"
+CORE_ABLATION_JSON = CORE_OUT / "hsjepa_core_ablation_contract.json"
+ADAPTER_OUT = ROOT / "sleep_competition_adapter" / "outputs"
+ADAPTER_REPORT_MD = ADAPTER_OUT / "sleep_competition_adapter_report_ko.md"
+ADAPTER_REPORT_JSON = ADAPTER_OUT / "sleep_competition_adapter_report.json"
+BIG_BET_MD = ADAPTER_OUT / "hsjepa_big_bet_queue_ko.md"
+BIG_BET_JSON = ADAPTER_OUT / "hsjepa_big_bet_queue.json"
 
 
 def run_command(args: list[str]) -> dict[str, object]:
@@ -89,6 +101,9 @@ def build_handoff(
     readiness: dict[str, object],
     ablation: dict[str, object],
     generality: dict[str, object],
+    core: dict[str, object],
+    adapter: dict[str, object],
+    big_bets: dict[str, object],
     release: dict[str, object],
 ) -> str:
     packaged = package["packaged_submissions"]
@@ -133,13 +148,43 @@ def build_handoff(
             "## Core Mechanism",
             "",
             "```text",
+            "HS-JEPA Core:",
+            "partial human context",
+            "  -> hidden human-state representation",
+            "  -> listener responsibility",
+            "  -> action-health decision",
+            "  -> invariant-preserving decoder",
+            "  -> anti-shortcut validation",
+            "",
+            "Sleep Competition Adapter:",
             "public-sensitive driver action",
             "  + route-conserving bridge action",
             "  + S2 listener/hub constraint",
-            "  + human-state orientation diagnostic",
+            "  + upload-safe sparse row-target decoder",
             "```",
             "",
-            "축구 비유로 말하면, 이 패키지의 무회전 슛은 `target correction은 route manifold를 보존해야 한다`는 규칙이다. 세부 셀을 외운 것이 아니라, 가능한 action space에서 route를 깨지 않는 driver/bridge 궤적을 고른다.",
+            "축구 비유로 말하면, HS-JEPA Core는 `상황을 읽고, listener와 action 위험을 분리한 뒤, 궤적 불변성을 보존하는 슛 기술`이다. Sleep Adapter의 S2 bridge는 그 기술이 이번 경기장에서 구현된 case-study 궤적이다.",
+            "",
+            "## Core / Adapter Separation",
+            "",
+            f"- Core status: `{core['status']}` (`{core['passed_gates']}/{core['total_gates']}` gates)",
+            f"- Core ablation contract: `{len(core.get('modules', []))}` modules, `{len(big_bets.get('bets', []))}` big-bet followups",
+            f"- Adapter status: `{adapter['status']}`",
+            f"- Adapter score delta: `{adapter['score_evidence']['delta']}`",
+            "",
+            "Core 문서:",
+            "",
+            "```text",
+            "hsjepa_core/outputs/hsjepa_core_manifest_ko.md",
+            "hsjepa_core/outputs/hsjepa_core_ablation_contract_ko.md",
+            "```",
+            "",
+            "Adapter 문서:",
+            "",
+            "```text",
+            "sleep_competition_adapter/outputs/sleep_competition_adapter_report_ko.md",
+            "sleep_competition_adapter/outputs/hsjepa_big_bet_queue_ko.md",
+            "```",
             "",
             "## Generated Submission Roles",
             "",
@@ -158,6 +203,7 @@ def build_handoff(
             f"- Architecture readiness: `{readiness['status']}` (`{readiness['passed_gates']}/{readiness['total_gates']}` gates)",
             f"- Mechanism ablation: `{ablation['status']}` (`{ablation['public_worldviews_killed']}` public worldviews killed, `{ablation['public_worldviews_survived']}` survived)",
             f"- Generality boundary: `{generality['status']}` (`{generality['passed_checks']}/{generality['total_checks']}` portability checks, nonblocking boundaries: `{len(generality['nonblocking_boundaries'])}`)",
+            f"- Core/adapter boundary: core `{core['status']}`, adapter `{adapter['status']}`",
             f"- Release checklist: `{release['status']}` (`{release['passed_checks']}/{release['total_checks']}` checks)",
             "",
             "## Paper Claim",
@@ -165,12 +211,20 @@ def build_handoff(
             "강하게 주장할 수 있는 내용:",
             "",
             "```text",
-            "HS-JEPA reframes multi-label sleep prediction as sparse row-target action decoding.",
-            "For objective sleep-stage targets, the decoder should not move targets independently.",
-            "It should pair public-sensitive driver actions with route-conserving bridge actions.",
-            "S2 emerges as the listener/hub in this route-conserving decoder.",
-            "Human-state representation is useful as an orientation diagnostic, not as a complete row-assignment solver.",
+            "HS-JEPA is a core architecture for human-understanding prediction.",
+            "It predicts hidden human-state, listener responsibility, action-health, and invariant-preserving action representations.",
+            "The sleep competition adapter instantiates the invariant as Q/S route energy and the listener bridge as S2.",
+            "The current LB breakthrough is evidence for this adapter, while the reusable claim is the core/action separation.",
             "```",
+            "",
+            "## Big-Bet Queue",
+            "",
+            "다음 큰 실험은 단순 alpha 조정이 아니라 core/adaptor 경계를 바꾸는 실험이다.",
+            "",
+            *[
+                f"- `{bet['name']}`: {bet['worldview']} Expected LB delta if true `{bet['expected_public_lb_delta_if_true']}`."
+                for bet in big_bets.get("bets", [])
+            ],
             "",
             "## Competition Use",
             "",
@@ -262,6 +316,7 @@ def build_handoff(
 
 def run(refresh: bool = False) -> dict[str, object]:
     commands = [
+        [sys.executable, str(ROOT / "hsjepa_core" / "build_core_architecture_manifest.py")],
         [sys.executable, str(HERE / "run_route_conserving_s2_bridge.py")],
         [sys.executable, str(HERE / "audit_route_conserving_s2_bridge.py")],
         [sys.executable, str(HERE / "validate_route_conserving_s2_bridge_package.py")],
@@ -270,11 +325,12 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(HERE / "build_hsjepa_mechanism_ablation_report.py")],
         [sys.executable, str(HERE / "build_hsjepa_generality_report.py")],
         [sys.executable, str(HERE / "build_hsjepa_paper_method_packet.py")],
+        [sys.executable, str(ROOT / "sleep_competition_adapter" / "build_sleep_competition_adapter_report.py")],
         [sys.executable, str(HERE / "build_hsjepa_pipeline_manifest.py")],
         [sys.executable, str(HERE / "build_hsjepa_release_checklist.py")],
     ]
     if refresh:
-        commands[0].append("--refresh")
+        commands[1].append("--refresh")
 
     command_records = []
     for args in commands:
@@ -285,9 +341,12 @@ def run(refresh: bool = False) -> dict[str, object]:
     readiness = read_json(READINESS_JSON)
     ablation = read_json(MECHANISM_ABLATION_JSON)
     generality = read_json(GENERALITY_JSON)
+    core = read_json(CORE_MANIFEST_JSON)
+    adapter = read_json(ADAPTER_REPORT_JSON)
+    big_bets = read_json(BIG_BET_JSON)
     release = read_json(RELEASE_CHECKLIST_JSON)
     stress = pd.read_csv(STRESS_CSV)
-    handoff_md = build_handoff(package, validation, stress, readiness, ablation, generality, release)
+    handoff_md = build_handoff(package, validation, stress, readiness, ablation, generality, core, adapter, big_bets, release)
 
     handoff = {
         "package": "Route-Conserving S2 Bridge HS-JEPA",
@@ -307,6 +366,14 @@ def run(refresh: bool = False) -> dict[str, object]:
         "mechanism_ablation_json": str(MECHANISM_ABLATION_JSON.resolve()),
         "generality_report_md": str(GENERALITY_MD.resolve()),
         "generality_report_json": str(GENERALITY_JSON.resolve()),
+        "core_manifest_md": str(CORE_MANIFEST_MD.resolve()),
+        "core_manifest_json": str(CORE_MANIFEST_JSON.resolve()),
+        "core_ablation_md": str(CORE_ABLATION_MD.resolve()),
+        "core_ablation_json": str(CORE_ABLATION_JSON.resolve()),
+        "adapter_report_md": str(ADAPTER_REPORT_MD.resolve()),
+        "adapter_report_json": str(ADAPTER_REPORT_JSON.resolve()),
+        "big_bet_queue_md": str(BIG_BET_MD.resolve()),
+        "big_bet_queue_json": str(BIG_BET_JSON.resolve()),
         "pipeline_manifest_md": str(PIPELINE_MD.resolve()),
         "pipeline_manifest_json": str(PIPELINE_JSON.resolve()),
         "release_checklist_md": str(RELEASE_CHECKLIST_MD.resolve()),
@@ -316,6 +383,9 @@ def run(refresh: bool = False) -> dict[str, object]:
         "architecture_readiness_gates": f"{readiness['passed_gates']}/{readiness['total_gates']}",
         "mechanism_ablation_status": str(ablation["status"]),
         "generality_status": str(generality["status"]),
+        "core_status": str(core["status"]),
+        "adapter_status": str(adapter["status"]),
+        "big_bet_count": int(big_bets["count"]),
         "release_status": str(release["status"]),
         "release_checks": f"{release['passed_checks']}/{release['total_checks']}",
         "mechanism_evidence": validation["mechanism_evidence"],

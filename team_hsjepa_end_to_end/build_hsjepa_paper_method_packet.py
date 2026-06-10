@@ -26,6 +26,10 @@ VALIDATION_JSON = OUT / "route_conserving_s2_bridge_validation_report.json"
 CONTRACT_JSON = OUT / "hsjepa_reproducibility_contract.json"
 READINESS_JSON = OUT / "hsjepa_architecture_readiness_report.json"
 GENERALITY_JSON = OUT / "hsjepa_generality_report.json"
+CORE_MANIFEST_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_manifest.json"
+CORE_ABLATION_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_ablation_contract.json"
+ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_competition_adapter_report.json"
+BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 
 PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 PACKET_MD = OUT / "hsjepa_paper_method_packet_ko.md"
@@ -47,7 +51,19 @@ def fmt(x: object, digits: int = 6) -> str:
 def require_inputs() -> None:
     missing = [
         str(path.relative_to(ROOT))
-        for path in [PACKAGE_JSON, STRESS_CSV, EVIDENCE_CSV, VALIDATION_JSON, CONTRACT_JSON, READINESS_JSON, GENERALITY_JSON]
+        for path in [
+            PACKAGE_JSON,
+            STRESS_CSV,
+            EVIDENCE_CSV,
+            VALIDATION_JSON,
+            CONTRACT_JSON,
+            READINESS_JSON,
+            GENERALITY_JSON,
+            CORE_MANIFEST_JSON,
+            CORE_ABLATION_JSON,
+            ADAPTER_REPORT_JSON,
+            BIG_BET_JSON,
+        ]
         if not path.exists()
     ]
     if missing:
@@ -61,6 +77,10 @@ def build_packet() -> dict[str, object]:
     contract = read_json(CONTRACT_JSON)
     readiness = read_json(READINESS_JSON)
     generality = read_json(GENERALITY_JSON)
+    core = read_json(CORE_MANIFEST_JSON)
+    core_ablation = read_json(CORE_ABLATION_JSON)
+    adapter = read_json(ADAPTER_REPORT_JSON)
+    big_bets = read_json(BIG_BET_JSON)
     stress = pd.read_csv(STRESS_CSV)
     evidence = pd.read_csv(EVIDENCE_CSV)
 
@@ -88,10 +108,10 @@ def build_packet() -> dict[str, object]:
         "short_name": "HS-JEPA General Architecture",
         "status": readiness["status"],
         "one_sentence": (
-            "HS-JEPA is a human-understanding architecture that predicts hidden human-state, "
+            "HS-JEPA Core is a human-understanding architecture that predicts hidden human-state, "
             "listener responsibility, action-health, and invariant-preserving action representations "
-            "before producing bounded predictions; the Route-Conserving S2 Bridge is the sleep-log "
-            "competition case study."
+            "before producing bounded predictions; the Sleep Competition Adapter instantiates that core "
+            "as a Route-Conserving S2 Bridge case study."
         ),
         "score_evidence": {
             "pre_public_equation_best_public_lb": public["pre_public_equation_best_public_lb"],
@@ -118,6 +138,22 @@ def build_packet() -> dict[str, object]:
         },
         "roles": roles,
         "boundary": boundary,
+        "core": {
+            "status": core["status"],
+            "claim": core["claim"],
+            "core_equation": core["core_equation"],
+            "passed_gates": core["passed_gates"],
+            "total_gates": core["total_gates"],
+            "ablation_status": core_ablation["status"],
+            "ablation_count": len(core_ablation["ablations"]),
+        },
+        "adapter": {
+            "status": adapter["status"],
+            "claim": adapter["adapter_claim"],
+            "mapping_count": len(adapter["adapter_mapping"]),
+            "big_bet_status": big_bets["status"],
+            "big_bet_count": big_bets["count"],
+        },
         "generality": {
             "status": generality["status"],
             "passed_checks": generality["passed_checks"],
@@ -131,14 +167,19 @@ def build_packet() -> dict[str, object]:
             "method_packet_json": str(PACKET_JSON.resolve()),
             "readiness_report": str(READINESS_JSON.resolve()),
             "reproducibility_contract": str(CONTRACT_JSON.resolve()),
+            "core_manifest": str(CORE_MANIFEST_JSON.resolve()),
+            "core_ablation_contract": str(CORE_ABLATION_JSON.resolve()),
+            "sleep_adapter_report": str(ADAPTER_REPORT_JSON.resolve()),
+            "big_bet_queue": str(BIG_BET_JSON.resolve()),
             "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
         },
         "paper_sections": {
             "abstract_ko": build_abstract(public, primary, s2, human),
-            "method_ko": build_method_text(),
+            "method_ko": build_method_text(core, adapter),
             "generality_ko": build_generality_text(generality),
             "algorithm_ko": build_algorithm_text(),
             "limitations_ko": build_limitations_text(boundary),
+            "big_bets_ko": build_big_bet_text(big_bets),
         },
     }
     PACKET_JSON.write_text(json.dumps(packet, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8")
@@ -174,18 +215,26 @@ def build_abstract(
     )
 
 
-def build_method_text() -> str:
+def build_method_text(core: dict[str, object], adapter: dict[str, object]) -> str:
     return "\n".join(
         [
-            "HS-JEPA는 일반적으로 다음 다섯 계층으로 구성된다.",
+            "HS-JEPA는 core와 adapter를 분리한다.",
             "",
-            "1. Human-State Context Encoder: 개인 baseline, cohort deviation, 시간/사회적 루틴, sensor state를 latent context로 변환한다.",
-            "2. Masked State Predictor: partial context에서 보이지 않는 human-state 또는 listener representation을 예측한다.",
-            "3. Listener Responsibility: label, sensor, survey, behavior outcome을 hidden state를 듣는 listener로 해석한다.",
-            "4. Action-Health Decoder: latent가 실제 output move로 번역되어도 안전한지 판단한다.",
-            "5. Invariant-Preserving Decoder: action 이후에도 행동/생리/시간/의미 manifold가 깨지지 않도록 bounded output을 만든다.",
+            "Core equation:",
             "",
-            "이번 수면 대회에서는 3-5번이 row-target assignment, public-sensor action teacher, Q/S route energy, S2 listener bridge로 구현되었다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 listener/action/invariant decoder를 분리한다는 점이다.",
+            "```text",
+            str(core["core_equation"]),
+            "```",
+            "",
+            "Core modules:",
+            "",
+            *[f"{idx}. {item['name']}: {item['purpose']}" for idx, item in enumerate(core["modules"], start=1)],
+            "",
+            "Sleep competition adapter:",
+            "",
+            adapter["adapter_claim"],
+            "",
+            "이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.",
         ]
     )
 
@@ -232,6 +281,21 @@ def build_algorithm_text() -> str:
             "6. Decode bounded actions that improve listener fit while preserving the invariant.",
             "7. Reject shortcuts with cohort/time/group/null stress tests.",
             "8. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.",
+        ]
+    )
+
+
+def build_big_bet_text(big_bets: dict[str, object]) -> str:
+    rows = []
+    for bet in big_bets["bets"]:
+        rows.append(
+            f"- `{bet['name']}`: {bet['worldview']} Expected LB delta if true `{bet['expected_public_lb_delta_if_true']}`. Kill: {bet['kill_criterion']}"
+        )
+    return "\n".join(
+        [
+            "다음 큰 실험은 HS-JEPA core/adaptor 경계를 바꾸는 실험이어야 한다.",
+            "",
+            *rows,
         ]
     )
 
@@ -290,6 +354,13 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             "",
             packet["paper_sections"]["method_ko"],
             "",
+            "## Core / Adapter Evidence",
+            "",
+            f"- Core status: `{packet['core']['status']}` (`{packet['core']['passed_gates']}/{packet['core']['total_gates']}` gates)",
+            f"- Core ablation contract: `{packet['core']['ablation_status']}` (`{packet['core']['ablation_count']}` ablations)",
+            f"- Adapter status: `{packet['adapter']['status']}`",
+            f"- Big-bet queue: `{packet['adapter']['big_bet_status']}` (`{packet['adapter']['big_bet_count']}` bets)",
+            "",
             "## Generality",
             "",
             packet["paper_sections"]["generality_ko"],
@@ -319,6 +390,10 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             "",
             *stress_rows,
             "",
+            "## Big-Bet Queue",
+            "",
+            packet["paper_sections"]["big_bets_ko"],
+            "",
             "## Boundaries",
             "",
             packet["paper_sections"]["limitations_ko"],
@@ -333,6 +408,10 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             "",
             f"- `{packet['outputs']['readiness_report']}`",
             f"- `{packet['outputs']['reproducibility_contract']}`",
+            f"- `{packet['outputs']['core_manifest']}`",
+            f"- `{packet['outputs']['core_ablation_contract']}`",
+            f"- `{packet['outputs']['sleep_adapter_report']}`",
+            f"- `{packet['outputs']['big_bet_queue']}`",
             "",
         ]
     )

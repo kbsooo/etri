@@ -29,6 +29,10 @@ READINESS_JSON = OUT / "hsjepa_architecture_readiness_report.json"
 MECHANISM_ABLATION_JSON = OUT / "hsjepa_mechanism_ablation_report.json"
 GENERALITY_JSON = OUT / "hsjepa_generality_report.json"
 METHOD_PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
+CORE_MANIFEST_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_manifest.json"
+CORE_ABLATION_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_ablation_contract.json"
+ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_competition_adapter_report.json"
+BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 
 MANIFEST_JSON = OUT / "hsjepa_pipeline_manifest.json"
 MANIFEST_MD = OUT / "hsjepa_pipeline_manifest_ko.md"
@@ -61,6 +65,10 @@ def require_inputs() -> None:
         MECHANISM_ABLATION_JSON,
         GENERALITY_JSON,
         METHOD_PACKET_JSON,
+        CORE_MANIFEST_JSON,
+        CORE_ABLATION_JSON,
+        ADAPTER_REPORT_JSON,
+        BIG_BET_JSON,
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
     if missing:
@@ -111,6 +119,10 @@ def build_manifest() -> dict[str, object]:
     ablation = read_json(MECHANISM_ABLATION_JSON)
     generality = read_json(GENERALITY_JSON)
     method = read_json(METHOD_PACKET_JSON)
+    core = read_json(CORE_MANIFEST_JSON)
+    core_ablation = read_json(CORE_ABLATION_JSON)
+    adapter = read_json(ADAPTER_REPORT_JSON)
+    big_bets = read_json(BIG_BET_JSON)
     evidence = pd.read_csv(EVIDENCE_CSV)
     stress = pd.read_csv(STRESS_CSV)
 
@@ -131,6 +143,19 @@ def build_manifest() -> dict[str, object]:
     s2 = stress_by_name["s2_listener_bridge_interpretable"]
 
     stages = [
+        stage(
+            "hsjepa_core_architecture",
+            "HS-JEPA Core Architecture",
+            "Defines the reusable human-understanding mechanism before any sleep-competition target names are introduced.",
+            ["partial human context", "generic listener/outcome set", "domain invariant interface"],
+            ["hsjepa_core_manifest_ko.md", "hsjepa_core_ablation_contract_ko.md"],
+            [
+                f"Core status: {core['status']}",
+                f"Core gates: {core['passed_gates']}/{core['total_gates']}",
+                f"Ablation status: {core_ablation['status']}",
+            ],
+            "The core must not depend on S2, public LB sensors, submission files, or manual row ids.",
+        ),
         stage(
             "og_raw_lifestyle_context",
             "OG Raw Lifestyle Context",
@@ -243,11 +268,26 @@ def build_manifest() -> dict[str, object]:
             "The current strongest case study still uses a public-sensor assignment teacher.",
         ),
         stage(
+            "sleep_competition_adapter",
+            "Sleep Competition Adapter",
+            "Maps HS-JEPA Core into Q/S listeners, route energy, public-sensor action evidence, and upload-safe sparse row-target outputs.",
+            ["HS-JEPA core manifest", "OG data", "public sensor ledger", "route-conserving package"],
+            ["sleep_competition_adapter_report_ko.md", "hsjepa_big_bet_queue_ko.md"],
+            [
+                f"Adapter status: {adapter['status']}",
+                f"Adapter score delta: {fmt(adapter['score_evidence']['delta'], 10)}",
+                f"Big-bet count: {big_bets['count']}",
+            ],
+            "This adapter is a competition case study; it is not the general HS-JEPA architecture.",
+        ),
+        stage(
             "claim_readiness_and_paper_packet",
             "Claim Readiness and Paper Packet",
             "Converts the runnable package into paper/team-facing evidence and method text.",
-            ["package outputs", "stress audit", "reproducibility contract", "mechanism ablation report", "generality report"],
+            ["core manifest", "sleep adapter report", "package outputs", "stress audit", "reproducibility contract", "mechanism ablation report", "generality report"],
             [
+                "hsjepa_core_manifest_ko.md",
+                "sleep_competition_adapter_report_ko.md",
                 "hsjepa_architecture_readiness_report.md",
                 "hsjepa_paper_method_packet_ko.md",
                 "hsjepa_mechanism_ablation_report_ko.md",
@@ -263,6 +303,9 @@ def build_manifest() -> dict[str, object]:
     ]
 
     edges = [
+        ["hsjepa_core_architecture", "og_raw_lifestyle_context"],
+        ["hsjepa_core_architecture", "human_state_listener_context"],
+        ["hsjepa_core_architecture", "route_energy_model"],
         ["og_raw_lifestyle_context", "human_state_listener_context"],
         ["og_raw_lifestyle_context", "route_energy_model"],
         ["public_lb_sensor", "driver_action_field"],
@@ -270,11 +313,16 @@ def build_manifest() -> dict[str, object]:
         ["route_energy_model", "route_conserving_s2_bridge_decoder"],
         ["driver_action_field", "route_conserving_s2_bridge_decoder"],
         ["route_conserving_s2_bridge_decoder", "submission_packager"],
+        ["hsjepa_core_architecture", "sleep_competition_adapter"],
+        ["submission_packager", "sleep_competition_adapter"],
+        ["public_lb_sensor", "sleep_competition_adapter"],
         ["public_lb_sensor", "mechanism_ablation_knockout"],
         ["route_conserving_s2_bridge_decoder", "mechanism_ablation_knockout"],
         ["mechanism_ablation_knockout", "claim_readiness_and_paper_packet"],
         ["mechanism_ablation_knockout", "general_architecture_boundary"],
         ["general_architecture_boundary", "claim_readiness_and_paper_packet"],
+        ["sleep_competition_adapter", "claim_readiness_and_paper_packet"],
+        ["hsjepa_core_architecture", "claim_readiness_and_paper_packet"],
         ["submission_packager", "claim_readiness_and_paper_packet"],
         ["route_conserving_s2_bridge_decoder", "claim_readiness_and_paper_packet"],
     ]
@@ -307,6 +355,9 @@ def build_manifest() -> dict[str, object]:
             "public_worldviews_survived": ablation["public_worldviews_survived"],
             "generality_status": generality["status"],
             "generality_nonblocking_boundaries": generality["nonblocking_boundaries"],
+            "core_status": core["status"],
+            "adapter_status": adapter["status"],
+            "big_bet_count": big_bets["count"],
         },
     }
     MANIFEST_JSON.write_text(json.dumps(manifest, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8")
@@ -341,6 +392,9 @@ def build_markdown(manifest: dict[str, object]) -> str:
             "",
             "```mermaid",
             "flowchart TD",
+            '    CORE["HS-JEPA core architecture"] --> A["OG raw lifestyle context"]',
+            '    CORE --> C["Human-state listener context"]',
+            '    CORE --> D["Q/S route energy model"]',
             '    A["OG raw lifestyle context"] --> C["Human-state listener context"]',
             '    A --> D["Q/S route energy model"]',
             '    B["Public LB sensor ledger"] --> E["Public-sensitive driver action field"]',
@@ -348,6 +402,10 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    D --> F["Route-conserving S2 bridge decoder"]',
             '    E --> F',
             '    F --> G["Role-based submission packager"]',
+            '    G --> ADAPT["Sleep competition adapter"]',
+            '    CORE --> ADAPT',
+            '    B --> ADAPT',
+            '    ADAPT --> H["Claim readiness and paper packet"]',
             '    G --> H["Claim readiness and paper packet"]',
             '    F --> H',
             "```",
@@ -370,10 +428,10 @@ def build_markdown(manifest: dict[str, object]) -> str:
             "## Summary",
             "",
             "```text",
-            "The reusable mechanism is the route-conserving S2 bridge decoder.",
-            "The competition-specific sensor supplies sparse driver actions.",
-            "The OG human-state representation supplies orientation diagnostics.",
-            "The paper claim is valid only when these roles are kept separate.",
+            "The reusable mechanism is HS-JEPA Core: hidden state -> listener -> action-health -> invariant decoder.",
+            "The sleep competition adapter supplies Q/S listeners, public-sensor actions, route energy, and upload format.",
+            "The current LB breakthrough is adapter evidence; the paper claim must remain core-first.",
+            "The next jackpot is replacing public-sensor assignment with an OG-only human-state teacher.",
             "```",
             "",
         ]

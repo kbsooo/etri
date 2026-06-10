@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 24,
-  "total_checks": 24,
+  "passed_checks": 31,
+  "total_checks": 31,
   "required_failures": [],
   "checks": [
     {
@@ -53,6 +53,34 @@
       "passed": true,
       "required": true,
       "evidence": "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_paper_method_packet.json"
+    },
+    {
+      "check": "exists:hsjepa_core_manifest.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "hsjepa_core/outputs/hsjepa_core_manifest.json"
+    },
+    {
+      "check": "exists:hsjepa_core_ablation_contract.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "hsjepa_core/outputs/hsjepa_core_ablation_contract.json"
+    },
+    {
+      "check": "exists:sleep_competition_adapter_report.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "sleep_competition_adapter/outputs/sleep_competition_adapter_report.json"
+    },
+    {
+      "check": "exists:hsjepa_big_bet_queue.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "sleep_competition_adapter/outputs/hsjepa_big_bet_queue.json"
     },
     {
       "check": "exists:hsjepa_pipeline_manifest.json",
@@ -132,6 +160,27 @@
       "evidence": "status=general_architecture_separated_with_case_boundary, checks=5/6, boundaries=['remaining_generality_gap']"
     },
     {
+      "check": "core_adapter_separation_explicit",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "core=core_ready_for_adapter (5/5), adapter=adapter_ready_with_public_sensor_boundary"
+    },
+    {
+      "check": "core_ablation_contract_present",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=ablation_contract_ready, ablations=6"
+    },
+    {
+      "check": "big_bet_queue_high_ceiling",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=big_bet_queue_ready, count=4"
+    },
+    {
       "check": "roles_present",
       "status": "PASS",
       "passed": true,
@@ -157,7 +206,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=10, edges=14"
+      "evidence": "status=pipeline_ready_with_boundary, stages=12, edges=22"
     },
     {
       "check": "method_packet_presentable",

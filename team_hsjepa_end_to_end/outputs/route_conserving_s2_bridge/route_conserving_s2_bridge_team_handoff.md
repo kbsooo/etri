@@ -17,13 +17,43 @@ python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py --refresh
 ## Core Mechanism
 
 ```text
+HS-JEPA Core:
+partial human context
+  -> hidden human-state representation
+  -> listener responsibility
+  -> action-health decision
+  -> invariant-preserving decoder
+  -> anti-shortcut validation
+
+Sleep Competition Adapter:
 public-sensitive driver action
   + route-conserving bridge action
   + S2 listener/hub constraint
-  + human-state orientation diagnostic
+  + upload-safe sparse row-target decoder
 ```
 
-축구 비유로 말하면, 이 패키지의 무회전 슛은 `target correction은 route manifold를 보존해야 한다`는 규칙이다. 세부 셀을 외운 것이 아니라, 가능한 action space에서 route를 깨지 않는 driver/bridge 궤적을 고른다.
+축구 비유로 말하면, HS-JEPA Core는 `상황을 읽고, listener와 action 위험을 분리한 뒤, 궤적 불변성을 보존하는 슛 기술`이다. Sleep Adapter의 S2 bridge는 그 기술이 이번 경기장에서 구현된 case-study 궤적이다.
+
+## Core / Adapter Separation
+
+- Core status: `core_ready_for_adapter` (`5/5` gates)
+- Core ablation contract: `6` modules, `4` big-bet followups
+- Adapter status: `adapter_ready_with_public_sensor_boundary`
+- Adapter score delta: `-0.00841135550000005`
+
+Core 문서:
+
+```text
+hsjepa_core/outputs/hsjepa_core_manifest_ko.md
+hsjepa_core/outputs/hsjepa_core_ablation_contract_ko.md
+```
+
+Adapter 문서:
+
+```text
+sleep_competition_adapter/outputs/sleep_competition_adapter_report_ko.md
+sleep_competition_adapter/outputs/hsjepa_big_bet_queue_ko.md
+```
 
 ## Generated Submission Roles
 
@@ -49,19 +79,28 @@ public-sensitive driver action
 - Architecture readiness: `paper_ready_with_boundary` (`7/7` gates)
 - Mechanism ablation: `mechanism_ablation_ready` (`5` public worldviews killed, `2` survived)
 - Generality boundary: `general_architecture_separated_with_case_boundary` (`5/6` portability checks, nonblocking boundaries: `1`)
-- Release checklist: `release_ready_with_boundary` (`24/24` checks)
+- Core/adapter boundary: core `core_ready_for_adapter`, adapter `adapter_ready_with_public_sensor_boundary`
+- Release checklist: `release_ready_with_boundary` (`31/31` checks)
 
 ## Paper Claim
 
 강하게 주장할 수 있는 내용:
 
 ```text
-HS-JEPA reframes multi-label sleep prediction as sparse row-target action decoding.
-For objective sleep-stage targets, the decoder should not move targets independently.
-It should pair public-sensitive driver actions with route-conserving bridge actions.
-S2 emerges as the listener/hub in this route-conserving decoder.
-Human-state representation is useful as an orientation diagnostic, not as a complete row-assignment solver.
+HS-JEPA is a core architecture for human-understanding prediction.
+It predicts hidden human-state, listener responsibility, action-health, and invariant-preserving action representations.
+The sleep competition adapter instantiates the invariant as Q/S route energy and the listener bridge as S2.
+The current LB breakthrough is evidence for this adapter, while the reusable claim is the core/action separation.
 ```
+
+## Big-Bet Queue
+
+다음 큰 실험은 단순 alpha 조정이 아니라 core/adaptor 경계를 바꾸는 실험이다.
+
+- `OG-only Human-State Assignment Teacher`: The public-sensor teacher can be replaced by personal/cohort/time human-state consistency. Expected LB delta if true `-0.003`.
+- `Listener-Invariant Contrastive Decoder`: A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone. Expected LB delta if true `-0.002`.
+- `Private-Safe Toxicity Field`: The plateau comes from actions that help public-like rows but poison private-like rows. Expected LB delta if true `-0.0015`.
+- `Cross-Listener Human-State Transport`: Subjective Q and objective S labels are different listeners of one human state, not separate tasks. Expected LB delta if true `-0.001`.
 
 ## Competition Use
 

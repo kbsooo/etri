@@ -2,9 +2,29 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 10,
-  "edge_count": 14,
+  "stage_count": 12,
+  "edge_count": 22,
   "stages": [
+    {
+      "id": "hsjepa_core_architecture",
+      "name": "HS-JEPA Core Architecture",
+      "role": "Defines the reusable human-understanding mechanism before any sleep-competition target names are introduced.",
+      "inputs": [
+        "partial human context",
+        "generic listener/outcome set",
+        "domain invariant interface"
+      ],
+      "outputs": [
+        "hsjepa_core_manifest_ko.md",
+        "hsjepa_core_ablation_contract_ko.md"
+      ],
+      "evidence": [
+        "Core status: core_ready_for_adapter",
+        "Core gates: 5/5",
+        "Ablation status: ablation_contract_ready"
+      ],
+      "boundary": "The core must not depend on S2, public LB sensors, submission files, or manual row ids."
+    },
     {
       "id": "og_raw_lifestyle_context",
       "name": "OG Raw Lifestyle Context",
@@ -169,10 +189,33 @@
       "boundary": "The current strongest case study still uses a public-sensor assignment teacher."
     },
     {
+      "id": "sleep_competition_adapter",
+      "name": "Sleep Competition Adapter",
+      "role": "Maps HS-JEPA Core into Q/S listeners, route energy, public-sensor action evidence, and upload-safe sparse row-target outputs.",
+      "inputs": [
+        "HS-JEPA core manifest",
+        "OG data",
+        "public sensor ledger",
+        "route-conserving package"
+      ],
+      "outputs": [
+        "sleep_competition_adapter_report_ko.md",
+        "hsjepa_big_bet_queue_ko.md"
+      ],
+      "evidence": [
+        "Adapter status: adapter_ready_with_public_sensor_boundary",
+        "Adapter score delta: -0.0084113555",
+        "Big-bet count: 4"
+      ],
+      "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
+    },
+    {
       "id": "claim_readiness_and_paper_packet",
       "name": "Claim Readiness and Paper Packet",
       "role": "Converts the runnable package into paper/team-facing evidence and method text.",
       "inputs": [
+        "core manifest",
+        "sleep adapter report",
         "package outputs",
         "stress audit",
         "reproducibility contract",
@@ -180,6 +223,8 @@
         "generality report"
       ],
       "outputs": [
+        "hsjepa_core_manifest_ko.md",
+        "sleep_competition_adapter_report_ko.md",
         "hsjepa_architecture_readiness_report.md",
         "hsjepa_paper_method_packet_ko.md",
         "hsjepa_mechanism_ablation_report_ko.md",
@@ -194,6 +239,18 @@
     }
   ],
   "edges": [
+    [
+      "hsjepa_core_architecture",
+      "og_raw_lifestyle_context"
+    ],
+    [
+      "hsjepa_core_architecture",
+      "human_state_listener_context"
+    ],
+    [
+      "hsjepa_core_architecture",
+      "route_energy_model"
+    ],
     [
       "og_raw_lifestyle_context",
       "human_state_listener_context"
@@ -223,6 +280,18 @@
       "submission_packager"
     ],
     [
+      "hsjepa_core_architecture",
+      "sleep_competition_adapter"
+    ],
+    [
+      "submission_packager",
+      "sleep_competition_adapter"
+    ],
+    [
+      "public_lb_sensor",
+      "sleep_competition_adapter"
+    ],
+    [
       "public_lb_sensor",
       "mechanism_ablation_knockout"
     ],
@@ -240,6 +309,14 @@
     ],
     [
       "general_architecture_boundary",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
+      "sleep_competition_adapter",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
+      "hsjepa_core_architecture",
       "claim_readiness_and_paper_packet"
     ],
     [
@@ -276,6 +353,9 @@
     "generality_status": "general_architecture_separated_with_case_boundary",
     "generality_nonblocking_boundaries": [
       "remaining_generality_gap"
-    ]
+    ],
+    "core_status": "core_ready_for_adapter",
+    "adapter_status": "adapter_ready_with_public_sensor_boundary",
+    "big_bet_count": 4
   }
 }

@@ -1,0 +1,68 @@
+{
+  "package": "Sleep Competition Adapter for HS-JEPA",
+  "status": "adapter_ready_with_public_sensor_boundary",
+  "core_status": "core_ready_for_adapter",
+  "core_ablation_status": "ablation_contract_ready",
+  "adapter_claim": "This adapter converts HS-JEPA Core into a sleep-log competition system by supplying Q/S listeners, a route invariant, public-sensor action evidence, and upload-safe sparse row-target decoding.",
+  "score_evidence": {
+    "pre_public_equation_best_public_lb": 0.5761589494,
+    "current_best_public_lb": 0.5677475939,
+    "delta": -0.00841135550000005,
+    "current_best_file": "submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv"
+  },
+  "adapter_mapping": [
+    {
+      "core_module": "context_encoder",
+      "competition_adapter": "raw lifestyle, subject/cohort, row-order, and sleep-state context features",
+      "evidence": "cell-level human-state orientation AUC 0.775",
+      "boundary": "row-level assignment AUC 0.545 is not enough for standalone assignment."
+    },
+    {
+      "core_module": "masked_state_predictor",
+      "competition_adapter": "teacher/student probes for hidden S2-hub and row-target support orientation",
+      "evidence": "human-state probe exists as a role-based output",
+      "boundary": "current strongest teacher still uses public-sensitive action support."
+    },
+    {
+      "core_module": "listener_responsibility",
+      "competition_adapter": "Q/S targets are treated as listeners; S2 emerges as an objective-stage hub",
+      "evidence": "S2 listener usage 1.000 vs null 0.615",
+      "boundary": "S2 hub is a sleep competition case-study claim, not a universal physiology claim."
+    },
+    {
+      "core_module": "action_health_decoder",
+      "competition_adapter": "public-positive and public-negative sensors define toxic action diagnostics",
+      "evidence": "mechanism ablation kills broad/toxic alternatives before release",
+      "boundary": "public LB sensor is not portable and must be replaced for non-competition deployments."
+    },
+    {
+      "core_module": "invariant_energy",
+      "competition_adapter": "Q/S route energy and route-conserving S2 bridge",
+      "evidence": "route z-scores primary=-9.66, s2=-9.46",
+      "boundary": "other domains need their own temporal, physiological, semantic, or cohort invariant."
+    },
+    {
+      "core_module": "anti_shortcut_validation",
+      "competition_adapter": "upload safety, feasible-bundle nulls, mechanism knockout, and release checklist",
+      "evidence": "generality checks 5/6",
+      "boundary": "private LB safety is not proven."
+    }
+  ],
+  "role_outputs": {
+    "competition_primary": "submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv",
+    "interpretable_s2_hub": "submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv",
+    "human_state_probe": "submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv"
+  },
+  "what_the_adapter_proves": [
+    "HS-JEPA-style listener/action/invariant separation can explain the 0.567 public-LB breakthrough case study.",
+    "Route-conserving action selection is statistically non-random against feasible null bundles.",
+    "Human-state latent explains target/cell orientation but not enough row assignment on its own."
+  ],
+  "what_the_adapter_does_not_prove": [
+    "pure OG-only assignment",
+    "private leaderboard safety",
+    "S2 as a universal human-sleep factor",
+    "that public LB sensors can be used outside this competition"
+  ],
+  "paper_method_title": "Human-State JEPA: General Architecture with a Route-Conserving S2 Bridge Case Study"
+}

@@ -14,6 +14,29 @@ HS-JEPA의 일반 기술은 `S2`나 `public LB`가 아니다. 일반 기술은 p
 
 `Route-Conserving S2 Bridge`는 이 수면 대회에서 발견된 강한 구현체다. 논문에서는 이것을 case study로 두고, 일반 아키텍처와 혼동하지 않아야 한다.
 
+## Transformer 비유로 본 HS-JEPA
+
+Transformer를 설명할 때 BPE나 positional preprocessing이 중요하더라도, 발표의 중심은 attention이다.
+
+HS-JEPA도 마찬가지다.
+
+| Transformer 발표 요소 | HS-JEPA 발표 요소 |
+| --- | --- |
+| BPE/input formatting | sleep feature engineering, Q/S schema, submission formatting |
+| attention | hidden human-state -> listener responsibility -> action-health -> invariant decoder |
+| task head | sleep competition adapter |
+| benchmark result | public LB 0.5677475939 case-study evidence |
+
+따라서 논문/발표의 중심 문장은 다음이어야 한다.
+
+```text
+HS-JEPA does not directly predict labels from lifestyle logs.
+It predicts hidden human-state and listener/action representations,
+then decodes only actions that preserve a domain invariant.
+```
+
+대회에서 LB를 만든 구체적 장치는 `sleep_competition_adapter/`에 속한다. 일반 기술은 `hsjepa_core/`에 속한다.
+
 핵심 목표는 두 가지다.
 
 1. 대회 성능 관점: public LB `0.5677475939` frontier 이후 어떤 hidden-state action 후보가 의미 있는지 정리한다.
@@ -75,6 +98,14 @@ HS-JEPA에서는 다음처럼 번역된다.
 | Invariant | action 후에도 깨지면 안 되는 행동/생리/시간/의미 구조 | Q/S route manifold |
 | Case-specific decoder | domain invariant를 보존하는 bounded action | Route-Conserving S2 Bridge |
 | Shortcut sensor | collapse, leakage, public-only artifact 감지 | public LB sensor, feasible bundle null |
+
+현재 코드 구조도 이 표를 따르도록 분리했다.
+
+| 디렉토리 | 의미 |
+| --- | --- |
+| `hsjepa_core/` | target 이름 없는 core architecture manifest와 ablation contract |
+| `sleep_competition_adapter/` | Q/S listener, S2 bridge, public sensor, big-bet queue |
+| `team_hsjepa_end_to_end/` | core + adapter + 기존 대회 산출물의 one-command release runner |
 
 ## 전체 구조
 

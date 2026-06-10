@@ -1,0 +1,50 @@
+{
+  "package": "HS-JEPA Core",
+  "status": "ablation_contract_ready",
+  "purpose": "Make the HS-JEPA mechanism falsifiable instead of only descriptive.",
+  "ablations": [
+    {
+      "ablation": "remove_context_encoder",
+      "removed_module": "context_encoder",
+      "expected_failure": "listener responsibility becomes prior-heavy and cohort/time generalization weakens.",
+      "measurement": "drop in listener orientation, worse stress performance under cohort/time split."
+    },
+    {
+      "ablation": "remove_masked_state_prediction",
+      "removed_module": "masked_state_predictor",
+      "expected_failure": "representation can no longer predict hidden state under semantic masks.",
+      "measurement": "masked representation prediction energy loses separation from null."
+    },
+    {
+      "ablation": "remove_listener_responsibility",
+      "removed_module": "listener_responsibility",
+      "expected_failure": "the same latent move is applied to wrong outcomes/listeners.",
+      "measurement": "target/listener action precision drops while aggregate score may look locally stable."
+    },
+    {
+      "ablation": "remove_action_health",
+      "removed_module": "action_health_decoder",
+      "expected_failure": "unsafe latent signals are translated into overbroad output moves.",
+      "measurement": "toxicity or negative-sensor alignment rises; high-energy tails worsen."
+    },
+    {
+      "ablation": "remove_invariant_energy",
+      "removed_module": "invariant_energy",
+      "expected_failure": "local action gains break the domain manifold.",
+      "measurement": "selected actions lose energy advantage versus feasible null bundles."
+    },
+    {
+      "ablation": "remove_anti_shortcut_validation",
+      "removed_module": "anti_shortcut_validation",
+      "expected_failure": "collapse, split shortcut, or public-only behavior is overclaimed as architecture.",
+      "measurement": "green score without null/stress survival is marked non-releasable."
+    }
+  ],
+  "minimum_publishable_evidence": [
+    "core module removal changes downstream behavior",
+    "invariant-energy removal loses null separation",
+    "action-health removal increases toxic action rate",
+    "listener removal hurts target/outcome routing",
+    "anti-shortcut validation rejects at least one tempting but false shortcut"
+  ]
+}

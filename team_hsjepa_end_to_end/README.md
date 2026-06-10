@@ -20,7 +20,7 @@ Route-Conserving S2 Bridge HS-JEPA
 
 단, 이것은 HS-JEPA 전체가 아니라 이번 대회의 case study다.
 
-HS-JEPA 자체의 더 일반적인 구조는 다음이다.
+HS-JEPA 자체의 더 일반적인 구조는 `hsjepa_core/`에 분리되어 있다.
 
 ```text
 partial human context
@@ -32,6 +32,18 @@ partial human context
 ```
 
 즉 `S2`, `Q/S route`, `public LB sensor`는 재사용 가능한 아키텍처가 아니라 이 대회에서 발견된 구현체 요소다.
+
+## Core와 Adapter 분리
+
+이번 정리의 핵심은 다음 구분이다.
+
+| Layer | 책임 | 대회 의존성 |
+| --- | --- | --- |
+| `hsjepa_core/` | hidden human-state, listener responsibility, action-health, invariant decoder, anti-shortcut validation을 정의한다. | 없어야 한다. |
+| `sleep_competition_adapter/` | Q/S targets, S2 bridge, public sensor, row-target sparse submission으로 core를 번역한다. | 있어도 된다. |
+| `team_hsjepa_end_to_end/` | core + adapter + 기존 산출물을 한 번에 재생성하고 release gate를 검증한다. | 대회 패키지다. |
+
+Transformer 비유로 말하면, sleep adapter는 BPE/입력 포맷/태스크 head에 가깝고, HS-JEPA core는 attention에 해당하는 주장이다.
 
 ## 왜 이게 단순 trial-and-error가 아닌가
 
@@ -69,8 +81,8 @@ target correction은 route manifold를 보존해야 한다.
 python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py
 ```
 
-이 명령은 package 생성, stress audit, claim/evidence validation, reproducibility contract, architecture readiness gate, mechanism ablation report, generality report, paper method packet, pipeline manifest, release checklist, 팀 핸드오프 리포트 생성을 모두 수행한다.
-또한 OG raw input, public-LB sensor, generated action artifact를 분리한 뒤, 이 패키지를 논문/팀 공유용 아키텍처 주장으로 말해도 되는지 자동 판정하고 논문 초안에 붙일 수 있는 method 설명, 대체 세계관 knockout report, 일반 HS-JEPA와 대회 구현체의 분리 보고서, OG-to-submission pipeline, 최종 release gate를 만든다.
+이 명령은 HS-JEPA core manifest, package 생성, stress audit, claim/evidence validation, reproducibility contract, architecture readiness gate, mechanism ablation report, generality report, paper method packet, sleep competition adapter report, big-bet queue, pipeline manifest, release checklist, 팀 핸드오프 리포트 생성을 모두 수행한다.
+또한 OG raw input, public-LB sensor, generated action artifact를 분리한 뒤, 이 패키지를 논문/팀 공유용 아키텍처 주장으로 말해도 되는지 자동 판정하고 논문 초안에 붙일 수 있는 method 설명, 대체 세계관 knockout report, 일반 HS-JEPA와 대회 구현체의 분리 보고서, adapter report, jackpot 후보 queue, OG-to-submission pipeline, 최종 release gate를 만든다.
 
 전체 dependency까지 재생성이 필요하면:
 
@@ -129,6 +141,10 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/
 - `hsjepa_mechanism_ablation_report.json`
 - `hsjepa_generality_report_ko.md`
 - `hsjepa_generality_report.json`
+- `hsjepa_core/outputs/hsjepa_core_manifest_ko.md`
+- `hsjepa_core/outputs/hsjepa_core_ablation_contract_ko.md`
+- `sleep_competition_adapter/outputs/sleep_competition_adapter_report_ko.md`
+- `sleep_competition_adapter/outputs/hsjepa_big_bet_queue_ko.md`
 - `hsjepa_paper_method_packet_ko.md`
 - `hsjepa_paper_method_packet.json`
 - `hsjepa_pipeline_manifest_ko.md`
@@ -211,6 +227,24 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_mechanism_ablat
 team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_generality_report_ko.md
 ```
 
+대회 target 이름이 없는 core architecture manifest:
+
+```text
+hsjepa_core/outputs/hsjepa_core_manifest_ko.md
+```
+
+core를 이 대회에 꽂는 adapter report:
+
+```text
+sleep_competition_adapter/outputs/sleep_competition_adapter_report_ko.md
+```
+
+0.0001 개선용이 아니라 core/adaptor 경계를 바꿀 큰 실험 queue:
+
+```text
+sleep_competition_adapter/outputs/hsjepa_big_bet_queue_ko.md
+```
+
 OG 데이터부터 최종 제출/논문 산출물까지의 역할 기반 pipeline:
 
 ```text
@@ -243,6 +277,8 @@ Human-state representation
 더 일반적인 HS-JEPA claim은 다음이다.
 
 > 인간 이해 예측에서는 label을 바로 맞히는 것보다, hidden human-state, listener responsibility, action-health, invariant-preserving decoder를 분리해야 한다.
+
+따라서 논문에서 “우리가 개발한 기술”로 말해야 하는 것은 S2가 아니라 이 core 분해다. S2 bridge는 그 기술이 수면 로그 대회에서 성능을 낸 case study다.
 
 ## 대회 측면에서의 현재 위치
 
