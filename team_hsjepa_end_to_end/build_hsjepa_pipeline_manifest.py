@@ -40,6 +40,7 @@ ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidd
 MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "masked_row_support_objective_probe.json"
 ROW_SUPPORT_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
 ROUTE_FRONTIER_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
+ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
@@ -88,6 +89,7 @@ def require_inputs() -> None:
         MASKED_ROW_SUPPORT_JSON,
         ROW_SUPPORT_DECODER_JSON,
         ROUTE_FRONTIER_DECODER_JSON,
+        ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
@@ -154,6 +156,7 @@ def build_manifest() -> dict[str, object]:
     masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
     route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
+    action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -171,6 +174,7 @@ def build_manifest() -> dict[str, object]:
     masked_row_support_verdict = masked_row_support["verdict"]
     row_support_decoder_verdict = row_support_decoder["verdict"]
     route_frontier_verdict = route_frontier_decoder["verdict"]
+    action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
     hardworld_verdict = hardworld_toxicity_probe["verdict"]
@@ -337,6 +341,19 @@ def build_manifest() -> dict[str, object]:
                 f"Variant scores: {route_frontier_verdict['variant_scores']}",
             ],
             "This tests whether action-grade decoding should start from route-frontier selection rather than support-first selection.",
+        ),
+        stage(
+            "action_decoder_ablation_suite",
+            "Action Decoder Ablation Suite",
+            "Ranks toxicity-first, support-first, and route-first decoders as HS-JEPA module ablations.",
+            ["row_support_strict_action_decoder_readout.json", "route_frontier_action_decoder_readout.json", "factorized_toxicity_decoder_stress_audit.json"],
+            ["hsjepa_action_decoder_ablation_suite_ko.md", "hsjepa_action_decoder_ablation_suite.csv"],
+            [
+                f"Suite status: {action_ablation_verdict['status']}",
+                f"Recommended LB sensor: {action_ablation_verdict['recommended_lb_sensor']}",
+                f"Open big-bet sensor: {action_ablation_verdict['big_bet_sensor']}",
+            ],
+            "This prioritizes public-sensor experiments; it is not a calibrated LB predictor.",
         ),
         stage(
             "route_energy_model",
@@ -556,6 +573,11 @@ def build_manifest() -> dict[str, object]:
         ["row_support_strict_action_decoder", "route_frontier_action_decoder"],
         ["route_frontier_action_decoder", "sleep_competition_adapter"],
         ["route_frontier_action_decoder", "claim_readiness_and_paper_packet"],
+        ["row_support_strict_action_decoder", "action_decoder_ablation_suite"],
+        ["route_frontier_action_decoder", "action_decoder_ablation_suite"],
+        ["factorized_toxicity_decoder_stress_audit", "action_decoder_ablation_suite"],
+        ["action_decoder_ablation_suite", "sleep_competition_adapter"],
+        ["action_decoder_ablation_suite", "claim_readiness_and_paper_packet"],
         ["public_lb_sensor", "driver_action_field"],
         ["human_state_listener_context", "driver_action_field"],
         ["route_energy_model", "route_conserving_s2_bridge_decoder"],
@@ -637,6 +659,9 @@ def build_manifest() -> dict[str, object]:
             "route_frontier_action_decoder_status": route_frontier_verdict["status"],
             "route_frontier_action_decoder_recommended": route_frontier_verdict["recommended_variant"],
             "route_frontier_action_decoder_variant_scores": route_frontier_verdict["variant_scores"],
+            "action_decoder_ablation_suite_status": action_ablation_verdict["status"],
+            "action_decoder_ablation_suite_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
+            "action_decoder_ablation_suite_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],
             "listener_invariant_contrastive_probe_status": contrastive_verdict["status"],
             "private_safe_toxicity_probe_status": toxicity_verdict["status"],
             "hardworld_toxicity_factorization_probe_status": hardworld_verdict["status"],
@@ -687,6 +712,7 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    RSP --> MRO["Masked row-support objective"]',
             '    MRO --> RSA["Row-support strict action decoder"]',
             '    RSA --> RFA["Route-frontier action decoder"]',
+            '    RFA --> ADA["Action decoder ablation suite"]',
             '    MRO --> GEN["General architecture boundary"]',
             '    B["Public LB sensor ledger"] --> E["Public-sensitive driver action field"]',
             '    C --> E',
@@ -698,6 +724,8 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    P3 --> P4["Hard-world toxicity factorization probe"]',
             '    P4 --> P5["Factorized toxicity decoder candidate"]',
             '    P5 --> P6["Factorized toxicity decoder stress audit"]',
+            '    P6 --> ADA',
+            '    RSA --> ADA',
             '    E --> F',
             '    F --> G["Role-based submission packager"]',
             '    G --> ADAPT["Sleep competition adapter"]',
@@ -711,6 +739,7 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    MRO --> ADAPT',
             '    RSA --> ADAPT',
             '    RFA --> ADAPT',
+            '    ADA --> ADAPT',
             '    ADAPT --> BAUD["Core/adapter boundary audit"]',
             '    CORE --> BAUD',
             '    GEN --> H["Claim readiness and paper packet"]',
@@ -718,6 +747,7 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    ADAPT --> H["Claim readiness and paper packet"]',
             '    G --> H["Claim readiness and paper packet"]',
             '    F --> H',
+            '    ADA --> H',
             "```",
             "",
             "## Stage Table",

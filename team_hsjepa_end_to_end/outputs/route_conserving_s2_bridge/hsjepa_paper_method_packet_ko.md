@@ -42,7 +42,7 @@ This adapter converts HS-JEPA Core into a sleep-log competition system by supply
 - Core/adapter boundary audit: `core_adapter_boundary_verified` (`6/6` checks)
 - Core operational violations: imports `0`, strings `0`
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
-- Big-bet queue: `big_bet_queue_ready` (`7` bets)
+- Big-bet queue: `big_bet_queue_ready` (`8` bets)
 
 ## Generality
 
@@ -137,6 +137,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 - Masked row-support objective: `masked_row_support_objective_supported_with_stress_boundary`, row AUC `0.8193`, cell recall `0.3289`, group stress AUC `0.5584`
 - Row-support action decoder: `row_support_action_decoder_alive_with_route_tradeoff`, recommended `exploratory_route_support_gate`, changed cells `34`, safety z `3.6437`, combined z `1.3787`
 - Route-frontier action decoder: `route_frontier_action_decoder_alive_with_matched_boundary`, recommended `seed_route_frontier`, scores `[{'variant': 'seed_route_frontier', 'changed_cells': 20, 'broad_route_z': 2.631665028357059, 'matched_score_z': 3.6234736097578057, 'upload_safe': True}, {'variant': 's2_route_frontier', 'changed_cells': 20, 'broad_route_z': 2.8237779101897877, 'matched_score_z': 3.3123857088533875, 'upload_safe': True}, {'variant': 'open_route_frontier', 'changed_cells': 20, 'broad_route_z': 2.492261359647143, 'matched_score_z': 3.0831554042259524, 'upload_safe': True}]`
+- Action decoder ablation: `action_decoder_ablation_ready_route_frontier_leads`, recommended `{'family': 'route_frontier', 'variant': 's2_route_frontier', 'submission_file': 'submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv', 'priority': 1.1177646805596027}`, big bet `{'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572}`
 
 ## Role-Based Outputs
 
@@ -157,6 +158,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 
 다음 큰 실험은 HS-JEPA core/adaptor 경계를 바꾸는 실험이어야 한다.
 
+- `Action Decoder Ablation Suite`: The next breakthrough comes from choosing the correct action-decoder order, not from adding more latent features. Expected LB delta if true `-0.0025`. Kill: Public LB contradicts the top-ranked decoder order, or route-first gains vanish under stronger null matching.
 - `OG-only Human-State Assignment Teacher`: The public-sensor teacher can be replaced by personal/cohort/time human-state consistency. Expected LB delta if true `-0.003`. Kill: Masked row-support keeps failing subject/date/order stress or cannot be converted into safe row-target actions.
 - `Masked Row-Support Action Decoder`: The masked row-support representation can choose which route-conserving S2/stage bundles are safe enough to move. Expected LB delta if true `-0.002`. Kill: Public LB worsens or route/null stress remains weak after increasing row-support selectivity.
 - `Route-Frontier Action Decoder`: The action decoder should select route-manifold frontier moves first, then check row-support and toxicity. Expected LB delta if true `-0.0025`. Kill: Public LB worsens or matched-null frontier score fails after larger candidate pools are used.
@@ -197,3 +199,4 @@ Generated supporting reports:
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/masked_row_support_objective_probe.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/row_support_strict_action_decoder/row_support_strict_action_decoder_readout.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_frontier_action_decoder/route_frontier_action_decoder_readout.json`
+- `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite.json`

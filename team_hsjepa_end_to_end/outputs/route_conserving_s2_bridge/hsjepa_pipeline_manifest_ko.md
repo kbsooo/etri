@@ -23,6 +23,7 @@ flowchart TD
     RSP --> MRO["Masked row-support objective"]
     MRO --> RSA["Row-support strict action decoder"]
     RSA --> RFA["Route-frontier action decoder"]
+    RFA --> ADA["Action decoder ablation suite"]
     MRO --> GEN["General architecture boundary"]
     B["Public LB sensor ledger"] --> E["Public-sensitive driver action field"]
     C --> E
@@ -34,6 +35,8 @@ flowchart TD
     P3 --> P4["Hard-world toxicity factorization probe"]
     P4 --> P5["Factorized toxicity decoder candidate"]
     P5 --> P6["Factorized toxicity decoder stress audit"]
+    P6 --> ADA
+    RSA --> ADA
     E --> F
     F --> G["Role-based submission packager"]
     G --> ADAPT["Sleep competition adapter"]
@@ -47,6 +50,7 @@ flowchart TD
     MRO --> ADAPT
     RSA --> ADAPT
     RFA --> ADAPT
+    ADA --> ADAPT
     ADAPT --> BAUD["Core/adapter boundary audit"]
     CORE --> BAUD
     GEN --> H["Claim readiness and paper packet"]
@@ -54,6 +58,7 @@ flowchart TD
     ADAPT --> H["Claim readiness and paper packet"]
     G --> H["Claim readiness and paper packet"]
     F --> H
+    ADA --> H
 ```
 
 ## Stage Table
@@ -70,6 +75,7 @@ flowchart TD
 | `masked_row_support_objective` | Tests whether hidden row-support can serve as a JEPA target representation predicted from masked human/context views. | Objective status: masked_row_support_objective_supported_with_stress_boundary<br>Full row AUC: 0.8193<br>Full cell recall: 0.3289<br>Human-only cell recall: 0.2713<br>Group stress row AUC: 0.5584 | This supports HS-JEPA representation learning, but weak group-heldout stress blocks direct deployment as an action decoder. |
 | `row_support_strict_action_decoder` | Translates masked row-support into route-conserving, toxicity-filtered row-target action candidates. | Decoder status: row_support_action_decoder_alive_with_route_tradeoff<br>Recommended variant: exploratory_route_support_gate<br>Exploratory changed cells: 34<br>Exploratory safety z: 3.64<br>Exploratory combined z: 1.38 | This is an LB-informative big bet with a route-gain tradeoff, not a safe default submission. |
 | `route_frontier_action_decoder` | Selects route-manifold frontier actions before trusting row-support and toxicity gates. | Decoder status: route_frontier_action_decoder_alive_with_matched_boundary<br>Recommended variant: seed_route_frontier<br>Variant scores: [{'variant': 'seed_route_frontier', 'changed_cells': 20, 'broad_route_z': 2.631665028357059, 'matched_score_z': 3.6234736097578057, 'upload_safe': True}, {'variant': 's2_route_frontier', 'changed_cells': 20, 'broad_route_z': 2.8237779101897877, 'matched_score_z': 3.3123857088533875, 'upload_safe': True}, {'variant': 'open_route_frontier', 'changed_cells': 20, 'broad_route_z': 2.492261359647143, 'matched_score_z': 3.0831554042259524, 'upload_safe': True}] | This tests whether action-grade decoding should start from route-frontier selection rather than support-first selection. |
+| `action_decoder_ablation_suite` | Ranks toxicity-first, support-first, and route-first decoders as HS-JEPA module ablations. | Suite status: action_decoder_ablation_ready_route_frontier_leads<br>Recommended LB sensor: {'family': 'route_frontier', 'variant': 's2_route_frontier', 'submission_file': 'submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv', 'priority': 1.1177646805596027}<br>Open big-bet sensor: {'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572} | This prioritizes public-sensor experiments; it is not a calibrated LB predictor. |
 | `route_energy_model` | Learns a target-route manifold from train labels and scores whether an action breaks it. | Primary route z-score: -9.66<br>S2 route z-score: -9.46 | Route energy proves candidate-pool structure, not private leaderboard safety. |
 | `listener_invariant_contrastive_probe` | Tests whether listener responsibility and route-invariant action health select the same bundles. | Probe status: listener_invariant_decoder_not_ready<br>Listener-route rho: -0.0313<br>Contrastive overlap: 0.2152 | This stage is a diagnostic; it does not create a new submission. |
 | `private_safe_toxicity_probe` | Tests whether toxicity head generalizes across bad public anchors and selects safer cells than matched nulls. | Probe status: toxicity_field_promising_with_hardworld_gap<br>Mean LOO bad-anchor AUC: 0.7880<br>Worst LOO bad-anchor AUC: 0.3683<br>Safety z vs matched null: 8.4589 | This stage supports toxicity diagnostics, not a private-LB safety guarantee. |
@@ -81,7 +87,7 @@ flowchart TD
 | `submission_packager` | Packages three role-based outputs without requiring historical version names. | Upload-safe roles: competition_primary, human_state_probe, interpretable_s2_hub<br>Validation passed: True | Upload safety is a format guarantee, not a score guarantee. |
 | `mechanism_ablation_knockout` | Records which alternative worldviews public sensors and local stress audits killed or preserved. | Public worldviews killed: 5<br>Public worldviews survived: 2<br>Ablation status: mechanism_ablation_ready | This explains mechanism evidence; it is not a new private-score guarantee. |
 | `general_architecture_boundary` | Separates reusable HS-JEPA modules from the sleep-competition S2/public-sensor instantiation. | Generality status: general_architecture_separated_with_case_boundary<br>Portability checks: 5/6<br>Nonblocking boundaries: remaining_generality_gap | The current strongest case study still uses a public-sensor assignment teacher. |
-| `sleep_competition_adapter` | Maps HS-JEPA Core into Q/S listeners, route energy, public-sensor action evidence, and upload-safe sparse row-target outputs. | Adapter status: adapter_ready_with_public_sensor_boundary<br>Adapter score delta: -0.0084113555<br>Big-bet count: 7 | This adapter is a competition case study; it is not the general HS-JEPA architecture. |
+| `sleep_competition_adapter` | Maps HS-JEPA Core into Q/S listeners, route energy, public-sensor action evidence, and upload-safe sparse row-target outputs. | Adapter status: adapter_ready_with_public_sensor_boundary<br>Adapter score delta: -0.0084113555<br>Big-bet count: 8 | This adapter is a competition case study; it is not the general HS-JEPA architecture. |
 | `core_adapter_boundary_audit` | Statically verifies that HS-JEPA Core has no operational dependency on competition adapters and that the adapter depends on the core contract. | Boundary audit status: core_adapter_boundary_verified<br>Boundary audit checks: 6/6<br>Core import violations: 0 | This verifies architecture separation; it does not create a new prediction or score guarantee. |
 | `claim_readiness_and_paper_packet` | Converts the runnable package into paper/team-facing evidence and method text. | Readiness status: paper_ready_with_boundary<br>Readiness gates: 7/7<br>Method title: Human-State JEPA: General Architecture with a Route-Conserving S2 Bridge Case Study | Paper claims must keep representation, public sensor, and action decoder separated. |
 

@@ -1,0 +1,248 @@
+{
+  "experiment": "HS-JEPA Action Decoder Ablation Suite",
+  "architecture_role": "sleep_competition_adapter_action_decoder_ablation_harness",
+  "core_boundary": "This suite reads competition adapter outputs and must not be imported by HS-JEPA core.",
+  "status": "action_decoder_ablation_ready_route_frontier_leads",
+  "verdict": {
+    "status": "action_decoder_ablation_ready_route_frontier_leads",
+    "recommended_lb_sensor": {
+      "family": "route_frontier",
+      "variant": "s2_route_frontier",
+      "submission_file": "submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
+      "priority": 1.1177646805596027
+    },
+    "big_bet_sensor": {
+      "family": "route_frontier",
+      "variant": "open_route_frontier",
+      "submission_file": "submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv",
+      "priority": 1.05448050759572
+    },
+    "reason": "The suite ranks action decoders by route-null survival, toxicity safety, upload safety, and action size. It is a submission-slot prioritizer, not a public-LB predictor.",
+    "findings": [
+      {
+        "claim": "Support-first decoding is not the full HS-JEPA action rule.",
+        "evidence": "Best row-support route_z=-0.5097, while best route-frontier route_z=2.8238.",
+        "status": "survived_as_partial_module",
+        "next_test": "Submit route-frontier before expanding support-first amplitudes."
+      },
+      {
+        "claim": "Invariant route energy is currently the sharper action-ordering signal.",
+        "evidence": "Top ablation row is route_frontier.s2_route_frontier with priority 1.1178 and matched_score_z=3.3124.",
+        "status": "alive",
+        "next_test": "Use route-frontier as the next LB sensor; interpret failure as public/private toxicity dominance."
+      },
+      {
+        "claim": "Factorized action-health is necessary but not sufficient.",
+        "evidence": "Best factorized decoder safety_z=13.6669, route boundary=route_not_claimed.",
+        "status": "alive_with_route_gap",
+        "next_test": "Do not ship factorized toxicity alone unless route-preserving assignment is added."
+      },
+      {
+        "claim": "Open candidate route frontier is a true big-bet boundary.",
+        "evidence": "The open-route variant is upload-safe and route-supported locally, but it is outside the selected public seed set.",
+        "status": "high_information_if_submitted",
+        "next_test": "If seed-route fails but open-route wins, the public-selected candidate pool was too narrow."
+      }
+    ]
+  },
+  "findings": [
+    {
+      "claim": "Support-first decoding is not the full HS-JEPA action rule.",
+      "evidence": "Best row-support route_z=-0.5097, while best route-frontier route_z=2.8238.",
+      "status": "survived_as_partial_module",
+      "next_test": "Submit route-frontier before expanding support-first amplitudes."
+    },
+    {
+      "claim": "Invariant route energy is currently the sharper action-ordering signal.",
+      "evidence": "Top ablation row is route_frontier.s2_route_frontier with priority 1.1178 and matched_score_z=3.3124.",
+      "status": "alive",
+      "next_test": "Use route-frontier as the next LB sensor; interpret failure as public/private toxicity dominance."
+    },
+    {
+      "claim": "Factorized action-health is necessary but not sufficient.",
+      "evidence": "Best factorized decoder safety_z=13.6669, route boundary=route_not_claimed.",
+      "status": "alive_with_route_gap",
+      "next_test": "Do not ship factorized toxicity alone unless route-preserving assignment is added."
+    },
+    {
+      "claim": "Open candidate route frontier is a true big-bet boundary.",
+      "evidence": "The open-route variant is upload-safe and route-supported locally, but it is outside the selected public seed set.",
+      "status": "high_information_if_submitted",
+      "next_test": "If seed-route fails but open-route wins, the public-selected candidate pool was too narrow."
+    }
+  ],
+  "ranking": [
+    {
+      "family": "route_frontier",
+      "variant": "s2_route_frontier",
+      "submission_file": "submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 20,
+      "architecture_claim": "route-frontier selection should precede row-support and toxicity gates",
+      "decoder_order": "route_first",
+      "core_modules_exercised": "action_health_decoder,invariant_energy,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 2.8237779101897877,
+      "matched_route_z": 2.194892193150084,
+      "matched_score_z": 3.3123857088533875,
+      "safety_z": 2.56171037447188,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": null,
+      "hardworld_top_toxic_exposure": null,
+      "route_boundary": "route_and_matched_score_supported",
+      "safety_boundary": "safety_supported",
+      "lb_sensor_priority": 1.1177646805596027,
+      "module_ablation_interpretation": "Keeps route invariant first. If this wins LB, the missing mechanism was action translation order, not more latent capacity.",
+      "ablation_rank": 1
+    },
+    {
+      "family": "route_frontier",
+      "variant": "seed_route_frontier",
+      "submission_file": "submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 20,
+      "architecture_claim": "route-frontier selection should precede row-support and toxicity gates",
+      "decoder_order": "route_first",
+      "core_modules_exercised": "action_health_decoder,invariant_energy,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 2.631665028357059,
+      "matched_route_z": 1.8796319788460747,
+      "matched_score_z": 3.6234736097578057,
+      "safety_z": 2.1295822719304636,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": null,
+      "hardworld_top_toxic_exposure": null,
+      "route_boundary": "route_and_matched_score_supported",
+      "safety_boundary": "safety_supported",
+      "lb_sensor_priority": 1.0719712441483786,
+      "module_ablation_interpretation": "Keeps route invariant first. If this wins LB, the missing mechanism was action translation order, not more latent capacity.",
+      "ablation_rank": 2
+    },
+    {
+      "family": "route_frontier",
+      "variant": "open_route_frontier",
+      "submission_file": "submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 20,
+      "architecture_claim": "route-frontier selection should precede row-support and toxicity gates",
+      "decoder_order": "route_first",
+      "core_modules_exercised": "action_health_decoder,invariant_energy,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 2.492261359647143,
+      "matched_route_z": 2.297244449842287,
+      "matched_score_z": 3.0831554042259524,
+      "safety_z": 2.1706909596201602,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": null,
+      "hardworld_top_toxic_exposure": null,
+      "route_boundary": "route_and_matched_score_supported",
+      "safety_boundary": "safety_supported",
+      "lb_sensor_priority": 1.05448050759572,
+      "module_ablation_interpretation": "Keeps route invariant first. If this wins LB, the missing mechanism was action translation order, not more latent capacity.",
+      "ablation_rank": 3
+    },
+    {
+      "family": "factorized_toxicity",
+      "variant": "dual_safe_expansion",
+      "submission_file": "submission_hsjepa_factorized_toxicity_decoder_dual_safe_expansion_23b6de1e_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 114,
+      "architecture_claim": "action-health must be factorized into broad-public and hard-world toxicity heads",
+      "decoder_order": "toxicity_first",
+      "core_modules_exercised": "action_health_decoder,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": null,
+      "matched_route_z": null,
+      "matched_score_z": null,
+      "safety_z": 13.666882031010777,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": 0.0,
+      "hardworld_top_toxic_exposure": 0.0,
+      "route_boundary": "route_not_claimed",
+      "safety_boundary": "factorized_decoder_stress_supported",
+      "lb_sensor_priority": 0.5800000000000001,
+      "module_ablation_interpretation": "Keeps action-health and anti-shortcut validation, but does not prove invariant route placement.",
+      "ablation_rank": 4
+    },
+    {
+      "family": "factorized_toxicity",
+      "variant": "teacher_dual_head",
+      "submission_file": "submission_hsjepa_factorized_toxicity_decoder_teacher_dual_head_2a3c5d2d_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 94,
+      "architecture_claim": "action-health must be factorized into broad-public and hard-world toxicity heads",
+      "decoder_order": "toxicity_first",
+      "core_modules_exercised": "action_health_decoder,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": null,
+      "matched_route_z": null,
+      "matched_score_z": null,
+      "safety_z": 12.067193716278435,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": 0.0,
+      "hardworld_top_toxic_exposure": 0.0,
+      "route_boundary": "route_not_claimed",
+      "safety_boundary": "factorized_decoder_alive_but_source_null_weak",
+      "lb_sensor_priority": 0.5800000000000001,
+      "module_ablation_interpretation": "Keeps action-health and anti-shortcut validation, but does not prove invariant route placement.",
+      "ablation_rank": 5
+    },
+    {
+      "family": "row_support_strict",
+      "variant": "strict_route_support_gate",
+      "submission_file": "submission_hsjepa_row_support_strict_route_support_gate_5ae5c515_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 4,
+      "architecture_claim": "masked row-support can choose safe route-conserving actions",
+      "decoder_order": "row_support_first",
+      "core_modules_exercised": "masked_state_predictor,action_health_decoder,invariant_energy",
+      "public_lb_observed": null,
+      "route_z": -0.5096799808095785,
+      "matched_route_z": null,
+      "matched_score_z": 2.6872922278608464,
+      "safety_z": 3.100132037769837,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": null,
+      "hardworld_top_toxic_exposure": null,
+      "route_boundary": "route_tradeoff",
+      "safety_boundary": "safety_supported",
+      "lb_sensor_priority": 0.26354824667422216,
+      "module_ablation_interpretation": "Shows row-support is real enough to select safe actions, but support-first decoding can lose route-null separation.",
+      "ablation_rank": 6
+    },
+    {
+      "family": "row_support_strict",
+      "variant": "exploratory_route_support_gate",
+      "submission_file": "submission_hsjepa_row_support_exploratory_route_support_gate_97a2f8f5_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 34,
+      "architecture_claim": "masked row-support can choose safe route-conserving actions",
+      "decoder_order": "row_support_first",
+      "core_modules_exercised": "masked_state_predictor,action_health_decoder,invariant_energy",
+      "public_lb_observed": null,
+      "route_z": -1.016531494631841,
+      "matched_route_z": null,
+      "matched_score_z": 1.3786879713623903,
+      "safety_z": 3.643701769206037,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": null,
+      "hardworld_top_toxic_exposure": null,
+      "route_boundary": "route_tradeoff",
+      "safety_boundary": "safety_supported",
+      "lb_sensor_priority": 0.20975399131542438,
+      "module_ablation_interpretation": "Shows row-support is real enough to select safe actions, but support-first decoding can lose route-null separation.",
+      "ablation_rank": 7
+    }
+  ],
+  "inputs": {
+    "row_support": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/row_support_strict_action_decoder/row_support_strict_action_decoder_readout.json",
+    "route_frontier": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_frontier_action_decoder/route_frontier_action_decoder_readout.json",
+    "factorized_toxicity": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_readout.json",
+    "factorized_stress": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_stress_audit.json"
+  },
+  "outputs": {
+    "json": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite.json",
+    "markdown": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite_ko.md",
+    "csv": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite.csv"
+  }
+}

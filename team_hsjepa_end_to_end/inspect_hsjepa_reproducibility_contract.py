@@ -92,6 +92,7 @@ MODULES = [
     "sleep_competition_adapter/factorized_toxicity_decoder_stress_audit.py",
     "sleep_competition_adapter/row_support_strict_action_decoder.py",
     "sleep_competition_adapter/route_frontier_action_decoder.py",
+    "sleep_competition_adapter/action_decoder_ablation_suite.py",
     "sleep_competition_adapter/build_sleep_competition_adapter_report.py",
 ]
 
@@ -175,6 +176,9 @@ GENERATED_OUTPUTS = [
     ("submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv", False),
     ("submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv", False),
     ("submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv", False),
+    ("sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite.json", False),
+    ("sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite_ko.md", False),
+    ("sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite.csv", False),
 ]
 
 

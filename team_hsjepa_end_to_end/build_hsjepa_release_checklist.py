@@ -38,6 +38,7 @@ ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidd
 MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "masked_row_support_objective_probe.json"
 ROW_SUPPORT_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
 ROUTE_FRONTIER_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
+ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
@@ -97,6 +98,7 @@ def require_inputs() -> list[dict[str, object]]:
         MASKED_ROW_SUPPORT_JSON,
         ROW_SUPPORT_DECODER_JSON,
         ROUTE_FRONTIER_DECODER_JSON,
+        ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
@@ -149,6 +151,7 @@ def build_checklist() -> dict[str, object]:
     masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
     route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
+    action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -173,6 +176,7 @@ def build_checklist() -> dict[str, object]:
     masked_row_support_verdict = masked_row_support.get("verdict", {})
     row_support_decoder_verdict = row_support_decoder.get("verdict", {})
     route_frontier_verdict = route_frontier_decoder.get("verdict", {})
+    action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
     hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
@@ -408,6 +412,29 @@ def build_checklist() -> dict[str, object]:
                 ),
             ),
             check(
+                "action_decoder_ablation_suite_recorded",
+                action_decoder_ablation.get("status")
+                in {
+                    "action_decoder_ablation_ready_route_frontier_leads",
+                    "action_decoder_ablation_ready_non_route_leads",
+                }
+                and isinstance(action_ablation_verdict.get("recommended_lb_sensor"), dict)
+                and isinstance(action_ablation_verdict.get("big_bet_sensor"), dict)
+                and len(action_decoder_ablation.get("ranking", [])) >= 6
+                and any(
+                    isinstance(item, dict)
+                    and item.get("family") == "route_frontier"
+                    and int(item.get("ablation_rank", 99)) <= 3
+                    and bool(item.get("upload_safe"))
+                    for item in action_decoder_ablation.get("ranking", [])
+                ),
+                (
+                    f"status={action_ablation_verdict.get('status')}, "
+                    f"recommended={action_ablation_verdict.get('recommended_lb_sensor')}, "
+                    f"big_bet={action_ablation_verdict.get('big_bet_sensor')}"
+                ),
+            ),
+            check(
                 "listener_invariant_contrastive_probe_recorded",
                 contrastive_probe.get("status") == "probe_ready"
                 and contrastive_verdict.get("status") in {
@@ -591,6 +618,7 @@ def build_markdown(result: dict[str, object]) -> str:
             "- Hidden row-support transfer has a recorded probe result",
             "- Masked row-support objective has a recorded stress-boundary probe result",
             "- Row-support strict action decoder has recorded upload-safe outputs and local stress",
+            "- Action decoder ablation suite ranks toxicity-first/support-first/route-first decoders for submission-slot prioritization, not LB prediction",
             "- Listener-invariant contrastive decoding has a recorded probe result",
             "- Private-safe toxicity has a recorded probe result and hard-world boundary",
             "- Hard-world toxicity factorization has a recorded probe result",

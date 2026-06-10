@@ -33,6 +33,7 @@ ROW_SUPPORT_SENSOR_JSON = OUT / "hidden_row_support_sensor_probe.json"
 MASKED_ROW_SUPPORT_JSON = OUT / "masked_row_support_objective_probe.json"
 ROW_SUPPORT_DECODER_JSON = OUT / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
 ROUTE_FRONTIER_DECODER_JSON = OUT / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
+ACTION_DECODER_ABLATION_JSON = OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = OUT / "hardworld_toxicity_factorization_probe.json"
@@ -73,6 +74,7 @@ def require_inputs() -> None:
         MASKED_ROW_SUPPORT_JSON,
         ROW_SUPPORT_DECODER_JSON,
         ROUTE_FRONTIER_DECODER_JSON,
+        ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
@@ -91,6 +93,7 @@ def build_big_bets(
     masked_row_support: dict[str, object],
     row_support_decoder: dict[str, object],
     route_frontier_decoder: dict[str, object],
+    action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
     hardworld_toxicity_probe: dict[str, object],
@@ -117,6 +120,11 @@ def build_big_bets(
         if isinstance(route_frontier_decoder.get("verdict"), dict)
         else {}
     )
+    action_ablation_verdict = (
+        action_decoder_ablation.get("verdict", {})
+        if isinstance(action_decoder_ablation.get("verdict"), dict)
+        else {}
+    )
     contrastive_verdict = (
         contrastive_probe.get("verdict", {})
         if isinstance(contrastive_probe.get("verdict"), dict)
@@ -133,6 +141,21 @@ def build_big_bets(
         else {}
     )
     return [
+        {
+            "id": "action_decoder_ablation_suite",
+            "name": "Action Decoder Ablation Suite",
+            "worldview": "The next breakthrough comes from choosing the correct action-decoder order, not from adding more latent features.",
+            "core_modules_exercised": ["action_health_decoder", "invariant_energy", "anti_shortcut_validation"],
+            "adapter_move": "Compare toxicity-first, support-first, and route-first decoders under one LB-sensor priority table.",
+            "why_big": "If the suite ranking matches public LB, HS-JEPA gains a falsifiable action-decoder selection rule.",
+            "expected_public_lb_delta_if_true": -0.0025,
+            "latest_probe_status": action_ablation_verdict.get("status"),
+            "latest_probe_evidence": {
+                "recommended_lb_sensor": action_ablation_verdict.get("recommended_lb_sensor"),
+                "big_bet_sensor": action_ablation_verdict.get("big_bet_sensor"),
+            },
+            "kill_criterion": "Public LB contradicts the top-ranked decoder order, or route-first gains vanish under stronger null matching.",
+        },
         {
             "id": "og_only_assignment_teacher",
             "name": "OG-only Human-State Assignment Teacher",
@@ -277,6 +300,7 @@ def build_report() -> dict[str, object]:
     masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
     route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
+    action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -292,6 +316,7 @@ def build_report() -> dict[str, object]:
     masked_row_support_verdict = masked_row_support.get("verdict", {})
     row_support_decoder_verdict = row_support_decoder.get("verdict", {})
     route_frontier_verdict = route_frontier_decoder.get("verdict", {})
+    action_decoder_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
     hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
@@ -435,6 +460,14 @@ def build_report() -> dict[str, object]:
                 if isinstance(item, dict)
             },
         },
+        "action_decoder_ablation_suite": {
+            "status": action_decoder_ablation_verdict.get("status"),
+            "recommended_lb_sensor": action_decoder_ablation_verdict.get("recommended_lb_sensor"),
+            "big_bet_sensor": action_decoder_ablation_verdict.get("big_bet_sensor"),
+            "reason": action_decoder_ablation_verdict.get("reason"),
+            "top_ranked": action_decoder_ablation.get("ranking", [])[:3],
+            "findings": action_decoder_ablation.get("findings", []),
+        },
         "listener_invariant_contrastive_probe": {
             "status": contrastive_verdict.get("status"),
             "mean_listener_route_spearman": contrastive_verdict.get("mean_listener_route_spearman"),
@@ -509,6 +542,7 @@ def build_report() -> dict[str, object]:
             "Masked row-support behaves like a real HS-JEPA representation target under teacher-transfer and feature-family masks, but subject/date/order held-out stress remains weak.",
             "A row-support action decoder can produce upload-safe route/S2 bundle candidates with strong local toxicity safety, but route-gain remains a tradeoff.",
             "A route-frontier action decoder now beats broad route nulls and matched frontier-score nulls while staying upload-safe, so the next LB sensor can test action-grade route translation directly.",
+            "The action-decoder ablation suite now ranks toxicity-first, support-first, and route-first decoders under one table; route-first currently leads the LB-sensor priority.",
             "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.",
             "The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.",
             "Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.",
@@ -521,6 +555,7 @@ def build_report() -> dict[str, object]:
             "that masked row-support is already a deployment-grade action decoder",
             "that the row-support strict action decoder is safe without public/private LB observation",
             "that route-frontier action decoding is private-safe without public LB observation",
+            "that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments",
             "private leaderboard safety",
             "S2 as a universal human-sleep factor",
             "that public LB sensors can be used outside this competition",
@@ -655,6 +690,14 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             report["route_frontier_action_decoder"]["reason"],
             "",
+            "## Action Decoder Ablation Suite",
+            "",
+            f"- Status: `{report['action_decoder_ablation_suite']['status']}`",
+            f"- Recommended LB sensor: `{report['action_decoder_ablation_suite']['recommended_lb_sensor']}`",
+            f"- Open big-bet sensor: `{report['action_decoder_ablation_suite']['big_bet_sensor']}`",
+            "",
+            report["action_decoder_ablation_suite"]["reason"],
+            "",
             "## Listener-Invariant Contrastive Probe",
             "",
             f"- Status: `{report['listener_invariant_contrastive_probe']['status']}`",
@@ -757,6 +800,7 @@ def run() -> dict[str, object]:
         read_json(MASKED_ROW_SUPPORT_JSON),
         read_json(ROW_SUPPORT_DECODER_JSON),
         read_json(ROUTE_FRONTIER_DECODER_JSON),
+        read_json(ACTION_DECODER_ABLATION_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),
         read_json(HARDWORLD_TOXICITY_PROBE_JSON),

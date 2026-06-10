@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 55,
-  "total_checks": 55,
+  "passed_checks": 57,
+  "total_checks": 57,
   "required_failures": [],
   "checks": [
     {
@@ -130,6 +130,13 @@
       "passed": true,
       "required": true,
       "evidence": "sleep_competition_adapter/outputs/route_frontier_action_decoder/route_frontier_action_decoder_readout.json"
+    },
+    {
+      "check": "exists:hsjepa_action_decoder_ablation_suite.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite.json"
     },
     {
       "check": "exists:listener_invariant_contrastive_probe.json",
@@ -269,7 +276,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=big_bet_queue_ready, count=7"
+      "evidence": "status=big_bet_queue_ready, count=8"
     },
     {
       "check": "og_only_assignment_probe_recorded",
@@ -312,6 +319,13 @@
       "passed": true,
       "required": true,
       "evidence": "status=route_frontier_action_decoder_alive_with_matched_boundary, recommended=seed_route_frontier, scores=[{'variant': 'seed_route_frontier', 'changed_cells': 20, 'broad_route_z': 2.631665028357059, 'matched_score_z': 3.6234736097578057, 'upload_safe': True}, {'variant': 's2_route_frontier', 'changed_cells': 20, 'broad_route_z': 2.8237779101897877, 'matched_score_z': 3.3123857088533875, 'upload_safe': True}, {'variant': 'open_route_frontier', 'changed_cells': 20, 'broad_route_z': 2.492261359647143, 'matched_score_z': 3.0831554042259524, 'upload_safe': True}]"
+    },
+    {
+      "check": "action_decoder_ablation_suite_recorded",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=action_decoder_ablation_ready_route_frontier_leads, recommended={'family': 'route_frontier', 'variant': 's2_route_frontier', 'submission_file': 'submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv', 'priority': 1.1177646805596027}, big_bet={'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572}"
     },
     {
       "check": "listener_invariant_contrastive_probe_recorded",
@@ -374,7 +388,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=24, edges=50"
+      "evidence": "status=pipeline_ready_with_boundary, stages=25, edges=55"
     },
     {
       "check": "method_packet_presentable",

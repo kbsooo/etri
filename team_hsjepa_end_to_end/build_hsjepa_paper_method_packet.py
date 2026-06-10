@@ -37,6 +37,7 @@ ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidd
 MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "masked_row_support_objective_probe.json"
 ROW_SUPPORT_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
 ROUTE_FRONTIER_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
+ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
@@ -82,6 +83,7 @@ def require_inputs() -> None:
             MASKED_ROW_SUPPORT_JSON,
             ROW_SUPPORT_DECODER_JSON,
             ROUTE_FRONTIER_DECODER_JSON,
+            ACTION_DECODER_ABLATION_JSON,
             CONTRASTIVE_PROBE_JSON,
             PRIVATE_TOXICITY_PROBE_JSON,
             HARDWORLD_TOXICITY_PROBE_JSON,
@@ -112,6 +114,7 @@ def build_packet() -> dict[str, object]:
     masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
     route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
+    action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -131,6 +134,7 @@ def build_packet() -> dict[str, object]:
     masked_row_support_verdict = masked_row_support["verdict"]
     row_support_decoder_verdict = row_support_decoder["verdict"]
     route_frontier_verdict = route_frontier_decoder["verdict"]
+    action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
     hardworld_verdict = hardworld_toxicity_probe["verdict"]
@@ -215,6 +219,9 @@ def build_packet() -> dict[str, object]:
             "route_frontier_action_decoder_status": route_frontier_verdict["status"],
             "route_frontier_action_decoder_recommended": route_frontier_verdict["recommended_variant"],
             "route_frontier_action_decoder_variant_scores": route_frontier_verdict["variant_scores"],
+            "action_decoder_ablation_status": action_ablation_verdict["status"],
+            "action_decoder_ablation_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
+            "action_decoder_ablation_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],
             "listener_invariant_probe_status": contrastive_verdict["status"],
             "listener_route_spearman": contrastive_verdict["mean_listener_route_spearman"],
             "contrastive_overlap_rate": contrastive_verdict["mean_contrastive_overlap_rate"],
@@ -286,6 +293,7 @@ def build_packet() -> dict[str, object]:
             "masked_row_support_objective_probe": str(MASKED_ROW_SUPPORT_JSON.resolve()),
             "row_support_strict_action_decoder": str(ROW_SUPPORT_DECODER_JSON.resolve()),
             "route_frontier_action_decoder": str(ROUTE_FRONTIER_DECODER_JSON.resolve()),
+            "action_decoder_ablation_suite": str(ACTION_DECODER_ABLATION_JSON.resolve()),
             "listener_invariant_contrastive_probe": str(CONTRASTIVE_PROBE_JSON.resolve()),
             "private_safe_toxicity_probe": str(PRIVATE_TOXICITY_PROBE_JSON.resolve()),
             "hardworld_toxicity_factorization_probe": str(HARDWORLD_TOXICITY_PROBE_JSON.resolve()),
@@ -567,6 +575,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- Masked row-support objective: `{human['masked_row_support_objective_status']}`, row AUC `{fmt(human['masked_row_support_full_row_auc'], 4)}`, cell recall `{fmt(human['masked_row_support_full_cell_recall'], 4)}`, group stress AUC `{fmt(human['masked_row_support_group_stress_auc'], 4)}`",
             f"- Row-support action decoder: `{human['row_support_action_decoder_status']}`, recommended `{human['row_support_action_decoder_recommended']}`, changed cells `{human['row_support_action_decoder_changed_cells']}`, safety z `{fmt(human['row_support_action_decoder_safety_z'], 4)}`, combined z `{fmt(human['row_support_action_decoder_combined_z'], 4)}`",
             f"- Route-frontier action decoder: `{human['route_frontier_action_decoder_status']}`, recommended `{human['route_frontier_action_decoder_recommended']}`, scores `{human['route_frontier_action_decoder_variant_scores']}`",
+            f"- Action decoder ablation: `{human['action_decoder_ablation_status']}`, recommended `{human['action_decoder_ablation_recommended_lb_sensor']}`, big bet `{human['action_decoder_ablation_big_bet_sensor']}`",
             "",
             "## Role-Based Outputs",
             "",
@@ -604,6 +613,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- `{packet['outputs']['masked_row_support_objective_probe']}`",
             f"- `{packet['outputs']['row_support_strict_action_decoder']}`",
             f"- `{packet['outputs']['route_frontier_action_decoder']}`",
+            f"- `{packet['outputs']['action_decoder_ablation_suite']}`",
             "",
         ]
     )

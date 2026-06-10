@@ -3,6 +3,35 @@
   "status": "big_bet_queue_ready",
   "bets": [
     {
+      "id": "action_decoder_ablation_suite",
+      "name": "Action Decoder Ablation Suite",
+      "worldview": "The next breakthrough comes from choosing the correct action-decoder order, not from adding more latent features.",
+      "core_modules_exercised": [
+        "action_health_decoder",
+        "invariant_energy",
+        "anti_shortcut_validation"
+      ],
+      "adapter_move": "Compare toxicity-first, support-first, and route-first decoders under one LB-sensor priority table.",
+      "why_big": "If the suite ranking matches public LB, HS-JEPA gains a falsifiable action-decoder selection rule.",
+      "expected_public_lb_delta_if_true": -0.0025,
+      "latest_probe_status": "action_decoder_ablation_ready_route_frontier_leads",
+      "latest_probe_evidence": {
+        "recommended_lb_sensor": {
+          "family": "route_frontier",
+          "variant": "s2_route_frontier",
+          "submission_file": "submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
+          "priority": 1.1177646805596027
+        },
+        "big_bet_sensor": {
+          "family": "route_frontier",
+          "variant": "open_route_frontier",
+          "submission_file": "submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv",
+          "priority": 1.05448050759572
+        }
+      },
+      "kill_criterion": "Public LB contradicts the top-ranked decoder order, or route-first gains vanish under stronger null matching."
+    },
+    {
       "id": "og_only_assignment_teacher",
       "name": "OG-only Human-State Assignment Teacher",
       "worldview": "The public-sensor teacher can be replaced by personal/cohort/time human-state consistency.",
@@ -180,5 +209,5 @@
       "kill_criterion": "Q-S bridge actions fail null tests or replicate the already-killed subjective-shadow bridge."
     }
   ],
-  "count": 7
+  "count": 8
 }
