@@ -53,6 +53,13 @@ COUNTERFACTUAL_LISTENER_DROPOUT_JSON = (
     / "counterfactual_listener_dropout_solver"
     / "counterfactual_listener_dropout_readout.json"
 )
+SPECTRAL_PUBLIC_TANGENT_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "spectral_public_tangent_solver"
+    / "spectral_public_tangent_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -109,6 +116,7 @@ def require_inputs() -> None:
             CORE_HEALTH_CALIBRATED_JSON,
             CROSS_LISTENER_TRANSPORT_JSON,
             COUNTERFACTUAL_LISTENER_DROPOUT_JSON,
+            SPECTRAL_PUBLIC_TANGENT_JSON,
             ACTION_DECODER_ABLATION_JSON,
             CONTRASTIVE_PROBE_JSON,
             PRIVATE_TOXICITY_PROBE_JSON,
@@ -150,6 +158,7 @@ def build_packet() -> dict[str, object]:
     core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
     cross_listener_transport = read_json(CROSS_LISTENER_TRANSPORT_JSON)
     counterfactual_listener_dropout = read_json(COUNTERFACTUAL_LISTENER_DROPOUT_JSON)
+    spectral_public_tangent = read_json(SPECTRAL_PUBLIC_TANGENT_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -190,6 +199,9 @@ def build_packet() -> dict[str, object]:
     listener_dropout_verdict = counterfactual_listener_dropout["verdict"]
     listener_dropout_information_sensor = listener_dropout_verdict["recommended_information_sensor"]
     listener_dropout_thesis_sensor = listener_dropout_verdict["recommended_thesis_sensor"]
+    spectral_tangent_verdict = spectral_public_tangent["verdict"]
+    spectral_information_sensor = spectral_tangent_verdict["recommended_information_sensor"]
+    spectral_counter_sensor = spectral_tangent_verdict["recommended_counter_sensor"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -326,6 +338,15 @@ def build_packet() -> dict[str, object]:
             "counterfactual_listener_dropout_thesis_sensor_file": listener_dropout_thesis_sensor["submission_file"],
             "counterfactual_listener_dropout_thesis_sensor_priority": listener_dropout_thesis_sensor["priority"],
             "counterfactual_listener_dropout_top_ranked": counterfactual_listener_dropout.get("ranking", [])[:2],
+            "spectral_public_tangent_status": spectral_public_tangent["status"],
+            "spectral_public_tangent_first_mode_variance": spectral_public_tangent["spectral"]["first_mode_variance"],
+            "spectral_public_tangent_top5_variance": spectral_public_tangent["spectral"]["top5_cumulative_variance"],
+            "spectral_public_tangent_pool": spectral_public_tangent["pool"],
+            "spectral_public_tangent_information_sensor": spectral_information_sensor,
+            "spectral_public_tangent_information_sensor_file": spectral_information_sensor["submission_file"],
+            "spectral_public_tangent_information_sensor_priority": spectral_information_sensor["priority"],
+            "spectral_public_tangent_counter_sensor": spectral_counter_sensor,
+            "spectral_public_tangent_counter_sensor_file": spectral_counter_sensor["submission_file"],
             "action_decoder_ablation_status": action_ablation_verdict["status"],
             "action_decoder_ablation_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],
@@ -418,6 +439,7 @@ def build_packet() -> dict[str, object]:
             "core_health_calibrated_release": str(CORE_HEALTH_CALIBRATED_JSON.resolve()),
             "cross_listener_transport_decoder": str(CROSS_LISTENER_TRANSPORT_JSON.resolve()),
             "counterfactual_listener_dropout_solver": str(COUNTERFACTUAL_LISTENER_DROPOUT_JSON.resolve()),
+            "spectral_public_tangent_solver": str(SPECTRAL_PUBLIC_TANGENT_JSON.resolve()),
             "action_decoder_ablation_suite": str(ACTION_DECODER_ABLATION_JSON.resolve()),
             "listener_invariant_contrastive_probe": str(CONTRASTIVE_PROBE_JSON.resolve()),
             "private_safe_toxicity_probe": str(PRIVATE_TOXICITY_PROBE_JSON.resolve()),
@@ -449,6 +471,8 @@ def build_packet() -> dict[str, object]:
                 cross_listener_transport,
                 listener_dropout_verdict,
                 counterfactual_listener_dropout,
+                spectral_tangent_verdict,
+                spectral_public_tangent,
                 contrastive_verdict,
                 toxicity_verdict,
                 hardworld_verdict,
@@ -510,7 +534,7 @@ def build_method_text(core: dict[str, object], adapter: dict[str, object]) -> st
             "",
             adapter["adapter_claim"],
             "",
-            "이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 새 hard-world probe는 broad toxicity와 H088 toxicity가 역상관될 수 있음을 보여주므로, action-health는 단일 위험 점수가 아니라 factorized energy head로 다루어야 한다. 이후 core-health calibrated release는 dataset-free core benchmark에서 action-health를 제거했을 때 false positive가 늘어난다는 실패 패턴을 실제 adapter release prior로 사용한다. cross-listener transport는 target-listener lift가 direct action generator로는 실패했다는 negative sensor를 보존하고, listener posterior를 route/fusion/core-safe action의 transport calibrator로만 사용한다. counterfactual listener-dropout은 여기서 한 단계 더 나아가 listener 하나를 가려도 같은 row-target action이 살아남는지 묻고, 실패한 public sensor들을 버리는 대신 action-toxicity label로 사용한다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant/anti-shortcut 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.",
+            "이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 새 hard-world probe는 broad toxicity와 H088 toxicity가 역상관될 수 있음을 보여주므로, action-health는 단일 위험 점수가 아니라 factorized energy head로 다루어야 한다. 이후 core-health calibrated release는 dataset-free core benchmark에서 action-health를 제거했을 때 false positive가 늘어난다는 실패 패턴을 실제 adapter release prior로 사용한다. cross-listener transport는 target-listener lift가 direct action generator로는 실패했다는 negative sensor를 보존하고, listener posterior를 route/fusion/core-safe action의 transport calibrator로만 사용한다. counterfactual listener-dropout은 listener 하나를 가려도 같은 row-target action이 살아남는지 묻고, 실패한 public sensor들을 버리는 대신 action-toxicity label로 사용한다. spectral public-tangent solver는 실패한 public action들을 저차원 negative representation으로 압축한 뒤 anti-tangent와 orthogonal residual release를 비교한다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant/anti-shortcut/negative-representation 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.",
         ]
     )
 
@@ -535,6 +559,8 @@ def build_generality_text(
     cross_listener_transport: dict[str, object],
     listener_dropout_verdict: dict[str, object],
     counterfactual_listener_dropout: dict[str, object],
+    spectral_tangent_verdict: dict[str, object],
+    spectral_public_tangent: dict[str, object],
     contrastive_verdict: dict[str, object],
     toxicity_verdict: dict[str, object],
     hardworld_verdict: dict[str, object],
@@ -607,6 +633,11 @@ def build_generality_text(
         f"- Counterfactual listener-dropout: `{counterfactual_listener_dropout['status']}`",
         f"- Listener-dropout information sensor: `{listener_dropout_verdict['recommended_information_sensor']}`",
         f"- Listener-dropout thesis sensor: `{listener_dropout_verdict['recommended_thesis_sensor']}`",
+        f"- Spectral public-tangent solver: `{spectral_public_tangent['status']}`",
+        f"- Spectral first bad-mode variance: `{fmt(spectral_public_tangent['spectral']['first_mode_variance'], 4)}`",
+        f"- Spectral top-5 variance: `{fmt(spectral_public_tangent['spectral']['top5_cumulative_variance'], 4)}`",
+        f"- Spectral information sensor: `{spectral_tangent_verdict['recommended_information_sensor']}`",
+        f"- Spectral counter sensor: `{spectral_tangent_verdict['recommended_counter_sensor']}`",
         f"- Listener-invariant probe: `{contrastive_verdict['status']}`",
         f"- Listener-route Spearman: `{fmt(contrastive_verdict['mean_listener_route_spearman'], 4)}`",
         f"- Private-safe toxicity probe: `{toxicity_verdict['status']}`",
@@ -616,7 +647,7 @@ def build_generality_text(
         f"- Broad toxicity -> H088 AUC: `{fmt(hardworld_verdict['broad_predicts_hardworld_auc'], 4)}`",
         f"- Broad/H088 Spearman: `{fmt(hardworld_verdict['broad_hardworld_spearman'], 4)}`",
         "",
-        "가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor를 안전한 row-target action으로 번역하는 것이다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer와 masked-family objective에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원하고, human-only/prediction-only/masked-route view도 신호를 유지한다. 첫 strict action decoder는 null 대비 safety는 강하지만 route-gain 우위가 약했다. 새 route-frontier decoder는 반대로 route manifold frontier를 먼저 고르고 support/toxicity를 통과시키며, local broad/matched null은 이겼다. route-toxicity fusion decoder는 여기서 한 단계 더 나아가 route-first와 factorized action-health를 조합한다. decoder-order jury solver는 이 둘이 같은 row-target과 방향에 합의할 때만 action을 방출한다. boundary tomography는 그 strict jury가 너무 보수적인지 보기 위해 rejected cells를 weak-consensus, route-only, fusion-only로 쪼갠다. core-mediated release는 이 후보들을 다시 HS-JEPA Core의 context/listener/action-health/invariant 인터페이스로 통과시켜, core 자체가 action-grade release equation이 될 수 있는지 시험한다. core release ablation은 같은 cell에서 listener/action-health/invariant를 하나씩 제거해 module이 실제 release boundary를 바꾸는지 확인한다. core-health calibrated release는 dataset-free core benchmark에서 관측된 action-health false-positive lift를 adapter release prior로 사용해, generic core test가 실제 competition action boundary를 조절하는지 묻는다. cross-listener transport는 실패한 direct listener action을 버리지 않고, listener posterior를 route/fusion/core-safe action의 운송 보정자로만 써서 listener responsibility의 더 일반적인 역할을 시험한다. counterfactual listener-dropout은 그 다음 단계로, 어떤 listener를 빼도 살아남는 action과 실패한 public sensor에 공선적인 action을 분리한다. 다만 이것들도 아직 sleep adapter의 LB sensor이지 private-safe release claim은 아니다.",
+        "가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor를 안전한 row-target action으로 번역하는 것이다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer와 masked-family objective에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원하고, human-only/prediction-only/masked-route view도 신호를 유지한다. 첫 strict action decoder는 null 대비 safety는 강하지만 route-gain 우위가 약했다. 새 route-frontier decoder는 반대로 route manifold frontier를 먼저 고르고 support/toxicity를 통과시키며, local broad/matched null은 이겼다. route-toxicity fusion decoder는 여기서 한 단계 더 나아가 route-first와 factorized action-health를 조합한다. decoder-order jury solver는 이 둘이 같은 row-target과 방향에 합의할 때만 action을 방출한다. boundary tomography는 그 strict jury가 너무 보수적인지 보기 위해 rejected cells를 weak-consensus, route-only, fusion-only로 쪼갠다. core-mediated release는 이 후보들을 다시 HS-JEPA Core의 context/listener/action-health/invariant 인터페이스로 통과시켜, core 자체가 action-grade release equation이 될 수 있는지 시험한다. core release ablation은 같은 cell에서 listener/action-health/invariant를 하나씩 제거해 module이 실제 release boundary를 바꾸는지 확인한다. core-health calibrated release는 dataset-free core benchmark에서 관측된 action-health false-positive lift를 adapter release prior로 사용해, generic core test가 실제 competition action boundary를 조절하는지 묻는다. cross-listener transport는 실패한 direct listener action을 버리지 않고, listener posterior를 route/fusion/core-safe action의 운송 보정자로만 써서 listener responsibility의 더 일반적인 역할을 시험한다. counterfactual listener-dropout은 어떤 listener를 빼도 살아남는 action과 실패한 public sensor에 공선적인 action을 분리한다. spectral public-tangent solver는 여기서 한 단계 더 나아가, 실패한 public action들을 하나의 negative representation space로 모으고 그 반대/직교 방향이 release 가능한 action equation인지 묻는다. 다만 이것들도 아직 sleep adapter의 LB sensor이지 private-safe release claim은 아니다.",
     ]
     return "\n".join(rows)
 
@@ -644,9 +675,10 @@ def build_algorithm_text() -> str:
             "12. Use cross-listener posterior as a transport calibrator only after route/fusion/core action support exists.",
             "13. Drop one listener view at a time and keep only actions whose health survives listener masking.",
             "14. Treat failed public sensors as toxicity evidence and test same-direction release against direction inversion.",
-            "15. Decode bounded actions that improve listener fit while preserving the invariant.",
-            "16. Reject shortcuts with cohort/time/group/null stress tests.",
-            "17. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.",
+            "15. Decompose failed action fields into a spectral negative representation and test anti-tangent versus orthogonal residual release.",
+            "16. Decode bounded actions that improve listener fit while preserving the invariant.",
+            "17. Reject shortcuts with cohort/time/group/null stress tests.",
+            "18. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.",
         ]
     )
 
@@ -769,6 +801,9 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- Cross-listener negative sensor: `{human['cross_listener_transport_negative_sensor']}`",
             f"- Counterfactual listener-dropout: `{human['counterfactual_listener_dropout_status']}`, information sensor `{human['counterfactual_listener_dropout_information_sensor']}`, file `{human['counterfactual_listener_dropout_information_sensor_file']}`, priority `{fmt(human['counterfactual_listener_dropout_information_sensor_priority'], 4)}`",
             f"- Listener-dropout thesis sensor: `{human['counterfactual_listener_dropout_thesis_sensor']}`, file `{human['counterfactual_listener_dropout_thesis_sensor_file']}`, priority `{fmt(human['counterfactual_listener_dropout_thesis_sensor_priority'], 4)}`",
+            f"- Spectral public-tangent solver: `{human['spectral_public_tangent_status']}`, first-mode variance `{fmt(human['spectral_public_tangent_first_mode_variance'], 4)}`, top-5 variance `{fmt(human['spectral_public_tangent_top5_variance'], 4)}`",
+            f"- Spectral information sensor: `{human['spectral_public_tangent_information_sensor']}`, file `{human['spectral_public_tangent_information_sensor_file']}`, priority `{fmt(human['spectral_public_tangent_information_sensor_priority'], 4)}`",
+            f"- Spectral counter sensor: `{human['spectral_public_tangent_counter_sensor']}`, file `{human['spectral_public_tangent_counter_sensor_file']}`",
             f"- Action decoder ablation: `{human['action_decoder_ablation_status']}`, recommended `{human['action_decoder_ablation_recommended_lb_sensor']}`, big bet `{human['action_decoder_ablation_big_bet_sensor']}`",
             "",
             "## Role-Based Outputs",
@@ -817,6 +852,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- `{packet['outputs']['core_health_calibrated_release']}`",
             f"- `{packet['outputs']['cross_listener_transport_decoder']}`",
             f"- `{packet['outputs']['counterfactual_listener_dropout_solver']}`",
+            f"- `{packet['outputs']['spectral_public_tangent_solver']}`",
             f"- `{packet['outputs']['action_decoder_ablation_suite']}`",
             "",
         ]

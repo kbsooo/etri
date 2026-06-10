@@ -1,0 +1,544 @@
+{
+  "experiment": "spectral_public_tangent_solver",
+  "architecture_role": "HS-JEPA public/private action-equation sensor",
+  "status": "spectral_public_tangent_ready",
+  "claim": "Known public failures share a low-rank bad action tangent; HS-JEPA should either release anti-tangent actions or find a private-safe orthogonal residual subspace.",
+  "spectral": {
+    "anchor_count": 26,
+    "first_mode_variance": 0.9628550254007645,
+    "top5_cumulative_variance": 0.9946826859769906,
+    "singular_values": [
+      3.9248700923283506,
+      0.42736505936128066,
+      0.3891499257724587,
+      0.3356759829624167,
+      0.24990018982496587,
+      0.16724030897803246,
+      0.13288948751368476,
+      0.11300586024023068
+    ],
+    "mean_bad_tangent_coord": 0.7500068848733459,
+    "min_bad_tangent_coord": -0.7172294112358857,
+    "max_bad_tangent_coord": 0.9995708377235418
+  },
+  "pool": {
+    "candidate_cells": 116,
+    "source_families": [
+      "listener_dropout",
+      "public_loss_tomography",
+      "route_frontier",
+      "route_toxicity_fusion"
+    ],
+    "anti_bad_cells": 98,
+    "bad_aligned_cells": 18
+  },
+  "verdict": {
+    "recommended_information_sensor": {
+      "variant": "anti_bad_tangent_pressure",
+      "submission_file": "submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_uploadsafe.csv",
+      "priority": 1.4947903603985548
+    },
+    "recommended_counter_sensor": {
+      "variant": "orthogonal_private_residual",
+      "submission_file": "submission_hsjepa_spectral_public_tangent_orthogonal_private_residual_57ed54c2_uploadsafe.csv"
+    },
+    "failure_interpretation": "If all variants fail public LB, the bad tangent is descriptive but not a valid inverse action direction; the next bottleneck is label-validity constraints, not public-mode discovery."
+  },
+  "ranking": [
+    {
+      "variant": "anti_bad_tangent_pressure",
+      "worldview": "If the public-loss tangent is real, a larger anti-tangent field should move public LB more than conservative cell-by-cell decoders.",
+      "submission_file": "submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/spectral_public_tangent_solver/submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 64,
+        "upload_safe": true
+      },
+      "stress": {
+        "actual": {
+          "cells": 64.0,
+          "rows": 56.0,
+          "mean_action_health": 0.5925152899645814,
+          "mean_bad_tangent_abs_rank": 0.7886409622302158,
+          "anti_bad_rate": 1.0,
+          "source_family_mean": 1.453125,
+          "bad_tangent_dot": -0.32755916145212877,
+          "bad_tangent_cosine": -0.09642013914267872,
+          "q_rate": 0.4375,
+          "s_rate": 0.5625
+        },
+        "tests": {
+          "mean_action_health": {
+            "actual": 0.5925152899645814,
+            "null_mean": 0.60318672087215,
+            "null_std": 0.009252323002676116,
+            "z": -1.1533785520114288,
+            "p": 0.868
+          },
+          "mean_bad_tangent_abs_rank": {
+            "actual": 0.7886409622302158,
+            "null_mean": 0.6065112410071942,
+            "null_std": 0.02425477437977696,
+            "z": 7.5090255786867655,
+            "p": 0.0
+          },
+          "anti_bad_rate": {
+            "actual": 1.0,
+            "null_mean": 1.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          },
+          "source_family_mean": {
+            "actual": 1.453125,
+            "null_mean": 1.71046875,
+            "null_std": 0.07877842350356418,
+            "z": -3.266678089697453,
+            "p": 1.0
+          },
+          "bad_tangent_dot": {
+            "actual": -0.32755916145212877,
+            "null_mean": -0.2319617493188029,
+            "null_std": 0.06594081023004897,
+            "z": -1.44974579171553,
+            "p": 0.062
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.09642013914267872,
+            "null_mean": -0.06835152965119819,
+            "null_std": 0.019431757613937093,
+            "z": -1.4444709556972244,
+            "p": 0.062
+          }
+        }
+      },
+      "priority": 1.4947903603985548,
+      "config": {
+        "name": "anti_bad_tangent_pressure",
+        "worldview": "If the public-loss tangent is real, a larger anti-tangent field should move public LB more than conservative cell-by-cell decoders.",
+        "mode": "anti",
+        "max_cells": 86,
+        "max_cells_per_row": 3,
+        "min_health": 0.38,
+        "min_abs_bad_rank": 0.48,
+        "max_abs_bad_rank": 1.0,
+        "min_source_families": 1,
+        "step_scale": 0.5,
+        "step_floor": 0.045,
+        "step_cap": 0.66,
+        "target_caps": [
+          [
+            "Q1",
+            10
+          ],
+          [
+            "Q2",
+            18
+          ],
+          [
+            "Q3",
+            10
+          ],
+          [
+            "S1",
+            13
+          ],
+          [
+            "S2",
+            18
+          ],
+          [
+            "S3",
+            12
+          ],
+          [
+            "S4",
+            15
+          ]
+        ]
+      },
+      "rank": 1
+    },
+    {
+      "variant": "anti_bad_tangent_sparse",
+      "worldview": "Known public failures share a low-rank bad action tangent; release only HS-JEPA cells whose proposed direction is opposite to that tangent.",
+      "submission_file": "submission_hsjepa_spectral_public_tangent_anti_bad_tangent_sparse_dda70077_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_spectral_public_tangent_anti_bad_tangent_sparse_dda70077_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/spectral_public_tangent_solver/submission_hsjepa_spectral_public_tangent_anti_bad_tangent_sparse_dda70077_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_spectral_public_tangent_anti_bad_tangent_sparse_dda70077_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 32,
+        "upload_safe": true
+      },
+      "stress": {
+        "actual": {
+          "cells": 32.0,
+          "rows": 30.0,
+          "mean_action_health": 0.6413929745324111,
+          "mean_bad_tangent_abs_rank": 0.8299235611510791,
+          "anti_bad_rate": 1.0,
+          "source_family_mean": 1.59375,
+          "bad_tangent_dot": -0.0770882676708157,
+          "bad_tangent_cosine": -0.040742984763338895,
+          "q_rate": 0.28125,
+          "s_rate": 0.71875
+        },
+        "tests": {
+          "mean_action_health": {
+            "actual": 0.6413929745324111,
+            "null_mean": 0.6279394521205444,
+            "null_std": 0.01676856616598292,
+            "z": 0.8023060695051443,
+            "p": 0.198
+          },
+          "mean_bad_tangent_abs_rank": {
+            "actual": 0.8299235611510791,
+            "null_mean": 0.6161786196043165,
+            "null_std": 0.039681693779780355,
+            "z": 5.3864873493801175,
+            "p": 0.0
+          },
+          "anti_bad_rate": {
+            "actual": 1.0,
+            "null_mean": 1.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          },
+          "source_family_mean": {
+            "actual": 1.59375,
+            "null_mean": 1.9345,
+            "null_std": 0.15462830781313722,
+            "z": -2.2036715321995524,
+            "p": 0.994
+          },
+          "bad_tangent_dot": {
+            "actual": -0.0770882676708157,
+            "null_mean": -0.0810865067003627,
+            "null_std": 0.03233200716259735,
+            "z": 0.12366194927026644,
+            "p": 0.496
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.040742984763338895,
+            "null_mean": -0.042888491375743146,
+            "null_std": 0.01710205786899873,
+            "z": 0.12545312551499763,
+            "p": 0.496
+          }
+        }
+      },
+      "priority": 0.9263783842091736,
+      "config": {
+        "name": "anti_bad_tangent_sparse",
+        "worldview": "Known public failures share a low-rank bad action tangent; release only HS-JEPA cells whose proposed direction is opposite to that tangent.",
+        "mode": "anti",
+        "max_cells": 42,
+        "max_cells_per_row": 2,
+        "min_health": 0.46,
+        "min_abs_bad_rank": 0.6,
+        "max_abs_bad_rank": 1.0,
+        "min_source_families": 1,
+        "step_scale": 0.36,
+        "step_floor": 0.035,
+        "step_cap": 0.42,
+        "target_caps": [
+          [
+            "Q1",
+            5
+          ],
+          [
+            "Q2",
+            9
+          ],
+          [
+            "Q3",
+            5
+          ],
+          [
+            "S1",
+            7
+          ],
+          [
+            "S2",
+            9
+          ],
+          [
+            "S3",
+            5
+          ],
+          [
+            "S4",
+            7
+          ]
+        ]
+      },
+      "rank": 2
+    },
+    {
+      "variant": "bad_tangent_sign_flip",
+      "worldview": "Some high-health actions may have failed only because their sign was aligned with the public-bad mode; flip those signs as a direct sign-equation stress test.",
+      "submission_file": "submission_hsjepa_spectral_public_tangent_bad_tangent_sign_flip_8ff80d37_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_spectral_public_tangent_bad_tangent_sign_flip_8ff80d37_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/spectral_public_tangent_solver/submission_hsjepa_spectral_public_tangent_bad_tangent_sign_flip_8ff80d37_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_spectral_public_tangent_bad_tangent_sign_flip_8ff80d37_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 3,
+        "upload_safe": true
+      },
+      "stress": {
+        "actual": {
+          "cells": 3.0,
+          "rows": 3.0,
+          "mean_action_health": 0.6691241138811472,
+          "mean_bad_tangent_abs_rank": 0.7655875299760192,
+          "anti_bad_rate": 1.0,
+          "source_family_mean": 3.3333333333333335,
+          "bad_tangent_dot": -0.034707876827365855,
+          "bad_tangent_cosine": -0.08027589365167567,
+          "q_rate": 0.0,
+          "s_rate": 1.0
+        },
+        "tests": {
+          "mean_action_health": {
+            "actual": 0.6691241138811472,
+            "null_mean": 0.59501460615736,
+            "null_std": 0.06772673828150351,
+            "z": 1.0942429770610536,
+            "p": 0.146
+          },
+          "mean_bad_tangent_abs_rank": {
+            "actual": 0.7655875299760192,
+            "null_mean": 0.5446618705035972,
+            "null_std": 0.16189114706978383,
+            "z": 1.3646555940281968,
+            "p": 0.076
+          },
+          "anti_bad_rate": {
+            "actual": 1.0,
+            "null_mean": 1.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          },
+          "source_family_mean": {
+            "actual": 3.3333333333333335,
+            "null_mean": 2.218666666666667,
+            "null_std": 0.6526297794583461,
+            "z": 1.7079616985786192,
+            "p": 0.092
+          },
+          "bad_tangent_dot": {
+            "actual": -0.034707876827365855,
+            "null_mean": -0.007546020862147589,
+            "null_std": 0.012866209396295432,
+            "z": -2.1111001017159707,
+            "p": 0.136
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.08027589365167567,
+            "null_mean": -0.01750440678662431,
+            "null_std": 0.02988701585850833,
+            "z": -2.10029288846452,
+            "p": 0.136
+          }
+        }
+      },
+      "priority": 0.8594620013933184,
+      "config": {
+        "name": "bad_tangent_sign_flip",
+        "worldview": "Some high-health actions may have failed only because their sign was aligned with the public-bad mode; flip those signs as a direct sign-equation stress test.",
+        "mode": "flip_bad_aligned",
+        "max_cells": 34,
+        "max_cells_per_row": 2,
+        "min_health": 0.44,
+        "min_abs_bad_rank": 0.55,
+        "max_abs_bad_rank": 1.0,
+        "min_source_families": 1,
+        "step_scale": 0.28,
+        "step_floor": 0.03,
+        "step_cap": 0.38,
+        "target_caps": [
+          [
+            "Q1",
+            4
+          ],
+          [
+            "Q2",
+            8
+          ],
+          [
+            "Q3",
+            4
+          ],
+          [
+            "S1",
+            5
+          ],
+          [
+            "S2",
+            8
+          ],
+          [
+            "S3",
+            5
+          ],
+          [
+            "S4",
+            5
+          ]
+        ]
+      },
+      "rank": 3
+    },
+    {
+      "variant": "orthogonal_private_residual",
+      "worldview": "H057 may already be optimal along the public tangent; remaining private-safe upside should come from high-health cells nearly orthogonal to the bad public mode.",
+      "submission_file": "submission_hsjepa_spectral_public_tangent_orthogonal_private_residual_57ed54c2_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_spectral_public_tangent_orthogonal_private_residual_57ed54c2_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/spectral_public_tangent_solver/submission_hsjepa_spectral_public_tangent_orthogonal_private_residual_57ed54c2_uploadsafe.csv",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_spectral_public_tangent_orthogonal_private_residual_57ed54c2_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 25,
+        "upload_safe": true
+      },
+      "stress": {
+        "actual": {
+          "cells": 25.0,
+          "rows": 21.0,
+          "mean_action_health": 0.6806223957944008,
+          "mean_bad_tangent_abs_rank": 0.1479136690647482,
+          "anti_bad_rate": 0.68,
+          "source_family_mean": 2.56,
+          "bad_tangent_dot": -0.001438570199858507,
+          "bad_tangent_cosine": -0.0009222486870641783,
+          "q_rate": 0.16,
+          "s_rate": 0.84
+        },
+        "tests": {
+          "mean_action_health": {
+            "actual": 0.6806223957944008,
+            "null_mean": 0.5942416174660695,
+            "null_std": 0.023097195956644168,
+            "z": 3.7398816068615828,
+            "p": 0.0
+          },
+          "mean_bad_tangent_abs_rank": {
+            "actual": 0.1479136690647482,
+            "null_mean": 0.5329525179856116,
+            "null_std": 0.05202582120750647,
+            "z": -7.400918236064452,
+            "p": 1.0
+          },
+          "anti_bad_rate": {
+            "actual": 0.68,
+            "null_mean": 1.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          },
+          "source_family_mean": {
+            "actual": 2.56,
+            "null_mean": 2.13528,
+            "null_std": 0.18829932254190263,
+            "z": 2.255557769760358,
+            "p": 0.012
+          },
+          "bad_tangent_dot": {
+            "actual": -0.001438570199858507,
+            "null_mean": -0.08722020475591173,
+            "null_std": 0.04034205651860789,
+            "z": 2.1263575027833848,
+            "p": 1.0
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.0009222486870641783,
+            "null_mean": -0.055929857399634776,
+            "null_std": 0.02586500450841311,
+            "z": 2.126719471271628,
+            "p": 1.0
+          }
+        }
+      },
+      "priority": 0.6989159613363505,
+      "config": {
+        "name": "orthogonal_private_residual",
+        "worldview": "H057 may already be optimal along the public tangent; remaining private-safe upside should come from high-health cells nearly orthogonal to the bad public mode.",
+        "mode": "orthogonal",
+        "max_cells": 54,
+        "max_cells_per_row": 2,
+        "min_health": 0.5,
+        "min_abs_bad_rank": 0.0,
+        "max_abs_bad_rank": 0.42,
+        "min_source_families": 1,
+        "step_scale": 0.32,
+        "step_floor": 0.03,
+        "step_cap": 0.46,
+        "target_caps": [
+          [
+            "Q1",
+            7
+          ],
+          [
+            "Q2",
+            10
+          ],
+          [
+            "Q3",
+            7
+          ],
+          [
+            "S1",
+            8
+          ],
+          [
+            "S2",
+            10
+          ],
+          [
+            "S3",
+            6
+          ],
+          [
+            "S4",
+            8
+          ]
+        ]
+      },
+      "rank": 4
+    }
+  ],
+  "outputs": {
+    "readout_json": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/spectral_public_tangent_solver/spectral_public_tangent_readout.json",
+    "readout_md": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/spectral_public_tangent_solver/spectral_public_tangent_readout_ko.md",
+    "cell_pool": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/spectral_public_tangent_solver/spectral_public_tangent_cells.csv",
+    "anchor_modes": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/spectral_public_tangent_solver/spectral_public_tangent_anchor_modes.csv",
+    "null_stress": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/spectral_public_tangent_solver/spectral_public_tangent_null_stress.csv"
+  }
+}

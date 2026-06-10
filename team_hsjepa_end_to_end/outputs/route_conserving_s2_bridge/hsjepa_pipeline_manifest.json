@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 35,
-  "edge_count": 106,
+  "stage_count": 36,
+  "edge_count": 111,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -442,6 +442,34 @@
       "boundary": "This is a high-information public/private equation sensor; it can validate listener-invariant action health or kill that release geometry."
     },
     {
+      "id": "spectral_public_tangent_solver",
+      "name": "Spectral Public-Tangent Solver",
+      "role": "Treats post-H057 public failures as a low-rank negative representation and tests anti-tangent versus orthogonal residual action release.",
+      "inputs": [
+        "public_score_ledger.csv",
+        "current best submission",
+        "counterfactual_listener_dropout_cells.csv",
+        "public_loss_sparse_tomography cells",
+        "route_frontier_action_decoder_audit.csv",
+        "route_toxicity_fusion_decoder_audit.csv"
+      ],
+      "outputs": [
+        "spectral_public_tangent_readout_ko.md",
+        "submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_uploadsafe.csv",
+        "submission_hsjepa_spectral_public_tangent_anti_bad_tangent_sparse_dda70077_uploadsafe.csv",
+        "submission_hsjepa_spectral_public_tangent_bad_tangent_sign_flip_8ff80d37_uploadsafe.csv",
+        "submission_hsjepa_spectral_public_tangent_orthogonal_private_residual_57ed54c2_uploadsafe.csv"
+      ],
+      "evidence": [
+        "Spectral status: spectral_public_tangent_ready",
+        "First bad-mode variance: 0.9629",
+        "Top-5 variance: 0.9947",
+        "Information sensor: {'variant': 'anti_bad_tangent_pressure', 'submission_file': 'submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_uploadsafe.csv', 'priority': 1.4947903603985548}",
+        "Counter sensor: {'variant': 'orthogonal_private_residual', 'submission_file': 'submission_hsjepa_spectral_public_tangent_orthogonal_private_residual_57ed54c2_uploadsafe.csv'}"
+      ],
+      "boundary": "This stage proves a negative representation geometry, not that the inverse direction is label-valid before public LB observes it."
+    },
+    {
       "id": "action_decoder_ablation_suite",
       "name": "Action Decoder Ablation Suite",
       "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, and listener-dropout alternatives as HS-JEPA module ablations.",
@@ -695,7 +723,7 @@
       "evidence": [
         "Adapter status: adapter_ready_with_public_sensor_boundary",
         "Adapter score delta: -0.0084113555",
-        "Big-bet count: 15"
+        "Big-bet count: 16"
       ],
       "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
     },
@@ -1026,6 +1054,26 @@
     ],
     [
       "counterfactual_listener_dropout_solver",
+      "spectral_public_tangent_solver"
+    ],
+    [
+      "public_lb_sensor",
+      "spectral_public_tangent_solver"
+    ],
+    [
+      "spectral_public_tangent_solver",
+      "action_decoder_ablation_suite"
+    ],
+    [
+      "spectral_public_tangent_solver",
+      "sleep_competition_adapter"
+    ],
+    [
+      "spectral_public_tangent_solver",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
+      "counterfactual_listener_dropout_solver",
       "action_decoder_ablation_suite"
     ],
     [
@@ -1210,7 +1258,7 @@
     "core_module_benchmark_invariant_fp_lift": 1,
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
     "core_adapter_boundary_status": "core_adapter_boundary_verified",
-    "big_bet_count": 15,
+    "big_bet_count": 16,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "assignment_gap_decomposition_status": "row_support_is_primary_bottleneck",
     "assignment_gap_mean_row_support_gap": 0.5832137733142038,
@@ -1710,6 +1758,18 @@
         "rank": 2
       }
     ],
+    "spectral_public_tangent_status": "spectral_public_tangent_ready",
+    "spectral_public_tangent_first_mode_variance": 0.9628550254007645,
+    "spectral_public_tangent_top5_variance": 0.9946826859769906,
+    "spectral_public_tangent_recommended_information_sensor": {
+      "variant": "anti_bad_tangent_pressure",
+      "submission_file": "submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_uploadsafe.csv",
+      "priority": 1.4947903603985548
+    },
+    "spectral_public_tangent_recommended_counter_sensor": {
+      "variant": "orthogonal_private_residual",
+      "submission_file": "submission_hsjepa_spectral_public_tangent_orthogonal_private_residual_57ed54c2_uploadsafe.csv"
+    },
     "action_decoder_ablation_suite_status": "action_decoder_ablation_ready_decoder_jury_leads",
     "action_decoder_ablation_suite_recommended_lb_sensor": {
       "family": "decoder_order_jury",

@@ -56,6 +56,13 @@ COUNTERFACTUAL_LISTENER_DROPOUT_JSON = (
     / "counterfactual_listener_dropout_solver"
     / "counterfactual_listener_dropout_readout.json"
 )
+SPECTRAL_PUBLIC_TANGENT_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "spectral_public_tangent_solver"
+    / "spectral_public_tangent_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -115,6 +122,7 @@ def require_inputs() -> None:
         CORE_HEALTH_CALIBRATED_JSON,
         CROSS_LISTENER_TRANSPORT_JSON,
         COUNTERFACTUAL_LISTENER_DROPOUT_JSON,
+        SPECTRAL_PUBLIC_TANGENT_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -192,6 +200,7 @@ def build_manifest() -> dict[str, object]:
     core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
     cross_listener_transport = read_json(CROSS_LISTENER_TRANSPORT_JSON)
     counterfactual_listener_dropout = read_json(COUNTERFACTUAL_LISTENER_DROPOUT_JSON)
+    spectral_public_tangent = read_json(SPECTRAL_PUBLIC_TANGENT_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -218,6 +227,7 @@ def build_manifest() -> dict[str, object]:
     core_health_calibrated_verdict = core_health_calibrated["verdict"]
     cross_listener_verdict = cross_listener_transport["verdict"]
     listener_dropout_verdict = counterfactual_listener_dropout["verdict"]
+    spectral_tangent_verdict = spectral_public_tangent["verdict"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -570,6 +580,32 @@ def build_manifest() -> dict[str, object]:
             "This is a high-information public/private equation sensor; it can validate listener-invariant action health or kill that release geometry.",
         ),
         stage(
+            "spectral_public_tangent_solver",
+            "Spectral Public-Tangent Solver",
+            "Treats post-H057 public failures as a low-rank negative representation and tests anti-tangent versus orthogonal residual action release.",
+            [
+                "public_score_ledger.csv",
+                "current best submission",
+                "counterfactual_listener_dropout_cells.csv",
+                "public_loss_sparse_tomography cells",
+                "route_frontier_action_decoder_audit.csv",
+                "route_toxicity_fusion_decoder_audit.csv",
+            ],
+            ["spectral_public_tangent_readout_ko.md", *[
+                str(item.get("submission_file"))
+                for item in spectral_public_tangent.get("ranking", [])
+                if isinstance(item, dict) and item.get("submission_file")
+            ]],
+            [
+                f"Spectral status: {spectral_public_tangent['status']}",
+                f"First bad-mode variance: {fmt(spectral_public_tangent['spectral']['first_mode_variance'], 4)}",
+                f"Top-5 variance: {fmt(spectral_public_tangent['spectral']['top5_cumulative_variance'], 4)}",
+                f"Information sensor: {spectral_tangent_verdict['recommended_information_sensor']}",
+                f"Counter sensor: {spectral_tangent_verdict['recommended_counter_sensor']}",
+            ],
+            "This stage proves a negative representation geometry, not that the inverse direction is label-valid before public LB observes it.",
+        ),
+        stage(
             "action_decoder_ablation_suite",
             "Action Decoder Ablation Suite",
             "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, and listener-dropout alternatives as HS-JEPA module ablations.",
@@ -859,6 +895,11 @@ def build_manifest() -> dict[str, object]:
         ["decoder_order_jury_solver", "counterfactual_listener_dropout_solver"],
         ["decoder_boundary_tomography_solver", "counterfactual_listener_dropout_solver"],
         ["public_lb_sensor", "counterfactual_listener_dropout_solver"],
+        ["counterfactual_listener_dropout_solver", "spectral_public_tangent_solver"],
+        ["public_lb_sensor", "spectral_public_tangent_solver"],
+        ["spectral_public_tangent_solver", "action_decoder_ablation_suite"],
+        ["spectral_public_tangent_solver", "sleep_competition_adapter"],
+        ["spectral_public_tangent_solver", "claim_readiness_and_paper_packet"],
         ["counterfactual_listener_dropout_solver", "action_decoder_ablation_suite"],
         ["counterfactual_listener_dropout_solver", "sleep_competition_adapter"],
         ["counterfactual_listener_dropout_solver", "claim_readiness_and_paper_packet"],
@@ -976,6 +1017,11 @@ def build_manifest() -> dict[str, object]:
             "counterfactual_listener_dropout_recommended_information_sensor": listener_dropout_verdict["recommended_information_sensor"],
             "counterfactual_listener_dropout_recommended_thesis_sensor": listener_dropout_verdict["recommended_thesis_sensor"],
             "counterfactual_listener_dropout_top_variants": counterfactual_listener_dropout.get("ranking", [])[:2],
+            "spectral_public_tangent_status": spectral_public_tangent["status"],
+            "spectral_public_tangent_first_mode_variance": spectral_public_tangent["spectral"]["first_mode_variance"],
+            "spectral_public_tangent_top5_variance": spectral_public_tangent["spectral"]["top5_cumulative_variance"],
+            "spectral_public_tangent_recommended_information_sensor": spectral_tangent_verdict["recommended_information_sensor"],
+            "spectral_public_tangent_recommended_counter_sensor": spectral_tangent_verdict["recommended_counter_sensor"],
             "action_decoder_ablation_suite_status": action_ablation_verdict["status"],
             "action_decoder_ablation_suite_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_suite_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],
@@ -1050,6 +1096,10 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    RFA --> CLT["Cross-listener transport decoder"]',
             '    CLT --> CLD["Counterfactual listener-dropout solver"]',
             '    B --> CLD',
+            '    CLD --> SPT["Spectral public-tangent solver"]',
+            '    B --> SPT',
+            '    SPT --> ADA',
+            '    SPT --> ADAPT',
             '    CLD --> ADA',
             '    CLD --> ADAPT',
             '    E --> F',

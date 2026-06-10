@@ -3,6 +3,46 @@
   "status": "big_bet_queue_ready",
   "bets": [
     {
+      "id": "spectral_public_tangent_solver",
+      "name": "Spectral Public-Tangent Solver",
+      "worldview": "Known post-H057 public failures are not independent mistakes; they collapse onto a low-rank public-bad action tangent.",
+      "core_modules_exercised": [
+        "action_health_decoder",
+        "anti_shortcut_validation",
+        "listener_responsibility",
+        "public_private_equation"
+      ],
+      "adapter_move": "Infer the dominant bad public-loss tangent from failed submissions, then release anti-tangent or orthogonal private-residual row-target actions.",
+      "why_big": "If anti-tangent pressure improves LB, HS-JEPA gains a falsifiable action-equation thesis: failures define a negative representation that can be inverted or avoided.",
+      "expected_public_lb_delta_if_true": -0.004,
+      "latest_probe_status": "spectral_public_tangent_ready",
+      "latest_probe_evidence": {
+        "first_mode_variance": 0.9628550254007645,
+        "top5_cumulative_variance": 0.9946826859769906,
+        "recommended_information_sensor": {
+          "variant": "anti_bad_tangent_pressure",
+          "submission_file": "submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_uploadsafe.csv",
+          "priority": 1.4947903603985548
+        },
+        "recommended_counter_sensor": {
+          "variant": "orthogonal_private_residual",
+          "submission_file": "submission_hsjepa_spectral_public_tangent_orthogonal_private_residual_57ed54c2_uploadsafe.csv"
+        },
+        "pool": {
+          "candidate_cells": 116,
+          "source_families": [
+            "listener_dropout",
+            "public_loss_tomography",
+            "route_frontier",
+            "route_toxicity_fusion"
+          ],
+          "anti_bad_cells": 98,
+          "bad_aligned_cells": 18
+        }
+      },
+      "kill_criterion": "Anti-tangent and orthogonal residual sensors both worsen public LB, meaning the low-rank tangent is descriptive but not an invertible action equation."
+    },
+    {
       "id": "counterfactual_listener_dropout_solver",
       "name": "Counterfactual Listener-Dropout Solver",
       "worldview": "A healthy HS-JEPA action should survive when one listener is masked, while failed public sensors become action-toxicity evidence rather than discarded submissions.",
@@ -864,5 +904,5 @@
       "kill_criterion": "Toxicity score only recovers known public failures, fails hard-world anchors, or does not separate matched local nulls."
     }
   ],
-  "count": 15
+  "count": 16
 }

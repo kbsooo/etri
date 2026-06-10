@@ -88,6 +88,23 @@ python3 sleep_competition_adapter/counterfactual_listener_dropout_solver.py
 
 이 실험은 실패한 public 제출을 버리지 않고, action toxicity label로 재해석한다. 그리고 같은 high-survival action을 그대로 믿는 `dropout_fullfield_aggressive`와, public-negative direction을 반대로 보는 `toxic_direction_inversion`을 A/B 센서로 만든다.
 
+### Contribution 6. Spectral Negative Representation
+
+HS-JEPA는 실패한 action도 버리지 않는다. 여러 public-negative action이 서로 독립 실패가 아니라 같은 저차원 방향으로 실패한다면, 그 방향은 negative representation이다.
+
+수면 대회 adapter에서는 H057 이후 public에서 나빠진 제출들을 모아 action-delta matrix를 만들고, 그 첫 번째 spectral mode를 public-bad tangent로 해석한다.
+
+```bash
+python3 sleep_competition_adapter/spectral_public_tangent_solver.py
+```
+
+이 모듈은 두 가지 세계관을 직접 가른다.
+
+- anti-tangent world: 실패들이 가리키는 나쁜 방향의 반대로 가면 더 좋은 action field가 된다.
+- orthogonal residual world: H057은 public tangent상 거의 최적이고, 남은 upside는 나쁜 방향과 직교한 private-safe residual subspace에 있다.
+
+따라서 이 contribution의 핵심은 “실패를 평균으로 지우지 않고, 실패 자체를 JEPA의 target representation으로 만든다”는 점이다.
+
 ## 이번 대회에서 얻은 핵심 증거
 
 ### 증거 1. Direct JEPA latent label prediction은 실패했다
@@ -124,7 +141,7 @@ H088류 hard-world toxicity와 broad public-bad toxicity는 같은 축이 아니
 
 따라서 HS-JEPA의 action-health는 하나의 confidence score가 아니라, 여러 failure mode를 분리하는 field로 봐야 한다.
 
-### 증거 5. Counterfactual listener-dropout은 다음 큰 센서다
+### 증거 5. Counterfactual listener-dropout은 action-health를 cell 단위로 쪼갠다
 
 새 solver 결과:
 
@@ -152,6 +169,46 @@ toxic_direction_inversion
 - `toxic_direction_inversion`: 실패한 public sensor가 action 방향이 반대여야 한다는 신호였다.
 
 둘 중 어느 쪽이 public에서 더 낫든, HS-JEPA의 action-health/toxicity 세계관이 좁혀진다.
+
+### 증거 6. Public failure는 저차원 negative representation을 만든다
+
+H057 이후 public에서 실패한 26개 제출을 H057 대비 action-delta vector로 보고 spectral decomposition을 수행했다.
+
+```text
+first bad-mode variance: 0.962855
+top-5 cumulative variance: 0.994683
+candidate cells: 116
+anti-bad cells: 98
+bad-aligned cells: 18
+```
+
+해석:
+
+```text
+H057 이후의 실패는 제각각 실패한 것이 아니라, 대부분 같은 public-bad action tangent 위에서 실패했다.
+```
+
+이것은 논문적으로 중요하다. HS-JEPA의 action-health는 단순 confidence가 아니라, positive latent와 negative latent를 모두 갖는 representation geometry로 봐야 한다.
+
+현재 가장 정보량이 큰 sensor:
+
+```text
+submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_uploadsafe.csv
+```
+
+이 후보가 좋아지면:
+
+- public-bad tangent는 단순 실패 요약이 아니라 invertible action equation이다.
+- HS-JEPA는 실패 제출을 negative representation으로 학습해 더 좋은 action을 만들 수 있다.
+
+이 후보가 나빠지고 orthogonal residual이 좋아지면:
+
+- H057은 public tangent 방향에서 이미 충분히 최적화됐고, 남은 개선은 tangent와 직교한 private-safe subspace에서 찾아야 한다.
+
+둘 다 나빠지면:
+
+- public failure의 저차원 구조는 real이지만, 그 반대 방향이 label-valid action이라는 보장은 없다.
+- 다음 병목은 public-mode discovery가 아니라 label-validity/invariant constraint다.
 
 ## 논문에서 과장하면 안 되는 것
 
@@ -184,20 +241,20 @@ action-health, invariant decoder로 통과시킨 접근이 가장 큰 public LB 
 현재 thesis 관점에서 가장 정보량이 큰 후보는 다음이다.
 
 ```text
-submission_hsjepa_counterfactual_listener_dropout_dropout_fullfield_aggressive_a433fbc0_uploadsafe.csv
+submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_uploadsafe.csv
 ```
 
 이 후보가 좋아지면:
 
-- listener-dropout high-survival action은 public-negative 제출 안에서도 좋은 core cell을 찾을 수 있다.
-- HS-JEPA의 action-health는 “negative sensor를 전부 버리는 것”이 아니라 “cell-level health를 분리하는 것”이 된다.
+- post-H057 failure action들은 같은 bad tangent를 공유했고, 그 반대 방향이 실제로 public-good action이다.
+- HS-JEPA의 negative representation/action-health thesis가 강해진다.
 
-이 후보가 나빠지고 inversion이 좋아지면:
+이 후보가 나빠지고 orthogonal residual이 좋아지면:
 
-- public-negative sensor는 action direction inversion 신호였을 가능성이 커진다.
-- HS-JEPA에는 action direction responsibility 또는 public/private sign solver가 필요하다.
+- 실패들의 spectral mode는 real이지만 invertible하지 않다.
+- H057 이후 개선은 public-bad direction 반대가 아니라 private-safe residual subspace에서 찾아야 한다.
 
 둘 다 나빠지면:
 
-- listener-dropout geometry는 local null에서는 강하지만 public/private row-target equation을 해결하지 못한다.
-- 다음 breakthrough는 listener dropout이 아니라 public/private factorization 또는 row-support assignment에서 찾아야 한다.
+- low-rank public failure geometry는 descriptive diagnostic일 뿐 action equation은 아니다.
+- HS-JEPA는 action 방향보다 label-valid invariant constraint를 더 강화해야 한다.

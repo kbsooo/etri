@@ -43,6 +43,9 @@ CROSS_LISTENER_TRANSPORT_JSON = OUT / "cross_listener_transport_decoder" / "cros
 COUNTERFACTUAL_LISTENER_DROPOUT_JSON = (
     OUT / "counterfactual_listener_dropout_solver" / "counterfactual_listener_dropout_readout.json"
 )
+SPECTRAL_PUBLIC_TANGENT_JSON = (
+    OUT / "spectral_public_tangent_solver" / "spectral_public_tangent_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
@@ -92,6 +95,7 @@ def require_inputs() -> None:
         CORE_HEALTH_CALIBRATED_JSON,
         CROSS_LISTENER_TRANSPORT_JSON,
         COUNTERFACTUAL_LISTENER_DROPOUT_JSON,
+        SPECTRAL_PUBLIC_TANGENT_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -119,6 +123,7 @@ def build_big_bets(
     core_health_calibrated: dict[str, object],
     cross_listener_transport: dict[str, object],
     counterfactual_listener_dropout: dict[str, object],
+    spectral_public_tangent: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -186,6 +191,11 @@ def build_big_bets(
         if isinstance(counterfactual_listener_dropout.get("verdict"), dict)
         else {}
     )
+    spectral_tangent_verdict = (
+        spectral_public_tangent.get("verdict", {})
+        if isinstance(spectral_public_tangent.get("verdict"), dict)
+        else {}
+    )
     action_ablation_verdict = (
         action_decoder_ablation.get("verdict", {})
         if isinstance(action_decoder_ablation.get("verdict"), dict)
@@ -207,6 +217,29 @@ def build_big_bets(
         else {}
     )
     bets = [
+        {
+            "id": "spectral_public_tangent_solver",
+            "name": "Spectral Public-Tangent Solver",
+            "worldview": "Known post-H057 public failures are not independent mistakes; they collapse onto a low-rank public-bad action tangent.",
+            "core_modules_exercised": [
+                "action_health_decoder",
+                "anti_shortcut_validation",
+                "listener_responsibility",
+                "public_private_equation",
+            ],
+            "adapter_move": "Infer the dominant bad public-loss tangent from failed submissions, then release anti-tangent or orthogonal private-residual row-target actions.",
+            "why_big": "If anti-tangent pressure improves LB, HS-JEPA gains a falsifiable action-equation thesis: failures define a negative representation that can be inverted or avoided.",
+            "expected_public_lb_delta_if_true": -0.004,
+            "latest_probe_status": spectral_public_tangent.get("status"),
+            "latest_probe_evidence": {
+                "first_mode_variance": spectral_public_tangent.get("spectral", {}).get("first_mode_variance"),
+                "top5_cumulative_variance": spectral_public_tangent.get("spectral", {}).get("top5_cumulative_variance"),
+                "recommended_information_sensor": spectral_tangent_verdict.get("recommended_information_sensor"),
+                "recommended_counter_sensor": spectral_tangent_verdict.get("recommended_counter_sensor"),
+                "pool": spectral_public_tangent.get("pool"),
+            },
+            "kill_criterion": "Anti-tangent and orthogonal residual sensors both worsen public LB, meaning the low-rank tangent is descriptive but not an invertible action equation.",
+        },
         {
             "id": "action_decoder_ablation_suite",
             "name": "Action Decoder Ablation Suite",
@@ -488,9 +521,10 @@ def build_big_bets(
         },
     ]
     priority_order = {
-        "counterfactual_listener_dropout_solver": 0,
-        "action_decoder_ablation_suite": 1,
-        "og_only_assignment_teacher": 2,
+        "spectral_public_tangent_solver": 0,
+        "counterfactual_listener_dropout_solver": 1,
+        "action_decoder_ablation_suite": 2,
+        "og_only_assignment_teacher": 3,
     }
     return sorted(
         bets,
@@ -524,6 +558,7 @@ def build_report() -> dict[str, object]:
     core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
     cross_listener_transport = read_json(CROSS_LISTENER_TRANSPORT_JSON)
     counterfactual_listener_dropout = read_json(COUNTERFACTUAL_LISTENER_DROPOUT_JSON)
+    spectral_public_tangent = read_json(SPECTRAL_PUBLIC_TANGENT_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -548,6 +583,7 @@ def build_report() -> dict[str, object]:
     core_health_calibrated_verdict = core_health_calibrated.get("verdict", {})
     cross_listener_verdict = cross_listener_transport.get("verdict", {})
     listener_dropout_verdict = counterfactual_listener_dropout.get("verdict", {})
+    spectral_tangent_verdict = spectral_public_tangent.get("verdict", {})
     action_decoder_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -772,6 +808,16 @@ def build_report() -> dict[str, object]:
             "positive_source_files": counterfactual_listener_dropout.get("positive_source_files"),
             "top_ranked": counterfactual_listener_dropout.get("ranking", [])[:3],
         },
+        "spectral_public_tangent_solver": {
+            "status": spectral_public_tangent.get("status"),
+            "claim": spectral_tangent_verdict.get("claim") or spectral_public_tangent.get("claim"),
+            "recommended_information_sensor": spectral_tangent_verdict.get("recommended_information_sensor"),
+            "recommended_counter_sensor": spectral_tangent_verdict.get("recommended_counter_sensor"),
+            "failure_interpretation": spectral_tangent_verdict.get("failure_interpretation"),
+            "spectral": spectral_public_tangent.get("spectral"),
+            "pool": spectral_public_tangent.get("pool"),
+            "top_ranked": spectral_public_tangent.get("ranking", [])[:3],
+        },
         "action_decoder_ablation_suite": {
             "status": action_decoder_ablation_verdict.get("status"),
             "recommended_lb_sensor": action_decoder_ablation_verdict.get("recommended_lb_sensor"),
@@ -866,6 +912,7 @@ def build_report() -> dict[str, object]:
             "Core-health calibrated release now uses dataset-free action-health false-positive lift as a real adapter release prior, connecting architecture benchmark behavior to submission candidates.",
             "Cross-listener transport now converts the failed target-listener route-lift into a safer rule: listener posterior calibrates route/fusion/core-proposed actions instead of generating actions directly.",
             "Counterfactual listener-dropout turns public failures into toxicity labels and exposes a strong A/B sensor: either high-survival route/fusion actions were good cells mixed into bad submissions, or the public/private equation requires inverting those toxic directions.",
+            "Spectral public-tangent decomposition shows that post-H057 public failures are highly low-rank; HS-JEPA can now treat failed submissions as a negative representation space rather than isolated bad scores.",
         ],
         "what_the_adapter_does_not_prove": [
             "pure OG-only assignment",
@@ -879,6 +926,7 @@ def build_report() -> dict[str, object]:
             "that dataset-free action-health calibration will beat the strict decoder jury before public LB observes the guarded/pressure counterfactual",
             "that cross-listener transport will beat the strict decoder jury before public LB observes the listener-calibrated counterfactual",
             "that listener-dropout health alone is public-safe before public LB observes the aggressive-vs-inverted counterfactual",
+            "that the public-bad spectral tangent is invertible before public LB observes anti-tangent and orthogonal residual sensors",
             "that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments",
             "private leaderboard safety",
             "S2 as a universal human-sleep factor",
@@ -1092,6 +1140,19 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             "이 실험은 route/fusion/target-listener/anti-shortcut을 서로 다른 listener로 보고, 한 listener를 가려도 살아남는 action만 healthy action으로 본다. 특히 `dropout_fullfield_aggressive`와 `toxic_direction_inversion`은 같은 high-survival cell을 같은 방향으로 믿을지, public-negative sensor가 말한 반대 방향으로 뒤집을지를 가르는 A/B 센서다.",
             "",
+            "## Spectral Public-Tangent Solver",
+            "",
+            f"- Status: `{report['spectral_public_tangent_solver']['status']}`",
+            f"- First bad-mode variance: `{fmt(report['spectral_public_tangent_solver']['spectral'].get('first_mode_variance'), 4)}`",
+            f"- Top-5 cumulative variance: `{fmt(report['spectral_public_tangent_solver']['spectral'].get('top5_cumulative_variance'), 4)}`",
+            f"- Candidate pool: `{report['spectral_public_tangent_solver']['pool']}`",
+            f"- Recommended information sensor: `{report['spectral_public_tangent_solver']['recommended_information_sensor']}`",
+            f"- Recommended counter sensor: `{report['spectral_public_tangent_solver']['recommended_counter_sensor']}`",
+            "",
+            report["spectral_public_tangent_solver"]["claim"],
+            "",
+            "이 실험은 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 첫 번째 spectral mode가 지배적이면, 다음 큰 질문은 `나쁜 방향의 반대로 가면 좋은가`, 아니면 `나쁜 방향과 직교한 private-safe 잔차만 살아남는가`이다.",
+            "",
             "## Action Decoder Ablation Suite",
             "",
             f"- Status: `{report['action_decoder_ablation_suite']['status']}`",
@@ -1184,15 +1245,17 @@ def build_big_bet_markdown(bets: list[dict[str, object]]) -> str:
             "",
             "## 우선순위",
             "",
-            "1. `Counterfactual Listener-Dropout Solver`: 같은 high-survival action을 믿을지 뒤집을지 가르는 가장 정보량 높은 A/B 센서다.",
-            "2. `OG-only Human-State Assignment Teacher`: 성공하면 HS-JEPA의 범용성이 가장 크게 올라간다.",
-            "3. `Core-Health Calibrated Release`: dataset-free action-health failure mode가 실제 adapter release에 전이되는지 검증한다.",
-            "4. `Core-Mediated Action Release`: generic HS-JEPA core가 실제 sleep-adapter action을 release할 수 있는지 검증한다.",
-            "5. `Decoder Boundary Tomography Solver`: strict jury가 너무 보수적인지 직접 찌르는 다음 제출 센서다.",
-            "6. `Cross-Listener Transport Decoder`: 실패한 listener lift를 action generator가 아니라 transport calibrator로 재사용할 수 있는지 본다.",
-            "7. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
-            "8. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.",
-            "9. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.",
+            "1. `Spectral Public-Tangent Solver`: H057 이후 실패들이 공유하는 저차원 public-bad direction이 invertible action equation인지 가장 직접적으로 검증한다.",
+            "2. `Counterfactual Listener-Dropout Solver`: 같은 high-survival action을 믿을지 뒤집을지 가르는 A/B 센서다.",
+            "3. `Action Decoder Ablation Suite`: action decoder order가 public sensor와 맞는지 큰 구조로 검증한다.",
+            "4. `OG-only Human-State Assignment Teacher`: 성공하면 HS-JEPA의 범용성이 가장 크게 올라간다.",
+            "5. `Core-Health Calibrated Release`: dataset-free action-health failure mode가 실제 adapter release에 전이되는지 검증한다.",
+            "6. `Core-Mediated Action Release`: generic HS-JEPA core가 실제 sleep-adapter action을 release할 수 있는지 검증한다.",
+            "7. `Decoder Boundary Tomography Solver`: strict jury가 너무 보수적인지 직접 찌르는 다음 제출 센서다.",
+            "8. `Cross-Listener Transport Decoder`: 실패한 listener lift를 action generator가 아니라 transport calibrator로 재사용할 수 있는지 본다.",
+            "9. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
+            "10. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.",
+            "11. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.",
             "",
         ]
     )
@@ -1215,6 +1278,7 @@ def run() -> dict[str, object]:
         read_json(CORE_HEALTH_CALIBRATED_JSON),
         read_json(CROSS_LISTENER_TRANSPORT_JSON),
         read_json(COUNTERFACTUAL_LISTENER_DROPOUT_JSON),
+        read_json(SPECTRAL_PUBLIC_TANGENT_JSON),
         read_json(ACTION_DECODER_ABLATION_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),

@@ -170,6 +170,19 @@ HS-JEPA should release row-target actions that survive counterfactual listener d
 
 이 실험은 route/fusion/target-listener/anti-shortcut을 서로 다른 listener로 보고, 한 listener를 가려도 살아남는 action만 healthy action으로 본다. 특히 `dropout_fullfield_aggressive`와 `toxic_direction_inversion`은 같은 high-survival cell을 같은 방향으로 믿을지, public-negative sensor가 말한 반대 방향으로 뒤집을지를 가르는 A/B 센서다.
 
+## Spectral Public-Tangent Solver
+
+- Status: `spectral_public_tangent_ready`
+- First bad-mode variance: `0.9629`
+- Top-5 cumulative variance: `0.9947`
+- Candidate pool: `{'candidate_cells': 116, 'source_families': ['listener_dropout', 'public_loss_tomography', 'route_frontier', 'route_toxicity_fusion'], 'anti_bad_cells': 98, 'bad_aligned_cells': 18}`
+- Recommended information sensor: `{'variant': 'anti_bad_tangent_pressure', 'submission_file': 'submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_uploadsafe.csv', 'priority': 1.4947903603985548}`
+- Recommended counter sensor: `{'variant': 'orthogonal_private_residual', 'submission_file': 'submission_hsjepa_spectral_public_tangent_orthogonal_private_residual_57ed54c2_uploadsafe.csv'}`
+
+Known public failures share a low-rank bad action tangent; HS-JEPA should either release anti-tangent actions or find a private-safe orthogonal residual subspace.
+
+이 실험은 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 첫 번째 spectral mode가 지배적이면, 다음 큰 질문은 `나쁜 방향의 반대로 가면 좋은가`, 아니면 `나쁜 방향과 직교한 private-safe 잔차만 살아남는가`이다.
+
 ## Action Decoder Ablation Suite
 
 - Status: `action_decoder_ablation_ready_decoder_jury_leads`
@@ -262,6 +275,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - Core-health calibrated release now uses dataset-free action-health false-positive lift as a real adapter release prior, connecting architecture benchmark behavior to submission candidates.
 - Cross-listener transport now converts the failed target-listener route-lift into a safer rule: listener posterior calibrates route/fusion/core-proposed actions instead of generating actions directly.
 - Counterfactual listener-dropout turns public failures into toxicity labels and exposes a strong A/B sensor: either high-survival route/fusion actions were good cells mixed into bad submissions, or the public/private equation requires inverting those toxic directions.
+- Spectral public-tangent decomposition shows that post-H057 public failures are highly low-rank; HS-JEPA can now treat failed submissions as a negative representation space rather than isolated bad scores.
 
 ## 이 adapter가 아직 증명하지 못한 것
 
@@ -276,6 +290,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - that dataset-free action-health calibration will beat the strict decoder jury before public LB observes the guarded/pressure counterfactual
 - that cross-listener transport will beat the strict decoder jury before public LB observes the listener-calibrated counterfactual
 - that listener-dropout health alone is public-safe before public LB observes the aggressive-vs-inverted counterfactual
+- that the public-bad spectral tangent is invertible before public LB observes anti-tangent and orthogonal residual sensors
 - that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments
 - private leaderboard safety
 - S2 as a universal human-sleep factor
