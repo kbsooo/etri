@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 30,
-  "edge_count": 79,
+  "stage_count": 31,
+  "edge_count": 83,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -320,9 +320,33 @@
       "boundary": "This proves the core API can drive adapter actions mechanically; public LB still decides whether that core release equation is action-grade."
     },
     {
+      "id": "core_release_ablation_probe",
+      "name": "Core Release Ablation Probe",
+      "role": "Removes listener responsibility, action-health, or invariant energy from the real adapter release equation to make HS-JEPA core constraints falsifiable.",
+      "inputs": [
+        "core_mediated_action_release_readout.json",
+        "decoder_order_jury_solver_readout.json",
+        "decoder_boundary_tomography_readout.json"
+      ],
+      "outputs": [
+        "core_release_ablation_probe_readout_ko.md",
+        "submission_hsjepa_core_ablation_full_core_reference_513175a1_uploadsafe.csv",
+        "submission_hsjepa_core_ablation_invariant_only_6edb3385_uploadsafe.csv",
+        "submission_hsjepa_core_ablation_no_action_health_043b20c7_uploadsafe.csv",
+        "submission_hsjepa_core_ablation_no_listener_responsibility_d2560dc4_uploadsafe.csv",
+        "submission_hsjepa_core_ablation_no_invariant_energy_363ccea6_uploadsafe.csv"
+      ],
+      "evidence": [
+        "Ablation status: core_release_ablation_ready",
+        "Full-core LB candidate: {'variant': 'full_core_reference', 'submission_file': 'submission_hsjepa_core_ablation_full_core_reference_513175a1_uploadsafe.csv', 'priority': 0.8314097090596275}",
+        "Architecture sensor: {'variant': 'no_action_health', 'submission_file': 'submission_hsjepa_core_ablation_no_action_health_043b20c7_uploadsafe.csv', 'priority': 0.3281725643379389}"
+      ],
+      "boundary": "This is an architecture falsification probe; module-removal public LB is needed before claiming a removed module improves the adapter."
+    },
+    {
       "id": "action_decoder_ablation_suite",
       "name": "Action Decoder Ablation Suite",
-      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, and core-mediated alternatives as HS-JEPA module ablations.",
+      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, and core-release-ablation alternatives as HS-JEPA module ablations.",
       "inputs": [
         "row_support_strict_action_decoder_readout.json",
         "route_frontier_action_decoder_readout.json",
@@ -330,6 +354,7 @@
         "decoder_order_jury_solver_readout.json",
         "decoder_boundary_tomography_readout.json",
         "core_mediated_action_release_readout.json",
+        "core_release_ablation_probe_readout.json",
         "factorized_toxicity_decoder_stress_audit.json"
       ],
       "outputs": [
@@ -569,7 +594,7 @@
       "evidence": [
         "Adapter status: adapter_ready_with_public_sensor_boundary",
         "Adapter score delta: -0.0084113555",
-        "Big-bet count: 12"
+        "Big-bet count: 13"
       ],
       "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
     },
@@ -803,6 +828,22 @@
       "claim_readiness_and_paper_packet"
     ],
     [
+      "core_mediated_action_release",
+      "core_release_ablation_probe"
+    ],
+    [
+      "core_release_ablation_probe",
+      "action_decoder_ablation_suite"
+    ],
+    [
+      "core_release_ablation_probe",
+      "sleep_competition_adapter"
+    ],
+    [
+      "core_release_ablation_probe",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
       "route_toxicity_fusion_decoder",
       "action_decoder_ablation_suite"
     ],
@@ -972,7 +1013,7 @@
     "core_status": "core_ready_for_adapter",
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
     "core_adapter_boundary_status": "core_adapter_boundary_verified",
-    "big_bet_count": 12,
+    "big_bet_count": 13,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "assignment_gap_decomposition_status": "row_support_is_primary_bottleneck",
     "assignment_gap_mean_row_support_gap": 0.5832137733142038,
@@ -1045,6 +1086,17 @@
       "route_only_cells": 6,
       "fusion_only_cells": 6,
       "default_core_released": 32
+    },
+    "core_release_ablation_probe_status": "core_release_ablation_ready",
+    "core_release_ablation_recommended_lb_candidate": {
+      "variant": "full_core_reference",
+      "submission_file": "submission_hsjepa_core_ablation_full_core_reference_513175a1_uploadsafe.csv",
+      "priority": 0.8314097090596275
+    },
+    "core_release_ablation_recommended_architecture_sensor": {
+      "variant": "no_action_health",
+      "submission_file": "submission_hsjepa_core_ablation_no_action_health_043b20c7_uploadsafe.csv",
+      "priority": 0.3281725643379389
     },
     "action_decoder_ablation_suite_status": "action_decoder_ablation_ready_decoder_jury_leads",
     "action_decoder_ablation_suite_recommended_lb_sensor": {

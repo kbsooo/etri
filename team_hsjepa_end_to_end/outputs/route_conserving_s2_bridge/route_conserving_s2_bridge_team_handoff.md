@@ -37,7 +37,7 @@ public-sensitive driver action
 ## Core / Adapter Separation
 
 - Core status: `core_ready_for_adapter` (`5/5` gates)
-- Core ablation contract: `6` modules, `12` big-bet followups
+- Core ablation contract: `6` modules, `13` big-bet followups
 - Core reference run: `core_reference_ready`, released actions `['survey_small_shift']`
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
 - Adapter score delta: `-0.00841135550000005`
@@ -51,6 +51,7 @@ public-sensitive driver action
 - Decoder-order jury solver: `decoder_order_jury_ready`
 - Decoder boundary tomography: `boundary_tomography_ready`
 - Core-mediated action release: `core_mediated_action_release_ready`
+- Core release ablation probe: `core_release_ablation_ready`
 - Action decoder ablation suite: `action_decoder_ablation_ready_decoder_jury_leads`
 - Listener-invariant contrastive probe: `listener_invariant_decoder_not_ready`
 - Private-safe toxicity probe: `toxicity_field_promising_with_hardworld_gap`
@@ -81,6 +82,7 @@ sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/route_toxicity_f
 sleep_competition_adapter/outputs/decoder_order_jury_solver/decoder_order_jury_solver_readout_ko.md
 sleep_competition_adapter/outputs/decoder_boundary_tomography_solver/decoder_boundary_tomography_readout_ko.md
 sleep_competition_adapter/outputs/core_mediated_action_release/core_mediated_action_release_readout_ko.md
+sleep_competition_adapter/outputs/core_release_ablation_probe/core_release_ablation_probe_readout_ko.md
 sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite_ko.md
 sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md
 sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md
@@ -125,6 +127,7 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_bo
 - Decoder-order jury: recommended `{'variant': 'family_supermajority', 'submission_file': 'submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv', 'priority': 1.392520579892158}`, status `decoder_order_jury_ready`
 - Decoder boundary tomography: recommended `{'variant': 'consensus_shadow_plus', 'submission_file': 'submission_hsjepa_boundary_tomography_consensus_shadow_plus_04b2c855_uploadsafe.csv', 'priority': 0.6990859175252038}`, status `boundary_tomography_ready`, inventory `{'strict_jury_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'conflict_cells': 0}`
 - Core-mediated action release: recommended `{'variant': 'core_consensus_shadow_plus', 'submission_file': 'submission_hsjepa_core_mediated_core_consensus_shadow_plus_3b0b1d0f_uploadsafe.csv', 'priority': 0.8460231888716516}`, status `core_mediated_action_release_ready`, inventory `{'candidate_cells': 44, 'strict_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'default_core_released': 32}`
+- Core release ablation: full-core `{'variant': 'full_core_reference', 'submission_file': 'submission_hsjepa_core_ablation_full_core_reference_513175a1_uploadsafe.csv', 'priority': 0.8314097090596275}`, sensor `{'variant': 'no_action_health', 'submission_file': 'submission_hsjepa_core_ablation_no_action_health_043b20c7_uploadsafe.csv', 'priority': 0.3281725643379389}`, status `core_release_ablation_ready`
 - Action decoder ablation: recommended `{'family': 'decoder_order_jury', 'variant': 'family_supermajority', 'submission_file': 'submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv', 'priority': 1.394366527938867}`, big bet `{'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572}`
 - Listener-invariant boundary: listener-route rho `-0.0313`, contrastive overlap `0.2152`
 - Private-safe toxicity boundary: mean LOO AUC `0.7880`, worst LOO AUC `0.3683`
@@ -134,7 +137,7 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_bo
 - Boundary tomography inventory: `{'strict_jury_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'conflict_cells': 0}`
 - Core-mediated release inventory: `{'candidate_cells': 44, 'strict_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'default_core_released': 32}`
 - Core/adapter boundary audit: `core_adapter_boundary_verified`
-- Release checklist: `release_ready_with_boundary` (`67/67` checks)
+- Release checklist: `release_ready_with_boundary` (`69/69` checks)
 
 ## Paper Claim
 
@@ -159,6 +162,7 @@ The current LB breakthrough is evidence for this adapter, while the reusable cla
 - `Decoder-Order Jury Solver`: Safe row-target assignment is a cross-decoder jury, not a single route or toxicity score. Expected LB delta if true `-0.0025`.
 - `Decoder Boundary Tomography Solver`: The strict cross-decoder jury may be correct but too conservative; rejected cells split into weak consensus, route-only, and fusion-only worlds. Expected LB delta if true `-0.002`.
 - `Core-Mediated Action Release`: A reusable HS-JEPA core should mediate real row-target actions before the sleep adapter releases them. Expected LB delta if true `-0.002`.
+- `Core Release Ablation Probe`: A real HS-JEPA architecture must expose which core module over-constrains or protects row-target action release. Expected LB delta if true `-0.002`.
 - `Listener-Invariant Contrastive Decoder`: A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone. Expected LB delta if true `-0.002`.
 - `Private-Safe Toxicity Field`: The plateau comes from actions that help public-like rows but poison private-like rows. Expected LB delta if true `-0.0015`.
 - `Hard-World Mixture Toxicity Decoder`: H088-like hard-world toxicity is anti-correlated with broad public-bad toxicity, so action-health must be factorized. Expected LB delta if true `-0.0025`.

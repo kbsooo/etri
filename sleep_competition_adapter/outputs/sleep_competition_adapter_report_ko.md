@@ -126,6 +126,17 @@ Real sleep-adapter row-target actions can be routed through the generic HS-JEPA 
 
 이 실험은 실제 sleep-adapter row-target action을 HS-JEPA Core의 `ContextView`, `ListenerPrototype`, `CandidateAction` 인터페이스로 변환한 뒤 core release equation을 통과시킨다. public에서 살아나면 HS-JEPA Core가 논문용 설명 구조를 넘어 action-grade decoder가 됐다는 신호다.
 
+## Core Release Ablation Probe
+
+- Status: `core_release_ablation_ready`
+- Recommended LB candidate: `{'variant': 'full_core_reference', 'submission_file': 'submission_hsjepa_core_ablation_full_core_reference_513175a1_uploadsafe.csv', 'priority': 0.8314097090596275}`
+- Recommended architecture sensor: `{'variant': 'no_action_health', 'submission_file': 'submission_hsjepa_core_ablation_no_action_health_043b20c7_uploadsafe.csv', 'priority': 0.3281725643379389}`
+- Recommended negative control: `{'variant': 'no_action_health', 'submission_file': 'submission_hsjepa_core_ablation_no_action_health_043b20c7_uploadsafe.csv', 'priority': 0.3281725643379389}`
+
+HS-JEPA core modules change the real sleep-adapter action boundary when removed. This makes listener responsibility, action-health, and invariant energy falsifiable rather than only descriptive.
+
+이 실험은 같은 real adapter cell을 full-core, no-listener, no-action-health, no-invariant, invariant-only release equation으로 다시 풀어본다. public에서 no-action-health가 full-core를 이기면 action-health가 현재 adapter를 과하게 막고 있다는 뜻이고, 지면 full HS-JEPA release boundary가 더 설득력 있다.
+
 ## Action Decoder Ablation Suite
 
 - Status: `action_decoder_ablation_ready_decoder_jury_leads`
@@ -214,6 +225,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.
 - The factorized toxicity decoder now produces upload-safe candidates that remove H088 top-toxic and broad-safe/H088-toxic selected cells in local diagnostics.
 - The dual-safe expansion variant survives target-only and source-matched null stress, while the teacher-only variant is intentionally marked weaker under source-matched stress.
+- Core release ablation now makes listener responsibility, action-health, and invariant energy falsifiable on real sleep-adapter actions rather than only synthetic core examples.
 
 ## 이 adapter가 아직 증명하지 못한 것
 
@@ -224,6 +236,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - that route-frontier action decoding is private-safe without public LB observation
 - that route-toxicity fusion will beat plain route-frontier on public/private LB
 - that consensus-shadow boundary cells are safe before public LB observes them
+- that removing a core module is beneficial before public LB observes the full-core vs ablated-core counterfactual
 - that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments
 - private leaderboard safety
 - S2 as a universal human-sleep factor

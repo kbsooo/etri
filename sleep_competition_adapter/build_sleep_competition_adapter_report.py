@@ -37,6 +37,7 @@ ROUTE_TOXICITY_FUSION_DECODER_JSON = OUT / "route_toxicity_fusion_decoder" / "ro
 DECODER_ORDER_JURY_JSON = OUT / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout.json"
 DECODER_BOUNDARY_TOMOGRAPHY_JSON = OUT / "decoder_boundary_tomography_solver" / "decoder_boundary_tomography_readout.json"
 CORE_MEDIATED_RELEASE_JSON = OUT / "core_mediated_action_release" / "core_mediated_action_release_readout.json"
+CORE_RELEASE_ABLATION_JSON = OUT / "core_release_ablation_probe" / "core_release_ablation_probe_readout.json"
 ACTION_DECODER_ABLATION_JSON = OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
@@ -82,6 +83,7 @@ def require_inputs() -> None:
         DECODER_ORDER_JURY_JSON,
         DECODER_BOUNDARY_TOMOGRAPHY_JSON,
         CORE_MEDIATED_RELEASE_JSON,
+        CORE_RELEASE_ABLATION_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -105,6 +107,7 @@ def build_big_bets(
     decoder_order_jury: dict[str, object],
     decoder_boundary_tomography: dict[str, object],
     core_mediated_release: dict[str, object],
+    core_release_ablation: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -150,6 +153,11 @@ def build_big_bets(
     core_mediated_verdict = (
         core_mediated_release.get("verdict", {})
         if isinstance(core_mediated_release.get("verdict"), dict)
+        else {}
+    )
+    core_release_ablation_verdict = (
+        core_release_ablation.get("verdict", {})
+        if isinstance(core_release_ablation.get("verdict"), dict)
         else {}
     )
     action_ablation_verdict = (
@@ -325,6 +333,23 @@ def build_big_bets(
             "kill_criterion": "Core-mediated candidates underperform the strict jury and boundary tomography, meaning generic core release is diagnostic but not yet the competition action equation.",
         },
         {
+            "id": "core_release_ablation_probe",
+            "name": "Core Release Ablation Probe",
+            "worldview": "A real HS-JEPA architecture must expose which core module over-constrains or protects row-target action release.",
+            "core_modules_exercised": ["listener_responsibility", "action_health_decoder", "invariant_energy"],
+            "adapter_move": "Run the same real adapter cells through full-core, no-listener, no-action-health, no-invariant, and invariant-only release policies.",
+            "why_big": "If a removed-module policy beats full-core on public LB, the architecture learns which JEPA constraint is too conservative; if it loses, full-core has action-grade evidence.",
+            "expected_public_lb_delta_if_true": -0.002,
+            "latest_probe_status": core_release_ablation_verdict.get("status"),
+            "latest_probe_evidence": {
+                "recommended_lb_candidate": core_release_ablation_verdict.get("recommended_lb_candidate"),
+                "recommended_architecture_sensor": core_release_ablation_verdict.get("recommended_architecture_sensor"),
+                "recommended_negative_control": core_release_ablation_verdict.get("recommended_negative_control"),
+                "claim": core_release_ablation_verdict.get("claim"),
+            },
+            "kill_criterion": "All module-removal probes match full-core and public LB cannot distinguish them, meaning this ablation axis is not the current bottleneck.",
+        },
+        {
             "id": "listener_invariant_contrastive_decoder",
             "name": "Listener-Invariant Contrastive Decoder",
             "worldview": "A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone.",
@@ -404,6 +429,7 @@ def build_report() -> dict[str, object]:
     decoder_order_jury = read_json(DECODER_ORDER_JURY_JSON)
     decoder_boundary_tomography = read_json(DECODER_BOUNDARY_TOMOGRAPHY_JSON)
     core_mediated_release = read_json(CORE_MEDIATED_RELEASE_JSON)
+    core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -424,6 +450,7 @@ def build_report() -> dict[str, object]:
     decoder_order_jury_verdict = decoder_order_jury.get("verdict", {})
     decoder_boundary_tomography_verdict = decoder_boundary_tomography.get("verdict", {})
     core_mediated_verdict = core_mediated_release.get("verdict", {})
+    core_release_ablation_verdict = core_release_ablation.get("verdict", {})
     action_decoder_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -608,6 +635,16 @@ def build_report() -> dict[str, object]:
             "cell_inventory": core_mediated_release.get("cell_inventory"),
             "top_ranked": core_mediated_release.get("ranking", [])[:3],
         },
+        "core_release_ablation_probe": {
+            "status": core_release_ablation_verdict.get("status"),
+            "recommended_lb_candidate": core_release_ablation_verdict.get("recommended_lb_candidate"),
+            "recommended_architecture_sensor": core_release_ablation_verdict.get("recommended_architecture_sensor"),
+            "recommended_negative_control": core_release_ablation_verdict.get("recommended_negative_control"),
+            "claim": core_release_ablation_verdict.get("claim"),
+            "failure_interpretation": core_release_ablation_verdict.get("failure_interpretation"),
+            "top_ranked": core_release_ablation.get("ranking", [])[:3],
+            "findings": core_release_ablation.get("findings", []),
+        },
         "action_decoder_ablation_suite": {
             "status": action_decoder_ablation_verdict.get("status"),
             "recommended_lb_sensor": action_decoder_ablation_verdict.get("recommended_lb_sensor"),
@@ -698,6 +735,7 @@ def build_report() -> dict[str, object]:
             "Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.",
             "The factorized toxicity decoder now produces upload-safe candidates that remove H088 top-toxic and broad-safe/H088-toxic selected cells in local diagnostics.",
             "The dual-safe expansion variant survives target-only and source-matched null stress, while the teacher-only variant is intentionally marked weaker under source-matched stress.",
+            "Core release ablation now makes listener responsibility, action-health, and invariant energy falsifiable on real sleep-adapter actions rather than only synthetic core examples.",
         ],
         "what_the_adapter_does_not_prove": [
             "pure OG-only assignment",
@@ -707,6 +745,7 @@ def build_report() -> dict[str, object]:
             "that route-frontier action decoding is private-safe without public LB observation",
             "that route-toxicity fusion will beat plain route-frontier on public/private LB",
             "that consensus-shadow boundary cells are safe before public LB observes them",
+            "that removing a core module is beneficial before public LB observes the full-core vs ablated-core counterfactual",
             "that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments",
             "private leaderboard safety",
             "S2 as a universal human-sleep factor",
@@ -876,6 +915,17 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             "이 실험은 실제 sleep-adapter row-target action을 HS-JEPA Core의 `ContextView`, `ListenerPrototype`, `CandidateAction` 인터페이스로 변환한 뒤 core release equation을 통과시킨다. public에서 살아나면 HS-JEPA Core가 논문용 설명 구조를 넘어 action-grade decoder가 됐다는 신호다.",
             "",
+            "## Core Release Ablation Probe",
+            "",
+            f"- Status: `{report['core_release_ablation_probe']['status']}`",
+            f"- Recommended LB candidate: `{report['core_release_ablation_probe']['recommended_lb_candidate']}`",
+            f"- Recommended architecture sensor: `{report['core_release_ablation_probe']['recommended_architecture_sensor']}`",
+            f"- Recommended negative control: `{report['core_release_ablation_probe']['recommended_negative_control']}`",
+            "",
+            report["core_release_ablation_probe"]["claim"],
+            "",
+            "이 실험은 같은 real adapter cell을 full-core, no-listener, no-action-health, no-invariant, invariant-only release equation으로 다시 풀어본다. public에서 no-action-health가 full-core를 이기면 action-health가 현재 adapter를 과하게 막고 있다는 뜻이고, 지면 full HS-JEPA release boundary가 더 설득력 있다.",
+            "",
             "## Action Decoder Ablation Suite",
             "",
             f"- Status: `{report['action_decoder_ablation_suite']['status']}`",
@@ -992,6 +1042,7 @@ def run() -> dict[str, object]:
         read_json(DECODER_ORDER_JURY_JSON),
         read_json(DECODER_BOUNDARY_TOMOGRAPHY_JSON),
         read_json(CORE_MEDIATED_RELEASE_JSON),
+        read_json(CORE_RELEASE_ABLATION_JSON),
         read_json(ACTION_DECODER_ABLATION_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),

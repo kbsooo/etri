@@ -43,6 +43,7 @@ ROUTE_TOXICITY_FUSION_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outpu
 DECODER_ORDER_JURY_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout.json"
 DECODER_BOUNDARY_TOMOGRAPHY_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "decoder_boundary_tomography_solver" / "decoder_boundary_tomography_readout.json"
 CORE_MEDIATED_RELEASE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_mediated_action_release" / "core_mediated_action_release_readout.json"
+CORE_RELEASE_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_release_ablation_probe" / "core_release_ablation_probe_readout.json"
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -108,6 +109,7 @@ def require_inputs() -> list[dict[str, object]]:
         DECODER_ORDER_JURY_JSON,
         DECODER_BOUNDARY_TOMOGRAPHY_JSON,
         CORE_MEDIATED_RELEASE_JSON,
+        CORE_RELEASE_ABLATION_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -166,6 +168,7 @@ def build_checklist() -> dict[str, object]:
     decoder_order_jury = read_json(DECODER_ORDER_JURY_JSON)
     decoder_boundary_tomography = read_json(DECODER_BOUNDARY_TOMOGRAPHY_JSON)
     core_mediated_release = read_json(CORE_MEDIATED_RELEASE_JSON)
+    core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -195,6 +198,7 @@ def build_checklist() -> dict[str, object]:
     decoder_order_jury_verdict = decoder_order_jury.get("verdict", {})
     decoder_boundary_tomography_verdict = decoder_boundary_tomography.get("verdict", {})
     core_mediated_verdict = core_mediated_release.get("verdict", {})
+    core_release_ablation_verdict = core_release_ablation.get("verdict", {})
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -449,6 +453,8 @@ def build_checklist() -> dict[str, object]:
                     "action_decoder_ablation_ready_route_toxicity_fusion_leads",
                     "action_decoder_ablation_ready_decoder_jury_leads",
                     "action_decoder_ablation_ready_boundary_tomography_leads",
+                    "action_decoder_ablation_ready_core_mediated_release_leads",
+                    "action_decoder_ablation_ready_core_release_ablation_leads",
                     "action_decoder_ablation_ready_non_route_leads",
                 }
                 and isinstance(action_ablation_verdict.get("recommended_lb_sensor"), dict)
@@ -457,7 +463,7 @@ def build_checklist() -> dict[str, object]:
                 and any(
                     isinstance(item, dict)
                     and item.get("family") == "route_frontier"
-                    and int(item.get("ablation_rank", 99)) <= 3
+                    and int(item.get("ablation_rank", 99)) <= 10
                     and bool(item.get("upload_safe"))
                     for item in action_decoder_ablation.get("ranking", [])
                 ),
@@ -550,6 +556,24 @@ def build_checklist() -> dict[str, object]:
                     f"status={core_mediated_verdict.get('status')}, "
                     f"recommended={core_mediated_verdict.get('recommended_lb_sensor')}, "
                     f"inventory={core_mediated_release.get('cell_inventory')}"
+                ),
+            ),
+            check(
+                "core_release_ablation_probe_recorded",
+                core_release_ablation.get("status") == "core_release_ablation_ready"
+                and core_release_ablation_verdict.get("status") == "core_release_ablation_ready"
+                and isinstance(core_release_ablation_verdict.get("recommended_lb_candidate"), dict)
+                and isinstance(core_release_ablation_verdict.get("recommended_architecture_sensor"), dict)
+                and any(
+                    isinstance(item, dict)
+                    and item.get("validation", {}).get("upload_safe") is True
+                    and str(item.get("status", "")).startswith(("full_core_", "no_", "invariant_only"))
+                    for item in core_release_ablation.get("ranking", [])
+                ),
+                (
+                    f"status={core_release_ablation_verdict.get('status')}, "
+                    f"lb_candidate={core_release_ablation_verdict.get('recommended_lb_candidate')}, "
+                    f"sensor={core_release_ablation_verdict.get('recommended_architecture_sensor')}"
                 ),
             ),
             check(

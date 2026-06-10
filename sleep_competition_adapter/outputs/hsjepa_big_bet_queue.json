@@ -290,6 +290,39 @@
       "kill_criterion": "Core-mediated candidates underperform the strict jury and boundary tomography, meaning generic core release is diagnostic but not yet the competition action equation."
     },
     {
+      "id": "core_release_ablation_probe",
+      "name": "Core Release Ablation Probe",
+      "worldview": "A real HS-JEPA architecture must expose which core module over-constrains or protects row-target action release.",
+      "core_modules_exercised": [
+        "listener_responsibility",
+        "action_health_decoder",
+        "invariant_energy"
+      ],
+      "adapter_move": "Run the same real adapter cells through full-core, no-listener, no-action-health, no-invariant, and invariant-only release policies.",
+      "why_big": "If a removed-module policy beats full-core on public LB, the architecture learns which JEPA constraint is too conservative; if it loses, full-core has action-grade evidence.",
+      "expected_public_lb_delta_if_true": -0.002,
+      "latest_probe_status": "core_release_ablation_ready",
+      "latest_probe_evidence": {
+        "recommended_lb_candidate": {
+          "variant": "full_core_reference",
+          "submission_file": "submission_hsjepa_core_ablation_full_core_reference_513175a1_uploadsafe.csv",
+          "priority": 0.8314097090596275
+        },
+        "recommended_architecture_sensor": {
+          "variant": "no_action_health",
+          "submission_file": "submission_hsjepa_core_ablation_no_action_health_043b20c7_uploadsafe.csv",
+          "priority": 0.3281725643379389
+        },
+        "recommended_negative_control": {
+          "variant": "no_action_health",
+          "submission_file": "submission_hsjepa_core_ablation_no_action_health_043b20c7_uploadsafe.csv",
+          "priority": 0.3281725643379389
+        },
+        "claim": "HS-JEPA core modules change the real sleep-adapter action boundary when removed. This makes listener responsibility, action-health, and invariant energy falsifiable rather than only descriptive."
+      },
+      "kill_criterion": "All module-removal probes match full-core and public LB cannot distinguish them, meaning this ablation axis is not the current bottleneck."
+    },
+    {
       "id": "listener_invariant_contrastive_decoder",
       "name": "Listener-Invariant Contrastive Decoder",
       "worldview": "A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone.",
@@ -363,5 +396,5 @@
       "kill_criterion": "Q-S bridge actions fail null tests or replicate the already-killed subjective-shadow bridge."
     }
   ],
-  "count": 12
+  "count": 13
 }

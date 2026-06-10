@@ -45,6 +45,7 @@ ROUTE_TOXICITY_FUSION_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outpu
 DECODER_ORDER_JURY_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "decoder_order_jury_solver" / "decoder_order_jury_solver_readout.json"
 DECODER_BOUNDARY_TOMOGRAPHY_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "decoder_boundary_tomography_solver" / "decoder_boundary_tomography_readout.json"
 CORE_MEDIATED_RELEASE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_mediated_action_release" / "core_mediated_action_release_readout.json"
+CORE_RELEASE_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_release_ablation_probe" / "core_release_ablation_probe_readout.json"
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -99,6 +100,7 @@ def require_inputs() -> None:
         DECODER_ORDER_JURY_JSON,
         DECODER_BOUNDARY_TOMOGRAPHY_JSON,
         CORE_MEDIATED_RELEASE_JSON,
+        CORE_RELEASE_ABLATION_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -171,6 +173,7 @@ def build_manifest() -> dict[str, object]:
     decoder_order_jury = read_json(DECODER_ORDER_JURY_JSON)
     decoder_boundary_tomography = read_json(DECODER_BOUNDARY_TOMOGRAPHY_JSON)
     core_mediated_release = read_json(CORE_MEDIATED_RELEASE_JSON)
+    core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -193,6 +196,7 @@ def build_manifest() -> dict[str, object]:
     decoder_order_jury_verdict = decoder_order_jury["verdict"]
     decoder_boundary_tomography_verdict = decoder_boundary_tomography["verdict"]
     core_mediated_verdict = core_mediated_release["verdict"]
+    core_release_ablation_verdict = core_release_ablation["verdict"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -447,9 +451,26 @@ def build_manifest() -> dict[str, object]:
             "This proves the core API can drive adapter actions mechanically; public LB still decides whether that core release equation is action-grade.",
         ),
         stage(
+            "core_release_ablation_probe",
+            "Core Release Ablation Probe",
+            "Removes listener responsibility, action-health, or invariant energy from the real adapter release equation to make HS-JEPA core constraints falsifiable.",
+            ["core_mediated_action_release_readout.json", "decoder_order_jury_solver_readout.json", "decoder_boundary_tomography_readout.json"],
+            ["core_release_ablation_probe_readout_ko.md", *[
+                str(item.get("submission_file"))
+                for item in core_release_ablation.get("ranking", [])
+                if isinstance(item, dict) and item.get("submission_file")
+            ]],
+            [
+                f"Ablation status: {core_release_ablation_verdict['status']}",
+                f"Full-core LB candidate: {core_release_ablation_verdict['recommended_lb_candidate']}",
+                f"Architecture sensor: {core_release_ablation_verdict['recommended_architecture_sensor']}",
+            ],
+            "This is an architecture falsification probe; module-removal public LB is needed before claiming a removed module improves the adapter.",
+        ),
+        stage(
             "action_decoder_ablation_suite",
             "Action Decoder Ablation Suite",
-            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, and core-mediated alternatives as HS-JEPA module ablations.",
+            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, and core-release-ablation alternatives as HS-JEPA module ablations.",
             [
                 "row_support_strict_action_decoder_readout.json",
                 "route_frontier_action_decoder_readout.json",
@@ -457,6 +478,7 @@ def build_manifest() -> dict[str, object]:
                 "decoder_order_jury_solver_readout.json",
                 "decoder_boundary_tomography_readout.json",
                 "core_mediated_action_release_readout.json",
+                "core_release_ablation_probe_readout.json",
                 "factorized_toxicity_decoder_stress_audit.json",
             ],
             ["hsjepa_action_decoder_ablation_suite_ko.md", "hsjepa_action_decoder_ablation_suite.csv"],
@@ -708,6 +730,10 @@ def build_manifest() -> dict[str, object]:
         ["core_mediated_action_release", "action_decoder_ablation_suite"],
         ["core_mediated_action_release", "sleep_competition_adapter"],
         ["core_mediated_action_release", "claim_readiness_and_paper_packet"],
+        ["core_mediated_action_release", "core_release_ablation_probe"],
+        ["core_release_ablation_probe", "action_decoder_ablation_suite"],
+        ["core_release_ablation_probe", "sleep_competition_adapter"],
+        ["core_release_ablation_probe", "claim_readiness_and_paper_packet"],
         ["route_toxicity_fusion_decoder", "action_decoder_ablation_suite"],
         ["route_toxicity_fusion_decoder", "sleep_competition_adapter"],
         ["route_toxicity_fusion_decoder", "claim_readiness_and_paper_packet"],
@@ -803,6 +829,9 @@ def build_manifest() -> dict[str, object]:
             "core_mediated_action_release_status": core_mediated_verdict["status"],
             "core_mediated_action_release_recommended_lb_sensor": core_mediated_verdict["recommended_lb_sensor"],
             "core_mediated_action_release_inventory": core_mediated_release.get("cell_inventory"),
+            "core_release_ablation_probe_status": core_release_ablation_verdict["status"],
+            "core_release_ablation_recommended_lb_candidate": core_release_ablation_verdict["recommended_lb_candidate"],
+            "core_release_ablation_recommended_architecture_sensor": core_release_ablation_verdict["recommended_architecture_sensor"],
             "action_decoder_ablation_suite_status": action_ablation_verdict["status"],
             "action_decoder_ablation_suite_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_suite_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],
@@ -870,6 +899,10 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    P5 --> P6["Factorized toxicity decoder stress audit"]',
             '    P6 --> ADA',
             '    RSA --> ADA',
+            '    CORE --> CMA["Core-mediated action release"]',
+            '    CMA --> CRA["Core release ablation probe"]',
+            '    CRA --> ADA',
+            '    CRA --> ADAPT',
             '    E --> F',
             '    F --> G["Role-based submission packager"]',
             '    G --> ADAPT["Sleep competition adapter"]',
@@ -916,7 +949,7 @@ def build_markdown(manifest: dict[str, object]) -> str:
             "The sleep competition adapter supplies Q/S listeners, public-sensor actions, route energy, and upload format.",
             "The boundary audit verifies that this is a real dependency split, not only a naming convention.",
             "The current LB breakthrough is adapter evidence; the paper claim must remain core-first.",
-            "The next jackpot is replacing scalar action-health with a factorized broad-public/hard-world decoder.",
+            "The next jackpot is either a better public/private action-health factorization or evidence that one HS-JEPA core constraint over-constrains real row-target release.",
             "```",
             "",
         ]
