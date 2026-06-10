@@ -1,8 +1,8 @@
 {
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "release_ready_with_boundary",
-  "passed_checks": 31,
-  "total_checks": 31,
+  "passed_checks": 35,
+  "total_checks": 35,
   "required_failures": [],
   "checks": [
     {
@@ -81,6 +81,20 @@
       "passed": true,
       "required": true,
       "evidence": "sleep_competition_adapter/outputs/hsjepa_big_bet_queue.json"
+    },
+    {
+      "check": "exists:og_only_assignment_teacher_probe.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "sleep_competition_adapter/outputs/og_only_assignment_teacher_probe.json"
+    },
+    {
+      "check": "exists:listener_invariant_contrastive_probe.json",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "sleep_competition_adapter/outputs/listener_invariant_contrastive_probe.json"
     },
     {
       "check": "exists:hsjepa_pipeline_manifest.json",
@@ -181,6 +195,20 @@
       "evidence": "status=big_bet_queue_ready, count=4"
     },
     {
+      "check": "og_only_assignment_probe_recorded",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=og_only_assignment_replacement_not_ready, pure_recall=0.0404, distilled_recall=0.1236"
+    },
+    {
+      "check": "listener_invariant_contrastive_probe_recorded",
+      "status": "PASS",
+      "passed": true,
+      "required": true,
+      "evidence": "status=listener_invariant_decoder_not_ready, rho=-0.0313, overlap=0.2152"
+    },
+    {
       "check": "roles_present",
       "status": "PASS",
       "passed": true,
@@ -206,7 +234,7 @@
       "status": "PASS",
       "passed": true,
       "required": true,
-      "evidence": "status=pipeline_ready_with_boundary, stages=12, edges=22"
+      "evidence": "status=pipeline_ready_with_boundary, stages=14, edges=27"
     },
     {
       "check": "method_packet_presentable",

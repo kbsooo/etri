@@ -17,14 +17,20 @@ flowchart TD
     CORE --> D["Q/S route energy model"]
     A["OG raw lifestyle context"] --> C["Human-state listener context"]
     A --> D["Q/S route energy model"]
+    C --> P1["OG-only assignment probe"]
+    P1 --> GEN["General architecture boundary"]
     B["Public LB sensor ledger"] --> E["Public-sensitive driver action field"]
     C --> E
     D --> F["Route-conserving S2 bridge decoder"]
+    C --> P2["Listener-invariant contrastive probe"]
+    D --> P2
     E --> F
     F --> G["Role-based submission packager"]
     G --> ADAPT["Sleep competition adapter"]
     CORE --> ADAPT
     B --> ADAPT
+    P2 --> ADAPT
+    GEN --> H["Claim readiness and paper packet"]
     ADAPT --> H["Claim readiness and paper packet"]
     G --> H["Claim readiness and paper packet"]
     F --> H
@@ -38,7 +44,9 @@ flowchart TD
 | `og_raw_lifestyle_context` | Provides train labels, submission key contract, and raw lifelog items. | OG records in contract: 3<br>Required missing: 0 | This stage is competition data, not external/private data. |
 | `public_lb_sensor` | Uses public submission observations as a sensor for hidden row-target action response. | Ledger rows: 26<br>Pre-public-equation best: 0.5761589494<br>Current best: 0.5677475939 | This is not an OG-only claim; it is the competition-specific sensor path. |
 | `human_state_listener_context` | Turns lifestyle/cohort context into target/cell orientation diagnostics. | Cell OOF AUC: 0.775<br>Row OOF AUC: 0.545 | Human-state is an orientation diagnostic, not a standalone row selector. |
+| `og_only_assignment_probe` | Tests whether human-state geometry can replace the public-sensor row-target assignment teacher. | Probe status: og_only_assignment_replacement_not_ready<br>Pure OG row-cap2 recall: 0.0404<br>Distilled row-cap2 recall: 0.1236 | The probe currently measures the gap; it does not prove pure OG-only deployment. |
 | `route_energy_model` | Learns a target-route manifold from train labels and scores whether an action breaks it. | Primary route z-score: -9.66<br>S2 route z-score: -9.46 | Route energy proves candidate-pool structure, not private leaderboard safety. |
+| `listener_invariant_contrastive_probe` | Tests whether listener responsibility and route-invariant action health select the same bundles. | Probe status: listener_invariant_decoder_not_ready<br>Listener-route rho: -0.0313<br>Contrastive overlap: 0.2152 | This stage is a diagnostic; it does not create a new submission. |
 | `driver_action_field` | Selects sparse row-target cells that public sensor evidence says are worth moving. | Score breakthrough delta: -0.0084113555<br>Evidence roles: competition_primary, interpretable_s2_hub, human_state_probe | This stage is deliberately separated from the OG human-state representation claim. |
 | `route_conserving_s2_bridge_decoder` | Pairs driver cells with same-row bridge cells that lower route energy and repeatedly use S2 as listener/hub. | Primary route delta vs null: -0.02457 vs -0.01090<br>S2 usage vs null: 1.000 vs 0.615 | S2 is a decoder listener/hub in this action space, not a universal sleep physiology claim. |
 | `submission_packager` | Packages three role-based outputs without requiring historical version names. | Upload-safe roles: competition_primary, human_state_probe, interpretable_s2_hub<br>Validation passed: True | Upload safety is a format guarantee, not a score guarantee. |

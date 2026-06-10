@@ -24,6 +24,24 @@ This adapter converts HS-JEPA Core into a sleep-log competition system by supply
 | `invariant_energy` | Q/S route energy and route-conserving S2 bridge | route z-scores primary=-9.66, s2=-9.46 | other domains need their own temporal, physiological, semantic, or cohort invariant. |
 | `anti_shortcut_validation` | upload safety, feasible-bundle nulls, mechanism knockout, and release checklist | generality checks 5/6 | private LB safety is not proven. |
 
+## OG-only Assignment Probe
+
+- Status: `og_only_assignment_replacement_not_ready`
+- Pure OG row-cap2 recall: `0.0404`
+- Distilled row-cap2 recall: `0.1236`
+- Listener/source upper-bound row-cap2 recall: `0.1356`
+
+Human-state explains action orientation, but the safe row-target assignment still needs adapter-side evidence.
+
+## Listener-Invariant Contrastive Probe
+
+- Status: `listener_invariant_decoder_not_ready`
+- Mean listener-route Spearman: `-0.0313`
+- Mean contrastive overlap: `0.2152`
+- Mean conflict rate: `0.0719`
+
+Listener responsibility and invariant safety are not sufficiently aligned; use this as a diagnostic before making new submissions.
+
 ## Role Outputs
 
 | Role | Output |
@@ -37,6 +55,8 @@ This adapter converts HS-JEPA Core into a sleep-log competition system by supply
 - HS-JEPA-style listener/action/invariant separation can explain the 0.567 public-LB breakthrough case study.
 - Route-conserving action selection is statistically non-random against feasible null bundles.
 - Human-state latent explains target/cell orientation but not enough row assignment on its own.
+- A pure OG-only assignment teacher is not ready yet; this is now a measured architecture boundary, not an informal caveat.
+- A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.
 
 ## 이 adapter가 아직 증명하지 못한 것
 
@@ -44,3 +64,4 @@ This adapter converts HS-JEPA Core into a sleep-log competition system by supply
 - private leaderboard safety
 - S2 as a universal human-sleep factor
 - that public LB sensors can be used outside this competition
+- that listener responsibility alone is an action-grade decoder

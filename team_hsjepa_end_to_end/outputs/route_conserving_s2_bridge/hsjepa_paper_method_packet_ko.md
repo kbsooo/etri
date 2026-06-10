@@ -62,6 +62,11 @@ partial human context
 - Generality status: `general_architecture_separated_with_case_boundary`
 - Portability checks: `5/6`
 - Nonblocking boundaries: `remaining_generality_gap`
+- OG-only assignment probe: `og_only_assignment_replacement_not_ready`
+- Pure OG row-cap2 recall: `0.0404`
+- Distilled row-cap2 recall: `0.1236`
+- Listener-invariant probe: `listener_invariant_decoder_not_ready`
+- Listener-route Spearman: `-0.0313`
 
 가장 중요한 남은 과제는 public-sensor row-target assignment teacher를 OG-only personal/cohort/time human-state teacher로 교체하는 것이다.
 
@@ -113,7 +118,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 
 다음 큰 실험은 HS-JEPA core/adaptor 경계를 바꾸는 실험이어야 한다.
 
-- `OG-only Human-State Assignment Teacher`: The public-sensor teacher can be replaced by personal/cohort/time human-state consistency. Expected LB delta if true `-0.003`. Kill: Cell orientation remains high but row assignment stays near random under subject/time stress.
+- `OG-only Human-State Assignment Teacher`: The public-sensor teacher can be replaced by personal/cohort/time human-state consistency. Expected LB delta if true `-0.003`. Kill: Pure OG row-target recall stays near base-rate and distillation cannot recover row assignment under subject/time stress.
 - `Listener-Invariant Contrastive Decoder`: A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone. Expected LB delta if true `-0.002`. Kill: Listener gain and invariant energy remain anti-correlated on strong candidates.
 - `Private-Safe Toxicity Field`: The plateau comes from actions that help public-like rows but poison private-like rows. Expected LB delta if true `-0.0015`. Kill: Toxicity score only recovers known public failures and does not separate local nulls.
 - `Cross-Listener Human-State Transport`: Subjective Q and objective S labels are different listeners of one human state, not separate tasks. Expected LB delta if true `-0.001`. Kill: Q-S bridge actions fail null tests or replicate the already-killed subjective-shadow bridge.

@@ -57,7 +57,7 @@ Human-understanding prediction should separate hidden state representation, list
 | `listener_not_label` | `PASS` | Targets are described as listeners/responses to hidden state, not only as seven binary columns. | The same architecture can apply when listeners are survey answers, sensors, app usage, or health outcomes. |
 | `invariant_decoder_generalized` | `PASS` | Route energy is framed as one instance of invariant energy over output/action manifolds. | Other datasets can replace Q/S route with temporal, cohort, semantic, or physiological invariants. |
 | `competition_sensor_boundary` | `PASS` | Public LB sensor is explicitly marked as competition-specific assignment teacher. | Paper claims can keep the reusable architecture separate from the leaderboard-specific sensor. |
-| `remaining_generality_gap` | `BOUNDARY` | Current best row-target assignment still depends on public-sensor support rather than an OG-only human-state teacher. | The architecture is reusable; the current strongest competition instantiation is not yet fully portable. |
+| `remaining_generality_gap` | `BOUNDARY` | OG-only assignment probe status og_only_assignment_replacement_not_ready; pure row-cap2 recall 0.0404, distilled recall 0.1236. | The architecture is reusable; the current strongest competition instantiation is not yet fully portable. |
 
 ## What Transfers
 

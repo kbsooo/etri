@@ -27,6 +27,8 @@ VALIDATION_JSON = TEAM_OUT / "route_conserving_s2_bridge_validation_report.json"
 READINESS_JSON = TEAM_OUT / "hsjepa_architecture_readiness_report.json"
 GENERALITY_JSON = TEAM_OUT / "hsjepa_generality_report.json"
 METHOD_PACKET_JSON = TEAM_OUT / "hsjepa_paper_method_packet.json"
+OG_PROBE_JSON = OUT / "og_only_assignment_teacher_probe.json"
+CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 
 REPORT_JSON = OUT / "sleep_competition_adapter_report.json"
 REPORT_MD = OUT / "sleep_competition_adapter_report_ko.md"
@@ -56,14 +58,21 @@ def require_inputs() -> None:
         VALIDATION_JSON,
         READINESS_JSON,
         GENERALITY_JSON,
-        METHOD_PACKET_JSON,
+        OG_PROBE_JSON,
+        CONTRASTIVE_PROBE_JSON,
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
     if missing:
         raise FileNotFoundError(f"Missing sleep adapter inputs: {missing}")
 
 
-def build_big_bets() -> list[dict[str, object]]:
+def build_big_bets(og_probe: dict[str, object], contrastive_probe: dict[str, object]) -> list[dict[str, object]]:
+    og_verdict = og_probe.get("verdict", {}) if isinstance(og_probe.get("verdict"), dict) else {}
+    contrastive_verdict = (
+        contrastive_probe.get("verdict", {})
+        if isinstance(contrastive_probe.get("verdict"), dict)
+        else {}
+    )
     return [
         {
             "id": "og_only_assignment_teacher",
@@ -73,7 +82,13 @@ def build_big_bets() -> list[dict[str, object]]:
             "adapter_move": "Train a row-target support teacher from OG personal/cohort/time masks, then feed it into the existing invariant decoder.",
             "why_big": "If it works, HS-JEPA becomes a portable architecture rather than a public-sensor case study.",
             "expected_public_lb_delta_if_true": -0.003,
-            "kill_criterion": "Cell orientation remains high but row assignment stays near random under subject/time stress.",
+            "latest_probe_status": og_verdict.get("status"),
+            "latest_probe_evidence": {
+                "pure_og_row_cap2_mean_recall": og_verdict.get("pure_og_row_cap2_mean_recall"),
+                "distilled_row_cap2_mean_recall": og_verdict.get("distilled_row_cap2_mean_recall"),
+                "listener_upper_bound_row_cap2_mean_recall": og_verdict.get("listener_upper_bound_row_cap2_mean_recall"),
+            },
+            "kill_criterion": "Pure OG row-target recall stays near base-rate and distillation cannot recover row assignment under subject/time stress.",
         },
         {
             "id": "listener_invariant_contrastive_decoder",
@@ -83,6 +98,12 @@ def build_big_bets() -> list[dict[str, object]]:
             "adapter_move": "Score candidate row-target actions by listener gain minus route-energy toxicity under random feasible nulls.",
             "why_big": "This could move beyond the current S2 bridge into a general action-health decoder.",
             "expected_public_lb_delta_if_true": -0.002,
+            "latest_probe_status": contrastive_verdict.get("status"),
+            "latest_probe_evidence": {
+                "mean_listener_route_spearman": contrastive_verdict.get("mean_listener_route_spearman"),
+                "mean_contrastive_overlap_rate": contrastive_verdict.get("mean_contrastive_overlap_rate"),
+                "mean_high_listener_low_route_rate": contrastive_verdict.get("mean_high_listener_low_route_rate"),
+            },
             "kill_criterion": "Listener gain and invariant energy remain anti-correlated on strong candidates.",
         },
         {
@@ -116,11 +137,15 @@ def build_report() -> dict[str, object]:
     validation = read_json(VALIDATION_JSON)
     readiness = read_json(READINESS_JSON)
     generality = read_json(GENERALITY_JSON)
-    method = read_json(METHOD_PACKET_JSON)
+    method = read_json(METHOD_PACKET_JSON) if METHOD_PACKET_JSON.exists() else {"title": "HS-JEPA Method Packet Pending"}
+    og_probe = read_json(OG_PROBE_JSON)
+    contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
 
     public = readiness["public_breakthrough"]
     human = readiness["human_state"]
     mechanism = validation["mechanism_evidence"]
+    og_verdict = og_probe.get("verdict", {})
+    contrastive_verdict = contrastive_probe.get("verdict", {})
 
     adapter_mapping = [
         {
@@ -177,6 +202,22 @@ def build_report() -> dict[str, object]:
             "current_best_file": public["current_best_file"],
         },
         "adapter_mapping": adapter_mapping,
+        "og_assignment_teacher_probe": {
+            "status": og_verdict.get("status"),
+            "pure_og_row_cap2_mean_recall": og_verdict.get("pure_og_row_cap2_mean_recall"),
+            "pure_og_row_cap2_mean_precision_lift": og_verdict.get("pure_og_row_cap2_mean_precision_lift"),
+            "distilled_row_cap2_mean_recall": og_verdict.get("distilled_row_cap2_mean_recall"),
+            "distilled_row_cap2_mean_precision": og_verdict.get("distilled_row_cap2_mean_precision"),
+            "listener_upper_bound_row_cap2_mean_recall": og_verdict.get("listener_upper_bound_row_cap2_mean_recall"),
+            "interpretation": og_verdict.get("interpretation"),
+        },
+        "listener_invariant_contrastive_probe": {
+            "status": contrastive_verdict.get("status"),
+            "mean_listener_route_spearman": contrastive_verdict.get("mean_listener_route_spearman"),
+            "mean_contrastive_overlap_rate": contrastive_verdict.get("mean_contrastive_overlap_rate"),
+            "mean_high_listener_low_route_rate": contrastive_verdict.get("mean_high_listener_low_route_rate"),
+            "interpretation": contrastive_verdict.get("interpretation"),
+        },
         "role_outputs": {
             role: item["submission_file"]
             for role, item in package["packaged_submissions"].items()
@@ -185,12 +226,15 @@ def build_report() -> dict[str, object]:
             "HS-JEPA-style listener/action/invariant separation can explain the 0.567 public-LB breakthrough case study.",
             "Route-conserving action selection is statistically non-random against feasible null bundles.",
             "Human-state latent explains target/cell orientation but not enough row assignment on its own.",
+            "A pure OG-only assignment teacher is not ready yet; this is now a measured architecture boundary, not an informal caveat.",
+            "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.",
         ],
         "what_the_adapter_does_not_prove": [
             "pure OG-only assignment",
             "private leaderboard safety",
             "S2 as a universal human-sleep factor",
             "that public LB sensors can be used outside this competition",
+            "that listener responsibility alone is an action-grade decoder",
         ],
         "paper_method_title": method["title"],
     }
@@ -229,6 +273,24 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             *mapping_rows,
             "",
+            "## OG-only Assignment Probe",
+            "",
+            f"- Status: `{report['og_assignment_teacher_probe']['status']}`",
+            f"- Pure OG row-cap2 recall: `{fmt(report['og_assignment_teacher_probe']['pure_og_row_cap2_mean_recall'], 4)}`",
+            f"- Distilled row-cap2 recall: `{fmt(report['og_assignment_teacher_probe']['distilled_row_cap2_mean_recall'], 4)}`",
+            f"- Listener/source upper-bound row-cap2 recall: `{fmt(report['og_assignment_teacher_probe']['listener_upper_bound_row_cap2_mean_recall'], 4)}`",
+            "",
+            report["og_assignment_teacher_probe"]["interpretation"],
+            "",
+            "## Listener-Invariant Contrastive Probe",
+            "",
+            f"- Status: `{report['listener_invariant_contrastive_probe']['status']}`",
+            f"- Mean listener-route Spearman: `{fmt(report['listener_invariant_contrastive_probe']['mean_listener_route_spearman'], 4)}`",
+            f"- Mean contrastive overlap: `{fmt(report['listener_invariant_contrastive_probe']['mean_contrastive_overlap_rate'], 4)}`",
+            f"- Mean conflict rate: `{fmt(report['listener_invariant_contrastive_probe']['mean_high_listener_low_route_rate'], 4)}`",
+            "",
+            report["listener_invariant_contrastive_probe"]["interpretation"],
+            "",
             "## Role Outputs",
             "",
             *roles,
@@ -247,12 +309,13 @@ def build_report_markdown(report: dict[str, object]) -> str:
 
 def build_big_bet_markdown(bets: list[dict[str, object]]) -> str:
     rows = [
-        "| Big bet | Worldview | Adapter move | Expected LB delta if true | Kill criterion |",
-        "| --- | --- | --- | ---: | --- |",
+        "| Big bet | Worldview | Adapter move | Latest probe | Expected LB delta if true | Kill criterion |",
+        "| --- | --- | --- | --- | ---: | --- |",
     ]
     for bet in bets:
+        latest_probe = bet.get("latest_probe_status", "not_run")
         rows.append(
-            f"| `{bet['name']}` | {bet['worldview']} | {bet['adapter_move']} | `{bet['expected_public_lb_delta_if_true']}` | {bet['kill_criterion']} |"
+            f"| `{bet['name']}` | {bet['worldview']} | {bet['adapter_move']} | `{latest_probe}` | `{bet['expected_public_lb_delta_if_true']}` | {bet['kill_criterion']} |"
         )
 
     return "\n".join(
@@ -275,7 +338,7 @@ def build_big_bet_markdown(bets: list[dict[str, object]]) -> str:
 
 def run() -> dict[str, object]:
     report = build_report()
-    bets = build_big_bets()
+    bets = build_big_bets(read_json(OG_PROBE_JSON), read_json(CONTRASTIVE_PROBE_JSON))
     REPORT_JSON.write_text(json.dumps(report, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8")
     REPORT_MD.write_text(build_report_markdown(report), encoding="utf-8")
     BIG_BET_JSON.write_text(

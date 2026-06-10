@@ -73,7 +73,7 @@
     {
       "check": "remaining_generality_gap",
       "passed": false,
-      "evidence": "Current best row-target assignment still depends on public-sensor support rather than an OG-only human-state teacher.",
+      "evidence": "OG-only assignment probe status og_only_assignment_replacement_not_ready; pure row-cap2 recall 0.0404, distilled recall 0.1236.",
       "meaning": "The architecture is reusable; the current strongest competition instantiation is not yet fully portable.",
       "required_for_completion": false
     }
@@ -87,7 +87,10 @@
     "readiness_status": "paper_ready_with_boundary",
     "mechanism_ablation_status": "mechanism_ablation_ready",
     "public_worldviews_killed": 5,
-    "public_worldviews_survived": 2
+    "public_worldviews_survived": 2,
+    "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
+    "pure_og_assignment_recall": 0.04035150645624103,
+    "distilled_assignment_recall": 0.12356527977044476
   },
   "honest_claim": "HS-JEPA is a human-understanding architecture that predicts hidden human-state and listener/action representations before making bounded output moves.  The Route-Conserving S2 Bridge is the sleep-log competition instantiation, not the full architecture.",
   "next_breakthrough": "Replace the public-sensor row-target assignment teacher with an OG-only personal/cohort/time human-state teacher while preserving the invariant-decoder and anti-shortcut gates."

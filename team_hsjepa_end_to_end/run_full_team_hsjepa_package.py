@@ -11,12 +11,14 @@ historical experiment version names.  It executes:
 5. Reproducibility contract.
 6. Architecture readiness report.
 7. Mechanism ablation report.
-8. Generality report.
-9. Paper method packet.
-10. Sleep competition adapter report and big-bet queue.
-11. Pipeline manifest.
-12. Release checklist.
-13. A compact handoff report for paper and competition discussion.
+8. OG-only assignment teacher probe.
+9. Listener-invariant contrastive probe.
+10. Generality report.
+11. Sleep competition adapter report and big-bet queue.
+12. Paper method packet.
+13. Pipeline manifest.
+14. Release checklist.
+15. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -66,6 +68,10 @@ ADAPTER_REPORT_MD = ADAPTER_OUT / "sleep_competition_adapter_report_ko.md"
 ADAPTER_REPORT_JSON = ADAPTER_OUT / "sleep_competition_adapter_report.json"
 BIG_BET_MD = ADAPTER_OUT / "hsjepa_big_bet_queue_ko.md"
 BIG_BET_JSON = ADAPTER_OUT / "hsjepa_big_bet_queue.json"
+OG_PROBE_MD = ADAPTER_OUT / "og_only_assignment_teacher_probe_ko.md"
+OG_PROBE_JSON = ADAPTER_OUT / "og_only_assignment_teacher_probe.json"
+CONTRASTIVE_PROBE_MD = ADAPTER_OUT / "listener_invariant_contrastive_probe_ko.md"
+CONTRASTIVE_PROBE_JSON = ADAPTER_OUT / "listener_invariant_contrastive_probe.json"
 
 
 def run_command(args: list[str]) -> dict[str, object]:
@@ -104,10 +110,14 @@ def build_handoff(
     core: dict[str, object],
     adapter: dict[str, object],
     big_bets: dict[str, object],
+    og_probe: dict[str, object],
+    contrastive_probe: dict[str, object],
     release: dict[str, object],
 ) -> str:
     packaged = package["packaged_submissions"]
     mechanism = validation["mechanism_evidence"]
+    og_verdict = og_probe.get("verdict", {})
+    contrastive_verdict = contrastive_probe.get("verdict", {})
 
     submission_rows = ["| Role | File | Upload-safe | Changed cells |", "| --- | --- | ---: | ---: |"]
     for role in ["competition_primary", "interpretable_s2_hub", "human_state_probe"]:
@@ -171,6 +181,8 @@ def build_handoff(
             f"- Core ablation contract: `{len(core.get('modules', []))}` modules, `{len(big_bets.get('bets', []))}` big-bet followups",
             f"- Adapter status: `{adapter['status']}`",
             f"- Adapter score delta: `{adapter['score_evidence']['delta']}`",
+            f"- OG-only assignment probe: `{og_verdict.get('status')}`",
+            f"- Listener-invariant contrastive probe: `{contrastive_verdict.get('status')}`",
             "",
             "Core 문서:",
             "",
@@ -184,6 +196,8 @@ def build_handoff(
             "```text",
             "sleep_competition_adapter/outputs/sleep_competition_adapter_report_ko.md",
             "sleep_competition_adapter/outputs/hsjepa_big_bet_queue_ko.md",
+            "sleep_competition_adapter/outputs/og_only_assignment_teacher_probe_ko.md",
+            "sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md",
             "```",
             "",
             "## Generated Submission Roles",
@@ -204,6 +218,8 @@ def build_handoff(
             f"- Mechanism ablation: `{ablation['status']}` (`{ablation['public_worldviews_killed']}` public worldviews killed, `{ablation['public_worldviews_survived']}` survived)",
             f"- Generality boundary: `{generality['status']}` (`{generality['passed_checks']}/{generality['total_checks']}` portability checks, nonblocking boundaries: `{len(generality['nonblocking_boundaries'])}`)",
             f"- Core/adapter boundary: core `{core['status']}`, adapter `{adapter['status']}`",
+            f"- OG-only assignment boundary: pure recall `{og_verdict.get('pure_og_row_cap2_mean_recall'):.4f}`, distilled recall `{og_verdict.get('distilled_row_cap2_mean_recall'):.4f}`",
+            f"- Listener-invariant boundary: listener-route rho `{contrastive_verdict.get('mean_listener_route_spearman'):.4f}`, contrastive overlap `{contrastive_verdict.get('mean_contrastive_overlap_rate'):.4f}`",
             f"- Release checklist: `{release['status']}` (`{release['passed_checks']}/{release['total_checks']}` checks)",
             "",
             "## Paper Claim",
@@ -323,9 +339,11 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(HERE / "inspect_hsjepa_reproducibility_contract.py")],
         [sys.executable, str(HERE / "build_hsjepa_architecture_readiness_report.py")],
         [sys.executable, str(HERE / "build_hsjepa_mechanism_ablation_report.py")],
+        [sys.executable, str(ROOT / "sleep_competition_adapter" / "og_only_assignment_teacher_probe.py")],
+        [sys.executable, str(ROOT / "sleep_competition_adapter" / "listener_invariant_contrastive_probe.py")],
         [sys.executable, str(HERE / "build_hsjepa_generality_report.py")],
-        [sys.executable, str(HERE / "build_hsjepa_paper_method_packet.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "build_sleep_competition_adapter_report.py")],
+        [sys.executable, str(HERE / "build_hsjepa_paper_method_packet.py")],
         [sys.executable, str(HERE / "build_hsjepa_pipeline_manifest.py")],
         [sys.executable, str(HERE / "build_hsjepa_release_checklist.py")],
     ]
@@ -344,9 +362,11 @@ def run(refresh: bool = False) -> dict[str, object]:
     core = read_json(CORE_MANIFEST_JSON)
     adapter = read_json(ADAPTER_REPORT_JSON)
     big_bets = read_json(BIG_BET_JSON)
+    og_probe = read_json(OG_PROBE_JSON)
+    contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     release = read_json(RELEASE_CHECKLIST_JSON)
     stress = pd.read_csv(STRESS_CSV)
-    handoff_md = build_handoff(package, validation, stress, readiness, ablation, generality, core, adapter, big_bets, release)
+    handoff_md = build_handoff(package, validation, stress, readiness, ablation, generality, core, adapter, big_bets, og_probe, contrastive_probe, release)
 
     handoff = {
         "package": "Route-Conserving S2 Bridge HS-JEPA",
@@ -374,6 +394,10 @@ def run(refresh: bool = False) -> dict[str, object]:
         "adapter_report_json": str(ADAPTER_REPORT_JSON.resolve()),
         "big_bet_queue_md": str(BIG_BET_MD.resolve()),
         "big_bet_queue_json": str(BIG_BET_JSON.resolve()),
+        "og_only_assignment_teacher_probe_md": str(OG_PROBE_MD.resolve()),
+        "og_only_assignment_teacher_probe_json": str(OG_PROBE_JSON.resolve()),
+        "listener_invariant_contrastive_probe_md": str(CONTRASTIVE_PROBE_MD.resolve()),
+        "listener_invariant_contrastive_probe_json": str(CONTRASTIVE_PROBE_JSON.resolve()),
         "pipeline_manifest_md": str(PIPELINE_MD.resolve()),
         "pipeline_manifest_json": str(PIPELINE_JSON.resolve()),
         "release_checklist_md": str(RELEASE_CHECKLIST_MD.resolve()),
@@ -386,6 +410,8 @@ def run(refresh: bool = False) -> dict[str, object]:
         "core_status": str(core["status"]),
         "adapter_status": str(adapter["status"]),
         "big_bet_count": int(big_bets["count"]),
+        "og_only_assignment_teacher_probe_status": str(og_probe["verdict"]["status"]),
+        "listener_invariant_contrastive_probe_status": str(contrastive_probe["verdict"]["status"]),
         "release_status": str(release["status"]),
         "release_checks": f"{release['passed_checks']}/{release['total_checks']}",
         "mechanism_evidence": validation["mechanism_evidence"],

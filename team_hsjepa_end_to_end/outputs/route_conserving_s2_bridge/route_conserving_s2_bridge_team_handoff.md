@@ -40,6 +40,8 @@ public-sensitive driver action
 - Core ablation contract: `6` modules, `4` big-bet followups
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
 - Adapter score delta: `-0.00841135550000005`
+- OG-only assignment probe: `og_only_assignment_replacement_not_ready`
+- Listener-invariant contrastive probe: `listener_invariant_decoder_not_ready`
 
 Core 문서:
 
@@ -53,6 +55,8 @@ Adapter 문서:
 ```text
 sleep_competition_adapter/outputs/sleep_competition_adapter_report_ko.md
 sleep_competition_adapter/outputs/hsjepa_big_bet_queue_ko.md
+sleep_competition_adapter/outputs/og_only_assignment_teacher_probe_ko.md
+sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md
 ```
 
 ## Generated Submission Roles
@@ -80,7 +84,9 @@ sleep_competition_adapter/outputs/hsjepa_big_bet_queue_ko.md
 - Mechanism ablation: `mechanism_ablation_ready` (`5` public worldviews killed, `2` survived)
 - Generality boundary: `general_architecture_separated_with_case_boundary` (`5/6` portability checks, nonblocking boundaries: `1`)
 - Core/adapter boundary: core `core_ready_for_adapter`, adapter `adapter_ready_with_public_sensor_boundary`
-- Release checklist: `release_ready_with_boundary` (`31/31` checks)
+- OG-only assignment boundary: pure recall `0.0404`, distilled recall `0.1236`
+- Listener-invariant boundary: listener-route rho `-0.0313`, contrastive overlap `0.2152`
+- Release checklist: `release_ready_with_boundary` (`35/35` checks)
 
 ## Paper Claim
 

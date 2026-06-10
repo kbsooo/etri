@@ -33,6 +33,8 @@ CORE_MANIFEST_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_manifest.js
 CORE_ABLATION_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_ablation_contract.json"
 ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_competition_adapter_report.json"
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
+OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
+CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 
 MANIFEST_JSON = OUT / "hsjepa_pipeline_manifest.json"
 MANIFEST_MD = OUT / "hsjepa_pipeline_manifest_ko.md"
@@ -69,6 +71,8 @@ def require_inputs() -> None:
         CORE_ABLATION_JSON,
         ADAPTER_REPORT_JSON,
         BIG_BET_JSON,
+        OG_PROBE_JSON,
+        CONTRASTIVE_PROBE_JSON,
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.exists()]
     if missing:
@@ -123,12 +127,16 @@ def build_manifest() -> dict[str, object]:
     core_ablation = read_json(CORE_ABLATION_JSON)
     adapter = read_json(ADAPTER_REPORT_JSON)
     big_bets = read_json(BIG_BET_JSON)
+    og_probe = read_json(OG_PROBE_JSON)
+    contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     evidence = pd.read_csv(EVIDENCE_CSV)
     stress = pd.read_csv(STRESS_CSV)
 
     public = readiness["public_breakthrough"]
     human = readiness["human_state"]
     mechanism = validation["mechanism_evidence"]
+    og_verdict = og_probe["verdict"]
+    contrastive_verdict = contrastive_probe["verdict"]
     category_summary = contract_category_summary(contract)
     packaged = package["packaged_submissions"]
 
@@ -194,6 +202,19 @@ def build_manifest() -> dict[str, object]:
             "Human-state is an orientation diagnostic, not a standalone row selector.",
         ),
         stage(
+            "og_only_assignment_probe",
+            "OG-only Assignment Teacher Probe",
+            "Tests whether human-state geometry can replace the public-sensor row-target assignment teacher.",
+            ["s2hub_jackpot_cell_student_frame.csv", "stagebridge_jackpot_cell_student_frame.csv"],
+            ["og_only_assignment_teacher_probe_ko.md", "og_only_assignment_teacher_ranked_cells.csv"],
+            [
+                f"Probe status: {og_verdict['status']}",
+                f"Pure OG row-cap2 recall: {fmt(og_verdict['pure_og_row_cap2_mean_recall'], 4)}",
+                f"Distilled row-cap2 recall: {fmt(og_verdict['distilled_row_cap2_mean_recall'], 4)}",
+            ],
+            "The probe currently measures the gap; it does not prove pure OG-only deployment.",
+        ),
+        stage(
             "route_energy_model",
             "Q/S Route Energy Model",
             "Learns a target-route manifold from train labels and scores whether an action breaks it.",
@@ -204,6 +225,19 @@ def build_manifest() -> dict[str, object]:
                 f"S2 route z-score: {fmt(mechanism['s2_route_z'], 2)}",
             ],
             "Route energy proves candidate-pool structure, not private leaderboard safety.",
+        ),
+        stage(
+            "listener_invariant_contrastive_probe",
+            "Listener-Invariant Contrastive Probe",
+            "Tests whether listener responsibility and route-invariant action health select the same bundles.",
+            ["listener_responsibility_ranked_cells.csv", "stagebridge/s2hub candidate bundles"],
+            ["listener_invariant_contrastive_probe_ko.md", "listener_invariant_contrastive_scored_bundles.csv"],
+            [
+                f"Probe status: {contrastive_verdict['status']}",
+                f"Listener-route rho: {fmt(contrastive_verdict['mean_listener_route_spearman'], 4)}",
+                f"Contrastive overlap: {fmt(contrastive_verdict['mean_contrastive_overlap_rate'], 4)}",
+            ],
+            "This stage is a diagnostic; it does not create a new submission.",
         ),
         stage(
             "driver_action_field",
@@ -308,9 +342,14 @@ def build_manifest() -> dict[str, object]:
         ["hsjepa_core_architecture", "route_energy_model"],
         ["og_raw_lifestyle_context", "human_state_listener_context"],
         ["og_raw_lifestyle_context", "route_energy_model"],
+        ["human_state_listener_context", "og_only_assignment_probe"],
+        ["og_only_assignment_probe", "general_architecture_boundary"],
         ["public_lb_sensor", "driver_action_field"],
         ["human_state_listener_context", "driver_action_field"],
         ["route_energy_model", "route_conserving_s2_bridge_decoder"],
+        ["human_state_listener_context", "listener_invariant_contrastive_probe"],
+        ["route_energy_model", "listener_invariant_contrastive_probe"],
+        ["listener_invariant_contrastive_probe", "sleep_competition_adapter"],
         ["driver_action_field", "route_conserving_s2_bridge_decoder"],
         ["route_conserving_s2_bridge_decoder", "submission_packager"],
         ["hsjepa_core_architecture", "sleep_competition_adapter"],
@@ -358,6 +397,8 @@ def build_manifest() -> dict[str, object]:
             "core_status": core["status"],
             "adapter_status": adapter["status"],
             "big_bet_count": big_bets["count"],
+            "og_only_assignment_probe_status": og_verdict["status"],
+            "listener_invariant_contrastive_probe_status": contrastive_verdict["status"],
         },
     }
     MANIFEST_JSON.write_text(json.dumps(manifest, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8")
@@ -397,14 +438,20 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    CORE --> D["Q/S route energy model"]',
             '    A["OG raw lifestyle context"] --> C["Human-state listener context"]',
             '    A --> D["Q/S route energy model"]',
+            '    C --> P1["OG-only assignment probe"]',
+            '    P1 --> GEN["General architecture boundary"]',
             '    B["Public LB sensor ledger"] --> E["Public-sensitive driver action field"]',
             '    C --> E',
             '    D --> F["Route-conserving S2 bridge decoder"]',
+            '    C --> P2["Listener-invariant contrastive probe"]',
+            '    D --> P2',
             '    E --> F',
             '    F --> G["Role-based submission packager"]',
             '    G --> ADAPT["Sleep competition adapter"]',
             '    CORE --> ADAPT',
             '    B --> ADAPT',
+            '    P2 --> ADAPT',
+            '    GEN --> H["Claim readiness and paper packet"]',
             '    ADAPT --> H["Claim readiness and paper packet"]',
             '    G --> H["Claim readiness and paper packet"]',
             '    F --> H',

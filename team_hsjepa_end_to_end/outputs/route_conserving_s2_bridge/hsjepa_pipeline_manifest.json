@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 12,
-  "edge_count": 22,
+  "stage_count": 14,
+  "edge_count": 27,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -80,6 +80,25 @@
       "boundary": "Human-state is an orientation diagnostic, not a standalone row selector."
     },
     {
+      "id": "og_only_assignment_probe",
+      "name": "OG-only Assignment Teacher Probe",
+      "role": "Tests whether human-state geometry can replace the public-sensor row-target assignment teacher.",
+      "inputs": [
+        "s2hub_jackpot_cell_student_frame.csv",
+        "stagebridge_jackpot_cell_student_frame.csv"
+      ],
+      "outputs": [
+        "og_only_assignment_teacher_probe_ko.md",
+        "og_only_assignment_teacher_ranked_cells.csv"
+      ],
+      "evidence": [
+        "Probe status: og_only_assignment_replacement_not_ready",
+        "Pure OG row-cap2 recall: 0.0404",
+        "Distilled row-cap2 recall: 0.1236"
+      ],
+      "boundary": "The probe currently measures the gap; it does not prove pure OG-only deployment."
+    },
+    {
       "id": "route_energy_model",
       "name": "Q/S Route Energy Model",
       "role": "Learns a target-route manifold from train labels and scores whether an action breaks it.",
@@ -96,6 +115,25 @@
         "S2 route z-score: -9.46"
       ],
       "boundary": "Route energy proves candidate-pool structure, not private leaderboard safety."
+    },
+    {
+      "id": "listener_invariant_contrastive_probe",
+      "name": "Listener-Invariant Contrastive Probe",
+      "role": "Tests whether listener responsibility and route-invariant action health select the same bundles.",
+      "inputs": [
+        "listener_responsibility_ranked_cells.csv",
+        "stagebridge/s2hub candidate bundles"
+      ],
+      "outputs": [
+        "listener_invariant_contrastive_probe_ko.md",
+        "listener_invariant_contrastive_scored_bundles.csv"
+      ],
+      "evidence": [
+        "Probe status: listener_invariant_decoder_not_ready",
+        "Listener-route rho: -0.0313",
+        "Contrastive overlap: 0.2152"
+      ],
+      "boundary": "This stage is a diagnostic; it does not create a new submission."
     },
     {
       "id": "driver_action_field",
@@ -260,6 +298,14 @@
       "route_energy_model"
     ],
     [
+      "human_state_listener_context",
+      "og_only_assignment_probe"
+    ],
+    [
+      "og_only_assignment_probe",
+      "general_architecture_boundary"
+    ],
+    [
       "public_lb_sensor",
       "driver_action_field"
     ],
@@ -270,6 +316,18 @@
     [
       "route_energy_model",
       "route_conserving_s2_bridge_decoder"
+    ],
+    [
+      "human_state_listener_context",
+      "listener_invariant_contrastive_probe"
+    ],
+    [
+      "route_energy_model",
+      "listener_invariant_contrastive_probe"
+    ],
+    [
+      "listener_invariant_contrastive_probe",
+      "sleep_competition_adapter"
     ],
     [
       "driver_action_field",
@@ -356,6 +414,8 @@
     ],
     "core_status": "core_ready_for_adapter",
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
-    "big_bet_count": 4
+    "big_bet_count": 4,
+    "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
+    "listener_invariant_contrastive_probe_status": "listener_invariant_decoder_not_ready"
   }
 }

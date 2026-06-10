@@ -30,6 +30,8 @@ CORE_MANIFEST_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_manifest.js
 CORE_ABLATION_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_ablation_contract.json"
 ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_competition_adapter_report.json"
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
+OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
+CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 
 PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
 PACKET_MD = OUT / "hsjepa_paper_method_packet_ko.md"
@@ -63,6 +65,8 @@ def require_inputs() -> None:
             CORE_ABLATION_JSON,
             ADAPTER_REPORT_JSON,
             BIG_BET_JSON,
+            OG_PROBE_JSON,
+            CONTRASTIVE_PROBE_JSON,
         ]
         if not path.exists()
     ]
@@ -81,6 +85,8 @@ def build_packet() -> dict[str, object]:
     core_ablation = read_json(CORE_ABLATION_JSON)
     adapter = read_json(ADAPTER_REPORT_JSON)
     big_bets = read_json(BIG_BET_JSON)
+    og_probe = read_json(OG_PROBE_JSON)
+    contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     stress = pd.read_csv(STRESS_CSV)
     evidence = pd.read_csv(EVIDENCE_CSV)
 
@@ -89,6 +95,8 @@ def build_packet() -> dict[str, object]:
     primary = readiness["mechanism"]["primary"]
     s2 = readiness["mechanism"]["s2_listener"]
     boundary = contract["boundary"]
+    og_verdict = og_probe["verdict"]
+    contrastive_verdict = contrastive_probe["verdict"]
 
     roles = []
     for row in evidence.to_dict("records"):
@@ -134,6 +142,12 @@ def build_packet() -> dict[str, object]:
         "human_state_evidence": {
             "cell_oof_auc": human["cell_oof_auc_human_target_context"],
             "row_oof_auc": human["row_oof_auc"],
+            "og_only_assignment_probe_status": og_verdict["status"],
+            "pure_og_row_cap2_mean_recall": og_verdict["pure_og_row_cap2_mean_recall"],
+            "distilled_row_cap2_mean_recall": og_verdict["distilled_row_cap2_mean_recall"],
+            "listener_invariant_probe_status": contrastive_verdict["status"],
+            "listener_route_spearman": contrastive_verdict["mean_listener_route_spearman"],
+            "contrastive_overlap_rate": contrastive_verdict["mean_contrastive_overlap_rate"],
             "role": "orientation diagnostic, not complete row-target assignment solver",
         },
         "roles": roles,
@@ -171,12 +185,14 @@ def build_packet() -> dict[str, object]:
             "core_ablation_contract": str(CORE_ABLATION_JSON.resolve()),
             "sleep_adapter_report": str(ADAPTER_REPORT_JSON.resolve()),
             "big_bet_queue": str(BIG_BET_JSON.resolve()),
+            "og_only_assignment_teacher_probe": str(OG_PROBE_JSON.resolve()),
+            "listener_invariant_contrastive_probe": str(CONTRASTIVE_PROBE_JSON.resolve()),
             "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
         },
         "paper_sections": {
             "abstract_ko": build_abstract(public, primary, s2, human),
             "method_ko": build_method_text(core, adapter),
-            "generality_ko": build_generality_text(generality),
+            "generality_ko": build_generality_text(generality, og_verdict, contrastive_verdict),
             "algorithm_ko": build_algorithm_text(),
             "limitations_ko": build_limitations_text(boundary),
             "big_bets_ko": build_big_bet_text(big_bets),
@@ -239,7 +255,11 @@ def build_method_text(core: dict[str, object], adapter: dict[str, object]) -> st
     )
 
 
-def build_generality_text(generality: dict[str, object]) -> str:
+def build_generality_text(
+    generality: dict[str, object],
+    og_verdict: dict[str, object],
+    contrastive_verdict: dict[str, object],
+) -> str:
     rows = [
         "HS-JEPA general architecture != Route-Conserving S2 Bridge competition case study",
         "",
@@ -259,6 +279,11 @@ def build_generality_text(generality: dict[str, object]) -> str:
         f"- Generality status: `{generality['status']}`",
         f"- Portability checks: `{generality['passed_checks']}/{generality['total_checks']}`",
         f"- Nonblocking boundaries: `{', '.join(generality['nonblocking_boundaries'])}`",
+        f"- OG-only assignment probe: `{og_verdict['status']}`",
+        f"- Pure OG row-cap2 recall: `{fmt(og_verdict['pure_og_row_cap2_mean_recall'], 4)}`",
+        f"- Distilled row-cap2 recall: `{fmt(og_verdict['distilled_row_cap2_mean_recall'], 4)}`",
+        f"- Listener-invariant probe: `{contrastive_verdict['status']}`",
+        f"- Listener-route Spearman: `{fmt(contrastive_verdict['mean_listener_route_spearman'], 4)}`",
         "",
         "가장 중요한 남은 과제는 public-sensor row-target assignment teacher를 OG-only personal/cohort/time human-state teacher로 교체하는 것이다.",
     ]

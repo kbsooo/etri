@@ -31,6 +31,8 @@ CORE_MANIFEST_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_manifest.js
 CORE_ABLATION_JSON = ROOT / "hsjepa_core" / "outputs" / "hsjepa_core_ablation_contract.json"
 ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_competition_adapter_report.json"
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
+OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
+CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 
 CHECKLIST_JSON = OUT / "hsjepa_release_checklist.json"
 CHECKLIST_MD = OUT / "hsjepa_release_checklist_ko.md"
@@ -78,6 +80,8 @@ def require_inputs() -> list[dict[str, object]]:
         CORE_ABLATION_JSON,
         ADAPTER_REPORT_JSON,
         BIG_BET_JSON,
+        OG_PROBE_JSON,
+        CONTRASTIVE_PROBE_JSON,
         PIPELINE_JSON,
     ]:
         rows.append(check(f"exists:{path.name}", path.exists(), str(path.relative_to(ROOT))))
@@ -118,6 +122,8 @@ def build_checklist() -> dict[str, object]:
     core_ablation = read_json(CORE_ABLATION_JSON)
     adapter = read_json(ADAPTER_REPORT_JSON)
     big_bets = read_json(BIG_BET_JSON)
+    og_probe = read_json(OG_PROBE_JSON)
+    contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     pipeline = read_json(PIPELINE_JSON)
 
     packaged = package.get("packaged_submissions", {})
@@ -131,6 +137,8 @@ def build_checklist() -> dict[str, object]:
     boundary = contract.get("boundary", {})
     role_outputs = pipeline.get("role_outputs", {})
     stress_ablation = ablation.get("stress_ablation", [])
+    og_verdict = og_probe.get("verdict", {})
+    contrastive_verdict = contrastive_probe.get("verdict", {})
 
     rows.extend(
         [
@@ -231,6 +239,34 @@ def build_checklist() -> dict[str, object]:
                 and len(big_bets.get("bets", [])) >= 3
                 and any(float(bet.get("expected_public_lb_delta_if_true", 0.0)) <= -0.002 for bet in big_bets.get("bets", [])),
                 f"status={big_bets.get('status')}, count={len(big_bets.get('bets', []))}",
+            ),
+            check(
+                "og_only_assignment_probe_recorded",
+                og_probe.get("status") == "probe_ready"
+                and og_verdict.get("status") in {
+                    "og_unsupervised_assignment_signal_alive",
+                    "teacher_distillation_alive_but_not_portable",
+                    "og_only_assignment_replacement_not_ready",
+                },
+                (
+                    f"status={og_verdict.get('status')}, "
+                    f"pure_recall={fmt(og_verdict.get('pure_og_row_cap2_mean_recall'), 4)}, "
+                    f"distilled_recall={fmt(og_verdict.get('distilled_row_cap2_mean_recall'), 4)}"
+                ),
+            ),
+            check(
+                "listener_invariant_contrastive_probe_recorded",
+                contrastive_probe.get("status") == "probe_ready"
+                and contrastive_verdict.get("status") in {
+                    "listener_invariant_decoder_promising",
+                    "listener_invariant_decoder_alive_but_weak",
+                    "listener_invariant_decoder_not_ready",
+                },
+                (
+                    f"status={contrastive_verdict.get('status')}, "
+                    f"rho={fmt(contrastive_verdict.get('mean_listener_route_spearman'), 4)}, "
+                    f"overlap={fmt(contrastive_verdict.get('mean_contrastive_overlap_rate'), 4)}"
+                ),
             ),
             check("roles_present", role_keys == EXPECTED_ROLES, f"roles={sorted(role_keys)}"),
             check(
@@ -339,6 +375,8 @@ def build_markdown(result: dict[str, object]) -> str:
             "- private LB safety is not proven",
             "- pure OG-only assignment is not proven",
             "- human-state is an orientation diagnostic, not a complete row-target assignment solver",
+            "- OG-only assignment replacement has a recorded probe result",
+            "- Listener-invariant contrastive decoding has a recorded probe result",
             "- HS-JEPA Core is separated from the Sleep Competition Adapter",
             "- the next big bet is replacing public-sensor assignment with an OG-only human-state teacher",
             "",

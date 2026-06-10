@@ -48,6 +48,22 @@
       "boundary": "private LB safety is not proven."
     }
   ],
+  "og_assignment_teacher_probe": {
+    "status": "og_only_assignment_replacement_not_ready",
+    "pure_og_row_cap2_mean_recall": 0.04035150645624103,
+    "pure_og_row_cap2_mean_precision_lift": 0.9580829348571147,
+    "distilled_row_cap2_mean_recall": 0.12356527977044476,
+    "distilled_row_cap2_mean_precision": 0.12356527977044476,
+    "listener_upper_bound_row_cap2_mean_recall": 0.13558106169296988,
+    "interpretation": "Human-state explains action orientation, but the safe row-target assignment still needs adapter-side evidence."
+  },
+  "listener_invariant_contrastive_probe": {
+    "status": "listener_invariant_decoder_not_ready",
+    "mean_listener_route_spearman": -0.03128093281938615,
+    "mean_contrastive_overlap_rate": 0.2152080344332855,
+    "mean_high_listener_low_route_rate": 0.07194244604316546,
+    "interpretation": "Listener responsibility and invariant safety are not sufficiently aligned; use this as a diagnostic before making new submissions."
+  },
   "role_outputs": {
     "competition_primary": "submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv",
     "interpretable_s2_hub": "submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv",
@@ -56,13 +72,16 @@
   "what_the_adapter_proves": [
     "HS-JEPA-style listener/action/invariant separation can explain the 0.567 public-LB breakthrough case study.",
     "Route-conserving action selection is statistically non-random against feasible null bundles.",
-    "Human-state latent explains target/cell orientation but not enough row assignment on its own."
+    "Human-state latent explains target/cell orientation but not enough row assignment on its own.",
+    "A pure OG-only assignment teacher is not ready yet; this is now a measured architecture boundary, not an informal caveat.",
+    "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates."
   ],
   "what_the_adapter_does_not_prove": [
     "pure OG-only assignment",
     "private leaderboard safety",
     "S2 as a universal human-sleep factor",
-    "that public LB sensors can be used outside this competition"
+    "that public LB sensors can be used outside this competition",
+    "that listener responsibility alone is an action-grade decoder"
   ],
   "paper_method_title": "Human-State JEPA: General Architecture with a Route-Conserving S2 Bridge Case Study"
 }

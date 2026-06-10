@@ -19,6 +19,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 READINESS_JSON = OUT / "hsjepa_architecture_readiness_report.json"
 ABLATION_JSON = OUT / "hsjepa_mechanism_ablation_report.json"
+OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
 
 REPORT_JSON = OUT / "hsjepa_generality_report.json"
 REPORT_MD = OUT / "hsjepa_generality_report_ko.md"
@@ -198,25 +199,36 @@ def build_markdown(report: dict[str, object]) -> str:
 
 
 def run() -> dict[str, object]:
-    for path in [READINESS_JSON, ABLATION_JSON]:
+    for path in [READINESS_JSON, ABLATION_JSON, OG_PROBE_JSON]:
         if not path.exists():
             raise FileNotFoundError(path)
 
     readiness = read_json(READINESS_JSON)
     ablation = read_json(ABLATION_JSON)
+    og_probe = read_json(OG_PROBE_JSON)
+    og_verdict = og_probe.get("verdict", {})
+    portability_checks = [dict(item) for item in PORTABILITY_CHECKS]
+    for item in portability_checks:
+        if item["check"] == "remaining_generality_gap":
+            item["evidence"] = (
+                "OG-only assignment probe status "
+                f"{og_verdict.get('status')}; pure row-cap2 recall "
+                f"{og_verdict.get('pure_og_row_cap2_mean_recall'):.4f}, distilled recall "
+                f"{og_verdict.get('distilled_row_cap2_mean_recall'):.4f}."
+            )
     blocking = [
-        item for item in PORTABILITY_CHECKS
+        item for item in portability_checks
         if not item["passed"] and item.get("required_for_completion", True)
     ]
     report = {
         "package": "HS-JEPA",
         "status": "general_architecture_separated_with_case_boundary" if not blocking else "generality_blocked",
         "general_modules": GENERAL_MODULES,
-        "portability_checks": PORTABILITY_CHECKS,
-        "passed_checks": sum(1 for item in PORTABILITY_CHECKS if item["passed"]),
-        "total_checks": len(PORTABILITY_CHECKS),
+        "portability_checks": portability_checks,
+        "passed_checks": sum(1 for item in portability_checks if item["passed"]),
+        "total_checks": len(portability_checks),
         "nonblocking_boundaries": [
-            item["check"] for item in PORTABILITY_CHECKS
+            item["check"] for item in portability_checks
             if not item["passed"] and not item.get("required_for_completion", True)
         ],
         "evidence": {
@@ -224,6 +236,9 @@ def run() -> dict[str, object]:
             "mechanism_ablation_status": ablation.get("status"),
             "public_worldviews_killed": ablation.get("public_worldviews_killed"),
             "public_worldviews_survived": ablation.get("public_worldviews_survived"),
+            "og_only_assignment_probe_status": og_verdict.get("status"),
+            "pure_og_assignment_recall": og_verdict.get("pure_og_row_cap2_mean_recall"),
+            "distilled_assignment_recall": og_verdict.get("distilled_row_cap2_mean_recall"),
         },
         "honest_claim": (
             "HS-JEPA is a human-understanding architecture that predicts hidden human-state and listener/action representations before "

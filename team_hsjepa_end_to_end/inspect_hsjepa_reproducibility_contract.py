@@ -80,6 +80,8 @@ MODULES = [
     "team_hsjepa_end_to_end/build_hsjepa_pipeline_manifest.py",
     "team_hsjepa_end_to_end/build_hsjepa_release_checklist.py",
     "hsjepa_core/build_core_architecture_manifest.py",
+    "sleep_competition_adapter/og_only_assignment_teacher_probe.py",
+    "sleep_competition_adapter/listener_invariant_contrastive_probe.py",
     "sleep_competition_adapter/build_sleep_competition_adapter_report.py",
 ]
 
@@ -115,6 +117,12 @@ GENERATED_OUTPUTS = [
     ("sleep_competition_adapter/outputs/sleep_competition_adapter_report_ko.md", False),
     ("sleep_competition_adapter/outputs/hsjepa_big_bet_queue.json", False),
     ("sleep_competition_adapter/outputs/hsjepa_big_bet_queue_ko.md", False),
+    ("sleep_competition_adapter/outputs/og_only_assignment_teacher_probe.json", False),
+    ("sleep_competition_adapter/outputs/og_only_assignment_teacher_probe_ko.md", False),
+    ("sleep_competition_adapter/outputs/og_only_assignment_teacher_ranked_cells.csv", False),
+    ("sleep_competition_adapter/outputs/listener_invariant_contrastive_probe.json", False),
+    ("sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md", False),
+    ("sleep_competition_adapter/outputs/listener_invariant_contrastive_scored_bundles.csv", False),
 ]
 
 
