@@ -231,13 +231,21 @@ but target listener posterior alone is not an action generator.
 팀 공유용 end-to-end 재현:
 
 ```bash
-python3 team_hsjepa_end_to_end/run_route_conserving_s2_bridge.py
+python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py
 ```
 
 전체 dependency까지 새로 실행:
 
 ```bash
-python3 team_hsjepa_end_to_end/run_route_conserving_s2_bridge.py --refresh
+python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py --refresh
+```
+
+위 명령은 package 생성, stress audit, claim/evidence validation, 팀 핸드오프 리포트 생성을 한 번에 수행한다.
+
+개별 package 생성만 실행하려면:
+
+```bash
+python3 team_hsjepa_end_to_end/run_route_conserving_s2_bridge.py
 ```
 
 Route-Conserving S2 Bridge가 단순 셀 선택이 아니라 후보 공간 대비 특이한 decoder rule인지 검증:

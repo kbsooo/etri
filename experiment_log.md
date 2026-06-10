@@ -14528,3 +14528,58 @@ The validator deliberately preserves the boundary condition: it proves the
 selected bridge rule is statistically unusual inside the feasible candidate
 space, not that it is private-safe or that OG human-state alone solves
 row-target assignment.
+
+## Team One-Command HS-JEPA Handoff Runner
+
+Date: 2026-06-10
+
+Question:
+
+Can the team reproduce the paper-facing HS-JEPA package with one command,
+without knowing old experiment version names?
+
+Added artifacts:
+
+- `team_hsjepa_end_to_end/run_full_team_hsjepa_package.py`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/route_conserving_s2_bridge_team_handoff.md`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/route_conserving_s2_bridge_team_handoff.json`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/route_conserving_s2_bridge_full_run_log.json`
+
+One-command reproduction:
+
+```bash
+python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py
+```
+
+Full dependency refresh:
+
+```bash
+python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py --refresh
+```
+
+Result:
+
+- Package generation: passed
+- Stress audit: passed
+- Claim/evidence validation: passed
+- Team handoff report generated
+- Validation passed: `true`
+- Primary route z-score: `-9.66`
+- S2 listener route z-score: `-9.46`
+- S2 listener usage: `1.000` vs null `0.615`
+
+Interpretation:
+
+This closes the main team-readability gap.  A teammate can now start from the
+role-based package rather than historical version names:
+
+```text
+run_full_team_hsjepa_package.py
+  -> package submissions
+  -> stress audit
+  -> claim/evidence validation
+  -> team handoff report
+```
+
+The current HS-JEPA "knuckleball" is therefore not only a file-level result,
+but a runnable and falsifiable architecture package.

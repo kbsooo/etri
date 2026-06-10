@@ -48,7 +48,21 @@ target correction은 route manifold를 보존해야 한다.
 
 ## 실행
 
-루트 디렉토리에서:
+처음 보는 팀원은 루트 디렉토리에서 아래 명령 하나만 실행하면 된다.
+
+```bash
+python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py
+```
+
+이 명령은 package 생성, stress audit, claim/evidence validation, 팀 핸드오프 리포트 생성을 모두 수행한다.
+
+전체 dependency까지 재생성이 필요하면:
+
+```bash
+python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py --refresh
+```
+
+개별 단계만 실행하려면:
 
 ```bash
 python3 team_hsjepa_end_to_end/run_route_conserving_s2_bridge.py
@@ -88,6 +102,9 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/
 - `route_conserving_s2_bridge_stress_summary.csv`
 - `route_conserving_s2_bridge_validation_report.md`
 - `route_conserving_s2_bridge_validation_report.json`
+- `route_conserving_s2_bridge_team_handoff.md`
+- `route_conserving_s2_bridge_team_handoff.json`
+- `route_conserving_s2_bridge_full_run_log.json`
 - `submission_team_hsjepa_route_conserving_objective_bridge_primary_*_uploadsafe.csv`
 - `submission_team_hsjepa_s2_listener_bridge_interpretable_*_uploadsafe.csv`
 - `submission_team_hsjepa_human_state_gated_s2_bridge_probe_*_uploadsafe.csv`
