@@ -21,6 +21,7 @@ READINESS_JSON = OUT / "hsjepa_architecture_readiness_report.json"
 ABLATION_JSON = OUT / "hsjepa_mechanism_ablation_report.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
 ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignment_gap_decomposition_probe.json"
+ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidden_row_support_sensor_probe.json"
 
 REPORT_JSON = OUT / "hsjepa_generality_report.json"
 REPORT_MD = OUT / "hsjepa_generality_report_ko.md"
@@ -104,8 +105,8 @@ PORTABILITY_CHECKS = [
     {
         "check": "remaining_generality_gap",
         "passed": False,
-        "evidence": "Current best row-target assignment still depends on public-sensor support rather than an OG-only human-state teacher.",
-        "meaning": "The architecture is reusable; the current strongest competition instantiation is not yet fully portable.",
+        "evidence": "Current best row-target assignment still depends on public-sensor support, but teacher-transfer row-support now shows a partial portable signal.",
+        "meaning": "The architecture is reusable; the current strongest competition instantiation is not yet fully portable or action-grade.",
         "required_for_completion": False,
     },
 ]
@@ -200,7 +201,7 @@ def build_markdown(report: dict[str, object]) -> str:
 
 
 def run() -> dict[str, object]:
-    for path in [READINESS_JSON, ABLATION_JSON, OG_PROBE_JSON, ASSIGNMENT_GAP_JSON]:
+    for path in [READINESS_JSON, ABLATION_JSON, OG_PROBE_JSON, ASSIGNMENT_GAP_JSON, ROW_SUPPORT_SENSOR_JSON]:
         if not path.exists():
             raise FileNotFoundError(path)
 
@@ -208,8 +209,10 @@ def run() -> dict[str, object]:
     ablation = read_json(ABLATION_JSON)
     og_probe = read_json(OG_PROBE_JSON)
     assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
+    row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
     og_verdict = og_probe.get("verdict", {})
     gap_verdict = assignment_gap.get("verdict", {})
+    row_support_verdict = row_support_sensor.get("verdict", {})
     portability_checks = [dict(item) for item in PORTABILITY_CHECKS]
     for item in portability_checks:
         if item["check"] == "remaining_generality_gap":
@@ -221,7 +224,11 @@ def run() -> dict[str, object]:
                 f"Assignment gap status {gap_verdict.get('status')}; portable recall "
                 f"{gap_verdict.get('mean_best_portable_recall'):.4f}, row-oracle recall "
                 f"{gap_verdict.get('mean_row_oracle_stage_recall'):.4f}, row-support gap "
-                f"{gap_verdict.get('mean_row_support_gap'):.4f}."
+                f"{gap_verdict.get('mean_row_support_gap'):.4f}. "
+                f"Hidden row-support transfer status {row_support_verdict.get('status')}; best family "
+                f"{row_support_verdict.get('best_portable_family')}, row AUC "
+                f"{row_support_verdict.get('best_portable_mean_row_auc'):.4f}, cell recall "
+                f"{row_support_verdict.get('best_portable_mean_cell_recall_with_stage_prior'):.4f}."
             )
     blocking = [
         item for item in portability_checks
@@ -250,15 +257,20 @@ def run() -> dict[str, object]:
             "assignment_gap_best_portable_recall": gap_verdict.get("mean_best_portable_recall"),
             "assignment_gap_row_oracle_stage_recall": gap_verdict.get("mean_row_oracle_stage_recall"),
             "assignment_gap_row_support_gap": gap_verdict.get("mean_row_support_gap"),
+            "hidden_row_support_sensor_status": row_support_verdict.get("status"),
+            "hidden_row_support_best_family": row_support_verdict.get("best_portable_family"),
+            "hidden_row_support_mean_row_auc": row_support_verdict.get("best_portable_mean_row_auc"),
+            "hidden_row_support_mean_cell_recall": row_support_verdict.get("best_portable_mean_cell_recall_with_stage_prior"),
+            "hidden_row_support_auc_z": row_support_verdict.get("best_portable_mean_auc_z_vs_permuted_train"),
         },
         "honest_claim": (
             "HS-JEPA is a human-understanding architecture that predicts hidden human-state and listener/action representations before "
             "making bounded output moves.  The Route-Conserving S2 Bridge is the sleep-log competition instantiation, not the full architecture."
         ),
         "next_breakthrough": (
-            "Replace the public-sensor row-target assignment teacher with an OG-only hidden row-support sensor. "
-            "The current target route is much less limiting than support-row localization, so the next portable HS-JEPA objective should predict "
-            "which subject-days are actionable before choosing the listener target."
+            "Turn the partially alive teacher-transfer row-support signal into an action-grade masked HS-JEPA objective. "
+            "The next portable objective should predict which subject-days are actionable from the seven-target prediction landscape, "
+            "then stress that support sensor under subject/date splits before allowing it to drive submissions."
         ),
     }
     REPORT_JSON.write_text(json.dumps(report, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8")

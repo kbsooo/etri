@@ -73,8 +73,8 @@
     {
       "check": "remaining_generality_gap",
       "passed": false,
-      "evidence": "OG-only assignment probe status og_only_assignment_replacement_not_ready; pure row-cap2 recall 0.0404, distilled recall 0.1236. Assignment gap status row_support_is_primary_bottleneck; portable recall 0.1063, row-oracle recall 0.6896, row-support gap 0.5832.",
-      "meaning": "The architecture is reusable; the current strongest competition instantiation is not yet fully portable.",
+      "evidence": "OG-only assignment probe status og_only_assignment_replacement_not_ready; pure row-cap2 recall 0.0404, distilled recall 0.1236. Assignment gap status row_support_is_primary_bottleneck; portable recall 0.1063, row-oracle recall 0.6896, row-support gap 0.5832. Hidden row-support transfer status portable_row_support_sensor_alive_partial; best family portable_row_support_composite, row AUC 0.8193, cell recall 0.3289.",
+      "meaning": "The architecture is reusable; the current strongest competition instantiation is not yet fully portable or action-grade.",
       "required_for_completion": false
     }
   ],
@@ -94,8 +94,13 @@
     "assignment_gap_status": "row_support_is_primary_bottleneck",
     "assignment_gap_best_portable_recall": 0.10634863701578193,
     "assignment_gap_row_oracle_stage_recall": 0.6895624103299857,
-    "assignment_gap_row_support_gap": 0.5832137733142038
+    "assignment_gap_row_support_gap": 0.5832137733142038,
+    "hidden_row_support_sensor_status": "portable_row_support_sensor_alive_partial",
+    "hidden_row_support_best_family": "portable_row_support_composite",
+    "hidden_row_support_mean_row_auc": 0.819329738968888,
+    "hidden_row_support_mean_cell_recall": 0.32890961262553803,
+    "hidden_row_support_auc_z": 6.41799227766675
   },
   "honest_claim": "HS-JEPA is a human-understanding architecture that predicts hidden human-state and listener/action representations before making bounded output moves.  The Route-Conserving S2 Bridge is the sleep-log competition instantiation, not the full architecture.",
-  "next_breakthrough": "Replace the public-sensor row-target assignment teacher with an OG-only hidden row-support sensor. The current target route is much less limiting than support-row localization, so the next portable HS-JEPA objective should predict which subject-days are actionable before choosing the listener target."
+  "next_breakthrough": "Turn the partially alive teacher-transfer row-support signal into an action-grade masked HS-JEPA objective. The next portable objective should predict which subject-days are actionable from the seven-target prediction landscape, then stress that support sensor under subject/date splits before allowing it to drive submissions."
 }

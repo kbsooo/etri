@@ -36,6 +36,7 @@ ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_co
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
 ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignment_gap_decomposition_probe.json"
+ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidden_row_support_sensor_probe.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
@@ -80,6 +81,7 @@ def require_inputs() -> None:
         BIG_BET_JSON,
         OG_PROBE_JSON,
         ASSIGNMENT_GAP_JSON,
+        ROW_SUPPORT_SENSOR_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
@@ -142,6 +144,7 @@ def build_manifest() -> dict[str, object]:
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
     assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
+    row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -155,6 +158,7 @@ def build_manifest() -> dict[str, object]:
     mechanism = validation["mechanism_evidence"]
     og_verdict = og_probe["verdict"]
     gap_verdict = assignment_gap["verdict"]
+    row_support_verdict = row_support_sensor["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
     hardworld_verdict = hardworld_toxicity_probe["verdict"]
@@ -255,6 +259,21 @@ def build_manifest() -> dict[str, object]:
                 f"Row-support gap: {fmt(gap_verdict['mean_row_support_gap'], 4)}",
             ],
             "This is a bottleneck decomposition, not a deployable row-support sensor.",
+        ),
+        stage(
+            "hidden_row_support_sensor",
+            "Hidden Row-Support Sensor Transfer Probe",
+            "Learns row-support from one public-sensitive teacher world and tests transfer to another teacher world.",
+            ["og_only_assignment_teacher_ranked_cells.csv", "assignment_gap_decomposition_probe.json"],
+            ["hidden_row_support_sensor_probe_ko.md", "hidden_row_support_sensor_transfer_metrics.csv"],
+            [
+                f"Probe status: {row_support_verdict['status']}",
+                f"Best portable family: {row_support_verdict['best_portable_family']}",
+                f"Mean row AUC: {fmt(row_support_verdict['best_portable_mean_row_auc'], 4)}",
+                f"Mean cell recall with stage prior: {fmt(row_support_verdict['best_portable_mean_cell_recall_with_stage_prior'], 4)}",
+                f"AUC z vs permuted train: {fmt(row_support_verdict['best_portable_mean_auc_z_vs_permuted_train'], 4)}",
+            ],
+            "This is transfer evidence for a row-support sensor, not yet an action-grade deployment decoder.",
         ),
         stage(
             "route_energy_model",
@@ -462,6 +481,9 @@ def build_manifest() -> dict[str, object]:
         ["og_only_assignment_probe", "general_architecture_boundary"],
         ["og_only_assignment_probe", "assignment_gap_decomposition"],
         ["assignment_gap_decomposition", "general_architecture_boundary"],
+        ["assignment_gap_decomposition", "hidden_row_support_sensor"],
+        ["hidden_row_support_sensor", "general_architecture_boundary"],
+        ["hidden_row_support_sensor", "sleep_competition_adapter"],
         ["public_lb_sensor", "driver_action_field"],
         ["human_state_listener_context", "driver_action_field"],
         ["route_energy_model", "route_conserving_s2_bridge_decoder"],
@@ -528,6 +550,10 @@ def build_manifest() -> dict[str, object]:
             "og_only_assignment_probe_status": og_verdict["status"],
             "assignment_gap_decomposition_status": gap_verdict["status"],
             "assignment_gap_mean_row_support_gap": gap_verdict["mean_row_support_gap"],
+            "hidden_row_support_sensor_status": row_support_verdict["status"],
+            "hidden_row_support_best_family": row_support_verdict["best_portable_family"],
+            "hidden_row_support_mean_row_auc": row_support_verdict["best_portable_mean_row_auc"],
+            "hidden_row_support_mean_cell_recall": row_support_verdict["best_portable_mean_cell_recall_with_stage_prior"],
             "listener_invariant_contrastive_probe_status": contrastive_verdict["status"],
             "private_safe_toxicity_probe_status": toxicity_verdict["status"],
             "hardworld_toxicity_factorization_probe_status": hardworld_verdict["status"],
@@ -574,7 +600,8 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    A --> D["Q/S route energy model"]',
             '    C --> P1["OG-only assignment probe"]',
             '    P1 --> GAP["Assignment gap decomposition"]',
-            '    GAP --> GEN["General architecture boundary"]',
+            '    GAP --> RSP["Hidden row-support sensor"]',
+            '    RSP --> GEN["General architecture boundary"]',
             '    B["Public LB sensor ledger"] --> E["Public-sensitive driver action field"]',
             '    C --> E',
             '    D --> F["Route-conserving S2 bridge decoder"]',
@@ -594,6 +621,7 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    P3 --> ADAPT',
             '    P4 --> ADAPT',
             '    P6 --> ADAPT',
+            '    RSP --> ADAPT',
             '    ADAPT --> BAUD["Core/adapter boundary audit"]',
             '    CORE --> BAUD',
             '    GEN --> H["Claim readiness and paper packet"]',

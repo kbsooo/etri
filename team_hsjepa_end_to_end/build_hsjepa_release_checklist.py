@@ -34,6 +34,7 @@ ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_co
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
 ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignment_gap_decomposition_probe.json"
+ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidden_row_support_sensor_probe.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
@@ -89,6 +90,7 @@ def require_inputs() -> list[dict[str, object]]:
         BIG_BET_JSON,
         OG_PROBE_JSON,
         ASSIGNMENT_GAP_JSON,
+        ROW_SUPPORT_SENSOR_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
@@ -137,6 +139,7 @@ def build_checklist() -> dict[str, object]:
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
     assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
+    row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -157,6 +160,7 @@ def build_checklist() -> dict[str, object]:
     stress_ablation = ablation.get("stress_ablation", [])
     og_verdict = og_probe.get("verdict", {})
     gap_verdict = assignment_gap.get("verdict", {})
+    row_support_verdict = row_support_sensor.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
     hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
@@ -306,6 +310,24 @@ def build_checklist() -> dict[str, object]:
                     f"portable={fmt(gap_verdict.get('mean_best_portable_recall'), 4)}, "
                     f"row_oracle={fmt(gap_verdict.get('mean_row_oracle_stage_recall'), 4)}, "
                     f"row_gap={fmt(gap_verdict.get('mean_row_support_gap'), 4)}"
+                ),
+            ),
+            check(
+                "hidden_row_support_sensor_recorded",
+                row_support_sensor.get("status") == "probe_ready"
+                and row_support_verdict.get("status") in {
+                    "portable_row_support_sensor_alive_partial",
+                    "adapter_row_support_upper_bound_only",
+                    "row_support_sensor_not_found",
+                }
+                and float(row_support_verdict.get("best_portable_mean_row_auc", 0.0)) >= 0.60
+                and float(row_support_verdict.get("best_portable_mean_auc_z_vs_permuted_train", 0.0)) > 2.0,
+                (
+                    f"status={row_support_verdict.get('status')}, "
+                    f"family={row_support_verdict.get('best_portable_family')}, "
+                    f"row_auc={fmt(row_support_verdict.get('best_portable_mean_row_auc'), 4)}, "
+                    f"cell_recall={fmt(row_support_verdict.get('best_portable_mean_cell_recall_with_stage_prior'), 4)}, "
+                    f"auc_z={fmt(row_support_verdict.get('best_portable_mean_auc_z_vs_permuted_train'), 4)}"
                 ),
             ),
             check(
@@ -484,8 +506,10 @@ def build_markdown(result: dict[str, object]) -> str:
             "- private LB safety is not proven",
             "- pure OG-only assignment is not proven",
             "- hidden row-support recovery is not solved by current portable human/social/cohort context",
+            "- hidden row-support transfer is partially alive but not yet an action-grade deployment decoder",
             "- human-state is an orientation diagnostic, not a complete row-target assignment solver",
             "- OG-only assignment replacement has a recorded probe result",
+            "- Hidden row-support transfer has a recorded probe result",
             "- Listener-invariant contrastive decoding has a recorded probe result",
             "- Private-safe toxicity has a recorded probe result and hard-world boundary",
             "- Hard-world toxicity factorization has a recorded probe result",

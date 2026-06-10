@@ -33,6 +33,7 @@ ADAPTER_REPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "sleep_co
 BIG_BET_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hsjepa_big_bet_queue.json"
 OG_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "og_only_assignment_teacher_probe.json"
 ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignment_gap_decomposition_probe.json"
+ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidden_row_support_sensor_probe.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
@@ -74,6 +75,7 @@ def require_inputs() -> None:
             BIG_BET_JSON,
             OG_PROBE_JSON,
             ASSIGNMENT_GAP_JSON,
+            ROW_SUPPORT_SENSOR_JSON,
             CONTRASTIVE_PROBE_JSON,
             PRIVATE_TOXICITY_PROBE_JSON,
             HARDWORLD_TOXICITY_PROBE_JSON,
@@ -100,6 +102,7 @@ def build_packet() -> dict[str, object]:
     big_bets = read_json(BIG_BET_JSON)
     og_probe = read_json(OG_PROBE_JSON)
     assignment_gap = read_json(ASSIGNMENT_GAP_JSON)
+    row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -115,6 +118,7 @@ def build_packet() -> dict[str, object]:
     boundary = contract["boundary"]
     og_verdict = og_probe["verdict"]
     gap_verdict = assignment_gap["verdict"]
+    row_support_verdict = row_support_sensor["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
     hardworld_verdict = hardworld_toxicity_probe["verdict"]
@@ -177,6 +181,12 @@ def build_packet() -> dict[str, object]:
             "assignment_gap_best_portable_recall": gap_verdict["mean_best_portable_recall"],
             "assignment_gap_row_oracle_stage_recall": gap_verdict["mean_row_oracle_stage_recall"],
             "assignment_gap_row_support_gap": gap_verdict["mean_row_support_gap"],
+            "hidden_row_support_sensor_status": row_support_verdict["status"],
+            "hidden_row_support_best_family": row_support_verdict["best_portable_family"],
+            "hidden_row_support_mean_row_auc": row_support_verdict["best_portable_mean_row_auc"],
+            "hidden_row_support_mean_row_recall_at_k": row_support_verdict["best_portable_mean_row_recall_at_k"],
+            "hidden_row_support_mean_cell_recall": row_support_verdict["best_portable_mean_cell_recall_with_stage_prior"],
+            "hidden_row_support_auc_z": row_support_verdict["best_portable_mean_auc_z_vs_permuted_train"],
             "listener_invariant_probe_status": contrastive_verdict["status"],
             "listener_route_spearman": contrastive_verdict["mean_listener_route_spearman"],
             "contrastive_overlap_rate": contrastive_verdict["mean_contrastive_overlap_rate"],
@@ -244,6 +254,7 @@ def build_packet() -> dict[str, object]:
             "big_bet_queue": str(BIG_BET_JSON.resolve()),
             "og_only_assignment_teacher_probe": str(OG_PROBE_JSON.resolve()),
             "assignment_gap_decomposition_probe": str(ASSIGNMENT_GAP_JSON.resolve()),
+            "hidden_row_support_sensor_probe": str(ROW_SUPPORT_SENSOR_JSON.resolve()),
             "listener_invariant_contrastive_probe": str(CONTRASTIVE_PROBE_JSON.resolve()),
             "private_safe_toxicity_probe": str(PRIVATE_TOXICITY_PROBE_JSON.resolve()),
             "hardworld_toxicity_factorization_probe": str(HARDWORLD_TOXICITY_PROBE_JSON.resolve()),
@@ -254,7 +265,7 @@ def build_packet() -> dict[str, object]:
         "paper_sections": {
             "abstract_ko": build_abstract(public, primary, s2, human),
             "method_ko": build_method_text(core, adapter),
-            "generality_ko": build_generality_text(generality, og_verdict, gap_verdict, contrastive_verdict, toxicity_verdict, hardworld_verdict),
+            "generality_ko": build_generality_text(generality, og_verdict, gap_verdict, row_support_verdict, contrastive_verdict, toxicity_verdict, hardworld_verdict),
             "algorithm_ko": build_algorithm_text(),
             "limitations_ko": build_limitations_text(boundary),
             "big_bets_ko": build_big_bet_text(big_bets),
@@ -321,6 +332,7 @@ def build_generality_text(
     generality: dict[str, object],
     og_verdict: dict[str, object],
     gap_verdict: dict[str, object],
+    row_support_verdict: dict[str, object],
     contrastive_verdict: dict[str, object],
     toxicity_verdict: dict[str, object],
     hardworld_verdict: dict[str, object],
@@ -351,6 +363,11 @@ def build_generality_text(
         f"- Best portable recall: `{fmt(gap_verdict['mean_best_portable_recall'], 4)}`",
         f"- Row oracle + stage prior recall: `{fmt(gap_verdict['mean_row_oracle_stage_recall'], 4)}`",
         f"- Row-support gap: `{fmt(gap_verdict['mean_row_support_gap'], 4)}`",
+        f"- Hidden row-support transfer: `{row_support_verdict['status']}`",
+        f"- Best row-support family: `{row_support_verdict['best_portable_family']}`",
+        f"- Row-support row AUC: `{fmt(row_support_verdict['best_portable_mean_row_auc'], 4)}`",
+        f"- Row-support cell recall: `{fmt(row_support_verdict['best_portable_mean_cell_recall_with_stage_prior'], 4)}`",
+        f"- Row-support AUC z: `{fmt(row_support_verdict['best_portable_mean_auc_z_vs_permuted_train'], 4)}`",
         f"- Listener-invariant probe: `{contrastive_verdict['status']}`",
         f"- Listener-route Spearman: `{fmt(contrastive_verdict['mean_listener_route_spearman'], 4)}`",
         f"- Private-safe toxicity probe: `{toxicity_verdict['status']}`",
@@ -360,7 +377,7 @@ def build_generality_text(
         f"- Broad toxicity -> H088 AUC: `{fmt(hardworld_verdict['broad_predicts_hardworld_auc'], 4)}`",
         f"- Broad/H088 Spearman: `{fmt(hardworld_verdict['broad_hardworld_spearman'], 4)}`",
         "",
-        "가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor다. 현재 calendar/cohort/latent/peer-route context는 portable assignment teacher로 부족하며, public-sensor row-target assignment teacher를 OG-only personal/cohort/time human-state teacher로 교체하려면 row-support를 복원하는 새 context objective가 필요하다. 동시에 이미 생성된 broad-public/hard-world factorized decoder 후보가 실제 public/private score에서 action-grade decoder인지 검증해야 한다.",
+        "가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원한다. 다음 HS-JEPA objective는 이 support를 masked representation prediction target으로 만들고, subject/date stress를 통과한 뒤에만 action-grade decoder로 승격해야 한다.",
     ]
     return "\n".join(rows)
 
@@ -485,6 +502,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- S2 usage vs null: `{fmt(mechanism['s2_usage'], 3)}` vs `{fmt(mechanism['s2_null_usage'], 3)}`",
             f"- Human-state cell AUC / row AUC: `{fmt(human['cell_oof_auc'], 3)}` / `{fmt(human['row_oof_auc'], 3)}`",
             f"- Assignment gap: `{human['assignment_gap_status']}`, row-support gap `{fmt(human['assignment_gap_row_support_gap'], 4)}`",
+            f"- Hidden row-support sensor: `{human['hidden_row_support_sensor_status']}`, family `{human['hidden_row_support_best_family']}`, row AUC `{fmt(human['hidden_row_support_mean_row_auc'], 4)}`, cell recall `{fmt(human['hidden_row_support_mean_cell_recall'], 4)}`",
             "",
             "## Role-Based Outputs",
             "",
@@ -518,6 +536,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- `{packet['outputs']['sleep_adapter_report']}`",
             f"- `{packet['outputs']['big_bet_queue']}`",
             f"- `{packet['outputs']['assignment_gap_decomposition_probe']}`",
+            f"- `{packet['outputs']['hidden_row_support_sensor_probe']}`",
             "",
         ]
     )

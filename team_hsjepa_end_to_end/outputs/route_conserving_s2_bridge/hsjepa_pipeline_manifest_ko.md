@@ -19,7 +19,8 @@ flowchart TD
     A --> D["Q/S route energy model"]
     C --> P1["OG-only assignment probe"]
     P1 --> GAP["Assignment gap decomposition"]
-    GAP --> GEN["General architecture boundary"]
+    GAP --> RSP["Hidden row-support sensor"]
+    RSP --> GEN["General architecture boundary"]
     B["Public LB sensor ledger"] --> E["Public-sensitive driver action field"]
     C --> E
     D --> F["Route-conserving S2 bridge decoder"]
@@ -39,6 +40,7 @@ flowchart TD
     P3 --> ADAPT
     P4 --> ADAPT
     P6 --> ADAPT
+    RSP --> ADAPT
     ADAPT --> BAUD["Core/adapter boundary audit"]
     CORE --> BAUD
     GEN --> H["Claim readiness and paper packet"]
@@ -58,6 +60,7 @@ flowchart TD
 | `human_state_listener_context` | Turns lifestyle/cohort context into target/cell orientation diagnostics. | Cell OOF AUC: 0.775<br>Row OOF AUC: 0.545 | Human-state is an orientation diagnostic, not a standalone row selector. |
 | `og_only_assignment_probe` | Tests whether human-state geometry can replace the public-sensor row-target assignment teacher. | Probe status: og_only_assignment_replacement_not_ready<br>Pure OG row-cap2 recall: 0.0404<br>Distilled row-cap2 recall: 0.1236 | The probe currently measures the gap; it does not prove pure OG-only deployment. |
 | `assignment_gap_decomposition` | Decomposes public-sensitive row-target assignment into target-route information and hidden row-support information. | Gap status: row_support_is_primary_bottleneck<br>Best portable recall: 0.1063<br>Row oracle + stage recall: 0.6896<br>Row-support gap: 0.5832 | This is a bottleneck decomposition, not a deployable row-support sensor. |
+| `hidden_row_support_sensor` | Learns row-support from one public-sensitive teacher world and tests transfer to another teacher world. | Probe status: portable_row_support_sensor_alive_partial<br>Best portable family: portable_row_support_composite<br>Mean row AUC: 0.8193<br>Mean cell recall with stage prior: 0.3289<br>AUC z vs permuted train: 6.4180 | This is transfer evidence for a row-support sensor, not yet an action-grade deployment decoder. |
 | `route_energy_model` | Learns a target-route manifold from train labels and scores whether an action breaks it. | Primary route z-score: -9.66<br>S2 route z-score: -9.46 | Route energy proves candidate-pool structure, not private leaderboard safety. |
 | `listener_invariant_contrastive_probe` | Tests whether listener responsibility and route-invariant action health select the same bundles. | Probe status: listener_invariant_decoder_not_ready<br>Listener-route rho: -0.0313<br>Contrastive overlap: 0.2152 | This stage is a diagnostic; it does not create a new submission. |
 | `private_safe_toxicity_probe` | Tests whether toxicity head generalizes across bad public anchors and selects safer cells than matched nulls. | Probe status: toxicity_field_promising_with_hardworld_gap<br>Mean LOO bad-anchor AUC: 0.7880<br>Worst LOO bad-anchor AUC: 0.3683<br>Safety z vs matched null: 8.4589 | This stage supports toxicity diagnostics, not a private-LB safety guarantee. |

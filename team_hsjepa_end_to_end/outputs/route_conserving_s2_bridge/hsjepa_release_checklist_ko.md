@@ -5,7 +5,7 @@
 ## Verdict
 
 - Status: `release_ready_with_boundary`
-- Checks: `47/47` passed
+- Checks: `49/49` passed
 
 ## Required Failures
 
@@ -29,6 +29,7 @@
 | `exists:hsjepa_big_bet_queue.json` | `PASS` | sleep_competition_adapter/outputs/hsjepa_big_bet_queue.json |
 | `exists:og_only_assignment_teacher_probe.json` | `PASS` | sleep_competition_adapter/outputs/og_only_assignment_teacher_probe.json |
 | `exists:assignment_gap_decomposition_probe.json` | `PASS` | sleep_competition_adapter/outputs/assignment_gap_decomposition_probe.json |
+| `exists:hidden_row_support_sensor_probe.json` | `PASS` | sleep_competition_adapter/outputs/hidden_row_support_sensor_probe.json |
 | `exists:listener_invariant_contrastive_probe.json` | `PASS` | sleep_competition_adapter/outputs/listener_invariant_contrastive_probe.json |
 | `exists:private_safe_toxicity_probe.json` | `PASS` | sleep_competition_adapter/outputs/private_safe_toxicity_probe.json |
 | `exists:hardworld_toxicity_factorization_probe.json` | `PASS` | sleep_competition_adapter/outputs/hardworld_toxicity_factorization_probe.json |
@@ -51,6 +52,7 @@
 | `big_bet_queue_high_ceiling` | `PASS` | status=big_bet_queue_ready, count=5 |
 | `og_only_assignment_probe_recorded` | `PASS` | status=og_only_assignment_replacement_not_ready, pure_recall=0.0404, distilled_recall=0.1236 |
 | `assignment_gap_decomposition_recorded` | `PASS` | status=row_support_is_primary_bottleneck, portable=0.1063, row_oracle=0.6896, row_gap=0.5832 |
+| `hidden_row_support_sensor_recorded` | `PASS` | status=portable_row_support_sensor_alive_partial, family=portable_row_support_composite, row_auc=0.8193, cell_recall=0.3289, auc_z=6.4180 |
 | `listener_invariant_contrastive_probe_recorded` | `PASS` | status=listener_invariant_decoder_not_ready, rho=-0.0313, overlap=0.2152 |
 | `private_safe_toxicity_probe_recorded` | `PASS` | status=toxicity_field_promising_with_hardworld_gap, mean_loo_auc=0.7880, worst_loo_auc=0.3683, safety_z=8.4589 |
 | `hardworld_toxicity_factorization_probe_recorded` | `PASS` | status=hardworld_mixture_factorization_required, broad_to_h088_auc=0.3683, rho=-0.4276, joint_z=7.1884 |
@@ -59,7 +61,7 @@
 | `roles_present` | `PASS` | roles=['competition_primary', 'human_state_probe', 'interpretable_s2_hub'] |
 | `role_based_output_names` | `PASS` | role_outputs={'competition_primary': 'submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv', 'interpretable_s2_hub': 'submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv', 'human_state_probe': 'submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv'} |
 | `all_role_submissions_upload_safe` | `PASS` | upload_roles=['competition_primary', 'human_state_probe', 'interpretable_s2_hub'] |
-| `pipeline_manifest_complete` | `PASS` | status=pipeline_ready_with_boundary, stages=20, edges=38 |
+| `pipeline_manifest_complete` | `PASS` | status=pipeline_ready_with_boundary, stages=21, edges=41 |
 | `method_packet_presentable` | `PASS` | title=Human-State JEPA: General Architecture with a Route-Conserving S2 Bridge Case Study |
 | `claim_boundary_honest` | `PASS` | pure_og=False, public_sensor=True, proprietary_embedding=False |
 
@@ -72,8 +74,10 @@ This package is ready as a team-facing and paper-facing HS-JEPA release when pre
 - private LB safety is not proven
 - pure OG-only assignment is not proven
 - hidden row-support recovery is not solved by current portable human/social/cohort context
+- hidden row-support transfer is partially alive but not yet an action-grade deployment decoder
 - human-state is an orientation diagnostic, not a complete row-target assignment solver
 - OG-only assignment replacement has a recorded probe result
+- Hidden row-support transfer has a recorded probe result
 - Listener-invariant contrastive decoding has a recorded probe result
 - Private-safe toxicity has a recorded probe result and hard-world boundary
 - Hard-world toxicity factorization has a recorded probe result

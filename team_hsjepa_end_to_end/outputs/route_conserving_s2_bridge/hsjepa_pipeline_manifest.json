@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 20,
-  "edge_count": 38,
+  "stage_count": 21,
+  "edge_count": 41,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -116,6 +116,27 @@
         "Row-support gap: 0.5832"
       ],
       "boundary": "This is a bottleneck decomposition, not a deployable row-support sensor."
+    },
+    {
+      "id": "hidden_row_support_sensor",
+      "name": "Hidden Row-Support Sensor Transfer Probe",
+      "role": "Learns row-support from one public-sensitive teacher world and tests transfer to another teacher world.",
+      "inputs": [
+        "og_only_assignment_teacher_ranked_cells.csv",
+        "assignment_gap_decomposition_probe.json"
+      ],
+      "outputs": [
+        "hidden_row_support_sensor_probe_ko.md",
+        "hidden_row_support_sensor_transfer_metrics.csv"
+      ],
+      "evidence": [
+        "Probe status: portable_row_support_sensor_alive_partial",
+        "Best portable family: portable_row_support_composite",
+        "Mean row AUC: 0.8193",
+        "Mean cell recall with stage prior: 0.3289",
+        "AUC z vs permuted train: 6.4180"
+      ],
+      "boundary": "This is transfer evidence for a row-support sensor, not yet an action-grade deployment decoder."
     },
     {
       "id": "route_energy_model",
@@ -437,6 +458,18 @@
       "general_architecture_boundary"
     ],
     [
+      "assignment_gap_decomposition",
+      "hidden_row_support_sensor"
+    ],
+    [
+      "hidden_row_support_sensor",
+      "general_architecture_boundary"
+    ],
+    [
+      "hidden_row_support_sensor",
+      "sleep_competition_adapter"
+    ],
+    [
       "public_lb_sensor",
       "driver_action_field"
     ],
@@ -586,6 +619,10 @@
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "assignment_gap_decomposition_status": "row_support_is_primary_bottleneck",
     "assignment_gap_mean_row_support_gap": 0.5832137733142038,
+    "hidden_row_support_sensor_status": "portable_row_support_sensor_alive_partial",
+    "hidden_row_support_best_family": "portable_row_support_composite",
+    "hidden_row_support_mean_row_auc": 0.819329738968888,
+    "hidden_row_support_mean_cell_recall": 0.32890961262553803,
     "listener_invariant_contrastive_probe_status": "listener_invariant_decoder_not_ready",
     "private_safe_toxicity_probe_status": "toxicity_field_promising_with_hardworld_gap",
     "hardworld_toxicity_factorization_probe_status": "hardworld_mixture_factorization_required",
