@@ -33,6 +33,7 @@ DECODER_ORDER_JURY_JSON = HERE / "outputs" / "decoder_order_jury_solver" / "deco
 DECODER_BOUNDARY_TOMOGRAPHY_JSON = HERE / "outputs" / "decoder_boundary_tomography_solver" / "decoder_boundary_tomography_readout.json"
 CORE_MEDIATED_RELEASE_JSON = HERE / "outputs" / "core_mediated_action_release" / "core_mediated_action_release_readout.json"
 CORE_RELEASE_ABLATION_JSON = HERE / "outputs" / "core_release_ablation_probe" / "core_release_ablation_probe_readout.json"
+CORE_HEALTH_CALIBRATED_JSON = HERE / "outputs" / "core_health_calibrated_release" / "core_health_calibrated_release_readout.json"
 FACTORIZED_JSON = HERE / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_readout.json"
 FACTORIZED_STRESS_JSON = HERE / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_stress_audit.json"
 LEDGER_CSV = ROOT / "data_analytics" / "hsjepa_public_score_ledger.csv"
@@ -143,6 +144,7 @@ def collect_rows() -> list[dict[str, Any]]:
     decoder_boundary_tomography = read_json(DECODER_BOUNDARY_TOMOGRAPHY_JSON)
     core_mediated_release = read_json(CORE_MEDIATED_RELEASE_JSON)
     core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
+    core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
     factorized = read_json(FACTORIZED_JSON)
     factorized_stress = read_json(FACTORIZED_STRESS_JSON)
     rows: list[dict[str, Any]] = []
@@ -505,6 +507,62 @@ def collect_rows() -> list[dict[str, Any]]:
         )
         rows.append(row)
 
+    for item in core_health_calibrated.get("ranking", []):
+        if not isinstance(item, dict):
+            continue
+        variant = str(item.get("variant"))
+        submission = item.get("submission_file")
+        stress = item.get("stress", {}) if isinstance(item.get("stress"), dict) else {}
+        tests = stress.get("tests", {}) if isinstance(stress.get("tests"), dict) else {}
+        actual = stress.get("actual", {}) if isinstance(stress.get("actual"), dict) else {}
+        row = base_row(
+            family="core_health_calibrated_release",
+            variant=variant,
+            submission_file=str(submission) if submission else None,
+            upload_safe=bool(nested(item, "validation", "upload_safe", default=False)),
+            changed_cells=int(nested(item, "validation", "changed_cells_vs_current_best", default=0)),
+            architecture_claim="dataset-free action-health false positives should calibrate real sleep-adapter release",
+            decoder_order="benchmark_calibrated_core_release",
+            core_modules=[
+                "context_encoder",
+                "listener_responsibility",
+                "action_health_decoder",
+                "invariant_energy",
+                "core_benchmark_fp_calibration",
+            ],
+            public_lb=public_scores.get(str(submission)),
+        )
+        high_risk = finite(actual.get("high_risk_rate"), 1.0)
+        row.update(
+            {
+                "route_z": maybe_float(nested(tests, "mean_calibrated_score", "z")),
+                "matched_route_z": maybe_float(nested(tests, "mean_no_action_pressure", "z")),
+                "matched_score_z": maybe_float(nested(tests, "mean_no_action_pressure", "z")),
+                "safety_z": maybe_float(nested(tests, "mean_health", "z")),
+                "toxicity_clear": bool(high_risk == 0.0),
+                "broad_hard_conflict_exposure": None,
+                "hardworld_top_toxic_exposure": high_risk,
+                "route_boundary": (
+                    "benchmark_guarded_full_plus"
+                    if variant == "benchmark_guarded_full_plus"
+                    else "route_pressure_boundary_probe"
+                    if variant == "route_pressure_boundary_probe"
+                    else "health_relaxed_pressure_sensor"
+                ),
+                "safety_boundary": (
+                    "benchmark_action_health_guarded"
+                    if high_risk == 0.0
+                    else "benchmark_action_health_pressure"
+                ),
+                "module_ablation_interpretation": (
+                    f"Uses dataset-free core benchmark FP lift to calibrate {int(actual.get('cells', 0))} real adapter cells. "
+                    "If guarded release wins, HS-JEPA action-health transfers from generic worlds to the sleep adapter; "
+                    "if pressure release wins, the adapter needs a less conservative action-health decoder."
+                ),
+            }
+        )
+        rows.append(row)
+
     return rows
 
 
@@ -560,6 +618,7 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
     boundary_rows = frame.loc[frame["family"].eq("decoder_boundary_tomography")]
     core_mediated_rows = frame.loc[frame["family"].eq("core_mediated_release")]
     core_ablation_rows = frame.loc[frame["family"].eq("core_release_ablation")]
+    core_health_rows = frame.loc[frame["family"].eq("core_health_calibrated_release")]
     best_route = route_rows.iloc[0].to_dict() if not route_rows.empty else {}
     best_support = row_support_rows.iloc[0].to_dict() if not row_support_rows.empty else {}
     best_factorized = factorized_rows.iloc[0].to_dict() if not factorized_rows.empty else {}
@@ -568,6 +627,7 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
     best_boundary = boundary_rows.iloc[0].to_dict() if not boundary_rows.empty else {}
     best_core_mediated = core_mediated_rows.iloc[0].to_dict() if not core_mediated_rows.empty else {}
     best_core_ablation = core_ablation_rows.iloc[0].to_dict() if not core_ablation_rows.empty else {}
+    best_core_health = core_health_rows.iloc[0].to_dict() if not core_health_rows.empty else {}
 
     return [
         {
@@ -651,6 +711,16 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
             "status": "alive" if best_core_ablation else "missing",
             "next_test": "Use full-core as the safer LB candidate and no-action-health as the architecture sensor for whether action-health is over-constraining release.",
         },
+        {
+            "claim": "Dataset-free action-health failures can be used as a real adapter release prior.",
+            "evidence": (
+                f"Best core-health calibrated row is {best_core_health.get('variant')} with calibrated_z={fmt(best_core_health.get('route_z'))}, "
+                f"pressure_z={fmt(best_core_health.get('matched_score_z'))}, safety_z={fmt(best_core_health.get('safety_z'))}, "
+                f"and priority={fmt(best_core_health.get('lb_sensor_priority'))}."
+            ),
+            "status": "alive" if best_core_health else "missing",
+            "next_test": "Submit guarded release before route-pressure probe if the goal is LB safety; submit pressure probe if the goal is to test whether action-health is over-vetoing route-only cells.",
+        },
     ]
 
 
@@ -677,6 +747,8 @@ def build_verdict(frame: pd.DataFrame, findings: list[dict[str, Any]]) -> dict[s
         status = "action_decoder_ablation_ready_core_mediated_release_leads"
     elif str(top["family"]) == "core_release_ablation":
         status = "action_decoder_ablation_ready_core_release_ablation_leads"
+    elif str(top["family"]) == "core_health_calibrated_release":
+        status = "action_decoder_ablation_ready_core_health_calibrated_leads"
     elif str(top["family"]) != "route_frontier":
         status = "action_decoder_ablation_ready_non_route_leads"
     return {
@@ -753,6 +825,7 @@ def build_markdown(readout: dict[str, Any], frame: pd.DataFrame) -> str:
             "- boundary tomography가 이기면, strict cross-decoder jury가 action을 너무 보수적으로 release했다는 뜻이다.",
             "- core-mediated release가 이기면, 범용 HS-JEPA core API가 실제 sleep adapter action release에도 쓸 수 있다는 뜻이다.",
             "- core-release ablation이 이기면, listener/action-health/invariant 중 어떤 core module이 adapter를 과하게 제한하는지 public sensor로 볼 수 있다는 뜻이다.",
+            "- core-health calibrated release가 이기면, dataset-free action-health failure mode가 실제 sleep adapter release에도 전이된다는 뜻이다.",
             "",
         ]
     )
@@ -781,6 +854,7 @@ def run() -> dict[str, Any]:
             "decoder_boundary_tomography": str(DECODER_BOUNDARY_TOMOGRAPHY_JSON.resolve()),
             "core_mediated_release": str(CORE_MEDIATED_RELEASE_JSON.resolve()),
             "core_release_ablation": str(CORE_RELEASE_ABLATION_JSON.resolve()),
+            "core_health_calibrated": str(CORE_HEALTH_CALIBRATED_JSON.resolve()),
             "factorized_toxicity": str(FACTORIZED_JSON.resolve()),
             "factorized_stress": str(FACTORIZED_STRESS_JSON.resolve()),
         },

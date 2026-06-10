@@ -23,19 +23,20 @@ historical experiment version names.  It executes:
 17. Decoder boundary tomography solver.
 18. Core-mediated action release.
 19. Core release ablation probe.
-20. Listener-invariant contrastive probe.
-21. Private-safe toxicity probe.
-22. Hard-world toxicity factorization probe.
-23. Factorized toxicity decoder candidate.
-24. Factorized toxicity decoder stress audit.
-25. Action decoder ablation suite.
-26. Generality report.
-27. Sleep competition adapter report and big-bet queue.
-28. Core/adapter boundary audit.
-29. Paper method packet.
-30. Pipeline manifest.
-31. Release checklist.
-32. A compact handoff report for paper and competition discussion.
+20. Core-health calibrated release.
+21. Listener-invariant contrastive probe.
+22. Private-safe toxicity probe.
+23. Hard-world toxicity factorization probe.
+24. Factorized toxicity decoder candidate.
+25. Factorized toxicity decoder stress audit.
+26. Action decoder ablation suite.
+27. Generality report.
+28. Sleep competition adapter report and big-bet queue.
+29. Core/adapter boundary audit.
+30. Paper method packet.
+31. Pipeline manifest.
+32. Release checklist.
+33. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -114,6 +115,8 @@ CORE_MEDIATED_RELEASE_MD = ADAPTER_OUT / "core_mediated_action_release" / "core_
 CORE_MEDIATED_RELEASE_JSON = ADAPTER_OUT / "core_mediated_action_release" / "core_mediated_action_release_readout.json"
 CORE_RELEASE_ABLATION_MD = ADAPTER_OUT / "core_release_ablation_probe" / "core_release_ablation_probe_readout_ko.md"
 CORE_RELEASE_ABLATION_JSON = ADAPTER_OUT / "core_release_ablation_probe" / "core_release_ablation_probe_readout.json"
+CORE_HEALTH_CALIBRATED_MD = ADAPTER_OUT / "core_health_calibrated_release" / "core_health_calibrated_release_readout_ko.md"
+CORE_HEALTH_CALIBRATED_JSON = ADAPTER_OUT / "core_health_calibrated_release" / "core_health_calibrated_release_readout.json"
 ACTION_DECODER_ABLATION_MD = ADAPTER_OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite_ko.md"
 ACTION_DECODER_ABLATION_JSON = ADAPTER_OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_MD = ADAPTER_OUT / "listener_invariant_contrastive_probe_ko.md"
@@ -177,6 +180,7 @@ def build_handoff(
     decoder_boundary_tomography: dict[str, object],
     core_mediated_release: dict[str, object],
     core_release_ablation: dict[str, object],
+    core_health_calibrated: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -199,6 +203,7 @@ def build_handoff(
     decoder_boundary_tomography_verdict = decoder_boundary_tomography.get("verdict", {})
     core_mediated_verdict = core_mediated_release.get("verdict", {})
     core_release_ablation_verdict = core_release_ablation.get("verdict", {})
+    core_health_calibrated_verdict = core_health_calibrated.get("verdict", {})
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -286,6 +291,7 @@ def build_handoff(
             f"- Decoder boundary tomography: `{decoder_boundary_tomography_verdict.get('status')}`",
             f"- Core-mediated action release: `{core_mediated_verdict.get('status')}`",
             f"- Core release ablation probe: `{core_release_ablation_verdict.get('status')}`",
+            f"- Core-health calibrated release: `{core_health_calibrated_verdict.get('status')}`",
             f"- Action decoder ablation suite: `{action_ablation_verdict.get('status')}`",
             f"- Listener-invariant contrastive probe: `{contrastive_verdict.get('status')}`",
             f"- Private-safe toxicity probe: `{toxicity_verdict.get('status')}`",
@@ -317,6 +323,7 @@ def build_handoff(
             "sleep_competition_adapter/outputs/decoder_boundary_tomography_solver/decoder_boundary_tomography_readout_ko.md",
             "sleep_competition_adapter/outputs/core_mediated_action_release/core_mediated_action_release_readout_ko.md",
             "sleep_competition_adapter/outputs/core_release_ablation_probe/core_release_ablation_probe_readout_ko.md",
+            "sleep_competition_adapter/outputs/core_health_calibrated_release/core_health_calibrated_release_readout_ko.md",
             "sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite_ko.md",
             "sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md",
             "sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md",
@@ -355,6 +362,7 @@ def build_handoff(
             f"- Decoder boundary tomography: recommended `{decoder_boundary_tomography_verdict.get('recommended_lb_sensor')}`, status `{decoder_boundary_tomography_verdict.get('status')}`, inventory `{decoder_boundary_tomography.get('boundary_inventory')}`",
             f"- Core-mediated action release: recommended `{core_mediated_verdict.get('recommended_lb_sensor')}`, status `{core_mediated_verdict.get('status')}`, inventory `{core_mediated_release.get('cell_inventory')}`",
             f"- Core release ablation: full-core `{core_release_ablation_verdict.get('recommended_lb_candidate')}`, sensor `{core_release_ablation_verdict.get('recommended_architecture_sensor')}`, status `{core_release_ablation_verdict.get('status')}`",
+            f"- Core-health calibrated release: guarded `{core_health_calibrated_verdict.get('recommended_lb_candidate')}`, big bet `{core_health_calibrated_verdict.get('recommended_big_bet_sensor')}`, status `{core_health_calibrated_verdict.get('status')}`",
             f"- Action decoder ablation: recommended `{action_ablation_verdict.get('recommended_lb_sensor')}`, big bet `{action_ablation_verdict.get('big_bet_sensor')}`",
             f"- Listener-invariant boundary: listener-route rho `{contrastive_verdict.get('mean_listener_route_spearman'):.4f}`, contrastive overlap `{contrastive_verdict.get('mean_contrastive_overlap_rate'):.4f}`",
             f"- Private-safe toxicity boundary: mean LOO AUC `{toxicity_verdict.get('mean_loo_bad_anchor_auc'):.4f}`, worst LOO AUC `{toxicity_verdict.get('worst_loo_bad_anchor_auc'):.4f}`",
@@ -496,6 +504,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "decoder_boundary_tomography_solver.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "core_mediated_action_release.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "core_release_ablation_probe.py")],
+        [sys.executable, str(ROOT / "sleep_competition_adapter" / "core_health_calibrated_release.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "listener_invariant_contrastive_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "private_safe_toxicity_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "hardworld_toxicity_factorization_probe.py")],
@@ -538,6 +547,7 @@ def run(refresh: bool = False) -> dict[str, object]:
     decoder_boundary_tomography = read_json(DECODER_BOUNDARY_TOMOGRAPHY_JSON)
     core_mediated_release = read_json(CORE_MEDIATED_RELEASE_JSON)
     core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
+    core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -570,6 +580,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         decoder_boundary_tomography,
         core_mediated_release,
         core_release_ablation,
+        core_health_calibrated,
         action_decoder_ablation,
         contrastive_probe,
         private_toxicity_probe,
@@ -635,6 +646,8 @@ def run(refresh: bool = False) -> dict[str, object]:
         "core_mediated_action_release_json": str(CORE_MEDIATED_RELEASE_JSON.resolve()),
         "core_release_ablation_probe_md": str(CORE_RELEASE_ABLATION_MD.resolve()),
         "core_release_ablation_probe_json": str(CORE_RELEASE_ABLATION_JSON.resolve()),
+        "core_health_calibrated_release_md": str(CORE_HEALTH_CALIBRATED_MD.resolve()),
+        "core_health_calibrated_release_json": str(CORE_HEALTH_CALIBRATED_JSON.resolve()),
         "action_decoder_ablation_suite_md": str(ACTION_DECODER_ABLATION_MD.resolve()),
         "action_decoder_ablation_suite_json": str(ACTION_DECODER_ABLATION_JSON.resolve()),
         "listener_invariant_contrastive_probe_md": str(CONTRASTIVE_PROBE_MD.resolve()),
@@ -697,6 +710,10 @@ def run(refresh: bool = False) -> dict[str, object]:
         "core_release_ablation_recommended_lb_candidate": core_release_ablation["verdict"]["recommended_lb_candidate"],
         "core_release_ablation_recommended_architecture_sensor": core_release_ablation["verdict"]["recommended_architecture_sensor"],
         "core_release_ablation_recommended_negative_control": core_release_ablation["verdict"]["recommended_negative_control"],
+        "core_health_calibrated_release_status": str(core_health_calibrated["verdict"]["status"]),
+        "core_health_calibrated_recommended_lb_candidate": core_health_calibrated["verdict"]["recommended_lb_candidate"],
+        "core_health_calibrated_recommended_big_bet_sensor": core_health_calibrated["verdict"]["recommended_big_bet_sensor"],
+        "core_health_calibrated_recommended_pressure_sensor": core_health_calibrated["verdict"]["recommended_pressure_sensor"],
         "action_decoder_ablation_suite_status": str(action_decoder_ablation["verdict"]["status"]),
         "action_decoder_ablation_suite_recommended_lb_sensor": action_decoder_ablation["verdict"]["recommended_lb_sensor"],
         "action_decoder_ablation_suite_big_bet_sensor": action_decoder_ablation["verdict"]["big_bet_sensor"],

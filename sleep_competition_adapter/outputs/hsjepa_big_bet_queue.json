@@ -323,6 +323,54 @@
       "kill_criterion": "All module-removal probes match full-core and public LB cannot distinguish them, meaning this ablation axis is not the current bottleneck."
     },
     {
+      "id": "core_health_calibrated_release",
+      "name": "Core-Health Calibrated Release",
+      "worldview": "Dataset-free HS-JEPA action-health failure modes should calibrate the real sleep-adapter action boundary.",
+      "core_modules_exercised": [
+        "context_encoder",
+        "listener_responsibility",
+        "action_health_decoder",
+        "invariant_energy",
+        "core_benchmark_fp_calibration"
+      ],
+      "adapter_move": "Use the core module benchmark's action-health false-positive lift as a release prior for real row-target cells.",
+      "why_big": "If guarded release survives LB, HS-JEPA gains a portable mechanism-to-adapter bridge instead of only a competition-specific decoder.",
+      "expected_public_lb_delta_if_true": -0.002,
+      "latest_probe_status": "core_health_calibrated_release_ready",
+      "latest_probe_evidence": {
+        "recommended_lb_candidate": {
+          "variant": "benchmark_guarded_full_plus",
+          "submission_file": "submission_hsjepa_core_health_benchmark_guarded_full_plus_8a3662bc_uploadsafe.csv",
+          "priority": 0.38818571481351827
+        },
+        "recommended_big_bet_sensor": {
+          "variant": "route_pressure_boundary_probe",
+          "submission_file": "submission_hsjepa_core_health_route_pressure_boundary_probe_e8b904e5_uploadsafe.csv",
+          "priority": 0.38337754232640875
+        },
+        "recommended_pressure_sensor": {
+          "variant": "health_relaxed_pressure_sensor",
+          "submission_file": "submission_hsjepa_core_health_health_relaxed_pressure_sensor_7da82c23_uploadsafe.csv",
+          "priority": -0.21134339216533768
+        },
+        "top_ranked_upload_safe": {
+          "variant": "benchmark_guarded_full_plus",
+          "submission_file": "submission_hsjepa_core_health_benchmark_guarded_full_plus_8a3662bc_uploadsafe.csv",
+          "priority": 0.38818571481351827
+        },
+        "benchmark_calibration": {
+          "action_health_fp_lift": 9.0,
+          "invariant_fp_lift": 1.0,
+          "listener_fp_lift": 3.0,
+          "scenario_count": 5.0,
+          "action_fp_weight": 0.6428571428571429,
+          "invariant_fp_weight": 0.16666666666666666,
+          "listener_fp_weight": 0.375
+        }
+      },
+      "kill_criterion": "Guarded release loses to relaxed pressure or to strict jury, meaning the current generic action-health prior is useful diagnostically but not action-grade for this adapter."
+    },
+    {
       "id": "listener_invariant_contrastive_decoder",
       "name": "Listener-Invariant Contrastive Decoder",
       "worldview": "A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone.",
@@ -396,5 +444,5 @@
       "kill_criterion": "Q-S bridge actions fail null tests or replicate the already-killed subjective-shadow bridge."
     }
   ],
-  "count": 13
+  "count": 14
 }

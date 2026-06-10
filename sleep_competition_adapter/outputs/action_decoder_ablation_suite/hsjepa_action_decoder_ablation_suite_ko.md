@@ -22,28 +22,31 @@
 | `7` | `route_frontier` | `open_route_frontier` | `20` | `2.4923` | `3.0832` | `2.1707` | `True` | `1.0545` | `submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv` |
 | `8` | `route_toxicity_fusion` | `s2_driver_safe_route_fusion` | `20` | `2.5212` | `3.3339` | `1.4350` | `True` | `0.9860` | `submission_hsjepa_s2_driver_safe_route_fusion_6adf5b73_uploadsafe.csv` |
 | `9` | `route_toxicity_fusion` | `seed_driver_safe_route_fusion` | `20` | `1.9565` | `4.0408` | `1.1376` | `True` | `0.8784` | `submission_hsjepa_seed_driver_safe_route_fusion_62429a06_uploadsafe.csv` |
-| `10` | `core_mediated_release` | `core_consensus_shadow_plus` | `29` | `1.9671` | `1.9671` | `2.1394` | `True` | `0.8398` | `submission_hsjepa_core_mediated_core_consensus_shadow_plus_3b0b1d0f_uploadsafe.csv` |
-| `11` | `decoder_boundary_tomography` | `consensus_shadow_plus` | `27` | `1.8312` | `2.2121` | `1.3977` | `True` | `0.8323` | `submission_hsjepa_boundary_tomography_consensus_shadow_plus_04b2c855_uploadsafe.csv` |
-| `12` | `core_mediated_release` | `core_boundary_balanced` | `31` | `1.6422` | `1.6422` | `1.6459` | `True` | `0.6344` | `submission_hsjepa_core_mediated_core_boundary_balanced_3b003319_uploadsafe.csv` |
-| `13` | `route_toxicity_fusion` | `open_driver_safe_route_fusion` | `20` | `1.2492` | `1.8707` | `1.1862` | `True` | `0.6124` | `submission_hsjepa_open_driver_safe_route_fusion_e50f0669_uploadsafe.csv` |
-| `14` | `core_release_ablation` | `no_action_health` | `40` | `1.4226` | `1.4330` | `1.4179` | `True` | `0.6085` | `submission_hsjepa_core_ablation_no_action_health_043b20c7_uploadsafe.csv` |
-| `15` | `factorized_toxicity` | `dual_safe_expansion` | `114` | `n/a` | `n/a` | `13.6669` | `True` | `0.5800` | `submission_hsjepa_factorized_toxicity_decoder_dual_safe_expansion_23b6de1e_uploadsafe.csv` |
-| `16` | `factorized_toxicity` | `teacher_dual_head` | `94` | `n/a` | `n/a` | `12.0672` | `True` | `0.5800` | `submission_hsjepa_factorized_toxicity_decoder_teacher_dual_head_2a3c5d2d_uploadsafe.csv` |
-| `17` | `decoder_boundary_tomography` | `boundary_dual_probe` | `25` | `1.5617` | `2.0647` | `0.0000` | `True` | `0.5514` | `submission_hsjepa_boundary_tomography_boundary_dual_probe_528728bd_uploadsafe.csv` |
-| `18` | `decoder_boundary_tomography` | `fusion_only_probe` | `23` | `1.3672` | `1.3287` | `0.0000` | `True` | `0.4765` | `submission_hsjepa_boundary_tomography_fusion_only_probe_8ce162dc_uploadsafe.csv` |
-| `19` | `decoder_order_jury` | `s2_pair_consensus` | `18` | `-0.2400` | `-0.8223` | `4.7416` | `True` | `0.4585` | `submission_hsjepa_decoder_jury_s2_pair_consensus_a71de0a7_uploadsafe.csv` |
-| `20` | `decoder_boundary_tomography` | `route_only_rescue` | `23` | `1.3200` | `1.4329` | `0.0000` | `True` | `0.4198` | `submission_hsjepa_boundary_tomography_route_only_rescue_6c0f15eb_uploadsafe.csv` |
-| `21` | `decoder_order_jury` | `seed_pair_consensus` | `18` | `-0.3789` | `-1.0645` | `4.1153` | `True` | `0.3740` | `submission_hsjepa_decoder_jury_seed_pair_consensus_e8a7ce4c_uploadsafe.csv` |
-| `22` | `route_toxicity_fusion` | `seed_route_toxicity_fusion` | `8` | `-0.0541` | `0.0002` | `0.0000` | `True` | `0.2890` | `submission_hsjepa_seed_route_toxicity_fusion_ec01d56a_uploadsafe.csv` |
-| `23` | `route_toxicity_fusion` | `s2_route_toxicity_fusion` | `8` | `-0.0636` | `0.0002` | `0.0000` | `True` | `0.2881` | `submission_hsjepa_s2_route_toxicity_fusion_5ac75e44_uploadsafe.csv` |
-| `24` | `core_release_ablation` | `no_invariant_energy` | `32` | `-1.0237` | `0.6297` | `0.9686` | `True` | `0.2741` | `submission_hsjepa_core_ablation_no_invariant_energy_363ccea6_uploadsafe.csv` |
-| `25` | `route_toxicity_fusion` | `open_route_toxicity_fusion` | `4` | `-0.1674` | `0.0000` | `0.0002` | `True` | `0.2714` | `submission_hsjepa_open_route_toxicity_fusion_bb0ca49f_uploadsafe.csv` |
-| `26` | `row_support_strict` | `strict_route_support_gate` | `4` | `-0.5097` | `2.6873` | `3.1001` | `True` | `0.2635` | `submission_hsjepa_row_support_strict_route_support_gate_5ae5c515_uploadsafe.csv` |
-| `27` | `row_support_strict` | `exploratory_route_support_gate` | `34` | `-1.0165` | `1.3787` | `3.6437` | `True` | `0.2098` | `submission_hsjepa_row_support_exploratory_route_support_gate_97a2f8f5_uploadsafe.csv` |
-| `28` | `decoder_boundary_tomography` | `consensus_shadow_all_soft` | `32` | `0.0000` | `0.0000` | `-0.9993` | `True` | `0.1751` | `submission_hsjepa_boundary_tomography_consensus_shadow_all_soft_80850159_uploadsafe.csv` |
-| `29` | `core_release_ablation` | `no_listener_responsibility` | `32` | `-1.0237` | `-1.0707` | `0.9686` | `True` | `0.1550` | `submission_hsjepa_core_ablation_no_listener_responsibility_d2560dc4_uploadsafe.csv` |
-| `30` | `core_mediated_release` | `core_jury_veto` | `19` | `-1.6397` | `-1.6397` | `-0.9993` | `True` | `0.1149` | `submission_hsjepa_core_mediated_core_jury_veto_a37f6054_uploadsafe.csv` |
-| `31` | `core_mediated_release` | `core_route_rescue` | `19` | `-1.6397` | `-1.6397` | `-0.9993` | `True` | `-0.0451` | `submission_hsjepa_core_mediated_core_route_rescue_a37f6054_uploadsafe.csv` |
+| `10` | `core_health_calibrated_release` | `benchmark_guarded_full_plus` | `31` | `0.9197` | `1.9675` | `2.4878` | `True` | `0.8448` | `submission_hsjepa_core_health_benchmark_guarded_full_plus_8a3662bc_uploadsafe.csv` |
+| `11` | `core_mediated_release` | `core_consensus_shadow_plus` | `29` | `1.9671` | `1.9671` | `2.1394` | `True` | `0.8398` | `submission_hsjepa_core_mediated_core_consensus_shadow_plus_3b0b1d0f_uploadsafe.csv` |
+| `12` | `decoder_boundary_tomography` | `consensus_shadow_plus` | `27` | `1.8312` | `2.2121` | `1.3977` | `True` | `0.8323` | `submission_hsjepa_boundary_tomography_consensus_shadow_plus_04b2c855_uploadsafe.csv` |
+| `13` | `core_health_calibrated_release` | `route_pressure_boundary_probe` | `43` | `0.8916` | `1.9291` | `2.4953` | `True` | `0.6983` | `submission_hsjepa_core_health_route_pressure_boundary_probe_e8b904e5_uploadsafe.csv` |
+| `14` | `core_mediated_release` | `core_boundary_balanced` | `31` | `1.6422` | `1.6422` | `1.6459` | `True` | `0.6344` | `submission_hsjepa_core_mediated_core_boundary_balanced_3b003319_uploadsafe.csv` |
+| `15` | `route_toxicity_fusion` | `open_driver_safe_route_fusion` | `20` | `1.2492` | `1.8707` | `1.1862` | `True` | `0.6124` | `submission_hsjepa_open_driver_safe_route_fusion_e50f0669_uploadsafe.csv` |
+| `16` | `core_release_ablation` | `no_action_health` | `40` | `1.4226` | `1.4330` | `1.4179` | `True` | `0.6085` | `submission_hsjepa_core_ablation_no_action_health_043b20c7_uploadsafe.csv` |
+| `17` | `factorized_toxicity` | `dual_safe_expansion` | `114` | `n/a` | `n/a` | `13.6669` | `True` | `0.5800` | `submission_hsjepa_factorized_toxicity_decoder_dual_safe_expansion_23b6de1e_uploadsafe.csv` |
+| `18` | `factorized_toxicity` | `teacher_dual_head` | `94` | `n/a` | `n/a` | `12.0672` | `True` | `0.5800` | `submission_hsjepa_factorized_toxicity_decoder_teacher_dual_head_2a3c5d2d_uploadsafe.csv` |
+| `19` | `decoder_boundary_tomography` | `boundary_dual_probe` | `25` | `1.5617` | `2.0647` | `0.0000` | `True` | `0.5514` | `submission_hsjepa_boundary_tomography_boundary_dual_probe_528728bd_uploadsafe.csv` |
+| `20` | `decoder_boundary_tomography` | `fusion_only_probe` | `23` | `1.3672` | `1.3287` | `0.0000` | `True` | `0.4765` | `submission_hsjepa_boundary_tomography_fusion_only_probe_8ce162dc_uploadsafe.csv` |
+| `21` | `decoder_order_jury` | `s2_pair_consensus` | `18` | `-0.2400` | `-0.8223` | `4.7416` | `True` | `0.4585` | `submission_hsjepa_decoder_jury_s2_pair_consensus_a71de0a7_uploadsafe.csv` |
+| `22` | `decoder_boundary_tomography` | `route_only_rescue` | `23` | `1.3200` | `1.4329` | `0.0000` | `True` | `0.4198` | `submission_hsjepa_boundary_tomography_route_only_rescue_6c0f15eb_uploadsafe.csv` |
+| `23` | `decoder_order_jury` | `seed_pair_consensus` | `18` | `-0.3789` | `-1.0645` | `4.1153` | `True` | `0.3740` | `submission_hsjepa_decoder_jury_seed_pair_consensus_e8a7ce4c_uploadsafe.csv` |
+| `24` | `route_toxicity_fusion` | `seed_route_toxicity_fusion` | `8` | `-0.0541` | `0.0002` | `0.0000` | `True` | `0.2890` | `submission_hsjepa_seed_route_toxicity_fusion_ec01d56a_uploadsafe.csv` |
+| `25` | `route_toxicity_fusion` | `s2_route_toxicity_fusion` | `8` | `-0.0636` | `0.0002` | `0.0000` | `True` | `0.2881` | `submission_hsjepa_s2_route_toxicity_fusion_5ac75e44_uploadsafe.csv` |
+| `26` | `core_release_ablation` | `no_invariant_energy` | `32` | `-1.0237` | `0.6297` | `0.9686` | `True` | `0.2741` | `submission_hsjepa_core_ablation_no_invariant_energy_363ccea6_uploadsafe.csv` |
+| `27` | `route_toxicity_fusion` | `open_route_toxicity_fusion` | `4` | `-0.1674` | `0.0000` | `0.0002` | `True` | `0.2714` | `submission_hsjepa_open_route_toxicity_fusion_bb0ca49f_uploadsafe.csv` |
+| `28` | `row_support_strict` | `strict_route_support_gate` | `4` | `-0.5097` | `2.6873` | `3.1001` | `True` | `0.2635` | `submission_hsjepa_row_support_strict_route_support_gate_5ae5c515_uploadsafe.csv` |
+| `29` | `row_support_strict` | `exploratory_route_support_gate` | `34` | `-1.0165` | `1.3787` | `3.6437` | `True` | `0.2098` | `submission_hsjepa_row_support_exploratory_route_support_gate_97a2f8f5_uploadsafe.csv` |
+| `30` | `core_health_calibrated_release` | `health_relaxed_pressure_sensor` | `21` | `-1.5851` | `0.9577` | `-1.7659` | `True` | `0.1969` | `submission_hsjepa_core_health_health_relaxed_pressure_sensor_7da82c23_uploadsafe.csv` |
+| `31` | `decoder_boundary_tomography` | `consensus_shadow_all_soft` | `32` | `0.0000` | `0.0000` | `-0.9993` | `True` | `0.1751` | `submission_hsjepa_boundary_tomography_consensus_shadow_all_soft_80850159_uploadsafe.csv` |
+| `32` | `core_release_ablation` | `no_listener_responsibility` | `32` | `-1.0237` | `-1.0707` | `0.9686` | `True` | `0.1550` | `submission_hsjepa_core_ablation_no_listener_responsibility_d2560dc4_uploadsafe.csv` |
+| `33` | `core_mediated_release` | `core_jury_veto` | `19` | `-1.6397` | `-1.6397` | `-0.9993` | `True` | `0.1149` | `submission_hsjepa_core_mediated_core_jury_veto_a37f6054_uploadsafe.csv` |
+| `34` | `core_mediated_release` | `core_route_rescue` | `19` | `-1.6397` | `-1.6397` | `-0.9993` | `True` | `-0.0451` | `submission_hsjepa_core_mediated_core_route_rescue_a37f6054_uploadsafe.csv` |
 
 ## Module Ablation Findings
 
@@ -58,6 +61,7 @@
 | Strict decoder-order jury may be too conservative. | `alive` | Best boundary row is consensus_shadow_plus with boundary_z=1.8312, changed_cells=27, and priority=0.8323. | If strict jury is positive on LB, submit consensus_shadow_plus to test whether weak cross-decoder consensus should be released. |
 | The generic HS-JEPA core can mediate real sleep-adapter actions. | `alive` | Best core-mediated row is core_consensus_shadow_plus with release_z=1.9671, invariant_z=2.1394, and priority=0.8398. | Submit core_consensus_shadow_plus after/against strict jury to test whether generic core release improves the action boundary. |
 | HS-JEPA core modules are now falsifiable on real adapter actions. | `alive` | Best core-ablation row is full_core_reference with release_z=3.0876, score_z=3.0876, and priority=1.1830. | Use full-core as the safer LB candidate and no-action-health as the architecture sensor for whether action-health is over-constraining release. |
+| Dataset-free action-health failures can be used as a real adapter release prior. | `alive` | Best core-health calibrated row is benchmark_guarded_full_plus with calibrated_z=0.9197, pressure_z=1.9675, safety_z=2.4878, and priority=0.8448. | Submit guarded release before route-pressure probe if the goal is LB safety; submit pressure probe if the goal is to test whether action-health is over-vetoing route-only cells. |
 
 ## How To Read This
 
@@ -69,3 +73,4 @@
 - boundary tomography가 이기면, strict cross-decoder jury가 action을 너무 보수적으로 release했다는 뜻이다.
 - core-mediated release가 이기면, 범용 HS-JEPA core API가 실제 sleep adapter action release에도 쓸 수 있다는 뜻이다.
 - core-release ablation이 이기면, listener/action-health/invariant 중 어떤 core module이 adapter를 과하게 제한하는지 public sensor로 볼 수 있다는 뜻이다.
+- core-health calibrated release가 이기면, dataset-free action-health failure mode가 실제 sleep adapter release에도 전이된다는 뜻이다.

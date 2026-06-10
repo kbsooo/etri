@@ -44,6 +44,7 @@ DECODER_ORDER_JURY_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "deco
 DECODER_BOUNDARY_TOMOGRAPHY_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "decoder_boundary_tomography_solver" / "decoder_boundary_tomography_readout.json"
 CORE_MEDIATED_RELEASE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_mediated_action_release" / "core_mediated_action_release_readout.json"
 CORE_RELEASE_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_release_ablation_probe" / "core_release_ablation_probe_readout.json"
+CORE_HEALTH_CALIBRATED_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_health_calibrated_release" / "core_health_calibrated_release_readout.json"
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -97,6 +98,7 @@ def require_inputs() -> None:
             DECODER_BOUNDARY_TOMOGRAPHY_JSON,
             CORE_MEDIATED_RELEASE_JSON,
             CORE_RELEASE_ABLATION_JSON,
+            CORE_HEALTH_CALIBRATED_JSON,
             ACTION_DECODER_ABLATION_JSON,
             CONTRASTIVE_PROBE_JSON,
             PRIVATE_TOXICITY_PROBE_JSON,
@@ -135,6 +137,7 @@ def build_packet() -> dict[str, object]:
     decoder_boundary_tomography = read_json(DECODER_BOUNDARY_TOMOGRAPHY_JSON)
     core_mediated_release = read_json(CORE_MEDIATED_RELEASE_JSON)
     core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
+    core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -165,6 +168,10 @@ def build_packet() -> dict[str, object]:
     core_release_ablation_verdict = core_release_ablation["verdict"]
     core_release_lb_candidate = core_release_ablation_verdict["recommended_lb_candidate"]
     core_release_sensor = core_release_ablation_verdict["recommended_architecture_sensor"]
+    core_health_calibrated_verdict = core_health_calibrated["verdict"]
+    core_health_lb_candidate = core_health_calibrated_verdict["recommended_lb_candidate"]
+    core_health_big_bet = core_health_calibrated_verdict["recommended_big_bet_sensor"]
+    core_health_pressure = core_health_calibrated_verdict["recommended_pressure_sensor"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -274,6 +281,17 @@ def build_packet() -> dict[str, object]:
             "core_release_ablation_sensor": core_release_sensor,
             "core_release_ablation_sensor_file": core_release_sensor["submission_file"],
             "core_release_ablation_sensor_priority": core_release_sensor["priority"],
+            "core_health_calibrated_status": core_health_calibrated_verdict["status"],
+            "core_health_calibrated_lb_candidate": core_health_lb_candidate,
+            "core_health_calibrated_lb_candidate_file": core_health_lb_candidate["submission_file"],
+            "core_health_calibrated_lb_candidate_priority": core_health_lb_candidate["priority"],
+            "core_health_calibrated_big_bet": core_health_big_bet,
+            "core_health_calibrated_big_bet_file": core_health_big_bet["submission_file"],
+            "core_health_calibrated_big_bet_priority": core_health_big_bet["priority"],
+            "core_health_calibrated_pressure": core_health_pressure,
+            "core_health_calibrated_pressure_file": core_health_pressure["submission_file"],
+            "core_health_calibrated_pressure_priority": core_health_pressure["priority"],
+            "core_health_calibrated_benchmark_calibration": core_health_calibrated["benchmark_calibration"],
             "action_decoder_ablation_status": action_ablation_verdict["status"],
             "action_decoder_ablation_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],
@@ -363,6 +381,7 @@ def build_packet() -> dict[str, object]:
             "decoder_boundary_tomography_solver": str(DECODER_BOUNDARY_TOMOGRAPHY_JSON.resolve()),
             "core_mediated_action_release": str(CORE_MEDIATED_RELEASE_JSON.resolve()),
             "core_release_ablation_probe": str(CORE_RELEASE_ABLATION_JSON.resolve()),
+            "core_health_calibrated_release": str(CORE_HEALTH_CALIBRATED_JSON.resolve()),
             "action_decoder_ablation_suite": str(ACTION_DECODER_ABLATION_JSON.resolve()),
             "listener_invariant_contrastive_probe": str(CONTRASTIVE_PROBE_JSON.resolve()),
             "private_safe_toxicity_probe": str(PRIVATE_TOXICITY_PROBE_JSON.resolve()),
@@ -389,6 +408,7 @@ def build_packet() -> dict[str, object]:
                 core_mediated_verdict,
                 core_mediated_release,
                 core_release_ablation_verdict,
+                core_health_calibrated_verdict,
                 contrastive_verdict,
                 toxicity_verdict,
                 hardworld_verdict,
@@ -450,7 +470,7 @@ def build_method_text(core: dict[str, object], adapter: dict[str, object]) -> st
             "",
             adapter["adapter_claim"],
             "",
-            "이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 새 hard-world probe는 broad toxicity와 H088 toxicity가 역상관될 수 있음을 보여주므로, action-health는 단일 위험 점수가 아니라 factorized energy head로 다루어야 한다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.",
+            "이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 새 hard-world probe는 broad toxicity와 H088 toxicity가 역상관될 수 있음을 보여주므로, action-health는 단일 위험 점수가 아니라 factorized energy head로 다루어야 한다. 이후 core-health calibrated release는 dataset-free core benchmark에서 action-health를 제거했을 때 false positive가 늘어난다는 실패 패턴을 실제 adapter release prior로 사용한다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.",
         ]
     )
 
@@ -470,6 +490,7 @@ def build_generality_text(
     core_mediated_verdict: dict[str, object],
     core_mediated_release: dict[str, object],
     core_release_ablation_verdict: dict[str, object],
+    core_health_calibrated_verdict: dict[str, object],
     contrastive_verdict: dict[str, object],
     toxicity_verdict: dict[str, object],
     hardworld_verdict: dict[str, object],
@@ -532,6 +553,10 @@ def build_generality_text(
         f"- Core release ablation: `{core_release_ablation_verdict['status']}`",
         f"- Core release full-core LB candidate: `{core_release_ablation_verdict['recommended_lb_candidate']}`",
         f"- Core release architecture sensor: `{core_release_ablation_verdict['recommended_architecture_sensor']}`",
+        f"- Core-health calibrated release: `{core_health_calibrated_verdict['status']}`",
+        f"- Core-health guarded LB candidate: `{core_health_calibrated_verdict['recommended_lb_candidate']}`",
+        f"- Core-health big-bet sensor: `{core_health_calibrated_verdict['recommended_big_bet_sensor']}`",
+        f"- Core-health pressure sensor: `{core_health_calibrated_verdict['recommended_pressure_sensor']}`",
         f"- Listener-invariant probe: `{contrastive_verdict['status']}`",
         f"- Listener-route Spearman: `{fmt(contrastive_verdict['mean_listener_route_spearman'], 4)}`",
         f"- Private-safe toxicity probe: `{toxicity_verdict['status']}`",
@@ -541,7 +566,7 @@ def build_generality_text(
         f"- Broad toxicity -> H088 AUC: `{fmt(hardworld_verdict['broad_predicts_hardworld_auc'], 4)}`",
         f"- Broad/H088 Spearman: `{fmt(hardworld_verdict['broad_hardworld_spearman'], 4)}`",
         "",
-        "가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor를 안전한 row-target action으로 번역하는 것이다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer와 masked-family objective에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원하고, human-only/prediction-only/masked-route view도 신호를 유지한다. 첫 strict action decoder는 null 대비 safety는 강하지만 route-gain 우위가 약했다. 새 route-frontier decoder는 반대로 route manifold frontier를 먼저 고르고 support/toxicity를 통과시키며, local broad/matched null은 이겼다. route-toxicity fusion decoder는 여기서 한 단계 더 나아가 route-first와 factorized action-health를 조합한다. decoder-order jury solver는 이 둘이 같은 row-target과 방향에 합의할 때만 action을 방출한다. boundary tomography는 그 strict jury가 너무 보수적인지 보기 위해 rejected cells를 weak-consensus, route-only, fusion-only로 쪼갠다. core-mediated release는 이 후보들을 다시 HS-JEPA Core의 context/listener/action-health/invariant 인터페이스로 통과시켜, core 자체가 action-grade release equation이 될 수 있는지 시험한다. core release ablation은 같은 cell에서 listener/action-health/invariant를 하나씩 제거해 module이 실제 release boundary를 바꾸는지 확인한다. 다만 이것도 아직 sleep adapter의 LB sensor이지 private-safe release claim은 아니다.",
+        "가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor를 안전한 row-target action으로 번역하는 것이다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer와 masked-family objective에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원하고, human-only/prediction-only/masked-route view도 신호를 유지한다. 첫 strict action decoder는 null 대비 safety는 강하지만 route-gain 우위가 약했다. 새 route-frontier decoder는 반대로 route manifold frontier를 먼저 고르고 support/toxicity를 통과시키며, local broad/matched null은 이겼다. route-toxicity fusion decoder는 여기서 한 단계 더 나아가 route-first와 factorized action-health를 조합한다. decoder-order jury solver는 이 둘이 같은 row-target과 방향에 합의할 때만 action을 방출한다. boundary tomography는 그 strict jury가 너무 보수적인지 보기 위해 rejected cells를 weak-consensus, route-only, fusion-only로 쪼갠다. core-mediated release는 이 후보들을 다시 HS-JEPA Core의 context/listener/action-health/invariant 인터페이스로 통과시켜, core 자체가 action-grade release equation이 될 수 있는지 시험한다. core release ablation은 같은 cell에서 listener/action-health/invariant를 하나씩 제거해 module이 실제 release boundary를 바꾸는지 확인한다. core-health calibrated release는 dataset-free core benchmark에서 관측된 action-health false-positive lift를 adapter release prior로 사용해, generic core test가 실제 competition action boundary를 조절하는지 묻는다. 다만 이것도 아직 sleep adapter의 LB sensor이지 private-safe release claim은 아니다.",
     ]
     return "\n".join(rows)
 
@@ -565,9 +590,10 @@ def build_algorithm_text() -> str:
             "8. Learn an invariant energy over valid output/action manifolds.",
             "9. Release actions through a cross-decoder jury when route-first and action-health-first decoders agree.",
             "10. Run boundary tomography on rejected cells to test whether the release rule is too conservative.",
-            "11. Decode bounded actions that improve listener fit while preserving the invariant.",
-            "12. Reject shortcuts with cohort/time/group/null stress tests.",
-            "13. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.",
+            "11. Calibrate adapter release with dataset-free core benchmark failure modes.",
+            "12. Decode bounded actions that improve listener fit while preserving the invariant.",
+            "13. Reject shortcuts with cohort/time/group/null stress tests.",
+            "14. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.",
         ]
     )
 
@@ -683,6 +709,9 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- Core-mediated action release: `{human['core_mediated_action_release_status']}`, recommended `{human['core_mediated_action_release_recommended']}`, file `{human['core_mediated_action_release_file']}`, priority `{fmt(human['core_mediated_action_release_priority'], 4)}`, inventory `{human['core_mediated_action_release_inventory']}`",
             f"- Core release ablation: `{human['core_release_ablation_status']}`, full-core `{human['core_release_ablation_lb_candidate']}`, file `{human['core_release_ablation_lb_candidate_file']}`, priority `{fmt(human['core_release_ablation_lb_candidate_priority'], 4)}`",
             f"- Core release architecture sensor: `{human['core_release_ablation_sensor']}`, file `{human['core_release_ablation_sensor_file']}`, priority `{fmt(human['core_release_ablation_sensor_priority'], 4)}`",
+            f"- Core-health calibrated release: `{human['core_health_calibrated_status']}`, guarded `{human['core_health_calibrated_lb_candidate']}`, file `{human['core_health_calibrated_lb_candidate_file']}`, priority `{fmt(human['core_health_calibrated_lb_candidate_priority'], 4)}`",
+            f"- Core-health big-bet sensor: `{human['core_health_calibrated_big_bet']}`, file `{human['core_health_calibrated_big_bet_file']}`, priority `{fmt(human['core_health_calibrated_big_bet_priority'], 4)}`",
+            f"- Core-health benchmark calibration: `{human['core_health_calibrated_benchmark_calibration']}`",
             f"- Action decoder ablation: `{human['action_decoder_ablation_status']}`, recommended `{human['action_decoder_ablation_recommended_lb_sensor']}`, big bet `{human['action_decoder_ablation_big_bet_sensor']}`",
             "",
             "## Role-Based Outputs",
@@ -728,6 +757,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- `{packet['outputs']['decoder_boundary_tomography_solver']}`",
             f"- `{packet['outputs']['core_mediated_action_release']}`",
             f"- `{packet['outputs']['core_release_ablation_probe']}`",
+            f"- `{packet['outputs']['core_health_calibrated_release']}`",
             f"- `{packet['outputs']['action_decoder_ablation_suite']}`",
             "",
         ]

@@ -45,6 +45,7 @@ DECODER_ORDER_JURY_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "deco
 DECODER_BOUNDARY_TOMOGRAPHY_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "decoder_boundary_tomography_solver" / "decoder_boundary_tomography_readout.json"
 CORE_MEDIATED_RELEASE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_mediated_action_release" / "core_mediated_action_release_readout.json"
 CORE_RELEASE_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_release_ablation_probe" / "core_release_ablation_probe_readout.json"
+CORE_HEALTH_CALIBRATED_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_health_calibrated_release" / "core_health_calibrated_release_readout.json"
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -112,6 +113,7 @@ def require_inputs() -> list[dict[str, object]]:
         DECODER_BOUNDARY_TOMOGRAPHY_JSON,
         CORE_MEDIATED_RELEASE_JSON,
         CORE_RELEASE_ABLATION_JSON,
+        CORE_HEALTH_CALIBRATED_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -172,6 +174,7 @@ def build_checklist() -> dict[str, object]:
     decoder_boundary_tomography = read_json(DECODER_BOUNDARY_TOMOGRAPHY_JSON)
     core_mediated_release = read_json(CORE_MEDIATED_RELEASE_JSON)
     core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
+    core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -202,6 +205,7 @@ def build_checklist() -> dict[str, object]:
     decoder_boundary_tomography_verdict = decoder_boundary_tomography.get("verdict", {})
     core_mediated_verdict = core_mediated_release.get("verdict", {})
     core_release_ablation_verdict = core_release_ablation.get("verdict", {})
+    core_health_calibrated_verdict = core_health_calibrated.get("verdict", {})
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -471,6 +475,7 @@ def build_checklist() -> dict[str, object]:
                     "action_decoder_ablation_ready_boundary_tomography_leads",
                     "action_decoder_ablation_ready_core_mediated_release_leads",
                     "action_decoder_ablation_ready_core_release_ablation_leads",
+                    "action_decoder_ablation_ready_core_health_calibrated_leads",
                     "action_decoder_ablation_ready_non_route_leads",
                 }
                 and isinstance(action_ablation_verdict.get("recommended_lb_sensor"), dict)
@@ -590,6 +595,32 @@ def build_checklist() -> dict[str, object]:
                     f"status={core_release_ablation_verdict.get('status')}, "
                     f"lb_candidate={core_release_ablation_verdict.get('recommended_lb_candidate')}, "
                     f"sensor={core_release_ablation_verdict.get('recommended_architecture_sensor')}"
+                ),
+            ),
+            check(
+                "core_health_calibrated_release_recorded",
+                core_health_calibrated.get("status") == "core_health_calibrated_release_ready"
+                and core_health_calibrated_verdict.get("status") == "core_health_calibrated_release_ready"
+                and isinstance(core_health_calibrated_verdict.get("recommended_lb_candidate"), dict)
+                and isinstance(core_health_calibrated_verdict.get("recommended_big_bet_sensor"), dict)
+                and int(core_health_calibrated.get("benchmark_calibration", {}).get("action_health_fp_lift", 0)) >= 1
+                and len(core_health_calibrated.get("ranking", [])) >= 3
+                and any(
+                    isinstance(item, dict)
+                    and item.get("validation", {}).get("upload_safe") is True
+                    and item.get("status")
+                    in {
+                        "benchmark_guarded_full_plus_ready",
+                        "route_pressure_boundary_probe_ready",
+                        "health_relaxed_pressure_sensor_ready",
+                    }
+                    for item in core_health_calibrated.get("ranking", [])
+                ),
+                (
+                    f"status={core_health_calibrated_verdict.get('status')}, "
+                    f"guarded={core_health_calibrated_verdict.get('recommended_lb_candidate')}, "
+                    f"big_bet={core_health_calibrated_verdict.get('recommended_big_bet_sensor')}, "
+                    f"calibration={core_health_calibrated.get('benchmark_calibration')}"
                 ),
             ),
             check(
@@ -785,6 +816,7 @@ def build_markdown(result: dict[str, object]) -> str:
             "- Factorized toxicity decoder has a recorded stress audit with at least one supported variant",
             "- HS-JEPA Core is separated from the Sleep Competition Adapter",
             "- HS-JEPA Core/Adapter boundary audit is verified",
+            "- Core-health calibrated release uses dataset-free action-health false-positive lift as an adapter release prior",
             "- the next big bet is replacing public-sensor assignment with an OG-only human-state teacher",
             "",
         ]

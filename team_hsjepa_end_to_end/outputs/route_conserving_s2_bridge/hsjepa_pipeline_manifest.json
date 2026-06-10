@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 32,
-  "edge_count": 87,
+  "stage_count": 33,
+  "edge_count": 93,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -367,9 +367,32 @@
       "boundary": "This is an architecture falsification probe; module-removal public LB is needed before claiming a removed module improves the adapter."
     },
     {
+      "id": "core_health_calibrated_release",
+      "name": "Core-Health Calibrated Release",
+      "role": "Uses dataset-free action-health false-positive lift as a release prior for real sleep-adapter row-target actions.",
+      "inputs": [
+        "hsjepa_core_module_benchmark.json",
+        "core_release_ablation_probe_readout.json",
+        "core_mediated_action_release_readout.json"
+      ],
+      "outputs": [
+        "core_health_calibrated_release_readout_ko.md",
+        "submission_hsjepa_core_health_benchmark_guarded_full_plus_8a3662bc_uploadsafe.csv",
+        "submission_hsjepa_core_health_route_pressure_boundary_probe_e8b904e5_uploadsafe.csv",
+        "submission_hsjepa_core_health_health_relaxed_pressure_sensor_7da82c23_uploadsafe.csv"
+      ],
+      "evidence": [
+        "Calibrated status: core_health_calibrated_release_ready",
+        "Guarded LB candidate: {'variant': 'benchmark_guarded_full_plus', 'submission_file': 'submission_hsjepa_core_health_benchmark_guarded_full_plus_8a3662bc_uploadsafe.csv', 'priority': 0.38818571481351827}",
+        "Route pressure sensor: {'variant': 'route_pressure_boundary_probe', 'submission_file': 'submission_hsjepa_core_health_route_pressure_boundary_probe_e8b904e5_uploadsafe.csv', 'priority': 0.38337754232640875}",
+        "Benchmark calibration: {'action_health_fp_lift': 9.0, 'invariant_fp_lift': 1.0, 'listener_fp_lift': 3.0, 'scenario_count': 5.0, 'action_fp_weight': 0.6428571428571429, 'invariant_fp_weight': 0.16666666666666666, 'listener_fp_weight': 0.375}"
+      ],
+      "boundary": "This is the direct bridge from generic core behavior to adapter release; public LB must still decide whether the guard is too conservative."
+    },
+    {
       "id": "action_decoder_ablation_suite",
       "name": "Action Decoder Ablation Suite",
-      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, and core-release-ablation alternatives as HS-JEPA module ablations.",
+      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, and core-health-calibrated alternatives as HS-JEPA module ablations.",
       "inputs": [
         "row_support_strict_action_decoder_readout.json",
         "route_frontier_action_decoder_readout.json",
@@ -378,6 +401,7 @@
         "decoder_boundary_tomography_readout.json",
         "core_mediated_action_release_readout.json",
         "core_release_ablation_probe_readout.json",
+        "core_health_calibrated_release_readout.json",
         "factorized_toxicity_decoder_stress_audit.json"
       ],
       "outputs": [
@@ -595,7 +619,7 @@
       ],
       "evidence": [
         "Generality status: general_architecture_separated_with_case_boundary",
-        "Portability checks: 8/9",
+        "Portability checks: 9/10",
         "Nonblocking boundaries: remaining_generality_gap"
       ],
       "boundary": "The current strongest case study still uses a public-sensor assignment teacher."
@@ -617,7 +641,7 @@
       "evidence": [
         "Adapter status: adapter_ready_with_public_sensor_boundary",
         "Adapter score delta: -0.0084113555",
-        "Big-bet count: 13"
+        "Big-bet count: 14"
       ],
       "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
     },
@@ -871,6 +895,14 @@
       "core_release_ablation_probe"
     ],
     [
+      "hsjepa_core_module_benchmark",
+      "core_health_calibrated_release"
+    ],
+    [
+      "core_mediated_action_release",
+      "core_health_calibrated_release"
+    ],
+    [
       "core_release_ablation_probe",
       "action_decoder_ablation_suite"
     ],
@@ -880,6 +912,22 @@
     ],
     [
       "core_release_ablation_probe",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
+      "core_release_ablation_probe",
+      "core_health_calibrated_release"
+    ],
+    [
+      "core_health_calibrated_release",
+      "action_decoder_ablation_suite"
+    ],
+    [
+      "core_health_calibrated_release",
+      "sleep_competition_adapter"
+    ],
+    [
+      "core_health_calibrated_release",
       "claim_readiness_and_paper_packet"
     ],
     [
@@ -1056,7 +1104,7 @@
     "core_module_benchmark_invariant_fp_lift": 1,
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
     "core_adapter_boundary_status": "core_adapter_boundary_verified",
-    "big_bet_count": 13,
+    "big_bet_count": 14,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "assignment_gap_decomposition_status": "row_support_is_primary_bottleneck",
     "assignment_gap_mean_row_support_gap": 0.5832137733142038,
@@ -1140,6 +1188,22 @@
       "variant": "no_action_health",
       "submission_file": "submission_hsjepa_core_ablation_no_action_health_043b20c7_uploadsafe.csv",
       "priority": 0.3281725643379389
+    },
+    "core_health_calibrated_release_status": "core_health_calibrated_release_ready",
+    "core_health_calibrated_recommended_lb_candidate": {
+      "variant": "benchmark_guarded_full_plus",
+      "submission_file": "submission_hsjepa_core_health_benchmark_guarded_full_plus_8a3662bc_uploadsafe.csv",
+      "priority": 0.38818571481351827
+    },
+    "core_health_calibrated_recommended_big_bet_sensor": {
+      "variant": "route_pressure_boundary_probe",
+      "submission_file": "submission_hsjepa_core_health_route_pressure_boundary_probe_e8b904e5_uploadsafe.csv",
+      "priority": 0.38337754232640875
+    },
+    "core_health_calibrated_recommended_pressure_sensor": {
+      "variant": "health_relaxed_pressure_sensor",
+      "submission_file": "submission_hsjepa_core_health_health_relaxed_pressure_sensor_7da82c23_uploadsafe.csv",
+      "priority": -0.21134339216533768
     },
     "action_decoder_ablation_suite_status": "action_decoder_ablation_ready_decoder_jury_leads",
     "action_decoder_ablation_suite_recommended_lb_sensor": {

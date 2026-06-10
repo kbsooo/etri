@@ -33,7 +33,7 @@ Sleep competition adapter:
 
 This adapter converts HS-JEPA Core into a sleep-log competition system by supplying Q/S listeners, a route invariant, public-sensor action evidence, and upload-safe sparse row-target decoding.
 
-이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 새 hard-world probe는 broad toxicity와 H088 toxicity가 역상관될 수 있음을 보여주므로, action-health는 단일 위험 점수가 아니라 factorized energy head로 다루어야 한다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.
+이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 새 hard-world probe는 broad toxicity와 H088 toxicity가 역상관될 수 있음을 보여주므로, action-health는 단일 위험 점수가 아니라 factorized energy head로 다루어야 한다. 이후 core-health calibrated release는 dataset-free core benchmark에서 action-health를 제거했을 때 false positive가 늘어난다는 실패 패턴을 실제 adapter release prior로 사용한다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.
 
 ## Core / Adapter Evidence
 
@@ -44,7 +44,7 @@ This adapter converts HS-JEPA Core into a sleep-log competition system by supply
 - Core/adapter boundary audit: `core_adapter_boundary_verified` (`6/6` checks)
 - Core operational violations: imports `0`, strings `0`
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
-- Big-bet queue: `big_bet_queue_ready` (`13` bets)
+- Big-bet queue: `big_bet_queue_ready` (`14` bets)
 
 ## Generality
 
@@ -64,7 +64,7 @@ partial human context
 이번 대회의 S2/public-sensor 구조는 이 일반 구조의 case study다.
 
 - Generality status: `general_architecture_separated_with_case_boundary`
-- Portability checks: `8/9`
+- Portability checks: `9/10`
 - Nonblocking boundaries: `remaining_generality_gap`
 - OG-only assignment probe: `og_only_assignment_replacement_not_ready`
 - Pure OG row-cap2 recall: `0.0404`
@@ -105,6 +105,10 @@ partial human context
 - Core release ablation: `core_release_ablation_ready`
 - Core release full-core LB candidate: `{'variant': 'full_core_reference', 'submission_file': 'submission_hsjepa_core_ablation_full_core_reference_513175a1_uploadsafe.csv', 'priority': 0.8314097090596275}`
 - Core release architecture sensor: `{'variant': 'no_action_health', 'submission_file': 'submission_hsjepa_core_ablation_no_action_health_043b20c7_uploadsafe.csv', 'priority': 0.3281725643379389}`
+- Core-health calibrated release: `core_health_calibrated_release_ready`
+- Core-health guarded LB candidate: `{'variant': 'benchmark_guarded_full_plus', 'submission_file': 'submission_hsjepa_core_health_benchmark_guarded_full_plus_8a3662bc_uploadsafe.csv', 'priority': 0.38818571481351827}`
+- Core-health big-bet sensor: `{'variant': 'route_pressure_boundary_probe', 'submission_file': 'submission_hsjepa_core_health_route_pressure_boundary_probe_e8b904e5_uploadsafe.csv', 'priority': 0.38337754232640875}`
+- Core-health pressure sensor: `{'variant': 'health_relaxed_pressure_sensor', 'submission_file': 'submission_hsjepa_core_health_health_relaxed_pressure_sensor_7da82c23_uploadsafe.csv', 'priority': -0.21134339216533768}`
 - Listener-invariant probe: `listener_invariant_decoder_not_ready`
 - Listener-route Spearman: `-0.0313`
 - Private-safe toxicity probe: `toxicity_field_promising_with_hardworld_gap`
@@ -114,7 +118,7 @@ partial human context
 - Broad toxicity -> H088 AUC: `0.3683`
 - Broad/H088 Spearman: `-0.4276`
 
-가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor를 안전한 row-target action으로 번역하는 것이다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer와 masked-family objective에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원하고, human-only/prediction-only/masked-route view도 신호를 유지한다. 첫 strict action decoder는 null 대비 safety는 강하지만 route-gain 우위가 약했다. 새 route-frontier decoder는 반대로 route manifold frontier를 먼저 고르고 support/toxicity를 통과시키며, local broad/matched null은 이겼다. route-toxicity fusion decoder는 여기서 한 단계 더 나아가 route-first와 factorized action-health를 조합한다. decoder-order jury solver는 이 둘이 같은 row-target과 방향에 합의할 때만 action을 방출한다. boundary tomography는 그 strict jury가 너무 보수적인지 보기 위해 rejected cells를 weak-consensus, route-only, fusion-only로 쪼갠다. core-mediated release는 이 후보들을 다시 HS-JEPA Core의 context/listener/action-health/invariant 인터페이스로 통과시켜, core 자체가 action-grade release equation이 될 수 있는지 시험한다. core release ablation은 같은 cell에서 listener/action-health/invariant를 하나씩 제거해 module이 실제 release boundary를 바꾸는지 확인한다. 다만 이것도 아직 sleep adapter의 LB sensor이지 private-safe release claim은 아니다.
+가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor를 안전한 row-target action으로 번역하는 것이다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer와 masked-family objective에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원하고, human-only/prediction-only/masked-route view도 신호를 유지한다. 첫 strict action decoder는 null 대비 safety는 강하지만 route-gain 우위가 약했다. 새 route-frontier decoder는 반대로 route manifold frontier를 먼저 고르고 support/toxicity를 통과시키며, local broad/matched null은 이겼다. route-toxicity fusion decoder는 여기서 한 단계 더 나아가 route-first와 factorized action-health를 조합한다. decoder-order jury solver는 이 둘이 같은 row-target과 방향에 합의할 때만 action을 방출한다. boundary tomography는 그 strict jury가 너무 보수적인지 보기 위해 rejected cells를 weak-consensus, route-only, fusion-only로 쪼갠다. core-mediated release는 이 후보들을 다시 HS-JEPA Core의 context/listener/action-health/invariant 인터페이스로 통과시켜, core 자체가 action-grade release equation이 될 수 있는지 시험한다. core release ablation은 같은 cell에서 listener/action-health/invariant를 하나씩 제거해 module이 실제 release boundary를 바꾸는지 확인한다. core-health calibrated release는 dataset-free core benchmark에서 관측된 action-health false-positive lift를 adapter release prior로 사용해, generic core test가 실제 competition action boundary를 조절하는지 묻는다. 다만 이것도 아직 sleep adapter의 LB sensor이지 private-safe release claim은 아니다.
 
 ## Algorithm
 
@@ -135,9 +139,10 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 8. Learn an invariant energy over valid output/action manifolds.
 9. Release actions through a cross-decoder jury when route-first and action-health-first decoders agree.
 10. Run boundary tomography on rejected cells to test whether the release rule is too conservative.
-11. Decode bounded actions that improve listener fit while preserving the invariant.
-12. Reject shortcuts with cohort/time/group/null stress tests.
-13. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.
+11. Calibrate adapter release with dataset-free core benchmark failure modes.
+12. Decode bounded actions that improve listener fit while preserving the invariant.
+13. Reject shortcuts with cohort/time/group/null stress tests.
+14. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.
 ```
 
 ## Evidence Snapshot
@@ -161,6 +166,9 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 - Core-mediated action release: `core_mediated_action_release_ready`, recommended `{'variant': 'core_consensus_shadow_plus', 'submission_file': 'submission_hsjepa_core_mediated_core_consensus_shadow_plus_3b0b1d0f_uploadsafe.csv', 'priority': 0.8460231888716516}`, file `submission_hsjepa_core_mediated_core_consensus_shadow_plus_3b0b1d0f_uploadsafe.csv`, priority `0.8460`, inventory `{'candidate_cells': 44, 'strict_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'default_core_released': 32}`
 - Core release ablation: `core_release_ablation_ready`, full-core `{'variant': 'full_core_reference', 'submission_file': 'submission_hsjepa_core_ablation_full_core_reference_513175a1_uploadsafe.csv', 'priority': 0.8314097090596275}`, file `submission_hsjepa_core_ablation_full_core_reference_513175a1_uploadsafe.csv`, priority `0.8314`
 - Core release architecture sensor: `{'variant': 'no_action_health', 'submission_file': 'submission_hsjepa_core_ablation_no_action_health_043b20c7_uploadsafe.csv', 'priority': 0.3281725643379389}`, file `submission_hsjepa_core_ablation_no_action_health_043b20c7_uploadsafe.csv`, priority `0.3282`
+- Core-health calibrated release: `core_health_calibrated_release_ready`, guarded `{'variant': 'benchmark_guarded_full_plus', 'submission_file': 'submission_hsjepa_core_health_benchmark_guarded_full_plus_8a3662bc_uploadsafe.csv', 'priority': 0.38818571481351827}`, file `submission_hsjepa_core_health_benchmark_guarded_full_plus_8a3662bc_uploadsafe.csv`, priority `0.3882`
+- Core-health big-bet sensor: `{'variant': 'route_pressure_boundary_probe', 'submission_file': 'submission_hsjepa_core_health_route_pressure_boundary_probe_e8b904e5_uploadsafe.csv', 'priority': 0.38337754232640875}`, file `submission_hsjepa_core_health_route_pressure_boundary_probe_e8b904e5_uploadsafe.csv`, priority `0.3834`
+- Core-health benchmark calibration: `{'action_health_fp_lift': 9.0, 'invariant_fp_lift': 1.0, 'listener_fp_lift': 3.0, 'scenario_count': 5.0, 'action_fp_weight': 0.6428571428571429, 'invariant_fp_weight': 0.16666666666666666, 'listener_fp_weight': 0.375}`
 - Action decoder ablation: `action_decoder_ablation_ready_decoder_jury_leads`, recommended `{'family': 'decoder_order_jury', 'variant': 'family_supermajority', 'submission_file': 'submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv', 'priority': 1.394366527938867}`, big bet `{'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572}`
 
 ## Role-Based Outputs
@@ -191,6 +199,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 - `Decoder Boundary Tomography Solver`: The strict cross-decoder jury may be correct but too conservative; rejected cells split into weak consensus, route-only, and fusion-only worlds. Expected LB delta if true `-0.002`. Kill: All boundary probes worsen public LB, meaning strict cross-decoder consensus is the current safe frontier.
 - `Core-Mediated Action Release`: A reusable HS-JEPA core should mediate real row-target actions before the sleep adapter releases them. Expected LB delta if true `-0.002`. Kill: Core-mediated candidates underperform the strict jury and boundary tomography, meaning generic core release is diagnostic but not yet the competition action equation.
 - `Core Release Ablation Probe`: A real HS-JEPA architecture must expose which core module over-constrains or protects row-target action release. Expected LB delta if true `-0.002`. Kill: All module-removal probes match full-core and public LB cannot distinguish them, meaning this ablation axis is not the current bottleneck.
+- `Core-Health Calibrated Release`: Dataset-free HS-JEPA action-health failure modes should calibrate the real sleep-adapter action boundary. Expected LB delta if true `-0.002`. Kill: Guarded release loses to relaxed pressure or to strict jury, meaning the current generic action-health prior is useful diagnostically but not action-grade for this adapter.
 - `Listener-Invariant Contrastive Decoder`: A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone. Expected LB delta if true `-0.002`. Kill: Listener gain and invariant energy remain anti-correlated on strong candidates.
 - `Private-Safe Toxicity Field`: The plateau comes from actions that help public-like rows but poison private-like rows. Expected LB delta if true `-0.0015`. Kill: Toxicity score only recovers known public failures, fails hard-world anchors, or does not separate matched local nulls.
 - `Hard-World Mixture Toxicity Decoder`: H088-like hard-world toxicity is anti-correlated with broad public-bad toxicity, so action-health must be factorized. Expected LB delta if true `-0.0025`. Kill: Broad toxicity predicts H088 well, or mixture safety does not beat matched null after target/source matching.
@@ -235,4 +244,5 @@ Generated supporting reports:
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/decoder_boundary_tomography_solver/decoder_boundary_tomography_readout.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/core_mediated_action_release/core_mediated_action_release_readout.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/core_release_ablation_probe/core_release_ablation_probe_readout.json`
+- `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/core_health_calibrated_release/core_health_calibrated_release_readout.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite.json`

@@ -22,7 +22,7 @@ This adapter converts HS-JEPA Core into a sleep-log competition system by supply
 | `listener_responsibility` | Q/S targets are treated as listeners; S2 emerges as an objective-stage hub | S2 listener usage 1.000 vs null 0.615 | S2 hub is a sleep competition case-study claim, not a universal physiology claim. |
 | `action_health_decoder` | public-positive and public-negative sensors define toxic action diagnostics | mechanism ablation kills broad/toxic alternatives before release | public LB sensor is not portable and must be replaced for non-competition deployments. |
 | `invariant_energy` | Q/S route energy and route-conserving S2 bridge | route z-scores primary=-9.66, s2=-9.46 | other domains need their own temporal, physiological, semantic, or cohort invariant. |
-| `anti_shortcut_validation` | upload safety, feasible-bundle nulls, mechanism knockout, and release checklist | generality checks 8/9 | private LB safety is not proven. |
+| `anti_shortcut_validation` | upload safety, feasible-bundle nulls, mechanism knockout, and release checklist | generality checks 9/10 | private LB safety is not proven. |
 
 ## OG-only Assignment Probe
 
@@ -137,6 +137,18 @@ HS-JEPA core modules change the real sleep-adapter action boundary when removed.
 
 이 실험은 같은 real adapter cell을 full-core, no-listener, no-action-health, no-invariant, invariant-only release equation으로 다시 풀어본다. public에서 no-action-health가 full-core를 이기면 action-health가 현재 adapter를 과하게 막고 있다는 뜻이고, 지면 full HS-JEPA release boundary가 더 설득력 있다.
 
+## Core-Health Calibrated Release
+
+- Status: `core_health_calibrated_release_ready`
+- Recommended LB candidate: `{'variant': 'benchmark_guarded_full_plus', 'submission_file': 'submission_hsjepa_core_health_benchmark_guarded_full_plus_8a3662bc_uploadsafe.csv', 'priority': 0.38818571481351827}`
+- Recommended big-bet sensor: `{'variant': 'route_pressure_boundary_probe', 'submission_file': 'submission_hsjepa_core_health_route_pressure_boundary_probe_e8b904e5_uploadsafe.csv', 'priority': 0.38337754232640875}`
+- Recommended pressure sensor: `{'variant': 'health_relaxed_pressure_sensor', 'submission_file': 'submission_hsjepa_core_health_health_relaxed_pressure_sensor_7da82c23_uploadsafe.csv', 'priority': -0.21134339216533768}`
+- Benchmark calibration: `{'action_health_fp_lift': 9.0, 'invariant_fp_lift': 1.0, 'listener_fp_lift': 3.0, 'scenario_count': 5.0, 'action_fp_weight': 0.6428571428571429, 'invariant_fp_weight': 0.16666666666666666, 'listener_fp_weight': 0.375}`
+
+Dataset-free HS-JEPA action-health failures can calibrate the real sleep-adapter row-target release boundary.
+
+이 실험은 dataset-free core benchmark에서 action-health 제거가 false positive를 크게 만든다는 사실을 실제 sleep-adapter row-target release prior로 사용한다. guarded 후보가 public에서 살아나면 HS-JEPA core의 일반적인 action-health 실패 모드가 대회 adapter에도 전이된다는 강한 증거가 된다.
+
 ## Action Decoder Ablation Suite
 
 - Status: `action_decoder_ablation_ready_decoder_jury_leads`
@@ -226,6 +238,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - The factorized toxicity decoder now produces upload-safe candidates that remove H088 top-toxic and broad-safe/H088-toxic selected cells in local diagnostics.
 - The dual-safe expansion variant survives target-only and source-matched null stress, while the teacher-only variant is intentionally marked weaker under source-matched stress.
 - Core release ablation now makes listener responsibility, action-health, and invariant energy falsifiable on real sleep-adapter actions rather than only synthetic core examples.
+- Core-health calibrated release now uses dataset-free action-health false-positive lift as a real adapter release prior, connecting architecture benchmark behavior to submission candidates.
 
 ## 이 adapter가 아직 증명하지 못한 것
 
@@ -237,6 +250,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - that route-toxicity fusion will beat plain route-frontier on public/private LB
 - that consensus-shadow boundary cells are safe before public LB observes them
 - that removing a core module is beneficial before public LB observes the full-core vs ablated-core counterfactual
+- that dataset-free action-health calibration will beat the strict decoder jury before public LB observes the guarded/pressure counterfactual
 - that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments
 - private leaderboard safety
 - S2 as a universal human-sleep factor
