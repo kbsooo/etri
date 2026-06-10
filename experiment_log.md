@@ -14640,3 +14640,63 @@ Mechanism claim:
 
 This is a cleaner paper position than claiming that HS-JEPA directly predicts
 all labels from OG features alone.
+
+## HS-JEPA Architecture Readiness Gate
+
+Date: 2026-06-10
+
+Question:
+
+Can we turn HS-JEPA from a successful leaderboard-informed workflow into a
+paper/team-facing architecture claim with explicit evidence gates?
+
+Added artifacts:
+
+- `team_hsjepa_end_to_end/build_hsjepa_architecture_readiness_report.py`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_architecture_readiness_report.md`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_architecture_readiness_report.json`
+
+The full runner now executes this as the final architecture gate:
+
+```bash
+python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py
+```
+
+Result:
+
+- Status: `paper_ready_with_boundary`
+- Gates passed: `7/7`
+- Score breakthrough gate: `0.5761589494 -> 0.5677475939`, delta `-0.0084113555`
+- Route-conserving mechanism gate: selected route delta `-0.02457` vs null `-0.01090`
+- S2 listener/hub gate: S2 usage `1.000` vs null `0.615`
+- Human-state orientation gate: cell AUC `0.775`, row AUC `0.545`
+- Reproducibility contract gate: required missing `0`
+- Upload safety gate: all three team submissions upload-safe
+- Claim boundary gate: not pure OG-only, uses public sensor, no proprietary embedding API
+
+Interpretation:
+
+This is the current best "knuckleball" packaging:
+
+```text
+public-sensitive driver action
+  + route-conserving bridge action
+  + S2 listener/hub constraint
+  + human-state orientation diagnostic
+```
+
+The strong paper claim is now narrower but defensible:
+
+```text
+HS-JEPA is not just a larger classifier.  It reframes sleep-log prediction as
+latent human-state oriented sparse row-target action decoding, where safe
+objective-stage corrections must preserve a learned Q/S route manifold.
+```
+
+The remaining big-bet gap is also explicit:
+
+```text
+Can the public-sensitive assignment solver be replaced or distilled by an
+OG-only cohort/personal human-state listener without losing the route-conserving
+S2 bridge property?
+```

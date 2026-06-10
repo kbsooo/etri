@@ -46,6 +46,7 @@ public-sensitive driver action
 - S2 listener route z-score: `-9.46`
 - S2 listener usage: `1.000` vs null `0.615`
 - Package validation passed: `True`
+- Architecture readiness: `paper_ready_with_boundary` (`7/7` gates)
 
 ## Paper Claim
 
@@ -93,4 +94,12 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_reproducibility
 
 ```text
 Given a public-sensitive action field, route conservation plus S2 listener usage selects a statistically unusual and interpretable correction path.
+```
+
+## Architecture Readiness Report
+
+논문/팀 공유용 gate 판정:
+
+```text
+team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_architecture_readiness_report.md
 ```

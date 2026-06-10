@@ -1,0 +1,125 @@
+{
+  "package": "Route-Conserving S2 Bridge HS-JEPA",
+  "status": "paper_ready_with_boundary",
+  "passed_gates": 7,
+  "total_gates": 7,
+  "gates": [
+    {
+      "gate": "score_breakthrough",
+      "status": "PASS",
+      "passed": true,
+      "evidence": "pre-public-equation baseline 0.5761589494 -> current best 0.5677475939 (delta -0.0084113555)",
+      "boundary": "This proves a competition-relevant public signal, not private leaderboard safety."
+    },
+    {
+      "gate": "route_conserving_mechanism",
+      "status": "PASS",
+      "passed": true,
+      "evidence": "selected route delta -0.02457 vs null -0.01090, rank pct 0.186",
+      "boundary": "This proves unusual bridge selection inside the candidate pool, not that every future dataset shares the same route."
+    },
+    {
+      "gate": "s2_listener_hub",
+      "status": "PASS",
+      "passed": true,
+      "evidence": "S2 usage 1.000 vs null 0.615, S2-hub rank pct 0.144",
+      "boundary": "S2 is a listener/hub for this decoder, not a universal claim about sleep physiology."
+    },
+    {
+      "gate": "human_state_orientation",
+      "status": "PASS",
+      "passed": true,
+      "evidence": "cell AUC 0.775, row AUC 0.545",
+      "boundary": "Human-state explains target/cell orientation, but it is not a complete row-assignment solver."
+    },
+    {
+      "gate": "reproducibility_contract",
+      "status": "PASS",
+      "passed": true,
+      "evidence": "required missing 0, public ledger rows 26, raw/source records 55",
+      "boundary": "The team runner is reproducible from local artifacts, but it explicitly uses a public-LB sensor."
+    },
+    {
+      "gate": "upload_safe_team_outputs",
+      "status": "PASS",
+      "passed": true,
+      "evidence": "validation passed True, upload-safe roles ['competition_primary', 'human_state_probe', 'interpretable_s2_hub']",
+      "boundary": "Upload safety is a format/integrity guarantee, not a score guarantee."
+    },
+    {
+      "gate": "claim_boundary_honesty",
+      "status": "PASS",
+      "passed": true,
+      "evidence": "pure OG-only=False, public sensor=True, proprietary embedding=False",
+      "boundary": "Paper claims should separate OG human-state representation from the competition-specific action decoder."
+    }
+  ],
+  "public_breakthrough": {
+    "ledger_rows": 26,
+    "pre_public_equation_best_public_lb": 0.5761589494,
+    "public_equation_breakthrough_public_lb": 0.5681234831,
+    "public_equation_breakthrough_file": "submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv",
+    "current_best_public_lb": 0.5677475939,
+    "current_best_file": "submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv",
+    "current_best_role_name": "row_state_decoder_best",
+    "public_equation_delta_vs_pre_breakthrough": -0.00803546629999996,
+    "current_delta_vs_pre_breakthrough": -0.00841135550000005
+  },
+  "mechanism": {
+    "primary": {
+      "name": "route_conserving_objective_bridge_primary",
+      "bundles": 41,
+      "mean_route_energy_delta": -0.0245664487510537,
+      "null_mean_route_energy_delta": -0.0108973448156142,
+      "p_null_energy_le_actual": 0.0,
+      "s2_any_rate": 0.7804878048780488,
+      "null_s2_any_rate": 0.6149268292682926,
+      "p_null_s2_any_ge_actual": 0.0006,
+      "negative_energy_rate": 0.926829268292683,
+      "null_negative_energy_rate": 0.7821804878048779,
+      "mean_energy_rank_pct": 0.1858571342054905,
+      "mean_solver_rank_pct": 0.1730893717452571,
+      "mean_s2hub_rank_pct": null
+    },
+    "s2_listener": {
+      "name": "s2_listener_bridge_interpretable",
+      "bundles": 34,
+      "mean_route_energy_delta": -0.0269636967134854,
+      "null_mean_route_energy_delta": -0.010824151968924,
+      "p_null_energy_le_actual": 0.0,
+      "s2_any_rate": 1.0,
+      "null_s2_any_rate": 0.6150764705882353,
+      "p_null_s2_any_ge_actual": 0.0,
+      "negative_energy_rate": 1.0,
+      "null_negative_energy_rate": 0.7825294117647058,
+      "mean_energy_rank_pct": 0.1810514283244462,
+      "mean_solver_rank_pct": 0.1492780035395124,
+      "mean_s2hub_rank_pct": 0.1437744384771238
+    }
+  },
+  "human_state": {
+    "cell_oof_auc_human_target_context": 0.7750664475064699,
+    "cell_oof_ap_human_target_context": 0.09368311271420703,
+    "cell_oof_auc_human_row_context_only": 0.5249702734839476,
+    "row_oof_auc": 0.545343137254902,
+    "row_oof_ap": 0.168100362718141,
+    "teacher_changed_cells": 68,
+    "teacher_changed_rows": 34
+  },
+  "boundary": {
+    "is_pure_og_only_model": false,
+    "uses_public_lb_sensor": true,
+    "uses_proprietary_embedding_api_in_team_runner": false,
+    "human_state_role": "orientation diagnostic, not complete row-target assignment solver",
+    "competition_decoder_role": "public-sensitive row-target action solver with route-conserving S2 bridge"
+  },
+  "interpretation": {
+    "knuckleball_mechanism": "public-sensitive driver + route-conserving bridge + S2 listener/hub",
+    "strong_claim": "Sparse row-target correction should preserve the learned Q/S route manifold.",
+    "do_not_overclaim": [
+      "This is not a pure OG-only model.",
+      "This does not prove private leaderboard safety.",
+      "Human-state is an orientation diagnostic, not a standalone assignment solver."
+    ]
+  }
+}

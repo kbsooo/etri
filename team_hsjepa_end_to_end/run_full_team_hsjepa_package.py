@@ -7,7 +7,9 @@ historical experiment version names.  It executes:
 1. Route-Conserving S2 Bridge package generation.
 2. Stress audit against feasible candidate nulls.
 3. Claim/evidence validation.
-4. A compact handoff report for paper and competition discussion.
+4. Reproducibility contract.
+5. Architecture readiness report.
+6. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -35,6 +37,8 @@ HANDOFF_JSON = OUT / "route_conserving_s2_bridge_team_handoff.json"
 RUN_LOG_JSON = OUT / "route_conserving_s2_bridge_full_run_log.json"
 CONTRACT_MD = OUT / "hsjepa_reproducibility_contract.md"
 CONTRACT_JSON = OUT / "hsjepa_reproducibility_contract.json"
+READINESS_MD = OUT / "hsjepa_architecture_readiness_report.md"
+READINESS_JSON = OUT / "hsjepa_architecture_readiness_report.json"
 
 
 def run_command(args: list[str]) -> dict[str, object]:
@@ -63,7 +67,12 @@ def read_json(path: Path) -> dict[str, object]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def build_handoff(package: dict[str, object], validation: dict[str, object], stress: pd.DataFrame) -> str:
+def build_handoff(
+    package: dict[str, object],
+    validation: dict[str, object],
+    stress: pd.DataFrame,
+    readiness: dict[str, object],
+) -> str:
     packaged = package["packaged_submissions"]
     mechanism = validation["mechanism_evidence"]
 
@@ -128,6 +137,7 @@ def build_handoff(package: dict[str, object], validation: dict[str, object], str
             f"- S2 listener route z-score: `{mechanism['s2_route_z']:.2f}`",
             f"- S2 listener usage: `{mechanism['s2_listener_s2_any_rate']:.3f}` vs null `{mechanism['s2_listener_null_s2_any_rate']:.3f}`",
             f"- Package validation passed: `{validation['passed']}`",
+            f"- Architecture readiness: `{readiness['status']}` (`{readiness['passed_gates']}/{readiness['total_gates']}` gates)",
             "",
             "## Paper Claim",
             "",
@@ -177,6 +187,14 @@ def build_handoff(package: dict[str, object], validation: dict[str, object], str
             "Given a public-sensitive action field, route conservation plus S2 listener usage selects a statistically unusual and interpretable correction path.",
             "```",
             "",
+            "## Architecture Readiness Report",
+            "",
+            "논문/팀 공유용 gate 판정:",
+            "",
+            "```text",
+            "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_architecture_readiness_report.md",
+            "```",
+            "",
         ]
     )
 
@@ -187,6 +205,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(HERE / "audit_route_conserving_s2_bridge.py")],
         [sys.executable, str(HERE / "validate_route_conserving_s2_bridge_package.py")],
         [sys.executable, str(HERE / "inspect_hsjepa_reproducibility_contract.py")],
+        [sys.executable, str(HERE / "build_hsjepa_architecture_readiness_report.py")],
     ]
     if refresh:
         commands[0].append("--refresh")
@@ -197,8 +216,9 @@ def run(refresh: bool = False) -> dict[str, object]:
 
     package = read_json(PACKAGE_JSON)
     validation = read_json(VALIDATION_JSON)
+    readiness = read_json(READINESS_JSON)
     stress = pd.read_csv(STRESS_CSV)
-    handoff_md = build_handoff(package, validation, stress)
+    handoff_md = build_handoff(package, validation, stress, readiness)
 
     handoff = {
         "package": "Route-Conserving S2 Bridge HS-JEPA",
@@ -210,7 +230,11 @@ def run(refresh: bool = False) -> dict[str, object]:
         "handoff_md": str(HANDOFF_MD.resolve()),
         "reproducibility_contract_md": str(CONTRACT_MD.resolve()),
         "reproducibility_contract_json": str(CONTRACT_JSON.resolve()),
+        "architecture_readiness_md": str(READINESS_MD.resolve()),
+        "architecture_readiness_json": str(READINESS_JSON.resolve()),
         "validation_passed": bool(validation["passed"]),
+        "architecture_readiness_status": str(readiness["status"]),
+        "architecture_readiness_gates": f"{readiness['passed_gates']}/{readiness['total_gates']}",
         "mechanism_evidence": validation["mechanism_evidence"],
         "submission_files": {
             role: item["submission_file"]
