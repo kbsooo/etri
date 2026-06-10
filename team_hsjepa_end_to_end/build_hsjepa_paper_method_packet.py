@@ -88,6 +88,13 @@ PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON = (
     / "public_private_subset_tomography_solver"
     / "public_private_subset_tomography_readout.json"
 )
+ANTI_LISTENER_TOXICITY_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "anti_listener_toxicity_equation_solver"
+    / "anti_listener_toxicity_equation_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -149,6 +156,7 @@ def require_inputs() -> None:
             LB_CONDITIONED_RESPONSIBILITY_JSON,
             MIXTURE_LISTENER_RESPONSIBILITY_JSON,
             PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON,
+            ANTI_LISTENER_TOXICITY_JSON,
             ACTION_DECODER_ABLATION_JSON,
             CONTRASTIVE_PROBE_JSON,
             PRIVATE_TOXICITY_PROBE_JSON,
@@ -195,6 +203,7 @@ def build_packet() -> dict[str, object]:
     lb_conditioned_responsibility = read_json(LB_CONDITIONED_RESPONSIBILITY_JSON)
     mixture_listener_responsibility = read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON)
     public_private_subset_tomography = read_json(PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON)
+    anti_listener_toxicity = read_json(ANTI_LISTENER_TOXICITY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -254,6 +263,10 @@ def build_packet() -> dict[str, object]:
     subset_tomography_recommended = subset_tomography_verdict["recommended_variant"]
     subset_tomography_item = public_private_subset_tomography["variants"][subset_tomography_recommended]
     subset_tomography_submission = subset_tomography_item["submission"]
+    anti_listener_verdict = anti_listener_toxicity["verdict"]
+    anti_listener_recommended = anti_listener_verdict["recommended_variant"]
+    anti_listener_item = anti_listener_toxicity["variants"][anti_listener_recommended]
+    anti_listener_submission = anti_listener_item["submission"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -439,6 +452,17 @@ def build_packet() -> dict[str, object]:
             "public_private_subset_tomography_mean_label_confidence": subset_tomography_item["metrics"]["mean_label_confidence"],
             "public_private_subset_tomography_private_safety": subset_tomography_item["metrics"]["mean_private_safety"],
             "public_private_subset_tomography_toxicity": subset_tomography_item["metrics"]["mean_toxicity"],
+            "anti_listener_toxicity_status": anti_listener_verdict["status"],
+            "anti_listener_toxicity_recommended": anti_listener_recommended,
+            "anti_listener_toxicity_file": anti_listener_submission["submission_file"],
+            "anti_listener_toxicity_source_loo_corr": anti_listener_toxicity["source_fit"]["loo_corr"],
+            "anti_listener_toxicity_cell_count": anti_listener_toxicity["cell_count"],
+            "anti_listener_toxicity_changed_cells": anti_listener_submission["changed_cells"],
+            "anti_listener_toxicity_predicted_delta": anti_listener_item["metrics"]["sum_predicted_public_delta"],
+            "anti_listener_toxicity_listener_inverse": anti_listener_item["metrics"]["mean_listener_inverse"],
+            "anti_listener_toxicity_private_safety": anti_listener_item["metrics"]["mean_private_safety"],
+            "anti_listener_toxicity_hardworld_toxicity": anti_listener_item["metrics"]["mean_hardworld_toxicity"],
+            "anti_listener_toxicity_broad_toxicity": anti_listener_item["metrics"]["mean_broad_toxicity"],
             "action_decoder_ablation_status": action_ablation_verdict["status"],
             "action_decoder_ablation_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],
@@ -536,6 +560,7 @@ def build_packet() -> dict[str, object]:
             "lb_conditioned_responsibility_solver": str(LB_CONDITIONED_RESPONSIBILITY_JSON.resolve()),
             "mixture_listener_responsibility_solver": str(MIXTURE_LISTENER_RESPONSIBILITY_JSON.resolve()),
             "public_private_subset_tomography_solver": str(PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON.resolve()),
+            "anti_listener_toxicity_equation_solver": str(ANTI_LISTENER_TOXICITY_JSON.resolve()),
             "action_decoder_ablation_suite": str(ACTION_DECODER_ABLATION_JSON.resolve()),
             "listener_invariant_contrastive_probe": str(CONTRASTIVE_PROBE_JSON.resolve()),
             "private_safe_toxicity_probe": str(PRIVATE_TOXICITY_PROBE_JSON.resolve()),
@@ -573,6 +598,8 @@ def build_packet() -> dict[str, object]:
                 lb_conditioned_responsibility,
                 subset_tomography_verdict,
                 public_private_subset_tomography,
+                anti_listener_verdict,
+                anti_listener_toxicity,
                 contrastive_verdict,
                 toxicity_verdict,
                 hardworld_verdict,
@@ -634,7 +661,7 @@ def build_method_text(core: dict[str, object], adapter: dict[str, object]) -> st
             "",
             adapter["adapter_claim"],
             "",
-            "이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 새 hard-world probe는 broad toxicity와 H088 toxicity가 역상관될 수 있음을 보여주므로, action-health는 단일 위험 점수가 아니라 factorized energy head로 다루어야 한다. 이후 core-health calibrated release는 dataset-free core benchmark에서 action-health를 제거했을 때 false positive가 늘어난다는 실패 패턴을 실제 adapter release prior로 사용한다. cross-listener transport는 target-listener lift가 direct action generator로는 실패했다는 negative sensor를 보존하고, listener posterior를 route/fusion/core-safe action의 transport calibrator로만 사용한다. counterfactual listener-dropout은 listener 하나를 가려도 같은 row-target action이 살아남는지 묻고, 실패한 public sensor들을 버리는 대신 action-toxicity label로 사용한다. spectral public-tangent solver는 실패한 public action들을 저차원 negative representation으로 압축한 뒤 anti-tangent와 orthogonal residual release를 비교한다. negative tangent invariant projection은 여기서 한 단계 더 나아가, 그 반대 방향 action을 target-route/subject-prior invariant 위로 투영해야만 action-grade가 된다는 주장을 테스트한다. LB-conditioned responsibility solver는 public LB라는 scalar 외부 listener가 흘린 관측값에서 row-target action responsibility를 역추정한다. public/private subset tomography는 scalar feedback을 한 번 더 분해해 `public subset inclusion × hidden label direction`으로 해석하고, private-safety/toxicity head가 그 action을 외부 listener 밖에서도 보존할 수 있는지 묻는다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant/anti-shortcut/negative-representation/responsibility/subset-tomography 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.",
+            "이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 새 hard-world probe는 broad toxicity와 H088 toxicity가 역상관될 수 있음을 보여주므로, action-health는 단일 위험 점수가 아니라 factorized energy head로 다루어야 한다. 이후 core-health calibrated release는 dataset-free core benchmark에서 action-health를 제거했을 때 false positive가 늘어난다는 실패 패턴을 실제 adapter release prior로 사용한다. cross-listener transport는 target-listener lift가 direct action generator로는 실패했다는 negative sensor를 보존하고, listener posterior를 route/fusion/core-safe action의 transport calibrator로만 사용한다. counterfactual listener-dropout은 listener 하나를 가려도 같은 row-target action이 살아남는지 묻고, 실패한 public sensor들을 버리는 대신 action-toxicity label로 사용한다. spectral public-tangent solver는 실패한 public action들을 저차원 negative representation으로 압축한 뒤 anti-tangent와 orthogonal residual release를 비교한다. negative tangent invariant projection은 여기서 한 단계 더 나아가, 그 반대 방향 action을 target-route/subject-prior invariant 위로 투영해야만 action-grade가 된다는 주장을 테스트한다. LB-conditioned responsibility solver는 public LB라는 scalar 외부 listener가 흘린 관측값에서 row-target action responsibility를 역추정한다. public/private subset tomography는 scalar feedback을 한 번 더 분해해 `public subset inclusion × hidden label direction`으로 해석하고, private-safety/toxicity head가 그 action을 외부 listener 밖에서도 보존할 수 있는지 묻는다. anti-listener toxicity equation은 여기서 다시 한 단계 나아가, public에서 실패한 listener-derived action을 negative teacher로 보며 그 반대 방향도 private-safety와 hard-world/broad toxicity veto를 통과할 때만 release한다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant/anti-shortcut/negative-representation/responsibility/subset-tomography/anti-listener 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.",
         ]
     )
 
@@ -665,6 +692,8 @@ def build_generality_text(
     lb_conditioned_responsibility: dict[str, object],
     subset_tomography_verdict: dict[str, object],
     public_private_subset_tomography: dict[str, object],
+    anti_listener_verdict: dict[str, object],
+    anti_listener_toxicity: dict[str, object],
     contrastive_verdict: dict[str, object],
     toxicity_verdict: dict[str, object],
     hardworld_verdict: dict[str, object],
@@ -750,6 +779,10 @@ def build_generality_text(
         f"- Subset tomography recommended variant: `{subset_tomography_verdict['recommended_variant']}`",
         f"- Subset tomography source LOO corr: `{fmt(public_private_subset_tomography['source_fit']['loo_corr'], 4)}`",
         f"- Subset tomography cells: `{public_private_subset_tomography['cell_count']}`",
+        f"- Anti-listener toxicity equation: `{anti_listener_verdict['status']}`",
+        f"- Anti-listener recommended variant: `{anti_listener_verdict['recommended_variant']}`",
+        f"- Anti-listener source LOO corr: `{fmt(anti_listener_toxicity['source_fit']['loo_corr'], 4)}`",
+        f"- Anti-listener candidate cells: `{anti_listener_toxicity['cell_count']}`",
         f"- Listener-invariant probe: `{contrastive_verdict['status']}`",
         f"- Listener-route Spearman: `{fmt(contrastive_verdict['mean_listener_route_spearman'], 4)}`",
         f"- Private-safe toxicity probe: `{toxicity_verdict['status']}`",
@@ -791,9 +824,10 @@ def build_algorithm_text() -> str:
             "16. Project negative-representation actions onto target-route and subject-prior invariants before release.",
             "17. Estimate scalar-listener responsibility from external outcome observations when explicit row-target labels are unavailable.",
             "18. Factor scalar feedback into public subset inclusion and hidden label direction when the external listener is only partially observed.",
-            "19. Decode bounded actions that improve listener fit while preserving the invariant.",
-            "20. Reject shortcuts with cohort/time/group/null stress tests.",
-            "21. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.",
+            "19. Treat failed listener-derived actions as negative teachers and release inverse moves only after private-safety and toxicity veto.",
+            "20. Decode bounded actions that improve listener fit while preserving the invariant.",
+            "21. Reject shortcuts with cohort/time/group/null stress tests.",
+            "22. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.",
         ]
     )
 
@@ -923,6 +957,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- LB-conditioned responsibility: `{human['lb_conditioned_responsibility_status']}`, recommended `{human['lb_conditioned_responsibility_recommended']}`, file `{human['lb_conditioned_responsibility_file']}`, LOO corr `{fmt(human['lb_conditioned_responsibility_loo_corr'], 4)}`, changed cells `{human['lb_conditioned_responsibility_changed_cells']}`, predicted delta `{fmt(human['lb_conditioned_responsibility_predicted_delta'], 5)}`, energy delta `{fmt(human['lb_conditioned_responsibility_energy_delta'], 5)}`, bad cosine `{fmt(human['lb_conditioned_responsibility_bad_cosine'], 4)}`",
             f"- Mixture-listener responsibility: `{human['mixture_listener_responsibility_status']}`, recommended `{human['mixture_listener_responsibility_recommended']}`, file `{human['mixture_listener_responsibility_file']}`, mixture LOO corr `{fmt(human['mixture_listener_loo_corr'], 4)}` vs scalar `{fmt(human['mixture_listener_scalar_loo_corr'], 4)}`, changed cells `{human['mixture_listener_changed_cells']}`, scalar delta `{fmt(human['mixture_listener_scalar_delta'], 5)}`, mode delta `{fmt(human['mixture_listener_mode_delta'], 5)}`, conflict `{fmt(human['mixture_listener_conflict_score'], 4)}`, bad cosine `{fmt(human['mixture_listener_bad_cosine'], 4)}`",
             f"- Public/private subset tomography: `{human['public_private_subset_tomography_status']}`, recommended `{human['public_private_subset_tomography_recommended']}`, file `{human['public_private_subset_tomography_file']}`, source LOO corr `{fmt(human['public_private_subset_tomography_source_loo_corr'], 4)}`, cells `{human['public_private_subset_tomography_cell_count']}`, changed cells `{human['public_private_subset_tomography_changed_cells']}`, predicted delta `{fmt(human['public_private_subset_tomography_predicted_delta'], 5)}`, inclusion `{fmt(human['public_private_subset_tomography_mean_inclusion'], 4)}`, label confidence `{fmt(human['public_private_subset_tomography_mean_label_confidence'], 4)}`, private safety `{fmt(human['public_private_subset_tomography_private_safety'], 4)}`, toxicity `{fmt(human['public_private_subset_tomography_toxicity'], 4)}`",
+            f"- Anti-listener toxicity equation: `{human['anti_listener_toxicity_status']}`, recommended `{human['anti_listener_toxicity_recommended']}`, file `{human['anti_listener_toxicity_file']}`, source LOO corr `{fmt(human['anti_listener_toxicity_source_loo_corr'], 4)}`, candidate cells `{human['anti_listener_toxicity_cell_count']}`, changed cells `{human['anti_listener_toxicity_changed_cells']}`, predicted delta `{fmt(human['anti_listener_toxicity_predicted_delta'], 5)}`, listener inverse `{fmt(human['anti_listener_toxicity_listener_inverse'], 4)}`, private safety `{fmt(human['anti_listener_toxicity_private_safety'], 4)}`, hard-world toxicity `{fmt(human['anti_listener_toxicity_hardworld_toxicity'], 4)}`, broad toxicity `{fmt(human['anti_listener_toxicity_broad_toxicity'], 4)}`",
             f"- Action decoder ablation: `{human['action_decoder_ablation_status']}`, recommended `{human['action_decoder_ablation_recommended_lb_sensor']}`, big bet `{human['action_decoder_ablation_big_bet_sensor']}`",
             "",
             "## Role-Based Outputs",
@@ -975,6 +1010,8 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- `{packet['outputs']['negative_tangent_invariant_projection_solver']}`",
             f"- `{packet['outputs']['lb_conditioned_responsibility_solver']}`",
             f"- `{packet['outputs']['mixture_listener_responsibility_solver']}`",
+            f"- `{packet['outputs']['public_private_subset_tomography_solver']}`",
+            f"- `{packet['outputs']['anti_listener_toxicity_equation_solver']}`",
             f"- `{packet['outputs']['action_decoder_ablation_suite']}`",
             "",
         ]

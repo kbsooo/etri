@@ -1,0 +1,734 @@
+{
+  "experiment": "Anti-Listener Toxicity Equation Solver",
+  "architecture_role": "competition_adapter_big_bet",
+  "thesis": "Listener responsibility is not an action generator.  Failed listener releases define an anti-listener toxicity field, and HS-JEPA should release only row-target moves that invert that field while preserving public/private action health.",
+  "source_fit": {
+    "anchor_count": 26,
+    "feature_count": 864,
+    "ridge_values": [
+      0.35,
+      0.8,
+      1.6,
+      3.2
+    ],
+    "loo_corr": 0.7681909332400592,
+    "loo_mse": 0.5863256480553543,
+    "loss_delta_min": 0.00015723090000008266,
+    "loss_delta_max": 0.013479733900000013,
+    "loss_delta_mean": 0.007230148834615433
+  },
+  "toxic_anchors": [
+    {
+      "name": "cross_listener_transport",
+      "file": "submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv",
+      "public_lb": 0.5684860446,
+      "family": "listener",
+      "role": "listener-confirmed shadow release failed public",
+      "available": true,
+      "delta_vs_h057": 0.000738450700000004,
+      "changed_cells": 23,
+      "move_l2": 2.880307352767948
+    },
+    {
+      "name": "target_listener_lift",
+      "file": "submission_hsjepa_target_listener_route_lift_s2hub_listener_lift_jackpot_f2ab2816_uploadsafe.csv",
+      "public_lb": 0.5680255019,
+      "family": "listener",
+      "role": "direct target-listener lift failed public",
+      "available": true,
+      "delta_vs_h057": 0.0002779080000000489,
+      "changed_cells": 81,
+      "move_l2": 5.9687487175169025
+    },
+    {
+      "name": "h088_hardworld",
+      "file": "submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv",
+      "public_lb": 0.5684942019,
+      "family": "hardworld",
+      "role": "dual-head hard-world action field failed public",
+      "available": true,
+      "delta_vs_h057": 0.0007466080000000375,
+      "changed_cells": 980,
+      "move_l2": 11.036867648235338
+    },
+    {
+      "name": "h010_objective_tail",
+      "file": "submission_h010_objective_s1s4_v2_uploadsafe.csv",
+      "public_lb": 0.5781718175,
+      "family": "objective_tail",
+      "role": "S1/S4 objective tail route failed public",
+      "available": true,
+      "delta_vs_h057": 0.01042422360000006,
+      "changed_cells": 1748,
+      "move_l2": 55.67391553233933
+    },
+    {
+      "name": "e216_maskfam_jepa",
+      "file": "submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv",
+      "public_lb": 0.5772865088,
+      "family": "direct_jepa",
+      "role": "masked-family JEPA S2 translator failed public",
+      "available": true,
+      "delta_vs_h057": 0.009538914900000028,
+      "changed_cells": 1396,
+      "move_l2": 55.18429671661992
+    }
+  ],
+  "cell_count": 938,
+  "verdict": {
+    "status": "candidate_ready",
+    "recommended_variant": "private_safe_anti_listener_bridge",
+    "ranking": [
+      {
+        "variant": "private_safe_anti_listener_bridge",
+        "score": 0.4806272806005853,
+        "cells": 30,
+        "predicted_delta": -0.6907101116679806,
+        "upload_safe": true
+      },
+      {
+        "variant": "q2s2_listener_toxicity_route",
+        "score": 0.43759649127137157,
+        "cells": 5,
+        "predicted_delta": -0.011085160395969502,
+        "upload_safe": true
+      },
+      {
+        "variant": "listener_inverse_jackpot",
+        "score": 0.41501037732608836,
+        "cells": 4,
+        "predicted_delta": -0.11493522232837602,
+        "upload_safe": true
+      },
+      {
+        "variant": "listener_toxicity_boundary_probe",
+        "score": 0.40036273798192173,
+        "cells": 7,
+        "predicted_delta": -0.012846207287738809,
+        "upload_safe": true
+      },
+      {
+        "variant": "public_subset_veto_listener_toxicity",
+        "score": 0.3412695281766499,
+        "cells": 8,
+        "predicted_delta": -0.0988115310483991,
+        "upload_safe": true
+      }
+    ],
+    "interpretation": "If an inverse variant wins public, the missing structure was not more listener authority; it was an anti-listener action-health equation."
+  },
+  "variants": {
+    "listener_inverse_jackpot": {
+      "worldview": "The failed listener actions point almost exactly toward the toxic direction; the breakthrough is to move the same row-targets in the opposite direction when the public equation also agrees.",
+      "config": {
+        "name": "listener_inverse_jackpot",
+        "worldview": "The failed listener actions point almost exactly toward the toxic direction; the breakthrough is to move the same row-targets in the opposite direction when the public equation also agrees.",
+        "mode": "inverse_first",
+        "max_cells": 42,
+        "max_cells_per_row": 2,
+        "min_public_gain": 0.48,
+        "min_listener_inverse": 0.68,
+        "min_listener_safety": 0.46,
+        "min_private_safety": 0.28,
+        "max_hardworld_toxicity": 0.7,
+        "max_broad_toxicity": 0.76,
+        "max_energy_delta": 0.05,
+        "max_subject_delta": 0.1,
+        "step_floor": 0.018,
+        "step_scale": 0.4,
+        "step_cap": 0.58,
+        "target_caps": [
+          [
+            "Q1",
+            7
+          ],
+          [
+            "Q2",
+            13
+          ],
+          [
+            "Q3",
+            7
+          ],
+          [
+            "S1",
+            8
+          ],
+          [
+            "S2",
+            12
+          ],
+          [
+            "S3",
+            5
+          ],
+          [
+            "S4",
+            8
+          ]
+        ]
+      },
+      "metrics": {
+        "cells": 4,
+        "rows": 4,
+        "sum_predicted_public_delta": -0.11493522232837602,
+        "mean_listener_inverse": 0.9522921108742004,
+        "mean_listener_safety": 0.5271855010660981,
+        "mean_private_safety": 0.4543652253756205,
+        "mean_hardworld_toxicity": 0.4330428946971812,
+        "mean_broad_toxicity": 0.3587991387212258,
+        "target_counts": {
+          "Q1": 0,
+          "Q2": 0,
+          "Q3": 0,
+          "S1": 1,
+          "S2": 3,
+          "S3": 0,
+          "S4": 0
+        },
+        "source_counts": {
+          "hardworld_sector": 3,
+          "inverse_cross_listener": 1,
+          "subset_tomography": 1
+        }
+      },
+      "submission": {
+        "submission_file": "submission_hsjepa_anti_listener_toxicity_listener_inverse_jackpot_e1f39e61_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_anti_listener_toxicity_listener_inverse_jackpot_e1f39e61_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/anti_listener_toxicity_equation_solver/submission_hsjepa_anti_listener_toxicity_listener_inverse_jackpot_e1f39e61_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_anti_listener_toxicity_listener_inverse_jackpot_e1f39e61_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 4,
+          "upload_safe": true
+        },
+        "changed_cells": 4
+      }
+    },
+    "private_safe_anti_listener_bridge": {
+      "worldview": "The listener-negative axis is useful only after a private/action health filter.  Prefer inverse listener cells that are also route and subject safe.",
+      "config": {
+        "name": "private_safe_anti_listener_bridge",
+        "worldview": "The listener-negative axis is useful only after a private/action health filter.  Prefer inverse listener cells that are also route and subject safe.",
+        "mode": "private_safe",
+        "max_cells": 30,
+        "max_cells_per_row": 2,
+        "min_public_gain": 0.35,
+        "min_listener_inverse": 0.4,
+        "min_listener_safety": 0.48,
+        "min_private_safety": 0.48,
+        "max_hardworld_toxicity": 0.58,
+        "max_broad_toxicity": 0.68,
+        "max_energy_delta": 0.025,
+        "max_subject_delta": 0.05,
+        "step_floor": 0.014,
+        "step_scale": 0.26,
+        "step_cap": 0.38,
+        "target_caps": [
+          [
+            "Q1",
+            5
+          ],
+          [
+            "Q2",
+            9
+          ],
+          [
+            "Q3",
+            5
+          ],
+          [
+            "S1",
+            6
+          ],
+          [
+            "S2",
+            8
+          ],
+          [
+            "S3",
+            3
+          ],
+          [
+            "S4",
+            6
+          ]
+        ]
+      },
+      "metrics": {
+        "cells": 30,
+        "rows": 29,
+        "sum_predicted_public_delta": -0.6907101116679806,
+        "mean_listener_inverse": 0.5025408670931059,
+        "mean_listener_safety": 0.5271855010660981,
+        "mean_private_safety": 0.7890083298254961,
+        "mean_hardworld_toxicity": 0.20025106218617228,
+        "mean_broad_toxicity": 0.42668984163769796,
+        "target_counts": {
+          "Q1": 5,
+          "Q2": 6,
+          "Q3": 3,
+          "S1": 6,
+          "S2": 4,
+          "S3": 3,
+          "S4": 3
+        },
+        "source_counts": {
+          "hardworld_sector": 30,
+          "subset_tomography": 7
+        }
+      },
+      "submission": {
+        "submission_file": "submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/anti_listener_toxicity_equation_solver/submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 30,
+          "upload_safe": true
+        },
+        "changed_cells": 30
+      }
+    },
+    "q2s2_listener_toxicity_route": {
+      "worldview": "The listener-toxic mode is concentrated around intervention/stage translation, so Q2 and S2 should be decoded through a separate anti-listener route.",
+      "config": {
+        "name": "q2s2_listener_toxicity_route",
+        "worldview": "The listener-toxic mode is concentrated around intervention/stage translation, so Q2 and S2 should be decoded through a separate anti-listener route.",
+        "mode": "q2s2",
+        "max_cells": 28,
+        "max_cells_per_row": 2,
+        "min_public_gain": 0.38,
+        "min_listener_inverse": 0.5,
+        "min_listener_safety": 0.48,
+        "min_private_safety": 0.34,
+        "max_hardworld_toxicity": 0.62,
+        "max_broad_toxicity": 0.68,
+        "max_energy_delta": 0.026,
+        "max_subject_delta": 0.052,
+        "step_floor": 0.016,
+        "step_scale": 0.32,
+        "step_cap": 0.46,
+        "target_caps": [
+          [
+            "Q2",
+            15
+          ],
+          [
+            "S2",
+            13
+          ]
+        ]
+      },
+      "metrics": {
+        "cells": 5,
+        "rows": 5,
+        "sum_predicted_public_delta": -0.011085160395969502,
+        "mean_listener_inverse": 0.9608742004264392,
+        "mean_listener_safety": 0.5271855010660981,
+        "mean_private_safety": 0.5367771874803926,
+        "mean_hardworld_toxicity": 0.35558842931510304,
+        "mean_broad_toxicity": 0.2805503190882205,
+        "target_counts": {
+          "Q1": 0,
+          "Q2": 0,
+          "Q3": 0,
+          "S1": 0,
+          "S2": 5,
+          "S3": 0,
+          "S4": 0
+        },
+        "source_counts": {
+          "hardworld_sector": 4,
+          "subset_tomography": 1
+        }
+      },
+      "submission": {
+        "submission_file": "submission_hsjepa_anti_listener_toxicity_q2s2_listener_toxicity_route_61c3a6d1_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_anti_listener_toxicity_q2s2_listener_toxicity_route_61c3a6d1_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/anti_listener_toxicity_equation_solver/submission_hsjepa_anti_listener_toxicity_q2s2_listener_toxicity_route_61c3a6d1_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_anti_listener_toxicity_q2s2_listener_toxicity_route_61c3a6d1_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 5,
+          "upload_safe": true
+        },
+        "changed_cells": 5
+      }
+    },
+    "public_subset_veto_listener_toxicity": {
+      "worldview": "Public subset tomography was directionally right, but it must veto cells that overlap the listener-toxic action field.",
+      "config": {
+        "name": "public_subset_veto_listener_toxicity",
+        "worldview": "Public subset tomography was directionally right, but it must veto cells that overlap the listener-toxic action field.",
+        "mode": "subset_veto",
+        "max_cells": 36,
+        "max_cells_per_row": 2,
+        "min_public_gain": 0.56,
+        "min_listener_inverse": 0.24,
+        "min_listener_safety": 0.5,
+        "min_private_safety": 0.3,
+        "max_hardworld_toxicity": 0.7,
+        "max_broad_toxicity": 0.72,
+        "max_energy_delta": 0.04,
+        "max_subject_delta": 0.08,
+        "step_floor": 0.015,
+        "step_scale": 0.3,
+        "step_cap": 0.44,
+        "target_caps": [
+          [
+            "Q1",
+            6
+          ],
+          [
+            "Q2",
+            10
+          ],
+          [
+            "Q3",
+            6
+          ],
+          [
+            "S1",
+            6
+          ],
+          [
+            "S2",
+            10
+          ],
+          [
+            "S3",
+            4
+          ],
+          [
+            "S4",
+            6
+          ]
+        ]
+      },
+      "metrics": {
+        "cells": 8,
+        "rows": 7,
+        "sum_predicted_public_delta": -0.0988115310483991,
+        "mean_listener_inverse": 0.5306503198294243,
+        "mean_listener_safety": 0.5271855010660981,
+        "mean_private_safety": 0.6301264743469946,
+        "mean_hardworld_toxicity": 0.26778881313511893,
+        "mean_broad_toxicity": 0.5078431711661853,
+        "target_counts": {
+          "Q1": 1,
+          "Q2": 1,
+          "Q3": 2,
+          "S1": 1,
+          "S2": 0,
+          "S3": 1,
+          "S4": 2
+        },
+        "source_counts": {
+          "hardworld_sector": 6,
+          "inverse_cross_listener": 2,
+          "subset_tomography": 8
+        }
+      },
+      "submission": {
+        "submission_file": "submission_hsjepa_anti_listener_toxicity_public_subset_veto_listener_toxicity_b8eac215_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_anti_listener_toxicity_public_subset_veto_listener_toxicity_b8eac215_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/anti_listener_toxicity_equation_solver/submission_hsjepa_anti_listener_toxicity_public_subset_veto_listener_toxicity_b8eac215_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_anti_listener_toxicity_public_subset_veto_listener_toxicity_b8eac215_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 8,
+          "upload_safe": true
+        },
+        "changed_cells": 8
+      }
+    },
+    "listener_toxicity_boundary_probe": {
+      "worldview": "If the listener-toxic field is over-vetoed, a tiny movement on the conflict boundary should expose whether the toxicity is real or a false private-safety prior.",
+      "config": {
+        "name": "listener_toxicity_boundary_probe",
+        "worldview": "If the listener-toxic field is over-vetoed, a tiny movement on the conflict boundary should expose whether the toxicity is real or a false private-safety prior.",
+        "mode": "boundary_probe",
+        "max_cells": 18,
+        "max_cells_per_row": 1,
+        "min_public_gain": 0.42,
+        "min_listener_inverse": 0.54,
+        "min_listener_safety": 0.2,
+        "min_private_safety": 0.2,
+        "max_hardworld_toxicity": 0.88,
+        "max_broad_toxicity": 0.88,
+        "max_energy_delta": 0.06,
+        "max_subject_delta": 0.12,
+        "step_floor": 0.01,
+        "step_scale": 0.18,
+        "step_cap": 0.24,
+        "target_caps": [
+          [
+            "Q1",
+            3
+          ],
+          [
+            "Q2",
+            5
+          ],
+          [
+            "Q3",
+            3
+          ],
+          [
+            "S1",
+            3
+          ],
+          [
+            "S2",
+            5
+          ],
+          [
+            "S3",
+            2
+          ],
+          [
+            "S4",
+            3
+          ]
+        ]
+      },
+      "metrics": {
+        "cells": 7,
+        "rows": 7,
+        "sum_predicted_public_delta": -0.012846207287738809,
+        "mean_listener_inverse": 0.9600213219616205,
+        "mean_listener_safety": 0.5271855010660981,
+        "mean_private_safety": 0.46681872239214234,
+        "mean_hardworld_toxicity": 0.3538574714574784,
+        "mean_broad_toxicity": 0.5018321851145813,
+        "target_counts": {
+          "Q1": 0,
+          "Q2": 0,
+          "Q3": 0,
+          "S1": 1,
+          "S2": 5,
+          "S3": 0,
+          "S4": 1
+        },
+        "source_counts": {
+          "hardworld_sector": 5,
+          "inverse_cross_listener": 1,
+          "subset_tomography": 3
+        }
+      },
+      "submission": {
+        "submission_file": "submission_hsjepa_anti_listener_toxicity_listener_toxicity_boundary_probe_372faa12_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_anti_listener_toxicity_listener_toxicity_boundary_probe_372faa12_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/anti_listener_toxicity_equation_solver/submission_hsjepa_anti_listener_toxicity_listener_toxicity_boundary_probe_372faa12_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_anti_listener_toxicity_listener_toxicity_boundary_probe_372faa12_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 7,
+          "upload_safe": true
+        },
+        "changed_cells": 7
+      }
+    }
+  },
+  "null_stress": [
+    {
+      "variant": "listener_inverse_jackpot",
+      "cells": 4,
+      "status": "ok",
+      "score_actual": 0.5871970965959892,
+      "score_null_mean": 0.4052118065331235,
+      "score_z": 4.046555711298764,
+      "score_p": 0.0,
+      "listener_inverse_actual": 0.9522921108742004,
+      "listener_inverse_null_mean": 0.5485198294243071,
+      "listener_inverse_z": 4.592324738465032,
+      "listener_inverse_p": 0.0,
+      "listener_safety_actual": 0.5271855010660981,
+      "listener_safety_null_mean": 0.4721089552238805,
+      "listener_safety_z": 0.7013156137459565,
+      "listener_safety_p": 0.6272,
+      "private_safety_actual": 0.4543652253756205,
+      "private_safety_null_mean": 0.32447369385259284,
+      "private_safety_z": 0.9845795210183026,
+      "private_safety_p": 0.1644,
+      "hardworld_toxicity_actual": 0.4330428946971812,
+      "hardworld_toxicity_null_mean": 0.5287975442066278,
+      "hardworld_toxicity_z": -0.6100293001844054,
+      "hardworld_toxicity_p": 0.2748,
+      "broad_toxicity_actual": 0.3587991387212258,
+      "broad_toxicity_null_mean": 0.4589918279814304,
+      "broad_toxicity_z": -0.6909725654748768,
+      "broad_toxicity_p": 0.2592,
+      "pred_delta_actual": -0.11493522232837602,
+      "pred_delta_null_mean": -0.008665031305581718,
+      "pred_delta_z": -3.4265787078550525,
+      "pred_delta_p": 0.0256
+    },
+    {
+      "variant": "private_safe_anti_listener_bridge",
+      "cells": 30,
+      "status": "ok",
+      "score_actual": 0.5501040165770636,
+      "score_null_mean": 0.4032647534684027,
+      "score_z": 9.917058276253771,
+      "score_p": 0.0,
+      "listener_inverse_actual": 0.5025408670931059,
+      "listener_inverse_null_mean": 0.4956792537313433,
+      "listener_inverse_z": 0.35919469926590014,
+      "listener_inverse_p": 0.4236,
+      "listener_safety_actual": 0.5271855010660981,
+      "listener_safety_null_mean": 0.5051228500355366,
+      "listener_safety_z": 1.227124814075953,
+      "listener_safety_p": 0.2408,
+      "private_safety_actual": 0.7890083298254961,
+      "private_safety_null_mean": 0.37293019621834145,
+      "private_safety_z": 9.257000109149832,
+      "private_safety_p": 0.0,
+      "hardworld_toxicity_actual": 0.20025106218617228,
+      "hardworld_toxicity_null_mean": 0.45732526989287964,
+      "hardworld_toxicity_z": -4.961632048026769,
+      "hardworld_toxicity_p": 0.0,
+      "broad_toxicity_actual": 0.42668984163769796,
+      "broad_toxicity_null_mean": 0.5224764993687414,
+      "broad_toxicity_z": -1.86574379210471,
+      "broad_toxicity_p": 0.026,
+      "pred_delta_actual": -0.6907101116679806,
+      "pred_delta_null_mean": -0.1187703739779663,
+      "pred_delta_z": -2.781621060179307,
+      "pred_delta_p": 0.0264
+    },
+    {
+      "variant": "q2s2_listener_toxicity_route",
+      "cells": 5,
+      "status": "ok",
+      "score_actual": 0.5526958864879281,
+      "score_null_mean": 0.4064791045967746,
+      "score_z": 3.7529417807003456,
+      "score_p": 0.0,
+      "listener_inverse_actual": 0.9608742004264392,
+      "listener_inverse_null_mean": 0.562751684434968,
+      "listener_inverse_z": 4.611035495653207,
+      "listener_inverse_p": 0.0008,
+      "listener_safety_actual": 0.5271855010660981,
+      "listener_safety_null_mean": 0.4601344562899787,
+      "listener_safety_z": 0.8902176911084163,
+      "listener_safety_p": 0.4808,
+      "private_safety_actual": 0.5367771874803926,
+      "private_safety_null_mean": 0.32596942001764834,
+      "private_safety_z": 1.792214115557847,
+      "private_safety_p": 0.0436,
+      "hardworld_toxicity_actual": 0.35558842931510304,
+      "hardworld_toxicity_null_mean": 0.5300663245928937,
+      "hardworld_toxicity_z": -1.2499045503061266,
+      "hardworld_toxicity_p": 0.1124,
+      "broad_toxicity_actual": 0.2805503190882205,
+      "broad_toxicity_null_mean": 0.4548457832176644,
+      "broad_toxicity_z": -1.3551006429605537,
+      "broad_toxicity_p": 0.0828,
+      "pred_delta_actual": -0.011085160395969502,
+      "pred_delta_null_mean": -0.008643791963083052,
+      "pred_delta_z": -0.07656949857370787,
+      "pred_delta_p": 0.3176
+    },
+    {
+      "variant": "public_subset_veto_listener_toxicity",
+      "cells": 8,
+      "status": "ok",
+      "score_actual": 0.5672471000918446,
+      "score_null_mean": 0.39608936474188405,
+      "score_z": 5.8563299183325155,
+      "score_p": 0.0,
+      "listener_inverse_actual": 0.5306503198294243,
+      "listener_inverse_null_mean": 0.4871623134328358,
+      "listener_inverse_z": 1.3664132269138756,
+      "listener_inverse_p": 0.1944,
+      "listener_safety_actual": 0.5271855010660981,
+      "listener_safety_null_mean": 0.5084054904051173,
+      "listener_safety_z": 0.5771576974744715,
+      "listener_safety_p": 0.7284,
+      "private_safety_actual": 0.6301264743469946,
+      "private_safety_null_mean": 0.35402590859371474,
+      "private_safety_z": 3.31892777369636,
+      "private_safety_p": 0.0004,
+      "hardworld_toxicity_actual": 0.26778881313511893,
+      "hardworld_toxicity_null_mean": 0.4503255687503552,
+      "hardworld_toxicity_z": -1.8557213922192863,
+      "hardworld_toxicity_p": 0.0348,
+      "broad_toxicity_actual": 0.5078431711661853,
+      "broad_toxicity_null_mean": 0.5628749666149471,
+      "broad_toxicity_z": -0.5508454863031232,
+      "broad_toxicity_p": 0.3048,
+      "pred_delta_actual": -0.0988115310483991,
+      "pred_delta_null_mean": -0.0457743164399606,
+      "pred_delta_z": -0.40116560566120474,
+      "pred_delta_p": 0.1144
+    },
+    {
+      "variant": "listener_toxicity_boundary_probe",
+      "cells": 7,
+      "status": "ok",
+      "score_actual": 0.5515095951687661,
+      "score_null_mean": 0.4026472448933966,
+      "score_z": 4.493813506151354,
+      "score_p": 0.0,
+      "listener_inverse_actual": 0.9600213219616205,
+      "listener_inverse_null_mean": 0.547139993908011,
+      "listener_inverse_z": 6.17703063215852,
+      "listener_inverse_p": 0.0,
+      "listener_safety_actual": 0.5271855010660981,
+      "listener_safety_null_mean": 0.4706591836734695,
+      "listener_safety_z": 0.9384527517352963,
+      "listener_safety_p": 0.4352,
+      "private_safety_actual": 0.46681872239214234,
+      "private_safety_null_mean": 0.32063784410367174,
+      "private_safety_z": 1.5058884096354106,
+      "private_safety_p": 0.074,
+      "hardworld_toxicity_actual": 0.3538574714574784,
+      "hardworld_toxicity_null_mean": 0.5221959319207872,
+      "hardworld_toxicity_z": -1.455826172791848,
+      "hardworld_toxicity_p": 0.076,
+      "broad_toxicity_actual": 0.5018321851145813,
+      "broad_toxicity_null_mean": 0.4688273358771918,
+      "broad_toxicity_z": 0.3043605042414804,
+      "broad_toxicity_p": 0.6236,
+      "pred_delta_actual": -0.012846207287738809,
+      "pred_delta_null_mean": -0.017103849090996385,
+      "pred_delta_z": 0.0667068598021665,
+      "pred_delta_p": 0.3792
+    }
+  ],
+  "outputs": {
+    "readout_json": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/anti_listener_toxicity_equation_solver/anti_listener_toxicity_equation_readout.json",
+    "readout_md": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/anti_listener_toxicity_equation_solver/anti_listener_toxicity_equation_readout_ko.md",
+    "cells_csv": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/anti_listener_toxicity_equation_solver/anti_listener_toxicity_equation_cells.csv",
+    "selected_csv": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/anti_listener_toxicity_equation_solver/anti_listener_toxicity_equation_selected_cells.csv",
+    "null_csv": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/anti_listener_toxicity_equation_solver/anti_listener_toxicity_equation_null_stress.csv"
+  }
+}

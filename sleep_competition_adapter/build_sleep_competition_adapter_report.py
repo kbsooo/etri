@@ -66,6 +66,11 @@ PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON = (
     / "public_private_subset_tomography_solver"
     / "public_private_subset_tomography_readout.json"
 )
+ANTI_LISTENER_TOXICITY_JSON = (
+    OUT
+    / "anti_listener_toxicity_equation_solver"
+    / "anti_listener_toxicity_equation_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
@@ -120,6 +125,7 @@ def require_inputs() -> None:
         LB_CONDITIONED_RESPONSIBILITY_JSON,
         MIXTURE_LISTENER_RESPONSIBILITY_JSON,
         PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON,
+        ANTI_LISTENER_TOXICITY_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -152,6 +158,7 @@ def build_big_bets(
     lb_conditioned_responsibility: dict[str, object],
     mixture_listener_responsibility: dict[str, object],
     public_private_subset_tomography: dict[str, object],
+    anti_listener_toxicity: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -244,6 +251,11 @@ def build_big_bets(
         if isinstance(public_private_subset_tomography.get("verdict"), dict)
         else {}
     )
+    anti_listener_verdict = (
+        anti_listener_toxicity.get("verdict", {})
+        if isinstance(anti_listener_toxicity.get("verdict"), dict)
+        else {}
+    )
     action_ablation_verdict = (
         action_decoder_ablation.get("verdict", {})
         if isinstance(action_decoder_ablation.get("verdict"), dict)
@@ -265,6 +277,29 @@ def build_big_bets(
         else {}
     )
     bets = [
+        {
+            "id": "anti_listener_toxicity_equation_solver",
+            "name": "Anti-Listener Toxicity Equation Solver",
+            "worldview": "Listener responsibility is not an action generator; failed listener releases define a toxic direction that must be inverted or vetoed by action-health.",
+            "core_modules_exercised": [
+                "listener_responsibility",
+                "action_health_decoder",
+                "external_listener_tomography",
+                "public_private_equation",
+                "anti_shortcut_validation",
+            ],
+            "adapter_move": "Use CrossListener, target-listener lift, H088 hard-world, and other public-bad anchors as toxic teachers, then release inverse row-target moves that also satisfy private-safety and route/subject invariants.",
+            "why_big": "If this wins LB, HS-JEPA gains a stronger paper thesis: a listener can be informative precisely because it failed as a generator, and action-health must learn anti-listener equations.",
+            "expected_public_lb_delta_if_true": -0.014,
+            "latest_probe_status": anti_listener_verdict.get("status"),
+            "latest_probe_evidence": {
+                "recommended_variant": anti_listener_verdict.get("recommended_variant"),
+                "ranking": anti_listener_verdict.get("ranking"),
+                "source_fit": anti_listener_toxicity.get("source_fit"),
+                "cell_count": anti_listener_toxicity.get("cell_count"),
+            },
+            "kill_criterion": "Inverse, private-safe, Q2/S2, subset-veto, and boundary-probe variants all fail public LB, meaning listener failures are diagnostic but not invertible action-health equations.",
+        },
         {
             "id": "public_private_subset_tomography_solver",
             "name": "Public/Private Subset Tomography Solver",
@@ -659,14 +694,15 @@ def build_big_bets(
         },
     ]
     priority_order = {
-        "public_private_subset_tomography_solver": 0,
-        "mixture_listener_responsibility_solver": 1,
-        "lb_conditioned_responsibility_solver": 2,
-        "negative_tangent_invariant_projection_solver": 3,
-        "spectral_public_tangent_solver": 4,
-        "counterfactual_listener_dropout_solver": 5,
-        "action_decoder_ablation_suite": 6,
-        "og_only_assignment_teacher": 7,
+        "anti_listener_toxicity_equation_solver": 0,
+        "public_private_subset_tomography_solver": 1,
+        "mixture_listener_responsibility_solver": 2,
+        "lb_conditioned_responsibility_solver": 3,
+        "negative_tangent_invariant_projection_solver": 4,
+        "spectral_public_tangent_solver": 5,
+        "counterfactual_listener_dropout_solver": 6,
+        "action_decoder_ablation_suite": 7,
+        "og_only_assignment_teacher": 8,
     }
     return sorted(
         bets,
@@ -705,6 +741,7 @@ def build_report() -> dict[str, object]:
     lb_conditioned_responsibility = read_json(LB_CONDITIONED_RESPONSIBILITY_JSON)
     mixture_listener_responsibility = read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON)
     public_private_subset_tomography = read_json(PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON)
+    anti_listener_toxicity = read_json(ANTI_LISTENER_TOXICITY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -734,6 +771,7 @@ def build_report() -> dict[str, object]:
     lb_responsibility_verdict = lb_conditioned_responsibility.get("verdict", {})
     mixture_listener_verdict = mixture_listener_responsibility.get("verdict", {})
     subset_tomography_verdict = public_private_subset_tomography.get("verdict", {})
+    anti_listener_verdict = anti_listener_toxicity.get("verdict", {})
     action_decoder_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -1074,6 +1112,35 @@ def build_report() -> dict[str, object]:
                 if isinstance(item, dict)
             },
         },
+        "anti_listener_toxicity_equation_solver": {
+            "experiment": anti_listener_toxicity.get("experiment"),
+            "architecture_role": anti_listener_toxicity.get("architecture_role"),
+            "thesis": anti_listener_toxicity.get("thesis"),
+            "status": anti_listener_verdict.get("status"),
+            "recommended_variant": anti_listener_verdict.get("recommended_variant"),
+            "interpretation": anti_listener_verdict.get("interpretation"),
+            "toxic_anchor_count": sum(
+                1 for item in anti_listener_toxicity.get("toxic_anchors", []) if item.get("available")
+            ),
+            "cell_count": anti_listener_toxicity.get("cell_count"),
+            "source_fit": anti_listener_toxicity.get("source_fit"),
+            "ranking": anti_listener_verdict.get("ranking"),
+            "variants": {
+                name: {
+                    "submission_file": item.get("submission", {}).get("submission_file"),
+                    "changed_cells": item.get("submission", {}).get("changed_cells"),
+                    "mean_listener_inverse": item.get("metrics", {}).get("mean_listener_inverse"),
+                    "mean_listener_safety": item.get("metrics", {}).get("mean_listener_safety"),
+                    "mean_private_safety": item.get("metrics", {}).get("mean_private_safety"),
+                    "mean_hardworld_toxicity": item.get("metrics", {}).get("mean_hardworld_toxicity"),
+                    "mean_broad_toxicity": item.get("metrics", {}).get("mean_broad_toxicity"),
+                    "sum_predicted_public_delta": item.get("metrics", {}).get("sum_predicted_public_delta"),
+                    "upload_safe": item.get("submission", {}).get("validation", {}).get("upload_safe"),
+                }
+                for name, item in anti_listener_toxicity.get("variants", {}).items()
+                if isinstance(item, dict)
+            },
+        },
         "action_decoder_ablation_suite": {
             "status": action_decoder_ablation_verdict.get("status"),
             "recommended_lb_sensor": action_decoder_ablation_verdict.get("recommended_lb_sensor"),
@@ -1285,6 +1352,21 @@ def build_report_markdown(report: dict[str, object]) -> str:
             f"`{fmt(item['mean_toxicity'], 4)}` | "
             f"`{fmt(item['sum_predicted_public_delta'], 5)}` | "
             f"`{fmt(item['bad_tangent_cosine'], 4)}` | `{item['upload_safe']}` |"
+        )
+
+    anti_listener_rows = [
+        "| Variant | Output | Changed cells | Listener inverse | Listener safety | Private safe | Hard tox | Broad tox | Pred delta | Upload-safe |",
+        "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for variant, item in report["anti_listener_toxicity_equation_solver"]["variants"].items():
+        anti_listener_rows.append(
+            f"| `{variant}` | `{item['submission_file']}` | `{item['changed_cells']}` | "
+            f"`{fmt(item['mean_listener_inverse'], 4)}` | "
+            f"`{fmt(item['mean_listener_safety'], 4)}` | "
+            f"`{fmt(item['mean_private_safety'], 4)}` | "
+            f"`{fmt(item['mean_hardworld_toxicity'], 4)}` | "
+            f"`{fmt(item['mean_broad_toxicity'], 4)}` | "
+            f"`{fmt(item['sum_predicted_public_delta'], 5)}` | `{item['upload_safe']}` |"
         )
 
     return "\n".join(
@@ -1522,6 +1604,20 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             "이 실험은 scalar public feedback을 그대로 action truth로 쓰지 않고, public subset inclusion, hidden label direction, private-safety, toxicity를 분리한다. 추천 `subset_label_direction_jackpot`이 좋아지면 public subset과 label direction 분해가 action-grade라는 뜻이고, `qs_dual_subset_route`가 상대적으로 낫다면 Q/S listener route 분리가 더 중요한 병목이라는 뜻이다.",
             "",
+            "## Anti-Listener Toxicity Equation Solver",
+            "",
+            f"- Status: `{report['anti_listener_toxicity_equation_solver']['status']}`",
+            f"- Recommended variant: `{report['anti_listener_toxicity_equation_solver']['recommended_variant']}`",
+            f"- Toxic anchors: `{report['anti_listener_toxicity_equation_solver']['toxic_anchor_count']}`",
+            f"- Cell count: `{report['anti_listener_toxicity_equation_solver']['cell_count']}`",
+            f"- Source responsibility LOO correlation: `{fmt(report['anti_listener_toxicity_equation_solver']['source_fit'].get('loo_corr'), 4)}`",
+            "",
+            report["anti_listener_toxicity_equation_solver"]["thesis"],
+            "",
+            *anti_listener_rows,
+            "",
+            "이 실험은 CrossListener/H088/target-listener 실패를 단순 폐기하지 않고, 실패한 listener action을 독성 teacher로 사용한다. 추천 `private_safe_anti_listener_bridge`가 public에서 살아나면 HS-JEPA의 action-health 모듈은 listener를 더 믿는 장치가 아니라, listener가 틀린 방향을 말할 때 그 반대 방향을 안전하게 release하는 장치라는 논문 주장이 강해진다.",
+            "",
             "## Action Decoder Ablation Suite",
             "",
             f"- Status: `{report['action_decoder_ablation_suite']['status']}`",
@@ -1614,19 +1710,16 @@ def build_big_bet_markdown(bets: list[dict[str, object]]) -> str:
             "",
             "## 우선순위",
             "",
-            "1. `LB-Conditioned Responsibility Solver`: public scalar listener equation이 spectral anti-tangent보다 action-grade인지 검증한다.",
-            "2. `Negative Tangent Invariant Projection Solver`: negative representation이 실제 action-grade가 되려면 invariant projection이 필요한지 검증한다.",
-            "3. `Spectral Public-Tangent Solver`: H057 이후 실패들이 공유하는 저차원 public-bad direction이 invertible action equation인지 검증한다.",
-            "4. `Counterfactual Listener-Dropout Solver`: 같은 high-survival action을 믿을지 뒤집을지 가르는 A/B 센서다.",
-            "5. `Action Decoder Ablation Suite`: action decoder order가 public sensor와 맞는지 큰 구조로 검증한다.",
-            "6. `OG-only Human-State Assignment Teacher`: 성공하면 HS-JEPA의 범용성이 가장 크게 올라간다.",
-            "7. `Core-Health Calibrated Release`: dataset-free action-health failure mode가 실제 adapter release에 전이되는지 검증한다.",
-            "8. `Core-Mediated Action Release`: generic HS-JEPA core가 실제 sleep-adapter action을 release할 수 있는지 검증한다.",
-            "9. `Decoder Boundary Tomography Solver`: strict jury가 너무 보수적인지 직접 찌르는 다음 제출 센서다.",
-            "10. `Cross-Listener Transport Decoder`: 실패한 listener lift를 action generator가 아니라 transport calibrator로 재사용할 수 있는지 본다.",
-            "11. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
-            "12. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.",
-            "13. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.",
+            "1. `Anti-Listener Toxicity Equation Solver`: 실패한 listener release를 독성 teacher로 뒤집을 수 있는지 검증한다.",
+            "2. `Public/Private Subset Tomography Solver`: scalar public feedback을 subset inclusion과 hidden label direction으로 분해한다.",
+            "3. `Mixture-Listener Responsibility Solver`: public response가 여러 latent listener head의 합성인지 검증한다.",
+            "4. `LB-Conditioned Responsibility Solver`: public scalar listener equation이 action-grade인지 검증한다.",
+            "5. `Negative Tangent Invariant Projection Solver`: negative representation이 실제 action-grade가 되려면 invariant projection이 필요한지 검증한다.",
+            "6. `Spectral Public-Tangent Solver`: H057 이후 실패들이 공유하는 저차원 public-bad direction이 invertible action equation인지 검증한다.",
+            "7. `Counterfactual Listener-Dropout Solver`: 같은 high-survival action을 믿을지 뒤집을지 가르는 A/B 센서다.",
+            "8. `Action Decoder Ablation Suite`: action decoder order가 public sensor와 맞는지 큰 구조로 검증한다.",
+            "9. `OG-only Human-State Assignment Teacher`: 성공하면 HS-JEPA의 범용성이 가장 크게 올라간다.",
+            "10. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
             "",
         ]
     )
@@ -1654,6 +1747,7 @@ def run() -> dict[str, object]:
         read_json(LB_CONDITIONED_RESPONSIBILITY_JSON),
         read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON),
         read_json(PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON),
+        read_json(ANTI_LISTENER_TOXICITY_JSON),
         read_json(ACTION_DECODER_ABLATION_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),

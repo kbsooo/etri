@@ -14205,13 +14205,132 @@
       }
     }
   },
+  "anti_listener_toxicity_equation_solver": {
+    "experiment": "Anti-Listener Toxicity Equation Solver",
+    "architecture_role": "competition_adapter_big_bet",
+    "thesis": "Listener responsibility is not an action generator.  Failed listener releases define an anti-listener toxicity field, and HS-JEPA should release only row-target moves that invert that field while preserving public/private action health.",
+    "status": "candidate_ready",
+    "recommended_variant": "private_safe_anti_listener_bridge",
+    "interpretation": "If an inverse variant wins public, the missing structure was not more listener authority; it was an anti-listener action-health equation.",
+    "toxic_anchor_count": 5,
+    "cell_count": 938,
+    "source_fit": {
+      "anchor_count": 26,
+      "feature_count": 864,
+      "ridge_values": [
+        0.35,
+        0.8,
+        1.6,
+        3.2
+      ],
+      "loo_corr": 0.7681909332400592,
+      "loo_mse": 0.5863256480553543,
+      "loss_delta_min": 0.00015723090000008266,
+      "loss_delta_max": 0.013479733900000013,
+      "loss_delta_mean": 0.007230148834615433
+    },
+    "ranking": [
+      {
+        "variant": "private_safe_anti_listener_bridge",
+        "score": 0.4806272806005853,
+        "cells": 30,
+        "predicted_delta": -0.6907101116679806,
+        "upload_safe": true
+      },
+      {
+        "variant": "q2s2_listener_toxicity_route",
+        "score": 0.43759649127137157,
+        "cells": 5,
+        "predicted_delta": -0.011085160395969502,
+        "upload_safe": true
+      },
+      {
+        "variant": "listener_inverse_jackpot",
+        "score": 0.41501037732608836,
+        "cells": 4,
+        "predicted_delta": -0.11493522232837602,
+        "upload_safe": true
+      },
+      {
+        "variant": "listener_toxicity_boundary_probe",
+        "score": 0.40036273798192173,
+        "cells": 7,
+        "predicted_delta": -0.012846207287738809,
+        "upload_safe": true
+      },
+      {
+        "variant": "public_subset_veto_listener_toxicity",
+        "score": 0.3412695281766499,
+        "cells": 8,
+        "predicted_delta": -0.0988115310483991,
+        "upload_safe": true
+      }
+    ],
+    "variants": {
+      "listener_inverse_jackpot": {
+        "submission_file": "submission_hsjepa_anti_listener_toxicity_listener_inverse_jackpot_e1f39e61_uploadsafe.csv",
+        "changed_cells": 4,
+        "mean_listener_inverse": 0.9522921108742004,
+        "mean_listener_safety": 0.5271855010660981,
+        "mean_private_safety": 0.4543652253756205,
+        "mean_hardworld_toxicity": 0.4330428946971812,
+        "mean_broad_toxicity": 0.3587991387212258,
+        "sum_predicted_public_delta": -0.11493522232837602,
+        "upload_safe": true
+      },
+      "private_safe_anti_listener_bridge": {
+        "submission_file": "submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv",
+        "changed_cells": 30,
+        "mean_listener_inverse": 0.5025408670931059,
+        "mean_listener_safety": 0.5271855010660981,
+        "mean_private_safety": 0.7890083298254961,
+        "mean_hardworld_toxicity": 0.20025106218617228,
+        "mean_broad_toxicity": 0.42668984163769796,
+        "sum_predicted_public_delta": -0.6907101116679806,
+        "upload_safe": true
+      },
+      "q2s2_listener_toxicity_route": {
+        "submission_file": "submission_hsjepa_anti_listener_toxicity_q2s2_listener_toxicity_route_61c3a6d1_uploadsafe.csv",
+        "changed_cells": 5,
+        "mean_listener_inverse": 0.9608742004264392,
+        "mean_listener_safety": 0.5271855010660981,
+        "mean_private_safety": 0.5367771874803926,
+        "mean_hardworld_toxicity": 0.35558842931510304,
+        "mean_broad_toxicity": 0.2805503190882205,
+        "sum_predicted_public_delta": -0.011085160395969502,
+        "upload_safe": true
+      },
+      "public_subset_veto_listener_toxicity": {
+        "submission_file": "submission_hsjepa_anti_listener_toxicity_public_subset_veto_listener_toxicity_b8eac215_uploadsafe.csv",
+        "changed_cells": 8,
+        "mean_listener_inverse": 0.5306503198294243,
+        "mean_listener_safety": 0.5271855010660981,
+        "mean_private_safety": 0.6301264743469946,
+        "mean_hardworld_toxicity": 0.26778881313511893,
+        "mean_broad_toxicity": 0.5078431711661853,
+        "sum_predicted_public_delta": -0.0988115310483991,
+        "upload_safe": true
+      },
+      "listener_toxicity_boundary_probe": {
+        "submission_file": "submission_hsjepa_anti_listener_toxicity_listener_toxicity_boundary_probe_372faa12_uploadsafe.csv",
+        "changed_cells": 7,
+        "mean_listener_inverse": 0.9600213219616205,
+        "mean_listener_safety": 0.5271855010660981,
+        "mean_private_safety": 0.46681872239214234,
+        "mean_hardworld_toxicity": 0.3538574714574784,
+        "mean_broad_toxicity": 0.5018321851145813,
+        "sum_predicted_public_delta": -0.012846207287738809,
+        "upload_safe": true
+      }
+    }
+  },
   "action_decoder_ablation_suite": {
-    "status": "action_decoder_ablation_ready_decoder_jury_leads",
+    "status": "action_decoder_ablation_ready_anti_listener_toxicity_leads",
     "recommended_lb_sensor": {
-      "family": "decoder_order_jury",
-      "variant": "family_supermajority",
-      "submission_file": "submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
-      "priority": 1.394366527938867
+      "family": "anti_listener_toxicity",
+      "variant": "private_safe_anti_listener_bridge",
+      "submission_file": "submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv",
+      "priority": 1.5605000000000002
     },
     "big_bet_sensor": {
       "family": "route_frontier",
@@ -14221,6 +14340,30 @@
     },
     "reason": "The suite ranks action decoders by route-null survival, toxicity safety, upload safety, and action size. It is a submission-slot prioritizer, not a public-LB predictor.",
     "top_ranked": [
+      {
+        "family": "anti_listener_toxicity",
+        "variant": "private_safe_anti_listener_bridge",
+        "submission_file": "submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv",
+        "upload_safe": true,
+        "changed_cells": 30,
+        "architecture_claim": "failed listener-derived public actions define negative teachers; inverse moves need private-safety and toxicity veto before release",
+        "decoder_order": "negative_listener_first_then_private_safe_release",
+        "core_modules_exercised": "listener_responsibility,action_health_decoder,external_listener_tomography,public_private_equation,anti_shortcut_validation",
+        "public_lb_observed": null,
+        "route_z": 9.917058276253771,
+        "matched_route_z": 9.257000109149832,
+        "matched_score_z": 15.811562220332895,
+        "safety_z": 9.257000109149832,
+        "toxicity_clear": true,
+        "broad_hard_conflict_exposure": 0.42668984163769796,
+        "hardworld_top_toxic_exposure": 0.20025106218617228,
+        "route_boundary": "anti_listener_private_safe_supported",
+        "safety_boundary": "private_safe_inverse_supported",
+        "lb_sensor_priority": 1.5605000000000002,
+        "module_ablation_interpretation": "Uses public-failed listener actions as negative target representations. If this family wins public LB, listener responsibility is useful mainly as an anti-listener toxicity equation.",
+        "ablation_rank": 1,
+        "public_delta_vs_best": null
+      },
       {
         "family": "decoder_order_jury",
         "variant": "family_supermajority",
@@ -14242,7 +14385,7 @@
         "safety_boundary": "jury_balance_supported",
         "lb_sensor_priority": 1.394366527938867,
         "module_ablation_interpretation": "Treats route-first and factorized action-health as independent listeners. If this wins LB, HS-JEPA action decoding is a cross-decoder responsibility jury.",
-        "ablation_rank": 1,
+        "ablation_rank": 2,
         "public_delta_vs_best": null
       },
       {
@@ -14266,30 +14409,6 @@
         "safety_boundary": "jury_balance_supported",
         "lb_sensor_priority": 1.394366527938867,
         "module_ablation_interpretation": "Treats route-first and factorized action-health as independent listeners. If this wins LB, HS-JEPA action decoding is a cross-decoder responsibility jury.",
-        "ablation_rank": 2,
-        "public_delta_vs_best": null
-      },
-      {
-        "family": "core_release_ablation",
-        "variant": "full_core_reference",
-        "submission_file": "submission_hsjepa_core_ablation_full_core_reference_513175a1_uploadsafe.csv",
-        "upload_safe": true,
-        "changed_cells": 29,
-        "architecture_claim": "HS-JEPA core modules must change real sleep-adapter action release when ablated",
-        "decoder_order": "core_module_removed_release",
-        "core_modules_exercised": "listener_responsibility,action_health_decoder,invariant_energy",
-        "public_lb_observed": null,
-        "route_z": 3.0875582588947736,
-        "matched_route_z": 2.8935866256811553,
-        "matched_score_z": 3.0875582588947736,
-        "safety_z": 2.4226226932597625,
-        "toxicity_clear": true,
-        "broad_hard_conflict_exposure": null,
-        "hardworld_top_toxic_exposure": null,
-        "route_boundary": "core_full_reference",
-        "safety_boundary": "core_invariant_supported",
-        "lb_sensor_priority": 1.1829596076794129,
-        "module_ablation_interpretation": "Removes or isolates HS-JEPA core modules on 29 real adapter cells. If a removed-module candidate beats full-core on public LB, that module is over-constraining the adapter; if it loses, the full HS-JEPA release boundary is empirically supported.",
         "ablation_rank": 3,
         "public_delta_vs_best": null
       }
@@ -14303,7 +14422,7 @@
       },
       {
         "claim": "Invariant route energy is currently the sharper action-ordering signal.",
-        "evidence": "Top ablation row is decoder_order_jury.family_supermajority with priority 1.3944 and matched_score_z=5.2815.",
+        "evidence": "Top ablation row is anti_listener_toxicity.private_safe_anti_listener_bridge with priority 1.5605 and matched_score_z=15.8116.",
         "status": "alive",
         "next_test": "Use route-frontier as the next LB sensor; interpret failure as public/private toxicity dominance."
       },
@@ -14360,6 +14479,12 @@
         "evidence": "Diagnostic cross-listener row is listener_confirmed_shadow with transport_z=3.2686, listener_z=3.3448, action_z=1.6251, priority=1.1367, observed_public_lb=0.5684860446, and delta_vs_best=0.0007384507.",
         "status": "failed_as_release_gate",
         "next_test": "Do not use listener-confirmed shadow release as the final gate. Use listener posterior as an anti-listener/toxicity diagnostic against H057-positive row-state cells."
+      },
+      {
+        "claim": "Failed listener actions can become anti-listener toxicity teachers.",
+        "evidence": "Best anti-listener row is private_safe_anti_listener_bridge with score_z=9.9171, private_safety_z=9.2570, matched_score_z=15.8116, priority=1.5605, and changed_cells=30.",
+        "status": "alive",
+        "next_test": "Submit the private-safe anti-listener bridge if the next slot is for information gain; failure means listener failures are diagnostic but not invertible."
       }
     ]
   },

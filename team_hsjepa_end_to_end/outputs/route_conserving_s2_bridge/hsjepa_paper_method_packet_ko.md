@@ -33,7 +33,7 @@ Sleep competition adapter:
 
 This adapter converts HS-JEPA Core into a sleep-log competition system by supplying Q/S listeners, a route invariant, public-sensor action evidence, and upload-safe sparse row-target decoding.
 
-이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 새 hard-world probe는 broad toxicity와 H088 toxicity가 역상관될 수 있음을 보여주므로, action-health는 단일 위험 점수가 아니라 factorized energy head로 다루어야 한다. 이후 core-health calibrated release는 dataset-free core benchmark에서 action-health를 제거했을 때 false positive가 늘어난다는 실패 패턴을 실제 adapter release prior로 사용한다. cross-listener transport는 target-listener lift가 direct action generator로는 실패했다는 negative sensor를 보존하고, listener posterior를 route/fusion/core-safe action의 transport calibrator로만 사용한다. counterfactual listener-dropout은 listener 하나를 가려도 같은 row-target action이 살아남는지 묻고, 실패한 public sensor들을 버리는 대신 action-toxicity label로 사용한다. spectral public-tangent solver는 실패한 public action들을 저차원 negative representation으로 압축한 뒤 anti-tangent와 orthogonal residual release를 비교한다. negative tangent invariant projection은 여기서 한 단계 더 나아가, 그 반대 방향 action을 target-route/subject-prior invariant 위로 투영해야만 action-grade가 된다는 주장을 테스트한다. LB-conditioned responsibility solver는 public LB라는 scalar 외부 listener가 흘린 관측값에서 row-target action responsibility를 역추정한다. public/private subset tomography는 scalar feedback을 한 번 더 분해해 `public subset inclusion × hidden label direction`으로 해석하고, private-safety/toxicity head가 그 action을 외부 listener 밖에서도 보존할 수 있는지 묻는다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant/anti-shortcut/negative-representation/responsibility/subset-tomography 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.
+이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 새 hard-world probe는 broad toxicity와 H088 toxicity가 역상관될 수 있음을 보여주므로, action-health는 단일 위험 점수가 아니라 factorized energy head로 다루어야 한다. 이후 core-health calibrated release는 dataset-free core benchmark에서 action-health를 제거했을 때 false positive가 늘어난다는 실패 패턴을 실제 adapter release prior로 사용한다. cross-listener transport는 target-listener lift가 direct action generator로는 실패했다는 negative sensor를 보존하고, listener posterior를 route/fusion/core-safe action의 transport calibrator로만 사용한다. counterfactual listener-dropout은 listener 하나를 가려도 같은 row-target action이 살아남는지 묻고, 실패한 public sensor들을 버리는 대신 action-toxicity label로 사용한다. spectral public-tangent solver는 실패한 public action들을 저차원 negative representation으로 압축한 뒤 anti-tangent와 orthogonal residual release를 비교한다. negative tangent invariant projection은 여기서 한 단계 더 나아가, 그 반대 방향 action을 target-route/subject-prior invariant 위로 투영해야만 action-grade가 된다는 주장을 테스트한다. LB-conditioned responsibility solver는 public LB라는 scalar 외부 listener가 흘린 관측값에서 row-target action responsibility를 역추정한다. public/private subset tomography는 scalar feedback을 한 번 더 분해해 `public subset inclusion × hidden label direction`으로 해석하고, private-safety/toxicity head가 그 action을 외부 listener 밖에서도 보존할 수 있는지 묻는다. anti-listener toxicity equation은 여기서 다시 한 단계 나아가, public에서 실패한 listener-derived action을 negative teacher로 보며 그 반대 방향도 private-safety와 hard-world/broad toxicity veto를 통과할 때만 release한다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant/anti-shortcut/negative-representation/responsibility/subset-tomography/anti-listener 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.
 
 ## Core / Adapter Evidence
 
@@ -44,7 +44,7 @@ This adapter converts HS-JEPA Core into a sleep-log competition system by supply
 - Core/adapter boundary audit: `core_adapter_boundary_verified` (`6/6` checks)
 - Core operational violations: imports `0`, strings `0`
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
-- Big-bet queue: `big_bet_queue_ready` (`20` bets)
+- Big-bet queue: `big_bet_queue_ready` (`21` bets)
 
 ## Generality
 
@@ -128,6 +128,10 @@ partial human context
 - Subset tomography recommended variant: `subset_label_direction_jackpot`
 - Subset tomography source LOO corr: `0.7300`
 - Subset tomography cells: `115`
+- Anti-listener toxicity equation: `candidate_ready`
+- Anti-listener recommended variant: `private_safe_anti_listener_bridge`
+- Anti-listener source LOO corr: `0.7682`
+- Anti-listener candidate cells: `938`
 - Listener-invariant probe: `listener_invariant_decoder_not_ready`
 - Listener-route Spearman: `-0.0313`
 - Private-safe toxicity probe: `toxicity_field_promising_with_hardworld_gap`
@@ -166,9 +170,10 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 16. Project negative-representation actions onto target-route and subject-prior invariants before release.
 17. Estimate scalar-listener responsibility from external outcome observations when explicit row-target labels are unavailable.
 18. Factor scalar feedback into public subset inclusion and hidden label direction when the external listener is only partially observed.
-19. Decode bounded actions that improve listener fit while preserving the invariant.
-20. Reject shortcuts with cohort/time/group/null stress tests.
-21. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.
+19. Treat failed listener-derived actions as negative teachers and release inverse moves only after private-safety and toxicity veto.
+20. Decode bounded actions that improve listener fit while preserving the invariant.
+21. Reject shortcuts with cohort/time/group/null stress tests.
+22. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.
 ```
 
 ## Evidence Snapshot
@@ -206,7 +211,8 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 - LB-conditioned responsibility: `candidate_ready`, recommended `pure_lb_gradient_jackpot`, file `submission_hsjepa_lb_responsibility_pure_lb_gradient_jackpot_f0a8129d_uploadsafe.csv`, LOO corr `0.7300`, changed cells `24`, predicted delta `-7.11879`, energy delta `-0.03290`, bad cosine `0.0551`
 - Mixture-listener responsibility: `candidate_ready`, recommended `target_listener_split_qs`, file `submission_hsjepa_mixture_listener_target_listener_split_qs_7a383104_uploadsafe.csv`, mixture LOO corr `0.9578` vs scalar `0.7300`, changed cells `30`, scalar delta `-4.34421`, mode delta `-0.53670`, conflict `0.2003`, bad cosine `-0.0042`
 - Public/private subset tomography: `candidate_ready`, recommended `subset_label_direction_jackpot`, file `submission_hsjepa_subset_tomography_subset_label_direction_jackpot_d12af8ff_uploadsafe.csv`, source LOO corr `0.7300`, cells `115`, changed cells `18`, predicted delta `-4.92956`, inclusion `0.7612`, label confidence `0.8720`, private safety `0.5847`, toxicity `0.4255`
-- Action decoder ablation: `action_decoder_ablation_ready_decoder_jury_leads`, recommended `{'family': 'decoder_order_jury', 'variant': 'family_supermajority', 'submission_file': 'submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv', 'priority': 1.394366527938867}`, big bet `{'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572}`
+- Anti-listener toxicity equation: `candidate_ready`, recommended `private_safe_anti_listener_bridge`, file `submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv`, source LOO corr `0.7682`, candidate cells `938`, changed cells `30`, predicted delta `-0.69071`, listener inverse `0.5025`, private safety `0.7890`, hard-world toxicity `0.2003`, broad toxicity `0.4267`
+- Action decoder ablation: `action_decoder_ablation_ready_anti_listener_toxicity_leads`, recommended `{'family': 'anti_listener_toxicity', 'variant': 'private_safe_anti_listener_bridge', 'submission_file': 'submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv', 'priority': 1.5605000000000002}`, big bet `{'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572}`
 
 ## Role-Based Outputs
 
@@ -227,6 +233,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 
 다음 큰 실험은 HS-JEPA core/adaptor 경계를 바꾸는 실험이어야 한다.
 
+- `Anti-Listener Toxicity Equation Solver`: Listener responsibility is not an action generator; failed listener releases define a toxic direction that must be inverted or vetoed by action-health. Expected LB delta if true `-0.014`. Kill: Inverse, private-safe, Q2/S2, subset-veto, and boundary-probe variants all fail public LB, meaning listener failures are diagnostic but not invertible action-health equations.
 - `Public/Private Subset Tomography Solver`: Scalar public feedback is generated by public subset inclusion times hidden label direction, while private action-health decides whether the move is safe outside that listener. Expected LB delta if true `-0.012`. Kill: Public-first, private-safe, boundary-probe, Q/S split, and orthogonal-private variants all fail public LB, meaning scalar public feedback is descriptive but not enough to identify an action-grade public/private subset equation.
 - `Mixture-Listener Responsibility Solver`: The public LB is not one listener; it is a scalar readout of multiple latent listener heads, and Q/S actions may need different heads. Expected LB delta if true `-0.01`. Kill: Target-split, consensus, and residual-conflict variants all fail public LB, meaning public LB anchors are too scalar/noisy to identify action-grade latent listeners.
 - `LB-Conditioned Responsibility Solver`: The public LB can be treated as an external listener whose scalar observations reveal row-target action responsibility. Expected LB delta if true `-0.008`. Kill: Pure-gradient and invariant-safe variants both fail public LB, meaning scalar public listener responsibility is descriptive but not enough without a hidden public/private row-support assignment.
@@ -294,4 +301,6 @@ Generated supporting reports:
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/negative_tangent_invariant_projection_solver/negative_tangent_invariant_projection_readout.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/lb_conditioned_responsibility_readout.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/mixture_listener_responsibility_solver/mixture_listener_responsibility_readout.json`
+- `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/public_private_subset_tomography_solver/public_private_subset_tomography_readout.json`
+- `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/anti_listener_toxicity_equation_solver/anti_listener_toxicity_equation_readout.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite.json`

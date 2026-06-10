@@ -261,10 +261,30 @@ HS-JEPA can decompose scalar external feedback into public subset inclusion, hid
 
 이 실험은 scalar public feedback을 그대로 action truth로 쓰지 않고, public subset inclusion, hidden label direction, private-safety, toxicity를 분리한다. 추천 `subset_label_direction_jackpot`이 좋아지면 public subset과 label direction 분해가 action-grade라는 뜻이고, `qs_dual_subset_route`가 상대적으로 낫다면 Q/S listener route 분리가 더 중요한 병목이라는 뜻이다.
 
+## Anti-Listener Toxicity Equation Solver
+
+- Status: `candidate_ready`
+- Recommended variant: `private_safe_anti_listener_bridge`
+- Toxic anchors: `5`
+- Cell count: `938`
+- Source responsibility LOO correlation: `0.7682`
+
+Listener responsibility is not an action generator.  Failed listener releases define an anti-listener toxicity field, and HS-JEPA should release only row-target moves that invert that field while preserving public/private action health.
+
+| Variant | Output | Changed cells | Listener inverse | Listener safety | Private safe | Hard tox | Broad tox | Pred delta | Upload-safe |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `listener_inverse_jackpot` | `submission_hsjepa_anti_listener_toxicity_listener_inverse_jackpot_e1f39e61_uploadsafe.csv` | `4` | `0.9523` | `0.5272` | `0.4544` | `0.4330` | `0.3588` | `-0.11494` | `True` |
+| `private_safe_anti_listener_bridge` | `submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv` | `30` | `0.5025` | `0.5272` | `0.7890` | `0.2003` | `0.4267` | `-0.69071` | `True` |
+| `q2s2_listener_toxicity_route` | `submission_hsjepa_anti_listener_toxicity_q2s2_listener_toxicity_route_61c3a6d1_uploadsafe.csv` | `5` | `0.9609` | `0.5272` | `0.5368` | `0.3556` | `0.2806` | `-0.01109` | `True` |
+| `public_subset_veto_listener_toxicity` | `submission_hsjepa_anti_listener_toxicity_public_subset_veto_listener_toxicity_b8eac215_uploadsafe.csv` | `8` | `0.5307` | `0.5272` | `0.6301` | `0.2678` | `0.5078` | `-0.09881` | `True` |
+| `listener_toxicity_boundary_probe` | `submission_hsjepa_anti_listener_toxicity_listener_toxicity_boundary_probe_372faa12_uploadsafe.csv` | `7` | `0.9600` | `0.5272` | `0.4668` | `0.3539` | `0.5018` | `-0.01285` | `True` |
+
+이 실험은 CrossListener/H088/target-listener 실패를 단순 폐기하지 않고, 실패한 listener action을 독성 teacher로 사용한다. 추천 `private_safe_anti_listener_bridge`가 public에서 살아나면 HS-JEPA의 action-health 모듈은 listener를 더 믿는 장치가 아니라, listener가 틀린 방향을 말할 때 그 반대 방향을 안전하게 release하는 장치라는 논문 주장이 강해진다.
+
 ## Action Decoder Ablation Suite
 
-- Status: `action_decoder_ablation_ready_decoder_jury_leads`
-- Recommended LB sensor: `{'family': 'decoder_order_jury', 'variant': 'family_supermajority', 'submission_file': 'submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv', 'priority': 1.394366527938867}`
+- Status: `action_decoder_ablation_ready_anti_listener_toxicity_leads`
+- Recommended LB sensor: `{'family': 'anti_listener_toxicity', 'variant': 'private_safe_anti_listener_bridge', 'submission_file': 'submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv', 'priority': 1.5605000000000002}`
 - Open big-bet sensor: `{'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572}`
 
 The suite ranks action decoders by route-null survival, toxicity safety, upload safety, and action size. It is a submission-slot prioritizer, not a public-LB predictor.

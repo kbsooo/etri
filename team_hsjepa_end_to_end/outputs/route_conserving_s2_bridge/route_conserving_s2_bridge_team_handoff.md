@@ -37,7 +37,7 @@ public-sensitive driver action
 ## Core / Adapter Separation
 
 - Core status: `core_ready_for_adapter` (`5/5` gates)
-- Core ablation contract: `6` modules, `20` big-bet followups
+- Core ablation contract: `6` modules, `21` big-bet followups
 - Core reference run: `core_reference_ready`, released actions `['survey_small_shift']`
 - Core module benchmark: `core_module_benchmark_ready`, full-core F1 `1.0`, action-health FP lift `9`
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
@@ -61,7 +61,8 @@ public-sensitive driver action
 - LB-conditioned responsibility solver: `candidate_ready`
 - Mixture-listener responsibility solver: `candidate_ready`
 - Public/private subset tomography solver: `candidate_ready`
-- Action decoder ablation suite: `action_decoder_ablation_ready_decoder_jury_leads`
+- Anti-listener toxicity equation solver: `candidate_ready`
+- Action decoder ablation suite: `action_decoder_ablation_ready_anti_listener_toxicity_leads`
 - Listener-invariant contrastive probe: `listener_invariant_decoder_not_ready`
 - Private-safe toxicity probe: `toxicity_field_promising_with_hardworld_gap`
 - Hard-world toxicity factorization probe: `hardworld_mixture_factorization_required`
@@ -100,6 +101,7 @@ sleep_competition_adapter/outputs/negative_tangent_invariant_projection_solver/n
 sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/lb_conditioned_responsibility_readout_ko.md
 sleep_competition_adapter/outputs/mixture_listener_responsibility_solver/mixture_listener_responsibility_readout_ko.md
 sleep_competition_adapter/outputs/public_private_subset_tomography_solver/public_private_subset_tomography_readout_ko.md
+sleep_competition_adapter/outputs/anti_listener_toxicity_equation_solver/anti_listener_toxicity_equation_readout_ko.md
 sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite_ko.md
 sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md
 sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md
@@ -153,7 +155,8 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_bo
 - LB-conditioned responsibility: recommended `pure_lb_gradient_jackpot`, file `submission_hsjepa_lb_responsibility_pure_lb_gradient_jackpot_f0a8129d_uploadsafe.csv`, LOO corr `0.7300005193514604`, changed cells `24`
 - Mixture-listener responsibility: recommended `target_listener_split_qs`, file `submission_hsjepa_mixture_listener_target_listener_split_qs_7a383104_uploadsafe.csv`, mixture LOO `0.9578327145275477`, scalar LOO `0.7300005193514604`, changed cells `30`
 - Public/private subset tomography: recommended `subset_label_direction_jackpot`, file `submission_hsjepa_subset_tomography_subset_label_direction_jackpot_d12af8ff_uploadsafe.csv`, source LOO `0.7300005193514604`, changed cells `18`, predicted delta `-4.929555282376722`
-- Action decoder ablation: recommended `{'family': 'decoder_order_jury', 'variant': 'family_supermajority', 'submission_file': 'submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv', 'priority': 1.394366527938867}`, big bet `{'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572}`
+- Anti-listener toxicity equation: recommended `private_safe_anti_listener_bridge`, file `submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv`, source LOO `0.7681909332400592`, changed cells `30`, predicted delta `-0.6907101116679806`
+- Action decoder ablation: recommended `{'family': 'anti_listener_toxicity', 'variant': 'private_safe_anti_listener_bridge', 'submission_file': 'submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv', 'priority': 1.5605000000000002}`, big bet `{'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572}`
 - Listener-invariant boundary: listener-route rho `-0.0313`, contrastive overlap `0.2152`
 - Private-safe toxicity boundary: mean LOO AUC `0.7880`, worst LOO AUC `0.3683`
 - Hard-world factorization: broad->H088 AUC `0.3683`, broad/H088 rho `-0.4276`
@@ -162,7 +165,7 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_core_adapter_bo
 - Boundary tomography inventory: `{'strict_jury_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'conflict_cells': 0}`
 - Core-mediated release inventory: `{'candidate_cells': 44, 'strict_cells': 19, 'consensus_shadow_cells': 13, 'route_only_cells': 6, 'fusion_only_cells': 6, 'default_core_released': 32}`
 - Core/adapter boundary audit: `core_adapter_boundary_verified`
-- Release checklist: `release_ready_with_boundary` (`87/87` checks)
+- Release checklist: `release_ready_with_boundary` (`89/89` checks)
 
 ## Paper Claim
 
@@ -179,6 +182,7 @@ The current LB breakthrough is evidence for this adapter, while the reusable cla
 
 다음 큰 실험은 단순 alpha 조정이 아니라 core/adaptor 경계를 바꾸는 실험이다.
 
+- `Anti-Listener Toxicity Equation Solver`: Listener responsibility is not an action generator; failed listener releases define a toxic direction that must be inverted or vetoed by action-health. Expected LB delta if true `-0.014`.
 - `Public/Private Subset Tomography Solver`: Scalar public feedback is generated by public subset inclusion times hidden label direction, while private action-health decides whether the move is safe outside that listener. Expected LB delta if true `-0.012`.
 - `Mixture-Listener Responsibility Solver`: The public LB is not one listener; it is a scalar readout of multiple latent listener heads, and Q/S actions may need different heads. Expected LB delta if true `-0.01`.
 - `LB-Conditioned Responsibility Solver`: The public LB can be treated as an external listener whose scalar observations reveal row-target action responsibility. Expected LB delta if true `-0.008`.

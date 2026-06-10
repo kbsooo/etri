@@ -235,6 +235,66 @@ it is a partially observed listener equation.
 이 contribution은 HS-JEPA를 단순한 latent predictor에서 한 단계 더 밀어붙인다.
 즉 representation을 예측하는 것에서 끝나지 않고, “누가 그 representation을 듣고 있었는가”와 “그 listener가 보지 못한 공간에서도 action이 건강한가”를 동시에 추정한다.
 
+### Contribution 11. Anti-Listener Action-Health Equation
+
+External listener tomography가 맞더라도, listener responsibility를 바로 action generator로 쓰면 실패할 수 있다.
+실제로 target-listener route-lift, cross-listener transport, hard-world gate류는 local geometry가 그럴듯해도 public에서 H057을 넘지 못했다.
+
+HS-JEPA는 이 실패를 버리지 않는다.
+실패한 listener-derived action을 negative target representation으로 보고, 다음 질문으로 바꾼다.
+
+```text
+이 listener가 말한 방향이 action으로는 toxic했다면,
+그 실패 방향을 반대로 보거나 veto할 때 private-safe action field가 생기는가?
+```
+
+수면 대회 adapter에서는 다음 실험으로 구현했다.
+
+```bash
+python3 sleep_competition_adapter/anti_listener_toxicity_equation_solver.py
+```
+
+이 모듈은 CrossListener, target-listener lift, H088 hard-world, objective S1/S4, mask-family JEPA 실패를 toxic anchor로 두고,
+public scalar response, subset tomography, hard-world toxicity, broad toxicity를 함께 사용해 anti-listener action field를 만든다.
+
+현재 local/stress readout:
+
+```text
+toxic anchors: 5
+candidate row-target directions: 938
+source responsibility LOO correlation: 0.7682
+recommended variant: private_safe_anti_listener_bridge
+changed cells: 30
+selected rows: 29
+sum predicted public delta: -0.69071
+mean private safety: 0.7890
+mean hard-world toxicity: 0.2003
+mean broad toxicity: 0.4267
+null score z: 9.9171
+private-safety z: 9.2570
+hard-world toxicity z: -4.9616
+file: submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv
+```
+
+핵심은 다음이다.
+
+```text
+listener responsibility is not always an action generator;
+failed listeners can be negative teachers for action-health.
+```
+
+이 후보가 public에서 좋아지면:
+
+- HS-JEPA의 listener 모듈은 “무엇을 따라야 하는가”뿐 아니라 “무엇을 반대로 봐야 하는가”까지 학습한다.
+- action-health는 confidence score가 아니라 positive/negative listener equation을 분리하는 field다.
+- 논문 contribution은 `external listener tomography`에서 `anti-listener action-health`로 확장된다.
+
+나빠지면:
+
+- listener failure는 real diagnostic이지만 아직 invertible action equation은 아니다.
+- public/private subset, route invariant, toxicity field 중 하나가 여전히 action validity를 충분히 설명하지 못한다.
+- 다음에는 실패 anchor를 더 많이 모으거나, human-social/cohort invariant를 toxicity head에 직접 넣어야 한다.
+
 ## 이번 대회에서 얻은 핵심 증거
 
 ### 증거 1. Direct JEPA latent label prediction은 실패했다
@@ -508,6 +568,7 @@ public listener가 말한 subset과 private-safe action subset을 분리하는 e
 - LB-conditioned responsibility 후보가 public에서 검증되기 전까지, scalar public listener inversion을 portable decoder라고 말하면 안 된다.
 - mixture-listener 후보가 public에서 검증되기 전까지, latent listener mixture routing을 action-grade decoder라고 단정하면 안 된다.
 - subset tomography 후보가 public에서 검증되기 전까지, public/private listener equation을 action-grade decoder라고 단정하면 안 된다.
+- anti-listener toxicity 후보가 public에서 검증되기 전까지, 실패한 listener action의 반대 방향이 항상 action-grade라고 단정하면 안 된다.
 
 ## 정확한 thesis 문장
 
@@ -517,7 +578,7 @@ public listener가 말한 subset과 private-safe action subset을 분리하는 e
 HS-JEPA reframes human-understanding prediction as hidden-state and action-field recovery.
 In our sleep-log case study, the largest public-LB gains came not from direct label prediction,
 but from recovering sparse row-target action fields and filtering them through listener responsibility,
-action-health, and invariant-preserving decoders.
+action-health, invariant-preserving decoders, and negative-listener toxicity checks.
 ```
 
 한국어로는:
@@ -525,7 +586,7 @@ action-health, and invariant-preserving decoders.
 ```text
 HS-JEPA는 인간 이해 예측을 label 분류가 아니라 hidden human-state와 action field 복원 문제로 재정의한다.
 수면 생활 로그 대회에서는 직접 label을 맞히는 모델보다, row-target action field를 복원하고 이를 listener responsibility,
-action-health, invariant decoder로 통과시킨 접근이 가장 큰 public LB 개선을 만들었다.
+action-health, invariant decoder, negative-listener toxicity check로 통과시킨 접근이 가장 큰 public LB 개선을 만들었다.
 ```
 
 ## 다음으로 가장 정보량이 큰 제출 센서
@@ -533,20 +594,20 @@ action-health, invariant decoder로 통과시킨 접근이 가장 큰 public LB 
 현재 thesis 관점에서 가장 정보량이 큰 후보는 다음이다.
 
 ```text
-submission_hsjepa_lb_responsibility_pure_lb_gradient_jackpot_f0a8129d_uploadsafe.csv
+submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv
 ```
 
 이 후보가 좋아지면:
 
-- public LB를 scalar external listener로 보고 추정한 row-target responsibility가 action-grade라는 뜻이다.
-- HS-JEPA의 `listener responsibility`는 target label head뿐 아니라 외부 outcome sensor에서도 학습될 수 있다.
-- spectral negative tangent보다 responsibility equation이 더 직접적인 action decoder일 수 있다.
+- 실패한 listener-derived action은 버릴 노이즈가 아니라 negative target representation이었다는 뜻이다.
+- HS-JEPA의 `action-health`는 좋은 signal을 고르는 모듈뿐 아니라, 나쁜 listener 방향을 반대로 읽는 anti-listener equation을 포함해야 한다.
+- public/private subset tomography와 hard-world/broad toxicity를 함께 통과한 private-safe action field가 action-grade일 수 있다.
 
-이 후보가 나빠지고 invariant-projected anti-tangent가 좋아지면:
+이 후보가 나빠지고 subset tomography 또는 invariant-projected anti-tangent가 좋아지면:
 
-- scalar listener inversion은 overfit/diagnostic에 가깝고, negative representation은 invariant projection을 거쳐야 action-grade가 된다.
+- anti-listener inversion은 너무 강하거나 anchor-specific하고, subset membership 또는 invariant projection이 더 중요한 action-validity 조건이다.
 
 둘 다 나빠지면:
 
-- public failure geometry와 scalar responsibility는 모두 real signal이지만, 아직 public/private row-support assignment를 충분히 복원하지 못한다.
+- public failure geometry, scalar responsibility, anti-listener toxicity는 모두 real diagnostic이지만, 아직 public/private row-support assignment를 충분히 복원하지 못한다.
 - HS-JEPA는 action direction보다 hidden public/private subset factorization과 richer human/social/cohort invariant를 더 강화해야 한다.

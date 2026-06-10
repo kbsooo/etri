@@ -2,14 +2,14 @@
   "experiment": "HS-JEPA Action Decoder Ablation Suite",
   "architecture_role": "sleep_competition_adapter_action_decoder_ablation_harness",
   "core_boundary": "This suite reads competition adapter outputs and must not be imported by HS-JEPA core.",
-  "status": "action_decoder_ablation_ready_decoder_jury_leads",
+  "status": "action_decoder_ablation_ready_anti_listener_toxicity_leads",
   "verdict": {
-    "status": "action_decoder_ablation_ready_decoder_jury_leads",
+    "status": "action_decoder_ablation_ready_anti_listener_toxicity_leads",
     "recommended_lb_sensor": {
-      "family": "decoder_order_jury",
-      "variant": "family_supermajority",
-      "submission_file": "submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
-      "priority": 1.394366527938867
+      "family": "anti_listener_toxicity",
+      "variant": "private_safe_anti_listener_bridge",
+      "submission_file": "submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv",
+      "priority": 1.5605000000000002
     },
     "big_bet_sensor": {
       "family": "route_frontier",
@@ -27,7 +27,7 @@
       },
       {
         "claim": "Invariant route energy is currently the sharper action-ordering signal.",
-        "evidence": "Top ablation row is decoder_order_jury.family_supermajority with priority 1.3944 and matched_score_z=5.2815.",
+        "evidence": "Top ablation row is anti_listener_toxicity.private_safe_anti_listener_bridge with priority 1.5605 and matched_score_z=15.8116.",
         "status": "alive",
         "next_test": "Use route-frontier as the next LB sensor; interpret failure as public/private toxicity dominance."
       },
@@ -84,6 +84,12 @@
         "evidence": "Diagnostic cross-listener row is listener_confirmed_shadow with transport_z=3.2686, listener_z=3.3448, action_z=1.6251, priority=1.1367, observed_public_lb=0.5684860446, and delta_vs_best=0.0007384507.",
         "status": "failed_as_release_gate",
         "next_test": "Do not use listener-confirmed shadow release as the final gate. Use listener posterior as an anti-listener/toxicity diagnostic against H057-positive row-state cells."
+      },
+      {
+        "claim": "Failed listener actions can become anti-listener toxicity teachers.",
+        "evidence": "Best anti-listener row is private_safe_anti_listener_bridge with score_z=9.9171, private_safety_z=9.2570, matched_score_z=15.8116, priority=1.5605, and changed_cells=30.",
+        "status": "alive",
+        "next_test": "Submit the private-safe anti-listener bridge if the next slot is for information gain; failure means listener failures are diagnostic but not invertible."
       }
     ]
   },
@@ -96,7 +102,7 @@
     },
     {
       "claim": "Invariant route energy is currently the sharper action-ordering signal.",
-      "evidence": "Top ablation row is decoder_order_jury.family_supermajority with priority 1.3944 and matched_score_z=5.2815.",
+      "evidence": "Top ablation row is anti_listener_toxicity.private_safe_anti_listener_bridge with priority 1.5605 and matched_score_z=15.8116.",
       "status": "alive",
       "next_test": "Use route-frontier as the next LB sensor; interpret failure as public/private toxicity dominance."
     },
@@ -153,9 +159,39 @@
       "evidence": "Diagnostic cross-listener row is listener_confirmed_shadow with transport_z=3.2686, listener_z=3.3448, action_z=1.6251, priority=1.1367, observed_public_lb=0.5684860446, and delta_vs_best=0.0007384507.",
       "status": "failed_as_release_gate",
       "next_test": "Do not use listener-confirmed shadow release as the final gate. Use listener posterior as an anti-listener/toxicity diagnostic against H057-positive row-state cells."
+    },
+    {
+      "claim": "Failed listener actions can become anti-listener toxicity teachers.",
+      "evidence": "Best anti-listener row is private_safe_anti_listener_bridge with score_z=9.9171, private_safety_z=9.2570, matched_score_z=15.8116, priority=1.5605, and changed_cells=30.",
+      "status": "alive",
+      "next_test": "Submit the private-safe anti-listener bridge if the next slot is for information gain; failure means listener failures are diagnostic but not invertible."
     }
   ],
   "ranking": [
+    {
+      "family": "anti_listener_toxicity",
+      "variant": "private_safe_anti_listener_bridge",
+      "submission_file": "submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 30,
+      "architecture_claim": "failed listener-derived public actions define negative teachers; inverse moves need private-safety and toxicity veto before release",
+      "decoder_order": "negative_listener_first_then_private_safe_release",
+      "core_modules_exercised": "listener_responsibility,action_health_decoder,external_listener_tomography,public_private_equation,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 9.917058276253771,
+      "matched_route_z": 9.257000109149832,
+      "matched_score_z": 15.811562220332895,
+      "safety_z": 9.257000109149832,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": 0.42668984163769796,
+      "hardworld_top_toxic_exposure": 0.20025106218617228,
+      "route_boundary": "anti_listener_private_safe_supported",
+      "safety_boundary": "private_safe_inverse_supported",
+      "lb_sensor_priority": 1.5605000000000002,
+      "module_ablation_interpretation": "Uses public-failed listener actions as negative target representations. If this family wins public LB, listener responsibility is useful mainly as an anti-listener toxicity equation.",
+      "ablation_rank": 1,
+      "public_delta_vs_best": null
+    },
     {
       "family": "decoder_order_jury",
       "variant": "family_supermajority",
@@ -177,7 +213,7 @@
       "safety_boundary": "jury_balance_supported",
       "lb_sensor_priority": 1.394366527938867,
       "module_ablation_interpretation": "Treats route-first and factorized action-health as independent listeners. If this wins LB, HS-JEPA action decoding is a cross-decoder responsibility jury.",
-      "ablation_rank": 1,
+      "ablation_rank": 2,
       "public_delta_vs_best": null
     },
     {
@@ -201,7 +237,31 @@
       "safety_boundary": "jury_balance_supported",
       "lb_sensor_priority": 1.394366527938867,
       "module_ablation_interpretation": "Treats route-first and factorized action-health as independent listeners. If this wins LB, HS-JEPA action decoding is a cross-decoder responsibility jury.",
-      "ablation_rank": 2,
+      "ablation_rank": 3,
+      "public_delta_vs_best": null
+    },
+    {
+      "family": "anti_listener_toxicity",
+      "variant": "public_subset_veto_listener_toxicity",
+      "submission_file": "submission_hsjepa_anti_listener_toxicity_public_subset_veto_listener_toxicity_b8eac215_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 8,
+      "architecture_claim": "failed listener-derived public actions define negative teachers; inverse moves need private-safety and toxicity veto before release",
+      "decoder_order": "negative_listener_first_then_private_safe_release",
+      "core_modules_exercised": "listener_responsibility,action_health_decoder,external_listener_tomography,public_private_equation,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 5.8563299183325155,
+      "matched_route_z": 3.31892777369636,
+      "matched_score_z": 7.987474053703363,
+      "safety_z": 3.31892777369636,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": 0.5078431711661853,
+      "hardworld_top_toxic_exposure": 0.26778881313511893,
+      "route_boundary": "anti_listener_private_safe_supported",
+      "safety_boundary": "private_safe_inverse_supported",
+      "lb_sensor_priority": 1.3611356664217817,
+      "module_ablation_interpretation": "Uses public-failed listener actions as negative target representations. If this family wins public LB, listener responsibility is useful mainly as an anti-listener toxicity equation.",
+      "ablation_rank": 4,
       "public_delta_vs_best": null
     },
     {
@@ -225,7 +285,7 @@
       "safety_boundary": "core_invariant_supported",
       "lb_sensor_priority": 1.1829596076794129,
       "module_ablation_interpretation": "Removes or isolates HS-JEPA core modules on 29 real adapter cells. If a removed-module candidate beats full-core on public LB, that module is over-constraining the adapter; if it loses, the full HS-JEPA release boundary is empirically supported.",
-      "ablation_rank": 3,
+      "ablation_rank": 5,
       "public_delta_vs_best": null
     },
     {
@@ -249,7 +309,7 @@
       "safety_boundary": "shadow_release",
       "lb_sensor_priority": 1.1809626017147745,
       "module_ablation_interpretation": "Uses failed target-listener lift as a negative sensor and releases 23 route/fusion/core-proposed cells after listener-transport calibration. If it wins, listener posterior is not an action generator but a useful action boundary prior.",
-      "ablation_rank": 4,
+      "ablation_rank": 6,
       "public_delta_vs_best": null
     },
     {
@@ -273,7 +333,7 @@
       "safety_boundary": "shadow_release",
       "lb_sensor_priority": 1.1809626017147745,
       "module_ablation_interpretation": "Uses failed target-listener lift as a negative sensor and releases 23 route/fusion/core-proposed cells after listener-transport calibration. If it wins, listener posterior is not an action generator but a useful action boundary prior.",
-      "ablation_rank": 5,
+      "ablation_rank": 7,
       "public_delta_vs_best": null
     },
     {
@@ -297,7 +357,7 @@
       "safety_boundary": "core_invariant_supported",
       "lb_sensor_priority": 1.152405700412305,
       "module_ablation_interpretation": "Removes or isolates HS-JEPA core modules on 29 real adapter cells. If a removed-module candidate beats full-core on public LB, that module is over-constraining the adapter; if it loses, the full HS-JEPA release boundary is empirically supported.",
-      "ablation_rank": 6,
+      "ablation_rank": 8,
       "public_delta_vs_best": null
     },
     {
@@ -321,8 +381,56 @@
       "safety_boundary": "shadow_release",
       "lb_sensor_priority": 1.1366555597147743,
       "module_ablation_interpretation": "Uses failed target-listener lift as a negative sensor and releases 23 route/fusion/core-proposed cells after listener-transport calibration. If it wins, listener posterior is not an action generator but a useful action boundary prior.",
-      "ablation_rank": 7,
+      "ablation_rank": 9,
       "public_delta_vs_best": 0.000738450700000004
+    },
+    {
+      "family": "anti_listener_toxicity",
+      "variant": "listener_toxicity_boundary_probe",
+      "submission_file": "submission_hsjepa_anti_listener_toxicity_listener_toxicity_boundary_probe_372faa12_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 7,
+      "architecture_claim": "failed listener-derived public actions define negative teachers; inverse moves need private-safety and toxicity veto before release",
+      "decoder_order": "negative_listener_first_then_private_safe_release",
+      "core_modules_exercised": "listener_responsibility,action_health_decoder,external_listener_tomography,public_private_equation,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 4.493813506151354,
+      "matched_route_z": 1.5058884096354106,
+      "matched_score_z": 5.949639678943202,
+      "safety_z": 1.5058884096354106,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": 0.5018321851145813,
+      "hardworld_top_toxic_exposure": 0.3538574714574784,
+      "route_boundary": "anti_listener_private_safe_supported",
+      "safety_boundary": "listener_inverse_information_probe",
+      "lb_sensor_priority": 1.1320154932526036,
+      "module_ablation_interpretation": "Uses public-failed listener actions as negative target representations. If this family wins public LB, listener responsibility is useful mainly as an anti-listener toxicity equation.",
+      "ablation_rank": 10,
+      "public_delta_vs_best": null
+    },
+    {
+      "family": "anti_listener_toxicity",
+      "variant": "q2s2_listener_toxicity_route",
+      "submission_file": "submission_hsjepa_anti_listener_toxicity_q2s2_listener_toxicity_route_61c3a6d1_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 5,
+      "architecture_claim": "failed listener-derived public actions define negative teachers; inverse moves need private-safety and toxicity veto before release",
+      "decoder_order": "negative_listener_first_then_private_safe_release",
+      "core_modules_exercised": "listener_responsibility,action_health_decoder,external_listener_tomography,public_private_equation,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 3.7529417807003456,
+      "matched_route_z": 1.792214115557847,
+      "matched_score_z": 5.680396652486749,
+      "safety_z": 1.792214115557847,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": 0.2805503190882205,
+      "hardworld_top_toxic_exposure": 0.35558842931510304,
+      "route_boundary": "anti_listener_private_safe_supported",
+      "safety_boundary": "listener_inverse_information_probe",
+      "lb_sensor_priority": 1.124012401221219,
+      "module_ablation_interpretation": "Uses public-failed listener actions as negative target representations. If this family wins public LB, listener responsibility is useful mainly as an anti-listener toxicity equation.",
+      "ablation_rank": 11,
+      "public_delta_vs_best": null
     },
     {
       "family": "route_frontier",
@@ -345,7 +453,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 1.1177646805596027,
       "module_ablation_interpretation": "Keeps route invariant first. If this wins LB, the missing mechanism was action translation order, not more latent capacity.",
-      "ablation_rank": 8,
+      "ablation_rank": 12,
       "public_delta_vs_best": null
     },
     {
@@ -369,7 +477,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 1.0719712441483786,
       "module_ablation_interpretation": "Keeps route invariant first. If this wins LB, the missing mechanism was action translation order, not more latent capacity.",
-      "ablation_rank": 9,
+      "ablation_rank": 13,
       "public_delta_vs_best": null
     },
     {
@@ -393,7 +501,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 1.05448050759572,
       "module_ablation_interpretation": "Keeps route invariant first. If this wins LB, the missing mechanism was action translation order, not more latent capacity.",
-      "ablation_rank": 10,
+      "ablation_rank": 14,
       "public_delta_vs_best": null
     },
     {
@@ -417,7 +525,31 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.9859820227896265,
       "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
-      "ablation_rank": 11,
+      "ablation_rank": 15,
+      "public_delta_vs_best": null
+    },
+    {
+      "family": "anti_listener_toxicity",
+      "variant": "listener_inverse_jackpot",
+      "submission_file": "submission_hsjepa_anti_listener_toxicity_listener_inverse_jackpot_e1f39e61_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 4,
+      "architecture_claim": "failed listener-derived public actions define negative teachers; inverse moves need private-safety and toxicity veto before release",
+      "decoder_order": "negative_listener_first_then_private_safe_release",
+      "core_modules_exercised": "listener_responsibility,action_health_decoder,external_listener_tomography,public_private_equation,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 4.046555711298764,
+      "matched_route_z": 0.9845795210183026,
+      "matched_score_z": 5.002071294220607,
+      "safety_z": 0.9845795210183026,
+      "toxicity_clear": false,
+      "broad_hard_conflict_exposure": 0.3587991387212258,
+      "hardworld_top_toxic_exposure": 0.4330428946971812,
+      "route_boundary": "anti_listener_boundary_probe",
+      "safety_boundary": "listener_inverse_information_probe",
+      "lb_sensor_priority": 0.8846738707869306,
+      "module_ablation_interpretation": "Uses public-failed listener actions as negative target representations. If this family wins public LB, listener responsibility is useful mainly as an anti-listener toxicity equation.",
+      "ablation_rank": 16,
       "public_delta_vs_best": null
     },
     {
@@ -441,7 +573,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.8783581824414558,
       "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
-      "ablation_rank": 12,
+      "ablation_rank": 17,
       "public_delta_vs_best": null
     },
     {
@@ -465,7 +597,7 @@
       "safety_boundary": "benchmark_action_health_guarded",
       "lb_sensor_priority": 0.8448064246875632,
       "module_ablation_interpretation": "Uses dataset-free core benchmark FP lift to calibrate 31 real adapter cells. If guarded release wins, HS-JEPA action-health transfers from generic worlds to the sleep adapter; if pressure release wins, the adapter needs a less conservative action-health decoder.",
-      "ablation_rank": 13,
+      "ablation_rank": 18,
       "public_delta_vs_best": null
     },
     {
@@ -489,7 +621,7 @@
       "safety_boundary": "core_invariant_supported",
       "lb_sensor_priority": 0.8397592271152313,
       "module_ablation_interpretation": "Routes 29 real adapter cells through HS-JEPA core API. If this wins LB, the reusable core release rule is action-grade for this competition adapter.",
-      "ablation_rank": 14,
+      "ablation_rank": 19,
       "public_delta_vs_best": null
     },
     {
@@ -513,7 +645,7 @@
       "safety_boundary": "weak_consensus_release_boundary",
       "lb_sensor_priority": 0.8322549235648736,
       "module_ablation_interpretation": "Adds 8 cells rejected by strict jury. If this wins LB, the decoder-order jury was too conservative; if it loses, strict consensus marks the safe action frontier.",
-      "ablation_rank": 15,
+      "ablation_rank": 20,
       "public_delta_vs_best": null
     },
     {
@@ -537,7 +669,7 @@
       "safety_boundary": "benchmark_action_health_pressure",
       "lb_sensor_priority": 0.6982579487027185,
       "module_ablation_interpretation": "Uses dataset-free core benchmark FP lift to calibrate 43 real adapter cells. If guarded release wins, HS-JEPA action-health transfers from generic worlds to the sleep adapter; if pressure release wins, the adapter needs a less conservative action-health decoder.",
-      "ablation_rank": 16,
+      "ablation_rank": 21,
       "public_delta_vs_best": null
     },
     {
@@ -561,7 +693,7 @@
       "safety_boundary": "core_invariant_supported",
       "lb_sensor_priority": 0.634395482096416,
       "module_ablation_interpretation": "Routes 31 real adapter cells through HS-JEPA core API. If this wins LB, the reusable core release rule is action-grade for this competition adapter.",
-      "ablation_rank": 17,
+      "ablation_rank": 22,
       "public_delta_vs_best": null
     },
     {
@@ -585,7 +717,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.6123790379883204,
       "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
-      "ablation_rank": 18,
+      "ablation_rank": 23,
       "public_delta_vs_best": null
     },
     {
@@ -609,7 +741,7 @@
       "safety_boundary": "core_invariant_supported",
       "lb_sensor_priority": 0.6085339821536584,
       "module_ablation_interpretation": "Removes or isolates HS-JEPA core modules on 40 real adapter cells. If a removed-module candidate beats full-core on public LB, that module is over-constraining the adapter; if it loses, the full HS-JEPA release boundary is empirically supported.",
-      "ablation_rank": 19,
+      "ablation_rank": 24,
       "public_delta_vs_best": null
     },
     {
@@ -633,7 +765,7 @@
       "safety_boundary": "factorized_decoder_stress_supported",
       "lb_sensor_priority": 0.5800000000000001,
       "module_ablation_interpretation": "Keeps action-health and anti-shortcut validation, but does not prove invariant route placement.",
-      "ablation_rank": 20,
+      "ablation_rank": 25,
       "public_delta_vs_best": null
     },
     {
@@ -657,7 +789,7 @@
       "safety_boundary": "factorized_decoder_alive_but_source_null_weak",
       "lb_sensor_priority": 0.5800000000000001,
       "module_ablation_interpretation": "Keeps action-health and anti-shortcut validation, but does not prove invariant route placement.",
-      "ablation_rank": 21,
+      "ablation_rank": 26,
       "public_delta_vs_best": null
     },
     {
@@ -681,7 +813,7 @@
       "safety_boundary": "single_decoder_boundary",
       "lb_sensor_priority": 0.5513701920816483,
       "module_ablation_interpretation": "Adds 6 cells rejected by strict jury. If this wins LB, the decoder-order jury was too conservative; if it loses, strict consensus marks the safe action frontier.",
-      "ablation_rank": 22,
+      "ablation_rank": 27,
       "public_delta_vs_best": null
     },
     {
@@ -705,7 +837,7 @@
       "safety_boundary": "single_decoder_boundary",
       "lb_sensor_priority": 0.4764951046155826,
       "module_ablation_interpretation": "Adds 4 cells rejected by strict jury. If this wins LB, the decoder-order jury was too conservative; if it loses, strict consensus marks the safe action frontier.",
-      "ablation_rank": 23,
+      "ablation_rank": 28,
       "public_delta_vs_best": null
     },
     {
@@ -729,7 +861,7 @@
       "safety_boundary": "jury_balance_supported",
       "lb_sensor_priority": 0.45846604483788944,
       "module_ablation_interpretation": "Treats route-first and factorized action-health as independent listeners. If this wins LB, HS-JEPA action decoding is a cross-decoder responsibility jury.",
-      "ablation_rank": 24,
+      "ablation_rank": 29,
       "public_delta_vs_best": null
     },
     {
@@ -753,7 +885,7 @@
       "safety_boundary": "single_decoder_boundary",
       "lb_sensor_priority": 0.419812871838568,
       "module_ablation_interpretation": "Adds 4 cells rejected by strict jury. If this wins LB, the decoder-order jury was too conservative; if it loses, strict consensus marks the safe action frontier.",
-      "ablation_rank": 25,
+      "ablation_rank": 30,
       "public_delta_vs_best": null
     },
     {
@@ -777,7 +909,7 @@
       "safety_boundary": "jury_balance_supported",
       "lb_sensor_priority": 0.37401450031889266,
       "module_ablation_interpretation": "Treats route-first and factorized action-health as independent listeners. If this wins LB, HS-JEPA action decoding is a cross-decoder responsibility jury.",
-      "ablation_rank": 26,
+      "ablation_rank": 31,
       "public_delta_vs_best": null
     },
     {
@@ -801,7 +933,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.2889624187457326,
       "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
-      "ablation_rank": 27,
+      "ablation_rank": 32,
       "public_delta_vs_best": null
     },
     {
@@ -825,7 +957,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.2880776863463137,
       "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
-      "ablation_rank": 28,
+      "ablation_rank": 33,
       "public_delta_vs_best": null
     },
     {
@@ -849,7 +981,7 @@
       "safety_boundary": "core_invariant_supported",
       "lb_sensor_priority": 0.2740573944799523,
       "module_ablation_interpretation": "Removes or isolates HS-JEPA core modules on 32 real adapter cells. If a removed-module candidate beats full-core on public LB, that module is over-constraining the adapter; if it loses, the full HS-JEPA release boundary is empirically supported.",
-      "ablation_rank": 29,
+      "ablation_rank": 34,
       "public_delta_vs_best": null
     },
     {
@@ -873,7 +1005,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.27138605091914736,
       "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
-      "ablation_rank": 30,
+      "ablation_rank": 35,
       "public_delta_vs_best": null
     },
     {
@@ -897,7 +1029,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.26354824667422216,
       "module_ablation_interpretation": "Shows row-support is real enough to select safe actions, but support-first decoding can lose route-null separation.",
-      "ablation_rank": 31,
+      "ablation_rank": 36,
       "public_delta_vs_best": null
     },
     {
@@ -921,7 +1053,7 @@
       "safety_boundary": "strict_recalibration",
       "lb_sensor_priority": 0.23733390487955913,
       "module_ablation_interpretation": "Uses failed target-listener lift as a negative sensor and releases 19 route/fusion/core-proposed cells after listener-transport calibration. If it wins, listener posterior is not an action generator but a useful action boundary prior.",
-      "ablation_rank": 32,
+      "ablation_rank": 37,
       "public_delta_vs_best": null
     },
     {
@@ -945,7 +1077,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.20975399131542438,
       "module_ablation_interpretation": "Shows row-support is real enough to select safe actions, but support-first decoding can lose route-null separation.",
-      "ablation_rank": 33,
+      "ablation_rank": 38,
       "public_delta_vs_best": null
     },
     {
@@ -969,7 +1101,7 @@
       "safety_boundary": "benchmark_action_health_guarded",
       "lb_sensor_priority": 0.19693626610421083,
       "module_ablation_interpretation": "Uses dataset-free core benchmark FP lift to calibrate 21 real adapter cells. If guarded release wins, HS-JEPA action-health transfers from generic worlds to the sleep adapter; if pressure release wins, the adapter needs a less conservative action-health decoder.",
-      "ablation_rank": 34,
+      "ablation_rank": 39,
       "public_delta_vs_best": null
     },
     {
@@ -993,7 +1125,7 @@
       "safety_boundary": "weak_consensus_release_boundary",
       "lb_sensor_priority": 0.17507876992837895,
       "module_ablation_interpretation": "Adds 13 cells rejected by strict jury. If this wins LB, the decoder-order jury was too conservative; if it loses, strict consensus marks the safe action frontier.",
-      "ablation_rank": 35,
+      "ablation_rank": 40,
       "public_delta_vs_best": null
     },
     {
@@ -1017,7 +1149,7 @@
       "safety_boundary": "core_invariant_supported",
       "lb_sensor_priority": 0.1550324358494775,
       "module_ablation_interpretation": "Removes or isolates HS-JEPA core modules on 32 real adapter cells. If a removed-module candidate beats full-core on public LB, that module is over-constraining the adapter; if it loses, the full HS-JEPA release boundary is empirically supported.",
-      "ablation_rank": 36,
+      "ablation_rank": 41,
       "public_delta_vs_best": null
     },
     {
@@ -1041,7 +1173,7 @@
       "safety_boundary": "core_invariant_supported",
       "lb_sensor_priority": 0.11489949923063594,
       "module_ablation_interpretation": "Routes 19 real adapter cells through HS-JEPA core API. If this wins LB, the reusable core release rule is action-grade for this competition adapter.",
-      "ablation_rank": 37,
+      "ablation_rank": 42,
       "public_delta_vs_best": null
     },
     {
@@ -1065,7 +1197,7 @@
       "safety_boundary": "core_invariant_supported",
       "lb_sensor_priority": -0.04510050076936406,
       "module_ablation_interpretation": "Routes 19 real adapter cells through HS-JEPA core API. If this wins LB, the reusable core release rule is action-grade for this competition adapter.",
-      "ablation_rank": 38,
+      "ablation_rank": 43,
       "public_delta_vs_best": null
     }
   ],
@@ -1079,6 +1211,7 @@
     "core_release_ablation": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/core_release_ablation_probe/core_release_ablation_probe_readout.json",
     "core_health_calibrated": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/core_health_calibrated_release/core_health_calibrated_release_readout.json",
     "cross_listener_transport": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/cross_listener_transport_decoder/cross_listener_transport_readout.json",
+    "anti_listener_toxicity": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/anti_listener_toxicity_equation_solver/anti_listener_toxicity_equation_readout.json",
     "factorized_toxicity": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_readout.json",
     "factorized_stress": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_stress_audit.json"
   },

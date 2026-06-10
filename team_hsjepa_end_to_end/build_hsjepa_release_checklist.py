@@ -83,6 +83,13 @@ PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON = (
     / "public_private_subset_tomography_solver"
     / "public_private_subset_tomography_readout.json"
 )
+ANTI_LISTENER_TOXICITY_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "anti_listener_toxicity_equation_solver"
+    / "anti_listener_toxicity_equation_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -158,6 +165,7 @@ def require_inputs() -> list[dict[str, object]]:
         LB_CONDITIONED_RESPONSIBILITY_JSON,
         MIXTURE_LISTENER_RESPONSIBILITY_JSON,
         PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON,
+        ANTI_LISTENER_TOXICITY_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -226,6 +234,7 @@ def build_checklist() -> dict[str, object]:
     lb_conditioned_responsibility = read_json(LB_CONDITIONED_RESPONSIBILITY_JSON)
     mixture_listener_responsibility = read_json(MIXTURE_LISTENER_RESPONSIBILITY_JSON)
     public_private_subset_tomography = read_json(PUBLIC_PRIVATE_SUBSET_TOMOGRAPHY_JSON)
+    anti_listener_toxicity = read_json(ANTI_LISTENER_TOXICITY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -264,6 +273,7 @@ def build_checklist() -> dict[str, object]:
     lb_responsibility_verdict = lb_conditioned_responsibility.get("verdict", {})
     mixture_listener_verdict = mixture_listener_responsibility.get("verdict", {})
     subset_tomography_verdict = public_private_subset_tomography.get("verdict", {})
+    anti_listener_verdict = anti_listener_toxicity.get("verdict", {})
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -535,6 +545,7 @@ def build_checklist() -> dict[str, object]:
                     "action_decoder_ablation_ready_core_release_ablation_leads",
                     "action_decoder_ablation_ready_core_health_calibrated_leads",
                     "action_decoder_ablation_ready_cross_listener_transport_leads",
+                    "action_decoder_ablation_ready_anti_listener_toxicity_leads",
                     "action_decoder_ablation_ready_non_route_leads",
                 }
                 and isinstance(action_ablation_verdict.get("recommended_lb_sensor"), dict)
@@ -542,7 +553,7 @@ def build_checklist() -> dict[str, object]:
                 and len(action_decoder_ablation.get("ranking", [])) >= 6
                 and any(
                     isinstance(item, dict)
-                    and item.get("family") == "route_frontier"
+                    and item.get("family") in {"route_frontier", "anti_listener_toxicity"}
                     and int(item.get("ablation_rank", 99)) <= 10
                     and bool(item.get("upload_safe"))
                     for item in action_decoder_ablation.get("ranking", [])
@@ -812,6 +823,28 @@ def build_checklist() -> dict[str, object]:
                     f"source_loo={fmt(public_private_subset_tomography.get('source_fit', {}).get('loo_corr'), 4)}, "
                     f"cells={public_private_subset_tomography.get('cell_count')}, "
                     f"ranking={subset_tomography_verdict.get('ranking')}"
+                ),
+            ),
+            check(
+                "anti_listener_toxicity_equation_recorded",
+                anti_listener_toxicity.get("experiment") == "Anti-Listener Toxicity Equation Solver"
+                and anti_listener_verdict.get("status") == "candidate_ready"
+                and anti_listener_verdict.get("recommended_variant")
+                in anti_listener_toxicity.get("variants", {})
+                and float(anti_listener_toxicity.get("source_fit", {}).get("loo_corr", 0.0)) >= 0.70
+                and int(anti_listener_toxicity.get("cell_count", 0)) >= 1
+                and all(
+                    isinstance(item, dict)
+                    and item.get("submission", {}).get("validation", {}).get("upload_safe") is True
+                    and int(item.get("submission", {}).get("changed_cells", 0)) > 0
+                    for item in anti_listener_toxicity.get("variants", {}).values()
+                ),
+                (
+                    f"status={anti_listener_verdict.get('status')}, "
+                    f"recommended={anti_listener_verdict.get('recommended_variant')}, "
+                    f"source_loo={fmt(anti_listener_toxicity.get('source_fit', {}).get('loo_corr'), 4)}, "
+                    f"cells={anti_listener_toxicity.get('cell_count')}, "
+                    f"ranking={anti_listener_verdict.get('ranking')}"
                 ),
             ),
             check(

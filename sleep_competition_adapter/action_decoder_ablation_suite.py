@@ -35,6 +35,7 @@ CORE_MEDIATED_RELEASE_JSON = HERE / "outputs" / "core_mediated_action_release" /
 CORE_RELEASE_ABLATION_JSON = HERE / "outputs" / "core_release_ablation_probe" / "core_release_ablation_probe_readout.json"
 CORE_HEALTH_CALIBRATED_JSON = HERE / "outputs" / "core_health_calibrated_release" / "core_health_calibrated_release_readout.json"
 CROSS_LISTENER_TRANSPORT_JSON = HERE / "outputs" / "cross_listener_transport_decoder" / "cross_listener_transport_readout.json"
+ANTI_LISTENER_TOXICITY_JSON = HERE / "outputs" / "anti_listener_toxicity_equation_solver" / "anti_listener_toxicity_equation_readout.json"
 FACTORIZED_JSON = HERE / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_readout.json"
 FACTORIZED_STRESS_JSON = HERE / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_stress_audit.json"
 LEDGER_CSV = ROOT / "data_analytics" / "hsjepa_public_score_ledger.csv"
@@ -156,6 +157,7 @@ def collect_rows() -> list[dict[str, Any]]:
     core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
     core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
     cross_listener_transport = read_json(CROSS_LISTENER_TRANSPORT_JSON)
+    anti_listener_toxicity = read_json(ANTI_LISTENER_TOXICITY_JSON)
     factorized = read_json(FACTORIZED_JSON)
     factorized_stress = read_json(FACTORIZED_STRESS_JSON)
     rows: list[dict[str, Any]] = []
@@ -623,6 +625,75 @@ def collect_rows() -> list[dict[str, Any]]:
         )
         rows.append(row)
 
+    anti_stress = {
+        str(item.get("variant")): item
+        for item in anti_listener_toxicity.get("null_stress", [])
+        if isinstance(item, dict) and item.get("variant")
+    }
+    for variant, item in sorted(anti_listener_toxicity.get("variants", {}).items()):
+        if not isinstance(item, dict):
+            continue
+        metrics = item.get("metrics", {}) if isinstance(item.get("metrics"), dict) else {}
+        submission = item.get("submission", {}) if isinstance(item.get("submission"), dict) else {}
+        validation = submission.get("validation", {}) if isinstance(submission.get("validation"), dict) else {}
+        stress = anti_stress.get(str(variant), {})
+        hardworld_toxicity_z = maybe_float(stress.get("hardworld_toxicity_z"))
+        broad_toxicity_z = maybe_float(stress.get("broad_toxicity_z"))
+        row = base_row(
+            family="anti_listener_toxicity",
+            variant=str(variant),
+            submission_file=str(submission.get("submission_file")) if submission.get("submission_file") else None,
+            upload_safe=bool(validation.get("upload_safe", False)),
+            changed_cells=int(submission.get("changed_cells", validation.get("changed_cells_vs_current_best", 0))),
+            architecture_claim="failed listener-derived public actions define negative teachers; inverse moves need private-safety and toxicity veto before release",
+            decoder_order="negative_listener_first_then_private_safe_release",
+            core_modules=[
+                "listener_responsibility",
+                "action_health_decoder",
+                "external_listener_tomography",
+                "public_private_equation",
+                "anti_shortcut_validation",
+            ],
+            public_lb=public_scores.get(str(submission.get("submission_file"))),
+        )
+        row.update(
+            {
+                "route_z": maybe_float(stress.get("score_z")),
+                "matched_route_z": maybe_float(stress.get("private_safety_z")),
+                "matched_score_z": maybe_float(stress.get("pred_delta_z")),
+                "safety_z": maybe_float(stress.get("private_safety_z")),
+                "toxicity_clear": bool(
+                    finite(metrics.get("mean_hardworld_toxicity"), 1.0) <= 0.36
+                    and finite(metrics.get("mean_broad_toxicity"), 1.0) <= 0.52
+                ),
+                "broad_hard_conflict_exposure": maybe_float(metrics.get("mean_broad_toxicity")),
+                "hardworld_top_toxic_exposure": maybe_float(metrics.get("mean_hardworld_toxicity")),
+                "route_boundary": (
+                    "anti_listener_private_safe_supported"
+                    if finite(stress.get("score_z"), 0.0) >= 3.0
+                    and finite(stress.get("private_safety_z"), 0.0) >= 1.0
+                    else "anti_listener_boundary_probe"
+                ),
+                "safety_boundary": (
+                    "private_safe_inverse_supported"
+                    if finite(metrics.get("mean_private_safety"), 0.0) >= 0.55
+                    and finite(stress.get("hardworld_toxicity_z"), 99.0) <= 0.0
+                    else "listener_inverse_information_probe"
+                ),
+                "module_ablation_interpretation": (
+                    "Uses public-failed listener actions as negative target representations. "
+                    "If this family wins public LB, listener responsibility is useful mainly as an anti-listener toxicity equation."
+                ),
+            }
+        )
+        if hardworld_toxicity_z is not None and broad_toxicity_z is not None:
+            row["matched_score_z"] = maybe_float(
+                finite(stress.get("score_z"))
+                + max(0.0, -hardworld_toxicity_z)
+                + 0.5 * max(0.0, -broad_toxicity_z)
+            )
+        rows.append(row)
+
     return rows
 
 
@@ -686,6 +757,7 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
     core_ablation_rows = frame.loc[frame["family"].eq("core_release_ablation")]
     core_health_rows = frame.loc[frame["family"].eq("core_health_calibrated_release")]
     cross_listener_rows = frame.loc[frame["family"].eq("cross_listener_transport")]
+    anti_listener_rows = frame.loc[frame["family"].eq("anti_listener_toxicity")]
     best_route = route_rows.iloc[0].to_dict() if not route_rows.empty else {}
     best_support = row_support_rows.iloc[0].to_dict() if not row_support_rows.empty else {}
     best_factorized = factorized_rows.iloc[0].to_dict() if not factorized_rows.empty else {}
@@ -696,6 +768,7 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
     best_core_ablation = core_ablation_rows.iloc[0].to_dict() if not core_ablation_rows.empty else {}
     best_core_health = core_health_rows.iloc[0].to_dict() if not core_health_rows.empty else {}
     best_cross_listener = cross_listener_rows.iloc[0].to_dict() if not cross_listener_rows.empty else {}
+    best_anti_listener = anti_listener_rows.iloc[0].to_dict() if not anti_listener_rows.empty else {}
     observed_cross_listener_rows = cross_listener_rows.loc[cross_listener_rows["public_lb_observed"].notna()]
     diagnostic_cross_listener = (
         observed_cross_listener_rows.iloc[0].to_dict()
@@ -827,6 +900,16 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
             "status": cross_public_status,
             "next_test": cross_next_test,
         },
+        {
+            "claim": "Failed listener actions can become anti-listener toxicity teachers.",
+            "evidence": (
+                f"Best anti-listener row is {best_anti_listener.get('variant')} with score_z={fmt(best_anti_listener.get('route_z'))}, "
+                f"private_safety_z={fmt(best_anti_listener.get('safety_z'))}, matched_score_z={fmt(best_anti_listener.get('matched_score_z'))}, "
+                f"priority={fmt(best_anti_listener.get('lb_sensor_priority'))}, and changed_cells={best_anti_listener.get('changed_cells')}."
+            ),
+            "status": "alive" if best_anti_listener else "missing",
+            "next_test": "Submit the private-safe anti-listener bridge if the next slot is for information gain; failure means listener failures are diagnostic but not invertible.",
+        },
     ]
 
 
@@ -857,6 +940,8 @@ def build_verdict(frame: pd.DataFrame, findings: list[dict[str, Any]]) -> dict[s
         status = "action_decoder_ablation_ready_core_health_calibrated_leads"
     elif str(top["family"]) == "cross_listener_transport":
         status = "action_decoder_ablation_ready_cross_listener_transport_leads"
+    elif str(top["family"]) == "anti_listener_toxicity":
+        status = "action_decoder_ablation_ready_anti_listener_toxicity_leads"
     elif str(top["family"]) != "route_frontier":
         status = "action_decoder_ablation_ready_non_route_leads"
     return {
@@ -935,6 +1020,7 @@ def build_markdown(readout: dict[str, Any], frame: pd.DataFrame) -> str:
             "- core-release ablation이 이기면, listener/action-health/invariant 중 어떤 core module이 adapter를 과하게 제한하는지 public sensor로 볼 수 있다는 뜻이다.",
             "- core-health calibrated release가 이기면, dataset-free action-health failure mode가 실제 sleep adapter release에도 전이된다는 뜻이다.",
             "- cross-listener transport가 이기면, target-listener posterior는 직접 action 생성기가 아니라 release/calibration prior로 쓸 때 살아난다는 뜻이다.",
+            "- anti-listener toxicity가 이기면, 실패한 listener action은 버릴 것이 아니라 negative target representation으로 써야 한다는 뜻이다.",
             "",
         ]
     )
@@ -965,6 +1051,7 @@ def run() -> dict[str, Any]:
             "core_release_ablation": str(CORE_RELEASE_ABLATION_JSON.resolve()),
             "core_health_calibrated": str(CORE_HEALTH_CALIBRATED_JSON.resolve()),
             "cross_listener_transport": str(CROSS_LISTENER_TRANSPORT_JSON.resolve()),
+            "anti_listener_toxicity": str(ANTI_LISTENER_TOXICITY_JSON.resolve()),
             "factorized_toxicity": str(FACTORIZED_JSON.resolve()),
             "factorized_stress": str(FACTORIZED_STRESS_JSON.resolve()),
         },

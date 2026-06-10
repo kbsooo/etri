@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 40,
-  "edge_count": 143,
+  "stage_count": 41,
+  "edge_count": 153,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -579,9 +579,37 @@
       "boundary": "This is a public/private listener-equation sensor; public LB must decide whether the inferred subset/label decomposition is action-grade."
     },
     {
+      "id": "anti_listener_toxicity_equation_solver",
+      "name": "Anti-Listener Toxicity Equation Solver",
+      "role": "Uses failed listener-derived public actions as negative teachers and releases only inverse or vetoed row-target actions that survive private-safety and route/action-health constraints.",
+      "inputs": [
+        "public_private_subset_tomography_readout.json",
+        "cross_listener_transport_readout.json",
+        "hardworld_toxicity_factorization_sectors.csv",
+        "private_safe_toxicity_probe.json",
+        "public_score_ledger.csv"
+      ],
+      "outputs": [
+        "anti_listener_toxicity_equation_readout_ko.md",
+        "submission_hsjepa_anti_listener_toxicity_listener_inverse_jackpot_e1f39e61_uploadsafe.csv",
+        "submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv",
+        "submission_hsjepa_anti_listener_toxicity_q2s2_listener_toxicity_route_61c3a6d1_uploadsafe.csv",
+        "submission_hsjepa_anti_listener_toxicity_public_subset_veto_listener_toxicity_b8eac215_uploadsafe.csv",
+        "submission_hsjepa_anti_listener_toxicity_listener_toxicity_boundary_probe_372faa12_uploadsafe.csv"
+      ],
+      "evidence": [
+        "Anti-listener status: candidate_ready",
+        "Recommended variant: private_safe_anti_listener_bridge",
+        "Source LOO corr: 0.7682",
+        "Candidate cells: 938",
+        "Top ranked: [{'variant': 'private_safe_anti_listener_bridge', 'score': 0.4806272806005853, 'cells': 30, 'predicted_delta': -0.6907101116679806, 'upload_safe': True}, {'variant': 'q2s2_listener_toxicity_route', 'score': 0.43759649127137157, 'cells': 5, 'predicted_delta': -0.011085160395969502, 'upload_safe': True}]"
+      ],
+      "boundary": "This is a negative-listener action-equation sensor; until public LB confirms it, listener failures are diagnostic evidence rather than a proven action generator."
+    },
+    {
       "id": "action_decoder_ablation_suite",
       "name": "Action Decoder Ablation Suite",
-      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, listener-dropout, spectral, invariant-projection, LB-conditioned responsibility, mixture-listener, and public/private subset-tomography alternatives as HS-JEPA module ablations.",
+      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, listener-dropout, spectral, invariant-projection, LB-conditioned responsibility, mixture-listener, public/private subset-tomography, and anti-listener toxicity alternatives as HS-JEPA module ablations.",
       "inputs": [
         "row_support_strict_action_decoder_readout.json",
         "route_frontier_action_decoder_readout.json",
@@ -598,6 +626,7 @@
         "lb_conditioned_responsibility_readout.json",
         "mixture_listener_responsibility_readout.json",
         "public_private_subset_tomography_readout.json",
+        "anti_listener_toxicity_equation_readout.json",
         "factorized_toxicity_decoder_stress_audit.json"
       ],
       "outputs": [
@@ -605,8 +634,8 @@
         "hsjepa_action_decoder_ablation_suite.csv"
       ],
       "evidence": [
-        "Suite status: action_decoder_ablation_ready_decoder_jury_leads",
-        "Recommended LB sensor: {'family': 'decoder_order_jury', 'variant': 'family_supermajority', 'submission_file': 'submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv', 'priority': 1.394366527938867}",
+        "Suite status: action_decoder_ablation_ready_anti_listener_toxicity_leads",
+        "Recommended LB sensor: {'family': 'anti_listener_toxicity', 'variant': 'private_safe_anti_listener_bridge', 'submission_file': 'submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv', 'priority': 1.5605000000000002}",
         "Open big-bet sensor: {'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572}"
       ],
       "boundary": "This prioritizes public-sensor experiments; it is not a calibrated LB predictor."
@@ -837,7 +866,7 @@
       "evidence": [
         "Adapter status: adapter_ready_with_public_sensor_boundary",
         "Adapter score delta: -0.0084113555",
-        "Big-bet count: 20"
+        "Big-bet count: 21"
       ],
       "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
     },
@@ -1291,6 +1320,46 @@
       "claim_readiness_and_paper_packet"
     ],
     [
+      "public_lb_sensor",
+      "anti_listener_toxicity_equation_solver"
+    ],
+    [
+      "public_private_subset_tomography_solver",
+      "anti_listener_toxicity_equation_solver"
+    ],
+    [
+      "cross_listener_transport_decoder",
+      "anti_listener_toxicity_equation_solver"
+    ],
+    [
+      "private_safe_toxicity_probe",
+      "anti_listener_toxicity_equation_solver"
+    ],
+    [
+      "hardworld_toxicity_factorization_probe",
+      "anti_listener_toxicity_equation_solver"
+    ],
+    [
+      "route_energy_model",
+      "anti_listener_toxicity_equation_solver"
+    ],
+    [
+      "human_state_listener_context",
+      "anti_listener_toxicity_equation_solver"
+    ],
+    [
+      "anti_listener_toxicity_equation_solver",
+      "action_decoder_ablation_suite"
+    ],
+    [
+      "anti_listener_toxicity_equation_solver",
+      "sleep_competition_adapter"
+    ],
+    [
+      "anti_listener_toxicity_equation_solver",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
       "negative_tangent_invariant_projection_solver",
       "action_decoder_ablation_suite"
     ],
@@ -1500,7 +1569,7 @@
     "core_module_benchmark_invariant_fp_lift": 1,
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
     "core_adapter_boundary_status": "core_adapter_boundary_verified",
-    "big_bet_count": 20,
+    "big_bet_count": 21,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "assignment_gap_decomposition_status": "row_support_is_primary_bottleneck",
     "assignment_gap_mean_row_support_gap": 0.5832137733142038,
@@ -2068,12 +2137,32 @@
         "score": 1.6944301570490845
       }
     ],
-    "action_decoder_ablation_suite_status": "action_decoder_ablation_ready_decoder_jury_leads",
+    "anti_listener_toxicity_status": "candidate_ready",
+    "anti_listener_toxicity_recommended": "private_safe_anti_listener_bridge",
+    "anti_listener_toxicity_source_loo_corr": 0.7681909332400592,
+    "anti_listener_toxicity_cells": 938,
+    "anti_listener_toxicity_top_ranked": [
+      {
+        "variant": "private_safe_anti_listener_bridge",
+        "score": 0.4806272806005853,
+        "cells": 30,
+        "predicted_delta": -0.6907101116679806,
+        "upload_safe": true
+      },
+      {
+        "variant": "q2s2_listener_toxicity_route",
+        "score": 0.43759649127137157,
+        "cells": 5,
+        "predicted_delta": -0.011085160395969502,
+        "upload_safe": true
+      }
+    ],
+    "action_decoder_ablation_suite_status": "action_decoder_ablation_ready_anti_listener_toxicity_leads",
     "action_decoder_ablation_suite_recommended_lb_sensor": {
-      "family": "decoder_order_jury",
-      "variant": "family_supermajority",
-      "submission_file": "submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv",
-      "priority": 1.394366527938867
+      "family": "anti_listener_toxicity",
+      "variant": "private_safe_anti_listener_bridge",
+      "submission_file": "submission_hsjepa_anti_listener_toxicity_private_safe_anti_listener_bridge_0b72cf91_uploadsafe.csv",
+      "priority": 1.5605000000000002
     },
     "action_decoder_ablation_suite_big_bet_sensor": {
       "family": "route_frontier",
