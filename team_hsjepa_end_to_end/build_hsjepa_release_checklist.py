@@ -47,6 +47,28 @@ CORE_MEDIATED_RELEASE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "c
 CORE_RELEASE_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_release_ablation_probe" / "core_release_ablation_probe_readout.json"
 CORE_HEALTH_CALIBRATED_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "core_health_calibrated_release" / "core_health_calibrated_release_readout.json"
 CROSS_LISTENER_TRANSPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "cross_listener_transport_decoder" / "cross_listener_transport_readout.json"
+COUNTERFACTUAL_LISTENER_DROPOUT_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "counterfactual_listener_dropout_solver"
+    / "counterfactual_listener_dropout_readout.json"
+)
+SPECTRAL_PUBLIC_TANGENT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "spectral_public_tangent_solver" / "spectral_public_tangent_readout.json"
+NEGATIVE_TANGENT_INVARIANT_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "negative_tangent_invariant_projection_solver"
+    / "negative_tangent_invariant_projection_readout.json"
+)
+LB_CONDITIONED_RESPONSIBILITY_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "lb_conditioned_responsibility_solver"
+    / "lb_conditioned_responsibility_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -116,6 +138,10 @@ def require_inputs() -> list[dict[str, object]]:
         CORE_RELEASE_ABLATION_JSON,
         CORE_HEALTH_CALIBRATED_JSON,
         CROSS_LISTENER_TRANSPORT_JSON,
+        COUNTERFACTUAL_LISTENER_DROPOUT_JSON,
+        SPECTRAL_PUBLIC_TANGENT_JSON,
+        NEGATIVE_TANGENT_INVARIANT_JSON,
+        LB_CONDITIONED_RESPONSIBILITY_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -178,6 +204,10 @@ def build_checklist() -> dict[str, object]:
     core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
     core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
     cross_listener_transport = read_json(CROSS_LISTENER_TRANSPORT_JSON)
+    counterfactual_listener_dropout = read_json(COUNTERFACTUAL_LISTENER_DROPOUT_JSON)
+    spectral_public_tangent = read_json(SPECTRAL_PUBLIC_TANGENT_JSON)
+    negative_tangent_invariant = read_json(NEGATIVE_TANGENT_INVARIANT_JSON)
+    lb_conditioned_responsibility = read_json(LB_CONDITIONED_RESPONSIBILITY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -210,6 +240,10 @@ def build_checklist() -> dict[str, object]:
     core_release_ablation_verdict = core_release_ablation.get("verdict", {})
     core_health_calibrated_verdict = core_health_calibrated.get("verdict", {})
     cross_listener_verdict = cross_listener_transport.get("verdict", {})
+    listener_dropout_verdict = counterfactual_listener_dropout.get("verdict", {})
+    spectral_tangent_verdict = spectral_public_tangent.get("verdict", {})
+    negative_projection_verdict = negative_tangent_invariant.get("verdict", {})
+    lb_responsibility_verdict = lb_conditioned_responsibility.get("verdict", {})
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -650,6 +684,75 @@ def build_checklist() -> dict[str, object]:
                 ),
             ),
             check(
+                "counterfactual_listener_dropout_recorded",
+                counterfactual_listener_dropout.get("status") == "counterfactual_listener_dropout_ready"
+                and isinstance(listener_dropout_verdict.get("recommended_information_sensor"), dict)
+                and isinstance(listener_dropout_verdict.get("recommended_thesis_sensor"), dict)
+                and len(counterfactual_listener_dropout.get("ranking", [])) >= 2
+                and any(
+                    isinstance(item, dict)
+                    and item.get("validation", {}).get("upload_safe") is True
+                    for item in counterfactual_listener_dropout.get("ranking", [])
+                ),
+                (
+                    f"status={counterfactual_listener_dropout.get('status')}, "
+                    f"information={listener_dropout_verdict.get('recommended_information_sensor')}, "
+                    f"thesis={listener_dropout_verdict.get('recommended_thesis_sensor')}"
+                ),
+            ),
+            check(
+                "spectral_public_tangent_recorded",
+                spectral_public_tangent.get("status") == "spectral_public_tangent_ready"
+                and float(spectral_public_tangent.get("spectral", {}).get("first_mode_variance", 0.0)) >= 0.80
+                and float(spectral_public_tangent.get("spectral", {}).get("top5_cumulative_variance", 0.0)) >= 0.90
+                and isinstance(spectral_tangent_verdict.get("recommended_information_sensor"), dict)
+                and isinstance(spectral_tangent_verdict.get("recommended_counter_sensor"), dict),
+                (
+                    f"status={spectral_public_tangent.get('status')}, "
+                    f"first={fmt(spectral_public_tangent.get('spectral', {}).get('first_mode_variance'), 4)}, "
+                    f"top5={fmt(spectral_public_tangent.get('spectral', {}).get('top5_cumulative_variance'), 4)}, "
+                    f"information={spectral_tangent_verdict.get('recommended_information_sensor')}, "
+                    f"counter={spectral_tangent_verdict.get('recommended_counter_sensor')}"
+                ),
+            ),
+            check(
+                "negative_tangent_invariant_projection_recorded",
+                negative_tangent_invariant.get("experiment") == "Negative Tangent Invariant Projection Solver"
+                and negative_projection_verdict.get("status") == "candidate_ready"
+                and negative_projection_verdict.get("recommended_variant") in negative_tangent_invariant.get("variants", {})
+                and int(negative_tangent_invariant.get("projected_cells", 0)) >= 1
+                and all(
+                    isinstance(item, dict)
+                    and item.get("submission", {}).get("validation", {}).get("upload_safe") is True
+                    for item in negative_tangent_invariant.get("variants", {}).values()
+                ),
+                (
+                    f"status={negative_projection_verdict.get('status')}, "
+                    f"recommended={negative_projection_verdict.get('recommended_variant')}, "
+                    f"projected={negative_tangent_invariant.get('projected_cells')}, "
+                    f"ranking={negative_projection_verdict.get('ranking')}"
+                ),
+            ),
+            check(
+                "lb_conditioned_responsibility_recorded",
+                lb_conditioned_responsibility.get("experiment") == "LB-Conditioned Responsibility Solver"
+                and lb_responsibility_verdict.get("status") == "candidate_ready"
+                and lb_responsibility_verdict.get("recommended_variant") in lb_conditioned_responsibility.get("variants", {})
+                and float(lb_conditioned_responsibility.get("fit", {}).get("loo_corr", 0.0)) >= 0.50
+                and int(lb_conditioned_responsibility.get("responsibility_cells", 0)) >= 1
+                and all(
+                    isinstance(item, dict)
+                    and item.get("submission", {}).get("validation", {}).get("upload_safe") is True
+                    for item in lb_conditioned_responsibility.get("variants", {}).values()
+                ),
+                (
+                    f"status={lb_responsibility_verdict.get('status')}, "
+                    f"recommended={lb_responsibility_verdict.get('recommended_variant')}, "
+                    f"loo_corr={fmt(lb_conditioned_responsibility.get('fit', {}).get('loo_corr'), 4)}, "
+                    f"cells={lb_conditioned_responsibility.get('responsibility_cells')}"
+                ),
+            ),
+            check(
                 "listener_invariant_contrastive_probe_recorded",
                 contrastive_probe.get("status") == "probe_ready"
                 and contrastive_verdict.get("status") in {
@@ -844,6 +947,7 @@ def build_markdown(result: dict[str, object]) -> str:
             "- HS-JEPA Core/Adapter boundary audit is verified",
             "- Core-health calibrated release uses dataset-free action-health false-positive lift as an adapter release prior",
             "- Cross-listener transport uses failed listener lift as a boundary calibrator, not as a direct action generator",
+            "- Counterfactual listener-dropout, spectral public tangent, negative tangent invariant projection, and LB-conditioned responsibility are recorded as high-information public-sensor probes",
             "- the next big bet is replacing public-sensor assignment with an OG-only human-state teacher",
             "",
         ]

@@ -33,7 +33,7 @@ Sleep competition adapter:
 
 This adapter converts HS-JEPA Core into a sleep-log competition system by supplying Q/S listeners, a route invariant, public-sensor action evidence, and upload-safe sparse row-target decoding.
 
-이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 새 hard-world probe는 broad toxicity와 H088 toxicity가 역상관될 수 있음을 보여주므로, action-health는 단일 위험 점수가 아니라 factorized energy head로 다루어야 한다. 이후 core-health calibrated release는 dataset-free core benchmark에서 action-health를 제거했을 때 false positive가 늘어난다는 실패 패턴을 실제 adapter release prior로 사용한다. cross-listener transport는 target-listener lift가 direct action generator로는 실패했다는 negative sensor를 보존하고, listener posterior를 route/fusion/core-safe action의 transport calibrator로만 사용한다. counterfactual listener-dropout은 listener 하나를 가려도 같은 row-target action이 살아남는지 묻고, 실패한 public sensor들을 버리는 대신 action-toxicity label로 사용한다. spectral public-tangent solver는 실패한 public action들을 저차원 negative representation으로 압축한 뒤 anti-tangent와 orthogonal residual release를 비교한다. negative tangent invariant projection은 여기서 한 단계 더 나아가, 그 반대 방향 action을 target-route/subject-prior invariant 위로 투영해야만 action-grade가 된다는 주장을 테스트한다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant/anti-shortcut/negative-representation 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.
+이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 새 hard-world probe는 broad toxicity와 H088 toxicity가 역상관될 수 있음을 보여주므로, action-health는 단일 위험 점수가 아니라 factorized energy head로 다루어야 한다. 이후 core-health calibrated release는 dataset-free core benchmark에서 action-health를 제거했을 때 false positive가 늘어난다는 실패 패턴을 실제 adapter release prior로 사용한다. cross-listener transport는 target-listener lift가 direct action generator로는 실패했다는 negative sensor를 보존하고, listener posterior를 route/fusion/core-safe action의 transport calibrator로만 사용한다. counterfactual listener-dropout은 listener 하나를 가려도 같은 row-target action이 살아남는지 묻고, 실패한 public sensor들을 버리는 대신 action-toxicity label로 사용한다. spectral public-tangent solver는 실패한 public action들을 저차원 negative representation으로 압축한 뒤 anti-tangent와 orthogonal residual release를 비교한다. negative tangent invariant projection은 여기서 한 단계 더 나아가, 그 반대 방향 action을 target-route/subject-prior invariant 위로 투영해야만 action-grade가 된다는 주장을 테스트한다. LB-conditioned responsibility solver는 public LB라는 scalar 외부 listener가 흘린 관측값에서 row-target action responsibility를 역추정한다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant/anti-shortcut/negative-representation/responsibility 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.
 
 ## Core / Adapter Evidence
 
@@ -44,7 +44,7 @@ This adapter converts HS-JEPA Core into a sleep-log competition system by supply
 - Core/adapter boundary audit: `core_adapter_boundary_verified` (`6/6` checks)
 - Core operational violations: imports `0`, strings `0`
 - Adapter status: `adapter_ready_with_public_sensor_boundary`
-- Big-bet queue: `big_bet_queue_ready` (`17` bets)
+- Big-bet queue: `big_bet_queue_ready` (`18` bets)
 
 ## Generality
 
@@ -120,6 +120,10 @@ partial human context
 - Spectral top-5 variance: `0.9947`
 - Spectral information sensor: `{'variant': 'anti_bad_tangent_pressure', 'submission_file': 'submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_uploadsafe.csv', 'priority': 1.4947903603985548}`
 - Spectral counter sensor: `{'variant': 'orthogonal_private_residual', 'submission_file': 'submission_hsjepa_spectral_public_tangent_orthogonal_private_residual_57ed54c2_uploadsafe.csv'}`
+- LB-conditioned responsibility solver: `candidate_ready`
+- LB responsibility recommended variant: `pure_lb_gradient_jackpot`
+- LB responsibility LOO corr: `0.7300`
+- LB responsibility cells: `115`
 - Listener-invariant probe: `listener_invariant_decoder_not_ready`
 - Listener-route Spearman: `-0.0313`
 - Private-safe toxicity probe: `toxicity_field_promising_with_hardworld_gap`
@@ -156,9 +160,10 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 14. Treat failed public sensors as toxicity evidence and test same-direction release against direction inversion.
 15. Decompose failed action fields into a spectral negative representation and test anti-tangent versus orthogonal residual release.
 16. Project negative-representation actions onto target-route and subject-prior invariants before release.
-17. Decode bounded actions that improve listener fit while preserving the invariant.
-18. Reject shortcuts with cohort/time/group/null stress tests.
-19. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.
+17. Estimate scalar-listener responsibility from external outcome observations when explicit row-target labels are unavailable.
+18. Decode bounded actions that improve listener fit while preserving the invariant.
+19. Reject shortcuts with cohort/time/group/null stress tests.
+20. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.
 ```
 
 ## Evidence Snapshot
@@ -193,6 +198,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 - Spectral information sensor: `{'variant': 'anti_bad_tangent_pressure', 'submission_file': 'submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_uploadsafe.csv', 'priority': 1.4947903603985548}`, file `submission_hsjepa_spectral_public_tangent_anti_bad_tangent_pressure_6a93251a_uploadsafe.csv`, priority `1.4948`
 - Spectral counter sensor: `{'variant': 'orthogonal_private_residual', 'submission_file': 'submission_hsjepa_spectral_public_tangent_orthogonal_private_residual_57ed54c2_uploadsafe.csv'}`, file `submission_hsjepa_spectral_public_tangent_orthogonal_private_residual_57ed54c2_uploadsafe.csv`
 - Negative tangent invariant projection: `candidate_ready`, recommended `subject_prior_safe_projection`, file `submission_hsjepa_negative_tangent_invariant_subject_prior_safe_projection_ebdccca6_uploadsafe.csv`, bad cosine `-0.2259`, energy delta `-0.01685`, subject delta `-0.00106`
+- LB-conditioned responsibility: `candidate_ready`, recommended `pure_lb_gradient_jackpot`, file `submission_hsjepa_lb_responsibility_pure_lb_gradient_jackpot_f0a8129d_uploadsafe.csv`, LOO corr `0.7300`, changed cells `24`, predicted delta `-7.11879`, energy delta `-0.03290`, bad cosine `0.0551`
 - Action decoder ablation: `action_decoder_ablation_ready_decoder_jury_leads`, recommended `{'family': 'decoder_order_jury', 'variant': 'family_supermajority', 'submission_file': 'submission_hsjepa_decoder_jury_family_supermajority_a7bc4ff7_uploadsafe.csv', 'priority': 1.394366527938867}`, big bet `{'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572}`
 
 ## Role-Based Outputs
@@ -214,6 +220,7 @@ Output: bounded prediction/action field with invariant and shortcut checks.
 
 다음 큰 실험은 HS-JEPA core/adaptor 경계를 바꾸는 실험이어야 한다.
 
+- `LB-Conditioned Responsibility Solver`: The public LB can be treated as an external listener whose scalar observations reveal row-target action responsibility. Expected LB delta if true `-0.008`. Kill: Pure-gradient and invariant-safe variants both fail public LB, meaning scalar public listener responsibility is descriptive but not enough without a hidden public/private row-support assignment.
 - `Negative Tangent Invariant Projection Solver`: A negative public representation is useful only when its inverse can be projected onto label-valid human-state invariants. Expected LB delta if true `-0.006`. Kill: Projection candidates worsen public LB like naive anti-tangent probes, meaning public-bad geometry is diagnostic but not yet an invertible action equation even under target/subject invariants.
 - `Spectral Public-Tangent Solver`: Known post-H057 public failures are not independent mistakes; they collapse onto a low-rank public-bad action tangent. Expected LB delta if true `-0.004`. Kill: Anti-tangent and orthogonal residual sensors both worsen public LB, meaning the low-rank tangent is descriptive but not an invertible action equation.
 - `Counterfactual Listener-Dropout Solver`: A healthy HS-JEPA action should survive when one listener is masked, while failed public sensors become action-toxicity evidence rather than discarded submissions. Expected LB delta if true `-0.003`. Kill: Aggressive listener-dropout and inversion both fail public LB, meaning listener-dropout geometry is not enough to solve the public/private row-target equation.
@@ -276,4 +283,5 @@ Generated supporting reports:
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/counterfactual_listener_dropout_solver/counterfactual_listener_dropout_readout.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/spectral_public_tangent_solver/spectral_public_tangent_readout.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/negative_tangent_invariant_projection_solver/negative_tangent_invariant_projection_readout.json`
+- `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/lb_conditioned_responsibility_readout.json`
 - `/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite.json`

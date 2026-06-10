@@ -25,19 +25,23 @@ historical experiment version names.  It executes:
 19. Core release ablation probe.
 20. Core-health calibrated release.
 21. Cross-listener transport decoder.
-22. Listener-invariant contrastive probe.
-23. Private-safe toxicity probe.
-24. Hard-world toxicity factorization probe.
-25. Factorized toxicity decoder candidate.
-26. Factorized toxicity decoder stress audit.
-27. Action decoder ablation suite.
-28. Generality report.
-29. Sleep competition adapter report and big-bet queue.
-30. Core/adapter boundary audit.
-31. Paper method packet.
-32. Pipeline manifest.
-33. Release checklist.
-34. A compact handoff report for paper and competition discussion.
+22. Counterfactual listener-dropout solver.
+23. Spectral public tangent solver.
+24. Negative-tangent invariant projection solver.
+25. LB-conditioned responsibility solver.
+26. Listener-invariant contrastive probe.
+27. Private-safe toxicity probe.
+28. Hard-world toxicity factorization probe.
+29. Factorized toxicity decoder candidate.
+30. Factorized toxicity decoder stress audit.
+31. Action decoder ablation suite.
+32. Generality report.
+33. Sleep competition adapter report and big-bet queue.
+34. Core/adapter boundary audit.
+35. Paper method packet.
+36. Pipeline manifest.
+37. Release checklist.
+38. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -120,6 +124,14 @@ CORE_HEALTH_CALIBRATED_MD = ADAPTER_OUT / "core_health_calibrated_release" / "co
 CORE_HEALTH_CALIBRATED_JSON = ADAPTER_OUT / "core_health_calibrated_release" / "core_health_calibrated_release_readout.json"
 CROSS_LISTENER_TRANSPORT_MD = ADAPTER_OUT / "cross_listener_transport_decoder" / "cross_listener_transport_readout_ko.md"
 CROSS_LISTENER_TRANSPORT_JSON = ADAPTER_OUT / "cross_listener_transport_decoder" / "cross_listener_transport_readout.json"
+COUNTERFACTUAL_LISTENER_DROPOUT_MD = ADAPTER_OUT / "counterfactual_listener_dropout_solver" / "counterfactual_listener_dropout_readout_ko.md"
+COUNTERFACTUAL_LISTENER_DROPOUT_JSON = ADAPTER_OUT / "counterfactual_listener_dropout_solver" / "counterfactual_listener_dropout_readout.json"
+SPECTRAL_PUBLIC_TANGENT_MD = ADAPTER_OUT / "spectral_public_tangent_solver" / "spectral_public_tangent_readout_ko.md"
+SPECTRAL_PUBLIC_TANGENT_JSON = ADAPTER_OUT / "spectral_public_tangent_solver" / "spectral_public_tangent_readout.json"
+NEGATIVE_TANGENT_INVARIANT_MD = ADAPTER_OUT / "negative_tangent_invariant_projection_solver" / "negative_tangent_invariant_projection_readout.md"
+NEGATIVE_TANGENT_INVARIANT_JSON = ADAPTER_OUT / "negative_tangent_invariant_projection_solver" / "negative_tangent_invariant_projection_readout.json"
+LB_CONDITIONED_RESPONSIBILITY_MD = ADAPTER_OUT / "lb_conditioned_responsibility_solver" / "lb_conditioned_responsibility_readout_ko.md"
+LB_CONDITIONED_RESPONSIBILITY_JSON = ADAPTER_OUT / "lb_conditioned_responsibility_solver" / "lb_conditioned_responsibility_readout.json"
 ACTION_DECODER_ABLATION_MD = ADAPTER_OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite_ko.md"
 ACTION_DECODER_ABLATION_JSON = ADAPTER_OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_MD = ADAPTER_OUT / "listener_invariant_contrastive_probe_ko.md"
@@ -185,6 +197,10 @@ def build_handoff(
     core_release_ablation: dict[str, object],
     core_health_calibrated: dict[str, object],
     cross_listener_transport: dict[str, object],
+    counterfactual_listener_dropout: dict[str, object],
+    spectral_public_tangent: dict[str, object],
+    negative_tangent_invariant: dict[str, object],
+    lb_conditioned_responsibility: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -209,6 +225,15 @@ def build_handoff(
     core_release_ablation_verdict = core_release_ablation.get("verdict", {})
     core_health_calibrated_verdict = core_health_calibrated.get("verdict", {})
     cross_listener_verdict = cross_listener_transport.get("verdict", {})
+    listener_dropout_verdict = counterfactual_listener_dropout.get("verdict", {})
+    spectral_tangent_verdict = spectral_public_tangent.get("verdict", {})
+    negative_projection_verdict = negative_tangent_invariant.get("verdict", {})
+    lb_responsibility_verdict = lb_conditioned_responsibility.get("verdict", {})
+    lb_responsibility_fit = lb_conditioned_responsibility.get("fit", {})
+    lb_recommended = lb_responsibility_verdict.get("recommended_variant")
+    lb_recommended_variant = lb_conditioned_responsibility.get("variants", {}).get(str(lb_recommended), {})
+    lb_recommended_metrics = lb_recommended_variant.get("metrics", {}) if isinstance(lb_recommended_variant, dict) else {}
+    lb_recommended_submission = lb_recommended_variant.get("submission", {}) if isinstance(lb_recommended_variant, dict) else {}
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -298,6 +323,10 @@ def build_handoff(
             f"- Core release ablation probe: `{core_release_ablation_verdict.get('status')}`",
             f"- Core-health calibrated release: `{core_health_calibrated_verdict.get('status')}`",
             f"- Cross-listener transport decoder: `{cross_listener_verdict.get('status')}`",
+            f"- Counterfactual listener-dropout solver: `{counterfactual_listener_dropout.get('status')}`",
+            f"- Spectral public tangent solver: `{spectral_public_tangent.get('status')}`",
+            f"- Negative-tangent invariant projection: `{negative_projection_verdict.get('status')}`",
+            f"- LB-conditioned responsibility solver: `{lb_responsibility_verdict.get('status')}`",
             f"- Action decoder ablation suite: `{action_ablation_verdict.get('status')}`",
             f"- Listener-invariant contrastive probe: `{contrastive_verdict.get('status')}`",
             f"- Private-safe toxicity probe: `{toxicity_verdict.get('status')}`",
@@ -331,6 +360,10 @@ def build_handoff(
             "sleep_competition_adapter/outputs/core_release_ablation_probe/core_release_ablation_probe_readout_ko.md",
             "sleep_competition_adapter/outputs/core_health_calibrated_release/core_health_calibrated_release_readout_ko.md",
             "sleep_competition_adapter/outputs/cross_listener_transport_decoder/cross_listener_transport_readout_ko.md",
+            "sleep_competition_adapter/outputs/counterfactual_listener_dropout_solver/counterfactual_listener_dropout_readout_ko.md",
+            "sleep_competition_adapter/outputs/spectral_public_tangent_solver/spectral_public_tangent_readout_ko.md",
+            "sleep_competition_adapter/outputs/negative_tangent_invariant_projection_solver/negative_tangent_invariant_projection_readout.md",
+            "sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/lb_conditioned_responsibility_readout_ko.md",
             "sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite_ko.md",
             "sleep_competition_adapter/outputs/listener_invariant_contrastive_probe_ko.md",
             "sleep_competition_adapter/outputs/private_safe_toxicity_probe_ko.md",
@@ -371,6 +404,10 @@ def build_handoff(
             f"- Core release ablation: full-core `{core_release_ablation_verdict.get('recommended_lb_candidate')}`, sensor `{core_release_ablation_verdict.get('recommended_architecture_sensor')}`, status `{core_release_ablation_verdict.get('status')}`",
             f"- Core-health calibrated release: guarded `{core_health_calibrated_verdict.get('recommended_lb_candidate')}`, big bet `{core_health_calibrated_verdict.get('recommended_big_bet_sensor')}`, status `{core_health_calibrated_verdict.get('status')}`",
             f"- Cross-listener transport: recommended `{cross_listener_verdict.get('recommended_lb_sensor')}`, big bet `{cross_listener_verdict.get('recommended_big_bet')}`, status `{cross_listener_verdict.get('status')}`",
+            f"- Counterfactual listener-dropout: information sensor `{listener_dropout_verdict.get('recommended_information_sensor', {}).get('variant')}`, status `{counterfactual_listener_dropout.get('status')}`",
+            f"- Spectral public tangent: information sensor `{spectral_tangent_verdict.get('recommended_information_sensor', {}).get('variant')}`, status `{spectral_public_tangent.get('status')}`",
+            f"- Negative-tangent invariant projection: recommended `{negative_projection_verdict.get('recommended_variant')}`, status `{negative_projection_verdict.get('status')}`",
+            f"- LB-conditioned responsibility: recommended `{lb_recommended}`, file `{lb_recommended_submission.get('submission_file')}`, LOO corr `{lb_responsibility_fit.get('loo_corr')}`, changed cells `{lb_recommended_submission.get('changed_cells')}`",
             f"- Action decoder ablation: recommended `{action_ablation_verdict.get('recommended_lb_sensor')}`, big bet `{action_ablation_verdict.get('big_bet_sensor')}`",
             f"- Listener-invariant boundary: listener-route rho `{contrastive_verdict.get('mean_listener_route_spearman'):.4f}`, contrastive overlap `{contrastive_verdict.get('mean_contrastive_overlap_rate'):.4f}`",
             f"- Private-safe toxicity boundary: mean LOO AUC `{toxicity_verdict.get('mean_loo_bad_anchor_auc'):.4f}`, worst LOO AUC `{toxicity_verdict.get('worst_loo_bad_anchor_auc'):.4f}`",
@@ -514,6 +551,10 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "core_release_ablation_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "core_health_calibrated_release.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "cross_listener_transport_decoder.py")],
+        [sys.executable, str(ROOT / "sleep_competition_adapter" / "counterfactual_listener_dropout_solver.py")],
+        [sys.executable, str(ROOT / "sleep_competition_adapter" / "spectral_public_tangent_solver.py")],
+        [sys.executable, str(ROOT / "sleep_competition_adapter" / "negative_tangent_invariant_projection_solver.py")],
+        [sys.executable, str(ROOT / "sleep_competition_adapter" / "lb_conditioned_responsibility_solver.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "listener_invariant_contrastive_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "private_safe_toxicity_probe.py")],
         [sys.executable, str(ROOT / "sleep_competition_adapter" / "hardworld_toxicity_factorization_probe.py")],
@@ -558,6 +599,10 @@ def run(refresh: bool = False) -> dict[str, object]:
     core_release_ablation = read_json(CORE_RELEASE_ABLATION_JSON)
     core_health_calibrated = read_json(CORE_HEALTH_CALIBRATED_JSON)
     cross_listener_transport = read_json(CROSS_LISTENER_TRANSPORT_JSON)
+    counterfactual_listener_dropout = read_json(COUNTERFACTUAL_LISTENER_DROPOUT_JSON)
+    spectral_public_tangent = read_json(SPECTRAL_PUBLIC_TANGENT_JSON)
+    negative_tangent_invariant = read_json(NEGATIVE_TANGENT_INVARIANT_JSON)
+    lb_conditioned_responsibility = read_json(LB_CONDITIONED_RESPONSIBILITY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -592,6 +637,10 @@ def run(refresh: bool = False) -> dict[str, object]:
         core_release_ablation,
         core_health_calibrated,
         cross_listener_transport,
+        counterfactual_listener_dropout,
+        spectral_public_tangent,
+        negative_tangent_invariant,
+        lb_conditioned_responsibility,
         action_decoder_ablation,
         contrastive_probe,
         private_toxicity_probe,
@@ -601,6 +650,16 @@ def run(refresh: bool = False) -> dict[str, object]:
         boundary_audit,
         release,
     )
+
+    listener_dropout_verdict = counterfactual_listener_dropout.get("verdict", {})
+    spectral_tangent_verdict = spectral_public_tangent.get("verdict", {})
+    negative_projection_verdict = negative_tangent_invariant.get("verdict", {})
+    lb_responsibility_verdict = lb_conditioned_responsibility.get("verdict", {})
+    lb_responsibility_fit = lb_conditioned_responsibility.get("fit", {})
+    lb_recommended = lb_responsibility_verdict.get("recommended_variant")
+    lb_recommended_variant = lb_conditioned_responsibility.get("variants", {}).get(str(lb_recommended), {})
+    lb_recommended_metrics = lb_recommended_variant.get("metrics", {}) if isinstance(lb_recommended_variant, dict) else {}
+    lb_recommended_submission = lb_recommended_variant.get("submission", {}) if isinstance(lb_recommended_variant, dict) else {}
 
     handoff = {
         "package": "Route-Conserving S2 Bridge HS-JEPA",
@@ -730,6 +789,26 @@ def run(refresh: bool = False) -> dict[str, object]:
         "cross_listener_transport_status": str(cross_listener_transport["verdict"]["status"]),
         "cross_listener_transport_recommended_lb_sensor": cross_listener_transport["verdict"]["recommended_lb_sensor"],
         "cross_listener_transport_recommended_big_bet": cross_listener_transport["verdict"]["recommended_big_bet"],
+        "counterfactual_listener_dropout_md": str(COUNTERFACTUAL_LISTENER_DROPOUT_MD.resolve()),
+        "counterfactual_listener_dropout_json": str(COUNTERFACTUAL_LISTENER_DROPOUT_JSON.resolve()),
+        "counterfactual_listener_dropout_status": str(counterfactual_listener_dropout.get("status")),
+        "counterfactual_listener_dropout_recommended_information_sensor": listener_dropout_verdict.get("recommended_information_sensor"),
+        "spectral_public_tangent_md": str(SPECTRAL_PUBLIC_TANGENT_MD.resolve()),
+        "spectral_public_tangent_json": str(SPECTRAL_PUBLIC_TANGENT_JSON.resolve()),
+        "spectral_public_tangent_status": str(spectral_public_tangent.get("status")),
+        "spectral_public_tangent_recommended_information_sensor": spectral_tangent_verdict.get("recommended_information_sensor"),
+        "negative_tangent_invariant_projection_md": str(NEGATIVE_TANGENT_INVARIANT_MD.resolve()),
+        "negative_tangent_invariant_projection_json": str(NEGATIVE_TANGENT_INVARIANT_JSON.resolve()),
+        "negative_tangent_invariant_projection_status": str(negative_projection_verdict.get("status")),
+        "negative_tangent_invariant_projection_recommended": negative_projection_verdict.get("recommended_variant"),
+        "lb_conditioned_responsibility_md": str(LB_CONDITIONED_RESPONSIBILITY_MD.resolve()),
+        "lb_conditioned_responsibility_json": str(LB_CONDITIONED_RESPONSIBILITY_JSON.resolve()),
+        "lb_conditioned_responsibility_status": str(lb_responsibility_verdict.get("status")),
+        "lb_conditioned_responsibility_recommended": lb_recommended,
+        "lb_conditioned_responsibility_recommended_file": lb_recommended_submission.get("submission_file"),
+        "lb_conditioned_responsibility_loo_corr": lb_responsibility_fit.get("loo_corr"),
+        "lb_conditioned_responsibility_changed_cells": lb_recommended_submission.get("changed_cells"),
+        "lb_conditioned_responsibility_predicted_loss_delta": lb_recommended_metrics.get("sum_predicted_loss_delta"),
         "action_decoder_ablation_suite_status": str(action_decoder_ablation["verdict"]["status"]),
         "action_decoder_ablation_suite_recommended_lb_sensor": action_decoder_ablation["verdict"]["recommended_lb_sensor"],
         "action_decoder_ablation_suite_big_bet_sensor": action_decoder_ablation["verdict"]["big_bet_sensor"],

@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 37,
-  "edge_count": 117,
+  "stage_count": 38,
+  "edge_count": 125,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -495,9 +495,36 @@
       "boundary": "This stage tests whether a negative representation is action-grade only after invariant projection; public LB must still validate the generated action field."
     },
     {
+      "id": "lb_conditioned_responsibility_solver",
+      "name": "LB-Conditioned Responsibility Solver",
+      "role": "Treats public LB as an external scalar listener and estimates row-target action responsibility from observed submission loss deltas.",
+      "inputs": [
+        "public_score_ledger.csv",
+        "spectral_public_tangent_readout.json",
+        "negative_tangent_invariant_projection_readout.json",
+        "route energy and subject-prior invariants",
+        "current best submission"
+      ],
+      "outputs": [
+        "lb_conditioned_responsibility_readout_ko.md",
+        "submission_hsjepa_lb_responsibility_pure_lb_gradient_jackpot_f0a8129d_uploadsafe.csv",
+        "submission_hsjepa_lb_responsibility_stable_public_listener_inverse_b3a3a98e_uploadsafe.csv",
+        "submission_hsjepa_lb_responsibility_subject_safe_public_private_equation_bb70d5b8_uploadsafe.csv",
+        "submission_hsjepa_lb_responsibility_jackpot_public_equation_release_6dd65162_uploadsafe.csv",
+        "submission_hsjepa_lb_responsibility_route_invariant_responsibility_core_8572f8a4_uploadsafe.csv"
+      ],
+      "evidence": [
+        "Responsibility status: candidate_ready",
+        "Recommended variant: pure_lb_gradient_jackpot",
+        "LOO corr: 0.7300",
+        "Responsibility cells: 115"
+      ],
+      "boundary": "This is a scalar-listener inversion sensor; if public LB rejects it, responsibility is diagnostic but not yet a portable action equation."
+    },
+    {
       "id": "action_decoder_ablation_suite",
       "name": "Action Decoder Ablation Suite",
-      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, and listener-dropout alternatives as HS-JEPA module ablations.",
+      "role": "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, listener-dropout, spectral, invariant-projection, and LB-conditioned responsibility alternatives as HS-JEPA module ablations.",
       "inputs": [
         "row_support_strict_action_decoder_readout.json",
         "route_frontier_action_decoder_readout.json",
@@ -509,6 +536,9 @@
         "core_health_calibrated_release_readout.json",
         "cross_listener_transport_readout.json",
         "counterfactual_listener_dropout_readout.json",
+        "spectral_public_tangent_readout.json",
+        "negative_tangent_invariant_projection_readout.json",
+        "lb_conditioned_responsibility_readout.json",
         "factorized_toxicity_decoder_stress_audit.json"
       ],
       "outputs": [
@@ -748,7 +778,7 @@
       "evidence": [
         "Adapter status: adapter_ready_with_public_sensor_boundary",
         "Adapter score delta: -0.0084113555",
-        "Big-bet count: 17"
+        "Big-bet count: 18"
       ],
       "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
     },
@@ -1098,6 +1128,38 @@
       "negative_tangent_invariant_projection_solver"
     ],
     [
+      "public_lb_sensor",
+      "lb_conditioned_responsibility_solver"
+    ],
+    [
+      "spectral_public_tangent_solver",
+      "lb_conditioned_responsibility_solver"
+    ],
+    [
+      "negative_tangent_invariant_projection_solver",
+      "lb_conditioned_responsibility_solver"
+    ],
+    [
+      "route_energy_model",
+      "lb_conditioned_responsibility_solver"
+    ],
+    [
+      "human_state_listener_context",
+      "lb_conditioned_responsibility_solver"
+    ],
+    [
+      "lb_conditioned_responsibility_solver",
+      "action_decoder_ablation_suite"
+    ],
+    [
+      "lb_conditioned_responsibility_solver",
+      "sleep_competition_adapter"
+    ],
+    [
+      "lb_conditioned_responsibility_solver",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
       "negative_tangent_invariant_projection_solver",
       "action_decoder_ablation_suite"
     ],
@@ -1307,7 +1369,7 @@
     "core_module_benchmark_invariant_fp_lift": 1,
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
     "core_adapter_boundary_status": "core_adapter_boundary_verified",
-    "big_bet_count": 17,
+    "big_bet_count": 18,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "assignment_gap_decomposition_status": "row_support_is_primary_bottleneck",
     "assignment_gap_mean_row_support_gap": 0.5832137733142038,
@@ -1830,6 +1892,20 @@
       {
         "variant": "anti_tangent_invariant_projection",
         "score": 0.23870131099839245
+      }
+    ],
+    "lb_conditioned_responsibility_status": "candidate_ready",
+    "lb_conditioned_responsibility_recommended": "pure_lb_gradient_jackpot",
+    "lb_conditioned_responsibility_loo_corr": 0.7300005193514604,
+    "lb_conditioned_responsibility_cells": 115,
+    "lb_conditioned_responsibility_top_ranked": [
+      {
+        "variant": "pure_lb_gradient_jackpot",
+        "score": 2.729658721843765
+      },
+      {
+        "variant": "jackpot_public_equation_release",
+        "score": 1.65355129666629
       }
     ],
     "action_decoder_ablation_suite_status": "action_decoder_ablation_ready_decoder_jury_leads",

@@ -4,6 +4,7 @@
 
 | Big bet | Worldview | Adapter move | Latest probe | Expected LB delta if true | Kill criterion |
 | --- | --- | --- | --- | ---: | --- |
+| `LB-Conditioned Responsibility Solver` | The public LB can be treated as an external listener whose scalar observations reveal row-target action responsibility. | Fit a ridge/LOO responsibility equation from public-score action deltas, invert harmful row-target directions, and release only upload-safe invariant-valid actions. | `candidate_ready` | `-0.008` | Pure-gradient and invariant-safe variants both fail public LB, meaning scalar public listener responsibility is descriptive but not enough without a hidden public/private row-support assignment. |
 | `Negative Tangent Invariant Projection Solver` | A negative public representation is useful only when its inverse can be projected onto label-valid human-state invariants. | Take the low-rank public-bad tangent, choose anti-bad row-target actions, and greedily release only cells that preserve train target-route and subject-prior energy. | `candidate_ready` | `-0.006` | Projection candidates worsen public LB like naive anti-tangent probes, meaning public-bad geometry is diagnostic but not yet an invertible action equation even under target/subject invariants. |
 | `Spectral Public-Tangent Solver` | Known post-H057 public failures are not independent mistakes; they collapse onto a low-rank public-bad action tangent. | Infer the dominant bad public-loss tangent from failed submissions, then release anti-tangent or orthogonal private-residual row-target actions. | `spectral_public_tangent_ready` | `-0.004` | Anti-tangent and orthogonal residual sensors both worsen public LB, meaning the low-rank tangent is descriptive but not an invertible action equation. |
 | `Counterfactual Listener-Dropout Solver` | A healthy HS-JEPA action should survive when one listener is masked, while failed public sensors become action-toxicity evidence rather than discarded submissions. | Score route/fusion/listener actions under counterfactual listener dropout, then compare aggressive same-direction release against toxic-direction inversion. | `counterfactual_listener_dropout_ready` | `-0.003` | Aggressive listener-dropout and inversion both fail public LB, meaning listener-dropout geometry is not enough to solve the public/private row-target equation. |
@@ -24,15 +25,16 @@
 
 ## 우선순위
 
-1. `Negative Tangent Invariant Projection Solver`: negative representation이 실제 action-grade가 되려면 invariant projection이 필요한지 검증한다.
-2. `Spectral Public-Tangent Solver`: H057 이후 실패들이 공유하는 저차원 public-bad direction이 invertible action equation인지 검증한다.
-3. `Counterfactual Listener-Dropout Solver`: 같은 high-survival action을 믿을지 뒤집을지 가르는 A/B 센서다.
-4. `Action Decoder Ablation Suite`: action decoder order가 public sensor와 맞는지 큰 구조로 검증한다.
-5. `OG-only Human-State Assignment Teacher`: 성공하면 HS-JEPA의 범용성이 가장 크게 올라간다.
-6. `Core-Health Calibrated Release`: dataset-free action-health failure mode가 실제 adapter release에 전이되는지 검증한다.
-7. `Core-Mediated Action Release`: generic HS-JEPA core가 실제 sleep-adapter action을 release할 수 있는지 검증한다.
-8. `Decoder Boundary Tomography Solver`: strict jury가 너무 보수적인지 직접 찌르는 다음 제출 센서다.
-9. `Cross-Listener Transport Decoder`: 실패한 listener lift를 action generator가 아니라 transport calibrator로 재사용할 수 있는지 본다.
-10. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.
-11. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.
-12. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.
+1. `LB-Conditioned Responsibility Solver`: public scalar listener equation이 spectral anti-tangent보다 action-grade인지 검증한다.
+2. `Negative Tangent Invariant Projection Solver`: negative representation이 실제 action-grade가 되려면 invariant projection이 필요한지 검증한다.
+3. `Spectral Public-Tangent Solver`: H057 이후 실패들이 공유하는 저차원 public-bad direction이 invertible action equation인지 검증한다.
+4. `Counterfactual Listener-Dropout Solver`: 같은 high-survival action을 믿을지 뒤집을지 가르는 A/B 센서다.
+5. `Action Decoder Ablation Suite`: action decoder order가 public sensor와 맞는지 큰 구조로 검증한다.
+6. `OG-only Human-State Assignment Teacher`: 성공하면 HS-JEPA의 범용성이 가장 크게 올라간다.
+7. `Core-Health Calibrated Release`: dataset-free action-health failure mode가 실제 adapter release에 전이되는지 검증한다.
+8. `Core-Mediated Action Release`: generic HS-JEPA core가 실제 sleep-adapter action을 release할 수 있는지 검증한다.
+9. `Decoder Boundary Tomography Solver`: strict jury가 너무 보수적인지 직접 찌르는 다음 제출 센서다.
+10. `Cross-Listener Transport Decoder`: 실패한 listener lift를 action generator가 아니라 transport calibrator로 재사용할 수 있는지 본다.
+11. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.
+12. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.
+13. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.

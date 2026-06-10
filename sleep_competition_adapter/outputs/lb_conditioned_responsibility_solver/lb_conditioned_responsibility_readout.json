@@ -1,0 +1,936 @@
+{
+  "experiment": "LB-Conditioned Responsibility Solver",
+  "architecture_role": "competition_adapter_external_listener_responsibility_head",
+  "core_claim": "HS-JEPA listener responsibility can be inferred from scalar listener observations and converted to action only through invariant projection.",
+  "spectral": {
+    "anchor_count": 26,
+    "first_mode_variance": 0.9628550254007645,
+    "top5_cumulative_variance": 0.9946826859769906,
+    "singular_values": [
+      3.9248700923283506,
+      0.42736505936128066,
+      0.3891499257724587,
+      0.3356759829624167,
+      0.24990018982496587,
+      0.16724030897803246,
+      0.13288948751368476,
+      0.11300586024023068
+    ],
+    "mean_bad_tangent_coord": 0.7500068848733459,
+    "min_bad_tangent_coord": -0.7172294112358857,
+    "max_bad_tangent_coord": 0.9995708377235418
+  },
+  "fit": {
+    "anchor_count": 26,
+    "feature_count": 115,
+    "ridge_values": [
+      0.35,
+      0.8,
+      1.6,
+      3.2
+    ],
+    "loo_corr": 0.7300005193514604,
+    "loo_mse": 0.482924866878181,
+    "loss_delta_min": 0.00015723090000008266,
+    "loss_delta_max": 0.013479733900000013,
+    "loss_delta_mean": 0.007230148834615433
+  },
+  "responsibility_cells": 115,
+  "variants": {
+    "pure_lb_gradient_jackpot": {
+      "config": {
+        "name": "pure_lb_gradient_jackpot",
+        "worldview": "The scalar public listener equation is trusted directly: choose the largest stable inverse-gradient actions even if they are less supported by the existing adapter decoders.",
+        "max_cells": 58,
+        "max_cells_per_row": 3,
+        "min_abs_grad_rank": 0.7,
+        "min_sign_stability": 0.68,
+        "min_action_health": 0.2,
+        "min_support_rank": 0.1,
+        "require_supported_release": false,
+        "require_subject_nonworse": false,
+        "max_incremental_energy_delta": 0.05,
+        "max_predicted_loss_delta": -0.004,
+        "step_floor": 0.024,
+        "step_scale": 0.46,
+        "step_cap": 0.66,
+        "target_caps": [
+          [
+            "Q1",
+            8
+          ],
+          [
+            "Q2",
+            14
+          ],
+          [
+            "Q3",
+            8
+          ],
+          [
+            "S1",
+            10
+          ],
+          [
+            "S2",
+            12
+          ],
+          [
+            "S3",
+            6
+          ],
+          [
+            "S4",
+            10
+          ]
+        ],
+        "selection_style": "predicted_gradient"
+      },
+      "submission": {
+        "variant": "pure_lb_gradient_jackpot",
+        "worldview": "The scalar public listener equation is trusted directly: choose the largest stable inverse-gradient actions even if they are less supported by the existing adapter decoders.",
+        "submission_file": "submission_hsjepa_lb_responsibility_pure_lb_gradient_jackpot_f0a8129d_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/submission_hsjepa_lb_responsibility_pure_lb_gradient_jackpot_f0a8129d_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_lb_responsibility_pure_lb_gradient_jackpot_f0a8129d_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_lb_responsibility_pure_lb_gradient_jackpot_f0a8129d_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 24,
+          "upload_safe": true
+        },
+        "changed_cells": 24,
+        "selected_rows": 22
+      },
+      "metrics": {
+        "cells": 24.0,
+        "rows": 22.0,
+        "mean_responsibility_score": 0.6776304421043727,
+        "mean_abs_grad_rank": 0.8547101449275362,
+        "mean_sign_stability": 0.9919871794871794,
+        "mean_action_health": 0.5797781254711695,
+        "mean_predicted_loss_delta": -0.2966162939657227,
+        "sum_predicted_loss_delta": -7.118791055177345,
+        "mean_incremental_energy_delta": -0.0328971019025904,
+        "mean_subject_energy_delta": 0.0014477952432101942,
+        "supported_release_rate": 0.5416666666666666,
+        "bad_tangent_cosine": 0.05505740672783364
+      },
+      "stress": {
+        "actual": {
+          "cells": 24.0,
+          "rows": 22.0,
+          "mean_responsibility_score": 0.6776304421043727,
+          "mean_abs_grad_rank": 0.8547101449275362,
+          "mean_sign_stability": 0.9919871794871794,
+          "mean_action_health": 0.5797781254711695,
+          "mean_predicted_loss_delta": -0.2966162939657227,
+          "sum_predicted_loss_delta": -7.118791055177345,
+          "mean_incremental_energy_delta": -0.0328971019025904,
+          "mean_subject_energy_delta": 0.0014477952432101942,
+          "supported_release_rate": 0.5416666666666666,
+          "bad_tangent_cosine": 0.05505740672783364
+        },
+        "tests": {
+          "mean_responsibility_score": {
+            "actual": 0.6776304421043727,
+            "null_mean": 0.6601637805191877,
+            "null_std": 0.006711069152717666,
+            "z": 2.602664521510986,
+            "p": 0.0014285714285714286
+          },
+          "mean_abs_grad_rank": {
+            "actual": 0.8547101449275362,
+            "null_mean": 0.8497877846790889,
+            "null_std": 0.008197765146739365,
+            "z": 0.6004514840736966,
+            "p": 0.28285714285714286
+          },
+          "mean_sign_stability": {
+            "actual": 0.9919871794871794,
+            "null_mean": 0.9912019230769231,
+            "null_std": 0.0015152786678594332,
+            "z": 0.5182257408570149,
+            "p": 0.4942857142857143
+          },
+          "mean_action_health": {
+            "actual": 0.5797781254711695,
+            "null_mean": 0.5742921000358135,
+            "null_std": 0.011415726938541423,
+            "z": 0.4805673317950673,
+            "p": 0.30428571428571427
+          },
+          "mean_predicted_loss_delta": {
+            "actual": -0.2966162939657227,
+            "null_mean": -0.28742878177141107,
+            "null_std": 0.02792472235641052,
+            "z": -0.3290099746399987,
+            "p": 0.40285714285714286
+          },
+          "sum_predicted_loss_delta": {
+            "actual": -7.118791055177345,
+            "null_mean": -6.898290762513866,
+            "null_std": 0.6701933365538526,
+            "z": -0.32900997463999937,
+            "p": 0.40285714285714286
+          },
+          "mean_incremental_energy_delta": {
+            "actual": -0.0328971019025904,
+            "null_mean": -0.006568349474713143,
+            "null_std": 0.003339592079983105,
+            "z": -7.883822873364359,
+            "p": 0.0
+          },
+          "mean_subject_energy_delta": {
+            "actual": 0.0014477952432101942,
+            "null_mean": 0.0008343546477518995,
+            "null_std": 0.00035769215497325293,
+            "z": 1.7149959453378725,
+            "p": 0.9542857142857143
+          },
+          "supported_release_rate": {
+            "actual": 0.5416666666666666,
+            "null_mean": 0.5251190476190477,
+            "null_std": 0.049073292135327136,
+            "z": 0.3372021384256496,
+            "p": 0.5414285714285715
+          },
+          "bad_tangent_cosine": {
+            "actual": 0.05505740672783364,
+            "null_mean": -0.013910461655458834,
+            "null_std": 0.020501058475176567,
+            "z": 3.364112563592816,
+            "p": 1.0
+          }
+        }
+      }
+    },
+    "stable_public_listener_inverse": {
+      "config": {
+        "name": "stable_public_listener_inverse",
+        "worldview": "The public listener exposes stable row-target responsibility; release only the inverse of high-stability harmful actions.",
+        "max_cells": 34,
+        "max_cells_per_row": 2,
+        "min_abs_grad_rank": 0.62,
+        "min_sign_stability": 0.74,
+        "min_action_health": 0.35,
+        "min_support_rank": 0.35,
+        "require_supported_release": true,
+        "require_subject_nonworse": false,
+        "max_incremental_energy_delta": 0.01,
+        "max_predicted_loss_delta": -0.002,
+        "step_floor": 0.018,
+        "step_scale": 0.28,
+        "step_cap": 0.38,
+        "target_caps": [
+          [
+            "Q1",
+            5
+          ],
+          [
+            "Q2",
+            9
+          ],
+          [
+            "Q3",
+            5
+          ],
+          [
+            "S1",
+            6
+          ],
+          [
+            "S2",
+            8
+          ],
+          [
+            "S3",
+            4
+          ],
+          [
+            "S4",
+            5
+          ]
+        ],
+        "selection_style": "balanced"
+      },
+      "submission": {
+        "variant": "stable_public_listener_inverse",
+        "worldview": "The public listener exposes stable row-target responsibility; release only the inverse of high-stability harmful actions.",
+        "submission_file": "submission_hsjepa_lb_responsibility_stable_public_listener_inverse_b3a3a98e_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/submission_hsjepa_lb_responsibility_stable_public_listener_inverse_b3a3a98e_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_lb_responsibility_stable_public_listener_inverse_b3a3a98e_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_lb_responsibility_stable_public_listener_inverse_b3a3a98e_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 13,
+          "upload_safe": true
+        },
+        "changed_cells": 13,
+        "selected_rows": 10
+      },
+      "metrics": {
+        "cells": 13.0,
+        "rows": 10.0,
+        "mean_responsibility_score": 0.7211459715648283,
+        "mean_abs_grad_rank": 0.7685618729096989,
+        "mean_sign_stability": 0.9970414201183432,
+        "mean_action_health": 0.5850887436848576,
+        "mean_predicted_loss_delta": -0.13275953418943642,
+        "sum_predicted_loss_delta": -1.7258739444626736,
+        "mean_incremental_energy_delta": -0.03576385030005017,
+        "mean_subject_energy_delta": -0.0004988384414778074,
+        "supported_release_rate": 1.0,
+        "bad_tangent_cosine": -0.005241091589093826
+      },
+      "stress": {
+        "actual": {
+          "cells": 13.0,
+          "rows": 10.0,
+          "mean_responsibility_score": 0.7211459715648283,
+          "mean_abs_grad_rank": 0.7685618729096989,
+          "mean_sign_stability": 0.9970414201183432,
+          "mean_action_health": 0.5850887436848576,
+          "mean_predicted_loss_delta": -0.13275953418943642,
+          "sum_predicted_loss_delta": -1.7258739444626736,
+          "mean_incremental_energy_delta": -0.03576385030005017,
+          "mean_subject_energy_delta": -0.0004988384414778074,
+          "supported_release_rate": 1.0,
+          "bad_tangent_cosine": -0.005241091589093826
+        },
+        "tests": {
+          "mean_responsibility_score": {
+            "actual": 0.7211459715648283,
+            "null_mean": 0.6816198625076019,
+            "null_std": 0.012621591309051045,
+            "z": 3.131626439915063,
+            "p": 0.0
+          },
+          "mean_abs_grad_rank": {
+            "actual": 0.7685618729096989,
+            "null_mean": 0.7970253225035835,
+            "null_std": 0.020247432951639055,
+            "z": -1.4057806568303974,
+            "p": 0.9171428571428571
+          },
+          "mean_sign_stability": {
+            "actual": 0.9970414201183432,
+            "null_mean": 0.9943491124260353,
+            "null_std": 0.002307850753029716,
+            "z": 1.166586569245631,
+            "p": 0.2785714285714286
+          },
+          "mean_action_health": {
+            "actual": 0.5850887436848576,
+            "null_mean": 0.6012492601182834,
+            "null_std": 0.015103618508756415,
+            "z": -1.0699764711387934,
+            "p": 0.8528571428571429
+          },
+          "mean_predicted_loss_delta": {
+            "actual": -0.13275953418943642,
+            "null_mean": -0.18145833635130626,
+            "null_std": 0.028320530871841124,
+            "z": 1.7195582378821388,
+            "p": 0.9857142857142858
+          },
+          "sum_predicted_loss_delta": {
+            "actual": -1.7258739444626736,
+            "null_mean": -2.3589583725669816,
+            "null_std": 0.36816690133393465,
+            "z": 1.719558237882139,
+            "p": 0.9857142857142858
+          },
+          "mean_incremental_energy_delta": {
+            "actual": -0.03576385030005017,
+            "null_mean": -0.005678834916133323,
+            "null_std": 0.0054080442286199475,
+            "z": -5.563012082021026,
+            "p": 0.0
+          },
+          "mean_subject_energy_delta": {
+            "actual": -0.0004988384414778074,
+            "null_mean": 0.0003982163939176448,
+            "null_std": 0.0004890542375690441,
+            "z": -1.834264518092039,
+            "p": 0.045714285714285714
+          },
+          "supported_release_rate": {
+            "actual": 1.0,
+            "null_mean": 1.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.005241091589093826,
+            "null_mean": -0.00547490908255765,
+            "null_std": 0.0012101377109446114,
+            "z": 0.1932156079007824,
+            "p": 0.5357142857142857
+          }
+        }
+      }
+    },
+    "subject_safe_public_private_equation": {
+      "config": {
+        "name": "subject_safe_public_private_equation",
+        "worldview": "A public-safe inverse action is valid only if it is also safe in the personal coordinate system of the subject.",
+        "max_cells": 32,
+        "max_cells_per_row": 2,
+        "min_abs_grad_rank": 0.55,
+        "min_sign_stability": 0.68,
+        "min_action_health": 0.32,
+        "min_support_rank": 0.28,
+        "require_supported_release": true,
+        "require_subject_nonworse": true,
+        "max_incremental_energy_delta": 0.012,
+        "max_predicted_loss_delta": -0.001,
+        "step_floor": 0.016,
+        "step_scale": 0.25,
+        "step_cap": 0.35,
+        "target_caps": [
+          [
+            "Q1",
+            5
+          ],
+          [
+            "Q2",
+            8
+          ],
+          [
+            "Q3",
+            5
+          ],
+          [
+            "S1",
+            5
+          ],
+          [
+            "S2",
+            7
+          ],
+          [
+            "S3",
+            3
+          ],
+          [
+            "S4",
+            5
+          ]
+        ],
+        "selection_style": "balanced"
+      },
+      "submission": {
+        "variant": "subject_safe_public_private_equation",
+        "worldview": "A public-safe inverse action is valid only if it is also safe in the personal coordinate system of the subject.",
+        "submission_file": "submission_hsjepa_lb_responsibility_subject_safe_public_private_equation_bb70d5b8_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/submission_hsjepa_lb_responsibility_subject_safe_public_private_equation_bb70d5b8_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_lb_responsibility_subject_safe_public_private_equation_bb70d5b8_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_lb_responsibility_subject_safe_public_private_equation_bb70d5b8_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 12,
+          "upload_safe": true
+        },
+        "changed_cells": 12,
+        "selected_rows": 11
+      },
+      "metrics": {
+        "cells": 12.0,
+        "rows": 11.0,
+        "mean_responsibility_score": 0.7047557854600957,
+        "mean_abs_grad_rank": 0.7420289855072463,
+        "mean_sign_stability": 0.9967948717948718,
+        "mean_action_health": 0.565819673618352,
+        "mean_predicted_loss_delta": -0.11816997464715367,
+        "sum_predicted_loss_delta": -1.418039695765844,
+        "mean_incremental_energy_delta": -0.03054722656525041,
+        "mean_subject_energy_delta": -0.0015830044022354028,
+        "supported_release_rate": 1.0,
+        "bad_tangent_cosine": -0.0054019443192887375
+      },
+      "stress": {
+        "actual": {
+          "cells": 12.0,
+          "rows": 11.0,
+          "mean_responsibility_score": 0.7047557854600957,
+          "mean_abs_grad_rank": 0.7420289855072463,
+          "mean_sign_stability": 0.9967948717948718,
+          "mean_action_health": 0.565819673618352,
+          "mean_predicted_loss_delta": -0.11816997464715367,
+          "sum_predicted_loss_delta": -1.418039695765844,
+          "mean_incremental_energy_delta": -0.03054722656525041,
+          "mean_subject_energy_delta": -0.0015830044022354028,
+          "supported_release_rate": 1.0,
+          "bad_tangent_cosine": -0.0054019443192887375
+        },
+        "tests": {
+          "mean_responsibility_score": {
+            "actual": 0.7047557854600957,
+            "null_mean": 0.6958516341627293,
+            "null_std": 0.007016734775398973,
+            "z": 1.2689878672035217,
+            "p": 0.1
+          },
+          "mean_abs_grad_rank": {
+            "actual": 0.7420289855072463,
+            "null_mean": 0.7569296066252589,
+            "null_std": 0.01726158649182537,
+            "z": -0.863224311685901,
+            "p": 0.7928571428571428
+          },
+          "mean_sign_stability": {
+            "actual": 0.9967948717948718,
+            "null_mean": 0.9976007326007328,
+            "null_std": 0.002020378484898195,
+            "z": -0.39886625792374103,
+            "p": 0.8957142857142857
+          },
+          "mean_action_health": {
+            "actual": 0.565819673618352,
+            "null_mean": 0.573337982668196,
+            "null_std": 0.009884601027043633,
+            "z": -0.760608246025759,
+            "p": 0.7757142857142857
+          },
+          "mean_predicted_loss_delta": {
+            "actual": -0.11816997464715367,
+            "null_mean": -0.1331980694212103,
+            "null_std": 0.011038831990540648,
+            "z": 1.361384500365114,
+            "p": 0.8728571428571429
+          },
+          "sum_predicted_loss_delta": {
+            "actual": -1.418039695765844,
+            "null_mean": -1.5983768330545234,
+            "null_std": 0.13246598388648778,
+            "z": 1.361384500365113,
+            "p": 0.8728571428571429
+          },
+          "mean_incremental_energy_delta": {
+            "actual": -0.03054722656525041,
+            "null_mean": -0.014333818178798608,
+            "null_std": 0.0038307349379325785,
+            "z": -4.232453732547224,
+            "p": 0.0
+          },
+          "mean_subject_energy_delta": {
+            "actual": -0.0015830044022354028,
+            "null_mean": -0.0010544963799816304,
+            "null_std": 7.435083878876198e-05,
+            "z": -7.108299393303625,
+            "p": 0.0
+          },
+          "supported_release_rate": {
+            "actual": 1.0,
+            "null_mean": 1.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.0054019443192887375,
+            "null_mean": -0.004872770705839694,
+            "null_std": 0.00042933929912751696,
+            "z": -1.2325301096927417,
+            "p": 0.09857142857142857
+          }
+        }
+      }
+    },
+    "jackpot_public_equation_release": {
+      "config": {
+        "name": "jackpot_public_equation_release",
+        "worldview": "If the scalar public listener really identifies the hidden equation, a broader inverse responsibility release should move much more than local decoder tweaks.",
+        "max_cells": 72,
+        "max_cells_per_row": 3,
+        "min_abs_grad_rank": 0.42,
+        "min_sign_stability": 0.58,
+        "min_action_health": 0.28,
+        "min_support_rank": 0.18,
+        "require_supported_release": false,
+        "require_subject_nonworse": false,
+        "max_incremental_energy_delta": 0.02,
+        "max_predicted_loss_delta": -0.0005,
+        "step_floor": 0.02,
+        "step_scale": 0.36,
+        "step_cap": 0.52,
+        "target_caps": [
+          [
+            "Q1",
+            9
+          ],
+          [
+            "Q2",
+            17
+          ],
+          [
+            "Q3",
+            9
+          ],
+          [
+            "S1",
+            11
+          ],
+          [
+            "S2",
+            16
+          ],
+          [
+            "S3",
+            6
+          ],
+          [
+            "S4",
+            10
+          ]
+        ],
+        "selection_style": "balanced"
+      },
+      "submission": {
+        "variant": "jackpot_public_equation_release",
+        "worldview": "If the scalar public listener really identifies the hidden equation, a broader inverse responsibility release should move much more than local decoder tweaks.",
+        "submission_file": "submission_hsjepa_lb_responsibility_jackpot_public_equation_release_6dd65162_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/submission_hsjepa_lb_responsibility_jackpot_public_equation_release_6dd65162_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_lb_responsibility_jackpot_public_equation_release_6dd65162_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_lb_responsibility_jackpot_public_equation_release_6dd65162_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 29,
+          "upload_safe": true
+        },
+        "changed_cells": 29,
+        "selected_rows": 21
+      },
+      "metrics": {
+        "cells": 29.0,
+        "rows": 21.0,
+        "mean_responsibility_score": 0.6572594123678788,
+        "mean_abs_grad_rank": 0.6857571214392804,
+        "mean_sign_stability": 0.9946949602122014,
+        "mean_action_health": 0.5546104577340262,
+        "mean_predicted_loss_delta": -0.1329184757190719,
+        "sum_predicted_loss_delta": -3.854635795853085,
+        "mean_incremental_energy_delta": -0.02435128274018058,
+        "mean_subject_energy_delta": 0.0006919432763388361,
+        "supported_release_rate": 0.8275862068965517,
+        "bad_tangent_cosine": -0.05832203909872578
+      },
+      "stress": {
+        "actual": {
+          "cells": 29.0,
+          "rows": 21.0,
+          "mean_responsibility_score": 0.6572594123678788,
+          "mean_abs_grad_rank": 0.6857571214392804,
+          "mean_sign_stability": 0.9946949602122014,
+          "mean_action_health": 0.5546104577340262,
+          "mean_predicted_loss_delta": -0.1329184757190719,
+          "sum_predicted_loss_delta": -3.854635795853085,
+          "mean_incremental_energy_delta": -0.02435128274018058,
+          "mean_subject_energy_delta": 0.0006919432763388361,
+          "supported_release_rate": 0.8275862068965517,
+          "bad_tangent_cosine": -0.05832203909872578
+        },
+        "tests": {
+          "mean_responsibility_score": {
+            "actual": 0.6572594123678788,
+            "null_mean": 0.6336392420425102,
+            "null_std": 0.008704248942856329,
+            "z": 2.713636808923519,
+            "p": 0.0014285714285714286
+          },
+          "mean_abs_grad_rank": {
+            "actual": 0.6857571214392804,
+            "null_mean": 0.7132062540158491,
+            "null_std": 0.016940211768822124,
+            "z": -1.6203535676624752,
+            "p": 0.9485714285714286
+          },
+          "mean_sign_stability": {
+            "actual": 0.9946949602122014,
+            "null_mean": 0.994223190602501,
+            "null_std": 0.00163508240447016,
+            "z": 0.2885295618194158,
+            "p": 0.53
+          },
+          "mean_action_health": {
+            "actual": 0.5546104577340262,
+            "null_mean": 0.5694176497864639,
+            "null_std": 0.011966188189139502,
+            "z": -1.2374192866093092,
+            "p": 0.8885714285714286
+          },
+          "mean_predicted_loss_delta": {
+            "actual": -0.1329184757190719,
+            "null_mean": -0.149027685666701,
+            "null_std": 0.017229203719281338,
+            "z": 0.9349944553503163,
+            "p": 0.7942857142857143
+          },
+          "sum_predicted_loss_delta": {
+            "actual": -3.854635795853085,
+            "null_mean": -4.321802884334329,
+            "null_std": 0.49964690785915883,
+            "z": 0.9349944553503174,
+            "p": 0.7942857142857143
+          },
+          "mean_incremental_energy_delta": {
+            "actual": -0.02435128274018058,
+            "null_mean": 0.0007530423555030565,
+            "null_std": 0.003180776146079939,
+            "z": -7.892515519088879,
+            "p": 0.0
+          },
+          "mean_subject_energy_delta": {
+            "actual": 0.0006919432763388361,
+            "null_mean": 0.0009683630380917319,
+            "null_std": 0.00032051917822304484,
+            "z": -0.8624125498054881,
+            "p": 0.18
+          },
+          "supported_release_rate": {
+            "actual": 0.8275862068965517,
+            "null_mean": 0.8066502463054186,
+            "null_std": 0.04542421398995416,
+            "z": 0.4608986871135125,
+            "p": 0.4471428571428571
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.05832203909872578,
+            "null_mean": -0.04054789052693834,
+            "null_std": 0.01649152020444624,
+            "z": -1.0777750232507606,
+            "p": 0.2
+          }
+        }
+      }
+    },
+    "route_invariant_responsibility_core": {
+      "config": {
+        "name": "route_invariant_responsibility_core",
+        "worldview": "The reusable HS-JEPA core should prefer responsibility inversions that reduce route energy even if their public gradient is smaller.",
+        "max_cells": 28,
+        "max_cells_per_row": 1,
+        "min_abs_grad_rank": 0.4,
+        "min_sign_stability": 0.62,
+        "min_action_health": 0.3,
+        "min_support_rank": 0.25,
+        "require_supported_release": true,
+        "require_subject_nonworse": false,
+        "max_incremental_energy_delta": -0.001,
+        "max_predicted_loss_delta": -0.0003,
+        "step_floor": 0.014,
+        "step_scale": 0.22,
+        "step_cap": 0.32,
+        "target_caps": [
+          [
+            "Q1",
+            4
+          ],
+          [
+            "Q2",
+            7
+          ],
+          [
+            "Q3",
+            4
+          ],
+          [
+            "S1",
+            5
+          ],
+          [
+            "S2",
+            6
+          ],
+          [
+            "S3",
+            3
+          ],
+          [
+            "S4",
+            4
+          ]
+        ],
+        "selection_style": "invariant_first"
+      },
+      "submission": {
+        "variant": "route_invariant_responsibility_core",
+        "worldview": "The reusable HS-JEPA core should prefer responsibility inversions that reduce route energy even if their public gradient is smaller.",
+        "submission_file": "submission_hsjepa_lb_responsibility_route_invariant_responsibility_core_8572f8a4_uploadsafe.csv",
+        "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/submission_hsjepa_lb_responsibility_route_invariant_responsibility_core_8572f8a4_uploadsafe.csv",
+        "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_lb_responsibility_route_invariant_responsibility_core_8572f8a4_uploadsafe.csv",
+        "validation": {
+          "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_lb_responsibility_route_invariant_responsibility_core_8572f8a4_uploadsafe.csv",
+          "rows": 250,
+          "keys_match": true,
+          "duplicate_keys": 0,
+          "nan_cells": 0,
+          "min_prob": 4.939277944527429e-06,
+          "max_prob": 0.9999967514907456,
+          "changed_cells_vs_current_best": 11,
+          "upload_safe": true
+        },
+        "changed_cells": 11,
+        "selected_rows": 11
+      },
+      "metrics": {
+        "cells": 11.0,
+        "rows": 11.0,
+        "mean_responsibility_score": 0.6952015642145946,
+        "mean_abs_grad_rank": 0.6687747035573123,
+        "mean_sign_stability": 0.9965034965034966,
+        "mean_action_health": 0.5505433731791605,
+        "mean_predicted_loss_delta": -0.08302093883008409,
+        "sum_predicted_loss_delta": -0.9132303271309249,
+        "mean_incremental_energy_delta": -0.03354350831549898,
+        "mean_subject_energy_delta": -0.0017633086898775298,
+        "supported_release_rate": 1.0,
+        "bad_tangent_cosine": -0.0035402067364286843
+      },
+      "stress": {
+        "actual": {
+          "cells": 11.0,
+          "rows": 11.0,
+          "mean_responsibility_score": 0.6952015642145946,
+          "mean_abs_grad_rank": 0.6687747035573123,
+          "mean_sign_stability": 0.9965034965034966,
+          "mean_action_health": 0.5505433731791605,
+          "mean_predicted_loss_delta": -0.08302093883008409,
+          "sum_predicted_loss_delta": -0.9132303271309249,
+          "mean_incremental_energy_delta": -0.03354350831549898,
+          "mean_subject_energy_delta": -0.0017633086898775298,
+          "supported_release_rate": 1.0,
+          "bad_tangent_cosine": -0.0035402067364286843
+        },
+        "tests": {
+          "mean_responsibility_score": {
+            "actual": 0.6952015642145946,
+            "null_mean": 0.6433844167364459,
+            "null_std": 0.01853520636347381,
+            "z": 2.7956067206384905,
+            "p": 0.0014285714285714286
+          },
+          "mean_abs_grad_rank": {
+            "actual": 0.6687747035573123,
+            "null_mean": 0.6910717108977978,
+            "null_std": 0.04044825578771674,
+            "z": -0.5512476843873372,
+            "p": 0.7028571428571428
+          },
+          "mean_sign_stability": {
+            "actual": 0.9965034965034966,
+            "null_mean": 0.9959290709290709,
+            "null_std": 0.0032235006782745167,
+            "z": 0.17819930310458107,
+            "p": 0.67
+          },
+          "mean_action_health": {
+            "actual": 0.5505433731791605,
+            "null_mean": 0.5941293832589134,
+            "null_std": 0.027487673539778452,
+            "z": -1.5856565677221819,
+            "p": 0.9571428571428572
+          },
+          "mean_predicted_loss_delta": {
+            "actual": -0.08302093883008409,
+            "null_mean": -0.09326202022189305,
+            "null_std": 0.024350620711573442,
+            "z": 0.4205675704579286,
+            "p": 0.5742857142857143
+          },
+          "sum_predicted_loss_delta": {
+            "actual": -0.9132303271309249,
+            "null_mean": -1.0258822224408235,
+            "null_std": 0.26785682782730785,
+            "z": 0.42056757045792886,
+            "p": 0.5742857142857143
+          },
+          "mean_incremental_energy_delta": {
+            "actual": -0.03354350831549898,
+            "null_mean": -0.0017903727354446253,
+            "null_std": 0.0069725429701706304,
+            "z": -4.554025083229756,
+            "p": 0.0
+          },
+          "mean_subject_energy_delta": {
+            "actual": -0.0017633086898775298,
+            "null_mean": 0.0005603301185552275,
+            "null_std": 0.0006283671243346258,
+            "z": -3.6979000308032415,
+            "p": 0.0
+          },
+          "supported_release_rate": {
+            "actual": 1.0,
+            "null_mean": 1.0,
+            "null_std": 0.0,
+            "z": 0.0,
+            "p": 1.0
+          },
+          "bad_tangent_cosine": {
+            "actual": -0.0035402067364286843,
+            "null_mean": -0.004476920684755443,
+            "null_std": 0.0015237148453564743,
+            "z": 0.6147567251060114,
+            "p": 0.6728571428571428
+          }
+        }
+      }
+    }
+  },
+  "verdict": {
+    "status": "candidate_ready",
+    "recommended_variant": "pure_lb_gradient_jackpot",
+    "reason": "Recommended by predicted public-listener improvement, LOO sign stability, invariant energy, and upload-safe validation.",
+    "ranking": [
+      {
+        "variant": "pure_lb_gradient_jackpot",
+        "score": 2.729658721843765
+      },
+      {
+        "variant": "jackpot_public_equation_release",
+        "score": 1.65355129666629
+      },
+      {
+        "variant": "stable_public_listener_inverse",
+        "score": 0.9541409847364565
+      },
+      {
+        "variant": "subject_safe_public_private_equation",
+        "score": 0.8462171423392681
+      },
+      {
+        "variant": "route_invariant_responsibility_core",
+        "score": 0.6735881376908213
+      }
+    ]
+  },
+  "outputs": {
+    "readout_json": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/lb_conditioned_responsibility_readout.json",
+    "readout_md": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/lb_conditioned_responsibility_readout_ko.md",
+    "responsibility_cells": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/lb_conditioned_responsibility_cells.csv",
+    "selected_cells": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/lb_conditioned_responsibility_selected_cells.csv",
+    "anchor_fit": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/lb_conditioned_responsibility_anchor_fit.csv",
+    "null_stress": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/lb_conditioned_responsibility_solver/lb_conditioned_responsibility_null_stress.csv"
+  }
+}

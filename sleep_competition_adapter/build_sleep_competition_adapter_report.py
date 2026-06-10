@@ -51,6 +51,11 @@ NEGATIVE_TANGENT_INVARIANT_JSON = (
     / "negative_tangent_invariant_projection_solver"
     / "negative_tangent_invariant_projection_readout.json"
 )
+LB_CONDITIONED_RESPONSIBILITY_JSON = (
+    OUT
+    / "lb_conditioned_responsibility_solver"
+    / "lb_conditioned_responsibility_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
@@ -102,6 +107,7 @@ def require_inputs() -> None:
         COUNTERFACTUAL_LISTENER_DROPOUT_JSON,
         SPECTRAL_PUBLIC_TANGENT_JSON,
         NEGATIVE_TANGENT_INVARIANT_JSON,
+        LB_CONDITIONED_RESPONSIBILITY_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -131,6 +137,7 @@ def build_big_bets(
     counterfactual_listener_dropout: dict[str, object],
     spectral_public_tangent: dict[str, object],
     negative_tangent_invariant: dict[str, object],
+    lb_conditioned_responsibility: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -208,6 +215,11 @@ def build_big_bets(
         if isinstance(negative_tangent_invariant.get("verdict"), dict)
         else {}
     )
+    lb_responsibility_verdict = (
+        lb_conditioned_responsibility.get("verdict", {})
+        if isinstance(lb_conditioned_responsibility.get("verdict"), dict)
+        else {}
+    )
     action_ablation_verdict = (
         action_decoder_ablation.get("verdict", {})
         if isinstance(action_decoder_ablation.get("verdict"), dict)
@@ -229,6 +241,28 @@ def build_big_bets(
         else {}
     )
     bets = [
+        {
+            "id": "lb_conditioned_responsibility_solver",
+            "name": "LB-Conditioned Responsibility Solver",
+            "worldview": "The public LB can be treated as an external listener whose scalar observations reveal row-target action responsibility.",
+            "core_modules_exercised": [
+                "listener_responsibility",
+                "action_health_decoder",
+                "invariant_energy",
+                "public_private_equation",
+            ],
+            "adapter_move": "Fit a ridge/LOO responsibility equation from public-score action deltas, invert harmful row-target directions, and release only upload-safe invariant-valid actions.",
+            "why_big": "If this wins LB, HS-JEPA gains a paper-level contribution: listener responsibility can be inferred from scalar outcomes, not only explicit labels or target heads.",
+            "expected_public_lb_delta_if_true": -0.008,
+            "latest_probe_status": lb_responsibility_verdict.get("status"),
+            "latest_probe_evidence": {
+                "recommended_variant": lb_responsibility_verdict.get("recommended_variant"),
+                "ranking": lb_responsibility_verdict.get("ranking"),
+                "fit": lb_conditioned_responsibility.get("fit"),
+                "responsibility_cells": lb_conditioned_responsibility.get("responsibility_cells"),
+            },
+            "kill_criterion": "Pure-gradient and invariant-safe variants both fail public LB, meaning scalar public listener responsibility is descriptive but not enough without a hidden public/private row-support assignment.",
+        },
         {
             "id": "negative_tangent_invariant_projection_solver",
             "name": "Negative Tangent Invariant Projection Solver",
@@ -555,11 +589,12 @@ def build_big_bets(
         },
     ]
     priority_order = {
-        "negative_tangent_invariant_projection_solver": 0,
-        "spectral_public_tangent_solver": 1,
-        "counterfactual_listener_dropout_solver": 2,
-        "action_decoder_ablation_suite": 3,
-        "og_only_assignment_teacher": 4,
+        "lb_conditioned_responsibility_solver": 0,
+        "negative_tangent_invariant_projection_solver": 1,
+        "spectral_public_tangent_solver": 2,
+        "counterfactual_listener_dropout_solver": 3,
+        "action_decoder_ablation_suite": 4,
+        "og_only_assignment_teacher": 5,
     }
     return sorted(
         bets,
@@ -595,6 +630,7 @@ def build_report() -> dict[str, object]:
     counterfactual_listener_dropout = read_json(COUNTERFACTUAL_LISTENER_DROPOUT_JSON)
     spectral_public_tangent = read_json(SPECTRAL_PUBLIC_TANGENT_JSON)
     negative_tangent_invariant = read_json(NEGATIVE_TANGENT_INVARIANT_JSON)
+    lb_conditioned_responsibility = read_json(LB_CONDITIONED_RESPONSIBILITY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -621,6 +657,7 @@ def build_report() -> dict[str, object]:
     listener_dropout_verdict = counterfactual_listener_dropout.get("verdict", {})
     spectral_tangent_verdict = spectral_public_tangent.get("verdict", {})
     negative_projection_verdict = negative_tangent_invariant.get("verdict", {})
+    lb_responsibility_verdict = lb_conditioned_responsibility.get("verdict", {})
     action_decoder_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -879,6 +916,32 @@ def build_report() -> dict[str, object]:
                 if isinstance(item, dict)
             },
         },
+        "lb_conditioned_responsibility_solver": {
+            "experiment": lb_conditioned_responsibility.get("experiment"),
+            "architecture_role": lb_conditioned_responsibility.get("architecture_role"),
+            "core_claim": lb_conditioned_responsibility.get("core_claim"),
+            "status": lb_responsibility_verdict.get("status"),
+            "recommended_variant": lb_responsibility_verdict.get("recommended_variant"),
+            "reason": lb_responsibility_verdict.get("reason"),
+            "spectral": lb_conditioned_responsibility.get("spectral"),
+            "fit": lb_conditioned_responsibility.get("fit"),
+            "responsibility_cells": lb_conditioned_responsibility.get("responsibility_cells"),
+            "ranking": lb_responsibility_verdict.get("ranking"),
+            "variants": {
+                name: {
+                    "submission_file": item.get("submission", {}).get("submission_file"),
+                    "changed_cells": item.get("submission", {}).get("changed_cells"),
+                    "selected_rows": item.get("submission", {}).get("selected_rows"),
+                    "sum_predicted_loss_delta": item.get("metrics", {}).get("sum_predicted_loss_delta"),
+                    "mean_sign_stability": item.get("metrics", {}).get("mean_sign_stability"),
+                    "mean_incremental_energy_delta": item.get("metrics", {}).get("mean_incremental_energy_delta"),
+                    "bad_tangent_cosine": item.get("metrics", {}).get("bad_tangent_cosine"),
+                    "upload_safe": item.get("submission", {}).get("validation", {}).get("upload_safe"),
+                }
+                for name, item in lb_conditioned_responsibility.get("variants", {}).items()
+                if isinstance(item, dict)
+            },
+        },
         "action_decoder_ablation_suite": {
             "status": action_decoder_ablation_verdict.get("status"),
             "recommended_lb_sensor": action_decoder_ablation_verdict.get("recommended_lb_sensor"),
@@ -975,6 +1038,7 @@ def build_report() -> dict[str, object]:
             "Counterfactual listener-dropout turns public failures into toxicity labels and exposes a strong A/B sensor: either high-survival route/fusion actions were good cells mixed into bad submissions, or the public/private equation requires inverting those toxic directions.",
             "Spectral public-tangent decomposition shows that post-H057 public failures are highly low-rank; HS-JEPA can now treat failed submissions as a negative representation space rather than isolated bad scores.",
             "Negative tangent invariant projection turns that negative representation into an action-grade test: only anti-public-bad moves that preserve target-route and subject-prior energy are released.",
+            "LB-conditioned responsibility now treats public LB as an external listener and estimates which row-target actions carried scalar loss responsibility under leave-one-anchor stress.",
         ],
         "what_the_adapter_does_not_prove": [
             "pure OG-only assignment",
@@ -990,6 +1054,7 @@ def build_report() -> dict[str, object]:
             "that listener-dropout health alone is public-safe before public LB observes the aggressive-vs-inverted counterfactual",
             "that the public-bad spectral tangent is invertible before public LB observes anti-tangent and orthogonal residual sensors",
             "that invariant-projected anti-tangent actions improve LB before public LB observes the generated projection candidates",
+            "that scalar public-listener responsibility is portable or private-safe before public LB observes the LB-conditioned responsibility candidates",
             "that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments",
             "private leaderboard safety",
             "S2 as a universal human-sleep factor",
@@ -1045,6 +1110,18 @@ def build_report_markdown(report: dict[str, object]) -> str:
             f"| `{variant}` | `{item['submission_file']}` | `{item['changed_cells']}` | "
             f"`{fmt(item['bad_tangent_cosine'], 4)}` | `{fmt(item['mean_incremental_energy_delta'], 5)}` | "
             f"`{fmt(item['mean_subject_energy_delta'], 5)}` | `{item['upload_safe']}` |"
+        )
+
+    lb_responsibility_rows = [
+        "| Variant | Output | Changed cells | Predicted loss delta | Sign stability | Energy delta | Bad cosine | Upload-safe |",
+        "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for variant, item in report["lb_conditioned_responsibility_solver"]["variants"].items():
+        lb_responsibility_rows.append(
+            f"| `{variant}` | `{item['submission_file']}` | `{item['changed_cells']}` | "
+            f"`{fmt(item['sum_predicted_loss_delta'], 5)}` | `{fmt(item['mean_sign_stability'], 4)}` | "
+            f"`{fmt(item['mean_incremental_energy_delta'], 5)}` | `{fmt(item['bad_tangent_cosine'], 4)}` | "
+            f"`{item['upload_safe']}` |"
         )
 
     return "\n".join(
@@ -1239,6 +1316,20 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             "이 실험은 spectral solver의 후속이다. 단순히 public-bad tangent 반대로 움직이는 것이 아니라, train label covariance와 subject prior로 정의한 invariant manifold를 깨지 않는 anti-bad action만 release한다. public에서 살아나면 HS-JEPA의 핵심 decoder가 `negative representation + invariant projection`이라는 논문 주장으로 올라간다.",
             "",
+            "## LB-Conditioned Responsibility Solver",
+            "",
+            f"- Status: `{report['lb_conditioned_responsibility_solver']['status']}`",
+            f"- Recommended variant: `{report['lb_conditioned_responsibility_solver']['recommended_variant']}`",
+            f"- Anchor count: `{report['lb_conditioned_responsibility_solver']['fit'].get('anchor_count')}`",
+            f"- LOO correlation: `{fmt(report['lb_conditioned_responsibility_solver']['fit'].get('loo_corr'), 4)}`",
+            f"- Responsibility cells: `{report['lb_conditioned_responsibility_solver']['responsibility_cells']}`",
+            "",
+            report["lb_conditioned_responsibility_solver"]["core_claim"],
+            "",
+            *lb_responsibility_rows,
+            "",
+            "이 실험은 public LB를 하나의 외부 listener로 보고, 여러 제출 action delta와 scalar loss 변화를 이용해 row-target responsibility를 역추정한다. 추천 `pure_lb_gradient_jackpot`은 predicted public-listener 개선과 route energy는 강하지만 spectral bad tangent와 일부 같은 방향이다. 그래서 public에서 좋아지면 scalar listener equation이 spectral anti-tangent보다 더 action-grade라는 뜻이고, 나빠지면 LB-conditioned responsibility는 아직 diagnostic에 가깝다는 뜻이다.",
+            "",
             "## Action Decoder Ablation Suite",
             "",
             f"- Status: `{report['action_decoder_ablation_suite']['status']}`",
@@ -1331,18 +1422,19 @@ def build_big_bet_markdown(bets: list[dict[str, object]]) -> str:
             "",
             "## 우선순위",
             "",
-            "1. `Negative Tangent Invariant Projection Solver`: negative representation이 실제 action-grade가 되려면 invariant projection이 필요한지 검증한다.",
-            "2. `Spectral Public-Tangent Solver`: H057 이후 실패들이 공유하는 저차원 public-bad direction이 invertible action equation인지 검증한다.",
-            "3. `Counterfactual Listener-Dropout Solver`: 같은 high-survival action을 믿을지 뒤집을지 가르는 A/B 센서다.",
-            "4. `Action Decoder Ablation Suite`: action decoder order가 public sensor와 맞는지 큰 구조로 검증한다.",
-            "5. `OG-only Human-State Assignment Teacher`: 성공하면 HS-JEPA의 범용성이 가장 크게 올라간다.",
-            "6. `Core-Health Calibrated Release`: dataset-free action-health failure mode가 실제 adapter release에 전이되는지 검증한다.",
-            "7. `Core-Mediated Action Release`: generic HS-JEPA core가 실제 sleep-adapter action을 release할 수 있는지 검증한다.",
-            "8. `Decoder Boundary Tomography Solver`: strict jury가 너무 보수적인지 직접 찌르는 다음 제출 센서다.",
-            "9. `Cross-Listener Transport Decoder`: 실패한 listener lift를 action generator가 아니라 transport calibrator로 재사용할 수 있는지 본다.",
-            "10. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
-            "11. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.",
-            "12. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.",
+            "1. `LB-Conditioned Responsibility Solver`: public scalar listener equation이 spectral anti-tangent보다 action-grade인지 검증한다.",
+            "2. `Negative Tangent Invariant Projection Solver`: negative representation이 실제 action-grade가 되려면 invariant projection이 필요한지 검증한다.",
+            "3. `Spectral Public-Tangent Solver`: H057 이후 실패들이 공유하는 저차원 public-bad direction이 invertible action equation인지 검증한다.",
+            "4. `Counterfactual Listener-Dropout Solver`: 같은 high-survival action을 믿을지 뒤집을지 가르는 A/B 센서다.",
+            "5. `Action Decoder Ablation Suite`: action decoder order가 public sensor와 맞는지 큰 구조로 검증한다.",
+            "6. `OG-only Human-State Assignment Teacher`: 성공하면 HS-JEPA의 범용성이 가장 크게 올라간다.",
+            "7. `Core-Health Calibrated Release`: dataset-free action-health failure mode가 실제 adapter release에 전이되는지 검증한다.",
+            "8. `Core-Mediated Action Release`: generic HS-JEPA core가 실제 sleep-adapter action을 release할 수 있는지 검증한다.",
+            "9. `Decoder Boundary Tomography Solver`: strict jury가 너무 보수적인지 직접 찌르는 다음 제출 센서다.",
+            "10. `Cross-Listener Transport Decoder`: 실패한 listener lift를 action generator가 아니라 transport calibrator로 재사용할 수 있는지 본다.",
+            "11. `Hard-World Mixture Toxicity Decoder`: H088류 hard-world 독성을 broad toxicity와 분리한다.",
+            "12. `Listener-Invariant Contrastive Decoder`: 현재 S2 bridge를 일반 action-health decoder로 확장한다.",
+            "13. `Private-Safe Toxicity Field`: public-specific gain의 private risk를 줄이는 방향이다.",
             "",
         ]
     )
@@ -1367,6 +1459,7 @@ def run() -> dict[str, object]:
         read_json(COUNTERFACTUAL_LISTENER_DROPOUT_JSON),
         read_json(SPECTRAL_PUBLIC_TANGENT_JSON),
         read_json(NEGATIVE_TANGENT_INVARIANT_JSON),
+        read_json(LB_CONDITIONED_RESPONSIBILITY_JSON),
         read_json(ACTION_DECODER_ABLATION_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),

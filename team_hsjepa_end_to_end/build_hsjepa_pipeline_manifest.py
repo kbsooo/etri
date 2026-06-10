@@ -70,6 +70,13 @@ NEGATIVE_TANGENT_INVARIANT_JSON = (
     / "negative_tangent_invariant_projection_solver"
     / "negative_tangent_invariant_projection_readout.json"
 )
+LB_CONDITIONED_RESPONSIBILITY_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "lb_conditioned_responsibility_solver"
+    / "lb_conditioned_responsibility_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -131,6 +138,7 @@ def require_inputs() -> None:
         COUNTERFACTUAL_LISTENER_DROPOUT_JSON,
         SPECTRAL_PUBLIC_TANGENT_JSON,
         NEGATIVE_TANGENT_INVARIANT_JSON,
+        LB_CONDITIONED_RESPONSIBILITY_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -210,6 +218,7 @@ def build_manifest() -> dict[str, object]:
     counterfactual_listener_dropout = read_json(COUNTERFACTUAL_LISTENER_DROPOUT_JSON)
     spectral_public_tangent = read_json(SPECTRAL_PUBLIC_TANGENT_JSON)
     negative_tangent_invariant = read_json(NEGATIVE_TANGENT_INVARIANT_JSON)
+    lb_conditioned_responsibility = read_json(LB_CONDITIONED_RESPONSIBILITY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -238,6 +247,7 @@ def build_manifest() -> dict[str, object]:
     listener_dropout_verdict = counterfactual_listener_dropout["verdict"]
     spectral_tangent_verdict = spectral_public_tangent["verdict"]
     negative_projection_verdict = negative_tangent_invariant["verdict"]
+    lb_responsibility_verdict = lb_conditioned_responsibility["verdict"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -639,9 +649,33 @@ def build_manifest() -> dict[str, object]:
             "This stage tests whether a negative representation is action-grade only after invariant projection; public LB must still validate the generated action field.",
         ),
         stage(
+            "lb_conditioned_responsibility_solver",
+            "LB-Conditioned Responsibility Solver",
+            "Treats public LB as an external scalar listener and estimates row-target action responsibility from observed submission loss deltas.",
+            [
+                "public_score_ledger.csv",
+                "spectral_public_tangent_readout.json",
+                "negative_tangent_invariant_projection_readout.json",
+                "route energy and subject-prior invariants",
+                "current best submission",
+            ],
+            ["lb_conditioned_responsibility_readout_ko.md", *[
+                str(item.get("submission", {}).get("submission_file"))
+                for item in lb_conditioned_responsibility.get("variants", {}).values()
+                if isinstance(item, dict) and item.get("submission", {}).get("submission_file")
+            ]],
+            [
+                f"Responsibility status: {lb_responsibility_verdict['status']}",
+                f"Recommended variant: {lb_responsibility_verdict['recommended_variant']}",
+                f"LOO corr: {fmt(lb_conditioned_responsibility['fit']['loo_corr'], 4)}",
+                f"Responsibility cells: {lb_conditioned_responsibility['responsibility_cells']}",
+            ],
+            "This is a scalar-listener inversion sensor; if public LB rejects it, responsibility is diagnostic but not yet a portable action equation.",
+        ),
+        stage(
             "action_decoder_ablation_suite",
             "Action Decoder Ablation Suite",
-            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, and listener-dropout alternatives as HS-JEPA module ablations.",
+            "Ranks toxicity-first, support-first, route-first, route-toxicity fusion, decoder-jury, boundary-tomography, core-mediated, core-release-ablation, core-health-calibrated, cross-listener transport, listener-dropout, spectral, invariant-projection, and LB-conditioned responsibility alternatives as HS-JEPA module ablations.",
             [
                 "row_support_strict_action_decoder_readout.json",
                 "route_frontier_action_decoder_readout.json",
@@ -653,6 +687,9 @@ def build_manifest() -> dict[str, object]:
                 "core_health_calibrated_release_readout.json",
                 "cross_listener_transport_readout.json",
                 "counterfactual_listener_dropout_readout.json",
+                "spectral_public_tangent_readout.json",
+                "negative_tangent_invariant_projection_readout.json",
+                "lb_conditioned_responsibility_readout.json",
                 "factorized_toxicity_decoder_stress_audit.json",
             ],
             ["hsjepa_action_decoder_ablation_suite_ko.md", "hsjepa_action_decoder_ablation_suite.csv"],
@@ -933,6 +970,14 @@ def build_manifest() -> dict[str, object]:
         ["spectral_public_tangent_solver", "negative_tangent_invariant_projection_solver"],
         ["route_energy_model", "negative_tangent_invariant_projection_solver"],
         ["human_state_listener_context", "negative_tangent_invariant_projection_solver"],
+        ["public_lb_sensor", "lb_conditioned_responsibility_solver"],
+        ["spectral_public_tangent_solver", "lb_conditioned_responsibility_solver"],
+        ["negative_tangent_invariant_projection_solver", "lb_conditioned_responsibility_solver"],
+        ["route_energy_model", "lb_conditioned_responsibility_solver"],
+        ["human_state_listener_context", "lb_conditioned_responsibility_solver"],
+        ["lb_conditioned_responsibility_solver", "action_decoder_ablation_suite"],
+        ["lb_conditioned_responsibility_solver", "sleep_competition_adapter"],
+        ["lb_conditioned_responsibility_solver", "claim_readiness_and_paper_packet"],
         ["negative_tangent_invariant_projection_solver", "action_decoder_ablation_suite"],
         ["negative_tangent_invariant_projection_solver", "sleep_competition_adapter"],
         ["negative_tangent_invariant_projection_solver", "claim_readiness_and_paper_packet"],
@@ -1065,6 +1110,11 @@ def build_manifest() -> dict[str, object]:
             "negative_tangent_invariant_projection_recommended": negative_projection_verdict["recommended_variant"],
             "negative_tangent_invariant_projection_projected_cells": negative_tangent_invariant["projected_cells"],
             "negative_tangent_invariant_projection_top_ranked": negative_projection_verdict["ranking"][:2],
+            "lb_conditioned_responsibility_status": lb_responsibility_verdict["status"],
+            "lb_conditioned_responsibility_recommended": lb_responsibility_verdict["recommended_variant"],
+            "lb_conditioned_responsibility_loo_corr": lb_conditioned_responsibility["fit"]["loo_corr"],
+            "lb_conditioned_responsibility_cells": lb_conditioned_responsibility["responsibility_cells"],
+            "lb_conditioned_responsibility_top_ranked": lb_responsibility_verdict["ranking"][:2],
             "action_decoder_ablation_suite_status": action_ablation_verdict["status"],
             "action_decoder_ablation_suite_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_suite_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],
@@ -1143,6 +1193,11 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    B --> SPT',
             '    SPT --> ADA',
             '    SPT --> ADAPT',
+            '    SPT --> LBR["LB-conditioned responsibility solver"]',
+            '    NTP["Negative tangent invariant projection"] --> LBR',
+            '    B --> LBR',
+            '    LBR --> ADA',
+            '    LBR --> ADAPT',
             '    CLD --> ADA',
             '    CLD --> ADAPT',
             '    E --> F',

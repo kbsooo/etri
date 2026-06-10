@@ -200,6 +200,26 @@ HS-JEPA representations become action-grade only after projection onto invariant
 
 이 실험은 spectral solver의 후속이다. 단순히 public-bad tangent 반대로 움직이는 것이 아니라, train label covariance와 subject prior로 정의한 invariant manifold를 깨지 않는 anti-bad action만 release한다. public에서 살아나면 HS-JEPA의 핵심 decoder가 `negative representation + invariant projection`이라는 논문 주장으로 올라간다.
 
+## LB-Conditioned Responsibility Solver
+
+- Status: `candidate_ready`
+- Recommended variant: `pure_lb_gradient_jackpot`
+- Anchor count: `26`
+- LOO correlation: `0.7300`
+- Responsibility cells: `115`
+
+HS-JEPA listener responsibility can be inferred from scalar listener observations and converted to action only through invariant projection.
+
+| Variant | Output | Changed cells | Predicted loss delta | Sign stability | Energy delta | Bad cosine | Upload-safe |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| `pure_lb_gradient_jackpot` | `submission_hsjepa_lb_responsibility_pure_lb_gradient_jackpot_f0a8129d_uploadsafe.csv` | `24` | `-7.11879` | `0.9920` | `-0.03290` | `0.0551` | `True` |
+| `stable_public_listener_inverse` | `submission_hsjepa_lb_responsibility_stable_public_listener_inverse_b3a3a98e_uploadsafe.csv` | `13` | `-1.72587` | `0.9970` | `-0.03576` | `-0.0052` | `True` |
+| `subject_safe_public_private_equation` | `submission_hsjepa_lb_responsibility_subject_safe_public_private_equation_bb70d5b8_uploadsafe.csv` | `12` | `-1.41804` | `0.9968` | `-0.03055` | `-0.0054` | `True` |
+| `jackpot_public_equation_release` | `submission_hsjepa_lb_responsibility_jackpot_public_equation_release_6dd65162_uploadsafe.csv` | `29` | `-3.85464` | `0.9947` | `-0.02435` | `-0.0583` | `True` |
+| `route_invariant_responsibility_core` | `submission_hsjepa_lb_responsibility_route_invariant_responsibility_core_8572f8a4_uploadsafe.csv` | `11` | `-0.91323` | `0.9965` | `-0.03354` | `-0.0035` | `True` |
+
+이 실험은 public LB를 하나의 외부 listener로 보고, 여러 제출 action delta와 scalar loss 변화를 이용해 row-target responsibility를 역추정한다. 추천 `pure_lb_gradient_jackpot`은 predicted public-listener 개선과 route energy는 강하지만 spectral bad tangent와 일부 같은 방향이다. 그래서 public에서 좋아지면 scalar listener equation이 spectral anti-tangent보다 더 action-grade라는 뜻이고, 나빠지면 LB-conditioned responsibility는 아직 diagnostic에 가깝다는 뜻이다.
+
 ## Action Decoder Ablation Suite
 
 - Status: `action_decoder_ablation_ready_decoder_jury_leads`
@@ -294,6 +314,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - Counterfactual listener-dropout turns public failures into toxicity labels and exposes a strong A/B sensor: either high-survival route/fusion actions were good cells mixed into bad submissions, or the public/private equation requires inverting those toxic directions.
 - Spectral public-tangent decomposition shows that post-H057 public failures are highly low-rank; HS-JEPA can now treat failed submissions as a negative representation space rather than isolated bad scores.
 - Negative tangent invariant projection turns that negative representation into an action-grade test: only anti-public-bad moves that preserve target-route and subject-prior energy are released.
+- LB-conditioned responsibility now treats public LB as an external listener and estimates which row-target actions carried scalar loss responsibility under leave-one-anchor stress.
 
 ## 이 adapter가 아직 증명하지 못한 것
 
@@ -310,6 +331,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - that listener-dropout health alone is public-safe before public LB observes the aggressive-vs-inverted counterfactual
 - that the public-bad spectral tangent is invertible before public LB observes anti-tangent and orthogonal residual sensors
 - that invariant-projected anti-tangent actions improve LB before public LB observes the generated projection candidates
+- that scalar public-listener responsibility is portable or private-safe before public LB observes the LB-conditioned responsibility candidates
 - that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments
 - private leaderboard safety
 - S2 as a universal human-sleep factor

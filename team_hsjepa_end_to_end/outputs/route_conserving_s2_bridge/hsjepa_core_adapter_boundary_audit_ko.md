@@ -16,7 +16,7 @@
 | `core_has_no_operational_competition_paths` | `PASS` | violations=0, boundary_mentions=0 |
 | `core_manifest_is_dataset_agnostic` | `PASS` | violations=[] |
 | `adapter_declares_core_dependency` | `PASS` | missing_or_bad=[] |
-| `runner_orders_core_before_adapter_before_release` | `PASS` | positions={'core_manifest': 29721, 'core_reference': 29814, 'sleep_adapter_report': 32667, 'boundary_audit': 32780, 'paper_packet': 32859, 'release_checklist': 33011} |
+| `runner_orders_core_before_adapter_before_release` | `PASS` | positions={'core_manifest': 33796, 'core_reference': 33889, 'sleep_adapter_report': 37190, 'boundary_audit': 37303, 'paper_packet': 37382, 'release_checklist': 37534} |
 
 ## Core Import Violations
 

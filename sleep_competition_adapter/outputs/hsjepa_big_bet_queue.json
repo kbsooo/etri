@@ -3,6 +3,63 @@
   "status": "big_bet_queue_ready",
   "bets": [
     {
+      "id": "lb_conditioned_responsibility_solver",
+      "name": "LB-Conditioned Responsibility Solver",
+      "worldview": "The public LB can be treated as an external listener whose scalar observations reveal row-target action responsibility.",
+      "core_modules_exercised": [
+        "listener_responsibility",
+        "action_health_decoder",
+        "invariant_energy",
+        "public_private_equation"
+      ],
+      "adapter_move": "Fit a ridge/LOO responsibility equation from public-score action deltas, invert harmful row-target directions, and release only upload-safe invariant-valid actions.",
+      "why_big": "If this wins LB, HS-JEPA gains a paper-level contribution: listener responsibility can be inferred from scalar outcomes, not only explicit labels or target heads.",
+      "expected_public_lb_delta_if_true": -0.008,
+      "latest_probe_status": "candidate_ready",
+      "latest_probe_evidence": {
+        "recommended_variant": "pure_lb_gradient_jackpot",
+        "ranking": [
+          {
+            "variant": "pure_lb_gradient_jackpot",
+            "score": 2.729658721843765
+          },
+          {
+            "variant": "jackpot_public_equation_release",
+            "score": 1.65355129666629
+          },
+          {
+            "variant": "stable_public_listener_inverse",
+            "score": 0.9541409847364565
+          },
+          {
+            "variant": "subject_safe_public_private_equation",
+            "score": 0.8462171423392681
+          },
+          {
+            "variant": "route_invariant_responsibility_core",
+            "score": 0.6735881376908213
+          }
+        ],
+        "fit": {
+          "anchor_count": 26,
+          "feature_count": 115,
+          "ridge_values": [
+            0.35,
+            0.8,
+            1.6,
+            3.2
+          ],
+          "loo_corr": 0.7300005193514604,
+          "loo_mse": 0.482924866878181,
+          "loss_delta_min": 0.00015723090000008266,
+          "loss_delta_max": 0.013479733900000013,
+          "loss_delta_mean": 0.007230148834615433
+        },
+        "responsibility_cells": 115
+      },
+      "kill_criterion": "Pure-gradient and invariant-safe variants both fail public LB, meaning scalar public listener responsibility is descriptive but not enough without a hidden public/private row-support assignment."
+    },
+    {
       "id": "negative_tangent_invariant_projection_solver",
       "name": "Negative Tangent Invariant Projection Solver",
       "worldview": "A negative public representation is useful only when its inverse can be projected onto label-valid human-state invariants.",
@@ -960,5 +1017,5 @@
       "kill_criterion": "Toxicity score only recovers known public failures, fails hard-world anchors, or does not separate matched local nulls."
     }
   ],
-  "count": 17
+  "count": 18
 }

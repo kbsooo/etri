@@ -67,6 +67,13 @@ NEGATIVE_TANGENT_INVARIANT_JSON = (
     / "negative_tangent_invariant_projection_solver"
     / "negative_tangent_invariant_projection_readout.json"
 )
+LB_CONDITIONED_RESPONSIBILITY_JSON = (
+    ROOT
+    / "sleep_competition_adapter"
+    / "outputs"
+    / "lb_conditioned_responsibility_solver"
+    / "lb_conditioned_responsibility_readout.json"
+)
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -125,6 +132,7 @@ def require_inputs() -> None:
             COUNTERFACTUAL_LISTENER_DROPOUT_JSON,
             SPECTRAL_PUBLIC_TANGENT_JSON,
             NEGATIVE_TANGENT_INVARIANT_JSON,
+            LB_CONDITIONED_RESPONSIBILITY_JSON,
             ACTION_DECODER_ABLATION_JSON,
             CONTRASTIVE_PROBE_JSON,
             PRIVATE_TOXICITY_PROBE_JSON,
@@ -168,6 +176,7 @@ def build_packet() -> dict[str, object]:
     counterfactual_listener_dropout = read_json(COUNTERFACTUAL_LISTENER_DROPOUT_JSON)
     spectral_public_tangent = read_json(SPECTRAL_PUBLIC_TANGENT_JSON)
     negative_tangent_invariant = read_json(NEGATIVE_TANGENT_INVARIANT_JSON)
+    lb_conditioned_responsibility = read_json(LB_CONDITIONED_RESPONSIBILITY_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -215,6 +224,10 @@ def build_packet() -> dict[str, object]:
     negative_projection_recommended = negative_projection_verdict["recommended_variant"]
     negative_projection_item = negative_tangent_invariant["variants"][negative_projection_recommended]
     negative_projection_submission = negative_projection_item["submission"]
+    lb_responsibility_verdict = lb_conditioned_responsibility["verdict"]
+    lb_responsibility_recommended = lb_responsibility_verdict["recommended_variant"]
+    lb_responsibility_item = lb_conditioned_responsibility["variants"][lb_responsibility_recommended]
+    lb_responsibility_submission = lb_responsibility_item["submission"]
     action_ablation_verdict = action_decoder_ablation["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
@@ -367,6 +380,16 @@ def build_packet() -> dict[str, object]:
             "negative_tangent_invariant_bad_cosine": negative_projection_item["metrics"]["bad_tangent_cosine"],
             "negative_tangent_invariant_energy_delta": negative_projection_item["metrics"]["mean_incremental_energy_delta"],
             "negative_tangent_invariant_subject_delta": negative_projection_item["metrics"]["mean_subject_energy_delta"],
+            "lb_conditioned_responsibility_status": lb_responsibility_verdict["status"],
+            "lb_conditioned_responsibility_recommended": lb_responsibility_recommended,
+            "lb_conditioned_responsibility_file": lb_responsibility_submission["submission_file"],
+            "lb_conditioned_responsibility_anchor_count": lb_conditioned_responsibility["fit"]["anchor_count"],
+            "lb_conditioned_responsibility_loo_corr": lb_conditioned_responsibility["fit"]["loo_corr"],
+            "lb_conditioned_responsibility_cells": lb_conditioned_responsibility["responsibility_cells"],
+            "lb_conditioned_responsibility_changed_cells": lb_responsibility_submission["changed_cells"],
+            "lb_conditioned_responsibility_predicted_delta": lb_responsibility_item["metrics"]["sum_predicted_loss_delta"],
+            "lb_conditioned_responsibility_energy_delta": lb_responsibility_item["metrics"]["mean_incremental_energy_delta"],
+            "lb_conditioned_responsibility_bad_cosine": lb_responsibility_item["metrics"]["bad_tangent_cosine"],
             "action_decoder_ablation_status": action_ablation_verdict["status"],
             "action_decoder_ablation_recommended_lb_sensor": action_ablation_verdict["recommended_lb_sensor"],
             "action_decoder_ablation_big_bet_sensor": action_ablation_verdict["big_bet_sensor"],
@@ -461,6 +484,7 @@ def build_packet() -> dict[str, object]:
             "counterfactual_listener_dropout_solver": str(COUNTERFACTUAL_LISTENER_DROPOUT_JSON.resolve()),
             "spectral_public_tangent_solver": str(SPECTRAL_PUBLIC_TANGENT_JSON.resolve()),
             "negative_tangent_invariant_projection_solver": str(NEGATIVE_TANGENT_INVARIANT_JSON.resolve()),
+            "lb_conditioned_responsibility_solver": str(LB_CONDITIONED_RESPONSIBILITY_JSON.resolve()),
             "action_decoder_ablation_suite": str(ACTION_DECODER_ABLATION_JSON.resolve()),
             "listener_invariant_contrastive_probe": str(CONTRASTIVE_PROBE_JSON.resolve()),
             "private_safe_toxicity_probe": str(PRIVATE_TOXICITY_PROBE_JSON.resolve()),
@@ -494,6 +518,8 @@ def build_packet() -> dict[str, object]:
                 counterfactual_listener_dropout,
                 spectral_tangent_verdict,
                 spectral_public_tangent,
+                lb_responsibility_verdict,
+                lb_conditioned_responsibility,
                 contrastive_verdict,
                 toxicity_verdict,
                 hardworld_verdict,
@@ -555,7 +581,7 @@ def build_method_text(core: dict[str, object], adapter: dict[str, object]) -> st
             "",
             adapter["adapter_claim"],
             "",
-            "이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 새 hard-world probe는 broad toxicity와 H088 toxicity가 역상관될 수 있음을 보여주므로, action-health는 단일 위험 점수가 아니라 factorized energy head로 다루어야 한다. 이후 core-health calibrated release는 dataset-free core benchmark에서 action-health를 제거했을 때 false positive가 늘어난다는 실패 패턴을 실제 adapter release prior로 사용한다. cross-listener transport는 target-listener lift가 direct action generator로는 실패했다는 negative sensor를 보존하고, listener posterior를 route/fusion/core-safe action의 transport calibrator로만 사용한다. counterfactual listener-dropout은 listener 하나를 가려도 같은 row-target action이 살아남는지 묻고, 실패한 public sensor들을 버리는 대신 action-toxicity label로 사용한다. spectral public-tangent solver는 실패한 public action들을 저차원 negative representation으로 압축한 뒤 anti-tangent와 orthogonal residual release를 비교한다. negative tangent invariant projection은 여기서 한 단계 더 나아가, 그 반대 방향 action을 target-route/subject-prior invariant 위로 투영해야만 action-grade가 된다는 주장을 테스트한다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant/anti-shortcut/negative-representation 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.",
+            "이번 수면 대회에서는 listener가 Q1/Q2/Q3/S1/S2/S3/S4로, invariant가 Q/S route energy로, action-health가 public/private toxicity 및 feasible-bundle stress로 구현되었다. 새 hard-world probe는 broad toxicity와 H088 toxicity가 역상관될 수 있음을 보여주므로, action-health는 단일 위험 점수가 아니라 factorized energy head로 다루어야 한다. 이후 core-health calibrated release는 dataset-free core benchmark에서 action-health를 제거했을 때 false positive가 늘어난다는 실패 패턴을 실제 adapter release prior로 사용한다. cross-listener transport는 target-listener lift가 direct action generator로는 실패했다는 negative sensor를 보존하고, listener posterior를 route/fusion/core-safe action의 transport calibrator로만 사용한다. counterfactual listener-dropout은 listener 하나를 가려도 같은 row-target action이 살아남는지 묻고, 실패한 public sensor들을 버리는 대신 action-toxicity label로 사용한다. spectral public-tangent solver는 실패한 public action들을 저차원 negative representation으로 압축한 뒤 anti-tangent와 orthogonal residual release를 비교한다. negative tangent invariant projection은 여기서 한 단계 더 나아가, 그 반대 방향 action을 target-route/subject-prior invariant 위로 투영해야만 action-grade가 된다는 주장을 테스트한다. LB-conditioned responsibility solver는 public LB라는 scalar 외부 listener가 흘린 관측값에서 row-target action responsibility를 역추정한다. 핵심은 `S2` 자체가 아니라, hidden state를 직접 label로 쓰지 않고 core의 listener/action/invariant/anti-shortcut/negative-representation/responsibility 경로를 adapter가 안전한 sparse row-target action으로 번역한다는 점이다.",
         ]
     )
 
@@ -582,6 +608,8 @@ def build_generality_text(
     counterfactual_listener_dropout: dict[str, object],
     spectral_tangent_verdict: dict[str, object],
     spectral_public_tangent: dict[str, object],
+    lb_responsibility_verdict: dict[str, object],
+    lb_conditioned_responsibility: dict[str, object],
     contrastive_verdict: dict[str, object],
     toxicity_verdict: dict[str, object],
     hardworld_verdict: dict[str, object],
@@ -659,6 +687,10 @@ def build_generality_text(
         f"- Spectral top-5 variance: `{fmt(spectral_public_tangent['spectral']['top5_cumulative_variance'], 4)}`",
         f"- Spectral information sensor: `{spectral_tangent_verdict['recommended_information_sensor']}`",
         f"- Spectral counter sensor: `{spectral_tangent_verdict['recommended_counter_sensor']}`",
+        f"- LB-conditioned responsibility solver: `{lb_responsibility_verdict['status']}`",
+        f"- LB responsibility recommended variant: `{lb_responsibility_verdict['recommended_variant']}`",
+        f"- LB responsibility LOO corr: `{fmt(lb_conditioned_responsibility['fit']['loo_corr'], 4)}`",
+        f"- LB responsibility cells: `{lb_conditioned_responsibility['responsibility_cells']}`",
         f"- Listener-invariant probe: `{contrastive_verdict['status']}`",
         f"- Listener-route Spearman: `{fmt(contrastive_verdict['mean_listener_route_spearman'], 4)}`",
         f"- Private-safe toxicity probe: `{toxicity_verdict['status']}`",
@@ -698,9 +730,10 @@ def build_algorithm_text() -> str:
             "14. Treat failed public sensors as toxicity evidence and test same-direction release against direction inversion.",
             "15. Decompose failed action fields into a spectral negative representation and test anti-tangent versus orthogonal residual release.",
             "16. Project negative-representation actions onto target-route and subject-prior invariants before release.",
-            "17. Decode bounded actions that improve listener fit while preserving the invariant.",
-            "18. Reject shortcuts with cohort/time/group/null stress tests.",
-            "19. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.",
+        "17. Estimate scalar-listener responsibility from external outcome observations when explicit row-target labels are unavailable.",
+        "18. Decode bounded actions that improve listener fit while preserving the invariant.",
+        "19. Reject shortcuts with cohort/time/group/null stress tests.",
+        "20. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.",
         ]
     )
 
@@ -827,6 +860,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- Spectral information sensor: `{human['spectral_public_tangent_information_sensor']}`, file `{human['spectral_public_tangent_information_sensor_file']}`, priority `{fmt(human['spectral_public_tangent_information_sensor_priority'], 4)}`",
             f"- Spectral counter sensor: `{human['spectral_public_tangent_counter_sensor']}`, file `{human['spectral_public_tangent_counter_sensor_file']}`",
             f"- Negative tangent invariant projection: `{human['negative_tangent_invariant_status']}`, recommended `{human['negative_tangent_invariant_recommended']}`, file `{human['negative_tangent_invariant_file']}`, bad cosine `{fmt(human['negative_tangent_invariant_bad_cosine'], 4)}`, energy delta `{fmt(human['negative_tangent_invariant_energy_delta'], 5)}`, subject delta `{fmt(human['negative_tangent_invariant_subject_delta'], 5)}`",
+            f"- LB-conditioned responsibility: `{human['lb_conditioned_responsibility_status']}`, recommended `{human['lb_conditioned_responsibility_recommended']}`, file `{human['lb_conditioned_responsibility_file']}`, LOO corr `{fmt(human['lb_conditioned_responsibility_loo_corr'], 4)}`, changed cells `{human['lb_conditioned_responsibility_changed_cells']}`, predicted delta `{fmt(human['lb_conditioned_responsibility_predicted_delta'], 5)}`, energy delta `{fmt(human['lb_conditioned_responsibility_energy_delta'], 5)}`, bad cosine `{fmt(human['lb_conditioned_responsibility_bad_cosine'], 4)}`",
             f"- Action decoder ablation: `{human['action_decoder_ablation_status']}`, recommended `{human['action_decoder_ablation_recommended_lb_sensor']}`, big bet `{human['action_decoder_ablation_big_bet_sensor']}`",
             "",
             "## Role-Based Outputs",
@@ -877,6 +911,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- `{packet['outputs']['counterfactual_listener_dropout_solver']}`",
             f"- `{packet['outputs']['spectral_public_tangent_solver']}`",
             f"- `{packet['outputs']['negative_tangent_invariant_projection_solver']}`",
+            f"- `{packet['outputs']['lb_conditioned_responsibility_solver']}`",
             f"- `{packet['outputs']['action_decoder_ablation_suite']}`",
             "",
         ]
