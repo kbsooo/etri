@@ -14583,3 +14583,60 @@ run_full_team_hsjepa_package.py
 
 The current HS-JEPA "knuckleball" is therefore not only a file-level result,
 but a runnable and falsifiable architecture package.
+
+## HS-JEPA Reproducibility Contract
+
+Date: 2026-06-10
+
+Question:
+
+Can we make the team package honest about which inputs are OG data, which inputs
+are public-LB sensors, and which artifacts are generated action anchors?
+
+Added artifacts:
+
+- `team_hsjepa_end_to_end/inspect_hsjepa_reproducibility_contract.py`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_reproducibility_contract.md`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_reproducibility_contract.json`
+
+The one-command runner now also creates the reproducibility contract:
+
+```bash
+python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py
+```
+
+Result:
+
+- Contract passed: `true`
+- Required missing records: `0`
+- OG raw categories present:
+  - `data/ch2026_metrics_train.csv`
+  - `data/ch2026_submission_sample.csv`
+  - `data/ch2025_data_items/*.parquet`, count `12`
+- Public score ledger rows: `26`
+- Public ledger best LB: `0.5677475939`
+- Boundary recorded:
+  - `is_pure_og_only_model=false`
+  - `uses_public_lb_sensor=true`
+  - `uses_proprietary_embedding_api_in_team_runner=false`
+
+Interpretation:
+
+This addresses the main paper/team risk in the previous package: the mechanism
+is not presented as a pure OG-only model.  The new contract explicitly separates
+the claims:
+
+```text
+Human-state representation claim:
+  OG/raw lifestyle logs help orient and diagnose actions.
+
+Competition decoder claim:
+  public-LB sensor observations identify a sparse row-target action field.
+
+Mechanism claim:
+  route conservation plus S2 listener usage selects an unusually stable bridge
+  path inside that action field.
+```
+
+This is a cleaner paper position than claiming that HS-JEPA directly predicts
+all labels from OG features alone.

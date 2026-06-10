@@ -67,6 +67,20 @@ Human-state representation is useful as an orientation diagnostic, not as a comp
 2. `interpretable_s2_hub`: 논문 설명력이 가장 강한 S2 Listener Bridge
 3. `human_state_probe`: OG human-state orientation diagnostic
 
+## Reproducibility Contract
+
+이 패키지는 입력을 다음처럼 분리해서 기록한다.
+
+```text
+OG raw data != public-LB sensor != generated action artifact
+```
+
+계약 문서:
+
+```text
+team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_reproducibility_contract.md
+```
+
 ## Boundary
 
 이 패키지가 증명하지 않는 것:

@@ -33,6 +33,8 @@ VALIDATION_JSON = OUT / "route_conserving_s2_bridge_validation_report.json"
 HANDOFF_MD = OUT / "route_conserving_s2_bridge_team_handoff.md"
 HANDOFF_JSON = OUT / "route_conserving_s2_bridge_team_handoff.json"
 RUN_LOG_JSON = OUT / "route_conserving_s2_bridge_full_run_log.json"
+CONTRACT_MD = OUT / "hsjepa_reproducibility_contract.md"
+CONTRACT_JSON = OUT / "hsjepa_reproducibility_contract.json"
 
 
 def run_command(args: list[str]) -> dict[str, object]:
@@ -147,6 +149,20 @@ def build_handoff(package: dict[str, object], validation: dict[str, object], str
             "2. `interpretable_s2_hub`: 논문 설명력이 가장 강한 S2 Listener Bridge",
             "3. `human_state_probe`: OG human-state orientation diagnostic",
             "",
+            "## Reproducibility Contract",
+            "",
+            "이 패키지는 입력을 다음처럼 분리해서 기록한다.",
+            "",
+            "```text",
+            "OG raw data != public-LB sensor != generated action artifact",
+            "```",
+            "",
+            "계약 문서:",
+            "",
+            "```text",
+            "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_reproducibility_contract.md",
+            "```",
+            "",
             "## Boundary",
             "",
             "이 패키지가 증명하지 않는 것:",
@@ -170,6 +186,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(HERE / "run_route_conserving_s2_bridge.py")],
         [sys.executable, str(HERE / "audit_route_conserving_s2_bridge.py")],
         [sys.executable, str(HERE / "validate_route_conserving_s2_bridge_package.py")],
+        [sys.executable, str(HERE / "inspect_hsjepa_reproducibility_contract.py")],
     ]
     if refresh:
         commands[0].append("--refresh")
@@ -191,6 +208,8 @@ def run(refresh: bool = False) -> dict[str, object]:
         "stress_csv": str(STRESS_CSV.resolve()),
         "validation_json": str(VALIDATION_JSON.resolve()),
         "handoff_md": str(HANDOFF_MD.resolve()),
+        "reproducibility_contract_md": str(CONTRACT_MD.resolve()),
+        "reproducibility_contract_json": str(CONTRACT_JSON.resolve()),
         "validation_passed": bool(validation["passed"]),
         "mechanism_evidence": validation["mechanism_evidence"],
         "submission_files": {

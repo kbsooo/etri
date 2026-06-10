@@ -240,7 +240,13 @@ python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py
 python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py --refresh
 ```
 
-위 명령은 package 생성, stress audit, claim/evidence validation, 팀 핸드오프 리포트 생성을 한 번에 수행한다.
+위 명령은 package 생성, stress audit, claim/evidence validation, reproducibility contract, 팀 핸드오프 리포트 생성을 한 번에 수행한다.
+
+입력 출처를 OG raw data, public-LB sensor, competition anchor, generated output으로 분리한 계약 문서:
+
+```text
+team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_reproducibility_contract.md
+```
 
 개별 package 생성만 실행하려면:
 
