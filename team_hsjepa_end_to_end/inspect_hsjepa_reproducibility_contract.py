@@ -91,6 +91,7 @@ MODULES = [
     "sleep_competition_adapter/factorized_toxicity_decoder_candidate.py",
     "sleep_competition_adapter/factorized_toxicity_decoder_stress_audit.py",
     "sleep_competition_adapter/row_support_strict_action_decoder.py",
+    "sleep_competition_adapter/route_frontier_action_decoder.py",
     "sleep_competition_adapter/build_sleep_competition_adapter_report.py",
 ]
 
@@ -164,6 +165,16 @@ GENERATED_OUTPUTS = [
     ("sleep_competition_adapter/outputs/row_support_strict_action_decoder/submission_hsjepa_row_support_exploratory_route_support_gate_97a2f8f5_uploadsafe.csv", False),
     ("submission_hsjepa_row_support_strict_route_support_gate_5ae5c515_uploadsafe.csv", False),
     ("submission_hsjepa_row_support_exploratory_route_support_gate_97a2f8f5_uploadsafe.csv", False),
+    ("sleep_competition_adapter/outputs/route_frontier_action_decoder/route_frontier_action_decoder_readout.json", False),
+    ("sleep_competition_adapter/outputs/route_frontier_action_decoder/route_frontier_action_decoder_readout_ko.md", False),
+    ("sleep_competition_adapter/outputs/route_frontier_action_decoder/route_frontier_action_decoder_audit.csv", False),
+    ("sleep_competition_adapter/outputs/route_frontier_action_decoder/route_frontier_action_decoder_null_stress.csv", False),
+    ("sleep_competition_adapter/outputs/route_frontier_action_decoder/submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv", False),
+    ("sleep_competition_adapter/outputs/route_frontier_action_decoder/submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv", False),
+    ("sleep_competition_adapter/outputs/route_frontier_action_decoder/submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv", False),
+    ("submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv", False),
+    ("submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv", False),
+    ("submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv", False),
 ]
 
 

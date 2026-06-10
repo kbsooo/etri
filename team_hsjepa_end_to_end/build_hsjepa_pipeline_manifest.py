@@ -39,6 +39,7 @@ ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignme
 ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidden_row_support_sensor_probe.json"
 MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "masked_row_support_objective_probe.json"
 ROW_SUPPORT_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
+ROUTE_FRONTIER_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
@@ -86,6 +87,7 @@ def require_inputs() -> None:
         ROW_SUPPORT_SENSOR_JSON,
         MASKED_ROW_SUPPORT_JSON,
         ROW_SUPPORT_DECODER_JSON,
+        ROUTE_FRONTIER_DECODER_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
@@ -151,6 +153,7 @@ def build_manifest() -> dict[str, object]:
     row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
     masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
+    route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -167,6 +170,7 @@ def build_manifest() -> dict[str, object]:
     row_support_verdict = row_support_sensor["verdict"]
     masked_row_support_verdict = masked_row_support["verdict"]
     row_support_decoder_verdict = row_support_decoder["verdict"]
+    route_frontier_verdict = route_frontier_decoder["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
     hardworld_verdict = hardworld_toxicity_probe["verdict"]
@@ -316,6 +320,23 @@ def build_manifest() -> dict[str, object]:
                 f"Exploratory combined z: {fmt(row_support_decoder_verdict['exploratory_combined_z'], 2)}",
             ],
             "This is an LB-informative big bet with a route-gain tradeoff, not a safe default submission.",
+        ),
+        stage(
+            "route_frontier_action_decoder",
+            "Route-Frontier Action Decoder",
+            "Selects route-manifold frontier actions before trusting row-support and toxicity gates.",
+            ["row_support_strict_action_decoder_readout.json", "route bridge candidates", "hardworld toxicity sectors"],
+            ["route_frontier_action_decoder_readout_ko.md", *[
+                str(item.get("submission_file"))
+                for item in route_frontier_decoder.get("variants", {}).values()
+                if isinstance(item, dict) and item.get("submission_file")
+            ]],
+            [
+                f"Decoder status: {route_frontier_verdict['status']}",
+                f"Recommended variant: {route_frontier_verdict['recommended_variant']}",
+                f"Variant scores: {route_frontier_verdict['variant_scores']}",
+            ],
+            "This tests whether action-grade decoding should start from route-frontier selection rather than support-first selection.",
         ),
         stage(
             "route_energy_model",
@@ -532,6 +553,9 @@ def build_manifest() -> dict[str, object]:
         ["masked_row_support_objective", "row_support_strict_action_decoder"],
         ["row_support_strict_action_decoder", "sleep_competition_adapter"],
         ["row_support_strict_action_decoder", "claim_readiness_and_paper_packet"],
+        ["row_support_strict_action_decoder", "route_frontier_action_decoder"],
+        ["route_frontier_action_decoder", "sleep_competition_adapter"],
+        ["route_frontier_action_decoder", "claim_readiness_and_paper_packet"],
         ["public_lb_sensor", "driver_action_field"],
         ["human_state_listener_context", "driver_action_field"],
         ["route_energy_model", "route_conserving_s2_bridge_decoder"],
@@ -610,6 +634,9 @@ def build_manifest() -> dict[str, object]:
             "row_support_strict_action_decoder_recommended": row_support_decoder_verdict["recommended_variant"],
             "row_support_strict_action_decoder_changed_cells": row_support_decoder_verdict["exploratory_changed_cells"],
             "row_support_strict_action_decoder_safety_z": row_support_decoder_verdict["exploratory_safety_z"],
+            "route_frontier_action_decoder_status": route_frontier_verdict["status"],
+            "route_frontier_action_decoder_recommended": route_frontier_verdict["recommended_variant"],
+            "route_frontier_action_decoder_variant_scores": route_frontier_verdict["variant_scores"],
             "listener_invariant_contrastive_probe_status": contrastive_verdict["status"],
             "private_safe_toxicity_probe_status": toxicity_verdict["status"],
             "hardworld_toxicity_factorization_probe_status": hardworld_verdict["status"],
@@ -659,6 +686,7 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    GAP --> RSP["Hidden row-support sensor"]',
             '    RSP --> MRO["Masked row-support objective"]',
             '    MRO --> RSA["Row-support strict action decoder"]',
+            '    RSA --> RFA["Route-frontier action decoder"]',
             '    MRO --> GEN["General architecture boundary"]',
             '    B["Public LB sensor ledger"] --> E["Public-sensitive driver action field"]',
             '    C --> E',
@@ -682,6 +710,7 @@ def build_markdown(manifest: dict[str, object]) -> str:
             '    RSP --> ADAPT',
             '    MRO --> ADAPT',
             '    RSA --> ADAPT',
+            '    RFA --> ADAPT',
             '    ADAPT --> BAUD["Core/adapter boundary audit"]',
             '    CORE --> BAUD',
             '    GEN --> H["Claim readiness and paper packet"]',

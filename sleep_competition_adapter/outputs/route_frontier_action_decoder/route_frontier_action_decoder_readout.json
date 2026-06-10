@@ -1,0 +1,647 @@
+{
+  "experiment": "Route-Frontier Action Decoder",
+  "architecture_role": "sleep_competition_adapter_route_frontier_action_solver",
+  "core_boundary": "HS-JEPA core supplies row-support representation; this adapter asks whether route-frontier actions are safer than null.",
+  "status": "route_frontier_action_decoder_alive_with_matched_boundary",
+  "verdict": {
+    "status": "route_frontier_action_decoder_alive_with_matched_boundary",
+    "recommended_variant": "seed_route_frontier",
+    "reason": "The selected frontier beats broad route nulls and is upload-safe. Matched-null score remains the boundary, so this is a big-bet LB sensor rather than a default release.",
+    "variant_scores": [
+      {
+        "variant": "seed_route_frontier",
+        "changed_cells": 20,
+        "broad_route_z": 2.631665028357059,
+        "matched_score_z": 3.6234736097578057,
+        "upload_safe": true
+      },
+      {
+        "variant": "s2_route_frontier",
+        "changed_cells": 20,
+        "broad_route_z": 2.8237779101897877,
+        "matched_score_z": 3.3123857088533875,
+        "upload_safe": true
+      },
+      {
+        "variant": "open_route_frontier",
+        "changed_cells": 20,
+        "broad_route_z": 2.492261359647143,
+        "matched_score_z": 3.0831554042259524,
+        "upload_safe": true
+      }
+    ]
+  },
+  "variants": {
+    "seed_route_frontier": {
+      "submission_file": "submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_frontier_action_decoder/submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv",
+      "config": {
+        "name": "seed_route_frontier",
+        "require_selected_seed": true,
+        "require_open_candidate": false,
+        "require_s2_any": false,
+        "min_route_rank": 0.45,
+        "min_row_support_rank": 0.45,
+        "min_bundle_joint_safety": 0.35,
+        "min_bundle_hardworld_safe": 0.4,
+        "min_bundle_broad_safe": 0.25,
+        "min_source_support": 3,
+        "max_h088_alignment": 0.72,
+        "max_bundles": 10,
+        "max_bundles_per_row": 1,
+        "base_amp": 0.58,
+        "max_amp": 0.92,
+        "min_amp": 0.5
+      },
+      "decode_diagnostics": {
+        "variant": "seed_route_frontier",
+        "changed_cells": 20,
+        "changed_rows": 10,
+        "selected_bundles": 10,
+        "bundle_summary": {
+          "bundles": 10,
+          "rows": 10,
+          "mean_row_support_rank": 0.8972,
+          "mean_route_gain": 0.030323727365510637,
+          "mean_bundle_joint_safety": 0.5871378910776361,
+          "mean_driver_joint_safety": 0.7236964078794902,
+          "mean_support_route_safety_score": 0.7270867292565277,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 0.8,
+          "selected_seed_rate": 1.0,
+          "source_counts": {
+            "s2hub_selected": 8,
+            "stagebridge_selected": 2
+          }
+        },
+        "listener_metrics": {
+          "base_listener_mean_delta": -0.0010815333136629274,
+          "base_listener_max_delta": 0.0005689882930493422,
+          "base_listener_negative_count": 8,
+          "semantic_listener_mean_delta": -0.0008401913912198849,
+          "semantic_listener_max_delta": 0.0005689882930493422,
+          "semantic_listener_negative_count": 8,
+          "h088_cosine": 0.00934164176115747,
+          "changed_cells": 20,
+          "changed_rows": 10
+        },
+        "target_counts": {
+          "Q1": 0,
+          "Q2": 0,
+          "Q3": 0,
+          "S1": 4,
+          "S2": 8,
+          "S3": 3,
+          "S4": 5
+        },
+        "mean_amp": 0.8802024084874166,
+        "min_amp": 0.8347983766428783,
+        "max_amp": 0.9044287531502864,
+        "frontier_summary": {
+          "bundles": 10,
+          "rows": 10,
+          "mean_row_support_rank": 0.8972,
+          "mean_route_gain": 0.030323727365510637,
+          "mean_bundle_joint_safety": 0.5871378910776361,
+          "mean_driver_joint_safety": 0.7236964078794902,
+          "mean_support_route_safety_score": 0.7270867292565277,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 0.8,
+          "selected_seed_rate": 1.0,
+          "source_counts": {
+            "s2hub_selected": 8,
+            "stagebridge_selected": 2
+          },
+          "mean_route_frontier_score": 0.7233398337934196,
+          "mean_route_quality_rank": 0.8027322404371585,
+          "open_candidate_rate": 0.0
+        }
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 20,
+        "upload_safe": true
+      }
+    },
+    "s2_route_frontier": {
+      "submission_file": "submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_frontier_action_decoder/submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
+      "config": {
+        "name": "s2_route_frontier",
+        "require_selected_seed": true,
+        "require_open_candidate": false,
+        "require_s2_any": true,
+        "min_route_rank": 0.45,
+        "min_row_support_rank": 0.45,
+        "min_bundle_joint_safety": 0.35,
+        "min_bundle_hardworld_safe": 0.4,
+        "min_bundle_broad_safe": 0.25,
+        "min_source_support": 3,
+        "max_h088_alignment": 0.72,
+        "max_bundles": 10,
+        "max_bundles_per_row": 1,
+        "base_amp": 0.6,
+        "max_amp": 0.95,
+        "min_amp": 0.5
+      },
+      "decode_diagnostics": {
+        "variant": "s2_route_frontier",
+        "changed_cells": 20,
+        "changed_rows": 10,
+        "selected_bundles": 10,
+        "bundle_summary": {
+          "bundles": 10,
+          "rows": 10,
+          "mean_row_support_rank": 0.8719999999999999,
+          "mean_route_gain": 0.031000569498294956,
+          "mean_bundle_joint_safety": 0.6112444959443801,
+          "mean_driver_joint_safety": 0.7389918887601391,
+          "mean_support_route_safety_score": 0.7183932684829369,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 1.0,
+          "selected_seed_rate": 1.0,
+          "source_counts": {
+            "s2hub_selected": 10
+          }
+        },
+        "listener_metrics": {
+          "base_listener_mean_delta": -0.0013393771435880764,
+          "base_listener_max_delta": 0.0007242248979256098,
+          "base_listener_negative_count": 8,
+          "semantic_listener_mean_delta": -0.0010893227072313386,
+          "semantic_listener_max_delta": 0.0007242248979256098,
+          "semantic_listener_negative_count": 8,
+          "h088_cosine": 0.005465068211490441,
+          "changed_cells": 20,
+          "changed_rows": 10
+        },
+        "target_counts": {
+          "Q1": 0,
+          "Q2": 0,
+          "Q3": 0,
+          "S1": 3,
+          "S2": 10,
+          "S3": 1,
+          "S4": 6
+        },
+        "mean_amp": 0.8981070334898202,
+        "min_amp": 0.8565606991265633,
+        "max_amp": 0.9244287531502864,
+        "frontier_summary": {
+          "bundles": 10,
+          "rows": 10,
+          "mean_row_support_rank": 0.8719999999999999,
+          "mean_route_gain": 0.031000569498294956,
+          "mean_bundle_joint_safety": 0.6112444959443801,
+          "mean_driver_joint_safety": 0.7389918887601391,
+          "mean_support_route_safety_score": 0.7183932684829369,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 1.0,
+          "selected_seed_rate": 1.0,
+          "source_counts": {
+            "s2hub_selected": 10
+          },
+          "mean_route_frontier_score": 0.717706448523846,
+          "mean_route_quality_rank": 0.8065573770491804,
+          "open_candidate_rate": 0.0
+        }
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 20,
+        "upload_safe": true
+      }
+    },
+    "open_route_frontier": {
+      "submission_file": "submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_frontier_action_decoder/submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv",
+      "config": {
+        "name": "open_route_frontier",
+        "require_selected_seed": false,
+        "require_open_candidate": true,
+        "require_s2_any": false,
+        "min_route_rank": 0.45,
+        "min_row_support_rank": 0.35,
+        "min_bundle_joint_safety": 0.2,
+        "min_bundle_hardworld_safe": 0.35,
+        "min_bundle_broad_safe": 0.2,
+        "min_source_support": 3,
+        "max_h088_alignment": 0.72,
+        "max_bundles": 10,
+        "max_bundles_per_row": 1,
+        "base_amp": 0.48,
+        "max_amp": 0.8,
+        "min_amp": 0.42
+      },
+      "decode_diagnostics": {
+        "variant": "open_route_frontier",
+        "changed_cells": 20,
+        "changed_rows": 10,
+        "selected_bundles": 10,
+        "bundle_summary": {
+          "bundles": 10,
+          "rows": 10,
+          "mean_row_support_rank": 0.8552,
+          "mean_route_gain": 0.02665538686468379,
+          "mean_bundle_joint_safety": 0.5228342989571263,
+          "mean_driver_joint_safety": 0.6304750869061413,
+          "mean_support_route_safety_score": 0.6430607548921958,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 0.6,
+          "selected_seed_rate": 0.0,
+          "source_counts": {
+            "s2hub_candidates": 10
+          }
+        },
+        "listener_metrics": {
+          "base_listener_mean_delta": -0.0008773243769700199,
+          "base_listener_max_delta": 0.0003626546422586804,
+          "base_listener_negative_count": 8,
+          "semantic_listener_mean_delta": -0.0008066233054135164,
+          "semantic_listener_max_delta": 0.0003626546422586804,
+          "semantic_listener_negative_count": 8,
+          "h088_cosine": -0.06261950732292258,
+          "changed_cells": 20,
+          "changed_rows": 10
+        },
+        "target_counts": {
+          "Q1": 0,
+          "Q2": 0,
+          "Q3": 0,
+          "S1": 5,
+          "S2": 6,
+          "S3": 5,
+          "S4": 4
+        },
+        "mean_amp": 0.7533835061544932,
+        "min_amp": 0.7185986769739013,
+        "max_amp": 0.7877050911658959,
+        "frontier_summary": {
+          "bundles": 10,
+          "rows": 10,
+          "mean_row_support_rank": 0.8552,
+          "mean_route_gain": 0.02665538686468379,
+          "mean_bundle_joint_safety": 0.5228342989571263,
+          "mean_driver_joint_safety": 0.6304750869061413,
+          "mean_support_route_safety_score": 0.6430607548921958,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 0.6,
+          "selected_seed_rate": 0.0,
+          "source_counts": {
+            "s2hub_candidates": 10
+          },
+          "mean_route_frontier_score": 0.6338345710442587,
+          "mean_route_quality_rank": 0.7486338797814208,
+          "open_candidate_rate": 1.0
+        }
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 20,
+        "upload_safe": true
+      }
+    }
+  },
+  "stress": {
+    "seed_route_frontier": {
+      "variant": "seed_route_frontier",
+      "status": "stress_ready",
+      "iterations": 2000,
+      "actual": {
+        "bundles": 10,
+        "rows": 10,
+        "mean_row_support_rank": 0.8972,
+        "mean_route_gain": 0.030323727365510637,
+        "mean_bundle_joint_safety": 0.5871378910776361,
+        "mean_driver_joint_safety": 0.7236964078794902,
+        "mean_support_route_safety_score": 0.7270867292565277,
+        "hardworld_top_toxic_bundle_rate": 0.0,
+        "conflict_bundle_rate": 0.0,
+        "s2_any_rate": 0.8,
+        "selected_seed_rate": 1.0,
+        "source_counts": {
+          "s2hub_selected": 8,
+          "stagebridge_selected": 2
+        },
+        "mean_route_frontier_score": 0.7175443792479651,
+        "mean_route_quality_rank": 0.8027322404371585,
+        "open_candidate_rate": 0.0
+      },
+      "broad": {
+        "pool_size": 32,
+        "route_gain": {
+          "actual": 0.030323727365510637,
+          "null_mean": 0.022508058682936188,
+          "null_std": 0.002969856952053691,
+          "z": 2.631665028357059,
+          "p": 0.0035
+        },
+        "route_quality_rank": {
+          "actual": 0.8027322404371585,
+          "null_mean": 0.6586868852459017,
+          "null_std": 0.0546775568147849,
+          "z": 2.634451200454375,
+          "p": 0.0025
+        },
+        "row_support_rank": {
+          "actual": 0.8972,
+          "null_mean": 0.8141995999999999,
+          "null_std": 0.03777813327199689,
+          "z": 2.1970487371679437,
+          "p": 0.0105
+        },
+        "bundle_joint_safety": {
+          "actual": 0.5871378910776361,
+          "null_mean": 0.5128085816917729,
+          "null_std": 0.03490323448098309,
+          "z": 2.1295822719304636,
+          "p": 0.0195
+        },
+        "route_frontier_score": {
+          "actual": 0.7175443792479651,
+          "null_mean": 0.590189853376366,
+          "null_std": 0.030059696107412718,
+          "z": 4.236720338498592,
+          "p": 0.0
+        }
+      },
+      "matched": {
+        "pool_size": 22,
+        "route_gain": {
+          "actual": 0.030323727365510637,
+          "null_mean": 0.02624601193087782,
+          "null_std": 0.0021694222478894714,
+          "z": 1.8796319788460747,
+          "p": 0.0285
+        },
+        "route_quality_rank": {
+          "actual": 0.8027322404371585,
+          "null_mean": 0.7320377049180329,
+          "null_std": 0.0355414537460666,
+          "z": 1.9890727042914047,
+          "p": 0.0225
+        },
+        "row_support_rank": {
+          "actual": 0.8972,
+          "null_mean": 0.8228516,
+          "null_std": 0.030777242188967796,
+          "z": 2.415694022911342,
+          "p": 0.0035
+        },
+        "bundle_joint_safety": {
+          "actual": 0.5871378910776361,
+          "null_mean": 0.5575111969872538,
+          "null_std": 0.027271766915665026,
+          "z": 1.0863503703633617,
+          "p": 0.1445
+        },
+        "route_frontier_score": {
+          "actual": 0.7175443792479651,
+          "null_mean": 0.6423628275321275,
+          "null_std": 0.020748475029528177,
+          "z": 3.6234736097578057,
+          "p": 0.0
+        }
+      }
+    },
+    "s2_route_frontier": {
+      "variant": "s2_route_frontier",
+      "status": "stress_ready",
+      "iterations": 2000,
+      "actual": {
+        "bundles": 10,
+        "rows": 10,
+        "mean_row_support_rank": 0.8719999999999999,
+        "mean_route_gain": 0.031000569498294956,
+        "mean_bundle_joint_safety": 0.6112444959443801,
+        "mean_driver_joint_safety": 0.7389918887601391,
+        "mean_support_route_safety_score": 0.7183932684829369,
+        "hardworld_top_toxic_bundle_rate": 0.0,
+        "conflict_bundle_rate": 0.0,
+        "s2_any_rate": 1.0,
+        "selected_seed_rate": 1.0,
+        "source_counts": {
+          "s2hub_selected": 10
+        },
+        "mean_route_frontier_score": 0.7107327643133198,
+        "mean_route_quality_rank": 0.8065573770491804,
+        "open_candidate_rate": 0.0
+      },
+      "broad": {
+        "pool_size": 28,
+        "route_gain": {
+          "actual": 0.031000569498294956,
+          "null_mean": 0.022344675642716447,
+          "null_std": 0.0030653592910120054,
+          "z": 2.8237779101897877,
+          "p": 0.0025
+        },
+        "route_quality_rank": {
+          "actual": 0.8065573770491804,
+          "null_mean": 0.6529043715846995,
+          "null_std": 0.05645622209246019,
+          "z": 2.7216310225313474,
+          "p": 0.0025
+        },
+        "row_support_rank": {
+          "actual": 0.8719999999999999,
+          "null_mean": 0.8083400000000001,
+          "null_std": 0.039433697115970716,
+          "z": 1.6143553522553955,
+          "p": 0.0535
+        },
+        "bundle_joint_safety": {
+          "actual": 0.6112444959443801,
+          "null_mean": 0.524710227114716,
+          "null_std": 0.03377987991516887,
+          "z": 2.56171037447188,
+          "p": 0.0055
+        },
+        "route_frontier_score": {
+          "actual": 0.7107327643133198,
+          "null_mean": 0.5872715569095877,
+          "null_std": 0.03129462515786961,
+          "z": 3.945124978393946,
+          "p": 0.0
+        }
+      },
+      "matched": {
+        "pool_size": 19,
+        "route_gain": {
+          "actual": 0.031000569498294956,
+          "null_mean": 0.02648840834851685,
+          "null_std": 0.00205575524923956,
+          "z": 2.194892193150084,
+          "p": 0.011
+        },
+        "route_quality_rank": {
+          "actual": 0.8065573770491804,
+          "null_mean": 0.733971038251366,
+          "null_std": 0.03262960858481353,
+          "z": 2.224554383081781,
+          "p": 0.0105
+        },
+        "row_support_rank": {
+          "actual": 0.8719999999999999,
+          "null_mean": 0.819769,
+          "null_std": 0.02987816244844465,
+          "z": 1.7481329411866406,
+          "p": 0.0445
+        },
+        "bundle_joint_safety": {
+          "actual": 0.6112444959443801,
+          "null_mean": 0.5722793441483197,
+          "null_std": 0.02448613587587349,
+          "z": 1.5913148563739685,
+          "p": 0.054
+        },
+        "route_frontier_score": {
+          "actual": 0.7107327643133198,
+          "null_mean": 0.6447193494399297,
+          "null_std": 0.019929265693193938,
+          "z": 3.3123857088533875,
+          "p": 0.001
+        }
+      }
+    },
+    "open_route_frontier": {
+      "variant": "open_route_frontier",
+      "status": "stress_ready",
+      "iterations": 2000,
+      "actual": {
+        "bundles": 10,
+        "rows": 10,
+        "mean_row_support_rank": 0.8552,
+        "mean_route_gain": 0.02665538686468379,
+        "mean_bundle_joint_safety": 0.5228342989571263,
+        "mean_driver_joint_safety": 0.6304750869061413,
+        "mean_support_route_safety_score": 0.6430607548921958,
+        "hardworld_top_toxic_bundle_rate": 0.0,
+        "conflict_bundle_rate": 0.0,
+        "s2_any_rate": 0.6,
+        "selected_seed_rate": 0.0,
+        "source_counts": {
+          "s2hub_candidates": 10
+        },
+        "mean_route_frontier_score": 0.6372556236758377,
+        "mean_route_quality_rank": 0.7486338797814208,
+        "open_candidate_rate": 1.0
+      },
+      "broad": {
+        "pool_size": 51,
+        "route_gain": {
+          "actual": 0.02665538686468379,
+          "null_mean": 0.016495049411904085,
+          "null_std": 0.004076754394541492,
+          "z": 2.492261359647143,
+          "p": 0.003
+        },
+        "route_quality_rank": {
+          "actual": 0.7486338797814208,
+          "null_mean": 0.5179374316939891,
+          "null_std": 0.0764528003745757,
+          "z": 3.017501608235819,
+          "p": 0.0005
+        },
+        "row_support_rank": {
+          "actual": 0.8552,
+          "null_mean": 0.824778,
+          "null_std": 0.034080618836666465,
+          "z": 0.8926481102032411,
+          "p": 0.184
+        },
+        "bundle_joint_safety": {
+          "actual": 0.5228342989571263,
+          "null_mean": 0.41928635457705676,
+          "null_std": 0.04770275746484808,
+          "z": 2.1706909596201602,
+          "p": 0.009
+        },
+        "route_frontier_score": {
+          "actual": 0.6372556236758377,
+          "null_mean": 0.49136638960540624,
+          "null_std": 0.053726112267611155,
+          "z": 2.7154251054131358,
+          "p": 0.0
+        }
+      },
+      "matched": {
+        "pool_size": 19,
+        "route_gain": {
+          "actual": 0.02665538686468379,
+          "null_mean": 0.023617880624426144,
+          "null_std": 0.0013222390147330362,
+          "z": 2.297244449842287,
+          "p": 0.0075
+        },
+        "route_quality_rank": {
+          "actual": 0.7486338797814208,
+          "null_mean": 0.6971117486338797,
+          "null_std": 0.022883617669582117,
+          "z": 2.251485402754961,
+          "p": 0.0175
+        },
+        "row_support_rank": {
+          "actual": 0.8552,
+          "null_mean": 0.8396272,
+          "null_std": 0.014468285517050778,
+          "z": 1.076340384669017,
+          "p": 0.151
+        },
+        "bundle_joint_safety": {
+          "actual": 0.5228342989571263,
+          "null_mean": 0.5210140370799536,
+          "null_std": 0.013975381940168572,
+          "z": 0.130247737402478,
+          "p": 0.441
+        },
+        "route_frontier_score": {
+          "actual": 0.6372556236758377,
+          "null_mean": 0.6028469164466899,
+          "null_std": 0.011160224742126868,
+          "z": 3.0831554042259524,
+          "p": 0.0
+        }
+      }
+    }
+  },
+  "bundle_pool_summary": {
+    "bundles": 183,
+    "selected_seed_bundles": 45,
+    "mean_route_gain": 0.015895886486395627,
+    "mean_route_quality_rank": 0.5027322404371585
+  },
+  "outputs": {
+    "readout_json": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_frontier_action_decoder/route_frontier_action_decoder_readout.json",
+    "readout_md": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_frontier_action_decoder/route_frontier_action_decoder_readout_ko.md",
+    "audit_csv": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_frontier_action_decoder/route_frontier_action_decoder_audit.csv",
+    "null_csv": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_frontier_action_decoder/route_frontier_action_decoder_null_stress.csv"
+  }
+}

@@ -24,6 +24,7 @@ ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignme
 ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidden_row_support_sensor_probe.json"
 MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "masked_row_support_objective_probe.json"
 ROW_SUPPORT_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
+ROUTE_FRONTIER_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
 
 REPORT_JSON = OUT / "hsjepa_generality_report.json"
 REPORT_MD = OUT / "hsjepa_generality_report_ko.md"
@@ -211,6 +212,7 @@ def run() -> dict[str, object]:
         ROW_SUPPORT_SENSOR_JSON,
         MASKED_ROW_SUPPORT_JSON,
         ROW_SUPPORT_DECODER_JSON,
+        ROUTE_FRONTIER_DECODER_JSON,
     ]:
         if not path.exists():
             raise FileNotFoundError(path)
@@ -222,11 +224,13 @@ def run() -> dict[str, object]:
     row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
     masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
+    route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
     og_verdict = og_probe.get("verdict", {})
     gap_verdict = assignment_gap.get("verdict", {})
     row_support_verdict = row_support_sensor.get("verdict", {})
     masked_row_support_verdict = masked_row_support.get("verdict", {})
     row_support_decoder_verdict = row_support_decoder.get("verdict", {})
+    route_frontier_verdict = route_frontier_decoder.get("verdict", {})
     portability_checks = [dict(item) for item in PORTABILITY_CHECKS]
     for item in portability_checks:
         if item["check"] == "remaining_generality_gap":
@@ -251,7 +255,10 @@ def run() -> dict[str, object]:
                 f"{row_support_decoder_verdict.get('recommended_variant')}, exploratory changed cells "
                 f"{row_support_decoder_verdict.get('exploratory_changed_cells')}, safety z "
                 f"{row_support_decoder_verdict.get('exploratory_safety_z'):.4f}, combined z "
-                f"{row_support_decoder_verdict.get('exploratory_combined_z'):.4f}."
+                f"{row_support_decoder_verdict.get('exploratory_combined_z'):.4f}. "
+                f"Route-frontier action decoder status {route_frontier_verdict.get('status')}; recommended "
+                f"{route_frontier_verdict.get('recommended_variant')}, scores "
+                f"{route_frontier_verdict.get('variant_scores')}."
             )
     blocking = [
         item for item in portability_checks
@@ -295,6 +302,9 @@ def run() -> dict[str, object]:
             "row_support_strict_action_decoder_safety_z": row_support_decoder_verdict.get("exploratory_safety_z"),
             "row_support_strict_action_decoder_combined_z": row_support_decoder_verdict.get("exploratory_combined_z"),
             "row_support_strict_action_decoder_mean_route_gain": row_support_decoder_verdict.get("exploratory_mean_route_gain"),
+            "route_frontier_action_decoder_status": route_frontier_verdict.get("status"),
+            "route_frontier_action_decoder_recommended": route_frontier_verdict.get("recommended_variant"),
+            "route_frontier_action_decoder_variant_scores": route_frontier_verdict.get("variant_scores"),
         },
         "honest_claim": (
             "HS-JEPA is a human-understanding architecture that predicts hidden human-state and listener/action representations before "
@@ -303,8 +313,10 @@ def run() -> dict[str, object]:
         "next_breakthrough": (
             "Turn the partially alive masked row-support representation into an action-grade decoder. "
             "The first strict decoder is alive as an LB-informative probe, but route-gain is not yet stronger than the null. "
+            "The route-frontier decoder is the next action-translation hypothesis: it beats broad and matched nulls locally, "
+            "but remains an adapter-side LB sensor until public/private observation proves it. "
             "The next portable objective should preserve teacher-transfer strength while lifting subject/date/order held-out stress "
-            "and route-gain before allowing row-support to drive safe release submissions."
+            "and route-frontier action safety before allowing row-support to drive safe release submissions."
         ),
     }
     REPORT_JSON.write_text(json.dumps(report, indent=2, ensure_ascii=False, allow_nan=False), encoding="utf-8")

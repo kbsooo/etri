@@ -37,6 +37,7 @@ ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignme
 ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidden_row_support_sensor_probe.json"
 MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "masked_row_support_objective_probe.json"
 ROW_SUPPORT_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
+ROUTE_FRONTIER_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
@@ -95,6 +96,7 @@ def require_inputs() -> list[dict[str, object]]:
         ROW_SUPPORT_SENSOR_JSON,
         MASKED_ROW_SUPPORT_JSON,
         ROW_SUPPORT_DECODER_JSON,
+        ROUTE_FRONTIER_DECODER_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
@@ -146,6 +148,7 @@ def build_checklist() -> dict[str, object]:
     row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
     masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
+    route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -169,6 +172,7 @@ def build_checklist() -> dict[str, object]:
     row_support_verdict = row_support_sensor.get("verdict", {})
     masked_row_support_verdict = masked_row_support.get("verdict", {})
     row_support_decoder_verdict = row_support_decoder.get("verdict", {})
+    route_frontier_verdict = route_frontier_decoder.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
     hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
@@ -375,6 +379,32 @@ def build_checklist() -> dict[str, object]:
                     f"changed={row_support_decoder_verdict.get('exploratory_changed_cells')}, "
                     f"safety_z={fmt(row_support_decoder_verdict.get('exploratory_safety_z'), 2)}, "
                     f"combined_z={fmt(row_support_decoder_verdict.get('exploratory_combined_z'), 2)}"
+                ),
+            ),
+            check(
+                "route_frontier_action_decoder_recorded",
+                route_frontier_decoder.get("status")
+                in {
+                    "route_frontier_action_decoder_alive_with_matched_boundary",
+                    "route_frontier_action_decoder_not_release_ready",
+                }
+                and route_frontier_verdict.get("recommended_variant") in route_frontier_decoder.get("variants", {})
+                and any(
+                    isinstance(item, dict)
+                    and int(item.get("changed_cells", 0)) >= 20
+                    and float(item.get("broad_route_z", 0.0)) >= 2.0
+                    and float(item.get("matched_score_z", 0.0)) >= 2.0
+                    and bool(item.get("upload_safe"))
+                    for item in route_frontier_verdict.get("variant_scores", [])
+                )
+                and all(
+                    isinstance(item, dict) and item.get("validation", {}).get("upload_safe") is True
+                    for item in route_frontier_decoder.get("variants", {}).values()
+                ),
+                (
+                    f"status={route_frontier_verdict.get('status')}, "
+                    f"recommended={route_frontier_verdict.get('recommended_variant')}, "
+                    f"scores={route_frontier_verdict.get('variant_scores')}"
                 ),
             ),
             check(

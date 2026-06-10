@@ -36,6 +36,7 @@ ASSIGNMENT_GAP_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "assignme
 ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidden_row_support_sensor_probe.json"
 MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "masked_row_support_objective_probe.json"
 ROW_SUPPORT_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
+ROUTE_FRONTIER_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hardworld_toxicity_factorization_probe.json"
@@ -80,6 +81,7 @@ def require_inputs() -> None:
             ROW_SUPPORT_SENSOR_JSON,
             MASKED_ROW_SUPPORT_JSON,
             ROW_SUPPORT_DECODER_JSON,
+            ROUTE_FRONTIER_DECODER_JSON,
             CONTRASTIVE_PROBE_JSON,
             PRIVATE_TOXICITY_PROBE_JSON,
             HARDWORLD_TOXICITY_PROBE_JSON,
@@ -109,6 +111,7 @@ def build_packet() -> dict[str, object]:
     row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
     masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
+    route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -127,6 +130,7 @@ def build_packet() -> dict[str, object]:
     row_support_verdict = row_support_sensor["verdict"]
     masked_row_support_verdict = masked_row_support["verdict"]
     row_support_decoder_verdict = row_support_decoder["verdict"]
+    route_frontier_verdict = route_frontier_decoder["verdict"]
     contrastive_verdict = contrastive_probe["verdict"]
     toxicity_verdict = private_toxicity_probe["verdict"]
     hardworld_verdict = hardworld_toxicity_probe["verdict"]
@@ -208,6 +212,9 @@ def build_packet() -> dict[str, object]:
             "row_support_action_decoder_safety_z": row_support_decoder_verdict["exploratory_safety_z"],
             "row_support_action_decoder_combined_z": row_support_decoder_verdict["exploratory_combined_z"],
             "row_support_action_decoder_mean_route_gain": row_support_decoder_verdict["exploratory_mean_route_gain"],
+            "route_frontier_action_decoder_status": route_frontier_verdict["status"],
+            "route_frontier_action_decoder_recommended": route_frontier_verdict["recommended_variant"],
+            "route_frontier_action_decoder_variant_scores": route_frontier_verdict["variant_scores"],
             "listener_invariant_probe_status": contrastive_verdict["status"],
             "listener_route_spearman": contrastive_verdict["mean_listener_route_spearman"],
             "contrastive_overlap_rate": contrastive_verdict["mean_contrastive_overlap_rate"],
@@ -278,6 +285,7 @@ def build_packet() -> dict[str, object]:
             "hidden_row_support_sensor_probe": str(ROW_SUPPORT_SENSOR_JSON.resolve()),
             "masked_row_support_objective_probe": str(MASKED_ROW_SUPPORT_JSON.resolve()),
             "row_support_strict_action_decoder": str(ROW_SUPPORT_DECODER_JSON.resolve()),
+            "route_frontier_action_decoder": str(ROUTE_FRONTIER_DECODER_JSON.resolve()),
             "listener_invariant_contrastive_probe": str(CONTRASTIVE_PROBE_JSON.resolve()),
             "private_safe_toxicity_probe": str(PRIVATE_TOXICITY_PROBE_JSON.resolve()),
             "hardworld_toxicity_factorization_probe": str(HARDWORLD_TOXICITY_PROBE_JSON.resolve()),
@@ -295,6 +303,7 @@ def build_packet() -> dict[str, object]:
                 row_support_verdict,
                 masked_row_support_verdict,
                 row_support_decoder_verdict,
+                route_frontier_verdict,
                 contrastive_verdict,
                 toxicity_verdict,
                 hardworld_verdict,
@@ -368,6 +377,7 @@ def build_generality_text(
     row_support_verdict: dict[str, object],
     masked_row_support_verdict: dict[str, object],
     row_support_decoder_verdict: dict[str, object],
+    route_frontier_verdict: dict[str, object],
     contrastive_verdict: dict[str, object],
     toxicity_verdict: dict[str, object],
     hardworld_verdict: dict[str, object],
@@ -413,6 +423,9 @@ def build_generality_text(
         f"- Decoder changed cells: `{row_support_decoder_verdict['exploratory_changed_cells']}`",
         f"- Decoder safety z / combined z: `{fmt(row_support_decoder_verdict['exploratory_safety_z'], 4)}` / `{fmt(row_support_decoder_verdict['exploratory_combined_z'], 4)}`",
         f"- Decoder mean route gain: `{fmt(row_support_decoder_verdict['exploratory_mean_route_gain'], 5)}`",
+        f"- Route-frontier action decoder: `{route_frontier_verdict['status']}`",
+        f"- Route-frontier recommended variant: `{route_frontier_verdict['recommended_variant']}`",
+        f"- Route-frontier variant scores: `{route_frontier_verdict['variant_scores']}`",
         f"- Listener-invariant probe: `{contrastive_verdict['status']}`",
         f"- Listener-route Spearman: `{fmt(contrastive_verdict['mean_listener_route_spearman'], 4)}`",
         f"- Private-safe toxicity probe: `{toxicity_verdict['status']}`",
@@ -422,7 +435,7 @@ def build_generality_text(
         f"- Broad toxicity -> H088 AUC: `{fmt(hardworld_verdict['broad_predicts_hardworld_auc'], 4)}`",
         f"- Broad/H088 Spearman: `{fmt(hardworld_verdict['broad_hardworld_spearman'], 4)}`",
         "",
-        "가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor를 안전한 row-target action으로 번역하는 것이다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer와 masked-family objective에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원하고, human-only/prediction-only/masked-route view도 신호를 유지한다. 첫 strict action decoder는 null 대비 safety는 강하지만 route-gain 우위가 약하므로, HS-JEPA representation target으로는 의미 있고 LB sensor 후보로는 쓸 수 있어도 safe release decoder로는 아직 부족하다.",
+        "가장 중요한 남은 과제는 target route가 아니라 hidden row-support sensor를 안전한 row-target action으로 번역하는 것이다. 이제 row-support는 완전히 죽은 가설이 아니라 teacher-transfer와 masked-family objective에서 부분적으로 살아있는 가설로 바뀌었다. 특히 seven-target prediction landscape와 human/cohort context를 합친 portable composite가 row-support를 상당 부분 복원하고, human-only/prediction-only/masked-route view도 신호를 유지한다. 첫 strict action decoder는 null 대비 safety는 강하지만 route-gain 우위가 약했다. 새 route-frontier decoder는 반대로 route manifold frontier를 먼저 고르고 support/toxicity를 통과시키며, local broad/matched null은 이겼다. 다만 이것도 아직 sleep adapter의 LB sensor이지 private-safe release claim은 아니다.",
     ]
     return "\n".join(rows)
 
@@ -442,10 +455,11 @@ def build_algorithm_text() -> str:
             "4. Estimate action-health: whether the latent signal is safe to translate into output movement.",
             "5. Factorize action-health when shortcut modes are anti-correlated rather than scalar.",
             "6. Translate row-support through a strict route-support action gate before changing outputs.",
-            "7. Learn an invariant energy over valid output/action manifolds.",
-            "8. Decode bounded actions that improve listener fit while preserving the invariant.",
-            "9. Reject shortcuts with cohort/time/group/null stress tests.",
-            "10. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.",
+            "7. Prefer route-frontier actions when support-first decoding fails route/null stress.",
+            "8. Learn an invariant energy over valid output/action manifolds.",
+            "9. Decode bounded actions that improve listener fit while preserving the invariant.",
+            "10. Reject shortcuts with cohort/time/group/null stress tests.",
+            "11. In the sleep-log case study, instantiate the invariant as Q/S route energy and the decoder as the S2 bridge.",
         ]
     )
 
@@ -552,6 +566,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- Hidden row-support sensor: `{human['hidden_row_support_sensor_status']}`, family `{human['hidden_row_support_best_family']}`, row AUC `{fmt(human['hidden_row_support_mean_row_auc'], 4)}`, cell recall `{fmt(human['hidden_row_support_mean_cell_recall'], 4)}`",
             f"- Masked row-support objective: `{human['masked_row_support_objective_status']}`, row AUC `{fmt(human['masked_row_support_full_row_auc'], 4)}`, cell recall `{fmt(human['masked_row_support_full_cell_recall'], 4)}`, group stress AUC `{fmt(human['masked_row_support_group_stress_auc'], 4)}`",
             f"- Row-support action decoder: `{human['row_support_action_decoder_status']}`, recommended `{human['row_support_action_decoder_recommended']}`, changed cells `{human['row_support_action_decoder_changed_cells']}`, safety z `{fmt(human['row_support_action_decoder_safety_z'], 4)}`, combined z `{fmt(human['row_support_action_decoder_combined_z'], 4)}`",
+            f"- Route-frontier action decoder: `{human['route_frontier_action_decoder_status']}`, recommended `{human['route_frontier_action_decoder_recommended']}`, scores `{human['route_frontier_action_decoder_variant_scores']}`",
             "",
             "## Role-Based Outputs",
             "",
@@ -588,6 +603,7 @@ def build_markdown(packet: dict[str, object], stress: pd.DataFrame) -> str:
             f"- `{packet['outputs']['hidden_row_support_sensor_probe']}`",
             f"- `{packet['outputs']['masked_row_support_objective_probe']}`",
             f"- `{packet['outputs']['row_support_strict_action_decoder']}`",
+            f"- `{packet['outputs']['route_frontier_action_decoder']}`",
             "",
         ]
     )

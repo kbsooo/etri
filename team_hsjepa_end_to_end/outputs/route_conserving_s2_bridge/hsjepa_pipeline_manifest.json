@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 23,
-  "edge_count": 47,
+  "stage_count": 24,
+  "edge_count": 50,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -181,6 +181,28 @@
         "Exploratory combined z: 1.38"
       ],
       "boundary": "This is an LB-informative big bet with a route-gain tradeoff, not a safe default submission."
+    },
+    {
+      "id": "route_frontier_action_decoder",
+      "name": "Route-Frontier Action Decoder",
+      "role": "Selects route-manifold frontier actions before trusting row-support and toxicity gates.",
+      "inputs": [
+        "row_support_strict_action_decoder_readout.json",
+        "route bridge candidates",
+        "hardworld toxicity sectors"
+      ],
+      "outputs": [
+        "route_frontier_action_decoder_readout_ko.md",
+        "submission_hsjepa_seed_route_frontier_1109c03f_uploadsafe.csv",
+        "submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv",
+        "submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv"
+      ],
+      "evidence": [
+        "Decoder status: route_frontier_action_decoder_alive_with_matched_boundary",
+        "Recommended variant: seed_route_frontier",
+        "Variant scores: [{'variant': 'seed_route_frontier', 'changed_cells': 20, 'broad_route_z': 2.631665028357059, 'matched_score_z': 3.6234736097578057, 'upload_safe': True}, {'variant': 's2_route_frontier', 'changed_cells': 20, 'broad_route_z': 2.8237779101897877, 'matched_score_z': 3.3123857088533875, 'upload_safe': True}, {'variant': 'open_route_frontier', 'changed_cells': 20, 'broad_route_z': 2.492261359647143, 'matched_score_z': 3.0831554042259524, 'upload_safe': True}]"
+      ],
+      "boundary": "This tests whether action-grade decoding should start from route-frontier selection rather than support-first selection."
     },
     {
       "id": "route_energy_model",
@@ -408,7 +430,7 @@
       "evidence": [
         "Adapter status: adapter_ready_with_public_sensor_boundary",
         "Adapter score delta: -0.0084113555",
-        "Big-bet count: 6"
+        "Big-bet count: 7"
       ],
       "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
     },
@@ -535,6 +557,18 @@
     ],
     [
       "row_support_strict_action_decoder",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
+      "row_support_strict_action_decoder",
+      "route_frontier_action_decoder"
+    ],
+    [
+      "route_frontier_action_decoder",
+      "sleep_competition_adapter"
+    ],
+    [
+      "route_frontier_action_decoder",
       "claim_readiness_and_paper_packet"
     ],
     [
@@ -683,7 +717,7 @@
     "core_status": "core_ready_for_adapter",
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
     "core_adapter_boundary_status": "core_adapter_boundary_verified",
-    "big_bet_count": 6,
+    "big_bet_count": 7,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "assignment_gap_decomposition_status": "row_support_is_primary_bottleneck",
     "assignment_gap_mean_row_support_gap": 0.5832137733142038,
@@ -699,6 +733,31 @@
     "row_support_strict_action_decoder_recommended": "exploratory_route_support_gate",
     "row_support_strict_action_decoder_changed_cells": 34,
     "row_support_strict_action_decoder_safety_z": 3.643701769206037,
+    "route_frontier_action_decoder_status": "route_frontier_action_decoder_alive_with_matched_boundary",
+    "route_frontier_action_decoder_recommended": "seed_route_frontier",
+    "route_frontier_action_decoder_variant_scores": [
+      {
+        "variant": "seed_route_frontier",
+        "changed_cells": 20,
+        "broad_route_z": 2.631665028357059,
+        "matched_score_z": 3.6234736097578057,
+        "upload_safe": true
+      },
+      {
+        "variant": "s2_route_frontier",
+        "changed_cells": 20,
+        "broad_route_z": 2.8237779101897877,
+        "matched_score_z": 3.3123857088533875,
+        "upload_safe": true
+      },
+      {
+        "variant": "open_route_frontier",
+        "changed_cells": 20,
+        "broad_route_z": 2.492261359647143,
+        "matched_score_z": 3.0831554042259524,
+        "upload_safe": true
+      }
+    ],
     "listener_invariant_contrastive_probe_status": "listener_invariant_decoder_not_ready",
     "private_safe_toxicity_probe_status": "toxicity_field_promising_with_hardworld_gap",
     "hardworld_toxicity_factorization_probe_status": "hardworld_mixture_factorization_required",

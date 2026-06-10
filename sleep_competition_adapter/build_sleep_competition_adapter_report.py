@@ -32,6 +32,7 @@ ASSIGNMENT_GAP_JSON = OUT / "assignment_gap_decomposition_probe.json"
 ROW_SUPPORT_SENSOR_JSON = OUT / "hidden_row_support_sensor_probe.json"
 MASKED_ROW_SUPPORT_JSON = OUT / "masked_row_support_objective_probe.json"
 ROW_SUPPORT_DECODER_JSON = OUT / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
+ROUTE_FRONTIER_DECODER_JSON = OUT / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
 HARDWORLD_TOXICITY_PROBE_JSON = OUT / "hardworld_toxicity_factorization_probe.json"
@@ -71,6 +72,7 @@ def require_inputs() -> None:
         ROW_SUPPORT_SENSOR_JSON,
         MASKED_ROW_SUPPORT_JSON,
         ROW_SUPPORT_DECODER_JSON,
+        ROUTE_FRONTIER_DECODER_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
         HARDWORLD_TOXICITY_PROBE_JSON,
@@ -88,6 +90,7 @@ def build_big_bets(
     row_support_sensor: dict[str, object],
     masked_row_support: dict[str, object],
     row_support_decoder: dict[str, object],
+    route_frontier_decoder: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
     hardworld_toxicity_probe: dict[str, object],
@@ -107,6 +110,11 @@ def build_big_bets(
     row_support_decoder_verdict = (
         row_support_decoder.get("verdict", {})
         if isinstance(row_support_decoder.get("verdict"), dict)
+        else {}
+    )
+    route_frontier_verdict = (
+        route_frontier_decoder.get("verdict", {})
+        if isinstance(route_frontier_decoder.get("verdict"), dict)
         else {}
     )
     contrastive_verdict = (
@@ -177,6 +185,21 @@ def build_big_bets(
                 "exploratory_mean_route_gain": row_support_decoder_verdict.get("exploratory_mean_route_gain"),
             },
             "kill_criterion": "Public LB worsens or route/null stress remains weak after increasing row-support selectivity.",
+        },
+        {
+            "id": "route_frontier_action_decoder",
+            "name": "Route-Frontier Action Decoder",
+            "worldview": "The action decoder should select route-manifold frontier moves first, then check row-support and toxicity.",
+            "core_modules_exercised": ["action_health_decoder", "invariant_energy", "anti_shortcut_validation"],
+            "adapter_move": "Choose public-selected and open-candidate route-frontier bundles that beat broad and matched nulls.",
+            "why_big": "If it survives LB, HS-JEPA gains a concrete action translation rule instead of a hand-tuned support gate.",
+            "expected_public_lb_delta_if_true": -0.0025,
+            "latest_probe_status": route_frontier_verdict.get("status"),
+            "latest_probe_evidence": {
+                "recommended_variant": route_frontier_verdict.get("recommended_variant"),
+                "variant_scores": route_frontier_verdict.get("variant_scores"),
+            },
+            "kill_criterion": "Public LB worsens or matched-null frontier score fails after larger candidate pools are used.",
         },
         {
             "id": "listener_invariant_contrastive_decoder",
@@ -253,6 +276,7 @@ def build_report() -> dict[str, object]:
     row_support_sensor = read_json(ROW_SUPPORT_SENSOR_JSON)
     masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
+    route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
     hardworld_toxicity_probe = read_json(HARDWORLD_TOXICITY_PROBE_JSON)
@@ -267,6 +291,7 @@ def build_report() -> dict[str, object]:
     row_support_verdict = row_support_sensor.get("verdict", {})
     masked_row_support_verdict = masked_row_support.get("verdict", {})
     row_support_decoder_verdict = row_support_decoder.get("verdict", {})
+    route_frontier_verdict = route_frontier_decoder.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
     hardworld_verdict = hardworld_toxicity_probe.get("verdict", {})
@@ -393,6 +418,23 @@ def build_report() -> dict[str, object]:
                 if isinstance(item, dict)
             },
         },
+        "route_frontier_action_decoder": {
+            "status": route_frontier_verdict.get("status"),
+            "recommended_variant": route_frontier_verdict.get("recommended_variant"),
+            "reason": route_frontier_verdict.get("reason"),
+            "variant_scores": route_frontier_verdict.get("variant_scores"),
+            "variants": {
+                name: {
+                    "submission_file": item.get("submission_file"),
+                    "changed_cells": item.get("decode_diagnostics", {}).get("changed_cells"),
+                    "changed_rows": item.get("decode_diagnostics", {}).get("changed_rows"),
+                    "selected_bundles": item.get("decode_diagnostics", {}).get("selected_bundles"),
+                    "upload_safe": item.get("validation", {}).get("upload_safe"),
+                }
+                for name, item in route_frontier_decoder.get("variants", {}).items()
+                if isinstance(item, dict)
+            },
+        },
         "listener_invariant_contrastive_probe": {
             "status": contrastive_verdict.get("status"),
             "mean_listener_route_spearman": contrastive_verdict.get("mean_listener_route_spearman"),
@@ -466,6 +508,7 @@ def build_report() -> dict[str, object]:
             "A teacher-transfer hidden row-support sensor is partially alive; portable row-support composite context transfers across teacher worlds better than the listener upper bound in this local diagnostic.",
             "Masked row-support behaves like a real HS-JEPA representation target under teacher-transfer and feature-family masks, but subject/date/order held-out stress remains weak.",
             "A row-support action decoder can produce upload-safe route/S2 bundle candidates with strong local toxicity safety, but route-gain remains a tradeoff.",
+            "A route-frontier action decoder now beats broad route nulls and matched frontier-score nulls while staying upload-safe, so the next LB sensor can test action-grade route translation directly.",
             "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.",
             "The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.",
             "Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.",
@@ -477,6 +520,7 @@ def build_report() -> dict[str, object]:
             "action-grade portable hidden row-support recovery",
             "that masked row-support is already a deployment-grade action decoder",
             "that the row-support strict action decoder is safe without public/private LB observation",
+            "that route-frontier action decoding is private-safe without public LB observation",
             "private leaderboard safety",
             "S2 as a universal human-sleep factor",
             "that public LB sensors can be used outside this competition",
@@ -604,6 +648,13 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             report["row_support_strict_action_decoder"]["reason"],
             "",
+            "## Route-Frontier Action Decoder",
+            "",
+            f"- Status: `{report['route_frontier_action_decoder']['status']}`",
+            f"- Recommended variant: `{report['route_frontier_action_decoder']['recommended_variant']}`",
+            "",
+            report["route_frontier_action_decoder"]["reason"],
+            "",
             "## Listener-Invariant Contrastive Probe",
             "",
             f"- Status: `{report['listener_invariant_contrastive_probe']['status']}`",
@@ -705,6 +756,7 @@ def run() -> dict[str, object]:
         read_json(ROW_SUPPORT_SENSOR_JSON),
         read_json(MASKED_ROW_SUPPORT_JSON),
         read_json(ROW_SUPPORT_DECODER_JSON),
+        read_json(ROUTE_FRONTIER_DECODER_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),
         read_json(HARDWORLD_TOXICITY_PROBE_JSON),

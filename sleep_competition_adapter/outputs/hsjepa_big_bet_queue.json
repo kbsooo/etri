@@ -66,6 +66,47 @@
       "kill_criterion": "Public LB worsens or route/null stress remains weak after increasing row-support selectivity."
     },
     {
+      "id": "route_frontier_action_decoder",
+      "name": "Route-Frontier Action Decoder",
+      "worldview": "The action decoder should select route-manifold frontier moves first, then check row-support and toxicity.",
+      "core_modules_exercised": [
+        "action_health_decoder",
+        "invariant_energy",
+        "anti_shortcut_validation"
+      ],
+      "adapter_move": "Choose public-selected and open-candidate route-frontier bundles that beat broad and matched nulls.",
+      "why_big": "If it survives LB, HS-JEPA gains a concrete action translation rule instead of a hand-tuned support gate.",
+      "expected_public_lb_delta_if_true": -0.0025,
+      "latest_probe_status": "route_frontier_action_decoder_alive_with_matched_boundary",
+      "latest_probe_evidence": {
+        "recommended_variant": "seed_route_frontier",
+        "variant_scores": [
+          {
+            "variant": "seed_route_frontier",
+            "changed_cells": 20,
+            "broad_route_z": 2.631665028357059,
+            "matched_score_z": 3.6234736097578057,
+            "upload_safe": true
+          },
+          {
+            "variant": "s2_route_frontier",
+            "changed_cells": 20,
+            "broad_route_z": 2.8237779101897877,
+            "matched_score_z": 3.3123857088533875,
+            "upload_safe": true
+          },
+          {
+            "variant": "open_route_frontier",
+            "changed_cells": 20,
+            "broad_route_z": 2.492261359647143,
+            "matched_score_z": 3.0831554042259524,
+            "upload_safe": true
+          }
+        ]
+      },
+      "kill_criterion": "Public LB worsens or matched-null frontier score fails after larger candidate pools are used."
+    },
+    {
       "id": "listener_invariant_contrastive_decoder",
       "name": "Listener-Invariant Contrastive Decoder",
       "worldview": "A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone.",
@@ -139,5 +180,5 @@
       "kill_criterion": "Q-S bridge actions fail null tests or replicate the already-killed subjective-shadow bridge."
     }
   ],
-  "count": 6
+  "count": 7
 }
