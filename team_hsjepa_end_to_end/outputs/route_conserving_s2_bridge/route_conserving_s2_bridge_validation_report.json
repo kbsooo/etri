@@ -1,0 +1,194 @@
+{
+  "package": "/Users/kbsoo/Downloads/cl2/team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/route_conserving_s2_bridge_package.json",
+  "checks": [
+    {
+      "check": "exists:route_conserving_s2_bridge_package.json",
+      "status": "PASS",
+      "detail": "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/route_conserving_s2_bridge_package.json"
+    },
+    {
+      "check": "exists:route_conserving_s2_bridge_evidence_table.csv",
+      "status": "PASS",
+      "detail": "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/route_conserving_s2_bridge_evidence_table.csv"
+    },
+    {
+      "check": "exists:route_conserving_s2_bridge_stress_audit.json",
+      "status": "PASS",
+      "detail": "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/route_conserving_s2_bridge_stress_audit.json"
+    },
+    {
+      "check": "exists:route_conserving_s2_bridge_stress_summary.csv",
+      "status": "PASS",
+      "detail": "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/route_conserving_s2_bridge_stress_summary.csv"
+    },
+    {
+      "check": "exists:README.md",
+      "status": "PASS",
+      "detail": "team_hsjepa_end_to_end/README.md"
+    },
+    {
+      "check": "exists:ROUTE_CONSERVING_S2_BRIDGE_KO.md",
+      "status": "PASS",
+      "detail": "team_hsjepa_end_to_end/ROUTE_CONSERVING_S2_BRIDGE_KO.md"
+    },
+    {
+      "check": "exists:HS_JEPA_ARCHITECTURE_PACKAGE_KO.md",
+      "status": "PASS",
+      "detail": "paper_hsjepa_core/HS_JEPA_ARCHITECTURE_PACKAGE_KO.md"
+    },
+    {
+      "check": "exists:experiment_log.md",
+      "status": "PASS",
+      "detail": "experiment_log.md"
+    },
+    {
+      "check": "roles:all_present",
+      "status": "PASS",
+      "detail": "roles=['competition_primary', 'human_state_probe', 'interpretable_s2_hub']"
+    },
+    {
+      "check": "submission_root:competition_primary",
+      "status": "PASS",
+      "detail": "submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv"
+    },
+    {
+      "check": "submission_local:competition_primary",
+      "status": "PASS",
+      "detail": "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv"
+    },
+    {
+      "check": "upload_safe:competition_primary",
+      "status": "PASS",
+      "detail": "{\"rows\": 250, \"keys_match\": true, \"duplicate_keys\": 0, \"nan_cells\": 0, \"finite\": true, \"min_prob\": 4.939277944527429e-06, \"max_prob\": 0.9999967514907456, \"upload_safe\": true}"
+    },
+    {
+      "check": "submission_root:interpretable_s2_hub",
+      "status": "PASS",
+      "detail": "submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv"
+    },
+    {
+      "check": "submission_local:interpretable_s2_hub",
+      "status": "PASS",
+      "detail": "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv"
+    },
+    {
+      "check": "upload_safe:interpretable_s2_hub",
+      "status": "PASS",
+      "detail": "{\"rows\": 250, \"keys_match\": true, \"duplicate_keys\": 0, \"nan_cells\": 0, \"finite\": true, \"min_prob\": 4.939277944527429e-06, \"max_prob\": 0.9999967514907456, \"upload_safe\": true}"
+    },
+    {
+      "check": "submission_root:human_state_probe",
+      "status": "PASS",
+      "detail": "submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv"
+    },
+    {
+      "check": "submission_local:human_state_probe",
+      "status": "PASS",
+      "detail": "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv"
+    },
+    {
+      "check": "upload_safe:human_state_probe",
+      "status": "PASS",
+      "detail": "{\"rows\": 250, \"keys_match\": true, \"duplicate_keys\": 0, \"nan_cells\": 0, \"finite\": true, \"min_prob\": 4.939277944527429e-06, \"max_prob\": 0.9999967514907456, \"upload_safe\": true}"
+    },
+    {
+      "check": "evidence:three_roles",
+      "status": "PASS",
+      "detail": "rows=3"
+    },
+    {
+      "check": "evidence:roles",
+      "status": "PASS",
+      "detail": "competition_primary,interpretable_s2_hub,human_state_probe"
+    },
+    {
+      "check": "stress:primary_present",
+      "status": "PASS",
+      "detail": "route_conserving_objective_bridge_primary"
+    },
+    {
+      "check": "stress:s2_present",
+      "status": "PASS",
+      "detail": "s2_listener_bridge_interpretable"
+    },
+    {
+      "check": "mechanism:primary_route_p",
+      "status": "PASS",
+      "detail": "p=0.0"
+    },
+    {
+      "check": "mechanism:primary_route_z",
+      "status": "PASS",
+      "detail": "z=-9.66"
+    },
+    {
+      "check": "mechanism:primary_rank",
+      "status": "PASS",
+      "detail": "rank=0.186"
+    },
+    {
+      "check": "mechanism:s2_route_p",
+      "status": "PASS",
+      "detail": "p=0.0"
+    },
+    {
+      "check": "mechanism:s2_route_z",
+      "status": "PASS",
+      "detail": "z=-9.46"
+    },
+    {
+      "check": "mechanism:s2_hub_p",
+      "status": "PASS",
+      "detail": "p=0.0"
+    },
+    {
+      "check": "mechanism:s2_hub_usage",
+      "status": "PASS",
+      "detail": "rate=1.000"
+    },
+    {
+      "check": "mechanism:s2hub_rank",
+      "status": "PASS",
+      "detail": "rank=0.144"
+    }
+  ],
+  "upload_results": {
+    "competition_primary": {
+      "rows": 250,
+      "keys_match": true,
+      "duplicate_keys": 0,
+      "nan_cells": 0,
+      "finite": true,
+      "min_prob": 4.939277944527429e-06,
+      "max_prob": 0.9999967514907456,
+      "upload_safe": true
+    },
+    "interpretable_s2_hub": {
+      "rows": 250,
+      "keys_match": true,
+      "duplicate_keys": 0,
+      "nan_cells": 0,
+      "finite": true,
+      "min_prob": 4.939277944527429e-06,
+      "max_prob": 0.9999967514907456,
+      "upload_safe": true
+    },
+    "human_state_probe": {
+      "rows": 250,
+      "keys_match": true,
+      "duplicate_keys": 0,
+      "nan_cells": 0,
+      "finite": true,
+      "min_prob": 4.939277944527429e-06,
+      "max_prob": 0.9999967514907456,
+      "upload_safe": true
+    }
+  },
+  "mechanism_evidence": {
+    "primary_route_z": -9.65640945710553,
+    "s2_route_z": -9.458382806830897,
+    "s2_listener_s2_any_rate": 1.0,
+    "s2_listener_null_s2_any_rate": 0.6150764705882353
+  },
+  "passed": true
+}

@@ -14480,3 +14480,51 @@ This does not prove that the decoder is OG-only or private-safe.  It proves a
 narrower but useful mechanism: given a public-sensitive action field, route
 conservation plus S2 listener usage selects a statistically unusual and
 interpretable correction path.
+
+## Team Package Claim-Evidence Validator
+
+Date: 2026-06-10
+
+Question:
+
+Can a teammate verify the paper-facing HS-JEPA package without knowing the
+historical experiment names?
+
+Added artifacts:
+
+- `team_hsjepa_end_to_end/CLAIM_EVIDENCE_MATRIX_KO.md`
+- `team_hsjepa_end_to_end/validate_route_conserving_s2_bridge_package.py`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/route_conserving_s2_bridge_validation_report.md`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/route_conserving_s2_bridge_validation_report.json`
+
+Validation command:
+
+```bash
+python3 team_hsjepa_end_to_end/validate_route_conserving_s2_bridge_package.py
+```
+
+Result:
+
+- All required docs/manifests/stress outputs exist.
+- All three packaged submissions are upload-safe.
+- Primary route z-score: `-9.66`
+- S2 listener route z-score: `-9.46`
+- S2 listener usage: `1.000` vs null `0.615`
+- Package validation: `passed=true`
+
+Interpretation:
+
+This turns the current best paper package from a collection of successful
+competition artifacts into a claim-evidence structure:
+
+```text
+public-sensitive driver action
+  + route-conserving bridge action
+  + S2 listener/hub constraint
+  + human-state orientation diagnostic
+```
+
+The validator deliberately preserves the boundary condition: it proves the
+selected bridge rule is statistically unusual inside the feasible candidate
+space, not that it is private-safe or that OG human-state alone solves
+row-target assignment.
