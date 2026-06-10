@@ -28,6 +28,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 ROW_SUPPORT_JSON = HERE / "outputs" / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
 ROUTE_FRONTIER_JSON = HERE / "outputs" / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
+ROUTE_TOXICITY_FUSION_JSON = HERE / "outputs" / "route_toxicity_fusion_decoder" / "route_toxicity_fusion_decoder_readout.json"
 FACTORIZED_JSON = HERE / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_readout.json"
 FACTORIZED_STRESS_JSON = HERE / "outputs" / "factorized_toxicity_decoder_candidate" / "factorized_toxicity_decoder_stress_audit.json"
 LEDGER_CSV = ROOT / "data_analytics" / "hsjepa_public_score_ledger.csv"
@@ -133,6 +134,7 @@ def collect_rows() -> list[dict[str, Any]]:
     public_scores = public_score_map()
     row_support = read_json(ROW_SUPPORT_JSON)
     route_frontier = read_json(ROUTE_FRONTIER_JSON)
+    route_toxicity_fusion = read_json(ROUTE_TOXICITY_FUSION_JSON)
     factorized = read_json(FACTORIZED_JSON)
     factorized_stress = read_json(FACTORIZED_STRESS_JSON)
     rows: list[dict[str, Any]] = []
@@ -236,6 +238,54 @@ def collect_rows() -> list[dict[str, Any]]:
         )
         rows.append(row)
 
+    for variant, item in sorted(route_toxicity_fusion.get("variants", {}).items()):
+        stress = route_toxicity_fusion.get("stress", {}).get(variant, {})
+        broad = stress.get("broad_route", {}) if isinstance(stress, dict) else {}
+        matched = stress.get("toxicity_matched", {}) if isinstance(stress, dict) else {}
+        actual = stress.get("actual", {}) if isinstance(stress, dict) else {}
+        submission = item.get("submission_file")
+        row = base_row(
+            family="route_toxicity_fusion",
+            variant=str(variant),
+            submission_file=str(submission) if submission else None,
+            upload_safe=bool(nested(item, "validation", "upload_safe", default=False)),
+            changed_cells=int(nested(item, "validation", "changed_cells_vs_current_best", default=0)),
+            architecture_claim="route-frontier selection should be translated through a factorized action-health field",
+            decoder_order="route_first_then_factorized_toxicity",
+            core_modules=["invariant_energy", "action_health_decoder", "anti_shortcut_validation"],
+            public_lb=public_scores.get(str(submission)),
+        )
+        conflict_rate = finite(actual.get("conflict_bundle_rate"))
+        hard_top_rate = finite(actual.get("hardworld_top_toxic_bundle_rate"))
+        row.update(
+            {
+                "route_z": maybe_float(nested(broad, "route_gain", "z")),
+                "matched_route_z": maybe_float(nested(matched, "route_gain", "z")),
+                "matched_score_z": maybe_float(nested(matched, "route_toxicity_fusion_score", "z")),
+                "safety_z": maybe_float(nested(matched, "bundle_joint_safety", "z")),
+                "toxicity_clear": bool(conflict_rate == 0.0 and hard_top_rate == 0.0),
+                "broad_hard_conflict_exposure": conflict_rate,
+                "hardworld_top_toxic_exposure": hard_top_rate,
+                "route_boundary": (
+                    "route_and_fusion_supported"
+                    if finite(nested(broad, "route_gain", "z"), 0.0) >= 1.5
+                    and finite(nested(matched, "route_toxicity_fusion_score", "z"), 0.0) >= 2.0
+                    else "route_fusion_boundary"
+                ),
+                "safety_boundary": (
+                    "safety_supported"
+                    if finite(nested(broad, "bundle_joint_safety", "z"), 0.0) >= 2.0
+                    or finite(nested(matched, "bundle_joint_safety", "z"), 0.0) >= 1.0
+                    else "safety_weak"
+                ),
+                "module_ablation_interpretation": (
+                    "Fuses invariant route ordering with factorized broad-public/hard-world action-health. "
+                    "If this beats route-frontier on LB, toxicity was the missing action decoder stage."
+                ),
+            }
+        )
+        rows.append(row)
+
     return rows
 
 
@@ -283,12 +333,14 @@ def score_rows(rows: list[dict[str, Any]]) -> pd.DataFrame:
 
 def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
     top = frame.iloc[0].to_dict() if not frame.empty else {}
-    route_rows = frame.loc[frame["family"].eq("route_frontier")]
+    route_rows = frame.loc[frame["family"].isin(["route_frontier", "route_toxicity_fusion"])]
     row_support_rows = frame.loc[frame["family"].eq("row_support_strict")]
     factorized_rows = frame.loc[frame["family"].eq("factorized_toxicity")]
+    fusion_rows = frame.loc[frame["family"].eq("route_toxicity_fusion")]
     best_route = route_rows.iloc[0].to_dict() if not route_rows.empty else {}
     best_support = row_support_rows.iloc[0].to_dict() if not row_support_rows.empty else {}
     best_factorized = factorized_rows.iloc[0].to_dict() if not factorized_rows.empty else {}
+    best_fusion = fusion_rows.iloc[0].to_dict() if not fusion_rows.empty else {}
 
     return [
         {
@@ -319,6 +371,15 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
             "next_test": "Do not ship factorized toxicity alone unless route-preserving assignment is added.",
         },
         {
+            "claim": "Route-first and toxicity-first are not alternatives; they compose into a decoder order.",
+            "evidence": (
+                f"Best fusion row is {best_fusion.get('variant')} with route_z={fmt(best_fusion.get('route_z'))} "
+                f"and matched_score_z={fmt(best_fusion.get('matched_score_z'))}."
+            ),
+            "status": "alive" if best_fusion else "missing",
+            "next_test": "Use route-toxicity fusion as the next adapter LB sensor if it outranks plain route-frontier.",
+        },
+        {
             "claim": "Open candidate route frontier is a true big-bet boundary.",
             "evidence": (
                 "The open-route variant is upload-safe and route-supported locally, but it is outside the "
@@ -343,7 +404,9 @@ def build_verdict(frame: pd.DataFrame, findings: list[dict[str, Any]]) -> dict[s
     big_bet = safe.loc[safe["family"].eq("route_frontier") & safe["variant"].eq("open_route_frontier")]
     big_bet_row = big_bet.iloc[0] if not big_bet.empty else top
     status = "action_decoder_ablation_ready_route_frontier_leads"
-    if str(top["family"]) != "route_frontier":
+    if str(top["family"]) == "route_toxicity_fusion":
+        status = "action_decoder_ablation_ready_route_toxicity_fusion_leads"
+    elif str(top["family"]) != "route_frontier":
         status = "action_decoder_ablation_ready_non_route_leads"
     return {
         "status": status,
@@ -412,6 +475,7 @@ def build_markdown(readout: dict[str, Any], frame: pd.DataFrame) -> str:
             "## How To Read This",
             "",
             "- route-frontier가 이기면, HS-JEPA의 병목은 latent 발견보다 action ordering에 가깝다.",
+            "- route-toxicity fusion이 이기면, action ordering 다음 병목은 factorized action-health gate였다는 뜻이다.",
             "- factorized toxicity가 이기면, public/private toxicity field가 route보다 강한 병목이다.",
             "- row-support strict가 이기면, masked row-support representation이 action-grade decoder로 번역되기 시작한 것이다.",
             "- open-route가 public에서 이기면, 기존 public-selected seed 후보 공간 자체가 좁았다는 큰 발견이다.",
@@ -438,6 +502,7 @@ def run() -> dict[str, Any]:
         "inputs": {
             "row_support": str(ROW_SUPPORT_JSON.resolve()),
             "route_frontier": str(ROUTE_FRONTIER_JSON.resolve()),
+            "route_toxicity_fusion": str(ROUTE_TOXICITY_FUSION_JSON.resolve()),
             "factorized_toxicity": str(FACTORIZED_JSON.resolve()),
             "factorized_stress": str(FACTORIZED_STRESS_JSON.resolve()),
         },

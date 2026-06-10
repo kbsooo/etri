@@ -92,6 +92,13 @@ The exploratory variant moves enough cells to be LB-informative and is strongly 
 
 The selected frontier beats broad route nulls and is upload-safe. Matched-null score remains the boundary, so this is a big-bet LB sensor rather than a default release.
 
+## Route-Toxicity Fusion Decoder
+
+- Status: `route_toxicity_fusion_decoder_alive`
+- Recommended variant: `seed_driver_safe_route_fusion`
+
+Route-first bundles survive upload safety while also passing factorized hard-world and broad-public toxicity gates. This is an LB sensor for the fused action decoder.
+
 ## Action Decoder Ablation Suite
 
 - Status: `action_decoder_ablation_ready_route_frontier_leads`
@@ -172,7 +179,8 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - Masked row-support behaves like a real HS-JEPA representation target under teacher-transfer and feature-family masks, but subject/date/order held-out stress remains weak.
 - A row-support action decoder can produce upload-safe route/S2 bundle candidates with strong local toxicity safety, but route-gain remains a tradeoff.
 - A route-frontier action decoder now beats broad route nulls and matched frontier-score nulls while staying upload-safe, so the next LB sensor can test action-grade route translation directly.
-- The action-decoder ablation suite now ranks toxicity-first, support-first, and route-first decoders under one table; route-first currently leads the LB-sensor priority.
+- A route-toxicity fusion decoder now composes route-first selection with factorized broad-public/hard-world action-health; it is alive locally but still ranks below plain route-frontier as an LB sensor.
+- The action-decoder ablation suite now ranks toxicity-first, support-first, route-first, and route-toxicity fusion decoders under one table; route-first currently leads the LB-sensor priority.
 - A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.
 - The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.
 - Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.
@@ -186,6 +194,7 @@ H088 is not a harder sample of broad toxicity; it is an anti-correlated hard-wor
 - that masked row-support is already a deployment-grade action decoder
 - that the row-support strict action decoder is safe without public/private LB observation
 - that route-frontier action decoding is private-safe without public LB observation
+- that route-toxicity fusion will beat plain route-frontier on public/private LB
 - that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments
 - private leaderboard safety
 - S2 as a universal human-sleep factor

@@ -5,7 +5,7 @@
 ## Verdict
 
 - Status: `release_ready_with_boundary`
-- Checks: `57/57` passed
+- Checks: `59/59` passed
 
 ## Required Failures
 
@@ -33,6 +33,7 @@
 | `exists:masked_row_support_objective_probe.json` | `PASS` | sleep_competition_adapter/outputs/masked_row_support_objective_probe.json |
 | `exists:row_support_strict_action_decoder_readout.json` | `PASS` | sleep_competition_adapter/outputs/row_support_strict_action_decoder/row_support_strict_action_decoder_readout.json |
 | `exists:route_frontier_action_decoder_readout.json` | `PASS` | sleep_competition_adapter/outputs/route_frontier_action_decoder/route_frontier_action_decoder_readout.json |
+| `exists:route_toxicity_fusion_decoder_readout.json` | `PASS` | sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/route_toxicity_fusion_decoder_readout.json |
 | `exists:hsjepa_action_decoder_ablation_suite.json` | `PASS` | sleep_competition_adapter/outputs/action_decoder_ablation_suite/hsjepa_action_decoder_ablation_suite.json |
 | `exists:listener_invariant_contrastive_probe.json` | `PASS` | sleep_competition_adapter/outputs/listener_invariant_contrastive_probe.json |
 | `exists:private_safe_toxicity_probe.json` | `PASS` | sleep_competition_adapter/outputs/private_safe_toxicity_probe.json |
@@ -53,7 +54,7 @@
 | `core_adapter_separation_explicit` | `PASS` | core=core_ready_for_adapter (5/5), adapter=adapter_ready_with_public_sensor_boundary |
 | `core_adapter_boundary_audit_verified` | `PASS` | status=core_adapter_boundary_verified, checks=6/6 |
 | `core_ablation_contract_present` | `PASS` | status=ablation_contract_ready, ablations=6 |
-| `big_bet_queue_high_ceiling` | `PASS` | status=big_bet_queue_ready, count=8 |
+| `big_bet_queue_high_ceiling` | `PASS` | status=big_bet_queue_ready, count=9 |
 | `og_only_assignment_probe_recorded` | `PASS` | status=og_only_assignment_replacement_not_ready, pure_recall=0.0404, distilled_recall=0.1236 |
 | `assignment_gap_decomposition_recorded` | `PASS` | status=row_support_is_primary_bottleneck, portable=0.1063, row_oracle=0.6896, row_gap=0.5832 |
 | `hidden_row_support_sensor_recorded` | `PASS` | status=portable_row_support_sensor_alive_partial, family=portable_row_support_composite, row_auc=0.8193, cell_recall=0.3289, auc_z=6.4180 |
@@ -61,6 +62,7 @@
 | `row_support_strict_action_decoder_recorded` | `PASS` | status=row_support_action_decoder_alive_with_route_tradeoff, recommended=exploratory_route_support_gate, changed=34, safety_z=3.64, combined_z=1.38 |
 | `route_frontier_action_decoder_recorded` | `PASS` | status=route_frontier_action_decoder_alive_with_matched_boundary, recommended=seed_route_frontier, scores=[{'variant': 'seed_route_frontier', 'changed_cells': 20, 'broad_route_z': 2.631665028357059, 'matched_score_z': 3.6234736097578057, 'upload_safe': True}, {'variant': 's2_route_frontier', 'changed_cells': 20, 'broad_route_z': 2.8237779101897877, 'matched_score_z': 3.3123857088533875, 'upload_safe': True}, {'variant': 'open_route_frontier', 'changed_cells': 20, 'broad_route_z': 2.492261359647143, 'matched_score_z': 3.0831554042259524, 'upload_safe': True}] |
 | `action_decoder_ablation_suite_recorded` | `PASS` | status=action_decoder_ablation_ready_route_frontier_leads, recommended={'family': 'route_frontier', 'variant': 's2_route_frontier', 'submission_file': 'submission_hsjepa_s2_route_frontier_1d31aae8_uploadsafe.csv', 'priority': 1.1177646805596027}, big_bet={'family': 'route_frontier', 'variant': 'open_route_frontier', 'submission_file': 'submission_hsjepa_open_route_frontier_a1719e99_uploadsafe.csv', 'priority': 1.05448050759572} |
+| `route_toxicity_fusion_decoder_recorded` | `PASS` | status=route_toxicity_fusion_decoder_alive, recommended=seed_driver_safe_route_fusion, scores=[{'variant': 's2_route_toxicity_fusion', 'changed_cells': 8, 'broad_route_z': -0.06361725497399186, 'toxicity_matched_safety_z': 0.0, 'toxicity_matched_fusion_z': 0.00022199529973856787, 'upload_safe': True}, {'variant': 'seed_route_toxicity_fusion', 'changed_cells': 8, 'broad_route_z': -0.05413537720642773, 'toxicity_matched_safety_z': 0.0, 'toxicity_matched_fusion_z': 0.00022199529973856787, 'upload_safe': True}, {'variant': 'open_route_toxicity_fusion', 'changed_cells': 4, 'broad_route_z': -0.16743111973717828, 'toxicity_matched_safety_z': 0.00022199529973856787, 'toxicity_matched_fusion_z': 0.0, 'upload_safe': True}, {'variant': 's2_driver_safe_route_fusion', 'changed_cells': 20, 'broad_route_z': 2.5212391425980725, 'toxicity_matched_safety_z': 1.4350151378530516, 'toxicity_matched_fusion_z': 3.333896510179827, 'upload_safe': True}, {'variant': 'seed_driver_safe_route_fusion', 'changed_cells': 20, 'broad_route_z': 1.956452255410393, 'toxicity_matched_safety_z': 1.1375544203021746, 'toxicity_matched_fusion_z': 4.040831045742473, 'upload_safe': True}, {'variant': 'open_driver_safe_route_fusion', 'changed_cells': 20, 'broad_route_z': 1.2492144363720237, 'toxicity_matched_safety_z': 1.1862432357203119, 'toxicity_matched_fusion_z': 1.8706591048812475, 'upload_safe': True}] |
 | `listener_invariant_contrastive_probe_recorded` | `PASS` | status=listener_invariant_decoder_not_ready, rho=-0.0313, overlap=0.2152 |
 | `private_safe_toxicity_probe_recorded` | `PASS` | status=toxicity_field_promising_with_hardworld_gap, mean_loo_auc=0.7880, worst_loo_auc=0.3683, safety_z=8.4589 |
 | `hardworld_toxicity_factorization_probe_recorded` | `PASS` | status=hardworld_mixture_factorization_required, broad_to_h088_auc=0.3683, rho=-0.4276, joint_z=7.1884 |
@@ -69,7 +71,7 @@
 | `roles_present` | `PASS` | roles=['competition_primary', 'human_state_probe', 'interpretable_s2_hub'] |
 | `role_based_output_names` | `PASS` | role_outputs={'competition_primary': 'submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv', 'interpretable_s2_hub': 'submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv', 'human_state_probe': 'submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv'} |
 | `all_role_submissions_upload_safe` | `PASS` | upload_roles=['competition_primary', 'human_state_probe', 'interpretable_s2_hub'] |
-| `pipeline_manifest_complete` | `PASS` | status=pipeline_ready_with_boundary, stages=25, edges=55 |
+| `pipeline_manifest_complete` | `PASS` | status=pipeline_ready_with_boundary, stages=26, edges=60 |
 | `method_packet_presentable` | `PASS` | title=Human-State JEPA: General Architecture with a Route-Conserving S2 Bridge Case Study |
 | `claim_boundary_honest` | `PASS` | pure_og=False, public_sensor=True, proprietary_embedding=False |
 

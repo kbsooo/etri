@@ -38,6 +38,7 @@ ROW_SUPPORT_SENSOR_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "hidd
 MASKED_ROW_SUPPORT_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "masked_row_support_objective_probe.json"
 ROW_SUPPORT_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
 ROUTE_FRONTIER_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
+ROUTE_TOXICITY_FUSION_DECODER_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "route_toxicity_fusion_decoder" / "route_toxicity_fusion_decoder_readout.json"
 ACTION_DECODER_ABLATION_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = ROOT / "sleep_competition_adapter" / "outputs" / "private_safe_toxicity_probe.json"
@@ -98,6 +99,7 @@ def require_inputs() -> list[dict[str, object]]:
         MASKED_ROW_SUPPORT_JSON,
         ROW_SUPPORT_DECODER_JSON,
         ROUTE_FRONTIER_DECODER_JSON,
+        ROUTE_TOXICITY_FUSION_DECODER_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -151,6 +153,7 @@ def build_checklist() -> dict[str, object]:
     masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
     route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
+    route_toxicity_fusion_decoder = read_json(ROUTE_TOXICITY_FUSION_DECODER_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -176,6 +179,7 @@ def build_checklist() -> dict[str, object]:
     masked_row_support_verdict = masked_row_support.get("verdict", {})
     row_support_decoder_verdict = row_support_decoder.get("verdict", {})
     route_frontier_verdict = route_frontier_decoder.get("verdict", {})
+    route_toxicity_fusion_verdict = route_toxicity_fusion_decoder.get("verdict", {})
     action_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -416,6 +420,7 @@ def build_checklist() -> dict[str, object]:
                 action_decoder_ablation.get("status")
                 in {
                     "action_decoder_ablation_ready_route_frontier_leads",
+                    "action_decoder_ablation_ready_route_toxicity_fusion_leads",
                     "action_decoder_ablation_ready_non_route_leads",
                 }
                 and isinstance(action_ablation_verdict.get("recommended_lb_sensor"), dict)
@@ -432,6 +437,31 @@ def build_checklist() -> dict[str, object]:
                     f"status={action_ablation_verdict.get('status')}, "
                     f"recommended={action_ablation_verdict.get('recommended_lb_sensor')}, "
                     f"big_bet={action_ablation_verdict.get('big_bet_sensor')}"
+                ),
+            ),
+            check(
+                "route_toxicity_fusion_decoder_recorded",
+                route_toxicity_fusion_decoder.get("status")
+                in {
+                    "route_toxicity_fusion_decoder_alive",
+                    "route_toxicity_fusion_decoder_boundary",
+                }
+                and route_toxicity_fusion_verdict.get("recommended_variant") in route_toxicity_fusion_decoder.get("variants", {})
+                and any(
+                    isinstance(item, dict)
+                    and int(item.get("changed_cells", 0)) >= 20
+                    and float(item.get("toxicity_matched_fusion_z", 0.0)) >= 2.0
+                    and bool(item.get("upload_safe"))
+                    for item in route_toxicity_fusion_verdict.get("variant_scores", [])
+                )
+                and all(
+                    isinstance(item, dict) and item.get("validation", {}).get("upload_safe") is True
+                    for item in route_toxicity_fusion_decoder.get("variants", {}).values()
+                ),
+                (
+                    f"status={route_toxicity_fusion_verdict.get('status')}, "
+                    f"recommended={route_toxicity_fusion_verdict.get('recommended_variant')}, "
+                    f"scores={route_toxicity_fusion_verdict.get('variant_scores')}"
                 ),
             ),
             check(

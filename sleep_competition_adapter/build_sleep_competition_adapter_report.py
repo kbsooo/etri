@@ -33,6 +33,7 @@ ROW_SUPPORT_SENSOR_JSON = OUT / "hidden_row_support_sensor_probe.json"
 MASKED_ROW_SUPPORT_JSON = OUT / "masked_row_support_objective_probe.json"
 ROW_SUPPORT_DECODER_JSON = OUT / "row_support_strict_action_decoder" / "row_support_strict_action_decoder_readout.json"
 ROUTE_FRONTIER_DECODER_JSON = OUT / "route_frontier_action_decoder" / "route_frontier_action_decoder_readout.json"
+ROUTE_TOXICITY_FUSION_DECODER_JSON = OUT / "route_toxicity_fusion_decoder" / "route_toxicity_fusion_decoder_readout.json"
 ACTION_DECODER_ABLATION_JSON = OUT / "action_decoder_ablation_suite" / "hsjepa_action_decoder_ablation_suite.json"
 CONTRASTIVE_PROBE_JSON = OUT / "listener_invariant_contrastive_probe.json"
 PRIVATE_TOXICITY_PROBE_JSON = OUT / "private_safe_toxicity_probe.json"
@@ -74,6 +75,7 @@ def require_inputs() -> None:
         MASKED_ROW_SUPPORT_JSON,
         ROW_SUPPORT_DECODER_JSON,
         ROUTE_FRONTIER_DECODER_JSON,
+        ROUTE_TOXICITY_FUSION_DECODER_JSON,
         ACTION_DECODER_ABLATION_JSON,
         CONTRASTIVE_PROBE_JSON,
         PRIVATE_TOXICITY_PROBE_JSON,
@@ -93,6 +95,7 @@ def build_big_bets(
     masked_row_support: dict[str, object],
     row_support_decoder: dict[str, object],
     route_frontier_decoder: dict[str, object],
+    route_toxicity_fusion_decoder: dict[str, object],
     action_decoder_ablation: dict[str, object],
     contrastive_probe: dict[str, object],
     private_toxicity_probe: dict[str, object],
@@ -118,6 +121,11 @@ def build_big_bets(
     route_frontier_verdict = (
         route_frontier_decoder.get("verdict", {})
         if isinstance(route_frontier_decoder.get("verdict"), dict)
+        else {}
+    )
+    route_toxicity_fusion_verdict = (
+        route_toxicity_fusion_decoder.get("verdict", {})
+        if isinstance(route_toxicity_fusion_decoder.get("verdict"), dict)
         else {}
     )
     action_ablation_verdict = (
@@ -225,6 +233,21 @@ def build_big_bets(
             "kill_criterion": "Public LB worsens or matched-null frontier score fails after larger candidate pools are used.",
         },
         {
+            "id": "route_toxicity_fusion_decoder",
+            "name": "Route-Toxicity Fusion Decoder",
+            "worldview": "Route-frontier action ordering and factorized action-health are not alternatives; safe actions need both.",
+            "core_modules_exercised": ["invariant_energy", "action_health_decoder", "anti_shortcut_validation"],
+            "adapter_move": "Select route-frontier bundles first, then filter driver actions through hard-world/broad-public toxicity and use bridge actions as soft route support.",
+            "why_big": "If this wins LB over plain route-frontier, HS-JEPA gains a more general action-grade decoder order.",
+            "expected_public_lb_delta_if_true": -0.0025,
+            "latest_probe_status": route_toxicity_fusion_verdict.get("status"),
+            "latest_probe_evidence": {
+                "recommended_variant": route_toxicity_fusion_verdict.get("recommended_variant"),
+                "variant_scores": route_toxicity_fusion_verdict.get("variant_scores"),
+            },
+            "kill_criterion": "Public LB says plain route-frontier wins, or fusion only improves local toxicity while harming route/action response.",
+        },
+        {
             "id": "listener_invariant_contrastive_decoder",
             "name": "Listener-Invariant Contrastive Decoder",
             "worldview": "A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone.",
@@ -300,6 +323,7 @@ def build_report() -> dict[str, object]:
     masked_row_support = read_json(MASKED_ROW_SUPPORT_JSON)
     row_support_decoder = read_json(ROW_SUPPORT_DECODER_JSON)
     route_frontier_decoder = read_json(ROUTE_FRONTIER_DECODER_JSON)
+    route_toxicity_fusion_decoder = read_json(ROUTE_TOXICITY_FUSION_DECODER_JSON)
     action_decoder_ablation = read_json(ACTION_DECODER_ABLATION_JSON)
     contrastive_probe = read_json(CONTRASTIVE_PROBE_JSON)
     private_toxicity_probe = read_json(PRIVATE_TOXICITY_PROBE_JSON)
@@ -316,6 +340,7 @@ def build_report() -> dict[str, object]:
     masked_row_support_verdict = masked_row_support.get("verdict", {})
     row_support_decoder_verdict = row_support_decoder.get("verdict", {})
     route_frontier_verdict = route_frontier_decoder.get("verdict", {})
+    route_toxicity_fusion_verdict = route_toxicity_fusion_decoder.get("verdict", {})
     action_decoder_ablation_verdict = action_decoder_ablation.get("verdict", {})
     contrastive_verdict = contrastive_probe.get("verdict", {})
     toxicity_verdict = private_toxicity_probe.get("verdict", {})
@@ -460,6 +485,23 @@ def build_report() -> dict[str, object]:
                 if isinstance(item, dict)
             },
         },
+        "route_toxicity_fusion_decoder": {
+            "status": route_toxicity_fusion_verdict.get("status"),
+            "recommended_variant": route_toxicity_fusion_verdict.get("recommended_variant"),
+            "reason": route_toxicity_fusion_verdict.get("reason"),
+            "variant_scores": route_toxicity_fusion_verdict.get("variant_scores"),
+            "variants": {
+                name: {
+                    "submission_file": item.get("submission_file"),
+                    "changed_cells": item.get("decode_diagnostics", {}).get("changed_cells"),
+                    "changed_rows": item.get("decode_diagnostics", {}).get("changed_rows"),
+                    "selected_bundles": item.get("decode_diagnostics", {}).get("selected_bundles"),
+                    "upload_safe": item.get("validation", {}).get("upload_safe"),
+                }
+                for name, item in route_toxicity_fusion_decoder.get("variants", {}).items()
+                if isinstance(item, dict)
+            },
+        },
         "action_decoder_ablation_suite": {
             "status": action_decoder_ablation_verdict.get("status"),
             "recommended_lb_sensor": action_decoder_ablation_verdict.get("recommended_lb_sensor"),
@@ -542,7 +584,8 @@ def build_report() -> dict[str, object]:
             "Masked row-support behaves like a real HS-JEPA representation target under teacher-transfer and feature-family masks, but subject/date/order held-out stress remains weak.",
             "A row-support action decoder can produce upload-safe route/S2 bundle candidates with strong local toxicity safety, but route-gain remains a tradeoff.",
             "A route-frontier action decoder now beats broad route nulls and matched frontier-score nulls while staying upload-safe, so the next LB sensor can test action-grade route translation directly.",
-            "The action-decoder ablation suite now ranks toxicity-first, support-first, and route-first decoders under one table; route-first currently leads the LB-sensor priority.",
+            "A route-toxicity fusion decoder now composes route-first selection with factorized broad-public/hard-world action-health; it is alive locally but still ranks below plain route-frontier as an LB sensor.",
+            "The action-decoder ablation suite now ranks toxicity-first, support-first, route-first, and route-toxicity fusion decoders under one table; route-first currently leads the LB-sensor priority.",
             "A naive listener-invariant contrastive decoder is not ready yet; listener responsibility and route safety are weakly anti-aligned in current candidates.",
             "The toxicity field generalizes across many bad public anchors and beats matched nulls, but still misses a hard-world toxicity mode.",
             "Hard-world toxicity is anti-correlated with broad toxicity, so HS-JEPA action-health should be a factorized mixture rather than a scalar veto.",
@@ -555,6 +598,7 @@ def build_report() -> dict[str, object]:
             "that masked row-support is already a deployment-grade action decoder",
             "that the row-support strict action decoder is safe without public/private LB observation",
             "that route-frontier action decoding is private-safe without public LB observation",
+            "that route-toxicity fusion will beat plain route-frontier on public/private LB",
             "that the action-decoder ablation suite predicts public LB instead of prioritizing public-sensor experiments",
             "private leaderboard safety",
             "S2 as a universal human-sleep factor",
@@ -690,6 +734,13 @@ def build_report_markdown(report: dict[str, object]) -> str:
             "",
             report["route_frontier_action_decoder"]["reason"],
             "",
+            "## Route-Toxicity Fusion Decoder",
+            "",
+            f"- Status: `{report['route_toxicity_fusion_decoder']['status']}`",
+            f"- Recommended variant: `{report['route_toxicity_fusion_decoder']['recommended_variant']}`",
+            "",
+            report["route_toxicity_fusion_decoder"]["reason"],
+            "",
             "## Action Decoder Ablation Suite",
             "",
             f"- Status: `{report['action_decoder_ablation_suite']['status']}`",
@@ -800,6 +851,7 @@ def run() -> dict[str, object]:
         read_json(MASKED_ROW_SUPPORT_JSON),
         read_json(ROW_SUPPORT_DECODER_JSON),
         read_json(ROUTE_FRONTIER_DECODER_JSON),
+        read_json(ROUTE_TOXICITY_FUSION_DECODER_JSON),
         read_json(ACTION_DECODER_ABLATION_JSON),
         read_json(CONTRASTIVE_PROBE_JSON),
         read_json(PRIVATE_TOXICITY_PROBE_JSON),

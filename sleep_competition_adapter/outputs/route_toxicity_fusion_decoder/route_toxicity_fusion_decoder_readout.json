@@ -1,0 +1,1487 @@
+{
+  "experiment": "Route-Toxicity Fusion Decoder",
+  "architecture_role": "sleep_competition_adapter_route_first_factorized_action_health_solver",
+  "core_boundary": "HS-JEPA core defines hidden-state, invariant, and action-health interfaces. This adapter supplies Q/S route bundles, public-sensor toxicity, and upload-safe sparse decoding.",
+  "status": "route_toxicity_fusion_decoder_alive",
+  "verdict": {
+    "status": "route_toxicity_fusion_decoder_alive",
+    "recommended_variant": "seed_driver_safe_route_fusion",
+    "reason": "Route-first bundles survive upload safety while also passing factorized hard-world and broad-public toxicity gates. This is an LB sensor for the fused action decoder.",
+    "variant_scores": [
+      {
+        "variant": "s2_route_toxicity_fusion",
+        "changed_cells": 8,
+        "broad_route_z": -0.06361725497399186,
+        "toxicity_matched_safety_z": 0.0,
+        "toxicity_matched_fusion_z": 0.00022199529973856787,
+        "upload_safe": true
+      },
+      {
+        "variant": "seed_route_toxicity_fusion",
+        "changed_cells": 8,
+        "broad_route_z": -0.05413537720642773,
+        "toxicity_matched_safety_z": 0.0,
+        "toxicity_matched_fusion_z": 0.00022199529973856787,
+        "upload_safe": true
+      },
+      {
+        "variant": "open_route_toxicity_fusion",
+        "changed_cells": 4,
+        "broad_route_z": -0.16743111973717828,
+        "toxicity_matched_safety_z": 0.00022199529973856787,
+        "toxicity_matched_fusion_z": 0.0,
+        "upload_safe": true
+      },
+      {
+        "variant": "s2_driver_safe_route_fusion",
+        "changed_cells": 20,
+        "broad_route_z": 2.5212391425980725,
+        "toxicity_matched_safety_z": 1.4350151378530516,
+        "toxicity_matched_fusion_z": 3.333896510179827,
+        "upload_safe": true
+      },
+      {
+        "variant": "seed_driver_safe_route_fusion",
+        "changed_cells": 20,
+        "broad_route_z": 1.956452255410393,
+        "toxicity_matched_safety_z": 1.1375544203021746,
+        "toxicity_matched_fusion_z": 4.040831045742473,
+        "upload_safe": true
+      },
+      {
+        "variant": "open_driver_safe_route_fusion",
+        "changed_cells": 20,
+        "broad_route_z": 1.2492144363720237,
+        "toxicity_matched_safety_z": 1.1862432357203119,
+        "toxicity_matched_fusion_z": 1.8706591048812475,
+        "upload_safe": true
+      }
+    ]
+  },
+  "variants": {
+    "s2_route_toxicity_fusion": {
+      "submission_file": "submission_hsjepa_s2_route_toxicity_fusion_5ac75e44_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/submission_hsjepa_s2_route_toxicity_fusion_5ac75e44_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_s2_route_toxicity_fusion_5ac75e44_uploadsafe.csv",
+      "config": {
+        "name": "s2_route_toxicity_fusion",
+        "require_selected_seed": true,
+        "require_open_candidate": false,
+        "require_s2_any": true,
+        "require_bridge_matched_toxicity": true,
+        "min_route_rank": 0.45,
+        "min_row_support_rank": 0.42,
+        "min_bundle_joint_safety": 0.54,
+        "min_bundle_hardworld_safe": 0.58,
+        "min_bundle_broad_safe": 0.42,
+        "min_driver_joint_safety": 0.56,
+        "min_driver_hardworld_safe": 0.6,
+        "min_driver_broad_safe": 0.44,
+        "min_source_support": 3,
+        "max_h088_alignment": 0.7,
+        "max_bundles": 10,
+        "max_bundles_per_row": 1,
+        "base_amp": 0.56,
+        "max_amp": 0.9,
+        "min_amp": 0.48
+      },
+      "decode_diagnostics": {
+        "variant": "s2_route_toxicity_fusion",
+        "changed_cells": 8,
+        "changed_rows": 4,
+        "selected_bundles": 4,
+        "bundle_summary": {
+          "bundles": 4,
+          "rows": 4,
+          "mean_row_support_rank": 0.8819999999999999,
+          "mean_route_gain": 0.022094521852369976,
+          "mean_bundle_joint_safety": 0.7444959443800696,
+          "mean_driver_joint_safety": 0.8237253765932793,
+          "mean_support_route_safety_score": 0.7424982146553757,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 1.0,
+          "selected_seed_rate": 1.0,
+          "source_counts": {
+            "s2hub_selected": 4
+          }
+        },
+        "listener_metrics": {
+          "base_listener_mean_delta": -0.0005136977950083583,
+          "base_listener_max_delta": 0.00018718536917746242,
+          "base_listener_negative_count": 8,
+          "semantic_listener_mean_delta": -0.0005260787695353391,
+          "semantic_listener_max_delta": 0.00018718536917746242,
+          "semantic_listener_negative_count": 8,
+          "h088_cosine": 0.004338738728830468,
+          "changed_cells": 8,
+          "changed_rows": 4
+        },
+        "target_counts": {
+          "Q1": 0,
+          "Q2": 0,
+          "Q3": 0,
+          "S1": 1,
+          "S2": 4,
+          "S3": 1,
+          "S4": 2
+        },
+        "mean_amp": 0.8659926578230837,
+        "min_amp": 0.8241455975330454,
+        "max_amp": 0.8819141803510034,
+        "fusion_summary": {
+          "bundles": 4,
+          "rows": 4,
+          "mean_row_support_rank": 0.8819999999999999,
+          "mean_route_gain": 0.022094521852369976,
+          "mean_bundle_joint_safety": 0.7444959443800696,
+          "mean_driver_joint_safety": 0.8237253765932793,
+          "mean_support_route_safety_score": 0.7424982146553757,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 1.0,
+          "selected_seed_rate": 1.0,
+          "source_counts": {
+            "s2hub_selected": 4
+          },
+          "mean_route_toxicity_fusion_score": 0.7085916344333815,
+          "mean_route_quality_rank": 0.6734972677595628,
+          "mean_bundle_hardworld_safe": 0.7486964078794902,
+          "mean_bundle_broad_safe": 0.65324449594438,
+          "open_candidate_rate": 0.0
+        }
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_s2_route_toxicity_fusion_5ac75e44_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 8,
+        "upload_safe": true
+      }
+    },
+    "seed_route_toxicity_fusion": {
+      "submission_file": "submission_hsjepa_seed_route_toxicity_fusion_ec01d56a_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/submission_hsjepa_seed_route_toxicity_fusion_ec01d56a_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_seed_route_toxicity_fusion_ec01d56a_uploadsafe.csv",
+      "config": {
+        "name": "seed_route_toxicity_fusion",
+        "require_selected_seed": true,
+        "require_open_candidate": false,
+        "require_s2_any": false,
+        "require_bridge_matched_toxicity": true,
+        "min_route_rank": 0.45,
+        "min_row_support_rank": 0.42,
+        "min_bundle_joint_safety": 0.54,
+        "min_bundle_hardworld_safe": 0.58,
+        "min_bundle_broad_safe": 0.42,
+        "min_driver_joint_safety": 0.56,
+        "min_driver_hardworld_safe": 0.6,
+        "min_driver_broad_safe": 0.44,
+        "min_source_support": 3,
+        "max_h088_alignment": 0.7,
+        "max_bundles": 10,
+        "max_bundles_per_row": 1,
+        "base_amp": 0.54,
+        "max_amp": 0.88,
+        "min_amp": 0.48
+      },
+      "decode_diagnostics": {
+        "variant": "seed_route_toxicity_fusion",
+        "changed_cells": 8,
+        "changed_rows": 4,
+        "selected_bundles": 4,
+        "bundle_summary": {
+          "bundles": 4,
+          "rows": 4,
+          "mean_row_support_rank": 0.8819999999999999,
+          "mean_route_gain": 0.022094521852369976,
+          "mean_bundle_joint_safety": 0.7444959443800696,
+          "mean_driver_joint_safety": 0.8237253765932793,
+          "mean_support_route_safety_score": 0.7424982146553757,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 1.0,
+          "selected_seed_rate": 1.0,
+          "source_counts": {
+            "s2hub_selected": 4
+          }
+        },
+        "listener_metrics": {
+          "base_listener_mean_delta": -0.0005019029011728634,
+          "base_listener_max_delta": 0.00018292233717599033,
+          "base_listener_negative_count": 8,
+          "semantic_listener_mean_delta": -0.0005140278736862644,
+          "semantic_listener_max_delta": 0.00018292233717599033,
+          "semantic_listener_negative_count": 8,
+          "h088_cosine": 0.00433752790483761,
+          "changed_cells": 8,
+          "changed_rows": 4
+        },
+        "target_counts": {
+          "Q1": 0,
+          "Q2": 0,
+          "Q3": 0,
+          "S1": 1,
+          "S2": 4,
+          "S3": 1,
+          "S4": 2
+        },
+        "mean_amp": 0.8459926578230836,
+        "min_amp": 0.8041455975330454,
+        "max_amp": 0.8619141803510034,
+        "fusion_summary": {
+          "bundles": 4,
+          "rows": 4,
+          "mean_row_support_rank": 0.8819999999999999,
+          "mean_route_gain": 0.022094521852369976,
+          "mean_bundle_joint_safety": 0.7444959443800696,
+          "mean_driver_joint_safety": 0.8237253765932793,
+          "mean_support_route_safety_score": 0.7424982146553757,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 1.0,
+          "selected_seed_rate": 1.0,
+          "source_counts": {
+            "s2hub_selected": 4
+          },
+          "mean_route_toxicity_fusion_score": 0.7085916344333815,
+          "mean_route_quality_rank": 0.6734972677595628,
+          "mean_bundle_hardworld_safe": 0.7486964078794902,
+          "mean_bundle_broad_safe": 0.65324449594438,
+          "open_candidate_rate": 0.0
+        }
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_seed_route_toxicity_fusion_ec01d56a_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 8,
+        "upload_safe": true
+      }
+    },
+    "open_route_toxicity_fusion": {
+      "submission_file": "submission_hsjepa_open_route_toxicity_fusion_bb0ca49f_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/submission_hsjepa_open_route_toxicity_fusion_bb0ca49f_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_open_route_toxicity_fusion_bb0ca49f_uploadsafe.csv",
+      "config": {
+        "name": "open_route_toxicity_fusion",
+        "require_selected_seed": false,
+        "require_open_candidate": true,
+        "require_s2_any": false,
+        "require_bridge_matched_toxicity": true,
+        "min_route_rank": 0.43,
+        "min_row_support_rank": 0.34,
+        "min_bundle_joint_safety": 0.5,
+        "min_bundle_hardworld_safe": 0.55,
+        "min_bundle_broad_safe": 0.38,
+        "min_driver_joint_safety": 0.52,
+        "min_driver_hardworld_safe": 0.56,
+        "min_driver_broad_safe": 0.4,
+        "min_source_support": 3,
+        "max_h088_alignment": 0.72,
+        "max_bundles": 10,
+        "max_bundles_per_row": 1,
+        "base_amp": 0.44,
+        "max_amp": 0.74,
+        "min_amp": 0.4
+      },
+      "decode_diagnostics": {
+        "variant": "open_route_toxicity_fusion",
+        "changed_cells": 4,
+        "changed_rows": 2,
+        "selected_bundles": 2,
+        "bundle_summary": {
+          "bundles": 2,
+          "rows": 2,
+          "mean_row_support_rank": 0.9059999999999999,
+          "mean_route_gain": 0.0149150665183989,
+          "mean_bundle_joint_safety": 0.7062572421784473,
+          "mean_driver_joint_safety": 0.7444959443800695,
+          "mean_support_route_safety_score": 0.7085037430290355,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 1.0,
+          "selected_seed_rate": 0.0,
+          "source_counts": {
+            "s2hub_candidates": 2
+          }
+        },
+        "listener_metrics": {
+          "base_listener_mean_delta": -6.0779854845540304e-05,
+          "base_listener_max_delta": 1.6042945706257757e-05,
+          "base_listener_negative_count": 8,
+          "semantic_listener_mean_delta": -2.8898850553199442e-05,
+          "semantic_listener_max_delta": 1.5116934253562308e-05,
+          "semantic_listener_negative_count": 8,
+          "h088_cosine": 0.003764503575650114,
+          "changed_cells": 4,
+          "changed_rows": 2
+        },
+        "target_counts": {
+          "Q1": 0,
+          "Q2": 0,
+          "Q3": 0,
+          "S1": 1,
+          "S2": 2,
+          "S3": 1,
+          "S4": 0
+        },
+        "mean_amp": 0.7262173572274516,
+        "min_amp": 0.7124347144549034,
+        "max_amp": 0.74,
+        "fusion_summary": {
+          "bundles": 2,
+          "rows": 2,
+          "mean_row_support_rank": 0.9059999999999999,
+          "mean_route_gain": 0.0149150665183989,
+          "mean_bundle_joint_safety": 0.7062572421784473,
+          "mean_driver_joint_safety": 0.7444959443800695,
+          "mean_support_route_safety_score": 0.7085037430290355,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 1.0,
+          "selected_seed_rate": 0.0,
+          "source_counts": {
+            "s2hub_candidates": 2
+          },
+          "mean_route_toxicity_fusion_score": 0.6593528662165422,
+          "mean_route_quality_rank": 0.5327868852459017,
+          "mean_bundle_hardworld_safe": 0.7074159907300116,
+          "mean_bundle_broad_safe": 0.6176129779837776,
+          "open_candidate_rate": 1.0
+        }
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_open_route_toxicity_fusion_bb0ca49f_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 4,
+        "upload_safe": true
+      }
+    },
+    "s2_driver_safe_route_fusion": {
+      "submission_file": "submission_hsjepa_s2_driver_safe_route_fusion_6adf5b73_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/submission_hsjepa_s2_driver_safe_route_fusion_6adf5b73_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_s2_driver_safe_route_fusion_6adf5b73_uploadsafe.csv",
+      "config": {
+        "name": "s2_driver_safe_route_fusion",
+        "require_selected_seed": true,
+        "require_open_candidate": false,
+        "require_s2_any": true,
+        "require_bridge_matched_toxicity": false,
+        "min_route_rank": 0.45,
+        "min_row_support_rank": 0.4,
+        "min_bundle_joint_safety": 0.39,
+        "min_bundle_hardworld_safe": 0.42,
+        "min_bundle_broad_safe": 0.32,
+        "min_driver_joint_safety": 0.5,
+        "min_driver_hardworld_safe": 0.54,
+        "min_driver_broad_safe": 0.32,
+        "min_source_support": 3,
+        "max_h088_alignment": 0.72,
+        "max_bundles": 10,
+        "max_bundles_per_row": 1,
+        "base_amp": 0.5,
+        "max_amp": 0.82,
+        "min_amp": 0.44
+      },
+      "decode_diagnostics": {
+        "variant": "s2_driver_safe_route_fusion",
+        "changed_cells": 20,
+        "changed_rows": 10,
+        "selected_bundles": 10,
+        "bundle_summary": {
+          "bundles": 10,
+          "rows": 10,
+          "mean_row_support_rank": 0.8764000000000001,
+          "mean_route_gain": 0.030188005425189967,
+          "mean_bundle_joint_safety": 0.6178470451911935,
+          "mean_driver_joint_safety": 0.7475666280417149,
+          "mean_support_route_safety_score": 0.7204194300617934,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 1.0,
+          "selected_seed_rate": 1.0,
+          "source_counts": {
+            "s2hub_selected": 10
+          }
+        },
+        "listener_metrics": {
+          "base_listener_mean_delta": -0.0010779465936107298,
+          "base_listener_max_delta": 0.0006215231370900928,
+          "base_listener_negative_count": 8,
+          "semantic_listener_mean_delta": -0.0009367401064338211,
+          "semantic_listener_max_delta": 0.0006215231370900928,
+          "semantic_listener_negative_count": 8,
+          "h088_cosine": 0.007166344781539716,
+          "changed_cells": 20,
+          "changed_rows": 10
+        },
+        "target_counts": {
+          "Q1": 0,
+          "Q2": 0,
+          "Q3": 0,
+          "S1": 4,
+          "S2": 10,
+          "S3": 1,
+          "S4": 5
+        },
+        "mean_amp": 0.7982312299803394,
+        "min_amp": 0.7631190209209756,
+        "max_amp": 0.82,
+        "fusion_summary": {
+          "bundles": 10,
+          "rows": 10,
+          "mean_row_support_rank": 0.8764000000000001,
+          "mean_route_gain": 0.030188005425189967,
+          "mean_bundle_joint_safety": 0.6178470451911935,
+          "mean_driver_joint_safety": 0.7475666280417149,
+          "mean_support_route_safety_score": 0.7204194300617934,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 1.0,
+          "selected_seed_rate": 1.0,
+          "source_counts": {
+            "s2hub_selected": 10
+          },
+          "mean_route_toxicity_fusion_score": 0.640533431388475,
+          "mean_route_quality_rank": 0.7901639344262295,
+          "mean_bundle_hardworld_safe": 0.6497728852838934,
+          "mean_bundle_broad_safe": 0.5073534183082271,
+          "open_candidate_rate": 0.0
+        }
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_s2_driver_safe_route_fusion_6adf5b73_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 20,
+        "upload_safe": true
+      }
+    },
+    "seed_driver_safe_route_fusion": {
+      "submission_file": "submission_hsjepa_seed_driver_safe_route_fusion_62429a06_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/submission_hsjepa_seed_driver_safe_route_fusion_62429a06_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_seed_driver_safe_route_fusion_62429a06_uploadsafe.csv",
+      "config": {
+        "name": "seed_driver_safe_route_fusion",
+        "require_selected_seed": true,
+        "require_open_candidate": false,
+        "require_s2_any": false,
+        "require_bridge_matched_toxicity": false,
+        "min_route_rank": 0.45,
+        "min_row_support_rank": 0.4,
+        "min_bundle_joint_safety": 0.39,
+        "min_bundle_hardworld_safe": 0.42,
+        "min_bundle_broad_safe": 0.32,
+        "min_driver_joint_safety": 0.5,
+        "min_driver_hardworld_safe": 0.54,
+        "min_driver_broad_safe": 0.32,
+        "min_source_support": 3,
+        "max_h088_alignment": 0.72,
+        "max_bundles": 10,
+        "max_bundles_per_row": 1,
+        "base_amp": 0.48,
+        "max_amp": 0.8,
+        "min_amp": 0.42
+      },
+      "decode_diagnostics": {
+        "variant": "seed_driver_safe_route_fusion",
+        "changed_cells": 20,
+        "changed_rows": 10,
+        "selected_bundles": 10,
+        "bundle_summary": {
+          "bundles": 10,
+          "rows": 10,
+          "mean_row_support_rank": 0.8868,
+          "mean_route_gain": 0.02841387253352688,
+          "mean_bundle_joint_safety": 0.5972190034762457,
+          "mean_driver_joint_safety": 0.7578794901506374,
+          "mean_support_route_safety_score": 0.7217368981463934,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 0.8,
+          "selected_seed_rate": 1.0,
+          "source_counts": {
+            "s2hub_selected": 8,
+            "stagebridge_selected": 2
+          }
+        },
+        "listener_metrics": {
+          "base_listener_mean_delta": -0.0008494249893452058,
+          "base_listener_max_delta": 0.00010169234382377486,
+          "base_listener_negative_count": 8,
+          "semantic_listener_mean_delta": -0.0007030078829273303,
+          "semantic_listener_max_delta": 0.00011701132232229426,
+          "semantic_listener_negative_count": 8,
+          "h088_cosine": 0.01056966265498204,
+          "changed_cells": 20,
+          "changed_rows": 10
+        },
+        "target_counts": {
+          "Q1": 0,
+          "Q2": 0,
+          "Q3": 0,
+          "S1": 5,
+          "S2": 8,
+          "S3": 3,
+          "S4": 4
+        },
+        "mean_amp": 0.7772965870657629,
+        "min_amp": 0.7347983766428783,
+        "max_amp": 0.8,
+        "fusion_summary": {
+          "bundles": 10,
+          "rows": 10,
+          "mean_row_support_rank": 0.8868,
+          "mean_route_gain": 0.02841387253352688,
+          "mean_bundle_joint_safety": 0.5972190034762457,
+          "mean_driver_joint_safety": 0.7578794901506374,
+          "mean_support_route_safety_score": 0.7217368981463934,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 0.8,
+          "selected_seed_rate": 1.0,
+          "source_counts": {
+            "s2hub_selected": 8,
+            "stagebridge_selected": 2
+          },
+          "mean_route_toxicity_fusion_score": 0.6665901865022135,
+          "mean_route_quality_rank": 0.773224043715847,
+          "mean_bundle_hardworld_safe": 0.6321552723059096,
+          "mean_bundle_broad_safe": 0.5096176129779838,
+          "open_candidate_rate": 0.0
+        }
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_seed_driver_safe_route_fusion_62429a06_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 20,
+        "upload_safe": true
+      }
+    },
+    "open_driver_safe_route_fusion": {
+      "submission_file": "submission_hsjepa_open_driver_safe_route_fusion_e50f0669_uploadsafe.csv",
+      "local_path": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/submission_hsjepa_open_driver_safe_route_fusion_e50f0669_uploadsafe.csv",
+      "root_path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_open_driver_safe_route_fusion_e50f0669_uploadsafe.csv",
+      "config": {
+        "name": "open_driver_safe_route_fusion",
+        "require_selected_seed": false,
+        "require_open_candidate": true,
+        "require_s2_any": false,
+        "require_bridge_matched_toxicity": false,
+        "min_route_rank": 0.42,
+        "min_row_support_rank": 0.32,
+        "min_bundle_joint_safety": 0.34,
+        "min_bundle_hardworld_safe": 0.42,
+        "min_bundle_broad_safe": 0.26,
+        "min_driver_joint_safety": 0.47,
+        "min_driver_hardworld_safe": 0.5,
+        "min_driver_broad_safe": 0.3,
+        "min_source_support": 3,
+        "max_h088_alignment": 0.74,
+        "max_bundles": 10,
+        "max_bundles_per_row": 1,
+        "base_amp": 0.38,
+        "max_amp": 0.66,
+        "min_amp": 0.35
+      },
+      "decode_diagnostics": {
+        "variant": "open_driver_safe_route_fusion",
+        "changed_cells": 20,
+        "changed_rows": 10,
+        "selected_bundles": 10,
+        "bundle_summary": {
+          "bundles": 10,
+          "rows": 10,
+          "mean_row_support_rank": 0.8604,
+          "mean_route_gain": 0.02143390140842811,
+          "mean_bundle_joint_safety": 0.558757821552723,
+          "mean_driver_joint_safety": 0.6535341830822711,
+          "mean_support_route_safety_score": 0.6379432142089752,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 0.7,
+          "selected_seed_rate": 0.0,
+          "source_counts": {
+            "s2hub_candidates": 10
+          }
+        },
+        "listener_metrics": {
+          "base_listener_mean_delta": -0.0005524877717157172,
+          "base_listener_max_delta": 4.691621901591433e-05,
+          "base_listener_negative_count": 8,
+          "semantic_listener_mean_delta": -0.0007528553217620701,
+          "semantic_listener_max_delta": 9.034658398004883e-05,
+          "semantic_listener_negative_count": 8,
+          "h088_cosine": -0.03219035820021593,
+          "changed_cells": 20,
+          "changed_rows": 10
+        },
+        "target_counts": {
+          "Q1": 0,
+          "Q2": 0,
+          "Q3": 0,
+          "S1": 5,
+          "S2": 7,
+          "S3": 7,
+          "S4": 1
+        },
+        "mean_amp": 0.6428057521304039,
+        "min_amp": 0.5926067682678721,
+        "max_amp": 0.66,
+        "fusion_summary": {
+          "bundles": 10,
+          "rows": 10,
+          "mean_row_support_rank": 0.8604,
+          "mean_route_gain": 0.02143390140842811,
+          "mean_bundle_joint_safety": 0.558757821552723,
+          "mean_driver_joint_safety": 0.6535341830822711,
+          "mean_support_route_safety_score": 0.6379432142089752,
+          "hardworld_top_toxic_bundle_rate": 0.0,
+          "conflict_bundle_rate": 0.0,
+          "s2_any_rate": 0.7,
+          "selected_seed_rate": 0.0,
+          "source_counts": {
+            "s2hub_candidates": 10
+          },
+          "mean_route_toxicity_fusion_score": 0.46434652737316373,
+          "mean_route_quality_rank": 0.6595628415300547,
+          "mean_bundle_hardworld_safe": 0.5892398609501738,
+          "mean_bundle_broad_safe": 0.43068829663962915,
+          "open_candidate_rate": 1.0
+        }
+      },
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_open_driver_safe_route_fusion_e50f0669_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 4.939277944527429e-06,
+        "max_prob": 0.9999967514907456,
+        "changed_cells_vs_current_best": 20,
+        "upload_safe": true
+      }
+    }
+  },
+  "stress": {
+    "s2_route_toxicity_fusion": {
+      "variant": "s2_route_toxicity_fusion",
+      "status": "stress_ready",
+      "iterations": 2000,
+      "actual": {
+        "bundles": 4,
+        "rows": 4,
+        "mean_row_support_rank": 0.8819999999999999,
+        "mean_route_gain": 0.022094521852369976,
+        "mean_bundle_joint_safety": 0.7444959443800696,
+        "mean_driver_joint_safety": 0.8237253765932793,
+        "mean_support_route_safety_score": 0.7424982146553757,
+        "hardworld_top_toxic_bundle_rate": 0.0,
+        "conflict_bundle_rate": 0.0,
+        "s2_any_rate": 1.0,
+        "selected_seed_rate": 1.0,
+        "source_counts": {
+          "s2hub_selected": 4
+        },
+        "mean_route_toxicity_fusion_score": 0.7085916344333815,
+        "mean_route_quality_rank": 0.6734972677595628,
+        "mean_bundle_hardworld_safe": 0.7486964078794902,
+        "mean_bundle_broad_safe": 0.65324449594438,
+        "open_candidate_rate": 0.0
+      },
+      "broad_route": {
+        "pool_size": 28,
+        "route_gain": {
+          "actual": 0.022094521852369976,
+          "null_mean": 0.02245385615339002,
+          "null_std": 0.005648377961346047,
+          "z": -0.06361725497399186,
+          "p": 0.5355
+        },
+        "route_quality_rank": {
+          "actual": 0.6734972677595628,
+          "null_mean": 0.6549508196721311,
+          "null_std": 0.10360941815268812,
+          "z": 0.17900349618719946,
+          "p": 0.456
+        },
+        "row_support_rank": {
+          "actual": 0.8819999999999999,
+          "null_mean": 0.812086,
+          "null_std": 0.07063978052978823,
+          "z": 0.9897256117539609,
+          "p": 0.1725
+        },
+        "bundle_joint_safety": {
+          "actual": 0.7444959443800696,
+          "null_mean": 0.5247473754345306,
+          "null_std": 0.06308022141651476,
+          "z": 3.4836366139406714,
+          "p": 0.0
+        },
+        "bundle_hardworld_safe": {
+          "actual": 0.7486964078794902,
+          "null_mean": 0.5651358835457706,
+          "null_std": 0.05396362800203492,
+          "z": 3.401560108660525,
+          "p": 0.0
+        },
+        "bundle_broad_safe": {
+          "actual": 0.65324449594438,
+          "null_mean": 0.4394651274623407,
+          "null_std": 0.0705029381339831,
+          "z": 3.0322050986406115,
+          "p": 0.0025
+        },
+        "route_toxicity_fusion_score": {
+          "actual": 0.7085916344333815,
+          "null_mean": 0.43349434284879923,
+          "null_std": 0.08836353631634242,
+          "z": 3.1132444789966045,
+          "p": 0.0005
+        }
+      },
+      "toxicity_matched": {
+        "pool_size": 4,
+        "route_gain": {
+          "actual": 0.022094521852369976,
+          "null_mean": 0.02209452185236998,
+          "null_std": 3.532228008957092e-18,
+          "z": -3.469434697119202e-06,
+          "p": 0.9075
+        },
+        "route_quality_rank": {
+          "actual": 0.6734972677595628,
+          "null_mean": 0.673497267759563,
+          "null_std": 1.9295248986510898e-16,
+          "z": -0.00022200176913092306,
+          "p": 1.0
+        },
+        "row_support_rank": {
+          "actual": 0.8819999999999999,
+          "null_mean": 0.8819999999999998,
+          "null_std": 1.847240365626701e-16,
+          "z": 0.00011100179776236729,
+          "p": 1.0
+        },
+        "bundle_joint_safety": {
+          "actual": 0.7444959443800696,
+          "null_mean": 0.7444959443800696,
+          "null_std": 0.0,
+          "z": 0.0,
+          "p": 1.0
+        },
+        "bundle_hardworld_safe": {
+          "actual": 0.7486964078794902,
+          "null_mean": 0.7486964078794904,
+          "null_std": 2.221001369016217e-16,
+          "z": -0.00022199529973856787,
+          "p": 1.0
+        },
+        "bundle_broad_safe": {
+          "actual": 0.65324449594438,
+          "null_mean": 0.6532444959443799,
+          "null_std": 1.2306031260807753e-16,
+          "z": 0.00011100864170436532,
+          "p": 1.0
+        },
+        "route_toxicity_fusion_score": {
+          "actual": 0.7085916344333815,
+          "null_mean": 0.7085916344333812,
+          "null_std": 2.221001369016217e-16,
+          "z": 0.00022199529973856787,
+          "p": 1.0
+        }
+      }
+    },
+    "seed_route_toxicity_fusion": {
+      "variant": "seed_route_toxicity_fusion",
+      "status": "stress_ready",
+      "iterations": 2000,
+      "actual": {
+        "bundles": 4,
+        "rows": 4,
+        "mean_row_support_rank": 0.8819999999999999,
+        "mean_route_gain": 0.022094521852369976,
+        "mean_bundle_joint_safety": 0.7444959443800696,
+        "mean_driver_joint_safety": 0.8237253765932793,
+        "mean_support_route_safety_score": 0.7424982146553757,
+        "hardworld_top_toxic_bundle_rate": 0.0,
+        "conflict_bundle_rate": 0.0,
+        "s2_any_rate": 1.0,
+        "selected_seed_rate": 1.0,
+        "source_counts": {
+          "s2hub_selected": 4
+        },
+        "mean_route_toxicity_fusion_score": 0.7085916344333815,
+        "mean_route_quality_rank": 0.6734972677595628,
+        "mean_bundle_hardworld_safe": 0.7486964078794902,
+        "mean_bundle_broad_safe": 0.65324449594438,
+        "open_candidate_rate": 0.0
+      },
+      "broad_route": {
+        "pool_size": 32,
+        "route_gain": {
+          "actual": 0.022094521852369976,
+          "null_mean": 0.022391345129287622,
+          "null_std": 0.005482981595042219,
+          "z": -0.05413537720642773,
+          "p": 0.5425
+        },
+        "route_quality_rank": {
+          "actual": 0.6734972677595628,
+          "null_mean": 0.6560683060109289,
+          "null_std": 0.10135384454721215,
+          "z": 0.17196152574501708,
+          "p": 0.4615
+        },
+        "row_support_rank": {
+          "actual": 0.8819999999999999,
+          "null_mean": 0.8165395000000001,
+          "null_std": 0.06994313018789078,
+          "z": 0.9359103577894636,
+          "p": 0.1885
+        },
+        "bundle_joint_safety": {
+          "actual": 0.7444959443800696,
+          "null_mean": 0.5088051042873697,
+          "null_std": 0.06312251034505421,
+          "z": 3.733863542507747,
+          "p": 0.0
+        },
+        "bundle_hardworld_safe": {
+          "actual": 0.7486964078794902,
+          "null_mean": 0.5551908603707996,
+          "null_std": 0.05359324832073114,
+          "z": 3.6106329354592877,
+          "p": 0.0
+        },
+        "bundle_broad_safe": {
+          "actual": 0.65324449594438,
+          "null_mean": 0.42716499420625725,
+          "null_std": 0.06754741436012034,
+          "z": 3.346974919416783,
+          "p": 0.002
+        },
+        "route_toxicity_fusion_score": {
+          "actual": 0.7085916344333815,
+          "null_mean": 0.4307010197852802,
+          "null_std": 0.08695231083765259,
+          "z": 3.1958968308933264,
+          "p": 0.0
+        }
+      },
+      "toxicity_matched": {
+        "pool_size": 4,
+        "route_gain": {
+          "actual": 0.022094521852369976,
+          "null_mean": 0.022094521852369983,
+          "null_std": 6.7063325339742476e-18,
+          "z": -6.938847369689365e-06,
+          "p": 0.907
+        },
+        "route_quality_rank": {
+          "actual": 0.6734972677595628,
+          "null_mean": 0.673497267759563,
+          "null_std": 1.910254859514018e-16,
+          "z": -0.00022200219684749624,
+          "p": 1.0
+        },
+        "row_support_rank": {
+          "actual": 0.8819999999999999,
+          "null_mean": 0.8819999999999998,
+          "null_std": 1.8407197882567448e-16,
+          "z": 0.00011100187012862774,
+          "p": 1.0
+        },
+        "bundle_joint_safety": {
+          "actual": 0.7444959443800696,
+          "null_mean": 0.7444959443800696,
+          "null_std": 0.0,
+          "z": 0.0,
+          "p": 1.0
+        },
+        "bundle_hardworld_safe": {
+          "actual": 0.7486964078794902,
+          "null_mean": 0.7486964078794904,
+          "null_std": 2.221001369016217e-16,
+          "z": -0.00022199529973856787,
+          "p": 1.0
+        },
+        "bundle_broad_safe": {
+          "actual": 0.65324449594438,
+          "null_mean": 0.6532444959443799,
+          "null_std": 1.2522095535203048e-16,
+          "z": 0.0001110084018843796,
+          "p": 1.0
+        },
+        "route_toxicity_fusion_score": {
+          "actual": 0.7085916344333815,
+          "null_mean": 0.7085916344333812,
+          "null_std": 2.221001369016217e-16,
+          "z": 0.00022199529973856787,
+          "p": 1.0
+        }
+      }
+    },
+    "open_route_toxicity_fusion": {
+      "variant": "open_route_toxicity_fusion",
+      "status": "stress_ready",
+      "iterations": 2000,
+      "actual": {
+        "bundles": 2,
+        "rows": 2,
+        "mean_row_support_rank": 0.9059999999999999,
+        "mean_route_gain": 0.0149150665183989,
+        "mean_bundle_joint_safety": 0.7062572421784473,
+        "mean_driver_joint_safety": 0.7444959443800695,
+        "mean_support_route_safety_score": 0.7085037430290355,
+        "hardworld_top_toxic_bundle_rate": 0.0,
+        "conflict_bundle_rate": 0.0,
+        "s2_any_rate": 1.0,
+        "selected_seed_rate": 0.0,
+        "source_counts": {
+          "s2hub_candidates": 2
+        },
+        "mean_route_toxicity_fusion_score": 0.6593528662165422,
+        "mean_route_quality_rank": 0.5327868852459017,
+        "mean_bundle_hardworld_safe": 0.7074159907300116,
+        "mean_bundle_broad_safe": 0.6176129779837776,
+        "open_candidate_rate": 1.0
+      },
+      "broad_route": {
+        "pool_size": 51,
+        "route_gain": {
+          "actual": 0.0149150665183989,
+          "null_mean": 0.016755843222698352,
+          "null_std": 0.010994232774776545,
+          "z": -0.16743111973717828,
+          "p": 0.5355
+        },
+        "route_quality_rank": {
+          "actual": 0.5327868852459017,
+          "null_mean": 0.5229357923497268,
+          "null_std": 0.20079255728218703,
+          "z": 0.04906104603409909,
+          "p": 0.4985
+        },
+        "row_support_rank": {
+          "actual": 0.9059999999999999,
+          "null_mean": 0.8236379999999999,
+          "null_std": 0.0914766907385386,
+          "z": 0.9003605107940469,
+          "p": 0.1805
+        },
+        "bundle_joint_safety": {
+          "actual": 0.7062572421784473,
+          "null_mean": 0.416492989571263,
+          "null_std": 0.12103842639791965,
+          "z": 2.393985622815158,
+          "p": 0.0
+        },
+        "bundle_hardworld_safe": {
+          "actual": 0.7074159907300116,
+          "null_mean": 0.5243886790266513,
+          "null_std": 0.11003028319530332,
+          "z": 1.663426707507642,
+          "p": 0.01
+        },
+        "bundle_broad_safe": {
+          "actual": 0.6176129779837776,
+          "null_mean": 0.3532314600231749,
+          "null_std": 0.10764544418433838,
+          "z": 2.4560400113673566,
+          "p": 0.007
+        },
+        "route_toxicity_fusion_score": {
+          "actual": 0.6593528662165422,
+          "null_mean": 0.285458120798447,
+          "null_std": 0.14095863682295495,
+          "z": 2.6525139136033014,
+          "p": 0.0005
+        }
+      },
+      "toxicity_matched": {
+        "pool_size": 2,
+        "route_gain": {
+          "actual": 0.0149150665183989,
+          "null_mean": 0.014915066518398905,
+          "null_std": 5.2054719586317585e-18,
+          "z": -5.204143337908207e-06,
+          "p": 1.0
+        },
+        "route_quality_rank": {
+          "actual": 0.5327868852459017,
+          "null_mean": 0.5327868852459015,
+          "null_std": 2.221001369016217e-16,
+          "z": 0.00022199529973856787,
+          "p": 1.0
+        },
+        "row_support_rank": {
+          "actual": 0.9059999999999999,
+          "null_mean": 0.9060000000000002,
+          "null_std": 3.3315020535243255e-16,
+          "z": -0.00033295598303342605,
+          "p": 1.0
+        },
+        "bundle_joint_safety": {
+          "actual": 0.7062572421784473,
+          "null_mean": 0.7062572421784471,
+          "null_std": 2.221001369016217e-16,
+          "z": 0.00022199529973856787,
+          "p": 1.0
+        },
+        "bundle_hardworld_safe": {
+          "actual": 0.7074159907300116,
+          "null_mean": 0.7074159907300117,
+          "null_std": 1.1105006845081086e-16,
+          "z": -0.00011100997479721569,
+          "p": 1.0
+        },
+        "bundle_broad_safe": {
+          "actual": 0.6176129779837776,
+          "null_mean": 0.6176129779837777,
+          "null_std": 1.1105006845081086e-16,
+          "z": -0.00011100997479721569,
+          "p": 1.0
+        },
+        "route_toxicity_fusion_score": {
+          "actual": 0.6593528662165422,
+          "null_mean": 0.6593528662165422,
+          "null_std": 0.0,
+          "z": 0.0,
+          "p": 1.0
+        }
+      }
+    },
+    "s2_driver_safe_route_fusion": {
+      "variant": "s2_driver_safe_route_fusion",
+      "status": "stress_ready",
+      "iterations": 2000,
+      "actual": {
+        "bundles": 10,
+        "rows": 10,
+        "mean_row_support_rank": 0.8764000000000001,
+        "mean_route_gain": 0.030188005425189967,
+        "mean_bundle_joint_safety": 0.6178470451911935,
+        "mean_driver_joint_safety": 0.7475666280417149,
+        "mean_support_route_safety_score": 0.7204194300617934,
+        "hardworld_top_toxic_bundle_rate": 0.0,
+        "conflict_bundle_rate": 0.0,
+        "s2_any_rate": 1.0,
+        "selected_seed_rate": 1.0,
+        "source_counts": {
+          "s2hub_selected": 10
+        },
+        "mean_route_toxicity_fusion_score": 0.6385040196237692,
+        "mean_route_quality_rank": 0.7901639344262295,
+        "mean_bundle_hardworld_safe": 0.6497728852838934,
+        "mean_bundle_broad_safe": 0.5073534183082271,
+        "open_candidate_rate": 0.0
+      },
+      "broad_route": {
+        "pool_size": 28,
+        "route_gain": {
+          "actual": 0.030188005425189967,
+          "null_mean": 0.02233224717835237,
+          "null_std": 0.0031158322554921147,
+          "z": 2.5212391425980725,
+          "p": 0.0055
+        },
+        "route_quality_rank": {
+          "actual": 0.7901639344262295,
+          "null_mean": 0.6528366120218579,
+          "null_std": 0.05684376693073921,
+          "z": 2.415873011534948,
+          "p": 0.006
+        },
+        "row_support_rank": {
+          "actual": 0.8764000000000001,
+          "null_mean": 0.8089094,
+          "null_std": 0.0380205377695548,
+          "z": 1.775109032052369,
+          "p": 0.04
+        },
+        "bundle_joint_safety": {
+          "actual": 0.6178470451911935,
+          "null_mean": 0.5244170081112399,
+          "null_std": 0.034452073440809125,
+          "z": 2.7118843003095443,
+          "p": 0.001
+        },
+        "bundle_hardworld_safe": {
+          "actual": 0.6497728852838934,
+          "null_mean": 0.5644352074159908,
+          "null_std": 0.029460208513845676,
+          "z": 2.896709907022517,
+          "p": 0.0
+        },
+        "bundle_broad_safe": {
+          "actual": 0.5073534183082271,
+          "null_mean": 0.44226494090382384,
+          "null_std": 0.0385568239861646,
+          "z": 1.6881182284638108,
+          "p": 0.0515
+        },
+        "route_toxicity_fusion_score": {
+          "actual": 0.6385040196237692,
+          "null_mean": 0.43275173714494813,
+          "null_std": 0.04653793106931264,
+          "z": 4.421173819866567,
+          "p": 0.0
+        }
+      },
+      "toxicity_matched": {
+        "pool_size": 17,
+        "route_gain": {
+          "actual": 0.030188005425189967,
+          "null_mean": 0.026955177226943343,
+          "null_std": 0.001947609127386179,
+          "z": 1.659895792810028,
+          "p": 0.0495
+        },
+        "route_quality_rank": {
+          "actual": 0.7901639344262295,
+          "null_mean": 0.7395707650273223,
+          "null_std": 0.030757886752257744,
+          "z": 1.644884442314572,
+          "p": 0.0515
+        },
+        "row_support_rank": {
+          "actual": 0.8764000000000001,
+          "null_mean": 0.8201289999999999,
+          "null_std": 0.028398810630422735,
+          "z": 1.981456221188975,
+          "p": 0.0235
+        },
+        "bundle_joint_safety": {
+          "actual": 0.6178470451911935,
+          "null_mean": 0.585497258400927,
+          "null_std": 0.022543167619284113,
+          "z": 1.4350151378530516,
+          "p": 0.077
+        },
+        "bundle_hardworld_safe": {
+          "actual": 0.6497728852838934,
+          "null_mean": 0.6041159015063731,
+          "null_std": 0.023689327172889015,
+          "z": 1.9273229434664851,
+          "p": 0.0135
+        },
+        "bundle_broad_safe": {
+          "actual": 0.5073534183082271,
+          "null_mean": 0.47184540208574743,
+          "null_std": 0.026674036348478498,
+          "z": 1.3311827185529757,
+          "p": 0.1095
+        },
+        "route_toxicity_fusion_score": {
+          "actual": 0.6385040196237692,
+          "null_mean": 0.5302539474993372,
+          "null_std": 0.03246953580909422,
+          "z": 3.333896510179827,
+          "p": 0.0
+        }
+      }
+    },
+    "seed_driver_safe_route_fusion": {
+      "variant": "seed_driver_safe_route_fusion",
+      "status": "stress_ready",
+      "iterations": 2000,
+      "actual": {
+        "bundles": 10,
+        "rows": 10,
+        "mean_row_support_rank": 0.8868,
+        "mean_route_gain": 0.02841387253352688,
+        "mean_bundle_joint_safety": 0.5972190034762457,
+        "mean_driver_joint_safety": 0.7578794901506374,
+        "mean_support_route_safety_score": 0.7217368981463934,
+        "hardworld_top_toxic_bundle_rate": 0.0,
+        "conflict_bundle_rate": 0.0,
+        "s2_any_rate": 0.8,
+        "selected_seed_rate": 1.0,
+        "source_counts": {
+          "s2hub_selected": 8,
+          "stagebridge_selected": 2
+        },
+        "mean_route_toxicity_fusion_score": 0.6660651865022135,
+        "mean_route_quality_rank": 0.773224043715847,
+        "mean_bundle_hardworld_safe": 0.6321552723059096,
+        "mean_bundle_broad_safe": 0.5096176129779838,
+        "open_candidate_rate": 0.0
+      },
+      "broad_route": {
+        "pool_size": 32,
+        "route_gain": {
+          "actual": 0.02841387253352688,
+          "null_mean": 0.02259259528283703,
+          "null_std": 0.002975425151641281,
+          "z": 1.956452255410393,
+          "p": 0.0225
+        },
+        "route_quality_rank": {
+          "actual": 0.773224043715847,
+          "null_mean": 0.6598147540983607,
+          "null_std": 0.05493209506662857,
+          "z": 2.0645360326757007,
+          "p": 0.014
+        },
+        "row_support_rank": {
+          "actual": 0.8868,
+          "null_mean": 0.8127673999999999,
+          "null_std": 0.03839674793997772,
+          "z": 1.928095580224677,
+          "p": 0.022
+        },
+        "bundle_joint_safety": {
+          "actual": 0.5972190034762457,
+          "null_mean": 0.513772147161066,
+          "null_std": 0.034621135613153775,
+          "z": 2.4102865153003536,
+          "p": 0.0055
+        },
+        "bundle_hardworld_safe": {
+          "actual": 0.6321552723059096,
+          "null_mean": 0.5580122456546929,
+          "null_std": 0.029793187346897492,
+          "z": 2.488589951301368,
+          "p": 0.0055
+        },
+        "bundle_broad_safe": {
+          "actual": 0.5096176129779838,
+          "null_mean": 0.4300601378910776,
+          "null_std": 0.03850540879912157,
+          "z": 2.066137656137675,
+          "p": 0.022
+        },
+        "route_toxicity_fusion_score": {
+          "actual": 0.6660651865022135,
+          "null_mean": 0.4343276320243224,
+          "null_std": 0.048782537464586696,
+          "z": 4.750420263426615,
+          "p": 0.0
+        }
+      },
+      "toxicity_matched": {
+        "pool_size": 20,
+        "route_gain": {
+          "actual": 0.02841387253352688,
+          "null_mean": 0.026508206862313935,
+          "null_std": 0.0022048037874631784,
+          "z": 0.8643243816907881,
+          "p": 0.19
+        },
+        "route_quality_rank": {
+          "actual": 0.773224043715847,
+          "null_mean": 0.7344161202185792,
+          "null_std": 0.03570867148551889,
+          "z": 1.0867926999725817,
+          "p": 0.132
+        },
+        "row_support_rank": {
+          "actual": 0.8868,
+          "null_mean": 0.8249979999999999,
+          "null_std": 0.02928668043369567,
+          "z": 2.1102425772633437,
+          "p": 0.0135
+        },
+        "bundle_joint_safety": {
+          "actual": 0.5972190034762457,
+          "null_mean": 0.5687585932792585,
+          "null_std": 0.025018943874605626,
+          "z": 1.1375544203021746,
+          "p": 0.139
+        },
+        "bundle_hardworld_safe": {
+          "actual": 0.6321552723059096,
+          "null_mean": 0.5892336060254926,
+          "null_std": 0.025095660678307926,
+          "z": 1.7103222277709216,
+          "p": 0.039
+        },
+        "bundle_broad_safe": {
+          "actual": 0.5096176129779838,
+          "null_mean": 0.4589799745075319,
+          "null_std": 0.02912107319330533,
+          "z": 1.738865808020913,
+          "p": 0.0245
+        },
+        "route_toxicity_fusion_score": {
+          "actual": 0.6660651865022135,
+          "null_mean": 0.528218356691461,
+          "null_std": 0.03411348513369564,
+          "z": 4.040831045742473,
+          "p": 0.0
+        }
+      }
+    },
+    "open_driver_safe_route_fusion": {
+      "variant": "open_driver_safe_route_fusion",
+      "status": "stress_ready",
+      "iterations": 2000,
+      "actual": {
+        "bundles": 10,
+        "rows": 10,
+        "mean_row_support_rank": 0.8604,
+        "mean_route_gain": 0.02143390140842811,
+        "mean_bundle_joint_safety": 0.558757821552723,
+        "mean_driver_joint_safety": 0.6535341830822711,
+        "mean_support_route_safety_score": 0.6379432142089752,
+        "hardworld_top_toxic_bundle_rate": 0.0,
+        "conflict_bundle_rate": 0.0,
+        "s2_any_rate": 0.7,
+        "selected_seed_rate": 0.0,
+        "source_counts": {
+          "s2hub_candidates": 10
+        },
+        "mean_route_toxicity_fusion_score": 0.46781527737316375,
+        "mean_route_quality_rank": 0.6595628415300547,
+        "mean_bundle_hardworld_safe": 0.5892398609501738,
+        "mean_bundle_broad_safe": 0.43068829663962915,
+        "open_candidate_rate": 1.0
+      },
+      "broad_route": {
+        "pool_size": 51,
+        "route_gain": {
+          "actual": 0.02143390140842811,
+          "null_mean": 0.016384553376345905,
+          "null_std": 0.004042018634924951,
+          "z": 1.2492144363720237,
+          "p": 0.1095
+        },
+        "route_quality_rank": {
+          "actual": 0.6595628415300547,
+          "null_mean": 0.5155467213114754,
+          "null_std": 0.07568325683944427,
+          "z": 1.9028795301739547,
+          "p": 0.027
+        },
+        "row_support_rank": {
+          "actual": 0.8604,
+          "null_mean": 0.8244105999999999,
+          "null_std": 0.03461823072586602,
+          "z": 1.0396083001454501,
+          "p": 0.1445
+        },
+        "bundle_joint_safety": {
+          "actual": 0.558757821552723,
+          "null_mean": 0.4218010915411356,
+          "null_std": 0.04607280063793952,
+          "z": 2.9726156889154947,
+          "p": 0.0
+        },
+        "bundle_hardworld_safe": {
+          "actual": 0.5892398609501738,
+          "null_mean": 0.5251525191193511,
+          "null_std": 0.04322443278051713,
+          "z": 1.4826647270250948,
+          "p": 0.05
+        },
+        "bundle_broad_safe": {
+          "actual": 0.43068829663962915,
+          "null_mean": 0.35377053418308224,
+          "null_std": 0.040146117533447837,
+          "z": 1.9159452315792864,
+          "p": 0.03
+        },
+        "route_toxicity_fusion_score": {
+          "actual": 0.46781527737316375,
+          "null_mean": 0.28690049682291763,
+          "null_std": 0.053880926239209856,
+          "z": 3.3576776268414332,
+          "p": 0.0
+        }
+      },
+      "toxicity_matched": {
+        "pool_size": 16,
+        "route_gain": {
+          "actual": 0.02143390140842811,
+          "null_mean": 0.021744908449983513,
+          "null_std": 0.0010204101786564963,
+          "z": -0.3047862984472565,
+          "p": 0.631
+        },
+        "route_quality_rank": {
+          "actual": 0.6595628415300547,
+          "null_mean": 0.6600795081967213,
+          "null_std": 0.01565025465526104,
+          "z": -0.033013307324038475,
+          "p": 0.4605
+        },
+        "row_support_rank": {
+          "actual": 0.8604,
+          "null_mean": 0.8476087999999999,
+          "null_std": 0.010936348770143121,
+          "z": 1.1696042497978156,
+          "p": 0.053
+        },
+        "bundle_joint_safety": {
+          "actual": 0.558757821552723,
+          "null_mean": 0.5446095596755504,
+          "null_std": 0.011926948411550096,
+          "z": 1.1862432357203119,
+          "p": 0.1685
+        },
+        "bundle_hardworld_safe": {
+          "actual": 0.5892398609501738,
+          "null_mean": 0.5641077867902665,
+          "null_std": 0.014624411742909526,
+          "z": 1.7185015438568834,
+          "p": 0.1345
+        },
+        "bundle_broad_safe": {
+          "actual": 0.43068829663962915,
+          "null_mean": 0.4148166859791425,
+          "null_std": 0.01923816778447886,
+          "z": 0.8250063539037579,
+          "p": 0.442
+        },
+        "route_toxicity_fusion_score": {
+          "actual": 0.46781527737316375,
+          "null_mean": 0.430795644056048,
+          "null_std": 0.019789620256650226,
+          "z": 1.8706591048812475,
+          "p": 0.0
+        }
+      }
+    }
+  },
+  "bundle_pool_summary": {
+    "bundles": 183,
+    "selected_seed_bundles": 45,
+    "mean_route_gain": 0.015895886486395627,
+    "mean_route_quality_rank": 0.5027322404371585,
+    "mean_bundle_joint_safety": 0.428004989583927,
+    "mean_bundle_hardworld_safe": 0.5246238499578925,
+    "mean_bundle_broad_safe": 0.365315933109182
+  },
+  "outputs": {
+    "readout_json": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/route_toxicity_fusion_decoder_readout.json",
+    "readout_md": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/route_toxicity_fusion_decoder_readout_ko.md",
+    "audit_csv": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/route_toxicity_fusion_decoder_audit.csv",
+    "null_csv": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/route_toxicity_fusion_decoder_null_stress.csv"
+  }
+}

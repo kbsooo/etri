@@ -38,6 +38,12 @@
         "next_test": "Do not ship factorized toxicity alone unless route-preserving assignment is added."
       },
       {
+        "claim": "Route-first and toxicity-first are not alternatives; they compose into a decoder order.",
+        "evidence": "Best fusion row is s2_driver_safe_route_fusion with route_z=2.5212 and matched_score_z=3.3339.",
+        "status": "alive",
+        "next_test": "Use route-toxicity fusion as the next adapter LB sensor if it outranks plain route-frontier."
+      },
+      {
         "claim": "Open candidate route frontier is a true big-bet boundary.",
         "evidence": "The open-route variant is upload-safe and route-supported locally, but it is outside the selected public seed set.",
         "status": "high_information_if_submitted",
@@ -63,6 +69,12 @@
       "evidence": "Best factorized decoder safety_z=13.6669, route boundary=route_not_claimed.",
       "status": "alive_with_route_gap",
       "next_test": "Do not ship factorized toxicity alone unless route-preserving assignment is added."
+    },
+    {
+      "claim": "Route-first and toxicity-first are not alternatives; they compose into a decoder order.",
+      "evidence": "Best fusion row is s2_driver_safe_route_fusion with route_z=2.5212 and matched_score_z=3.3339.",
+      "status": "alive",
+      "next_test": "Use route-toxicity fusion as the next adapter LB sensor if it outranks plain route-frontier."
     },
     {
       "claim": "Open candidate route frontier is a true big-bet boundary.",
@@ -142,6 +154,75 @@
       "ablation_rank": 3
     },
     {
+      "family": "route_toxicity_fusion",
+      "variant": "s2_driver_safe_route_fusion",
+      "submission_file": "submission_hsjepa_s2_driver_safe_route_fusion_6adf5b73_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 20,
+      "architecture_claim": "route-frontier selection should be translated through a factorized action-health field",
+      "decoder_order": "route_first_then_factorized_toxicity",
+      "core_modules_exercised": "invariant_energy,action_health_decoder,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 2.5212391425980725,
+      "matched_route_z": 1.659895792810028,
+      "matched_score_z": 3.333896510179827,
+      "safety_z": 1.4350151378530516,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": 0.0,
+      "hardworld_top_toxic_exposure": 0.0,
+      "route_boundary": "route_and_fusion_supported",
+      "safety_boundary": "safety_supported",
+      "lb_sensor_priority": 0.9859820227896265,
+      "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
+      "ablation_rank": 4
+    },
+    {
+      "family": "route_toxicity_fusion",
+      "variant": "seed_driver_safe_route_fusion",
+      "submission_file": "submission_hsjepa_seed_driver_safe_route_fusion_62429a06_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 20,
+      "architecture_claim": "route-frontier selection should be translated through a factorized action-health field",
+      "decoder_order": "route_first_then_factorized_toxicity",
+      "core_modules_exercised": "invariant_energy,action_health_decoder,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 1.956452255410393,
+      "matched_route_z": 0.8643243816907881,
+      "matched_score_z": 4.040831045742473,
+      "safety_z": 1.1375544203021746,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": 0.0,
+      "hardworld_top_toxic_exposure": 0.0,
+      "route_boundary": "route_and_fusion_supported",
+      "safety_boundary": "safety_supported",
+      "lb_sensor_priority": 0.8783581824414558,
+      "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
+      "ablation_rank": 5
+    },
+    {
+      "family": "route_toxicity_fusion",
+      "variant": "open_driver_safe_route_fusion",
+      "submission_file": "submission_hsjepa_open_driver_safe_route_fusion_e50f0669_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 20,
+      "architecture_claim": "route-frontier selection should be translated through a factorized action-health field",
+      "decoder_order": "route_first_then_factorized_toxicity",
+      "core_modules_exercised": "invariant_energy,action_health_decoder,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": 1.2492144363720237,
+      "matched_route_z": -0.3047862984472565,
+      "matched_score_z": 1.8706591048812475,
+      "safety_z": 1.1862432357203119,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": 0.0,
+      "hardworld_top_toxic_exposure": 0.0,
+      "route_boundary": "route_fusion_boundary",
+      "safety_boundary": "safety_supported",
+      "lb_sensor_priority": 0.6123790379883204,
+      "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
+      "ablation_rank": 6
+    },
+    {
       "family": "factorized_toxicity",
       "variant": "dual_safe_expansion",
       "submission_file": "submission_hsjepa_factorized_toxicity_decoder_dual_safe_expansion_23b6de1e_uploadsafe.csv",
@@ -162,7 +243,7 @@
       "safety_boundary": "factorized_decoder_stress_supported",
       "lb_sensor_priority": 0.5800000000000001,
       "module_ablation_interpretation": "Keeps action-health and anti-shortcut validation, but does not prove invariant route placement.",
-      "ablation_rank": 4
+      "ablation_rank": 7
     },
     {
       "family": "factorized_toxicity",
@@ -185,7 +266,76 @@
       "safety_boundary": "factorized_decoder_alive_but_source_null_weak",
       "lb_sensor_priority": 0.5800000000000001,
       "module_ablation_interpretation": "Keeps action-health and anti-shortcut validation, but does not prove invariant route placement.",
-      "ablation_rank": 5
+      "ablation_rank": 8
+    },
+    {
+      "family": "route_toxicity_fusion",
+      "variant": "seed_route_toxicity_fusion",
+      "submission_file": "submission_hsjepa_seed_route_toxicity_fusion_ec01d56a_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 8,
+      "architecture_claim": "route-frontier selection should be translated through a factorized action-health field",
+      "decoder_order": "route_first_then_factorized_toxicity",
+      "core_modules_exercised": "invariant_energy,action_health_decoder,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": -0.05413537720642773,
+      "matched_route_z": -6.938847369689365e-06,
+      "matched_score_z": 0.00022199529973856787,
+      "safety_z": 0.0,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": 0.0,
+      "hardworld_top_toxic_exposure": 0.0,
+      "route_boundary": "route_fusion_boundary",
+      "safety_boundary": "safety_supported",
+      "lb_sensor_priority": 0.2889624187457326,
+      "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
+      "ablation_rank": 9
+    },
+    {
+      "family": "route_toxicity_fusion",
+      "variant": "s2_route_toxicity_fusion",
+      "submission_file": "submission_hsjepa_s2_route_toxicity_fusion_5ac75e44_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 8,
+      "architecture_claim": "route-frontier selection should be translated through a factorized action-health field",
+      "decoder_order": "route_first_then_factorized_toxicity",
+      "core_modules_exercised": "invariant_energy,action_health_decoder,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": -0.06361725497399186,
+      "matched_route_z": -3.469434697119202e-06,
+      "matched_score_z": 0.00022199529973856787,
+      "safety_z": 0.0,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": 0.0,
+      "hardworld_top_toxic_exposure": 0.0,
+      "route_boundary": "route_fusion_boundary",
+      "safety_boundary": "safety_supported",
+      "lb_sensor_priority": 0.2880776863463137,
+      "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
+      "ablation_rank": 10
+    },
+    {
+      "family": "route_toxicity_fusion",
+      "variant": "open_route_toxicity_fusion",
+      "submission_file": "submission_hsjepa_open_route_toxicity_fusion_bb0ca49f_uploadsafe.csv",
+      "upload_safe": true,
+      "changed_cells": 4,
+      "architecture_claim": "route-frontier selection should be translated through a factorized action-health field",
+      "decoder_order": "route_first_then_factorized_toxicity",
+      "core_modules_exercised": "invariant_energy,action_health_decoder,anti_shortcut_validation",
+      "public_lb_observed": null,
+      "route_z": -0.16743111973717828,
+      "matched_route_z": -5.204143337908207e-06,
+      "matched_score_z": 0.0,
+      "safety_z": 0.00022199529973856787,
+      "toxicity_clear": true,
+      "broad_hard_conflict_exposure": 0.0,
+      "hardworld_top_toxic_exposure": 0.0,
+      "route_boundary": "route_fusion_boundary",
+      "safety_boundary": "safety_supported",
+      "lb_sensor_priority": 0.27138605091914736,
+      "module_ablation_interpretation": "Fuses invariant route ordering with factorized broad-public/hard-world action-health. If this beats route-frontier on LB, toxicity was the missing action decoder stage.",
+      "ablation_rank": 11
     },
     {
       "family": "row_support_strict",
@@ -208,7 +358,7 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.26354824667422216,
       "module_ablation_interpretation": "Shows row-support is real enough to select safe actions, but support-first decoding can lose route-null separation.",
-      "ablation_rank": 6
+      "ablation_rank": 12
     },
     {
       "family": "row_support_strict",
@@ -231,12 +381,13 @@
       "safety_boundary": "safety_supported",
       "lb_sensor_priority": 0.20975399131542438,
       "module_ablation_interpretation": "Shows row-support is real enough to select safe actions, but support-first decoding can lose route-null separation.",
-      "ablation_rank": 7
+      "ablation_rank": 13
     }
   ],
   "inputs": {
     "row_support": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/row_support_strict_action_decoder/row_support_strict_action_decoder_readout.json",
     "route_frontier": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_frontier_action_decoder/route_frontier_action_decoder_readout.json",
+    "route_toxicity_fusion": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/route_toxicity_fusion_decoder/route_toxicity_fusion_decoder_readout.json",
     "factorized_toxicity": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_readout.json",
     "factorized_stress": "/Users/kbsoo/Downloads/cl2/sleep_competition_adapter/outputs/factorized_toxicity_decoder_candidate/factorized_toxicity_decoder_stress_audit.json"
   },

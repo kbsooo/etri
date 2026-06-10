@@ -136,6 +136,74 @@
       "kill_criterion": "Public LB worsens or matched-null frontier score fails after larger candidate pools are used."
     },
     {
+      "id": "route_toxicity_fusion_decoder",
+      "name": "Route-Toxicity Fusion Decoder",
+      "worldview": "Route-frontier action ordering and factorized action-health are not alternatives; safe actions need both.",
+      "core_modules_exercised": [
+        "invariant_energy",
+        "action_health_decoder",
+        "anti_shortcut_validation"
+      ],
+      "adapter_move": "Select route-frontier bundles first, then filter driver actions through hard-world/broad-public toxicity and use bridge actions as soft route support.",
+      "why_big": "If this wins LB over plain route-frontier, HS-JEPA gains a more general action-grade decoder order.",
+      "expected_public_lb_delta_if_true": -0.0025,
+      "latest_probe_status": "route_toxicity_fusion_decoder_alive",
+      "latest_probe_evidence": {
+        "recommended_variant": "seed_driver_safe_route_fusion",
+        "variant_scores": [
+          {
+            "variant": "s2_route_toxicity_fusion",
+            "changed_cells": 8,
+            "broad_route_z": -0.06361725497399186,
+            "toxicity_matched_safety_z": 0.0,
+            "toxicity_matched_fusion_z": 0.00022199529973856787,
+            "upload_safe": true
+          },
+          {
+            "variant": "seed_route_toxicity_fusion",
+            "changed_cells": 8,
+            "broad_route_z": -0.05413537720642773,
+            "toxicity_matched_safety_z": 0.0,
+            "toxicity_matched_fusion_z": 0.00022199529973856787,
+            "upload_safe": true
+          },
+          {
+            "variant": "open_route_toxicity_fusion",
+            "changed_cells": 4,
+            "broad_route_z": -0.16743111973717828,
+            "toxicity_matched_safety_z": 0.00022199529973856787,
+            "toxicity_matched_fusion_z": 0.0,
+            "upload_safe": true
+          },
+          {
+            "variant": "s2_driver_safe_route_fusion",
+            "changed_cells": 20,
+            "broad_route_z": 2.5212391425980725,
+            "toxicity_matched_safety_z": 1.4350151378530516,
+            "toxicity_matched_fusion_z": 3.333896510179827,
+            "upload_safe": true
+          },
+          {
+            "variant": "seed_driver_safe_route_fusion",
+            "changed_cells": 20,
+            "broad_route_z": 1.956452255410393,
+            "toxicity_matched_safety_z": 1.1375544203021746,
+            "toxicity_matched_fusion_z": 4.040831045742473,
+            "upload_safe": true
+          },
+          {
+            "variant": "open_driver_safe_route_fusion",
+            "changed_cells": 20,
+            "broad_route_z": 1.2492144363720237,
+            "toxicity_matched_safety_z": 1.1862432357203119,
+            "toxicity_matched_fusion_z": 1.8706591048812475,
+            "upload_safe": true
+          }
+        ]
+      },
+      "kill_criterion": "Public LB says plain route-frontier wins, or fusion only improves local toxicity while harming route/action response."
+    },
+    {
       "id": "listener_invariant_contrastive_decoder",
       "name": "Listener-Invariant Contrastive Decoder",
       "worldview": "A correction should be selected by agreement between listener responsibility and invariant energy, not public utility alone.",
@@ -209,5 +277,5 @@
       "kill_criterion": "Q-S bridge actions fail null tests or replicate the already-killed subjective-shadow bridge."
     }
   ],
-  "count": 8
+  "count": 9
 }

@@ -2,8 +2,8 @@
   "package": "Route-Conserving S2 Bridge HS-JEPA",
   "status": "pipeline_ready_with_boundary",
   "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
-  "stage_count": 25,
-  "edge_count": 55,
+  "stage_count": 26,
+  "edge_count": 60,
   "stages": [
     {
       "id": "hsjepa_core_architecture",
@@ -205,12 +205,38 @@
       "boundary": "This tests whether action-grade decoding should start from route-frontier selection rather than support-first selection."
     },
     {
+      "id": "route_toxicity_fusion_decoder",
+      "name": "Route-Toxicity Fusion Decoder",
+      "role": "Composes route-frontier action ordering with factorized broad-public and hard-world action-health gating.",
+      "inputs": [
+        "route_frontier_action_decoder_readout.json",
+        "hardworld_toxicity_factorization_sectors.csv",
+        "row-support scores"
+      ],
+      "outputs": [
+        "route_toxicity_fusion_decoder_readout_ko.md",
+        "submission_hsjepa_s2_route_toxicity_fusion_5ac75e44_uploadsafe.csv",
+        "submission_hsjepa_seed_route_toxicity_fusion_ec01d56a_uploadsafe.csv",
+        "submission_hsjepa_open_route_toxicity_fusion_bb0ca49f_uploadsafe.csv",
+        "submission_hsjepa_s2_driver_safe_route_fusion_6adf5b73_uploadsafe.csv",
+        "submission_hsjepa_seed_driver_safe_route_fusion_62429a06_uploadsafe.csv",
+        "submission_hsjepa_open_driver_safe_route_fusion_e50f0669_uploadsafe.csv"
+      ],
+      "evidence": [
+        "Decoder status: route_toxicity_fusion_decoder_alive",
+        "Recommended variant: seed_driver_safe_route_fusion",
+        "Variant scores: [{'variant': 's2_route_toxicity_fusion', 'changed_cells': 8, 'broad_route_z': -0.06361725497399186, 'toxicity_matched_safety_z': 0.0, 'toxicity_matched_fusion_z': 0.00022199529973856787, 'upload_safe': True}, {'variant': 'seed_route_toxicity_fusion', 'changed_cells': 8, 'broad_route_z': -0.05413537720642773, 'toxicity_matched_safety_z': 0.0, 'toxicity_matched_fusion_z': 0.00022199529973856787, 'upload_safe': True}, {'variant': 'open_route_toxicity_fusion', 'changed_cells': 4, 'broad_route_z': -0.16743111973717828, 'toxicity_matched_safety_z': 0.00022199529973856787, 'toxicity_matched_fusion_z': 0.0, 'upload_safe': True}, {'variant': 's2_driver_safe_route_fusion', 'changed_cells': 20, 'broad_route_z': 2.5212391425980725, 'toxicity_matched_safety_z': 1.4350151378530516, 'toxicity_matched_fusion_z': 3.333896510179827, 'upload_safe': True}, {'variant': 'seed_driver_safe_route_fusion', 'changed_cells': 20, 'broad_route_z': 1.956452255410393, 'toxicity_matched_safety_z': 1.1375544203021746, 'toxicity_matched_fusion_z': 4.040831045742473, 'upload_safe': True}, {'variant': 'open_driver_safe_route_fusion', 'changed_cells': 20, 'broad_route_z': 1.2492144363720237, 'toxicity_matched_safety_z': 1.1862432357203119, 'toxicity_matched_fusion_z': 1.8706591048812475, 'upload_safe': True}]"
+      ],
+      "boundary": "This is a competition-adapter action solver; it does not prove private-LB safety or pure OG-only assignment."
+    },
+    {
       "id": "action_decoder_ablation_suite",
       "name": "Action Decoder Ablation Suite",
-      "role": "Ranks toxicity-first, support-first, and route-first decoders as HS-JEPA module ablations.",
+      "role": "Ranks toxicity-first, support-first, route-first, and route-toxicity fusion decoders as HS-JEPA module ablations.",
       "inputs": [
         "row_support_strict_action_decoder_readout.json",
         "route_frontier_action_decoder_readout.json",
+        "route_toxicity_fusion_decoder_readout.json",
         "factorized_toxicity_decoder_stress_audit.json"
       ],
       "outputs": [
@@ -450,7 +476,7 @@
       "evidence": [
         "Adapter status: adapter_ready_with_public_sensor_boundary",
         "Adapter score delta: -0.0084113555",
-        "Big-bet count: 8"
+        "Big-bet count: 9"
       ],
       "boundary": "This adapter is a competition case study; it is not the general HS-JEPA architecture."
     },
@@ -598,6 +624,26 @@
     [
       "route_frontier_action_decoder",
       "action_decoder_ablation_suite"
+    ],
+    [
+      "route_frontier_action_decoder",
+      "route_toxicity_fusion_decoder"
+    ],
+    [
+      "hardworld_toxicity_factorization_probe",
+      "route_toxicity_fusion_decoder"
+    ],
+    [
+      "route_toxicity_fusion_decoder",
+      "action_decoder_ablation_suite"
+    ],
+    [
+      "route_toxicity_fusion_decoder",
+      "sleep_competition_adapter"
+    ],
+    [
+      "route_toxicity_fusion_decoder",
+      "claim_readiness_and_paper_packet"
     ],
     [
       "factorized_toxicity_decoder_stress_audit",
@@ -757,7 +803,7 @@
     "core_status": "core_ready_for_adapter",
     "adapter_status": "adapter_ready_with_public_sensor_boundary",
     "core_adapter_boundary_status": "core_adapter_boundary_verified",
-    "big_bet_count": 8,
+    "big_bet_count": 9,
     "og_only_assignment_probe_status": "og_only_assignment_replacement_not_ready",
     "assignment_gap_decomposition_status": "row_support_is_primary_bottleneck",
     "assignment_gap_mean_row_support_gap": 0.5832137733142038,
