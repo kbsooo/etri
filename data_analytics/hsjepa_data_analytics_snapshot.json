@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "ready",
-  "generatedAt": "2026-06-07T00:00:00+09:00",
+  "generatedAt": "2026-06-11T00:00:00+09:00",
   "datasets": {
     "score_ledger": [
       {
@@ -315,6 +315,18 @@
         "family": "HS-JEPA target assignment stress",
         "worldview": "Q3-only repair versus S2 relief is underidentified; the shared body is the public-loss source.",
         "source": "lb_observation_log.md and h145_report.md"
+      },
+      {
+        "sequence": 27,
+        "observed_stage": "CrossListener",
+        "file": "submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv",
+        "public_lb": 0.5684860446,
+        "best_so_far": 0.5677475939,
+        "delta_vs_previous_best": 0.000738450700000004,
+        "improved_previous_best": false,
+        "family": "HS-JEPA cross-listener transport",
+        "worldview": "Target-listener posterior is useful as a diagnostic, but listener-confirmed shadow release is not enough to beat the H057 action field.",
+        "source": "user-provided public LB on 2026-06-11 and cross_listener_transport_readout.md"
       }
     ],
     "best_scores": [
@@ -347,21 +359,21 @@
       },
       {
         "score_rank": 4,
-        "observed_stage": "H145",
-        "file": "submission_h145_q3repair_2d818e46_uploadsafe.csv",
-        "public_lb": 0.567929641,
-        "family": "HS-JEPA target assignment stress",
-        "note": "H145 Q3 repair-only veto tied H144 exactly at displayed precision.",
-        "source": "lb_observation_log.md and h145_report.md"
-      },
-      {
-        "score_rank": 4,
         "observed_stage": "H144",
         "file": "submission_h144_targetxor_def80b88_uploadsafe.csv",
         "public_lb": 0.567929641,
         "family": "HS-JEPA target assignment stress",
         "note": "H144 target-split XOR tie sensor. Public tied H145, so the branch distinction did not explain the loss.",
         "source": "lb_observation_log.md and h144_report.md"
+      },
+      {
+        "score_rank": 4,
+        "observed_stage": "H145",
+        "file": "submission_h145_q3repair_2d818e46_uploadsafe.csv",
+        "public_lb": 0.567929641,
+        "family": "HS-JEPA target assignment stress",
+        "note": "H145 Q3 repair-only veto tied H144 exactly at displayed precision.",
+        "source": "lb_observation_log.md and h145_report.md"
       },
       {
         "score_rank": 6,
@@ -374,6 +386,15 @@
       },
       {
         "score_rank": 7,
+        "observed_stage": "CrossListener",
+        "file": "submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv",
+        "public_lb": 0.5684860446,
+        "family": "HS-JEPA cross-listener transport",
+        "note": "Cross-listener transport sensor. Listener-confirmed shadow cells were locally coherent but public did not reward the listener-calibrated release.",
+        "source": "user-provided public LB on 2026-06-11 and cross_listener_transport_readout.md"
+      },
+      {
+        "score_rank": 8,
         "observed_stage": "H088",
         "file": "submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv",
         "public_lb": 0.5684942019,
@@ -382,7 +403,7 @@
         "source": "lb_observation_log.md and h088_report.md"
       },
       {
-        "score_rank": 8,
+        "score_rank": 9,
         "observed_stage": "E247",
         "file": "submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv",
         "public_lb": 0.5761589494,
@@ -391,7 +412,7 @@
         "source": "analysis_outputs/public_probe_observations.csv"
       },
       {
-        "score_rank": 9,
+        "score_rank": 10,
         "observed_stage": "E256",
         "file": "submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv",
         "public_lb": 0.5762805676,
@@ -400,7 +421,7 @@
         "source": "analysis_outputs/public_probe_observations.csv"
       },
       {
-        "score_rank": 10,
+        "score_rank": 11,
         "observed_stage": "E368",
         "file": "submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv",
         "public_lb": 0.576290429,
@@ -409,21 +430,12 @@
         "source": "analysis_outputs/public_probe_observations.csv"
       },
       {
-        "score_rank": 11,
+        "score_rank": 12,
         "observed_stage": "E95",
         "file": "submission_e95_hardtail_541e3973.csv",
         "public_lb": 0.5762913298,
         "family": "Pre-HS baseline / other",
         "note": "Previous public frontier; validates E72-adverse hard-tail localization with E86-to-E85 fallback.",
-        "source": "analysis_outputs/public_probe_observations.csv"
-      },
-      {
-        "score_rank": 12,
-        "observed_stage": "E101",
-        "file": "submission_e101_q2s3tail_177569bc.csv",
-        "public_lb": 0.576300366,
-        "family": "Pre-HS baseline / other",
-        "note": "Resolved E95-relative Q2/S3 rollback sensor; small_loss versus E95 (+0.0000090362) but still beats mixmin (-0.0000062745); closes E108 and same-line automatic followups.",
         "source": "analysis_outputs/public_probe_observations.csv"
       }
     ],
@@ -1182,6 +1194,16 @@
         "date": "2026-06-06",
         "file_type": "root_submission",
         "count": 1
+      },
+      {
+        "date": "2026-06-09",
+        "file_type": "root_submission",
+        "count": 28
+      },
+      {
+        "date": "2026-06-10",
+        "file_type": "root_submission",
+        "count": 38
       }
     ]
   }

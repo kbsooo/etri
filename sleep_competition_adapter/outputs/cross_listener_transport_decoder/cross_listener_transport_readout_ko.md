@@ -12,14 +12,20 @@ listener posterior는 action을 직접 생성하지 않고, route/fusion/core가
 - Recommended big-bet sensor: `submission_hsjepa_cross_listener_transport_objective_listener_island_probe_8d2046bf_uploadsafe.csv`
 - Prior negative sensor: target-listener lift public LB `0.5680255019`
 
+## Observed Public Sensors
+
+| Variant | Public LB | Interpretation | File |
+| --- | ---: | --- | --- |
+| `listener_confirmed_shadow` | 0.5684860446 | listener-calibrated shadow release did not beat H057; keep listener posterior as a diagnostic/boundary feature, not as the final release gate | `submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv` |
+
 ## Ranking
 
-| Rank | Variant | Cells | Extra | Transport z | Listener z | S2 z | Action z | Priority | File |
-| ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| 1 | `listener_confirmed_shadow` | 23 | 4 | 3.2686 | 3.3448 | 3.4100 | 1.6251 | 0.9427 | `submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv` |
-| 2 | `objective_listener_island_probe` | 23 | 4 | 3.2686 | 3.3448 | 3.4100 | 1.6251 | 0.9427 | `submission_hsjepa_cross_listener_transport_objective_listener_island_probe_8d2046bf_uploadsafe.csv` |
-| 3 | `row_s2_transport_pressure` | 23 | 4 | 3.2686 | 3.3448 | 3.4100 | 1.6251 | 0.9427 | `submission_hsjepa_cross_listener_transport_row_s2_transport_pressure_d94f8a8e_uploadsafe.csv` |
-| 4 | `strict_listener_recalibrated` | 19 | 0 | -0.8796 | 0.0000 | 0.7008 | -0.7147 | 0.0125 | `submission_hsjepa_cross_listener_transport_strict_listener_recalibrated_217acb61_uploadsafe.csv` |
+| Rank | Variant | Cells | Extra | Transport z | Listener z | S2 z | Action z | Public LB | Priority | File |
+| ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| 1 | `listener_confirmed_shadow` | 23 | 4 | 3.2686 | 3.3448 | 3.4100 | 1.6251 | 0.5684860446 | 0.9427 | `submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv` |
+| 2 | `objective_listener_island_probe` | 23 | 4 | 3.2686 | 3.3448 | 3.4100 | 1.6251 | n/a | 0.9427 | `submission_hsjepa_cross_listener_transport_objective_listener_island_probe_8d2046bf_uploadsafe.csv` |
+| 3 | `row_s2_transport_pressure` | 23 | 4 | 3.2686 | 3.3448 | 3.4100 | 1.6251 | n/a | 0.9427 | `submission_hsjepa_cross_listener_transport_row_s2_transport_pressure_d94f8a8e_uploadsafe.csv` |
+| 4 | `strict_listener_recalibrated` | 19 | 0 | -0.8796 | 0.0000 | 0.7008 | -0.7147 | n/a | 0.0125 | `submission_hsjepa_cross_listener_transport_strict_listener_recalibrated_217acb61_uploadsafe.csv` |
 
 ## What This Tests
 

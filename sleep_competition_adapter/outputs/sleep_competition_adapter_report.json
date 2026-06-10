@@ -12572,6 +12572,7 @@
           }
         }
       },
+      "public_lb_observed": 0.5684860446,
       "priority": 0.9427271560571463,
       "config": {
         "name": "listener_confirmed_shadow",
@@ -12671,6 +12672,7 @@
           }
         }
       },
+      "public_lb_observed": null,
       "priority": 0.9427271560571463,
       "config": {
         "name": "objective_listener_island_probe",
@@ -12780,6 +12782,7 @@
             }
           }
         },
+        "public_lb_observed": 0.5684860446,
         "priority": 0.9427271560571463,
         "config": {
           "name": "listener_confirmed_shadow",
@@ -12879,6 +12882,7 @@
             }
           }
         },
+        "public_lb_observed": null,
         "priority": 0.9427271560571463,
         "config": {
           "name": "objective_listener_island_probe",
@@ -12980,6 +12984,7 @@
             }
           }
         },
+        "public_lb_observed": null,
         "priority": 0.9427271560571463,
         "config": {
           "name": "row_s2_transport_pressure",
@@ -13041,7 +13046,8 @@
         "safety_boundary": "jury_balance_supported",
         "lb_sensor_priority": 1.394366527938867,
         "module_ablation_interpretation": "Treats route-first and factorized action-health as independent listeners. If this wins LB, HS-JEPA action decoding is a cross-decoder responsibility jury.",
-        "ablation_rank": 1
+        "ablation_rank": 1,
+        "public_delta_vs_best": null
       },
       {
         "family": "decoder_order_jury",
@@ -13064,7 +13070,8 @@
         "safety_boundary": "jury_balance_supported",
         "lb_sensor_priority": 1.394366527938867,
         "module_ablation_interpretation": "Treats route-first and factorized action-health as independent listeners. If this wins LB, HS-JEPA action decoding is a cross-decoder responsibility jury.",
-        "ablation_rank": 2
+        "ablation_rank": 2,
+        "public_delta_vs_best": null
       },
       {
         "family": "core_release_ablation",
@@ -13087,7 +13094,8 @@
         "safety_boundary": "core_invariant_supported",
         "lb_sensor_priority": 1.1829596076794129,
         "module_ablation_interpretation": "Removes or isolates HS-JEPA core modules on 29 real adapter cells. If a removed-module candidate beats full-core on public LB, that module is over-constraining the adapter; if it loses, the full HS-JEPA release boundary is empirically supported.",
-        "ablation_rank": 3
+        "ablation_rank": 3,
+        "public_delta_vs_best": null
       }
     ],
     "findings": [
@@ -13153,9 +13161,9 @@
       },
       {
         "claim": "Target-listener posterior is a transport calibrator, not an action generator.",
-        "evidence": "Best cross-listener row is listener_confirmed_shadow with transport_z=3.2686, listener_z=3.3448, action_z=1.6251, and priority=1.1810.",
-        "status": "alive",
-        "next_test": "If it beats direct target-listener lift, keep listener posterior as a release/calibration prior and stop using it as a direct action generator."
+        "evidence": "Diagnostic cross-listener row is listener_confirmed_shadow with transport_z=3.2686, listener_z=3.3448, action_z=1.6251, priority=1.1367, observed_public_lb=0.5684860446, and delta_vs_best=0.0007384507.",
+        "status": "failed_as_release_gate",
+        "next_test": "Do not use listener-confirmed shadow release as the final gate. Use listener posterior as an anti-listener/toxicity diagnostic against H057-positive row-state cells."
       }
     ]
   },

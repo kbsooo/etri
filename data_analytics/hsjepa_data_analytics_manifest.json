@@ -2,7 +2,7 @@
   "version": 1,
   "surface": "report",
   "title": "HS-JEPA 데이터·점수 분석 리포트",
-  "generatedAt": "2026-06-07T00:00:00+09:00",
+  "generatedAt": "2026-06-11T00:00:00+09:00",
   "description": "수면 생활습관 예측 대회 HS-JEPA 실험의 public LB, 데이터 범위, action-decoder 병목을 한국어로 정리한 Data Analytics 리포트",
   "sources": [
     {
@@ -44,7 +44,7 @@
     {
       "id": "summary",
       "type": "markdown",
-      "body": "## Executive Summary\n\n- **가장 중요한 성과는 H012/H057의 구조 발견이다.** E247 0.5761589494에서 H012 0.5681234831로 크게 내려왔고, H057은 0.5677475939로 현재 best다.\n- **현재 병목은 latent 발견보다 action 안전성이다.** H088은 로컬 proxy가 좋아 보여도 0.5684942019로 후퇴해, hard-world/Pareto head가 action-grade decoder가 아님을 보여줬다.\n- **H144/H145 tie는 micro branch가 아니라 common action body가 문제였다는 증거다.** 두 파일이 0.567929641로 같아 row135 Q3 vs row207 S2 선택만으로는 H057을 넘지 못한다.\n- **오늘 기준 산출물은 재현성 쪽이 강하다.** hs_jepa_end_to_end.py가 H057 hash 7cde1a77을 재현하며, HS-JEPA를 코드로 설명할 수 있게 됐다."
+      "body": "## Executive Summary\n\n- **가장 중요한 성과는 H012/H057의 구조 발견이다.** E247 0.5761589494에서 H012 0.5681234831로 크게 내려왔고, H057은 0.5677475939로 현재 best다.\n- **현재 병목은 latent 발견보다 action 안전성이다.** H088은 로컬 proxy가 좋아 보여도 0.5684942019로 후퇴해, hard-world/Pareto head가 action-grade decoder가 아님을 보여줬다.\n- **H144/H145 tie는 micro branch가 아니라 common action body가 문제였다는 증거다.** 두 파일이 0.567929641로 같아 row135 Q3 vs row207 S2 선택만으로는 H057을 넘지 못한다.\n- **Cross-listener transport도 final gate는 아니었다.** listener-confirmed shadow는 0.5684860446으로 H057을 넘지 못해, listener posterior는 action 생성기보다 diagnostic/boundary feature로 남겨야 한다.\n- **현재 산출물은 재현성 쪽이 강하다.** hs_jepa_end_to_end.py가 H057 hash 7cde1a77을 재현하며, HS-JEPA를 코드로 설명할 수 있게 됐다."
     },
     {
       "id": "score_chart_intro",
@@ -79,7 +79,7 @@
     {
       "id": "daily",
       "type": "markdown",
-      "body": "## 날짜별 정리\n\n### 2026-06-04\nH012/H042/H057 public sensor를 정리했다. 결론은 Q2 support row가 단순 Q2 보정이 아니라 hidden human-state marker라는 것.\n\n### 2026-06-05\nH088/H144/H145 negative sensor를 기준으로 병목을 재정의했다. 결론은 context encoder보다 safe row-target assignment decoder가 병목이라는 것.\n\n### 2026-06-07\nH057 재현 가능한 end-to-end HS-JEPA 코드를 만들었고, Data Analytics report로 점수/데이터/실험을 정리했다."
+      "body": "## 날짜별 정리\n\n### 2026-06-04\nH012/H042/H057 public sensor를 정리했다. 결론은 Q2 support row가 단순 Q2 보정이 아니라 hidden human-state marker라는 것.\n\n### 2026-06-05\nH088/H144/H145 negative sensor를 기준으로 병목을 재정의했다. 결론은 context encoder보다 safe row-target assignment decoder가 병목이라는 것.\n\n### 2026-06-07\nH057 재현 가능한 end-to-end HS-JEPA 코드를 만들었고, Data Analytics report로 점수/데이터/실험을 정리했다.\n\n### 2026-06-11\nCross-listener transport 후보가 0.5684860446으로 후퇴했다. 결론은 listener posterior를 final action gate로 쓰지 말고, H057-positive row-state와 충돌하는 cell을 찾는 anti-listener/toxicity diagnostic으로 써야 한다는 것."
     },
     {
       "id": "day_activity_block",
@@ -89,7 +89,7 @@
     {
       "id": "next_steps",
       "type": "markdown",
-      "body": "## Recommended Next Steps\n\n1. H057 45개 row를 seed로 유지하고, V131C cohort-relative outlier를 context view로 추가한다.\n2. cohort outlier를 직접 Q2/Q3/S2에 꽂지 말고, action-health와 toxicity gate 입력으로 사용한다.\n3. H088-positive 방향을 forbidden/toxic diagnostic으로 쓰고, H057-positive 방향과 동시에 만족하는 assignment field를 찾는다.\n4. Gemini embedding은 논문/오픈소스 재현성 경로에서 제외하고, TF-IDF/SVD 또는 공개 sentence-transformer 계열로 semantic context encoder를 대체한다."
+      "body": "## Recommended Next Steps\n\n1. H057 45개 row를 seed로 유지하고, V131C cohort-relative outlier를 context view로 추가한다.\n2. cohort outlier를 직접 Q2/Q3/S2에 꽂지 말고, action-health와 toxicity gate 입력으로 사용한다.\n3. H088-positive 방향과 cross-listener-positive 방향을 forbidden/toxic diagnostic으로 쓰고, H057-positive 방향과 동시에 만족하는 assignment field를 찾는다.\n4. Gemini embedding은 논문/오픈소스 재현성 경로에서 제외하고, TF-IDF/SVD 또는 공개 sentence-transformer 계열로 semantic context encoder를 대체한다."
     },
     {
       "id": "caveats",

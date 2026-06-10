@@ -18,7 +18,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data_analytics"
-TODAY = "2026-06-07"
+TODAY = "2026-06-11"
 
 
 LATE_PUBLIC_OBSERVATIONS = [
@@ -76,6 +76,15 @@ LATE_PUBLIC_OBSERVATIONS = [
         "source": "lb_observation_log.md and h145_report.md",
         "observed_stage": "H145",
     },
+    {
+        "file": "submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv",
+        "public_lb": 0.5684860446,
+        "note": "Cross-listener transport sensor. Listener-confirmed shadow cells were locally coherent but public did not reward the listener-calibrated release.",
+        "family": "HS-JEPA cross-listener transport",
+        "worldview": "Target-listener posterior is useful as a diagnostic, but listener-confirmed shadow release is not enough to beat the H057 action field.",
+        "source": "user-provided public LB on 2026-06-11 and cross_listener_transport_readout.md",
+        "observed_stage": "CrossListener",
+    },
 ]
 
 
@@ -110,6 +119,16 @@ DAILY_REPORTS = {
         ],
         "next_action": "오픈소스 semantic/cohort encoder를 HS-JEPA context view로 만들고, public-toxic 방향과 H057-positive 방향을 동시에 보는 row-target solver를 설계한다.",
     },
+    "2026-06-11": {
+        "title": "2026-06-11 Cross-Listener Transport 결과 해석",
+        "summary": "Cross-listener transport는 listener posterior를 직접 action generator가 아니라 boundary prior로 쓰는 실험이었지만, public LB 0.5684860446으로 H057을 넘지 못했다.",
+        "findings": [
+            "점수는 H088 0.5684942019와 거의 같은 손실대다. 즉 listener-calibrated shadow release는 broad Pareto/hard-world gate와 비슷한 public-toxic action 폭을 가진다.",
+            "Direct listener-lift 0.5680255019보다는 나빠졌기 때문에, target-listener posterior를 안전한 release gate로 바꾸는 현재 transport 식은 충분하지 않다.",
+            "다만 0.570+로 붕괴하지 않았으므로 listener가 완전히 무의미한 것은 아니다. listener는 action 생성기나 최종 gate가 아니라, strict jury/core-health 후보의 diagnostic feature로 남기는 게 맞다.",
+        ],
+        "next_action": "다음 big bet은 listener 추가가 아니라, H057-positive row-state와 listener/toxicity가 충돌하는 cell을 명시적으로 금지하는 anti-listener toxicity field를 만든다.",
+    },
 }
 
 
@@ -137,6 +156,8 @@ def read_public_score_ledger() -> pd.DataFrame:
 
 def classify_family(filename: str) -> str:
     text = filename.lower()
+    if "cross_listener_transport" in text:
+        return "HS-JEPA cross-listener transport"
     if "h057" in text:
         return "HS-JEPA row-state"
     if "h012" in text or "public_equation" in text:
@@ -467,7 +488,8 @@ def build_manifest_and_snapshot(
                     "- **가장 중요한 성과는 H012/H057의 구조 발견이다.** E247 0.5761589494에서 H012 0.5681234831로 크게 내려왔고, H057은 0.5677475939로 현재 best다.\n"
                     "- **현재 병목은 latent 발견보다 action 안전성이다.** H088은 로컬 proxy가 좋아 보여도 0.5684942019로 후퇴해, hard-world/Pareto head가 action-grade decoder가 아님을 보여줬다.\n"
                     "- **H144/H145 tie는 micro branch가 아니라 common action body가 문제였다는 증거다.** 두 파일이 0.567929641로 같아 row135 Q3 vs row207 S2 선택만으로는 H057을 넘지 못한다.\n"
-                    "- **오늘 기준 산출물은 재현성 쪽이 강하다.** hs_jepa_end_to_end.py가 H057 hash 7cde1a77을 재현하며, HS-JEPA를 코드로 설명할 수 있게 됐다."
+                    "- **Cross-listener transport도 final gate는 아니었다.** listener-confirmed shadow는 0.5684860446으로 H057을 넘지 못해, listener posterior는 action 생성기보다 diagnostic/boundary feature로 남겨야 한다.\n"
+                    "- **현재 산출물은 재현성 쪽이 강하다.** hs_jepa_end_to_end.py가 H057 hash 7cde1a77을 재현하며, HS-JEPA를 코드로 설명할 수 있게 됐다."
                 ),
             },
             {
@@ -498,7 +520,9 @@ def build_manifest_and_snapshot(
                     "### 2026-06-05\n"
                     "H088/H144/H145 negative sensor를 기준으로 병목을 재정의했다. 결론은 context encoder보다 safe row-target assignment decoder가 병목이라는 것.\n\n"
                     "### 2026-06-07\n"
-                    "H057 재현 가능한 end-to-end HS-JEPA 코드를 만들었고, Data Analytics report로 점수/데이터/실험을 정리했다."
+                    "H057 재현 가능한 end-to-end HS-JEPA 코드를 만들었고, Data Analytics report로 점수/데이터/실험을 정리했다.\n\n"
+                    "### 2026-06-11\n"
+                    "Cross-listener transport 후보가 0.5684860446으로 후퇴했다. 결론은 listener posterior를 final action gate로 쓰지 말고, H057-positive row-state와 충돌하는 cell을 찾는 anti-listener/toxicity diagnostic으로 써야 한다는 것."
                 ),
             },
             {"id": "day_activity_block", "type": "chart", "chartId": "day_activity"},
@@ -509,7 +533,7 @@ def build_manifest_and_snapshot(
                     "## Recommended Next Steps\n\n"
                     "1. H057 45개 row를 seed로 유지하고, V131C cohort-relative outlier를 context view로 추가한다.\n"
                     "2. cohort outlier를 직접 Q2/Q3/S2에 꽂지 말고, action-health와 toxicity gate 입력으로 사용한다.\n"
-                    "3. H088-positive 방향을 forbidden/toxic diagnostic으로 쓰고, H057-positive 방향과 동시에 만족하는 assignment field를 찾는다.\n"
+                    "3. H088-positive 방향과 cross-listener-positive 방향을 forbidden/toxic diagnostic으로 쓰고, H057-positive 방향과 동시에 만족하는 assignment field를 찾는다.\n"
                     "4. Gemini embedding은 논문/오픈소스 재현성 경로에서 제외하고, TF-IDF/SVD 또는 공개 sentence-transformer 계열로 semantic context encoder를 대체한다."
                 ),
             },

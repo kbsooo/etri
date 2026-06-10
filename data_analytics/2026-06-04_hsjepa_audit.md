@@ -13,11 +13,11 @@
 | 1 | H057 | submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv | 0.5677475939 | -0.0001572309 | HS-JEPA row-state decoder |
 | 2 | H050 | submission_h050_target_route_phase_b140216b_uploadsafe.csv | 0.5679048248 | +0.0000000000 | HS-JEPA target route stress |
 | 2 | H042 | submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv | 0.5679048248 | -0.0002186583 | HS-JEPA public equation |
-| 4 | H145 | submission_h145_q3repair_2d818e46_uploadsafe.csv | 0.5679296410 | +0.0001820471 | HS-JEPA target assignment stress |
 | 4 | H144 | submission_h144_targetxor_def80b88_uploadsafe.csv | 0.5679296410 | +0.0001820471 | HS-JEPA target assignment stress |
+| 4 | H145 | submission_h145_q3repair_2d818e46_uploadsafe.csv | 0.5679296410 | +0.0001820471 | HS-JEPA target assignment stress |
 | 6 | H012 | submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv | 0.5681234831 | -0.0080354663 | HS-JEPA public equation |
-| 7 | H088 | submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv | 0.5684942019 | +0.0007466080 | HS-JEPA action toxicity stress |
-| 8 | E247 | submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv | 0.5761589494 | -0.0001323804 | Feature NN smoothing |
+| 7 | CrossListener | submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv | 0.5684860446 | +0.0007384507 | HS-JEPA cross-listener transport |
+| 8 | H088 | submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv | 0.5684942019 | +0.0007466080 | HS-JEPA action toxicity stress |
 
 ## 분석 결과
 

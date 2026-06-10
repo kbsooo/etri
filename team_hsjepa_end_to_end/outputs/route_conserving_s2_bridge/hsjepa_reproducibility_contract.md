@@ -14,7 +14,7 @@ OG raw data != public-LB sensor != generated action artifact
 
 - Contract passed: `True`
 - Required missing records: `0`
-- Public ledger rows: `26`
+- Public ledger rows: `27`
 - Public ledger best LB: `0.5677475939`
 
 ## Category Summary

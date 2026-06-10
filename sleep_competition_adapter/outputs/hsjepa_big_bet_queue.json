@@ -463,6 +463,7 @@
               }
             }
           },
+          "public_lb_observed": 0.5684860446,
           "priority": 0.9427271560571463,
           "config": {
             "name": "listener_confirmed_shadow",
@@ -562,6 +563,7 @@
               }
             }
           },
+          "public_lb_observed": null,
           "priority": 0.9427271560571463,
           "config": {
             "name": "objective_listener_island_probe",

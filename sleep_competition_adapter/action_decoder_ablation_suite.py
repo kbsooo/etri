@@ -100,6 +100,15 @@ def public_score_map() -> dict[str, float]:
     }
 
 
+def best_public_lb() -> float | None:
+    if not LEDGER_CSV.exists():
+        return None
+    ledger = pd.read_csv(LEDGER_CSV)
+    if "public_lb" not in ledger.columns or ledger["public_lb"].dropna().empty:
+        return None
+    return float(ledger["public_lb"].min())
+
+
 def base_row(
     *,
     family: str,
@@ -632,8 +641,12 @@ def score_rows(rows: list[dict[str, Any]]) -> pd.DataFrame:
     upload_component = frame["upload_safe"].astype(float)
     toxicity_component = frame["toxicity_clear"].fillna(False).astype(float)
     public_component = pd.Series([0.0] * len(frame), index=frame.index)
-    if frame["public_lb_observed"].notna().any():
-        public_component = rank01(-frame["public_lb_observed"], higher=True).where(frame["public_lb_observed"].notna(), 0.0)
+    public_best = best_public_lb()
+    if public_best is not None and frame["public_lb_observed"].notna().any():
+        public_delta = public_best - frame["public_lb_observed"]
+        public_component = (public_delta / 0.001).clip(lower=-1.0, upper=1.0).where(
+            frame["public_lb_observed"].notna(), 0.0
+        )
 
     route_missing_penalty = frame["route_z"].isna().astype(float) * 0.20
     route_tradeoff_penalty = frame["route_boundary"].eq("route_tradeoff").astype(float) * 0.35
@@ -656,6 +669,8 @@ def score_rows(rows: list[dict[str, Any]]) -> pd.DataFrame:
         kind="mergesort",
     ).reset_index(drop=True)
     frame["ablation_rank"] = range(1, len(frame) + 1)
+    if public_best is not None:
+        frame["public_delta_vs_best"] = frame["public_lb_observed"] - public_best
     return frame
 
 
@@ -681,6 +696,33 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
     best_core_ablation = core_ablation_rows.iloc[0].to_dict() if not core_ablation_rows.empty else {}
     best_core_health = core_health_rows.iloc[0].to_dict() if not core_health_rows.empty else {}
     best_cross_listener = cross_listener_rows.iloc[0].to_dict() if not cross_listener_rows.empty else {}
+    observed_cross_listener_rows = cross_listener_rows.loc[cross_listener_rows["public_lb_observed"].notna()]
+    diagnostic_cross_listener = (
+        observed_cross_listener_rows.iloc[0].to_dict()
+        if not observed_cross_listener_rows.empty
+        else best_cross_listener
+    )
+    public_best = best_public_lb()
+    cross_lb = maybe_float(diagnostic_cross_listener.get("public_lb_observed")) if diagnostic_cross_listener else None
+    cross_delta = (
+        cross_lb - public_best
+        if cross_lb is not None and public_best is not None
+        else None
+    )
+    cross_public_status = (
+        "failed_as_release_gate"
+        if cross_delta is not None and cross_delta > 0
+        else "public_supported"
+        if cross_delta is not None
+        else "alive_unobserved"
+        if diagnostic_cross_listener
+        else "missing"
+    )
+    cross_next_test = (
+        "Do not use listener-confirmed shadow release as the final gate. Use listener posterior as an anti-listener/toxicity diagnostic against H057-positive row-state cells."
+        if cross_public_status == "failed_as_release_gate"
+        else "If it beats direct target-listener lift, keep listener posterior as a release/calibration prior and stop using it as a direct action generator."
+    )
 
     return [
         {
@@ -777,12 +819,13 @@ def build_findings(frame: pd.DataFrame) -> list[dict[str, Any]]:
         {
             "claim": "Target-listener posterior is a transport calibrator, not an action generator.",
             "evidence": (
-                f"Best cross-listener row is {best_cross_listener.get('variant')} with transport_z={fmt(best_cross_listener.get('route_z'))}, "
-                f"listener_z={fmt(best_cross_listener.get('matched_score_z'))}, action_z={fmt(best_cross_listener.get('safety_z'))}, "
-                f"and priority={fmt(best_cross_listener.get('lb_sensor_priority'))}."
+                f"Diagnostic cross-listener row is {diagnostic_cross_listener.get('variant')} with transport_z={fmt(diagnostic_cross_listener.get('route_z'))}, "
+                f"listener_z={fmt(diagnostic_cross_listener.get('matched_score_z'))}, action_z={fmt(diagnostic_cross_listener.get('safety_z'))}, "
+                f"priority={fmt(diagnostic_cross_listener.get('lb_sensor_priority'))}, observed_public_lb={fmt(cross_lb, 10)}, "
+                f"and delta_vs_best={fmt(cross_delta, 10)}."
             ),
-            "status": "alive" if best_cross_listener else "missing",
-            "next_test": "If it beats direct target-listener lift, keep listener posterior as a release/calibration prior and stop using it as a direct action generator.",
+            "status": cross_public_status,
+            "next_test": cross_next_test,
         },
     ]
 

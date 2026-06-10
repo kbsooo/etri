@@ -1,8 +1,8 @@
-# 2026-06-05 HS-JEPA 병목 재정의
+# 2026-06-11 Cross-Listener Transport 결과 해석
 
 ## Executive Summary
 
-**핵심 판단:** H088과 H144/H145는 숨은 상태를 찾는 문제보다, 그 상태를 안전한 row-target action으로 번역하는 문제가 병목임을 보여준다.
+**핵심 판단:** Cross-listener transport는 listener posterior를 직접 action generator가 아니라 boundary prior로 쓰는 실험이었지만, public LB 0.5684860446으로 H057을 넘지 못했다.
 
 **현재 public best:** `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv` = `0.5677475939`
 
@@ -21,9 +21,9 @@
 
 ## 분석 결과
 
-- H088은 로컬 dual-head Pareto gate가 좋아 보여도 public LB가 0.5684942019로 후퇴했다. hard-world head는 action head가 아니라 toxic/collapse stress로 써야 한다.
-- H144/H145가 둘 다 0.567929641에 묶인 것은 target-level micro-branch보다 공통 action body가 문제였다는 뜻이다.
-- V131C식 cohort-relative anomaly는 좋은 context view지만, 바로 Q2/Q3/S2를 보정하는 decoder가 아니라 HS-JEPA의 action-health 입력으로 들어가야 한다.
+- 점수는 H088 0.5684942019와 거의 같은 손실대다. 즉 listener-calibrated shadow release는 broad Pareto/hard-world gate와 비슷한 public-toxic action 폭을 가진다.
+- Direct listener-lift 0.5680255019보다는 나빠졌기 때문에, target-listener posterior를 안전한 release gate로 바꾸는 현재 transport 식은 충분하지 않다.
+- 다만 0.570+로 붕괴하지 않았으므로 listener가 완전히 무의미한 것은 아니다. listener는 action 생성기나 최종 gate가 아니라, strict jury/core-health 후보의 diagnostic feature로 남기는 게 맞다.
 
 ## 데이터/실험 범위
 
@@ -34,7 +34,7 @@
 
 ## 다음 행동
 
-Cohort-relative outlier, human-social route, source responsibility를 모두 action-health/assignment solver 입력으로 통합한다.
+다음 big bet은 listener 추가가 아니라, H057-positive row-state와 listener/toxicity가 충돌하는 cell을 명시적으로 금지하는 anti-listener toxicity field를 만든다.
 
 ## Caveat
 

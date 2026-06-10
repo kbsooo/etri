@@ -492,6 +492,7 @@ def variant_priority(stress: dict[str, Any], validation: dict[str, Any]) -> floa
 
 
 def build_markdown(readout: dict[str, Any]) -> str:
+    observed = readout.get("observed_public_sensors", [])
     lines = [
         "# Cross-Listener Transport Decoder",
         "",
@@ -507,11 +508,38 @@ def build_markdown(readout: dict[str, Any]) -> str:
         f"- Recommended big-bet sensor: `{readout['verdict']['recommended_big_bet']['submission_file']}`",
         f"- Prior negative sensor: target-listener lift public LB `{readout['negative_sensor']['public_lb']}`",
         "",
+    ]
+    if observed:
+        lines.extend(
+            [
+                "## Observed Public Sensors",
+                "",
+                "| Variant | Public LB | Interpretation | File |",
+                "| --- | ---: | --- | --- |",
+            ]
+        )
+        for item in observed:
+            lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        f"`{item['variant']}`",
+                        fmt(item.get("public_lb"), 10),
+                        item["interpretation"],
+                        f"`{item['submission_file']}`",
+                    ]
+                )
+                + " |"
+            )
+        lines.append("")
+    lines.extend(
+        [
         "## Ranking",
         "",
-        "| Rank | Variant | Cells | Extra | Transport z | Listener z | S2 z | Action z | Priority | File |",
-        "| ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
-    ]
+        "| Rank | Variant | Cells | Extra | Transport z | Listener z | S2 z | Action z | Public LB | Priority | File |",
+        "| ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
+        ]
+    )
     for item in readout["ranking"]:
         tests = item["stress"]["tests"]
         actual = item["stress"]["actual"]
@@ -527,6 +555,7 @@ def build_markdown(readout: dict[str, Any]) -> str:
                     fmt(tests.get("mean_listener_score", {}).get("z")),
                     fmt(tests.get("mean_row_s2_score", {}).get("z")),
                     fmt(tests.get("mean_action_score", {}).get("z")),
+                    fmt(item.get("public_lb_observed"), 10),
                     fmt(item["priority"]),
                     f"`{item['submission_file']}`",
                 ]
@@ -562,6 +591,7 @@ def run() -> dict[str, Any]:
         for rec in stress["null_rows"]:
             rec["variant"] = config.name
             null_rows.append(rec)
+        public_lb_observed = load_public_score(root_path.name)
         item = {
             "variant": config.name,
             "status": "upload_safe" if validation.get("upload_safe") else "invalid",
@@ -571,6 +601,7 @@ def run() -> dict[str, Any]:
             "validation": validation,
             "selected_cells": int(len(selected)),
             "stress": {key: value for key, value in stress.items() if key != "null_rows"},
+            "public_lb_observed": public_lb_observed,
             "priority": variant_priority(stress, validation),
             "config": asdict(config),
         }
@@ -580,6 +611,20 @@ def run() -> dict[str, Any]:
     ranking = sorted(ranking, key=lambda item: item["priority"], reverse=True)
     for idx, item in enumerate(ranking, start=1):
         item["rank"] = idx
+    observed_public = [
+        {
+            "variant": item["variant"],
+            "submission_file": item["submission_file"],
+            "public_lb": item["public_lb_observed"],
+            "interpretation": (
+                "listener-calibrated shadow release did not beat H057; keep listener posterior as a diagnostic/boundary feature, not as the final release gate"
+                if item["variant"] == "listener_confirmed_shadow"
+                else "public-observed cross-listener variant"
+            ),
+        }
+        for item in ranking
+        if item.get("public_lb_observed") is not None
+    ]
     readout = {
         "experiment": "Cross-Listener Transport Decoder",
         "architecture_role": "adapter-side listener transport calibrator",
@@ -596,6 +641,7 @@ def run() -> dict[str, Any]:
             "claim": "Cross-listener evidence should calibrate route/fusion/core actions, not generate actions by itself.",
             "failure_interpretation": "If this loses to strict jury/core-health, listener posterior stays diagnostic and should not control action release.",
         },
+        "observed_public_sensors": observed_public,
         "ranking": ranking,
         "outputs": {
             "cells": str(CELL_CSV.resolve()),

@@ -36,7 +36,7 @@
       "gate": "reproducibility_contract",
       "status": "PASS",
       "passed": true,
-      "evidence": "required missing 0, public ledger rows 26, raw/source records 249",
+      "evidence": "required missing 0, public ledger rows 27, raw/source records 249",
       "boundary": "The team runner is reproducible from local artifacts, but it explicitly uses a public-LB sensor."
     },
     {
@@ -55,7 +55,7 @@
     }
   ],
   "public_breakthrough": {
-    "ledger_rows": 26,
+    "ledger_rows": 27,
     "pre_public_equation_best_public_lb": 0.5761589494,
     "public_equation_breakthrough_public_lb": 0.5681234831,
     "public_equation_breakthrough_file": "submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv",
