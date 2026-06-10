@@ -10,7 +10,8 @@ historical experiment version names.  It executes:
 4. Reproducibility contract.
 5. Architecture readiness report.
 6. Paper method packet.
-7. A compact handoff report for paper and competition discussion.
+7. Pipeline manifest.
+8. A compact handoff report for paper and competition discussion.
 """
 
 from __future__ import annotations
@@ -42,6 +43,8 @@ READINESS_MD = OUT / "hsjepa_architecture_readiness_report.md"
 READINESS_JSON = OUT / "hsjepa_architecture_readiness_report.json"
 PAPER_PACKET_MD = OUT / "hsjepa_paper_method_packet_ko.md"
 PAPER_PACKET_JSON = OUT / "hsjepa_paper_method_packet.json"
+PIPELINE_MD = OUT / "hsjepa_pipeline_manifest_ko.md"
+PIPELINE_JSON = OUT / "hsjepa_pipeline_manifest.json"
 
 
 def run_command(args: list[str]) -> dict[str, object]:
@@ -206,6 +209,14 @@ def build_handoff(
             "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_paper_method_packet_ko.md",
             "```",
             "",
+            "## Pipeline Manifest",
+            "",
+            "OG 데이터에서 public sensor, latent/context, route decoder, submission, paper packet까지 이어지는 역할 기반 pipeline:",
+            "",
+            "```text",
+            "team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_pipeline_manifest_ko.md",
+            "```",
+            "",
         ]
     )
 
@@ -218,6 +229,7 @@ def run(refresh: bool = False) -> dict[str, object]:
         [sys.executable, str(HERE / "inspect_hsjepa_reproducibility_contract.py")],
         [sys.executable, str(HERE / "build_hsjepa_architecture_readiness_report.py")],
         [sys.executable, str(HERE / "build_hsjepa_paper_method_packet.py")],
+        [sys.executable, str(HERE / "build_hsjepa_pipeline_manifest.py")],
     ]
     if refresh:
         commands[0].append("--refresh")
@@ -246,6 +258,8 @@ def run(refresh: bool = False) -> dict[str, object]:
         "architecture_readiness_json": str(READINESS_JSON.resolve()),
         "paper_method_packet_md": str(PAPER_PACKET_MD.resolve()),
         "paper_method_packet_json": str(PAPER_PACKET_JSON.resolve()),
+        "pipeline_manifest_md": str(PIPELINE_MD.resolve()),
+        "pipeline_manifest_json": str(PIPELINE_JSON.resolve()),
         "validation_passed": bool(validation["passed"]),
         "architecture_readiness_status": str(readiness["status"]),
         "architecture_readiness_gates": f"{readiness['passed_gates']}/{readiness['total_gates']}",

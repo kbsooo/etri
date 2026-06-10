@@ -1,0 +1,214 @@
+{
+  "package": "Route-Conserving S2 Bridge HS-JEPA",
+  "status": "pipeline_ready_with_boundary",
+  "one_command": "python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py",
+  "stage_count": 8,
+  "edge_count": 9,
+  "stages": [
+    {
+      "id": "og_raw_lifestyle_context",
+      "name": "OG Raw Lifestyle Context",
+      "role": "Provides train labels, submission key contract, and raw lifelog items.",
+      "inputs": [
+        "data/ch2026_metrics_train.csv",
+        "data/ch2026_submission_sample.csv",
+        "data/ch2025_data_items/*.parquet"
+      ],
+      "outputs": [
+        "raw/context feature artifacts used by upstream HS-JEPA modules"
+      ],
+      "evidence": [
+        "OG records in contract: 3",
+        "Required missing: 0"
+      ],
+      "boundary": "This stage is competition data, not external/private data."
+    },
+    {
+      "id": "public_lb_sensor",
+      "name": "Public LB Sensor Ledger",
+      "role": "Uses public submission observations as a sensor for hidden row-target action response.",
+      "inputs": [
+        "data_analytics/hsjepa_public_score_ledger.csv"
+      ],
+      "outputs": [
+        "public-sensitive action anchors",
+        "negative toxicity anchors"
+      ],
+      "evidence": [
+        "Ledger rows: 26",
+        "Pre-public-equation best: 0.5761589494",
+        "Current best: 0.5677475939"
+      ],
+      "boundary": "This is not an OG-only claim; it is the competition-specific sensor path."
+    },
+    {
+      "id": "human_state_listener_context",
+      "name": "Human-State Listener Context",
+      "role": "Turns lifestyle/cohort context into target/cell orientation diagnostics.",
+      "inputs": [
+        "OG lifestyle/context artifacts",
+        "s2hub_human_state_distillation_readout.json"
+      ],
+      "outputs": [
+        "cell orientation scores",
+        "human_state_probe submission"
+      ],
+      "evidence": [
+        "Cell OOF AUC: 0.775",
+        "Row OOF AUC: 0.545"
+      ],
+      "boundary": "Human-state is an orientation diagnostic, not a standalone row selector."
+    },
+    {
+      "id": "route_energy_model",
+      "name": "Q/S Route Energy Model",
+      "role": "Learns a target-route manifold from train labels and scores whether an action breaks it.",
+      "inputs": [
+        "train Q/S labels",
+        "candidate corrected prediction vectors"
+      ],
+      "outputs": [
+        "route energy",
+        "route-conservation veto"
+      ],
+      "evidence": [
+        "Primary route z-score: -9.66",
+        "S2 route z-score: -9.46"
+      ],
+      "boundary": "Route energy proves candidate-pool structure, not private leaderboard safety."
+    },
+    {
+      "id": "driver_action_field",
+      "name": "Public-Sensitive Driver Action Field",
+      "role": "Selects sparse row-target cells that public sensor evidence says are worth moving.",
+      "inputs": [
+        "public action anchors",
+        "current best prediction"
+      ],
+      "outputs": [
+        "driver candidate pool"
+      ],
+      "evidence": [
+        "Score breakthrough delta: -0.0084113555",
+        "Evidence roles: competition_primary, interpretable_s2_hub, human_state_probe"
+      ],
+      "boundary": "This stage is deliberately separated from the OG human-state representation claim."
+    },
+    {
+      "id": "route_conserving_s2_bridge_decoder",
+      "name": "Route-Conserving S2 Bridge Decoder",
+      "role": "Pairs driver cells with same-row bridge cells that lower route energy and repeatedly use S2 as listener/hub.",
+      "inputs": [
+        "driver candidate pool",
+        "route energy",
+        "S2 listener score"
+      ],
+      "outputs": [
+        "sparse row-target correction field"
+      ],
+      "evidence": [
+        "Primary route delta vs null: -0.02457 vs -0.01090",
+        "S2 usage vs null: 1.000 vs 0.615"
+      ],
+      "boundary": "S2 is a decoder listener/hub in this action space, not a universal sleep physiology claim."
+    },
+    {
+      "id": "submission_packager",
+      "name": "Role-Based Submission Packager",
+      "role": "Packages three role-based outputs without requiring historical version names.",
+      "inputs": [
+        "sparse correction field",
+        "submission sample key contract"
+      ],
+      "outputs": [
+        "submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv",
+        "submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv",
+        "submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv"
+      ],
+      "evidence": [
+        "Upload-safe roles: competition_primary, human_state_probe, interpretable_s2_hub",
+        "Validation passed: True"
+      ],
+      "boundary": "Upload safety is a format guarantee, not a score guarantee."
+    },
+    {
+      "id": "claim_readiness_and_paper_packet",
+      "name": "Claim Readiness and Paper Packet",
+      "role": "Converts the runnable package into paper/team-facing evidence and method text.",
+      "inputs": [
+        "package outputs",
+        "stress audit",
+        "reproducibility contract"
+      ],
+      "outputs": [
+        "hsjepa_architecture_readiness_report.md",
+        "hsjepa_paper_method_packet_ko.md"
+      ],
+      "evidence": [
+        "Readiness status: paper_ready_with_boundary",
+        "Readiness gates: 7/7",
+        "Method title: Human-State JEPA with Route-Conserving S2 Bridge Decoder"
+      ],
+      "boundary": "Paper claims must keep representation, public sensor, and action decoder separated."
+    }
+  ],
+  "edges": [
+    [
+      "og_raw_lifestyle_context",
+      "human_state_listener_context"
+    ],
+    [
+      "og_raw_lifestyle_context",
+      "route_energy_model"
+    ],
+    [
+      "public_lb_sensor",
+      "driver_action_field"
+    ],
+    [
+      "human_state_listener_context",
+      "driver_action_field"
+    ],
+    [
+      "route_energy_model",
+      "route_conserving_s2_bridge_decoder"
+    ],
+    [
+      "driver_action_field",
+      "route_conserving_s2_bridge_decoder"
+    ],
+    [
+      "route_conserving_s2_bridge_decoder",
+      "submission_packager"
+    ],
+    [
+      "submission_packager",
+      "claim_readiness_and_paper_packet"
+    ],
+    [
+      "route_conserving_s2_bridge_decoder",
+      "claim_readiness_and_paper_packet"
+    ]
+  ],
+  "role_outputs": {
+    "competition_primary": "submission_team_hsjepa_route_conserving_objective_bridge_primary_89d16116_uploadsafe.csv",
+    "interpretable_s2_hub": "submission_team_hsjepa_s2_listener_bridge_interpretable_f0866f50_uploadsafe.csv",
+    "human_state_probe": "submission_team_hsjepa_human_state_gated_s2_bridge_probe_38d995b0_uploadsafe.csv"
+  },
+  "boundary": {
+    "is_pure_og_only_model": false,
+    "uses_public_lb_sensor": true,
+    "human_state_role": "orientation diagnostic, not complete row-target assignment solver",
+    "competition_decoder_role": "public-sensitive row-target action solver with route-conserving S2 bridge"
+  },
+  "score_and_mechanism_summary": {
+    "current_best_public_lb": 0.5677475939,
+    "current_delta_vs_pre_public_equation": -0.00841135550000005,
+    "primary_route_delta": -0.0245664487510537,
+    "primary_null_route_delta": -0.0108973448156142,
+    "s2_usage": 1.0,
+    "s2_null_usage": 0.6150764705882353,
+    "human_state_cell_auc": 0.7750664475064699,
+    "human_state_row_auc": 0.545343137254902
+  }
+}

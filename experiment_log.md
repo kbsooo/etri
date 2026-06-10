@@ -14747,3 +14747,53 @@ HS-JEPA treats sleep-log prediction as hidden human-state oriented sparse
 row-target action decoding, then constrains objective-stage corrections to
 preserve the learned Q/S route manifold through an S2 listener bridge.
 ```
+
+## HS-JEPA Pipeline Manifest
+
+Date: 2026-06-10
+
+Question:
+
+Can a teammate trace the package from OG data to final submission and paper
+artifacts without knowing historical version names?
+
+Added artifacts:
+
+- `team_hsjepa_end_to_end/build_hsjepa_pipeline_manifest.py`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_pipeline_manifest_ko.md`
+- `team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_pipeline_manifest.json`
+
+The full runner now also creates the pipeline manifest:
+
+```bash
+python3 team_hsjepa_end_to_end/run_full_team_hsjepa_package.py
+```
+
+Pipeline stages:
+
+1. OG raw lifestyle context
+2. Public LB sensor ledger
+3. Human-state listener context
+4. Q/S route energy model
+5. Public-sensitive driver action field
+6. Route-conserving S2 bridge decoder
+7. Role-based submission packager
+8. Claim readiness and paper packet
+
+Interpretation:
+
+This closes the "how does the whole system flow?" gap.  The method packet tells
+the story, the readiness report judges the claim, and the pipeline manifest
+shows the dependency graph:
+
+```text
+OG raw context + public LB sensor
+  -> human-state/listener orientation
+  -> public-sensitive driver action field
+  -> route-conserving S2 bridge decoder
+  -> role-based submissions + paper artifacts
+```
+
+The boundary is still explicit: HS-JEPA's reusable mechanism is the
+route-conserving S2 bridge decoder; the current competition package still uses
+a public-LB sensor for sparse driver action assignment.

@@ -111,3 +111,11 @@ team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_architecture_re
 ```text
 team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_paper_method_packet_ko.md
 ```
+
+## Pipeline Manifest
+
+OG 데이터에서 public sensor, latent/context, route decoder, submission, paper packet까지 이어지는 역할 기반 pipeline:
+
+```text
+team_hsjepa_end_to_end/outputs/route_conserving_s2_bridge/hsjepa_pipeline_manifest_ko.md
+```
