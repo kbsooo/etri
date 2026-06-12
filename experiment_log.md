@@ -16870,3 +16870,112 @@ Its core contribution is not "better tabular predictions" but a representation
 whose action-tail estimate survives context masking and therefore reduces
 row-target decoder toxicity under subject-heldout stress.
 ```
+
+## 2026-06-13 - HS-JEPA Action-Free Vulnerability Gate Core
+
+### Question
+
+Masked-view consensus tail was the first positive nested subject-heldout result.
+But it still used action-aware mode features.  The stronger core-only question:
+
+```text
+Can visible human-state context predict row-target action vulnerability
+before seeing candidate action probabilities or support/action scores?
+```
+
+If yes, HS-JEPA core alone has a stronger claim.  If no, the paper thesis must
+stay at the core-decoder boundary: masked-view action-tail representation, not
+action-free vulnerability, is the useful object.
+
+### Method
+
+Code:
+
+```bash
+python3 hsjepa_core/run_action_free_vulnerability_gate_core.py
+```
+
+The vulnerability head excludes:
+
+- prior probability;
+- candidate probability;
+- inverse probability;
+- action move / action delta;
+- decoder identity;
+- support score;
+- mode alignment.
+
+It sees only target listener, masked world state, target/world interactions,
+and episode context.  The predicted vulnerability score then gates the
+masked-view consensus action decoder.
+
+The experiment preserves the public-free boundary:
+
+- public LB ledger: `False`;
+- prior submission probabilities: `False`;
+- proprietary embedding API: `False`.
+
+### Result
+
+- verdict: `action_free_vulnerability_gate_oof_positive_subjectheldout_fragile`
+- full OOF selected gain sum: `+4.367758`
+- full OOF selected cells: `147`
+- nested subject-heldout gain sum: `-3.006164`
+- nested subject-heldout selected cells: `232`
+- stable targets: `Q3`
+- stable OOF gain sum: `+0.679489`
+- released test cells: `15`
+- candidate: `submission_hsjepa_action_free_vulnerability_gate_anchor_free_df083171_uploadsafe.csv`
+
+Vulnerability metrics:
+
+- full core context toxic AUC/AP: `0.609236` / `0.853695`
+- mask world state toxic AUC/AP: `0.644323` / `0.865491`
+- mask episode context toxic AUC/AP: `0.508135` / `0.803740`
+- mask listener interaction toxic AUC/AP: `0.629362` / `0.859373`
+- action-free consensus toxic AUC/AP: `0.631354` / `0.858096`
+
+Important target fact:
+
+- every target has opportunity rate `1.0`;
+- no-safe-action rate is `0.0`;
+- therefore the useful vulnerability label is not "is there a good action?"
+  but "will the wrong action be toxic?"
+
+Nested target result:
+
+- Q3: `+0.753397`, positive/negative subjects `9/1`
+- S2: `+0.042271`, positive/negative subjects `4/6`
+- Q1/Q2/S1/S3/S4 were negative.
+
+### Interpretation
+
+Strengthened:
+
+```text
+Core context carries broad toxic-vulnerability information.
+The signal survives even without action/probability/support inputs.
+```
+
+Constrained:
+
+```text
+Action-free vulnerability does not solve safe action assignment.
+It increases full OOF gain but breaks subject-heldout release.
+```
+
+Updated thesis:
+
+```text
+HS-JEPA should not be claimed as a core-only vulnerability predictor.
+The strongest current architecture is:
+visible context -> masked-view invariant hidden tail representation
+-> action-aware decoder boundary -> subject-heldout stress.
+```
+
+This negative result makes the previous positive result more precise:
+
+```text
+Masked-view consensus works because it preserves action-tail structure,
+not because a row-target vulnerability gate alone is enough.
+```

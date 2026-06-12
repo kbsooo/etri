@@ -48,6 +48,7 @@ python3 hsjepa_core/run_tail_safe_expected_utility_core.py
 python3 hsjepa_core/run_subject_normalized_tail_field_core.py
 python3 hsjepa_core/run_episode_conditioned_relative_tail_core.py
 python3 hsjepa_core/run_masked_view_consensus_tail_core.py
+python3 hsjepa_core/run_action_free_vulnerability_gate_core.py
 ```
 
 ## 산출물
@@ -91,6 +92,9 @@ python3 hsjepa_core/run_masked_view_consensus_tail_core.py
 - `hsjepa_core/outputs/masked_view_consensus_tail_core/masked_view_consensus_tail_core_summary.json`
 - `hsjepa_core/outputs/masked_view_consensus_tail_core/MASKED_VIEW_CONSENSUS_TAIL_CORE_KO.md`
 - `hsjepa_core/outputs/masked_view_consensus_tail_core/*_metrics.csv`
+- `hsjepa_core/outputs/action_free_vulnerability_gate_core/action_free_vulnerability_gate_core_summary.json`
+- `hsjepa_core/outputs/action_free_vulnerability_gate_core/ACTION_FREE_VULNERABILITY_GATE_CORE_KO.md`
+- `hsjepa_core/outputs/action_free_vulnerability_gate_core/*_metrics.csv`
 
 ## 실행 가능한 core
 
@@ -107,6 +111,7 @@ python3 hsjepa_core/run_masked_view_consensus_tail_core.py
 - `hsjepa_core/run_subject_normalized_tail_field_core.py`: absolute action utility 대신 subject-target-action route 내부 tail scale로 정규화한 relative badness를 예측해, subject shift에서 S-tail 독성이 줄어드는지 검증한다.
 - `hsjepa_core/run_episode_conditioned_relative_tail_core.py`: subject-relative badness가 아직 거칠다는 가설을 검사하기 위해 row episode context를 추가하고, 보이는 episode context로 보이지 않는 episode-conditioned tail representation을 예측한다.
 - `hsjepa_core/run_masked_view_consensus_tail_core.py`: full/세계잔차마스크/episode마스크/listener마스크 view가 같은 episode-conditioned tail representation에 동의하는 cell만 release해, hidden tail field가 single-view shortcut인지 검사한다.
+- `hsjepa_core/run_action_free_vulnerability_gate_core.py`: action/probability/support 입력 없이 row-target vulnerability를 예측해 masked-view action decoder를 gate할 수 있는지 검사한다. 현재 결과는 negative sensor다.
 
 ## 팀 공유 시 주의점
 
@@ -446,6 +451,42 @@ masked-view consensus로 읽을 때 subject-heldout action toxicity가 줄어든
 paper thesis는 "human-relative tail field"에서
 "masked-view invariant human-relative tail field"로 올라갈 수 있다.
 단, 살아남은 route가 S2/S4에 집중되어 있으므로 universal solver라고 과장하면 안 된다.
+```
+
+## Action-Free Vulnerability Gate Core
+
+`run_action_free_vulnerability_gate_core.py`는 masked-view consensus tail core를 더 강하게 반증하려는 실험이다.
+action-aware score가 아니라 action/probability/support 입력을 제거한 core context만으로
+row-target vulnerability를 먼저 예측하고, 그 score로 action decoder를 gate한다.
+
+```text
+action-free human context
+  -> hidden row-target vulnerability representation
+  -> gate masked-view action decoder
+  -> row-target action assignment
+```
+
+현재 핵심 결과:
+
+- full OOF selected gain sum: `+4.367758`
+- nested subject-heldout gain sum: `-3.006164`
+- stable targets after heldout filtering: `Q3`
+- stable OOF gain sum: `+0.679489`
+- released test cells: `15`
+- action-free toxic vulnerability consensus AUC/AP: `0.631354` / `0.858096`
+- all targets have opportunity rate `1.0`, so the opportunity label is degenerate.
+- anchor-free candidate: `submission_hsjepa_action_free_vulnerability_gate_anchor_free_df083171_uploadsafe.csv`
+
+해석:
+
+```text
+HS-JEPA core context can read broad toxic vulnerability, but action-free
+vulnerability is not enough to make a safe release decoder.
+The successful masked-view consensus result should not be overstated as
+"core-only vulnerability solves action toxicity".
+The current strongest claim remains:
+masked-view invariant, action-aware tail representation reduces decoder toxicity,
+especially on S2/S4.
 ```
 
 ## Core가 아닌 것

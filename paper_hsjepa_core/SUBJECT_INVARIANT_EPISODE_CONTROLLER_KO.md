@@ -26,6 +26,23 @@ health check다.
 이 문서는 "좋아 보이는 decoder도 subject shift에서 죽을 수 있으므로
 LeJEPA식 anti-shortcut validation이 필요하다"는 근거로 써야 한다.
 
+## 발표에서의 주의 문장
+
+이 실험을 이렇게 말하면 안 된다.
+
+```text
+HS-JEPA는 subject-invariant controller를 고르는 모델이다.
+```
+
+올바른 표현은 다음이다.
+
+```text
+HS-JEPA representation이 만든 action controller가 subject shortcut인지 확인하기 위한
+LeJEPA-style anti-collapse diagnostic이다.
+```
+
+즉 이 문서는 HS-JEPA의 본체가 아니라, 본체가 만든 action을 믿어도 되는지 검사하는 안전성 장치다.
+
 ## HS-JEPA 안에서의 정확한 위치
 
 이 문서는 HS-JEPA core 자체도, positive adapter도 아니다. 정확한 위치는

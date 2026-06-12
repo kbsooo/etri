@@ -18,6 +18,7 @@
 - `paper_hsjepa_core/SUBJECT_NORMALIZED_TAIL_FIELD_CORE_KO.md`
 - `paper_hsjepa_core/EPISODE_CONDITIONED_RELATIVE_TAIL_CORE_KO.md`
 - `paper_hsjepa_core/MASKED_VIEW_CONSENSUS_TAIL_CORE_KO.md`
+- `paper_hsjepa_core/ACTION_FREE_VULNERABILITY_GATE_CORE_KO.md`
 - `paper_hsjepa_core/TARGET_ROUTE_CONSERVATION_DECODER_KO.md`
 - `paper_hsjepa_core/SUBJECT_BALANCED_ROUTE_CONSERVATION_DECODER_KO.md`
 - `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
@@ -250,6 +251,28 @@ masked-view invariant consensus로 읽을 때 더 안전하다.
 이것은 논문에서 core representation의 일반성 증거로 가장 강하게 쓸 수 있다.
 다만 stable route는 S2/S4에 집중되어 있으므로, universal correction solver가 아니라
 S-route action toxicity를 줄이는 masked-view invariant human-state core로 주장해야 한다.
+```
+
+`ACTION_FREE_VULNERABILITY_GATE_CORE_KO.md`는 위 positive result를 더 강하게 반증하려는 negative sensor다. action/probability/support 입력 없이 core context만으로 row-target vulnerability를 예측하고, 그 score로 masked-view action decoder를 gate했다.
+
+현재 핵심 결과:
+
+- full OOF selected gain sum: `+4.367758`
+- nested subject-heldout gain sum: `-3.006164`
+- stable targets: `Q3`
+- stable OOF gain sum: `+0.679489`
+- released test cells: `15`
+- toxic vulnerability consensus AUC/AP: `0.631354` / `0.858096`
+- opportunity rate는 모든 target에서 `1.0`이라 action opportunity target은 퇴화했다.
+
+현재 해석:
+
+```text
+action-free core context는 broad vulnerability를 어느 정도 읽지만,
+safe action assignment를 만들기에는 부족하다.
+따라서 HS-JEPA core-only 주장을 "action-free vulnerability가 decoder를 해결한다"로 쓰면 안 된다.
+논문 주장은 masked-view invariant action-tail representation까지 포함한
+core-decoder boundary architecture로 제한해야 한다.
 ```
 
 `TARGET_ROUTE_CONSERVATION_DECODER_KO.md`는 위 core evidence를 competition adapter로 번역한다. 이 문서는 HS-JEPA core 자체가 아니라, listener-conditioned core signal을 Q/S target route별 release / inverse-toxic / hold action으로 바꾸는 adapter다.

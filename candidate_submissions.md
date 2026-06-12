@@ -10583,3 +10583,50 @@ The subject-heldout positive signal is not public/private safe.  The core
 lesson still remains: masked-view consensus identifies S2/S4 action-tail
 structure locally, but it should be used as a diagnostic/veto layer rather
 than direct release until public/private factorization is solved.
+
+## 2026-06-13 - HS-JEPA Action-Free Vulnerability Gate Core Candidate
+
+- File: `submission_hsjepa_action_free_vulnerability_gate_anchor_free_df083171_uploadsafe.csv`
+- Code: `hsjepa_core/run_action_free_vulnerability_gate_core.py`
+- Documentation: `paper_hsjepa_core/ACTION_FREE_VULNERABILITY_GATE_CORE_KO.md`
+- Public LB dependency: none
+- Prior submission probability dependency: none
+- Proprietary embedding API dependency: none
+
+Why this candidate matters:
+
+This is mostly a negative sensor, not a preferred submission.  It tests whether
+HS-JEPA core-only context can safely gate row-target actions without seeing
+action/probability/support features.
+
+Local evidence:
+
+- full OOF selected gain sum: `+4.367758`
+- nested subject-heldout gain sum: `-3.006164`
+- masked-view consensus nested heldout gain: `+0.578637`
+- action-free toxic vulnerability consensus AUC/AP: `0.631354` / `0.858096`
+- stable targets: `Q3`
+- stable OOF gain sum: `+0.679489`
+- released test cells: `15`
+- validation: upload-safe
+
+Worldview:
+
+```text
+Broad row-target vulnerability is visible in core context, but safe action
+assignment needs action-tail structure.  The previous masked-view consensus
+result should be interpreted as a core-decoder boundary success, not as
+core-only vulnerability solving the problem.
+```
+
+If public LB improves:
+
+Q3 may contain a public-safe action-free vulnerability pocket.  That would
+justify using vulnerability as a narrow target-specific sensor, but not as a
+general decoder.
+
+If public LB worsens:
+
+This confirms the local subject-heldout warning.  The architecture should keep
+action-free vulnerability as a diagnostic feature and rely on masked-view
+action-tail consensus for release-grade decisions.

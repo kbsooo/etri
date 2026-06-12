@@ -25,6 +25,23 @@ HS-JEPA core question
 논문에서는 `hsjepa_core/core.py`와 masked-context world model을 먼저 설명하고,
 이 실험은 그 representation이 action transfer에 쓰이는 downstream evidence로 배치해야 한다.
 
+## 발표에서의 주의 문장
+
+이 실험을 이렇게 말하면 안 된다.
+
+```text
+HS-JEPA는 kNN으로 성공 action을 찾아서 제출값을 고치는 방법이다.
+```
+
+올바른 표현은 다음이다.
+
+```text
+HS-JEPA core가 만든 hidden human-state geometry가 subject를 넘어
+episode-action prototype을 transport할 만큼 구조적인지 검증한 adapter 실험이다.
+```
+
+즉 이 문서는 HS-JEPA의 정의가 아니라, HS-JEPA representation의 전이 가능성을 묻는 downstream probe다.
+
 ## HS-JEPA 안에서의 정확한 위치
 
 이 문서는 HS-JEPA core 자체가 아니다. 정확한 위치는 **HS-JEPA adapter**다.

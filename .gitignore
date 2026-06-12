@@ -16,6 +16,8 @@ hsjepa_core/outputs/episode_conditioned_relative_tail_core/episode_conditioned_f
 hsjepa_core/outputs/episode_conditioned_relative_tail_core/episode_conditioned_test_release_audit.csv
 hsjepa_core/outputs/masked_view_consensus_tail_core/masked_view_consensus_full_oof_action_audit.csv
 hsjepa_core/outputs/masked_view_consensus_tail_core/masked_view_consensus_test_release_audit.csv
+hsjepa_core/outputs/action_free_vulnerability_gate_core/action_free_vulnerability_full_oof_action_audit.csv
+hsjepa_core/outputs/action_free_vulnerability_gate_core/action_free_vulnerability_test_release_audit.csv
 
 # Keep the analysis code, reports, summaries, and key submissions in git.
 # Large generated scan tables stay local because this workspace is ~7GB.
