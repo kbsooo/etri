@@ -10760,3 +10760,43 @@ subject를 하나 가린 world들이 비슷한 row-target-action을 반복해서
 
 - subject-heldout local positive gain은 아직 public/private action toxicity를 충분히 대리하지 못한다.
 - S2/S4 중심의 더 좁은 stable policy가 더 안전하고, Q2/S1 확장은 release decoder 독성일 수 있다.
+
+## Subject-Invariant Listener Manifold Core
+
+- file: `submission_hsjepa_subject_invariant_listener_manifold_anchor_free_40628330_uploadsafe.csv`
+- code: `hsjepa_core/run_subject_invariant_listener_manifold_core.py`
+- doc: `paper_hsjepa_core/SUBJECT_INVARIANT_LISTENER_MANIFOLD_CORE_KO.md`
+- status: upload-safe diagnostic candidate
+- public LB: not submitted
+- semantic purpose: subject-invariant jury release가 HS-JEPA hidden representation 공간에서 action-only baseline보다 잘 분리되는지 검증한다.
+
+### Why This Candidate Exists
+
+이 후보는 leaderboard 목적보다 paper thesis 검증 목적이 강하다.
+
+```text
+성공/실패 action-health가 단순 action probability/magnitude rule이 아니라,
+HS-JEPA hidden listener manifold 위에서 subject를 넘어 분리된다.
+```
+
+### Local Evidence
+
+- strict jury release positive rate: `0.027619`
+- action geometry only AP lift: `+0.041516`
+- masked tail representation AP lift: `+0.155746`
+- HS-JEPA listener manifold AP lift: `+0.233257`
+- full decoder context AP lift: `+0.234538`
+- released test cells: `67`
+- validation: valid, rows `250`, probability range `[0.383864, 0.836270]`
+
+### Expected Public Meaning
+
+좋아지면:
+
+- HS-JEPA listener manifold를 release score로 쓰는 것이 public에도 살아남는다는 뜻이다.
+- subject-invariant action-health representation이 LB-relevant correction으로 번역될 가능성이 커진다.
+
+나빠지면:
+
+- representation separability는 있지만, test release translation이 아직 toxic하다는 뜻이다.
+- 논문 주장은 여전히 강하지만, competition adapter는 jury vote count처럼 더 보수적인 release law가 필요하다.

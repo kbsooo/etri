@@ -1652,3 +1652,47 @@ masked visible context views
 자세한 설명:
 
 - `paper_hsjepa_core/SUBJECT_INVARIANT_MASKED_TAIL_JURY_CORE_KO.md`
+
+### 23. Subject-Invariant Listener Manifold Core
+
+```bash
+python3 hsjepa_core/run_subject_invariant_listener_manifold_core.py
+```
+
+이 스크립트는 subject-invariant jury가 고른 action이 단순한 release rule의 결과인지,
+아니면 HS-JEPA hidden representation 공간에서 subject를 넘어 분리되는
+listener/action-health manifold인지 검사한다.
+
+비교한 feature family:
+
+- `action_geometry_only`: action probability/magnitude/prior geometry만 사용
+- `masked_tail_representation`: masked-view hidden tail state만 사용
+- `world_episode_minimal_listener`: action probability 없이 world/episode/minimal listener만 사용
+- `hsjepa_listener_manifold`: hidden tail + world/episode + minimal listener 사용
+- `full_decoder_context`: adapter upper bound
+
+현재 결과:
+
+- public LB ledger 사용: `False`
+- prior submission probability 사용: `False`
+- proprietary embedding API 사용: `False`
+- verdict: `hsjepa_listener_manifold_beats_action_geometry`
+- strict jury release positive rate: `0.027619`
+- action geometry only AP lift: `+0.041516`
+- masked tail representation AP lift: `+0.155746`
+- HS-JEPA listener manifold AP lift: `+0.233257`
+- full decoder context AP lift: `+0.234538`
+- released test cells: `67`
+- generated candidate: `submission_hsjepa_subject_invariant_listener_manifold_anchor_free_40628330_uploadsafe.csv`
+
+해석:
+
+- action geometry only보다 HS-JEPA listener manifold가 strict subject-invariant jury release를
+  훨씬 잘 분리했다.
+- full decoder context와 HS-JEPA listener manifold의 차이는 매우 작다.
+- 따라서 현재 가장 강한 논문용 증거는 “HS-JEPA가 label을 직접 맞힌다”가 아니라,
+  “HS-JEPA hidden representation이 subject-invariant listener/action-health manifold를 만든다”이다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/SUBJECT_INVARIANT_LISTENER_MANIFOLD_CORE_KO.md`

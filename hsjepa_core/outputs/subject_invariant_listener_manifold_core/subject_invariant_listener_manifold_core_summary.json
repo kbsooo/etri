@@ -1,0 +1,27 @@
+{
+  "package": "subject_invariant_listener_manifold_core",
+  "status": "subject_invariant_listener_manifold_core_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "verdict": "hsjepa_listener_manifold_beats_action_geometry",
+  "best_strict_jury_family": "full_decoder_context",
+  "best_strict_jury_ap_lift": 0.23453800755386714,
+  "hsjepa_listener_ap_lift": 0.23325712989960204,
+  "action_only_ap_lift": 0.04151556709856632,
+  "released_test_cells": 67,
+  "release_targets": [
+    "Q2",
+    "S1",
+    "S2",
+    "S4"
+  ],
+  "candidate_file": "submission_hsjepa_subject_invariant_listener_manifold_anchor_free_40628330_uploadsafe.csv",
+  "validation": {
+    "valid": true,
+    "problems": [],
+    "rows": 250,
+    "probability_min": 0.3838643048633641,
+    "probability_max": 0.8362702073213295
+  }
+}
