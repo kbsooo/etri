@@ -10883,3 +10883,49 @@ action-health decoder에 더 안전한 입력이어야 한다.
 
 - local 결과와 일치한다. pretext representation은 raw보다 조금 낫지만 listener-only를 못 넘는 경계 신호다.
 - strong thesis는 여전히 hidden-tail/listener manifold와 anti-shortcut decoder에 둬야 한다.
+
+## Subject-Invariant Listener Responsibility Field Core
+
+- file: `submission_hsjepa_subject_invariant_listener_responsibility_field_a9a2ea47_uploadsafe.csv`
+- code: `hsjepa_core/run_subject_invariant_listener_responsibility_field_core.py`
+- doc: `paper_hsjepa_core/SUBJECT_INVARIANT_LISTENER_RESPONSIBILITY_FIELD_CORE_KO.md`
+- status: upload-safe diagnostic candidate
+- public LB: not submitted
+- semantic purpose: action을 바로 맞히지 않고, 먼저 row-target listener responsibility field가 HS-JEPA core에서 살아나는지 검증한다.
+
+### Why This Candidate Exists
+
+이 후보는 “HS-JEPA core가 무엇을 잘해야 하는가”를 다시 정의한다.
+
+```text
+좋은 core는 곧바로 probability를 고치는 모델이 아니라,
+어느 row-target에 listener가 개입해야 하는지를 먼저 복원하는 hidden responsibility model이다.
+```
+
+따라서 이 후보의 핵심은 제출값 자체보다 다음 관찰이다.
+HS-JEPA human/pretext representation은 listener-only보다 subject-invariant responsibility field를 더 잘 분리한다.
+
+### Local Evidence
+
+- verdict: `listener_responsibility_field_positive_action_translation_fragile`
+- best responsibility family: `masked_pretext_listener_responsibility`
+- masked-pretext responsibility AP lift: `+0.079078`
+- human responsibility AP lift: `+0.077261`
+- listener-only AP lift: `+0.064292`
+- listener-only action-decoder OOF gain sum: `-3.045468`
+- selected responsibility action-decoder OOF gain sum: `-0.565668`
+- release targets: `Q2`, `S1`, `S2`, `S4`
+- released test cells: `67`
+- validation: valid, rows `250`, probability range `[0.251812, 0.828377]`
+
+### Expected Public Meaning
+
+좋아지면:
+
+- public subset에서도 responsibility field가 row-target correction 위치를 잘 잡는다는 뜻이다.
+- HS-JEPA core를 `listener responsibility model`로 논문화할 근거가 강해진다.
+
+나빠지면:
+
+- local OOF 해석과 일치한다. core는 어디를 봐야 하는지 알지만, 기존 action decoder가 방향을 안전하게 번역하지 못한다.
+- 다음 후보는 같은 responsibility score를 더 크게 쓰는 것이 아니라, responsibility-high cell 내부에서 signed action direction을 다시 배워야 한다.

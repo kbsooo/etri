@@ -45,6 +45,7 @@
 - `paper_hsjepa_core/CROSS_SUBJECT_EPISODE_PROTOTYPE_TRANSPORT_KO.md`
 - `paper_hsjepa_core/OPEN_LOOP_HUMAN_STATE_LISTENER_CORE_KO.md`
 - `paper_hsjepa_core/MASKED_HUMAN_STATE_PRETEXT_LISTENER_CORE_KO.md`
+- `paper_hsjepa_core/SUBJECT_INVARIANT_LISTENER_RESPONSIBILITY_FIELD_CORE_KO.md`
 - `paper_hsjepa_core/MASKED_VIEW_SURPRISE_ACTION_RELEASE_KO.md`
 - `paper_hsjepa_core/SURPRISE_RESPONSIBILITY_TOXICITY_VETO_KO.md`
 - `paper_hsjepa_core/CROSS_SUBJECT_SURPRISE_RESPONSIBILITY_VETO_KO.md`
@@ -1793,3 +1794,48 @@ state가 subject-invariant jury release를 더 잘 분리하는지 검사한다.
 자세한 설명:
 
 - `paper_hsjepa_core/MASKED_HUMAN_STATE_PRETEXT_LISTENER_CORE_KO.md`
+
+### 26. Subject-Invariant Listener Responsibility Field Core
+
+```bash
+python3 hsjepa_core/run_subject_invariant_listener_responsibility_field_core.py
+```
+
+이 스크립트는 hidden target을 action-level release가 아니라 row-target listener responsibility field로 바꾼다.
+즉 “이 human-state에서 이 target listener가 개입해야 하는가”를 먼저 예측하고,
+action decoder는 그 뒤에만 붙인다.
+
+비교한 feature family:
+
+- `listener_only`
+- `action_geometry_only`
+- `open_loop_human_responsibility`
+- `masked_pretext_listener_responsibility`
+- `human_plus_masked_pretext_responsibility`
+
+현재 결과:
+
+- public LB ledger 사용: `False`
+- prior submission probability 사용: `False`
+- proprietary embedding API 사용: `False`
+- masked-tail teacher score 사용: `False`
+- label-informed peer margin 사용: `False`
+- verdict: `listener_responsibility_field_positive_action_translation_fragile`
+- best responsibility family: `masked_pretext_listener_responsibility`
+- masked-pretext responsibility AP lift: `+0.079078`
+- human responsibility AP lift: `+0.077261`
+- listener-only AP lift: `+0.064292`
+- action-decoder OOF gain for release family: `-0.565668`
+- listener-only action-decoder OOF gain: `-3.045468`
+- generated candidate: `submission_hsjepa_subject_invariant_listener_responsibility_field_a9a2ea47_uploadsafe.csv`
+
+해석:
+
+- HS-JEPA core는 row-target listener responsibility를 listener-only보다 잘 복원한다.
+- 이는 core representation evidence로 강하다.
+- 하지만 기존 action decoder로 번역하면 OOF gain은 아직 음수다.
+- 따라서 다음 병목은 responsibility field 발견이 아니라 responsibility -> safe action direction 번역이다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/SUBJECT_INVARIANT_LISTENER_RESPONSIBILITY_FIELD_CORE_KO.md`

@@ -1,0 +1,5 @@
+feature_family,selected_cells,realized_gain_sum,mean_realized_gain,positive_gain_rate,negative_gain_rate
+masked_pretext_listener_responsibility,120,-0.5656678939423383,-0.004713899116186152,0.6166666666666667,0.38333333333333336
+human_listener_responsibility,120,-1.364019415162133,-0.011366828459684442,0.5416666666666666,0.4583333333333333
+human_plus_masked_pretext_responsibility,120,-2.1105680456327507,-0.01758806704693959,0.6,0.4
+listener_only,120,-3.045468157764355,-0.025378901314702957,0.45,0.55

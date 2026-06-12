@@ -55,6 +55,7 @@ python3 hsjepa_core/run_subject_invariant_masked_tail_jury_core.py
 python3 hsjepa_core/run_subject_invariant_listener_manifold_core.py
 python3 hsjepa_core/run_open_loop_human_state_listener_core.py
 python3 hsjepa_core/run_masked_human_state_pretext_listener_core.py
+python3 hsjepa_core/run_subject_invariant_listener_responsibility_field_core.py
 ```
 
 ## 산출물
@@ -119,6 +120,9 @@ python3 hsjepa_core/run_masked_human_state_pretext_listener_core.py
 - `hsjepa_core/outputs/masked_human_state_pretext_listener_core/masked_human_state_pretext_listener_core_summary.json`
 - `hsjepa_core/outputs/masked_human_state_pretext_listener_core/MASKED_HUMAN_STATE_PRETEXT_LISTENER_CORE_KO.md`
 - `hsjepa_core/outputs/masked_human_state_pretext_listener_core/*.csv`
+- `hsjepa_core/outputs/subject_invariant_listener_responsibility_field_core/subject_invariant_listener_responsibility_field_core_summary.json`
+- `hsjepa_core/outputs/subject_invariant_listener_responsibility_field_core/SUBJECT_INVARIANT_LISTENER_RESPONSIBILITY_FIELD_CORE_KO.md`
+- `hsjepa_core/outputs/subject_invariant_listener_responsibility_field_core/*.csv`
 
 ## 실행 가능한 core
 
@@ -142,6 +146,7 @@ python3 hsjepa_core/run_masked_human_state_pretext_listener_core.py
 - `hsjepa_core/run_subject_invariant_listener_manifold_core.py`: subject-invariant jury release가 HS-JEPA hidden representation 공간에서 action-only baseline보다 잘 분리되는지 검사한다. 현재 결과는 listener-manifold positive다.
 - `hsjepa_core/run_open_loop_human_state_listener_core.py`: masked-tail teacher와 action probability/magnitude를 제외하고, OG human-state + minimal listener만으로 subject-invariant action-health support를 복원할 수 있는지 검사한다. 현재 결과는 mixed boundary다.
 - `hsjepa_core/run_masked_human_state_pretext_listener_core.py`: raw OG human-state를 바로 decoder에 넣지 않고 masked-view pretext state로 바꾼 뒤, subject-invariant action-health support가 더 잘 분리되는지 검사한다. 현재 결과는 raw open-loop 대비 소폭 positive / listener-only 대비 negative다.
+- `hsjepa_core/run_subject_invariant_listener_responsibility_field_core.py`: action을 직접 예측하기 전에 row-target listener responsibility field를 복원할 수 있는지 검사한다. 현재 결과는 core responsibility positive / action translation fragile이다.
 
 ## 팀 공유 시 주의점
 
@@ -725,6 +730,41 @@ Masked-pretext representation은 raw human-state보다 약간 낫다.
 따라서 "raw feature가 아니라 representation이어야 한다"는 방향은 약하게 강화된다.
 하지만 listener-only를 넘지 못하므로 core-only 독립 breakthrough는 아니다.
 현재 strong evidence는 여전히 hidden-tail/listener manifold에 있다.
+```
+
+## Subject-Invariant Listener Responsibility Field Core
+
+`run_subject_invariant_listener_responsibility_field_core.py`는 hidden target을 action에서
+row-target listener responsibility field로 바꾼다. 즉 action을 직접 맞히는 대신,
+먼저 "이 human-state에서 이 target listener가 개입할 책임이 있는가"를 예측한다.
+
+```text
+visible human-life context
+  + target listener
+  -> hidden listener responsibility field
+  -> action decoder only after responsibility is high
+```
+
+현재 핵심 결과:
+
+- verdict: `listener_responsibility_field_positive_action_translation_fragile`
+- best responsibility family: `masked_pretext_listener_responsibility`
+- masked-pretext responsibility AP lift: `+0.079078`
+- human responsibility AP lift: `+0.077261`
+- listener-only AP lift: `+0.064292`
+- action-decoder OOF gain for release family: `-0.565668`
+- listener-only action-decoder OOF gain: `-3.045468`
+- released test cells: `67`
+- anchor-free candidate: `submission_hsjepa_subject_invariant_listener_responsibility_field_a9a2ea47_uploadsafe.csv`
+
+해석:
+
+```text
+HS-JEPA core는 "어느 row-target listener가 책임을 져야 하는지"를
+listener-only보다 잘 복원한다.  이것은 core representation evidence로는 강하다.
+다만 기존 action decoder로 번역하면 gain은 아직 음수다.
+따라서 다음 병목은 responsibility field 발견이 아니라,
+responsibility -> safe action direction 번역이다.
 ```
 
 ## Core가 아닌 것

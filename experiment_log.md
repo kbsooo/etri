@@ -17406,3 +17406,81 @@ The next big-bet should stop trying to make a universal core-only classifier.
 It should define the hidden target representation itself more carefully:
 for example, separate Q/S listener manifolds, infer action-health route prototypes,
 or train the core to predict a subject-invariant listener responsibility field rather than generic masked views.
+
+## Subject-Invariant Listener Responsibility Field Core
+
+- date: 2026-06-13
+- task: HS-JEPA core / subject-invariant row-target listener responsibility field
+- code: `hsjepa_core/run_subject_invariant_listener_responsibility_field_core.py`
+- paper doc: `paper_hsjepa_core/SUBJECT_INVARIANT_LISTENER_RESPONSIBILITY_FIELD_CORE_KO.md`
+- output summary: `hsjepa_core/outputs/subject_invariant_listener_responsibility_field_core/subject_invariant_listener_responsibility_field_core_summary.json`
+- candidate: `submission_hsjepa_subject_invariant_listener_responsibility_field_a9a2ea47_uploadsafe.csv`
+- uses public LB ledger: `False`
+- uses prior submission probabilities: `False`
+- uses proprietary embedding API: `False`
+- uses masked-tail teacher score as feature: `False`
+- uses label-informed peer margin: `False`
+
+### Hypothesis
+
+Action-level release가 너무 어려운 hidden target이라면, HS-JEPA core는 먼저
+row-target listener responsibility field를 복원해야 한다.
+
+```text
+visible human-state context + target listener
+  -> hidden responsibility field
+  -> action decoder only after responsibility is high
+```
+
+이 가설이 맞다면 human-state / masked-pretext representation은 listener-only보다
+“어느 row-target에 개입해야 하는가”를 더 잘 분리해야 한다. 반대로 action 방향까지 바로
+맞히지 못하더라도, responsibility field 자체가 살아나면 core positive / decoder fragile로 읽는다.
+
+### Method
+
+Strict subject-invariant jury release를 action-level target에서 cell-level target으로 압축했다.
+같은 row-target에 하나라도 strict jury action이 있으면 `listener_responsible=1`로 두고,
+subject GroupKFold에서 다음 family를 비교했다.
+
+- `listener_only`
+- `action_geometry_only`
+- `open_loop_human_responsibility`
+- `masked_pretext_listener_responsibility`
+- `human_plus_masked_pretext_responsibility`
+
+이후 가장 좋은 responsibility family가 선택한 row-target cell에만 기존 action decoder를 붙여
+release simulation과 upload-safe candidate를 만들었다.
+
+### Result
+
+- verdict: `listener_responsibility_field_positive_action_translation_fragile`
+- best responsibility family: `masked_pretext_listener_responsibility`
+- masked-pretext responsibility AP lift: `+0.079078`
+- human responsibility AP lift: `+0.077261`
+- listener-only AP lift: `+0.064292`
+- listener-only action-decoder OOF gain sum: `-3.045468`
+- selected responsibility action-decoder OOF gain sum: `-0.565668`
+- release targets: `Q2`, `S1`, `S2`, `S4`
+- released test cells: `67`
+- upload validation: valid, rows `250`, probability range `[0.251812, 0.828377]`
+
+### Interpretation
+
+이 실험은 최근 core-only 방향에서 가장 강한 positive evidence다.
+masked-pretext/human-state representation이 listener-only보다 row-target responsibility를 더 잘 읽었다.
+
+다만 action decoder로 번역하면 여전히 OOF gain은 음수다. 따라서 현재 병목은
+`responsibility field를 찾는 것`이 아니라 `responsibility가 높은 cell에서 어느 방향/action이 안전한가`다.
+
+논문 표현은 다음이 가장 정확하다.
+
+```text
+HS-JEPA core recovers a subject-invariant listener responsibility field,
+but the competition adapter still needs a safer responsibility-to-action decoder.
+```
+
+### Next
+
+다음 실험은 responsibility field 위에서 action 방향을 고르는 문제로 좁혀야 한다.
+단순히 더 많은 cell을 release하지 말고, responsibility-high cell 내부에서 positive/negative action
+direction을 분리하는 `safe action direction field` 또는 `signed listener responsibility`를 hidden target으로 둔다.

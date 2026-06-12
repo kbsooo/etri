@@ -1,0 +1,34 @@
+{
+  "package": "subject_invariant_listener_responsibility_field_core",
+  "status": "subject_invariant_listener_responsibility_field_core_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "uses_masked_tail_teacher_score": false,
+  "uses_label_informed_peer_margin": false,
+  "verdict": "listener_responsibility_field_positive_action_translation_fragile",
+  "best_responsibility_family": "masked_pretext_listener_responsibility",
+  "best_responsibility_ap_lift": 0.0790775869116349,
+  "listener_only_ap_lift": 0.06429228897501596,
+  "human_responsibility_ap_lift": 0.07726065845020218,
+  "masked_pretext_ap_lift": 0.0790775869116349,
+  "human_plus_pretext_ap_lift": 0.07115035457598932,
+  "release_family": "masked_pretext_listener_responsibility",
+  "release_family_oof_gain_sum": -0.5656678939423383,
+  "listener_only_oof_gain_sum": -3.045468157764355,
+  "released_test_cells": 67,
+  "release_targets": [
+    "Q2",
+    "S1",
+    "S2",
+    "S4"
+  ],
+  "candidate_file": "submission_hsjepa_subject_invariant_listener_responsibility_field_a9a2ea47_uploadsafe.csv",
+  "validation": {
+    "valid": true,
+    "problems": [],
+    "rows": 250,
+    "probability_min": 0.2518118172882312,
+    "probability_max": 0.8283773361474642
+  }
+}
