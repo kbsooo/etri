@@ -14972,3 +14972,54 @@ To become fully portable, the next breakthrough must replace this with an
 OG-only personal/cohort/time human-state teacher while preserving the invariant
 decoder and shortcut gates.
 ```
+## 2026-06-12 - HS-JEPA Subject-Invariant Controller and Cross-Subject Prototype Transport
+
+### Question
+
+HS-JEPA row episode state가 정말 subject-general human-state representation인가, 아니면 full OOF에서 특정 subject action tail만 맞힌 artifact인가?
+
+### Experiment 1: Subject-Invariant Episode Controller
+
+- Code: `sleep_competition_adapter/subject_invariant_episode_controller.py`
+- Doc: `paper_hsjepa_core/SUBJECT_INVARIANT_EPISODE_CONTROLLER_KO.md`
+- Candidate: `submission_hsjepa_subject_invariant_episode_controller_816c3a6e_uploadsafe.csv`
+- Public LB / prior submissions / action teacher / frontier file: not used
+
+Result:
+
+- raw OOF logloss: `0.636997`
+- full OOF best restricted logloss: `0.629771`
+- subject-LOO logloss under subject-invariant selector: `0.636997`
+- verdict: `subject_invariant_selector_is_safe_but_inactive`
+
+Interpretation:
+
+The full OOF episode action-space controller is not yet a subject-general law. When the selector is forced to be subject-invariant, it becomes safe by doing almost no held-out-subject action. This kills the naive claim that the previous controller alone is a general HS-JEPA decoder.
+
+### Experiment 2: Cross-Subject Episode Prototype Transport
+
+- Code: `sleep_competition_adapter/cross_subject_episode_prototype_transport.py`
+- Doc: `paper_hsjepa_core/CROSS_SUBJECT_EPISODE_PROTOTYPE_TRANSPORT_KO.md`
+- Candidate: `submission_hsjepa_cross_subject_episode_prototype_transport_b034ce3b_uploadsafe.csv`
+- Public LB / prior submissions / action teacher / frontier file: not used
+
+Result:
+
+- raw OOF logloss: `0.636997`
+- best cross-subject transport OOF: `0.629211`
+- best delta vs raw: `-0.007786`
+- robust release OOF: `0.630158`
+- robust release delta vs raw: `-0.006840`
+- robust release active subjects: `7`
+- robust release negative active subjects: `1`
+- candidate differs from episode action-space candidate on `194` row-target cells across `85` test rows
+- verdict: `cross_subject_transport_positive`
+
+Interpretation:
+
+The important move is not more tuning of the old controller. The successful structure is: learn successful episode-action prototypes from other subjects, then transport them to a held-out subject by route/episode context. This gives a more general HS-JEPA claim: the latent human-state representation can support cross-subject state-action geometry, not only personal label memory or public-LB-derived correction.
+
+Next:
+
+- Public-test `submission_hsjepa_cross_subject_episode_prototype_transport_b034ce3b_uploadsafe.csv` if one slot is worth spending on architecture evidence rather than anchor-safe tuning.
+- If public fails, the killed claim is not "episode state has no signal"; it is "cross-subject prototype transport is public/private safe without an additional toxicity veto."

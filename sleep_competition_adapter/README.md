@@ -29,6 +29,8 @@ python3 sleep_competition_adapter/row_reset_episode_detector.py
 python3 sleep_competition_adapter/episode_selective_assignment_decoder.py
 python3 sleep_competition_adapter/episode_action_space_restriction_decoder.py
 python3 sleep_competition_adapter/episode_controller_stress_audit.py
+python3 sleep_competition_adapter/subject_invariant_episode_controller.py
+python3 sleep_competition_adapter/cross_subject_episode_prototype_transport.py
 ```
 
 `spectral_public_tangent_solver.py`는 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 실패 액션들의 첫 spectral mode가 지배적이면, 다음 제출은 bad tangent의 반대 방향을 타야 하는지 또는 그와 직교한 private-safe residual subspace만 믿어야 하는지를 가르는 센서가 된다.
@@ -51,6 +53,10 @@ python3 sleep_competition_adapter/episode_controller_stress_audit.py
 
 `episode_controller_stress_audit.py`는 위 positive result를 subject-LOO policy selection으로 검증한다. 결과는 full OOF best `0.629771`와 달리 subject-LOO selected-policy `0.639997`, raw 대비 `+0.003000`으로 무너졌다. 따라서 episode action-space restriction은 정보량 높은 제출 센서이지만, 아직 subject-general controller라고 주장하기에는 약하다. 다음 adapter 방향은 full OOF best policy가 아니라 subject-invariant controller objective다.
 
+`subject_invariant_episode_controller.py`는 full OOF 최저 정책 대신 subject-invariant objective로 episode controller를 고른다. 결과는 subject-LOO `0.636997`, raw와 사실상 동률이며, 판정은 `subject_invariant_selector_is_safe_but_inactive`다. 이 실패는 중요하다. 안전 목적함수를 걸면 controller가 held-out subject에서 action을 거의 하지 않으므로, 이전 positive result가 특정 subject action tail에 묶여 있음을 보여준다.
+
+`cross_subject_episode_prototype_transport.py`는 그 실패를 해결하기 위한 큰 구조 변경이다. 같은 subject 안에서 action을 고르지 않고, 다른 subject에서 성공한 episode-action prototype을 비슷한 row-target-route로 전이한다. public LB, 기존 submission probability, action teacher, frontier file 없이 subject-held-out kNN transport를 사용하며, raw KNN OOF `0.636997`을 best `0.629211`, robust release `0.630158`까지 낮췄다. robust release는 active subject 7명, negative active subject 1명으로, 2명 tail에 집중된 episode action-space restriction보다 더 일반화된 HS-JEPA 증거다. 후보 파일은 `submission_hsjepa_cross_subject_episode_prototype_transport_b034ce3b_uploadsafe.csv`다.
+
 ## 산출물
 
 - `sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
@@ -67,6 +73,8 @@ python3 sleep_competition_adapter/episode_controller_stress_audit.py
 - `sleep_competition_adapter/outputs/episode_selective_assignment_decoder/EPISODE_SELECTIVE_ASSIGNMENT_DECODER_KO.md`
 - `sleep_competition_adapter/outputs/episode_action_space_restriction_decoder/EPISODE_ACTION_SPACE_RESTRICTION_DECODER_KO.md`
 - `sleep_competition_adapter/outputs/episode_controller_stress_audit/EPISODE_CONTROLLER_STRESS_AUDIT_KO.md`
+- `sleep_competition_adapter/outputs/subject_invariant_episode_controller/SUBJECT_INVARIANT_EPISODE_CONTROLLER_KO.md`
+- `sleep_competition_adapter/outputs/cross_subject_episode_prototype_transport/CROSS_SUBJECT_EPISODE_PROTOTYPE_TRANSPORT_KO.md`
 
 ## 경계
 

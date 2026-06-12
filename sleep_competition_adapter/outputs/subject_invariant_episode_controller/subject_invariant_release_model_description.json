@@ -1,0 +1,78 @@
+{
+  "tree_text": "|--- abs_vs_core <= 0.27\n|   |--- expert_prob_mean <= 0.17\n|   |   |--- value: [-0.65]\n|   |--- expert_prob_mean >  0.17\n|   |   |--- confidence_delta <= 0.35\n|   |   |   |--- value: [-0.01]\n|   |   |--- confidence_delta >  0.35\n|   |   |   |--- value: [0.27]\n|--- abs_vs_core >  0.27\n|   |--- value: [-0.55]\n",
+  "top_features": [
+    {
+      "feature": "expert_prob_mean",
+      "importance": 0.4135757427690803
+    },
+    {
+      "feature": "abs_vs_core",
+      "importance": 0.3581087554947627
+    },
+    {
+      "feature": "confidence_delta",
+      "importance": 0.22831550173615692
+    },
+    {
+      "feature": "expert_pred",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_logit",
+      "importance": 0.0
+    },
+    {
+      "feature": "target_idx",
+      "importance": 0.0
+    },
+    {
+      "feature": "target_is_q",
+      "importance": 0.0
+    },
+    {
+      "feature": "target_is_s",
+      "importance": 0.0
+    },
+    {
+      "feature": "target_is_q2",
+      "importance": 0.0
+    },
+    {
+      "feature": "target_is_s2",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_global_prior",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_subject_prior",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_core_geometry",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_core_action_health",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_raw_action_core_gate",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_strict",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_balanced",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_wide",
+      "importance": 0.0
+    }
+  ],
+  "nonzero_feature_count": 3
+}

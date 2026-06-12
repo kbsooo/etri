@@ -826,3 +826,68 @@ python3 paper_hsjepa_core/target_listener_route_lift_solver.py
 자세한 설명:
 
 - `paper_hsjepa_core/TARGET_LISTENER_ROUTE_LIFT_SOLVER_KO.md`
+
+### 14. Subject-Invariant Episode Controller
+
+```bash
+python3 sleep_competition_adapter/episode_action_space_restriction_decoder.py
+python3 sleep_competition_adapter/subject_invariant_episode_controller.py
+```
+
+이 스크립트는 episode action-space controller가 특정 subject tail에만 맞은
+artifact인지 검증한다.
+
+현재 결과:
+
+- full OOF best restricted logloss: `0.629771`
+- subject-invariant objective의 subject-LOO logloss: `0.636997`
+- raw OOF logloss: `0.636997`
+- verdict: `subject_invariant_selector_is_safe_but_inactive`
+
+해석:
+
+- episode controller는 full OOF에서는 강하지만 subject-general law로 바로
+  주장하기 어렵다.
+- 안전한 subject-invariant objective를 걸면 held-out subject에서 action을
+  거의 하지 않는 쪽으로 수렴한다.
+- 즉 row episode state는 신호가 있지만, 그대로 release policy로 쓰면
+  subject-specific action tail에 묶일 수 있다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/SUBJECT_INVARIANT_EPISODE_CONTROLLER_KO.md`
+
+### 15. Cross-Subject Episode Prototype Transport
+
+```bash
+python3 sleep_competition_adapter/cross_subject_episode_prototype_transport.py
+```
+
+이 스크립트는 위 실패를 해결하기 위해, 같은 subject 안의 과거 action을
+그대로 쓰지 않고 다른 subject에서 성공한 episode-action prototype을
+비슷한 row-target-route로 전이한다.
+
+현재 결과:
+
+- raw OOF logloss: `0.636997`
+- best transport OOF logloss: `0.629211`
+- best delta vs raw: `-0.007786`
+- robust release OOF logloss: `0.630158`
+- robust release delta vs raw: `-0.006840`
+- robust release active subjects: `7`
+- robust release negative active subjects: `1`
+- generated candidate: `submission_hsjepa_cross_subject_episode_prototype_transport_b034ce3b_uploadsafe.csv`
+
+해석:
+
+- HS-JEPA episode state를 특정 사람의 label memory가 아니라
+  cross-subject state-action prototype geometry로 쓰면 subject tail 의존이
+  줄어든다.
+- 이것은 HS-JEPA가 인간 생활 상태를 “개인 내부 기억”이 아니라
+  “다른 사람에게도 전이 가능한 action representation”으로 복원할 수 있다는
+  더 일반적인 논문용 증거다.
+- 현재까지의 가장 강한 architecture-first positive result다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/CROSS_SUBJECT_EPISODE_PROTOTYPE_TRANSPORT_KO.md`

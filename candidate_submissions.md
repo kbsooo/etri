@@ -10080,3 +10080,46 @@ Route-Conserving S2 Bridge HS-JEPA
 ```
 
 The submission filenames are role-based, not historical-version-based.
+## 2026-06-12 - HS-JEPA Cross-Subject Episode Prototype Transport
+
+### Primary Architecture-Evidence Candidate
+
+- File: `submission_hsjepa_cross_subject_episode_prototype_transport_b034ce3b_uploadsafe.csv`
+- Code: `sleep_competition_adapter/cross_subject_episode_prototype_transport.py`
+- Documentation: `paper_hsjepa_core/CROSS_SUBJECT_EPISODE_PROTOTYPE_TRANSPORT_KO.md`
+- Public LB dependency: none
+- Prior submission probability dependency: none
+- Action teacher/frontier file dependency: none
+
+Why this candidate matters:
+
+This is not an anchor micro-adjustment. It tests whether successful episode-action prototypes from other subjects can be transported to similar row-target-route contexts. It differs from the previous episode action-space candidate on 194 row-target cells across 85 test rows.
+
+Local evidence:
+
+- raw OOF logloss: `0.636997`
+- best transport OOF logloss: `0.629211`
+- robust release OOF logloss: `0.630158`
+- robust release delta vs raw: `-0.006840`
+- robust release active subjects: `7`
+- robust release negative active subjects: `1`
+
+Worldview:
+
+HS-JEPA should be framed as a human-state representation that supports cross-subject state-action geometry. The model is not simply remembering a person's past labels; it transfers action prototypes from peers when route/episode context matches.
+
+If public LB improves:
+
+The strongest thesis becomes cross-subject human-state prototype transport: hidden lifestyle/sleep episodes create reusable state-action patterns across subjects.
+
+If public LB worsens:
+
+The transport geometry is locally real but public/private unsafe. The next module should be a toxicity veto or public/private invariant projection, not another small anchor blend.
+
+### Diagnostic Candidate
+
+- File: `submission_hsjepa_subject_invariant_episode_controller_816c3a6e_uploadsafe.csv`
+- Code: `sleep_competition_adapter/subject_invariant_episode_controller.py`
+- Documentation: `paper_hsjepa_core/SUBJECT_INVARIANT_EPISODE_CONTROLLER_KO.md`
+
+This candidate intentionally reproduces the episode action-space prediction under a subject-invariant selector. It is mainly a diagnostic artifact: the selector becomes safe but inactive on subject-LOO, which explains why cross-subject transport was needed.

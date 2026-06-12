@@ -1,0 +1,6 @@
+objective_name,subject_loo_logloss,raw_logloss,delta_vs_raw,heldout_active_rate,heldout_positive_rate_all,heldout_negative_rate_all,heldout_positive_rate_active,mean_heldout_gain_per_cell,selected_policy_entropy,most_selected_policy_key
+active_subject_balanced,0.6369970821509947,0.6369970821509948,-1.1102230246251565e-16,0.0,0.0,0.0,0.0,0.0,3,route_tree_depth3_leaf24||episode_family_space_q90||topfrac||0.06
+minimax_active_gain,0.6369970821509947,0.6369970821509948,-1.1102230246251565e-16,0.0,0.0,0.0,0.0,0.0,3,route_tree_depth3_leaf24||episode_family_space_q90||topfrac||0.06
+full_oof_gain,0.6399967134283127,0.6369970821509948,0.002999631277317838,0.1,0.0,0.1,0.0,-0.0028632844010762788,3,route_tree_depth3_leaf24||episode_family_space_q90||topfrac||0.06
+negative_veto_balanced,0.6399967134283127,0.6369970821509948,0.002999631277317838,0.1,0.0,0.1,0.0,-0.0028632844010762788,3,route_tree_depth3_leaf24||episode_family_space_q90||topfrac||0.06
+coverage_first_controller,0.6531996357163865,0.6369970821509948,0.016202553565391686,0.7,0.1,0.6,0.14285714285714285,-0.01615187245642016,5,route_tree_depth3_leaf24||episode_family_space_q80||topfrac||0.1
