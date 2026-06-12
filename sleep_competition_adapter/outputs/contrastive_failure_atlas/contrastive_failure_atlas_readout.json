@@ -1,0 +1,68 @@
+{
+  "package": "contrastive_failure_atlas",
+  "status": "anchor_free_contrastive_atlas_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_action_teacher": false,
+  "uses_frontier_file": false,
+  "raw_knn_oof_logloss": 0.6369970821509948,
+  "best_policy_name": "atlas_target_family_score_all_topfrac_0.080",
+  "best_policy_score_col": "atlas_target_family_score",
+  "best_policy_mode": "topfrac",
+  "best_policy_param": 0.08,
+  "best_policy_oof_logloss": 0.6354247568422373,
+  "best_policy_delta_vs_raw_knn": -0.001572325308757505,
+  "best_policy_oof_switched_cells": 59,
+  "best_policy_oof_switched_rate": 0.08027210884353742,
+  "best_policy_positive_true_gain_rate": 0.5423728813559322,
+  "best_policy_mean_realized_gain_all_cells": 0.0015723253087575977,
+  "best_policy_target_null_p_ge_observed": 0.52925,
+  "best_policy_target_family_null_p_ge_observed": 0.5345,
+  "best_policy_target_null_z": -0.07848229608407478,
+  "best_policy_target_family_null_z": -0.02303607251833373,
+  "best_policy_oof_target_counts": {
+    "Q1": 53,
+    "Q2": 2,
+    "Q3": 0,
+    "S1": 0,
+    "S2": 0,
+    "S3": 2,
+    "S4": 2
+  },
+  "best_policy_oof_expert_family_counts": {
+    "prior": 53,
+    "core_action_health": 3,
+    "raw_action_core_health": 3
+  },
+  "feature_count": 41,
+  "prototype_config": {
+    "positive_gain_floor": 0.1,
+    "toxic_gain_ceiling": -0.1,
+    "positive_quantile": 0.84,
+    "toxic_quantile": 0.16,
+    "k_neighbors": 18,
+    "target_weight": 0.45,
+    "family_weight": 0.2
+  },
+  "candidate_file": "submission_hsjepa_contrastive_failure_atlas_7a28f76d_uploadsafe.csv",
+  "root_candidate_file": "submission_hsjepa_contrastive_failure_atlas_7a28f76d_uploadsafe.csv",
+  "test_switched_cells": 140,
+  "test_switched_rows": 136,
+  "test_target_counts": {
+    "Q1": 134,
+    "Q2": 1,
+    "Q3": 0,
+    "S1": 0,
+    "S2": 2,
+    "S3": 2,
+    "S4": 1
+  },
+  "test_expert_counts": {
+    "global_prior": 132,
+    "raw_action_core_health__strict_listener_health": 4,
+    "hsjepa_action_health__strict_listener_health": 3,
+    "raw_action_core_health__wide_listener_health": 1
+  },
+  "submission_priority": "low_negative_evidence_not_primary_submission",
+  "interpretation": "Tests whether HS-JEPA action success/failure can be represented as a contrastive prototype atlas rather than a supervised gain regressor."
+}
