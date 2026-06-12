@@ -41,6 +41,7 @@ python3 hsjepa_core/run_lifelog_core_state_evidence.py
 - masked lifelog view prediction은 phone/app/body representation에서 null 대비 component-correlation lift를 보였다.
 - external action replay에서는 core-state geometry만으로 평균 row AUC `0.9543`, recall@k `0.8386`, permutation z `8.38`을 보였다.
 - action-health separation에서는 public score를 feature로 쓰지 않은 health score가 nonzero action field 6개에서 `-public LB`와 Spearman `0.8407`로 정렬됐다.
+- teacher-free core support에서는 public score와 action teacher 없이 row-state frontier 45개 row 중 16개를 top 28% support에서 회수했다.
 
 따라서 논문 주장은 다음으로 고정한다.
 
@@ -63,6 +64,7 @@ HS-JEPA는 생활 로그를 숨은 인간 상태 공간으로 바꾸고,
 ```bash
 python3 hsjepa_core/run_lifelog_core_state_evidence.py
 python3 sleep_competition_adapter/action_health_separation_probe.py
+python3 sleep_competition_adapter/teacher_free_core_support_release.py
 ```
 
 ## JEPA에서 가져온 것
@@ -112,6 +114,27 @@ HS-JEPA는 latent signal을 바로 prediction으로 바꾸지 않고, action이 
 각 target을 독립적으로 조정하면 local score는 좋아질 수 있지만, human-state manifold를 깨뜨릴 수 있다.
 
 HS-JEPA는 action 후에도 보존되어야 하는 domain invariant를 정의하고, 그 invariant를 깨는 action을 release하지 않는다.
+
+### Contribution 4b. Teacher-Free Core Support
+
+HS-JEPA core가 대회용 public feedback이나 기존 성공 action을 보지 않고도 row-state support 일부를 회수할 수 있는지 검증한다.
+
+수면 대회 adapter에서는 다음 실험으로 구현했다.
+
+```bash
+python3 sleep_competition_adapter/teacher_free_core_support_release.py
+```
+
+이 모듈은 OG lifelog-derived human-state geometry, personal/cohort outlier, train-label nearest-neighbor target margin만으로 row support를 만든다.
+
+현재 결과는 다음처럼 해석한다.
+
+```text
+core representation is not an action decoder;
+it is a teacher-free support geometry for downstream listener assignment.
+```
+
+이 contribution은 HS-JEPA의 generality에 중요하다. public score 주변을 조정한 결과가 아니라, core representation이 기존 row-state frontier 일부를 사후적으로 회수했기 때문이다.
 
 ### Contribution 5. Counterfactual Listener-Dropout
 

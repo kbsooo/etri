@@ -1,0 +1,35 @@
+{
+  "package": "teacher_free_core_support_release",
+  "status": "bigbet_candidate_ready",
+  "uses_public_score_ledger": false,
+  "uses_action_teacher_for_support": false,
+  "uses_frontier_file_for_overlap_evaluation_only": true,
+  "base_probability_prior": "submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv",
+  "candidate_file": "submission_hsjepa_teacher_free_core_support_release_8d9899fb_uploadsafe.csv",
+  "root_candidate_file": "submission_hsjepa_teacher_free_core_support_release_8d9899fb_uploadsafe.csv",
+  "changed_cells": 160,
+  "changed_rows": 40,
+  "mean_abs_logit_move": 0.09705638026445432,
+  "max_abs_logit_move": 0.2711519438123332,
+  "target_action_counts": {
+    "S4": 40,
+    "Q2": 34,
+    "S2": 25,
+    "S1": 22,
+    "S3": 19,
+    "Q3": 18,
+    "Q1": 2
+  },
+  "best_overlap": {
+    "reference": "frontier_active_silence_rows",
+    "top_fraction": 0.28,
+    "k": 70,
+    "reference_rows": 45,
+    "overlap_rows": 16,
+    "recall": 0.35555555555555557,
+    "precision": 0.22857142857142856,
+    "mean_selected_score": 0.7474434285714286,
+    "mean_not_selected_score": 0.4065497777777778
+  },
+  "worldview": "HS-JEPA core geometry plus train-label neighbor margins can propose row support without action-teacher supervision."
+}
