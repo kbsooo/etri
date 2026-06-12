@@ -9,6 +9,7 @@
 - `paper_hsjepa_core/LIFELOG_CORE_STATE_EVIDENCE_KO.md`
 - `paper_hsjepa_core/ACTION_HEALTH_SEPARATION_PROBE_KO.md`
 - `paper_hsjepa_core/TEACHER_FREE_CORE_SUPPORT_RELEASE_KO.md`
+- `paper_hsjepa_core/CORE_OOF_ACTION_HEALTH_BENCHMARK_KO.md`
 
 논문 방향으로는 `HS_JEPA_PAPER_THESIS_KO.md`를 먼저 읽는다. 이 문서는 HS-JEPA를 대회용 trick이 아니라 `hidden human-state -> listener responsibility -> action-health -> invariant release` 아키텍처로 정리하고, public LB를 그 주장을 검증하는 sensor로 해석한다.
 
@@ -41,6 +42,22 @@ row-action support와 action-health를 더 잘 읽게 하는 human-state geometr
 ```text
 HS-JEPA core는 action-grade decoder가 아니라,
 listener/assignment solver가 사용할 수 있는 row-support geometry다.
+```
+
+`CORE_OOF_ACTION_HEALTH_BENCHMARK_KO.md`는 public/submission teacher 없이 OG train future split에서 HS-JEPA가 실제 Log Loss를 줄이는 방식을 검증한다.
+
+현재 핵심 결과:
+
+- subject prior temporal OOF: `0.650566`
+- raw lifelog KNN blend: `0.636997`
+- core KNN blend: `0.638266`
+- best single action-health decoder: `0.644184`
+- target listener route selector: `0.629398`
+
+현재 해석:
+
+```text
+HS-JEPA의 성능은 단일 decoder가 아니라 target/listener별 route selection에서 나온다.
 ```
 
 ## 핵심 질문
@@ -118,6 +135,26 @@ python3 sleep_competition_adapter/teacher_free_core_support_release.py
 논문 해석:
 
 > HS-JEPA core can recover non-trivial row-state support without action-teacher supervision, but a separate listener/assignment and action-health decoder is still required for release-grade corrections.
+
+### 0d. Core OOF Action-Health Benchmark
+
+```bash
+python3 sleep_competition_adapter/core_oof_action_health_benchmark.py
+```
+
+이 스크립트는 public score, 기존 submission, action teacher 없이 OG train 내부 future split에서 HS-JEPA 구조를 비교한다.
+
+현재 결과:
+
+- best temporal model: `hsjepa_target_listener_route_selector`
+- temporal mean logloss: `0.629398`
+- subject prior 대비 delta: `-0.021168`
+- raw KNN 대비 delta: `-0.007599`
+- generated candidate: `submission_hsjepa_core_oof_action_health_fea05ac1_uploadsafe.csv`
+
+논문 해석:
+
+> HS-JEPA should be framed as listener-specific route selection over human-state, raw-lifelog, prior, and action-health routes, not as a monolithic latent classifier.
 
 ### 1. Human-State Action Distillation
 

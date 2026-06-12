@@ -42,6 +42,7 @@ python3 hsjepa_core/run_lifelog_core_state_evidence.py
 - external action replay에서는 core-state geometry만으로 평균 row AUC `0.9543`, recall@k `0.8386`, permutation z `8.38`을 보였다.
 - action-health separation에서는 public score를 feature로 쓰지 않은 health score가 nonzero action field 6개에서 `-public LB`와 Spearman `0.8407`로 정렬됐다.
 - teacher-free core support에서는 public score와 action teacher 없이 row-state frontier 45개 row 중 16개를 top 28% support에서 회수했다.
+- core OOF action-health benchmark에서는 target/listener route selector가 temporal future split에서 subject prior `0.650566`, raw KNN `0.636997`보다 낮은 `0.629398`을 기록했다.
 
 따라서 논문 주장은 다음으로 고정한다.
 
@@ -65,6 +66,7 @@ HS-JEPA는 생활 로그를 숨은 인간 상태 공간으로 바꾸고,
 python3 hsjepa_core/run_lifelog_core_state_evidence.py
 python3 sleep_competition_adapter/action_health_separation_probe.py
 python3 sleep_competition_adapter/teacher_free_core_support_release.py
+python3 sleep_competition_adapter/core_oof_action_health_benchmark.py
 ```
 
 ## JEPA에서 가져온 것
@@ -135,6 +137,39 @@ it is a teacher-free support geometry for downstream listener assignment.
 ```
 
 이 contribution은 HS-JEPA의 generality에 중요하다. public score 주변을 조정한 결과가 아니라, core representation이 기존 row-state frontier 일부를 사후적으로 회수했기 때문이다.
+
+### Contribution 4c. Target Listener Route Selection
+
+HS-JEPA가 하나의 latent classifier라면 모든 target이 같은 representation을 들어야 한다.
+하지만 인간 이해 문제에서는 target마다 같은 human-state를 듣는 방식이 다르다.
+
+수면 대회 adapter에서는 다음 실험으로 구현했다.
+
+```bash
+python3 sleep_competition_adapter/core_oof_action_health_benchmark.py
+```
+
+이 모듈은 public score와 기존 submission 없이, OG train future split에서 여러 route를 비교한다.
+
+결과적으로 선택된 route는 다음과 같다.
+
+```text
+Q1 -> core KNN
+Q2 -> global prior
+Q3 -> global prior
+S1 -> raw lifelog KNN
+S2 -> HS-JEPA action-health
+S3 -> raw lifelog KNN
+S4 -> core KNN
+```
+
+이 결과는 HS-JEPA를 다음처럼 정립해야 한다는 증거다.
+
+```text
+HS-JEPA is not one hidden-state classifier.
+It is a listener-specific routing architecture over
+human-state geometry, raw-lifelog proximity, safe priors, and action-health release.
+```
 
 ### Contribution 5. Counterfactual Listener-Dropout
 

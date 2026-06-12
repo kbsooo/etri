@@ -1,0 +1,41 @@
+{
+  "package": "core_oof_action_health_benchmark",
+  "status": "anchor_free_oof_benchmark_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_action_teacher": false,
+  "best_temporal_model": "hsjepa_target_listener_route_selector",
+  "best_temporal_logloss": 0.6293979561258214,
+  "best_action_health_model": "hsjepa_action_health__high_margin_listener_health",
+  "best_action_health_temporal_logloss": 0.6441841940823083,
+  "subject_prior_temporal_logloss": 0.6505657555490405,
+  "best_delta_vs_subject_prior": -0.021167799423219114,
+  "best_action_delta_vs_subject_prior": -0.0063815614667321885,
+  "selected_action_health_model": "hsjepa_action_health__high_margin_listener_health",
+  "selected_release_config": "high_margin_listener_health",
+  "target_listener_route": {
+    "Q1": "core_knn_blend",
+    "Q2": "global_prior",
+    "Q3": "global_prior",
+    "S1": "raw_knn_blend",
+    "S2": "hsjepa_action_health__strict_listener_health",
+    "S3": "raw_knn_blend",
+    "S4": "core_knn_blend"
+  },
+  "target_listener_route_temporal_logloss": 0.6293979561258214,
+  "target_listener_route_delta_vs_subject_prior": -0.021167799423219114,
+  "candidate_file": "submission_hsjepa_core_oof_action_health_fea05ac1_uploadsafe.csv",
+  "root_candidate_file": "submission_hsjepa_core_oof_action_health_fea05ac1_uploadsafe.csv",
+  "candidate_released_cells": 24,
+  "candidate_released_rows": 24,
+  "candidate_release_target_counts": {
+    "Q1": 0,
+    "Q2": 0,
+    "Q3": 0,
+    "S1": 0,
+    "S2": 24,
+    "S3": 0,
+    "S4": 0
+  },
+  "interpretation": "OOF evidence tests whether HS-JEPA core action-health is a real decoder or only a support diagnostic."
+}
