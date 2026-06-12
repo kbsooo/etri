@@ -1,0 +1,6 @@
+target_view,context_feature_count,target_feature_count,components,oof_r2,oof_component_corr,train_energy_mean,test_energy_mean,uses_public_score,uses_train_labels,uses_label_informed_features
+calendar_rhythm,94,5,4,-453.7631732938954,0.00470540540680218,7.950123982567776,1.0175054896471079,False,False,False
+phone_behavior,59,40,4,-150.62883265806815,0.10500809898645952,9.24570583929476,1.440983522400063,False,False,False
+body_activity_sleep,81,18,4,-1481.296505155129,-0.048899157707726494,19.49243986752266,1.3111937446032376,False,False,False
+app_social_context,81,18,4,-0.13243387826201783,0.15672761197097257,1.6304789326931604,1.1721119920987069,False,False,False
+mobility_environment,81,18,4,-336.8937779918452,-0.05313388800129232,9.674250266985489,0.9946008872201315,False,False,False

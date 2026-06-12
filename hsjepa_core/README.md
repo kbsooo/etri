@@ -54,6 +54,7 @@ python3 hsjepa_core/run_core_student_recovers_masked_tail_teacher.py
 python3 hsjepa_core/run_subject_invariant_masked_tail_jury_core.py
 python3 hsjepa_core/run_subject_invariant_listener_manifold_core.py
 python3 hsjepa_core/run_open_loop_human_state_listener_core.py
+python3 hsjepa_core/run_masked_human_state_pretext_listener_core.py
 ```
 
 ## 산출물
@@ -115,6 +116,9 @@ python3 hsjepa_core/run_open_loop_human_state_listener_core.py
 - `hsjepa_core/outputs/open_loop_human_state_listener_core/open_loop_human_state_listener_core_summary.json`
 - `hsjepa_core/outputs/open_loop_human_state_listener_core/OPEN_LOOP_HUMAN_STATE_LISTENER_CORE_KO.md`
 - `hsjepa_core/outputs/open_loop_human_state_listener_core/*.csv`
+- `hsjepa_core/outputs/masked_human_state_pretext_listener_core/masked_human_state_pretext_listener_core_summary.json`
+- `hsjepa_core/outputs/masked_human_state_pretext_listener_core/MASKED_HUMAN_STATE_PRETEXT_LISTENER_CORE_KO.md`
+- `hsjepa_core/outputs/masked_human_state_pretext_listener_core/*.csv`
 
 ## 실행 가능한 core
 
@@ -137,6 +141,7 @@ python3 hsjepa_core/run_open_loop_human_state_listener_core.py
 - `hsjepa_core/run_subject_invariant_masked_tail_jury_core.py`: masked-view consensus teacher를 subject-excluded jury로 다시 읽어, subject를 하나씩 가려도 같은 hidden-tail action이 살아남는지 검사한다. 현재 결과는 subject-heldout positive다.
 - `hsjepa_core/run_subject_invariant_listener_manifold_core.py`: subject-invariant jury release가 HS-JEPA hidden representation 공간에서 action-only baseline보다 잘 분리되는지 검사한다. 현재 결과는 listener-manifold positive다.
 - `hsjepa_core/run_open_loop_human_state_listener_core.py`: masked-tail teacher와 action probability/magnitude를 제외하고, OG human-state + minimal listener만으로 subject-invariant action-health support를 복원할 수 있는지 검사한다. 현재 결과는 mixed boundary다.
+- `hsjepa_core/run_masked_human_state_pretext_listener_core.py`: raw OG human-state를 바로 decoder에 넣지 않고 masked-view pretext state로 바꾼 뒤, subject-invariant action-health support가 더 잘 분리되는지 검사한다. 현재 결과는 raw open-loop 대비 소폭 positive / listener-only 대비 negative다.
 
 ## 팀 공유 시 주의점
 
@@ -685,6 +690,41 @@ Open-loop human-state는 action geometry만 보는 것보다는 낫다.
 따라서 현재 evidence는 "OG human-state core만으로 release-grade action-health를 복원했다"가 아니다.
 강한 주장은 여전히 teacher-derived hidden-tail/listener manifold가 필요하다는 쪽이다.
 이 실험은 HS-JEPA core-only 독립성을 과장하지 않게 만드는 boundary/negative sensor다.
+```
+
+## Masked Human-State Pretext Listener Core
+
+`run_masked_human_state_pretext_listener_core.py`는 open-loop의 약점을 한 단계 더 HS-JEPA답게 찌른다.
+OG human-state feature를 그대로 decoder에 넣지 않고, semantic lifelog view 하나를 가리고 나머지 view로
+그 view의 PCA representation을 예측한다. 그 predicted/residual/surprise state가
+subject-invariant action-health support를 raw human-state보다 잘 읽는지 비교한다.
+
+```text
+visible lifelog views
+  -> predict masked human-state view representation
+  -> predicted/residual/surprise state
+  -> listener-conditioned action-health support
+```
+
+현재 핵심 결과:
+
+- verdict: `masked_pretext_improves_raw_human_state_but_not_listener_only`
+- best strict-jury family: `listener_only`
+- best masked-pretext family: `masked_pretext_prediction_listener`
+- masked-pretext AP lift: `+0.064389`
+- open-loop raw human-state AP lift: `+0.062217`
+- listener-only AP lift: `+0.079972`
+- action-only AP lift: `+0.038054`
+- released test cells: `67`
+- anchor-free candidate: `submission_hsjepa_masked_human_state_pretext_listener_anchor_free_c47e9223_uploadsafe.csv`
+
+해석:
+
+```text
+Masked-pretext representation은 raw human-state보다 약간 낫다.
+따라서 "raw feature가 아니라 representation이어야 한다"는 방향은 약하게 강화된다.
+하지만 listener-only를 넘지 못하므로 core-only 독립 breakthrough는 아니다.
+현재 strong evidence는 여전히 hidden-tail/listener manifold에 있다.
 ```
 
 ## Core가 아닌 것

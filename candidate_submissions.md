@@ -10840,3 +10840,46 @@ HS-JEPA는 teacher-derived hidden-tail 없이도 open-loop human-state model로 
 
 - local 결과와 일치한다. open-loop core는 action-only보다 낫지만 release-grade는 아니다.
 - 논문 주장은 “HS-JEPA core-only classifier”가 아니라 “teacher-derived hidden-tail/listener manifold + anti-shortcut decoder”로 유지해야 한다.
+
+## Masked Human-State Pretext Listener Core
+
+- file: `submission_hsjepa_masked_human_state_pretext_listener_anchor_free_c47e9223_uploadsafe.csv`
+- code: `hsjepa_core/run_masked_human_state_pretext_listener_core.py`
+- doc: `paper_hsjepa_core/MASKED_HUMAN_STATE_PRETEXT_LISTENER_CORE_KO.md`
+- status: upload-safe diagnostic candidate
+- public LB: not submitted
+- semantic purpose: raw human-state feature를 masked-view pretext representation으로 바꾸면 subject-invariant action-health support가 더 잘 살아나는지 검사한다.
+
+### Why This Candidate Exists
+
+이 후보는 HS-JEPA core의 형태에 대한 가설을 검증한다.
+
+```text
+HS-JEPA core가 의미 있으려면 raw lifelog feature 자체가 아니라,
+visible views로 masked human-state representation을 예측한 state가
+action-health decoder에 더 안전한 입력이어야 한다.
+```
+
+### Local Evidence
+
+- best strict jury family: `listener_only`
+- best masked-pretext family: `masked_pretext_prediction_listener`
+- masked-pretext AP lift: `+0.064389`
+- open-loop raw human-state AP lift: `+0.062217`
+- listener-only AP lift: `+0.079972`
+- action-only AP lift: `+0.038054`
+- release targets: `Q2`, `S1`, `S2`, `S4`
+- released test cells: `67`
+- validation: valid, rows `250`, probability range `[0.369726, 0.916509]`
+
+### Expected Public Meaning
+
+좋아지면:
+
+- public subset에서는 masked-view pretext state가 raw human-state보다 안전한 release ranking을 만든다는 뜻이다.
+- HS-JEPA core를 raw feature encoder가 아니라 masked human-state world model로 패키징할 근거가 강화된다.
+
+나빠지면:
+
+- local 결과와 일치한다. pretext representation은 raw보다 조금 낫지만 listener-only를 못 넘는 경계 신호다.
+- strong thesis는 여전히 hidden-tail/listener manifold와 anti-shortcut decoder에 둬야 한다.

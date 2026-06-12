@@ -44,6 +44,7 @@
 - `paper_hsjepa_core/SUBJECT_INVARIANT_EPISODE_CONTROLLER_KO.md`
 - `paper_hsjepa_core/CROSS_SUBJECT_EPISODE_PROTOTYPE_TRANSPORT_KO.md`
 - `paper_hsjepa_core/OPEN_LOOP_HUMAN_STATE_LISTENER_CORE_KO.md`
+- `paper_hsjepa_core/MASKED_HUMAN_STATE_PRETEXT_LISTENER_CORE_KO.md`
 - `paper_hsjepa_core/MASKED_VIEW_SURPRISE_ACTION_RELEASE_KO.md`
 - `paper_hsjepa_core/SURPRISE_RESPONSIBILITY_TOXICITY_VETO_KO.md`
 - `paper_hsjepa_core/CROSS_SUBJECT_SURPRISE_RESPONSIBILITY_VETO_KO.md`
@@ -1743,3 +1744,52 @@ support를 복원할 수 있는지 검사한다.
 자세한 설명:
 
 - `paper_hsjepa_core/OPEN_LOOP_HUMAN_STATE_LISTENER_CORE_KO.md`
+
+### 25. Masked Human-State Pretext Listener Core
+
+```bash
+python3 hsjepa_core/run_masked_human_state_pretext_listener_core.py
+```
+
+이 스크립트는 open-loop raw human-state의 한계를 HS-JEPA pretext representation으로 다시 찌른다.
+원시 human-state feature를 그대로 decoder에 넣지 않고, semantic lifelog view 하나를 가린 뒤
+나머지 view로 그 view의 PCA target representation을 예측한다. 이후 predicted/residual/surprise
+state가 subject-invariant jury release를 더 잘 분리하는지 검사한다.
+
+비교한 feature family:
+
+- `listener_only`
+- `action_geometry_only`
+- `open_loop_human_state_listener`
+- `masked_pretext_prediction_listener`
+- `masked_pretext_residual_listener`
+- `masked_pretext_full_listener`
+- `human_plus_masked_pretext_listener`
+
+현재 결과:
+
+- public LB ledger 사용: `False`
+- prior submission probability 사용: `False`
+- proprietary embedding API 사용: `False`
+- masked-tail teacher score 사용: `False`
+- label-informed peer margin 사용: `False`
+- verdict: `masked_pretext_improves_raw_human_state_but_not_listener_only`
+- best strict-jury family: `listener_only`
+- best masked-pretext family: `masked_pretext_prediction_listener`
+- masked-pretext AP lift: `+0.064389`
+- open-loop raw human-state AP lift: `+0.062217`
+- listener-only AP lift: `+0.079972`
+- action-only AP lift: `+0.038054`
+- generated candidate: `submission_hsjepa_masked_human_state_pretext_listener_anchor_free_c47e9223_uploadsafe.csv`
+
+해석:
+
+- masked-pretext representation은 raw open-loop human-state보다 조금 더 낫다.
+- 하지만 listener-only를 넘지 못했다.
+- 따라서 “human-state를 JEPA-style representation으로 바꾸면 core-only breakthrough가 난다”는 강한 주장은 아직 죽었다.
+- 대신 약한 positive evidence는 남는다: raw feature보다 predicted masked-view state가 strict jury support를 약간 더 잘 읽는다.
+- 현재 strong paper claim은 여전히 `hidden-tail/listener manifold`에 있고, 이 실험은 그 이전 단계의 core-only 경계 증거다.
+
+자세한 설명:
+
+- `paper_hsjepa_core/MASKED_HUMAN_STATE_PRETEXT_LISTENER_CORE_KO.md`

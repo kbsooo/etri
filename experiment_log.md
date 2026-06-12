@@ -17338,3 +17338,71 @@ subject-invariant action-health release safe enough for the adapter.
 Do not package this as a positive architecture result. Use it as a boundary condition:
 the next core breakthrough must either make open-loop human-state beat listener-only, or explain why
 teacher-derived hidden-tail targets are a necessary part of HS-JEPA rather than a competition artifact.
+
+## Masked Human-State Pretext Listener Core
+
+- date: 2026-06-13
+- task: HS-JEPA core / masked-view human-state pretext representation for action-health support
+- code: `hsjepa_core/run_masked_human_state_pretext_listener_core.py`
+- paper doc: `paper_hsjepa_core/MASKED_HUMAN_STATE_PRETEXT_LISTENER_CORE_KO.md`
+- output summary: `hsjepa_core/outputs/masked_human_state_pretext_listener_core/masked_human_state_pretext_listener_core_summary.json`
+- candidate: `submission_hsjepa_masked_human_state_pretext_listener_anchor_free_c47e9223_uploadsafe.csv`
+- uses public LB ledger: `False`
+- uses prior submission probabilities: `False`
+- uses proprietary embedding API: `False`
+- uses masked-tail teacher score: `False`
+- uses label-informed peer margin: `False`
+
+### Hypothesis
+
+Open-loop raw human-state가 약했던 이유가 human-state signal 부재가 아니라 representation 부재라면,
+semantic lifelog view를 mask하고 나머지 view로 target-view representation을 예측한
+masked-pretext state가 raw open-loop보다 strict subject-invariant action-health support를 더 잘 분리해야 한다.
+
+### Method
+
+OG lifelog/cohort feature에서 label-informed peer margin을 제외하고 view를 나눴다.
+각 view를 hidden target representation으로 두고 나머지 view에서 PCA target state를 예측했다.
+그 predicted/residual/surprise representation을 minimal listener와 결합해 strict jury release를
+subject GroupKFold에서 분리했다.
+
+비교한 family:
+
+- `listener_only`
+- `action_geometry_only`
+- `open_loop_human_state_listener`
+- `masked_pretext_prediction_listener`
+- `masked_pretext_residual_listener`
+- `masked_pretext_full_listener`
+- `human_plus_masked_pretext_listener`
+
+### Result
+
+- verdict: `masked_pretext_improves_raw_human_state_but_not_listener_only`
+- best strict jury family: `listener_only`
+- best masked-pretext family: `masked_pretext_prediction_listener`
+- masked-pretext AP lift: `+0.064389`
+- open-loop raw human-state AP lift: `+0.062217`
+- listener-only AP lift: `+0.079972`
+- action-only AP lift: `+0.038054`
+- release targets: `Q2`, `S1`, `S2`, `S4`
+- released test cells: `67`
+- upload validation: valid, rows `250`, probability range `[0.369726, 0.916509]`
+
+### Interpretation
+
+Masked-pretext state is a weak positive over raw human-state, so HS-JEPA-style representation helps a little.
+But it does not beat listener-only. Therefore this is not the core-only breakthrough.
+
+```text
+The current bottleneck is not simply "raw features need a JEPA pretext".
+The action-health signal is still mostly in the listener/hidden-tail boundary,
+not in a standalone human-state world model.
+```
+
+### Next
+
+The next big-bet should stop trying to make a universal core-only classifier.
+It should define the hidden target representation itself more carefully:
+for example, separate Q/S listener manifolds, infer action-health route prototypes,
+or train the core to predict a subject-invariant listener responsibility field rather than generic masked views.
