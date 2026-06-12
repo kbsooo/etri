@@ -321,7 +321,7 @@ HS-JEPA는 positive frontier tangent와 negative post-frontier tangent를 동시
 python3 sleep_competition_adapter/frontier_trajectory_silence_solver.py
 ```
 
-이 모듈은 H012 → H042 → H057의 positive frontier path와 H057 이후 public에서 실패한 분기들을 contrastive target representation으로 만든다.
+이 모듈은 public-equation jump → Q2 phase route → row-state vector frontier의 positive frontier path와 row-state frontier 이후 public에서 실패한 분기들을 contrastive target representation으로 만든다.
 그 뒤 기존 HS-JEPA 후보들이 제안한 row-target action pool 위에서 다음을 계산한다.
 
 - frontier alignment: 성공 경로를 더 밀고 있는가
@@ -368,6 +368,83 @@ the public frontier path is a JEPA target representation, not only a score histo
 - post-frontier bottleneck은 continuation이 아니라 hidden row-support assignment 또는 public/private subset factorization이다.
 - 다음에는 “더 밀기”보다 “어떤 row-target이 아예 말해지면 안 되는가”를 더 직접적으로 모델링해야 한다.
 
+실제 public 관측:
+
+```text
+submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv
+public LB 0.5677269444
+```
+
+해석은 양면적이다.
+
+- positive: active-silence는 action-health의 일부다. release하지 않는 결정과 성공 trajectory continuation을 함께 보는 것이 실제 public에서 작게나마 이겼다.
+- negative: 개선 폭은 약 0.00002065로 작다. 따라서 이 결과만으로는 0.53급 breakthrough나 일반 architecture 완성을 주장할 수 없다.
+- 다음 thesis: current best를 anchor로 미세 이동하는 방식이 아니라, row-state frontier를 여러 listener 중 하나로만 취급하고 fresh row-target field를 합성하는 anchor-free state transport가 필요하다.
+
+### Contribution 13. Anchor-Free State Transport
+
+frontier active-silence는 성공했지만 작은 성공이었다.
+따라서 HS-JEPA를 대회용 anchor-following으로 만들지 않으려면, current best를 중심으로 조금 움직이는 방식에서 벗어나야 한다.
+
+Anchor-Free State Transport는 current best를 base anchor가 아니라 여러 listener 중 하나로만 취급한다.
+
+```text
+positive listener worlds
+  + negative/toxic listener worlds
+  + route/subject invariant check
+  -> fresh row-target action field
+```
+
+수면 대회 adapter에서는 다음 실험으로 구현했다.
+
+```bash
+python3 sleep_competition_adapter/anchor_free_state_transport_solver.py
+```
+
+이 모듈은 다음 listener worlds를 사용한다.
+
+- positive: pre-HS feature frontier, public-equation jump, Q2 phase route, row-state vector frontier, frontier active-silence
+- negative: dual-head toxicity stress, cross-listener transport stress, objective S1/S4 toxic route, mask-family JEPA S2 toxic route, null-common residual toxic route
+
+생성된 핵심 후보:
+
+```text
+submission_hsjepa_anchorfree_state_transport_nonlocal_transport_release_6b3b402c_uploadsafe.csv
+```
+
+현재 local/stress readout:
+
+```text
+changed cells: 322
+changed rows: 188
+mean abs logit move vs current: 0.068913
+mean route energy delta: -0.005155
+mean subject energy delta: -0.000302
+mean negative listener distance rank: 0.773858
+cell score null z: 33.3714
+route energy null z: -13.9976
+anti-bad null z: 8.0857
+```
+
+핵심은 다음이다.
+
+```text
+current best is not the architecture;
+it is one listener in a larger human-state transport equation.
+```
+
+이 후보가 public에서 좋아지면:
+
+- HS-JEPA는 current best anchor 없이도 listener worlds를 transport해 action field를 만들 수 있다.
+- row-state, active-silence, negative listener가 하나의 architecture로 결합된다.
+- 논문 contribution은 “대회 제출을 잘 섞었다”가 아니라 “hidden human-state를 listener-space across worlds로 transport했다”가 된다.
+
+나빠지면:
+
+- 각 listener world는 real signal이지만, fresh tensor 합성에는 아직 private/toxicity/invariant 제약이 부족하다.
+- 0.53급 breakthrough는 dense/nonlocal transport가 아니라, public/private subset factorization 또는 cohort-relative invariant에서 찾아야 한다.
+- 그래도 이 실패는 HS-JEPA를 anchor-following architecture로 두지 않기 위한 중요한 반증 실험이다.
+
 ## 이번 대회에서 얻은 핵심 증거
 
 ### 증거 1. Direct JEPA latent label prediction은 실패했다
@@ -376,13 +453,13 @@ the public frontier path is a JEPA target representation, not only a score histo
 
 ### 증거 2. 큰 성능 점프는 row-target action field에서 나왔다
 
-H012와 H057 계열은 단순 모델 개선이 아니라, 특정 row-target action field를 맞히면서 public LB를 크게 낮췄다.
+public-equation jump와 row-state vector frontier 계열은 단순 모델 개선이 아니라, 특정 row-target action field를 맞히면서 public LB를 크게 낮췄다.
 
 현재 최고 관측값:
 
 ```text
-submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv
-public LB 0.5677475939
+submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv
+public LB 0.5677269444
 ```
 
 이 결과는 HS-JEPA의 실제 target이 label probability 자체가 아니라 row-target correction/action field임을 보여준다.

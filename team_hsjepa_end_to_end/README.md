@@ -285,8 +285,8 @@ Human-state representation
 현재 알려진 최고 public LB:
 
 ```text
-submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv
-0.5677475939
+submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv
+0.5677269444
 ```
 
 이 패키지는 이 점수를 이미 낸 암묵지를 버리지 않는다.
@@ -300,3 +300,31 @@ public-sensitive action field
 ```
 
 즉 대회 성능 자산과 논문 아이디어를 분리하지 않고, 하나의 end-to-end 설명 가능한 구조로 묶는다.
+
+## 팀 커뮤니케이션 이름 규칙
+
+팀 문서와 발표에서는 내부 실험 번호보다 메커니즘 이름을 우선한다.
+
+```text
+public-equation jump
+Q2 phase route
+row-state vector frontier
+dual-head toxicity stress
+target-assignment stress
+cross-listener transport
+frontier active-silence
+```
+
+전체 매핑은 아래 파일에 정리했다.
+
+```text
+team_hsjepa_end_to_end/SEMANTIC_NAMING_GUIDE_KO.md
+```
+
+중요한 해석은 다음이다.
+
+```text
+frontier active-silence는 새 best를 만들었지만, 이는 anchor-local continuation이다.
+논문/0.53급 breakthrough를 위해서는 current best를 중심으로 조금 움직이는 방식이 아니라
+row-state frontier를 여러 listener 중 하나로만 취급하는 anchor-free state transport가 필요하다.
+```

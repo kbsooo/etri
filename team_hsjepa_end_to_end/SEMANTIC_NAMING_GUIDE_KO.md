@@ -1,0 +1,65 @@
+# HS-JEPA Semantic Naming Guide
+
+이 문서는 팀원이 과거 내부 실험 번호를 몰라도 HS-JEPA 실험 흐름을 이해할 수 있게 하기 위한 이름 규칙이다.
+
+## 원칙
+
+내부 버전 번호는 재현용 파일명 안에만 둔다. 문서와 발표에서는 메커니즘 이름을 쓴다.
+
+```text
+나쁜 설명: H057이 H042 row를 쓰고 H088은 실패했다.
+좋은 설명: row-state vector frontier는 Q2-support row를 hidden state로 해석했고, dual-head toxicity stress는 broad action field가 public-toxic임을 보여줬다.
+```
+
+## 핵심 역할 이름
+
+| 역할 이름 | 의미 | 대표 파일 |
+| --- | --- | --- |
+| pre-HS feature frontier | HS-JEPA 이전 feature/model 기반 public plateau | `submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv` |
+| public-equation jump | scalar public feedback을 hidden public-state equation으로 읽어 큰 점프를 만든 실험 | `submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv` |
+| Q2 phase route | Q2-support row가 public-visible hidden state marker라는 가설 | `submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv` |
+| subjective route expansion | Q1/Q3 subjective route를 추가했지만 Q2 phase route와 동률이었던 stress | `submission_h050_target_route_phase_b140216b_uploadsafe.csv` |
+| row-state vector frontier | Q2-support row를 전체 Q/S hidden-state vector로 확장한 frontier | `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv` |
+| dual-head toxicity stress | locally coherent dual-head/Pareto action이 public에서는 toxic할 수 있음을 보인 negative sensor | `submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv` |
+| target-assignment stress | target split 또는 Q3 repair 같은 micro branch가 decisive하지 않음을 보인 stress | `submission_h144_targetxor_def80b88_uploadsafe.csv`, `submission_h145_q3repair_2d818e46_uploadsafe.csv` |
+| cross-listener transport | listener posterior를 release gate로 쓰는 방식이 아직 action-grade가 아님을 보인 stress | `submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv` |
+| frontier active-silence | 성공한 frontier trajectory에서 release보다 abstention/silence를 action으로 본 실험 | `submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv` |
+
+## 현재 public best 해석
+
+현재 관측 최고점은 `frontier active-silence positive-path`다.
+
+```text
+submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv
+public LB 0.5677269444
+```
+
+이 결과는 HS-JEPA의 active-silence 개념이 일부 맞다는 양성 센서다. 하지만 개선 폭은 작다. 따라서 논문/대회 관점에서의 해석은 다음이 더 정확하다.
+
+```text
+frontier active-silence는 row-state vector frontier 근처의 남은 local action을 찾았다.
+0.53급 breakthrough는 이 방향의 미세 continuation이 아니라,
+row-state frontier를 하나의 listener로만 취급하는 anchor-free state transport에서 찾아야 한다.
+```
+
+## 발표에서 쓰는 문장
+
+```text
+HS-JEPA는 public-equation jump에서 hidden public-state를 발견했고,
+row-state vector frontier에서 그 hidden state가 특정 row-target vector로 표현됨을 보였다.
+이후 negative sensors는 좋은 latent가 곧 좋은 action이 아님을 보여줬고,
+frontier active-silence는 abstention 자체도 action-health의 일부임을 검증했다.
+```
+
+## 앞으로 금지할 표현
+
+- "H012가 좋았다"
+- "H057을 anchor로 조금 움직인다"
+- "H088은 실패했다"
+
+## 앞으로 쓸 표현
+
+- "public-equation jump가 plateau를 깨뜨렸다"
+- "row-state vector frontier가 hidden state를 action field로 번역했다"
+- "dual-head toxicity stress는 broad latent release가 public-toxic임을 보여줬다"
+- "frontier active-silence는 release하지 않는 decision도 action-health임을 보여줬다"

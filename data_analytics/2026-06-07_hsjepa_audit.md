@@ -2,28 +2,28 @@
 
 ## Executive Summary
 
-**핵심 판단:** 오늘 기준으로 가장 강한 산출물은 최고점 제출을 재현하는 end-to-end HS-JEPA 코드와, 이후 실험들이 왜 H057을 넘지 못했는지 설명하는 negative sensor ledger다.
+**핵심 판단:** 오늘 기준으로 가장 강한 산출물은 최고점 제출을 재현하는 end-to-end HS-JEPA 코드와, 이후 실험들이 왜 row-state vector frontier를 크게 넘지 못했는지 설명하는 negative sensor ledger다.
 
-**현재 public best:** `submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv` = `0.5677475939`
+**현재 public best:** `submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv` = `0.5677269444`
 
 ## 점수 근거
 
-| score_rank | observed_stage | file | public_lb_display | delta_display | family |
+| score_rank | semantic_stage | file | public_lb_display | delta_display | family |
 | --- | --- | --- | --- | --- | --- |
-| 1 | H057 | submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv | 0.5677475939 | -0.0001572309 | HS-JEPA row-state decoder |
-| 2 | H050 | submission_h050_target_route_phase_b140216b_uploadsafe.csv | 0.5679048248 | +0.0000000000 | HS-JEPA target route stress |
-| 2 | H042 | submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv | 0.5679048248 | -0.0002186583 | HS-JEPA public equation |
-| 4 | H144 | submission_h144_targetxor_def80b88_uploadsafe.csv | 0.5679296410 | +0.0001820471 | HS-JEPA target assignment stress |
-| 4 | H145 | submission_h145_q3repair_2d818e46_uploadsafe.csv | 0.5679296410 | +0.0001820471 | HS-JEPA target assignment stress |
-| 6 | H012 | submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv | 0.5681234831 | -0.0080354663 | HS-JEPA public equation |
-| 7 | CrossListener | submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv | 0.5684860446 | +0.0007384507 | HS-JEPA cross-listener transport |
-| 8 | H088 | submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv | 0.5684942019 | +0.0007466080 | HS-JEPA action toxicity stress |
+| 1 | frontier active-silence | submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv | 0.5677269444 | -0.0003965387 | HS-JEPA frontier active-silence |
+| 2 | row-state vector frontier | submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv | 0.5677475939 | +0.0000206495 | HS-JEPA row-state decoder |
+| 3 | subjective route expansion | submission_h050_target_route_phase_b140216b_uploadsafe.csv | 0.5679048248 | +0.0001778804 | HS-JEPA target route stress |
+| 3 | Q2 phase route | submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv | 0.5679048248 | +0.0001778804 | HS-JEPA public equation |
+| 5 | target-split XOR stress | submission_h144_targetxor_def80b88_uploadsafe.csv | 0.5679296410 | +0.0002026966 | HS-JEPA target assignment stress |
+| 5 | Q3 repair-only stress | submission_h145_q3repair_2d818e46_uploadsafe.csv | 0.5679296410 | +0.0002026966 | HS-JEPA target assignment stress |
+| 7 | public-equation jump | submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv | 0.5681234831 | -0.0080354663 | HS-JEPA public equation |
+| 8 | cross-listener transport | submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv | 0.5684860446 | +0.0007591002 | HS-JEPA cross-listener transport |
 
 ## 분석 결과
 
-- hs_jepa_end_to_end.py는 H057 hash 7cde1a77을 재현하고, 45 hidden row와 270 row-target action을 cell-level로 설명한다.
+- hs_jepa_end_to_end.py는 row-state vector frontier hash 7cde1a77을 재현하고, 45 hidden row와 270 row-target action을 cell-level로 설명한다.
 - Gemini embedding 실험은 narrative latent 가능성을 보였지만, 오픈소스 재현성 때문에 논문/팀 공유용 핵심 경로에서는 제외해야 한다.
-- 다음 breakthrough는 더 큰 blend가 아니라 safe assignment field다. H057 seed를 유지하면서 cohort outlier나 social latent가 어느 target action에 안전한지 판별해야 한다.
+- 다음 breakthrough는 더 큰 blend가 아니라 safe assignment field다. row-state seed를 유지하면서 cohort outlier나 social latent가 어느 target action에 안전한지 판별해야 한다.
 
 ## 데이터/실험 범위
 

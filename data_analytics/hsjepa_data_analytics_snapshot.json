@@ -1,7 +1,7 @@
 {
   "version": 1,
   "status": "ready",
-  "generatedAt": "2026-06-11T00:00:00+09:00",
+  "generatedAt": "2026-06-12T00:00:00+09:00",
   "datasets": {
     "score_ledger": [
       {
@@ -246,137 +246,158 @@
       },
       {
         "sequence": 21,
+        "observed_stage": "FrontierSilence",
+        "file": "submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv",
+        "public_lb": 0.5677269444,
+        "best_so_far": 0.5677269444,
+        "delta_vs_previous_best": -0.00039653870000000424,
+        "improved_previous_best": true,
+        "family": "HS-JEPA frontier active-silence",
+        "worldview": "Frontier active-silence positive-path overshoot sensor produced a small new public best but confirms this branch is conservative anchor-cont",
+        "source": "analysis_outputs/public_probe_observations.csv"
+      },
+      {
+        "sequence": 22,
         "observed_stage": "H042",
         "file": "submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv",
         "public_lb": 0.5679048248,
-        "best_so_far": 0.5679048248,
-        "delta_vs_previous_best": -0.00021865830000000752,
-        "improved_previous_best": true,
+        "best_so_far": 0.5677269444,
+        "delta_vs_previous_best": 0.00017788039999999672,
+        "improved_previous_best": false,
         "family": "HS-JEPA public equation",
         "worldview": "Q2 changed rows are a public-visible state marker.",
         "source": "README.md and lb_observation_log.md"
       },
       {
-        "sequence": 22,
+        "sequence": 23,
         "observed_stage": "H050",
         "file": "submission_h050_target_route_phase_b140216b_uploadsafe.csv",
         "public_lb": 0.5679048248,
-        "best_so_far": 0.5679048248,
-        "delta_vs_previous_best": 0.0,
+        "best_so_far": 0.5677269444,
+        "delta_vs_previous_best": 0.00017788039999999672,
         "improved_previous_best": false,
         "family": "HS-JEPA target route stress",
         "worldview": "Subjective Q route alone is not enough unless row support is correct.",
         "source": "README.md and lb_observation_log.md"
       },
       {
-        "sequence": 23,
+        "sequence": 24,
         "observed_stage": "H057",
         "file": "submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv",
         "public_lb": 0.5677475939,
-        "best_so_far": 0.5677475939,
-        "delta_vs_previous_best": -0.00015723090000008266,
-        "improved_previous_best": true,
+        "best_so_far": 0.5677269444,
+        "delta_vs_previous_best": 2.0649499999914056e-05,
+        "improved_previous_best": false,
         "family": "HS-JEPA row-state decoder",
-        "worldview": "H042 Q2-support rows encode a complete hidden human-state vector.",
+        "worldview": "Q2-support rows encode a complete hidden human-state vector.",
         "source": "README.md, lb_observation_log.md, hs_jepa_end_to_end_report.md"
       },
       {
-        "sequence": 24,
+        "sequence": 25,
         "observed_stage": "H088",
         "file": "submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv",
         "public_lb": 0.5684942019,
-        "best_so_far": 0.5677475939,
-        "delta_vs_previous_best": 0.0007466080000000375,
+        "best_so_far": 0.5677269444,
+        "delta_vs_previous_best": 0.0007672574999999515,
         "improved_previous_best": false,
         "family": "HS-JEPA action toxicity stress",
-        "worldview": "H018/hard-world is a stress diagnostic, not an action-grade private head.",
+        "worldview": "Hard-world is a stress diagnostic, not an action-grade private head.",
         "source": "lb_observation_log.md and h088_report.md"
       },
       {
-        "sequence": 25,
+        "sequence": 26,
         "observed_stage": "H144",
         "file": "submission_h144_targetxor_def80b88_uploadsafe.csv",
         "public_lb": 0.567929641,
-        "best_so_far": 0.5677475939,
-        "delta_vs_previous_best": 0.00018204710000002677,
+        "best_so_far": 0.5677269444,
+        "delta_vs_previous_best": 0.00020269659999994083,
         "improved_previous_best": false,
         "family": "HS-JEPA target assignment stress",
-        "worldview": "The common H141/H144/H145 body is below H057; row135/row207 split is not the decisive axis.",
+        "worldview": "The common target-assignment body is below the row-state frontier; row135/row207 split is not the decisive axis.",
         "source": "lb_observation_log.md and h144_report.md"
       },
       {
-        "sequence": 26,
+        "sequence": 27,
         "observed_stage": "H145",
         "file": "submission_h145_q3repair_2d818e46_uploadsafe.csv",
         "public_lb": 0.567929641,
-        "best_so_far": 0.5677475939,
-        "delta_vs_previous_best": 0.00018204710000002677,
+        "best_so_far": 0.5677269444,
+        "delta_vs_previous_best": 0.00020269659999994083,
         "improved_previous_best": false,
         "family": "HS-JEPA target assignment stress",
         "worldview": "Q3-only repair versus S2 relief is underidentified; the shared body is the public-loss source.",
         "source": "lb_observation_log.md and h145_report.md"
       },
       {
-        "sequence": 27,
+        "sequence": 28,
         "observed_stage": "CrossListener",
         "file": "submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv",
         "public_lb": 0.5684860446,
-        "best_so_far": 0.5677475939,
-        "delta_vs_previous_best": 0.000738450700000004,
+        "best_so_far": 0.5677269444,
+        "delta_vs_previous_best": 0.0007591001999999181,
         "improved_previous_best": false,
         "family": "HS-JEPA cross-listener transport",
-        "worldview": "Target-listener posterior is useful as a diagnostic, but listener-confirmed shadow release is not enough to beat the H057 action field.",
+        "worldview": "Target-listener posterior is useful as a diagnostic, but listener-confirmed shadow release is not enough to beat the row-state action field.",
         "source": "user-provided public LB on 2026-06-11 and cross_listener_transport_readout.md"
       }
     ],
     "best_scores": [
       {
         "score_rank": 1,
+        "observed_stage": "FrontierSilence",
+        "file": "submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv",
+        "public_lb": 0.5677269444,
+        "family": "HS-JEPA frontier active-silence",
+        "note": "Frontier active-silence positive-path overshoot sensor produced a small new public best but confirms this branch is conservative anchor-continuation not a 0.53-class jump.",
+        "source": "analysis_outputs/public_probe_observations.csv"
+      },
+      {
+        "score_rank": 2,
         "observed_stage": "H057",
         "file": "submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv",
         "public_lb": 0.5677475939,
         "family": "HS-JEPA row-state decoder",
-        "note": "Current best. H057 freezes Q2 and moves Q1/Q3/S1-S4 on the 45 H042 Q2-support rows.",
+        "note": "Row-state vector frontier. It freezes Q2 and moves Q1/Q3/S1-S4 on the 45 Q2-support rows.",
         "source": "README.md, lb_observation_log.md, hs_jepa_end_to_end_report.md"
       },
       {
-        "score_rank": 2,
+        "score_rank": 3,
         "observed_stage": "H050",
         "file": "submission_h050_target_route_phase_b140216b_uploadsafe.csv",
         "public_lb": 0.5679048248,
         "family": "HS-JEPA target route stress",
-        "note": "H050 tied H042 despite adding Q1/Q3 route cells; the target route was plausible but row placement was not.",
+        "note": "Subjective route expansion tied the Q2 phase route despite adding Q1/Q3 route cells; the target route was plausible but row placement was not.",
         "source": "README.md and lb_observation_log.md"
       },
       {
-        "score_rank": 2,
+        "score_rank": 3,
         "observed_stage": "H042",
         "file": "submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv",
         "public_lb": 0.5679048248,
         "family": "HS-JEPA public equation",
-        "note": "H042 Q2 phase route. README/lb log records H042 as the first post-H012 Q2-support improvement.",
+        "note": "Q2 phase route. README/lb log records this as the first post-public-equation Q2-support improvement.",
         "source": "README.md and lb_observation_log.md"
       },
       {
-        "score_rank": 4,
+        "score_rank": 5,
         "observed_stage": "H144",
         "file": "submission_h144_targetxor_def80b88_uploadsafe.csv",
         "public_lb": 0.567929641,
         "family": "HS-JEPA target assignment stress",
-        "note": "H144 target-split XOR tie sensor. Public tied H145, so the branch distinction did not explain the loss.",
+        "note": "Target-split XOR tie sensor. Public tied the Q3 repair-only branch, so the branch distinction did not explain the loss.",
         "source": "lb_observation_log.md and h144_report.md"
       },
       {
-        "score_rank": 4,
+        "score_rank": 5,
         "observed_stage": "H145",
         "file": "submission_h145_q3repair_2d818e46_uploadsafe.csv",
         "public_lb": 0.567929641,
         "family": "HS-JEPA target assignment stress",
-        "note": "H145 Q3 repair-only veto tied H144 exactly at displayed precision.",
+        "note": "Q3 repair-only veto tied the target-split XOR branch exactly at displayed precision.",
         "source": "lb_observation_log.md and h145_report.md"
       },
       {
-        "score_rank": 6,
+        "score_rank": 7,
         "observed_stage": "H012",
         "file": "submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv",
         "public_lb": 0.5681234831,
@@ -385,7 +406,7 @@
         "source": "analysis_outputs/public_probe_observations.csv"
       },
       {
-        "score_rank": 7,
+        "score_rank": 8,
         "observed_stage": "CrossListener",
         "file": "submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv",
         "public_lb": 0.5684860446,
@@ -394,7 +415,7 @@
         "source": "user-provided public LB on 2026-06-11 and cross_listener_transport_readout.md"
       },
       {
-        "score_rank": 8,
+        "score_rank": 9,
         "observed_stage": "H088",
         "file": "submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv",
         "public_lb": 0.5684942019,
@@ -403,7 +424,7 @@
         "source": "lb_observation_log.md and h088_report.md"
       },
       {
-        "score_rank": 9,
+        "score_rank": 10,
         "observed_stage": "E247",
         "file": "submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv",
         "public_lb": 0.5761589494,
@@ -412,7 +433,7 @@
         "source": "analysis_outputs/public_probe_observations.csv"
       },
       {
-        "score_rank": 10,
+        "score_rank": 11,
         "observed_stage": "E256",
         "file": "submission_e256_featnn1_top50_amp_then_smooth25_a3827329.csv",
         "public_lb": 0.5762805676,
@@ -421,21 +442,12 @@
         "source": "analysis_outputs/public_probe_observations.csv"
       },
       {
-        "score_rank": 11,
+        "score_rank": 12,
         "observed_stage": "E368",
         "file": "submission_e368_q2s1rowmask_selected_e368_q2_damp_s1_recover_amp1_06_be814361_uploadsafe.csv",
         "public_lb": 0.576290429,
         "family": "Pre-HS baseline / other",
         "note": "E368 Q2/S1 row-mask cell-action latent; near E95 but worse than E247; validates a weak hidden lifestyle-state signal while rejecting it as current frontier replacement.",
-        "source": "analysis_outputs/public_probe_observations.csv"
-      },
-      {
-        "score_rank": 12,
-        "observed_stage": "E95",
-        "file": "submission_e95_hardtail_541e3973.csv",
-        "public_lb": 0.5762913298,
-        "family": "Pre-HS baseline / other",
-        "note": "Previous public frontier; validates E72-adverse hard-tail localization with E86-to-E85 fallback.",
         "source": "analysis_outputs/public_probe_observations.csv"
       }
     ],
@@ -1203,7 +1215,12 @@
       {
         "date": "2026-06-10",
         "file_type": "root_submission",
-        "count": 38
+        "count": 71
+      },
+      {
+        "date": "2026-06-12",
+        "file_type": "root_submission",
+        "count": 8
       }
     ]
   }

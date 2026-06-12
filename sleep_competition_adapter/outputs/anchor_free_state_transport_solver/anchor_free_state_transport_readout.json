@@ -1,0 +1,371 @@
+{
+  "thesis": "Anchor-free HS-JEPA state transport treats current best as one listener, not as the base anchor.",
+  "current_best_file": "submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv",
+  "current_best_public_lb": 0.5677269444,
+  "positive_worlds": [
+    {
+      "name": "pre_hs_feature_frontier",
+      "file": "submission_e247_featnn1_nn_smooth_sum_top34_f1ff7e86.csv",
+      "weight": 0.2,
+      "polarity": "context",
+      "note": "pre-HS feature/model plateau before the large public-equation jump"
+    },
+    {
+      "name": "public_equation_jump",
+      "file": "submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv",
+      "weight": 0.7,
+      "polarity": "positive",
+      "note": "first large hidden public-state materialization"
+    },
+    {
+      "name": "q2_phase_route",
+      "file": "submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv",
+      "weight": 0.9,
+      "polarity": "positive",
+      "note": "Q2 support row phase marker"
+    },
+    {
+      "name": "row_state_vector_frontier",
+      "file": "submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv",
+      "weight": 1.0,
+      "polarity": "positive",
+      "note": "complete hidden row-state vector frontier"
+    },
+    {
+      "name": "frontier_active_silence",
+      "file": "submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv",
+      "weight": 1.1,
+      "polarity": "positive",
+      "note": "new best; release/abstain trajectory listener"
+    }
+  ],
+  "negative_worlds": [
+    {
+      "name": "dual_head_toxicity_stress",
+      "file": "submission_h088_dual_state_gate_c31cc15b_uploadsafe.csv",
+      "weight": 0.75,
+      "polarity": "negative",
+      "note": "broad dual-head action field punished by public"
+    },
+    {
+      "name": "cross_listener_transport_stress",
+      "file": "submission_hsjepa_cross_listener_transport_listener_confirmed_shadow_660faef3_uploadsafe.csv",
+      "weight": 0.7,
+      "polarity": "negative",
+      "note": "listener-confirmed shadow release punished by public"
+    },
+    {
+      "name": "objective_s1s4_toxic_route",
+      "file": "submission_h010_objective_s1s4_v2_uploadsafe.csv",
+      "weight": 0.55,
+      "polarity": "negative",
+      "note": "objective S1/S4 route action public-bad anchor"
+    },
+    {
+      "name": "maskfam_jepa_s2_toxic_route",
+      "file": "submission_e216_maskfam_jepa_s2_rank_e154_s0p75_eaac6709.csv",
+      "weight": 0.45,
+      "polarity": "negative",
+      "note": "direct masked-family JEPA S2 translator public miss"
+    },
+    {
+      "name": "null_common_residual_toxic_route",
+      "file": "submission_e323_5508f966_uploadsafe.csv",
+      "weight": 0.5,
+      "polarity": "negative",
+      "note": "null-common residual branch public miss"
+    }
+  ],
+  "spectral": {
+    "anchor_count": 26,
+    "first_mode_variance": 0.9628550254007645,
+    "top5_cumulative_variance": 0.9946826859769906,
+    "singular_values": [
+      3.9248700923283506,
+      0.42736505936128066,
+      0.3891499257724587,
+      0.3356759829624167,
+      0.24990018982496587,
+      0.16724030897803246,
+      0.13288948751368476,
+      0.11300586024023068
+    ],
+    "mean_bad_tangent_coord": 0.7500068848733459,
+    "min_bad_tangent_coord": -0.7172294112358857,
+    "max_bad_tangent_coord": 0.9995708377235418
+  },
+  "variants": [
+    {
+      "name": "full_field_public_private_reset",
+      "worldview": "The hidden row-target field is not a local perturbation of the best file. Reconstruct a fresh field from positive listener worlds, repel it from negative listener worlds, and release the whole tensor.",
+      "file": "submission_hsjepa_anchorfree_state_transport_full_field_public_private_reset_4a9040ef_uploadsafe.csv",
+      "local_path": "sleep_competition_adapter/outputs/anchor_free_state_transport_solver/submission_hsjepa_anchorfree_state_transport_full_field_public_private_reset_4a9040ef_uploadsafe.csv",
+      "root_path": "submission_hsjepa_anchorfree_state_transport_full_field_public_private_reset_4a9040ef_uploadsafe.csv",
+      "hash": "4a9040ef",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_anchorfree_state_transport_full_field_public_private_reset_4a9040ef_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 0.0002034269780552,
+        "max_prob": 0.9997965730219448,
+        "changed_cells_vs_current_best": 1725,
+        "upload_safe": true
+      },
+      "changed_cells_vs_current_best": 1725,
+      "changed_rows_vs_current_best": 250,
+      "mean_abs_logit_move_vs_current": 0.07847833882429874,
+      "max_abs_logit_move_vs_current": 4.522489136084467,
+      "selected_cells": 1750,
+      "selected_rows": 250,
+      "target_counts": {
+        "S3": 250,
+        "Q2": 250,
+        "S2": 250,
+        "S4": 250,
+        "Q3": 250,
+        "S1": 250,
+        "Q1": 250
+      },
+      "mean_cell_score": 0.5025885714285714,
+      "mean_route_energy_delta": 0.0007776142730660658,
+      "mean_subject_energy_delta": 4.5162460016310775e-05,
+      "mean_negative_distance_rank": 0.5002857142857143,
+      "null_stress": {
+        "cell_score": {
+          "actual": 0.5025885714285714,
+          "null_mean": 0.5025885714285714,
+          "null_std": 2.486682082878748e-17,
+          "z": 0.0,
+          "p": 1.0
+        },
+        "route_energy_delta": {
+          "actual": 0.0007776142730660616,
+          "null_mean": 0.0007776142730660659,
+          "null_std": 1.2941346890796358e-19,
+          "z": -33.51126220893031,
+          "p": 0.0
+        },
+        "negative_distance_rank": {
+          "actual": 0.5002857142857143,
+          "null_mean": 0.5002857142857143,
+          "null_std": 6.420585529534508e-18,
+          "z": 0.0,
+          "p": 0.9966666666666667
+        },
+        "anti_bad_rank": {
+          "actual": 0.4997142857142857,
+          "null_mean": 0.4997142857142857,
+          "null_std": 8.493636291284131e-18,
+          "z": 0.0,
+          "p": 0.99
+        }
+      }
+    },
+    {
+      "name": "nonlocal_transport_release",
+      "worldview": "Do not release the whole reconstructed field.  Release the cells where positive listener consensus, negative-listener repulsion, route validity, and source support all agree.",
+      "file": "submission_hsjepa_anchorfree_state_transport_nonlocal_transport_release_6b3b402c_uploadsafe.csv",
+      "local_path": "sleep_competition_adapter/outputs/anchor_free_state_transport_solver/submission_hsjepa_anchorfree_state_transport_nonlocal_transport_release_6b3b402c_uploadsafe.csv",
+      "root_path": "submission_hsjepa_anchorfree_state_transport_nonlocal_transport_release_6b3b402c_uploadsafe.csv",
+      "hash": "6b3b402c",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_anchorfree_state_transport_nonlocal_transport_release_6b3b402c_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 0.0002034269780552,
+        "max_prob": 0.999832218365821,
+        "changed_cells_vs_current_best": 322,
+        "upload_safe": true
+      },
+      "changed_cells_vs_current_best": 322,
+      "changed_rows_vs_current_best": 188,
+      "mean_abs_logit_move_vs_current": 0.0689134211859904,
+      "max_abs_logit_move_vs_current": 4.522489136084467,
+      "selected_cells": 322,
+      "selected_rows": 188,
+      "target_counts": {
+        "S2": 87,
+        "S1": 61,
+        "S3": 60,
+        "Q1": 48,
+        "S4": 26,
+        "Q3": 23,
+        "Q2": 17
+      },
+      "mean_cell_score": 0.6326061224489796,
+      "mean_route_energy_delta": -0.00515458265937811,
+      "mean_subject_energy_delta": -0.0003022165615901674,
+      "mean_negative_distance_rank": 0.7738580301685891,
+      "null_stress": {
+        "cell_score": {
+          "actual": 0.6326061224489796,
+          "null_mean": 0.5029656285714286,
+          "null_std": 0.003884779532079199,
+          "z": 33.371390269904275,
+          "p": 0.0
+        },
+        "route_energy_delta": {
+          "actual": -0.005154582659378079,
+          "null_mean": 0.002627507252200473,
+          "null_std": 0.0005559605463315167,
+          "z": -13.99755785357137,
+          "p": 0.0
+        },
+        "negative_distance_rank": {
+          "actual": 0.7738580301685891,
+          "null_mean": 0.5016688790298728,
+          "null_std": 0.01396489302261663,
+          "z": 19.490958555707984,
+          "p": 0.0
+        },
+        "anti_bad_rank": {
+          "actual": 0.6183070097604259,
+          "null_mean": 0.49996616385684706,
+          "null_std": 0.014635738664403337,
+          "z": 8.085744670435004,
+          "p": 0.0
+        }
+      }
+    },
+    {
+      "name": "listener_shock_reset",
+      "worldview": "If the current frontier is over-anchored, a stronger listener-transport shock should expose whether positive/negative public worlds define a usable state equation beyond local correction.",
+      "file": "submission_hsjepa_anchorfree_state_transport_listener_shock_reset_f5f1d9ec_uploadsafe.csv",
+      "local_path": "sleep_competition_adapter/outputs/anchor_free_state_transport_solver/submission_hsjepa_anchorfree_state_transport_listener_shock_reset_f5f1d9ec_uploadsafe.csv",
+      "root_path": "submission_hsjepa_anchorfree_state_transport_listener_shock_reset_f5f1d9ec_uploadsafe.csv",
+      "hash": "f5f1d9ec",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_anchorfree_state_transport_listener_shock_reset_f5f1d9ec_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 0.0002034269780552,
+        "max_prob": 0.999817431930291,
+        "changed_cells_vs_current_best": 765,
+        "upload_safe": true
+      },
+      "changed_cells_vs_current_best": 765,
+      "changed_rows_vs_current_best": 245,
+      "mean_abs_logit_move_vs_current": 0.12048106429562169,
+      "max_abs_logit_move_vs_current": 4.522489136084467,
+      "selected_cells": 765,
+      "selected_rows": 245,
+      "target_counts": {
+        "S2": 179,
+        "S1": 120,
+        "Q1": 107,
+        "S3": 100,
+        "Q3": 99,
+        "S4": 94,
+        "Q2": 66
+      },
+      "mean_cell_score": 0.5766714845938375,
+      "mean_route_energy_delta": 0.0067570947431644665,
+      "mean_subject_energy_delta": 0.0013872448172546458,
+      "mean_negative_distance_rank": 0.7048806722689076,
+      "null_stress": {
+        "cell_score": {
+          "actual": 0.5766714845938375,
+          "null_mean": 0.5028788982010581,
+          "null_std": 0.002224972902244038,
+          "z": 33.16561128378441,
+          "p": 0.0
+        },
+        "route_energy_delta": {
+          "actual": 0.006757094743164469,
+          "null_mean": 0.007858172054126875,
+          "null_std": 0.0007013891286267746,
+          "z": -1.5698522632054004,
+          "p": 0.06
+        },
+        "negative_distance_rank": {
+          "actual": 0.7048806722689075,
+          "null_mean": 0.5007084817927171,
+          "null_std": 0.007633088102631202,
+          "z": 26.74830785797038,
+          "p": 0.0
+        },
+        "anti_bad_rank": {
+          "actual": 0.6522136321195144,
+          "null_mean": 0.5004823205726736,
+          "null_std": 0.007317919045803035,
+          "z": 20.73421564206311,
+          "p": 0.0
+        }
+      }
+    },
+    {
+      "name": "cohort_ready_private_safe_reset",
+      "worldview": "A private-safe reset should avoid dense objective-tail shock, favor Q2/Q3/S2 and route-valid cells, and leave room for cohort-relative human-state views as future context.",
+      "file": "submission_hsjepa_anchorfree_state_transport_cohort_ready_private_safe_reset_a4a5dc5c_uploadsafe.csv",
+      "local_path": "sleep_competition_adapter/outputs/anchor_free_state_transport_solver/submission_hsjepa_anchorfree_state_transport_cohort_ready_private_safe_reset_a4a5dc5c_uploadsafe.csv",
+      "root_path": "submission_hsjepa_anchorfree_state_transport_cohort_ready_private_safe_reset_a4a5dc5c_uploadsafe.csv",
+      "hash": "a4a5dc5c",
+      "validation": {
+        "path": "/Users/kbsoo/Downloads/cl2/submission_hsjepa_anchorfree_state_transport_cohort_ready_private_safe_reset_a4a5dc5c_uploadsafe.csv",
+        "rows": 250,
+        "keys_match": true,
+        "duplicate_keys": 0,
+        "nan_cells": 0,
+        "min_prob": 3.3603820262119876e-06,
+        "max_prob": 0.9999977899410004,
+        "changed_cells_vs_current_best": 113,
+        "upload_safe": true
+      },
+      "changed_cells_vs_current_best": 113,
+      "changed_rows_vs_current_best": 89,
+      "mean_abs_logit_move_vs_current": 0.008374403296551064,
+      "max_abs_logit_move_vs_current": 2.3350027407571936,
+      "selected_cells": 113,
+      "selected_rows": 89,
+      "target_counts": {
+        "S2": 31,
+        "S1": 25,
+        "S3": 19,
+        "Q1": 17,
+        "Q2": 8,
+        "Q3": 7,
+        "S4": 6
+      },
+      "mean_cell_score": 0.6799605056890013,
+      "mean_route_energy_delta": -0.005333015714825082,
+      "mean_subject_energy_delta": -0.0006842086398418939,
+      "mean_negative_distance_rank": 0.8094462705436158,
+      "null_stress": {
+        "cell_score": {
+          "actual": 0.6799605056890013,
+          "null_mean": 0.5020692222503159,
+          "null_std": 0.007104251044766798,
+          "z": 25.04011785587524,
+          "p": 0.0
+        },
+        "route_energy_delta": {
+          "actual": -0.005333015714825038,
+          "null_mean": 0.0012895199083776973,
+          "null_std": 0.000567334849091197,
+          "z": -11.67306333078472,
+          "p": 0.0
+        },
+        "negative_distance_rank": {
+          "actual": 0.8094462705436158,
+          "null_mean": 0.5007349009692372,
+          "null_std": 0.02644125976827821,
+          "z": 11.675365405423765,
+          "p": 0.0
+        },
+        "anti_bad_rank": {
+          "actual": 0.6495170670037927,
+          "null_mean": 0.5003194437420986,
+          "null_std": 0.0255195238694897,
+          "z": 5.846410929322624,
+          "p": 0.0
+        }
+      }
+    }
+  ]
+}

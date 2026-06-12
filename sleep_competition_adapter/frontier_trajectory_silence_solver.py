@@ -78,6 +78,12 @@ SELECTED_CSV = OUT / "frontier_trajectory_silence_selected_cells.csv"
 EDGE_CSV = OUT / "frontier_trajectory_edges.csv"
 NULL_CSV = OUT / "frontier_trajectory_silence_null_stress.csv"
 GENERATED_PREFIX = "submission_hsjepa_frontier_silence_"
+PRESERVED_GENERATED_SUBMISSIONS = {
+    "submission_hsjepa_frontier_silence_active_silence_inversion_9df720c1_uploadsafe.csv",
+    "submission_hsjepa_frontier_silence_frontier_continuation_gate_404abf8d_uploadsafe.csv",
+    "submission_hsjepa_frontier_silence_frontier_silence_boundary_probe_aa9de021_uploadsafe.csv",
+    "submission_hsjepa_frontier_silence_positive_path_overshoot_sensor_1e013277_uploadsafe.csv",
+}
 
 
 @dataclass(frozen=True)
@@ -109,19 +115,19 @@ class SilenceConfig:
 
 FRONTIER_PATH = (
     FrontierPoint(
-        name="H012",
+        name="public_equation_jump",
         file="submission_h012_public_equation_top_all_k1200_a0.7_uploadsafe.csv",
         public_lb=0.5681234831,
         role="first HS-JEPA public-equation jump",
     ),
     FrontierPoint(
-        name="H042",
+        name="q2_phase_route",
         file="submission_h042_target_Q2_phase_k45_s0.5_c45_50fc6607_uploadsafe.csv",
         public_lb=0.5679048248,
         role="Q2 phase route improvement",
     ),
     FrontierPoint(
-        name="H057",
+        name="row_state_vector_frontier",
         file="submission_h057_q2row_fullvector_state_7cde1a77_uploadsafe.csv",
         public_lb=CURRENT_BEST_PUBLIC_LB,
         role="current best hidden row-state vector",
@@ -332,6 +338,8 @@ def source_files() -> list[str]:
         files.add(point.file)
     ledger = pd.read_csv(PUBLIC_LEDGER)
     for file_name in ledger["file"].astype(str):
+        if Path(file_name).name.startswith(GENERATED_PREFIX):
+            continue
         path = locate(file_name)
         if path is not None:
             files.add(path.name)
@@ -343,6 +351,8 @@ def source_files() -> list[str]:
 def clean_generated_submissions() -> None:
     for directory in (ROOT, OUT):
         for path in directory.glob(f"{GENERATED_PREFIX}*.csv"):
+            if path.name in PRESERVED_GENERATED_SUBMISSIONS:
+                continue
             path.unlink()
 
 
@@ -801,7 +811,7 @@ def build_markdown(readout: dict[str, object]) -> str:
         "",
         "## Sensor Interpretation",
         "",
-        "- If `positive_path_overshoot_sensor` wins, H057 was an under-stepped frontier trajectory, not a final optimum.",
+        "- If `positive_path_overshoot_sensor` wins, the row-state vector frontier was under-stepped, not a final optimum.",
         "- If `frontier_continuation_gate` wins, the positive public trajectory is real but requires active silence gating.",
         "- If `active_silence_inversion` wins, silence/toxicity is itself an invertible target representation.",
         "- If all fail, the public frontier path is descriptive; the missing module is not continuation but row-support discovery.",
