@@ -40,6 +40,7 @@ python3 hsjepa_core/run_core_reference_demo.py
 python3 hsjepa_core/run_core_module_benchmark.py
 python3 hsjepa_core/run_lifelog_core_state_evidence.py
 python3 hsjepa_core/run_masked_context_world_model.py
+python3 hsjepa_core/run_action_support_world_model_core.py
 ```
 
 ## 산출물
@@ -59,6 +60,9 @@ python3 hsjepa_core/run_masked_context_world_model.py
 - `hsjepa_core/outputs/masked_context_world_model/masked_context_world_model_summary.json`
 - `hsjepa_core/outputs/masked_context_world_model/MASKED_CONTEXT_WORLD_MODEL_CORE_KO.md`
 - `hsjepa_core/outputs/masked_context_world_model/*_metrics.csv`
+- `hsjepa_core/outputs/action_support_world_model_core/action_support_world_model_core_summary.json`
+- `hsjepa_core/outputs/action_support_world_model_core/ACTION_SUPPORT_WORLD_MODEL_CORE_KO.md`
+- `hsjepa_core/outputs/action_support_world_model_core/*_metrics.csv`
 
 ## 실행 가능한 core
 
@@ -67,6 +71,7 @@ python3 hsjepa_core/run_masked_context_world_model.py
 - `hsjepa_core/run_core_module_benchmark.py`: 여러 generic human-state scenario에서 full core와 module-removal policy를 비교하는 dataset-free benchmark.
 - `hsjepa_core/run_lifelog_core_state_evidence.py`: public LB 없이 OG lifelog-derived feature table만으로 core-state representation의 label manifold, masked-view prediction, nearest-neighbor consistency, external action replay를 검증하는 real-data evidence run.
 - `hsjepa_core/run_masked_context_world_model.py`: semantic lifelog view를 하나씩 mask하고 나머지 view로 target-view PCA representation을 예측해, explicit HS-JEPA world-model state와 residual energy를 만든다.
+- `hsjepa_core/run_action_support_world_model_core.py`: train label만으로 raw lifelog-memory action의 success/toxicity target을 만들고, HS-JEPA masked world-state가 subject-heldout으로 action-support를 예측하는지 검증한다.
 
 ## 팀 공유 시 주의점
 
@@ -133,6 +138,41 @@ visible lifelog views
 Masked context prediction은 JEPA-style hidden representation으로 의미가 있다.
 하지만 이 representation을 direct label predictor로 쓰면 실패한다.
 따라서 HS-JEPA core는 classifier가 아니라, adapter가 사용할 action-health/surprise geometry다.
+```
+
+## Action-Support World Model Core
+
+`run_action_support_world_model_core.py`는 HS-JEPA core가 label을 직접 맞히는 대신
+row-target action의 health/toxicity를 읽는다는 주장을 더 직접적으로 검증한다.
+
+```text
+visible lifelog context
+  -> masked human-state world model
+  -> raw-memory action-support/toxicity representation
+  -> anchor-free sparse correction sensor
+```
+
+분리 원칙:
+
+- public score ledger를 읽지 않는다.
+- 기존 best submission probability를 읽지 않는다.
+- proprietary embedding API를 쓰지 않는다.
+- action-support target은 train-fold prior 대비 raw lifelog KNN memory의 realized logloss gain으로 만든다.
+
+현재 핵심 결과:
+
+- raw lifelog memory action은 전체 OOF에서 prior보다 나쁘다: gain sum `-48.053725`.
+- HS-JEPA masked world full-state의 support AUC/AP는 `0.539592` / `0.530735`다.
+- 낮은 support score의 decisive actions를 inverse-toxic decoder로 뒤집으면 selected OOF gain sum `+2.621567`을 얻었다.
+- target-shuffle null 대비 gain lift는 `+6.164069`, z-score는 `2.636913`이다.
+- anchor-free candidate: `submission_hsjepa_action_support_world_model_anchor_free_9da5d2f1_uploadsafe.csv`
+
+해석:
+
+```text
+HS-JEPA core는 broad raw-memory action generator가 아니다.
+하지만 action을 release하기 전에 어떤 row-target action이 toxic한지 구분하는
+world-state/action-support geometry를 제공한다.
 ```
 
 ## Core가 아닌 것

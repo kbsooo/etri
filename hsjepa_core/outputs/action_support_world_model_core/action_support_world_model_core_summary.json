@@ -1,0 +1,43 @@
+{
+  "package": "action_support_world_model_core",
+  "status": "core_action_support_probe_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "action_support_target": "raw_lifelog_memory_vs_train_fold_prior_realized_gain",
+  "release_policy": {
+    "feature_set": "hsjepa_masked_world_full",
+    "null_family": "observed",
+    "selection_policy": "low05_inverse_decisive",
+    "decoder_action": "inverse_toxic_memory",
+    "release_fraction": 0.05,
+    "decisive_only": true,
+    "support_auc": 0.5395920081883778,
+    "support_ap": 0.5307352074717033,
+    "base_positive_rate": 0.4980952380952381,
+    "selected_cells": 122,
+    "selected_gain_sum": 2.621566601508748,
+    "selected_mean_gain": 0.02148825083203892,
+    "selected_positive_gain_rate": 0.6475409836065574,
+    "all_gain_sum": -48.053725198099905,
+    "all_mean_gain": -0.015255150856539652,
+    "all_positive_gain_rate": 0.4980952380952381,
+    "uses_public_score_ledger": false,
+    "uses_prior_submission_probabilities": false,
+    "null_gain_mean": -3.542501948164085,
+    "null_gain_std": 2.33760799997261,
+    "gain_lift_vs_null": 6.164068549672834,
+    "gain_z_vs_null": 2.6369128398538417,
+    "robust_score": 4.5354220120169035
+  },
+  "candidate_file": "submission_hsjepa_action_support_world_model_anchor_free_9da5d2f1_uploadsafe.csv",
+  "validation": {
+    "valid": true,
+    "problems": [],
+    "rows": 250,
+    "probability_min": 0.4356681565533115,
+    "probability_max": 0.9223997575477667
+  },
+  "released_test_cells": 67,
+  "view_metric_best_component_corr_lift": 0.24888206895631249
+}

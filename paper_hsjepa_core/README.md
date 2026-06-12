@@ -10,6 +10,7 @@
 - `paper_hsjepa_core/HS_JEPA_ARCHITECTURE_PACKAGE_KO.md`
 - `paper_hsjepa_core/HS_JEPA_JEPA_CONTRACT_KO.md`
 - `paper_hsjepa_core/MASKED_CONTEXT_WORLD_MODEL_CORE_KO.md`
+- `paper_hsjepa_core/ACTION_SUPPORT_WORLD_MODEL_CORE_KO.md`
 - `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
 - `paper_hsjepa_core/SUBJECT_INVARIANT_WORLD_MODEL_LISTENER_SOLVER_KO.md`
 - `paper_hsjepa_core/COHORT_LISTENER_RESPONSIBILITY_TRANSPORT_KO.md`
@@ -56,6 +57,26 @@ Diagnostic = action이 shortcut/collapse/subject-tail/public-luck인지 검사
 - S3/S4 action-health diagnostic에서는 residual energy가 toxic action pocket을 분리한다.
 
 즉 HS-JEPA core는 직접 classifier가 아니라, action-health와 listener responsibility를 위한 hidden human-state geometry라는 주장이 더 강해졌다.
+
+`ACTION_SUPPORT_WORLD_MODEL_CORE_KO.md`는 masked-context world model을 한 단계 더 core-first로 검증한다. target label을 직접 예측하지 않고, train label만으로 만든 raw lifelog-memory action의 success/toxicity representation을 subject-heldout으로 예측한다.
+
+현재 핵심 결과:
+
+- raw lifelog memory action은 전체적으로 prior보다 손해다: OOF gain sum `-48.053725`.
+- HS-JEPA masked world full-state는 action-support AUC `0.539592`, AP `0.530735`를 기록했다.
+- support score가 낮은 decisive action을 inverse-toxic decoder로 반대로 움직이면 selected OOF gain sum `+2.621567`을 얻었다.
+- target-shuffle null 대비 gain lift `+6.164069`, z-score `2.636913`이다.
+- public LB ledger, 기존 best submission probability, proprietary embedding API는 쓰지 않았다.
+
+현재 해석:
+
+```text
+HS-JEPA core는 label classifier나 broad action generator가 아니라,
+row-target action을 release하기 전에 action-health/toxicity를 예측하는
+hidden world-state representation이다.
+```
+
+이 문서는 `Cross-Subject Episode Prototype Transport`보다 더 HS-JEPA core에 가깝다. 단, 생성된 submission은 best-score adapter가 아니라 core-only action-support sensor로 읽어야 한다.
 
 `WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`는 이 core evidence를 adapter로 번역하는 다음 단계다. masked-context world model의 residual energy를 cross-subject prototype transport action field의 target-specific listener로 사용했다.
 
