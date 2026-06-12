@@ -41,6 +41,16 @@
 
 처음 보는 팀원은 `HS_JEPA_CORE_FIRST_THESIS_KO.md`를 먼저 읽는다. 이 문서는 HS-JEPA를 kNN transport, veto rule, submission CSV가 아니라 `visible human context -> hidden human-state target representation prediction`이라는 core-first architecture로 정리한다.
 
+만약 특정 실험이 "이게 HS-JEPA인지, 아니면 그냥 adapter/diagnostic인지" 헷갈리면 `HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`를 먼저 확인한다. 이 문서는 다음 규칙을 강제한다.
+
+```text
+Core       = 보이는 human context로 보이지 않는 representation을 예측
+Adapter    = 그 representation을 row-target action으로 번역
+Diagnostic = 그 action이 shortcut/collapse/subject-tail인지 검사
+```
+
+즉 `Cross-Subject Episode Prototype Transport`와 `Subject-Relative Responsibility Assignment`는 HS-JEPA 세계 안의 중요한 실험이지만, HS-JEPA core 자체로 소개하면 안 된다.
+
 논문 방향으로는 그 다음 `HS_JEPA_PAPER_THESIS_KO.md`를 읽는다. 이 문서는 HS-JEPA를 대회용 trick이 아니라 `hidden human-state -> listener responsibility -> action-health -> invariant release` 아키텍처로 정리하고, public LB를 그 주장을 검증하는 sensor로 해석한다.
 
 `HS_JEPA_CORE_ADAPTER_DIAGNOSTIC_BOUNDARY_KO.md`는 팀 공유용 경계 문서다. HS-JEPA를 다음 세 층으로 나눈다.
