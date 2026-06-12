@@ -10427,3 +10427,54 @@ If public LB worsens:
 The Q1 stable gate is not public/private safe.  The local lesson still stands:
 expected utility increases full OOF gain, but subject-heldout tail stress is the
 right diagnostic to prevent over-release.
+
+## 2026-06-13 - HS-JEPA Subject-Normalized Tail Field Core Candidate
+
+- File: `submission_hsjepa_subject_normalized_tail_field_anchor_free_d4bf6a61_uploadsafe.csv`
+- Code: `hsjepa_core/run_subject_normalized_tail_field_core.py`
+- Documentation: `paper_hsjepa_core/SUBJECT_NORMALIZED_TAIL_FIELD_CORE_KO.md`
+- Public LB dependency: none
+- Prior submission probability dependency: none
+- Proprietary embedding API dependency: none
+
+Why this candidate matters:
+
+This is a representation sensor, not a conservative leaderboard candidate.
+It tests whether the public/private world rewards `subject-relative badness`
+more than absolute expected utility.
+
+The local evidence is mixed but informative: subject-normalization sacrifices
+full OOF upside, yet cuts nested subject-heldout damage by more than half
+relative to the previous tail-safe expected utility core.
+
+Local evidence:
+
+- full OOF selected gain sum: `+2.898288`
+- nested subject-heldout gain sum: `-3.812519`
+- previous tail-safe nested heldout gain: `-8.823949`
+- relative toxic-tail AUC/AP: `0.740461` / `0.314014`
+- stable targets: `Q2`, `S4`
+- stable OOF gain sum: `+1.543893`
+- released test cells: `67`
+- validation: upload-safe
+
+Worldview:
+
+```text
+HS-JEPA action utility is human-relative.
+Absolute utility over-releases across subjects; subject-normalized badness
+reduces tail toxicity and changes the stable route from Q1 to Q2/S4.
+```
+
+If public LB improves:
+
+The next paper-grade architecture should define HS-JEPA target representations
+as human-relative tail fields, not absolute correction gains.  Q2/S4 become the
+first public-private sensor routes for subject-normalized badness.
+
+If public LB worsens:
+
+Subject-normalized badness is still locally useful as a diagnostic, but the
+candidate's 67-cell release is not public/private safe.  The next step should
+use this representation only as a veto/constraint around an episode-level
+decoder, not as a direct release score.

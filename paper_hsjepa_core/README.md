@@ -15,6 +15,7 @@
 - `paper_hsjepa_core/LISTENER_CONDITIONED_ACTION_SUPPORT_CORE_KO.md`
 - `paper_hsjepa_core/SUBJECT_CONTRASTIVE_ACTION_SUPPORT_CORE_KO.md`
 - `paper_hsjepa_core/TAIL_SAFE_EXPECTED_UTILITY_CORE_KO.md`
+- `paper_hsjepa_core/SUBJECT_NORMALIZED_TAIL_FIELD_CORE_KO.md`
 - `paper_hsjepa_core/TARGET_ROUTE_CONSERVATION_DECODER_KO.md`
 - `paper_hsjepa_core/SUBJECT_BALANCED_ROUTE_CONSERVATION_DECODER_KO.md`
 - `paper_hsjepa_core/WORLD_MODEL_RESIDUAL_ACTION_DECODER_KO.md`
@@ -178,6 +179,29 @@ HS-JEPA residual/energy geometry는 utility와 toxic-tail magnitude를 읽는 �
 하지만 full OOF expected utility는 subject-heldout release safety로 바로 전이되지 않는다.
 따라서 현재 논문 contribution은 "core representation alone"이 아니라
 "HS-JEPA core representation + tail-safe utility decoder + LeJEPA-style heldout stress"로 정리해야 한다.
+```
+
+`SUBJECT_NORMALIZED_TAIL_FIELD_CORE_KO.md`는 tail-safe 실험의 negative sensor를 다음 target representation으로 바꾼다. absolute action gain을 바로 예측하지 않고, subject-target-action route 내부의 tail scale로 정규화한 `이 사람 기준의 relative badness`를 예측한다.
+
+현재 핵심 결과:
+
+- full OOF selected gain sum: `+2.898288`
+- nested subject-heldout gain sum: `-3.812519`
+- tail-safe expected utility의 nested heldout gain `-8.823949`보다 손실이 크게 줄었다.
+- relative toxic-tail AUC/AP: `0.740461` / `0.314014`
+- stable targets: `Q2`, `S4`
+- stable OOF gain sum: `+1.543893`
+- released test cells: `67`
+- verdict: `subject_normalized_tail_field_oof_positive_subjectheldout_fragile`
+
+현재 해석:
+
+```text
+absolute utility를 맞히는 것보다 subject-normalized tail field를 맞히는 편이
+subject shift에서 덜 독성적이다.
+이는 HS-JEPA의 target representation이 label probability나 absolute gain이 아니라
+human-specific relative badness / action-tail field일 수 있다는 논문 가설을 강화한다.
+다만 nested heldout gain은 아직 음수이므로 release-grade solver는 아니다.
 ```
 
 `TARGET_ROUTE_CONSERVATION_DECODER_KO.md`는 위 core evidence를 competition adapter로 번역한다. 이 문서는 HS-JEPA core 자체가 아니라, listener-conditioned core signal을 Q/S target route별 release / inverse-toxic / hold action으로 바꾸는 adapter다.

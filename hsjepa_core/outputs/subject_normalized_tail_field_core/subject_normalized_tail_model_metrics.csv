@@ -1,0 +1,9 @@
+metric,value
+normalized_gain_mae,0.8757545671395001
+relative_tail_loss_mae,0.5541006160421388
+relative_positive_auc,0.5258528197907898
+relative_positive_ap,0.5084183812384513
+relative_toxic_tail_auc,0.7404611565222788
+relative_toxic_tail_ap,0.3140144025510213
+relative_toxic_tail_rate,0.1726984126984127
+absolute_gain_sum_all_modes,-141.43979720040875

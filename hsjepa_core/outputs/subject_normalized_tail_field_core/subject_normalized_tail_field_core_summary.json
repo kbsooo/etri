@@ -1,0 +1,28 @@
+{
+  "package": "subject_normalized_tail_field_core",
+  "status": "subject_normalized_tail_field_core_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_proprietary_embedding_api": false,
+  "verdict": "subject_normalized_tail_field_oof_positive_subjectheldout_fragile",
+  "full_oof_gain_sum": 2.8982883882277295,
+  "full_oof_selected_cells": 151,
+  "nested_heldout_gain_sum": -3.812518550824897,
+  "nested_heldout_selected_cells": 239,
+  "stable_targets": [
+    "Q2",
+    "S4"
+  ],
+  "stable_oof_gain_sum": 1.5438925119334435,
+  "stable_oof_selected_cells": 121,
+  "candidate_policy_source": "stable_subjectheldout",
+  "released_test_cells": 67,
+  "candidate_file": "submission_hsjepa_subject_normalized_tail_field_anchor_free_d4bf6a61_uploadsafe.csv",
+  "validation": {
+    "valid": true,
+    "problems": [],
+    "rows": 250,
+    "probability_min": 0.4955555555555556,
+    "probability_max": 0.6822222222222222
+  }
+}

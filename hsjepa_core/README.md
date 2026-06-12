@@ -45,6 +45,7 @@ python3 hsjepa_core/run_action_support_view_invariance_core.py
 python3 hsjepa_core/run_listener_conditioned_action_support_core.py
 python3 hsjepa_core/run_subject_contrastive_action_support_core.py
 python3 hsjepa_core/run_tail_safe_expected_utility_core.py
+python3 hsjepa_core/run_subject_normalized_tail_field_core.py
 ```
 
 ## 산출물
@@ -79,6 +80,9 @@ python3 hsjepa_core/run_tail_safe_expected_utility_core.py
 - `hsjepa_core/outputs/tail_safe_expected_utility_core/tail_safe_expected_utility_core_summary.json`
 - `hsjepa_core/outputs/tail_safe_expected_utility_core/TAIL_SAFE_EXPECTED_UTILITY_CORE_KO.md`
 - `hsjepa_core/outputs/tail_safe_expected_utility_core/*_metrics.csv`
+- `hsjepa_core/outputs/subject_normalized_tail_field_core/subject_normalized_tail_field_core_summary.json`
+- `hsjepa_core/outputs/subject_normalized_tail_field_core/SUBJECT_NORMALIZED_TAIL_FIELD_CORE_KO.md`
+- `hsjepa_core/outputs/subject_normalized_tail_field_core/*_metrics.csv`
 
 ## 실행 가능한 core
 
@@ -92,6 +96,7 @@ python3 hsjepa_core/run_tail_safe_expected_utility_core.py
 - `hsjepa_core/run_listener_conditioned_action_support_core.py`: target-blind world state가 부족한지 확인하기 위해 target/family listener-conditioned residual/energy support predictor를 검증한다.
 - `hsjepa_core/run_subject_contrastive_action_support_core.py`: 같은 subject-target 내부 pairwise ordering으로 subject/target shortcut을 제거하고, masked world residual energy가 episode-level action-health ordering을 복원하는지 검증한다.
 - `hsjepa_core/run_tail_safe_expected_utility_core.py`: action-health를 AUC 문제가 아니라 Log Loss expected gain과 negative-tail risk 문제로 바꾸어, HS-JEPA core geometry가 release-grade utility로 번역되는지 subject-heldout stress까지 검증한다.
+- `hsjepa_core/run_subject_normalized_tail_field_core.py`: absolute action utility 대신 subject-target-action route 내부 tail scale로 정규화한 relative badness를 예측해, subject shift에서 S-tail 독성이 줄어드는지 검증한다.
 
 ## 팀 공유 시 주의점
 
@@ -327,6 +332,39 @@ HS-JEPA core geometry는 expected utility와 toxic-tail signal을 읽을 수 있
 하지만 full OOF utility가 subject-heldout release safety를 보장하지 않는다.
 따라서 논문 주장은 "HS-JEPA core + tail-safe decoder가 필요하다"이지,
 "core alone이 바로 submission solver다"가 아니다.
+```
+
+## Subject-Normalized Tail Field Core
+
+`run_subject_normalized_tail_field_core.py`는 tail-safe 결과의 다음 질문을 다룬다.
+full OOF expected utility는 강하지만 subject-heldout S-tail에서 깨졌기 때문에,
+absolute gain 대신 subject-target-action route 내부의 tail scale로 정규화한 relative badness를 예측한다.
+
+```text
+hidden action-health / residual-energy representation
+  -> subject-normalized tail field
+  -> relative badness / toxic-tail probability
+  -> row-target action assignment
+```
+
+현재 핵심 결과:
+
+- full OOF selected gain sum: `+2.898288`
+- nested subject-heldout gain sum: `-3.812519`
+- tail-safe expected utility의 nested heldout gain `-8.823949` 대비 손실이 크게 줄었다.
+- relative toxic-tail AUC/AP: `0.740461` / `0.314014`
+- stable targets after heldout filtering: `Q2`, `S4`
+- stable OOF gain sum: `+1.543893`
+- released test cells: `67`
+- anchor-free candidate: `submission_hsjepa_subject_normalized_tail_field_anchor_free_d4bf6a61_uploadsafe.csv`
+
+해석:
+
+```text
+subject-normalization은 full OOF upside를 줄였지만 subject-heldout tail damage를 절반 이상 줄였다.
+따라서 HS-JEPA target representation은 absolute action utility보다
+human-specific relative badness / tail field 쪽이 더 일반화될 가능성이 있다.
+다만 nested gain은 여전히 음수라서 완성된 release solver는 아니다.
 ```
 
 ## Core가 아닌 것

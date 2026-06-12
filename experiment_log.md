@@ -16571,3 +16571,104 @@ visible human context
 
 The remaining bottleneck is subject-general tail-risk control, especially for S targets.
 ```
+
+## 2026-06-13 - HS-JEPA Subject-Normalized Tail Field Core
+
+### Question
+
+Tail-Safe Expected Utility Core made full OOF utility much stronger, but its
+nested subject-heldout gain was still sharply negative:
+
+```text
+full OOF selected gain: +10.396344
+nested subject-heldout gain: -8.823949
+```
+
+The new hypothesis is that the target representation was still wrong.
+Absolute action gain mixes different human baselines, so an action that is
+normal for one subject can be tail-toxic for another.
+
+This experiment asks:
+
+```text
+Can HS-JEPA residual/energy geometry predict subject-relative badness
+better than absolute Log Loss utility?
+```
+
+### Method
+
+Code:
+
+```bash
+python3 hsjepa_core/run_subject_normalized_tail_field_core.py
+```
+
+The experiment preserves the public-free boundary:
+
+- public LB ledger: `False`;
+- prior submission probabilities: `False`;
+- proprietary embedding API: `False`.
+
+It changes the target representation:
+
+```text
+effective action gain
+  -> center/scale within subject + target + decoder action
+  -> subject_normalized_gain
+  -> relative tail loss / relative toxic tail
+```
+
+The downstream policy still evaluates real Log Loss gain, so this is not a
+metric dodge.  It tests whether relative badness is a better hidden target
+representation for the HS-JEPA core.
+
+### Result
+
+- verdict: `subject_normalized_tail_field_oof_positive_subjectheldout_fragile`
+- full OOF selected gain sum: `+2.898288`
+- full OOF selected cells: `151`
+- nested subject-heldout gain sum: `-3.812519`
+- nested subject-heldout selected cells: `239`
+- relative toxic-tail AUC/AP: `0.740461` / `0.314014`
+- stable targets: `Q2`, `S4`
+- stable OOF gain sum: `+1.543893`
+- stable OOF selected cells: `121`
+- released test cells: `67`
+- candidate: `submission_hsjepa_subject_normalized_tail_field_anchor_free_d4bf6a61_uploadsafe.csv`
+
+Comparison against the previous tail-safe expected utility core:
+
+- full OOF gain decreased: `+10.396344 -> +2.898288`
+- nested heldout damage improved: `-8.823949 -> -3.812519`
+- stable targets shifted: `Q1 -> Q2/S4`
+
+Nested target result:
+
+- Q2: `+0.235969`, positive/negative subjects `6/4`
+- S4: `+0.215803`, positive/negative subjects `6/3`
+- Q1/Q3/S1/S2/S3 remained negative.
+
+### Interpretation
+
+Strengthened:
+
+```text
+Absolute utility is not the right hidden target representation.
+Subject-normalized relative badness reduces subject-heldout tail damage and
+finds a different stable route pair: Q2/S4.
+```
+
+Constrained:
+
+```text
+The result is still not release-grade.  Nested gain remains negative overall,
+and the gain that survives is small.
+```
+
+Updated thesis:
+
+```text
+HS-JEPA should learn a human-relative tail field, not only a global action-health score.
+The next architectural target is sequence/episode-conditioned relative badness:
+what is bad for this human state, compared with this human's normal tail scale?
+```
