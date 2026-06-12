@@ -1,0 +1,9 @@
+metric,value
+episode_conditioned_gain_mae,0.9910710451529889
+episode_tail_loss_mae,0.6691203296518138
+episode_positive_auc,0.512829132166754
+episode_positive_ap,0.49863147528121976
+episode_toxic_tail_auc,0.7102481167004525
+episode_toxic_tail_ap,0.2994704700591079
+episode_toxic_tail_rate,0.17444444444444446
+absolute_gain_sum_all_modes,-141.43979720040875

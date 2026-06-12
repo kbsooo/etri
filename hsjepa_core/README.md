@@ -46,6 +46,7 @@ python3 hsjepa_core/run_listener_conditioned_action_support_core.py
 python3 hsjepa_core/run_subject_contrastive_action_support_core.py
 python3 hsjepa_core/run_tail_safe_expected_utility_core.py
 python3 hsjepa_core/run_subject_normalized_tail_field_core.py
+python3 hsjepa_core/run_episode_conditioned_relative_tail_core.py
 ```
 
 ## 산출물
@@ -83,6 +84,9 @@ python3 hsjepa_core/run_subject_normalized_tail_field_core.py
 - `hsjepa_core/outputs/subject_normalized_tail_field_core/subject_normalized_tail_field_core_summary.json`
 - `hsjepa_core/outputs/subject_normalized_tail_field_core/SUBJECT_NORMALIZED_TAIL_FIELD_CORE_KO.md`
 - `hsjepa_core/outputs/subject_normalized_tail_field_core/*_metrics.csv`
+- `hsjepa_core/outputs/episode_conditioned_relative_tail_core/episode_conditioned_relative_tail_core_summary.json`
+- `hsjepa_core/outputs/episode_conditioned_relative_tail_core/EPISODE_CONDITIONED_RELATIVE_TAIL_CORE_KO.md`
+- `hsjepa_core/outputs/episode_conditioned_relative_tail_core/*_metrics.csv`
 
 ## 실행 가능한 core
 
@@ -97,6 +101,7 @@ python3 hsjepa_core/run_subject_normalized_tail_field_core.py
 - `hsjepa_core/run_subject_contrastive_action_support_core.py`: 같은 subject-target 내부 pairwise ordering으로 subject/target shortcut을 제거하고, masked world residual energy가 episode-level action-health ordering을 복원하는지 검증한다.
 - `hsjepa_core/run_tail_safe_expected_utility_core.py`: action-health를 AUC 문제가 아니라 Log Loss expected gain과 negative-tail risk 문제로 바꾸어, HS-JEPA core geometry가 release-grade utility로 번역되는지 subject-heldout stress까지 검증한다.
 - `hsjepa_core/run_subject_normalized_tail_field_core.py`: absolute action utility 대신 subject-target-action route 내부 tail scale로 정규화한 relative badness를 예측해, subject shift에서 S-tail 독성이 줄어드는지 검증한다.
+- `hsjepa_core/run_episode_conditioned_relative_tail_core.py`: subject-relative badness가 아직 거칠다는 가설을 검사하기 위해 row episode context를 추가하고, 보이는 episode context로 보이지 않는 episode-conditioned tail representation을 예측한다.
 
 ## 팀 공유 시 주의점
 
@@ -365,6 +370,39 @@ subject-normalization은 full OOF upside를 줄였지만 subject-heldout tail da
 따라서 HS-JEPA target representation은 absolute action utility보다
 human-specific relative badness / tail field 쪽이 더 일반화될 가능성이 있다.
 다만 nested gain은 여전히 음수라서 완성된 release solver는 아니다.
+```
+
+## Episode-Conditioned Relative Tail Core
+
+`run_episode_conditioned_relative_tail_core.py`는 subject-normalized tail field의 다음 질문을 다룬다.
+`이 사람 기준으로 나쁜 action`도 아직 너무 넓은 표현일 수 있으므로,
+같은 subject라도 episode/reset/transition context에 따라 tail scale이 달라진다고 본다.
+
+```text
+visible episode context + hidden action-health geometry
+  -> episode-conditioned relative tail representation
+  -> row-target action assignment
+```
+
+현재 핵심 결과:
+
+- full OOF selected gain sum: `+3.733608`
+- nested subject-heldout gain sum: `-3.230895`
+- subject-normalized tail field의 nested heldout gain `-3.812519` 대비 손실이 추가로 줄었다.
+- tail-safe expected utility의 nested heldout gain `-8.823949` 대비로는 훨씬 덜 독성적이다.
+- stable targets after heldout filtering: `Q3`, `S3`, `S4`
+- stable OOF gain sum: `+1.651284`
+- released test cells: `50`
+- anchor-free candidate: `submission_hsjepa_episode_conditioned_relative_tail_anchor_free_56c526fc_uploadsafe.csv`
+
+해석:
+
+```text
+episode context는 단순한 보정 feature가 아니라 hidden target representation의 조건이다.
+HS-JEPA가 맞혀야 할 것은 global utility가 아니라
+이 사람의 이 episode 상태에서 어떤 action이 relative tail인지에 가까워지고 있다.
+다만 nested gain은 아직 음수이므로, 완성된 release solver가 아니라
+core-decoder boundary를 좁힌 positive direction으로 읽어야 한다.
 ```
 
 ## Core가 아닌 것

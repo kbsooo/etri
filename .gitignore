@@ -12,6 +12,8 @@ hsjepa_core/outputs/tail_safe_expected_utility_core/tail_safe_test_action_modes.
 hsjepa_core/outputs/tail_safe_expected_utility_core/tail_safe_test_release_audit.csv
 hsjepa_core/outputs/subject_normalized_tail_field_core/subject_normalized_full_oof_action_audit.csv
 hsjepa_core/outputs/subject_normalized_tail_field_core/subject_normalized_test_release_audit.csv
+hsjepa_core/outputs/episode_conditioned_relative_tail_core/episode_conditioned_full_oof_action_audit.csv
+hsjepa_core/outputs/episode_conditioned_relative_tail_core/episode_conditioned_test_release_audit.csv
 
 # Keep the analysis code, reports, summaries, and key submissions in git.
 # Large generated scan tables stay local because this workspace is ~7GB.

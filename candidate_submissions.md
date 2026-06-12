@@ -10478,3 +10478,54 @@ Subject-normalized badness is still locally useful as a diagnostic, but the
 candidate's 67-cell release is not public/private safe.  The next step should
 use this representation only as a veto/constraint around an episode-level
 decoder, not as a direct release score.
+
+## 2026-06-13 - HS-JEPA Episode-Conditioned Relative Tail Core Candidate
+
+- File: `submission_hsjepa_episode_conditioned_relative_tail_anchor_free_56c526fc_uploadsafe.csv`
+- Code: `hsjepa_core/run_episode_conditioned_relative_tail_core.py`
+- Documentation: `paper_hsjepa_core/EPISODE_CONDITIONED_RELATIVE_TAIL_CORE_KO.md`
+- Public LB dependency: none
+- Prior submission probability dependency: none
+- Proprietary embedding API dependency: none
+
+Why this candidate matters:
+
+This is a JEPA-contract sensor.  It tests whether the target representation
+should be episode-conditioned rather than only subject-normalized.
+
+The candidate is not a conservative leaderboard candidate.  It asks whether
+visible episode/reset/transition context can predict the hidden relative tail
+field that decides which row-target action is toxic.
+
+Local evidence:
+
+- full OOF selected gain sum: `+3.733608`
+- nested subject-heldout gain sum: `-3.230895`
+- previous subject-normalized nested heldout gain: `-3.812519`
+- previous tail-safe nested heldout gain: `-8.823949`
+- stable targets: `Q3`, `S3`, `S4`
+- stable OOF gain sum: `+1.651284`
+- released test cells: `50`
+- validation: upload-safe
+
+Worldview:
+
+```text
+HS-JEPA should not predict a global correction score.
+It should predict a hidden episode-conditioned, human-relative tail field:
+what is toxic for this human, in this episode state, for this listener route?
+```
+
+If public LB improves:
+
+Episode context is not merely an adapter feature.  It belongs in the hidden
+target representation itself, and the paper should emphasize
+`visible episode context -> hidden relative tail field` as a core HS-JEPA
+example.
+
+If public LB worsens:
+
+The local improvement in nested damage is still a useful diagnostic, but the
+50-cell release is not public/private safe.  The next architecture step should
+use episode-conditioned tail only as a veto or listener responsibility term,
+not as a direct release policy.

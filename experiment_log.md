@@ -16672,3 +16672,91 @@ HS-JEPA should learn a human-relative tail field, not only a global action-healt
 The next architectural target is sequence/episode-conditioned relative badness:
 what is bad for this human state, compared with this human's normal tail scale?
 ```
+
+## 2026-06-13 - HS-JEPA Episode-Conditioned Relative Tail Core
+
+### Question
+
+The previous subject-normalized tail field reduced nested subject-heldout damage
+from `-8.823949` to `-3.812519`, but the release remained negative overall.
+That suggested a sharper hidden target representation:
+
+```text
+Not "is this action bad for this subject?"
+but "is this action bad for this subject in this episode/reset/transition state?"
+```
+
+This is closer to the HS-JEPA contract than a plain correction rule: visible
+episode context is used to predict a hidden episode-conditioned tail/action
+representation.
+
+### Method
+
+Code:
+
+```bash
+python3 hsjepa_core/run_episode_conditioned_relative_tail_core.py
+```
+
+The experiment preserves the public-free boundary:
+
+- public LB ledger: `False`;
+- prior submission probabilities: `False`;
+- proprietary embedding API: `False`.
+
+It builds an unsupervised episode context from masked-world residual energy,
+action pressure, subject-local row order, transition pressure, weekend, and
+month-end context.  It then changes the target representation:
+
+```text
+effective action gain
+  -> center/scale within subject + target + decoder action + episode bin
+  -> episode_conditioned_gain
+  -> episode relative tail loss / toxic tail
+```
+
+### Result
+
+- verdict: `episode_conditioned_relative_tail_oof_positive_subjectheldout_fragile`
+- full OOF selected gain sum: `+3.733608`
+- full OOF selected cells: `159`
+- nested subject-heldout gain sum: `-3.230895`
+- nested subject-heldout selected cells: `229`
+- stable targets: `Q3`, `S3`, `S4`
+- stable OOF gain sum: `+1.651284`
+- stable OOF selected cells: `78`
+- released test cells: `50`
+- candidate: `submission_hsjepa_episode_conditioned_relative_tail_anchor_free_56c526fc_uploadsafe.csv`
+
+Comparison:
+
+- tail-safe expected utility nested gain: `-8.823949`
+- subject-normalized tail field nested gain: `-3.812519`
+- episode-conditioned relative tail nested gain: `-3.230895`
+
+### Interpretation
+
+Strengthened:
+
+```text
+The toxic action field is not only subject-relative; it is episode-relative.
+Adding episode/reset/transition context to the hidden target representation
+further reduces subject-heldout tail damage.
+```
+
+Constrained:
+
+```text
+The result is still not release-grade because nested gain remains negative.
+It should be presented as a core-decoder boundary improvement, not as a final
+competition solver.
+```
+
+Updated thesis:
+
+```text
+HS-JEPA should predict an episode-conditioned human-relative tail field.
+This keeps the JEPA structure clear: visible human episode context predicts a
+hidden action-health/tail representation before any competition-specific sparse
+row-target release.
+```
