@@ -16,6 +16,7 @@
 - `paper_hsjepa_core/CONTRASTIVE_FAILURE_ATLAS_KO.md`
 - `paper_hsjepa_core/FAILURE_BOUNDARY_LAW_DISTILLATION_KO.md`
 - `paper_hsjepa_core/ROW_RESET_EPISODE_DETECTOR_KO.md`
+- `paper_hsjepa_core/EPISODE_SELECTIVE_ASSIGNMENT_DECODER_KO.md`
 
 논문 방향으로는 `HS_JEPA_PAPER_THESIS_KO.md`를 먼저 읽는다. 이 문서는 HS-JEPA를 대회용 trick이 아니라 `hidden human-state -> listener responsibility -> action-health -> invariant release` 아키텍처로 정리하고, public LB를 그 주장을 검증하는 sensor로 해석한다.
 
@@ -182,6 +183,28 @@ raw lifelog memory가 row 전체 차원에서 실패하는 hidden episode가 있
 HS-JEPA context는 이를 public/LB teacher 없이 일부 탐지한다.
 하지만 row reset만으로는 release-grade solver가 아니며,
 target/listener assignment decoder와 결합해야 한다.
+```
+
+`EPISODE_SELECTIVE_ASSIGNMENT_DECODER_KO.md`는 바로 그 결합을 시도한 ablation이다. row-level hidden episode score를 cell-level target/listener assignment decoder에 넣어, row episode state가 실제 release decision을 바꾸는지 확인했다.
+
+현재 핵심 결과:
+
+- raw KNN OOF: `0.636997`
+- row episode detector OOF: `0.634030`
+- best no-episode assignment OOF: `0.632902`
+- best episode-conditioned assignment OOF: `0.632902`
+- episode gain over no-episode: `0.000000`
+- release top features: `expert_prob_mean`, `abs_vs_core`, `raw_confidence`
+- release 후보는 failure-boundary law와 동일한 prediction이다.
+- generated candidate: `submission_hsjepa_episode_selective_assignment_decoder_65ce2d48_uploadsafe.csv`
+
+현재 해석:
+
+```text
+row episode state는 diagnostic으로는 살아 있지만,
+단순 feature injection만으로는 release-grade target/listener assignment에 쓰이지 않았다.
+다음 구조는 episode score를 feature로 더하는 방식이 아니라,
+episode가 action space 자체를 제한하거나 listener responsibility를 재가중하는 방식이어야 한다.
 ```
 
 ## 핵심 질문

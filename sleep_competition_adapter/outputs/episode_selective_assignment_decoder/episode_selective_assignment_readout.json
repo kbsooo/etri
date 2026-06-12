@@ -1,0 +1,151 @@
+{
+  "package": "episode_selective_assignment_decoder",
+  "status": "episode_conditioned_assignment_ready",
+  "uses_public_score_ledger": false,
+  "uses_prior_submission_probabilities": false,
+  "uses_action_teacher": false,
+  "uses_frontier_file": false,
+  "raw_knn_oof_logloss": 0.6369970821509948,
+  "row_episode_oof_logloss": 0.6340299447904069,
+  "row_episode_law_name": "full_row_context__elasticnet_sparse",
+  "best_overall_law_name": "route_law_no_episode__episode_tree_depth2_leaf18",
+  "best_overall_oof_logloss": 0.6329024135132717,
+  "best_no_episode_law_name": "route_law_no_episode__episode_tree_depth2_leaf18",
+  "best_no_episode_oof_logloss": 0.6329024135132717,
+  "best_episode_law_name": "episode_route_gate__episode_tree_depth2_leaf18",
+  "best_episode_oof_logloss": 0.6329024135132717,
+  "best_episode_delta_vs_raw_knn": -0.00409466863772312,
+  "best_episode_delta_vs_best_no_episode": 0.0,
+  "release_law_name": "episode_route_gate__episode_tree_depth2_leaf18",
+  "release_feature_view": "episode_route_gate",
+  "release_model_name": "episode_tree_depth2_leaf18",
+  "release_model_family": "tree",
+  "release_policy": "topfrac",
+  "release_policy_param": 0.08,
+  "release_oof_logloss": 0.6329024135132717,
+  "release_delta_vs_raw_knn": -0.00409466863772312,
+  "release_switched_cells": 59,
+  "release_positive_true_gain_rate": 0.5932203389830508,
+  "release_episode_route_match_rate": 0.0,
+  "release_episode_family_match_rate": 0.3559322033898305,
+  "release_target_null_p_ge_observed": 0.024333333333333332,
+  "release_target_family_null_p_ge_observed": 0.02033333333333333,
+  "release_nonzero_feature_count": 3,
+  "release_top_features": [
+    {
+      "feature": "expert_prob_mean",
+      "importance": 0.4885292637191805
+    },
+    {
+      "feature": "abs_vs_core",
+      "importance": 0.4230098348657996
+    },
+    {
+      "feature": "raw_confidence",
+      "importance": 0.08846090141501989
+    },
+    {
+      "feature": "expert_pred",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_logit",
+      "importance": 0.0
+    },
+    {
+      "feature": "target_idx",
+      "importance": 0.0
+    },
+    {
+      "feature": "target_is_q",
+      "importance": 0.0
+    },
+    {
+      "feature": "target_is_s",
+      "importance": 0.0
+    },
+    {
+      "feature": "target_is_q2",
+      "importance": 0.0
+    },
+    {
+      "feature": "target_is_s2",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_global_prior",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_subject_prior",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_core_geometry",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_core_action_health",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_raw_action_core_gate",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_strict",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_balanced",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_wide",
+      "importance": 0.0
+    },
+    {
+      "feature": "expert_is_high_margin",
+      "importance": 0.0
+    },
+    {
+      "feature": "family_is_prior",
+      "importance": 0.0
+    },
+    {
+      "feature": "family_is_core_geometry",
+      "importance": 0.0
+    },
+    {
+      "feature": "family_is_core_action_health",
+      "importance": 0.0
+    },
+    {
+      "feature": "family_is_raw_action_core_health",
+      "importance": 0.0
+    },
+    {
+      "feature": "abs_vs_global",
+      "importance": 0.0
+    }
+  ],
+  "candidate_file": "submission_hsjepa_episode_selective_assignment_decoder_65ce2d48_uploadsafe.csv",
+  "root_candidate_file": "submission_hsjepa_episode_selective_assignment_decoder_65ce2d48_uploadsafe.csv",
+  "candidate_matches_failure_boundary_law": true,
+  "test_switched_cells": 140,
+  "test_switched_rows": 20,
+  "test_selected_expert_counts": {
+    "global_prior": 140
+  },
+  "test_target_counts": {
+    "Q1": 20,
+    "Q2": 20,
+    "Q3": 20,
+    "S1": 20,
+    "S2": 20,
+    "S3": 20,
+    "S4": 20
+  },
+  "submission_priority": "high_information_sensor_episode_conditioned_assignment",
+  "interpretation": "Tests whether row-level hidden episode state improves target/listener assignment beyond route-only failure laws."
+}

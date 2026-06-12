@@ -26,6 +26,7 @@ python3 sleep_competition_adapter/raw_knn_override_safety_jury.py
 python3 sleep_competition_adapter/contrastive_failure_atlas.py
 python3 sleep_competition_adapter/failure_boundary_law_distillation.py
 python3 sleep_competition_adapter/row_reset_episode_detector.py
+python3 sleep_competition_adapter/episode_selective_assignment_decoder.py
 ```
 
 `spectral_public_tangent_solver.py`는 H057 이후 public에서 실패한 제출들을 독립 실패로 보지 않고 하나의 negative representation space로 본다. 실패 액션들의 첫 spectral mode가 지배적이면, 다음 제출은 bad tangent의 반대 방향을 타야 하는지 또는 그와 직교한 private-safe residual subspace만 믿어야 하는지를 가르는 센서가 된다.
@@ -42,6 +43,8 @@ python3 sleep_competition_adapter/row_reset_episode_detector.py
 
 `row_reset_episode_detector.py`는 failure-boundary law의 선택이 cell 단위라기보다 row 전체 episode처럼 보인다는 관찰에서 출발한다. public score ledger, 기존 submission probability, action teacher, frontier file 없이 OG train OOF만 사용해 `raw lifelog memory를 계속 믿을 row인가, 안전한 prior/core route로 row 전체를 reset해야 하는 episode인가`를 학습한다. clean OOF에서 raw KNN `0.636997`을 `0.634030`으로 낮췄고, top 6개 row reset의 row-null p-value는 `0.005833`이다. 이 결과는 HS-JEPA adapter가 단순 sparse cell editor가 아니라 hidden episode reset detector로 확장될 수 있음을 보여주지만, 최종 release에는 target/listener assignment decoder가 추가로 필요하다는 한계도 남긴다.
 
+`episode_selective_assignment_decoder.py`는 row episode detector와 target/listener assignment를 결합한 ablation이다. 기대는 row-level hidden episode state가 cell-level release decision의 독성을 줄이는 것이었지만, clean OOF에서 episode-conditioned assignment `0.632902`는 no-episode route law `0.632902`와 같았다. 최종 model은 `row_episode_*` feature를 쓰지 않았고, 생성 후보도 failure-boundary law와 동일한 prediction이다. 따라서 이 실험은 positive release가 아니라 negative architecture evidence다. row episode는 diagnostic으로 살아 있지만, 단순 feature injection이 아니라 episode-conditioned action-space restriction 또는 listener responsibility reweighting이 필요하다.
+
 ## 산출물
 
 - `sleep_competition_adapter/outputs/sleep_competition_adapter_report.json`
@@ -55,6 +58,7 @@ python3 sleep_competition_adapter/row_reset_episode_detector.py
 - `sleep_competition_adapter/outputs/contrastive_failure_atlas/CONTRASTIVE_FAILURE_ATLAS_KO.md`
 - `sleep_competition_adapter/outputs/failure_boundary_law_distillation/FAILURE_BOUNDARY_LAW_DISTILLATION_KO.md`
 - `sleep_competition_adapter/outputs/row_reset_episode_detector/ROW_RESET_EPISODE_DETECTOR_KO.md`
+- `sleep_competition_adapter/outputs/episode_selective_assignment_decoder/EPISODE_SELECTIVE_ASSIGNMENT_DECODER_KO.md`
 
 ## 경계
 
